@@ -1,0 +1,6 @@
+loops found: 516
+enclosing function names: {'spawn': 258, 'respawn': 258}
+loop under a RespawnCause() == -1 test within 4 lines: {True: 516}
+loops with an earlier regI1 line in the same actor, other than earlier copies of the same loop: 0
+SND_WOMAN_A line 12497: setpos(regF0, regF1, regF2);
+SND_WOMAN_A line 12498: dir(regF3);

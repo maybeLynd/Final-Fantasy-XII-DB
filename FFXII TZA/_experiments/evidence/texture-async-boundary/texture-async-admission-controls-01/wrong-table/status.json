@@ -1,0 +1,7 @@
+{
+  "case": "wrong-table",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "physical RTTI/slot0 prerequisite changed",
+  "expected_error_seen": true
+}

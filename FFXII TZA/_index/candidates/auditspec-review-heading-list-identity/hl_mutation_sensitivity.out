@@ -1,0 +1,17 @@
+member 003A8390.bin   bytes True sha True
+member 0043EF40.bin   bytes True sha True
+member PLAN.md        bytes True sha True
+member RESULT.md      bytes True sha True
+member check.py       bytes True sha True
+member result.json    bytes True sha True
+member terminal.json  bytes True sha True
+bin 003A8390.bin == image[003A8390:+373]: True
+bin 0043EF40.bin == image[0043EF40:+716]: True
+unmutated (positive control)       rc=0 passed OK
+wrong root in flag walker          rc=1 REFUSED OK  | AssertionError
+wrong node link in flag walker     rc=1 REFUSED OK  | AssertionError
+wrong list head in flag walker     rc=1 REFUSED OK  | AssertionError
+wrong root in update               rc=1 REFUSED OK  | AssertionError
+wrong node link in update node     rc=1 REFUSED OK  | AssertionError
+filter byte offset +0x45           rc=1 REFUSED OK  | AssertionError
+filter type set changed (unasserted) rc=0 passed OK

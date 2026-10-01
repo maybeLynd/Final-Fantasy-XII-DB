@@ -1,0 +1,80 @@
+{
+  "result": "TRIGGER_COVERAGE_CORRECTION; NO_LIVE_OCCURRENCE_RESULT",
+  "receipt_call": "0x212950 at0x21B5E2",
+  "proposed_trigger": "0x21b608",
+  "static_cfg_witnesses": {
+    "empty_after_receipt": [
+      "0x21b5e7",
+      "0x21b5eb",
+      "0x21b5ef",
+      "0x21b5f1",
+      "0x21b5f4",
+      "0x21b621",
+      "0x21b626",
+      "0x21b62b",
+      "0x21b630",
+      "0x21b634",
+      "0x21b636",
+      "0x21b638",
+      "0x21b639"
+    ],
+    "one_nonmatching_node": [
+      "0x21b5e7",
+      "0x21b5eb",
+      "0x21b5ef",
+      "0x21b5f1",
+      "0x21b5f4",
+      "0x21b5f6",
+      "0x21b5fa",
+      "0x21b5fe",
+      "0x21b600",
+      "0x21b603",
+      "0x21b606",
+      "0x21b608",
+      "0x21b621",
+      "0x21b626",
+      "0x21b62b",
+      "0x21b630",
+      "0x21b634",
+      "0x21b636",
+      "0x21b638",
+      "0x21b639"
+    ],
+    "first_node_matches": [
+      "0x21b5e7",
+      "0x21b5eb",
+      "0x21b5ef",
+      "0x21b5f1",
+      "0x21b5f4",
+      "0x21b5f6",
+      "0x21b5fa",
+      "0x21b5fe",
+      "0x21b60a",
+      "0x21b60d",
+      "0x21b612",
+      "0x21b615",
+      "0x21b617",
+      "0x21b61a",
+      "0x21b61f",
+      "0x21b621",
+      "0x21b626",
+      "0x21b62b",
+      "0x21b630",
+      "0x21b634",
+      "0x21b636",
+      "0x21b638",
+      "0x21b639"
+    ]
+  },
+  "trigger_covers": [
+    "nonempty exhausted lookup"
+  ],
+  "trigger_does_not_cover": [
+    "empty list after receipt",
+    "matched lookup"
+  ],
+  "shared_epilogue": "0x21b621 reached by all3; its hit alone cannot distinguish match/miss",
+  "additional_candidate": "0x21b5f1 before initial empty comparison: RCX loaded head, RBX controller+8 sentinel, EDI signed block quotient; RCX==RBX is empty-list discriminator. Actual normal callers/identity/control and health remain required.",
+  "receipt_limits": "Local code preserves supplied receipt on the two miss paths and restores it after matched callback. Actual receipt producer effects/playback/liveness/ordering are not executed or established here.",
+  "limits": "Finite static original-code branch witnesses, not emulator/native traces. External calls opaque. Non-hit cannot prove no sound miss ever occurs. Shared return address alone insufficient."
+}

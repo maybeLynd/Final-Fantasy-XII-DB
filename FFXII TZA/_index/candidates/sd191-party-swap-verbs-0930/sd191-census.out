@@ -1,0 +1,9 @@
+CALL-family sites decoded: 16666842 | matching calls: 738
+    243  0x191 setpossummonspace
+    126  0x195 resumeposbattletarget
+    117  0x202 disposepartywithoutcontrol
+    117  0x205 changetosummonparty
+    117  0x232 capturepartyforsummon
+      9  0x2A3 duplicatepartyinfo_spattack
+      9  0x2A4 resumepartyinfo_spattack
+zone files: 27 (language copies agree on (script, verb) in 27)

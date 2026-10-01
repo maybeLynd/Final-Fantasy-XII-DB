@@ -1,0 +1,9 @@
+{
+  "verdict": "INVALID_CAPTURE_PRECONDITION",
+  "stage": "Before source.json/result or any native execution",
+  "error": "AssertionError navgrid-query-exec/gen_bodies.py: Git blob bytes != checkout bytes",
+  "diagnosis": "Working copy8274B/180CRLF versus canonicalGit8094B/LF; normalized equality proved. No scientific semantic result produced, no published input edited.",
+  "working_sha256": "29318251f793b32aa8efc172d9a938b6df522dea3a10a3df65d20ffe6b5e6edf",
+  "canonical_sha256": "1354d0710df35cbcb538755be74110a07505c12253e59b4f8a6c8eec3df71a5b",
+  "repair": "Capture exact pinned Git dependency blobs and record working preimage hash/equality; continue stopping on differences beyond newline representation."
+}

@@ -1,0 +1,27 @@
+{
+  "name": "missing-verdict",
+  "expected": "VERDICT-MISSING",
+  "input_sha256": "9d4841081ea3d534310ea7ae6dbffa3003d15210a21bbb712ebb9e1e45c9fb53",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\missing-verdict\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"VERDICT-MISSING\",\n  \"review\": \"REVIEW-MISSING-VERDICT\",\n  \"detail\": \"result refs carry no verdict:\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "parsed_report": [
+    {
+      "transition": "VERDICT-MISSING",
+      "review": "REVIEW-MISSING-VERDICT",
+      "detail": "result refs carry no verdict:",
+      "status": "-"
+    }
+  ],
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true
+}

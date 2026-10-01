@@ -1,0 +1,4 @@
+files 166 sets 1422 records 50050
+control: first-entry first word == 1: 18206  == 0: 8999
+selector 0x1A/0x1B entries (non-empty) by (selector, slot operand): []
+entries with slot operand 5: 0 []

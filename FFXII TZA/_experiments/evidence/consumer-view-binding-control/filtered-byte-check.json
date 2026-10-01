@@ -1,0 +1,113 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "4f0883b3d3ed088cd5e7540b33b00f950071ad7d"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "bdb9b717aab63684fc50338dd8f335e2aa9f0294"
+    },
+    {
+      "path": "cleanup.json",
+      "git_blob": "688fecb0069dfc4ae968e96ba80193ee4face140"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "8146e62b81e698167858eb059ff64385ab6931c6"
+    },
+    {
+      "path": "mutation.json",
+      "git_blob": "10d3473e75a54ada189794af99dce8ceea378825"
+    },
+    {
+      "path": "partial-receipts.json",
+      "git_blob": "938550cc353750dfebf86dbca236dbbda29bd0e7"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "159c83664edeca002859cf327f78a63e77914359"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "acafe9a1227d964076f26c6fcda9beac9bdf4794"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "aed9951c6f0e89674d73dc166e3c897c73a29e47"
+    },
+    {
+      "path": "retained/0020E600.bin",
+      "git_blob": "ae85f115f21ee1d8beaef2ba51b3fe5190707346"
+    },
+    {
+      "path": "retained/0020E620.bin",
+      "git_blob": "dc10ed9ffa6d28030d92d44383ecbf3bfcff37da"
+    },
+    {
+      "path": "retained/00229E70.bin",
+      "git_blob": "93547bef9a979bd0dc3ed33619790c1b55118f21"
+    },
+    {
+      "path": "retained/00339630.bin",
+      "git_blob": "f2b1d2cac69c810904729e2041b15865ebaa0421"
+    },
+    {
+      "path": "retained/__pycache__/shipping-reader.cpython-314.pyc",
+      "git_blob": "e6d646ccd700638062745c13656101dafbc86a6c"
+    },
+    {
+      "path": "retained/changed-view-changed-image.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "retained/changed-view-changed-image.stdout",
+      "git_blob": "67a9e184027063d3388712fe86391692f5ecb332"
+    },
+    {
+      "path": "retained/changed-view.txt",
+      "git_blob": "0dc44e8ccae7d9b4617bdf274f56283ee616fcdd"
+    },
+    {
+      "path": "retained/consumer-readme.md",
+      "git_blob": "c6451ec84a43311c7dcc0524f7e38f3ebf62ff35"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "4f0883b3d3ed088cd5e7540b33b00f950071ad7d"
+    },
+    {
+      "path": "retained/original-pair.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "retained/original-pair.stdout",
+      "git_blob": "d8f1bf2133576de5d064c2b233d0b91ce0bc8b18"
+    },
+    {
+      "path": "retained/original-view.txt",
+      "git_blob": "4f2a79744b97041b0cca780f264a0ed2f92de9ef"
+    },
+    {
+      "path": "retained/producer.py",
+      "git_blob": "76f30a51d6f670a307ba2dc772d025c5893f06c8"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/stale-view-changed-image.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "retained/stale-view-changed-image.stdout",
+      "git_blob": "d8f1bf2133576de5d064c2b233d0b91ce0bc8b18"
+    }
+  ]
+}

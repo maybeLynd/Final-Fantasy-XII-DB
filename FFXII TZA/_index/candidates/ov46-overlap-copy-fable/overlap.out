@@ -1,0 +1,5 @@
+PASS  D no vcruntime140*.dll beside the game (D:\FFXII MP Mod\FFXII_TestClient1\x64); the loaded dependency is C:\Windows\System32\vcruntime140.dll, 178616 bytes, sha256 d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7, version 14.51.36247.0
+      memcpy export 0x7ff803abf020, memmove export 0x7ff803abdb00, different entries
+PASS  O 31784 overlapping memcpy cases through the deployed DLL; 0 differ from an overlap-safe copy []
+PASS  K sensitivity: a naive forward copy with dst 8 bytes above src differs from the reference
+FAILS 0

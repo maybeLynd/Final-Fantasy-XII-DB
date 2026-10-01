@@ -1,0 +1,6 @@
+PASS  B 0016FA40: 25 records from xd + 0x860, stride 0x38: +0x00 = qcoeff + 32b, +0x08 = dqcoeff + 32b, +0x28 = eobs + b
+PASS  Q 0016FA40: predictor pointers at record +0x10 (block 1 at xd + 0x8A8, blocks 17 / 21 at xd + 0xC28 / 0xD08)
+PASS  O 0016FB80: every offset store is +0x20 of a record at xd + 0x860 + 0x38k (k = 0..23)
+PASS  R 0016FA40 runs on the embedded decoder (rcx = pbi) and on each mb_row_di record
+PASS  W blocks = Vp8BlockDescriptor[25] at +0x860 (no record at +0x880); record qcoeff / dqcoeff / predictor / offset / eob at +0 / +8 / +0x10 / +0x20 / +0x28; both types tile
+FAILS 0

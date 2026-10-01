@@ -1,0 +1,282 @@
+{
+ "rev": "5a2435b23231c2a3e340b3fda32c70df6903965c",
+ "source": "release-result.json",
+ "components": {
+  "build_views.py": {
+   "ok": true,
+   "rel": "Database/Tools/dashboard/build_views.py",
+   "rev": "5a2435b23231c2a3e340b3fda32c70df6903965c",
+   "blob_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+   "checkout_sha256": "f577002787051fba095774afdaade1437441136e6a31af4cd95712535dbe19cb",
+   "last_commit": "cdbf25a5d711654ccbb883f472309c3f42df290f",
+   "why": null,
+   "calls": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "show",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/dashboard/build_views.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 49701,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "cat-file",
+      "--filters",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/dashboard/build_views.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 50371,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "log",
+      "-1",
+      "--format=%H",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c",
+      "--",
+      "Database/Tools/dashboard/build_views.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 41,
+     "stderr": ""
+    }
+   ],
+   "recorded": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+   "equal": true,
+   "state": "BOUND (raw blob)"
+  },
+  "requirements.py": {
+   "ok": true,
+   "rel": "Database/Tools/dashboard/requirements.py",
+   "rev": "5a2435b23231c2a3e340b3fda32c70df6903965c",
+   "blob_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+   "checkout_sha256": "fde64cd0fa776d50b4904d8bcf24d7d5078b89d2c973b0089fc26985d6d91a33",
+   "last_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e",
+   "why": null,
+   "calls": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "show",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/dashboard/requirements.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 32680,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "cat-file",
+      "--filters",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/dashboard/requirements.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 33220,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "log",
+      "-1",
+      "--format=%H",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c",
+      "--",
+      "Database/Tools/dashboard/requirements.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 41,
+     "stderr": ""
+    }
+   ],
+   "recorded": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+   "equal": true,
+   "state": "BOUND (raw blob)"
+  },
+  "uc1_band.py": {
+   "ok": true,
+   "rel": "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+   "rev": "5a2435b23231c2a3e340b3fda32c70df6903965c",
+   "blob_sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+   "checkout_sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+   "last_commit": "b26125d2d0111845ec6e702e5a51410c1745e581",
+   "why": null,
+   "calls": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "show",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/analysis-kit/gfz-scripts/uc1_band.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 6757,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "cat-file",
+      "--filters",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/analysis-kit/gfz-scripts/uc1_band.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 6914,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "log",
+      "-1",
+      "--format=%H",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c",
+      "--",
+      "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 41,
+     "stderr": ""
+    }
+   ],
+   "recorded": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+   "equal": true,
+   "state": "BOUND (checkout form, eol-filtered)"
+  },
+  "verifier(generation.py)": {
+   "ok": true,
+   "rel": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+   "rev": "5a2435b23231c2a3e340b3fda32c70df6903965c",
+   "blob_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+   "checkout_sha256": "945a0fc1dd9b0a832be1a9ca2e0dd9fa6acfdad68b77147bfcb11a852fef1632",
+   "last_commit": "b6e6de3f0080cd311336c04d68cf17516c228dff",
+   "why": null,
+   "calls": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "show",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/analysis-kit/gfz-scripts/generation.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 21083,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "cat-file",
+      "--filters",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/analysis-kit/gfz-scripts/generation.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 21444,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "log",
+      "-1",
+      "--format=%H",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c",
+      "--",
+      "Database/Tools/analysis-kit/gfz-scripts/generation.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 41,
+     "stderr": ""
+    }
+   ],
+   "recorded": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+   "equal": true,
+   "state": "BOUND (raw blob)"
+  },
+  "server.py": {
+   "ok": true,
+   "rel": "Database/Tools/dashboard/server.py",
+   "rev": "5a2435b23231c2a3e340b3fda32c70df6903965c",
+   "blob_sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+   "checkout_sha256": "390b143adc10223ba15c395e046bc1ce2994efd725aabf2176c134ae871cc173",
+   "last_commit": "7c14ecf567699d13a6ce9eddeb3e720fa9f5ff4d",
+   "why": null,
+   "calls": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "show",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/dashboard/server.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 44677,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "cat-file",
+      "--filters",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c:Database/Tools/dashboard/server.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 45290,
+     "stderr": ""
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline",
+      "log",
+      "-1",
+      "--format=%H",
+      "5a2435b23231c2a3e340b3fda32c70df6903965c",
+      "--",
+      "Database/Tools/dashboard/server.py"
+     ],
+     "exit": 0,
+     "stdout_bytes": 41,
+     "stderr": ""
+    }
+   ],
+   "recorded": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+   "equal": true,
+   "state": "BOUND (raw blob)"
+  }
+ },
+ "all_bound": true
+}

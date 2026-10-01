@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-store-saturation\check.py", line 30, in <module>
+    if '--fault-narrowing-wrap' in sys.argv and w<4 and not c['mutated']:assert expected_bits==wrapped,'Wrapping cast disagrees with original saturating write'
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Wrapping cast disagrees with original saturating write

@@ -1,0 +1,45 @@
+003DF81B lea rax, [rip + 0x277a4ba]
+003DF822 lea rdx, [rip + 0x277a497]
+003DF829 nop dword ptr [rax]
+003DF830 mov ebp, dword ptr [rax]
+003DF832 test ebp, ebp
+003DF834 jne 0x3df872
+003DF836 dec ecx
+003DF838 sub rax, 4
+003DF83C cmp rax, rdx
+003DF83F jge 0x3df830
+003DF841 xor r9d, r9d
+003DF844 xor r8d, r8d
+003DF847 xor edx, edx
+003DF849 xor ecx, ecx
+---- 0029CAB0
+0029CAB0 jmp 0x2900c0
+0029CAB5 int3 
+0029CAB6 int3 
+0029CAB7 int3 
+0029CAB8 int3 
+0029CAB9 int3 
+0029CABA int3 
+0029CABB int3 
+0029CABC int3 
+0029CABD int3 
+0029CABE int3 
+0029CABF int3 
+0029CAC0 lea rax, [rip + 0x1dff859]
+0029CAC7 xor edx, edx
+0029CAC9 mov r8, rax
+0029CACC mov r9d, edx
+0029CACF nop 
+0029CAD0 cmp rcx, qword ptr [r8]
+0029CAD3 je 0x29cb03
+0029CAD5 inc r9d
+0029CAD8 add r8, 0x10
+0029CADC cmp r9d, 6
+0029CAE0 jl 0x29cad0
+0029CAE2 cmp qword ptr [rax], 0
+0029CAE6 je 0x29caf4
+0029CAE8 inc edx
+0029CAEA add rax, 0x10
+0029CAEE cmp edx, 6
+0029CAF1 jl 0x29cae2
+0029CAF3 ret 

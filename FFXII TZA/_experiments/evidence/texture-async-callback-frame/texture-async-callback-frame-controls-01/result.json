@@ -1,0 +1,63 @@
+{
+  "status": "PASS_ACTUAL_CALLBACK_FRAME_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "0ba068ac8a2a3a2c3eddae801643bccb02ca4853ef252c9338e87697b83e1c31",
+  "positive_reused": {
+    "path": "texture-async-callback-frame-result-01.json",
+    "sha256": "923eb39498c67be9f9393f95ff4ffbd83a037d2f81eec81d1ee7eb2d900a9014"
+  },
+  "refusals": [
+    {
+      "case": "consistent-frame-data-offset",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-callback-frame.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\consistent-frame-data-offset\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\consistent-frame-data-offset\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "consistent-bank-read-width",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-callback-frame.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\consistent-bank-read-width\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\consistent-bank-read-width\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-frame-store",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-callback-frame.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\missing-frame-store\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\missing-frame-store\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-bank-invocation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-callback-frame.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\failed-bank-invocation\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-controls-01\\failed-bank-invocation\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Four actual producer CLI refusals; positive02 reused; no recapture/native/game/external review executions"
+}

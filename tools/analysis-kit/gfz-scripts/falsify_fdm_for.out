@@ -1,0 +1,10 @@
+SURVIVES  M0  sizes as measured (all eleven); 004201F0 decodes to 143 instructions in its 648 bytes (the evidence list says 144 - a count note, not a mechanism claim)
+SURVIVES  M1  seven tags in order into +0x208..+0x220; @FRP -> +0x1F0, @FEF -> +0x228; the @FDM unbind behind bit 2 of byte +8
+SURVIVES  M2  magic, the {0, cm x 0.01, cm x 0.01, 1.0e8} vector, the +0xA0 alternative, the window loop, the +0x3B clamp and the four outputs
+SURVIVES  M3  the 0xE0 walk, f32 +0x18, default 1.0; one caller 0042061B with byte +0x5C, result to +0x26C
+SURVIVES  M4  +0x20C, u16 +0x32, the linear key search, -1; one caller 005210BB
+SURVIVES  M5  the +0x2F2 flag test, the composite key, the direct s16 ordinal, and the one call into 00373060
+SURVIVES  M6  the +0x38 bound, the bare 0x7FFF store, the flagged store; both initialisers store 0x7FFF and clear 0x1000; 00371330's two callers
+SURVIVES  M7  the three u16 resolutions, the @FTE sum, list -> descriptor -> sub-record, the 0x1000 gate, the two slot ordinals and their s8 fallbacks, the 0x290 bone scale, the UNPACK tag, the | 0x30000000 row
+SURVIVES  M8  row {bit 0, A | B != 0, B, A}
+FAILS 0

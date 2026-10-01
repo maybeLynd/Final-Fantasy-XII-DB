@@ -1,0 +1,68 @@
+{
+ "ability": 0,
+ "ability_rows": 543,
+ "cases": {
+  "a_refund_after_commit_gives_nothing_back": true,
+  "commit_keeps_the_charge_and_ends_the_reservation": true,
+  "prepare_reserves_the_cost_and_takes_it_from_gil": true,
+  "refund_gives_it_back_and_clears_the_reservation": true,
+  "reserve_then_refund_invisible_in_balance_visible_twice_in_counters": true
+ },
+ "cost": 100,
+ "ok": true,
+ "reserve_then_commit": {
+  "after_consume": {
+   "gain_counter": 0,
+   "gil": 900,
+   "reserved_E58": 0,
+   "spend_counter": 100
+  },
+  "after_late_refund": {
+   "gain_counter": 0,
+   "gil": 900,
+   "reserved_E58": 0,
+   "spend_counter": 100
+  },
+  "after_prepare": {
+   "gain_counter": 0,
+   "gil": 900,
+   "reserved_E58": 100,
+   "spend_counter": 100
+  },
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "start": {
+   "gain_counter": 0,
+   "gil": 1000,
+   "reserved_E58": 0,
+   "spend_counter": 0
+  }
+ },
+ "reserve_then_refund": {
+  "after_prepare": {
+   "gain_counter": 0,
+   "gil": 900,
+   "reserved_E58": 100,
+   "spend_counter": 100
+  },
+  "after_refund": {
+   "gain_counter": 100,
+   "gil": 1000,
+   "reserved_E58": 0,
+   "spend_counter": 100
+  },
+  "ok": [
+   true,
+   true
+  ],
+  "start": {
+   "gain_counter": 0,
+   "gil": 1000,
+   "reserved_E58": 0,
+   "spend_counter": 0
+  }
+ }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "c38fab7659678da5ec8340f90f1f397ccf0c8c3b"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "986a301a99f1f7fc1ea88bd33f93b1a7ea7cee44"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "b4030bcaf11c89a8e6979296c68ea17be9f48453"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "9b781f0c6dcac4708ce93cfd418d55d1dfbba873"
+  },
+  {
+    "path": "fault-rank-is-dimension.stderr",
+    "git_blob": "b6b05fd1b00dbb0db7177f22ebc984a5183658d0"
+  },
+  {
+    "path": "fault-rank-is-dimension.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-upper-inclusive.stderr",
+    "git_blob": "aa4a78b96f306204f4d4986bec10eaddf70b4585"
+  },
+  {
+    "path": "fault-upper-inclusive.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-zero-dimension-is-edge.stderr",
+    "git_blob": "22adeb67493f9a5cd0240cd85be1fb886627533d"
+  },
+  {
+    "path": "fault-zero-dimension-is-edge.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "6401422436057aa2484d93110178ecda1dc22b35"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "b50d9e4d19a2b9f2d863f820e6d0c56425c1c459"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "bb051a1c2e1c41860444ac3d03d57fb4319c80e9"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "18a5fdc375b9ba09177d6db3eb30bd94df10b732"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "3773894c270cfe78cafb864e18ac169672992151"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "b6fd7903ad889243bae721a6e0c27e34322cba80"
+  },
+  {
+    "path": "retained/65-correction-material-publication.json",
+    "git_blob": "b0d5a59379a21ed40927291385b2cb5948bffbcb"
+  },
+  {
+    "path": "retained/65-correction-README.md",
+    "git_blob": "5ceef2347f2cd6ba4f56dd21508a603dd5120e7a"
+  },
+  {
+    "path": "retained/65-reference.json",
+    "git_blob": "ed78996be451463ad2afd062d6f408ed6dcf59b6"
+  },
+  {
+    "path": "retained/consumer-before.md",
+    "git_blob": "a38d4f60d0b59cc39044d09f2d34c4725848054b"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/resolver591.bin",
+    "git_blob": "d4c2d5c031bc0d63d66d12c4b4a895898e23e26f"
+  }
+]

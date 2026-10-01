@@ -1,0 +1,8 @@
+test_api_exception_and_impossible_count (__main__.Tests.test_api_exception_and_impossible_count) ... ok
+test_exact_bytes_and_high_bits (__main__.Tests.test_exact_bytes_and_high_bits) ... ok
+test_invalid_range_does_not_read (__main__.Tests.test_invalid_range_does_not_read) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

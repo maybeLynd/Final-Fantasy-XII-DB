@@ -1,0 +1,7 @@
+tail kinds (rows): {'jtable': 153, 'pad': 45, 'other': 40, 'code': 16}
+tail kinds (bytes): {'jtable': 15026, 'pad': 45, 'other': 219, 'code': 964} total 16254
+jtable rows whose table address is formed in the listed body (image-base index form or rip lea): 153 of 153
+  jtable  001249D0(+29) 001ACC30(+24) 001D1660(+1131) 0020F3E0(+193) 00232380(+24) 0023B530(+45)
+  pad     00177850(+1) 001F9B20(+1) 0032F430(+1) 0032F850(+1) 0035F590(+1) 003A13F0(+1)
+  other   00214C30(+2) 003F9720(+3) 00772410(+39) 007A5B50(+3) 007A9A10(+2) 007ACD30(+2)
+  code    00392FC0(+56) 00393240(+66) 00729920(+191) 007651F0(+4) 0078EAF0(+6) 007C23C0(+47)

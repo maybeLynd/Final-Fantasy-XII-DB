@@ -1,0 +1,28 @@
+{
+  "result": "PASS_BOUNDED_SOURCE_AND_RETAINED_RECEIPTS",
+  "rejecting_controls": [
+    {
+      "name": "pass-query slot substituted for render target",
+      "rejected": true
+    },
+    {
+      "name": "positive zero-case label",
+      "rejected": true
+    },
+    {
+      "name": "wrong stopped return address",
+      "rejected": true
+    },
+    {
+      "name": "incomplete stack read",
+      "rejected": true
+    },
+    {
+      "name": "read after continuation",
+      "rejected": true
+    }
+  ],
+  "fresh_native_runs": 0,
+  "fresh_live_runs": 0,
+  "independent_acceptance": false
+}

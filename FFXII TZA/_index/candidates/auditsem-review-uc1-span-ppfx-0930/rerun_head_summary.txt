@@ -1,0 +1,21 @@
+uc1_span_tests exit 0
+tsv diff lines: 1
+t13 diff lines: 7
+ppfx out exit 0
+ppfx in exit 0
+sead out exit 0
+sead in exit 0
+vpx out exit 0
+vpx in exit 0
+vorbis out exit 0
+vorbis in exit 1
+t2_compare exit 0
+t2-compare vs committed (families run here only):
+1c1
+< PPFX       UC-1 in span 733 | in-run ok | members out 1610 -> in 2343 (+733, of them UC-1 733, other 0; dropped 0) | control findings identical: True (lines byte-identical: False)
+---
+> PPFX       UC-1 in span 734 | in-run ok | members out 1609 -> in 1612 (+3, of them UC-1 3, other 0; dropped 0) | control findings identical: True (lines byte-identical: False)
+9c9
+< libvpx     UC-1 in span   4 | in-run ok | members out 116 -> in 120 (+4, of them UC-1 4, other 0; dropped 0) | control findings identical: True (lines byte-identical: True)
+---
+> libvpx     UC-1 in span   4 | in-run ok | members out 116 -> in 116 (+0, of them UC-1 0, other 0; dropped 0) | control findings identical: True (lines byte-identical: True)

@@ -1,0 +1,5 @@
+PASS  I1 header: format +0xA0 (+ bits 6/7), palette count +0xA2, two size pairs +0xA8/+0xAA and +0x1CC/+0x1CE
+PASS  I2 palettes: 256 x 4 B (format 1/0x81) or 16 x 4 B (format 0/0x80), created per palette, handles at +0xC8 / +0x148
+PASS  I3 the image surface: power-of-two tests, then creation sized by +0xA8 x +0xAA
+PASS  I4 meshes hold kind-0x52 handles (one per texture slot); 00431830 reads a handle's record +0x10
+FAILS 0

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\check.py"
+  ],
+  "checker_sha256": "1918b34eb1a3cbb9c53e2ed824444886bcc61d1b51a11b601ba473b56bdafdc6",
+  "returncode": 0,
+  "stdout": "{\n  \"result\": {\n    \"established\": \"Original pending heal promotes changed full state when revision/last operation match; different-last-operation control refuses\",\n    \"healthy_prefix\": \"accepted and healed\",\n    \"changed_checkpoint_same_last_op\": \"accepted, changed value persists, new healed hash binds it\",\n    \"different_last_operation\": \"refused, exact board/journal unchanged\",\n    \"full_A13\": \"NOT_ACCEPTED\",\n    \"limits\": \"Constructed copied prefix/state interventions; no genuine interruption, actual production divergence, recovery/deployment or game behavior proof.\"\n  },\n  \"receipt_controls\": [\n    {\n      \"name\": \"missing-negative-control\",\n      \"refused\": true\n    },\n    {\n      \"name\": \"hidden-failed-exit\",\n      \"refused\": true\n    }\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true
+}

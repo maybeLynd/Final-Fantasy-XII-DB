@@ -1,0 +1,36 @@
+SD-1	473de1075	answered	which force-fight consumers act on enemy units	Database/FFXII TZA/_index/candidates/sd1-force-fight-enemy-consumers-0930	sd1_consumers.py:0
+SD-2	7573a1b87	answered	the R2 label widget draws FLEEING, letter by letter	Database/FFXII TZA/_index/candidates/sd2-r2-label-element-0930	sd2_check.py:0
+SD-3	1113232aa	narrowed	what capability-policy bit 21 changes in audio and input	Database/FFXII TZA/_index/candidates/sd3-policy-bit21-0930	sd3_bit21.py:0
+SD-4	35db7fbb2	answered	unit flag bit 24 marks a transition in progress	Database/FFXII TZA/_index/candidates/sd4-unit-flag-bit24-0930	sd4_bit24.py:0
+SD-5	ce2b4380d	answered	only a failed resize leaves a display request set	Database/FFXII TZA/_index/candidates/sd5-display-requests-0930	sd5_display_requests.py:rc0
+SD-20	fd421c927	answered	three voice classes pass their own source-voice callback	Database/FFXII TZA/_index/candidates/sd20-voice-callback-0930	sd20_voice_callback.py:0
+SD-21	819bda0de	answered	the mix path's slots, pool, factory paths, callers and SIMD kernels	Database/FFXII TZA/_index/candidates/sd21-mix-path-remainder-0930	sd21_mix_remainder.py:0
+SD-22	500458a73	answered	the volume commands are options rows 0x13-0x15	Database/FFXII TZA/_index/candidates/sd22-options-volume-rows-0930	sd22_volume_rows.py:0
+SD-23	acb04148d	narrowed	what Sound slots 38 and 39 answer and what callers do with it	Database/FFXII TZA/_index/candidates/sd23-sound-slots-38-39-0930	sd23_sound_slots.py:0
+SD-25	d7d7e52c9	answered	the Sound selects run on the audio thread, apart from gameplay rand()	Database/FFXII TZA/_index/candidates/sd25-sound-thread-rand-0930	sd25_sound_thread.py:0
+SD-62	e2777d3c8	narrowed	the two non-type static elements are registry objects	Database/FFXII TZA/_index/candidates/sd62-static-array-elements-0930	sd62_elements.py:0
+SD-80	6836e8067	answered	the fourteen MSVC tree bodies read; no single-direction EASTL rotation anywhere	Database/FFXII TZA/_index/candidates/sd80-82-ordered-containers-0930	sd80_82_trees.py:0
+SD-81	08f4c0821	answered	the 99 EASTL rbtree callers typed: 24 unique-key map/set instantiations, tree owners, wrappers	Database/FFXII TZA/_index/candidates/sd81-eastl-callers-0930	sd81_callers.py:0
+SD-82	6836e8067	answered	the fourteen MSVC tree bodies read; no single-direction EASTL rotation anywhere	Database/FFXII TZA/_index/candidates/sd80-82-ordered-containers-0930	sd80_82_trees.py:0
+SD-100	da3426b96	answered	the reveal stepper's eight modes and who sets each	Database/FFXII TZA/_index/candidates/sd100-reveal-modes-0930	sd100_modes.py:0
+SD-101	b545fdb02	answered	flag bit 24 is a per-subtree second-pass switch set by six screens	Database/FFXII TZA/_index/candidates/sd101-pass1-widgets-0930	sd101_pass1.py:0
+SD-102	d1f7f06ac	answered	the glyph emitters build PS2 VIF/GIF packets and mirror the state into the draw context	Database/FFXII TZA/_index/candidates/sd102-glyph-emitter-commands-0930	sd102_emitters.py:0
+SD-103	c2b5b9927	answered	the context's three pointer slots are rows 174-176's allocations	Database/FFXII TZA/_index/candidates/sd103-104-context-rows-0930	sd103_slots.py:0
+SD-104	c2b5b9927	answered	the context's three pointer slots are rows 174-176's allocations	Database/FFXII TZA/_index/candidates/sd103-104-context-rows-0930	sd103_slots.py:0
+SD-105	f2f55938a	answered	the text reveal's three inputs come from the lag bound and the nested run	Database/FFXII TZA/_index/candidates/sd105-reveal-inputs-0930	sd105_inputs.py:0
+SD-106	349fc1359	answered	the five 002B3280 sites measure a message line and the confirm dialog's caption and choices	Database/FFXII TZA/_index/candidates/sd106-measure-sites-0930	sd106_sites.py:0
+SD-107	0b1f3a2fb	narrowed	the only store of 1 at +0xA3 is a sound object's; no traced text element gets kind 1	Database/FFXII TZA/_index/candidates/sd107-kind1-writers-0930	sd107_kind1.py:0
+SD-121	06230b6a0	answered	the three dword arrays are the script-assigned effect-actor slots	Database/FFXII TZA/_index/candidates/sd121-effect-actor-slots-0930	sd121_slots.py:0
+SD-123	524d5aacd	answered	effect record kind 0x52 is the effect container's paletted image (texture) record	Database/FFXII TZA/_index/candidates/sd123-kind52-image-record-0930	sd123_kind52.py:0
+SD-126	c3570bf4b	answered	the four battle-HUD widget procedures' message arms decoded	Database/FFXII TZA/_index/candidates/sd126-hud-proc-arms-0930	sd126_arms.py:0
+SD-127	23a99db40	answered	no battle-HUD layout key is read through a base pointer; the console is the only pointer route	Database/FFXII TZA/_index/candidates/sd127-hud-key-base-reads-0930	sd127_keys.py:0
+SD-141	940b5ffcf	answered	nothing reads the flying-fade pair; it is stored and never used	Database/FFXII TZA/_index/candidates/sd141-flying-fade-readers-0930	sd141_readers.py:0
+SD-160	af6684173	answered	the scripts that give units free-target type 3 (the bestiary tally skip)	Database/FFXII TZA/_index/candidates/sd160-free-target-type3-0930	sd160_census.py:rc0,sd160_check.py:0
+SD-161	b7689491e	narrowed	a new game zeroes achievement counter 11, and no census writer stores a negative	Database/FFXII TZA/_index/candidates/sd161-counter11-writers-0930	sd161_check.py:0
+SD-163	e5e8d6013	answered	SteamController_PollState reads 16 buttons and two sticks and drives the rumble	Database/FFXII TZA/_index/candidates/sd163-steamcontroller-poll-0930	sd163_poll.py:0
+SD-164	1f1defd7d	narrowed	the arena allocator's callback, arena 7 and the handle callers	Database/FFXII TZA/_index/candidates/sd164-167-arena-allocator-0930	sd164_arena.py:0
+SD-165	e87a83339	answered	a census of the arena allocator's 206 call sites by whether they test for null	Database/FFXII TZA/_index/candidates/sd165-alloc-null-tests-0930	sd165_nulltests.py:0
+SD-166	1f1defd7d	answered	the arena allocator's callback, arena 7 and the handle callers	Database/FFXII TZA/_index/candidates/sd164-167-arena-allocator-0930	sd164_arena.py:0
+SD-167	1f1defd7d	answered	the arena allocator's callback, arena 7 and the handle callers	Database/FFXII TZA/_index/candidates/sd164-167-arena-allocator-0930	sd164_arena.py:0
+SD-168	d9806dfff	answered	the extra count bytes are allocation slack the arena never addresses	Database/FFXII TZA/_index/candidates/sd168-arena-tail-bytes-0930	sd168_tail.py:0
+SD-169	569685cbb	answered	+0x9C is the VRAM-copy width (BITBLTBUF / TRXREG); +0xA0 reaches no register	Database/FFXII TZA/_index/candidates/sd169-draw-surface-cells-0930	sd169_cells.py:0

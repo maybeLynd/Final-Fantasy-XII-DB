@@ -1,0 +1,25 @@
+{
+  "record_count": 35,
+  "selected_consistency_checks": 14,
+  "verified": [
+    "p0-run",
+    "p1-run",
+    "p1-done",
+    "p2-entry",
+    "p5-entry",
+    "p0-nopoll",
+    "p0-nobegin",
+    "p0-noresult",
+    "stack-63",
+    "stack-62",
+    "p0-poll-0x100",
+    "p0-poll-3",
+    "begin-eax-ignored",
+    "id-zero"
+  ],
+  "limits": [
+    "Checks recorded order/return/phase/depth, not callback semantics or raw game health.",
+    "Original producer/mutant campaign is not rerun; remaining records preserved but not independently accepted here.",
+    "Stored pass booleans and summary counts are not the basis of these checks."
+  ]
+}

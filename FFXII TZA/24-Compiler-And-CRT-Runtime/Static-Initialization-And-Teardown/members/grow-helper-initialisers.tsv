@@ -1,0 +1,11 @@
+# grow-helper-initialisers -- EC-7 family C, XC-array cluster.
+# 6 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+001673F0	86	006BFC60	00808B90
+00167450	86	006BFC60	00808B90
+00167500	86	006BFC60	00808B90
+001675E0	86	006C2380	00808B90
+00167640	86	006C2380	00808B90
+001676F0	86	006C2380	00808B90

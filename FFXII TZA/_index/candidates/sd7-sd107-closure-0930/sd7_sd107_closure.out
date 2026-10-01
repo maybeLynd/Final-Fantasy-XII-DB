@@ -1,0 +1,20 @@
+=== SD-7: who calls GameApplication slot 15 (0017D1A0)? ===
+PASS  K1 ORACLE record sd7-stored-app-pointer-0930 lists 34 residue dispatch sites (34)
+PASS  S1 render context = PrimitiveRendererD3D11 (45 slots, +0x78 = slot 15 = 006CAB80); its draw methods are the residue
+PASS  K2 E4 control: the sibling draw 00863850 dispatches its render context at a slot >= 31 (+0x1xx), so the context is not a GameApplication (31 slots) 
+PASS  S2 the 0020FF10 global 01FC35F8 holds the render context: its only writer 00210320 stores rdx, and 00210320 is called from GiVmax's slot-1 draw 001DB3D0 
+PASS  S3 001F3AE0's object is a Steam client interface (001F3E10 -> SteamInternal_CreateInterface; string SteamClient017)
+PASS  S4 Bullet group: 008330A0's 2nd site is the same btCompoundShape; 00831380's rdi is a btConvexShape support pair (0084CB30 passes [rbx+0x30]/[rbx+0x38]); 00855B80 drives a btDiscreteDynamicsWorld's debug drawer 
+PASS  S5 PPFX group: dispatched objects are PPFX GPU interfaces (IGPUEffect +0x78 = 00789CD0, IGPUDevice +0x78 = 00724C10); all 16 holder functions lie in the PPFX range 006F0000-0079000
+PASS  S6 007AB5C0's object is a resolved resource handle (007AB1E0 checks handle types 2/8/9 and indexes 02EAD5xx) 
+PASS  S7 no register-target call (1060 scanned) loads its target from [reg+0x78]; so with the memory form (S8) slot 15 is reachable only through a [vtable+0x78] dispatch
+PASS  S8 0017D1A0 has no direct call/jmp and the only image qword naming it is its own vtable slot (008C57D8); with all 34 residue objects typed non-application, slot 15 is called nowhere - the +0x39 gate is set only by 001989D0
+=== SD-107: is text-element kind 1 ever instantiated? ===
+PASS  K3 ORACLE record sd107-register-stores-0930 lists 74 open register stores (74)
+PASS  T1a exactly two of the 74 write the kind byte directly (byte at +0xA3): 0077FFE0@00780079 00780590@00780729
+PASS  T1b both byte-+0xA3 writers store +0xA0..+0xA3 as one 4-byte tuple on a PPFX effect object (range 0077-0078), not a text-element kind (the builder 002B3C30 writes the kind as a lone byte and floats at +0x04/+0x0C/+0x48)
+PASS  T2 the text element's builder 002B3C30 writes the kind as a lone byte at +0xA3 and floats 23.0/1.0 at +0x04/+0x0C and a float at +0x48 - the layout none of the 74 open bases carries 
+PASS  T3 the other 72 are dword/qword stores at +0xA0: they reach +0xA3 only as a field's top byte (need a 0x01xxxxxx value), never a lone kind byte
+PASS  T4 none of the 74 open-store functions builds a text element (no 23.0f write to +0x04, no immediate kind store at +0xA3): 0 such writes found
+PASS  T5 the Gi* group writes [rdx+0xA0] into a render scratch buffer: 0020E6C0=GiScreenImage, 00863850=GiColorRect, 00864330=GiSprite, 00864860=GiPolyGT4T
+FAILS 0

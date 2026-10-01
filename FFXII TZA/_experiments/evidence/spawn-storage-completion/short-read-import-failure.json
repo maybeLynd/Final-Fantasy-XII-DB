@@ -1,0 +1,9 @@
+{
+  "status": "NOT RUN - emulator import failure",
+  "method": "attempted B feasibility, zero original instructions executed",
+  "script_sha256": "8c165f2ccaf5c1d0d17fc2a4eb4d16bd5cf77fd2534946b20cdd47de4893e10f",
+  "error": "ModuleNotFoundError: No module named 'unicorn.x86_const'",
+  "interpreter": "Collaboration/Tools/analysis/venv/Scripts/python.exe",
+  "completed_cases": 0,
+  "limits": "No feasibility/result JSON and no passing case. Existing library installation/access must be reconciled; do not count an import-only attempt as execution."
+}

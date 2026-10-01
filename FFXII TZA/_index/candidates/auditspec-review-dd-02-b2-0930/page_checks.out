@@ -1,0 +1,103 @@
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/as7-menu-graphics-containers.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 9 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 78 struck=False marked=False next-superseded-line=146 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 82 struck=False marked=False next-superseded-line=146 :: | `+0x04` tailOff | — | — | — | no reader found |
+N line 146 struck=False marked=True next-superseded-line=146 :: *Superseded readings, 2026-09-30 (SWE2-CONTRACT, from SWE2-DATA's record `_index/candidates/rc22-34-resource-readers-0930/`, commit `1261e20
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 9 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 82 struck=False marked=False next-superseded-line=152 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 131 struck=False marked=True next-superseded-line=152 :: *The glyph record's unknown `u8` (§2): no reader.* UQ-364 (ANSWERED 2026-09-24) reads the record's `+0x04` as the
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 12 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 98 struck=False marked=False next-superseded-line=227 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 101 struck=False marked=False next-superseded-line=227 :: | everything else | — | — | — | **no reader found — see below** |
+N line 107 struck=False marked=False next-superseded-line=227 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 127 struck=False marked=False next-superseded-line=227 :: cannot follow. **Status is `PARTIAL` for that reason** and no `Inert` row is claimed for any field
+N line 230 struck=True marked=True next-superseded-line=313 :: - ~~**Whether `version = 1` gates anything.** Constant in 8 of 8, no reader found.~~ *Answered 2026-09-30
+N line 293 struck=False marked=True next-superseded-line=313 :: [§ The reader, traced](#the-reader-traced--sb-2-answered-fable-claude-opus-55-2026-09-25).)* **It is not claimed as the answer.** No reader 
+N line 313 struck=False marked=True next-superseded-line=313 :: *Superseded readings, 2026-09-30 (SWE2-CONTRACT): this section's "no reader for CHSE has been found" and "the CHSE
+N line 321 struck=True marked=False next-superseded-line=None :: - **Audio — SERVICE** *(the helper is `003A1650`, the SE block registration, [seb-se-block-index.md](../../18-Audio/Sound-Bank-And-Voice-For
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cl2-menu-colour-tables.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 9 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 95 struck=False marked=False next-superseded-line=178 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 98 struck=False marked=False next-superseded-line=178 :: | `+0x10` endOff (TIM2 total size) | not read on this path (`0024A9E0` steps by it only past picture 0) | — | — | inert here |
+N line 99 struck=False marked=False next-superseded-line=178 :: | `+0x14` dataSize (TIM2 CLUT size) | not read | — | — | inert |
+N line 103 struck=False marked=False next-superseded-line=178 :: | `+0x22` / `+0x23` variant (TIM2 ClutType / ImageType) | not read: the upload takes the image's own pair | — | — | inert |
+N line 107 struck=False marked=False next-superseded-line=178 :: the earlier rows (`+0x10` / `+0x14` / `+0x22` "no reader found", `+0x1E` "palette binder (presumed)"). The request is the
+N line 156 struck=True marked=False next-superseded-line=178 :: - ~~**`endOff` (`+0x10`) semantics** — always `fileSize-16`; a parked end offset or a bound.~~ The TIM2 picture total size (`fileSize − 0x10
+N line 158 struck=True marked=False next-superseded-line=178 :: no reader found.~~ It does not: `+0x22` / `+0x23` are never read (§3).
+N line 176 struck=False marked=False next-superseded-line=178 :: *Applied 2026-09-30 (records) RC-30:* **NARROWED 2026-09-30 (the same record §3, `cl2_requests.py`, `request_lists.py`):** no traced request
+N line 178 struck=False marked=True next-superseded-line=178 :: *Round 3 (records) RC-30:* **ANSWERED 2026-09-30 (SWE2-CONTRACT, RC-30 round 3, `_index/candidates/swe2contract-rc-round3-0930/`):** SWE2-DA
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lst-menuquest-list.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 9 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 97 struck=False marked=False next-superseded-line=128 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 100 struck=False marked=False next-superseded-line=128 :: | `+0x04` capacity | — | — | — | no reader found by census/xref |
+N line 145 struck=False marked=False next-superseded-line=153 :: no reader of the `.lst` bytes; the kind-7 path-array membership (10/10) is [the file-size tables page](../Loose-Files-And-Size-Tables/file-s
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mg-worldmap-mesh.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 10 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 93 struck=False marked=False next-superseded-line=154 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 96 struck=False marked=False next-superseded-line=154 :: | `+0x24` nameCount | — | — | — | no reader found |
+N line 149 struck=False marked=True next-superseded-line=154 :: *Applied 2026-09-30 (records) RC-33:* **ANSWERED 2026-09-30 (the same record §6): every byte is placed**; a few fields have no reader, and t
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 14 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 79 struck=False marked=True next-superseded-line=181 :: *(Corrected 2026-09-13, FABLE — §10. Published as "`+0x08 u16 _unknown` = `0x3000`; no reader found". The two bytes are
+N line 188 struck=False marked=False next-superseded-line=241 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 191 struck=False marked=False next-superseded-line=241 :: | everything else | — | — | — | **no reader found — by the searches named below** |
+N line 203 struck=False marked=False next-superseded-line=241 :: **No `Inert` row is offered for any field except the magic**, because a field nobody has found a
+N line 204 struck=False marked=False next-superseded-line=241 :: reader for is not a field known to be unread — the distinction this database keeps paying for.
+N line 209 struck=False marked=False next-superseded-line=241 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 313 struck=True marked=False next-superseded-line=600 :: - ~~**What the 8-byte block between C and D is.** No reader of it was found among the accessors: all of them step over it.~~
+N line 315 struck=False marked=False next-superseded-line=600 :: words — `+0` returned, `+2`/`+4` written out through pointers; `+6`/`+7` unread. In the common pattern they are
+N line 407 struck=False marked=False next-superseded-line=600 :: not read as a meaning.
+N line 454 struck=False marked=False next-superseded-line=600 :: about a loader — **§3's two failed searches were not re-run and no reader is claimed here either**.
+N line 548 struck=False marked=False next-superseded-line=600 :: it — is still not read.
+N line 551 struck=False marked=False next-superseded-line=600 :: `+0x15`, which `003BDDE0` resolves to the linked point. Up to that call (`003C253F`, P4) the arm does not read `+0xC`; it reads it afterward
+N line 572 struck=True marked=False next-superseded-line=600 :: does is not read. ~~They belong to the world map menu widget and are routed to residual
+N line 590 struck=False marked=False next-superseded-line=600 :: > **A TAG IS NOT A BODY READING.** *"What each does is not read"* above is unchanged and
+N line 592 struck=False marked=False next-superseded-line=600 :: > read it, and swapping an honest *not read* for a tag name would be the silent promotion
+N line 600 struck=False marked=True next-superseded-line=600 :: So all three serve the location map's point list. *What each does is not read* above is superseded by that reading.
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mrp-menu-resource-packages.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template FORMAT; 9 level-2 headings; missing sections: none
+B open boxes: 0 []
+N line 73 struck=False marked=False next-superseded-line=229 :: +0x2C  u32      unk2C       header tail; the {count,offset} run ends at +0x2C — whether this lone u32 is a fifth count, a spare, or unused i
+N line 161 struck=False marked=False next-superseded-line=229 :: | Field | Read by | Rejected if | Clamped to | Inert |
+N line 165 struck=False marked=False next-superseded-line=229 :: | `+0x04`/`+0x08` tail | `002A00F0` (rewrite `+8` only) | — | — | row fields: no reader found yet *(since read: the 16-byte atlas-name recor
+N line 170 struck=False marked=False next-superseded-line=229 :: | desc `u,v,w,h` | — | — | — | no reader found — draw side not isolated *(since read: the typed-list decoder `002432B0` and the list drawers
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cmap-menumap-common-sublocation-directory.md
+F status: DOCUMENTED — no register row is open; owner read 2026-09-30 (OPUS): layout, loader contrac...
+F evidence_tier: 1   external_production.status: None
+H template SYSTEM; 6 level-2 headings; missing sections: ['native mechanism|where it sits|mechanism', 'key addresses', 'call chain', 'modding', 'what is not known|not known|does not claim', 'evidence', 'related']
+B open boxes: 0 []
+=== 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/wmap-menumap-world-map-graph.md
+F status: DOCUMENTED — no register row is open; owner read 2026-09-30 (OPUS): layout, loader contrac...
+F evidence_tier: 1   external_production.status: None
+H template SYSTEM; 8 level-2 headings; missing sections: ['native mechanism|where it sits|mechanism', 'key addresses', 'call chain', 'modding', 'what is not known|not known|does not claim', 'evidence', 'related']
+B open boxes: 0 []
+=== 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md
+F status: DOCUMENTED — every register row is closed (OV-45 and OV-46 answered 2026-09-29; OV-47 SUPE...
+F evidence_tier: "isolated original-instruction execution and selected full-body static analysis"   external_production.status: "locally validated; formal independent acceptance pending"
+H template SYSTEM; 11 level-2 headings; missing sections: ['what the player sees', 'native mechanism|where it sits|mechanism', 'key addresses', 'data structures|layout', 'call chain', 'modding', 'what is not known|not known|does not claim', 'evidence', 'related']
+B open boxes: 0 []

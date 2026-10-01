@@ -1,0 +1,9 @@
+{
+  "action": "finish",
+  "task": "FIXTURE-A16-TWO-VERDICTS",
+  "note": "private requirement control",
+  "result_refs": [
+    "verdict:ACCEPT",
+    "verdict:REJECT"
+  ]
+}

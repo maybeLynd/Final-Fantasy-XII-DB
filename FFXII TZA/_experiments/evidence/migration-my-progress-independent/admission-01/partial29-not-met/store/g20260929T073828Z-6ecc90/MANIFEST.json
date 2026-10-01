@@ -1,0 +1,54 @@
+{
+ "committed_at": "2026-09-29T07:38:28Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T073828Z-6ecc90",
+ "generator": {
+  "name": "labelled ASTRA composition of original tooling"
+ },
+ "inputs": {
+  "category_map": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\partial29-not-met\\inputs\\category_map",
+   "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+   "size": 10617,
+   "state": "present"
+  },
+  "goal_gate": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\partial29-not-met\\inputs\\goal_gate",
+   "sha256": "b414bde7db06cb2ecb6d45fc795e5b0810d1c2c1d3c08d784ef39e76e66ca0d2",
+   "size": 154,
+   "state": "present"
+  },
+  "progress_snapshot": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\partial29-not-met\\inputs\\progress_snapshot",
+   "sha256": "31fe91d3b81cdd62663da988bc7282b57537e8bdbf23e998dae4b59986a33dfc",
+   "size": 412,
+   "state": "present"
+  },
+  "requirement_facts": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\partial29-not-met\\inputs\\requirement_facts",
+   "sha256": "000810c2e8dc04c54e215e3d5c96782791881e7b2afaf06d62f631181120dbec",
+   "size": 4094,
+   "state": "present"
+  },
+  "subsystems": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\partial29-not-met\\inputs\\subsystems",
+   "sha256": "07ece088b4d64635867d34cce2d2b4ba06c10b53f19a0ff98b3e336ff672c7ea",
+   "size": 90,
+   "state": "present"
+  },
+  "team": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\partial29-not-met\\inputs\\team",
+   "sha256": "5b80dd381e102f830dc02c41ed916aca3f15eca917aef6ca16ea6f8efbd83da5",
+   "size": 21,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view-progress.json": {
+   "sha256": "d79e9b69fdd0be54cade960163fece3598c021b9d4be7c6506e6152a88950779",
+   "size": 19519
+  }
+ },
+ "parent": null,
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

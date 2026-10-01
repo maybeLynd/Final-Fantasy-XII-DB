@@ -1,0 +1,13 @@
+O1   SURVIVES  ['test byte ptr [rax + 2], 4', 'test byte ptr [rax + 2], 4']
+O2   SURVIVES  003B38B0: type `mov byte [rsp + 0x20], 3` True; flags `or byte [rsp + 0x22], 0xc` True
+O3   SURVIVES  truncation to a multiple of 16 toward zero: 4 sites, e.g. [['cdq ', 'and edx, 0xf', 'add eax, edx', 'lea rdx, [rbp - 4]', 'and eax, 0xfffffff0', 'movsxd r8, eax', 'call 0x861eba', 'movzx eax, word ptr [rbp + 2]']]
+O4   SURVIVES  cleanup shapes {'800 (+0x870, to 0xA00: indices 1..319)': True, 'A00 (+0x878, to 0x1800: indices 1..767)': True}; both called from 0024F410: ['call 0x3a9600', 'call 0x3a9950']
+O5   SURVIVES  00409D60's ordered calls: ['call 0x3b37e0', 'call 0x409730', 'call 0x51fcf0']
+O6   SURVIVES  0041E490: acquire 003AB880 True, release 003AB940 True, then `mov rcx, [rdi + 0xd90]`, `mov rdx, rbx`, `jmp 0x409d60`
+O7   SURVIVES  record base 02B581A0 and a 0x1C stride in the lookup, arm and delete helpers: [('003DD740', True, True), ('003DDA20', True, True), ('003DD420', True, True)]
+O8   SURVIVES  0051EEB0 vector moves (two loads, two stores expected): ['movaps xmm0, xmmword ptr [rsp + 0x20]', 'movaps xmm1, xmmword ptr [rsp + 0x30]', 'movaps xmmword ptr [rdi], xmm0', 'movaps xmmword ptr [rdi + 0x10], xmm1']
+O9   SURVIVES  00409960 reaches 003AB880: True; 00409C00 reaches 003AB940: True
+O10  SURVIVES  003DD7E0 carries 80 (0x50) or 5 x 16: True; 003DD790 carries 16: True
+O11  SURVIVES  state-3 store after the last call without a result test: ['003DDABE mov dword ptr [rbx + 4], 3']
+O12  SURVIVES  003DD740 state test: ['cmp dword ptr [rax + rcx + 4], 4']
+BROKEN 0: none

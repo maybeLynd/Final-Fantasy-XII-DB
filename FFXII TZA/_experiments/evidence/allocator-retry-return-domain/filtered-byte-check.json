@@ -1,0 +1,77 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "7c20f9873fd3efe4868a6a1c2c7f2e4e255f6c85"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "9f1edd2988fccdb43d09b6fc48e8a8aa6d478f10"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "c18a96c922ca211fd411fce054e7db3de478dbdc"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "12c352c4f2f8a9864fd008fc2816362dc26fcd39"
+    },
+    {
+      "path": "raw-source.json",
+      "git_blob": "b198e27a51fba6731a4e87af34ca560c7658bd50"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "24ce674eda3d05599405546060e419e1982509d4"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "c754709173d63c7b3fb1e69adca84f372062e8da"
+    },
+    {
+      "path": "retained/__pycache__/reg_tracking.cpython-314.pyc",
+      "git_blob": "4d6d2ba4bc609ff74bb7cc824c8c15b1a11fa589"
+    },
+    {
+      "path": "retained/__pycache__/shipping-reader.cpython-314.pyc",
+      "git_blob": "d9202925d97f50e83cee60cec7a4e24705901fc5"
+    },
+    {
+      "path": "retained/allocation-wrapper.bin",
+      "git_blob": "2d9113cda75b812755b7caf130a2dccdd94918d4"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "7c20f9873fd3efe4868a6a1c2c7f2e4e255f6c85"
+    },
+    {
+      "path": "retained/entry-thunk.bin",
+      "git_blob": "e57a91e0165ac14b782020c115144a4ffbef20a3"
+    },
+    {
+      "path": "retained/labelled-retry-jne-to-je.bin",
+      "git_blob": "19454486202e7c500ea42fcefe0730a205a4b822"
+    },
+    {
+      "path": "retained/memory-page-preimage.md",
+      "git_blob": "a505ddd525b0c76a059bc4dda0e379b2f21727fb"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/retry.bin",
+      "git_blob": "e42eba322dc7aa605c29fb3eafaecb733c5e8937"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    }
+  ]
+}

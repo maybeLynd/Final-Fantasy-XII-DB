@@ -1,0 +1,47 @@
+{
+  "status": "SOURCE_ESTABLISHES_ALIAS_AND_REFUTES_LEAF_PROOF",
+  "method": "A exact original ordering/caller/body/unwind source and conditional prefix-byte calculation; no executed scenarios",
+  "entry_zero_stores": [
+    "002E438E:qword[output]=0",
+    "002E4394:dword[output+8]=0"
+  ],
+  "first_source_reads": [
+    "002E43BC:input+4",
+    "002E43C2:input",
+    "002E43C7:input+8"
+  ],
+  "conditional_prefix": {
+    "original_xyz_bits": [
+      "40400000",
+      "40800000",
+      "41400000"
+    ],
+    "distinct_first_reads_yxz": [
+      "40800000",
+      "40400000",
+      "41400000"
+    ],
+    "same_buffer_first_reads_yxz": [
+      "00000000",
+      "00000000",
+      "00000000"
+    ],
+    "original_W_unchanged_by_prefix": true
+  },
+  "caller_argument_construction": {
+    "site": "002E50CB",
+    "output": "local [current RSP+0x30]",
+    "input": "R9 assigned R14; R14 initialized from entryR8 before intervening963Bcallee. Full preservation/closure not established here.",
+    "mode": "R8D assigned EBP; EBP initialized from entryEDX before interveningcallee; this is sourceconstruction, not an observed live value."
+  },
+  "intervening_extent": {
+    "current_catalog_bytes": 963,
+    "unwind_fragments": 8,
+    "first_fragment_bytes": 40,
+    "first_fragment_has_return": false,
+    "full_body_direct_call_sites": 21,
+    "class_stability_from_40B_leaf_proof": "REFUTED_BASIS; actual class stability/refusal reachability remain unproved here"
+  },
+  "consumer_change": "Qualify pass-through alias precondition. Reopen/replace CONTRACT section14/15 first40B leaf/no-calls basis: current catalog already963B; do not edit correct primary index or infer class mutation/observed refusal. Add full-fragment/claimed-reachability prerequisite to existing producer/check; owner supplies full effect/preservation proof or narrows closure.",
+  "limits": "Class3/r8d!=0/valid separate actor+movement state, sequential prefix analysis. Exact same-buffer hypothesis only, not general partial-overlap safety. No imported sqrtf execution or final F8 numeric/pointer effects proven here; wrapper/thunk/source identity only. Recorded sole caller not a new whole-image census. Fullintervening callclosure/class stability/livepointer separation not established. No actual caller execution, game initialization, timing/atomicity/reachability or live behavior."
+}

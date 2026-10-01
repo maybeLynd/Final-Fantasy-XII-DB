@@ -1,0 +1,135 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 3795,
+      "sha256": "cf49aa8f12b6d6a8a6f5f6d6bfd2edc3c0dfec8dd8251871cba8a60a30b478aa"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6065,
+      "sha256": "f82c90ac8176d3d6bd1be60786b6c52f219e9f9d72e354af0c5f208a600b4cb5"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 423,
+      "sha256": "019fee5c39a620e62a0eac40f8f773a0dec6ba491351be7e7e6a105cb07580b0"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 68,
+      "sha256": "956c76a35945b55d3def7a4851709014c66bc65e9519267a835ab67d4f620278"
+    },
+    {
+      "path": "fault-disable-write-detector.stderr",
+      "bytes": 479,
+      "sha256": "3ecefc1bd2e45bb5d5df88591c0f894bb7395f53bef5e88aad7cb3f10678eced"
+    },
+    {
+      "path": "fault-disable-write-detector.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-lookup-emits-write.stderr",
+      "bytes": 505,
+      "sha256": "4650ea2c93c811cacfb99b3c61042ef8855f9b3822fa7a808a32193ad23e6fef"
+    },
+    {
+      "path": "fault-lookup-emits-write.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-return-used.stderr",
+      "bytes": 459,
+      "sha256": "0345cdb66b6456254942c7da902c281e842c1ac7bb854dee15d8735eb2e5515c"
+    },
+    {
+      "path": "fault-return-used.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2737,
+      "sha256": "255bc2ee9ab925dbfc838077a997dc71cc9d3db0a419cf0e2021c68f4d2cc083"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3016,
+      "sha256": "2ed1714884226daca6b6070e49a21d84603dbb32c8c64cb55aed595f23e262ae"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1127,
+      "sha256": "d59c4e12bc7055c0c5e0cbd9c0d4ef58671e0484b13e864dcaab2fef0414cd69"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 10104,
+      "sha256": "8b48fc207f5109621891aa0a8729d175c124db37e6489799a9870471746b70fe"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2804,
+      "sha256": "4e50f5ee85976e990be2593888df76b8d309b5408ff1c10b453496303c17e290"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 440,
+      "sha256": "54385984c4e0f691d275bfee0a5eccd4c578e8d2e40c3d9e14a39e35ff9fcf53"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1974,
+      "sha256": "4607b9c0775a9ee17e85bb16e61ddcd67ec098f9b93690a4d080621270daf47e"
+    },
+    {
+      "path": "retained/caller30.bin",
+      "bytes": 30,
+      "sha256": "a7e48c4a19ba1c22e490d9819fcae52460b30b3a391652b8225009ec6ed79e7b"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 42844,
+      "sha256": "9fdd61be743f112b0677b6cc321fd5a7f0867af0e345a165fdc9382a423ea5cd"
+    },
+    {
+      "path": "retained/lookup32.bin",
+      "bytes": 32,
+      "sha256": "4b76b79eddaf32ad374c26bc0cdc3a50a575c30252e5d4dbcb59002b0d885aef"
+    },
+    {
+      "path": "retained/original194.bin",
+      "bytes": 194,
+      "sha256": "c416b7a2f88c5da6a7e0f698091b554eb98f37e09b8fc01979c644f34e018b27"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/store-prefix23.bin",
+      "bytes": 23,
+      "sha256": "33e5e168b92268d35a3227b8e441a7e5bf171f7d8a9e3441c22c266db36d978d"
+    }
+  ],
+  "limits": "Original selected read-onlylookup/discardedreturn dataflow; no original/guest/live execution, actualtablevalues/othercallbacks orindependentacceptance proof."
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS_LOCAL_PRODUCTION_CHECKS",
+  "native_assertions": 200,
+  "repeat_identical": true,
+  "code_mutants_rejected": 7,
+  "retained_traced_records": 246,
+  "retained_summary_only_returns": 4,
+  "retained_corruptions_rejected": 8,
+  "verified_bodies": 19,
+  "verified_data_spans": 9,
+  "original_and_historical_inputs_unchanged": true,
+  "original_application_callee_substitutions": 0,
+  "import_bridges": 1,
+  "live_game_session": false,
+  "full_historical_campaign_rerun": false,
+  "formal_peer_acceptance": "PENDING"
+}

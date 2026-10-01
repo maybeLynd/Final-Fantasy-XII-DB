@@ -1,0 +1,302 @@
+CHECK V1   PASS  verb table arity: setposparty 4, setposparty_mapjump 4 (both must be 4)
+corpus: 10036 script files (EBP2 magic 0x8000000B), 223532 scripts decoded
+  setposparty          facing producer PUSHF                     5229 sites
+  setposparty          facing producer PUSHII                    1449 sites
+  setposparty          facing producer PUSHV:1:000018               9 sites
+  setposparty          facing producer PUSHV:1:00001C              18 sites
+  setposparty          facing producer PUSHV:1:000020              45 sites
+  setposparty          facing producer PUSHV:1:000024              27 sites
+  setposparty          facing producer PUSHV:1:000028              18 sites
+  setposparty          facing producer PUSHV:1:00002C               9 sites
+  setposparty          facing producer PUSHV:1:000030              18 sites
+  setposparty          facing producer PUSHV:1:000034               9 sites
+  setposparty          facing producer PUSHV:1:000038               9 sites
+  setposparty          facing producer PUSHV:1:00003C              18 sites
+  setposparty          facing producer PUSHV:1:0000A8               9 sites
+  setposparty          facing producer PUSHV:1:00035C               9 sites
+  setposparty          facing producer PUSHV:2:00000C              72 sites
+  setposparty          facing producer PUSHV:7:024920               9 sites
+  setposparty          facing producer call:call:getrotangzx_12e   135 sites
+distinct constant facings (value: sites): -3.1415: 18, -3.1400: 18, -3.1383: 9, -3.1368: 18, -3.1364: 9, -3.1275: 9, -3.1256: 9, -3.1229: 9, -3.1109: 9, -3.1040: 9, -3.0865: 9, -3.0730: 36, -3.0582: 9, -3.0520: 9, -3.0480: 9, -3.0163: 9, -2.9821: 9, -2.9760: 9, -2.9756: 9, -2.9732: 9, -2.9310: 9, -2.8840: 9, -2.8750: 18, -2.8443: 27, -2.8438: 9, -2.7977: 36, -2.7760: 9, -2.7600: 18, -2.7487: 9, -2.6636: 9, -2.6170: 9, -2.5770: 9, -2.4784: 9, -2.4474: 9, -2.4153: 9, -2.3810: 9, -2.3490: 9, -2.3390: 36, -2.3220: 9, -2.3218: 9, -2.3143: 9, -2.2949: 9, -2.2689: 9, -2.2477: 9, -2.2387: 18, -2.2030: 18, -2.1930: 9, -2.1667: 18, -2.0930: 18, -2.0835: 9, -2.0480: 72, -2.0464: 9, -1.9890: 9, -1.9600: 9, -1.9485: 9, -1.9378: 18, -1.9278: 9, -1.9269: 9, -1.7279: 9, -1.6817: 18, -1.6750: 9, -1.6400: 9, -1.6276: 27, -1.6159: 18, -1.6060: 27, -1.5941: 9, -1.5877: 9, -1.5805: 9, -1.5802: 27, -1.5751: 36, -1.5733: 9, -1.5730: 9, -1.5728: 9, -1.5711: 9, -1.5708: 117, -1.5707: 18, -1.5682: 9, -1.5545: 18, -1.5430: 9, -1.5359: 9, -1.5358: 9, -1.5184: 9, -1.5122: 9, -1.5044: 9, -1.5000: 90, -1.4971: 18, -1.4952: 9, -1.4861: 9, -1.4835: 9, -1.4788: 9, -1.4649: 18, -1.4591: 9, -1.4251: 9, -1.3592: 18, -1.3315: 9, -1.3290: 9, -1.2877: 144, -1.2146: 9, -1.1077: 9, -1.0400: 18, -1.0313: 9, -0.8905: 9, -0.8324: 9, -0.8099: 9, -0.7578: 9, -0.7411: 9, -0.7344: 9, -0.6208: 27, -0.5716: 9, -0.5544: 27, -0.5381: 9, -0.5236: 9, -0.4777: 9, -0.4668: 9, -0.4531: 9, -0.4369: 9, -0.4036: 9, -0.3763: 9, -0.3576: 9, -0.3386: 18, -0.2897: 9, -0.2425: 54, -0.2396: 9, -0.2367: 9, -0.2305: 18, -0.2258: 9, -0.1864: 9, -0.1837: 9, -0.1595: 18, -0.1439: 9, -0.1287: 36, -0.0882: 9, -0.0600: 9, -0.0042: 9, -0.0041: 9, 0.0000: 1692, 0.0001: 9, 0.0009: 9, 0.0162: 9, 0.0299: 9, 0.0315: 9, 0.0322: 9, 0.0509: 9, 0.1304: 9, 0.1631: 9, 0.2583: 18, 0.2789: 9, 0.2950: 9, 0.3413: 18, 0.3590: 9, 0.4152: 9, 0.4701: 63, 0.4887: 9, 0.4915: 9, 0.5236: 9, 0.5449: 9, 0.5491: 9, 0.5783: 9, 0.5882: 9, 0.7243: 9, 0.7271: 9, 0.7395: 9, 0.8067: 18, 0.8408: 9, 0.9048: 18, 1.0249: 9, 1.0472: 9, 1.0770: 9, 1.0821: 9, 1.1626: 9, 1.1877: 18, 1.1903: 45, 1.3021: 9, 1.3131: 18, 1.3430: 9, 1.3598: 18, 1.3843: 9, 1.4262: 9, 1.5000: 9, 1.5014: 9, 1.5283: 9, 1.5435: 9, 1.5462: 27, 1.5500: 9, 1.5523: 9, 1.5533: 9, 1.5614: 9, 1.5636: 9, 1.5639: 9, 1.5707: 72, 1.5708: 189, 1.5715: 54, 1.5724: 9, 1.5753: 9, 1.5781: 9, 1.5806: 18, 1.5847: 9, 1.5852: 9, 1.5860: 9, 1.6000: 9, 1.6221: 9, 1.6289: 90, 1.6331: 9, 1.6354: 18, 1.6357: 36, 1.6363: 18, 1.6557: 18, 1.6627: 9, 1.7103: 9, 1.7315: 27, 1.7459: 9, 1.7819: 9, 1.8068: 18, 1.9199: 9, 1.9671: 18, 1.9874: 9, 2.0096: 18, 2.0272: 9, 2.0546: 45, 2.0861: 9, 2.0944: 18, 2.1418: 45, 2.1650: 9, 2.2102: 9, 2.2234: 9, 2.2238: 9, 2.2859: 9, 2.3000: 36, 2.3120: 9, 2.3426: 9, 2.4149: 36, 2.4154: 9, 2.4646: 9, 2.5000: 9, 2.5260: 9, 2.5463: 144, 2.5575: 18, 2.5690: 9, 2.6073: 9, 2.6200: 27, 2.6225: 9, 2.6576: 18, 2.7151: 54, 2.7431: 18, 2.7750: 9, 2.7896: 27, 2.7941: 9, 2.8209: 18, 2.8537: 90, 2.8961: 9, 2.9253: 45, 2.9383: 9, 2.9596: 9, 2.9950: 9, 3.0157: 9, 3.0184: 18, 3.0263: 18, 3.0295: 18, 3.0342: 9, 3.0809: 9, 3.0895: 9, 3.0994: 18, 3.1068: 27, 3.1127: 18, 3.1129: 18, 3.1232: 9, 3.1260: 9, 3.1365: 9, 3.1400: 9, 3.1415: 63, 3.1416: 252, 3.9270: 18, 4.3633: 9, 4.7124: 135, 5.8469: 9
+max |constant facing| = 5.846853 rad (pi = 3.141593, 4pi = 12.566371)
+constant facings outside [-pi, pi]: 171; beyond 4pi: 0
+   out of [-pi,pi]: ps2data/plan_master/ch/event/grm_b/grm_b0280/grm_b0280.ebp +0x1577 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/grm_b/grm_b0280/grm_b0280.ebp +0x15BF setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x109B setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x1715 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x1740 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x1759 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0201/rwg_b0201.ebp +0x1007 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0201/rwg_b0201.ebp +0x1036 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0202/rwg_b0202.ebp +0x11D3D setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0202/rwg_b0202.ebp +0x11D6C setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/rwg_b/rwg_b0202/rwg_b0202.ebp +0x11D9F setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/event/sav_b/sav_b0180/sav_b0180.ebp +0xD8E setposparty 3.926991
+   out of [-pi,pi]: ps2data/plan_master/ch/event/sav_b/sav_b0180/sav_b0180.ebp +0xDEE setposparty 3.926991
+   out of [-pi,pi]: ps2data/plan_master/ch/plan_map/rbl_g/rbl_g02/global/rbl_g02.ebp +0xEE69 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/plan_map/rbl_g/rbl_g02/global/rbl_g02.ebp +0xEEB1 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/plan_map/rwg_b/rwg_b02/global/rwg_b02.ebp +0x14142 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/plan_map/rwg_b/rwg_b02/global/rwg_b02.ebp +0x141AC setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/ch/plan_map/sav_b/sav_b01/global/sav_b01.ebp +0x3401A setposparty 5.846853
+   out of [-pi,pi]: ps2data/plan_master/ch/plan_map/sav_b/sav_b01/global/sav_b01.ebp +0x3734B setposparty 4.363323
+   out of [-pi,pi]: ps2data/plan_master/cn/event/grm_b/grm_b0280/grm_b0280.ebp +0x1577 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/grm_b/grm_b0280/grm_b0280.ebp +0x15BF setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x109B setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x1715 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x1740 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0200/rwg_b0200.ebp +0x1759 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0201/rwg_b0201.ebp +0x1007 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0201/rwg_b0201.ebp +0x1036 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0202/rwg_b0202.ebp +0x11D3D setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0202/rwg_b0202.ebp +0x11D6C setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/rwg_b/rwg_b0202/rwg_b0202.ebp +0x11D9F setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/event/sav_b/sav_b0180/sav_b0180.ebp +0xD8E setposparty 3.926991
+   out of [-pi,pi]: ps2data/plan_master/cn/event/sav_b/sav_b0180/sav_b0180.ebp +0xDEE setposparty 3.926991
+   out of [-pi,pi]: ps2data/plan_master/cn/plan_map/rbl_g/rbl_g02/global/rbl_g02.ebp +0xEE69 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/plan_map/rbl_g/rbl_g02/global/rbl_g02.ebp +0xEEB1 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/plan_map/rwg_b/rwg_b02/global/rwg_b02.ebp +0x14142 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/plan_map/rwg_b/rwg_b02/global/rwg_b02.ebp +0x141AC setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/cn/plan_map/sav_b/sav_b01/global/sav_b01.ebp +0x3401A setposparty 5.846853
+   out of [-pi,pi]: ps2data/plan_master/cn/plan_map/sav_b/sav_b01/global/sav_b01.ebp +0x3734B setposparty 4.363323
+   out of [-pi,pi]: ps2data/plan_master/de/event/grm_b/grm_b0280/grm_b0280.ebp +0x1577 setposparty 4.712389
+   out of [-pi,pi]: ps2data/plan_master/de/event/grm_b/grm_b0280/grm_b0280.ebp +0x15BF setposparty 4.712389
+non-constant facings: 414
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x0000A8 evt_t0505.ebp: 1 facing sites; writers 2 (accumulator:v217=v+r 1, call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> NOT BOUNDED here
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000018 dgl_a0100.ebp: 1 facing sites; writers 1 (call:call:getangzx_12f 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C bds_a02.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00001C lus_a01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_e01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_f01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 bds_g01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 lus_d01.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000020 rwg_c02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 evt_t0083.ebp: 1 facing sites; writers 8 (const 8); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 lus_a03.ebp: 1 facing sites; writers 28 (const 28); max |const write| 2.0661; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000024 rwg_c03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 lus_d03.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000028 mrm_b03.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00002C lus_b02.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 bds_b01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000030 lus_f02.ebp: 1 facing sites; writers 4 (const 4); max |const write| 1.9525; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000034 bds_c01.ebp: 1 facing sites; writers 3 (const 3); max |const write| 1.5986; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x000038 rwf_d0100.ebp: 1 facing sites; writers 12 (const 12); max |const write| 1.5708; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C gil_d0100.ebp: 1 facing sites; writers 1 (const 1); max |const write| 0.0000; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00003C mrm_b04.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 1 offset 0x00035C mrm_c01.ebp: 1 facing sites; writers 0 (authored initial value 0.0000 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#47035: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#47035: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#45435: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#45435: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#45435: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#47035: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#45435: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#47035: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C lus_g0280.ebp#C19: 6 facing sites; writers 3 (call:call:getrotangzx_12e 3); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C rsn_b01.ebp#45435: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 2 offset 0x00000C wdl_b01.ebp#33A0: 1 facing sites; writers 1 (call:call:getrotangzx_12e 1); max |const write| -; pointer refs 0 -> BOUNDED by its writers
+   var class 7 offset 0x024920 (shared): 9 facing sites; writers 36 (const 36); max |const write| 3.0000; pointer refs 0 -> BOUNDED by its writers
+non-constant split: getrotangzx 135, variable 279 (9 on variables not bounded here), other 0
+max |constant write| into any facing variable = 3.000000
+   unbounded variable site (us copy): ps2data/plan_master/us/event/evt_t/evt_t0505/evt_t0505.ebp +0x1CF4E PUSHV:1:0000A8
+        writer evt_t0505.ebp +0x1CEA0 call:call:getrotangzx_12e 
+        writer evt_t0505.ebp +0x1CF68 accumulator:v217=v+r 
+CHECK C1   PASS  the corpus is the full script set (10036 files, 223532 scripts)
+CHECK C2   PASS  positive control: 18144 PUSHF operands feeding other CALLs decode to finite floats in range (bad 0)
+CHECK C3   PASS  setposparty call sites exist in the shipped corpus (7092 sites of the two verbs)
+CHECK A1   PASS  every facing variable not bounded here has an accumulator writer (v += r each pass): 9 sites, files ['evt_t0505.ebp']
+CHECK R2   PASS  no constant written into a facing variable reaches |x| > 4pi (max 3.0000)
+CHECK R1   PASS  no constant facing reaches |x| > 4pi (the only range 0033CB70 mis-normalises)
+SITES 7092 CONSTANT 6678 NONCONSTANT 414 OVER_PI 171 OVER_4PI 0 UNBOUNDED_VARIABLE_SITES 9 OTHER 0
+FAILS 0

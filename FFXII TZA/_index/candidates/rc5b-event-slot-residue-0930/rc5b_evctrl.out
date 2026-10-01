@@ -1,0 +1,47 @@
+decompiled lines: 2737
+  489  eventread_e8(0, file_var_s1_2);
+  523  eventread_e8(0, file_var_s1_5[(file_var_s1_4 - 1)]);
+  783  file_var_s1_4 = aask(6, 0x01000007, 0x0100, 224, 4);
+  789  file_var_s1_4 = aask(6, 0x01000008, 0x0100, 224, 4);
+  801  local_var_s1f1_6 = 58;
+  804  summoneventread(((file_var_s1_4 + local_var_s1f1_6) - 1));
+  819  local_var_s1f1_6 = 40;
+  822  summoneventread(((file_var_s1_4 + local_var_s1f1_6) - 1));
+  858  eventread_e8(0, file_var_s1_7[(file_var_s1_4 - 1)]);
+ 1190  eventread_e8(0, file_var_s1_12[0]);
+ 1276  file_var_s1_9 = aask(0, 0x01000012, 0x0100, 80, 4);
+ 1288  eventread_e8(0, file_var_s1_9);
+ 1303  file_var_s1_9 = aask(0, 0x01000014, 0x0100, 80, 4);
+ 1398  file_var_s1_9 = aask_1ff(0, 0x0100001d, 110, 70, 0, 1);
+ 1770  eventread_e8(0, file_var_s1_2);
+ 1991  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2015  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2039  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2063  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2087  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2111  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2135  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2159  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2183  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2207  eventread_e8(0, file_var_s7_1[(file_var_s1_4 - 1)]);
+ 2528  eventread_e8(0, file_var_s1_2);
+array file_var_s1_5[10] = [17, 18, 96, 15, 90, 87, 10, 95, 7, 92]
+array file_var_s1_7[4] = [121, 121, 211, 214]
+array file_var_s5_1[22] = [0, 0, 240, 241, 242, 243, 244, 0, 0, 102, 100, 101, 104, 237, 107, 266, 0, 317, 319, 238, 236, 110]
+array file_var_s5_2[14] = [0, 0, 125, 30, 31, 33, 35, 34, 32, 36, 185, 186, 0, 108]
+array file_var_s5_3[30] = [0, 0, 112, 111, 113, 109, 270, 278, 271, 0, 296, 297, 299, 272, 705, 265, 275, 0, 273, 106, 282, 283, 284, 287, 288, 285, 276, 274, 277, 300]
+array file_var_s5_4[14] = [0, 0, 232, 0, 135, 0, 338, 322, 323, 339, 0, 289, 279, 286]
+array file_var_s5_5[19] = [0, 140, 120, 302, 0, 325, 326, 327, 0, 268, 0, 301, 0, 262, 253, 256, 344, 345, 255]
+array file_var_s5_6[9] = [0, 269, 303, 193, 305, 194, 366, 195, 196]
+array file_var_s5_7[12] = [0, 0, 250, 0, 168, 0, 306, 307, 178, 175, 176, 177]
+array file_var_s5_8[6] = [0, 0, 154, 0, 207, 206]
+array file_var_s5_9[12] = [0, 0, 395, 304, 385, 386, 387, 389, 390, 391, 388, 394]
+array file_var_s5_10[20] = [0, 0, 152, 0, 153, 141, 150, 155, 156, 157, 158, 159, 142, 151, 0, 0, 0, 0, 0, 0]
+array file_var_s7_1[24] = [0, 0, 0, 0, 737, 717, 718, 719, 0, 715, 738, 716, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+array file_var_s9_2[22] = [310, 311, 312, 313, 314, 315, 260, 261, 200, 201, 374, 375, 320, 321, 160, 161, 162, 163, 164, 165, 224, 225]
+array file_var_s9_3[22] = [222, 223, 220, 221, 180, 181, 182, 183, 340, 341, 360, 361, 362, 363, 364, 365, 130, 131, 380, 381, 370, 371]
+array file_var_s9_4[22] = [280, 281, 290, 291, 292, 293, 294, 295, 330, 331, 332, 333, 334, 335, 336, 337, 350, 351, 143, 144, 145, 146]
+array file_var_s9_5[8] = [147, 148, 230, 231, 342, 343, 149, 205]
+message 0x7: choice header 0e 94 80 80 80 8c -> 20 options
+message 0x8: choice header 0e 8d 80 80 80 93 -> 13 options
+message 0x12: choice header none -> n/a options

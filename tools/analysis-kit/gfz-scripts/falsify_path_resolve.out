@@ -1,0 +1,10 @@
+SURVIVES  R0  PStream ['00598210', '00861EC6', '00861EC6', '00861EC6', '00861EC6']; PStreamReaderFile ['00598280', '0059BD40', '0059D920', '0059ED70', '0059FAC0', '0059D4B0', '0059FDA0']
+SURVIVES  R1  0059D920 27 B: false only when +0x28 == -1, +0x30 == 0 and +0x40 == -1
+SURVIVES  R2  0059ED70 ['movzx edx, cl', 'not dl', 'test dl, 1', 'je 0x59edce', 'call 0x584730']; 0059FAC0 ['movzx eax, byte ptr [rbx + 0x10]', 'mov rcx, rbx', 'mov rdx, qword ptr [rbx + 0x10]', 'and eax, 1', 'sub rdx, rax']; 00598100 ['mov eax, edx', 'not al', 'test al, 1', 'je 0x598131', 'mov rcx, rdx', 'call 0x584730']
+SURVIVES  R3  census {1: 13, 0: 5, 5: 1, 'lea r8d, [r14 + 3]': 1}; 001DAFCC 'lea r8d, [r14 + 3]' is reached only after ['xor r14b, r14b', 'mov r14b, 1'], so it passes 3 or 4
+SURVIVES  R4  ['mov r8b, 5', 'mov rdx, qword ptr [rbx + 0x10]', 'lea rcx, [rbp - 9]', 'call 0x597970', 'nop', 'lea rcx, [rbp - 9]', 'call 0x59bd40', 'nop', 'lea rcx, [rbp - 9]', 'call 0x598100', 'mov rbx, qword ptr [rbx]', 'lea rax, [rsp + 0x20]', 'cmp rbx, rax', 'jne 0x1da810']
+SURVIVES  R5  [('00225BA0', 'Audio'), ('00597930', 'Resource'), ('00597970', 'Resource'), ('00597A70', 'Resource'), ('0059ED70', 'Resource'), ('0059EE10', 'Resource')]
+SURVIVES  R6  {13793584: b'[FFXII_data] %s \n', 13793552: b'[FFXII_data_notcache] %s \n', 13793608: b'[FFXII_ERROR] Big file open failed %s \n'}; referenced by 0059EE90 {13793584: True, 13793552: True, 13793608: True}
+SURVIVES  R7  001D6D20 -> 0020C1B0 -> key 0020C440, hash 00674A00: ['mov eax, 0x1505', 'imul eax, eax, 0x21', 'movsx edx, dl', 'btr eax, 0x1f']
+SURVIVES  R8  0059EE90 -> 0019AEE0 (CryptCreateHash ALG 0x8003) -> 001F47D0 (+0x18 then +0x20); failure returns 10
+FAILS 0

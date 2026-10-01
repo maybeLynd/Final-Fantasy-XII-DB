@@ -1,0 +1,19 @@
+{
+ "layouts": 1,
+ "layout_blobs": 4799,
+ "layout_files": [
+  "phyrechrshader.fx",
+  "phyredefaultlitshader.fx"
+ ],
+ "cbuffer_size": 1520,
+ "variables": 154,
+ "r14_store_offsets": 294,
+ "block_offsets_mapped": 276,
+ "computed_or_unknown": 11,
+ "K1_shadow_matrices": true,
+ "K2_chrFresnel": true,
+ "K3_conflicts": [],
+ "K4_population": 80,
+ "K4_unmapped": [],
+ "controls_pass": true
+}

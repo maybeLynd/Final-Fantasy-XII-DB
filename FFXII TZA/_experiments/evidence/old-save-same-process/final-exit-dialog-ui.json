@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-21T03:40:45.703Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 102564144,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "accessibility": {
+    "focused_element": "14 dialog Exit Dialog Secondary Actions: Raise",
+    "tree": "Window: \"FINAL FANTASY XII THE ZODIAC AGE\", App: FFXII_TZA.exe.\n\t0 window (disabled) FINAL FANTASY XII THE ZODIAC AGE Secondary Actions: Raise\n\t\t14 dialog Exit Dialog Secondary Actions: Raise\n\t\t\t15 button OK ID: 1\n\t\t\t16 button Cancel ID: 2\n\t\t\t17 image ID: 20\n\t\t\t18 text Do you really want to exit game? ID: 65535\n\t\t\t19 title bar (settable, string) Value: Exit Dialog\n\t\t\t\t20 button Close\n\t\t1 title bar (settable, string) Value: FINAL FANTASY XII THE ZODIAC AGE\n\t\t\t2 menu bar System ID: MenuBar\n\t\t\t\t3 menu item System\n\t\t\t4 button Minimize\n\t\t\t5 button Maximize\n\t\t\t6 button Close\n\t\t14 dialog Exit Dialog Secondary Actions: Raise\n\t\t\t15 button OK ID: 1\n\t\t\t16 button Cancel ID: 2\n\t\t\t17 image ID: 20\n\t\t\t18 text Do you really want to exit game? ID: 65535\n\t\t\t19 title bar (settable, string) Value: Exit Dialog\n\t\t\t\t20 button Close\n\nThe focused UI element is 14 dialog Exit Dialog Secondary Actions: Raise."
+  },
+  "screenshots": [
+    {
+      "file": "final-exit-dialog-0.jpg",
+      "id": "screenshot-0",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "final-exit-dialog-1.jpg",
+      "id": "screenshot-1",
+      "width": 262,
+      "height": 167
+    }
+  ]
+}

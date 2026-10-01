@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\uc1-dependency-binding\capture.py", line 49, in <module>
+    try:run()
+        ~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\uc1-dependency-binding\capture.py", line 29, in run
+    declarations=ns['declare_inputs'](str((root/'_capture').resolve()))
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\dashboard\build_views.py", line 481, in declare_inputs
+    "build_views.py": {"path": os.path.abspath(__file__)}}
+                                               ^^^^^^^^
+NameError: name '__file__' is not defined. Did you mean: '__name__'?

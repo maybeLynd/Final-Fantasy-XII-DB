@@ -1,0 +1,653 @@
+{
+  "method": "A complete starter364B and exact selected signed integer calculations; zero original/native/emulator/live tests",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "entry": "0x2468a0",
+    "end_exclusive": "0x246a0c",
+    "body_sha256": "60d7930df283708183efd2f989b774a97a9486786b18d42a85cc0c493e2f9453",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "prior37_manifest_sha256": "9487efc611b8ead71a3c3df8d2718a8d91ac62f943c630ecfdb719a167afe6e9"
+  },
+  "instructions": [
+    {
+      "pc": "0x2468a0",
+      "bytes": "4053",
+      "op": "push",
+      "args": "rbx"
+    },
+    {
+      "pc": "0x2468a2",
+      "bytes": "4883ec40",
+      "op": "sub",
+      "args": "rsp, 0x40"
+    },
+    {
+      "pc": "0x2468a6",
+      "bytes": "488b0583dfcf01",
+      "op": "mov",
+      "args": "rax, qword ptr [rip + 0x1cfdf83]"
+    },
+    {
+      "pc": "0x2468ad",
+      "bytes": "4833c4",
+      "op": "xor",
+      "args": "rax, rsp"
+    },
+    {
+      "pc": "0x2468b0",
+      "bytes": "4889442438",
+      "op": "mov",
+      "args": "qword ptr [rsp + 0x38], rax"
+    },
+    {
+      "pc": "0x2468b5",
+      "bytes": "c744242011000000",
+      "op": "mov",
+      "args": "dword ptr [rsp + 0x20], 0x11"
+    },
+    {
+      "pc": "0x2468bd",
+      "bytes": "0f57c0",
+      "op": "xorps",
+      "args": "xmm0, xmm0"
+    },
+    {
+      "pc": "0x2468c0",
+      "bytes": "488bd9",
+      "op": "mov",
+      "args": "rbx, rcx"
+    },
+    {
+      "pc": "0x2468c3",
+      "bytes": "f30f7f442428",
+      "op": "movdqu",
+      "args": "xmmword ptr [rsp + 0x28], xmm0"
+    },
+    {
+      "pc": "0x2468c9",
+      "bytes": "4885c9",
+      "op": "test",
+      "args": "rcx, rcx"
+    },
+    {
+      "pc": "0x2468cc",
+      "bytes": "7456",
+      "op": "je",
+      "args": "0x246924"
+    },
+    {
+      "pc": "0x2468ce",
+      "bytes": "f681800000000e",
+      "op": "test",
+      "args": "byte ptr [rcx + 0x80], 0xe"
+    },
+    {
+      "pc": "0x2468d5",
+      "bytes": "754d",
+      "op": "jne",
+      "args": "0x246924"
+    },
+    {
+      "pc": "0x2468d7",
+      "bytes": "0fbf8998000000",
+      "op": "movsx",
+      "args": "ecx, word ptr [rcx + 0x98]"
+    },
+    {
+      "pc": "0x2468de",
+      "bytes": "3bd1",
+      "op": "cmp",
+      "args": "edx, ecx"
+    },
+    {
+      "pc": "0x2468e0",
+      "bytes": "7557",
+      "op": "jne",
+      "args": "0x246939"
+    },
+    {
+      "pc": "0x2468e2",
+      "bytes": "0fbf839a000000",
+      "op": "movsx",
+      "args": "eax, word ptr [rbx + 0x9a]"
+    },
+    {
+      "pc": "0x2468e9",
+      "bytes": "443bc0",
+      "op": "cmp",
+      "args": "r8d, eax"
+    },
+    {
+      "pc": "0x2468ec",
+      "bytes": "754b",
+      "op": "jne",
+      "args": "0x246939"
+    },
+    {
+      "pc": "0x2468ee",
+      "bytes": "488b03",
+      "op": "mov",
+      "args": "rax, qword ptr [rbx]"
+    },
+    {
+      "pc": "0x2468f1",
+      "bytes": "48c744242800000000",
+      "op": "mov",
+      "args": "qword ptr [rsp + 0x28], 0"
+    },
+    {
+      "pc": "0x2468fa",
+      "bytes": "4885c0",
+      "op": "test",
+      "args": "rax, rax"
+    },
+    {
+      "pc": "0x2468fd",
+      "bytes": "740a",
+      "op": "je",
+      "args": "0x246909"
+    },
+    {
+      "pc": "0x2468ff",
+      "bytes": "488d542420",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x246904",
+      "bytes": "488bcb",
+      "op": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x246907",
+      "bytes": "ffd0",
+      "op": "call",
+      "args": "rax"
+    },
+    {
+      "pc": "0x246909",
+      "bytes": "488b03",
+      "op": "mov",
+      "args": "rax, qword ptr [rbx]"
+    },
+    {
+      "pc": "0x24690c",
+      "bytes": "48c744242801000000",
+      "op": "mov",
+      "args": "qword ptr [rsp + 0x28], 1"
+    },
+    {
+      "pc": "0x246915",
+      "bytes": "4885c0",
+      "op": "test",
+      "args": "rax, rax"
+    },
+    {
+      "pc": "0x246918",
+      "bytes": "740a",
+      "op": "je",
+      "args": "0x246924"
+    },
+    {
+      "pc": "0x24691a",
+      "bytes": "488d542420",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x24691f",
+      "bytes": "488bcb",
+      "op": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x246922",
+      "bytes": "ffd0",
+      "op": "call",
+      "args": "rax"
+    },
+    {
+      "pc": "0x246924",
+      "bytes": "33c0",
+      "op": "xor",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x246926",
+      "bytes": "488b4c2438",
+      "op": "mov",
+      "args": "rcx, qword ptr [rsp + 0x38]"
+    },
+    {
+      "pc": "0x24692b",
+      "bytes": "4833cc",
+      "op": "xor",
+      "args": "rcx, rsp"
+    },
+    {
+      "pc": "0x24692e",
+      "bytes": "e80d235c00",
+      "op": "call",
+      "args": "0x808c40"
+    },
+    {
+      "pc": "0x246933",
+      "bytes": "4883c440",
+      "op": "add",
+      "args": "rsp, 0x40"
+    },
+    {
+      "pc": "0x246937",
+      "bytes": "5b",
+      "op": "pop",
+      "args": "rbx"
+    },
+    {
+      "pc": "0x246938",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x246939",
+      "bytes": "0fb7839a000000",
+      "op": "movzx",
+      "args": "eax, word ptr [rbx + 0x9a]"
+    },
+    {
+      "pc": "0x246940",
+      "bytes": "662bd1",
+      "op": "sub",
+      "args": "dx, cx"
+    },
+    {
+      "pc": "0x246943",
+      "bytes": "808b8000000001",
+      "op": "or",
+      "args": "byte ptr [rbx + 0x80], 1"
+    },
+    {
+      "pc": "0x24694a",
+      "bytes": "66442bc0",
+      "op": "sub",
+      "args": "r8w, ax"
+    },
+    {
+      "pc": "0x24694e",
+      "bytes": "81a380000000ffc3ffff",
+      "op": "and",
+      "args": "dword ptr [rbx + 0x80], 0xffffc3ff"
+    },
+    {
+      "pc": "0x246958",
+      "bytes": "4183e10f",
+      "op": "and",
+      "args": "r9d, 0xf"
+    },
+    {
+      "pc": "0x24695c",
+      "bytes": "66898386000000",
+      "op": "mov",
+      "args": "word ptr [rbx + 0x86], ax"
+    },
+    {
+      "pc": "0x246963",
+      "bytes": "6689938c000000",
+      "op": "mov",
+      "args": "word ptr [rbx + 0x8c], dx"
+    },
+    {
+      "pc": "0x24696a",
+      "bytes": "66898b84000000",
+      "op": "mov",
+      "args": "word ptr [rbx + 0x84], cx"
+    },
+    {
+      "pc": "0x246971",
+      "bytes": "6b4c24703c",
+      "op": "imul",
+      "args": "ecx, dword ptr [rsp + 0x70], 0x3c"
+    },
+    {
+      "pc": "0x246976",
+      "bytes": "41c1e10a",
+      "op": "shl",
+      "args": "r9d, 0xa"
+    },
+    {
+      "pc": "0x24697a",
+      "bytes": "44098b80000000",
+      "op": "or",
+      "args": "dword ptr [rbx + 0x80], r9d"
+    },
+    {
+      "pc": "0x246981",
+      "bytes": "664489838e000000",
+      "op": "mov",
+      "args": "word ptr [rbx + 0x8e], r8w"
+    },
+    {
+      "pc": "0x246989",
+      "bytes": "8b05e18be401",
+      "op": "mov",
+      "args": "eax, dword ptr [rip + 0x1e48be1]"
+    },
+    {
+      "pc": "0x24698f",
+      "bytes": "898394000000",
+      "op": "mov",
+      "args": "dword ptr [rbx + 0x94], eax"
+    },
+    {
+      "pc": "0x246995",
+      "bytes": "b8d34d6210",
+      "op": "mov",
+      "args": "eax, 0x10624dd3"
+    },
+    {
+      "pc": "0x24699a",
+      "bytes": "f7e9",
+      "op": "imul",
+      "args": "ecx"
+    },
+    {
+      "pc": "0x24699c",
+      "bytes": "c783b80000000000803f",
+      "op": "mov",
+      "args": "dword ptr [rbx + 0xb8], 0x3f800000"
+    },
+    {
+      "pc": "0x2469a6",
+      "bytes": "c1fa06",
+      "op": "sar",
+      "args": "edx, 6"
+    },
+    {
+      "pc": "0x2469a9",
+      "bytes": "8bc2",
+      "op": "mov",
+      "args": "eax, edx"
+    },
+    {
+      "pc": "0x2469ab",
+      "bytes": "c1e81f",
+      "op": "shr",
+      "args": "eax, 0x1f"
+    },
+    {
+      "pc": "0x2469ae",
+      "bytes": "03d0",
+      "op": "add",
+      "args": "edx, eax"
+    },
+    {
+      "pc": "0x2469b0",
+      "bytes": "899390000000",
+      "op": "mov",
+      "args": "dword ptr [rbx + 0x90], edx"
+    },
+    {
+      "pc": "0x2469b6",
+      "bytes": "e83534feff",
+      "op": "call",
+      "args": "0x229df0"
+    },
+    {
+      "pc": "0x2469bb",
+      "bytes": "85c0",
+      "op": "test",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x2469bd",
+      "bytes": "7423",
+      "op": "je",
+      "args": "0x2469e2"
+    },
+    {
+      "pc": "0x2469bf",
+      "bytes": "e8dc34feff",
+      "op": "call",
+      "args": "0x229ea0"
+    },
+    {
+      "pc": "0x2469c4",
+      "bytes": "83f802",
+      "op": "cmp",
+      "args": "eax, 2"
+    },
+    {
+      "pc": "0x2469c7",
+      "bytes": "7519",
+      "op": "jne",
+      "args": "0x2469e2"
+    },
+    {
+      "pc": "0x2469c9",
+      "bytes": "e8a234feff",
+      "op": "call",
+      "args": "0x229e70"
+    },
+    {
+      "pc": "0x2469ce",
+      "bytes": "f30f100dd251aa01",
+      "op": "movss",
+      "args": "xmm1, dword ptr [rip + 0x1aa51d2]"
+    },
+    {
+      "pc": "0x2469d6",
+      "bytes": "f30f5ec8",
+      "op": "divss",
+      "args": "xmm1, xmm0"
+    },
+    {
+      "pc": "0x2469da",
+      "bytes": "f30f118bb8000000",
+      "op": "movss",
+      "args": "dword ptr [rbx + 0xb8], xmm1"
+    },
+    {
+      "pc": "0x2469e2",
+      "bytes": "488b03",
+      "op": "mov",
+      "args": "rax, qword ptr [rbx]"
+    },
+    {
+      "pc": "0x2469e5",
+      "bytes": "4885c0",
+      "op": "test",
+      "args": "rax, rax"
+    },
+    {
+      "pc": "0x2469e8",
+      "bytes": "740a",
+      "op": "je",
+      "args": "0x2469f4"
+    },
+    {
+      "pc": "0x2469ea",
+      "bytes": "488d542420",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x2469ef",
+      "bytes": "488bcb",
+      "op": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x2469f2",
+      "bytes": "ffd0",
+      "op": "call",
+      "args": "rax"
+    },
+    {
+      "pc": "0x2469f4",
+      "bytes": "b801000000",
+      "op": "mov",
+      "args": "eax, 1"
+    },
+    {
+      "pc": "0x2469f9",
+      "bytes": "488b4c2438",
+      "op": "mov",
+      "args": "rcx, qword ptr [rsp + 0x38]"
+    },
+    {
+      "pc": "0x2469fe",
+      "bytes": "4833cc",
+      "op": "xor",
+      "args": "rcx, rsp"
+    },
+    {
+      "pc": "0x246a01",
+      "bytes": "e83a225c00",
+      "op": "call",
+      "args": "0x808c40"
+    },
+    {
+      "pc": "0x246a06",
+      "bytes": "4883c440",
+      "op": "add",
+      "args": "rsp, 0x40"
+    },
+    {
+      "pc": "0x246a0a",
+      "bytes": "5b",
+      "op": "pop",
+      "args": "rbx"
+    },
+    {
+      "pc": "0x246a0b",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "cases": [
+    {
+      "name": "ordinary1000-control",
+      "input_dword_bits": "000003E8",
+      "input_signed": 1000,
+      "low32_product_bits": "0000EA60",
+      "product_signed": 60000,
+      "full_product_bits": "00000F0000000D20",
+      "high32_product_bits": "00000F00",
+      "shifted_bits": "0000003C",
+      "sign_adjustment": 0,
+      "stored_bits": "0000003C",
+      "stored_signed": 60,
+      "signed_division_trunc0": 60,
+      "scope": "Original-source/host integer calculation, not original/native/emulator/live execution"
+    },
+    {
+      "name": "positive17-control",
+      "input_dword_bits": "00000011",
+      "input_signed": 17,
+      "low32_product_bits": "000003FC",
+      "product_signed": 1020,
+      "full_product_bits": "0000004147AE14B4",
+      "high32_product_bits": "00000041",
+      "shifted_bits": "00000001",
+      "sign_adjustment": 0,
+      "stored_bits": "00000001",
+      "stored_signed": 1,
+      "signed_division_trunc0": 1,
+      "scope": "Original-source/host integer calculation, not original/native/emulator/live execution"
+    },
+    {
+      "name": "negative17-truncation",
+      "input_dword_bits": "FFFFFFEF",
+      "input_signed": -17,
+      "low32_product_bits": "FFFFFC04",
+      "product_signed": -1020,
+      "full_product_bits": "FFFFFFBEB851EB4C",
+      "high32_product_bits": "FFFFFFBE",
+      "shifted_bits": "FFFFFFFE",
+      "sign_adjustment": 1,
+      "stored_bits": "FFFFFFFF",
+      "stored_signed": -1,
+      "signed_division_trunc0": -1,
+      "scope": "Original-source/host integer calculation, not original/native/emulator/live execution"
+    },
+    {
+      "name": "last-positive-no-product-overflow",
+      "input_dword_bits": "02222222",
+      "input_signed": 35791394,
+      "low32_product_bits": "7FFFFFF8",
+      "product_signed": 2147483640,
+      "full_product_bits": "083126E8FCED9168",
+      "high32_product_bits": "083126E8",
+      "shifted_bits": "0020C49B",
+      "sign_adjustment": 0,
+      "stored_bits": "0020C49B",
+      "stored_signed": 2147483,
+      "signed_division_trunc0": 2147483,
+      "scope": "Original-source/host integer calculation, not original/native/emulator/live execution"
+    },
+    {
+      "name": "first-positive-product-sign-overflow",
+      "input_dword_bits": "02222223",
+      "input_signed": 35791395,
+      "low32_product_bits": "80000034",
+      "product_signed": -2147483596,
+      "full_product_bits": "F7CED919D3F7CEDC",
+      "high32_product_bits": "F7CED919",
+      "shifted_bits": "FFDF3B64",
+      "sign_adjustment": 1,
+      "stored_bits": "FFDF3B65",
+      "stored_signed": -2147483,
+      "signed_division_trunc0": -2147483,
+      "scope": "Original-source/host integer calculation, not original/native/emulator/live execution"
+    }
+  ],
+  "host_predictions": {
+    "negative17_floor": -2,
+    "positive_overflow_unbounded_trunc0": 2147483
+  },
+  "detector": {
+    "source_change": "Private signedIMUL->unsignedMUL at24699A, same subsequent SAR/sign correction in source model; not original execution",
+    "raw_hex": "40534883ec40488b0583dfcf014833c44889442438c7442420110000000f57c0488bd9f30f7f4424284885c97456f681800000000e754d0fbf89980000003bd175570fbf839a000000443bc0754b488b0348c7442428000000004885c0740a488d542420488bcbffd0488b0348c7442428010000004885c0740a488d542420488bcbffd033c0488b4c24384833cce80d235c004883c4405bc30fb7839a000000662bd1808b800000000166442bc081a380000000ffc3ffff4183e10f668983860000006689938c00000066898b840000006b4c24703c41c1e10a44098b80000000664489838e0000008b05e18be401898394000000b8d34d6210f7e1c783b80000000000803fc1fa068bc2c1e81f03d0899390000000e83534feff85c07423e8dc34feff83f8027519e8a234fefff30f100dd251aa01f30f5ec8f30f118bb8000000488b034885c0740a488d542420488bcbffd0b801000000488b4c24384833cce83a225c004883c4405bc3",
+    "original_binding_rejected": "('0x24699a', 'original transition source')",
+    "calculation": {
+      "name": "labelled-signed-to-unsigned-multiply-model",
+      "input_dword_bits": "FFFFFFEF",
+      "input_signed": -17,
+      "low32_product_bits": "FFFFFC04",
+      "product_signed": -1020,
+      "full_product_bits": "10624D91B851EB4C",
+      "high32_product_bits": "10624D91",
+      "shifted_bits": "00418936",
+      "sign_adjustment": 0,
+      "stored_bits": "00418936",
+      "stored_signed": 4294966,
+      "signed_division_trunc0": -1,
+      "scope": "Original-source/host integer calculation, not original/native/emulator/live execution"
+    }
+  },
+  "input_path": {
+    "entry_rsp_to_local_rsp_delta": -72,
+    "local_duration_offset": 112,
+    "entry_duration_offset": 40,
+    "argument_width": 4,
+    "selected_branch": "widget nonnull, flags+80 bits1..3 clear, requestedpair differscurrent signed16-expanded pair",
+    "limits": "Source selectedpath has no duration clamp before246971; fullcallee/caller domain and otherstartervariants not certified"
+  },
+  "tools": {
+    "recorded_utc": "2026-09-28T08:08:49.599837+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "bytes": 7576576,
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "5a31834f87f4c5aa4ef1e26c0897c0b1433674028cc8600ec4f6b24f50392669",
+  "limits": "Source selectedpath/cases only, no actual negative/large caller or fullUI transition/nativeCPU/live/presentation. Otherstartervariants need their own reads. +70 boundedunsigned37 unchanged. uint32 storage width does not imply unsigned division; input ABI word interpreted bitwise, original Cdeclaredsignedness not inferred.",
+  "cleanup": "Read-only image/currentpeerpreimages and host calculations only, PC/game/save/config untouched"
+}

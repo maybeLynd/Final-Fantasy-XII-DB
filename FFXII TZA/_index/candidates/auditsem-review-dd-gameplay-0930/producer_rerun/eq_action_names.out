@@ -1,0 +1,7 @@
+action rows 543 bank0 entries 545
+0x095  +0x34=0x0095  bank0[149] = 'Dismount'  +0x1E kind=255
+0x113  +0x34=0x0113  bank0[275] = 'Dismiss'  +0x1E kind=255
+0x09b  +0x34=0x009b  bank0[155] = '<0F><29><8B><F9><ED><F3>Reserve'  +0x1E kind=13
+0x09c  +0x34=0x009c  bank0[156] = '<0F><29><8B><F9><ED><F3>Reserve'  +0x1E kind=13
+0x09d  +0x34=0x009d  bank0[157] = '<0F><29><8B><F9><ED><F3>Reserve'  +0x1E kind=13
+0x09e  +0x34=0x009e  bank0[158] = 'First Aid'  +0x1E kind=2

@@ -1,0 +1,212 @@
+window	target	site	function	kind	width	instruction
+gate-enable	01E0C444	001AF908	001AF470	addr	8	lea rax, [rip + 0x1c5cb35]
+gate-enable	01E0C444	0028B38E	0028B140	r	2	add ax, word ptr [rip + 0x1b810af]
+gate-enable	01E0C444	0028B5F9	0028B140	r	2	add r11w, word ptr [rip + 0x1b80e43]
+gate-enable	01E0C448	001AF4EE	001AF470	addr	8	lea rax, [rip + 0x1c5cf53]
+gate-enable	01E0C448	0028AE51	0028AAA0	r	4	mov r15d, dword ptr [rip + 0x1b815f0]
+gate-enable	01E0C44C	001AF4FC	001AF470	addr	8	lea rax, [rip + 0x1c5cf49]
+gate-enable	01E0C44C	0028AE69	0028AAA0	r	4	mov r15d, dword ptr [rip + 0x1b815dc]
+gate-enable	01E0C450	001AF8DE	001AF470	addr	8	lea rax, [rip + 0x1c5cb6b]
+gate-enable	01E0C450	0028B214	0028B140	r	4	mov eax, dword ptr [rip + 0x1b81236]
+gate-enable	01E0C454	001AF8FA	001AF470	addr	8	lea rax, [rip + 0x1c5cb53]
+gate-enable	01E0C454	0028B60B	0028B140	r	2	add r10w, word ptr [rip + 0x1b80e41]
+gate-enable	01E0C458	001AF5A4	001AF470	addr	8	lea rax, [rip + 0x1c5cead]
+gate-enable	01E0C458	0028D6F5	0028D460	r	4	mov ecx, dword ptr [rip + 0x1b7ed5d]
+gate-enable	01E0C45C	001AF5B2	001AF470	addr	8	lea rax, [rip + 0x1c5cea3]
+gate-enable	01E0C45C	0028D718	0028D460	r	4	mov ecx, dword ptr [rip + 0x1b7ed3e]
+gate-enable	01E0C460	001AF5C0	001AF470	addr	8	lea rax, [rip + 0x1c5ce99]
+gate-enable	01E0C460	0028FCE8	0028FCB0	r	4	mov r9d, dword ptr [rip + 0x1b7c771]
+gate-enable	01E0C464	0028E294	0028E290	r	1	test byte ptr [rip + 0x1b7e1c9], 1
+gate-enable	01E0C464	0028E2B7	0028E290	r	1	test byte ptr [rip + 0x1b7e1a6], 2
+gate-enable	01E0C464	0028E2D9	0028E290	r	1	test byte ptr [rip + 0x1b7e184], 4
+gate-enable	01E0C464	0028E34D	0028E290	r	1	test byte ptr [rip + 0x1b7e110], 8
+gate-enable	01E0C464	0028E388	0028E290	r	1	test byte ptr [rip + 0x1b7e0d5], 0x20
+gate-enable	01E0C464	0028E3AE	0028E290	r	1	test byte ptr [rip + 0x1b7e0af], 2
+gate-enable	01E0C464	0028E3FF	0028E290	r	4	test dword ptr [rip + 0x1b7e05b], 0x1000
+gate-enable	01E0C464	0028E434	0028E290	r	1	test byte ptr [rip + 0x1b7e029], 0x40
+gate-enable	01E0C464	0028E450	0028E290	r	1	test byte ptr [rip + 0x1b7e00d], 0x80
+gate-enable	01E0C464	0028E471	0028E290	r	4	test dword ptr [rip + 0x1b7dfe9], 0x2000
+gate-enable	01E0C464	0028E48C	0028E290	r	4	test dword ptr [rip + 0x1b7dfce], 0x4000
+gate-enable	01E0C464	0028E4A7	0028E290	r	4	test dword ptr [rip + 0x1b7dfb3], 0x100
+gate-enable	01E0C464	0028E4D2	0028E290	r	4	test dword ptr [rip + 0x1b7df88], 0x200
+gate-enable	01E0C464	0028E50B	0028E290	r	4	test dword ptr [rip + 0x1b7df4f], 0x400
+gate-enable	01E0C464	0028E52A	0028E290	r	4	test dword ptr [rip + 0x1b7df30], 0x8000
+gate-enable	01E0C464	0028E54E	0028E290	r	4	test dword ptr [rip + 0x1b7df0c], 0x800
+gate-enable	01E0C470	001AFDE6	001AF470	addr	8	lea rax, [rip + 0x1c5c683]
+gate-enable	01E0C470	002925AA	00292390	r	4	mov r8d, dword ptr [rip + 0x1b79ebf]
+gate-enable	01E0C470	00292607	00292390	r	4	mov r8d, dword ptr [rip + 0x1b79e62]
+gate-enable	01E0C470	002927E1	00292390	r	4	mov r8d, dword ptr [rip + 0x1b79c88]
+gate-enable	01E0C470	0029283C	00292390	r	4	mov r8d, dword ptr [rip + 0x1b79c2d]
+gate-enable	01E0C470	002928CC	00292390	r	4	imul eax, dword ptr [rip + 0x1b79b9d]
+gate-enable	01E0C470	002929A8	00292390	r	4	imul eax, dword ptr [rip + 0x1b79ac1]
+gate-enable	01E0C470	002929D0	00292390	r	4	mov eax, dword ptr [rip + 0x1b79a9a]
+gate-enable	01E0C470	002929F7	00292390	r	4	mov eax, dword ptr [rip + 0x1b79a73]
+gate-enable	01E0C474	001AFDF4	001AF470	addr	8	lea rax, [rip + 0x1c5c679]
+gate-enable	01E0C474	002925D0	00292390	r	4	mov eax, dword ptr [rip + 0x1b79e9e]
+gate-enable	01E0C474	00292615	00292390	r	4	mov eax, dword ptr [rip + 0x1b79e59]
+gate-enable	01E0C474	00292808	00292390	r	4	mov eax, dword ptr [rip + 0x1b79c66]
+gate-enable	01E0C474	0029284A	00292390	r	4	mov eax, dword ptr [rip + 0x1b79c24]
+gate-enable	01E0C474	002928F7	00292390	r	4	imul eax, dword ptr [rip + 0x1b79b76]
+gate-enable	01E0C474	002929C3	00292390	r	4	mov ecx, dword ptr [rip + 0x1b79aab]
+gate-enable	01E0C474	00292A03	00292390	r	4	mov ecx, dword ptr [rip + 0x1b79a6b]
+gate-enable	01E0C478	002928D3	00292390	w	4	mov dword ptr [rip + 0x1b79b9f], eax
+gate-enable	01E0C47C	002928FE	00292390	w	4	mov dword ptr [rip + 0x1b79b78], eax
+gate-enable	01E0C480	002928A3	00292390	w	4	mov dword ptr [rip + 0x1b79bd7], ecx
+gate-enable	01E0C484	001AF5CE	001AF470	addr	8	lea rax, [rip + 0x1c5ceaf]
+gate-enable	01E0C484	00291D80	00291D80	r	4	mov r8d, dword ptr [rip + 0x1b7a6fd]
+gate-enable	01E0C490	00292D0B	00292B70	addr	8	lea r10, [rip + 0x1b7977e]
+registry	01FD4100	0015FD8E	0015FD10	w	8	mov qword ptr [rip + 0x1e7436b], rax
+registry	01FD4100	0015FDBC	0015FD10	w	8	mov qword ptr [rip + 0x1e7433d], rdi
+registry	01FD4100	0015FDE0	0015FD10	w	8	mov qword ptr [rip + 0x1e74319], rax
+registry	01FD4108	0015FD2E	0015FD10	w	8	mov qword ptr [rip + 0x1e743cf], 0
+registry	01FD4108	0015FD9E	0015FD10	w	8	mov qword ptr [rip + 0x1e74363], rcx
+registry	01FD4108	0015FDC3	0015FD10	w	8	mov qword ptr [rip + 0x1e7433e], rax
+registry	01FD4108	008A7F6D	008A7F60	r	8	mov rcx, qword ptr [rip + 0x172c194]
+registry	01FD4110	0015FD3C	0015FD10	addr	8	lea rcx, [rip + 0x1e743cd]
+registry	01FD4110	0015FD69	0015FD10	addr	8	lea rcx, [rip + 0x1e743a0]
+registry	01FD4110	0015FD7A	0015FD10	r	8	mov rax, qword ptr [rip + 0x1e7438f]
+registry	01FD4110	008A7F91	008A7F60	addr	8	lea rcx, [rip + 0x172c178]
+registry	01FD4110	008A7F98	008A7F60	r	8	mov rax, qword ptr [rip + 0x172c171]
+registry	01FD4118	0015F5C3	0015F590	w	16	movdqu xmmword ptr [rip + 0x1e74b4d], xmm0
+registry	01FD4118	0015F607	0015F590	w	8	mov qword ptr [rip + 0x1e74b0a], rax
+registry	01FD4118	0015F635	0015F590	w	8	mov qword ptr [rip + 0x1e74adc], rdi
+registry	01FD4118	008A7CF7	008A7CE0	r	8	mov rdx, qword ptr [rip + 0x172c41a]
+registry	01FD4120	0015F60E	0015F590	w	8	mov qword ptr [rip + 0x1e74b0b], rax
+registry	01FD4120	0015F63C	0015F590	w	8	mov qword ptr [rip + 0x1e74add], rdi
+registry	01FD4120	0015F660	0015F590	w	8	mov qword ptr [rip + 0x1e74ab9], rax
+registry	01FD4128	0015F5AE	0015F590	w	8	mov qword ptr [rip + 0x1e74b6f], 0
+registry	01FD4128	0015F61E	0015F590	w	8	mov qword ptr [rip + 0x1e74b03], rcx
+registry	01FD4128	0015F643	0015F590	w	8	mov qword ptr [rip + 0x1e74ade], rax
+registry	01FD4128	008A7CED	008A7CE0	r	8	mov rcx, qword ptr [rip + 0x172c434]
+registry	01FD4130	0015F5BC	0015F590	addr	8	lea rcx, [rip + 0x1e74b6d]
+registry	01FD4130	0015F5E9	0015F590	addr	8	lea rcx, [rip + 0x1e74b40]
+registry	01FD4130	0015F5FA	0015F590	r	8	mov rax, qword ptr [rip + 0x1e74b2f]
+registry	01FD4130	008A7D11	008A7CE0	addr	8	lea rcx, [rip + 0x172c418]
+registry	01FD4130	008A7D18	008A7CE0	r	8	mov rax, qword ptr [rip + 0x172c411]
+registry	01FD4138	002216C8	002216B0	r	8	cmp qword ptr [rip + 0x1db2a68], 0
+registry	01FD4138	002216F4	002216B0	w	8	mov qword ptr [rip + 0x1db2a3d], rax
+registry	01FD4138	00221710	00221710	r	8	mov rax, qword ptr [rip + 0x1db2a21]
+registry	01FD4140	001601D4	001601C0	w	8	mov qword ptr [rip + 0x1e73f65], rax
+registry	01FD4140	001601E7	001601C0	addr	8	lea rax, [rip + 0x1e73f52]
+registry	01FD4140	001601F5	001601C0	w	8	mov qword ptr [rip + 0x1e73f44], rax
+registry	01FD4140	00221E1D	00221E00	addr	8	lea rcx, [rip + 0x1db231c]
+registry	01FD4140	0022205F	00222050	addr	8	lea rcx, [rip + 0x1db20da]
+registry	01FD4140	002220A5	00222080	addr	8	lea rbp, [rip + 0x1db2094]
+registry	01FD4140	002225D5	002225B0	addr	8	lea rbp, [rip + 0x1db1b64]
+registry	01FD4140	008A8104	008A80F0	r	8	mov rbx, qword ptr [rip + 0x172c035]
+registry	01FD4140	008A810B	008A80F0	addr	8	lea rdi, [rip + 0x172c02e]
+registry	01FD4148	001601DB	001601C0	w	8	mov qword ptr [rip + 0x1e73f66], rax
+registry	01FD4148	001601FC	001601C0	w	8	mov qword ptr [rip + 0x1e73f45], rax
+registry	01FD4148	002220FB	00222080	r	8	mov rcx, qword ptr [rip + 0x1db2046]
+registry	01FD4148	00222106	00222080	r	8	mov rcx, qword ptr [rip + 0x1db203b]
+registry	01FD4148	00222110	00222080	w	8	mov qword ptr [rip + 0x1db2031], rax
+registry	01FD4148	0022262B	002225B0	r	8	mov rcx, qword ptr [rip + 0x1db1b16]
+registry	01FD4148	00222636	002225B0	r	8	mov rcx, qword ptr [rip + 0x1db1b0b]
+registry	01FD4148	00222640	002225B0	w	8	mov qword ptr [rip + 0x1db1b01], rax
+registry	01FD4150	001601CD	001601C0	addr	8	lea rcx, [rip + 0x1e73f7c]
+registry	01FD4150	002220D4	00222080	r	8	mov rax, qword ptr [rip + 0x1db2075]
+registry	01FD4150	002220DB	00222080	addr	8	lea rcx, [rip + 0x1db206e]
+registry	01FD4150	00222604	002225B0	r	8	mov rax, qword ptr [rip + 0x1db1b45]
+registry	01FD4150	0022260B	002225B0	addr	8	lea rcx, [rip + 0x1db1b3e]
+registry	01FD4150	008A812C	008A80F0	addr	8	lea rcx, [rip + 0x172c01d]
+registry	01FD4150	008A8133	008A80F0	r	8	mov rax, qword ptr [rip + 0x172c016]
+registry	01FD4160	00225E11	00225CD0	addr	8	lea rdx, [rip + 0x1dae348]
+registry	01FD4160	00226B37	00226B30	addr	8	lea rax, [rip + 0x1dad622]
+registry	01FD4160	00226C20	00226BE0	addr	8	lea rax, [rip + 0x1dad539]
+registry	01FD4174	00225ECE	00225EB0	addr	8	lea r13, [rip + 0x1dae29f]
+registry	01FD4410	002262D7	00226280	addr	8	lea rax, [rip + 0x1dae132]
+registry	01FD46A0	00226603	00226280	w	16	movups xmmword ptr [rip + 0x1dae096], xmm0
+registry	01FD46A0	00226B17	00226B10	addr	8	lea rax, [rip + 0x1dadb82]
+registry	01FD46A0	00226BA9	00226BA0	r	8	and rcx, qword ptr [rip + 0x1dadaf0]
+registry	01FD46B0	00226298	00226280	addr	8	lea r9, [rip + 0x1dae411]
+registry	01FD46B0	00226616	00226280	w	8	movsd qword ptr [rip + 0x1dae092], xmm1
+registry	01FD46B4	00226B48	00226B30	addr	8	lea rdx, [rip + 0x1dadb65]
+registry	01FD46B8	00226624	00226280	w	16	movups xmmword ptr [rip + 0x1dae08d], xmm0
+registry	01FD46B8	00226BA0	00226BA0	r	8	mov rcx, qword ptr [rip + 0x1dadb11]
+registry	01FD46C8	0022662B	00226280	w	8	movsd qword ptr [rip + 0x1dae095], xmm1
+registry	01FD46D0	00225CF3	00225CD0	w	1	mov byte ptr [rip + 0x1dae9d6], 1
+registry	01FD46D0	00225EEF	00225EB0	w	1	mov byte ptr [rip + 0x1dae7da], 1
+registry	01FD46D0	00226287	00226280	r	1	cmp byte ptr [rip + 0x1dae442], 0
+registry	01FD46D0	0022660A	00226280	w	1	mov byte ptr [rip + 0x1dae0bf], 0
+registry	01FD46D0	00226B30	00226B30	w	1	mov byte ptr [rip + 0x1dadb99], 0
+registry	01FD46D0	00226C87	00226BE0	w	1	mov byte ptr [rip + 0x1dada42], 1
+registry	01FD46D1	002264BC	00226280	r	1	cmp byte ptr [rip + 0x1dae20e], sil
+registry	01FD46D1	002265C1	00226280	w	1	mov byte ptr [rip + 0x1dae109], sil
+registry	01FD46D1	00226B4F	00226B30	w	1	mov byte ptr [rip + 0x1dadb7b], 0
+registry	01FD46D1	00227D30	00227D30	w	1	mov byte ptr [rip + 0x1dac99a], 1
+registry	01FD46D4	00225D08	00225CD0	rw	4	and dword ptr [rip + 0x1dae9c6], esi
+registry	01FD46D4	00225EE1	00225EB0	r	4	test dword ptr [rip + 0x1dae7ed], edi
+registry	01FD46D4	00225EF8	00225EB0	rw	4	and dword ptr [rip + 0x1dae7d6], esi
+registry	01FD46D4	002260A0	002260A0	r	4	test dword ptr [rip + 0x1dae62a], 0x400000
+registry	01FD46D4	002260C0	002260C0	r	4	test dword ptr [rip + 0x1dae60a], 0x800
+registry	01FD46D4	002260E0	002260E0	r	4	test dword ptr [rip + 0x1dae5ea], 0x8000000
+registry	01FD46D4	00226100	00226100	r	4	test dword ptr [rip + 0x1dae5ca], 0x40000
+registry	01FD46D4	00226120	00226120	r	4	test dword ptr [rip + 0x1dae5aa], 0x400
+registry	01FD46D4	00226140	00226140	r	4	test dword ptr [rip + 0x1dae58a], 0x8000
+registry	01FD46D4	00226160	00226160	r	4	test dword ptr [rip + 0x1dae56a], 0x10000
+registry	01FD46D4	00226184	00226180	r	4	test dword ptr [rip + 0x1dae546], 0x1000000
+registry	01FD46D4	002261B4	002261B0	r	4	test dword ptr [rip + 0x1dae516], 0x800000
+registry	01FD46D4	002261E4	002261E0	r	4	test dword ptr [rip + 0x1dae4e6], 0x4000000
+registry	01FD46D4	00226214	00226210	r	4	test dword ptr [rip + 0x1dae4b6], 0x2000000
+registry	01FD46D4	00226240	00226240	r	4	test dword ptr [rip + 0x1dae48a], 0x1000
+registry	01FD46D4	00226260	00226260	r	4	test dword ptr [rip + 0x1dae46a], 0x20000
+registry	01FD46D4	00226B3E	00226B30	w	4	mov dword ptr [rip + 0x1dadb8c], 0
+registry	01FD46D4	00226BC2	00226BC0	r	4	cmp dword ptr [rip + 0x1dadb0c], eax
+registry	01FD46D4	00226BD0	00226BD0	r	4	mov edx, dword ptr [rip + 0x1dadafe]
+registry	01FD46D4	00226C08	00226BE0	r	4	test dword ptr [rip + 0x1dadac5], r13d
+registry	01FD46D4	00226C7A	00226BE0	rw	4	or dword ptr [rip + 0x1dada53], r13d
+registry	01FD46D4	00227374	00227370	r	4	test dword ptr [rip + 0x1dad356], 0x400000
+registry	01FD46D4	002273E4	002273E0	r	4	test dword ptr [rip + 0x1dad2e6], 0x8000000
+registry	01FD46D4	00227424	00227420	r	4	test dword ptr [rip + 0x1dad2a6], 0x40000
+registry	01FD46D4	00227464	00227460	r	4	test dword ptr [rip + 0x1dad266], 0x400
+registry	01FD46D4	002274A4	002274A0	r	4	test dword ptr [rip + 0x1dad226], 0x8000
+registry	01FD46D4	00227514	00227510	r	4	test dword ptr [rip + 0x1dad1b6], 0x1000000
+registry	01FD46D4	00227554	00227550	r	4	test dword ptr [rip + 0x1dad176], 0x800000
+registry	01FD46D4	00227594	00227590	r	4	test dword ptr [rip + 0x1dad136], 0x4000000
+registry	01FD46D4	002275D4	002275D0	r	4	test dword ptr [rip + 0x1dad0f6], 0x2000000
+registry	01FD46D4	00227644	00227640	r	4	test dword ptr [rip + 0x1dad086], 0x20000
+registry	01FD46D8	00227D53	00227D40	w	4	mov dword ptr [rip + 0x1dac97b], 1
+registry	01FD46DC	00227D4D	00227D40	w	4	mov dword ptr [rip + 0x1dac989], ebx
+registry	01FD46E4	00226B56	00226B30	addr	8	lea r8, [rip + 0x1dadb87]
+registry	01FD46F0	001AF5F8	001AF470	addr	8	lea rax, [rip + 0x1e250f1]
+registry	01FD46F0	00228BB9	00228A70	r	4	mov edx, dword ptr [rip + 0x1dabb31]
+registry	01FD46F0	00228BE7	00228A70	r	4	mov edx, dword ptr [rip + 0x1dabb03]
+registry	01FD46F0	00228C15	00228A70	r	4	mov edx, dword ptr [rip + 0x1dabad5]
+registry	01FD46F0	00228C48	00228A70	r	4	mov edx, dword ptr [rip + 0x1dabaa2]
+registry	01FD46F4	0022818C	00228130	r	4	mov eax, dword ptr [rip + 0x1dac562]
+registry	01FD46F4	0022874F	00228700	w	4	mov dword ptr [rip + 0x1dabf9f], eax
+registry	01FD46F8	002288AE	002287D0	r	4	cmp dword ptr [rip + 0x1dabe43], r14d
+registry	01FD46F8	00228916	002287D0	r	4	mov ecx, dword ptr [rip + 0x1dabddc]
+registry	01FD46F8	00228922	002287D0	w	4	mov dword ptr [rip + 0x1dabdd0], ecx
+registry	01FD46FC	002283F9	00228380	r	4	mov eax, dword ptr [rip + 0x1dac2fd]
+registry	01FD46FC	00228405	00228380	w	4	mov dword ptr [rip + 0x1dac2f1], eax
+registry	01FD46FC	002295EF	00229590	w	4	mov dword ptr [rip + 0x1dab103], 5
+registry	01FD4700	00228965	00228930	addr	8	lea rdi, [rip + 0x1dabd94]
+registry	01FD4700	0022952D	00229510	addr	8	lea rbp, [rip + 0x1dab1cc]
+registry	01FD4740	00228C1B	00228A70	addr	8	lea r9, [rip + 0x1dabb1e]
+registry	01FD4740	00228DA4	00228C70	addr	8	lea rdx, [rip + 0x1dab995]
+registry	01FD47C0	00228BED	00228A70	addr	8	lea r9, [rip + 0x1dabbcc]
+registry	01FD47C0	00228D15	00228C70	addr	8	lea rdx, [rip + 0x1dabaa4]
+tick-deferred	01EED060	0031407D	00314020	r	4	mov eax, dword ptr [rip + 0x1bd8fdd]
+tick-deferred	01EED060	00314092	00314020	w	4	mov dword ptr [rip + 0x1bd8fc8], eax
+tick-deferred	01EED060	00314416	00314410	r	4	cmp dword ptr [rip + 0x1bd8c43], 0
+tick-deferred	01EED060	0031442B	00314410	w	4	mov dword ptr [rip + 0x1bd8c2f], ebx
+tick-deferred	01EED060	00314974	00314970	w	4	mov dword ptr [rip + 0x1bd86e2], 0xffffffff
+tick-deferred	01EED064	0031408B	00314020	r	4	cmp dword ptr [rip + 0x1bd8fd2], 0
+tick-deferred	01EED064	003140B2	00314020	r	4	mov edx, dword ptr [rip + 0x1bd8fac]
+tick-deferred	01EED064	003140BF	00314020	w	4	mov dword ptr [rip + 0x1bd8f9f], ebx
+tick-deferred	01EED064	00314471	00314440	r	4	cmp dword ptr [rip + 0x1bd8bec], 0
+tick-deferred	01EED064	00314502	00314440	r	4	mov ecx, dword ptr [rip + 0x1bd8b5c]
+tick-deferred	01EED064	00314575	00314530	w	4	mov dword ptr [rip + 0x1bd8ae9], edx
+tick-deferred	01EED064	00314580	00314530	r	4	mov edx, dword ptr [rip + 0x1bd8ade]
+tick-deferred	01EED064	003145BF	00314530	r	4	mov ecx, dword ptr [rip + 0x1bd8a9f]
+tick-deferred	01EED064	0031467F	003145E0	w	4	mov dword ptr [rip + 0x1bd89df], esi
+tick-deferred	01EED064	00314705	003145E0	r	4	cmp dword ptr [rip + 0x1bd8958], 0
+tick-deferred	01EED064	0031471D	003145E0	r	4	cmp dword ptr [rip + 0x1bd8940], 0xc
+tick-deferred	01EED064	0031472B	003145E0	r	4	mov ecx, dword ptr [rip + 0x1bd8933]
+tick-deferred	01EED064	00314739	003145E0	r	4	mov ecx, dword ptr [rip + 0x1bd8925]
+tick-deferred	01EED064	00314749	003145E0	r	4	cmp dword ptr [rip + 0x1bd8914], 0xc
+tick-deferred	01EED064	00314768	003145E0	r	4	mov ecx, dword ptr [rip + 0x1bd88f6]
+tick-deferred	01EED064	0031497E	00314970	w	4	mov dword ptr [rip + 0x1bd86dc], 0xffffffff
+tick-deferred	01EED078	003162FF	003162E0	addr	8	lea r15, [rip + 0x1bd6d72]
+tick-deferred	01EED078	0031682A	00316810	addr	8	lea rbx, [rip + 0x1bd6847]

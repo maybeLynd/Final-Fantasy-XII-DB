@@ -1,0 +1,100 @@
+{
+  "status": "HOST_ARTIFACT_OBSERVED_NO_FF12_PROCESS",
+  "method": "A: retained/filesystem artifacts with current host profile metadata; not live FF12",
+  "started_utc": "2026-09-21T09:24:31.2836730+00:00",
+  "ended_utc": "2026-09-21T09:24:31.4061093+00:00",
+  "powershell_version": "7.6.5",
+  "capture_sha256": "b9c6c7431561025e696a15549f2e887f21c5c4702b539c4398f1be79fd7d157f",
+  "steam_before": {
+    "pid": 54064,
+    "started_utc": "2026-09-20T06:21:50.1660425Z",
+    "active_user_low32": 85625008,
+    "auto_login_name_casefold_sha256": "22ebb0b1529ac6b36e4d8aaef90575456d418d7b59152a400d8667e0f04f8a78",
+    "path": "c:\\program files (x86)\\steam\\steam.exe",
+    "executable_sha256": "48ea0576865d2dfda26001b7b210c3f7559d46e647424cd11704eb1ea842fe5a",
+    "file_version": "10.96.30.42"
+  },
+  "steam_after": {
+    "pid": 54064,
+    "started_utc": "2026-09-20T06:21:50.1660425Z",
+    "active_user_low32": 85625008,
+    "auto_login_name_casefold_sha256": "22ebb0b1529ac6b36e4d8aaef90575456d418d7b59152a400d8667e0f04f8a78",
+    "path": "c:\\program files (x86)\\steam\\steam.exe",
+    "executable_sha256": "48ea0576865d2dfda26001b7b210c3f7559d46e647424cd11704eb1ea842fe5a",
+    "file_version": "10.96.30.42"
+  },
+  "profile_file": {
+    "path": "c:\\program files (x86)\\steam\\config\\loginusers.vdf",
+    "sha256": "c6a9dae0ad001ef5165760a4822205ec6324c692cda9de63b8969e76175e6ab3",
+    "after_sha256": "c6a9dae0ad001ef5165760a4822205ec6324c692cda9de63b8969e76175e6ab3",
+    "record_count": 1,
+    "selected": {
+      "steam_id64": "76561198045890736",
+      "account_name_casefold_sha256": "22ebb0b1529ac6b36e4d8aaef90575456d418d7b59152a400d8667e0f04f8a78"
+    }
+  },
+  "documents_root": "C:\\Users\\Kristian\\Documents\\My Games\\FINAL FANTASY XII THE ZODIAC AGE",
+  "directory_entries": [
+    {
+      "name": "76561197960267366",
+      "attributes": "Directory"
+    },
+    {
+      "name": "76561198045890736",
+      "attributes": "Directory"
+    }
+  ],
+  "files_before": [
+    {
+      "path": "C:\\Users\\Kristian\\Documents\\My Games\\FINAL FANTASY XII THE ZODIAC AGE\\keymap.ini",
+      "bytes": 699,
+      "sha256": "8d98f85e0b571d819dc155c8774aad553f6e6119d6ede1cdd62245cfb9f6cf6d",
+      "created_utc": "2026-08-07T08:26:59.8165747Z",
+      "modified_utc": "2026-08-07T08:26:59.8165747Z",
+      "attributes": "Archive",
+      "keyboard1_header": true,
+      "circle_assignment": true
+    },
+    {
+      "path": "C:\\Users\\Kristian\\Documents\\My Games\\FINAL FANTASY XII THE ZODIAC AGE\\76561198045890736\\keymap.ini",
+      "bytes": 699,
+      "sha256": "8d98f85e0b571d819dc155c8774aad553f6e6119d6ede1cdd62245cfb9f6cf6d",
+      "created_utc": "2026-04-28T15:44:58.0000000Z",
+      "modified_utc": "2026-09-21T03:41:08.8945628Z",
+      "attributes": "Archive",
+      "keyboard1_header": true,
+      "circle_assignment": true
+    }
+  ],
+  "files_after": [
+    {
+      "path": "C:\\Users\\Kristian\\Documents\\My Games\\FINAL FANTASY XII THE ZODIAC AGE\\keymap.ini",
+      "bytes": 699,
+      "sha256": "8d98f85e0b571d819dc155c8774aad553f6e6119d6ede1cdd62245cfb9f6cf6d",
+      "created_utc": "2026-08-07T08:26:59.8165747Z",
+      "modified_utc": "2026-08-07T08:26:59.8165747Z",
+      "attributes": "Archive",
+      "keyboard1_header": true,
+      "circle_assignment": true
+    },
+    {
+      "path": "C:\\Users\\Kristian\\Documents\\My Games\\FINAL FANTASY XII THE ZODIAC AGE\\76561198045890736\\keymap.ini",
+      "bytes": 699,
+      "sha256": "8d98f85e0b571d819dc155c8774aad553f6e6119d6ede1cdd62245cfb9f6cf6d",
+      "created_utc": "2026-04-28T15:44:58.0000000Z",
+      "modified_utc": "2026-09-21T03:41:08.8945628Z",
+      "attributes": "Archive",
+      "keyboard1_header": true,
+      "circle_assignment": true
+    }
+  ],
+  "ff12_process_count": 0,
+  "changes": [],
+  "limitations": [
+    "No FF12 process/API call, path creation or formatter observed.",
+    "Steam host metadata is bracketed, not an atomic API account snapshot.",
+    "File timestamps do not identify their creator; files predate this observation.",
+    "Other profile/account records and unrelated files were not copied.",
+    "No inference of safe returned-stack-pointer lifetime or cause of an empty directory component."
+  ]
+}

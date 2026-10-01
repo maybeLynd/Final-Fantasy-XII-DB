@@ -1,0 +1,29 @@
+{
+  "name": "bounded-timeout",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\bounded-timeout\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\bounded-timeout\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "tagged",
+    "tags": [
+      "A",
+      "B"
+    ],
+    "exits": [
+      0
+    ]
+  },
+  "upstream_sha256": "b425ea00b36072de56267fe417b3fc393bac545d8e0879650698ae975c695377",
+  "returncode": null,
+  "stdout": "",
+  "stderr": "",
+  "timed_out": true
+}

@@ -1,0 +1,21 @@
+control: .mpk files found: 550 (published 550)
+files with a slot 4: 461 (published 461)
+regions in all: 31672 ; largest region count in one file: 128 ; most triangles one region lists: 6
+portals in all (by highest adjacency entry): 52174
+  a region lists at most 7 triangles (0x22 - 0x14 = 14 bytes)              pass  461  fail    0
+  adjacency diagonal is 0 (no portal to itself)                            pass  461  fail    0
+  adjacency is symmetric in WHERE portals exist                            pass  461  fail    0
+  every grid cell's list is 0xFF-terminated region ids                     pass  461  fail    0
+  every portal's two vertex indices < header vertex count (+4)             pass  461  fail    0
+  every triangle a region lists names that region back                     pass  461  fail    0
+  every triangle vertex index < header vertex count (+4)                   pass  461  fail    0
+  every triangle's region id (+6) < region count                           pass  461  fail    0
+  first u32 is 1                                                           pass  461  fail    0
+  grid sub-offsets inside the section, cell size non-zero                  pass  461  fail    0
+  region count <= 0x80 (the search's fixed arrays)                         pass  461  fail    0
+  six offsets inside the section                                           pass  461  fail    0
+hypothesis: header +4 == vertex count (offset gap / 8, less one or two entries of padding): 461 of 461
+hypothesis: header +8 == portal count (highest adjacency entry, or that + 1): 461 of 461
+portal byte +4 (0xFF = not script-gated): [(255, 51248), (0, 926)]
+portal byte +6 (mover-class mask): [(47, 32467), (8, 19374), (0, 324), (12, 8), (43, 1)]
+gated portals by map id (+5): 30 distinct ids; largest id 31 ; gated portals 926

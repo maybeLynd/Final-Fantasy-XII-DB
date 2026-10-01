@@ -1,0 +1,163 @@
+{
+ "M1": {
+  "buf_count": 1,
+  "buf_e0": "0",
+  "buf_flag": 1,
+  "buf_writes": 5,
+  "d700": "FFFFFFFC",
+  "d710": "120034",
+  "halt": [],
+  "id_714": "10",
+  "ok": true,
+  "q708": "ABCDEF",
+  "shadow_ok": true,
+  "unit_writes": 14
+ },
+ "M2": {
+  "0": {
+   "buf_count": 1,
+   "buf_e0": "0",
+   "buf_flag": 1,
+   "buf_writes": 5,
+   "d700": "FFFFFFFC",
+   "d710": "120034",
+   "halt": [],
+   "id_714": "0",
+   "ok": true,
+   "q708": "ABCDEF",
+   "shadow_ok": true,
+   "unit_writes": 14
+  },
+  "21E": {
+   "buf_count": 1,
+   "buf_e0": "0",
+   "buf_flag": 1,
+   "buf_writes": 5,
+   "d700": "FFFFFFFC",
+   "d710": "120034",
+   "halt": [],
+   "id_714": "21E",
+   "ok": true,
+   "q708": "ABCDEF",
+   "shadow_ok": true,
+   "unit_writes": 14
+  },
+  "21F": {
+   "buf_count": 3,
+   "buf_e0": "1111",
+   "buf_flag": 1,
+   "buf_writes": 0,
+   "d700": "FFFFFFFF",
+   "d710": "0",
+   "halt": [],
+   "id_714": "0",
+   "ok": true,
+   "q708": "0",
+   "shadow_ok": false,
+   "unit_writes": 0
+  },
+  "3FFF": {
+   "buf_count": 3,
+   "buf_e0": "1111",
+   "buf_flag": 1,
+   "buf_writes": 0,
+   "d700": "FFFFFFFF",
+   "d710": "0",
+   "halt": [],
+   "id_714": "0",
+   "ok": true,
+   "q708": "0",
+   "shadow_ok": false,
+   "unit_writes": 0
+  },
+  "4000": {
+   "buf_count": 3,
+   "buf_e0": "1111",
+   "buf_flag": 1,
+   "buf_writes": 0,
+   "d700": "FFFFFFFC",
+   "d710": "120034",
+   "halt": [],
+   "id_714": "4000",
+   "ok": true,
+   "q708": "ABCDEF",
+   "shadow_ok": true,
+   "unit_writes": 9
+  },
+  "4166": {
+   "buf_count": 3,
+   "buf_e0": "1111",
+   "buf_flag": 1,
+   "buf_writes": 0,
+   "d700": "FFFFFFFC",
+   "d710": "120034",
+   "halt": [],
+   "id_714": "4166",
+   "ok": true,
+   "q708": "ABCDEF",
+   "shadow_ok": true,
+   "unit_writes": 9
+  },
+  "4167": {
+   "buf_count": 3,
+   "buf_e0": "1111",
+   "buf_flag": 1,
+   "buf_writes": 0,
+   "d700": "FFFFFFFF",
+   "d710": "0",
+   "halt": [],
+   "id_714": "0",
+   "ok": true,
+   "q708": "0",
+   "shadow_ok": false,
+   "unit_writes": 0
+  }
+ },
+ "M3": {
+  "buf_count": 3,
+  "buf_e0": "1111",
+  "buf_flag": 1,
+  "buf_writes": 0,
+  "d700": "FFFFFFFC",
+  "d710": "120034",
+  "halt": [],
+  "id_714": "4010",
+  "ok": true,
+  "q708": "ABCDEF",
+  "shadow_ok": true,
+  "unit_writes": 9
+ },
+ "M4": {
+  "buf_count": 1,
+  "buf_e0": "0",
+  "buf_flag": 1,
+  "buf_writes": 5,
+  "d700": "FFFFFFFC",
+  "d710": "12345678",
+  "halt": [],
+  "id_714": "20",
+  "ok": true,
+  "q708": "1122334455667788",
+  "shadow_ok": true,
+  "unit_writes": 14
+ },
+ "M5": {
+  "no_stats": [
+   true,
+   [],
+   0
+  ],
+  "null_unit": [
+   true,
+   []
+  ]
+ },
+ "cases": {
+  "M1_unresolved_target_is_not_an_error_and_appends_a_null_entry": true,
+  "M2_two_disjoint_ranges": true,
+  "M3_high_range_never_touches_the_target_buffer": true,
+  "M4_block_shadowed_verbatim": true,
+  "M5_cancel_is_a_no_op_without_unit_or_stats": true
+ },
+ "ok": true
+}

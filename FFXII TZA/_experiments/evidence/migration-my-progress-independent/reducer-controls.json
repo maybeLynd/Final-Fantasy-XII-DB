@@ -1,0 +1,90 @@
+[
+  {
+    "name": "incomplete-admission",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py",
+      "--phase",
+      "admission",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\incomplete-admission.json",
+      "--out",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\incomplete-admission-result.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py\", line 26, in <module>\n    r=raw('admission-01','admission');assert r['finished'] is True and r['sources_unchanged'] is True\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "missing-admission-case",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py",
+      "--phase",
+      "admission",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\missing-admission-case.json",
+      "--out",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\missing-admission-case-result.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py\", line 29, in <module>\n    ac=names(r,('valid-final30','invalid-terminal0','partial29-not-met','inconsistent-headline','ready-with-open-Q'))\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py\", line 14, in names\n    assert len(r['cases'])==len(want) and {c['name'] for c in r['cases']}==set(want),'Missing/duplicate case'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Missing/duplicate case\n",
+    "result_created": false
+  },
+  {
+    "name": "hide-zero-admission",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py",
+      "--phase",
+      "admission",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\hide-zero-admission.json",
+      "--out",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\hide-zero-admission-result.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py\", line 32, in <module>\n    assert read(d/'receipt.json')==v\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "author-upstream-fails",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py",
+      "--phase",
+      "author",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\author-upstream-fails.json",
+      "--out",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\author-upstream-fails-result.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\check.py\", line 60, in <module>\n    r=raw('author-622-01','author');assert r['terminal'] is True and r['returncode']==0 and not r['stderr'] and r['complete_case_set'] is True and r['all_sources_unchanged'] is True\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "missing-item-identity",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\browser-normalize.py",
+      "--progress",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\missing-item-identity.json",
+      "--out",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\reducer-controls\\missing-item-identity-result.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\browser-normalize.py\", line 15, in <module>\n    assert len(c['items'])==16 and all(isinstance(x.get('k'),str) and x['k'] for x in c['items']), 'Missing/empty original item k is not valid empty output'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Missing/empty original item k is not valid empty output\n",
+    "result_created": false
+  }
+]

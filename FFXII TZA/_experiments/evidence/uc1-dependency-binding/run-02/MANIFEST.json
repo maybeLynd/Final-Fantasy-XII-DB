@@ -1,0 +1,201 @@
+{
+ "committed_at": "2026-09-29T13:56:30Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T135626Z-00f775",
+ "generator": {
+  "name": "build_views.py",
+  "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+ },
+ "inputs": {
+  "_tree": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard\\_capture\\category_tree.json",
+   "sha256": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+   "size": 9443,
+   "state": "present"
+  },
+  "build_views.py": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py",
+   "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4",
+   "size": 48235,
+   "state": "present"
+  },
+  "category_map": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\workflow\\my-progress\\category-map.tsv",
+   "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+   "size": 10617,
+   "state": "present"
+  },
+  "check_questions": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard\\_capture\\check_questions.txt",
+   "sha256": "4cc33c1c771e333d8ba535c198e09228cc733f12e14c113c9ab6e07c722041fc",
+   "size": 643,
+   "state": "present"
+  },
+  "coverage_dims": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\COVERAGE-DIMENSIONS.md",
+   "sha256": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+   "size": 58385,
+   "state": "present"
+  },
+  "exe": {
+   "external": true,
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+   "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+   "size": 32864752,
+   "state": "present"
+  },
+  "fields": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_types\\fields.tsv",
+   "sha256": "50a44d30b8142dfdc7fea82cd7139c0f45e54b677246564a2918eb9b29140505",
+   "size": 10640389,
+   "state": "present"
+  },
+  "functions": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\graph\\functions.tsv",
+   "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+   "size": 7008993,
+   "state": "present"
+  },
+  "goal_gate": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard\\_capture\\goal_gate.json",
+   "sha256": "27713ee365f8f4bd014169c404b1a498052f1fd88f2a4f16f691221d31a0b49c",
+   "size": 747,
+   "state": "present"
+  },
+  "l2": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\L2-VERDICTS.md",
+   "sha256": "bb1d3cc157e6d712e7110ed85014da5ee80f315737349694175e59e24e9f1668",
+   "size": 334764,
+   "state": "present"
+  },
+  "pkg:PKG-GP-HP-LETHAL.md": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-HP-LETHAL.md",
+   "sha256": "f899c1a9364968ae0719b59f12ce01fd212cb460c1af7deac0f153eea54d32a4",
+   "size": 10550,
+   "state": "present"
+  },
+  "pkg:PKG-GP-SPAWN-RESPAWN.md": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-SPAWN-RESPAWN.md",
+   "sha256": "76868e0f49ec7ff74241547fdae512e6dd676033b77991dd72d082cba0d552db",
+   "size": 10701,
+   "state": "present"
+  },
+  "pkg:PKG-GP-STATUS-POISON.md": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-STATUS-POISON.md",
+   "sha256": "4d44884e0cfaa747ad461b66a44461dd7ffdbe10235734185023d339110f9e0c",
+   "size": 13149,
+   "state": "present"
+  },
+  "pkg:PKG-TECH-SCRIPTVM-VALUE.md": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-TECH-SCRIPTVM-VALUE.md",
+   "sha256": "742d3ca299e3e5e5ab8c82e7cf23fe1379cd06dbfea8d7947839bfb958d51ee5",
+   "size": 8469,
+   "state": "present"
+  },
+  "progress_check": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard\\_capture\\progress_check.txt",
+   "sha256": "fb6e9ff2b6f8ff0bf36e9994c43582145d785744383b97fb361aa71aa48033e9",
+   "size": 87,
+   "state": "present"
+  },
+  "progress_snapshot": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\progress\\snapshot.json",
+   "sha256": "264de8e4b9ed5205fe11f02e6fea8f7aa9684fe43c5a3a5e9668034592a7bc46",
+   "size": 292834,
+   "state": "present",
+   "volatile": true
+  },
+  "requirement_facts": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard\\_capture\\requirement_facts.json",
+   "sha256": "5dfe9430c4c359eddf8483d417131db01adf280188f7115df542aa540bab08dd",
+   "size": 8139749,
+   "state": "present"
+  },
+  "requirements.py": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\requirements.py",
+   "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+   "size": 32680,
+   "state": "present"
+  },
+  "subsystems": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\important-subsystems.tsv",
+   "sha256": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+   "size": 22589,
+   "state": "present"
+  },
+  "team": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\_inbox\\TEAM.json",
+   "sha256": "b73fa04fe0b09a252fa827675fc5dfb871e27a01b2581c6692a2c5b2b7fffd8d",
+   "size": 56312945,
+   "state": "present",
+   "volatile": true
+  },
+  "types": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_types\\types.tsv",
+   "sha256": "684a84a4ea6d8317a51ab6f942539aba6d1c4f2bede36fa8a0864c45abf853af",
+   "size": 1920357,
+   "state": "present"
+  },
+  "uc1_1_64": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\99-Unresolved-Residual\\Unlisted-Code\\uc1-applied-population-1-64.tsv",
+   "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+   "size": 37250,
+   "state": "present"
+  },
+  "uc1_65_256": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\99-Unresolved-Residual\\Unlisted-Code\\uc1-applied-population-65-256.tsv",
+   "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+   "size": 11254,
+   "state": "present"
+  },
+  "vbf_list": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\repos-2d\\vbf_list.txt",
+   "sha256": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+   "size": 6448250,
+   "state": "present"
+  },
+  "watchdog": {
+   "path": "C:\\Users\\Kristian\\.swe2-fleet\\watchdog-state.json",
+   "sha256": "e7f81d8e9dba99e1c03452cf7feed8ff88916bf01d8b666f91e6636af2ed2dc3",
+   "size": 5616,
+   "state": "present",
+   "volatile": true
+  }
+ },
+ "outputs": {
+  "view-evidence.json": {
+   "sha256": "f4c291e71a09b71b475b64335c9f336d8e1a67f3e11456ce6e8bafe89d44b8f7",
+   "size": 6063
+  },
+  "view-executable.json": {
+   "sha256": "e77f107473fa7795ec5a2a11c32d72e14159cdb1f2834a304bfb60c1a373f291",
+   "size": 20450
+  },
+  "view-fleet.json": {
+   "sha256": "8635c51156a8fbd391a914c5218a8cb99c13015e68f309aabeb7ab76a6087f43",
+   "size": 1758
+  },
+  "view-overview.json": {
+   "sha256": "20e227a77cf5c4e39708aeca26b76c22c864f1a3cef0f4b2164d293e38fdfe61",
+   "size": 20392
+  },
+  "view-progress.json": {
+   "sha256": "1650a6f0de4175e962f4e97093896ec7edb053201485e36842a5c4aa55da9264",
+   "size": 246908
+  },
+  "view-systems.json": {
+   "sha256": "86b5f537f6036afeea8a2dbd6ac101d6d58520062a7a2f3e5e62efdbdebcbacb",
+   "size": 57027
+  },
+  "view-types.json": {
+   "sha256": "c813935660c44f66fa780da32bff1ab3e44caee2b75823f923bcac32262ad937",
+   "size": 1869
+  },
+  "view-vbf.json": {
+   "sha256": "5a7df8fbbb499dc9f96a20bed8e5be0a4f47e46f5da20557432b5ba4ce2bfcba",
+   "size": 18393
+  }
+ },
+ "parent": "g20260929T134925Z-df1756",
+ "verifier": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+}

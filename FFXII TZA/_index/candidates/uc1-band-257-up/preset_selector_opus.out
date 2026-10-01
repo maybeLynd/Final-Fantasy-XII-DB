@@ -1,0 +1,4 @@
+PASS  D 00712180: caps 7 / (19 when .rdata 00D9F05E = 1) / 9; the negative-s3 transfer 0071222A lies only on the s2 >= 0 path
+PASS  T row +0x10 defaults of the 20 reachable second-table rows: [1, 3, 3, 2, 3, 2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+PASS  M (s2, s3) = (0, -1): third row 1 with 21 stores; without the transfer: (None, 7); s2 < 0 and s3 < 0: (None, 0)
+FAILS 0

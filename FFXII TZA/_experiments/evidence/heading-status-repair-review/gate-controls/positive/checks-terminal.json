@@ -1,0 +1,71 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"verdict\": \"ACCEPT scoped2366027d9 H8 CLI/gated-count repair\",\n  \"original\": \"SURVIVES H8 / extent validTrue / calls21 / FAILS0 / exit0\",\n  \"first_fragment_intervention\": \"BROKEN H8 / extent validFalse / callsNone / operandsNone / FAILS1 / exit1\",\n  \"source_order\": \"extent_ok assigned before conditional ncalls/plus3; AST plus original actual process output\",\n  \"prior_evidence\": \"feb631dd4 failed exit propagation remains immutable; new code separately fixes it\",\n  \"method\": \"A actual producer Python and same published labelled io.open catalogue963->40 substitution; not native/game execution\",\n  \"limits\": \"Only heading script dynamically exercised, not all47 modified scripts or H0H7 semantics/class effects/live reachability/migration/L1L2. Nonauthor ASTRA checker/gate review and canonical owner incorporation separate.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py",
+      "--fault-upstream-failed"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 26, in <module>\n    if __name__=='__main__':print(json.dumps(check(W),indent=2))\n                                             ~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 8, in check\n    assert t['terminal'] is True and t['returncode']==0 and not t['stderr'] and t['stdout'].strip()=='REPAIRED_H8_PAIRED_STATUS_CAPTURED' and t['driver_sha256']==sha(root/'capture.py'),'Required capture failed/incomplete'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required capture failed/incomplete\n",
+    "terminal": true,
+    "checker_sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+  },
+  {
+    "case": "zero-negative",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py",
+      "--fault-zero-negative"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 26, in <module>\n    if __name__=='__main__':print(json.dumps(check(W),indent=2))\n                                             ~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 18, in check\n    assert b['returncode']==1 and b['stdout'].endswith('FAILS 1\\n') and re.search(r'^BROKEN    H8  .*catalogue 40 B;.*extent valid False; calls None; direct \\+0x03 operands None',b['stdout'],re.M),'Actual truncated negative must propagate status and omit invalid counts'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Actual truncated negative must propagate status and omit invalid counts\n",
+    "terminal": true,
+    "checker_sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+  },
+  {
+    "case": "missing-negative",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py",
+      "--fault-missing-negative"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 26, in <module>\n    if __name__=='__main__':print(json.dumps(check(W),indent=2))\n                                             ~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 14, in check\n    assert [x['case'] for x in rs]==['original','first-fragment-catalogue'] and all(x['terminal'] is True and not x['stderr'] and x['producer_sha256']==ident['producer_sha256'] for x in rs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+  },
+  {
+    "case": "count-ungated",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py",
+      "--fault-count-ungated"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 26, in <module>\n    if __name__=='__main__':print(json.dumps(check(W),indent=2))\n                                             ~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\check.py\", line 23, in check\n    if '--fault-count-ungated' in sys.argv:assert isinstance(assigns['ncalls'][1],ast.Call),'Count is conditional on extent_ok, not unconditional call'\n                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Count is conditional on extent_ok, not unconditional call\n",
+    "terminal": true,
+    "checker_sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+  }
+]

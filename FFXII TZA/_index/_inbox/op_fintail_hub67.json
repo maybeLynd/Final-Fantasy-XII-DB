@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-67",
+ "result_refs": [
+  "commit:c88e6a29d"
+ ],
+ "note": "tail: remaining op records + sealed-state resume; board validates"
+}

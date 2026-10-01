@@ -1,0 +1,8 @@
+SURVIVES  L0  [461, 89, 39, 39, 41]
+SURVIVES  L1  sar 0xc / and 0xfff in the executor
+SURVIVES  L2  rip refs ['01EED700', '01F26720', '01F281B0', '01F29418', '01F29440', '02B57EF0', '02B57F08', '02B57F18', '02B57F28']
+SURVIVES  L3  {0: 1496, 3: 147, 5: 1, 7: 104, 'other': 212}
+SURVIVES  L4  begin +8, poll +0x10, result (N + 1) * 32
+SURVIVES  L5  past-the-end result slots {0: '00342560', 3: '00000000', 5: '00000000', 7: '00510970', 'other': '00000000'}; family 3 ends 01F29410, family 5 ends 01F29438
+SURVIVES  L6  all three accessors refuse a null table and N >= count
+FAILS 0

@@ -1,0 +1,33 @@
+{
+  "status": "PREPARED;4 fake-Reader controls, no live validation",
+  "files": {
+    ".gitattributes": {
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    "input_sample.py": {
+      "bytes": 1722,
+      "sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf"
+    },
+    "observe.py": {
+      "bytes": 6080,
+      "sha256": "a0f921f518fcbada08209159ba6db01c851ebd07ccd9f022b3464745b4813fee"
+    },
+    "origins.json": {
+      "bytes": 610,
+      "sha256": "04ff5185a48f26bc763a9acbbd352e6afec202989f5cece07493acb96b5e0187"
+    },
+    "README.md": {
+      "bytes": 3370,
+      "sha256": "40881a6521346612e82b69f2665ceba472889eb37c023b638ec152a34de57bfd"
+    },
+    "test_input_sample.py": {
+      "bytes": 3279,
+      "sha256": "fe8f430fc05b2c538a57f8bac4a6307b44bbd3917713dc576b5ef172ac56ffef"
+    },
+    "unit-tests.txt": {
+      "bytes": 548,
+      "sha256": "ab9f2951baa6bdad5dd5f368a10c99fb34f3db2e923a6b03010a21d9b26944c4"
+    }
+  }
+}

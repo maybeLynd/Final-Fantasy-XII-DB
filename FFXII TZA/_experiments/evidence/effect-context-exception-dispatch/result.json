@@ -1,0 +1,209 @@
+{
+  "status": "PRODUCER_CHECKED_STATIC_METADATA_ONLY",
+  "question": "Does local exception metadata at the three prior-proven call continuations name a language handler?",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": 1179648,
+    "pefile_sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+    "driver_sha256": "316dcc6526d65561c4d9b79e36065eec9b1da8e7adda86d2a9fb10346fd4f160",
+    "prior_result_sha256": "db8f1a620e6c130cc61bf02d105768e7507c69d21b6d47e27f98adb1d99bc5c1",
+    "prior_body": {
+      "bytes": 114,
+      "sha256": "ddc1c159ea5183895a6eb5cc7592a0b999823feff36dbed5ed11636b969bf869",
+      "decoded_instructions": 28
+    },
+    "exception_directory_rva": 48726016,
+    "exception_directory_bytes": 428556,
+    "exception_directory_sha256": "6546e07c20cea6c563188c32c14303321285feace531ff29724d5388947587c5"
+  },
+  "observations": [
+    {
+      "call": {
+        "pc_va": "003B3CE0",
+        "bytes": "e89bb0e9ff",
+        "target_va": "0024ED80",
+        "continuation_va": "003B3CE5"
+      },
+      "metadata": {
+        "chain": [
+          {
+            "entry_rvas": [
+              2702536,
+              2702604,
+              29749540
+            ],
+            "unwind_va": "01D7F124",
+            "version": 1,
+            "flags": 4,
+            "code_slots": 4,
+            "tail_offset": 12,
+            "raw_hex": "211104001174070005340600a03c2900c83c290080f3c601"
+          },
+          {
+            "entry_rvas": [
+              2702496,
+              2702536,
+              29815680
+            ],
+            "unwind_va": "01D8F380",
+            "version": 1,
+            "flags": 0,
+            "code_slots": 2,
+            "tail_offset": 8,
+            "raw_hex": "0106020006320260",
+            "handler_rva": null
+          }
+        ],
+        "handler_va": null
+      }
+    },
+    {
+      "call": {
+        "pc_va": "003B3CE7",
+        "bytes": "e8a457ffff",
+        "target_va": "003A9490",
+        "continuation_va": "003B3CEC"
+      },
+      "metadata": {
+        "chain": [
+          {
+            "entry_rvas": [
+              2702536,
+              2702604,
+              29749540
+            ],
+            "unwind_va": "01D7F124",
+            "version": 1,
+            "flags": 4,
+            "code_slots": 4,
+            "tail_offset": 12,
+            "raw_hex": "211104001174070005340600a03c2900c83c290080f3c601"
+          },
+          {
+            "entry_rvas": [
+              2702496,
+              2702536,
+              29815680
+            ],
+            "unwind_va": "01D8F380",
+            "version": 1,
+            "flags": 0,
+            "code_slots": 2,
+            "tail_offset": 8,
+            "raw_hex": "0106020006320260",
+            "handler_rva": null
+          }
+        ],
+        "handler_va": null
+      }
+    },
+    {
+      "call": {
+        "pc_va": "003B3CFD",
+        "bytes": "e87eb0e9ff",
+        "target_va": "0024ED80",
+        "continuation_va": "003B3D02"
+      },
+      "metadata": {
+        "chain": [
+          {
+            "entry_rvas": [
+              2702536,
+              2702604,
+              29749540
+            ],
+            "unwind_va": "01D7F124",
+            "version": 1,
+            "flags": 4,
+            "code_slots": 4,
+            "tail_offset": 12,
+            "raw_hex": "211104001174070005340600a03c2900c83c290080f3c601"
+          },
+          {
+            "entry_rvas": [
+              2702496,
+              2702536,
+              29815680
+            ],
+            "unwind_va": "01D8F380",
+            "version": 1,
+            "flags": 0,
+            "code_slots": 2,
+            "tail_offset": 8,
+            "raw_hex": "0106020006320260",
+            "handler_rva": null
+          }
+        ],
+        "handler_va": null
+      }
+    }
+  ],
+  "controls": {
+    "actual_shipping_handler": {
+      "chain": [
+        {
+          "entry_rvas": [
+            8000,
+            8088,
+            30134132
+          ],
+          "unwind_va": "01DDCF74",
+          "version": 1,
+          "flags": 3,
+          "code_slots": 4,
+          "tail_offset": 12,
+          "raw_hex": "191c04000d3415000df20660a88b6e00",
+          "handler_rva": 7244712
+        }
+      ],
+      "handler_va": "00808BA8"
+    },
+    "PRIVATE_CHAIN_REDIRECT_NOT_SHIPPING": {
+      "chain": [
+        {
+          "entry_rvas": [
+            2702536,
+            2702604,
+            29749540
+          ],
+          "unwind_va": "01D7F124",
+          "version": 1,
+          "flags": 4,
+          "code_slots": 4,
+          "tail_offset": 12,
+          "raw_hex": "211104001174070005340600401f0000981f000074cfcb01"
+        },
+        {
+          "entry_rvas": [
+            8000,
+            8088,
+            30134132
+          ],
+          "unwind_va": "01DDCF74",
+          "version": 1,
+          "flags": 3,
+          "code_slots": 4,
+          "tail_offset": 12,
+          "raw_hex": "191c04000d3415000df20660a88b6e00",
+          "handler_rva": 7244712
+        }
+      ],
+      "handler_va": "00808BA8"
+    },
+    "private_cycle_refused": true
+  },
+  "interpretation": "All three continuations select the same chained record ending in flags=0; this local metadata names no language handler.",
+  "limits": [
+    "No execution, exception occurrence or normal reachability measured.",
+    "No claim of full function extent from exception metadata.",
+    "Outer handlers and restoration by other code remain open.",
+    "No lifetime, scheduling, initialized live identity or presentation claim.",
+    "Producer controls are not independent acceptance."
+  ],
+  "cleanup": {
+    "reference_hash_unchanged": true,
+    "game_launched": false,
+    "live_input_or_instrumentation": false,
+    "save_config_written": false
+  }
+}

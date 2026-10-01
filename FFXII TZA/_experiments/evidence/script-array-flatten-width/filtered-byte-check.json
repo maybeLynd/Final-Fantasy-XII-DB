@@ -1,0 +1,94 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "ebdfdc3d95b63283aa7aa7f5f4a20fd469d02b74"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "b9d3b8a5d202a1de33da7704151d0dc265d8d7cf"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "71e14a6168c4a26bf182377b8cb6b27fe8b3184b"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "c915e7b0430e3108e96ffb96eb1be93c329c0b4f"
+  },
+  {
+    "path": "fault-forward-dimensions.stderr",
+    "git_blob": "0c7c4d6b45e08038a5a411591da057f08119a150"
+  },
+  {
+    "path": "fault-forward-dimensions.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-saturating-index.stderr",
+    "git_blob": "eac3cabc5f3249b19bf576c302cf0f5830f0d9f2"
+  },
+  {
+    "path": "fault-saturating-index.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-unbounded-index.stderr",
+    "git_blob": "91243013baf1a59985e5e3d1290bf7a217da33fe"
+  },
+  {
+    "path": "fault-unbounded-index.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "1fcbf4820648da93d9f53e1ba670be7efb38566d"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "d3d5a67d81ed2487ef32d14719e5722f9f46b639"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "bc70fddecff2c673e9be96bb8121c2a1e57063f7"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "793ab38190448821d500d078c51a44abd0ff8cfc"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "2caded73188a9e4b07e281fad479f277b2acf61f"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "093b8929a624d2167d7ab20c5fcfa4d46476946e"
+  },
+  {
+    "path": "retained/consumer-before.md",
+    "git_blob": "b7687f4bdab4ff2fbcfe3c8502c9d2decb33af40"
+  },
+  {
+    "path": "retained/opus-index-primary-before.md",
+    "git_blob": "6b89ccf6767799973cf188f4b39506e5fe18f23e"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/resolver591.bin",
+    "git_blob": "d4c2d5c031bc0d63d66d12c4b4a895898e23e26f"
+  },
+  {
+    "path": "retained/store194.bin",
+    "git_blob": "e94530f7f310489d56806cff147571cb3808377e"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "e400e1e3aa1f194a3ff7a17b3112b48e865903e5bc8db58e3937f28da0fc6015",
+  "check_sha256": "273e767888c24023fca0bb6e871a00d5fbc81d061a1931b9978d47597ce1110f",
+  "raw_unchanged_sha256": "4c85ddca7e7931471f82e6aa788e0a85982aed331882ea43905d50629d5df9a9",
+  "path": "Actual retained-only default, no source recapture/execution"
+}

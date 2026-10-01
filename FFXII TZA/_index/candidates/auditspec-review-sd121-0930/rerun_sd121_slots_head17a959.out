@@ -1,0 +1,6 @@
+PASS  S1 rip references only from the 10 accessors (10); 0036E3B0 zeroes 64 slots of each (base-relative stores)
+PASS  S2 get / set / clear per array: 022D98B0 (0036E4B0/7B0/040), 022D97B0 (4E0/7E0/160), 022D99B0 (620/880/1A0)
+PASS  S3 setters and clearers are the verbs effectactor / bgeffectactor / clear_effectactor / clear_bgeffectactor
+PASS  S4 value = the script actor's packed handle; slot = the verb argument; table by the context's +0x15
+PASS  S5 effects read the slot's actor handle, resolve it and anchor at the actor's position
+FAILS 0

@@ -1,0 +1,114 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "a95374c2d03442674ea41eab604eec24c5690df8"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "a93fe4631b0d843a51ab2720b45083f6b8585584"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "2a1e4349fbab7b49878aa69dbe3a9e59d315c5d4"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "65a161e8cc2e43d476e52d1a2d2b2794fcfc633b"
+  },
+  {
+    "path": "failed-no-cmp-capture.py",
+    "git_blob": "a6ab95612fcb63547d8308404d0f3d1b57c42d35"
+  },
+  {
+    "path": "failed-no-cmp-receipt.json",
+    "git_blob": "74b5e33e908f15fcc5947e4e84389186a8483108"
+  },
+  {
+    "path": "fault-rejects-analysis.stderr",
+    "git_blob": "c09b62930311e0fddd70c749842d5b8b39c955b6"
+  },
+  {
+    "path": "fault-rejects-analysis.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-rejects-short-decode.stderr",
+    "git_blob": "1157c3cb2135afecae645cc5be68e956d21807ec"
+  },
+  {
+    "path": "fault-rejects-short-decode.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-retract-baseline.stderr",
+    "git_blob": "0fe65f2a95c1133b24ea4779eaec3138fdd8799b"
+  },
+  {
+    "path": "fault-retract-baseline.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "644c5525b04ab489bc275f8e24d3566a9fd980a6"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "f4e2d19f4379f04cb2791417a923f8f6d4ce3709"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "3018976500f5ece4c64eea17e2ac757b6721588b"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "f7df0b4583bc9862ab46054a82593478461bd74f"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "58b3ca536f745a72fd959265bf0e2be44f8b0041"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "cdad74323154451d3ffd7b431ae13b4d0a3944d3"
+  },
+  {
+    "path": "retained/claimed-scan-25e4c0.bin",
+    "git_blob": "074900ffe88069620b761c253cc74a18d1c7cda0"
+  },
+  {
+    "path": "retained/claimed-scan-25e550.bin",
+    "git_blob": "c1fa15bf7072c8c16f61fd07f078d7f062e77f11"
+  },
+  {
+    "path": "retained/divide.out",
+    "git_blob": "cff1a1b4b6dffcfe989c55ce60fa4e7f4ec9dd6a"
+  },
+  {
+    "path": "retained/divide.py",
+    "git_blob": "692f0be9e92ea791832566dd1349ab57a1e4d2b8"
+  },
+  {
+    "path": "retained/exact-Z-fragment.py",
+    "git_blob": "4d002a9843b54a53fce41915cd3ffa1303eb19d3"
+  },
+  {
+    "path": "retained/README.md",
+    "git_blob": "b60379754a3b6985c6b136db3d6083690968b186"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  }
+]

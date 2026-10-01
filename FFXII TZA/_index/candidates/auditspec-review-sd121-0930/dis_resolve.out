@@ -1,0 +1,74 @@
+002E9B80  sub       rsp, 0x28
+002E9B84  call      0x3588b0
+002E9B89  test      rax, rax
+002E9B8C  je        0x2e9ba1
+002E9B8E  mov       rax, qword ptr [rax + 0xc0]
+002E9B95  test      rax, rax
+002E9B98  je        0x2e9ba1
+002E9B9A  mov       eax, dword ptr [rax]
+002E9B9C  add       rsp, 0x28
+002E9BA0  ret       
+002E9BA1  or        eax, 0xffffffff
+002E9BA4  add       rsp, 0x28
+002E9BA8  ret       
+002E9BA9  int3      
+002E9BAA  int3      
+002E9BAB  int3      
+002E9BAC  int3      
+002E9BAD  int3      
+002E9BAE  int3      
+002E9BAF  int3      
+002E9BB0  mov       rax, qword ptr [rcx + 0xc0]
+002E9BB7  test      rax, rax
+002E9BBA  je        0x2e9bcf
+002E9BBC  mov       rax, qword ptr [rax + 0x138]
+002E9BC3  test      rax, rax
+002E9BC6  je        0x2e9bcf
+002E9BC8  mov       eax, dword ptr [rax + 0x110]
+002E9BCE  ret       
+002E9BCF  xor       eax, eax
+002E9BD1  ret       
+002E9BD2  int3      
+002E9BD3  int3      
+002E9BD4  int3      
+002E9BD5  int3      
+002E9BD6  int3      
+002E9BD7  int3      
+002E9BD8  int3      
+002E9BD9  int3      
+002E9BDA  int3      
+002E9BDB  int3      
+002E9BDC  int3      
+002E9BDD  int3      
+002E9BDE  int3      
+002E9BDF  int3      
+002E9BE0  test      rcx, rcx
+002E9BE3  je        0x2e9bf6
+002E9BE5  mov       rax, qword ptr [rcx + 0xc0]
+002E9BEC  test      rax, rax
+002E9BEF  je        0x2e9bf6
+002E9BF1  movsx     eax, byte ptr [rax + 0x13]
+002E9BF5  ret       
+002E9BF6  or        eax, 0xffffffff
+002E9BF9  ret       
+002E9BFA  int3      
+002E9BFB  int3      
+002E9BFC  int3      
+002E9BFD  int3      
+002E9BFE  int3      
+002E9BFF  int3      
+002E9C00  test      rcx, rcx
+002E9C03  je        0x2e9c15
+002E9C05  mov       rax, qword ptr [rcx + 0xc0]
+002E9C0C  test      rax, rax
+---
+00250010  movups    xmm4, xmmword ptr [rip + 0x1ca93d9]   ; -> 01EF93F0 u32=00000000 f32=0
+00250017  movss     dword ptr [rip + 0x20892dd], xmm4   ; -> 022D92FC (virtual tail / unmapped)
+0025001F  movaps    xmm0, xmm4
+00250022  shufps    xmm0, xmm4, 0x55
+00250026  movaps    xmm1, xmm4
+00250029  movss     dword ptr [rip + 0x20892bf], xmm0   ; -> 022D92F0 (virtual tail / unmapped)
+00250031  movaps    xmm0, xmm4
+00250034  shufps    xmm0, xmm4, 0xff
+00250038  movss     dword ptr [rip + 0x20892b8], xmm0   ; -> 022D92F8 (virtual tail / unmapped)
+---

@@ -1,0 +1,17 @@
+D=0x60  2 sites in 2 functions: 001D99C0 001DADC0
+D=0x80  22 sites in 22 functions: 00597220 0059B430 00630500 006305A0 00630640 006306E0 00630780 00630820 006308C0 00630960 00630A00 00630AA0 00631290 00633390 00633590 00639A60 00639C80 0063AD90 0063C910 0063CB80 0063D790 0063E2E0
+D=0x90  4 sites in 4 functions: 005A7A40 005A7B50 00633390 00682E30
+D=0xA0  3 sites in 3 functions: 005A0470 005A7AB0 00633390
+D=0xB0  1 sites in 1 functions: 00633390
+direct-load walk D=0x60  1 sites: 001BB2B0
+direct-load walk D=0x80  0 sites: 
+direct-load walk D=0x90  0 sites: 
+direct-load walk D=0xA0  0 sites: 
+direct-load walk D=0xB0  0 sites: 
+head passed to a call D=0x60  737 sites; callees: {'0x19c5d0': 34, '0x7a5570': 18, '0x719380': 16, '0x397910': 12, '0x6f1070': 12, 'qword ptr [rax + 0x10]': 11, '0x202d70': 11, '0x202b70': 10, '0x715c70': 10, '0x861ec0': 9, '0x202fe0': 9, '0x434a70': 9}
+head passed to a call D=0x80  295 sites; callees: {'0x430af0': 27, '0x430b90': 25, '0x42fdb0': 17, '0x42fcf0': 15, '0x398f90': 10, '0x4304f0': 10, '0x7b5070': 7, '0x3970a0': 5, '0x397910': 5, '0x4314e0': 5, '0x807f30': 5, '0x861eba': 4}
+head passed to a call D=0x90  191 sites; callees: {'0x5cc8a0': 13, '0x5cd0a0': 13, '0x3a27c0': 8, '0x3a2b20': 8, '0x398f90': 7, '0x430b90': 5, '0x6f1070': 5, '0x6dfbe0': 5, '0x1a1f00': 4, '0x1edf00': 4, '0x203080': 4, '0x2f35c0': 4}
+head passed to a call D=0xA0  139 sites; callees: {'0x7ba230': 9, '0x7ba270': 8, '0x861ec0': 7, '0x2f35c0': 4, '0x462260': 4, '0x7ba650': 4, '0x39f4b0': 3, '0x39f9f0': 3, '0x39f2b0': 3, '0x39f780': 3, '0x26ee00': 3, '0x4304f0': 3}
+head passed to a call D=0xB0  108 sites; callees: {'0x430b90': 8, '0x202d70': 7, '0x861ec0': 6, '0x462260': 4, '0x78a970': 4, '0x202c70': 3, '0x202b70': 3, '0x46d350': 3, '0x6f1070': 3, '0x1a2e50': 2, '0x861eba': 2, '0x5844a0': 2}
+PASS  known positive: 00633390 walks +0x80/+0x90/+0xA0/+0xB0
+FAILS 0

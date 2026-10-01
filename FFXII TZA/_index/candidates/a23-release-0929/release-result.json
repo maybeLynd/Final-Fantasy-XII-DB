@@ -1,0 +1,230 @@
+{
+ "started": "2026-09-29T21:37:17.315236+00:00",
+ "steps": [
+  {
+   "step": "status-before",
+   "path": "/api/status",
+   "utc": "2026-09-29T21:37:17.315257+00:00",
+   "status": 200,
+   "bytes": 1123,
+   "sha256": "5ad781812c1d6a780dc76bb2ab32b268b9571ce8df5480b99885f324dbf1c17c"
+  },
+  {
+   "step": "export",
+   "argv": [
+    "C:\\Python314\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+    "export",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip"
+   ],
+   "utc": "2026-09-29T21:37:17.489438+00:00",
+   "exit": 0,
+   "stdout": "EXPORTED g20260929T213407Z-9c7238 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip",
+   "stderr": ""
+  },
+  {
+   "step": "verify-zip",
+   "argv": [
+    "C:\\Python314\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+    "verify-zip",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip"
+   ],
+   "utc": "2026-09-29T21:37:18.959820+00:00",
+   "exit": 0,
+   "stdout": "VERIFIED {\"generation\": \"g20260929T213407Z-9c7238\", \"members\": 35}",
+   "stderr": ""
+  },
+  {
+   "step": "view-progress",
+   "path": "/api/view/progress",
+   "utc": "2026-09-29T21:37:19.233236+00:00",
+   "status": 200,
+   "bytes": 205285,
+   "sha256": "55933018fc75d23515a333bf5cfb42234f04f77b24e73784673b002ce32321c6"
+  },
+  {
+   "step": "view-overview",
+   "path": "/api/view/overview",
+   "utc": "2026-09-29T21:37:19.393933+00:00",
+   "status": 200,
+   "bytes": 17037,
+   "sha256": "ed2bf5fa2e9d9a1e3cf0d548b1abacdd6ffe27632713095f4c4847211a56267e"
+  },
+  {
+   "step": "view-systems",
+   "path": "/api/view/systems",
+   "utc": "2026-09-29T21:37:19.556919+00:00",
+   "status": 200,
+   "bytes": 42243,
+   "sha256": "e78fcd15a53fe269334d712415dd14f35fde76efc57687d650c9b0923b6ea020"
+  },
+  {
+   "step": "view-vbf",
+   "path": "/api/view/vbf",
+   "utc": "2026-09-29T21:37:19.718601+00:00",
+   "status": 200,
+   "bytes": 11554,
+   "sha256": "b74f8787fd13eb031dce377879cc8a19380cfa83874b0c1b268ff19d482dc749"
+  },
+  {
+   "step": "view-executable",
+   "path": "/api/view/executable",
+   "utc": "2026-09-29T21:37:19.879922+00:00",
+   "status": 200,
+   "bytes": 17100,
+   "sha256": "fd5c94d67aad54018a8b8b08ef1c9126a7b1c66494affbdb6fa8ae6aa90bf524"
+  },
+  {
+   "step": "view-types",
+   "path": "/api/view/types",
+   "utc": "2026-09-29T21:37:20.046902+00:00",
+   "status": 200,
+   "bytes": 1671,
+   "sha256": "aec70263e24c154f508b13b595306a659a4c942d946e93f1401c35304346917f"
+  },
+  {
+   "step": "view-evidence",
+   "path": "/api/view/evidence",
+   "utc": "2026-09-29T21:37:20.225171+00:00",
+   "status": 200,
+   "bytes": 3069,
+   "sha256": "8b274a2378156ee1273ebb89cd8c7feab52afd58d86d927e5b2a5be37a52f083"
+  },
+  {
+   "step": "view-fleet",
+   "path": "/api/view/fleet",
+   "utc": "2026-09-29T21:37:20.388062+00:00",
+   "status": 200,
+   "bytes": 2266,
+   "sha256": "387ce07a712320807c39adc93134a2d49396e4d977db4d4571f8c4bc2685c728"
+  },
+  {
+   "step": "root",
+   "path": "/",
+   "utc": "2026-09-29T21:37:20.540343+00:00",
+   "status": 200,
+   "bytes": 20446,
+   "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+  },
+  {
+   "step": "status-after",
+   "path": "/api/status",
+   "utc": "2026-09-29T21:37:20.542764+00:00",
+   "status": 200,
+   "bytes": 1123,
+   "sha256": "5ad781812c1d6a780dc76bb2ab32b268b9571ce8df5480b99885f324dbf1c17c"
+  }
+ ],
+ "current_pointer": {
+  "generation": "g20260929T213407Z-9c7238",
+  "manifest_sha256": "865299843d417576c56167c3375db3f3a17e5a2abde61f128b5fdd24b9adc66e"
+ },
+ "current_pointer_after": {
+  "generation": "g20260929T213407Z-9c7238",
+  "manifest_sha256": "865299843d417576c56167c3375db3f3a17e5a2abde61f128b5fdd24b9adc66e"
+ },
+ "result": {
+  "generation_status_before": "g20260929T213407Z-9c7238",
+  "generation_current_pin": "g20260929T213407Z-9c7238",
+  "generation_status_after": "g20260929T213407Z-9c7238",
+  "current_pointer_after": "g20260929T213407Z-9c7238",
+  "problems_before": [],
+  "problems_after": [],
+  "reader_stale_before": false,
+  "reader_stale_after": false,
+  "export_exit": 0,
+  "verify_zip_exit": 0,
+  "verify_zip_stdout": "VERIFIED {\"generation\": \"g20260929T213407Z-9c7238\", \"members\": 35}",
+  "served_equals_exported": true,
+  "zip": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard-exports\\g20260929T213407Z-9c7238.zip",
+   "bytes": 15766618,
+   "sha256": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7",
+   "sidecar": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7  g20260929T213407Z-9c7238.zip",
+   "sidecar_matches": true,
+   "members": 35
+  },
+  "served_view_vs_zip": {
+   "progress": {
+    "zip_member": "outputs/view-progress.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "overview": {
+    "zip_member": "outputs/view-overview.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "systems": {
+    "zip_member": "outputs/view-systems.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "vbf": {
+    "zip_member": "outputs/view-vbf.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "executable": {
+    "zip_member": "outputs/view-executable.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "types": {
+    "zip_member": "outputs/view-types.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "evidence": {
+    "zip_member": "outputs/view-evidence.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   },
+   "fleet": {
+    "zip_member": "outputs/view-fleet.json",
+    "equal": true,
+    "served_meta_generation": "g20260929T213407Z-9c7238"
+   }
+  },
+  "source_binding": {
+   "build_views.py": {
+    "manifest": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+    "head_blob": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+    "equal": true,
+    "last_commit": "cdbf25a5d711654ccbb883f472309c3f42df290f"
+   },
+   "requirements.py": {
+    "manifest": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+    "head_blob": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+    "equal": true,
+    "last_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e"
+   },
+   "uc1_band.py": {
+    "manifest": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+    "head_blob": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+    "equal": false,
+    "last_commit": "b26125d2d0111845ec6e702e5a51410c1745e581"
+   },
+   "verifier(generation.py)": {
+    "manifest": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+    "head_blob": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+    "equal": true,
+    "last_commit": "b6e6de3f0080cd311336c04d68cf17516c228dff"
+   },
+   "server.py": {
+    "worktree": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+    "head_blob": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+    "equal": true,
+    "last_commit": "7c14ecf567699d13a6ce9eddeb3e720fa9f5ff4d",
+    "note": "server identity = file on disk; reader_stale=false says the running code equals it"
+   }
+  },
+  "manifest_generator": {
+   "name": "build_views.py",
+   "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790"
+  }
+ },
+ "finished": "2026-09-29T21:37:21.406662+00:00"
+}

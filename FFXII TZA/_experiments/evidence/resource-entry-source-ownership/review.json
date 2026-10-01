@@ -1,0 +1,68 @@
+{
+  "evidence_class": "A:eleven complete shipping bodies; no new original-code/live execution",
+  "bodies": {
+    "0x3ab880": {
+      "bytes": 42,
+      "sha256": "ad9637923888d8dfad5f8dbe2ff406f0aba6543c4e32cb6692415ab92443ab02"
+    },
+    "0x3ab940": {
+      "bytes": 30,
+      "sha256": "dcece44381d6f314cd6d4912298cf1deda6b715f7b13de2f56f37b26293e5dc7"
+    },
+    "0x51f020": {
+      "bytes": 91,
+      "sha256": "fc40e6fedf7a111312ddc45a0f4f62c9bb7579e1a0735bfbecbaf22ce7216265"
+    },
+    "0x6b5c70": {
+      "bytes": 5,
+      "sha256": "fc46ea8acdf166d47f2230b3d3975fbd0a4a0f5c898b7c2b2ec854359cb94b85"
+    },
+    "0x51ef90": {
+      "bytes": 138,
+      "sha256": "02f71f90b9f56459ed27d0c42e8e89cd155de6914e9e6976115df7b07904b0f4"
+    },
+    "0x51ee10": {
+      "bytes": 20,
+      "sha256": "ececb2df56cc5cc28f0c2d2499aed4d66ee1dcccdcfeda885217f3d1db6289e6"
+    },
+    "0x3ab8b0": {
+      "bytes": 87,
+      "sha256": "a78c8378f43d7c9e9b337eb3c043c576864f9955ee677c5f6c05ce42b7db2b51"
+    },
+    "0x36a000": {
+      "bytes": 161,
+      "sha256": "5a9f4ea64354b983bbc44db785f795aef0294f884c8d02c875f402f0b24639fa"
+    },
+    "0x36d170": {
+      "bytes": 133,
+      "sha256": "6bfc78a858ac41669653ce40a416172b24e729bc28ba95866ae9d40cd9df1226"
+    },
+    "0x51eeb0": {
+      "bytes": 208,
+      "sha256": "52010405aa6a9c6633ff321cd061604200ca8f3ac4c93c5574af71f2f6267b8c"
+    },
+    "0x861eba": {
+      "bytes": 6,
+      "sha256": "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03"
+    }
+  },
+  "controls": [
+    "ExactEXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, completebodybytes/contiguousinstructions/hashes; prior409A60 knowncall edges.",
+    "Actual3AB940 raw-input branch returns locally with no calls; tagged branch goes36D170. This resolves localno-release by completecontrolledbranch inspection, not functionname.",
+    "861EBA decoded RIPslot8C2A68 is VCRUNTIME140.dll!memcpy; externalimplementation not executed."
+  ],
+  "findings": [
+    "In409FE0 mode0 inputis untagged by3AB860.3AB880 returns that fullinput unchanged and3AB940 returns without effect foruntaggedinput, so no originalsource release occurs at that finalcall. No proof of all-time lifetime.",
+    "51EE10 initializes storagekind+0=0,source+8=0,capacity+10=0,growth+14=800,used+18=0 viaqword+14 store. Entryembeddedstorage begins+10, source becomesentry+18.",
+    "51F020 calls3AB8B0(size,storagekind), storesfullsource+8/capacity+10;3AB8B0 selectslogical6/settings6, kind0 uses36A100 fullRAX,kind1 uses36B160 lowEAX; restoresselection. Mode0 entrythus receivesraw allocation source, not necessarilytaggedslot.",
+    "51EF90 capacitycomparison usesu32(used+size). Nativecopyarguments destination=zext32(low32(resolve(source))+used), sourcefullRDX, lengthsignextend32R8D. Aftermemcpy thunk it incrementsused32. Validfreshmode0 capacity=size/used0 skipsgrowth forordinarynonnegativeboundedsize. No high-destination copyexec claim.",
+    "51EEB0 growth allocatesnewsource, copiesmin(oldcapacity,newcapacity) withfullpointerarguments, optionaltailzero useslow32destination, calls3AB7C0(oldsource), replaces32bytestorage;3AB7C0 nextfrontier.",
+    "36A000 taggedaccess additionallychecks slot+6 == header+1C and nonnullheader; ifheader+15 mask2 set calls36C790,clears2,zeros+3E.36D170 compareswords,ifmask2clear calls36B410,sets2,zeros+3E; lacksnullheadercheck before+1Cread. Meaning/list effects stillopen."
+  ],
+  "open": [
+    "36C790/36B410 underlying list operations and headerflag15mask2 lifecycle; copiedword not yet a proven full generation-safety protocol.",
+    "3AB7C0 and fullresource-entry teardown relation to borrowed EFX contexts.",
+    "Originalmemcpy execution, actual allocation placement, negative/overflow sizes, initialized admission guarantees and scheduling.",
+    "Peerowned types/contracts/prose must consume source-kind and address-width distinctions; no blanket raw/freeor64bit safety claim."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "commit": "80c11162580b34d63bbd9b18704431ebb30535ec",
+  "files": {
+    "preflight-check-before.py": {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/check.py",
+      "bytes": 5652,
+      "sha256": "bcc4f1120f32de99233c73c6ea2ff9c444b97f61e03c4db20e2cec155f0d94d4"
+    },
+    "preflight-observation-before.json": {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/observation.json",
+      "bytes": 10625,
+      "sha256": "14565342af29c998d87ba216ccaef23c7d62c6a35bf9bdf8f97b3caea492b074"
+    },
+    "preflight-validation-before.json": {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/validation.json",
+      "bytes": 896,
+      "sha256": "00c241836c257421401d3b470ffbdeeba15f01fcd98397970b3b302c75e10eae"
+    },
+    "preflight-source-before.json": {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/source.json",
+      "bytes": 2245,
+      "sha256": "9d2f81f48e9e0d26a408d796dba8bf04eb48f58597962d448226f33cc83abf5d"
+    },
+    "preflight-directory-before.bin": {
+      "original_path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/directory.bin",
+      "bytes": 68,
+      "sha256": "28fa9ccaa990a06e3470dbee450e8bebbf5f6d612fab89716e322ebda84efec9"
+    }
+  }
+}

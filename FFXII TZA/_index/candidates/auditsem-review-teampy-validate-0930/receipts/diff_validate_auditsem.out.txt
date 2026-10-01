@@ -1,0 +1,26 @@
+fixture board revision 40796 tasks 13272
+fixture board                                        SAME  orig  15.54s new  0.67s | OK
+duplicate id whose copies differ (one closes a cycle) SAME  orig   0.00s new  0.00s | ValueError: duplicate task id
+forward reference to the last task                   SAME  orig  14.64s new  0.67s | OK
+200-task diamond (valid)                             SAME  orig  15.06s new  0.79s | OK
+non-string dependency (int)                          SAME  orig   0.01s new  0.01s | ValueError: unknown/self dependency
+dependencies = None                                  SAME  orig   0.01s new  0.01s | ValueError: unknown/self dependency
+unhashable dependency (list)                         SAME  orig   0.01s new  0.01s | TypeError: cannot use 'list' as a set element (unhashable type: 'list')
+task without id                                      SAME  orig   0.00s new  0.00s | KeyError: 'id'
+unhashable id (list)                                 SAME  orig   0.00s new  0.00s | TypeError: cannot use 'list' as a set element (unhashable type: 'list')
+2-cycle between DONE tasks                           SAME  orig   6.26s new  0.16s | ValueError: dependency cycle
+cycle through the appended duplicate only            SAME  orig   0.00s new  0.00s | ValueError: duplicate task id
+chain of 400 (valid)                                 SAME  orig  15.68s new  2.02s | ValueError: agent summaries disagree with claims
+chain  940 (recursion limit 1000): orig ValueError: ag new ValueError: ag SAME
+chain  960 (recursion limit 1000): orig ValueError: ag new ValueError: ag SAME
+chain  980 (recursion limit 1000): orig ValueError: ag new ValueError: ag SAME
+chain  990 (recursion limit 1000): orig ValueError: ag new ValueError: ag SAME
+chain  995 (recursion limit 1000): orig ValueError: ag new ValueError: ag SAME
+chain  998 (recursion limit 1000): orig RecursionError new RecursionError SAME
+DIFFS (named cases) 0
+
+real	5m32.379s
+user	0m0.155s
+sys	0m0.155s
+
+[exited with code 0]

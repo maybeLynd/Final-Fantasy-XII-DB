@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-145",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "frontier-shared-callee-hubs batch 145: 2-A remainder (4) + top-18 1-A by size: 00262F50/002D02C0/002D03B0/00319110/003F0610/003E1C50/0040EEA0/0041F340/001E1670/00244A20/0063B040/00333C80/00526D80/0020BB10/00602760/00528F00/002B9D30/0027B880/00273BA0/0052ADF0/003A7050/0061EE30",
+  "scope": "4-member 2-A remainder (00262F50/002D02C0/002D03B0/00319110) + top 18 of the 1-A band by body size (3084B..576B); dump, route to bearing hosts, append evidence-backed sections",
+  "completion": "22/22 interior-cited + gates clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

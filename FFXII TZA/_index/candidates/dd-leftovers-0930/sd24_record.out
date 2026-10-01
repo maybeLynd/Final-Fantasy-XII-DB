@@ -1,0 +1,18 @@
+   vtable 01CB43E0 -> .?AVSound@SabFile@Sd@SQEX@@
+   vtable 01CB6E40 -> .?AVSoundSequenceInfo@SabFile@Sd@SQEX@@
+   vtable 01CB4D58 -> .?AVSequence@SabFile@Sd@SQEX@@
+   vtable 01CB4D48 -> .?AV?$BaseClass@USABSEQUENCEHEADER@Sd@SQEX@@@AudioBinaryFile@Sd@SQEX@@
+PASS R1 both walkers pair [this+0x30] with vtable 01CB43E0, whose RTTI class is SabFile::Sound - .?AVSound@SabFile@Sd@SQEX@@
+PASS R2 007CFAC0: version > 5 -> table u16 [+0x1A], else u16 [+2]; entries are SoundSequenceInfo views
+PASS R2b the resolved candidate's view class is SabFile::Sequence
+PASS R3 007BDDA0 stores source +0x18 at +0x30 and reads that record's version >= 0x0C and byte +0x4E
+PASS R4 007BD9D0 reads [this+0x30], version >= 0x0A and byte +4 == 5 (the class byte of SwitchSound)
+   banks with snd + seq: 4609 of 4609 files; snd versions {16: 13150}; seq versions {4: 11165}; seq spacing (top) [(64, 6556)]
+PASS D1 every snd record is version 16 and every seq record version 4, 64 bytes apart
+   snd entries 11165: keys valid under the Sound reading (table u16 +0x1A) 11165, invalid 0; under the version-4 reading (u16 +2) 0 valid, 11165 invalid
+PASS D2 read as SabFile::Sound records, every entry key indexes the bank's seq table
+   snd class byte +4 {0: 1985, 1: 11165}; entry count +5 {0: 1985, 1: 11165}
+PASS D3 every snd record's class byte +4 is 0 or 1 and its entry count +5 is 0 or 1 (none reaches R4's +4 == 5)
+PASS X  control: the version-4 reading does not give valid keys throughout (the check discriminates)
+RESULT this+0x30 is a SabFile::Sound record (snd chunk, version 16); its SoundSequenceInfo entries key SabFile::Sequence records of the seq chunk
+FAILS 0

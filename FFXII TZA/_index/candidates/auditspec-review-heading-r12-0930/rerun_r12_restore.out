@@ -1,0 +1,7 @@
+00533B20: 1653 instructions reached, RET at 00536055
+R12 writes (not reloads): 005341AF 0053450F
+R12 spills {'0x390': ['00533C56']}; reloads {'0x390': ['00534540']}
+slot [rsp+0x390]: S1 spill dominates every write True; S2 reload on every write->RET path True; S3 other stores []; RSP writes ['00533B29', '00536046']
+R12 verdict: restored
+PASS  C1 the same checker on R13 reports it pushed (no spill claimed)
+PASS  C2 a private copy whose reload at 00534540 loads R13 instead (4c8ba42490030000 -> 4c8bac2490030000) fails: no spill/reload pair

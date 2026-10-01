@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-CLOSURE-CENSUS-AND-INSTRUCTION-TYPING",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "attribution of a root-relative displacement through the whole declared EMBED closure, and C types read from the instructions instead of the access width",
+  "scope": "ManagerSingleton0209BE80 (129 windows over 20 types), MapScreenContainer, RenderResourceRoot; plus a retype pass over the rows the slot censuses carved for the eight store-provenance widgets",
+  "completion": "each displacement lands in the deepest declared window or is reported as outside every window; a row is retyped only when every access to it is an SSE scalar of one width, and a mixed displacement is reported and left alone; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

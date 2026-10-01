@@ -1,0 +1,58 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 5328,
+    "sha256": "6ec4738e1f37ba61370f600a14857c8d4492b48ee4f32c06f360fbd19a761cc3"
+  },
+  "extract.py": {
+    "bytes": 2225,
+    "sha256": "6430bc09f092d41d4a5398d1de0b1b85bc440e8652b206d84efef14bdd28fce9"
+  },
+  "observation.json": {
+    "bytes": 2157,
+    "sha256": "e8fded519d4b8ea5e65916500c0ebdc4dc8a493042e0a5a56d4004de7fee4aed"
+  },
+  "PLAN.md": {
+    "bytes": 1620,
+    "sha256": "449c602c7871a7dfd226051894741a923674cb8489830495bed7a835156eb3ca"
+  },
+  "primary.json": {
+    "bytes": 16521,
+    "sha256": "b5e6baf5b8979237bc5a52b52e8de52619b427a4aca4c794076a330186284761"
+  },
+  "README.md": {
+    "bytes": 4529,
+    "sha256": "6783acca6e18cc079519616796dd170215035a6ab6a185c9b2344dcd4d2b1ebc"
+  },
+  "validation.json": {
+    "bytes": 599,
+    "sha256": "0a8748f14ae960f38e6488b1f2e2d8d0c881468b5280974d5a79c5773cd505a5"
+  },
+  "retained/00-the-music-control-file-and-the-bgm-stream.md": {
+    "bytes": 38999,
+    "sha256": "1b64499219cc0b2714a61257cc192e105621fa217c63df227c0fdc95e1d8b98a"
+  },
+  "retained/01-CONTRACT-music-control-file-and-bgm-stream.md": {
+    "bytes": 12536,
+    "sha256": "689b65047345e5e4fc9b71a3aed30530f3caa562194543d419f68ae77ed696b5"
+  },
+  "retained/02-CONTRACT-field-music-selection.md": {
+    "bytes": 32202,
+    "sha256": "716d5d45be273bfce0ca2af6ac901213e61ad8751ead1a0c5ea0da91a0642ff2"
+  },
+  "retained/03-check.py": {
+    "bytes": 13351,
+    "sha256": "73453bdd792e565730f3bbcdfcc88c2a3ba0a729a0cbda4e4a86b7580f1d5307"
+  },
+  "retained/04-result.json": {
+    "bytes": 5989,
+    "sha256": "acbecf2cf4b9b2ef66a7d7cb5c87858d21d3cb52eb9ed3840baead8806f7c43b"
+  },
+  "retained/image-reader.py": {
+    "bytes": 39341,
+    "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  }
+}

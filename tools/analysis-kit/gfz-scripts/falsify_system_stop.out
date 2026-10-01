@@ -1,0 +1,8 @@
+SURVIVES  R0  952 / 1936 B
+SURVIVES  R1  all-ones accumulators; 01FD4410..01FD46B0 step 0x18; A at -0x2B0, B at -0x10; 01FD46D4 unread
+SURVIVES  R2  minimum of the non-negative fades; the -1 reset only on that path
+SURVIVES  R3  bit 41 ORed into record B on both paths
+SURVIVES  R4  apply gated and cleared on 01FD46D0; start ORs 01FD46D4 and sets 01FD46D0
+SURVIVES  R5  (~(A >> 30) & 2) | 1
+SURVIVES  R6  56 records (2 x 28, rax not reset); first qword -1, +0x14 = 0, +0x10 untouched; combined fades 01FD46B0 / 01FD46C8 = -1
+FAILS 0

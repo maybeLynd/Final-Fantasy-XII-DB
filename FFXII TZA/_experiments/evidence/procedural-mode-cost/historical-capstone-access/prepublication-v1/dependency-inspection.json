@@ -1,0 +1,7 @@
+{
+  "commit": "11504b7dd",
+  "path": "Database/FFXII TZA/_index/candidates/phyre-array-header-plus4/plus4_check.py",
+  "sha256": "8bb5766766312dcd316249dac5cb1d2fd0a3d50c9f31f9edc71307f570e4225a",
+  "access_flag_dependency": false,
+  "limit": "Specific flag dependency inspection only, not independent acceptance of that scanner/negative semantic scope."
+}

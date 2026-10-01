@@ -1,0 +1,4 @@
+cases 100; completions 19; record mismatches 2; final bytes equal True
+Exact callback identity/order/count/arguments and boundary memory compared; four callees remain ret stubs.
+RESULT: MISMATCH (isolated calculation/state and callback invocation only)
+Evidence: C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\EXP-011-group-validator\controls-run-2\early-arm-b-flag\run

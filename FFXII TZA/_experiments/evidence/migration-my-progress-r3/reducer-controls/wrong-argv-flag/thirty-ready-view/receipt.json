@@ -1,0 +1,34 @@
+{
+  "name": "thirty-ready-view",
+  "kind": "view",
+  "origin": "admission-01/valid-final30/view-input.json",
+  "input_sha256": "6f10f1721247677c388088b9b2b482882507272eed2119f583d9456c5fc2ac75",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\probe.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source",
+    "--input",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\thirty-ready-view\\input.json",
+    "--kind",
+    "view",
+    "--unexpected",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\subsystems.tsv"
+  ],
+  "returncode": 0,
+  "stdout": "{\"kind\": \"view\", \"result\": null, \"exception\": null, \"modules\": {\"requirements\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-r3\\\\run-01\\\\source\\\\Database\\\\Tools\\\\dashboard\\\\requirements.py\", \"server\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-r3\\\\run-01\\\\source\\\\Database\\\\Tools\\\\dashboard\\\\server.py\", \"generation\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-r3\\\\run-01\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\generation.py\"}}\n",
+  "stderr": "",
+  "parsed": {
+    "kind": "view",
+    "result": null,
+    "exception": null,
+    "modules": {
+      "requirements": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source\\Database\\Tools\\dashboard\\requirements.py",
+      "server": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source\\Database\\Tools\\dashboard\\server.py",
+      "generation": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py"
+    }
+  },
+  "parse_error": null,
+  "terminal": true
+}

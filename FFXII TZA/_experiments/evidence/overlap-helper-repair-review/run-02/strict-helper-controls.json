@@ -1,0 +1,38 @@
+[
+  {
+    "case": "same-size-mid-build-edit",
+    "exception": {
+      "type": "GenerationError",
+      "message": "inputs moved during the build: uc1_band.py"
+    },
+    "current_and_success_history_unchanged": true,
+    "helper_before_sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+    "helper_after_sha256": "812f354ca25c76f539f0e5a92234acfaf13611d448f35094baa252122a396eb7",
+    "failure": {
+      "generation": "g20260929T151954Z-f05bb4",
+      "failed_at": "2026-09-29T15:19:54Z",
+      "reason": "inputs moved during the build: uc1_band.py",
+      "current_unchanged": "g20260929T151952Z-221363",
+      "current_committed_at": "2026-09-29T15:19:52Z"
+    },
+    "terminal": true
+  },
+  {
+    "case": "missing-before-begin",
+    "exception": {
+      "type": "GenerationError",
+      "message": "required input not usable at begin: uc1_band.py=missing"
+    },
+    "current_and_success_history_unchanged": true,
+    "helper_before_sha256": "812f354ca25c76f539f0e5a92234acfaf13611d448f35094baa252122a396eb7",
+    "helper_after_sha256": "812f354ca25c76f539f0e5a92234acfaf13611d448f35094baa252122a396eb7",
+    "failure": {
+      "generation": "g20260929T151954Z-737231",
+      "failed_at": "2026-09-29T15:19:54Z",
+      "reason": "required input not usable at begin: uc1_band.py=missing",
+      "current_unchanged": "g20260929T151952Z-221363",
+      "current_committed_at": "2026-09-29T15:19:52Z"
+    },
+    "terminal": true
+  }
+]

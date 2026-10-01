@@ -1,0 +1,465 @@
+--- before/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md
++++ after/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md
+@@ -22,10 +22,10 @@
+   crossref_clean: false
+   reopened_count: 0
+ external_production:
+-  section: SECTION-06
+-  date: 2026-09-22
++  section: SECTION-07
++  date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md
++  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
+ ---
+ 
+ # Contract — the EFX source rebase, and the ±2 GiB range it is correct over
+@@ -273,35 +273,32 @@
+   `+0x130` / `+0x1B8` (`+0x1B8` is the `003A8FF0` repair-walk list head `02EBEF88`). The rest of the
+   fingerprint is the group-draw node's own fields: `+0x348` next, `+0x364` / `+0x36A` / `+0x380` /
+   `+0x39B` / `+0x3A8` gates, `+0` kind byte, `+4` the dword indexing the handle table. So `+0x390`
+-  is **the container's own 64-bit source base**, rebased in lockstep with its context's `+0x858`.
++  is **the container's own 64-bit source base**, compared and repaired separately from its
++  context's `+0x858`; neither the comparisons nor their publications are an atomic pair.
+   The `CharacterRenderObject +0x390` offset match is disproven semantically — that row is
+   `auxVec36Begin`, a `0x24`-element vector begin freed by the destructor in element units, not a
+   rebase base. `003B3480`'s own `rcx` is `[container+0x340]`, the heap `EfxCallerTemplate`
+   context — consistent with `rbx`'s fingerprint. `003B3C00(id, index)` bounds `index` to
+-  `0..0xB`, runs the rebase only when `index != 0`, and then calls `0024FE70(container, index)`.
+-- ~~**Who moves the source, and when.**~~ **Resolved 2026-09-20 — the rebase is demand-driven,
+-  queued on binding change and delivered by the dirty-state pass, plus one per-step poll.**
+-  `003B3C00` has exactly two call sites and no image occurrence of its address (no
+-  indirect/tabled call — the census is total). **The queue** is `003E6AA0(record, n)`:
+-  `or [record+0x294], 0x8000000` sets dirty bit 27 and `+0x304[31:27] = n` stores the request
+-  id. All 22 control transfers to it are effect-side — 17 calls, 3 tail-jumps
+-  (`003B50D0`/`003B5660`/`003B56C1`), and 2 conditional tail-branches (`002E73FA`/`002E743E`,
+-  inside `002E73C0`, the mount path's n = 3 request): the `003B4B60`–`003B5520`
+-  battle-runtime-mode binding family (n ∈ 2..0xB, queued when the `02B40514` current-record
+-  word and sibling bytes change hands on a mode/binding transition), `003B8260` itself at
+-  `003B846F`/`003B855C` (n = 0xA, when the record's link word `+6` no longer matches the
+-  pass's expected index), and authored presentation command `0x28` = `00520720`
+-  (n = operand `+4`). **The delivery** is `RenderRecords_ProcessDirtyState` (`00427DE0`):
+-  bit `+0x294:27` gated on `record.+0x288 != -1` (the bound container index) calls
+-  `003B3C00(+0x288, +0x304>>27)` at `0042865B` and clears the bit at `00428660`. **The poll**
+-  is `003B8260`'s element-kind dispatch — `jmp rcx` at `003B879B`, byte map `0x3B994C`, jump
+-  table `0x3B9854` — routing element kind `0x28` (and only `0x28`, jump-table index 36) to the
+-  arm that resolves the parent record (`003A3FD0(-1)` handle → `003326C0` record) and calls
+-  `003B3C00(+0x288, element.+4)` every step; `003B3480`'s identical-base skip makes it free
+-  when nothing moved. So the source "moves" when a binding is (re)established or its arena
+-  block is reloaded; the repair runs the same frame on the queued bit, or the next step on the
+-  kind-`0x28` poll. What makes the resolved base *differ* — the EFX resource's arena
+-  (re)placement — stays with the loader side, out of this contract's scope.
++  `0..0xA` inclusive: negative values and `0xB` are rejected. Index zero returns 1
++  without refresh or child start; indices 1..10 refresh first and then call `0024FE70`. A rejected
++  child start may therefore follow a completed source repair. These distinctions are executed by SECTION-07.
++- **Actual movement and refresh are different operations (SECTION-07 correction).** The original
++  arena producer is `0036A2A0`, selected by `0036AAD0`/`0036ABE0`. It is reached by explicit
++  `00369C60` maintenance and the `0036BFE0` allocation-pressure fallback. It republishes the
++  tagged slot and physically relocates allocated bytes; it does not repair EFX consumer fields.
++  A binding-change/child-start request is not itself proof of relocation.
++  `003E6AA0` stores one low-five-bit index in `+0x304[31:27]` and sets `+0x294` bit27.
++  A later request replaces the earlier index. `00427DE0` leaves the bit pending when `+0x288 == -1`;
++  otherwise it calls `003B3C00` and clears the bit regardless of the return. Stale tickets,
++  invalid indices, and failed starts are not thereby retried. Index zero succeeds without rebase.
++  The element-kind `0x28` site `003B939F` is a second direct demand path, not proof that all source
++  moves are accompanied by a request or repaired within a frame.
++  **There is also the combined container walk `0024D540`**: its `0024D565..0024D6A9` window,
++  when the caller argument is zero, follows `02091108`/container `+0x348`, conditionally repairs
++  borrowed contexts, and separately compares each container's `+0x390`. That window is executed
++  with a documented entry/exit fixture; its surrounding render/service calls are not validated.
++  The earlier same-frame/next-step language inferred a whole-game safety schedule from local call
++  order. It is withdrawn. See [the producer and refresh specification](the-source-block-mover-and-separate-consumer-refresh.md).
+ - **Whether the arena can exceed 4 GiB in practice.** §4 establishes that the offset round-trip
+   *requires* it not to; it does not establish what the allocator actually guarantees. That is BW-2,
+   and it is now a question with a consequence attached rather than an observation.
+@@ -317,8 +314,10 @@
+   below 4 GiB in the address space** — which rests on CRT/OS placement policy, not on any
+   allocator promise the engine makes. That half stays a live-observation question with the
+   ASTRA line (EXP-077/078/079).
+-- **Lifetime.** Whether a repaired pointer can outlive its block is untouched; it stays with
+-  ASTRA's open resource-release work.
++- **Lifetime.** SECTION-06 establishes selected disposal ordering and SECTION-07 executes real
++  source movement followed by selected refresh paths. A stale raw pointer exists between those
++  operations in the synthetic fixture. Universal pin discipline, overlapping-copy semantics in the
++  actual Windows import, reentrancy/thread scheduling, and every specialized consumer remain open.
+ 
+ ## 7. The pattern, named once: a 32-bit allocator wearing 64-bit pointers
+ 
+@@ -360,11 +359,13 @@
+ 
+ ## 8. Script · resource · event interactions
+ 
+-The participating resource is the **EFX source block**: when the data an `EfxCallerTemplate` reads
+-from is relocated, `003B3480` republishes the base and repairs every derived pointer. The trigger —
+-who moves the source — is deliberately out of scope (§6). No script verb or authored table appears
+-in the read bodies; the `+0x860`/`+0x864` pair is filled by the EFX loader, and the `+0x002` bit-2
+-borrow flag is set at parse time by `003EDAD0`'s family.
++The original `0050E300` script adapter pops two values, supplies arena ID and repeat flag to
++`00369C60`, and returns the movement count. The `002E65A0` maintenance caller also invokes
++arena 6/10 compaction. These callers are re-derived statically here; their full surrounding
++script/load sessions are not executed. An ordinary allocation can reach the same movers through
++`0036BFE0` before returning. Consumer refresh is separate: demand delivery and the combined
++container-walk paths repair only their selected borrowed references. Movement, binding, and
++refresh must not be collapsed into one event or one automatic all-pointer guarantee.
+ 
+ ## 9. Determinism
+ 
+@@ -542,13 +543,11 @@
+    handle-table `+0x10`, one call site `003B3C4D`; `+0x340` = its `EfxCallerTemplate` context
+    pointer, `+0x390` = its own source base; `CharacterRenderObject +0x390` is `auxVec36Begin`,
+    a coincidence). See §6.
+-2. ~~**Who moves the source, and when**~~ — **resolved 2026-09-20** (§6): demand-driven.
+-   `003E6AA0(record, n)` queues the request (`+0x294` bit 27, `+0x304[31:27]` = n) from 22
+-   effect-side sites — runtime-mode binding family `003B4B60`–`003B5520`, `003B8260` itself,
+-   authored command `0x28` (`00520720`), mount path `002E73C0`;
+-   `RenderRecords_ProcessDirtyState` (`00427DE0`) delivers it to `003B3C00` at `0042865B` the
+-   same frame; element kind `0x28`'s arm (`003B939F`) polls every step. What makes the
+-   resolved base *differ* — arena (re)placement on (re)load — stays with the loader side.
++2. **Original mover established; global safety schedule remains open.** SECTION-07 executes the
++   exact/adjacent selectors, actual block relocation, normal allocation-pressure fallback, full dirty
++   delivery with one selected request, and an explicitly isolated combined-refresh window. The local
++   ordering is specified in the linked mechanism. It does not prove every consumer is refreshed
++   before use or that callbacks/threads cannot observe the producer's intermediate state.
+ 3. **Whether any arena exceeds 4 GiB in practice** — **narrowed 2026-09-20** (§6): splits into
+    *capacity*, statically bounded at ≈260 MiB (`0022A0B0`'s nine fixed backings ≈256 MiB plus
+    arena-11 regrowth ≤4 MiB; nested arenas carve inside existing backings — no arena can exceed
+@@ -556,8 +555,9 @@
+    observed below 2 GiB absolute (EXP-079), guaranteed by OS policy alone. Since `01F83530` is
+    zero for process life (CD-2), the live precondition is the absolute form: every touched
+    address < 4 GiB. The placement half stays with the ASTRA live line (EXP-077/078/079).
+-4. **Repaired-pointer lifetime** — whether a repaired pointer can outlive its block stays with
+-   ASTRA's resource-release work.
++4. **Repaired-pointer lifetime** — SECTION-06 disposal and SECTION-07 real movement are bounded
++   evidence. External-owner replacement, all pin/unpin callers, arbitrary specialized payloads and
++   actual Windows overlapping-copy behavior remain independent obligations.
+ 
+ ## 15. Evidence
+ 
+@@ -576,7 +576,7 @@
+ | the offset round-trip is 32-bit in one direction only, and is exact **iff `0 <= p - base < 2**32` UNSIGNED** — `0020E600` **zero**-extends the offset, so a pointer before the base never round-trips (pass 1, falsification section) | `0020E600` adds the arena base as a `qword`; `0020E620` subtracts it as a `dword` | 1 |
+ | rebasing to an identical base is **skipped**, not walked — `0024D669 cmp rsi, qword ptr [rdi+0x390]` / `je`, a full 64-bit comparison guarding a 32-bit delta | `0024D662`-`0024D67F` in the combined path `0024D540` | 1 |
+ | the second object `0024D940` rebases at `+0x390` is the effect container the six-layer draw walk iterates — `+0x340` its `EfxCallerTemplate` context pointer, `+0x390` its own source base | one `003B3480` call site in `.text` (`003B3C4D`, E8 scan): `rdi = [02EBD480 + (id&0x3F)*0x38 + 0x10]`; `0024ED80` "make a container current" publishes `[obj+0x340]` template fields plus container `+0x120`/`+0x130`/`+0x1B8`; container fingerprint `+0x348`/`+0x364`/`+0x36A`/`+0x380`/`+0x39B`/`+0x3A8`/`+0`/`+4` matches the group-draw node; `CharacterRenderObject +0x390` disproven (`auxVec36Begin`, dtor-freed vector) | 1 |
+-| the rebase trigger is demand-driven: `003E6AA0(record, n)` queues a resolve (dirty `+0x294` bit 27 + `+0x304[31:27]` = n), `RenderRecords_ProcessDirtyState` delivers it to `003B3C00` at `0042865B`, and element kind `0x28` polls it per-step at `003B939F` — two E8 call sites total, no image occurrence of `003B3C00`'s address | `003E6AA0` `or dword [rcx+0x294],0x8000000` + `+0x304` pack/shift body in full; 22 control transfers to it all effect-side (`003B4B60`–`003B5520` family, `003B8260` ×2, `00520720` cmd `0x28`, `002E73C0` jcc ×2); `0042863B`–`00428660` bit-test/`003B3C00`-call/bit-clear in `00427DE0` (dirty-bits.tsv row `+0x294` 27); `003B879B` `jmp rcx` dispatch, byte map `0x3B994C` kind `0x28`→case 36, jump table `0x3B9854` case 36→`003B936B`; `003B938D`–`003B939F` `+0x288`-gated call | 1 |
++| source movement and selected refresh have distinct triggers; demand zero does not refresh and bound failures consume the pending bit | SECTION-07 original native controls; `0036A2A0`, `0036BFE0`, `003E6AA0`, `0042863B..00428660`, `003B3C00`; original combined window `0024D565..0024D6A9` tested separately | isolated original instructions; not live scheduling |
+ | **what the ramp/source semantics mean, and whether any arena exceeds 4 GiB in practice** | arena **capacity** statically bounded ≈260 MiB (`0022A0B0` nine fixed backings ≈256 MiB + arena-11 regrowth ≤4 MiB; nested arenas inside existing backings); **placement** not established — CRT `malloc` backings observed <2 GiB absolute (EXP-079), OS-policy only; ramp/source semantics still open | capacity: 1 / placement: none |
+ 
+ ## 16. Parity plan
+@@ -843,3 +843,23 @@
+ uses default subtype255 and empty other lists. The optional instance branch and every specialized
+ rebaser remain outside its execution coverage. Historical signed-width controls remain historical;
+ no whole old campaign or current live movement observation is newly claimed.
++
++## Original movement and consumer-order reconciliation — SECTION-07 (2026-09-23)
++
++[Review, controls and limits](../_experiments/evidence/continuation-section07-source-movement/REVIEW.md).
++Unlike SECTION-06's simulated move, the actual allocator now selects, unlinks, moves and reissues
++source storage. The handle resolves to the new address while the tested context base and table
++entry still contain the old one, until an original refresh path runs. The arena movement latch is
++independent of a record's child-start pending bit. The combined walk is another refresh path; it is
++not gated on that pending bit. The historical SECTION-06 subsection above remains a record of that
++packet's scope, not a claim that movement is still simulated by this packet.
++
++At the imported-copy boundary the slot already names the destination and the old source has been
++released by the arena. This is a local ordering observation, not an atomic-publication or concurrent
++safety proof. A smaller adjacent hole reaches overlapping copy ranges; that control stops BEFORE
++copying and deliberately does not emulate Windows `memcpy` using a host `memmove`.
++
++The native fixture has 123 named assertions and ten rejecting targeted variants, plus the separate
++copy-boundary observation. It uses one diagnostic substitution, three imported bridges and a stated
++combined-window entry/exit boundary. Formal independent acceptance is pending; historical audits,
++TEAM and the L2 verdict are not promoted.
+--- before/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md
++++ after/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md
+@@ -22,10 +22,10 @@
+   crossref_clean: false
+   reopened_count: 0
+ external_production:
+-  section: SECTION-06
+-  date: 2026-09-22
++  section: SECTION-07
++  date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md
++  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
+ ---
+ 
+ # Contract — the resource entry tree, and the bit that says an entry is in it
+@@ -179,8 +179,10 @@
+   is `0036A000`'s, after the call returns: `and byte [node+0x15], 0xFD` at `0036A078` and
+   `word [node+0x3E] = 0` at `0036A080` (`rdi` is `xor`'d at `0036A04D`). Calling the helper
+   directly leaves a linked-in-shape node that claims membership — exactly the hazard ASTRA flagged.
+-- **What the key at `+0x18` measures.** ASTRA calls it a payload length. Signed comparison is proven;
+-  the quantity is not.
++- **`+0x18` is the allocated payload-byte extent used by the mover (SECTION-07).** The original
++  `0036A2A0` takes this length from the source and passes it through `004746F0` to the copy import;
++  the selectors compare it against free-block extents. It is not a semantic resource used-length.
++  The whole controlled 0x400-byte allocation is copied, including bytes beyond the parsed payload.
+ - **The release chain above this level — bounded SECTION-06 evidence now exists.** The matched
+   `00409D60` → `003B37E0(entry+0x44)` → `0024F4D0`/`0024F410`, per-row `00409730`, and
+   original allocation-release path execute in the new fixture. `00409CA0`, all specialized children,
+@@ -309,8 +311,9 @@
+ 1. ~~**`0036C790`'s rebalancing** — ASTRA reports it promotes the right child and reinserts the left;
+    the parent/left/right reads are consistent but it is not re-derived here (§4).~~ **Resolved by
+    execution:** [`EXP-083`](../_experiments/EXP-083-resource-entry-tree-execution.md) ran real removals and compared the link repair (section 15). *(updated 2026-09-15, OPUS: EXP-083 published in `feed9f67`)*
+-2. **What the `+0x18` key measures** — "payload length" is ASTRA's name; signed comparison is
+-   proven, the quantity is not.
++2. **`+0x18` extent resolved at allocator granularity by SECTION-07:** payload allocation bytes,
++   used by selector comparisons and the actual mover copy. Whether a caller uses every byte for
++   semantic content is a different question; no such implication is made.
+ 3. **The release chain above the pair — bounded production added in SECTION-06.** The actual
+    `409D60` -> ticket/context -> entry-buffer -> native-free path is executed in synthetic state;
+    `409CA0` is checked statically, not newly executed. Live timing, all tag forms and complex child
+@@ -412,3 +415,26 @@
+ its own arena/handle slots; it does not execute the game's source movement/reclamation scheduler,
+ all tree shapes or live deletion. Historical EXP-083 coverage remains separate. The meaning of the
+ node's +18 ordering key remains as previously bounded, not silently solved by this new lifecycle.
++
++## Tree membership controls movement eligibility — SECTION-07 (2026-09-23)
++
++The original compaction selectors search this tree. `0036AAD0` uses an equal-sized, higher-address
++eligible member for the current free head; the recorded smaller candidate is not used as a best-fit
++fallback. `0036ABE0` can instead move the physical successor of a hole when its allocation bit is
++set and `header+0x15 & 6 == 2`, or search for an exact candidate. Mask `0x04` inhibits these choices.
++
++The original acquire removes the tagged block from the eligible tree, and in the controlled fixture
++it cannot then be moved by either selector. Release reinserts it and makes it eligible again unless
++mask `0x04` inhibits movement. This supplies a concrete consumer for membership, **not a nesting reference
++count or a proof of thread-safe pin discipline**. A pin/unpin pair must not be replaced by two frees.
++
++The original mover frees the old block, copies the allocation bytes into the selected free region,
++reissues its header, updates the existing slot/generation and reinserts its membership. The public
++`00369C60(arena, 0)` can move twice: one exact pass plus one adjacent/search pass. Arena+0x62 records
++successful compaction until its explicit clear, not completion of all pointer repair.
++
++[Producer/consumer specification](the-source-block-mover-and-separate-consumer-refresh.md) and
++[execution evidence](../_experiments/evidence/continuation-section07-source-movement/REVIEW.md).
++The tested copy paths are non-overlapping. A separate small-hole control reaches overlap and stops
++at the original import without claiming its eventual copy result. All-game interleavings and the
++external owner/reload policy remain open; no terminal verdict is changed.
+--- before/FFXII TZA/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
++++ after/FFXII TZA/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
+@@ -13,6 +13,11 @@
+   last_pass:
+   last_pass_state: "local production; formal independent review pending"
+   crossref_clean: true
++external_production:
++  section: SECTION-07
++  date: 2026-09-23
++  status: "locally validated; formal independent acceptance pending"
++  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
+ ---
+ 
+ # Who owns a resource, and what can invalidate its pointers?
+@@ -121,8 +126,9 @@
+ move, then executes the ORIGINAL driver and lookup-repair walkers. The lookup element moves and
+ +858 is updated; a repeat does not apply the delta twice. **Run origin+870 is not updated.**
+ Because borrowed bulk teardown skips freeing that run origin, the stale field does not by itself
+-force a double free. It still must not be read as the currently valid payload. Actual movement and
+-correct refresh timing relative to all consumers remain open.
++force a double free. It still must not be read as the currently valid payload. SECTION-07 now executes actual source movement and selected original refresh paths.
++Correct scheduling relative to every consumer remains open; its separate mechanism specifies the
++proved call order without converting it into a whole-game timing guarantee.
+ 
+ ## 8. A producer closes the buffer-extent ambiguity
+ 
+@@ -134,10 +140,19 @@
+ 
+ ## 9. Exact remaining obligations
+ 
+-- [ ] Establish original source-movement producer policy and safe refresh ordering under real consumers,
++- [ ] Establish universal safe refresh/pin ordering under real consumers. The original mover policy
++  and selected source-move-to-refresh paths are established by SECTION-07;
+   including the optional instance branch and nonempty specialized child/subtype walks.
+ - [ ] Establish external mode1-owner destruction/reload policy, including tag/reference equality at each
+   actual release caller; do not generalize the raw-source fixture to all tagged combinations.
+ - [ ] Establish authored format bounds, shipped alignment/index guarantees, and allocation-failure behavior.
+ - [ ] Connect other text/widget/audio consumers to this exact owner only where original calls/state prove it.
+ - [ ] Obtain formal independent acceptance and reconcile only the affected L1/L2 obligations afterward.
++
++## Actual mover follow-up — SECTION-07 (2026-09-23)
++
++[The original source-block mover and separate refresh paths](the-source-block-mover-and-separate-consumer-refresh.md)
++now covers tagged-slot movement through `0036A2A0`, its exact/adjacent selectors, real allocation
++pressure, dirty child-request delivery and a bounded original combined-walk window. It replaces no
++SECTION-06 raw evidence and does not identify unrelated borrowed text pointers as this owner.
++The earlier simulated relocation is retained as that packet's explicit scope.
+--- before/FFXII TZA/24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md
++++ after/FFXII TZA/24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md
+@@ -1,7 +1,7 @@
+ ---
+ system: Where the game's memory comes from
+ category: 24-Compiler-And-CRT-Runtime
+-status: AUDITED
++status: REOPENED
+ owner_layer: CodeDomain:Runtime.Memory + Runtime.ContainerAllocator + Microsoft.MSVCCRT_STL_Runtime
+ evidence_tier: 1
+ verified_against:
+@@ -9,8 +9,8 @@
+   transfers_to:
+     parent: 59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92
+     parent_tag: GN162
+-    basis: additive-annotation across GN160 -> GN161 - the records this document rests on are unchanged except for `001C22A0`, `005DD890`, `005DF890`, which gained a plate comment and CodeDomain tags in batch R109 and lost nothing; voided by any delta that removes or rewrites a comment, tag, name, prototype or body range; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30
+-    verified: re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS
++    basis: "additive-annotation across GN160 -> GN161 - the records this document rests on are unchanged except for `001C22A0`, `005DD890`, `005DF890`, which gained a plate comment and CodeDomain tags in batch R109 and lost nothing; voided by any delta that removes or rewrites a comment, tag, name, prototype or body range; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30"
++    verified: "re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS"
+     adjudicated: OPUS ruling 2026-09-14, _index/PROVENANCE-TRANSFER.md (six ledger figures re-derived)
+     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
+   snapshot_sha256: b57264ba73231665bf226da6d5761feee72df36c5999fc68ae14adfdd18fea34
+@@ -20,8 +20,13 @@
+   passes: 1
+   last_pass: 2026-09-12
+   last_pass_state: opus-where-the-games-memory-comes-from-pass-1
+-  crossref_clean: true
++  crossref_clean: false
+   reopened_count: 0
++external_production:
++  section: SECTION-07
++  date: 2026-09-23
++  status: "locally validated; formal independent acceptance pending"
++  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
+ ---
+ 
+ # Where the game's memory comes from
+@@ -189,8 +194,9 @@
+ > the payload `header + 0x40`; `0036D170` checks the same words and, when the mask is clear, re-inserts it
+ > (`0036B410`) and sets the mask. So **a handle-held block sits in its arena's size-ordered tree except while it
+ > is being accessed**. That is the shape of a set of relocatable blocks, and the EFX relocation front
+-> ([the EFX page](../../17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md)) is the consumer that expects moves, but no function that
+-> walks the tree to move a block has been read — its purpose is not established. The release front `003AB7C0` sends
++> ([the EFX page](../../17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md)) is the consumer that expects moves, and SECTION-07 now connects and executes the actual tree selectors `0036AAD0`/`0036ABE0`
++> and mover `0036A2A0`. Membership makes a block eligible for those moves, subject to mask `0x04`.
++> This supersedes the earlier statement that no such tree walker had been read. The release front `003AB7C0` sends
+ > a tagged value to the handle release `00369800` and an untagged one to `003697F0`
+ > (`003AB7C5`–`003AB7DE`). The resource-storage allocator `003AB8B0` pushes selection (6, 6) and allocates
+ > **kind 0 as a raw block** (`0036A100`, full pointer) or **kind 1 as a handle** (`0036B160` → `0036C4B0`, a 32-bit
+@@ -1242,7 +1248,7 @@
+ every address below is decoded from the bytes.** All 495 bytes of `0036A2A0`, and the comparison
+ sites in `0036A100`, `00369860` and `0036C5D0`.
+ 
+-### The question is malformed: `0036A2A0` does not produce a block
++### Historical header-clone interpretation; source movement clarified by SECTION-07
+ 
+ `0036A100` obtains one — `0036BC60(arena, size, 0, 0)` and the result is `rax`:
+ 
+@@ -1267,8 +1273,11 @@
+ clone**: it copies `+0x02`, `+0x03`, `+0x14`–`+0x17`, `+0x1E`, `+0x30` and a NUL-terminated string at
+ `+0x34` from source to destination, re-encodes the image pointer at `+0x20` through `0020E600` /
+ `0020E620`, zeroes `word [dest + 0x3E]` twice, and calls `0036BC60` for its effect on the record it
+-was given. **A function that never receives a block cannot stamp one**, and "whether its blocks carry
+-the header" has no referent.
++was given. **SECTION-07 correction:** these are metadata transfers inside actual allocated-payload relocation,
++not a detached clone with no block. The same original function updates the stable slot, releases the
++old source at `0036A397`, copies its payload at `0036A3A7`, and allocates the chosen destination
++header at `0036A3BB`. The return of that last call is unused because the destination is already
++known. Historical metadata/count observations remain scoped; the current mechanism is below.
+ 
+ ### And the same body shows `022D8E10` is an indexed array
+ 
+@@ -1799,3 +1808,32 @@
+ `0036D2F0` (265 B) is the pool-descriptor build `0036D280` runs at init: `0016D6A0` packs a 0x58-byte record on the stack keyed on `word[022D8EB4]`/`word[022D8EB0]` with tag words `{0x31, 2, 1}`, the image lands at `022D8E50..0x98` (qwords `022D8E50`/`022D8E60`, double `022D8E70`, tail `022D8E78`/`022D8E88`/`022D8E98`), `022D8EB8` takes `(word[022D8EB4] x dword[022D8EAC] + (low 11 bits)) >> 11`, the field at `rsp+0x78` has its low 9 bits re-xored before the second copy lands, and `022D8EA0` points at the block - the sized descriptor the allocator registers.
+ 
+ Interior anchor `0036D34E` (function `0036D2F0`).
++
++## Original compaction and movement latch — SECTION-07 (2026-09-23)
++
++[Current mechanism](../../02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md)
++and [native evidence](../../_experiments/evidence/continuation-section07-source-movement/REVIEW.md).
++`0036A2A0` is the actual selected-block relocation producer; `0036AAD0` and `0036ABE0` select its
++source and destination. `00369C60` is an explicit compaction front, while `0036BFE0` runs the same
++selection paths before retrying a failed allocation. The native pressure fixture fills the arena,
++creates two individually too-small free holes, and demonstrates that the next original allocation
++moves an earlier tagged source and then succeeds. No diagnostic or callback manufactures progress.
++
++The current free head drives the equal-size search. This is not generic best-fit compaction: a
++smaller nonadjacent member is not chosen, whereas the physical-successor path can move an unequal
++member. Both observed destination addresses are below the source. The low32 address comparisons,
++32-bit extents and original imported-copy semantics are not replaced with portable abstractions.
++`repeat=0` is not a one-move maximum: the front can perform one move in each of its two passes.
++
++`ImageAddressArenaRecord+0x62` is a movement-since-clear latch at this granularity. Both compaction
++fronts set it after a move; `00369CF0` reads it and `003697C0` clears it. The static caller
++`00332660` queries arena6, invokes `0041E500` then `00426950` when nonzero and clears it before
++continuing. This is distinct from a render record's `+0x294` child-start bit27. The callback bodies
++and whole game scheduling are not certified by these static call sites.
++
++The stable slot is republished before the old source is released and before payload copying.
++Consumer raw pointers can therefore remain stale after the allocator has finished. Separate EFX
++refresh paths compare the resolved source and repair selected fields; they do not run inside the
++mover. A small adjacent-hole fixture reaches overlapping ranges at the copy import. It stops before
++copying and leaves actual Windows CRT behavior as an explicit evidence boundary, not a claimed
++failure of FF12. Historical audit receipts above do not certify this new production.
+--- before/FFXII TZA/_types/types.tsv
++++ after/FFXII TZA/_types/types.tsv
+@@ -241,9 +241,9 @@
+ LicenseBoardFile	0x488	12-Items-Equipment-Shops-License	the authored board_N.bin resources; reached by path, the board paths being indices 70-82 of the per-locale path table populated by 002DF9A0	RESOURCE - the storage is the buffer an authored board_N.bin is loaded into, the board paths being indices 70-82 of the per-locale path table populated by 002DF9A0. WHICH LOADER ALLOCATES THAT BUFFER IS OPEN.	none - the buffer an authored board_N.bin is loaded into. the resource system's load of the board file || PREFIXED 2026-09-20 (OPUS) so the polymorphism sweep classifies this as the resolved negative it is rather than as 'never looked'. The justification is this row's OWN allocation_site column, which already establishes INTERIOR or RESOURCE storage with no allocation call - and an object that is never allocated is never constructed and installs no vtable. The wording after the prefix is unchanged; nothing was rewritten, only led.	none observed - it is authored data in a loaded buffer	SIGNATURE RESOLVED	PROVEN	L1	measured over EVERY board file reachable from this repository - 120 of them, all 1160 bytes, all carrying 'licd', all declaring 24 by 24, and all satisfying 8 + width*height*2 == file size, with zero mismatches. PROVENANCE STATED BECAUSE IT CHANGES WHAT THE SAMPLE PROVES: all 120 are MOD files under XIIOnlineNet/Additional resources/Mods for reference, from ten unrelated authors, and no vanilla extraction is reachable from this repository. For LAYOUT that is strong evidence - ten independent authors' files either all satisfy one format or they do not - and for CONTENT it is evidence about mods rather than about the shipping game. AND THE ENGINE NEVER VALIDATES THIS FORMAT: 12-Items-Equipment-Shops-License/license-board-grid-format.md measured that the ASCII 'licd' and the dword 0x6463696C occur ZERO times in the whole 32,864,752-byte image, so nothing compares the magic. This type therefore describes AUTHORED DATA the game consumes by path - the board paths are indices 70-82 of the per-locale path table populated by 002DF9A0 - and NOT an ABI the code enforces. A width here comes from the files, not from an access instruction, which is a different evidence class from every other type I install and is why it is said twice. NO CONSTRUCTOR AND NO DESTRUCTOR OF ITS OWN: the storage is whatever buffer the resource system loads it into, and its lifetime is that buffer's.	12-Items-Equipment-Shops-License/license-board-grid-format.md	
+ EquipmentDefinitionRecord	UNRESOLVED	12-Items-Equipment-Shops-License	resolve(*(02EBF0F8) + 0x0C) + (itemId - 0x1000) * *(02EBF0F8)[+0x08]	INTERIOR the loaded authored equipment table behind registry slot 02EBF0F8, at resolve(header+0x0C) + (itemId - 0x1000) * header stride. No allocation call of its own exists.	none - interior to the loaded authored equipment table. the resource system's load of the equipment definition table || PREFIXED 2026-09-20 (OPUS) so the polymorphism sweep classifies this as the resolved negative it is rather than as 'never looked'. The justification is this row's OWN allocation_site column, which already establishes INTERIOR or RESOURCE storage with no allocation call - and an object that is never allocated is never constructed and installs no vtable. The wording after the prefix is unchanged; nothing was rewritten, only led.	none - interior to the loaded table	SIGNATURE RESOLVED	PROVEN	L1	THE SIZE IS DATA, NOT A CONSTANT, and UNRESOLVED is the correct entry: the stride is read at runtime from the table header's u16 at +0x08 and multiplied by (id - 0x1000), so a reimplementation must take it from the header and never compile one in - the same shape as StatusDefinitionRecord and the same reason. 0x1B is a lower bound covering the three fields known. The table is registry slot 02EBF0F8 and the row formula resolve(header +0x0C) + (id - 0x1000) * header[+0x08] is documented at tier 1 in 12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md, which this row cites rather than re-derives; I read it again at 003100B0-003100D9 while following a different question and it agrees. Third type in 12-Items-Equipment-Shops-License. NO FIXED EXTENT, SETTLED 2026-09-17 (SWE2-STRUCT): the record stride is itself data - read from the table header u16 at +0x08 and multiplied by (itemId-0x1000) - so neither stride nor extent is a constant; 0x1B is the lower bound covering the three known fields and no tighter constant exists.	12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	DYNAMIC resolve(*(0x02EBF0F8)+0x0C) + (itemId-0x1000) * *(*(0x02EBF0F8)+0x08)
+ AchievementState	0x28	20-Platform-Online-Achievements	ImageBackedStateBlock + 0x3844 (= buffer + 0xBA44). CORRECTED 2026-09-13: this said SaveImage_GetActiveBuffer() + 0x3844 and carried the same 0x8200 error as AchievementDescriptor.counterOffset - the achievement code reaches the block through 002536A0, which returns *(void**)0x020927C0 = buffer + 0x8200, not through 002EF640. Same 40 bytes as ImageBackedStateBlock +0x3844..+0x386C, described twice	INTERIOR ImageBackedStateBlock +0x3844, which is itself interior to the save image buffer, which is IMAGE storage in .bss - so no allocation call exists anywhere on this path.	the save image's own initialisation NOT THE SAVE BUFFER'S OWN MEMSET, checked 2026-09-20 (OPUS). This column reads "the save image's own initialisation", and the obvious candidate is SaveImage_ClearActiveRuntimeBuffer 002EF5F0 - memset(02164280, 0, 0x56690) - which resolves SavePayload and SpawnKeepImage. It does NOT resolve this type directly: the route is PTR 0x020927C0+0x3844, a DIFFERENT base, and 020927C0 is ImageBackedStateBlock's pointer slot rather than the save buffer. IT MAY BE COVERED TRANSITIVELY, and that is a conditional rather than a measurement: ImageBackedStateBlock's own row records that it lies inside SavePayload at payload +0x8000, which would put this type at payload +0xB844 and inside the memset - but that containment rests on the pointer's runtime value, which I did not read. Stated as the condition it is.	none - interior to the save buffer	SIGNATURE RESOLVED	PROVEN	L1	base from two functions that agree: AchievementCounter_Read 003166F0 calls 002536A0 for the save buffer and then lea edx,[rax + 0x384C] (00316705) for the counter block, and Achievement_Unlock 00315E90 calls the same 002536A0 and reads byte [rax + rdx + 0x3844] with rdx = id >> 3 and a shl edx,cl mask on id & 7 (00315EBE-00315ED5) - a bitmap at +0x3844. So the region starts at +0x3844 and the counters sit eight bytes into it. EXTENT: the eleven counters the descriptor table declares tile block offsets 0..32, so the region runs +0x3844..+0x386C, 40 bytes. Both consumers bound the achievement id at 30 before touching anything (cmp cl,0x1e / jae at 00316A50; cmp esi,0x1e / jae at 00315EB0). NO CONSTRUCTOR AND NO DESTRUCTOR OF ITS OWN: the storage is the save buffer's and its lifetime is that buffer's. Interior to the save image, like the other save-backed regions.	20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	PTR 0x020927C0+0x3844
+-ImageAddressArenaRecord	0xA8	02-Resource-And-Asset-Pipeline	022D7FD0 + id * 0xA8, ids 0..14 - fifteen records	IMAGE 022D7FD0 - fifteen records of 0xA8 in .bss. The record itself is never allocated; the BACKING it points at comes through an imported malloc path and is not part of this record.	00369D30 initializer (707 B); its block-header writer is 0036A490 (215 B)	none observed	CLASSIFIED	HIGH	L2	EXP-077 (ASTRA, 2026-09-12) executed the initializer 00369D30 as shipped bytes under Unicorn and checked the record's fields individually at THREE backing addresses - 40010000, 80010000 and 100010000 - so the field-to-backing relationship holds across a range rather than for one fixture. Re-verified by OPUS against the image before use: the body sha256 16466da3... matches, and the id bound at 00369D47 is cmp esi,0xE / ja, UNSIGNED, which is what rejects the negative id that 00369D3B sign-extended. The 0xA8 stride and the 022D7FD0 base are also read by 0036BC60, which splits linked free blocks across fifteen such records. || ALLOCATOR-SIDE EVIDENCE, 2026-09-20 (OPUS), and a census caveat this row should carry. 0036BC60 reaches a record with 'lea rax, [022D7FD0] ; imul rbx, rcx, 0xa8 ; add rbx, rax' (0036BCA9-0036BCBE) after bounding the id with 'cmp ecx, 0xE ; ja', which re-confirms base, stride and count from the allocation side as well as the initialiser side. It also sets byte +0x02 to 1 on entry (0036BCC5) and rounds every request up to a multiple of 0x40 (0036BC92-0036BC9D) - the same 0x40 as the block header, so payload and header share one granularity. THE CAVEAT: a fixed-address census of this table MISSES 0036BC60 completely. An `xor ebx, ebx` on the out-of-range error arm sits between the base computation and its uses in linear order, so the base is killed before the reads. That is blind spot 9 in _index/ABSENCE-CLAIM-GATE.md, found here; static_array_census.py now reports such boundaries in LAST_POSTJMP_KILLS. Measured effect on this table: 41 accesses versus 57 under the alternative reading, and the SAME 26 offsets either way. || EXP-127 DOES NOT LICENSE A PROMOTION OF THIS TYPE, 2026-09-21 (OPUS), consuming ASTRA-RETURN-OPUS-EXP127-INSTRUMENT-BOUNDARY. RECORDED AS A FORWARD GUARD, NOT A CORRECTION - nothing on this type or any other in the store cites EXP-127, checked by searching both types.tsv and fields.tsv for it, so no present claim moves. THE RISK ASTRA NAMES IS A FUTURE PROMOTION and this cell is where it would happen. THE BOUNDARY: EXP-127's raw review is ACCEPT-WITH-NARROWING and its session is marked INVALID_POST_TRACE. An accepted audit and a successful API return are NOT a healthy session, and neither is evidence about arena semantics. A new exact-source control demonstrates a foreign-step dispatch defect, and all 5,658 saved step events still match configured ownership in the recorded fields - so the defect is demonstrated and NO CAUSAL LINK to the fatal dialog is established. One extra 003E3C7A event occurs during cleanup outside the 2,113 logged pairs and is unexplained. WHAT THIS TYPE ACTUALLY RESTS ON, and it is a different and stronger class: EXP-077 and EXP-078 executed the initializer 00369D30 as SHIPPED BYTES under Unicorn with no callee stubs, checking the record's fields at three separate backing addresses. That is isolated original-code execution, which does not depend on any session being healthy. The one live citation on this type is EXP-079's records for arenas 2-14, which is a different experiment from EXP-127 and is not implicated by this return. SO THE RULE FOR ANYONE PROMOTING THIS TYPE LATER: EXP-127 may not be cited as evidence that an arena was initialised, that animation state was live, or that a session was healthy. Native qualification and a healthy FF12 session are both still absent.	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id
++ImageAddressArenaRecord	0xA8	02-Resource-And-Asset-Pipeline	022D7FD0 + id * 0xA8, ids 0..14 - fifteen records	IMAGE 022D7FD0 - fifteen records of 0xA8 in .bss. The record itself is never allocated; the BACKING it points at comes through an imported malloc path and is not part of this record.	00369D30 initializer (707 B); its block-header writer is 0036A490 (215 B)	none observed	CLASSIFIED	HIGH	L2	EXP-077 (ASTRA, 2026-09-12) executed the initializer 00369D30 as shipped bytes under Unicorn and checked the record's fields individually at THREE backing addresses - 40010000, 80010000 and 100010000 - so the field-to-backing relationship holds across a range rather than for one fixture. Re-verified by OPUS against the image before use: the body sha256 16466da3... matches, and the id bound at 00369D47 is cmp esi,0xE / ja, UNSIGNED, which is what rejects the negative id that 00369D3B sign-extended. The 0xA8 stride and the 022D7FD0 base are also read by 0036BC60, which splits linked free blocks across fifteen such records. || ALLOCATOR-SIDE EVIDENCE, 2026-09-20 (OPUS), and a census caveat this row should carry. 0036BC60 reaches a record with 'lea rax, [022D7FD0] ; imul rbx, rcx, 0xa8 ; add rbx, rax' (0036BCA9-0036BCBE) after bounding the id with 'cmp ecx, 0xE ; ja', which re-confirms base, stride and count from the allocation side as well as the initialiser side. It also sets byte +0x02 to 1 on entry (0036BCC5) and rounds every request up to a multiple of 0x40 (0036BC92-0036BC9D) - the same 0x40 as the block header, so payload and header share one granularity. THE CAVEAT: a fixed-address census of this table MISSES 0036BC60 completely. An `xor ebx, ebx` on the out-of-range error arm sits between the base computation and its uses in linear order, so the base is killed before the reads. That is blind spot 9 in _index/ABSENCE-CLAIM-GATE.md, found here; static_array_census.py now reports such boundaries in LAST_POSTJMP_KILLS. Measured effect on this table: 41 accesses versus 57 under the alternative reading, and the SAME 26 offsets either way. || EXP-127 DOES NOT LICENSE A PROMOTION OF THIS TYPE, 2026-09-21 (OPUS), consuming ASTRA-RETURN-OPUS-EXP127-INSTRUMENT-BOUNDARY. RECORDED AS A FORWARD GUARD, NOT A CORRECTION - nothing on this type or any other in the store cites EXP-127, checked by searching both types.tsv and fields.tsv for it, so no present claim moves. THE RISK ASTRA NAMES IS A FUTURE PROMOTION and this cell is where it would happen. THE BOUNDARY: EXP-127's raw review is ACCEPT-WITH-NARROWING and its session is marked INVALID_POST_TRACE. An accepted audit and a successful API return are NOT a healthy session, and neither is evidence about arena semantics. A new exact-source control demonstrates a foreign-step dispatch defect, and all 5,658 saved step events still match configured ownership in the recorded fields - so the defect is demonstrated and NO CAUSAL LINK to the fatal dialog is established. One extra 003E3C7A event occurs during cleanup outside the 2,113 logged pairs and is unexplained. WHAT THIS TYPE ACTUALLY RESTS ON, and it is a different and stronger class: EXP-077 and EXP-078 executed the initializer 00369D30 as SHIPPED BYTES under Unicorn with no callee stubs, checking the record's fields at three separate backing addresses. That is isolated original-code execution, which does not depend on any session being healthy. The one live citation on this type is EXP-079's records for arenas 2-14, which is a different experiment from EXP-127 and is not implicated by this return. SO THE RULE FOR ANYONE PROMOTING THIS TYPE LATER: EXP-127 may not be cited as evidence that an arena was initialised, that animation state was live, or that a session was healthy. Native qualification and a healthy FF12 session are both still absent. || SECTION-07 (2026-09-23): original source selection/relocation, allocation-pressure retry and movement latch are connected to actual EFX refresh controls; _experiments/evidence/continuation-section07-source-movement/REVIEW.md. Type extent/readiness are not promoted. Physical movement does not prove every borrowed reference safe.	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md; 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md	ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id
+ PhyreNamespaceBuffer	0x10	22-Middleware-PhyreEngine	arguments 3 AND 4 of 0059A3B0 - both are instances of this type, and both are STACK LOCALS of the sole caller 0059E070 ([rsp+0x58] and [rsp+0x48], 0059E147/0059E142), PARTIALLY zeroed before the call (PRECISED 2026-09-19, OPUS: the caller writes the dword at +0x00 and the qword at +0x08 of each and skips +0x04..+0x07, so that dword is uninitialised stack in both instances) and released by the ownership bit in its epilogue (0059E2B7-0059E2D2 and 0059E29A-0059E2B6). Corrected 2026-09-15 (OPUS, PH-5): the row named only argument 3	its DATA is allocated by 0017D260 with alignment 4, or borrowed - see the ownership bit	none observed	released through 00584730, but ONLY when bit 31 of the capacity word is clear and the pointer is being replaced	CLASSIFIED	HIGH	L2	NO REFLECTION REGISTRATION: read out of 0059A3B0 by OPUS. 0059A479 compares the whole capacity word against m_packedNamespaceSize; 0059A4A0 loads the data pointer from +8; 0059A4BF installs the new pointer and 0059A4C8 the new capacity. The ownership bit was found by a differential case that FAULTED on the unmapped release at 00584730, because no earlier case had reached that branch - see the contract's section 3.	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	
+-ImageAddressArenaBlockHeader	0x40	02-Resource-And-Asset-Pipeline	backing + 0x280 for the initial free block; later blocks at allocator-chosen offsets	INTERIOR the arena backing - the initial header at backing +0x280, later headers at allocator-chosen offsets, carved by 0036BC60. The backing itself comes through _aligned_malloc, so the header has no allocation of its own; 0036C9D0 unlinks a header by tagging its word 0xFF99 rather than freeing it.	0036A490 writes the initial header (215 B)	unlinked by 0036C9D0, which tags the header word 0xFF99 rather than freeing it	CLASSIFIED	HIGH	L2	EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. EXTENT SETTLED 2026-09-17 (SWE2-STRUCT, OPUS-REQ-SWE2-STRUCT-UNSIZED-TYPES): the header is a FIXED 0x40 bytes - 00369860 takes the header as payload-0x40 (003698C1 lea rbx,[rcx-0x40]) and payloadLength at +0x18 is size-0x280-0x40 for the fixture. The variable part is the payload AFTER the header, which is not part of this type.	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	
++ImageAddressArenaBlockHeader	0x40	02-Resource-And-Asset-Pipeline	backing + 0x280 for the initial free block; later blocks at allocator-chosen offsets	INTERIOR the arena backing - the initial header at backing +0x280, later headers at allocator-chosen offsets, carved by 0036BC60. The backing itself comes through _aligned_malloc, so the header has no allocation of its own; 0036C9D0 unlinks a header by tagging its word 0xFF99 rather than freeing it.	0036A490 writes the initial header (215 B)	unlinked by 0036C9D0, which tags the header word 0xFF99 rather than freeing it	CLASSIFIED	HIGH	L2	EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. EXTENT SETTLED 2026-09-17 (SWE2-STRUCT, OPUS-REQ-SWE2-STRUCT-UNSIZED-TYPES): the header is a FIXED 0x40 bytes - 00369860 takes the header as payload-0x40 (003698C1 lea rbx,[rcx-0x40]) and payloadLength at +0x18 is size-0x280-0x40 for the fixture. The variable part is the payload AFTER the header, which is not part of this type. || SECTION-07 (2026-09-23): original source selection/relocation, allocation-pressure retry and movement latch are connected to actual EFX refresh controls; _experiments/evidence/continuation-section07-source-movement/REVIEW.md. Type extent/readiness are not promoted. Physical movement does not prove every borrowed reference safe.	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md; 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md	
+ ImageAddressHandleSlot	0x10	02-Resource-And-Asset-Pipeline	handleSlotTable + index * 0x10, indices 0..slotCount-1 per arena	INTERIOR the arena backing - the table is laid after the page arrays and rounded to 64 (00369EAC `mov qword ptr [rbx + 0x30], r10`), so a slot has no allocation of its own and is never freed; slotCount comes from the initialiser's fourth argument and is zero for arenas that ask for no handles (00369ECC-00369ED4 stores null heads instead).	00369D30 seeds every slot in the table (00369EE5-00369F33): slot 0 gets `mov dword ptr [rax], 0xffff0001` - next 1, prev 0xFFFF - then each slot gets next i+1, prev i-1, the arena id at +0x04, zero at +0x05 and a null header at +0x08, and the last slot's next is set to 0xFFFF at 00369F33. The whole table starts on the free list.	none - a slot is recycled, not destroyed: 0036A9C0 clears +0x05 and +0x06 at 0036AAAD/0036AAB1 and pushes it back onto the record's free head at 0036AA77	SEMANTICALLY IDENTIFIED	PROVEN	L2	READ END TO END 2026-09-21 (OPUS) from three bodies: the arena initialiser 00369D30 lays the table out (00369EE5-00369F33), the issue path 0036AF20 pops a slot and fills it (0036AF9F-0036B018), and the release path 0036A9C0 unlinks and returns it (0036A9CE-0036AAB1). THE EXTENT IS PROVEN THREE WAYS INDEPENDENTLY OF ITS FIELDS: index to address is `shl rax, 4` at 0036AFB4/0036AA18/0036AA2E, address to index is `shr eax, 4` at 0036AFD3/0036AFDE/0036AA5D/0036AA67, and the initialiser strides the table with `add rax, 0x10` at 0036AF2B - and the store's own ImageAddressArenaRecord +0x38 row already recorded the table end as start + 16 x slotCount. Reached by the flow-sensitive enumeration of the static arena array at 0x022D7FD0, whose artifact is 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses-flow-sensitive.tsv. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8	02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses-flow-sensitive.tsv	
+ PresentationEntryReferenceContainer	0xC30	17-Presentation-Rendering	render root +0x160 (root +0xDA8 points at it), node table inline at its own +0x30: 64 nodes, root +0x190..+0xD8F	INTERIOR the render root +0x160 - interior storage, no allocation call. SIZE RULED 2026-09-18 (SWE2-STRUCT): the declared size is the full 0xC30 footprint - 0x30 header plus the 64-node table the storage initialiser places at +0x30, now declared as the nodes field (PresentationEntryReferenceNode[64]) so the node's EMBED route is contained.	0051BA20 (global reset 0041CCA0, then 0051F2D0) then 0051B9D0 -> 0051F170 with capacity forced to 0x40, both from 0041E3A0	none - interior storage	SIGNATURE RESOLVED	PROVEN	L1	Footprint 0xC30: header 0x30 declared from the render root's instance plus the 0xC00 node table at +0x30, where 0051B9D0 places the node table at container +0x30; the fields +0x00..+0x23 come from the reset/storage initialisers, admission 0051F410/0051F080, release 0051F190/0051F4C0 and the walkers 0051F580/0051F620. The reset and the storage initialiser each set only part of the header: storage initialisation alone on arbitrary bytes does not reproduce the root's reset-then-storage order. Lookup 0051F240 has no capacity, occupancy or id-generation check. Source/resource admission, external id invalidation and native initialisation are NOT established. ASTRA render-event-selection evidence sections 6-8 (22 complete bodies, Method A), re-read by FABLE 2026-09-12. || ROUTE CANDIDATE, NOT WRITTEN - 2026-09-19 (OPUS). This type's `route` column is blank and it is the largest game-side routeless type that has an interior position in prose, so it was tested. THE ARITHMETIC: the instance column says `render root +0x160`, and the render root is the STATIC 022C6F30 - established on resource-section-addressing.md (a FABLE correction: `my text called the 0041E500 argument a render record; it is the render root 022C6F30`) and on EVIDENCE-STANDARD.md. 022C6F30 + 0x160 = 022C7090. THE COHERENCE CHECK PASSES: RenderModelInstanceContainer is declared `STATIC 0x022C7020` with size 0x70, which ends at 022C7090 exactly - two independently declared facts meeting at the byte. BUT IT IS NOT CONFIRMED AND SO IT IS NOT WRITTEN. A rip-relative scan of 022C7090..+0xC30 finds ZERO accesses - and that zero means nothing, because the control says so: the same scan over RenderModelInstanceContainer, which the store ALREADY declares STATIC in this region, also finds zero. The whole render-root region is reached through a register: the only rip-relative references to 022C6F30 are SIX `lea`s at offset 0 (003323DB, 0033242A, 0033251A, 00332594 and two more). I then looked for the direct form - a `lea reg2, [root_reg + 0x160]` in each body that takes the root's address, and in the two constructors 0051BA20 and 0051B9D0 - AND FOUND NONE. WHAT WOULD SETTLE IT: an instruction that forms root+0x160, or a reader of the `root +0xDA8` pointer the instance column also mentions, which would show whether +0x160 is the storage and +0xDA8 a cached pointer to it. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || THE RENDER ROOT'S FOUR-SLOT REFRESH TABLE, read 2026-09-19 (OPUS) by censusing 022C6F30 ad hoc. 0041E500 reads FOUR CONSECUTIVE POINTER SLOTS and hands each to its own handler: `mov rcx, qword ptr [rcx+0xD90]` then `call 00409F70` at 0041E517, `[rbx+0xD98]` then `call 0046E3E0` at 0046E52A, `[rbx+0xDA8]` then `call 0051B9F0` at 0041E536, and `[rbx+0xDA0]` then `jmp 00478030` at 0041E547 - all under a guard flag at 02B62E10 that 0041E509 sets and 0041E51C clears. TWO OF THE FOUR CONFIRM THE STORE'S OWN PROSE without being looked for: resource-section-addressing.md already names 00409F70 on the resource table at +0xD90 and 0051B9F0 as the +0xDA8 refresh. A THIRD IS IDENTIFIED HERE: 00478030 is `lea rdx, [rip -> 00478270]` then `jmp 0051FF30`, and 0046E3E0 has the same shape with callback 0046E8C0, so 0051FF30 is a generic visitor taking (object, per-element callback); 00478270 thunks to 00504940, which sits 0xA0 before RenderModelInstance's declared ctor 005049E0, and 00478030's neighbour 00478040 is RenderModelInstanceContainer's declared ctor. So +0xDA0 DRIVES THE RenderModelInstance FAMILY - that is as far as the evidence goes, and it is not claimed that the slot points at RenderModelInstanceContainer specifically. THE FOURTH, +0xD98 with handler 0046E3E0 and callback 0046E8C0, IS NOT IDENTIFIED and is left open. THE ROOT IS STILL NOT DECLARED: four offsets from one function is not an extent. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || THE FOURTH SLOT AND THE GUARD, completed 2026-09-19 (OPUS) by the same thunk-chain method that named +0xDA0. +0xD98's callback 0046E8C0 is a one-line thunk to 003713C0, which sits IMMEDIATELY BEFORE `AddMotion_ApplyBonePose` (003714A0) - a function this store named - so that slot drives the ADDMOTION / BONE-POSE family, at the same evidence strength as +0xDA0's (adjacency to a named member of the family, not a proof of identity). ITS HANDLER IS THE RICHEST OF THE FOUR: 0046E3E0 makes THREE passes, not one - `0051FF30(obj, 0046E8C0)` at 0046E3F0, then `00520010(obj, 0046E910, obj)` at 0046E402 and a tail `00520010(obj, 0046E8D0, obj)` at 0046E419, so there is a SECOND visitor, 00520010, which takes the object in r8 as well. AND THE GUARD IS ASYMMETRIC: 0041E509 sets `byte [02B62E10] = 1` and 0041E51C clears it immediately after the FIRST handler returns, so ONLY the resource-table refresh at +0xD90 runs under it and the other three do not. That asymmetry is a contract detail about the resource table's refresh and nothing else in this store records it. ALL FOUR SLOTS ARE NOW ACCOUNTED FOR: +0xD90 resource table (prose, confirmed), +0xD98 AddMotion/bone-pose (identified here), +0xDA0 RenderModelInstance family (identified here), +0xDA8 presentation-entry container (prose, confirmed). exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || CONTRADICTION FILED 2026-09-19 (OPUS), OPUS-CON-RENDER-ROOT-D9X-CONTAINER-TYPE. resource-section-addressing.md states that the render root's four +0xD9x slots are `four side-by-side PresentationEntryReferenceContainer objects`. THE VISITOR THAT WALKS TWO OF THEM REQUIRES A DIFFERENT LAYOUT: 0051FF30, called by 0046E3E0 (+0xD98) and 00478030 (+0xDA0), does `mov edi, dword ptr [rcx+0x40]` then `cmp edi, -1` at 0051FF39/0051FF42 - a head index whose empty value is -1 - and `mov rcx, qword ptr [rbx+0x30]`, `call 003AB7F0`, `mov qword ptr [rbx+0x38], rax` at 0051FF60-0051FF6E, reading +0x30 as a RESOLVABLE HANDLE and caching the result at +0x38. RenderModelInstanceContainer declares exactly that triple (+0x30 slotTableHandle, +0x38 slotTable, +0x40 liveHead `-1 when none`); PresentationEntryReferenceContainer declares +0x30 as `nodes`, a 3072-byte INLINE table of 64 nodes, so [rbx+0x30] would be the first eight bytes of node 0 and the cache would land inside it. The same handle/cache triple is used by ResourceEntry_GetResolvedBase at 0040962B-00409634, so it is a subsystem convention rather than an offset coincidence. +0xDA8 is visited by 0051B9F0 and NOT by 0051FF30, so the page's claim may hold there and not for the other two. NOT RESOLVED HERE and neither row is changed. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || CONTRADICTION RESOLVED 2026-09-19 (OPUS), OPUS-CON-RENDER-ROOT-D9X-CONTAINER-TYPE. The answer is that the page is RIGHT ABOUT ONE SLOT AND WRONG ABOUT TWO, and each half is settled by the handler's own field usage. +0xDA8's handler 0051B9F0 calls 0051F620 and tail-calls 0051F580, and BOTH read `cmp dword ptr [rcx+0x10], 0` and then `mov ecx, dword ptr [rcx+4]` / `shl ecx, 0x1e` / `sar ecx, 0x1e` - a two-bit field sign-extended out of +0x4. PresentationEntryReferenceContainer declares EXACTLY THAT: +0x04 `flags`, whose own meaning column already reads `low two bits, sign-extended by shl 30 / sar 30`, and +0x10 `capacity`. Two independent field matches, one of them a bit-extraction idiom, so +0xDA8 IS a PresentationEntryReferenceContainer and the page is confirmed there. +0xD98 and +0xDA0 go through a DIFFERENT visitor, 0051FF30, which reads +0x30 as a resolvable handle, caches at +0x38 and treats +0x40 as a head index with -1 empty - RenderModelInstanceContainer's layout, and incompatible with this type, whose +0x30 is a 3072-byte inline node table. THE PAGE'S SENTENCE `the four +0xD9x fields are four side-by-side PresentationEntryReferenceContainer objects` therefore holds for +0xDA8 and NOT for +0xD98 or +0xDA0; +0xD90 is the resource table and different again. resource-section-addressing.md needs that sentence narrowed and is listed on the contradiction as the affected document. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || ROUTE UPDATED 2026-09-19 (OPUS) now that RenderResourceRoot is declared with a measured 0xDB0 extent. The EMBED alternative is the path the code actually takes - `lea [root+0x160]` in 0041E3A0, or the root's own slot - and is listed first. This row previously had NO route at all, so the object was not censusable by route; the EMBED is its first. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8	17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md	EMBED RenderResourceRoot +0x160
+ PresentationEntryReferenceNode	0x30	17-Presentation-Rendering	element of PresentationEntryReferenceContainer's table; 64 inline in the render root	INTERIOR PresentationEntryReferenceContainer +0x30, 64 nodes of 0x30 - interior storage inside the render root, no allocation call. CONTAINMENT RESOLVED 2026-09-18: the parent's declared size is now the full 0xC30 footprint (header + nodes field), so this route fits.	0051F2F0 resets each node (clears +0x00, -1 to +0x04/+0x08/+0x0C, zeroes +0x10..+0x27); 0051F080 admits	0051F190 clears +0x00..+0x27 without freeing the payload	SIGNATURE RESOLVED	PROVEN	L1	0x30 stride from the lookup's lea rbx,[rcx+rcx*2] / shl rbx,4 on the low 16 bits of the id (0051F266-0051F26D). +0x28..+0x2F are untouched by reset and release. The container node +0x18 and the presentation payload's own +0x18 are different pointers with different arithmetic. ASTRA render-event-selection evidence sections 6-8 (22 complete bodies, Method A), re-read by FABLE 2026-09-12.	17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md	EMBED PresentationEntryReferenceContainer +0x30 stride=0x30 count=64
+--- before/FFXII TZA/_types/fields.tsv
++++ after/FFXII TZA/_types/fields.tsv
+@@ -1186,13 +1186,13 @@
+ ImageAddressArenaBlockHeader	0x0C	4	prevNeighbour	uint32	an ENCODED reference to the previous neighbour. DIRECTION CORRECTED 2026-09-13 (ASTRA-CONTRA-OPUS-ARENA-UNLINK-CONSUMER): 0036CA75 writes encode(PREDECESSOR) into the SUCCESSOR's +0x0C - rsi there is decode(+0x10), the successor, and eax is encode(rdi) = encode(decode(+0x0C)) = the predecessor. The row previously said encode(successor) into the predecessor, which is the reverse of both. The field name was right; the write description was inverted, and a doubly-linked unlink reads correctly either way, which is why it survived. The decoded-pointer hazard stands	CLASSIFIED	PROVEN	EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink.
+ ImageAddressArenaBlockHeader	0x10	4	nextNeighbour	uint32	an ENCODED reference to the next neighbour. DIRECTION CORRECTED 2026-09-13: 0036CA8A writes encode(SUCCESSOR) into the PREDECESSOR's +0x10 - rdi there is decode(+0x0C), the predecessor, and eax is encode(rsi) = encode(decode(+0x10)) = the successor. Previously stated as encode(predecessor) into the successor. Same decoded-pointer hazard (EXP-078 fault at 0x10290)	CLASSIFIED	PROVEN	EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink.
+ ImageAddressArenaBlockHeader	0x14	1	allocFlags	uint8	mask 0x01 = allocated: required by 00369860 (00369ABE, else already-free diagnostic) and cleared by it (00369B09); also tested on both physical neighbours when coalescing (00369B5D, 00369B78)	CLASSIFIED	HIGH	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence section 19 (00369860, 0036ACE0, 0036B5F0)
+-ImageAddressArenaBlockHeader	0x15	1	blockFlags	uint8	mask 0x02 = in the arena membership tree: set after insertion by 0036D170 and by the handle issue 0036C4B0 (0036C501 insert, 0036C513 set); cleared after removal by 0036A000 and by the handle release 0036A9C0 (0036AA88 test). Mask 0x04 is cleared by 0036C4B0 and 0036A9C0 (0036C511, 0036AA84)	CLASSIFIED	HIGH	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)
++ImageAddressArenaBlockHeader	0x15	1	blockFlags	uint8	Bit0x02: membership in the arena movable-block tree. Bit0x04: inhibits selection by the exact-size and physical-successor compaction paths. Removing membership excludes the controlled block from both selectors; release restores eligibility. This is not a nesting retain count or thread-safe pin proof. Existing issue/release writes are historical evidence.	SEMANTICALLY IDENTIFIED	PROVEN	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20) || SECTION-07 original-instruction controls and disassembly: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; source movement is original, consumers and arenas synthetic; formal peer acceptance pending.
+ ImageAddressArenaBlockHeader	0x16	1	arenaCounterIndex	uint8	selects the arena counter the payload length is debited from on free (00369B05) || TARGET RESOLVED 2026-09-20 (OPUS): the counter it selects is ImageAddressArenaRecord +0x68 `arenaCounters`, reached as `lea rcx,[rdi + rax*4]` at 00369B11 with rdi the owning record and rax this byte, then `sub dword ptr [rcx + 0x68], eax` at 00369B18 subtracting +0x18 payloadLength. The mirroring adds are 0036BC60/0036BFAD and 0036D050/0036D126. NOT range-checked by the release path.	CLASSIFIED	PROBABLE	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence section 19 (00369860, 0036ACE0, 0036B5F0)
+ ImageAddressArenaBlockHeader	0x17	1	categoryCounterIndex	uint8	selects the optional category counter debited on free (00369B1B); cleared by the free (00369B40) || TARGET RESOLVED 2026-09-20 (OPUS): a SEPARATE global table at 022D8E10, not the owning record - `lea rcx,[rip->022D8E10]` at 00369B26, `lea rcx,[rcx + rax*4]`, `sub dword ptr [rcx], eax` at 00369B34, guarded by `test al,al` so index 0 means absent. THIS is the table the allocation path 0036A2A0 bumps, at 0036A391 (`add dword ptr [rcx], eax` off the same base) - so the alloc/free mirror holds here on the GLOBAL category counters, while the per-arena counters at record +0x68 are bumped by the carve 0036BC60 and by 0036D050 instead.	CLASSIFIED	PROBABLE	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence section 19 (00369860, 0036ACE0, 0036B5F0)
+-ImageAddressArenaBlockHeader	0x18	4	payloadLength	uint32	FFD40 for the one 1 MiB fixture EXP-077 drove, which is size - 0x280 - 0x40. ONE SIZE WAS TESTED THE RELATION IS STATIC: the arena initialiser passes usableBytes - 0x40 to the header constructor 0036A490, which stores it here at 0036A50F, and 0x40 is this type's own size.	CLASSIFIED	HIGH	EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. || THE RELATION TO THE ARENA'S usableBytes IS STATIC, NOT FITTED - 2026-09-21 (OPUS). The arena initialiser reads +0x5C back at 00369FC7, subtracts 0x40 at 00369FD0 and passes the result as the third argument to the header constructor 0036A490, which stores it here at 0036A50F (`mov dword ptr [rbx + 0x18], esi`). So payloadLength = usableBytes - 0x40 BY CONSTRUCTION, and 0x40 is exactly this type's declared size - the header consumes the first 0x40 bytes of the span it describes. The 0xFFD40 the one fixture produced is 0xFFD80 - 0x40, which the arithmetic now explains rather than merely agreeing with. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
++ImageAddressArenaBlockHeader	0x18	4	payloadLength	uint32	Payload allocation byte extent, excluding the 0x40 header. Used as a signed ordering key and by the original relocation producer 0036A2A0 as the copy/reallocation length via 004746F0. Not necessarily the semantic used length of a resource. Positive low-address fixtures test full capacity preservation; arbitrary huge/negative lengths are not made safe.	SEMANTICALLY IDENTIFIED	PROVEN	EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. || THE RELATION TO THE ARENA'S usableBytes IS STATIC, NOT FITTED - 2026-09-21 (OPUS). The arena initialiser reads +0x5C back at 00369FC7, subtracts 0x40 at 00369FD0 and passes the result as the third argument to the header constructor 0036A490, which stores it here at 0036A50F (`mov dword ptr [rbx + 0x18], esi`). So payloadLength = usableBytes - 0x40 BY CONSTRUCTION, and 0x40 is exactly this type's declared size - the header consumes the first 0x40 bytes of the span it describes. The 0xFFD40 the one fixture produced is 0xFFD80 - 0x40, which the arithmetic now explains rather than merely agreeing with. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || SECTION-07 original-instruction controls and disassembly: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; source movement is original, consumers and arenas synthetic; formal peer acceptance pending.
+ ImageAddressArenaBlockHeader	0x1C	2	handleCheckWord	uint16	copied into the slot's word +6 when a handle is issued (0036B005-0036B00C); 0036A000 and 0036D170 require the two to match before acting ITS PRODUCER IS NOW KNOWN 2026-09-21 (OPUS): the word is ImageAddressArenaRecord +0x60 `handleSerial`, a per-arena counter incremented once per block header created (0036BC31, 0036BFC5, 0036C35B, 0036C470, 0036CE3E) and passed as the constructor's fourth argument, R9D, which 0036A517 stores here. With the check already recorded - copied into the handle slot's word +6, and required to match by 0036A000 and 0036D170 - the guard is whole: a non-repeating stamp written at creation, carried by the handle, and compared on use.	SEMANTICALLY IDENTIFIED	PROVEN	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20) || OBSERVED 2026-09-21 (OPUS) by the flow-sensitive enumeration of the static record array at 0x022D7FD0 - 173 accesses over 30 displacement-width pairs in 33 functions, against 41 in 19 for the linear walk the shared census tools use. Artifact: 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses-flow-sensitive.tsv. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+ ImageAddressArenaBlockHeader	0x001E	2	word1E	uint16	cleared by the release path at 00369B3C (`mov word ptr [rbx + 0x1e], si`, si zeroed at 00369AE4), in the same straight run that clears +0x34 and +0x17 and writes +0x30. Sits immediately after +0x1C `handleCheckWord`, and is NOT part of it: both are 2-byte accesses at their own offsets. NOT UNDERSTOOD - cleared on free is where the evidence stops. Read from the release path 00369860's own bytes, 2026-09-20 (OPUS); this type has no route, so no census reaches it. 	SIGNATURE RESOLVED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+-ImageAddressArenaBlockHeader	0x20	4	handleSlotRef	uint32	the ENCODED reference to the block's handle slot, stored by 0036AF20 (0036B009) and decoded there to reuse a live slot	CLASSIFIED	HIGH	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)
++ImageAddressArenaBlockHeader	0x20	4	handleSlotRef	uint32	Encoded reference to the handle slot. During original block movement 0036A2A0 decodes/reuses that slot, publishes the destination header before payload copy, and updates slot/header generation correspondence. Stable handle value does not preserve an old raw payload pointer.	SEMANTICALLY IDENTIFIED	PROVEN	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20) || SECTION-07 original-instruction controls and disassembly: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; source movement is original, consumers and arenas synthetic; formal peer acceptance pending.
+ ImageAddressArenaBlockHeader	0x24	4	treeLeft	uint32	ENCODED left child in the membership tree (0036B50F); encode(0) when none	CLASSIFIED	HIGH	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)
+ ImageAddressArenaBlockHeader	0x28	4	treeRight	uint32	ENCODED right child in the membership tree; equal keys descend right	CLASSIFIED	HIGH	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)
+ ImageAddressArenaBlockHeader	0x2C	4	treeParent	uint32	ENCODED parent in the membership tree; 0036C790 promotes the right child on removal and does not clear the removed node's own links	CLASSIFIED	HIGH	FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)
+@@ -1225,7 +1225,7 @@
+ ImageAddressArenaRecord	0x0058	4	bucketCount	uint32	THE NUMBER OF 64 KiB BUCKETS THE ARENA IS DIVIDED INTO, and it is proven from both ends. PRODUCER: 00369DDF-00369E0D computes `(size + 0xFFFF) >> 16` - the count of 64 KiB units - and rounds it UP to a multiple of 32 with `and r15d, 0xffffffe0`, storing it here at 00369E40. The rounding is why the bitmap divides evenly: 00369E18-00369E23 derives r12 = r15 / 32 as the bitmap's dword count. CONSUMER: the bucket search 0036ACE0 loads it at 0036AD36 and uses it THREE TIMES as the bound - 0036AD5D against the first bucket index, 0036AD79 against the 32-stepped scan, and 0036AD85/0036ADA4 against the representative walk. A value that bounds both arrays and is computed as the unit count is the unit count.	SEMANTICALLY IDENTIFIED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || OBSERVED 2026-09-21 (OPUS) by the flow-sensitive enumeration of the static record array at 0x022D7FD0 - 173 accesses over 30 displacement-width pairs in 33 functions, against 41 in 19 for the linear walk the shared census tools use. Artifact: 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses-flow-sensitive.tsv. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+ ImageAddressArenaRecord	0x5C	4	usableBytes	uint32	THE BYTES FROM THE FIRST BLOCK HEADER TO THE END OF THE BACKING REGION, ROUNDED DOWN TO 64. THE ARITHMETIC IS NOW READ RATHER THAN FITTED TO ONE FIXTURE: the initialiser loads the low half of `backing` at 00369F5D (`mov eax, dword ptr [rbx + 8]`), subtracts the first block header at 00369F65 (`sub eax, r10d`), adds the requested size at 00369F6C (`add eax, r13d`, r13d being the third argument latched at 00369D3E), rounds with cdq / `and edx, 0x3f` / `add eax, edx` / `and eax, 0xffffffc0` and stores the result here at 00369F88. So this is (backing + size) - firstBlockHeader, 64-aligned. THAT EXPLAINS THE FIXTURE INSTEAD OF RESTING ON IT: 0xFFD80 for a 0x100000 request is 0x100000 - 0x280, and 0x280 is precisely the prologue the initialiser lays down before the first header. One size no longer has to carry the row.	SEMANTICALLY IDENTIFIED	PROVEN	EXP-077 (ASTRA, 2026-09-12) executed the initializer 00369D30 as shipped bytes under Unicorn and checked the record's fields individually at THREE backing addresses - 40010000, 80010000 and 100010000 - so the field-to-backing relationship holds across a range rather than for one fixture. Re-verified by OPUS against the image before use: the body sha256 16466da3... matches, and the id bound at 00369D47 is cmp esi,0xE / ja, UNSIGNED, which is what rejects the negative id that 00369D3B sign-extended. The 0xA8 stride and the 022D7FD0 base are also read by 0036BC60, which splits linked free blocks across fifteen such records. || THE ARITHMETIC READ FROM THE INITIALISER 2026-09-21 (OPUS): 00369F5D, 00369F65, 00369F6C, 00369F85, 00369F88. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+ ImageAddressArenaRecord	0x0060	2	handleSerial	uint16	A PER-ARENA COUNTER STAMPED INTO EVERY BLOCK HEADER, and the row that completes the stale-handle guard. Written zero by the initialiser at 00369F60 and read back at 00369FCB in the same body; INCREMENTED IN FIVE BODIES, once per block header created - 0036BC31, 0036BFC5, 0036C35B, 0036C470 and 0036CE3E, all `inc word ptr [record + 0x60]`. Its value at the moment of creation is loaded as R9D, the FOURTH argument of the header constructor 0036A490, which stores it at 0036A517 (`mov word ptr [rbx + 0x1c], di`) into the header's handleCheckWord. THAT ROW ALREADY CARRIED THE REST OF THE CHAIN: the check word is copied into the handle slot's word +6 when a handle is issued (0036B005-0036B00C), and 0036A000 and 0036D170 require the two to match before acting. So a counter that does not repeat within an arena is stamped into the header, copied into the handle, and compared on use - which is what makes a stale handle DETECTABLE rather than merely wrong. NOT CLAIMED: what happens when it wraps at 16 bits.	SEMANTICALLY IDENTIFIED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || OBSERVED 2026-09-21 (OPUS) by the flow-sensitive enumeration of the static record array at 0x022D7FD0 - 173 accesses over 30 displacement-width pairs in 33 functions, against 41 in 19 for the linear walk the shared census tools use. Artifact: 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses-flow-sensitive.tsv. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+-ImageAddressArenaRecord	0x0062	1	flag62	uint8	THREE ACCESSES IN THREE FUNCTIONS, which is unusually good for a byte: written 0 by 003697C0 at 003697E4 and by the initialiser at 00369F81, and READ by 00369CF0 at 00369D17 (`movzx eax, byte ptr [rcx + 0x62]`). A flag with a real reader. NOT UNDERSTOOD: what the reader decides on it. Found by this type's own census artifact once the ARRAY route became censusable, 2026-09-20 (OPUS); 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses.tsv. 	SIGNATURE RESOLVED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
++ImageAddressArenaRecord	0x0062	1	movementSinceClear	uint8	Movement-since-clear latch. Initialized/explicitly cleared by 00369D30/003697C0; set to1 after completed movement by 00369C60 and allocation-pressure fallback0036BFE0; read by00369CF0. It does not certify consumer repair. 00332660 queries arena6 then statically calls0041E500/00426950 and clears the latch before continuing; whole scheduling/callback semantics remain bounded.	SEMANTICALLY IDENTIFIED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || SECTION-07: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; original read/clear/move and pressure paths tested; no live frame guarantee.
+ ImageAddressArenaRecord	0x0063	1	pad0063	u8	ONE BYTE NO CODE IN THE IMAGE TOUCHES, between the byte `flag62` at +0x62 and the 4-aligned dword at +0x64 - exactly the padding that member order forces. The initialiser writes +0x60 as a word at 00369F60, +0x62 as a byte at 00369F81 and +0x64 as a dword at 00369F70, and steps over this byte. THE PADDING READING IS AN INFERENCE FROM THE LAYOUT AND IS LABELLED AS ONE; the never-accessed fact is the observation. Three untouched runs on this type, each exactly the size the next member's alignment requires, is what a C compiler produces and not what a field looks like. STORAGE IS SETTLED: 0x022D7FD0 is at +0x4E7FD0 of .data, whose raw data is 0x18E400 bytes, so the whole array lies in the zero-fill tail and the loader zeroes it - zero at load, never written, never read, a COMPLETE lifecycle rather than an unknown. A reimplementation gets these bytes for free from the same member order.	TYPE RESOLVED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || NEVER ACCESSED, ESTABLISHED IMAGE-WIDE 2026-09-21 (OPUS), REDONE FLOW-SENSITIVELY after the first run under-reported. The record is a STATIC ARRAY - 15 x 0xA8 at 0x022D7FD0 - so the enumeration can be complete. FOUR WAYS IN, ALL CLOSED: (1) 19 RIP-relative references image-wide, every one a `lea` of the BASE; (2) zero absolute 8-byte values anywhere in the file land inside the array's 0x9D8 bytes; (3) zero escapes - followed out of all 19 entry points the pointer is never stored outside a local frame, never pushed, never passed to a callee, and never sits in an argument register at an indirect or unknown-target call; (4) zero accesses reach inside the array from any of the 95 RIP-relative targets within 0x400 either side. THE WALK INSIDE EACH FUNCTION IS A FIXPOINT OVER THE CONTROL-FLOW GRAPH, with a generous join: tracked on any incoming path, both biases kept when paths disagree. THAT MATTERS - the first version walked in address order, so MSVC's inline out-of-range stub (`ja` over the `lea`, then `xor ebx, ebx` on the other path) killed the receiver and lost whole function bodies. The table went from 41 accesses in 19 functions to 173 in 33, and one row published on the short table - a padding claim at +0x8C - was wrong. This span is untouched at any width in both the strict and the generous mode. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+ ImageAddressArenaRecord	0x0064	4	totalFreeBytes	uint32	THE TOTAL FREE BYTES, CACHED IN THE SAME WALK. OBSERVED written at 0036B102 in 0036B080: the free-list walk accumulates each block's `payloadLength` from header +0x18 with `add esi, edx` and stores the sum here, one instruction after storing the maximum at +0x8C. The initialiser also writes it zero at 00369F70, which is consistent - an empty arena has no free bytes counted yet. NO READER EXISTS under the flow-sensitive enumeration, so unlike its neighbour at +0x8C this value is computed and stored and never consulted: dead state with a known meaning, which is a different and better outcome than the 'NOT UNDERSTOOD' this row carried.	SEMANTICALLY IDENTIFIED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || WIDTH RESTS ON NO INFORMATION - 2026-09-20 (OPUS), from the store-wide sweep in check_uninformative_widths.py. Every access the census records at this displacement is a store of all-zero bytes (00369F70 `xor r8d, r8d`), and such a store is IDENTICAL however the span is divided: it cannot distinguish one 4-byte field from two narrower ones. The declared width is therefore not evidenced here. THIS IS NOT A CLAIM THAT IT IS WRONG - only that nothing in the census supports it. Two rows found by the same sweep were proved wrong by another instance of the same shape and two were proved right, so a hit is a question rather than a verdict. || OBSERVED 2026-09-21 (OPUS) in the memoised free-space query 0036B080, reached by a flow-sensitive fixpoint over the 19 entry points into the static record array at 0x022D7FD0. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+ ImageAddressArenaRecord	0x0068	36	arenaCounters	uint32[9]	THE PER-ARENA BYTE COUNTERS THE RELEASE PATH DEBITS - the field this record exists for on the free side. 00369860 computes `lea rcx,[rdi + rax*4]` with rax = the block header's +0x16 arenaCounterIndex and does `sub dword ptr [rcx + 0x68], eax` at 00369B18, subtracting the block's +0x18 payloadLength. THE MIRRORING ADDS ARE REAL AND WERE LOCATED: 0036BC60 at 0036BFAD (`add dword ptr [rbx + rdi*4 + 0x68], r14d`) and 0036D050 at 0036D126 (`add dword ptr [rbx + rbp*4 + 0x68], edi`), plus 0036B980 at 0036BAED/0036BB09/0036BC0C on element 0 unscaled. Four functions index dwords at this base with stride 4. NINE ELEMENTS IS MEASURED, NOT A CEILING: the initialiser zero-clears exactly 0x68..0x8C at 00369FAD-00369FC0 as four qwords and one dword, 36 bytes, with r8 zero from 00369E7B. Containment against +0x90 would have permitted TEN and the clear says NINE; the measurement is taken. NOT CLAIMED: that the index is bounded to 9 - no reader of +0x16 range-checks it. Found by this type's own census artifact once the ARRAY route became censusable, 2026-09-20 (OPUS); 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses.tsv.  INDEX PROVENANCE, checked after declaring: at the carve 0036BC60 the index is NOT read from the header - 0036BE85 loads it `movsxd rdi, dword ptr [rsp + 0x88]`, a caller-supplied SIGNED dword, and nothing bounds it before `add dword ptr [rbx + rdi*4 + 0x68], r14d` at 0036BFAD. So the nine-element count rests on the initialiser's cleared extent alone; the index is not evidence for it, and a negative index would address below the array. Recorded because it was tested: the claim was that nothing range-checks the index, and looking for a bound found a signed one instead.	SIGNATURE RESOLVED	PROVEN	exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+--- before/FFXII TZA/_index/_inbox/EXTERNAL-CONTINUATION.md
++++ after/FFXII TZA/_index/_inbox/EXTERNAL-CONTINUATION.md
+@@ -1,6 +1,30 @@
+ # External production continuation — current handoff
+ 
+ **DB_GOAL=NOT_MET.** The endpoint is accepted whole-game L1+L2 plus its required independent readiness/terminal process. L3 implementation is later. A completed local section is not database completion.
++
++## SECTION-07 — actual source movement and separate refresh; local production complete
++
++Date:2026-09-23. Apply Update07 AFTER Updates01–06 to the September22 21:12:46 base.
++[Review and reproduction](../../_experiments/evidence/continuation-section07-source-movement/REVIEW.md).
++
++The original producer0036A2A0 now moves real arena allocations, selected by0036AAD0/0036ABE0.
++Explicit compaction and normal allocation-pressure retry are tested; no fixture copy pretends to
++be the mover.123 original-instruction assertions pass, with an identical repeat and ten rejected
++impacted variants. A separate smaller-hole probe stops at overlapping-copy import entry without
++claiming Windows CRT behavior. The combined0024D540 window is entered/exited explicitly; its five
++preceding service calls and later rendering are not run.
++
++Established: membership and inhibit-bit selection, exact versus adjacent policy, source-copy and
++slot-publication order, stable handle versus stale raw reference, movement-since-clear latch,
++last-write-wins child request packing,0 no-refresh success,1..10 bounds, failure retirement versus
++unbound pending preservation, actual dirty delivery, and separate combined-list repair. Two types
++receive evidence and four field rows gain bounded meaning; no whole type/L2 promotion.
++
++Next high-value work: external mode1-owner replacement and pin discipline at consumers; actual
++Windows CRT overlapping-copy semantics with pinned dependency bytes; nonempty specialized repaired
++structures and producer/consumer scheduling beyond the tested windows. Do not repeat completed
++movement/queue/query controls merely to raise counts. Current global/TEAM claims are untouched and
++formal independent acceptance is still pending.
+ 
+ ## SECTION-06 — completed local production; formal peer acceptance pending
+ 

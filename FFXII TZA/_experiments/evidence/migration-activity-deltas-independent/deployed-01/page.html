@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FF12 database dashboard</title><style>
+:root{--bg:#fff;--fg:#1d1d1f;--mut:#666;--line:#ddd;--soft:#f3f4f6;--ok:#1a7f37;--warn:#9a6700;--bad:#cf222e;--unk:#6e7781;--bar:#2f81f7}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mut:#9da7b3;--line:#30363d;--soft:#161b22;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--unk:#8b949e;--bar:#58a6ff}}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,sans-serif}header{padding:12px 16px;border-bottom:1px solid var(--line)}
+nav{display:flex;flex-wrap:wrap;gap:4px;padding:8px 16px;border-bottom:1px solid var(--line)}nav button{border:1px solid var(--line);background:none;color:var(--fg);padding:4px 10px;border-radius:6px;cursor:pointer}
+nav button.on{border-color:var(--fg)}main{padding:12px 16px;overflow-x:auto}.st{font-weight:600}.OK{color:var(--ok)}.STALE,.PARTIAL{color:var(--warn)}
+.INVALID,.FAILED,.MALFORMED,.UNSUPPORTED{color:var(--bad)}.HISTORICAL{color:var(--warn)}.UNMEASURED{color:var(--unk)}table{border-collapse:collapse;margin:8px 0}td,th{border:1px solid var(--line);padding:3px 8px;text-align:left;vertical-align:top}
+.mut{color:var(--mut)}ul{margin:2px 0 2px 18px;padding:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:8px 0 14px}.card{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.card h3{margin:0 0 4px;font-size:13px;font-weight:600}.big{font-size:22px;font-weight:650}.bar{height:7px;background:var(--soft);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:6px 0 2px}
+.bar>i{display:block;height:100%;background:var(--bar)}.cat td.n{text-align:right;white-space:nowrap}tr.cat{cursor:pointer}tr.cat:hover{background:var(--soft)}tr.drill>td{background:var(--soft)}
+details>summary{cursor:pointer}.pbar{display:inline-block;width:80px;height:6px;background:var(--soft);border:1px solid var(--line);border-radius:3px;vertical-align:middle;margin-right:6px;overflow:hidden}.pbar>i{display:block;height:100%;background:var(--bar)}
+.addr{font-family:ui-monospace,monospace;font-size:12px;word-break:break-all}
+.dpos{color:var(--ok)}.dneg{color:var(--bad)}.dz,.dna,.dmut{color:var(--mut)}.dl{margin-left:8px;font-size:12px;white-space:nowrap}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}#timer{font-size:12px;white-space:nowrap;cursor:help}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 12px;font-size:13px}.legend b{font-weight:600}
+.acat{font-size:15px;font-weight:600}.muted-lane{border:1px dashed currentColor;border-radius:3px;padding:0 4px;margin-left:6px;font-size:12px;font-weight:400;opacity:.8}
+tr.arow{cursor:pointer}tr.arow:hover{background:var(--soft)}</style></head><body>
+<header><div class=hd><div><b>FF12 database dashboard</b> <span class="mut">read-only; serves the verified CURRENT generation only</span></div>
+<div id="timer" class="mut">Next full refresh: UNKNOWN</div></div><div id="gen" class="mut"></div></header>
+<nav id="tabs"></nav><main id="main"></main><script>
+let cur="progress",lastStatus=null,openCat={};const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LABEL={progress:"My Progress",activity:"Agent Activity"};
+function dtip(d){if(!d)return "";const o=d.old?d.old.numerator+" / "+d.old.denominator:"-",n=d.new?d.new.numerator+" / "+d.new.denominator:"-";
+ return "vs prior generation: "+o+" -> "+n+(d.why?" ("+d.why+")":"")}
+function delta(m){const d=m&&m.delta;if(!d)return "";if(d.na)return "<span class='dl dna' title='"+esc(dtip(d))+"'>"+esc(d.na==="no prior"?"-":d.na)+"</span>";
+ const v=Math.round(d.pp*10)/10,dir=(m.direction==="up"||m.direction==="down")?m.direction:"none",c=v===0?"dz":(dir==="none"?"dmut":((dir==="up")===(v>0)?"dpos":"dneg")),t=(v>0?"+":"")+v.toFixed(1)+"%",why=dir==="none"?"no good direction":(dir==="up"?"a rise is progress":"a rise is regression");return "<span class='dl "+c+"' title='"+esc(dtip(d)+" (percentage points; "+why+")")+"'>"+t+"</span>"}
+function pct(m){return (m.denominator? (100*m.numerator/m.denominator).toFixed(1)+"% ":"")+esc(m.numerator)+(m.denominator!=null?" / "+esc(m.denominator):"")+delta(m)}
+function pc(n,d){if(!d)return null;let a=Math.floor(n*1000/d)/10;if(n<d&&a>=100)a=99.9;return {a:a.toFixed(1),r:(n<d?(100-a).toFixed(1):"0.0"),w:Math.min(100,a)}}
+function tree(ns){return "<ul>"+ns.map(n=>"<li>"+esc(n.label)+(n.state?" <span class='st "+esc(n.state)+"'>"+esc(n.state)+"</span>":"")+
+ (n.counts?" <span class=mut>"+Object.entries(n.counts).map(([k,v])=>esc(k)+" "+esc(v)).join(", ")+"</span>":"")+
+ (n.links||[]).map(l=>" <a href='#' title='"+esc(l.href)+"'>"+esc(l.label)+"</a>").join("")+(n.children&&n.children.length?tree(n.children):"")+"</li>").join("")+"</ul>"}
+let MS={};function card(title,s,unit,extra,mid){const p=pc(s.accepted,s.total);if(!p)return "<div class=card><h3>"+esc(title)+"</h3><div class='big UNMEASURED'>UNMEASURED</div></div>";
+ return "<div class=card title='"+esc(s.accepted+" of "+s.total+" requirements accepted; "+(s.total-s.accepted)+" remaining. "+unit)+"'><h3>"+esc(title)+"</h3><div class=big>"+p.a+"%"+delta(MS[mid])+"</div>"+
+ "<div class=bar><i style='width:"+p.w+"%'></i></div><div class=mut>"+p.a+"% accepted &middot; "+p.r+"% remaining</div><div class=mut>"+esc(s.accepted)+" / "+esc(s.total)+(extra||"")+"</div></div>"}
+function chg(c,p){if(!c)return "<span class=mut>"+esc(p.change&&!p.change.comparable?p.change.why:"no prior checkpoint yet")+"</span>";if(c.new)return "new";
+ const s=v=>(v>0?"+":"")+v;let t=s(c.accepted)+" accepted";if(c.scope)t+=" &middot; scope "+s(c.scope);return t+" <span class=mut>("+s(c.pct.toFixed(2))+" pts)</span>"}
+function fam(p,f){return (p.families[f]||{}).label||f}
+function drill(c,p){let h="";const byf={};c.items.forEach(i=>(byf[i.f]=byf[i.f]||[]).push(i));
+ if(!c.items.length&&!c.functions.length)return "<p class=mut>Nothing remains in this category.</p>";
+ h+="<p class=mut>remaining here: "+Object.entries(c.remaining_by_family).map(([f,n])=>esc(n)+" "+esc(fam(p,f))).join("; ")+"</p>";
+ for(const [f,xs] of Object.entries(byf)){h+="<details"+(xs.length<=25?" open":"")+"><summary><b>"+esc(fam(p,f))+"</b> - "+xs.length+"</summary><table><tr><th>requirement</th><th>state</th><th>owner</th><th>next action</th><th>evidence</th></tr>"+
+  xs.map(i=>"<tr><td>"+esc(i.k)+"</td><td>"+esc(i.st)+"</td><td>"+esc(i.o||"unassigned")+"</td><td>"+esc(i.n)+"</td><td>"+esc(i.e)+"</td></tr>").join("")+"</table></details>"}
+ if(c.functions.length){h+="<details><summary><b>"+esc(fam(p,"F"))+"</b> - "+c.functions.reduce((a,g)=>a+g[1],0)+" functions, by state and owner/domain</summary>"+
+  "<p class=mut>next action: explain each on a page, or declare it in a B/C family (check_dispositions.py); evidence: functions.tsv</p>"+
+  c.functions.map(g=>"<details><summary>"+esc(g[0])+" - "+g[1]+"</summary><div class=addr>"+esc(g[2])+"</div></details>").join("")+"</details>"}
+ return h}
+function renderProgress(r){const v=r.view,p=v.progress,m=document.getElementById("main"),st=(lastStatus&&lastStatus.views&&lastStatus.views.progress)||v.status;
+ MS={};(v.measures||[]).forEach(x=>MS[x.id]=x);
+ let h="<h2>My Progress <span class='st "+esc(st)+"'>"+esc(st)+"</span></h2><p class=mut>generation "+esc(r.meta.generation)+", last update "+esc(r.meta.committed_at)+
+  " &middot; freshness <span class='st "+esc(st)+"'>"+esc(st)+"</span>"+(r.meta.historical?" (HISTORICAL: the last verified generation, not CURRENT)":"")+" &middot; metric "+esc(p.version)+"</p>";
+ const u=p.unit,T=p.terminal||{},R=p.reconstruction||{};
+ const xf=p.scopes.union_exF,xq=xf?pc(xf.accepted,xf.total):null,xline=xq?"<div class=mut title='"+esc("the same count without the 35,064 function dispositions, so the other families' movement is visible")+"'>excluding functions: "+xq.a+"% ("+esc(xf.accepted)+" / "+esc(xf.total)+")"+delta(MS["union-exf"])+"</div>":"";
+ h+="<div class=cards>"+(p.measured?card("Governing requirements accepted (L1+L2)",p.scopes.union,u,xline,"union"):"<div class=card><h3>Governing requirements accepted (L1+L2)</h3><div class='big UNMEASURED'>UNMEASURED</div><div class=mut>known requirements only: "+
+   esc(p.scopes.union.accepted)+" / "+esc(p.scopes.union.total)+delta(MS.union)+"</div>"+xline+"</div>")+
+  card("L1 (modding grade)",p.scopes.L1,u,"","L1")+card("L2 (reconstruction grade)",p.scopes.L2,u,"","L2")+
+  "<div class=card title='"+esc("Thirty consecutive clean passes of FINAL-AUDIT-PROTOCOL, counted from the governing gate. They run only after everything else is accepted.")+"'><h3>Final certification</h3><div class=big>"+esc(T.accepted??"?")+" / "+esc(T.required)+"</div><div class=mut>accepted terminal passes / required</div></div>"+
+  "<div class=card title='"+esc(R.why||"")+"'><h3>Reconstruction status</h3><div class='big "+(R.state==="NOT READY"?"UNMEASURED":"OK")+"' style='font-size:16px'>"+esc(R.state)+"</div><div class=mut>"+esc(R.why||"")+"</div></div></div>";
+ const gp=Object.entries(p.gaps||{}).concat(Object.keys(p.failed||{}).map(k=>[k,"reader failed: "+p.failed[k]]));
+ if(gp.length)h+="<p class=STALE><b>Not yet fully enumerated</b> - the overall figure stays UNMEASURED until these are closed: "+gp.map(([k,v])=>esc(k)+": "+esc(v)).join("; ")+"</p>";
+ const qs=p.q_split;
+ h+="<h3>By requirement family</h3><table><tr><th>family</th><th>accepted</th><th>remaining</th><th>accepted %</th></tr>"+
+  Object.entries(p.families).map(([k,f])=>{const q=pc(f.accepted,f.total)||{a:"-",w:0};return "<tr><td>"+esc(f.label)+(k==="Q"&&qs?"<div class=mut>answered "+esc(qs.answered)+" &middot; dispositioned (SUPERSEDED, NAS, OEB, landed transfers) "+esc(qs.dispositioned)+" &middot; excluded as not requirements "+esc(qs.excluded)+"</div>":"")+
+  (k==="DD"&&qs&&qs.dd_answered!=null?"<div class=mut>documented, all answered "+esc(qs.dd_answered)+" &middot; documented with a dispositioned residue "+esc(qs.dd_dispositioned)+"</div>":"")+
+  "</td><td class=n>"+esc(f.accepted)+" / "+esc(f.total)+"</td><td class=n>"+esc(f.total-f.accepted)+"</td><td class=n><span class=pbar><i style='width:"+q.w+"%'></i></span>"+q.a+"%"+delta(MS["fam-"+k.toLowerCase()])+"</td></tr>"}).join("")+"</table>";
+ h+="<details><summary>How these numbers are counted</summary><p>"+esc(u)+"</p><p class=mut>Combined L1+L2 is the deduplicated union: a shared requirement counts once. "+
+  "Accepted % rounds down and remaining % rounds up, so 100% is never shown while anything remains. Change compares with the prior checkpoint "+
+  "(the last verified generation before today, "+esc(p.change&&p.change.generation||"none yet")+"), with accepted work and scope changes kept apart. "+
+  "Definitions: "+esc(p.definitions)+"; category map: "+esc(p.map)+(p.review?"; meaning review: "+esc(p.review):"")+".</p>"+
+  "<p class=mut>Not requirements (excluded, listed so none is silently dropped): "+esc(p.excluded.map(x=>x[0]+" ("+x[1]+")").join("; ")||"none")+"</p>"+
+  (p.unplaced.length?"<p class=STALE>Mapping gap: "+p.unplaced.length+" requirement(s) not placed in a category: "+esc(p.unplaced.slice(0,30).join(", "))+"</p>":"")+"</details>";
+ h+="<h3>By category</h3><table class=cat><tr><th>Category</th><th title='accepted / total requirements placed in this category'>Accepted %</th><th>Remaining %</th><th title='"+esc("percentage points against the prior coherent generation "+((v.delta_basis||{}).generation||"(none)"))+"'>Change since prior generation</th></tr>";
+ p.categories.forEach(c=>{if(!c.total&&c.code!=="untied")return;const q=pc(c.accepted,c.total)||{a:"-",r:"-",w:0};
+  h+="<tr class=cat data-c='"+esc(c.code)+"' onclick='tog(this.dataset.c)' title='"+esc(c.accepted+" of "+c.total+" requirements; click for what remains")+"'><td>"+(openCat[c.code]?"&#9662; ":"&#9656; ")+esc(c.label)+
+   "</td><td class=n><span class=pbar><i style='width:"+q.w+"%'></i></span>"+q.a+"%</td><td class=n>"+q.r+"%</td><td title='"+esc(c.change?"accepted "+(c.change.accepted>0?"+":"")+c.change.accepted+", scope "+(c.change.scope>0?"+":"")+c.change.scope:"")+"'>"+(delta(MS["cat-"+c.code])||"<span class='dl dna'>-</span>")+"</td></tr>";
+  if(openCat[c.code])h+="<tr class=drill><td colspan=4>"+drill(c,p)+"</td></tr>"});
+ h+="</table>";m.innerHTML=h}
+const DARK=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;let actOpen={};
+function lc(a,l){const c=(a.colors||{})[l];return c?(DARK?c[1]:c[0]):"inherit"}
+function split(label,lanes,a){if(!lanes.length)return esc(label);const ch=[...label],n=lanes.length,out=[];
+ for(let i=0;i<n;i++){const s=Math.round(i*ch.length/n),e=Math.round((i+1)*ch.length/n);out.push("<span style='color:"+lc(a,lanes[i])+"'>"+esc(ch.slice(s,e).join(""))+"</span>")}return out.join("")}
+async function renderActivity(){const m=document.getElementById("main");let a;try{a=await (await fetch("/api/activity")).json()}catch(e){m.innerHTML="<p class=FAILED>activity feed unreachable</p>";return}
+ if(a.status!=="OK"){m.innerHTML="<h2>Agent Activity <span class='st UNKNOWN'>"+esc(a.status)+"</span></h2><p>"+esc(a.why||"")+"</p>";return}
+ let h="<h2>Agent Activity</h2><p class=mut>live feed: controller poll "+esc(a.feed.poll_ts||"none")+", board revision "+esc(a.feed.board_revision)+", as of "+esc(a.as_of)+
+  "; categories placed with generation "+esc(a.generation)+". Coloured = actively working (controller or session feed, or a board write within the hour); "+
+  "outlined = a claim on an idle/UNKNOWN lane, or a queued review.</p><div class=legend>"+
+  a.lanes.map(l=>{const lv=a.liveness[l]||["UNKNOWN",""];return "<span title='"+esc(l+": "+lv[0]+" - "+lv[1])+"'><b style='color:"+lc(a,l)+"'>"+esc(l)+"</b> <span class=mut>"+esc(lv[0])+"</span></span>"}).join("")+"</div>";
+ h+="<table class=cat><tr><th>Category</th><th>working</th><th>claimed / waiting</th></tr>";
+ a.categories.forEach(c=>{h+="<tr class=arow data-c='"+esc(c.code)+"' onclick='atog(this.dataset.c)' title='"+esc(c.items.map(i=>i.lane+" "+i.kind+": "+i.task).join("; ")||"nobody")+"'><td class=acat>"+
+  split(c.label,c.working,a)+"</td><td>"+c.working.map(l=>"<span style='color:"+lc(a,l)+"'>"+esc(l)+"</span>").join(", ")+"</td><td>"+
+  c.muted.map(l=>"<span class=muted-lane style='color:"+lc(a,l)+"'>"+esc(l)+"</span>").join("")+"</td></tr>";
+  if(actOpen[c.code])h+="<tr class=drill><td colspan=3><table><tr><th>agent</th><th>kind</th><th>task / package</th><th>stage</th><th>last update</th><th>dependency / blocker</th></tr>"+
+   c.items.map(i=>"<tr><td style='color:"+lc(a,i.lane)+"'>"+esc(i.lane)+"</td><td>"+esc(i.kind)+"</td><td>"+esc(i.task)+"</td><td>"+esc(i.stage)+"</td><td>"+esc((i.updated_at||"").slice(0,16))+"</td><td>"+esc(i.blocker||"-")+"</td></tr>").join("")+"</table></td></tr>"});
+ h+="</table><h3>By agent</h3><table><tr><th>agent</th><th>liveness</th><th>current claims</th><th>categories</th><th>waiting reviews</th></tr>"+
+  a.by_agent.map(b=>"<tr><td style='color:"+lc(a,b.lane)+"'><b>"+esc(b.lane)+"</b></td><td title='"+esc(b.basis)+"'>"+esc(b.liveness)+"</td><td>"+
+   (b.working.map(i=>esc(i.task)+" <span class=mut>("+esc(i.kind)+"; "+esc(i.stage.slice(0,60))+")</span>").join("<br>")||"<span class=mut>none</span>")+"</td><td>"+
+   esc([...new Set(b.working.flatMap(i=>i.groups))].map(g=>(a.categories.find(c=>c.code===g)||{label:g}).label).join(", ")||"-")+"</td><td>"+
+   (b.waiting_count?esc(b.waiting_count)+" queued: "+b.waiting.map(i=>esc(i.task)).join(", "):"<span class=mut>none</span>")+"</td></tr>").join("")+"</table>";
+ m.innerHTML=h}
+function atog(c){actOpen[c]=!actOpen[c];renderActivity()}
+let lastView=null;function tog(c){openCat[c]=!openCat[c];if(lastView)renderProgress(lastView)}
+async function show(name){cur=name;document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==name));
+ if(name==="activity")return renderActivity();
+ const r=await (await fetch("/api/view/"+name)).json();const m=document.getElementById("main");
+ if(!r.view){m.innerHTML="<p class='st "+esc(r.status)+"'>"+esc(r.status)+"</p><p>"+esc(r.why||(r.problems||[]).join("; ")||r.error)+"</p>";return}
+ if(r.view.view==="progress"&&r.view.progress){lastView=r;return renderProgress(r)}
+ const v=r.view;let h="<h2>"+esc(v.title||v.view)+" <span class='st "+esc(v.status)+"'>"+esc(v.status)+"</span></h2>";
+ h+="<p class=mut>source "+esc(JSON.stringify(v.source||{}))+"</p>";
+ if(v.measures&&v.measures.length){h+="<table><tr><th>measure</th><th>value</th><th>scope</th><th>instrument</th><th>as of</th><th>limits</th></tr>"+
+  v.measures.map(x=>"<tr><td>"+esc(x.label||x.id)+"</td><td>"+pct(x)+"</td><td>"+esc(x.scope)+"</td><td>"+esc(x.instrument)+"</td><td>"+esc(x.as_of)+"</td><td>"+esc(x.limits)+"</td></tr>").join("")+"</table>"}
+ if(v.tree)h+=tree(v.tree);if(v.rows)h+="<table><tr>"+v.rows.columns.map(c=>"<th>"+esc(c)+"</th>").join("")+"</tr>"+v.rows.data.map(r=>"<tr>"+r.map(c=>"<td>"+esc(c)+"</td>").join("")+"</tr>").join("")+"</table>";
+ m.innerHTML=h}
+let lastGen=null;
+async function poll(){try{const s=await (await fetch("/api/status")).json();lastStatus=s;
+ if(lastGen!==null&&s.generation!==lastGen)show(cur);lastGen=s.generation;
+ const cp=(s.current&&s.current.problems)||[];
+ document.getElementById("gen").textContent=
+  (s.reader_stale?"RESTART REQUIRED: the dashboard server's code changed on disk since it started; its verdicts may not follow the current contract | ":"")+
+  (s.no_verified_generation?"NO VERIFIED GENERATION AVAILABLE - CURRENT "+(s.current.generation||"none")+" rejected: "+cp.join("; ")
+   :(s.historical?"SHOWING LAST VERIFIED generation "+s.generation+" (committed "+s.committed_at+") - CURRENT "+s.current.generation+" was rejected: "+cp.join("; ")
+     :"generation "+s.generation+" committed "+s.committed_at))+
+  (Object.keys(s.drift).length?" | STALE: sources moved "+JSON.stringify(s.drift):"")+(Object.keys(s.volatile_drift||{}).length?" | since the snapshot: "+Object.keys(s.volatile_drift).join(", ")+" moved (live sources; next build picks it up)":"")+
+  (s.failure?(s.failure.resolved?" | earlier failure, resolved by the current generation: ":" | LATEST BUILD FAILED ("+s.failure.failed_at+"): ")+s.failure.reason:"");
+ const vs=Object.entries(s.views);vs.splice(1,0,["activity","live"]);document.getElementById("tabs").innerHTML=vs.map(([k,st])=>"<button data-v='"+esc(k)+"' onclick='show(this.dataset.v)'>"+esc(LABEL[k]||k)+" <span class='st "+esc(st)+"'>"+esc(st)+"</span></button>").join("");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==cur))}catch(e){document.getElementById("gen").textContent="dashboard server unreachable: "+e}}
+let LIVE=null,liveAt=0;const mmss=x=>{x=Math.max(0,Math.round(x));return String(Math.floor(x/60)).padStart(2,"0")+":"+String(x%60).padStart(2,"0")};
+function tick(){const el=document.getElementById("timer");if(!LIVE){el.textContent="Next full refresh: UNKNOWN";return}
+ const now=Date.now()/1000,L=LIVE,left=L.next_at?L.next_at-now:null,st=(lastStatus&&(lastStatus.historical||lastStatus.no_verified_generation))?" (showing "+(lastStatus.no_verified_generation?"no verified data":"HISTORICAL data")+")":"";
+ el.title="state "+L.state+(L.why?" - "+L.why:"")+"; last full refresh "+(L.last_run?new Date(L.last_run*1000).toISOString():"none")+"; generation "+(L.generation||"none")+
+  "; interval "+(L.interval||"?")+" s; next "+(L.next_at?new Date(L.next_at*1000).toISOString()+" / "+new Date(L.next_at*1000).toLocaleString():"unknown");
+ if(L.state==="REFRESHING"){el.textContent="Refreshing…"+st;return}
+ if(L.state==="UNKNOWN"){el.textContent="Next full refresh: UNKNOWN"+(L.why?" ("+L.why+")":"")+st;return}
+ if(L.state==="FAILED"){el.textContent="Refresh failed · retry in "+mmss(left)+st;return}
+ if(L.state==="OVERDUE"){el.textContent="Full refresh overdue by "+mmss(-left)+" (scheduler unhealthy)"+st;return}
+ el.textContent=(left>0?"Next full refresh: "+mmss(left):"Next full refresh: due now")+st}
+async function livePoll(){try{LIVE=await (await fetch("/api/live")).json();liveAt=Date.now()}catch(e){LIVE={state:"UNKNOWN",why:"dashboard server unreachable"}}tick()}
+if(window.__ff12){window.__ff12.forEach(clearInterval)}
+window.__ff12=[setInterval(poll,5000),setInterval(tick,1000),setInterval(livePoll,15000)];
+poll().then(()=>show(cur));livePoll();
+</script></body></html>

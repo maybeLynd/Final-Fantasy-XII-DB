@@ -1,0 +1,30 @@
+[
+  {
+    "argument": "--fault-raw-byte-fold",
+    "returncode": 1,
+    "expected": "CP932 trailing5C character",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "f97ba57f5176b001fa8e361c209562417ebac5954110e36b888b0d2549f2e0ab"
+  },
+  {
+    "argument": "--fault-physical-guard",
+    "returncode": 1,
+    "expected": "LogicalL+1 within physicalL",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "9c69a904d6a04216d77b81338229bc4d3f3ca43c97a45d979873c3e5ad7c4887"
+  },
+  {
+    "argument": "--fault-old-preparation-mode",
+    "returncode": 1,
+    "expected": "Decoded logical domain corrects",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e9417c8cda58d1e7a1f9bb6465b9bfa3a29095d0441f509a7b85d8f00cb64c4c"
+  },
+  {
+    "argument": "--fault-ignore-multiphysical-group",
+    "returncode": 1,
+    "expected": "Actual source multi-physical group",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "0b8d7aa9fa9ffb1067e5ef39bf63d093e85e6fd865cacf38f513ce68771ba0c0"
+  }
+]

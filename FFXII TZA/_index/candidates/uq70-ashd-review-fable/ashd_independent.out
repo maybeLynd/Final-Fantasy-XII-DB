@@ -1,0 +1,5 @@
+PASS R1  layer 1 0xb10 of 0xb10 ending 0x942/0x942; layer 2 0x23e0 of 0x23e0 ending 0xb10/0xb10
+PASS R2  payload sha256 cc7c625a8afc1a295e587b928e2a664b4b123542a9ba9bda77aad7a3b56faf6d
+PASS R3  tag 0x80000002, own size True, functions 7, actors 24, control name True
+PASS C  control: literal count +1 fails layer 1 (valid=False, 0xa8 of 0xb10)
+FAILS 0

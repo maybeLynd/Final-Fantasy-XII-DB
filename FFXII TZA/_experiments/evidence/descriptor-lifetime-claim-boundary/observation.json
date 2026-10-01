@@ -1,0 +1,10 @@
+{
+  "result": "MEMBERSHIP_RELEASE_PROVENANCE_SEPARATED; OWNER_REVIEW_PENDING",
+  "whole_teardown": "Borrowed +90/+A0 nodes skipped in free-walk are later drained. Current paragraph describing final membership contradicts complete original flow and retained EXP097 head evidence.",
+  "native_observer_gap": "EXP097 driver/results retain heads/registry/embedded nodes, not individual list-member spans. Preserve its accepted scope; do not call that full node-heap comparison.",
+  "historical_mutation_gap": "EXP097 m-selflink NOP4 at6334F1 begins at a3-byte pointer load and removes first byte of next instruction. Retain recorded kill, but it is not an isolated selflink-store mutation. Intended semantic mutation coverage pending owner repair; original unmodified cases are not retracted.",
+  "focused_B": "Original no-call71-byte drain self-links both raw node links and preserves other56-byte-span bytes; one supplied node above4GiB. Labeled NOP leaves heads identical but member prev links wrong, detected by raw-node reducer.",
+  "provenance": "No free in this teardown does not distinguish static from external/pool/arena ownership. Actual +B0/+60 allocation sources and cross-state population remain open. Established static field census not retracted.",
+  "limits": "Controlled guest nodes and exact entry, no actual initializer/allocator/FF12/live population or free effects. EXP097 allocator remains scripted; historical15/10 campaign not replayed. New B only71-byte helper/original plus labeled mutation.",
+  "cleanup": "Guest instances ended with exact return and restored stack. No native OS child, PC/runtime/input/debugger/save/config/reference write or restoration."
+}

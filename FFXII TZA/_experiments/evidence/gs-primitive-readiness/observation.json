@@ -1,0 +1,540 @@
+{
+  "method": "B isolated shipping integer controller with explicit interior boundary/omitted effects",
+  "observations": [
+    {
+      "case": "triangle-list-control",
+      "primitive_mode": 3,
+      "required": 3,
+      "carry": 0,
+      "fan": 0,
+      "AL_pattern": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 0,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 0,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 0
+        }
+      ]
+    },
+    {
+      "case": "line-list",
+      "primitive_mode": 1,
+      "required": 2,
+      "carry": 0,
+      "fan": 0,
+      "AL_pattern": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 0
+        }
+      ]
+    },
+    {
+      "case": "line-strip",
+      "primitive_mode": 2,
+      "required": 2,
+      "carry": 1,
+      "fan": 0,
+      "AL_pattern": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 1
+        }
+      ]
+    },
+    {
+      "case": "triangle-strip",
+      "primitive_mode": 4,
+      "required": 3,
+      "carry": 2,
+      "fan": 0,
+      "AL_pattern": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 0,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        }
+      ]
+    },
+    {
+      "case": "point",
+      "primitive_mode": 0,
+      "required": 1,
+      "carry": 0,
+      "fan": 0,
+      "AL_pattern": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 1,
+          "phase_after_consumer": 0
+        }
+      ]
+    },
+    {
+      "case": "triangle-fan",
+      "primitive_mode": 5,
+      "required": 3,
+      "carry": 2,
+      "fan": 1,
+      "AL_pattern": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 0,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 2
+        }
+      ]
+    },
+    {
+      "case": "sprite",
+      "primitive_mode": 6,
+      "required": 2,
+      "carry": 0,
+      "fan": 0,
+      "AL_pattern": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 3,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 1,
+          "phase_after_consumer": 0
+        }
+      ]
+    },
+    {
+      "case": "triangle-list-ADC-control",
+      "primitive_mode": 3,
+      "required": 3,
+      "carry": 0,
+      "fan": 0,
+      "AL_pattern": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "transitions": [
+        {
+          "candidate": 1,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 2,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 0,
+          "phase_after_consumer": 2
+        },
+        {
+          "candidate": 3,
+          "adc": 1,
+          "phase_before": 2,
+          "phase_after_increment": 3,
+          "al": 0,
+          "phase_after_consumer": 3
+        },
+        {
+          "candidate": 4,
+          "adc": 0,
+          "phase_before": 3,
+          "phase_after_increment": 3,
+          "al": 1,
+          "phase_after_consumer": 0
+        },
+        {
+          "candidate": 5,
+          "adc": 0,
+          "phase_before": 0,
+          "phase_after_increment": 1,
+          "al": 0,
+          "phase_after_consumer": 1
+        },
+        {
+          "candidate": 6,
+          "adc": 0,
+          "phase_before": 1,
+          "phase_after_increment": 2,
+          "al": 0,
+          "phase_after_consumer": 2
+        }
+      ]
+    }
+  ],
+  "established": [
+    "Actual PRIM setter calls20FBA0 but then zeroesphase andvertexcount; helper-only initialization would omit this reset.",
+    "XYZ2 prefix incrementsphase and signed-CMOVG saturates it at required (valid tested small values).",
+    "Postwriter suffix returns AL true only for clear inputqword+8 bit47 and phase==required. Consumer tests AL, resettingphase tocarry only on true.",
+    "List/strip patterns differ throughcarry0 versus1/2; fan sharestriangle-strip readiness but hasfanflag1. Sprite sharesline-list readiness but laterindexeffects differ.",
+    "ADC suppression leavesphase atrequired; a subsequent clear-bit candidate can pass and reset. No coordinate-dependent test appears in the executed suffix."
+  ],
+  "semantic_implication": "Qualify current list/strip return hypothesis with original initialization, saturatedphase/equality, ADC and carry-reset mechanics. Preserve byte-return consumption, signed comparison, and full setter boundary.",
+  "limits": "PRIM setter is complete; phase prefix stops before capacity/geometry. Gate enters2102E8 AFTER omitted writer call with matching controlled frame. ALconsumer stops before indexdispatch/sharedcontinuation. No vertexwriter/transform/indexgenerator/nativeGPU effects, complete PACKED invocation or live state proven. Supplied integer state/source bits. Actual geometry write/exceptions/counteraliasing, full packet/index/GPU effects, normal callers and frequency remain untested. Fan/sprite topology names inherited from existing page, no new visual proof.",
+  "cleanup": "Fresh disposable guests; original code unchanged; no FF12/native attach/input/instrument/save/config/reference writes or new live cleanup receipt.",
+  "affected_consumers": [
+    "FABLE legacyGS2.1b list/strip return gate",
+    "OPUS original counter/ADC/AL widths and initializer ordering"
+  ],
+  "propagation": "PENDING independent review and owner incorporation"
+}

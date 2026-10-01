@@ -1,0 +1,3 @@
+{"action":"finish","task":"SWE2-EC7-SHARED-HUB-IDENTIFICATION-25",
+ "result_refs":["audit:xref_hub25","log:AUDIT-LOG#2026-09-18-batch-25"],
+ "note":"22/22 A-measured, 0 evidence-only, 14 bearing hosts. Gates green; publish-neighbours ADDS NOTHING."}

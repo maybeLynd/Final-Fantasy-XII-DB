@@ -1,0 +1,161 @@
+{
+  "target": "0x71bb70",
+  "prior_astra_source": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/uc1-band-ruling/observation.json",
+  "prior_astra_sha256": "92b833fb79f4285bd4894a40a021a680bf2ab74c3c305db8f23258c5a1c51add",
+  "prior_observation": {
+    "candidate": {
+      "start_va": "0071BB70",
+      "bytes": "32",
+      "prev_entry": "0071BB00",
+      "aligned16": "yes",
+      "referenced": "yes",
+      "multi": "no",
+      "pred_branch": "no",
+      "decodes_to_end": "yes",
+      "ruling": "admit"
+    },
+    "raw_hex": "85c97f1085d2750c33c032c984c90f95c0ffc0c333c0b10184c90f95c0ffc0c3",
+    "flow": {
+      "full_linear": true,
+      "problems": [],
+      "exits": [
+        [
+          "0x71bb83",
+          "ret"
+        ],
+        [
+          "0x71bb8f",
+          "ret"
+        ]
+      ],
+      "instructions": [
+        [
+          "0x71bb70",
+          "85c9",
+          "test",
+          "ecx, ecx",
+          true
+        ],
+        [
+          "0x71bb72",
+          "7f10",
+          "jg",
+          "0x71bb84",
+          true
+        ],
+        [
+          "0x71bb74",
+          "85d2",
+          "test",
+          "edx, edx",
+          true
+        ],
+        [
+          "0x71bb76",
+          "750c",
+          "jne",
+          "0x71bb84",
+          true
+        ],
+        [
+          "0x71bb78",
+          "33c0",
+          "xor",
+          "eax, eax",
+          true
+        ],
+        [
+          "0x71bb7a",
+          "32c9",
+          "xor",
+          "cl, cl",
+          true
+        ],
+        [
+          "0x71bb7c",
+          "84c9",
+          "test",
+          "cl, cl",
+          true
+        ],
+        [
+          "0x71bb7e",
+          "0f95c0",
+          "setne",
+          "al",
+          true
+        ],
+        [
+          "0x71bb81",
+          "ffc0",
+          "inc",
+          "eax",
+          true
+        ],
+        [
+          "0x71bb83",
+          "c3",
+          "ret",
+          "",
+          true
+        ],
+        [
+          "0x71bb84",
+          "33c0",
+          "xor",
+          "eax, eax",
+          true
+        ],
+        [
+          "0x71bb86",
+          "b101",
+          "mov",
+          "cl, 1",
+          true
+        ],
+        [
+          "0x71bb88",
+          "84c9",
+          "test",
+          "cl, cl",
+          true
+        ],
+        [
+          "0x71bb8a",
+          "0f95c0",
+          "setne",
+          "al",
+          true
+        ],
+        [
+          "0x71bb8d",
+          "ffc0",
+          "inc",
+          "eax",
+          true
+        ],
+        [
+          "0x71bb8f",
+          "c3",
+          "ret",
+          "",
+          true
+        ]
+      ]
+    }
+  },
+  "fable_table": "Database/FFXII TZA/_index/candidates/uc1-band-1-64-fable-2026-09-25.tsv",
+  "fable_table_sha256": "e85216d07e08eb6a05005e48d2a03afffc7d95548a6aa7ca97d55ce31332359d",
+  "fable_row": {
+    "start_va": "0071BB70",
+    "bytes": "32",
+    "prev_entry": "0071BB00",
+    "aligned16": "yes",
+    "referenced": "yes",
+    "multi": "no",
+    "pred_branch": "no",
+    "decodes_to_end": "yes",
+    "ruling": "admit"
+  },
+  "scope": "Reuse prior source/flow observation and ruling row. Target32B is separately admitted in old band, not an interior listed entry. No current population update, target-native execution or complete caller-function identity proof."
+}

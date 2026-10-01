@@ -1,0 +1,7 @@
+PASS  U unload -> group deleter (state3 -> 5)
+PASS  I bind -> group init, which calls nothing
+PASS  Q insert waits (pumping) for a free slot; link: flag 0 -> head, else tail
+PASS  R the source-owner requester links with flag 1 (tail) on both of its paths
+PASS  H only the head wrapper links at the head; its callers are both in the BGM stream reader 003EADE0
+PASS  E a failed read calls back (ok = 0) only when its byte count is -1; 003DD850 never reads ok
+FAILS 0

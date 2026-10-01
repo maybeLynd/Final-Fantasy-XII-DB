@@ -1,0 +1,72 @@
+{
+  "evidence_class": "A:static shipping bodies; no original-code/live execution for this package",
+  "bodies": {
+    "0x24d540": {
+      "bytes": 551,
+      "sha256": "96c526b01597bacfd8aff672828feddb3b2c1e593f6c9f8e0bb9f88fe41a5bd0"
+    },
+    "0x24d050": {
+      "bytes": 233,
+      "sha256": "0f45eab36413b3bc9701f45021cf8708321b002b385a714b94c8da1e08f6fe4d"
+    },
+    "0x24f410": {
+      "bytes": 185,
+      "sha256": "83b3af72830917188e46b444aa3bce52014526cdf22998722b362896b087a414"
+    },
+    "0x3b2220": {
+      "bytes": 162,
+      "sha256": "87f7cf060757b67db1c8957a92b7792b0f1e308bf0a47d0d9033b74c065fc542"
+    },
+    "0x3b29b0": {
+      "bytes": 228,
+      "sha256": "c44bc74dee80882e74c29db11b04cec2f4d7db4c73950f5a983b44622b49bc65"
+    },
+    "0x3b38b0": {
+      "bytes": 296,
+      "sha256": "5db8ba7a8aecd517ada3928b4259d3e09cce536486e081d9330b29816b6ab297"
+    },
+    "0x409fe0": {
+      "bytes": 507,
+      "sha256": "14ab85bf58780a2d7606c5fb13545f148d5aee8abd4eaaf1bdbfd3748feb526c"
+    },
+    "0x3ab860": {
+      "bytes": 20,
+      "sha256": "2f73a5e76c8b21a81d226971558f1009062a8c3948b2f5fdfff000463b2f341e"
+    },
+    "0x409a60": {
+      "bytes": 415,
+      "sha256": "fc088bd24904e9a64c6137b1454a9bc0e38bfc1dce957717533167b43bd7f0b2"
+    },
+    "0x409710": {
+      "bytes": 30,
+      "sha256": "03e01501900d2558b3bf2b3219b3943bceaadbe914d93e8321944ad232ebe973"
+    },
+    "0x409a30": {
+      "bytes": 33,
+      "sha256": "951f3ebc48faed62279a55f4b1757f526ef01ffcb0f49498c210793175fcc074"
+    }
+  },
+  "graph_sha256": "de21ba1bc62d92243ea66f47ec7a08355ac2f77d355ed8abc542c158fc709095",
+  "graph_candidates": 7,
+  "scan_candidates": 66,
+  "controls": [
+    "24D9A7 directbasewrite and3B34F5 sourceread detected.",
+    "Stack template3B398E/3995/399C writes use880/884/878 displacements and are absent from858/860/864 scan. This actual writer is a blind-spot control, not a zero-writer claim.",
+    "Six direct constructor callers in graph include knownEFB/type5/type1 positivecontrols; original bodies now read for other3. Indirect callers/aliases not exhausted."
+  ],
+  "findings": [
+    "3B38B0 signextendsECX/EDX; provider(source)+offset fullbase; OR0C into zero890template type3 and populate858fullbase,860originalsource32,864offset32 before24B3A0 thenEFX. Borrowmode is not EFB-exclusive.",
+    "3B2220 type7 and3B29B0 type4 supply04-clear templates and callEFX. Type7 postparse nibblemerge preserves low04. Prior type1/type5/EFB paths remain valid.",
+    "24D540 when initialECX0 traverses instance list2091108 via+348, binds eachcontext+340, guarded provider+offset rebase and instance update before remainder systemcalls. No frame/scheduling execution.",
+    "24F410 unlinks context then publishes substructure globals and calls five release helpers,24F4D0 then3697F0(context); some native effects remain unreviewed.",
+    "409FE0 resolves originalRDX toR14, uses3AB860 tag predicate, initializes entry and calls409A60 mode0 foruntagged or1fortagged. Mode0 afterward replacesRBP withentry+18; mode1 retainsinputsource and storesresolvedpointerentry+38. Later passeslow32RBP and sectionoffset to3B38B0.",
+    "409A60 resolves source and normalizes namepadding at+10 to32bytes; PRF nestedrecord paths also normalize names using32bit base arithmetic. Mode1 storesfullsource atentry+30; mode0 calls3AB880,51F020/6B5C70/51EF90,3AB940 around embeddedstorage+10. Completeownership effects remain nextfrontier."
+  ],
+  "open": [
+    "Mode0 storage allocation/copy/release helper effects; whether sourceowner persists across live relocation and teardown.",
+    "Original409FE0 retainsinitialR14 for later offset read even ifmode0 owner changes; do not labeldanglingor freed until3AB940 semantics read.",
+    "Indirect constructor/caller census, malformedname/count/offset safety, nonempty nativehandler effects and actualschedule.",
+    "Contexttype7 chunk-release vs individual table-entry lifetime remains subject to actual handler ownership; no blanket free-safety claim.",
+    "FABLE contradiction ASTRA-CONTRA-FABLE-EFX-BORROW-SOURCES remains pending actualcorrection."
+  ]
+}

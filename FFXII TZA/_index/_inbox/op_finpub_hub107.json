@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-107",
+ "result_refs": [
+  "commit:b9e8b6f79"
+ ],
+ "note": "batch-107 publish: 17 paths, +323; guard ADDS NOTHING; crossref 127 zero batch-owned"
+}

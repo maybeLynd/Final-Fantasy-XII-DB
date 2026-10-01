@@ -1,0 +1,20 @@
+seed 78 functions (singleton referrers + widget code + accessors); reach 258 after 3 hops
+functions in reach with a stride-20 formation: 8
+== 00244DD0 FUN_00244dd0
+   00244E84 add rcx, 0x14 | 00244E88 mov qword ptr [rbx + 0x68], rcx | 00244E8C mov eax, dword ptr [rip + 0x1e4a6de] | 00244E92 mov dword ptr [rbx + 0x74], eax | 00244E95 mov dword ptr [rbx + 0x78], 0x3f800000 | 00244E9C movzx edi, word ptr [rcx + 2] | 00244EA0 call 0x181c90 | 00244EA5 xor ecx, ecx | 00244EA7 cmp eax, 1
+== 0037FBA0 FUN_0037fba0
+   0037FD05 lea rdx, [rdx + rdx*4] | 0037FD09 lea rdx, [rdx + 4] | 0037FD0D lea rdx, [rcx + rdx*4] | 0037FD11 call 0x37fea0 | 0037FD16 mov rcx, qword ptr [rbx + 8] | 0037FD1A mov rdx, rdi | 0037FD1D call 0x37f190 | 0037FD22 xor eax, eax | 0037FD24 mov rbx, qword ptr [rsp + 0x30]
+== 0039BB60 FUN_0039bb60
+   0039BCB3 lea eax, [rdx + rdx*4] | 0039BCB6 shl eax, 5 | 0039BCB9 mov edx, dword ptr [r13 + rcx*4] | 0039BCBE add edx, eax | 0039BCC0 movzx eax, si | 0039BCC3 shl edx, 0xb | 0039BCC6 shr edx, 0xb | 0039BCC9 add dx, r15w | 0039BCCD and ax, 0x7f
+== 0039BF50 FUN_0039bf50
+   0039C064 lea eax, [rdx + rdx*4] | 0039C067 shl eax, 5 | 0039C06A mov edx, dword ptr [r13 + rcx*4] | 0039C06F add edx, eax | 0039C071 movzx eax, si | 0039C074 shl edx, 0xb | 0039C077 shr edx, 0xb | 0039C07A add dx, r15w | 0039C07E and ax, 0x7f
+== 003BE680 FUN_003be680
+   003BE6CA lea rcx, [rax + rax*4] | 003BE6CE mov eax, edx | 003BE6D0 lea rdx, [rdx + rcx*4] | 003BE6D4 test rdx, rdx | 003BE6D7 je 0x3be6f7 | 003BE6D9 test r10, r10 | 003BE6DC je 0x3be6e6 | 003BE6DE movzx ecx, word ptr [rdx + 2] | 003BE6E2 mov word ptr [r10], cx
+== 003BFF20 FUN_003bff20
+   003BFF95 lea rcx, [rax + rax*4] | 003BFF99 lea r9, [rdx + rcx*4] | 003BFF9D test r9, r9 | 003BFFA0 je 0x3bffcb | 003BFFA2 movzx edx, byte ptr [r11 + 3] | 003BFFA7 mov r9d, r9d | 003BFFAA add r9, 8 | 003BFFAE je 0x3bffcb | 003BFFB0 test edx, edx
+== 003C0740 FUN_003c0740
+   003C084A add rdi, 0x14 | 003C084E sub rsi, 1 | 003C0852 jne 0x3c0822 | 003C0854 mov rsi, qword ptr [rsp + 0x40] | 003C0859 mov eax, ebx | 003C085B mov rdi, qword ptr [rsp + 0x48] | 003C0860 mov rbx, qword ptr [rsp + 0x50] | 003C0865 add rsp, 0x20 | 003C0869 pop r15
+== 003C1070 FUN_003c1070
+   003C10F7 lea rcx, [rax + rax*4] | 003C10FB lea r8, [r8 + rcx*4] | 003C10FF test r8, r8 | 003C1102 je 0x3c1111 | 003C1104 movzx esi, byte ptr [rdx + 3] | 003C1108 mov ebx, r8d | 003C110B add rbx, 8 | 003C110F jmp 0x3c1118 | 003C1111 mov esi, dword ptr [rsp + 0x38]
+CONTROL known walkers 003BFF20, 003C1070 (D) and 003C0740 (C, loop-stepped) found: PASS
+FAILS 0

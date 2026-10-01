@@ -1,0 +1,43 @@
+R1 raw callers of 0046E030: 1 ['0032E070 FUN_0032e070']
+R1 raw callers of 002DF780: 1 ['0046E030 FUN_0046e030']
+R1 raw callers of 002DF6C0: 1 ['0032E070 FUN_0032e070']
+R1 raw callers of 00364380: 0 []
+R1 raw callers of 0032E370: 2 ['0032E070 FUN_0032e070']
+R1 raw callers of 0032E330: 3 ['0032E070 FUN_0032e070']
+R2 rip refs to 0215EFF4: 6 (raw-only 0)
+   002DF719 lea    rax, [rip + 0x1e7f8d4]                   w=8 store=False  002DF6C0 FUN_002df6c0
+   002DF75F lea    rax, [rip + 0x1e7f88e]                   w=8 store=False  002DF6C0 FUN_002df6c0
+   002DF808 lea    rax, [rip + 0x1e7f7e5]                   w=8 store=False  002DF780 FUN_002df780
+   002DF838 lea    rax, [rip + 0x1e7f7b5]                   w=8 store=False  002DF780 FUN_002df780
+   0046DFE7 cmp    dword ptr [rip + 0x1cf1006], -1          w=4 store=False  0046DFE0 FUN_0046dfe0
+   0046E0E0 mov    eax, dword ptr [rip + 0x1cf0f0e]         w=4 store=False  0046E0E0 FUN_0046e0e0
+R2 image-base-relative refs to 0215EFF4: 0 verified [], raw-only 0
+R2 stored absolute pointers (relocs) to 0215EFF4: 0
+R2 rip refs to 01F82CC0: 4 (raw-only 0)
+   001D6D70 mov    rax, qword ptr [rip + 0x1dabf49]         w=8 store=False  001D6D70 FUN_001d6d70
+   001D6D7E mov    qword ptr [rip + 0x1dabf37], 0           w=8 store=True  001D6D70 FUN_001d6d70
+   001D6DCD mov    qword ptr [rip + 0x1dabeec], rax         w=8 store=True  001D6D90 FUN_001d6d90
+   001D6FED mov    qword ptr [rip + 0x1dabccc], rax         w=8 store=True  001D6FB0 FUN_001d6fb0
+R2 image-base-relative refs to 01F82CC0: 0 verified [], raw-only 0
+R2 stored absolute pointers (relocs) to 01F82CC0: 0
+R3 0215EFF4 section .data va 01DF0000 rawsize 0x18e400 virtsize 0x11a7530 -> virtual tail (zero-init)
+R4 00364380: mov rdx, qword ptr [rip + 0x1f67a79]; test rdx, rdx; je 0x364399; mov eax, 1; shl eax, cl; or dword ptr [rdx + 0x240], eax; ret 
+R4 reads r8: False
+R5 0032E370 push rbx
+R5 0032E372 sub rsp, 0x20
+R5 0032E376 mov rax, qword ptr [rcx + 0x40]
+R5 0032E37A mov rbx, rcx
+R5 0032E37D test rax, rax
+R5 0032E380 je 0x32e394
+R5 0032E382 cmp dword ptr [rcx + 0x28], -1
+R5 0032E386 jne 0x32e394
+R5 0032E388 mov rdx, qword ptr [rcx + 0x70]
+R5 0032E38C xor r8d, r8d
+R5 0032E38F mov ecx, dword ptr [rcx + 0x60]
+R5 0032E392 call rax
+R5 0032E394 cmp byte ptr [rbx + 0x21], 0xff
+R5 0032E398 jne 0x32e3a8
+R5 0032E39A movsxd rcx, dword ptr [rbx + 0x24]
+R6 00365810 (size 224) direct calls/jumps: ['00365882->0x32e400', '00365895->0x249810', '0036589A->0x3658a1', '0036589C->0x2497e0', '003658C7->0x32e620', '003658D4->0x17fc00']
+R6 002497E0 (size 42) direct calls/jumps: ['002497ED->0x36c1d0', '002497F4->0x36a100', '002497FC->0x36c140']
+R6 00249810 (size 42) direct calls/jumps: ['0024981D->0x36c1d0', '00249824->0x36a190', '0024982C->0x36c140']

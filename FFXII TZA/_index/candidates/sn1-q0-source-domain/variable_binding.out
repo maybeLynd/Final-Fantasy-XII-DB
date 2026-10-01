@@ -1,0 +1,4 @@
+PASS V1  evctrl pc 19: op 49 0x61 -> test_load_flg; btlctrl pc 534: op 49 0xd -> loop_flg; btlctrl pc 540: op 49 0xe -> mapjump_menu_flg; mapctrl pc 732: op 4A 0x52 -> test; mapctrl pc 739: op 4A 0x20 -> mp_debugmenu_flg
+PASS V2  evctrl pc 16's assignment (line 417, the same as pc 22's call) writes test_load_flg
+PASS C  operand + 1 names ['cameramode', 'mapjump_menu_flg', 'ms_basesel', 'behind_order', 'mp_debugmenu_mj']; the neighbouring module's T0 names [None, 'g_com_mnp_\x90¼\x83_\x83\x8b\x83}\x83X\x83J\x8d»\x94\x99\x83\x8d\x83P\x83^\x83C', 'g_com_mnp_\x83M\x81[\x83U\x91\x90\x8c´\x83\x8d\x83P\x83^\x83C', 'sc_event09', 'g_btl_\x83[\x83\x8d\x83\x80\x83X']
+FAILS 0

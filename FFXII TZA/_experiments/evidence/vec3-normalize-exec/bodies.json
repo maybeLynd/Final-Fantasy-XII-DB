@@ -1,0 +1,126 @@
+{
+ "real": [
+  {
+   "va": "0x40db70",
+   "lo": "0x40db70",
+   "hi": "0x40dba1",
+   "span": 49,
+   "insns": 9,
+   "cov": 1.0,
+   "sha256": "cbbd0af6e2d79ceae2f8634480afe08f5a432c78d82fabbfb9836ecc8e77036e",
+   "indirect": [],
+   "name": "db70"
+  },
+  {
+   "va": "0x40b430",
+   "lo": "0x40b430",
+   "hi": "0x40b5d0",
+   "span": 416,
+   "insns": 82,
+   "cov": 1.0,
+   "sha256": "9d74548e867ceb8df5c19a7bb34f29d337d5eeecc7e26b3fcbfa0e64fd1b1084",
+   "indirect": [
+    {
+     "site": "0x40b495",
+     "form": "call 0x861f14",
+     "src": "IAT q[0x8c2bb8] via real thunk (ships unbound record 0x1cced52; api-ms-win-crt-math-l1-1-0.dll!sqrtf)",
+     "planted": "0x63040000 (scripted import)"
+    },
+    {
+     "site": "0x40b55c",
+     "form": "call 0x861f14",
+     "src": "IAT q[0x8c2bb8] via real thunk (ships unbound record 0x1cced52; api-ms-win-crt-math-l1-1-0.dll!sqrtf)",
+     "planted": "0x63040000 (scripted import)"
+    },
+    {
+     "site": "0x40b522",
+     "form": "call 0x202e10",
+     "src": "xprod (real)",
+     "planted": null
+    },
+    {
+     "site": "0x40b5a3",
+     "form": "call 0x808c40",
+     "src": "__security_check_cookie (real)",
+     "planted": null
+    }
+   ],
+   "name": "b430"
+  },
+  {
+   "va": "0x202e10",
+   "lo": "0x202e10",
+   "hi": "0x202e83",
+   "span": 115,
+   "insns": 26,
+   "cov": 1.0,
+   "sha256": "d1ade3547be655a519f670f789835053ca5031c560dd5593ce323c9105023b5f",
+   "indirect": [],
+   "name": "xprod"
+  },
+  {
+   "va": "0x861f14",
+   "lo": "0x861f14",
+   "hi": "0x861f1a",
+   "span": 6,
+   "insns": 1,
+   "cov": 1.0,
+   "sha256": "bef9ef31cf27c89527cd3a858721dbf8901af34b5103f2f3ce175138fc4daa76",
+   "indirect": [
+    {
+     "site": "0x861f14",
+     "form": "jmp qword [rip+disp]",
+     "src": "q[0x8c2bb8] (IAT api-ms-win-crt-math-l1-1-0.dll!sqrtf)",
+     "planted": "0x63040000 (scripted import)"
+    }
+   ],
+   "name": "thunkf"
+  },
+  {
+   "va": "0x808c40",
+   "lo": "0x808c40",
+   "hi": "0x808c61",
+   "span": 33,
+   "insns": 8,
+   "cov": 1.0,
+   "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63",
+   "indirect": [
+    {
+     "site": "0x808c5c",
+     "form": "jmp 0x809654",
+     "src": "__report_gsfailure (real; reached under m-b430-xor)",
+     "planted": null
+    }
+   ],
+   "name": "chkck"
+  },
+  {
+   "va": "0x809654",
+   "lo": "0x809654",
+   "hi": "0x809725",
+   "span": 209,
+   "insns": 38,
+   "cov": 1.0,
+   "sha256": "e4ce9dd6f48beb86308819f77e7c26891a38136feb838bc42e99bb1eb927bcd6",
+   "indirect": [
+    {
+     "site": "0x809662",
+     "form": "call 0x87af34",
+     "src": "feature-check helper; faults deeper through unplanted cell under the mutant",
+     "planted": null
+    },
+    {
+     "site": "0x809679",
+     "form": "call 0x809848",
+     "src": "report/terminate helper (unreached in fixture)",
+     "planted": null
+    }
+   ],
+   "name": "rgsf",
+   "note": "partial replay: only the head executes under the cookie-fail mutant; the call at 0x809662 faults deeper through an unplanted cell"
+  }
+ ],
+ "scripted": [
+  "0x63040000"
+ ]
+}

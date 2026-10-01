@@ -1,0 +1,132 @@
+{
+  "method": "A exact original flow/operands and qualified import identity; arithmetic illustrations conditional, not execution",
+  "illustrations": [
+    {
+      "width": 100.0,
+      "height": 100.0,
+      "discriminator": "floor omission",
+      "correct_source_formula": {
+        "budget": 275,
+        "initial": 6.030226707458496,
+        "refined": 6.25,
+        "cell_size": 7.0,
+        "columns": 15,
+        "rows": 15,
+        "arithmetic_allocation_argument": 8361,
+        "class": "A conditional arithmetic illustration, not a captured original result/allocation."
+      },
+      "omitted_operation_formula": {
+        "budget": 275,
+        "initial": 6.030226707458496,
+        "refined": 6.25,
+        "cell_size": 7.25,
+        "columns": 14,
+        "rows": 14,
+        "arithmetic_allocation_argument": 7288,
+        "class": "A conditional arithmetic illustration, not a captured original result/allocation."
+      }
+    },
+    {
+      "width": 336.0,
+      "height": 320.0,
+      "discriminator": "working-mask budget subtraction",
+      "correct_source_formula": {
+        "budget": 275,
+        "initial": 19.77326011657715,
+        "refined": 21.0,
+        "cell_size": 22.0,
+        "columns": 16,
+        "rows": 15,
+        "arithmetic_allocation_argument": 8916,
+        "class": "A conditional arithmetic illustration, not a captured original result/allocation."
+      },
+      "omitted_operation_formula": {
+        "budget": 276,
+        "initial": 19.73740577697754,
+        "refined": 20.0,
+        "cell_size": 21.0,
+        "columns": 16,
+        "rows": 16,
+        "arithmetic_allocation_argument": 9508,
+        "class": "A conditional arithmetic illustration, not a captured original result/allocation."
+      }
+    }
+  ],
+  "source_bindings": {
+    "bitset_bytes": {
+      "site": "0x3924cb",
+      "address": "0x2aee0b8"
+    },
+    "minA": {
+      "site": "0x392590",
+      "address": "0x2aee070"
+    },
+    "minB": {
+      "site": "0x3925a0",
+      "address": "0x2aee078"
+    },
+    "maxA": {
+      "site": "0x3925b1",
+      "address": "0x2aee080"
+    },
+    "maxB": {
+      "site": "0x3925c1",
+      "address": "0x2aee088"
+    },
+    "stack_copy074": {
+      "site": "0x3925db",
+      "address": "0x2aee074"
+    },
+    "stack_copy084": {
+      "site": "0x3925f4",
+      "address": "0x2aee084"
+    },
+    "cell_size": {
+      "site": "0x392627",
+      "address": "0x2aee090"
+    },
+    "rows": {
+      "site": "0x392654",
+      "address": "0x2aee064"
+    },
+    "cols": {
+      "site": "0x39265d",
+      "address": "0x2aee060"
+    },
+    "bitset_array": {
+      "site": "0x392677",
+      "address": "0x2aee0a0"
+    },
+    "byte_array": {
+      "site": "0x3926ec",
+      "address": "0x2aee0a8"
+    },
+    "working_mask": {
+      "site": "0x3926f3",
+      "address": "0x2aee0b0"
+    },
+    "one": {
+      "site": "0x39260c",
+      "address": "0x1cebba8"
+    },
+    "nav_root": {
+      "site": "0x383755",
+      "address": "0x2aedfb0"
+    }
+  },
+  "formula": "n=36; budget=trunc((0x2800-n)/(n+1))=275. w=maxA-minA, h=maxB-minB. c0=sqrtf(f32(w*h)/f32(budget)); nx=trunc(f32(w/c0)), ny=trunc(f32(h/c0)); refined=maxss(f32(w/f32(nx)),f32(h/f32(ny))); c=f32(floorf(refined)+1.0f). cols=trunc(f32(f32(w+f32(c-1.0f))/c)); rows likewise h. Allocation argument uses original32-bit products: cols*rows*(n+1)+n.",
+  "established": [
+    "Budget subtracts working-mask36B before dividing by37:275, not276. Refined size passes named floorf then adds shipping1.0; the same1.0 is subtracted in cell-count arithmetic. No tiny-epsilon or omitted quantizer.",
+    "Cell size is2AEE090;2AEE070/078 are origins A/B and2AEE080 is maximum A. The current field rows already agree, the corridor header labels070 cell size and078/080 eps cells incorrectly.",
+    "BitsetBytes2AEE0B8=36 store precedes rectangle call/zero guard. Missing root means no later rectangle/grid/alloc path, apart from this own explicit partial reset and cookie epilogue; no universal no-op.",
+    "Existing vestigial stack-copy074/084 meanings are already qualified. This package adds no new uninitialised-data/never-read/lifetime claim."
+  ],
+  "limits": "No new isolated/native/live run, no DLL implementation/actual allocation or initialized map observation. Intended named math/f32 round-nearest for illustrations; positive dimensions only. Native callbacks/release/lifetime, authored occurrence, exceptional states and all-byte defaults unclaimed. Arithmetic examples are source-derived under named math assumptions, not reconstructed code proving original execution. No zero-dimension, NaN, all-header-space or allocation-capacity/leak conclusion.",
+  "affected_consumers": [
+    "OPUS NavGridParams types.tsv constructor/no-op and builder formula",
+    "OPUS corridor-query contract header global identity",
+    "FABLE unit-definition grid-builder budget/formula"
+  ],
+  "propagation": "PENDING owner corrections and independent review",
+  "cleanup": "Read-only image/consumer snapshot; no game/PC/native/input/save/config/reference changes or new live-restoration receipt."
+}

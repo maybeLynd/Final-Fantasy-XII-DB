@@ -1,0 +1,161 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "9178eb05855df061298a7dc307ade4569ba0d549"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "df20db28fbb6933a8e7bb7bff4c3e27d4efb44fb"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "git_blob": "4ad3ad45ebf17c3e697aca4b9fdebdf1dfb1a8ab"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "git_blob": "91cc32884b3f5730c641ba14b29a59789064bd9b"
+    },
+    {
+      "path": "diagnose.py",
+      "git_blob": "dec34e1fbb31ef99c4d0c3671b31019b6f42b713"
+    },
+    {
+      "path": "diagnostic.json",
+      "git_blob": "9d756d3d918a878d9dde6d7d30fe3349965d4d1e"
+    },
+    {
+      "path": "failure.json",
+      "git_blob": "4b32e12c3052df358974d04c0afebc1c1ccf6880"
+    },
+    {
+      "path": "fault-ignore-shared-tail.stderr",
+      "git_blob": "6e6ef9d25e1dbcddad2a0abf713073410db3931f"
+    },
+    {
+      "path": "fault-ignore-shared-tail.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "fault-zero-based-mapping.stderr",
+      "git_blob": "8b72a2d79af6860c4833b7be17d7c00010838e85"
+    },
+    {
+      "path": "fault-zero-based-mapping.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "c05360b428f3e5c531c2b877e7a3a90b388f6b72"
+    },
+    {
+      "path": "inspect-anchor.py",
+      "git_blob": "8a3421a1ceb4965d4ccbfdf94903f6da9f23a8ac"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "7c9fb51b310ddb43dc4f33e13c4326adc5d5a260"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "b38847372c5c21c06c7e875ec8ccf2eae83b5ad1"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "8f9d46ded2aebf258d54f3d711d981be56b0c6d2"
+    },
+    {
+      "path": "regression-controls.json",
+      "git_blob": "d35747b07b053287b7e43b6016137bd660f1353a"
+    },
+    {
+      "path": "repair-check.py",
+      "git_blob": "5d9512b544a9caffe28d0cc7a6c20e19ccb52ff3"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "6a129921efa132372d57b9c7816acdc34a3b3a79"
+    },
+    {
+      "path": "retained/btlctrl.dbg",
+      "git_blob": "d837da9e972268c95c1363f4ac701a2f3a7a0ef5"
+    },
+    {
+      "path": "retained/btlctrl.ebp",
+      "git_blob": "374cf9dc083f5966af07b89883a9ef8bc33c0850"
+    },
+    {
+      "path": "retained/btlctrl.sbn",
+      "git_blob": "2b620c176aabdaf90ba32e33066625a266b63f68"
+    },
+    {
+      "path": "retained/check-before-entry-extent-fix.py",
+      "git_blob": "f3f291761b87e71cc05bcfee5de51ddb9455df33"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "git_blob": "cb1b30defaafd53f974d3b671ae9c5fd3f03c9aa"
+    },
+    {
+      "path": "retained/ctrl.dbg",
+      "git_blob": "e1ed1eb6dcdc7d73290eecb0ae371e4c1a43c270"
+    },
+    {
+      "path": "retained/ctrl.ebp",
+      "git_blob": "d50193cda04857704669d92075b50b4e32f0cfd0"
+    },
+    {
+      "path": "retained/ctrl.sbn",
+      "git_blob": "bd120b87fe136a2f1fee94af8b10ffa64b0bc2f6"
+    },
+    {
+      "path": "retained/driver-after-shared-tail-fix.py",
+      "git_blob": "9178eb05855df061298a7dc307ade4569ba0d549"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "f58a8000ad814f85dfcd154aa0a233f46b786200"
+    },
+    {
+      "path": "retained/ebp-layout-before.md",
+      "git_blob": "9c3eb802465943c627a2d1f4291b69c3a8db6e87"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "git_blob": "1ae02ad73660ea581294eccddf9d934ca130e8b8"
+    },
+    {
+      "path": "retained/evctrl.ebp",
+      "git_blob": "0bde06d52c8bfa06284f6fe64a7f67e5897de235"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "git_blob": "3042fefd0ba4aa447cf2c860d46932bc2bc0be95"
+    },
+    {
+      "path": "retained/mapctrl.dbg",
+      "git_blob": "6440a88bcc2fb63f240d385bb49848e120082d9c"
+    },
+    {
+      "path": "retained/mapctrl.ebp",
+      "git_blob": "5c74af0408fdd7f9215c1e89d6694db5c7a6e868"
+    },
+    {
+      "path": "retained/mapctrl.sbn",
+      "git_blob": "8393e9ac692814a208158114608d9a8877bab329"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "git_blob": "a2808c68c3b0fc327600c643d2a0b999887e519f"
+    }
+  ]
+}

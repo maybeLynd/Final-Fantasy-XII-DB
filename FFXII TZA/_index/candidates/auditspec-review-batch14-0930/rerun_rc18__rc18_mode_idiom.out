@@ -1,0 +1,8 @@
+scripts read: 1114
+PASS  control: seteventpartymode(1) followed by partyallread() found
+setchocobomode         arg 0      calls   177  next statement a read-in verb   177  other next: 
+setchocobomode         arg 1      calls    32  next statement a read-in verb    32  other next: 
+seteventparty2mode     arg 0      calls   156  next statement a read-in verb   156  other next: 
+seteventparty2mode     arg 1      calls   169  next statement a read-in verb   169  other next: 
+seteventpartymode      arg 0      calls   218  next statement a read-in verb   218  other next: 
+seteventpartymode      arg 1      calls   293  next statement a read-in verb   293  other next: 

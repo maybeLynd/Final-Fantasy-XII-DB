@@ -1,0 +1,5 @@
+{
+  "status": "STOPPED_BEFORE_WRITE",
+  "reason": "Observed changed key set after exit differs from six-key pre-exit expectation",
+  "diff": "--- \n+++ \n@@ -18,7 +18,7 @@\n BackBufferCount=TripleBuffer\n FrameLimit=60\n DeviceID=9860\n-LUIDLow=79439\n+LUIDLow=78642\n LUIDHigh=0\n CameraRevise=On\n MouseSensityX=4\n"
+}

@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3909,
+      "sha256": "85ffdf23da353efc08c792e9177b60761e5ed977a9e4dc7a4f55142938dfb7e8"
+    },
+    {
+      "path": "extract.py",
+      "bytes": 2728,
+      "sha256": "6ab6980079e4011e5bf1b9384e04872f3b44bf8b51b7418643021f83b20249a5"
+    },
+    {
+      "path": "first-check.py",
+      "bytes": 3867,
+      "sha256": "8d5d81afa978df01fd57018bd7535a0a2fbcb99a83b100c7737512fd39e941e4"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 1372,
+      "sha256": "1c1b9099f48f9c3e77ebd81f0fcc2b83617b266352395a6bc9ee444f28d75954"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1582,
+      "sha256": "0b917c56fce445eafe6e4f0bf257dd5419d3fd35b99ff2c98a4379b1bee8a195"
+    },
+    {
+      "path": "primary.json",
+      "bytes": 4656,
+      "sha256": "b238d783a006ff82f418f3f6853135dec9416bf2cec53ab3b658cf3eb7eba4d8"
+    },
+    {
+      "path": "qualification-failure.txt",
+      "bytes": 394,
+      "sha256": "b256e9b473048f2b792eae97e4fe6ab36ee9deced1cc8e6908e3c124368ab224"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4363,
+      "sha256": "5187b366d50d30f32a826e4a32056f3bf5df6902388ea6a2b1564a5e0eaa3a64"
+    },
+    {
+      "path": "retained/01-runtime-error.json",
+      "bytes": 961,
+      "sha256": "d2976365e5f05d11e0ba448bf5f973f498eee61c381ac349f7ec7ffe8f6151dd"
+    },
+    {
+      "path": "retained/02-session-health.json",
+      "bytes": 1048,
+      "sha256": "1988afbba49a4142952c81da5e616dac84cec8b8500d0f66fa287cb459b0f3c6"
+    },
+    {
+      "path": "retained/03-preflight.json",
+      "bytes": 10815,
+      "sha256": "22c1c33e33ff8f964284229f09133d7bf488f37f8659b3bc5f2012355e4285ce"
+    },
+    {
+      "path": "retained/04-EXP-127-skeletal-reset-live.md",
+      "bytes": 10787,
+      "sha256": "48d181fd67af5621ae2f3e1bb0f12f0731a1e68ccfe40077edca5b25f8b94c9f"
+    },
+    {
+      "path": "retained/05-REVIEW-EXP127-SKELETAL-FAILED-SESSION.md",
+      "bytes": 3070,
+      "sha256": "9ce99842659e607240b78eb1fe7d9f8d28a7f7ae835cfa609a1e9e650e7d9b2c"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 334,
+      "sha256": "13b7dfd1cbe9e6e35ce4bc1f1eecf4e3d5061f405cb7c8136db391de114357c4"
+    }
+  ],
+  "limits": "Pinned existing immutable raw event source in primary.json; recorded chronology only, review-owner agreement pending."
+}

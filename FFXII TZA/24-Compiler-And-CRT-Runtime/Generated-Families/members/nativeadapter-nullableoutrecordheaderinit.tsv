@@ -1,0 +1,13 @@
+# NativeAdapter.NullableOutRecordHeaderInitReturnTrue - EC-7 family C
+# # if rdx non-null write a member constant + two zero qwords into the
+# # out-record; always return 1.
+address	targets
+005CE010	
+005CF410	
+005D03C0	
+005D4E50	
+005D5930	
+005D6600	
+005D6B50	
+005D76A0	
+005D7DC0	

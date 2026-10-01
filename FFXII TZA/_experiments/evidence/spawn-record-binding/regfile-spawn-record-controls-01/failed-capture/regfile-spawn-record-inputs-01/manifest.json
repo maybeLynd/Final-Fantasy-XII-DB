@@ -1,0 +1,47 @@
+{
+  "method": "Retained original evidence and returned acceptance; no re-execution",
+  "members": [
+    {
+      "path": "regfile-observation.json",
+      "source": "Database/FFXII TZA/_experiments/evidence/regfile-reuse-identity/observation.json",
+      "bytes": 275047,
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "section12-original-body-manifest.json",
+      "source": "Database/FFXII TZA/_experiments/evidence/continuation-section12-actor-request-waits/original_body_manifest.json",
+      "bytes": 26992,
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "section12-original-disassembly.txt",
+      "source": "Database/FFXII TZA/_experiments/evidence/continuation-section12-actor-request-waits/original_disassembly.txt",
+      "bytes": 405481,
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "rc16-fable-corrected.md",
+      "source": "Database/FFXII TZA/_index/candidates/rc151617-fable-0930/README.md",
+      "bytes": 14615,
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "rc16-oracle.md",
+      "source": "Database/FFXII TZA/_index/candidates/rc15-regfile-skipmask-0930/README.md",
+      "bytes": 17942,
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "rc16-consumer-adjudication.md",
+      "source": "Database/FFXII TZA/_index/candidates/auditsem-corrections-fable-0930/consumer-check.md",
+      "bytes": 7958,
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "rc16-sem-review.md",
+      "source": "Database/FFXII TZA/_index/candidates/auditsem-review-rc151617-0930/REVIEW.md",
+      "bytes": 6830,
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    }
+  ]
+}

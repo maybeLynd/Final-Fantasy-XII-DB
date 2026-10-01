@@ -1,0 +1,14 @@
+# Runtime.Container.StringKeyedChainAttach - EC-7 family C
+# # byte-compare walk over a global bucket chain keyed on a member rip
+# # table; attach the node at [this+0x10] at the chain head; return 0 on
+# # attach, a member code otherwise. No external calls.
+address	targets
+006B8D20	
+006BFC60	
+006C2380	
+006D9680	
+006D9A70	
+008760A0	
+00876490	
+008768A0	
+00877060	

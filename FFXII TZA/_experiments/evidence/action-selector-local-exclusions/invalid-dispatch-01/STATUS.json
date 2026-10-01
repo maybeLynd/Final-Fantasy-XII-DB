@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_JUMP_TABLE_EXTENT",
+  "original_process_exit": 0,
+  "raw_sha256": "4601cd5136c58991515b38035a612d1481971905c9e6a414190d428280d00919",
+  "reason": "Captured10 entries without deriving extent; original cmp eax5/ja permits6. Extra padding/code words wrongly listed as edges. Dispatch is separate mode dword022C215C, not action category.",
+  "affected_claims": "No semantic proof/consumer uses this capture. Original matcher and prefix bytes remain retained; table edge interpretation invalid.",
+  "repair": "Producer derives six-entry extent from actual original cmp/ja before wrapper completion; final fresh02 required."
+}

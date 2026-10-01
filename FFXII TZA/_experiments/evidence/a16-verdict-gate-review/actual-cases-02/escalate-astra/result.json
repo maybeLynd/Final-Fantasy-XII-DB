@@ -1,0 +1,21 @@
+{
+  "case": "escalate-astra",
+  "is_review": true,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "4c876cfb623cfb072081abf0519ca47adbfeea0c6bbb3140f11af6e4aa728ca0",
+  "after_sha256": "7fa8107d1059e1c6a9551a4d71b90ce97b2681c8bbb7c431dde3bf8a1f34c265",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:ESCALATE-ASTRA"
+  ],
+  "plan": [
+    {
+      "kind": "VERDICT-MANUAL",
+      "review": "FIXTURE-A16-ESCALATE-ASTRA",
+      "detail": "verdict:ESCALATE-ASTRA needs its named REVIEW-POLICY handling; no automatic transition",
+      "has_operation": false
+    }
+  ]
+}

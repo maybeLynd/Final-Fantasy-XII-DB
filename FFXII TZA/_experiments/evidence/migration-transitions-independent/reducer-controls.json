@@ -1,0 +1,32 @@
+{
+  "baseline": {
+    "returncode": 0,
+    "stdout": "REJECT_TRANSITION_ADMISSION_FULL_APPLY_INCOMPLETE\n"
+  },
+  "negative_controls": [
+    {
+      "name": "incomplete",
+      "input_sha256": "1b26bc8d2425ea1e2fa25524d226a6bba205feb0dda6f262f8d62f33c9e25269",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\check.py\", line 7, in <module>\n    assert r['finished'] is True and r['driver_sha256']==sha(W/'read-only-controls.py')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "missing-case",
+      "input_sha256": "b06eceb8d0b18a865f6b5e1031a754c87736b280b96f0e2d44a5fc3e460a904d",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\check.py\", line 15, in <module>\n    cases={c['name']:c for c in r['cases']};assert set(cases)==ids and len(r['cases'])==len(ids)\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "hide-admitted-typed-commit",
+      "input_sha256": "dff5561206363bae5884022c4980770434a19c2cc89f7c36a84def0026d1aca6",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\check.py\", line 26, in <module>\n    report=json.loads(c['stdout']);assert report==c['parsed_report'] and len(report)==1\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    }
+  ]
+}

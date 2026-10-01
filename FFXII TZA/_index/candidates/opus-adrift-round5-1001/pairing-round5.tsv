@@ -1,0 +1,22 @@
+row	body	movement	citing_page	interior_cite	cause	commit
+ScriptVM.VerbAdapter	0033FFF0	left (A)	15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	00340000	page re-statused to evidence-bearing	eef738450
+ScriptVM.VerbAdapter	00342230	left (A)	09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	00342234	page re-statused to evidence-bearing	95cf8c42f
+Tremor with vorbisfile.c	007F8220	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	007F83C4	page re-statused to evidence-bearing	6d9fb5a1f
+Tremor with vorbisfile.c	007F8600	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	007F86AB	page re-statused to evidence-bearing	6d9fb5a1f
+Tremor with vorbisfile.c	007F8FD0	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	007F9156	page re-statused to evidence-bearing	6d9fb5a1f
+libvorbis float codec	00882C20	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	00882F50	page re-statused to evidence-bearing	6d9fb5a1f
+zlib 1.2.11	0080C5A0	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	0080C5A9	page re-statused to evidence-bearing	6d9fb5a1f
+Dear ImGui context object	00791D80	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	00791D88	page re-statused to evidence-bearing	6d9fb5a1f
+PPFX post-effect library	00731EA0	left (A)	01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md	007321BE	page re-statused to evidence-bearing	56a49cc8c
+NativeLeaf.DocumentedGlobalAccessor	003204B0	left (A)	02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	003204BC	page re-statused to evidence-bearing	d526b865b
+NativeLeaf.DocumentedGlobalAccessor	003DE970	admitted (selector)	04-Actor-Entity/the-field-runtime-pass.md	target 02B58C50 cited exactly	citing page evidence-bearing again	56a49cc8c
+NativeAdapter.ExplainedCalleeForwarder	00282E60	left (A)	09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	00282E6B	page re-statused to evidence-bearing	95cf8c42f
+NativeAdapter.ExplainedCalleeForwarder	003228E0	left (A)	04-Actor-Entity/the-field-runtime-pass.md	003228EB	page re-statused to evidence-bearing	56a49cc8c
+NativeAdapter.ExplainedCalleeForwarder	0036A240	left (A)	02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md	0036A266	page re-statused to evidence-bearing	dd651efd2
+NativeAdapter.ExplainedCalleeForwarder	00263860	admitted (derived selector)	17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	callee 002E9660 now A	single callee became A	d526b865b
+NativeAdapter.ExplainedCalleeForwarder	003DCCF0	admitted (derived selector)	02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	callee 003DCD00 now A	single callee became A	d526b865b
+NativeAdapter.CallResultTailCall	0017DAA0	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	0017DAA4	page re-statused to evidence-bearing	6d9fb5a1f
+NativeAdapter.CallThenReturnZero	00679A40	left (A)	23-Third-Party-Libraries/third-party-middleware-inventory.md	00679A44	page re-statused to evidence-bearing	6d9fb5a1f
+NativeLeaf.StaticHandleReplaceWithPreRelease	002383C0	left (A)	02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	002383C9	page re-statused to evidence-bearing	d526b865b
+NativeAdapter.DoubleCallResultTailCallSavedThis	001805D0	left (A)	02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	001805D9	page re-statused to evidence-bearing	d526b865b
+xc-registered static-object teardowns	008A7360	left (A)	02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md	008A737B	page re-statused to evidence-bearing	dd651efd2

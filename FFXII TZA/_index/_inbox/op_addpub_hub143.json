@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-143",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "publish batch-143 explicit path set (11 clean hosts whole-path; encoded-id CONTRACT + world-tick via private-index HEAD+append hunks around peer edits; AUDIT-LOG tail hunk; peer work preserved)",
+  "scope": "batch-143 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2-EC7-SHARED-HUB-IDENTIFICATION-143"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

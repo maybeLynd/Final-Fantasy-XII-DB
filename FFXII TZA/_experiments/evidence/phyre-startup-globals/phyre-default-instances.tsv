@@ -1,0 +1,272 @@
+# Phyre class default instances - the object every new instance is memcpy'd from.
+#
+# PCluster::create (0063A990) allocates from a non-clearing bump allocator (00639750, falling
+# back to the _aligned_malloc wrapper 0017D260) and then calls 0063C910 once per instance,
+# which does: rdx = [descriptor+0xC0]; if (rdx) memcpy(instance, rdx, [descriptor+0x38]).
+# The length is the FULL instance size, so every byte of a new object - including bytes no
+# member registration covers - is a copy of the default instance named here.
+#
+# The default instance is registered by the one-instruction setter 0063DC80. All 173 pointers
+# below are in the .bss part of .data (vsize 0x11A7530 vs raw 0x18E400), so the PE loader
+# zero-fills them and the class static constructor writes over that at startup. The bytes are
+# therefore DETERMINISTIC and identical for every instance, but NOT necessarily zero.
+#
+# QUALIFIED 2026-09-19 (OPUS). "the class static constructor writes over that at startup" is not
+# supported for any row here, and "NOT necessarily zero" is the part to distrust. Swept every
+# listed body for a RIP-relative operand landing inside each instance's [address, address+size):
+#   * the sweep works - it finds 10,735 distinct targets across the region the instances sit in;
+#   * and 173 of 173 default instances have NO interior byte named by any instruction. 100%.
+# The only instruction that names PDeferredLightingBase's buffer at all is the single
+# `lea rdx,[02CF9970]` at 00644341 that hands it to the setter 0063DC80.
+#
+# THE CONCLUSION THAT USED TO STAND HERE IS REFUTED, 2026-09-19 (OPUS). It read: "So on static
+# evidence these buffers are what the loader left: ZERO. If that is right, the memcpy in 0063C910
+# is equivalent to zeroing and the whole default-instance mechanism is inert in this build." It
+# also named the hole it was going through - a function that RECEIVES the descriptor as an
+# argument is invisible to an address tie - and closed "Supported, not proven."
+#
+# THE HOLE WAS CLOSED AND THE ANSWER CAME BACK THE OTHER WAY.
+# Tools/analysis-kit/gfz-scripts/check_default_instance_writers.py taints descriptor values
+# forward across argument slots over control-flow graphs, to a fixpoint, and finds THREE writes
+# to the +0xC0 buffer, all in 00639A60, none of them a store - which is why a sweep for stores
+# saw nothing:
+#
+#     00639AEC   memset([desc+0xC0], 0xA5, [desc+0x38])        the whole buffer, poison-filled
+#     00639B8C   memcpy([desc+0xC0], [desc+0xC8], size)        the second construction copied in
+#     00639C2D   memcpy([desc+0xC0]+off, <member default>, n)  per registered member
+#     0063CBF8   memcpy([desc+0xC0]-adj, <PARENT's default>)   the no-default-constructor arm
+#     0063CCD9   memcpy([desc+0xC0]+off, <member default>, n)  and its per-member pass
+#
+# plus two the taint cannot follow, through `call qword ptr [rax+0x50]`: the class
+# default-constructs an object INTO each buffer. There are TWO builders, not one: 00639A60 runs
+# the construct-and-compare, and when the vtable +0x50 call returns false - the class has no
+# default constructor - 0063CB80 builds the buffer anyway from the PARENT class's default object
+# (descriptor+0x78) plus each registered member's own default. 00639A60 memcmps the two results and, if they
+# differ, prints the engine's own sentence, at 00D584A0:
+#
+#     "Class '%s' has a position dependant constructor and should be marked as having no default
+#      constructor to avoid usage of the default buffer"
+#
+# THE ENGINE CALLS +0xC0 THE DEFAULT BUFFER, and it is BUILT AT RUNTIME, ONCE PER CLASS:
+# 00639A60 sets flags bit 31 at its own exit (00639C55), and both of its callers - 0063C910, the
+# instance memcpy, and 0063BC00, the default-object getter - test that bit first and skip the
+# whole preparation when it is set. Bit 1 gates whether the build happens at all:
+# every one of the 384 descriptor constructors SETS it, and 329 of those descriptors have it
+# CLEARED again by a later pass (`and [desc+0xFC], 0xFFFFFFFD`, 329 RIP-tied sites from
+# 00160220). A class whose bit 1 is still set when 00639A60 runs returns at 00639AF4 with
+# both buffers left at 0xA5. WHAT SETS AND CLEARS BIT 0 IS NOT ESTABLISHED and no meaning is
+# assigned to it here. The descriptor constructor 00632D80 nulls +0xC0/+0xC8/+0xD0
+# at 00632E16/1D/24, so the slots start empty and the one-instruction setters fill them.
+#
+# WHAT SURVIVES UNCHANGED, and it is most of the file: the 173 rows, the .bss placement, and the
+# two bounded negatives. No instruction NAMES an interior byte of any of these buffers (173/173)
+# and no address-tied path reaches one through +0xC0 (0 of 0). Both are still true. They were
+# never evidence that nothing writes the bytes - the bytes are reached through a pointer, which
+# is what "supported, not proven" was reserving.
+#
+# WHAT A RECONSTRUCTION HAS TO DO WITH THIS, since the old conclusion said "nothing":
+# there is no authored table of defaults in the image to reproduce - that part was right - but
+# the buffers are NOT zero at runtime, so the memcpy at 0063C974 is not a no-op, and a
+# reconstruction has to reproduce the BUILDER: memset 0xA5, default-construct through descriptor
+# vtable +0x50, copy each registered member's own default in, and only then hand the result out.
+#
+# AND THERE ARE THREE BUFFERS PER CLASS, NOT ONE. 0063DC80, 0063DF90 and 0063DFA0 are three
+# consecutive one-instruction setters for +0xC0, +0xC8 and +0xD0, each called from the same 384
+# bodies. This file's 173 rows are a subset of that population; the full inventory, with all
+# three buffers, the registered instance size and the constructor body each was read from, is in
+# phyre-class-default-buffers.tsv. The 173 rows here are a strict subset of it and agree with it
+# on every +0xC0 address, which is that generator's second control.
+#
+# +0x50 IS THE SAME THREE-BYTE STUB ON ALL 315 CLASSES MEASURED: 00657140, `xor al,al; ret`.
+# That slot is the default-construct call and its bool return says whether the class HAS a
+# default constructor - A READING RETRACTED THE SAME DAY. RTTI instantiates a descriptor
+# template per class and the template names that property: PClassDescriptorConcrete 260,
+# PClassDescriptorWithoutDefaultConstructor 34, ForType-only 17, Header 3, HeaderWithoutDefault 1,
+# and NO descriptor vtable slot separates the groups - 260 classes the engine calls Concrete carry
+# the identical stub. Whatever +0x50 asks, it is not that. What survives is mechanical and
+# unaffected: the stub returns false on all 315, so 00639A60's construct-and-compare arm is
+# unreachable in
+# this build, the "position dependant constructor" diagnostic can never fire, and EVERY default
+# buffer is built by 0063CB80 - parent default, then member defaults, over 0xA5. See
+# members/phyre-class-descriptor-vtable.tsv.
+#
+# DESCRIPTOR VTABLE SLOTS, established on the way and recorded where they are used: +0x50
+# default-constructs an instance at a given address and returns a bool, +0x58 destructs one,
+# +0x60 registers the class's members. For PDeferredLightingBase +0x60 is a thunk to 006488A0 -
+# exactly the caller phyre-field-schema.tsv already records for that class's eight members, which
+# is an independent tie rather than a restatement.
+# 2026-09-19 (OPUS). exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+class_leaf	descriptor	default_instance	descriptor_ctor	instance_size	storage
+PAnimatableComponent	02CAD140	02CB00E0	005A7ED0	0x108	bss
+PAnimationChannel	02CAD440	02CAFA20	005A80B0	0x68	bss
+PAnimationChannelBase	02CAD540	02CAF930	005A8150	0x48	bss
+PAnimationChannelTarget	02CAD640	02CAF870	005A81F0	0x38	bss
+PAnimationChannelTimes	02CAD740	02CAF810	005A82A0	0x18	bss
+PAnimationClip	02CAD840	02CB0020	005A8350	0x38	bss
+PAnimationClipBinding	02CADB40	02CACEE0	005A8400	0x8	bss
+PAnimationClipBindingChannelMap	02CAD940	02CAFC90	005A84B0	0x4	bss
+PAnimationClipBindingDataBlockCache	02CADA40	02CAFCC0	005A8560	0x18	bss
+PAnimationController	02CADD50	02CACE20	005A86B0	0x28	bss
+PAnimationDataSource	02CADE50	02CB0410	005A8750	0x18	bss
+PAnimationDataSourceListEntry	02CAE350	02CAF510	005A87F0	0x98	bss
+PAnimationEvent	02CAE050	02CB0590	005A88A0	0x8	bss
+PAnimationEventController	02CADF50	02CB0710	005A8950	0x28	bss
+PAnimationNetworkInstance	02CAE550	02CAFD20	005A8B50	0x78	bss
+PAnimationSlotFilter	02CAEA60	02CAF1E0	005A8E10	0x40	bss
+PAnimationSlotFilterDeferredLoad	02CAE960	02CACEB0	005A8EB0	0x10	bss
+PAnimationSlotListIndex	02CAE760	02CAF780	005A8F60	0x18	bss
+PAnimationSpuTargetBlenderController	02CAEBE0	02CAF450	005A9010	0x20	bss
+PAnimationTargetBlenderController	02CAECE0	02CAF4B0	005A90B0	0x20	bss
+PAssetReference	02D3E680	02D3E530	006751A0	0x50	bss
+PAssetReferenceImport	02D3E780	02D3E620	00675250	0x18	bss
+PAtmosphericsBase	02D367A0	02D32D30	00643F20	0x288	bss
+PBitmapFont	02E3FA60	02E3F810	0067CA70	0x38	bss
+PBitmapFontCharInfo	02E3F960	02E3F8D0	0067CB20	0x30	bss
+PBlendableAnimationSource	02CAD040	02CAFEA0	005A91F0	0x80	bss
+PCamera	02D3F210	02D3EFD0	00678370	0xC0	bss
+PCameraOrthographic	02E4F290	02E4EFF0	006ACFF0	0xD8	bss
+PCameraPerspective	02E4F710	02E4F470	006AD860	0xD8	bss
+PCameraProjection	02D3F310	02D3ED60	00678420	0xD0	bss
+PCelShadingBase	02D361A0	02D32670	00644100	0xC0	bss
+PClassCallableMethodScript	02E41070	02E420B0	006812B0	0x68	bss
+PClusterHeaderBase	02CA9FA0	02CA99F0	00597730	0x48	bss
+PClusterHeaderD3D11	02CA9DA0	02CA9AE0	005977E0	0x54	bss
+PComponent	02E4E720	02E4E6C0	006AA970	0x18	bss
+PConstantBufferBase	02CB6380	02CBE9B0	005D8FC0	0xC	bss
+PContextVariantFoldingTable	02CB7BA0	02CBF3D0	005D9070	0x14	bss
+PDataBlockBase	02D39D40	02D396F0	00661BD0	0x20	bss
+PDataBlockD3D11	02D39C40	02D38550	00661D30	0x88	bss
+PDebugUtils	02EA9400	02EAC0A0	00791C20	0x58	bss
+PDeferredLightingBase	02D34840	02CF9970	006442E0	0x41D8	bss
+PDepthOfFieldBase	02D34B40	02D1F230	006444C0	0x80	bss
+PDynamicDataBlock	02D39F40	02D388B0	00661DD0	0x28	bss
+PDynamicMesh	02D3A140	02D394E0	00661E80	0x38	bss
+PDynamicMeshInstance	02CB6580	02CBD570	005D9120	0x18	bss
+PDynamicSegmentDesc	02D3A040	02D395A0	00661F30	0x10	bss
+PEffect	02CB6680	02CB6160	005D91D0	0x78	bss
+PEffectVariant	02CB6780	02CBFC40	005D9280	0x68	bss
+PEntity	02E4EAF0	02E4EA30	006AB680	0x38	bss
+PGameConfig	02EB9E60	02EB9E00	00879A30	0x18	bss
+PGlowBase	02D35AA0	02D31290	00644880	0xA0	bss
+PIndexDataBlockBase	02D3A240	02D38940	00662080	0x14	bss
+PIndexDataBlockD3D11	02D39A40	02D38A90	006621E0	0x80	bss
+PInputAction	02EB6CF0	02EB5170	0086B2B0	0x28	bss
+PInputMapper	02EA5560	02EAB830	00791CD0	0x2C8	bss
+PInputSource	02EB52F0	02EB5260	0086B410	0x28	bss
+PInputSourceJoypadAxis	02EB55F0	02EB43C0	0086B4C0	0x38	bss
+PInputSourceJoypadButton	02EB54F0	02EB4300	0086B560	0x40	bss
+PInputSourceKey	02EB53F0	02EB4240	0086B600	0x40	bss
+PInputSourceMouseButton	02EB56F0	02EB4480	0086BCE0	0x38	bss
+PInputSourceMouseDeltaX	02EB57F0	02EB4540	0086BD80	0x40	bss
+PInputSourceMouseDeltaY	02EB58F0	02EB4600	0086BE20	0x40	bss
+PInstanceListHeader	02CA9EA0	02CA9D20	00597880	0x24	bss
+PLODGroup	02E5AE00	02E5AFC0	006C4EC0	0x68	bss
+PLODLevel	02E5AD00	02E5AF00	006C4F70	0x38	bss
+PLight	02E58DB0	02E58BE0	006BEB80	0x40	bss
+PMaterial	02CB6B80	02CBEFE0	005D9520	0x28	bss
+PMaterialSwitch	02CB6A80	02CBEDE0	005D95D0	0x10	bss
+PMesh	02D3A640	02D39360	00662330	0x80	bss
+PMeshInstance	02CB6E80	02CBD270	005D9680	0xC8	bss
+PMeshInstanceAttachPoint	02CB6F80	02CBEC50	005D9730	0x18	bss
+PMeshInstanceBounds	02CB7080	02CBE9C0	005D97E0	0x30	bss
+PMeshInstanceSegmentStreamBinding	02CB6C80	02CB62E0	005D9930	0x18	bss
+PMeshSegmentBase	02D3A840	02D38DC0	00662480	0x30	bss
+PMeshSegmentD3D11	02D39840	02D38E50	00662530	0xC0	bss
+PModifierAndInputs	02E5E030	02E5DB20	006CFBA0	0x20	bss
+PModifierNetwork	02E5E540	02E5DB80	006CFC50	0x70	bss
+PModifierNetworkBuffer	02E5DF30	02E5DAC0	006CFD00	0x18	bss
+PModifierNetworkDynamicMeshSegment	02E57F60	02E57D80	006BBB70	0x18	bss
+PModifierNetworkInfoPacket	02E5E430	02E5DCD0	006CFDB0	0x20	bss
+PModifierNetworkInfoPacket_Buffer	02E5E330	02E5DA30	006CFE60	0x2	bss
+PModifierNetworkInfoPacket_ModifierCode	02E5E130	02E5D970	006CFF10	0x20	bss
+PModifierNetworkInfoPacket_ModifierInstance	02E5E230	02E5D9D0	006CFFC0	0x20	bss
+PModifierNetworkInstance	02E5A6C0	02E5A430	006C2E40	0x28	bss
+PModifierNetworkInstanceInput	02E5A4C0	02E5A3A0	006C2EF0	0x20	bss
+PModifierNetworkInstancePacketInput	02E5A5C0	02E5A400	006C2F90	0x8	bss
+PMotionBlurBase	02D34E40	02D1F890	00644EC0	0xD68	bss
+PNameComponent	02E4FF60	02E4FED0	006AFB70	0x30	bss
+PNode	02E518D0	02E51780	006B3F40	0x68	bss
+POccluderGeometryInstance	02E5BBB0	02E5BB80	006C8250	0x10	bss
+POccluderGeometryObject	02EA0850	02EA07C0	006D9F00	0x30	bss
+POctree	02EB9070	02EB8560	00877BE0	0x50	bss
+POctreeData	02EB9170	02EB84A0	00877D40	0x38	bss
+POctreeWorld	02EB9270	02EB8E00	00877DF0	0xC8	bss
+PParameterBuffer	02CB7480	02CBECE0	005D9B30	0x20	bss
+PParameterBufferBase	02CB7380	02CBF9A0	005D9BD0	0x4	bss
+PPhysicsBoxBase	02E478D0	02E45B00	0068F2F0	0x80	bss
+PPhysicsCallbackData	02E48AD0	02E47840	0068F430	0x28	bss
+PPhysicsCapsuleBase	02E47AD0	02E469A0	0068F580	0x88	bss
+PPhysicsCharacterCamera	02E47CD0	02E43520	0068F6C0	0x208	bss
+PPhysicsCharacterControllerBase	02E47DD0	02E43B50	0068F810	0x130	bss
+PPhysicsCylinderBase	02E47FD0	02E464C0	0068FA00	0x80	bss
+PPhysicsMaterial	02E483D0	02E453B0	0068FD30	0xC	bss
+PPhysicsMeshBase	02E484D0	02E45FE0	0068FE80	0x78	bss
+PPhysicsModel	02E486D0	02E434C0	0068FFC0	0x18	bss
+PPhysicsPlaneBase	02E487D0	02E47280	00690110	0x80	bss
+PPhysicsRigidBodyBase	02E489D0	02E42A40	006902F0	0x118	bss
+PPhysicsShapeBase	02E48CD0	02E47210	006904E0	0x68	bss
+PPhysicsSphereBase	02E48ED0	02E45680	006906D0	0x78	bss
+PPhysicsTaperedCapsule	02E490D0	02E47060	00690810	0x88	bss
+PPhysicsTaperedCylinder	02E491D0	02E46EB0	006908B0	0x88	bss
+PPhysicsWorldBase	02E492D0	02E448D0	006909F0	0x60	bss
+PPostEffectBase	02D34740	02CF9880	00645000	0x50	bss
+PQuarryComponent	02E4E1E0	02E4E090	006A9720	0x68	bss
+PRaycastResult	02E493D0	02E44840	00690B40	0x30	bss
+PRenderStream	02E5DE30	02E5DA90	006D0070	0x10	bss
+PRenderStreamInput	02E5DD30	02E5DA60	006D0120	0x8	bss
+PRenderTargetBase	02CB75A0	02CBEDD0	005D9D20	0x10	bss
+PSamplerStateBase	02CB77A0	02CBD180	005D9E70	0x20	bss
+PSceneRenderPass	02CB79A0	02CBF760	005D9F20	0x50	bss
+PScreenSpaceReflectionBase	02D364A0	02D32040	006453E0	0xB0	bss
+PScript	02E41470	02E41600	00681400	0x58	bss
+PScriptCallbackHandler	02E41170	02E42200	006814B0	0x18	bss
+PScriptableComponent	02E5C050	02E5BF90	006CCF50	0x40	bss
+PShader	02CB9000	02CBD0C0	005DA070	0x40	bss
+PShaderComputeProgramD3D11	02CF1C40	02CF2E60	00614D10	0x90	bss
+PShaderParameterCaptureBufferByteAddressBuffer	02CBA500	02CBF610	005DA300	0x20	bss
+PShaderParameterCaptureBufferDataBlock	02CBA700	02CBF7B0	005DA3A0	0x18	bss
+PShaderParameterCaptureBufferIndexDataBlock	02CBA800	02CBF8B0	005DA440	0x18	bss
+PShaderParameterCaptureBufferLocation	02CB9100	02CBEB80	005DA4E0	0x2	bss
+PShaderParameterCaptureBufferLocationSize	02CB9200	02CBEC10	005DA590	0x4	bss
+PShaderParameterCaptureBufferLocationType	02CB9300	02CBEC70	005DA630	0x4	bss
+PShaderParameterCaptureBufferLocationTypeConstantBuffer	02CB9400	02CBED60	005DA6D0	0x10	bss
+PShaderParameterCaptureBufferRWByteAddressBuffer	02CBA600	02CBF670	005DA770	0x28	bss
+PShaderParameterCaptureBufferRWStructuredBuffer	02CBA400	02CBF5B0	005DA810	0x20	bss
+PShaderParameterCaptureBufferRWTexture2D	02CBA900	02CBF410	005DA8B0	0x18	bss
+PShaderParameterCaptureBufferRWTexture3D	02CBAA00	02CBF490	005DA950	0x18	bss
+PShaderParameterCaptureBufferSampler	02CBA200	02CBF4F0	005DA9F0	0x18	bss
+PShaderParameterCaptureBufferStructuredBuffer	02CBA300	02CBF550	005DAB40	0x20	bss
+PShaderParameterCaptureBufferTexture2D	02CB9F00	02CBF220	005DABE0	0x18	bss
+PShaderParameterCaptureBufferTexture3D	02CBA000	02CBF280	005DAC80	0x18	bss
+PShaderParameterCaptureBufferTextureBase	02CB9D00	02CBF1F0	005DAD20	0x10	bss
+PShaderParameterCaptureBufferTextureCubeMap	02CBA100	02CBF340	005DADD0	0x18	bss
+PShaderParameterCaptureConstantBuffer	02CB9E00	02CBF700	005DAE70	0x18	bss
+PShaderParameterDefinition	02CB9500	02CBEEA0	005DAF10	0x18	bss
+PShaderPassBase	02CB9900	02CBC7F0	005DB060	0x30	bss
+PShaderPassD3D11	02CF1440	02CF34C0	00614EF0	0x2C0	bss
+PShaderPassInfo	02CB7AA0	02CBF2E0	005DB110	0x30	bss
+PShaderPassStateBase	02CB9B00	02CBC6D0	005DB3B0	0x4	bss
+PShaderPassStateD3D11	02CF1540	02CF3010	00614F90	0x190	bss
+PShaderProgramD3D11	02CF1840	02CF2800	00615030	0x78	bss
+PShaderSource	02CBAB00	02CBF910	005DB5C0	0x28	bss
+PShaderStreamDefinition	02CBAE00	02CBF050	005DB670	0x18	bss
+PShaderVertexProgramD3D11	02CF1940	02CF2980	006150D0	0x98	bss
+PShadowCaster	02E59DC0	02E59770	006C0D50	0x80	bss
+PShadowSplit	02E59CC0	02E598F0	006C0E00	0xE8	bss
+PShape	02D3ACE0	02D395D0	006625D0	0x38	bss
+PSkeletonJointBounds	02D3A540	02D39300	00662680	0x20	bss
+PSkinBoneRemap	02D3A740	02D38D90	00662730	0x4	bss
+PStreamInputDescD3D11	02CF1640	02CF2740	00615170	0x20	bss
+PStructuredBufferBase	02CBB500	02CBED40	005DB910	0x14	bss
+PTexture2DBase	02CBB800	02CBD5B0	005DBA60	0x30	bss
+PTexture3DBase	02CBBA00	02CBDB10	005DBBA0	0x38	bss
+PTextureCommonBase	02CBB700	02CBD4E0	005DBC40	0x28	bss
+PTextureCubeMapBase	02CBBC00	02CBDE10	005DBD90	0x30	bss
+PTimeIntervalController	02CAEFE0	02CB0620	005A9340	0x28	bss
+PTimeScaleOffsetController	02CAF0E0	02CB06B0	005A93E0	0x20	bss
+PTrigger	02E4D940	02E4D820	006A7BA0	0x58	bss
+PTriggerReceiverComponent	02E5C710	02E5C5F0	006CDFF0	0x58	bss
+PTriggerReceiverTypeCallbackData	02E5C370	02E5C2E0	006CD8A0	0x28	bss
+PTypedObject	02E4E430	02E4E400	006A9E50	0x10	bss
+PVertexStream	02D3ADE0	02D39690	006627E0	0x18	bss
+PWorldMatrix	02E404B0	02E40420	0067E5D0	0x30	bss

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\capture.py"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\capture.py\", line 151, in <module>\n    try:main()\n        ~~~~^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\capture.py\", line 43, in main\n    assert source == p.read_bytes(), 'Selected repair source moved'\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Selected repair source moved\n",
+  "terminal": true,
+  "driver_sha256": "6b20115f095efd8983a29a400aa413ba36f35c41635798a9a888deeb24a18c74"
+}

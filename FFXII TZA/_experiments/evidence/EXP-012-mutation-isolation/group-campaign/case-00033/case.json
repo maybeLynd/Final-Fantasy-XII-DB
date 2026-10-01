@@ -1,0 +1,13 @@
+{
+  "status": "EQUIVALENT",
+  "target": "Game/Spawn/group_completion.c",
+  "input_hashes": {
+    "Game/Spawn/group_completion.c": "ccfba540f0a8076cf9b75ac182dea5c8b5845d90d38468e950c33b81c9cd8104",
+    "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+    "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+    "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+  },
+  "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+  "case_removed": true,
+  "mutation_outcome": "EQUIVALENT"
+}

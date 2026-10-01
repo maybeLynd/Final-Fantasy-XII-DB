@@ -1,0 +1,7 @@
+# CONTRADICTIONS.tsv - stable identities and preserved correction history.
+# source_header anchors the normalized full source line; line is only a location.
+# Existing claim/correction/instrument/addresses cells survive extraction.
+# Missing sources retain their IDs and cells; ambiguous adoption aborts.
+id	date	kind	category	document	line	claim	correction	instrument	addresses	source_header	source_status
+CON-021	2026-09-10	CORRECTED	actor.md	actor.md	3	CORRECTED 2026-09-10 — fixture actor claim	curated correction must survive	curated writer trace	00265020	## CORRECTED 2026-09-10 — fixture actor claim	present
+CON-022	2020-01-01	CORRECTED	earlier.md	earlier.md	1	CORRECTED 2020-01-01 — fixture earlier marker	UNSUMMARISED	UNSUMMARISED		## CORRECTED 2020-01-01 — fixture earlier marker	present

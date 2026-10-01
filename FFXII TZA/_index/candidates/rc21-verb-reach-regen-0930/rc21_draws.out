@@ -1,0 +1,18 @@
+draws: 100 (PYTHONHASHSEED 0..99), current census, depth 1
+draws reproducing all fourteen GN160 rows exactly: 0
+rows identical in every draw: 5 (Presentation, Input, Story_Event_Quest_Hunt, UI, CombatFormula)
+  Movement                       page  182  draws min  181 max  190  page value drawn   6 times  
+  ActorEntity                    page  142  draws min  135 max  154  page value drawn   9 times  FIVE
+  Party                          page   51  draws min   37 max   52  page value drawn   4 times  FIVE
+  Presentation                   page   42  draws min   42 max   42  page value drawn 100 times  
+  Audio                          page   36  draws min   36 max   37  page value drawn  75 times  
+  Input                          page   35  draws min   35 max   35  page value drawn 100 times  
+  Spawn_Encounter_Lifecycle      page   31  draws min   31 max   32  page value drawn  85 times  
+  WorldAreaField                 page   29  draws min   26 max   32  page value drawn  28 times  FIVE
+  Story_Event_Quest_Hunt         page   21  draws min   21 max   21  page value drawn 100 times  
+  CoreRuntimeScheduling          page   11  draws min   10 max   12  page value drawn  56 times  
+  UI                             page    8  draws min    8 max    8  page value drawn 100 times  
+  CombatFormula                  page    7  draws min    7 max    7  page value drawn 100 times  
+  Resource                       page    6  draws min    4 max    9  page value drawn  30 times  FIVE
+  Rewards_Progression_Economy    page    4  draws min    3 max    4  page value drawn  55 times  FIVE
+partition totals in every draw: [616]

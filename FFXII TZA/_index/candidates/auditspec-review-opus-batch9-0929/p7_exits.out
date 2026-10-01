@@ -1,0 +1,27 @@
+0089E860  mov       rcx, qword ptr [rdx + 0x60]
+0089E867  jmp       0x646500
+0089E86C  int3      
+0089E86D  int3      
+0089E86E  int3      
+0089E86F  int3      
+0089E870  mov       rcx, qword ptr [rdx + 0x40]
+0089E877  jmp       0x646ab0
+0089E87C  int3      
+0089E87D  int3      
+0089E87E  int3      
+0089E87F  int3      
+---
+0018D0D0  jmp       0x646770
+---
+0018D0D0 rel32 ['008965FA jmp'] data {'abs64': [], 'rva32': []}
+0089E870 rel32 [] data {'abs64': [], 'rva32': ['01DACB14(.rdata)']}
+008965E0  mov       rcx, qword ptr [rdx + 0x40]
+008965E7  jmp       0x6336e0
+008965EC  mov       rcx, qword ptr [rdx + 0x40]
+008965F3  add       rcx, 0x378
+008965FA  jmp       0x18d0d0
+---
+008965F0 data refs {'abs64': [], 'rva32': []}
+008965F4 data refs {'abs64': [], 'rva32': []}
+008965F7 data refs {'abs64': [], 'rva32': []}
+0089E870 data refs {'abs64': [], 'rva32': ['01DACB14(.rdata)']}

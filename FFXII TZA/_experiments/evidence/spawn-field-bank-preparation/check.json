@@ -1,0 +1,257 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A only",
+  "original_bodies": 9,
+  "complete_original_bytes": true,
+  "extent_proof": {
+    "source": "shipping .pdata",
+    "start": "0x26c8c0",
+    "end_exclusive": "0x26cdf4",
+    "unwind": "0x1d52e44",
+    "raw_hex": "c0c81400f4cd1400442ec301",
+    "note": "1332-byte extent includes INT3 at0026CDED/0026CDF3; catalog instruction-body count is1330, not a contiguous length."
+  },
+  "incomplete_collection": "Retained; rejected contiguous-length assumption, not a semantic pass or a ledger error.",
+  "selected_anchors": [
+    {
+      "address": "0x26cb2d",
+      "bytes": "48894758",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rdi + 0x58], rax"
+    },
+    {
+      "address": "0x26cb38",
+      "bytes": "48894760",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rdi + 0x60], rax"
+    },
+    {
+      "address": "0x26cd5e",
+      "bytes": "755e",
+      "mnemonic": "jne",
+      "operands": "0x26cdbe"
+    },
+    {
+      "address": "0x26cd60",
+      "bytes": "e8cb0d0000",
+      "mnemonic": "call",
+      "operands": "0x26db30"
+    },
+    {
+      "address": "0x26db80",
+      "bytes": "e83b435f00",
+      "mnemonic": "call",
+      "operands": "0x861ec0"
+    },
+    {
+      "address": "0x26dbeb",
+      "bytes": "3bfb",
+      "mnemonic": "cmp",
+      "operands": "edi, ebx"
+    },
+    {
+      "address": "0x26dbed",
+      "bytes": "7427",
+      "mnemonic": "je",
+      "operands": "0x26dc16"
+    },
+    {
+      "address": "0x26dbf4",
+      "bytes": "f6806210000020",
+      "mnemonic": "test",
+      "operands": "byte ptr [rax + 0x1062], 0x20"
+    },
+    {
+      "address": "0x26dbfb",
+      "bytes": "7505",
+      "mnemonic": "jne",
+      "operands": "0x26dc02"
+    },
+    {
+      "address": "0x26dbfd",
+      "bytes": "e8de6d0a00",
+      "mnemonic": "call",
+      "operands": "0x3149e0"
+    },
+    {
+      "address": "0x26dc11",
+      "bytes": "e8aa425f00",
+      "mnemonic": "call",
+      "operands": "0x861ec0"
+    },
+    {
+      "address": "0x26dc1b",
+      "bytes": "a808",
+      "mnemonic": "test",
+      "operands": "al, 8"
+    },
+    {
+      "address": "0x26dc2e",
+      "bytes": "e88d425f00",
+      "mnemonic": "call",
+      "operands": "0x861ec0"
+    },
+    {
+      "address": "0x26832b",
+      "bytes": "751d",
+      "mnemonic": "jne",
+      "operands": "0x26834a"
+    },
+    {
+      "address": "0x268334",
+      "bytes": "7414",
+      "mnemonic": "je",
+      "operands": "0x26834a"
+    },
+    {
+      "address": "0x268345",
+      "bytes": "e8769b5f00",
+      "mnemonic": "call",
+      "operands": "0x861ec0"
+    },
+    {
+      "address": "0x268359",
+      "bytes": "e8629b5f00",
+      "mnemonic": "call",
+      "operands": "0x861ec0"
+    },
+    {
+      "address": "0x268365",
+      "bytes": "750c",
+      "mnemonic": "jne",
+      "operands": "0x268373"
+    },
+    {
+      "address": "0x26836c",
+      "bytes": "c6806110000001",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rax + 0x1061], 1"
+    },
+    {
+      "address": "0x31467f",
+      "bytes": "8935df89bd01",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rip + 0x1bd89df], esi",
+      "rip_targets": [
+        {
+          "address": "0x1eed064",
+          "import_name": null
+        }
+      ]
+    },
+    {
+      "address": "0x3146de",
+      "bytes": "80a062100000df",
+      "mnemonic": "and",
+      "operands": "byte ptr [rax + 0x1062], 0xdf"
+    },
+    {
+      "address": "0x314759",
+      "bytes": "c705897caf0101000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rip + 0x1af7c89], 1",
+      "rip_targets": [
+        {
+          "address": "0x1e0c3ec",
+          "import_name": null
+        }
+      ]
+    },
+    {
+      "address": "0x3147bb",
+      "bytes": "e88053f1ff",
+      "mnemonic": "call",
+      "operands": "0x229b40"
+    },
+    {
+      "address": "0x3147df",
+      "bytes": "e8bcfc2600",
+      "mnemonic": "call",
+      "operands": "0x5844a0"
+    },
+    {
+      "address": "0x3147e4",
+      "bytes": "e897fd2600",
+      "mnemonic": "call",
+      "operands": "0x584580"
+    },
+    {
+      "address": "0x3147e9",
+      "bytes": "e872ea2600",
+      "mnemonic": "call",
+      "operands": "0x583260"
+    },
+    {
+      "address": "0x3148fb",
+      "bytes": "8b8044100000",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [rax + 0x1044]"
+    },
+    {
+      "address": "0x314903",
+      "bytes": "0f48c1",
+      "mnemonic": "cmovs",
+      "operands": "eax, ecx"
+    },
+    {
+      "address": "0x314879",
+      "bytes": "8b804c100000",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [rax + 0x104c]"
+    },
+    {
+      "address": "0x3148d9",
+      "bytes": "8b8054100000",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [rax + 0x1054]"
+    },
+    {
+      "address": "0x3149e9",
+      "bytes": "80a062100000fb",
+      "mnemonic": "and",
+      "operands": "byte ptr [rax + 0x1062], 0xfb"
+    }
+  ],
+  "reused_sources": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/spawn-load-continuation/sequence.json",
+      "sha256": "4af887eecea3cebd8a7f65075bed028939d48c8d70bf170a9db5a1a30bb50f50",
+      "body_sha256": "e4485a41e457cdbe7db1add682b23c6d68128ef315e17742b63699e8fbf59675",
+      "selected_instructions": [
+        {
+          "address": "0x582e98",
+          "bytes": "c7056e7db10101000000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rip + 0x1b17d6e], 1",
+          "rip_targets": [
+            {
+              "address": "0x209ac10",
+              "import_name": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/spawn-manager-dispatch/primary.json",
+      "sha256": "670556f1d4134f8893190cccb8e0f923e877899463465d3432e0393e868cef2d",
+      "body_sha256": "ebb4225155fc0202a40272254c63ade374460e164afd84623db54dece5c24b28",
+      "selected_instructions": [
+        {
+          "address": "0x314078",
+          "bytes": "e8337ff4ff",
+          "mnemonic": "call",
+          "operands": "0x25bfb0"
+        },
+        {
+          "address": "0x3140ba",
+          "bytes": "e871bb0100",
+          "mnemonic": "call",
+          "operands": "0x32fc30"
+        }
+      ]
+    }
+  ],
+  "limits": "Local native stores, calls and guards only. No B/live run, initialized-state proof, exhaustive flag-writer proof, or actual save/load scheduling.",
+  "checks": "pass"
+}

@@ -1,0 +1,16 @@
+{
+  "observed_utc": "2026-09-21T10:05:27.8906924Z",
+  "owned_pids_queried": [
+    21596,
+    46208,
+    35340,
+    51908,
+    51556,
+    33124
+  ],
+  "matching_processes_now": [],
+  "ff12_processes_now": [],
+  "pc_control_used": false,
+  "game_or_save_access": false,
+  "note": "Read-only later process check; exact Popen handles already reported normal exit. PID reuse would require identity reconciliation, never termination by age or name."
+}

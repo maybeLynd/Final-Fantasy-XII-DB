@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\controls.py"
+  ],
+  "terminal": true,
+  "returncode": 0,
+  "stdout": "[\n  {\n    \"case\": \"missing-manifest\",\n    \"refused\": true,\n    \"exception\": \"FileNotFoundError\",\n    \"detail\": \"[Errno 2] No such file or directory: 'C:\\\\\\\\Users\\\\\\\\Kristian\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\astra-uc1-receipt-tby2t7br\\\\\\\\run-02\\\\\\\\MANIFEST.json'\"\n  },\n  {\n    \"case\": \"nonzero-capture\",\n    \"refused\": true,\n    \"exception\": \"AssertionError\",\n    \"detail\": \"Capture did not finish successfully\"\n  },\n  {\n    \"case\": \"changed-bound-table\",\n    \"refused\": true,\n    \"exception\": \"AssertionError\",\n    \"detail\": \"\"\n  }\n]\n",
+  "stderr": "",
+  "driver_sha256": "d22ad272493b8a25230c3fb4e79a511a260d40cfdf0a481891b7d45ffa28a29b",
+  "checker_sha256": "7559778b668c453d848dc7470d85bbe622c69f78b3e265f7c16b2cd880e8c25b",
+  "output_sha256": "3acb80e8e68514ba5e097e5052ff8495ef6ef80c64c230a6fbfa3871c33ce387"
+}

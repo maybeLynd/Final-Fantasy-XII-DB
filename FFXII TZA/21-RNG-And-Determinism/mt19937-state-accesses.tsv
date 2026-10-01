@@ -1,0 +1,23 @@
+function	name	site	disp	kind	instruction	route	note
+00863BF0	RNG_MT19937_NextU32	00863C18	0x9C0	r	mov edx, dword ptr [rip + 0x2650612]	static:0x02EB3870	-
+00863BF0	RNG_MT19937_NextU32	00863C37	0x9C0	r	mov edx, dword ptr [rip + 0x26505f3]	static:0x02EB3870	-
+00863BF0	RNG_MT19937_NextU32	00863C40	0x0	addr	lea rcx, [rip + 0x264fc29]	static:0x02EB3870	-
+00863BF0	RNG_MT19937_NextU32	00863C49	0x9C0	w	mov dword ptr [rip + 0x26505e1], edx	static:0x02EB3870	-
+00863C80	RNG_MT19937_NextFloatClosed	00863CA8	0x9C0	r	mov edx, dword ptr [rip + 0x2650582]	static:0x02EB3870	-
+00863C80	RNG_MT19937_NextFloatClosed	00863CD3	0x9C0	r	mov edx, dword ptr [rip + 0x2650557]	static:0x02EB3870	-
+00863C80	RNG_MT19937_NextFloatClosed	00863CDC	0x0	addr	lea rcx, [rip + 0x264fb8d]	static:0x02EB3870	-
+00863C80	RNG_MT19937_NextFloatClosed	00863CE8	0x9C0	w	mov dword ptr [rip + 0x2650542], edx	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866BAB	0x9B4	addr	lea rdx, [rip + 0x264d672]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866BE1	0x634	addr	lea rax, [rip + 0x264d2bc]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866C8C	0x38C	addr	lea rax, [rip + 0x264cf69]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866C9C	0x0	addr	lea rdx, [rip + 0x264cbcd]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866CE2	0x9BC	addr	lea r8, [rip + 0x264d543]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866D1D	0x9BC	r	mov edx, dword ptr [rip + 0x264d509]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866D23	0x0	r	mov ecx, dword ptr [rip + 0x264cb47]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866D31	0x9C0	w	mov dword ptr [rip + 0x264d4f5], 0	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866D3B	0x9BC	r	xor edx, dword ptr [rip + 0x264d4eb]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866D4E	0x630	r	xor edx, dword ptr [rip + 0x264d14c]	static:0x02EB3870	-
+00866B90	RNG_MT19937_TwistState	00866D54	0x9BC	w	mov dword ptr [rip + 0x264d4d2], edx	static:0x02EB3870	-
+00866D60	RNG_MT19937_SeedState	00866D60	0x0	w	mov dword ptr [rip + 0x264cb0a], edx	static:0x02EB3870	-
+00866D60	RNG_MT19937_SeedState	00866D66	0x4	addr	lea rax, [rip + 0x264cb07]	static:0x02EB3870	-
+00866D60	RNG_MT19937_SeedState	00866D98	0x9C0	w	mov dword ptr [rip + 0x264d48e], 0x270	static:0x02EB3870	-

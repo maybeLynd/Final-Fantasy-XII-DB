@@ -1,0 +1,25 @@
+actor 25 ラバナ_通常_NPC01 scriptType 6 code [597a,5c57) functions ['init', 'main', 'talk', 'talk_step01', 'talk_step02', 'talk_step_bafter', 'talkhold', 'talkterm', 'set_RN_先読み', 'attack_01', 'attack_02', 'bindoff_TAG_RN']
+footer special[16]=6 special[17]=7
+function 7 talkterm at +1de, 54 bytes:
+  0000  CALL       0x70   verb getrotangzx
+  0003  PUSHII     0x0
+  0006  CALL       0x227   verb getdestrotangzx_227
+  0009  OPSUB      
+  000a  CALL       0x70   verb getrotangzx
+  000d  PUSHII     0x0
+  0010  CALL       0x227   verb getdestrotangzx_227
+  0013  OPSUB      
+  0014  OPMUL      
+  0015  PUSHF      0x2
+  0018  OPGT       
+  0019  UNK5C      0x6
+  001c  PUSHII     0x1
+  001f  CALLPOPA   0x281   verb setaturnlookatlockstatus
+  0022  PUSHII     0x0
+  0025  CALL       0x227   verb getdestrotangzx_227
+  0028  CALLPOPA   0x261   verb aturn_261
+  002b  PUSHII     0x1
+  002e  PUSHII     0x9
+  0031  PUSHII     0x6
+  0034  REQEW         <- ok [('PUSHII', 1, 'push'), ('PUSHII', 9, 'push'), ('PUSHII', 6, 'push')]  = channel 1, actor 9 ラバナ_通常_NPC01_TRAP (scriptType 1), function 6 re_on
+  0035  RET        

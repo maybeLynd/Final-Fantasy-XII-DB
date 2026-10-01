@@ -1,0 +1,220 @@
+{
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "parent_raw_sha256": "5dddc43d8bff2a889054a048be684b6f0aff0d89f9ae0c4598b1b86b48b7d84c",
+    "parent_manifest_sha256": "679922b9835318b29b417423450342b423e467b2595caa365fd0bb40ba01841f"
+  },
+  "driver_sha256": "92a117ad9c1e376bf29510714e4bd8317a30661922de82248e937b1021afeb63",
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "provider_files": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "bytes": 43853,
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "bytes": 7576576,
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "bodies": [
+    {
+      "name": "area-caller",
+      "entry": "0x2341c0",
+      "bytes": 62,
+      "sha256": "cba3ef3b30351c01df4df782bb954bf7caf305b4aa88cdf192dc9a9cd32d2723",
+      "instructions": [
+        {
+          "pc": "0x2341c0",
+          "bytes": "4883ec28",
+          "op": "sub",
+          "args": "rsp, 0x28",
+          "memory": [],
+          "written": [
+            "rflags",
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341c4",
+          "bytes": "e897bc0d00",
+          "op": "call",
+          "args": "0x30fe60",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341c9",
+          "bytes": "e852f81400",
+          "op": "call",
+          "args": "0x383a20",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341ce",
+          "bytes": "33c9",
+          "op": "xor",
+          "args": "ecx, ecx",
+          "memory": [],
+          "written": [
+            "rcx",
+            "rflags"
+          ]
+        },
+        {
+          "pc": "0x2341d0",
+          "bytes": "e89b230d00",
+          "op": "call",
+          "args": "0x306570",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341d5",
+          "bytes": "e836e51500",
+          "op": "call",
+          "args": "0x392710",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341da",
+          "bytes": "e8e16c0c00",
+          "op": "call",
+          "args": "0x2faec0",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341df",
+          "bytes": "e87c7b0e00",
+          "op": "call",
+          "args": "0x31bd60",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341e4",
+          "bytes": "83255551e501ef",
+          "op": "and",
+          "args": "dword ptr [rip + 0x1e55155], 0xffffffef",
+          "memory": [
+            {
+              "operand_index": 0,
+              "size": 4,
+              "base": "rip",
+              "index": null,
+              "disp": 31805781,
+              "kind": "rw"
+            }
+          ],
+          "written": [
+            "rflags"
+          ]
+        },
+        {
+          "pc": "0x2341eb",
+          "bytes": "e8900e0f00",
+          "op": "call",
+          "args": "0x325080",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341f0",
+          "bytes": "e81b590e00",
+          "op": "call",
+          "args": "0x319b10",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341f5",
+          "bytes": "4883c428",
+          "op": "add",
+          "args": "rsp, 0x28",
+          "memory": [],
+          "written": [
+            "rflags",
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x2341f9",
+          "bytes": "e972620c00",
+          "op": "jmp",
+          "args": "0x2fa470",
+          "memory": [],
+          "written": []
+        }
+      ]
+    },
+    {
+      "name": "root-clear",
+      "entry": "0x383a20",
+      "bytes": 12,
+      "sha256": "0f8759e1f4474d52c4ca8d15f82c7267c5d744b3c36fd680473d5f9d1e286e30",
+      "instructions": [
+        {
+          "pc": "0x383a20",
+          "bytes": "48c70585a5760200000000",
+          "op": "mov",
+          "args": "qword ptr [rip + 0x276a585], 0",
+          "memory": [
+            {
+              "operand_index": 0,
+              "size": 8,
+              "base": "rip",
+              "index": null,
+              "disp": 41330053,
+              "kind": "w"
+            }
+          ],
+          "written": []
+        },
+        {
+          "pc": "0x383a2b",
+          "bytes": "c3",
+          "op": "ret",
+          "args": "",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        }
+      ]
+    }
+  ],
+  "extent": {
+    "directory_rva": "0x2e78000",
+    "record_offset": 62580,
+    "record_hex": "c0411100fe411100c82bc301",
+    "entry": "0x2341c0",
+    "end": "0x2341fe"
+  }
+}

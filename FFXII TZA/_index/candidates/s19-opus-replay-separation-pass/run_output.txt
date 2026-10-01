@@ -1,0 +1,9 @@
+P2_each_pair_once                  PASS  three mutually overlapping bodies: the resolver runs for (0,1), (0,2), (1,2), once each
+P5_order_dependent                 PASS  the first pair sees zero accumulators; a later pair's resolver entry already holds a push written by an earlier pair in the same pass - read-then-write on the same accumulators
+P1_unregistered_not_active         PASS  after the reset, a body that did not register has +7 = 0 and no cell bit
+P3_remembered_pairs_visited_only_under_candidates PASS  (a) with no candidate the remembered pair is NOT retried and its bit PERSISTS; (b) a remembered bit below a candidate in the same byte is retried (refused: not active) and dropped; (c) a remembered bit above the highest candidate is never visited and persists beside the new pair. The walk also initiates from an UNREGISTERED body still on the allocated list: in (b) B, with last tick's cell bits, gets C as a candidate, and the resolver refuses (B, C)
+P4_mode_selects_active_test        PASS  B not active this tick: in push mode (1) the resolver refuses; in query mode (0) the active test is skipped and the pair resolves
+P4_layer_and_owner_refusals        PASS  different layers, or equal non-zero owner bytes, refuse the pair; two zero owners do pair
+P7_three_weight_outcomes           PASS  equal masks: the push is shared and BOTH contact counters advance, both immovable markers clear; a strictly larger or smaller mask byte puts the whole push on one body and advances ONE body's counter and marker
+P6_clear_extent                    PASS  003DA9F0 zeroes +0xE8..+0xEE (push length, pushed, contacts, immovable) and +0x100..+0x10B (the push), nothing else
+ok

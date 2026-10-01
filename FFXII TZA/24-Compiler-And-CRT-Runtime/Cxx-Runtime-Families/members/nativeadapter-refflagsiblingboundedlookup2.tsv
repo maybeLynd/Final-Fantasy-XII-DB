@@ -1,0 +1,9 @@
+# NativeAdapter.RefFlagSiblingBoundedLookup2 - EC-7 family C
+# ref-flag counted element op, second spelling: min(arg2,[this]&~bit31);
+# # call a member lookup on [this+8]; on failure return 0xD else shrink the
+# # range and free the tail via shared 00584730.
+address	targets
+00672990	00584730,00665550
+006A5560	00584730,00693CD0
+006A55F0	00584730,00693D60
+006A5680	00584730,00693E30

@@ -1,0 +1,130 @@
+PASS text-id control: 12000 -> listhelp_status.bin row 0 (KO help)  -- The character has lost consciousness and cannot move or act{
+== 1. every +0xE4 write, image-wide (control: 0056D4FD, 0056D5EC, 0056D712, 0056D736)
+   251 +0xE4 writes image-wide
+PASS control: 0056D370's four writes are found
+   panel write 0056C770 in 0056C490  and dword ptr [rbx + 0xe4], 0xc03fffff
+   panel write 0056C790 in 0056C490  mov dword ptr [rbx + 0xe4], eax
+   panel write 0056C7B8 in 0056C490  or dword ptr [rbx + 0xe4], 4
+   panel write 0056C7C1 in 0056C490  and dword ptr [rbx + 0xe4], 0xfffffffb
+   panel write 0056C7C8 in 0056C490  and dword ptr [rbx + 0xe4], 0xfffffff7
+   panel write 0056C83E in 0056C490  xor dword ptr [rbx + 0xe4], eax
+   panel write 0056C927 in 0056C850  and dword ptr [rdi + 0xe4], 0xffffffdf
+   panel write 0056D4FD in 0056D370  or dword ptr [rdi + 0xe4], 0x30
+   panel write 0056D5EC in 0056D370  and dword ptr [rdi + 0xe4], 0xffffffef
+   panel write 0056D712 in 0056D370  mov dword ptr [rdi + 0xe4], r8d
+   panel write 0056D736 in 0056D370  mov dword ptr [rdi + 0xe4], eax
+   panel write 0056D9A8 in 0056D940  and dword ptr [rdi + 0xe4], 0xc03fffff
+   panel write 0056D9BD in 0056D940  or dword ptr [rdi + 0xe4], eax
+   panel write 0056DA00 in 0056D9D0  or dword ptr [rbx + 0xe4], 4
+   panel write 0056DA09 in 0056D9D0  and dword ptr [rbx + 0xe4], 0xfffffffb
+   panel write 0056DA10 in 0056D9D0  and dword ptr [rbx + 0xe4], 0xfffffff7
+   panel write 0056DA22 in 0056D9D0  or dword ptr [rbx + 0xe4], eax
+PASS 17 writes in the five panel bodies  -- 17
+   other shop-region write 0056423E in 005641F0  or dword ptr [rax + 0xe4], 0x40000
+   other shop-region write 0056424F in 005641F0  or dword ptr [rax + 0xe4], 4
+   other shop-region write 0056425D in 005641F0  or dword ptr [rax + 0xe4], 0x20000
+   other shop-region write 005646E0 in 00564650  and dword ptr [rax + 0xe4], 0xfffbffff
+   other shop-region write 005646F1 in 00564650  and dword ptr [rax + 0xe4], 0xfffdffff
+   other shop-region write 00564702 in 00564650  and dword ptr [rax + 0xe4], 0xfffffffb
+   other shop-region write 00564710 in 00564650  and dword ptr [rax + 0xe4], 0xffe7ffff
+   other shop-region write 00564CDB in 00564C80  and dword ptr [rax + 0xe4], 0xfff7ffff
+   other shop-region write 00564CE5 in 00564C80  or dword ptr [rax + 0xe4], 0x100000
+   other shop-region write 00565FA9 in 00565E00  or dword ptr [rax + 0xe4], 0x10000
+   other shop-region write 00566D64 in 00566C10  mov word ptr [rbx + 0xe4], ax
+   other shop-region write 00566D88 in 00566C10  mov word ptr [rbx + 0xe4], ax
+   other shop-region write 00567A15 in 005679D0  and dword ptr [rax + 0xe4], 0xfff7ffff
+   other shop-region write 00567A1F in 005679D0  or dword ptr [rax + 0xe4], 0x100000
+   other shop-region write 00568185 in 005680E0  and dword ptr [rax + 0xe4], 0xfffbffff
+   other shop-region write 00568196 in 005680E0  and dword ptr [rax + 0xe4], 0xfffdffff
+   other shop-region write 005681A7 in 005680E0  and dword ptr [rax + 0xe4], 0xffe7ffff
+   other shop-region write 00568842 in 005687F0  or dword ptr [rax + 0xe4], 0x40000
+   other shop-region write 00568853 in 005687F0  or dword ptr [rax + 0xe4], 0x20000
+   other shop-region write 00569474 in 005691E0  or dword ptr [rax + 0xe4], 1
+   other shop-region write 0056964C in 005691E0  or dword ptr [rcx + 0xe4], 1
+   other shop-region write 00569697 in 005691E0  or dword ptr [rax + 0xe4], 1
+   other shop-region write 0056A5C8 in 0056A3D0  or dword ptr [rcx + 0xe4], 0x800000
+   other shop-region write 0056AB48 in 0056AB00  or dword ptr [rdx + 0xe4], edi
+   other shop-region write 0056BEE0 in 0056BE40  or dword ptr [rcx + 0xe4], 0x800000
+   other shop-region write 0056CA3A in 0056C950  or dword ptr [rax + 0xe4], 0x4000
+   other shop-region write 00570F74 in 00570CE0  or dword ptr [rbx + 0xe4], 0x800000
+   other shop-region write 00570FB7 in 00570CE0  and dword ptr [rbx + 0xe4], 0xff7fffff
+   other shop-region write 005710FC in 00570CE0  or dword ptr [rbx + 0xe4], 0x800000
+   other shop-region write 0057113A in 00570CE0  and dword ptr [rbx + 0xe4], 0xff7fffff
+   other shop-region write 00571378 in 00570CE0  or dword ptr [rbx + 0xe4], 0x8000000
+   other shop-region write 0057161B in 005715E0  or dword ptr [rdi + 0xe4], 4
+   other shop-region write 00571651 in 005715E0  xor dword ptr [rdi + 0xe4], eax
+   other shop-region write 005716D6 in 005715E0  and dword ptr [rdi + 0xe4], 0xffbfffff
+   other shop-region write 005716ED in 005715E0  and dword ptr [rdi + 0xe4], 0xfffffffb
+   other shop-region write 00571B4C in 00571A50  or dword ptr [rax + 0xe4], 0x4000000
+   other shop-region write 00571B7F in 00571A50  and dword ptr [rcx + 0xe4], 0xfffffffe
+   other shop-region write 00571C43 in 00571A50  and dword ptr [rdx + 0xe4], 0xefffffff
+   other shop-region write 00571C51 in 00571A50  or dword ptr [rdx + 0xe4], r8d
+   other shop-region write 005744F1 in 005742D0  or dword ptr [rax + 0xe4], 0x1000000
+   other shop-region write 00574510 in 005742D0  or dword ptr [rax + 0xe4], 0x4000000
+   other shop-region write 005787B2 in 00578450  or dword ptr [rax + 0xe4], 0x1000000
+   other shop-region write 005787D8 in 00578450  or dword ptr [rax + 0xe4], 0x4000000
+   other shop-region write 00579531 in 00579420  or dword ptr [rax + 0xe4], 0x4000000
+   other shop-region write 0057C7CC in 0057C480  or dword ptr [rcx + 0xe4], 0x80
+PASS the 00564xxx writes go through [rbx+0xD8] (the list control), e.g. 0056423E base rax loaded from rbx+0xd8
+PASS 0056C950 points [mode+0xD8] at the panel's +0xC0 list (0056C9E6/0056C9ED)
+== 2. the panel bodies hold the panel
+PASS 0056C490 is called only from 0056D370 and 0056C850  -- ['0x56c850', '0x56d370']
+PASS 0056C850 is reached only from 0056D370 (call) and 0056E580 (jmp)
+PASS 0056D940 and 0056D9D0 only from 0056CA60
+PASS 0056CA60 only from 0056DED0
+PASS 0056C950 (the panel installer) only from 0056DD50 and 0056DED0
+PASS 0056DD50 only from 0057C070
+PASS 0056E140 (the mode object's procedure) is referenced only at 0056DD66
+== 3. the fields
+PASS 0056D69C is 'movzx edx, byte ptr [r9]'  -- movzx edx, byte ptr [r9]
+PASS 0056D6B7 is 'and eax, 0xffffc03f'  -- and eax, 0xffffc03f
+PASS 0056D6BC is 'shl edx, 6'  -- shl edx, 6
+PASS 0056D6F8 is 'movzx r8d, byte ptr [rcx + r8 + 0xc035e8]'  -- movzx r8d, byte ptr [rcx + r8 + 0xc035e8]
+PASS 0056D703 is 'shl r8d, 0xe'  -- shl r8d, 0xe
+PASS 0056D712 is 'mov dword ptr [rdi + 0xe4], r8d'  -- mov dword ptr [rdi + 0xe4], r8d
+PASS 0056D71D is 'mov eax, dword ptr [r9 + 4]'  -- mov eax, dword ptr [r9 + 4]
+PASS 0056D721 is 'and eax, 1'  -- and eax, 1
+PASS 0056D736 is 'mov dword ptr [rdi + 0xe4], eax'  -- mov dword ptr [rdi + 0xe4], eax
+PASS 0056D46F is 'test r8b, 1'  -- test r8b, 1
+PASS 0056D478 is 'call 0x310870'  -- call 0x310870
+PASS 0056D49A is 'call 0x2feeb0'  -- call 0x2feeb0
+PASS 0056D488 is 'cmp eax, 0x1c0'  -- cmp eax, 0x1c0
+PASS 0056D496 is 'mov cl, 0xe'  -- mov cl, 0xe
+PASS 0056D4AC is 'cmp eax, 0x2c0'  -- cmp eax, 0x2c0
+PASS 0056D4C0 is 'call 0x30b630'  -- call 0x30b630
+PASS 0056D4CC is 'mov cl, 0x13'  -- mov cl, 0x13
+PASS 0056D4FD is 'or dword ptr [rdi + 0xe4], 0x30'  -- or dword ptr [rdi + 0xe4], 0x30
+PASS 0056D611 is 'cmp eax, 0x2c0'  -- cmp eax, 0x2c0
+PASS 0056D61E is 'call 0x57a480'  -- call 0x57a480
+PASS 0056D53B is 'movzx eax, byte ptr [rax + r8 + 0xc035f8]'  -- movzx eax, byte ptr [rax + r8 + 0xc035f8]
+PASS 0056C4C5 is 'lea r12d, [rax*2 + 0xc6b]'  -- lea r12d, [rax*2 + 0xc6b]
+PASS 0056D9BA is 'shl eax, 0x16'  -- shl eax, 0x16
+PASS 0056DA1F is 'shl eax, 3'  -- shl eax, 3
+PASS 0056C83E is 'xor dword ptr [rbx + 0xe4], eax'  -- xor dword ptr [rbx + 0xe4], eax
+PASS prompt 0xC6B + 2*bit0: 'Select an item to buy.' / '... to sell.'  -- ('Select an item to buy{A8}', 'Select an item to sell{A8}')
+== 4. the kind tables
+PASS row variant 00D235E8[kind] = 0,0,0,0,0,1,1,0,2,1,1,3  -- [0, 0, 0, 0, 0, 1, 1, 0, 2, 1, 1, 3]
+PASS max quantity 00D235F8[kind] = 99 x5, 1, 1, 99, 1, 1, 1, 255  -- [99, 99, 99, 99, 99, 1, 1, 99, 1, 1, 1, 255]
+PASS inventory list per kind (00D23D00 word 0, codes 8+kind): 1,2,3,4,0,8,9,11,5,6,7  -- [1, 2, 3, 4, 0, 8, 9, 11, 5, 6, 7, 1]
+PASS 0056E945 is 'mov ecx, 0x14'  -- mov ecx, 0x14
+PASS 0056E94C is 'mov eax, 8'  -- mov eax, 8
+PASS 0056E956 is 'add edx, eax'  -- add edx, eax
+PASS 0057D70F is 'lea rbx, [rcx*4 + 0xc03d00]'  -- lea rbx, [rcx*4 + 0xc03d00]
+PASS 0057D728 is 'movzx ecx, word ptr [rbx + r12]'  -- movzx ecx, word ptr [rbx + r12]
+PASS 0057D72D is 'call 0x252f40'  -- call 0x252f40
+PASS 0056DC30 category -> kind  -- [11, 0, 0, 0, 0, 1, 1, 1, 1, 2, 3, 4, 8, 9, 10, 5, 6, 6, 6, 6, 6, 6, 255, 255, 255, 255, 7, 3, 3, 3, 3, 8]
+== 5. shop verbs -> key -> category set -> kinds
+PASS 0057C070 option 0/1/2 keys = 0x5AF / 0x5A2 / 0x5AE  -- ['0x5af', '0x5a2', '0x5ae']
+PASS Buy (0x5AF, set 32) offers kinds 0-7 and 9  -- [0, 1, 2, 3, 4, 5, 6, 7, 9]
+PASS Sell (0x5A2, set 19) offers kinds 0-4 and 7  -- [0, 1, 2, 3, 4, 7]
+PASS Bazaar (0x5AE, set 31) offers kind 11  -- [11]
+PASS buy / sell goods codes (00D23D60 / 00D23D6C) = kind + 0x14 / kind + 8
+PASS 0056DE3D is 'lea ecx, [rsi - 0x597]'  -- lea ecx, [rsi - 0x597]
+PASS 0056DE49 is 'cmp ecx, 6'  -- cmp ecx, 6
+PASS 0056DE4E is 'lea ecx, [rsi - 0x59f]'  -- lea ecx, [rsi - 0x59f]
+PASS 0056DE54 is 'cmp ecx, 3'  -- cmp ecx, 3
+PASS only the Sell key sets bit 0
+== regression: the old reading
+PASS REJECTS 'buy 0x1C0 vs sell 0x2C0': 0x1C0>>6 = kind 7 = loot (list 11), 0x2C0>>6 = kind 11 = bazaar, and the commit branches on bit 0
+
+FAILS 0

@@ -1,0 +1,25 @@
+{
+  "status": "INVALID_NO_VERDICT",
+  "sequence": "Initial capture attempt, before raw.json",
+  "source": "capture-initial.ps1",
+  "source_sha256": "93f21bb3e9d4cef3c79459dd0c336efae887e93627d899793f97a601cdeaebde",
+  "exit_code": 1,
+  "message": "Missing/ambiguous account controls: no verdict",
+  "diagnosis": {
+    "matched_account_records": 1,
+    "account_name_matches": 1,
+    "MostRecent_matches": 0,
+    "observed_field_names": [
+      "AccountName",
+      "PersonaName",
+      "RememberPassword",
+      "WantsOfflineMode",
+      "SkipOfflineModeWarning",
+      "AutoLogin",
+      "Timestamp"
+    ]
+  },
+  "raw_profile_file_retained": false,
+  "dependent_semantic_conclusions": [],
+  "repair": "Unique ActiveUser-low32 and account-name-hash match; MostRecent is not required; five pure-function controls retained."
+}

@@ -1,0 +1,120 @@
+verdict	page	kinds	boxes	live	disposed	missing_pointer
+READY	00-Engine-Core-Runtime/the-encoded-id-class-registry.md		0	-	-	-
+PARTIAL	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md		1	OV-5	-	-
+PARTIAL	00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md		1	OV-8	-	-
+READY	00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md		0	-	-	-
+READY	00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md	UQ-22:answered,UQ-23:answered	0	-	-	-
+READY	00-Engine-Core-Runtime/Developer-Tuning-Console/the-event-slot-panel-and-its-dead-feeder.md		0	-	-	-
+READY	00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md		0	-	-	-
+READY	00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md		0	-	-	-
+READY	00-Engine-Core-Runtime/Diagnostics-Logging/the-formatted-log-call-and-its-level-gate.md		0	-	-	-
+READY	00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	UQ-46:answered,UQ-47:answered	0	-	-	-
+READY	01-Script-VM-Native-Bridge/Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md		0	-	-	-
+PARTIAL	01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md		2	OV-10,OV-11	-	-
+PARTIAL	01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md		3	OV-14,OV-16,OV-17	-	-
+READY	01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md		0	-	-	-
+READY	01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md		0	-	-	-
+READY	01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md		0	-	-	-
+READY	01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-standard-motion-verbs.md		0	-	-	-
+NEEDS-POINTER	01-Script-VM-Native-Bridge/Verb-Dispatch/what-each-script-verb-touches.md	UQ-56:disposed->CY-2,UQ-57:disposed->CY-3	0	-	UQ-56:SUPERSEDED,UQ-57:SUPERSEDED	UQ-56,UQ-57
+READY	02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	UQ-75:answered,UQ-76:answered,UQ-77:answered,UQ-78:answered	0	-	-	-
+NEEDS-POINTER	02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	AG-2:answered,UQ-80:disposed,UQ-81:answered	0	-	UQ-80:SUPERSEDED	UQ-80
+READY	02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/resource-section-addressing.md		0	-	-	-
+PARTIAL	02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md		2	OV-19,OV-21	-	-
+PARTIAL	02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md		4	OV-33,OV-34,OV-35,OV-36	-	-
+PARTIAL	02-Resource-And-Asset-Pipeline/the-nonempty-prf-registration-and-specialized-relocation.md		5	OV-39,OV-40,OV-41,OV-42,OV-43	-	-
+PARTIAL	02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md		2	OV-25,OV-26	-	-
+READY	02-Resource-And-Asset-Pipeline/the-resource-request-queue.md		0	-	-	-
+PARTIAL	02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md		2	OV-45,OV-46	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/as7-menu-graphics-containers.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md	SB-2:answered	0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cl2-menu-colour-tables.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cmap-menumap-common-sublocation-directory.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lst-menuquest-list.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mg-worldmap-mesh.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mrp-menu-resource-packages.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/wmap-menumap-world-map-graph.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md		0	-	-	-
+READY	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/area-nmb-index.md		0	-	-	-
+READY	03-World-Area-Field/choosing-the-field-environment-variant.md		0	-	-	-
+READY	04-Actor-Entity/the-field-runtime-pass.md		0	-	-	-
+READY	04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	AL-1:answered	0	-	-	-
+READY	05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md		0	-	-	-
+READY	06-Movement-And-Navigation/clamping-a-point-into-a-volume.md		0	-	-	-
+READY	06-Movement-And-Navigation/the-unit-shape-distance-primitives.md		0	-	-	-
+READY	06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md	AM-5:answered,AM-7:answered,DE-1:answered,DE-2:answered,DE-4:answered	0	-	-	-
+READY	06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md	K-6:answered	0	-	-	-
+NEEDS-POINTER	06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md	DP-1:answered,DP-2:disposed	0	-	DP-2:SUPERSEDED	DP-2
+READY	07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md		0	-	-	-
+NEEDS-POINTER	07-Combat-Action/Action-Definition-Row/the-action-definition-row.md	UQ-106:disposed,UQ-107:answered	0	-	UQ-106:SUPERSEDED	UQ-106
+READY	08-Combat-Formula/combos-and-the-guard-parry-flag.md		0	-	-	-
+READY	08-Combat-Formula/where-a-stat-number-comes-from.md		0	-	-	-
+READY	08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md	E-3:answered	0	-	-	-
+READY	09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	UQ-121:answered,Z-16:answered,Z-2:answered	0	-	-	-
+READY	11-Party/active-party-reserve-and-the-moment-the-leader-changes.md	O-6:answered	0	-	-	-
+READY	12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md		0	-	-	-
+READY	12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	UQ-132:answered,UQ-133:answered	0	-	-	-
+READY	13-Rewards-Progression-Economy/experience-and-license-point-award.md		0	-	-	-
+READY	13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md		0	-	-	-
+READY	13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md		0	-	-	-
+READY	15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md		0	-	-	-
+READY	15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	AP-4:answered,AP-6:answered	0	-	-	-
+READY	15-Input/Modal-Toggles/r2-force-fight-toggle.md	AN-1:answered,FM-1:answered,UQ-149:answered,UQ-150:answered,UQ-151:answered	0	-	-	-
+READY	16-UI/the-selection-the-menu-publishes.md		0	-	-	-
+READY	16-UI/Battle-Hud/the-battle-hud-layout-readers.md		0	-	-	-
+READY	16-UI/Gambit-Screens/the-gambit-screens.md		0	-	-	-
+READY	16-UI/Handbook/the-handbook-screen.md		0	-	-	-
+READY	16-UI/License-Board-View/the-license-board-screen-widgets.md		0	-	-	-
+READY	16-UI/Request-Router/ui-request-router.md	UQ-162:answered,UQ-163:answered	0	-	-	-
+READY	16-UI/Shared-Dialogs/the-shared-dialog-widgets.md		0	-	-	-
+READY	16-UI/Shop-Screens/the-shop-screens.md		0	-	-	-
+READY	16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	UQ-168:answered,UQ-170:answered,UQ-172:answered,UQ-173:answered,UQ-176:answered,UQ-383:answered	0	-	-	-
+READY	16-UI/Unlabelled-Panes/the-unlabelled-procedures.md		0	-	-	-
+PARTIAL	16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md		1	OV-29	-	-
+READY	16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md		0	-	-	-
+READY	16-UI/Widget-Object-Model/the-widget-message-protocol.md		0	-	-	-
+READY	17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md		0	-	-	-
+NEEDS-POINTER	17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md	UQ-192:disposed,UQ-193:answered,UQ-194:answered,UQ-195:answered	0	-	UQ-192:NOT A QUESTION	UQ-192
+NEEDS-POINTER	17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md	BT-4:answered,BT-5:answered,BT-6:answered,UQ-196:disposed->BT-2,UQ-197:disposed->BT-3,UQ-198:disposed->BT-5	0	-	UQ-196:SUPERSEDED,UQ-197:SUPERSEDED,UQ-198:SUPERSEDED	UQ-196,UQ-197,UQ-198
+READY	17-Presentation-Rendering/Effect-File-Formats/effect-mesh-records-kind-54.md		0	-	-	-
+READY	17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md		0	-	-	-
+READY	17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md		0	-	-	-
+READY	17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md		0	-	-	-
+READY	17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md		0	-	-	-
+READY	17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md		0	-	-	-
+PARTIAL	17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	UQ-217:disposed->FW-1,UQ-218:partial,UQ-219:answered,UQ-220:answered,UQ-221:answered	1	UQ-218	UQ-217:SUPERSEDED	UQ-217
+PARTIAL	17-Presentation-Rendering/Model-And-Motion-Formats/fdm-and-for-entries.md		0	UQ-218	-	-
+PARTIAL	17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md		0	UQ-218	-	-
+READY	17-Presentation-Rendering/Model-And-Motion-Formats/frp-object-container.md		0	-	-	-
+PARTIAL	17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md		0	UQ-218	-	-
+PARTIAL	17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md		0	UQ-218	-	-
+READY	17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md		0	-	-	-
+NEEDS-POINTER	17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	W-3:answered,W-5:answered,W-7:disposed	0	-	W-7:SUPERSEDED	W-7
+NEEDS-POINTER	18-Audio/sqex-sd-sound-driver-architecture.md	G-1:answered,G-2:disposed,G-3:answered,G-4:answered,G-5:answered,WC-1:answered	0	-	G-2:SUPERSEDED	G-2
+READY	18-Audio/which-variation-of-a-sound-you-hear.md		0	-	-	-
+NEEDS-POINTER	18-Audio/Sound-Selection/sound-variant-selection.md	G-1:answered,G-13:answered,G-2:disposed	0	-	G-2:SUPERSEDED	G-2
+READY	19-Save-Load-Settings/the-save-load-screen-widgets.md		0	-	-	-
+NEEDS-POINTER	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	UQ-271:disposed->V-1,V-12:answered,V-2:answered	0	-	UQ-271:SUPERSEDED	UQ-271
+NEEDS-POINTER	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	UQ-271:disposed->V-1,V-3:answered,V-6:answered	0	-	UQ-271:SUPERSEDED	UQ-271
+NEEDS-POINTER	20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	AB-2:answered,AB-6:disposed,AB-8:disposed,UQ-272:disposed->AB-3,UQ-273:answered	0	-	AB-6:SUPERSEDED,AB-8:SUPERSEDED,UQ-272:SUPERSEDED	AB-6,AB-8,UQ-272
+READY	22-Middleware-PhyreEngine/the-camera-state-snapshot.md		0	-	-	-
+NEEDS-POINTER	22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md	BM-3:answered,UQ-277:answered,UQ-278:disposed->BM-4,UQ-279:answered,UQ-281:answered	0	-	UQ-278:SUPERSEDED	UQ-278
+READY	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/how-a-class-registers-its-array-members-and-annotations.md		0	-	-	-
+READY	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md		0	-	-	-
+NEEDS-POINTER	22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md	AQ-2:disposed,AQ-5:answered	0	-	AQ-2:SUPERSEDED	AQ-2
+READY	23-Third-Party-Libraries/third-party-middleware-inventory.md		0	-	-	-
+NEEDS-POINTER	23-Third-Party-Libraries/Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md	BN-2:answered,UQ-302:disposed->BN-1,UQ-304:disposed->BN-4,UQ-305:disposed->BN-6	0	-	UQ-302:SUPERSEDED,UQ-304:SUPERSEDED,UQ-305:SUPERSEDED	UQ-302,UQ-304,UQ-305
+NEEDS-POINTER	23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md	BS-5:disposed,UQ-306:disposed->BS-5	0	-	BS-5:OUT OF EVIDENCE BOUNDARY,UQ-306:SUPERSEDED	BS-5,UQ-306
+READY	24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md		0	-	-	-
+READY	24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-ordered-container-runtime.md		0	-	-	-
+READY	24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md		0	-	-	-
+READY	99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md		0	-	-	-
+READY	99-Unresolved-Residual/the-widget-tree-draw-pass.md		0	-	-	-
+READY	99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md		0	-	-	-
+READY	99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md		0	-	-	-
+READY	99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	BI-11:answered,BI-3b:answered,BI-3c:answered	0	-	-	-

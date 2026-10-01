@@ -1,0 +1,15 @@
+# CONTRADICTIONS.tsv - claims this database has overturned.
+#
+# date/kind/category/document/line/addresses are EXTRACTED MECHANICALLY from
+# dated correction headers by contradiction_index.py. Re-running preserves any
+# hand-written claim/correction/instrument and refills the rest.
+#
+# claim/correction/instrument are UNSUMMARISED until a human writes them. A
+# summary produced by a regex would be a fabrication with a citation attached.
+#
+# `instrument` is the column worth filling: which tool or method produced the
+# wrong answer. That is the query this ledger exists for.
+id	date	kind	category	document	line	claim	correction	instrument	addresses
+CON-001	2020-01-01	CORRECTED	earlier.md	earlier.md	1	CORRECTED 2020-01-01 — fixture earlier marker	UNSUMMARISED	UNSUMMARISED	
+CON-002	2026-09-02	CORRECTED	_index	_index/CONTRADICTION-LEDGER.md	1	A dated header — CORRECTED 2026-09-02, etc.	UNSUMMARISED	UNSUMMARISED	
+CON-003	2026-09-10	CORRECTED	actor.md	actor.md	3	CORRECTED 2026-09-10 — fixture actor claim	UNSUMMARISED	UNSUMMARISED	

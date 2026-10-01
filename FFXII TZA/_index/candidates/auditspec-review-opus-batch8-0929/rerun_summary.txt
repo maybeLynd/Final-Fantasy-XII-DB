@@ -1,0 +1,8 @@
+falsifier re-runs by SWE2-AUDIT-SPEC, 2026-09-29, HEAD at summary time 6ce04189a (runs made minutes earlier; the scripts were clean in git status); compared with the committed .out ignoring CR
+falsify_event_slot_panel.py  IDENTICAL  FAILS 0
+falsify_anim_move_turn.py  IDENTICAL  FAILS 0
+falsify_battle_party_verbs.py  IDENTICAL  FAILS 0
+falsify_action_targets.py  IDENTICAL  FAILS 0
+falsify_action_range_bands.py  IDENTICAL  FAILS 0
+falsify_gamepad_objects.py  IDENTICAL  FAILS 0
+falsify_monster_viewer.py  IDENTICAL  FAILS 0

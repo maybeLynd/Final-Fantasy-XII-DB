@@ -1,0 +1,5 @@
+positive                     exit=0 result_exists=True  Retained-source local membership/release guards proved; transitive cancellation/lifetime r
+positive vs title-retirement-local-guards-result-02.json: identical=True; differing keys=[]
+missing-manifest             exit=1 result_exists=False  FileNotFoundError: [Errno 2] No such file or directory: 'C:\\t\\auditspec\\trg-cases\\missing-manifest\\origin
+same-count-changed-mask      exit=1 result_exists=False  ValueError: retained input generation changed
+need-gate-only (reviewer)    exit=1 result_exists=False  ValueError: required original operation changed 0x24a6d1

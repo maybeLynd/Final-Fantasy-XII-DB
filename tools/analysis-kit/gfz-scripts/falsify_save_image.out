@@ -1,0 +1,8 @@
+SURVIVES  G0  [35, 50, 8, 8, 8, 122, 161]
+SURVIVES  G1  buffers ['02164280', '021BA940', '02211000', '022676C0']; gaps ['0x566c0', '0x566c0', '0x566c0']; padding 48
+SURVIVES  G2  backup loop (8, 8, 2765), submission loop (8, 8, 2765); tails ['movups xmm0, xmmword ptr [rax]', 'movups xmmword ptr [rcx], xmm0'] / ['movups xmm0, xmmword ptr [rcx]', 'movups xmmword ptr [r8], xmm0']
+SURVIVES  G3  mov-immediate 0x56690 at ['002EF5FD', '002EF65D', '002EF718', '0057E42F', '00581117', '00581F2F']; other uses []; raw dword occurrences in .text 6
+SURVIVES  G4  references active / staging / submission / backup: bounded [4, 2, 3, 1], linear [4, 2, 3, 1]; the backup's one ['002EF570']
+SURVIVES  G5  compound callers ['0022B6E0', '00280140', '00394130'] (sites 4); bare-clear callers ['003601D0']
+SURVIVES  G6  selector first, then the copy, then jmp 0020E540(bit, 02211000, 0x56690); 00236760 ['mov rax, qword ptr [rip + 0x2c88a29]', 'mov eax, dword ptr [rax + 4]', 'shr eax, 0xc', 'and eax, 1', 'ret']
+FAILS 0

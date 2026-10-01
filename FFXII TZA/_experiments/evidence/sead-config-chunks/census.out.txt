@@ -1,0 +1,43 @@
+control: .config entries: ['ps2data/sound/sead.win.config'] [1264]
+header: tag b'scnf'  +0x04 0  dirOffset 0x10  chunkCount 10  +0x0C 1264 (file 1264)
+dir  0  b'ctgr'  +4 0  +6 0x10  offset 0x0B0  +0xC 0
+dir  1  b'bus '  +4 0  +6 0x10  offset 0x150  +0xC 0
+dir  2  b'mcr '  +4 0  +6 0x10  offset 0x1A0  +0xC 0
+dir  3  b'epsp'  +4 0  +6 0x10  offset 0x240  +0xC 0
+dir  4  b'eps '  +4 0  +6 0x10  offset 0x250  +0xC 0
+dir  5  b'curv'  +4 0  +6 0x10  offset 0x430  +0xC 0
+dir  6  b'expr'  +4 0  +6 0x10  offset 0x480  +0xC 0
+dir  7  b'hcam'  +4 0  +6 0x10  offset 0x490  +0xC 0
+dir  8  b'evt '  +4 0  +6 0x10  offset 0x4A0  +0xC 0
+dir  9  b'ctgl'  +4 0  +6 0x10  offset 0x4B0  +0xC 0
+chunk b'ctgr' at 0x0B0..0x150  +0 1  tableOffset 0x10  count 4  elements at ['0x20', '0x40', '0x60', '0x80']
+    element 0  0x0D0 size 32  head 02 00 10 00 00 00 06 00 00 00 00 00 00 00 00 00  names [b'dummy0']
+    element 1  0x0F0 size 32  head 02 01 10 00 04 00 05 00 00 00 00 00 00 00 00 00  names [b'music']
+    element 2  0x110 size 32  head 02 02 10 00 30 00 02 00 00 00 00 00 00 00 00 00  names [b'se']
+    element 3  0x130 size 32  head 02 03 10 00 08 00 05 00 00 00 00 00 00 00 00 00  names [b'voice']
+chunk b'bus ' at 0x150..0x1A0  +0 2  tableOffset 0x10  count 1  elements at ['0x20']
+    element 0  0x170 size 48  head 02 00 20 00 ff 00 00 00 00 00 00 06 00 00 80 3f  names [b'Master']
+chunk b'mcr ' at 0x1A0..0x240  +0 0  tableOffset 0x10  count 3  elements at ['0x20', '0x40', '0x70']
+    element 0  0x1C0 size 32  head 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 1  0x1E0 size 48  head 00 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 2  0x210 size 48  head 00 02 10 00 00 00 00 00 00 00 00 00 00 00 00 00  names []
+chunk b'epsp' at 0x240..0x250  +0 0  tableOffset 0x10  count 0  elements at []
+chunk b'eps ' at 0x250..0x430  +0 0  tableOffset 0x10  count 11  elements at ['0x40', '0x50', '0xe0', '0x110', '0x130', '0x150', '0x160', '0x170', '0x180', '0x190', '0x1b0']
+    element 0  0x290 size 16  head 01 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 1  0x2A0 size 144  head 01 01 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 2  0x330 size 48  head 01 02 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 3  0x360 size 32  head 01 03 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 4  0x380 size 32  head 01 04 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 5  0x3A0 size 16  head 01 05 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 6  0x3B0 size 16  head 01 06 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 7  0x3C0 size 16  head 01 07 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 8  0x3D0 size 16  head 01 08 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 9  0x3E0 size 32  head 01 09 10 00 01 00 00 00 00 00 00 00 00 00 00 00  names []
+    element 10  0x400 size 48  head 01 0a 10 00 01 02 00 00 00 00 00 00 00 00 00 00  names []
+chunk b'curv' at 0x430..0x480  +0 0  tableOffset 0x10  count 1  elements at ['0x20']
+    element 0  0x450 size 48  head 00 00 10 00 02 00 00 00 00 00 00 00 00 00 00 00  names []
+chunk b'expr' at 0x480..0x490  +0 0  tableOffset 0x10  count 0  elements at []
+chunk b'hcam' at 0x490..0x4A0  +0 4096  tableOffset 0x10  count 44100  elements at []
+chunk b'evt ' at 0x4A0..0x4B0  +0 0  tableOffset 0x10  count 0  elements at []
+chunk b'ctgl' at 0x4B0..0x4F0  +0 0  tableOffset 0x10  count 1  elements at ['0x20']
+    element 0  0x4D0 size 32  head 00 00 10 00 07 00 00 00 00 00 00 00 00 00 00 00  names [b'default']

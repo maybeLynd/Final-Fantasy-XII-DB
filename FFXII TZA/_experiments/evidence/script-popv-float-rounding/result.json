@@ -1,0 +1,51 @@
+{
+  "state_label_correction": {
+    "status": "ADDITIVE_INPUT_LABEL_CORRECTION_NOT_RECAPTURE",
+    "affected": "72 first two feasibility cases only; no scientificresult/consumerclosure existed",
+    "cause": "String adapter looked for dictionary key syntax in AST-unparsed dict(keyword) constructor, so value execution used requestedMXCSR but returnedinitiallabel stayedliteral1F80 andR8label absent.",
+    "raw_preserved": true,
+    "executed_adapter_preserved": "runner-adapted.py",
+    "actual_state_basis": "Retained executed adapter u.reg_write(MXCSR,mxcsr) andR8D1; originalactualfeasibility loop RN1F80/RU5F80, plus recordedpoststageMXCSRRC bits. Not a new initial live observation.",
+    "normalized_initial": [
+      {
+        "case": 0,
+        "mxcsr": "0x1f80",
+        "kind_selector_r8d": 1
+      },
+      {
+        "case": 1,
+        "mxcsr": "0x5f80",
+        "kind_selector_r8d": 1
+      }
+    ],
+    "repair": "Matchactualkeywordconstructorsyntax and assertreplacement; actualproduceradapter/default metadata control beforeacceptingresult, no two guestcases replay.",
+    "limits": "Original raw labels remainwrong; normalizedlabel is source/invocation-derived andpoststageRC-corroborated. Native status/unmasked/nativegame stillunproved."
+  },
+  "status": "FLOAT_KIND_COERCION_DEPENDS_ON_MXCSR_RC",
+  "method": "B two bounded original float-kind stages thenexplicitverifiedstoreleafABI, existing70 runner adaptedonlyMXCSR/kind/descriptor/stateentry; no native/live/fullPOPV",
+  "raw_sha256": "fbbcf528c88c546a4f8da82b70dd7b740e2567d5634db07b5151547126b96439",
+  "observations": [
+    {
+      "input_signed": 16777217,
+      "mxcsr": "0x1f80",
+      "rounding": "nearest-even",
+      "float32_bits": "4B800000",
+      "float32_value": 16777216.0,
+      "original_stage_instructions": 13,
+      "original_store_instructions": 14,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "input_signed": 16777217,
+      "mxcsr": "0x5f80",
+      "rounding": "toward-positive-infinity",
+      "float32_bits": "4B800001",
+      "float32_value": 16777218.0,
+      "original_stage_instructions": 13,
+      "original_store_instructions": 14,
+      "guest_mxcsr_after": "0x5f80"
+    }
+  ],
+  "interpretation": "For tested signed16777217 under injectedfloat-kind path/kind2/descriptor58000000, originalMOVD/CVTDQ2PS/MOVSS thenoriginalwidth5store yields4B800000 (16777216) atmaskedRN1F80 and4B800001 (16777218) atmaskedRU5F80. Only initialRC differs. An alwaysnearest hostcast/rawbitcopy is insufficient for bitexactreconstruction ofthiscoercion. These two controls settlethisclaim, no extra cases required.",
+  "limits": "Originalboundedemulatorstages/composedstore underinjectedstate/entryABI, notfullPOPV/resolver/lookup/nativeCPU/game/callerreachability/validshippedcombination/bankinit/lifetime. No nativeMXCSRflag/status orunmaskedexceptions parity; negative/directeddown/otherfloatdomain nottested.70integercases notrerun. Independentacceptance/consumer incorporation pending. PC OFF/S19/fullL1+L2 NOT_MET"
+}

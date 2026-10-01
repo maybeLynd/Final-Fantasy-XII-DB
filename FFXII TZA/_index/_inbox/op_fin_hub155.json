@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-155",
+ "note": "batch 155 (EC7-190): 22 bodies decoded+anchored across 17 bearing hosts - multi-caller 003AB880 (alignment guard) + 00203A30 (codec-table scan); audio lexer family (00205120 =-arm bitmap builder, 002080D0 hex accumulator); battle-unit heading/landing solvers (00334E00, 0033BD70); app BST emplace 001BA080 + range-extract 001A0F80; npc-name scans 003C0180/003C0E30; widget 00241A70 notify + 00274BD0 unlink sweep; shared-command epoch reset 001C7290; frame lane flush 00375F80; settings sweep 0035D0E0; ui-layout slot probe 002C3C80; lit-char bucket lookup 0024E2F0; prefetch BST descent 00677AD0; efx two-lane resolve 00429760; spot gate 001EDBB0; icon-atlas slot push 0037FFD0; nine-patch rebuild 002C0F30. anchors 4822 (0 MID); address gate 0 UNSUPPORTED new; hash 26 standing unreproduced; crossref 2848 findings / 401 dispositioned; neighbour ADDS NOTHING (StoryEvent crossing accounted on effect-element-type-dispatch).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub155_dumps.txt",
+  "Database/Tools/work/hub155_callers.txt"
+ ]
+}

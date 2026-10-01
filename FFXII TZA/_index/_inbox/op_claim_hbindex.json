@@ -1,0 +1,9 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-HBINDEX-0922",
+ "agent": "SWE2-DATA",
+ "resources": [
+  {"key": "@publication"}
+ ],
+ "note": "Claiming @publication for the handbook-index package publish."
+}

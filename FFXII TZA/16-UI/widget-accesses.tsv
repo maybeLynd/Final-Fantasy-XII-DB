@@ -1,0 +1,366 @@
+function	name	site	disp	kind	instruction	route	note
+00241940	FUN_00241940	0024194E	0x40	rw	and dword ptr [rcx + 0x40], 0xfffffff7	widget rcx proc-abi	
+00241940	FUN_00241940	0024195B	0x40	rw	or dword ptr [rcx + 0x40], 0x40	widget rcx proc-abi	
+00241940	FUN_00241940	0024195F	0x40	r	mov eax, dword ptr [rcx + 0x40]	widget rcx proc-abi	
+00241940	FUN_00241940	00241970	0x0	r	mov rax, qword ptr [rcx]	widget rcx proc-abi	
+002445D0	FUN_002445d0	002445D8	0x40	rw	or dword ptr [rcx + 0x40], 0x23	widget rcx handler	
+002445D0	FUN_002445d0	002445F3	0x98	w	mov dword ptr [r9 + 0x98], edx	widget rcx handler	
+002445D0	FUN_002445d0	002445FA	0x9C	w	mov word ptr [r9 + 0x9c], ax	widget rcx handler	
+002445D0	FUN_002445d0	00244602	0x9E	w	mov word ptr [r9 + 0x9e], cx	widget rcx handler	
+00244F00	FUN_00244f00	00244F0A	0x40	rw	or dword ptr [rcx + 0x40], 0x40	widget rcx core	
+00244F00	FUN_00244f00	00244F11	0x40	r	mov eax, dword ptr [rcx + 0x40]	widget rcx core	
+00244F00	FUN_00244f00	00244F25	0x0	r	mov rax, qword ptr [rcx]	widget rcx core	
+00245020	FUN_00245020	00245044	0x0	r	mov rax, qword ptr [rdi]	widget rcx core	
+00245020	FUN_00245020	00245047	0x18	r	mov rbx, qword ptr [rdi + 0x18]	widget rcx core	
+00245020	FUN_00245020	00245069	0x20	r	mov rbx, qword ptr [rbx + 0x20]	widget rcx core	
+00245020	FUN_00245020	00245072	0x40	r	test byte ptr [rdi + 0x40], 0x20	widget rcx core	
+00245020	FUN_00245020	00245091	0x40	r	mov eax, dword ptr [rdi + 0x40]	widget rcx core	
+00245020	FUN_00245020	0024509B	0x40	w	mov dword ptr [rdi + 0x40], eax	widget rcx core	
+00245E60	FUN_00245e60	00245E88	0x40	r	mov eax, dword ptr [rcx + 0x40]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245E8E	0x10	r	mov rsi, qword ptr [rcx + 0x10]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245EB0	0x38	w	mov qword ptr [rbx + 0x38], rax	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245EB9	0x98	r	mov rax, qword ptr [rbx + 0x98]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245ED3	0xA0	r	movzx eax, byte ptr [rbx + 0xa0]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245F07	0x40	r	test dword ptr [rbx + 0x40], 0x2000000	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245F30	0x38	r	mov rsi, qword ptr [rsi + 0x38]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00245F38	0xA1	r	movzx ecx, byte ptr [rbx + 0xa1]	widget rcx proc-abi	
+00245E60	FUN_00245e60	002460E6	0x40	r	mov eax, dword ptr [rbx + 0x40]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00246102	0x8C	r	movss xmm0, dword ptr [rbx + 0x8c]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00246156	0x40	r	test dword ptr [rbx + 0x40], 0x800	widget rcx proc-abi	
+00245E60	FUN_00245e60	002461BB	0x40	r	mov eax, dword ptr [rbx + 0x40]	widget rcx proc-abi	
+00245E60	FUN_00245e60	002461D9	0x40	r	test dword ptr [rbx + 0x40], 0x100	widget rcx proc-abi	
+00245E60	FUN_00245e60	00246214	0x9C	r	movzx eax, word ptr [rbx + 0x9c]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00246220	0x9E	r	movzx eax, word ptr [rbx + 0x9e]	widget rcx proc-abi	
+00245E60	FUN_00245e60	0024623A	0x40	r	mov ecx, dword ptr [rbx + 0x40]	widget rcx proc-abi	
+00245E60	FUN_00245e60	002462B0	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00245E60	FUN_00245e60	002462D2	0x50	r	test byte ptr [rbx + 0x50], 1	widget rcx proc-abi	
+00245E60	FUN_00245e60	002462D6	0x50	a	lea rcx, [rbx + 0x50]	widget rcx proc-abi	
+00245E60	FUN_00245e60	0024633A	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00245E60	FUN_00245e60	0024635C	0x18	r	mov rdi, qword ptr [rbx + 0x18]	widget rcx proc-abi	
+00245E60	FUN_00245e60	0024637F	0x20	r	mov rdi, qword ptr [rdi + 0x20]	widget rcx proc-abi	
+00245E60	FUN_00245e60	00246388	0x40	r	mov ecx, dword ptr [rbx + 0x40]	widget rcx proc-abi	
+00245E60	FUN_00245e60	002463AA	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00245E60	FUN_00245e60	002463BE	0x38	w	mov qword ptr [rbx + 0x38], 0	widget rcx proc-abi	
+002465F0	FUN_002465f0	00246641	0x0	w	mov qword ptr [rdi], rbx	widget rcx core	
+002465F0	FUN_002465f0	00246647	0x40	r	xor ecx, dword ptr [rdi + 0x40]	widget rcx core	
+002465F0	FUN_002465f0	00246650	0x40	r	xor ecx, dword ptr [rdi + 0x40]	widget rcx core	
+002465F0	FUN_002465f0	00246660	0x40	w	mov dword ptr [rdi + 0x40], ecx	widget rcx core	
+002465F0	FUN_002465f0	0024666D	0x40	w	mov dword ptr [rdi + 0x40], eax	widget rcx core	
+002465F0	FUN_002465f0	00246670	0x44	rw	and dword ptr [rdi + 0x44], 0xfff8ffff	widget rcx core	
+002465F0	FUN_002465f0	0024667E	0x44	r	mov edx, dword ptr [rdi + 0x44]	widget rcx core	
+002465F0	FUN_002465f0	00246687	0x48	w	mov qword ptr [rdi + 0x48], rax	widget rcx core	
+002465F0	FUN_002465f0	00246695	0xAD	w	mov byte ptr [rdi + 0xad], 0xf9	widget rcx core	
+002465F0	FUN_002465f0	002466A1	0xAC	w	mov byte ptr [rdi + 0xac], 0xf9	widget rcx core	
+002465F0	FUN_002465f0	002466C1	0xAD	w	mov byte ptr [rdi + 0xad], al	widget rcx core	
+002465F0	FUN_002465f0	002466CB	0xAC	w	mov byte ptr [rdi + 0xac], cl	widget rcx core	
+002465F0	FUN_002465f0	002466D1	0x40	rw	and dword ptr [rdi + 0x40], 0xffffbfff	widget rcx core	
+002465F0	FUN_002465f0	002466D8	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	widget rcx core	
+002465F0	FUN_002465f0	002466E6	0xA1	w	mov word ptr [rdi + 0xa1], 0xff80	widget rcx core	
+002465F0	FUN_002465f0	002466F2	0x40	rw	or dword ptr [rdi + 0x40], eax	widget rcx core	
+002465F0	FUN_002465f0	002466FA	0x44	w	mov word ptr [rdi + 0x44], ax	widget rcx core	
+002465F0	FUN_002465f0	00246700	0xB8	w	mov dword ptr [rdi + 0xb8], 0x3f800000	widget rcx core	
+002465F0	FUN_002465f0	0024670A	0xA0	w	mov byte ptr [rdi + 0xa0], 0x80	widget rcx core	
+002465F0	FUN_002465f0	00246711	0x98	w	mov dword ptr [rdi + 0x98], eax	widget rcx core	
+002465F0	FUN_002465f0	00246717	0x9C	w	mov dword ptr [rdi + 0x9c], 0x800080	widget rcx core	
+002465F0	FUN_002465f0	0024675C	0xB4	w	mov dword ptr [rdi + 0xb4], 1	widget rcx core	
+002468A0	FUN_002468a0	002468CE	0x80	r	test byte ptr [rcx + 0x80], 0xe	widget rcx core	
+002468A0	FUN_002468a0	002468D7	0x98	r	movsx ecx, word ptr [rcx + 0x98]	widget rcx core	
+002468A0	FUN_002468a0	002468E2	0x9A	r	movsx eax, word ptr [rbx + 0x9a]	widget rcx core	
+002468A0	FUN_002468a0	002468EE	0x0	r	mov rax, qword ptr [rbx]	widget rcx core	
+002468A0	FUN_002468a0	00246909	0x0	r	mov rax, qword ptr [rbx]	widget rcx core	
+002468A0	FUN_002468a0	00246939	0x9A	r	movzx eax, word ptr [rbx + 0x9a]	widget rcx core	
+002468A0	FUN_002468a0	00246943	0x80	rw	or byte ptr [rbx + 0x80], 1	widget rcx core	
+002468A0	FUN_002468a0	0024694E	0x80	rw	and dword ptr [rbx + 0x80], 0xffffc3ff	widget rcx core	
+002468A0	FUN_002468a0	0024695C	0x86	w	mov word ptr [rbx + 0x86], ax	widget rcx core	
+002468A0	FUN_002468a0	00246963	0x8C	w	mov word ptr [rbx + 0x8c], dx	widget rcx core	
+002468A0	FUN_002468a0	0024696A	0x84	w	mov word ptr [rbx + 0x84], cx	widget rcx core	
+002468A0	FUN_002468a0	0024697A	0x80	rw	or dword ptr [rbx + 0x80], r9d	widget rcx core	
+002468A0	FUN_002468a0	00246981	0x8E	w	mov word ptr [rbx + 0x8e], r8w	widget rcx core	
+002468A0	FUN_002468a0	0024698F	0x94	w	mov dword ptr [rbx + 0x94], eax	widget rcx core	
+002468A0	FUN_002468a0	0024699C	0xB8	w	mov dword ptr [rbx + 0xb8], 0x3f800000	widget rcx core	
+002468A0	FUN_002468a0	002469B0	0x90	w	mov dword ptr [rbx + 0x90], edx	widget rcx core	
+002468A0	FUN_002468a0	002469DA	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	widget rcx core	
+002468A0	FUN_002468a0	002469E2	0x0	r	mov rax, qword ptr [rbx]	widget rcx core	
+00246C20	FUN_00246c20	00246C42	0x0	r	mov rax, qword ptr [rcx]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246C73	0xB8	r	movss xmm7, dword ptr [rbx + 0xb8]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246C89	0x80	r	mov ecx, dword ptr [rbx + 0x80]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246CA2	0x90	r	mov r9d, dword ptr [rbx + 0x90]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246CB3	0x94	r	cmp dword ptr [rbx + 0x94], eax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246CBB	0x94	w	mov dword ptr [rbx + 0x94], edx	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246CC7	0x94	r	sub edx, dword ptr [rbx + 0x94]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246CFA	0x90	r	cmp dword ptr [rbx + 0x90], edi	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D02	0x8C	r	movsx eax, word ptr [rbx + 0x8c]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D0D	0x84	r	movsx eax, word ptr [rbx + 0x84]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D2A	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D31	0x8E	r	movsx eax, word ptr [rbx + 0x8e]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D3C	0x86	r	movsx eax, word ptr [rbx + 0x86]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D5B	0x8C	r	movzx eax, word ptr [rbx + 0x8c]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D62	0x84	r	add ax, word ptr [rbx + 0x84]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D69	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D70	0x8E	r	movzx eax, word ptr [rbx + 0x8e]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D77	0x86	r	add ax, word ptr [rbx + 0x86]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D81	0x9A	w	mov word ptr [rbx + 0x9a], ax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D8C	0x80	rw	and byte ptr [rbx + 0x80], 0xfe	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246D93	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246DAB	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246DCE	0x90	r	mov r9d, dword ptr [rbx + 0x90]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246DDF	0x94	r	cmp dword ptr [rbx + 0x94], eax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246DE7	0x94	w	mov dword ptr [rbx + 0x94], edx	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246DF3	0x94	r	sub edx, dword ptr [rbx + 0x94]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E26	0x90	r	cmp dword ptr [rbx + 0x90], edi	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E2E	0x8C	r	movsx eax, word ptr [rbx + 0x8c]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E39	0x88	r	movsx eax, word ptr [rbx + 0x88]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E47	0x8E	r	movsx eax, word ptr [rbx + 0x8e]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E55	0x8A	r	movsx eax, word ptr [rbx + 0x8a]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E80	0x88	r	movsx eax, word ptr [rbx + 0x88]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E87	0x8C	r	movsx edx, word ptr [rbx + 0x8c]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E8E	0x8E	r	movsx ecx, word ptr [rbx + 0x8e]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246E97	0x8A	r	movsx eax, word ptr [rbx + 0x8a]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EA0	0x80	rw	and byte ptr [rbx + 0x80], 0xfd	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EA7	0x80	r	mov r8d, dword ptr [rbx + 0x80]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EB5	0x84	r	movzx eax, word ptr [rbx + 0x84]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EBF	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EC6	0x9C	w	mov word ptr [rbx + 0x9c], dx	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246ED4	0x86	r	movzx eax, word ptr [rbx + 0x86]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EDE	0x9A	w	mov word ptr [rbx + 0x9a], ax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EE5	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246EE8	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F0F	0x90	r	mov r9d, dword ptr [rbx + 0x90]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F20	0x94	r	cmp dword ptr [rbx + 0x94], eax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F28	0x94	w	mov dword ptr [rbx + 0x94], edx	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F34	0x94	r	sub edx, dword ptr [rbx + 0x94]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F64	0x90	r	cmp dword ptr [rbx + 0x90], edi	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F6C	0x88	r	mulss xmm0, dword ptr [rbx + 0x88]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F76	0x88	r	movss xmm0, dword ptr [rbx + 0x88]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F7E	0x80	rw	and byte ptr [rbx + 0x80], 0xfb	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F85	0x84	r	addss xmm0, dword ptr [rbx + 0x84]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F8D	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246F90	0x8C	w	movss dword ptr [rbx + 0x8c], xmm0	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246FB1	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246FC9	0x70	r	mov r9d, dword ptr [rbx + 0x70]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246FD8	0x74	r	cmp dword ptr [rbx + 0x74], eax	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246FDD	0x74	w	mov dword ptr [rbx + 0x74], r8d	widget rcx proc-abi	
+00246C20	FUN_00246c20	00246FE8	0x74	r	sub r8d, dword ptr [rbx + 0x74]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00247004	0x40	rw	and dword ptr [rbx + 0x40], 0xfffffdff	widget rcx proc-abi	
+00246C20	FUN_00246c20	0024700E	0x0	r	mov rax, qword ptr [rbx]	widget rcx proc-abi	
+00246C20	FUN_00246c20	00247029	0x7C	w	mov dword ptr [rbx + 0x7c], ecx	widget rcx proc-abi	
+00246C20	FUN_00246c20	0024703B	0x40	rw	and dword ptr [rbx + 0x40], 0xffff7fff	widget rcx proc-abi	
+00246C20	FUN_00246c20	00247047	0x7C	rw	and dword ptr [rbx + 0x7c], 0xffffffcf	widget rcx proc-abi	
+00246C20	FUN_00246c20	0024705B	0x7C	w	mov dword ptr [rbx + 0x7c], ecx	widget rcx proc-abi	
+00246C20	FUN_00246c20	0024706D	0x40	rw	and dword ptr [rbx + 0x40], 0xfffeffff	widget rcx proc-abi	
+00246C20	FUN_00246c20	00247079	0x7C	rw	and dword ptr [rbx + 0x7c], 0xffffffcf	widget rcx proc-abi	
+00246C20	FUN_00246c20	0024709B	0x78	w	movss dword ptr [rbx + 0x78], xmm0	widget rcx proc-abi	
+002473B0	FUN_002473b0	002473B6	0x0	r	mov rax, qword ptr [rcx]	widget rcx core	
+002473B0	FUN_002473b0	002473B9	0x18	r	mov rbx, qword ptr [rcx + 0x18]	widget rcx core	
+002473B0	FUN_002473b0	002473D8	0x20	r	mov rbx, qword ptr [rbx + 0x20]	widget rcx core	
+00247930	FUN_00247930	00247935	0x10	r	mov rax, qword ptr [rcx + 0x10]	widget rcx core	
+00247930	FUN_00247930	0024793E	0x40	rw	or dword ptr [rax + 0x40], 0x2000	widget rcx core	
+00247930	FUN_00247930	00247945	0x44	w	mov word ptr [rcx + 0x44], dx	widget rcx core	
+00248030	FUN_00248030	00248050	0xB4	w	mov dword ptr [rbx + 0xb4], r15d	widget rcx core	
+00248030	FUN_00248030	00248059	0xB4	rw	inc dword ptr [r14 + 0xb4]	widget rcx core	
+00248030	FUN_00248030	00248073	0x40	r	mov ecx, dword ptr [rbx + 0x40]	widget rcx core	
+00248030	FUN_00248030	0024808C	0x20	r	mov rdi, qword ptr [rbx + 0x20]	widget rcx core	
+00248030	FUN_00248030	00248093	0x10	r	mov rsi, qword ptr [rbx + 0x10]	widget rcx core	
+00248030	FUN_00248030	002480A7	0x40	r	mov eax, dword ptr [rdi + 0x40]	widget rcx core	
+00248030	FUN_00248030	002480BC	0xB4	w	mov dword ptr [rdi + 0xb4], r15d	widget rcx core	
+00248030	FUN_00248030	002480C8	0xB4	rw	inc dword ptr [rdi + 0xb4]	widget rcx core	
+00248030	FUN_00248030	002480DE	0x40	w	mov dword ptr [rbx + 0x40], ecx	widget rcx core	
+00248030	FUN_00248030	002480E7	0x0	r	mov rax, qword ptr [rbx]	widget rcx core	
+00248030	FUN_00248030	00248101	0x40	rw	and dword ptr [rbx + 0x40], 0xfffdffff	widget rcx core	
+00248030	FUN_00248030	00248110	0x40	rw	or dword ptr [rbx + 0x40], eax	widget rcx core	
+00248030	FUN_00248030	00248113	0x18	r	mov rcx, qword ptr [rbx + 0x18]	widget rcx core	
+00248030	FUN_00248030	0024811C	0x40	r	mov eax, dword ptr [rcx + 0x40]	widget rcx core	
+00248030	FUN_00248030	00248131	0xB4	w	mov dword ptr [rcx + 0xb4], r15d	widget rcx core	
+00248030	FUN_00248030	0024813A	0xB4	rw	inc dword ptr [rcx + 0xb4]	widget rcx core	
+00248030	FUN_00248030	00248142	0x20	r	mov rcx, qword ptr [rbx + 0x20]	widget rcx core	
+00248030	FUN_00248030	0024814B	0x40	r	mov eax, dword ptr [rcx + 0x40]	widget rcx core	
+00248030	FUN_00248030	00248158	0x10	r	mov rbx, qword ptr [rbx + 0x10]	widget rcx core	
+002482E0	FUN_002482e0	002482EE	0x18	r	mov rcx, qword ptr [rcx + 0x18]	widget rcx core	
+002482E0	FUN_002482e0	002482F7	0x20	r	mov rbx, qword ptr [rcx + 0x20]	widget rcx core	
+002482E0	FUN_002482e0	00248308	0x10	r	mov rax, qword ptr [rdi + 0x10]	widget rcx core	
+002482E0	FUN_002482e0	00248311	0x28	r	mov rdx, qword ptr [rdi + 0x28]	widget rcx core	
+002482E0	FUN_002482e0	00248315	0x20	r	mov rcx, qword ptr [rdi + 0x20]	widget rcx core	
+002482E0	FUN_002482e0	0024831E	0x20	w	mov qword ptr [rdx + 0x20], rcx	widget rcx core	
+002482E0	FUN_002482e0	00248324	0x18	w	mov qword ptr [rax + 0x18], rcx	widget rcx core	
+002482E0	FUN_002482e0	0024832D	0x28	w	mov qword ptr [rcx + 0x28], rdx	widget rcx core	
+002482E0	FUN_002482e0	00248331	0x30	rw	dec dword ptr [rax + 0x30]	widget rcx core	
+002482E0	FUN_002482e0	00248334	0x50	r	mov eax, dword ptr [rdi + 0x50]	widget rcx core	
+002482E0	FUN_002482e0	0024833E	0x60	r	cmp qword ptr [rdi + 0x60], 0	widget rcx core	
+002482E0	FUN_002482e0	00248343	0x50	w	mov dword ptr [rdi + 0x50], eax	widget rcx core	
+002482E0	FUN_002482e0	00248360	0x60	r	mov rax, qword ptr [rdi + 0x60]	widget rcx core	
+002482E0	FUN_002482e0	00248377	0x50	r	mov eax, dword ptr [rdi + 0x50]	widget rcx core	
+002482E0	FUN_002482e0	0024838A	0x60	r	mov rcx, qword ptr [rdi + 0x60]	widget rcx core	
+002482E0	FUN_002482e0	00248398	0x60	w	mov qword ptr [rdi + 0x60], 0	widget rcx core	
+002482E0	FUN_002482e0	002483A0	0x0	r	mov rax, qword ptr [rdi]	widget rcx core	
+002482E0	FUN_002482e0	002483B4	0x40	rw	and dword ptr [rdi + 0x40], 0xfffffbff	widget rcx core	
+002482E0	FUN_002482e0	002483BE	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	widget rcx core	
+002482E0	FUN_002482e0	002483C7	0x40	r	mov eax, dword ptr [rdi + 0x40]	widget rcx core	
+002482E0	FUN_002482e0	002483CA	0x8	r	mov rbx, qword ptr [rdi + 8]	widget rcx core	
+002482E0	FUN_002482e0	002483CE	0x0	w	mov qword ptr [rdi], 0	widget rcx core	
+002482E0	FUN_002482e0	002483E9	0xA2	w	mov byte ptr [rdi + 0xa2], 0	widget rcx core	
+002482E0	FUN_002482e0	002483F0	0x40	w	mov dword ptr [rdi + 0x40], eax	widget rcx core	
+00273A20	FUN_00273a20	00273A22	0x0	r	cmp qword ptr [rcx], rax	widget rcx core	
+0027AA70	FUN_0027aa70	0027ACA2	0x98	w	mov dword ptr [rdi + 0x98], esi	widget rcx handler	
+0027AA70	FUN_0027aa70	0027ACA8	0x9C	w	mov word ptr [rdi + 0x9c], cx	widget rcx handler	
+0027AA70	FUN_0027aa70	0027ACAF	0x9E	w	mov word ptr [rdi + 0x9e], ax	widget rcx handler	
+0027AA70	FUN_0027aa70	0027AD0D	0x40	rw	and dword ptr [rdi + 0x40], 0xffffff7f	widget rcx handler	
+0027AD70	FUN_0027ad70	0027AE07	0x38	r	mov rbx, qword ptr [rcx + 0x38]	widget rcx handler	
+0027AD70	FUN_0027ad70	0027AE20	0x9C	r	movsx edx, word ptr [rdi + 0x9c]	widget rcx handler	
+0027C870	FUN_0027c870	0027C8C0	0xB4	r	mov ecx, dword ptr [rbx + 0xb4]	widget rcx handler	
+0027C870	FUN_0027c870	0027C8D3	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+0027C870	FUN_0027c870	0027C90F	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+0027C870	FUN_0027c870	0027C95E	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+0027C870	FUN_0027c870	0027C965	0x80	r	mov eax, dword ptr [rbx + 0x80]	widget rcx handler	
+0027C870	FUN_0027c870	0027C978	0x40	r	mov eax, dword ptr [rbx + 0x40]	widget rcx handler	
+0027C870	FUN_0027c870	0027CA75	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+0027C870	FUN_0027c870	0027CBB5	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+0027C870	FUN_0027c870	0027CC72	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+0027C870	FUN_0027c870	0027CC9E	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+0027C870	FUN_0027c870	0027CCA5	0x9A	w	mov word ptr [rbx + 0x9a], r8w	widget rcx handler	
+0027C870	FUN_0027c870	0027CCAD	0x9C	w	mov word ptr [rbx + 0x9c], dx	widget rcx handler	
+0027C870	FUN_0027c870	0027CCB4	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx handler	
+00290FF0	FUN_00290ff0	00290FF5	0x38	r	mov rax, qword ptr [rcx + 0x38]	widget rcx handler	
+00298250	FUN_00298250	002982FE	0x98	w	mov dword ptr [rsi + 0x98], ebp	widget rcx handler	
+00298250	FUN_00298250	00298304	0x9C	w	mov word ptr [rsi + 0x9c], cx	widget rcx handler	
+00298250	FUN_00298250	0029830B	0x9E	w	mov word ptr [rsi + 0x9e], ax	widget rcx handler	
+002985D0	FUN_002985d0	0029865C	0x9C	w	mov word ptr [rbx + 0x9c], cx	widget rcx handler	
+002985D0	FUN_002985d0	00298663	0x98	w	mov dword ptr [rbx + 0x98], edx	widget rcx handler	
+002985D0	FUN_002985d0	00298669	0x9E	w	mov word ptr [rbx + 0x9e], ax	widget rcx handler	
+002985D0	FUN_002985d0	00298697	0x8	w	mov qword ptr [rbx + 8], rax	widget rcx handler	
+00299AC0	FUN_00299ac0	00299B14	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+00299AC0	FUN_00299ac0	00299B40	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+00299AC0	FUN_00299ac0	00299B47	0x9A	w	mov word ptr [rbx + 0x9a], r8w	widget rcx handler	
+00299AC0	FUN_00299ac0	00299B4F	0x9C	w	mov word ptr [rbx + 0x9c], dx	widget rcx handler	
+00299AC0	FUN_00299ac0	00299B56	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx handler	
+00299D10	FUN_00299d10	00299D72	0x38	r	mov rdi, qword ptr [rbx + 0x38]	widget rcx handler	
+00299D10	FUN_00299d10	00299E4F	0x9A	w	mov word ptr [rbx + 0x9a], dx	widget rcx handler	
+00299D10	FUN_00299d10	00299E5D	0x98	w	mov word ptr [rbx + 0x98], r8w	widget rcx handler	
+00299D10	FUN_00299d10	00299F14	0x40	rw	and dword ptr [rbx + 0x40], 0xffffff7f	widget rcx handler	
+00299D10	FUN_00299d10	00299F5D	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+00299D10	FUN_00299d10	00299F7E	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx handler	
+00299D10	FUN_00299d10	00299F88	0x9C	w	mov word ptr [rbx + 0x9c], ax	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A13B	0x50	a	lea rcx, [rbp + 0x50]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A14D	0x38	r	mov rax, qword ptr [rbp + 0x38]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A15B	0x38	r	mov rbx, qword ptr [rbp + 0x38]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A164	0x9E	r	movsx esi, word ptr [rbp + 0x9e]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A1FB	0x38	r	mov rdi, qword ptr [rbp + 0x38]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A302	0xB4	r	mov ecx, dword ptr [rbp + 0xb4]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A347	0x40	r	test byte ptr [rbp + 0x40], 2	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A3BE	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A3D4	0x40	r	test byte ptr [rbp + 0x40], 2	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A726	0x50	a	lea rcx, [rbp + 0x50]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A766	0x98	w	mov word ptr [rbp + 0x98], ax	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A76D	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A771	0x9E	w	mov word ptr [rbp + 0x9e], si	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A77C	0x9C	w	mov word ptr [rbp + 0x9c], di	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A783	0x9A	w	mov word ptr [rbp + 0x9a], cx	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A79C	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A7AB	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A7E4	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A7FA	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A813	0x60	r	mov rax, qword ptr [rbp + 0x60]	widget rcx handler	
+0029A0A0	FUN_0029a0a0	0029A844	0x60	r	mov rcx, qword ptr [rbp + 0x60]	widget rcx handler	
+002B6CE0	FUN_002b6ce0	002B6D15	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+002B6CE0	FUN_002b6ce0	002B6D3D	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+002B6CE0	FUN_002b6ce0	002B6D44	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+002B6CE0	FUN_002b6ce0	002B6D48	0x9A	w	mov word ptr [rbx + 0x9a], r8w	widget rcx handler	
+002B6CE0	FUN_002b6ce0	002B6D50	0x9C	w	mov word ptr [rbx + 0x9c], dx	widget rcx handler	
+002B6CE0	FUN_002b6ce0	002B6D57	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx handler	
+002BC310	FUN_002bc310	002BC345	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+002BC310	FUN_002bc310	002BC36D	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+002BC310	FUN_002bc310	002BC374	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+002BC310	FUN_002bc310	002BC378	0x9A	w	mov word ptr [rbx + 0x9a], r8w	widget rcx handler	
+002BC310	FUN_002bc310	002BC380	0x9C	w	mov word ptr [rbx + 0x9c], dx	widget rcx handler	
+002BC310	FUN_002bc310	002BC387	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx handler	
+002BE490	FUN_002be490	002BE4A8	0xB4	r	mov ecx, dword ptr [rcx + 0xb4]	widget rcx handler	
+002BF690	FUN_002bf690	002BF73A	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+002BF690	FUN_002bf690	002BF76B	0x80	r	mov eax, dword ptr [rbx + 0x80]	widget rcx handler	
+002BF690	FUN_002bf690	002BF792	0x9A	r	movsx eax, word ptr [rbx + 0x9a]	widget rcx handler	
+002BF690	FUN_002bf690	002BF7A2	0x98	r	movsx edx, word ptr [rbx + 0x98]	widget rcx handler	
+002BF690	FUN_002bf690	002BF7D8	0x40	rw	and dword ptr [rbx + 0x40], 0xffffff7f	widget rcx handler	
+002BF690	FUN_002bf690	002BF808	0x9A	r	movzx eax, word ptr [rbx + 0x9a]	widget rcx handler	
+002BF690	FUN_002bf690	002BF84E	0x9A	w	mov word ptr [rbx + 0x9a], ax	widget rcx handler	
+002BF690	FUN_002bf690	002BF86B	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+002BF690	FUN_002bf690	002BF8A0	0x40	rw	and dword ptr [rbx + 0x40], 0xffffff7f	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BF905	0x38	r	mov rdi, qword ptr [rbx + 0x38]	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BFA5A	0x40	rw	and dword ptr [rbx + 0x40], 0xffffff7f	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BFA9E	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BFAA5	0x9A	w	mov word ptr [rbx + 0x9a], cx	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BFAAF	0x9C	w	mov word ptr [rbx + 0x9c], dx	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BFABB	0x9E	w	mov word ptr [rbx + 0x9e], r8w	widget rcx handler	
+002BF8C0	FUN_002bf8c0	002BFAFD	0x40	rw	and dword ptr [rbx + 0x40], 0xffffff7f	widget rcx handler	
+002C0870	FUN_002c0870	002C0916	0x38	r	mov rbx, qword ptr [rdi + 0x38]	widget rcx handler	
+002C0870	FUN_002c0870	002C0999	0x58	r	mov rax, qword ptr [rdi + 0x58]	widget rcx handler	
+002C0870	FUN_002c0870	002C09A2	0x9A	r	movsx eax, word ptr [rdi + 0x9a]	widget rcx handler	
+002C0870	FUN_002c0870	002C09B5	0x80	r	mov eax, dword ptr [rdi + 0x80]	widget rcx handler	
+002C0870	FUN_002c0870	002C09C4	0x40	r	mov eax, dword ptr [rdi + 0x40]	widget rcx handler	
+002C0870	FUN_002c0870	002C09D3	0x98	r	movsx edx, word ptr [rdi + 0x98]	widget rcx handler	
+002C0870	FUN_002c0870	002C0A33	0x98	r	movsx esi, word ptr [rdi + 0x98]	widget rcx handler	
+002C0870	FUN_002c0870	002C0A3F	0x9A	r	movsx ebp, word ptr [rdi + 0x9a]	widget rcx handler	
+002C0870	FUN_002c0870	002C0A5F	0x58	r	mov rax, qword ptr [rdi + 0x58]	widget rcx handler	
+002C0870	FUN_002c0870	002C0A71	0x9A	w	mov word ptr [rdi + 0x9a], cx	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5CBE	0x38	r	mov rax, qword ptr [rbx + 0x38]	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5CD9	0xB4	r	mov ecx, dword ptr [rbx + 0xb4]	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5D50	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5D66	0x58	r	mov rcx, qword ptr [rbx + 0x58]	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5D83	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5D93	0x9C	w	mov word ptr [rbx + 0x9c], r8w	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5D9B	0x9A	w	mov word ptr [rbx + 0x9a], cx	widget rcx handler	
+002D5C80	FUN_002d5c80	002D5DA2	0x9E	w	mov word ptr [rbx + 0x9e], r9w	widget rcx handler	
+002D5E00	FUN_002d5e00	002D5E41	0x60	r	mov rax, qword ptr [rbx + 0x60]	widget rcx handler	
+002D5E00	FUN_002d5e00	002D5E66	0x98	w	mov word ptr [rbx + 0x98], ax	widget rcx handler	
+002D5E00	FUN_002d5e00	002D5E6D	0x9A	w	mov word ptr [rbx + 0x9a], r9w	widget rcx handler	
+002D5E00	FUN_002d5e00	002D5E75	0x9C	w	mov word ptr [rbx + 0x9c], r8w	widget rcx handler	
+002D5E00	FUN_002d5e00	002D5E7D	0x9E	w	mov word ptr [rbx + 0x9e], cx	widget rcx handler	
+003CA310	FUN_003ca310	003CA458	0x9C	w	mov word ptr [rdi + 0x9c], ax	widget rcx handler	
+003CA310	FUN_003ca310	003CA475	0x98	w	mov dword ptr [rdi + 0x98], ebx	widget rcx handler	
+003CA310	FUN_003ca310	003CA47B	0x9E	w	mov word ptr [rdi + 0x9e], cx	widget rcx handler	
+003CA530	FUN_003ca530	003CA5A3	0x60	r	mov rax, qword ptr [rdi + 0x60]	widget rcx handler	
+003CA530	FUN_003ca530	003CA7C1	0x50	a	lea rcx, [rdi + 0x50]	widget rcx handler	
+003CA530	FUN_003ca530	003CA7ED	0x98	w	mov word ptr [rdi + 0x98], ax	widget rcx handler	
+003CA530	FUN_003ca530	003CA7F4	0x9A	w	mov word ptr [rdi + 0x9a], r8w	widget rcx handler	
+003CA530	FUN_003ca530	003CA7FC	0x9C	w	mov word ptr [rdi + 0x9c], dx	widget rcx handler	
+003CA530	FUN_003ca530	003CA803	0x9E	w	mov word ptr [rdi + 0x9e], cx	widget rcx handler	
+003CA530	FUN_003ca530	003CA81F	0x60	r	mov rax, qword ptr [rdi + 0x60]	widget rcx handler	
+003CAE00	FUN_003cae00	003CAE6C	0x50	a	lea rcx, [rdi + 0x50]	widget rcx handler	
+003CAE00	FUN_003cae00	003CAE98	0x98	w	mov word ptr [rdi + 0x98], ax	widget rcx handler	
+003CAE00	FUN_003cae00	003CAE9F	0x9A	w	mov word ptr [rdi + 0x9a], r8w	widget rcx handler	
+003CAE00	FUN_003cae00	003CAEA7	0x9C	w	mov word ptr [rdi + 0x9c], dx	widget rcx handler	
+003CAE00	FUN_003cae00	003CAEAE	0x9E	w	mov word ptr [rdi + 0x9e], cx	widget rcx handler	
+003F8250	FUN_003f8250	003F82CC	0x9C	r	movzx eax, word ptr [rdi + 0x9c]	widget rcx handler	
+003F8250	FUN_003f8250	003F82DA	0x38	r	mov rbx, qword ptr [rdi + 0x38]	widget rcx handler	
+003F8250	FUN_003f8250	003F82E5	0x9E	r	movzx eax, word ptr [rdi + 0x9e]	widget rcx handler	
+003F8250	FUN_003f8250	003F83E7	0x40	rw	and dword ptr [rdi + 0x40], 0xffffff7f	widget rcx handler	
+003F8250	FUN_003f8250	003F8455	0x98	w	mov word ptr [rdi + 0x98], cx	widget rcx handler	
+003F8250	FUN_003f8250	003F845C	0x9A	w	mov word ptr [rdi + 0x9a], ax	widget rcx handler	
+003F8250	FUN_003f8250	003F8463	0x9C	w	mov dword ptr [rdi + 0x9c], 0x5000b4	widget rcx handler	
+003F8510	FUN_003f8510	003F854C	0x98	r	mov rax, qword ptr [rbx + 0x98]	widget rcx handler	
+003F8510	FUN_003f8510	003F8553	0x98	a	lea rdx, [rbx + 0x98]	widget rcx handler	
+003F8510	FUN_003f8510	003F8566	0x38	r	mov rsi, qword ptr [rbx + 0x38]	widget rcx handler	
+003F8510	FUN_003f8510	003F857C	0x9A	r	movzx eax, word ptr [rbx + 0x9a]	widget rcx handler	
+003F8510	FUN_003f8510	003F8590	0x98	r	movzx eax, word ptr [rbx + 0x98]	widget rcx handler	
+003FACF0	FUN_003facf0	003FAD67	0x38	r	mov rsi, qword ptr [rbx + 0x38]	widget rcx handler	
+003FACF0	FUN_003facf0	003FADC9	0x9C	r	movzx eax, word ptr [rbx + 0x9c]	widget rcx handler	
+003FACF0	FUN_003facf0	003FADD5	0x9E	r	movzx eax, word ptr [rbx + 0x9e]	widget rcx handler	
+003FACF0	FUN_003facf0	003FAE88	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+003FACF0	FUN_003facf0	003FAEBC	0x98	w	mov word ptr [rbx + 0x98], cx	widget rcx handler	
+003FACF0	FUN_003facf0	003FAEC3	0x9A	w	mov word ptr [rbx + 0x9a], ax	widget rcx handler	
+003FACF0	FUN_003facf0	003FAECA	0x9C	w	mov word ptr [rbx + 0x9c], bp	widget rcx handler	
+003FACF0	FUN_003facf0	003FAED1	0x9E	w	mov word ptr [rbx + 0x9e], si	widget rcx handler	
+003FAF10	FUN_003faf10	003FAF8A	0x38	r	mov rbx, qword ptr [rdi + 0x38]	widget rcx handler	
+003FAF10	FUN_003faf10	003FB094	0x9C	r	movsx edi, word ptr [rdi + 0x9c]	widget rcx handler	
+003FAF10	FUN_003faf10	003FB289	0x60	r	mov rax, qword ptr [rdi + 0x60]	widget rcx handler	
+003FAF10	FUN_003faf10	003FB2A7	0x40	r	test dword ptr [rdi + 0x40], 0x200	widget rcx handler	
+003FAF10	FUN_003faf10	003FB34C	0x50	a	lea rcx, [rdi + 0x50]	widget rcx handler	
+003FAF10	FUN_003faf10	003FB38B	0x98	w	mov word ptr [rdi + 0x98], cx	widget rcx handler	
+003FAF10	FUN_003faf10	003FB392	0x9A	w	mov word ptr [rdi + 0x9a], dx	widget rcx handler	
+003FAF10	FUN_003faf10	003FB399	0x9C	w	mov word ptr [rdi + 0x9c], r14w	widget rcx handler	
+003FAF10	FUN_003faf10	003FB3A1	0x9E	w	mov word ptr [rdi + 0x9e], si	widget rcx handler	
+003FC3F0	FUN_003fc3f0	003FC481	0x50	a	lea rcx, [rbx + 0x50]	widget rcx handler	
+003FC3F0	FUN_003fc3f0	003FC4BC	0x98	w	mov word ptr [rbx + 0x98], cx	widget rcx handler	
+003FC3F0	FUN_003fc3f0	003FC4C3	0x9A	w	mov word ptr [rbx + 0x9a], ax	widget rcx handler	
+003FC3F0	FUN_003fc3f0	003FC4CA	0x9C	w	mov word ptr [rbx + 0x9c], bp	widget rcx handler	
+003FC3F0	FUN_003fc3f0	003FC4D1	0x9E	w	mov word ptr [rbx + 0x9e], si	widget rcx handler	
+00244F50	FUN_00244f50	00244F90	0x40	r	test dword ptr [rbx + 0x40], 0x4000	widget pool 00244F50 slot	
+00244F50	FUN_00244f50	00244F99	0xA2	r	cmp byte ptr [rbx + 0xa2], 0	widget pool 00244F50 slot	
+00244F50	FUN_00244f50	00244FF4	0xA2	w	mov byte ptr [rbx + 0xa2], al	widget pool 00244F50 slot	

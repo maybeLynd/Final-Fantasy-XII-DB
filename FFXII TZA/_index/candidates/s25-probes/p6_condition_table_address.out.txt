@@ -1,0 +1,3 @@
+01ED0460 (EXP-095's named table), 2872 bytes: nonzero bytes = 24
+01EEC460 (the lea target at 003018F0): 359 slots, empty = 18 -> ['0x4025', '0x4036', '0x4037', '0x4038', '0x4039', '0x403a', '0x403b', '0x403c', '0x403d', '0x403e', '0x403f', '0x4040', '0x4041', '0x4042', '0x4043', '0x4044', '0x4045', '0x4128']
+first entry 01EEC460[0] = 00000000002FDA60

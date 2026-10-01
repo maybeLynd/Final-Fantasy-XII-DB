@@ -1,0 +1,22 @@
+PASS  S1 identical to a read sibling, own-instantiation targets: 00714BE0=00714B60 00714C60=00714B60 0079B0D0=00714B60 00714CE0=0079B930 00715110=0079B930 007151F0=0079B930 0071F4B0=0079B930 00799B80=00714980 0071F240=00799BD0
+PASS  S2 0071F240 = _Lrotate, 00714B00 = 00799C30 = _Rrotate (node: _Left +0, _Parent +8, _Right +0x10, _Isnil +0x19)
+PASS  S3 _Erase(subtree): recurse right, go left, free; B adds the value destructor 0071EE70(node + 0x20)
+PASS  S4 0071EE70 = pair<string, string> destructor: +0x20 then +0x00, SSO threshold 16
+PASS  S5 0079BA10 = erase(iterator): successor, unlink, black fix-up with both rotations, free, --size, return successor
+PASS  S6 0071F590 = 0079BA10 + the value destructor (differences: [('delete', 3, 0), ('replace', 1, 1), ('replace', 1, 1), ('insert', 0, 2)])
+   rotation-shaped bodies (no size cap, 38161 bodies, 8 over 20,000 bytes):
+      0016D780  left-shaped 1  right-shaped 0
+      0016D7E0  left-shaped 0  right-shaped 1
+      0016D840  left-shaped 2  right-shaped 1
+      0016DA60  left-shaped 1  right-shaped 1
+      00207DE0  left-shaped 0  right-shaped 1
+      0067F700  left-shaped 1  right-shaped 2
+      0067F9D0  left-shaped 3  right-shaped 3
+      00712F60  left-shaped 0  right-shaped 1
+      00714B00  left-shaped 0  right-shaped 1
+      0071E500  left-shaped 0  right-shaped 1
+      00799C30  left-shaped 0  right-shaped 1
+      00820D00  left-shaped 0  right-shaped 1
+PASS  B1 no size cap: both shapes only in the four known bodies; single-shape bodies ['00207DE0', '00712F60', '00714B00', '0071E500', '00799C30', '00820D00']
+PASS  B2 single-shape hits: 4 MSVC-layout (_Isnil +0x19), 2 not tree code - no EASTL single-direction copy
+FAILS 0

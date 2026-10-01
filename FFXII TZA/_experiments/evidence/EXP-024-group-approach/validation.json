@@ -1,0 +1,146 @@
+{
+  "status": "PARTIAL_APPROACH_VALIDATED_NO_KILL",
+  "publication_revision": 556,
+  "receipts": [
+    {
+      "file": "approachB-00.json",
+      "status": "READ_ONLY_SNAPSHOT",
+      "key": null,
+      "actual_hold": null
+    },
+    {
+      "file": "approachB-01.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "Left",
+      "actual_hold": 0.13488700000016252
+    },
+    {
+      "file": "approachB-02.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.0074383999999554
+    },
+    {
+      "file": "approachB-03.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.006695199997921
+    },
+    {
+      "file": "approachB-04.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.006906299997354
+    },
+    {
+      "file": "approachB-05.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.010845100001461
+    },
+    {
+      "file": "approachB-06.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.0010316999978386
+    },
+    {
+      "file": "approachB-07.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.000519400000485
+    },
+    {
+      "file": "approachB-08.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.0103627999997116
+    },
+    {
+      "file": "approachB-09.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.002328499998839
+    },
+    {
+      "file": "dismiss-load.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "Space",
+      "actual_hold": 0.4076893999990716
+    },
+    {
+      "file": "load-menu.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "Space",
+      "actual_hold": 0.4044919000007212
+    },
+    {
+      "file": "load-stepping.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "Space",
+      "actual_hold": 0.40848929999992833
+    },
+    {
+      "file": "step-01.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.0024923000019044
+    },
+    {
+      "file": "step-02-camera.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "Right",
+      "actual_hold": 0.25148819999958505
+    },
+    {
+      "file": "step-03.json",
+      "status": "CONTROLLED_PULSE",
+      "key": "W",
+      "actual_hold": 1.009415300002729
+    }
+  ],
+  "initial_gap": 85.87948506037337,
+  "final_gap": 44.86646865066942,
+  "block_elapsed": 13.167535305023193,
+  "runs": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\check_source_hygiene.py",
+        "--paths",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach"
+      ],
+      "exit_code": 0,
+      "stdout": "no stray control bytes in 31 file(s)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\check_links.py",
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA"
+      ],
+      "exit_code": 0,
+      "stdout": "scanned 373 markdown files, 14703 relative links\nall relative links resolve\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: exactly three identities; claims, dependencies, handoffs and summaries valid\n",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "First agent-paced window expired",
+    "Second block hit pulse limit",
+    "Wolf attacked after post-pulse health reads; screenshot HP86",
+    "No group actor visible identity or final death",
+    "No combat ledger trace"
+  ]
+}

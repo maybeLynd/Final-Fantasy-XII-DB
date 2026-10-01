@@ -1,0 +1,79 @@
+{
+  "status": "INPUT_REGISTRATION_AND_PRESENTATION_CONTROL_ONLY",
+  "method": "C: five bounded pulses from the established sender, read-only process observation",
+  "pid": 22784,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "text_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+  "pulses": [
+    {
+      "receipt": "title-enter.json",
+      "sha256": "3c5ad2507a7fb4692d8b398518a74ddd8465ec2c4aa61889e3d62867a0f4a02b",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.3533389000003808,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "load-stepping-enter.json",
+      "sha256": "d4b712eb01bd60976d392df2e3dc975fe842f5b208480c0263cabca03f8275d3",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.3546704999971553,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "dismiss-load-enter.json",
+      "sha256": "39a354f7ead93f5104e575cdd5ccd116df01fca4ef2b1645dbab2cf2f4b6ccd8",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35393880000628997,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "field-menu-enter.json",
+      "sha256": "9b0da5d0d01bb61ebaec210524cdc1d89bce82e98628dc8e0faabc4d87ea3bc6",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.353139500002726,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "field-menu-c.json",
+      "sha256": "b1b299f9cfd633183cf7dfed9e55fd77e48dab0f4c85c8d467655c4081835a50",
+      "expected_index": 2,
+      "code": 30,
+      "held_seconds": 0.3545555999953649,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 31,
+      "module_count_before": 101,
+      "module_count_after": 101
+    }
+  ],
+  "presentation": "Screenshots individually inspected: title save list, named save Load complete, field, battle-menu open then closed.",
+  "cleanup_verified": true,
+  "prior_failed_brief_input_cause": "UNRESOLVED",
+  "combat_command_queued": false,
+  "combat_action_executed": false,
+  "limits": [
+    "No native caller or write trace.",
+    "No separation of hold duration from packet form.",
+    "FABLE title-poll analysis remains peer-owned but no longer gates this input route."
+  ]
+}

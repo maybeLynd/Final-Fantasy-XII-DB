@@ -1,0 +1,11 @@
+// @category GFZ
+import ghidra.app.script.GhidraScript;
+import ghidra.program.model.listing.*;
+import ghidra.program.model.symbol.*;
+import ghidra.program.model.address.*;
+import java.io.*;import java.nio.charset.StandardCharsets;import java.nio.file.*;import java.util.*;
+public class DumpUnresolvedIncomingDataRefContexts extends GhidraScript{
+ static boolean unresolved(Function f){boolean o=false,n=false,d=false;for(FunctionTag t:f.getTags()){String s=t.getName();if(s.startsWith("GFZ.V120.PrimaryOwner."))o=true;else if(s.equals("GFZ.V120.FinalNoPrimaryOwner"))n=true;else if(s.startsWith("GFZ.V121.CodeDomain."))d=true;}return !o&&!n&&!d;}
+ static String clean(String s){return s==null?"":s.replace("\t"," ").replace("\r"," ").replace("\n"," ");}
+ public void run()throws Exception{String[]a=getScriptArgs();if(a.length!=1)throw new IllegalArgumentException("out");FunctionManager fm=currentProgram.getFunctionManager();ReferenceManager rm=currentProgram.getReferenceManager();SymbolTable st=currentProgram.getSymbolTable();Listing li=currentProgram.getListing();try(PrintWriter w=new PrintWriter(new OutputStreamWriter(new FileOutputStream(a[0]),StandardCharsets.UTF_8))){w.println("target\tfrom_addr\tfrom_func\tprimary_symbol\tnamespace\tdata_addr\tdata_type\tdata_label\tdata_value");int n=0;for(Function f:fm.getFunctions(true)){if(f.isExternal()||!unresolved(f))continue;ReferenceIterator it=rm.getReferencesTo(f.getEntryPoint());while(it.hasNext()){Reference r=it.next();if(!r.getReferenceType().isData())continue;Address x=r.getFromAddress();Function ff=fm.getFunctionContaining(x);Symbol ps=st.getPrimarySymbol(x);Data d=li.getDataContaining(x);String sym=ps==null?"":ps.getName();String ns=ps==null?"":ps.getParentNamespace().getName(true);String da=d==null?"":d.getAddress().toString();String dt=d==null?"":d.getDataType().getDisplayName();String dl="";String dv="";if(d!=null){Symbol ds=st.getPrimarySymbol(d.getAddress());dl=ds==null?"":ds.getName();try{dv=String.valueOf(d.getValue());}catch(Exception ex){}}w.printf("%08X\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s%n",f.getEntryPoint().getOffset(),x,ff==null?"":String.format("%08X",ff.getEntryPoint().getOffset()),clean(sym),clean(ns),clean(da),clean(dt),clean(dl),clean(dv));n++;}}println("DUMP_UNRESOLVED_DATAREF_CONTEXTS_PASS refs="+n);}}
+}

@@ -1,0 +1,16 @@
+{
+  "status": "CONSISTENT_RETAINED_RECORDS",
+  "traced_probe_records": 246,
+  "additional_untraced_summary_returns": 4,
+  "producer_mixed_container_counter": 173,
+  "all_validator_classes_represented": 32,
+  "jump_entries_verified": 32,
+  "registry_class_words_verified": 15,
+  "class19_last_valid": "0xEFFE",
+  "class13_missing_one_descriptor_sum": 23,
+  "limits": [
+    "Replay of retained records, not a new emulator execution or live session.",
+    "173 is the producer's mixed outer-container counter, not the number of individual probe records.",
+    "All-class validator evidence does not establish query outputs or shipped-state reachability."
+  ]
+}

@@ -1,0 +1,85 @@
+file	disp	change	functions
+boot-singleton-01f7f598-accesses.tsv	0x868	GAINED first writer	00184E60
+boot-singleton-01f7f598-accesses.tsv	0x898	GAINED first writer	00184E60
+boot-singleton-01f7f598-accesses.tsv	0x8A8	GAINED first writer	00184E60
+boot-singleton-01f7f598-accesses.tsv	0x8B8	GAINED first writer	00184E60
+boot-singleton-01f7f598-accesses.tsv	0x8C8	GAINED first writer	00184E60
+manager-singleton-0209be80-accesses.tsv	0x5A60	GAINED first writer	00202C90
+manager-singleton-0209be80-accesses.tsv	0x5A70	GAINED first writer	00202B10
+manager-singleton-0209be80-accesses.tsv	0xA028	GAINED first writer	002BF3D0
+manager-singleton-0209be80-accesses.tsv	0xA03C	GAINED first writer	002BF3D0
+manager-singleton-0209be80-accesses.tsv	0xA050	GAINED first writer	002BF3D0
+manager-singleton-0209be80-accesses.tsv	0xA080	GAINED first writer	002BE110
+manager-sub-0209be80-57e0-accesses.tsv	0x280	GAINED first writer	00202C90
+manager-sub-0209be80-57e0-accesses.tsv	0x290	GAINED first writer	00202B10
+manager-sub-0209be80-8fa0-accesses.tsv	0x1088	GAINED first writer	002BF3D0
+manager-sub-0209be80-8fa0-accesses.tsv	0x109C	GAINED first writer	002BF3D0
+manager-sub-0209be80-8fa0-accesses.tsv	0x10B0	GAINED first writer	002BF3D0
+manager-sub-0209be80-8fa0-accesses.tsv	0x10E0	GAINED first writer	002BE110
+manager-sub-57e0-array-record-accesses.tsv	0x10	GAINED first writer	00202C90
+manager-sub-57e0-array-record-accesses.tsv	0x20	GAINED first writer	00202B10
+actor-manager-record-rip-accesses.tsv	0x10	LOST its only writer	0025B500,0025C830,00263050,00263230,00263560,00264640,00264770,00264790,00264800,00264870,00264AE0,00264D20,00265270,002658B0,0026ABA0,0026AD10,0026ADC0,0026B730,0026CE60,0026E060
+item-class-descriptor-accesses.tsv	0x0	LOST its only writer	0030B6A0
+item-class-descriptor-accesses.tsv	0x10	LOST its only writer	0030FBE0
+item-class-descriptor-accesses.tsv	0x18	LOST its only writer	0030B6A0
+item-class-descriptor-accesses.tsv	0x28	LOST its only writer	0030B6A0
+item-class-descriptor-accesses.tsv	0x3C	LOST its only writer	0030DD70,0030FAA0
+battle-menu-panel-widget-3010-accesses.tsv	0xC0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0xD0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0xE0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0xF0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x100	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x120	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x130	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x140	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x150	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x160	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x170	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x180	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x190	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x1A0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x1B0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x1C0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x1D0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x1F0	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x200	GAINED first writer	00276D30
+battle-menu-panel-widget-3010-accesses.tsv	0x210	GAINED first writer	00276D30
+character-render-object-accesses.tsv	0x78	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0x88	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0x98	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0xA8	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0xB8	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0xC8	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0xD8	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0xE8	GAINED first writer	001F4DA0
+character-render-object-accesses.tsv	0x4C4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x4D4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x4E4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x4F4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x504	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x514	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x524	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x534	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x544	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x554	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x564	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x574	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x584	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x594	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x5A4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x5B4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x5C4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x5D4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x5E4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x5F4	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x604	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x614	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x624	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x634	GAINED first writer	001FB120
+character-render-object-accesses.tsv	0x644	GAINED first writer	001F9A80
+character-render-object-accesses.tsv	0x654	GAINED first writer	001F9A80
+render-model-instance-accesses.tsv	0x50	GAINED first writer	00202C70
+render-model-instance-accesses.tsv	0x60	GAINED first writer	00202C70
+render-model-instance-accesses.tsv	0x70	GAINED first writer	00202C70
+render-model-instance-accesses.tsv	0x80	GAINED first writer	00202C70
+image-backed-state-block-accesses.tsv	0x47B8	LOST its only writer	00250270

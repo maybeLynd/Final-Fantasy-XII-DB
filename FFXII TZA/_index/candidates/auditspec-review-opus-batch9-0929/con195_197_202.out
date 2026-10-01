@@ -1,0 +1,68 @@
+== CON-195 chain
+PASS  0017D000 -> 0017D4C0   (callers of target by root: 0017D000)
+PASS  0017D4C0 -> 0022A0B0   (callers of target by root: 0017D4C0)
+PASS  0022A0B0 -> 003325C0   (callers of target by root: 0022A0B0)
+FAIL  003325C0 -> 003325D0   (callers of target by root: --------)
+PASS  003325D0 -> 0041E3A0   (callers of target by root: 003325D0)
+PASS  0041E3A0 -> 00409F80 at 0041E40B   (callers of target by root: 0041E3A0)
+PASS  00409F80 -> 0040A230 at 00409F84   (callers of target by root: 00409F80)
+== CON-197
+005FD050  push      rbx
+005FD052  sub       rsp, 0x30
+005FD056  mov       qword ptr [rsp + 0x20], 0xfffffffffffffffe
+005FD05F  mov       ecx, dword ptr [rip + 0x28b1cd7]   ; -> 02EAED3C (virtual tail / unmapped)
+005FD065  mov       rax, qword ptr gs:[0x58]
+005FD06E  mov       edx, 4
+005FD073  mov       rcx, qword ptr [rax + rcx*8]
+005FD077  mov       eax, dword ptr [rdx + rcx]
+005FD07A  cmp       dword ptr [rip + 0x26e5590], eax   ; -> 02CE2610 (virtual tail / unmapped)
+== CON-202
+PASS  callers of 00249320: ['0039342C call', '00394048 call', '003F492D call', '00404107 call']; roots ['003933F0', '00393FF0', '003F4840', '00404060']
+FAILS 1
+003325C0  lea       rcx, [rip + 0x1f94969]   ; -> 022C6F30 (virtual tail / unmapped)
+003325C7  jmp       0x3325d0
+003325CC  int3      
+003325CD  int3      
+003325CE  int3      
+003325CF  int3      
+---
+005FD07A  cmp       dword ptr [rip + 0x26e5590], eax   ; -> 02CE2610 (virtual tail / unmapped)
+005FD080  jle       0x5fd0c4
+005FD082  lea       rcx, [rip + 0x26e5587]   ; -> 02CE2610 (virtual tail / unmapped)
+005FD089  call      0x8092fc
+005FD08E  cmp       dword ptr [rip + 0x26e557b], -1   ; -> 02CE2610 (virtual tail / unmapped)
+005FD095  jne       0x5fd0c4
+005FD097  lea       rbx, [rip + 0x26c3372]   ; -> 02CC0410 (virtual tail / unmapped)
+005FD09E  mov       rcx, rbx
+005FD0A1  call      0x615840
+005FD0A6  lea       rcx, [rip + 0x2b0d23]   ; -> 008ADDD0 u32=390D8D48 f32=0.000134994
+005FD0AD  call      0x808b90
+005FD0B2  nop       
+005FD0B3  lea       rcx, [rip + 0x26e5556]   ; -> 02CE2610 (virtual tail / unmapped)
+005FD0BA  call      0x80929c
+---
+callers of 003325D0 ['003325C7 jmp'] []
+callers of 003325C0 ['0022A401 call'] data {'abs64': [], 'rva32': []}
+005FD0BA  call      0x80929c
+005FD0BF  mov       rax, rbx
+005FD0C2  jmp       0x5fd0cb
+005FD0C4  lea       rax, [rip + 0x26c3345]   ; -> 02CC0410 (virtual tail / unmapped)
+005FD0CB  add       rsp, 0x30
+005FD0CF  pop       rbx
+005FD0D0  ret       
+005FD0D1  int3      
+005FD0D2  int3      
+005FD0D3  int3      
+005FD0D4  int3      
+005FD0D5  int3      
+005FD0D6  int3      
+005FD0D7  int3      
+005FD0D8  int3      
+005FD0D9  int3      
+005FD0DA  int3      
+005FD0DB  int3      
+005FD0DC  int3      
+005FD0DD  int3      
+005FD0DE  int3      
+005FD0DF  int3      
+---

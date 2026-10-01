@@ -1,0 +1,27 @@
+[
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-load-success-existing.txt",
+    "sha256": "b0669a8b3d4b56f9d328f5fb14f703bc406a903d43ea89bcab5f06b75abe8a95",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (7):\r\n      05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md          0057EDB0, 0057FE80\r\n      16-UI/Widget-Object-Model/CONTRACT-widget-object.md                     0057FE80\r\n      16-UI/Widget-Object-Model/widget-message-handlers.tsv                   0057EDB0, 0057F360, 0057FE80\r\n      18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md          0057FE80\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-header-accesses.tsv  0057FE80\r\n      _index/ADDRESS-INDEX.md                                                 0057EDB0, 0057F360, 0057FE80\r\n      _index/_inbox/repos-9e.md                                               0057FE80\r\n\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-load-success-helper-existing.txt",
+    "sha256": "7adf27e71ba780cfda10d2586c416a944de9d94236476bd6fdd062a16a491ea8",
+    "text": "no existing coverage found - the block is new\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-load-success-callback-existing.txt",
+    "sha256": "e8ed76eda8caf5738f2ba3017cf9e4b8b5c7ef4487d09b2f0778b635f3451473",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (4):\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-header-accesses.tsv  00580CD0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md  00580CD0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md  00580CD0\r\n      _index/ADDRESS-INDEX.md                                                 00580CD0, 00580EB0\r\n\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-load-success-restore-existing.txt",
+    "sha256": "f4558bdd23eafa810702a002998449c2542c259774bec80938ccabbe3fb5c2c9",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (4):\r\n      02-Resource-And-Asset-Pipeline/Standard-Formats/shipped-standard-formats.md  005837F0\r\n      05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md          00582540\r\n      _index/ADDRESS-INDEX.md                                                 00582540, 005837F0\r\n      _index/_inbox/FABLE.md                                                  005837F0\r\n\r\n  OPEN-QUESTIONS.md rows (1, of which 0 already read as ANSWERED):\r\n      line 2250  open      | FR-2 | ~~**Whether anything on PC reads `icon.sys` / `icon1.ico` (the PS2 memory-card icon pair), `system.cn\r\n\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-load-success-boundary-existing.txt",
+    "sha256": "6abf2747ccd6096688a5a4a08fd5d2e222229bf9f11463b9861af2e3321d4020",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (8):\r\n      02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md  0057EDB0\r\n      05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md          0057EDB0\r\n      16-UI/Widget-Object-Model/widget-message-handlers.tsv                   0057EDB0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-header-accesses.tsv  00583C00\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md  00583C00\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md  00583C00\r\n      _index/ADDRESS-INDEX.md                                                 0057EDB0, 00583C00\r\n      _index/_inbox/FABLE.md                                                  0057EDB0\r\n\r\n"
+  }
+]

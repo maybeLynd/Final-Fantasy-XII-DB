@@ -1,0 +1,41 @@
+{
+  "result": "PASS_OFFLINE_REUSE_GUARDS",
+  "cases": 7,
+  "negative_controls": [
+    {
+      "name": "actual stopped record has no extra grant",
+      "rejected": true
+    },
+    {
+      "name": "reset original attempt history",
+      "rejected": true
+    },
+    {
+      "name": "self-approved extra",
+      "rejected": true
+    },
+    {
+      "name": "overbroad extra allowance",
+      "rejected": true
+    },
+    {
+      "name": "expired recovery",
+      "rejected": true
+    },
+    {
+      "name": "pulse limit exhausted",
+      "rejected": true
+    },
+    {
+      "name": "unconsumed launch allowance",
+      "rejected": true
+    }
+  ],
+  "positive": "Synthetic explicit consumed one-extra/2-pulse/6min record; NOT USER AUTHORIZATION",
+  "unchanged_pulse_function": true,
+  "compile_only": true,
+  "native_functions_executed": false,
+  "frozen_stopped_budget_sha256": "6e781ecf640ab05941c8c1f2bd11c6272674947e52bb51abf950b55b384a6dbb",
+  "live_result": null,
+  "limits": "Pure budget/source guard qualification; actual IO/session guards and current native support require fresh controls before input."
+}

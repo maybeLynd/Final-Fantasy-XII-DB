@@ -1,0 +1,13 @@
+FAIL  V valid: exit 0, (no P line); partition N..C equal to 2c7d810c8's .out: False
+FAIL  F1 exit 0, (no P line)
+FAIL  F2 exit 1, (no P line)
+FAIL  F3 exit 1, (no P line)
+FAIL  F4 exit 0, (no P line)
+FAIL  F5 exit 0, (no P line)
+FAIL  F6 exit 1, (no P line)
+FAIL  F7 exit 0, (no P line)
+FAIL  F8 exit 0, (no P line); producer alone: exit 0, (no Q line)
+FAIL  F9 exit 1, (no P line)
+FAIL  F10 exit 0, (no P line)
+source: pre-repair copies (git show 2370f4c93:) of sn1_neither_partition.py and sn1_variable_binding.py, with this folder's other files
+FAILS 11

@@ -1,0 +1,160 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 5202,
+      "sha256": "c670cb75649ec1458cc7fe1f45d38bc5f62190de8a507520d52689925b596df7"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5163,
+      "sha256": "fef34712f5c02daa819ae376bd171af009dd69614b3b090df4d1792e95d385c3"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 385,
+      "sha256": "968366fc4772b2d2c1fb00366a03b52813eff2ffb0d4aca2fb350b70b06aa928"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 79,
+      "sha256": "8efdb1c9d07be884926b5548d911040725a86d5b9eeb48b1e744273e273edba7"
+    },
+    {
+      "path": "fault-drop-parity.stderr",
+      "bytes": 615,
+      "sha256": "8f800227aed132fc866c5c3037c17b5fd45a0ae9fa7fc64dc02d8870ed9c6caf"
+    },
+    {
+      "path": "fault-drop-parity.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-integer-zero-flags.stderr",
+      "bytes": 541,
+      "sha256": "ab51deffdcf91165eb08f1c826847c2d19c0c3f1b1878405e0941ee2f6a50ad0"
+    },
+    {
+      "path": "fault-integer-zero-flags.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-reverse-divide.stderr",
+      "bytes": 483,
+      "sha256": "d1e4caa74c4cea1872a25f2284b9072b9bfd025df54bbf4de3c462b413b8bdb0"
+    },
+    {
+      "path": "fault-reverse-divide.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3301,
+      "sha256": "1d1d9f956397d5ef8be4650e245b07890d1f176c6a98f586362ed7bcf57b40a8"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2998,
+      "sha256": "cb8e47fee73061284b4a3c092438cf71b8113e68a8a5fc619854273fb395fc7a"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 3024,
+      "sha256": "f930fbbd7dc19a8434a6c46b758886dae41b8cc9232db34ad2f7396785581dad"
+    },
+    {
+      "path": "prepare-source.py",
+      "bytes": 1085,
+      "sha256": "a1f2889a14d6d34a0d49744f20a75d4eeb96dd4abda61776c02af4ec1ca1033f"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 37342,
+      "sha256": "6721bfd868344a82c5bc4c1868e2a1c2ed9429f51714c22bdea026a62308eb1c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3203,
+      "sha256": "22a4d5529e5614fa9bcf5a2a2c57c6cc454331d83567d6dad1c344d23d602372"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 462,
+      "sha256": "eaeeffd3ec24ca8f167dc307f34b494f337efa959a077dd654755f28c34011f9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2107,
+      "sha256": "5d7f1f1f306320172ee6988a92b5fc194860b7f89b2169bb88d8bdbbd35bc983"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 12395,
+      "sha256": "f19af2d1dcf7b2b9cba84512de18eb04d5f84d4fd6c3ab41e7852121c2eedc6f"
+    },
+    {
+      "path": "retained/descriptor24.bin",
+      "bytes": 24,
+      "sha256": "46943c1f347e1962872a45bea666db385e405ad62415b45323ca4b6111f4adfc"
+    },
+    {
+      "path": "retained/dispatch4.bin",
+      "bytes": 4,
+      "sha256": "9cc5d0b41d767894853646ac892741aebaa66248867cc9cac1241afa160c05f6"
+    },
+    {
+      "path": "retained/initial162.bin",
+      "bytes": 162,
+      "sha256": "2a8f8f501693159ab3d0c0b340b1be83aacdd575606014a460f750e3ed73a595"
+    },
+    {
+      "path": "retained/int-zero64.bin",
+      "bytes": 64,
+      "sha256": "3395d0c906899e51db2ae106783663d63901eeffc8f756e016731b5b41ca79e6"
+    },
+    {
+      "path": "retained/name32.bin",
+      "bytes": 32,
+      "sha256": "cd0fccc75ad843631ac22517ca48ee8580dac109bd49779201c1a3b3658de316"
+    },
+    {
+      "path": "retained/opdiv298.bin",
+      "bytes": 298,
+      "sha256": "6ab67018634ba8fcabe91d9a329d81b3ecde4e6a1d13b263140411fd14b6ee8a"
+    },
+    {
+      "path": "retained/preparation-before-boundary-fix.bin",
+      "bytes": 908,
+      "sha256": "ebd29a915a5bf0776d2bb9a67e8e4c63755098a0eb30e4fd64f92ee7563df523"
+    },
+    {
+      "path": "retained/preparation-boundary-note.json",
+      "bytes": 406,
+      "sha256": "829eab9f3df5be70a183a717beb22df714acf95460acb570b27d50a63be8b7b4"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "A original source/conditional guard flags, NOT opcode execution/native/live/independent acceptance."
+}

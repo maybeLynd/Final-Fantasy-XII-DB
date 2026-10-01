@@ -1,0 +1,5 @@
+PASS  O the five destroys: drain, release pass, external array freed when count > 1 and bit 31 clear, base dtor
+PASS  W drains Sleep(1) while the addressed dword > 0; getters ['00623DF0:+0x38', '00623E30:+0x20', '00623E70:+0x20', '00623D70:+0xC', '00623DB0:+0x20']; 005CCB80 -> [008C21B0]
+PASS  R release passes: 2D True, 3D True, cube True, constant True, structured True
+PASS  S the spans are re-cut (tiling kept), the element release cells are filled and the owner cells reduced
+FAILS 0

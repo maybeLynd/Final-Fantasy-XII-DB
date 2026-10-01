@@ -1,0 +1,60 @@
+# RESOLVED 2026-09-17 (SWE2-EC7, FABLE-REQ-SWE2-EC7-CONVERSION-TREE-FAMILIES):
+# the 36 'untouched frontier' bodies are now declared members of
+# 'xc-registered library teardowns' (same page, same 12-byte form, library
+# statics' wrappers), and the 4 remain NativeAdapter.StaticAddressTailCall -
+# 185 form sites = 145 renamed-family members + 36 + 4, none frontier.
+# The family was renamed to 'empty-destructor static-teardown wrappers'
+# (members/empty-dtor-teardown-wrappers.tsv, select_empty_dtor_teardowns.py).
+#
+# Original finding, kept for the record:
+# NOT A DECLARED FAMILY, AND NOT A DEFECT CLAIM ABOUT ANY DECLARED BODY.
+# Bodies satisfying the form AND the tail-jump target that the accepted family
+# 'Control Flow Guard static-guard adapters' states as its control, but which
+# its members file does not list. 4 of the 40 are legitimately excluded as
+# members of NativeAdapter.StaticAddressTailCall; 36 are untouched frontier.
+#
+# CAUSE, from control 6: the registration form is the selector's blind spot.
+# Both `call 00808B90` and `add rsp,N ; jmp 00808B90` register the same object
+# with the same atexit wrapper, and all 185 bodies use one or the other.
+# declared 144 call / 1 jmp;  NOT declared 3 call / 37 jmp.
+address	lea_target	lea_section	atexit_reg_form	disposition
+008A6990	01F7F510	.data	jmp	untouched
+008ACDA0	02CC03D8	.data	call	C NativeAdapter.StaticAddressTailCall
+008AEE50	02CF73D8	.data	jmp	untouched
+008AEE60	02CF74F0	.data	jmp	untouched
+008AEE70	02CF72F8	.data	jmp	untouched
+008AEE80	02CF74B8	.data	jmp	untouched
+008AEE90	02CF7608	.data	jmp	untouched
+008AEEA0	02CF7640	.data	jmp	untouched
+008AEEB0	02CF7678	.data	jmp	untouched
+008AEEC0	02CF76B0	.data	jmp	untouched
+008AEED0	02CF7950	.data	jmp	untouched
+008AEEE0	02CF79C0	.data	jmp	untouched
+008AEEF0	02CF7988	.data	jmp	untouched
+008AEF00	02CF79F8	.data	jmp	untouched
+008AEF10	02CF7560	.data	jmp	untouched
+008AEF20	02CF7598	.data	jmp	untouched
+008AEF30	02CF75D0	.data	jmp	untouched
+008AEF40	02CF7790	.data	jmp	untouched
+008AEF50	02CF73A0	.data	jmp	untouched
+008AEF60	02CF7800	.data	jmp	untouched
+008AEF70	02CF72C0	.data	jmp	untouched
+008AEF80	02CF7870	.data	jmp	untouched
+008AEF90	02CF7410	.data	jmp	untouched
+008AEFA0	02CF78E0	.data	jmp	untouched
+008AEFB0	02CF7330	.data	jmp	untouched
+008AEFC0	02CF7758	.data	jmp	untouched
+008AEFD0	02CF77C8	.data	jmp	untouched
+008AEFE0	02CF7918	.data	jmp	untouched
+008AEFF0	02CF7838	.data	jmp	untouched
+008AF000	02CF7448	.data	jmp	untouched
+008AF010	02CF78A8	.data	jmp	untouched
+008AF020	02CF7368	.data	jmp	untouched
+008AF030	02CF76E8	.data	jmp	untouched
+008AF040	02CF7528	.data	jmp	untouched
+008AF050	02CF7720	.data	jmp	untouched
+008AF060	02CF7480	.data	jmp	untouched
+008AF070	02CF7A30	.data	jmp	untouched
+008AF1B0	02CF8570	.data	jmp	C NativeAdapter.StaticAddressTailCall
+008B57C0	02E52270	.data	call	C NativeAdapter.StaticAddressTailCall
+008B8620	02EACF10	.data	call	C NativeAdapter.StaticAddressTailCall

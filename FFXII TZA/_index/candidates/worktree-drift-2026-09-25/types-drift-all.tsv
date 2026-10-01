@@ -1,0 +1,166 @@
+key	column	class	superseded_by	worktree_value_head
+AchievementState	route	REVERT	d853675cd	PTR 0x020927C0+0x3844
+ActiveLogWidget40C8	dtor	NEW		not established - held at the manager's +0x1058 member; no member-to-release path is observed in the seeded bodies, so i
+ActorResourceEntry	evidence	NEW		stride 0x14 three ways: the free-list build advances r9 by 0x14 at 003DB5CC, the accessor ActorResource_GetEntryByOrdina
+ActorStorageRecord	route	REVERT	fd2cfa80a	DYNAMIC *(*(ActorManagerSlot +0x08) + 8 + i*8), i in [0, *(uint32*)*(ActorManagerSlot +0x08))
+ActorWaitSlot	evidence	NEW		stride 0x28 two ways: the initialiser clear loop advances rcx by 0x28 at 00266806, and 0025DFBB/0025DFC6 compute base + 
+ActorWaitSlot	documents	NEW		04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md;01-Script-VM-Native-Bridge/Interpreter-Core/the-sc
+AudioParameterRamp	route	REVERT	56d76c58e	DYNAMIC *(Category+0x38) stride=0x30 count=*(Category+0x78) | DYNAMIC *(Category+0x40) stride=0x30 count=*(Category+0x7C
+AuthoredExpressionBlock	dtor	NEW		none - caller-supplied storage (0042FDB0 takes the block in rcx and never allocates); lifetime is the caller's.
+BattleMenuChildWidget1620	allocation_site	NEW		INTERIOR - none - both are CONSTRUCTED IN PLACE inside the parent widget, at 002779FA and 00277A16, so the storage is th
+BattleMenuPanelWidget3010	allocation_site	NEW		INTERIOR - none - CONSTRUCTED IN PLACE at 0027A42D (`mov edx, 0x3010` ; `lea rcx, [rbx+0xC0]` ; `call 00245000`), so the
+BattleMenuWidget2DC0	allocation_site	NEW		INTERIOR - none - CONSTRUCTED IN PLACE at 00276DE6 (`mov edx, 0x2DC0` ; `lea rcx, [rdi+0x220]` ; `call 00245000`), so it
+CD3D11_BLEND_DESC	dtor	NEW		none - POD descriptor; the storage is the caller's and there is nothing to release.
+CD3D11_DEPTH_STENCIL_DESC	dtor	NEW		none - POD descriptor; the storage is the caller's and there is nothing to release.
+CD3D11_RASTERIZER_DESC	dtor	NEW		none - POD descriptor; the storage is the caller's and there is nothing to release.
+Category	route	REVERT	56d76c58e	DYNAMIC *(*(0x02EAD008) + i*8) count=*(0x02EAD000)
+CountedU32LookupTable	allocation_site	NEW		UNRESOLVED - not established - the slot is filled from outside the accessor; only the reader was read
+CountedU32LookupTable	dtor	NEW		none - image-resident slot storage, not an owned allocation; see allocation_site.
+D3D11_DEPTH_STENCILOP_DESC	dtor	NEW		none - POD descriptor; the storage is the caller's and there is nothing to release.
+D3D11_RENDER_TARGET_BLEND_DESC	dtor	NEW		none - POD descriptor; the storage is the caller's and there is nothing to release.
+DynGeoFontTextSpecialFinalInstance	route	REVERT	37ba899ea	DYNAMIC reached only through vtable 00906EB8
+DynGeoFontTextSpecialInstance	route	REVERT	37ba899ea	DYNAMIC reached only through vtable 00906DE8; no direct-call edge reaches any body of this class
+DynGeoFontTextSpecialShadowInstance	route	REVERT	37ba899ea	DYNAMIC reached only through vtable 00906E50
+EfxCallerTemplate	dtor	NEW		The caller stack template has no heap destructor. Its separately allocated runtime clone is destroyed by 0024F410: unlin
+EfxCallerTemplate	evidence	NEW		EXTENT PROVEN TWICE: 003B3945 mov r8d,0x890 before the memset at 003B3972, and 0024B3A0 copies the full 0x890 (authored-
+EncodedIdQueryRecord	ctor	NEW		0031C5D0 is a tagged partial writer, not a whole-record constructor; entry clears only name+0x18. Wrappers clear0x98 onl
+EncodedIdQueryRecord	dtor	NEW		No separate release in the two wrappers; their static buffers are reused. Returned text pointers are borrowed; resource 
+EncodedIdQueryRecord	documents	NEW		00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md;00-Engine-Core-Runtime/the-query-record-from-init
+FrameMarkerSingleton01F82C80	allocation_site	NEW		HEAP - FUN_001D62D0 (148 B): the standard lazy guard `cmp [01F82C80], 0` then `mov ecx, 0xF778` / `call 00210EC0` (the m
+FrameMarkerSingleton01F82C80	dtor	NEW		NONE - never released. The cell is only ever installed into, never cleared, and no referencing body loads it into a rele
+GlyphRunWidget1498	dtor	NEW		0053EB30 releases it through 00244F00 at 0053EB62 - a tail jmp with rcx loaded from the cell; its +0xC0 member is also r
+HelpMessageSlotRecord0100	dtor	NEW		none - interior to HelpMessageWidget0500.
+HelpMessageWidget0500	allocation_site	NEW		CALLER - IN PLACE at 002BF60B into storage the caller supplies in r9, and that storage is now known: ManagerSub0209BE80_
+ImageAddressArenaBlockHeader	evidence	NEW		EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. 
+ImageAddressArenaBlockHeader	documents	NEW		02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md; 02-Resource-And-Asset-Pipeline/the-source-block-mo
+ImageAddressArenaRecord	dtor	NEW		none - image-resident record array (.bss); the records are reused in place, nothing frees them.
+ImageAddressArenaRecord	evidence	NEW		EXP-077 (ASTRA, 2026-09-12) executed the initializer 00369D30 as shipped bytes under Unicorn and checked the record's fi
+ImageAddressArenaRecord	documents	NEW		02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md; 02-Resource-And-Asset-Pipeline/the-source-block-mo
+ImageBackedStateBlock	route	REVERT	d853675cd	PTR 0x020927C0
+IndexedExternalSourceRequest	*	ROW-ADDED		
+ItemClassDescriptor	ctor	NEW		IMAGE values plus 0030B6A0 runtime rebase/prefix and derived-state reset; zero source offsets preserve pointer destinati
+ItemClassDescriptor	dtor	NEW		none - image-resident authored table (.data); nothing allocates or frees it.
+ItemClassDescriptor	evidence	NEW		SECTION-05: 15 shipped rows of stride0x58 and class word at+0x38; +0x40 computed exclusive prefix. Native high/low state
+ItemClassDescriptor	documents	NEW		00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md;00-Engine-Core-Runtime/the-query-record-from-init
+LegacyPs2GsDerivedSlotRecord	route	REVERT	56d76c58e	DYNAMIC *(LegacyPs2GsTextureContext+0x218) count=*(LegacyPs2GsTextureContext+0x228)
+LegacyPs2GsReferenceDescriptor	route	REVERT	56d76c58e	DYNAMIC *(LegacyPs2GsTextureContext+0x178) count=*(LegacyPs2GsTextureContext+0x174)
+LegacyPs2GsSourceTextureRecord	route	REVERT	56d76c58e	DYNAMIC *(*(LegacyPs2GsTextureContext+0x150)+8) count=*(LegacyPs2GsTextureContext+0x224)
+LuaCallInfo	dtor	NEW		none - interior to LuaState (the embedded base_ci record; the owner is GC-managed).
+LuaClosure	allocation_site	NEW		INTERIOR - none of its own - exists only as the leading bytes of the two closure allocations (0081ECA0 / 0081ECD0 via lu
+LuaGlobalState	allocation_site	NEW		HEAP - not allocated through the GC allocator; no allocation site found
+LuaGlobalState	dtor	NEW		none - GC-managed; released by the Lua collector, not by an engine release path.
+LuaProto	dtor	NEW		none - GC-managed; released by the Lua collector, not by an engine release path.
+LuaState	dtor	NEW		none - GC-managed; released by the Lua collector, not by an engine release path.
+LuaTValue	dtor	NEW		none - interior to LuaState storage; the owner is GC-managed.
+LuaTable	dtor	NEW		none - GC-managed; released by the Lua collector, not by an engine release path.
+LuaUpVal	dtor	NEW		none - GC-managed; released by the Lua collector, not by an engine release path.
+Manager0209AC60	route	REVERT	7b84c7c7a	STATIC 0x0209AC60
+ManagerSub00A0Entry	dtor	NEW		none - interior to ManagerSub0209BE80_00A0.
+ManagerSub0209BE80_00A0	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_5380	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_57E0	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_57E0ArrayRecord	dtor	NEW		none - interior to ManagerSub0209BE80_57E0 inside ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F 
+ManagerSub0209BE80_7EA0	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_7FB0	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_8FA0	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_A0D0	dtor	NEW		none - interior to ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing per-sub-object runs
+ManagerSub0209BE80_AB30	allocation_site	NEW		INTERIOR - NONE OF ITS OWN - interior to the heap-allocated ManagerSingleton0209BE80.
+ManagerSub0209BE80_AB30	dtor	NEW		none - interior to the heap-allocated ManagerSingleton0209BE80; the parent is freed by 003697F0 at 0028F54F and nothing 
+ManagerSub5380PoolAEntry	dtor	NEW		none - interior to ManagerSub0209BE80_5380; an element is released by clearing its +0x0F flag.
+ManagerSub5380PoolBEntry	dtor	NEW		none - interior to ManagerSub0209BE80_5380; an element is released by clearing bit 0 of its +0x16 word.
+ManagerSub5380PoolCEntry	dtor	NEW		none - interior to ManagerSub0209BE80_5380; an element is released by clearing bit 0 of its +0x12 word.
+ManagerSub7EA0Entry	dtor	NEW		none - interior to ManagerSub0209BE80_7EA0.
+ManagerSub7FB0Record	dtor	NEW		none - interior to ManagerSub0209BE80_7FB0.
+ManagerSubA0D0Record	dtor	NEW		none - interior to ManagerSub0209BE80_A0D0.
+MapRefImageHeader	route	REVERT	d07c26fb6	DYNAMIC [02099D88] - a loaded image pointer, guarded by [02099D90]; no fixed base exists
+MapScreenContainer	dtor	NEW		003CB410 releases it through 00245020 at 003CB420 - rcx loaded from the 02B47760 cell.
+NameRegistryNode	allocation_site	NEW		CALLER - not read - the nodes are supplied by the caller of 00876490, which registers a node it is handed rather than al
+NameRegistryNode	dtor	NEW		the scalar deleting destructor 00876C00 unlinks the node then calls operator delete(this, 0x20).
+NavBroadPhaseHeader	route	REVERT	506a915cd	DYNAMIC 0020E600(NavRunStateBlock +0x20) - the base is a pack offset decoded at runtime by 'mov eax, ecx ; add rax, qwor
+NavMeshTriangle	route	REVERT	506a915cd	DYNAMIC 0020E600(NavRunStateBlock +0x10) - the base is a pack offset decoded at runtime by 'mov eax, ecx ; add rax, qwor
+NavMeshVertex	route	REVERT	506a915cd	DYNAMIC 0020E600(NavRunStateBlock +0x0C) - the base is a pack offset decoded at runtime by 'mov eax, ecx ; add rax, qwor
+NavPortalRecord	route	REVERT	506a915cd	DYNAMIC 0020E600(NavRunStateBlock +0x14) - a pack offset decoded at runtime; no fixed base exists
+NavRegionRecord	route	REVERT	506a915cd	DYNAMIC 0020E600(NavRunStateBlock +0x18) - the base is a pack offset decoded at runtime by 'mov eax, ecx ; add rax, qwor
+OffsetIndexedStringTable	allocation_site	NEW		UNRESOLVED - not established - the slot is filled from outside the accessor; only the reader was read
+OffsetIndexedStringTable	dtor	NEW		none - image-resident slot storage, not an owned allocation; see allocation_site.
+OrderedCommandList	route	REVERT	d07c26fb6	DYNAMIC [01F7F5E0] - a lazily created singleton pointer; the getter 0018B4E0 null-tests it into 0016D6A0, which is 'ret 
+OrderedObject	route	REVERT	56d76c58e	DYNAMIC one heap object per enqueue; reached only as an element of RenderCommandOwnerList and OrderedCommandList
+PApplication	route	REVERT	d853675cd	STATIC 0x02EA5368 -> PApplication* (pointer slot, not the object) | STATIC 0x01F7E350 -> the object itself (vtable writt
+PaneListWidget0B68	dtor	NEW		00290E10 releases it through 00244F00 at 00290E57 - rcx loaded from [manager+0x10F78], the slot 0028FD70 lazily creates 
+PendingCompletionQueue01F81248	dtor	NEW		none identified - a lazily created singleton with no release path read here; the cell write-census shows installs and re
+RenderCommandOwnerList	route	REVERT	d07c26fb6	DYNAMIC [01F7F5E8] - a lazily created singleton pointer
+RenderResourceEntry	allocation_site	NEW		INTERIOR - 0051F9F0 allocates the whole block at capacity x rowStride into the bank's +0x28; rows are not separately all
+RenderResourceEntry	dtor	NEW		00409730 performs per-row teardown: 00427B00(reference+30) clears selected consumer references; 0051EE80(entry+10) relea
+RenderResourceEntry	evidence	NEW		CURRENT SECTION-06: real per-row teardown is established, unlike the earlier none-found dtor. The embedded buffer transf
+RenderResourceEntryBank	allocation_site	NEW		INTERIOR - none - embedded at the static render root's offset zero, not allocated
+RenderResourceEntryBuffer	size	NEW		0x20
+RenderResourceEntryBuffer	allocation_site	NEW		INTERIOR - Header is embedded at RenderResourceEntry+10, not separately allocated. Its source backing is allocated by 00
+RenderResourceEntryBuffer	ctor	NEW		0051EE10 clears kind, source and capacity; writes growth=0x800 and used=0. 0051F020 allocates backing and optional-zeroe
+RenderResourceEntryBuffer	dtor	NEW		0051EE80 releases source through 003AB7C0 and resets semantic fields through 0051EE10. 0051EEB0 first allocates/copies t
+RenderResourceRoot	allocation_site	NEW		IMAGE - none - static .data, not allocated
+RenderStrideC0Bank	allocation_site	NEW		INTERIOR - none - embedded in the static render root, not allocated
+RenderStrideC0Element	allocation_site	NEW		INTERIOR - 0051F9F0 allocates the whole block at capacity x rowStride into the bank's +0x28; individual rows are not sep
+ResourceRequestQueue	ctor	NEW		0032E450 initializes mutable freeHead (+0x10) to pool start 022C31C0, and clears pending head/tail (+0/+8). The free-hea
+ResourceRequestQueue	evidence	NEW		DECLARED 2026-09-21 (OPUS), closing the types gap S-08's own verdict names. That row says the subsystem's slot type is 1
+SabHeader	allocation_site	NEW		RESOURCE - none - authored file bytes read from the VBF; the blob arrives through the resource pipeline, no allocation c
+StatusDefinitionRecord	route	REVERT	506a915cd	DYNAMIC resolve(*(0x02EBF118)+0x0C) + statusId * (header stride)
+Widget0209CC18	dtor	NEW		each of the three cells has a release: 0209CC18 through 002A8220 (00244F00 at 002A8271 and 002A833C), 0209CC20 through 0
+Widget02B5F1F8	dtor	NEW		003F4B40 releases it through 00244F00 at 003F4B9E.
+Widget02B5F200	dtor	NEW		003F4B40 releases it through 00244F00 at 003F4BAE - a tail jmp with rcx loaded from the cell at 003F4BA3.
+Widget02CA6C80	dtor	NEW		00474040 releases it through 00245020 at 00474050.
+Widget02CA8F30	dtor	NEW		ROUTE DEFECT under REQ 2026-09-23 - the 02CA8F30 cell is a dword state flag: the handler 002D1420 writes dword 1/0 (002D
+Widget02CA9718	dtor	NEW		0056EF60 releases it through 00244F00 at 0056F0C8; its +0x100 member is released through 00245020 (0056F17F) and 00244F0
+Widget02CA9790	dtor	NEW		0057B6A0 releases it through the deleting destructor 00244DD0 at 0057B6DF - rcx loaded from the cell.
+Widget02CA99B0	dtor	NEW		ROUTE DEFECT under REQ 2026-09-23 - the 02CA99B0 cell is a dword flag (005819F0 writes 0/1, 00798FF0 compares it), never
+Widget02CA99B4	dtor	NEW		ROUTE DEFECT under REQ 2026-09-23 - the 02CA99B4 cell is a dword flag (dword operations only; no pointer is ever stored)
+Widget02CA99E8	dtor	NEW		released by 0057E4D0 through 00245020 at 0057E599 (mov rcx, rbx; call) after clearing the flag at 0057E58B. ROUTE NOTE 2
+WidgetSingleton01EFAC10	dtor	NEW		released by its own handler: 00393EA0 does mov rcx, rdi; mov byte [rdi+0xC0], 3; call 00244F00 at 00393F03-00393F0D. ROU
+WidgetSingleton01FD4940	dtor	NEW		002284F0 releases it through the deleting destructor 00244DD0 at 002285B5 - rcx loaded from the cell.
+WidgetSingleton01FD4948	dtor	NEW		NONE - never released. The cell is only ever installed into (00228490 and 002284F0), never cleared, and no body referenc
+WidgetSingleton0208E6C0	dtor	NEW		0023BD40 releases it through the widget release 00244F00 at 0023C3B8 (mov rcx, [0208E6C0]; call 00244F00).
+WidgetSingleton0208E6C8	dtor	NEW		00240AD0 releases it through 00244F00 at 00240B63 - one dispatch arm does mov rcx, [0208E6C8]; call 00244F00.
+WidgetSingleton0208E6D0	dtor	NEW		0023CE10 releases it through 00244F00 at 0023D288 (mov rcx, [0208E6D0]; call 00244F00).
+WidgetSingleton0208E6D8	dtor	NEW		NONE - never released. The sibling cells 0208E6C0/0208E6D0 are released by 0023BD40/0023CE10 but this cell is only compa
+WidgetSingleton020927F0	dtor	NEW		NONE - never released. Installed by 002509D0 (00250A61, 00250ABE); the 003697F0 call in 002509D0 releases a +0xC0 member
+WidgetSingleton0209AC18	dtor	NEW		002878E0 releases it through 00244F00 at 00287A4B and 00287B0C (mov rcx, [0209AC18]; call 00244F00 on both arms).
+WidgetSingleton0209AC20	dtor	NEW		0027EA70 releases it through 00244F00 at 0027EB56 - a tail jmp with rcx loaded from the cell.
+WidgetSingleton0209C300	dtor	NEW		002970C0 releases it through 00244F00 at 002970EB.
+WidgetSingleton0209C318	dtor	NEW		released through 00244F00 tail jmps at 00280C90 (00280B70), 0029D275 (0029D210) and 002C998F (002C98F0) - each loads rcx
+WidgetSingleton0209C380	dtor	NEW		0029D210 releases it through 00244F00 at 0029D243.
+WidgetSingleton0209C498	dtor	NEW		0029E110 releases it through 00244F00 at 0029E1E7.
+WidgetSingleton0209C4C8	dtor	NEW		002A1E90 releases it through 00244F00 at 002A1EA9 - a tail jmp with rcx loaded from the cell.
+WidgetSingleton0209E5F8	dtor	NEW		002B9B30 releases it through 00244F00 at 002B9BA5 (mov rcx, [0209E5F8]; call).
+WidgetSingleton0209E600	dtor	NEW		002B9B30 releases it through 00244F00 at 002B9B89 (mov rcx, [0209E600]; call).
+WidgetSingleton022C83A8	dtor	NEW		NONE - never released. The cell is only ever installed into (0035DAF0 and 0035DC60); its only readers are those same two
+WidgetSingleton022C83E0	dtor	NEW		NONE - never released. The cell is only ever installed into (0035C0D0); readers 0035C080/0035C0D0/0035C100 never release
+WidgetSingleton022CA428	dtor	NEW		0035BB70 releases it through 00244F00 at 0035BBC5.
+WidgetSingleton022CBE20	dtor	NEW		00366A00 releases it through 00245020 at 00366A10 (mov rcx, [022CBE20]; call 00245020).
+WidgetSingleton02AED490	dtor	NEW		0037E4F0 releases it through 00244F00 at 0037E54F.
+WidgetSingleton02AEE4C0	instance	NEW		One published title-asset widget at pointer slot 02AEE4C0. Creator 00394460 skips allocation when the slot is nonnull, b
+WidgetSingleton02AEE4C0	ctor	NEW		002465F0 clears the caller-specified 0xD8 extent, writes the shared header, then invokes handler 00394070 with message 1
+WidgetSingleton02AEE4C0	dtor	NEW		Own handler message 18 at 00394097 calls 0024A680(self+0xC8,1), conditionally releases +0xD0 via 003697F0 and clears +0x
+WidgetSingleton02AEE4C0	readiness	NEW		SIGNATURE RESOLVED
+WidgetSingleton02AEE4C0	confidence	NEW		HIGH
+WidgetSingleton02AEE4C0	evidence	NEW		SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-
+WidgetSingleton02AEE4C0	documents	NEW		16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md
+WidgetSingleton02AEE4D0	dtor	NEW		NONE - never released. 00394130 releases the sibling cell 02AEE4C0, never this cell.
+WidgetSingleton02B457E0	dtor	NEW		003BBFB0 and 003BC4E0 release the +0xD8/+0xE0/+0xE8/+0xF8 members through 003697F0 and the object itself through 0024502
+WidgetSingleton02B476B0	dtor	NEW		released through 00244F00 tail jmps at 003C58FC (003C58B0), 003C80B5 (003C8070) and 003C819B (003C80C0) - each loads rcx
+WidgetSingleton02B47730	dtor	NEW		NONE - never released. The cell is only ever installed into (003C8A20 and 003C8B70), never cleared.
+WidgetSingleton02B47740	dtor	NEW		003C9900 releases it through the deleting destructor 00244DD0 at 003C9938 - rcx loaded from the cell.
+WidgetSingleton02B62D78	dtor	NEW		the cell is un-published at 00406AF7 (mov qword [cell], 0); no body referencing it releases the object - the storage out
+WidgetSingleton02B62D80	dtor	NEW		00408200 releases the +0xC0 member through 00245020 at 00408226, then the object through 00245020 at 00408232, and un-pu
+WidgetSingleton02B62D88	dtor	NEW		00404E10 releases the +0xC0 member through 00245020 at 00404EED; 00404F20 releases the object through 00244F00 at 00404F
+WidgetSingleton02CA8A78	dtor	NEW		NONE - never released. 0053EB30 calls 00244F00 but never on this cell pointer.
+WidgetSingleton02CA8F38	dtor	NEW		NONE - never released. 005528C0 and 005542D0 call 00244F00 but never on this cell pointer.
+WidgetSingleton02CA8FE0	dtor	NEW		NONE - never released. 002878E0 releases the sibling cell 0209AC18 twice; this cell is only compare-read (00287BE3) and 
+WidgetSingleton02CA9670	dtor	NEW		NONE - never released. Installed once (00561390 at 0056168B); the cell is otherwise read as a pointer-arithmetic base by
+WidgetSingleton02CA9678	dtor	NEW		ROUTE DEFECT under REQ 2026-09-23 - the 02CA9678 cell is a dword state flag (dword stores of 1/eax/ebx and cmp-0 reads b
+WidgetSingleton02CA96D8	dtor	NEW		NONE - never released. The cell is only ever installed into (00567770, 005677A0); the five reading bodies never release 
+WidgetSingleton02CA972C	dtor	NEW		ROUTE DEFECT under REQ 2026-09-23 - the 02CA972C cell is a dword state cell (002CE7E0 stores ecx and compares it), never
+WidgetSingleton02CA9738	dtor	NEW		the +0x108 and +0x110 members are released through 00244F00 (00575F10 at 00575F71 and 00575FBE); the object itself is no
+WidgetSingleton02CA99C0	dtor	NEW		the dispatch teardown 00582860 releases it through 00244F00 at 00582BB3, 00582C1D and 00582C6F (three arms).
+WidgetSingleton02CA99C8	dtor	NEW		NONE - never released. 0057F360, 00580840 and 00581B70 call 00244F00 but never on this cell pointer.
+WidgetSingleton02CA99D0	dtor	NEW		00582860 releases it through 00244F00 at 00582B91, 00582BFB and 00582C4D (three arms).
+WidgetSingleton02CA99D8	dtor	NEW		00582860 releases it through 00244F00 at 00582BA2, 00582C0C and 00582C5E (three arms).
+WidgetSingleton02CA99E0	dtor	NEW		NONE - never released. The dispatch teardown 00582860 releases the sibling cells 02CA99C0/D0/D8 and reads this cell, but

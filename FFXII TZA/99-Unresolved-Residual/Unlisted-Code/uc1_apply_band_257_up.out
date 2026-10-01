@@ -1,0 +1,7 @@
+PASS  C1 tallies {'held': 49, 'admit-frontier': 1}
+PASS  C3 00712180 decodes exactly to 00712180 + 353, ending on ret
+PASS  C4 in .text; overlaps involving the admitted body: []
+PASS  C5 no jump leaves 00712180 and it makes no call
+PASS  C6 population 35064 -> 35065
+written
+FAILS 0

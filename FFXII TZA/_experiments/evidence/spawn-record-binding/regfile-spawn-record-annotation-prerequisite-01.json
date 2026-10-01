@@ -1,0 +1,49 @@
+{
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "regfile-spawn-record-source-01.json",
+      "sha256": "491d8922691668969f2392a8d2689cf92376bcddc9ab4bc6f60a85b75629e72e"
+    }
+  ],
+  "result_sha256": "3f5230187c47084c6f55102e5f544917c3e62ff0f96a4531941dc9e8620ea4da",
+  "data_prerequisites": [
+    {
+      "path": "regfile-spawn-record-inputs-01/manifest.json",
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/regfile-observation.json",
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/section12-original-body-manifest.json",
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-authored-01/gol_b01.s000",
+      "sha256": "c2617234e510735e6a1a794de000feac0a8fd956af9f2fd1afbb4e4bac6c8993"
+    }
+  ],
+  "limits": "Existing publisher instruction-annotation projection only; all retained/raw data identities remain required by reducer/freezer/manifest"
+}

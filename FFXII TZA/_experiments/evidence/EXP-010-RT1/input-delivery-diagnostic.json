@@ -1,0 +1,54 @@
+{
+  "exit_code": 0,
+  "stdout": "pid 23532   held-array at 0x000000000E4580F0, 256 bytes\nbaseline: all 256 bytes zero\nforeground: the game (hwnd 0xe30b54), verified\n\nCONTROL, no key held for 0.35 s : clean\n\n  Space     vk 0x20  ->  indices while held: [52]                    still set after release: none\n  Up        vk 0x26  ->  indices while held: [80]                    still set after release: none\n  Down      vk 0x28  ->  indices while held: [74]                    still set after release: none\n\nkeys tried            : 3\nkeys that moved a byte: 3\npolls that lost focus : 0\n\nMEASURED MAPPING  (index -> the game's own code, index + 28)\n  Down      index  74  code 102  (no GameSetting.ini name)\n  Space     index  52  code  80  Circle\n  Up        index  80  code 108  (no GameSetting.ini name)\n",
+  "input_calls": [
+    {
+      "at": 1789085893.0684867,
+      "vk": 32,
+      "up": false,
+      "SendInput_return": 2,
+      "last_error": 0,
+      "async_state": -32767
+    },
+    {
+      "at": 1789085893.4244854,
+      "vk": 32,
+      "up": true,
+      "SendInput_return": 2,
+      "last_error": 0,
+      "async_state": 0
+    },
+    {
+      "at": 1789085893.4754858,
+      "vk": 38,
+      "up": false,
+      "SendInput_return": 2,
+      "last_error": 0,
+      "async_state": -32767
+    },
+    {
+      "at": 1789085893.8287551,
+      "vk": 38,
+      "up": true,
+      "SendInput_return": 2,
+      "last_error": 0,
+      "async_state": 0
+    },
+    {
+      "at": 1789085893.8799317,
+      "vk": 40,
+      "up": false,
+      "SendInput_return": 2,
+      "last_error": 0,
+      "async_state": -32767
+    },
+    {
+      "at": 1789085894.2344718,
+      "vk": 40,
+      "up": true,
+      "SendInput_return": 2,
+      "last_error": 0,
+      "async_state": 0
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-bank-dispatch.py", line 115, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-bank-dispatch.py", line 31, in main
+    if v.get('exit')!=0 or v.get('driver_sha256')!=P.sha(src/'capture-texture-async-bank-dispatch.py'):raise ValueError('required bank dispatch capture invocation failed or incomplete')
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required bank dispatch capture invocation failed or incomplete

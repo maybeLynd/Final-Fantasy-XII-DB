@@ -1,0 +1,25 @@
+{
+  "pid": 28900,
+  "mode": "old",
+  "setup": [
+    {
+      "unix": 1789094637.42575,
+      "operation": "DebugSetProcessKillOnExit",
+      "args": [
+        false
+      ],
+      "result": 0,
+      "error": 6
+    },
+    {
+      "unix": 1789094637.4259653,
+      "operation": "DebugActiveProcess",
+      "args": [
+        28900
+      ],
+      "result": 1,
+      "error": null
+    }
+  ],
+  "unix": 1789094637.426063
+}

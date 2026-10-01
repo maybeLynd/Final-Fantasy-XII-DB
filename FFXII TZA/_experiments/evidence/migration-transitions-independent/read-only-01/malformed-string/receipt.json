@@ -1,0 +1,27 @@
+{
+  "name": "malformed-string",
+  "expected": "MALFORMED",
+  "input_sha256": "be4d3b7c77dfff2f7bbb0bbc1ffdcc9b361037212fb64ca2647e748d58c9f4c3",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\malformed-string\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-MALFORMED-STRING\",\n  \"detail\": \"reviews field needs author (a board identity) and commit\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "parsed_report": [
+    {
+      "transition": "MALFORMED",
+      "review": "REVIEW-MALFORMED-STRING",
+      "detail": "reviews field needs author (a board identity) and commit",
+      "status": "-"
+    }
+  ],
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true
+}

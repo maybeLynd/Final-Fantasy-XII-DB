@@ -1,0 +1,19 @@
+# Heavy binaries and scratch state are NOT tracked.
+# Everything here is reproducible: see README.md.
+
+# Continuation GZF (82 MB) - extract from the handoff ZIP in Database/
+# and verify SHA 381d2aea82b96d7af781844e191d9b92a37e93bd2d4ff276a33ba56e7307461b
+parent/*.gzf
+
+# radare2 distribution - refetch from github.com/radareorg/radare2/releases
+radare2/
+
+# Headless scratch: Ghidra projects, snapshots, residual dumps, logs
+work/
+
+# Extracted embedded EXE - never commit the game binary
+**/embedded_exe.bin
+**/*.exe
+
+# Downloads
+_download/

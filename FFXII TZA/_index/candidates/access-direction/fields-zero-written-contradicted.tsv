@@ -1,0 +1,68 @@
+type	offset	name	site	cause	instruction
+BattleMenuPanelWidget3010	0x00C0	field00C0	00277101	LABEL-FLIP	movups xmmword ptr [rdi + 0xc0], xmm0
+BattleMenuPanelWidget3010	0x00F0	field00F0	00277122	LABEL-FLIP	movups xmmword ptr [rdi + 0xf0], xmm1
+BattleMenuPanelWidget3010	0x0100	qword0100	002475FE	ALREADY-w (text stale vs index)	mov dword ptr [rcx + 0x40], eax
+BattleMenuPanelWidget3010	0x0100	qword0100	002771B7	LABEL-FLIP	movups xmmword ptr [rdi + 0x100], xmm0
+BattleMenuPanelWidget3010	0x0100	qword0100	002773CE	LABEL-FLIP	movups xmmword ptr [rbx], xmm0
+BattleMenuPanelWidget3010	0x0100	qword0100	00277505	LABEL-FLIP	movups xmmword ptr [rdi + 0x100], xmm0
+BattleMenuPanelWidget3010	0x0130	field0130	002771D8	LABEL-FLIP	movups xmmword ptr [rdi + 0x130], xmm1
+BattleMenuPanelWidget3010	0x0130	field0130	002773E5	LABEL-FLIP	movups xmmword ptr [rbx + 0x30], xmm1
+BattleMenuPanelWidget3010	0x0130	field0130	00277526	LABEL-FLIP	movups xmmword ptr [rdi + 0x130], xmm1
+BattleMenuPanelWidget3010	0x0140	field0140	002771F3	LABEL-FLIP	movups xmmword ptr [rdi + 0x140], xmm0
+BattleMenuPanelWidget3010	0x0170	field0170	00277214	LABEL-FLIP	movups xmmword ptr [rdi + 0x170], xmm1
+BattleMenuPanelWidget3010	0x0180	field0180	00277230	LABEL-FLIP	movups xmmword ptr [rdi + 0x180], xmm0
+BattleMenuPanelWidget3010	0x01B0	field01B0	00277251	LABEL-FLIP	movups xmmword ptr [rdi + 0x1b0], xmm1
+BattleMenuPanelWidget3010	0x01C0	qword01C0	0027713D	LABEL-FLIP	movups xmmword ptr [rdi + 0x1c0], xmm0
+BattleMenuPanelWidget3010	0x01F0	field01F0	0027716F	LABEL-FLIP	movups xmmword ptr [rdi + 0x1f0], xmm0
+BattleMenuPanelWidget3010	0x0200	vector0200	0027717A	LABEL-FLIP	movups xmmword ptr [rdi + 0x200], xmm1
+BattleMenuPanelWidget3010	0x0210	vector0210	00277185	LABEL-FLIP	movups xmmword ptr [rdi + 0x210], xmm0
+MapScreenContainer	0x00190	qword0190	002B65A1	LABEL-FLIP	movups xmmword ptr [rcx + 0x190], xmm0
+MapScreenContainer	0x00190	qword0190	002BA0A3	LABEL-FLIP	movups xmmword ptr [rcx + 0x190], xmm0
+MapScreenContainer	0x00190	qword0190	004040CC	ALREADY-w (text stale vs index)	mov qword ptr [rdi], rax
+MapScreenContainer	0x001A0	qword01A0	002B65C5	LABEL-FLIP	movups xmmword ptr [rcx + 0x1a0], xmm1
+MapScreenContainer	0x001A0	qword01A0	002BA0B1	LABEL-FLIP	movups xmmword ptr [rcx + 0x1a0], xmm1
+MapScreenContainer	0x001A0	qword01A0	004040FA	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x10], rax
+MapScreenContainer	0x001A8	dword01A8	00404111	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x18], rax
+MapScreenContainer	0x179D4	dword179D4	002B9FEC	ALREADY-w (text stale vs index)	mov dword ptr [rax + 0x179d4], ecx
+ManagerSub0209AC60_02F8	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+ManagerSub0209AC60_02F8	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton0208E6C0	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton0208E6C0	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton0208E6D0	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton0208E6D0	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton02CA8F38	0x0178	word0178	0055058A	ALREADY-w (text stale vs index)	mov word ptr [rcx + 0x178], ax
+WidgetSingleton02CA8F38	0x017A	word017A	00550561	ALREADY-w (text stale vs index)	mov word ptr [rcx + 0x17a], ax
+WidgetSingleton02CA8F38	0x0180	word0180	005505B0	ALREADY-w (text stale vs index)	mov word ptr [rcx + 0x180], ax
+WidgetSingleton020927F0	0x0110	dword0110	00250E23	ALREADY-w (text stale vs index)	movss dword ptr [rax + 0x110], xmm0
+WidgetSingleton020927F0	0x0114	dword0114	00250E68	ALREADY-w (text stale vs index)	movss dword ptr [rcx + 0x114], xmm1
+WidgetSingleton020927F0	0x0114	dword0114	00250F9D	ALREADY-w (text stale vs index)	movss dword ptr [rbx + 0x114], xmm1
+WidgetSingleton020927F0	0x0118	dword0118	00250E70	ALREADY-w (text stale vs index)	movss dword ptr [rcx + 0x118], xmm0
+WidgetSingleton020927F0	0x0118	dword0118	00250FA9	ALREADY-w (text stale vs index)	movss dword ptr [rbx + 0x118], xmm0
+WidgetSingleton0209AC18	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton0209AC18	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton0209C4C8	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton0209C4C8	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton0209C4C8	0x00C4	dword00C4	002A1E41	ALREADY-w (text stale vs index)	mov dword ptr [rbx + 0xc4], eax
+WidgetSingleton0209C4C8	0x00C8	dword00C8	002A1E5A	ALREADY-w (text stale vs index)	mov dword ptr [rbx + 0xc8], ecx
+WidgetSingleton0209C4C8	0x00CC	dword00CC	002A1E72	ALREADY-w (text stale vs index)	mov dword ptr [rbx + 0xcc], 0x15
+WidgetSingleton0209C4C8	0x00D0	dword00D0	002A1E6C	ALREADY-w (text stale vs index)	mov dword ptr [rbx + 0xd0], eax
+WidgetSingleton0209C4C8	0x00F3	byte00F3	002A1DFF	ALREADY-w (text stale vs index)	mov byte ptr [rbx + 0xf3], 0
+WidgetSingleton0209C4C8	0x00F3	byte00F3	002A1E1A	ALREADY-w (text stale vs index)	mov byte ptr [rbx + 0xf3], dl
+WidgetSingleton02B476B0	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton02B476B0	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton02B47730	0x00C4	dword00C4	003C8806	ALREADY-w (text stale vs index)	mov qword ptr [rdx + 0xc4], rax
+WidgetSingleton02B47730	0x00C4	dword00C4	003C8CBA	ALREADY-w (text stale vs index)	mov qword ptr [rax + 0xc4], rdi
+WidgetSingleton02B47730	0x00C4	dword00C4	003C8D8F	ALREADY-w (text stale vs index)	mov qword ptr [rax + 0xc4], rdi
+WidgetSingleton02B47730	0x00C4	dword00C4	003C9462	ALREADY-w (text stale vs index)	mov dword ptr [rax + 0xc4], ebx
+WidgetSingleton02CA99C0	0x0108	qword0108	005822B7	LABEL-FLIP	movups xmmword ptr [rdx + 0x30], xmm1
+WidgetSingleton02CA99C0	0x039A	byte039A	005820FA	ALREADY-w (text stale vs index)	mov byte ptr [rbx + 0x39a], al
+WidgetSingleton0209C498	0x0160	qword0160	00246641	ALREADY-w (text stale vs index)	mov qword ptr [rdi], rbx
+WidgetSingleton0209C498	0x0160	qword0160	002483CE	ALREADY-w (text stale vs index)	mov qword ptr [rdi], 0
+WidgetSingleton0209C498	0x02A8	qword02A8	00246641	ALREADY-w (text stale vs index)	mov qword ptr [rdi], rbx
+WidgetSingleton0209C498	0x02A8	qword02A8	002483CE	ALREADY-w (text stale vs index)	mov qword ptr [rdi], 0
+WidgetSingleton02B62D88	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton022CBE20	0x0050	qword0050	00248343	ALREADY-w (text stale vs index)	mov dword ptr [rdi + 0x50], eax
+WidgetSingleton022CBE20	0x0060	qword0060	00248398	ALREADY-w (text stale vs index)	mov qword ptr [rdi + 0x60], 0
+WidgetSingleton02AED490	0x00EA	word00EA	0037FDFF	ALREADY-w (text stale vs index)	mov word ptr [rbx + 0xea], cx
+WidgetSingleton02AED490	0x03F0	qword03F0	00380088	ALREADY-w (text stale vs index)	rep movsq qword ptr [rdi], qword ptr [rsi]
+WidgetSingleton02CA99C8	0x00D8	dword00D8	0058195B	ALREADY-w (text stale vs index)	mov dword ptr [rbx + 0xd8], edi

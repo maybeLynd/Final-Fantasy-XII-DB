@@ -1,0 +1,62 @@
+   %s NOT EDITABLE                                                                            debug-menu label
+   %s%s:%d(LEFT/RIGHT: toggle, NOT EDITABLE: delete, save:Circle)                             path
+   .?AV?$PClassDescriptorAbstract@VPClusterHeader@PBinary@PSerialization@Phyre@@@Phyre@@      RTTI type name
+   .?AV?$PClassDescriptorAbstract@VPClusterHeaderBase@PBinary@PSerialization@Phyre@@@Phyre@@  RTTI type name
+   .?AV?$PClassDescriptorAbstract@VPClusterHeaderD3D11@PBinary@PSerialization@Phyre@@@Phyre@@ RTTI type name
+   .?AV?$PClassDescriptorAbstract@VPInstanceListHeader@PInternal@PBinary@PSerialization@Phyre RTTI type name
+   .?AV?$PClassDescriptorConcrete@VPClusterHeader@PBinary@PSerialization@Phyre@@@Phyre@@      RTTI type name
+   .?AV?$PClassDescriptorConcrete@VPClusterHeaderBase@PBinary@PSerialization@Phyre@@@Phyre@@  RTTI type name
+   .?AV?$PClassDescriptorConcrete@VPClusterHeaderD3D11@PBinary@PSerialization@Phyre@@@Phyre@@ RTTI type name
+   .?AV?$PClassDescriptorConcrete@VPInstanceListHeader@PInternal@PBinary@PSerialization@Phyre RTTI type name
+   .?AV?$PClassDescriptorForType@VPClusterHeader@PBinary@PSerialization@Phyre@@@Phyre@@       RTTI type name
+   .?AV?$PClassDescriptorForType@VPClusterHeaderBase@PBinary@PSerialization@Phyre@@@Phyre@@   RTTI type name
+   .?AV?$PClassDescriptorForType@VPClusterHeaderD3D11@PBinary@PSerialization@Phyre@@@Phyre@@  RTTI type name
+   .?AV?$PClassDescriptorForType@VPInstanceListHeader@PInternal@PBinary@PSerialization@Phyre@ RTTI type name
+   .?AVIGPUInputAttribute@PPFX@@                                                              RTTI type name
+   .?AVPFindNestedClassVisitor@PInternal@PBinary@PSerialization@Phyre@@                       RTTI type name
+   .?AVPStream@PSerialization@Phyre@@                                                         RTTI type name
+   .?AVPStreamFile@PSerialization@Phyre@@                                                     RTTI type name
+   .?AVPStreamFileWin32@PSerialization@Phyre@@                                                RTTI type name
+   .?AVPStreamReader@PSerialization@Phyre@@                                                   RTTI type name
+   .?AVPStreamReaderFile@PSerialization@Phyre@@                                               RTTI type name
+   .?AVPStreamWriter@PSerialization@Phyre@@                                                   RTTI type name
+   .?AVPStreamWriterFile@PSerialization@Phyre@@                                               RTTI type name
+   .?AVPUtilitySerialization@PSerialization@Phyre@@                                           RTTI type name
+   GetFileAttributesW                                                                         Win32 import
+   PS2Data\image\FF12\test_battle\ch\BinaryFile\attribute_data.bin                            path
+   PS2Data\image\FF12\test_battle\ch\BinaryFile\savemember_data.bin                           path
+   PS2Data\image\FF12\test_battle\in\BinaryFile\attribute_data.bin                            path
+   PS2Data\image\FF12\test_battle\in\BinaryFile\savemember_data.bin                           path
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Phyre::PScripting::PScriptAccessors::PObjectAccessor<class Phyre::PSerialization::PBinary: script accessor / qualified type name
+   Serialization                                                                              namespace name
+   SetFileAttributesW                                                                         Win32 import
+   Type::putPointerToScriptContext: Not implemented for '%s' type                             script error message
+   UserAttributeBool                                                                          animation-binding target name
+   UserAttributeFloat                                                                         animation-binding target name
+   UserAttributeInt                                                                           animation-binding target name
+   UserAttributeVector                                                                        animation-binding target name
+   m_isPersistent                                                                             reflection member name
+   m_persistentBuffer                                                                         reflection member name
+   m_persistentBufferOffset                                                                   reflection member name
+   m_persistentState                                                                          reflection member name
+   m_persistentStateOffset                                                                    reflection member name
+   m_totalPersistentStateSize                                                                 reflection member name
+   phyre_pscript                                                                              module name
+   setOrthoAttributesFromAnimation                                                            script-accessor method name
+PASS  R1 every flag-vocabulary string in the image is classified, none a member-attribute flag name 52 of 95645 strings; unclassified []
+PASS  R1 control: the pattern sees the reflection member m_isPersistent 
+   registrar calls: 00632960 682, 00632A10 165, 00632B30 1; vtables {'00D580B0': '.?AVPClassDataMember@Phyre@@', '00D58100': '.?AVPClassDataMemberArray@Phyre@@', '00D58358': '.?AVPClassDataMemberDynamic@Phyre@@'}
+PASS  R2 all direct registrations build one class (00632960 installs PClassDataMember 00D580B0) 
+PASS  R2 the subclass constructors are the array and dynamic ones, and each calls 00632960 arrays 165, dynamic 1
+PASS  R3 the only annotation key built is WriteMask, and 70 annotations are attached key callers ['001641D2'] names ['WriteMask'] attaches 70
+   non-.phyre files read 53430
+PASS  R4 no non-.phyre shipped file names a reflection member []
+PASS  R4 control: the needles are found in a .phyre file after 1 .phyre files
+FAILS 0

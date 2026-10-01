@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-101",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "frontier-shared-callee-hubs batch 101: 002D9380..005611A0",
+  "scope": "3-A 002D9380 + 2-A 00556380 + top 20 of 1-A; dump, decode, place on bearing hosts, interior anchors, gates, publish",
+  "completion": "22/22 interior-cited + gates clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

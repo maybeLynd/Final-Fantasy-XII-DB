@@ -1,0 +1,109 @@
+R1 registry references by slot and form (rip / ib = image-base-relative):
+   02EBF038 rip 64
+   02EBF040 rip 111
+   02EBF048 rip 7
+   02EBF050 rip 7
+   02EBF058 rip 24
+   02EBF060 rip 5
+   02EBF068 rip 8
+   02EBF070 rip 8
+   02EBF078 rip 2
+   02EBF080 rip 16
+   02EBF088 rip 16
+   02EBF090 rip 16
+   02EBF098 rip 10
+   02EBF0A0 rip 5
+   02EBF0A8 rip 5
+   02EBF0B0 rip 10
+   02EBF0B8 rip 21
+   02EBF0C0 rip 18
+   02EBF0C8 rip 10
+   02EBF0D0 rip 1
+   02EBF0D8 rip 34
+   02EBF0E0 rip 8
+   02EBF0E8 rip 12
+   02EBF0F0 rip 22
+   02EBF0F8 rip 272
+   02EBF100 rip 10
+   02EBF108 rip 7
+   02EBF110 rip 10
+   02EBF118 rip 130
+   02EBF120 rip 27
+   02EBF128 rip 10
+   02EBF130 rip 83
+   02EBF138 rip 720
+R1 action slot 02EBF138..3F: 720 references; kinds {('load8', 'rip'): 688, ('lea', 'rip'): 1, ('mov', 'rip'): 31}
+   non-load 00237FD5 -> 02EBF138 rip w8 lea rcx, [rip + 0x2c8715c]
+   non-load 002F92F2 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2bc5e3e]
+   non-load 00303409 -> 02EBF138 rip w8 mov rax, qword ptr ss:[rip + 0x2bbbd27]
+   non-load 0030346F -> 02EBF138 rip w8 mov rax, qword ptr cs:[rip + 0x2bbbcc1]
+   non-load 003077CE -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2bb7962]
+   non-load 00307816 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2bb791a]
+   non-load 0030841C -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2bb6d14]
+   non-load 003852D7 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b39e59]
+   non-load 00385352 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b39dde]
+   non-load 00389E34 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b352fc]
+   non-load 00389E77 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b352b9]
+   non-load 0038A87C -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b348b4]
+   non-load 0038A8BF -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b34871]
+   non-load 0038AC24 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b3450c]
+   non-load 0038AC67 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b344c9]
+   non-load 0038B6D8 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b33a58]
+   non-load 0038B734 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b339fc]
+   non-load 0038B815 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b3391b]
+   non-load 0038B88B -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b338a5]
+   non-load 0038CC50 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b324e0]
+   non-load 0038CDA6 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b3238a]
+   non-load 0038CE86 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b322aa]
+   non-load 0038CF66 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b321ca]
+   non-load 0038D046 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b320ea]
+   non-load 0038D808 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b31928]
+   non-load 0038D870 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b318c0]
+   non-load 0038F744 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b2f9ec]
+   non-load 00390119 -> 02EBF138 rip w8 mov rax, qword ptr ds:[rip + 0x2b2f016]
+   non-load 00390C4E -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b2e4e2]
+   non-load 00390D24 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b2e40c]
+   non-load 00390DC0 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b2e370]
+   non-load 00390E69 -> 02EBF138 rip w8 mov rax, qword ptr es:[rip + 0x2b2e2c7]
+R1 image-base-relative references into the registry: 0
+R1 indexed forms into the registry: 0
+R1 lea (address-taken) of any registry slot: 32
+   00236C92 -> 02EBF0B8 rip lea rcx, [rip + 0x2c8841f]
+   00236CA9 -> 02EBF0A8 rip lea rcx, [rip + 0x2c883f8]
+   00236CC0 -> 02EBF0B0 rip lea rcx, [rip + 0x2c883e9]
+   00236CD7 -> 02EBF0C0 rip lea rcx, [rip + 0x2c883e2]
+   00236CFD -> 02EBF0E0 rip lea rcx, [rip + 0x2c883dc]
+   00236D14 -> 02EBF108 rip lea rcx, [rip + 0x2c883ed]
+   00236D45 -> 02EBF110 rip lea rcx, [rip + 0x2c883c4]
+   00236D5C -> 02EBF038 rip lea rcx, [rip + 0x2c882d5]
+   00236DA0 -> 02EBF130 rip lea rcx, [rip + 0x2c88389]
+   00236DB7 -> 02EBF128 rip lea rcx, [rip + 0x2c8836a]
+   00236DCE -> 02EBF100 rip lea rcx, [rip + 0x2c8832b]
+   00236DE5 -> 02EBF0C8 rip lea rcx, [rip + 0x2c882dc]
+   00236E13 -> 02EBF060 rip lea rcx, [rip + 0x2c88246]
+   00236E2A -> 02EBF0F0 rip lea rcx, [rip + 0x2c882bf]
+   00236E41 -> 02EBF0E8 rip lea rcx, [rip + 0x2c882a0]
+   00236E58 -> 02EBF0A0 rip lea rcx, [rip + 0x2c88241]
+   00236E72 -> 02EBF098 rip lea rcx, [rip + 0x2c8821f]
+   00236E8C -> 02EBF090 rip lea rcx, [rip + 0x2c881fd]
+   00236EA6 -> 02EBF088 rip lea rcx, [rip + 0x2c881db]
+   00236EC0 -> 02EBF080 rip lea rcx, [rip + 0x2c881b9]
+   00236EDA -> 02EBF078 rip lea rcx, [rip + 0x2c88197]
+   00236EF4 -> 02EBF070 rip lea rcx, [rip + 0x2c88175]
+   00236F0E -> 02EBF068 rip lea rcx, [rip + 0x2c88153]
+   00236F3A -> 02EBF050 rip lea rcx, [rip + 0x2c8810f]
+   00236F54 -> 02EBF048 rip lea rcx, [rip + 0x2c880ed]
+   00236F6E -> 02EBF058 rip lea rcx, [rip + 0x2c880e3]
+   00236F88 -> 02EBF040 rip lea rcx, [rip + 0x2c880b1]
+   00237FD5 -> 02EBF138 rip lea rcx, [rip + 0x2c8715c]
+   00238169 -> 02EBF0F8 rip lea rcx, [rip + 0x2c86f88]
+   00238895 -> 02EBF0D8 rip lea rcx, [rip + 0x2c8683c]
+   0023A196 -> 02EBF120 rip lea rcx, [rip + 0x2c84f83]
+   003847B3 -> 02EBF118 rip lea rcx, [rip + 0x2b3a95e]
+R2 stored 64-bit values equal to a registry address: 0 []
+R3 resolver                 0020E600 raw rel32 sites 4371 {'E8': 4365, 'E9': 6}; stored pointers []
+R3 rowret                   00388FE0 raw rel32 sites 0 []; stored pointers ['.data 01EFA678 reloc=True', '.data 01EFA680 reloc=True']
+R3 rowret                   0038A9D0 raw rel32 sites 0 []; stored pointers ['.data 01EFA810 reloc=True']
+R3 rowret                   0038AA90 raw rel32 sites 0 []; stored pointers ['.data 01EFA7A8 reloc=True', '.data 01EFA7C0 reloc=True', '.data 01EFA818 reloc=True']
+R3 rowret                   0038F970 raw rel32 sites 0 []; stored pointers ['.data 01EFAB10 reloc=True']
+R3 GetPresentationParameter 0030A190 raw rel32 sites 2 ['0030C8F1 E8', '0030CCC3 E8']; stored pointers []

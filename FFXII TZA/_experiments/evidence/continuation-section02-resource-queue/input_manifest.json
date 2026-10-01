@@ -1,0 +1,38 @@
+{
+  "baseline_archive": "FFXII TZA(20260922-211246).zip",
+  "baseline_sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+  "predecessor": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+  "predecessor_sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017",
+  "inputs": [
+    {
+      "path": "_experiments/evidence/queue-remaining-exec/check.py",
+      "bytes": 29373,
+      "sha256": "4f5046fafa77a19799afac72c1fc95154169dc501106a4ed47b424a31784174f"
+    },
+    {
+      "path": "_experiments/evidence/queue-remaining-exec/result.json",
+      "bytes": 14972,
+      "sha256": "f7f429f834de95f7681c16ecc840dd83d9068e8c74eeaa07bd626ab0ee20c98d"
+    },
+    {
+      "path": "_experiments/evidence/exp109-poll-pump-exec/check.py",
+      "bytes": 141907,
+      "sha256": "728ee34999952bdd3a8c0bed0c8afdb9077c7544a4ca904681d713043278f1d3"
+    },
+    {
+      "path": "_experiments/evidence/exp109-poll-pump-exec/result.json",
+      "bytes": 227826,
+      "sha256": "2d60a0675cd3f8378e177be0c4be25d3c6642816d8de20a1e015d79a3a3ea7c5"
+    },
+    {
+      "path": "_experiments/evidence/exp109-queue-tails-exec/check.py",
+      "bytes": 28617,
+      "sha256": "72ed501a40404cd3ca2193aecb2431c4bac887d64779dfbfa5347230e14e37a4"
+    },
+    {
+      "path": "_experiments/evidence/exp109-queue-tails-exec/result.json",
+      "bytes": 1263,
+      "sha256": "3516402ed6e8584f1a29bf7092182e54e035151b1098597ddcbb726749cdd9cc"
+    }
+  ]
+}

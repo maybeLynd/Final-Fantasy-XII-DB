@@ -1,0 +1,20 @@
+# NativeAdapter.EHCallWrapper - EC-7 family C, declared on generated-function-families.md
+#
+# 11 members. Body size(s): 24 B x11.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 4 external target(s): 0 shared across all 11 members, and 4 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 4 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00199D30
+001FEA00
+005AA0C0
+005AD090
+00691EE0
+00691F00
+00691F20
+00691F40
+00691F60
+00691F80
+00691FA0

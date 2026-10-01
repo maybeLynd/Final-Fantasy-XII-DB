@@ -1,0 +1,27 @@
+classes 78 members 239 member table 2892 string base 8628 (fe_file: 8628)
+member counts sum 239 == members: True
+class 38 PShaderParameterCaptureBufferLocation parent=2 packed_width=2 members=1
+   member m_offset words ['0xdb3', '0x4', '0x0', '0x2', '0x0', '0x0'] type type4
+class 43 PShaderParameterDefinition parent=2 packed_width=13 members=6
+   member m_name words ['0xbc9', '0x57', '0x4', '0x1', '0x0', '0x0'] type class74:PString
+   member m_parameterType words ['0xdf6', '0x6', '0x2', '0x1', '0x0', '0x0'] type type6
+   member m_dataType words ['0xe2a', '0x6', '0x3', '0x1', '0x0', '0x0'] type type6
+   member m_arrayElementCount words ['0xe35', '0x4', '0x0', '0x2', '0x0', '0x0'] type type4
+   member m_bufferLoc words ['0xe49', '0x39', '0x5', '0x4', '0x0', '0x0'] type class44:PShaderParameterCaptureBufferLocationSize
+   member m_constantBufferLocation words ['0xdbc', '0x0', '0x9', '0x4', '0x0', '0x0'] type type0
+class 44 PShaderParameterCaptureBufferLocationSize parent=38 packed_width=4 members=1
+   member m_size words ['0x822', '0x4', '0x2', '0x2', '0x0', '0x0'] type type4
+array region strings: [(29380, 'BitmapFontTexture'), (29398, 'LinearClampSampler'), (29418, 'World'), (29424, 'alphaThreshold'), (29440, 'glowColor'), (29450, 'glowValues'), (29462, 'outlineColor'), (29476, 'outlineValues'), (29490, 'shadowColor'), (29502, 'shadowUVOffset'), (29518, 'softEdges'), (29528, 'textColor')]
+record  0 @29224 00004003009000100000000000  loc.offset=144 size_word=16 masked=16
+record  1 @29237 0000400000b800040054000000  loc.offset=184 size_word=4 masked=4
+record  2 @29250 00004003008000100060000000  loc.offset=128 size_word=16 masked=16
+record  3 @29263 00004003007000100070000000  loc.offset=112 size_word=16 masked=16
+record  4 @29276 00004003006000100080000000  loc.offset=96 size_word=16 masked=16
+record  5 @29289 0000400100b000080090000000  loc.offset=176 size_word=8 masked=8
+record  6 @29302 000040030050001000a0000000  loc.offset=80 size_word=16 masked=16
+record  7 @29315 0000400100a8000800b0000000  loc.offset=168 size_word=8 masked=8
+record  8 @29328 0000400100a0000800b8000000  loc.offset=160 size_word=8 masked=8
+record  9 @29341 000042340038001800ffffffff  loc.offset=56 size_word=24 masked=24
+record 10 @29354 000047340020001800ffffffff  loc.offset=32 size_word=24 masked=24
+record 11 @29367 00008231002000400010000000  loc.offset=32 size_word=64 masked=64
+record 8 name bytes at 29518: b'softEdges'

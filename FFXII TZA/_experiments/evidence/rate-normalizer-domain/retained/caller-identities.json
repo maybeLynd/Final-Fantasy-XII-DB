@@ -1,0 +1,18 @@
+[
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/widget-deferred-dispatch-domain/retained/source.bin",
+    "sha256": "24c646adcf49060e7fc09e19b0c2ae75077a9c7e0ea7d2c2a09daad9d139b454",
+    "site": "0x244dfe",
+    "bytes": "e86d50feff",
+    "target": "0x229e70",
+    "scope": "Retained static callee relation only, no call execution or normal reachability"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/widget-transition-duration-domain/retained/source.bin",
+    "sha256": "60d7930df283708183efd2f989b774a97a9486786b18d42a85cc0c493e2f9453",
+    "site": "0x2469c9",
+    "bytes": "e8a234feff",
+    "target": "0x229e70",
+    "scope": "Retained static callee relation only, no call execution or normal reachability"
+  }
+]

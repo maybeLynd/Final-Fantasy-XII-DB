@@ -1,0 +1,124 @@
+{
+ "guarded_body_entered": {
+  "00234520": {
+   "0": [
+    true
+   ],
+   "1": [
+    false
+   ],
+   "2": [
+    false
+   ],
+   "3": [
+    false
+   ],
+   "4": [
+    false
+   ]
+  },
+  "00234590": {
+   "0": [
+    true
+   ],
+   "1": [
+    false
+   ],
+   "2": [
+    false
+   ],
+   "3": [
+    false
+   ],
+   "4": [
+    false
+   ]
+  }
+ },
+ "ok": true,
+ "per_callee_per_slot": {
+  "00234520": {
+   "0": {
+    "calls": 1,
+    "max": 224,
+    "min": 224
+   },
+   "1": {
+    "calls": 1,
+    "max": 9,
+    "min": 9
+   },
+   "2": {
+    "calls": 1,
+    "max": 9,
+    "min": 9
+   },
+   "3": {
+    "calls": 1,
+    "max": 9,
+    "min": 9
+   },
+   "4": {
+    "calls": 1,
+    "max": 9,
+    "min": 9
+   }
+  },
+  "00234590": {
+   "0": {
+    "calls": 1,
+    "max": 3461,
+    "min": 3461
+   },
+   "1": {
+    "calls": 1,
+    "max": 20,
+    "min": 20
+   },
+   "2": {
+    "calls": 1,
+    "max": 20,
+    "min": 20
+   },
+   "3": {
+    "calls": 1,
+    "max": 20,
+    "min": 20
+   },
+   "4": {
+    "calls": 1,
+    "max": 20,
+    "min": 20
+   }
+  },
+  "0025D9E0": {
+   "0": {
+    "calls": 1,
+    "max": 31,
+    "min": 31
+   },
+   "1": {
+    "calls": 1,
+    "max": 31,
+    "min": 31
+   },
+   "2": {
+    "calls": 1,
+    "max": 31,
+    "min": 31
+   },
+   "3": {
+    "calls": 1,
+    "max": 31,
+    "min": 31
+   },
+   "4": {
+    "calls": 1,
+    "max": 31,
+    "min": 31
+   }
+  }
+ },
+ "stopped_at": [],
+ "tick_returned": true
+}

@@ -1,0 +1,13 @@
+files scanned per extension: {'.efb': 410, '.efx': 3288, '.cm': 1066, '.mpk': 550}
+files carrying >=1 valid stream: {'.efb': 410, '.efx': 3288, '.cm': 144, '.mpk': 387}
+valid streams per carrier extension: {'.efb': 410, '.efx': 3288, '.cm': 144, '.mpk': 387}
+magic hits refused (walk did not end at size): 0
+version magics over valid streams: {'EFX0010': 4221, 'EFX0008': 7, 'EFX0009': 1}
+0xA00 records: 48868  distinct element types: 55
+types: 00:1446 01:476 02:7523 04:173 05:5204 06:25 0A:40 40:2254 41:425 42:613 60:84 61:9 62:2 65:169 66:414 67:364 68:162 69:58 6A:395 6B:258 71:28 72:89 73:14 74:4 80:875 82:617 83:80 84:1972 85:78 86:115 87:175 88:41 89:36 8B:1 8C:7509 8D:1170 8E:136 8F:1663 90:765 91:12 92:84 94:2344 95:456 96:268 A1:504 A2:6303 A3:447 A5:36 A6:359 A7:14 A8:367 AA:3 AB:7 D0:1437 D1:765
+pin 55 distinct -> True
+pin 0x04 = 173 -> True
+pin 0xA3 = 447 -> True
+pin EFX0009 x1 -> True
+pin EFX0008 x7 -> True
+pin once-authored types -> ['8B']

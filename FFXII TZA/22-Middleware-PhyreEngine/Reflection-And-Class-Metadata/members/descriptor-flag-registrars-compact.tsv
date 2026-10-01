@@ -1,0 +1,13 @@
+# 5 descriptor-registration initialisers - the 53-byte compact form:
+# construct a descriptor-family static via a declared AbstractClassDescriptor
+# ctor, clear bit1 of the object's +0xFC flag word (`and dword [flag],~2` -
+# no bit3 set, unlike the 64-byte form), install an .rdata record pointer,
+# then register the object's declared static teardown via the atexit wrapper
+# 00808B90. The skeleton bounds itself: a census-wide scan of 53-byte bodies
+# finds exactly these 5, no twins.
+# address	size	object	.rdata record	ctor (declared)	dtor (declared)
+00160210	53	02CAA0A0	00D249A8	00597690	008A8150
+00160250	53	02CA9FA0	00D24650	00597730	008A8170
+00160290	53	02CA9DA0	00D24800	005977E0	008A8190
+001602D0	53	02CA9EA0	00D24B58	00597880	008A81B0
+00165F40	53	02D3E780	00D6BDA0	00675250	008B1AE0

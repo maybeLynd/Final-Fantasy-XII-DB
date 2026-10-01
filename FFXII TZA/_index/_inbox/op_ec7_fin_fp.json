@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "OPUS-REQ-EC7-SIGN-00639A60-FALSE-POSITIVE",
+ "result_refs": [
+  "65832c370"
+ ],
+ "note": "SIGNED, reviewer SWE2-EC7, verdict FALSE-POSITIVE CONFIRMED. Independent of the author: both lines were re-read in context before the reason column was consulted. Line 762 sits in the `| bit | written | read | verdict |` table - `never` is the WRITTEN column of the bit-0 row, and 00639A60 appears only inside the verdict as the name of the arm bit 0 gates. Line 700 sits in the `| bit | sites | set by | meaning |` table - the bit-1 row, whose meaning cell says bit 1 short-circuits 00639A60 at 00639AF4. The gate's join reads `never` + `00639A60` as an absence claim about the function address; the subject of `never` is the flag bit. No line claims the address is written or unwritten. Gate re-run before signing reported the row NOT APPLIED (no reviewer), meaning evidence hash db1fc33f34fddf35 still matched - live, not LAPSED; the same run after signing reports it suppressed by a reviewed disposition. Answer to the question: line 762 asserts that BIT 0 is never written."
+}

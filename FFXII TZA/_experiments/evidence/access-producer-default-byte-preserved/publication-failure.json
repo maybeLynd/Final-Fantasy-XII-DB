@@ -1,0 +1,159 @@
+{
+  "commit": "cdc0237c1bfa0714ba575e2bd252e2cad6ca2f08",
+  "verdict": "INVALID_CANONICAL_MANIFEST_BYTES",
+  "rows": [
+    {
+      "path": "capture.py",
+      "manifest_bytes": 3599,
+      "manifest_sha256": "040b1119d02d9a93f0fa0b7aba221cdb757ea86f78b62ed18ef78b1640693460",
+      "committed_bytes": 3599,
+      "committed_sha256": "040b1119d02d9a93f0fa0b7aba221cdb757ea86f78b62ed18ef78b1640693460",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "check.py",
+      "manifest_bytes": 1970,
+      "manifest_sha256": "01d0c6809e549cf2715d71bd590416e00629919fa107744fd3b5b69634f1773a",
+      "committed_bytes": 1970,
+      "committed_sha256": "01d0c6809e549cf2715d71bd590416e00629919fa107744fd3b5b69634f1773a",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "claim-before-lowercase-keys.py",
+      "manifest_bytes": 1611,
+      "manifest_sha256": "d98814ad72cad66d69b3a89638aae229abcbc8c01c0bbe644e05cfe4ce0543e6",
+      "committed_bytes": 1611,
+      "committed_sha256": "d98814ad72cad66d69b3a89638aae229abcbc8c01c0bbe644e05cfe4ce0543e6",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "delivery.md",
+      "manifest_bytes": 3415,
+      "manifest_sha256": "3b9a5a6da5296cabf5a81a7c40fc0dfe340614d59eb825e1f4482a47bd3236a9",
+      "committed_bytes": 3415,
+      "committed_sha256": "3b9a5a6da5296cabf5a81a7c40fc0dfe340614d59eb825e1f4482a47bd3236a9",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "inspection.json",
+      "manifest_bytes": 51598,
+      "manifest_sha256": "5485332f517dfec5c0944062a48868ecfb95d7133e60ed154971dec6620d662d",
+      "committed_bytes": 50757,
+      "committed_sha256": "01640602690980787588ce7e61a764aaab973342b371ce462982ebbd70d3f53b",
+      "matches": false,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "inventory.py",
+      "manifest_bytes": 3187,
+      "manifest_sha256": "ca71bf6f7467d236895321456dc4f7fab4e79c4e9028f18e780e022b41a01a60",
+      "committed_bytes": 3187,
+      "committed_sha256": "ca71bf6f7467d236895321456dc4f7fab4e79c4e9028f18e780e022b41a01a60",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "original-capture.py",
+      "manifest_bytes": 2847,
+      "manifest_sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c",
+      "committed_bytes": 2847,
+      "committed_sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "PLAN.md",
+      "manifest_bytes": 2242,
+      "manifest_sha256": "f6ef3247e5448a7900136a3ec5bd80feef0d49d00c6c44b53d799362b0d7fd1b",
+      "committed_bytes": 2242,
+      "committed_sha256": "f6ef3247e5448a7900136a3ec5bd80feef0d49d00c6c44b53d799362b0d7fd1b",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "private-capture-before.py",
+      "manifest_bytes": 2847,
+      "manifest_sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c",
+      "committed_bytes": 2847,
+      "committed_sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "README.md",
+      "manifest_bytes": 4858,
+      "manifest_sha256": "a78464fae13ded7dd5fe49295d0a9836a10f94b3fb1a1628de14b7259efb65e1",
+      "committed_bytes": 4858,
+      "committed_sha256": "a78464fae13ded7dd5fe49295d0a9836a10f94b3fb1a1628de14b7259efb65e1",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "result.json",
+      "manifest_bytes": 56069,
+      "manifest_sha256": "2694fdae35fc0128edf8a2669ce1714093b1c3c09700420449e246d0fb75684b",
+      "committed_bytes": 54312,
+      "committed_sha256": "88a3b3ba985a5209a94edc4bc37abe45d79f0c25bdfec0c504b59a6fcc68623f",
+      "matches": false,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "retained/correction.json",
+      "manifest_bytes": 8531,
+      "manifest_sha256": "150a39ee9dc9246e7ed2584bc6c32ee74c4a27d2f0e5c3a768fdb490320b3b78",
+      "committed_bytes": 8138,
+      "committed_sha256": "6cf72773afb8a6fb538f008eba84ea3b6412ed39ae911aecf0c549967e64a739",
+      "matches": false,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "retained/operand_direction.py",
+      "manifest_bytes": 1345,
+      "manifest_sha256": "9a25d0a958cae6506e994213b11898ac17c6edf7a8f3eb79d958f073df1cde36",
+      "committed_bytes": 1326,
+      "committed_sha256": "093bb31dc2aefa62413bebe063e6ad705168c6d2105a7b6707f52457fd3a6668",
+      "matches": false,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "retained/original-source.json",
+      "manifest_bytes": 19514,
+      "manifest_sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500",
+      "committed_bytes": 18710,
+      "committed_sha256": "3c65fe53f17619856856cb14dd7b0fd132a3f0158c6611a2752f12ae4cb74b92",
+      "matches": false,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "manifest_bytes": 8120,
+      "manifest_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "committed_bytes": 8120,
+      "committed_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "matches": true,
+      "only_crlf_to_lf": true
+    },
+    {
+      "path": "run.py",
+      "manifest_bytes": 5267,
+      "manifest_sha256": "05d695b8e54e482046c629bc982856260618ed84162e517f6ef4a2ec1294a13b",
+      "committed_bytes": 5267,
+      "committed_sha256": "05d695b8e54e482046c629bc982856260618ed84162e517f6ef4a2ec1294a13b",
+      "matches": true,
+      "only_crlf_to_lf": true
+    }
+  ],
+  "changed": [
+    "inspection.json",
+    "result.json",
+    "retained/correction.json",
+    "retained/operand_direction.py",
+    "retained/original-source.json"
+  ],
+  "cause": "Determine from exact byte comparison; only_crlf_to_lf per row is tested, not assumed",
+  "limits": "Does not invalidate retained actual producer control result; canonical manifest integrity cannot pass. Do not rerun settled controls or republish actual commit."
+}

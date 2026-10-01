@@ -1,0 +1,91 @@
+{
+ "real": [
+  {
+   "name": "base",
+   "va": "0x20e600",
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "name": "k3f",
+   "va": "0x264670",
+   "end": "0x264693",
+   "size": 35,
+   "sha256": "a26a3a558406831f913c76d6ed9ae0e826206930c6018b8b0a251fd883084cc8"
+  },
+  {
+   "name": "fin",
+   "va": "0x36f360",
+   "end": "0x36f3f6",
+   "size": 150,
+   "sha256": "1b4f313148cd011871794d8d04e350219cadc0e02366ca9588f3853bb0000849"
+  },
+  {
+   "name": "swap",
+   "va": "0x3a1db0",
+   "end": "0x3a1e04",
+   "size": 84,
+   "sha256": "ba08f2e4a91890882bd0b264b5d88f2ba8a630fde1d00e190541a9ec5b91705a"
+  },
+  {
+   "name": "pass",
+   "va": "0x3b6020",
+   "end": "0x3b62c5",
+   "size": 677,
+   "sha256": "09db98ed05285ff1c88f1730e6980c9b3ba880f0a2133e49009abd6687fe5a96"
+  },
+  {
+   "name": "bld",
+   "va": "0x3b62d0",
+   "end": "0x3b67e5",
+   "size": 1301,
+   "sha256": "6d76fa607ae5f658feb63c2b4d85ec9b01fbfa1493d11c643d6deb8a8849efcc"
+  },
+  {
+   "name": "res1",
+   "va": "0x3b6bf0",
+   "end": "0x3b6c1b",
+   "size": 43,
+   "sha256": "479108acb59486fb375845936cc9c2a285aa78f78a8a9cf1cb11ac04577b94fd"
+  },
+  {
+   "name": "gate",
+   "va": "0x3e6f70",
+   "end": "0x3e6f81",
+   "size": 17,
+   "sha256": "b173d8e6fc5f16acb101e31128ffe85e29de7872514b073ffed1c86f69a283d9"
+  },
+  {
+   "name": "res2",
+   "va": "0x421ff0",
+   "end": "0x422045",
+   "size": 85,
+   "sha256": "e17cf244a11a7dcb1c8f0bef8652df622d8e9337327c5e9aefed0324b480b66a"
+  },
+  {
+   "name": "rlut",
+   "va": "0x46fae0",
+   "end": "0x46fb34",
+   "size": 84,
+   "sha256": "2510598ed1a5e0640f3377c40143cdf36f178a76cfa56f183fba996bf8991110"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "e56",
+   "va": "0x3e56a0",
+   "note": "003E56A0 deep object resolver (358 B, reaches the 0020E600/002ED570/004FE2F0 subtree): entry-intercepted, planted OBJ_S returned, arg captured"
+  },
+  {
+   "name": "mids",
+   "va": "0x2ed570",
+   "note": "002ED570 mid-array resolver (deep subtree): entry-intercepted, planted MID_A+i*0x100 returned, args captured"
+  },
+  {
+   "name": "outr",
+   "va": "0x370f60",
+   "note": "00370F60 outer resolver (deep subtree): entry-intercepted, planted OBJ_14/OBJ_15 cycled per call pair, args captured"
+  }
+ ]
+}

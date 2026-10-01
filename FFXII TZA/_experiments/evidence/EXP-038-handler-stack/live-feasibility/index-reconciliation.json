@@ -1,0 +1,126 @@
+{
+  "method": "Read-only exact-byte comparison; shared index untouched",
+  "staged_recovered_paths": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/baseline-c.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/baseline-enter.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/baseline-window.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/capture-c.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/capture-enter.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/capture-invocation.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/capture-window.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/cleanup-before.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/cleanup.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/cleanup.py",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/deadline-capture/api.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/deadline-capture/result.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/dismiss-enter.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/environment.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/load-enter.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/observation.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/origins.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/process.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/save-before.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/title-enter.json",
+      "worktree_equals_HEAD": true,
+      "index_equals_HEAD": false,
+      "index_equals_LF_normalized_HEAD": true
+    }
+  ],
+  "disposition": "20 legacy shared-index entries differ from byte-repaired HEAD while worktree equals HEAD. Do not publish these staged reverse deltas; use explicit private-index publication. No peer staging reset or modification."
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-primary-selector-zero.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-primary-selector-zero.py", line 26, in main
+    if bytes.fromhex(''.join(i['bytes'] for i in z['instructions']))!=read(int(z['start'],16),int(z['end_exclusive'],16)-int(z['start'],16)):raise ValueError('reference byte identity changed')
+                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: reference byte identity changed

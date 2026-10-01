@@ -1,0 +1,12 @@
+{
+  "cause": "Own capture/procedure bypassed existing shared role policy; decoder issue already documented by OPUS, not a newly discovered global defect.",
+  "policy": {
+    "commit": "8e15ad96d35d3f6bf17e93919b266d3995ce8ce4",
+    "path": "Database/Tools/analysis-kit/gfz-scripts/reg_tracking.py",
+    "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "api": "op_kind",
+    "retained": "retained/reg_tracking.py"
+  },
+  "before_adapter_preserved": true,
+  "body_unchanged_sha256": "32f4c93324e6c153518b5b42e85597f75495de8f66171fd58daf355e7b9a063a"
+}

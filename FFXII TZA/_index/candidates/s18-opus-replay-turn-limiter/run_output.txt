@@ -1,0 +1,4 @@
+constants {'45': 0.7853981852531433, '120': 2.094395160675049, '20': 0.3490658700466156}
+single_call_grid  PASS  n=21120  {}  exercised={'idle': 3840, 'turning': 17280, 'snap': 5040, 'committed_direction': 3840, 'rate_step': 8400, 'latch_set_by_BL3': 1440, 'latch_blocked_by_BL3': 1440, 'band_kept_latch_1': 4800, 'release_below_20_from_1': 960}
+histories         PASS  {'BL2_hysteresis_50_through_40': True, 'BL2_fresh_40_never_turns': True, 'BL4_latch_kept_through_60': True, 'BL4_fresh_60_slow': True, 'BL6_snap_ends_loop': True}
+2/2 pass

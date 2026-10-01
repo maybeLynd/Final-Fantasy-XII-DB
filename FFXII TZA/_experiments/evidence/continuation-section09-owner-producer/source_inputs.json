@@ -1,0 +1,51 @@
+{
+  "section": "SECTION-09",
+  "date": "2026-09-23",
+  "chain": [
+    {
+      "file": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_05_Encoded_ID_Query_Mechanism.zip",
+      "sha256": "afe8391d31a28a6f1c6e15f4d92a1f2d231b380bf73e1658aba850eedc6d1a24"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_06_Resource_Ownership_Lifetime.zip",
+      "sha256": "70c70a2e2d6d5bb9ecf8247750b9af68fdf9ad32df5341080468855937a6518c"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_07_Source_Movement_Refresh.zip",
+      "sha256": "4de8b1fcef86baa6364df1220b3c74c6ba30b2b9f1a53a0dfb5793ac745ded5a"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_08_External_Source_Owners.zip",
+      "sha256": "3d00489b00bc867aecb30b8176eee672c5d86a23646f988affa6553881a8aeb4"
+    }
+  ],
+  "baseline_files": 10807,
+  "canonical_preimages": {
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md": "986db19ae916801c889cbc7679a941484a9174963d3b6355bfc55b48bf7c8649",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md": "b28a0f03a6d8e6fe5c1bc7b1e486f503081fe0525d178e8aa5bebf49182cd542",
+    "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md": "b7666c74ae6cf70514f097ca9517cae89906f0eccdb077393108f7fa8319c019",
+    "_types/types.tsv": "1b94670ecb44e6567c36ab4145abbb61c40bcda10393e1c5a892875f53fbb21a",
+    "_types/fields.tsv": "13eb1806dce7d209d46b481e04b4dae1c4d622e1e3d6675369d86b1ad5177c42",
+    "_index/_inbox/EXTERNAL-CONTINUATION.md": "f7d0cd2bc0e4873a1a7f5958aa06c28d9a0d91c7e26793790b26e8567bbc55fb"
+  }
+}

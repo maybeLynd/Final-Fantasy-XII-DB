@@ -1,0 +1,8 @@
+PASS  control 0031B841 reads map 1
+PASS  F1 0031B810: class 0x17, map-1 byte, tail 002367A0
+PASS  F2 00338490: map-1 slot walk, status and leader gates
+PASS  F3 003246C0 -> 0030A880(buf,1) -> 0030A8A0: map-1 walk, status gate waived by field bit 15
+PASS  F4 0031B5A0 reads map 1
+PASS  F5 003266C0 tail: roster slot i's unit re-bound to map 1 word i
+PASS  F6 0031C250 (from the read-in machine) answers a roster actor's definition from map 4
+FAILS 0

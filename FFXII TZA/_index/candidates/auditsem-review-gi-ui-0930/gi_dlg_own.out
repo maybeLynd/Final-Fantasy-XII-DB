@@ -1,0 +1,28 @@
+D1 reader framing {u16 label, u16 help, u8 key, u8 flag} from 00D23688:
+   rec  0  label 1B5F  help 1F47  key 6  flag 1
+   rec  1  label 1B5C  help 1F44  key 5  flag 1
+   rec  2  label 1B5D  help 1F45  key 7  flag 1
+   rec  3  label 1B5E  help 1F46  key 4  flag 2
+   rec  4  label 1B58  help 1F40  key 11  flag 0
+   rec  5  label 1B59  help 1F41  key 12  flag 0
+   rec  6  label 1B5B  help 1F43  key 13  flag 0
+   rec  7  label 1B5A  help 1F42  key 14  flag 0
+   rec  8  label 1B5E  help 1F46  key 15  flag 0
+   rec  9  label 1B5C  help 1F44  key 17  flag 0
+   rec 10  label 1B5F  help 1F47  key 16  flag 0
+   rec 11  label 1B5D  help 1F45  key 18  flag 0
+D1 dword at 00D236D0: 80000000
+   disp 0xc0368c at 0056F98E movzx eax, byte ptr [rax + rcx*2 + 0xc0368c]
+   disp 0xc036a4 at 00571ECE movzx edx, byte ptr [rcx + rcx*2 + 0xc036a4]
+   disp 0xc036a4 at 005732AD movzx edx, byte ptr [rcx + rcx*2 + 0xc036a4]
+D2 12/myoshiok\ch\handbook\menuhandbook.bin: magic b'hcom', size 320, sections 5 [52, 68, 96, 28, 68], chain end 320 (== size: True)
+D2 12/myoshiok\cn\handbook\menuhandbook.bin: magic b'hcom', size 320, sections 5 [52, 68, 96, 28, 68], chain end 320 (== size: True)
+D2 12/myoshiok\de\handbook\menuhandbook.bin: magic b'hcom', size 316, sections 5 [52, 68, 96, 28, 64], chain end 316 (== size: True)
+D2 12/myoshiok\es\handbook\menuhandbook.bin: magic b'hcom', size 316, sections 5 [52, 68, 96, 28, 64], chain end 316 (== size: True)
+D2 12/myoshiok\fr\handbook\menuhandbook.bin: magic b'hcom', size 316, sections 5 [52, 68, 96, 28, 64], chain end 316 (== size: True)
+D2 12/myoshiok\in\handbook\menuhandbook.bin: magic b'hcom', size 320, sections 5 [52, 68, 96, 28, 68], chain end 320 (== size: True)
+D2 12/myoshiok\it\handbook\menuhandbook.bin: magic b'hcom', size 316, sections 5 [52, 68, 96, 28, 64], chain end 316 (== size: True)
+D2 12/myoshiok\kr\handbook\menuhandbook.bin: magic b'hcom', size 320, sections 5 [52, 68, 96, 28, 68], chain end 320 (== size: True)
+D2 12/myoshiok\us\handbook\menuhandbook.bin: magic b'hcom', size 312, sections 5 [52, 64, 96, 28, 64], chain end 312 (== size: True)
+D3 0056F810 referenced by: ['00574D28 lea rdx, [rip - 0x551f]'] ; qwords 0
+D3 00556F90 referenced by: ['00556EF3 lea rdx, [rip + 0x96]'] ; qwords 0

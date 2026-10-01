@@ -1,0 +1,6 @@
+gate [02AEDFE4] as the world leaves it: 0
+CB3_first_hit_draws_twelve_not_two PASS  60 first-hit rolls (counter 0) at gate 60 against an independent MT19937 model of the instructions: every flag, nibble and draw count matches; a first hit that passes the percent gate draws the generator 12 times (1 + an 11-draw loop at 003887E3), one that fails draws once - CB-3's 'twice' counts call sites, not draws; the low nibble of +0x12 survives
+CB3_count_rises_as_hp_falls        PASS  the per-hit probability is 8 / 16 / 32 / 64 % as current HP falls below max/4, max/8, max/16 (status bit 28 doubles max, status bit 16 compares HP with itself - always 8 %); the count is 1 + successes of 11 draws, capped at 11
+CB4_progress_against_the_nibble    PASS  counter 1 / 2 against nibble 3 continue, 3 and 5 end; no case draws the generator
+CB5_foe_record_table_and_cap       PASS  a foe record (stats +5 = 1): the nibble is written in 0208DE80 + unit[+0xEA9]*0x40 (003886D6), not the party table 0208D480 + rec[+4]*0x40 CB-5 names; the count is capped at class[+0x20] - 1 = 1 (0038884D); all 12 rolls at gate 100 and HP 10/1000 (p = 64) match the capped model, and the uncapped model would have exceeded the cap
+ok

@@ -1,0 +1,14 @@
+U disabled                         anchor chars   60  occurrences 1
+foreign registries empty           anchor chars   24  occurrences 1
+front matter scanned               anchor chars   60  occurrences 1
+N disabled                         anchor chars   85  occurrences 1
+parent resolution removed          anchor chars   67  occurrences 1
+self-parent check removed          anchor chars  125  occurrences 1
+back-link check removed            anchor chars   55  occurrences 1
+empty-section check removed        anchor chars   65  occurrences 1
+tier data-row check removed        anchor chars  142  occurrences 1
+keyword anchoring removed          anchor chars   47  occurrences 1
+T disabled                         anchor chars   47  occurrences 1
+T extractor blind                  anchor chars   35  occurrences 1
+Evidence-section scoping removed   anchor chars   82  occurrences 1
+guard sensitivity: every anchor counts 2 in a doubled source: True

@@ -1,0 +1,9 @@
+{
+  "source": "actual exec_command tool receipt 9a380a; not a rerun",
+  "returncode": 1,
+  "terminal": true,
+  "driver_sha256": "ef196fa43c31297d91c26e47062abec6d6e02aba8b39652392a5d81e6b35231d",
+  "declared_cases": 6,
+  "stdout": "ACTIVITY_CONTROLS six terminal cases; see raw.json for original per-case result",
+  "stderr": ""
+}

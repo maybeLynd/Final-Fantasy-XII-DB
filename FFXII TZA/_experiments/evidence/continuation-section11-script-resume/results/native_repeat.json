@@ -1,0 +1,882 @@
+{
+  "cases": [
+    {
+      "name": "literal_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "literal_to_i0",
+      "pass": true,
+      "actual": 4660,
+      "expected": 4660
+    },
+    {
+      "name": "literal_pc",
+      "pass": true,
+      "actual": 1073807365,
+      "expected": 1073807365
+    },
+    {
+      "name": "literal_stack_empty",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wait0_return",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wait0_pc",
+      "pass": true,
+      "actual": 1073807363,
+      "expected": 1073807363
+    },
+    {
+      "name": "wait0_phase",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "wait0_counter",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "wait1_return",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wait1_pc",
+      "pass": true,
+      "actual": 1073807363,
+      "expected": 1073807363
+    },
+    {
+      "name": "wait1_phase",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "wait1_counter",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wait2_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "wait2_pc",
+      "pass": true,
+      "actual": 1073807372,
+      "expected": 1073807372
+    },
+    {
+      "name": "wait2_phase",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wait2_counter",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "wait_then_continues_i1",
+      "pass": true,
+      "actual": 99,
+      "expected": 99
+    },
+    {
+      "name": "wait_implicit_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "empty_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "empty_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "real_map_rc",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "real_map_value",
+      "pass": true,
+      "actual": 73,
+      "expected": 73
+    },
+    {
+      "name": "direct_result_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "direct_result_count",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "direct_result_value",
+      "pass": true,
+      "actual": 42,
+      "expected": 42
+    },
+    {
+      "name": "halt_gate_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "halt_gate_preserves_pc",
+      "pass": true,
+      "actual": 1073807360,
+      "expected": 1073807360
+    },
+    {
+      "name": "entry_clears_shared_depth_even_blocked",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "blocked_preserves_actor_i0",
+      "pass": true,
+      "actual": 21845,
+      "expected": 21845
+    },
+    {
+      "name": "entry_does_not_erase_value_storage",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "integer_add_rc",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "integer_add_value",
+      "pass": true,
+      "actual": 12,
+      "expected": 12
+    },
+    {
+      "name": "signed_immediate16",
+      "pass": true,
+      "actual": -3,
+      "expected": -3
+    },
+    {
+      "name": "float_register_preserves_bits",
+      "pass": true,
+      "actual": 1081081856,
+      "expected": 1081081856
+    },
+    {
+      "name": "float_to_int_truncates",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "mixed_add_is_float",
+      "pass": true,
+      "actual": 1085800448,
+      "expected": 1085800448
+    },
+    {
+      "name": "integer_add_wraps32",
+      "pass": true,
+      "actual": 2147483648,
+      "expected": 2147483648
+    },
+    {
+      "name": "zero_length_nop_budget_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "zero_length_nop_does_not_advance",
+      "pass": true,
+      "actual": 1073807360,
+      "expected": 1073807360
+    },
+    {
+      "name": "zero_length_nop_no_following_execution",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "zero_length_marker_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "zero_length_marker_stays_put",
+      "pass": true,
+      "actual": 1073807360,
+      "expected": 1073807360
+    },
+    {
+      "name": "syshalt_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "syshalt_rewinds_current_pc",
+      "pass": true,
+      "actual": 1073807360,
+      "expected": 1073807360
+    },
+    {
+      "name": "syshalt_sets_actor40",
+      "pass": true,
+      "actual": 64,
+      "expected": 64
+    },
+    {
+      "name": "jump_uses_label_offset",
+      "pass": true,
+      "actual": 42,
+      "expected": 42
+    },
+    {
+      "name": "jump_lands_exactly_not_plus3",
+      "pass": true,
+      "actual": 1073807373,
+      "expected": 1073807373
+    },
+    {
+      "name": "self_jump_budget_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "self_jump_preserves_pc",
+      "pass": true,
+      "actual": 1073807360,
+      "expected": 1073807360
+    },
+    {
+      "name": "conditional_equal_taken",
+      "pass": true,
+      "actual": 42,
+      "expected": 42
+    },
+    {
+      "name": "conditional_unequal_falls_through",
+      "pass": true,
+      "actual": 99,
+      "expected": 99
+    },
+    {
+      "name": "request_accumulator_persists",
+      "pass": true,
+      "actual": 4660,
+      "expected": 4660
+    },
+    {
+      "name": "request_accumulator_survives_next_entry",
+      "pass": true,
+      "actual": 4660,
+      "expected": 4660
+    },
+    {
+      "name": "prior_invocation_stack_not_restored",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "underflow_depth_stays0",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "yield_discards_nonempty_stack",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "yield_stack_drain_continues_one_opcode",
+      "pass": true,
+      "actual": 1073807365,
+      "expected": 1073807365
+    },
+    {
+      "name": "real_getx_float_result",
+      "pass": true,
+      "actual": 1087373312,
+      "expected": 1087373312
+    },
+    {
+      "name": "float_completion_phase_resets",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "callact_uses_other_actor",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "callact_saves_target_ordinal",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "callact_result_written_to_issuer_not_target",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "callactpopa_preserves_popped_target",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "callactpopa_result_uses_target",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "callactpopa_clears_stack_by_accumulator",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "callpopa_accumulator",
+      "pass": true,
+      "actual": 91,
+      "expected": 91
+    },
+    {
+      "name": "callpopa_no_stack_result_left",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "actor_wait_first_busy",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "actor_wait_first_counter",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "actor_wait_pc_stays_at_call",
+      "pass": true,
+      "actual": 1073807366,
+      "expected": 1073807366
+    },
+    {
+      "name": "actor_wait_remembers_target",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "actor_wait_resume_busy",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "actor_wait_resolves_target_again",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "actor_wait_no_begin_reexecution",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "actor_wait_third_completion",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "actor_wait_original_argument_not_repopulated",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "other_actor_register_is_independent",
+      "pass": true,
+      "actual": 22,
+      "expected": 22
+    },
+    {
+      "name": "first_actor_register_survives_peer",
+      "pass": true,
+      "actual": 71,
+      "expected": 71
+    },
+    {
+      "name": "first_actor_phase_survives_peer",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "first_actor_scratch_survives_peer",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "first_actor_resume_busy",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "first_actor_resume_completes",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "zero_wait_completes_same_invocation",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "zero_wait_counter_minus1",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "zero_wait_pc_advances",
+      "pass": true,
+      "actual": 1073807368,
+      "expected": 1073807368
+    },
+    {
+      "name": "empty_or_oob_330_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "empty_or_oob_330_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "empty_or_oob_356_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "empty_or_oob_356_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "empty_or_oob_3b0_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "empty_or_oob_3b0_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "empty_or_oob_fff_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "empty_or_oob_fff_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "full_stack_command_still_finishes",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "full_stack_depth_unchanged",
+      "pass": true,
+      "actual": 63,
+      "expected": 63
+    },
+    {
+      "name": "full_stack_return_slot_still_written",
+      "pass": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "full_stack_phase_resets",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "full_stack_outside_guard_preserved",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "outer0_pc",
+      "pass": true,
+      "actual": 1073807363,
+      "expected": 1073807363
+    },
+    {
+      "name": "outer0_phase",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "outer1_pc",
+      "pass": true,
+      "actual": 1073807363,
+      "expected": 1073807363
+    },
+    {
+      "name": "outer1_phase",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "outer2_pc",
+      "pass": true,
+      "actual": 1073807372,
+      "expected": 1073807372
+    },
+    {
+      "name": "outer2_phase",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "outer_continues_after_wait",
+      "pass": true,
+      "actual": 66,
+      "expected": 66
+    },
+    {
+      "name": "outer_active_actor_global_cleared",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "outer_resets_actor108",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "phase1_alone_does_not_force_wait_end",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "phase1_and_zero_actor_control_counts_down",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "actor_control_can_shorten_wait_without_phase_change",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "actor_control_forces_scratch_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "request_phase_still_running_after_control",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "length1_marker_still_reads_second_operand_byte",
+      "pass": true,
+      "actual": 73,
+      "expected": 73
+    },
+    {
+      "name": "non_predecode_marker_at_page_end_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "non_predecode_marker_advances_to_boundary",
+      "pass": true,
+      "actual": 1073811456,
+      "expected": 1073811456
+    },
+    {
+      "name": "instruction_budget_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "instruction_budget_65536_advance",
+      "pass": true,
+      "actual": 1073872896,
+      "expected": 1073872896
+    },
+    {
+      "name": "instruction_budget_next_invocation_continues",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "instruction_budget_final_marker",
+      "pass": true,
+      "actual": 1073873361,
+      "expected": 1073873361
+    },
+    {
+      "name": "extra_operand_wait_returns_busy",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "extra_operand_causes_second_poll_same_invocation",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "extra_operand_pc_still_call",
+      "pass": true,
+      "actual": 1073807366,
+      "expected": 1073807366
+    },
+    {
+      "name": "extra_operand_stack_discarded",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "extra_operand_next_call_finishes",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "absent_callbacks_complete",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "absent_callbacks_append_one_zero",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "absent_callbacks_value_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "absent_callbacks_clear_scratch_result",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "absent_callbacks_tag_int",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "float_direct_complete",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "float_direct_stack_tag",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "float_direct_bits",
+      "pass": true,
+      "actual": 3228565504,
+      "expected": 3228565504
+    },
+    {
+      "name": "float_direct_phase_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "last_admitted_result_depth63",
+      "pass": true,
+      "actual": 63,
+      "expected": 63
+    },
+    {
+      "name": "last_admitted_result_at62",
+      "pass": true,
+      "actual": 17,
+      "expected": 17
+    },
+    {
+      "name": "callpopa_wait_busy_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "callpopa_wait_busy_pc",
+      "pass": true,
+      "actual": 1073807363,
+      "expected": 1073807363
+    },
+    {
+      "name": "callpopa_wait_complete_rc",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "callpopa_wait_zero_accumulator",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "callpopa_wait_following_exec",
+      "pass": true,
+      "actual": 23,
+      "expected": 23
+    },
+    {
+      "name": "wait_scaling_original_predicates_busy",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wait_scaling_3_times2_minus_first_poll",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "driver_selects_40byte_request_stride",
+      "pass": true,
+      "actual": 1073807365,
+      "expected": 1073807365
+    },
+    {
+      "name": "result_writer_uses_selected_request",
+      "pass": true,
+      "actual": 38,
+      "expected": 38
+    },
+    {
+      "name": "other_request_result_preserved",
+      "pass": true,
+      "actual": 2271560481,
+      "expected": 2271560481
+    },
+    {
+      "name": "selected_request_continues_into_actor_register",
+      "pass": true,
+      "actual": 38,
+      "expected": 38
+    }
+  ],
+  "checks": 146,
+  "failures": 0
+}

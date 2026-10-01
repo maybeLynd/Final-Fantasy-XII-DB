@@ -1,0 +1,16 @@
+{
+  "name": "missing-source",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py",
+    "--preflight-only",
+    "--preflight-source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-fixture-placement\\run-01\\absent"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 14, in <module>\n    assert source.is_dir(),'Missing preparation source is not valid empty evidence'\n           ~~~~~~~~~~~~~^^\nAssertionError: Missing preparation source is not valid empty evidence\n",
+  "expected_marker": "Missing preparation source",
+  "terminal": true
+}

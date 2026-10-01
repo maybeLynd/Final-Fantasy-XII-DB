@@ -1,0 +1,23 @@
+# NativeAdapter.CallResultField32Getter - EC-7 family C, declared on generated-function-families.md
+#
+# 14 members. Body size(s): 20 B x11, 17 B x3.
+# 14 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 6 external target(s): 0 shared across all 14 members, and 6 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 6 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0017D340
+0017D410
+0017D470
+0017D490
+0017D8B0
+0017E470
+0017FDA0
+00180040
+00181C70
+00181C90
+00184860
+00186620
+00186640
+0020E580

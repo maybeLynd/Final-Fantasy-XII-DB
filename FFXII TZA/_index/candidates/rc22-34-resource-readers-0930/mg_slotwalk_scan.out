@@ -1,0 +1,13 @@
+00280DE0 FUN_00280de0  00281015 movsxd rsi, dword ptr [rdx + 0x10]  shl@0028101D
+00280DE0 FUN_00280de0  002811A5 movsxd rcx, dword ptr [rdx + 0x10]  shl@002811B4
+002C2320 FUN_002c2320  002C2740 movsxd rsi, dword ptr [rdx + 0x10]  shl@002C2748
+00555400 FUN_00555400  00555660 movsxd rdx, dword ptr [rdi + 0x10]  shl@0055566D
+00555A50 FUN_00555a50  00555A50 movsxd rax, dword ptr [rcx + 0x10]  shl@00555A57
+00565E00 FUN_00565e00  005662A0 movsxd rsi, dword ptr [r14 + 0x10]  shl@005662A8
+00565E00 FUN_00565e00  00566422 movsxd rcx, dword ptr [r14 + 0x10]  shl@00566431
+0056F810 FUN_0056f810  0056F9CF movsxd rax, dword ptr [rdx + 0x10]  shl@0056F9DC
+0057B890 FUN_0057b890  0057BB4B movsxd rax, dword ptr [rdx + 0x10]  shl@0057BB58
+control 00555A50: PASS
+control 00555400: PASS
+hits 9 in 7 functions
+FAILS 0

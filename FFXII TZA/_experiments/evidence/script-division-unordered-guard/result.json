@@ -1,0 +1,30 @@
+{
+  "status": "ZERO_OR_UNORDERED_HYPOTHESIS_REFUTED_BY_SOURCE",
+  "method": "A STATIC_ONLY original OPDIV identity/float guard/initialization/result source; flag-domain conditional calculations only, no guest/original-code/native/live execution",
+  "raw_sha256": "6721bfd868344a82c5bc4c1868e2a1c2ed9429f51714c22bdea026a62308eb1c",
+  "source_predicate": "DIVSS if PF=1 or ZF=0 after UCOMISS divisor XMM6 versus baseline XMM7; replace dividend XMM0 with XMM7 only if PF=0 and ZF=1",
+  "conditional_flag_calculations": [
+    {
+      "name": "ordered-equal",
+      "pf": 0,
+      "zf": 1,
+      "source_path": "replace-xmm0-with-xmm7"
+    },
+    {
+      "name": "ordered-unequal",
+      "pf": 0,
+      "zf": 0,
+      "source_path": "DIVSS"
+    },
+    {
+      "name": "unordered",
+      "pf": 1,
+      "zf": 1,
+      "source_path": "DIVSS"
+    }
+  ],
+  "initialization": "Original local interpreter setup MOV EBP1 at25E555 and XORPS XMM7,XMM7 at25E55F; not observed actual caller/native callback preservation",
+  "interpretation": "Original JP25F19A explicitly keeps unordered out of ordered-equal zero-result branch. Under supplied/locally source-backed +0 baseline, ordered zero divisor substitutes +0, ordered nonzero and unordered reach DIVSS. No actual OPDIV arithmetic or native exception behavior observed.",
+  "consumer_change": "Qualify BF-1 floating zero guard with exact UCOMISS/JP/JNE predicate and dividend/divisor order. Canonical zero guard is supported, no claimed regression. Future replacement/control must preserve parity distinction; no expensive NaN guard runtime test required for this scoped source question.",
+  "limits": "Source predicate/local setup and conditional output paths only. No actual opcode/calls/stack transitions/arithmetic outcome/native flags/unmasked exceptions/gamecaller/live observation. Float path preconditions supplied/locally source-backed EBP1/XMM7+0; other callbacks/native effects not executed. Integer INT_MIN/-1 and game exception policy not settled. PC OFF/no saves/config/reference changes/S19 unapproved/fullL1+L2 NOT_MET"
+}

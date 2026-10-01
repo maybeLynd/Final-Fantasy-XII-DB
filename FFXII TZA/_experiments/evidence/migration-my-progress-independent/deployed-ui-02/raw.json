@@ -1,0 +1,106 @@
+{
+  "method": "A actual rendered local dashboard observation through CUA IAB; HTTP binding read-only",
+  "tool": "mcp__cua_repl.js: getAXState, click observed row251, getAXStateAndScreenshot, close",
+  "base": "http://127.0.0.1:8765",
+  "driver_sha256": "45591083d311245669bd6cdc2958cb1e6f2d6b118254f1c5f5cf640eaa802c54",
+  "requests": [
+    {
+      "name": "status-before",
+      "path": "/api/status",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:54:15 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1144"
+      },
+      "sha256": "3af9e09189ee96235f3ca9d00210ebf7017951983825c49b8d54eb20bb3f5737",
+      "bytes": 1144,
+      "start_utc": "2026-09-29T07:54:15.452957+00:00",
+      "end_utc": "2026-09-29T07:54:15.593454+00:00"
+    },
+    {
+      "name": "progress",
+      "path": "/api/view/progress",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:54:15 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "224380"
+      },
+      "sha256": "c1e667cfad11f39354592bfb638098868ebb2430ad84ed5f9c3dc49faead19dd",
+      "bytes": 224380,
+      "start_utc": "2026-09-29T07:54:15.593463+00:00",
+      "end_utc": "2026-09-29T07:54:15.713548+00:00"
+    },
+    {
+      "name": "status-after",
+      "path": "/api/status",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:54:15 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1144"
+      },
+      "sha256": "3af9e09189ee96235f3ca9d00210ebf7017951983825c49b8d54eb20bb3f5737",
+      "bytes": 1144,
+      "start_utc": "2026-09-29T07:54:15.713559+00:00",
+      "end_utc": "2026-09-29T07:54:15.831958+00:00"
+    }
+  ],
+  "finished": false,
+  "browser_generation": "g20260929T074817Z-5dfce1",
+  "category": "W",
+  "displayed_remaining_ids": [
+    "DA:03-World-Area-Field/CONTRACT-authored-trigger-points.md",
+    "DA:03-World-Area-Field/CONTRACT-field-environment-variant.md",
+    "DA:06-Movement-And-Navigation/CONTRACT-battle-locomotion-turn-limiter.md",
+    "DA:06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+    "DA:06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md",
+    "DA:06-Movement-And-Navigation/CONTRACT-navigation-search-and-follow.md",
+    "DA:06-Movement-And-Navigation/CONTRACT-separation-pass.md",
+    "DA:06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md",
+    "DA:06-Movement-And-Navigation/how-an-animation-moves-and-turns-a-character-toward-its-target.md",
+    "DA:06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+    "DD:03-World-Area-Field/choosing-the-field-environment-variant.md",
+    "DD:06-Movement-And-Navigation/clamping-a-point-into-a-volume.md",
+    "DD:06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+    "DD:06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md",
+    "DD:06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+    "DD:06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md"
+  ],
+  "closed": "Agent-created tab close returned successfully; no native PC/game control used",
+  "files": {
+    "browser-before.txt": {
+      "sha256": "43fa650b31f44efe6192abd4d518a4f7406bc7b73592376488beb98d2dbbd554",
+      "bytes": 10850
+    },
+    "browser-expanded-diff.txt": {
+      "sha256": "df56d76d6fd229648d4b283de68735950c803fd59699f1e0826f7ba7ebae250e",
+      "bytes": 12730
+    },
+    "browser-expanded.txt": {
+      "sha256": "3488e8f6f7fd7a1165709dc120d89d35f6cabd08b305a086df6ff3ef264948fa",
+      "bytes": 19819
+    },
+    "browser-expanded.png": {
+      "sha256": "79296e61e54b0c9ff42d6e7ca1e4a6dcae6d5042bf21bbacbc187edf001778dd",
+      "bytes": 131411
+    }
+  },
+  "limits": "AX and screenshot establish presentation; HTTP collected afterwards, no atomicity or loaded-module/PID proof. Earlier deployed-01 stale reader remains historical. No game/no production writes.",
+  "http_generations": [
+    "g20260929T074817Z-5dfce1",
+    "g20260929T074817Z-5dfce1",
+    "g20260929T074817Z-5dfce1"
+  ],
+  "fatal": {
+    "type": "KeyError",
+    "reason": "'key'"
+  }
+}

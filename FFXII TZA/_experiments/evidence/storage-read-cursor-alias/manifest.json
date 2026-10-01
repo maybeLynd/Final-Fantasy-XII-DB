@@ -1,0 +1,65 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7115,
+      "sha256": "4e02242354106795f9865e383c0c882610da9ff91437d907d4fee0c0a122c24b"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4855,
+      "sha256": "6c6273e6b4114cfb65eba2436bc8660c541d677a56238fe80769ab425cf8c960"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1271,
+      "sha256": "b479fcb3dc0f0c405ee960a70d009397d8a6a8c6732f9106661cda52bb026f63"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1488,
+      "sha256": "6e93eeb0046fdd7b772c213f3f29447491a88c78fd652d794153a68479b9e3ee"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2517,
+      "sha256": "6b975c7f011c4d7a011cf75f385b52a26455749eb1125b2e80e627661235f4c9"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 31091,
+      "sha256": "8b45b012a30773ae7aca84a23065f456757ea01185613dfbd45f4e7b08a5b44b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4211,
+      "sha256": "a03d950bba740ff42fb73a7d1356693be3eafcf7f93f119107a21a98b7fc78cd"
+    },
+    {
+      "path": "retained/contract.md",
+      "bytes": 80781,
+      "sha256": "33249923353453fde354dc2b661139f87be127f34b0d7a9cacdabfbebdd85d23"
+    },
+    {
+      "path": "retained/differential.py",
+      "bytes": 29871,
+      "sha256": "4c22202ce2cb3da94d8e50ae108b8d741277ea9cbad509f63d4904a54c8c56e7"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.bin",
+      "bytes": 116,
+      "sha256": "060a98548836204399e6ccb00417800643a643bdb25c13fb8187e293b57a908d"
+    }
+  ],
+  "limits": "Original116B inner-read leaf and injected cursor-alias controls only; no actual saves/backend/normalcaller/nativeCPU/live proof"
+}

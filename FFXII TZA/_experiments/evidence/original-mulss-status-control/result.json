@@ -1,0 +1,62 @@
+{
+  "method": "B one verified original4B MULSS in native current-host Win64 state wrapper versus same wrapper in Unicorn; not live game",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "parent237_sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb",
+    "parent_manifest_sha256": "db44d2b447a5e9e309a85f93bc85c1236129f1390cf484ffc85861d4b6de8f1c",
+    "original_entry": "0x46912e",
+    "original_bytes": "f30f59d2",
+    "original_bytes_count": 4
+  },
+  "observations": [
+    {
+      "name": "exact-five",
+      "input_bits": "40a00000",
+      "result_bits": "41c80000",
+      "native_controlled_status": "00001f80",
+      "guest_controlled_status": "00001f80",
+      "native_precision_bit": false,
+      "guest_precision_bit": false,
+      "status_equal": true,
+      "result_equal": true,
+      "native_original_mxcsr": "00001fa0",
+      "native_restored_mxcsr": "00001fa0",
+      "mutated": false,
+      "cleanup_verified": true
+    },
+    {
+      "name": "next-above-five",
+      "input_bits": "40a00001",
+      "result_bits": "41c80003",
+      "native_controlled_status": "00001fa0",
+      "guest_controlled_status": "00001f80",
+      "native_precision_bit": true,
+      "guest_precision_bit": false,
+      "status_equal": false,
+      "result_equal": true,
+      "native_original_mxcsr": "00001fa0",
+      "native_restored_mxcsr": "00001fa0",
+      "mutated": false,
+      "cleanup_verified": true
+    },
+    {
+      "name": "private-omit-mul",
+      "input_bits": "40a00001",
+      "result_bits": "40a00001",
+      "native_controlled_status": "00001f80",
+      "guest_controlled_status": "00001f80",
+      "native_precision_bit": false,
+      "guest_precision_bit": false,
+      "status_equal": true,
+      "result_equal": true,
+      "native_original_mxcsr": "00001fa0",
+      "native_restored_mxcsr": "00001fa0",
+      "mutated": true,
+      "cleanup_verified": true
+    }
+  ],
+  "interpretation": "For this original MULSS and next-above5 input under masked round-nearest1F80, nativehost and Unicorn agree on result41C80003 but native controlled status is1FA0 (bit5 set), guest1F80 (bit5 absent). Exact5 baseline and privateomit-MUL matchstatus1F80. Save/restore and output sentinel/cleanup controls pass. Demonstrated bounded backend precision-status limitation, not a general result-bit failure or live FF12 state claim. Unchanged emulator status cannot establish native absence of precision/exception effects.",
+  "affected_claims": "55 raw next-radius after.mxcsr=1F80 is emulator-only; its original published README already disclaims native status/exception proof and finite return claims do not depend on status parity. RNG scaled-range producer checks control bits while explicitly excluding status/native exception semantics. Matrix and other status-dependent consumers require their actual claims/provider identities to be reviewed; no blanket retraction or parity certification. Preserve published inputs; additive control is the correction record.",
+  "limits": "Only exact5/next-binary32 finite positive square and private omit-MUL control, masked round-nearest1F80. Native4B boundaries omit full4690B0/caller/init/gameMXCSR/library/scheduling. NativeABI wrapper injected; emulator status not automatically nativeCPU flags. No unmasked/NaN/subnormal/overflow exception proof. No broad reruns or general runtime platform.",
+  "cleanup": "Native MXCSR saved/restored in wrapper with equality receipt, own private4096B code allocation freed/VirtualQuery MEM_FREE, output sentinel beyond12B preserved; fresh guests return/restore status. Standalone Python completes responsive, no external/game attach or process/control/save/config/reference/peer writes. PC OFF/S19 allowance unchanged/fullL1+L2NOT_MET"
+}

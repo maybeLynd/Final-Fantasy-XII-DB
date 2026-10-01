@@ -1,0 +1,13 @@
+# NativeLeaf.PairedStaticConstStore - EC-7 family C
+# # write member constants to two member statics; ret
+address	targets
+0017F270	
+001E0550	
+001E0580	
+002501E0	
+002D6620	
+002E1BA0	
+00368A90	
+0037CB10	
+0037CB30	
+003E82B0	

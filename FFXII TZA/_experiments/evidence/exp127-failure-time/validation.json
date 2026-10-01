@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "dialog-relabelled-as-failure-onset",
+      "rejected": true
+    },
+    {
+      "name": "missing-unknown-cause-qualification",
+      "rejected": true
+    }
+  ],
+  "class": "Historical timestamp/receipt integrity; no live/native/instrument control or campaign"
+}

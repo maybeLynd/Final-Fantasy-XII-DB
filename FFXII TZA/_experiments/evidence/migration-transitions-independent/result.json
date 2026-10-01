@@ -1,0 +1,34 @@
+{
+  "verdict": "REJECT",
+  "scope": "Transition admission of malformed source links and self-review; original code and actual CLI dry-run, plus original in-memory apply/schema",
+  "source_tree_commit": "4ed1ad40e43f1fd5dbfdb0f9bd2e6b68bccd8d4c",
+  "transitions_commit": "c545ed76060aae750c398422b371cea80b8119c3",
+  "raw_sha256": "779e95eddb19cb6a6c851922242852c99a4be34105da7d9207fcf88a6b0484c5",
+  "partial_apply_raw_sha256": "55a1bf10f587ea357367196c6f74d64e8694098b47586eaca4a7b470455cc84a",
+  "inmemory_raw_sha256": "467ece3a6309234aeeb2f7f464419626ba1be6c0bcf97d84a4c34cca82aee983",
+  "observed": {
+    "valid-reject": "REPAIR",
+    "valid-accept": "INCORPORATE",
+    "no-owner": "ACCEPTED",
+    "missing-verdict": "VERDICT-MISSING",
+    "conflicting-verdict": "VERDICT-CONFLICT",
+    "malformed-string": "MALFORMED",
+    "missing-commit": "MALFORMED",
+    "typed-commit": "REPAIR",
+    "non-sha-commit": "REPAIR",
+    "typed-record": "REPAIR",
+    "self-review": "INCORPORATE",
+    "typed-author": "UNHANDLED_TYPE_ERROR"
+  },
+  "defects": [
+    "truthy dictionary and non-SHA string commit admitted as planned REPAIR",
+    "dictionary record admitted as planned REPAIR",
+    "author self-review admitted as planned INCORPORATE",
+    "list author aborts whole plan with TypeError"
+  ],
+  "cause": "reviews validates author membership and commit truthiness only; no commit/record representation or reviewer != author guard. In-memory original apply/schema accepts the emitted malformed requests.",
+  "controls": "Actual CLI valid REJECT/ACCEPT and no-owner/missing/conflicting/malformed-string/missing-commit discriminate. One initial actual supported-writer REJECT created exactlyone task.",
+  "unresolved": "Full CLI apply campaign INCOMPLETE at20s valid-accept timeout. Later private committed incorporation row does not repair missing caller receipt or prove descendant termination. Concurrent/idempotence and misleading-success failed-writer control NOT_EXECUTED. No full A14/A16/host lifecycle acceptance.",
+  "limits": "Dry-run admission and in-memory effects are not actual applied malformed queue rows. No production mutation, native FF12/live/parity claim, guard bypass or quota changes. Unmodified Windows writer has one named Local mutex for every board path; possible contention, exact timeout cause unknown. CIM unavailable/psutil absent; no unknown process killed or lock reaped.",
+  "next": "OPUS repairs linked metadata/independent-review admission at cause and re-requests scoped review; preserve valid/no-owner convention. ASTRA must add owned descendant tracking/cleanup and a bounded single-write feasibility control before future complete apply/race campaign. Do not repeat unchanged capture or certify incomplete run."
+}

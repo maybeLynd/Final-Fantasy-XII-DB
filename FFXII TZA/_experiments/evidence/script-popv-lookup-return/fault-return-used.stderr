@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-lookup-return\check.py", line 37, in <module>
+    if '--fault-return-used' in sys.argv:assert incoming_read_before_overwrite(st),'Original store overwrites lookup return before use'
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+AssertionError: Original store overwrites lookup return before use

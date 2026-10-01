@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-FLAGCHAN-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish ACTL channel decodes: 00363A90 obj+0x08 bit1/2 write, 00363AD0 bit4 alternator mirror, +0x0E flag channel (u8[64]@02F8F23C, 02D8F23C typo corrected), 0026FAD0 queue post.",
+  "scope": "the-map-ctrl-pack.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

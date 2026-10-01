@@ -1,0 +1,260 @@
+{
+  "method": "A - complete original instruction reading, not execution",
+  "bodies": [
+    {
+      "address": "0x41cb90",
+      "bytes": 269,
+      "sha256": "2403d65d1af24e9d0b83d744ed59e631cae6a3c898321021e4731d92e9bc282c",
+      "source": "primary.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x41cc9c",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x41d220",
+      "bytes": 678,
+      "sha256": "bdfca04b74ce18a11f24778bed3a4563304a7ffbc2e52e7d875a366c16773d9d",
+      "source": "primary.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x41d4c5",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x2ed570",
+      "bytes": 146,
+      "sha256": "f5fc014060f8216a6f6107a015e9c108505d1f6897ef4277da190ad2000e9603",
+      "source": "primary.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x2ed601",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x372280",
+      "bytes": 194,
+      "sha256": "1e3780ec3d33c77fac9a03251de9d66459766215e9c15a0df9304bfae3ef7a9f",
+      "source": "primary.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x372341",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x409210",
+      "bytes": 46,
+      "sha256": "b2be1ae5858c1bdedd5ba9f2e609d54872840201866942d3d91a8ccd577f2584",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x40923d",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x409f50",
+      "bytes": 17,
+      "sha256": "62b7987fc8bf999ad1a38f3db4521b3c3e7913ef6cd88ce8e39c70cac4025c95",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x409f5c",
+        "bytes": "e90f36eeff",
+        "mnemonic": "jmp",
+        "operands": "0x2ed570"
+      }
+    },
+    {
+      "address": "0x409a30",
+      "bytes": 33,
+      "sha256": "951f3ebc48faed62279a55f4b1757f526ef01ffcb0f49498c210793175fcc074",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x409a50",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x409660",
+      "bytes": 89,
+      "sha256": "8429bc95148ab39c1baa5a2669c421d685c99d32e76aaec4cd5d5542d203728e",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x4096b8",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x41cd30",
+      "bytes": 357,
+      "sha256": "c7d9c5d56a8be319fdb8246a4ac76f6772f8dfff46f25a28794fea8e9a88f108",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x41ce94",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x46e420",
+      "bytes": 144,
+      "sha256": "cba294331e56795f3d3b7171db71174704178afbd2bf6ae23da95a94ff90a595",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x46e4af",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x3e18d0",
+      "bytes": 119,
+      "sha256": "5ec07feeb2e1a98968397a0439d337c6b4a8d4c39661fae77648e4d20ac1a7b8",
+      "source": "callees.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x3e1946",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x409780",
+      "bytes": 429,
+      "sha256": "34cdfcbe0c4125e952fc6049d4057cfd1ee41c32b0c5887e9e2544373a127531",
+      "source": "resources.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x40992c",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x409600",
+      "bytes": 86,
+      "sha256": "cfd9b608b8c8313bc78447bdeb276d575a6d2d5dc548bebcf827add0a188412d",
+      "source": "resources.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x409651",
+        "bytes": "e9aa571100",
+        "mnemonic": "jmp",
+        "operands": "0x51ee00"
+      }
+    },
+    {
+      "address": "0x4096c0",
+      "bytes": 41,
+      "sha256": "e94e7f4b62d6b6c8eb1edaa71ebb93abf0786f7493a964590f740e4290cf82e5",
+      "source": "resources.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x4096e8",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x4090d0",
+      "bytes": 123,
+      "sha256": "65dc570c92172924d580a241fc96294595503e2eeaa3759058f10db38e9636e9",
+      "source": "resources.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x40914a",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x408f80",
+      "bytes": 10,
+      "sha256": "3e0cb9c47e439e067aec0a51f481cb0b16fa9322b2e0fed35daa739d4b690bba",
+      "source": "resources.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x408f85",
+        "bytes": "e946010000",
+        "mnemonic": "jmp",
+        "operands": "0x4090d0"
+      }
+    },
+    {
+      "address": "0x3713c0",
+      "bytes": 215,
+      "sha256": "b9098c3ab4452d5678cf95f64592053d95915b3107979f14df952df9aecff443",
+      "source": "model.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x371496",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x372f60",
+      "bytes": 193,
+      "sha256": "624aca95e7d5907cd6b61f095d45957fda1958734763ed3290e4c3bb8422e875",
+      "source": "model.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x373020",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    },
+    {
+      "address": "0x40b5d0",
+      "bytes": 428,
+      "sha256": "c79d72dbedfc66418f94d4dd102ffc48dd82dc11617864abb7d7c6e9bd9babe6",
+      "source": "model.json",
+      "complete_contiguous": true,
+      "last_instruction": {
+        "address": "0x40b77b",
+        "bytes": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    }
+  ],
+  "reused_source": "Database/FFXII TZA/_experiments/evidence/presentation-entry-lifetime/effects.json",
+  "reused_sha256": "b8d18483d4cd73f6baa75d8bd345ac4810f4f00f7f67f43b185e40bc6f79656f",
+  "reused_body_addresses": [
+    "0x41ca70",
+    "0x41cf00"
+  ],
+  "review_correction": "An initial last-instruction assertion incorrectly required RET and rejected complete tail wrapper00409F50. Corrected to retain and inspect actual RET or JMP boundary; no original body or extent changed, no experiment ran.",
+  "limits": "No live access or new B run. 003E1C50 and0040ED90 effects, native ownership, flag producers and external ID lifetime remain open."
+}

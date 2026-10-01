@@ -1,0 +1,8 @@
+SURVIVES  N0  both wipes store 0 at the eight anchors ['02F97360', '02F97368', '02F97370', '02F97378', '02F97380', '02F97388', '02F97390', '02F97398'] (the last a dword)
+SURVIVES  N1  edges into 002498B0 ['0022A7F6 in 0022A770 call', '0022B908 in 0022B8C0 call', '0022BC50 in 0022BC20 call', '00249C4D in 00249C30 jmp']; 0022BC20 ticks at 0022BCCF; dispatcher jmp rcx
+SURVIVES  N2  thunk ['jmp 0x253c50']; 00253C50 edges [(3018128, 'jmp')]; arbiter edges ['00253C56 call']; tick: loop calls ['00314116', '003141D4'], arbiter calls ['00314137', '003141F2']
+SURVIVES  N3  by-name writers ['00253F70', '00253FE9', '002540C5', '0025415F', '002541BC'] (linear ['00253F70', '00253FE9', '002540C5', '0025415F', '002541BC']); edi written at ['00253D12', '00254049', '00254189', '002541F9'] (epilogue restore ['0025426F']), each followed by {'00254049': ['mov eax, edi', 'jmp 0x25425f'], '00254189': ['mov ecx, edi', 'jmp 0x254256'], '002541F9': ['mov dword ptr [rip + 0x1e3e5dd], edi', 'jmp 0x254249']}; 002A329B stores ['02F97368']; functions reading it by name: 51 (page: 51)
+SURVIVES  N4  closure of 002498B0 to depth 3: 14 functions, 002E0FA0 absent
+SURVIVES  N5  439 B; direct callers []; +0x308 precondition and the 01E0C2A4 compare precede the wipe
+SURVIVES  N6  two 16-byte loads per pass from 0215F1D0 - 0x10 step 0x20 to 0215F210 (rows 0215F1C0..0215F1FF); combining ops ['btr', 'por']; btr ebx, 0x13 when 00360360() != 0
+FAILS 0

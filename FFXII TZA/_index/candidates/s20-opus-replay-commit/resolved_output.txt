@@ -1,0 +1,9 @@
+R1_relation_2_walks_the_group_writes_754_then_750                        PASS
+R2_relation_1_skips_the_whole_walk                                       PASS
+R3_confused_actor_on_same_side_is_relation_2                             PASS
+R4_only_the_actors_group_is_written                                      PASS
+R5_actor_handle_not_equal_group_skips_the_walk_after_the_first_store     PASS
+R6_status_masked_unit_skipped                                            PASS
+no_fault                                                                 PASS
+{'opposite_side': ([2], [('U', '+750'), ('U', '+754'), ('U1', '+754')]), 'same_side_unconfused': ([1], []), 'same_side_confused': ([2], [('U', '+750'), ('U', '+754'), ('U1', '+754')]), 'u1_other_group': ([2], [('U', '+750'), ('U', '+754')]), 'actor_handle_not_its_group': ([2], [('U', '+750'), ('U', '+754')]), 'u1_status_masked': ([2], [('U', '+750'), ('U', '+754')])}
+ALL PASS

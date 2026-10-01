@@ -1,0 +1,21 @@
+{
+  "returncode": 0,
+  "probe_sha256": "e9f7697952c207cfcd6b6f8e6ad5c191e843da6d31f9b53b235741359902df81",
+  "generated_preparation_sha256": "6635b94851a494c8870705e89fac94a607e3026c6fc9104f3b96c80cec83cc4f",
+  "mode": "DECODED_ASCII_CONTINUATION",
+  "map_source": {
+    "module": "mapctrl",
+    "block": 0,
+    "physical": 2768,
+    "logical": 2768,
+    "raw_terminal_backslash_count": 2,
+    "decoded_ascii_continuations": 0,
+    "non_ascii_terminal5c": [
+      976,
+      1186
+    ],
+    "open_terminal_continuation": false
+  },
+  "stdout": "PREP64 [('ctrl', 0, 977, 958), ('ctrl', 1, 79, 79), ('btlctrl', 0, 2507, 2507), ('btlctrl', 1, 79, 79), ('btlctrl', 2, 558, 558), ('evctrl', 0, 2456, 1912), ('evctrl', 1, 79, 79), ('mapctrl', 0, 2768, 2768), ('mapctrl', 1, 79, 79), ('mapctrl', 2, 557, 557)] new-logical-missing 0 known 6 CONTROLS_PENDING\n",
+  "limits": "Owned disposable output, original retained source reread only; not original compiler behavior"
+}

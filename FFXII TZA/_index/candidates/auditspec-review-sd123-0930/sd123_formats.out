@@ -1,0 +1,18 @@
+files walked 4229
+0xB00 kind histogram: {'0x50': 5810, '0x51': 5352, '0x52': 16862, '0x53': 374, '0x54': 2733, '0x56': 6746, '0x57': 1843, '0x58': 746, '0x59': 284}
+kind 0x52 records: 16862
+format byte histogram: {'0x00': 619, '0x01': 6610, '0x04': 169, '0x40': 12, '0x41': 1347, '0x44': 5617, '0x80': 500, '0x81': 1988}
+(format, palette count) histogram: {'0x00/1': 619, '0x01/1': 6610, '0x04/0': 169, '0x40/1': 12, '0x41/1': 1347, '0x44/0': 5617, '0x80/1': 500, '0x81/1': 1988}
+bit 6 of format: {0: 9886, 1: 6976}
+size control: ok {'0x00': 619, '0x01': 6610, '0x04': 169, '0x40': 12, '0x41': 1347, '0x44': 5617, '0x80': 497, '0x81': 1988} bad {'0x80': 3}
+  bad: ps2data/obj_finish/in/gadget/g0118.cm @36B0 fmt=80 n=1 w=256 h=32 payload=16464 pred=4176
+  bad: ps2data/plan_master/map_ctrl/mrm02/mrm0202/bin/mrm0202.mpk @257F70 fmt=80 n=1 w=256 h=64 payload=16464 pred=8272
+  bad: ps2data/plan_master/map_ctrl/mrm02/mrm0202/bin/mrm0202.mpk @25BFD0 fmt=80 n=1 w=256 h=64 payload=16464 pred=8272
+  example fmt 0x00: ps2data/efb/alc0203.efb @100050 w=64 h=64 n=1
+  example fmt 0x01: ps2data/efb/alc0101.efb @100050 w=128 h=128 n=1
+  example fmt 0x04: ps2data/efb/alc0101.efb @30 w=512 h=512 n=0
+  example fmt 0x40: ps2data/effect_finish/ch/event/q0109.efx @10 w=512 h=32 n=1
+  example fmt 0x41: ps2data/effect_finish/ch/event/l0001.efx @10 w=512 h=128 n=1
+  example fmt 0x44: ps2data/efb/sav0101.efb @111130 w=512 h=256 n=0
+  example fmt 0x80: ps2data/efb/alc0201.efb @30 w=64 h=64 n=1
+  example fmt 0x81: ps2data/efb/alc0201.efb @890 w=128 h=128 n=1

@@ -1,0 +1,23 @@
+population: 16 .sav entries under katano (required 16)
+span: payload 0xCF6..0x1000 -> image 0xEF6..0x1200 (778 bytes)
+
+ff12savedata00.sav     size  57864  nonzero    0  control(area id) 6d000000
+ff12savedata01.sav     size  57864  nonzero    0  control(area id) 72000000
+ff12savedata02.sav     size  57864  nonzero    0  control(area id) 12010000
+ff12savedata03.sav     size  57864  nonzero    0  control(area id) 79040000
+ff12savedata04.sav     size  49664  nonzero    0  control(area id) d2000000
+ff12savedata05.sav     size  49664  nonzero    0  control(area id) 98000000
+ff12savedata06.sav     size  49664  nonzero    0  control(area id) 98000000
+ff12savedata07.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata08.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata09.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata10.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata11.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata12.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata13.sav     size  22016  nonzero    0  control(area id) 36000000
+ff12savedata14.sav     size  22016  nonzero    0  control(area id) e9000000
+ff12savedata15.sav     size  49664  nonzero    0  control(area id) 13010000
+
+control: distinct area ids seen: 9 (required >= 2)
+files with ANY nonzero byte in the span: 0 of 16
+VERDICT: zero in every sampled save - which does NOT prove that nothing ever writes it, and is not treated as closing the question.

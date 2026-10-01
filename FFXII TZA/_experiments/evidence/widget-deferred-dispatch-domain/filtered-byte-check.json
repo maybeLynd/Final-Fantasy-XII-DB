@@ -1,0 +1,81 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "c1a879ceeaa53e599ca45f0779654f1a77e0ea80"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "eba4b1fe5e7626770da3dadf6397a64c007b47a6"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "0f83bb44b53ad3a0fcc313255fc3e7235713a112"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "393fc5cd352a8140cfb499ad513dd5a7840fd70c"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "48c8e1891fcc83cea4b5b8867b3568b50a4e0230"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "24cfdb0ca9b85586ba35e7d46e9c19b1fffe1a64"
+    },
+    {
+      "path": "retained/extent-proof.json",
+      "git_blob": "bad151b207ffb77dd56f9a2efc129cf266472fd2"
+    },
+    {
+      "path": "retained/field-preimage.json",
+      "git_blob": "2ef932597d03021021ca71f8ff7156eaca2ae0e7"
+    },
+    {
+      "path": "retained/initial-failed-derive.py",
+      "git_blob": "05b7f13b773ccff4ad52fe43fccfce2dcfc3252d"
+    },
+    {
+      "path": "retained/initial-failure.json",
+      "git_blob": "23df71a27110811553e16113b67db840b6cf6c3f"
+    },
+    {
+      "path": "retained/layout-entry.md",
+      "git_blob": "b99faf64d8808debb7ea95d1f7e3dc035e182c7e"
+    },
+    {
+      "path": "retained/notification-record.bin",
+      "git_blob": "e5f11d74a5b119b2beff7d81b4326d2082cb18d5"
+    },
+    {
+      "path": "retained/prior-body.json",
+      "git_blob": "e02058cad308adef1525022fe111a1767f696751"
+    },
+    {
+      "path": "retained/producer-field-projection.tsv",
+      "git_blob": "5bff765ad329fe5923ad49d8391c5422cb1a2b48"
+    },
+    {
+      "path": "retained/producer.py",
+      "git_blob": "f1b39bde7a0aec8350db63ba09a063bd46e74ddb"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "233869e1e2fc6fbd14470c03c5db331dc786e2f3"
+    },
+    {
+      "path": "retained/widget-contract.md",
+      "git_blob": "4abd9e0ebfe8cf96017e953fddc0f22488cb6184"
+    }
+  ]
+}

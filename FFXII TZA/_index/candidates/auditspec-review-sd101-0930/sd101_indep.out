@@ -1,0 +1,65 @@
+sweep: ranges 38175, hits 30
+  00226640 00226713 M? and dword ptr [rax + 0x40], ecx                            register source unresolved
+  0022F430 0022F4A4 S  mov word ptr [rbx + 0x42], r12w <- or r12d, 0xffffffff     set
+  002418E0 002418EA M? or dword ptr [rcx + 0x40], edx                             register source unresolved
+  002465F0 002466F2 M? or dword ptr [rdi + 0x40], eax                             register source unresolved
+  00247730 00247754 M? or dword ptr [rcx + 0x40], eax                             register source unresolved
+  002478D0 002478F4 M? or dword ptr [rcx + 0x40], eax                             register source unresolved
+  00247950 0024796C M? or dword ptr [rcx + 0x40], edx                             register source unresolved
+  00247980 0024799A M? or dword ptr [rdx + 0x40], r8d                             register source unresolved
+  00248030 00248110 M? or dword ptr [rbx + 0x40], eax                             register source unresolved
+  002A9F00 002AA455 S  mov dword ptr [rcx + 0x40], eax <- and eax, 0x3ff          clear
+  002AA800 002AAB7A S  mov dword ptr [rcx + 0x40], eax <- and eax, 0x3ff          clear
+  002AAE40 002AB2D6 S  mov dword ptr [rcx + 0x40], eax <- and eax, 0x3ff          clear
+  002B0280 002B0AB2 S  mov dword ptr [rcx + 0x40], eax <- and eax, 0x3ff          clear
+  002E2010 002E2045 M? or dword ptr [rax + 0x40], edx                             register source unresolved
+  002E2570 002E259E M? or dword ptr [rax + 0x40], edx                             register source unresolved
+  002ECA30 002ECA7F M? or dword ptr [r9 + 0x40], eax                              register source unresolved
+  002ECA30 002ECA87 M? and dword ptr [r9 + 0x40], eax                             register source unresolved
+  003C9900 003C9931 M? or dword ptr [rcx + 0x40], edx                             register source unresolved
+  003C99D0 003C9A1F M? or dword ptr [rcx + 0x40], edx                             register source unresolved
+  003C9F80 003C9FB1 M? or dword ptr [rcx + 0x40], edx                             register source unresolved
+  00559800 00559837 M? or dword ptr [rcx + 0x40], eax                             register source unresolved
+  0055A1F0 0055A2F9 M? xor dword ptr [rbx + 0x40], eax                            register source unresolved
+  00572890 005728E6 M  or dword ptr [rcx + 0x40], 0x1000000                       set
+  005738D0 0057390E M? or dword ptr [rdx + 0x40], ecx                             register source unresolved
+  005738D0 00573952 M? or dword ptr [rcx + 0x40], eax                             register source unresolved
+  00573980 00573AF5 M  or dword ptr [rcx + 0x40], 0x1000000                       set
+  00800F90 00801126 S  mov dword ptr [rax + 0x40], edx <- or rdx, 0xffffffffffffffff set
+  (+ 3 memory-form clears not listed)
+PASS  C the author's five setters and 0024773A are found
+raw rel32 references to 00247730: 33 ({'call': 31, 'jmp': 2})
+  00247765 call self 00247730 FUN_00247730
+  00287BFD call 1    002878E0 FUN_002878e0
+  002A3034 call 1    002A2C00 FUN_002a2c00
+  002A3DCB call 1    002A3960 FUN_002a3960
+  002A8BC5 call 1    002A86A0 FUN_002a86a0
+  002C1A60 call 1    002C19E0 FUN_002c19e0
+  002CE292 call 1    002CE280 FUN_002ce280
+  002CE2A3 call 1    002CE280 FUN_002ce280
+  002CE2C0 call 1    002CE280 FUN_002ce280
+  002D6D51 call 1    002D6CA0 FUN_002d6ca0
+  00556CE4 call 1    005569F0 FUN_005569f0
+  005571AA call 1    00556F90 FUN_00556f90
+  00558D38 call 0    00558CE0 FUN_00558ce0
+  00558E4B call 1    00558CE0 FUN_00558ce0
+  00559722 call 1    005595E0 FUN_005595e0
+  00559B7B call var  005599D0 FUN_005599d0
+  0055A7DF call 1    0055A340 FUN_0055a340
+  00560D35 call var  00560910 FUN_00560910
+  00560DD5 call var  00560910 FUN_00560910
+  00561931 call 0    005618E0 FUN_005618e0
+  00561B9E call 1    005618E0 FUN_005618e0
+  00561BC3 call 1    005618E0 FUN_005618e0
+  00561DE9 call var  00561DC0 FUN_00561dc0
+  00561DFD call var  00561DC0 FUN_00561dc0
+  00561E17 call var  00561DC0 FUN_00561dc0
+  00561E31 call var  00561DC0 FUN_00561dc0
+  00561E50 jmp  var  00561DC0 FUN_00561dc0
+  00572847 call 1    00572600 FUN_00572600
+  00572F17 call 1    00572E10 FUN_00572e10
+  00573371 call 0    00572E10 FUN_00572e10
+  0057391F call var  005738D0 FUN_005738d0
+  00573969 jmp  var  005738D0 FUN_005738d0
+  00573AA3 call 1    00573980 FUN_00573980
+outside callers by edx: {'1': 19, '0': 3, 'var': 10}

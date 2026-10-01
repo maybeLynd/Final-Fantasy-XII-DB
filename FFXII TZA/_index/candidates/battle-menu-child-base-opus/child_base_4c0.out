@@ -1,0 +1,5 @@
+PASS  B 00298250 builds a 0x4C0 widget at this + 0xC0 with the handler 002985C0 = jmp 003EE420, then 003EE8C0 on it
+PASS  E BattleMenuChildWidget1620's rows below +0x4C0 tile exactly 0x4C0 (or are the one embed row)
+PASS  N the 0x650 child's +0x580..+0x586, the 0xC0 widget at +0x588 and +0x648..+0x64E
+PASS  W BattleMenuChildBase4C0 tiles; BattleMenuChildWidget1620 embeds it at +0; the 0x650 child at +0xC0; the records route through it
+FAILS 0

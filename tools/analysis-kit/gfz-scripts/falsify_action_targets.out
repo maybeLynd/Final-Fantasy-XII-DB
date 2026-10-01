@@ -1,0 +1,9 @@
+SURVIVES  T0  sizes all six as cited; the gatherer's caller 00304EE2; 002FFED0 (unit, 0, 3); three wrapper callers
+SURVIVES  T1  radius +0x06 squared; bit 21 centre; +0x07 x 2 pi / 360; cone bit 24; line bit 25
+SURVIVES  T2  002FFEF0(candidate, actor, 1); inside, 0030AB40(candidate, actor, 0)
+SURVIVES  T3  competing case: no direct call from the gatherer (raw sweep); the predicate is picked into rax and called indirectly at 0030D38D with (primary, candidate, 1); bit 3 bypasses
+SURVIVES  T4  0030BB10 true on class 0 or 2; 0030BCB0 true on 0 or 1; true skips
+SURVIVES  T5  the +0x6B6 slot tail; the bit-1 whole-party tail with the KO / Stone / Vanish mask
+SURVIVES  T6  shapes 0-5 with bit 12 as 'no area'
+SURVIVES  T7  the EC7-96 notes hold: 0030BB10 wrapped by 003230E0 (directly) and the gatherer (indirectly); 002FFEF0's gated apply
+FAILS 0

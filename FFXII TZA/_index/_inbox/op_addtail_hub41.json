@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-41",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "batch-41 tail: commit remaining op files + sealed resume state",
+  "scope": "finseal/addtail/claimtail/fintail op files + SWE2-EC7.md sealed-state resume",
+  "completion": "tail commit recorded",
+  "dependencies": [
+   "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-41"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

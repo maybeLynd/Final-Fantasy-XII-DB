@@ -1,0 +1,69 @@
+{
+  "adapters": {
+    "pulse.py": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\reuse\\pulse.py",
+      "source_sha256": "0efb04880d0847f1ad7f4276cffd9e8af81f03387f000abe2b97b12d5a1dba98",
+      "changes": [
+        [
+          "HERE.parent / 'resumed/input_sample.py'",
+          "EVIDENCE / 'input-registration-live-title/resumed/input_sample.py'"
+        ],
+        [
+          "'ASTRA-INPUT-REUSE-CONTROL'",
+          "'ASTRA-HWBP-REUSE-RUNTIME'"
+        ]
+      ]
+    },
+    "setup.py": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\reuse\\setup.py",
+      "source_sha256": "7c05690353d5a7d8f0aa37f4a6ae793cfd1a9a8398b661fb1ee6e37a0a8faa1a",
+      "changes": [
+        [
+          "'ASTRA-INPUT-REUSE-CONTROL'",
+          "'ASTRA-HWBP-REUSE-RUNTIME'"
+        ],
+        [
+          "INPUT-REUSE-20260913-save-backup",
+          "HWBP-REUSE-20260913-save-backup"
+        ]
+      ]
+    },
+    "test_guard.py": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\reuse\\test_guard.py",
+      "source_sha256": "06cffbca73071f29b1e2280b64344282485e7d38312b34c0e8991556954011f5",
+      "changes": []
+    },
+    "guard-controls.json": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\reuse\\guard-controls.json",
+      "source_sha256": "8b1dd427eced90fec4d94b0e96037dcdd3e2874d157f0c6199a51ed631bb6f47",
+      "changes": []
+    },
+    "observe.py": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\observe.py",
+      "source_sha256": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+      "changes": [
+        "Import-root depth only; no observed-data or capture behavior change"
+      ]
+    },
+    "cleanup.py": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\reuse\\cleanup.py",
+      "source_sha256": "abe0218dfa26e403b58ac26fb3f8cd487bd08809641704597bedd32a43af8ad2",
+      "changes": [
+        "Unchanged bytes"
+      ]
+    },
+    "review.py": {
+      "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\reuse\\review.py",
+      "source_sha256": "13c33566213a82dff19a28a46b41b75259a1ef3e5f2357533426a3bb34438033",
+      "changes": [
+        "Adapt labels/PID to seven current pulses; add raw tracer and observer checks, explicitly incomplete campaign status"
+      ]
+    }
+  },
+  "unchanged_capture": {
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a"
+  }
+}

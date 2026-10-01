@@ -1,0 +1,23 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PUB-BOARD-AND-RESUME-77",
+  "kind": "research",
+  "priority": "P2",
+  "target": "publish the board state and OPUS resume 77 for this session's six packages",
+  "scope": "TEAM.json, the OPUS inbox and this session's operation files",
+  "completion": "pending",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   },
+   {
+    "key": "file:database/ffxii tza/_index/_inbox/opus.md"
+   },
+   {
+    "key": "file:database/ffxii tza/_index/_inbox/team.json"
+   }
+  ]
+ }
+}

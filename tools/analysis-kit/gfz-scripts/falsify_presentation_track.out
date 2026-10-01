@@ -1,0 +1,11 @@
+SURVIVES  T0  {'0041CD30': 357, '0041CFC0': 325, '0041C9A0': 203, '00417920': 349, '00417110': 703, '0041CEC0': 63, '00417CC0': 58, '00418600': 69, '00417A80': 72, '00417D00': 219, '0051B970': 96}
+SURVIVES  T1  count bound, header walk by word +4, state +0x80, primary when kind 1 or one track, the 0xFFFF marker scan
+SURVIVES  T2  first state inspected at +0xD0 (state 1), stride 0xA0
+SURVIVES  T3  track = word >> 4, mode = word & 0xF, the word == 2 test for mode 1
+SURVIVES  T4  table [02CA4668], the 0xFF kind, parent bytes +0x4B8..+0x4BB, header 0x0201, entry bit 18
+SURVIVES  T5  command bytes into +0x2DC..; state word = 1: ['mov byte ptr [r8 + 0x2dc], al', 'movzx eax, byte ptr [rcx + 4]', 'mov word ptr [rdx + 4], ax']
+SURVIVES  T6  dirty callback with +0x2C0 / &+0x31C, bit 9 raised on both paths; the class-0x06 sibling's callback and +0x2C8
+SURVIVES  T7  00417A80 reads the frames-per-tick word 01DFE0B4; 00417D00 stores the factor at +0x354 and 0x10 at +0x358
+SURVIVES  T8  phase word stores [(5355915, 'mov dword ptr [rip + 0x278ca5f], 1'), (5355943, 'mov dword ptr [rip + 0x278ca43], 2'), (5355968, 'mov dword ptr [rip + 0x278ca2a], 0')]
+SURVIVES  T9  the EC7-60 note: calls [(4292038, 'call 0x2ed570')]; reads 01CEBBA8
+FAILS 0

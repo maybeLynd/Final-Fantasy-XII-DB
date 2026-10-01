@@ -1,0 +1,11 @@
+{
+  "result": "BOUNDED_RENDERED_RETURN_ESTABLISHED",
+  "method": "HOST_BROWSER",
+  "transition": "Observed Activity -> click stable uniquely visible My Progress -> immediate AX heading / later DOM Progress content / screenshot",
+  "initial_generation": "g20260929T154216Z-1827bc",
+  "return_generation": "g20260929T154720Z-55ec16",
+  "status_changed_during_setup": "STALE -> PARTIAL; return selector omitted status",
+  "inputs": 2,
+  "cleanup": "owned tab3 closed and absent from inventory; controls off",
+  "limits": "One return on one local session. No forced label change at exact dispatch, event-handler trace or atomic DOM/screenshot/HTTP snapshot; no loaded server/PID/browser build, full A17/M3/allviews/totals/migration/FF12/database acceptance. Prior refused returns remain valid history."
+}

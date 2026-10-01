@@ -1,0 +1,14 @@
+id	address	kind	expect	meaning
+C1	0x01CCD300	u32	0x0A0D9319	control: LUAC_TAIL first dword; if this fails nothing below is evidence
+E1	[0x01F82D20]+0x48	u32	*	FrameLimit, setting[18]. Contract predicts 0 or 1 only
+E2	0x01DFE0B4	u32	*	time base. Contract predicts 1 or 2 only, and 2 iff E1==1
+E3	0x01DFE0B8	f32	*	time scale. Contract predicts 1.0 iff E2==1, else 2.0
+E4	0x01DFE0BC	f32	*	inverse scale. Contract predicts 1.0 iff E2==1, else 0.5
+E5	0x01F82E38	u32	*	60 Hz gate. Contract predicts 1 iff E2==2, else 0
+E6	[0x01F82D20]+0x658	u16	*	set 0x0101 at construction, 0 after a successful file load
+E7	[0x01F82D20]+0x65A	u8	*	set 1 at construction, 0 after a successful file load
+E8	[0x01F82D20]+0x448	u32	*	valueTableCount; uninitialised until 001DF240 writes 81. Observational here: this startup check does not establish that writer has run
+E9	[0x01F82D20]+0x00	i32	*	Language index, must be 0..8
+E10	[0x01F82D20]+0x0C	i32	*	Quality. If 1 (VQ_MEDIUM) while preset-driven fields hold LOW values, the startup mismatch is real
+E11	[0x01F82D20]+0x1C	i32	*	Shadow, preset-driven. LOW column is 0, MEDIUM 1, HIGH 2
+E12	[0x01F82D20]+0x64	i32	*	DecideButton, 0=Circle 1=Cross

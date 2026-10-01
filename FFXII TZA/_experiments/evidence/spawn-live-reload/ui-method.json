@@ -1,0 +1,28 @@
+{
+  "method": "Window-specific @oai/sky supported UI actions; application build26.908.40834. No keyboard hold-duration parameter is exposed.",
+  "actions": [
+    "Activate and inspect exact Steam FF12 properties: Cloud OFF, empty advanced launch options.",
+    "After26 original-file backup, launch exact reference executable; unique game PID50736/window21894358.",
+    "Title Load Game selected: brief click640,525 followed by fresh screenshot still title.",
+    "2px drag640,525->642,525 followed by later screenshot showing save list.",
+    "Modern autosave selected The Stepping000:08:42,level01,gil150; drag600,240->602,240 followed by loading and Load complete.",
+    "Read-only modern-complete capture, then drag640,378->642,378; later field screenshotVaanHP103/103 MP33 and qualified modern-field capture.",
+    "One Escape via sky.press_key; immediate and later screenshots still field, no visible pause menu. No game input-array or registration event captured; no causal explanation assigned.",
+    "Ordinary AltF4 produced Exit Dialog and PAUSE behind it; this later PAUSE is not attributed to the prior Escape. Save both screenshots and accessibility tree.",
+    "Return confirmed exit. Separate process enumeration empty. Reset computer-use JS session, then restore verified LUIDLow-only config delta and all26 original hashes."
+  ],
+  "input_stages": {
+    "sent": "tool accepted Escape call",
+    "registered": "not observed",
+    "command_accepted": "not established for pause/reload",
+    "executed": "modern load/field presentation observed; no older load",
+    "consequence": "modern initialized-state capture only"
+  },
+  "limits": [
+    "Successful mouse drag is not a measurement of key/mouse hold timing or proof of the cause of earlier brief-input failures.",
+    "No return-to-title, old-after-current load, inventory/gambit screen, combat, debugger or native intervention.",
+    "No new user stop or takeover; automation ended at the bounded feasibility limit."
+  ],
+  "pc_control": "Ended; kernel reset after process exit",
+  "permission": "ACTIVE within existing scope"
+}

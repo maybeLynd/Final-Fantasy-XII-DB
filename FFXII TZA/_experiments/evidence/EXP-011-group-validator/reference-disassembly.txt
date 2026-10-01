@@ -1,0 +1,80 @@
+reference SHA256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+00306F00 push    rbx
+00306F02 sub     rsp, 0x20
+00306F06 mov     rbx, rcx
+00306F09 test    rcx, rcx
+00306F0C je      0x307027
+00306F12 mov     rax, qword ptr [rcx + 0x698]
+00306F19 test    rax, rax
+00306F1C je      0x307027
+00306F22 cmp     byte ptr [rax + 5], 1
+00306F26 jne     0x307027
+00306F2C mov     qword ptr [rsp + 0x30], rdi
+00306F31 movzx   edi, byte ptr [rcx + 0xe98]
+00306F38 test    edi, edi
+00306F3A je      0x306f88
+00306F3C mov     rcx, qword ptr [rcx + 0x10]
+00306F40 call    0x263d30
+00306F45 mov     rcx, qword ptr [rbx + 0x40]
+00306F49 mov     edx, eax
+00306F4B call    0x2360d0
+00306F50 mov     r8d, eax
+00306F53 test    eax, eax
+00306F55 js      0x306f88
+00306F57 lea     eax, [rdi - 1]
+00306F5A movsxd  rcx, eax
+00306F5D lea     rdi, [rip + 0x2bba45c]
+00306F64 lea     rax, [rcx + rcx*2]
+00306F68 mov     ecx, r8d
+00306F6B lea     rdx, [rdi + rax*8]
+00306F6F mov     eax, 1
+00306F74 shl     eax, cl
+00306F76 cdqe    
+00306F78 or      qword ptr [rdx + 8], rax
+00306F7C mov     rax, qword ptr [rdx]
+00306F7F and     rax, qword ptr [rdx + 8]
+00306F83 cmp     rax, qword ptr [rdx]
+00306F86 je      0x306f95
+00306F88 xor     eax, eax
+00306F8A mov     rdi, qword ptr [rsp + 0x30]
+00306F8F add     rsp, 0x20
+00306F93 pop     rbx
+00306F94 ret     
+00306F95 mov     ecx, 1
+00306F9A call    0x307140
+00306F9F mov     ecx, 1
+00306FA4 call    0x238b70
+00306FA9 mov     ecx, 1
+00306FAE call    0x238ae0
+00306FB3 xor     r8d, r8d
+00306FB6 test    byte ptr [rbx + 0xe99], 1
+00306FBD je      0x306ffd
+00306FBF movabs  rax, 0xffff7fffffffffff
+00306FC9 mov     edx, 0x2005
+00306FCE and     qword ptr [rbx], rax
+00306FD1 movzx   eax, byte ptr [rbx + 0xe98]
+00306FD8 dec     eax
+00306FDA cdqe    
+00306FDC lea     rcx, [rax + rax*2]
+00306FE0 or      byte ptr [rdi + rcx*8 + 0x10], 1
+00306FE5 mov     rcx, rbx
+00306FE8 call    0x3299b0
+00306FED mov     rdi, qword ptr [rsp + 0x30]
+00306FF2 mov     eax, 1
+00306FF7 add     rsp, 0x20
+00306FFB pop     rbx
+00306FFC ret     
+00306FFD movabs  rcx, 0x800000000000
+00307007 mov     edx, 0x2008
+0030700C or      qword ptr [rbx], rcx
+0030700F mov     rcx, rbx
+00307012 call    0x3299b0
+00307017 mov     rdi, qword ptr [rsp + 0x30]
+0030701C mov     eax, 1
+00307021 add     rsp, 0x20
+00307025 pop     rbx
+00307026 ret     
+00307027 xor     eax, eax
+00307029 add     rsp, 0x20
+0030702D pop     rbx
+0030702E ret     

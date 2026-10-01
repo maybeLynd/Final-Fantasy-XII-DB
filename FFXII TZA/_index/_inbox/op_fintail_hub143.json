@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-143",
+ "result_refs": [
+  "tail commit 31459c4cf"
+ ],
+ "note": "batch-143 tail: TEAM.json + finseal op + sealed resume committed (31459c4cf); publish amendment and surgical hunks all private-index - no stale-index sweep this batch"
+}

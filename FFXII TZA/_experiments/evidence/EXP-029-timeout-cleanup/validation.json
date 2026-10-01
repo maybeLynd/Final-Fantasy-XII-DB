@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "disposable processes only",
+  "controls": {
+    "cold-direct": {
+      "hits": 0,
+      "cleared_threads": 5,
+      "post_beats": [
+        43,
+        48,
+        54,
+        60
+      ],
+      "api_rows": 141
+    },
+    "positive-direct": {
+      "hits": 40,
+      "cleared_threads": 5,
+      "post_beats": [
+        41,
+        47,
+        53,
+        59
+      ],
+      "api_rows": 421
+    }
+  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "base_executable": "C:\\Python314\\python.exe",
+  "executable_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+}

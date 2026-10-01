@@ -1,0 +1,5 @@
+{"action":"finish","task":"SWE2-EC7-SHARED-HUB-IDENTIFICATION-32",
+
+ "result_refs":["audit:b32_crossref"],
+
+ "note":"22/22 A-measured on 14 bearing hosts (17 direct + 5 caller-routed), gates clean, ready to publish"}

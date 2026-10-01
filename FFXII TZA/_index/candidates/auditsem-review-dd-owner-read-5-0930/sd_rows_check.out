@@ -1,0 +1,46 @@
+new SD rows at b92561451: 9  SD-180 SD-181 SD-182 SD-183 SD-184 SD-190 SD-191 SD-192 SD-193
+
+SD-180 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: clamping-a-point-into-a-volume.md
+
+SD-181 at-commit OPEN   HEAD OPEN     addrs 00363263 022CBAF0
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: fable-astra-live-facts-0930(022CBAF0)
+   named on: clamping-a-point-into-a-volume.md
+
+SD-182 at-commit OPEN   HEAD OPEN     addrs 00230790
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: auditsem-review-bit46-0930(00230790), auditsem-review-p22-b1-0930(00230790), dd-owner-read-0929(00230790), neighbour-dispositions.tsv(00230790), type-flow-census(00230790), unit-shape-falsification-pass-1-0929(00230790), uq38-carry-criterion(00230790)
+   named on: the-unit-shape-distance-primitives.md
+
+SD-183 at-commit OPEN   HEAD OPEN     addrs 00339F00 0033BAA0 0033CEF0 0033D200
+   register rows sharing an address: AM-7[ANSWERED](00339F00,0033BAA0,0033CEF0,0033D200), U-4[SUPERSEDED](0033CEF0,0033D200), UQ-27[ANSWERED](0033CEF0)
+   candidate folders (at parent) sharing an address: auditsem-review-p22-b1-0930(00339F00,0033BAA0), neighbour-dispositions.tsv(00339F00,0033CEF0,0033D200), pass22-neighbour-worklist.tsv(00339F00,0033BAA0), sd1-force-fight-enemy-consumers-0930(0033CEF0), type-flow-census(0033CEF0)
+   named on: battle-locomotion-steering-and-recovery.md
+
+SD-184 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: battle-locomotion-steering-and-recovery.md
+
+SD-190 at-commit OPEN   HEAD OPEN     addrs 0025DF00 0025E328 0025E36E 0025E3AA 002E5750 003E6A70
+   register rows sharing an address: DP-1[ANSWERED](002E5750), EC-2[ANSWERED](0025DF00), EF-2[ANSWERED](0025DF00), EH-4[SUPERSEDED](0025DF00,0025E328), K-11[ANSWERED](002E5750), K-13[ANSWERED](002E5750,003E6A70), OV-11[ANSWERED](0025DF00), UQ-101[ANSWERED](002E5750), UQ-246[ANSWERED](0025DF00), UQ-336[ANSWERED](0025DF00)
+   candidate folders (at parent) sharing an address: bucket-members-0929(0025DF00), crr-flow-census(0025DF00,003E6A70), ec7-frontier-plan-0929(003E6A70), f-frontier-shapes-0930(003E6A70), fable-astra-live-facts-0930(0025DF00), fable-crossings-prose-false-clears.tsv(0025DF00), frontier-apply-bundle-0929b(0025DF00), functions-cited-deep-by-two-documents.tsv(0025DF00,002E5750), neighbour-dispositions.tsv(0025DF00,002E5750,003E6A70), ov-rt-probes-0929(0025DF00), ov11-wait-services-fable(0025DF00), overlay-drop-census-2026-09-25.tsv(0025DF00), overlay-drop-dispositions-11-12.md(0025DF00), pass22-fable-0929(0025DF00), pass22-neighbour-worklist.tsv(0025DF00,002E5750), pass22-tripwires.tsv(0025DF00), rc12-footer-channels-runstate-0930(0025DF00), rc121314-fable-0930(0025DF00), rc15-regfile-skipmask-0930(0025DF00), rc151617-fable-0930(0025DF00), s03-s07-runtime-per-invariant-exposure.md(0025DF00), s15-opus-replay-boot-world(0025DF00), s15-opus-replay-field-pass-stub-free(0025DF00,002E5750,003E6A70), s15-runtime-per-invariant-exposure.md(0025DF00), script-divide-opus(0025DF00), section11-opus-type-review.md(0025DF00), section12-opus-type-review.md(0025DF00), text-gap-citations-250.tsv(0025DF00,002E5750), type-flow-census(0025DF00,003E6A70), uc1-band-65-256(002E5750), undeclared-written-statics(0025DF00), worktree-drift-2026-09-25(0025DF00)
+   named on: setting-the-movement-mode-and-which-way-a-character-turns.md
+
+SD-191 at-commit OPEN   HEAD OPEN     addrs 02B40534
+   register rows sharing an address: BV-5[ANSWERED](02B40534)
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(02B40534), s18-opus-replay-delta-and-position(02B40534), s19-opus-replay-separation-pass(02B40534)
+   named on: how-the-engine-chooses-3d-or-flat-movement.md
+
+SD-192 at-commit OPEN   HEAD OPEN     addrs 002E5750 002E6000 002E6330 002EA7F0
+   register rows sharing an address: DP-1[ANSWERED](002E5750), K-11[ANSWERED](002E5750), K-13[ANSWERED](002E5750), UQ-101[ANSWERED](002E5750), UQ-374[ANSWERED](002E6000)
+   candidate folders (at parent) sharing an address: functions-cited-deep-by-two-documents.tsv(002E5750), k14-closure-stores-0930(002E6000), neighbour-dispositions.tsv(002E5750,002E6330,002EA7F0), pass22-neighbour-worklist.tsv(002E5750), s15-opus-replay-field-pass-stub-free(002E5750), swe2contract-ddres-b2-0930(002E6000), text-gap-citations-250.tsv(002E5750), uc1-band-65-256(002E5750)
+   named on: how-the-engine-chooses-3d-or-flat-movement.md
+
+SD-193 at-commit OPEN   HEAD OPEN     addrs 002654E0 002E595C 002E5A5D 003A1AD0 003E56C0 003EC040 00422D50 022C6F28
+   register rows sharing an address: BT-2[SUPERSEDED](022C6F28), BT-6[ANSWERED](022C6F28), DP-1[ANSWERED](003A1AD0), EE-12[ANSWERED](022C6F28), EE-7[ANSWERED](022C6F28), FS-1[ANSWERED](002654E0), FS-2[ANSWERED](022C6F28), HM-1[SUPERSEDED](022C6F28), J-4[ANSWERED](022C6F28), K-10[ANSWERED](022C6F28), K-11[ANSWERED](003A1AD0), K-9[**CLOSED 2026-09-02 ](022C6F28), RMD-3[ANSWERED](022C6F28), UQ-218[ANSWERED](022C6F28), UQ-374[ANSWERED](022C6F28), UQ-49[ANSWERED](022C6F28)
+   candidate folders (at parent) sharing an address: auditsem-review-heading-alias-0930(003A1AD0), bt2-name3d4(022C6F28), bt2-visitors(022C6F28), crr-census-misses(022C6F28), crr-flow-census(003E56C0,003EC040,00422D50,022C6F28), crr-pool-route-audit(022C6F28), dd-owner-read-0929(002654E0,003EC040), ge3-opus-replay-missing-slot(022C6F28), heading-alias-fable-0930(003A1AD0), hm1-parent-skeleton(022C6F28), hm1-parent-skeleton-consumer-check.md(022C6F28), hm1-parent-writer(022C6F28), k14-closure-stores-0930(003A1AD0,022C6F28), neighbour-dispositions.tsv(003A1AD0,003E56C0,003EC040,00422D50,022C6F28), rc15-regfile-skipmask-0930(022C6F28), rc151617-fable-0930(00422D50), rc18-map1-blend-arms-0930(00422D50), rc4-capture-machine-0930(022C6F28), s02-opus-replay-stop-apply-stub-free(022C6F28), s02-opus-replay-stop-reach-executed(022C6F28), s02-opus-replay-world-tick-stub-free(022C6F28), s03-opus-replay-mode-setters(022C6F28), s04-opus-replay-validator-shipped(022C6F28), s08-opus-replay-queue-static-invariants(022C6F28), s12-opus-replay-weather-roll(022C6F28), s14-opus-replay-enemy-install(022C6F28), s14-opus-replay-installer-stub-free(022C6F28), s18-opus-replay-facing-and-steering(022C6F28), s19-opus-replay-separation-pass(022C6F28), s20-opus-replay-combo-roll(022C6F28), s20-opus-replay-command-seam(022C6F28), s20-opus-replay-handler-table(022C6F28), s20-runtime-per-invariant-exposure.md(022C6F28), s21-opus-replay-applier-stub-free(022C6F28), s23-opus-replay-hp-second-store(022C6F28), s24-opus-replay-d6-source-switch(022C6F28), s24-opus-replay-stat-derivation(022C6F28), s25-opus-replay-enmity(022C6F28), s26-opus-replay-effect-layers(022C6F28), s27-opus-replay-periodic-tick-entry(022C6F28), s28-opus-replay-five-slot-maps(022C6F28), s28-opus-replay-slot-map-writers(022C6F28), s29-opus-replay-equipment-eligibility(022C6F28), s29-opus-replay-inventory-rebase(022C6F28), s30-opus-replay-shop-ladders(022C6F28), s31-opus-replay-licence-check-shipped(022C6F28), s32-opus-replay-defeat-rewards(022C6F28), s32-opus-replay-gil-storage(022C6F28), s32-opus-replay-level-advance(022C6F28), s32-opus-replay-loot-rolls(022C6F28), s36-opus-replay-request-router(022C6F28), s38-opus-replay-render-object(022C6F28), s38-runtime-per-invariant-exposure.md(00422D50,022C6F28), s42-opus-replay-music-control(022C6F28), s43-opus-replay-save-image-pipeline(022C6F28), s46-opus-replay-area-seed(022C6F28), s48-opus-replay-ramp-channels(022C6F28), s49-opus-replay-lighting-slot-zeros(022C6F28), s50-opus-replay-lua-loader(022C6F28), ta1-opus-replay-texture-anim-clock(022C6F28), type-flow-census(003E56C0,003EC040,00422D50), uq218-cm-entry-residues(022C6F28), uq351-opus-replay-widget-alpha-guard(022C6F28), uq353-opus-replay-box-cell-vertex-format(022C6F28), worktree-drift-2026-09-25(022C6F28)
+   named on: setting-the-movement-mode-and-which-way-a-character-turns.md

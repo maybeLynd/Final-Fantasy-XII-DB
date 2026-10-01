@@ -1,0 +1,19 @@
+K1 PASS  002F2DB6 'xor r14d, r14d'; 002F30DA 'mov qword ptr [rbx + 0x40], r14'; 002F30DE 'mov dword ptr [rbx + 0x3c], r14d'; 002F3128 'mov dword ptr [rbx + 0x48], r14d'
+K2 PASS  0045488D 'lea r11, [rsp + 0xc0]'; 00454890 instruction start False; function False
+K3 PASS  0052D396 'call 0x52e270'; 0052E416 'call 0x52f400'; callers 0054C6B0 ['0052D82C'], 0054E040 ['0052E9A2']
+K4 PASS  0045F600 callers in ['0045FD50', '00529200']; 0045FD36 'call 0x4607c0'
+K5 PASS  00377190 callers in ['00463FF0', '00464B30', '00464F20', '0047BE20']; 00377230 callers in ['0022B0B0', '0022B8C0']
+K6 PASS  00465120 last 004654DE>00377360; 003772EA 'call 0x465690'
+K7 PASS  00464059 'mov ecx, dword ptr [rcx + 0x244]'; 00464072 'mov ecx, dword ptr [rbx + 0x24c]'
+K8 PASS  writers of +0x298 in ['00455390', '00455D70', '004566E0', '00457E10', '00459420', '0045A050'] (14 stores); 0051BC70 referrers ['0041E4EF']
+K9 PASS  cull calls {'00523380': 0, '00524320': 0, '005263F0': 0, '0054C440': 0, '0054DD30': 0}; control 0045C450 1
+K10 PASS  0x89 step 004524C0, 0x8A step 00453110, 0x86/0x87 update 00450480/00450480, 0x97 step/update 00455390/0045B260
+K11 PASS  00445560 'movss xmm6, dword ptr [rdi + 0x248]'; 00445661 'cmp r15, 2'
+K12 PASS  003B46BE 'comiss xmm13, xmm2'; 003B46C2 'jbe 0x3b46cb'
+K16 PASS  0054B40A 'lea r9, [rip + 0x25a109f]' (-> 02AEC4B0); 0054B5A6 / 0054B66D load 02AE9BC0 twice; slot stride 0x110; sizes 0x2D0 / 0x2E0
+K17 PASS  0041F2B8 'mov dword ptr [r9 + 0x248], eax'; 004FD629 'mulss xmm2, dword ptr [rdi + 0x248]'
+K18 PASS  type_census.tsv: 55 types (earlier table 53), 0x04 173, 0xA3 447, total 48868
+K13 PASS  00441BEC 'mov rdi, qword ptr [rbx + 0x120]'; 00441C0D 'mov qword ptr [rbx + 0x120], rax'; 00441E71 'call 0x2f3bc0'
+K14 PASS  setups 0x65 0053A1E0 0x66 0053A3B0 0x67 0053A5D0 0x68 default 0xA0 0053A6F0 0xA1 0053A790 0xA2 0053A840
+K15 PASS  00459420 calls 0020E610 x2, 0020E600 x0
+FAILS 0

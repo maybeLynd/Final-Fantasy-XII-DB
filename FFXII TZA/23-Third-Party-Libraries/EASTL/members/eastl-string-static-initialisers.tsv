@@ -1,0 +1,60 @@
+# 51 static eastl::basic_string<char> initialisers - each constructs the
+# allocator_memory_log embedded at +0x18 of a static string object, fills the
+# three-pointer string from a literal (allocating via the allocator vtable,
+# or the shared empty byte 02EBA2E0), then atexit-registers the teardown through
+# 00808B90. PROVENANCE IS THE LITERAL: every member leas 008F6600 "EASTL
+# basic_string" and calls 001EDF00 exactly twice. Form-derived: 178 of 240 byte
+# positions identical across all members.
+# select_eastl_string_static_inits.py --write
+entry	size
+0015CE70	240
+0015CF60	240
+0015D050	240
+0015D140	240
+0015D340	240
+0015D430	240
+0015D520	240
+0015D610	240
+0015D700	240
+0015D7F0	240
+0015D8E0	240
+0015D9D0	240
+0015DAC0	240
+0015DD30	240
+0015DE20	240
+0015DF10	240
+0015E000	240
+0015E0F0	240
+0015E1E0	240
+0015E2D0	240
+0015E3C0	240
+0015E4B0	240
+0015E5A0	240
+0015E690	240
+0015E780	240
+0015E870	240
+0015E960	240
+0015EA50	240
+0015EB40	240
+0015EC30	240
+0015ED20	240
+0015EE10	240
+0015EF00	240
+0015EFF0	240
+0015F0E0	240
+0015F1D0	240
+0015F2C0	240
+0015F3B0	240
+0015F4A0	240
+0015F590	240
+0015F680	240
+0015F770	240
+0015F860	240
+0015F950	240
+0015FA40	240
+0015FB30	240
+0015FC20	240
+0015FD10	240
+0015FE00	240
+0015FEF0	240
+001600D0	240

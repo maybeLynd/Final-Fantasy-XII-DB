@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-140",
+ "result_refs": [
+  "publish commits 38709b85 (18 paths: 14 clean hosts + SWE2-EC7 resume + 3 research ops) + 8afac0f5 (3 private-index tail hunks: efx +12, adm +5, AUDIT-LOG +83) - committed around FABLE's held @publication lease (~40h ghost, P1 unanswered; fleet precedent FRONTIER 659476456/ORACLE EXP-184..188); formal claim->finish queued on lease release"
+ ],
+ "note": "batch-140 publish: 22 bodies, 16 bearing hosts; anchors 4287 (+22) 0 MID; hash clean; crossref 2812; guard ADDS NOTHING (2807->2798) after 4 crossing rows"
+}

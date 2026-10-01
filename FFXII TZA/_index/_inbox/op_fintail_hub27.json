@@ -1,0 +1,3 @@
+{"action":"finish","task":"SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-27",
+ "result_refs":["commit:df4f0af75"],
+ "note":"batch-27 fully tailed: publish 599cc91b2, seal b99e06098, tails 87ef25bd1 + df4f0af75"}

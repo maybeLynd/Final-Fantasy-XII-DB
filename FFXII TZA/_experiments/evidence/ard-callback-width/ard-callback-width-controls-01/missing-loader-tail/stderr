@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-ard-callback-width.py", line 57, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-ard-callback-width.py", line 17, in main
+    if [(q['start'],q['end_exclusive'],q['sha256']) for q in raw['ranges']]!=EXPECTED:raise ValueError('required original ARD identity changed')
+                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required original ARD identity changed

@@ -1,0 +1,66 @@
+=== 005A7A40 chunks 005A7A40-005A7AAE
+005A7A40  mov      qword ptr [rsp + 8], rbx
+005A7A45  mov      r10, rdx
+005A7A48  test     rdx, rdx
+005A7A4B  je       0x5a7a9d
+005A7A4D  xor      ebx, ebx
+005A7A4F  lea      r11, [rcx + 0x90]
+005A7A56  mov      r9, qword ptr [r11]
+005A7A59  cmp      r9, r11
+005A7A5C  cmove    r9, rbx
+005A7A60  test     r9, r9
+005A7A63  je       0x5a7a9d
+005A7A65  mov      rax, qword ptr [r9 + 0x18]
+005A7A69  test     rax, rax
+005A7A6C  je       0x5a7a8b
+005A7A6E  mov      r8, r10
+005A7A71  sub      r8, rax
+005A7A74  movzx    edx, byte ptr [rax]
+005A7A77  movzx    ecx, byte ptr [rax + r8]
+005A7A7C  sub      edx, ecx
+005A7A7E  jne      0x5a7a87
+005A7A80  inc      rax
+005A7A83  test     ecx, ecx
+005A7A85  jne      0x5a7a74
+005A7A87  test     edx, edx
+005A7A89  je       0x5a7aa5
+005A7A8B  mov      rax, qword ptr [r9]
+005A7A8E  cmp      rax, r11
+005A7A91  mov      r9, rax
+005A7A94  cmove    r9, rbx
+005A7A98  test     r9, r9
+005A7A9B  jne      0x5a7a65
+005A7A9D  xor      eax, eax
+005A7A9F  mov      rbx, qword ptr [rsp + 8]
+005A7AA4  ret      
+005A7AA5  mov      rbx, qword ptr [rsp + 8]
+005A7AAA  mov      rax, r9
+005A7AAD  ret      
+=== 008AFDE0 chunks 008AFDE0-008AFDFF
+008AFDE0  sub      rsp, 0x38
+008AFDE4  mov      qword ptr [rsp + 0x20], 0xfffffffffffffffe
+008AFDED  lea      rcx, [rip + 0x167e98c]   ; -> 01F2E780 q=0000000001F2E780
+008AFDF4  call     0x67f580
+008AFDF9  nop      
+008AFDFA  add      rsp, 0x38
+008AFDFE  ret      
+006363B3  mov       dword ptr [rsp + 0x20], edx
+006363B7  mov       rcx, r12
+006363BA  lea       rdx, [rsp + 0x20]
+006363BF  call      0x6311d0
+006363C4  test      rax, rax
+006363C7  je        0x6363d1
+006363C9  mov       rcx, rax
+006363CC  call      0x638f00
+006363D1  mov       rdx, rbx
+006363D4  mov       qword ptr [rbx + 0x70], rbp
+006363D8  mov       rcx, rbp
+006363DB  call      0x639160
+---
+00639450  push      rbx
+00639452  sub       rsp, 0x20
+00639456  mov       rbx, rcx
+00639459  mov       rdx, rcx
+0063945C  mov       rcx, qword ptr [rcx + 0x70]
+00639460  call      0x639160
+---

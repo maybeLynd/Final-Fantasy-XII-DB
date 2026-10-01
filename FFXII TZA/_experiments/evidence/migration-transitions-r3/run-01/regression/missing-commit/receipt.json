@@ -1,0 +1,35 @@
+{
+  "name": "missing-commit",
+  "input_sha256": "ae58bce5c16ff04c9ec03b1e3908cd74fe3d958006fb1fd85c3023f540eba5fa",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\regression\\missing-commit\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-MISSING-COMMIT\",\n  \"detail\": \"commit None is not a 7-40 hex commit id\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "terminal": true,
+  "report": [
+    {
+      "transition": "MALFORMED",
+      "review": "REVIEW-MISSING-COMMIT",
+      "detail": "commit None is not a 7-40 hex commit id",
+      "status": "-"
+    }
+  ],
+  "original_plan": [
+    [
+      "MALFORMED",
+      "REVIEW-MISSING-COMMIT",
+      "commit None is not a 7-40 hex commit id",
+      null
+    ]
+  ],
+  "board_unchanged": true,
+  "writer_invoked": false,
+  "expected": "MALFORMED"
+}

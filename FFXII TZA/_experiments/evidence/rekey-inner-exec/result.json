@@ -1,0 +1,716 @@
+{
+ "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": {
+  "e0-null": {
+   "trace": [
+    "genbump"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     22,
+     2513360
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     2513360
+    ]
+   ],
+   "ret": 0,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 16
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "e0-basic": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "e0-genwrap": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt"
+   ],
+   "faults": [],
+   "ret": 1114114,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 1
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "e0-glob-null": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     23204,
+     3305821
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     3305821
+    ]
+   ],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": null,
+   "ok": true,
+   "fail": []
+  },
+  "e0-slot-oob": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 40,
+   "ok": true,
+   "fail": []
+  },
+  "e0-slot-edge": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "getq30",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 42,
+   "calls": [
+    [
+     "notify",
+     42
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-occ-hit-flagclear": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-occ-mismatch": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "e0-occ-hit-clsge5": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 18219010,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-arrnull": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-rownull": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-oob": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-flag0": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-arrcnt": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-elemnull": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-genmm": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-q30null": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "getq30",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-res-q698null": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "getq30",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "e0-full": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "getq30",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 42,
+   "calls": [
+    [
+     "notify",
+     42
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "50-basic": {
+   "trace": [
+    "inner",
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 17891330,
+    "dea4": 0,
+    "bea8": 0
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "50-null10": {
+   "trace": [
+    "inner",
+    "genbump"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     22,
+     2513360
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     2513360
+    ]
+   ],
+   "ret": 0,
+   "unit": {
+    "d8": 0,
+    "dea4": 0,
+    "bea8": 0
+   },
+   "obj": {
+    "w16": 16
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "50-full": {
+   "trace": [
+    "inner",
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "getq30",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 17891330,
+    "dea4": 0,
+    "bea8": 0
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 42,
+   "calls": [
+    [
+     "notify",
+     42
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  },
+  "mut-occ-id": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 3,
+   "ok": true,
+   "fail": []
+  },
+  "mut-gen-off": {
+   "trace": [
+    "idcompose",
+    "genbump",
+    "idcompose",
+    "findocc",
+    "objcnt",
+    "objrow",
+    "resolve",
+    "clsrow",
+    "notify"
+   ],
+   "faults": [],
+   "ret": 17891330,
+   "unit": {
+    "d8": 0,
+    "dea4": 3735928559,
+    "bea8": 254
+   },
+   "obj": {
+    "w16": 17
+   },
+   "gidx_d": 255,
+   "calls": [
+    [
+     "notify",
+     255
+    ]
+   ],
+   "ok": true,
+   "fail": []
+  }
+ }
+}

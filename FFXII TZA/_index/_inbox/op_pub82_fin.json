@@ -1,0 +1,13 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-SAVEPAYLOAD-COPIES",
+ "note": "Published 374b8386f with publish_paths.sh under @publication. Three bulk-copy extents measured from their own block counters and matched against declared boundaries; the 11,940 unexplained bytes bounded by a byte-granular absence scan with a passing control; PartyReadMachineRecord route separator corrected so its second instance is anchor-checked (92 -> 93 of 93) and a guard added.",
+ "result_refs": [
+  {
+   "key": "file:database/ffxii tza/_types/fields.tsv"
+  },
+  {
+   "key": "file:database/ffxii tza/_index/audit-log.md"
+  }
+ ]
+}

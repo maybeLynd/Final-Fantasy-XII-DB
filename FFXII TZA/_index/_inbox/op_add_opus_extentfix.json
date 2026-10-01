@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-WITHDRAW-THE-OVERREACHING-EXTENT",
+  "kind": "research",
+  "priority": "P0",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "CoreRuntimeStatic02064AA0, declared at 0x280 two rounds ago, against the VU1 working-register range a page already records",
+  "scope": "read 02064DB0, the next cluster down the sweep; find whether it and the block already declared are the same thing; measure the boundary by which bodies touch which part; withdraw and redeclare whatever the measurement requires",
+  "completion": "the overlap is measured rather than argued, the type is redeclared at the extent the measurement supports, the removal is filed as a contradiction with the mechanism that caused it, and nothing new is declared on the strength of the same evidence",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

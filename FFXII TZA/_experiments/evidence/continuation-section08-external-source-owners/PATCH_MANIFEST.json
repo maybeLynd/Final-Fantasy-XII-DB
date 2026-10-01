@@ -1,0 +1,178 @@
+{
+  "section": "SECTION-08",
+  "date": "2026-09-23",
+  "base": "FFXII TZA(20260922-211246).zip plus Updates01-07 in order",
+  "status": "locally validated production; formal independent acceptance pending",
+  "install": "Merge FFXII TZA into the parent containing the existing folder; replace only matching files. Back up and merge newer edits.",
+  "modified_existing": 7,
+  "new_files": 27,
+  "removed_files": [],
+  "files": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "before_sha256": "a62f9cb0f99c34da2d31ddb0eee59631ec3d157925e5c83c5afee48536083582",
+      "after_sha256": "fc01556e902ce1fdc67dd274fab756b01b81892663315147d0c65ab8adf8ee48"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "before_sha256": "7ba196edd799a6f2ae4360378875620ae9e754e8b8e90fdda853121c1098cb02",
+      "after_sha256": "986db19ae916801c889cbc7679a941484a9174963d3b6355bfc55b48bf7c8649"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "before_sha256": "9cbae3a2dbf7fc8c43263818918bf5d7494e428526f49600775ceec0434189c4",
+      "after_sha256": "b28a0f03a6d8e6fe5c1bc7b1e486f503081fe0525d178e8aa5bebf49182cd542"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "before_sha256": null,
+      "after_sha256": "b7666c74ae6cf70514f097ca9517cae89906f0eccdb077393108f7fa8319c019"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "before_sha256": "07b70e378e109302defecad078da857a2cc342f042d35f5bfa11fe6879e72227",
+      "after_sha256": "57eb674196502e1e3613fbb2a32307b8b85bddeb5e633b19ef768f34043ba688"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/README.md",
+      "before_sha256": null,
+      "after_sha256": "bcd545910e4581095309742416b1575c1c17149528ffbc410babbed42c924daf"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "before_sha256": null,
+      "after_sha256": "a2fcd503ca506fd2600b6a6d5f529aa558520617049d363f66157a2aaeab4e69"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/canonical_changes.diff",
+      "before_sha256": null,
+      "after_sha256": "941e54191383698cb400248619af4102f8ebf4af96eff1bbd992096b1dc25f4d"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/canonical_preimages.json",
+      "before_sha256": null,
+      "after_sha256": "89fa8c18bb9cc4ab888e2646eadd3c28183412bbb3e4696ba7b15f2693c1083a"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/canonical_type_addition.json",
+      "before_sha256": null,
+      "after_sha256": "c3ffcdf42efc3c45d84695ed42e1835aab1fc8ba39fb16e72a31b7aa60c5d677"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/claim_matrix.tsv",
+      "before_sha256": null,
+      "after_sha256": "2957aaef4edd2c55bcdbb1d9a9b94716339384d218356955199d69a855bc4fbf"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/direct_call_supports.tsv",
+      "before_sha256": null,
+      "after_sha256": "fe7b2ac5d6308a98a400ba16fcb37876e5a0c91273b6591cc5a2f5314bd460b6"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/native_controls.c",
+      "before_sha256": null,
+      "after_sha256": "e7fd7828b8ccc80f41cd9c800967ac6c57cb1792d0f79ac207a13b6b5e38e721"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/original_body_manifest.json",
+      "before_sha256": null,
+      "after_sha256": "cf803a9b3016d1541a3a8a2915c58a74b7051a9d43be9e3f56e48bd4fa7ebe3d"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/original_disassembly.txt",
+      "before_sha256": null,
+      "after_sha256": "5f441d3b7857dff0e221e8b0fc4f69ec606da734d398f507965c506a72044df9"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/body_verification.json",
+      "before_sha256": null,
+      "after_sha256": "1fdb9ea88f591f3a83b345802e847b35f8dc58bd566544ff8a436b2ee791fe33"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/code_mutations.json",
+      "before_sha256": null,
+      "after_sha256": "fcdc46758a0550edea0e6c61e5e97b940932352c34dd02b4a5229aeee136fb25"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/content_validation.json",
+      "before_sha256": null,
+      "after_sha256": "6c46efba8643765f6e32ff0ec28366976c3c356e85fc355b346d45c9db3edc4c"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/delivery_validation.json",
+      "before_sha256": null,
+      "after_sha256": "28a672ece77f2d141105c2ed170a922768a48e0f2eabdb15bc02eff8989825a2"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/native_baseline.json",
+      "before_sha256": null,
+      "after_sha256": "ebce81ba07e3685f4e9f975f8fd827f231d68c711ea72afe3ffc850f864cf407"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/native_repeat.json",
+      "before_sha256": null,
+      "after_sha256": "ebce81ba07e3685f4e9f975f8fd827f231d68c711ea72afe3ffc850f864cf407"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/overlay_checker_controls.json",
+      "before_sha256": null,
+      "after_sha256": "c737b1cc62eac9bcc6c4a25019144e4f6651d28350dcfc7872a112aff4f46626"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/summary.json",
+      "before_sha256": null,
+      "after_sha256": "740b02f1bb59c43ca9d7332b580aa5183ef71337e058acd2b657260d22b4904e"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/results/unchanged_files.json",
+      "before_sha256": null,
+      "after_sha256": "18a0b21d1d1a766eb0052729900bd8c42f95c9475f629b58f627e4f772031ed7"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/run_review.py",
+      "before_sha256": null,
+      "after_sha256": "e3d25f020dff9d9a556b111ccf893efd36814df9e159cdfdebc654c3da0a0589"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/source_inputs.json",
+      "before_sha256": null,
+      "after_sha256": "35b079ec7a8be6662220bccc4c86cd5aac9daf6ba839befbd6a967658fb96c83"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/test_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "b9b7b08a1e86dbf42ba478e271d024f786acaff5d713af31150e87f43ac9bfb7"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/validate_content.py",
+      "before_sha256": null,
+      "after_sha256": "8880df4e421b7b4d3ebdec23c35344327358cea3e48fd52ef918a39c467134bd"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/variant_plan.json",
+      "before_sha256": null,
+      "after_sha256": "d043328e4bcfff5551096f1a883c97b34b0082fa56d043c162b1f1c7c6424b1c"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section08-external-source-owners/verify_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "c1cab7da672b7257e2e456373e71ead0027e228471865ebeeb003b029609bb0e"
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "before_sha256": "6d9d42f4f119a144278cfcc68c459e60cb205a2b1cc1408a6b0f44dce76a6cbb",
+      "after_sha256": "f7d0cd2bc0e4873a1a7f5958aa06c28d9a0d91c7e26793790b26e8567bbc55fb"
+    },
+    {
+      "path": "_types/fields.tsv",
+      "before_sha256": "4f009c66212e9ce5ffa809d447cde3059187adf2e9e4bb81a352343049de2a4d",
+      "after_sha256": "13eb1806dce7d209d46b481e04b4dae1c4d622e1e3d6675369d86b1ad5177c42"
+    },
+    {
+      "path": "_types/types.tsv",
+      "before_sha256": "b99a404f2996de1aab7bb72e623cf5cbf04298ceae793ac8380c728764c50fb5",
+      "after_sha256": "1b94670ecb44e6567c36ab4145abbb61c40bcda10393e1c5a892875f53fbb21a"
+    }
+  ],
+  "self_hash_note": "The manifest is included but has no recursive self-hash. Archive SHA-256 is supplied separately."
+}

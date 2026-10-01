@@ -1,0 +1,110 @@
+recipe	action_count	action_ids	action_names	weapon_rows
+0	73	0x51 0x92 0x93 0x94 0x95 0x96 0x97 0x98 0x99 0x9a 0x9b 0x9c 0x9d 0xf2 0xf3 0xf4 0x113 0x114 0x115 0x143 0x1c2 0x1c3 0x1c4 0x1c5 0x1e2 0x1e3 0x1e4 0x1f1 0x1f2 0x1f3 0x1f4 0x1f5 0x1f6 0x1f7 0x1f8 0x1f9 0x1fa 0x1fb 0x1fc 0x1fd 0x1fe 0x1ff 0x200 0x201 0x202 0x203 0x204 0x205 0x206 0x207 0x208 0x209 0x20a 0x20b 0x20c 0x20d 0x20e 0x20f 0x210 0x211 0x212 0x213 0x214 0x215 0x216 0x217 0x218 0x219 0x21a 0x21b 0x21c 0x21d 0x21e	NOT USED; Do nothing{A8}; {8B}{F9}{ED}{F3}Reserve; Mount; Dismount; Attack; actstop; sousachange; escapestop; escape; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; Mist Charge; Mist Charge; Mist Charge; Dismiss; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve	
+1	12	0x1 0x2 0x3 0x7 0x9 0xa 0xc 0xd 0x10 0x87 0x134 0x1bd	Blindna; Vox; Poisona; Stona; Cleanse; Esuna; Dispel; Dispelga; Esunaga; Dispel Mote; Purify; Piercing Dispelga	
+2	18	0x8 0x24 0x25 0x26 0x2f 0x30 0x33 0x34 0x35 0x36 0x37 0x38 0x47 0x48 0x8b 0x8c 0x8d 0x8e	Regen; Haste; Float; Hastega; Reflect; Reflectga; Protect; Shell; Bravery; Faith; Protectga; Shellga; Vanish; Vanishga; Hastega Mote; Reflectga Mote; Vanishga Mote; Float Mote	
+3	26	0x27 0x28 0x29 0x2a 0x2b 0x2c 0x2d 0x2e 0x39 0x3a 0x3b 0x3c 0x3d 0x3e 0x3f 0x40 0x41 0x42 0x43 0x45 0x46 0x7c 0x126 0x127 0x128 0x129	Slow; Immobilize; Disable; Bleed; Break; Stop; Slowga; Countdown; Blind; Oil; Poison; Silence; Sleep; Blindga; Toxify; Silencega; Sleepga; Reverse; Berserk; Confuse; Decoy; Reverse Mote; Disablega; Immobilizega; Curse; Pox	
+4	6	0x0 0x4 0x6 0xb 0x86 0x180	Cure; Cura; Curaga; Curaja; Cura Mote; Boon	
+5	1	0xe	Renew	
+6	2	0x5 0xf	Raise; Arise	
+7	56	0x11 0x12 0x13 0x14 0x15 0x16 0x17 0x18 0x19 0x1a 0x1b 0x1c 0x1d 0x1e 0x1f 0x20 0x21 0x22 0x23 0x4c 0x4d 0x4e 0x7d 0x7e 0x7f 0x80 0x81 0x82 0x83 0x88 0x8f 0xb6 0xb8 0xba 0xbc 0xc0 0xc6 0xcc 0xce 0x11b 0x11c 0x11d 0x11e 0x11f 0x120 0x121 0x122 0x123 0x124 0x125 0x1be 0x1bf 0x1c0 0x1c1 0x1df 0x1e0	Holy; Fire; Thunder; Blizzard; Aqua; Aero; Fira; Thundara; Blizzara; Bio; Aeroga; Firaga; Thundaga; Blizzaga; Shock; Scourge; Flare; Ardor; Scathe; Dark; Darkra; Darkga; Dark Mote; Aero Mote; Aquara Mote; Bio Mote; Shock Mote; Holy Mote; Scathe Mote; Aeroga Mote; Eksir Berries; Painflare; Flash{A5}Freeze; Flash Arc; Roxxor; Briny Cannonade; Whirlwind; Redemption; Banish Ray; Aerora; Aquara; Aquaga; Quakeja; Firaja; Blizzaja; Aquaja; Aeroja; Darkja; Thundaja; Holyja; Piercing Holy; Piercing Firaga; Piercing Thundaga; Piercing Blizzaga; S{A5}{87}{8C} Tokamak; S{A5}{8D}{8A} Cyclotrone	
+8	3	0x31 0x84 0xc8	Balance; Balance Mote; Gravity Well	
+9	3	0x32 0x89 0xc2	Warp; Warp Mote; Kill	
+10	2	0x44 0x1bc	Death; Death Strike	
+11	2	0x49 0xbe	Drain; Malaise	
+12	1	0x4a	Syphon	
+13	2	0x4b 0x8a	Bubble; Bubble Mote	
+14	4	0x4f 0x50 0x85 0x1bb	Gravity; Graviga; Gravity Mote; Piercing Graviga	
+15	0			
+16	2	0x91 0xc4	Knot of Rust; Devour Soul	
+17	2	0x90 0xc5	Dark Matter; Soul Purge	
+18	2	0x6d 0xca	Meteorite; Comet	
+19	2	0x6e 0xcb	Meteorite; Meteor	
+20	0			swords, greatswords, spears, rods (weapon rows)
+21	0			daggers, ninja swords
+22	0			katana, staves
+23	0			axes, hammers, hand-bombs
+24	0			poles
+25	0			bows
+26	0			crossbows
+27	0			guns, measures
+28	0			
+29	0			the Unarmed row
+30	1	0x189	Wild Charge	
+31	3	0x52 0x53 0x54	Potion; Hi{A5}Potion; X{A5}Potion	
+32	2	0x55 0x56	Ether; Hi{A5}Ether	
+33	2	0x57 0x67	Elixir; Megalixir	
+34	10	0x59 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62	Gold Needle; Echo Herbs; Antidote; Eye Drops; Prince{AC}s Kiss; Handkerchief; Chronos Tear; Nu Khai Sand; Serum; Remedy	
+35	5	0x66 0x68 0x69 0x6b 0x6c	Bacchus{AC}s Wine; Baltoro Seed; Domaine Calvados; Meteorite; Meteorite	
+36	1	0x58	Phoenix Down	
+37	3	0x63 0x64 0x65	Soleil Fang; Rime Fang; Lightning Fang	
+38	1	0x9e	First Aid	
+39	1	0x9f	Shades of Black	
+40	1	0xa0	Horology	
+41	1	0xa1	Stamp	
+42	1	0xa2	Achilles	
+43	1	0xa3	Charge	
+44	0			
+45	1	0xa5	Souleater	
+46	1	0xa6	Wither	
+47	1	0xa7	Addle	
+48	1	0xa8	Bonecrusher	
+49	1	0xa9	Steal	
+50	1	0xaa	Telekinesis	
+51	1	0xab	Expose	
+52	1	0xac	Shear	
+53	1	0xad	Charm	
+54	1	0xae	Revive	
+55	1	0xaf	Sight Unseeing	
+56	1	0xb0	Numerology	
+57	1	0xb1	Libra	
+58	1	0xb2	Poach	
+59	1	0xb3	{86}{85}{85}{85} Needles	
+60	1	0xb4	Traveler	
+61	1	0xb5	Gil Toss	
+62	13	0x106 0x107 0x108 0x109 0x10a 0x10b 0x10c 0x10d 0x10e 0x10f 0x110 0x111 0x112	Belias; Mateus; Adrammelech; Hashmal; C{81}chulainn; Famfrit; Zalera; Shemhazai; Chaos; Zeromus; Exodus; Ultima; Zodiark	
+63	1	0x11a	Breakart Pentagram	
+64	0			the 58 NOT USED weapon rows
+65	85	0x147 0x148 0x149 0x14a 0x14b 0x14c 0x14d 0x14e 0x153 0x154 0x155 0x156 0x157 0x158 0x159 0x165 0x166 0x167 0x168 0x169 0x16a 0x16b 0x16c 0x16d 0x16e 0x16f 0x170 0x171 0x172 0x173 0x174 0x175 0x176 0x181 0x182 0x183 0x184 0x186 0x187 0x18a 0x18b 0x18c 0x18d 0x18e 0x18f 0x190 0x191 0x192 0x193 0x194 0x195 0x196 0x19e 0x1a2 0x1a3 0x1a4 0x1a5 0x1a6 0x1a9 0x1aa 0x1b5 0x1b6 0x1b9 0x1ba 0x1c8 0x1c9 0x1ca 0x1cc 0x1cd 0x1d1 0x1d2 0x1d5 0x1d7 0x1d8 0x1d9 0x1da 0x1db 0x1dc 0x1dd 0x1de 0x1e1 0x1e5 0x1e7 0x1ec 0x1f0	Darkness; Ice Break; Water Spout; Shining Ray; Tremor; Tempest; Sandstorm; Pyromania; Fangs; Sonic Fangs; Crushing Fangs; Screech; Scream; Wail; Eerie Soundwave; Aqua Bubbles; Mythril Bubbles; Gust; Gale; Remora Strike; Breath; White Breath; Stone Breath; Poison Breath; Ember Breath; Fireball; Mucus; Bile; Water Cannon; Water Ray; Blast Wave; Shock Wave; Pulsar Wave; Jump; Mach Punch; Goblin Attack; Smite of Rage; Spinkick; Stomp; Spiral Cut; Spike Cutter; Heave; Mind Lash; Snake Lash; Sonic Turn; Sonic Spin; Flank Attack; Stone Stomp; Flatten; Tail Swipe; Tail Spear; Screwtail; Maser Eye; Rage; Bunny Slam; Blitz Tongue; Wing Spear; Discharge; Bone Toss; Choco{A5}Comet; Flurry Kick; Power Stun; Flame Breath; Power Spin; Ground Shaker; Shockstorm; Bushfire; Crown; Sword Dance; Slice Thrice; Ultimate Illusion; Dash; Circle of Judgment; Sentence; Guilt; Innocence; Eviscerator; High Jump; Nectar Volley; Pollen Dance; Gatling Gun; Pummel; Mach Wave; Tree of Sephira; Gigaflare Sword	
+66	11	0x19a 0x19b 0x19c 0x1d3 0x1d4 0x1e6 0x1ea 0x1eb 0x1ed 0x1ee 0x1ef	Temblor; Judgment; Cyclone; Bitter End; Monarch Sword; Force of Will; Contempt; Inviolable Will; Megaflare; Teraflare; Ascension	
+67	1	0x19f	Leech	
+68	6	0x15b 0x15c 0x17b 0x17c 0x17d 0x185	Blaster; Hell Blaster; Stone Touch; Poison Touch; Sleep Touch; Tri{A5}Attack	
+69	1	0x15f	Warsong	
+70	1	0x160	Vespersong	
+71	0			
+72	14	0x14f 0x150 0x151 0x152 0x163 0x177 0x178 0x179 0x17a 0x17e 0x1a8 0x1cb 0x1ce 0x1d6	Stone Gaze; Phantasmal Gaze; Flash; Hawk Glare; Time Requiem; Dark Shock; Cloying Breath; Bad Breath; Putrid Breath; Doom; Pollen; Sporefall; Telega; Growl	
+73	3	0x138 0x15d 0x162	Provoke; Angelsong; Hero{AC}s March	
+74	1	0x119	Invert	
+75	3	0x116 0x117 0x17f	Fear; Fearga; Annul	
+76	2	0x118 0x15e	Fog; Magick Ballad	
+77	1	0x164	Soul Etude	
+78	1	0x1a7	Charge	
+79	14	0x12a 0x135 0x136 0x137 0x139 0x13a 0x13b 0x13c 0x13d 0x13e 0x140 0x141 0x142 0x199	Wall; Magick Barrier; Force Barrier; Greater Barrier; Battle Cry; Shift; Saber; Mana Spring; Enrage; Chain Magick; Limit Break; Unleash; Perfect Defense; Chain Reaction	
+80	0			
+81	0			
+82	5	0x12b 0x12c 0x12d 0x12e 0x12f	Lv{A8}{87} Sleep; Lv{A8}{88} Disable; Lv{A8}{89} Break; Lv{A8}{8A} Reverse; Prime Lv{A8} Death	
+83	4	0x188 0x197 0x198 0x1b7	Self{A5}Sacrifice; Self{A5}Destruct; Mass{A5}Destruct; Kamikaze	
+84	6	0x130 0x131 0x15a 0x1c6 0x1cf 0x1e8	Restore; Renew; Joyous Soundwave; Breath of Life; Fly{A7} Enkidu{99}; Azure Vortice	
+85	4	0x132 0x133 0x1d0 0x1e9	Focus; Meditate; Now{A7} Enkidu{99}; Crimson Vortice	
+86	1	0x19d	Dimensional Rift	
+87	2	0x13f 0x161	Growing Threat; Mystery Waltz	
+88	1	0x144	Cannibalize	
+89	0			
+90	4	0x145 0x146 0x1a0 0x1c7	Cry for Help; Raise; Necromancy; Spawn	
+91	2	0x1a1 0x1b4	Divide; Divide	
+92	19	0xc3 0xd0 0xd1 0xd2 0xd3 0xd4 0xd5 0xd6 0xd7 0xd8 0xd9 0xda 0xdb 0xdc 0xdd 0xde 0xdf 0xe0 0xe1	Condemnation; Red Spiral; White Whorl; Pyroclasm; Feral Strike; Whip Kick; Shatterheart; Fires of War; Tides of Fate; Element of Treachery; Fulminating Darkness; Ruin Impendent; Flame Purge; Nordswain{AC}s Glow; Heaven{AC}s Wrath; Maelstrom{AC}s Bolt; Intercession; Evanescence; Resplendence	
+93	16	0xe2 0xe3 0xe4 0xe5 0xe6 0xe7 0xe8 0xe9 0xea 0xeb 0xec 0xed 0xee 0xef 0xf0 0xf1	Inferno; Cataclysm; Torrent; Windburst; NOT USED; Luminescence; NOT USED; NOT USED; Ark Blast; NOT USED; NOT USED; Whiteout; NOT USED; NOT USED; NOT USED; Black Hole	
+94	3	0xf6 0xf7 0xf8	explosion; sten needle; fusillade	
+95	2	0xf9 0x101	wizardsbane; leech	
+96	1	0x104	rejuvenation	
+97	1	0x105	manafont	
+98	8	0xfa 0xfb 0xfc 0xfd 0xfe 0xff 0x100 0x102	choking gas; befuddling gas; stone gas; blinding smoke; silence gas; stasis; swarm; oil bug	
+99	1	0x103	gil bug	
+100	1	0xa4	Infuse	
+101	13	0x6f 0x70 0x71 0x72 0x73 0x74 0x75 0x76 0x77 0x78 0x79 0x7a 0x7b	{8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve; {8B}{F9}{ED}{F3}Reserve	
+102	1	0xf5	Chain Bonus	
+103	10	0x1ab 0x1ac 0x1ad 0x1ae 0x1af 0x1b0 0x1b1 0x1b2 0x1b3 0x1b8	Ram; Gnaw; Lunge; Rake; Slap; Kick; Rush; Snap; Poke; Divine Sword	
+104	0			maces
+105	8	0xb7 0xb9 0xbb 0xbd 0xbf 0xc1 0xc7 0xcd	Hellfire; Frostwave; Judgment Bolt; Gaia{AC}s Wrath; Blight; Tsunami; Tornado; Eschaton	
+106	0			
+107	2	0x6a 0xcf	Dark Energy; Final Eclipse	
+108	1	0xc9	Big Bang	

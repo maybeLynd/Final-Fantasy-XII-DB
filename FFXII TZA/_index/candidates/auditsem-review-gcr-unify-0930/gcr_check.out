@@ -1,0 +1,11 @@
+selector exit 0
+re-run TSV byte-identical to committed (CR-stripped): True
+committed members 99, re-run members 99, set-identical True
+old stubs 72 + old orchestrators 25 = 97 distinct
+old kept: 97 dropped: [] admitted: ['005EFE60', '00676A70']
+information column non-empty: 76 of 99
+form_split.out lines mentioning 76 / 23:
+    membership-based split: leaf 76, orchestrators 23
+    form-based split:       leaf 23, orchestrators 76   (GUARDED bodies in census: 525)
+    CONTROL membership split reproduces the selector's dry run (76 / 23): PASS
+form_split addresses on 'guarded' lines: 53; overlap with non-empty column: 53

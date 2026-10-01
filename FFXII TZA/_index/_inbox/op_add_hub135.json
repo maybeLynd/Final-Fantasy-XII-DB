@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-135",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "frontier-shared-callee-hubs batch 135: 00409250/003E4890/00380A60/00372760/003725A0/0035C750/001A09E0 (all 7 2-A) + 0028A090/00276430/001C53F0/0042BCB0/00334950/00382BF0/00429E50/00503A80/0046BD60/0037FA80/0042B850/001A5030/0042AF10/003FF040/003F74F0 (top 15 of 1-A)",
+  "scope": "all 7 2-A band members + top 15 of ranked 1-A band by size; dump, route to bearing hosts, append evidence-backed sections",
+  "completion": "22/22 interior-cited + gates clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

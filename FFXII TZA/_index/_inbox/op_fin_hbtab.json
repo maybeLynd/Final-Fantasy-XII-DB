@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBTAB-0922",
+ "note": "Published 30dd8698f: 00576CA0 = family-tab availability (binds root+0xF8 menuquest consumer); hctg +0x08 hi12 dead-on-path; hchk +0x03 confirmed dead marker; 00570BF0/00571F60 UI consumers bound. Carried EC7-126's complete parked batch-91 audit section under the documented handoff allowance.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

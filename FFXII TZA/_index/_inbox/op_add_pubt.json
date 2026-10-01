@@ -1,0 +1,1 @@
+{"action": "add", "task": {"id": "SWE2-DATA-PUB-UQ218-MERGE-T", "kind": "research", "priority": "P2", "requester": "SWE2-DATA", "assigned_to": "SWE2-DATA", "target": "Publish resume/board tail after UQ-218 merge fold", "scope": "publication", "completion": "commit hash recorded", "dependencies": [], "resources": [{"key": "@publication"}]}}

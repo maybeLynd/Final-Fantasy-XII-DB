@@ -1,0 +1,16 @@
+{
+  "status": "SOURCE_REFUTES_TYPED_POP_SUMMARY",
+  "method": "A original source/control flow plus conditional tag branch calculation, not executed cases",
+  "kind2_tag_actions": {
+    "1": "convert_signed_int",
+    "2": "copy_float_bits",
+    "3": "write_zero_float"
+  },
+  "underflow": {
+    "kind2": "Call original8620C0 returning leaf; write +0.0 at temporary rsp+0x50; no depth decrement on this arm",
+    "kind1": "Skip reporter; write integer0 at temporary rsp+0x50; no depth decrement on this arm"
+  },
+  "report_chain": "Original 14B wrapper stages a string and zeroes ECX then tails to original C2 00 00 (ret0). No memory write, raise, abort or display in these instructions.",
+  "consumer_change": "Correct current EC7-98 paragraph tag3->tag1 and qualify asymmetric underflow/reporting no-op; keep authored state/reachability and later callbacks unproved.",
+  "limits": "Kind and value branches after00262440 supplies the temporary record. Values written into that record, NOT established final function returns. Actual00262440/0032F240/0026D530 effects, initialization, lifetime, caller reachability, native execution/exception/presentation and live behavior not tested."
+}

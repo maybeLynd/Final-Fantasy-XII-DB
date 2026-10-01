@@ -1,0 +1,322 @@
+{
+  "baseline": {
+    "raw": "baseline-window.json",
+    "sha256": "b8a8b5bea82ca359a37ce1a5982befcb4b3ef9cb162f5ff68c170261a59b5186",
+    "window_start_unix": 1789086395.8621569,
+    "sample_count": 3355,
+    "foreground_pids": [
+      23532
+    ],
+    "held_indices": [
+      2,
+      49
+    ],
+    "debugger_seconds": [],
+    "cpu_windows": [
+      {
+        "start_seconds": 0,
+        "wall_seconds": 4.99674640000012,
+        "cpu_seconds": 2.296875,
+        "one_core_percent": 45.96741191427976
+      },
+      {
+        "start_seconds": 5,
+        "wall_seconds": 4.986518900001101,
+        "cpu_seconds": 2.25,
+        "one_core_percent": 45.12165791649768
+      },
+      {
+        "start_seconds": 10,
+        "wall_seconds": 4.990374400000292,
+        "cpu_seconds": 2.390625,
+        "one_core_percent": 47.90472233906659
+      },
+      {
+        "start_seconds": 15,
+        "wall_seconds": 4.994726299999456,
+        "cpu_seconds": 2.15625,
+        "one_core_percent": 43.17053368870752
+      },
+      {
+        "start_seconds": 20,
+        "wall_seconds": 4.98438250000072,
+        "cpu_seconds": 2.109375,
+        "one_core_percent": 42.319685537771136
+      },
+      {
+        "start_seconds": 25,
+        "wall_seconds": 4.994509000000107,
+        "cpu_seconds": 2.15625,
+        "one_core_percent": 43.17241194279465
+      },
+      {
+        "start_seconds": 30,
+        "wall_seconds": 4.9902340000007825,
+        "cpu_seconds": 2.296875,
+        "one_core_percent": 46.0274007190773
+      }
+    ]
+  },
+  "noarm": {
+    "raw": "noarm-window.json",
+    "sha256": "eaf4ad360f81f9c5edc5588067dd93fcdf057cf5487752c454be3152c1e7b68f",
+    "window_start_unix": 1789086446.8186839,
+    "sample_count": 3361,
+    "foreground_pids": [
+      23532
+    ],
+    "held_indices": [
+      2,
+      49
+    ],
+    "debugger_seconds": [
+      1.955264600001101,
+      32.094217600000775
+    ],
+    "cpu_windows": [
+      {
+        "start_seconds": 0,
+        "wall_seconds": 4.996297900001082,
+        "cpu_seconds": 2.4375,
+        "one_core_percent": 48.78612222060402
+      },
+      {
+        "start_seconds": 5,
+        "wall_seconds": 4.989280900001177,
+        "cpu_seconds": 2.34375,
+        "one_core_percent": 46.97570746115833
+      },
+      {
+        "start_seconds": 10,
+        "wall_seconds": 4.986730300001,
+        "cpu_seconds": 2.375,
+        "one_core_percent": 47.62639760164138
+      },
+      {
+        "start_seconds": 15,
+        "wall_seconds": 4.988599500000419,
+        "cpu_seconds": 2.5625,
+        "one_core_percent": 51.367122175267525
+      },
+      {
+        "start_seconds": 20,
+        "wall_seconds": 4.990211600001203,
+        "cpu_seconds": 2.390625,
+        "one_core_percent": 47.90628517635252
+      },
+      {
+        "start_seconds": 25,
+        "wall_seconds": 4.994614999999612,
+        "cpu_seconds": 2.390625,
+        "one_core_percent": 47.86404958140288
+      },
+      {
+        "start_seconds": 30,
+        "wall_seconds": 4.985183200000392,
+        "cpu_seconds": 2.5625,
+        "one_core_percent": 51.40232358962853
+      }
+    ]
+  },
+  "post": {
+    "raw": "post-window.json",
+    "sha256": "2bad4e0d2ee11ba440f22a10778a39658c825320cb95230c812c780ecf8c5476",
+    "window_start_unix": 1789086499.9133806,
+    "sample_count": 3359,
+    "foreground_pids": [
+      23532
+    ],
+    "held_indices": [
+      2,
+      49
+    ],
+    "debugger_seconds": [],
+    "cpu_windows": [
+      {
+        "start_seconds": 0,
+        "wall_seconds": 4.999262999999701,
+        "cpu_seconds": 2.390625,
+        "one_core_percent": 47.81954860146672
+      },
+      {
+        "start_seconds": 5,
+        "wall_seconds": 4.984537800000908,
+        "cpu_seconds": 2.515625,
+        "one_core_percent": 50.46857102777999
+      },
+      {
+        "start_seconds": 10,
+        "wall_seconds": 4.994784700000309,
+        "cpu_seconds": 2.40625,
+        "one_core_percent": 48.175249675923986
+      },
+      {
+        "start_seconds": 15,
+        "wall_seconds": 4.979561000000103,
+        "cpu_seconds": 2.46875,
+        "one_core_percent": 49.57766357315331
+      },
+      {
+        "start_seconds": 20,
+        "wall_seconds": 4.995317099999738,
+        "cpu_seconds": 2.421875,
+        "one_core_percent": 48.48290812209152
+      },
+      {
+        "start_seconds": 25,
+        "wall_seconds": 4.9898739000000205,
+        "cpu_seconds": 2.546875,
+        "one_core_percent": 51.04086898869307
+      },
+      {
+        "start_seconds": 30,
+        "wall_seconds": 4.990273800000068,
+        "cpu_seconds": 2.3125,
+        "one_core_percent": 46.34014269918353
+      }
+    ]
+  },
+  "visual": {
+    "raw": "visual-window.json",
+    "sha256": "32342530abdf81478835e7d31b2c8b6d6eeaf9cab8d1e1f34010bddab56b7566",
+    "window_start_unix": 1789086610.2011073,
+    "sample_count": 4804,
+    "foreground_pids": [
+      23532
+    ],
+    "held_indices": [
+      2,
+      49
+    ],
+    "debugger_seconds": [
+      1.959245699999883,
+      47.0034693000016
+    ],
+    "cpu_windows": [
+      {
+        "start_seconds": 0,
+        "wall_seconds": 4.990549499998451,
+        "cpu_seconds": 2.453125,
+        "one_core_percent": 49.155408637881685
+      },
+      {
+        "start_seconds": 5,
+        "wall_seconds": 4.995428599999286,
+        "cpu_seconds": 2.546875,
+        "one_core_percent": 50.98411375553169
+      },
+      {
+        "start_seconds": 10,
+        "wall_seconds": 4.984177900001669,
+        "cpu_seconds": 2.65625,
+        "one_core_percent": 53.29364347125553
+      },
+      {
+        "start_seconds": 15,
+        "wall_seconds": 4.9889254000008805,
+        "cpu_seconds": 2.5625,
+        "one_core_percent": 51.3637666339839
+      },
+      {
+        "start_seconds": 20,
+        "wall_seconds": 4.994988300000841,
+        "cpu_seconds": 2.5625,
+        "one_core_percent": 51.30142146678438
+      },
+      {
+        "start_seconds": 25,
+        "wall_seconds": 4.98877210000137,
+        "cpu_seconds": 2.453125,
+        "one_core_percent": 49.172921729564
+      },
+      {
+        "start_seconds": 30,
+        "wall_seconds": 4.985428200001479,
+        "cpu_seconds": 2.71875,
+        "one_core_percent": 54.53393150861532
+      },
+      {
+        "start_seconds": 35,
+        "wall_seconds": 4.989482199998747,
+        "cpu_seconds": 2.53125,
+        "one_core_percent": 50.73171721106923
+      },
+      {
+        "start_seconds": 40,
+        "wall_seconds": 4.992517400001816,
+        "cpu_seconds": 2.71875,
+        "one_core_percent": 54.45649523422815
+      },
+      {
+        "start_seconds": 45,
+        "wall_seconds": 4.995601599999645,
+        "cpu_seconds": 2.453125,
+        "one_core_percent": 49.10569729980418
+      }
+    ]
+  },
+  "final-post": {
+    "raw": "final-post-window.json",
+    "sha256": "fb99920bfd3b2f8b62ead972d22e700ab2ec9964d69bc757e9fb151be294c184",
+    "window_start_unix": 1789086697.6281445,
+    "sample_count": 1440,
+    "foreground_pids": [
+      23532
+    ],
+    "held_indices": [],
+    "debugger_seconds": [],
+    "cpu_windows": [
+      {
+        "start_seconds": 0,
+        "wall_seconds": 4.997731599996769,
+        "cpu_seconds": 2.359375,
+        "one_core_percent": 47.20891774183163
+      },
+      {
+        "start_seconds": 5,
+        "wall_seconds": 4.984592000000703,
+        "cpu_seconds": 2.5625,
+        "one_core_percent": 51.40842018764302
+      },
+      {
+        "start_seconds": 10,
+        "wall_seconds": 4.994228299998213,
+        "cpu_seconds": 2.265625,
+        "one_core_percent": 45.36486647998873
+      }
+    ]
+  },
+  "attached-screenshot-time.json": {
+    "captured_unix": 1789086626.784,
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 14879572,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "screenshot_id": "screenshot-0",
+    "file": "attached-open-confirmed.jpg",
+    "observer_seconds": 16.582892656326294
+  },
+  "attached-close-screenshot-time.json": {
+    "captured_unix": 1789086650.156,
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 14879572,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "file": "attached-close-confirmed.jpg",
+    "observer_seconds": 39.95489263534546
+  },
+  "screenshot_file_timestamps": {
+    "attached-close-confirmed.jpg": 1789086650.157934,
+    "attached-open-confirmed.jpg": 1789086626.784925,
+    "baseline-during.jpg": 1789086413.0650601,
+    "baseline-end-noarm-start.jpg": 1789086440.5730138,
+    "baseline-enter.jpg": 1789086261.6980119,
+    "baseline-start.jpg": 1789086390.7952547,
+    "loaded-state.jpg": 1789086217.488352,
+    "noarm-during-enter.jpg": 1789086465.4250195,
+    "post-enter.jpg": 1789086523.038933,
+    "post-open-confirmed.jpg": 1789086573.5075026
+  }
+}

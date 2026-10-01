@@ -1,0 +1,9 @@
+test_changed_chain_retains_original_bytes (__main__.Controls.test_changed_chain_retains_original_bytes) ... ok
+test_distinctive_raw_bytes_and_high_pointer (__main__.Controls.test_distinctive_raw_bytes_and_high_pointer) ... ok
+test_null_and_partial_reads_rejected (__main__.Controls.test_null_and_partial_reads_rejected) ... ok
+test_zero_is_preserved_without_negative_verdict (__main__.Controls.test_zero_is_preserved_without_negative_verdict) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK

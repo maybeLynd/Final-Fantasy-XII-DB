@@ -1,0 +1,3 @@
+# Source-identity qualification
+
+The original precondition-control receipt computed `source_sha256` from `read_text().encode()`: on this Windows file that normalizes CRLF. It identifies parsed source text, not physical file bytes. The original receipt and all73 scientific members are unchanged. `binding.json` gives the actual raw driver SHA already retained by the executed capture and the normalized text/predicate identity. This affects exactly this control field; the capture driver/source Git hashes and semantic observations do not change. No claim of extra execution or retroactive measurement. Future control producers must name normalized identities explicitly and preserve raw file SHA separately.

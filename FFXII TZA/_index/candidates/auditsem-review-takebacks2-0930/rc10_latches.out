@@ -1,0 +1,71 @@
+PASS latch 02CE9D9D guard 00601E09 site 00601E24: sets ['00601E19 mov byte ptr [rip + 0x26e7f7d], 1']
+PASS latch 02CE9D9C guard 00603382 site 006033A2: sets ['00603396 mov byte ptr [rip + 0x26e69ff], 1']
+PASS latch 02CF6C3C guard 0061C1FD site 0061C219: sets ['0061C20D mov byte ptr [rip + 0x26daa28], 1']
+PASS latch 02CF6ABC guard 0062A1F3 site 0062A22A: sets ['0062A212 mov byte ptr [rip + 0x26cc8a3], 1']
+PASS latch 02CF6ABD guard 0062A289 site 0062A2C0: sets ['0062A2A8 mov byte ptr [rip + 0x26cc80e], 1']
+PASS latch 02CF6ABE guard 0062A327 site 0062A362: sets ['0062A34A mov byte ptr [rip + 0x26cc76d], 1']
+PASS latch 02E3F804 guard 0067C28B site 0067C2A7: sets ['0067C294 mov byte ptr [rip + 0x27c3569], 1']
+PASS latch 02EAC278 guard 0079A158 site 0079A178: sets ['0079A16C mov byte ptr [rip + 0x2712105], 1']
+PASS latch 02EAC279 guard 0079FDAF site 0079FDCB: sets ['0079FDB8 mov byte ptr [rip + 0x270c4ba], 1']
+latches confirmed: 9 / 9
+02EA5247 rip references: ['0079EBC5 cmp byte ptr [rip + 0x270667b], 0', '007A0FA0 mov byte ptr [rip + 0x27042a1], cl']
+== span 001DDBA0..001DDC22
+   001DDBA0 mov qword ptr [rsp + 8], rbx
+   001DDBA5 mov qword ptr [rsp + 0x10], rsi
+   001DDBAA push rdi
+   001DDBAB sub rsp, 0x30
+   001DDBAF mov ebx, r8d
+   001DDBB2 mov rsi, rcx
+   001DDBB5 mov rcx, qword ptr [rip + 0x1da5164]
+   001DDBBC mov r8d, edx
+   001DDBBF shl r8d, 0x10
+   001DDBC3 mov edi, edx
+   001DDBC5 or r8d, ebx
+   001DDBC8 cmp dword ptr [rcx + 8], 0
+   001DDBCC jne 0x1ddbe7
+   001DDBCE mov edx, 0xb
+   001DDBD3 call 0x1df340
+   001DDBD8 mov rcx, rsi
+   001DDBDB call 0x1dd8e0
+   001DDBE0 call 0x17db80
+   001DDBE5 jmp 0x1ddbf1
+   001DDBE7 mov edx, 1
+   001DDBEC call 0x1df340
+   001DDBF1 mov rcx, qword ptr [rip + 0x1da5128]
+   001DDBF8 call 0x1dfd40
+   001DDBFD mov rax, qword ptr [rip + 0x1da511c]
+   001DDC04 lea rdx, [rip + 0x722d05]
+   001DDC0B mov r9d, ebx
+   001DDC0E mov r8d, edi
+   001DDC11 mov ecx, dword ptr [rax + 8]
+   001DDC14 mov dword ptr [rsp + 0x20], ecx
+   001DDC18 mov ecx, 2
+   001DDC1D call 0x5cdaa0
+   001DDC22 mov r8d, ebx
+== span 0079A158..0079A1A6
+   0079A158 cmp byte ptr [rip + 0x2712119], bpl
+   0079A15F jne 0x79a405
+   0079A165 lea rdx, [rip + 0x151880c]
+   0079A16C mov byte ptr [rip + 0x2712105], 1
+   0079A173 mov ecx, 1
+   0079A178 call 0x5cdaa0
+   0079A17D jmp 0x79a405
+   0079A182 mov r9, qword ptr [rdi + 8]
+   0079A186 lea rbx, [rdi + 0x10]
+   0079A18A mov dword ptr [rsp + 0x28], r8d
+   0079A18F lea rdx, [rip + 0x15187c2]
+   0079A196 mov r8d, dword ptr [rdi + 4]
+   0079A19A xor ecx, ecx
+   0079A19C mov qword ptr [rsp + 0x20], rbx
+   0079A1A1 call 0x5cdaa0
+   0079A1A6 mov rdx, qword ptr [r14 + 0x58]
+== span 007994B4..007994DD
+   007994B4 cmp byte ptr [rip + 0x270bd83], 0
+   007994BB je 0x79973e
+   007994C1 jmp 0x799765
+   007994C6 cmp di, r13w
+   007994CA jne 0x799501
+   007994CC lea rdx, [rip + 0x1519f4d]
+   007994D3 mov ecx, 2
+   007994D8 call 0x5cdaa0
+   007994DD mov dword ptr [rbp - 0x30], 4

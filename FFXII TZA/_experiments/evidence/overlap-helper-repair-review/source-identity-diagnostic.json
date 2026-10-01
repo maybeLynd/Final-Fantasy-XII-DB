@@ -1,0 +1,32 @@
+[
+  {
+    "path": "Database/Tools/dashboard/build_views.py",
+    "commit_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+    "worktree_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+    "commit_bytes": 49701,
+    "worktree_bytes": 49701,
+    "commit_crlf": 0,
+    "worktree_crlf": 0,
+    "equal_after_CRLF_to_LF_only": true
+  },
+  {
+    "path": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+    "commit_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+    "worktree_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+    "commit_bytes": 21083,
+    "worktree_bytes": 21083,
+    "commit_crlf": 0,
+    "worktree_crlf": 0,
+    "equal_after_CRLF_to_LF_only": true
+  },
+  {
+    "path": "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+    "commit_sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+    "worktree_sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+    "commit_bytes": 6757,
+    "worktree_bytes": 6914,
+    "commit_crlf": 0,
+    "worktree_crlf": 157,
+    "equal_after_CRLF_to_LF_only": true
+  }
+]

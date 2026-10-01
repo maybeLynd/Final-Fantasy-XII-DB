@@ -1,0 +1,149 @@
+{
+  "method": "A: complete original disassembly and caller/callee effects; no new execution or mutation campaign.",
+  "bodies": [
+    {
+      "address": "0x51b9d0",
+      "name": "PresentationEntryReferenceContainer_InitializeStorage",
+      "bytes": 14,
+      "sha256": "1cb808f52c784dd507bf1ecb0c819d10cc704d6fcb413341ce0378461d0f854b"
+    },
+    {
+      "address": "0x51f170",
+      "name": "PresentationEntryReferenceContainer_InitializeGenericList",
+      "bytes": 27,
+      "sha256": "16318ae654ee7df1bc9058cf34a6d9531622d5034bb510d338ee64b2d544848b"
+    },
+    {
+      "address": "0x51f2f0",
+      "name": "PresentationEntryReferenceContainer_InitializeNodes",
+      "bytes": 132,
+      "sha256": "e1e9a3f09e36d1224725db5c9261a27a499c00a6c848e5af9eb81ad8ae7b453b"
+    },
+    {
+      "address": "0x51f190",
+      "name": "PresentationEntryReferenceContainer_ReleaseNodeById",
+      "bytes": 163,
+      "sha256": "2cb262224bd159108d4285fc79d1ccdf8d8f3cae2b6880fee71a0207abc3c98b"
+    },
+    {
+      "address": "0x51ba40",
+      "name": "PresentationEntryReferenceContainer_ReleaseEntryById",
+      "bytes": 55,
+      "sha256": "bfbc78aa9194cb6dc3228a54a6ea5ac3c86684137e1290c1fa8c2a97dc6830ea"
+    },
+    {
+      "address": "0x51ba80",
+      "name": "FUN_0051ba80",
+      "bytes": 344,
+      "sha256": "ecee9a18434d7068f8ee32d0d8ebbb38a350ce175eeb2c547240a6cf2a37b40b"
+    },
+    {
+      "address": "0x51b9f0",
+      "name": "PresentationEntryReferenceContainer_RebaseAndRefreshDerivedPointers",
+      "bytes": 37,
+      "sha256": "6f7942153246cff53d3727afd620ccf2ee89f896a027b8393de1e7510bc75567"
+    },
+    {
+      "address": "0x51ba20",
+      "name": "PresentationEntryReferenceContainer_ResetAndInitializeGlobals",
+      "bytes": 27,
+      "sha256": "f7b001e6e029df553d432315e91b8f9566cbca8d1a314646b0c604b5d47c66f9"
+    },
+    {
+      "address": "0x51f080",
+      "name": "FUN_0051f080",
+      "bytes": 198,
+      "sha256": "08d4b3944cac6ab57cade841983682ac4e4fbcbdd8ea825813230f551c8d86ab"
+    },
+    {
+      "address": "0x51f150",
+      "name": "FUN_0051f150",
+      "bytes": 17,
+      "sha256": "8423aa1d9421a57b09afe3cbee5cb4938c76559bedf31ea42dc08255f6d5fc67"
+    },
+    {
+      "address": "0x51f4c0",
+      "name": "FUN_0051f4c0",
+      "bytes": 180,
+      "sha256": "b9db756fd557cc26412aabe1d1fb0f4d4a53577c03cfbd8eaac14f8777ee7035"
+    },
+    {
+      "address": "0x51f620",
+      "name": "PresentationEntryReferenceContainer_RebaseResolvedPointers",
+      "bytes": 131,
+      "sha256": "00bffdb1c6b7119b8c6b437fbdd7c57368af1480f4f345adb06c48d6bd88e17b"
+    },
+    {
+      "address": "0x51f580",
+      "name": "PresentationEntryReferenceContainer_ForEachActive",
+      "bytes": 146,
+      "sha256": "aec62356d91dd7774c21b85c807835be7ac39f5b5a22235ab7b564e1f50f6816"
+    },
+    {
+      "address": "0x51f380",
+      "name": "FUN_0051f380",
+      "bytes": 141,
+      "sha256": "4cac547cbea680ef003704429da14e29ee476796e28a19586f8c55cf7e0a0ca3"
+    },
+    {
+      "address": "0x51f410",
+      "name": "FUN_0051f410",
+      "bytes": 176,
+      "sha256": "d6a000bb9cffb0e3d943b27f9979a01e719ab361923e935a4b5fd1433239ef51"
+    },
+    {
+      "address": "0x51bc00",
+      "name": "PresentationEntry_RebuildDerivedPointersCallback",
+      "bytes": 5,
+      "sha256": "309712b96cc30d909219e15e35b346b312348ea1eac81a3f27c609087969cb55"
+    },
+    {
+      "address": "0x51f2d0",
+      "name": "FUN_0051f2d0",
+      "bytes": 24,
+      "sha256": "75acc2bcfe4ac863d3d374047432b56e1ca67851875373a3d2d412d4dccbc002"
+    },
+    {
+      "address": "0x51b870",
+      "name": "FUN_0051b870",
+      "bytes": 217,
+      "sha256": "dd47b35b93f3f0163c1bac8a6a026386ed67b92cbc3d15820c34ab655702581c"
+    },
+    {
+      "address": "0x41e3a0",
+      "name": "RenderResourceRoot_InitializeSubcontainers",
+      "bytes": 233,
+      "sha256": "71f96f6d823983cf38633a5805de6ddd334027652b20a9e02a365879cc54b4a2"
+    },
+    {
+      "address": "0x41ca70",
+      "name": "PresentationEntry_RebuildDerivedResourcePointers",
+      "bytes": 283,
+      "sha256": "e938febc4acc49e84971999b3140973849b1a4732aac015d4d2da46a80869e3a"
+    },
+    {
+      "address": "0x41cca0",
+      "name": "FUN_0041cca0",
+      "bytes": 133,
+      "sha256": "d96ba8549b962384bf8e4a6806f187d0bde550d5ac3d3c5ec45fda6660976bab"
+    },
+    {
+      "address": "0x41cf00",
+      "name": "PresentationEntry_ResetRuntimeState",
+      "bytes": 192,
+      "sha256": "10d066a8a4f4acb35c6bb612b5ce437646649a1fe6a9f709733f35922f30e5b4"
+    }
+  ],
+  "all_instruction_bytes_contiguous_and_hash_matched": true,
+  "controls": [
+    "51B9D0 literal capacity40 and tableRCX+30;41E3A0 reset51BA20 beforestorage51B9D0.",
+    "51F080 BTS ESI,10 assignsfixedtag;51F190 clearsnodeandcount;51F4C0 indexeslow16 buthead/tail comparefullID.",
+    "51F620 refreshalllinkednodes regardlessflag2;51BA80 passesR9=0fornew51F080entries."
+  ],
+  "limits": [
+    "No new original-code execution: prior lookup B remains bounded to its original cases.",
+    "41D220 initialization admissibility,41CB90 defaults,372280 nativeeffects andresource helpers remain unread in this package.",
+    "51B870 was read as an adjacent candidate; it initializes transform globals andisnotusedtosupportcontainerlifetime.",
+    "Static directcaller graph is a discovery aid, not a no-indirect-call proof."
+  ]
+}

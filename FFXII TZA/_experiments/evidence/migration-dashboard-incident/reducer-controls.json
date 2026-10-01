@@ -1,0 +1,42 @@
+{
+  "baseline": {
+    "returncode": 0,
+    "stdout": "REJECT_INCIDENT_ACCEPTANCE_CACHE_MISMATCH\n",
+    "stderr": ""
+  },
+  "negative_controls": [
+    {
+      "name": "incomplete",
+      "input_sha256": "b700153630438178f7b8836191c9f2f47932af8b39c85da96bf8463213a919ac",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\check.py\", line 8, in <module>\n    assert r.get('finished') is True and not r.get('fatal')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "missing-case",
+      "input_sha256": "f2a06a95cc4ab45bf3f58532939ac93e971c57b78fe9f063dada54e3f2cc6289",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\check.py\", line 12, in <module>\n    cases={c['name']:c for c in r['cases']};assert len(cases)==len(r['cases'])==14\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "tampered-bytes-served",
+      "input_sha256": "676493f6b6bbd80dd9de976bccada074f93d6b959fb486e7aaa5ed8b8ee3b6b1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\check.py\", line 21, in <module>\n    assert bad['http']['view']['sentinel']=='ORIGINAL' and bad['http']['meta']['historical'] is False\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "not-same-stat",
+      "input_sha256": "23f5b05b5dc1315196e22b5fb44feffc40682d96f1d44422c91338102fd66997",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\check.py\", line 19, in <module>\n    assert bad['size_before']==bad['size_after'] and bad['mtime_before']==bad['mtime_after']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    }
+  ],
+  "original_raw_unchanged": true
+}

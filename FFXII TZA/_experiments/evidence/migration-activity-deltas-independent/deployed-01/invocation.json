@@ -1,0 +1,8 @@
+{
+  "source": "actual exec_command tool receipt 507534; not a rerun",
+  "returncode": 0,
+  "terminal": true,
+  "driver_sha256": "bd60b9adc7520b4c85d06523f8a11eb68c90784cb194573dd44d65b863f8d9ac",
+  "requests": 5,
+  "stderr": ""
+}

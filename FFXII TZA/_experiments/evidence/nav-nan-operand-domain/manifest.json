@@ -1,0 +1,135 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 6240,
+      "sha256": "d3057626335172de08a1f770d370bf5e6507d0ca0f27b295fe347a8239e3c18b"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7958,
+      "sha256": "a481049887141c1c56d9ae1b18934db25bd51383ad4c7c32790af572f709871f"
+    },
+    {
+      "path": "fault-physical-row-hash.stderr",
+      "bytes": 531,
+      "sha256": "a64af44399c98ef930cd9e1d6e6c9f291105af789dd21c85722317b23b634ffd"
+    },
+    {
+      "path": "fault-physical-row-hash.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-universal-nan-reject.stderr",
+      "bytes": 403,
+      "sha256": "1091a145fc220ad91737ded1549cbe6329400f3eedc5d33d15212e3a2951e158"
+    },
+    {
+      "path": "fault-universal-nan-reject.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3040,
+      "sha256": "7da18fe9711b51fd65cea5c928b98e5a951af23a7041af3990fa08e271572e36"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2518,
+      "sha256": "4478c5a3187c2bf2f7d055b96c3d84729923604dc4173db302a4a4ce7e7b872a"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "bytes": 35798,
+      "sha256": "3b12d39407b594268ee03310d4a854d3e8b343b8cb2902bb3316e515c36ce394"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2220,
+      "sha256": "c9527fdd131b20e07cbeee2011f5d55fecb512ced74c9fc54837c5172c9edbd4"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 42486,
+      "sha256": "b394d0f4c8f775b6a7220b3519c4b8f74b5f32232ec77244a9bdddd991f9940d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4932,
+      "sha256": "d301e08d3e0956defeef54032deadf466b94cc0011acdcb00dc63194c3f7b0f9"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 621,
+      "sha256": "4f5f4fc5b6fe6eed4c2ecc9e0b4036f2b632f37b74a8a1a4aa90928cdd0457d8"
+    },
+    {
+      "path": "repair_row_hash.py",
+      "bytes": 1851,
+      "sha256": "30c01d87b5203761712ca494e0bce68c314cc1122e3b57cc5c5005a2352402fb"
+    },
+    {
+      "path": "result.json",
+      "bytes": 19336,
+      "sha256": "e989b256b2a47348c8979d0330d7c1e077f65366d73f7f2b84663d43c1233461"
+    },
+    {
+      "path": "retained/affected-field-row.txt",
+      "bytes": 3503,
+      "sha256": "ed5b219cad6ed9238059697cf010f96f5c0a5a92a51d911d8a916db4a824c9d8"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 6240,
+      "sha256": "d3057626335172de08a1f770d370bf5e6507d0ca0f27b295fe347a8239e3c18b"
+    },
+    {
+      "path": "retained/invalid-row-hash-normalization/check-before.py",
+      "bytes": 7741,
+      "sha256": "783a30a9d234a260197db9be046d2ea98ce4b6dcb702a6b7cd6897701984dadf"
+    },
+    {
+      "path": "retained/invalid-row-hash-normalization/failure.json",
+      "bytes": 1143,
+      "sha256": "cb659d4482faad8a0780f07ae664d85a0434c8ef1484341ac9544410f1dca3b6"
+    },
+    {
+      "path": "retained/opus-consumer.py",
+      "bytes": 8381,
+      "sha256": "5be1d0f47a3aaa5601c1a3a5c77afd69f29b2559c5b6a215bd74eabec5013ac9"
+    },
+    {
+      "path": "retained/original237.bin",
+      "bytes": 237,
+      "sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb"
+    },
+    {
+      "path": "retained/parent-capture.py",
+      "bytes": 8340,
+      "sha256": "6f6e16eb4d639c326246d8ad6b4dc3d3f71655bbde31f2e7195427a0c747a143"
+    },
+    {
+      "path": "retained/parent-source.json",
+      "bytes": 12895,
+      "sha256": "50749846935594db35cc1fef71e30ee2f5012156e7ee3cb950d0619f8425c04c"
+    },
+    {
+      "path": "retained/runner.py",
+      "bytes": 4349,
+      "sha256": "3af98b72d09c578a9956ccf98f680b83159496a5ff61054d4ef4f5d5abecbf96"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "A/B bounded NaNminA counterexample, finite/center/radius controls; no native status/game/whole malformed safety. Invalid first row reduction preserved, actual default fixed without guest rerun; independent review pending"
+}

@@ -1,0 +1,9 @@
+      00634540   3 calls through [02CF8370]  .?AV?$PClassDescriptorWithoutDefaultConstructor@VPClassDataMemberDynamic@Phyre@@@Phyre@@
+      006349B0  11 calls through [02CF8580]  .?AV?$PClassDescriptorWithoutDefaultConstructor@VPClassDescriptorDynamic@Phyre@@@Phyre@@
+      006352A0   2 calls through [02CF8680]  .?AV?$PClassDescriptorWithoutDefaultConstructor@VPClassMember@Phyre@@@Phyre@@
+      006357E0   1 calls through [02CF8880]  .?AV?$PClassDescriptorConcrete@VPClusterDependencyList@Phyre@@@Phyre@@
+      00635DC0   2 calls through [02CF9530]  .?AV?$PClassDescriptorConcrete@V?$PSharray@VPString@Phyre@@@Phyre@@@Phyre@@
+PASS  F1 5 functions, 19 calls, none of them the five member routes
+PASS  F2 the descriptors attached to are the reflection system's own classes
+PASS  F3 02CF8580's vtable 00D56ED0 has slot +0x40 = 0062EFD0; 006349B0 attaches the member 02CF9080 it built inline
+FAILS 0

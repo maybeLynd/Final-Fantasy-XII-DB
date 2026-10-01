@@ -1,0 +1,10 @@
+PASS A1  00213140's only qword reference: ['.rdata 00906DD0'] (DynGeoFontTextInstance vtable 00906DC8 slot 1); vtable installed by ['002130E0', '00213110']; ctor called at 001E91F3; +0x40..+0x4C from 00213520 at 001E924E, source [r14 + 0x13A0]
+PASS A1b  DynGeoTextureInstance slot 1 (001FB8E0) also calls vft[+0x100] on its argument
+PASS A2  SepAudioBank block {u32 +0x40, u8 +0x44, u32 +0x45, u8 +0x49}, +0x30..+0x3C copied as dwords (002190B0); 00213140 reads four dwords +0x40/+0x44/+0x48/+0x4C
+PASS A3  dword +0x45 sites: ['00218FC1 00218F40', '0021906F 00219000', '0021912A 002190B0', '002191E9 00219170', '002191EC 00219170', '002192B9 00219240', '00219747 002196A0', '00222E53 00222DC0']
+PASS A4  10 non-stack 32-bit reads of [reg + 0x40] in 00210000-00224000: {'fonttext': 1, 'sep': 4, 'shout': 5}; every copy read is stored back within two instructions
+PASS A5  SepAudioBank slots ['00222550', '00223490', '00222FE0', '00223100', '002230D0', '00223130', '00222D30', '002195D0', '00222F20', '00222340', '00223540']: no dword +0x40 access or lea ([])
+PASS C1  the sweep finds the binder's stores 00222E45 / 00222E53 and 00213140's read 0021318A
+PASS C2  the raw scan finds slot 10 (00223540) at 00907B98
+P    population: 369 non-stack 32-bit reads of [reg + 0x40] image-wide; 10 in the region, 359 outside not classified
+FAILS 0

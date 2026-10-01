@@ -1,0 +1,17 @@
+action-category-seven-result-01.json       identical []
+special-fallback-byte-result-01.json       identical []
+action-availability-gates-raw-01.json      identical []
+spattack-leaves-and-guard-raw-01.json      identical []
+special-selection-dispatch-raw-02.json     identical []
+category-controls                          driver True checker True cases identical
+   positive                     exit=0 result=True passed=True  
+   failed_capture_role          exit=1 result=False passed=True  ValueError: capture role prerequisite
+   missing_required_raw         exit=1 result=False passed=True  FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C-
+   changed_table_bytes          exit=1 result=False passed=True  ValueError: immutable table prerequisite
+   positive result vs committed positive result (driver hash excluded): identical
+fallback-controls                          driver True checker True cases identical
+   positive                     exit=0 result=True passed=True  
+   missing_wrapper_completion   exit=1 result=False passed=True  ValueError: dispatch wrapper prerequisite
+   wrong_dispatch_extent        exit=1 result=False passed=True  ValueError: dispatch wrapper prerequisite
+   missing_required_raw         exit=1 result=False passed=True  FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C-
+   positive result vs committed positive result (driver hash excluded): identical

@@ -1,0 +1,17 @@
+PASS exe .rdata 008F30E4 == 0.01f  0.009999999776482582
+PASS exe .rdata 00D10824 == 1.0e8f (page says 9.99e7)  100000000.0
+PASS exe string 00D122F0 == "chara\h"  b'chara\\h\x00'
+PASS exe .text 0016D6A0 is ret 0 (C2 00 00)  c20000
+PASS FTE m1283 rec0 known answer  ['0x8000', '0x100', '0x80', '0x13', '0x80', '0x40', '0x0', '0x0', '0x8000', '0x60', '0x6d005030']
+PASS FTE g0116 3 records, stride 0x20, dataOff 0xA0/0x80A0/0x100A0
+PASS FTE mutant stride 0x1C breaks the dataOff chain
+PASS FCT g0116 known answer  [(8192, 1024, 16, 4, 16, 1728055104, 96), (8192, 1024, 16, 4, 16, 1728055105, 4192), (8192, 1024, 16, 4, 16, 1728055106, 8288)]
+PASS FCT 005044D0 formula page3 addr
+PASS grey metric: planted grey palette -> 1.0
+PASS grey metric distinguishes g0116 page0 from page3  (0.227, 1.0)
+PASS FDM keys == FTR +0x38 in every FDM file  (1045, 1045)
+PASS mutant FDM keys == FTR count (+0x0C) is NOT universal  (148, 1045)
+PASS FTR bits 12-23 parent < own index (all non-roots)  (26495, 26495)
+PASS mutant: low 12 bits as parent is NOT topological  (3700, 26495)
+PASS negative: no @FTE entry carries EFX0010 at +0x30 (first 200 files)
+FAILS 0

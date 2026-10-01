@@ -1,0 +1,41 @@
+{
+ "cases": {
+  "gate_clear_request_whole_and_unused_storage_untouched": true,
+  "gate_set_large_request_chunked_at_0x80000": true,
+  "gate_set_null_descriptor_still_chunked": true,
+  "gate_set_small_request_first_part_is_the_whole": true
+ },
+ "gate_clear": {
+  "cap_30": "AAAAAAAA",
+  "chunk_22": 0,
+  "id": "40",
+  "offset_2C": "1000",
+  "part_28": "123456",
+  "remaining_34": "AAAAAAAA"
+ },
+ "gate_set_large": {
+  "cap_30": "80000",
+  "chunk_22": 1,
+  "id": "40",
+  "offset_2C": "1000",
+  "part_28": "80000",
+  "remaining_34": "123456"
+ },
+ "gate_set_null_desc": {
+  "cap_30": "80000",
+  "chunk_22": 1,
+  "id": "40",
+  "offset_2C": "0",
+  "part_28": "80000",
+  "remaining_34": "123456"
+ },
+ "gate_set_small": {
+  "cap_30": "80000",
+  "chunk_22": 1,
+  "id": "40",
+  "offset_2C": "1000",
+  "part_28": "1000",
+  "remaining_34": "1000"
+ },
+ "ok": true
+}

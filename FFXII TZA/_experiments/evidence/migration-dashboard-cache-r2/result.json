@@ -1,0 +1,31 @@
+{
+  "verdict": "ACCEPT",
+  "scope": "Returned e8999f966 cache repair, actual private HTTP at immutable published622c0866d; selected cache AST/timing/constants identical",
+  "base_commit": "e8999f966ef1b5d1aac87fcf1e941bd23e9ab2cd",
+  "executed_source_tree_commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+  "raw_sha256": "97d455fe82ae7980b4aa7fa7966dd1c6c4e2cb3ab9881c2f7a890247d131687a",
+  "facts": {
+    "deployed-read-only-observation": true,
+    "warm-output-positive": true,
+    "http-read-only-refusal": true,
+    "same-stat-output-next-request": true,
+    "same-stat-tampered-bytes-not-served": true,
+    "warm-output-historical-fallback": true,
+    "ordinary-snapshot-tamper-no-fallback": true,
+    "changed-loaded-code-detection": true,
+    "input-timer-positive": true,
+    "same-stat-input-periodic-detection": true
+  },
+  "failed": [],
+  "observation": "Same97byte/mtime output edit refused on next request, no tampered data. Warm ordinary edit serves verified historical prior; changed snapshot with no fallback refuses. Loaded-copy edit trips reader_stale.",
+  "input_timer": {
+    "first_detected_seconds_from_warm_response_end": 60.74548969999887,
+    "requests_observed": 61,
+    "no_current_response_on_request_started_after60s": true,
+    "warm_verified_at": "2026-09-29T06:21:50Z",
+    "detection_verified_at": "2026-09-29T06:22:51Z"
+  },
+  "cleanup": "Five exact owned process handles terminal/reaped, netstat0/no owned-port listeners, copied source restored.",
+  "limits": "Method A synthetic tooling/actual HTTP, not shipping FF12/live behavior. Timer verification on incoming requests, not idle background work; polling resolution/HTTP transit limits timing, no multi-file atomicity proof. Production only read-only responsiveness/scope sample: loaded module/PID identity and pending peer source/current deployment not accepted. Whole M3/M0-M5/L1+L2 not complete. Unchanged original build/export observations retain prior source identities; not rerun or credited here.",
+  "consumer": "OPUS structured R2 review/incorporation; propagate request-time timer scope and measured limits into incident/reader claims. Current deployment/final pending-code review remains separate."
+}

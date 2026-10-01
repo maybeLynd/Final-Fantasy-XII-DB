@@ -1,0 +1,4 @@
+COMMAND check.py
+EXIT 0
+PASS:5 complete original bodies,19 exact anchors; pre-assignment vs delivered-argument sites distinguished.
+8calculated representation boundaries; above4GB with low bit31 clear refutes the overbroad sign-filled-address predicate.

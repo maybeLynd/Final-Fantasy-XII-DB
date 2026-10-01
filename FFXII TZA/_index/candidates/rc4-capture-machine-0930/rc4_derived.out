@@ -1,0 +1,91 @@
+getters handing out entry + K (0 < K <= 0xDAC): 114
+PASS  control: DIRECT includes the machine's and the constructor's stores: 5 of 5 (all)
+functions analysed: 38161 (errors 0); DIRECT 57, DERIVED 52, INDEXED in +0xDAC/+0xDB8 functions 36
+  DERIVED  001728C0 00172923 mov dword ptr [rbx + 0x8c], edi              base rcx@e+0x80c,rcx@e+0x89c,rcx@e+0x92c,rcx@e+0x9bc,rcx@e+0xa4c,rcx@e+0xadc,rcx@e+0xb6c,rcx@e+0xbfc,rcx@e+0xc8c,rcx@e+0xd1c,rcx@e+0xdac value UNKNOWN
+  DERIVED  001728C0 00172923 mov dword ptr [rbx + 0x8c], edi              base rcx@e+0x80c,rcx@e+0x89c,rcx@e+0x92c,rcx@e+0x9bc,rcx@e+0xa4c,rcx@e+0xadc,rcx@e+0xb6c,rcx@e+0xbfc,rcx@e+0xc8c,rcx@e+0xd1c,rcx@e+0xdac,rcx@e+0xe3c value UNKNOWN
+  DERIVED  001728C0 00172923 mov dword ptr [rbx + 0x8c], edi              base rcx@e,rcx@e+0x80c,rcx@e+0x89c,rcx@e+0x92c,rcx@e+0x9bc,rcx@e+0xa4c,rcx@e+0xadc,rcx@e+0xb6c,rcx@e+0xbfc,rcx@e+0xc8c,rcx@e+0xd1c,rcx@e+0xdac value UNKNOWN
+  DERIVED  003714A0 00371DA7 movss dword ptr [rbx + 0xdc], xmm1           base R0020E600,R0020E600+0x103c,R0020E600+0x12cc,R0020E600+0x155c,R0020E600+0x17ec,R0020E600+0x1a7c,R0020E600+0x36c,R0020E600+0x5fc,R0020E600+0x88c,R0020E600+0xb1c,R0020E600+0xdac,R0020E600+0xdc value UNKNOWN
+  DERIVED  003EE420 003EE851 mov qword ptr [rbx + 0x28], rax              base rcx@e+0x1168,rcx@e+0x1348,rcx@e+0x1528,rcx@e+0x1708,rcx@e+0x268,rcx@e+0x448,rcx@e+0x628,rcx@e+0x808,rcx@e+0x9e8,rcx@e+0xbc8,rcx@e+0xda8,rcx@e+0xf88 value L(R0024A5A0+0x20)
+  DERIVED  003EE420 003EE851 mov qword ptr [rbx + 0x28], rax              base rcx@e+0x1168,rcx@e+0x1348,rcx@e+0x1528,rcx@e+0x268,rcx@e+0x448,rcx@e+0x628,rcx@e+0x808,rcx@e+0x9e8,rcx@e+0xbc8,rcx@e+0xda8,rcx@e+0xf88 value L(R0024A5A0+0x20)
+  DERIVED  003EE420 003EE851 mov qword ptr [rbx + 0x28], rax              base rcx@e+0x1168,rcx@e+0x1348,rcx@e+0x268,rcx@e+0x448,rcx@e+0x628,rcx@e+0x808,rcx@e+0x9e8,rcx@e+0xbc8,rcx@e+0xda8,rcx@e+0xf88 value L(R0024A5A0+0x20)
+  DERIVED  003EE420 003EE851 mov qword ptr [rbx + 0x28], rax              base rcx@e+0x1168,rcx@e+0x268,rcx@e+0x448,rcx@e+0x628,rcx@e+0x808,rcx@e+0x9e8,rcx@e+0xbc8,rcx@e+0xda8,rcx@e+0xf88 value L(R0024A5A0+0x20)
+  DERIVED  003EE420 003EE851 mov qword ptr [rbx + 0x28], rax              base rcx@e+0x268,rcx@e+0x448,rcx@e+0x628,rcx@e+0x808,rcx@e+0x9e8,rcx@e+0xbc8,rcx@e+0xda8 value L(R0024A5A0+0x20)
+  DERIVED  003EE420 003EE851 mov qword ptr [rbx + 0x28], rax              base rcx@e+0x268,rcx@e+0x448,rcx@e+0x628,rcx@e+0x808,rcx@e+0x9e8,rcx@e+0xbc8,rcx@e+0xda8,rcx@e+0xf88 value L(R0024A5A0+0x20)
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0x1048,rcx@e+0x10a8,rcx@e+0x1108,rcx@e+0x1168,rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28,rcx@e+0xf88,rcx@e+0xfe8 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0x1048,rcx@e+0x10a8,rcx@e+0x1108,rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28,rcx@e+0xf88,rcx@e+0xfe8 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0x1048,rcx@e+0x10a8,rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28,rcx@e+0xf88,rcx@e+0xfe8 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0x1048,rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28,rcx@e+0xf88,rcx@e+0xfe8 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8  value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28,rcx@e+0xf88 value 0x0
+  DERIVED  0048F410 0048F704 mov qword ptr [rax + 0x44], r9               base rcx@e+0xd48,rcx@e+0xda8,rcx@e+0xe08,rcx@e+0xe68,rcx@e+0xec8,rcx@e+0xf28,rcx@e+0xf88,rcx@e+0xfe8 value 0x0
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac              value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4  value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c,rcx@e+0xe84 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c,rcx@e+0xe84,rcx@e+0xe9c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c,rcx@e+0xe84,rcx@e+0xe9c,rcx@e+0xeb4 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac        value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c,rcx@e+0xe84 value UNKNOWN
+  DERIVED  005542D0 005545D6 mov dword ptr [rcx + 0x14], r9d              base rcx@e,rcx@e+0xdac,rcx@e+0xdc4,rcx@e+0xddc,rcx@e+0xdf4,rcx@e+0xe0c,rcx@e+0xe24,rcx@e+0xe3c,rcx@e+0xe54,rcx@e+0xe6c,rcx@e+0xe84,rcx@e+0xe9c value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x13fc,rcx@e+0x1724,rcx@e+0x1a4c,rcx@e+0x1d74,rcx@e+0x209c,rcx@e+0x23c4,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x13fc,rcx@e+0x1724,rcx@e+0x1a4c,rcx@e+0x1d74,rcx@e+0x209c,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x13fc,rcx@e+0x1724,rcx@e+0x1a4c,rcx@e+0x1d74,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x13fc,rcx@e+0x1724,rcx@e+0x1a4c,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x13fc,rcx@e+0x1724,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x13fc,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x10d4,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  DERIVED  005542D0 005549C6 add word ptr [r8], dx                        base rcx@e+0x10c,rcx@e+0x434,rcx@e+0x75c,rcx@e+0xa84,rcx@e+0xdac value UNKNOWN
+  INDEXED  002530E0 00253205 mov word ptr [rdx + rax*2], cx               base R0020E600                value UNKNOWN
+  INDEXED  002530E0 00253214 mov word ptr [rdx + rax*2], r8w              base R0020E600                value UNKNOWN
+  INDEXED  0036B980 0036BB83 mov byte ptr [rax + rdx + 0x34], cl          base rdx@e                    value UNKNOWN
+  INDEXED  00382FF0 00383096 mov qword ptr [rsi + r13*8 + 0x90], rax      base r8@e                     value L(rdx@e+0x0)+0x0
+  INDEXED  00382FF0 0038310D mov qword ptr [rsi + r13*8 + 0x90], rax      base r8@e                     value L(rdx@e+0x0)+0x0
+  INDEXED  006E5A20 006E5F0A mov dword ptr [rcx + rdi*4], ebx             base R006DA880                value UNKNOWN
+  INDEXED  006E5A20 006E5F24 movsd qword ptr [rax + rdi*8], xmm0          base R006DA880                value UNKNOWN
+  INDEXED  0075E330 0075E43F mov qword ptr [r9 + r8*8], rcx               base +?,R006DA880             value UNKNOWN
+  INDEXED  0075E330 0075E43F mov qword ptr [r9 + r8*8], rcx               base R006DA880                value UNKNOWN
+  INDEXED  007E0B60 007E1F25 movss dword ptr [rcx + rdi], xmm1            base L(rcx@e+?)               value UNKNOWN
+  INDEXED  007E0B60 007E213E movss dword ptr [rcx + r13], xmm1            base L(rcx@e+?)               value UNKNOWN
+  INDEXED  007E0B60 007E2334 mov dword ptr [rdi + rcx], eax               base rcx@e                    value UNKNOWN
+  INDEXED  007E0B60 007E233A mov dword ptr [r10 + rcx], eax               base rcx@e                    value UNKNOWN
+  INDEXED  007E0B60 007E2340 mov dword ptr [r11 + rcx], eax               base rcx@e                    value UNKNOWN
+  INDEXED  007E0B60 007E2347 mov dword ptr [r12 + rcx], eax               base rcx@e                    value UNKNOWN
+  INDEXED  007EBAD0 007ECF9A mov qword ptr [rbx + rax*8 + 0x100], rdi     base rcx@e                    value rcx@e+0x80
+  INDEXED  007EBAD0 007ED0BC mov qword ptr [rbx + rax*8 + 0x100], r14     base rcx@e                    value 0x0
+  INDEXED  007EBAD0 007ED0BC mov qword ptr [rbx + rax*8 + 0x100], r14     base rcx@e                    value 0x0,R007D99E0+0x0
+  INDEXED  007EBAD0 007ED17B mov qword ptr [rbx + rax*8 + 0x100], rdi     base rcx@e                    value rcx@e+0x80
+  INDEXED  007EBAD0 007ED1F8 mov qword ptr [rbx + rax*8 + 0x100], rdi     base rcx@e                    value 0x0
+  INDEXED  007EBAD0 007ED1F8 mov qword ptr [rbx + rax*8 + 0x100], rdi     base rcx@e                    value 0x0,R007DA0A0+0x0
+  INDEXED  007EBAD0 007ED287 mov qword ptr [rbx + rax*8 + 0x100], rdi     base rcx@e                    value rcx@e+0x80
+  INDEXED  007FA960 007FA9DD mov dword ptr [r14 + rdi*4], eax             base rdx@e                    value UNKNOWN
+  INDEXED  007FA960 007FAA34 mov dword ptr [r14 + rdi*4], eax             base rdx@e                    value UNKNOWN
+  INDEXED  007FB180 007FB2B6 mov dword ptr [r10 + rdx*4], ecx             base rcx@e                    value UNKNOWN
+  INDEXED  0080E940 0080EC47 mov dword ptr [r12 + rdx*4], eax             base L(r9@e+0x0)              value UNKNOWN
+  INDEXED  0080E940 0080EDA1 mov dword ptr [r12 + rcx*4], eax             base L(r9@e+0x0)              value UNKNOWN
+  INDEXED  0082DCE0 0082DF23 mov qword ptr [rax + rcx*8], rsi             base L(rdx@e+0x20)            value 0x0
+  INDEXED  0082DCE0 0082DF23 mov qword ptr [rax + rcx*8], rsi             base L(rdx@e+0x20)            value UNKNOWN
+  INDEXED  0082DCE0 0082DF3F mov qword ptr [rcx + rsi*8], rax             base L(rdx@e+0x20)            value R0081ED30+0x0
+  INDEXED  0087E470 0087E546 inc word ptr [r8 + rax*2 + 0xb88]            base rcx@e                    value UNKNOWN
+  INDEXED  0087E470 0087E5E7 add word ptr [r8 + rax*2 + 0xb88], r11w      base rcx@e                    value UNKNOWN
+  INDEXED  0087E470 0087E5F0 add word ptr [r8 + rax*2 + 0xb8a], 2         base rcx@e                    value UNKNOWN
+  INDEXED  00883720 008839A3 mov dword ptr [r12 + rdi*4], eax             base rdx@e                    value UNKNOWN
+  INDEXED  0088D890 0088DA2D movss dword ptr [r11 + rdx*4], xmm0          base rcx@e                    value UNKNOWN
+  INDEXED  0088D890 0088DB0C movss dword ptr [r11 + rdx*4], xmm0          base rcx@e                    value UNKNOWN

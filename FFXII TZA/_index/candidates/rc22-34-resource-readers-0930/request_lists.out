@@ -1,0 +1,38 @@
+003933F0 <- 003EF9DE in 003EF830  table 00D11CA0  n=1  0x38 gameover.mrp
+003933F0 <- 00574F94 in 00574E80  table 00D23680  n=1  0xCC Party_Book.mrp
+003933F0 <- 00579F73 in 00579AF0  table 00D237D8  n=1  0x92 quest.mrp
+003933F0 <- 0057B7AC in 0057B780  table 00D238E0  n=1  0x96 shop_new.mrp
+003933F0 <- 005827D8 in 00582790  table 00D23D98  n=1  0x6F save_load.mrp
+00393460 <- 003EF9C4 in 003EF830  table 00D11C88  n=1  0x39 gameover_c.tm2
+00393460 <- 00572DAC in 00572D80  table 00D23668  n=1  0xCF Medal_c.tm2
+00393460 <- 00579F50 in 00579AF0  table 00D237E0  n=7  0xC1 Q_c00.tm2, 0xC2 Q_c01.tm2, 0xC3 Q_c02.tm2, 0xC4 Q_c03.tm2, 0xC5 Q_c04.tm2, 0xC6 Q_c05.tm2, 0xC0 Q_under_c.tm2
+00393460 <- 005827BC in 00582790  table 00D23D80  n=1  0x7F DataFace_c.tm2
+003934F0 <- 00574F78 in 00574E80  table 00D23628  n=2  0xCE HandBack_c.tm2, 0xCD Hand_4_c.tm2
+PASS K1 save_load.mrp (0x6F) is requested through 00582790's list
+kind-7 .mrp ids in the path array: 0x38 gameover.mrp, 0x3A title.mrp, 0x3B title_menu.mrp, 0x6F save_load.mrp, 0x89 E3_Logo.mrp, 0x92 quest.mrp, 0x96 shop_new.mrp, 0xA6 w_menu.mrp, 0xBF Loca.mrp, 0xCC Party_Book.mrp
+   gameover.mrp     0x038  list 003EF9DE in 003EF830
+   title.mrp        0x03A  not in these lists
+   title_menu.mrp   0x03B  not in these lists
+   save_load.mrp    0x06F  list 005827D8 in 00582790
+   E3_Logo.mrp      0x089  not in these lists
+   quest.mrp        0x092  list 00579F73 in 00579AF0
+   shop_new.mrp     0x096  list 0057B7AC in 0057B780
+   w_menu.mrp       0x0A6  not in these lists
+   Loca.mrp         0x0BF  not in these lists
+   Party_Book.mrp   0x0CC  list 00574F94 in 00574E80
+.cl2 ids: 0xE2 Loca_gil.cl2, 0xE3 Loca_bhm.cl2, 0xE4 Loca_rbl.cl2 - in these lists: []
+K2 data dwords equal to a .cl2 id with a menu-resource id neighbour: 6
+   008FCEBC = 0xE2  neighbours [186, 225, 227, 232]  -> console page table 008FCE00 (manifest_walker.py)
+   008FCEC0 = 0xE3  neighbours [292, 226, 228, 233]  -> console page table 008FCE00 (manifest_walker.py)
+   008FCEC4 = 0xE4  neighbours [0, 227, 229, 234]  -> console page table 008FCE00 (manifest_walker.py)
+   01F435F8 = 0xE2  neighbours [225, 0, 2147541516, 227]  -> identity run (id at +0, id-1 / id+1 at -0x18 / +0x18)
+   01F43610 = 0xE3  neighbours [226, 0, 2147541772, 228]  -> identity run (id at +0, id-1 / id+1 at -0x18 / +0x18)
+   01F43628 = 0xE4  neighbours [227, 0, 2147542028, 229]  -> identity run (id at +0, id-1 / id+1 at -0x18 / +0x18)
+PASS K2 every data hit is the console page table or an identity run (no request list carries a .cl2 id)
+   the identity run spans 01F420C8..01F438B0, ids 0x0..0xFF, stride 0x18
+K3 title.mrp        0x03A constant request sites: none
+K3 title_menu.mrp   0x03B constant request sites: none
+K3 E3_Logo.mrp      0x089 constant request sites: none
+K3 w_menu.mrp       0x0A6 constant request sites: 0056303B
+K3 Loca.mrp         0x0BF constant request sites: 004040FE
+FAILS 0

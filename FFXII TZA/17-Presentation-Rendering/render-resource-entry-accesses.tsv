@@ -1,0 +1,43 @@
+# RenderResourceEntry - emitted by emit_seeded_census.py
+# SEEDS AND WHY: 00409FE0 resolves an entry at 0040A055 and does `mov rdi, rax` at 0040A05D, then passes that rdi to 00409710, 00409A60 and 00409A30; 00409600 is the store's own ResourceEntry_GetResolvedBasePointer. NOTE these seeds are DELIBERATELY not the declared `FN 0x002ED570+0x0` route, which is shared with RenderStrideC0Element and conflates three banks
+# The declared route is not used: see the type row. A census seeded from proven
+# entry points is restricted where a shared route would conflate siblings.
+function	name	site	disp	kind	instruction	route	note
+00409710	FUN_00409710	00409715	0x0	w	mov word ptr [rcx], dx	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	00409616	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	00409718	0x4	w	mov dword ptr [rcx + 4], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097D7	0x4	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097D7	0x4	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409A96	0x4	w	mov dword ptr [r14 + 4], ebp	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	00409648	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	00409805	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BAF	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BBE	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BD0	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE1A	0x10	w	mov dword ptr [rcx], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F035	0x10	r	mov edx, dword ptr [rcx]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE00	FUN_0051ee00	0051EE00	0x18	r	mov rcx, qword ptr [rcx + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE1C	0x18	w	mov qword ptr [rcx + 8], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFE9	0x18	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F044	0x18	w	mov qword ptr [rdi + 8], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F055	0x18	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+006B5C70	FUN_006b5c70	006B5C70	0x18	r	mov rax, qword ptr [rcx + 8]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE20	0x20	w	mov dword ptr [rcx + 0x10], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFAA	0x20	r	mov ecx, dword ptr [rcx + 0x10]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051F020	FUN_0051f020	0051F048	0x20	w	mov dword ptr [rdi + 0x10], esi	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EE10	FUN_0051ee10	0051EE12	0x24	w	mov qword ptr [rcx + 0x14], 0x800	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFBC	0x24	r	mov r9d, dword ptr [rdi + 0x14]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFB0	0x28	r	mov r9d, dword ptr [rdi + 0x18]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051EFF2	0x28	r	add eax, dword ptr [rdi + 0x18]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+0051EF90	FUN_0051ef90	0051F002	0x28	rw	add dword ptr [rdi + 0x18], esi	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	0040962B	0x30	r	mov rcx, qword ptr [rbx + 0x30]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	0040971B	0x30	w	mov qword ptr [rcx + 0x30], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097F0	0x30	r	mov rcx, qword ptr [rbx + 0x30]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409B9E	0x30	w	mov qword ptr [r14 + 0x30], r15	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	00409634	0x38	w	mov qword ptr [rbx + 0x38], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409600	ResourceEntry_GetResolvedBasePointer	0040963E	0x38	r	mov rax, qword ptr [rbx + 0x38]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097F9	0x38	w	mov qword ptr [rbx + 0x38], rax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409780	ResourceEntry_FindSectionIndexAndOffset	004097FF	0x38	r	mov r10, qword ptr [rbx + 0x38]	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	0040971F	0x40	w	mov dword ptr [rcx + 0x40], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409A60	FUN_00409a60	00409BF1	0x40	w	mov dword ptr [r14 + 0x40], eax	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	
+00409710	FUN_00409710	00409722	0x44	w	mov dword ptr [rcx + 0x44], edx	seeded on proven entry points: 00409710, 00409A60, 00409A30, 00409600	

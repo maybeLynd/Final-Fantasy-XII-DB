@@ -1,0 +1,45 @@
+{
+  "experiment": "EXP-070-procedural-rng-controls",
+  "files": {
+    "003A6E60.bin": {
+      "bytes": 345,
+      "sha256": "2453f4d5f7acb538e301d7031beaebd2f1f611e3eb9994b2eba9dd5fd0507cbf"
+    },
+    "004005E0.bin": {
+      "bytes": 108,
+      "sha256": "34184564ebd7a36bfe008b7a0b745340079bd80b671844a6284d4b0bb02f5bb0"
+    },
+    "01CEBBA8.bin": {
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    "01EF93FC.bin": {
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    "check.py": {
+      "bytes": 7738,
+      "sha256": "7ce3b51022ee83f70497df18c51988c1660f3fcc40d9f62e18c3b8b1461df667"
+    },
+    "disassembly.txt": {
+      "bytes": 6216,
+      "sha256": "9c9075f3f148bc526c7c98d583883a15466a635bcf8c952cbe1dadec9694045b"
+    },
+    "failed-initial-check.py": {
+      "bytes": 7507,
+      "sha256": "ce81a4b852aae01b68d1e9618fcce71152a4ab3577f4fda56cb7166a859b8c07"
+    },
+    "failed-second-check.py": {
+      "bytes": 7550,
+      "sha256": "774ade00d44a1b295ae3c80ef3df9702651e2742c27454aeac21458d6e4f7ba7"
+    },
+    "failed-setup.txt": {
+      "bytes": 1176,
+      "sha256": "77e3e96a459263f6df5e705940b9874c385de25400f4eda7a1ad73acc5eb6303"
+    },
+    "result.json": {
+      "bytes": 78994,
+      "sha256": "2895de926ad440dc833fdf7f2793b2277a2cbcbd1e0f87c493e8fbe3b57bcc67"
+    }
+  }
+}

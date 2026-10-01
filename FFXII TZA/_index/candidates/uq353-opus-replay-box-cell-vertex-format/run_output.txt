@@ -1,0 +1,6 @@
+Q_plain_quad_is_a_4_vertex_strip_TL_BL_TR_BR                           PASS
+F_bit2_selects_the_plain_quad_and_is_cleared                           PASS
+F_other_bits_are_carried                                               PASS
+B_bit3_draws_to_the_centre_with_the_halving_blend_and_is_cleared       PASS
+M_row_vector_times_matrix_then_divide_by_w                             PASS
+ALL PASS

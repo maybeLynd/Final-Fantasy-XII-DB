@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "mutation_va": 3213090,
+  "original_byte": 72,
+  "mutant_byte": 64,
+  "source_sha256": "617edf87cc30ba82aa85ed836162edc892c0a0eec1c6ed7be2e52efb66fa83c1",
+  "results": [
+    {
+      "name": "original",
+      "code_sha256": "7848f02fa8ab54c82574678bcd04d4f4d9ec34a57a021b8b1be17145f7e70073",
+      "context": 0,
+      "detected": false,
+      "boundary": 3213103
+    },
+    {
+      "name": "dword_context_reset",
+      "code_sha256": "7b9f123304a3ec1f2194184198429650ecd6d61f0ed203644618d0d819904b8c",
+      "context": 18364758542507835392,
+      "detected": true,
+      "boundary": 3213103
+    }
+  ]
+}

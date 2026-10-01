@@ -1,0 +1,12 @@
+{
+ "returned": true,
+ "zeroed_57C8_59C7": true,
+ "masked_59C8_5A47_to_A0": true,
+ "untouched_57C0_57C7": true,
+ "untouched_5A48_next": true,
+ "untouched_57B8_57BF": true,
+ "descriptor0_plus30": "57C0",
+ "descriptor2_plus20": "57C8",
+ "descriptor0_plus8": "4748",
+ "ok": true
+}

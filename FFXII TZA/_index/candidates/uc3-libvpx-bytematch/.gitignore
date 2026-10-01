@@ -1,0 +1,3 @@
+# The yasm objects are this record's evidence (obj-manifest.sha256 pins them).
+!obj/
+!obj/*.obj

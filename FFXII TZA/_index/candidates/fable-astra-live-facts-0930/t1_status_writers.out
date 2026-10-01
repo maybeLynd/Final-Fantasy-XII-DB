@@ -1,0 +1,67 @@
+== A. rip-relative references whose access covers 0215EFF4 (raw .text sweep, not function-list bounded)
+  002DF719  lea      rax, [rip + 0x1e7f8d4]                         [002DF6C0 FUN_002df6c0]  read/form size=8  -> 0215EFF4
+  002DF75F  lea      rax, [rip + 0x1e7f88e]                         [002DF6C0 FUN_002df6c0]  read/form size=8  -> 0215EFF4
+  002DF808  lea      rax, [rip + 0x1e7f7e5]                         [002DF780 FUN_002df780]  read/form size=8  -> 0215EFF4
+  002DF838  lea      rax, [rip + 0x1e7f7b5]                         [002DF780 FUN_002df780]  read/form size=8  -> 0215EFF4
+  0046DFE7  cmp      dword ptr [rip + 0x1cf1006], -1                [0046DFE0 FUN_0046dfe0]  read/form size=4  -> 0215EFF4
+  0046E0E0  mov      eax, dword ptr [rip + 0x1cf0f0e]               [0046E0E0 FUN_0046e0e0]  read/form size=4  -> 0215EFF4
+  raw-only (unverified) hits: []
+PASS A-control  the six known rip references (4 lea by the issuers, 2 reads) are all found: []
+PASS A  no rip-relative STORE covers 0215EFF4
+
+== B. image-base-relative displacements [reg + (VA - 0x120000)] in the window 0215EE00..0215F200 (disp 0x203EE00..0x203F200)
+  002DF7BF  mov      rax, qword ptr [r15 + rbx*8 + 0x203f000]       [002DF780 FUN_002df780]  read/form size=8  -> base+disp = 0215F000  (indexed)
+  002DF830  mov      rcx, qword ptr [r15 + rbx*8 + 0x203f000]       [002DF780 FUN_002df780]  read/form size=8  -> base+disp = 0215F000  (indexed)
+  raw-only (unverified) disp hits: 0 []
+PASS B-control  the known image-base-relative read 002DF7BF [r15+rbx*8+0x203f000] is found by the same detector
+PASS B  no non-indexed image-base-relative access covers 0215EFF4: 0
+  image-base-relative STORES in the window: []
+
+== C. stored absolute pointers (DIR64 relocations and raw unaligned qwords) into 0215EE00..0215F000 and to the cell 01F82CC0
+  reloc pointers: []
+  raw qwords: []
+PASS C-control  reloc sweep finds the vtable 01CB2508 slot 0 -> 00793EB0: ['01CB2508']
+PASS C  no stored pointer to 0215EE00..0215EFFF or to 01F82CC0 anywhere in the file
+
+== D. the pointer cell 01F82CC0: every rip reference (raw sweep), and image-base-relative forms
+  001D6D70  mov      rax, qword ptr [rip + 0x1dabf49]               [001D6D70 FUN_001d6d70]  read/form size=8  -> 01F82CC0
+  001D6D7E  mov      qword ptr [rip + 0x1dabf37], 0                 [001D6D70 FUN_001d6d70]  STORE size=8  -> 01F82CC0
+  001D6DCD  mov      qword ptr [rip + 0x1dabeec], rax               [001D6D90 FUN_001d6d90]  STORE size=8  -> 01F82CC0
+  001D6FED  mov      qword ptr [rip + 0x1dabccc], rax               [001D6FB0 FUN_001d6fb0]  STORE size=8  -> 01F82CC0
+  raw-only: []
+  image-base-relative forms of the cell: []
+PASS D-control  the load 001D6D70, clear 001D6D7E and stores 001D6DCD/001D6FED are found
+PASS D  exactly four references, no image-base-relative form: ['001D6D70', '001D6D7E', '001D6DCD', '001D6FED']
+
+== E. stores through the register loaded from the cell (per loading function; register followed to overwrite / call / ret)
+  load 001D6D70 in 001D6D70 FUN_001d6d70 -> {'rax'}
+     001D6D7C  mov      dword ptr [rax], ecx                           [001D6D70 FUN_001d6d70]  STORE size=4  disp=0x0
+     end at 001D6D89  ret                                                     [001D6D70 FUN_001d6d70]
+
+== F. what can be stored INTO the cell: every store's source, and every caller of the two storers (raw E8/E9 + address-takes)
+  001D6D90: E8/E9 sites ['002DF777', '002DF853']; rip address-takes []; stored pointers []
+     call 002DF777: arg slot [rsp+0x20] <- 002DF76C  mov      qword ptr [rsp + 0x20], rax                    [002DF6C0 FUN_002df6c0]  | 002DF75F  lea      rax, [rip + 0x1e7f88e]                         [002DF6C0 FUN_002df6c0]
+     call 002DF853: arg slot [rsp+0x20] <- 002DF81A  mov      dword ptr [rsp + 0x20], esi                    [002DF780 FUN_002df780]  | ?
+     call 002DF853: arg slot [rsp+0x20] <- 002DF84A  mov      qword ptr [rsp + 0x20], rax                    [002DF780 FUN_002df780]  | 002DF838  lea      rax, [rip + 0x1e7f7b5]                         [002DF780 FUN_002df780]
+  001D6FB0: E8/E9 sites ['002DF735', '002DF821']; rip address-takes []; stored pointers []
+     call 002DF735: arg slot [rsp+0x28] <- 002DF723  mov      qword ptr [rsp + 0x28], rax                    [002DF6C0 FUN_002df6c0]  | 002DF719  lea      rax, [rip + 0x1e7f8d4]                         [002DF6C0 FUN_002df6c0]
+     call 002DF821: arg slot [rsp+0x28] <- 002DF80F  mov      qword ptr [rsp + 0x28], rax                    [002DF780 FUN_002df780]  | 002DF808  lea      rax, [rip + 0x1e7f7e5]                         [002DF780 FUN_002df780]
+  001D6D70: E8/E9 sites []; rip address-takes ['001D6DEF  lea      rax, [rip - 0x86]                              [001D6D90 FUN_001d6d90]', '001D700F  lea      rax, [rip - 0x2a6]                             [001D6FB0 FUN_001d6fb0]']; stored pointers []
+PASS F-control  (see the four call sites above: 002DF735/002DF777/002DF821/002DF853)
+
+== G. address formation BELOW the target: lea / rip bases in 0215E000..0215EFF4 (for bulk/loop writes that could run into it)
+  002DE3D2  lea      rax, [rip + 0x1e80b79]                         [002DE360 FUN_002de360]  -> 0215EF52  (gap to target 0xa2)
+  002DE733  lea      rcx, [rip + 0x1e7fffa]                         [002DE420 FUN_002de420]  -> 0215E734  (gap to target 0x8c0)
+  002DE8FB  lea      rsi, [rip + 0x1e7fe36]                         [002DE800 FUN_002de800]  -> 0215E738  (gap to target 0x8bc)
+  002DEA06  lea      rcx, [rip + 0x1e7fd03]                         [002DE800 FUN_002de800]  -> 0215E710  (gap to target 0x8e4)
+  002DEB40  lea      rax, [rip + 0x1e80409]                         [002DEB40 FUN_002deb40]  -> 0215EF50  (gap to target 0xa4)
+  002DEB47  lea      r8, [rip + 0x1e80482]                          [002DEB40 FUN_002deb40]  -> 0215EFD0  (gap to target 0x24)
+  002DEFDF  lea      r8, [rip + 0x1e7f72a]                          [002DEFA0 FUN_002defa0]  -> 0215E710  (gap to target 0x8e4)
+  002DF49F  lea      r8, [rip + 0x1e7f26a]                          [002DF460 FUN_002df460]  -> 0215E710  (gap to target 0x8e4)
+
+== H. absolute 32-bit VA forms (imm32 / base-less or based disp32 equal to the VA itself; the PE has no DYNAMIC_BASE)
+  hits in owned code: []
+PASS H-control  the same detector finds the imm32 0x02000000 at 001A14E6 (mov edx, 0x2000000)
+PASS H  no absolute-VA form of 0215EE00..0215F1FF or of the cell
+
+FAILS 0

@@ -1,0 +1,8 @@
+{
+  "action": "finish",
+  "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-146",
+  "note": "seal commit 9f54093a7 (private index, TEAM.json + 3 seal ops; real index normalized after)",
+  "result_refs": [
+    "9f54093a7"
+  ]
+}

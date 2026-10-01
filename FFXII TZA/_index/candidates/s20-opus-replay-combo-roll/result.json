@@ -1,0 +1,226 @@
+{
+ "ok": true,
+ "mt_seed": 20260925,
+ "gate_world_value": 0,
+ "ard": {
+  "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rsn_b\\area\\rsn_b.ard",
+  "sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992"
+ },
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4266,
+ "results": {
+  "CB3_first_hit_draws_twelve_not_two": {
+   "pass_": true,
+   "rolls": 60,
+   "combos": 37,
+   "mismatches": [],
+   "draws_seen": [
+    1,
+    12
+   ],
+   "note": "60 first-hit rolls (counter 0) at gate 60 against an independent MT19937 model of the instructions: every flag, nibble and draw count matches; a first hit that passes the percent gate draws the generator 12 times (1 + an 11-draw loop at 003887E3), one that fails draws once - CB-3's 'twice' counts call sites, not draws; the low nibble of +0x12 survives"
+  },
+  "CB3_count_rises_as_hp_falls": {
+   "pass_": true,
+   "counts_by_band": {
+    "1000/1000 0": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "120/1000 0": [
+     3,
+     9,
+     5,
+     5,
+     4,
+     3,
+     3,
+     5
+    ],
+    "50/1000 0": [
+     7,
+     9,
+     7,
+     7
+    ],
+    "400/1000 10000000": [
+     3,
+     1,
+     2,
+     6,
+     2,
+     4
+    ],
+    "240/1000 0": [
+     1,
+     2,
+     2,
+     2,
+     3,
+     2,
+     2
+    ],
+    "30/1000 10000": [
+     3,
+     3,
+     1,
+     2,
+     1,
+     1
+    ]
+   },
+   "note": "the per-hit probability is 8 / 16 / 32 / 64 % as current HP falls below max/4, max/8, max/16 (status bit 28 doubles max, status bit 16 compares HP with itself - always 8 %); the count is 1 + successes of 11 draws, capped at 11"
+  },
+  "CB4_progress_against_the_nibble": {
+   "pass_": true,
+   "cases": {
+    "counter 1, nibble 3": {
+     "ok": true,
+     "flag": 1,
+     "draws": 0
+    },
+    "counter 2, nibble 3": {
+     "ok": true,
+     "flag": 1,
+     "draws": 0
+    },
+    "counter 3, nibble 3": {
+     "ok": true,
+     "flag": 0,
+     "draws": 0
+    },
+    "counter 5, nibble 3": {
+     "ok": true,
+     "flag": 0,
+     "draws": 0
+    }
+   },
+   "note": "counter 1 / 2 against nibble 3 continue, 3 and 5 end; no case draws the generator"
+  },
+  "CB5_foe_record_table_and_cap": {
+   "pass_": true,
+   "class_cap_byte": 2,
+   "kind_EA9": 0,
+   "rolls": [
+    {
+     "flag": 1,
+     "nibble": 1,
+     "draws": 12,
+     "model": [
+      1,
+      1,
+      12
+     ],
+     "party_table_untouched": true,
+     "uncapped_model_count": 7
+    },
+    {
+     "flag": 1,
+     "nibble": 1,
+     "draws": 12,
+     "model": [
+      1,
+      1,
+      12
+     ],
+     "party_table_untouched": true,
+     "uncapped_model_count": 8
+    },
+    {
+     "flag": 1,
+     "nibble": 1,
+     "draws": 12,
+     "model": [
+      1,
+      1,
+      12
+     ],
+     "party_table_untouched": true,
+     "uncapped_model_count": 8
+    },
+    {
+     "flag": 1,
+     "nibble": 1,
+     "draws": 12,
+     "model": [
+      1,
+      1,
+      12
+     ],
+     "party_table_untouched": true,
+     "uncapped_model_count": 8
+    },
+    {
+     "flag": 1,
+     "nibble": 1,
+     "draws": 12,
+     "model": [
+      1,
+      1,
+      12
+     ],
+     "party_table_untouched": true,
+     "uncapped_model_count": 8
+    },
+    {
+     "flag": 1,
+     "nibble": 1,
+     "draws": 12,
+     "model": [
+      1,
+      1,
+      12
+     ],
+     "party_table_untouched": true,
+     "uncapped_model_count": 8
+    }
+   ],
+   "mismatches": [],
+   "note": "a foe record (stats +5 = 1): the nibble is written in 0208DE80 + unit[+0xEA9]*0x40 (003886D6), not the party table 0208D480 + rec[+4]*0x40 CB-5 names; the count is capped at class[+0x20] - 1 = 1 (0038884D); all 12 rolls at gate 100 and HP 10/1000 (p = 64) match the capped model, and the uncapped model would have exceeded the cap"
+  }
+ }
+}

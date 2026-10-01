@@ -1,0 +1,106 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_restore_primary.py",
+      "bytes": 4745,
+      "sha256": "de41c28445f581befa8633da27fe3c54dc70bcbb96f35252ac5bf653f9cdcee3",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-restore-primary.json",
+      "bytes": 20960,
+      "sha256": "ae6f6e7b4c311cda4bbe3e52d51768d916bd5b7af9dbc4e6ca74259da7ea5d17",
+      "transform": "CRLF to LF only",
+      "source_newlines": "CRLF",
+      "crlf_lines": []
+    },
+    "callers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_restore_callers.py",
+      "bytes": 4763,
+      "sha256": "8f98b28418d3b3bdd7568d96fccda34aa906e0eef6c6e071406cd9918693b0c8",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    },
+    "callers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-restore-callers.json",
+      "bytes": 67235,
+      "sha256": "93020c67f15581b3fb6217ef154ce63da38ca821877d343823a023c64273ac5f",
+      "transform": "CRLF to LF only",
+      "source_newlines": "CRLF",
+      "crlf_lines": []
+    },
+    "support.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_restore_support.py",
+      "bytes": 4736,
+      "sha256": "c14c8c4682b623e6a529fc2955749332f8d311430a5bfb4d1fa0ad9745614b22",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    },
+    "support.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-restore-support.json",
+      "bytes": 11209,
+      "sha256": "279b38879f5bffd9fefe9493716d2f4298a962c6845ebe4103f18119de1af3da",
+      "transform": "CRLF to LF only",
+      "source_newlines": "CRLF",
+      "crlf_lines": []
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_restore_check.py",
+      "bytes": 5769,
+      "sha256": "3ba6e95f48087a31061f2cb726f5fb0bfcc7096b2070c4ea0c4d2ed8f5827d17",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-restore-check.json",
+      "bytes": 8888,
+      "sha256": "cc23d0bac8d994bd239e5c6c30ef50aa0aaf7343ebf4a78ee4843c4d911c96ad",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    }
+  },
+  "files": {
+    "callers.json": {
+      "bytes": 64681,
+      "sha256": "87565b28f13e064d5c59e555bb1824736ab5fa31a384680f4c21b6345bf1da2f"
+    },
+    "callers.py": {
+      "bytes": 4763,
+      "sha256": "8f98b28418d3b3bdd7568d96fccda34aa906e0eef6c6e071406cd9918693b0c8"
+    },
+    "check.json": {
+      "bytes": 8888,
+      "sha256": "cc23d0bac8d994bd239e5c6c30ef50aa0aaf7343ebf4a78ee4843c4d911c96ad"
+    },
+    "check.py": {
+      "bytes": 5769,
+      "sha256": "3ba6e95f48087a31061f2cb726f5fb0bfcc7096b2070c4ea0c4d2ed8f5827d17"
+    },
+    "primary.json": {
+      "bytes": 20148,
+      "sha256": "5456bf25cd41ec6e046e498a0ca072faefdc28fdfede9fbd1c7d9fe4989698dd"
+    },
+    "primary.py": {
+      "bytes": 4745,
+      "sha256": "de41c28445f581befa8633da27fe3c54dc70bcbb96f35252ac5bf653f9cdcee3"
+    },
+    "README.md": {
+      "bytes": 2791,
+      "sha256": "a8bef25a67fe0ebb1fcdf8de09fd1297c326887fa2fa34cad8a4a232ec874c99"
+    },
+    "support.json": {
+      "bytes": 10773,
+      "sha256": "4924c553eb6e776a943c439369304da7a4e62df3df3019f8e06faa3898e0a0eb"
+    },
+    "support.py": {
+      "bytes": 4736,
+      "sha256": "c14c8c4682b623e6a529fc2955749332f8d311430a5bfb4d1fa0ad9745614b22"
+    }
+  }
+}

@@ -1,0 +1,1023 @@
+function	name	site	disp	kind	instruction	route	note
+00227EE0	FUN_00227ee0	00227F26	0x0	addr	lea r9, [rsi + 0xc0]	backtrace 002D8550->arg3 lea	
+00241D40	FUN_00241d40	00241DD2	0x0	addr	lea rcx, [rsi + 0xe0]	backtrace 002B3280->arg0 lea	
+00241D40	FUN_00241d40	00241DF2	0x0	addr	lea rcx, [rsi + 0xe0]	backtrace 002B3280->arg0 lea	
+00241D40	FUN_00241d40	0024219E	0x0	addr	lea rcx, [rsi + 0xe0]	backtrace 002B3280->arg0 lea	
+00241D40	FUN_00241d40	00242366	0x0	addr	lea r9, [rsi + 0xe0]	backtrace 002B3280->arg0 lea	
+002A1B00	FUN_002a1b00	002A1B2D	0x0	addr	lea r14, [rcx + 0xd0]	owner+0xD0 copier	
+002A1B00	FUN_002a1b00	002A1B34	0x0	r	movups xmm0, xmmword ptr [r14]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A4457	0x0	addr	lea rbx, [rcx + 0xd0]	backtrace 002AF960->arg0 mov<rdef-leaD0	
+002A4430	FUN_002a4430	002A4461	0x0	r	movups xmm0, xmmword ptr [rbx]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A4886	0x0	addr	lea rax, [rcx + 0xd0]	owner+0xD0 init-kind3	
+002A4830	FUN_002a4830	002A488D	0x0	r	movups xmm0, xmmword ptr [rax]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C01	0x0	addr	lea rbx, [r14 + 0xd0]	owner+0xD0 init-kind3	
+002A4830	FUN_002a4830	002A4C15	0x0	r	movups xmm0, xmmword ptr [rbx]	owner+0xD0 init-kind3+leaD0	
+002A7720	FUN_002a7720	002A77E8	0x0	addr	lea rdi, [rbx + 0xd0]	backtrace 002ABEC0->arg0 mov<rdef-leaD0	
+002A8C50	FUN_002a8c50	002A8C91	0x0	r	movups xmm0, xmmword ptr [rax]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E45	0x0	w	movups xmmword ptr [rsi], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F3D	0x0	r	movups xmm0, xmmword ptr [rsi]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9112	0x0	w	movups xmmword ptr [rsi], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A92B2	0x0	w	movups xmmword ptr [rsi], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A9327	0x0	r	movups xmm0, xmmword ptr [rsi]	drawer1/4	
+002A8C50	FUN_002a8c50	002A953B	0x0	w	movups xmmword ptr [rsi], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A95F3	0x0	r	movups xmm0, xmmword ptr [rsi]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F29	0x0	r	movups xmm0, xmmword ptr [rcx]	drawer2	
+002AAE40	FUN_002aae40	002AAE67	0x0	r	movups xmm0, xmmword ptr [rcx]	drawer11	
+002AAE40	FUN_002aae40	002AB7A3	0x0	w	mov dword ptr [rbx], eax	drawer11	
+002AE610	FUN_002ae610	002AE650	0x0	r	movups xmm0, xmmword ptr [rcx]	copier	
+002AF960	FUN_002af960	002AFA81	0x0	r	movups xmm0, xmmword ptr [rbx]	dispatcher2	
+002AF960	FUN_002af960	002AFA87	0x0	w	movaps xmmword ptr [rsp + 0x30], xmm0	stackcopy	
+002AF960	FUN_002af960	002AFAC0	0x0	w	movss dword ptr [rsp + 0x30], xmm4	stackcopy	
+002AF960	FUN_002af960	002AFB13	0x0	w	movss dword ptr [rsp + 0x30], xmm4	stackcopy	
+002AF960	FUN_002af960	002AFC6C	0x0	addr	lea r8, [rsp + 0x30]	stackcopy	
+002AF960	FUN_002af960	002AFD83	0x0	r	movaps xmm0, xmmword ptr [rsp + 0x30]	stackcopy	
+002B0280	FUN_002b0280	002B045A	0x0	r	movss xmm0, dword ptr [r14]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0DA5	0x0	r	movss xmm0, dword ptr [r14]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1783	0x0	r	movups xmm0, xmmword ptr [r14]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A06	0x0	r	movups xmm0, xmmword ptr [r14]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B2045	0x0	addr	lea rcx, [rsp + 0x40]	stackcopy	
+002B2150	FUN_002b2150	002B2175	0x0	r	movups xmm0, xmmword ptr [rcx]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B24CA	0x0	r	movups xmm0, xmmword ptr [rcx]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E2B	0x0	r	movups xmm0, xmmword ptr [rcx]	copier	
+002B3E90	FUN_002b3e90	002B3EA7	0x0	r	movups xmm0, xmmword ptr [rcx]	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B42F5	0x0	addr	lea rax, [rbp + 0x40]	stackcopy	
+002B43C0	FUN_002b43c0	002B43CB	0x0	r	movups xmm0, xmmword ptr [rcx]	drawer1/4->arg0@002A91BA	
+002B5730	FUN_002b5730	002B57EE	0x0	addr	lea rcx, [rsp + 0x40]	stackcopy	
+003649A0	FUN_003649a0	00364A8B	0x0	r	movss xmm0, dword ptr [r14]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364E4A	0x0	r	movss xmm0, dword ptr [r14]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	00366339	0x0	r	movss xmm0, dword ptr [rdi]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00553AE0	FUN_00553ae0	00553B48	0x0	addr	lea r9, [rbx + 0xe0]	backtrace 002D8650->arg3 lea	
+0057C480	FUN_0057c480	0057C50D	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C592	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C5D4	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C5E2	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C8E0	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C8EE	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C916	0x0	addr	lea r9, [rsi + 0xe0]	owner+0xE0 handler	
+0057C480	FUN_0057c480	0057C9B0	0x0	addr	lea rcx, [rsi + 0xe0]	owner+0xE0 handler	
+002A8C50	FUN_002a8c50	002A8F34	0x4	w	movss dword ptr [rsi + 4], xmm0	drawer1/4	
+002AAE40	FUN_002aae40	002AB7A8	0x4	w	mov dword ptr [rbx + 4], eax	drawer11	
+002AF960	FUN_002af960	002AFA84	0x4	r	mov eax, dword ptr [rbx + 4]	dispatcher2	
+002B0280	FUN_002b0280	002B0484	0x4	r	addss xmm2, dword ptr [r14 + 4]	draw-helper->arg0@002D8791	
+002B2150	FUN_002b2150	002B247F	0x4	w	movss dword ptr [rbp], xmm7	init-kind0+lea4->arg3@002B3D21	
+002B3C30	FUN_002b3c30	002B3C9B	0x4	addr	lea r9, [rbx + 4]	init-kind0	
+002B3C30	FUN_002b3c30	002B3D26	0x4	r	movss xmm1, dword ptr [rbx + 4]	init-kind0	
+002B3C30	FUN_002b3c30	002B3D35	0x4	w	mov dword ptr [rbx + 4], 0x41b80000	init-kind0	
+002B3D50	FUN_002b3d50	002B3D8B	0x4	addr	lea r9, [rdi + 4]	init-kind0b	
+002B3D50	FUN_002b3d50	002B3DC7	0x4	r	movss xmm1, dword ptr [rdi + 4]	init-kind0b	
+002B3D50	FUN_002b3d50	002B3DD6	0x4	w	mov dword ptr [rdi + 4], 0x41b80000	init-kind0b	
+003647E0	FUN_003647e0	003648CD	0x4	r	mulss xmm0, dword ptr [rdi + 4]	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	003648F6	0x4	r	mulss xmm0, dword ptr [rdi + 4]	draw-helper->arg0@002D873C->arg1@00364B58	
+003649A0	FUN_003649a0	00364A7F	0x4	r	mulss xmm0, dword ptr [r14 + 4]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364A85	0x4	w	movss dword ptr [r14 + 4], xmm0	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364AB2	0x4	r	movss xmm0, dword ptr [r14 + 4]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364E9A	0x4	r	mulss xmm3, dword ptr [r14 + 4]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	0036536C	0x4	r	mulss xmm0, dword ptr [r14 + 4]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003662C2	0x4	w	movss dword ptr [rdi + 4], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366309	0x4	w	mov dword ptr [rdi + 4], 0x3f800000	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036632F	0x4	r	mulss xmm0, dword ptr [rdi + 4]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366334	0x4	w	movss dword ptr [rdi + 4], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036634C	0x4	r	movss xmm0, dword ptr [rdi + 4]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002B0280	FUN_002b0280	002B0451	0x8	r	movss xmm1, dword ptr [r14 + 8]	draw-helper->arg0@002D8791	
+003649A0	FUN_003649a0	00364ABF	0x8	r	movss xmm0, dword ptr [r14 + 8]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364E89	0x8	r	mulss xmm2, dword ptr [r14 + 8]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003662F0	0x8	w	movss dword ptr [rdi + 8], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003662FE	0x8	w	movss dword ptr [rdi + 8], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366310	0x8	w	mov dword ptr [rdi + 8], 0x3f800000	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366358	0x8	r	movss xmm0, dword ptr [rdi + 8]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002AF960	FUN_002af960	002AFA9F	0xC	r	movss xmm2, dword ptr [rsp + 0x3c]	stackcopy	
+002B0280	FUN_002b0280	002B0467	0xC	r	movss xmm0, dword ptr [r14 + 0xc]	draw-helper->arg0@002D8791	
+002B3C30	FUN_002b3c30	002B3D41	0xC	w	mov dword ptr [rbx + 0xc], 0x3f800000	init-kind0	
+002B3D50	FUN_002b3d50	002B3DDD	0xC	w	mov dword ptr [rdi + 0xc], 0x3f800000	init-kind0b	
+003649A0	FUN_003649a0	00364EC3	0xC	r	movss xmm0, dword ptr [r14 + 0xc]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	00366511	0xC	w	movss dword ptr [rdi + 0xc], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036651A	0xC	r	movss xmm1, dword ptr [rdi + 0xc]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036653E	0xC	r	movss xmm0, dword ptr [rdi + 0xc]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036656A	0xC	w	mov dword ptr [rdi + 0xc], r14d	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A1B00	FUN_002a1b00	002A1B40	0x10	r	movups xmm1, xmmword ptr [r14 + 0x10]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A4478	0x10	r	movups xmm1, xmmword ptr [rbx + 0x10]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A4895	0x10	r	movups xmm1, xmmword ptr [rax + 0x10]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C25	0x10	r	movups xmm1, xmmword ptr [rbx + 0x10]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8C9B	0x10	r	movups xmm1, xmmword ptr [rax + 0x10]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E4C	0x10	w	movups xmmword ptr [rsi + 0x10], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F4A	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9119	0x10	w	movups xmmword ptr [rsi + 0x10], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A92B9	0x10	w	movups xmmword ptr [rsi + 0x10], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9333	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9542	0x10	w	movups xmmword ptr [rsi + 0x10], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A95F6	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F33	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	drawer2	
+002A9F00	FUN_002a9f00	002AA76E	0x10	w	movups xmmword ptr [rdi + 0x10], xmm0	drawer2	
+002AAE40	FUN_002aae40	002AAE72	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	drawer11	
+002AE610	FUN_002ae610	002AE659	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	copier	
+002AE610	FUN_002ae610	002AEA2F	0x10	w	movss dword ptr [rdi + 0x10], xmm0	copier	
+002AE610	FUN_002ae610	002AEAAE	0x10	w	movss dword ptr [rdi + 0x10], xmm10	copier	
+002AF960	FUN_002af960	002AFD88	0x10	w	movups xmmword ptr [rbx + 0x10], xmm0	dispatcher2	
+002B0280	FUN_002b0280	002B178D	0x10	r	movups xmm1, xmmword ptr [r14 + 0x10]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A0A	0x10	r	movups xmm1, xmmword ptr [r14 + 0x10]	draw-helper->arg0@002D8791	
+002B2150	FUN_002b2150	002B2181	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B24D9	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	init-kind0->arg0@002B3C8D	
+002B2D60	FUN_002b2d60	002B2D6C	0x10	r	mov eax, dword ptr [rcx + 0x10]	backtrace 002AF960->arg0 mov->arg0@002A459F	
+002B2DF0	FUN_002b2df0	002B2E2E	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	copier	
+002B3E90	FUN_002b3e90	002B3EB6	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B43D7	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	drawer1/4->arg0@002A91BA	
+002AE610	FUN_002ae610	002AEA47	0x14	w	movss dword ptr [rdi + 0x14], xmm0	copier	
+002B2D60	FUN_002b2d60	002B2D71	0x14	r	mov eax, dword ptr [rcx + 0x14]	backtrace 002AF960->arg0 mov->arg0@002A459F	
+002AE610	FUN_002ae610	002AEA3D	0x18	w	movss dword ptr [rdi + 0x18], xmm2	copier	
+002AE610	FUN_002ae610	002AEAB4	0x18	w	movss dword ptr [rdi + 0x18], xmm6	copier	
+002B2D60	FUN_002b2d60	002B2D77	0x18	r	mov eax, dword ptr [rcx + 0x18]	backtrace 002AF960->arg0 mov->arg0@002A459F	
+002AE610	FUN_002ae610	002AEA42	0x1C	w	movss dword ptr [rdi + 0x1c], xmm7	copier	
+002B2D60	FUN_002b2d60	002B2D7D	0x1C	r	mov eax, dword ptr [rcx + 0x1c]	backtrace 002AF960->arg0 mov->arg0@002A459F	
+002A1B00	FUN_002a1b00	002A1B57	0x20	r	movups xmm0, xmmword ptr [r14 + 0x20]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A4480	0x20	r	movups xmm0, xmmword ptr [rbx + 0x20]	backtrace 002AF960->arg0 mov	
+002A4430	FUN_002a4430	002A44E6	0x20	w	mov qword ptr [rbx + 0x20], rdi	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48A1	0x20	r	movups xmm0, xmmword ptr [rax + 0x20]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C2C	0x20	r	movups xmm0, xmmword ptr [rbx + 0x20]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CAE	0x20	r	movups xmm0, xmmword ptr [rax + 0x20]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E54	0x20	w	movups xmmword ptr [rsi + 0x20], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F63	0x20	r	movups xmm0, xmmword ptr [rsi + 0x20]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9121	0x20	w	movups xmmword ptr [rsi + 0x20], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A92C1	0x20	w	movups xmmword ptr [rsi + 0x20], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A933A	0x20	r	movups xmm0, xmmword ptr [rsi + 0x20]	drawer1/4	
+002A8C50	FUN_002a8c50	002A954A	0x20	w	movups xmmword ptr [rsi + 0x20], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A95FD	0x20	r	movups xmm0, xmmword ptr [rsi + 0x20]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F4B	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	drawer2	
+002A9F00	FUN_002a9f00	002AA50E	0x20	r	cmp qword ptr [rdi + 0x20], 0	drawer2	
+002AA800	FUN_002aa800	002AABE4	0x20	r	cmp qword ptr [rsi + 0x20], rbx	drawer5	
+002AA800	FUN_002aa800	002AAC1E	0x20	r	mov rcx, qword ptr [rsi + 0x20]	drawer5	
+002AAE40	FUN_002aae40	002AAE8A	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	drawer11	
+002AAE40	FUN_002aae40	002AB34B	0x20	r	cmp qword ptr [rax + 0x20], 0	drawer11	
+002AAE40	FUN_002aae40	002AB39E	0x20	r	mov rcx, qword ptr [rax + 0x20]	drawer11	
+002AE610	FUN_002ae610	002AE672	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	copier	
+002AF960	FUN_002af960	002AF9C3	0x20	r	mov rcx, qword ptr [rbx + 0x20]	dispatcher2	
+002AF960	FUN_002af960	002AFBF1	0x20	r	mov rdx, qword ptr [rbx + 0x20]	dispatcher2	
+002B0280	FUN_002b0280	002B03E0	0x20	r	mov rcx, qword ptr [r14 + 0x20]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0B4B	0x20	r	cmp qword ptr [r14 + 0x20], rdi	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0B85	0x20	r	mov rcx, qword ptr [r14 + 0x20]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B146D	0x20	r	cmp qword ptr [r14 + 0x20], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B149E	0x20	r	mov rcx, qword ptr [r14 + 0x20]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B179F	0x20	r	movups xmm0, xmmword ptr [r14 + 0x20]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A12	0x20	r	movups xmm0, xmmword ptr [r14 + 0x20]	draw-helper->arg0@002D8791	
+002B1D20	FUN_002b1d20	002B1D9B	0x20	r	mov rdx, qword ptr [r8 + 0x20]	draw-helper->arg0@002D8791->arg0@002B04E4	
+002B2150	FUN_002b2150	002B21CE	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B24EA	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E37	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	copier	
+002B3E90	FUN_002b3e90	002B3ECB	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B43E3	0x20	r	movups xmm0, xmmword ptr [rcx + 0x20]	drawer1/4->arg0@002A91BA	
+002D8550	FUN_002d8550	002D861C	0x20	w	mov qword ptr [rbp + 0x20], rax	draw-helper	
+002D8690	FUN_002d8690	002D878D	0x20	w	mov qword ptr [rdi + 0x20], rax	draw-helper	
+002D87D0	FUN_002d87d0	002D88CD	0x20	w	mov qword ptr [rdi + 0x20], rax	draw-helper	
+003649A0	FUN_003649a0	00364A5D	0x20	r	mov rcx, qword ptr [r14 + 0x20]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364F5E	0x20	r	mov rdx, qword ptr [r14 + 0x20]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	0036513D	0x20	r	mov rcx, qword ptr [r14 + 0x20]	draw-helper->arg0@002D873C	
+002A8C50	FUN_002a8c50	002A8C9F	0x28	r	add rdi, qword ptr [rsi + 0x28]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8ECD	0x28	r	add rdx, qword ptr [rsi + 0x28]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F55	0x28	r	add rdi, qword ptr [rsi + 0x28]	drawer1/4	
+002A8C50	FUN_002a8c50	002A91B3	0x28	r	add rdx, qword ptr [rsi + 0x28]	drawer1/4	
+002AAE40	FUN_002aae40	002AAFB9	0x28	r	mov rax, qword ptr [rbx + 0x28]	drawer11	
+002AF960	FUN_002af960	002AF975	0x28	r	mov rdx, qword ptr [rcx + 0x28]	dispatcher2	
+002B0280	FUN_002b0280	002B02AA	0x28	r	mov r15, qword ptr [rcx + 0x28]	draw-helper->arg0@002D8791	
+002B1E20	FUN_002b1e20	002B1E37	0x28	r	add rdx, qword ptr [rcx + 0x28]	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B28F0	FUN_002b28f0	002B28F0	0x28	r	mov rax, qword ptr [rcx + 0x28]	owner+0xD0 init-kind3+leaD0->arg0@002A4C10	
+002B28F0	FUN_002b28f0	002B2908	0x28	r	cmp qword ptr [rcx + 0x28], 0	owner+0xD0 init-kind3+leaD0->arg0@002A4C10	
+002B2930	FUN_002b2930	002B2930	0x28	r	mov rax, qword ptr [rcx + 0x28]	owner+0xD0 init-kind3+leaD0->arg0@002A4D36	
+002B3400	FUN_002b3400	002B3460	0x28	w	mov qword ptr [rdi + 0x28], rsi	init-kind2	
+002B3C30	FUN_002b3c30	002B3C39	0x28	w	mov qword ptr [rcx + 0x28], rdx	init-kind0	
+002B3D50	FUN_002b3d50	002B3D6F	0x28	w	mov qword ptr [rcx + 0x28], rdx	init-kind0b	
+002D8690	FUN_002d8690	002D8718	0x28	r	mov rcx, qword ptr [r9 + 0x28]	draw-helper	
+002D87D0	FUN_002d87d0	002D8858	0x28	r	mov rcx, qword ptr [r9 + 0x28]	draw-helper	
+003649A0	FUN_003649a0	00364AE2	0x28	r	mov rax, qword ptr [r14 + 0x28]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	0036659B	0x28	r	mov rdx, qword ptr [rdi + 0x28]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00553AE0	FUN_00553ae0	00553B37	0x28	r	cmp qword ptr [rbx + 0x108], 0	backtrace 002D8650->arg3 lea	
+002A1B00	FUN_002a1b00	002A1B60	0x30	r	movups xmm1, xmmword ptr [r14 + 0x30]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A4488	0x30	r	movups xmm1, xmmword ptr [rbx + 0x30]	backtrace 002AF960->arg0 mov	
+002A4430	FUN_002a4430	002A453E	0x30	w	mov dword ptr [rbx + 0x30], eax	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48A9	0x30	r	movups xmm1, xmmword ptr [rax + 0x30]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C34	0x30	r	movups xmm1, xmmword ptr [rbx + 0x30]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CB6	0x30	r	movups xmm1, xmmword ptr [rax + 0x30]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E5C	0x30	w	movups xmmword ptr [rsi + 0x30], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F70	0x30	r	movups xmm1, xmmword ptr [rsi + 0x30]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9129	0x30	w	movups xmmword ptr [rsi + 0x30], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A92C9	0x30	w	movups xmmword ptr [rsi + 0x30], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9342	0x30	r	movups xmm1, xmmword ptr [rsi + 0x30]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9552	0x30	w	movups xmmword ptr [rsi + 0x30], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9605	0x30	r	movups xmm1, xmmword ptr [rsi + 0x30]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F61	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	drawer2	
+002AA800	FUN_002aa800	002AAA8F	0x30	r	movzx eax, byte ptr [rsi + 0x30]	drawer5	
+002AA800	FUN_002aa800	002AAC61	0x30	r	movzx r8d, byte ptr [rsi + 0x30]	drawer5	
+002AAE40	FUN_002aae40	002AAE93	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	drawer11	
+002AC1E0	FUN_002ac1e0	002AC206	0x30	w	mov dword ptr [rbx + 0x30], 0x80808080	init-kind2->arg0@002B3418	
+002AE610	FUN_002ae610	002AE685	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	copier	
+002AE610	FUN_002ae610	002AE920	0x30	r	mov eax, dword ptr [rdi + 0x30]	copier	
+002B0280	FUN_002b0280	002B0314	0x30	r	mov ecx, dword ptr [r14 + 0x30]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0332	0x30	w	mov dword ptr [rsp + 0x34], ecx	stackcopy	
+002B0280	FUN_002b0280	002B0920	0x30	r	movzx eax, byte ptr [rsp + 0x34]	stackcopy	
+002B0280	FUN_002b0280	002B0BC4	0x30	r	movzx r8d, byte ptr [rsp + 0x34]	stackcopy	
+002B0280	FUN_002b0280	002B13DF	0x30	r	mov ebx, dword ptr [rsp + 0x34]	stackcopy	
+002B0280	FUN_002b0280	002B13F9	0x30	w	mov dword ptr [rsp + 0x34], ebx	stackcopy	
+002B0280	FUN_002b0280	002B17A8	0x30	r	movups xmm1, xmmword ptr [r14 + 0x30]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A1B	0x30	r	movups xmm1, xmmword ptr [r14 + 0x30]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B2009	0x30	w	mov dword ptr [rsp + 0x70], 0x80808080	stackcopy	
+002B2150	FUN_002b2150	002B21D6	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B24F2	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E40	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	copier	
+002B3E90	FUN_002b3e90	002B3ED4	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B4272	0x30	w	mov dword ptr [rbp + 0x70], 0x80808080	stackcopy	
+002B43C0	FUN_002b43c0	002B43EB	0x30	r	movups xmm1, xmmword ptr [rcx + 0x30]	drawer1/4->arg0@002A91BA	
+002B5730	FUN_002b5730	002B57B2	0x30	w	mov dword ptr [rsp + 0x70], 0x80808080	stackcopy	
+002D8550	FUN_002d8550	002D85D4	0x30	w	mov dword ptr [r9 + 0x30], eax	draw-helper	
+002D8690	FUN_002d8690	002D871C	0x30	w	mov dword ptr [r9 + 0x30], eax	draw-helper	
+002D87D0	FUN_002d87d0	002D885C	0x30	w	mov dword ptr [r9 + 0x30], eax	draw-helper	
+003649A0	FUN_003649a0	00364ADA	0x30	r	mov eax, dword ptr [r14 + 0x30]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	003650AF	0x30	r	cmp eax, dword ptr [r14 + 0x30]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	003650D1	0x30	r	movzx r10d, byte ptr [r14 + 0x30]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00365111	0x30	r	mov eax, dword ptr [r14 + 0x30]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00365115	0x30	w	mov dword ptr [rsp + 0x50], eax	stackcopy	
+003649A0	FUN_003649a0	003653EA	0x30	r	movzx r8d, byte ptr [r14 + 0x30]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003663C6	0x30	w	mov byte ptr [rdi + 0x30], cl	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003663D6	0x30	w	mov byte ptr [rdi + 0x30], al	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002AA800	FUN_002aa800	002AAA9C	0x31	r	movzx ecx, byte ptr [rsi + 0x31]	drawer5	
+002AA800	FUN_002aa800	002AAC66	0x31	r	movzx edx, byte ptr [rsi + 0x31]	drawer5	
+002B0280	FUN_002b0280	002B0925	0x31	r	movzx ecx, byte ptr [rsp + 0x35]	stackcopy	
+002B0280	FUN_002b0280	002B0BCA	0x31	r	movzx edx, byte ptr [rsp + 0x35]	stackcopy	
+003649A0	FUN_003649a0	003650C8	0x31	r	movzx r9d, byte ptr [r14 + 0x31]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	003653EF	0x31	r	movzx edx, byte ptr [r14 + 0x31]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003663BC	0x31	w	mov byte ptr [rdi + 0x31], cl	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003663DD	0x31	w	mov byte ptr [rdi + 0x31], al	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002AA800	FUN_002aa800	002AAA98	0x32	r	movzx edx, byte ptr [rsi + 0x32]	drawer5	
+002AA800	FUN_002aa800	002AAC59	0x32	r	movzx ecx, byte ptr [rsi + 0x32]	drawer5	
+002B0280	FUN_002b0280	002B092A	0x32	r	movzx edx, byte ptr [rsp + 0x36]	stackcopy	
+002B0280	FUN_002b0280	002B0BBF	0x32	r	movzx ecx, byte ptr [rsp + 0x36]	stackcopy	
+003649A0	FUN_003649a0	003650C3	0x32	r	movzx r8d, byte ptr [r14 + 0x32]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	003653E5	0x32	r	movzx ecx, byte ptr [r14 + 0x32]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003663B2	0x32	w	mov byte ptr [rdi + 0x32], cl	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003663E4	0x32	w	mov byte ptr [rdi + 0x32], al	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002AA800	FUN_002aa800	002AAA93	0x33	r	movzx r8d, byte ptr [rsi + 0x33]	drawer5	
+002AA800	FUN_002aa800	002AAC4F	0x33	r	cmp byte ptr [rsi + 0x33], 0	drawer5	
+002AA800	FUN_002aa800	002AAC5D	0x33	r	movzx eax, byte ptr [rsi + 0x33]	drawer5	
+002B0280	FUN_002b0280	002B02B1	0x33	r	movzx r12d, byte ptr [rcx + 0x33]	draw-helper->arg0@002D8791	
+003647E0	FUN_003647e0	00364847	0x33	w	mov byte ptr [rdi + 0x33], al	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	00364868	0x33	w	mov byte ptr [rdi + 0x33], dl	draw-helper->arg0@002D873C->arg1@00364B58	
+003649A0	FUN_003649a0	003650BE	0x33	r	movzx edx, byte ptr [r14 + 0x33]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	003653D7	0x33	r	movzx r9d, byte ptr [r14 + 0x33]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003663A8	0x33	w	mov byte ptr [rdi + 0x33], cl	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003663EB	0x33	w	mov byte ptr [rdi + 0x33], al	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A8C50	FUN_002a8c50	002A97AA	0x34	w	movss dword ptr [rsi + 0x34], xmm0	drawer1/4	
+002AC1E0	FUN_002ac1e0	002AC216	0x34	w	mov dword ptr [rbx + 0x34], 0x3f800000	init-kind2->arg0@002B3418	
+002AC2F0	FUN_002ac2f0	002AC54B	0x34	r	movss xmm2, dword ptr [rdi + 0x34]	drawer5->arg0@002AA941	
+002AE610	FUN_002ae610	002AE81B	0x34	r	mulss xmm0, dword ptr [rdi + 0x34]	copier	
+002B0280	FUN_002b0280	002B0323	0x34	r	movss xmm13, dword ptr [r14 + 0x34]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B07BD	0x34	r	movss xmm1, dword ptr [r14 + 0x34]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B11DF	0x34	r	mulss xmm6, dword ptr [r14 + 0x34]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1230	0x34	r	mulss xmm6, dword ptr [r14 + 0x34]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1253	0x34	r	movss xmm0, dword ptr [r14 + 0x34]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B2017	0x34	w	mov dword ptr [rsp + 0x74], 0x3f800000	stackcopy	
+002B41F0	FUN_002b41f0	002B4282	0x34	w	mov dword ptr [rbp + 0x74], 0x3f800000	stackcopy	
+002B5730	FUN_002b5730	002B57C0	0x34	w	mov dword ptr [rsp + 0x74], 0x3f800000	stackcopy	
+003649A0	FUN_003649a0	00364ADE	0x34	w	mov dword ptr [r14 + 0x34], eax	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003663D2	0x34	r	movzx eax, byte ptr [rdi + 0x34]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+0057C480	FUN_0057c480	0057C54E	0x34	w	movss dword ptr [rsi + 0x114], xmm1	owner+0xE0 handler	
+00366110	FUN_00366110	003663D9	0x35	r	movzx eax, byte ptr [rdi + 0x35]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003663E0	0x36	r	movzx eax, byte ptr [rdi + 0x36]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+003647E0	FUN_003647e0	00364843	0x37	r	movzx eax, byte ptr [rdi + 0x37]	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	0036485A	0x37	r	movzx ecx, byte ptr [rdi + 0x37]	draw-helper->arg0@002D873C->arg1@00364B58	
+00366110	FUN_00366110	003663E7	0x37	r	movzx eax, byte ptr [rdi + 0x37]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A8C50	FUN_002a8c50	002A97B4	0x38	w	movss dword ptr [rsi + 0x38], xmm1	drawer1/4	
+002AC1E0	FUN_002ac1e0	002AC254	0x38	w	mov dword ptr [rbx + 0x38], 0x3f800000	init-kind2->arg0@002B3418	
+002AC2F0	FUN_002ac2f0	002AC571	0x38	r	movss xmm3, dword ptr [rdi + 0x38]	drawer5->arg0@002AA941	
+002B0280	FUN_002b0280	002B044D	0x38	addr	lea r12, [r14 + 0x38]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B047A	0x38	r	movss xmm0, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B0737	0x38	r	movss xmm0, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B07CB	0x38	r	mulss xmm1, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B0D56	0x38	addr	lea r12, [r14 + 0x38]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0F19	0x38	r	mulss xmm7, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B11E5	0x38	r	mulss xmm6, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B1236	0x38	r	mulss xmm6, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B1259	0x38	r	mulss xmm0, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B12F0	0x38	r	movss xmm0, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B1386	0x38	r	movss xmm0, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B0280	FUN_002b0280	002B16AA	0x38	r	mulss xmm0, dword ptr [r12]	draw-helper->arg0@002D8791+lea38	
+002B1FB0	FUN_002b1fb0	002B204A	0x38	w	mov dword ptr [rsp + 0x78], 0x3f800000	stackcopy	
+002B41F0	FUN_002b41f0	002B42C0	0x38	w	mov dword ptr [rbp + 0x78], 0x3f800000	stackcopy	
+002B5730	FUN_002b5730	002B57F3	0x38	w	mov dword ptr [rsp + 0x78], 0x3f800000	stackcopy	
+003647E0	FUN_003647e0	003648D2	0x38	r	addss xmm0, dword ptr [rdi + 0x38]	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	003648D7	0x38	w	movss dword ptr [rdi + 0x38], xmm0	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	003648FB	0x38	r	addss xmm0, dword ptr [rdi + 0x38]	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	00364900	0x38	w	movss dword ptr [rdi + 0x38], xmm0	draw-helper->arg0@002D873C->arg1@00364B58	
+003649A0	FUN_003649a0	00364DDC	0x38	r	addss xmm0, dword ptr [r14 + 0x38]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364DE2	0x38	w	movss dword ptr [r14 + 0x38], xmm0	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	0036537C	0x38	r	addss xmm0, dword ptr [r14 + 0x38]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00365382	0x38	w	movss dword ptr [r14 + 0x38], xmm0	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	00366217	0x38	r	addss xmm0, dword ptr [rdi + 0x38]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036621C	0x38	w	movss dword ptr [rdi + 0x38], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036647C	0x38	w	movss dword ptr [rdi + 0x38], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003664C9	0x38	w	movss dword ptr [rdi + 0x38], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003665EB	0x38	w	movss dword ptr [rdi + 0x38], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+003FFDA0	FUN_003ffda0	003FFDC5	0x38	w	movss dword ptr [rdx], xmm0	draw-helper->arg0@002D8791+lea38->arg1@002B136C	
+002A8C50	FUN_002a8c50	002A97BE	0x3C	w	movss dword ptr [rsi + 0x3c], xmm0	drawer1/4	
+002AC1E0	FUN_002ac1e0	002AC25B	0x3C	w	mov dword ptr [rbx + 0x3c], 0x3f800000	init-kind2->arg0@002B3418	
+002AC2F0	FUN_002ac2f0	002AC57D	0x3C	r	movss xmm0, dword ptr [rdi + 0x3c]	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC593	0x3C	r	mulss xmm1, dword ptr [rdi + 0x3c]	drawer5->arg0@002AA941	
+002B0280	FUN_002b0280	002B049E	0x3C	r	movss xmm0, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0744	0x3C	r	mulss xmm1, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0971	0x3C	r	mulss xmm1, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0B1B	0x3C	r	mulss xmm6, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0DD2	0x3C	r	mulss xmm1, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0F3A	0x3C	r	mulss xmm0, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B12FE	0x3C	r	movss xmm0, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B135F	0x3C	addr	lea rdi, [r14 + 0x3c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1394	0x3C	r	movss xmm0, dword ptr [rdi]	draw-helper->arg0@002D8791+lea3C	
+002B1FB0	FUN_002b1fb0	002B2052	0x3C	w	mov dword ptr [rsp + 0x7c], 0x3f800000	stackcopy	
+002B41F0	FUN_002b41f0	002B42C7	0x3C	w	mov dword ptr [rbp + 0x7c], 0x3f800000	stackcopy	
+002B5730	FUN_002b5730	002B57FB	0x3C	w	mov dword ptr [rsp + 0x7c], 0x3f800000	stackcopy	
+003649A0	FUN_003649a0	00364DE8	0x3C	r	movss xmm2, dword ptr [r14 + 0x3c]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	00366248	0x3C	w	movss dword ptr [rdi + 0x3c], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366256	0x3C	w	mov dword ptr [rdi + 0x3c], r14d	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003664A5	0x3C	w	movss dword ptr [rdi + 0x3c], xmm0	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003664CE	0x3C	w	movss dword ptr [rdi + 0x3c], xmm1	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+003FFDA0	FUN_003ffda0	003FFDDD	0x3C	w	movss dword ptr [r8], xmm0	draw-helper->arg0@002D8791+lea3C->arg2@002B136C	
+002A1B00	FUN_002a1b00	002A1B69	0x40	r	movups xmm0, xmmword ptr [r14 + 0x40]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A4490	0x40	r	movups xmm0, xmmword ptr [rbx + 0x40]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48B1	0x40	r	movups xmm0, xmmword ptr [rax + 0x40]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C3C	0x40	r	movups xmm0, xmmword ptr [rbx + 0x40]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CBE	0x40	r	movups xmm0, xmmword ptr [rax + 0x40]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E64	0x40	w	movups xmmword ptr [rsi + 0x40], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F78	0x40	r	movups xmm0, xmmword ptr [rsi + 0x40]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9131	0x40	w	movups xmmword ptr [rsi + 0x40], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A92D1	0x40	w	movups xmmword ptr [rsi + 0x40], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A934A	0x40	r	movups xmm0, xmmword ptr [rsi + 0x40]	drawer1/4	
+002A8C50	FUN_002a8c50	002A955A	0x40	w	movups xmmword ptr [rsi + 0x40], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A960D	0x40	r	movups xmm0, xmmword ptr [rsi + 0x40]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F6A	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	drawer2	
+002AA800	FUN_002aa800	002AAB46	0x40	r	mulss xmm0, dword ptr [rsi + 0x40]	drawer5	
+002AA800	FUN_002aa800	002AABA7	0x40	r	mulss xmm6, dword ptr [rsi + 0x40]	drawer5	
+002AAE40	FUN_002aae40	002AAE9C	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	drawer11	
+002AC2F0	FUN_002ac2f0	002AC4C2	0x40	r	movss xmm0, dword ptr [rdi + 0x40]	drawer5->arg0@002AA941	
+002AE610	FUN_002ae610	002AE697	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	copier	
+002B0280	FUN_002b0280	002B067F	0x40	r	movss xmm0, dword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0A8F	0x40	r	mulss xmm0, dword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0AE3	0x40	r	mulss xmm7, dword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1165	0x40	r	movss xmm7, dword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B119C	0x40	w	movss dword ptr [r14 + 0x40], xmm0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B11A6	0x40	w	mov dword ptr [r14 + 0x40], eax	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B11B2	0x40	r	movss xmm0, dword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B11FA	0x40	r	movss xmm0, dword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B17B1	0x40	r	movups xmm0, xmmword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A24	0x40	r	movups xmm0, xmmword ptr [r14 + 0x40]	draw-helper->arg0@002D8791	
+002B2150	FUN_002b2150	002B21DE	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B24FA	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E49	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	copier	
+002B3E90	FUN_002b3e90	002B3EDD	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B43F3	0x40	r	movups xmm0, xmmword ptr [rcx + 0x40]	drawer1/4->arg0@002A91BA	
+003649A0	FUN_003649a0	00364DB5	0x40	w	movss dword ptr [r14 + 0x40], xmm0	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364DFA	0x40	r	movss xmm0, dword ptr [r14 + 0x40]	draw-helper->arg0@002D873C	
+0057C480	FUN_0057c480	0057C531	0x40	w	movss dword ptr [rsi + 0x120], xmm0	owner+0xE0 handler	
+002A1B00	FUN_002a1b00	002A1BE5	0x44	r	mov ecx, dword ptr [rdi + 0x114]	owner+0xD0 copier	
+002AA800	FUN_002aa800	002AA946	0x44	r	test dword ptr [rsi + 0x44], 0x100	drawer5	
+002AA800	FUN_002aa800	002AAD85	0x44	r	test dword ptr [rsi + 0x44], 0x100	drawer5	
+002AC1E0	FUN_002ac1e0	002AC1F6	0x44	rw	or dword ptr [rbx + 0x44], 0x200	init-kind2->arg0@002B3418	
+002AC1E0	FUN_002ac1e0	002AC1FD	0x44	r	mov ecx, dword ptr [rbx + 0x44]	init-kind2->arg0@002B3418	
+002AC2F0	FUN_002ac2f0	002AC33E	0x44	r	test dword ptr [rdi + 0x44], 0x800	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC3D7	0x44	r	test dword ptr [rdi + 0x44], 0x800	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC461	0x44	r	test dword ptr [rdi + 0x44], 0x800	drawer5->arg0@002AA941	
+002AE610	FUN_002ae610	002AE765	0x44	r	test dword ptr [rdi + 0x44], 0x800	copier	
+002AE610	FUN_002ae610	002AE9D2	0x44	r	test dword ptr [rdi + 0x44], 0x400	copier	
+002AF960	FUN_002af960	002AFA04	0x44	w	mov byte ptr [rbx + 0x44], sil	dispatcher2	
+002AF960	FUN_002af960	002AFA26	0x44	r	test dword ptr [rbx + 0x44], 0x800	dispatcher2	
+002B0280	FUN_002b0280	002B037F	0x44	w	mov byte ptr [r14 + 0x44], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B038E	0x44	r	test dword ptr [r14 + 0x44], 0x200	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0415	0x44	r	test dword ptr [r14 + 0x44], 0x800	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B061E	0x44	r	test dword ptr [r14 + 0x44], 0x800	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0943	0x44	r	movsx eax, byte ptr [r14 + 0x44]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0AF5	0x44	r	movsx eax, byte ptr [r14 + 0x44]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0E97	0x44	r	test dword ptr [r14 + 0x44], 0x800	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1249	0x44	r	test dword ptr [r14 + 0x44], 0x800	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B1FF2	0x44	r	mov ecx, dword ptr [rbp - 0x7c]	stackcopy	
+002B1FB0	FUN_002b1fb0	002B2000	0x44	w	mov dword ptr [rbp - 0x7c], ecx	stackcopy	
+002B32D0	FUN_002b32d0	002B3331	0x44	rw	or dword ptr [rdi + 0x44], 0x800	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B32D0	FUN_002b32d0	002B3338	0x44	r	mov ecx, dword ptr [rdi + 0x44]	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3400	FUN_002b3400	002B343D	0x44	rw	or dword ptr [rdi + 0x44], 0x800	init-kind2	
+002B3400	FUN_002b3400	002B3444	0x44	r	mov ecx, dword ptr [rdi + 0x44]	init-kind2	
+002B3D50	FUN_002b3d50	002B3DAE	0x44	w	mov byte ptr [rdi + 0x44], cl	init-kind0b	
+002B41F0	FUN_002b41f0	002B4252	0x44	r	mov ecx, dword ptr [rbp + 0x84]	stackcopy	
+002B41F0	FUN_002b41f0	002B4266	0x44	w	mov dword ptr [rbp + 0x84], ecx	stackcopy	
+002B5730	FUN_002b5730	002B579B	0x44	r	mov ecx, dword ptr [rbp - 0x7c]	stackcopy	
+002B5730	FUN_002b5730	002B57A9	0x44	w	mov dword ptr [rbp - 0x7c], ecx	stackcopy	
+003649A0	FUN_003649a0	00364DC3	0x44	w	movss dword ptr [r14 + 0x44], xmm0	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364DEE	0x44	r	movss xmm1, dword ptr [r14 + 0x44]	draw-helper->arg0@002D873C	
+002B0280	FUN_002b0280	002B1032	0x48	r	addss xmm0, dword ptr [r14 + 0x48]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B10AC	0x48	r	movss xmm0, dword ptr [r14 + 0x48]	draw-helper->arg0@002D8791	
+002B3C30	FUN_002b3c30	002B3CF3	0x48	w	movss dword ptr [rbx + 0x48], xmm1	init-kind0	
+002D89E0	FUN_002d89e0	002D8A94	0x48	r	movss xmm1, dword ptr [rbp + 0x48]	owner+0xD0 copier+leaD0->sarg5@002A1CDF	
+003649A0	FUN_003649a0	00364DD5	0x48	r	mov eax, dword ptr [r14 + 0x48]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	00366273	0x48	w	mov dword ptr [rdi + 0x48], ecx	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366289	0x48	w	mov qword ptr [rdi + 0x48], r14	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A8C50	FUN_002a8c50	002A97C3	0x4C	w	movss dword ptr [rsi + 0x4c], xmm1	drawer1/4	
+002AC2F0	FUN_002ac2f0	002AC507	0x4C	r	addss xmm0, dword ptr [rdi + 0x4c]	drawer5->arg0@002AA941	
+002B0280	FUN_002b0280	002B06C9	0x4C	r	addss xmm0, dword ptr [r14 + 0x4c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0F0E	0x4C	r	addss xmm7, dword ptr [r14 + 0x4c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0FA6	0x4C	r	addss xmm0, dword ptr [r14 + 0x4c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1044	0x4C	r	addss xmm6, dword ptr [r14 + 0x4c]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B15AC	0x4C	w	movss dword ptr [r14 + 0x4c], xmm0	draw-helper->arg0@002D8791	
+003649A0	FUN_003649a0	00364E30	0x4C	r	mov eax, dword ptr [r14 + 0x4c]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	0036627D	0x4C	w	mov dword ptr [rdi + 0x4c], ecx	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A1B00	FUN_002a1b00	002A1B72	0x50	r	movups xmm1, xmmword ptr [r14 + 0x50]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A4498	0x50	r	movups xmm1, xmmword ptr [rbx + 0x50]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48B9	0x50	r	movups xmm1, xmmword ptr [rax + 0x50]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C44	0x50	r	movups xmm1, xmmword ptr [rbx + 0x50]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CC6	0x50	r	movups xmm1, xmmword ptr [rax + 0x50]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E6C	0x50	w	movups xmmword ptr [rsi + 0x50], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F80	0x50	r	movups xmm1, xmmword ptr [rsi + 0x50]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9139	0x50	w	movups xmmword ptr [rsi + 0x50], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A92D9	0x50	w	movups xmmword ptr [rsi + 0x50], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9352	0x50	r	movups xmm1, xmmword ptr [rsi + 0x50]	drawer1/4	
+002A8C50	FUN_002a8c50	002A947A	0x50	w	movss dword ptr [rsi + 0x50], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9562	0x50	w	movups xmmword ptr [rsi + 0x50], xmm1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9615	0x50	r	movups xmm1, xmmword ptr [rsi + 0x50]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F73	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	drawer2	
+002AAE40	FUN_002aae40	002AAEA5	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	drawer11	
+002AE610	FUN_002ae610	002AE6AC	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	copier	
+002AF960	FUN_002af960	002AFB47	0x50	r	mulss xmm0, dword ptr [rbx + 0x50]	dispatcher2	
+002B0280	FUN_002b0280	002B17BA	0x50	r	movups xmm1, xmmword ptr [r14 + 0x50]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A2D	0x50	r	movups xmm1, xmmword ptr [r14 + 0x50]	draw-helper->arg0@002D8791	
+002B2150	FUN_002b2150	002B21E6	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B2502	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E52	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	copier	
+002B32D0	FUN_002b32d0	002B33F0	0x50	w	movss dword ptr [rdi + 0x50], xmm1	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3E90	FUN_002b3e90	002B3EE6	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B43FB	0x50	r	movups xmm1, xmmword ptr [rcx + 0x50]	drawer1/4->arg0@002A91BA	
+003649A0	FUN_003649a0	00364E06	0x50	r	movd xmm0, dword ptr [r14 + 0x50]	draw-helper->arg0@002D873C	
+002A8C50	FUN_002a8c50	002A8E15	0x54	r	cmp dword ptr [rsi + 0x54], 3	drawer1/4	
+002A8C50	FUN_002a8c50	002A8EE9	0x54	w	mov dword ptr [rsi + 0x54], r13d	drawer1/4	
+002A8C50	FUN_002a8c50	002A9808	0x54	w	mov dword ptr [rsi + 0x54], 3	drawer1/4	
+002A8C50	FUN_002a8c50	002A9896	0x54	w	mov dword ptr [rsi + 0x54], eax	drawer1/4	
+002A8C50	FUN_002a8c50	002A98CD	0x54	w	mov dword ptr [rsi + 0x54], 0x23	drawer1/4	
+002A9980	FUN_002a9980	002A9A73	0x54	r	mov ebp, dword ptr [rcx + 0x54]	drawer0/3	
+002AE610	FUN_002ae610	002AE870	0x54	r	mov edx, dword ptr [rdi + 0x54]	copier	
+002AE610	FUN_002ae610	002AE8B7	0x54	r	mov ecx, dword ptr [rdi + 0x54]	copier	
+002AE610	FUN_002ae610	002AE8C6	0x54	w	mov dword ptr [rdi + 0x54], ecx	copier	
+002AE610	FUN_002ae610	002AE8DD	0x54	r	mov edx, dword ptr [rdi + 0x54]	copier	
+002B0280	FUN_002b0280	002B197A	0x54	w	mov dword ptr [r14 + 0x54], eax	draw-helper->arg0@002D8791	
+002B35A0	FUN_002b35a0	002B35AE	0x54	w	mov dword ptr [rcx + 0x54], r10d	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B365B	0x54	w	mov dword ptr [r9 + 0x54], eax	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B3722	0x54	w	mov dword ptr [r9 + 0x54], eax	drawer1/4->arg0@002A91A4	
+003649A0	FUN_003649a0	00365184	0x54	r	movzx edx, word ptr [r14 + 0x54]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	0036520A	0x54	r	movzx edx, word ptr [r14 + 0x54]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	0036526C	0x54	r	movzx edx, word ptr [r14 + 0x54]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	003652CA	0x54	r	movzx edx, word ptr [r14 + 0x54]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	0036541D	0x54	r	movzx eax, word ptr [r14 + 0x54]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364AA8	0x56	w	mov word ptr [r14 + 0x56], ax	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364AD5	0x56	w	mov word ptr [r14 + 0x56], ax	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00365069	0x56	r	movzx eax, word ptr [r14 + 0x56]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	0036636C	0x56	w	mov word ptr [rdi + 0x56], ax	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A7720	FUN_002a7720	002A78A0	0x58	r	movsx r8d, word ptr [rdi + 0x58]	backtrace 002ABEC0->arg0 mov	
+002A8C50	FUN_002a8c50	002A9888	0x58	w	mov word ptr [rsi + 0x58], ax	drawer1/4	
+002A9980	FUN_002a9980	002A9A98	0x58	w	mov word ptr [rcx + 0x58], di	drawer0/3	
+002A9980	FUN_002a9980	002A9AD6	0x58	r	xor eax, dword ptr [rcx + 0x58]	drawer0/3	
+002A9980	FUN_002a9980	002A9ADE	0x58	rw	xor dword ptr [rcx + 0x58], eax	drawer0/3	
+002A9980	FUN_002a9980	002A9AE9	0x58	r	mov r8d, dword ptr [rcx + 0x58]	drawer0/3	
+002B35A0	FUN_002b35a0	002B35B5	0x58	w	mov word ptr [rcx + 0x58], r10w	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B3611	0x58	r	xor eax, dword ptr [r9 + 0x58]	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B361A	0x58	rw	xor dword ptr [r9 + 0x58], eax	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B361E	0x58	r	mov eax, dword ptr [r9 + 0x58]	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B362F	0x58	r	xor edx, dword ptr [r9 + 0x58]	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B3639	0x58	rw	xor dword ptr [r9 + 0x58], edx	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B363D	0x58	r	mov eax, dword ptr [r9 + 0x58]	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B36F1	0x58	rw	and dword ptr [r9 + 0x58], 0xfffff7de	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B36F9	0x58	rw	or dword ptr [r9 + 0x58], 0x7de	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B3703	0x58	rw	and dword ptr [r9 + 0x58], 0xfffff79f	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B370B	0x58	rw	or dword ptr [r9 + 0x58], 0x79f	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B3713	0x58	r	mov eax, dword ptr [r9 + 0x58]	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B3726	0x58	r	mov eax, dword ptr [r9 + 0x58]	drawer1/4->arg0@002A91A4	
+00366110	FUN_00366110	0036646B	0x58	r	movsx ecx, word ptr [rdi + 0x58]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003664B3	0x58	r	movsx eax, word ptr [rdi + 0x58]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A7720	FUN_002a7720	002A791E	0x5A	r	cmp word ptr [rdi + 0x5a], si	backtrace 002ABEC0->arg0 mov	
+002A8C50	FUN_002a8c50	002A98AF	0x5A	w	mov word ptr [rsi + 0x5a], ax	drawer1/4	
+00366110	FUN_00366110	00366498	0x5A	r	movsx eax, word ptr [rdi + 0x5a]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003664BB	0x5A	r	movsx eax, word ptr [rdi + 0x5a]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003665C3	0x5C	r	movsx eax, word ptr [rdi + 0x5c]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003665D9	0x5C	r	movsx ecx, word ptr [rdi + 0x5c]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+002A1B00	FUN_002a1b00	002A1B7B	0x60	r	movups xmm0, xmmword ptr [r14 + 0x60]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44A0	0x60	r	movups xmm0, xmmword ptr [rbx + 0x60]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48C1	0x60	r	movups xmm0, xmmword ptr [rax + 0x60]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C4C	0x60	r	movups xmm0, xmmword ptr [rbx + 0x60]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CCE	0x60	r	movups xmm0, xmmword ptr [rax + 0x60]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E74	0x60	w	movups xmmword ptr [rsi + 0x60], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F21	0x60	r	mov rax, qword ptr [rsi + 0x60]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F88	0x60	r	movups xmm0, xmmword ptr [rsi + 0x60]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9141	0x60	w	movups xmmword ptr [rsi + 0x60], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A92E1	0x60	w	movups xmmword ptr [rsi + 0x60], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A935A	0x60	r	movups xmm0, xmmword ptr [rsi + 0x60]	drawer1/4	
+002A8C50	FUN_002a8c50	002A956A	0x60	w	movups xmmword ptr [rsi + 0x60], xmm0	drawer1/4	
+002A8C50	FUN_002a8c50	002A961D	0x60	r	movups xmm0, xmmword ptr [rsi + 0x60]	drawer1/4	
+002A9F00	FUN_002a9f00	002A9F7C	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	drawer2	
+002AAE40	FUN_002aae40	002AAEAE	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	drawer11	
+002AC1E0	FUN_002ac1e0	002AC245	0x60	w	mov qword ptr [rbx + 0x60], rax	init-kind2->arg0@002B3418	
+002AC2F0	FUN_002ac2f0	002AC345	0x60	w	mov qword ptr [rdi + 0x60], rax	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC3DE	0x60	w	mov qword ptr [rdi + 0x60], rax	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC440	0x60	w	mov qword ptr [rdi + 0x60], rax	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC459	0x60	w	mov qword ptr [rdi + 0x60], rax	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC498	0x60	r	mov rax, qword ptr [rdi + 0x60]	drawer5->arg0@002AA941	
+002AE610	FUN_002ae610	002AE6B4	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	copier	
+002B0280	FUN_002b0280	002B0396	0x60	w	mov qword ptr [r14 + 0x60], rsi	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B03B7	0x60	w	mov qword ptr [r14 + 0x60], r13	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0573	0x60	w	mov qword ptr [r14 + 0x60], r13	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B05D7	0x60	w	mov qword ptr [r14 + 0x60], r13	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0603	0x60	w	mov qword ptr [r14 + 0x60], rax	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0656	0x60	r	mov rax, qword ptr [r14 + 0x60]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0786	0x60	r	mov rax, qword ptr [r14 + 0x60]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0830	0x60	r	mov r8, qword ptr [r14 + 0x60]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B17C3	0x60	r	movups xmm0, xmmword ptr [r14 + 0x60]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A36	0x60	r	movups xmm0, xmmword ptr [r14 + 0x60]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B2034	0x60	w	mov qword ptr [rbp - 0x60], rax	stackcopy	
+002B2150	FUN_002b2150	002B21EE	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B250A	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E5B	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	copier	
+002B32D0	FUN_002b32d0	002B3346	0x60	w	mov qword ptr [rdi + 0x60], rax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3400	FUN_002b3400	002B3452	0x60	w	mov qword ptr [rdi + 0x60], rax	init-kind2	
+002B3E90	FUN_002b3e90	002B3EEF	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B42AA	0x60	w	mov qword ptr [rbp + 0xa0], rax	stackcopy	
+002B43C0	FUN_002b43c0	002B4403	0x60	r	movups xmm0, xmmword ptr [rcx + 0x60]	drawer1/4->arg0@002A91BA	
+002B5730	FUN_002b5730	002B57DD	0x60	w	mov qword ptr [rbp - 0x60], rax	stackcopy	
+002D8690	FUN_002d8690	002D8739	0x60	w	mov byte ptr [rdi + 0x60], al	draw-helper	
+002D8690	FUN_002d8690	002D8748	0x60	w	mov byte ptr [rdi + 0x60], al	draw-helper	
+002D87D0	FUN_002d87d0	002D8879	0x60	w	mov byte ptr [rdi + 0x60], al	draw-helper	
+002D87D0	FUN_002d87d0	002D8888	0x60	w	mov byte ptr [rdi + 0x60], al	draw-helper	
+003647E0	FUN_003647e0	00364878	0x60	r	movsx r8, byte ptr [rdi + 0x60]	draw-helper->arg0@002D873C->arg1@00364B58	
+003649A0	FUN_003649a0	003649D0	0x60	r	movsx r8d, byte ptr [rcx + 0x60]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364A50	0x60	r	movsx ecx, byte ptr [r14 + 0x60]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364A6F	0x60	r	movzx eax, byte ptr [r14 + 0x60]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364B6D	0x60	r	movsx edx, byte ptr [r14 + 0x60]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364B9D	0x60	r	movsx edx, byte ptr [r14 + 0x60]	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364CCC	0x60	r	cmp byte ptr [r14 + 0x60], 0	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00364D84	0x60	r	cmp byte ptr [r14 + 0x60], 0	draw-helper->arg0@002D873C	
+003649A0	FUN_003649a0	00365130	0x60	r	movsx ecx, byte ptr [r14 + 0x60]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	003661E3	0x60	w	mov byte ptr [rdi + 0x60], r8b	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	003661EC	0x60	w	mov byte ptr [rdi + 0x60], r14b	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	00366320	0x60	r	movzx eax, byte ptr [rdi + 0x60]	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+003649A0	FUN_003649a0	00364C1E	0x61	r	movsx r15d, byte ptr [r14 + 0x61]	draw-helper->arg0@002D873C	
+00366110	FUN_00366110	00366441	0x61	w	mov byte ptr [rdi + 0x61], r8b	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+00366110	FUN_00366110	0036644A	0x61	w	mov byte ptr [rdi + 0x61], 0x20	draw-helper->arg0@002D873C->arg1@00364B58->arg2@0036492C	
+003647E0	FUN_003647e0	0036483A	0x63	r	test byte ptr [rdi + 0x63], cl	draw-helper->arg0@002D873C->arg1@00364B58	
+003647E0	FUN_003647e0	00364850	0x63	r	test byte ptr [rdi + 0x63], 1	draw-helper->arg0@002D873C->arg1@00364B58	
+002AC2F0	FUN_002ac2f0	002AC417	0x68	r	mov rax, qword ptr [rdi + 0x68]	drawer5->arg0@002AA941	
+002B0280	FUN_002b0280	002B035E	0x68	r	mov rsi, qword ptr [r14 + 0x68]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0384	0x68	w	mov qword ptr [rsp + 0x50], rsi	stackcopy	
+002B0280	FUN_002b0280	002B03B2	0x68	w	mov qword ptr [rsp + 0x50], rax	stackcopy	
+002B0280	FUN_002b0280	002B05FC	0x68	r	mov rax, qword ptr [rsp + 0x50]	stackcopy	
+002B0280	FUN_002b0280	002B12AD	0x68	r	cmp qword ptr [r14 + 0x68], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B12CB	0x68	r	mov rax, qword ptr [r14 + 0x68]	draw-helper->arg0@002D8791	
+002A1B00	FUN_002a1b00	002A1B97	0x70	r	movups xmm0, xmmword ptr [r14 + 0x70]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44A8	0x70	r	movups xmm0, xmmword ptr [rbx + 0x70]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48C9	0x70	r	movups xmm1, xmmword ptr [rax + 0x70]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C54	0x70	r	movups xmm1, xmmword ptr [rbx + 0x70]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CDE	0x70	r	movups xmm0, xmmword ptr [rax + 0x70]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E7F	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A8F90	0x70	r	movups xmm1, xmmword ptr [rsi + 0x70]	drawer1/4	
+002A8C50	FUN_002a8c50	002A914C	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A92EC	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9362	0x70	r	movups xmm1, xmmword ptr [rsi + 0x70]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9575	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9625	0x70	r	movups xmm1, xmmword ptr [rsi + 0x70]	drawer1/4	
+002A9980	FUN_002a9980	002A9ABF	0x70	r	mov r10, qword ptr [rcx + 0x70]	drawer0/3	
+002A9F00	FUN_002a9f00	002A9F97	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	drawer2	
+002AAE40	FUN_002aae40	002AAECA	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	drawer11	
+002AE610	FUN_002ae610	002AE6CE	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	copier	
+002B0280	FUN_002b0280	002B17CC	0x70	r	movups xmm1, xmmword ptr [r14 + 0x70]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B18A0	0x70	r	mov rdi, qword ptr [r14 + 0x70]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A3F	0x70	r	movups xmm1, xmmword ptr [r14 + 0x70]	draw-helper->arg0@002D8791	
+002B2150	FUN_002b2150	002B2208	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B2524	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E70	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	copier	
+002B32D0	FUN_002b32d0	002B32FD	0x70	w	mov qword ptr [rdi + 0x70], rax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B35A0	FUN_002b35a0	002B35A4	0x70	r	mov r11, qword ptr [rcx + 0x70]	drawer1/4->arg0@002A91A4	
+002B3E90	FUN_002b3e90	002B3F0B	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B441D	0x70	r	movups xmm0, xmmword ptr [rcx + 0x70]	drawer1/4->arg0@002A91BA	
+002D89E0	FUN_002d89e0	002D8A80	0x70	r	mov rax, qword ptr [rbp + 0x70]	owner+0xD0 copier+leaD0->sarg5@002A1CDF	
+002D89E0	FUN_002d89e0	002D8AA9	0x70	w	mov qword ptr [rsp + 0xb0], rax	stackcopy	
+002B0280	FUN_002b0280	002B1727	0x78	r	mov rcx, qword ptr [r14 + 0x78]	draw-helper->arg0@002D8791	
+002B32D0	FUN_002b32d0	002B331B	0x78	w	mov qword ptr [rdi + 0x78], rax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002D89E0	FUN_002d89e0	002D8AB1	0x78	r	mov rax, qword ptr [rbp + 0x78]	owner+0xD0 copier+leaD0->sarg5@002A1CDF	
+002D89E0	FUN_002d89e0	002D8AB5	0x78	w	mov qword ptr [rsp + 0xb8], rax	stackcopy	
+002A1B00	FUN_002a1b00	002A1B84	0x80	r	movups xmm1, xmmword ptr [r14 + 0x80]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44B0	0x80	r	movups xmm1, xmmword ptr [rbx + 0x80]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48D8	0x80	r	movups xmm0, xmmword ptr [rax + 0x80]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C63	0x80	r	movups xmm0, xmmword ptr [rbx + 0x80]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8E32	0x80	addr	lea rcx, [rsi + 0x80]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8E8A	0x80	w	movups xmmword ptr [rcx], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A8F9C	0x80	r	movups xmm0, xmmword ptr [rsi + 0x80]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9107	0x80	addr	lea rcx, [rsi + 0x80]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9157	0x80	w	movups xmmword ptr [rcx], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A92A7	0x80	addr	lea rcx, [rsi + 0x80]	drawer1/4	
+002A8C50	FUN_002a8c50	002A92F7	0x80	w	movups xmmword ptr [rcx], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A936E	0x80	r	movups xmm0, xmmword ptr [rsi + 0x80]	drawer1/4	
+002A8C50	FUN_002a8c50	002A952D	0x80	addr	lea rcx, [rsi + 0x80]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9580	0x80	w	movups xmmword ptr [rcx], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9631	0x80	r	movups xmm0, xmmword ptr [rsi + 0x80]	drawer1/4	
+002AAE40	FUN_002aae40	002AAEB7	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	drawer11	
+002AE610	FUN_002ae610	002AE6BC	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	copier	
+002B0280	FUN_002b0280	002B0F95	0x80	r	movss xmm0, dword ptr [r14 + 0x80]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B101E	0x80	r	movss xmm6, dword ptr [r14 + 0x80]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1795	0x80	addr	lea rax, [r14 + 0x80]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B17DC	0x80	r	movups xmm0, xmmword ptr [rax]	draw-helper->arg0@002D8791+lea80	
+002B0280	FUN_002b0280	002B1A4C	0x80	r	movups xmm0, xmmword ptr [r14 + 0x80]	draw-helper->arg0@002D8791	
+002B2150	FUN_002b2150	002B21F6	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B2512	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E64	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	copier	
+002B3C30	FUN_002b3c30	002B3CDA	0x80	w	movss dword ptr [rbx + 0x80], xmm0	init-kind0	
+002B3E90	FUN_002b3e90	002B3EF8	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B440B	0x80	r	movups xmm1, xmmword ptr [rcx + 0x80]	drawer1/4->arg0@002A91BA	
+002D89E0	FUN_002d89e0	002D8A89	0x80	r	movss xmm0, dword ptr [rbp + 0x80]	owner+0xD0 copier+leaD0->sarg5@002A1CDF	
+002A1B00	FUN_002a1b00	002A1BD3	0x84	r	mov edx, dword ptr [rcx + 0x154]	owner+0xD0 copier	
+002B2D20	FUN_002b2d20	002B2D2E	0x84	r	mov r10d, dword ptr [rcx + 0x84]	drawer1/4->arg0@002A9842	
+002B32D0	FUN_002b32d0	002B3310	0x84	w	mov dword ptr [rdi + 0x84], eax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002A8C50	FUN_002a8c50	002A8EED	0x88	w	mov word ptr [rsi + 0x88], r13w	drawer1/4	
+002A8C50	FUN_002a8c50	002A9405	0x88	r	cmp word ptr [rsi + 0x88], bx	drawer1/4	
+002A8C50	FUN_002a8c50	002A9436	0x88	w	mov word ptr [rsi + 0x88], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A9801	0x88	w	mov word ptr [rsi + 0x88], bx	drawer1/4	
+002A8C50	FUN_002a8c50	002A98C6	0x88	w	mov word ptr [rsi + 0x88], bx	drawer1/4	
+002A9980	FUN_002a9980	002A99CF	0x88	r	cmp word ptr [rcx + 0x88], ax	drawer0/3	
+002A9980	FUN_002a9980	002A9A3F	0x88	w	mov word ptr [rcx + 0x88], di	drawer0/3	
+002ABF70	FUN_002abf70	002ABF9F	0x88	r	movzx eax, word ptr [rbx + 0x88]	mode-switch	
+002ABF70	FUN_002abf70	002ABFB3	0x88	w	mov word ptr [rbx + 0x88], ax	mode-switch	
+002B3950	FUN_002b3950	002B395C	0x88	w	mov word ptr [rcx + 0x88], ax	advance-helper	
+002A8C50	FUN_002a8c50	002A8C94	0x8A	r	movzx edi, word ptr [rsi + 0x8a]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8EBC	0x8A	rw	add word ptr [rsi + 0x8a], di	drawer1/4	
+002A8C50	FUN_002a8c50	002A8EC6	0x8A	r	movzx edx, word ptr [rsi + 0x8a]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F4E	0x8A	r	movzx edi, word ptr [rsi + 0x8a]	drawer1/4	
+002A8C50	FUN_002a8c50	002A91A9	0x8A	r	movzx edx, word ptr [rsi + 0x8a]	drawer1/4	
+002AF960	FUN_002af960	002AF97C	0x8A	r	movzx eax, word ptr [rcx + 0x8a]	dispatcher2	
+002B1E20	FUN_002b1e20	002B1E2D	0x8A	r	movzx edx, word ptr [rcx + 0x8a]	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B28F0	FUN_002b28f0	002B28F4	0x8A	r	movzx r8d, word ptr [rcx + 0x8a]	owner+0xD0 init-kind3+leaD0->arg0@002A4C10	
+002B3D50	FUN_002b3d50	002B3D9C	0x8A	w	mov dword ptr [rdi + 0x8a], ecx	init-kind0b	
+002A8C50	FUN_002a8c50	002A8EF5	0x8C	w	mov dword ptr [rsi + 0x8c], r13d	drawer1/4	
+002A8C50	FUN_002a8c50	002A91BF	0x8C	w	mov word ptr [rsi + 0x8c], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A95A8	0x8C	r	movzx eax, word ptr [rsi + 0x8c]	drawer1/4	
+002A8C50	FUN_002a8c50	002A95BE	0x8C	rw	add word ptr [rsi + 0x8c], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A95C5	0x8C	r	movzx ecx, word ptr [rsi + 0x8c]	drawer1/4	
+002A8C50	FUN_002a8c50	002A974C	0x8C	r	movsx eax, word ptr [rsi + 0x8c]	drawer1/4	
+002A9980	FUN_002a9980	002A99F9	0x8C	r	movzx eax, word ptr [rcx + 0x8c]	drawer0/3	
+002A9980	FUN_002a9980	002A9A16	0x8C	w	mov word ptr [rcx + 0x8c], ax	drawer0/3	
+002ABEC0	FUN_002abec0	002ABED9	0x8C	r	movsx edx, word ptr [rcx + 0x8c]	dispatcher1	
+002ABF20	FUN_002abf20	002ABF27	0x8C	r	movsx r8d, word ptr [rcx + 0x8c]	dispatcher1b	
+002ABF70	FUN_002abf70	002ABFD1	0x8C	r	cmp cx, word ptr [rbx + 0x8c]	mode-switch	
+002AF960	FUN_002af960	002AFB05	0x8C	r	movsx eax, word ptr [rbx + 0x8c]	dispatcher2	
+002B1E20	FUN_002b1e20	002B1E40	0x8C	w	mov word ptr [rbx + 0x8c], ax	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B3400	FUN_002b3400	002B3469	0x8C	w	mov word ptr [rdi + 0x8c], ax	init-kind2	
+002B3950	FUN_002b3950	002B3969	0x8C	r	movzx eax, word ptr [rcx + 0x8c]	advance-helper	
+002B3950	FUN_002b3950	002B397A	0x8C	w	mov word ptr [rcx + 0x8c], ax	advance-helper	
+002B3E90	FUN_002b3e90	002B4036	0x8C	r	movzx ecx, word ptr [rbx + 0x8c]	drawer1/4->arg0@002A8FE4	
+002B3E90	FUN_002b3e90	002B404E	0x8C	w	mov word ptr [rbx + 0x8c], cx	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B42E9	0x8C	w	mov word ptr [rbp + 0xcc], ax	stackcopy	
+002A8C50	FUN_002a8c50	002A91DE	0x8E	w	mov word ptr [rsi + 0x8e], cx	drawer1/4	
+002A8C50	FUN_002a8c50	002A95B2	0x8E	w	mov word ptr [rsi + 0x8e], ax	drawer1/4	
+002A9980	FUN_002a9980	002A9A02	0x8E	w	mov word ptr [rcx + 0x8e], ax	drawer0/3	
+002B1E20	FUN_002b1e20	002B1E5F	0x8E	w	mov word ptr [rbx + 0x8e], dx	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B3950	FUN_002b3950	002B3970	0x8E	w	mov word ptr [rcx + 0x8e], ax	advance-helper	
+002B3E90	FUN_002b3e90	002B4044	0x8E	w	mov word ptr [rbx + 0x8e], cx	drawer1/4->arg0@002A8FE4	
+002A1B00	FUN_002a1b00	002A1BA0	0x90	r	movups xmm0, xmmword ptr [r14 + 0x90]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44BA	0x90	r	movups xmm0, xmmword ptr [rbx + 0x90]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48E3	0x90	r	movups xmm1, xmmword ptr [rax + 0x90]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C6E	0x90	r	movups xmm1, xmmword ptr [rbx + 0x90]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8E94	0x90	w	movups xmmword ptr [rcx + 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A8EDB	0x90	w	mov word ptr [rsi + 0x90], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A8FA7	0x90	r	movups xmm1, xmmword ptr [rsi + 0x90]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9161	0x90	w	movups xmmword ptr [rcx + 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A91D7	0x90	w	mov word ptr [rsi + 0x90], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A9301	0x90	w	movups xmmword ptr [rcx + 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9379	0x90	r	movups xmm1, xmmword ptr [rsi + 0x90]	drawer1/4	
+002A8C50	FUN_002a8c50	002A94C1	0x90	w	mov word ptr [rsi + 0x90], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A958A	0x90	w	movups xmmword ptr [rcx + 0x10], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A95CC	0x90	r	movzx eax, word ptr [rsi + 0x90]	drawer1/4	
+002A8C50	FUN_002a8c50	002A95D3	0x90	w	mov word ptr [rsi + 0x90], cx	drawer1/4	
+002A8C50	FUN_002a8c50	002A963C	0x90	r	movups xmm1, xmmword ptr [rsi + 0x90]	drawer1/4	
+002A9980	FUN_002a9980	002A9A1D	0x90	w	mov word ptr [rcx + 0x90], ax	drawer0/3	
+002AAE40	FUN_002aae40	002AAED3	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	drawer11	
+002ABF70	FUN_002abf70	002ABFCA	0x90	r	movzx ecx, word ptr [rbx + 0x90]	mode-switch	
+002ABF70	FUN_002abf70	002ABFEF	0x90	w	mov word ptr [rbx + 0x90], ax	mode-switch	
+002AE610	FUN_002ae610	002AE6D9	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	copier	
+002AF960	FUN_002af960	002AFB1F	0x90	r	movsx eax, word ptr [rbx + 0x90]	dispatcher2	
+002B0280	FUN_002b0280	002B17E3	0x90	r	movups xmm1, xmmword ptr [rax + 0x10]	draw-helper->arg0@002D8791+lea80	
+002B0280	FUN_002b0280	002B1A58	0x90	r	movups xmm1, xmmword ptr [r14 + 0x90]	draw-helper->arg0@002D8791	
+002B1E20	FUN_002b1e20	002B1E58	0x90	w	mov word ptr [rbx + 0x90], ax	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B2150	FUN_002b2150	002B2210	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B2531	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E79	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	copier	
+002B32D0	FUN_002b32d0	002B33DC	0x90	w	mov word ptr [rdi + 0x90], ax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3950	FUN_002b3950	002B3981	0x90	w	mov word ptr [rcx + 0x90], ax	advance-helper	
+002B3C30	FUN_002b3c30	002B3CF8	0x90	w	mov word ptr [rbx + 0x90], ax	init-kind0	
+002B3D50	FUN_002b3d50	002B3DB4	0x90	w	mov word ptr [rdi + 0x90], ax	init-kind0b	
+002B3E90	FUN_002b3e90	002B3F14	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	drawer1/4->arg0@002A8FE4	
+002B3E90	FUN_002b3e90	002B403D	0x90	r	movzx eax, word ptr [rbx + 0x90]	drawer1/4->arg0@002A8FE4	
+002B3E90	FUN_002b3e90	002B4055	0x90	w	mov word ptr [rbx + 0x90], cx	drawer1/4->arg0@002A8FE4	
+002B43C0	FUN_002b43c0	002B4425	0x90	r	movups xmm0, xmmword ptr [rcx + 0x90]	drawer1/4->arg0@002A91BA	
+002A8C50	FUN_002a8c50	002A8EE2	0x92	w	mov word ptr [rsi + 0x92], ax	drawer1/4	
+002A8C50	FUN_002a8c50	002A95DE	0x92	w	mov word ptr [rsi + 0x92], ax	drawer1/4	
+002ABF70	FUN_002abf70	002ABFE8	0x92	w	mov word ptr [rbx + 0x92], cx	mode-switch	
+002B3E90	FUN_002b3e90	002B406A	0x92	w	mov word ptr [rbx + 0x92], ax	drawer1/4->arg0@002A8FE4	
+002B1F20	FUN_002b1f20	002B1F3C	0x94	r	movsx eax, word ptr [rcx + 0x94]	drawer11->arg0@002AB6B3	
+002B32D0	FUN_002b32d0	002B3363	0x94	r	movsx eax, word ptr [rdi + 0x94]	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B32D0	FUN_002b32d0	002B3396	0x94	w	mov word ptr [rdi + 0x94], ax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3C30	FUN_002b3c30	002B3CCA	0x94	w	mov word ptr [rbx + 0x94], ax	init-kind0	
+002B32D0	FUN_002b32d0	002B3379	0x96	r	movsx eax, word ptr [rdi + 0x96]	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B32D0	FUN_002b32d0	002B33AA	0x96	w	mov word ptr [rdi + 0x96], ax	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3C30	FUN_002b3c30	002B3CE2	0x96	w	mov word ptr [rbx + 0x96], ax	init-kind0	
+002A9980	FUN_002a9980	002A9A76	0x98	r	movzx esi, byte ptr [rcx + 0x98]	drawer0/3	
+002AE610	FUN_002ae610	002AE89C	0x98	r	movsx eax, byte ptr [rdi + 0x98]	copier	
+002B0280	FUN_002b0280	002B198A	0x98	w	mov byte ptr [r14 + 0x98], 0	draw-helper->arg0@002D8791	
+002AF960	FUN_002af960	002AFA0F	0x99	w	mov word ptr [rbx + 0x99], 0x2500	dispatcher2	
+002B0280	FUN_002b0280	002B0375	0x99	w	mov word ptr [r14 + 0x99], 0x2500	draw-helper->arg0@002D8791	
+002B1F20	FUN_002b1f20	002B1F47	0x99	r	movsx eax, byte ptr [r8 + 0x99]	drawer11->arg0@002AB6B3	
+002B32D0	FUN_002b32d0	002B33E3	0x99	w	mov word ptr [rdi + 0x99], 0x2500	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002AC1E0	FUN_002ac1e0	002AC224	0x9A	w	mov byte ptr [rbx + 0x9a], 0x25	init-kind2->arg0@002B3418	
+002B1F20	FUN_002b1f20	002B1F20	0x9A	r	movzx edx, byte ptr [rcx + 0x9a]	drawer11->arg0@002AB6B3	
+002B1FB0	FUN_002b1fb0	002B2023	0x9A	w	mov byte ptr [rbp - 0x26], 0x25	stackcopy	
+002B41F0	FUN_002b41f0	002B4290	0x9A	w	mov byte ptr [rbp + 0xda], 0x25	stackcopy	
+002B5730	FUN_002b5730	002B57CC	0x9A	w	mov byte ptr [rbp - 0x26], 0x25	stackcopy	
+002A8C50	FUN_002a8c50	002A8EFC	0x9B	w	mov byte ptr [rsi + 0x9b], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A91C6	0x9B	w	mov byte ptr [rsi + 0x9b], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A942F	0x9B	w	mov byte ptr [rsi + 0x9b], 1	drawer1/4	
+002A8C50	FUN_002a8c50	002A95E5	0x9B	w	mov byte ptr [rsi + 0x9b], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A98D4	0x9B	w	mov byte ptr [rsi + 0x9b], 0x1e	drawer1/4	
+002A9980	FUN_002a9980	002A9A38	0x9B	w	mov byte ptr [rcx + 0x9b], 1	drawer0/3	
+002ABF70	FUN_002abf70	002ABFBC	0x9B	w	mov byte ptr [rbx + 0x9b], 0x1e	mode-switch	
+002B1E20	FUN_002b1e20	002B1E47	0x9B	w	mov byte ptr [rbx + 0x9b], 0	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B3950	FUN_002b3950	002B3988	0x9B	w	mov byte ptr [rcx + 0x9b], 1	advance-helper	
+002B3E90	FUN_002b3e90	002B405C	0x9B	w	mov byte ptr [rbx + 0x9b], 0	drawer1/4->arg0@002A8FE4	
+002A8C50	FUN_002a8c50	002A8D0F	0x9C	r	movzx eax, byte ptr [rsi + 0x9c]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8F40	0x9C	r	movzx eax, byte ptr [rsi + 0x9c]	drawer1/4	
+002A8C50	FUN_002a8c50	002A921C	0x9C	w	mov byte ptr [rsi + 0x9c], 0x1e	drawer1/4	
+002A8C50	FUN_002a8c50	002A93A8	0x9C	w	mov byte ptr [rsi + 0x9c], al	drawer1/4	
+002AC1E0	FUN_002ac1e0	002AC20D	0x9C	w	mov word ptr [rbx + 0x9c], 0x1e	init-kind2->arg0@002B3418	
+002B1FB0	FUN_002b1fb0	002B2011	0x9C	w	mov word ptr [rbp - 0x24], 0x1e	stackcopy	
+002B41F0	FUN_002b41f0	002B4279	0x9C	w	mov word ptr [rbp + 0xdc], 0x1e	stackcopy	
+002B5730	FUN_002b5730	002B57BA	0x9C	w	mov word ptr [rbp - 0x24], 0x1e	stackcopy	
+002A8C50	FUN_002a8c50	002A91CD	0x9D	w	mov byte ptr [rsi + 0x9d], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A94BA	0x9D	w	mov byte ptr [rsi + 0x9d], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A95EC	0x9D	w	mov byte ptr [rsi + 0x9d], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A97FB	0x9D	w	mov byte ptr [rsi + 0x9d], al	drawer1/4	
+002A9980	FUN_002a9980	002A9A46	0x9D	w	mov byte ptr [rcx + 0x9d], 1	drawer0/3	
+002AF960	FUN_002af960	002AFB39	0x9D	r	movsx eax, byte ptr [rbx + 0x9d]	dispatcher2	
+002B1E20	FUN_002b1e20	002B1E4E	0x9D	w	mov byte ptr [rbx + 0x9d], 0	owner+0xE0 handler+leaE0->arg0@0057C599	
+002B3950	FUN_002b3950	002B398F	0x9D	w	mov byte ptr [rcx + 0x9d], 1	advance-helper	
+002B3C30	FUN_002b3c30	002B3CB7	0x9D	w	mov byte ptr [rbx + 0x9d], 0	init-kind0	
+002B3D50	FUN_002b3d50	002B3DA2	0x9D	w	mov byte ptr [rdi + 0x9d], cl	init-kind0b	
+002B3E90	FUN_002b3e90	002B4063	0x9D	w	mov byte ptr [rbx + 0x9d], 0	drawer1/4->arg0@002A8FE4	
+002A8C50	FUN_002a8c50	002A8EB2	0x9E	r	movsx eax, byte ptr [rsi + 0x9e]	drawer1/4	
+002A8C50	FUN_002a8c50	002A944A	0x9E	addr	lea r8, [rsi + 0x9e]	drawer1/4	
+002A8C50	FUN_002a8c50	002A945B	0x9E	r	movsx edx, byte ptr [rsi + 0x9e]	drawer1/4	
+002A8C50	FUN_002a8c50	002A97E3	0x9E	r	movzx eax, byte ptr [rsi + 0x9e]	drawer1/4	
+002AC1E0	FUN_002ac1e0	002AC232	0x9E	w	mov byte ptr [rbx + 0x9e], 8	init-kind2->arg0@002B3418	
+002B1FB0	FUN_002b1fb0	002B202B	0x9E	w	mov byte ptr [rbp - 0x22], 8	stackcopy	
+002B32D0	FUN_002b32d0	002B33B1	0x9E	r	movsx ecx, byte ptr [rdi + 0x9e]	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3C30	FUN_002b3c30	002B3CE9	0x9E	r	movsx eax, byte ptr [rbx + 0x9e]	init-kind0	
+002B3D50	FUN_002b3d50	002B3D84	0x9E	r	movsx eax, byte ptr [rdi + 0x9e]	init-kind0b	
+002B41F0	FUN_002b41f0	002B429E	0x9E	w	mov byte ptr [rbp + 0xde], 8	stackcopy	
+002B5730	FUN_002b5730	002B57D4	0x9E	w	mov byte ptr [rbp - 0x22], 8	stackcopy	
+003FFEE0	FUN_003ffee0	003FFEF8	0x9E	w	mov byte ptr [r8], al	drawer1/4+lea9E->arg2@002A9456	
+002AA800	FUN_002aa800	002AA9A1	0x9F	r	movzx edx, byte ptr [rsi + 0x9f]	drawer5	
+002AA800	FUN_002aa800	002AACF0	0x9F	r	movzx eax, byte ptr [rsi + 0x9f]	drawer5	
+002AF960	FUN_002af960	002AFBAB	0x9F	r	movzx eax, byte ptr [rbx + 0x9f]	dispatcher2	
+002B0280	FUN_002b0280	002B031B	0x9F	r	movzx edi, byte ptr [r14 + 0x9f]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1402	0x9F	r	movzx ecx, byte ptr [r14 + 0x9f]	draw-helper->arg0@002D8791	
+002B1D20	FUN_002b1d20	002B1D47	0x9F	r	movzx eax, byte ptr [r8 + 0x9f]	draw-helper->arg0@002D8791->arg0@002B04E4	
+002A1B00	FUN_002a1b00	002A1BAB	0xA0	r	movups xmm1, xmmword ptr [r14 + 0xa0]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44C5	0xA0	r	movups xmm1, xmmword ptr [rbx + 0xa0]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48ED	0xA0	r	movups xmm0, xmmword ptr [rax + 0xa0]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C78	0xA0	r	movups xmm0, xmmword ptr [rbx + 0xa0]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8E9F	0xA0	w	movups xmmword ptr [rcx + 0x20], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A8FB1	0xA0	r	movups xmm0, xmmword ptr [rsi + 0xa0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A916C	0xA0	w	movups xmmword ptr [rcx + 0x20], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A922F	0xA0	w	mov byte ptr [rsi + 0xa0], dl	drawer1/4	
+002A8C50	FUN_002a8c50	002A9243	0xA0	r	movsx eax, byte ptr [rsi + 0xa0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A924F	0xA0	w	mov byte ptr [rsi + 0xa0], al	drawer1/4	
+002A8C50	FUN_002a8c50	002A925D	0xA0	w	mov byte ptr [rsi + 0xa0], 1	drawer1/4	
+002A8C50	FUN_002a8c50	002A930C	0xA0	w	movups xmmword ptr [rcx + 0x20], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9383	0xA0	r	movups xmm0, xmmword ptr [rsi + 0xa0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A93AE	0xA0	w	mov byte ptr [rsi + 0xa0], 1	drawer1/4	
+002A8C50	FUN_002a8c50	002A9595	0xA0	w	movups xmmword ptr [rcx + 0x20], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9646	0xA0	r	movups xmm0, xmmword ptr [rsi + 0xa0]	drawer1/4	
+002AAE40	FUN_002aae40	002AAEDE	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	drawer11	
+002ABF70	FUN_002abf70	002ABFDE	0xA0	r	movsx eax, byte ptr [rbx + 0xa0]	mode-switch	
+002AC1E0	FUN_002ac1e0	002AC21D	0xA0	w	mov byte ptr [rbx + 0xa0], 1	init-kind2->arg0@002B3418	
+002AE610	FUN_002ae610	002AE6E3	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	copier	
+002B0280	FUN_002b0280	002B17EA	0xA0	r	movups xmm0, xmmword ptr [rax + 0x20]	draw-helper->arg0@002D8791+lea80	
+002B0280	FUN_002b0280	002B1A63	0xA0	r	movups xmm0, xmmword ptr [r14 + 0xa0]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B201F	0xA0	w	mov byte ptr [rbp - 0x20], 1	stackcopy	
+002B2150	FUN_002b2150	002B221A	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B253B	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E84	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	copier	
+002B3E90	FUN_002b3e90	002B3F1F	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B4289	0xA0	w	mov byte ptr [rbp + 0xe0], 1	stackcopy	
+002B43C0	FUN_002b43c0	002B442F	0xA0	r	movups xmm1, xmmword ptr [rcx + 0xa0]	drawer1/4->arg0@002A91BA	
+002B5730	FUN_002b5730	002B57C8	0xA0	w	mov byte ptr [rbp - 0x20], 1	stackcopy	
+002A8C50	FUN_002a8c50	002A984B	0xA1	w	mov byte ptr [rsi + 0xa1], al	drawer1/4	
+002AE610	FUN_002ae610	002AE794	0xA1	r	movzx eax, byte ptr [rdi + 0xa1]	copier	
+002B0280	FUN_002b0280	002B1983	0xA1	w	mov byte ptr [r14 + 0xa1], al	draw-helper->arg0@002D8791	
+002A8C50	FUN_002a8c50	002A983C	0xA2	w	mov byte ptr [rsi + 0xa2], bl	drawer1/4	
+002AE610	FUN_002ae610	002AE785	0xA2	r	movzx ecx, byte ptr [rdi + 0xa2]	copier	
+002B0280	FUN_002b0280	002B1992	0xA2	w	mov byte ptr [r14 + 0xa2], 0	draw-helper->arg0@002D8791	
+002B35A0	FUN_002b35a0	002B35C4	0xA2	w	mov byte ptr [rcx + 0xa2], r8b	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B36B0	0xA2	w	mov byte ptr [r9 + 0xa2], r10b	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B375A	0xA2	w	mov byte ptr [r9 + 0xa2], r10b	drawer1/4->arg0@002A91A4	
+002ABEC0	FUN_002abec0	002ABEF1	0xA3	r	movsx rax, byte ptr [rcx + 0xa3]	dispatcher1	
+002ABF20	FUN_002abf20	002ABF41	0xA3	r	movsx rax, byte ptr [rcx + 0xa3]	dispatcher1b	
+002AE610	FUN_002ae610	002AEA26	0xA3	r	cmp byte ptr [rdi + 0xa3], 3	copier	
+002AF960	FUN_002af960	002AFCA5	0xA3	r	movsx rax, byte ptr [rbx + 0xa3]	dispatcher2	
+002B3400	FUN_002b3400	002B3470	0xA3	w	mov byte ptr [rdi + 0xa3], 2	init-kind2	
+002B3930	FUN_002b3930	002B3930	0xA3	r	movsx rax, byte ptr [rcx + 0xa3]	dispatcher0	
+002B3C30	FUN_002b3c30	002B3C40	0xA3	w	mov byte ptr [rcx + 0xa3], 0	init-kind0	
+002B3D50	FUN_002b3d50	002B3D78	0xA3	w	mov byte ptr [rcx + 0xa3], 0	init-kind0b	
+002A8C50	FUN_002a8c50	002A9078	0xA4	r	movzx r12d, byte ptr [rsi + 0xa4]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9083	0xA5	r	movzx r15d, byte ptr [rsi + 0xa5]	drawer1/4	
+002A8C50	FUN_002a8c50	002A985E	0xA5	w	mov byte ptr [rsi + 0xa5], cl	drawer1/4	
+002AC2F0	FUN_002ac2f0	002AC420	0xA6	r	movzx ecx, byte ptr [rdi + 0xa6]	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC42E	0xA6	r	movzx ebx, byte ptr [rdi + 0xa6]	drawer5->arg0@002AA941	
+002B0280	FUN_002b0280	002B03A3	0xA6	r	movzx ecx, byte ptr [r14 + 0xa6]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B05F2	0xA6	r	movzx edi, byte ptr [r14 + 0xa6]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B18E6	0xA6	r	movzx esi, byte ptr [r14 + 0xa6]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B18F3	0xA6	w	mov byte ptr [r14 + 0xa6], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1934	0xA6	w	mov byte ptr [r14 + 0xa6], sil	draw-helper->arg0@002D8791	
+002B32D0	FUN_002b32d0	002B3306	0xA6	w	mov byte ptr [rdi + 0xa6], al	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B32D0	FUN_002b32d0	002B3328	0xA6	r	cmp byte ptr [rdi + 0xa6], 7	owner+0xE0 handler+leaE0->arg0@0057C5DB->arg0@002B32B6	
+002B3400	FUN_002b3400	002B3425	0xA6	w	mov byte ptr [rdi + 0xa6], al	init-kind2	
+002B3400	FUN_002b3400	002B3434	0xA6	r	cmp byte ptr [rdi + 0xa6], 7	init-kind2	
+002B0280	FUN_002b0280	002B0818	0xA7	r	movsx rax, byte ptr [r14 + 0xa7]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1651	0xA7	addr	lea rdx, [r14 + 0xa7]	draw-helper->arg0@002D8791	
+003FFAB0	FUN_003ffab0	003FFAE5	0xA7	w	mov byte ptr [rbx], cl	draw-helper->arg0@002D8791+leaA7->arg1@002B165B	
+002AC1E0	FUN_002ac1e0	002AC22B	0xA8	w	mov byte ptr [rbx + 0xa8], 0xff	init-kind2->arg0@002B3418	
+002B0280	FUN_002b0280	002B13EC	0xA8	r	movzx ecx, byte ptr [r14 + 0xa8]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B140F	0xA8	r	cmp byte ptr [r14 + 0xa8], 0xff	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1419	0xA8	w	mov byte ptr [r14 + 0xa8], dil	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B2027	0xA8	w	mov byte ptr [rbp - 0x18], 0xff	stackcopy	
+002B41F0	FUN_002b41f0	002B4297	0xA8	w	mov byte ptr [rbp + 0xe8], 0xff	stackcopy	
+002B5730	FUN_002b5730	002B57D0	0xA8	w	mov byte ptr [rbp - 0x18], 0xff	stackcopy	
+002A8C50	FUN_002a8c50	002A8F03	0xA9	w	mov byte ptr [rsi + 0xa9], r13b	drawer1/4	
+002AC2F0	FUN_002ac2f0	002AC5AE	0xA9	r	movzx eax, byte ptr [rdi + 0xa9]	drawer5->arg0@002AA941	
+002AC2F0	FUN_002ac2f0	002AC5CB	0xA9	w	mov byte ptr [rdi + 0xa9], 0	drawer5->arg0@002AA941	
+002B0280	FUN_002b0280	002B0760	0xA9	r	movzx eax, byte ptr [r14 + 0xa9]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B077E	0xA9	w	mov byte ptr [r14 + 0xa9], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1645	0xA9	addr	lea rdx, [r14 + 0xa9]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1881	0xA9	w	mov byte ptr [r14 + 0xa9], 0	draw-helper->arg0@002D8791	
+002AAE40	FUN_002aae40	002AB711	0xAA	r	movzx eax, byte ptr [rbx + 0xaa]	drawer11	
+002AF960	FUN_002af960	002AFA08	0xAB	w	mov byte ptr [rbx + 0xab], sil	dispatcher2	
+002B0280	FUN_002b0280	002B036D	0xAB	w	mov byte ptr [r14 + 0xab], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0948	0xAB	r	movsx ecx, byte ptr [r14 + 0xab]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0AED	0xAB	r	movsx ecx, byte ptr [r14 + 0xab]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B19BE	0xAB	addr	lea rdx, [r14 + 0xab]	draw-helper->arg0@002D8791	
+002B3D50	FUN_002b3d50	002B3DA8	0xAB	w	mov byte ptr [rdi + 0xab], cl	init-kind0b	
+003FFEE0	FUN_003ffee0	003FFEEB	0xAB	w	mov byte ptr [rdx], al	draw-helper->arg0@002D8791+leaAB->arg1@002B19D6	
+002ABEC0	FUN_002abec0	002ABEC0	0xAC	r	cmp byte ptr [rcx + 0xac], 1	dispatcher1	
+002B0280	FUN_002b0280	002B09DA	0xAC	r	movsx eax, byte ptr [r14 + 0xac]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0A2B	0xAC	rw	inc byte ptr [r14 + 0xac]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0A32	0xAC	r	movzx eax, byte ptr [r14 + 0xac]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B19DB	0xAC	w	mov byte ptr [r14 + 0xac], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B09CB	0xAD	r	movzx eax, byte ptr [r14 + 0xad]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0A3A	0xAD	r	cmp al, byte ptr [r14 + 0xad]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0A43	0xAD	w	mov byte ptr [r14 + 0xad], 0	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B19CA	0xAD	addr	lea r8, [r14 + 0xad]	draw-helper->arg0@002D8791	
+003FFEE0	FUN_003ffee0	003FFEF8	0xAD	w	mov byte ptr [r8], al	draw-helper->arg0@002D8791+leaAD->arg2@002B19D6	
+002A8C50	FUN_002a8c50	002A8F0A	0xAE	w	mov byte ptr [rsi + 0xae], 0xff	drawer1/4	
+002A8C50	FUN_002a8c50	002A96EE	0xAE	addr	lea rdx, [rsi + 0xae]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9702	0xAE	r	movzx eax, byte ptr [rsi + 0xae]	drawer1/4	
+002AC1E0	FUN_002ac1e0	002AC262	0xAE	w	mov byte ptr [rbx + 0xae], 0xff	init-kind2->arg0@002B3418	
+002AF960	FUN_002af960	002AFB63	0xAE	w	mov byte ptr [rbx + 0xae], 0xff	dispatcher2	
+002B1FB0	FUN_002b1fb0	002B205A	0xAE	w	mov byte ptr [rbp - 0x12], 0xff	stackcopy	
+002B3D50	FUN_002b3d50	002B3DBB	0xAE	w	mov byte ptr [rdi + 0xae], 0xff	init-kind0b	
+002B3D50	FUN_002b3d50	002B3E07	0xAE	addr	lea rdx, [rdi + 0xae]	init-kind0b	
+002B41F0	FUN_002b41f0	002B42CE	0xAE	w	mov byte ptr [rbp + 0xee], 0xff	stackcopy	
+002B5730	FUN_002b5730	002B5803	0xAE	w	mov byte ptr [rbp - 0x12], 0xff	stackcopy	
+003FFAB0	FUN_003ffab0	003FFAE5	0xAE	w	mov byte ptr [rbx], cl	drawer1/4+leaAE->arg1@002A96F8	
+002B3C30	FUN_002b3c30	002B3D07	0xAF	w	mov byte ptr [rbx + 0xaf], al	init-kind0	
+002A1B00	FUN_002a1b00	002A1BB7	0xB0	r	movups xmm0, xmmword ptr [r14 + 0xb0]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44D0	0xB0	r	movups xmm0, xmmword ptr [rbx + 0xb0]	backtrace 002AF960->arg0 mov	
+002A4430	FUN_002a4430	002A4553	0xB0	r	mov edx, dword ptr [rbx + 0xb0]	backtrace 002AF960->arg0 mov	
+002A4430	FUN_002a4430	002A45A4	0xB0	r	test dword ptr [rbx + 0xb0], 0x20000000	backtrace 002AF960->arg0 mov	
+002A4430	FUN_002a4430	002A45E7	0xB0	r	test dword ptr [rbx + 0xb0], 0x40000000	backtrace 002AF960->arg0 mov	
+002A4430	FUN_002a4430	002A465D	0xB0	r	test dword ptr [rbx + 0xb0], 0x100000	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A48F8	0xB0	r	movups xmm1, xmmword ptr [rax + 0xb0]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C83	0xB0	r	movups xmm1, xmmword ptr [rbx + 0xb0]	owner+0xD0 init-kind3+leaD0	
+002A7720	FUN_002a7720	002A7804	0xB0	r	mov eax, dword ptr [rdi + 0xb0]	backtrace 002ABEC0->arg0 mov	
+002A7720	FUN_002a7720	002A781B	0xB0	w	mov dword ptr [rdi + 0xb0], eax	backtrace 002ABEC0->arg0 mov	
+002A7720	FUN_002a7720	002A7846	0xB0	r	cmp byte ptr [rdi + 0xb0], 2	backtrace 002ABEC0->arg0 mov	
+002A7720	FUN_002a7720	002A7902	0xB0	r	mov eax, dword ptr [rdi + 0xb0]	backtrace 002ABEC0->arg0 mov	
+002A8C50	FUN_002a8c50	002A8D2B	0xB0	w	mov byte ptr [rsi + 0xb0], 1	drawer1/4	
+002A8C50	FUN_002a8c50	002A8DD0	0xB0	r	mov ecx, dword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A8EAA	0xB0	w	movups xmmword ptr [rcx + 0x30], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A8ED1	0xB0	rw	and dword ptr [rsi + 0xb0], 0xffe7ffff	drawer1/4	
+002A8C50	FUN_002a8c50	002A8FBC	0xB0	r	movups xmm1, xmmword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9066	0xB0	r	mov r14d, dword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9177	0xB0	w	movups xmmword ptr [rcx + 0x30], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A917F	0xB0	r	cmp byte ptr [rsi + 0xb0], r13b	drawer1/4	
+002A8C50	FUN_002a8c50	002A9193	0xB0	w	mov byte ptr [rsi + 0xb0], 4	drawer1/4	
+002A8C50	FUN_002a8c50	002A919A	0xB0	rw	or dword ptr [rsi + 0xb0], 0x80000	drawer1/4	
+002A8C50	FUN_002a8c50	002A9317	0xB0	w	movups xmmword ptr [rcx + 0x30], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A938E	0xB0	r	movups xmm1, xmmword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9428	0xB0	w	mov byte ptr [rsi + 0xb0], 3	drawer1/4	
+002A8C50	FUN_002a8c50	002A95A0	0xB0	w	movups xmmword ptr [rcx + 0x30], xmm1	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9651	0xB0	r	movups xmm1, xmmword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A96B7	0xB0	rw	and dword ptr [rsi + 0xb0], 0xffefffff	drawer1/4	
+002A8C50	FUN_002a8c50	002A96CC	0xB0	rw	or dword ptr [rsi + 0xb0], eax	drawer1/4	
+002A8C50	FUN_002a8c50	002A96D2	0xB0	r	mov eax, dword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A96E2	0xB0	w	mov dword ptr [rsi + 0xb0], eax	drawer1/4	
+002A8C50	FUN_002a8c50	002A97CD	0xB0	r	mov eax, dword ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A97DD	0xB0	w	mov dword ptr [rsi + 0xb0], eax	drawer1/4	
+002A8C50	FUN_002a8c50	002A97EA	0xB0	w	mov byte ptr [rsi + 0xb0], 5	drawer1/4	
+002A8C50	FUN_002a8c50	002A97F1	0xB0	rw	or dword ptr [rsi + 0xb0], 0x80000	drawer1/4	
+002A8C50	FUN_002a8c50	002A9877	0xB0	w	mov dword ptr [rsi + 0xb0], edi	drawer1/4	
+002A8C50	FUN_002a8c50	002A989E	0xB0	w	mov byte ptr [rsi + 0xb0], 2	drawer1/4	
+002A8C50	FUN_002a8c50	002A98A5	0xB0	rw	or dword ptr [rsi + 0xb0], 0x80000	drawer1/4	
+002A8C50	FUN_002a8c50	002A98B5	0xB0	w	mov byte ptr [rsi + 0xb0], 5	drawer1/4	
+002A8C50	FUN_002a8c50	002A98BC	0xB0	rw	or dword ptr [rsi + 0xb0], 0x4080000	drawer1/4	
+002A8C50	FUN_002a8c50	002A98FC	0xB0	r	movzx eax, byte ptr [rsi + 0xb0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A9923	0xB0	w	mov byte ptr [rsi + 0xb0], 1	drawer1/4	
+002A9980	FUN_002a9980	002A9990	0xB0	rw	and dword ptr [rcx + 0xb0], 0x7fffffff	drawer0/3	
+002A9980	FUN_002a9980	002A999D	0xB0	r	mov edx, dword ptr [rcx + 0xb0]	drawer0/3	
+002A9980	FUN_002a9980	002A9A10	0xB0	w	mov dword ptr [rcx + 0xb0], edx	drawer0/3	
+002A9980	FUN_002a9980	002A9A27	0xB0	w	mov byte ptr [rcx + 0xb0], dil	drawer0/3	
+002A9980	FUN_002a9980	002A9A2E	0xB0	rw	or dword ptr [rcx + 0xb0], 0x80000000	drawer0/3	
+002A9980	FUN_002a9980	002A9A7D	0xB0	w	mov dword ptr [rcx + 0xb0], edx	drawer0/3	
+002A9980	FUN_002a9980	002A9A9C	0xB0	w	mov dword ptr [rcx + 0xb0], edx	drawer0/3	
+002A9980	FUN_002a9980	002A9AA2	0xB0	w	mov byte ptr [rcx + 0xb0], 6	drawer0/3	
+002AAE40	FUN_002aae40	002AAEEA	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	drawer11	
+002AAE40	FUN_002aae40	002AB489	0xB0	w	movaps xmmword ptr [rbp + 0x70], xmm0	stackcopy	
+002ABF70	FUN_002abf70	002ABFC3	0xB0	w	mov byte ptr [rbx + 0xb0], 0	mode-switch	
+002AC1E0	FUN_002ac1e0	002AC239	0xB0	w	mov byte ptr [rbx + 0xb0], 0	init-kind2->arg0@002B3418	
+002AE610	FUN_002ae610	002AE6EE	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	copier	
+002AF960	FUN_002af960	002AF9FA	0xB0	rw	and dword ptr [rbx + 0xb0], 0xffdfffff	dispatcher2	
+002AF960	FUN_002af960	002AFAB3	0xB0	r	test dword ptr [rbx + 0xb0], 0x800000	dispatcher2	
+002AF960	FUN_002af960	002AFD6E	0xB0	r	cmp byte ptr [rbx + 0xb0], 5	dispatcher2	
+002B0280	FUN_002b0280	002B0362	0xB0	rw	and dword ptr [r14 + 0xb0], 0xffdfffff	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B07FD	0xB0	r	mov ecx, dword ptr [r14 + 0xb0]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0838	0xB0	w	mov dword ptr [r14 + 0xb0], ecx	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0D98	0xB0	r	test dword ptr [r14 + 0xb0], 0x1000000	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0DF5	0xB0	r	test dword ptr [r14 + 0xb0], 0x1000000	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1586	0xB0	r	test dword ptr [r14 + 0xb0], 0x2000000	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1660	0xB0	rw	or dword ptr [r14 + 0xb0], 0x200000	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B17F2	0xB0	r	movups xmm1, xmmword ptr [rax + 0x30]	draw-helper->arg0@002D8791+lea80	
+002B0280	FUN_002b0280	002B196F	0xB0	rw	and dword ptr [r14 + 0xb0], 0xfff7ffff	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B199A	0xB0	w	mov byte ptr [r14 + 0xb0], 4	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1A6F	0xB0	r	movups xmm1, xmmword ptr [r14 + 0xb0]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B1FF5	0xB0	rw	and dword ptr [rbp - 0x10], 0xffffff00	stackcopy	
+002B2150	FUN_002b2150	002B2225	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B2546	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	init-kind0->arg0@002B3C8D	
+002B2D60	FUN_002b2d60	002B2D60	0xB0	r	cmp byte ptr [rcx + 0xb0], 0	backtrace 002AF960->arg0 mov->arg0@002A459F	
+002B2DF0	FUN_002b2df0	002B2E90	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	copier	
+002B35A0	FUN_002b35a0	002B35BD	0xB0	r	mov eax, dword ptr [r9 + 0xb0]	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B35E0	0xB0	w	mov dword ptr [r9 + 0xb0], ecx	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B364C	0xB0	w	mov dword ptr [r9 + 0xb0], ecx	drawer1/4->arg0@002A91A4	
+002B35A0	FUN_002b35a0	002B36DC	0xB0	w	mov dword ptr [r9 + 0xb0], ecx	drawer1/4->arg0@002A91A4	
+002B3950	FUN_002b3950	002B3950	0xB0	rw	and dword ptr [rcx + 0xb0], 0xfff7ffff	advance-helper	
+002B3950	FUN_002b3950	002B3963	0xB0	w	mov byte ptr [rcx + 0xb0], al	advance-helper	
+002B3C30	FUN_002b3c30	002B3C9F	0xB0	rw	and dword ptr [rbx + 0xb0], 0xff7fffff	init-kind0	
+002B3C30	FUN_002b3c30	002B3D1B	0xB0	rw	or dword ptr [rbx + 0xb0], eax	init-kind0	
+002B3D50	FUN_002b3d50	002B3D68	0xB0	w	mov byte ptr [rcx + 0xb0], 0	init-kind0b	
+002B3D50	FUN_002b3d50	002B3D8F	0xB0	rw	and dword ptr [rdi + 0xb0], 0xffefffff	init-kind0b	
+002B3E90	FUN_002b3e90	002B3F2B	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B4258	0xB0	rw	and dword ptr [rbp + 0xf0], 0xffffff00	stackcopy	
+002B43C0	FUN_002b43c0	002B443A	0xB0	r	movups xmm0, xmmword ptr [rcx + 0xb0]	drawer1/4->arg0@002A91BA	
+002B5730	FUN_002b5730	002B579E	0xB0	rw	and dword ptr [rbp - 0x10], 0xffffff00	stackcopy	
+0057C480	FUN_0057c480	0057C9C4	0xB0	r	cmp byte ptr [rsi + 0x190], 1	owner+0xE0 handler	
+002A9F00	FUN_002a9f00	002AA51A	0xB8	r	mov rcx, qword ptr [rdi + 0xb8]	drawer2	
+002AA800	FUN_002aa800	002AABEF	0xB8	r	mov rcx, qword ptr [rsi + 0xb8]	drawer5	
+002AAE40	FUN_002aae40	002AB361	0xB8	r	mov rcx, qword ptr [rax + 0xb8]	drawer11	
+002AC1E0	FUN_002ac1e0	002AC249	0xB8	w	mov qword ptr [rbx + 0xb8], 0x30000	init-kind2->arg0@002B3418	
+002AF960	FUN_002af960	002AFBDA	0xB8	r	mov rax, qword ptr [rbx + 0xb8]	dispatcher2	
+002B0280	FUN_002b0280	002B03BB	0xB8	r	mov rcx, qword ptr [r14 + 0xb8]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B0B56	0xB8	r	mov rcx, qword ptr [r14 + 0xb8]	draw-helper->arg0@002D8791	
+002B0280	FUN_002b0280	002B1479	0xB8	r	mov rcx, qword ptr [r14 + 0xb8]	draw-helper->arg0@002D8791	
+002B1D20	FUN_002b1d20	002B1D84	0xB8	r	mov rax, qword ptr [r8 + 0xb8]	draw-helper->arg0@002D8791->arg0@002B04E4	
+002B1FB0	FUN_002b1fb0	002B203D	0xB8	w	mov qword ptr [rbp - 8], 0x30000	stackcopy	
+002B41F0	FUN_002b41f0	002B42B5	0xB8	w	mov qword ptr [rbp + 0xf8], 0x30000	stackcopy	
+002B5730	FUN_002b5730	002B57E6	0xB8	w	mov qword ptr [rbp - 8], 0x30000	stackcopy	
+002D8550	FUN_002d8550	002D860E	0xB8	w	mov qword ptr [rbp + 0xb8], 0x3001	draw-helper	
+002D8690	FUN_002d8690	002D877F	0xB8	w	mov qword ptr [rdi + 0xb8], 0x3001	draw-helper	
+002D87D0	FUN_002d87d0	002D88BF	0xB8	w	mov qword ptr [rdi + 0xb8], 0x3001	draw-helper	
+002A1B00	FUN_002a1b00	002A1BC3	0xC0	r	movups xmm1, xmmword ptr [r14 + 0xc0]	owner+0xD0 copier+leaD0	
+002A4430	FUN_002a4430	002A44DB	0xC0	r	movups xmm1, xmmword ptr [rbx + 0xc0]	backtrace 002AF960->arg0 mov	
+002A4830	FUN_002a4830	002A4903	0xC0	r	movups xmm0, xmmword ptr [rax + 0xc0]	owner+0xD0 init-kind3+leaD0	
+002A4830	FUN_002a4830	002A4C8E	0xC0	r	movups xmm0, xmmword ptr [rbx + 0xc0]	owner+0xD0 init-kind3+leaD0	
+002A8C50	FUN_002a8c50	002A8CE6	0xC0	r	cmp dword ptr [rsi + 0xc0], 1	drawer1/4	
+002A8C50	FUN_002a8c50	002A8D24	0xC0	w	mov dword ptr [rsi + 0xc0], r13d	drawer1/4	
+002A8C50	FUN_002a8c50	002A8EAE	0xC0	w	movups xmmword ptr [rcx + 0x40], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A8FC7	0xC0	r	movups xmm0, xmmword ptr [rsi + 0xc0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A917B	0xC0	w	movups xmmword ptr [rcx + 0x40], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A931B	0xC0	w	movups xmmword ptr [rcx + 0x40], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A9399	0xC0	r	movups xmm0, xmmword ptr [rsi + 0xc0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A95A4	0xC0	w	movups xmmword ptr [rcx + 0x40], xmm0	drawer1/4+lea80	
+002A8C50	FUN_002a8c50	002A965C	0xC0	r	movups xmm0, xmmword ptr [rsi + 0xc0]	drawer1/4	
+002A8C50	FUN_002a8c50	002A991B	0xC0	w	mov dword ptr [rsi + 0xc0], eax	drawer1/4	
+002AAE40	FUN_002aae40	002AAEF6	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	drawer11	
+002AC1E0	FUN_002ac1e0	002AC269	0xC0	w	mov dword ptr [rbx + 0xc0], 0	init-kind2->arg0@002B3418	
+002AE610	FUN_002ae610	002AE6F9	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	copier	
+002AF960	FUN_002af960	002AFB5B	0xC0	r	cmp dword ptr [rbx + 0xc0], esi	dispatcher2	
+002B0280	FUN_002b0280	002B17FA	0xC0	r	movups xmm0, xmmword ptr [rax + 0x40]	draw-helper->arg0@002D8791+lea80	
+002B0280	FUN_002b0280	002B1A7B	0xC0	r	movups xmm0, xmmword ptr [r14 + 0xc0]	draw-helper->arg0@002D8791	
+002B1FB0	FUN_002b1fb0	002B205E	0xC0	w	mov dword ptr [rbp], 0	stackcopy	
+002B2150	FUN_002b2150	002B2230	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	drawer1/4->arg0@002A8F11	
+002B24B0	FUN_002b24b0	002B2551	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	init-kind0->arg0@002B3C8D	
+002B2DF0	FUN_002b2df0	002B2E9C	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	copier	
+002B3E90	FUN_002b3e90	002B3F37	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	drawer1/4->arg0@002A8FE4	
+002B41F0	FUN_002b41f0	002B42D5	0xC0	w	mov dword ptr [rbp + 0x100], 0	stackcopy	
+002B43C0	FUN_002b43c0	002B4445	0xC0	r	movups xmm1, xmmword ptr [rcx + 0xc0]	drawer1/4->arg0@002A91BA	
+002B5730	FUN_002b5730	002B5807	0xC0	w	mov dword ptr [rbp], ebx	stackcopy	

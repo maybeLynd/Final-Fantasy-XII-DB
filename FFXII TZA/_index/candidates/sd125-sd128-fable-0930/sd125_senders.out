@@ -1,0 +1,111 @@
+P1 002778C0 (9374 B) arms: 1->00277925, 2->00278A3B, 4->00278074, 10/11->00277A64, 12->00278302, 15->00279CC5, 18->00279CF9, 30->0027902D, 31->00279187, 32->00278FCA, 35->002780E8, 44->00279C7E, 45->00279CA5 ; default 00279D2C
+PASS  P1 002778C0 answers 1,2,4,10,11,12,15,18,30,31,32,35,44,45 (OPUS's SD-126 table); 2 -> 00278A3B, 31 -> 00279187
+P2 arms reaching 002795AE at all: [31] ; with r12 unredefined: [31]
+PASS  P2 only message 31's arm reaches 002795AE with r12 still the message pointer
+    r12 definitions reaching 002795AE: 002778EC mov r12, rdx
+    rdi definitions reaching 002795AE: 002791A7 mov edi, 1
+PASS  P3 on arm 31, rdi = 1 from 002791A7 reaches 002795AE with no further rdi write
+PASS  P3 arm 31 stores the first parameter's low word as the window kind: 002791A1 movzx eax, word [r12+8] / 002791AC mov [rsi+0xd8], ax
+PASS  P3 002795AE cmp qword [r12+8], rdi ; 002795B5 or [r15+0x2ff0], 0x4000 ; 002795C2 and ... 0xffffbfff
+PASS  P3 r15 = [rcx+0xd0] (002778EF), the parent menu widget the id-1 arm stores (00277925-00277931)
+P4 id 31: 13 immediate dword stores, 0 register-sourced stores, 0 static rdx-records
+PASS  P4 control: the census finds the six id-31 builds already read (002778C0 x5, 00279E20 0027A5D3)  missing []
+PASS  P4 control: id 30 census finds 00278CE8 (the protocol page's 002778C0 send)
+PASS  P4 control: static-record shape finds {18} at 00915070 (protocol page section 8)
+P5 id-31 builds and their consumers:
+    00277C9B mov dword ptr [rbp - 9], 0x1f  in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch
+        call 00277CF2 call rax ; receiver 00277CEF mov rcx, rsi
+        +8: 00277CD4 mov qword ptr [rbp - 1], rax ; register source 00277CCC movsx rax, word ptr [rsi + 0xd8]
+    00278030 mov dword ptr [rbp - 9], 0x1f  in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch
+        call 00278043 call rax ; receiver 00278040 mov rcx, rsi
+        +8: 0027801E mov qword ptr [rbp - 1], rax ; register source 00278016 movsx rax, word ptr [rsi + 0xd8]
+    00278212 mov dword ptr [rbp - 9], 0x1f  in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch
+        call 00278229 call rax ; receiver 00278226 mov rcx, rsi
+        +8: 0027820B mov qword ptr [rbp - 1], rax ; register source 00278203 movsx rax, word ptr [rsi + 0xd8]
+    00278882 mov dword ptr [rbp - 9], 0x1f  in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch
+        call 00278895 call rax ; receiver 00278892 mov rcx, rsi
+        +8: 0027887E mov qword ptr [rbp - 1], rcx ; register source 0027886D sar rcx, 1
+    00278F80 mov dword ptr [rbp - 9], 0x1f  in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch
+        call 00278F93 call rax ; receiver 00278F90 mov rcx, rsi
+        +8: 00278F6E mov qword ptr [rbp - 1], rax ; register source 00278F66 movsx rax, word ptr [rsi + 0xd8]
+    0027A5D3 mov dword ptr [rbp - 0x40], 0x1f  in 00279E20 FUN_00279e20
+        call 0027A5DA call 0x2753f0 ; receiver 0027A5C6 mov rcx, rdi
+        +8: 0027A5C2 mov qword ptr [rbp - 0x38], rax ; register source 0027A5B6 movsx rax, word ptr [rbx + 0x61b8]
+    002BB7C4 mov dword ptr [rsp + 0x70], 0x1f  in 002BAF80 FUN_002baf80
+        call 002BB7D2 call 0x275440 ; receiver 002BB7C1 mov rcx, r14
+        +8: 002BB7CC movdqu xmmword ptr [rsp + 0x78], xmm0 <- 00915BB0=(1, 0, 0, 0) ; register source -
+    002BBA0B mov dword ptr [rsp + 0x70], 0x1f  in 002BAF80 FUN_002baf80
+        call 002BBA19 call 0x275440 ; receiver 002BBA08 mov rcx, r14
+        +8: 002BBA13 movdqu xmmword ptr [rsp + 0x78], xmm0 <- 00915BB0=(1, 0, 0, 0) ; register source -
+    003CA245 mov dword ptr [rsp + 0x20], 0x1f  in 003CA200 FUN_003ca200
+        call 003CA264 call rax ; receiver 003CA25D lea rcx, [rbx + 0x2a0]
+        +8: 003CA24D movdqu xmmword ptr [rsp + 0x28], xmm0 <- zero ; register source -
+    00551E32 mov dword ptr [rsp + 0x20], 0x1f  in 00551E00 FUN_00551e00
+        call 00551E48 call 0x275440 ; receiver 00551E3F mov rcx, rdi
+        +8: 00551E42 movdqu xmmword ptr [rsp + 0x28], xmm0 <- zero ; register source -
+    00551F3D mov dword ptr [rsp + 0x48], 0x1f  in 00551F00 FUN_00551f00
+        call 00551F53 call 0x275440 ; receiver 00551F4A mov rcx, rdi
+        +8: 00551F4D movdqu xmmword ptr [rsp + 0x50], xmm0 <- zero ; register source -
+    005541CD mov dword ptr [rbp - 0x50], 0x1f  in 00553F40 FUN_00553f40
+        call 00554249 call 0x275440 ; receiver 00554241 mov rcx, rdi
+        +8: 005541BC movdqu xmmword ptr [rbp - 0x48], xmm0 <- 00915BB0=(1, 0, 0, 0) | 00554244 movdqu xmmword ptr [rbp - 0x48], xmm0 <- zero ; register source -
+    00832417 mov dword ptr [rcx + 8], 0x1f  in 00832390 FUN_00832390
+        call 00832428 call 0x85e680 ; receiver 00832425 lea ecx, [rdi + 0x40]
+        +8: - ; register source -
+PASS  P5 re-sends of the current kind: 00277C9B, 00278030, 00278212, 00278F80 pass movsx word [rsi+0xd8] to the dispatcher's own handler
+PASS  P5 00278882's payload rcx has two sources: the back path 00278860 mov eax, [rdx+rax*4+0x70] (the saved kind) and the forward path 002785F0 -> 00278870 with rcx = 0027C3D0's result (00278423 store, 00278559 reload)
+PASS  P5 00279E20 sends {31, (i64)word[controller+0x61B8], [child+0x2FE0]} through the subtree broadcast 002753F0 to the menu child it just built (rcx = rdi)  call 0027A5DA call 0x2753f0 receiver 0027A5C6 mov rcx, rdi +8 0027A5C2 mov qword ptr [rbp - 0x38], rax
+PASS  P5 the 0027A5D3 payload is 0027A5B6 movsx rax, word [rbx+0x61b8] -> 0027A5C2 mov [rbp-0x38], rax
+PASS  P5 foreign {31, 1} builds: only 002BAF80's two (the location-map page) load the payload from 00915BB0 = (1, 0, 0, 0); both send UP their own parent chain (00275440)  002BB7C4 002BAF80 FUN_002baf80 call 002BB7D2 call 0x275440 rcx 002BB7C1 mov rcx, r14; 002BBA0B 002BAF80 FUN_002baf80 call 002BBA19 call 0x275440 rcx 002BBA08 mov rcx, r14
+PASS  P5 foreign {31, 0} builds (003CA200, 00551E00, 00551F00, and 00553F40 - whose record still holds {34, 1} at 005541BC but the shared tail 0055423A zeroes +8 before the send 00554249) carry a zeroed payload
+PASS  P5 00275440 delivers to the ancestors only: starts at [rcx+0x10] and follows +0x10 (00275452, 00275470)
+PASS  P5 the 002BAF80 sender object is that procedure's own widget (002BAFC4 mov r14, rcx)
+    id-31 immediates not classified above: 00832417 (00832390 FUN_00832390) 00832417 mov dword ptr [rcx + 8], 0x1f
+P5b table at 00278D86: bounded (cmp eax, 7) 8 entries; read until a target leaves the function: 15 entries ['0027956B', '00279572', '00279579', '00279580', '00279587', '0027958E', '00279595']
+PASS  P5b sensitivity: the unbounded read runs into the next table 00279E04 (whose targets 0027956B.. flow to 002795AE), and with those edges arm 2 reaches 002795AE and 00278A5B becomes an rdi definition - the earlier record's 'arm 2' path is that artefact  rdi defs unbounded: 00278A5B, 002791A7
+P6 00279E20 (3006 B) arms: 1->00279E78, 2->0027A032, 18->0027A829, 24->0027A837, 29->0027A9A8, 33->0027A78E, 34->0027A7B7, 36->0027A764, 37->0027A756, 38->0027A8F0, 40->0027A8C3, 41->0027A8D1, 42->0027A8DF, 43->0027A970, 46->0027A982, 47->0027A775, 48->0027A936, 49->0027A7CA, 50->0027A7FB, 51->0027A817, 52->0027A99E
+PASS  P6 the controller's {31} send 0027A5D3 is reached from its message-2 arm only (GENERATION RECONCILE)  holders [2]
+    displacement 0x61B8: 12 sites; writes: 0027670D mov word ptr [rsi + 0x61b8], r14w in 00276650 FUN_00276650; 0027A6F0 mov word ptr [rbx + 0x61b8], si in 00279E20 FUN_00279e20; 0027A793 mov word ptr [rbx + 0x61b8], ax in 00279E20 FUN_00279e20
+PASS  P6 control: the 0x61B8 sweep finds the read 0027A5B6 that feeds the send
+PASS  P6 the word has three writers: 00276650 at 0027670D (the controller's builder), the controller's message-33 arm at 0027A793 (<- 0027A78E movzx eax, word [r14+8], the message's first parameter) and its message-2 arm at 0027A6F0  writers ['0027670D', '0027A6F0', '0027A793']
+PASS  P6 00276650 builds the controller with +0x61B8 = 1: r14 at 0027670D is 002766A3 lea r14d, [rbx+1] only, and rbx there is 0027666B xor ebx, ebx only  r14 defs ['002766A3'], rbx defs ['0027666B']
+PASS  P6 the message-2 arm zeroes the word after the open: 0027A6F0 is reached from the send 0027A5DA, and rsi there is 0027A058 xor esi, esi only  rsi defs ['0027A058']
+P4b id 33 builds: 10 immediate, 0 register-sourced, 0 static
+    00278645 mov dword ptr [rbp - 9], 0x21 in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch ; call 00278650 call 0x275440 ; receiver 00278642 mov rcx, rsi ; +8 0027861B movdqu xmmword ptr [rbp - 1], xmm0 <- zero | 0027863E mov qword ptr [rbp - 1], rcx ; reg source 0027862C mov rcx, r15
+    002788C0 mov dword ptr [rbp - 9], 0x21 in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch ; call 002788DC call 0x275440 ; receiver 002788D9 mov rcx, rsi ; +8 0027887E mov qword ptr [rbp - 1], rcx | 002788AD movdqu xmmword ptr [rbp - 1], xmm0 <- 00915BC0=(2, 0, 0, 0) | 002788CD mov qword ptr [rbp - 1], rcx ; reg source 002788CA sar rcx, 1
+    0027AB88 mov dword ptr [rsp + 0x28], 0x21 in 0027AA70 FUN_0027aa70 ; call 0027AB90 call 0x275440 ; receiver 0027AB7F mov rcx, rdi ; +8 0027AB82 movdqu xmmword ptr [rsp + 0x30], xmm0 <- 00915BB0=(1, 0, 0, 0) ; reg source -
+    0027AC65 mov dword ptr [rsp + 0x28], 0x21 in 0027AA70 FUN_0027aa70 ; call 0027AC6D call 0x275440 ; receiver 0027AC55 mov rcx, rdi ; +8 0027AC5F movdqu xmmword ptr [rsp + 0x30], xmm0 <- 00915BB0=(1, 0, 0, 0) ; reg source -
+    0027B4E7 mov dword ptr [rsp + 0x28], 0x21 in 0027B430 FUN_0027b430 ; call 0027B4F4 call 0x275440 ; receiver 0027B4DF mov rcx, rdi ; +8 0027B4BD mov qword ptr [rsp + 0x30], rax | 0027B4EF mov qword ptr [rsp + 0x30], rbp ; reg source 0027B47B movsxd rbp, eax
+    002B6526 mov dword ptr [rsp + 0x38], 0x21 in 002B6350 FUN_002b6350 ; call 002B6541 call rax ; receiver 002B653E mov rcx, rbx ; +8 002B652E movdqu xmmword ptr [rsp + 0x40], xmm0 <- zero ; reg source -
+    002B9F75 mov dword ptr [rsp + 0x38], 0x21 in 002B9D30 FUN_002b9d30 ; call 002B9F90 call rax ; receiver 002B9F8D mov rcx, rbx ; +8 002B9F7D movdqu xmmword ptr [rsp + 0x40], xmm0 <- zero ; reg source -
+    00553628 mov dword ptr [rsp + 0x50], 0x21 in 005528C0 FUN_005528c0 ; call 0055363E call 0x2753f0 ; receiver 00553635 mov rcx, rdi ; +8 00553638 movdqu xmmword ptr [rsp + 0x58], xmm0 <- zero ; reg source -
+    0060DAD6 mov dword ptr [rcx], 0x21 in 0060DA50 FUN_0060da50 ; call - ; receiver - ; +8 0060DADC mov byte ptr [rcx + 8], sil ; reg source -
+    007A950F mov dword ptr [rax], 0x21 in 007A94D0 FUN_007a94d0 ; call 007A9515 call 0x7a9160 ; receiver 007A950C mov rcx, rbx ; +8 - ; reg source -
+PASS  P4b control: id 33 census finds 0027AA70's two sends
+PASS  P4b 0027AA70 sends {33, 1} (00915BB0) at 0027AB88 up its parent chain
+PASS  P4b the dispatcher reports the kind it opened to its ancestors: 002788C0 {33} via 00275440, +8 = the same rcx the 31-send carried (0027887E / 002788CD)
+PASS  P6b the controller builds a 0x4A0-byte child with handler 0027AA70 in its child slot +0xC0 + i*0x3010 (0027A369-0027A392) and attaches it under itself (0027A3B7, parent rbx)
+    controller arms reaching the 0027AA70 build: [2]
+    0027AA70 (765 B) loads the id at 0027AAA1 mov ecx, dword ptr [rdx]
+    0027AA70 {33, 1} build 0027AB88 reachable from entry: True
+    0027AA70 {33, 1} build 0027AC65 reachable from entry: True
+PASS  P6b 0027B430 sends {33, 0027C730's result} up from rdi (0027B474 call 0027C730 -> 0027B47B movsxd rbp, eax -> 0027B4EF +8 = rbp -> 0027B4F4 00275440); rdi carries the dispatcher's +0xD8 (0027B483)
+P9 raw rel32 index (E8/E9/0F8x) to the attach entries 00244960 / 00248220: 108 hits, 108 on an instruction boundary
+    00276DF1 -> 00244960 in 00276D30 FUN_00276d30 ; parent 00276DEE mov rcx, rdi ; child 00276DEB mov rdx, rax
+    00277A25 -> 00244960 in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch ; parent 00277A22 mov rcx, rsi ; child 00277A1B lea rdx, [rsi + 0xf0]
+    00277A34 -> 00244960 in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch ; parent 00277A31 mov rcx, rsi ; child 00277A2A lea rdx, [rsi + 0x1710]
+    0027A18E -> 00244960 in 00279E20 FUN_00279e20 ; parent 0027A18B mov rcx, rbx ; child 0027A181 mov rdx, rdi
+    0027A3B7 -> 00244960 in 00279E20 FUN_00279e20 ; parent 0027A3AB mov rcx, rbx ; child 0027A3B4 mov rdx, rax
+    0027A568 -> 00244960 in 00279E20 FUN_00279e20 ; parent 0027A565 mov rcx, rbx ; child 0027A562 mov rdx, rdi
+    0027AEC3 -> 00244960 in 0027AD70 FUN_0027ad70 ; parent 0027AEC0 mov rcx, rdi ; child 0027AEB6 mov rdx, rax
+    002B9F6A -> 00244960 in 002B9D30 FUN_002b9d30 ; parent - ; child 002B9F60 mov rdx, rbx
+PASS  P9 control: the index finds 00276DF1 (menu attaches the dispatcher), 0027A568 (controller attaches the menu) and 002B9F6A
+PASS  P9 the dispatcher attaches only its two 0027AD70 windows (00277A25 / 00277A34, children rsi+0xF0 / rsi+0x1710), and each window attaches only its 002D14E0 list (0027AEC3)  002778C0 ['00277A25', '00277A34'], 0027AD70 ['0027AEC3']
+P7 0027E050 table 0027E384[0] (kind 1; index kind - 1 at 0027E06B) -> 0027E098: mov rax, qword ptr [rcx + 0x1510] ; mov dword ptr [rcx + 0x4c8], r9d ; mov dword ptr [rcx + 0x4c0], 6 ; lea rcx, [rip - 0x74d7]
+PASS  P7 kind 1 stores list code 6 (the top command list: Attack, Magicks & Technicks, Mist, Dismiss, Gambits, Items per UQ-68 W9) at +0x4C0
+PASS  P7 +0xD8 is the kind the window is sized from: 00278B9F movsx edx, word [rsi+0xd8] -> 00278BA6 call 0027DED0
+PASS  P8 00276D30: 00276FD8 test [rdi+0x2ff0], 0x4000 / 00276FF2 cmovne r14d, r15d(=1) over 00253BA0's result / 00277031 test r14d -> 0027704E or +0x2ff0, 0x200 -> 0027705B call 00244F00
+PASS  P8 r14d = 0 goes straight to the close (00277034 je 0027704E); r14d != 0 closes only when bit 17 is clear and edx (00277036-00277047) or r15d (member record byte & 9, 00277022-0027702E) - else 0027704C je 00277067 (no close)
+P8 00276D30 arms: 1->00276D85, 2->00276FA0, 4->00277329, 6->00276E14, 15->00276E25, 18->00276F27, 21->00276EEA, 39->002770AB, 46->0027780D, 53->00277058
+PASS  P8 the 0x4000 test sits in 00276D30's message-2 arm (GENERATION RECONCILE, sent every frame by 00248030)
+FAILS 0

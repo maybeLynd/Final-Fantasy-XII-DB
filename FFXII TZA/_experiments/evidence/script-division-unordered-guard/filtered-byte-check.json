@@ -1,0 +1,122 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "a231c05c081b0fd1ab5ec2b2dddefaa4423a15b8"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "f026227f977d5ac831b121969f5636b4f419da87"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "bf06a73bc45a817fc44fe4b38d6b2ebae633cdac"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "661432199397454049979b7aa98b0691d181d12b"
+  },
+  {
+    "path": "fault-drop-parity.stderr",
+    "git_blob": "7dce0a887f4206c1401c091cab3ffa14d63f6785"
+  },
+  {
+    "path": "fault-drop-parity.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-integer-zero-flags.stderr",
+    "git_blob": "5c4ed5407c0fdc6a32d371861267484bb309410d"
+  },
+  {
+    "path": "fault-integer-zero-flags.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-reverse-divide.stderr",
+    "git_blob": "69b9c0d32e080ddc783695cae623c7992286fc88"
+  },
+  {
+    "path": "fault-reverse-divide.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "345ec78ef785297c2d29716f2c60c19e2052710a"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "1de0da4031b6c6931f91e2d61f44984021dea27e"
+  },
+  {
+    "path": "prepare-source.py",
+    "git_blob": "93d45eeba494e9f3a3e9134c38763f1e824858cf"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "47e632f5121616cb1d1693e107aa92e0f3a7e482"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "4316d7a3f979018f5fecf6a13d62a0c42aed2368"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "12c9d606083523cc4924a2150b631e3564a9ba83"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "955251a338aa07fdd1fea87ff5d716b817e9870c"
+  },
+  {
+    "path": "retained/consumer-before.md",
+    "git_blob": "d6242db08fa4bf63d2f8734b9e7c4d4698420e19"
+  },
+  {
+    "path": "retained/descriptor24.bin",
+    "git_blob": "c18bdcf40355112c62b40349526455ff5574b0ef"
+  },
+  {
+    "path": "retained/dispatch4.bin",
+    "git_blob": "404eb55f4bac8196f9e93948536c681e0827dfc6"
+  },
+  {
+    "path": "retained/initial162.bin",
+    "git_blob": "116dd74c4dca457bdbfba3d87d58f17dbce09d50"
+  },
+  {
+    "path": "retained/int-zero64.bin",
+    "git_blob": "5f4b08b10f3124073cd75b9598ab2acf1bb928a8"
+  },
+  {
+    "path": "retained/name32.bin",
+    "git_blob": "4ffaee2eaa75c0687cb75c58695bec2c6b8354de"
+  },
+  {
+    "path": "retained/opdiv298.bin",
+    "git_blob": "fd4adfe222464ec3d66a62332f0c5494d2112d02"
+  },
+  {
+    "path": "retained/preparation-before-boundary-fix.bin",
+    "git_blob": "e7978a384ab49f4ecf861f8f12f1225b6b132698"
+  },
+  {
+    "path": "retained/preparation-boundary-note.json",
+    "git_blob": "c64a2b7024b5069692fac930eb40dcd436448e1a"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  }
+]

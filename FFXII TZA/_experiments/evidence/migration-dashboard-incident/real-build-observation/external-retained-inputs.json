@@ -1,0 +1,173 @@
+{
+  "scope": "Real scratch build observation; complete original input snapshot remains at private work paths, not a claimed portable export acceptance. Certified EXE is external, never copied.",
+  "files": [
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/_pkg/PKG-GP-HP-LETHAL.md",
+      "bytes": 9038,
+      "sha256": "2246a72cfeec8d9cc29bee50e712890467a13f93dee7c50d7d0e6574d4dce052",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/_pkg/PKG-TECH-SCRIPTVM-VALUE.md",
+      "bytes": 7610,
+      "sha256": "42a47488644762f7a3d90198c1f28923423a19914a777f8005d7fe0152869bcd",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/_tree",
+      "bytes": 9443,
+      "sha256": "4ad3e5f08be362c8b653851b0d71f5a352aadf8288af14d436c88446560580b6",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/build_views.py",
+      "bytes": 32120,
+      "sha256": "d41c6544b71c86431a17b5ace744f812364afa5d703d72e950af413324f48ba5",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/check_questions",
+      "bytes": 642,
+      "sha256": "56e26fab7f91f80daca6040d4efd9d8d3b46e57e20fb726c839086e30b50a73c",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/coverage_dims",
+      "bytes": 58385,
+      "sha256": "af8622e4eac86e21e1f8c261eebb7a290799b2368ded78c180c222fee28aea50",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/fields",
+      "bytes": 10639921,
+      "sha256": "755ebd74374b403bad71112f42b92764be2dffef93bfc0a7c9a3c361fde97eba",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/functions",
+      "bytes": 7008993,
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/goal_gate",
+      "bytes": 653,
+      "sha256": "fbccb6376176a4609b9c0ac10d4c5c012ab71a34774cfc7ee3e487c317953350",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/l2",
+      "bytes": 334411,
+      "sha256": "e72b85baf9ea88b9eec9e99c9d8977735bed41afb617e15fa6f958897ef55fe2",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/pkg",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/progress_check",
+      "bytes": 85,
+      "sha256": "e6a8ea514fde292ea985caa4d770bafb6c09c1157bebad80e5e94719f0decebf",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/progress_snapshot",
+      "bytes": 248010,
+      "sha256": "bc17c3addcd2947f09f049de56f225eea86ff2530cde9e414d8c343456981282",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/subsystems",
+      "bytes": 22589,
+      "sha256": "ba2d3747565aa76ff52c71a00cb7c5bc919b65c5ff4a06845b769daa5b96de87",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/team",
+      "bytes": 54727401,
+      "sha256": "58f13d6497ed366ec9c820b7a4bd5c39d7a4c1b49ad60c3b637b860b649427ac",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/types",
+      "bytes": 1919423,
+      "sha256": "14ad8d29841914276d833b778f24f5f5a10d017f8488cd415b0dbe62173262bc",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/uc1_1_64",
+      "bytes": 37250,
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/uc1_65_256",
+      "bytes": 11254,
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/vbf_list",
+      "bytes": 6448250,
+      "sha256": "f38f57966be4ea2ebac69ba9a8d35a93d5a61376529e875bc58cad0b1f92e217",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/inputs/watchdog",
+      "bytes": 4016,
+      "sha256": "4f60c037e57555c218988f9062acbd3da0ba462184d0be0a53b9e4a60375c0f9",
+      "portable_retained": false
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/MANIFEST.json",
+      "bytes": 6744,
+      "sha256": "0dd2dc04d08ecc77cad72504f26b0700e266073886e2bdebd69570aefb7775e8",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-evidence.json",
+      "bytes": 4251,
+      "sha256": "b4d4393a501803ac544bdd58deff72097c3874289ec7f354fda27d9b43b200d1",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-executable.json",
+      "bytes": 820,
+      "sha256": "0d543bbcfc42d4630937a180416ceaad82affe76eaab7d6b006c6586da8362a1",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-fleet.json",
+      "bytes": 3235,
+      "sha256": "8b2b3b33fc1974fa6c4e2bee6f786cd0b10d6cc876487fa37abe4cf1ff530478",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-overview.json",
+      "bytes": 11664,
+      "sha256": "694c1855fde35bdd8a8c1984d1d304ca530bf7bc9621079e161123ce40cd5b4a",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-systems.json",
+      "bytes": 56671,
+      "sha256": "5325088b35a59b31701c96753ba11a47bc1191ab8be1b298e7ed4e9694d45129",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-types.json",
+      "bytes": 1505,
+      "sha256": "280c27c2384f266af0fa8e3a27868b874a910cd3d9b7ef8e5e2037e4aaa44053",
+      "portable_retained": true
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-dashboard-incident/run-01/real-build/g20260929T023241Z-5e62fc/outputs/view-vbf.json",
+      "bytes": 18185,
+      "sha256": "638b494146967882569694584046b08093be743924c333de6d59dc03d4d10050",
+      "portable_retained": true
+    }
+  ]
+}

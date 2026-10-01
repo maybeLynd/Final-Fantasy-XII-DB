@@ -1,0 +1,9 @@
+2026-09-27 first collector: NOT ACCEPTED. source.json was not written.
+Requested 0031E1C0..0031E2E7 decoded to 295 bytes but first instructions were
+add al,0xEF / dec dword ptr[rax-0x75] / or eax,0x2BA0F4E. This is a cited prose
+range, not a qualified instruction entry. Full-byte decode does not validate it.
+Second requested 0031C7B7..0031C7FE failed complete consumption at 0031C7F5.
+Original table/text raw slices remain retained, but these decodes have no accepted
+physical-access or semantic result. Next: decode from exact original function entry,
+derive slice endpoints from that instruction map, add rejection of interior start.
+No native execution/process/control/save writes were performed.

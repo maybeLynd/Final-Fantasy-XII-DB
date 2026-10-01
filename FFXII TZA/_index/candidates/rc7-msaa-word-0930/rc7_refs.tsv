@@ -1,0 +1,16 @@
+site	function	instruction	width	form	access
+0018614C	00186130	cmp dword ptr [rip + 0x1c6a7ad], 0	4	rip	R
+0018644D	00186410	mov eax, dword ptr [rip + 0x1c6a4ad]	4	rip	R
+001864C3	00186410	mov ecx, dword ptr [rip + 0x1c6a437]	4	rip	R
+0018650D	00186410	mov ecx, dword ptr [rip + 0x1c6a3ed]	4	rip	R
+0018655C	00186410	mov ecx, dword ptr [rip + 0x1c6a39e]	4	rip	R
+001865BD	00186410	mov eax, dword ptr [rip + 0x1c6a33d]	4	rip	R
+00186D2B	00186CD0	mov eax, dword ptr [rip + 0x1c69bcf]	4	rip	R
+00186D68	00186CD0	mov dword ptr [rip + 0x1c69b92], ebp	4	rip	W
+00186D81	00186CD0	mov dword ptr [rip + 0x1c69b78], r12d	4	rip	W
+00187A7A	00187950	mov dword ptr [rip + 0x1c68e80], eax	4	rip	W
+00187A82	00187950	mov eax, dword ptr [rip + 0x1c68e78]	4	rip	R
+00187AC7	00187950	mov ecx, dword ptr [rip + 0x1c68e33]	4	rip	R
+00187B18	00187950	mov ecx, dword ptr [rip + 0x1c68de2]	4	rip	R
+00187B61	00187950	mov ecx, dword ptr [rip + 0x1c68d99]	4	rip	R
+00187B8C	00187950	mov eax, dword ptr [rip + 0x1c68d6e]	4	rip	R

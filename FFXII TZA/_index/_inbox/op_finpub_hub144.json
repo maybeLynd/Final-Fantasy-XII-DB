@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-144",
+ "result_refs": [
+  "publish commits ffbeace0b (28 clean hosts + 5 inbox lifecycle ops via publish_paths.sh) + 577806707 (private-index surgical HEAD+EC7 hunks into 4 peer-mixed hosts: script-to-native-bridge +7, resource-section-addressing +8, battle-unit-definition +9, thirty-two-statuses +12; AUDIT-LOG +71 around ~600 peer appends). Peer worktree edits preserved; real index normalized after each stage."
+ ],
+ "note": "batch-144 publish: 40 bodies (entire remaining 2-A band), 32 committed hosts; anchors 4393 (+40) 0 MID 0 outside-body; body-paragraph address checker 0 UNSUPPORTED in the batch's 40 entries; hash clean (standing set); crossref 2929 findings / 400 dispositioned; publish-neighbour guard ADDS NOTHING (accounts for 24 pre-existing pairs)"
+}

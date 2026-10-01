@@ -1,0 +1,85 @@
+{
+ "A": {
+  "5AE0": "C",
+  "5AEC": 0,
+  "calls": [
+   [
+    "002E73C0",
+    "76800000",
+    "3"
+   ],
+   [
+    "00329A10",
+    "76800000",
+    "2001"
+   ],
+   [
+    "002EB030",
+    "76800000",
+    "2001"
+   ]
+  ],
+  "flags": 0,
+  "returned": true,
+  "stopped_at": []
+ },
+ "B": {
+  "5AE0": "C",
+  "5AEC": 0,
+  "calls": [
+   [
+    "002E73C0",
+    "0",
+    "3"
+   ]
+  ],
+  "flags": 0,
+  "returned": true,
+  "stopped_at": []
+ },
+ "C": {
+  "5AE0": "C",
+  "5AEC": 0,
+  "calls": [
+   [
+    "002E73C0",
+    "76800000",
+    "3"
+   ]
+  ],
+  "flags": 0,
+  "returned": true,
+  "stopped_at": []
+ },
+ "D": {
+  "5AE0": "E",
+  "5AEC": 0,
+  "calls": [
+   [
+    "002E73C0",
+    "76800000",
+    "3"
+   ],
+   [
+    "00329A10",
+    "76800000",
+    "2001"
+   ],
+   [
+    "002EB030",
+    "76800000",
+    "2001"
+   ]
+  ],
+  "flags": 0,
+  "returned": true,
+  "stopped_at": []
+ },
+ "cases": {
+  "A_bit1_set_actor3_posts_2001_and_clears_bit1": true,
+  "B_bit1_set_no_actor3_no_post_bit1_still_cleared": true,
+  "C_bit1_clear_no_post_5AE0_unchanged": true,
+  "D_test_uses_the_value_read_before_the_roster_calls": true
+ },
+ "ok": true
+}

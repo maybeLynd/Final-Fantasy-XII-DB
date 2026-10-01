@@ -1,0 +1,33 @@
+PASS  A1 callers of 00504350: ['003AA109 in 003A9EF0', '00500A20 in 00500980']
+      non-.pdata references to 00504350: []
+PASS  A1 callers of 00500980: ['003A9F42 in 003A9EF0']
+      non-.pdata references to 00500980: []
+PASS  A1 callers of 003A9EF0: ['003EDAA0 in 003ED8A0']
+      non-.pdata references to 003A9EF0: [('rva32', '0x1c5d698'), ('rva32', '0x1c5d6ac'), ('rva32', '0x1c5d6bc')]
+PASS  A1 callers of 003ED8A0: ['003EE39B in 003EE2D0']
+      non-.pdata references to 003ED8A0: []
+PASS  A1 callers of 003EE2D0: ['003EE1F2 in 003EDAD0']
+      non-.pdata references to 003EE2D0: []
+PASS  A1 003ED8A0 arm 0xB00
+PASS  A1 003EE2D0 arm flag 0x100
+PASS  A2 callers of 003EDAD0 and of 0024B3A0 are the six constructors
+PASS  A3 0026FC6C mov byte ptr [rsp + 0x20], 2
+PASS  A3 002FC541 mov byte ptr [rsp + 0x30], 1
+PASS  A3 003B0730 mov byte ptr [rsp + 0x30], 5
+PASS  A3 003B2250 mov byte ptr [rsp + 0x20], 7
+PASS  A3 003B2A60 mov byte ptr [rsp + 0x20], 4
+PASS  A3 003B3977 mov byte ptr [rsp + 0x20], 3
+PASS  A3 0024B3A0 indexes the heads by template byte +0 and publishes the copy at 0024B477
+PASS  A3 the branch: type < 10 -> arena 8
+PASS  A4 0026FB90 window 0026FC8A..0026FCEE: direct stores ['0026FC9F'], storing callees [], indirect []
+PASS  A4 002FC4A0 window 002FC54B..002FC5D2: direct stores [], storing callees [], indirect [('002FC5AD', 'qword ptr [rip + 0x5c6a85]')]
+PASS  A4 003B2220 window 003B2255..003B226D: direct stores [], storing callees [], indirect []
+PASS  A4 003B29B0 window 003B2A6A..003B2A75: direct stores [], storing callees [], indirect []
+PASS  A4 003B38B0 window 003B39A4..003B39B3: direct stores [], storing callees [], indirect []
+PASS  A4 003B0660 window 003B073A..003B0745: direct stores [], storing callees [], indirect []
+PASS  A4 0026FC9F republishes 0024B3A0's own result
+PASS  A5 only store in the parse closure: 0024ED87
+PASS  A5 0024ED80 reached in the closure only from ['003EE344', '003EE36C']
+PASS  A6 the next table 020910F0 is 0x50 bytes above the heads 020910A0 (10 qwords)
+PASS  A6 the parse reads the type as at most 9
+RESULT PASS

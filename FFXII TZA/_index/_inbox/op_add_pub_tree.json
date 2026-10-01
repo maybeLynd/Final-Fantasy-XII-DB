@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-CONTRACT-PUB-TREE-REBALANCE",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-CONTRACT",
+  "assigned_to": "SWE2-CONTRACT",
+  "target": "publish resource-entry-tree batch: contract page + ADDRESS-INDEX + PROGRAM-STATE + resume + carried op files",
+  "scope": "explicit batch paths only",
+  "completion": "publish commit exists; task finished with the commit ref",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

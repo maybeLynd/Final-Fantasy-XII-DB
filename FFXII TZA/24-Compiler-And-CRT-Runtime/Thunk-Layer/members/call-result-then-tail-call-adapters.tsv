@@ -1,0 +1,39 @@
+# call-result-then-tail-call adapters - EC-7 family C
+#
+# 29 members, all 33 bytes. ONE byte image; call one function, pass its result to a second, tail-call.
+# Control (external targets, intra-body branches excluded): 58 distinct targets over 29 members - each member pairs its own two.
+#
+# NOT dispositioned: all 58 targets. Again: the calling, not the called.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+005A5850
+005C55C0
+005D0D30
+005D1940
+005D5EB0
+00611A40
+0062EF40
+0065EA70
+00660070
+00660740
+00660A40
+00661020
+00678140
+00688600
+006887A0
+00688900
+00688F70
+00689660
+00689CC0
+0068B110
+0068C320
+0068DE40
+0068E520
+0068EA00
+0068EC50
+006D72F0
+007919D0
+00869460
+008799A0
+# A-drift 2026-09-17: 7 member(s) removed, since measured as A: 00606FD0 00607070 006070D0 006247F0 006BB3C0 006C2630 006C4D90

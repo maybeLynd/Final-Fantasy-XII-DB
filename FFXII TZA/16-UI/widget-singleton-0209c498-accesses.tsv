@@ -1,0 +1,293 @@
+function	name	site	disp	kind	instruction	route	note
+00244830	FUN_00244830	00244869	0x0	r	mov rax, qword ptr [rcx]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EE3	0x0	r	mov rax, qword ptr [rbx]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244F00	FUN_00244f00	00244F25	0x0	r	mov rax, qword ptr [rcx]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00245020	FUN_00245020	00245044	0x0	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BF7	0x0	r	mov rax, qword ptr [rbx]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002473F0	FUN_002473f0	0024743E	0x0	r	mov rax, qword ptr [r8]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483A0	0x0	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483CE	0x0	w	mov qword ptr [rdi], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483CA	0x8	r	mov rbx, qword ptr [rdi + 8]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246AE5	0x10	r	cmp qword ptr [rdx + 0x10], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	00248267	0x10	w	mov qword ptr [rdx + 0x10], rbx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248308	0x10	r	mov rax, qword ptr [rdi + 0x10]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002448D0	FUN_002448d0	002448E0	0x18	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00245020	FUN_00245020	00245047	0x18	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002473F0	FUN_002473f0	00247414	0x18	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	00248230	0x18	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	00248239	0x18	w	mov qword ptr [rbx + 0x18], rdx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	0024827A	0x18	r	mov rdi, qword ptr [rdx + 0x18]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002482EE	0x18	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248315	0x20	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	00248260	0x28	w	mov qword ptr [rdx + 0x28], rcx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248311	0x28	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	00248264	0x30	rw	inc dword ptr [rbx + 0x30]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244830	FUN_00244830	00244865	0x40	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E17	0x40	r	mov edx, dword ptr [rbx + 0x40]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E50	0x40	w	mov dword ptr [rbx + 0x40], edx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244F00	FUN_00244f00	00244F0A	0x40	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244F00	FUN_00244f00	00244F11	0x40	r	mov eax, dword ptr [rcx + 0x40]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00245020	FUN_00245020	00245072	0x40	r	test byte ptr [rdi + 0x40], 0x20	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00245020	FUN_00245020	00245091	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00245020	FUN_00245020	0024509B	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246ADE	0x40	rw	and dword ptr [rdx + 0x40], 0xffffffbf	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246AEA	0x40	r	mov eax, dword ptr [rdx + 0x40]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246AF2	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B06	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B18	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B72	0x40	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B95	0x40	rw	or dword ptr [rbx + 0x40], 0x200	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BA3	0x40	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002473F0	FUN_002473f0	0024741F	0x40	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002473F0	FUN_002473f0	0024743A	0x40	w	mov dword ptr [r8 + 0x40], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	0024826B	0x40	r	test byte ptr [rbx + 0x40], 0x20	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	00248271	0x40	rw	or dword ptr [rdx + 0x40], 0x20	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	002482AE	0x40	r	test byte ptr [rbx + 0x40], 1	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	002482B9	0x40	r	test byte ptr [rsi + 0x40], 2	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00248220	FUN_00248220	002482CC	0x40	rw	or dword ptr [rbx + 0x40], 0x2000	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483B4	0x40	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483C7	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483F0	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E80	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BAC	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248334	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248343	0x50	w	mov dword ptr [rdi + 0x50], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248377	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	0024833E	0x60	r	cmp qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248360	0x60	r	mov rax, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	0024838A	0x60	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	00248398	0x60	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E88	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BB0	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E6A	0x70	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E75	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244ED4	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B7B	0x70	w	mov dword ptr [rbx + 0x70], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B8A	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BEC	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E78	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E7B	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E92	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B8D	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B90	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BBA	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E95	0x78	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BBD	0x78	w	mov dword ptr [rbx + 0x78], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E1F	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E23	0x7C	rw	or dword ptr [rbx + 0x7c], 1	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E2C	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EAA	0x7C	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EBC	0x7C	w	mov dword ptr [rbx + 0x7c], edi	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244ED7	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EDB	0x7C	rw	or dword ptr [rbx + 0x7c], 4	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244EDF	0x7C	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B51	0x7C	r	mov edx, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BD4	0x7C	w	mov dword ptr [rbx + 0x7c], eax	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BEF	0x7C	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246BF3	0x7C	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded PTR 0x0209C498 base+0x0 exposed	
+002482E0	FUN_002482e0	002483BE	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+0029E0E0	FUN_0029e0e0	0029E0EC	0x7C	r	test byte ptr [rcx + 0x7c], 0x20	route-seeded PTR 0x0209C498 base+0x0	
+002482E0	FUN_002482e0	002483E9	0xA2	w	mov byte ptr [rdi + 0xa2], 0	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244DE1	0xB8	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00244DD0	FUN_00244dd0	00244E0F	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B1B	0xB8	w	mov dword ptr [rbx + 0xb8], 0x3f800000	route-seeded PTR 0x0209C498 base+0x0 exposed	
+00246AD0	FUN_00246ad0	00246B49	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded PTR 0x0209C498 base+0x0 exposed	
+0029DCE0	FUN_0029dce0	0029DD70	0xC0	r	add cx, word ptr [rax + 0xc0]	route-seeded PTR 0x0209C498 base+0x0	
+0029E770	FUN_0029e770	0029E77C	0xC0	w	mov word ptr [rax + 0xc0], cx	route-seeded PTR 0x0209C498 base+0x0	
+0029DCE0	FUN_0029dce0	0029DD82	0xC2	r	add dx, word ptr [rax + 0xc2]	route-seeded PTR 0x0209C498 base+0x0	
+0029E770	FUN_0029e770	0029E783	0xC2	w	mov word ptr [rax + 0xc2], dx	route-seeded PTR 0x0209C498 base+0x0	
+0029DCE0	FUN_0029dce0	0029DD69	0xC4	r	movzx ecx, word ptr [rax + 0xc4]	route-seeded PTR 0x0209C498 base+0x0	
+0029E330	FUN_0029e330	0029E381	0xC4	w	mov dword ptr [rax + 0xc4], ecx	route-seeded PTR 0x0209C498 base+0x0	
+0029E730	FUN_0029e730	0029E73C	0xC4	w	mov word ptr [rax + 0xc4], cx	route-seeded PTR 0x0209C498 base+0x0	
+0029DCE0	FUN_0029dce0	0029DD77	0xC6	r	movzx edx, word ptr [rax + 0xc6]	route-seeded PTR 0x0209C498 base+0x0	
+0029E730	FUN_0029e730	0029E743	0xC6	w	mov word ptr [rax + 0xc6], dx	route-seeded PTR 0x0209C498 base+0x0	
+0029D550	FUN_0029d550	0029D7E8	0xC8	r	test byte ptr [rax + 0xc8], 1	route-seeded PTR 0x0209C498 base+0x0	
+0029E0C0	FUN_0029e0c0	0029E0CC	0xC8	rw	or dword ptr [rax + 0xc8], 1	route-seeded PTR 0x0209C498 base+0x0	
+0029E7B0	FUN_0029e7b0	0029E7BC	0xC8	rw	and dword ptr [rax + 0xc8], 0xfffffffe	route-seeded PTR 0x0209C498 base+0x0	
+0029D550	FUN_0029d550	0029D634	0xCC	r	movzx ecx, word ptr [rax + 0xcc]	route-seeded PTR 0x0209C498 base+0x0	
+0029D550	FUN_0029d550	0029D74E	0xCC	r	movzx ecx, word ptr [rax + 0xcc]	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E43D	0xCC	r	movzx eax, word ptr [r8 + 0xcc]	route-seeded PTR 0x0209C498 base+0x0	
+0029E750	FUN_0029e750	0029E75C	0xCC	w	mov word ptr [rax + 0xcc], cx	route-seeded PTR 0x0209C498 base+0x0	
+0029D550	FUN_0029d550	0029D6B6	0xCE	r	movzx ecx, word ptr [rax + 0xce]	route-seeded PTR 0x0209C498 base+0x0	
+0029D550	FUN_0029d550	0029D790	0xCE	r	movzx ecx, word ptr [rax + 0xce]	route-seeded PTR 0x0209C498 base+0x0	
+0029DF20	FUN_0029df20	0029DF3C	0xCE	r	movzx ecx, word ptr [rdx + 0xce]	route-seeded PTR 0x0209C498 base+0x0	
+0029E6B0	FUN_0029e6b0	0029E6BC	0xCE	w	mov word ptr [rax + 0xce], cx	route-seeded PTR 0x0209C498 base+0x0	
+00364980	FUN_00364980	00364988	0xD8	r	cmp byte ptr [rcx], 0x65	route-seeded PTR 0x0209C498 base+0xD8	
+00364980	FUN_00364980	0036498D	0xD9	r	cmp byte ptr [rcx + 1], 0x78	route-seeded PTR 0x0209C498 base+0xD8	
+0029DCE0	FUN_0029dce0	0029DCFC	0x158	r	mov rbx, qword ptr [rbx + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029DDF0	FUN_0029ddf0	0029DE09	0x158	r	mov rcx, qword ptr [rax + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029DDF0	FUN_0029ddf0	0029DE47	0x158	r	mov rax, qword ptr [rax + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029DF20	FUN_0029df20	0029DF30	0x158	r	mov r8, qword ptr [rdx + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029DF20	FUN_0029df20	0029DF59	0x158	r	mov rcx, qword ptr [rdx + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029DF20	FUN_0029df20	0029DF6C	0x158	w	mov qword ptr [rcx + 0x158], 0	route-seeded PTR 0x0209C498 base+0x0	
+0029DFB0	FUN_0029dfb0	0029DFCE	0x158	r	mov rax, qword ptr [rax + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029E110	FUN_0029e110	0029E197	0x158	w	mov qword ptr [rax + 0x158], rdi	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E3E1	0x158	r	mov rbx, qword ptr [rax + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E434	0x158	w	mov qword ptr [r8 + 0x158], rdx	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E45A	0x158	r	mov rdx, qword ptr [r8 + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E470	0x158	r	mov r15, qword ptr [rax + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+0029E6D0	FUN_0029e6d0	0029E6DF	0x158	r	mov r8, qword ptr [rax + 0x158]	route-seeded PTR 0x0209C498 base+0x0	
+00244830	FUN_00244830	00244869	0x160	r	mov rax, qword ptr [rcx]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244EE3	0x160	r	mov rax, qword ptr [rbx]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244F00	FUN_00244f00	00244F25	0x160	r	mov rax, qword ptr [rcx]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00245020	FUN_00245020	00245044	0x160	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	00246641	0x160	w	mov qword ptr [rdi], rbx	route-seeded PTR 0x0209C498 base+0x160	
+002473F0	FUN_002473f0	0024743E	0x160	r	mov rax, qword ptr [r8]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	002483A0	0x160	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	002483CE	0x160	w	mov qword ptr [rdi], 0	route-seeded PTR 0x0209C498 base+0x160 exposed	
+0029D4D0	FUN_0029d4d0	0029D51F	0x160	addr	lea rdx, [rcx + 0x160]	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E423	0x160	addr	lea rdx, [r8 + 0x160]	route-seeded PTR 0x0209C498 base+0x0	
+002482E0	FUN_002482e0	002483CA	0x168	r	mov rbx, qword ptr [rdi + 8]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244960	FUN_00244960	00244960	0x170	r	cmp qword ptr [rdx + 0x10], 0	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248308	0x170	r	mov rax, qword ptr [rdi + 0x10]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002448D0	FUN_002448d0	002448E0	0x178	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00245020	FUN_00245020	00245047	0x178	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002473F0	FUN_002473f0	00247414	0x178	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	002482EE	0x178	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248315	0x180	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248311	0x188	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244830	FUN_00244830	00244865	0x1A0	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E17	0x1A0	r	mov edx, dword ptr [rbx + 0x40]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E50	0x1A0	w	mov dword ptr [rbx + 0x40], edx	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244F00	FUN_00244f00	00244F0A	0x1A0	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244F00	FUN_00244f00	00244F11	0x1A0	r	mov eax, dword ptr [rcx + 0x40]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00245020	FUN_00245020	00245072	0x1A0	r	test byte ptr [rdi + 0x40], 0x20	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00245020	FUN_00245020	00245091	0x1A0	r	mov eax, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00245020	FUN_00245020	0024509B	0x1A0	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	00246647	0x1A0	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	00246650	0x1A0	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	00246660	0x1A0	w	mov dword ptr [rdi + 0x40], ecx	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	0024666D	0x1A0	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	002466D1	0x1A0	rw	and dword ptr [rdi + 0x40], 0xffffbfff	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	002466F2	0x1A0	rw	or dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x160	
+002473F0	FUN_002473f0	0024741F	0x1A0	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002473F0	FUN_002473f0	0024743A	0x1A0	w	mov dword ptr [r8 + 0x40], eax	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	002483B4	0x1A0	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	002483C7	0x1A0	r	mov eax, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	002483F0	0x1A0	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	00246670	0x1A4	rw	and dword ptr [rdi + 0x44], 0xfff8ffff	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	0024667E	0x1A4	r	mov edx, dword ptr [rdi + 0x44]	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	002466FA	0x1A4	w	mov word ptr [rdi + 0x44], ax	route-seeded PTR 0x0209C498 base+0x160	
+00244DD0	FUN_00244dd0	00244E80	0x1A8	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	00246687	0x1A8	w	mov qword ptr [rdi + 0x48], rax	route-seeded PTR 0x0209C498 base+0x160	
+002482E0	FUN_002482e0	00248334	0x1B0	r	mov eax, dword ptr [rdi + 0x50]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248343	0x1B0	w	mov dword ptr [rdi + 0x50], eax	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248377	0x1B0	r	mov eax, dword ptr [rdi + 0x50]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	0024833E	0x1C0	r	cmp qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248360	0x1C0	r	mov rax, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	0024838A	0x1C0	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002482E0	FUN_002482e0	00248398	0x1C0	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E88	0x1C8	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E6A	0x1D0	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E75	0x1D0	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244ED4	0x1D0	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E78	0x1D4	r	sub eax, dword ptr [rbx + 0x74]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E7B	0x1D4	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E92	0x1D4	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E95	0x1D8	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E1F	0x1DC	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E23	0x1DC	rw	or dword ptr [rbx + 0x7c], 1	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E2C	0x1DC	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244EAA	0x1DC	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244EBC	0x1DC	w	mov dword ptr [rbx + 0x7c], edi	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244ED7	0x1DC	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244EDB	0x1DC	rw	or dword ptr [rbx + 0x7c], 4	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244EDF	0x1DC	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	002466D8	0x1DC	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209C498 base+0x160	
+002482E0	FUN_002482e0	002483BE	0x1DC	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	00246711	0x1F8	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	00246717	0x1FC	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	0024670A	0x200	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	002466E6	0x201	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209C498 base+0x160	
+002482E0	FUN_002482e0	002483E9	0x202	w	mov byte ptr [rdi + 0xa2], 0	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	002466A1	0x20C	w	mov byte ptr [rdi + 0xac], 0xf9	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	002466CB	0x20C	w	mov byte ptr [rdi + 0xac], cl	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	00246695	0x20D	w	mov byte ptr [rdi + 0xad], 0xf9	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	002466C1	0x20D	w	mov byte ptr [rdi + 0xad], al	route-seeded PTR 0x0209C498 base+0x160	
+002465F0	FUN_002465f0	0024675C	0x214	w	mov dword ptr [rdi + 0xb4], 1	route-seeded PTR 0x0209C498 base+0x160	
+00244DD0	FUN_00244dd0	00244DE1	0x218	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded PTR 0x0209C498 base+0x160 exposed	
+00244DD0	FUN_00244dd0	00244E0F	0x218	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded PTR 0x0209C498 base+0x160 exposed	
+002465F0	FUN_002465f0	00246700	0x218	w	mov dword ptr [rdi + 0xb8], 0x3f800000	route-seeded PTR 0x0209C498 base+0x160	
+00244830	FUN_00244830	00244869	0x2A8	r	mov rax, qword ptr [rcx]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244EE3	0x2A8	r	mov rax, qword ptr [rbx]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244F00	FUN_00244f00	00244F25	0x2A8	r	mov rax, qword ptr [rcx]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00245020	FUN_00245020	00245044	0x2A8	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	00246641	0x2A8	w	mov qword ptr [rdi], rbx	route-seeded PTR 0x0209C498 base+0x2A8	
+002473F0	FUN_002473f0	0024743E	0x2A8	r	mov rax, qword ptr [r8]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	002483A0	0x2A8	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	002483CE	0x2A8	w	mov qword ptr [rdi], 0	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+0029D4D0	FUN_0029d4d0	0029D532	0x2A8	addr	lea rdx, [rcx + 0x2a8]	route-seeded PTR 0x0209C498 base+0x0	
+002482E0	FUN_002482e0	002483CA	0x2B0	r	mov rbx, qword ptr [rdi + 8]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244960	FUN_00244960	00244960	0x2B8	r	cmp qword ptr [rdx + 0x10], 0	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248308	0x2B8	r	mov rax, qword ptr [rdi + 0x10]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002448D0	FUN_002448d0	002448E0	0x2C0	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00245020	FUN_00245020	00245047	0x2C0	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002473F0	FUN_002473f0	00247414	0x2C0	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	002482EE	0x2C0	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248315	0x2C8	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248311	0x2D0	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244830	FUN_00244830	00244865	0x2E8	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E17	0x2E8	r	mov edx, dword ptr [rbx + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E50	0x2E8	w	mov dword ptr [rbx + 0x40], edx	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244F00	FUN_00244f00	00244F0A	0x2E8	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244F00	FUN_00244f00	00244F11	0x2E8	r	mov eax, dword ptr [rcx + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00245020	FUN_00245020	00245072	0x2E8	r	test byte ptr [rdi + 0x40], 0x20	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00245020	FUN_00245020	00245091	0x2E8	r	mov eax, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00245020	FUN_00245020	0024509B	0x2E8	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	00246647	0x2E8	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	00246650	0x2E8	r	xor ecx, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	00246660	0x2E8	w	mov dword ptr [rdi + 0x40], ecx	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	0024666D	0x2E8	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	002466D1	0x2E8	rw	and dword ptr [rdi + 0x40], 0xffffbfff	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	002466F2	0x2E8	rw	or dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x2A8	
+002473F0	FUN_002473f0	0024741F	0x2E8	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002473F0	FUN_002473f0	0024743A	0x2E8	w	mov dword ptr [r8 + 0x40], eax	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	002483B4	0x2E8	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	002483C7	0x2E8	r	mov eax, dword ptr [rdi + 0x40]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	002483F0	0x2E8	w	mov dword ptr [rdi + 0x40], eax	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	00246670	0x2EC	rw	and dword ptr [rdi + 0x44], 0xfff8ffff	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	0024667E	0x2EC	r	mov edx, dword ptr [rdi + 0x44]	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	002466FA	0x2EC	w	mov word ptr [rdi + 0x44], ax	route-seeded PTR 0x0209C498 base+0x2A8	
+00244DD0	FUN_00244dd0	00244E80	0x2F0	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	00246687	0x2F0	w	mov qword ptr [rdi + 0x48], rax	route-seeded PTR 0x0209C498 base+0x2A8	
+002482E0	FUN_002482e0	00248334	0x2F8	r	mov eax, dword ptr [rdi + 0x50]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248343	0x2F8	w	mov dword ptr [rdi + 0x50], eax	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248377	0x2F8	r	mov eax, dword ptr [rdi + 0x50]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	0024833E	0x308	r	cmp qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248360	0x308	r	mov rax, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	0024838A	0x308	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002482E0	FUN_002482e0	00248398	0x308	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E88	0x310	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E6A	0x318	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E75	0x318	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244ED4	0x318	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E78	0x31C	r	sub eax, dword ptr [rbx + 0x74]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E7B	0x31C	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E92	0x31C	w	mov dword ptr [rbx + 0x74], eax	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E95	0x320	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E1F	0x324	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E23	0x324	rw	or dword ptr [rbx + 0x7c], 1	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E2C	0x324	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244EAA	0x324	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244EBC	0x324	w	mov dword ptr [rbx + 0x7c], edi	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244ED7	0x324	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244EDB	0x324	rw	or dword ptr [rbx + 0x7c], 4	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244EDF	0x324	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	002466D8	0x324	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209C498 base+0x2A8	
+002482E0	FUN_002482e0	002483BE	0x324	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	00246711	0x340	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	00246717	0x344	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	0024670A	0x348	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	002466E6	0x349	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209C498 base+0x2A8	
+002482E0	FUN_002482e0	002483E9	0x34A	w	mov byte ptr [rdi + 0xa2], 0	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	002466A1	0x354	w	mov byte ptr [rdi + 0xac], 0xf9	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	002466CB	0x354	w	mov byte ptr [rdi + 0xac], cl	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	00246695	0x355	w	mov byte ptr [rdi + 0xad], 0xf9	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	002466C1	0x355	w	mov byte ptr [rdi + 0xad], al	route-seeded PTR 0x0209C498 base+0x2A8	
+002465F0	FUN_002465f0	0024675C	0x35C	w	mov dword ptr [rdi + 0xb4], 1	route-seeded PTR 0x0209C498 base+0x2A8	
+00244DD0	FUN_00244dd0	00244DE1	0x360	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+00244DD0	FUN_00244dd0	00244E0F	0x360	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded PTR 0x0209C498 base+0x2A8 exposed	
+002465F0	FUN_002465f0	00246700	0x360	w	mov dword ptr [rdi + 0xb8], 0x3f800000	route-seeded PTR 0x0209C498 base+0x2A8	
+0029DF20	FUN_0029df20	0029DF77	0x3F0	r	cmp byte ptr [rcx + 0x3f0], 0	route-seeded PTR 0x0209C498 base+0x0	
+0029DF20	FUN_0029df20	0029DF81	0x3F0	w	mov byte ptr [rcx + 0x3f0], al	route-seeded PTR 0x0209C498 base+0x0	
+0029E3B0	FUN_0029e3b0	0029E41B	0x3F0	r	movzx eax, byte ptr [r8 + 0x3f0]	route-seeded PTR 0x0209C498 base+0x0	

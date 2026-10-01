@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-164",
+ "result_refs": [
+  "00a41e8c8286390663ccbcf46c6b41d321408448",
+  "b65119a8001c7eaf5132effc8842d45ff20e4116"
+ ],
+ "note": "Sealed 00a41e8c8 over publish b65119a80 + carrier splices 822b90402 (efx) and 1b98b2d3d (resource-request-queue).",
+ "summary": ""
+}

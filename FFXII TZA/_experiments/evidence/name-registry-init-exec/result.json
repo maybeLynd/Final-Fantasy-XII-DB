@@ -1,0 +1,34 @@
+{
+ "cases": {
+  "keys-full": "ok",
+  "channels-full": "ok",
+  "interleaved": "ok",
+  "dup-shipped-name": "ok",
+  "dup-shipped-name-keys": "ok",
+  "dup-copied-name": "ok",
+  "null-name": "ok",
+  "fresh-insert": "ok",
+  "fresh-insert-keys": "ok",
+  "cross-list": "ok"
+ },
+ "mutants": {
+  "m-nulljne": "killed",
+  "m-cmpadd": "killed",
+  "m-dupjne": "killed",
+  "m-cmpdec": "killed",
+  "m-scanje": "killed",
+  "m-headjne": "killed",
+  "m-namedisp": "killed",
+  "m-linkdisp": "killed",
+  "m-storedisp": "killed",
+  "m-headdisp": "killed",
+  "m-rc11": "killed",
+  "m-rc12": "killed",
+  "m-k-cmpadd": "killed",
+  "m-k-dupjne": "killed",
+  "m-k-stored": "killed",
+  "m-t-call": "killed",
+  "m-t-lea": "killed"
+ },
+ "bad_sites": []
+}

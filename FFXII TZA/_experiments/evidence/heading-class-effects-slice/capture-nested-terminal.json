@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-nested.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 5,\n  \"extent_status\": [\n    [\n      \"0x2e5df0\",\n      \"UNWIND_UNION_MATCH\",\n      22,\n      22\n    ],\n    [\n      \"0x2e6300\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      10,\n      null\n    ],\n    [\n      \"0x2e8ee0\",\n      \"UNWIND_UNION_MATCH\",\n      227,\n      227\n    ],\n    [\n      \"0x2ebe50\",\n      \"UNWIND_UNION_MATCH\",\n      327,\n      327\n    ],\n    [\n      \"0x3da9f0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      35,\n      null\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "b106542b72131f2e8a0ac39d8fe58ff505eabecc2da7a60e01233b6319d258b2"
+}

@@ -1,0 +1,12 @@
+field	reader addresses	value census	meaning	evidence
+key table {u32 n, u32 keys[n]} at u16 +0x32	005048A0 (linear search, returns ordinal)	n == @FTR u32 +0x38 in 1,045/1,045 FDM files; the 21 files without @FDM have @FTR +0x38 = 0 (21/21)	one key per override slot; ordinal = slot index in the @FTR tail array	STATIC+DATA
+producer of (w2,w4,w6)	command 0x14 handler 00520E70 -> lea 00520E7A => 00521050 (the only reference) -> 005210BB 005048A0, 005210D5 00373060	7,193 authored 0x14 commands, event blocks only (prior art, command-handler page)	w2 = key, w4 bit0 = +0x2F2 filter, bit1 = lookup, w6 = slot value	STATIC (prior art + re-read)
+w6 sink	00373060: bound ordinal < u16 @FTR+0x38 (003730BA..003730C0); slot = core + count*0x292 + 2*ordinal (00373094); 0x7FFF stored without flag (003730CC), else stored + res dword[+0] |= 0x1000 (003730D2..003730D6)	-	per-model override slot, 0x7FFF = default	STATIC
+slot init/reset	00372820 00372F26..00372F45 (all slots 0x7FFF, clear 0x1000); 00372510 same (only caller 0042532E in 00424D80)	-	reset	STATIC
+part record (list entries, u16 offsets from lists at +0x34/+0x38/+0x3C)	0053C308..0053C331 (FDM + dword[FDM+0x34+4k] + 4 + 2*i)	12,044 distinct part records walked	draw part descriptor	STATIC+DATA
+part +0x00 u8, +0x01 u8	not read on the paths above	(+0,+1): (1,0):9,950 (2,0):1,347 (3,0):343 ...	not established	DATA
+part +0x02 s8, +0x03 s8	0053C386 / 0053C3C2 (defaultA), 0053C3CA (defaultB) when slot is 0x7FFF or res flag 0x1000 clear	(0,0) in 11,693 of 12,044	authored defaults of the two per-part values	STATIC+DATA
+part +0x04 u32 bits 8-17 / 18-27	0053C354..0053C36F slotA -> 00371330; 0053C392..0053C3AD slotB -> 00371330; 0x3FF = none	slotA present in 12,044/12,044; slotB present 8,869, none 3,175; every slot < @FTR +0x38 (20,913/20,913)	override-slot indices for value A / value B	STATIC+DATA
+part +0x04 bit 0, bit 28, bit 29	0053D52C (bit0 -> VU1 row x), 0053D5A0 (bit28), 0053D5B3 (bit29)	(bit0,bit28,bit29): (0,1,0) 3,175 = exactly the slotB-absent records; (1,1,1) 8,869	bit0 == bit29 == "has value B" in every record; bit28 always set	STATIC+DATA
+part +0x08 s8, +0x09 s8	0053D585, 0053D592 -> VU1 row 2 x/y	not censused	uploaded to VU1 with the two values	STATIC
+values A/B	0053C3E5..0053C403 -> 0053D4B0 5th arg; 0053D52C..0053D57A: VIF UNPACK V4-32 (0x6C020041) row = {bit0, A|B != 0, B, A}	-	integer parameters for the VU1 draw program; what VU1 does with them not read	STATIC

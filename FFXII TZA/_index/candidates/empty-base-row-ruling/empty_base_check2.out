@@ -1,0 +1,10 @@
+== store at b2e01af41 (ruling applied)
+PASS E1  each destructor releases the qword at +0 through slot +0x10 and zeroes it: {'00616880': True, '00616900': True, '0062BAB0': True}
+PASS E2  the ruled rows, built from the current store: types_index errors 0, PASS 2 disagreements 0
+PASS C  bare ctype at size 0 adds 1 PASS-2 disagreement(s); a 1-byte base under the 8-byte member adds 1 types_index error(s)
+FAILS 0
+== store at 992ed9a3f (before the ruling)
+PASS E1  each destructor releases the qword at +0 through slot +0x10 and zeroes it: {'00616880': True, '00616900': True, '0062BAB0': True}
+PASS E2  the ruled rows, built from the current store: types_index errors 0, PASS 2 disagreements 0
+PASS C  bare ctype at size 0 adds 1 PASS-2 disagreement(s); a 1-byte base under the 8-byte member adds 1 types_index error(s)
+FAILS 0

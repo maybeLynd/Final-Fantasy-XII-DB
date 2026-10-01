@@ -1,0 +1,71 @@
+{
+  "method": "A: final reduction of sealed EXP081 C receipts; no new original-process execution",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "check.before-coverage-positive.py": {
+      "bytes": 11332,
+      "sha256": "3f08906206eb273415e81f52fd3144d965dc4f29330d8afa1dae2964cabc2a45"
+    },
+    "check.py": {
+      "bytes": 11532,
+      "sha256": "13042575c22289b5fb56a7f65490879c7660a884e1357ab6944d9ccdb29771f4"
+    },
+    "observation.json": {
+      "bytes": 8687,
+      "sha256": "f27af5a72a0f8b139674dcaad8b6bba126a0c0debad3c236b7754593462bbef7"
+    },
+    "README.md": {
+      "bytes": 6119,
+      "sha256": "7582b2ab87e9dc6667d365a4d57e65b64e9357a7070a77003d9067e2ab12c1b7"
+    },
+    "validation.txt": {
+      "bytes": 205,
+      "sha256": "9b76c881ae3f71513250f04d1b92b4050e534d6356bd5ec5ea26f5a1599567c3"
+    }
+  },
+  "sources": {
+    "current-complete-memory.json": {
+      "bytes": 2880061,
+      "sha256": "a9ada099cd80f560bf989671cac0ff3be1b4df4d9eb426b2424feea74acc3f33"
+    },
+    "current-field-memory.json": {
+      "bytes": 2901142,
+      "sha256": "9c5769b39267890b4b9d6d3ad9a0b3adce89538a5dd904504f00666f3db97693"
+    },
+    "cleanup.json": {
+      "bytes": 4528,
+      "sha256": "3225769472a7e13a57e2a2ca8150da2ff98e934b7aaa2dd0ae3e50f6f9f25979"
+    },
+    "exit-check.json": {
+      "bytes": 154,
+      "sha256": "99640365b15d35c18d2392b5bce191fcd75516609b1f3e4a8f7924065049a5f9"
+    },
+    "save-before.json": {
+      "bytes": 4403,
+      "sha256": "44a625a6fefca4d043e98246b534b52ff61999387d54f9f2704f4d9592ab89d6"
+    },
+    "observe.py": {
+      "bytes": 7899,
+      "sha256": "3fd84bbf8ffb7acb6f398333275193d7af13bea895f284ded4ccda86689b5438"
+    },
+    "source-review.json": {
+      "bytes": 707,
+      "sha256": "735463955259b13ded4bb55e415bcbe6deec4111fe7bfa2bb55bd7abc49f296a"
+    },
+    "current-complete-before.jpg": {
+      "bytes": 71810,
+      "sha256": "08a967520ebd67493bbefdda437e74c0f66380f0410cc3b3ded0d4997ef78939"
+    },
+    "current-field-after.jpg": {
+      "bytes": 162913,
+      "sha256": "b4ad97ba36acbf300c5cc4bd0cf8b69aecd22c6b80f29020dc4a4edd837422ce"
+    },
+    "../EXP-075-reward-index-prechecks/0023A570.bin": {
+      "bytes": 1808,
+      "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a"
+    }
+  }
+}

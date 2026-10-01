@@ -1,0 +1,19 @@
+# ref-flag handle store with release - EC-7 family C
+# # negative r8d -> return 5; if stored ptr differs and own-flag clear,
+# # btr + member release on old ptr; commit {size|bit31, ptr}; return 0.
+address	targets
+005CA130	005B7E10
+005CA1A0	005B7FD0
+005CA210	005B8050
+0060EE20	005F0220
+0060EE90	001B70E0
+0060EF00	005F02A0
+0060EF70	005F0330
+0060EFE0	005F03A0
+0060F050	005F0410
+0060F0C0	005F0470
+0060F130	005F0520
+0060F1A0	001C2720
+0062A7F0	00619070
+00672EC0	001B7170
+006D5670	006D2D20

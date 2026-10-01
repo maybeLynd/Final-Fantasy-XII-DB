@@ -1,0 +1,821 @@
+{
+  "003939B0": {
+    "accesses": [
+      {
+        "site": "003939CF",
+        "root": "message",
+        "offset": 0,
+        "bytes": 4,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov eax, dword ptr [rdx]"
+      },
+      {
+        "site": "003939F7",
+        "root": "message",
+        "offset": 8,
+        "bytes": 1,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "movzx eax, byte ptr [rbx + 8]"
+      },
+      {
+        "site": "003939FD",
+        "root": "consumer",
+        "offset": 196,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rsi + 0xc4], ebx"
+      },
+      {
+        "site": "00393A03",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rsi + 0xc8], rbx"
+      },
+      {
+        "site": "00393A18",
+        "root": "consumer",
+        "offset": 192,
+        "bytes": 1,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov byte ptr [rsi + 0xc0], al"
+      },
+      {
+        "site": "00393A6C",
+        "root": "consumer",
+        "offset": 196,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "or dword ptr [rsi + 0xc4], 2"
+      },
+      {
+        "site": "00393A7A",
+        "root": "consumer",
+        "offset": 196,
+        "bytes": 4,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov eax, dword ptr [rsi + 0xc4]"
+      },
+      {
+        "site": "00393A98",
+        "root": "asset",
+        "offset": 192,
+        "bytes": 1,
+        "mode": "R",
+        "operand": 0,
+        "instruction": "test byte ptr [rdx + 0xc0], 1"
+      },
+      {
+        "site": "00393AA5",
+        "root": "asset",
+        "offset": 208,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rdx, qword ptr [rdx + 0xd0]"
+      },
+      {
+        "site": "00393AC2",
+        "root": "consumer",
+        "offset": 96,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rcx, qword ptr [rsi + 0x60]"
+      },
+      {
+        "site": "00393ACD",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rsi + 0xc8], rax"
+      },
+      {
+        "site": "00393B79",
+        "root": "consumer",
+        "offset": 96,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0x60]"
+      },
+      {
+        "site": "00393BA0",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rcx, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393BAC",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393BBA",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393BC8",
+        "root": "consumer",
+        "offset": 192,
+        "bytes": 1,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "movzx edx, byte ptr [rsi + 0xc0]"
+      },
+      {
+        "site": "00393BCF",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rcx, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393BDB",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393BF7",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393C1C",
+        "root": "consumer",
+        "offset": 196,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "or dword ptr [rsi + 0xc4], 1"
+      },
+      {
+        "site": "00393C51",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rcx, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393C62",
+        "root": "consumer",
+        "offset": 96,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0x60]"
+      },
+      {
+        "site": "00393CAD",
+        "root": "message",
+        "offset": 8,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rbx + 8]"
+      },
+      {
+        "site": "00393D50",
+        "root": "message",
+        "offset": 16,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 0,
+        "instruction": "cmp qword ptr [rbx + 0x10], 0"
+      },
+      {
+        "site": "00393D61",
+        "root": "message",
+        "offset": 16,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 0,
+        "instruction": "cmp qword ptr [rbx + 0x10], 2"
+      },
+      {
+        "site": "00393D6B",
+        "root": "message",
+        "offset": 16,
+        "bytes": 1,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "movzx eax, byte ptr [rbx + 0x10]"
+      },
+      {
+        "site": "00393D7B",
+        "root": "consumer",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0xc8]"
+      },
+      {
+        "site": "00393D89",
+        "root": "message",
+        "offset": 16,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 0,
+        "instruction": "cmp qword ptr [rbx + 0x10], 4"
+      },
+      {
+        "site": "00393DCE",
+        "root": "consumer",
+        "offset": 96,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0x60]"
+      },
+      {
+        "site": "00393DF1",
+        "root": "consumer",
+        "offset": 196,
+        "bytes": 1,
+        "mode": "R",
+        "operand": 0,
+        "instruction": "test byte ptr [rsi + 0xc4], 4"
+      }
+    ],
+    "expressions": [
+      {
+        "site": "003939E2",
+        "instruction": "lea rdx, [rip - 0x2739e9]",
+        "value": [
+          "const",
+          1179648
+        ]
+      },
+      {
+        "site": "00393A23",
+        "instruction": "lea edx, [rbx + 0x15]",
+        "value": [
+          "const",
+          21
+        ]
+      },
+      {
+        "site": "00393A26",
+        "instruction": "lea ecx, [rbx + 1]",
+        "value": [
+          "const",
+          1
+        ]
+      },
+      {
+        "site": "00393B23",
+        "instruction": "lea rcx, [rsp + 0x120]",
+        "value": [
+          "stack",
+          -280
+        ]
+      },
+      {
+        "site": "00393B38",
+        "instruction": "lea rcx, [rsp + 0x20]",
+        "value": [
+          "stack",
+          -536
+        ]
+      },
+      {
+        "site": "00393B4E",
+        "instruction": "lea rdx, [rsp + 0x120]",
+        "value": [
+          "stack",
+          -280
+        ]
+      },
+      {
+        "site": "00393B56",
+        "instruction": "lea rcx, [rsp + 0x20]",
+        "value": [
+          "stack",
+          -536
+        ]
+      },
+      {
+        "site": "00393B60",
+        "instruction": "lea rbx, [rsi + 0xd0]",
+        "value": [
+          "consumer",
+          208
+        ]
+      },
+      {
+        "site": "00393B6F",
+        "instruction": "lea r8, [rsp + 0x20]",
+        "value": [
+          "stack",
+          -536
+        ]
+      },
+      {
+        "site": "00393BE2",
+        "instruction": "lea rcx, [rip - 0x299]",
+        "value": [
+          "const",
+          3750224
+        ]
+      },
+      {
+        "site": "00393BE9",
+        "instruction": "lea rdx, [rip + 0x97d6f0]",
+        "value": [
+          "const",
+          13701856
+        ]
+      },
+      {
+        "site": "00393C8A",
+        "instruction": "lea edx, [rax + 1]",
+        "value": null
+      },
+      {
+        "site": "00393D02",
+        "instruction": "lea ebx, [rax + rax*4]",
+        "value": null
+      },
+      {
+        "site": "00393D0F",
+        "instruction": "lea ecx, [r9 + 3]",
+        "value": [
+          "const",
+          3
+        ]
+      },
+      {
+        "site": "00393D29",
+        "instruction": "lea ecx, [rbx + rbx]",
+        "value": null
+      },
+      {
+        "site": "00393D9E",
+        "instruction": "lea rcx, [rip + 0x97d603]",
+        "value": [
+          "const",
+          13702056
+        ]
+      },
+      {
+        "site": "00393DFB",
+        "instruction": "lea edx, [rcx + 0xf]",
+        "value": [
+          "const",
+          21
+        ]
+      },
+      {
+        "site": "00393E04",
+        "instruction": "lea ecx, [rdx - 0x14]",
+        "value": [
+          "const",
+          1
+        ]
+      }
+    ],
+    "reachable_instructions": 270,
+    "decoded_instructions": 270,
+    "iterations": 303
+  },
+  "00394070": {
+    "accesses": [
+      {
+        "site": "00394079",
+        "root": "message",
+        "offset": 0,
+        "bytes": 4,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov ecx, dword ptr [rdx]"
+      },
+      {
+        "site": "00394097",
+        "root": "asset",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rcx, qword ptr [rbx + 0xc8]"
+      },
+      {
+        "site": "003940A8",
+        "root": "asset",
+        "offset": 208,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rcx, qword ptr [rbx + 0xd0]"
+      },
+      {
+        "site": "003940B9",
+        "root": "asset",
+        "offset": 208,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rbx + 0xd0], 0"
+      },
+      {
+        "site": "003940E3",
+        "root": "asset",
+        "offset": 192,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "or dword ptr [rbx + 0xc0], 1"
+      },
+      {
+        "site": "003940FC",
+        "root": "asset",
+        "offset": 192,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rbx + 0xc0], 0"
+      }
+    ],
+    "expressions": [],
+    "reachable_instructions": 49,
+    "decoded_instructions": 49,
+    "iterations": 49
+  },
+  "00393FF0": {
+    "accesses": [
+      {
+        "site": "00394033",
+        "root": "asset",
+        "offset": 200,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rdi + 0xc8], rax"
+      },
+      {
+        "site": "00394050",
+        "root": "asset",
+        "offset": 208,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rdi + 0xd0], rax"
+      }
+    ],
+    "expressions": [
+      {
+        "site": "00394021",
+        "instruction": "lea r9d, [rdx - 4]",
+        "value": [
+          "const",
+          3
+        ]
+      },
+      {
+        "site": "00394025",
+        "instruction": "lea r8d, [rdx + 0x36]",
+        "value": [
+          "const",
+          61
+        ]
+      },
+      {
+        "site": "00394044",
+        "instruction": "lea r8d, [rdx + 0x33]",
+        "value": [
+          "const",
+          58
+        ]
+      }
+    ],
+    "reachable_instructions": 26,
+    "decoded_instructions": 26,
+    "iterations": 26
+  },
+  "002465F0": {
+    "accesses": [
+      {
+        "site": "00246641",
+        "root": "asset",
+        "offset": 0,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rdi], rbx"
+      },
+      {
+        "site": "00246647",
+        "root": "asset",
+        "offset": 64,
+        "bytes": 4,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "xor ecx, dword ptr [rdi + 0x40]"
+      },
+      {
+        "site": "00246650",
+        "root": "asset",
+        "offset": 64,
+        "bytes": 4,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "xor ecx, dword ptr [rdi + 0x40]"
+      },
+      {
+        "site": "00246660",
+        "root": "asset",
+        "offset": 64,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rdi + 0x40], ecx"
+      },
+      {
+        "site": "0024666D",
+        "root": "asset",
+        "offset": 64,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rdi + 0x40], eax"
+      },
+      {
+        "site": "00246670",
+        "root": "asset",
+        "offset": 68,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "and dword ptr [rdi + 0x44], 0xfff8ffff"
+      },
+      {
+        "site": "0024667E",
+        "root": "asset",
+        "offset": 68,
+        "bytes": 4,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov edx, dword ptr [rdi + 0x44]"
+      },
+      {
+        "site": "00246687",
+        "root": "asset",
+        "offset": 72,
+        "bytes": 8,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov qword ptr [rdi + 0x48], rax"
+      },
+      {
+        "site": "00246695",
+        "root": "asset",
+        "offset": 173,
+        "bytes": 1,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov byte ptr [rdi + 0xad], 0xf9"
+      },
+      {
+        "site": "002466A1",
+        "root": "asset",
+        "offset": 172,
+        "bytes": 1,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov byte ptr [rdi + 0xac], 0xf9"
+      },
+      {
+        "site": "002466C1",
+        "root": "asset",
+        "offset": 173,
+        "bytes": 1,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov byte ptr [rdi + 0xad], al"
+      },
+      {
+        "site": "002466CB",
+        "root": "asset",
+        "offset": 172,
+        "bytes": 1,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov byte ptr [rdi + 0xac], cl"
+      },
+      {
+        "site": "002466D1",
+        "root": "asset",
+        "offset": 64,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "and dword ptr [rdi + 0x40], 0xffffbfff"
+      },
+      {
+        "site": "002466D8",
+        "root": "asset",
+        "offset": 124,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "and dword ptr [rdi + 0x7c], 0xfffffff0"
+      },
+      {
+        "site": "002466E6",
+        "root": "asset",
+        "offset": 161,
+        "bytes": 2,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov word ptr [rdi + 0xa1], 0xff80"
+      },
+      {
+        "site": "002466F2",
+        "root": "asset",
+        "offset": 64,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "or dword ptr [rdi + 0x40], eax"
+      },
+      {
+        "site": "002466FA",
+        "root": "asset",
+        "offset": 68,
+        "bytes": 2,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov word ptr [rdi + 0x44], ax"
+      },
+      {
+        "site": "00246700",
+        "root": "asset",
+        "offset": 184,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rdi + 0xb8], 0x3f800000"
+      },
+      {
+        "site": "0024670A",
+        "root": "asset",
+        "offset": 160,
+        "bytes": 1,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov byte ptr [rdi + 0xa0], 0x80"
+      },
+      {
+        "site": "00246711",
+        "root": "asset",
+        "offset": 152,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rdi + 0x98], eax"
+      },
+      {
+        "site": "00246717",
+        "root": "asset",
+        "offset": 156,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rdi + 0x9c], 0x800080"
+      },
+      {
+        "site": "00246726",
+        "root": "init_args",
+        "offset": 8,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 8]"
+      },
+      {
+        "site": "0024672F",
+        "root": "init_args",
+        "offset": 16,
+        "bytes": 8,
+        "mode": "R",
+        "operand": 1,
+        "instruction": "mov rax, qword ptr [rsi + 0x10]"
+      },
+      {
+        "site": "0024675C",
+        "root": "asset",
+        "offset": 180,
+        "bytes": 4,
+        "mode": "W",
+        "operand": 0,
+        "instruction": "mov dword ptr [rdi + 0xb4], 1"
+      }
+    ],
+    "expressions": [
+      {
+        "site": "0024662E",
+        "instruction": "lea rax, [rip + 0x37ebfb]",
+        "value": [
+          "const",
+          6050352
+        ]
+      },
+      {
+        "site": "00246677",
+        "instruction": "lea rax, [rip + 0x6ceb1a]",
+        "value": [
+          "const",
+          9523608
+        ]
+      },
+      {
+        "site": "00246740",
+        "instruction": "lea rdx, [rsp + 0x20]",
+        "value": [
+          "stack",
+          -56
+        ]
+      }
+    ],
+    "reachable_instructions": 99,
+    "decoded_instructions": 99,
+    "iterations": 103
+  },
+  "00394530": {
+    "accesses": [
+      {
+        "site": "00394594",
+        "root": "consumer",
+        "offset": 124,
+        "bytes": 1,
+        "mode": "R",
+        "operand": 0,
+        "instruction": "test byte ptr [rax + 0x7c], 0x20"
+      },
+      {
+        "site": "003945BB",
+        "root": "consumer",
+        "offset": 196,
+        "bytes": 4,
+        "mode": "RW",
+        "operand": 0,
+        "instruction": "and dword ptr [rax + 0xc4], 0xfffffffb"
+      }
+    ],
+    "expressions": [
+      {
+        "site": "00394562",
+        "instruction": "lea r8, [rsp + 0x20]",
+        "value": [
+          "stack",
+          -40
+        ]
+      },
+      {
+        "site": "00394571",
+        "instruction": "lea rdx, [rip - 0xbc8]",
+        "value": [
+          "const",
+          3750320
+        ]
+      }
+    ],
+    "reachable_instructions": 39,
+    "decoded_instructions": 39,
+    "iterations": 39
+  }
+}

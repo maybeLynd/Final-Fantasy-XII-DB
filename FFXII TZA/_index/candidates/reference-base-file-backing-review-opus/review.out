@@ -1,0 +1,6 @@
+PASS  H .data header and its raw / virtual VA ends
+PASS  U the cell is in .data's virtual tail (rel 0x193530, raw 0x18E400, virtual 0x11A7530)
+PASS  A the unsafe offset is .pdata entry 1732: 0017FB90..0017FBBA (previous ends 0017FB8C)
+PASS  R the SizeOfRawData-bounded lookup refuses the cell and the raw end and accepts the last backed qword (start-only bound)
+VERDICT AGREE
+FAILS 0

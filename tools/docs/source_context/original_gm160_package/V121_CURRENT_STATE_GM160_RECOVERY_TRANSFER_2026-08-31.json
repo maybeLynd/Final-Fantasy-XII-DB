@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-31",
+  "project": "For Xeavin \u2014 FFXII TZA authoritative GFZ/GZF reconstruction",
+  "semantic_branch": "761B",
+  "status": "PERSISTENCE_CERTIFIED_RECOVERY_TRANSFER / NONCANONICAL V121 WIP / FULL-EXECUTABLE SEMANTIC CLOSURE CONTINUES",
+  "continuation_artifact": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf",
+  "gzf_size": 82110895,
+  "gzf_sha256": "381d2aea82b96d7af781844e191d9b92a37e93bd2d4ff276a33ba56e7307461b",
+  "internal_functions": 38161,
+  "primary_owner": 9409,
+  "primary_owner_categories": 22,
+  "final_no_primary_owner": 585,
+  "code_domain": 28007,
+  "explicit": 38001,
+  "unresolved": 160,
+  "coverage_pct": 99.58072,
+  "overlap": 0,
+  "fresh_snapshot_sha256": "d2445517c66513976c83a446f87537a3c1d8c21f5bef033779affe98d7e61a20",
+  "embedded_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "current160_addresses_sha256": "fa6f614a463bf9981f32cbd4582e31ba23b04e6b803cfbb0139b209dffda5a1a",
+  "historical_gm_authority": {
+    "artifact": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_CORRECTED_POST_CS_AUDIT_GM_99P58_2026-08-31.gzf",
+    "size": 82126436,
+    "sha256": "7b637b471ec66f3fc44efca88f956b52230599cb5d8dff0452743187e1b0d1b0",
+    "snapshot_sha256": "b4491ebbf9dc40a49830fd04c4c4754679ce8e120f3c8bc6bbab041204cf2cff",
+    "explicit": 38001,
+    "unresolved": 160,
+    "note": "Historical GM remains historical authority. Its binary was unavailable for transfer; this handoff uses an independently certified recovery-transfer artifact at the same ledger depth, not a byte-identical GM replay."
+  },
+  "canonical_v120_sha256": "507490534a8bb67e8d3c6deba4d527c23ab9fdd3672494e511db0d9ef0e511a9",
+  "superseded_cs_sha256": "cd50cea3fa7449e45d6499fa3e0311e467cb497b3f1dddeb4fe256550402c92b",
+  "protected_holds": [
+    "002F7380",
+    "00313A00"
+  ],
+  "residual_metrics": {
+    "incoming_data_refs": 382,
+    "owner_referenced_functions": 2,
+    "owner_refs": 4,
+    "direct_string_functions": 0,
+    "exact_byte_clone_hits": 0,
+    "qualified_symbol_hits": 0
+  }
+}

@@ -1,0 +1,11 @@
+PASS  F1 stores to [02EA5480]/[02EA5488]: 00796490 x4 (r14 = 0 / edx = 0 after it: clears), lea by 0079FB10 (00796490@007965CB:W 00796490@00796604:W 0079FB10@0079FC78:lea 008B7B90@008B7BC6:W 00796490@007965C4:W 00796490@007965FD:W 008B7B90@008B7BBF:W), teardown 008B7B90
+PASS  F1b 008B7B90 frees the buffer (0x584730) and stores zero into [02EA5488]/[02EA5480] (008B7BBD..008B7BC6)
+PASS  F2 0079FB10 logs 'Error opening : %s' on an unopened file; lea [02EA5480] then call 0x7a0540
+PASS  F3 callers of 0079FB10: ['00797A20']; 00797A20 registered by 007A0180 under 'InputSource': True
+PASS  F4 callers of the registrar 007A0180: ['00792760', '0079F150']
+PASS  F5 gates: test rbx ([02EA5220]) / test r14 ([02EA5230]), each je past the construction
+PASS  F6 callers of 00792760: ['0079F150@0079F211']
+PASS  F7 zero-initialised: True; references 02EA5220 [(48910880, 7991632, 7991759, 'R')], 02EA5230 [(48910896, 7991632, 7992043, 'R')]
+PASS  F8 stored pointers to 02EA5210..02EA5238: 0; writes/leas in 02EA4100..02EA522F other than the byte 02EA5213: 0
+PASS  C1 control: 02EA5213 written at 00799137
+FAILS 0

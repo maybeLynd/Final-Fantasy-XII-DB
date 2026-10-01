@@ -1,0 +1,10 @@
+# Runtime.Container.SpanCheckMemberVcall - EC-7 family C
+# # if the embedded sequence [this+X..this+Y] has more than one element and
+# # a non-null begin, vcall slot 3 on the member object; no direct calls.
+address	targets
+001AAD20	
+001B3E40	
+001B9610	
+001BE910	
+001BE950	
+001BEA50	

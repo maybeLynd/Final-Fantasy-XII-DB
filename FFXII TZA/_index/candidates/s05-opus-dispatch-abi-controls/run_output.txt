@@ -1,0 +1,11 @@
+A_image_identity_body_bytes_and_operands                       PASS
+B_shipped_passes_VALID                                         PASS
+B_shipped_fails_WRONG_BASE_and_SWAPPED                         PASS
+C_M_BASE_fails_VALID_passes_only_WRONG_BASE                    PASS
+C_M_SWAP_fails_VALID_passes_only_SWAPPED                       PASS
+C_image_restored_and_VALID_again                               PASS
+D_text_regression_selftests_and_current_consumers_clean        PASS
+A: {"lea_target": "01EEBCC0", "classid_lea_target": "01EEBCF8", "tail": "33d2410fb7c848ffe0"}
+shipped: [{"id": "0005", "ok": true, "read50": ["01EEBD10"], "entered": "002FD8D0", "ecx": "5", "edx": "0"}, {"id": "1007", "ok": true, "read50": ["01EEBD68"], "entered": "002FD8D0", "ecx": "1007", "edx": "0"}]
+D consumers: {"00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md": 0, "00-Engine-Core-Runtime/the-encoded-id-class-registry.md": 0, "00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md": 0, "00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md": 0}
+ALL PASS

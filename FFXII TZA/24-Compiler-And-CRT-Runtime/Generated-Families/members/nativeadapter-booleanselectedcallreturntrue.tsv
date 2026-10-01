@@ -1,0 +1,19 @@
+# NativeAdapter.BooleanSelectedCallReturnTrue - EC-7 family C, declared on generated-function-families.md
+#
+# 10 members. Body size(s): 36 B x10.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 20 external target(s): 0 shared across all 10 members, and 20 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 20 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0062EE00
+0062F0C0
+0062F200
+0062F3E0
+0062F5A0
+0062F740
+0062F930
+0062F960
+0063DFB0
+0063DFE0

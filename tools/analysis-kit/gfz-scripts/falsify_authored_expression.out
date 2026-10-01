@@ -1,0 +1,9 @@
+SURVIVES  A0  sizes [190, 345, 718, 10]; f calls nothing; 004314E0 -> 00431350 [('0043156E', 'jmp')]
+SURVIVES  A1  kind A at +0x0C, kind B at +0x0D; kind 1 reads [target + 4]; curve index 0 / 1; B absent returns A
+SURVIVES  A2  table ['00431401', '00431390', '004313A4', '004313BA', '004313D2', '004313FD']
+SURVIVES  A3  b == 0 -> 004313E9: op 4 and every op but 5 return a without calling f; op 5 computes 0 - a and draws only if it is non-zero
+SURVIVES  A4  f is called at ['00431392', '004313A6', '004313BE', '004313D4']; the op-3 bound is 2b (wraps to 0 only at b = 0x80000000); every other bound is b != 0 or b - a != 0
+SURVIVES  A5  7 steps, 5 before the first store; 2 mode gates on ['022D9138']; B x [01EF93FC] (vf00.w = 1.0; writers 0036D990/0036D9E0 store .rdata 1.0); P = v*B, then B*1, then P - B*1
+SURVIVES  A6  [('01EF93E8', 'mov'), ('022D91A0', 'movss'), ('022D92E0', 'movss'), ('01EF93E8', 'mov'), ('022D92F0', 'movss'), ('022D92E0', 'movups')]
+SURVIVES  A7  record operands (disp, size) [(0, 4), (4, 4), (12, 1), (13, 1), (14, 2)]: bytes 0x00..0x0F are loaded
+FAILS 0

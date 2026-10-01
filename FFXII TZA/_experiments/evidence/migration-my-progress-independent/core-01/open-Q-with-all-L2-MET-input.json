@@ -1,0 +1,255 @@
+{
+  "facts_doc": {
+    "facts": [
+      {
+        "k": "Q:fixture",
+        "f": "Q",
+        "ok": false,
+        "st": "OPEN",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      },
+      {
+        "k": "P:fixture",
+        "f": "P",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      },
+      {
+        "k": "F:fixture",
+        "f": "F",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1",
+        "g": [
+          "E",
+          "P"
+        ]
+      },
+      {
+        "k": "DD:fixture",
+        "f": "DD",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      },
+      {
+        "k": "DA:fixture",
+        "f": "DA",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      },
+      {
+        "k": "DV:fixture",
+        "f": "DV",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      },
+      {
+        "k": "R:fixture",
+        "f": "R",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1",
+        "g": [
+          "D"
+        ]
+      },
+      {
+        "k": "X:fixture",
+        "f": "X",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1",
+        "g": [
+          "D"
+        ]
+      },
+      {
+        "k": "E:fixture",
+        "f": "E",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1",
+        "g": [
+          "D"
+        ]
+      },
+      {
+        "k": "K:fixture",
+        "f": "K",
+        "ok": true,
+        "st": "labelled accepted fixture",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      }
+    ],
+    "failed": {},
+    "gaps": {},
+    "excluded": []
+  },
+  "map": {
+    "folder": {
+      "04": [
+        "E",
+        "P"
+      ]
+    }
+  },
+  "board": {
+    "tasks": []
+  },
+  "reporter": {
+    "levels": {
+      "L2_reconstruction_grade": {
+        "systems": [
+          {
+            "system": "S-001",
+            "contract": "MET",
+            "types": "MET",
+            "relationships": "MET",
+            "runtime": "MET",
+            "script_data": "MET"
+          }
+        ]
+      },
+      "terminal_certification": {
+        "required_consecutive": 30,
+        "final_audits_declared": 30
+      }
+    }
+  },
+  "gate": {
+    "verdict": "MET",
+    "detail": [
+      "acceptance: OK labelled synthetic input, NOT an actual audit"
+    ],
+    "remaining": ""
+  },
+  "subsystems_sha256": "07ece088b4d64635867d34cce2d2b4ba06c10b53f19a0ff98b3e336ff672c7ea"
+}

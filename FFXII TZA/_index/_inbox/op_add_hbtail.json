@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-HBTAIL-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish monster-tail v1/v2/v3 dead-authored confirmation (full root+0x108 consumer enumeration).",
+  "scope": "hchk-hctg-hdat-handbook-indexes.md, AUDIT-LOG.md, ADDRESS-INDEX.md, SWE2-DATA.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

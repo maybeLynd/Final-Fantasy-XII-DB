@@ -1,0 +1,19 @@
+"""Static original call/coordinate discriminator; no VM/native/game execution."""
+import csv,hashlib,io,json,re,shutil,struct,subprocess,sys
+from pathlib import Path
+W=Path(__file__).resolve().parent;R=W/'retained';P=Path('Database/FFXII TZA/_experiments/evidence/sn1-named-entry-line-convention');sha=lambda b:hashlib.sha256(b).hexdigest()
+if (W/'raw.json').exists():subprocess.run([sys.executable,str(W/'check.py')],check=True);sys.exit(0)
+sys.path.insert(0,'Database/Tools/analysis-kit/gfz-scripts');import team
+ok,d=team.board_status(team.BOARD);assert ok,d;t=next(t for t in json.loads(team.BOARD.read_text())['tasks'] if t['id']=='ASTRA-SN1-EVCTRL-JUMP-BINDING');assert t['status']=='ACTIVE' and t['agent']=='ASTRA'
+R.mkdir(exist_ok=False)
+pr=json.loads((P/'raw.json').read_text());bind=next(x for x in pr['bindings'] if x['module']=='evctrl' and x['scope']==1)
+for n in ['evctrl.dbg','evctrl.sbn','evctrl.ebp','selected-sbn-functions.py']:shutil.copyfile(P/'retained'/n,R/n)
+for n in ['probe.py','feasibility.json']:shutil.copyfile(W/n,R/('initial-'+n))
+(R/'parent61-raw.json').write_bytes((P/'raw.json').read_bytes())
+catalog=Path('Database/FFXII TZA/01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv');cb=catalog.read_bytes();(R/'verb-table.tsv').write_bytes(cb)
+rows=list(csv.DictReader(io.StringIO(cb.decode()),delimiter='\t'));selected=[x for x in rows if x['call_id'] in ['0013','001A']];assert [(x['call_id'],x['verb']) for x in selected]==[('0013','askpos'),('001A','mesopenspeed')]
+(R/'driver-before-run.py').write_bytes(Path(__file__).read_bytes())
+raw=dict(method='A exact retained original evctrl triple and unchanged OPUS source parser/61 directory validation; admitted verb catalog is existing ID/name premise, no new shipping dispatcher census or code execution',question='Do two named jump candidates and nearby original CALLs map to source through a backslash-folded logical coordinate, rather than direct physical line?',hypotheses=['Same-index q1/jump named candidates have meaningful source coordinates after continuation folding','Names reordered/deleted or artifacts mismatched','Another compiler/source coordinate rule; constant shift/nearby source alone not proof'],parent=P.as_posix(),parent_manifest_sha256=sha((P/'manifest.json').read_bytes()),reference_files=[x for x in pr['reference']['files'] if x['module']=='evctrl'],parser_sha256=sha((R/'selected-sbn-functions.py').read_bytes()),catalog_path=catalog.as_posix(),catalog_sha256=sha(cb),admitted_catalog_rows=selected,bind=bind,named_candidates=[x for x in pr['rows'] if x['module']=='evctrl'],feasibility_sha256=sha((W/'feasibility.json').read_bytes()),cases=[dict(pc=16,logical_line=417,physical_one_based_line=961,call_id=0x13,verb='askpos',label='MENU_TOP'),dict(pc=28,logical_line=418,physical_one_based_line=962,call_id=0x1A,verb='mesopenspeed',label='MENU_TOP'),dict(pc=3230,logical_line=708,physical_one_based_line=1252,call_id=0x13,verb='askpos',label='summon'),dict(pc=3242,logical_line=709,physical_one_based_line=1253,call_id=0x1A,verb='mesopenspeed',label='summon')],limits='Four static calls/two named same-index candidates only, not every160-name binding or cause of count mismatch; folding is a discriminating source interpretation, not execution of original compiler or universally proved writer convention. Physical source range and virtual logical addressability are distinct. Variables physical operands/source spellings separate; no new descriptor-name identity, scheduling/native effect/live loading/SN1 X claim. Do not decode144B debug shared tail as original body. PC OFF/S19 parked/full L1+L2 NOT_MET.')
+(W/'raw.json').write_text(json.dumps(raw,indent=2)+'\n')
+assert catalog.read_bytes()==cb
+print('CAPTURE63 exact retained originals, source-splice discriminator prepared',flush=True)

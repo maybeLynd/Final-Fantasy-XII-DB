@@ -1,0 +1,32 @@
+[
+  {
+    "mutant": "message_read_from_receiver",
+    "detected": true,
+    "failed_assertion": "consumer_initial_mode_comes_from_message"
+  },
+  {
+    "mutant": "erase_rbx_kill",
+    "detected": true,
+    "failed_assertion": "consumer_xor_clears_state_not_message_address"
+  },
+  {
+    "mutant": "ready_wrong_bit",
+    "detected": true,
+    "failed_assertion": "ready_message_sets_bit0"
+  },
+  {
+    "mutant": "skip_d0_clear",
+    "detected": true,
+    "failed_assertion": "teardown_clears_file_pointer"
+  },
+  {
+    "mutant": "clear_other_singleton",
+    "detected": true,
+    "failed_assertion": "teardown_clears_asset_global"
+  },
+  {
+    "mutant": "consumer_tests_own_ready",
+    "detected": true,
+    "failed_assertion": "consumer_gate_uses_asset_not_own_status"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "case": "consistent-wrong-min",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "wrong/incomplete capacity caller body",
+  "expected_error_seen": true
+}

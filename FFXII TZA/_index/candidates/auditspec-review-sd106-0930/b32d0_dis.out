@@ -1,0 +1,80 @@
+002B32D0  mov       qword ptr [rsp + 8], rbx
+002B32D5  mov       qword ptr [rsp + 0x10], rbp
+002B32DA  mov       qword ptr [rsp + 0x18], rsi
+002B32DF  push      rdi
+002B32E0  sub       rsp, 0x20
+002B32E4  mov       ebp, r9d
+002B32E7  mov       rsi, r8
+002B32EA  mov       rbx, rdx
+002B32ED  mov       rdi, rcx
+002B32F0  call      0x2ac1e0
+002B32F5  mov       rax, qword ptr [rsp + 0x60]
+002B32FA  mov       rcx, rbx
+002B32FD  mov       qword ptr [rdi + 0x70], rax
+002B3301  call      0x39bad0
+002B3306  mov       byte ptr [rdi + 0xa6], al
+002B330C  mov       eax, dword ptr [rsp + 0x68]
+002B3310  mov       dword ptr [rdi + 0x84], eax
+002B3316  mov       rax, qword ptr [rsp + 0x70]
+002B331B  mov       qword ptr [rdi + 0x78], rax
+002B331F  call      0x254a10
+002B3324  test      eax, eax
+002B3326  jne       0x2b334a
+002B3328  cmp       byte ptr [rdi + 0xa6], 7
+002B332F  jne       0x2b334a
+002B3331  or        dword ptr [rdi + 0x44], 0x800
+002B3338  mov       ecx, dword ptr [rdi + 0x44]
+002B333B  shr       ecx, 0xb
+002B333E  and       ecx, 1
+002B3341  call      0x39c4a0
+002B3346  mov       qword ptr [rdi + 0x60], rax
+002B334A  mov       rdx, rsi
+002B334D  mov       rcx, rdi
+002B3350  test      ebp, ebp
+002B3352  je        0x2b3384
+002B3354  call      0x2b3c30
+002B3359  mov       rcx, qword ptr [rsp + 0x50]
+002B335E  test      rcx, rcx
+002B3361  je        0x2b336f
+002B3363  movsx     eax, word ptr [rdi + 0x94]
+002B336A  add       eax, 8
+002B336D  mov       dword ptr [rcx], eax
+002B336F  mov       rcx, qword ptr [rsp + 0x58]
+002B3374  test      rcx, rcx
+002B3377  je        0x2b33b1
+002B3379  movsx     eax, word ptr [rdi + 0x96]
+002B3380  mov       dword ptr [rcx], eax
+002B3382  jmp       0x2b33b1
+002B3384  call      0x2b3d50
+002B3389  mov       rax, qword ptr [rsp + 0x50]
+002B338E  test      rax, rax
+002B3391  je        0x2b339d
+002B3393  movzx     eax, word ptr [rax]
+002B3396  mov       word ptr [rdi + 0x94], ax
+002B339D  mov       rax, qword ptr [rsp + 0x58]
+002B33A2  test      rax, rax
+002B33A5  je        0x2b33b1
+002B33A7  movzx     eax, word ptr [rax]
+002B33AA  mov       word ptr [rdi + 0x96], ax
+002B33B1  movsx     ecx, byte ptr [rdi + 0x9e]
+002B33B8  movss     xmm1, dword ptr [rip + 0x1a387e8]   ; -> 01CEBBA8 u32=3F800000 f32=1
+002B33C0  movzx     eax, cx
+002B33C3  mov       rbx, qword ptr [rsp + 0x30]
+002B33C8  neg       ax
+002B33CB  mov       rbp, qword ptr [rsp + 0x38]
+002B33D0  mov       rsi, qword ptr [rsp + 0x40]
+002B33D5  movd      xmm0, ecx
+002B33D9  cvtdq2ps  xmm0, xmm0
+002B33DC  mov       word ptr [rdi + 0x90], ax
+002B33E3  mov       word ptr [rdi + 0x99], 0x2500
+002B33EC  divss     xmm1, xmm0
+002B33F0  movss     dword ptr [rdi + 0x50], xmm1
+002B33F5  add       rsp, 0x20
+002B33F9  pop       rdi
+002B33FA  ret       
+002B33FB  int3      
+002B33FC  int3      
+002B33FD  int3      
+002B33FE  int3      
+002B33FF  int3      
+---

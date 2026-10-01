@@ -1,0 +1,23 @@
+[
+  {
+    "argv": [
+      "git",
+      "check-ignore",
+      "-q",
+      "--stdin"
+    ],
+    "returncode": 1,
+    "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n"
+  },
+  {
+    "argv": [
+      "git",
+      "check-ignore",
+      "-q",
+      "--stdin",
+      "--no-index"
+    ],
+    "returncode": 1,
+    "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n"
+  }
+]

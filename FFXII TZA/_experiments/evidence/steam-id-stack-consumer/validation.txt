@@ -1,0 +1,2 @@
+PASS: native receipts, stage-specific identities, wide controls, alias overwrite discriminator, source versions and cleanup.
+Six corrupted receipts rejected; initial pre-execution failure retained as invalid.

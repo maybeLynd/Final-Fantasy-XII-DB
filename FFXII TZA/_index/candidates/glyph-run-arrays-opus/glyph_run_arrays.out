@@ -1,0 +1,5 @@
+PASS  R 0053E640 walks +0x290 / +0x690 (by +0x108 .. +0x10A), the runs from +0xA90 (by +0x1490 .. +0x1492), +0x110 / +0x210 (by +0x105 .. +0x106)
+PASS  A 0053EFC0 appends a 0x14 record at +0xA90 + 0x14 * runCount, then increments runCount and advances +0xF0
+PASS  E five arrays tile +0x110..+0x148F by adjacency (64 / 64 / 256 / 256 / 128)
+PASS  W the five arrays, GlyphRunRecord14 and the range fields are in the store; both types tile
+FAILS 0

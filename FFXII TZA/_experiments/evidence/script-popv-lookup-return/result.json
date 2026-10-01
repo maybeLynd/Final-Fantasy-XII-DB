@@ -1,0 +1,39 @@
+{
+  "status": "POPV_LOOKUP_READ_ONLY_RETURN_DISCARDED",
+  "method": "A exact original closed lookup/caller/store-prefix disassembly; no original/guest/native/live execution",
+  "raw_sha256": "8b48fc207f5109621891aa0a8729d175c124db37e6489799a9870471746b70fe",
+  "observations": {
+    "lookup_closed_pcs": [
+      "0x32f240",
+      "0x32f243",
+      "0x32f24a",
+      "0x32f252",
+      "0x32f254",
+      "0x32f25b",
+      "0x32f25c",
+      "0x32f25f"
+    ],
+    "returns": [
+      "0x32f25b",
+      "0x32f25f"
+    ],
+    "tables": {
+      "registered_byte": "0x22c6d18+i",
+      "id_dword": "0x22c6d28+4*i"
+    },
+    "source_writes": 0,
+    "source_calls": 0,
+    "registered_result": "selected table id",
+    "unregistered_result": "FFFFFFFF",
+    "caller_gate": "uint32(slot_index-1)<=2 and ESI==0",
+    "continuation": "LEA RCX record thenCALL26D530; no returnedEAXread",
+    "store_clobber": "26D53B MOV EAX,record.descriptor before anyRAXread",
+    "controls": {
+      "decoded_private_load_to_store": "w",
+      "decoded_private_store_firstclobberNOP": "incoming RAXread becomesvisible"
+    },
+    "effects": "Two ordinary globalreads/return, no source event dispatch/write/call. ReturnunusedonthisPOPV path; may fault if required memoryinvalid, notobservedhere"
+  },
+  "interpretation": "For this exact shipping local source path, notification helper is a registration/id query, not an emitting callback, and its returned id is discarded before storing. Narrow70 former omitted-helper uncertainty accordingly via additive evidence, not rawrewrite. Preserve actual data validity/other notification systems andlivegaps.",
+  "limits": "STATIC_ONLY. No original-code/guest/native/live execution, actual tablevalues/writer/globalvalidity/nativefaults/normalreachability/othercallbacks/lifetime. Claims conditioned validordinarymemory andcorrect32B/sourceidentity; no no-fault guarantee. Consumer incorporation/independentacceptance pending. PC OFF/S19/fullL1+L2 NOT_MET"
+}

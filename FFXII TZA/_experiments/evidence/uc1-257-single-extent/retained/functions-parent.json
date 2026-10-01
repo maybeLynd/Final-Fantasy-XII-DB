@@ -1,0 +1,10 @@
+{
+  "program_name": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GN162_100P000_2026-09-16",
+  "executable_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "function_count": 38161,
+  "edge_count": 90525,
+  "parent_gzf": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GN162_100P000_2026-09-16.gzf",
+  "parent_gzf_sha256": "59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92",
+  "parent_gzf_size": 82201392,
+  "exported_utc": "2026-09-17T14:00:15Z"
+}

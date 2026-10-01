@@ -1,0 +1,516 @@
+{
+  "result": "A_ROW_KEY_AND_BYTE_BOUNDARY_QUALIFIED; PENDING_INDEPENDENT_REVIEW",
+  "question": "StatusDefinitionRecord +0 two-byte name key versus standalone byte ID/fixed four-byte prefix",
+  "records": [
+    {
+      "row": 0,
+      "name_key": "0x2800",
+      "bank": 5,
+      "bank_entry": 0,
+      "name": "KO",
+      "separate_byte02": 255,
+      "first_dword": "0xff2800"
+    },
+    {
+      "row": 1,
+      "name_key": "0x2801",
+      "bank": 5,
+      "bank_entry": 1,
+      "name": "Stone",
+      "separate_byte02": 29,
+      "first_dword": "0x1d2801"
+    },
+    {
+      "row": 2,
+      "name_key": "0x2802",
+      "bank": 5,
+      "bank_entry": 2,
+      "name": "Petrify",
+      "separate_byte02": 28,
+      "first_dword": "0x1c2802"
+    },
+    {
+      "row": 3,
+      "name_key": "0x2803",
+      "bank": 5,
+      "bank_entry": 3,
+      "name": "Stop",
+      "separate_byte02": 27,
+      "first_dword": "0x1b2803"
+    },
+    {
+      "row": 4,
+      "name_key": "0x2804",
+      "bank": 5,
+      "bank_entry": 4,
+      "name": "Sleep",
+      "separate_byte02": 24,
+      "first_dword": "0x182804"
+    },
+    {
+      "row": 5,
+      "name_key": "0x2805",
+      "bank": 5,
+      "bank_entry": 5,
+      "name": "Confuse",
+      "separate_byte02": 25,
+      "first_dword": "0x192805"
+    },
+    {
+      "row": 6,
+      "name_key": "0x2806",
+      "bank": 5,
+      "bank_entry": 6,
+      "name": "Doom",
+      "separate_byte02": 26,
+      "first_dword": "0x1a2806"
+    },
+    {
+      "row": 7,
+      "name_key": "0x2807",
+      "bank": 5,
+      "bank_entry": 7,
+      "name": "Blind",
+      "separate_byte02": 19,
+      "first_dword": "0x132807"
+    },
+    {
+      "row": 8,
+      "name_key": "0x2808",
+      "bank": 5,
+      "bank_entry": 8,
+      "name": "Poison",
+      "separate_byte02": 18,
+      "first_dword": "0x122808"
+    },
+    {
+      "row": 9,
+      "name_key": "0x2809",
+      "bank": 5,
+      "bank_entry": 9,
+      "name": "Silence",
+      "separate_byte02": 20,
+      "first_dword": "0x142809"
+    },
+    {
+      "row": 10,
+      "name_key": "0x280a",
+      "bank": 5,
+      "bank_entry": 10,
+      "name": "Sap",
+      "separate_byte02": 15,
+      "first_dword": "0xf280a"
+    },
+    {
+      "row": 11,
+      "name_key": "0x280b",
+      "bank": 5,
+      "bank_entry": 11,
+      "name": "Oil",
+      "separate_byte02": 16,
+      "first_dword": "0x10280b"
+    },
+    {
+      "row": 12,
+      "name_key": "0x280c",
+      "bank": 5,
+      "bank_entry": 12,
+      "name": "Reverse",
+      "separate_byte02": 23,
+      "first_dword": "0x17280c"
+    },
+    {
+      "row": 13,
+      "name_key": "0x280d",
+      "bank": 5,
+      "bank_entry": 13,
+      "name": "Disable",
+      "separate_byte02": 21,
+      "first_dword": "0x15280d"
+    },
+    {
+      "row": 14,
+      "name_key": "0x280e",
+      "bank": 5,
+      "bank_entry": 14,
+      "name": "Immobilize",
+      "separate_byte02": 20,
+      "first_dword": "0x14280e"
+    },
+    {
+      "row": 15,
+      "name_key": "0x280f",
+      "bank": 5,
+      "bank_entry": 15,
+      "name": "Slow",
+      "separate_byte02": 22,
+      "first_dword": "0x16280f"
+    },
+    {
+      "row": 16,
+      "name_key": "0x2810",
+      "bank": 5,
+      "bank_entry": 16,
+      "name": "Disease",
+      "separate_byte02": 23,
+      "first_dword": "0x172810"
+    },
+    {
+      "row": 17,
+      "name_key": "0x2811",
+      "bank": 5,
+      "bank_entry": 17,
+      "name": "Lure",
+      "separate_byte02": 12,
+      "first_dword": "0xc2811"
+    },
+    {
+      "row": 18,
+      "name_key": "0x2812",
+      "bank": 5,
+      "bank_entry": 18,
+      "name": "Protect",
+      "separate_byte02": 10,
+      "first_dword": "0xa2812"
+    },
+    {
+      "row": 19,
+      "name_key": "0x2813",
+      "bank": 5,
+      "bank_entry": 19,
+      "name": "Shell",
+      "separate_byte02": 9,
+      "first_dword": "0x92813"
+    },
+    {
+      "row": 20,
+      "name_key": "0x2814",
+      "bank": 5,
+      "bank_entry": 20,
+      "name": "Haste",
+      "separate_byte02": 8,
+      "first_dword": "0x82814"
+    },
+    {
+      "row": 21,
+      "name_key": "0x2815",
+      "bank": 5,
+      "bank_entry": 21,
+      "name": "Bravery",
+      "separate_byte02": 7,
+      "first_dword": "0x72815"
+    },
+    {
+      "row": 22,
+      "name_key": "0x2816",
+      "bank": 5,
+      "bank_entry": 22,
+      "name": "Faith",
+      "separate_byte02": 6,
+      "first_dword": "0x62816"
+    },
+    {
+      "row": 23,
+      "name_key": "0x2817",
+      "bank": 5,
+      "bank_entry": 23,
+      "name": "Reflect",
+      "separate_byte02": 11,
+      "first_dword": "0xb2817"
+    },
+    {
+      "row": 24,
+      "name_key": "0x2818",
+      "bank": 5,
+      "bank_entry": 24,
+      "name": "Invisible",
+      "separate_byte02": 255,
+      "first_dword": "0xff2818"
+    },
+    {
+      "row": 25,
+      "name_key": "0x2819",
+      "bank": 5,
+      "bank_entry": 25,
+      "name": "Regen",
+      "separate_byte02": 4,
+      "first_dword": "0x42819"
+    },
+    {
+      "row": 26,
+      "name_key": "0x281a",
+      "bank": 5,
+      "bank_entry": 26,
+      "name": "Float",
+      "separate_byte02": 3,
+      "first_dword": "0x3281a"
+    },
+    {
+      "row": 27,
+      "name_key": "0x281b",
+      "bank": 5,
+      "bank_entry": 27,
+      "name": "Berserk",
+      "separate_byte02": 2,
+      "first_dword": "0x2281b"
+    },
+    {
+      "row": 28,
+      "name_key": "0x281c",
+      "bank": 5,
+      "bank_entry": 28,
+      "name": "Bubble",
+      "separate_byte02": 1,
+      "first_dword": "0x1281c"
+    },
+    {
+      "row": 29,
+      "name_key": "0x281d",
+      "bank": 5,
+      "bank_entry": 29,
+      "name": "HP Critical",
+      "separate_byte02": 255,
+      "first_dword": "0xff281d"
+    },
+    {
+      "row": 30,
+      "name_key": "0x281e",
+      "bank": 5,
+      "bank_entry": 30,
+      "name": "Libra",
+      "separate_byte02": 0,
+      "first_dword": "0x281e"
+    },
+    {
+      "row": 31,
+      "name_key": "0x281f",
+      "bank": 5,
+      "bank_entry": 31,
+      "name": "X-Zone",
+      "separate_byte02": 255,
+      "first_dword": "0xff281f"
+    }
+  ],
+  "decoded_bank5_records": [
+    {
+      "entry": 0,
+      "bank_offset": 136,
+      "raw_hex": "00002a2e00000000",
+      "name": "KO"
+    },
+    {
+      "entry": 1,
+      "bank_offset": 144,
+      "raw_hex": "0000324d48473e0000000000",
+      "name": "Stone"
+    },
+    {
+      "entry": 2,
+      "bank_offset": 156,
+      "raw_hex": "00002f3e4d4b423f5200000000000000",
+      "name": "Petrify"
+    },
+    {
+      "entry": 3,
+      "bank_offset": 172,
+      "raw_hex": "0000324d4849000000000000",
+      "name": "Stop"
+    },
+    {
+      "entry": 4,
+      "bank_offset": 184,
+      "raw_hex": "000032453e3e490000000000",
+      "name": "Sleep"
+    },
+    {
+      "entry": 5,
+      "bank_offset": 196,
+      "raw_hex": "00002248473f4e4c3e00000000000000",
+      "name": "Confuse"
+    },
+    {
+      "entry": 6,
+      "bank_offset": 212,
+      "raw_hex": "000023484846000000000000",
+      "name": "Doom"
+    },
+    {
+      "entry": 7,
+      "bank_offset": 224,
+      "raw_hex": "0000214542473d0000000000",
+      "name": "Blind"
+    },
+    {
+      "entry": 8,
+      "bank_offset": 236,
+      "raw_hex": "00002f48424c484700000000",
+      "name": "Poison"
+    },
+    {
+      "entry": 9,
+      "bank_offset": 248,
+      "raw_hex": "00003242453e473c3e00000000000000",
+      "name": "Silence"
+    },
+    {
+      "entry": 10,
+      "bank_offset": 264,
+      "raw_hex": "0000323a4900000000000000",
+      "name": "Sap"
+    },
+    {
+      "entry": 11,
+      "bank_offset": 276,
+      "raw_hex": "00002e424500000000000000",
+      "name": "Oil"
+    },
+    {
+      "entry": 12,
+      "bank_offset": 288,
+      "raw_hex": "0000313e4f3e4b4c3e00000000000000",
+      "name": "Reverse"
+    },
+    {
+      "entry": 13,
+      "bank_offset": 304,
+      "raw_hex": "000023424c3a3b453e00000000000000",
+      "name": "Disable"
+    },
+    {
+      "entry": 14,
+      "bank_offset": 320,
+      "raw_hex": "0000284646483b424542533e00000000",
+      "name": "Immobilize"
+    },
+    {
+      "entry": 15,
+      "bank_offset": 336,
+      "raw_hex": "000032454850000000000000",
+      "name": "Slow"
+    },
+    {
+      "entry": 16,
+      "bank_offset": 348,
+      "raw_hex": "000023424c3e3a4c3e00000000000000",
+      "name": "Disease"
+    },
+    {
+      "entry": 17,
+      "bank_offset": 364,
+      "raw_hex": "00002b4e4b3e000000000000",
+      "name": "Lure"
+    },
+    {
+      "entry": 18,
+      "bank_offset": 376,
+      "raw_hex": "00002f4b484d3e3c4d00000000000000",
+      "name": "Protect"
+    },
+    {
+      "entry": 19,
+      "bank_offset": 392,
+      "raw_hex": "000032413e45450000000000",
+      "name": "Shell"
+    },
+    {
+      "entry": 20,
+      "bank_offset": 404,
+      "raw_hex": "0000273a4c4d3e0000000000",
+      "name": "Haste"
+    },
+    {
+      "entry": 21,
+      "bank_offset": 416,
+      "raw_hex": "0000214b3a4f3e4b5200000000000000",
+      "name": "Bravery"
+    },
+    {
+      "entry": 22,
+      "bank_offset": 432,
+      "raw_hex": "0000253a424d410000000000",
+      "name": "Faith"
+    },
+    {
+      "entry": 23,
+      "bank_offset": 444,
+      "raw_hex": "0000313e3f453e3c4d00000000000000",
+      "name": "Reflect"
+    },
+    {
+      "entry": 24,
+      "bank_offset": 460,
+      "raw_hex": "000028474f424c423b453e0000000000",
+      "name": "Invisible"
+    },
+    {
+      "entry": 25,
+      "bank_offset": 476,
+      "raw_hex": "0000313e403e470000000000",
+      "name": "Regen"
+    },
+    {
+      "entry": 26,
+      "bank_offset": 488,
+      "raw_hex": "00002545483a4d0000000000",
+      "name": "Float"
+    },
+    {
+      "entry": 27,
+      "bank_offset": 500,
+      "raw_hex": "0000213e4b4c3e4b4400000000000000",
+      "name": "Berserk"
+    },
+    {
+      "entry": 28,
+      "bank_offset": 516,
+      "raw_hex": "0000214e3b3b453e00000000",
+      "name": "Bubble"
+    },
+    {
+      "entry": 29,
+      "bank_offset": 528,
+      "raw_hex": "0000272f04224b424d423c3a4500000000000000",
+      "name": "HP Critical"
+    },
+    {
+      "entry": 30,
+      "bank_offset": 548,
+      "raw_hex": "00002b423b4b3a0000000000",
+      "name": "Libra"
+    },
+    {
+      "entry": 31,
+      "bank_offset": 560,
+      "raw_hex": "000037a53948473e00000000",
+      "name": "X-Zone"
+    }
+  ],
+  "native": {
+    "result": "STATIC_PHYSICAL_ACCESS_QUALIFIED",
+    "name_reads": [
+      "0x31e1d4",
+      "0x31e20e"
+    ],
+    "name_width": 2,
+    "bank_shift": 11,
+    "entry_mask": "0x7ff",
+    "registry": "0x2ebf118",
+    "text_registry": "0x2ebf170",
+    "separate_effect_byte_read": "0x31e248",
+    "separate_effect_byte_write": "0x31e24c",
+    "copied_to_query_offset": "0x24"
+  },
+  "falsified": [
+    "standalone byte identity control validates complete name field",
+    "fixed001B2800+row first dword",
+    "31E1C0 is a valid instruction boundary"
+  ],
+  "remaining": [
+    "meaning of sparse slots11/12/14..1F",
+    "normal live reader occurrence and resource binding/lifetime",
+    "semantic effect index target",
+    "owner canonical propagation"
+  ],
+  "limits": "Static original code and authored US representation/name correspondence only. No native execution, live initialization, UI presentation, ordinary reachability or universal no-reader proof.",
+  "cleanup": "No process/native input APIs, instrumentation, game/save/config/reference writes."
+}

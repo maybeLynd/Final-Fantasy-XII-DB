@@ -1,0 +1,8 @@
+PASS C1 magic+offset - 332 .ard parsed
+PASS C2 list bounds+pads - 332 non-empty lists
+PASS C3 asp_a count 0
+PASS C4 mapped-id census ran - 3546 entries, min 56 max 2306, ids in 0xE2..0xE4: {228: 2} (kind is constant 0x1E regardless)
+PASS C5 332 archive paths = 166 distinct resources in identical in/ch copies - 166 basenames, 0 differing
+mapped-id range: 56 .. 2306 distinct: 1043
+keyA range: 7143425 .. 7536665 distinct: 232
+FAILS 0

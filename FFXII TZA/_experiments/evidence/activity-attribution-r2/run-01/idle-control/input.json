@@ -1,0 +1,242 @@
+{
+  "board": {
+    "schema_version": 1,
+    "phase": "DATABASE",
+    "revision": 3,
+    "recovery_epoch": 0,
+    "agents": {
+      "SWE2-STRUCT": {
+        "agent_id": "SWE2-STRUCT",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "SWE2-AUDIT-SEM": {
+        "agent_id": "SWE2-AUDIT-SEM",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "ASTRA": {
+        "agent_id": "ASTRA",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "SWE2-DATA": {
+        "agent_id": "SWE2-DATA",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "SWE2-EC7": {
+        "agent_id": "SWE2-EC7",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "SWE2-AUDIT-SPEC": {
+        "agent_id": "SWE2-AUDIT-SPEC",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "OPUS": {
+        "agent_id": "OPUS",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [
+          "LABELLED-OPUS-OLD-CLAIM"
+        ],
+        "claimed_scope": [
+          {
+            "key": "request:fixture/old-claim"
+          }
+        ],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "ACTIVE"
+      },
+      "SWE2-FRONTIER": {
+        "agent_id": "SWE2-FRONTIER",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "SWE2-ORACLE": {
+        "agent_id": "SWE2-ORACLE",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "SWE2-CONTRACT": {
+        "agent_id": "SWE2-CONTRACT",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T06:00:00+00:00",
+        "status": "READY"
+      },
+      "FABLE": {
+        "agent_id": "FABLE",
+        "primary_specialty": "labelled fixture only",
+        "current_task": [],
+        "claimed_scope": [],
+        "dependencies": [],
+        "blockers": [],
+        "last_checkpoint": "2027-01-15T07:59:30+00:00",
+        "status": "READY"
+      }
+    },
+    "tasks": [
+      {
+        "id": "LABELLED-OPUS-OLD-CLAIM",
+        "kind": "research",
+        "priority": "P1",
+        "target": "07-Combat-Action labelled fixture",
+        "scope": "activity classification only",
+        "completion": "fixture only",
+        "dependencies": [],
+        "resources": [
+          {
+            "key": "request:fixture/old-claim"
+          }
+        ],
+        "agent": "OPUS",
+        "status": "ACTIVE",
+        "started_at": "2027-01-15T06:00:00+00:00",
+        "updated_at": "2027-01-15T06:00:00+00:00",
+        "checkpoint": "Labelled old claim; required original API precondition"
+      },
+      {
+        "id": "LABELLED-VERIFY-QUEUED",
+        "kind": "request",
+        "requester": "FABLE",
+        "assigned_to": "OPUS",
+        "priority": "P1",
+        "target": "07-Combat-Action labelled review",
+        "scope": "foreign assignment fixture",
+        "completion": "fixture only",
+        "question": "labelled review",
+        "known_evidence": "fixture",
+        "missing_information": "fixture",
+        "why_it_matters": "fixture",
+        "what_is_blocked": "fixture",
+        "dependencies": [],
+        "resources": [
+          {
+            "key": "request:fixture/queued"
+          }
+        ],
+        "agent": null,
+        "status": "READY",
+        "started_at": null,
+        "updated_at": "2027-01-15T07:59:30+00:00",
+        "checkpoint": "Queued by FABLE"
+      }
+    ],
+    "history": [
+      {
+        "at": "2027-01-15T06:00:00+00:00",
+        "agent": "OPUS",
+        "operation": {
+          "action": "add",
+          "task": {
+            "id": "LABELLED-OPUS-OLD-CLAIM",
+            "kind": "research",
+            "priority": "P1",
+            "target": "07-Combat-Action labelled fixture",
+            "scope": "activity classification only",
+            "completion": "fixture only",
+            "dependencies": [],
+            "resources": [
+              {
+                "key": "request:fixture/old-claim"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "at": "2027-01-15T06:00:00+00:00",
+        "agent": "OPUS",
+        "operation": {
+          "action": "claim",
+          "task": "LABELLED-OPUS-OLD-CLAIM",
+          "note": "Labelled old claim; required original API precondition"
+        }
+      },
+      {
+        "at": "2027-01-15T07:59:30+00:00",
+        "agent": "FABLE",
+        "operation": {
+          "action": "add",
+          "task": {
+            "id": "LABELLED-VERIFY-QUEUED",
+            "kind": "request",
+            "requester": "FABLE",
+            "assigned_to": "OPUS",
+            "priority": "P1",
+            "target": "07-Combat-Action labelled review",
+            "scope": "foreign assignment fixture",
+            "completion": "fixture only",
+            "question": "labelled review",
+            "known_evidence": "fixture",
+            "missing_information": "fixture",
+            "why_it_matters": "fixture",
+            "what_is_blocked": "fixture",
+            "dependencies": [],
+            "resources": [
+              {
+                "key": "request:fixture/queued"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "checkpoints": []
+  },
+  "poll": {
+    "ts": "2027-01-15T08:00:00+00:00",
+    "lane_state": {
+      "OPUS": "free"
+    }
+  },
+  "claude": null,
+  "now": 1800000000.0
+}

@@ -1,0 +1,49 @@
+{
+  "evidence_class": "isolated original-instruction execution against synthetic state",
+  "application_substitutions": [],
+  "import_bridges": [],
+  "actual_initialization": "Original 003DC2D0 populates callback families; no callbacks planted.",
+  "tested_original_callbacks": [
+    {
+      "family": 0,
+      "id": "0000",
+      "catalog_name": "wait",
+      "begin": "0034CF90",
+      "poll": "0034DCC0",
+      "result": "00000000"
+    },
+    {
+      "family": 0,
+      "id": "0090",
+      "catalog_name": "nowmap",
+      "begin": "00000000",
+      "poll": "00000000",
+      "result": "0033F310"
+    },
+    {
+      "family": 0,
+      "id": "0072",
+      "catalog_name": "getmyid",
+      "begin": "00000000",
+      "poll": "00000000",
+      "result": "00349910"
+    },
+    {
+      "family": 0,
+      "id": "006D",
+      "catalog_name": "getx",
+      "begin": "00000000",
+      "poll": "00000000",
+      "result": "00346710"
+    }
+  ],
+  "outer_driver": "Full 0025DF00 entry, kind-1 requests and configured idle service branches; NOT 0025D9E0 full field-frame execution.",
+  "other_limits": [
+    "No live game, OS loader, I/O, complete opcode/verb set, scheduler timing, or retail reachability.",
+    "No actor allocation/reuse experiment; different actor fixtures and pointer-table rebinding are synthetic.",
+    "Guard-page opcode47 test is an intentional isolated child fault, not a game crash.",
+    "Budget/reentrancy and thread safety of the global stack are not established as safe.",
+    "Historical experiment records are reviewed, not rerun as Unicorn campaigns."
+  ],
+  "compiler": "GCC Microsoft x64 ABI in Linux x86-64 private image; host code only sets synthetic memory and observes results."
+}

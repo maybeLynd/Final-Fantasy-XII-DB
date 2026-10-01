@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-softedges-parent-getter.py", line 21, in <module>
+    if len(rows)!=1:raise ValueError('missing/ambiguous named original parent-getter pdata')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: missing/ambiguous named original parent-getter pdata

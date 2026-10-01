@@ -1,0 +1,174 @@
+callers of 0032E520: 27 sites, kinds ['E8', 'E9'], relocated pointers []
+  0022B73C E8  owner 22B6E0     ecx <- 0022B737 mov ecx, 1
+  0022B83C E8  owner 22B7E0     ecx <- 0022B837 mov ecx, 1
+  0024ACAA E8  owner 24AC30     ecx <- 0024ACA8 xor ecx, ecx
+  00262AF2 E8  owner 2628B0     ecx <- 00262AF0 xor ecx, ecx
+  00262B0D E8  owner 2628B0     ecx <- 00262B0B xor ecx, ecx
+  00262B1E E8  owner 2628B0     ecx <- 00262B1C xor ecx, ecx
+  002FC408 E8  owner 2FC3C0     ecx <- 002FC405 lea ecx, [rax + 1]
+  0031460E E8  owner 3145E0     ecx <- 00314609 mov ecx, 1
+  00314623 E8  owner 3145E0     ecx <- 00314621 xor ecx, ecx
+  0032F68D E8  owner 32F430     ecx <- 0032F68B xor ecx, ecx
+  0034DBD9 E8  owner 34DB30     ecx <- 0034DBD7 mov ecx, edi
+  003601FD E8  owner 3601D0     ecx <- 003601FB xor ecx, ecx
+  003B0714 E8  owner 3B0660     ecx <- 003B0712 xor ecx, ecx
+  003B1392 E8  owner 3B1310     ecx <- 003B138F lea ecx, [rax + 1]
+  003B17A0 E8  owner 3B1710     ecx <- 003B179D lea ecx, [rax + 1]
+  003B1981 E8  owner 3B18E0     ecx <- 003B197E lea ecx, [rax + 1]
+  003B5432 E9  owner 3B53C0     ecx <- 003B542C xor ecx, ecx
+  003DECF8 E8  owner 3DEC90     ecx <- 003DECF6 xor ecx, ecx
+  003DED10 E8  owner 3DEC90     ecx <- 003DED0E xor ecx, ecx
+  003DEEA8 E8  owner 3DEE10     ecx <- 003DEEA6 xor ecx, ecx
+  003DEEC0 E8  owner 3DEE10     ecx <- 003DEEBE xor ecx, ecx
+  003EA250 E8  owner 3EA200     ecx <- 003EA24E xor ecx, ecx
+  003EAD41 E8  owner 3EAD10     ecx <- 003EAD3F xor ecx, ecx
+  003EAD7C E8  owner 3EAD10     ecx <- 003EAD7A xor ecx, ecx
+  0050D131 E8  owner 50D0C0     ecx <- 0050D12F mov ecx, ebx
+  0050D9C8 E8  owner 50D9A0     ecx <- 0050D9C6 xor ecx, ecx
+  0050E1E9 E8  owner 50E1E0     ecx <- 0050E1E4 mov ecx, 1
+--- 0034DB30 .. 0034DBE0
+  0034DB30 mov qword ptr [rsp + 8], rbx
+  0034DB35 mov qword ptr [rsp + 0x10], rsi
+  0034DB3A push rdi
+  0034DB3B sub rsp, 0x20
+  0034DB3F mov ecx, dword ptr [r8 + 4]
+  0034DB43 mov rbx, r8
+  0034DB46 mov rsi, rdx
+  0034DB49 mov edi, 1
+  0034DB4E test ecx, ecx
+  0034DB50 jns 0x34db70
+  0034DB52 movzx edx, byte ptr [rdx + 0x15]
+  0034DB56 mov ecx, dword ptr [r8]
+  0034DB59 call 0x360a20
+  0034DB5E xor eax, eax
+  0034DB60 mov rbx, qword ptr [rsp + 0x30]
+  0034DB65 mov rsi, qword ptr [rsp + 0x38]
+  0034DB6A add rsp, 0x20
+  0034DB6E pop rdi
+  0034DB6F ret
+  0034DB70 je 0x34dc0e
+  0034DB76 sub ecx, edi
+  0034DB78 je 0x34dbac
+  0034DB7A sub ecx, edi
+  0034DB7C je 0x34dbbc
+  0034DB7E sub ecx, edi
+  0034DB80 je 0x34dbcc
+  0034DB82 cmp ecx, edi
+  0034DB84 jne 0x34dc1e
+  0034DB8A call 0x229eb0
+  0034DB8F cmp byte ptr [rbx + 8], al
+  0034DB92 je 0x34dc1e
+  0034DB98 xor edi, edi
+  0034DB9A mov eax, edi
+  0034DB9C mov rbx, qword ptr [rsp + 0x30]
+  0034DBA1 mov rsi, qword ptr [rsp + 0x38]
+  0034DBA6 add rsp, 0x20
+  0034DBAA pop rdi
+  0034DBAB ret
+  0034DBAC call 0x3608d0
+  0034DBB1 test eax, eax
+  0034DBB3 je 0x34dc1e
+  0034DBB5 mov dword ptr [rbx + 4], 2
+  0034DBBC call 0x360d60
+  0034DBC1 test eax, eax
+  0034DBC3 jne 0x34dc1e
+  0034DBC5 mov dword ptr [rbx + 4], 3
+  0034DBCC mov ecx, edi
+  0034DBCE call 0x2f1a30
+  0034DBD3 test eax, eax
+  0034DBD5 jne 0x34dc1e
+  0034DBD7 mov ecx, edi
+  0034DBD9 call 0x32e520
+  0034DBDE test eax, eax
+--- 0050D0C0 .. 0050D150
+  0050D0C0 mov qword ptr [rsp + 8], rbx
+  0050D0C5 push rdi
+  0050D0C6 sub rsp, 0x20
+  0050D0CA cmp dword ptr [r8 + 8], 0
+  0050D0CF mov rdi, r8
+  0050D0D2 mov ebx, 1
+  0050D0D7 jne 0x50d11d
+  0050D0D9 mov ecx, dword ptr [r8]
+  0050D0DC cmp ecx, 4
+  0050D0DF jne 0x50d0ec
+  0050D0E1 mov ecx, dword ptr [r8 + 4]
+  0050D0E5 call 0x314410
+  0050D0EA jmp 0x50d11a
+  0050D0EC call 0x263ff0
+  0050D0F1 test byte ptr [rax + 0x10], bl
+  0050D0F4 je 0x50d110
+  0050D0F6 cmp byte ptr [rax + 0x13], 0
+  0050D0FA je 0x50d110
+  0050D0FC mov ecx, dword ptr [rdi]
+  0050D0FE call 0x26a5f0
+  0050D103 mov eax, ebx
+  0050D105 mov rbx, qword ptr [rsp + 0x30]
+  0050D10A add rsp, 0x20
+  0050D10E pop rdi
+  0050D10F ret
+  0050D110 mov edx, dword ptr [rdi + 4]
+  0050D113 mov ecx, dword ptr [rdi]
+  0050D115 call 0x32fc30
+  0050D11A mov dword ptr [rdi + 8], ebx
+  0050D11D cmp dword ptr [rdi], 4
+  0050D120 jne 0x50d12f
+  0050D122 xor eax, eax
+  0050D124 mov rbx, qword ptr [rsp + 0x30]
+  0050D129 add rsp, 0x20
+  0050D12D pop rdi
+  0050D12E ret
+  0050D12F mov ecx, ebx
+  0050D131 call 0x32e520
+  0050D136 test eax, eax
+  0050D138 je 0x50d14e
+  0050D13A mov ecx, ebx
+  0050D13C call 0x314d40
+  0050D141 mov eax, ebx
+  0050D143 mov rbx, qword ptr [rsp + 0x30]
+  0050D148 add rsp, 0x20
+  0050D14C pop rdi
+  0050D14D ret
+  0050D14E xor ebx, ebx
+--- 002FC3F0
+  002FC3F0 add byte ptr [rax], al
+  002FC3F2 add byte ptr [rax - 0x7d], cl
+--- 003B1380
+  003B1380 int3
+  003B1381 jmp rcx
+  003B1383 mov ecx, dword ptr [rbx + 0x18]
+  003B1386 call 0x32e4d0
+  003B138B test eax, eax
+  003B138D jne 0x3b13ac
+  003B138F lea ecx, [rax + 1]
+  003B1392 call 0x32e520
+  003B1397 test eax, eax
+  003B1399 jne 0x3b13ac
+  003B139B mov rcx, rbx
+  003B139E call 0x3b21e0
+  003B13A3 mov byte ptr [rip + 0x2b0d83a], r15b
+  003B13AA jmp 0x3b1422
+  003B13AC mov ecx, dword ptr [rbx + 0x18]
+  003B13AF call 0x32e590
+  003B13B4 mov dword ptr [rbx + 0x1c], 4
+  003B13BB jmp 0x3b1483
+--- 003B1790
+  003B1790 loope 0x3b171d
+  003B1792 sbb r8b, bpl
+--- 003B1970
+  003B1970 jmp rcx
+  003B1972 mov ecx, dword ptr [rdi + 0x18]
+  003B1975 call 0x32e4d0
+  003B197A test eax, eax
+  003B197C jne 0x3b199a
+  003B197E lea ecx, [rax + 1]
+  003B1981 call 0x32e520
+  003B1986 test eax, eax
+  003B1988 jne 0x3b199a
+  003B198A mov rcx, rdi
+  003B198D call 0x3b21e0
+  003B1992 mov byte ptr [rip + 0x2b0d24c], bl
+  003B1998 jmp 0x3b19d6
+  003B199A mov ecx, dword ptr [rdi + 0x18]
+  003B199D call 0x32e590
+  003B19A2 mov dword ptr [rdi + 0x1c], 4
+  003B19A9 call 0x36c140

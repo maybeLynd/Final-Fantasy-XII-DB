@@ -1,0 +1,3 @@
+PASS  N 00235720 reads +0x0A/+0x08/+0x10/+0x0C directly; re-entry at elapsed >= cooldown (10 s cooldown: t+10 allowed, t+9 not)
+PASS  W 002395A0 writes +0x10 = base + rand % (range + 1) and zeroes +0x0C: True
+FAILS 0

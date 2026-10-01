@@ -1,0 +1,34 @@
+CHECK M1   PASS  kind-5 slot 0 = tst_a01.ebp (the table's first entry, vbf-archive page UQ-72)
+CHECK M2   PASS  slm_a01 (the only other unkCall_5ad file) sits at field 701 = 0x2bd, inside the 701-708 Lowtown run (North Sprawl, South Sprawl) of the field-record page C-10: got 701
+CHECK M3   PASS  the 100 tri_* files occupy fields 0x483 + 8*group + (stage-1), groups a..t, stages 01..05 (100 of 100 match); tri_a01 = 0x483 (the Trial Mode load field, FV-1), tri_j05 = 0x4cf, tri_t05 = 0x51f
+CALL-family sites decoded (function-sliced): 16666842
+CHECK C1   PASS  tri_* award sites by index: {39: 900, 40: 900} (page table: 900 and 900)
+CHECK C2   PASS  the published census TSV agrees: {('other', 'PUSHII:33'): 9, ('tri', 'PUSHII:39'): 900, ('tri', 'PUSHII:40'): 900}
+CHECK C3   PASS  non-tri unkCall_5ad sites: {33: 9} (slm_a01 index 33, 9 languages)
+CHECK C4   PASS  900 = 100 stage files x 9 language copies; each file holds exactly one index-39 and one index-40 call (files 900, per-language [200])
+CHECK C5   PASS  every site is in actor トライアル監督 (trial director), function main: {('トライアル監督', 'main'): 1800}
+      director main() bodies: 118 distinct byte strings over the 900 files, so the guards below are rebuilt from each file's own bytes, not copied from one
+CHECK C6   PASS  every jump immediate in the analysed functions indexes the script's jump table and lands on an instruction of the same function (0 misses)
+
+index 39: 900 sites, 1 distinct guard lists
+    900 x  guards (outermost first):
+            (nowmap() != 0x051f)
+            (((((((((nowmap() == 0x048f) || (nowmap() == 0x049f)) || (nowmap() == 0x04af)) || (nowmap() == 0x04bf)) || (nowmap() == 0x04cf)) || (nowmap() == 0x04df)) || (nowmap() == 0x04ef)) || (nowmap() == 0x04ff)) || (nowmap() == 0x050f))
+            (nowmap() == 0x04cf)
+CHECK W39  PASS  index 39: every site is reachable from main's entry, not inside a loop, and dominated by one waitv whose argument is a reference to scratch1 (class 4) offset 0x06: {(4, 6): 900}
+
+index 40: 900 sites, 1 distinct guard lists
+    900 x  guards (outermost first):
+            (nowmap() == 0x051f)
+CHECK W40  PASS  index 40: every site is reachable from main's entry, not inside a loop, and dominated by one waitv whose argument is a reference to scratch1 (class 4) offset 0x06: {(4, 6): 900}
+CHECK E0   PASS  every guard is decided by nowmap() alone (0 sites carry any other test)
+CHECK E39  PASS  index 39 is on a live branch only in ['tri_j05'] (stage [50], field 0x4cf); in the other 99 stage files its guard is false for that file's own field
+CHECK E40  PASS  index 40 is on a live branch only in ['tri_t05'] (stage [100], field 0x51f)
+CHECK K1   PASS  control: the nine post-clear additemmes(0x9123..0x912b) calls resolve to stages 10..90, one each: [('0x9123', [10]), ('0x9124', [20]), ('0x9125', [30]), ('0x9126', [40]), ('0x9127', [50]), ('0x9128', [60]), ('0x9129', [70]), ('0x912a', [80]), ('0x912b', [90])]
+CHECK K2   PASS  control: in tri_j05 (us) the index-39 award shares its whole guard list with additemmes(0x9127) just before it (item pc 0xcc4b, award pc 0xcc51)
+CHECK K3   PASS  negative control: the 100 (us) bossgaugeopen() calls in main precede the waitv and are classified as not dominated by it (100 sites, 0 credited)
+CHECK K4   PASS  no POPV in any tri_* file writes scratch1 @0x06 (0); the wake is the engine's group-completion post (CONTRACT-group-completion-and-respawn.md, EE-9)
+CHECK K5   PASS  btlAtelSetEventFlagGroup calls in tri_* files, by group: {'g0': 1827, 'g1': 3123} - group 1 is the only event group Trial Mode authors (group 0 = no event group, EE-11)
+CHECK K6   PASS  every one of the 900 stage files places at least one unit in group 1 (units per file: [1, 2, 3, 4, 5, 6, 7, 8, 9, 18]); tri_j05 (us) {'g1': 1, 'g0': 3}, tri_t05 (us) {'g1': 5}
+
+FAILS 0

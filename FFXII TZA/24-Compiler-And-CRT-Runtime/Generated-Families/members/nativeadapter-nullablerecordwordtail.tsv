@@ -1,0 +1,8 @@
+# NativeAdapter.NullableRecordWordTail - EC-7 family C
+# if this and this[+0xC0] non-null and [rec]!=-1, movzx the record word and
+# # tail-dispatch to a member op.
+address	targets
+002E8B60	002EE0D0
+002ED020	003E6A60
+002ED1E0	002EDDC0
+002ED300	002EDE70

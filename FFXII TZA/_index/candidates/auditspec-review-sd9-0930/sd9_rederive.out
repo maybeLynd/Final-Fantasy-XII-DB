@@ -1,0 +1,24 @@
+R1 rip accesses touching 022CA5C0..022CA5DF:
+   0035E7AA mov   edi, dword ptr [rip + 0x1f6be14]             tgt=022CA5C4 w=4 store=False  0035E7A0 FUN_0035e7a0
+   0035E7B0 add   edi, dword ptr [rip + 0x1f6be1a]             tgt=022CA5D0 w=4 store=False  0035E7A0 FUN_0035e7a0
+   0035E7B6 mov   dword ptr [rip + 0x1f6be08], edi             tgt=022CA5C4 w=4 store=True  0035E7A0 FUN_0035e7a0
+   0035E871 mov   dword ptr [rip + 0x1f6bd61], ebx             tgt=022CA5D8 w=4 store=True  0035E820 InputControl_InitializeAndRegisterFrameUpdate
+   0035E877 mov   dword ptr [rip + 0x1f6bd5f], ebx             tgt=022CA5DC w=4 store=True  0035E820 InputControl_InitializeAndRegisterFrameUpdate
+   0035E883 mov   qword ptr [rip + 0x1f6bd3e], rbx             tgt=022CA5C8 w=8 store=True  0035E820 InputControl_InitializeAndRegisterFrameUpdate
+   0035E9A0 mov   qword ptr [rip + 0x1f6bc21], rcx             tgt=022CA5C8 w=8 store=True  0035E9A0 InputControl_SetOneShotFrameCallback
+   0035EBED mov   eax, dword ptr [rip + 0x1f6b9d1]             tgt=022CA5C4 w=4 store=False  0035EB70 FUN_0035eb70
+   0035EBF3 add   eax, dword ptr [rip + 0x1f6b9d7]             tgt=022CA5D0 w=4 store=False  0035EB70 FUN_0035eb70
+   0035EBF9 mov   dword ptr [rip + 0x1f6b9c5], eax             tgt=022CA5C4 w=4 store=True  0035EB70 FUN_0035eb70
+   0035EBFF mov   dword ptr [rip + 0x1f6b9d3], eax             tgt=022CA5D8 w=4 store=True  0035EB70 FUN_0035eb70
+   0035EC11 mov   dword ptr [rip + 0x1f6b9c5], eax             tgt=022CA5DC w=4 store=True  0035EB70 FUN_0035eb70
+   0035EC65 mov   dword ptr [rip + 0x1f6b958], r8d             tgt=022CA5C4 w=4 store=True  0035EB70 FUN_0035eb70
+   0035ED12 mov   rax, qword ptr [rip + 0x1f6b8af]             tgt=022CA5C8 w=8 store=False  0035EC90 InputControl_UpdateFrame
+   0035ED20 mov   qword ptr [rip + 0x1f6b89d], 0               tgt=022CA5C8 w=8 store=True  0035EC90 InputControl_UpdateFrame
+   raw-only candidates: [('004B220C', '022CA5D0'), ('004B220C', '022CA5D1'), ('004B220C', '022CA5D2'), ('004B220C', '022CA5D4')]
+R1 image-base-relative: 0 (raw-only 0)
+R2 relocs: 0 raw qwords: 0
+R3 .data raw end 01F7E400; block past raw: True
+R4 00290180 body: mov eax, 2 | ret  | int3  | int3 
+R4 00290180 callers: 5 ['002E1630@2E1634', '003423E0@3423E9', '0035E7A0@35E7BC', '003EBBB0@3EBBD0', '003EBC50@3EBC7C']  jcc []  rip []  relocs 9
+R4 0035E7A0 callers: 1 ['0035EB70@35EC05']  jcc []  rip []  relocs 0
+   after 35EC05: call 0x35e7a0 | mov rbx, qword ptr [rsp + 0x30] | test edi, edi | mov dword ptr [rip + 0x1f6b9c5], eax | mov edx, 1

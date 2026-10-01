@@ -1,0 +1,42 @@
+==
+  001C43BA mov rax, qword ptr [rip + 0x1dbcf07]
+  001C43C1 movss dword ptr [rax + 0x140], xmm0
+  001C43C9 lea rdx, [rip + 0x736198]
+  001C43D0 mov rcx, rdi
+  001C43D3 call 0x1c51d0
+  001C43D8 mov rcx, rax
+==
+  001C43E0 mov rax, qword ptr [rip + 0x1dbcee1]
+  001C43E7 movss dword ptr [rax + 0x144], xmm0
+  001C43EF lea rdx, [rip + 0x73633a]
+  001C43F6 mov rcx, rdi
+  001C43F9 call 0x1c51d0
+  001C43FE mov rcx, rax
+==
+  001C471E mov rcx, qword ptr [rip + 0x1dbcba3]
+  001C4725 mov dword ptr [rcx + 0x890], eax
+  001C472B lea rdx, [rip + 0x735ea6]
+  001C4732 mov rcx, rdi
+  001C4735 call 0x1c51d0
+  001C473A mov rcx, rax
+==
+  001C8163 mov rax, qword ptr [rip + 0x1db915e]
+  001C816A lea rdx, [rip + 0x732a6f]
+  001C8171 mov rcx, rdi
+  001C8174 movss dword ptr [rax + 0x8a4], xmm0
+  001C817C call 0x1ff740
+  001C8181 mov rcx, rax
+==
+  001C8E04 mov rcx, qword ptr [rip + 0x1db84bd]
+  001C8E0B lea rdx, [rip + 0x7317c6]
+  001C8E12 mov dword ptr [rcx + 0x890], eax
+  001C8E18 mov rcx, rdi
+  001C8E1B call 0x1ff740
+  001C8E20 mov rcx, rax
+==
+  001C9831 mov rax, qword ptr [rip + 0x1db7a90]
+  001C9838 lea rdx, [rip + 0x7310f9]
+  001C983F mov rcx, rdi
+  001C9842 movss dword ptr [rax + 0xec], xmm0
+  001C984A movss dword ptr [rax + 0xf0], xmm6
+  001C9852 movss dword ptr [rax + 0xf4], xmm7

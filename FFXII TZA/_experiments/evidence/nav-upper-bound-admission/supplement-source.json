@@ -1,0 +1,21 @@
+{
+  "method": "B supplemental finite negative-origin rounding control only; parent14 cases NOT rerun",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "parent_source_sha256": "ad119fb4989851ddffae7f75c5f84f168616ea56566a303d98de80fea03d2bc6",
+  "helper_sha256": "7725ab8ccd08385c3d1768b706ab6fb13b17ea49cda00636ea0ebedf0892c89e",
+  "driver_sha256": "4071ab15a27a3b7e7971759cf72dab0472838e90a314910bb15952c840f60ce2",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "unicorn_version": "2.1.0",
+  "cell_width": 255,
+  "cell_height": 2,
+  "cols": 255,
+  "rows": 2,
+  "origin_x": -32768,
+  "origin_z": 0,
+  "upper_x": 32257.0,
+  "declared_cells": 510,
+  "table_bytes": 1020,
+  "table_contents": "All510 wordsFFFF (empty); table ends exactly at unmapped HEAP end.",
+  "intervention": "Planted header and table placement, finite fdclass host stub; no original-game allocation/ordinary caller.",
+  "cleanup": "Isolated Python exits; no native game/save/config/reference/control changes."
+}

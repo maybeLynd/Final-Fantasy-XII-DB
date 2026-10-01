@@ -1,0 +1,29 @@
+control: from 0022B6E0 reaches pump: True ['0032E520', '0032E040', '0032E870']
+teardown roots: ['001DC4E0', '00198790', '001993B0', '0022A090', '0017DAC0']
+functions visited: 55
+pump entries reached: none
+functions with indirect calls/jumps (not followed): 22
+  0017D2E0 sprintf: 0017D328 call qword ptr [rip + 0x745bda]
+  0017DAC0 FUN_0017dac0: 0017DADF call qword ptr [rip + 0x744d33]; 0017DB2A call qword ptr [rip + 0x744ce8]
+  00194CD0 FUN_00194cd0: 00194D4C call qword ptr [rax + 8]; 00194D6D call qword ptr [rip + 0x72d99d]; 00194DBE call qword ptr [rip + 0x72d8c4]; 00194DE5 call qword ptr [rip + 0x72d8a5]
+  00194F50 FUN_00194f50: 00194F73 call qword ptr [rip + 0x72d677]; 00194F8D call qword ptr [rip + 0x72d695]; 00194FBB call qword ptr [rip + 0x72d66f]; 00194FE6 call qword ptr [rip + 0x72d66c]
+  00195180 FUN_00195180: 001951EF jmp qword ptr [rip + 0x72d482]
+  00195670 FUN_00195670: 001956FD call qword ptr [rip + 0x72cf05]; 00195710 call qword ptr [rip + 0x72d692]; 00195732 call qword ptr [rip + 0x72d670]; 00195790 call qword ptr [rip + 0x72d612]
+  00195940 FUN_00195940: 0019598E call qword ptr [rax + 0x18]; 00195A0C call qword ptr [rip + 0x72cc3e]; 00195A60 call qword ptr [rip + 0x72d4da]; 00195B36 call qword ptr [rip + 0x72cadc]
+  001969D0 FUN_001969d0: 00196A09 call qword ptr [rip + 0x72c4f1]; 00196A20 call qword ptr [rip + 0x72bc72]
+  00197A50 FUN_00197a50: 00197A83 call qword ptr [rip + 0x72acb7]; 00197AA0 call qword ptr [rip + 0x72abf2]; 00197AC8 call qword ptr [rip + 0x72abb2]; 00197ADD call qword ptr [rip + 0x72ab55]
+  001993B0 FUN_001993b0: 001993E9 call qword ptr [rip + 0x7292d9]; 0019940B call qword ptr [rip + 0x7292df]; 0019944C call qword ptr [rip + 0x72921e]; 00199474 call qword ptr [rip + 0x72921e]
+  0019C590 free: 0019C590 jmp qword ptr [rip + 0x7265b1]
+  0021C630 FUN_0021c630: 0021C65C call qword ptr [rax + 0x10]
+  00369860 FUN_00369860: 00369A79 call qword ptr [rip + 0x559301]; 00369AB7 call qword ptr [rip + 0x5592c3]
+  0036A570 FUN_0036a570: 0036A701 call qword ptr [rip + 0x558869]
+  0036B670 FUN_0036b670: 0036B6A8 call qword ptr [rip + 0x5576d2]
+  0036B730 FUN_0036b730: 0036B768 call qword ptr [rip + 0x557612]
+  00809620 __raise_securityfailure: 0080962B call qword ptr [rip + 0xb8c1f]; 00809634 call qword ptr [rip + 0xb8d86]; 0080963A call qword ptr [rip + 0xb8b78]; 0080964D jmp qword ptr [rip + 0xb8d64]
+  00809848 capture_previous_context: 00809853 call qword ptr [rip + 0xb8917]; 0080986D call qword ptr [rip + 0xb8b5d]; 008098A4 call qword ptr [rip + 0xb8b1e]
+  0085E730 malloc: 0085E730 jmp qword ptr [rip + 0x64409]
+  00861EBA memcpy: 00861EBA jmp qword ptr [rip + 0x60ba8]
+  00861ECC _CxxThrowException: 00861ECC jmp qword ptr [rip + 0x60b4e]
+  0087AF34 IsProcessorFeaturePresent: 0087AF34 jmp qword ptr [rip + 0x47476]
+FAILS 0
+STATUS COMPLETE

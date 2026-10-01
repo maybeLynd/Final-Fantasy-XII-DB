@@ -1,0 +1,1367 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "alloc-1grp",
+   "trace": "a9d0 ms40400000:9d0 i0 i1 i2",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 3,
+    "ptrtbl": 1077936160,
+    "kcnt": [
+     3,
+     0,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     3,
+     3,
+     3
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 3,
+     "6": 3,
+     "7": 3,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936192,
+     1077937008,
+     1077937824
+    ],
+    "pk": [
+     0,
+     0,
+     0
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a9d0 ms40400000:9d0 i0 i1 i2",
+   "faults": []
+  },
+  {
+   "name": "alloc-2grp",
+   "trace": "a1150 ms40400000:1150 i0 i1 i2 i3 i4",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 5,
+    "ptrtbl": 1077936176,
+    "kcnt": [
+     3,
+     2,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     3,
+     5,
+     5
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 3,
+     "6": 5,
+     "7": 5,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936224,
+     1077937040,
+     1077937856,
+     1077938672,
+     1077939616
+    ],
+    "pk": [
+     0,
+     0,
+     0,
+     33
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a1150 ms40400000:1150 i0 i1 i2 i3 i4",
+   "faults": []
+  },
+  {
+   "name": "alloc-4grp",
+   "trace": "a2280 ms40400000:2280 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 10,
+    "ptrtbl": 1077936224,
+    "kcnt": [
+     2,
+     5,
+     3,
+     0
+    ],
+    "pfx": [
+     0,
+     2,
+     7,
+     10
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 2,
+     "6": 7,
+     "7": 10,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936320,
+     1077937136,
+     1077937952,
+     1077938896,
+     1077939840,
+     1077940784,
+     1077941600,
+     1077942416
+    ],
+    "pk": [
+     0,
+     0,
+     33,
+     33
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a2280 ms40400000:2280 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9",
+   "faults": []
+  },
+  {
+   "name": "alloc-8grp",
+   "trace": "a4d30 ms40400000:4d30 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 16,
+    "ptrtbl": 1077936272,
+    "kcnt": [
+     1,
+     3,
+     5,
+     7
+    ],
+    "pfx": [
+     0,
+     1,
+     4,
+     9
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 1,
+     "6": 4,
+     "7": 9,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936416,
+     1077937232,
+     1077938176,
+     1077939120,
+     1077939936,
+     1077940784,
+     1077941632,
+     1077942352
+    ],
+    "pk": [
+     0,
+     33,
+     33,
+     34
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a4d30 ms40400000:4d30 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15",
+   "faults": []
+  },
+  {
+   "name": "alloc-0grp",
+   "trace": "a60 ms40400000:60 i0 i1 i2 i3",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 4,
+    "ptrtbl": 1077936176,
+    "kcnt": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 0,
+     "6": 0,
+     "7": 0,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pk": [
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a60 ms40400000:60 i0 i1 i2 i3",
+   "faults": []
+  },
+  {
+   "name": "alloc-0cnt",
+   "trace": "a680 ms40400000:680",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 0,
+    "ptrtbl": 1077936144,
+    "kcnt": [
+     2,
+     0,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     2,
+     2,
+     2
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 2,
+     "6": 2,
+     "7": 2,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [],
+    "pk": [],
+    "tail": 0
+   },
+   "exp_trace": "a680 ms40400000:680",
+   "faults": []
+  },
+  {
+   "name": "alloc-0both",
+   "trace": "a20 ms40400000:20",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 0,
+    "ptrtbl": 1077936144,
+    "kcnt": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 0,
+     "6": 0,
+     "7": 0,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [],
+    "pk": [],
+    "tail": 0
+   },
+   "exp_trace": "a20 ms40400000:20",
+   "faults": []
+  },
+  {
+   "name": "alloc-neg-cnt",
+   "trace": "a330 ms40400000:330",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 16777214,
+    "ptrtbl": 1077936128,
+    "kcnt": [
+     1,
+     0,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     1,
+     1,
+     1
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 1,
+     "6": 1,
+     "7": 1,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [],
+    "pk": [],
+    "tail": 0
+   },
+   "exp_trace": "a330 ms40400000:330",
+   "faults": []
+  },
+  {
+   "name": "alloc-kseed",
+   "trace": "ae20 ms40400000:e20 i0 i1 i2 i3",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 4,
+    "ptrtbl": 1077936176,
+    "kcnt": [
+     9,
+     2,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     9,
+     11,
+     11
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 9,
+     "6": 11,
+     "7": 11,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936224,
+     1077937040,
+     1077937856,
+     1077938800
+    ],
+    "pk": [
+     0,
+     0,
+     33,
+     33
+    ],
+    "tail": 0
+   },
+   "exp_trace": "ae20 ms40400000:e20 i0 i1 i2 i3",
+   "faults": []
+  },
+  {
+   "name": "alloc-doff",
+   "trace": "ad20 ms40400000:d20 i0 i1 i2 i3",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 4,
+    "ptrtbl": 1077936176,
+    "kcnt": [
+     4,
+     0,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     4,
+     4,
+     4
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 4,
+     "6": 4,
+     "7": 4,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936224,
+     1077937040,
+     1077937856,
+     1077938672
+    ],
+    "pk": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "tail": 0
+   },
+   "exp_trace": "ad20 ms40400000:d20 i0 i1 i2 i3",
+   "faults": []
+  },
+  {
+   "name": "alloc-mixed-kind",
+   "trace": "a1930 ms40400000:1930 i0 i1 i2 i3 i4 i5 i6",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 7,
+    "ptrtbl": 1077936192,
+    "kcnt": [
+     0,
+     4,
+     3,
+     0
+    ],
+    "pfx": [
+     0,
+     0,
+     4,
+     7
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 0,
+     "6": 4,
+     "7": 7,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936256,
+     1077937200,
+     1077938144,
+     1077939088,
+     1077940032,
+     1077940880,
+     1077941728
+    ],
+    "pk": [
+     33,
+     33,
+     33,
+     33
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a1930 ms40400000:1930 i0 i1 i2 i3 i4 i5 i6",
+   "faults": []
+  },
+  {
+   "name": "alloc-grp-skip",
+   "trace": "a12d0 ms40400000:12d0 i0 i1 i2 i3 i4",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 5,
+    "ptrtbl": 1077936176,
+    "kcnt": [
+     0,
+     5,
+     0,
+     0
+    ],
+    "pfx": [
+     0,
+     0,
+     5,
+     5
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 0,
+     "6": 5,
+     "7": 5,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936224,
+     1077937168,
+     1077938112,
+     1077939056,
+     1077940000
+    ],
+    "pk": [
+     33,
+     33,
+     33,
+     33
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a12d0 ms40400000:12d0 i0 i1 i2 i3 i4",
+   "faults": []
+  },
+  {
+   "name": "alloc-grp16",
+   "trace": "a20 ms40400000:20 i0",
+   "ok": true,
+   "obs": {
+    "ret": 1077936128,
+    "hdr": 1,
+    "ptrtbl": 1077936144,
+    "kcnt": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "pfx": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "xtra": {
+     "4": 0,
+     "5": 0,
+     "6": 0,
+     "7": 0,
+     "8": 0,
+     "9": 0,
+     "10": 0,
+     "11": 0,
+     "12": 0,
+     "13": 0,
+     "14": 0,
+     "15": 0
+    },
+    "tab": [
+     1077936160
+    ],
+    "pk": [
+     112
+    ],
+    "tail": 0
+   },
+   "exp_trace": "a20 ms40400000:20 i0",
+   "faults": []
+  },
+  {
+   "name": "rm-g0",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082130920,
+    "b8": 0,
+    "c0": 0,
+    "a0": 1082130720,
+    "a8": 1082130920
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g1",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131048,
+    "b8": 1082130720,
+    "c0": 0,
+    "a0": 1082130848,
+    "a8": 1082131048
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g2",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131008,
+    "b8": 1082130720,
+    "c0": 0,
+    "a0": 1082130848,
+    "a8": 1082131008
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g3",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082130952,
+    "b8": 1082130720,
+    "c0": 0,
+    "a0": 1082130752,
+    "a8": 1082130952
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g4",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082130912,
+    "b8": 1082130720,
+    "c0": 0,
+    "a0": 1082130752,
+    "a8": 1082130912
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g5",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131872,
+    "b8": 1082130720,
+    "c0": 1082131280,
+    "a0": 1082131672,
+    "a8": 1082131872
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g6",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131872,
+    "b8": 1082130720,
+    "c0": 1082131280,
+    "a0": 1082131672,
+    "a8": 1082131872
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g7",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131832,
+    "b8": 1082130720,
+    "c0": 1082131280,
+    "a0": 1082131672,
+    "a8": 1082131832
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g2-hikind",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131008,
+    "b8": 1082130720,
+    "c0": 0,
+    "a0": 1082130848,
+    "a8": 1082131008
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-g5-hikind",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082131872,
+    "b8": 1082130720,
+    "c0": 1082131280,
+    "a0": 1082131672,
+    "a8": 1082131872
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-seq8",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 8,
+    "b8": 0,
+    "c0": 0,
+    "a0": 0,
+    "a8": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-seq1f",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 31,
+    "b8": 0,
+    "c0": 0,
+    "a0": 0,
+    "a8": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-seq20-wrap",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1082130920,
+    "b8": 0,
+    "c0": 0,
+    "a0": 1082130720,
+    "a8": 1082130920
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "rm-seqff",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 31,
+    "b8": 0,
+    "c0": 0,
+    "a0": 0,
+    "a8": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-addf",
+   "va": "0x267A52",
+   "killed": true,
+   "divergent": 11,
+   "why": "align16 add 0xF -> 0x1F: record-span totals shift",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=aa00 ms40400000:a00 i0 i1 i2 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a11a0 ms40400000:11a0 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2320 ms40400000:2320 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-shr4",
+   "va": "0x267A55",
+   "killed": true,
+   "divergent": 10,
+   "why": "size shr 4 -> 5: half-size records",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a4f0 ms40400000:4f0 i0 i1 i2 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a8b0 ms40400000:8b0 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a1150 ms40400000:1150 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-shl4",
+   "va": "0x267A5B",
+   "killed": true,
+   "divergent": 10,
+   "why": "total shl 4 -> 5: double-size span",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a1360 ms40400000:1360 i0 i1 i2 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a2240 ms40400000:2240 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a4440 ms40400000:4440 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-tab17",
+   "va": "0x267A6C",
+   "killed": true,
+   "divergent": 13,
+   "why": "ptr-table bias 0x17 -> 0x27: table span shifts",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a4e0009d0 ms40400000:4e0009d0 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a4e001150 ms40400000:4e001150 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a4e002280 ms40400000:4e002280 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-andf0",
+   "va": "0x267A6F",
+   "killed": true,
+   "divergent": 9,
+   "why": "ptr-table mask 0xF0 -> 0xE0: misaligned span",
+   "sample": [
+    [
+     "alloc-2grp",
+     "tr=a1130 ms40400000:1130 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-8grp",
+     "tr=a4d10 ms40400000:4d10 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15 ret=40400000"
+    ],
+    [
+     "alloc-0grp",
+     "tr=a40 ms40400000:40 i0 i1 i2 i3 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-2x",
+   "va": "0x267A72",
+   "killed": true,
+   "divergent": 12,
+   "why": "edi = rsi+rsi -> rsi+rsi*2 (scale 2): 3x table span",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9f0 ms40400000:9f0 i0 i1 i2 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1180 ms40400000:1180 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a22e0 ms40400000:22e0 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-fnptr",
+   "va": "0x267A7C",
+   "killed": true,
+   "divergent": 13,
+   "why": "fn-ptr +0x88 -> +0x90: wrong allocator slot",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=- ret=3"
+    ],
+    [
+     "alloc-2grp",
+     "tr=- ret=2"
+    ],
+    [
+     "alloc-4grp",
+     "tr=- ret=3"
+    ]
+   ]
+  },
+  {
+   "name": "m-hdr",
+   "va": "0x267AA6",
+   "killed": true,
+   "divergent": 13,
+   "why": "pool header d[0] -> d[+8]: count lands in table A",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 ret=0"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 ret=0"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-pt1f0",
+   "va": "0x267AAC",
+   "killed": true,
+   "divergent": 13,
+   "why": "mgr+0x1F0 -> +0x1F8: ptr-table published wrong",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 ret=3"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 ret=5"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 ret=a"
+    ]
+   ]
+  },
+  {
+   "name": "m-kindacc",
+   "va": "0x267AD8",
+   "killed": true,
+   "divergent": 11,
+   "why": "kind-count +0x1D0 -> +0x1D8: counts land in prefix row",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 i0 i1 i2 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-tab8",
+   "va": "0x267AFA",
+   "killed": true,
+   "divergent": 11,
+   "why": "table-A slot +8 -> +0x10: entries shift one slot",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 ret=0"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 ret=0"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-pk-seq",
+   "va": "0x267AEB",
+   "killed": true,
+   "divergent": 1,
+   "why": "seq mask 0x1F -> 0x0F: group index truncated",
+   "sample": [
+    [
+     "alloc-grp16",
+     "tr=a20 ms40400000:20 i0 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-pk-kind",
+   "va": "0x267B10",
+   "killed": true,
+   "divergent": 7,
+   "why": "kind shl 5 -> 4: packed byte halves the kind",
+   "sample": [
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ],
+    [
+     "alloc-8grp",
+     "tr=a4d30 ms40400000:4d30 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-rstride",
+   "va": "0x267B20",
+   "killed": true,
+   "divergent": 8,
+   "why": "record stride mask 0xF0 -> 0xE0: records misalign",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 i0 i1 i2 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-grp-lp",
+   "va": "0x267B38",
+   "killed": true,
+   "divergent": 11,
+   "why": "outer jl -> jge: group loop never runs",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 ret=38"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 i0 i1 i2 i3 i4 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 i0 i1 i2 i3 i4 i5 i6 i7 i8 i9 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-init-lp",
+   "va": "0x267B82",
+   "killed": true,
+   "divergent": 10,
+   "why": "init jl -> jge: per-record init never runs",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 i0 ret=40400000"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 i0 ret=40400000"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 i0 ret=40400000"
+    ]
+   ]
+  },
+  {
+   "name": "m-pfx8",
+   "va": "0x267B55",
+   "killed": true,
+   "divergent": 13,
+   "why": "prefix word +8 -> +0xA: prefix row lands wrong",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 ret=400001d0"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 ret=400001d0"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 ret=400001d0"
+    ]
+   ]
+  },
+  {
+   "name": "m-lea-b",
+   "va": "0x267ABF",
+   "killed": true,
+   "divergent": 11,
+   "why": "loop2 table 0x1E0C318 -> +0x10: wrong rows",
+   "sample": [
+    [
+     "alloc-1grp",
+     "tr=a9d0 ms40400000:9d0 ret=3"
+    ],
+    [
+     "alloc-2grp",
+     "tr=a1150 ms40400000:1150 ret=5"
+    ],
+    [
+     "alloc-4grp",
+     "tr=a2280 ms40400000:2280 ret=a"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-mask",
+   "va": "0x266ADB",
+   "killed": true,
+   "divergent": 2,
+   "why": "seq mask 0x1F -> 0x0F: high groups alias low",
+   "sample": [
+    [
+     "rm-seq1f",
+     "tr=- ret=f"
+    ],
+    [
+     "rm-seqff",
+     "tr=- ret=f"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-bnd",
+   "va": "0x266ADE",
+   "killed": true,
+   "divergent": 1,
+   "why": "dispatch bound 7 -> 6: group 7 refused",
+   "sample": [
+    [
+     "rm-g7",
+     "tr=- ret=7"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-ja",
+   "va": "0x266AE0",
+   "killed": true,
+   "divergent": 13,
+   "why": "ja -> jb: every in-range group falls through",
+   "sample": [
+    [
+     "rm-g0",
+     "tr=- ret=0"
+    ],
+    [
+     "rm-g1",
+     "tr=- ret=1"
+    ],
+    [
+     "rm-g2",
+     "tr=- ret=2"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-a0",
+   "va": "0x266B7D",
+   "killed": true,
+   "divergent": 11,
+   "why": "+0xA0 write -> +0xB0: pointer lands wrong",
+   "sample": [
+    [
+     "rm-g0",
+     "tr=- ret=0"
+    ],
+    [
+     "rm-g1",
+     "tr=- ret=1"
+    ],
+    [
+     "rm-g2",
+     "tr=- ret=2"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-sub",
+   "va": "0x266B8B",
+   "killed": true,
+   "divergent": 4,
+   "why": "sub-flag cmp 1 -> 2: addend selection inverts",
+   "sample": [
+    [
+     "rm-g2",
+     "tr=- ret=40800268"
+    ],
+    [
+     "rm-g4",
+     "tr=- ret=40800208"
+    ],
+    [
+     "rm-g7",
+     "tr=- ret=408005a0"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-c8",
+   "va": "0x266B8E",
+   "killed": true,
+   "divergent": 11,
+   "why": "addend 0xC8 -> 0xC0: sub-flagged row short by 8",
+   "sample": [
+    [
+     "rm-g0",
+     "tr=- ret=c0c8"
+    ],
+    [
+     "rm-g1",
+     "tr=- ret=c0c8"
+    ],
+    [
+     "rm-g2",
+     "tr=- ret=c0c8"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-a8",
+   "va": "0x266B9F",
+   "killed": true,
+   "divergent": 14,
+   "why": "+0xA8 write -> +0xB0: pointer lands wrong",
+   "sample": [
+    [
+     "rm-g0",
+     "tr=- ret=55801653"
+    ],
+    [
+     "rm-g1",
+     "tr=- ret=558016d3"
+    ],
+    [
+     "rm-g2",
+     "tr=- ret=558016ab"
+    ]
+   ]
+  },
+  {
+   "name": "m-rm-230",
+   "va": "0x266B64",
+   "killed": true,
+   "divergent": 4,
+   "why": "arm5-7 +0x230 -> +0x220: c0/a0 shift",
+   "sample": [
+    [
+     "rm-g5",
+     "tr=- ret=40800590"
+    ],
+    [
+     "rm-g6",
+     "tr=- ret=40800590"
+    ],
+    [
+     "rm-g7",
+     "tr=- ret=40800568"
+    ]
+   ]
+  }
+ ]
+}

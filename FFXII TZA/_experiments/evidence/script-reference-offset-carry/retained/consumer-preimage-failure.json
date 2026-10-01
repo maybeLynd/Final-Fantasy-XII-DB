@@ -1,0 +1,7 @@
+{
+  "stage": "First capture stopped before raw/result",
+  "cause": "Peer FABLE negative-rounding consumer was dirty; current bytes were not committed preimage",
+  "affected_conclusions": [],
+  "correction": "Read immutable git-show primary at recorded commit, retain working hash separately; no peer edits or false current-consumer identity",
+  "limits": "Source/code preparation only, no guest/native/live"
+}

@@ -1,0 +1,540 @@
+{
+  "status": "PRODUCER_CHECKED_SELECTED_BANK_REMOVAL_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-async-removal-source-01.json",
+      "sha256": "3d9fcae341a3a1aeaa64a908bdb9868be7873732339df230797ea0854d050671"
+    },
+    {
+      "path": "texture-async-removal-tail-source-01.json",
+      "sha256": "69eec8f37f6e95f08bf66e9e427c4e6611a2623d595e8297b403db4b05400eb5"
+    },
+    {
+      "path": "texture-async-removal-helpers-source-01.json",
+      "sha256": "5cffff0b971c941f6b822c5795497f83ce29ef1253bcb3c47f20e901f32ed1cd"
+    },
+    {
+      "path": "texture-async-removal-rotations-source-01.json",
+      "sha256": "1eead633b9c44b7e978205f1125b2483d2c13b0538a8cb6d3ce6eb705a01f0a8"
+    },
+    {
+      "path": "title-cleanup-callees-source-01.json",
+      "sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0"
+    }
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "texture-async-removal-capture-01.status.json",
+      "sha256": "3e5d6ca69d50293c6d63f259b1d29e2579436961da263252aff586f942f52bc1"
+    },
+    {
+      "path": "texture-async-removal-capture-01.stdout",
+      "sha256": "97e7b9915f7aa2b9e03ba010e7508fb5375d2e61e1871b0627ebbd88771f9407"
+    },
+    {
+      "path": "texture-async-removal-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-texture-async-removal.py",
+      "sha256": "8ae429d1c0333caabf0a0bedd717ac1b60c745722e2704094331215241419027"
+    },
+    {
+      "path": "texture-async-removal-tail-capture-01.status.json",
+      "sha256": "d9884cd75df89cd235a22328e5f92868ca2adc1d8cd08ab1c8ea165606520223"
+    },
+    {
+      "path": "texture-async-removal-tail-capture-01.stdout",
+      "sha256": "672d0847c6e269869bbe029496fd80b337cd23cfc1fe0b95c5b5c146b01e9a80"
+    },
+    {
+      "path": "texture-async-removal-tail-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-texture-async-removal-tail.py",
+      "sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-02.status.json",
+      "sha256": "c5cc8da4061dd77832319aaf1eb2d0c612689609a135422b801eea46447fba44"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-02.stdout",
+      "sha256": "58a01fe514b3cd5b57c7d60693765589fc686ddee8bf372e8d45c138e58e1816"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-texture-async-removal-helpers.py",
+      "sha256": "e2126f6ac8df5e34131b900d41ae05c009b42dd4c51d0604815581d33f8806fe"
+    },
+    {
+      "path": "texture-async-removal-rotations-capture-01.status.json",
+      "sha256": "c79e800214cce5654e6b617e31779b7a050d1a171de256a3f5be6179bd3a285c"
+    },
+    {
+      "path": "texture-async-removal-rotations-capture-01.stdout",
+      "sha256": "fa38f14da75ed5b2f42854971e2fb52f82821aefc74dee6de98743621557bbd3"
+    },
+    {
+      "path": "texture-async-removal-rotations-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-texture-async-removal-rotations.py",
+      "sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 27,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 37,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 280,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 58,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 228,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x62ec70",
+      "end_exclusive": "0x62ed3c",
+      "instructions": 64,
+      "returns": [
+        "0x62ed3b"
+      ],
+      "calls": [
+        {
+          "pc": "0x62ed08",
+          "target": "0x16d6d0"
+        },
+        {
+          "pc": "0x62ed13",
+          "target": "0x16da60"
+        },
+        {
+          "pc": "0x62ed29",
+          "target": "qword ptr [rax + 0x18]"
+        }
+      ]
+    },
+    {
+      "entry": "0x16d6d0",
+      "end_exclusive": "0x16d714",
+      "instructions": 24,
+      "returns": [
+        "0x16d6f3",
+        "0x16d713"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x16da60",
+      "end_exclusive": "0x16ddc3",
+      "instructions": 256,
+      "returns": [
+        "0x16ddc2"
+      ],
+      "calls": [
+        {
+          "pc": "0x16dc97",
+          "target": "0x16d7e0"
+        },
+        {
+          "pc": "0x16dcc3",
+          "target": "0x16d780"
+        },
+        {
+          "pc": "0x16dd7c",
+          "target": "0x16d780"
+        },
+        {
+          "pc": "0x16ddaa",
+          "target": "0x16d7e0"
+        }
+      ]
+    },
+    {
+      "entry": "0x16d780",
+      "end_exclusive": "0x16d7dc",
+      "instructions": 29,
+      "returns": [
+        "0x16d7b2",
+        "0x16d7cc",
+        "0x16d7db"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x16d7e0",
+      "end_exclusive": "0x16d838",
+      "instructions": 29,
+      "returns": [
+        "0x16d811",
+        "0x16d828",
+        "0x16d837"
+      ],
+      "calls": []
+    }
+  ],
+  "instruction_pins": [
+    {
+      "pc": "0x62ec76",
+      "mnemonic": "mov",
+      "args": "eax, r8d"
+    },
+    {
+      "pc": "0x62ec79",
+      "mnemonic": "imul",
+      "args": "rsi, rax, 0x38"
+    },
+    {
+      "pc": "0x62ec7d",
+      "mnemonic": "add",
+      "args": "rsi, rcx"
+    },
+    {
+      "pc": "0x62ec80",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rsi + 0x18]"
+    },
+    {
+      "pc": "0x62ec84",
+      "mnemonic": "lea",
+      "args": "r8, [rsi + 8]"
+    },
+    {
+      "pc": "0x62ec88",
+      "mnemonic": "mov",
+      "args": "rcx, r8"
+    },
+    {
+      "pc": "0x62ec8b",
+      "mnemonic": "test",
+      "args": "rax, rax"
+    },
+    {
+      "pc": "0x62ec8e",
+      "mnemonic": "je",
+      "args": "0x62eca7"
+    },
+    {
+      "pc": "0x62ec90",
+      "mnemonic": "cmp",
+      "args": "qword ptr [rax + 0x20], rdx"
+    },
+    {
+      "pc": "0x62ec94",
+      "mnemonic": "jb",
+      "args": "0x62ec9f"
+    },
+    {
+      "pc": "0x62ec96",
+      "mnemonic": "mov",
+      "args": "rcx, rax"
+    },
+    {
+      "pc": "0x62ec99",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rax + 8]"
+    },
+    {
+      "pc": "0x62ec9f",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rax]"
+    },
+    {
+      "pc": "0x62eca7",
+      "mnemonic": "lea",
+      "args": "rax, [rsi + 8]"
+    },
+    {
+      "pc": "0x62ecab",
+      "mnemonic": "cmp",
+      "args": "rcx, rax"
+    },
+    {
+      "pc": "0x62ecae",
+      "mnemonic": "je",
+      "args": "0x62ecb6"
+    },
+    {
+      "pc": "0x62ecb0",
+      "mnemonic": "cmp",
+      "args": "rdx, qword ptr [rcx + 0x20]"
+    },
+    {
+      "pc": "0x62ecb4",
+      "mnemonic": "jae",
+      "args": "0x62ecb9"
+    },
+    {
+      "pc": "0x62ecb6",
+      "mnemonic": "mov",
+      "args": "rcx, rax"
+    },
+    {
+      "pc": "0x62ecb9",
+      "mnemonic": "cmp",
+      "args": "rcx, r8"
+    },
+    {
+      "pc": "0x62ecbc",
+      "mnemonic": "je",
+      "args": "0x62ed36"
+    },
+    {
+      "pc": "0x62ecbe",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rsi + 0x18]"
+    },
+    {
+      "pc": "0x62eccc",
+      "mnemonic": "lea",
+      "args": "rdi, [rsi + 8]"
+    },
+    {
+      "pc": "0x62ecd0",
+      "mnemonic": "mov",
+      "args": "rbx, rdi"
+    },
+    {
+      "pc": "0x62ecd8",
+      "mnemonic": "cmp",
+      "args": "qword ptr [rax + 0x20], rdx"
+    },
+    {
+      "pc": "0x62ecdc",
+      "mnemonic": "jb",
+      "args": "0x62ece7"
+    },
+    {
+      "pc": "0x62ecde",
+      "mnemonic": "mov",
+      "args": "rbx, rax"
+    },
+    {
+      "pc": "0x62ece1",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rax + 8]"
+    },
+    {
+      "pc": "0x62ece7",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rax]"
+    },
+    {
+      "pc": "0x62ecf4",
+      "mnemonic": "cmp",
+      "args": "rdx, qword ptr [rbx + 0x20]"
+    },
+    {
+      "pc": "0x62ecf8",
+      "mnemonic": "jae",
+      "args": "0x62ecfd"
+    },
+    {
+      "pc": "0x62ecfd",
+      "mnemonic": "cmp",
+      "args": "rbx, rdi"
+    },
+    {
+      "pc": "0x62ed00",
+      "mnemonic": "je",
+      "args": "0x62ed2c"
+    },
+    {
+      "pc": "0x62ed02",
+      "mnemonic": "dec",
+      "args": "dword ptr [rsi + 0x28]"
+    },
+    {
+      "pc": "0x62ed05",
+      "mnemonic": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x62ed0d",
+      "mnemonic": "mov",
+      "args": "rdx, rdi"
+    },
+    {
+      "pc": "0x62ed10",
+      "mnemonic": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x62ed18",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rsi + 0x30]"
+    },
+    {
+      "pc": "0x62ed1c",
+      "mnemonic": "lea",
+      "args": "rcx, [rsi + 0x30]"
+    },
+    {
+      "pc": "0x62ed20",
+      "mnemonic": "mov",
+      "args": "r8d, 0x28"
+    },
+    {
+      "pc": "0x62ed26",
+      "mnemonic": "mov",
+      "args": "rdx, rbx"
+    }
+  ],
+  "normal_loop_edges": [
+    {
+      "pc": "0x62eca5",
+      "target": "0x62ec90"
+    },
+    {
+      "pc": "0x62eced",
+      "target": "0x62ecd8"
+    }
+  ],
+  "helper_header_footprints": [
+    {
+      "entry": "0x16d6d0",
+      "header_displacements": [
+        0,
+        8,
+        16
+      ],
+      "instruction_accesses": 8
+    },
+    {
+      "entry": "0x16da60",
+      "header_displacements": [
+        0,
+        8,
+        16,
+        24
+      ],
+      "instruction_accesses": 134
+    },
+    {
+      "entry": "0x16d780",
+      "header_displacements": [
+        0,
+        8,
+        16
+      ],
+      "instruction_accesses": 17
+    },
+    {
+      "entry": "0x16d7e0",
+      "header_displacements": [
+        0,
+        8,
+        16
+      ],
+      "instruction_accesses": 17
+    }
+  ],
+  "bank_address": "low64(context + 56*zeroextend32(incomingR8D))",
+  "caller_arguments": {
+    "context_global": "0x1f7f5b8",
+    "bank_global": "0x1f7f590",
+    "key": "selected element address+40",
+    "null_context_skips_call": true
+  },
+  "established": [
+    "The original wrapper selects exactly one56B bank from incomingR8D; it has no local bank-range check or bank-iteration loop. The retained62BD75 release caller supplies the current bank global, not a stored queue-time bank.",
+    "Two unsigned pointer-key lower-bound searches use node+20, right+0, left+8, root bank+18 and sentinel bank+8. Under a valid finite ordered unique-key tree their final >= comparisons admit equality only. A miss exits before decrement/helpers/allocator.",
+    "A found node causes one DEC32 of bank+28, then16D6D0(node),16DA60(node,sentinel), then allocator-record+30 vslot18(record,node,28h). The two only wrapper loops are pre-call searches; helper/free order is source-dominated. This is the container count, not an explicit texture element+38 write.",
+    "The verified four node helpers access only header offsets0/8/10/18, with no RIP/global reads or async key+20 dereference/callback target. Their only calls close to the two original call-free rotation leaves. The only remaining opaque call in this closure is the allocator interface slot18; its side effects are not certified.",
+    "An empty selected bank returns along a checked no-call path. Therefore a valid state with key queued in another distinct bank, current bank empty and caller bank changed is a conditional counterexample to universal all-bank cancellation. It requires no native stub or helper effects. Natural bank changes with a pending texture remain unproved."
+  ],
+  "counterexample": {
+    "kind": "different-bank-empty-selection",
+    "queued_bank": 0,
+    "release_bank": 1,
+    "selected_root": 0,
+    "other_bank_contains_key": true,
+    "normal_path": [
+      "0x62ec70",
+      "0x62ec72",
+      "0x62ec76",
+      "0x62ec79",
+      "0x62ec7d",
+      "0x62ec80",
+      "0x62ec84",
+      "0x62ec88",
+      "0x62ec8b",
+      "0x62ec8e",
+      "0x62eca7",
+      "0x62ecab",
+      "0x62ecae",
+      "0x62ecb6",
+      "0x62ecb9",
+      "0x62ecbc",
+      "0x62ed36",
+      "0x62ed3a",
+      "0x62ed3b"
+    ],
+    "opaque_calls": 0,
+    "conclusion": "Wrapper returns without accessing the other bank or removing its key; conditional state, not natural gameplay/reachability"
+  },
+  "assumptions": [
+    "Valid nonwrapping bank array/address, finite ordered unique-key tree and node-header link closure within the selected tree/sentinel",
+    "Stable bank/tree/key state and normal ABI-preserving helper/allocator returns for ordinary found-key order; allocator effects excluded",
+    "Distinct banks/texture object/async data for differentiating container+28 from element+38 and for the conditional other-bank witness"
+  ],
+  "limitations": [
+    "No actual scheduler/bank initialization, natural queue-time versus release-time bank changes, complete bank writers or caller set",
+    "No executing-job drain/cancellation, native allocator effects, asynchronous races, ownership/reuse or lifetime guarantee",
+    "Node header access closure is conditional on valid contained links; malformed/aliased pointers can target other state",
+    "Retained OPUS release/constructor semantics are reused; no producer or external review campaign credited as ours"
+  ],
+  "affected_claims": [
+    "OPUS texture ownedBlock release must state selected current bank and separate pendingCount ownership/drain",
+    "FABLE keyed scheduler removal versus all-bank cancellation and running-work lifetime"
+  ],
+  "next_discriminator": "Prove original bank-global writers/caller ordering or element+38 writer closure if unowned and still required; never infer natural wrong-bank cancellation from this conditional witness",
+  "checker_sha256": "3449076e85dd270ca42a362bdacc70387ae2b685450698f9427732dc6ff4ab0c",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Original/retained file reads only; finite foreground scripts; no PC/game/input/instrument/save/config/reference/peer-process mutation"
+}

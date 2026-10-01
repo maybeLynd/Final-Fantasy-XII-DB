@@ -1,0 +1,11 @@
+== refsweep [0209BEA0,0209BF40)
+(a) rip-relative confirmed: 5
+  00291C63  -> 0209BEA0  lea rcx, [rip + 0x1e0a236]   [00291C60 FUN_00291c60]
+  00291C9A  -> 0209BEA0  lea r14, [rip + 0x1e0a1ff]   [00291C80 FUN_00291c80]
+  00291E32  -> 0209BEA0  lea rbp, [rip + 0x1e0a067]   [00291D90 FUN_00291d90]
+  00291EC8  -> 0209BEA0  lea rbp, [rip + 0x1e09fd1]   [00291D90 FUN_00291d90]
+  00291F02  -> 0209BEA0  cmp dword ptr [rip + 0x1e09f97], ebx   [00291D90 FUN_00291d90]
+  CONTROL 00291C9A: PASS
+(b) dword hits: 0
+(c) qword pointer hits: 0
+FAILS 0

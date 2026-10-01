@@ -1,0 +1,47 @@
+{
+  "status": "PASS_ACTUAL_TITLE_TRACKER_QUALIFICATION_REFUSALS_INDEPENDENT_PENDING",
+  "positive_reused": {
+    "path": "title-tracker-callback-boundary-result-02.json",
+    "sha256": "e8ff9fdf9e8b8f7e8511297b1f5cafa35983ff00597d02a1774706937f145062"
+  },
+  "checker_sha256": "99b2367ff528559c84d0e122b06324445b56a5c79468b622db936a77d5e2a382",
+  "controls_sha256": "2a7135972feb5890cf4881b90c790e0e2ec0a3f917b21bbd5e428db4c2297ade",
+  "refusals": [
+    {
+      "case": "reviewer-fast-call",
+      "exit": 1,
+      "result_absent": true,
+      "retained_output_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "forged-recorded-cfg",
+      "exit": 1,
+      "result_absent": true,
+      "retained_output_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "old-store-role",
+      "exit": 1,
+      "result_absent": true,
+      "retained_output_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-upstream-wrapper",
+      "exit": 1,
+      "result_absent": true,
+      "retained_output_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-source",
+      "exit": 1,
+      "result_absent": true,
+      "retained_output_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Five synthetic producer CLI controls; no game/native runs, original semantic proof unchanged; reviewer executions not ours"
+}

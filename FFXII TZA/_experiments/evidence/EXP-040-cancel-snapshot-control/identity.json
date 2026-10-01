@@ -1,0 +1,11 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": 1179648,
+  "begin": 3212783,
+  "end": 3213164,
+  "unwind_rva": 29707428,
+  "file_offset": 2030575,
+  "bytes": 381,
+  "sha256": "d41d245a81643f2076902a6bdca46f8ad406228d280ace224d629316f2c6a192",
+  "capstone": "5.0.7"
+}

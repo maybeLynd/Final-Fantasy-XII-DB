@@ -1,0 +1,560 @@
+{
+  "status": "PRODUCER_CHECKED_SELECTED_RAW_COUNT_FLOOR_WITH_HIGHBIT_RESIDUE_INDEPENDENT_PENDING",
+  "producer_complete": false,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-resize-input-callers-source-01.json",
+      "sha256": "2578aeabba32317f96c38da4a26e7d3d833ad8c442e1cdd347e2dd65fbb0a19d"
+    },
+    {
+      "path": "texture-resize-input-root-prefix-source-01.json",
+      "sha256": "3c2682383fec3a5adf63b532ea0fec0062b455c239660ca9b7cfc8794e4abd7b"
+    },
+    {
+      "path": "texture-resize-input-tail-source-01.json",
+      "sha256": "8b28f30933ab2df45883d97deb84d221221378cad46592ebc45c52dcceb38bd3"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 724,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 60,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 20,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x17e8e0",
+      "end_exclusive": "0x17ebca",
+      "instructions": 201,
+      "returns": [
+        "0x17ebc9"
+      ],
+      "calls": [
+        {
+          "pc": "0x17e92c",
+          "target": "0x85e730"
+        },
+        {
+          "pc": "0x17e94e",
+          "target": "0x861ec0"
+        },
+        {
+          "pc": "0x17e956",
+          "target": "0x6160b0"
+        },
+        {
+          "pc": "0x17e9da",
+          "target": "0x60dd70"
+        },
+        {
+          "pc": "0x17ea0b",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x17ea1e",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x17ea2a",
+          "target": "0x628100"
+        },
+        {
+          "pc": "0x17ea3d",
+          "target": "0x610990"
+        },
+        {
+          "pc": "0x17ea76",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x17ea86",
+          "target": "0x61e200"
+        },
+        {
+          "pc": "0x17eaaf",
+          "target": "0x61fda0"
+        },
+        {
+          "pc": "0x17eac8",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x17ead4",
+          "target": "0x61e200"
+        },
+        {
+          "pc": "0x17eade",
+          "target": "0x16d680"
+        },
+        {
+          "pc": "0x17eaec",
+          "target": "0x17ebd0"
+        },
+        {
+          "pc": "0x17eb3f",
+          "target": "0x861ec0"
+        },
+        {
+          "pc": "0x17eb64",
+          "target": "0x679570"
+        },
+        {
+          "pc": "0x17eb8a",
+          "target": "0x62c360"
+        },
+        {
+          "pc": "0x17eb9e",
+          "target": "0x16d6a0"
+        },
+        {
+          "pc": "0x17ebb1",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x17f3b0",
+      "end_exclusive": "0x17f5b0",
+      "instructions": 142,
+      "returns": [
+        "0x17f5af"
+      ],
+      "calls": [
+        {
+          "pc": "0x17f3ec",
+          "target": "0x85e730"
+        },
+        {
+          "pc": "0x17f404",
+          "target": "0x861ec0"
+        },
+        {
+          "pc": "0x17f40c",
+          "target": "0x6160b0"
+        },
+        {
+          "pc": "0x17f433",
+          "target": "0x60dd70"
+        },
+        {
+          "pc": "0x17f45b",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x17f46d",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x17f477",
+          "target": "0x628100"
+        },
+        {
+          "pc": "0x17f48a",
+          "target": "0x610990"
+        },
+        {
+          "pc": "0x17f4a5",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x17f4b1",
+          "target": "0x61e200"
+        },
+        {
+          "pc": "0x17f4c4",
+          "target": "0x16d680"
+        },
+        {
+          "pc": "0x17f4d1",
+          "target": "0x17ebd0"
+        },
+        {
+          "pc": "0x17f503",
+          "target": "0x679570"
+        },
+        {
+          "pc": "0x17f572",
+          "target": "0x62c360"
+        },
+        {
+          "pc": "0x17f586",
+          "target": "0x16d6a0"
+        },
+        {
+          "pc": "0x17f599",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x1946e0",
+      "end_exclusive": "0x1949b6",
+      "instructions": 185,
+      "returns": [
+        "0x1949b5"
+      ],
+      "calls": [
+        {
+          "pc": "0x194734",
+          "target": "0x63a990"
+        },
+        {
+          "pc": "0x19473f",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x19474b",
+          "target": "0x62bcb0"
+        },
+        {
+          "pc": "0x19476a",
+          "target": "0x60dd70"
+        },
+        {
+          "pc": "0x194784",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x194796",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x1947a0",
+          "target": "0x628100"
+        },
+        {
+          "pc": "0x1947b4",
+          "target": "0x610990"
+        },
+        {
+          "pc": "0x1947cf",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x1947db",
+          "target": "0x61e200"
+        },
+        {
+          "pc": "0x1947e5",
+          "target": "0x16d680"
+        },
+        {
+          "pc": "0x1947f3",
+          "target": "0x17ebd0"
+        },
+        {
+          "pc": "0x194842",
+          "target": "0x18ee20"
+        },
+        {
+          "pc": "0x1948a8",
+          "target": "0x861f08"
+        },
+        {
+          "pc": "0x1948b5",
+          "target": "0x861f0e"
+        },
+        {
+          "pc": "0x1948d0",
+          "target": "0x18ee20"
+        },
+        {
+          "pc": "0x19495e",
+          "target": "0x62c360"
+        },
+        {
+          "pc": "0x194972",
+          "target": "0x16d6a0"
+        },
+        {
+          "pc": "0x194985",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x1b7850",
+      "end_exclusive": "0x1b7cde",
+      "instructions": 276,
+      "returns": [
+        "0x1b7940",
+        "0x1b7c9c",
+        "0x1b7cdd"
+      ],
+      "calls": [
+        {
+          "pc": "0x1b78c9",
+          "target": "0x61d9c0"
+        },
+        {
+          "pc": "0x1b78de",
+          "target": "0x19ce20"
+        },
+        {
+          "pc": "0x1b78f0",
+          "target": "0x19cb20"
+        },
+        {
+          "pc": "0x1b78fc",
+          "target": "0x796e20"
+        },
+        {
+          "pc": "0x1b790d",
+          "target": "0x796350"
+        },
+        {
+          "pc": "0x1b791e",
+          "target": "0x1b6c50"
+        },
+        {
+          "pc": "0x1b7997",
+          "target": "0x60dd70"
+        },
+        {
+          "pc": "0x1b79a3",
+          "target": "0x610990"
+        },
+        {
+          "pc": "0x1b79c1",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x1b79d5",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x1b79e2",
+          "target": "0x628100"
+        },
+        {
+          "pc": "0x1b7a17",
+          "target": "0x60dd70"
+        },
+        {
+          "pc": "0x1b7a24",
+          "target": "0x610990"
+        },
+        {
+          "pc": "0x1b7a43",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x1b7a58",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x1b7a65",
+          "target": "0x628100"
+        },
+        {
+          "pc": "0x1b7a9b",
+          "target": "0x60dd70"
+        },
+        {
+          "pc": "0x1b7aa7",
+          "target": "0x610990"
+        },
+        {
+          "pc": "0x1b7ac5",
+          "target": "0x625f00"
+        },
+        {
+          "pc": "0x1b7ada",
+          "target": "0x5cdaa0"
+        },
+        {
+          "pc": "0x1b7ae7",
+          "target": "0x628100"
+        },
+        {
+          "pc": "0x1b7b08",
+          "target": "0x18d240"
+        },
+        {
+          "pc": "0x1b7b31",
+          "target": "0x1b81b0"
+        },
+        {
+          "pc": "0x1b7b48",
+          "target": "0x18d240"
+        },
+        {
+          "pc": "0x1b7b71",
+          "target": "0x1b81b0"
+        },
+        {
+          "pc": "0x1b7b88",
+          "target": "0x18d240"
+        },
+        {
+          "pc": "0x1b7bb1",
+          "target": "0x1b81b0"
+        },
+        {
+          "pc": "0x1b7bd0",
+          "target": "0x63a990"
+        },
+        {
+          "pc": "0x1b7c27",
+          "target": "0x584730"
+        },
+        {
+          "pc": "0x1b7c3a",
+          "target": "0x1b80c0"
+        },
+        {
+          "pc": "0x1b7c4d",
+          "target": "0x1b72b0"
+        },
+        {
+          "pc": "0x1b7cbc",
+          "target": "qword ptr [rax + 8]"
+        },
+        {
+          "pc": "0x1b7cc6",
+          "target": "0x18a120"
+        }
+      ]
+    }
+  ],
+  "question": "Do the six validated direct628100 call sites admit raw zero, and does their count floor prove nonzero masked element count?",
+  "hypotheses": [
+    "A selected normal caller supplies rawzero",
+    "All six exclude rawzero, but dynamic highbit input can defeat a stronger masked-nonzero inference"
+  ],
+  "result": "Selected rawzero excluded under explicit normal ABI/private-slot/no-interference premises. Masked nonzero universal claim REFUTED for arbitrary dynamicR9D: max(1,80000000)&7FFFFFFF=0. Natural occurrence and all other callers OPEN.",
+  "selected_calls": [
+    {
+      "call": "0x17ea2a",
+      "root": "0x17e8e0",
+      "definitions": [
+        "0x17e90f",
+        "0x17e9df",
+        "0x17e9e5",
+        "0x17e9e8",
+        "0x17e9ec",
+        "0x17e9f1",
+        "0x17ea23"
+      ],
+      "count": "max(1,u32 incomingR9D)"
+    },
+    {
+      "call": "0x17f477",
+      "root": "0x17f3b0",
+      "definitions": [
+        "0x17f3e9",
+        "0x17f43b",
+        "0x17f440",
+        "0x17f443",
+        "0x17f447",
+        "0x17f472"
+      ],
+      "count": "max(1,u32 incomingR9D)"
+    },
+    {
+      "call": "0x1947a0",
+      "root": "0x1946e0",
+      "definitions": [
+        "0x19472d",
+        "0x19479b"
+      ],
+      "count": "1"
+    },
+    {
+      "call": "0x1b79e2",
+      "root": "0x1b7850",
+      "definitions": [
+        "0x1b79da"
+      ],
+      "count": "4"
+    },
+    {
+      "call": "0x1b7a65",
+      "root": "0x1b7850",
+      "definitions": [
+        "0x1b7a5d"
+      ],
+      "count": "4"
+    },
+    {
+      "call": "0x1b7ae7",
+      "root": "0x1b7850",
+      "definitions": [
+        "0x1b7adf"
+      ],
+      "count": "4"
+    }
+  ],
+  "algebraic_witnesses": [
+    {
+      "incoming_u32": 0,
+      "emitted": 1,
+      "masked": 1
+    },
+    {
+      "incoming_u32": 1,
+      "emitted": 1,
+      "masked": 1
+    },
+    {
+      "incoming_u32": 2147483647,
+      "emitted": 2147483647,
+      "masked": 2147483647
+    },
+    {
+      "incoming_u32": 2147483648,
+      "emitted": 2147483648,
+      "masked": 0
+    },
+    {
+      "incoming_u32": 4294967295,
+      "emitted": 4294967295,
+      "masked": 2147483647
+    }
+  ],
+  "mask_proof": "N&7FFFFFFF=0 iff N is0 or80000000. All selected N>=1 excludes0. The two unsigned floors do not exclude80000000; fixed1/4 exclude both.",
+  "assumptions": [
+    "Original normal entries/returns and ordinary nonvolatile ABI",
+    "Valid objects/storage; private stack30/38 not aliased or modified by opaque callees/interference",
+    "No exception/unwind/async entry or arbitrary interior call bypassing defining instructions"
+  ],
+  "limitations": [
+    "Only six verified direct sites; raw-reference scan is not a complete direct/indirect/RVA/virtual caller census",
+    "No natural incomingR9D bounds, shipping highbit occurrence, allocation success or actual zero-count crash",
+    "Rawzero helper counterexample remains valid conditionally but cannot be routed through these sites under these premises",
+    "Encoded ownership/highbit count semantics, lower allocator/resource effects and full lifecycle remain separately open"
+  ],
+  "learned_precondition": "A containing pdata fragment is not a whole root. Initial normal closure refused1B7C93. Retained241/850 bytes were reused, only75B missing tail added; six actual fragments and all normal branches now covered.",
+  "affected_claims": [
+    "OPUS selected texture count ABI/domain contract",
+    "FABLE natural zero-count resize discriminator should target dynamic input producers/highbit or other callers, not replay these six rawzero paths"
+  ],
+  "next_discriminator": "Trace ordinary R9D producers feeding17E8E0/17F3B0 and establish nonzero masked-count bounds, or legal counterexample. Prove caller completeness separately; no game session justified.",
+  "checker_sha256": "b0b8cb0b3c3dc10dfe8baa50da2498269206a785098bff93531f343e6493c351",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Original/retained reads and finite CFG/dataflow only; no PC/game/input/instrument/save/config/reference/peer-process writes"
+}

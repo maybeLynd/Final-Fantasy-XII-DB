@@ -1,0 +1,279 @@
+{
+ "A_record_builder": {
+  "+0x58": 0,
+  "+0x5A": 128,
+  "+0x5C": "00020000",
+  "returned": true
+ },
+ "B_guard": {
+  "-1": {
+   "entered_body": true,
+   "returned": false
+  },
+  "0": {
+   "entered_body": false,
+   "returned": true
+  },
+  "1": {
+   "entered_body": true,
+   "returned": false
+  },
+  "128": {
+   "entered_body": true,
+   "returned": false
+  }
+ },
+ "C_draw_pass": [
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 128,
+   "C.A1": 128,
+   "R+0x38 is a stack record": true,
+   "R.A0": 128,
+   "R.A1": 128,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    128,
+    128
+   ],
+   "distinct records": true,
+   "expected child": [
+    128,
+    128
+   ],
+   "expected root": [
+    128,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    128,
+    128
+   ]
+  },
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 64,
+   "C.A1": 128,
+   "R+0x38 is a stack record": true,
+   "R.A0": 64,
+   "R.A1": 128,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    32,
+    128
+   ],
+   "distinct records": true,
+   "expected child": [
+    32,
+    128
+   ],
+   "expected root": [
+    64,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    64,
+    128
+   ]
+  },
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 32,
+   "C.A1": 64,
+   "R+0x38 is a stack record": true,
+   "R.A0": 128,
+   "R.A1": 128,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    32,
+    64
+   ],
+   "distinct records": true,
+   "expected child": [
+    32,
+    64
+   ],
+   "expected root": [
+    128,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    128,
+    128
+   ]
+  },
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 128,
+   "C.A1": 128,
+   "R+0x38 is a stack record": true,
+   "R.A0": 0,
+   "R.A1": 128,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    0,
+    128
+   ],
+   "distinct records": true,
+   "expected child": [
+    0,
+    128
+   ],
+   "expected root": [
+    0,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    0,
+    128
+   ]
+  },
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 0,
+   "C.A1": 128,
+   "R+0x38 is a stack record": true,
+   "R.A0": 128,
+   "R.A1": 128,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    0,
+    128
+   ],
+   "distinct records": true,
+   "expected child": [
+    0,
+    128
+   ],
+   "expected root": [
+    128,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    128,
+    128
+   ]
+  },
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 127,
+   "C.A1": 255,
+   "R+0x38 is a stack record": true,
+   "R.A0": 127,
+   "R.A1": 128,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    126,
+    255
+   ],
+   "distinct records": true,
+   "expected child": [
+    126,
+    255
+   ],
+   "expected root": [
+    127,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    127,
+    128
+   ]
+  },
+  {
+   "C+0x38 is a stack record": true,
+   "C.A0": 128,
+   "C.A1": 64,
+   "R+0x38 is a stack record": true,
+   "R.A0": 128,
+   "R.A1": 32,
+   "bad": [],
+   "child record (+0x58, +0x5A)": [
+    128,
+    64
+   ],
+   "distinct records": true,
+   "expected child": [
+    128,
+    64
+   ],
+   "expected root": [
+    128,
+    128
+   ],
+   "faults": [
+    "00000000",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last pcs": [
+    "001DD8C0",
+    "001DD8C4"
+   ],
+   "returned": false,
+   "root record (+0x58, +0x5A)": [
+    128,
+    128
+   ]
+  }
+ ],
+ "ok": true,
+ "pass": {
+  "A": true,
+  "B": true,
+  "C": true
+ }
+}

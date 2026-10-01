@@ -1,0 +1,7 @@
+raw callers of 0023AC80: 3 -> 237E26(in 00237DF0 BattleSystem_ResetRuntimeState) 239AC4(in 00239960 FUN_00239960) 23A7A9(in 0023A570 BattleUnit_ApplyUnitDefinition)
+raw callers of 002EF4A0: 1 -> 235B76(in 00235AF0 FUN_00235af0)
+0023AD84 cmp al, 1
+0023AD86 jb 0x23ad8b
+0023AD88 movzx edx, al
+0023AD8B mov r8d, r12d
+0023AD8E mov word ptr [rdi + 4], r15w

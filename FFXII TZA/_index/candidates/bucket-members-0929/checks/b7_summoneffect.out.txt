@@ -1,0 +1,47 @@
+  [PASS] EXE SHA256
+== static
+  [PASS] kind 9 idx 0x2A path -- PS2Data\image\ff12\common\summoneffectdata.bin
+  [PASS] 003B53CB decodes as 'mov edx, 0x2a' -- mov edx, 0x2a
+  [PASS] 003B53EA decodes as 'lea ecx, [rdx - 0x21]' -- lea ecx, [rdx - 0x21]
+  [PASS] 003B5407 decodes as 'call 0x32e400' -- call 0x32e400
+  [PASS] 003B541D: destination buffer r8 = 02AD9B60 (lea, not a pointer load)
+  [PASS] 003B5411 decodes as 'mov qword ptr [rsp + 0x20], 0' -- mov qword ptr [rsp + 0x20], 0
+  [PASS] 003B5427 decodes as 'call 0x32e620' -- call 0x32e620
+  [PASS] 0036FC12 lea base 02AD9B60
+  [PASS] 0036FC19 decodes as 'dec eax' -- dec eax
+  [PASS] 0036FC1B decodes as 'lea rdx, [rax + rax*4]' -- lea rdx, [rax + rax*4]
+  [PASS] 0036FC34 decodes as 'movzx eax, byte ptr [rcx + rdx*2]' -- movzx eax, byte ptr [rcx + rdx*2]
+  [PASS] 0036FC28 decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 1]' -- movzx eax, byte ptr [rcx + rdx*2 + 1]
+  [PASS] 0036FC1F decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 2]' -- movzx eax, byte ptr [rcx + rdx*2 + 2]
+  [PASS] 0036FC7B decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 3]' -- movzx eax, byte ptr [rcx + rdx*2 + 3]
+  [PASS] 0036FC6F decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 4]' -- movzx eax, byte ptr [rcx + rdx*2 + 4]
+  [PASS] 0036FC66 decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 5]' -- movzx eax, byte ptr [rcx + rdx*2 + 5]
+  [PASS] 0036FC0A scale constant is 0.01
+  [PASS] 0036FA09 lea base 02AD9B60
+  [PASS] 0036FAC8 decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 6]' -- movzx eax, byte ptr [rcx + rdx*2 + 6]
+  [PASS] 0036FAE5 decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 7]' -- movzx eax, byte ptr [rcx + rdx*2 + 7]
+  [PASS] 0036FB02 decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 8]' -- movzx eax, byte ptr [rcx + rdx*2 + 8]
+  [PASS] 0036FB1F decodes as 'movzx eax, byte ptr [rcx + rdx*2 + 9]' -- movzx eax, byte ptr [rcx + rdx*2 + 9]
+  [PASS] 0036FA30 reads buffer +0x280 -- movss xmm0, dword ptr [rip + 0x276a3a8]
+  [PASS] 0036FA46 reads buffer +0x284 -- movss xmm1, dword ptr [rip + 0x276a396]
+  [PASS] 0036F7AA reads buffer +0x288 -- movss xmm2, dword ptr [rip + 0x276a636]
+  [PASS] 0036F5AE reads buffer +0x28c -- movss xmm0, dword ptr [rip + 0x276a836]
+  [PASS] 0036F583 reads buffer +0x290 -- mov r8, qword ptr [rip + 0x276a866]
+  [PASS] 0036F561 reads buffer +0x294 -- mov ecx, dword ptr [rip + 0x276a88d]
+  [PASS] 0036F592 decodes as 'sub ecx, r8d' -- sub ecx, r8d
+  [PASS] 0036F576 decodes as 'mov eax, 0x55555556' -- mov eax, 0x55555556
+  [PASS] raw sweep 02AD9B60..02AD9E00: 9 rip refs (loader lea + 8 reads), none at +0x298..+0x29F, no dword/qword hit
+  [PASS] 003B53A8 decodes as 'movzx eax, byte ptr [rsp + 8]' -- movzx eax, byte ptr [rsp + 8]
+== corpus
+  [PASS] one shipped copy -- ['D:/FFXII_TZA_extract/ps2data/image/ff12\\common\\summoneffectdata.bin']
+  [PASS] size arithmetic 64*10 + 4*4 + 2*4 + 8 == 672
+  non-neutral records: 28 -> indices 0..27; neutral record = scale 1.00 x6, colour 80 80 80 20
+  [PASS] records 28..63 are the neutral record exactly
+  [PASS] colour byte +9 is 0x30 (or 0x20/0x32/0x26 etc) - every record's +9 <= 0x80
+  tail: f32 [1.01, 1.01, 1.4, 0.4]  u32 (65300, 65200) (['0xff14', '0xfeb0'])  pad 0000000000000000
+  [PASS] tail u32 pair are 16-bit values (<= 0xFFFF), consistent with (0xFFFF - v) << 12 | 0xFF0 at 0036F8EC..0036F905
+  [PASS] +0x298..+0x29F zero
+  rec 0: scale1 [1.0, 0.8, 0.6] scale2 [1.0, 0.95, 0.65] colour 90 30 30 30
+  rec 1: scale1 [0.7, 0.75, 1.45] scale2 [0.7, 0.75, 1.45] colour 4a 4e a4 30
+  rec 27: scale1 [0.7, 0.8, 1.0] scale2 [0.7, 0.8, 1.0] colour 94 6c 3a 28
+CHECKS 39  FAILS 0

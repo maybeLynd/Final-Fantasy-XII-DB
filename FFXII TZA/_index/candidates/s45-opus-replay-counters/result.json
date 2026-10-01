@@ -1,0 +1,131 @@
+{
+ "cases": {
+  "B_manager_builder_registers_1101_1102_1103_then_needs_the_steam_interface": true,
+  "K1_kind4_saturates_on_every_kind4_id": true,
+  "K2_kind2_saturates_and_leaves_the_neighbour": true,
+  "K3_store_writes_kind_bytes_at_block_plus_384C_plus_offset": true,
+  "K4_ids_30_31_255_rejected_by_read_store_and_update": true,
+  "K5_update_evaluates_before_it_stores": true,
+  "K6_award_bit_set_then_null_manager_returns_no_steam_call": true,
+  "world_bound_by_the_shipped_binder": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "B": {
+   "completed": false,
+   "halt": [
+    "import SteamInternal_ContextInit"
+   ],
+   "manager_cell": "0",
+   "registered_callback_ids": [
+    1101,
+    1102,
+    1103
+   ]
+  },
+  "K1": {
+   "6": {
+    "exact": 105,
+    "kind": 4,
+    "ok": true,
+    "saturated": "7FFFFFFF"
+   },
+   "7": {
+    "exact": 105,
+    "kind": 4,
+    "ok": true,
+    "saturated": "7FFFFFFF"
+   },
+   "11": {
+    "exact": 105,
+    "kind": 4,
+    "ok": true,
+    "saturated": "7FFFFFFF"
+   },
+   "17": {
+    "exact": 105,
+    "kind": 4,
+    "ok": true,
+    "saturated": "7FFFFFFF"
+   }
+  },
+  "K2": {
+   "id0": "7FFF",
+   "id1_neighbour": "1234",
+   "ok": true
+  },
+  "K3": {
+   "store_id0": [
+    [
+     "+384C",
+     2,
+     "00316C45"
+    ]
+   ],
+   "store_id6": [
+    [
+     "+3860",
+     4,
+     "00316C30"
+    ]
+   ]
+  },
+  "K4": {
+   "30": {
+    "ok": true,
+    "read": "FFFFFFFF",
+    "read_ok": true,
+    "store_writes": [],
+    "unchanged": true,
+    "update_calls": [],
+    "update_writes": []
+   },
+   "31": {
+    "ok": true,
+    "read": "FFFFFFFF",
+    "read_ok": true,
+    "store_writes": [],
+    "unchanged": true,
+    "update_calls": [],
+    "update_writes": []
+   },
+   "255": {
+    "ok": true,
+    "read": "FFFFFFFF",
+    "read_ok": true,
+    "store_writes": [],
+    "unchanged": true,
+    "update_calls": [],
+    "update_writes": []
+   }
+  },
+  "K5_K6": {
+   "bitmap": "02000000",
+   "calls": [
+    "evaluate",
+    "award",
+    "manager getter",
+    "store"
+   ],
+   "manager_cell": "0",
+   "ok": true,
+   "steam_imports": [],
+   "writes": [
+    [
+     "+3844",
+     1,
+     "00316069"
+    ],
+    [
+     "+384E",
+     2,
+     "00316C45"
+    ]
+   ]
+  },
+  "bound": true,
+  "image_block": "216C480",
+  "manager_cell": "0"
+ }
+}

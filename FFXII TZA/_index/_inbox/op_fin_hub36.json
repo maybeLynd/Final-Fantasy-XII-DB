@@ -1,0 +1,3 @@
+{"action":"finish","task":"SWE2-EC7-SHARED-HUB-IDENTIFICATION-36",
+ "result_refs":["audit:b36_crossref"],
+ "note":"22 frontier hubs: 8 measured repeats re-placed onto bearing hosts (00271080 00270FF0 003E55B0 00293110 00369800 002EB540 002D3BA0 002B6AE0) + 14 new 4-A/3-A bodies; 22/22 A-measured - first clean batch; gates clean; xref_hub36.json 0 new vs hub-35 baseline"}

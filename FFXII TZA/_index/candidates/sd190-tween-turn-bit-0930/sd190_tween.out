@@ -1,0 +1,7 @@
+PASS  T1 003E6A70 = resolve, then 003AEF50(record + 0x550)
+PASS  T2 bit 0 = some node has byte +1, bit 1 = some node has byte +2
+PASS  T3 003AED70 starts a node with +1 = +2 = 1 and clears +1 on the older nodes
+PASS  T4 byte +2 = the move phase (translation), byte +1 = the turn phase (angle)
+PASS  T5 0025DF00: bit 0 -> the integrator's direct-delta argument
+PASS  T6 the read runs only when 003E68B0 (tween armed, list non-empty) and actor +0x0D bit 1 both hold
+FAILS 0

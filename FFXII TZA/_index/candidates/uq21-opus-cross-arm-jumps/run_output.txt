@@ -1,0 +1,27 @@
+001D1FAB ids [60]   -> 001D2B15 (host ids [103]) statement-boundary jmp-side: mov byte ptr [rdi + 0xc0c], 0      host-side: jne 0x1d4bfa                       []
+001D295F ids [166]  -> 001D4B65 (host ids [281]) statement-boundary jmp-side: call qword ptr [rax + 0x60]        host-side: call 0x1df340                      []
+001D2C3B ids [177]  -> 001D2CE6 (host ids [178]) statement-boundary jmp-side: mov dword ptr [rdi + 0xac8], eax   host-side: mov qword ptr [rdi + 0xac8], rsi   []
+001D2C58 ids [177]  -> 001D2CE6 (host ids [178]) statement-boundary jmp-side: mov dword ptr [rdi + 0xacc], eax   host-side: mov qword ptr [rdi + 0xac8], rsi   []
+001D2C8F ids [177]  -> 001D2CE6 (host ids [178]) statement-boundary jmp-side: mov dword ptr [rdi + 0xacc], eax   host-side: mov qword ptr [rdi + 0xac8], rsi   []
+001D2D12 ids [180]  -> 001D2DBD (host ids [181]) statement-boundary jmp-side: mov dword ptr [rdi + 0xad4], eax   host-side: mov qword ptr [rdi + 0xad4], rsi   []
+001D2D2F ids [180]  -> 001D2DBD (host ids [181]) statement-boundary jmp-side: mov dword ptr [rdi + 0xad8], eax   host-side: mov qword ptr [rdi + 0xad4], rsi   []
+001D2D66 ids [180]  -> 001D2DBD (host ids [181]) statement-boundary jmp-side: mov dword ptr [rdi + 0xad8], eax   host-side: mov qword ptr [rdi + 0xad4], rsi   []
+001D32C5 ids [134]  -> 001D4B65 (host ids [281]) statement-boundary jmp-side: call 0x1a5b00                      host-side: call 0x1df340                      []
+001D3D01 ids [190]  -> 001D3D6A (host ids [191]) argument-live      jmp-side: call 0x2b6670                      host-side: call 0x2b6680                      ['xmm0']
+001D3D15 ids [190]  -> 001D3D6A (host ids [191]) argument-live      jmp-side: call 0x2b6670                      host-side: call 0x2b6680                      ['xmm0']
+001D3DC8 ids [192]  -> 001D3E60 (host ids [193]) argument-live      jmp-side: call 0x2b6690                      host-side: call 0x2b66a0                      ['xmm0']
+001D3DE3 ids [192]  -> 001D3E60 (host ids [193]) argument-live      jmp-side: call 0x2b6690                      host-side: call 0x2b66a0                      ['xmm0']
+001D49BC ids [274]  -> 001D4B65 (host ids [281]) statement-boundary jmp-side: call 0x1bd940                      host-side: call 0x1df340                      []
+001D4A23 ids [275]  -> 001D4B65 (host ids [281]) statement-boundary jmp-side: call 0x1ef520                      host-side: call 0x1df340                      []
+001D4A38 ids [276]  -> 001D4B59 (host ids [281]) flags-live         jmp-side: lea edx, [rsi + 0xf]               host-side: lea edx, [rsi + 0xd]               ['rcx', 'rdx']
+001D4A85 ids [277]  -> 001D4B65 (host ids [281]) statement-boundary jmp-side: call 0x189520                      host-side: call 0x1df340                      []
+001D4ABB ids [278]  -> 001D4B65 (host ids [281]) statement-boundary jmp-side: mov byte ptr [rax + 0x4a3], bl     host-side: call 0x1df340                      []
+001D4B21 ids [279]  -> 001D4B60 (host ids [281]) argument-live      jmp-side: lea edx, [rbp + 8]                 host-side: mov r8d, esi                       ['r8', 'rdx']
+001D4B35 ids [279]  -> 001D4B60 (host ids [281]) argument-live      jmp-side: mov edx, 0xa                       host-side: mov r8d, esi                       ['r8', 'rdx']
+001D4B47 ids [280]  -> 001D4B59 (host ids [281]) flags-live         jmp-side: lea edx, [rsi + 0xc]               host-side: lea edx, [rsi + 0xd]               ['rcx', 'rdx']
+{'statement-boundary': 13, 'argument-live': 6, 'flags-live': 2}
+X1_21_jumps_from_14_arms_into_another_arms_interior              PASS
+X2_every_target_is_an_instruction_boundary_of_its_host           PASS
+X3_every_jump_lands_at_the_maximal_common_suffix                 PASS
+X4_8_enter_mid_expression_6_argument_2_flags                     PASS
+ALL PASS

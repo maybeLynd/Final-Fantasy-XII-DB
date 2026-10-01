@@ -1,0 +1,373 @@
+{
+  "method": "Original reward bodies and original gate callees; synthetic data; zero scripted application callees; not a live FF12 session",
+  "cases": [
+    {
+      "name": "null_xp_roster_count_0",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_lp_roster_count_0",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_1",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_lp_roster_count_1",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_2",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "null_lp_roster_count_2",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_3",
+      "pass": true,
+      "observed": 6,
+      "expected": 6
+    },
+    {
+      "name": "null_lp_roster_count_3",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_4",
+      "pass": true,
+      "observed": 4,
+      "expected": 4
+    },
+    {
+      "name": "null_lp_roster_count_4",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "recipient_xp_two_way_share",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "recipient_lp_is_not_divided",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "xp_double_after_rounding",
+      "pass": true,
+      "observed": 18,
+      "expected": 18
+    },
+    {
+      "name": "null_xp_ignores_recipient_modifier",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "xp_zero_wins_over_double",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_xp_ignores_zero_modifier",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "xp_second_bank_double",
+      "pass": true,
+      "observed": 18,
+      "expected": 18
+    },
+    {
+      "name": "xp_second_bank_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "xp_unrelated_modifier_bit0",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "lp_recipient_double",
+      "pass": true,
+      "observed": 38,
+      "expected": 38
+    },
+    {
+      "name": "null_lp_ignores_recipient_double",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "lp_second_bank_double",
+      "pass": true,
+      "observed": 38,
+      "expected": 38
+    },
+    {
+      "name": "lp_has_no_xp_zero_modifier",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "single_mode_null_is_full_formula",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "single_mode_matching_recipient",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "single_mode_mismatching_recipient",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "single_mode_null_ignores_invalid_designation",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "single_mode_recipient_invalid_designation",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "xp_orphan_has_no_owner",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_orphan_does_not_require_owner",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "id1a_recipient_xp_admitted_not_in_divisor",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "id1a_recipient_lp_admitted",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_also_excludes_id1a_from_divisor",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "id19_recipient_xp_admitted_counted",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "id19_recipient_lp_rejected",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_id_boundary_06",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "lp_id_boundary_07",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_id_boundary_1b",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_id_boundary_27",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_id_boundary_28",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "kind1_cannot_match_roster_byte",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "synthetic_ff_selector_can_count_kindff_four_times",
+      "pass": true,
+      "observed": 4,
+      "expected": 4
+    },
+    {
+      "name": "xp_status_rejects_recipient",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_status_rejects_recipient",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_xp_still_applies_member_status_filter",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "second_status_bank_excludes_member",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "xp_kind1_recipient_rejected",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_kind1_recipient_rejected",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "xp_non_enemy_subject_rejected",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_non_enemy_subject_rejected",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "xp_null_subject_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_null_subject_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "xp_null_subject_stats_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_null_subject_stats_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_global_gate_precedes_award",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_negative_global_gate_blocks",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "xp_independent_of_licence_gate",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "xp_negative_division_truncates_toward_zero",
+      "pass": true,
+      "observed": -4,
+      "expected": -4
+    },
+    {
+      "name": "lp_negative_formula_not_clamped",
+      "pass": true,
+      "observed": -9,
+      "expected": -9
+    },
+    {
+      "name": "xp_negative_unit_share_rounds_to_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "lp_unsigned_byte_multiplier",
+      "pass": false,
+      "observed": 247,
+      "expected": 759
+    }
+  ],
+  "checks": 61,
+  "failures": 1
+}

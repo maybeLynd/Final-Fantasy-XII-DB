@@ -1,0 +1,20 @@
+{
+  "files": {
+    "binding.py": {
+      "bytes": 2448,
+      "sha256": "a75f364d0037ae0e3f5412394951005bf02e9d8b504d9b8e204a0665aaf3249e"
+    },
+    "dependencies.json": {
+      "bytes": 625,
+      "sha256": "dd2a57a6fc0dba8554bc6e905342e102888c557ff3e31268315ea062aa9cfb6f"
+    },
+    "test_binding.py": {
+      "bytes": 4070,
+      "sha256": "61ee7b416a334f4a2b6420a2f781de61b8a69af1e1e4c757eb303cb21ee2a0a2"
+    },
+    "unit-tests.txt": {
+      "bytes": 110,
+      "sha256": "7a14a6b7a78ab0c73959601709b293818678a1cfb496728a9dcd17340f008027"
+    }
+  }
+}

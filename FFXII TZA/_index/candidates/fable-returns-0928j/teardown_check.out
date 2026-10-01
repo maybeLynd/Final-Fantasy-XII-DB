@@ -1,0 +1,5 @@
+PASS T1  null-guarded release of [02AEE0A0] via 003844F0 -> 003697F0 -> 00369860 (edx 0); memset(02AEE060, 0, 0x460); root 02AEDFB0 outside
+PASS T2  callers of 00392710: ['002341D5']; of 003924B0: ['0023441E']
+PASS T3  rip-relative qword stores to 02AEE0A0 in .text: ['00392677']
+PASS C  known positive 00392720 -> 003844F0 found; a planted call-shaped sequence at 00392717 is a raw hit True and is rejected by the boundary test True
+FAILS 0

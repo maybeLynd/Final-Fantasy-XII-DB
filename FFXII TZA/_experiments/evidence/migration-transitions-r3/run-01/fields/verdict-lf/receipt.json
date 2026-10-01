@@ -1,0 +1,35 @@
+{
+  "name": "verdict-lf",
+  "input_sha256": "69853bfbaa0598a64ef6cbe6ae8b078a7e9cee99aebc2b3fdb6b6c3b3e35f336",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\fields\\verdict-lf\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"VERDICT-MISSING\",\n  \"review\": \"REVIEW-VALID-ACCEPT\",\n  \"detail\": \"result refs carry no verdict:\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "terminal": true,
+  "report": [
+    {
+      "transition": "VERDICT-MISSING",
+      "review": "REVIEW-VALID-ACCEPT",
+      "detail": "result refs carry no verdict:",
+      "status": "-"
+    }
+  ],
+  "original_plan": [
+    [
+      "VERDICT-MISSING",
+      "REVIEW-VALID-ACCEPT",
+      "result refs carry no verdict:",
+      null
+    ]
+  ],
+  "board_unchanged": true,
+  "writer_invoked": false,
+  "expected": "VERDICT-MISSING"
+}

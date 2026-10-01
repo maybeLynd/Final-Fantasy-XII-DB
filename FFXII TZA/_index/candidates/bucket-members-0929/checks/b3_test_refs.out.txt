@@ -1,0 +1,35 @@
+  [PASS] EXE SHA256
+== static
+  [PASS] kind 9 idx 1 = test_map_ref -- PS2Data\image\ff12\common\test_map_ref.bin
+  [PASS] kind 9 idx 2 = test_area_ref -- PS2Data\image\ff12\in\common\test_area_ref.bin
+  [PASS] 0026880E decodes as 'lea edx, [rdi + 2]' -- lea edx, [rdi + 2]
+  [PASS] 00268811 decodes as 'lea ecx, [rdi + 9]' -- lea ecx, [rdi + 9]
+  [PASS] 00268814 decodes as 'call 0x32e400' -- call 0x32e400
+  [PASS] 00268821 decodes as 'call 0x267930' -- call 0x267930
+  [PASS] 00268829 stores the buffer to 02099D98
+  [PASS] 00268838 decodes as 'lea edx, [rdi + 2]' -- lea edx, [rdi + 2]
+  [PASS] 0026883E decodes as 'call 0x32e620' -- call 0x32e620
+  [PASS] 0026876B/00268772 zero the MapRef globals first (02099D98 among them)
+  [PASS] 00264EE9 decodes as 'movsxd rcx, dword ptr [r8 + 4]' -- movsxd rcx, dword ptr [r8 + 4]
+  [PASS] 00264EF9 decodes as 'movzx eax, word ptr [rax + 4]' -- movzx eax, word ptr [rax + 4]
+  [PASS] MapRef_GetAreaArdFieldResourceIndex reads map_ref (02099D88)
+  [PASS] raw sweep of 02099D98: exactly the two stores in MapRef_BeginLoadResources, no dword/qword hit
+  [PASS] no lea of a base at 02099D80..02099D98 anywhere (no base+disp route to the slot) -- []
+  [PASS] (9,1) constant pairs reach only 00252B40 and 003E12A0, neither a request API -- ['003F500C\t003F4E70 FUN_003f4e70\t(rcx=0x9, next=0x1)\tcall 0x252b40', '0041DF22\t0041DD40 PresentationEmbeddedRecord_ActivatePendingState\t(rdx=0x9, next=0x1)\tcall 0x3e12a0']
+  [PASS] 00252B40 decodes as 'and ecx, 0x7fff' -- and ecx, 0x7fff
+== corpus
+  [PASS] 2 map_ref, 2 test_area_ref, 1 test_map_ref copy -- 2,2,1
+  [PASS] ch: test_area_ref 642 B = u16[321], even size, strictly ascending
+  [PASS] ch: map_ref MRF header, 1315 rows, row word +4 nondecreasing, 321 distinct values 0..320
+  [PASS] ch: test_area_ref[k] == first map_ref row with word+4 == k for all 321 k (count equal: 321 == 321)
+  [PASS] ch: test_area_ref does not occur inside map_ref (not a copied section)
+  [PASS] in: test_area_ref 642 B = u16[321], even size, strictly ascending
+  [PASS] in: map_ref MRF header, 1315 rows, row word +4 nondecreasing, 321 distinct values 0..320
+  [PASS] in: test_area_ref[k] == first map_ref row with word+4 == k for all 321 k (count equal: 321 == 321)
+  [PASS] in: test_area_ref does not occur inside map_ref (not a copied section)
+  [PASS] test_map_ref 2192 B = 274 rows x 8, no header (starts with a row, not 'MRF')
+  [PASS] test_map_ref row word +4 nondecreasing (the map_ref row invariant)
+  test_map_ref: word+4 max 124 (map_ref 320); word+6 max 14 (map_ref 58)
+  rows equal to map_ref's same-index row: 14/274 (an older/other build, not a prefix)
+  [PASS] test_map_ref is not a byte prefix/section of map_ref
+CHECKS 30  FAILS 0

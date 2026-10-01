@@ -1,0 +1,13 @@
+0x3da400 2 ['0034F340 call', '0034F98B call'] jcc 0 abs 0 rva ['01D81224(.rdata)', '01D81234(.rdata)', '02FC236C(.pdata)']
+0x3da370 2 ['00343E11 jmp', '0034433B jmp'] jcc 0 abs 0 rva ['02FC2360(.pdata)']
+0x3da4d0 2 ['0035030C jmp', '00350696 jmp'] jcc 0 abs 0 rva []
+0x3da570 1 ['00351C2C jmp'] jcc 0 abs 0 rva []
+0x3dd230 2 ['00349340 call', '0034978B call'] jcc 0 abs 0 rva ['01D816DC(.rdata)', '01D816EC(.rdata)', '02FC2774(.pdata)']
+0x3dcf60 1 ['0034B110 jmp'] jcc 0 abs 0 rva []
+0x3dd320 2 ['00349EFC jmp', '0034A3A6 jmp'] jcc 0 abs 0 rva []
+0x3dd350 1 ['0034B63C jmp'] jcc 0 abs 0 rva []
+total 13
+0x1d81224 ['0x187405', '0x3da400', '0x3da441', '0x1dbf418']
+0x1d81234 ['0x120021', '0x3da400', '0x3da441', '0x1dbf418']
+0x1d816dc ['0x1a6405', '0x3dd230', '0x3dd287', '0x1d816bc']
+0x1d816ec ['0x120021', '0x3dd230', '0x3dd287', '0x1d816bc']

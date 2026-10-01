@@ -1,0 +1,105 @@
+002AC1E0  push      rbx
+002AC1E2  sub       rsp, 0x20
+002AC1E6  xor       edx, edx
+002AC1E8  mov       r8d, 0xd0
+002AC1EE  mov       rbx, rcx
+002AC1F1  call      0x861ec0
+002AC1F6  or        dword ptr [rbx + 0x44], 0x200
+002AC1FD  mov       ecx, dword ptr [rbx + 0x44]
+002AC200  shr       ecx, 0xb
+002AC203  and       ecx, 1
+002AC206  mov       dword ptr [rbx + 0x30], 0x80808080
+002AC20D  mov       word ptr [rbx + 0x9c], 0x1e
+002AC216  mov       dword ptr [rbx + 0x34], 0x3f800000
+002AC21D  mov       byte ptr [rbx + 0xa0], 1
+002AC224  mov       byte ptr [rbx + 0x9a], 0x25
+002AC22B  mov       byte ptr [rbx + 0xa8], 0xff
+002AC232  mov       byte ptr [rbx + 0x9e], 8
+002AC239  mov       byte ptr [rbx + 0xb0], 0
+002AC240  call      0x39c4a0
+002AC245  mov       qword ptr [rbx + 0x60], rax
+002AC249  mov       qword ptr [rbx + 0xb8], 0x30000
+002AC254  mov       dword ptr [rbx + 0x38], 0x3f800000
+002AC25B  mov       dword ptr [rbx + 0x3c], 0x3f800000
+002AC262  mov       byte ptr [rbx + 0xae], 0xff
+002AC269  mov       dword ptr [rbx + 0xc0], 0
+002AC273  add       rsp, 0x20
+002AC277  pop       rbx
+002AC278  ret       
+002AC279  int3      
+002AC27A  int3      
+002AC27B  int3      
+002AC27C  int3      
+002AC27D  int3      
+002AC27E  int3      
+002AC27F  int3      
+002AC280  lea       rax, [rip + 0x66a2c5]   ; -> 0091654C u32=0000350F f32=1.90338e-41
+002AC287  ret       
+002AC288  int3      
+002AC289  int3      
+002AC28A  int3      
+002AC28B  int3      
+002AC28C  int3      
+002AC28D  int3      
+002AC28E  int3      
+002AC28F  int3      
+002AC290  lea       rax, [rip + 0x66a2c1]   ; -> 00916558 u32=00000006 f32=8.40779e-45
+002AC297  ret       
+002AC298  int3      
+002AC299  int3      
+002AC29A  int3      
+002AC29B  int3      
+002AC29C  int3      
+002AC29D  int3      
+002AC29E  int3      
+002AC29F  int3      
+002AC2A0  lea       rax, [rip + 0x66a29d]   ; -> 00916544 u32=00002F0F f32=1.68814e-41
+002AC2A7  ret       
+002AC2A8  int3      
+002AC2A9  int3      
+002AC2AA  int3      
+002AC2AB  int3      
+002AC2AC  int3      
+002AC2AD  int3      
+002AC2AE  int3      
+002AC2AF  int3      
+002AC2B0  lea       rax, [rip + 0x66a2a5]   ; -> 0091655C u32=0000210F f32=1.18592e-41
+002AC2B7  ret       
+002AC2B8  int3      
+002AC2B9  int3      
+002AC2BA  int3      
+002AC2BB  int3      
+002AC2BC  int3      
+002AC2BD  int3      
+002AC2BE  int3      
+002AC2BF  int3      
+002AC2C0  or        cl, 0x80
+002AC2C3  lea       rax, [rip + 0x1b60b32]   ; -> 01E0CDFC u32=80813F0F f32=-1.18694e-38
+002AC2CA  mov       byte ptr [rip + 0x1b60b2f], cl   ; -> 01E0CDFF u32=00000080 f32=1.79366e-43
+002AC2D0  ret       
+002AC2D1  int3      
+002AC2D2  int3      
+002AC2D3  int3      
+002AC2D4  int3      
+002AC2D5  int3      
+002AC2D6  int3      
+002AC2D7  int3      
+002AC2D8  int3      
+002AC2D9  int3      
+002AC2DA  int3      
+002AC2DB  int3      
+002AC2DC  int3      
+002AC2DD  int3      
+002AC2DE  int3      
+002AC2DF  int3      
+002AC2E0  lea       rax, [rip + 0x66a269]   ; -> 00916550 u32=8080310F f32=-1.17725e-38
+002AC2E7  ret       
+002AC2E8  int3      
+002AC2E9  int3      
+002AC2EA  int3      
+002AC2EB  int3      
+002AC2EC  int3      
+002AC2ED  int3      
+002AC2EE  int3      
+002AC2EF  int3      
+---

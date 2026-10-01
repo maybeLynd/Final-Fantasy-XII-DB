@@ -1,0 +1,6 @@
+0032E9B5 mov qword ptr [rip + 0x1f96814], rax     bytes 4889051468f901
+0032E922 inc edx                                  bytes ffc2
+0032E493 mov dword ptr [rax + 0x10], r8d          bytes 44894010
+0032ECC5 mov dword ptr [rcx + 0x64], 0xffffffff   bytes c74164ffffffff
+0032E8FC and edx, 0x7ff                           bytes 81e2ff070000
+0032E5B7 jne 0x32e5f9                             bytes 7540

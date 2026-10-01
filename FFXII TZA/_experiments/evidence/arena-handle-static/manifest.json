@@ -1,0 +1,21 @@
+{
+  "evidence_class": "A: offline complete shipping bodies and existing captured results; no game-code execution",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect.py": {
+      "bytes": 3852,
+      "sha256": "44b3b47af6a07244f6c73e1d2f250abe7ee249ce15ab9b9e06e6b88260cadf6b"
+    },
+    "primary.json": {
+      "bytes": 55078,
+      "sha256": "61e3f6865c3b57f6d7d90a9603c59612d613c45dbaf1656cd87a2d8837b852e4"
+    },
+    "review.json": {
+      "bytes": 3320,
+      "sha256": "a6aa2e7f870f8870ad3575bdb99e72f769db93b01d22ba2827fca8168afa9ac6"
+    }
+  }
+}

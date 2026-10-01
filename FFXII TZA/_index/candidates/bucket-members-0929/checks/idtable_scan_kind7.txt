@@ -1,0 +1,6 @@
+0x99 [(31401280, 0, 'frs0103'), (31422448, 0, 'frs0103')] count 2
+0x90 [(13889976, 0, 'PrevBoneTransformConstantBuffer'), (31401136, 0, 'pla0105'), (31422304, 0, 'pla0105')] count 3
+0x7e [(31400848, 0, 'asp0103'), (31422016, 0, 'asp0103')] count 2
+0xc1 [(13776864, 0, 'q_img_c'), (13888904, 0, 'lightColorIntensity'), (31401920, 0, 'rui0102'), (31423088, 0, 'rui0102')] count 4
+CONTROL 0xC1 @ 00D237E0: PASS
+FAILS 0

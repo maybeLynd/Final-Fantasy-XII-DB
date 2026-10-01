@@ -1,0 +1,130 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "adapter.py",
+      "bytes": 2328,
+      "sha256": "2f5cb7622460739c0f372ddec3370be09a7b7a2e230ff774b00274d72e6ad5d9"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 5016,
+      "sha256": "82a0a8484c5899642354e12d3f842d9fe9c77314a860581c1fc3bc27b24bac68"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5523,
+      "sha256": "a90fc1ba098e33d47b6e80760820d6ea8c4d9ffde0b65ed16751f7de6777391b"
+    },
+    {
+      "path": "fault-old-binding.stderr",
+      "bytes": 476,
+      "sha256": "b583e495f8344be438fb44b29a6b049bdf25f6e7081a8d73730f62b9900d2bfa"
+    },
+    {
+      "path": "fault-old-binding.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2846,
+      "sha256": "1e2c294fc8e84152a2c766c40fc13e4049e6e2f03e36d7736acbdea766734dd5"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2553,
+      "sha256": "d8cddd7caccb34c0971b648a322b676b4357d88c1e7fae582da8bb4e580635e7"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "bytes": 16161,
+      "sha256": "97787f563214d83ce27a4a601209209762d3294315a8e5782648521a501cf1b9"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2348,
+      "sha256": "10ab0df3b26008cc40c7ba65cdc44222582118b176bb6cd1cbd70a75a7c2560e"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 19462,
+      "sha256": "7dbe83d1c9df54f696c9491ddf03e5867ff9fdb7abb4dca797f4f18dccc2dc83"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4557,
+      "sha256": "1d4323bcb59f92e263a930128f2ffda62cc06a2dbed6cac40d02c9871166eeb9"
+    },
+    {
+      "path": "regression-control.json",
+      "bytes": 683,
+      "sha256": "bff0d650f14f827c1d73b43405213b13c1d73ac34fed6389a9a841162bbdee3d"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2925,
+      "sha256": "1ec8fe1a2fdad6140444c071688930da567d593025647cfcf2147418a3298b3c"
+    },
+    {
+      "path": "retained/adapter-before-run.py",
+      "bytes": 2328,
+      "sha256": "2f5cb7622460739c0f372ddec3370be09a7b7a2e230ff774b00274d72e6ad5d9"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 5016,
+      "sha256": "82a0a8484c5899642354e12d3f842d9fe9c77314a860581c1fc3bc27b24bac68"
+    },
+    {
+      "path": "retained/immediate-payload.bin",
+      "bytes": 48,
+      "sha256": "56dd7ff228499f540be9f11180582af28f02d4b5a2a12360597619ecc783fa8b"
+    },
+    {
+      "path": "retained/original-window.bin",
+      "bytes": 48,
+      "sha256": "d3a56e8ffcb03a2861f5bf71865ceb2ce022c8dd32c2751fa6de3f1d8adbf30d"
+    },
+    {
+      "path": "retained/original.bin",
+      "bytes": 48,
+      "sha256": "d3a56e8ffcb03a2861f5bf71865ceb2ce022c8dd32c2751fa6de3f1d8adbf30d"
+    },
+    {
+      "path": "retained/producer-original.py",
+      "bytes": 7551,
+      "sha256": "93db6a101ae4b0116ad7faccbbfceba71cf6cdbda49db9a1b5a1d61df607f53f"
+    },
+    {
+      "path": "retained/producer-output.txt",
+      "bytes": 687,
+      "sha256": "73ebfda8929b9ba4bcdf31f1fd86ca3762eb309d8f78e90b94660440cdee7874"
+    },
+    {
+      "path": "retained/producer-readme.md",
+      "bytes": 3636,
+      "sha256": "026a74448905265d460d29ad0c240f117e15e932ae9d387dfbc528860718b7d9"
+    },
+    {
+      "path": "retained/real-call.bin",
+      "bytes": 48,
+      "sha256": "55ee1e0702b0d337be3123b2a8c9e1c533d4b1152345cc16dd6acb2573c8b857"
+    },
+    {
+      "path": "retained/selected-corrected.py",
+      "bytes": 4826,
+      "sha256": "6e31f721ae31c926ce3ce71a46c43557e5e4eeda209503117560643a604c1a6a"
+    },
+    {
+      "path": "retained/selected-original.py",
+      "bytes": 4809,
+      "sha256": "8d3e5d2abc7fb2f02298280131adf22dd5b6ccb2bde413505e9b758f4ab0d2b7"
+    }
+  ],
+  "limits": "A only bounded actual-producer source-binding control and disclosed local default repair. No historical original-image census disproof or whole-image/global reachability/native proof; independent acceptance pending"
+}

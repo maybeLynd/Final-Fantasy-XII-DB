@@ -1,0 +1,348 @@
+{
+  "commit": "671e6ce69c5152eec16aa966c9b3c543a9f45154",
+  "failure": "Additional raw-versus-Git hash check failed first at EXP-056 because that original working file used CRLF while its existing Git blob used LF. The following PowerShell command still invoked publication; it should have been conditional. No record body changed in Git. Follow-up verifies all records and teaches the integrity reader to distinguish the two preserved representations.",
+  "records": [
+    {
+      "record": "EXP-037-command-observer.md",
+      "original_git_body_bytes": 5473,
+      "original_git_body_sha256": "d01d5b86273fe3b87b2ee5d01c1b912d6d3e1871944dfcf460938f332acf4930",
+      "local_raw_body_sha256": "d01d5b86273fe3b87b2ee5d01c1b912d6d3e1871944dfcf460938f332acf4930",
+      "local_crlf": 0,
+      "local_lf": 78,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-038-handler-stack.md",
+      "original_git_body_bytes": 4795,
+      "original_git_body_sha256": "51013c62e9c41d215d730ea1a33ed65c6fc1753c286e052729201af31f2a8f67",
+      "local_raw_body_sha256": "51013c62e9c41d215d730ea1a33ed65c6fc1753c286e052729201af31f2a8f67",
+      "local_crlf": 0,
+      "local_lf": 70,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-039-stack-native-control.md",
+      "original_git_body_bytes": 4978,
+      "original_git_body_sha256": "54281336dc6f82823353a4555b00fb4f1a2bbee07e9cbe633ad21ed0f48b9687",
+      "local_raw_body_sha256": "54281336dc6f82823353a4555b00fb4f1a2bbee07e9cbe633ad21ed0f48b9687",
+      "local_crlf": 0,
+      "local_lf": 74,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-040-cancel-snapshot-control.md",
+      "original_git_body_bytes": 6105,
+      "original_git_body_sha256": "84520df8bd93d6d5b3a7d9445f98ca7ceb28a01153098188d10f861cdbe59aaa",
+      "local_raw_body_sha256": "84520df8bd93d6d5b3a7d9445f98ca7ceb28a01153098188d10f861cdbe59aaa",
+      "local_crlf": 0,
+      "local_lf": 92,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-041-config-pointer-closure.md",
+      "original_git_body_bytes": 3634,
+      "original_git_body_sha256": "20654a8458ae5cd4afbcc4434a89673fc8236728e32514fbbcc71d5d923ff7c2",
+      "local_raw_body_sha256": "20654a8458ae5cd4afbcc4434a89673fc8236728e32514fbbcc71d5d923ff7c2",
+      "local_crlf": 0,
+      "local_lf": 54,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-042-command-source-refresh.md",
+      "original_git_body_bytes": 1846,
+      "original_git_body_sha256": "302368eed8c312433f0d6882a7008735e3a87a75d864934dda3ed6c688835e44",
+      "local_raw_body_sha256": "302368eed8c312433f0d6882a7008735e3a87a75d864934dda3ed6c688835e44",
+      "local_crlf": 0,
+      "local_lf": 25,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-043-target-buffer-boundary.md",
+      "original_git_body_bytes": 4785,
+      "original_git_body_sha256": "bc6544a11606a8cea403cbae677a8655f9c7e87d1857dcfd336df908bab3943d",
+      "local_raw_body_sha256": "bc6544a11606a8cea403cbae677a8655f9c7e87d1857dcfd336df908bab3943d",
+      "local_crlf": 0,
+      "local_lf": 81,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-044-check-verdict.md",
+      "original_git_body_bytes": 4169,
+      "original_git_body_sha256": "5f281778bf8137e5dbf869fbd4eb42010ea7ba99b33a3e719d27abc4c03a915e",
+      "local_raw_body_sha256": "5f281778bf8137e5dbf869fbd4eb42010ea7ba99b33a3e719d27abc4c03a915e",
+      "local_crlf": 0,
+      "local_lf": 75,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-045-observer-repaired-dependency.md",
+      "original_git_body_bytes": 2268,
+      "original_git_body_sha256": "80c0ef4b63cacb6cb57cc3af0dee04fd498bcdb0aa699807702b3d24048fe800",
+      "local_raw_body_sha256": "80c0ef4b63cacb6cb57cc3af0dee04fd498bcdb0aa699807702b3d24048fe800",
+      "local_crlf": 0,
+      "local_lf": 34,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-046-target-buffer-reset.md",
+      "original_git_body_bytes": 4227,
+      "original_git_body_sha256": "81fce649234a96b1b0b71192d3c40c673ad437c9d2a7f5281dcdd74993b0d886",
+      "local_raw_body_sha256": "81fce649234a96b1b0b71192d3c40c673ad437c9d2a7f5281dcdd74993b0d886",
+      "local_crlf": 0,
+      "local_lf": 73,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-047-attacker-mask-reset.md",
+      "original_git_body_bytes": 4718,
+      "original_git_body_sha256": "9bed00b301583ed0dc82b868aa5b2436243cb6c8c2347880cf07a7574c364bd5",
+      "local_raw_body_sha256": "9bed00b301583ed0dc82b868aa5b2436243cb6c8c2347880cf07a7574c364bd5",
+      "local_crlf": 0,
+      "local_lf": 85,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-048-handle-discriminator-advance.md",
+      "original_git_body_bytes": 4537,
+      "original_git_body_sha256": "14de801a1fb8d131cfdd8a691745e4bb81f53ab656c35638336b73b9938906fa",
+      "local_raw_body_sha256": "14de801a1fb8d131cfdd8a691745e4bb81f53ab656c35638336b73b9938906fa",
+      "local_crlf": 0,
+      "local_lf": 87,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-049-handle-renewal-focus.md",
+      "original_git_body_bytes": 4756,
+      "original_git_body_sha256": "013446a06b255512cc6b62f447e517b4412258b9a48e91a59500c5c5fe2b5de4",
+      "local_raw_body_sha256": "013446a06b255512cc6b62f447e517b4412258b9a48e91a59500c5c5fe2b5de4",
+      "local_crlf": 0,
+      "local_lf": 83,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-050-focus-fallback-selection.md",
+      "original_git_body_bytes": 4339,
+      "original_git_body_sha256": "6c8623cf2ac7dfc999cc7e331a9692c2a96ee9276cc619319e7459630e1f8c96",
+      "local_raw_body_sha256": "6c8623cf2ac7dfc999cc7e331a9692c2a96ee9276cc619319e7459630e1f8c96",
+      "local_crlf": 0,
+      "local_lf": 80,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-051-focus-commit-reentrancy.md",
+      "original_git_body_bytes": 5163,
+      "original_git_body_sha256": "d6361934d771af7cbdb185dcc3815e2e763f811ede9b37d21b0cfbca398014b0",
+      "local_raw_body_sha256": "d6361934d771af7cbdb185dcc3815e2e763f811ede9b37d21b0cfbca398014b0",
+      "local_crlf": 0,
+      "local_lf": 89,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-052-loot-pickup-selection.md",
+      "original_git_body_bytes": 6256,
+      "original_git_body_sha256": "9c3eae8297d73e38c8d6b784b5d58926caae07db5c8d1e60c61c5f4dbd869ef8",
+      "local_raw_body_sha256": "9c3eae8297d73e38c8d6b784b5d58926caae07db5c8d1e60c61c5f4dbd869ef8",
+      "local_crlf": 0,
+      "local_lf": 109,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-053-loot-overlap-controls.md",
+      "original_git_body_bytes": 5617,
+      "original_git_body_sha256": "022ad71125031882c524bece6412e3456da0d2755aeb042758b92f218e520df2",
+      "local_raw_body_sha256": "022ad71125031882c524bece6412e3456da0d2755aeb042758b92f218e520df2",
+      "local_crlf": 0,
+      "local_lf": 101,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-054-loot-caller-geometry.md",
+      "original_git_body_bytes": 5519,
+      "original_git_body_sha256": "a43ac3a36a3859ac6f0ffc44bcfd165ca8d830725b170e9e387d5185581bb1af",
+      "local_raw_body_sha256": "a43ac3a36a3859ac6f0ffc44bcfd165ca8d830725b170e9e387d5185581bb1af",
+      "local_crlf": 0,
+      "local_lf": 97,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-055-loot-collection-effects.md",
+      "original_git_body_bytes": 5730,
+      "original_git_body_sha256": "d241c74ed3c24525e6896276aabea65b35bf27cf2c08da3e9cf4c3d9cd243118",
+      "local_raw_body_sha256": "d241c74ed3c24525e6896276aabea65b35bf27cf2c08da3e9cf4c3d9cd243118",
+      "local_crlf": 0,
+      "local_lf": 98,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-056-save-normalize-roundtrip.md",
+      "original_git_body_bytes": 6307,
+      "original_git_body_sha256": "b3b748d42bd37ea53ef5afdc2d2adebba4f7031b33594c3c0d7998ec64e3384a",
+      "local_raw_body_sha256": "a0334d6bedd979ddbf5c5a16becf0386c61bb4d864e0c4ab4b298c2446a14cd9",
+      "local_crlf": 1,
+      "local_lf": 115,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-057-save-checksum-controls.md",
+      "original_git_body_bytes": 6554,
+      "original_git_body_sha256": "deab2458828888b9b5915b78ac5368344d23a854adb7262961aec2944f592649",
+      "local_raw_body_sha256": "6587a46c02a05e9769a689a2ecaace8a1477e58bd736969685186f70bdefa0b7",
+      "local_crlf": 1,
+      "local_lf": 124,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-058-save-validator-controls.md",
+      "original_git_body_bytes": 4146,
+      "original_git_body_sha256": "c2d5aa860c2466405b80f2a05bd78ceb4937fc9012b6109272dd6983019449a6",
+      "local_raw_body_sha256": "98adeaf61c8efd461dedd953a82759036256916fb1bb0e48724f155a32c91960",
+      "local_crlf": 1,
+      "local_lf": 82,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-059-formula-copyout-controls.md",
+      "original_git_body_bytes": 6672,
+      "original_git_body_sha256": "7eca0e2b8bebf2141912093d6e309b9bfd3f04942b6209b59079a300a39006a5",
+      "local_raw_body_sha256": "a4cc58690d75068e5e3b45613f973971de81cf804618837666771834118b3407",
+      "local_crlf": 1,
+      "local_lf": 123,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-060-result-numeric-dispatch.md",
+      "original_git_body_bytes": 6047,
+      "original_git_body_sha256": "eaa161fb88d7e2cec58055f01b94cdbdbff1893ac9237a7ff395cba05b82fd3d",
+      "local_raw_body_sha256": "018799d9950f405d8f29954864248ac4169896b62caa678dd1fc73f6a60c2a58",
+      "local_crlf": 96,
+      "local_lf": 96,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-061-mp-writer-controls.md",
+      "original_git_body_bytes": 8232,
+      "original_git_body_sha256": "9cf019d52dd52c40442d54c791e11a9cf90c17e0a8886e14c2dbf304b21365af",
+      "local_raw_body_sha256": "079e7611c935afaf64d0a9897f4eab8b78c58a94a14c33b446df7650aeed5241",
+      "local_crlf": 144,
+      "local_lf": 144,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-062-mp-composition.md",
+      "original_git_body_bytes": 6848,
+      "original_git_body_sha256": "dd42e412b74f0302646f366e9ccb0ca1e876ff8ac179097bc0365177fde4ae12",
+      "local_raw_body_sha256": "dc5c6c94eeed4f230bc9f250639943d3ea499d5ba7da03fa5ced50a600f64f28",
+      "local_crlf": 101,
+      "local_lf": 101,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-063-mp-cost-controls.md",
+      "original_git_body_bytes": 6902,
+      "original_git_body_sha256": "e1121015674bec5e37bc994345b55eb57ff8966772a97bccbb65348b21afaf39",
+      "local_raw_body_sha256": "1c58b48fca44fc961c949446b6afe97f54f2922e89c697630955248770e34c59",
+      "local_crlf": 114,
+      "local_lf": 114,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-064-resource-payer-controls.md",
+      "original_git_body_bytes": 5201,
+      "original_git_body_sha256": "0a9aaa9b9963b24112d31d9a99734345df96d7e0f824b28188d86d31acb04571",
+      "local_raw_body_sha256": "0ffb7d7dc64e0ceb1584b61aa60f5fc62789f8946fb0ca780096e14e238b8c7b",
+      "local_crlf": 84,
+      "local_lf": 84,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-065-resource-consume-controls.md",
+      "original_git_body_bytes": 6678,
+      "original_git_body_sha256": "3391d54e128f0378c4304bc83c23ef72b8c1748020e2b4ee492a63cd65cd14b2",
+      "local_raw_body_sha256": "3679a9a14cc189beb555fc3e845c937620bf785ef3ee70e22361721e56e17187",
+      "local_crlf": 106,
+      "local_lf": 106,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-066-consume-native-composition.md",
+      "original_git_body_bytes": 6145,
+      "original_git_body_sha256": "338093a523614752f082a114072a4433376a948f3c9650ae035a8aba7f129f8a",
+      "local_raw_body_sha256": "86146b3d5820e6d386e9c28b90303fd3de1d93cef8052bd7988be969af99d4dd",
+      "local_crlf": 114,
+      "local_lf": 114,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-067-ui-router-controls.md",
+      "original_git_body_bytes": 5470,
+      "original_git_body_sha256": "24dd07ee666ebb006de666aae91ffecb3f471fe2661618eef112946476d01117",
+      "local_raw_body_sha256": "97ffc258d97eb500ecd01bf9ea37807f1f8a800326a4c4bff951c96f4725e542",
+      "local_crlf": 106,
+      "local_lf": 106,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-068-ui-generic-controls.md",
+      "original_git_body_bytes": 5376,
+      "original_git_body_sha256": "cc92a39a78190fb682f0d89f93b38d6444fad5605d67753bb0fad25ecd0e7f44",
+      "local_raw_body_sha256": "cc92a39a78190fb682f0d89f93b38d6444fad5605d67753bb0fad25ecd0e7f44",
+      "local_crlf": 0,
+      "local_lf": 102,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-069-ui-native-feedback.md",
+      "original_git_body_bytes": 6242,
+      "original_git_body_sha256": "3e9570693bc2f164a2b5011c1edc8691065ef9dc7108054ea3457e04f964cd29",
+      "local_raw_body_sha256": "3e9570693bc2f164a2b5011c1edc8691065ef9dc7108054ea3457e04f964cd29",
+      "local_crlf": 0,
+      "local_lf": 107,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-070-procedural-rng-controls.md",
+      "original_git_body_bytes": 6123,
+      "original_git_body_sha256": "48513b0161e4ce86db8f2ae575ba70647f89a5f9d27dba07b2af8077348c843a",
+      "local_raw_body_sha256": "48513b0161e4ce86db8f2ae575ba70647f89a5f9d27dba07b2af8077348c843a",
+      "local_crlf": 0,
+      "local_lf": 115,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-071-procedural-rng-init.md",
+      "original_git_body_bytes": 5035,
+      "original_git_body_sha256": "af5f9558b810cae4836c22958284f9ea10d3be7245b943ddc5ed92f1e7662e86",
+      "local_raw_body_sha256": "af5f9558b810cae4836c22958284f9ea10d3be7245b943ddc5ed92f1e7662e86",
+      "local_crlf": 0,
+      "local_lf": 91,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-072-facing-writer-controls.md",
+      "original_git_body_bytes": 8442,
+      "original_git_body_sha256": "5c223062375cc42a99990780c3317a375a1b5c2f4b245cadd015af0bbf0db353",
+      "local_raw_body_sha256": "5c223062375cc42a99990780c3317a375a1b5c2f4b245cadd015af0bbf0db353",
+      "local_crlf": 0,
+      "local_lf": 155,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-073-facing-reapply-comparison.md",
+      "original_git_body_bytes": 8310,
+      "original_git_body_sha256": "75d9d79f7c400c98dc7d57ca7db33c38469110aacc5c0a3d3236aef3198e8ef6",
+      "local_raw_body_sha256": "5fa6327feffab633f82ffd9ff40881b9d126663735bd58acc18446676c6da1e9",
+      "local_crlf": 142,
+      "local_lf": 142,
+      "git_body_unchanged": true
+    },
+    {
+      "record": "EXP-074-angle-conversion-boundary.md",
+      "original_git_body_bytes": 5402,
+      "original_git_body_sha256": "64b96764093a5c9820398ccd2d25b7f9cb5504ad490640a4c5a662a007d6c977",
+      "local_raw_body_sha256": "64b96764093a5c9820398ccd2d25b7f9cb5504ad490640a4c5a662a007d6c977",
+      "local_crlf": 0,
+      "local_lf": 96,
+      "git_body_unchanged": true
+    }
+  ]
+}

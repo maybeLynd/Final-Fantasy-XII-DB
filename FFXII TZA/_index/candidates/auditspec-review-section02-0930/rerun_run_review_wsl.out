@@ -1,0 +1,21 @@
+{
+  "section": "SECTION-02",
+  "status": "PASS bounded local production checks; formal peer acceptance pending",
+  "original_bodies_verified": 22,
+  "native_checks": 72,
+  "native_failures": 0,
+  "repeat_identical": true,
+  "host_callback_address_normalization": "Native code asserts actual callback pointer equality; only last_return display normalizes that host-ASLR address to0.",
+  "code_mutants_detected": 6,
+  "retained_assertion_branches": 22,
+  "historical_branches_without_positive_loader_assertion": 2,
+  "retained_record_negative_controls": 4,
+  "not_performed": [
+    "live FF12 run",
+    "full original Unicorn campaigns",
+    "fresh current-GN Ghidra import",
+    "independent T2/terminal acceptance",
+    "complete underlying I/O service or callback implementation"
+  ]
+}
+EXIT 0

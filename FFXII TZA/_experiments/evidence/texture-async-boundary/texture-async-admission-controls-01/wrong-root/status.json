@@ -1,0 +1,7 @@
+{
+  "case": "wrong-root",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "root/leaf prerequisite changed",
+  "expected_error_seen": true
+}

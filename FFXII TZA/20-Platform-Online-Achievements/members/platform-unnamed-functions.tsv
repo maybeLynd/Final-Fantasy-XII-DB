@@ -1,0 +1,62 @@
+# platform-unnamed-functions - the Platform-owned functions still named FUN_ (AB-6), with what each one calls and names (FABLE, 2026-09-17).
+# imports: external callees from Tools/work/graph/edges.tsv; named_callees: listed callees that carry a name; strings: printable ASCII or UTF-16 strings reached by lea (capstone).
+entry	size	imports	named_callees	strings
+001F3AE0	809	SteamAPI_GetHSteamPipe; SteamAPI_GetHSteamUser; SteamInternal_CreateInterface		SteamClient017; SteamUser019; SteamFriends015; SteamUtils009; SteamMatchMaking009; SteamMatchMakingServers002; STEAMUSERSTATS_INTERFACE_VERSION011; STEAMAPPS_INTERFACE_VERSION008
+001F3E10	131	SteamAPI_GetHSteamPipe		
+001F3ED0	159	SteamInternal_ContextInit	__security_check_cookie; memset	%llu
+0020C730	263	SteamAPI_RegisterCallback; SteamInternal_ContextInit		
+0020C840	24			
+0020C860	24			
+0020C880	24			
+0020C8A0	6			
+0020C8B0	6			
+0020C8C0	121	SteamInternal_ContextInit		
+0020C940	470	OutputDebugStringA; SteamInternal_ContextInit		name; desc
+0020CB20	48			
+0020CB50	334	SteamInternal_ContextInit		
+0020CCA0	23			
+0020CCC0	105	SteamInternal_ContextInit		
+0020CD30	77			
+0020CD80	126	SteamAPI_UnregisterCallback	free	
+0020CE00	8			
+0020CE10	78	SteamInternal_ContextInit		
+0020CE60	137	SteamInternal_ContextInit		
+00315390	94			
+00315420	80			
+003154B0	367		FieldData_GetVariable0	
+00315820	133			
+00315D50	112			
+00315E90	519		BattleEncodedId_DispatchQueryMode0Value	
+003160C0	212		WorldTransition_GetActiveOrPendingFieldId	
+003161A0	308		FieldData_GetVariable0	
+003162E0	345			
+00316440	55			
+00316480	289			
+003165C0	172			
+00316670	126			
+003166F0	112			
+00316760	169			
+00316810	281			
+00316930	287			
+00316A50	411			
+00316BF0	99			
+00316C60	101			
+0079FA00	258	CreateDirectoryW; GetFileAttributesW; SHGetFolderPathW	__security_check_cookie	%s%s; %s%s%s\
+007A0810	129		_Init_thread_footer; _Init_thread_header; atexit	
+007A0C60	832	SteamInternal_ContextInit; _invalid_parameter_noinfo_noreturn	__security_check_cookie; free; memcmp	japanese; english; french; german; italian; spanish; koreana; tchinese
+00862A20	21			
+00862A40	399	CreateDirectoryW; GetFileAttributesW; SHGetFolderPathW	__security_check_cookie; memset	%s%s; %s%s%s\
+00863240	53			
+00863280	44			
+008632B0	44			
+008653B0	224	SteamAPI_RegisterCallback		
+00865490	120	SteamAPI_UnregisterCallback		
+00865540	11			
+00865550	7			
+00865560	12			
+00865570	18			
+00865590	15			
+008655A0	54	OutputDebugStringA		
+008655E0	128	SteamAPI_RegisterCallback		
+00865660	73	SteamAPI_UnregisterCallback	free	
+008B7DB0	12			

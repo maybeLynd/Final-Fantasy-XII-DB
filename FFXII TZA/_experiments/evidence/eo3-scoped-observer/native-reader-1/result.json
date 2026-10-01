@@ -1,0 +1,36 @@
+{
+  "status": "NATIVE_READER_CONTROL_ONLY",
+  "fresh_live_game": false,
+  "original_code_executed": false,
+  "outcomes": [
+    {
+      "case": "full-width exact positive",
+      "bytes_hex": "505332446174615c6566625c73796e7468657469635f7265616465722e65666200"
+    },
+    {
+      "case": "last readable byte",
+      "bytes_hex": "00"
+    },
+    {
+      "case": "cross-page read rejected",
+      "returned": null
+    },
+    {
+      "case": "NOACCESS read rejected",
+      "returned": null
+    },
+    {
+      "case": "bounded byte path avoids reading past NUL",
+      "bytes_hex": "505332446174615c6566625c73796e7468657469635f7265616465722e65666200"
+    },
+    {
+      "case": "positive after failed reads",
+      "bytes_hex": "505332446174615c6566625c73796e7468657469635f7265616465722e65666200"
+    }
+  ],
+  "limitations": [
+    "Supplied stable child memory, not FF12 initialization or memory lifetime.",
+    "No debug-event stopped read/abort qualification or game health conclusion.",
+    "Actual partial transfer count is retained; failure rejection does not require a particular count."
+  ]
+}

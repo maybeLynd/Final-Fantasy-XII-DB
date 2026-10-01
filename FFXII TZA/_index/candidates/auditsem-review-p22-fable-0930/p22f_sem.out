@@ -1,0 +1,77 @@
+PASS Ra 003601B0 = mov eax,1; shl eax,cl; or [022CB720],eax; ret (14 B)
+PASS Ra 003601C0 = same with not/and (16 B)
+PASS Ra edge 002628B0 -> 003601B0
+PASS Ra edge 003614E0 -> 003601B0
+PASS Ra edge 00361460 -> 003601C0
+PASS Ra edge 003145E0 -> 003601B0
+PASS Rb 00203170 body is 44 B and copies four 16-byte rows to [rcx] | srcs=008C5F80,008C5F90,008C5FB0,008C5FD0
+PASS Rb the four rows are the 4x4 identity | [(1.0, 0.0, 0.0, 0.0), (0.0, 1.0, 0.0, 0.0), (0.0, 0.0, 1.0, 0.0), (0.0, 0.0, 0.0, 1.0)]
+PASS Rb NOTE the sources are 008C5F80/90/B0/D0 (not a contiguous 64-byte run)
+PASS Rb the seven UI bodies call 00203170 (edges) | []
+PASS Rb seteventlightdir 00356160 -> 00203170 (edge)
+PASS Rc 001EDE70 = mov eax,[01F82E38]; ret (7 B)
+PASS Rc 00253C70 calls it at 00253D8F
+PASS Rc 22 direct callers (edges.tsv) | 22
+PASS Rd 001EDE80 is 61 B: 1 when [01F82E38]==0 or [01DFE0C0]!=0, else 0022A080()+0022A030()
+PASS Rd 7 direct callers (edges.tsv) | 7
+PASS Rd 0025DF00 calls it at 0025DFA9 and branches to 0025E12B on 0 | call 0x1ede80 ; test eax, eax ; je 0x25e12b ; movsx rax, byte ptr [rdi + 0x11]
+PASS Rd 003FA790 calls it at 003FA7F8 and a 0 skips 003FC170 | call 0x1ede80 ; test eax, eax ; je 0x3fa80d ; lea rcx, [rbx + 0x20] ; mov rdx, rbx ; call 0x3fc170
+PASS Re 00187950 calls 001A1470 at 00187AB5 with [01F7F4C0] and size 0x10 | je 0x187b98 ; mov edx, 0x10 ; mov rcx, qword ptr [rip + 0x1df7a0b] ; call 0x1a1470
+PASS Re 00187950 calls 001A1470 at 00187AFE with [01F7F4C0] and size 0x10 | call 0x16d6a0 ; mov edx, 0x10 ; mov rcx, qword ptr [rip + 0x1df79c2] ; call 0x1a1470
+PASS Re 00187950 calls 001A1470 at 00187B4F with [01F7F4C0] and size 0x10 | call 0x16d6a0 ; mov edx, 0x10 ; mov rcx, qword ptr [rip + 0x1df7971] ; call 0x1a1470
+PASS Re 001A1470 has 35 direct callers (edges.tsv) | 35
+PASS Rf edge 0061F200 -> 005FD050
+PASS Rf edge 0061F710 -> 005FD050
+PASS Rf edge 006209C0 -> 005FD050
+PASS Rf edge 006239C0 -> 005FD050
+PASS Rf 005FD050 has 55 direct callers (edges.tsv) | 55
+PASS S1 00236760 = mov rax,[02EBF190]; mov eax,[rax+4]; shr eax,12; and eax,1; ret
+PASS S1 00236780 = mov rax,[02EBF190]; mov eax,[rax+4]; shr eax,14; and eax,1; ret
+PASS S1 call site 001C1758 calls 00236760 or 00236780 | call 0x236760
+PASS S1 call site 002EF696 calls 00236760 or 00236780 | call 0x236760
+PASS S1 00583D60 ORs header +0x57 with 1 and 4 (00583F5A-00583F70) | call 0x236760 ; test eax, eax ; je 0x583f67 ; or byte ptr [rdi + 0x57], 1 ; call 0x236780 ; test eax, eax ; je 0x583f74 ; or byte ptr [rdi + 0x57], 4
+PASS S2 00290180 = mov eax,2; ret (6 B)
+PASS S2 is_ntsc is verb 0x4EB with handler 003423E0 (verb table) | {'call_id': '04EB', 'begin': '', 'arg_handler': '003423E0'}
+PASS S2 003423E9-003423F6: calls 00290180 and compares with 2 | call 0x290180 ; xor edx, edx ; mov rcx, rbx ; cmp eax, 2 ; sete dl
+PASS S3 00264670 is 35 B: class 3 ([+3]&0xE0==0x60) -> float [[+0xB8]+0xD4], else 0.0
+PASS S3 floor probe 002F3750 -> 00264670 (edge)
+PASS S3 getgroundy handler 00343520 -> 00264670 (edge + verb table)
+PASS S4 00265090: class 3 -> tail-jump with rcx=[+0xB8]+0x50 (00265090-002650A5)
+PASS S4 002FB150 calls 00265090 at 002FB1C1
+PASS S5 003E7650 has exactly one caller, 00314020 (edges.tsv) | {'00314020'}
+PASS S5 the site is 00314341
+PASS S6 00182E80 is 41 B; null -> 0x438
+PASS S6 001DDAB0 returns [01F82D18] | mov rax, qword ptr [rip + 0x1da5261]
+PASS S6 002256A0 returns dword [rcx+0x14] | mov eax, dword ptr [rcx + 0x14]
+PASS S6 00187950 calls 00182E80 at 00187993
+PASS S7 0053DD10 = mov eax,1; ret
+PASS S7 003590D0 = mov eax,[022C7FE0]; ret (7 B)
+PASS S7 00265020: Script_VM_Native_Bridge-owned callers in edges.tsv = 23 | found 23
+PASS S7 0053DD10: Script_VM_Native_Bridge-owned callers in edges.tsv = 17 | found 17
+PASS S7 003590D0: Script_VM_Native_Bridge-owned callers in edges.tsv = 14 | found 14
+PASS S7 00203170: Script_VM_Native_Bridge-owned callers in edges.tsv = 1 | found 1
+PASS S7 00264670: Script_VM_Native_Bridge-owned callers in edges.tsv = 1 | found 1
+PASS S7 0036A100: Script_VM_Native_Bridge-owned callers in edges.tsv = 1 | found 1
+PASS S7 57 edges from 54 distinct handlers | edges=57 handlers=54
+PASS S7 control: every script-layer caller of 0053DD10 is a verb-table handler
+PASS S7 modelreadsync's test at 00341876 is on 0053DD10's answer | test eax, eax
+PASS S7 modelreadsync 00341840 -> 0053DD10 (edge)
+PASS S7 debug_tkmalloc_4 0050D8F0 -> 0036A100 (edge)
+PASS S8 0031B860 compares [unit+0x698] in 0031B87D-0031B8A4 | call 0x236850 ; test eax, eax ; jle 0x31b8a6 ; mov ecx, ebx ; call 0x236820 ; test rax, rax ; je 0x31b89b ; cmp qword ptr [rax + 0x698], rdi
+PASS S8 00324470 sets unit flag bit 6 at 003244E1 (or dword [rbx], 0x40) | or dword ptr [rbx], 0x40
+PASS S8 00324380 rebuilds 022C257C from [+0x698]+4 (00324398-003243CC) | mov ecx, edi ; call 0x236820 ; mov rbx, rax ; test rax, rax ; je 0x3243c7 ; mov rcx, qword ptr [rax + 0x10] ; test rcx, rcx ; je 0x3243b5 ; call 0x37b4b0 ; test byte ptr [rbx], 4
+PASS S8 00390680 reads [unit+0xE60] (003906BD-003906CE)
+PASS S8 F3: 00300BC0 finds the unit (0031B860) then calls 0030B770 (00300BDD-00300BF0) | call 0x31b860 ; mov rbp, rax ; test r14b, 1 ; jne 0x300c10 ; mov qword ptr [rsp + 0x30], rbx ; call 0x30b770
+PASS S8 F5: 00386C10 caches the unit at 02EBF188 and reads +0xEA9 (00386C2E-00386C3F) | call 0x31b860 ; mov qword ptr [rip + 0x2b3854e], rax ; test rax, rax ; je 0x386c6a ; movzx eax, byte ptr [rax + 0xea9]
+PASS S8 F2: imul 0x1C8 at 00320A4B | imul rcx, rax, 0x1c8
+PASS S8 F2: imul 0x1C8 at 00320AC7 | imul rcx, rax, 0x1c8
+PASS S9 002356A3 calls 00328370 | call 0x328370
+PASS S9 003081FF calls 00328370 | call 0x328370
+PASS S9 00239547 calls 00328370 | call 0x328370
+PASS S9 00386C70 -> 00379CD0 (edge)
+PASS S9 00388660 -> 00379CD0 (edge)
+PASS S9 00308EC0 -> 00328370 (edge)
+PASS H1 finding: staged-look page still calls 00203170 'the per-slot visitor' (unstruck at HEAD)
+PASS H1 counter-evidence: 003E3C30 is the visitor - it loops and calls 00203170 per slot at 003E3C7A
+PASS H2 finding: field map section 11 still says '`00236780` is the shared RNG/roll helper' unstruck at HEAD
+FAILS 0

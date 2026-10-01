@@ -1,0 +1,24 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input\\key_packet.py",
+    "--keys",
+    "Left",
+    "--hold",
+    "1.0"
+  ],
+  "pid": 15600,
+  "start_unix": 1789100123.8846524,
+  "status": "COMPLETED",
+  "source_hashes": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input\\input_receipt.py": "262b6d934c742b38825169e557d23de2ea92a445e5f1ae877cf5820208834898",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input\\key_packet.py": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_input_probe.py": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_poke.py": "0985437f4e383cce97f445525ffb41c32d8201a3f3b64704ce59f3402016130b",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\window_focus.py": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d"
+  },
+  "exit_code": 0,
+  "stdout": "pid 15600   held-array at 0x000000000E4D28B0, 256 bytes\nbaseline: all 256 bytes zero\nforeground: the game (hwnd 0x12705e4), verified\n\nCONTROL, no key held for 1.00 s : clean\n\nSCANINPUT vk=0x25 scan=0x4b flags=0x9 up=False accepted=1 requested=1\nSCANINPUT vk=0x25 scan=0x4b flags=0xb up=True accepted=1 requested=1\n  Left      vk 0x25  ->  indices while held: [63]                    still set after release: none\n\nkeys tried            : 1\nkeys that moved a byte: 1\npolls that lost focus : 0\n\nMEASURED MAPPING  (index -> the game's own code, index + 28)\n  Left      index  63  code  91  (no GameSetting.ini name)\nSCANINPUT vk=0x25 scan=0x4b flags=0xb up=True accepted=1 requested=1\n",
+  "stderr": "",
+  "end_unix": 1789100126.2805018
+}

@@ -1,0 +1,10 @@
+files 38, variable sites 405, constant-site controls 20 (all reproduced unless FAIL above)
+files with an unresolvable jump or function entry (UNSOUND): []
+  eventread_e8     TOP      19
+  startscene       TOP      40
+  startscene       exact-1  341
+  startscene_4b3   exact-1  5
+  startscene values: 58 distinct, range (0, 57)
+  startscene_4b3 values: 5 distinct, range (2, 16)
+  eventread_e8 values: 0 distinct, range -
+FAILS 0

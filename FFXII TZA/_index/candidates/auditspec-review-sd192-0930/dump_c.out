@@ -1,0 +1,111 @@
+002E6000  test      rcx, rcx
+002E6003  je        0x2e6080
+002E6005  push      rsi
+002E6006  sub       rsp, 0x40
+002E600A  mov       qword ptr [rsp + 0x50], rbx
+002E600F  mov       esi, edx
+002E6011  mov       rbx, qword ptr [rcx + 0xc0]
+002E6018  test      rbx, rbx
+002E601B  je        0x2e6076
+002E601D  cmp       dword ptr [rbx], -1
+002E6020  je        0x2e6076
+002E6022  movzx     eax, byte ptr [rcx + 3]
+002E6026  and       al, 0xe0
+002E6028  cmp       al, 0x60
+002E602A  jne       0x2e6076
+002E602C  test      byte ptr [rbx + 0x14f], 1
+002E6033  mov       qword ptr [rsp + 0x58], rdi
+002E6038  mov       rdi, qword ptr [rcx + 0xb8]
+002E603F  jne       0x2e6071
+---
+002E6060  mov       dword ptr [rsp + 0x20], esi
+002E6064  movaps    xmm2, xmm6
+002E6067  call      0x3ec3d0
+002E606C  movaps    xmm6, xmmword ptr [rsp + 0x30]
+002E6071  mov       rdi, qword ptr [rsp + 0x58]
+002E6076  mov       rbx, qword ptr [rsp + 0x50]
+002E607B  add       rsp, 0x40
+002E607F  pop       rsi
+002E6080  ret       
+002E6081  int3      
+002E6082  int3      
+002E6083  int3      
+002E6084  int3      
+002E6085  int3      
+002E6086  int3      
+002E6087  int3      
+002E6088  int3      
+002E6089  int3      
+002E608A  int3      
+002E608B  int3      
+002E608C  int3      
+002E608D  int3      
+002E608E  int3      
+002E608F  int3      
+---
+002E6330  push      rbx
+002E6332  sub       rsp, 0x20
+002E6336  cmp       byte ptr [rcx + 0x18], 1
+002E633A  mov       rbx, rcx
+002E633D  je        0x2e639f
+002E633F  mov       rax, qword ptr [rcx + 0xc0]
+002E6346  test      rax, rax
+002E6349  je        0x2e639f
+002E634B  test      byte ptr [rax + 0x14f], 1
+002E6352  jne       0x2e639f
+002E6354  test      byte ptr [rcx + 9], 0x40
+---
+002E6390  add       byte ptr [rax], al
+002E6392  add       byte ptr [rdx + rcx + 0x48], dh
+002E6396  add       esp, 0x20
+002E6399  pop       rbx
+002E639A  jmp       0x3db0d0
+002E639F  add       rsp, 0x20
+002E63A3  pop       rbx
+002E63A4  ret       
+002E63A5  int3      
+002E63A6  int3      
+002E63A7  int3      
+002E63A8  int3      
+002E63A9  int3      
+002E63AA  int3      
+002E63AB  int3      
+002E63AC  int3      
+002E63AD  int3      
+002E63AE  int3      
+002E63AF  int3      
+---
+002EA7F0  mov       qword ptr [rsp + 8], rbx
+002EA7F5  push      rdi
+002EA7F6  sub       rsp, 0x20
+002EA7FA  xor       edi, edi
+002EA7FC  mov       rbx, rcx
+002EA7FF  test      rcx, rcx
+002EA802  je        0x2ea858
+002EA804  cmp       byte ptr [rcx + 0x18], 1
+002EA808  je        0x2ea858
+002EA80A  mov       rax, qword ptr [rcx + 0xc0]
+002EA811  test      rax, rax
+002EA814  je        0x2ea858
+002EA816  test      byte ptr [rax + 0x14f], 1
+002EA81D  jne       0x2ea858
+---
+002EA850  add       esi, dword ptr [rbp + 5]
+002EA853  mov       edi, 1
+002EA858  mov       eax, edi
+002EA85A  mov       rbx, qword ptr [rsp + 0x30]
+002EA85F  add       rsp, 0x20
+002EA863  pop       rdi
+002EA864  ret       
+002EA865  int3      
+002EA866  int3      
+002EA867  int3      
+002EA868  int3      
+002EA869  int3      
+002EA86A  int3      
+002EA86B  int3      
+002EA86C  int3      
+002EA86D  int3      
+002EA86E  int3      
+002EA86F  int3      
+---

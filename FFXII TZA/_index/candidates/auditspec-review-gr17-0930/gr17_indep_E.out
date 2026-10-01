@@ -1,0 +1,16 @@
+== E. immediate forms
+  imm 0x774: 1 sites
+    00329F87 root 00329F80  mov ecx, 0x774
+  imm 0x6B0: 1 sites
+    0030EDA7 root --------  add rcx, 0x6b0
+  imm 0xF50: 10 sites
+    002342C5 root 00234200  mov r8d, 0xf50
+    002344AC root 00234480  add rbx, 0xf50
+    002344C9 root 00234480  mov r8d, 0xf50
+    002367F7 root 002367A0  add rbx, 0xf50
+    00236833 root --------  imul rax, rax, 0xf50
+    00236914 root 002368D0  imul ecx, eax, 0xf50
+    00236932 root 002368D0  imul r8, rcx, 0xf50
+    00238BD2 root 00238B70  add rbx, 0xf50
+    00325042 root 00324F20  add rax, 0xf50
+    007D3CC9 root 007D3CB0  sub rsp, 0xf50

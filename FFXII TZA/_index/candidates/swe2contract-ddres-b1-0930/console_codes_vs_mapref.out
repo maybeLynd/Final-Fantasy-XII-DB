@@ -1,0 +1,7 @@
+PASS  control: entry0='ous0101', sequence==index+1 for all 1314: True
+entries 1314, populated 601, census rows 1315
+agree 599 (of which census-ambiguous 4), disagree 2, no census row 0
+  MISMATCH (670, 'rbl0102', 'rbl0121.mpk')
+  MISMATCH (1003, 'gil0301', 'gil0303.mpk')
+negative control (join at field id + 1): agree 198 of 601
+console id space 0..293: populated 111

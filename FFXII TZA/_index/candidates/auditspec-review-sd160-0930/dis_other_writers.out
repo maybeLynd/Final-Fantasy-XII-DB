@@ -1,0 +1,64 @@
+00238DB0  add       eax, dword ptr es:[rax]
+00238DB3  movss     xmm6, dword ptr [rip + 0x1ab2ee1]   ; -> 01CEBC9C u32=BF800000 f32=-1
+00238DBB  jmp       0x238e06
+00238DBD  cmp       byte ptr [rbx + 0x58], 4
+00238DC1  jne       0x238dc7
+00238DC3  mov       byte ptr [rbx + 0x58], 1
+00238DC7  cmp       byte ptr [rbx + 0x58], 1
+00238DCB  jne       0x238e06
+00238DCD  mov       rcx, r8
+00238DD0  call      0x2659a0
+00238DD5  mov       rcx, qword ptr [rbx + 0x10]
+00238DD9  mov       edx, 0xa
+00238DDE  call      0x25d5e0
+00238DE3  mov       rax, qword ptr [rbx + 0x698]
+00238DEA  test      rax, rax
+00238DED  je        0x238e06
+00238DEF  cmp       byte ptr [rax + 5], 1
+00238DF3  jne       0x238e06
+00238DF5  mov       rax, qword ptr [rbx + 0xe60]
+00238DFC  test      byte ptr [rax + 3], 0x10
+00238E00  je        0x238e06
+00238E02  mov       byte ptr [rbx + 0x58], 7
+00238E06  mov       rax, qword ptr [rbx + 0x698]
+00238E0D  movsx     edi, byte ptr [rbx + 0x58]
+00238E11  test      rax, rax
+00238E14  je        0x238e34
+00238E16  cmp       byte ptr [rax + 5], 1
+00238E1A  jne       0x238e34
+00238E1C  mov       rax, qword ptr [rbx + 0xe68]
+00238E23  movzx     ecx, byte ptr [rax + 0x18]
+00238E27  and       cl, 0xe
+00238E2A  cmp       cl, 4
+00238E2D  jne       0x238e34
+00238E2F  mov       ebp, 1
+00238E34  test      edi, edi
+00238E36  je        0x238e43
+00238E38  mov       rcx, qword ptr [rbx + 0x10]
+00238E3C  mov       edx, edi
+00238E3E  call      0x269fe0
+00238E43  mov       rcx, qword ptr [rbx + 0x10]
+---
+002666C0  loopne    0x266728
+002666C2  mov       dword ptr [rbx + 0x100], r13d
+002666C9  mov       dword ptr [rbx + 0x18], 0xffff0000
+002666D0  mov       qword ptr [rbx + 0x10c], r13
+002666D7  mov       dword ptr [rbx + 0x114], r13d
+002666DE  mov       word ptr [rbx + 0x104], cx
+002666E5  mov       word ptr [rbx + 0x106], r13w
+002666ED  cmp       al, 0x60
+002666EF  jne       0x2666f8
+002666F1  and       dword ptr [rbx + 0x1c], 0xffffdeff
+002666F8  and       byte ptr [rbx + 0xe], 0xf0
+002666FC  movsxd    rax, dword ptr [rsi + 0x14]
+00266700  movzx     ecx, word ptr [rax + rsi + 2]
+00266705  cmp       r10d, ecx
+00266708  setl      al
+0026670B  inc       al
+0026670D  mov       byte ptr [rbx + 2], al
+00266710  movsxd    rcx, dword ptr [rsi + 0x18]
+00266714  movzx     eax, word ptr [rsi]
+00266717  add       rcx, rsi
+0026671A  cmp       eax, 8
+0026671D  jb        0x266729
+---

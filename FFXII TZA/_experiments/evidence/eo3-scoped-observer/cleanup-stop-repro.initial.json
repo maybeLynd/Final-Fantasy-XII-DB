@@ -1,0 +1,443 @@
+{
+  "result": {
+    "status": "INVALID",
+    "method": "Connected EO3 recorder; execution substrate and live health require enclosing evidence.",
+    "capture": {
+      "status": "INVALID",
+      "hits": [
+        {
+          "unix": 120.0,
+          "tid": 77,
+          "rip": 3336269,
+          "rsp": 4831858688,
+          "rcx": 255,
+          "rdx": 1790758912,
+          "r8": 1778384896,
+          "r9": 4294967295,
+          "rdi": 1790758912,
+          "r10": 0,
+          "rbx": 0,
+          "rax": 0
+        }
+      ],
+      "observations": [
+        {
+          "decision": "CONTINUE",
+          "reason": null,
+          "debug_event": {
+            "id": 9,
+            "pid": 1,
+            "tid": 77,
+            "code": 1,
+            "exception": 2147483652,
+            "first_chance": 1,
+            "address": 3336269
+          },
+          "context_api_index": 4,
+          "recorder_event_index": 0,
+          "semantic_payload_bytes": 1272,
+          "limits": "Context/read connector only; process/reference identity, abort and live health are runner obligations."
+        }
+      ],
+      "arming": [
+        [
+          11,
+          true
+        ],
+        [
+          12,
+          true
+        ]
+      ],
+      "errors": [
+        "cleanup exception: stop requested; end capture and perform cleanup only"
+      ],
+      "cleanup": null,
+      "detach": true,
+      "abort": null,
+      "handle_closed": true,
+      "matched": false
+    },
+    "recorder": {
+      "started": 120.0,
+      "decision": "CONTINUE",
+      "reason": null,
+      "events": [
+        {
+          "tid": 77,
+          "monotonic": 120.0,
+          "context_read": {
+            "operation": "full_context",
+            "api": "GetThreadContext",
+            "result": 1,
+            "requested_flags": 1048603,
+            "event": {
+              "id": 9,
+              "pid": 1,
+              "tid": 77,
+              "code": 1,
+              "exception": 2147483652,
+              "first_chance": 1,
+              "address": 3336269
+            },
+            "thread_binding": {
+              "tid": 77
+            },
+            "address": "same current ctypes buffer validated during this synthetic run",
+            "size": 1232,
+            "context_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001b00100000000000000000000000000000000000020200004de832000000000083e932000000000011e13200000000000000000000000000f10fffff0000000015040000000000000000000000000000ff0000000000000000d0bc6a00000000000000000000000000500020010000000000000000000000000000000000000000d0bc6a000000000000006a00000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004de832000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "api_index": 4,
+            "source": "Synthetic current-context fixture; no native API receipt"
+          },
+          "reads_begin": 0,
+          "context": {
+            "rax": 0,
+            "rcx": 255,
+            "rdx": 1790758912,
+            "rbx": 0,
+            "rsp": 4831858688,
+            "rdi": 1790758912,
+            "r8": 1778384896,
+            "r9": 4294967295,
+            "r10": 0,
+            "rip": 3336269,
+            "tid": 77
+          },
+          "parent_return": 3637127,
+          "selection": "selected primary caller",
+          "reads_end": 33,
+          "decision": "CONTINUE",
+          "reason": null
+        }
+      ],
+      "reads": [
+        {
+          "address": 4831858744,
+          "size": 8,
+          "purpose": "producer return",
+          "hex": "877f370000000000"
+        },
+        {
+          "address": 1790758912,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "50"
+        },
+        {
+          "address": 1790758913,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "53"
+        },
+        {
+          "address": 1790758914,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "32"
+        },
+        {
+          "address": 1790758915,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "44"
+        },
+        {
+          "address": 1790758916,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "61"
+        },
+        {
+          "address": 1790758917,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "74"
+        },
+        {
+          "address": 1790758918,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "61"
+        },
+        {
+          "address": 1790758919,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "5c"
+        },
+        {
+          "address": 1790758920,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "65"
+        },
+        {
+          "address": 1790758921,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "66"
+        },
+        {
+          "address": 1790758922,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "62"
+        },
+        {
+          "address": 1790758923,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "5c"
+        },
+        {
+          "address": 1790758924,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "66"
+        },
+        {
+          "address": 1790758925,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "69"
+        },
+        {
+          "address": 1790758926,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "78"
+        },
+        {
+          "address": 1790758927,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "74"
+        },
+        {
+          "address": 1790758928,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "75"
+        },
+        {
+          "address": 1790758929,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "72"
+        },
+        {
+          "address": 1790758930,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "65"
+        },
+        {
+          "address": 1790758931,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "5f"
+        },
+        {
+          "address": 1790758932,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "70"
+        },
+        {
+          "address": 1790758933,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "72"
+        },
+        {
+          "address": 1790758934,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "69"
+        },
+        {
+          "address": 1790758935,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "6d"
+        },
+        {
+          "address": 1790758936,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "61"
+        },
+        {
+          "address": 1790758937,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "72"
+        },
+        {
+          "address": 1790758938,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "79"
+        },
+        {
+          "address": 1790758939,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "2e"
+        },
+        {
+          "address": 1790758940,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "65"
+        },
+        {
+          "address": 1790758941,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "66"
+        },
+        {
+          "address": 1790758942,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "62"
+        },
+        {
+          "address": 1790758943,
+          "size": 1,
+          "purpose": "selected path byte",
+          "hex": "00"
+        }
+      ],
+      "semantic_payload_bytes": 1272
+    },
+    "normalized": null,
+    "reference_identity": {
+      "pid": 1,
+      "creation": 12345678,
+      "image": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "image_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+    },
+    "input_sent": false,
+    "health_observed": false,
+    "restoration_verified": false,
+    "stop_latched": true
+  },
+  "calls": [
+    [
+      "open",
+      1
+    ],
+    [
+      "identity",
+      91
+    ],
+    [
+      "qualify",
+      91
+    ],
+    [
+      "attach",
+      1
+    ],
+    [
+      "event",
+      "attach"
+    ],
+    [
+      "slots",
+      11,
+      [
+        3336269,
+        3336579,
+        3334417
+      ]
+    ],
+    [
+      "slots",
+      12,
+      [
+        3336269,
+        3336579,
+        3334417
+      ]
+    ],
+    [
+      "continue",
+      null,
+      65538
+    ],
+    [
+      "event",
+      "producer"
+    ],
+    [
+      "resume",
+      "producer"
+    ],
+    [
+      "continue",
+      "producer",
+      65538
+    ],
+    [
+      "close",
+      91
+    ]
+  ],
+  "rows": [
+    {
+      "operation": "eo3_capture_handle",
+      "pid": 1,
+      "access": 2097151,
+      "handle": 91
+    },
+    {
+      "operation": "eo3_pre_attach_identity",
+      "observed": {
+        "pid": 1,
+        "creation": 12345678,
+        "image": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "image_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      }
+    },
+    {
+      "operation": "eo3_pre_attach_qualification",
+      "qualification": {
+        "status": "REFERENCE_CONTROLS_PASS",
+        "source": "Supplied qualification result, not live reference evidence"
+      }
+    },
+    {
+      "operation": "eo3_recorder_started",
+      "monotonic": 120.0,
+      "basis": "Before attachment, after qualification; conservatively includes attach latency."
+    },
+    {
+      "operation": "scoped_decision",
+      "pid": 1,
+      "tid": 77,
+      "decision": "CONTINUE"
+    },
+    {
+      "operation": "timeout_cleanup_begin",
+      "pid": 1
+    },
+    {
+      "operation": "eo3_stop_requested_between_events"
+    },
+    {
+      "operation": "scoped_capture_end",
+      "status": "INVALID",
+      "errors": [
+        "cleanup exception: stop requested; end capture and perform cleanup only"
+      ],
+      "detach": true
+    }
+  ],
+  "resumes": [
+    "producer"
+  ],
+  "terminated": false
+}

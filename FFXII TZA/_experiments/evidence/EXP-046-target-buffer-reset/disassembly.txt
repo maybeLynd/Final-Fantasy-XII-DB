@@ -1,0 +1,17 @@
+00316CF0 48895c2408               mov qword ptr [rsp + 8], rbx
+00316CF5 57                       push rdi
+00316CF6 4883ec20                 sub rsp, 0x20
+00316CFA 0fb619                   movzx ebx, byte ptr [rcx]
+00316CFD 33d2                     xor edx, edx
+00316CFF 41b808020000             mov r8d, 0x208
+00316D05 83e301                   and ebx, 1
+00316D08 488bf9                   mov rdi, rcx
+00316D0B e8b0b15400               call 0x861ec0
+00316D10 8027fe                   and byte ptr [rdi], 0xfe
+00316D13 80e301                   and bl, 1
+00316D16 081f                     or byte ptr [rdi], bl
+00316D18 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+00316D1D 66c747010000             mov word ptr [rdi + 1], 0
+00316D23 4883c420                 add rsp, 0x20
+00316D27 5f                       pop rdi
+00316D28 c3                       ret

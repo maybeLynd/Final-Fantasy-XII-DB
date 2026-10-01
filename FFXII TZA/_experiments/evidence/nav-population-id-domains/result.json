@@ -1,0 +1,102 @@
+{
+  "method": "A source-derived ID domains and conditional returned-value examples, no original/native/emulator/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "parent_raw_sha256": "5dddc43d8bff2a889054a048be684b6f0aff0d89f9ae0c4598b1b86b48b7d84c"
+  },
+  "driver_sha256": "f381a7747570fc89b026b25d27588ed2750586d1cd7ddc2dbd8f01eeacb2f657",
+  "rules_sha256": "cc7e4cf58bc2385250dc9b4f2f290dbf2f935ce5b755cc400471f533a62eec9a",
+  "source_facts": {
+    "pointer_count_cell": "0x2aee0bc",
+    "heap_cell": "0x2aee0a0",
+    "pointer_head": "0x2aee0c0",
+    "pointer_clear_bytes": 1024,
+    "pointer_limit": 128,
+    "authored_base": 128,
+    "authored_unsigned_min_limit": 32,
+    "registry_base": 160,
+    "first_getter": "0x392968",
+    "conditional_second_getter": true,
+    "second_getter_site": "0x392991",
+    "second_result_use": "0x392996",
+    "guard_signed": true
+  },
+  "getter": {
+    "root_cell": "0x209a670",
+    "count_offset": "0x22c",
+    "source_reads_only": true,
+    "requires_valid_pointer": true
+  },
+  "domains": {
+    "pointer_list": "IDs0..127 under normal entry, valid memory/conforming opaque returns/no unexpected counter mutation; reset count first and test signed count against128 before store/increment",
+    "authored": "IDs128..159: unsigned min(header+24,32) records, IDsadvance even skipped record kinds; no pointer-list count increment in this loop",
+    "registry": "IDs160..287 only under stable appropriate count across the two getter reads; first>=128 uses128, first<128 uses second result unchecked and skips if second<=0"
+  },
+  "conditional_examples": [
+    {
+      "first": 127,
+      "second": 127,
+      "second_getter_taken": true,
+      "positive_loop_bound": 127,
+      "first_id": 160,
+      "last_id": 286
+    },
+    {
+      "first": 128,
+      "second": 129,
+      "second_getter_taken": false,
+      "positive_loop_bound": 128,
+      "first_id": 160,
+      "last_id": 287
+    },
+    {
+      "first": 127,
+      "second": 129,
+      "second_getter_taken": true,
+      "positive_loop_bound": 129,
+      "first_id": 160,
+      "last_id": 288
+    },
+    {
+      "first": -1,
+      "second": 2,
+      "second_getter_taken": true,
+      "positive_loop_bound": 2,
+      "first_id": 160,
+      "last_id": 161
+    },
+    {
+      "first": 0,
+      "second": -1,
+      "second_getter_taken": true,
+      "positive_loop_bound": 0,
+      "first_id": null,
+      "last_id": null
+    }
+  ],
+  "controls": {
+    "private_pointer_limit": 129,
+    "private_authored_base": 129,
+    "original_inconsistent_last_id": 288,
+    "single_read_control_last_id": 286,
+    "immutable_source_refuses_both": true
+  },
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/_types/fields.tsv",
+      "full_source_sha256": "919b55b50c335a3496909ada3c37380cb12bf83ddfc3576eae53ece8052bef49",
+      "retained": "grid-count-fields-preimage.tsv",
+      "retained_sha256": "61cf5bc726cf2a3dacd36ee363dd9eb82feafb0e712d379cee0f7923f3edd383"
+    },
+    {
+      "path": "Database/FFXII TZA/_types/types.tsv",
+      "full_source_sha256": "b532144c59b1d0545c890062d61e78b1a00a0d47c32e11eee7ddcc55fca95aca",
+      "retained": "pointer-type-preimage.tsv",
+      "retained_sha256": "4522fc73a6b78ed9c852156c0e74c0e8a7813bdb9c4b8878ac15c667de55124f"
+    }
+  ],
+  "limits": "Source extent is not whole caller closure. Opaque callees may mutate globals/reenter; no all-write census or exclusivity proof. Getter reads valid registry pointer/count but source is not initialization or cross-read identity/atomicity proof. Conditional first127/second129 is not an observed concurrent change/native fault/bug. IDs mark via392200 calls; its full native spatial effects not executed. No all-state memory safety, actual game population/maxima or fixed portable capacity claim."
+}

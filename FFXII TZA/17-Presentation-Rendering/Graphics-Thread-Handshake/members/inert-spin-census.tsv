@@ -1,0 +1,21 @@
+# functions scanned 38161; inert backward loops 19
+jump	target	function	name	body
+0024D417	0024D415	0024D370	FUN_0024d370	test eax, eax; jne
+0024D492	0024D490	0024D370	FUN_0024d370	test eax, eax; jne
+00259052	00259050	00259030	VFXSystem_RenderGroupedLayerPassWithGraphicsFence	test eax, eax; jne
+002590D7	002590D5	00259030	VFXSystem_RenderGroupedLayerPassWithGraphicsFence	test eax, eax; jne
+00259122	00259120	002590F0	VFXSystem_RenderSpecialPassWithGraphicsFence	test eax, eax; jne
+0036F302	0036F300	0036F2F0	GraphicsSync_WaitBackendState100ClearAndResetSharedState	test eax, eax; jne
+00374C52	00374C50	003749F0	EffectCapture_ProcessCaptureDraw	test eax, eax; jne
+00374C92	00374C90	003749F0	EffectCapture_ProcessCaptureDraw	test eax, eax; jne
+00374CD2	00374CD0	003749F0	EffectCapture_ProcessCaptureDraw	test eax, eax; jne
+00375535	00375533	00375500	EffectSystem_ProcessQueuedGraphicsEffectsForPass	test eax, eax; jne
+003755B2	003755B0	00375500	EffectSystem_ProcessQueuedGraphicsEffectsForPass	test eax, eax; jne
+00375655	00375653	00375500	EffectSystem_ProcessQueuedGraphicsEffectsForPass	test eax, eax; jne
+00376152	00376150	00376050	EffectCapture_ProcessSecondaryCaptureDraw	test ecx, ecx; jne
+00376192	00376190	00376050	EffectCapture_ProcessSecondaryCaptureDraw	test eax, eax; jne
+003761D2	003761D0	00376050	EffectCapture_ProcessSecondaryCaptureDraw	test eax, eax; jne
+003A2DC3	003A2DC1	003A2D80	GraphicsCommand_CopyAlignedBatchAndPublishState100	test ecx, ecx; jne
+003A2EEA	003A2EE8	003A2E30	GraphicsCommand_CopyAlignedBatchWithControlRecordsAndPublishState100	test eax, eax; jne
+00560A62	00560A60	00560910	FUN_00560910	test eax, eax; je
+00566165	00566163	00565E00	FUN_00565e00	test eax, eax; je

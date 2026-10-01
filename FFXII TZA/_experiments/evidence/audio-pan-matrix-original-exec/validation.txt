@@ -1,0 +1,2 @@
+Read-only retained-evidence validation. Exit 0
+Retained original-code rows, raw writes, original read bytes, ABI restoration, controls and falsification verified. No audible/live claim.

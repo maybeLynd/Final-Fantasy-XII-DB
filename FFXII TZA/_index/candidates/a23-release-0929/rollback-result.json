@@ -1,0 +1,23 @@
+{
+ "target": "763d466d6",
+ "target_full": "763d466d6fb022acfb7df756d28eab28dcd0fbd0",
+ "materialised": "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\73162e75-93f2-44be-9de2-25044eacdc46\\scratchpad\\SWE2-FRONTIER\\rb",
+ "server_sha256": "437970f939269d93807b9446a4a04e483d166cede53306613552504087d8c139",
+ "generation_py_sha256": "30226578945b7fff31cdbaf43db55d4d17d69ba3cde58dcd574e6f75970d5253",
+ "port": 8766,
+ "started": "2026-09-29T21:38:20.432972+00:00",
+ "child_pid": 26556,
+ "status_http": 200,
+ "generation": "g20260929T213407Z-9c7238",
+ "problems": [],
+ "reader_stale": false,
+ "drift": {
+  "requirements.py": "changed"
+ },
+ "view_progress_http": 200,
+ "view_progress_equals_store_output": true,
+ "live_8765_generation_during_drill": "g20260929T213407Z-9c7238",
+ "child_exit": 1,
+ "stopped": "2026-09-29T21:38:21.567965+00:00",
+ "port_after_stop": "closed (URLError)"
+}

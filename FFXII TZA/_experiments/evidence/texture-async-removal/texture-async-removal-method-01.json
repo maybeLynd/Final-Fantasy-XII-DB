@@ -1,0 +1,15 @@
+{
+  "question": "What does original62EC70 remove from the pointer-key scheduler, and does its local closure establish cancellation/drain or element+38 counter changes?",
+  "major_system": "Phyre texture resource cleanup versus keyed asynchronous scheduling",
+  "consumers": ["OPUS: Texture2DD3D11Element ownedBlock/async object and counter contract", "FABLE: cleanup/removal/lifetime semantics"],
+  "competing_explanations": ["The call removes the identified pointer from all relevant banks and establishes cancellation/drain", "It performs a bounded keyed-container operation whose local scope is weaker than completion/cancellation or running-job safety"],
+  "existing_evidence": "Accepted OPUS element_release.py R locates62BD75->62EC70 under element+28 nonNULL, before584730/free and nulling. ASTRA committed async boundary establishes62EB90->199DB0 pointer-key insertion and distinct container count, not execution or element pendingCount. No retained top-level ASTRA source range covers62EC70; this scoped inventory says nothing about peer artifacts or caller completeness. No active peer task named this removal/counter proof at checked board44249.",
+  "method": "A: exact original local removal body/CFG and explicitly bounded helper effects. Escalate to B only if local arithmetic/branches cannot distinguish a named proposition; real thread/initialization/lifetime observation stays separate.",
+  "why_cheaper_summary_is_insufficient": "A caller naming removal does not specify bank extent, key matching, node deletion, callback invocation or counter writes. Challenge the primary body before inheriting a stronger cancellation interpretation.",
+  "validated_anchor": "Original EXE SHA25673461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; known original caller62BD75 and .pdata root62EC70 must be verified. Use full raw-backed range and existing reviewed capture/access-role/byte validation.",
+  "required_observation": "Complete normal root extent, branch/call order, key/container addressing, iteration bound, explicit loads/stores and opaque helper/callback boundaries. Never turn zero local writes into whole-image absence.",
+  "controls": "Existing capture memory-store/LEA/RMW controls plus actual source identity/CFG prerequisite. Add the smallest concrete producer refusal only for claims derived. Reuse settled insertion/drain/constructor facts without rerunning their campaigns.",
+  "acceptance": "Only propositions justified by complete source and qualified dependencies, under explicit normal-ABI/valid-container premises. Native effects/actual scheduler cancellation are not accepted from stubs or opaque calls.",
+  "failure_stop": "Unexpected root/call identity, incomplete branches, failed controls or insufficient helper evidence leaves the claim open and records the exact next discriminator; no blind live escalation.",
+  "restoration": "Read-only shipping bytes and finite foreground scripts. No PC/game/native/input/instrument/save/config/reference/peer-process mutation. Parked menu spent/unapproved and EXP127 invalid remain unchanged."
+}

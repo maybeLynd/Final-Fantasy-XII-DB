@@ -1,0 +1,78 @@
+{
+  "observe.py": {
+    "source": "Database/FFXII TZA/_experiments/evidence/spawn-live-reload/observe.py",
+    "source_sha256": "8a40086c22cb7eb446749386d07033642796c8a0c558983f1429d1bd4def4b61",
+    "edits": [
+      {
+        "before": "assert any(t['id']=='FABLE-REQ-ASTRA-OLD-SAVE-LOAD' and t['agent']=='ASTRA' and t['status']=='ACTIVE' for t in board['tasks'])",
+        "after": "assert any(t['id']=='FABLE-REQ-ASTRA-OLD-SAVE-LOAD' and t['agent']=='ASTRA' and t['status']=='ACTIVE' and any(r['key']=='@runtime' for r in t.get('claimed_resources',t['resources'])) for t in board['tasks'])"
+      }
+    ],
+    "sha256": "927669001612aa56efd589975238a7779e0de51ea3c21cc1c69dbfccdbc1b69c"
+  },
+  "setup.py": {
+    "source": "Database/FFXII TZA/_experiments/evidence/spawn-live-load/setup.py",
+    "source_sha256": "0296e86aa430e52cc1defbb8c7c7aad67310c673b70b5003608490c38ee8fdf8",
+    "edits": [
+      {
+        "before": "assert any(t['id']=='FABLE-REQ-ASTRA-OLD-SAVE-LOAD' and t['agent']=='ASTRA' and t['status']=='ACTIVE' for t in board['tasks'])",
+        "after": "assert any(t['id']=='FABLE-REQ-ASTRA-OLD-SAVE-LOAD' and t['agent']=='ASTRA' and t['status']=='ACTIVE' and any(r['key']=='@runtime' for r in t.get('claimed_resources',t['resources'])) for t in board['tasks'])"
+      },
+      {
+        "before": "SPAWN-LOAD-20260913-save-backup",
+        "after": "OLD-SAVE-SAME-PROCESS-20260921-save-backup"
+      }
+    ],
+    "sha256": "62abb27f9f42ad371f10e24afd77151918ef04597e903c6756eeccff6724ccb9"
+  },
+  "cleanup.py": {
+    "source": "Database/FFXII TZA/_experiments/evidence/spawn-live-load/cleanup.py",
+    "source_sha256": "59185cff38b87dc476f8b0d8fcb9df649ad20eb53720dd6e51ff660bd8c07007",
+    "edits": [
+      {
+        "before": "SPAWN-LOAD-20260913-save-backup",
+        "after": "OLD-SAVE-SAME-PROCESS-20260921-save-backup"
+      },
+      {
+        "before": "SPAWN-LOAD-20260913-config-before-restore.ini",
+        "after": "OLD-SAVE-SAME-PROCESS-20260921-config-before-restore.ini"
+      },
+      {
+        "before": "assert changed==['76561198045890736\\\\GameSetting.ini'],changed",
+        "after": "assert changed==['76561198045890736\\\\GameSetting.ini'],changed"
+      }
+    ],
+    "sha256": "ae67ddc9484ce3c156221a690ce5bc583bc658689c63be84cce0849bebe899b9"
+  },
+  "pulse.py": {
+    "source": "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/reuse/pulse.py",
+    "source_sha256": "0efb04880d0847f1ad7f4276cffd9e8af81f03387f000abe2b97b12d5a1dba98",
+    "edits": [
+      {
+        "before": "REPO = HERE.parents[5]",
+        "after": "REPO = HERE.parents[4]"
+      },
+      {
+        "before": "EVIDENCE = HERE.parent.parent",
+        "after": "EVIDENCE = HERE.parent"
+      },
+      {
+        "before": "choices=['Enter', 'C', 'Space']",
+        "after": "choices=['Enter', 'C', 'Space', 'R', 'I', 'K']"
+      },
+      {
+        "before": "HERE.parent / 'resumed/input_sample.py'",
+        "after": "EVIDENCE / 'input-registration-live-title/resumed/input_sample.py'"
+      },
+      {
+        "before": "t['id'] == 'ASTRA-INPUT-REUSE-CONTROL' and t['agent'] == 'ASTRA' and t['status'] == 'ACTIVE'",
+        "after": "t['id'] == 'FABLE-REQ-ASTRA-OLD-SAVE-LOAD' and t['agent'] == 'ASTRA' and t['status'] == 'ACTIVE' and any(r['key']=='@runtime' for r in t.get('claimed_resources',t['resources']))"
+      },
+      {
+        "before": "'Space': (0x20, 52)}",
+        "after": "'Space': (0x20, 52), 'R': (0x52, 17), 'I': (0x49, 8), 'K': (0x4B, 10)}"
+      }
+    ],
+    "sha256": "1f6439227bb24053b01e0a7758f714885ddbbb114ff3ec6e80fb2a011153ba76"
+  }
+}

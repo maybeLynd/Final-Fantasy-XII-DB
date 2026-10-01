@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FABLE-REQ-SWE2EC7-BQ23-REGEX-LABELS",
+ "agent": "SWE2-EC7",
+ "note": "Claiming BQ-23 regex-span label corrections (8 members). FABLE evidence: _index/candidates/bq23-tier6-d/ (24/24 high confidence).",
+ "resources": [
+  {
+   "key": "notice:fable/bq23-regex-labels"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+002EB7A0 cmp ecx, 0xd
+002EB7A3 ja 0x2eb7d1
+002EB7A5 lea r8, [rip - 0x1cb7ac]
+002EB7AC movsxd rax, ecx
+002EB7AF mov edx, dword ptr [r8 + rax*4 + 0x1cb7d4]
+002EB7B7 add rdx, r8
+002EB7BA jmp rdx
+002EB7BC mov ecx, 0x630000
+002EB7C1 mov eax, ecx
+002EB7C3 ret 
+002EB7C4 mov ecx, 0x6e0001
+002EB7C9 mov eax, ecx
+002EB7CB ret 
+002EB7CC mov ecx, 0x770002
+002EB7D1 mov eax, ecx
+002EB7D3 ret 

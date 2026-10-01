@@ -1,0 +1,63 @@
+register ids 1672 prefixes 234
+prefixes: A(1) AA(8) AB(8) AC(10) AD(6) AE(14) AF(6) AG(12) AH(14) AI(8) AJ(12) AK(7) AL(10) AM(10) AN(5) AO(6) AP(9) AQ(6) AR(8) AS(14) AT(9) AU(6) AV(9) AW(5) AX(7) AY(12) AZ(4) B(10) BA(5) BB(7) BC(5) BD(4) BE(6) BF(7) BG(12) BH(4) BI(20) BJ(5) BK(9) BL(8) BM(6) BN(6) BO(4) BP(7) BQ(34) BR(7) BS(6) BT(6) BU(5) BV(5) BW(5) BX(3) BY(8) BZ(2) C(12) CA(4) CB(13) CC(10) CD(3) CE(6) CF(6) CG(6) CH(2) CI(2) CJ(2) CL(2) CM(7) CO(10) CQ(6) CR(4) CS(6) CT(4) CU(5) CV(5) CW(5) CX(5) CY(4) CZ(3) D(9) DA(4) DB(3) DC(3) DD(4) DE(4) DF(5) DG(7) DH(7) DI(3) DJ(2) DK(2) DL(3) DM(3) DN(1) DO(2) DP(2) DQ(2) DR(1) DS(1) DT(1) DU(2) DV(1) DW(2) DX(1) DY(1) DZ(2) E(11) EA(8) EB(6) EC(7) ED(6) EE(12) EF(6) EG(1) EH(6) EI(2) EJ(1) EK(1) EL(1) EM(1) EN(1) EO(3) EP(1) EQ(1) ER(1) ES(1) ET(1) EU(1) EV(1) EW(7) EX(9) EY(6) EZ(6) F(3) FA(5) FB(6) FC(4) FD(5) FE(7) FF(5) FG(4) FH(3) FI(3) FJ(4) FK(4) FL(4) FM(1) FN(3) FO(6) FP(4) FQ(2) FR(3) FRP(4) FS(3) FT(4) FU(2) FV(4) FW(2) FX(3) FY(7) FZ(28) G(25) GA(6) GB(3) GC(3) GD(6) GE(3) GF(7) GG(4) GH(2) GI(13) GJ(11) H(7) HM(1) I(6) IB(2) IR(1) J(6) K(14) KE(1) L(13) M(7) MA(1) MH(1) MP(2) MS(3) MT(4) N(7) NS(5) O(6) OC(4) OV(49) P(5) PA(5) PC(2) PCD(5) PE(1) PH(4) PS(2) Q(7) R(7) RC(10) RM(1) RMD(3) RN(1) RS(3) RT(1) S(5) SB(2) SC(1) SG(1) SM(5) SN(1) SP(2) SQ(1) SR(4) SV(1) T(9) TA(2) U(7) UB(1) UC(6) UD(5) UE(4) UF(4) UG(5) UQ(383) V(12) VA(3) W(9) WC(1) WD(1) X(8) Y(7) Z(19)
+unknown register-prefix tokens: 133  pages touched: 164
+S-18     pages  19 | ocomotion turn limiter  > **Authored 2026-09-22 by FABLE.** S-18's contract column carried two contracts
+I-1      pages  18 | rame.  ## 4. Preconditions · postconditions · invariants  **I-1 — THE TABLE IS AFTER THE BODY AND EVERY
+S-23     pages  15 | ases stand.  > **CORRECTED 2026-09-25 (OPUS, owner), on the S-23 stub-exposure analysis > (`_index/candi
+S-16     pages  15 | pack-strides/unpack_strides.py` (5 checks; planted control `S-16`).       ***ANSWER ESTABLISHED 2026-09-
+S-21     pages  13 | s and game over is already documented and largely replayed (S-21, S-23 MET). What remains is finishable:
+S-32     pages  12 | *(For one consumer's behaviour with a base ≥ 4 GiB, see the S-32 `lu6.py` observation: `0030C71D`       
+S-02     pages  11 |  world simulation tick  > **Authored 2026-09-22 by FABLE.** S-02's binding gap left two of its three pag
+S-40     pages  11 |  tuning console  > **Why this one is subsystem-scoped where S-40's is not.** S-06's registry row credits
+S-39     pages   9 | ther page](Weather/mweather-resource-format.md) and to S-40/S-39, not to this contract. - **SERIALIZATIO
+S-46     pages   8 | rministic where the > original is not. Caught while writing S-46's contract, where the same mechanism is
+S-35     pages   8 | e input subsystem (FABLE)  > **This contract exists because S-35's two existing contracts are narrower t
+S-01     pages   7 | ling landed, and applied per invariant (FABLE, 2026-09-22)  S-01's binding gap has read *"one item, and 
+S-36     pages   7 |  / `02EA5228`, the   dead input-script facility's switches, S-36). There is no 8-byte pointer to `005CDA
+S-07     pages   7 | eptance of these changes. No new live game session or whole S-07/L2 acceptance is claimed. See [the sect
+S-11     pages   7 | d field trigger points  > **Authored 2026-09-22 by FABLE.** S-11's binding gap is *"1 of 3 pages by subj
+S-12     pages   7 |  # Contract — the weather subsystem  > **Why this exists.** S-12 (weather) carried **no contract at all*
+S-10     pages   7 |  **the draw count is part of the contract** in the same way S-10's is. Point mode draws nothing. *(2026-
+S-20     pages   7 | e action handler table  > **Authored 2026-09-22 by FABLE.** S-20's binding gap is *"2 contracts over 4 p
+S-26     pages   7 |  the two effect layers  > **Authored 2026-09-21 by FABLE.** S-26's contract cell reads **SCOPE-SHORT** a
+S-04     pages   7 | ss(0x14, …)` is the bounds check of I1 — the same validator S-04's contract governs, here called with cl
+S-37     pages   7 | , and the honest thing it has to say about its own scope.** S-37 carried **no > contract at all** — its 
+F-4      pages   7 | reimplement and a differential test can be written from. **`F-4`'s last > named candidate.** > > **Ever
+S-22     pages   6 | mental element scaling  > **Authored 2026-09-22 by FABLE.** S-22's binding gap is *"calculator slots 60-
+S-28     pages   6 | nd control suppression  > **Authored 2026-09-22 by FABLE.** S-28's binding gap is *"slot assignment only
+S-42     pages   6 | ile and the BGM stream  > **Authored 2026-09-22 by FABLE.** S-42's contract column carries one contract 
+S-49     pages   6 | than its own virtual interface. **That is where the rest of S-49's debt in this family lives**, and it i
+S-15     pages   6 | never drive. It also records OPUS's replay: no write in the S-15 boot world, value 0 at the end. What th
+S-05     pages   5 | ed transform workbench  > **Authored 2026-09-22 by FABLE.** S-05's binding gap is *"two family contracts
+I-10     pages   5 | ing/CONTRACT-render-command-list-and-graphics-handshake.md) I-10 for why there is no second thread here)
+S-09     pages   5 | the `.ard` area binder  > **Authored 2026-09-22 by FABLE.** S-09's binding gap named three things and sa
+S-13     pages   5 |  record initialisation  > **Authored 2026-09-22 by FABLE.** S-13's contract column carries one contract 
+S-17     pages   5 | and scheduling are unproved;~~ *(superseded 2026-09-26: the S-17 replay [`s17-opus-replay-group-completi
+S-51     pages   5 | tion search and follow  > **Authored 2026-09-22 by FABLE.** S-51's binding gap ends *"A\* and the step-f
+S-24     pages   5 | ract — stat derivation  > **Authored 2026-09-21 by FABLE.** S-24's binding gap is *"the rebuild is contr
+S-27     pages   5 | ct — the periodic tick  > **Authored 2026-09-21 by FABLE.** S-27's contract cell read **NOT MET** with t
+S-33     pages   5 | ct the second `nothing executed` one in the database, after S-33's.~~ It is written anyway: withholding 
+S-34     pages   5 | ine event-memory table is the OTHER one, `02ADD0A8`. So the S-34 mechanism here is ONE list plus a > con
+S-48     pages   5 | herefore **invisible to every census that reads the key** — S-48 was scored > SCOPE-SHORT for that and f
+S-38     pages   5 | haracter render object  > **Authored 2026-09-22 by FABLE.** S-38's binding gap is *"the render OBJECT ha
+S-41     pages   5 | spatial source objects  > **Authored 2026-09-22 by FABLE.** S-41's binding gap is *"1 of 3 pages contrac
+DB-5     pages   5 |  one part of the module lifecycle contract   still unread. `DB-5`.~~ **Answered 2026-09-14 (FABLE): the 
+DB-4     pages   5 | er is   fixed and is the reverse of CRT initializer order. `DB-4`.~~ **Answered 2026-09-14 (FABLE): noth
+F-5      pages   5 | ATE.md) §4 still read *"Not yet done"* and §5 still listed `F-5` as frontier work — so a block chosen o
+S-47     pages   5 | call/restoration boundary and consume the already-published S-47 original-code test, rather than assumin
+S-44     pages   5 | # ASTRA — S-44 rebind discriminator falsification, 202
+F-6      pages   5 | ct identified only by dataflow. That is carried forward as `F-6` rather than left as a vague open `F-2`
+S-06     pages   4 | > **Why this one is subsystem-scoped where S-40's is not.** S-06's registry row credits one primary > pa
+S-31     pages   4 | eRecord` was declared as the single worked example, because S-31's verdict turns on it; the other twenty
+S-19     pages   4 |  — the separation pass  > **Authored 2026-09-21 by FABLE.** S-19's binding gap is *"the pool is contract
+S-25     pages   4 | -  # Contract — enmity  > **Authored 2026-09-22 by FABLE.** S-25's binding gap is *"operation-scoped ove
+S-29     pages   4 | quipment compatibility  > **Authored 2026-09-22 by FABLE.** S-29's binding gap is *"item counts by class
+S-30     pages   4 | t — shop stock ladders  > **Authored 2026-09-22 by FABLE.** S-30's binding gap is *"bazaar unlock contra
+S-43     pages   4 | he save-image pipeline  > **Authored 2026-09-22 by FABLE.** S-43's binding gap is *"three family contrac
+S-45     pages   4 | ntegration (FABLE, Claude Opus 5.5)  > **Why this exists.** S-45's verdict row says *"the counter is con
+S-08     pages   4 | rrected contract/type facts and map accepted conclusions to S-08's actual obligations; do not automatica
+CH-2     pages   4 | y-static-guards.md) | **RECORDED — do not re-derive** | | ~~CH-2~~ | ~~A live developer debug menu ships
+W-903    pages   4 | --- status: DOCUMENTED --- # Labelled answered page - [ ] **W-903.** live register obligation, not a seco
+W-902    pages   4 |  live register obligation, not a second requirement - [ ] **W-902.** open page against answered row, reta
+W-901    pages   4 | status: DOCUMENTED (SUPERSEDED accepted-disposition residue W-901) --- # Labelled dispositioned page 
+S-14     pages   4 | d NOT overturn.** I ran this re-test expecting to break the S-14 verdict's claim that `BattleUnit`'s two

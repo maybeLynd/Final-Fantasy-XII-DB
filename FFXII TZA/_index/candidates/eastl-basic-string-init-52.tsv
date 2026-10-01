@@ -1,0 +1,65 @@
+# CANDIDATE MEMBERS - NOT A DECLARED FAMILY. OPUS 2026-09-13.
+# 52 bodies of exactly 240 bytes sharing ONE DERIVED form image - 178 of the 240 byte
+# positions identical across every member, the other 62 operands, derived from the
+# members rather than hand-masked.
+# SHARED TARGET: 001EDF00, called EXACTLY TWICE by every member (104 calls / 52 bodies).
+#   That helper is 14 bytes and is already documented on
+#   23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md
+# AND THE PROVENANCE IS THE STRONGEST OF THE FOUR CANDIDATES I HAVE FILED TODAY:
+#   ALL 52 reference a literal name string, and every one of them reads
+#   "EASTL basic_string". The code names its own library type - this is not adjacency,
+#   not form alone, and not an anchor inherited from a registration helper.
+# Disposition: 0 A-measured, 0 declared, 4 cited, 48 UNTOUCHED frontier. 12,480 bytes.
+entry	size	name_string	state
+0015CE70	240	EASTL basic_string	untouched
+0015CF60	240	EASTL basic_string	untouched
+0015D050	240	EASTL basic_string	untouched
+0015D140	240	EASTL basic_string	untouched
+0015D340	240	EASTL basic_string	untouched
+0015D430	240	EASTL basic_string	untouched
+0015D520	240	EASTL basic_string	untouched
+0015D610	240	EASTL basic_string	cited
+0015D700	240	EASTL basic_string	untouched
+0015D7F0	240	EASTL basic_string	untouched
+0015D8E0	240	EASTL basic_string	untouched
+0015D9D0	240	EASTL basic_string	untouched
+0015DAC0	240	EASTL basic_string	untouched
+0015DD30	240	EASTL basic_string	untouched
+0015DE20	240	EASTL basic_string	untouched
+0015DF10	240	EASTL basic_string	untouched
+0015E000	240	EASTL basic_string	untouched
+0015E0F0	240	EASTL basic_string	untouched
+0015E1E0	240	EASTL basic_string	untouched
+0015E2D0	240	EASTL basic_string	untouched
+0015E3C0	240	EASTL basic_string	untouched
+0015E4B0	240	EASTL basic_string	untouched
+0015E5A0	240	EASTL basic_string	untouched
+0015E690	240	EASTL basic_string	untouched
+0015E780	240	EASTL basic_string	untouched
+0015E870	240	EASTL basic_string	untouched
+0015E960	240	EASTL basic_string	untouched
+0015EA50	240	EASTL basic_string	untouched
+0015EB40	240	EASTL basic_string	untouched
+0015EC30	240	EASTL basic_string	untouched
+0015ED20	240	EASTL basic_string	untouched
+0015EE10	240	EASTL basic_string	untouched
+0015EF00	240	EASTL basic_string	untouched
+0015EFF0	240	EASTL basic_string	untouched
+0015F0E0	240	EASTL basic_string	untouched
+0015F1D0	240	EASTL basic_string	untouched
+0015F2C0	240	EASTL basic_string	untouched
+0015F3B0	240	EASTL basic_string	untouched
+0015F4A0	240	EASTL basic_string	untouched
+0015F590	240	EASTL basic_string	untouched
+0015F680	240	EASTL basic_string	untouched
+0015F770	240	EASTL basic_string	untouched
+0015F860	240	EASTL basic_string	untouched
+0015F950	240	EASTL basic_string	untouched
+0015FA40	240	EASTL basic_string	untouched
+0015FB30	240	EASTL basic_string	untouched
+0015FC20	240	EASTL basic_string	untouched
+0015FD10	240	EASTL basic_string	untouched
+0015FE00	240	EASTL basic_string	cited
+0015FEF0	240	EASTL basic_string	untouched
+0015FFE0	240	EASTL basic_string	cited
+001600D0	240	EASTL basic_string	cited

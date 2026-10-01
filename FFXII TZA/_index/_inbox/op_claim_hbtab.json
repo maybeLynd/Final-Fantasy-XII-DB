@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-HBTAB-0922",
+ "agent": "SWE2-DATA",
+ "resources": [{"key": "@publication"}],
+ "note": "Claiming @publication for the 00576CA0 increment."
+}

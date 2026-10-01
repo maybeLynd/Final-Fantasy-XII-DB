@@ -1,0 +1,14 @@
+{
+  "recorded_chronology": {
+    "last_hit_recorded_utc": "2026-09-20T04:01:21.986988+00:00",
+    "dialog_observed_utc": "2026-09-20T04:02:09.657Z",
+    "reported_clock_gap_seconds": 47.67001247406006
+  },
+  "established": "Raw recorded event timestamps precede the recorded dialog observation timestamp under the recorded UTC interpretation.",
+  "not_established": "When the fatal condition began, whether it affected events before detection, causal independence, a healthy intervening session or the cause of the failure.",
+  "review_correction": "Replace hits precede failure / not contaminated by it with hits precede recorded dialog observation; retain accepted raw sequence/count/pairing, INVALID_POST_TRACE, no semantic promotion and unknown cause.",
+  "scope": "Focused review-wording correction, not independent re-review of all hits/contexts, no new gate/platform, no invalid traces promoted.",
+  "recovered_review_path": "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-EXP127-SKELETAL-FAILED-SESSION.md",
+  "limits": "Historical recorded wall clocks, no continuous health/dialog observer, no fatal-condition/onset timestamp and no proved clock synchronization/monotonicity between event and UI writers. Apparent chronology is not causal independence.",
+  "consumer_status": "Pending independent review-owner qualification and OPUS acknowledgement."
+}

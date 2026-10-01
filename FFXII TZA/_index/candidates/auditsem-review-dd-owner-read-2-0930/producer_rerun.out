@@ -1,0 +1,7 @@
+# SWE2-AUDIT-SEM: dd-data-2-0930 checkers re-run at 0b1f3a2fb (python -B), compared with the committed .out (CR-insensitive)
+anim_checks.py exit=0 IDENTICAL FAILS 0
+annot_checks.py exit=0 IDENTICAL FAILS 0
+array_member_args.py exit=0 IDENTICAL FAILS 0
+camera_callers.py exit=0 IDENTICAL FAILS 0
+crt_rbtree_checks.py exit=0 IDENTICAL FAILS 0
+schema_checks.py exit=0 IDENTICAL FAILS 0

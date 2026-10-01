@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\spattack-prerequisite-controls-01\missing_wrapper_completion\checker-input-adapted.py", line 27, in <module>
+    if name=='spattack-output-writers-raw-02.json' and r.get('wrapper_complete') is not True:raise ValueError('wrapper prerequisite incomplete')
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wrapper prerequisite incomplete

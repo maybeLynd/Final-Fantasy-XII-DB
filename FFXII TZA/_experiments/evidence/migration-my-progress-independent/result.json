@@ -1,0 +1,18 @@
+{
+  "verdict": "REJECT",
+  "scope": "My Progress terminal prerequisite admission; bounded independent collect/measure/producer/reader controls and deployed presentation separately retained",
+  "requirements_source_last_commit": "7aaa2f8bdc83d276e3b8b5be292da6d2d4d9f947",
+  "requirements_sha256": "4cca40cd29d78b7bb2db1418d3ca802f3ecc45ab0669e9433a101b2879349fdf",
+  "producer_reader_source_tree": "f21fe80440fc9d24df09fc19172753394fe61773",
+  "defect": "Explicit pre-resolved required_consecutive=0 with synthetic MET/acceptanceOK gate yields DATABASE READY, terminal0of0 through original measure/v_progress/Store/State/check_view. Fixed30 is not validated on those composed boundaries.",
+  "cause": "terminal_facts trusts reporter required_consecutive; measure and server check readiness against that supplied denominator rather than the governing fixed30 prerequisite.",
+  "reachability_limit": "Normal captured reporter source hardcodes30. Invalid0 is injected input, not demonstrated normal producer output or a false Ready in actual deployed database. Full _build_once, other adapters/CLI-main and real terminal audits omitted.",
+  "positive_controls": "Complete30 admitted; openQ with allL2MET and missingbucket rejectReady; inconsistent headline and Ready-with-openQ refused by reader; pending transfer remains unaccepted until DONE; duplicate conflicts retain false/global-once; reopening removes acceptance. Current DD answered/dispositioned split observed with page residue retained.",
+  "author_suite": "Exact requested622c0866d producer-authored MP1-MP12 allPASS/FAILS0/exit0, separate from independent design; no current DD/delta suite acceptance.",
+  "semantic_question": "MP2 section2 permits receipted partial terminal counter; section6 says partial streaks not shown accepted. Original partial29-not-met shows accepted29/30 and NotReady. Meaning/adoption requires FABLE ruling; not falsefullcompletion.",
+  "deployment": "EarlierHTTP generation g20260929T074315Z-b38fd2 reader_staleTrue; newer rendered and bracketedHTTP g20260929T074817Z-5dfce1 reader_staleFalse. Both PARTIAL/UNMEASURED/NOT_READY, bucket gap visible. UI16 exact Worldmaps DA/DD IDs agree with same-generation HTTP. This is not PID/loaded-module/final deployment acceptance.",
+  "corrections": "Collection01 invalid parenthetical status fixture retained; corrected supported delimiter plus actual exception receipt hook. UI binding key/k confusion retained as failed raw; same captured bytes normalized using actual k, no recapture or additional run credit. CUA image is JPEG despite initial png filename; original retained plus byte-identical jpg copy, no new image capture. Checker preparation failures retained, no results produced from failed attempts.",
+  "cleanup": "Agent-created dashboard tab closed; captures read-only. Requested authored process terminal; private source fixtures only. No game/controller/production board/store/save/config/reference changes. Earlier unrelated transition descendant cleanup remains UNVERIFIED.",
+  "limits": "MethodA Python tools/synthetic or captured dashboard, not FF12 instructions/live/parity. DD literalstatus fixture is not five-condition legal DOCUMENTED certification; failed F/R/X/K corpus families remainUNMEASURED. No allM0-M5/A17/A19/fullL1L2 acceptance. Ownchecker/producer suites not independent acceptance.",
+  "next": "OPUS cause/affectedconsumer repair for fixed30 prerequisite admission and exact finalsource scoped review. FABLE settles partial29 displayedacceptance meaning. FRONTIER current deployment lineage acceptance separately open; do not resend resolved stale-reader request or edit peer consumers. Continue returned generation/transition repairs after publication."
+}

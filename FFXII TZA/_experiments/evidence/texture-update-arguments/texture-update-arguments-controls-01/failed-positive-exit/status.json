@@ -1,0 +1,13 @@
+{
+  "case": "failed-positive-exit",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\freeze-texture-update-arguments.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-update-arguments-controls-01\\failed-positive-exit\\packet",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-update-arguments-controls-01\\failed-positive-exit\\source"
+  ],
+  "exit": 1,
+  "result_absent": true,
+  "expected_error_seen": true
+}

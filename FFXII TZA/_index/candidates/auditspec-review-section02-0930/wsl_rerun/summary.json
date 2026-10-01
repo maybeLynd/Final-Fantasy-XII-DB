@@ -1,0 +1,52 @@
+{
+  "section": "SECTION-02",
+  "status": "PASS bounded local production checks; formal peer acceptance pending",
+  "original_bodies_verified": 22,
+  "native_checks": 72,
+  "native_failures": 0,
+  "repeat_identical": true,
+  "host_callback_address_normalization": "Native code asserts actual callback pointer equality; only last_return display normalizes that host-ASLR address to0.",
+  "code_mutants_detected": 6,
+  "retained_assertion_branches": 22,
+  "historical_branches_without_positive_loader_assertion": 2,
+  "retained_record_negative_controls": 4,
+  "inputs_unchanged": [
+    {
+      "path": "_experiments/evidence/queue-remaining-exec/check.py",
+      "sha256": "4f5046fafa77a19799afac72c1fc95154169dc501106a4ed47b424a31784174f",
+      "matched": true
+    },
+    {
+      "path": "_experiments/evidence/queue-remaining-exec/result.json",
+      "sha256": "f7f429f834de95f7681c16ecc840dd83d9068e8c74eeaa07bd626ab0ee20c98d",
+      "matched": true
+    },
+    {
+      "path": "_experiments/evidence/exp109-poll-pump-exec/check.py",
+      "sha256": "728ee34999952bdd3a8c0bed0c8afdb9077c7544a4ca904681d713043278f1d3",
+      "matched": true
+    },
+    {
+      "path": "_experiments/evidence/exp109-poll-pump-exec/result.json",
+      "sha256": "2d60a0675cd3f8378e177be0c4be25d3c6642816d8de20a1e015d79a3a3ea7c5",
+      "matched": true
+    },
+    {
+      "path": "_experiments/evidence/exp109-queue-tails-exec/check.py",
+      "sha256": "72ed501a40404cd3ca2193aecb2431c4bac887d64779dfbfa5347230e14e37a4",
+      "matched": true
+    },
+    {
+      "path": "_experiments/evidence/exp109-queue-tails-exec/result.json",
+      "sha256": "3516402ed6e8584f1a29bf7092182e54e035151b1098597ddcbb726749cdd9cc",
+      "matched": true
+    }
+  ],
+  "not_performed": [
+    "live FF12 run",
+    "full original Unicorn campaigns",
+    "fresh current-GN Ghidra import",
+    "independent T2/terminal acceptance",
+    "complete underlying I/O service or callback implementation"
+  ]
+}

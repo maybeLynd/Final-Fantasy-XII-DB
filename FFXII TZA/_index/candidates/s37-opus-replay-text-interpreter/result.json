@@ -1,0 +1,1073 @@
+{
+ "pass": 6,
+ "total": 6,
+ "ok": true,
+ "allowed_functions": 403,
+ "results": {
+  "A_ordinary_bytes_I1_I7": {
+   "pass_": true,
+   "n": 243,
+   "failing": [],
+   "note": "243 lead bytes: return 0, cursor not advanced, *out2 = 0 and [0209CC60]/[0209CC68] zeroed on entry"
+  },
+  "B_end_of_run": {
+   "pass_": true,
+   "zero_byte": [
+    true,
+    0,
+    0
+   ],
+   "terminator_word": [
+    true,
+    0,
+    0
+   ],
+   "note": "a zero byte and a match of the painter's +0x10C8 terminator word both stop with 0"
+  },
+  "C_lead_tokens_observed": {
+   "pass_": true,
+   "tokens": {
+    "01": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 13,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "02": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 16,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "03": {
+     "ok": true,
+     "ret": 0,
+     "advance": 1,
+     "entered": 5,
+     "stopped_at": []
+    },
+    "04": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 13,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "05": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 10,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "06": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 11,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "07": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 12,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "08": {
+     "ok": true,
+     "ret": 1,
+     "advance": 3,
+     "entered": 2,
+     "stopped_at": []
+    },
+    "09": {
+     "ok": true,
+     "ret": 1,
+     "advance": 1,
+     "entered": 2,
+     "stopped_at": []
+    },
+    "0A": {
+     "ok": false,
+     "ret": 0,
+     "advance": 0,
+     "entered": 10,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "0B": {
+     "ok": true,
+     "ret": 0,
+     "advance": 0,
+     "entered": 2,
+     "stopped_at": []
+    },
+    "0C": {
+     "ok": true,
+     "ret": 0,
+     "advance": 0,
+     "entered": 2,
+     "stopped_at": []
+    },
+    "0D": {
+     "ok": true,
+     "ret": 0,
+     "advance": 0,
+     "entered": 2,
+     "stopped_at": []
+    },
+    "0E": {
+     "ok": true,
+     "ret": 0,
+     "advance": 5,
+     "entered": 11,
+     "stopped_at": []
+    },
+    "0F": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "entered": 13,
+     "stopped_at": [
+      "00000040"
+     ]
+    }
+   },
+   "note": "observed per token; asserted: every completed call returns 0 or 1 (I-1), 0x08 skips 3, 0x09 skips 1"
+  },
+  "D_escape_selectors_I3_I6": {
+   "pass_": true,
+   "outside_range_ok": true,
+   "zero_and_underscore_do_nothing": true,
+   "next_call_after_7F": [
+    0,
+    1
+   ],
+   "in_range_observed": {
+    "20": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "21": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "22": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "23": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "24": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "25": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "26": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "27": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "28": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "29": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "2A": {
+     "ok": false,
+     "ret": 0,
+     "advance": 38,
+     "stopped_at": [
+      "00000040"
+     ]
+    },
+    "2B": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "2C": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "2D": {
+     "ok": false,
+     "ret": 3,
+     "advance": 4,
+     "stopped_at": [
+      "00000014"
+     ]
+    },
+    "2E": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "2F": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "30": {
+     "ok": true,
+     "ret": 1,
+     "advance": 1,
+     "stopped_at": []
+    },
+    "31": {
+     "ok": true,
+     "ret": 1,
+     "advance": 5,
+     "stopped_at": []
+    },
+    "32": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "33": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "34": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "35": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "36": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "37": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "38": {
+     "ok": true,
+     "ret": 1,
+     "advance": 5,
+     "stopped_at": []
+    },
+    "39": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "3A": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "3B": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "3C": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "3D": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "3E": {
+     "ok": false,
+     "ret": 3,
+     "advance": 4,
+     "stopped_at": [
+      "00000102"
+     ]
+    },
+    "3F": {
+     "ok": false,
+     "ret": 1880092136,
+     "advance": 4,
+     "stopped_at": [
+      "0035D460"
+     ]
+    },
+    "40": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "41": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "42": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "43": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "44": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "45": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "46": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "47": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "48": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "49": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "4A": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "4B": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "4C": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "4D": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "4E": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "4F": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "50": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "51": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "52": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "53": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "54": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "55": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "56": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "57": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "58": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "59": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "5A": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "5B": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "5C": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "5D": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "5E": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "5F": {
+     "ok": true,
+     "ret": 1,
+     "advance": 1,
+     "stopped_at": []
+    },
+    "60": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "61": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "62": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "63": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "64": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "65": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "66": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "67": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "68": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "69": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "6A": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "6B": {
+     "ok": false,
+     "ret": 0,
+     "advance": 1,
+     "stopped_at": [
+      "00000038"
+     ]
+    },
+    "6C": {
+     "ok": true,
+     "ret": 1,
+     "advance": 5,
+     "stopped_at": []
+    },
+    "6D": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "6E": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    },
+    "6F": {
+     "ok": true,
+     "ret": 1,
+     "advance": 5,
+     "stopped_at": []
+    },
+    "70": {
+     "ok": true,
+     "ret": 1,
+     "advance": 4,
+     "stopped_at": []
+    }
+   },
+   "note": "outside 0x20..0x70 (and '0', '_'): return 1 having consumed ONLY the 0x0F byte; the next call returns 0 at the selector byte - an unrecognised selector is left in the stream as an ordinary character"
+  },
+  "E_parsers_I2": {
+   "pass_": true,
+   "returns": {
+    "003FFAB0": [
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFB00": [
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFB90": [
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFBC0": [
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      9,
+      []
+     ],
+     [
+      true,
+      9,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFC60": [
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFCE0": [
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ]
+    ],
+    "003FFD70": [
+     [
+      true,
+      8,
+      []
+     ],
+     [
+      true,
+      8,
+      []
+     ],
+     [
+      true,
+      130,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFDA0": [
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFDF0": [
+     [
+      false,
+      0,
+      [
+       "00000000"
+      ]
+     ],
+     [
+      false,
+      0,
+      [
+       "00000000"
+      ]
+     ],
+     [
+      false,
+      0,
+      [
+       "00000000"
+      ]
+     ],
+     [
+      false,
+      0,
+      [
+       "00000000"
+      ]
+     ]
+    ],
+    "003FFEE0": [
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ],
+     [
+      true,
+      3,
+      []
+     ]
+    ],
+    "003FFF10": [
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ],
+     [
+      true,
+      4,
+      []
+     ]
+    ]
+   },
+   "note": "five return 3 on every payload, two return 4, 003FFD70 returns (byte 2 & 0x7F) + 3; the others are reported"
+  },
+  "F_dyngeo_draw_layout": {
+   "pass_": true,
+   "binds": [
+    "0x5000",
+    "0x5001",
+    "0x5003",
+    "0x5009"
+   ],
+   "map_counts": [
+    480,
+    480,
+    40,
+    480,
+    480,
+    1
+   ],
+   "copies": [
+    [
+     0,
+     23040
+    ],
+    [
+     23040,
+     23040
+    ],
+    [
+     46080,
+     1920
+    ],
+    [
+     12288,
+     23040
+    ],
+    [
+     36864,
+     23040
+    ],
+    [
+     59904,
+     48
+    ]
+   ],
+   "draws": [
+    [
+     2,
+     480
+    ],
+    [
+     2,
+     480
+    ],
+    [
+     2,
+     40
+    ],
+    [
+     2,
+     480
+    ],
+    [
+     2,
+     480
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "note": "layers with a source bind once; 1000 -> 480+480+40; 481 -> 480+1; the copy is count x 48 bytes from base + done x 48; draw(2, n); a layer with a null source is skipped even with a count; a zero count binds and draws nothing"
+  }
+ }
+}

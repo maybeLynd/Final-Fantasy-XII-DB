@@ -1,0 +1,68 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "status": "REJECTED incomplete catalog-length extraction",
+  "address": "0x57fe80",
+  "catalog_bytes": 2105,
+  "requested_bytes_sha256": "c5671732e61d0fd1cc7e4d5103bc0d0bf52d502987586fe6c4ea3ebe50730fc5",
+  "decoded_bytes": 2102,
+  "last_decoded": [
+    {
+      "address": "0x5806a1",
+      "bytes": "5e",
+      "mnemonic": "pop",
+      "operands": "rsi"
+    },
+    {
+      "address": "0x5806a2",
+      "bytes": "5b",
+      "mnemonic": "pop",
+      "operands": "rbx"
+    },
+    {
+      "address": "0x5806a3",
+      "bytes": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    },
+    {
+      "address": "0x5806a4",
+      "bytes": "488b4708",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rdi + 8]"
+    },
+    {
+      "address": "0x5806a8",
+      "bytes": "482d00810000",
+      "mnemonic": "sub",
+      "operands": "rax, 0x8100"
+    },
+    {
+      "address": "0x5806ae",
+      "bytes": "75ad",
+      "mnemonic": "jne",
+      "operands": "0x58065d"
+    },
+    {
+      "address": "0x5806b0",
+      "bytes": "40b608",
+      "mnemonic": "mov",
+      "operands": "sil, 8"
+    },
+    {
+      "address": "0x5806b3",
+      "bytes": "4533c0",
+      "mnemonic": "xor",
+      "operands": "r8d, r8d"
+    }
+  ],
+  "pdata": [
+    {
+      "start": "0x57fe80",
+      "end_exclusive": "0x57feb1",
+      "unwind": "0x1d77c78",
+      "raw_hex": "80fe4500b1fe4500787cc501"
+    }
+  ],
+  "failed_assertion": "sum(decoded instruction sizes)==catalog body byte count",
+  "limits": "No original code executed; helper batch produced no JSON because it failed before serialization. Exact .pdata extent must be checked before retry."
+}

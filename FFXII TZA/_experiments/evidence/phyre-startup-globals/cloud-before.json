@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-19T23:58:34.645Z",
+  "cloudEnabled": false,
+  "launchOptions": "",
+  "window": {
+    "app": "process:C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+    "id": 9569732,
+    "title": "Steam"
+  },
+  "screenshot": "cloud-before.jpg",
+  "source": "Visible FF12 General properties; cloud toggle off and launch options empty"
+}

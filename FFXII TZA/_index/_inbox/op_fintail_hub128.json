@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-128",
+ "result_refs": [
+  "commit:726a13bd3"
+ ],
+ "note": "batch-128 tail: TEAM.json + finseal op + sealed resume committed (726a13bd3)"
+}

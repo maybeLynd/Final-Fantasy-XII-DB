@@ -1,0 +1,65 @@
+== controls
+PASS  P1a driver price read 0056D461  mov ebx, dword ptr [rax + 0x10]
+PASS  P1b driver clears bit 31 0056D468  btr ebx, 0x1f
+PASS  P2 raw lea scanner finds the known bank lea 0033CB2C 16 sites on 0208D480
+PASS  P3 a wrong expectation fails (price at cursor + 0x10) 0057DB9F  mov dword ptr [rbx + 8], ecx
+== statement 1: 0057DAD0 writes layout A, read from the entry
+PASS  1a cursor = entry + 8 0057DAFF  lea rbx, [rcx + 8]
+PASS  1b entry = cursor - 8 0057DB55  lea r14, [rbx - 8]
+PASS  1c name pointer at entry +0 0057DB98  mov qword ptr [r14], rax
+PASS  1d id at entry +8 0057DB7E  mov word ptr [rbx], ax
+PASS  1e class byte at entry +0xA 0057DB85  mov byte ptr [rbx + 2], al
+PASS  1f owned count / 0xFFFF at entry +0xC 0057DB76  mov word ptr [rbx + 4], ax
+PASS  1g bit 3 selects the owned count 0057DB67  test bpl, 8
+PASS  1h channel 1 at entry +0xE 0057DBA2  mov word ptr [rbx + 6], ax
+PASS  1i price at entry +0x10 0057DB9F  mov dword ptr [rbx + 8], ecx
+PASS  1i price at entry +0x10 0057DBCC  mov dword ptr [rbx + 8], eax
+PASS  1i price at entry +0x10 0057DBE0  mov dword ptr [rbx + 8], eax
+PASS  1j zero-price bts 0057DBDC  bts eax, 0x1f
+PASS  1k sale test: mode bit 0 0056E715  test byte ptr [rdx], 1
+PASS  1l sale test: +0x10 against bit 31 0056E71A  cmp dword ptr [rcx + 0x10], 0x80000000
+PASS  1m sale test: score 8 0056E721  mov edx, 8
+PASS  1n sale test: score 0 below bit 31 0056E72B  cmovb edx, eax
+PASS  1o driver calls the sale test 0056D576  call 0x56e700
+PASS  1p driver declines a non-zero score 0056D57D  jne 0x56d598
+== statement 2: message 26 on the shop widget and the driver
+PASS  2a 005C5230 is xor eax, eax / ret 33c0c3
+PASS  2b shop widget procedure 0056E140 tail-jumps to the stub 0056E3B3  jmp 0x5c5230
+PASS  2c driver 0056D370 calls the stub 0056D3B8  call 0x5c5230
+PASS  2d 005651E0 is entered only from the four list procedures 005636F0 00563930 00563B10 00563D20
+PASS  2e each procedure is named only by one lea in 00564B90, never by a call or a data qword [[('00564B90', 'lea')], [('00564B90', 'lea')], [('00564B90', 'lea')], [('00564B90', 'lea')]]
+== statement 3: band-table reference sites
+PASS  3a rip-reference index: exactly five sites 003FE2C5->00D2398A, 00563E37->00D23962, 00563F5B->00D23962, 00565C25->00D23960, 00565D06->00D23960
+PASS  3b raw .text lea scan agrees 003FE2C5->00D2398A, 00563E37->00D23962, 00563F5B->00D23962, 00565C25->00D23960, 00565D06->00D23960
+PASS  3c second word read 00563E3E  movzx ecx, word ptr [rax + rcx*4]
+PASS  3d into 00293110 00563E42  call 0x293110
+PASS  3c second word read 00563F62  movzx ecx, word ptr [rax + rcx*4]
+PASS  3d into 00293110 00563F7D  call 0x293110
+PASS  3c second word read 003FE2CC  movzx esi, word ptr [rax + rbp*4]
+PASS  3d into 00293110 003FE2D5  call 0x293110
+PASS  3e builder site is image-base-relative 0057D093  lea rbx, [rdx + 0xc03988]
+PASS  3e builder site is image-base-relative 0057D0C2  lea rbx, [rdx + 0xc03d00]
+PASS  3e builder site is image-base-relative 0057D0E9  lea rbx, [rdx + 0xc03960]
+== statement 4: the high band and head arm 4's default
+PASS  4a high band = five records {1,1} {2,3} {2,4} {2,4} {3,5} (1, 1, 2, 3, 2, 4, 2, 4, 3, 5)
+PASS  4b head switch bound 0057CF91  cmp ecx, 0x3c
+PASS  4c default goes to head arm 4 0057CF94  ja 0x57d08b
+PASS  4d head arm 4 band test 0057D08B  cmp esi, 0x40
+== statement 5: bit 5 for selector 0x0F only
+PASS  5a or 0x20 0057D3EA  or ebx, 0x20
+PASS  5b selector 0x0F 0057D3ED  cmp esi, 0xf
+PASS  5c else the plain tag 0057D3F0  cmovne ebx, r14d
+PASS  5d class 7 0057D3FF  mov r9d, 7
+PASS  5e filler 0057DAD0 0057D411  call 0x57dad0
+== statement 6: the driver is the shop widget's +0xC0
+PASS  6a shop widget procedure 0056E140 0056DD66  lea r9, [rip + 0x3d3]
+PASS  6a' target 0056E140
+PASS  6b shop widget created 0056DD79  call 0x564ac0
+PASS  6c rdi = the shop widget 0056DD88  mov rdi, rax
+PASS  6d rcx = rdi 0056DE62  mov rcx, rdi
+PASS  6e into 0056C950 0056DE78  call 0x56c950
+PASS  6f rbx = the argument 0056C969  mov rbx, rcx
+PASS  6g procedure 0056D370 0056C9BC  lea rdx, [rip + 0x9ad]
+PASS  6h create 0056C9C3  call 0x244f50
+PASS  6i stored at +0xC0 0056C9CB  mov qword ptr [rbx + 0xc0], rax
+FAILS 0

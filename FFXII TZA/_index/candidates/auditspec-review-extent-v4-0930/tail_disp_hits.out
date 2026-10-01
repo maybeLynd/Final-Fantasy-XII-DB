@@ -1,0 +1,9 @@
+decoded tail instructions with a non-rip displacement memory operand: {'jtable': 306, 'other': 29}; rows with any: {'jtable': 86, 'other': 9}
+distinct displacement values 229; hits with a field-sized displacement (< 0x2000): 133
+examples (jump-table bytes decoded as instructions):
+  0020FAD7 add byte ptr [rdi - 0xb], bl
+  0023B6C7 add byte ptr [rdx - 0x12ffee4b], al
+  0023B6D3 add byte ptr [rbx + 0x11b6], ah
+  0023D4A7 add byte ptr [rsp + rdx*8 + 0x11], ch
+  0023D4AB add byte ptr [rsp + rdx*8 + 0x11], ch
+  0023D4B3 add byte ptr [rsp + rdx*8 + 0x11], ch

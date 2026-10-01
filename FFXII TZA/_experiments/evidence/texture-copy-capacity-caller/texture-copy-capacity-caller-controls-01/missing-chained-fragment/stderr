@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-copy-capacity-caller.py", line 58, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-copy-capacity-caller.py", line 19, in main
+    if raw.get('pdata_entries')!=entries or raw.get('padding')!='cc' or len(raw.get('unwind',[]))!=3:raise ValueError('missing normal caller fragments')
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: missing normal caller fragments

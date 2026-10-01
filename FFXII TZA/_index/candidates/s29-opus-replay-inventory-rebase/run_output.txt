@@ -1,0 +1,1 @@
+ok {'returned': True, 'zeroed_57C8_59C7': True, 'masked_59C8_5A47_to_A0': True, 'untouched_57C0_57C7': True, 'untouched_5A48_next': True, 'untouched_57B8_57BF': True, 'descriptor0_plus30': '57C0', 'descriptor2_plus20': '57C8', 'descriptor0_plus8': '4748', 'ok': True}

@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-regfile-spawn-record.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-result-01.json"
+  ],
+  "exit": 0,
+  "checker_sha256": "8451d8e6ea353b9515cf423a7661bfbc1a6277fb13bdf5cde366c1f46bca0fb6"
+}

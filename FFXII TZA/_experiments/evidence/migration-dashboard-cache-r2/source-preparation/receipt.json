@@ -1,0 +1,44 @@
+{
+  "method": "A static preparation, no HTTP or runtime capture",
+  "base_commit": "e8999f966ef1b5d1aac87fcf1e941bd23e9ab2cd",
+  "final_server_commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+  "base_sha256": "ba15db15b9093eeabda9e6de2a00ddaa5ee43145c754d10161b7dabfeb1af03b",
+  "final_sha256": "e3e14d2a14fb5cd844298619ad53e63d99d975d5ae8e3abaa601ddf755f5407c",
+  "whole_source_identical": false,
+  "cache_AST_and_constants_identical": true,
+  "working_source_matches_published": false,
+  "unpublished_working_sha256": "5f3e2f5fe7d666465bc0ae1e5f393484300c6112542304f837540e035617a1a6",
+  "pending_peer_code_not_executed": true,
+  "selected_nodes": [
+    "REQUIRED",
+    "State",
+    "VERIFICATION",
+    "VERIFY_INPUTS_EVERY"
+  ],
+  "dependencies": [
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "sha256": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1",
+      "retained": "dependency-0-generation.py",
+      "source_tree_commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+      "git_blob": "3993deaf0f2812f00e1e7a181e2ce8cd15b29cb3"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/workflow/DASHBOARD-MEANINGS.md",
+      "sha256": "3ce41a9b90c366598d6aea392aef43a8fefe171ee306c8e1170f29698b5bc5c4",
+      "retained": "dependency-1-DASHBOARD-MEANINGS.md",
+      "source_tree_commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+      "git_blob": "b6f3363d5ecb0fb33a8ff408b5f50e5fcf3fd5e4"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/completion-packages/README.md",
+      "sha256": "dc534ffe888c531cf1fe34504a9047e00f7029737e97992f496ec8d5f8ea60d3",
+      "retained": "dependency-2-README.md",
+      "source_tree_commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+      "git_blob": "1f6c53ad0ba658cfc5a2e81adaab9ad84de4b6cd"
+    }
+  ],
+  "driver_sha256": "7af6ee20dc3cf2e954c3d613671cf66561ccad3495351ffe2cd25713adbf2b2d",
+  "limit": "Structural equivalence of selected cache implementation/constants in immutable published objects only. Unpublished peer code excluded, not accepted. Does not prove loaded process identity, actual detection, complete progress semantics or whole current deployment acceptance.",
+  "next_action": "Use these exact final copied sources in private HTTP controls; validate warmed baseline and observer, output next-request same-stat detection and separate input-snapshot timer. Bound/stoppable/cleanup as PLAN. Goal remains ACTIVE/NOT_MET."
+}

@@ -1,0 +1,6 @@
+control: @FMN 18303 ; distinct @FMW names per container, summed: 18302 (children census: 18,303 of each; one container repeats a name)
+@FMN dword +4, commonest values: [('02001111', 13966), ('02001011', 4337)]
+P2  bits 0-1 (value -> motions): [(1, 18303)]
+    bits 4-5: [(1, 18303)] ; bits 24-25: [(2, 18303)] ; byte +0x24 bit 0 (loop): [(0, 17590), (1, 713)]
+P1  type-1 motions: 18303 ; with an @FMW of the same name in the same container: 18303
+    all motions with a same-name @FMW: 18303 of 18303

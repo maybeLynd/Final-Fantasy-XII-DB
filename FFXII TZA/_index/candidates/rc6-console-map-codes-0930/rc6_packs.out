@@ -1,0 +1,52 @@
+K1 kind-4 pack table: array 01E5E500, 776 rows before the next installed array, 550 named
+K1 console entries populated 601: agree with the kind-4 name of the field's own pack 599; disagree [(670, 'rbl0102', 'rbl0121.mpk', '723'), (1003, 'gil0301', 'gil0303.mpk', '680')]
+K1 console codes with no kind-4 pack row at all: [(670, 'rbl0102')]
+K2 kind-4 rows 702..725 (rbl01 run, row = 702 + map number where named):
+    702 rbl0100.mpk
+    703 rbl0101.mpk
+    704 None
+    705 rbl0103.mpk
+    706 rbl0104.mpk
+    707 rbl0105.mpk
+    708 rbl0106.mpk
+    709 rbl0107.mpk
+    710 rbl0108.mpk
+    711 rbl0109.mpk
+    712 rbl0110.mpk
+    713 rbl0111.mpk
+    714 rbl0112.mpk
+    715 rbl0113.mpk
+    716 None
+    717 rbl0115.mpk
+    718 rbl0116.mpk
+    719 rbl0117.mpk
+    720 None
+    721 rbl0119.mpk
+    722 None
+    723 rbl0121.mpk
+    724 None
+    725 None
+K2 kind-4 rows 677..681 (gil03 run): [(677, 'gil0300.mpk'), (678, 'gil0301.mpk'), (679, 'gil0302.mpk'), (680, 'gil0303.mpk'), (681, 'gil0304.mpk')]
+K2 rows naming rbl0102: [] ; gil0303: [680]
+K3 fields owning pack index 723 (rbl0121): [122, 670, 671, 683, 1230] ; 680 (gil0303): [1003] ; 704 (the empty rbl0102 slot): 2
+K3 fields whose own pack index is an EMPTY rbl01 kind-4 slot [704, 716, 720, 722, 724, 725]: [(44, 704, 'console None'), (119, 720, 'console None'), (121, 722, 'console None'), (123, 724, 'console None'), (771, 725, 'console None'), (1106, 720, 'console None'), (1107, 722, 'console None'), (1108, 725, 'console None'), (1112, 704, 'console None'), (1144, 724, 'console None')]
+K3 console codes of the other fields owning rbl0121 (723): [(122, None), (683, None), (1230, None)]
+    field 666 own_idx 752 (rbl0201.mpk) block 53 w2 203 w3 55 | console rbl0201
+    field 667 own_idx 752 (rbl0201.mpk) block 53 w2 203 w3 1 | console None
+    field 668 own_idx 753 (rbl0202.mpk) block 53 w2 204 w3 55 | console rbl0202
+    field 669 own_idx 753 (rbl0202.mpk) block 53 w2 204 w3 1 | console None
+    field 670 own_idx 723 (rbl0121.mpk) block 9 w2 205 w3 55 | console rbl0102
+    field 671 own_idx 723 (rbl0121.mpk) block 9 w2 205 w3 1 | console None
+    field 1000 own_idx 678 (gil0301.mpk) block 30 w2 274 w3 1 | console None
+    field 1001 own_idx 678 (gil0301.mpk) block 30 w2 274 w3 1 | console None
+    field 1002 own_idx 678 (gil0301.mpk) block 30 w2 275 w3 43 | console gil0301
+    field 1003 own_idx 680 (gil0303.mpk) block 30 w2 275 w3 43 | console gil0301
+    field 1004 own_idx 678 (gil0301.mpk) block 30 w2 275 w3 43 | console gil0301
+    field 1005 own_idx 678 (gil0301.mpk) block 30 w2 275 w3 43 | console gil0301
+    field 1006 own_idx 678 (gil0301.mpk) block 30 w2 275 w3 1 | console None
+    field 1007 own_idx 678 (gil0301.mpk) block 30 w2 275 w3 1 | console None
+K4 archive entries naming rbl0102: ['ps2data/efb/rbl0102.efb']
+K4 archive entries naming gil0303: ['ps2data/plan_master/map_ctrl/gil03/gil0303/bin/gil0303.mpk', 'ps2data/efb/gil0303.efb', 'jsondata/maps/gil0303.json']
+K4 gil0303.mpk: 2956608 bytes, map codes inside ['gil0101', 'gil0201', 'gil0301', 'ink0301', 'mrm0200']
+K4 gil0301.mpk: 5057024 bytes, map codes inside ['gil0101', 'gil0201', 'gil0301', 'ink0301', 'mrm0200', 'ucf3111']
+FAILS 0 []

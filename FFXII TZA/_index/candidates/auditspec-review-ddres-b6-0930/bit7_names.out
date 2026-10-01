@@ -1,0 +1,202 @@
+widened writers (and-clear / or-set / mov-imm of bit 7 at +0x38, non-rsp): 183
+  0019744B mov byte ptr [rax + 0x38], 1             owner 197160   prev call 0x1c1990  name None
+  001D8A3A mov dword ptr [rax + 0x38], 0x40a00000   owner 1D89D0   prev call None      name None
+  001EBD98 mov dword ptr [rcx + 0x38], 0xc1ff0000   owner gap:1EBD70 prev call None      name None
+  00216435 mov byte ptr [rbp + 0x38], 0             owner 2161C0   prev call 0x210eb0  name None
+  00225C96 mov byte ptr [rsi + 0x38], 2             owner 225C40   prev call 0x597a20  name None
+  002744EC mov dword ptr [rbp + 0x38], 1            owner 273E30   prev call 0x861ec0  name None
+  0027F7DA or  dword ptr [rax + 0x38], 0x80         owner 27F5D0   prev call 0x24a5a0  name 'battle_4_p' (via 01E0C1F0 reloc)
+  0027F7F2 or  dword ptr [rax + 0x38], 0x80         owner 27F5D0   prev call 0x24a5a0  name 's_font_c' (via 01E0C230 reloc)
+  0027F80A or  dword ptr [rax + 0x38], 0x80         owner 27F5D0   prev call 0x24a5a0  name 'targetline_p' (via 01E0C1E0 reloc)
+  0027F822 or  dword ptr [rax + 0x38], 0x80         owner 27F5D0   prev call 0x24a5a0  name 'shape' (via 01E0C270 reloc)
+  0027F83A or  dword ptr [rax + 0x38], 0x80         owner 27F5D0   prev call 0x24a5a0  name 'mini_face_c' (via 01E0C278 reloc)
+  0027FA42 and dword ptr [rax + 0x38], 0xffffff7f   owner 27F5D0   prev call 0x24a5a0  name 'battle_4_p' (via 01E0C1F0 reloc)
+  0027FA5A and dword ptr [rax + 0x38], 0xffffff7f   owner 27F5D0   prev call 0x24a5a0  name 's_font_c' (via 01E0C230 reloc)
+  0027FA72 and dword ptr [rax + 0x38], 0xffffff7f   owner 27F5D0   prev call 0x24a5a0  name 'targetline_p' (via 01E0C1E0 reloc)
+  0027FA8A and dword ptr [rax + 0x38], 0xffffff7f   owner 27F5D0   prev call 0x24a5a0  name 'shape' (via 01E0C270 reloc)
+  0027FAA2 and dword ptr [rax + 0x38], 0xffffff7f   owner 27F5D0   prev call 0x24a5a0  name 'mini_face_c' (via 01E0C278 reloc)
+  00280895 and dword ptr [rax + 0x38], 0xffffff7f   owner 280750   prev call 0x24a5a0  name 'party_grd_2' (via 01E0C238 reloc)
+  002808AD and dword ptr [rax + 0x38], 0xffffff7f   owner 280750   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  00280F5A and dword ptr [rax + 0x38], 0xffffff7f   owner 280DE0   prev call 0x24a5a0  name 'battle_4_p' (via 01E0C1F0 reloc)
+  00280F72 and dword ptr [rax + 0x38], 0xffffff7f   owner 280DE0   prev call 0x24a5a0  name 's_font_c' (via 01E0C230 reloc)
+  00280F8A and dword ptr [rax + 0x38], 0xffffff7f   owner 280DE0   prev call 0x24a5a0  name 'targetline_p' (via 01E0C1E0 reloc)
+  00280FA2 and dword ptr [rax + 0x38], 0xffffff7f   owner 280DE0   prev call 0x24a5a0  name 'shape' (via 01E0C270 reloc)
+  00280FBE and dword ptr [rax + 0x38], 0xffffff7f   owner 280DE0   prev call 0x24a5a0  name 'mini_face_c' (via 01E0C278 reloc)
+  0028152B and dword ptr [rax + 0x38], 0xffffff7f   owner 2814E0   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  00281DD4 or  dword ptr [rax + 0x38], 0x80         owner 281AE0   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  00281E1A or  dword ptr [rax + 0x38], 0x80         owner 281E00   prev call 0x24a5a0  name 'battle_4_p' (via 01E0C1F0 reloc)
+  00281E32 or  dword ptr [rax + 0x38], 0x80         owner 281E00   prev call 0x24a5a0  name 's_font_c' (via 01E0C230 reloc)
+  00281E4A or  dword ptr [rax + 0x38], 0x80         owner 281E00   prev call 0x24a5a0  name 'targetline_p' (via 01E0C1E0 reloc)
+  00281E62 or  dword ptr [rax + 0x38], 0x80         owner 281E00   prev call 0x24a5a0  name 'shape' (via 01E0C270 reloc)
+  00281E7A or  dword ptr [rax + 0x38], 0x80         owner 281E00   prev call 0x24a5a0  name 'mini_face_c' (via 01E0C278 reloc)
+  00281E92 and dword ptr [rax + 0x38], 0xffffff7f   owner 281E00   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  0029F53F mov byte ptr [rbx + 0x38], 0             owner 29F4C0   prev call None      name None
+  002AA3E5 mov dword ptr [r11 + 0x38], 0x3f800000   owner 2A9F00   prev call None      name None
+  002AAB02 mov dword ptr [r11 + 0x38], 0x3f800000   owner 2AA800   prev call None      name None
+  002AB271 mov dword ptr [r11 + 0x38], 0x3f800000   owner 2AAE40   prev call None      name None
+  002AC254 mov dword ptr [rbx + 0x38], 0x3f800000   owner 2AC1E0   prev call 0x39c4a0  name None
+  002AF06D mov dword ptr [r9 + 0x38], 0x3f800000    owner 2AEB20   prev call None      name None
+  002AFFBC mov dword ptr [r9 + 0x38], 0x3f800000    owner 2AFDC0   prev call None      name None
+  002B09E6 mov dword ptr [r11 + 0x38], 0x3f800000   owner 2B0280   prev call None      name None
+  002B0A51 mov dword ptr [r11 + 0x38], 0x3f800000   owner 2B0280   prev call 0x17fc90  name None
+  002B7F9D mov dword ptr [rax + 0x38], 0x3f800000   owner 2B7B80   prev call None      name None
+  002BB3FA mov dword ptr [rax + 0x38], 0x3f800000   owner 2BAF80   prev call None      name None
+  002CE831 and dword ptr [rax + 0x38], 0xffffff7f   owner 2CE7E0   prev call 0x24a5a0  name 'party_grd_2' (via 01E0C238 reloc)
+  002D73DE or  dword ptr [rax + 0x38], 0x80         owner 2D70F0   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  002D74F6 and dword ptr [rax + 0x38], 0xffffff7f   owner 2D70F0   prev call 0x24a5a0  name 's_font_c' (via 01E0C230 reloc)
+  002D750E and dword ptr [rax + 0x38], 0xffffff7f   owner 2D70F0   prev call 0x24a5a0  name 'targetline_p' (via 01E0C1E0 reloc)
+  002ECB5D mov dword ptr [rdx + 0x38], 0            owner gap:2ECA00 prev call None      name None
+  002F01CB mov dword ptr [rbx + 0x38], 1            owner 2F0110   prev call None      name None
+  0033B59F and dword ptr [rax + 0x38], 0xffffff3f   owner 33A720   prev call 0x33cc80  name None
+  0033B5B8 and dword ptr [rax + 0x38], 0xffffff7f   owner 33A720   prev call None      name None
+  0033B5D3 or  dword ptr [rax + 0x38], 0x80         owner 33A720   prev call None      name None
+  00364E56 mov dword ptr [rbp + 0x38], 0            owner 3649A0   prev call None      name None
+  00380C2F mov dword ptr [rcx + 0x38], 0x3f800000   owner gap:380B80 prev call None      name None
+  003C85CC mov dword ptr [rbx + 0x38], 0x3f800000   owner 3C81B0   prev call 0x202ca0  name None
+  003DDCFB mov dword ptr [rbx + 0x38], 0x80ffffff   owner 3DDC50   prev call None      name None
+  003DDD7D mov dword ptr [rbx + 0x38], 0x3f800000   owner 3DDD10   prev call 0x861ec0  name None
+  003DE037 mov dword ptr [rbx + 0x38], 0x3f800000   owner 3DDF90   prev call 0x861ec0  name None
+  003F4EE2 and dword ptr [rax + 0x38], 0xffffff7f   owner 3F4E70   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  003F4FFD or  dword ptr [rax + 0x38], 0x80         owner 3F4E70   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  00402C0F mov dword ptr [rcx + 0x38], 0x3f800000   owner gap:402BF0 prev call None      name None
+  00402CD7 mov dword ptr [rbx + 0x38], 0x3f400000   owner 402C30   prev call None      name None
+  00402D09 mov dword ptr [rbx + 0x38], 0x3f800000   owner 402C30   prev call None      name None
+  0040326A mov dword ptr [rbx + 0x38], 0x3f400000   owner 403180   prev call 0x254a10  name None
+  00403282 mov dword ptr [rbx + 0x38], 0x3f666666   owner 403180   prev call None      name None
+  004032AE mov dword ptr [rbx + 0x38], 0x3f800000   owner 403180   prev call 0x254a10  name None
+  00470968 mov byte ptr [rbx + 0x38], 2             owner 470780   prev call 0x320cf0  name None
+  004709BB mov byte ptr [rbx + 0x38], 3             owner 470780   prev call None      name None
+  00470A72 mov byte ptr [rbx + 0x38], 1             owner 470780   prev call 0x428cd0  name None
+  00470BF3 mov byte ptr [rbx + 0x38], 0             owner 470B70   prev call None      name None
+  00470E98 mov byte ptr [rbx + 0x38], 1             owner 470B70   prev call 0x320cf0  name None
+  004772CF mov dword ptr [rax + 0x38], 0x3f800000   owner 477130   prev call None      name None
+  0047743D mov byte ptr [rbx + 0x38], 0             owner 477370   prev call None      name None
+  004794B9 mov dword ptr [rbx + 0x38], 0xffff28     owner 479450   prev call None      name None
+  00479630 mov dword ptr [rbx + 0x38], 0x43800000   owner 4795D0   prev call 0x8631d0  name None
+  0047A86C mov dword ptr [rbx + 0x38], 0x43800000   owner 47A800   prev call 0x8631d0  name None
+  0047BB52 mov dword ptr [rbx + 0x38], 0x43960000   owner 47BAF0   prev call 0x8631d0  name None
+  00485400 mov dword ptr [rbx + 0x38], 0x64         owner 485390   prev call 0x8631d0  name None
+  00492D83 mov dword ptr [rcx + 0x38], 1            owner 492D40   prev call None      name None
+  004B8F83 mov dword ptr [rbx + 0x38], 0xde         owner 4B8F20   prev call 0x8631d0  name None
+  004C209E mov dword ptr [rbx + 0x38], 0x3f800000   owner 4C2040   prev call None      name None
+  004C4AB0 mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4C4A50   prev call None      name None
+  004C5C40 mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4C5BD0   prev call 0x8631d0  name None
+  004C6C20 mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4C6BB0   prev call 0x8631d0  name None
+  004C7D60 mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4C7CF0   prev call 0x8631d0  name None
+  004C8101 mov dword ptr [rbx + 0x38], 0x44441      owner 4C8080   prev call None      name None
+  004C82CC mov dword ptr [rbx + 0x38], 0x3f800000   owner 4C8280   prev call 0x8631d0  name None
+  004DA41B mov dword ptr [rbx + 0x38], 0x3d3a29c7   owner 4DA3C0   prev call 0x8631d0  name None
+  004DA4D2 mov dword ptr [rbx + 0x38], 0x43800000   owner 4DA460   prev call None      name None
+  004DC732 mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4DC6B0   prev call None      name None
+  004DC949 mov dword ptr [rbx + 0x38], 0x40000000   owner 4DC8F0   prev call None      name None
+  004DCA7E mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4DCA00   prev call None      name None
+  004E29AE mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 4E2930   prev call 0x8631d0  name None
+  004E2D3B mov dword ptr [rbx + 0x38], 0x3e4ccccd   owner 4E2CD0   prev call None      name None
+  004E2E4F mov dword ptr [rbx + 0x38], 0x3fc00000   owner 4E2DE0   prev call None      name None
+  004E7AFF mov dword ptr [rbx + 0x38], 0x3f000000   owner 4E7A90   prev call None      name None
+  0050655B mov dword ptr [rbp + 0x38], 1            owner 505E00   prev call None      name None
+  00515623 mov dword ptr [rcx + 0x38], 0x3f800000   owner 515610   prev call None      name None
+  0051DF5D mov dword ptr [rcx + 0x38], 0x3f800000   owner 51DE30   prev call 0x51e510  name None
+  0051E29A mov dword ptr [rcx + 0x38], 0x3f800000   owner 51E170   prev call 0x51e510  name None
+  00540A1E mov dword ptr [rbx + 0x38], 0x4b7fff28   owner 5409C0   prev call None      name None
+  00540FE9 mov byte ptr [rcx + 0x38], 1             owner 540FD0   prev call None      name None
+  005410AB mov byte ptr [rcx + 0x38], 0             owner 540FD0   prev call None      name None
+  00542023 mov byte ptr [rdi + 0x38], 0             owner 541E00   prev call 0x3d8e50  name None
+  0055902F or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'lic_4_c'
+  00559047 or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'partytop_4_c' (via 01E0C200 reloc)
+  0055905F or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'battle_4_c' (via 01E0C1E8 reloc)
+  00559317 and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 00559303 mov rcx, r14
+  0055932B and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 0055931E mov rcx, rbx
+  0055933F and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 00559332 mov rcx, rdi
+  00559353 and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 00559346 mov rcx, rsi
+  005593F1 and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 'lic_4_c'
+  00559409 and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 'partytop_4_c' (via 01E0C200 reloc)
+  00559421 and dword ptr [rax + 0x38], 0xffffff7f   owner 558FB0   prev call 0x24a5a0  name 'battle_4_c' (via 01E0C1E8 reloc)
+  00559439 or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'lic_b_4_c'
+  00559451 or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'maru_c'
+  00559469 or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'maru_c_2'
+  00559481 or  dword ptr [rax + 0x38], 0x80         owner 558FB0   prev call 0x24a5a0  name 'lic_b_8_c'
+  00560967 or  dword ptr [rax + 0x38], 0x80         owner 560910   prev call 0x24a5a0  name 'navi_Load' (via 01E0C248 reloc)
+  0056097F or  dword ptr [rax + 0x38], 0x80         owner 560910   prev call 0x24a5a0  name 'cm_win_c' (via 01E0C268 reloc)
+  005609EA and dword ptr [rax + 0x38], 0xffffff7f   owner 560910   prev call 0x24a5a0  name 'navi_Load' (via 01E0C248 reloc)
+  00560A02 and dword ptr [rax + 0x38], 0xffffff7f   owner 560910   prev call 0x24a5a0  name 'cm_win_c' (via 01E0C268 reloc)
+  0057560D and dword ptr [rax + 0x38], 0xffffff7f   owner 5755D0   prev call 0x24a5a0  name 00575600 mov rcx, qword ptr [rdi]
+  0057B855 or  dword ptr [rax + 0x38], 0x80         owner 57B800   prev call 0x24a5a0  name 'icons_c' (via 01E0C1F8 reloc)
+  00597A3C mov byte ptr [rcx + 0x38], 1             owner gap:597A20 prev call None      name None
+  0063174A mov dword ptr [rbx + 0x38], 0x10         owner 6316C0   prev call None      name None
+  00631913 mov dword ptr [rbx + 0x38], 1            owner 6318A0   prev call None      name None
+  00631AED mov dword ptr [rbx + 0x38], 0x60         owner 631A60   prev call None      name None
+  00631CCD mov dword ptr [rbx + 0x38], 0x100        owner 631C40   prev call None      name None
+  00631EAD mov dword ptr [rbx + 0x38], 0x140        owner 631E20   prev call None      name None
+  0063208D mov dword ptr [rbx + 0x38], 0x28         owner 632000   prev call None      name None
+  0063226D mov dword ptr [rbx + 0x38], 0xa0         owner 6321E0   prev call None      name None
+  0063244D mov dword ptr [rbx + 0x38], 0x10         owner 6323C0   prev call None      name None
+  0063262D mov dword ptr [rbx + 0x38], 0x38         owner 6325A0   prev call None      name None
+  0063280D mov dword ptr [rbx + 0x38], 0x20         owner 632780   prev call None      name None
+  00679163 mov byte ptr [rsi + 0x38], 0             owner 679130   prev call 0x874d60  name None
+  00679182 mov byte ptr [rsi + 0x38], 1             owner 679130   prev call 0x5cd0e0  name None
+  006792F9 mov byte ptr [rdi + 0x38], 0             owner 6792C0   prev call 0x5cd700  name None
+  00679370 mov byte ptr [rsi + 0x38], 0             owner 679330   prev call 0x5cd700  name None
+  0069EE4B mov byte ptr [rbx + 0x38], 1             owner 69ED80   prev call 0x85e710  name None
+  006A07BA mov byte ptr [rax + 0x38], 1             owner 6A0680   prev call 0x85e680  name None
+  006EAF4F mov dword ptr [r9 + 0x38], 0x3f6bedfb    owner 6EAC30   prev call None      name None
+  00730544 mov dword ptr [rbp + 0x38], 0x3f800000   owner 72FC20   prev call None      name None
+  00763799 mov dword ptr [rbp + 0x38], 0x3f800000   owner 763050   prev call None      name None
+  00765562 mov dword ptr [rbp + 0x38], 0xbe800000   owner 7651F0   prev call None      name None
+  00765D8A mov dword ptr [rbp + 0x38], 0x40800000   owner 7651F0   prev call None      name None
+  0077208F mov dword ptr [rbx + 0x38], 0x3f000000   owner 771B30   prev call None      name None
+  0078AEB7 mov dword ptr [rbx + 0x38], 0xffffffff   owner 78AD20   prev call 0x7157a0  name None
+  0078B108 mov dword ptr [rbx + 0x38], 0xffffffff   owner 78AD20   prev call 0x7157a0  name None
+  0078B1F8 mov dword ptr [rbx + 0x38], 0xffffffff   owner 78AD20   prev call None      name None
+  0079F624 mov dword ptr [rax + 0x38], 0x200000     owner 79F150   prev call 0x6b6410  name None
+  007D62B7 mov byte ptr [rbx + 0x38], 1             owner 7D6270   prev call None      name None
+  007D909C mov byte ptr [rcx + 0x38], 1             owner 7D9070   prev call None      name None
+  007DA9A3 mov byte ptr [rcx + 0x38], 0             owner 7DA970   prev call None      name None
+  007DA9A9 mov byte ptr [rcx + 0x38], 1             owner 7DA970   prev call None      name None
+  007DAF43 mov byte ptr [rcx + 0x38], 0             owner 7DAF20   prev call None      name None
+  007DAF54 mov byte ptr [rcx + 0x38], 1             owner 7DAF20   prev call qword ptr [rax + 0x40] name None
+  007DD76E mov dword ptr [rbx + 0x38], 3            owner 7DD600   prev call qword ptr [rax + 0x18] name None
+  007DD7CA mov dword ptr [rbx + 0x38], 4            owner 7DD600   prev call qword ptr [rax + 0x18] name None
+  007DD82A mov dword ptr [rbx + 0x38], 2            owner 7DD600   prev call qword ptr [rax + 0x10] name None
+  007DEAFE mov dword ptr [rbx + 0x38], 1            owner 7DE8D0   prev call qword ptr [rip + 0xe3834] name None
+  007E69D1 mov dword ptr [rcx + 0x38], 0x3f800000   owner gap:7E6960 prev call None      name None
+  00800CDF mov dword ptr [rax + 0x38], 0            owner 800C70   prev call None      name None
+  008224D1 mov dword ptr [rsi + 0x38], 3            owner 8216A0   prev call None      name None
+  008341F9 mov byte ptr [rcx + 0x38], 1             owner 8341D0   prev call None      name None
+  00834245 mov byte ptr [rbx + 0x38], 1             owner 8341D0   prev call 0x85e710  name None
+  008342F2 mov byte ptr [rbx + 0x38], 1             owner 8342C0   prev call 0x85e710  name None
+  008343D2 mov byte ptr [rbx + 0x38], 1             owner 8343A0   prev call 0x85e710  name None
+  0083441C mov byte ptr [rbx + 0x38], 1             owner 8343A0   prev call 0x85e710  name None
+  00834763 mov byte ptr [rbx + 0x38], 1             owner 834460   prev call 0x85e710  name None
+  008369FC mov byte ptr [rbx + 0x38], 1             owner 8369C0   prev call 0x85e710  name None
+  0083A4B6 mov dword ptr [rcx + 0x38], 1            owner 83A480   prev call None      name None
+  0083A9EC mov byte ptr [rbx + 0x38], 1             owner 83A970   prev call 0x85e710  name None
+  0083E223 mov byte ptr [rbx + 0x38], 1             owner 83E0D0   prev call 0x85e710  name None
+  00840F92 mov byte ptr [rcx + 0x38], 1             owner gap:840F90 prev call None      name None
+  00840FF8 mov byte ptr [rbx + 0x38], 1             owner 840FC0   prev call 0x85e710  name None
+  00841090 mov byte ptr [rbx + 0x38], 1             owner 841010   prev call 0x85e710  name None
+  00849083 mov byte ptr [rbx + 0x38], 1             owner 848E90   prev call 0x85e710  name None
+  0084E81A mov dword ptr [r14 + 0x38], 3            owner 84E2F0   prev call None      name None
+  0084EAFB mov dword ptr [r14 + 0x38], 1            owner 84E2F0   prev call None      name None
+  00859C57 mov byte ptr [rdi + 0x38], 1             owner 8593F0   prev call 0x8590b0  name None
+  0085F10B mov byte ptr [rbx + 0x38], 1             owner 85F020   prev call 0x85e710  name None
+  0085F4E0 mov byte ptr [rbx + 0x38], 1             owner 85F020   prev call 0x85e710  name None
+  0087AA95 mov dword ptr [r15 + 0x38], 3            owner 87A8C0   prev call None      name None
+after 0024A5A0: 51  other: [('0019744B', 'byte ptr [rax + 0x38], 1', '0x1c1990'), ('001D8A3A', 'dword ptr [rax + 0x38], 0x40a00000', None), ('001EBD98', 'dword ptr [rcx + 0x38], 0xc1ff0000', None), ('00216435', 'byte ptr [rbp + 0x38], 0', '0x210eb0'), ('00225C96', 'byte ptr [rsi + 0x38], 2', '0x597a20'), ('002744EC', 'dword ptr [rbp + 0x38], 1', '0x861ec0'), ('0029F53F', 'byte ptr [rbx + 0x38], 0', None), ('002AA3E5', 'dword ptr [r11 + 0x38], 0x3f800000', None), ('002AAB02', 'dword ptr [r11 + 0x38], 0x3f800000', None), ('002AB271', 'dword ptr [r11 + 0x38], 0x3f800000', None), ('002AC254', 'dword ptr [rbx + 0x38], 0x3f800000', '0x39c4a0'), ('002AF06D', 'dword ptr [r9 + 0x38], 0x3f800000', None), ('002AFFBC', 'dword ptr [r9 + 0x38], 0x3f800000', None), ('002B09E6', 'dword ptr [r11 + 0x38], 0x3f800000', None), ('002B0A51', 'dword ptr [r11 + 0x38], 0x3f800000', '0x17fc90'), ('002B7F9D', 'dword ptr [rax + 0x38], 0x3f800000', None), ('002BB3FA', 'dword ptr [rax + 0x38], 0x3f800000', None), ('002ECB5D', 'dword ptr [rdx + 0x38], 0', None), ('002F01CB', 'dword ptr [rbx + 0x38], 1', None), ('0033B59F', 'dword ptr [rax + 0x38], 0xffffff3f', '0x33cc80'), ('0033B5B8', 'dword ptr [rax + 0x38], 0xffffff7f', None), ('0033B5D3', 'dword ptr [rax + 0x38], 0x80', None), ('00364E56', 'dword ptr [rbp + 0x38], 0', None), ('00380C2F', 'dword ptr [rcx + 0x38], 0x3f800000', None), ('003C85CC', 'dword ptr [rbx + 0x38], 0x3f800000', '0x202ca0'), ('003DDCFB', 'dword ptr [rbx + 0x38], 0x80ffffff', None), ('003DDD7D', 'dword ptr [rbx + 0x38], 0x3f800000', '0x861ec0'), ('003DE037', 'dword ptr [rbx + 0x38], 0x3f800000', '0x861ec0'), ('00402C0F', 'dword ptr [rcx + 0x38], 0x3f800000', None), ('00402CD7', 'dword ptr [rbx + 0x38], 0x3f400000', None), ('00402D09', 'dword ptr [rbx + 0x38], 0x3f800000', None), ('0040326A', 'dword ptr [rbx + 0x38], 0x3f400000', '0x254a10'), ('00403282', 'dword ptr [rbx + 0x38], 0x3f666666', None), ('004032AE', 'dword ptr [rbx + 0x38], 0x3f800000', '0x254a10'), ('00470968', 'byte ptr [rbx + 0x38], 2', '0x320cf0'), ('004709BB', 'byte ptr [rbx + 0x38], 3', None), ('00470A72', 'byte ptr [rbx + 0x38], 1', '0x428cd0'), ('00470BF3', 'byte ptr [rbx + 0x38], 0', None), ('00470E98', 'byte ptr [rbx + 0x38], 1', '0x320cf0'), ('004772CF', 'dword ptr [rax + 0x38], 0x3f800000', None), ('0047743D', 'byte ptr [rbx + 0x38], 0', None), ('004794B9', 'dword ptr [rbx + 0x38], 0xffff28', None), ('00479630', 'dword ptr [rbx + 0x38], 0x43800000', '0x8631d0'), ('0047A86C', 'dword ptr [rbx + 0x38], 0x43800000', '0x8631d0'), ('0047BB52', 'dword ptr [rbx + 0x38], 0x43960000', '0x8631d0'), ('00485400', 'dword ptr [rbx + 0x38], 0x64', '0x8631d0'), ('00492D83', 'dword ptr [rcx + 0x38], 1', None), ('004B8F83', 'dword ptr [rbx + 0x38], 0xde', '0x8631d0'), ('004C209E', 'dword ptr [rbx + 0x38], 0x3f800000', None), ('004C4AB0', 'dword ptr [rbx + 0x38], 0x4b7fff28', None), ('004C5C40', 'dword ptr [rbx + 0x38], 0x4b7fff28', '0x8631d0'), ('004C6C20', 'dword ptr [rbx + 0x38], 0x4b7fff28', '0x8631d0'), ('004C7D60', 'dword ptr [rbx + 0x38], 0x4b7fff28', '0x8631d0'), ('004C8101', 'dword ptr [rbx + 0x38], 0x44441', None), ('004C82CC', 'dword ptr [rbx + 0x38], 0x3f800000', '0x8631d0'), ('004DA41B', 'dword ptr [rbx + 0x38], 0x3d3a29c7', '0x8631d0'), ('004DA4D2', 'dword ptr [rbx + 0x38], 0x43800000', None), ('004DC732', 'dword ptr [rbx + 0x38], 0x4b7fff28', None), ('004DC949', 'dword ptr [rbx + 0x38], 0x40000000', None), ('004DCA7E', 'dword ptr [rbx + 0x38], 0x4b7fff28', None), ('004E29AE', 'dword ptr [rbx + 0x38], 0x4b7fff28', '0x8631d0'), ('004E2D3B', 'dword ptr [rbx + 0x38], 0x3e4ccccd', None), ('004E2E4F', 'dword ptr [rbx + 0x38], 0x3fc00000', None), ('004E7AFF', 'dword ptr [rbx + 0x38], 0x3f000000', None), ('0050655B', 'dword ptr [rbp + 0x38], 1', None), ('00515623', 'dword ptr [rcx + 0x38], 0x3f800000', None), ('0051DF5D', 'dword ptr [rcx + 0x38], 0x3f800000', '0x51e510'), ('0051E29A', 'dword ptr [rcx + 0x38], 0x3f800000', '0x51e510'), ('00540A1E', 'dword ptr [rbx + 0x38], 0x4b7fff28', None), ('00540FE9', 'byte ptr [rcx + 0x38], 1', None), ('005410AB', 'byte ptr [rcx + 0x38], 0', None), ('00542023', 'byte ptr [rdi + 0x38], 0', '0x3d8e50'), ('00597A3C', 'byte ptr [rcx + 0x38], 1', None), ('0063174A', 'dword ptr [rbx + 0x38], 0x10', None), ('00631913', 'dword ptr [rbx + 0x38], 1', None), ('00631AED', 'dword ptr [rbx + 0x38], 0x60', None), ('00631CCD', 'dword ptr [rbx + 0x38], 0x100', None), ('00631EAD', 'dword ptr [rbx + 0x38], 0x140', None), ('0063208D', 'dword ptr [rbx + 0x38], 0x28', None), ('0063226D', 'dword ptr [rbx + 0x38], 0xa0', None), ('0063244D', 'dword ptr [rbx + 0x38], 0x10', None), ('0063262D', 'dword ptr [rbx + 0x38], 0x38', None), ('0063280D', 'dword ptr [rbx + 0x38], 0x20', None), ('00679163', 'byte ptr [rsi + 0x38], 0', '0x874d60'), ('00679182', 'byte ptr [rsi + 0x38], 1', '0x5cd0e0'), ('006792F9', 'byte ptr [rdi + 0x38], 0', '0x5cd700'), ('00679370', 'byte ptr [rsi + 0x38], 0', '0x5cd700'), ('0069EE4B', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('006A07BA', 'byte ptr [rax + 0x38], 1', '0x85e680'), ('006EAF4F', 'dword ptr [r9 + 0x38], 0x3f6bedfb', None), ('00730544', 'dword ptr [rbp + 0x38], 0x3f800000', None), ('00763799', 'dword ptr [rbp + 0x38], 0x3f800000', None), ('00765562', 'dword ptr [rbp + 0x38], 0xbe800000', None), ('00765D8A', 'dword ptr [rbp + 0x38], 0x40800000', None), ('0077208F', 'dword ptr [rbx + 0x38], 0x3f000000', None), ('0078AEB7', 'dword ptr [rbx + 0x38], 0xffffffff', '0x7157a0'), ('0078B108', 'dword ptr [rbx + 0x38], 0xffffffff', '0x7157a0'), ('0078B1F8', 'dword ptr [rbx + 0x38], 0xffffffff', None), ('0079F624', 'dword ptr [rax + 0x38], 0x200000', '0x6b6410'), ('007D62B7', 'byte ptr [rbx + 0x38], 1', None), ('007D909C', 'byte ptr [rcx + 0x38], 1', None), ('007DA9A3', 'byte ptr [rcx + 0x38], 0', None), ('007DA9A9', 'byte ptr [rcx + 0x38], 1', None), ('007DAF43', 'byte ptr [rcx + 0x38], 0', None), ('007DAF54', 'byte ptr [rcx + 0x38], 1', 'qword ptr [rax + 0x40]'), ('007DD76E', 'dword ptr [rbx + 0x38], 3', 'qword ptr [rax + 0x18]'), ('007DD7CA', 'dword ptr [rbx + 0x38], 4', 'qword ptr [rax + 0x18]'), ('007DD82A', 'dword ptr [rbx + 0x38], 2', 'qword ptr [rax + 0x10]'), ('007DEAFE', 'dword ptr [rbx + 0x38], 1', 'qword ptr [rip + 0xe3834]'), ('007E69D1', 'dword ptr [rcx + 0x38], 0x3f800000', None), ('00800CDF', 'dword ptr [rax + 0x38], 0', None), ('008224D1', 'dword ptr [rsi + 0x38], 3', None), ('008341F9', 'byte ptr [rcx + 0x38], 1', None), ('00834245', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('008342F2', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('008343D2', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('0083441C', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('00834763', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('008369FC', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('0083A4B6', 'dword ptr [rcx + 0x38], 1', None), ('0083A9EC', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('0083E223', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('00840F92', 'byte ptr [rcx + 0x38], 1', None), ('00840FF8', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('00841090', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('00849083', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('0084E81A', 'dword ptr [r14 + 0x38], 3', None), ('0084EAFB', 'dword ptr [r14 + 0x38], 1', None), ('00859C57', 'byte ptr [rdi + 0x38], 1', '0x8590b0'), ('0085F10B', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('0085F4E0', 'byte ptr [rbx + 0x38], 1', '0x85e710'), ('0087AA95', 'dword ptr [r15 + 0x38], 3', None)]
+
+0033B594  mov      rax, qword ptr [r15 + 0x100]
+0033B59B  jp       0x33b5b2
+0033B59D  jne      0x33b5b2
+0033B59F  and      dword ptr [rax + 0x38], 0xffffff3f
+0033B5A6  and      dword ptr [rdi + 0x3c], 0xffffff0f
+0033B5AD  jmp      0x33b655
+0033B5B2  comiss   xmm0, xmm13
+0033B5B6  jbe      0x33b5cf
+0033B5B8  and      dword ptr [rax + 0x38], 0xffffff7f
+0033B5BF  or       dword ptr [rax + 0x38], 0x40
+0033B5C3  and      dword ptr [rdi + 0x3c], 0xffffff0f
+0033B5CA  jmp      0x33b655
+0033B5CF  and      dword ptr [rax + 0x38], 0xffffffbf
+0033B5D3  or       dword ptr [rax + 0x38], 0x80
+0033B5DA  and      dword ptr [rdi + 0x3c], 0xffffff0f
+0033B5E1  jmp      0x33b655

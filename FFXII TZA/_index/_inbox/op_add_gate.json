@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PUB-GATE-REMEASURE-20260920",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "publish the 2026-09-20 re-measurement of the five transition-gate requirements",
+  "scope": "_index/RECONSTRUCTION-READINESS-GATE.md + resume + op files; hold @publication through publish",
+  "completion": "publish commit recorded",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

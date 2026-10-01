@@ -1,0 +1,18 @@
+pid 38756   held-array at 0x000000000E0BC050, 256 bytes
+baseline: all 256 bytes zero
+foreground: the game (hwnd 0xcb0d38), verified
+
+CONTROL, no key held for 0.35 s : clean
+
+SENDINPUT vk=0x43 up=False accepted=2 requested=2
+SENDINPUT vk=0x43 up=True accepted=2 requested=2
+  C         vk 0x43  ->  indices while held: [2]                     still set after release: none
+
+keys tried            : 1
+keys that moved a byte: 1
+polls that lost focus : 0
+
+MEASURED MAPPING  (index -> the game's own code, index + 28)
+  C         index   2  code  30  Cross
+SENDINPUT vk=0x43 up=True accepted=2 requested=2
+ 

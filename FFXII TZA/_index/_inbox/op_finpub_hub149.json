@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-149",
+ "result_refs": [
+  "9faff14ac"
+ ],
+ "note": "Published 9faff14ac - 20 explicit paths (14 hosts + AUDIT-LOG + 5 lifecycle ops), single publish_paths.sh call, no overlay carriers touched, no surgical hunks needed. 22 entries/anchors verified at HEAD."
+}

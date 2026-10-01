@@ -1,0 +1,18 @@
+{
+  "format": "ASTRA-preparation-failure-1",
+  "driver_sha256": "c99d224ded2cf3efddbc6b560b96d61dd49b66036e190b567b42254e0c07e4f0",
+  "args": [
+    ".\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database/Tools/work/ASTRA/migration-activity-deltas-independent/activity-controls.py"
+  ],
+  "actual_tool_chunk": "f7cadc",
+  "returncode": 1,
+  "exception_type": "ValueError",
+  "exception_message": "missing note",
+  "boundary": "original in-memory team.apply claim required note; setup failed before declared cases",
+  "finished": false,
+  "semantic_results": 0,
+  "production_writer_invoked": false,
+  "correction": "Supply required note and preserve terminal failure for future setup validation; do not treat missing raw as valid empty results."
+}

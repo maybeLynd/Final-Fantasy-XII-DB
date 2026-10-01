@@ -1,0 +1,28 @@
+{
+  "files": {
+    "after.json": {
+      "bytes": 19771,
+      "sha256": "5405fec166064304940ba30b055e5914116ce81c21dbce62a8fb20499d4c237d"
+    },
+    "assessment.json": {
+      "bytes": 2657,
+      "sha256": "6498f9781a12065d677305d360b5dd4fbbefdc8169c50dab6b1d1fd097568917"
+    },
+    "before.json": {
+      "bytes": 12519,
+      "sha256": "2c8f472b138f04f8855ae6bb47451c2da345c750deb597c7b90fbdb74faf2e91"
+    },
+    "check.py": {
+      "bytes": 4452,
+      "sha256": "dfe09d0931fcc153668a477b985c5023cd672b0b8d13d79efe58267e187b7558"
+    },
+    "runtime-probe-after.py": {
+      "bytes": 16549,
+      "sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172"
+    },
+    "runtime-probe-before.py": {
+      "bytes": 14969,
+      "sha256": "1ff612753c3768166fc9ab25670c36f3fefdf11939a9f2545392db3a2cc18cde"
+    }
+  }
+}

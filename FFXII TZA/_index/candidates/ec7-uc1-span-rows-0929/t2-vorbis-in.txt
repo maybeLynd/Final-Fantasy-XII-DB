@@ -1,0 +1,78 @@
+[scratch_sel3] UC1IN: selector UC-1 exclusion undone at 1 site(s)
+[scratch_sel2] redirected 6 write(s) to C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\SWE2-EC7\r1\t2head\vorbis.in
+SEAD span 007A4380-007F41A0: entries 1258, members 1127
+  excluded A-measured                                                    97  007A4D50 007A5400 007A5B50 007A76A0 007A78B0 007A84A0 007A9A10 007A9E00 007A9E50 007AA770 007AAA40 007AB390 007AB460 007AB5C0 007AC4F0 007ACD30 007ADB20 007AEF30 007B0000 007B0F90 007B1E10 007B2BD0 007B31A0 007B4840 007B52B0 007B6F70 007B8430 007BAC80 007BAD60 007BAEC0 007BBFB0 007BC4F0 007BD120 007BD240 007BDDA0 007BDFA0 007BED30 007BF0A0 007BFFA0 007C05C0 007C23C0 007C36C0 007C4790 007C92F0 007CF6B0 007CF9A0 007CF9E0 007CFA30 007CFBC0 007CFBF0 007CFF90 007D0210 007D0580 007D0F60 007D1140 007D2150 007D3560 007D6270 007D76E0 007DAFF0 007DB8D0 007DE2F0 007DEFB0 007E01F0 007E0B60 007E3CF0 007E5160 007E58D0 007E5DA0 007E5E80 007E6360 007E67C0 007E6DD0 007E7540 007E7A90 007E8BB0 007E9030 007EAA60 007EBAD0 007ED580 007EDE90 007EEA00 007EF1E0 007EF3B0 007EF630 007EF790 007F0320 007F0820 007F1340 007F1670 007F1960 007F1A50 007F1D10 007F1F80 007F20E0 007F25E0 007F3950
+  excluded RTTI appearance outside SQEX::Sd (only)                        1  007A5AA0
+  excluded declared: NativeLeaf.MemberAddressAccessor                     1  007B6C40
+  excluded declared: internal tail-call forwarders                        6  007A52D0 007A90A0 007AF540 007AF550 007AF560 007DEC40
+  excluded declared: libwebm mkvparser                                    3  007AD440 007BD590 007E3260
+  excluded declared: scalar deleting destructors, inlined-dtor spelling   1  007A5AC0
+  excluded libogg framing.c object (own row)                             22  007B9D70 007B9DE0 007B9E70 007B9F70 007B9F80 007BA050 007BA060 007BA070 007BA0D0 007BA100 007BA160 007BA230 007BA250 007BA270 007BA600 007BA650 007BA6A0 007BA770 007BA7B0 007BA7E0 007BA950 007BA970
+  members at an SQEX::Sd vtable slot: 463
+control outbound: 53 distinct targets outside the span
+  -> 00121000 from 1
+  -> 00121030 from 1
+  -> 00121770 from 1
+  -> 001217E0 from 1
+  -> 00121830 from 1
+  -> 00121880 from 1
+  -> 001218B0 from 1
+  -> 00121D40 from 1
+  -> 00121E20 from 1
+  -> 001220D0 from 2
+  -> 00122130 from 3
+  -> 001221B0 from 3
+  -> 001221E0 from 2
+  -> 00122390 from 2
+  -> 00123870 from 1
+  -> 00123A50 from 1
+  -> 00123C20 from 2
+  -> 001242F0 from 1
+  -> 001243B0 from 49
+  -> 0016D670 from 1
+  -> 0016D6A0 from 92
+  -> 0019C5D0 from 90
+  -> 00210EB0 from 49
+  -> 00210EC0 from 20
+  -> 007F5850 from 1
+  -> 007F5970 from 1
+  -> 007F59C0 from 2
+  -> 007F6280 from 1
+  -> 007F6730 from 1
+  -> 007F6750 from 1
+  -> 007F6CA0 from 1
+  -> 007F6FB0 from 1
+  -> 007F7350 from 2
+  -> 007F7360 from 1
+  -> 007F7380 from 2
+  -> 007F73D0 from 1
+  -> 007F7400 from 1
+  -> 007F7420 from 1
+  -> 007F7440 from 1
+  -> 007F74E0 from 1
+  -> 007F7570 from 2
+  -> 00808C40 from 236
+  -> 00809728 from 91
+  -> 00809950 from 59
+  -> 00861EBA from 11
+  -> 00861EC0 from 31
+  -> 00861F02 from 2
+  -> 00861F3E from 3
+  -> 00861F6E from 8
+  -> 00861F80 from 1
+  -> 00861F98 from 1
+  -> 00861FAA from 7
+  -> 00861FC2 from 1
+control globals: shared with outside, by outside zone set: {'0016': 22, '0016,008B': 76, '007F': 4, '008B': 18}
+SEAD entries past the span added: 9 (007F7390 007F73D0 007F7400 007F7420 007F7360 007F7380 007F7440 007F74E0 007F7570); left out as unestablished upstream: 007F6FB0 (MS ADPCM block decoder), 007F7350 (its samples-per-block helper)
+Tremor + vorbisfile: object entries 107, members 102 (A-measured or declared elsewhere: 007F41A0 007F5CC0 007F7FF0 007FE0F0 007FF1C0), callers from outside the object and its client: 0 , entries joined by nothing: 0 
+CRI HCA decoder: object entries 53, members 53 (A-measured or declared elsewhere: none), callers from outside the object and its client: 0 , entries joined by nothing: 0 
+libvorbis: object entries 139, members 133 (A-measured or declared elsewhere: 008822F0 008845A0 008888F0 0088DE20 00893E80 00894EE0), callers from outside the object and its client: 0 , entries joined by nothing: 15 008824F0 008832D0 00884090 008858B0 00888650 00888690 00888700 00888780 00889330 0088DB60 008922A0 00892990 00893A80 00893AC0 00895570
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\SWE2-EC7\r1\scratch_sel3.py", line 43, in <module>
+    exec(code, g)
+    ~~~~^^^^^^^^^
+  File "C:\w\h31\Database\FFXII TZA\18-Audio\members\select_audio_libraries.py", line 229, in <module>
+    tremor = members_of(select(TREMOR)); cri = members_of(select((CRI,), skip=(0x1243B0,)))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

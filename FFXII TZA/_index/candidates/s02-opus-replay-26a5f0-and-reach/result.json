@@ -1,0 +1,513 @@
+{
+ "pass": 61,
+ "total": 66,
+ "cases": {
+  "ss-init": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-start": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-start-idx0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-start-idxd": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-stop": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-stop-idle": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-gated": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-bits0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-bitsff": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-watch": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-full": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-571": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latch-store": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latch-held": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latch-store-real": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-drain": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-drain-idle": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode1": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode2": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode0-gated": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latched": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-deferred": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-drain-live": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-tail-branch": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-gate-on": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-gate-off": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234590-s0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234590-s3": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234520-s0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234520-s3": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-25d9e0-s0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-25d9e0-s3": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-3db1f0-s2": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-3db1f0-idle": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode0-wt6": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-record-id-00": {
+   "pass": false,
+   "notes": [
+    "unexpected fault [('mem', 19, 58, 1672848), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672848)]",
+    "id=0 A=00000034D4000000 B=00001F3A09001F1F reach=1",
+    "calls=['g2ddc30']",
+    "entered=['00182D10', '00198690', '00198790', '002DDC30']"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     58,
+     1672848
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     1672848
+    ]
+   ]
+  },
+  "ss-record-id-01": {
+   "pass": true,
+   "notes": [
+    "id=1 A=00000034D4000000 B=00001F3A09001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-02": {
+   "pass": true,
+   "notes": [
+    "id=2 A=00000034D4000000 B=00001F3A09001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-03": {
+   "pass": true,
+   "notes": [
+    "id=3 A=00000034D4000000 B=00001F3A09001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-04": {
+   "pass": true,
+   "notes": [
+    "id=4 A=00000024F9040707 B=00001F2B0B001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-05": {
+   "pass": true,
+   "notes": [
+    "id=5 A=00000034EB000000 B=00001F3A0B00101F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-06": {
+   "pass": true,
+   "notes": [
+    "id=6 A=00000004DB040707 B=00001F0B0B001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-07": {
+   "pass": true,
+   "notes": [
+    "id=7 A=00000024F9044307 B=00001F2B0B005F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-08": {
+   "pass": true,
+   "notes": [
+    "id=8 A=00000030BD000060 B=00001F3209001F7F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-09": {
+   "pass": true,
+   "notes": [
+    "id=9 A=00000030BD000060 B=00001F3209001F7F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-10": {
+   "pass": true,
+   "notes": [
+    "id=10 A=00000030BF7F6060 B=00001F320B001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-11": {
+   "pass": true,
+   "notes": [
+    "id=11 A=0000002011000000 B=00001F2A0B001F1F reach=3",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-12": {
+   "pass": false,
+   "notes": [
+    "unexpected fault [('mem', 19, 58, 1672880), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672880)]",
+    "id=12 A=00000024DD001F01 B=00001F3A0B1F1F1F reach=1",
+    "calls=[]",
+    "entered=['00182CF0', '001986B0', '00198790']"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     58,
+     1672880
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     1672880
+    ]
+   ]
+  },
+  "ss-record-id-13": {
+   "pass": false,
+   "notes": [
+    "unexpected fault [('mem', 19, 58, 1672816), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672816)]",
+    "id=13 A=FFFFFFFFD5FFE0FF B=FFFFFDFDFDFFFFFF reach=1",
+    "calls=[]",
+    "entered=['00182CD0', '00198670', '00198790']"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     58,
+     1672816
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     1672816
+    ]
+   ]
+  },
+  "ss-record-id-14": {
+   "pass": true,
+   "notes": [
+    "id=14 A=00000000BD000000 B=00001F0A09001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-15": {
+   "pass": false,
+   "notes": [
+    "unexpected fault [('mem', 19, 58, 1672816), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672816)]",
+    "id=15 A=00000034D4000000 B=00001D3A09001F1F reach=1",
+    "calls=[]",
+    "entered=['00182CD0', '00198670', '00198790']"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     58,
+     1672816
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     1672816
+    ]
+   ]
+  },
+  "ss-record-id-16": {
+   "pass": true,
+   "notes": [
+    "id=16 A=FFFFFFFFFEFFFFFF B=FFFFFFFFFEFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-17": {
+   "pass": false,
+   "notes": [
+    "unexpected fault [('mem', 19, 58, 1672880), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672880)]",
+    "id=17 A=FFFFFFFFFFFCFFFF B=FFFFFFFFFFFCFFFF reach=1",
+    "calls=[]",
+    "entered=['00182CF0', '001986B0', '00198790']"
+   ],
+   "faults": [
+    [
+     "mem",
+     19,
+     58,
+     1672880
+    ],
+    [
+     "uc",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     1672880
+    ]
+   ]
+  },
+  "ss-record-id-18": {
+   "pass": true,
+   "notes": [
+    "id=18 A=FFFFFFFFFFFCFFFF B=FFFFFFFFFFFCFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-19": {
+   "pass": true,
+   "notes": [
+    "id=19 A=FFFFFFFFFFFCFFFF B=FFFFFFFFFFFCFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-20": {
+   "pass": true,
+   "notes": [
+    "id=20 A=FFFFFFFFFEFFFFFF B=FFFFFFFFFEFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-21": {
+   "pass": true,
+   "notes": [
+    "id=21 A=FFFFFFFFFEFFFFFF B=FFFFFFFFFEFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-22": {
+   "pass": true,
+   "notes": [
+    "id=22 A=00000034D4000000 B=00001F3A09001F1F reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-23": {
+   "pass": true,
+   "notes": [
+    "id=23 A=FFFFFFFFFFFFFFFF B=FFFFFFFFFEFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-24": {
+   "pass": true,
+   "notes": [
+    "id=24 A=FFFFFFFFFEFFFFFF B=FFFFFFFFFFFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-25": {
+   "pass": true,
+   "notes": [
+    "id=25 A=FFFFFFFFFFFFFFFF B=FFFFFFFFFEFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-26": {
+   "pass": true,
+   "notes": [
+    "id=26 A=FFFFFFFFFEFFFFFF B=FFFFFFFFFFFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-record-id-27": {
+   "pass": true,
+   "notes": [
+    "id=27 A=FFFFFFFFFFFFFFFF B=FFFFE2FFFFFFFFFF reach=1",
+    "calls=[]",
+    "entered=[]"
+   ],
+   "faults": []
+  },
+  "ss-apply-bitset-invariance": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  }
+ }
+}

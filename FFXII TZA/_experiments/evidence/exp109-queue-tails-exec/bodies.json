@@ -1,0 +1,107 @@
+{
+ "real": [
+  {
+   "va": "0x36c140",
+   "lo": "0x36c140",
+   "hi": "0x36c194",
+   "span": 84,
+   "insns": 19,
+   "cov": 1.0,
+   "sha256": "f34ec4c217f1b888902154ce45f6c27afc22fe2c77a50f2dbd85ff749ab87ca3",
+   "indirect": [],
+   "name": "c140"
+  },
+  {
+   "va": "0x36c1d0",
+   "lo": "0x36c1d0",
+   "hi": "0x36c1e4",
+   "span": 20,
+   "insns": 5,
+   "cov": 1.0,
+   "sha256": "bd012ee188218bf2e3eef63682f7f296dc3620001bfb3fbddef2b99529dc3096",
+   "indirect": [],
+   "name": "c1d0"
+  },
+  {
+   "va": "0x36c1f0",
+   "lo": "0x36c1f0",
+   "hi": "0x36c286",
+   "span": 150,
+   "insns": 28,
+   "cov": 1.0,
+   "sha256": "fb327729e1e143437fab4738d25d23feba4d46e5b739eb112bea6db22b191d04",
+   "indirect": [],
+   "name": "c1f0"
+  },
+  {
+   "va": "0x32e400",
+   "lo": "0x32e400",
+   "hi": "0x32e450",
+   "span": 80,
+   "insns": 25,
+   "cov": 1.0,
+   "sha256": "7f077acb103b4304a5dde1a9ab5bd021cdfa902978626f58485208a8e00a503e",
+   "indirect": [],
+   "name": "e400"
+  },
+  {
+   "va": "0x46de70",
+   "lo": "0x46de70",
+   "hi": "0x46de75",
+   "span": 5,
+   "insns": 1,
+   "cov": 1.0,
+   "sha256": "213d6ee6baca9b941ed35aece6acea34ed98f4dad352cd094a1bbe8cfbed6030",
+   "indirect": [],
+   "name": "de70"
+  },
+  {
+   "va": "0x2df960",
+   "lo": "0x2df960",
+   "hi": "0x2df97c",
+   "span": 28,
+   "insns": 7,
+   "cov": 1.0,
+   "sha256": "2a6558be3b85641a0cc30d561bcb18aca52c3e6e22399c59f6be5f8baaf39af3",
+   "indirect": [],
+   "name": "t2d"
+  },
+  {
+   "va": "0x512ef0",
+   "lo": "0x512ef0",
+   "hi": "0x512f22",
+   "span": 50,
+   "insns": 13,
+   "cov": 1.0,
+   "sha256": "079b031a42f9eeb1c46e4f7d2296d1d9ae9bdb723a49fcbca1d4bcaa2d56f22b",
+   "indirect": [],
+   "name": "clr"
+  },
+  {
+   "va": "0x32e520",
+   "lo": "0x32e520",
+   "hi": "0x32e58b",
+   "span": 107,
+   "insns": 32,
+   "cov": 1.0,
+   "sha256": "d275a439a75e76b5319e390dc64da0a1b76d11121fe309d68065bf0db3057304",
+   "indirect": [],
+   "name": "e520"
+  },
+  {
+   "va": "0x46dfe0",
+   "lo": "0x46dfe0",
+   "hi": "0x46dff2",
+   "span": 18,
+   "insns": 5,
+   "cov": 1.0,
+   "sha256": "63dd59e452a71ffda84dbc0367e636bf395a668bdadfaf2f326705aa376817a7",
+   "indirect": [],
+   "name": "flag"
+  }
+ ],
+ "scripted": [
+  "0x32e070",
+  "0x35ea30"
+ ]
+}

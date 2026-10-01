@@ -1,0 +1,51 @@
+{
+  "status": "PASS_ACTUAL_SELECTOR_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "8f9996a699e8fcb8df2384c608398a61cd650186de4b9940959702e233bb1cf9",
+  "positive_reused": {
+    "path": "primary-selector-zero-result-01.json",
+    "sha256": "b37c12d6464fc1e04ef61643f1e83a61f2882e8087da5f297ec858ac33b019d7"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-primary-selector-zero.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "selector capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "nonconstant-leaf",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-primary-selector-zero.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-controls-01\\nonconstant-leaf\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-controls-01\\nonconstant-leaf"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-condition-same-count",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-primary-selector-zero.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-controls-01\\changed-condition-same-count\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-controls-01\\changed-condition-same-count"
+      ],
+      "exit": 1,
+      "expected_error": "retained caller identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "db850049b52aad622530fc678b8e01d4ea243c7d1c19115f40cb356062ec642d",
+  "limits": "Actual producer prerequisite/identity controls, not independent semantic review or native runs"
+}

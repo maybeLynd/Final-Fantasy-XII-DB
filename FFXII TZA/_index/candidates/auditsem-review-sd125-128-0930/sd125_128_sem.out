@@ -1,0 +1,29 @@
+PASS A1 CONTROL the +0x2FF0 sweep finds the producer's setter 002795B5, its clear 002795C2 and the reader 00276FD8 | 72 sites
+PASS A1 every +0x2FF0 site lies in the menu family: 00276D30, 002778C0, 00279E20, 0027B430, 0027D330
+PASS A1 immediate writers: only 002795B5 (or 0x4000) and 002795C2 (and 0xFFFFBFFF) can change bit 14 | 18 immediate writers
+PASS A1 every register-sourced +0x2FF0 writer resolves (own reaching-definition walk) to a value that leaves bit 14 alone | 14 register writers classified
+PASS A1 0027A55C's or-operand r12d reaches only from 0027A2FB mov r12d, 0x2000 | ['mov r12d, 0x2000']
+PASS A1 no store at a displacement 0x2FE2..0x2FF1 other than +0x2FF0 itself reaches byte +0x2FF1 (where bit 14 lives)
+PASS F3 the bit starts clear: the controller builds the 0x3010-byte menu (0027A428 mov edx, 0x3010, handler 00276D30 at 0027A402) through 00245000 -> 002465F0, which memsets the whole object first (00246612 movsxd r8, edx / 00246618 xor edx, edx / 00246626 call 00861EC0 memset)
+PASS A2 inside the dispatcher the window-kind word +0xD8 has one writer, 002791AC (the message-31 arm) | ['002791AC']
+PASS A2 every path from the kind store 002791AC to the dispatcher's ret passes the bit test 002795AE (so after each message 31 the bit equals 'k == 1') | rets ['00279D5D']
+PASS A2 CONTROL own reaching-definition walk agrees with the producer's P3: rdi at 002795AE is only 002791A7 mov edi, 1 | ['mov edi, 1']
+PASS A2 the test and both outcomes: 002795AE cmp qword [r12+8], rdi ; 002795B5 or 0x4000 ; 002795C2 and 0xFFFFBFFF
+PASS A2 the bit lives on the menu widget: the menu's create arm builds handler 002778C0 (00276DD3) at rdi+0x220 with +8 = its own pointer (00276DBD movsxd rax, edi); the dispatcher's id-1 arm stores +8 at +0xD0 (00277931) and 002778EF loads r15 = [rcx+0xd0]
+PASS A3 00276FA0: 001EDEC0([rdi+0xB4]) == 0 leaves the arm before the test (00276FAD je 00277060), and bit 8 of +0x2FF0 skips the close block (00276FBB bt ecx, 8 / 00276FBF jb 00277067)
+PASS A3 r14d = 00253BA0() (00276FD3 / 00276FE2), forced to 1 by bit 0x4000 (00276FD8 test, 00276FF2 cmovne r14d, r15d with r15d = 1 at 00276FEC)
+PASS A3 r14d == 0 closes unconditionally (00277034 je 0027704E -> or 0x200, 0027705B call 00244F00); r14d != 0 closes only when (bit 17 clear and edx) or r15d (00277036-0027704C)
+PASS A3 00253BA0 (27 B) = 003BA2E0() ? dword[01E0C2B8] : 0; 003BA2E0 reads bytes 02B4053C / 02B4053D (the force-fight page: both set at boot, the only clearing verb unused) - so effective 0 means the flag 01E0C2B8 is 0 (FLEEING)
+PASS F1 the 001EDEC0 gate the register paragraph leaves out: answers 1 unless dword 01F82E38 is set and 01DFE0C0 is clear, then (~arg) & 1 (arg = menu +0xB4)
+PASS A4 own census of `mov dword [mem], 0x1f` on instruction boundaries = the producer's 13 builds exactly | extra [] missing []
+PASS A4 the two foreign {31, 1} builds load the payload qword 1 from 00915BB0 (002BB7C4 / 002BBA0B in 002BAF80)
+PASS A4 kind 1 -> list code 6: 0027E050's table 0027E384 entry 0 (kind - 1 = 0) is 0027E098, whose case stores 6 at +0x4C0 (0027E0A6)
+PASS B1 002C7660 is 1,190 B with one ret (002C7B05) and no indirect jmp
+PASS B2 CONTROL own rel32 sweep finds 0028EDAD -> 002C62B0 | ['0028EDAD']
+PASS B2 002C7660 has one direct caller, 002C632F in 002C62B0 | ['002C632F']
+PASS B2 002C62B0 walks the list at [hud+0x1D70] with next = [node+0x18] around the call
+PASS B3 the label scale constants: R/3 (008F311C = 3.0), floor 0.8 (008F3108), span 0.2 (00916F24), 1.0 (01CEBBA8); R = hud+0x1D7C (002C79BA); stored to slot +0x1834 (002C7A14)
+PASS F2 the slot text the label measures (+0x130 of the 0x1C0 record, = hud+0x1930 for slot 0) is written by 002C8BC0 (002C8BDF lea rbx, [rcx+0x130]) through 00272CE0(buf, node+0x10); 002C8BC0's one caller is the slot claim 002C8A60, which keys the slot by the node handle (002C8B96 mov [rbx+0x1b0], eax)
+PASS F2 00272CE0 resolves the handle (003588B0) and copies 00263990(unit) = Actor_GetDisplayName (+0xF8 literal or the +0x102 name id), plus a formatted suffix from 00263A10 - so 'name label' holds; with node+0x17 & 0x30 == 0x30 the name is prefixed by text id 0x46D8 (002C8BF3-002C8C0C)
+PASS B4 002C7660 calls none of 00329220 / 0031FE70 / 00320040 / 0031FEC0 / 0031FF70 and makes no indirect call
+FAILS 0

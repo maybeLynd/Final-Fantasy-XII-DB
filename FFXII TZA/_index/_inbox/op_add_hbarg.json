@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-HBARG-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the hdat arg-byte characterization + 00577970 record→page bridge bind.",
+  "scope": "hchk-hctg-hdat-handbook-indexes.md, AUDIT-LOG.md, ADDRESS-INDEX.md, SWE2-DATA.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

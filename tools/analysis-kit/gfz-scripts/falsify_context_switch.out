@@ -1,0 +1,9 @@
+X3   SURVIVES  slots 001670F0 001670A0 00167050 001671E0 00167230 00167190 00167280 00167140; each installer: call 006B8D20, then only on a zero return add the word count to 02E522E0 and write it to +0x20; store its vtable over +0x00; tail-jump: all eight
+X1   SURVIVES  names (.data) and installer-written words [('NUM_LIGHTS', 3), ('LOD_BLEND', 1), ('INSTANCING_ENABLED', 1), ('SHADER_LOD_LEVEL', 1), ('ORTHO_CAMERA', 1), ('INDICES_16BIT', 1), ('SKINNING_ENABLED', 1), ('LOW_RES_PARTICLES', 1)]; .data vtables 00D80EA8 (the base's is 00D80EA8); .data +0x20 [0]
+X2   SURVIVES  slot 0 (deleting destructor) passes 0x28: [('NUM_LIGHTS', '006B8790', True), ('LOD_BLEND', '006B8750', True), ('INSTANCING_ENABLED', '006B8710', True), ('SHADER_LOD_LEVEL', '006B8850', True), ('ORTHO_CAMERA', '006B8890', True), ('INDICES_16BIT', '006B8810', True), ('SKINNING_ENABLED', '006B88D0', True), ('LOW_RES_PARTICLES', '006B87D0', True)]
+X4   SURVIVES  006B8D20: `test r10, r10` on +0x08 then `lea eax, [r10 + 0x11]` = 0x11 True; `mov eax, 0x12` on a name match True; head 02E522D0 read and written 2; links at +0x10 True
+X5   SURVIVES  installer-written word counts sum to 10
+X6   SURVIVES  slot 2 per class [('NUM_LIGHTS', '006B9120', True), ('LOD_BLEND', '006B90A0', True), ('INSTANCING_ENABLED', '006B9070', True), ('SHADER_LOD_LEVEL', '006B93D0', True), ('ORTHO_CAMERA', '006B9410', True), ('INDICES_16BIT', '006B93A0', True), ('SKINNING_ENABLED', '006B9450', True), ('LOW_RES_PARTICLES', '006B9050', True)]; base evaluator 006B9050 reads +0x24: True
+X7   SURVIVES  {'SKINNING 0x78': True, 'INDICES_16BIT +0x4C == 0x0C': True, 'ORTHO +0x6C vs 0.01': True, 'NUM_LIGHTS effect +0x00/+0x04/+0x70': True, 'SHADER_LOD +0x74': True, 'LOD_BLEND +0x40/+0x20/+0x30': True} (ORTHO's float constants ['0x3c23d70a'])
+X8   SURVIVES  NUM_LIGHTS carries +35 (0x23), a right shift and a x4: True
+BROKEN 0: none

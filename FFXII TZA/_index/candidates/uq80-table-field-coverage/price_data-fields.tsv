@@ -1,0 +1,2 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	4	pass	priceSlotValue	u32: 0x1 x45, 0xc8 x6, 0xd2 x3, 0xb4 x3, 0xfa x2 (71 distinct)	0031D7F2* mov eax, dword ptr [rsi]	u32 copied to the class-16 query's +0x28, the slot the shop list filler reads as the unit price (0057DFD0); no other reader; whether a class-16 id reaches a shop list is not shown	STATIC	PASS

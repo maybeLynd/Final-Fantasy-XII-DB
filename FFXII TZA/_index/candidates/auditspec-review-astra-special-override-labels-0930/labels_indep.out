@@ -1,0 +1,79 @@
+L1/L2 initializer 001D03E1..001D04D1
+   instructions 33, first 001D03E1 last 001D04D1
+   branch/call/ret inside: none
+   rdi definitions 001D03C3..001D04D1: ['001D03C3 mov rdi, rcx']
+   stores into +0xAE4..+0xC03: 17; [rdi+disp] stores elsewhere: none
+   slot 0 (+0xAE4): 'OFF'            NUL at 3; bytes written 4 (last written offset 3); unwritten after NUL: 28
+   slot 1 (+0xB04): 'Black Hole'     NUL at 10; bytes written 11 (last written offset 10); unwritten after NUL: 21
+   slot 2 (+0xB24): 'Luminescence'   NUL at 12; bytes written 13 (last written offset 12); unwritten after NUL: 19
+   slot 3 (+0xB44): 'Ark Blast'      NUL at 9; bytes written 10 (last written offset 9); unwritten after NUL: 22
+   slot 4 (+0xB64): 'Whiteout'       NUL at 8; bytes written 9 (last written offset 8); unwritten after NUL: 23
+   slot 5 (+0xB84): 'Windburst'      NUL at 9; bytes written 10 (last written offset 9); unwritten after NUL: 22
+   slot 6 (+0xBA4): 'Torrent'        NUL at 7; bytes written 8 (last written offset 7); unwritten after NUL: 24
+   slot 7 (+0xBC4): 'Cataclysm'      NUL at 9; bytes written 10 (last written offset 9); unwritten after NUL: 22
+   slot 8 (+0xBE4): 'Inferno'        NUL at 7; bytes written 8 (last written offset 7); unwritten after NUL: 24
+L3 formatter switch
+   owner of 001CD141: 001CD0E0 listed 001CD0E0 FUN_001cd0e0
+   001CD133 mov r12, r8
+   001CD136 mov qword ptr [rbp - 0x48], r8
+   001CD13A movsxd r13, edx
+   001CD13D mov dword ptr [rbp - 0x78], r13d
+   001CD141 mov r15, rcx
+   001CD144 mov qword ptr [rbp - 0x80], rcx
+   001CD148 cmp byte ptr [rcx + 0xa68], 0
+   001CD14F jne 0x1cd16a
+   001CD151 lea r8, [rip + 0x732880]
+   001CD158 mov edx, 0x100
+   001CD15D mov rcx, r12
+   001CD160 call 0x19c5d0
+   001CD165 jmp 0x1cfca9
+   001CD16A movsxd rax, dword ptr [rcx + 0xa88]
+   001CD171 imul rcx, rax, 0x16
+   001CD175 movsxd rax, dword ptr [r15 + 0xa6c]
+   001CD17C add rcx, rax
+   001CD17F lea rsi, [rip - 0xad186]
+   001CD186 mov edx, dword ptr [rsi + rcx*4 + 0x7dce00]
+   001CD18D mov eax, r13d
+   001CD190 or rbx, 0xffffffffffffffff
+   001CD194 cmp byte ptr [r15 + 0xc56], 0
+   001CD19C cmovne eax, ebx
+   001CD19F lea rcx, [rip + 0x732842]
+   001CD1A6 lea r8, [rip + 0x6f8723]
+   001CD1AD mov r14, r8
+   001CD1B0 cmp edx, eax
+   001CD1B2 cmove r14, rcx
+   001CD1B6 mov qword ptr [rbp - 0x68], r14
+   001CD1BA lea eax, [r13 - 1]
+   001CD1BE cmp eax, 0x125
+   001CD1C3 ja 0x1cfc86
+   001CD1C9 cdqe 
+   001CD1CB mov ecx, dword ptr [rsi + rax*4 + 0xafcec]
+   001CD1D2 add rcx, rsi
+   001CD1D5 jmp rcx
+   001CD1D7 call 0x1a9930
+   001CD1DC test rax, rax
+   001CD1DF je 0x1cd1ef
+   byte at 001CFCEB = C3; last decoded before table: 001CFCEB ret 
+   entries 294, distinct targets 263, all inside owner: True
+   index(es) reaching 001CE9AA: [181] -> item id(s) [182] (item = index + 1 by the lea eax,[r13-1])
+   one-past entry 295th dword = CCDECCCC (+base) inside owner code: False
+L4 item-182 arm
+   001CE9AA movsxd rax, dword ptr [r15 + 0xae0]
+   001CE9B1 shl rax, 5
+   001CE9B5 lea rcx, [r15 + 0xae4]
+   001CE9BC add rcx, rax
+   001CE9BF mov qword ptr [rsp + 0x28], rcx
+   001CE9C4 jmp 0x1cd57f
+   001CD4FF mov r9, r14
+   001CD502 mov rax, qword ptr [r15 + r13*8 + 0x130]
+   001CD50A mov edx, 0x100
+   001CD50F mov qword ptr [rsp + 0x20], rax
+   001CD514 mov rcx, r12
+   001CD517 call 0x19c5d0
+   001CD51C jmp 0x1cfca9
+   001CD57F lea r8, [rip + 0x73255a]
+   001CD586 jmp 0x1cd4ff
+   r15 definitions in the owner (linear decode): ['001CD141 mov r15, rcx', '001CF62F mov r15, rdx', '001CF632 cmove r15, r9', '001CF833 mov r15, rdx', '001CF836 cmove r15, r9', '001CFCE0 pop r15']
+L5 constants
+   008FFAE0: b'%s%s %s '
+   00D0F9E0 words: [241, 231, 234, 237, 229, 228, 227, 226]

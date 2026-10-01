@@ -1,0 +1,36 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "records": [
+    {
+      "address": "0xd23d80",
+      "bytes": 24,
+      "raw_hex": "7f00000000000000b83ed200000000000000000000000000",
+      "sha256": "23abcdabbf4113dcc3378d521b23996daa7cef2d4c275c6f170c19a20a4233cf",
+      "dwords": [
+        127,
+        0,
+        13778616,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "address": "0xd23d98",
+      "bytes": 4,
+      "raw_hex": "6f000000",
+      "sha256": "cb4b9dbbeb77704337f1b45fd423801e5df7d62212f235c0529a39f766586a7f",
+      "dwords": [
+        111
+      ]
+    },
+    {
+      "address": "0xd23eb8",
+      "bytes": 11,
+      "raw_hex": "64617461666163655f6300",
+      "sha256": "0741adaa8ffa194e6096ab3685942135236213e94f617521ac653f5967c0cb17",
+      "text": "dataface_c"
+    }
+  ],
+  "limits": "Literal load resource descriptors/name only; no path resolution, archive extraction or live binding."
+}

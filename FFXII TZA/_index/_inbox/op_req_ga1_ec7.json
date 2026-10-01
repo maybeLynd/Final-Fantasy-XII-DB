@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-SWE2-EC7-GA1-DESCRIPTION-CORRECTIONS-0927",
+ "agent": "SWE2-EC7",
+ "note": "Claiming the owner corrections: (1) the-record-00329220-builds.md - 00273160 is the status-order read of the cached L1 table (+0x1700, key +0x23), and 00273BA0 builds the 32 class-26 status records + four order tables at +0x1500..+0x18FF; (2) the-widget-message-protocol.md - 00297FE0 does not post message 0x1E; 0x1E is the period argument of status cycler 00272F60.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

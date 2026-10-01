@@ -1,0 +1,160 @@
+{
+  "status": "ORIGINAL_GUEST_IDIV_QUOTIENT_OVERFLOW_BEFORE_RESULT",
+  "method": "B verified original5B CDQ/IDIV/MOV in disposable guest with supplied register entry; A source nonzero guard; no full OPDIV/native OS/live",
+  "raw_sha256": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+  "observations": [
+    {
+      "name": "positive",
+      "dividend": 20,
+      "divisor": 3,
+      "final": {
+        "pc": "0x25f0de",
+        "eax": "00000006",
+        "ebx": "00000003",
+        "edx": "00000002",
+        "ecx": "00000006",
+        "eflags": "0x2",
+        "nv": {
+          "39": "0x123456789abcdef",
+          "36": "0x23456789abcdef0",
+          "43": "0x3456789abcdef01",
+          "110": "0x456789abcdef012",
+          "111": "0x56789abcdef0123"
+        },
+        "code_hex": "99f7fb8bc8",
+        "page_sha256": "88cf2b2b9cb644c43352e9aab2bc03ce5809776e138005827bd5834c7065d084"
+      },
+      "error": null,
+      "cleanup": "Disposable sole guest mapping unmapped; no native host/game/save changes"
+    },
+    {
+      "name": "negative",
+      "dividend": -20,
+      "divisor": 3,
+      "final": {
+        "pc": "0x25f0de",
+        "eax": "FFFFFFFA",
+        "ebx": "00000003",
+        "edx": "FFFFFFFE",
+        "ecx": "FFFFFFFA",
+        "eflags": "0x2",
+        "nv": {
+          "39": "0x123456789abcdef",
+          "36": "0x23456789abcdef0",
+          "43": "0x3456789abcdef01",
+          "110": "0x456789abcdef012",
+          "111": "0x56789abcdef0123"
+        },
+        "code_hex": "99f7fb8bc8",
+        "page_sha256": "88cf2b2b9cb644c43352e9aab2bc03ce5809776e138005827bd5834c7065d084"
+      },
+      "error": null,
+      "cleanup": "Disposable sole guest mapping unmapped; no native host/game/save changes"
+    },
+    {
+      "name": "min-valid",
+      "dividend": -2147483648,
+      "divisor": 1,
+      "final": {
+        "pc": "0x25f0de",
+        "eax": "80000000",
+        "ebx": "00000001",
+        "edx": "00000000",
+        "ecx": "80000000",
+        "eflags": "0x2",
+        "nv": {
+          "39": "0x123456789abcdef",
+          "36": "0x23456789abcdef0",
+          "43": "0x3456789abcdef01",
+          "110": "0x456789abcdef012",
+          "111": "0x56789abcdef0123"
+        },
+        "code_hex": "99f7fb8bc8",
+        "page_sha256": "88cf2b2b9cb644c43352e9aab2bc03ce5809776e138005827bd5834c7065d084"
+      },
+      "error": null,
+      "cleanup": "Disposable sole guest mapping unmapped; no native host/game/save changes"
+    },
+    {
+      "name": "quotient-overflow",
+      "dividend": -2147483648,
+      "divisor": -1,
+      "final": {
+        "pc": "0x25f0da",
+        "eax": "80000000",
+        "ebx": "FFFFFFFF",
+        "edx": "FFFFFFFF",
+        "ecx": "12345678",
+        "eflags": "0x2",
+        "nv": {
+          "39": "0x123456789abcdef",
+          "36": "0x23456789abcdef0",
+          "43": "0x3456789abcdef01",
+          "110": "0x456789abcdef012",
+          "111": "0x56789abcdef0123"
+        },
+        "code_hex": "99f7fb8bc8",
+        "page_sha256": "88cf2b2b9cb644c43352e9aab2bc03ce5809776e138005827bd5834c7065d084"
+      },
+      "error": {
+        "errno": 21,
+        "text": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      },
+      "cleanup": "Disposable sole guest mapping unmapped; no native host/game/save changes"
+    },
+    {
+      "name": "zero-bypass-detection",
+      "dividend": 1,
+      "divisor": 0,
+      "final": {
+        "pc": "0x25f0da",
+        "eax": "00000001",
+        "ebx": "00000000",
+        "edx": "00000000",
+        "ecx": "12345678",
+        "eflags": "0x2",
+        "nv": {
+          "39": "0x123456789abcdef",
+          "36": "0x23456789abcdef0",
+          "43": "0x3456789abcdef01",
+          "110": "0x456789abcdef012",
+          "111": "0x56789abcdef0123"
+        },
+        "code_hex": "99f7fb8bc8",
+        "page_sha256": "88cf2b2b9cb644c43352e9aab2bc03ce5809776e138005827bd5834c7065d084"
+      },
+      "error": {
+        "errno": 21,
+        "text": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      },
+      "cleanup": "Disposable sole guest mapping unmapped; no native host/game/save changes"
+    },
+    {
+      "name": "private-idiv-nop",
+      "dividend": -2147483648,
+      "divisor": -1,
+      "final": {
+        "pc": "0x25f0de",
+        "eax": "80000000",
+        "ebx": "FFFFFFFF",
+        "edx": "FFFFFFFF",
+        "ecx": "80000000",
+        "eflags": "0x2",
+        "nv": {
+          "39": "0x123456789abcdef",
+          "36": "0x23456789abcdef0",
+          "43": "0x3456789abcdef01",
+          "110": "0x456789abcdef012",
+          "111": "0x56789abcdef0123"
+        },
+        "code_hex": "9990908bc8",
+        "page_sha256": "df6e17888832dfe26be40d6f4db33e9f207e5dbb7d7806129b69cf2ae837bfdb"
+      },
+      "error": null,
+      "cleanup": "Disposable sole guest mapping unmapped; no native host/game/save changes"
+    }
+  ],
+  "interpretation": "Three original positive controls reach MOV/stop with quotient/remainder; signedMIN/-1 reaches original IDIV then UC_ERR_EXCEPTION before MOV, same detector handles explicit zero-guard bypass. PrivateIDIVNOP same MIN/-1 reaches stop. Source original TESTEBX/JE only protects zero, so nonzero quotient-overflow register state is not intercepted by that guard. This is isolated guest evidence, not native OS exception/game crash proof.",
+  "consumer_change": "Specify quotient-overflow boundary separately from zero-divisor guard; do not silently model wrap/saturation as observed original result. Preserve original instruction/entry and detector/private intervention limits; native handler/caller/authored inputs remain open.",
+  "limits": "Guest register slice outcome/error only, not native OS exception vector/handler/game crash/fullOPDIV/pops/pushes/normal caller/authored values. Zero case intentionally bypasses original guard, detector only; privateNOP intervention not original behavior. No fault callback/stubs/memory; no live/native game/save/config/reference change. PC OFF/S19 unapproved/fullL1+L2 NOT_MET"
+}

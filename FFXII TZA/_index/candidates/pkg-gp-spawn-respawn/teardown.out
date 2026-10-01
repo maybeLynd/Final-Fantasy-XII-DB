@@ -1,0 +1,7 @@
+PASS  G teardown needs bit 33, bit 34 and a presentation state below 3 (or no handle): True
+PASS  K timeline kinds -> ['00319FD8', '0031A031', '0031A042', '0031A0B7', '0031A100', '0031A160', '0031A198', '0031A1AB', '0031A1C6']; kind 6 and kind 4 set bit 34
+PASS  R 00234200 callers ['0025B225']; gated on record +0x14 >= 0x80 and a bound unit
+PASS  P handler reached from ['002EB77B']; wrapper called from ['002FC103', '002FC158', '003B887D', '003B8988', '003B8A1C', '003B9208']
+PASS  T opcode -> arm {3: '003B87E7', 13: '003B894E', 26: '003B89A9', 34: '003B91AE', 37: '003B9234'}; kinds 0/1/2/3/4/6/7/8 stored as read
+PASS  U bit 34 is set on 00263E30(first argument)
+FAILS 0

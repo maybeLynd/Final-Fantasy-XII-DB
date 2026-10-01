@@ -1,0 +1,64 @@
+Retained native-receipt check only; no new execution.
+Exit: 0
+{
+  "arms": {
+    "positive": {
+      "pid": 21596,
+      "own_main_hits": 21,
+      "own_api_steps": 21,
+      "foreign_events": 0,
+      "handler_total": 1,
+      "post_heartbeat_sizes": [
+        24,
+        27,
+        30,
+        33
+      ],
+      "normal_exit": true,
+      "capture_status": "PASS"
+    },
+    "original": {
+      "pid": 35340,
+      "own_main_hits": 2,
+      "own_api_steps": 2,
+      "foreign_events": 1,
+      "handler_total": 1,
+      "post_heartbeat_sizes": [
+        5,
+        8,
+        11,
+        14
+      ],
+      "normal_exit": true,
+      "capture_status": "INVALID",
+      "foreign_continue_status_hex": "0x10002",
+      "foreign_context_writes": 1,
+      "handler_delta": 0
+    },
+    "candidate": {
+      "pid": 51556,
+      "own_main_hits": 2,
+      "own_api_steps": 2,
+      "foreign_events": 1,
+      "handler_total": 2,
+      "post_heartbeat_sizes": [
+        5,
+        8,
+        11,
+        14
+      ],
+      "normal_exit": true,
+      "capture_status": "INVALID",
+      "foreign_continue_status_hex": "0x80010001",
+      "foreign_context_writes": 0,
+      "handler_delta": 1
+    }
+  },
+  "malformed_receipts_rejected": [
+    "zero_positive",
+    "wrong_reply",
+    "missing_handler",
+    "empty_api",
+    "unexpected_write"
+  ]
+}

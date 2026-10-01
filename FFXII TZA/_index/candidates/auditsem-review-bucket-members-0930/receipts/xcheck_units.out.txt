@@ -1,0 +1,19 @@
+VBF .bin/.dat entries: 4387 {'dat': 2948, 'bin': 1439}
+units.tsv rows: 587  distinct units: 579
+entries not landing on a units row (my folding/signature): 0
+rows whose count differs from my VBF count: 8
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/in_sdver/packfiles/clutpack_ys.bin', '40 00 00 00'), 1, 0)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin', '80 00 00 00'), 1, 0)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/in_sdver/packfiles/tex2pack_ys.bin', '40 00 00 00'), 1, 0)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/in_sdver/packfiles/texpack_ys.bin', '40 00 00 00'), 1, 0)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/packfiles/clutpack_ys.bin', '40 00 00 00'), 9, 10)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/packfiles/mrppack_ys.bin', '80 00 00 00'), 9, 10)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/packfiles/tex2pack_ys.bin', '40 00 00 00'), 9, 10)
+  BAD (('bin', 'ps2data/image/ff12/myoshiok/packfiles/texpack_ys.bin', '40 00 00 00'), 9, 10)
+bucket-members.tsv rows whose entries/units differ from the VBF-bound units: 0 []
+signatures held by more than one family:
+   ('bin', "'FLAG'") ['flagdef', 'flagrom']
+   ('bin', '00 00 00 00') ['behindcamera', 'binmenuimage']
+   ('bin', '01 00 00 00') ['skeletonmapping', 'testmapref']
+   ('bin', '80 00 00 00') ['musicinfo', 'packdirectory', 'st2enames']
+FAILS 1

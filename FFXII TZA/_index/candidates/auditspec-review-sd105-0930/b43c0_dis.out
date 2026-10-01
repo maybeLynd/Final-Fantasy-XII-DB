@@ -1,0 +1,99 @@
+002B43C0  mov       r11, rsp
+002B43C3  push      rbx
+002B43C4  sub       rsp, 0x200
+002B43CB  movups    xmm0, xmmword ptr [rcx]
+002B43CE  lea       rax, [rsp + 0x60]
+002B43D3  mov       byte ptr [r11 + 0x18], r8b
+002B43D7  movups    xmm1, xmmword ptr [rcx + 0x10]
+002B43DB  mov       byte ptr [r11 + 0x19], 0
+002B43E0  movups    xmmword ptr [rax], xmm0
+002B43E3  movups    xmm0, xmmword ptr [rcx + 0x20]
+002B43E7  movups    xmmword ptr [rax + 0x10], xmm1
+002B43EB  movups    xmm1, xmmword ptr [rcx + 0x30]
+002B43EF  movups    xmmword ptr [rax + 0x20], xmm0
+002B43F3  movups    xmm0, xmmword ptr [rcx + 0x40]
+002B43F7  movups    xmmword ptr [rax + 0x30], xmm1
+002B43FB  movups    xmm1, xmmword ptr [rcx + 0x50]
+002B43FF  movups    xmmword ptr [rax + 0x40], xmm0
+002B4403  movups    xmm0, xmmword ptr [rcx + 0x60]
+002B4407  movups    xmmword ptr [rax + 0x50], xmm1
+002B440B  movups    xmm1, xmmword ptr [rcx + 0x80]
+002B4412  movups    xmmword ptr [rax + 0x60], xmm0
+002B4416  lea       rax, [rax + 0x80]
+002B441D  movups    xmm0, xmmword ptr [rcx + 0x70]
+002B4421  movups    xmmword ptr [rax - 0x10], xmm0
+002B4425  movups    xmm0, xmmword ptr [rcx + 0x90]
+002B442C  movups    xmmword ptr [rax], xmm1
+002B442F  movups    xmm1, xmmword ptr [rcx + 0xa0]
+002B4436  movups    xmmword ptr [rax + 0x10], xmm0
+002B443A  movups    xmm0, xmmword ptr [rcx + 0xb0]
+002B4441  movups    xmmword ptr [rax + 0x20], xmm1
+002B4445  movups    xmm1, xmmword ptr [rcx + 0xc0]
+002B444C  lea       rcx, [r11 + 0x18]
+002B4450  movups    xmmword ptr [rax + 0x30], xmm0
+002B4454  movups    xmmword ptr [rax + 0x40], xmm1
+002B4458  mov       rax, qword ptr [rip + 0x1de87e1]   ; -> 0209CC40 (virtual tail / unmapped)
+002B445F  mov       rbx, qword ptr [rax + 0x10c8]
+002B4466  mov       qword ptr [rax + 0x10c8], rcx
+002B446D  or        rax, 0xffffffffffffffff
+002B4471  inc       rax
+002B4474  cmp       byte ptr [rdx + rax], 0
+002B4478  jne       0x2b4471
+002B447A  mov       word ptr [rsp + 0xec], ax
+002B4482  lea       rcx, [rsp + 0x130]
+002B448A  lea       rax, [rsp + 0x60]
+002B448F  xor       r9d, r9d
+002B4492  movups    xmm0, xmmword ptr [rax]
+002B4495  lea       rcx, [rcx + 0x80]
+002B449C  movups    xmm1, xmmword ptr [rax + 0x10]
+002B44A0  lea       r8, [rsp + 0x20]
+002B44A5  movups    xmmword ptr [rcx - 0x80], xmm0
+002B44A9  movups    xmm0, xmmword ptr [rax + 0x20]
+002B44AD  movups    xmmword ptr [rcx - 0x70], xmm1
+002B44B1  movups    xmm1, xmmword ptr [rax + 0x30]
+002B44B5  movups    xmmword ptr [rcx - 0x60], xmm0
+002B44B9  movups    xmm0, xmmword ptr [rax + 0x40]
+002B44BD  movups    xmmword ptr [rcx - 0x50], xmm1
+002B44C1  movups    xmm1, xmmword ptr [rax + 0x50]
+002B44C5  movups    xmmword ptr [rcx - 0x40], xmm0
+002B44C9  movups    xmm0, xmmword ptr [rax + 0x60]
+002B44CD  movups    xmmword ptr [rcx - 0x30], xmm1
+002B44D1  movups    xmm1, xmmword ptr [rax + 0x70]
+002B44D5  movups    xmmword ptr [rcx - 0x20], xmm0
+002B44D9  movups    xmm0, xmmword ptr [rax + 0x80]
+002B44E0  movups    xmmword ptr [rcx - 0x10], xmm1
+002B44E4  movups    xmm1, xmmword ptr [rax + 0x90]
+002B44EB  movups    xmmword ptr [rcx], xmm0
+002B44EE  movups    xmm0, xmmword ptr [rax + 0xa0]
+002B44F5  movups    xmmword ptr [rcx + 0x10], xmm1
+002B44F9  movups    xmm1, xmmword ptr [rax + 0xb0]
+---
+002B4500  movups    xmmword ptr [rcx + 0x20], xmm0
+002B4504  movups    xmm0, xmmword ptr [rax + 0xc0]
+002B450B  movups    xmmword ptr [rcx + 0x30], xmm1
+002B450F  movups    xmmword ptr [rcx + 0x40], xmm0
+002B4513  lea       rcx, [rsp + 0x130]
+002B451B  call      0x2af340
+002B4520  mov       rcx, qword ptr [rip + 0x1de8719]   ; -> 0209CC40 (virtual tail / unmapped)
+002B4527  mov       qword ptr [rcx + 0x10c8], rbx
+002B452E  add       rsp, 0x200
+002B4535  pop       rbx
+002B4536  ret       
+002B4540  xor       edx, edx
+002B4542  jmp       0x2b41f0
+002B4550  push      rdi
+002B4552  push      r12
+002B4554  push      r13
+002B4556  push      r14
+002B4558  push      r15
+002B455A  sub       rsp, 0x20
+002B455E  xor       r12d, r12d
+002B4561  mov       r14, r8
+002B4564  movzx     edi, r12w
+002B4568  mov       r15, rdx
+002B456B  mov       byte ptr [rdx], dil
+002B456E  mov       r13d, ecx
+002B4571  test      r8, r8
+002B4574  je        0x2b46e6
+002B457A  movzx     eax, byte ptr [r8]
+---

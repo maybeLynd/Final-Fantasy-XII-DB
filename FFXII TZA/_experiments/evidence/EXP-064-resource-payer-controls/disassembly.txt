@@ -1,0 +1,63 @@
+0030EF20 48895c2408               mov qword ptr [rsp + 8], rbx
+0030EF25 4889742410               mov qword ptr [rsp + 0x10], rsi
+0030EF2A 57                       push rdi
+0030EF2B 4883ec30                 sub rsp, 0x30
+0030EF2F 488b050202bb02           mov rax, qword ptr [rip + 0x2bb0202]
+0030EF36 488bd9                   mov rbx, rcx
+0030EF39 488bfa                   mov rdi, rdx
+0030EF3C 8b480c                   mov ecx, dword ptr [rax + 0xc]
+0030EF3F e8bcf6efff               call 0x20e600
+0030EF44 4c8b05ed01bb02           mov r8, qword ptr [rip + 0x2bb01ed]
+0030EF4B 33d2                     xor edx, edx
+0030EF4D 448bd7                   mov r10d, edi
+0030EF50 442bd0                   sub r10d, eax
+0030EF53 418bc2                   mov eax, r10d
+0030EF56 450fb74808               movzx r9d, word ptr [r8 + 8]
+0030EF5B 41f7f1                   div r9d
+0030EF5E 8bf0                     mov esi, eax
+0030EF60 4885db                   test rbx, rbx
+0030EF63 7478                     je 0x30efdd
+0030EF65 488b8b98060000           mov rcx, qword ptr [rbx + 0x698]
+0030EF6C 4885c9                   test rcx, rcx
+0030EF6F 746c                     je 0x30efdd
+0030EF71 0fb64905                 movzx ecx, byte ptr [rcx + 5]
+0030EF75 85c9                     test ecx, ecx
+0030EF77 7564                     jne 0x30efdd
+0030EF79 b9ffff0000               mov ecx, 0xffff
+0030EF7E 4885ff                   test rdi, rdi
+0030EF81 740c                     je 0x30ef8f
+0030EF83 807f1e03                 cmp byte ptr [rdi + 0x1e], 3
+0030EF87 7506                     jne 0x30ef8f
+0030EF89 0fb74722                 movzx eax, word ptr [rdi + 0x22]
+0030EF8D eb02                     jmp 0x30ef91
+0030EF8F 8bc1                     mov eax, ecx
+0030EF91 33ff                     xor edi, edi
+0030EF93 668983c80d0000           mov word ptr [rbx + 0xdc8], ax
+0030EF9A 663bc1                   cmp ax, cx
+0030EF9D 7416                     je 0x30efb5
+0030EF9F 448d4f01                 lea r9d, [rdi + 1]
+0030EFA3 897c2420                 mov dword ptr [rsp + 0x20], edi
+0030EFA7 4533c0                   xor r8d, r8d
+0030EFAA 83caff                   or edx, 0xffffffff
+0030EFAD 0fb7c8                   movzx ecx, ax
+0030EFB0 e8eb18ffff               call 0x3008a0
+0030EFB5 0fb7d6                   movzx edx, si
+0030EFB8 488bcb                   mov rcx, rbx
+0030EFBB e8a0a0ffff               call 0x309060
+0030EFC0 8983580e0000             mov dword ptr [rbx + 0xe58], eax
+0030EFC6 8bf0                     mov esi, eax
+0030EFC8 85c0                     test eax, eax
+0030EFCA 7411                     je 0x30efdd
+0030EFCC e8bf46f4ff               call 0x253690
+0030EFD1 2bc6                     sub eax, esi
+0030EFD3 0f49f8                   cmovns edi, eax
+0030EFD6 8bcf                     mov ecx, edi
+0030EFD8 e8035ff4ff               call 0x254ee0
+0030EFDD 488b5c2440               mov rbx, qword ptr [rsp + 0x40]
+0030EFE2 488b742448               mov rsi, qword ptr [rsp + 0x48]
+0030EFE7 4883c430                 add rsp, 0x30
+0030EFEB 5f                       pop rdi
+0030EFEC c3                       ret
+0020E600 8bc1                     mov eax, ecx
+0020E602 480305274fd701           add rax, qword ptr [rip + 0x1d74f27]
+0020E609 c3                       ret

@@ -1,0 +1,85 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 8406,
+      "sha256": "4f1af82c721b1ad9fa44818148c2d3ebb0a74a02285167006006d0ad0fd67c33"
+    },
+    {
+      "path": "historical-observer-failure/check.py",
+      "bytes": 7867,
+      "sha256": "33f3f1af9d7a0bf53170643a5886058f01e17749bf1e3dd4817af682c04150c3"
+    },
+    {
+      "path": "historical-observer-failure/failure.json",
+      "bytes": 663,
+      "sha256": "52e36136d8d7be7a23cf9c94ed7f366d1949a94bcf3b5148c758ea0827820f4e"
+    },
+    {
+      "path": "historical-observer-failure/probe.py",
+      "bytes": 7878,
+      "sha256": "30df5241922ebb4306a1452718cd37e0e3a08c43a645017af7edca859adf7f88"
+    },
+    {
+      "path": "historical-observer-failure/raw-results.json",
+      "bytes": 754271,
+      "sha256": "a6429ce7d254de9b9aee038ec19981b75645370f824779bd43e4d494c7ef2afb"
+    },
+    {
+      "path": "historical-observer-failure/source.json",
+      "bytes": 28065,
+      "sha256": "702a411540f218da9fd3dbec4052aff28b69c8477412e39406b433084c7ff59b"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 13684,
+      "sha256": "351c2a5966e37f2e0691b58a148973657f45185f4ac49ef996b2399adb2d42e7"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2363,
+      "sha256": "c61beed2c5da57083cc7d65288a9a6b6ad8a2c88c89419e724d1dd70bab266f0"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 8528,
+      "sha256": "b37df0ef48854669a37a2bc75d7ae970a4d1670919a90697c5b7f4292b2e8663"
+    },
+    {
+      "path": "raw-results.json",
+      "bytes": 748959,
+      "sha256": "cb23b776711bdead4066d5bc0d599e1284b262df224a1196d7e1ae01e1836157"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4219,
+      "sha256": "1a06ee6a421824eb97b7a1f2489ce9fb0e61afe6e70ebae05b3fdc92b7919051"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/the-vif1-vu1-layer.md",
+      "bytes": 67563,
+      "sha256": "d01665ed488c2c8692b7ac793a08ac598a484840eb2c5b345ecc8cf899211451"
+    },
+    {
+      "path": "source.json",
+      "bytes": 28345,
+      "sha256": "c0389ec4dd391581379c23addaebe6c19dfd84787f09d07a9aec5d4601dbeef3"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 378,
+      "sha256": "97a6c6d3c30b2e0735def44c962b5533a03cc3be667ada79ff0f9e51ff2f7038"
+    }
+  ],
+  "limits": "Original integer components/explicit omitted geometry boundary; historical wrongobserver rejected, independent/owner acceptance pending."
+}

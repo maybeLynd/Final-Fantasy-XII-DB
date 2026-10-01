@@ -1,0 +1,45 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "afa1615051d781945e17ec04a57aad4c59be7af5"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "e6f35fcb2ff5623860e15b16e70c4f6147ca68f9"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "5efc43e66bacf5c281b28cdc65ad547ea3aa2074"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "aa8e879a6a7b1756b524df76372d52834846cde6"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "75696f6bdbd0813a32c894e47bd825a2af76735d"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "78beaf079a1f8d7807f3c366b43276a80582a292"
+    },
+    {
+      "path": "retained/contract.md",
+      "git_blob": "86026a0b38f461e5512a0e3b747bf0d1cd601568"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "git_blob": "9d4dedc263d30f57c425a2bd4af584cfe3e5e41a"
+    },
+    {
+      "path": "retained/source.json",
+      "git_blob": "3ea41b3f264bcdd642a5f61472b698e66c332e4d"
+    }
+  ]
+}

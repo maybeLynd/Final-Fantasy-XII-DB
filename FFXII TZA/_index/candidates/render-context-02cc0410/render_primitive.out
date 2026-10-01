@@ -1,0 +1,4 @@
+PASS  V 006C8750: vptrs 00D86960 / 00D86AD0 (PrimitiveRendererD3D11 : PrimitiveRenderer, IBatchMergerEvent @8); 4 pass states from +0x208; 006DA450(this + 0x880, this + 8)
+PASS  E the renderer's highest access ends at +0x20938; the context's getter census ends at +0x221C0; the guard 02CE2610 bounds the context at 0x22200
+PASS  W PrimitiveRendererD3D11 (AT LEAST 0x20938) tiles to its reach; the context embeds it at +0x18C0 and its rows reach +0x221F8
+FAILS 0

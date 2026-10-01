@@ -1,0 +1,142 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "003dd9051c532502f6f0bfb0a3c6c5e5ba041878"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "ca1b58fdd51d081848dc855df634670fc32b23e8"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "701bbab38e4768b7c52185ab5586ef0a61768237"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "70d2ac4f6f43ce9e462409c312b742d2f6d0c1ed"
+  },
+  {
+    "path": "extra-runner-failure.json",
+    "git_blob": "fa55b8dc7b93dc36f2ef2233905c0614c15876e2"
+  },
+  {
+    "path": "extra-s16-boundary.json",
+    "git_blob": "24f925f31b28540e4d69bbf82bf2a407cc12946e"
+  },
+  {
+    "path": "extra-s16-boundary.py",
+    "git_blob": "e5893d77a0ce95b0bf63563b063bb91251aaece4"
+  },
+  {
+    "path": "failure.json",
+    "git_blob": "b026fcad8c9eab530dd326efa8740d30cbe85ab5"
+  },
+  {
+    "path": "fault-accept-clamp-mutation.stderr",
+    "git_blob": "129fbc21b8a7c8564cea5d77f8a2203df4f8f633"
+  },
+  {
+    "path": "fault-accept-clamp-mutation.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-narrowing-wrap.stderr",
+    "git_blob": "396a750e406fdb1e77e1e998c3015df3b29e7cb7"
+  },
+  {
+    "path": "fault-narrowing-wrap.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-no-write-as-undetected.stderr",
+    "git_blob": "b06c1267ad5f8d7e8221e8df49000ea988a0a0e2"
+  },
+  {
+    "path": "fault-no-write-as-undetected.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-standard-s16-bounds.stderr",
+    "git_blob": "38293e8e33449addcd289c90531810d5f88f2c8f"
+  },
+  {
+    "path": "fault-standard-s16-bounds.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "2a2a3248733e7cf456421ccf746060d8f649d66f"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "b61e18d8eeedd6137f75f6df0065978ad1d3d78d"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "0dc59b1d502a2f8eeb19b32f0b786121977365c3"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "78b55d875e45e5b473bbc0180907be23355c539c"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "03ef743693d073d60434bd7b6ded86911c8910be"
+  },
+  {
+    "path": "repair-extra-runner-scope.py",
+    "git_blob": "0c6aca715738537898e31d8b2c9d7b8bbd17cc97"
+  },
+  {
+    "path": "repair-s16-policy.py",
+    "git_blob": "81162bd7778a59e1adc94edc037079ffce76dbcd"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "a1714dd3b60e49106254d86156e32256362e072b"
+  },
+  {
+    "path": "retained/check-before-s16-policy.py",
+    "git_blob": "5af7c34ba55f7a4aa1091c9e935eb88fcc751c9e"
+  },
+  {
+    "path": "retained/extra-runner-before-scope-fix.py",
+    "git_blob": "868d0263fa4652a78dcfa481db1e7484924acc5c"
+  },
+  {
+    "path": "retained/original-table24.bin",
+    "git_blob": "0216b348ce678bd933c4c4cc29336a9c51fa91f5"
+  },
+  {
+    "path": "retained/original194.bin",
+    "git_blob": "e94530f7f310489d56806cff147571cb3808377e"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/runner-source-used-for-extra.py",
+    "git_blob": "003dd9051c532502f6f0bfb0a3c6c5e5ba041878"
+  },
+  {
+    "path": "retained/shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  },
+  {
+    "path": "retained/variables-primary-before.md",
+    "git_blob": "220cf4f0712228eb8adbbd1682c4c9043eda5ade"
+  },
+  {
+    "path": "retained/verbs-primary-before.md",
+    "git_blob": "56e503499e1862d4573309c90f3e91a59c35594d"
+  }
+]

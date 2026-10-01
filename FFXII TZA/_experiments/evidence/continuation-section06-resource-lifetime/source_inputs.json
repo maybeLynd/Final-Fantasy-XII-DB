@@ -1,0 +1,32 @@
+{
+  "section": "SECTION-06",
+  "input_chain": [
+    {
+      "file": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_05_Encoded_ID_Query_Mechanism.zip",
+      "sha256": "afe8391d31a28a6f1c6e15f4d92a1f2d231b380bf73e1658aba850eedc6d1a24"
+    }
+  ],
+  "original_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "base_files": 10733,
+  "statement": "New isolated controls against original code; existing historical capture files/producer scripts unchanged. No live session or current Ghidra import."
+}

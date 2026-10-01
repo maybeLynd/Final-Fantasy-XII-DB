@@ -1,0 +1,66 @@
+# Claim rows claim_census.py cannot place, OPUS 2026-09-14 (EVIDENCE-STANDARD addendum bo).
+# `unclassified` 27 across 15 contracts: the census has no pattern and a judgement is owed.
+# `none` 32 across 20 contracts: already correct, and the work is to STATE the class in the
+# table rather than leave it to the census, per the schema | claim | evidence | class | tier | confidence |.
+# A class the AUTHOR asserts is written plainly; a class only the census infers is NOT written
+# into the table at all - it stays here, where its weaker standing is visible.
+kind	doc	third_column	claim	evidence
+none	00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md	—	any execution of this operation, isolated or live	**none**; §13
+none	00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md	—	which entry-3 reader an event script relies on	**not established**; `RMD-1`
+unclassified	01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md	1	whether tags above 3 exist	**no** — the writer population above is enumerated image-wide
+none	01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md	—	any runtime observation	**none exists**
+unclassified	01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md	1	`0016D6A0` stands in for an absent callback	the same cross-check; it is `_guard_check_icall`, a 3-byte `ret`
+none	01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md	—	any execution of the LIFECYCLE half, or any live observation	**none**; §13
+none	01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md	—	what the `+0x10` slot was for	**not established**; `VA-1`
+none	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	—	what EXP-077 shows about ENCODED links at a high address	**nothing**: all 36 encoder calls across its six cases took the argument `0`, checked in the sealed `initializer-result.json`. **EXP-078 is the experiment that drives them**
+unclassified	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	1	a low mirror leaves the mirrored bytes **unchanged**	EXP-078's five recorded events: `0x10290` is cleared and restored and the word was already zero. **Wrong-region access, NOT persistent corruption**
+unclassified	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	1	**a return-value-only comparison passes a broken predecessor link**	EXP-078's targeted control: both allocations returned the expected low pointers and only the predecessor assertion caught `+0x0C` becoming zero
+none	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	—	what the neighbour `+0x3E` word is	**not established**; both stores write it
+unclassified	02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md	1	the repair is exact if and only if ~~\|newBase - oldBase\| < 2 GiB~~ **-2 GiB <= newBase - oldBase < +2 GiB** (sharpened by pass 1: sign-extension is identity on the asymmetric range, and `d = -2 GiB` exactly is exact)	`low32(new) - low32(old) == low32(new - old)`, and `sext32` is identity only on that range
+none	02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md	-	**what the ramp/source semantics mean, and whether any arena exceeds 4 GiB in practice**	**not established**
+unclassified	02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md	1	both operations are idempotent because of that guard	the same two `test byte [rbx+0x15], 2` sites
+none	02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md	-	**`0036C790`'s rebalancing, and what the +0x18 key measures**	**not established**
+none	04-Actor-Entity/CONTRACT-field-runtime-pass.md	—	any execution of the PASS, or any live observation	**none**; §13. This is the first 120 bytes of 1,297
+none	04-Actor-Entity/CONTRACT-field-runtime-pass.md	—	what `+0x14` bit 5 means	**not established**; `FRP-1`
+none	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	—	any runtime observation	**none exists**
+unclassified	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	1	the three readers are script-only	**four instruments** — `E8` 1, `E9` 0, operand 0 — each with a positive control; every caller is a VM verb
+unclassified	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	1	the ledger is BSS	past `SizeOfRawData` in `.data`
+unclassified	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	2	script-side order `(group, mode)`	pop-order law only; no decompiled script
+none	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	—	any runtime observation	**none exists**
+unclassified	06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	1	`0026B6A0` never touches `r8`	operand analysis over all 120 bytes
+unclassified	06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	1	push/pop are the only slot callers	four instruments, each with a positive control
+none	06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	—	what `002E5FB0` does	**not established**
+none	06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	—	any runtime observation	**none exists**
+none	09-Combat-AI-And-Gambits/CONTRACT-gambit-walk.md	—	what `004697C0` does	**not established** — 251 bytes, not read for this contract
+unclassified	10-Status-Periodic-Terminal/CONTRACT-status-write.md	1	the definition record is `0x28` bytes, not `0x10`	`status_data.bin` header: stride `0x28` at `+8`, count 32 at `+4`, rows at `+0x20`, and `0x20 + 32 × 0x28 = 1312` = the file size, exactly. **Corrects the type store**
+unclassified	10-Status-Periodic-Terminal/CONTRACT-status-write.md	1	bit 13 of `+0x06` is set on exactly ids 0–16, 29, 31	**all 32 rows decoded and the predicate checked**; the page's claim holds
+unclassified	10-Status-Periodic-Terminal/CONTRACT-status-write.md	1	`+0x08` is a duration on 21 ids and `0xFF` on 11	the same decode; the eleven are 0, 1, 2, 6, 7, 9, 10, 11, 16, 29, 31
+unclassified	10-Status-Periodic-Terminal/CONTRACT-status-write.md	1	the cascade masks, including Stone→Petrify and Haste↔Slow	the same decode: **eight** rows carry a non-zero `+0x0C` — ids 0, 1, 3, 10, 15, 20, 25 and 31. I wrote seven first and the count is from the decode, not the prose
+none	10-Status-Periodic-Terminal/CONTRACT-status-write.md	—	any runtime observation of this operation, or any execution of `0030E360`	**none exists**; §13
+unclassified	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	1	the two shipped files and their sizes	path array with two controls; all twelve `FileSizeTable_*.fst` agree
+unclassified	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	1	a negative id writes before the bank	`movsxd rcx, edi` then `or byte [rax+rcx+0x1384], bl`
+none	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	—	any caller passes a negative id	**not established**
+none	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	—	any runtime observation	**none exists**
+unclassified	15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md	1	Each registry is five paired functions of identical size	sizes 122/132/103/222/87 in both runs; every difference is a pair of adjacent bytes
+unclassified	15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md	1	143 channel names, 113 channels, 16 alias groups, 97 key names	`named_registry.py`, 240 of 240 recovered, 0 unrecovered; `B ⊆ A` measured
+unclassified	15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md	10** *(corrected 2026-09-13 from 3, same reason)	any runtime observation	§13 — five observations, including the reconstruction rebuilding the game's own 143- and 97-node lists with 0 differing nodes
+none	17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md	-	**what any channel controls, what the gate is, who assigns rec[0x10], and whether the tick is per-frame**	**not established**
+unclassified	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	1	pop *n* is argument *5−n*	**not my result**: "Arguments arrive in reverse order", tier 1 PROVEN in [the calling convention](../../01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md)
+none	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	—	any execution of this path, isolated or live	**none**; §13
+none	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	—	why `003A1070` guards on a handle it does not read	**not established**; `SR-2`
+unclassified	18-Audio/CONTRACT-field-music-selection.md	1	**The four callers of `003EAA70`**	call graph, four edges, each site cited in §14.4
+unclassified	18-Audio/CONTRACT-field-music-selection.md	1 (authored data)	291 runs, 48 with a ladder	FABLE's page-bounded walk of the extracted file (`ec57443`)
+unclassified	19-Save-Load-Settings/CONTRACT-storage-read-completion.md	1	the recovery restore copies 0xE240 whole-image bytes and stops before group persistent bank A	`0x1C4 * 0x80 + 0x40`; `0xE240 - 0x200` is payload `+0xE040`
+none	19-Save-Load-Settings/CONTRACT-storage-read-completion.md	-	**whether any shipped caller mishandles either**	**not established**
+unclassified	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	1	31 settings, offset = index × 4	five independent derivations (§3)
+unclassified	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	4	`001DE4F0` writes nothing outside the 31 settings	**measured 2026-09-08** — both sides given the whole `0x65C` object, poisoned byte by byte, compared by hash: **0 bytes changed beyond the settings over 600 cases**. This is the claim the earlier `+0x554` row should have made; a differential on one entry point can support this and never "all config code"
+none	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	—	meaning of the three value tables	**not established**
+none	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	—	any runtime observation	**none exists**
+none	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	—	any execution of this ladder, isolated or live	**none**; §13
+none	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	—	the symbolic values of `PResult`	**not established**; `PH-1`
+none	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	—	what `0063E2E0` and `0059A6F0` do	**not established**; `PH-2`, `PH-3`
+unclassified	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md	1	the namespace's field list agrees with the reflection registrations	the source page — two independent sources, neither derived from the other
+none	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md	—	class `w7`, header `+0x18`/`+0x1C`, member `w5`	**not established**; `NS-1`, `NS-2`, `NS-3`
+none	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md	—	why the namespace carries a byte-order mark nothing reads	**not established**; `NS-4`
+none	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	—	any execution of any of this	**none**; §13
+none	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	—	what the six lists hold, what bit 0 tags, the descriptor's size, the `+0x100` guard, `0063E410`	**not established**; `PCD-1`…`PCD-5`

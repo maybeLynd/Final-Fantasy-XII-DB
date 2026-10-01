@@ -1,0 +1,15 @@
+0025C4F4 arg5=eax | 0025C4A1 mov rax, qword ptr [rdi + 0x40] ; 0025C4B3 mov eax, 3 ; 0025C4D8 xor eax, eax
+0025C5B9 arg5=eax | 0025C56E mov rax, qword ptr [rdi + 0x40] ; 0025C580 mov eax, 0xd ; 0025C5A1 xor eax, eax
+0025C669 arg5=eax | 0025C61E mov rax, qword ptr [rdi + 0x40] ; 0025C630 mov eax, 8 ; 0025C651 xor eax, eax
+0025D005 arg5=r14 | 0025C869 xor r14d, r14d
+0025D0B5 arg5=r14 | 0025C869 xor r14d, r14d
+0025D182 arg5=r14 | 0025C869 xor r14d, r14d
+0025D2E0 arg5=r15 | 0025D215 lea r15d, [r13 + 0xe] ; 0025D271 sbb r15d, r15d ; 0025D274 and r15d, 3
+0025D39B arg5=ebx | 0025D33D mov rbx, qword ptr [r12] ; 0025D375 mov ebx, 2 ; 0025D37E mov ebx, r14d
+00266CD2 arg5=r14 | 00266C9C xor r14d, r14d
+00268BDB arg5=r15 | 00268BAB xor r15d, r15d
+00269700 arg5=r15 | 00269693 xor r15d, r15d
+00269766 arg5=r15 | 00269693 xor r15d, r15d
+002699AB arg5=esi | 0026986A xor esi, esi ; 0026987A mov rsi, qword ptr [rsp + 0x58]
+00269B71 arg5=ecx | 00269B58 xor ecx, ecx ; 00269B64 sete cl ; 00269B6E mov rcx, rbx
+00269C0D arg5=eax | 00269BF5 xor eax, eax ; 00269C03 sete al

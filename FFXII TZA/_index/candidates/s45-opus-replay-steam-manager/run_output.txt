@@ -1,0 +1,9 @@
+M0_manager_built_registers_1101_1102_1103_reads_appid_requests_stats     PASS
+I2_award_before_1101_marks_locally_no_steam_call                         PASS
+I2_control_1101_for_another_game_changes_nothing                         PASS
+I2_1101_sets_flag_and_overwrites_entries_the_early_award_is_lost         PASS
+I3_award_after_1101_sends_once_then_is_idempotent                        PASS
+I4_entry0_awarded_once_on_the_receipt_that_reaches_count_minus_1         PASS
+I4_static_no_by_index_payload_is_0                                       PASS
+{"M0": {"ok": true, "registered": [1101, 1102, 1103], "calls": ["GetAppID", "BLoggedOn", "RequestCurrentStats"], "manager": "7306CF80", "appid": "91640", "count": 41, "stats_received": 0}, "I2": {"flag18": 1, "entry5_190": 0, "getachievement_calls": 40}, "I3": [[true, [["SetAchievement", "ACH_COUNT_KILL"], ["StoreStats"]]], [true, []]], "I4": [39], "payload": [1, 2, 3, 4, 5, 7, 8, 10]}
+ALL PASS

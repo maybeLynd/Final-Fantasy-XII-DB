@@ -1,0 +1,10 @@
+# derived-signatures-ctor-types - no-slot rows of derived-call-signatures.tsv whose own body stores an RTTI-named vtable through rcx (or a copy of rcx), so position 1 is that class under construction or destruction (UQ-2, FABLE, 2026-09-18).
+# Rule: the store must go through `this`; a body that installs a vtable into a stack local or a member (e.g. 001993B0, wofstream at [rsp+0x20]) does not qualify. Class = the most-derived vtable stored (last for a constructor, first for a destructor), named by the RTTI locator at [vtable-8].
+addr	name	derived_arity	int_regs	role	position1_class	evidence
+007927C0	FUN_007927c0	2	rcx,rdx	constructor	Phyre::PFramework::PInputDeviceKeyboard	installs PInputDevice at 007927DB then PInputDeviceKeyboard at 00792822 through this
+00792870	FUN_00792870	2	rcx,rdx	constructor	Phyre::PFramework::PInputDeviceMouse	installs PInputDevice at 00792898 then PInputDeviceMouse at 007928D0 through this
+00792940	FUN_00792940	2	rcx,rdx	constructor	Phyre::PFramework::PInputDevicePad	installs PInputDevice at 00792968 then PInputDevicePad at 007929A0 through this; the base the three pad variants call
+00792AB0	FUN_00792ab0	3	rcx,rdx,r8	constructor	Phyre::PFramework::PInputDevicePadDirectInput	calls the pad constructor 00792940 then installs PInputDevicePadDirectInput at 00792AD4 through this
+00792B70	FUN_00792b70	1	rcx	constructor	Phyre::PFramework::PInputDevicePadSteamController	calls the pad constructor 00792940 then installs PInputDevicePadSteamController at 00792BB9 through this
+00792CB0	FUN_00792cb0	3	rcx,rdx,r8	constructor	Phyre::PFramework::PInputDevicePadXInput	calls the pad constructor 00792940 then installs PInputDevicePadXInput at 00792CDC through this
+007935C0	FUN_007935c0	1	rcx	destructor (non-deleting)	Phyre::PFramework::PInputDevicePadDirectInput	installs PInputDevicePadDirectInput at 007935DE, PInputDevicePad at 00793605, PInputDevice at 0079362C; frees +0xB0 through 00809054

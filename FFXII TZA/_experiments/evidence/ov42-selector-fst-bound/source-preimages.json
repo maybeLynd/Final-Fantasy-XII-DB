@@ -1,0 +1,47 @@
+[
+  {
+    "source": "Database/FFXII TZA/_index/candidates/fable-astra-live-facts-0930/README.md",
+    "frozen": "source-preimages/00-README.md",
+    "sha256": "86edacf26be0c2e65235f9aac8d38f873e6b682b43856b69854d0d555c41910d"
+  },
+  {
+    "source": "Database/FFXII TZA/_index/candidates/ov-rt-probes-0929/notes.md",
+    "frozen": "source-preimages/01-notes.md",
+    "sha256": "604f81043b36db624a44d12efad0bf617bba621d4de62e43bb03d2881b8664df"
+  },
+  {
+    "source": "Database/FFXII TZA/_index/candidates/ov-rt-probes-0929/successor-request.md",
+    "frozen": "source-preimages/02-successor-request.md",
+    "sha256": "cd348251b6d80de019a96f0ceea5fa04175bbda95e5c108b73a2e38f6d9b0ade"
+  },
+  {
+    "source": "Database/FFXII TZA/_index/OPEN-QUESTIONS.md",
+    "frozen": "source-preimages/03-OPEN-QUESTIONS.md",
+    "sha256": "c6b5a3aa9f2877d500f8e0fcceb65c366c7dddb7fda4a203b12370718e14794d"
+  },
+  {
+    "source": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md",
+    "frozen": "source-preimages/04-file-size-tables-fst.md",
+    "sha256": "820b9a60f6cdc2deffb1429c7d368387b99e67e427087bca18861abc208430b9"
+  },
+  {
+    "source": "Database/FFXII TZA/18-Audio/the-voice-pack-slots-and-the-voice-verbs.md",
+    "frozen": "source-preimages/05-the-voice-pack-slots-and-the-voice-verbs.md",
+    "sha256": "0a00ea40fccfb38754a1eacf09f2a6f3042803e1872b56354f2c85d66f823aa1"
+  },
+  {
+    "source": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+    "frozen": "source-preimages/06-CONTRACT-authored-table-row-lookup.md",
+    "sha256": "d8955e1251cbcf0856648c6db6dc0bdcbd055659a91704d5515175dbaf62ac90"
+  },
+  {
+    "source": "Database/FFXII TZA/_index/candidates/ov10-request-bounds-fable/README.md",
+    "frozen": "source-preimages/07-README.md",
+    "sha256": "9d6f5c3053306b2ffd001bd3277aa1aa89765c83710345a39ddfb19bcbb8760d"
+  },
+  {
+    "source": "Database/Tools/analysis-kit/gfz-scripts/reg_tracking.py",
+    "frozen": "source-preimages/08-reg_tracking.py",
+    "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "physical_identity": {
+    "flag": "0x2098e20",
+    "manager_array_base": "0x2098e10",
+    "flag_offset": "0x10",
+    "var_pointer": "0x2098e58",
+    "var_pointer_offset": "0x48",
+    "stride": "0x288",
+    "count": 5
+  },
+  "actually_tested": "Supplied manager-slot0 bit0 clear / null supplied variable bank yields getter0 and default ladder result7 in retained EXP099.",
+  "not_established": "No normal combat death, health transition, actor input/trigger, audible/default-track consequence or death->manager-gate causality is in those observations.",
+  "original_producer": "The initializer prefix clears bit0 across manager slots independently of any inspected actor-health transition; frequency/caller effects are not asserted.",
+  "consumer_narrowing": "Replace unqualified default-track-for-dead-actor implication with the observed manager-gate/null-bank condition; leave actual death consequence pending separate evidence if claimed.",
+  "retained_validity": "Original gate/threshold cases and mutations retained. No22/20 replay, no retraction of actual supplied-state returns.",
+  "limits": "Complete getter/music reader but selected initializer prefix only. No native re-execution, actor health transition, normal death trigger, live game/field state or actual music presentation.",
+  "propagation": "PENDING owner repair/independent acceptance"
+}

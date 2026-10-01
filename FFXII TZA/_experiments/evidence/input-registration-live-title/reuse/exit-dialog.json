@@ -1,0 +1,30 @@
+{
+  "at": "2026-09-13T21:29:27.949Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 462184,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "accessibility": {
+    "focused_element": "7 dialog Exit Dialog Secondary Actions: Raise",
+    "tree": "Window: \"FINAL FANTASY XII THE ZODIAC AGE\", App: FFXII_TZA.exe.\n\t0 window (disabled) FINAL FANTASY XII THE ZODIAC AGE Secondary Actions: Raise\n\t\t7 dialog Exit Dialog Secondary Actions: Raise\n\t\t\t8 button OK ID: 1\n\t\t\t9 button Cancel ID: 2\n\t\t\t10 image ID: 20\n\t\t\t11 text Do you really want to exit game? ID: 65535\n\t\t\t12 title bar\n\t\t\t\t13 button Close\n\t\t1 title bar\n\t\t\t2 menu bar System ID: MenuBar\n\t\t\t\t3 menu item System\n\t\t\t4 button Minimize\n\t\t\t5 button Maximize\n\t\t\t6 button Close\n\t\t7 dialog Exit Dialog Secondary Actions: Raise\n\t\t\t8 button OK ID: 1\n\t\t\t9 button Cancel ID: 2\n\t\t\t10 image ID: 20\n\t\t\t11 text Do you really want to exit game? ID: 65535\n\t\t\t12 title bar\n\t\t\t\t13 button Close\n\nThe focused UI element is 7 dialog Exit Dialog Secondary Actions: Raise."
+  },
+  "screenshots": [
+    {
+      "height": 720,
+      "id": "screenshot-0",
+      "originX": 1920,
+      "originY": 1080,
+      "width": 1280,
+      "zIndex": 0
+    },
+    {
+      "height": 167,
+      "id": "screenshot-1",
+      "originX": 1724,
+      "originY": 950,
+      "width": 262,
+      "zIndex": 1
+    }
+  ]
+}

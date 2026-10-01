@@ -1,0 +1,7 @@
+SURVIVES  C0  all twenty-one sizes as cited
+SURVIVES  C1  target x -4096.0; collapse; step = 0x1000 / (max(frames, 1) x [01DFE0B4]); channel-1 progress 0; the getter's second step
+SURVIVES  C2  ten channels from +0x4C0, the 0x1000 finish test: ['mov r8d, 0xa', 'mov r9d, 0x1000']
+SURVIVES  C3  ['mov qword ptr [rcx + 0x4c0], 0x1000', 'mov qword ptr [rcx + 0x4c8], 0x1000', 'mov qword ptr [rcx + 0x4e0], 0x1000']
+SURVIVES  C4  ['00428C6E call 0x3e5d60', '00428C81 call 0x3e5d60', '00428C94 call 0x3e5d60', '00428CBE jmp 0x3e5d60']
+SURVIVES  C5  reads +0x2A8; frame counts 3 and 1 passed to the ramp
+FAILS 0

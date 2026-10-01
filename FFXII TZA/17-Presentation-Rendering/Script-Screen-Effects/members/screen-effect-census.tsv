@@ -1,0 +1,34 @@
+# call sites by substring 13905; by parsed call 13905; difference 0 (calls whose arguments contain a nested call)
+verb	calls	scripts
+cutinclear	4	4
+cutincolor	0	0
+cutinlinecolor	0	0
+cutinlinefade	4	4
+cutinlinewidth	4	4
+cutinplay	5	4
+cutinpos	1	1
+cutinrotate	4	4
+cutintype	0	0
+cutinuv	0	0
+movebluraplpha	2304	264
+moveblurcaptureonce	2305	264
+moveblurclear	1	1
+moveblurclearfade	2306	265
+moveblurcluttype	0	0
+moveblurfade	2304	264
+moveblurfadesync	4609	265
+moveblurnoisetype	0	0
+moveblurplay	1	1
+moveblurpresettype	1	1
+moveblurscreentype	0	0
+resetcutinparam	0	0
+resetmoveblurparam	0	0
+setsoftfocusmode	52	49
+verb	arguments	calls	scripts
+cutinlinefade	1	4	4
+movebluraplpha	1	2304	264
+moveblurclearfade	10	1	1
+moveblurclearfade	15	2305	264
+moveblurfade	15	2304	264
+moveblurpresettype	1	1	1
+setsoftfocusmode	0, 0, 0, 0	52	49

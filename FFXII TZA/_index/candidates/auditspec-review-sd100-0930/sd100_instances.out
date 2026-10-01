@@ -1,0 +1,22 @@
+== 002ABF70  1 E8/E9 sites
+   002A9945  root 002A8C50  002A9942  mov rcx, rsi
+== 002AC1E0  6 E8/E9 sites
+   002A5483  root 002A5460  002A547E  lea rcx, [rsp + 0x30]
+   002B3082  root 002B3050  002B3077  lea rcx, [rsp + 0x20]
+   002B32F0  root 002B32D0  (rcx set before a call/branch)
+   002B3418  root 002B3400  (rcx set before a call/branch)
+   002B53FC  root 002B5390  002B53F0  lea rcx, [rsp + 0x30]
+   002B553B  root 002B5390  002B5536  lea rcx, [rsp + 0x30]
+== 002B3D50  2 E8/E9 sites
+   002A3551  root 002A3250  002A354E  mov rcx, rdi
+   002B3384  root 002B32D0  (rcx set before a call/branch)
+== 002B3C30  2 E8/E9 sites
+   002A1C86  root 002A1B00  002A1C24  lea rcx, [rsp + 0x40]
+   002B3354  root 002B32D0  (rcx set before a call/branch)
+== 002B32D0  2 E8/E9 sites
+   002B32B6  root 002B3280  (rcx set before a call/branch)
+   002B32C0  (no .pdata root)
+== 002A9980  0 E8/E9 sites
+== 002A8C50  0 E8/E9 sites
+== 002B3950  1 E8/E9 sites
+   002A37C9  root 002A3730  002A37C2  lea rcx, [rdi + 0xd0]

@@ -1,0 +1,132 @@
+[
+  {
+    "receipt": "Database/Tools/work/ASTRA/dashboard-shell-reconciliation/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-activity-deltas-independent/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-fixture-placement/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-fixture-placement\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-generation-cert-r2/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-generation-cert-r3/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-my-progress-independent/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-my-progress-r3/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/migration-transitions-r2/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/poison-q6-independent/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  },
+  {
+    "receipt": "Database/Tools/work/ASTRA/transition-line-boundary/publication/path-preflight.json",
+    "args": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-line-boundary\\publication\\reviewed.json"
+    ],
+    "returncode": 0,
+    "status": "old text-stdin absence-of-ignore NOT_ESTABLISHED; final successful publication/blob identity not invalidated"
+  }
+]

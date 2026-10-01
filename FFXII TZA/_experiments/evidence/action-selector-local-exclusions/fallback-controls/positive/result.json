@@ -1,0 +1,35 @@
+{
+  "question": "Can30DB70 null-record selection obtain candidate511..534 from2F8D60 authored-threshold fallback when signed override index01EEBAF0 is negative?",
+  "hypotheses": [
+    "fallback returns a full action word capable of511..534",
+    "fallback match returns only one unsigned byte; miss is the rejectedFFFF sentinel"
+  ],
+  "method": "A original return-width/dataflow invariant; no samples/native execution/authored corpus census",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "18b039eceb75c19f55cf2d9b5b76888f8252d101312ff8310fdec8f22aad0a18",
+  "inputs": [
+    {
+      "path": "special-selection-dispatch-raw-02.json",
+      "sha256": "524836337505ae35921868bbddb38a8baf68fd05501a3f950ebf7767f7cf2d96",
+      "driver": "capture-special-selection-dispatch.py",
+      "driver_sha256": "17bcd2b2779b70f8366a47bbbcb69dc8c89aab87985f9c9262a49561d216a2a7"
+    },
+    {
+      "path": "spattack-leaves-and-guard-raw-01.json",
+      "sha256": "8c07f2f5c89d0b8b025da5b3d1690345b469899f84d343e3ef58bd19f8d77530",
+      "driver": "capture-spattack-leaves-and-guard.py",
+      "driver_sha256": "ad620f58068354192b1297fa388c83b09d51f88eefe6c2079baff7a5418cba5f"
+    }
+  ],
+  "controls": {
+    "fallback_byte_upper_bound": true,
+    "fallback_miss_narrows_to_ffff_and_is_rejected": true,
+    "override_word_can_represent_candidate": true,
+    "dispatch_mode_is_not_row_category": true,
+    "widened_result_load_refused": true
+  },
+  "conclusion": "EXCLUDED on the negative-override fallback path: matching return range0..255; no match becomesFFFF and is rejected before queue value creation. No new authored threshold capture is required for this result-width invariant.",
+  "unresolved": "Nonnegative override reads a u16 from022BE930; its index/value writer domain is not proved here. Other queue producers, direct script inputs, initialized row/actor premises, natural loader/rejection reachability remain OPEN.",
+  "corrections": "306760 dispatch selects by separate mode dword022C215C in1..6, not row category. Invalid raw01 inferred10 edges from6 entries plus padding/code; raw02 derives extent from original guard and keeps only6. No prior semantic claim depended on raw01.",
+  "limits": "Complete local matcher source and caller leg, not full natural reachability. No forced calls, emulator, real FF12, timing, save or config access. Producer controls and independent acceptance remain distinct."
+}

@@ -1,0 +1,38 @@
+fixed 6: ['PS-1', 'BI-13', 'UQ-210', 'UQ-218', 'UQ-242', 'UQ-255']
+refused line 455 R-1: 0 escaped-separator candidates
+refused line 490 AU-1: text changed beyond the escapes
+refused line 561 X-6: 0 escaped-separator candidates
+refused line 580 Y-6: 0 escaped-separator candidates
+refused line 965 BC-1: 0 escaped-separator candidates
+refused line 982 BF-1: 0 escaped-separator candidates
+refused line 985 BF-4: 4 cells, no rule
+refused line 1011 BI-3c: 4 cells, no rule
+refused line 1147 BQ-34: 0 escaped-separator candidates
+refused line 2695 PH-2: 0 escaped-separator candidates
+refused line 2701 PH-5: 0 escaped-separator candidates
+refused line 2728 VA-3: 0 escaped-separator candidates
+refused line 2746 UQ-7: 0 escaped-separator candidates
+refused line 2761 UQ-17: 0 escaped-separator candidates
+refused line 2785 UQ-37: 0 escaped-separator candidates
+refused line 2849 UQ-89: 0 escaped-separator candidates
+refused line 2902 UQ-135: 0 escaped-separator candidates
+refused line 2914 UQ-143: 0 escaped-separator candidates
+refused line 2936 UQ-157: 0 escaped-separator candidates
+refused line 2967 UQ-176: 0 escaped-separator candidates
+refused line 2980 UQ-185: 0 escaped-separator candidates
+refused line 2985 UQ-186: 0 escaped-separator candidates
+refused line 3003 UQ-200: 0 escaped-separator candidates
+refused line 3015 UQ-207: 0 escaped-separator candidates
+refused line 3020 UQ-208: 0 escaped-separator candidates
+refused line 3030 UQ-214: 0 escaped-separator candidates
+refused line 3044 UQ-220: 4 cells, no rule
+refused line 3061 UQ-237: 0 escaped-separator candidates
+refused line 3068 UQ-239: 0 escaped-separator candidates
+refused line 3076 UQ-247: 4 cells, no rule
+refused line 3148 UQ-311: 0 escaped-separator candidates
+refused line 3164 UQ-324: 0 escaped-separator candidates
+refused line 3195 UQ-343: 0 escaped-separator candidates
+refused line 3203 UQ-347: 0 escaped-separator candidates
+refused line 3220 UQ-359: 0 escaped-separator candidates
+refused line 3242 UQ-376: 0 escaped-separator candidates
+ok 6

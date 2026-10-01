@@ -1,0 +1,6 @@
+PASS  N1 0041CF00: bit 0x1000 with +0x338 == -1 -> 00372280(rcx = 0); rcx written only at 0041CF09 0041CF98 0041CFA4 0041CFB3
+PASS  N2 00372280's first access through rcx is 0037228D `mov ecx, dword ptr [rcx + 0x84]`, with no test of rcx before it
+PASS  N3 OR-setters of +0xC bit 0x1000: ['0041D4D9']; mov stores with the bit: ['002E14A5=FFFFFFFF', '002E1993=FFFFFFFF', '00370DAF=FFFFFFFF', '003B535B=FFFFFFFF', '0051F202=FFFFFFFF', '006EB32F=3FF33333', '00765D2F=BE99999A', '007D8755=15F79688', '0082F9FA=FFFFFFFF']; 0041D4D0 callers ['00424550']
+PASS  N4 00424550: admission definition +0x14 = [rdi+0x18], reached only when it is not -1, then 0041D4D0(payload, 1)
+PASS  N5 +0x338 = definition +0x14 (0041D220); the -1 reset 0041CB90 runs before it and after the bit is cleared
+FAILS 0

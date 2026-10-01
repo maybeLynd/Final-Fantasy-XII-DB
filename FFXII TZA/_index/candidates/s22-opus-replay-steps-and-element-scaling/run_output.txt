@@ -1,0 +1,10 @@
+ST1_ST2_ST3_ST5_table_static       PASS  the section 12 reproduction checks, read from the mapped image
+ST3_noops_execute_and_write_nothing PASS  42 ids, each runs 0016D6A0 and returns
+ST4_ST7_recipe_65_113              PASS  prep writes exactly the three scratch words and draws the shared MT19937 once; finalize = trunc((058 - 05C) * 054)
+ST4_finalize_reads_only_the_scratch PASS  three different attacker/target pairs, one scratch record: the same damage, 200 = (120 - 40) x 2.5
+ST4_order_is_the_semantics         PASS  observed: finalize before prep reads the zeroed scratch (difference 0 - 0) and the later prep does not revisit it
+ST5_double_finalize                PASS  observed: ids 113 and 125 run the same body; the second pass recomputes the same value from the unchanged scratch
+finalize_arms_observed             PASS  observed table, not a contract claim
+WE4_WE5_bit16_skips_the_stage      PASS  each of the three tests skips everything; with none set the same action scales
+WE2_WE6_rule_table                 PASS  observed: which (environment, weather, terrain) combinations scale each element; writes are the scratch scale and the cached unit pointer 02EBF188
+9/9 pass (allowed 19 functions)

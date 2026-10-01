@@ -1,0 +1,107 @@
+{
+ "boundary": "sound engine singleton [01FD36A0] not built; requests 0-3, 5, 8-15, 22, 27 reach it via 002DF370 -> 001DBA90 -> 00210FF0 and are not used",
+ "cases": {
+  "SS1_bitset_never_read": {
+   "bitset_reads": [],
+   "pass_": true
+  },
+  "SS1_control_bitset_does_not_change_the_outcome": {
+   "outcomes": [
+    [
+     true,
+     "00000024F8040307",
+     "00001F2B0A001F1F",
+     [
+      2
+     ]
+    ],
+    [
+     true,
+     "00000024F8040307",
+     "00001F2B0A001F1F",
+     [
+      2
+     ]
+    ]
+   ],
+   "pass_": true
+  },
+  "SS2_combine_is_AND_over_28_with_all_ones_identity": {
+   "combined": [
+    "00000024F8040307",
+    "00001F2B0A001F1F"
+   ],
+   "expected": [
+    "00000024F8040307",
+    "00001F2B0A001F1F"
+   ],
+   "pass_": true
+  },
+  "SS3_only_first_qword_and_fade_read": {
+   "pass_": true,
+   "record_offsets_read": [
+    [
+     "0",
+     8
+    ],
+    [
+     "10",
+     4
+    ]
+   ]
+  },
+  "SS4_fade_is_min_of_nonnegative_and_consumed": {
+   "fade_passed_to_00226640": [
+    3
+   ],
+   "fades_after": {
+    "4": -1,
+    "7": -1,
+    "16": -5
+   },
+   "pass_": true
+  },
+  "SS5_bit41_in_every_record_B_after_apply": {
+   "pass_": true,
+   "record_B_without_bit41": []
+  },
+  "SS6_clean_registry_apply_is_a_no_op": {
+   "pass_": true,
+   "registry_reads": [
+    [
+     "01FD46D0",
+     1,
+     "00226287"
+    ]
+   ],
+   "registry_writes": 0
+  },
+  "SS6_request_raises_dirty_and_apply_clears_it": {
+   "dirty_after_requests": 1,
+   "pass_": true
+  },
+  "world_registry_initialised_inert": {
+   "fade_passed_by_first_apply": [
+    0
+   ],
+   "note": "00226B30 leaves all 28 records all-ones and every fade 0; one shipped request + apply consumes the zeros to -1",
+   "pass_": true
+  }
+ },
+ "ok": true,
+ "quiet_request_ids": [
+  4,
+  6,
+  7,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  23,
+  24,
+  25,
+  26
+ ]
+}

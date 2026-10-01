@@ -1,0 +1,3 @@
+{"action":"finish","task":"SWE2-EC7-SHARED-HUB-IDENTIFICATION-34",
+ "result_refs":["audit:b34_crossref"],
+ "note":"22 frontier hubs (9-A..4-A band) read from the shipping image and cited interior on 16 bearing hosts; 21/22 A-measured, 002F16B0 recorded on an ESTABLISHED (non-bearing) host and stays frontier; gates clean; xref_hub34.json 0 new vs hub-33 baseline"}

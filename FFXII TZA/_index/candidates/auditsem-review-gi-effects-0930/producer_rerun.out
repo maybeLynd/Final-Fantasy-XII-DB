@@ -1,0 +1,5 @@
+gi_effects_checks: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+d0_selector_census: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+gi10_cores_check: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+gi10names: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+type_census: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)

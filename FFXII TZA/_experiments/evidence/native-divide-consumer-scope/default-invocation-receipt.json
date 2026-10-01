@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "90c527e5391240ae30feb1e57ba0e412d603a4bb5f6bd802ac8f95f196e870ee",
+  "check_sha256": "bb3e48c0d9562ef422691db3de05b8c0a9343e2084440b87dde009501da5897f",
+  "raw_unchanged_sha256": "ac34cf86a7745a194b8fdf317f3ecf83d9b03f2aa1e81ef3cec5238eecb59934",
+  "path": "Actual retained-only reduction of producer-fragment controls, not full peer default/original-code/native execution"
+}

@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-primary-selector-zero.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\primary-selector-zero-result-01.json"
+  ],
+  "checker_sha256": "8f9996a699e8fcb8df2384c608398a61cd650186de4b9940959702e233bb1cf9"
+}

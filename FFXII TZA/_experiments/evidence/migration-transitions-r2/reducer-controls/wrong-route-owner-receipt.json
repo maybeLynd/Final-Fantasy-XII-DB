@@ -1,0 +1,15 @@
+{
+  "name": "wrong-route-owner",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py",
+    "--run",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\reducer-controls\\wrong-route-owner"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 52, in <module>\n    result=reduce(a.run or w/'run-01',w/'capture.py')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 43, in reduce\n    assert op['task']['assigned_to']==owner and op['task']['id']==row['detail'], 'WRONG_ROUTE_OWNER'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: WRONG_ROUTE_OWNER\n",
+  "expected_refusal": "WRONG_ROUTE_OWNER",
+  "terminal": true
+}

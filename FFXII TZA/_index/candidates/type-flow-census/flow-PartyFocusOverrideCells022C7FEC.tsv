@@ -1,0 +1,14 @@
+function	site	field	width	kind	instruction
+00358C60	00358C7C	0x0	4	r	mov ecx, dword ptr [rip + 0x1f6f36a]
+00358EE0	00358EE6	0x0	4	r	cmp dword ptr [rip + 0x1f6f0ff], 0
+00358EE0	00358F74	0x0	4	r	mov ecx, dword ptr [rip + 0x1f6f072]
+00358F90	00359026	0x4	4	r	movss xmm1, dword ptr [rip + 0x1f6efc2]
+00358F90	0035903D	0x4	4	w	movss dword ptr [rip + 0x1f6efab], xmm0
+00358F90	00359045	0x8	4	w	movss dword ptr [rip + 0x1f6efa7], xmm1
+003590B0	003590B0	0x4	4	r	movss xmm0, dword ptr [rip + 0x1f6ef38]
+003590B0	003590BF	0x8	4	r	addss xmm0, dword ptr [rip + 0x1f6ef2d]
+003590E0	003590F7	0x0	4	w	mov dword ptr [rip + 0x1f6eeef], eax
+003590E0	00359130	0x4	8	w	mov qword ptr [rip + 0x1f6eeb5], 0
+003593A0	003593A8	0x0	4	r	mov ecx, dword ptr [rip + 0x1f6ec3e]
+003593A0	003593CE	0x0	4	r	mov ecx, dword ptr [rip + 0x1f6ec18]
+003593A0	003593F5	0x0	4	w	mov dword ptr [rip + 0x1f6ebf1], ebx

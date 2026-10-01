@@ -1,0 +1,372 @@
+{
+  "status": "ADDITIVE_EDGE_CORRECTION_VALID_SOURCE_ONLY",
+  "producer_sha256": "a285f20528311030ccf9c1af22622c76b8d128e6d4161fd652adcd34210bf508",
+  "input_raw": [
+    {
+      "path": "raw.json",
+      "sha256": "386a65b8324bc9fe8ad733cee2c883a09e28e18b939c49fc7de08d25d41e0f51"
+    },
+    {
+      "path": "raw-nested.json",
+      "sha256": "36b96f509823ce9d0d89697785add63f45ab15c029671c75a0980196732572c3"
+    },
+    {
+      "path": "raw-closure-r3.json",
+      "sha256": "bfb1384cc530c08ef91598a5db04c625c4eba6b92a7ab0644ac4eca17ea5492a"
+    },
+    {
+      "path": "raw-object-state.json",
+      "sha256": "bd0b4f781b8694b31e47308568cd368490e177fbb0d3bc20ad8c81df0cd1b012"
+    }
+  ],
+  "affected_edge_lists": [
+    {
+      "capture": "raw-nested.json",
+      "entry": "0x2e6300",
+      "old_jmp_only": [],
+      "corrected_all_external_jumps": [
+        {
+          "pc": "0x2e6303",
+          "target": "0x265510",
+          "mnemonic": "js",
+          "conditional": true,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-closure-r3.json",
+      "entry": "0x2ec3f0",
+      "old_jmp_only": [
+        {
+          "pc": "0x2ec481",
+          "target": "0x2e77f0"
+        },
+        {
+          "pc": "0x2ec4b3",
+          "target": "0x2e7720"
+        },
+        {
+          "pc": "0x2ec4d7",
+          "target": "0x2e79a0"
+        },
+        {
+          "pc": "0x2ec4f1",
+          "target": "0x2e7650"
+        }
+      ],
+      "corrected_all_external_jumps": [
+        {
+          "pc": "0x2ec47b",
+          "target": "0x2e7860",
+          "mnemonic": "je",
+          "conditional": true,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec481",
+          "target": "0x2e77f0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4ad",
+          "target": "0x2e78d0",
+          "mnemonic": "je",
+          "conditional": true,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4b3",
+          "target": "0x2e7720",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4d7",
+          "target": "0x2e79a0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4f1",
+          "target": "0x2e7650",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    }
+  ],
+  "corrected_edge_lists": [
+    {
+      "capture": "raw.json",
+      "entry": "0x264460",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x265020",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x267310",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x26afe0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x26c120",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3587c0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3588b0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3590d0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3a1920",
+      "external_jumps": [
+        {
+          "pc": "0x3a1950",
+          "target": "0x861f14",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3a19c0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3a1ad0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3a1d30",
+      "external_jumps": [
+        {
+          "pc": "0x3a1d42",
+          "target": "0x861f14",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x3da6a0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x4686d0",
+      "external_jumps": [
+        {
+          "pc": "0x4686ee",
+          "target": "0x861f14",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw.json",
+      "entry": "0x808c40",
+      "external_jumps": [
+        {
+          "pc": "0x808c5c",
+          "target": "0x809654",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-nested.json",
+      "entry": "0x2e5df0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-nested.json",
+      "entry": "0x2e6300",
+      "external_jumps": [
+        {
+          "pc": "0x2e6303",
+          "target": "0x265510",
+          "mnemonic": "js",
+          "conditional": true,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-nested.json",
+      "entry": "0x2e8ee0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-nested.json",
+      "entry": "0x2ebe50",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-nested.json",
+      "entry": "0x3da9f0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-closure-r3.json",
+      "entry": "0x265510",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-closure-r3.json",
+      "entry": "0x2e5c90",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-closure-r3.json",
+      "entry": "0x2ec3f0",
+      "external_jumps": [
+        {
+          "pc": "0x2ec47b",
+          "target": "0x2e7860",
+          "mnemonic": "je",
+          "conditional": true,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec481",
+          "target": "0x2e77f0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4ad",
+          "target": "0x2e78d0",
+          "mnemonic": "je",
+          "conditional": true,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4b3",
+          "target": "0x2e7720",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4d7",
+          "target": "0x2e79a0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x2ec4f1",
+          "target": "0x2e7650",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-closure-r3.json",
+      "entry": "0x3e6bc0",
+      "external_jumps": [
+        {
+          "pc": "0x3e6bc7",
+          "target": "0x3e33e0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-closure-r3.json",
+      "entry": "0x3e6bd0",
+      "external_jumps": [
+        {
+          "pc": "0x3e6bd7",
+          "target": "0x3e3440",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-object-state.json",
+      "entry": "0x2e6300",
+      "external_jumps": [
+        {
+          "pc": "0x2e6303",
+          "target": "0x265510",
+          "mnemonic": "js",
+          "conditional": true,
+          "resolved_immediate": true
+        }
+      ]
+    },
+    {
+      "capture": "raw-object-state.json",
+      "entry": "0x3e33e0",
+      "external_jumps": []
+    },
+    {
+      "capture": "raw-object-state.json",
+      "entry": "0x3e3440",
+      "external_jumps": []
+    }
+  ],
+  "object_capture_schema_correction": {
+    "original_field": "direct_call_sites",
+    "correct_field": "selected_source_edges",
+    "values": [
+      {
+        "pc": "0x3e6bc7",
+        "target": "0x3e33e0",
+        "mnemonic": "jmp",
+        "kind": "unconditional_tail"
+      },
+      {
+        "pc": "0x3e6bd7",
+        "target": "0x3e3440",
+        "mnemonic": "jmp",
+        "kind": "unconditional_tail"
+      }
+    ]
+  },
+  "limits": "Raw bytes/old drivers/receipts retained. Fix conditional-edge omission and one raw metadata label only; no class preservation/callback/native effects conclusion. Actual corrected capture JS positive control retained."
+}

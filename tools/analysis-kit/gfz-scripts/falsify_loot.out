@@ -1,0 +1,10 @@
+SURVIVES  L1  17 accesses (bounded 17, linear-only 0), 9 writers; functions ['00317ED0', '003183D0', '00318510', '003185D0', '003186F0', '00318820', '00319530', '00328370', '00328D80']; generator: 23 call sites in 15 functions, overlap with the seven 0
+SURVIVES  L2  16 instructions identical after resolving rip targets; the one extra in the inline copy: ['mov ecx, eax']
+SURVIVES  L3  3 imul / 3 add per draw; % 100 via mov eax, 0x51eb851f, sar edx, 5
+SURVIVES  L4  guards read; chance / quantity / profile rolls draw before any branch: {'003185D0': '003185E4', '003186F0': '00318704', '00318820': '00318834'}
+SURVIVES  K1  (REFUTES 'between 2 and 13' and 'at most once') draws = P + C + Q + E, each able to be 0, floor 0; an empty slot (je 0x31820c) goes to the override (call 0x17d340 / cmp eax, edi), and a match stores id 0xFFFF and draws a quantity (call 0x3186f0)
+SURVIVES  L5  call sites ['00311146'] in BattleUnit_RunPeriodicCombatMaintenance; movzx ecx, byte ptr [rax + 5] / jne 0x31127f
+SURVIVES  L6  r12d written at ['00318116', '0031816A']; accessor call 0x1d50d0 / mov eax, dword ptr [rax + 0xe64]
+SURVIVES  L7  14 pre-fill stores; inc eax
+SURVIVES  L8  test rdx, rdx / je 0x31817e -> mov esi, r14d; 641 B
+FAILS 0

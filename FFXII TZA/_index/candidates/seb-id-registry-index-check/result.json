@@ -1,0 +1,62 @@
+{
+ "cases": {
+  "C1_id_is_registry_word8_shifted_by_9_after_self_index_validation": true,
+  "C2_loader_masks_the_registry_word_to_the_index_and_forwards_n_separately": true,
+  "C3_bank_plus3C_is_the_index_plus38_is_n": true,
+  "C4_lookup_matches_id_shr_9_against_plus3C_not_plus38": true
+ },
+ "evidence_class": "STATIC",
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "C1": {
+   "003A11BF": "movzx edx, word ptr [rcx + rax*8 + 8]",
+   "003A11C4": "movzx ecx, word ptr [rcx + rax*8 + 0xa]",
+   "003A11C9": "shl ecx, 0x10",
+   "003A11CE": "cmp ecx, r8d",
+   "003A11D7": "shl edx, 9",
+   "003A11DA": "add edx, ebx",
+   "table": "lea rcx, [rip + 0x274dc01]",
+   "table_base": "02AEEDC0"
+  },
+  "C2": {
+   "001DBD32": "mov edi, edx",
+   "001DBD34": "mov esi, ecx",
+   "001DBD41": "mov r8d, edi",
+   "001DBD44": "mov edx, esi",
+   "001DBD55": "jmp 0x210b60",
+   "00210B64": "jmp 0x21b430",
+   "0021B448": "mov edi, edx",
+   "0021B45A": "mov ebp, r8d",
+   "0021B4F0": "mov r8d, ebp",
+   "0021B4F8": "mov edx, edi",
+   "0021B4FD": "call 0x223ad0",
+   "002DEF00": "and ecx, 0x3f",
+   "002DEF0B": "movsx edx, word ptr [rdx + 8]",
+   "002DEF0F": "jmp 0x1dbd20",
+   "003A16BA": "movzx ecx, word ptr [rbx + rax*8 + 8]",
+   "003A16C3": "movzx eax, word ptr [rbx + 0xa]",
+   "003A16CC": "cmp eax, edi",
+   "003A16CE": "cmovne ecx, edx",
+   "003A16D4": "call 0x2def00"
+  },
+  "C3": {
+   "00223B07": "mov r13d, r8d",
+   "00223B18": "mov dword ptr [rsp + 0x34], edx",
+   "00223B53": "movsx eax, word ptr [rbp + 8]",
+   "00223B59": "cmp eax, r13d",
+   "00223C7A": "mov eax, dword ptr [rsp + 0x34]",
+   "00223C83": "mov dword ptr [r15 + 0x3c], eax",
+   "00223C9C": "mov dword ptr [r15 + 0x38], r13d"
+  },
+  "C4": {
+   "0021B476": "cmp dword ptr [rdx + 0x3c], edi",
+   "0021B5C8": "mov eax, edx",
+   "0021B5CC": "cdq",
+   "0021B5D0": "and edx, 0x1ff",
+   "0021B5DC": "lea edi, [rdx + rax]",
+   "0021B5DF": "sar edi, 9",
+   "0021B5FA": "cmp dword ptr [r10 + 0x3c], edi"
+  }
+ }
+}

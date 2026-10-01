@@ -1,0 +1,32 @@
+== R. direct reach to 00312280 (E8/E9 from rawcalls.json + cross-function jcc to a function start: 108)
+  functions that reach: 2208
+    0030E360 reaches: True
+    00300140 reaches: True
+    0046EFD0 reaches: True
+    003B8670 reaches: True
+    002EB740 reaches: True
+    00319F50 reaches: True
+    003B1260 reaches: True
+    0024FE70 reaches: True
+    0024FE30 reaches: True
+    00319420 reaches: True
+    00310780 reaches: True
+    003105D0 reaches: True
+    00234200 reaches: True
+    00319140 reaches: False
+    002EB780 reaches: False
+    002FD0C0 reaches: True
+    003B3C00 reaches: True
+    005372D0 reaches: True
+    004FF2C0 reaches: True
+    00333280 reaches: True
+    003331A0 reaches: True
+    003A74F0 reaches: True
+    003337B0 reaches: True
+== W. window bodies (package S9)
+  003EA820 after the first free [003EA888,003EA9FC): 25 direct call/tail sites; reaching R: ['003EA97F->0032E620']; indirect: []
+  0032FC30 after 003EA6E0 [0032FC50,0032FC9E): 6 direct call/tail sites; reaching R: ['0032FC72->003319D0', '0032FC7B->0032FCA0']; indirect: []
+  0032FCA0 to 0032FCF6 [0032FCA0,0032FCFB): 4 direct call/tail sites; reaching R: ['0032FCF6->002628B0']; indirect: []
+  002628B0 to 00262D34 [002628B0,00262D39): 128 direct call/tail sites; reaching R: ['0026293F->003603F0', '00262989->003DEE10', '00262990->0036DE70', '002629AE->003DEE10', '002629E3->003DF7B0', '00262A60->003EB010', '00262A96->002E2400', '00262AF2->0032E520', '00262AFC->002E65A0', '00262B0D->0032E520', '00262B12->002E65A0', '00262B1E->0032E520', '00262B71->0035A6F0', '00262BC6->003EA200', '00262C89->003E75A0', '00262C97->0036DF30', '00262C9C->0024E910', '00262CA8->0024E910', '00262CC5->00378230', '00262D34->0025B070']; indirect: []
+  0025B070 [0025B070,0025B249): 11 direct call/tail sites; reaching R: ['0025B0E5->0024CFF0', '0025B17A->0024CFF0', '0025B1B1->002693D0', '0025B1E0->002E3AF0', '0025B225->00234200']; indirect: []
+  00234200 to 002342CE [00234200,002342D3): 7 direct call/tail sites; reaching R: ['0023423F->00300140']; indirect: []

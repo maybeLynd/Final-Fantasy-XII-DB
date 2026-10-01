@@ -1,0 +1,191 @@
+- banner:
+  - generic: FF12 database dashboard read-only; serves the verified CURRENT generation only
+  - generic "state OK; last full refresh 2026-09-29T15:46:38.556Z; generation g20260929T154720Z-55ec16; interval 1800 s; next 2026-09-29T16:16:38.556Z / 9/29/2026, 11:16:38 AM": "Next full refresh: 28:15"
+  - generic: "generation g20260929T154720Z-55ec16 committed 2026-09-29T15:47:24Z | since the snapshot: team, watchdog moved (live sources; next build picks it up) | earlier failure, resolved by the current generation: input team changed while being snapshotted"
+- navigation:
+  - button "My Progress PARTIAL"
+  - button "Agent Activity live"
+  - button "overview OK"
+  - button "systems OK"
+  - button "vbf PARTIAL"
+  - button "executable PARTIAL"
+  - button "types OK"
+  - button "evidence PARTIAL"
+  - button "fleet PARTIAL"
+- main:
+  - heading "My Progress PARTIAL" [level=2]
+  - paragraph: generation g20260929T154720Z-55ec16, last update 2026-09-29T15:47:24Z · freshness PARTIAL · metric MP-2
+  - heading "Governing requirements accepted (L1+L2)" [level=3]
+  - generic: UNMEASURED
+  - generic: "known requirements only: 25926 / 387310.0%"
+  - generic "the same count without the 35,064 function dispositions, so the other families' movement is visible": "excluding functions: 93.7% (3439 / 3667)0.0%"
+  - generic "25675 of 38480 requirements accepted; 12805 remaining. One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.":
+    - heading "L1 (modding grade)" [level=3]
+    - generic: 66.7%0.0%
+    - generic: 66.7% accepted · 33.3% remaining
+    - generic: 25675 / 38480
+  - generic "1331 of 1415 requirements accepted; 84 remaining. One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.":
+    - heading "L2 (reconstruction grade)" [level=3]
+    - generic: 94.0%0.0%
+    - generic: 94.0% accepted · 6.0% remaining
+    - generic: 1331 / 1415
+  - generic "Thirty consecutive clean passes of FINAL-AUDIT-PROTOCOL, counted from the governing gate. They run only after everything else is accepted.":
+    - heading "Final certification" [level=3]
+    - generic: 0 / 30
+    - generic: accepted terminal passes / required
+  - 'generic "the governing goal gate reads NOT_MET: questions outstanding: OPEN=14, PARTIAL=5"':
+    - heading "Reconstruction status" [level=3]
+    - generic: NOT READY
+    - generic: "the governing goal gate reads NOT_MET: questions outstanding: OPEN=14, PARTIAL=5"
+  - paragraph: "Not yet fully enumerated - the overall figure stays UNMEASURED until these are closed: X: member formats of the bucketed extension(s) .bin, .dat are not declared (Database/Tools/work/formats/bucket-members.tsv); until they are, those files are UNMEASURED at format granularity - repair: OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS (SWE2-DATA)"
+  - heading "By requirement family" [level=3]
+  - table:
+    - rowgroup:
+      - row "family accepted remaining accepted %":
+        - columnheader "family"
+        - columnheader "accepted"
+        - columnheader "remaining"
+        - columnheader "accepted %"
+      - row "register questions (OPEN-QUESTIONS.md rows) answered 1415 · dispositioned (SUPERSEDED, NAS, OEB, landed transfers) 191 · excluded as not requirements 31 1606 / 1625 19 98.8%0.0%":
+        - cell "register questions (OPEN-QUESTIONS.md rows) answered 1415 · dispositioned (SUPERSEDED, NAS, OEB, landed transfers) 191 · excluded as not requirements 31":
+          - text: register questions (OPEN-QUESTIONS.md rows)
+          - generic: answered 1415 · dispositioned (SUPERSEDED, NAS, OEB, landed transfers) 191 · excluded as not requirements 31
+        - cell "1606 / 1625"
+        - cell "19"
+        - cell "98.8%0.0%": 98.8%0.0%
+      - row "page obligations (unticked page boxes with no live register row) 0 / 1 1 0.0%0.0%":
+        - cell "page obligations (unticked page boxes with no live register row)"
+        - cell "0 / 1"
+        - cell "1"
+        - cell "0.0%0.0%": 0.0%0.0%
+      - row "function dispositions (every function explained A, class-explained B or dispositioned C) 22487 / 35064 12577 64.1%0.0%":
+        - cell "function dispositions (every function explained A, class-explained B or dispositioned C)"
+        - cell "22487 / 35064"
+        - cell "12577"
+        - cell "64.1%0.0%": 64.1%0.0%
+      - row "documents documented (status DOCUMENTED/AUDITED, or readiness when no status) documented, all answered 361 · documented with a dispositioned residue 8 369 / 488 119 75.6%0.0%":
+        - cell "documents documented (status DOCUMENTED/AUDITED, or readiness when no status) documented, all answered 361 · documented with a dispositioned residue 8":
+          - text: documents documented (status DOCUMENTED/AUDITED, or readiness when no status)
+          - generic: documented, all answered 361 · documented with a dispositioned residue 8
+        - cell "369 / 488"
+        - cell "119"
+        - cell "75.6%0.0%": 75.6%0.0%
+      - row "documents with a named falsification pass 430 / 488 58 88.1%0.0%":
+        - cell "documents with a named falsification pass"
+        - cell "430 / 488"
+        - cell "58"
+        - cell "88.1%0.0%": 88.1%0.0%
+      - row "documents verified against the certified parent (provenance) 488 / 488 0 100.0%0.0%":
+        - cell "documents verified against the certified parent (provenance)"
+        - cell "488 / 488"
+        - cell "0"
+        - cell "100.0%0.0%": 100.0%0.0%
+      - row "authored-data registry slots explained 63 / 64 1 98.4%0.0%":
+        - cell "authored-data registry slots explained"
+        - cell "63 / 64"
+        - cell "1"
+        - cell "98.4%0.0%": 98.4%0.0%
+      - row "shipped file formats explained 46 / 46 0 100.0%0.0%":
+        - cell "shipped file formats explained"
+        - cell "46 / 46"
+        - cell "0"
+        - cell "100.0%0.0%": 100.0%0.0%
+      - row "EBP container units explained 14 / 14 0 100.0%0.0%":
+        - cell "EBP container units explained"
+        - cell "14 / 14"
+        - cell "0"
+        - cell "100.0%0.0%": 100.0%0.0%
+      - row "contradictions carrying a resolved disposition 172 / 172 0 100.0%0.0%":
+        - cell "contradictions carrying a resolved disposition"
+        - cell "172 / 172"
+        - cell "0"
+        - cell "100.0%0.0%": 100.0%0.0%
+      - 'row "L2 cells: registered system x required dimension 251 / 251 0 100.0%0.0%"':
+        - 'cell "L2 cells: registered system x required dimension"'
+        - cell "251 / 251"
+        - cell "0"
+        - cell "100.0%0.0%": 100.0%0.0%
+      - row "terminal final-audit passes (30 consecutive) 0 / 30 30 0.0%0.0%":
+        - cell "terminal final-audit passes (30 consecutive)"
+        - cell "0 / 30"
+        - cell "30"
+        - cell "0.0%0.0%": 0.0%0.0%
+  - generic "How these numbers are counted"
+  - heading "By category" [level=3]
+  - table:
+    - rowgroup:
+      - row "Category Accepted % Remaining % Change since prior generation":
+        - columnheader "Category"
+        - columnheader "Accepted %"
+        - columnheader "Remaining %"
+        - columnheader "Change since prior generation"
+      - row "▸ World & maps 82.4% 17.6% 0.0%":
+        - cell "▸ World & maps"
+        - cell "82.4%": 82.4%
+        - cell "17.6%"
+        - cell "0.0%"
+      - row "▸ Combat & damage 98.3% 1.7% 0.0%":
+        - cell "▸ Combat & damage"
+        - cell "98.3%": 98.3%
+        - cell "1.7%"
+        - cell "0.0%"
+      - row "▸ Enemies & AI 95.1% 4.9% 0.0%":
+        - cell "▸ Enemies & AI"
+        - cell "95.1%": 95.1%
+        - cell "4.9%"
+        - cell "0.0%"
+      - row "▸ Spawning, death & respawn 96.9% 3.1% 0.0%":
+        - cell "▸ Spawning, death & respawn"
+        - cell "96.9%": 96.9%
+        - cell "3.1%"
+        - cell "0.0%"
+      - row "▸ Player & party 94.2% 5.8% 0.0%":
+        - cell "▸ Player & party"
+        - cell "94.2%": 94.2%
+        - cell "5.8%"
+        - cell "0.0%"
+      - row "▸ Items, equipment & progression 93.2% 6.8% 0.0%":
+        - cell "▸ Items, equipment & progression"
+        - cell "93.2%": 93.2%
+        - cell "6.8%"
+        - cell "0.0%"
+      - row "▸ Story, quests & events 98.8% 1.2% 0.0%":
+        - cell "▸ Story, quests & events"
+        - cell "98.8%": 98.8%
+        - cell "1.2%"
+        - cell "0.0%"
+      - row "▸ Menus & controls 81.9% 18.1% 0.0%":
+        - cell "▸ Menus & controls"
+        - cell "81.9%": 81.9%
+        - cell "18.1%"
+        - cell "0.0%"
+      - row "▸ Animation, graphics & audio 54.4% 45.6% 0.0%":
+        - cell "▸ Animation, graphics & audio"
+        - cell "54.4%": 54.4%
+        - cell "45.6%"
+        - cell "0.0%"
+      - row "▸ Save/load & persistence 95.1% 4.9% 0.0%":
+        - cell "▸ Save/load & persistence"
+        - cell "95.1%": 95.1%
+        - cell "4.9%"
+        - cell "0.0%"
+      - row "▸ Scripts & game data/VBF 43.0% 57.0% 0.0%":
+        - cell "▸ Scripts & game data/VBF"
+        - cell "43.0%": 43.0%
+        - cell "57.0%"
+        - cell "0.0%"
+      - row "▸ Engine & supporting systems 91.0% 9.0% 0.0%":
+        - cell "▸ Engine & supporting systems"
+        - cell "91.0%": 91.0%
+        - cell "9.0%"
+        - cell "0.0%"
+      - row "▸ Whole database (final certification, cross-cutting) 48.7% 51.3% 0.0%":
+        - cell "▸ Whole database (final certification, cross-cutting)"
+        - cell "48.7%": 48.7%
+        - cell "51.3%"
+        - cell "0.0%"
+      - row "▸ Code not yet tied to a game system 7.6% 92.4% 0.0%":
+        - cell "▸ Code not yet tied to a game system"
+        - cell "7.6%": 7.6%
+        - cell "92.4%"
+        - cell "0.0%"

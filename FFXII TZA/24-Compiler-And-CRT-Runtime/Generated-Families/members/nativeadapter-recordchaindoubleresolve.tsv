@@ -1,0 +1,9 @@
+# NativeAdapter.RecordChainDoubleResolve - EC-7 family C
+# stack-cookie frame; resolve a word id through the 0x740-stride record
+# # table via shared 00426220; on the resolved record resolve its +8 word the
+# # same way; member ops verify each hop; shared 0042EF90 + cookie 00808C40.
+address	targets
+00429A50	00424320,00426220,0042EF90,00808C40
+0042A6B0	00423920,00426220,0042EF90,00808C40
+0042A7A0	00423980,00426220,0042EF90,00808C40
+0042B460	00424040,00426220,0042EF90,00808C40

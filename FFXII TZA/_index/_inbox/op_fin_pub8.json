@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-UQ218-PASS8",
+ "note": "Publish landed c8d6ddb80 \u2014 page opcode table + candidate record + OQ narrowing + audit entry.",
+ "result_refs": [
+  "c8d6ddb80"
+ ]
+}

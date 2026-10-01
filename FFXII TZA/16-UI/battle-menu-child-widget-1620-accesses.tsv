@@ -1,0 +1,42 @@
+# BattleMenuChildWidget1620 - emitted by Database/Tools/work/OPUS/emit_child1620_census.py, which calls gfz-scripts/receiver_flow_census.py
+# SEED 0027AD70 - registered handler: r8 at 002779DB and 00277A08
+# SEED 00247950 (shared widget helper) - rcx = parent+0xF0 / +0x1710 at 00277A42 / 00277A50
+# SEED 00245020 (shared widget helper) - rcx = parent+0xF0 / +0x1710 at 00279D0F / 00279D1B
+# SEED 00244960 (shared widget helper) - rcx = this object at 0027AEC3
+# SEED 00247570 (shared widget helper) - rcx = this object at 0027AEE3
+# SEED 002778C0 (parent handler, indexed sites only) - 13 of 13 base registers traced to their own imul ..., 0x1620
+# CONTROL: offsets contributed ONLY by a shared widget helper and NOT declared by Widget itself, which would be conflation: none
+# kind: r read, w write, a ADDRESS TAKEN (a lea, which touches no memory)
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+function	name	site	disp	kind	instruction	route	note
+00245020	FUN_00245020	00245044	0x0	r	mov rax, qword ptr [rdi]	rcx = parent+0xF0 / +0x1710 at 00279D0F / 00279D1B	shared-helper
+00247950	FUN_00247950	0024795C	0x10	r	cmp qword ptr [rcx + 0x10], 0	rcx = parent+0xF0 / +0x1710 at 00277A42 / 00277A50	shared-helper
+00245020	FUN_00245020	00245047	0x18	r	mov rbx, qword ptr [rdi + 0x18]	rcx = parent+0xF0 / +0x1710 at 00279D0F / 00279D1B	shared-helper
+0027AD70	FUN_0027ad70	0027AE07	0x38	r	mov rbx, qword ptr [rcx + 0x38]	registered handler: r8 at 002779DB and 00277A08	
+00245020	FUN_00245020	00245072	0x40	r	test byte ptr [rdi + 0x40], 0x20	rcx = parent+0xF0 / +0x1710 at 00279D0F / 00279D1B	shared-helper
+00245020	FUN_00245020	00245091	0x40	r	mov eax, dword ptr [rdi + 0x40]	rcx = parent+0xF0 / +0x1710 at 00279D0F / 00279D1B	shared-helper
+00245020	FUN_00245020	0024509B	0x40	w	mov dword ptr [rdi + 0x40], eax	rcx = parent+0xF0 / +0x1710 at 00279D0F / 00279D1B	shared-helper
+00247950	FUN_00247950	00247963	0x40	wr	and dword ptr [rcx + 0x40], 0xfffffffd	rcx = parent+0xF0 / +0x1710 at 00277A42 / 00277A50	shared-helper
+00247950	FUN_00247950	0024796C	0x40	wr	or dword ptr [rcx + 0x40], edx	rcx = parent+0xF0 / +0x1710 at 00277A42 / 00277A50	shared-helper
+00247570	FUN_00247570	00247583	0x48	w	mov qword ptr [rcx + 0x48], rax	rcx = this object at 0027AEE3	shared-helper
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00279051	0x9C	r	movzx edi, word ptr [rcx + rsi + 0x18c]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+0027AD70	FUN_0027ad70	0027AE20	0x9C	r	movsx edx, word ptr [rdi + 0x9c]	registered handler: r8 at 002779DB and 00277A08	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00279059	0x9E	r	movzx ebx, word ptr [rcx + rsi + 0x18e]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	002780FC	0x4C8	r	mov ecx, dword ptr [rbx + rsi + 0x5b8]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	002780A1	0x500	r	cmp dword ptr [rcx + rsi + 0x5f0], 0	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	0027814B	0x1510	r	mov r9, qword ptr [rbx + rsi + 0x1600]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	002781AB	0x1510	r	mov rdx, qword ptr [rbx + rsi + 0x1600]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	0027882E	0x1510	r	mov rax, qword ptr [rcx + rsi + 0x1600]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	0027883C	0x1510	r	mov rax, qword ptr [rcx + rsi + 0x1600]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+0027AD70	FUN_0027ad70	0027ADA3	0x1510	r	mov rcx, qword ptr [rcx + 0x1510]	registered handler: r8 at 002779DB and 00277A08	
+0027AD70	FUN_0027ad70	0027AEB9	0x1510	w	mov qword ptr [rdi + 0x1510], rax	registered handler: r8 at 002779DB and 00277A08	
+0027AD70	FUN_0027ad70	0027AE0B	0x1518	r	mov ecx, dword ptr [rcx + 0x1518]	registered handler: r8 at 002779DB and 00277A08	
+0027AD70	FUN_0027ad70	0027ADC4	0x1520	r	mov rcx, qword ptr [rcx + 0x1520]	registered handler: r8 at 002779DB and 00277A08	
+0027AD70	FUN_0027ad70	0027AE68	0x1520	w	mov qword ptr [rdi + 0x1520], rax	registered handler: r8 at 002779DB and 00277A08	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00277D23	0x1528	wr	and dword ptr [rbx + rsi + 0x1618], 0xfff7ffff	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00278807	0x1528	r	mov eax, dword ptr [rcx + rsi + 0x1618]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00278818	0x1528	w	mov dword ptr [rcx + rsi + 0x1618], eax	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00279CD4	0x1528	r	mov eax, dword ptr [rcx + rsi + 0x1618]	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	00279CE5	0x1528	w	mov dword ptr [rcx + rsi + 0x1618], eax	parent indexed walk: base = imul <reg>, <reg>, 0x1620; disp - 0xF0 is the child offset	
+0027AD70	FUN_0027ad70	0027ADF6	0x1528	r	test dword ptr [rcx + 0x1528], 0x20000	registered handler: r8 at 002779DB and 00277A08	
+0027AD70	FUN_0027ad70	0027AEC8	0x1550	a	lea rcx, [rdi + 0x1550]	registered handler: r8 at 002779DB and 00277A08	

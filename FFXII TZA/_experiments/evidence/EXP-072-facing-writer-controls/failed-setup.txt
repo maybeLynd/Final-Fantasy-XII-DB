@@ -1,0 +1,5 @@
+First execution: 25 controls, one failed EAX oracle (one-transform-no-final).
+All 25 returned normally with exact events, field writes, whole fixture pages, stack and nonvolatile registers.
+The no-node/sentinel path reloads actor+C0 into RAX at 002E5EE9 after its last stub, leaving EAX=40002000; it does not retain the stub return AABBCCDD. The corrected oracle models that load. No native bytes changed.
+The signed-handle private mutation was detected on the first execution.
+Original failure: FAIL 25 controls, one-transform-no-final eax=False; AssertionError at final status assertion.

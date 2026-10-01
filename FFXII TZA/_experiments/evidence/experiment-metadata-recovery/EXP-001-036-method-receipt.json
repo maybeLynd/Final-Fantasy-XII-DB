@@ -1,0 +1,25 @@
+{
+ "recovered_by": "OPUS",
+ "date": "2026-09-13",
+ "authority": "ASTRA, OPUS-REQ-ASTRA-METHOD-VOCAB-FOURTH: C includes breakpoint/watchpoint/debugger observation of the running game, no fourth method value is needed, missing live_game means unknown and never default false, and OPUS/SWE2 may classify from primary published bodies while ASTRA is unavailable",
+ "population": "EXP-001..036, the records the 2026-09-11 metadata recovery did not reach",
+ "source": "each record's own body; no author memory and no running game were used",
+ "records": [
+  {
+   "experiment": "EXP-035",
+   "file": "EXP-035-command-target-binding.md",
+   "method": "A - offline instrument preparation",
+   "live_game": "false",
+   "read_from_line": 49,
+   "matched": "action, debugger or persistent writer is introduced by this preparation."
+  },
+  {
+   "experiment": "EXP-036",
+   "file": "EXP-036-census-coverage.md",
+   "method": "A - offline instrument preparation",
+   "live_game": "false",
+   "read_from_line": 3,
+   "matched": "date_designed: 2026-09-11"
+  }
+ ]
+}

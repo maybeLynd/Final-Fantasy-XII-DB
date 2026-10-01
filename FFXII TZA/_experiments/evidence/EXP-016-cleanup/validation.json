@@ -1,0 +1,26 @@
+{
+  "scope": "First runtime arm only; causal comparator pending",
+  "api_counts": {
+    "DebugSetProcessKillOnExit": 1,
+    "DebugActiveProcess": 1,
+    "WaitForDebugEvent": 208,
+    "OpenThread": 311,
+    "GetThreadContext": 311,
+    "SetThreadContext": 309,
+    "ContinueDebugEvent": 208,
+    "clear_before_continue_begin": 1,
+    "clear_before_continue_end": 1,
+    "DebugActiveProcessStop": 1
+  },
+  "known_policy_failure": [
+    {
+      "unix": 1789093186.660004,
+      "operation": "DebugSetProcessKillOnExit",
+      "result": 0,
+      "error": 6
+    }
+  ],
+  "cleared_threads": 102,
+  "paired_trace_rows": 2,
+  "source_control_and_window_assertions": "PASS"
+}

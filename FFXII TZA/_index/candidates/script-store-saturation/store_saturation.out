@@ -1,0 +1,5 @@
+PASS S1  store table ['0026D55F', '0026D57E', '0026D5A1', '0026D5C4', '0026D5E9', '0026D5E9']; s16 floor 0xFFFF8001, ceiling 0x8000, word store; widths 4 and 5 share the dword copy
+PASS S2  PUSHV table ['00267FFC', '0026800D', '0026801E', '0026802F', '00268040', '00268050']; width 3 -> 0026802F movsx word
+PASS S3  store then read, s16: {32768: -32768, 32769: -32768, -32768: -32767, 32767: 32767, -32767: -32767, 0: 0}
+PASS C  the conventional clamp stores 0x7fff / 0x8000 at the edges where the image stores 0x8000 / 0x8001; u16 of 65536 saturates to 0xFFFF
+FAILS 0

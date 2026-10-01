@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-update-arguments.py", line 203, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-update-arguments.py", line 82, in main
+    annotations = S.validate(raw)  # Actual default invocation, before inference.
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 61, in validate
+    raise ValueError("memory/address/access annotation disagrees at " + record["pc"])
+ValueError: memory/address/access annotation disagrees at 0x6220f8

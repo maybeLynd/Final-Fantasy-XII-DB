@@ -1,0 +1,8 @@
+{
+  "status": "PASS_ACTUAL_READER_NAMESPACE_PRECONDITION",
+  "capture_sha256": "c79504aeda77cec520015249f7ab97ad9b715735f2d21066cfed5071cbb6c2b0",
+  "selected_ast_sha256": "b95a3ecb9dd53c5ca5382da89afa27b50ad729284ac4daa24a1a4e30eaa957cd",
+  "actual_default_loader": true,
+  "omitted_file_rejected": "name '__file__' is not defined",
+  "limits": "Actual producer selected reader module initialization only; no image load or original/guest/live execution. Initial failedcapture had no semantic conclusions."
+}

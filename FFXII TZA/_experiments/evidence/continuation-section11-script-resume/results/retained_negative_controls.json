@@ -1,0 +1,42 @@
+[
+  {
+    "name": "phase1_rebegins",
+    "rejected": true,
+    "reason": "retained lifecycle disagreement: p1-run"
+  },
+  {
+    "name": "full_stack_overflow",
+    "rejected": true,
+    "reason": "retained lifecycle disagreement: stack-63"
+  },
+  {
+    "name": "completion_stays_running",
+    "rejected": true,
+    "reason": "retained lifecycle disagreement: p1-done"
+  },
+  {
+    "name": "high_poll_byte_treated_busy",
+    "rejected": true,
+    "reason": "retained lifecycle disagreement: p0-poll-0x100"
+  },
+  {
+    "name": "missing_callback_no_default",
+    "rejected": true,
+    "reason": "retained lifecycle disagreement: p0-noresult"
+  },
+  {
+    "name": "empty_id_fabricated_callback",
+    "rejected": true,
+    "reason": "retained lifecycle disagreement: id-zero"
+  },
+  {
+    "name": "duplicate_case",
+    "rejected": true,
+    "reason": "changed/duplicate retained population"
+  },
+  {
+    "name": "wrong_image",
+    "rejected": true,
+    "reason": "wrong original image identity"
+  }
+]

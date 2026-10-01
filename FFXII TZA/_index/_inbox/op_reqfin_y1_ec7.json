@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "FRONTIER-REQ-SWE2-EC7-Y1-LAYOUT-CORRECTIONS-0927",
+ "agent": "SWE2-EC7",
+ "note": "Both corrections applied to the EC7-26 block of ui-layout-parameters-and-editor-schema.md: float[008C5B30] is 0x3B000000 = 1/512 (1/128 is 008C5B34), and the four-call reader 002A70B0 is MessageWinMaskBottom-labelled, not FontItalic. Verified against FABLE's control: y1_key_uses.py FAILS 0 (K1-K5).",
+ "result_refs": [
+  "Database/FFXII TZA/16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md"
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "returncode": 0,
+  "fields": [
+    "Database/.gitignore",
+    "7",
+    "__pycache__/",
+    "Database/FFXII TZA/_experiments/evidence/migration-transitions-r3/run-01/source/Database/Tools/analysis-kit/gfz-scripts/__pycache__/team.cpython-314.pyc",
+    ""
+  ],
+  "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n",
+  "terminal": true
+}

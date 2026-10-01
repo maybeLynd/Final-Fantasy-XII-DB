@@ -1,0 +1,67 @@
+C1 consumer 002F8D60
+   002F8D60 push rsi
+   002F8D62 sub rsp, 0x20
+   002F8D66 movsxd rax, dword ptr [rip + 0x1bf2d83]
+   002F8D6D mov rsi, rcx
+   002F8D70 test eax, eax
+   002F8D72 js 0x2f8d85
+   002F8D74 lea rcx, [rip + 0x1fc5bb5]
+   002F8D7B movzx eax, word ptr [rcx + rax*2]
+   002F8D7F add rsp, 0x20
+   002F8D83 pop rsi
+   002F8D84 ret 
+   002F8D85 mov r8, qword ptr [rip + 0x2bc6314]
+   002F8D8C mov qword ptr [rsp + 0x38], rdi
+   002F8D91 test r8, r8
+   002F8D94 je 0x2f8d9c
+   002F8D96 mov edi, dword ptr [r8 + 4]
+   002F8D9A jmp 0x2f8d9e
+   002F8D9C xor edi, edi
+   002F8D9E sub edi, 1
+   002F8DA1 mov qword ptr [rsp + 0x30], rbx
+   002F8DA6 js 0x2f8e23
+   002F8DA8 mov rbx, rsi
+   002F8DAB neg rbx
+   002F8DAE nop 
+   002F8DB0 test r8, r8
+   002F8DB3 je 0x2f8dee
+   002F8DB5 mov ecx, dword ptr [r8 + 0xc]
+   002F8DB9 call 0x20e600
+   002F8DBE test rax, rax
+C2 other +0xAE0 writers
+  site 00184FBA owner 00184F20 (listed) 00184F20 FUN_00184f20
+      00184FA4 call 0x62dd10
+      00184FA9 nop 
+      00184FAA mov dword ptr [rdi + 0xad8], ebx
+      00184FB0 mov eax, dword ptr [rsp + 0x70]
+      00184FB4 mov dword ptr [rdi + 0xadc], eax
+      00184FBA mov dword ptr [rdi + 0xae0], esi
+      00184FC0 lea rcx, [rdi + 0xc38]
+     displacements 0xAD0..0xC10 used in owner: ['+0xAD8', '+0xADC', '+0xAE0']
+  site 001881BF owner 00187950 (listed) 00187950 FUN_00187950
+      001881A9 mov rcx, r14
+      001881AC call 0x1862b0
+      001881B1 call 0x1eba40
+      001881B6 cmp byte ptr [rax + 0x118], 0
+      001881BD je 0x1881c6
+      001881BF mov dword ptr [r14 + 0xae0], r12d
+      001881C6 mov rcx, qword ptr [r14 + 8]
+     displacements 0xAD0..0xC10 used in owner: ['+0xAD8', '+0xADC', '+0xAE0', '+0xB08', '+0xB10', '+0xB18', '+0xB28', '+0xB30', '+0xB40', '+0xB58', '+0xB60', '+0xB68', '+0xC0C', '+0xC10']
+  site 006DD2D0 owner 006DD290 (unowned (no listed function or .pdata range); linear decode from site-0x40) unlisted
+      006DD2B4 movss dword ptr [rcx + 0xac8], xmm2
+      006DD2BC movups xmm0, xmmword ptr [r9]
+      006DD2C0 movups xmmword ptr [rcx + 0xacc], xmm0
+      006DD2C7 movsd xmm1, qword ptr [rax]
+      006DD2CB mov rax, qword ptr [rsp + 0x30]
+      006DD2D0 movsd qword ptr [rcx + 0xadc], xmm1
+      006DD2D8 movsd xmm0, qword ptr [rax]
+     displacements 0xAD0..0xC10 used in owner: ['+0xADC']
+  site 007049B8 owner 006FF900 (listed) 006FF900 FUN_006ff900
+      0070499B mov dword ptr [rsi + 0xac8], 0x3f800000
+      007049A5 movups xmm0, xmmword ptr [rbp - 0x20]
+      007049A9 movups xmmword ptr [rsi + 0xacc], xmm0
+      007049B0 movaps xmm1, xmm9
+      007049B4 unpcklps xmm1, xmm9
+      007049B8 movsd qword ptr [rsi + 0xadc], xmm1
+      007049C0 movaps xmm0, xmm15
+     displacements 0xAD0..0xC10 used in owner: ['+0xADC', '+0xAE4', '+0xAEC', '+0xAF0', '+0xAF4', '+0xAF8', '+0xAFC', '+0xB00', '+0xB04', '+0xB08', '+0xB0C', '+0xB10', '+0xB18', '+0xBB8', '+0xBC0', '+0xBC8', '+0xBD8', '+0xBEC', '+0xBF0', '+0xBF4', '+0xBF8', '+0xC00', '+0xC04']

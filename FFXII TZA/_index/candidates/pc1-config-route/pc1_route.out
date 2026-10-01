@@ -1,0 +1,8 @@
+PASS  R1 00408C30 opens PS2Data/SQUARE_FF12/FF12CONFIG with 001D6F20(path, 1) PS2Data/SQUARE_FF12/FF12CONFIG
+PASS  R2 001D6F20 -> 00597930(obj, path, flag != 0, 1): selector +0x18 = 1, r8b passed to 0059EE90 
+PASS  R3 two routes: 001D6D20 -> +0x20, 0019B1F0/0019AEE0 -> +0x10; a miss logs Big file open failed and returns 10; a hit with r12b commits through 0059A9B0 stores to the record's +0 / +8 / +0x10 / +0x20: ['0059EFEA', '0059EFF6', '0059F197', '0059F1A8'] (the +8 handle is never set here)
+PASS  R4 route 1 is a RAM cache: 01F83440's one writer 0020C695 stores 1 after GlobalMemoryStatusEx sizes the budget byte-store writers of 01F83440: ['0020C695']
+PASS  R5 the five-slot mount 0019B070 has one call site (0017CEF6), mounting ../FFXII_TZA.vbf rel32 sites=['0017CEF6']
+PASS  R6 CreateFileA is referenced at exactly two sites, both minidump writers; no other CreateFile* import sites=['005CCAE8', '0079B298'] imports=['CreateFileA']
+PASS  R7 FF12CONFIG passes the route-1 character filter (nine je-to-route-2 tests); the filter catches .mab/.webm/.bin je count=9
+FAILS 0

@@ -1,0 +1,23 @@
+{
+  "name": "generic--custom-tab-fail",
+  "source": "generic",
+  "original_case": "custom-tab-fail",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--custom-tab-fail\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--custom-tab-fail\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "4df6b6dc3d5fe097c8d74d02fb4ab563bd20578d4ffbd62f9ada2e891372b888",
+  "upstream_sha256": "c3a7a80663d4fd398c07ca2d0f643b5610a5f5d4762612d695478fc5be6549c8",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py exited 0 but printed FAIL lines: FAIL\tA\trequired failure\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

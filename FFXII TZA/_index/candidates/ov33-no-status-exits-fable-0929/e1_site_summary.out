@@ -1,0 +1,1227 @@
+==== 002492F3 in 00249210 FUN_00249210
+  size-call 00249296 call 0x32e400
+      0024929B mov esi, eax
+      0024929D test eax, eax
+      0024929F jg 0x2492ad
+      002492A1 mov ecx, 0x2000
+      002492A6 call 0x16d6a0
+  -- before site
+      002492CC call 0x36a190
+      002492D1 mov rdi, rax
+      002492D4 call 0x36c140
+      002492D9 lea rax, [rsp + 0x30]
+      002492DE mov qword ptr [rbx + 8], rdi
+      002492E2 mov r9d, esi
+      002492E5 mov qword ptr [rsp + 0x20], rax
+      002492EA mov r8, rdi
+      002492ED mov edx, r14d
+      002492F0 mov ecx, r15d
+      002492F3 call 0x32e620
+==== 0024AC9F in 0024AC30 FUN_0024ac30
+  size-call 0024AC4C call 0x32e400
+      0024AC51 mov esi, eax
+      0024AC53 call 0x37b330
+      0024AC58 test eax, eax
+      0024AC5A jne 0x24acc1
+      0024AC5C mov qword ptr [rsp + 0x30], rax
+  -- before site
+      0024AC6D lea rax, [rip + 0x7c]
+      0024AC74 mov qword ptr [rsp + 0x40], rax
+      0024AC79 movdqu xmmword ptr [rsp + 0x48], xmm0
+      0024AC7F call 0x37b450
+      0024AC84 mov r8, qword ptr [rip + 0x1d89d8d]
+      0024AC8B lea rax, [rsp + 0x30]
+      0024AC90 mov r9d, esi
+      0024AC93 mov qword ptr [rsp + 0x20], rax
+      0024AC98 mov edx, ebx
+      0024AC9A mov ecx, 0x23
+      0024AC9F call 0x32e620
+==== 00259E6E in 00259DF0 FUN_00259df0
+  size-call 00259DFE call 0x32e400
+      00259E03 mov edi, eax
+      00259E05 test eax, eax
+      00259E07 jle 0x259e7e
+      00259E09 mov edx, 5
+      00259E0E mov qword ptr [rsp + 0x70], rbx
+  -- before site
+      00259E40 mov edx, 3
+      00259E45 mov dword ptr [rsp + 0x30], r8d
+      00259E4A lea rax, [rip - 0xae1]
+      00259E51 mov qword ptr [rsp + 0x48], r8
+      00259E56 mov qword ptr [rsp + 0x40], rax
+      00259E5B mov r9d, edi
+      00259E5E lea rax, [rsp + 0x30]
+      00259E63 mov r8, rbx
+      00259E66 lea ecx, [rdx + 6]
+      00259E69 mov qword ptr [rsp + 0x20], rax
+      00259E6E call 0x32e620
+==== 00268809 in 00268750 MapRef_BeginLoadResources
+  size-call 00268762 call 0x32e400
+      00268767 xor edi, edi
+      00268769 mov ebx, eax
+      0026876B mov qword ptr [rip + 0x1e31616], rdi
+      00268772 mov qword ptr [rip + 0x1e3161f], rdi
+      00268779 mov qword ptr [rip + 0x1e31610], rdi
+  -- before site
+      002687DD mov rcx, rax
+      002687E0 call 0x36c660
+      002687E5 call 0x36c110
+      002687EA call 0x36c140
+      002687EF mov r8, qword ptr [rip + 0x1e31592]
+      002687F6 lea rax, [rsp + 0x30]
+      002687FB mov r9d, ebx
+      002687FE mov qword ptr [rsp + 0x20], rax
+      00268803 lea edx, [rdi + 4]
+      00268806 lea ecx, [rdi + 9]
+      00268809 call 0x32e620
+==== 0026883E in 00268750 MapRef_BeginLoadResources
+  size-call 00268762 call 0x32e400
+      00268767 xor edi, edi
+      00268769 mov ebx, eax
+      0026876B mov qword ptr [rip + 0x1e31616], rdi
+      00268772 mov qword ptr [rip + 0x1e3161f], rdi
+      00268779 mov qword ptr [rip + 0x1e31610], rdi
+  size-call 00268814 call 0x32e400
+      00268819 mov ebx, eax
+      0026881B test eax, eax
+      0026881D js 0x268843
+      0026881F mov ecx, eax
+      00268821 call 0x267930
+  -- before site
+      0026881B test eax, eax
+      0026881D js 0x268843
+      0026881F mov ecx, eax
+      00268821 call 0x267930
+      00268826 mov r9d, ebx
+      00268829 mov qword ptr [rip + 0x1e31568], rax
+      00268830 mov r8, rax
+      00268833 mov qword ptr [rsp + 0x20], rdi
+      00268838 lea edx, [rdi + 2]
+      0026883B lea ecx, [rdi + 9]
+      0026883E call 0x32e620
+==== 00291D04 in 00291C80 FUN_00291c80
+  size-call 00291CD2 call 0x24ab90
+      00291CD7 mov edx, eax
+      00291CD9 mov ecx, 2
+      00291CDE mov edi, eax
+      00291CE0 call 0x249810
+      00291CE5 lea rcx, [rsp + 0x30]
+  -- before site
+      00291CD9 mov ecx, 2
+      00291CDE mov edi, eax
+      00291CE0 call 0x249810
+      00291CE5 lea rcx, [rsp + 0x30]
+      00291CEA mov qword ptr [r14 + 8], rax
+      00291CEE mov qword ptr [rsp + 0x20], rcx
+      00291CF3 lea edx, [rbx + 0x98]
+      00291CF9 mov ecx, 7
+      00291CFE mov r9d, edi
+      00291D01 mov r8, rax
+      00291D04 call 0x32e620
+==== 002C900B in 002C8EE0 FUN_002c8ee0
+  size-call 002C8F2F call 0x24ab90
+      002C8F34 mov ebx, eax
+      002C8F36 test edi, edi
+      002C8F38 jne 0x2c8f40
+      002C8F3A add ebx, 0x880
+      002C8F40 mov edx, ebx
+  -- before site
+      002C8FE1 movups xmm0, xmmword ptr [r8 + 0x20]
+      002C8FE6 movups xmmword ptr [rax + 0x20], xmm0
+      002C8FEA movups xmm1, xmmword ptr [r8 + 0x30]
+      002C8FEF movups xmmword ptr [rax + 0x30], xmm1
+      002C8FF3 mov r8, qword ptr [rsi]
+      002C8FF6 lea rax, [rsp + 0x30]
+      002C8FFB mov r9d, ebx
+      002C8FFE mov qword ptr [rsp + 0x20], rax
+      002C9003 lea edx, [rdi + 0x74]
+      002C9006 mov ecx, 7
+      002C900B call 0x32e620
+==== 002E6277 in 002E60F0 FUN_002e60f0
+  size-call 002E61A8 call 0x32e400
+      002E61AD mov r12d, eax
+      002E61B0 test eax, eax
+      002E61B2 jg 0x2e623e
+      002E61B8 mov ebx, 7
+      002E61BD jmp 0x2e6139
+  -- before site
+      002E624E call 0x36b160
+      002E6253 mov ebx, eax
+      002E6255 call 0x36c140
+      002E625A mov ecx, ebx
+      002E625C call 0x36a0b0
+      002E6261 mov r9d, r12d
+      002E6264 mov qword ptr [rsp + 0x20], 0
+      002E626D mov r8, rax
+      002E6270 mov edx, ebp
+      002E6272 mov ecx, 0x20
+      002E6277 call 0x32e620
+==== 002E700C in 002E6EB0 FUN_002e6eb0
+  -- before site
+      002E6FEC jmp 0x2e6ff6
+      002E6FEE cmp esi, 0x10
+      002E6FF1 jl 0x2e6ff6
+      002E6FF3 lea ecx, [rsi - 0xe]
+      002E6FF6 lea edx, [rcx + rbp]
+      002E6FF9 mov r9d, r12d
+      002E6FFC lea rcx, [rsp + 0x30]
+      002E7001 mov r8, rax
+      002E7004 mov qword ptr [rsp + 0x20], rcx
+      002E7009 mov ecx, r13d
+      002E700C call 0x32e620
+==== 002EA5A9 in 002EA530 FUN_002ea530
+  size-call 002EA56B call 0x32e400
+      002EA570 mov r14d, eax
+      002EA573 test eax, eax
+      002EA575 jle 0x2ea5c0
+      002EA577 mov edx, 5
+      002EA57C mov ecx, edx
+  -- before site
+      002EA583 mov ecx, r14d
+      002EA586 call 0x36a190
+      002EA58B mov rdi, rax
+      002EA58E call 0x36c140
+      002EA593 lea edx, [rbx + 0xb]
+      002EA596 mov qword ptr [rsi], rdi
+      002EA599 mov r9d, r14d
+      002EA59C mov qword ptr [rsp + 0x20], r15
+      002EA5A1 mov r8, rdi
+      002EA5A4 mov ecx, 9
+      002EA5A9 call 0x32e620
+==== 002EAE08 in 002EAD50 FUN_002ead50
+  size-call 002EADEA call 0x32e400
+      002EADEF lea rcx, [rsp + 0x30]
+      002EADF4 mov r9d, eax
+      002EADF7 mov qword ptr [rsp + 0x20], rcx
+      002EADFC mov r8, r14
+      002EADFF mov ecx, dword ptr [rsp + 0x90]
+  -- before site
+      002EADE2 jne 0x2eade7
+      002EADE4 add eax, 0x33
+      002EADE7 movsxd rdx, eax
+      002EADEA call 0x32e400
+      002EADEF lea rcx, [rsp + 0x30]
+      002EADF4 mov r9d, eax
+      002EADF7 mov qword ptr [rsp + 0x20], rcx
+      002EADFC mov r8, r14
+      002EADFF mov ecx, dword ptr [rsp + 0x90]
+      002EAE06 mov edx, ebx
+      002EAE08 call 0x32e620
+==== 002EF336 in 002EF300 FUN_002ef300
+  -- before site
+      002EF30D test ecx, ecx
+      002EF30F cmovns ebx, ecx
+      002EF312 cmp ebx, eax
+      002EF314 cmovg ebx, eax
+      002EF317 call 0x2ef640
+      002EF31C mov r8, rax
+      002EF31F mov qword ptr [rsp + 0x20], 0
+      002EF328 lea edx, [rbx + 0x75]
+      002EF32B mov ecx, 1
+      002EF330 mov r9d, 0xe240
+      002EF336 call 0x32e620
+==== 002FC96F in 002FC860 FUN_002fc860
+  size-call 002FC8D8 call 0x32e400
+      002FC8DD mov dword ptr [rbx + 0x1c], eax
+      002FC8E0 test eax, eax
+      002FC8E2 jg 0x2fc928
+      002FC8E4 cmp edi, 0x78
+      002FC8E7 jb 0x2fc8f8
+  size-call 002FC920 call 0x32e400
+      002FC925 mov dword ptr [rbx + 0x1c], eax
+      002FC928 lea rax, [rip - 0xff]
+      002FC92F mov dword ptr [rsp + 0x30], 0
+      002FC937 mov qword ptr [rsp + 0x40], rax
+      002FC93C mov eax, dword ptr [rbx]
+  -- before site
+      002FC942 mov qword ptr [rsp + 0x48], 0
+      002FC94B call 0x2debb0
+      002FC950 mov r9d, dword ptr [rbx + 0x1c]
+      002FC954 test eax, eax
+      002FC956 mov r8, qword ptr [rip + 0x1cd80d3]
+      002FC95D lea rax, [rsp + 0x30]
+      002FC962 cmove esi, r14d
+      002FC966 mov qword ptr [rsp + 0x20], rax
+      002FC96B mov ecx, esi
+      002FC96D mov edx, edi
+      002FC96F call 0x32e620
+==== 00324637 in 00324510 FUN_00324510
+  -- before site
+      0032460B jle 0x324670
+      0032460D mov rcx, qword ptr [rip + 0x1f9e19c]
+      00324614 mov edx, r8d
+      00324617 sub edx, dword ptr [rip + 0x1f9e193]
+      0032461D mov qword ptr [rsp + 0x20], rbp
+      00324622 mov dword ptr [rcx + r9*4 + 4], edx
+      00324627 mov edx, eax
+      00324629 mov r9d, dword ptr [rbx]
+      0032462C mov ecx, 0x1a
+      00324631 mov dword ptr [rip + 0x1f9e049], ebx
+      00324637 call 0x32e620
+==== 0032EC01 in 0032EB40 FUN_0032eb40
+  size-call 0032EB89 call 0x46de70
+      0032EB8E mov ebx, eax
+      0032EB90 jmp 0x32eb95
+      0032EB92 or ebx, 0xffffffff
+      0032EB95 test ebx, ebx
+      0032EB97 jle 0x32eba6
+  -- before site
+      0032EBDB shl eax, 0x10
+      0032EBDE mov edx, ebp
+      0032EBE0 or eax, ebp
+      0032EBE2 mov qword ptr [rsp + 0x48], rcx
+      0032EBE7 mov dword ptr [rsp + 0x38], eax
+      0032EBEB mov ecx, edi
+      0032EBED lea rax, [rip + 0x1f9700c]
+      0032EBF4 add r8, rax
+      0032EBF7 lea rax, [rsp + 0x30]
+      0032EBFC mov qword ptr [rsp + 0x20], rax
+      0032EC01 call 0x32e620
+==== 0032F670 in 0032F430 FUN_0032f430
+  size-call 0032F617 call 0x32e400
+      0032F61C mov rsi, qword ptr [rsp + 0x48]
+      0032F621 mov edi, eax
+      0032F623 test eax, eax
+      0032F625 jle 0x32f692
+      0032F627 lea rcx, [rip + 0x9e132a]
+  -- before site
+      0032F640 mov r8d, 0xbc9
+      0032F646 mov rdx, rbx
+      0032F649 call 0x36c660
+      0032F64E mov r9d, edi
+      0032F651 mov qword ptr [rip + 0x1f978b8], rax
+      0032F658 mov r8, rax
+      0032F65B mov dword ptr [rip + 0x1f976db], edi
+      0032F661 mov edx, 0x350
+      0032F666 mov qword ptr [rsp + 0x20], rbp
+      0032F66B mov ecx, 8
+      0032F670 call 0x32e620
+==== 0032FE9E in 0032FCA0 ActorResource_BeginManagerResourceSetLoad
+  size-call 0032FD4D call 0x32e400
+      0032FD52 test eax, eax
+      0032FD54 jle 0x32fd69
+      0032FD56 mov edx, ebp
+      0032FD58 mov ecx, esi
+      0032FD5A call 0x2df980
+  size-call 0032FD83 call 0x32e400
+      0032FD88 mov ebx, eax
+      0032FD8A lea ecx, [rbp + 1]
+      0032FD8D mov dword ptr [rsp + 0xa0], ebx
+      0032FD94 movsxd rdx, ecx
+      0032FD97 mov ecx, esi
+  size-call 0032FD99 call 0x32e400
+      0032FD9E mov dword ptr [rsp + 0xa8], eax
+      0032FDA5 jmp 0x32fdb9
+      0032FDA7 mov ebx, r12d
+      0032FDAA mov dword ptr [rsp + 0xa8], r12d
+      0032FDB2 mov dword ptr [rsp + 0xa0], ebx
+  size-call 0032FDCC call 0x32e400
+      0032FDD1 mov rdx, rbx
+      0032FDD4 mov ecx, 0x25
+      0032FDD9 mov r12d, eax
+      0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+  size-call 0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+      0032FDE8 mov dword ptr [rsp + 0xb0], eax
+      0032FDEF jmp 0x32fdf9
+      0032FDF1 mov dword ptr [rsp + 0xb0], r12d
+      0032FDF9 test edi, edi
+  -- before site
+      0032FE6C mov qword ptr [rsp + 0x40], rax
+      0032FE71 lea edx, [rbp + 2]
+      0032FE74 lea rax, [rsp + 0x30]
+      0032FE79 mov qword ptr [rsp + 0x48], r14
+      0032FE7E mov qword ptr [rsp + 0x20], rax
+      0032FE83 mov r9d, 0x88
+      0032FE89 lea rax, [rip - 0x20fe90]
+      0032FE90 mov dword ptr [rsp + 0x38], edi
+      0032FE94 mov r8, qword ptr [rbx + rax + 0x21a6e98]
+      0032FE9C mov ecx, esi
+      0032FE9E call 0x32e620
+==== 0032FF0B in 0032FCA0 ActorResource_BeginManagerResourceSetLoad
+  size-call 0032FD4D call 0x32e400
+      0032FD52 test eax, eax
+      0032FD54 jle 0x32fd69
+      0032FD56 mov edx, ebp
+      0032FD58 mov ecx, esi
+      0032FD5A call 0x2df980
+  size-call 0032FD83 call 0x32e400
+      0032FD88 mov ebx, eax
+      0032FD8A lea ecx, [rbp + 1]
+      0032FD8D mov dword ptr [rsp + 0xa0], ebx
+      0032FD94 movsxd rdx, ecx
+      0032FD97 mov ecx, esi
+  size-call 0032FD99 call 0x32e400
+      0032FD9E mov dword ptr [rsp + 0xa8], eax
+      0032FDA5 jmp 0x32fdb9
+      0032FDA7 mov ebx, r12d
+      0032FDAA mov dword ptr [rsp + 0xa8], r12d
+      0032FDB2 mov dword ptr [rsp + 0xa0], ebx
+  size-call 0032FDCC call 0x32e400
+      0032FDD1 mov rdx, rbx
+      0032FDD4 mov ecx, 0x25
+      0032FDD9 mov r12d, eax
+      0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+  size-call 0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+      0032FDE8 mov dword ptr [rsp + 0xb0], eax
+      0032FDEF jmp 0x32fdf9
+      0032FDF1 mov dword ptr [rsp + 0xb0], r12d
+      0032FDF9 test edi, edi
+  -- before site
+      0032FEDC lea rax, [rip + 0x3cd]
+      0032FEE3 mov qword ptr [rsp + 0x40], rax
+      0032FEE8 lea edx, [rbp + 1]
+      0032FEEB lea rax, [rsp + 0x30]
+      0032FEF0 mov dword ptr [rsp + 0x30], r14d
+      0032FEF5 mov r9d, 0x88
+      0032FEFB mov qword ptr [rsp + 0x20], rax
+      0032FF00 mov ecx, esi
+      0032FF02 mov qword ptr [rsp + 0x48], r14
+      0032FF07 mov dword ptr [rsp + 0x38], edi
+      0032FF0B call 0x32e620
+==== 0032FF76 in 0032FCA0 ActorResource_BeginManagerResourceSetLoad
+  size-call 0032FD4D call 0x32e400
+      0032FD52 test eax, eax
+      0032FD54 jle 0x32fd69
+      0032FD56 mov edx, ebp
+      0032FD58 mov ecx, esi
+      0032FD5A call 0x2df980
+  size-call 0032FD83 call 0x32e400
+      0032FD88 mov ebx, eax
+      0032FD8A lea ecx, [rbp + 1]
+      0032FD8D mov dword ptr [rsp + 0xa0], ebx
+      0032FD94 movsxd rdx, ecx
+      0032FD97 mov ecx, esi
+  size-call 0032FD99 call 0x32e400
+      0032FD9E mov dword ptr [rsp + 0xa8], eax
+      0032FDA5 jmp 0x32fdb9
+      0032FDA7 mov ebx, r12d
+      0032FDAA mov dword ptr [rsp + 0xa8], r12d
+      0032FDB2 mov dword ptr [rsp + 0xa0], ebx
+  size-call 0032FDCC call 0x32e400
+      0032FDD1 mov rdx, rbx
+      0032FDD4 mov ecx, 0x25
+      0032FDD9 mov r12d, eax
+      0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+  size-call 0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+      0032FDE8 mov dword ptr [rsp + 0xb0], eax
+      0032FDEF jmp 0x32fdf9
+      0032FDF1 mov dword ptr [rsp + 0xb0], r12d
+      0032FDF9 test edi, edi
+  -- before site
+      0032FF47 lea rax, [rip + 0x18d2]
+      0032FF4E mov qword ptr [rsp + 0x40], rax
+      0032FF53 lea edx, [rbp + 3]
+      0032FF56 lea rax, [rsp + 0x30]
+      0032FF5B mov dword ptr [rsp + 0x30], r14d
+      0032FF60 mov r9d, 0x208
+      0032FF66 mov qword ptr [rsp + 0x20], rax
+      0032FF6B mov ecx, esi
+      0032FF6D mov qword ptr [rsp + 0x48], r14
+      0032FF72 mov dword ptr [rsp + 0x38], edi
+      0032FF76 call 0x32e620
+==== 0032FFE2 in 0032FCA0 ActorResource_BeginManagerResourceSetLoad
+  size-call 0032FD4D call 0x32e400
+      0032FD52 test eax, eax
+      0032FD54 jle 0x32fd69
+      0032FD56 mov edx, ebp
+      0032FD58 mov ecx, esi
+      0032FD5A call 0x2df980
+  size-call 0032FD83 call 0x32e400
+      0032FD88 mov ebx, eax
+      0032FD8A lea ecx, [rbp + 1]
+      0032FD8D mov dword ptr [rsp + 0xa0], ebx
+      0032FD94 movsxd rdx, ecx
+      0032FD97 mov ecx, esi
+  size-call 0032FD99 call 0x32e400
+      0032FD9E mov dword ptr [rsp + 0xa8], eax
+      0032FDA5 jmp 0x32fdb9
+      0032FDA7 mov ebx, r12d
+      0032FDAA mov dword ptr [rsp + 0xa8], r12d
+      0032FDB2 mov dword ptr [rsp + 0xa0], ebx
+  size-call 0032FDCC call 0x32e400
+      0032FDD1 mov rdx, rbx
+      0032FDD4 mov ecx, 0x25
+      0032FDD9 mov r12d, eax
+      0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+  size-call 0032FDDC call 0x32e400
+      0032FDE1 mov ebx, dword ptr [rsp + 0xa0]
+      0032FDE8 mov dword ptr [rsp + 0xb0], eax
+      0032FDEF jmp 0x32fdf9
+      0032FDF1 mov dword ptr [rsp + 0xb0], r12d
+      0032FDF9 test edi, edi
+  -- before site
+      0032FFB2 lea rax, [rip + 0x1807]
+      0032FFB9 mov qword ptr [rsp + 0x40], rax
+      0032FFBE lea edx, [rbp + 3]
+      0032FFC1 lea rax, [rsp + 0x30]
+      0032FFC6 mov dword ptr [rsp + 0x30], r14d
+      0032FFCB mov r9d, 0x208
+      0032FFD1 mov qword ptr [rsp + 0x20], rax
+      0032FFD6 lea ecx, [rsi + 0x1d]
+      0032FFD9 mov qword ptr [rsp + 0x48], r14
+      0032FFDE mov dword ptr [rsp + 0x38], edi
+      0032FFE2 call 0x32e620
+==== 00330444 in 00330310 ActorResource_BeginPrimaryPayloadLoad
+  size-call 00330354 call 0x32e400
+      00330359 mov edi, eax
+      0033035B lea r13, [r14*8]
+      00330363 lea rax, [rip - 0x21036a]
+      0033036A or qword ptr [rax + r13 + 0x21a6e48], 0x20000
+      00330376 test edi, edi
+  -- before site
+      0033041B lea rax, [rip + 0x7e]
+      00330422 mov dword ptr [rsp + 0x30], ecx
+      00330426 mov qword ptr [rsp + 0x40], rax
+      0033042B mov r9d, edi
+      0033042E lea rax, [rsp + 0x30]
+      00330433 mov qword ptr [rsp + 0x48], rcx
+      00330438 mov r8, r15
+      0033043B mov qword ptr [rsp + 0x20], rax
+      00330440 mov edx, esi
+      00330442 mov ecx, ebp
+      00330444 call 0x32e620
+==== 00360D19 in 00360C70 FUN_00360c70
+  size-call 00360CA9 call 0x32e400
+      00360CAE mov qword ptr [rip + 0x1f6ad9b], rsi
+      00360CB5 mov edi, eax
+      00360CB7 mov qword ptr [rip + 0x1f6ad9a], rsi
+      00360CBE mov dword ptr [rip + 0x1f6ad9c], esi
+      00360CC4 test eax, eax
+  -- before site
+      00360CED mov dword ptr [rsp + 0x30], esi
+      00360CF1 lea rax, [rip - 0x1b8]
+      00360CF8 mov qword ptr [rsp + 0x48], rsi
+      00360CFD mov qword ptr [rsp + 0x40], rax
+      00360D02 mov r9d, edi
+      00360D05 lea rax, [rsp + 0x30]
+      00360D0A mov dword ptr [rsp + 0x38], ebx
+      00360D0E lea ecx, [rdx + 3]
+      00360D11 mov qword ptr [rsp + 0x20], rax
+      00360D16 mov r8, rbx
+      00360D19 call 0x32e620
+==== 003658C7 in 00365810 FUN_00365810
+  size-call 00365882 call 0x32e400
+      00365887 mov ebx, eax
+      00365889 mov edx, eax
+      0036588B mov ecx, 2
+      00365890 test r14d, r14d
+      00365893 je 0x36589c
+  -- before site
+      0036589A jmp 0x3658a1
+      0036589C call 0x2497e0
+      003658A1 mov r8, rax
+      003658A4 mov r9d, ebx
+      003658A7 mov rax, qword ptr [rip + 0x1f66552]
+      003658AE mov edx, ebp
+      003658B0 mov ecx, 7
+      003658B5 mov qword ptr [rax + rdi*8 + 0x110], r8
+      003658BD lea rax, [rsp + 0x30]
+      003658C2 mov qword ptr [rsp + 0x20], rax
+      003658C7 call 0x32e620
+==== 00365967 in 003658F0 FUN_003658f0
+  size-call 00365935 call 0x32e400
+      0036593A mov ecx, eax
+      0036593C mov ebx, eax
+      0036593E call 0x4745d0
+      00365943 mov r8, qword ptr [rip + 0x1f664b6]
+      0036594A mov r9d, ebx
+  -- before site
+      0036593C mov ebx, eax
+      0036593E call 0x4745d0
+      00365943 mov r8, qword ptr [rip + 0x1f664b6]
+      0036594A mov r9d, ebx
+      0036594D mov edx, 0xd2
+      00365952 mov ecx, 7
+      00365957 mov qword ptr [r8], rax
+      0036595A lea r8, [rsp + 0x30]
+      0036595F mov qword ptr [rsp + 0x20], r8
+      00365964 mov r8, rax
+      00365967 call 0x32e620
+==== 0036EDF7 in 0036ED50 FUN_0036ed50
+  size-call 0036ED7C call 0x32e400
+      0036ED81 movsx esi, byte ptr [rdi + 2]
+      0036ED85 xor r12d, r12d
+      0036ED88 movsx edx, byte ptr [rdi + 1]
+      0036ED8C mov r14d, eax
+      0036ED8F shl esi, 4
+  -- before site
+      0036EDCC mov dword ptr [rsp + 0x30], r12d
+      0036EDD1 mov qword ptr [rsp + 0x40], rdx
+      0036EDD6 lea ecx, [r12 + 0x21]
+      0036EDDB lea rdx, [rsp + 0x30]
+      0036EDE0 mov qword ptr [rsp + 0x48], r12
+      0036EDE5 mov qword ptr [rsp + 0x20], rdx
+      0036EDEA mov r9d, r14d
+      0036EDED mov edx, r15d
+      0036EDF0 mov dword ptr [rsp + 0x38], esi
+      0036EDF4 mov r8, rax
+      0036EDF7 call 0x32e620
+==== 0036EE7E in 0036ED50 FUN_0036ed50
+  size-call 0036ED7C call 0x32e400
+      0036ED81 movsx esi, byte ptr [rdi + 2]
+      0036ED85 xor r12d, r12d
+      0036ED88 movsx edx, byte ptr [rdi + 1]
+      0036ED8C mov r14d, eax
+      0036ED8F shl esi, 4
+  size-call 0036EE0D call 0x32e400
+      0036EE12 mov r14, qword ptr [rsp + 0x80]
+      0036EE1A mov ebp, eax
+      0036EE1C test eax, eax
+      0036EE1E jle 0x36ee85
+      0036EE20 mov edx, 5
+  -- before site
+      0036EE53 mov dword ptr [rsp + 0x30], r12d
+      0036EE58 mov qword ptr [rsp + 0x40], rdx
+      0036EE5D mov r9d, ebp
+      0036EE60 lea rdx, [rsp + 0x30]
+      0036EE65 mov qword ptr [rsp + 0x48], r12
+      0036EE6A mov qword ptr [rsp + 0x20], rdx
+      0036EE6F mov r8, rax
+      0036EE72 mov edx, r15d
+      0036EE75 mov dword ptr [rsp + 0x38], esi
+      0036EE79 mov ecx, 0x27
+      0036EE7E call 0x32e620
+==== 003780E3 in 00378030 FUN_00378030
+  size-call 00378059 call 0x32e400
+      0037805E mov edi, eax
+      00378060 test eax, eax
+      00378062 jle 0x378100
+      00378068 mov edx, 5
+      0037806D mov qword ptr [rsp + 0x70], rbx
+  -- before site
+      003780BF mov dword ptr [rsp + 0x30], ecx
+      003780C3 lea rax, [rsp + 0x30]
+      003780C8 mov qword ptr [rsp + 0x48], rcx
+      003780CD mov r9d, edi
+      003780D0 mov ecx, ebx
+      003780D2 mov qword ptr [rsp + 0x20], rax
+      003780D7 or ecx, r15d
+      003780DA mov r8, rbx
+      003780DD mov dword ptr [rsp + 0x38], ecx
+      003780E1 mov ecx, esi
+      003780E3 call 0x32e620
+==== 003785E6 in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  -- before site
+      003785C3 mov dword ptr [rbp - 0x30], esi
+      003785C6 mov qword ptr [rbp - 0x20], rax
+      003785CA lea edx, [rsi + 0x20]
+      003785CD lea rax, [rbp - 0x30]
+      003785D1 mov qword ptr [rbp - 0x18], rsi
+      003785D5 mov r9d, edi
+      003785D8 mov qword ptr [rsp + 0x20], rax
+      003785DD mov r8, rbx
+      003785E0 mov dword ptr [rbp - 0x28], ebx
+      003785E3 lea ecx, [rsi + 1]
+      003785E6 call 0x32e620
+==== 0037865F in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  size-call 003785FA call 0x32e400
+      003785FF mov edi, eax
+      00378601 test eax, eax
+      00378603 jle 0x378664
+      00378605 mov edx, 5
+      0037860A lea ecx, [rdx - 2]
+  -- before site
+      00378638 mov dword ptr [rbp - 0x30], esi
+      0037863B lea rax, [rip + 0x53e]
+      00378642 mov qword ptr [rbp - 0x18], rsi
+      00378646 mov qword ptr [rbp - 0x20], rax
+      0037864A mov r9d, edi
+      0037864D lea rax, [rbp - 0x30]
+      00378651 mov dword ptr [rbp - 0x28], ebx
+      00378654 lea ecx, [rdx + 1]
+      00378657 mov qword ptr [rsp + 0x20], rax
+      0037865C mov r8, rbx
+      0037865F call 0x32e620
+==== 003786FD in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  size-call 003785FA call 0x32e400
+      003785FF mov edi, eax
+      00378601 test eax, eax
+      00378603 jle 0x378664
+      00378605 mov edx, 5
+      0037860A lea ecx, [rdx - 2]
+  size-call 00378673 call 0x32e400
+      00378678 mov edi, eax
+      0037867A test eax, eax
+      0037867C jle 0x378702
+      00378682 mov edx, 5
+      00378687 lea ecx, [rdx + 1]
+  -- before site
+      003786D6 mov dword ptr [rbp - 0x30], esi
+      003786D9 lea rax, [rip + 0x890]
+      003786E0 mov qword ptr [rbp - 0x18], rsi
+      003786E4 mov qword ptr [rbp - 0x20], rax
+      003786E8 mov r9d, edi
+      003786EB lea rax, [rbp - 0x30]
+      003786EF mov dword ptr [rbp - 0x28], ebx
+      003786F2 lea ecx, [rdx - 0x1e]
+      003786F5 mov qword ptr [rsp + 0x20], rax
+      003786FA mov r8, rbx
+      003786FD call 0x32e620
+==== 0037876F in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  size-call 003785FA call 0x32e400
+      003785FF mov edi, eax
+      00378601 test eax, eax
+      00378603 jle 0x378664
+      00378605 mov edx, 5
+      0037860A lea ecx, [rdx - 2]
+  size-call 00378673 call 0x32e400
+      00378678 mov edi, eax
+      0037867A test eax, eax
+      0037867C jle 0x378702
+      00378682 mov edx, 5
+      00378687 lea ecx, [rdx + 1]
+  size-call 0037870A call 0x32e400
+      0037870F mov edi, eax
+      00378711 test eax, eax
+      00378713 jle 0x378774
+      00378715 mov edx, 5
+      0037871A lea ecx, [rdx - 2]
+  -- before site
+      00378748 mov dword ptr [rbp - 0x30], esi
+      0037874B lea rax, [rip + 0x44e]
+      00378752 mov qword ptr [rbp - 0x18], rsi
+      00378756 mov qword ptr [rbp - 0x20], rax
+      0037875A mov r9d, edi
+      0037875D lea rax, [rbp - 0x30]
+      00378761 mov dword ptr [rbp - 0x28], ebx
+      00378764 lea ecx, [rdx - 1]
+      00378767 mov qword ptr [rsp + 0x20], rax
+      0037876C mov r8, rbx
+      0037876F call 0x32e620
+==== 003787E1 in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  size-call 003785FA call 0x32e400
+      003785FF mov edi, eax
+      00378601 test eax, eax
+      00378603 jle 0x378664
+      00378605 mov edx, 5
+      0037860A lea ecx, [rdx - 2]
+  size-call 00378673 call 0x32e400
+      00378678 mov edi, eax
+      0037867A test eax, eax
+      0037867C jle 0x378702
+      00378682 mov edx, 5
+      00378687 lea ecx, [rdx + 1]
+  size-call 0037870A call 0x32e400
+      0037870F mov edi, eax
+      00378711 test eax, eax
+      00378713 jle 0x378774
+      00378715 mov edx, 5
+      0037871A lea ecx, [rdx - 2]
+  size-call 0037877C call 0x32e400
+      00378781 mov edi, eax
+      00378783 test eax, eax
+      00378785 jle 0x3787e6
+      00378787 mov edx, 5
+      0037878C lea ecx, [rdx - 2]
+  -- before site
+      003787BA mov dword ptr [rbp - 0x30], esi
+      003787BD lea rax, [rip + 0x3cc]
+      003787C4 mov qword ptr [rbp - 0x18], rsi
+      003787C8 mov qword ptr [rbp - 0x20], rax
+      003787CC mov r9d, edi
+      003787CF lea rax, [rbp - 0x30]
+      003787D3 mov dword ptr [rbp - 0x28], ebx
+      003787D6 lea ecx, [rdx - 0x1f]
+      003787D9 mov qword ptr [rsp + 0x20], rax
+      003787DE mov r8, rbx
+      003787E1 call 0x32e620
+==== 00378841 in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  size-call 003785FA call 0x32e400
+      003785FF mov edi, eax
+      00378601 test eax, eax
+      00378603 jle 0x378664
+      00378605 mov edx, 5
+      0037860A lea ecx, [rdx - 2]
+  size-call 00378673 call 0x32e400
+      00378678 mov edi, eax
+      0037867A test eax, eax
+      0037867C jle 0x378702
+      00378682 mov edx, 5
+      00378687 lea ecx, [rdx + 1]
+  size-call 0037870A call 0x32e400
+      0037870F mov edi, eax
+      00378711 test eax, eax
+      00378713 jle 0x378774
+      00378715 mov edx, 5
+      0037871A lea ecx, [rdx - 2]
+  size-call 0037877C call 0x32e400
+      00378781 mov edi, eax
+      00378783 test eax, eax
+      00378785 jle 0x3787e6
+      00378787 mov edx, 5
+      0037878C lea ecx, [rdx - 2]
+  size-call 003787EE call 0x32e400
+      003787F3 mov edi, eax
+      003787F5 test eax, eax
+      003787F7 jle 0x378846
+      003787F9 mov ecx, eax
+      003787FB call 0x267990
+  -- before site
+      0037881A mov dword ptr [rbp - 0x30], esi
+      0037881D lea rax, [rip + 0x22c]
+      00378824 mov qword ptr [rbp - 0x18], rsi
+      00378828 mov qword ptr [rbp - 0x20], rax
+      0037882C mov r9d, edi
+      0037882F lea rax, [rbp - 0x30]
+      00378833 mov dword ptr [rbp - 0x28], ebx
+      00378836 lea ecx, [rdx - 0x20]
+      00378839 mov qword ptr [rsp + 0x20], rax
+      0037883E mov r8, rbx
+      00378841 call 0x32e620
+==== 003788D2 in 00378540 FUN_00378540
+  size-call 00378566 call 0x32e400
+      0037856B mov edi, eax
+      0037856D test eax, eax
+      0037856F jle 0x3785eb
+      00378571 lea edx, [rsi + 5]
+      00378574 lea ecx, [rsi + 6]
+  size-call 003785FA call 0x32e400
+      003785FF mov edi, eax
+      00378601 test eax, eax
+      00378603 jle 0x378664
+      00378605 mov edx, 5
+      0037860A lea ecx, [rdx - 2]
+  size-call 00378673 call 0x32e400
+      00378678 mov edi, eax
+      0037867A test eax, eax
+      0037867C jle 0x378702
+      00378682 mov edx, 5
+      00378687 lea ecx, [rdx + 1]
+  size-call 0037870A call 0x32e400
+      0037870F mov edi, eax
+      00378711 test eax, eax
+      00378713 jle 0x378774
+      00378715 mov edx, 5
+      0037871A lea ecx, [rdx - 2]
+  size-call 0037877C call 0x32e400
+      00378781 mov edi, eax
+      00378783 test eax, eax
+      00378785 jle 0x3787e6
+      00378787 mov edx, 5
+      0037878C lea ecx, [rdx - 2]
+  size-call 003787EE call 0x32e400
+      003787F3 mov edi, eax
+      003787F5 test eax, eax
+      003787F7 jle 0x378846
+      003787F9 mov ecx, eax
+      003787FB call 0x267990
+  size-call 0037884D call 0x32e400
+      00378852 mov edi, eax
+      00378854 test eax, eax
+      00378856 jle 0x3788d7
+      00378858 mov edx, 5
+      0037885D lea ecx, [rdx + 1]
+  -- before site
+      003788AE mov dword ptr [rbp - 0x30], esi
+      003788B1 mov qword ptr [rbp - 0x20], rax
+      003788B5 mov edx, 9
+      003788BA lea rax, [rbp - 0x30]
+      003788BE mov qword ptr [rbp - 0x18], rsi
+      003788C2 mov r9d, edi
+      003788C5 mov qword ptr [rsp + 0x20], rax
+      003788CA mov r8, rbx
+      003788CD mov dword ptr [rbp - 0x28], ebx
+      003788D0 mov ecx, edx
+      003788D2 call 0x32e620
+==== 00379EFE in 00379E90 FUN_00379e90
+  size-call 00379E9E call 0x32e400
+      00379EA3 mov edi, eax
+      00379EA5 test eax, eax
+      00379EA7 jle 0x379f08
+      00379EA9 mov edx, 5
+      00379EAE mov qword ptr [rsp + 0x70], rbx
+  -- before site
+      00379ED0 mov edx, 7
+      00379ED5 mov dword ptr [rsp + 0x30], r8d
+      00379EDA lea rax, [rip + 0x4f]
+      00379EE1 mov qword ptr [rsp + 0x48], r8
+      00379EE6 mov qword ptr [rsp + 0x40], rax
+      00379EEB mov r9d, edi
+      00379EEE lea rax, [rsp + 0x30]
+      00379EF3 mov r8, rbx
+      00379EF6 lea ecx, [rdx + 2]
+      00379EF9 mov qword ptr [rsp + 0x20], rax
+      00379EFE call 0x32e620
+==== 003844C9 in 00384420 FUN_00384420
+  size-call 0038444E call 0x32e400
+      00384453 mov esi, eax
+      00384455 test eax, eax
+      00384457 jns 0x38445d
+      00384459 xor eax, eax
+      0038445B jmp 0x3844d1
+  -- before site
+      003844A0 mov qword ptr [rsp + 0x40], r14
+      003844A5 mov dword ptr [rsp + 0x30], eax
+      003844A9 mov r9d, esi
+      003844AC mov qword ptr [rsp + 0x48], rax
+      003844B1 mov r8, rbx
+      003844B4 lea rax, [rsp + 0x30]
+      003844B9 mov dword ptr [rsp + 0x38], ebx
+      003844BD mov edx, edi
+      003844BF mov qword ptr [rsp + 0x20], rax
+      003844C4 mov ecx, 2
+      003844C9 call 0x32e620
+==== 0039C45D in 0039C3F0 FUN_0039c3f0
+  size-call 0039C432 call 0x32e400
+      0039C437 mov ecx, eax
+      0039C439 mov ebx, eax
+      0039C43B call 0x3efcd0
+      0039C440 mov rdi, rax
+      0039C443 mov r9d, ebx
+  -- before site
+      0039C437 mov ecx, eax
+      0039C439 mov ebx, eax
+      0039C43B call 0x3efcd0
+      0039C440 mov rdi, rax
+      0039C443 mov r9d, ebx
+      0039C446 lea rax, [rsp + 0x30]
+      0039C44B mov r8, rdi
+      0039C44E mov edx, 0xd5
+      0039C453 mov qword ptr [rsp + 0x20], rax
+      0039C458 mov ecx, 7
+      0039C45D call 0x32e620
+==== 003A151A in 003A13F0 FUN_003a13f0
+  size-call 003A14B9 call 0x32e400
+      003A14BE mov dword ptr [rip + 0x274df34], 0xffffffff
+      003A14C8 mov edi, eax
+      003A14CA test eax, eax
+      003A14CC jle 0x3a151f
+      003A14CE mov edx, 5
+  -- before site
+      003A14F5 mov qword ptr [rbp - 0x28], rax
+      003A14F9 mov qword ptr [rbp - 0x20], rsi
+      003A14FD mov dword ptr [rbp - 0x30], ebx
+      003A1500 call 0x36a000
+      003A1505 mov edx, dword ptr [rbp + 0x18]
+      003A1508 lea rcx, [rbp - 0x38]
+      003A150C mov qword ptr [rsp + 0x20], rcx
+      003A1511 mov r9d, edi
+      003A1514 mov ecx, dword ptr [rbp + 0x20]
+      003A1517 mov r8, rax
+      003A151A call 0x32e620
+==== 003A1599 in 003A13F0 FUN_003a13f0
+  size-call 003A14B9 call 0x32e400
+      003A14BE mov dword ptr [rip + 0x274df34], 0xffffffff
+      003A14C8 mov edi, eax
+      003A14CA test eax, eax
+      003A14CC jle 0x3a151f
+      003A14CE mov edx, 5
+  size-call 003A1538 call 0x32e400
+      003A153D mov dword ptr [rip + 0x274deb5], 0xffffffff
+      003A1547 mov edi, eax
+      003A1549 test eax, eax
+      003A154B jle 0x3a159e
+      003A154D mov edx, 5
+  -- before site
+      003A1574 mov qword ptr [rbp - 0x28], rax
+      003A1578 mov qword ptr [rbp - 0x20], rsi
+      003A157C mov dword ptr [rbp - 0x30], ebx
+      003A157F call 0x36a000
+      003A1584 mov edx, dword ptr [rbp + 0x18]
+      003A1587 lea rcx, [rbp - 0x38]
+      003A158B mov qword ptr [rsp + 0x20], rcx
+      003A1590 mov r9d, edi
+      003A1593 mov ecx, dword ptr [rbp + 0x20]
+      003A1596 mov r8, rax
+      003A1599 call 0x32e620
+==== 003A1618 in 003A13F0 FUN_003a13f0
+  size-call 003A14B9 call 0x32e400
+      003A14BE mov dword ptr [rip + 0x274df34], 0xffffffff
+      003A14C8 mov edi, eax
+      003A14CA test eax, eax
+      003A14CC jle 0x3a151f
+      003A14CE mov edx, 5
+  size-call 003A1538 call 0x32e400
+      003A153D mov dword ptr [rip + 0x274deb5], 0xffffffff
+      003A1547 mov edi, eax
+      003A1549 test eax, eax
+      003A154B jle 0x3a159e
+      003A154D mov edx, 5
+  size-call 003A15B7 call 0x32e400
+      003A15BC mov dword ptr [rip + 0x274de3e], 0xffffffff
+      003A15C6 mov edi, eax
+      003A15C8 test eax, eax
+      003A15CA jle 0x3a161d
+      003A15CC mov edx, 5
+  -- before site
+      003A15F3 mov qword ptr [rbp - 0x28], rax
+      003A15F7 mov qword ptr [rbp - 0x20], rsi
+      003A15FB mov dword ptr [rbp - 0x30], ebx
+      003A15FE call 0x36a000
+      003A1603 mov edx, dword ptr [rbp + 0x18]
+      003A1606 lea rcx, [rbp - 0x38]
+      003A160A mov qword ptr [rsp + 0x20], rcx
+      003A160F mov r9d, edi
+      003A1612 mov ecx, dword ptr [rbp + 0x20]
+      003A1615 mov r8, rax
+      003A1618 call 0x32e620
+==== 003B070D in 003B0660 FUN_003b0660
+  size-call 003B06E5 call 0x32e400
+      003B06EA test eax, eax
+      003B06EC jle 0x3b0752
+      003B06EE xor edx, edx
+      003B06F0 mov qword ptr [rsp + 0x8d0], rbx
+      003B06F8 mov rbx, qword ptr [rip + 0x1c24331]
+  -- before site
+      003B06E5 call 0x32e400
+      003B06EA test eax, eax
+      003B06EC jle 0x3b0752
+      003B06EE xor edx, edx
+      003B06F0 mov qword ptr [rsp + 0x8d0], rbx
+      003B06F8 mov rbx, qword ptr [rip + 0x1c24331]
+      003B06FF mov r9d, eax
+      003B0702 mov r8, rbx
+      003B0705 mov qword ptr [rsp + 0x20], rdi
+      003B070A lea ecx, [rdx + 0xa]
+      003B070D call 0x32e620
+==== 003B2424 in 003B2310 FUN_003b2310
+  size-call 003B23A1 call 0x32e400
+      003B23A6 mov r9d, eax
+      003B23A9 test eax, eax
+      003B23AB jg 0x3b23e3
+      003B23AD nop dword ptr [rax]
+      003B23B0 test esi, esi
+  size-call 003B23D7 call 0x32e400
+      003B23DC mov r9d, eax
+      003B23DF test eax, eax
+      003B23E1 jle 0x3b23b0
+      003B23E3 mov rax, qword ptr [rip + 0x1c22646]
+      003B23EA xor edx, edx
+  -- before site
+      003B23F5 mov r8, qword ptr [rip + 0x1c22634]
+      003B23FC lea rax, [rip - 0x133]
+      003B2403 mov qword ptr [rsp + 0x40], rax
+      003B2408 mov eax, dword ptr [rbx]
+      003B240A mov dword ptr [rsp + 0x38], eax
+      003B240E lea rax, [rsp + 0x30]
+      003B2413 mov dword ptr [rsp + 0x30], edx
+      003B2417 mov qword ptr [rsp + 0x48], rdx
+      003B241C mov edx, dword ptr [rbx + 4]
+      003B241F mov qword ptr [rsp + 0x20], rax
+      003B2424 call 0x32e620
+==== 003B5427 in 003B53C0 FUN_003b53c0
+  size-call 003B5407 call 0x32e400
+      003B540C mov edx, 0x2a
+      003B5411 mov qword ptr [rsp + 0x20], 0
+      003B541A mov r9d, eax
+      003B541D lea r8, [rip + 0x272473c]
+      003B5424 lea ecx, [rdx - 0x21]
+  -- before site
+      003B53EA lea ecx, [rdx - 0x21]
+      003B53ED mov dword ptr [rip + 0x278b11d], 0xffffffff
+      003B53F7 mov word ptr [rip + 0x278b110], 0
+      003B5400 mov byte ptr [rip + 0x278b10b], 0
+      003B5407 call 0x32e400
+      003B540C mov edx, 0x2a
+      003B5411 mov qword ptr [rsp + 0x20], 0
+      003B541A mov r9d, eax
+      003B541D lea r8, [rip + 0x272473c]
+      003B5424 lea ecx, [rdx - 0x21]
+      003B5427 call 0x32e620
+==== 003DC683 in 003DC5B0 FUN_003dc5b0
+  -- before site
+      003DC657 xor ecx, ecx
+      003DC659 mov qword ptr [rsp + 0x40], rax
+      003DC65E lea rax, [rsp + 0x30]
+      003DC663 mov dword ptr [rsp + 0x30], ecx
+      003DC667 mov qword ptr [rsp + 0x48], rcx
+      003DC66C mov r9d, edi
+      003DC66F mov ecx, dword ptr [rsp + 0x88]
+      003DC676 mov r8, rbx
+      003DC679 mov qword ptr [rsp + 0x20], rax
+      003DC67E mov dword ptr [rsp + 0x38], r14d
+      003DC683 call 0x32e620
+==== 003DCCCD in 003DCBC0 FUN_003dcbc0
+  size-call 003DCC59 call 0x32e400
+      003DCC5E mov edi, eax
+      003DCC60 test eax, eax
+      003DCC62 jle 0x3dcce1
+      003DCC64 mov edx, 5
+      003DCC69 mov qword ptr [rsp + 0x70], rbx
+  -- before site
+      003DCCA1 mov dword ptr [rsp + 0x30], esi
+      003DCCA5 lea rax, [rip - 0x97c]
+      003DCCAC mov qword ptr [rsp + 0x48], rsi
+      003DCCB1 mov qword ptr [rsp + 0x40], rax
+      003DCCB6 mov r9d, edi
+      003DCCB9 lea rax, [rsp + 0x30]
+      003DCCBE mov dword ptr [rsp + 0x38], ebx
+      003DCCC2 lea ecx, [rdx + 4]
+      003DCCC5 mov qword ptr [rsp + 0x20], rax
+      003DCCCA mov r8, rbx
+      003DCCCD call 0x32e620
+==== 003DDAB9 in 003DDA70 FUN_003dda70
+  -- before site
+      003DDA8A mov r9d, dword ptr [rbx + 0x14]
+      003DDA8E lea r8, [rsp + 0x30]
+      003DDA93 mov qword ptr [rsp + 0x40], rcx
+      003DDA98 movsx ecx, word ptr [rbx + 0x10]
+      003DDA9C mov qword ptr [rsp + 0x20], r8
+      003DDAA1 mov r8, rax
+      003DDAA4 mov dword ptr [rsp + 0x30], edx
+      003DDAA8 movsx edx, word ptr [rbx + 0x12]
+      003DDAAC mov qword ptr [rsp + 0x48], 0
+      003DDAB5 mov dword ptr [rsp + 0x38], ebx
+      003DDAB9 call 0x32e620
+==== 003DF593 in 003DF550 FUN_003df550
+  -- before site
+      003DF560 movsx ecx, word ptr [rcx + 0x2c]
+      003DF564 mov dword ptr [rsp + 0x30], eax
+      003DF568 lea rax, [rip - 0x2af]
+      003DF56F mov r9d, dword ptr [rbx + 0x30]
+      003DF573 mov r8, qword ptr [rbx + 0x18]
+      003DF577 mov qword ptr [rsp + 0x40], rax
+      003DF57C lea rax, [rsp + 0x30]
+      003DF581 mov qword ptr [rsp + 0x20], rax
+      003DF586 mov qword ptr [rsp + 0x48], 0
+      003DF58F mov dword ptr [rsp + 0x38], ebx
+      003DF593 call 0x32e620
+==== 003E9F59 in 003E9EF0 FUN_003e9ef0
+  -- before site
+      003E9F26 mov dword ptr [rsp + 0x30], eax
+      003E9F2A lea rax, [rip - 0x121]
+      003E9F31 cmove rax, rcx
+      003E9F35 mov qword ptr [rsp + 0x48], 0
+      003E9F3E movsx ecx, word ptr [rdi + rbx*2 + 0xc]
+      003E9F43 mov qword ptr [rsp + 0x40], rax
+      003E9F48 movzx eax, byte ptr [rdi]
+      003E9F4B mov dword ptr [rsp + 0x38], eax
+      003E9F4F lea rax, [rsp + 0x30]
+      003E9F54 mov qword ptr [rsp + 0x20], rax
+      003E9F59 call 0x32e620
+==== 003EA97F in 003EA820 AreaArd_LoadOrUnloadFieldResource
+  size-call 003EA868 call 0x32e400
+      003EA86D mov rcx, qword ptr [rip + 0x277384c]
+      003EA874 mov ebp, eax
+      003EA876 test eax, eax
+      003EA878 jle 0x3ea98d
+      003EA87E mov qword ptr [rsp + 0x70], rbx
+  -- before site
+      003EA94E mov dword ptr [rsp + 0x30], 0
+      003EA956 mov qword ptr [rsp + 0x40], rdx
+      003EA95B mov r9d, ebp
+      003EA95E lea rdx, [rsp + 0x30]
+      003EA963 mov qword ptr [rsp + 0x48], 0
+      003EA96C mov qword ptr [rsp + 0x20], rdx
+      003EA971 mov r8, rax
+      003EA974 mov edx, esi
+      003EA976 mov dword ptr [rsp + 0x38], eax
+      003EA97A mov ecx, 0x15
+      003EA97F call 0x32e620
+==== 003EAE4C in 003EADE0 FUN_003eade0
+  size-call 003EAE29 call 0x32e400
+      003EAE2E mov dword ptr [rbx + 0x24], eax
+      003EAE31 cmp eax, dword ptr [rbx + 0x10]
+      003EAE34 jge 0x3eae39
+      003EAE36 mov dword ptr [rbx + 0x10], eax
+      003EAE39 mov r9d, dword ptr [rbx + 0x10]
+  -- before site
+      003EAE29 call 0x32e400
+      003EAE2E mov dword ptr [rbx + 0x24], eax
+      003EAE31 cmp eax, dword ptr [rbx + 0x10]
+      003EAE34 jge 0x3eae39
+      003EAE36 mov dword ptr [rbx + 0x10], eax
+      003EAE39 mov r9d, dword ptr [rbx + 0x10]
+      003EAE3D mov r8, qword ptr [rbx + 8]
+      003EAE41 mov edx, dword ptr [rbx + 0x20]
+      003EAE44 mov ecx, dword ptr [rbx + 0x1c]
+      003EAE47 mov qword ptr [rsp + 0x20], rsi
+      003EAE4C call 0x32e780
+==== 003EAF9A in 003EADE0 FUN_003eade0
+  size-call 003EAE29 call 0x32e400
+      003EAE2E mov dword ptr [rbx + 0x24], eax
+      003EAE31 cmp eax, dword ptr [rbx + 0x10]
+      003EAE34 jge 0x3eae39
+      003EAE36 mov dword ptr [rbx + 0x10], eax
+      003EAE39 mov r9d, dword ptr [rbx + 0x10]
+  -- before site
+      003EAF6E mov edx, dword ptr [rbx + 0x20]
+      003EAF71 mov r9d, edi
+      003EAF74 mov qword ptr [rsp + 0x30], rax
+      003EAF79 mov qword ptr [rsp + 0x38], rax
+      003EAF7E mov qword ptr [rsp + 0x50], rax
+      003EAF83 lea rax, [rsp + 0x30]
+      003EAF88 mov dword ptr [rsp + 0x30], ecx
+      003EAF8C mov ecx, dword ptr [rbx + 0x1c]
+      003EAF8F mov qword ptr [rsp + 0x20], rax
+      003EAF94 movdqu xmmword ptr [rsp + 0x40], xmm0
+      003EAF9A call 0x32e780
+==== 0050E039 in 0050DFE0 FUN_0050dfe0
+  -- before site
+      0050E014 movsxd rbx, eax
+      0050E017 call 0x267e10
+      0050E01C mov rcx, rbp
+      0050E01F mov edi, eax
+      0050E021 call 0x267e10
+      0050E026 mov r8, rbx
+      0050E029 mov qword ptr [rsp + 0x20], 0
+      0050E032 mov r9d, esi
+      0050E035 mov edx, edi
+      0050E037 mov ecx, eax
+      0050E039 call 0x32e620
+==== 0051ED89 in 0051ED10 FUN_0051ed10
+  size-call 0051ED52 call 0x32e400
+      0051ED57 mov edx, 9
+      0051ED5C mov edi, eax
+      0051ED5E lea ecx, [rdx - 4]
+      0051ED61 call 0x36c1d0
+      0051ED66 mov ecx, edi
+  -- before site
+      0051ED66 mov ecx, edi
+      0051ED68 call 0x36a190
+      0051ED6D mov rbx, rax
+      0051ED70 call 0x36c140
+      0051ED75 lea rax, [rsp + 0x30]
+      0051ED7A mov r9d, edi
+      0051ED7D mov r8, rbx
+      0051ED80 mov qword ptr [rsp + 0x20], rax
+      0051ED85 mov edx, esi
+      0051ED87 mov ecx, ebp
+      0051ED89 call 0x32e620
+control 00249296 size-call seen for 002492F3: True
+sites: 53
+FAILS 0
+STATUS COMPLETE

@@ -1,0 +1,212 @@
+manager-array referrers: 94
+round 1: handlers done, bodies 8103
+round 1: new record globals 02096508 02099D78 02099D80 02EBCA80 02EBCA88 02EBCA90 02EBCA98 02EBCAA0 02EBCAA8 02EBCAB0 02EBCAB8 02EBCAC0 02EBCAC8 02EBCAD0 02EBCAD8 02EBCC68
+round 2: handlers done, bodies 10786
+round 2: new record globals 02EBCAE0 02EBCAE8 02EBCAF0 02EBCAF8 02EBCB00 02EBCB08 02EBCB10 02EBCB18
+round 3: handlers done, bodies 10787
+PASS  C1 interpreter PUSHI/PUSHF register loads found through the flow: 8 of 8
+PASS  C2 interpreter POPI/POPF register stores found through the flow: 8 of 8
+verb handlers seeded: 1886; manager-array referrer roots + returner callers: 126; rounds 3
+functions returning a record: 0024B6F0 0024F9B0 00257AD0 0025AAD0 0025B250 0025C170 0025E3F0 0025E400 002623A0 00263770 00263F10 00263F40 00264010 00264050 00268620 0026B8E0 00271380 002713E0 002718E0 00272DE0 00272F30 002739B0 002E08B0 00310D30 003143D0 00317E50 00317E60 0031ABE0 00327270 0033F270 0033F770 0033FBA0 00343E20 00344CC0 00346FA0 00347460 00347D20 00348650 00348B90 003492E0 003498C0 00349F10 0034AEC0 0034B450 0034BD20 0034C3D0 0034C420 0034C950 0034D0C0 0034FB20 003533B0 00354B90 003551A0 00356570 00356740 00356970 00356AF0 00356F20 003573C0 00357B10 00357BA0 003587C0 00358800 003588B0 00358940 0035A590 0035A680 0035AB20 003B6CC0 003B6D60 003B6DE0 003B6F60 003DC0D0 003DEA20 00473830 0050D480 0050D9A0
+globals holding a record (escapes to globals): 02096508 02099D78 02099D80 02EBCA80 02EBCA88 02EBCA90 02EBCA98 02EBCAA0 02EBCAA8 02EBCAB0 02EBCAB8 02EBCAC0 02EBCAC8 02EBCAD0 02EBCAD8 02EBCAE0 02EBCAE8 02EBCAF0 02EBCAF8 02EBCB00 02EBCB08 02EBCB10 02EBCB18 02EBCC68
+bodies analysed 10787, contexts 53342; depth/recursion cuts 477380, of which carry a record 201
+  CUT 002482E0 depth 4
+  CUT 00265020 depth 15
+  CUT 00265200 depth 15
+  CUT 002693D0 depth 1
+  CUT 002693D0 depth 2
+  CUT 0026A5F0 depth 3
+  CUT 0026B6A0 depth 15
+  CUT 002E5C90 depth 15
+  CUT 002E5E10 depth 15
+  CUT 002E5FB0 depth 15
+  CUT 002E7F70 depth 15
+  CUT 002E8EE0 depth 15
+  CUT 002EC3F0 depth 15
+  CUT 003DB650 depth 15
+  CUT 003DB7A0 depth 15
+  CUT 003DC130 depth 15
+
+accesses that can overlap record +0x64..+0x83: 28 in 10 functions
+  OTHER 0025AE00
+      0025AEC2 WRITE      mov word ptr [rax + rdi*2 + 0xc8], r15w          at A+?
+  OTHER 0025AF60
+      0025AFA1 WRITE      mov word ptr [rax + rbx*2 + 0xc8], di            at A+?
+  INTERPRETER 0025E4C0
+      00261624 WRITE      mov dword ptr [r15 + 0x64], eax                  at A+0x64
+      00261635 WRITE      mov dword ptr [r15 + 0x68], eax                  at A+0x68
+      00261646 WRITE      mov dword ptr [r15 + 0x6c], eax                  at A+0x6c
+      00261657 WRITE      mov dword ptr [r15 + 0x70], eax                  at A+0x70
+      00261668 WRITE      movss dword ptr [r15 + 0x74], xmm0               at A+0x74
+      0026167B WRITE      movss dword ptr [r15 + 0x78], xmm0               at A+0x78
+      0026168E WRITE      movss dword ptr [r15 + 0x7c], xmm0               at A+0x7c
+      002616A1 WRITE      movss dword ptr [r15 + 0x80], xmm0               at A+0x80
+      002616AF READ       mov edx, dword ptr [r15 + 0x64]                  at A+0x64
+      002616C0 READ       mov edx, dword ptr [r15 + 0x68]                  at A+0x68
+      002616D1 READ       mov edx, dword ptr [r15 + 0x6c]                  at A+0x6c
+      002616E2 READ       mov edx, dword ptr [r15 + 0x70]                  at A+0x70
+      002616F3 READ       movss xmm1, dword ptr [r15 + 0x74]               at A+0x74
+      00261706 READ       movss xmm1, dword ptr [r15 + 0x78]               at A+0x78
+      00261719 READ       movss xmm1, dword ptr [r15 + 0x7c]               at A+0x7c
+      0026172C READ       movss xmm1, dword ptr [r15 + 0x80]               at A+0x80
+  OTHER 002652D0
+      0026530B READ       movzx eax, word ptr [rdx + rsi*2 + 0xc8]         at A+?
+  OTHER 00269860
+      00269951 READ       movzx eax, word ptr [rdi + rbx*2 + 0xc8]         at A+?
+  OTHER 0034C6A0
+      0034C6DA BULK-READ  cmovs                                            at rsi=A+0x0
+  OTHER 0037CF50
+      0037CF71 BULK-READ  cmovs                                            at rsi=A+0x0
+  OTHER 003DB2A0
+      003DB39D READ       movzx eax, byte ptr [rdx + 0x94]                 at A+?
+      003DB3AB WRITE      mov byte ptr [rdx + 0x94], al                    at A+?
+      003DB3D1 READ       movzx eax, byte ptr [rdx + 0x8c]                 at A+?
+      003DB3E0 WRITE      mov byte ptr [rdx + 0x8c], cl                    at A+?
+  OTHER 003DB420
+      003DB4A0 READ       movzx r8d, byte ptr [rbx + rbp + 0x94]           at A+?
+  OTHER 003DB6E0
+      003DB710 READ       movzx ebx, byte ptr [rdi + r8 + 0x94]            at A+?
+bulk calls with a record pointer: 0
+record pointer stored into object fields (not globals): 127
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0x5bf0,L(G0208E688+0x0)+0x6b40,L(G0208E688+0x0)+0x7a90,L(G0208E688+0x0)+0x89e0,L(G0208E688+0x0)+0x9930,L(G0208E688+0x0)+0xa880,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0x5bf0,L(G0208E688+0x0)+0x6b40,L(G0208E688+0x0)+0x7a90,L(G0208E688+0x0)+0x89e0,L(G0208E688+0x0)+0x9930,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0x5bf0,L(G0208E688+0x0)+0x6b40,L(G0208E688+0x0)+0x7a90,L(G0208E688+0x0)+0x89e0,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0x5bf0,L(G0208E688+0x0)+0x6b40,L(G0208E688+0x0)+0x7a90,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0x5bf0,L(G0208E688+0x0)+0x6b40,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0x5bf0,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0x4ca0,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0x3d50,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0x2e00,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0x1eb0,L(G0208E688+0x0)+0xf60
+  OBJESC 00234480 002344EF mov qword ptr [rbx + 0x10], rsi              to L(G0208E688+0x0)+0x10,L(G0208E688+0x0)+0xf60
+  OBJESC 002572E0 00257363 mov qword ptr [rbx + rcx + 0x20], rax        to +?
+  OBJESC 002572E0 00257396 mov qword ptr [rbx + rcx + 0x20], rax        to +?
+  OBJESC 002572E0 0025744C mov qword ptr [rbx + rcx + 0x28], rax        to +?
+  OBJESC 002572E0 00257480 mov qword ptr [rbx + rcx + 0x28], rax        to +?
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x40)+0xb8,L(G02EBCA80+0x48)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x40)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+?)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCAC0+0x20)+0xb8,L(G02EBCAC0+0x28)+0xb8,L(G02EBCAC0+0x30)+0xb8,L(G02EBCAC0+0x38)+0xb8,L(G02EBCAC0+0x40)+0xb8,L(G02EBCAC0+0x48)+0xb8,L(G02EBCAC0+0x50)+0xb8,L(G02EBCAC0+0x58)+0xb8,L(G02EBCAC0+?)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCAC0+?)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCC68+0x0)+0xb8
+  OBJESC 00266AD0 00266B2D mov qword ptr [rdx + 0xb8], rax              to A+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x40)+0xb8,L(G02EBCA80+0x48)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x40)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+?)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCAC0+0x20)+0xb8,L(G02EBCAC0+0x28)+0xb8,L(G02EBCAC0+0x30)+0xb8,L(G02EBCAC0+0x38)+0xb8,L(G02EBCAC0+0x40)+0xb8,L(G02EBCAC0+0x48)+0xb8,L(G02EBCAC0+0x50)+0xb8,L(G02EBCAC0+0x58)+0xb8,L(G02EBCAC0+?)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCAC0+?)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCC68+0x0)+0xb8
+  OBJESC 00266AD0 00266B4B mov qword ptr [rdx + 0xb8], rax              to A+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x40)+0xb8,L(G02EBCA80+0x48)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x40)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x38)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x30)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x28)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x20)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x18)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x10)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+0x0)+0xb8,L(G02EBCA80+0x8)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCA80+?)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCAC0+0x20)+0xb8,L(G02EBCAC0+0x28)+0xb8,L(G02EBCAC0+0x30)+0xb8,L(G02EBCAC0+0x38)+0xb8,L(G02EBCAC0+0x40)+0xb8,L(G02EBCAC0+0x48)+0xb8,L(G02EBCAC0+0x50)+0xb8,L(G02EBCAC0+0x58)+0xb8,L(G02EBCAC0+?)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCAC0+?)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to 0xb8,A+0xb8,L(G02EBCC68+0x0)+0xb8
+  OBJESC 00266AD0 00266B5B mov qword ptr [rdx + 0xb8], rax              to A+0xb8
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x20)+0xc0,L(G02EBCA80+0x28)+0xc0,L(G02EBCA80+0x30)+0xc0,L(G02EBCA80+0x38)+0xc0,L(G02EBCA80+0x40)+0xc0,L(G02EBCA80+0x48)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x20)+0xc0,L(G02EBCA80+0x28)+0xc0,L(G02EBCA80+0x30)+0xc0,L(G02EBCA80+0x38)+0xc0,L(G02EBCA80+0x40)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x20)+0xc0,L(G02EBCA80+0x28)+0xc0,L(G02EBCA80+0x30)+0xc0,L(G02EBCA80+0x38)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x20)+0xc0,L(G02EBCA80+0x28)+0xc0,L(G02EBCA80+0x30)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x20)+0xc0,L(G02EBCA80+0x28)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x20)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x18)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x10)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+0x0)+0xc0,L(G02EBCA80+0x8)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCA80+?)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCAC0+0x20)+0xc0,L(G02EBCAC0+0x28)+0xc0,L(G02EBCAC0+0x30)+0xc0,L(G02EBCAC0+0x38)+0xc0,L(G02EBCAC0+0x40)+0xc0,L(G02EBCAC0+0x48)+0xc0,L(G02EBCAC0+0x50)+0xc0,L(G02EBCAC0+0x58)+0xc0,L(G02EBCAC0+?)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCAC0+?)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to 0xc0,A+0xc0,L(G02EBCC68+0x0)+0xc0
+  OBJESC 00266AD0 00266B68 mov qword ptr [rdx + 0xc0], rax              to A+0xc0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x20)+0xa0,L(G02EBCA80+0x28)+0xa0,L(G02EBCA80+0x30)+0xa0,L(G02EBCA80+0x38)+0xa0,L(G02EBCA80+0x40)+0xa0,L(G02EBCA80+0x48)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x20)+0xa0,L(G02EBCA80+0x28)+0xa0,L(G02EBCA80+0x30)+0xa0,L(G02EBCA80+0x38)+0xa0,L(G02EBCA80+0x40)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x20)+0xa0,L(G02EBCA80+0x28)+0xa0,L(G02EBCA80+0x30)+0xa0,L(G02EBCA80+0x38)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x20)+0xa0,L(G02EBCA80+0x28)+0xa0,L(G02EBCA80+0x30)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x20)+0xa0,L(G02EBCA80+0x28)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x20)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x18)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x10)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+0x0)+0xa0,L(G02EBCA80+0x8)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCA80+?)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCAC0+0x20)+0xa0,L(G02EBCAC0+0x28)+0xa0,L(G02EBCAC0+0x30)+0xa0,L(G02EBCAC0+0x38)+0xa0,L(G02EBCAC0+0x40)+0xa0,L(G02EBCAC0+0x48)+0xa0,L(G02EBCAC0+0x50)+0xa0,L(G02EBCAC0+0x58)+0xa0,L(G02EBCAC0+?)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCAC0+?)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to 0xa0,A+0xa0,L(G02EBCC68+0x0)+0xa0
+  OBJESC 00266AD0 00266B79 mov qword ptr [rdx + 0xa0], r8               to A+0xa0
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x20)+0xa8,L(G02EBCA80+0x28)+0xa8,L(G02EBCA80+0x30)+0xa8,L(G02EBCA80+0x38)+0xa8,L(G02EBCA80+0x40)+0xa8,L(G02EBCA80+0x48)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x20)+0xa8,L(G02EBCA80+0x28)+0xa8,L(G02EBCA80+0x30)+0xa8,L(G02EBCA80+0x38)+0xa8,L(G02EBCA80+0x40)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x20)+0xa8,L(G02EBCA80+0x28)+0xa8,L(G02EBCA80+0x30)+0xa8,L(G02EBCA80+0x38)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x20)+0xa8,L(G02EBCA80+0x28)+0xa8,L(G02EBCA80+0x30)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x20)+0xa8,L(G02EBCA80+0x28)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x20)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x18)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x10)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+0x0)+0xa8,L(G02EBCA80+0x8)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCA80+?)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCAC0+0x20)+0xa8,L(G02EBCAC0+0x28)+0xa8,L(G02EBCAC0+0x30)+0xa8,L(G02EBCAC0+0x38)+0xa8,L(G02EBCAC0+0x40)+0xa8,L(G02EBCAC0+0x48)+0xa8,L(G02EBCAC0+0x50)+0xa8,L(G02EBCAC0+0x58)+0xa8,L(G02EBCAC0+?)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCAC0+?)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to 0xa8,A+0xa8,L(G02EBCC68+0x0)+0xa8
+  OBJESC 00266AD0 00266B9B mov qword ptr [rdx + 0xa8], rax              to A+0xa8
+  OBJESC 00269C70 00269CE1 mov qword ptr [rsi + rbx*8], rdi             to G0209A1F0
+  OBJESC 0026AD90 0026ADA0 mov qword ptr [rcx + rax*8], rdx             to G0209A210
+  OBJESC 0026AD90 0026ADB9 mov qword ptr [rcx + rax*8], rdx             to G0209A210
+  OBJESC 002E28E0 002E2A15 mov qword ptr [rcx + 0x108], rdi             to L(G022C6F28+0x0)
+  OBJESC 0035BC50 0035BDDF mov qword ptr [r14], rax                     to G022C8388
+  OBJESC 0035E5F0 0035E6AB mov qword ptr [rdi], rax                     to G022C8060
+  OBJESC 00392740 0039286E mov qword ptr [rsi + rax*8], rdi             to G02AEE0C0
+  OBJESC 003B6CC0 003B6D27 mov qword ptr [r14], rdi                     to G02EBCA80
+  OBJESC 003B6DE0 003B6E5A mov qword ptr [rbx + rdi*8], rax             to G02EBCAC0
+  OBJESC 003B6DE0 003B6E90 mov qword ptr [rcx], rax                     to G02EBCAC0
+  OBJESC 003B6DE0 003B6E90 mov qword ptr [rcx], rax                     to G02EBCAC0,G02EBCAC0+0x0
+  OBJESC 003B6DE0 003B6E90 mov qword ptr [rcx], rax                     to G02EBCAC0,G02EBCAC0+0x0,G02EBCAC0+0x10,G02EBCAC0+0x8
+  OBJESC 003B6DE0 003B6E90 mov qword ptr [rcx], rax                     to G02EBCAC0,G02EBCAC0+0x0,G02EBCAC0+0x8
+  OBJESC 003DEA20 003DEA5C mov qword ptr [rbx + 0x10], rax              to G02B58C50
+indirect calls/jumps receiving a record: 14
+  INDIRECT 0017D280 0017D2A8 call qword ptr [rip + 0x745c7a]          args rdx
+  INDIRECT 0025DF00 0025E222 call rax                                 args rdx
+  INDIRECT 002621D0 00262278 call rax                                 args rcx,rdx
+  INDIRECT 002621D0 00262278 call rax                                 args rdx
+  INDIRECT 002621D0 002622DB call rax                                 args rcx,rdx
+  INDIRECT 002621D0 002622DB call rax                                 args rdx
+  INDIRECT 002621D0 002622F8 call rax                                 args rcx,rdx
+  INDIRECT 002621D0 002622F8 call rax                                 args rdx
+  INDIRECT 00262440 002625AB call qword ptr [rdi + 0x98]              args rdx
+  INDIRECT 00262440 00262617 call qword ptr [rdi + 0x98]              args rdx
+  INDIRECT 002650B0 00265113 call qword ptr [r9 + 0x98]               args rdx
+  INDIRECT 0026D3E0 0026D49D call qword ptr [r14 + 0x98]              args rdx
+  INDIRECT 00861F14 00861F14 jmp qword ptr [rip + 0x60c9e]            args rcx
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]            args rdx

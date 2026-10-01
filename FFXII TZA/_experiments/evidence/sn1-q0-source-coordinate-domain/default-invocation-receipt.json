@@ -1,0 +1,9 @@
+{
+  "returncode": 0,
+  "driver_sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec",
+  "raw_before_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "raw_after_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "stdout_sha256": "4dabcf3d7deca3325437b2229709ccb4fcdc3dc0c771768c6081455ea8eb2594",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "path": "Actual capture.py default with retained raw present invokes corrected check.py; no recapture or new native execution"
+}

@@ -1,0 +1,19 @@
+# CxxObjectLifecycle.DeletingDestructor.VtableAlignedOrGuardedFree - EC-7 family C, declared on generated-function-families.md
+#
+# 10 members. Body size(s): 92 B x10.
+# 5 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 6 external target(s): 1 shared across all 10 members, and 5 that are member-specific.
+#
+# NOT dispositioned: the 1 shared implementation these members reach, and the 5 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0017CC70
+006939D0
+00693A30
+00693AC0
+00831DC0
+00831E20
+00834910
+00835480
+008466B0
+00847340

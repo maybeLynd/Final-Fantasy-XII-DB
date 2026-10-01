@@ -1,0 +1,29 @@
+A1 hits over 60 offsets, depth 3: 311 (walked 194 fns); depth 0: 279; returns off: 311; stack args stripped: 311
+   needing a call hop: 32; lost without returns: 0 []; lost without stack args: 0 []
+   rowflow's own counts: forms 225, handoffs 153, stackargs 15, row-returning fns ['00301310', '0030CBE0', '003112F0', '00312170', '003257D0', '00385BA0', '00387FD0', '00388FE0', '0038A9D0', '0038AA90', '0038B010', '0038B220', '0038C940', '0038F970', '00390AB0', '00469AF0', '00469EC0']
+   stackarg 00303A00@00303A39 -> 0031B860 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303A4D -> 0031B860 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303A64 -> 00861EC0 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303AD7 -> 00385680 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303B14 -> 004698C0 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303B1E -> 0030DAE0 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303B90 -> 00303A00 [(48, ["('E', 0)"])]
+   stackarg 00303A00@00303BB4 -> 00808C40 [(48, ["('E', 0)"])]
+   stackarg 0031B860@0031B87D -> 00236850 [(96, ["('E', 0)"])]
+   stackarg 0031B860@0031B888 -> 00236820 [(96, ["('E', 0)"])]
+   stackarg 0031B860@0031B89D -> 00236850 [(96, ["('E', 0)"])]
+   stackarg 00808C40@00808C5C -> 00809654 [(56, ["('E', 0)"])]
+   stackarg 00809654@00809662 -> 0087AF34 [(120, ["('E', 0)"])]
+   stackarg 00809654@00809679 -> 00809848 [(120, ["('E', 0)"])]
+   stackarg 00809654@0080971B -> 00809620 [(120, ["('E', 0)"])]
+   call-hop hits by function: {'0031A990': 6, '00306760': 4, '0030A190': 3, '003098D0': 3, '003216E0': 3, '0030A370': 3, '0030EF20': 2, '003093B0': 2, '00309300': 2, '00305640': 1, '00329F80': 1, '00320D70': 1, '00309230': 1}
+A2 hop-census sites 232; found at depth 0 (no call followed): 221; need a call hop: 11 ['0031A995', '0031A9B2', '0031A9C2', '0031A99A', '0030A37F', '00321716', '00305744', '0030EF83', '00321733', '00321744', '0030EF89']
+A3 unmodelled instruction kinds reading a row/base-tagged register:
+   xor          54  e.g. 0023776E xor ecx, ecx; 002377F7 xor ecx, ecx; 00237879 xor ecx, ecx; 00237906 xor ecx, ecx
+   movzx        18  e.g. 00237881 movzx ecx, byte ptr [rcx + 0x2c]; 0023790E movzx ecx, byte ptr [rcx + 0x2c]; 00237996 movzx ecx, byte ptr [rcx + 0x2c]; 00237A1E movzx ecx, byte ptr [rcx + 0x2c]
+   sub          18  e.g. 003038F5 sub r9d, eax; 00303930 sub r9d, eax; 00303ABC sub r9d, eax; 00303AFC sub r10d, eax
+   or            3  e.g. 0030CF31 or eax, 0xffffffff; 003133DA or eax, 0xffffffff; 00386212 or eax, 0xffffffff
+A3 pointer-carrying unmodelled uses: 0
+A4 functions with a row/base pointer stored to a stack slot: 1; stores 1
+   00303A00 00303A34 mov qword ptr [rsp + 0x30], r8
+A4 prologue home-slot spills of a tagged argument before the frame is set up: 0 []

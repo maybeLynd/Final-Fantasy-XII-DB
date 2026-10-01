@@ -1,0 +1,10 @@
+sn1: .ebp embeds .msb verbatim -- container fully resolved
+
+EBP2 dir = 20 u32 slot offsets at +0x10. Slot 2 (section 002) is the
+sibling .msb byte-for-byte on ctrl/btlctrl/mapctrl; evctrl embeds the
+older revision (matching its older .bin). Slot 6 = small TIM2 texture
+(0x180-0x540 -- cursor/icon sheet, not the charset font); ctrl has
+slots 0+2 only. The .ebp is now fully accounted for: envelope +
+section-000 (==.bin) + .msb + optional TIM2. The earlier "{u16;u16}
+tail records" reading was the section-002 message directory mis-parsed
+-- retracted.

@@ -1,0 +1,21 @@
+{
+  "status": "PASS_PRODUCER_INPUT_CONTROLS",
+  "checks": [
+    {
+      "case": "missing-manifest",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-retirement-guards.py\", line 12, in <module>\r\n    if sha(mp)!='2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef' or sha(dp)!='ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57':raise ValueError('retained input generation changed')\r\n       ~~~^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-retirement-guards.py\", line 10, in <lambda>\r\n    sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()\r\n                                ~~~~~~~~~~~~^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\r\n    with self.open(mode='rb', buffering=0) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\title-retirement-input-controls-02\\\\missing-manifest\\\\source\\\\original_body_manifest.json'\r\n",
+      "labelled_synthetic": true
+    },
+    {
+      "case": "same-count-changed-mask",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-retirement-guards.py\", line 12, in <module>\r\n    if sha(mp)!='2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef' or sha(dp)!='ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57':raise ValueError('retained input generation changed')\r\n                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: retained input generation changed\r\n",
+      "labelled_synthetic": true
+    }
+  ],
+  "positive_result": "title-retirement-local-guards-result-02.json",
+  "positive_sha256": "200bd498c6c26986df12e8235cda136987039221485f98e080b08aa432f34f8d",
+  "driver_sha256": "af1ef46d3c582dfe32768a958433f59f5102155a77526fd397d646e3a0683748",
+  "limits": "Two actual CLI refusal cases; prior positive reused, not recounted/replayed. No native/live execution or independent acceptance."
+}

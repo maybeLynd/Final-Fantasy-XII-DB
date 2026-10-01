@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "OPUS-REQ-EC7-EXTENT-ERRATA-0026C8C0",
+ "result_refs": [
+  "file:Database/FFXII TZA/_index/FUNCTION-EXTENT-ERRATA.tsv"
+ ],
+ "note": "VERIFIED from the image: the listed 1330-byte extent ends at 0026CDF2, but the last instruction (call 00809728 at 0026CDEE) runs to 0026CDF3 - an underrun, not the overrun shape the strict/overlap detectors enumerate, which is why the detector missed it. Row added: corrected_end 0026CDF3, next_entry 0026CE00 (FUN_0026ce00, boundary_listed yes), overlap_into_next 0, verdict 'underrun (listed end inside final instruction)', detector manual."
+}

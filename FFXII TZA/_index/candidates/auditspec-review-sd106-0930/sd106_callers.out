@@ -1,0 +1,13 @@
+002B3280  rel32 ['00227FE3 call', '00241DEB call', '0057C1E2 call', '0057C58B call', '0057C5DB call'] (index 5)
+          jcc []  data {'abs64': [], 'rva32': ['02FAE7AC(.pdata)']}
+          rip []  image-base []
+002B32C0  rel32 ['002A3483 call', '002A6B1C call', '002A6D3C call', '002A6DE9 call'] (index 4)
+          jcc []  data {'abs64': [], 'rva32': ['02FAE7B0(.pdata)']}
+          rip []  image-base []
+002B32D0  rel32 ['002B32B6 call', '002B32C0 jmp'] (index 2)
+          jcc []  data {'abs64': [], 'rva32': ['02FAE7B8(.pdata)']}
+          rip []  image-base []
+01E0C1D8 = 512
+01E0C1DC = 448
+01E0C0D4 = 96
+01E0CDC0 = 16

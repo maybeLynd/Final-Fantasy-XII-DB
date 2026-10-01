@@ -1,0 +1,9 @@
+# NativeAdapter.GuardedRecordBuildCookie - EC-7 family C
+# stack-cookie frame; if [this+X] matches a member tag, build a stack
+# # record via shared 00244F50 + 00246AD0, store the result at [this+Y];
+# # cookie-check via 00808C40.
+address	targets
+005571F0	00244F50,00246AD0,00808C40
+005572B0	00244F50,00246AD0,00808C40
+00557370	00244F50,00246AD0,00808C40
+00557430	00244F50,00246AD0,00808C40

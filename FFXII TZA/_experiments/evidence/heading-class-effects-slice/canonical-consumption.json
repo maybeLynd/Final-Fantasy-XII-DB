@@ -1,0 +1,65 @@
+[
+  {
+    "source": "Database/FFXII TZA/06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md",
+    "snapshot": "retained/canonical-consumption/00-CONTRACT-heading-speed-to-position-delta.md",
+    "sha256": "c66e6caf52cfa8217feccf4ed18c3ece8867a3dea1444715720bec6a07ea6681",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "c66e6caf52cfa8217feccf4ed18c3ece8867a3dea1444715720bec6a07ea6681",
+    "equals_head_raw": true,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  },
+  {
+    "source": "Database/FFXII TZA/06-Movement-And-Navigation/CONTRACT-facing-and-steering.md",
+    "snapshot": "retained/canonical-consumption/01-CONTRACT-facing-and-steering.md",
+    "sha256": "7ee6ac48c825aedd28245d99f77ccbc0ff619fc82ac48b0f7a0dc26e79919e49",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "7ee6ac48c825aedd28245d99f77ccbc0ff619fc82ac48b0f7a0dc26e79919e49",
+    "equals_head_raw": true,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  },
+  {
+    "source": "Database/FFXII TZA/06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md",
+    "snapshot": "retained/canonical-consumption/02-the-movement-body-pool-and-the-separation-pass.md",
+    "sha256": "fd1da9f768334b34914270799a89d565a06b90bc6dc71c50a907d40b0137efb6",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "fd1da9f768334b34914270799a89d565a06b90bc6dc71c50a907d40b0137efb6",
+    "equals_head_raw": true,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  },
+  {
+    "source": "Database/FFXII TZA/17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md",
+    "snapshot": "retained/canonical-consumption/03-the-staged-look-command.md",
+    "sha256": "256e98339e61cf61d0116e880e2fb41ea915edac7923db06024eff0d0505f389",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "256e98339e61cf61d0116e880e2fb41ea915edac7923db06024eff0d0505f389",
+    "equals_head_raw": true,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  },
+  {
+    "source": "Database/FFXII TZA/04-Actor-Entity/CONTRACT-actor-record-pool-and-region-map.md",
+    "snapshot": "retained/canonical-consumption/04-CONTRACT-actor-record-pool-and-region-map.md",
+    "sha256": "2dde9f283ba672451dfd1fd17c9f378097948dad319e135f8e36c38bafa2421d",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "2dde9f283ba672451dfd1fd17c9f378097948dad319e135f8e36c38bafa2421d",
+    "equals_head_raw": true,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  },
+  {
+    "source": "Database/FFXII TZA/00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md",
+    "snapshot": "retained/canonical-consumption/05-intentionally-ownerless-functions-and-shared-scratch.md",
+    "sha256": "56dce768f72dd5ef7c542007b41b32be671c08ad6eecdd9de2c66c8684cd5d13",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "caabc55f1af8b38e62072ac38d3a6b2109ea3db67b154b76ade75e5f1807d1fd",
+    "equals_head_raw": false,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  },
+  {
+    "source": "Database/FFXII TZA/_experiments/EXP-107-record-pool-region-map-exec.md",
+    "snapshot": "retained/canonical-consumption/06-EXP-107-record-pool-region-map-exec.md",
+    "sha256": "5474ff7b7762620ac11d7bede3403adf140d4322a616d3f790817da3db34d3b8",
+    "head_at_read": "c5a5619286c449c23666d02d60ec4a91cbf35a5a",
+    "head_blob_sha256": "28077802edf432d546762011489716aaffc530722b19cf946a55aafcf49a5abb",
+    "equals_head_raw": false,
+    "limits": "Consumed current source snapshot, not independent acceptance; raw CRLF/LF differences retained. No peer edit."
+  }
+]

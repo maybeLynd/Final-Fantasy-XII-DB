@@ -1,0 +1,8 @@
+# NativeAdapter.RefFlagAlignedFreeClear - EC-7 family C
+# if [this] bit31 is clear, free [this+X] via shared 00584730; zero the
+# # pointer/size fields.
+address	targets
+005DD620	00584730
+005DD850	00584730
+005DDF50	00584730
+0067AD90	00584730

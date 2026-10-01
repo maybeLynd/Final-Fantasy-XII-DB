@@ -1,0 +1,21 @@
+{
+  "case": "accept-with-narrowing",
+  "is_review": true,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "b7e546246f2e5e52d027f8b19e1877e1e15c96219fd7d2d162a8bcef2979a8f1",
+  "after_sha256": "ecc38cba8600b0010d0df4ab3f7ea7d05250565c811e9b64b15a5e0b2e380d01",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:ACCEPT-WITH-NARROWING"
+  ],
+  "plan": [
+    {
+      "kind": "VERDICT-MANUAL",
+      "review": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+      "detail": "verdict:ACCEPT-WITH-NARROWING needs its named REVIEW-POLICY handling; no automatic transition",
+      "has_operation": false
+    }
+  ]
+}

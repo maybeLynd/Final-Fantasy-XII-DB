@@ -1,0 +1,138 @@
+== 00678B50 (depth-term rewrite), full body
+  00678B50 movss xmm3, dword ptr [rcx + 0x3c]
+  00678B55 xorps xmm0, xmm0
+  00678B58 ucomiss xmm3, xmm0
+  00678B5B movaps xmm4, xmm1
+  00678B5E jp 0x678b83
+  00678B60 jne 0x678b83
+  00678B62 movaps xmm3, xmm1
+  00678B65 mulss xmm4, xmm2
+  00678B69 subss xmm3, xmm2
+  00678B6D movaps xmm0, xmm2
+  00678B70 divss xmm0, xmm3
+  00678B74 divss xmm4, xmm3
+  00678B78 movss dword ptr [rcx + 0x28], xmm0
+  00678B7D movss dword ptr [rcx + 0x38], xmm4
+  00678B82 ret 
+  00678B83 movss xmm0, dword ptr [rip + 0x167301d]
+  00678B8B subss xmm1, xmm2
+  00678B8F divss xmm0, xmm1
+  00678B93 divss xmm4, xmm1
+  00678B97 movss dword ptr [rcx + 0x28], xmm0
+  00678B9C movss dword ptr [rcx + 0x38], xmm4
+  00678BA1 ret 
+  00678BA2 int3 
+  00678BA3 int3 
+  00678BA4 int3 
+  00678BA5 int3 
+  00678BA6 int3 
+  00678BA7 int3 
+  00678BA8 int3 
+  00678BA9 int3 
+  00678BAA int3 
+  00678BAB int3 
+  00678BAC int3 
+  00678BAD int3 
+  00678BAE int3 
+  00678BAF int3 
+  00678BB0 mov qword ptr [rsp + 8], rbx
+  00678BB5 push rdi
+  00678BB6 sub rsp, 0x20
+  00678BBA or edx, 0xffffffff
+== 00864E90 execute (first 30)
+  00864E90 mov qword ptr [rsp + 8], rbx
+  00864E95 push rdi
+  00864E96 sub rsp, 0x20
+  00864E9A mov rbx, rcx
+  00864E9D mov rdi, rdx
+  00864EA0 xor ecx, ecx
+  00864EA2 test rdx, rdx
+  00864EA5 setne cl
+  00864EA8 call 0x16d6a0
+  00864EAD mov rax, qword ptr [rdi]
+  00864EB0 xor edx, edx
+  00864EB2 mov rcx, rdi
+  00864EB5 call qword ptr [rax + 0xb0]
+  00864EBB mov cl, 0x80
+  00864EBD call 0x2105a0
+  00864EC2 movss xmm2, dword ptr [rbx + 0x8c]
+  00864ECA lea rcx, [rbx + 8]
+  00864ECE movss xmm1, dword ptr [rbx + 0x88]
+  00864ED6 call 0x210520
+  00864EDB mov rax, qword ptr [rdi]
+  00864EDE lea rdx, [rbx + 0x48]
+  00864EE2 mov rcx, rdi
+  00864EE5 call qword ptr [rax + 0x30]
+  00864EE8 mov rax, qword ptr [rdi]
+  00864EEB mov rcx, rdi
+  00864EEE movss xmm1, dword ptr [rip + 0x8e226]
+  00864EF6 call qword ptr [rax + 0xd8]
+  00864EFC mov rax, qword ptr [rdi]
+  00864EFF mov rcx, rdi
+  00864F02 movss xmm1, dword ptr [rip + 0x8e212]
+== floats 02AEEBA0..A7 rip refs 8 (stores 4), raw-only 0; image-base disp forms 0 (raw-only 0)
+  W 0024FFBB movss dword ptr [rip + 0x289ebdd], xmm1   in 0024FF60 FUN_0024ff60
+  W 0024FFC3 movss dword ptr [rip + 0x289ebd9], xmm0   in 0024FF60 FUN_0024ff60
+  W 0024FFE2 movss dword ptr [rip + 0x289ebb6], xmm0   in 0024FF60 FUN_0024ff60
+  W 0024FFEA movss dword ptr [rip + 0x289ebb2], xmm1   in 0024FF60 FUN_0024ff60
+  R 0039CE70 minss xmm0, dword ptr [rip + 0x2751d2c]   in 0039CDC0 FUN_0039cdc0
+  R 0039CE78 maxss xmm0, dword ptr [rip + 0x2751d20]   in 0039CDC0 FUN_0039cdc0
+  R 0039D1E0 movss xmm0, dword ptr [rip + 0x27519bc]   in 0039D1E0 FUN_0039d1e0
+  R 0039D1F0 movss xmm0, dword ptr [rip + 0x27519a8]   in 0039D1F0 FUN_0039d1f0
+== block-1 source 02AEEB20..5F rip refs 5 (stores 0), raw-only 0; image-base disp forms 0 (raw-only 0)
+  R 0024E1EE lea rcx, [rip + 0x28a092b]   in 0024E180 FUN_0024e180
+  R 00376748 lea rdx, [rip + 0x27783d1]   in 00376470 FUN_00376470
+  R 0039CE25 lea rdx, [rip + 0x2751cf4]   in 0039CDC0 FUN_0039cdc0
+  R 0039CF67 lea rdx, [rip + 0x2751bb2]   in 0039CF10 FUN_0039cf10
+  R 0039D1D0 lea rax, [rip + 0x2751949]   in 0039D1D0 FUN_0039d1d0
+== execute targets 01FD3620..67 rip refs 9 (stores 6), raw-only 1; image-base disp forms 0 (raw-only 0)
+  W 00210523 movss dword ptr [rip + 0x1dc3135], xmm1   in 00210520 FUN_00210520
+  W 0021052B movaps xmmword ptr [rip + 0x1dc30ee], xmm0   in 00210520 FUN_00210520
+  W 00210536 movss dword ptr [rip + 0x1dc3126], xmm2   in 00210520 FUN_00210520
+  W 0021053E movaps xmmword ptr [rip + 0x1dc30eb], xmm3   in 00210520 FUN_00210520
+  W 00210549 movaps xmmword ptr [rip + 0x1dc30f0], xmm0   in 00210520 FUN_00210520
+  W 00210554 movaps xmmword ptr [rip + 0x1dc30f5], xmm3   in 00210520 FUN_00210520
+  R 0020EA6B lea rdx, [rip + 0x1dc4bae]   in 0020EA50 FUN_0020ea50
+  R 0021026C movss xmm1, dword ptr [rip + 0x1dc33f0]   in 00210230 FUN_00210230
+  R 002102C5 movss xmm1, dword ptr [rip + 0x1dc3393]   in 00210230 FUN_00210230
+== vtable 00D86960 +0x30 = 006CAF40
+  006CAF40 mov eax, dword ptr [rdx]
+  006CAF42 mov dword ptr [rcx + 0x10], eax
+  006CAF45 mov eax, dword ptr [rdx + 4]
+  006CAF48 mov dword ptr [rcx + 0x14], eax
+  006CAF4B mov eax, dword ptr [rdx + 8]
+  006CAF4E mov dword ptr [rcx + 0x18], eax
+  006CAF51 mov eax, dword ptr [rdx + 0xc]
+  006CAF54 mov dword ptr [rcx + 0x1c], eax
+  006CAF57 mov eax, dword ptr [rdx + 0x10]
+  006CAF5A mov dword ptr [rcx + 0x20], eax
+  006CAF5D mov eax, dword ptr [rdx + 0x14]
+  006CAF60 mov dword ptr [rcx + 0x24], eax
+  006CAF63 mov eax, dword ptr [rdx + 0x18]
+  006CAF66 mov dword ptr [rcx + 0x28], eax
+  006CAF69 mov eax, dword ptr [rdx + 0x1c]
+  006CAF6C mov dword ptr [rcx + 0x2c], eax
+  006CAF6F mov eax, dword ptr [rdx + 0x20]
+  006CAF72 mov dword ptr [rcx + 0x30], eax
+  006CAF75 mov eax, dword ptr [rdx + 0x24]
+  006CAF78 mov dword ptr [rcx + 0x34], eax
+  006CAF7B mov eax, dword ptr [rdx + 0x28]
+  006CAF7E mov dword ptr [rcx + 0x38], eax
+  006CAF81 mov eax, dword ptr [rdx + 0x2c]
+  006CAF84 mov dword ptr [rcx + 0x3c], eax
+  006CAF87 mov eax, dword ptr [rdx + 0x30]
+  006CAF8A mov dword ptr [rcx + 0x40], eax
+  006CAF8D mov eax, dword ptr [rdx + 0x34]
+  006CAF90 mov dword ptr [rcx + 0x44], eax
+  006CAF93 mov eax, dword ptr [rdx + 0x38]
+  006CAF96 mov dword ptr [rcx + 0x48], eax
+  006CAF99 mov eax, dword ptr [rdx + 0x3c]
+  006CAF9C mov dword ptr [rcx + 0x4c], eax
+  006CAF9F xor eax, eax
+  006CAFA1 mov byte ptr [rcx + 0x208f3], 1
+  006CAFA8 ret 
+  006CAFA9 int3 
+  006CAFAA int3 
+  006CAFAB int3 
+  006CAFAC int3 
+  006CAFAD int3 

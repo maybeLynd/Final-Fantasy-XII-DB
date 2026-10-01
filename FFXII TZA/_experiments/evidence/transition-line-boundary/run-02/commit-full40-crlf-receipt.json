@@ -1,0 +1,34 @@
+{
+  "name": "commit-full40-crlf",
+  "input_sha256": "a991919a5ea3d0b63e231a32858cb1a8533e2aad6aca3b40ca7cbfb3036bc596",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-line-boundary\\run-02\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-line-boundary\\run-02\\commit-full40-crlf.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-VALID-ACCEPT\",\n  \"detail\": \"commit 'f21fe80440fc9d24df09fc19172753394fe61773\\\\r\\\\n' is not a 7-40 hex commit id\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "terminal": true,
+  "report": [
+    {
+      "transition": "MALFORMED",
+      "review": "REVIEW-VALID-ACCEPT",
+      "detail": "commit 'f21fe80440fc9d24df09fc19172753394fe61773\\r\\n' is not a 7-40 hex commit id",
+      "status": "-"
+    }
+  ],
+  "original_plan": [
+    [
+      "MALFORMED",
+      "REVIEW-VALID-ACCEPT",
+      "commit 'f21fe80440fc9d24df09fc19172753394fe61773\\r\\n' is not a 7-40 hex commit id",
+      null
+    ]
+  ],
+  "board_unchanged": true,
+  "writer_invoked": false
+}

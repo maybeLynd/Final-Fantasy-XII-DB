@@ -1,0 +1,5 @@
+PASS A1 null member -> 005C09CB block: only 00584730 calls, then jmp past the kind store - ['0x584730']
+PASS A2 one kind store in the binder - 005C0AF4
+PASS C1 control: the refusal path calls 005CDAA0, the silent block does not
+RESULT a segment the member lookup cannot resolve leaves the descriptor unbound and logs nothing
+FAILS 0

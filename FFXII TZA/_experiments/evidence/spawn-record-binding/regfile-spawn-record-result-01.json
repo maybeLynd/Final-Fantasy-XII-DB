@@ -1,0 +1,525 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_SPAWN_RECORD_BINDING_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "regfile-spawn-record-source-01.json",
+      "sha256": "491d8922691668969f2392a8d2689cf92376bcddc9ab4bc6f60a85b75629e72e"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/manifest.json",
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/regfile-observation.json",
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/section12-original-body-manifest.json",
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-authored-01/gol_b01.s000",
+      "sha256": "c2617234e510735e6a1a794de000feac0a8fd956af9f2fd1afbb4e4bac6c8993"
+    }
+  ],
+  "original_spans": [
+    {
+      "start": "0x25ad10",
+      "end_exclusive": "0x25adf5",
+      "sha256": "b6d632cb54f0ccc771419b434a496c5e6d70a344a2916a707c38992b93b27fb7",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x25af60",
+      "end_exclusive": "0x25afb4",
+      "sha256": "22c1e3eb3411811299b197b8a74f33fdf2c103644ba1efc253d26b2ac55015a4",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x263d40",
+      "end_exclusive": "0x263dc7",
+      "sha256": "f011248cf13deab42387a799859ed695ec264b92d753d28b69e848705a64c5f4",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x269860",
+      "end_exclusive": "0x2699cc",
+      "sha256": "ea84ace885bb7e8a9551b4bb6a3f8cd6d5e201ef108b84c23e72513cb7473a8d",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x34fa70",
+      "end_exclusive": "0x34fb07",
+      "sha256": "1098e0f4c85e1186bf3b4e74743c59d726ef771c7e18aaa17e086ac05c79c6c2",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x2640c0",
+      "end_exclusive": "0x2640c8",
+      "sha256": "b3b53943fae8a11f36c3100fc53cb1e349826f60a63f14dd82f9c3f64f09f3f8",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x3dbb60",
+      "end_exclusive": "0x3dbbd8",
+      "sha256": "c38f3607c845b70574d47ae3fd99587540078dedff9f95ee5a747a1338d946d8",
+      "origin": "new missing span"
+    },
+    {
+      "start": "0x25df00",
+      "end_exclusive": "0x25e3cc",
+      "sha256": "fd07cd5b2637aa837f3cc6f00a946be8cabe02823c250eb783cd0b05954be8fc",
+      "origin": "retained regfile-observation:0025DF00"
+    },
+    {
+      "start": "0x25e4c0",
+      "end_exclusive": "0x25e4f7",
+      "sha256": "68ba974672f2634f4a4659dc3667f296431f0771fd171713a35e30718ff4627d",
+      "origin": "retained regfile-observation:0025E4C0"
+    },
+    {
+      "start": "0x358940",
+      "end_exclusive": "0x35895e",
+      "sha256": "e7d50b2c2b1279720b63b38b1d754f6e1ecf4a188afdb1a4a3a4045a7306024d",
+      "origin": "retained regfile-observation:00358940"
+    },
+    {
+      "start": "0x263ff0",
+      "end_exclusive": "0x264005",
+      "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d",
+      "origin": "retained SECTION12:00263FF0"
+    },
+    {
+      "start": "0x3587c0",
+      "end_exclusive": "0x3587f2",
+      "sha256": "bf9121862b5d78d0c3f2fe3048be03d21d58cd801f4e51942501161c65250fda",
+      "origin": "retained SECTION12:003587C0"
+    },
+    {
+      "start": "0x358a00",
+      "end_exclusive": "0x358a15",
+      "sha256": "3f08aa00712c50b8e7ac8adb8953dfd07443c4e34eeb0b86de96eedb2930310e",
+      "origin": "retained SECTION12:00358A00"
+    },
+    {
+      "start": "0x3db6e0",
+      "end_exclusive": "0x3db788",
+      "sha256": "5aad9a43864044a4ec4034f08646f6245b4d3b4be49e3d4cb97525aeceda1c36",
+      "origin": "retained SECTION12:003DB6E0"
+    },
+    {
+      "start": "0x3db7a0",
+      "end_exclusive": "0x3dbad1",
+      "sha256": "6a8bdbc62fe1fb8ad5edf44ec4b37f5ede88aa9817b700b05059354f9dcc8c93",
+      "origin": "retained SECTION12:003DB7A0"
+    },
+    {
+      "start": "0x3dbcf0",
+      "end_exclusive": "0x3dbdb2",
+      "sha256": "2ce8e3e81b65f5f3261dcdf1699ad2934eacea2c80cd7c36b3a5f7f3ae4f4c25",
+      "origin": "retained SECTION12:003DBCF0"
+    },
+    {
+      "start": "0x3dbdc0",
+      "end_exclusive": "0x3dbe92",
+      "sha256": "c20ff7d55aa706600e571831769524ff004d068ec5cb983b24c4f62ded6c8557",
+      "origin": "retained SECTION12:003DBDC0"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x25ad10",
+      "end_exclusive": "0x25adf5",
+      "instructions": 67,
+      "returns": [
+        "0x25adf4"
+      ],
+      "calls": [
+        {
+          "pc": "0x25ad3f",
+          "target": "0x263d40"
+        },
+        {
+          "pc": "0x25ad7e",
+          "target": "0x25af60"
+        },
+        {
+          "pc": "0x25ada3",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x25adce",
+          "target": "0x268ea0"
+        }
+      ]
+    },
+    {
+      "entry": "0x25af60",
+      "end_exclusive": "0x25afb4",
+      "instructions": 25,
+      "returns": [
+        "0x25afb3"
+      ],
+      "calls": [
+        {
+          "pc": "0x25af9c",
+          "target": "0x3587c0"
+        }
+      ]
+    },
+    {
+      "entry": "0x263d40",
+      "end_exclusive": "0x263dc7",
+      "instructions": 41,
+      "returns": [
+        "0x263dc6"
+      ],
+      "calls": [
+        {
+          "pc": "0x263d72",
+          "target": "0x20e600"
+        }
+      ]
+    },
+    {
+      "entry": "0x269860",
+      "end_exclusive": "0x2699cc",
+      "instructions": 97,
+      "returns": [
+        "0x269884",
+        "0x2699cb"
+      ],
+      "calls": [
+        {
+          "pc": "0x2698df",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x269965",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x2699ab",
+          "target": "0x3dbb60"
+        },
+        {
+          "pc": "0x2699b3",
+          "target": "0x269640"
+        }
+      ]
+    },
+    {
+      "entry": "0x2640c0",
+      "end_exclusive": "0x2640c8",
+      "instructions": 2,
+      "returns": [
+        "0x2640c7"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x3dbb60",
+      "end_exclusive": "0x3dbbd8",
+      "instructions": 30,
+      "returns": [
+        "0x3dbbd7"
+      ],
+      "calls": [
+        {
+          "pc": "0x3dbbce",
+          "target": "0x3dbcf0"
+        }
+      ]
+    },
+    {
+      "entry": "0x3587c0",
+      "end_exclusive": "0x3587f2",
+      "instructions": 19,
+      "returns": [
+        "0x3587e9",
+        "0x3587f1"
+      ],
+      "calls": [
+        {
+          "pc": "0x3587c9",
+          "target": "0x263ff0"
+        }
+      ]
+    },
+    {
+      "entry": "0x263ff0",
+      "end_exclusive": "0x264005",
+      "instructions": 5,
+      "returns": [
+        "0x264004"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x358940",
+      "end_exclusive": "0x35895e",
+      "instructions": 12,
+      "returns": [
+        "0x35895a",
+        "0x35895d"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x358a00",
+      "end_exclusive": "0x358a15",
+      "instructions": 8,
+      "returns": [
+        "0x358a0b",
+        "0x358a14"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x3dbcf0",
+      "end_exclusive": "0x3dbdb2",
+      "instructions": 55,
+      "returns": [
+        "0x3dbd20",
+        "0x3dbd46",
+        "0x3dbdb1"
+      ],
+      "calls": [
+        {
+          "pc": "0x3dbd4e",
+          "target": "0x3dc130"
+        },
+        {
+          "pc": "0x3dbd5f",
+          "target": "0x3db7a0"
+        },
+        {
+          "pc": "0x3dbd75",
+          "target": "0x3db650"
+        },
+        {
+          "pc": "0x3dbd82",
+          "target": "0x263ff0"
+        },
+        {
+          "pc": "0x3dbd96",
+          "target": "0x263e40"
+        }
+      ]
+    },
+    {
+      "entry": "0x3db6e0",
+      "end_exclusive": "0x3db788",
+      "instructions": 45,
+      "returns": [
+        "0x3db77d",
+        "0x3db787"
+      ],
+      "calls": [
+        {
+          "pc": "0x3db75f",
+          "target": "0x3dbdc0"
+        }
+      ]
+    },
+    {
+      "entry": "0x3dbdc0",
+      "end_exclusive": "0x3dbe92",
+      "instructions": 54,
+      "returns": [
+        "0x3dbe91"
+      ],
+      "calls": [
+        {
+          "pc": "0x3dbdf2",
+          "target": "0x358a00"
+        },
+        {
+          "pc": "0x3dbdfd",
+          "target": "0x25d460"
+        },
+        {
+          "pc": "0x3dbe1d",
+          "target": "0x3587c0"
+        },
+        {
+          "pc": "0x3dbe5f",
+          "target": "0x3dbcf0"
+        },
+        {
+          "pc": "0x3dbe78",
+          "target": "0x263230"
+        }
+      ]
+    }
+  ],
+  "submit_carrier_control": {
+    "actor_writes": [
+      "0x26986c"
+    ],
+    "excluded_failure_pop": "0x269883",
+    "excluded_return": "0x269884",
+    "reaching_nodes": 83
+  },
+  "authored_control": {
+    "image": "gol_b01.s000",
+    "actor": "monster_00",
+    "ordinal": 26,
+    "entry": "0x14914",
+    "function_table": "0x2190",
+    "footer": "0x2890",
+    "lists": [
+      {
+        "list": 0,
+        "offset": "0x28b6",
+        "function_ids": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16
+        ],
+        "names": [
+          "entry00",
+          "entry01",
+          "entry02",
+          "entry03",
+          "entry04",
+          "entry05"
+        ]
+      },
+      {
+        "list": 1,
+        "offset": "0x28c4",
+        "function_ids": [
+          2,
+          5,
+          8,
+          11,
+          14,
+          17
+        ],
+        "names": [
+          "spawn00",
+          "spawn01",
+          "spawn02",
+          "spawn03",
+          "spawn04",
+          "spawn05"
+        ]
+      },
+      {
+        "list": 2,
+        "offset": "0x28d2",
+        "function_ids": [],
+        "names": []
+      },
+      {
+        "list": 3,
+        "offset": "0x28d4",
+        "function_ids": [],
+        "names": []
+      },
+      {
+        "list": 4,
+        "offset": "0x28d6",
+        "function_ids": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          18
+        ],
+        "names": [
+          "respawn00",
+          "respawn01",
+          "respawn02",
+          "respawn03",
+          "respawn04",
+          "respawn05"
+        ]
+      }
+    ]
+  },
+  "established": [
+    "setentrygroup wrapper34FA70 pops one group selector and calls25AD10 with the SAME actor argument for entry,spawn,respawn,talk,touch (lists0,1,4,2,3). Restoring savedRSI at its tail does not alter the already-copied RDX.",
+    "25AD10 reads the function from the supplied actor entry+40/18 and stores selection at that record+F6. Successful list1/4 selection sets override slots7/14 through its self ordinal and the current manager pool. With a coherent current manager, valid low self ordinal, stable pool/table and no interference, lookup returns the SAME record. This is function selection, not record allocation.",
+    "Retained gol_b01 monster_00 ordinal26 has six spawn and six respawn functions in ONE authored actor entry/function table. Different selection indices change function IDs in that record; they do not supply another authored actor ordinal. Empty talk/touch lists remain absent, not substituted successful functions.",
+    "269860 selects the spawn7 or conditional respawn14 override from its supplied actor and submits through3DBB60/3DBCF0 to that same actor. The record carrier is not reassigned before the call. Selection3DB6E0 and start3DBDC0 use that actor active-entry/wait-slot/function table/bytecode base.",
+    "Retained25DF00 passes its actor unchanged inRDX into25E4C0; its prefix storesRDX inR15, the already established interpreter register-bank base. Thus selected spawn/respawn function execution on this coherent path uses the authored actor record bank, not a new bank per selection or its SpawnKeep BattleStats block.",
+    "Previously accepted RC16 different-authored-actor in-pool reuse premise is superseded; no live reuse sample is needed to distinguish the two record-binding hypotheses on this bounded path. Actual multiple executions/order/cause/I1 values and full natural reachability are separate questions."
+  ],
+  "limitations": [
+    "Coherent current manager and self-ordinal identity, valid metadata/indices, normal ABI-preserving returns and no interfering writes are explicit premises; corrupt/cross-manager/encoded-ID states are not certified",
+    "No new game/native/emulated execution; retained SECTION12 raw instructions are source, and its external assertions are not tests run here",
+    "No full interpreter/corpus recensus; accepted RC16 read-before-write/native-access bounds and unreachable takeover-reader limits remain",
+    "Selecting/submitting/starting a request is not proof of natural executed bytecode, timing, callback lifetime or visible gameplay consequences",
+    "Producer checks are not independent acceptance or canonical incorporation; owning FABLE/OPUS/CONTRACT pages remain peer-owned"
+  ],
+  "affected_claims": [
+    "RC16 exact spawn-group record-binding residue: conditional same authored-record function execution",
+    "FABLE-REQ-ASTRA-REGFILE-REUSE and FRONTIER AQ11 obsolete different-actor in-pool setup",
+    "OPUS/SWE2-CONTRACT register lifetime and spawn-selector contract"
+  ],
+  "next_discriminator": "Independent review of coherent current-manager/self-index chain and scope; canonical owners incorporate only after acceptance. Any claim of actual repeated execution or current-manager interference must name a separate unresolved proposition.",
+  "checker_sha256": "8451d8e6ea353b9515cf423a7661bfbc1a6277fb13bdf5cde366c1f46bca0fb6",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "required_invocation_receipts": [
+    {
+      "path": "capture-regfile-spawn-record.py",
+      "sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "regfile-spawn-record-capture-01.status.json",
+      "sha256": "926d182a9e56632f4c5c5309c6eee201a7743ebf81ee8eec0b011a444fe37897"
+    },
+    {
+      "path": "regfile-spawn-record-capture-01.stdout",
+      "sha256": "e259c23450f9df43728c9b8be8aac7faad97b1de48674067bc158999b3aab150"
+    },
+    {
+      "path": "regfile-spawn-record-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "cleanup": "Finite retained/reference reads and disposable controls; no PC/game/input/instrument/save/config/reference or peer mutation"
+}

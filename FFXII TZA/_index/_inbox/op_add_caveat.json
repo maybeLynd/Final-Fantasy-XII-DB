@@ -1,0 +1,1 @@
+{"action":"add","task":{"id":"OPUS-PUB-PHYRE-AUDIT-CAVEAT","kind":"research","priority":"P1","requester":"OPUS","assigned_to":"OPUS","target":"mark the Phyre sampled distribution as pending the unfinished independent audit","scope":"CONTRACT-phyre-class-descriptor.md + op files","completion":"publish commit recorded","dependencies":[],"resources":[{"key":"@publication"}]}}

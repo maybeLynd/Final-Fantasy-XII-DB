@@ -1,0 +1,7 @@
+control: .seb entries in the archive index: 248 (published 248)
+magic: {b'SeBlock ': 248}
+entry count +0x0A: {128: 248} ; +0x0C: {'+0x0C == file size': 248} ; block id: {'+0x08 == file number': 248}
+audio bank: {"the id's se<id>.win.sab exists": 248}
+present entries per file (histogram top): [(15, 106), (12, 73), (32, 29), (31, 21), (13, 11), (17, 3), (123, 1), (28, 1)] ; total entries: 4404
+offsets: {'ascending': 248} {'all in bounds': 248} {'sparse': 247, 'present entries contiguous from 0': 1}
+first byte of each entry's u32 (top): [(2, 3541), (1, 674), (4, 134), (130, 29), (131, 9), (3, 7)] ; its +4 byte (top): [(0, 2647), (128, 1574), (1, 133), (4, 33), (5, 11), (17, 5)]

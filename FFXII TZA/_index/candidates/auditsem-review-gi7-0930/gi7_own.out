@@ -1,0 +1,32 @@
+G1 rip-relative operands into 02CA4600..02CA4900: 11
+    004171E7 mov rax, qword ptr [rip + 0x288d47a] -> 02CA4668
+    004177D0 mov rax, qword ptr [rip + 0x288ce31] -> 02CA4608
+    004177F0 mov rax, qword ptr [rip + 0x288ce59] -> 02CA4650
+    004178F9 mov rax, qword ptr [rip + 0x288cd68] -> 02CA4668
+    00417C88 mov rax, qword ptr [rip + 0x288ca09] -> 02CA4698
+    0041CCE5 lea rax, [rip + 0x2887984] -> 02CA4670
+    0041D6D3 lea rcx, [rip + 0x2886f96] -> 02CA4670
+    0041D6E0 mov qword ptr [rip + 0x2886f81], rcx -> 02CA4668
+    0042F002 lea rax, [rip + 0x28758cb] -> 02CA48D4
+    0042F060 lea rbx, [rip + 0x2875891] -> 02CA48F8
+    0042F19B lea rdx, [rip + 0x287572e] -> 02CA48D0
+G2 image-base-relative operands: []
+G3 aligned qwords into the range: 0; raw imm32/disp32 byte hits of the absolute VA: 0
+G4 constant-base inline loops within 64 KB below / inside bank B: [('0042F071', '02CA48F8', '0x30', '0x600'), ('0041CCB1', '02CA4410', '0x40', '?'), ('0041CCF0', '02CA4670', '0x40', '0x240'), ('0042F014', '02CA48D4', '0x30', '0x600')]
+G5 call 0041D6D0 at 00426A1C:
+     00426A00 mov dword ptr [rsi + 0x48818], ebx
+     00426A06 mov word ptr [rsi + 0x4882c], ax
+     00426A0D call 0x41d6e0
+     00426A12 lea rdx, [rip + 0xfa237]
+     00426A19 lea ecx, [rdi + 5]
+     00426A1C call 0x41d6d0
+G6 bank-A slot-5 registrations in the actor-side registrars (instructions before each call site):
+     002EA47D mov qword ptr [rip + 0x1e79bfc], rax
+     002EA484 lea rdx, [rip - 0x17cdeb]
+     002EA48B lea rax, [rip + 0x1e7790e]
+     002EA492 mov ecx, 5
+     002EA5EF int3 
+     002EA5F0 sub rsp, 0x28
+     002EA5F4 lea rdx, [rip - 0x17cf5b]
+     002EA5FB mov ecx, 5
+G6 0016D6A0 body: ['ret 0']

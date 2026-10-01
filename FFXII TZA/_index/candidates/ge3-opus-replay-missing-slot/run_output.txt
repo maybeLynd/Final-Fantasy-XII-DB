@@ -1,0 +1,1 @@
+ok {"slot bound (control)": {"returned": true, "reached": ["0031E14C", "0031E22C", "0031E24F", "0031E288"], "unmapped_reads": []}, "slot null": {"returned": true, "reached": [], "unmapped_reads": []}, "slot +0xC zeroed": {"returned": false, "reached": ["0031E14C", "0031E22C"], "unmapped_reads": [["0031E22C", "10"]]}}

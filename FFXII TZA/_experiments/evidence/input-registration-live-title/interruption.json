@@ -1,0 +1,12 @@
+{
+  "at": 1789298375.879606,
+  "status": "INTERRUPTED_BEFORE_GAME_OBSERVATION",
+  "requested_action": "sky.launch_app exact verified FF12 executable",
+  "tool_response": "Computer Use was stopped by the user with the physical Escape key. Stop your work, do not call further Computer Use tools in this turn, and send a final message noting that the user stopped Computer Use.",
+  "evidence_form": "Recorded tool response text and subsequent independent process/file reads",
+  "process_check_immediate": [],
+  "process_check_final": [],
+  "registration_samples": 0,
+  "input_sent_to_ff12": "not established",
+  "meaning": "No live keyboard observation, no loaded save and no registration verdict. Do not reuse this setup as a completed feasibility run."
+}

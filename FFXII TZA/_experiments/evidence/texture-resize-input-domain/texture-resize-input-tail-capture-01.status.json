@@ -1,0 +1,4 @@
+{
+  "exit": 0,
+  "driver": "capture-texture-resize-input-tail.py"
+}

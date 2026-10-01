@@ -1,0 +1,446 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "image_base": "0x120000",
+ "real_bodies_executed": [
+  {
+   "va": "0x16D6A0",
+   "name": "st_extra",
+   "span": "0x16D6A0-0x16D6A2",
+   "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b",
+   "note": "single-byte ret - real extraEffect target for removing transitions"
+  },
+  {
+   "va": "0x17D470",
+   "name": "ctxrd",
+   "span": "0x17D470-0x17D483",
+   "sha256": "a7ea2bd577c99891ad2a3cf374e2246d4fc66f45ac7e6915f0ac907e2f9b605f"
+  },
+  {
+   "va": "0x1D50D0",
+   "name": "sing",
+   "span": "0x1D50D0-0x1D5111",
+   "sha256": "fc1ebbe00bb26fb2907334d5fe8c556e9473e01c184d200578bfc3045ac78974"
+  },
+  {
+   "va": "0x20E600",
+   "name": "codec",
+   "span": "0x20E600-0x20E609",
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "va": "0x2360D0",
+   "name": "mmap",
+   "span": "0x2360D0-0x2360F6",
+   "sha256": "4b77adb370aee01653014df554d81232865baeefeb47031bdf079dd6c3aa0e6d"
+  },
+  {
+   "va": "0x236820",
+   "name": "uslot",
+   "span": "0x236820-0x236844",
+   "sha256": "f53995268db38c36b63da2cdd7f5979c5600294e05010a97c09aa149f9129578"
+  },
+  {
+   "va": "0x236850",
+   "name": "ucount",
+   "span": "0x236850-0x236856",
+   "sha256": "78967330e777673e22aa8a475b61095e6cc0b7ce4b6641c5e641f713cca6ab33"
+  },
+  {
+   "va": "0x238AE0",
+   "name": "bclr",
+   "span": "0x238AE0-0x238AFC",
+   "sha256": "165b1fc50fd7478ef0a97cdb16c7d2baf9bec0c85ce481a494e757a7c16d8fc2"
+  },
+  {
+   "va": "0x238B70",
+   "name": "bset",
+   "span": "0x238B70-0x238BE7",
+   "sha256": "dfaab0cb20c1da8a2b176987d71f56388597397b53110bc78c15894259bba9b1"
+  },
+  {
+   "va": "0x24A5A0",
+   "name": "strfind",
+   "span": "0x24A5A0-0x24A5EA",
+   "sha256": "ce18f2d09bc592bef45be9d964347d0111bed830df6c4988acd47a52d764a809"
+  },
+  {
+   "va": "0x263D30",
+   "name": "memidx",
+   "span": "0x263D30-0x263D37",
+   "sha256": "f3f232f5663beb7f7dae9ba090a8663485d407dbf4061342789d0cd37e4b91ea"
+  },
+  {
+   "va": "0x265020",
+   "name": "poscp",
+   "span": "0x265020-0x26505C",
+   "sha256": "cf09b85d637d05ca695217249179536c30ad2813ed42f5fc678f79963eec6e2d"
+  },
+  {
+   "va": "0x26BD20",
+   "name": "cdw",
+   "span": "0x26BD20-0x26BD32",
+   "sha256": "c6f7dc49edee65292ce36fd8f2d07befe3635fca53e06606b060a03efba2ab08"
+  },
+  {
+   "va": "0x28F1F0",
+   "name": "nb",
+   "span": "0x28F1F0-0x28F25F",
+   "sha256": "e0f48a1a2094d00cc1b3e6ad96af73be03ef7e67a289daf1cf3cf038aa14e404"
+  },
+  {
+   "va": "0x28FBE0",
+   "name": "qinit",
+   "span": "0x28FBE0-0x28FC89",
+   "sha256": "c45da515fff82f559601076cb4e0c0d97d18ab745e9ed533b05f043ca4336f51"
+  },
+  {
+   "va": "0x296280",
+   "name": "vscan",
+   "span": "0x296280-0x2962B2",
+   "sha256": "43e012fa42c426b86771fec2eca1f65d7e050e08c9d814bba5554d6e944bb8af"
+  },
+  {
+   "va": "0x2962C0",
+   "name": "vdef",
+   "span": "0x2962C0-0x2962C7",
+   "sha256": "e9980edc9199178bab230bf5a2761ba1250d9ad27e76d45b9d00e6e923462fe7"
+  },
+  {
+   "va": "0x2DD7B0",
+   "name": "catb",
+   "span": "0x2DD7B0-0x2DD7D2",
+   "sha256": "090593bc8e91c73fe8658aa944f72964383212a40b4b7312fc7a338628b65da1"
+  },
+  {
+   "va": "0x2DD7E0",
+   "name": "catdw",
+   "span": "0x2DD7E0-0x2DD803",
+   "sha256": "38068522870507f2c615a5c6f9bb90522d1095c2402bb508dec41290c7fee6ea"
+  },
+  {
+   "va": "0x2E1C20",
+   "name": "capset",
+   "span": "0x2E1C20-0x2E1C3F",
+   "sha256": "d8af96c3bd16486b1c5634b85e6024ff1cc9a8626d50f023e90024e8e0904a5c"
+  },
+  {
+   "va": "0x2E7C10",
+   "name": "centry",
+   "span": "0x2E7C10-0x2E7DC1",
+   "sha256": "821f91ed4c207fa263f1ec7db627dd4b6a44df89bbe21ec99294d419dd25d7c8"
+  },
+  {
+   "va": "0x2EB030",
+   "name": "evwr",
+   "span": "0x2EB030-0x2EB07C",
+   "sha256": "8ecce46cd004f838970a809875d7e7bddcbb9ac3966ae5dcdce80deb93ab7656"
+  },
+  {
+   "va": "0x2EB0D0",
+   "name": "evpost",
+   "span": "0x2EB0D0-0x2EB32B",
+   "sha256": "70f62bfbadf5906fac755eca473c9627687b2635b7fd8aeb9d5ae8505c30f6e2"
+  },
+  {
+   "va": "0x2F8E90",
+   "name": "kkind_t",
+   "span": "0x2F8E90-0x2F8F12",
+   "sha256": "284a31f7fe782bac20d681b8dd57b018a92709cd4b2168a512b635920e015355"
+  },
+  {
+   "va": "0x2FA390",
+   "name": "kkind",
+   "span": "0x2FA390-0x2FA3A7",
+   "sha256": "bb3b2fdfc82774b900daf5c12a5a7fca9893fa903573a2e0c2084a48afcbe3c3"
+  },
+  {
+   "va": "0x2FA3B0",
+   "name": "prox",
+   "span": "0x2FA3B0-0x2FA466",
+   "sha256": "2a9e1cb448f83916a49e5b6b1ee709f470929efbf77f285b33fcdf43f2368bbc"
+  },
+  {
+   "va": "0x300520",
+   "name": "hp_set_thunk",
+   "span": "0x300520-0x300527",
+   "sha256": "e5f6ff46ac7b8c9c5111b52ea35c48f0c33a93e1831a725135d7485758e4f863",
+   "note": "absolute-set thunk: edx -= [rcx+0x48], tail-jmps to 0x300530"
+  },
+  {
+   "va": "0x300530",
+   "name": "hp_write",
+   "span": "0x300530-0x30089F",
+   "sha256": "ebad5845dd8a1c8a9bc10da6c3aecb10c473f5651f780a83726687924fb35a94",
+   "note": "the HP-write / lethal-transition operation; executes from shipped bytes"
+  },
+  {
+   "va": "0x306F00",
+   "name": "gd",
+   "span": "0x306F00-0x30702E",
+   "sha256": "6cfd09b67fb4e461e33784f1adda65d4b71d7dd9c514976c3bc97fe92412b088"
+  },
+  {
+   "va": "0x307140",
+   "name": "caprow",
+   "span": "0x307140-0x3071F6",
+   "sha256": "5b6544b6565a2133ffa4feb920e3cd4e2746ccc792404e31d86806b4b6beae7c"
+  },
+  {
+   "va": "0x30AB40",
+   "name": "relat",
+   "span": "0x30AB40-0x30AD80",
+   "sha256": "14206f8b99fff124f6fe1a0b45ccfc03657092cbe583cb4f0aec32843424e685"
+  },
+  {
+   "va": "0x30B770",
+   "name": "fbuild",
+   "span": "0x30B770-0x30B7E6",
+   "sha256": "89aff45510225d5b016cf1b2de9789d6c82d4ffabeadb0875f09e60145977a85"
+  },
+  {
+   "va": "0x30B7F0",
+   "name": "cgate",
+   "span": "0x30B7F0-0x30B8D1",
+   "sha256": "f5be2f457552de97dc2fb0654649940a168354cc3c48fb1a3de8acd45bdc90ea"
+  },
+  {
+   "va": "0x30B8E0",
+   "name": "gate3",
+   "span": "0x30B8E0-0x30B94C",
+   "sha256": "eecc499b981c5465aee24758b49d973a9ba465939bb497a88beb67cf26d6c93a"
+  },
+  {
+   "va": "0x30B9B0",
+   "name": "gate1",
+   "span": "0x30B9B0-0x30BA23",
+   "sha256": "8fe6f6728679737ae9daa5015b975053369ad21e9e0ffdef6ee288c7cc1a476c"
+  },
+  {
+   "va": "0x30E360",
+   "name": "st",
+   "span": "0x30E360-0x30E8E9",
+   "sha256": "8e0458b02353ed564c1a82337cf6442890a59ffdc629fa24ee9c1d8faaf9e6b8",
+   "note": "status transition (KO set/clear); in-image data tables at 0x30E88C/0x30E8A4/0x30E8C4 inside the span; executed envelope verified 0x30E360..0x30E889"
+  },
+  {
+   "va": "0x316D70",
+   "name": "find_tbuf",
+   "span": "0x316D70-0x316D9E",
+   "sha256": "9b481ba71d9ded6f59b4482a709471d647af2164671e1935ad8a7a75e0da1067"
+  },
+  {
+   "va": "0x31B860",
+   "name": "find_unit",
+   "span": "0x31B860-0x31B8B2",
+   "sha256": "9a162077226a0c37d235edf972c43ef16187e594054b0d54eb7ddfd2cddcca8f"
+  },
+  {
+   "va": "0x3272A0",
+   "name": "viewer",
+   "span": "0x3272A0-0x3272D6",
+   "sha256": "18e2ae8fea979cb2a00406bc6a5ea625088cf815f4948b1faf6b113ced14ec0d"
+  },
+  {
+   "va": "0x3283D0",
+   "name": "rx",
+   "span": "0x3283D0-0x328476",
+   "sha256": "995ec576ea1f652c0952d7c09ef3c25db72496fe18ad730a12810802365e7d4d"
+  },
+  {
+   "va": "0x3299B0",
+   "name": "ev",
+   "span": "0x3299B0-0x329A02",
+   "sha256": "357a8744a399e1c4ca92c912fb982b54ff5562180cc3bbf078fe30dfd3ef13b1"
+  },
+  {
+   "va": "0x32A150",
+   "name": "clk",
+   "span": "0x32A150-0x32A156",
+   "sha256": "36319fa94fb19298d1089db960ecde8fdab9a280e76db2240308222e49d9e85c"
+  },
+  {
+   "va": "0x3588B0",
+   "name": "idres",
+   "span": "0x3588B0-0x35893E",
+   "sha256": "ee587d783b5790f447385952fff3663b09d20653e57327ed10dd1d06ad72b644"
+  },
+  {
+   "va": "0x3589B0",
+   "name": "wid",
+   "span": "0x3589B0-0x3589D5",
+   "sha256": "808e4fe5b600c98b70504da52344ec98cab2e89c5e46b19b3c605dd8cbed4c55"
+  },
+  {
+   "va": "0x3590D0",
+   "name": "actorid",
+   "span": "0x3590D0-0x3590D6",
+   "sha256": "a40d2ed05eca9aa062885c59f8ce7103f120dabe117bf557a2d23ac34b158241"
+  },
+  {
+   "va": "0x359200",
+   "name": "supw",
+   "span": "0x359200-0x35924B",
+   "sha256": "2f2d6a316a51409fa09a3ebcb36000da16cefc5df71ad01a8916f9aa779b417b"
+  },
+  {
+   "va": "0x359330",
+   "name": "supb",
+   "span": "0x359330-0x359390",
+   "sha256": "afbf373ba155e39881fd5ab7922c03fb66704edab75b4ab39f4a11f01f69a83e"
+  },
+  {
+   "va": "0x377C20",
+   "name": "field15",
+   "span": "0x377C20-0x377C6D",
+   "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea"
+  },
+  {
+   "va": "0x3848E0",
+   "name": "st_init",
+   "span": "0x3848E0-0x3849AC",
+   "sha256": "8dad3c9a01cba8f01cfe8593ce7dcc88ed426d571094207952a31f86c9a0e6ee"
+  },
+  {
+   "va": "0x386A50",
+   "name": "st_add",
+   "span": "0x386A50-0x386A6F",
+   "sha256": "1158e58f6d46c8ce1bc36b83bb000c4cf394bb03ffdea76a7f5cbff5b75c344a"
+  },
+  {
+   "va": "0x386A70",
+   "name": "st_rm",
+   "span": "0x386A70-0x386AD6",
+   "sha256": "3850f8a9698e4f497a79c3366d41c205d10f1248fb1edefa6c3dbd1bab443849"
+  },
+  {
+   "va": "0x3876D0",
+   "name": "st_beat",
+   "span": "0x3876D0-0x387727",
+   "sha256": "464cede59c35f8ffbe78a9d11917057923045edb0586d8c5885e9fbfc5fd4e7d"
+  },
+  {
+   "va": "0x387730",
+   "name": "st_dur",
+   "span": "0x387730-0x3879B4",
+   "sha256": "15a745ece1c91590c6f029cf5d78ca261072fbb4e37d965593d553d3a3d892f5"
+  },
+  {
+   "va": "0x3A1920",
+   "name": "dist",
+   "span": "0x3A1920-0x3A1954",
+   "sha256": "7413b4eadadf048a5012e093e53c4d6c02ac53fb832c224e8ea5e63fd0026958"
+  },
+  {
+   "va": "0x3BBD00",
+   "name": "rxpost",
+   "span": "0x3BBD00-0x3BBF88",
+   "sha256": "f81ac4cdde0d56c61d965f90dfe2d446bb2a9bacf259582bec42bd74c6d577cf"
+  },
+  {
+   "va": "0x3EFD00",
+   "name": "digits",
+   "span": "0x3EFD00-0x3EFDEB",
+   "sha256": "dbd3e0284fe2eb1522b7d6b77181dae4b2bf50b4e249bf8eac645ec09e97a821"
+  },
+  {
+   "va": "0x3F8980",
+   "name": "vpublish",
+   "span": "0x3F8980-0x3F89BD",
+   "sha256": "7abf236a2decdd5b224f1cb2f9cf8b0aabf08871d6c9d2e739eb530dc0dc3aba"
+  },
+  {
+   "va": "0x469570",
+   "name": "klookup",
+   "span": "0x469570-0x46969E",
+   "sha256": "b515e589b077dec7589d6daa2e24c98d398d09477053e78175601b44a69cb152"
+  },
+  {
+   "va": "0x469BB0",
+   "name": "kh",
+   "span": "0x469BB0-0x469BFC",
+   "sha256": "1dd1b0ce42fc16fb2ba8237bdd20028e1eeaa38b1b61577640e0a6e5025b88d7"
+  },
+  {
+   "va": "0x46AB10",
+   "name": "kring",
+   "span": "0x46AB10-0x46AC82",
+   "sha256": "5f45b89a8deb367719333c988d0649e1c107157751e769fdf9beb8b9168d46b0"
+  },
+  {
+   "va": "0x506700",
+   "name": "qfill",
+   "span": "0x506700-0x5068B0",
+   "sha256": "3869dfec477ddccc2eb79b9852ee2f9df2efdd02db78a0986bd1e1b2f86e1f25"
+  },
+  {
+   "va": "0x808C40",
+   "name": "cookie",
+   "span": "0x808C40-0x808C60",
+   "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63",
+   "note": "__security_check_cookie; success path bnd ret at 0x808C56, fail tail jmp 0x809654 at 0x808C5C (report routine outside scope)"
+  },
+  {
+   "va": "0x861EC0",
+   "name": "memset_t",
+   "span": "0x861EC0-0x861EC5",
+   "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+   "note": "memset import thunk jmp [0x8C2A60]; slot planted to fixture rep-stosb"
+  },
+  {
+   "va": "0x861F14",
+   "name": "sqrtf_t",
+   "span": "0x861F14-0x861F19",
+   "sha256": "bef9ef31cf27c89527cd3a858721dbf8901af34b5103f2f3ce175138fc4daa76",
+   "note": "sqrtf import thunk jmp [0x8C2BB8]; slot planted to fixture sqrt"
+  }
+ ],
+ "stubbed_callees": {
+  "0x5369C0": "kill-ledger presentation callback - ret-stub, args logged (fired)",
+  "0x3112F0": "ST transition-result applier - ret-stub, never reached (ST never produces a deferred result in this suite)",
+  "0x300FC0": "KO-arm defeat cleanup - ret-stub, args logged (fired)",
+  "0x312280": "rewards sink - ret-stub, args logged (fired)",
+  "0x301140": "recovery sink - ret-stub, args logged (fired)",
+  "0x300140": "ST case-4 action - ret-stub, never reached",
+  "0x307D10": "ST case-4 second action - ret-stub, never reached",
+  "0x3284D0": "reaction sink - ret-stub, args logged (fired)",
+  "0x30FED0": "post-write recompute - ret-stub, args logged (fired)",
+  "0x46A800": "extra kill-history add - ret-stub, args logged (fired)"
+ },
+ "globals_planted": {
+  "0x208E6A0": "unit count dword",
+  "0x208E688": "unit table base qword",
+  "0x21654C4": "active field index",
+  "0x2ADD100": "field table ptr",
+  "0x2089340": "battle state dword",
+  "0x22C2158": "flag byte (fbuild bit1)",
+  "0x22C2160": "mode dword (cgate byte+4 &0x20)",
+  "0x1F81428": "context singleton slot",
+  "0x208D45C": "raw tick",
+  "0x1DFE0B8": "float scale 1.0",
+  "0x1DFE0B4": "beat scale",
+  "0x2B457D0": "reaction queue ptr",
+  "0x2B443C0": "queue cursor",
+  "0x2EBF018": "kill-kind registry ptr",
+  "0x2EBB54C": "kill-ring cursor",
+  "0x2EBB560": "kill-ring base (10x0x20)",
+  "0x1F83530": "codec base (0: rva==va)",
+  "0x22C7FE0": "actor global",
+  "0x2EBF118": "status registry slot",
+  "0x209BE80": "deep-global ptr",
+  "0x209BF40": "view table base (VIEWB)",
+  "0x209C240": "default view",
+  "0x1EEBB00": "view post record",
+  "0x2EC13C0": "group table",
+  "0x215F1C0": "capability table",
+  "0x22C8000/0x22C8004": "suppression word/byte",
+  "0x209A2C4": "completion dword",
+  "0x1F44830": "__security_cookie (top16 zero required)",
+  "0x8C2A60/0x8C2BB8/0x8C3098": "memset/sqrtf/rand IAT slots -> fixture routines"
+ },
+ "fixture_layout": "records/units/spawn/group/queue/view/kill-ring/status-data planted per case; see check.py build()",
+ "unreached_scope": {
+  "0x2E1CA0": "caprow ecx=0 arm (capability clear) - hooked, never reached: GD completion only calls ecx=1",
+  "0x263FF0": "idres clsget arm - hooked, never reached",
+  "0x263E30": "idres linked-object arm - hooked, never reached"
+ }
+}

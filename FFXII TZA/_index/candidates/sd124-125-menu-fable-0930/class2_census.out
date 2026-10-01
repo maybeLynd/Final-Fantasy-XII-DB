@@ -1,0 +1,8 @@
+00320040 forwards ecx as the class (0032004F/00320051 -> 0031B9F0): yes
+  0025408C in 00253C70 InputGameplay_ArbitrateDigitalInput class(ecx)=3
+  0025468C in 00254560 FUN_00254560                        class(ecx)=3
+  00272E9A in 00272E70 FUN_00272e70                        class(ecx)=3
+  00283368 in 00283270 FUN_00283270                        class(ecx)=3
+  0035BDBE in 0035BC50 FUN_0035bc50                        class(ecx)=2
+CONTROL 0035BDBE passes class 2: PASS
+FAILS 0

@@ -1,0 +1,1 @@
+All five Python instruments parsed. Existing observer text identical (newline serialization changed, both hashes retained). Sender only adds P choice and VK0x50/index15; pulse, guard and finally-release logic unchanged. An initial byte-equality check rejected differing newline encoding; normalized text comparison passed. No live acceptance claimed.

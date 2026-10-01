@@ -1,0 +1,11 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-164",
+ "result_refs": [
+  "b65119a8001c7eaf5132effc8842d45ff20e4116",
+  "822b90402 (efx splice)",
+  "1b98b2d3d (resource-queue splice)"
+ ],
+ "note": "batch-164 publish b65119a80 + carrier splices 822b90402 (efx) and 1b98b2d3d (resource-request-queue): 22 entries + interior anchors across 18 bearing hosts; all verified at HEAD.",
+ "summary": ""
+}

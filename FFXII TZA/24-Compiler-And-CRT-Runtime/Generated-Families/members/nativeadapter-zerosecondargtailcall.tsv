@@ -1,0 +1,8 @@
+# NativeAdapter.ZeroSecondArgTailCall - EC-7 family C
+# r8d=arg2; edx=0; tail-dispatch to a member op. Sibling of
+# # ConstantFirstArgumentTailCall (which sets ecx).
+address	targets
+002DF610	001DC240
+002DF6A0	001DC350
+002F1770	002F1780
+00408F80	004090D0

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\test_contradiction_index.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_changed_header_requires_review_instead_of_duplicate_id (__main__.PreservationTests.test_changed_header_requires_review_instead_of_duplicate_id) ... ok\ntest_concurrent_ledger_change_is_not_overwritten (__main__.PreservationTests.test_concurrent_ledger_change_is_not_overwritten) ... ok\ntest_db_option_defaults_to_that_databases_ledger (__main__.PreservationTests.test_db_option_defaults_to_that_databases_ledger) ... ok\ntest_duplicate_header_and_duplicate_ids_are_rejected (__main__.PreservationTests.test_duplicate_header_and_duplicate_ids_are_rejected) ... ok\ntest_ledger_examples_ignored_but_permanent_correction_retained (__main__.PreservationTests.test_ledger_examples_ignored_but_permanent_correction_retained) ... ok\ntest_legacy_manual_claim_does_not_match_by_line_number (__main__.PreservationTests.test_legacy_manual_claim_does_not_match_by_line_number) ... ok\ntest_legacy_snippet_adopts_after_line_drift (__main__.PreservationTests.test_legacy_snippet_adopts_after_line_drift) ... ok\ntest_legacy_snippet_keeps_internal_spacing_during_adoption (__main__.PreservationTests.test_legacy_snippet_keeps_internal_spacing_during_adoption) ... ok\ntest_line_drift_and_earlier_new_record_preserve_id_and_all_manual_cells (__main__.PreservationTests.test_line_drift_and_earlier_new_record_preserve_id_and_all_manual_cells) ... ok\ntest_missing_source_retains_history (__main__.PreservationTests.test_missing_source_retains_history) ... ok\ntest_reappearing_source_reuses_id (__main__.PreservationTests.test_reappearing_source_reuses_id) ... ok\ntest_replacement_failure_leaves_original_bytes_and_no_temporary_file (__main__.PreservationTests.test_replacement_failure_leaves_original_bytes_and_no_temporary_file) ... ok\ntest_roundtrip_preserves_all_cells_and_source_anchors (__main__.PreservationTests.test_roundtrip_preserves_all_cells_and_source_anchors) ... ok\ntest_unknown_columns_and_malformed_rows_fail_without_truncation (__main__.PreservationTests.test_unknown_columns_and_malformed_rows_fail_without_truncation) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.111s\n\nOK\n",
+  "historical_ids_preserved": 37,
+  "curated_cells_preserved": 120,
+  "current_rows": 59,
+  "fresh_read_only_reextraction_equal": true,
+  "ledger_sha256": "5cd392de527daff63b9b93b6a93df5badbd164d1d641b4a8697a6333cee822f8",
+  "input_source_sha256": {
+    "contradiction_index.py": "782df6057bb1e246b8dccbd70b84b5492c30793bb0fc79178b1ca22ef48f395b",
+    "test_contradiction_index.py": "2adc296af2462eaf14e7044ce691ce095d14153c636521903c0f4fd76dfb7ec4"
+  }
+}

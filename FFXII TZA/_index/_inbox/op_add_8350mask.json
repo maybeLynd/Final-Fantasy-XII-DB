@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-8350MASK-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the ACTL 003E8350 mask-composition verification: bit8 live-composed via 0037B030 tag6->tag3 two-hop charge test, 003E82A0 trampoline, tag6-miss->tag3[0] default.",
+  "scope": "the-map-ctrl-pack.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, op_fin_type6census.json",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

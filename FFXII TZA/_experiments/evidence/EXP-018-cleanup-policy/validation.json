@@ -1,0 +1,33 @@
+{
+  "windows": {
+    "baseline": {
+      "samples": 6232,
+      "seconds": 64.98999879999974,
+      "source_identity": true,
+      "input_controls": true,
+      "foreground": true,
+      "live_code_identity": true
+    },
+    "positive": {
+      "samples": 6234,
+      "seconds": 64.99193310000192,
+      "source_identity": true,
+      "input_controls": true,
+      "foreground": true,
+      "live_code_identity": true
+    },
+    "postpositive": {
+      "samples": 6236,
+      "seconds": 64.99846179999804,
+      "source_identity": true,
+      "input_controls": true,
+      "foreground": true,
+      "live_code_identity": true
+    }
+  },
+  "api_success": true,
+  "early_clears": 103,
+  "trace_rows": 2,
+  "restore": true,
+  "scope": "Bounded evidence verification; screenshots inspected separately, not automatic scientific verdict"
+}

@@ -1,0 +1,7 @@
+{
+  "exit": 0,
+  "command": [
+    "prove-texture-resize-drain-caller.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-resize-drain-caller-result-01.json"
+  ]
+}

@@ -1,0 +1,233 @@
+{
+ "K1": {
+  "act138": "0",
+  "act153_writes": [],
+  "actv_h": 65535,
+  "entered": [],
+  "free_h": 0,
+  "halt": [],
+  "imports": [],
+  "ok": true,
+  "pool_writes": 0
+ },
+ "K2": {
+  "act138": "2B4E4C0",
+  "act153_writes": [
+   3
+  ],
+  "actv_h": 0,
+  "entered": [
+   "c1",
+   "c2",
+   "c3",
+   "c4",
+   "c5"
+  ],
+  "free_h": 1,
+  "halt": [],
+  "imports": [
+   "cosf",
+   "memset",
+   "sinf"
+  ],
+  "ok": true,
+  "pool_writes": 73
+ },
+ "K3": {
+  "act138": "2B57340",
+  "act153_writes": [
+   3
+  ],
+  "actv_h": 120,
+  "entered": [
+   "c1",
+   "c2",
+   "c3",
+   "c4",
+   "c5"
+  ],
+  "free_h": 0,
+  "halt": [],
+  "imports": [
+   "cosf",
+   "memset",
+   "sinf"
+  ],
+  "ok": true,
+  "pool_writes": 79
+ },
+ "K4": {
+  "act138": "0",
+  "act153_writes": [],
+  "actv_h": 65535,
+  "entered": [
+   "c1",
+   "c2",
+   "pred_00265680",
+   "pred_0037C860",
+   "c3",
+   "c4",
+   "c5"
+  ],
+  "free_h": 65535,
+  "halt": [],
+  "imports": [],
+  "ok": true,
+  "pool_writes": 0
+ },
+ "K5": {
+  "c1": {
+   "actor_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c1"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   },
+   "body_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c1"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   }
+  },
+  "c2": {
+   "actor_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c2"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   },
+   "body_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c2"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   }
+  },
+  "c3": {
+   "actor_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c3"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   },
+   "body_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c3"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   }
+  },
+  "c4": {
+   "actor_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c4"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   },
+   "body_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c4"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   }
+  },
+  "c5": {
+   "actor_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c5"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   },
+   "body_null": {
+    "act138": "0",
+    "act153_writes": [],
+    "actv_h": 65535,
+    "entered": [
+     "c5"
+    ],
+    "free_h": 65535,
+    "halt": [],
+    "imports": [],
+    "ok": true,
+    "pool_writes": 0
+   }
+  }
+ },
+ "allowed_functions": 35,
+ "cases": {
+  "K1_null_actor_returns_before_allocation": true,
+  "K2_fresh_create_attaches_body0_and_runs_all_consumers": true,
+  "K3_one_body_per_record_release_then_re_pop": true,
+  "K4_exhausted_null_stored_untested_every_consumer_guards": true,
+  "K5_each_consumer_guards_null_body_and_null_actor": true
+ },
+ "ok": true,
+ "predicates_executed": [
+  "pred_00265680",
+  "pred_0037C860"
+ ]
+}

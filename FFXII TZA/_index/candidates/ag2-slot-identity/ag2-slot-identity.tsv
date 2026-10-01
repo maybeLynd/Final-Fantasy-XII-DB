@@ -1,0 +1,65 @@
+slot	index	binding	route	site	pack_entry	manifest_file	pack_entry_state	note
+02EBF008	0	battle_pack directory +0x118	registrar 003845F0	0023701E	69	movie.bin	non-empty in all nine packs	
+02EBF010	1	battle_pack directory +0x114	registrar 003845F0	00237004	68	move_support.bin	non-empty in all nine packs	
+02EBF018	2	battle_pack directory +0xC	registrar 003845F0	00236C86	2	battle_message.bin	non-empty in all nine packs	
+02EBF020	3	battle_pack directory +0x70	registrar 003845F0	00236E07	27	tutorial_data.bin	non-empty in all nine packs	
+02EBF028	4	battle_pack directory +0xF0	registrar 003845F0	00236FCA	59	savemember_data.bin	non-empty in all nine packs	
+02EBF030	5	battle_pack directory +0xF4	registrar 003845F0	00236FB0	60	saveparty_data.bin	non-empty in all nine packs	
+02EBF038	6	battle_pack directory +0x34	registrar 003845F0	00236D67	12	license_data.bin	non-empty in all nine packs	
+02EBF040	7	battle_pack directory +0xEC	registrar 003845F0	00236F96	58	ability_data.bin	non-empty in all nine packs	
+02EBF048	8	battle_pack directory +0xAC	registrar 003845F0	00236F62	42	shoki_data.bin	non-empty in all nine packs	
+02EBF050	9	battle_pack directory +0xA8	registrar 003845F0	00236F48	41	attribute_data.bin	non-empty in all nine packs	
+02EBF058	10	battle_pack directory +0xE8	registrar 003845F0	00236F7C	57	horidashi.bin	non-empty in all nine packs	
+02EBF060	11	battle_pack directory +0x74	registrar 003845F0	00236E1E	28	price_data.bin	non-empty in all nine packs	
+02EBF068	12	battle_pack directory +0x9C	registrar 003845F0	00236F1C	38	questreward_data.bin	non-empty in all nine packs	
+02EBF070	13	battle_pack directory +0x98	registrar 003845F0	00236F02	37	eis_data.bin	non-empty in all nine packs	
+02EBF078	14	battle_pack directory +0x94	registrar 003845F0	00236EE8	36	s_daiji_data.bin	non-empty in all nine packs	
+02EBF080	15	battle_pack directory +0x90	registrar 003845F0	00236ECE	35	q_daiji_data.bin	non-empty in all nine packs	
+02EBF088	16	battle_pack directory +0x8C	registrar 003845F0	00236EB4	34	g_daiji_data.bin	non-empty in all nine packs	
+02EBF090	17	battle_pack directory +0x88	registrar 003845F0	00236E9A	33	m_daiji_data.bin	non-empty in all nine packs	
+02EBF098	18	battle_pack directory +0x84	registrar 003845F0	00236E80	32	eventitem_data.bin	non-empty in all nine packs	
+02EBF0A0	19	battle_pack directory +0x80	registrar 003845F0	00236E66	31	yugoyaku_data.bin	non-empty in all nine packs	
+02EBF0A8	20	battle_pack directory +0x14	registrar 003845F0	00236CB4	4	jochumodel_data.bin	non-empty in all nine packs	
+02EBF0B0	21	battle_pack directory +0x18	registrar 003845F0	00236CCB	5	sobicategory_data.bin	non-empty in all nine packs	
+02EBF0B8	22	battle_pack directory +0x10	registrar 003845F0	00236C9D	3	damagemp_data.bin	non-empty in all nine packs	
+02EBF0C0	23	battle_pack directory +0x1C	registrar 003845F0	00236CE2	6	drop.bin	non-empty in all nine packs	
+02EBF0C8	24	battle_pack directory +0x6C	registrar 003845F0	00236DF0	26	menkyo_data.bin	non-empty in all nine packs	
+02EBF0D0	25	encoded-id class 12 descriptor, never installed	none					no lea and no store in the image; class 12 is permanently empty (band ruling item 7)
+02EBF0D8	26	battle_pack directory +0x20	binder 00238880	00236CF1	7	targetchip_data.bin	non-empty in all nine packs	
+02EBF0E0	27	battle_pack directory +0x24	registrar 003845F0	00236D08	8	gambit_data.bin	non-empty in all nine packs	
+02EBF0E8	28	battle_pack directory +0x7C	registrar 003845F0	00236E4C	30	waza_data.bin	non-empty in all nine packs	
+02EBF0F0	29	battle_pack directory +0x78	registrar 003845F0	00236E35	29	maho_data.bin	non-empty in all nine packs	
+02EBF0F8	30	battle_pack directory +0x38	binder 00238160	00236D76	13	eitm_data.bin	non-empty in all nine packs	
+02EBF100	31	battle_pack directory +0x4C	registrar 003845F0	00236DD9	18	dougu_data.bin	non-empty in all nine packs	
+02EBF108	32	battle_pack directory +0x28	registrar 003845F0	00236D1F	9	hpmpbase_data.bin	non-empty in all nine packs	
+02EBF110	33	battle_pack directory +0x30	registrar 003845F0	00236D50	11	mgccategory_data.bin	non-empty in all nine packs	
+02EBF118	34	battle_pack directory +0x40	binder 003847B0	00236D94	15	status_data.bin	non-empty in all nine packs	
+02EBF120	35	area .ard section, category 2	BattleData_SetAreaArdSectionCategory					stats-side; as category 0
+02EBF128	36	battle_pack directory +0x48	registrar 003845F0	00236DC2	17	comac_data.bin	non-empty in all nine packs	
+02EBF130	37	battle_pack directory +0x44	registrar 003845F0	00236DAB	16	chr_data.bin	non-empty in all nine packs	
+02EBF138	38	battle_pack directory +0x3C	binder 00237FC0	00236D85	14	action_data.bin	non-empty in all nine packs	
+02EBF140	39	area .ard section, category 4	BattleData_SetAreaArdSectionCategory					stats-side; as category 0
+02EBF148	40	area .ard section, category 3	BattleData_SetAreaArdSectionCategory					stats-side; as category 0
+02EBF150	41	area .ard section, category 0	BattleData_SetAreaArdSectionCategory					stats-side; rebound on every area change, null when the area ships no .ard (AG-11)
+02EBF158	42	battle_pack directory +0xA0	binder 00238660	00236F2E	39	shop_data.bin	non-empty in all nine packs	
+02EBF160	43	battle_pack directory +0x2C	registrar 003846F0	00236D39	10	commandpack.bin	non-empty in all nine packs	
+02EBF168	44	area .ard section, category 1	BattleData_SetAreaArdSectionCategory					the gambit order-set section; the one category bound through 003846F0
+02EBF170	45	battle_pack directory +0xF8	registrar 003846F0	00236FEA	61	word.bin	non-empty in all nine packs	
+02EBF178	46	runtime-published buffer pointer	main-loop builder (tail read)					not a table; the 301-entry blob; its reader is FZ-8
+02EBF180	47	battle_pack directory +0x4	direct store	00236C74	0	WepJob_Matrix.bin	non-empty in all nine packs	
+02EBF188	48	write-only state sink	93 stores in 40 functions					nothing loads it (upper-sixteen table)
+02EBF190	49	BattleSystemState pointer	runtime					the 0x7410-byte block; runtime stats, not an authored table (section 8b, corrected 2026-09-13)
+02EBF198	50	unnamed initialised element	none					reached only as index -1 of the board array (AG-4)
+02EBF1A0	51	board_1.bin request slot	setter 00238390					loader id 0x47; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1A8	52	board_2.bin request slot	setter 002383C0					loader id 0x48; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1B0	53	board_3.bin request slot	setter 002383F0					loader id 0x49; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1B8	54	board_4.bin request slot	setter 00238420					loader id 0x4A; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1C0	55	board_5.bin request slot	setter 00238450					loader id 0x4B; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1C8	56	board_6.bin request slot	setter 00238480					loader id 0x4C; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1D0	57	board_7.bin request slot	setter 002384B0					loader id 0x4D; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1D8	58	board_8.bin request slot	setter 002384E0					loader id 0x4E; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1E0	59	board_9.bin request slot	setter 00238510					loader id 0x4F; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1E8	60	board_10.bin request slot	setter 00238540					loader id 0x50; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1F0	61	board_11.bin request slot	setter 00238570					loader id 0x51; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF1F8	62	board_12.bin request slot	setter 002385A0					loader id 0x52; at most six resident (tail read, M-7); whether it holds the completion word or a grid pointer is the upper-sixteen section's recorded tension
+02EBF200	63	battle_pack directory +0x11C	direct store	00237031	70	license_board.bin	non-empty in all nine packs	

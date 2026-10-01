@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3968,
+      "sha256": "36701c7f366a176f9ea84a3174958b96018183cf3335d9926e9fb7fda517eed3"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 8278,
+      "sha256": "25b1bb86e79768dae44bca429afe34d6284e45a8cedf124725e28fb0dc76b149"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1639,
+      "sha256": "f9a125c47a0259f1ee345887cecc14e7b91affe0b3315b8d16c849522344c216"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1485,
+      "sha256": "f72623048934abe03208b52663f1b175b5483ed4e34c2bda42d61b7e5fc272fc"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1886,
+      "sha256": "1121413281ee2ff5d43e6511fd5fa45a04ca3a9bb0a7de2433de271e175c1522"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3809,
+      "sha256": "b01db3409cce5aabc9d28fa1ef554d53995a047a1fef48862426d77305db9704"
+    },
+    {
+      "path": "result.json",
+      "bytes": 19890,
+      "sha256": "1baee203e420eebdfad41047bca0740680626b618886ec535547673152c980eb"
+    },
+    {
+      "path": "retained/body.bin",
+      "bytes": 292,
+      "sha256": "19291e8d14b33c020075e4080ff232c1df6af5caf850da487d4ae66c9426c246"
+    },
+    {
+      "path": "retained/checker-correction.json",
+      "bytes": 892,
+      "sha256": "fb7613324cb88b6c5ef443affd97cd273067a618eb5c7c5eab62018cb8546110"
+    },
+    {
+      "path": "retained/consumer-README.md",
+      "bytes": 2292,
+      "sha256": "66102579c082061ff5d023e4e4da4547328a1ab4e1130ba8c51fafde68482a60"
+    },
+    {
+      "path": "retained/contract.md",
+      "bytes": 32455,
+      "sha256": "46c73b5f7000b102eb040a0de6a7d1ae5d877e28ee113cec889e56d2c7f0f4d7"
+    },
+    {
+      "path": "retained/conv_check.py",
+      "bytes": 4398,
+      "sha256": "aff11075ba06dd972c3ff1f549b747a29ba4d9a8d0e585e78f52dacb55c59cb8"
+    },
+    {
+      "path": "retained/first-check.py",
+      "bytes": 3968,
+      "sha256": "668edf19513c736b29fe753a5a2280f9c0a21c16c3d1a264ae00813daa88e658"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "Original292B source/conditional clamp-loop paths/Python checker only; no original-code/native/live or allmalformed/nativefault/normal-empty-grid proof"
+}

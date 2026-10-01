@@ -1,0 +1,11 @@
+# NativeAdapter.OutRecordZeroInitMemberInit - EC-7 family C
+# # if the out pointer is non-null, memset it via shared import 00861EC0
+# # (size 0x90) then call a member init; return 1.
+address	targets
+005CFF00	00616140,00861EC0
+005D17F0	00615DD0,00861EC0
+005D38D0	006160B0,00861EC0
+005D6870	006161A0,00861EC0
+0065FB20	00662B60,00861EC0
+006895C0	00691120,00861EC0
+0068AF40	00691240,00861EC0

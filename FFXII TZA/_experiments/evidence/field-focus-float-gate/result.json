@@ -1,0 +1,209 @@
+{
+  "method": "A exact shipping gate plus ISA conditional interpretation and Python checker intervention; zero FF12/emulator/native/live tests",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "gate_entry": "0x22ab68",
+    "gate_end_exclusive": "0x22ab88",
+    "gate_sha256": "609303b5acc1bdc6ff4231f024d6476c3742b00f5ba213f616e827fd20700b25",
+    "zero_sha256": "16e0c14e5e528b300f9314743220a07b957d07cfe8a4abe5bcf17f57f25b7414",
+    "helper_sha256": "1a10ebbd918d920b5cfa5189e32bfb2ca76862e1ec3ec21aa8b6ccb29eafceca"
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_module_sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+  },
+  "driver_sha256": "2205e7b08e942e3fa701d772a5f7f988e201f8561f39468f6725e9ebb2606057",
+  "architecture_sha256": "e1a3be2980d09823e7565638db8c4e08777858112aaca69384f733b09f25c97d",
+  "anchors": [
+    {
+      "pc": "0x22ab68",
+      "bytes": "e833d81200",
+      "op": "call",
+      "args": "0x3583a0"
+    },
+    {
+      "pc": "0x22ab6d",
+      "bytes": "85c0",
+      "op": "test",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x22ab6f",
+      "bytes": "7417",
+      "op": "je",
+      "args": "0x22ab88"
+    },
+    {
+      "pc": "0x22ab71",
+      "bytes": "f30f1005479fe301",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rip + 0x1e39f47]"
+    },
+    {
+      "pc": "0x22ab79",
+      "bytes": "0f2ec7",
+      "op": "ucomiss",
+      "args": "xmm0, xmm7"
+    },
+    {
+      "pc": "0x22ab7c",
+      "bytes": "7a12",
+      "op": "jp",
+      "args": "0x22ab90"
+    },
+    {
+      "pc": "0x22ab7e",
+      "bytes": "7510",
+      "op": "jne",
+      "args": "0x22ab90"
+    },
+    {
+      "pc": "0x22ab80",
+      "bytes": "418bcf",
+      "op": "mov",
+      "args": "ecx, r15d"
+    },
+    {
+      "pc": "0x22ab83",
+      "bytes": "e8385c0200",
+      "op": "call",
+      "args": "0x2507c0"
+    }
+  ],
+  "domains": [
+    {
+      "relation": "unordered",
+      "zf": 1,
+      "pf": 1,
+      "cf": 1,
+      "send": false,
+      "send_if_parity_guard_removed": true
+    },
+    {
+      "relation": "greater",
+      "zf": 0,
+      "pf": 0,
+      "cf": 0,
+      "send": false,
+      "send_if_parity_guard_removed": false
+    },
+    {
+      "relation": "less",
+      "zf": 0,
+      "pf": 0,
+      "cf": 1,
+      "send": false,
+      "send_if_parity_guard_removed": false
+    },
+    {
+      "relation": "equal",
+      "zf": 1,
+      "pf": 0,
+      "cf": 0,
+      "send": true,
+      "send_if_parity_guard_removed": true
+    }
+  ],
+  "cases": [
+    {
+      "bits": "00000000",
+      "relation_without_daz": "equal",
+      "admitted_daz0_completed": true,
+      "admitted_daz1_completed": true,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "80000000",
+      "relation_without_daz": "equal",
+      "admitted_daz0_completed": true,
+      "admitted_daz1_completed": true,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "3F800000",
+      "relation_without_daz": "greater",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": false,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "BF800000",
+      "relation_without_daz": "less",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": false,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "7F800000",
+      "relation_without_daz": "greater",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": false,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "FF800000",
+      "relation_without_daz": "less",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": false,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "7FC00001",
+      "relation_without_daz": "unordered",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": false,
+      "exception_or_domain_limit": "Completed comparison, xmm7 zero and prior bit3 gate passes; no normal reachability claim"
+    },
+    {
+      "bits": "7F800001",
+      "relation_without_daz": "unordered",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": false,
+      "exception_or_domain_limit": "SNaN needs completed comparison (invalid mask/handler not established)"
+    },
+    {
+      "bits": "00000001",
+      "relation_without_daz": "greater",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": true,
+      "exception_or_domain_limit": "DAZ/denormal exception state conditional, not observed"
+    },
+    {
+      "bits": "80000001",
+      "relation_without_daz": "less",
+      "admitted_daz0_completed": false,
+      "admitted_daz1_completed": true,
+      "exception_or_domain_limit": "DAZ/denormal exception state conditional, not observed"
+    }
+  ],
+  "producer_controls": [
+    {
+      "name": "original",
+      "cache_sha256": "72836705eaa499e66dccc34fb52cd38de9eb1912fb8e463d120cee2bc3259942",
+      "exit": 0,
+      "stdout": "PASS O1  00277ACD (a read of 02F9736A) is in the arm at 00277A64, which messages [10, 11] reach; message 2 goes to 00278A3B\nPASS O2  002481C0's callers ['00250540', '002506D0', '00250730', '002507C0', '002508E0']; in 002507C0 the send follows 'cmp ebx, 1'\nPASS O3  rebuild < world tick < UI pass: {'0022B8C0': ('0022B908', '0022BA23', '0022BA45'), '0022BC20': ('0022BC50', '0022BCCF', '0022BD08')}\nPASS O4  field frame: rebuild 0022A7F6 < pause step 0022A8D7 < 002507C0(r15d=1) 0022AB83 < world tick 0022ABD8 < 002507C0(edi) 0022AC17\nPASS O5  pre-arbiter send gated by 003583A0 (bit 3 of 022C7F92) and 02064AC0 == 0.0; post-arbiter send by 003583A0\nPASS O6  00314020 -> 002E0D90 at ['00314137', '003141F2'] (the second only when esi == 0) -> 00253C50 -> 00253C70\nPASS C  control: message 1 -> 00277925; the default arm 00279D2C takes 31 ids\nFAILS 0\n",
+      "stderr": "",
+      "scope": "Actual unmodified peer Python checker on disposable derived view; not FF12 code execution"
+    },
+    {
+      "name": "parity-branch-omitted-view",
+      "cache_sha256": "0188a0ad3cd3e3df9a4177b4da4ff38853c5da7d55d6bd6f070b5cca11b97c72",
+      "exit": 0,
+      "stdout": "PASS O1  00277ACD (a read of 02F9736A) is in the arm at 00277A64, which messages [10, 11] reach; message 2 goes to 00278A3B\nPASS O2  002481C0's callers ['00250540', '002506D0', '00250730', '002507C0', '002508E0']; in 002507C0 the send follows 'cmp ebx, 1'\nPASS O3  rebuild < world tick < UI pass: {'0022B8C0': ('0022B908', '0022BA23', '0022BA45'), '0022BC20': ('0022BC50', '0022BCCF', '0022BD08')}\nPASS O4  field frame: rebuild 0022A7F6 < pause step 0022A8D7 < 002507C0(r15d=1) 0022AB83 < world tick 0022ABD8 < 002507C0(edi) 0022AC17\nPASS O5  pre-arbiter send gated by 003583A0 (bit 3 of 022C7F92) and 02064AC0 == 0.0; post-arbiter send by 003583A0\nPASS O6  00314020 -> 002E0D90 at ['00314137', '003141F2'] (the second only when esi == 0) -> 00253C50 -> 00253C70\nPASS C  control: message 1 -> 00277925; the default arm 00279D2C takes 31 ids\nFAILS 0\n",
+      "stderr": "",
+      "scope": "Actual unmodified peer Python checker on disposable derived view; not FF12 code execution"
+    }
+  ],
+  "source_mutation": {
+    "change": "JP AB7C two bytes7A12 replaced with9090 in private bytes",
+    "source_obligation_rejected": true
+  },
+  "result": "NaN-admission hypothesis refuted by explicit JP then JNE: send requires completed comparison PF0/ZF1. Existing O5 conclusion is supported but checker omits both branch obligations. Exact-zero-bit reading also needs DAZ/domain qualification; DAZ1 admits subnormal inputs as effective zero.",
+  "limits": "Conditional source/ISA, no actual FF12 MXCSR, accumulator occurrence, native exception behavior, normal dispatch timing, full-frame/callee execution or all51 reader ordering. xmm7 zero at comparison is the stated boundary; zeroing instruction retained, no whole-frame initialization/callee-preservation proof newly made.",
+  "cleanup": "Disposable cache copies removed, shipping image/peer files read-only; no game/PC/save/config/instruments touched; published prior inputs immutable, independent review/consumer agreement pending"
+}

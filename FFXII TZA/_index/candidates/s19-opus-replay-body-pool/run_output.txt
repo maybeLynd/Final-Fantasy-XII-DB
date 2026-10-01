@@ -1,0 +1,6 @@
+K1_null_actor_returns_before_allocation                    PASS
+K2_fresh_create_attaches_body0_and_runs_all_consumers      PASS
+K3_one_body_per_record_release_then_re_pop                 PASS
+K4_exhausted_null_stored_untested_every_consumer_guards    PASS
+K5_each_consumer_guards_null_body_and_null_actor           PASS
+ALL PASS predicates executed: ['pred_00265680', 'pred_0037C860']

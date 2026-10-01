@@ -1,0 +1,92 @@
+{
+  "method": "A one original authored resource; no game execution",
+  "archive": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FFXII_TZA.vbf",
+  "archive_size": 31196932183,
+  "archive_mtime_ns": 1788875311803686800,
+  "archive_index_bytes": 11995716,
+  "archive_index_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+  "entry": "gamedata/d3d11/artdata/chr/chara/c10/c1004/mws/c1004.dae.phyre",
+  "entry_tuple": [
+    606162,
+    568758,
+    21985341184
+  ],
+  "entry_bytes": 568758,
+  "entry_sha256": "26070904ffab44559b9c441b118ab50a188767f07ac98fcf3e8748d055ef2eda",
+  "selected_stored_blocks": [
+    {
+      "index": 606162,
+      "archive_offset": 21985341184,
+      "bytes": 11029,
+      "sha256": "9341bafc27fa2afcc7d11022d53c48de48f4b9a274c52987e97a69c735747c0a"
+    },
+    {
+      "index": 606163,
+      "archive_offset": 21985352213,
+      "bytes": 414,
+      "sha256": "38158ab006da5e3a40b11a1ec14a101487ef62ace08fa4bf5a8f8e9fed84aa45"
+    },
+    {
+      "index": 606164,
+      "archive_offset": 21985352627,
+      "bytes": 414,
+      "sha256": "7a43a395e4edcfd282efe32f8088f83f4aa7e3424d2d1b50ed88ab09035e1f49"
+    },
+    {
+      "index": 606165,
+      "archive_offset": 21985353041,
+      "bytes": 3957,
+      "sha256": "b6a599c075664287b66283ff8c02260b0eaeb151400bd1083aff87602a0a14a9"
+    },
+    {
+      "index": 606166,
+      "archive_offset": 21985356998,
+      "bytes": 737,
+      "sha256": "a23c138194095851a51b7c12dc39e09b02d8ffc535ffa670476e080e3050c766"
+    },
+    {
+      "index": 606167,
+      "archive_offset": 21985357735,
+      "bytes": 737,
+      "sha256": "e74786a83e7ef33dac1b3435dea1f967348ac5f90479f282b15dd65c5081f504"
+    },
+    {
+      "index": 606168,
+      "archive_offset": 21985358472,
+      "bytes": 25806,
+      "sha256": "bda7e64d7aa465303f3e50297b9daab9cd53a7b1222efa14cd6e42658fec59fb"
+    },
+    {
+      "index": 606169,
+      "archive_offset": 21985384278,
+      "bytes": 24638,
+      "sha256": "5fb0316704bffce6a428f201a3206100bcbaff0a9e567f7ec9536f919a7ac0bc"
+    },
+    {
+      "index": 606170,
+      "archive_offset": 21985408916,
+      "bytes": 16524,
+      "sha256": "4e77cfa116ece7e4a86da45548b96288ff4dc4f1447c1fb5585854a7034791af"
+    }
+  ],
+  "retained_extract_identical": true,
+  "extractor_sha256": "1841f666b28fb737bf02ab3bb0ea90a7515273f74533a772e7f7131c0e0de611",
+  "slices": {
+    "header.bin": {
+      "entry_offset": 0,
+      "bytes": 84,
+      "sha256": "13a8adcb28c990f01913eeba0efa7707b1b153e7306bb92605804cd1c9ba0bf3"
+    },
+    "namespace.bin": {
+      "entry_offset": 84,
+      "bytes": 21593,
+      "sha256": "2b2d6f9d6ebc38107a99eac2a441ee023137c89f16c4ef69b9f05e79ddc05d8f"
+    },
+    "listheaders.bin": {
+      "entry_offset": 21677,
+      "bytes": 3456,
+      "sha256": "578931127affd75ab0ca795c8d59a09df2d242083a463c942bee6394534f2ece"
+    }
+  },
+  "limits": "Whole31GB archive content not hashed. Exact index, stored selected blocks, complete decompressed entry and retained-equality are recorded. Authored list is not observed runtime allocation."
+}

@@ -1,0 +1,11 @@
+# NativeLeaf.FieldFloatGetter - EC-7 family C
+# # movss xmm0, [rcx+off]; ret - displaced float getter.
+address	targets
+001867D0	
+00186970	
+001B0F90	
+001FDDB0	
+006A3AE0	
+006A3B00	
+006A4040	
+0079CEA0	

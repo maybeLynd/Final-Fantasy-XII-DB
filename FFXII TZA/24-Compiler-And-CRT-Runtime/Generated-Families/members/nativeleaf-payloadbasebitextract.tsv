@@ -1,0 +1,8 @@
+# NativeLeaf.PayloadBaseBitExtract - EC-7 family C
+# call shared SaveImage_GetPersistentPayloadBase 002EF2B0; return
+# # ([rax+X]>>n)&m bitfield.
+address	targets
+00314A80	002EF2B0
+00314B00	002EF2B0
+00314B20	002EF2B0
+00314B60	002EF2B0

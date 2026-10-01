@@ -1,0 +1,536 @@
+{
+  "retained_input_hashes": [
+    {
+      "path": "_experiments/evidence/apply-result-callees-exec/check.py",
+      "sha256": "2c5450e388a3a5d2258d7ff931a9d4234582f0a4df9a440fd6847d878533e372",
+      "match": true
+    },
+    {
+      "path": "_experiments/evidence/apply-result-callees-exec/result.json",
+      "sha256": "b41a8d89413c2f565549b195d5c3df10bfec2f4257521af74187261f6fa87da5",
+      "match": true
+    },
+    {
+      "path": "_experiments/evidence/apply-result-whole-exec/check.py",
+      "sha256": "ef34709a4b0987821a0f297fa2680013da49705c688ccf3ba55a6d0a41edadf6",
+      "match": true
+    },
+    {
+      "path": "_experiments/evidence/apply-result-whole-exec/result.json",
+      "sha256": "5b7a96f028759b4c2afc18f905f8c06a6e3a8c4040d6942acd03d41130209aeb",
+      "match": true
+    },
+    {
+      "path": "_experiments/evidence/battle-unit-construct-exec/check.py",
+      "sha256": "0378b73c170ea08d771d5f8c269a159f1fda5ec8588fe8f92d0e99dc4ef52c30",
+      "match": true
+    },
+    {
+      "path": "_experiments/evidence/battle-unit-construct-exec/result.json",
+      "sha256": "11b7312d46edcde8b4daf46cbf9a2149f03492ada8267d318cf5a342f4e33619",
+      "match": true
+    }
+  ],
+  "assertion_replay_total": 79,
+  "groups": [
+    {
+      "package": "apply-result-callees-exec",
+      "method": "pinned assertions applied to retained records; NO emulator re-execution",
+      "cases": 43,
+      "results": [
+        {
+          "case": "fld-oob",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p0-m0-set",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p0-m0-below",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p0-m0-getter",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p0-m1-eq",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p0-m1-ne",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-clamp16",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-neg",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-clamp32",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-m3-bts",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-m8",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-m5",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "fld-p1-add",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "lvl-at-target",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "lvl-one",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "lvl-multi",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "lvl-flag5",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "lvl-nosync",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "lvl-cap99",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-ffff",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-1000",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-f000",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-bound",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-plain",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-cb",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-add-c3",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-add-c4",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-add-cC",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "itm-add-cC2",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-oob",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-m2-set",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-m2-already",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-m0-clear",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-m0-absent",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-m3-set78",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-m1-clear78",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-mode4",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-sync",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "st-nosync",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "rc-null",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "rc-b5-2",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "rc-base",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "rc-member",
+          "assertions_pass": true,
+          "failures": []
+        }
+      ]
+    },
+    {
+      "package": "apply-result-whole-exec",
+      "method": "pinned assertions applied to retained records; NO emulator re-execution",
+      "cases": 36,
+      "results": [
+        {
+          "case": "ap-empty",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-gate-block",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-gate-skip",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-dmg",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-lethal",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-cap-freeze",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-lethal-src",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-revive",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-heal-cap",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-heal-cap2x",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-dmg-abs",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-dmg-b8e0",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-dmg-cantdie",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-mp",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-mp-delta",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-secondary",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-secondary-neg",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-src-hp",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-src-hp-abs",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-src-mp",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-st-set",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-st-clr",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-st-set-suppress",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-st-set-f140",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-st-idempotent",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-st-d38lock",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-e130-loops",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-copythrough",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-memadds",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-memfx",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-steal",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-item",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-level",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-e9a",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-gil",
+          "assertions_pass": true,
+          "failures": []
+        },
+        {
+          "case": "ap-full",
+          "assertions_pass": true,
+          "failures": []
+        }
+      ]
+    }
+  ],
+  "corrupted_record_controls": [
+    {
+      "package": "apply-result-callees-exec",
+      "case": "fld-p0-m0-set",
+      "changed_path": "bit",
+      "rejected": true,
+      "failures": [
+        "bit: got 0x0 want 0x1"
+      ]
+    },
+    {
+      "package": "apply-result-callees-exec",
+      "case": "rc-null",
+      "changed_path": "faults",
+      "rejected": true,
+      "failures": [
+        "null unit did not fault"
+      ]
+    },
+    {
+      "package": "apply-result-whole-exec",
+      "case": "ap-copythrough",
+      "changed_path": "tgt.dbc",
+      "rejected": true,
+      "failures": [
+        "dbc: got 0x3d want 0x3c"
+      ]
+    },
+    {
+      "package": "apply-result-whole-exec",
+      "case": "ap-dmg",
+      "changed_path": "tgt.hp",
+      "rejected": true,
+      "failures": [
+        "hp: got 0x2bd want 0x2bc"
+      ]
+    }
+  ],
+  "EXP150": {
+    "records": 39,
+    "reported_pass": 39,
+    "structure_consistent": true,
+    "case_names": [
+      "rs-plain",
+      "rs-b10",
+      "rs-mask",
+      "in-member",
+      "in-base-eq",
+      "in-level-eq",
+      "in-both-bad",
+      "in-base-ffff-bad",
+      "in-base-ffff-ok",
+      "in-level-ffff-bad",
+      "in-level-ffff-ok",
+      "in-base-zero",
+      "in-level-zero",
+      "in-base-null",
+      "in-level-null",
+      "in-order-null",
+      "in-order-oob",
+      "in-def-oob",
+      "in-mem-oob",
+      "in-enable-off",
+      "in-nobit26",
+      "in-mode2",
+      "in-spawn-bad",
+      "in-spawn-init",
+      "in-tracked",
+      "in-tracked-cap",
+      "in-bit43",
+      "in-bit43b",
+      "in-ko",
+      "in-ko-cantdie",
+      "in-engaged",
+      "in-foe",
+      "in-foe-badcls",
+      "in-foe-rekey",
+      "in-select-eq",
+      "in-spawnflags",
+      "mu-base-ja-jb",
+      "mu-level-ja-jb",
+      "mu-order-jg-jle"
+    ],
+    "method": "retained record integrity only; NOT assertion replay or emulator execution",
+    "known_limits": [
+      "wrong tracked-table observation address",
+      "nondiscriminating bit42 assertion",
+      "nested/original boundary limitations remain in review"
+    ]
+  }
+}

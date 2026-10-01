@@ -1,0 +1,9 @@
+SURVIVES  S0  [108, 131, 155, 283, 1080, 35]
+SURVIVES  S1  8 x 0x40 = 512 bytes at 02B57CE0; +7 cleared on 128 bodies of 0x130
+SURVIVES  S2  OR of the cell masks into 02B57EE0; own bit and all lower bits cleared (the own qword masked, lower qwords zeroed)
+SURVIVES  S3  the six refusals at their sites; activity test only when mode != 0; 00314F30 mode 1, 00313F80 mode 0
+SURVIVES  S4  query mode jumps to 00315220 past the push geometry; push mode refuses non-overlapping vertical spans before adding the accumulators
+SURVIVES  S5  seven fields in five stores
+SURVIVES  S6  outcomes 3 / 4 / 1; each body write behind the mode test; query mode writes only [r15]
+SURVIVES  S7  body fields written: ['0xE8', '0xEC', '0xED', '0xEE', '0x100', '0x108']
+FAILS 0

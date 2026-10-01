@@ -1,0 +1,47 @@
+{
+  "members": [
+    {
+      "path": "capture-01/00-progress-dom.txt",
+      "bytes": 10661,
+      "sha256": "bd71d95bbec2e6004967a3998d93c79464d5763afa0ad6db45357d6a797d1aa5"
+    },
+    {
+      "path": "capture-01/01-activity-immediate-ax.txt",
+      "bytes": 10765,
+      "sha256": "84f39beb977185cc1e0a274e28f0c362530443504b273aa64adea89205d5f595"
+    },
+    {
+      "path": "capture-01/02-activity-dom.txt",
+      "bytes": 9643,
+      "sha256": "bad57c97d5ee4bdf6a98f79f46fc395504329a0e2078224c87f2dcfd8eef4134"
+    },
+    {
+      "path": "capture-01/03-return-immediate-ax.txt",
+      "bytes": 10807,
+      "sha256": "7d228062ffa97ba1e0a83b881a7afa7aedad6b41852b4f9034c709464da95cb5"
+    },
+    {
+      "path": "capture-01/04-return-dom.txt",
+      "bytes": 10216,
+      "sha256": "c8f7bb4cf2da1737d467521d97bd81a2532e8d870cd526ce3c6f94e32c48965b"
+    },
+    {
+      "path": "capture-01/05-return.jpg",
+      "bytes": 122916,
+      "sha256": "58be1562f36944922e01d748297e926b10ffd688bfccfdd216aebf53270a594f"
+    },
+    {
+      "path": "capture-01/control-log.json",
+      "bytes": 1829,
+      "sha256": "6f5ffae59eaf652d051e218347faabb45b0f223d7ebef7732e46c67f903e756a"
+    }
+  ],
+  "purpose": "Raw ordered captures pinned after owned-tab cleanup, before semantic reduction",
+  "script_run": "Interactive CUA cells; not a standalone script execution",
+  "browser": {
+    "id": "1",
+    "name": "Codex In-app Browser",
+    "build": "UNEXPOSED",
+    "source": "Returned selected-browser documentation"
+  }
+}

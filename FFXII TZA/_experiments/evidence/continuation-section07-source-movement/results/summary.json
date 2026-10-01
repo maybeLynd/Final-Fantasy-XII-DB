@@ -1,0 +1,39 @@
+{
+  "section": "SECTION-07",
+  "production_status": "locally validated; formal peer acceptance pending",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "selected_body_records": 90,
+  "native_assertions": 123,
+  "native_passed": 123,
+  "repeat_identical": true,
+  "code_variants": 10,
+  "variants_rejected": 10,
+  "evidence": "isolated original-instruction execution with synthetic data/arenas",
+  "application_substitutions": [
+    "0017D2E0 diagnostic formatter: empty string, invocation counter, returns zero"
+  ],
+  "import_bridges": [
+    "memset IAT008C2A60",
+    "memcpy IAT008C2A68",
+    "strncpy IAT008C2F70"
+  ],
+  "explicit_execution_window": "0024D565..0024D6A9 with equivalent register/stack entry and a return barrier at0024D6AA; NOT whole0024D540",
+  "overlap_boundary": "one actual selector/mover invocation stops before overlapping memcpy; no copied-data or post-move success claim",
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0"
+  },
+  "source_sha256": "c24a9fd9e13d166df24c10dd74a9b1209e30e132f6258ee4fead0083e062a5be",
+  "limitations": [
+    "No live FF12 process, Windows deployment, real IO/audio/GPU, or full-game concurrency.",
+    "Original mover/free/copy/reissue and allocator pressure run; backing maps are synthetic and arena release is not OS unmapping.",
+    "Specialized repair walkers have default/empty children; arbitrary payload branches are not certified.",
+    "Combined window skips five initial service calls and the post-window render path; it is not a whole-frame execution.",
+    "Synthetic container nodes are detached before destruction; their allocation/construction/destruction is not tested.",
+    "Overlapping copy control stops before the import; host memmove is not substituted for original Windows memcpy.",
+    "Maintenance/script scheduling and movement-latch consumers are inspected statically, not a new live timeline.",
+    "Only ten impacted private-image variants; no full historical or project mutation campaign."
+  ],
+  "original_exe_unchanged": true
+}

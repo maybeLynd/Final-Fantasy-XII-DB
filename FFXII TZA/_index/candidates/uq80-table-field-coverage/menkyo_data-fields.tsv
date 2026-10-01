@@ -1,0 +1,5 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	page	nameWord	u16: 0xd0 x1, 0xd1 x1, 0xd2 x1, 0xd3 x1, 0xd4 x1 (32 distinct)	0031D86B* movzx ecx, word ptr [rax] | 0031D8AE* movzx edx, word ptr [rax]	name word (bank 0, 0xD0 onward)	STATIC	EID
+0x02	2	pass	usableTestAction	u16: 0x109 x1, 0x10a x1, 0x10b x1, 0x10c x1, 0x10d x1 (32 distinct)	003063C1* movzx edx, word ptr [rcx + 2]	action id 00306340 hands to 003064F0, the usable test (003060E0 and BattleStats_HasRequiredLicenseForAction 00323EC0); rows hold 265-296	STATIC	PASS
+0x04	1	shape	b04	u8: 0 x1, 1 x1, 2 x1, 3 x1, 4 x1 (32 distinct)	-	a permutation of 0-31 (32 distinct), equal to the row index on 25 rows; no reader	DATA	PASS
+0x05	3	pad	pad05	u8: 0 x96 (1 distinct)	-	const=0x00	-	PASS

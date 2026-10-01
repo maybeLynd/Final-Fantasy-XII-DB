@@ -1,0 +1,417 @@
+{
+ "AC4": {
+  "plain": {
+   "halt": [],
+   "ok": true,
+   "slot9_calls": [
+    [
+     "00222340",
+     "72004000"
+    ],
+    [
+     "00222340",
+     "72004040"
+    ],
+    [
+     "00222340",
+     "72004080"
+    ]
+   ]
+  },
+  "vtable_switched_after_first_entry": {
+   "halt": [],
+   "ok": true,
+   "slot9_calls": [
+    [
+     "00222340",
+     "72004000"
+    ],
+    [
+     "00223F40",
+     "72004040"
+    ],
+    [
+     "00222340",
+     "72004040"
+    ],
+    [
+     "00223F40",
+     "72004080"
+    ],
+    [
+     "00222340",
+     "72004080"
+    ]
+   ]
+  }
+ },
+ "AC6": {
+  "AudioBank_slot10": {
+   "dispatch": [],
+   "halt": [
+    "import _purecall"
+   ],
+   "ok": false
+  },
+  "matrix": {
+   "Music": {
+    "01": {
+     "dispatch": [
+      "slot0"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "02": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "04": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "08": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "10": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "20": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "3F": {
+     "dispatch": [
+      "slot0"
+     ],
+     "halt": [],
+     "ok": true
+    }
+   },
+   "Seb": {
+    "01": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "02": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "04": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "08": {
+     "dispatch": [
+      "direct 00224290"
+     ],
+     "halt": [
+      "00000009"
+     ],
+     "ok": false
+    },
+    "10": {
+     "dispatch": [
+      "direct 002240B0"
+     ],
+     "halt": [
+      "00000009"
+     ],
+     "ok": false
+    },
+    "20": {
+     "dispatch": [
+      "direct 00224470"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "3F": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    }
+   },
+   "Seb_own_gate_clear": {
+    "02": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "08": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    }
+   },
+   "Sep": {
+    "01": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "02": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "04": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "08": {
+     "dispatch": [
+      "slot3"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "10": {
+     "dispatch": [
+      "slot4"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "20": {
+     "dispatch": [
+      "slot5"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "3F": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    }
+   },
+   "Shout": {
+    "01": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "02": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "04": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "08": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "10": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "20": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "3F": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    }
+   },
+   "Stream": {
+    "01": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "02": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "04": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    },
+    "08": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "10": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "20": {
+     "dispatch": [],
+     "halt": [],
+     "ok": true
+    },
+    "3F": {
+     "dispatch": [
+      "slot9"
+     ],
+     "halt": [],
+     "ok": true
+    }
+   }
+  }
+ },
+ "AC6_expected_from_the_bytes": {
+  "Music": {
+   "01": [
+    "slot0"
+   ],
+   "02": [],
+   "04": [],
+   "08": [],
+   "10": [],
+   "20": []
+  },
+  "Seb": {
+   "01": [],
+   "02": [
+    "slot9"
+   ],
+   "04": [],
+   "08": [
+    "direct 00224290"
+   ],
+   "10": [
+    "direct 002240B0"
+   ],
+   "20": [
+    "direct 00224470"
+   ]
+  },
+  "Sep": {
+   "01": [],
+   "02": [
+    "slot9"
+   ],
+   "04": [],
+   "08": [
+    "slot3"
+   ],
+   "10": [
+    "slot4"
+   ],
+   "20": [
+    "slot5"
+   ]
+  },
+  "Shout": {
+   "01": [],
+   "02": [],
+   "04": [
+    "slot9"
+   ],
+   "08": [],
+   "10": [],
+   "20": []
+  },
+  "Stream": {
+   "01": [],
+   "02": [],
+   "04": [
+    "slot9"
+   ],
+   "08": [],
+   "10": [],
+   "20": []
+  }
+ },
+ "AC6_rows_not_returning": {
+  "Seb 08": [
+   "00000009"
+  ],
+  "Seb 10": [
+   "00000009"
+  ]
+ },
+ "AC7_sep_slot3": {
+  "149999": {
+   "halt": [],
+   "ok": true,
+   "slot0_reached": true
+  },
+  "150000": {
+   "halt": [],
+   "ok": true,
+   "slot0_reached": false
+  },
+  "150999": {
+   "halt": [],
+   "ok": true,
+   "slot0_reached": false
+  },
+  "151000": {
+   "halt": [],
+   "ok": true,
+   "slot0_reached": true
+  },
+  "152000": {
+   "halt": [],
+   "ok": true,
+   "slot0_reached": true
+  }
+ },
+ "cases": {
+  "AC4_control_vtable_reloaded_every_entry": true,
+  "AC4_slot9_once_per_entry_in_list_order_with_the_payload": true,
+  "AC6_AudioBank_slot10_is_purecall": true,
+  "AC6_bit2_is_a_tail_jump_that_ends_slot10_in_Seb_and_Sep": true,
+  "AC6_contract_reading_every_bank_maps_every_bit_is_contradicted": true,
+  "AC6_each_class_dispatches_its_own_subset_of_bits": true,
+  "AC6_only_non_returning_rows_are_seb_direct_callees_on_a_zero_payload": true,
+  "AC6_seb_also_gates_on_its_own_plus38": true,
+  "AC7_sep_slot3_skips_the_band_150000_to_150999_only": true,
+  "real_initialisers": true
+ },
+ "init": {
+  "audio": true,
+  "callbacks": true
+ },
+ "live_game": false,
+ "ok": true,
+ "slot10": {
+  "Audio": "00861EC6",
+  "Music": "00222C70",
+  "Seb": "00224B30",
+  "Sep": "00223540",
+  "Shout": "00225440",
+  "Stream": "00225440"
+ }
+}

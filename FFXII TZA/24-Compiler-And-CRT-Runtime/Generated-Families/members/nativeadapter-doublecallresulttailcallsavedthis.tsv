@@ -1,0 +1,8 @@
+# NativeAdapter.DoubleCallResultTailCallSavedThis - EC-7 family C
+# # save this->rbx; call member op; if non-null call it again; forward
+# # (result2, this) to a member tail target. Sibling of
+# # ConditionalDoubleCallResultTailCall (saves ecx, 44B).
+address	targets
+00182310	00185E50,00189120
+00184AA0	001B27E0,001B31D0
+001E09E0	0016D6A0,00198790

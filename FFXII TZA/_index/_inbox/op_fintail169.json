@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-169",
+ "note": "Tail commit 45b1d28a1 recorded (resume block + TEAM.json + applied ops).",
+ "result_refs": [
+  "45b1d28a1"
+ ]
+}

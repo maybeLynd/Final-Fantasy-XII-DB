@@ -1,0 +1,10 @@
+{
+  "status": "PASS_ORIGINAL_RANGE_WINDOW",
+  "claims": [
+    "Under injected sample3FFFFFFF/MXCSR1F80 original58B output equals smallest positive amplitude00000001, refuting universal strict out<A.",
+    "Largest positive finite amplitude7F7FFFFF produces +infinity7F800000 under the same controlled window, refuting universal finite range.",
+    "Normal0.5f control produces3EFFFFFE strictly below A; SUBSS->ADDSS control changes the stored result."
+  ],
+  "limits": "Injected sample/stack/scratch/MXCSR1F80 (masked exceptions, nearest, no DAZ/FTZ). Entry omits recurrence/nativeSave/initial amplitude guard; stop omits nativeRestore/full return/caller. No proof samplemax or amplitude boundaries occur in normal gameplay, actual game MXCSR, native CPU exception/status semantics, universal subnormal handling or full-function range. No old0.3f order case rerun.",
+  "cleanup": "Disposable emulator instances only; no game/PC controls, process attach, save/config/reference writes; no live health/cleanup claimed."
+}

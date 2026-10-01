@@ -1,0 +1,49 @@
+PASS  control: distinct caller functions in the edge list = 136 (page: 136)
+call/jmp sites: 245; channel resolved: 202; unresolved: 43
+  channel 0: 16 site(s); e.g. ['[FileCache] Init Event Prefetch List\n', '[FileCache] LoadEventFileList : event %d \n', '[FileCache] Prefetch On Enter Map End\n']
+  channel 1: 80 site(s); e.g. ['Altering buffer count of PTexture2D whilst bound.  Rebind needed.\n', 'Altering buffer count of PTexture2D whilst bound.  Rebind needed.\n', '[ScreenImage]:playDPic\n']
+  channel 2: 80 site(s); e.g. ['Change Screen Mode By Config Menu!!!!\n', '[YEBIS]Yebis Enable Failed!!!\n', '======== Screen mode %d ========\n']
+  channel 3: 26 site(s); e.g. ["Unexpected unpacking value for group'%d'\n", "Unexpected unpacking value '%d'\n", "Unexpected unpacking value '%d'\n"]
+  UNRESOLVED 0017E8E0 0017EA1E mov ecx, r15d
+  UNRESOLVED 0017F3B0 0017F46D mov ecx, esi
+  UNRESOLVED 001946E0 00194796 mov ecx, esi
+  UNRESOLVED 001B7850 001B79D5 lea ecx, [r13 + 1]
+  UNRESOLVED 001D1660 001D4636 mov ecx, ebp
+  UNRESOLVED 00596890 00596D4C lea ecx, [r8 + 2]
+  UNRESOLVED 0059B430 0059B77F lea ecx, [rbx + 1]
+  UNRESOLVED 0059B430 0059B980 lea ecx, [rax + 2]
+  UNRESOLVED 0059BA40 0059BB43 lea ecx, [rbx + 1]
+  UNRESOLVED 0059BA40 0059BBCB lea ecx, [rax + 1]
+  UNRESOLVED 0059C250 0059C587 lea ecx, [rbx + 1]
+  UNRESOLVED 0059C700 0059CAEA lea ecx, [r14 + 1]
+  UNRESOLVED 0059CE30 0059D187 lea ecx, [r10 + 1]
+  UNRESOLVED 0059D6A0 0059D74C lea ecx, [r9 + 2]
+  UNRESOLVED 0059D940 0059DD79 lea ecx, [rdi + 1]
+  UNRESOLVED 005CCD00 005CCF6C none before a call
+  UNRESOLVED 005CCD00 005CCF8B none before a call
+  UNRESOLVED 005CCD00 005CCF99 none before a call
+  UNRESOLVED 005F05F0 005F064F lea ecx, [rbx + 1]
+  UNRESOLVED 00600F30 00601E24 lea ecx, [r8 + 1]
+  UNRESOLVED 0062A0A0 0062A22A lea ecx, [rbp + 1]
+  UNRESOLVED 0062A0A0 0062A2C0 lea ecx, [rbp + 1]
+  UNRESOLVED 0062A0A0 0062A362 lea ecx, [rbp + 1]
+  UNRESOLVED 00639160 006391F2 lea ecx, [rax - 1]
+  UNRESOLVED 0066F970 0066F99A lea ecx, [rdi + 1]
+  UNRESOLVED 0066FAB0 0066FADA lea ecx, [rdi + 1]
+  UNRESOLVED 00677CE0 00677D3E lea ecx, [rbp + 2]
+  UNRESOLVED 00684F60 0068503F lea ecx, [rsi + 3]
+  UNRESOLVED 00686280 006865DB mov ecx, ebp
+  UNRESOLVED 00686280 006867C7 mov ecx, ebp
+  UNRESOLVED 006B89C0 006B8A20 lea ecx, [rbx + 1]
+  UNRESOLVED 006CBD20 006CBE1D lea ecx, [rdi + 2]
+  UNRESOLVED 006CD390 006CD3EF lea ecx, [rbx + 1]
+  UNRESOLVED 00795DC0 00795ED4 lea ecx, [r8 + 1]
+  UNRESOLVED 0079B300 0079B73E lea ecx, [rax + 3]
+  UNRESOLVED 0079C140 0079C42B none before a call
+  UNRESOLVED 0079D430 0079D482 lea ecx, [rsi + 2]
+  UNRESOLVED 0079F150 0079F1F0 lea ecx, [r14 + 2]
+  UNRESOLVED 0079F750 0079F874 mov ecx, r8d
+  UNRESOLVED 0079F750 0079F8BB lea ecx, [r8 + 1]
+  UNRESOLVED 0079F750 0079F966 lea ecx, [r8 + 2]
+  UNRESOLVED 007A05D0 007A068A lea ecx, [rax + 2]
+  UNRESOLVED 007A2140 007A2280 lea ecx, [rdi + 2]

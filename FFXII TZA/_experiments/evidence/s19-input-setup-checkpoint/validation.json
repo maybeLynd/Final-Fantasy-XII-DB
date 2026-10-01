@@ -1,0 +1,22 @@
+{
+  "checkpoint_integrity": "PASS",
+  "live_semantic_result": "INVALID_FIELD_SETUP",
+  "semantic_closure": [],
+  "reducer_controls": {
+    "synthetic_controls": "PASS",
+    "positive_used_count": 10,
+    "rejected_mutations": [
+      "wrong-self",
+      "cycle",
+      "out-of-range",
+      "overlap"
+    ],
+    "uninitialized_distinguished_from_empty": true
+  },
+  "rejected_checkpoint_mutations": [
+    "semantic-promotion",
+    "invent-field",
+    "corrupt-pool",
+    "omit-restoration"
+  ]
+}

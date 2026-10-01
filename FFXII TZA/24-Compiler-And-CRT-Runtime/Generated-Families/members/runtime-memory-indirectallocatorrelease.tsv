@@ -1,0 +1,31 @@
+# Runtime.Memory.IndirectAllocatorRelease - EC-7 family C, declared on generated-function-families.md
+#
+# 22 members. Body size(s): 51 B x22.
+# 4 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 22 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00185070
+0018AD70
+00199BF0
+0019DB60
+001A1790
+001A27F0
+001A2C50
+001A2C90
+001A2CD0
+001A2DD0
+001AAD60
+001AADA0
+001B3D50
+001BCDF0
+001BDCA0
+001BDCE0
+001C36B0
+001E1AE0
+001E1C20
+001E7670
+001F5040
+006CC410

@@ -1,0 +1,6 @@
+PASS  A 0016F2A0: lfi = pbi + 0x1ED0 handed to 00173640 (with sharpnessLevel) and 001735C0; lastSharpnessLevel = sharpnessLevel; hevThr rows 0..3 at lfi + 0xC00
+PASS  S 00173640: 64 levels x 16 bytes of mblim (+0x000), blim (+0x400) and lim (+0x800)
+PASS  L 001735C0: hevThrLut[2][64] at +0xC80 / +0xCC0 by level; modeLfLut[10] at +0xD00
+PASS  X the next instance row after lfi is filterLevel at +0x2BE0 = +0x1ED0 + 0xD10
+PASS  P Vp8LoopFilterInfo (0xD10) tiles and is embedded at +0x1ED0; lastSharpnessLevel at +0x2BE4; the instance tiles
+FAILS 0

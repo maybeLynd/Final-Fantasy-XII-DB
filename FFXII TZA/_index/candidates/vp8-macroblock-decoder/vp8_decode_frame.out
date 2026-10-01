@@ -1,0 +1,13 @@
+PASS  D every cited instruction matches, and each base register's last linear write is an approved definition
+PASS  H2 short packet: ecActive gate; frameType = 1, version = 0, showFrame = 1
+PASS  H3 key frame: width / height 14 bits, horizScale / vertScale the top 2 bits
+PASS  H4 decodedKeyFrame tested; the modes bool decoder +0x42C0 started (end, buffer, 0, -8, 0xFF, decryptCb, decryptState)
+PASS  H5 clampType; segmentation bytes +0xF60..+0xF67 of the macroblock decoder
+PASS  H6 filterType, filterLevel, sharpnessLevel; mode/ref delta enabled +0xF6F and update +0xF70
+PASS  H7 corrupted +0xFC0 cleared; pre +0xDE0 and dst +0xE70 copied from decFbRef[0]; currentBc +0xFB8 = &partitionBoolDecoders[0]
+PASS  H8 baseQIndex and the delta-q fields
+PASS  H9 refresh / copy / sign-bias flags; lastFrameContext <- frameContext, 8 x 0x80 + 0x59 bytes; refreshLastFrame
+PASS  H10 independentPartitions, qcoeff cleared (0x320), aboveContext cleared (mbCols * 9), frameCorruptResidual, threaded path, decodedKeyFrame, restore
+PASS  T fragment arrays indexed; multiTokenPartition; fragmentCount; partition bool decoders at stride 0x30; decodingThreadCount clamp
+PASS  P the rows are in the store; Vp8BoolDecoder exists; Vp8DecoderInstance, Vp8MacroblockDecoder and Vp8BoolDecoder tile
+FAILS 0

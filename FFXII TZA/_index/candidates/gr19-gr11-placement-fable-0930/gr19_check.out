@@ -1,0 +1,13 @@
+PASS R1 0033790D loads rdx from the gathered list mov rdx, qword ptr [rsp + rbx*8 + 0x80]
+PASS R1 00337956 call 00314EB0 
+PASS R1 no rdx write between 0033790D and 00337956 []
+PASS R1 control: the walk sees the rdx writes before 0033796F ['00337956 call 0x314eb0', '0033795F mov rdx, qword ptr [rsp + rbx*8 + 0x80]']
+PASS R2 esi or edi nonzero -> return 0 ['test esi, esi', 'jne 0x33799a', 'neg edi', 'sbb eax, eax', 'and eax, 2', 'je 0x33799e', 'xor eax, eax']
+PASS R3 LQUERY 00391410 then jne refuse 
+PASS R3 00384130 then 0xFF refuses 
+PASS R3 00336390 with max(f0,f1) and unit +0x1F4 
+PASS R4 00336390 calls 0032A6A0 five times 5
+PASS R5 [rcx+0xC0] 
+PASS R5 [+0x138] 
+PASS R5 copy from +0x30 to context +0x7A0 
+FAILS 0

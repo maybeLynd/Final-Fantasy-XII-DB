@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-LAND-THE-TWO-HELD-P0-VERDICT-CORRECTIONS",
+ "agent": "OPUS",
+ "note": "Committed f478045a6. Both P0 items held for forty rounds are applied, two lines changed in L2-VERDICTS.md and nothing else touched. S-02's sub-object debt now reads 23 declared types and 13,365 bytes - 13,507 with the root - under the cell's own predicate, with the original sentence struck and kept rather than deleted and the cell deliberately not re-scored. Revalidating immediately before writing was what caught my own undercount: the figure I had ready was 20 types and 12,458 bytes because the closure followed EMBED and not ARRAY, and the missing type owns one of the two spans the cell itself singles out. S-52 carries the types/ABI measurement as SUPPLY with the score left unentered: 27 unobserved bytes of 672 declared across ActorManagerSlotEntry and ActorManagerSlot, 96.0 % observed. Both cells still say what they said about scoring waiting on OPUS-REQ-AUDITSPEC-RULE-ON-WHAT-TYPES-MET-REQUIRES. MY PERSONAL QUEUE IS NOW EMPTY OF HELD ITEMS, which is not completion of anything: DB_GOAL remains NOT_MET with verdicts 51/52 unmet, questions OPEN=285, and the thirty-pass terminal audit at 0/30.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/L2-VERDICTS.md",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

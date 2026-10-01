@@ -1,0 +1,216 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "control-texture-update-arguments.py",
+      "bytes": 4687,
+      "sha256": "365dc88ba9b78376f07671a083806a77db3d35160c4d955a8b0a4ef083880bd7"
+    },
+    {
+      "path": "freeze-texture-update-arguments.py",
+      "bytes": 10019,
+      "sha256": "58dd799c1fda0fb9d1abcf0dc5141ba123a384c056f51ec0e778f3c5bb022fe8"
+    },
+    {
+      "path": "prove-texture-update-arguments-before-syntax-fix-01.py",
+      "bytes": 13220,
+      "sha256": "93c0707da941502ebc38848bb32b58a588ef28e5bb4ea54a6c92fdb298140d18"
+    },
+    {
+      "path": "prove-texture-update-arguments.py",
+      "bytes": 13221,
+      "sha256": "77c3ab338e3491e6880de22557a4f797c77da7fa62182fc584fb66af3d09e90e"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5012,
+      "sha256": "9cf7f31c424c701fce5fa0fdce8189b5c4e8fc45925cebe20edaa8cd4a8b3b4b"
+    },
+    {
+      "path": "texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "9f06c5ce1f305b9ed4f162fd04a3c3895602582964c6ac39aeacbb8837dde079"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-advance-shift/source/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "edcdf511be9bf46158dda183df2bbeb4c1b3b43b66ebe5a275004602adc7f189"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-advance-shift/status.json",
+      "bytes": 793,
+      "sha256": "1b33e09a7843f778df747613e519d7f710b61acaa964524be44aa9606240d306"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-advance-shift/stderr",
+      "bytes": 521,
+      "sha256": "b43fbed832a2972b529c69aef7a021e03d316c5b3af88f4412788741a9a4ce30"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-advance-shift/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-payload-offset/source/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "545f87f43d53580e371303bde936a27f531d9ad929fc9af558024483703a1aaa"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-payload-offset/status.json",
+      "bytes": 796,
+      "sha256": "8b5e82b08ed52194750b186ac3b977b59a128fba31cd8ae429b0fcea1b8ed161"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-payload-offset/stderr",
+      "bytes": 521,
+      "sha256": "b43fbed832a2972b529c69aef7a021e03d316c5b3af88f4412788741a9a4ce30"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/consistent-payload-offset/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/failed-positive-exit/source/prove-texture-update-arguments.py",
+      "bytes": 13221,
+      "sha256": "77c3ab338e3491e6880de22557a4f797c77da7fa62182fc584fb66af3d09e90e"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/failed-positive-exit/source/texture-update-arguments-positive-02.status.json",
+      "bytes": 467,
+      "sha256": "132d2d21a4c45f7500fdb53505a455429dcb335c8cf1765460117abf7fb82719"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/failed-positive-exit/source/texture-update-arguments-result-01.json",
+      "bytes": 16607,
+      "sha256": "feda52ff17f9d5807576b9e6b128b77e43943e97f1aea41f47483b5dbb9fd182"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/failed-positive-exit/status.json",
+      "bytes": 777,
+      "sha256": "0e7cb0d4cefa11289aed7fc31a036b127885146cce508c7854fe78ce745749db"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/failed-positive-exit/stderr",
+      "bytes": 781,
+      "sha256": "c13853d5d53bf0982b86f8e38247466c0575c06cd1839d05b6ec250badab359c"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/failed-positive-exit/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/false-argument-store-role/source/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "937a7092e9d38579a6b56b677f89371d4b04b48fa9b4d4f64bfcc78a0171a27c"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/false-argument-store-role/status.json",
+      "bytes": 796,
+      "sha256": "a7ea7ba56396428d8fcc734322e3540993d1890b70756fe8b2ecc672dc800bf8"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/false-argument-store-role/stderr",
+      "bytes": 793,
+      "sha256": "2e7d537546e2159dd278bf20172e03ac693ebba8938c4ff5b43d8a712b097cd1"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/false-argument-store-role/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/missing-source/status.json",
+      "bytes": 763,
+      "sha256": "8b8ae811e6167aec69cbdedf6efb4ac5ea386b3de241c52f45e3f4e22ff08e7c"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/missing-source/stderr",
+      "bytes": 1557,
+      "sha256": "667fc5e349c7c1203d66aca09b2d1a52ceb2f4d7a56d8e5fb5e9a87cf82c3f66"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/missing-source/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/outer-texture-update-arguments-controls-run-01.status.json",
+      "bytes": 346,
+      "sha256": "b2f71fa42f1fe673eab4ac41c29cc19a8027f74bb87e05eb386505b9eb354e83"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/outer-texture-update-arguments-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/outer-texture-update-arguments-controls-run-01.stdout",
+      "bytes": 74,
+      "sha256": "ae572cbbfe28b71ee578f298784b276b85e8202ac74ae73ef53599936dbcb65a"
+    },
+    {
+      "path": "texture-update-arguments-controls-01/result.json",
+      "bytes": 4748,
+      "sha256": "913797bfdb17d9c8d88ef5a27b82573cf50542e34cf4a54923dcb9d9b02c0096"
+    },
+    {
+      "path": "texture-update-arguments-method-01.json",
+      "bytes": 3590,
+      "sha256": "d56e417ab3036134c6f10e51ee6561b9edef32649823c49e87355f9237b35172"
+    },
+    {
+      "path": "texture-update-arguments-positive-01.status.json",
+      "bytes": 455,
+      "sha256": "fe13557287b2985081d9dbec950a038c3109fe4aee92f3cf99da09a4460e429f"
+    },
+    {
+      "path": "texture-update-arguments-positive-01.stderr",
+      "bytes": 301,
+      "sha256": "7d10c5b5aafe86c3463d0ee06ef449137eb46281e35325e865d71a0e506e059b"
+    },
+    {
+      "path": "texture-update-arguments-positive-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-positive-02.status.json",
+      "bytes": 455,
+      "sha256": "7f18dfbf966856b68a95552b109dd95a70bf1f5235815037708efe24615f11eb"
+    },
+    {
+      "path": "texture-update-arguments-positive-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-update-arguments-positive-02.stdout",
+      "bytes": 105,
+      "sha256": "37d44a282b49c72404668b27a9a3173814d8cb4b41d6b1f06a7c5a9558dcff0b"
+    },
+    {
+      "path": "texture-update-arguments-result-01.json",
+      "bytes": 16607,
+      "sha256": "feda52ff17f9d5807576b9e6b128b77e43943e97f1aea41f47483b5dbb9fd182"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

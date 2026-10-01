@@ -1,0 +1,24 @@
+table	slot	pack_dir	shape	covering_pages	bytes_mapped_by_pages	bytes_mapped_after_pass	record_size	residue_bytes	needs_map
+chr_data	02EBF130	+0x44	40 x 128	04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md; 08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md; 08-Combat-Formula/the-auto-status-rebuild.md; 12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md	45	117	128	0x07,0x08,0x09,0x2d,0x32,0x74,0x76,0x78,0x7a,0x7b,0x7c	yes
+dougu_data	02EBF100	+0x4c	64 x 12	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	12	12	-	yes
+eventitem_data	02EBF098	+0x84	512 x 10	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	10	10	-	yes
+maho_data	02EBF0F0	+0x78	81 x 8	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	8	8	-	yes
+waza_data	02EBF0E8	+0x7c	24 x 8	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	8	8	-	yes
+gambit_data	02EBF0E0	+0x24	40 x 64	09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	64	64	64	-	no
+m_daiji	02EBF090	+0x88	64 x 10	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	8	10	0x00,0x01	yes
+g_daiji	02EBF088	+0x8c	32 x 10	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	8	10	0x00,0x01	yes
+q_daiji	02EBF080	+0x90	416 x 10	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	3	8	10	0x00,0x01	yes
+eis_data	02EBF070	+0x98	512 x 12	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	12	12	12	-	no
+questreward_data	02EBF068	+0x9c	256 x 12	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	12	12	12	-	no
+price_data	02EBF060	+0x74	128 x 4	-	0	4	4	-	yes
+menkyo_data	02EBF0C8	+0x6c	32 x 8	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	2	7	8	0x04	yes
+horidashi	02EBF058	+0xe8	128 x 36	12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	30	36	36	-	yes
+comac_data	02EBF128	+0x48	21 x 4	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	2	4	4	-	yes
+mgccategory_data	02EBF110	+0x30	5 x 4	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	2	4	4	-	yes
+license_data	02EBF038	+0x34	361 x 24	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md; 12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md	20	24	24	-	yes
+attribute_data	02EBF050	+0xa8	8 x 2	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	2	2	2	-	no
+sobicategory_data	02EBF0B0	+0x18	32 x 4	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	2	4	4	-	yes
+ability_data	02EBF040	+0xec	129 x 8	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md; 10-Status-Periodic-Terminal/where-mp-comes-from.md	4	8	8	-	yes
+eitm_data	02EBF0F8	+0x38	557 x 52	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md; 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md; 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md; 07-Combat-Action/how-close-a-unit-must-stand-to-act.md; 08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md; 12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md; 12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md; 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md; _types/fields.tsv	15	33	52	0x06,0x10,0x1b,0x1c,0x1d,0x1e,0x20,0x21,0x22,0x23,0x24,0x25,0x27,0x2c,0x2d,0x30,0x31,0x32,0x33	yes
+status_data	02EBF118	+0x40	32 x 40	_types/fields.tsv	26	26	40	0x11,0x12,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f	yes
+action_data	02EBF138	+0x3c	543 x 60	07-Combat-Action/Action-Definition-Row/the-action-definition-row.md	41	51	60	0x04,0x0a,0x0b,0x1d,0x1f,0x20,0x21,0x28,0x3a	yes

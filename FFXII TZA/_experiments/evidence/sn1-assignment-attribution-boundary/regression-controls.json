@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-tagged-group-as-statement",
+    "returncode": 1,
+    "expected": "Tagged group incorrectly required"
+  },
+  {
+    "argument": "--fault-literal-only-attribution",
+    "returncode": 1,
+    "expected": "Literal-only matcher falsely identifies"
+  },
+  {
+    "argument": "--fault-universal-minus-one",
+    "returncode": 1,
+    "expected": "Universal minus-one misattributes"
+  }
+]

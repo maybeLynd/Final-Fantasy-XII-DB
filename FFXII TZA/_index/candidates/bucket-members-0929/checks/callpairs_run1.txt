@@ -1,0 +1,17 @@
+# call sites scanned: 122250; wanted pairs: [('0x7', '0x7e'), ('0x7', '0x90'), ('0x9', '0x1'), ('0x9', '0x1c'), ('0x9', '0x2'), ('0x9', '0x20'), ('0x9', '0x2a'), ('0x9', '0xa')]
+00268814	00268750 MapRef_BeginLoadResources	(rcx=0x9, next=0x2)	call 0x32e400
+0026883E	00268750 MapRef_BeginLoadResources	(rcx=0x9, next=0x2)	call 0x32e620
+0037870A	00378540 FUN_00378540	(rcx=0x9, next=0xa)	call 0x32e400
+0037876F	00378540 FUN_00378540	(rcx=0x9, next=0xa)	call 0x32e620
+0039CD5C	0039CD50 FUN_0039cd50	(rcx=0x9, next=0xa)	call 0x36c1d0
+003A367C	003A3670 FUN_003a3670	(rcx=0x9, next=0xa)	call 0x36c1d0
+003B5407	003B53C0 FUN_003b53c0	(rcx=0x9, next=0x2a)	call 0x32e400
+003B5427	003B53C0 FUN_003b53c0	(rcx=0x9, next=0x2a)	call 0x32e620
+003EAB73	003EAB60 FUN_003eab60	(rcx=0x9, next=0x20)	call 0x51ed10
+003F500C	003F4E70 FUN_003f4e70	(rcx=0x9, next=0x1)	call 0x252b40
+0041DF22	0041DD40 PresentationEmbeddedRecord_ActivatePendingState	(rdx=0x9, next=0x1)	call 0x3e12a0
+00561663	00561390 FUN_00561390	(rdx=0x7, next=0x7e)	call 0x249210
+CONTROL 0037870A: PASS
+CONTROL 003EAB73: PASS
+CONTROL 00561663: PASS
+FAILS 0

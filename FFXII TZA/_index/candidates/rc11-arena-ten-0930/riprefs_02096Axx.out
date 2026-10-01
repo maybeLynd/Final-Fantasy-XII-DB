@@ -1,0 +1,39 @@
+PASS  control: 0036C1F0 stores the active arena 022D89BC
+0024C6B0  0024C739  r    mov    ecx, dword ptr [rip + 0x1e4a2e1]             -> 02096A20
+00258B90  00258BEA  r    mov    rcx, qword ptr [rip + 0x1e3de27]             -> 02096A18
+00258B90  00258C78  r    mov    rax, qword ptr [rip + 0x1e3dd99]             -> 02096A18
+003A3E30  003A3F80  r    cmp    eax, dword ptr [rip + 0x1cf2b9e]             -> 02096B24
+003A3E30  003A3F8A  lea  lea    rcx, [rip + 0x1cf2a93]                       -> 02096A24
+003A3FD0  003A404C  r    mov    ecx, dword ptr [rip + 0x1cf29ce]             -> 02096A20
+003A4070  003A40DE  r    mov    eax, dword ptr [rip + 0x1cf293c]             -> 02096A20
+003A4290  003A54B8  r    mov    edx, dword ptr [rip + 0x1cf166e]             -> 02096B2C
+003A4290  003A54BE  r    mov    r8d, dword ptr [rip + 0x1cf166b]             -> 02096B30
+003A4290  003A54C5  r    mov    r9d, dword ptr [rip + 0x1cf1668]             -> 02096B34
+003A5640  003A5697  r    cmp    edx, dword ptr [rip + 0x1cf1487]             -> 02096B24
+003A5640  003A56A2  lea  lea    rcx, [rip + 0x1cf137b]                       -> 02096A24
+003A56F0  003A685D  r    mov    edx, dword ptr [rip + 0x1cf02c9]             -> 02096B2C
+003A56F0  003A6863  r    mov    r8d, dword ptr [rip + 0x1cf02c6]             -> 02096B30
+003A56F0  003A686A  r    mov    r9d, dword ptr [rip + 0x1cf02c3]             -> 02096B34
+003A6BA0  003A6BFD  r    cmp    edx, dword ptr [rip + 0x1ceff21]             -> 02096B24
+003A6BA0  003A6C08  lea  lea    rcx, [rip + 0x1cefe15]                       -> 02096A24
+003A6C30  003A6C6D  r    mov    edi, dword ptr [rip + 0x1cefeb1]             -> 02096B24
+003B8670  003B8C56  r    mov    ecx, dword ptr [rip + 0x1cdddc4]             -> 02096A20
+003B8670  003B8C5C  lea  lea    rdx, [rip + 0x1cdddc1]                       -> 02096A24
+003B8670  003B8ED4  r    mov    ecx, dword ptr [rip + 0x1cddb46]             -> 02096A20
+003B8670  003B8FC9  r    mov    ecx, dword ptr [rip + 0x1cdda51]             -> 02096A20
+003B8670  003B91DC  r    mov    ecx, dword ptr [rip + 0x1cdd83e]             -> 02096A20
+003B8670  003B9273  r    mov    ecx, dword ptr [rip + 0x1cdd7a7]             -> 02096A20
+003EE2D0  003EE313  w    mov    dword ptr [rip + 0x1ca8827], eax             -> 02096B40
+003EE2D0  003EE319  w    mov    dword ptr [rip + 0x1ca8885], eax             -> 02096BA4
+003EE2D0  003EE33D  r    mov    rcx, qword ptr [rip + 0x1ca892c]             -> 02096C70
+003EE2D0  003EE350  w    mov    dword ptr [rip + 0x1ca87ea], eax             -> 02096B40
+003EE2D0  003EE365  r    mov    rcx, qword ptr [rip + 0x1ca882c]             -> 02096B98
+003EE2D0  003EE378  w    mov    dword ptr [rip + 0x1ca8826], eax             -> 02096BA4
+003EE2D0  003EE38F  w    mov    dword ptr [rip + 0x1ca87ab], eax             -> 02096B40
+003EE2D0  003EE395  w    mov    dword ptr [rip + 0x1ca8809], eax             -> 02096BA4
+00465120  004653AF  r    cmp    dword ptr [rip + 0x1c31773], ebx             -> 02096B28
+00465120  004653B7  lea  lea    rdi, [rip + 0x1c316e6]                       -> 02096AA4
+00465120  0046540A  r    cmp    ebx, dword ptr [rip + 0x1c31718]             -> 02096B28
+00465690  00465AFE  r    cmp    dword ptr [rip + 0x1c31024], esi             -> 02096B28
+00465690  00465B08  lea  lea    rdi, [rip + 0x1c30f95]                       -> 02096AA4
+00465690  00465B67  r    cmp    ebx, dword ptr [rip + 0x1c30fbb]             -> 02096B28

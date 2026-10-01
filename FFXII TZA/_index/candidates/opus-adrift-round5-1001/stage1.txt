@@ -1,0 +1,13 @@
+the-shape-of-the-verb-population.md :: ScriptVM.VerbAdapter | 1035 -> 1033 | removed 0033FFF0 00342230
+third-party-middleware-inventory.md :: Tremor with vorbisfile.c | 102 -> 99 | removed 007F8220 007F8600 007F8FD0
+third-party-middleware-inventory.md :: libvorbis float codec | 116 -> 115 | removed 00882C20
+third-party-middleware-inventory.md :: zlib 1.2.11 | 55 -> 54 | removed 0080C5A0
+third-party-middleware-inventory.md :: Dear ImGui context object | 10 -> 9 | removed 00791D80
+yebis-ppfx-source-map.md :: PPFX post-effect library | 1601 -> 1600 | removed 00731EA0
+generated-function-families.md :: NativeLeaf.DocumentedGlobalAccessor | 230 -> 229 | removed 003204B0
+generated-function-families.md :: NativeAdapter.ExplainedCalleeForwarder | 489 -> 486 | removed 00282E60 003228E0 0036A240
+generated-function-families.md :: NativeAdapter.CallResultTailCall | 63 -> 62 | removed 0017DAA0
+generated-function-families.md :: NativeAdapter.CallThenReturnZero | 19 -> 18 | removed 00679A40
+generated-function-families.md :: NativeLeaf.StaticHandleReplaceWithPreRelease | 12 -> 11 | removed 002383C0
+generated-function-families.md :: NativeAdapter.DoubleCallResultTailCallSavedThis | 5 -> 4 | removed 001805D0
+static-initialisers-and-teardowns.md :: xc-registered static-object teardowns | 108 -> 107 | removed 008A7360

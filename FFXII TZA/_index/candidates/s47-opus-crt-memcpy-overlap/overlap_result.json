@@ -1,0 +1,1266 @@
+{
+ "appended_case": "\n/* OPUS 2026-09-26: M07-7's layout carried past the import (see overlap_complete.py). */\nstatic uintptr_t oc_dst, oc_src; static size_t oc_len;\nstatic void overlap_complete(void){\n    reset();phase=\"overlap_move_completed_per_bound_crt\";\n    uintptr_t hole,sep,tail;uint32_t h;motion_layout(0x100,0x400,0,&hole,&sep,&tail,&h);(void)sep;\n    uintptr_t old=resolve(h),slot=h&~3u;unsigned char payload[0x400];memcpy(payload,(void*)old,sizeof(payload));\n    eq(\"movement_latch_initially_clear\",moved_flag(),0);\n    release(hole);uint32_t before=usage(6);uint16_t gen=r16(slot+6);\n    watch_src=old;watch_slot=slot;\n    int moves=compact(0);uintptr_t now=resolve(h);\n    printf(\",\\n{\\\"name\\\":\\\"layout\\\",\\\"hole\\\":%llu,\\\"old_source\\\":%llu,\\\"new_source\\\":%llu,\\\"moves\\\":%d}\",\n           (unsigned long long)hole,(unsigned long long)old,(unsigned long long)now,moves);\n    eq(\"m07_7_source_address\",old,0x30000500);\n    eq(\"overlap_move_reports_one_move\",moves,1);\n    eq(\"overlap_move_lands_at_m07_7_destination\",now,0x300003c0);\n    eq(\"overlap_move_goes_down_by_hole_plus_header\",old-now,0x140);\n    bytes(\"overlap_mover_preserves_full_payload\",now,payload,sizeof(payload));\n    eq(\"overlap_mover_keeps_source_size\",r32(now-0x28),0x400);\n    eq(\"overlap_mover_keeps_live_handle_slot\",r8(slot+5),1);\n    eq(\"overlap_mover_updates_slot_header\",r64(slot+8),now-0x40);\n    eq(\"overlap_mover_updates_header_slot_backlink\",r32(now-0x20),(uint32_t)slot);\n    eq(\"overlap_mover_updates_generation_pair\",r16(slot+6),r16(now-0x24));\n    eq(\"overlap_mover_changes_generation_not_handle_value\",r16(slot+6)!=gen,1);\n    eq(\"overlap_mover_reinserts_tree_membership\",r8(now-0x2b)&2,2);\n    eq(\"overlap_mover_preserves_arena_payload_accounting\",usage(6),before);\n    eq(\"overlap_mover_marks_compaction_change\",r8(arena(6)+0x62),1);\n    eq(\"overlap_copy_boundary_observed_once\",copy_hits,1);\n    eq(\"overlap_copy_regions_do_overlap\",copy_overlap,1);\n    eq(\"overlap_slot_published_before_payload_copy\",copy_published,1);\n    eq(\"overlap_old_block_freed_before_payload_copy\",copy_old_free,1);\n    eq(\"overlap_stable_handle_resolves_new_source\",pin(h),now);unpin(h);\n    destroy(h);release(tail);\n    eq(\"overlap_move_cleanup_accounting\",usage(6),0);\n    eq(\"overlap_move_no_diagnostics\",formats,0);\n    eq(\"overlap_movement_latch_set\",moved_flag(),1);clear_moved();\n    (void)oc_dst;(void)oc_src;(void)oc_len;\n}\n",
+ "cases": {
+  "control_backward_copier_fails_exactly_the_payload_assertion": true,
+  "oracle_baseline_unchanged_on_patched_copy_123_checks": true,
+  "oracle_overlap_boundary_unchanged": true,
+  "overlap_complete_every_assertion_passes": true,
+  "overlap_complete_repeat_identical": true
+ },
+ "compile": {
+  "diag": "",
+  "rc": 0
+ },
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+ "live_game": false,
+ "ok": true,
+ "patched_sha256": "69584e7faa1365a18e5fe58f50a1cadb7834155b2f420ebe2b4294b9034d6a03",
+ "replacements": {
+  "DECL": [
+   "static int overlap_probe;\n",
+   "static int overlap_probe;\nstatic int overlap_complete_mode;\nstatic void overlap_complete(void);\n"
+  ],
+  "R1": [
+   "        fprintf(stderr,\"overlapping memcpy requires separate CRT evidence\\n\");exit(3);\n",
+   "        if(overlap_complete_mode==1){return memmove(p,s,n);}\n        if(overlap_complete_mode==2){unsigned char*dd=p;const unsigned char*ss=s;for(size_t i=n;i-->0;)dd[i]=ss[i];return p;}\n        fprintf(stderr,\"overlapping memcpy requires separate CRT evidence\\n\");exit(3);\n"
+  ],
+  "R2": [
+   "    if(argc>2&&!strcmp(argv[2],\"overlap-boundary\")){overlap_probe=1;overlap_boundary();return 2;}\n",
+   "    if(argc>2&&!strcmp(argv[2],\"overlap-boundary\")){overlap_probe=1;overlap_boundary();return 2;}\n    if(argc>2&&(!strcmp(argv[2],\"overlap-complete\")||!strcmp(argv[2],\"overlap-complete-backward\"))){\n        overlap_complete_mode=strcmp(argv[2],\"overlap-complete\")?2:1;\n        printf(\"{\\\"evidence_class\\\":\\\"isolated original-instruction execution; synthetic arenas; overlap copy per bound CRT\\\",\\\"cases\\\":[\\n\");\n        overlap_complete();\n        printf(\"\\n],\\\"checks\\\":%u,\\\"failures\\\":%u}\\n\",checks,failures);return failures?1:0;\n    }\n"
+  ]
+ },
+ "runs": {
+  "baseline": {
+   "out": {
+    "cases": [
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "movement_latch_initially_clear",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "tagged_new_block_tree_eligible",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "exact_fit_reports_one_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "exact_fit_moves_across_raw_barrier",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "mover_preserves_full_payload",
+      "pass": true
+     },
+     {
+      "actual": 1024,
+      "expected": 1024,
+      "name": "mover_keeps_source_size",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "mover_keeps_live_handle_slot",
+      "pass": true
+     },
+     {
+      "actual": 805307264,
+      "expected": 805307264,
+      "name": "mover_updates_slot_header",
+      "pass": true
+     },
+     {
+      "actual": 805306752,
+      "expected": 805306752,
+      "name": "mover_updates_header_slot_backlink",
+      "pass": true
+     },
+     {
+      "actual": 4,
+      "expected": 4,
+      "name": "mover_updates_generation_pair",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "mover_changes_generation_not_handle_value",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "mover_reinserts_tree_membership",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "mover_does_not_free_raw_barrier",
+      "pass": true
+     },
+     {
+      "actual": 1408,
+      "expected": 1408,
+      "name": "mover_preserves_arena_payload_accounting",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "mover_marks_compaction_change",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "copy_boundary_observed_once",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "slot_published_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "old_block_freed_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "tested_copy_regions_do_not_overlap",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "old_raw_payload_is_no_longer_allocation",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "stable_handle_resolves_new_source",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "exact_move_cleanup_accounting",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "exact_move_no_diagnostics",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "movement_latch_survives_release",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "movement_latch_explicitly_cleared",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "empty_tree_compaction_returns_zero",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "no_move_does_not_set_latch",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "pin_returns_current_payload",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "unlinked_block_is_not_moved",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "unlinked_handle_stays_old",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "member_with_inhibit_bit_is_not_moved",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "inhibit_preserves_source",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "clear_inhibit_allows_real_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "allowed_move_reaches_hole",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "gate_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "nonadjacent_smaller_candidate_not_best_fit",
+      "pass": true
+     },
+     {
+      "actual": 805309760,
+      "expected": 805309760,
+      "name": "nonexact_nonadjacent_stays",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "nonexact_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "adjacent_unequal_can_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "adjacent_unequal_destination",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "adjacent_payload_preserved",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "adjacent_test_copy_nonoverlap",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "adjacent_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "lower_source_not_moved_to_higher_hole",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "lower_source_location_preserved",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "lower_source_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 805306755,
+      "expected": 805306755,
+      "name": "consumer_initial_handle_binding",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "consumer_initial_source",
+      "pass": true
+     },
+     {
+      "actual": 805308768,
+      "expected": 805308768,
+      "name": "consumer_initial_table_pointer",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "integrated_native_move_occurs",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "original_slot_now_points_at_hole",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "allocator_does_not_repair_consumer_base",
+      "pass": true
+     },
+     {
+      "actual": 805308768,
+      "expected": 805308768,
+      "name": "allocator_does_not_repair_consumer_lookup",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "original_refresh_reads_actual_moved_slot",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "original_refresh_repairs_actual_moved_pointer",
+      "pass": true
+     },
+     {
+      "actual": 805308752,
+      "expected": 805308752,
+      "name": "original_refresh_preserves_stale_run_origin",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "actual_move_repeat_refresh_is_not_double_delta",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "actual_move_context_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "actual_move_owner_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "actual_move_no_diagnostics",
+      "pass": true
+     },
+     {
+      "actual": 134217728,
+      "expected": 134217728,
+      "name": "request_sets_pending_bit",
+      "pass": true
+     },
+     {
+      "actual": 19088743,
+      "expected": 19088743,
+      "name": "request_preserves_low27",
+      "pass": true
+     },
+     {
+      "actual": 9,
+      "expected": 9,
+      "name": "request_selects_high_five_bits",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "later_request_replaces_not_appends",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "issuer_truncates_to_five_bits",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "dirty_fixture_original_move",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "pending_does_not_itself_repair_context",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "pending_does_not_itself_repair_container",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "negative_child_index_rejected",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "eleven_is_excluded",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "rejected_index_does_not_refresh",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "zero_child_index_returns_success",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "zero_success_is_not_a_refresh",
+      "pass": true
+     },
+     {
+      "actual": 805308768,
+      "expected": 805308768,
+      "name": "zero_success_leaves_lookup_old",
+      "pass": true
+     },
+     {
+      "actual": 134217728,
+      "expected": 134217728,
+      "name": "unbound_record_keeps_pending_bit",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "unbound_record_keeps_stale_context",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "stale_full_ticket_retires_pending_bit",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "stale_ticket_did_not_refresh",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "invalid_child_retires_pending_bit",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "invalid_child_left_context_old",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "zero_child_retires_pending_bit",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "zero_child_dirty_delivery_does_not_refresh",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "failed_start_still_consumes_pending_bit",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "full_dirty_driver_repairs_context_after_move",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "full_dirty_driver_repairs_lookup_after_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "full_dirty_driver_repairs_container_base",
+      "pass": true
+     },
+     {
+      "actual": 805308752,
+      "expected": 805308752,
+      "name": "full_dirty_driver_keeps_old_run_origin",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "no_group_has_no_successful_start",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "ten_is_admitted_and_runs_refresh",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "no_pending_repeat_preserves_lookup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "null_container_rejects",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "dirty_fixture_context_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "dirty_fixture_source_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "dirty_fixture_no_diagnostics",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "pressure_fixture_has_no_spare_free_head",
+      "pass": true
+     },
+     {
+      "actual": 2048,
+      "expected": 2048,
+      "name": "pressure_first_gap_is_only_0800",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "larger_request_succeeds_after_original_fallback",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "allocation_itself_moves_prior_source",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "allocation_fallback_executed_original_copy",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "allocation_fallback_preserves_prior_contents",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "allocation_fallback_result_is_separate",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "allocation_fallback_marks_movement",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "fallback_all_allocations_reclaimed",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "fallback_no_diagnostic_substitution_used",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "repeat_zero_can_still_report_two_moves",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "first_selection_moved_exact_member",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "second_selection_moved_adjacent_member",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "two_passes_changed_second_location",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "two_pass_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "combined_fixture_actual_move",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "combined_nonzero_argument_skips_refresh",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "combined_zero_argument_repairs_context",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "combined_walk_repairs_lookup",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "combined_first_container_rebased",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "combined_shared_context_second_container_rebased",
+      "pass": true
+     },
+     {
+      "actual": 805308752,
+      "expected": 805308752,
+      "name": "combined_keeps_old_run_origin",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "combined_repeat_not_double_delta",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "combined_nonborrow_context_skips_rebase",
+      "pass": true
+     },
+     {
+      "actual": 805308736,
+      "expected": 805308736,
+      "name": "combined_nonborrow_container_skips_rebase",
+      "pass": true
+     },
+     {
+      "actual": 805307360,
+      "expected": 805307360,
+      "name": "combined_restore_borrow_repairs_again",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "combined_context_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "combined_owner_cleanup",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "combined_no_diagnostics",
+      "pass": true
+     }
+    ],
+    "checks": 123,
+    "evidence_class": "isolated original-instruction execution; synthetic arenas",
+    "failures": 0
+   },
+   "rc": 0,
+   "stderr": ""
+  },
+  "overlap-boundary": {
+   "out": {
+    "destination": 805307328,
+    "evidence": "stopped at original memcpy import before copying",
+    "length": 1024,
+    "old_source_freed": 1,
+    "overlap": true,
+    "slot_published": 1,
+    "source": 805307648
+   },
+   "rc": 0,
+   "stderr": ""
+  },
+  "overlap-complete": {
+   "out": {
+    "cases": [
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "movement_latch_initially_clear",
+      "pass": true
+     },
+     {
+      "hole": 805307328,
+      "moves": 1,
+      "name": "layout",
+      "new_source": 805307328,
+      "old_source": 805307648
+     },
+     {
+      "actual": 805307648,
+      "expected": 805307648,
+      "name": "m07_7_source_address",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_move_reports_one_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "overlap_move_lands_at_m07_7_destination",
+      "pass": true
+     },
+     {
+      "actual": 320,
+      "expected": 320,
+      "name": "overlap_move_goes_down_by_hole_plus_header",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_preserves_full_payload",
+      "pass": true
+     },
+     {
+      "actual": 1024,
+      "expected": 1024,
+      "name": "overlap_mover_keeps_source_size",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_keeps_live_handle_slot",
+      "pass": true
+     },
+     {
+      "actual": 805307264,
+      "expected": 805307264,
+      "name": "overlap_mover_updates_slot_header",
+      "pass": true
+     },
+     {
+      "actual": 805306752,
+      "expected": 805306752,
+      "name": "overlap_mover_updates_header_slot_backlink",
+      "pass": true
+     },
+     {
+      "actual": 3,
+      "expected": 3,
+      "name": "overlap_mover_updates_generation_pair",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_changes_generation_not_handle_value",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "overlap_mover_reinserts_tree_membership",
+      "pass": true
+     },
+     {
+      "actual": 1152,
+      "expected": 1152,
+      "name": "overlap_mover_preserves_arena_payload_accounting",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_marks_compaction_change",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_copy_boundary_observed_once",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_copy_regions_do_overlap",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_slot_published_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_old_block_freed_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "overlap_stable_handle_resolves_new_source",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "overlap_move_cleanup_accounting",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "overlap_move_no_diagnostics",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_movement_latch_set",
+      "pass": true
+     }
+    ],
+    "checks": 23,
+    "evidence_class": "isolated original-instruction execution; synthetic arenas; overlap copy per bound CRT",
+    "failures": 0
+   },
+   "rc": 0,
+   "stderr": ""
+  },
+  "overlap-complete-backward": {
+   "out": {
+    "cases": [
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "movement_latch_initially_clear",
+      "pass": true
+     },
+     {
+      "hole": 805307328,
+      "moves": 1,
+      "name": "layout",
+      "new_source": 805307328,
+      "old_source": 805307648
+     },
+     {
+      "actual": 805307648,
+      "expected": 805307648,
+      "name": "m07_7_source_address",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_move_reports_one_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "overlap_move_lands_at_m07_7_destination",
+      "pass": true
+     },
+     {
+      "actual": 320,
+      "expected": 320,
+      "name": "overlap_move_goes_down_by_hole_plus_header",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 1,
+      "name": "overlap_mover_preserves_full_payload",
+      "pass": false
+     },
+     {
+      "actual": 1024,
+      "expected": 1024,
+      "name": "overlap_mover_keeps_source_size",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_keeps_live_handle_slot",
+      "pass": true
+     },
+     {
+      "actual": 805307264,
+      "expected": 805307264,
+      "name": "overlap_mover_updates_slot_header",
+      "pass": true
+     },
+     {
+      "actual": 805306752,
+      "expected": 805306752,
+      "name": "overlap_mover_updates_header_slot_backlink",
+      "pass": true
+     },
+     {
+      "actual": 3,
+      "expected": 3,
+      "name": "overlap_mover_updates_generation_pair",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_changes_generation_not_handle_value",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "overlap_mover_reinserts_tree_membership",
+      "pass": true
+     },
+     {
+      "actual": 1152,
+      "expected": 1152,
+      "name": "overlap_mover_preserves_arena_payload_accounting",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_marks_compaction_change",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_copy_boundary_observed_once",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_copy_regions_do_overlap",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_slot_published_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_old_block_freed_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "overlap_stable_handle_resolves_new_source",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "overlap_move_cleanup_accounting",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "overlap_move_no_diagnostics",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_movement_latch_set",
+      "pass": true
+     }
+    ],
+    "checks": 23,
+    "evidence_class": "isolated original-instruction execution; synthetic arenas; overlap copy per bound CRT",
+    "failures": 1
+   },
+   "rc": 1,
+   "stderr": ""
+  },
+  "overlap-complete_repeat": {
+   "out": {
+    "cases": [
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "movement_latch_initially_clear",
+      "pass": true
+     },
+     {
+      "hole": 805307328,
+      "moves": 1,
+      "name": "layout",
+      "new_source": 805307328,
+      "old_source": 805307648
+     },
+     {
+      "actual": 805307648,
+      "expected": 805307648,
+      "name": "m07_7_source_address",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_move_reports_one_move",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "overlap_move_lands_at_m07_7_destination",
+      "pass": true
+     },
+     {
+      "actual": 320,
+      "expected": 320,
+      "name": "overlap_move_goes_down_by_hole_plus_header",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_preserves_full_payload",
+      "pass": true
+     },
+     {
+      "actual": 1024,
+      "expected": 1024,
+      "name": "overlap_mover_keeps_source_size",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_keeps_live_handle_slot",
+      "pass": true
+     },
+     {
+      "actual": 805307264,
+      "expected": 805307264,
+      "name": "overlap_mover_updates_slot_header",
+      "pass": true
+     },
+     {
+      "actual": 805306752,
+      "expected": 805306752,
+      "name": "overlap_mover_updates_header_slot_backlink",
+      "pass": true
+     },
+     {
+      "actual": 3,
+      "expected": 3,
+      "name": "overlap_mover_updates_generation_pair",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_changes_generation_not_handle_value",
+      "pass": true
+     },
+     {
+      "actual": 2,
+      "expected": 2,
+      "name": "overlap_mover_reinserts_tree_membership",
+      "pass": true
+     },
+     {
+      "actual": 1152,
+      "expected": 1152,
+      "name": "overlap_mover_preserves_arena_payload_accounting",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_mover_marks_compaction_change",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_copy_boundary_observed_once",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_copy_regions_do_overlap",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_slot_published_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_old_block_freed_before_payload_copy",
+      "pass": true
+     },
+     {
+      "actual": 805307328,
+      "expected": 805307328,
+      "name": "overlap_stable_handle_resolves_new_source",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "overlap_move_cleanup_accounting",
+      "pass": true
+     },
+     {
+      "actual": 0,
+      "expected": 0,
+      "name": "overlap_move_no_diagnostics",
+      "pass": true
+     },
+     {
+      "actual": 1,
+      "expected": 1,
+      "name": "overlap_movement_latch_set",
+      "pass": true
+     }
+    ],
+    "checks": 23,
+    "evidence_class": "isolated original-instruction execution; synthetic arenas; overlap copy per bound CRT",
+    "failures": 0
+   },
+   "rc": 0,
+   "stderr": ""
+  }
+ },
+ "section07_source_sha256": "c24a9fd9e13d166df24c10dd74a9b1209e30e132f6258ee4fead0083e062a5be"
+}

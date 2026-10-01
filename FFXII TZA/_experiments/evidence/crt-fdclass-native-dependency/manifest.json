@@ -1,0 +1,69 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4518,
+      "sha256": "2b77607b2aab2fed02a0deac557f42693e1f33e92854ed81f64ae8663d36d333"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6188,
+      "sha256": "94c4bf9ec1243038d0ee5a1294c6b022c7f118e5330d18d31667c730123d50c5"
+    },
+    {
+      "path": "historical-canonical-byte-precondition/capture.py",
+      "bytes": 4175,
+      "sha256": "64bdc24158717aaae500203104beece2e059184568a7552d000d0db83c79d099"
+    },
+    {
+      "path": "historical-canonical-byte-precondition/FAILURE.json",
+      "bytes": 727,
+      "sha256": "fd5e2e8fce0749210c2a44c9c381811b9fd942b64762b146677592cd625b06ee"
+    },
+    {
+      "path": "historical-canonical-byte-precondition/partial-retained/nav-source.json",
+      "bytes": 21494,
+      "sha256": "2a02386b98f61ede2a16972ee2ea1e9d52298a049468d2163b264384f08072e7"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1735,
+      "sha256": "0fe3bd408bd338793a3b175e739db3b9ab3b46d259ebbc665597aa34615bc1b5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3187,
+      "sha256": "029275e1a22d680970e416d8c337785658da80a19a0fe3391820431f7e3b3927"
+    },
+    {
+      "path": "result.json",
+      "bytes": 4419,
+      "sha256": "0be47f7a5ea104bba89aea74cbb51b684608d76f3b5134a8dacb481f20fa5091"
+    },
+    {
+      "path": "retained/exp131-check.py",
+      "bytes": 46615,
+      "sha256": "db54c1e73c8ec44661a86517610fe70792a9690f0cd28682af95be22cf4c76f3"
+    },
+    {
+      "path": "retained/exp131-gen_bodies.py",
+      "bytes": 8094,
+      "sha256": "1354d0710df35cbcb538755be74110a07505c12253e59b4f8a6c8eec3df71a5b"
+    },
+    {
+      "path": "retained/nav-source.json",
+      "bytes": 21494,
+      "sha256": "2a02386b98f61ede2a16972ee2ea1e9d52298a049468d2163b264384f08072e7"
+    },
+    {
+      "path": "source.json",
+      "bytes": 7980,
+      "sha256": "d0b8625777eeca0b68999195bc02279061758ed2a595753d8c44971a26051f29"
+    }
+  ]
+}

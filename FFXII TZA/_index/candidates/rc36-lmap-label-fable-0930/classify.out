@@ -1,0 +1,203 @@
+== X  accessor facts
+  PASS  X1 003BF430 kind out: 0 for i < countA (A at rec+4+24*i), 1 otherwise (B after A), 3 on failure
+  PASS  X2 003BDFF0 considers only kind-0 points (skips kind != 0) and returns a kind-0 index
+  PASS  X3 003BE1E0 returns the point at 003BDFF0's index: an A point, since that index is < countA
+  PASS  X4 003BDDE0 writes its kind out [r8] only on the enabled-first path; the 003BDF06 path (start point kind != 0) walks from countA and returns a same-+0x11 B point with [r8] unwritten
+  PASS  X5 003C1A20 stores triples {+0 index, +8 point, +0x10 kind}; kind = 003BF430's out or 0 on the 003BE1E0 path; selector r8d filters (2 = all)
+  PASS  X6 003BE3A0 hands each triple to 003C2320 as (row, rdx = point, r8d = kind) and the triple array (rsp+0x60) as arg 5
+
+== L  per-load classification
+    control window 003C040F cmp dword ptr [rsp + 0x58], 0
+    control window 003C0414 jne 0x3c041e
+  PASS  003BCB05  [wmap header, not lmap]  [[02B457E0]+0xD8] + 0xC: header word of menumap_world.bin (wmap), then added to the file base as a section offset
+        evidence: 003BCAF5, 003BCAFE, 003BCB05
+  PASS  003C000F  [wmap header, not lmap]  [[02B457E0]+0xD8] + 0xC: header word of menumap_world.bin (wmap), then added to the file base as a section offset
+        evidence: 003BFFFA, 003C0008, 003C000F
+  PASS  003C00DF  [wmap header, not lmap]  [[02B457E0]+0xD8] + 0xC: header word of menumap_world.bin (wmap), then added to the file base as a section offset
+        evidence: 003C00CA, 003C00D8, 003C00DF
+  PASS  003C019F  [wmap header, not lmap]  [[02B457E0]+0xD8] + 0xC: header word of menumap_world.bin (wmap), then added to the file base as a section offset
+        evidence: 003C018A, 003C0198, 003C019F
+  PASS  003BD116  [wmap entry, not lmap]  wmap +word[+0xA] table entry, stride 0x1C (rsi = base + 4 + 0x1C*id)
+        evidence: 003BD04A, 003BD057, 003BD05E, 003BD09C, 003BD116
+  PASS  003BCEEC  [C]  r8 argument = the array-C entry (003C0740's walk, SWE2-CONTRACT lmap_readers C1); +0x10 is C's gate
+        evidence: 003BCDEB, 003BCDFA, 003BCEEC
+  PASS  003BCBAF  [A]  rcx argument; every caller passes an A point (section K, 003BCBA0)
+        evidence: 003BCBAF, 003BCBB8
+  PASS  003BCBF7  [A]  rdi = rcx argument (as above); +0xC -> MapRef_GetPersistenceGroupId, a field-id consumer
+        evidence: 003BCBB3, 003BCBF7, 003BCBFB
+  PASS  003BF9CA  [A]  rcx argument; sole caller 003C2320's kind-0 arm passes r15 (the point) at 003C2477
+        evidence: 003BF9CA, 003C23C5, 003C2477, 003C2482
+  PASS  003C11A6  [A]  rdi = rdx argument; both callers (003BCEE3, 003BCF06) pass rdx = rbx = the kind-0 point of 003BCE66
+        evidence: 003C118D, 003BCE6B, 003BCE73, 003BCED7, 003BCEFA, 003C11A6
+  PASS  003C11CA  [A]  rdi = rdx argument; both callers (003BCEE3, 003BCF06) pass rdx = rbx = the kind-0 point of 003BCE66
+        evidence: 003C118D, 003BCE6B, 003BCE73, 003BCED7, 003BCEFA, 003C11CA
+  PASS  003C11DC  [A]  rdi = rdx argument; both callers (003BCEE3, 003BCF06) pass rdx = rbx = the kind-0 point of 003BCE66
+        evidence: 003C118D, 003BCE6B, 003BCE73, 003BCED7, 003BCEFA, 003C11DC
+  PASS  003C11FE  [A]  rdi = rdx argument; both callers (003BCEE3, 003BCF06) pass rdx = rbx = the kind-0 point of 003BCE66
+        evidence: 003C118D, 003BCE6B, 003BCE73, 003BCED7, 003BCEFA, 003C11FE
+  PASS  003C17A2  [A]  rcx = inline point arithmetic over [[02B457E0]+0xE0]; r8d = 0 for i < countA, 1 otherwise; load only when r8d == 0
+        evidence: 003C169D, 003C1765, 003C178A, 003C179D, 003C17A0, 003C17A2
+  PASS  003C1936  [A]  rdi = rdx argument; every caller reaches 003C18A0 only for kind 0 (section K, 003C18A0)
+        evidence: 003C18B7, 003C1936
+  PASS  003BEAAC  [A]  rbx = triple point [r14]; arm taken when triple kind [r14+8] == 0
+        evidence: 003BEA51, 003BEA7E, 003BEA83, 003BEA86, 003BEAAC
+  PASS  003BF27E  [A]  rax = [rbp-0x68] = local triple 0's point; 003BED70 stores a triple only when the point's kind (ebx) == 0 (003BF430 out, or 0 on the 003BE1E0 path, whose result is an A point by X3)
+        evidence: 003BEEDE, 003BEEE0, 003BF14E, 003BF150, 003BEFAC, 003BF21C, 003BF263, 003BF2EB, 003BF300, 003BF3CC, 003BF27E
+  PASS  003BF30A  [A]  r14 = [r15], r15 = rbp-0x50 = triple 1's point, stepping 0x18; 003BED70 stores a triple only when the point's kind (ebx) == 0 (003BF430 out, or 0 on the 003BE1E0 path, whose result is an A point by X3)
+        evidence: 003BEEDE, 003BEEE0, 003BF14E, 003BF150, 003BEFAC, 003BF21C, 003BF263, 003BF2EB, 003BF300, 003BF3CC, 003BF30A
+  PASS  003BF363  [A]  r14 as at 003BF30A; 003BED70 stores a triple only when the point's kind (ebx) == 0 (003BF430 out, or 0 on the 003BE1E0 path, whose result is an A point by X3)
+        evidence: 003BEEDE, 003BEEE0, 003BF14E, 003BF150, 003BEFAC, 003BF21C, 003BF263, 003BF2EB, 003BF300, 003BF3CC, 003BF363
+  PASS  003C23CB  [A]  rdx = the triple point; kind-0 arm (r8d == 0)
+        evidence: 003C23C2, 003C23C5, 003C23CB
+  PASS  003C23F3  [A]  r15 = rdx (003C2354); kind-0 arm
+        evidence: 003C2354, 003C23C5, 003C23F3
+  PASS  003C25A4  [A (linked zone), data-dependent]  rax = 003BDDE0(n, B +0x14 link byte) with kind out [rsp+0x90] == 0 and enabled [rsp+0x80] != 0; +0xC -> 00377A40 (field-id bit 14). The linked point is A in the data (section D) - see the stale-out note
+        evidence: 003C2567, 003C257B, 003C258B, 003C2590, 003C25A4, 003C25A8
+  PASS  003C25BD  [B]  r15 = rdx (003C2354) = the triple point, in the kind-1 arm (r8d != 0 -> 003C248F; kind 1 = array B by X1/X5/X6). dword +0xC -> 002F9920 -> row +0x10
+        evidence: 003C2354, 003C23BE, 003C23C5, 003C248A, 003C2565, 003C25AF, 003C25BD, 003C25C1, 003C25C4, 003C2629, 003C262E
+  PASS  003BEB06  [B]  rbx = triple point [r14] with triple kind [r14+8] != 0 (the triple array is 003BE3A0's, via 003C2320 arg 5 -> r8 at 003C2690). dword +0xC -> 002F9920 -> 0029CD00 text extents
+        evidence: 003C263D, 003C2690, 003C269A, 003BE986, 003BEA51, 003BEA7E, 003BEA83, 003BEA86, 003BEB01, 003BEB06, 003BEB0C, 003BEB27, 003BEB2C, 003BEB39, 003BEB3D
+  PASS  003C0416  [A]  rax = 003BF430(n, i) with kind out == 0 (003C0380, the membership test)
+        evidence: 003C040A, 003C0416
+  PASS  0024A33D  [not an lmap point]  [rbx+0x20] of the image member callback's slot (0024A1D0: rdx -> slot +0x18; caller 00249670 image member callback)
+        evidence: 0024A330, 0024A33D
+  PASS  002543FB  [not an lmap point]  [020927D0] + 0xC: another loaded table's header
+        evidence: 002543F4, 002543FB
+  PASS  002F99BD  [not an lmap point]  st2e bank record array (002F9920, the high-pool text resolver)
+        evidence: 002F9926, 002F99BD
+  PASS  00369B49  [not an lmap point]  rbx = rcx - 0x40: the resource block header (magic 0xFF12 at +0) in front of a released buffer. The widget releases the lmap buffer here (003BC5EC), so this reads the lmap BLOCK HEADER, not a point
+        evidence: 003698C1, 003698BC, 003BC5E0, 003BC5EC, 00369B49
+  PASS  0036AE1C  [not an lmap point]  rdx: a resource-pool slot descriptor (dword +0xC resolved by ImageAddress_ResolveRuntimePointer)
+        evidence: 0036AE24, 0036AE1C
+  PASS  0036B235  [not an lmap point]  rdx: a resource-pool slot descriptor (as above)
+        evidence: 0036B238, 0036B235
+  PASS  0036BD6C  [not an lmap point]  rdi: a resource-pool slot descriptor (as above)
+        evidence: 0036BD6C, 0036BD6C
+  PASS  0039BC4A  [not an lmap point]  rdi: 0039BB60's own slot table entry; the widget passes [widget+0x108], not +0xE0
+        evidence: 003BC630, 003BC63C, 0039BC4A
+  PASS  0039BFFB  [not an lmap point]  rdi: the same slot-table shape as 0039BB60
+        evidence: 0039BFFB, 0039BFFB
+  PASS  003BC92B  [not an lmap point]  rdi: the widget procedure's message payload
+        evidence: 003BC919, 003BC928, 003BC92B
+  PASS  003DFB6C  [not an lmap point]  rcx + 4*rdx + 0xC: a cached record's word table (callers are the map pages 002B7B80 / 00402xxx)
+        evidence: 003DFB63, 003DFB6C
+  PASS  003DFBD2  [not an lmap point]  as 003DFB6C
+        evidence: 003DFBB5, 003DFBD2
+CONTROL 003C0416 classified A, kind-0 guard between call and load: True -> PASS
+  PASS  003C27B0  [sub-map cache file, not lmap]  003C26C0: rbx = rcx + 0x120 (+0xA8 per slot) - the map-data widget's menumap_subNN.bin cache slot; the load is off that slot's file table (r12 = [slot] + word[+0xA]), not lmap
+        evidence: 003C26DA, 003C26F7, 003C271C, 003C2727, 003C27B0
+        (the base register at 003C27B0: movzx ecx, word ptr [rax + 0xc]; preceding defs:)
+          003C2780 cmp qword ptr [r15], 0
+          003C2784 jne 0x3c282c
+          003C278A cmp dword ptr [r14], -1
+          003C278E je 0x3c282c
+          003C2794 mov rcx, qword ptr [r13 + 0x118]
+          003C279B test rcx, rcx
+          003C279E jne 0x3c27a7
+          003C27A0 mov rcx, qword ptr [r13 + 0x110]
+          003C27A7 xor edx, edx
+          003C27A9 call 0x24a9e0
+          003C27AE xor edx, edx
+          003C27B0 movzx ecx, word ptr [rax + 0xc]
+Part-2 lmap-family loads not classified: NONE
+
+== K  caller closure of the parameter-based functions (E8/E9 raw index + 0F 8x jcc + rip refs + DIR64 relocs)
+  raw-only candidate 002ACD5C -> 003BCDE0 inside 002AC5F0 FUN_002ac5f0: mov byte ptr [rax + 0x1100], 1 (not a reference)
+  raw-only candidate 003C17C0 -> 003C1980 inside 003C1680 FUN_003c1680: mov eax, 1 (not a reference)
+  raw-only candidate 0037E82A -> 003BE810 inside 0037E780 FUN_0037e780: and ecx, 0x3ff (not a reference)
+  raw-only rip candidates dismissed: {'covered by an instruction that does not reference the target': 3, 'own call rel32': 32}
+  003BCBA0 (rcx): E8/E9 8, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003BCE7C in 003BCDE0 FUN_003bcde0: rbx = kind-0 point (003BCE6B/003BCE73)
+      003BE8DA in 003BE810 FUN_003be810: 003BDDE0 result, kind out == 0 test (003BE8D0) - stale-out caveat (X4)
+      003BEA8B in 003BE950 FUN_003be950: triple point with kind 0 (003BEA7E/003BEA86)
+      003BF9D9 in 003BF9A0 FUN_003bf9a0: own rcx = 003C2320 kind-0 point
+      003C07AE in 003C0740 FUN_003c0740: kind-0 point (003C079D/003C07A5)
+      003C0FEE in 003C0F70 FUN_003c0f70: 003BDDE0(n, B +0x14) result, NO kind test - A iff +0x14 < countA (section D)
+      003C18BA in 003C18A0 FUN_003c18a0: own rdx (kind 0 by 003C18A0's callers)
+      003C1998 in 003C1980 FUN_003c1980: own rdx = kind-0 point (003BCFAF/003BCFB4)
+  003BCDE0 (r8): E8/E9 1, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003C083F in 003C0740 FUN_003c0740: C-entry caller; r8 setup ['mov r8, rdi']
+  003BE810 (rcx row): E8/E9 1, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003C2672 in 003C2320 FUN_003c2320: rcx = the row (003C266F)
+  003BE950 (r8 triples): E8/E9 1, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003C269A in 003C2320 FUN_003c2320: r8 = 003BE3A0's triple array (003C263D/003C2690)
+  003BF9A0 (rcx): E8/E9 1, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003C2482 in 003C2320 FUN_003c2320: r15 in 003C2320's kind-0 arm
+  003C0F70 (rdx): E8/E9 8, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003BCE50 in 003BCDE0 FUN_003bcde0: kind != 0 (B)
+      003BEE7D in 003BED70 FUN_003bed70: kind != 0 (B)
+      003BF0ED in 003BED70 FUN_003bed70: kind != 0 (B)
+      003BF950 in 003BF920 FUN_003bf920: kind != 0 (B)
+      003C0781 in 003C0740 FUN_003c0740: kind != 0 (B)
+      003C0D68 in 003C0D30 FUN_003c0d30: tail jmp, kind != 0 (B)
+      003C142F in 003C12B0 FUN_003c12b0: kind != 0 (B)
+      003C1B60 in 003C1A20 FUN_003c1a20: kind != 0 (B)
+  003C1180 (rdx): E8/E9 2, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003BCEE3 in 003BCDE0 FUN_003bcde0: rbx kind 0
+      003BCF06 in 003BCDE0 FUN_003bcde0: rbx kind 0
+  003C18A0 (rdx): E8/E9 8, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003BCE49 in 003BCDE0 FUN_003bcde0: kind 0 (003BCE3D/003BCE47)
+      003BEE76 in 003BED70 FUN_003bed70: kind 0 (003BEE6F/003BEE74)
+      003BF0E6 in 003BED70 FUN_003bed70: kind 0 (003BF0DF/003BF0E4)
+      003BF949 in 003BF920 FUN_003bf920: kind 0 (003BF93D/003BF947)
+      003C077A in 003C0740 FUN_003c0740: kind 0 (003C076E/003C0778)
+      003C0D5E in 003C0D30 FUN_003c0d30: tail jmp, kind 0 (003C0D4D/003C0D57)
+      003C1428 in 003C12B0 FUN_003c12b0: kind 0 (003C141B/003C1426)
+      003C1B59 in 003C1A20 FUN_003c1a20: kind 0 (003C1B4C/003C1B57)
+  003C1980 (rdx): E8/E9 1, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003BCFBE in 003BCDE0 FUN_003bcde0: kind-0 point (003BCFAF/003BCFB4)
+  003C2320 (rdx+r8d): E8/E9 1, jcc 0 (+0 off-boundary), rip refs 0, relocs 0
+      003BE554 in 003BE3A0 FUN_003be3a0: 003BE3A0: rdx = triple point, r8d = triple kind (X6)
+K unaccounted sites: NONE
+  003C18A0 kind-0 guards are jne-to-003C0F70 at all 8 sites: PASS
+
+== R  reach limit: every function that loads [[02B457E0]+0xE0] (the lmap file pointer)
+  rip refs to 02B457E0: 158 in 77 functions (raw-only 0); image-base-relative disp refs: 0 (raw 0)
+  003BBFB0 FUN_003bbfb0  releases the lmap resource (003697F0); no point  roots 003BC022
+  003BC4E0 FUN_003bc4e0  releases the lmap resource (003697F0); no point  roots 003BC5E0
+      disp 0x0C..0x13: 003BC92B mov ebp, dword ptr [rdi + 0xc]
+  003BDDE0 FUN_003bdde0  forms B on the 003BDF06 path (X4); returns the point - consumers 003BE810, 003C0F70, 003C2320 x2  roots 003BDE0A, 003BDF27
+      disp 0x0C..0x13: 003BDEC0 mov edx, dword ptr [rax + 0x10]
+      disp 0x0C..0x13: 003BDF06 movzx r15d, byte ptr [r13 + 0x11]
+      disp 0x0C..0x13: 003BDFA7 cmp byte ptr [rdi + 0x11], r15b
+  003BDFF0 FUN_003bdff0  forms A and B inline, keeps only kind 0 (X2); returns an index  roots 003BE07D, 003BE11D
+      disp 0x0C..0x13: 003BE049 mov eax, dword ptr [rax + 0x10]
+  003BE1E0 FUN_003be1e0  forms from 003BDFF0's kind-0 index -> A (X3); returns the point  roots 003BE21B
+  003BE680 FUN_003be680  forms rec+4+24*(A+B)+20*C = the 8-byte block, reads block +0/+2/+4 (RC-35 lead); no point  roots 003BE68A
+  003BE700 FUN_003be700  forms B inline (index from countA), reads byte +0x11 only, returns an index (003C2320's 0xD -> 0x2F remap)  roots 003BE716
+      disp 0x0C..0x13: 003BE7C6 movzx ecx, byte ptr [r9 + rdx*8 + 0x11]
+  003BF430 FUN_003bf430  forms A and B; kind out 0/1 (X1); returns the point  roots 003BF442, 003BF47F
+  003BFF20 FUN_003bff20  C and D arithmetic (section 10.2); no point  roots 003BFF34
+  003C0340 FUN_003c0340  countA + countB only; no point  roots 003C0347
+  003C0740 FUN_003c0740  C walk (C entry -> 003BCDE0 r8); no point  roots 003C07D2
+  003C1070 FUN_003c1070  C and D arithmetic (section 10.2); no point  roots 003C1088
+  003C1680 FUN_003c1680  forms A and B inline; +0xC only for r8d == 0 (row 003C17A2); returns 0/1  roots 003C169D, 003C16F0
+      disp 0x0C..0x13: 003C17A2 movzx ecx, word ptr [rcx + 0xc]
+  root functions not read: NONE
+  (functions reading 02B457E0 without an +0xE0 load are outside the lmap reach and not listed)
+  census closure (rc36 Part 2 recipe): 258 functions; point consumers checked 20; outside the closure: NONE
+
+== C  consumer chain of the B +0x0C label
+  PASS  C1 002F9920 is the high-pool st2e resolver (id / 10000 = bank; 60,2xx -> bank 6)
+  PASS  C2 fallback when B dword +0xC == -1: menumap_common entry[byte +0x11] dword +4 -> 002F9920 -> row +0x10
+  PASS  C3 locked marker (row +0x1C bit 0 clear and the +0x14 zone's 00377A40 bit clear): row +0x10 = 002F9860(0x3EC)
+  PASS  C4 B +8/+0xA -> row +0x18/+0x1A; row +2 = kind (1 for a marker)
+  PASS  C5 00402C30 copies the 0x30 row into the list record and measures its +0x10 string (0029CD00) into +0x48/+0x4A
+  PASS  C6 the label pass 004044D0 draws a kind-1 record's +0x10 through 002D8670 at +0x18/+0x1A; grey 0x80404040 unless +0x4E bit 3 or +0x1C bit 0; the 0x3EC string is dropped unless 00254A10 answers
+  PASS  C7 003BE950 (the directional next-target search) measures the B label (002F9920 -> 0029CD00) and centres it on B +8/+0xA before the distance test 003BD6F0; the result is the row's direction byte +8..+B
+  rawcalls: 004044D0 callers ['002B8AFF', '002BBEE4']; 00402C30 callers ['00402D4A']; 003BE3A0 callers ['002B74B5', '00402A9E']
+
+== D  data (shipped menumap_location.bin, all copies under D:/FFXII_TZA_extract)
+  copies: 9
+  ch  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  cn  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  de  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  es  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  fr  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  in  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  it  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  kr  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+  us  B entries 111: dword +0xC == -1: 0; in 60201..60244: 111 (42 distinct); +0x14 link < countA: 106, == 0xFF: 5, indexes B: 0; +0x11 < 48 records: 111; point selector bytes +4..+7 indexing a B point: 214 of 1701
+
+B +0x0C readers: 003C25BD (003C2320 FUN_003c2320), 003BEB06 (003BE950 FUN_003be950)
+FAILS 0

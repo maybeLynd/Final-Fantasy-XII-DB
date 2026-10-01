@@ -1,0 +1,35 @@
+# Layout gaps in censused types that ALREADY have census accesses inside them.
+# The evidence exists and no field row was ever written. CANDIDATES, not recovered fields:
+# an access inside a gap may be an indexed read into an array declared elsewhere, so each
+# row must be read before a field is declared. displacement_count is the signal strength.
+#
+# THE DENOMINATOR, because the row count below will otherwise be read as the whole
+# problem. This instrument can only see types that HAVE an access census: 21 of the
+# store's 260 types, 8.1 %. Those types hold 56.4 % of all field rows - they are the
+# big, heavily worked ones - but the remaining 239 types produce NO candidates because
+# nothing has censused them, and their gaps are INVISIBLE HERE RATHER THAN ABSENT.
+# Emptying this file would not mean the layout work is done.
+#
+# AND THE BOTTLENECK IS NOT TOOLING. Measured 2026-09-13, over the 239 uncensused types:
+#   149 have NO access route recorded at all - no instance, no chain, nothing saying
+#     how the record is reached. A census cannot be generated for any of them.
+#   90 record something, and they split three ways: reached through a POINTER CHAIN
+#     (record_field_scan.py), accessed at a STATIC address (gen_static_census.py),
+#     or reached through a STATIC POINTER such as *(void**)0x020927C0, which
+#     record_field_scan.py --root-global handles as of 2026-09-13.
+#   Exactly ONE uncensused type with 5+ fields cites a rip-relative access, so the
+#     static generator has no remaining work: BattleFormulaScratch was its population.
+# Establishing a route is research, not a script, and it is what stands between this
+# file and the rest of the store.
+#
+#
+# THE `disposition` COLUMN, AND WHY AN EMPTY REGISTRY WOULD STILL PROVE NOTHING.
+# A row is DISPOSITIONED only when EVERY displacement inside its gap has a verdict in
+# recoverable-layout-gaps-dispositions.tsv; one unruled displacement leaves it OPEN.
+# REFUSED means the evidence does not describe a field at that offset - the bytes are
+# STILL UNACCOUNTED FOR. Dispositioning a row removes a question from the queue, not a
+# gap from the layout.
+#   rows here: 0   OPEN (not yet read): 0   dispositioned: 0
+#
+# Regenerate with gen_recoverable_gaps.py; do not hand-edit.
+type	gap_start	gap_end	bytes	displacement_count	displacements_and_widths	disposition

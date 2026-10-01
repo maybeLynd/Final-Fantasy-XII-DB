@@ -1,0 +1,22 @@
+# Runtime.Container.OwnedBufferTeardownResetReturnTrue - EC-7 family C, declared on generated-function-families.md
+#
+# 13 members. Body size(s): 60 B x13.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 12 external target(s): 0 shared across all 13 members, and 12 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 12 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+005C31D0
+005C3210
+005C3350
+006003F0
+00600470
+006004B0
+006005F0
+00600650
+00600690
+006006D0
+00612DA0
+00621F40
+006D4DD0

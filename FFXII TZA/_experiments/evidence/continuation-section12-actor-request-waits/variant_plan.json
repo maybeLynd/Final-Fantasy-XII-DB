@@ -1,0 +1,58 @@
+[
+  {
+    "name": "read_target_instead_of_issuer",
+    "address": "002689F0",
+    "before": "41807f0201",
+    "after": "40807b0201",
+    "expected_first_failure": "deferral_depends_on_issuer"
+  },
+  {
+    "name": "drop_start_notification",
+    "address": "003DBE5F",
+    "before": "e88cfeffff",
+    "after": "9090909090",
+    "expected_first_failure": "reqsw_receipt_before_body"
+  },
+  {
+    "name": "drop_return_notification",
+    "address": "003DB37D",
+    "before": "e84e0d0000",
+    "after": "9090909090",
+    "expected_first_failure": "target_RET_posts_receipt"
+  },
+  {
+    "name": "reverse_entry_wait_polarity",
+    "address": "0025E045",
+    "before": "0f85",
+    "after": "0f84",
+    "expected_first_failure": "kind3_sees_queued_state1_entry"
+  },
+  {
+    "name": "reverse_notification_wait_polarity",
+    "address": "0025E0A9",
+    "before": "74",
+    "after": "75",
+    "expected_first_failure": "reqsw_consumes_receipt"
+  },
+  {
+    "name": "decrement_list_cursor",
+    "address": "00267471",
+    "before": "66ff430a",
+    "after": "66ff4b0a",
+    "expected_first_failure": "kind7_cursor_stops_at_active_second_actor"
+  },
+  {
+    "name": "erase_scratch_in_core_reset",
+    "address": "0025D470",
+    "before": "884116",
+    "after": "884118",
+    "expected_first_failure": "start_preserves_scratch"
+  },
+  {
+    "name": "omit_channel_completion_marker",
+    "address": "0025E07D",
+    "before": "01",
+    "after": "00",
+    "expected_first_failure": "kind6_sets_marker"
+  }
+]

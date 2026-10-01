@@ -1,0 +1,102 @@
+# PaneSlotWidget0160 - emitted by Database/Tools/work/OPUS/emit_pane_widget_census.py, which calls gfz-scripts/receiver_flow_census.py
+# SEED 0029A0A0 - the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA
+# REACH 0029A0A0 - 486 of 486 instructions; the census is refused below 100%
+# NOT SEEDED: the construction site's `mov [rax+0x120], r15` at 0029BBE8, which is how this object learns its owner. Same reason - rax is the constructor's return - and +0x120 is already here as a read; the WRITE is recorded on that field's row.
+# EVERY offset below is inside 0x160, which is the extent the construction argument gives (`mov edx, 0x160` at 0029BBCE).
+# CONTROL: offsets contributed ONLY by a shared widget helper and NOT declared by Widget itself, which would be conflation: none - no shared helper is seeded here
+# kind: r read, w write, a ADDRESS TAKEN (a lea, which touches no memory)
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+function	name	site	disp	kind	instruction	route	note
+0029A0A0	FUN_0029a0a0	0029A14D	0x38	r	mov rax, qword ptr [rbp + 0x38]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A15B	0x38	r	mov rbx, qword ptr [rbp + 0x38]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A1FB	0x38	r	mov rdi, qword ptr [rbp + 0x38]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A347	0x40	r	test byte ptr [rbp + 0x40], 2	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A3D4	0x40	r	test byte ptr [rbp + 0x40], 2	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A13B	0x50	a	lea rcx, [rbp + 0x50]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A726	0x50	a	lea rcx, [rbp + 0x50]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A3BE	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A76D	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A79C	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A7AB	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A7E4	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A7FA	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A813	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A844	0x60	r	mov rcx, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A766	0x98	w	mov word ptr [rbp + 0x98], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A783	0x9A	w	mov word ptr [rbp + 0x9a], cx	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A77C	0x9C	w	mov word ptr [rbp + 0x9c], di	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A164	0x9E	r	movsx esi, word ptr [rbp + 0x9e]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A771	0x9E	w	mov word ptr [rbp + 0x9e], si	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A302	0xB4	r	mov ecx, dword ptr [rbp + 0xb4]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A28C	0xC0	r	mov rcx, qword ptr [rbp + 0xc0]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A2A2	0xC0	r	mov rcx, qword ptr [rbp + 0xc0]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A2B3	0xC8	r	mov rcx, qword ptr [rbp + 0xc8]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A2C9	0xC8	r	mov rdx, qword ptr [rbp + 0xc8]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A100	0xD8	wr	or word ptr [rbp + 0xd8], 8	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A10D	0xD8	r	test byte ptr [rbp + 0xd8], 1	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A1BE	0xD8	r	test byte ptr [rbp + 0xd8], 4	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A1F4	0xD8	r	test byte ptr [rbp + 0xd8], 0x10	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A240	0xD8	r	movzx eax, word ptr [rbp + 0xd8]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A279	0xD8	r	test byte ptr [rbp + 0xd8], 2	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A315	0xD8	r	test byte ptr [rbp + 0xd8], 8	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A332	0xD8	wr	or word ptr [rbp + 0xd8], 8	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A456	0xD8	r	movzx ecx, word ptr [rbp + 0xd8]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A487	0xD8	w	mov word ptr [rbp + 0xd8], cx	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A48E	0xD8	r	test byte ptr [rbp + 0xd8], 0x40	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A4B4	0xD8	wr	and word ptr [rbp + 0xd8], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A86B	0xD8	wr	or word ptr [rbp + 0xd8], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A880	0xD8	wr	and word ptr [rbp + 0xd8], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A85F	0xDA	w	mov word ptr [rbp + 0xda], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A879	0xDA	w	mov word ptr [rbp + 0xda], si	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A887	0xDA	r	movzx eax, byte ptr [rbp + 0xda]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6B2	0xDD	w	mov byte ptr [rbp + 0xdd], 0x80	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A5E6	0xDE	r	movzx eax, byte ptr [rbp + 0xde]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6A6	0xDE	w	mov byte ptr [rbp + 0xde], al	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A127	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A327	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A356	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A380	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A69C	0xDF	w	mov byte ptr [rbp + 0xdf], al	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6F4	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A74F	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A831	0xDF	r	movzx ecx, byte ptr [rbp + 0xdf]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A43C	0xE0	w	mov dword ptr [rbp + 0xe0], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A4F4	0xE0	w	mov dword ptr [rbp + 0xe0], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A59E	0xE0	w	mov dword ptr [rbp + 0xe0], r15d	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6B9	0xE0	w	mov dword ptr [rbp + 0xe0], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A442	0xE4	w	mov dword ptr [rbp + 0xe4], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A4FA	0xE4	w	mov dword ptr [rbp + 0xe4], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A5AB	0xE4	w	mov dword ptr [rbp + 0xe4], r14d	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6BF	0xE4	w	mov dword ptr [rbp + 0xe4], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A448	0xE8	w	mov dword ptr [rbp + 0xe8], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A500	0xE8	w	mov dword ptr [rbp + 0xe8], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A5B8	0xE8	w	mov dword ptr [rbp + 0xe8], eax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6C5	0xE8	w	mov dword ptr [rbp + 0xe8], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6AC	0xEC	w	mov dword ptr [rbp + 0xec], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A267	0x108	r	mov rax, qword ptr [rbp + 0x108]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A419	0x108	r	mov r14, qword ptr [rbp + 0x108]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A42B	0x108	w	mov qword ptr [rbp + 0x108], rax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A209	0x110	r	movsx r9d, word ptr [rbp + 0x110]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A467	0x114	wr	add word ptr [rbp + 0x114], 8	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A46F	0x114	r	cmp word ptr [rbp + 0x114], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A47D	0x114	w	mov word ptr [rbp + 0x114], si	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A497	0x116	wr	add word ptr [rbp + 0x116], 8	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A49F	0x116	r	cmp word ptr [rbp + 0x116], ax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A4AD	0x116	w	mov word ptr [rbp + 0x116], si	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A170	0x120	r	mov rcx, qword ptr [rbp + 0x120]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A515	0x138	w	mov dword ptr [rbp + 0x138], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A676	0x138	w	mov dword ptr [rbp + 0x138], esi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6CB	0x138	w	mov dword ptr [rbp + 0x138], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A51B	0x13C	w	mov dword ptr [rbp + 0x13c], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A67C	0x13C	w	mov dword ptr [rbp + 0x13c], eax	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6D1	0x13C	w	mov dword ptr [rbp + 0x13c], edi	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A521	0x140	w	mov word ptr [rbp + 0x140], di	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A641	0x140	r	movzx eax, word ptr [rbp + 0x140]	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A682	0x140	w	mov word ptr [rbp + 0x140], di	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6D7	0x140	w	mov word ptr [rbp + 0x140], di	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A528	0x142	w	mov word ptr [rbp + 0x142], di	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A66F	0x142	w	mov word ptr [rbp + 0x142], cx	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6DE	0x142	w	mov word ptr [rbp + 0x142], di	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A52F	0x144	w	mov dword ptr [rbp + 0x144], 0xffffffff	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A689	0x144	w	mov dword ptr [rbp + 0x144], r14d	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	
+0029A0A0	FUN_0029a0a0	0029A6E5	0x144	w	mov dword ptr [rbp + 0x144], 0xffffffff	the child's REGISTERED HANDLER: r8 at 0029BBD3, beside `mov edx, 0x160`, at the in-place construction 0029BBDA	

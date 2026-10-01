@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-13T21:44:29.526Z",
+  "window": {
+    "app": "process:C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+    "id": 2099318,
+    "title": "Steam"
+  },
+  "accessibility": null,
+  "screenshots": [
+    {
+      "height": 960,
+      "id": "screenshot-0",
+      "originX": 472,
+      "originY": 156,
+      "width": 1707,
+      "zIndex": 0
+    }
+  ]
+}

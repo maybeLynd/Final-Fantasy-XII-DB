@@ -1,0 +1,7 @@
+PASS S1  rip references: 01E02804 1, 01E02810 3, all reads in 00408C30: ['00408CC3', '00408DCB', '00408E25', '00408E80']
+PASS S2  image-base-relative forms into [01E02800, 01E02820): 0
+PASS C2  control: the detector finds [reg + 0x29ca030] 2 times
+PASS S3  stored qword VA / dword VA / dword RVA: {'0x1e02800': (0, 0, 0), '0x1e02804': (0, 0, 0), '0x1e02810': (0, 0, 0)}
+PASS C3  control: the vtable 01CB2508's slot 0, the function 0x793eb0, is found stored as a qword 1 time(s)
+PASS S4  addresses formed in [01E02780, 01E02820): [('001AF5EA', '001AF470', '=>01E027F0'), ('001AF606', '001AF470', '=>01E027F4')]
+FAILS 0

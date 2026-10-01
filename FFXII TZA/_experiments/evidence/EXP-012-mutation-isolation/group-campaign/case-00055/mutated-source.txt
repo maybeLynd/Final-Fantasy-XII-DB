@@ -1,0 +1,149 @@
+/* group_completion.c - see group_completion.h. */
+#include "group_completion.h"
+
+#include <string.h>
+
+uint8_t *GroupImage_At(const GroupImage *image, uint64_t va, size_t need)
+{
+    size_t i;
+    for (i = 0; i < image->count; i++) {
+        const GroupImageRegion *r = &image->regions[i];
+        if (va >= r->va && va - r->va + need <= r->size)
+            return r->bytes + (va - r->va);
+    }
+    return 0;
+}
+
+static uint64_t load_q(const GroupImage *image, uint64_t va)
+{
+    const uint8_t *p = GroupImage_At(image, va, 8);
+    uint64_t v = 0;
+    int i;
+    if (!p)
+        return 0;
+    for (i = 7; i >= 0; i--)
+        v = (v << 8) | p[i];
+    return v;
+}
+
+static void store_q(const GroupImage *image, uint64_t va, uint64_t v)
+{
+    uint8_t *p = GroupImage_At(image, va, 8);
+    int i;
+    if (!p)
+        return;
+    for (i = 0; i < 8; i++)
+        p[i] = (uint8_t)(v >> (8 * i));
+}
+
+static int load_b(const GroupImage *image, uint64_t va)
+{
+    const uint8_t *p = GroupImage_At(image, va, 1);
+    return p ? *p : -1;
+}
+
+uint64_t GroupCompletion_DeadBit(int slot)
+{
+    /* `shl eax, cl` masks the count to five bits; `cdqe` then sign-extends the 32-bit result.
+     * Both steps are load-bearing -- see the note in the header. */
+    uint32_t narrow = 1u << ((unsigned)slot & 31u);
+    return (uint64_t)(int64_t)(int32_t)narrow;
+}
+
+int SpawnLane_FromBkei(const GroupImage *image, uint64_t map_va, int bkei)
+{
+    int count, slot;
+
+    if (map_va == 0)
+        return -1;                       /* 002360D0: test rcx,rcx */
+    if (bkei < 0)
+        return -1;                       /* test edx,edx / js -- a real check, unlike the one
+                                          * the accessors carry on a zero-extended byte */
+    count = load_b(image, map_va);
+    if (count < 0)
+        return -1;
+    if (bkei > count - 1)
+        return -1;                       /* cmp edx, eax / jg */
+
+    slot = load_b(image, map_va + 1 + (unsigned)bkei);
+    if (slot < 0 || slot == 0xFF)
+        return -1;                       /* the empty-lane sentinel */
+    return slot;                         /* the SLOT byte, not the index handed in */
+}
+
+int GroupCompletion_RecordDeath(const GroupImage *image, uint64_t unit_va,
+                                const GroupCompletionHooks *hooks)
+{
+    uint64_t p698, map_va, ledger_va, member, dead, p10;
+    int group, slot, arm, bkei_index;
+    const uint8_t *bk;
+
+    if (unit_va == 0)
+        return 0;                                          /* 00306F09 */
+
+    p698 = load_q(image, unit_va + UNIT_P698);
+    if (p698 == 0)
+        return 0;                                          /* 00306F19 */
+    if (load_b(image, p698 + 5) != 1)
+        return 0;                                          /* 00306F22 -- a kind gate, and the
+                                                            * only one of the three that is not
+                                                            * a null check */
+
+    group = load_b(image, unit_va + UNIT_GROUP);
+    if (group <= 0)
+        return 0;                                          /* 0 disables the whole path */
+
+    /* The index is READ, not passed: `00306F3C` loads unit->[0x10] and calls `00263D30`,
+     * which is `movzx eax, word ptr [rcx + 0xF6] / ret`. Taking it as a parameter would let
+     * a test supply an index the original would never have produced. */
+    p10 = load_q(image, unit_va + UNIT_P10);
+    bk = GroupImage_At(image, p10 + BKEI_AT_P10, 2);
+    bkei_index = bk ? (int)((unsigned)bk[0] | ((unsigned)bk[1] << 8)) : 0;
+
+    map_va = load_q(image, unit_va + UNIT_MAP);
+    slot = SpawnLane_FromBkei(image, map_va, bkei_index);
+    if (slot < 0)
+        return 0;                                          /* 00306F53: test eax,eax / js */
+
+    ledger_va = GROUP_LEDGER_BASE + (uint64_t)(group - 2) * GROUP_LEDGER_STRIDE;
+
+    dead = load_q(image, ledger_va + 8) | GroupCompletion_DeadBit(slot);
+    store_q(image, ledger_va + 8, dead);
+
+    member = load_q(image, ledger_va + 0);
+    if ((member & dead) != member)
+        return 0;                                          /* not complete: a MASK test, never
+                                                            * a count. Repeating a bit cannot grow
+                                                            * the mask, but can repeat completion callbacks. */
+
+    if (hooks && hooks->on_complete_prologue) {
+        hooks->on_complete_prologue(hooks->ctx, 0x00307140u, 1);
+        hooks->on_complete_prologue(hooks->ctx, 0x00238B70u, 1);
+        hooks->on_complete_prologue(hooks->ctx, 0x00238AE0u, 1);
+    }
+
+    arm = load_b(image, unit_va + UNIT_ARM);
+    if (arm >= 0 && (arm & 1)) {
+        uint64_t f = load_q(image, unit_va + UNIT_FLAGS64);
+        uint8_t *fl;
+        store_q(image, unit_va + UNIT_FLAGS64, f & ~UNIT_FLAG_BIT47);
+
+        /* The group id is RE-READ from the unit here rather than reused, and the ledger address
+         * recomputed from it. Faithful to `00306FD1`: `movzx eax,[rbx+0xE98] / dec / lea`. */
+        {
+            int g2 = load_b(image, unit_va + UNIT_GROUP);
+            uint64_t l2 = GROUP_LEDGER_BASE + (uint64_t)(g2 - 1) * GROUP_LEDGER_STRIDE;
+            fl = GroupImage_At(image, l2 + 0x10, 1);
+            if (fl)
+                *fl = (uint8_t)(*fl | 1);
+        }
+        if (hooks && hooks->dispatch)
+            hooks->dispatch(hooks->ctx, unit_va, GROUP_EVENT_ARM_A, 0);
+    } else {
+        uint64_t f = load_q(image, unit_va + UNIT_FLAGS64);
+        store_q(image, unit_va + UNIT_FLAGS64, f | UNIT_FLAG_BIT47);
+        if (hooks && hooks->dispatch)
+            hooks->dispatch(hooks->ctx, unit_va, GROUP_EVENT_ARM_B, 0);
+    }
+    return 1;
+}

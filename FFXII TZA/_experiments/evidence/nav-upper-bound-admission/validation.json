@@ -1,0 +1,160 @@
+{
+  "status": "PASS_ISOLATED_ORIGINAL_CODE",
+  "cases": 17,
+  "unmodified_cases": 15,
+  "disposable_mutations": 2,
+  "actual_returns": 13,
+  "expected_guard_faults": 4,
+  "live_cases": 0,
+  "source_sha256": "ad119fb4989851ddffae7f75c5f84f168616ea56566a303d98de80fea03d2bc6",
+  "raw_sha256": "67d16a80dc06d26ce59f3bbc5a2cc3dc44d2f9b61217a2a8392549fccdd95043",
+  "supplement_source_sha256": "4d0b4fdb027354cc5b3fcc91e2097679a2ef0c82025040d6c4646edbb1d94185",
+  "supplement_raw_sha256": "d8c0cb938652205c3467fa683f04d37d26508b33f477d119961929a7aec6c362",
+  "correction": "Strict world-coordinate upper bounds insufficient under controlled negative-origin float subtraction; computed indices must be in range. Initial14 observations unchanged, only3 new cases.",
+  "observations": [
+    {
+      "name": "origin-control",
+      "index": 0,
+      "completed": true,
+      "returned": 0,
+      "fault": []
+    },
+    {
+      "name": "interior-control",
+      "index": 0,
+      "completed": true,
+      "returned": 0,
+      "fault": []
+    },
+    {
+      "name": "x-upper-minus-ulp",
+      "index": 3,
+      "completed": true,
+      "returned": 2,
+      "fault": []
+    },
+    {
+      "name": "x-upper-equal",
+      "index": 4,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "x-upper-equal-next-row-list",
+      "index": 4,
+      "completed": true,
+      "returned": 3,
+      "fault": []
+    },
+    {
+      "name": "x-upper-plus-ulp",
+      "index": null,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "guard-last-cell-control",
+      "index": 7,
+      "completed": true,
+      "returned": 3,
+      "fault": []
+    },
+    {
+      "name": "guard-x-upper-equal-last-row",
+      "index": 8,
+      "completed": false,
+      "returned": null,
+      "fault": [
+        [
+          "memr",
+          1074790400,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "guard-z-upper-minus-ulp",
+      "index": 4,
+      "completed": true,
+      "returned": 1,
+      "fault": []
+    },
+    {
+      "name": "guard-z-upper-equal",
+      "index": 8,
+      "completed": false,
+      "returned": null,
+      "fault": [
+        [
+          "memr",
+          1074790400,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "guard-z-upper-plus-ulp",
+      "index": null,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "guard-corner-equal",
+      "index": 12,
+      "completed": false,
+      "returned": null,
+      "fault": [
+        [
+          "memr",
+          1074790408,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "mutant-x-ja-to-jae",
+      "index": null,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "mutant-z-ja-to-jae",
+      "index": null,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "negative-origin-interior",
+      "index": 383,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "negative-origin-upper-minus-two-ulps",
+      "index": 509,
+      "completed": true,
+      "returned": 255,
+      "fault": []
+    },
+    {
+      "name": "negative-origin-upper-minus-one-ulp",
+      "index": 510,
+      "completed": false,
+      "returned": null,
+      "fault": [
+        [
+          "memr",
+          1074790400,
+          2
+        ]
+      ]
+    }
+  ],
+  "cleanup": "No native game process/control, no reference/save/config writes; isolated interpreter exited."
+}

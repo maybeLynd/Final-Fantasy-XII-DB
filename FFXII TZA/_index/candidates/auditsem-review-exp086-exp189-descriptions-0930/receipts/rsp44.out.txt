@@ -1,0 +1,40 @@
+  0030E3B6 mov qword ptr [rsp + 0x70], rax
+  0030E3BB mov ebp, 1
+  0030E3C0 xor eax, eax
+  0030E3C2 lea ecx, [rdx - 3]
+  0030E3C5 cmp ecx, 1
+  0030E3C8 setbe al
+  0030E3CB mov dword ptr [rsp + 0x44], eax
+  --
+  0030E422 jne 0x30e460
+  0030E424 mov rdx, qword ptr [rsp + 0x68]
+  0030E429 mov rcx, rbx
+  0030E42C call 0x30b9b0
+  0030E431 test eax, eax
+  0030E433 jne 0x30e82d
+  0030E439 cmp dword ptr [rsp + 0x44], eax
+  --
+  0030E448 mov rcx, rbx
+  0030E44B call 0x30b8e0
+  0030E450 test eax, eax
+  0030E452 je 0x30e460
+  0030E454 test edi, 0x80000003
+  0030E45A jne 0x30e82d
+  0030E460 cmp dword ptr [rsp + 0x44], 0
+  --
+  0030E5C7 cmp eax, dword ptr [rsp + 0x4c]
+  0030E5CB je 0x30e82d
+  0030E5D1 xor edx, edx
+  0030E5D3 lea rcx, [rsp + 0x80]
+  0030E5DB mov r8d, 0x148
+  0030E5E1 call 0x861ec0
+  0030E5E6 mov edi, dword ptr [rsp + 0x44]
+  --
+  0030E6D0 xor edx, edx
+  0030E6D2 inc edi
+  0030E6D4 cmp edi, 0x20
+  0030E6D7 jl 0x30e6a3
+  0030E6D9 mov rbx, qword ptr [rsp + 0x70]
+  0030E6DE mov ebp, 1
+  0030E6E3 mov edi, dword ptr [rsp + 0x44]
+  --

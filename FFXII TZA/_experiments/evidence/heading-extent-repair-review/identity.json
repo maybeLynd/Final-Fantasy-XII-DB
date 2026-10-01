@@ -1,0 +1,103 @@
+{
+  "method": "A original static bytes/retained review and producer Python; not shipping-code execution/live game",
+  "driver_sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600",
+  "wrapper_sha256": "277ccb8951be1d57fe39178101ffec53dbdadcb9b738da7aaa50eb2de509c368",
+  "head": "3b5a40685cbb045f8dcbdd5c93ece12db9d69786",
+  "sources": [
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/falsify_heading_delta.py",
+      "copy": "producer-source.py",
+      "sha256": "4ff039139b2da694f63b9b7b49e85c805e9cfcd9b29d6c4e4b280d71ffb82ead"
+    },
+    {
+      "path": "Database/FFXII TZA/06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md",
+      "copy": "contract.md",
+      "sha256": "c66e6caf52cfa8217feccf4ed18c3ece8867a3dea1444715720bec6a07ea6681"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/heading-full-extent-repair-0929/README.md",
+      "copy": "repair-readme.md",
+      "sha256": "fb0a9d468e19c4d0b3f66de32a2c12b7e1da11d4cf317ea4bd42b453e42d3d02"
+    },
+    {
+      "path": "Database/Tools/work/graph/functions.tsv",
+      "copy": "functions.tsv",
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/heading-passthrough-alias-boundary/intervening-body.json",
+      "copy": "prior-intervening-body.json",
+      "sha256": "f3cff230ac6b308e94ddb227c6a4131834b77f225800c71e663fb959bb81698e"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/heading-passthrough-alias-boundary/retained/intervening-body963.bin",
+      "copy": "intervening-body963.bin",
+      "sha256": "40220180106db95c8d66bb8e47227ef9edb3f62b31ee4dafb891f5612cc06d8d"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/heading-passthrough-alias-boundary/retained/caller.bin",
+      "copy": "caller330.bin",
+      "sha256": "f739335670ae32f1bffe17b78e178d4ee4a009406894fd1f064a6cc76ea813e9"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/heading-passthrough-alias-boundary/retained/reg_tracking.py",
+      "copy": "reg_tracking.py",
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    }
+  ],
+  "providers": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+      "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\python-deps\\pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    }
+  ],
+  "producer_commit": {
+    "commit": "879652c93",
+    "sha256": "6af01dfc0b50e9e36fa4160b0c08fa55b841583dd88123a7c677dc9d663d615e",
+    "raw_equality": false,
+    "text_comparison": "Only CRLF->LF comparison; both original raw byteversions retained"
+  },
+  "dependency_provenance": "Reused exact published1548d3896 python-deps; initial import failure retained under run-01-import-failure. No install/download.",
+  "dependency_files": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\python-deps\\ordlookup\\__init__.py",
+      "sha256": "fe7e3869702abb571846d74bc34ea4966e8f75a6603530fe3f9e03c982d736a7"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\python-deps\\ordlookup\\oleaut32.py",
+      "sha256": "d3199a7ea2f1ef42a93cb8b20acc752de67789671cb4248584e2b43f441e5aaf"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\python-deps\\ordlookup\\ws2_32.py",
+      "sha256": "0879ce2fee63d738838f61332e69a149d463c177649c78935295d7f335604810"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\python-deps\\ordlookup\\wsock32.py",
+      "sha256": "f029bc58669eae582a7087c630fd8be8f9f5aa2df6f7cecaa13f8f1e1199ed17"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\python-deps\\pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    }
+  ],
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "capstone_version": "5.0.7",
+  "pefile_version": "2024.8.26",
+  "exe": {
+    "path": "Database/Tools/work/exe/FFXII_TZA.exe",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "external": true
+  }
+}

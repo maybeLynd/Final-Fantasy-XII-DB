@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-softedges-member-boundaries.py", line 44, in <module>
+    if ''.join(x['bytes'] for x in cb)!='4883ec28e857fdffff33c04883c428c3':raise ValueError('status propagation changed')
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: status propagation changed

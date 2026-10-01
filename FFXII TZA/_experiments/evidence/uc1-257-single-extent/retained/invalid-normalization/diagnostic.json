@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_NORMALIZATION",
+  "observed_error": "TypeError at result end=hex(a+n): unsupported operand type(s) for +: 'int' and 'str'",
+  "cause": "Final input-validation for n,p loop overwrote the numeric byte count with ruling.md before result production.",
+  "driver_sha256": "97e8004d15a73dd8a381dbb63de6b2df1ea8a21310d8701ed5daea837efc9fef",
+  "raw_sha256": "1c0607ef41a4756a71b2d56f4ff089cf9719ac562388996f78176871135d5444",
+  "limits": "Raw source/control observations retained, no completed result or semantic acceptance. Original tool error is the observed shell failure; no retrospective full rerun or invented capture receipt."
+}

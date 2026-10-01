@@ -1,0 +1,30 @@
+  0034DBDE test eax, eax
+  0034DBE0 jne 0x34dc1e
+  0034DBE2 movzx edx, byte ptr [rsi + 0x15]
+  0034DBE6 mov ecx, dword ptr [rbx]
+  0034DBE8 call 0x360a20
+  0034DBED call 0x229eb0
+  0034DBF2 mov byte ptr [rbx + 8], al
+  0034DBF5 mov eax, edi
+  0034DBF7 mov dword ptr [rbx + 4], 4
+  0034DBFE mov rbx, qword ptr [rsp + 0x30]
+  0034DC03 mov rsi, qword ptr [rsp + 0x38]
+  0034DC08 add rsp, 0x20
+  0034DC0C pop rdi
+  0034DC0D ret
+  0034DC0E movzx ecx, byte ptr [rdx + 0x15]
+  0034DC12 call 0x25c070
+  0034DC17 test eax, eax
+  0034DC19 je 0x34dc1e
+  0034DC1B mov dword ptr [rbx + 4], edi
+  0034DC1E mov rbx, qword ptr [rsp + 0x30]
+  0034DC23 mov eax, edi
+  0034DC25 mov rsi, qword ptr [rsp + 0x38]
+  0034DC2A add rsp, 0x20
+  0034DC2E pop rdi
+  0034DC2F ret
+  0034DC30 sub rsp, 0x28
+  0034DC34 mov rcx, r9
+  0034DC37 call 0x267e10
+  0034DC3C test eax, eax
+  0034DC3E je 0x34dc49

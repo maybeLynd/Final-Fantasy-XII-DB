@@ -1,0 +1,185 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8330,
+      "sha256": "03377acecfdd508d376160a91b1814adc38aff8048ad6ba5f20478b7ddf5f021"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7649,
+      "sha256": "da037c5194125635b1334199e5d8ca1843f94c7ec6507058f0d3ee80e93871be"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 488,
+      "sha256": "05857cd43c3f785c6017598370bd804f209ac372c53d3e34d3096e8820bfb36f"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 130,
+      "sha256": "49944d02bb3088d69ffc34b19f2b48b05c2e9f091c307abd88bbdcec84879e6f"
+    },
+    {
+      "path": "extra-runner-failure.json",
+      "bytes": 470,
+      "sha256": "2f79c2085d1a70f03064731f4a308e1212926f4ae2cf2ae9ad3c8e21c513791f"
+    },
+    {
+      "path": "extra-s16-boundary.json",
+      "bytes": 11146,
+      "sha256": "2e69609c3e3f8ce4d8609089d95a3b37e65873355a3acfa635f8f7384d1eae51"
+    },
+    {
+      "path": "extra-s16-boundary.py",
+      "bytes": 1873,
+      "sha256": "deed60d89c56e1e70c87af9ba0209e8ee7a40f0407cd1db4329349b6cc457278"
+    },
+    {
+      "path": "failure.json",
+      "bytes": 668,
+      "sha256": "76698bce0b667b3e17407abf127461c55847966bf19ef337cf4ee0959b5169f8"
+    },
+    {
+      "path": "fault-accept-clamp-mutation.stderr",
+      "bytes": 517,
+      "sha256": "3a0de7f60877bd49838494d167d827160d3ef2c7b6b8a381dc91a1290569fcb4"
+    },
+    {
+      "path": "fault-accept-clamp-mutation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-narrowing-wrap.stderr",
+      "bytes": 505,
+      "sha256": "2bad6252f19a52c16783b29230fb981bbcdff9f887333ebaf70b23a10c5207e2"
+    },
+    {
+      "path": "fault-narrowing-wrap.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-no-write-as-undetected.stderr",
+      "bytes": 545,
+      "sha256": "61a2f4381582bc5752b6524f8a0de5d59ba436b860fad1e3bcb255b6fc669de6"
+    },
+    {
+      "path": "fault-no-write-as-undetected.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-standard-s16-bounds.stderr",
+      "bytes": 535,
+      "sha256": "9817f985149c3722573875d949eae1dd3811fbd83186bcd88a02702d8ea4e0f0"
+    },
+    {
+      "path": "fault-standard-s16-bounds.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3939,
+      "sha256": "111fd19c63c3aea50414593f33d67443efee8b471c29267d0eb745a9ab8d312c"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3342,
+      "sha256": "ccf3215f04e56c61e9d5ec8a278fda4b902bd4966c99ee4ff6cbe657368cdca4"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1531,
+      "sha256": "4f3376bdfedbb057c8ba082febf135f6db5d622f583414fb16a790ec2704493c"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 93231,
+      "sha256": "29977ba23e01b97a05ac820c242fc3381b1025f5de30a967e123e46de21dce07"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4361,
+      "sha256": "cb4be725a58c420e3b377dfa2ef740de83a62c824f680982d8996541dbec48e5"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 535,
+      "sha256": "90f0b232618eeb54720a6a39f12a2f0b605ce5fd3a3bd6c1ef5678909eed7e5d"
+    },
+    {
+      "path": "repair-extra-runner-scope.py",
+      "bytes": 868,
+      "sha256": "167ad24173183bdfc55e45016b06cf7cde045a9fbd89c8cbaae99b46d3c96dfe"
+    },
+    {
+      "path": "repair-s16-policy.py",
+      "bytes": 1172,
+      "sha256": "598ecd60ed027510bf17b33e3be06079cb7f74d4520e42fc8ef2d98ce28041cf"
+    },
+    {
+      "path": "result.json",
+      "bytes": 10689,
+      "sha256": "0b6b0a139f9c1e8c4d7600928938852c119543f2509f1c1cf9b150872455e7ad"
+    },
+    {
+      "path": "retained/check-before-s16-policy.py",
+      "bytes": 6430,
+      "sha256": "4b2818e509e477e79855d5422cd9e58834f410c06f87b027a7213a6de8e6bb79"
+    },
+    {
+      "path": "retained/extra-runner-before-scope-fix.py",
+      "bytes": 1855,
+      "sha256": "8b9b8c6f7667c9314995156e9ad6c2ab1522a6d03cb786b36673bdf7aea3bf09"
+    },
+    {
+      "path": "retained/original-table24.bin",
+      "bytes": 24,
+      "sha256": "4d4569e9dd0e190d3f9e4d3e1d59d57551f3d297475e460c9e13cd83a39457f0"
+    },
+    {
+      "path": "retained/original194.bin",
+      "bytes": 194,
+      "sha256": "c416b7a2f88c5da6a7e0f698091b554eb98f37e09b8fc01979c644f34e018b27"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/runner-source-used-for-extra.py",
+      "bytes": 8330,
+      "sha256": "03377acecfdd508d376160a91b1814adc38aff8048ad6ba5f20478b7ddf5f021"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/variables-primary-before.md",
+      "bytes": 40843,
+      "sha256": "92158e12258c1446113f12b5686e453dbdcc465e23a7735522d399171611aa68"
+    },
+    {
+      "path": "retained/verbs-primary-before.md",
+      "bytes": 91334,
+      "sha256": "35962742a8312d39fc760025bf2eaa020ae7d79f3ba806dae45633831c04df11"
+    }
+  ],
+  "limits": "Original bounded resolved-store memory effects incl unusual signed16 bounds; injected state/disposable emulation, no original caller/nativegame/live/lifetime proof. Consumer repair/independent acceptance separate."
+}

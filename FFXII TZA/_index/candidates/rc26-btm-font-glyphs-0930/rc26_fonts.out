@@ -1,0 +1,65 @@
+PASS  C1a 00365810: id = 00D10C98[n-1] = [130, 131, 132, 133, 134, 135, 218, 219, 220, 221, 222, 223]; buffer to +0x110 + (n-1)*8
+PASS  C1b the only call of 00365810 is 0053EC9A in the loop n = 7..12 (0053EB90); ids 130..135 (n = 1..6) are never requested
+PASS  C1c 00364210 pairs glyph table +0x10+font*8 with pixel sheet +0x110+font*8 and adds record +8 (pixelOffset)
+PASS  C1d 003643A0 sets +8 = pack + dword[pack]; 00366080 fixes table k into +0x10 + 8k
+PASS  C1e 003658F0 requests kind 7 id 0xD2 into [022CBE00]
+PASS  C2 ids 130..135 name no path in any of the 13 region arrays
+    id 0xD2 per region: {0: 'in', 1: 'us', 2: 'us', 3: 'us', 4: 'us', 5: 'us', 6: 'us', 7: 'kr', 8: 'ch', 9: 'in', 10: 'in', 11: 'cn', 12: 'in'}
+    ids 218..223 per region: {0: ['ExFont/in'], 1: ['ExFont/in'], 2: ['ExFont/in'], 3: ['ExFont/in'], 4: ['ExFont/in'], 5: ['ExFont/in'], 6: ['ExFont/in'], 7: ['ExFont/kr'], 8: ['ExFont/ch'], 9: ['ExFont/in'], 10: ['ExFont/in'], 11: ['ExFont/cn'], 12: ['ExFont/in']}
+
+  pack (region dir)  table  glyphs  extent@4bpp  extent@8bpp  sheet  sheet bytes
+  ch        6      78        42240        42496  font_stf_a_normal   42240   4bpp exact
+  ch        7      78        42240        42496  font_stf_a_shadow   42240   4bpp exact
+  ch        8      78        29184        29440  font_stf_b_normal   29184   4bpp exact
+  ch        9      78        29184        29440  font_stf_b_shadow   29184   4bpp exact
+  ch       10      78        32256        32512  font_stfc_normal    32256   4bpp exact
+  ch       11      78        32256        32512  font_stf_c_shadow   32256   4bpp exact
+  cn        6      78        42240        42496  font_stf_a_normal   42240   4bpp exact
+  cn        7      78        42240        42496  font_stf_a_shadow   42240   4bpp exact
+  cn        8      78        29184        29440  font_stf_b_normal   29184   4bpp exact
+  cn        9      78        29184        29440  font_stf_b_shadow   29184   4bpp exact
+  cn       10      78        32256        32512  font_stfc_normal    32256   4bpp exact
+  cn       11      78        32256        32512  font_stf_c_shadow   32256   4bpp exact
+  in        6      78        42240        42496  font_stf_a_normal   42240   4bpp exact
+  in        7      78        42240        42496  font_stf_a_shadow   42240   4bpp exact
+  in        8      78        29184        29440  font_stf_b_normal   29184   4bpp exact
+  in        9      78        29184        29440  font_stf_b_shadow   29184   4bpp exact
+  in       10      78        32256        32512  font_stfc_normal    32256   4bpp exact
+  in       11      78        32256        32512  font_stf_c_shadow   32256   4bpp exact
+  it        6      78        42240        42496  font_stf_a_normal   42240   4bpp exact
+  it        7      78        42240        42496  font_stf_a_shadow   42240   4bpp exact
+  it        8     127        48128        48640  font_stf_b_normal   29184   OVERRUNS the sheet by 18944
+  it        9     127        48128        48640  font_stf_b_shadow   29184   OVERRUNS the sheet by 18944
+  it       10     127        53248        53760  font_stfc_normal    32256   OVERRUNS the sheet by 20992
+  it       11     127        53248        53760  font_stf_c_shadow   32256   OVERRUNS the sheet by 20992
+  kr        6      78        42240        42496  font_stf_a_normal   42240   4bpp exact
+  kr        7      78        42240        42496  font_stf_a_shadow   42240   4bpp exact
+  kr        8      78        29184        29440  font_stf_b_normal   29184   4bpp exact
+  kr        9      78        29184        29440  font_stf_b_shadow   29184   4bpp exact
+  kr       10      78        32256        32512  font_stfc_normal    32256   4bpp exact
+  kr       11      78        32256        32512  font_stf_c_shadow   32256   4bpp exact
+  us        6      78        42240        42496  font_stf_a_normal   42240   4bpp exact
+  us        7      78        42240        42496  font_stf_a_shadow   42240   4bpp exact
+  us        8     127        48128        48640  font_stf_b_normal   29184   OVERRUNS the sheet by 18944
+  us        9     127        48128        48640  font_stf_b_shadow   29184   OVERRUNS the sheet by 18944
+  us       10     127        53248        53760  font_stfc_normal    32256   OVERRUNS the sheet by 20992
+  us       11     127        53248        53760  font_stf_c_shadow   32256   OVERRUNS the sheet by 20992
+  us table 8: 49 of 127 glyphs end past the 29184-byte sheet (codes ÀÁÂÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÖŒÙÚÛÜàáâäæçèéêëìíîïñòóôöœùúûüß); 78 of its records equal an 'in' table-8 record; codes only in 'us': ÀÁÂÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÖÙÚÛÜßàáâäæçèéêëìíîïñòóôöùúûüŒœ
+  us table 10: 49 of 127 glyphs end past the 32256-byte sheet (codes ÀÁÂÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÖŒÙÚÛÜàáâäæçèéêëìíîïñòóôöœùúûüß); 78 of its records equal an 'in' table-10 record; codes only in 'us': ÀÁÂÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÖÙÚÛÜßàáâäæçèéêëìíîïñòóôöùúûüŒœ
+PASS  C3 4-bit cells: the last cell ends exactly at the sheet's end in 28 of 36 (table, pack) pairs; at 8 bits never (0)
+
+  d3d11 face  glyphs(header+4)  records  kerned cps  ker pairs  pairs with both cps kerned  pairs with both cps present
+  us/a         78       78       69     1237      398      398
+  us/as        78       78       69     1237      398      398
+  us/b         78       78       69     1237      398      398
+  us/bs        78       78       69     1237      398      398
+  us/c         78       78       69     1237      398      398
+  us/cs        78       78       69     1237      398      398
+  jp/a         77       77       69     1237      398      398
+  jp/as        78       78       69     1237      398      398
+  jp/b         78       78       69     1237      398      398
+  jp/bs        78       78       69     1237      398      398
+  jp/c         78       78       69     1237      398      398
+  jp/cs        78       78       69     1237      398      398
+
+FAILS 0

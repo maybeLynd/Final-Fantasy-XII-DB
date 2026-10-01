@@ -1,0 +1,6 @@
+block line counts: {'ctrl': [977, 79], 'btlctrl': [2507, 79, 558], 'evctrl': [2456, 79], 'mapctrl': [2768, 79, 557]}
+PASS D1  btlctrl block 2 = 558 lines, mapctrl block 2 = 557
+PASS D2  past the block under either convention: [('btlctrl', 1, 3978, 559, 2, 1), ('btlctrl', 1, 3979, 559, 2, 0), ('btlctrl', 1, 3980, 559, 2, 0), ('mapctrl', 1, 5201, 558, 2, 1), ('mapctrl', 1, 5202, 558, 2, 0), ('mapctrl', 1, 5203, 558, 2, 0)]; line == lineCount (valid only counting from 1): 9 records; all well inside their scope
+PASS D3  zero suffix per scope ranges 0..3; suffix 3 at [('btlctrl', 22), ('ctrl', 1), ('evctrl', 3), ('mapctrl', 1), ('mapctrl', 3)]; 59 zero records in all
+PASS C  53710 in-range records besides the fifteen above; the suffix counter sees a planted zero record
+FAILS 0

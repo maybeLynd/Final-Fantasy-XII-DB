@@ -1,0 +1,94 @@
+{
+  "head": "9161b92ea027f9e6d1ee7cc57b866e86df3b48fc",
+  "driver_sha256": "7bb34d2fe8ac1b974265f16ca60106e4ed9f58e6367c1e2fc2256972ea8932cc",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "started": "2026-09-29T13:33:55.623098+00:00",
+  "source": [
+    {
+      "path": "Database/Tools/dashboard/build_views.py",
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4",
+      "last_commit": "17d6cdc2915b22b1743cdd2e2c6acc2fcdf6f5e2",
+      "blob": "0423ae36376707f0e74d621bd360c0237cb39721"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "last_commit": "b6e6de3f0080cd311336c04d68cf17516c228dff",
+      "blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+      "last_commit": "b26125d2d0111845ec6e702e5a51410c1745e581",
+      "blob": "07c842e86b2c8ff4d4603db72c5748610edd4c3a"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "Database/Tools/work/graph/functions.tsv",
+      "copy": "inputs/canonical-0.tsv",
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "Database/FFXII TZA/99-Unresolved-Residual/Unlisted-Code/uc1-applied-population-1-64.tsv",
+      "copy": "inputs/canonical-1.tsv",
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa"
+    },
+    {
+      "path": "Database/FFXII TZA/99-Unresolved-Residual/Unlisted-Code/uc1-applied-population-65-256.tsv",
+      "copy": "inputs/canonical-2.tsv",
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97"
+    }
+  ],
+  "reuse": "Run01 stopped at missing dependency, before any adapter call; exact retained source/input copies reused after current byte agreement. No prior observations replayed.",
+  "limits": "Repository Python original adapter, labelled extent fixtures and copied census; shipping PE read only, no guest instructions/live game execution.",
+  "exe": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "bytes": 32864752,
+    "external": true,
+    "copied": false
+  },
+  "reader_dependencies": [
+    {
+      "installed": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\angr-venv\\Lib\\site-packages\\pefile.py",
+      "copy": "python-deps/pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    },
+    {
+      "installed": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\angr-venv\\Lib\\site-packages\\ordlookup\\__init__.py",
+      "copy": "python-deps/ordlookup/__init__.py",
+      "sha256": "fe7e3869702abb571846d74bc34ea4966e8f75a6603530fe3f9e03c982d736a7"
+    },
+    {
+      "installed": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\angr-venv\\Lib\\site-packages\\ordlookup\\oleaut32.py",
+      "copy": "python-deps/ordlookup/oleaut32.py",
+      "sha256": "d3199a7ea2f1ef42a93cb8b20acc752de67789671cb4248584e2b43f441e5aaf"
+    },
+    {
+      "installed": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\angr-venv\\Lib\\site-packages\\ordlookup\\ws2_32.py",
+      "copy": "python-deps/ordlookup/ws2_32.py",
+      "sha256": "0879ce2fee63d738838f61332e69a149d463c177649c78935295d7f335604810"
+    },
+    {
+      "installed": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\angr-venv\\Lib\\site-packages\\ordlookup\\wsock32.py",
+      "copy": "python-deps/ordlookup/wsock32.py",
+      "sha256": "f029bc58669eae582a7087c630fd8be8f9f5aa2df6f7cecaa13f8f1e1199ed17"
+    }
+  ],
+  "text": {
+    "lo": 1183744,
+    "size": 7996981
+  },
+  "pefile": {
+    "module": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\text-overlap-boundary\\run-02\\python-deps\\pefile.py",
+    "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+    "version": "2024.8.26"
+  },
+  "loaded": {
+    "adapter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\text-overlap-boundary\\run-02\\original\\Database\\Tools\\dashboard\\build_views.py",
+    "uc1_band": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\text-overlap-boundary\\run-02\\original\\Database\\Tools\\analysis-kit\\gfz-scripts\\uc1_band.py",
+    "generation": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\text-overlap-boundary\\run-02\\original\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py"
+  }
+}

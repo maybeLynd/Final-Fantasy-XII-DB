@@ -1,0 +1,10 @@
+{
+  "method": "A: prior original installer body verified byte-for-byte against reference; no emulator or live execution",
+  "source": "Database\\FFXII TZA\\_experiments\\evidence\\EXP-075-reward-index-prechecks\\0023A570.bin",
+  "bytes": 1808,
+  "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "observer_predecessor": "Database\\FFXII TZA\\_experiments\\evidence\\spawn-live-load\\observe.py",
+  "observer_predecessor_sha256": "01ad7beba46a9df95d0a2dec957819cee6683caf9062123d434ba130e64d133e",
+  "observer_sha256": "3fd84bbf8ffb7acb6f398333275193d7af13bea895f284ded4ccda86689b5438"
+}

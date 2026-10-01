@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-19",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "seal batch 19: TEAM.json + op files commit",
+  "scope": "seal commit only; no shared paths",
+  "completion": "seal commit exists; task finished with the commit ref",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

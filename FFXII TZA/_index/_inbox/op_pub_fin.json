@@ -1,0 +1,16 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-BOARD-AND-RESUME-77",
+ "note": "Published 3584096a5 with publish_paths.sh under @publication - the first commit of this session to use either. Verified the private index did its job: three peer-dirty paths (SWE2-CONTRACT.md, SWE2-ORACLE.md, parity_status.py) are still dirty and were not swept. 12 files, all named on the command line.",
+ "result_refs": [
+  {
+   "key": "file:database/ffxii tza/_types/types.tsv"
+  },
+  {
+   "key": "file:database/ffxii tza/_types/fields.tsv"
+  },
+  {
+   "key": "file:database/ffxii tza/_index/audit-log.md"
+  }
+ ]
+}

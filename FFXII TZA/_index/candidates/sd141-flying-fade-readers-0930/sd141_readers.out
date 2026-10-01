@@ -1,0 +1,6 @@
+PASS  F1 rip-relative: only the two stores in 001C7940 (001C9040, 001C8FFF); no wider access in 02CB83E0..02CB8417
+PASS  F2 no image-base-relative operand on either address
+PASS  F3 no read through a lea-derived base lands on either (48967 leas followed)
+PASS  F4 no stored qword holds either address
+PASS  C1 control: the neighbour 02CB8404 does have a reader (001FA820), and the census reports it
+FAILS 0

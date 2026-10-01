@@ -1,0 +1,6 @@
+SURVIVES  N0  [1575, 204, 632, 40, 84]
+SURVIVES  N1  route wipe <- [('00236A60', '00236BFC'), ('003278D0', '00327909'), ('003291B0', '003291CF')]; dead-end wipe <- [('00236A60', '00236C08'), ('003278D0', '00327901')]
+SURVIVES  N2  flag test, both wipers [('003278D8', '00236850'), ('003278E8', '00236820'), ('00327901', '003839C0'), ('00327909', '003839F0'), ('00327910', '00236850')], slot count re-read at 00327910 inside the loop
+SURVIVES  N3  003842E0 <- [('00382FF0', '0038351C'), ('00383C90', '00383EB1')]; 00382EA0 4 sites in 3 functions
+SURVIVES  N4  0030A130 ['sub rsp, 0x28', 'mov rcx, qword ptr [rcx + 0x10]', 'lea r8, [rsp + 0x30]', 'lea rdx, [rsp + 0x38]', 'call 0x265090', 'movss xmm0, dword ptr [rsp + 0x30]', 'maxss xmm0, dword ptr [rsp + 0x38]', 'add rsp, 0x28', 'ret']; multipliers [('00325BFA', 'mulss xmm0, dword ptr [rip + 0x9eac16]'), ('00325C49', 'mulss xmm0, dword ptr [rip + 0x9eabc7]')]; [00D10818] = 3FB4FDF4
+FAILS 0

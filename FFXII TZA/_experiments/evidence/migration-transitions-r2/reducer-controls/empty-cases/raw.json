@@ -1,0 +1,32 @@
+{
+  "format": "ASTRA-transition-admission-r2-1",
+  "method": "A: published original repository Python CLI and plan, read-only labelled fixtures",
+  "source_commit": "f21fe80440fc9d24df09fc19172753394fe61773",
+  "driver_sha256": "8cc5579e294bd02a51c6f90aab9eb4e18da44476d59c83944a05fd7f9653b074",
+  "python": {
+    "executable": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "base_executable": "C:\\Python314\\python.exe",
+    "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "prior_commit": "888afe2e4375bf2010566cfe0b5c4b8b3d5018dc",
+  "prior_manifest_sha256": "f17455c5a1e7f7d0d7d19723b6bfe06306342a37d3d2e8df0224f7e284bdd368",
+  "prior_raw_sha256": "779e95eddb19cb6a6c851922242852c99a4be34105da7d9207fcf88a6b0484c5",
+  "sources": {
+    "transitions.py": {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "sha256": "265dcd8b33b600060ff1482820816b23e13252c5395aa2fd4937aae14642e9e7",
+      "bytes": 11980,
+      "blob": "18cd924858cbbb68d857a3dc31df2de0b11f44e0"
+    },
+    "team.py": {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6",
+      "bytes": 53608,
+      "blob": "7084d894fa05f8afa5502e56870beadff94b3f62"
+    }
+  },
+  "cases": [],
+  "finished": true,
+  "write_controls": "NOT_EXECUTED: apply/race/idempotence/failed-writer and prior descendant cleanup remain open"
+}

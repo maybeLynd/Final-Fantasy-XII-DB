@@ -1,0 +1,22 @@
+# Lua.Math.UnaryFunctionAdapter - EC-7 family C, declared on generated-function-families.md
+#
+# 13 members. Body size(s): 54 B x13.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 15 external target(s): 2 shared across all 13 members, and 13 that are member-specific.
+#
+# NOT dispositioned: the 2 shared implementations these members reach, and the 13 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00818AC0
+00818B00
+00818B40
+00818B80
+00818BC0
+00818C00
+00818C40
+00818C80
+00818CC0
+00818D60
+00818DA0
+00818EA0
+00819000

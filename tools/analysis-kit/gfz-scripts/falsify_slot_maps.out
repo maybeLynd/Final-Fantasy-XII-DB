@@ -1,0 +1,10 @@
+SURVIVES  K1  (REFUTES a separately dispatched handler on a caller-supplied record) 003266DB inside 003266C0 (1253 B): mov qword ptr [rsp + 0x68], r12; rdi = mov rdi, qword ptr [rip + 0x2b98ac1] then add rdi, 0x5a48; branches to it []; .pdata fragments ['003266CF-003266DB', '003266DB-00326A40'], each UNWIND_INFO flagged CHAININFO ([4, 4]) and chained to ['003266C0', '003266CF'], so both resolve to 003266C0 (the .rdata records naming 003266DB are these chain entries)
+SURVIVES  K2  (REFUTES 'after a refresh maps 2 and 4 equal the cleared map 1' outside mode 0) mode switch on 0030D9A0 {1: '003269D2', 2: '00326991', 3: '003268F3', 4: '0032683F', 'other': '00326A34', 5: '00326783'}; map 4 saved before the refresh True and restored at ['003267F3', '003268FD'] (modes 5, 3); 23 u16 map stores in the mode arms; maps reached by the mode arms' stores [1, 2, 4]; stores to map 3 in the arms: [] (the ordered copies are S5's); u16/16-byte stores after the arms rejoin at 00326A34: []
+SURVIVES  K3  (REFUTES 0x01EC9260) table references in 00329CC0: ['01EED260']
+SURVIVES  S1  byte arms ['0x5a48', '0x5a5a', '0x5a6c', '0x5a7e', '0x5a90']
+SURVIVES  S2  jne 0x31ba1e / mov al, 0xff / jne 0x31ba11
+SURVIVES  S3  200 B; class lea ecx, [r8 + 0x17]
+SURVIVES  S4  0x27 gates; 16 + 2 into maps 1-4
+SURVIVES  S5  0->1, 0->3, clear 1, 1->2, 1->4
+SURVIVES  S6  mov dword ptr [rax + 0x5aa4], ecx
+FAILS 0

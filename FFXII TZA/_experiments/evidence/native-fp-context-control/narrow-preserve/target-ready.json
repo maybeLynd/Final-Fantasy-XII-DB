@@ -1,0 +1,25 @@
+{
+  "pid": 31624,
+  "tid": 48696,
+  "code_address": 2660722147328,
+  "gate_address": 2660722147559,
+  "buffer_address": 2660722212864,
+  "code_hex": "534881ec000200004889cb480fae0424480fae8300060000f30f6f8300000000f30f6f8b10000000f30f6f9320000000f30f6f9b30000000f30f6fa340000000f30f6fab50000000f30f6fb360000000f30f6fbb70000000f3440f6f8380000000f3440f6f8b90000000f3440f6f93a0000000f3440f6f9bb0000000f3440f6fa3c0000000f3440f6fabd0000000f3440f6fb3e0000000f3440f6fbbf0000000dbe3d9ab04010000dbab20010000dbab30010000dbab40010000dbab50010000dbab60010000dbab70010000dbab80010000dbab900100000fae9300010000480fae830002000090480fae8300040000480fae0c24480fae8300080000b8dec0175a4881c4000200005bc3",
+  "python": "C:\\Python314\\python.exe",
+  "sources": {
+    "run.py": "d439604ce25b118f1424c83e823312af7401148b85c2b2502b3fa2470137e4a5",
+    "fixture.py": "41a90a19db11ca7deb48362092bc9234b3c5288c224387aadcace4986e7adf96",
+    "preserve.bin": "82486c57c1054d44549a1a04fe1d0e41a345ab5c6366fa023ab44f0877dae620",
+    "change.bin": "4bcdeb92fe7aa93f5fe1de487cfd4588fa74fdea02702bb8db7603b2d6ac56e3",
+    "fixture-decode.json": "64dc13141cf7b5bafb3ae9ef8c0611489ba7d9bda7ffbd3b66b56b43d00c6422",
+    "../exp127-native-dispatch-control/run.py": "4e7659eea7b8aaa3026e9404b960fb45691b2a4fce08d88bfed20ae7221477ed",
+    "../exp127-instrument-control/capture_candidate.py": "a4824020766a4f795e91bbb7387e10e1c821f04faa41d64189ad6b9141b6fe19",
+    "../exp127-instrument-control/cleanup_candidate.py": "c737324fadc5a126e413dc2b71aff3c3ca3ffc12d4f14e0cdfd04bfc1c53cb20",
+    "../exp127-instrument-control/ownership.py": "8f75d7f7fe1545a323acb58169c836a717f2b1ddad403231c3ebb1b710862c2b",
+    "../exp127-instrument-control/original/api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "../exp127-instrument-control/original/capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "../exp127-instrument-control/original/hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "../exp127-instrument-control/original/timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a"
+  },
+  "created_unix": 1789989925.0706189
+}

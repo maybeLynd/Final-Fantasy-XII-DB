@@ -1,0 +1,55 @@
+# SpawnRecord+0x80 IS AN EMBEDDED BattleStatsRecord, AND THE TYPE STORE MODELS IT TWICE.
+#
+# 23 of SpawnRecord's 37 field rows fall inside [0x80, 0x248) - the window the unit-definition
+# page identifies as a BattleStatsRecord inside the spawn record (0x80 + 0x1C8 = 0x248 <= 0x250).
+# All 23 are UNRESOLVED on SpawnRecord. ELEVEN are already NAMED on BattleStatsRecord at exactly
+# offset - 0x80.
+#
+# THE MAPPING IS CONFIRMED FROM THE PAGE'S OWN CITATIONS, twice, not from arithmetic alone:
+#   SpawnRecord 0x242 -> BattleStatsRecord 0x1C2 `level`       page: "+0x1C2 = 0, the level byte"
+#   SpawnRecord 0x20C -> BattleStatsRecord 0x18C `experience`  page: "+0x18C = min(002F8F20(level-1), 99,999,999)"
+#
+# THE WRITER AGREES. FUN_0030C470 (Rewards_Progression_Economy, 432 B) fills the sub-object from
+# party-definition row 02EBF130 + stride x index:
+#   [rbx+0x08] = word row+0x16                 -> `baseHp`, which the store already sources to w_16
+#   [rbx+0x0C] = word row+0x1A                 -> `baseMp`, already sourced to w_1A
+#   [rbx+0x10/14/18/1C] = bytes row+0x1E, +0x21, +0x24, +0x27, each movzx -> movd -> cvtdq2ps
+#                                              -> the `statBlockByKind` union region. The page calls
+#                                                 these the base stats, "each followed by its growth
+#                                                 byte" - which is exactly the 3-byte source stride.
+#   [rbx+0x20] = max(byte row+0x46, BattleStats_ComputeLicenseDerivedRank(page))  0030C552-0030C55F,
+#                                                 the range the page labels "the licence rank".
+#
+# NOTHING IS EDITED BY THIS FILE. Whether to model the window as one BattleStatsRecord field and
+# drop the duplicates, or to keep them cross-referenced, is a STRUCTURAL decision that moves the
+# field and unresolved-name totals four surfaces publish. Routed to SWE2-STRUCT.
+#
+# WHY IT MATTERS: 23 rows count as UNRESOLVED names while 11 of them are named in the same store
+# at a known offset, so any 'how much is left to name' figure is inflated by that.
+#
+# Measured 2026-09-16 by OPUS from _types/fields.tsv and the disassembly of 0030C470
+# (embedded_exe.bin sha256 73461d08...21f8, image base 0x00120000 included).
+spawn_offset	rel_offset	spawn_name	battlestats_name	battlestats_ctype	status
+0x080	0x000	UNRESOLVED	UNRESOLVED	uint32	UNRESOLVED-IN-BOTH
+0x084	0x004	UNRESOLVED	definitionRowIndex	uint8	NAMED-IN-BATTLESTATSRECORD
+0x085	0x005	UNRESOLVED	kindByte	uint8	NAMED-IN-BATTLESTATSRECORD
+0x088	0x008	UNRESOLVED	baseHp	uint32	NAMED-IN-BATTLESTATSRECORD
+0x08C	0x00C	UNRESOLVED	baseMp	int16	NAMED-IN-BATTLESTATSRECORD
+0x090	0x010	UNRESOLVED	statBlockByKind	UNRESOLVED	NAMED-IN-BATTLESTATSRECORD
+0x094	0x014	UNRESOLVED			NO-COUNTERPART-ROW
+0x098	0x018	UNRESOLVED			NO-COUNTERPART-ROW
+0x09C	0x01C	UNRESOLVED			NO-COUNTERPART-ROW
+0x0A0	0x020	UNRESOLVED	UNRESOLVED	uint8	UNRESOLVED-IN-BOTH
+0x0A8	0x028	UNRESOLVED	maxMp	int16	NAMED-IN-BATTLESTATSRECORD
+0x0CC	0x04C	UNRESOLVED	currentMp	int16	NAMED-IN-BATTLESTATSRECORD
+0x0D0	0x050	UNRESOLVED	equipmentSlots	uint16[5]	NAMED-IN-BATTLESTATSRECORD
+0x0D8	0x058	UNRESOLVED			NO-COUNTERPART-ROW
+0x0EC	0x06C	UNRESOLVED			NO-COUNTERPART-ROW
+0x0FC	0x07C	UNRESOLVED			NO-COUNTERPART-ROW
+0x138	0x0B8	UNRESOLVED			NO-COUNTERPART-ROW
+0x13A	0x0BA	UNRESOLVED			NO-COUNTERPART-ROW
+0x20C	0x18C	UNRESOLVED	experience	uint32	NAMED-IN-BATTLESTATSRECORD
+0x210	0x190	UNRESOLVED	licencePoints	uint32	NAMED-IN-BATTLESTATSRECORD
+0x242	0x1C2	UNRESOLVED	level	uint8	NAMED-IN-BATTLESTATSRECORD
+0x243	0x1C3	UNRESOLVED			NO-COUNTERPART-ROW
+0x245	0x1C5	UNRESOLVED			NO-COUNTERPART-ROW

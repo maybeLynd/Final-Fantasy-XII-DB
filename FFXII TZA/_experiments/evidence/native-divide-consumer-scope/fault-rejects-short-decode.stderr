@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-divide-consumer-scope\check.py", line 26, in <module>
+    if '--fault-rejects-short-decode' in sys.argv:assert not short['source_check']['ok'],'Exact source Z accepts incomplete declared-range decoding'
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Exact source Z accepts incomplete declared-range decoding

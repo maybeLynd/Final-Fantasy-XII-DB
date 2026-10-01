@@ -1,0 +1,65 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7275,
+      "sha256": "b9addeb9fcaa76c1edc99331ae870df64baf5c7e7cdb558024031bd92ebdd18f"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 3390,
+      "sha256": "e77773d1e25f15c9a96f2f0e17b453fa6884d00d7b6365385b2c683ef5c7d5cc"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2301,
+      "sha256": "bd52cda286064aa9eaea3af182aa2e4dc2117ae081a16e2eee8d0582e0eda61c"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 10153,
+      "sha256": "e054601e3414b8fec0ea5d0a66a119d513a45c9a32a3ce59cde1f647f919ff1e"
+    },
+    {
+      "path": "raw-results.json",
+      "bytes": 79860,
+      "sha256": "7a693f057d9158abcf89e147ef4e85898de1a281e4ab75f94242327ebc9da394"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4158,
+      "sha256": "4249ce61c43e131a5810fdbdf41688261a0816e11cb64e2703ca6e340c26332e"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/primary.json",
+      "bytes": 122801,
+      "sha256": "4387b8d7a2a81f411a6fb284a5e7fd11cd56a5fa260465b95937f41131b0e75c"
+    },
+    {
+      "path": "retained/the-vif1-vu1-layer.md",
+      "bytes": 61595,
+      "sha256": "c198dd9766682df36f630e83814111e505bb2a5477a1be5bfa4d1512359c1fa3"
+    },
+    {
+      "path": "source.json",
+      "bytes": 56970,
+      "sha256": "4a0813bc86798988caa68c3e4c58bb325ca3a4778fb1ba18d531ceff2e0beb9a"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 300,
+      "sha256": "d6cbdc8ece870e43bc1626a07168f5b1639749cebbf18cd3540f5f69c0d4ce3b"
+    }
+  ],
+  "limits": "Six isolated original cases/three native-effect stubs; actual live stack and rendering unknown, owner/independent acceptance pending."
+}

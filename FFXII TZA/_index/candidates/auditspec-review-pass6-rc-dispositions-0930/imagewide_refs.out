@@ -1,0 +1,12 @@
+0x3ee2d0 rel32 ['003EE1F2 call'] jcc [] abs [] rva ['02FC3E24(.pdata)']
+0x3ed8a0 rel32 ['003EE39B call'] jcc [] abs [] rva ['02FC3DD0(.pdata)']
+0x3a9ef0 rel32 ['003EDAA0 call'] jcc [] abs [] rva ['01D7E898(.rdata)', '01D7E8AC(.rdata)', '01D7E8BC(.rdata)', '02FBFF84(.pdata)']
+0x504350 rel32 ['003AA109 call', '00500A20 call'] jcc [] abs [] rva ['02FCB40C(.pdata)', '02FCB414(.pdata)']
+0x500980 rel32 ['003A9F42 call'] jcc [] abs [] rva ['02FCB148(.pdata)', '02FCB150(.pdata)']
+00267F60 rel32 58 nodecode 0 jcc 0 data {'abs64': [], 'rva32': ['02FAA5BC(.pdata)']}
+0x3ee2d0 rip [] imagebase []
+0x3ed8a0 rip [] imagebase []
+0x3a9ef0 rip [] imagebase []
+0x504350 rip [] imagebase []
+0x500980 rip [] imagebase []
+0x267f60 rip [] imagebase []

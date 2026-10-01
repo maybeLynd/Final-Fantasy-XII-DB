@@ -1,0 +1,21 @@
+{
+  "status": "NATIVE_STOP_CONTROL_OBSERVED",
+  "arm": "normal",
+  "forced_termination": [],
+  "stopped_counters": [
+    5,
+    4
+  ],
+  "final_counters": [
+    9,
+    9
+  ],
+  "capture_status": "MATCHED_PENDING_HEALTH",
+  "samples": 8,
+  "read_handle_closed": true,
+  "parent_mapping_closed": true,
+  "final_exits": {
+    "target": 0,
+    "debugger": 0
+  }
+}

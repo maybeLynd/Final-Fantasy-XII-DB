@@ -1,0 +1,85 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4548,
+      "sha256": "8762de3d03dbfc6a74356de7cc7586eafed23a9ad64d7ce6bb80825e562bd5ca"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 6764,
+      "sha256": "5a31834f87f4c5aa4ef1e26c0897c0b1433674028cc8600ec4f6b24f50392669"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1780,
+      "sha256": "3ec23229ea1d28ccc0a4adfc74efc6bc13a49ac330bbd81b5d548523162da213"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1526,
+      "sha256": "f38878f50be132bc62df46952994855e1c123daa9c0661501e451d65ad9535ff"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1989,
+      "sha256": "dced23170a051341b2fef268e7aa57e4c49094e8aea8090438966827c96da854"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4393,
+      "sha256": "be36e8f644ba4173874d58fb6c51c4da6f97bfd560792839f3f8c607e39c88b0"
+    },
+    {
+      "path": "result.json",
+      "bytes": 17226,
+      "sha256": "06fd4a157bddcc68ad68a516e9b7cc336681f3d27e27b5bdf0f1c3ede6c5b2da"
+    },
+    {
+      "path": "retained/changed-multiply-source.bin",
+      "bytes": 364,
+      "sha256": "5ec74aff7985d11601d411ea5cf846db3b0a6e2c47cb3d0331d665771ee26958"
+    },
+    {
+      "path": "retained/contract.md",
+      "bytes": 84922,
+      "sha256": "462ca9b3cb420f6e5c8e2ed560b260daf396c37ea993a1b0a57ca3bc73bbe9b6"
+    },
+    {
+      "path": "retained/field-preimages.json",
+      "bytes": 3664,
+      "sha256": "5b3725a8621d1fea121240577f0a09a13d1b390f43e3356d8196a39e69aa48c5"
+    },
+    {
+      "path": "retained/peer-producer.py",
+      "bytes": 8930,
+      "sha256": "0a1b08072945f26d2547d84315388a3d0a840c6968b8171be0513b4f70fadf2d"
+    },
+    {
+      "path": "retained/prior37-manifest.json",
+      "bytes": 2553,
+      "sha256": "9487efc611b8ead71a3c3df8d2718a8d91ac62f943c630ecfdb719a167afe6e9"
+    },
+    {
+      "path": "retained/prior37-source.bin",
+      "bytes": 67,
+      "sha256": "cae46c89191dd9dd79b895163bfb13907c70a9159cfe9a271bcd43e826f2eacc"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.bin",
+      "bytes": 364,
+      "sha256": "60d7930df283708183efd2f989b774a97a9486786b18d42a85cc0c493e2f9453"
+    }
+  ],
+  "limits": "Original364B starter and selected signed low32-product calculations only; no original/native/emulator/live/caller-domain/family or UI consequence proof"
+}

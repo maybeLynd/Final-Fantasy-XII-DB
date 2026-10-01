@@ -1,0 +1,148 @@
+"""Reuse EXP031's sender with EXP024/037 reads; one bounded, stoppable pulse.
+
+The user explicitly requested recovery of this historical input method. This is
+an OS-input intervention, not a native command call or a game-memory write.
+"""
+import argparse
+import ctypes
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import sys
+import time
+
+HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[4]
+KIT = REPO / 'Database/Tools/analysis-kit/gfz-scripts'
+EVIDENCE = HERE.parent
+sys.path.insert(0, str(KIT))
+
+
+def load(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def pulse(snapshot, send, guard, record, expected, clock=time.perf_counter, sleep=time.sleep):
+    """Keep raw baseline/held/release reads. Cleanup also runs on failed delivery."""
+    record['samples'] = []
+    address = None
+
+    def sample(phase):
+        nonlocal address
+        guard()
+        row = snapshot()
+        row.update(phase=phase, at_unix=time.time())
+        record['samples'].append(row)
+        assert row['status'] == 'STABLE_CHAIN'
+        if address is None:
+            address = row['array_address']
+        assert row['array_address'] == address
+        return set(row['nonzero_indices'])
+
+    for _ in range(35):
+        assert not sample('baseline'), 'Nonzero baseline'
+        sleep(.01)
+    guard()
+    record['down_at_unix'] = time.time()
+    try:
+        record['down_accepted'] = send(False)
+        assert record['down_accepted'] == 2, 'Incomplete dual-form input delivery'
+        start = clock()
+        seen = set()
+        while clock() - start < .35:
+            current = sample('held')
+            assert current <= {expected}, 'Unexpected key state; stop'
+            seen.update(current)
+            sleep(.01)
+        record['held_elapsed'] = clock() - start
+        record['seen_indices'] = sorted(seen)
+    finally:
+        record['up_accepted'] = send(True)
+        record['up_at_unix'] = time.time()
+    assert record['up_accepted'] == 2, 'Incomplete key release delivery'
+    sleep(.06)
+    assert not sample('release'), 'Key state remained set'
+    assert seen == {expected}, 'Registration positive not established'
+    record['registration'] = 'EXPECTED_HELD_STATE_OBSERVED_AND_RELEASED'
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--pid', type=int, required=True)
+    p.add_argument('--hwnd', type=int, required=True)
+    p.add_argument('--key', choices=['Enter', 'C', 'Space', 'R', 'I', 'K', 'P'], required=True)
+    p.add_argument('--out', type=Path, required=True)
+    a = p.parse_args()
+    assert not a.out.exists()
+    import runtime_probe as rp
+    import runtime_input_probe as sender
+    import window_focus as wf
+    import ffxii_runtime as rt
+    import team
+    step = load('reuse_step', EVIDENCE / 'EXP-024-group-approach/step.py')
+    observer = load('reuse_qualify', EVIDENCE / 'EXP-037-command-observer/observe.py')
+    inp = load('reuse_input_sample', EVIDENCE / 'input-registration-live-title/resumed/input_sample.py')
+    record = dict(status='INVALID', command=sys.argv, start_unix=time.time(), pid=a.pid,
+                  hwnd=a.hwnd, key=a.key, method='C: EXP031 dual-form OS input; no game writes or native calls')
+    files = [Path(__file__), Path(sender.__file__), Path(rp.__file__), Path(rt.__file__),
+             Path(wf.__file__), Path(step.__file__), Path(observer.__file__), Path(inp.__file__)]
+    record['sources'] = {str(f.relative_to(REPO)): hashlib.sha256(f.read_bytes()).hexdigest() for f in files}
+    reader = None
+    try:
+        board = json.loads(team.BOARD.read_text())
+        assert any(t['id'] == 'FABLE-REQ-ASTRA-OLD-SAVE-LOAD' and t['agent'] == 'ASTRA' and t['status'] == 'ACTIVE' and any(r['key']=='@runtime' for r in t.get('claimed_resources',t['resources'])) for t in board['tasks'])
+        processes = rt.list_processes()
+        assert len(processes) == 1 and processes[0]['pid'] == a.pid
+        assert Path(processes[0]['path']).resolve() == observer.EXE.resolve()
+        record['process'] = processes[0]
+        raw = observer.EXE.read_bytes()
+        rp.k32.OpenProcess.restype = ctypes.c_void_p
+        rp.k32.CloseHandle.argtypes = [ctypes.c_void_p]
+        rp.k32.ReadProcessMemory.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_size_t, ctypes.POINTER(ctypes.c_size_t)]
+        rp.psapi.EnumProcessModules.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_ulong, ctypes.POINTER(ctypes.c_ulong)]
+        reader = step.Reader(a.pid)
+        verdict, hits, modules = rt.classify(a.pid)
+        record['before'] = observer.qualify(reader, raw, rp.module_base(reader.handle), verdict, modules, rp.CONTROL_ADDR, rp.CONTROL_BYTES)
+        record['null_read_rejected'] = reader.probe.read(0, 16) is None
+        assert record['null_read_rejected']
+        assert any(w[0] == a.hwnd for w in wf.windows_of(a.pid))
+        point = ctypes.wintypes.POINT()
+        assert sender.u32.GetCursorPos(ctypes.byref(point))
+        initial_cursor = (point.x, point.y)
+        record['initial_cursor'] = initial_cursor
+
+        def guard():
+            assert not (sender.u32.GetAsyncKeyState(0x1B) & 0x8001), 'STOP: Escape input'
+            assert sender.u32.GetForegroundWindow() == a.hwnd, 'STOP: foreground changed'
+            assert sender.u32.GetCursorPos(ctypes.byref(point))
+            assert (point.x, point.y) == initial_cursor, 'STOP: cursor moved'
+
+        vk, expected = {'Enter': (0x0D, 49), 'C': (0x43, 2), 'Space': (0x20, 52), 'R': (0x52, 17), 'I': (0x49, 8), 'K': (0x4B, 10), 'P': (0x50, 15)}[a.key]
+        pulse(lambda: inp.snapshot(reader), lambda up: sender.send_key(vk, up), guard, record, expected)
+        verdict, hits, modules = rt.classify(a.pid)
+        record['after'] = observer.qualify(reader, raw, rp.module_base(reader.handle), verdict, modules, rp.CONTROL_ADDR, rp.CONTROL_BYTES)
+        assert rt.list_processes() == processes
+        assert record['sources'] == {str(f.relative_to(REPO)): hashlib.sha256(f.read_bytes()).hexdigest() for f in files}
+        record['status'] = 'REGISTERED_PULSE_ONLY'
+        record['limits'] = ['Screenshots separately establish visible acceptance.', 'No command execution or gameplay consequence inferred.', 'No causality claim about hold duration versus packet form.', 'Sequential state samples are not atomic.']
+    except BaseException as exc:
+        record['error'] = repr(exc)
+    finally:
+        if reader:
+            record['read_handle_closed'] = bool(rp.k32.CloseHandle(reader.handle))
+            if not record['read_handle_closed']:
+                record['status'] = 'INVALID'
+        record['end_unix'] = time.time()
+        with a.out.open('x', encoding='utf-8') as f:
+            json.dump(record, f, indent=2)
+            f.write('\n')
+    print(json.dumps({k: record.get(k) for k in ('status', 'error', 'key', 'seen_indices', 'held_elapsed', 'down_accepted', 'up_accepted', 'read_handle_closed')}))
+    return 0 if record['status'] == 'REGISTERED_PULSE_ONLY' else 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

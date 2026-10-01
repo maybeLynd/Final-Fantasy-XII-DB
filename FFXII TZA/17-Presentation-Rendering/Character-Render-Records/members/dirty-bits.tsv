@@ -1,0 +1,58 @@
+function	pass	word	bit	test_site	handlers	clear_kind	clear_site	set_by	rebuilds
+00427DE0	1	+0x290	29	00427E33	0042B690	processor	00427E47	00428DE0 <- 002E8FD0 Actor_RefreshPresentationVisibility	children via gate 00426220 -> leaf 00420D80 @0042B6E2 (child +0x2AE flag byte; active-presentation resolve 00422D50/00422D10)
+00427DE0	1	+0x290	30	00427E51	0042B770	processor	00427E65	00428E10 <- 002E8FD0 Actor_RefreshPresentationVisibility	children -> leaf 00420E70 @0042B7C2 -> 00421280 (child +0x2AE flag byte)
+00427DE0	1	+0x290	2	00427E6F	004209F0	processor	00427E87	none found	(copies pending matrix +0x340 -> +0x180 via Matrix4x4f_Copy 0046D100; sets +0x284 bit9; sets edi)
+00427DE0	1	+0x290	3	00427E93	00420860	processor	00427EBC	002EDD70 003EB860 (or 0x8)	(writes +0x380 vec3 -> +0x210 vec4, w=1.0f, via 006C0520)
+00427DE0	1	+0x290	25	00427EC3	inline	inline	00427EED	002E82E0 (or 0x2000000)	(mirrors +0x304 bit9 into +0x284 bit29)
+00427DE0	1	+0x290	19	00427F4A	0042F880	handler	0042FABE	0042F310 0042F3B0 (bts+store, inside 0042F4C0 subtree)	self-clearing resource refresh: 0020E600+002ED570 resolves, 003E5CF0 (+0x6A0 kind byte), 003326C0; re-arms +0x290:10 via 004288B0 @0042FA01; chains to 0042F4C0 @0042FA17; then esi->chain-tail +0x294:25
+00427DE0	1	+0x290	18	00427F94	0042F6C0	handler	0042F84E	none found (bit 18/19 cleared+20 re-armed by 0042F250 family)	same family; re-arms +0x290:10 @0042F7C6, chains to 0042F4C0 @0042F7D5
+00427DE0	1	+0x290	20	00427FA4	0042F4C0	handler	self	0042F250 (bts+store; cascade re-dirty from the bit-18/19 handlers)	calls 0042F310 (clears 290:18,19 + re-sets 290:20), 003326C0, 00426EC0, 003E55B0 ResolveModelInstance, 004780B0; re-arms 290:10 via 004288B0 @0042F572
+00427DE0	1	+0x290	23	00427FB2	00429760	processor	00427FC6	00520740 (or 0x800000)	0041EDE0 FCP presentation payload x2 + 003E5CF0 @004297B2
+00427DE0	1	+0x290	24	00427FD0	003E7210 / 003E69E0	processor	00428003	none found	selected by [+0x3D2]!=0: CharacterRenderRecord_EnsureModelSubresourceVariantBindings (r8=[+0x3F8], dl=[+0x3D3]) else CharacterRenderRecord_RemoveModelSubresourceVariantBindings @00427FF7/00427FFE
+00427DE0	1	+0x290	12	0042800D	00429A50 / else 00428E70	processor	00428021	00426E20 (bts+store, only when 290:0 clear)	children -> leaf 00424320 @00429AA7 (resolve entry -> 003723B0); esi && no-tail -> else 00428E70 -> 0042E550 UpdateSkeletonParentLinkAndFinalPose x2 @00428E9F; esi -> chain-tail +0x294:25
+00427DE0	1	+0x290	22	0042807C	003E73B0	processor	0042809C	002E8730 002E87F0 002E8A10 (or 0x400000); + dead writer 0042EE10 @0042EE4C (or 0x400000, imul-0x740 walk, [+6]==-1 gate; only ref is uncalled jmp-thunk 002E8390)	shadow-LOD kind (sec.12): edx=(+0x304>>12)&3 -> 00422D50 ResolveActivePresentationEntry, 003AFBE0, 003AF340 @003E73D5
+00427DE0	1	+0x294	26	004280A6	004295E0	processor	004280BA	00428AF0 (or 0x4000000) <- 00465CD0 RenderRecord_ApplyPresentation*	003E55B0 ResolveModelInstance x2 @00429647/004296B9
+00427DE0	2	+0x290	9	0042810D	00429500	processor	00428123	00428960 (or 0x200) <- 002EBAD0; + 00520430 @00520469/005204A3 (bts/or 0x200; also clears 9 and 10; no direct caller — live as presentation-command id 0x13 handler via 01EFFAF0[0x13]=00417530 -> bank-A slot 02CA44A8)	children -> leaf 0042BED0 @00429558 (1,163 B multi-entry refresh, edx=0)
+00427DE0	2	+0x290	10	0042812D	0042B580	processor	00428141	004288B0 (or 0x400) <- 10 callers incl. 0042F4C0/0042F6C0/0042F880 self re-arm	children -> leaf 0042BED0 @0042B5EA
+00427DE0	2	+0x290	17	0042814B	00429830	handler	004298E6	002E75A0 (or 0x20000)	children -> leaf 0042D8B0 @00429882 (resolve entry, write +0x94); self-clears
+00427DE0	2	+0x290	11	0042815F	00429920	processor	00428173	20 writers, or 0x800 (002Exxxx request family)	children -> 003E6DA0 + 003E37F0 CharacterRender_ApplyRelationLookCommandRecord @00429995
+00427DE0	3	+0x290	26	004281C3	0042BA90	handler	0042BB74	00428FE0 (or 0x4000000)	children -> leaf 00420EA0 @0042BB00 (+0x284 flag maintenance); self-clears
+00427DE0	3	+0x290	28	004281D7	0042B850	handler	0042B934	00428F10 (or 0x10000000; also conditional +0x304:5)	children -> leaf 00420F50 @0042B8C0 (same +0x284 flag shape); self-clears
+00427DE0	3	+0x294	2	004281EB	0042A050	processor	004281FC	00427280 (group-write: and 0xFFFDFA5F = clears {5,7,8,10,17}, or 4)	children -> leaf 00422C20 @0042A0E1 (resolve entry; writes +0xC4/+0xC8/+0xCC/+0x68/+0xD8); sets edi
+00427DE0	3	+0x294	18	0042820E	(none)	consume	00428218	btr	none found	bit consumed in place (bt+btr); no handler
+00427DE0	3	+0x294	4	0042821E	00426FA0	processor	0042822F	none found	children: set +0x284:20, clear +0xC0:6 (inline) @00426FF4
+00427DE0	3	+0x290	31	00428236	0042AC30	processor	00428247	none found (cleared by 00427320 and-mask)	jge test (sign bit): 004292B0 + 00423B10 (+0x124/+0x254/+0x304 fields) + 0042E1F0 @0042AC65; skips the cascade when set
+00427DE0	3	+0x294	0	0042825C	0042AE00	processor	00428268	none found (cleared by 00427320's and 0xFFFDFFFC)	virtual call into each chain-tail child via 0016D6A0 _guard_check_icall @0042AE6C (rdx=parent+0x394); sets edi
+00427DE0	3	+0x294	1	00428276	0042AF10	processor	00428282	none found (same clear-mask)	same virtual-call shape @0042AF86, r8=[+0x3B4]; sets edi
+00427DE0	3	+0x294	10	00428290	0042A180	processor	0042829E	none found (only cleared by group writes)	children -> leaf 00425510 @0042A1EB -> 0041D790 PresentationEntry_RebuildAndFast; sets edi
+00427DE0	3	+0x294	3	004282AF	0042AC30	processor	004282BB	00427320 (or 8; composite: also clears 290:31 and 294:{0,1,17})	same handler as +0x290:31
+00427DE0	3	+0x294	19	004282C4	(none)	consume	004282D3	btr 004282CA	none found	bit consumed in place (bt+btr, store at 004282D3), counts toward edi
+00427DE0	3	+0x294	20	004282DB	0042A580	processor	004282E9	none found	virtual call into chain-tail children via 0016D6A0 @0042A5DE; handler also self-clears @0042A683
+00427DE0	3	+0x294	16	004282F5	0042B130	processor	00428309	00427880 (or 0x10000)	children -> leaf 00424010 @0042B1C3 (writes entry +0x4B6/+0x4B7 and vec3 +0x2B0)
+00427DE0	3	+0x294	22	00428313	0042B270	processor	00428327	004278B0 (or 0x400000)	children -> 00422D50 + resource-tag resolve (00409F50, 00409A30 ResourceEntry_FindSectionOffsetByTagAndName, 004096C0) + leaf 00424010 @0042B3B9
+00427DE0	3	+0x294	23	00428331	0042A390	processor	00428345	004272C0 (or 0x800000) <- 002EB0D0	same resolve-tag shape as 0042B270 @0042A41D
+00427DE0	3	+0x294	13	0042834F	0042B460	processor	00428363	none found	children -> leaf 00424040 @0042B4B7 (resolve entry, write +0xC4)
+00427DE0	3	+0x294	5	0042836D	0042A890	processor	0042837F	00426130 00426560 00426C90 004270A0 004272E0 (group-write: clear {7,8,10,17}, set 5)	children -> 0041FC80 (->00422D50) + leaf 00423A10 -> 0041D790 @0042A964; sets edi
+00427DE0	3	+0x294	7	0042838D	0042B030	processor	00428399	00427860 (group-write: clear {5,8,10,17}, bts 7)	children -> leaf 0042E380 @0042B07D (FCP-presentation lookup; +0x2F2/+0x2F8 gates)
+00427DE0	3	+0x294	8	004283A7	00429F70	processor	004283B5	004270A0 site2 (group-write: clear {5,7,10,17}, bts 8)	children -> leaf 0042DF10 @00429FCB (same FCP shape)
+00427DE0	3	+0x294	6	004283BF	0042A6B0	processor	004283D0	none found	children -> leaf 00423920 @0042A707 (resolve entry +0xC4)
+00427DE0	3	+0x294	12	004283D7	0042A290	processor	004283EB	004272A0 (or 0x1000) <- 002EB0D0, 002EF100	children -> leaf 00423570 @0042A2F6 -> 0041CEA0 (entry +0xC bit3 set/clear by +0x3B6 param)
+00427DE0	3	+0x294	14	004283F5	0042AA10	processor	00428409	none found	children -> leaf 00423A60 @0042AA7B (resolve entry)
+00427DE0	3	+0x294	15	00428413	0042AB20	processor	00428427	00427300 (or 0x8000)	children -> leaf 00423AB0 @0042AB95 -> 0041C7C0 (entry +0x340 float + +0x3C byte)
+00427DE0	3	+0x294	17	00428431	0042A7A0	processor	00428445	none found (cleared by every group writer)	children -> leaf 00423980 @0042A7F7 (resolve entry x2; writes +0xC4/+0x10/+0x18); sets edi
+00427DE0	3	+0x294	11	00428454	00429E50	processor	0042846F	none found	children -> 00422DF0 -> 0041C3B0 (entry +0xC flag clear + +0x354) + 00422D50 @00429EAA; edx=earlier-work flag; sets edi
+00427DE0	3	+0x290	9	0042848E	00429500 (second site)	processor	004284A4	same as pass-2 row	children -> leaf 0042BED0 @0042849F; then chain-tail +0x294:25
+00427DE0	4	+0x290	4	00428531	00420F90 + 00421030	processor	00428555	002E8FD0 002ED3A0 002EE190 (or 0x10)	00420F90: +0x304:1 -> +0x284:4 (set if edx==1), then 00421030 (157 B inline body)
+00427DE0	4	+0x290	5	0042855C	00429D40	processor	0042856D	none found	children -> 0041FBF0 (+0x284 flags + entry resolve) + 00421030 @00429DAB
+00427DE0	4	+0x290	6	00428574	0042BCB0	processor	00428585	002E8C10 (or 0x40)	children: push parent +0x304:3 into child +0x284:21 (inline) @0042BD1A
+00427DE0	4	+0x294	24	0042858C	00425E70	processor	004285A7	00520160 (or 0x1000000); self-cleared inside 003E6770 when +0x3D0==0	-> 003E6770 @00425EB7: rebuilds the record's 4-slot index list at +0x438 (0051CC30/0051CC10); edx=[+0x3D0]
+00427DE0	4	+0x290	21	004285B1	003E74B0	processor	004285CD	002E8C70 (or 0x200000)	9 B setter: writes [+0x3FC] float -> +0x278
+00427DE0	4	+0x290	27	004285D7	0042B970	handler	0042BA54	00428FE0 (or 0x8000000)	children -> leaf 00420EA0 @0042B9E0 (same as +0x290:26); self-clears
+00427DE0	4	+0x290	13	004285EB	00429C40	handler	00429D19	002E3110 002E8570 002EDF30 (or 0x2000)	children -> leaf 0042DD90 @00429C92 (resolve entry, write +0x94); self-clears
+00427DE0	4	+0x290	14	004285FF	0042BBB0	handler	0042BC89	002EE0D0 002EE130 (or 0x4000)	children -> leaf 0042E690 @0042BC02 (same entry +0x94 shape); self-clears
+00427DE0	4	+0x290	15	00428613	00429B40	handler	00429C17	002EDE70 002EDED0 (or 0x8000)	children -> leaf 0042DCD0 @00429B92 (same shape); self-clears
+00427DE0	4	+0x290	16	00428627	00429410	handler	004294C6	002EDDC0 (or 0x10000)	children -> leaf 0042BDE0 @00429462 (same shape + entry +0x4BC); self-clears
+00427DE0	4	+0x294	27	0042863B	003B3C00	processor	00428660	003E6AA0 (or 0x8000000) <- 003B4xxx/003B5xxx/003B8260/00520720 family	gated [+0x288]!=-1; ecx=[+0x288], edx=+0x304>>27 -> 003B3480/0036C1D0/0024FE70/0036C140 @003B3C4D
+00427DE0	5	+0x290	1	004286A7	inline	inline	none	00429140 (or 2, gated +0x284:2) <- 0042FAE0	when clear: ungate +0x284:30 @004286AB and (esi) snapshot +0x120/124/128 -> +0x250/254/258 @004286B9; when set: falls to 290:20 check
+00427DE0	5	+0x290	20	004286E9	0042F4C0	none	none	0042F250 (bts+store)	second dispatch of the 290:20 handler, only while bit1 stays set @004286F2
+00427DE0	all	+0x294	25	00427F3A	(self - chain propagation)	n/a	consumed by 00427BD0	00427DE0 itself (or 0x2000000 on +6-chain tail) @00427F3A/00427F88/00428068/004284DA	00427BD0 walks to a +6-tail record, clears 294:25 @00427C13 and calls 00420A40 CharacterRenderRecord_ComposeModelTransformFromParent

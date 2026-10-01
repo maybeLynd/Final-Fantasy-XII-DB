@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-store-saturation\check.py", line 14, in <module>
+    if '--fault-standard-s16-bounds' in sys.argv:assert ii[0x26d5c7].operands[1].imm & 0xffffffff == 0xffff8000,'Conventional signed16 clamp contradicts original lower bound'
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Conventional signed16 clamp contradicts original lower bound

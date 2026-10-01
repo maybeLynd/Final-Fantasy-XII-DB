@@ -1,0 +1,13 @@
+{
+  "case": "changed-primary-coherent-pin",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\changed-primary-coherent-pin\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\changed-primary-coherent-pin"
+  ],
+  "exit": 1,
+  "expected_error": "required primary identity set changed",
+  "expected_error_seen": true,
+  "result_absent": true
+}

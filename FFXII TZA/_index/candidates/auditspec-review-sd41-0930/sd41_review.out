@@ -1,0 +1,30 @@
+R1 near-value decoded uses: 21
+   00175444  and dword ptr [rcx + 0x2004c643], eax    value 0x2004c643  in 00175070 FUN_00175070
+   00233C4D  cmp dword ptr [rax], 0x5071901           value 0x5071901  in 00233C10 FUN_00233c10
+   00235E90  mov eax, 0x5071901                       value 0x5071901  in 00235E90 SaveImage_GetHeaderDword60Constant
+   002370DF  mov dword ptr [rax], 0x5071901           value 0x5071901  in 002370C0 FUN_002370c0
+   002EF2A0  mov eax, 0x20050223                      value 0x20050223  in 002EF2A0 SaveImage_GetHeaderDword58Constant
+   003613D6  add byte ptr [rbx + 0x507c7ce], cl       value 0x507c7ce  in 00361340 FUN_00361340
+   004273A1  mov edi, 0x2005ff81                      value 0x2005ff81  in 00427320 FUN_00427320
+   00450C97  imul eax, dword ptr [rdx], 0x20058d4c    value 0x20058d4c  in 00450940 FUN_00450940
+   004A235F  sub byte ptr [rcx + rax + 0x20048b4a], bh value 0x20048b4a  in 004A1E30 FUN_004a1e30
+   004B0440  mov ebx, 0x20058901                      value 0x20058901  in 004B0230 FUN_004b0230
+   004BA6F0  mov edx, 0x20058b01                      value 0x20058b01  in 004B9EA0 FUN_004b9ea0
+   004BB794  mov edx, 0x20058b01                      value 0x20058b01  in 004B9EA0 FUN_004b9ea0
+   0053B5D7  add eax, 0x20040346                      value 0x20040346  in 0053AB50 FUN_0053ab50
+   0055C5A1  adc dword ptr [rbp + rax], 0x20058b00    value 0x20058b00  in 0055C530 FUN_0055c530
+   005AE097  add cl, byte ptr [rbx + 0x20053903]      value 0x20053903  in 005AD8F0 FUN_005ad8f0
+   005B61E7  add byte ptr [rax + 0x20058d48], dl      value 0x20058d48  in 005B6140 FUN_005b6140
+   00614917  add byte ptr [rbx + 0x20053907], cl      value 0x20053907  in 00614640 FUN_00614640
+   0064AAC7  call qword ptr [rax + 0x20058d48]        value 0x20058d48  in 0064AA20 FUN_0064aa20
+   00655AE3  imul esi, dword ptr [rbp - 6], 0x200548ff value 0x200548ff  in 00655AC0 FUN_00655ac0
+   0069510F  add byte ptr [rbx + 0x20053903], cl      value 0x20053903  in 006949A0 FUN_006949a0
+   006B3517  and byte ptr [rbx + 0x20053907], cl      value 0x20053907  in 006B33F0 FUN_006b33f0
+R2 after 00233C4D:
+   00233C4D cmp dword ptr [rax], 0x5071901
+   00233C53 je 0x233c5e
+   00233C55 add rsp, 0x28
+R3 getter 002EF2A0 raw call sites: 1
+   00253AAC in 00253A80 SaveRuntime_InitializeHeaderAndImageBackedState: call 0x2ef2a0 ; mov ebx, eax ; call 0x2ef640 ; mov dword ptr [rax + 0x58], ebx
+R3 getter 00235E90 raw call sites: 1
+   00253ACA in 00253A80 SaveRuntime_InitializeHeaderAndImageBackedState: call 0x235e90 ; mov ebx, eax ; call 0x2ef640 ; mov dword ptr [rax + 0x60], ebx

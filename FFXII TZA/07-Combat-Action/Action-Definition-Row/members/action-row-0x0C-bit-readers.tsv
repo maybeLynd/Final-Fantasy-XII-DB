@@ -1,0 +1,29 @@
+# SUPERSEDED as a census 2026-09-27 (FABLE, Claude Opus 5.5): these are 23 of the 60 provenance-verified reads; the full census and every bit's meaning: _index/candidates/uq107-action-flag-bits/ (uq107_flag_bits.py). The rows below stay as the 2026-09-18 record.
+# action-row-0x0C-bit-readers - every provenance-verified read of the action row's +0x0C dword (the 23 sites of members/action-row-reader-hops.tsv at offset 0x0C), classified by the mask it tests (UQ-107, FABLE, 2026-09-18).
+# mask: the immediate of a `test mem, imm` at the site, or of the `and` / `test` / `bt` applied to the loaded register (shifts folded in). Provenance: the row pointer traced from registry slot 02EBF138 by action_row_reader_hops.py (hop 0) or one call deep (hop 1).
+function	name	hop	site	mask	bit	evidence
+002F8410	BattleAction_ComputeChargeLimitTicks	0	002F8494	08000000	27	shr 0x1b; and 1 (002F849A)
+002F8410	BattleAction_ComputeChargeLimitTicks	0	002F8689	00002000	13	shr 0xd; and 1 (002F868F)
+002FFCF0	BattleAction_CheckActionAvailabilityReason	0	002FFE56	00080000	19	test at the site; with row +0x1E == 1 -> reason 0x8000221B
+00300060	FUN_00300060	0	003000EA	40000000	30	test at the site; then unit +0x6B4 in 6..7 -> 0030C970
+0030AC50	FUN_0030ac50	0	0030AD1E	40000000	30	test at the site
+0030CE10	BattleAction_TryEnterGlobalSpecialSequence	0	0030CE93	40000000	30	test at the site
+0030CFB0	BattleAction_AcquirePresentationSlot	0	0030D011	40000000	30	test at the site; then (id - 0xD0) <= 0x21
+00312170	FUN_00312170	0	00312213	00002000	13	and 0x2000 -> bit 8 of the built flag word (0031221E)
+00312170	FUN_00312170	0	00312213	00004000	14	and 0x4000 -> bit 9 of the built flag word (0031222C)
+0031AA30	FUN_0031aa30	0	0031AB02	00000800	11	test at the site; selects 1/2 vs 3/4 written to [r14]
+0031ADB0	FUN_0031adb0	0	0031B202	40000000	30	test at the site
+0031ADB0	FUN_0031adb0	0	0031B2F3	40000000	30	test at the site
+00325260	BattleUnit_HandleActionTimelineEvent	0	003253D8	40000000	30	test at the site
+00325260	BattleUnit_HandleActionTimelineEvent	0	003254BD	40000000	30	test at the site
+003257D0	FUN_003257d0	0	003258C9	40000000	30	test at the site
+003257D0	FUN_003257d0	0	003259AC	40000000	30	test at the site
+00387FD0	BattleFormula_RollSpecialGuardOutcome	0	00388058	00020000	17	test at the site (the 0x2018 that follows is on another record's +8)
+00390AB0	BattleFormula_ApplyPreResolutionTargetGates	0	00390C7F	04000000	26	test at the site
+00390AB0	BattleFormula_ApplyPreResolutionTargetGates	0	00390DF1	00010000	16	test at the site; then unit +0x6B / +0x7B sign and (+0x64 or +0x3C) & 3
+00390AB0	BattleFormula_ApplyPreResolutionTargetGates	0	00390E9A	00004000	14	test at the site; when clear, unit +0x6F / +0x7F bit 0
+00390AB0	BattleFormula_ApplyPreResolutionTargetGates	0	00390EE5	00002000	13	test at the site
+00390F20	BattleFormula_ApplyTargetStatusActionPostModifiers	0	00391076	00004000	14	test at the site
+00390F20	BattleFormula_ApplyTargetStatusActionPostModifiers	0	003910C3	00002000	13	test at the site
+0031A990	FUN_0031a990	1	0031A99A	00001000	12	bt 0xc (0031A99E); with bit 24 (bt 0x18, 0031A9A5) -> [rdx] = 3
+0031A990	FUN_0031a990	1	0031A99A	01000000	24	bt 0x18 (0031A9A5)

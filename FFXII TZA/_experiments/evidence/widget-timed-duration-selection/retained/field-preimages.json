@@ -1,0 +1,8 @@
+{
+  "source_path": "Database/FFXII TZA/_types/fields.tsv",
+  "source_sha256": "e8732b20f983f51e868e884e4bbcc25de1399095549c1b9b74e64b261d390ab4",
+  "rows": [
+    "Widget\t0x070\t4\ttimedFrames70\tuint32\ta frame count 00244DD0 computes as ms * 60 / 1000 (imul 0x3c, then the /1000 multiply-shift) - the same ms-to-60-Hz conversion as transitionDurationFrames +0x90; zeroed on one path and subtracted on another. MEANING beyond the conversion NOT claimed\tTYPE RESOLVED\tPROVEN\tADDED 2026-09-28 (OPUS, _index/candidates/mapscreen-child-widget/child_widget.py G): 00244DD0 00244EC2 / 00244ED1 / 00244ED4; 00244E6A; 00244E75. || MIGRATED from MapScreenContainer +0x0130 (field0130 uint32), evidence verbatim: r1 w2 at 00244E6A, 00244E75, 00244ED4. MEANING NOT CLAIMED | census_receiver_fixpoint SEED=ctor 002B7590 (converged), 2026-09-25 (OPUS, block 256): an INDEPENDENT seed reaches bytes of the previous gap row unobservedSpan00C8 (+0xC8, 184 B), which the cell-seeded census did not",
+    "Widget\t0x07C\t4\tfield7C\tuint32\tlow nibble cleared at construction\tTYPE RESOLVED\tPROBABLE\t002466D8 and dword [rdi+0x7c], 0xFFFFFFF0"
+  ]
+}

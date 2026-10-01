@@ -1,0 +1,15 @@
+{
+  "name": "incomplete-good-cases",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\check.py",
+    "--activity",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\reducer-controls\\incomplete-good-cases"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\check.py\", line 73, in <module>\n    result=reduce(w,a.activity or w/'activity-02')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\check.py\", line 8, in reduce\n    r=load(d/'raw.json');assert r['finished'] is True and 'fatal' not in r,'INCOMPLETE_CAPTURE'\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: INCOMPLETE_CAPTURE\n",
+  "expected": "INCOMPLETE_CAPTURE",
+  "terminal": true
+}

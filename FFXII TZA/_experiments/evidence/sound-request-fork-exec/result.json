@@ -1,0 +1,258 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "subjects": {
+  "fork": "0x210C00",
+  "seb": "0x21B5B0",
+  "sep": "0x219EA0",
+  "rcal": "0x212950",
+  "wseb": "0x224570",
+  "wsep": "0x223190"
+ },
+ "cases": [
+  {
+   "name": "fork-sel0-hit",
+   "ok": true,
+   "trace": "n=1 d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "n=1 d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fork-sel0-miss",
+   "ok": true,
+   "trace": "n=1",
+   "exp": "n=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fork-sel1-sep-hit",
+   "ok": true,
+   "trace": "n=1 d ~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "n=1 d ~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fork-sel1-sep-miss",
+   "ok": true,
+   "trace": "n=1",
+   "exp": "n=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fork-selneg",
+   "ok": true,
+   "trace": "n=1",
+   "exp": "n=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fork-sel0-empty",
+   "ok": true,
+   "trace": "n=1",
+   "exp": "n=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "seb-neg-bucket",
+   "ok": true,
+   "trace": "n=1 d",
+   "exp": "n=1 d",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "seb-neg-bucket2",
+   "ok": true,
+   "trace": "n=1 d",
+   "exp": "n=1 d",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "seb-walk-second",
+   "ok": true,
+   "trace": "n=1 d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "n=1 d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "seb-rcpt-wrap",
+   "ok": true,
+   "trace": "n=2147483647",
+   "exp": "n=2147483647",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "seb-rcpt-zero",
+   "ok": true,
+   "trace": "n=1",
+   "exp": "n=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "sep-walk-second",
+   "ok": true,
+   "trace": "n=1 d ~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "n=1 d ~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-fresh",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-reuse",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=1 ~s6d=0 ~s70=0 W1440480000 W2440480000 W1840480000 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0",
+   "exp": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=1 ~s6d=0 ~s70=0 W1440480000 W2440480000 W1840480000 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-state2",
+   "ok": true,
+   "trace": "d",
+   "exp": "d",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-spin",
+   "ok": true,
+   "trace": "~spin=0 ~spin=0 d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "~spin=0 ~spin=0 d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-tree-miss",
+   "ok": true,
+   "trace": "d",
+   "exp": "d",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-bounds-fail",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=0",
+   "exp": "d ~l40200000 ~s8c=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-refuse",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 c=1079508992 d x=1",
+   "exp": "d ~l40200000 ~s8c=1 c=1079508992 d x=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-flag7",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-flag8",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 ~f240200000 ~e40200000 T1040480000=1 ~s6d=0 ~a40200000 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "d ~l40200000 ~s8c=1 ~f240200000 ~e40200000 T1040480000=1 ~s6d=0 ~a40200000 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-flag5-pass",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 c=1079508992 d x=0 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "d ~l40200000 ~s8c=1 c=1079508992 d x=0 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-cb-arm",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~at=0 ~s78=0 ~vt=0",
+   "exp": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~at=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wseb-s78-rst",
+   "ok": true,
+   "trace": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=1 RST40480000 ~vt=0",
+   "exp": "d ~l40200000 ~s8c=1 ~e40200000 T1040480000=0 W1440480000 W2440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=1 RST40480000 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wsep-basic",
+   "ok": true,
+   "trace": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wsep-refuse",
+   "ok": true,
+   "trace": "c=1079508992 d x=1",
+   "exp": "c=1079508992 d x=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wsep-flag7",
+   "ok": true,
+   "trace": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wsep-flag5-pass",
+   "ok": true,
+   "trace": "c=1079508992 d x=0 ~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "c=1079508992 d x=0 ~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL7f=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wsep-cb-arm",
+   "ok": true,
+   "trace": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~at=0 ~s78=0 ~vt=0",
+   "exp": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~at=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wsep-vol-high",
+   "ok": true,
+   "trace": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL200=0 ~s81=0 ~s78=0 ~vt=0",
+   "exp": "~o40280000 ~a40280000 W1440480000 W1840480000 W1040480000 W2c40480000 ~ac=0 PAN40=0 d ~se0=0 ~se9=0 VOL200=0 ~s81=0 ~s78=0 ~vt=0",
+   "diffs": [],
+   "faults": []
+  }
+ ],
+ "mutants": {
+  "killed": 20,
+  "total": 20
+ },
+ "pass": true
+}

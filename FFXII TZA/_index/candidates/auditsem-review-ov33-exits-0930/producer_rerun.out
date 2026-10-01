@@ -1,0 +1,13 @@
+Each committed producer script re-run with python -B at HEAD (system python where pefile is needed), output compared with the committed .out after CR stripping:
+e1_fst_writers exit 0 difflines 0 last: STATUS COMPLETE
+e1_fst_census exit 0 difflines 0 last: STATUS COMPLETE
+e1_slot_writers exit 0 difflines 0 last: STATUS COMPLETE
+e1_producer_sites exit 0 difflines 0 last: STATUS COMPLETE
+e1_site_summary exit 0 difflines 0 last: STATUS COMPLETE
+e1_static_ids exit 0 difflines 0 last: STATUS COMPLETE
+e1_kind8_sets exit 0 difflines 0 last: STATUS COMPLETE
+e1_mode_writers exit 0 difflines 0 last: STATUS COMPLETE
+e2_path_census exit 0 difflines 0 last: STATUS COMPLETE
+e3_readlayer_ptr exit 0 difflines 0 last: STATUS COMPLETE
+e3_shutdown_reach exit 0 difflines 0 last: STATUS COMPLETE
+e4_manifest_models exit 0 difflines 0 last: FAILS 0

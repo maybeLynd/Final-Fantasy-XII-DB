@@ -1,0 +1,25 @@
+{
+ "recovered_by": "OPUS",
+ "date": "2026-09-15",
+ "population": "EXP-083, the one record of 83 still missing method:/live_game:",
+ "source": "the record's own body; no author memory and no running game were used",
+ "owner_note": "SWE2-ORACLE owns this record and may overrule it on return.",
+ "rule": "EVIDENCE-STANDARD addendum 2026-09-13i: method: names the STRONGEST method the record's conclusions rest on, ordered A < B < C; live_game: is true if the running game was touched at all.",
+ "precedent": "The same recovery was applied to EXP-075..EXP-081 on 2026-09-13 and recorded in EVIDENCE-STANDARD, which notes that the routed request had assumed only the author could answer this while the records answered it themselves.",
+ "records": [
+  {
+   "experiment": "EXP-083",
+   "file": "EXP-083-resource-entry-tree-execution.md",
+   "method": "B - isolated original-code execution",
+   "live_game": "false",
+   "read_from_line": 14,
+   "quote": "Only isolated original instructions ran; no live game, native allocator, reconstruction implementation, CRT call or process was involved.",
+   "corroboration": [
+    {"line": 51, "quote": "Unicorn 2.1.4, Python 3.14.6.", "says": "execution under emulation, which is method B and not method A"},
+    {"line": 119, "quote": "Isolated original-code evidence class only - no live runtime or full", "says": "the record states its own evidence class"},
+    {"line": 113, "quote": "A single live read of the global would close it", "says": "the one live observation that would have made this method C is explicitly NOT done - it is named as outstanding, which is the strongest available evidence that live_game is false"}
+   ],
+   "note": "No C-method activity appears anywhere in the record. The check for a stronger method was run rather than assumed: the body was scanned for live game / running game / process / PID / emulation terms, and every hit either denies live involvement or names Unicorn."
+  }
+ ]
+}

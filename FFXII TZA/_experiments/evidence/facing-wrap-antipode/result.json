@@ -1,0 +1,675 @@
+{
+  "method": "A shipping source+exact selected arithmetic; zero FF12/original-code/native/emulator/live tests",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "entry": "0x26c090",
+    "bytes": 129,
+    "source_sha256": "feda52ffa079d72a3a81a1ed737534d9bb9de1914f0bc5eccc110c2bf06ed22a",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "constants": {
+    "0x1cebc50": "db0f4940",
+    "0x915620": "db0f49c0",
+    "0x1cebc78": "db0fc940"
+  },
+  "instructions": [
+    {
+      "pc": "0x26c090",
+      "bytes": "0f28d9",
+      "op": "movaps",
+      "args": "xmm3, xmm1"
+    },
+    {
+      "pc": "0x26c093",
+      "bytes": "0f57c0",
+      "op": "xorps",
+      "args": "xmm0, xmm0"
+    },
+    {
+      "pc": "0x26c096",
+      "bytes": "0f2fd8",
+      "op": "comiss",
+      "args": "xmm3, xmm0"
+    },
+    {
+      "pc": "0x26c099",
+      "bytes": "488bd1",
+      "op": "mov",
+      "args": "rdx, rcx"
+    },
+    {
+      "pc": "0x26c09c",
+      "bytes": "720a",
+      "op": "jb",
+      "args": "0x26c0a8"
+    },
+    {
+      "pc": "0x26c09e",
+      "bytes": "f30f1025aafba701",
+      "op": "movss",
+      "args": "xmm4, dword ptr [rip + 0x1a7fbaa]"
+    },
+    {
+      "pc": "0x26c0a6",
+      "bytes": "eb08",
+      "op": "jmp",
+      "args": "0x26c0b0"
+    },
+    {
+      "pc": "0x26c0a8",
+      "bytes": "f30f102570956a00",
+      "op": "movss",
+      "args": "xmm4, dword ptr [rip + 0x6a9570]"
+    },
+    {
+      "pc": "0x26c0b0",
+      "bytes": "0fb64903",
+      "op": "movzx",
+      "args": "ecx, byte ptr [rcx + 3]"
+    },
+    {
+      "pc": "0x26c0b4",
+      "bytes": "f30f58dc",
+      "op": "addss",
+      "args": "xmm3, xmm4"
+    },
+    {
+      "pc": "0x26c0b8",
+      "bytes": "c1e905",
+      "op": "shr",
+      "args": "ecx, 5"
+    },
+    {
+      "pc": "0x26c0bb",
+      "bytes": "0f28c3",
+      "op": "movaps",
+      "args": "xmm0, xmm3"
+    },
+    {
+      "pc": "0x26c0be",
+      "bytes": "f30f5e05b2fba701",
+      "op": "divss",
+      "args": "xmm0, dword ptr [rip + 0x1a7fbb2]"
+    },
+    {
+      "pc": "0x26c0c6",
+      "bytes": "f30f2cc0",
+      "op": "cvttss2si",
+      "args": "eax, xmm0"
+    },
+    {
+      "pc": "0x26c0ca",
+      "bytes": "660f6ec8",
+      "op": "movd",
+      "args": "xmm1, eax"
+    },
+    {
+      "pc": "0x26c0ce",
+      "bytes": "0f5bc9",
+      "op": "cvtdq2ps",
+      "args": "xmm1, xmm1"
+    },
+    {
+      "pc": "0x26c0d1",
+      "bytes": "f30f590d9ffba701",
+      "op": "mulss",
+      "args": "xmm1, dword ptr [rip + 0x1a7fb9f]"
+    },
+    {
+      "pc": "0x26c0d9",
+      "bytes": "f30f5cd9",
+      "op": "subss",
+      "args": "xmm3, xmm1"
+    },
+    {
+      "pc": "0x26c0dd",
+      "bytes": "f30f5cdc",
+      "op": "subss",
+      "args": "xmm3, xmm4"
+    },
+    {
+      "pc": "0x26c0e1",
+      "bytes": "83e901",
+      "op": "sub",
+      "args": "ecx, 1"
+    },
+    {
+      "pc": "0x26c0e4",
+      "bytes": "7419",
+      "op": "je",
+      "args": "0x26c0ff"
+    },
+    {
+      "pc": "0x26c0e6",
+      "bytes": "83f902",
+      "op": "cmp",
+      "args": "ecx, 2"
+    },
+    {
+      "pc": "0x26c0e9",
+      "bytes": "7525",
+      "op": "jne",
+      "args": "0x26c110"
+    },
+    {
+      "pc": "0x26c0eb",
+      "bytes": "488b82b8000000",
+      "op": "mov",
+      "args": "rax, qword ptr [rdx + 0xb8]"
+    },
+    {
+      "pc": "0x26c0f2",
+      "bytes": "488b88f0000000",
+      "op": "mov",
+      "args": "rcx, qword ptr [rax + 0xf0]"
+    },
+    {
+      "pc": "0x26c0f9",
+      "bytes": "f30f115934",
+      "op": "movss",
+      "args": "dword ptr [rcx + 0x34], xmm3"
+    },
+    {
+      "pc": "0x26c0fe",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x26c0ff",
+      "bytes": "41b801000000",
+      "op": "mov",
+      "args": "r8d, 1"
+    },
+    {
+      "pc": "0x26c105",
+      "bytes": "0f28cb",
+      "op": "movaps",
+      "args": "xmm1, xmm3"
+    },
+    {
+      "pc": "0x26c108",
+      "bytes": "488bca",
+      "op": "mov",
+      "args": "rcx, rdx"
+    },
+    {
+      "pc": "0x26c10b",
+      "bytes": "e990f5ffff",
+      "op": "jmp",
+      "args": "0x26b6a0"
+    },
+    {
+      "pc": "0x26c110",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "cases": [
+    {
+      "name": "positive-antipode",
+      "first": {
+        "input_bits": "40490FDB",
+        "bias_bits": "40490FDB",
+        "stages": [
+          {
+            "operation": "addss heading+bias",
+            "bits": "40C90FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "divss biased/2pi",
+            "bits": "3F800000",
+            "exact_numerator": 1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "cvttss2si",
+            "integer": 1
+          },
+          {
+            "operation": "cvtdq2ps integer",
+            "bits": "3F800000",
+            "exact_numerator": 1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "mulss integer*2pi",
+            "bits": "40C90FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss biased-product",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss remainder-bias",
+            "bits": "C0490FDB",
+            "exact_numerator": -13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          }
+        ],
+        "output_bits": "C0490FDB",
+        "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+      },
+      "second": {
+        "input_bits": "C0490FDB",
+        "bias_bits": "C0490FDB",
+        "stages": [
+          {
+            "operation": "addss heading+bias",
+            "bits": "C0C90FDB",
+            "exact_numerator": -13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "divss biased/2pi",
+            "bits": "BF800000",
+            "exact_numerator": -1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "cvttss2si",
+            "integer": -1
+          },
+          {
+            "operation": "cvtdq2ps integer",
+            "bits": "BF800000",
+            "exact_numerator": -1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "mulss integer*2pi",
+            "bits": "C0C90FDB",
+            "exact_numerator": -13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss biased-product",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss remainder-bias",
+            "bits": "40490FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          }
+        ],
+        "output_bits": "40490FDB",
+        "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+      },
+      "idempotent": false
+    },
+    {
+      "name": "negative-antipode",
+      "first": {
+        "input_bits": "C0490FDB",
+        "bias_bits": "C0490FDB",
+        "stages": [
+          {
+            "operation": "addss heading+bias",
+            "bits": "C0C90FDB",
+            "exact_numerator": -13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "divss biased/2pi",
+            "bits": "BF800000",
+            "exact_numerator": -1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "cvttss2si",
+            "integer": -1
+          },
+          {
+            "operation": "cvtdq2ps integer",
+            "bits": "BF800000",
+            "exact_numerator": -1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "mulss integer*2pi",
+            "bits": "C0C90FDB",
+            "exact_numerator": -13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss biased-product",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss remainder-bias",
+            "bits": "40490FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          }
+        ],
+        "output_bits": "40490FDB",
+        "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+      },
+      "second": {
+        "input_bits": "40490FDB",
+        "bias_bits": "40490FDB",
+        "stages": [
+          {
+            "operation": "addss heading+bias",
+            "bits": "40C90FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "divss biased/2pi",
+            "bits": "3F800000",
+            "exact_numerator": 1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "cvttss2si",
+            "integer": 1
+          },
+          {
+            "operation": "cvtdq2ps integer",
+            "bits": "3F800000",
+            "exact_numerator": 1,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "mulss integer*2pi",
+            "bits": "40C90FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 2097152,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss biased-product",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss remainder-bias",
+            "bits": "C0490FDB",
+            "exact_numerator": -13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          }
+        ],
+        "output_bits": "C0490FDB",
+        "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+      },
+      "idempotent": false
+    },
+    {
+      "name": "positive-zero-control",
+      "first": {
+        "input_bits": "00000000",
+        "bias_bits": "40490FDB",
+        "stages": [
+          {
+            "operation": "addss heading+bias",
+            "bits": "40490FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          },
+          {
+            "operation": "divss biased/2pi",
+            "bits": "3F000000",
+            "exact_numerator": 1,
+            "exact_denominator": 2,
+            "exactly_representable": true
+          },
+          {
+            "operation": "cvttss2si",
+            "integer": 0
+          },
+          {
+            "operation": "cvtdq2ps integer",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "mulss integer*2pi",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss biased-product",
+            "bits": "40490FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss remainder-bias",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          }
+        ],
+        "output_bits": "00000000",
+        "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+      },
+      "second": {
+        "input_bits": "00000000",
+        "bias_bits": "40490FDB",
+        "stages": [
+          {
+            "operation": "addss heading+bias",
+            "bits": "40490FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          },
+          {
+            "operation": "divss biased/2pi",
+            "bits": "3F000000",
+            "exact_numerator": 1,
+            "exact_denominator": 2,
+            "exactly_representable": true
+          },
+          {
+            "operation": "cvttss2si",
+            "integer": 0
+          },
+          {
+            "operation": "cvtdq2ps integer",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "mulss integer*2pi",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss biased-product",
+            "bits": "40490FDB",
+            "exact_numerator": 13176795,
+            "exact_denominator": 4194304,
+            "exactly_representable": true
+          },
+          {
+            "operation": "subss remainder-bias",
+            "bits": "00000000",
+            "exact_numerator": 0,
+            "exact_denominator": 1,
+            "exactly_representable": true
+          }
+        ],
+        "output_bits": "00000000",
+        "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+      },
+      "idempotent": true
+    }
+  ],
+  "detector": {
+    "intervention": "Private source negative bias RIP target replaced by positive-pi target; host calculation only",
+    "code_hex": "0f28d90f57c00f2fd8488bd1720af30f1025aafba701eb08f30f1025a0fba7010fb64903f30f58dcc1e9050f28c3f30f5e05b2fba701f30f2cc0660f6ec80f5bc9f30f590d9ffba701f30f5cd9f30f5cdc83e901741983f9027525488b82b8000000488b88f0000000f30f115934c341b8010000000f28cb488bcae990f5ffffc3",
+    "source_rejected": "('0x26c0a8', 'original source binding')",
+    "negative_first": {
+      "input_bits": "C0490FDB",
+      "bias_bits": "40490FDB",
+      "stages": [
+        {
+          "operation": "addss heading+bias",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "divss biased/2pi",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "cvttss2si",
+          "integer": 0
+        },
+        {
+          "operation": "cvtdq2ps integer",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "mulss integer*2pi",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "subss biased-product",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "subss remainder-bias",
+          "bits": "C0490FDB",
+          "exact_numerator": -13176795,
+          "exact_denominator": 4194304,
+          "exactly_representable": true
+        }
+      ],
+      "output_bits": "C0490FDB",
+      "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+    },
+    "negative_second": {
+      "input_bits": "C0490FDB",
+      "bias_bits": "40490FDB",
+      "stages": [
+        {
+          "operation": "addss heading+bias",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "divss biased/2pi",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "cvttss2si",
+          "integer": 0
+        },
+        {
+          "operation": "cvtdq2ps integer",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "mulss integer*2pi",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "subss biased-product",
+          "bits": "00000000",
+          "exact_numerator": 0,
+          "exact_denominator": 1,
+          "exactly_representable": true
+        },
+        {
+          "operation": "subss remainder-bias",
+          "bits": "C0490FDB",
+          "exact_numerator": -13176795,
+          "exact_denominator": 4194304,
+          "exactly_representable": true
+        }
+      ],
+      "output_bits": "C0490FDB",
+      "scope": "Source/host exact arithmetic under stated nearest masked environment, NOT original execution"
+    }
+  },
+  "tools": {
+    "recorded_utc": "2026-09-28T07:29:52.133163+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "bytes": 7576576,
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "d8a8c50da012707c41c360d0561e479773a23721fbfdc7c405a1f68f13e3bc14",
+  "limits": "Selected endpoints/+zero only; exact arithmetic assumptions stated, not general input/MXCSR/native exceptions/normalcaller/presentation/turn consequence proof. Source calculation not new execution or new DY1 sweep. Current consumer inputs retained unchanged, independent acceptance pending.",
+  "cleanup": "Read-only reference/peer consumers; no game/process/control/save/config writes"
+}

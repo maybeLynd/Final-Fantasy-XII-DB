@@ -1,0 +1,23 @@
+{
+ "cases": 20,
+ "failures": []
+}
+{
+ "ok": true,
+ "cases": 20,
+ "failures": [],
+ "atan2f_calls": 7,
+ "import_at_008C2BD0": [
+  "api-ms-win-crt-math-l1-1-0.dll!atan2f"
+ ],
+ "outside_closure": [],
+ "unbridged_imports": [],
+ "allowed_functions": 34,
+ "tails": [
+  "0031AC90",
+  "00328370",
+  "003A1960",
+  "003DFD00",
+  "00861F02"
+ ]
+}

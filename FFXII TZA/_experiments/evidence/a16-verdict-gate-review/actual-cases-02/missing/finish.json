@@ -1,0 +1,8 @@
+{
+  "action": "finish",
+  "task": "FIXTURE-A16-MISSING",
+  "note": "private requirement control",
+  "result_refs": [
+    "receipt:fixture"
+  ]
+}

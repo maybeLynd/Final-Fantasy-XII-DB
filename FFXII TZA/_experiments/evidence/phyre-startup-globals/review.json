@@ -1,0 +1,40 @@
+{
+  "status": "PASS_BOUNDED_RETAINED_REVIEW",
+  "method": "A: review of retained C observations; no new execution",
+  "captured_defaults": 173,
+  "bytes": 34392,
+  "prepared": 166,
+  "unprepared": [
+    "POccluderGeometryInstance",
+    "POccluderGeometryObject",
+    "PQuarryComponent",
+    "PScriptableComponent",
+    "PTrigger",
+    "PTriggerReceiverComponent",
+    "PTriggerReceiverTypeCallbackData"
+  ],
+  "nonzero_buffers": 140,
+  "prepared_zero_buffers": 26,
+  "all_a5": [
+    "PAnimationDataSource",
+    "PCameraProjection",
+    "PDynamicMesh",
+    "PInputSource",
+    "PParameterBufferBase",
+    "PPhysicsShapeBase",
+    "PRenderTargetBase"
+  ],
+  "explicit_static_parent_matches": 70,
+  "blank_static_parent_to_PBase": 103,
+  "extra_ancestors": 7,
+  "observed_graph_acyclic": true,
+  "limitation": "One title-state census, sequential reads; seven unprepared buffers unresolved. Four non-default sized rows not qualified; first failed supplied descriptor mapping. No constructor/copy execution or general lifetime claim.",
+  "raw_capture_sha256": "25931a0cb4f734c941b04ad50281a7c18a86119c9d02c13b64e5d4b4f3ef0b05",
+  "defaults_blob_sha256": "a17cc752164d36dea915d3b2c675f65655763917e1a600939edb66ec2e668a66",
+  "unresolved_sized_classes": [
+    "CD3D11_BLEND_DESC",
+    "CD3D11_DEPTH_STENCIL_DESC",
+    "CD3D11_RASTERIZER_DESC",
+    "D3D11_RENDER_TARGET_BLEND_DESC"
+  ]
+}

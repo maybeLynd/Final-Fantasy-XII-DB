@@ -1,0 +1,43 @@
+      00253B90  002FFCF0 @ 002FFDC9  KIND0-ONLY (test block 002FFDAE)
+      00253B90  00307D10 @ 00307D63  no separating kind test
+      00253B90  00308130 @ 0030815A  no separating kind test
+      00253B90  00308610 @ 0030877D  no separating kind test
+      00253B90  00309A90 @ 00309A94  no separating kind test
+      00253B90  0030C010 @ 0030C02E  no separating kind test
+      00253B90  0030C0D0 @ 0030C0D0  no separating kind test
+      00253B90  00313A00 @ 00313A2C  no separating kind test
+      0030C0D0  00234590 @ 00234629  no separating kind test
+      0030C0D0  00336710 @ 003368FD  no separating kind test
+      0030C0D0  00339BF0 @ 00339C2C  KIND0-ONLY (test block 00339C24)
+      0030C0D0  00339BF0 @ 00339D52  no separating kind test
+      0030C0D0  00339BF0 @ 00339D7E  no separating kind test
+      0030C0D0  0033A720 @ 0033B02D  no separating kind test
+      0030C0D0  0033C310 @ 0033C3EA  no separating kind test
+      0030C0D0  0033CEF0 @ 0033D1A1  no separating kind test
+      00253BA0  00276650 @ 0027668C  no separating kind test
+      00253BA0  00276D30 @ 00276FD3  no separating kind test
+PASS  K1 sites: 00253B90 8 (incl. the thunk), 0030C0D0 8, 00253BA0 2
+PASS  K2 control: 002FFCF0's reason-0x24 gate is kind 0 only
+      functions a spawned unit's frame reaches within 9 calls: 2763
+      002FFCF0 @ 002FFDC9  the site itself is kind-0 only
+      00307D10 @ 00307D63  SPAWNED UNITS REACH IT via 00233F70@00234001 -> 00310DB0@00310FAC -> 003112F0@0031159F -> 0030E360@0030E7AC
+      00308130 @ 0030815A  not reached from a unit frame
+      00308610 @ 0030877D  SPAWNED UNITS REACH IT via 00233F70@00234011
+      00309A90 @ 00309A94  SPAWNED UNITS REACH IT via 00233F70@00234011 -> 00308610@0030874C -> 00305AB0@00305BA5 -> 00305CC0@00305DD2 -> 003014C0@003015DA -> 00301830@003019F5
+      0030C010 @ 0030C02E  SPAWNED UNITS REACH IT via 00233F70@00234011 -> 00308610@0030879F -> 0030FA00@0030FA20
+      00313A00 @ 00313A2C  not reached from a unit frame
+      00234590 @ 00234629  not reached from a unit frame
+      00336710 @ 003368FD  SPAWNED UNITS REACH IT via 00233F70@00234076 -> 0033A240@0033A269
+      00339BF0 @ 00339C2C  the site itself is kind-0 only
+      00339BF0 @ 00339D52  SPAWNED UNITS REACH IT via 00233F70@00234076 -> 0033A240@0033A31D -> 0033DFD0@0033E0F3
+      00339BF0 @ 00339D7E  SPAWNED UNITS REACH IT via 00233F70@00234076 -> 0033A240@0033A31D -> 0033DFD0@0033E0F3
+      0033A720 @ 0033B02D  SPAWNED UNITS REACH IT via 00233F70@00234011 -> 00308610@00308754 -> 00307BE0@00307C19 -> 00304850@00304D5B -> 00325BB0@00325D0A -> 00336CE0@00336D77 -> 0033BED0@0033BF5F -> 00338140@00338319
+      0033C310 @ 0033C3EA  SPAWNED UNITS REACH IT via 00233F70@00234011 -> 00308610@00308754 -> 00307BE0@00307C19 -> 00304850@00304D5B -> 00325BB0@00325D0A -> 00336CE0@00336D77 -> 0033BED0@0033BF3E -> 0033C200@0033C280
+      0033CEF0 @ 0033D1A1  SPAWNED UNITS REACH IT via 00233F70@00234011 -> 00308610@00308754 -> 00307BE0@00307C19 -> 00304850@00304D5B -> 00325BB0@00325D0A -> 00336CE0@00336D6B -> 003394A0@00339583
+      00276650 @ 0027668C  not reached from a unit frame
+      00276D30 @ 00276FD3  not reached from a unit frame
+PASS  P1 combo gate, combo continuation, engagement, AI distance threshold and 6 locomotion sites run on spawned units
+PASS  P3 stance 00308130: all 3 callers gate on kind 0
+PASS  P4 capability policy, field-frame orchestrator and command menu are not reached from a unit frame
+PASS  P2 reason 0x24 and locomotion site 00339C2C act on party units only
+FAILS 0

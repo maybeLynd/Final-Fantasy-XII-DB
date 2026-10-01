@@ -1,0 +1,57 @@
+callers of 00235AF0: ['00233C14 in 00233C10']
+     00233BF4 add byte ptr [rax - 0x75], cl
+     00233BF7 mov ebx, dword ptr [rax - 0x17fffffa]
+     00233BFD wrmsr 
+     00233BFF adc eax, 0x5c8b4800
+     00233C04 and al, 0x30
+     00233C06 add rsp, 0x20
+     00233C0A pop rdi
+     00233C0B ret 
+     00233C0C int3 
+     00233C0D int3 
+     00233C0E int3 
+     00233C0F int3 
+     00233C10 sub rsp, 0x28
+     00233C14 call 0x235af0
+
+uses of 002EF640's return (rax) after each direct site, displacements shown:
+  site 00229B62 in 00229B5D: -
+  site 00229B76 in 00229B5D: 00229B81 lea rdx, [rax + 0x4e68c] | 00229B88 add rax, 0x2200 | 00229B91 lea rax, [rax + 0x80] | 00229B98 movups xmm0, xmmword ptr [rcx] | 00229B9B lea rcx, [rcx + 0x80]
+  site 00233C25 in 00233C10: 00233C2A add rax, 0x4e68c
+  site 00235AF4 in 00235AF0: 00235B00 lea rdx, [rax + 0x2200] | 00235B1C cmp dword ptr [rdx], ecx | 00235B31 cmp byte ptr [rdx + 0x5b42], al
+  site 00238A84 in 00238A80: 00238A89 add rax, 0x4e68c
+  site 00253979 in 00253970: -
+  site 00253985 in 00253970: 0025398A add rax, 0x8200
+  site 00253AB3 in 00253A80: 00253AB8 mov dword ptr [rax + 0x58], ebx
+  site 00253AC2 in 00253A80: 00253AC7 mov dword ptr [rax + 0x5c], ebx
+  site 00253AD1 in 00253A80: 00253AD6 mov dword ptr [rax + 0x60], ebx
+  site 00253AE0 in 00253A80: 00253AE5 mov dword ptr [rax + 0x64], ebx
+  site 00253AE8 in 00253A80: 00253AED mov dword ptr [rax + 0x68], 0x131f3ea
+  site 00253AF4 in 00253A80: 00253AFB mov dword ptr [rax + 0x6c], 0x4818
+  site 00280369 in 00280140: 0028036E lea rcx, [rax + 0x68]
+  site 002CF99D in 002CF98E: 002CF9A5 movzx ebx, word ptr [rax + 0x18] | 002CF9A9 movzx r15d, byte ptr [rax + 0x1a] | 002CF9AE movzx r12d, byte ptr [rax + 0x1b]
+  site 002EF2B4 in 002EF2B0: 002EF2B9 add rax, 0x200
+  site 002EF2D4 in 002EF2D0: 002EF2E1 lea rcx, [rax + 0x200]
+  site 002EF317 in 002EF300: -
+  site 002EF378 in 002EF370: 002EF37D mov byte ptr [rax + 0x1735], bl
+  site 002EF399 in 002EF390: -
+  site 00314726 in 0031462A: 00314731 mov dword ptr [rax + 0x4e664], ecx
+  site 003941D3 in 00394130: 003941D8 lea rcx, [rax + 0x68]
+  site 0039429D in 00394130: 003942B9 mov qword ptr [rax + 0x10], rcx | 003942BD mov dword ptr [rax + 0x18], ecx
+  site 0057E3A9 in 0057E310: 0057E3B4 lea edx, [rax + 0xe200]
+  site 0057FEC5 in 0057FEB6: -
+  site 00580D26 in 00580CD0: -
+  site 005810BC in 0058103D: -
+  site 00581A6D in 00581A61: 00581AAE mov eax, dword ptr [rax + 0x50]
+  site 00581D20 in 00581B70: 00581D2B mov dword ptr [rax + 0x50], ecx
+  site 00581DCA in 00581DA0: -
+  site 00583C12 in 00583C00: 00583C30 lea rax, [rax + 0x80]
+  site 00583CC2 in 00583CB0: 00583CE7 movups xmm0, xmmword ptr [rax] | 00583CEA lea rax, [rax + 0x80]
+  site 00583D9F in 00583D60: -
+  site 00583F81 in 00583D60: 00583F8C lea edx, [rax + 0xe200]
+  site 0058421F in 00584210: -
+  site 00584227 in 00584210: -
+  site 005843EF in 005843E0: -
+  site 005843F7 in 005843E0: -
+  site 005844CE in 005844A0: 005844DA lea rcx, [rax + 0xe240]
+  site 005844FC in 005844A0: 00584504 lea rbx, [rax + 0x4e68c] | 0058450B cmp byte ptr [rbx], 0

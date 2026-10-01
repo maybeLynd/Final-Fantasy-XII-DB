@@ -1,0 +1,20 @@
+{
+  "name": "typed-author",
+  "expected": "MALFORMED",
+  "input_sha256": "f220ec2025f48afdeb2bf9ca6a96be2b72a12cd5ed68b1367758f9808f01fc37",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\typed-author\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py\", line 160, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py\", line 128, in main\n    p = plan(board)\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py\", line 75, in plan\n    if not isinstance(rv, dict) or rv.get(\"author\") not in team.AGENTS or not rv.get(\"commit\"):\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: cannot use 'list' as a set element (unhashable type: 'list')\n",
+  "parsed_report": null,
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true
+}

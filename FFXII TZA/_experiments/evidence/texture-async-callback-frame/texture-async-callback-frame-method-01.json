@@ -1,0 +1,13 @@
+{
+  "question": "When original opcode2F invokes186610, is input+10 the queued bank or a field of the raw128B command, and which context/bank reads are bound at submission versus execution?",
+  "system": "Phyre keyed texture updates, original128B command stream",
+  "consumer": "Existing SPEC/OPUS/FABLE bank-dispatch review/incorporation tasks; exact callback frame ABI and scheduling preconditions",
+  "hypotheses": ["The interpreter passes the raw command address", "The interpreter constructs a stack frame carrying command+10, so the bank value survives despite a different callback pointer"],
+  "existing_evidence": "FABLE canonical Gi page section20c already resolves original60A410 opcode2F to a synthesized frame; ASTRA render-executor-consumption raw/result retain six shipping ranges and actual dispatch table bytes. Newly published bank-dispatch e2506a55e2e59cbe2a111eed7a79ea57888f5338 retains185A50/5FEA50/186610/62EBC0 and checked invocation/controls. No recapture or old five-sample repeat needed.",
+  "chosen_method": "A retained original bytes and scoped cross-boundary dataflow composition. Check original table bytes, frame stores and callback read against reviewed adapter/current immutable inputs, not summaries. No native harness or live game is necessary for this local ABI proposition.",
+  "discriminator": "Original60A8D2 callback RCX versus raw RSI, actual frame+10 source and original186610 DWORD read/context global; normal optional60B750 return and ABI-preserved RBX required. Current global bank is not read by186610.",
+  "controls": "Reuse prior successful original bank/executor evidence; new actual reduction with consistent frame-data displacement mutation, consistent callback bank-width mutation, missing frame store and failed required bank invocation. No malformed or zero-case run can pass.",
+  "acceptance": "Exact shipping/table identity, nonempty original byte redecoding, checked actual upstream invocation and a scoped local frame composition. No assertion of natural command reachability, live thread/timing, full interpreter state or universal queue lifetime.",
+  "stop": "Ambiguous frame offset, moved original byte/source preimage or failed prerequisite retains invalid receipts and refuses result; do not escalate unchanged to live. Existing callback interpreter question is answered by reuse; no rival census/framework.",
+  "cleanup": "Finite offline tools/read-only original/reference plus disposable refusals only; parked menu remains spent/unapproved, EXP127 invalid; full L1+L2 ACTIVE/NOT_MET."
+}

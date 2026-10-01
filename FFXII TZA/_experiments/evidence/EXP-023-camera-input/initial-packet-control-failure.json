@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input\\packet_controls.py"
+  ],
+  "exit_code": 1,
+  "stdout": "SCANINPUT vk=0x27 scan=0x4d flags=0x8 up=False accepted=1 requested=1\n",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input\\packet_controls.py\", line 32, in <module>\n    assert new[0]['flags'] & 1 == (0 if name == 'W' else 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

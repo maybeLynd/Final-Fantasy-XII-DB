@@ -1,0 +1,11 @@
+      ok  0025B637: bit 0 set -> 0025B735 (epilogue) | skipped: field-pass selector: the flat-motion test for the current field actor
+      ok  0025B76F: bit 0 set -> 0025B7CD (epilogue) | skipped: field-pass selector: the same test, tail-calling 00238B20(1) when it passes
+      ok  00267286: bit 0 set -> 00267272 (epilogue) | skipped: Movement_ActorUsesFlatMotion: returns 0 (no flat motion)
+      ok  002E506A: bit 0 set -> 002E5164 (epilogue) | skipped: Movement_UpdateActorFrame: the whole per-frame movement update
+      ok  002E5776: bit 0 set -> 002E5951 (epilogue) | skipped: the facing integrator (SD-190's function): the heading update
+      ok  002E602C: bit 0 set -> 002E6071 (epilogue) | skipped: posts the actor's position (with 00263910's height term) through 003EC3D0
+      ok  002E634B: bit 0 set -> 002E639F (epilogue) | skipped: the movement-body step under actor +9 bit 6 (002E9FE0 ...)
+      ok  002EA816: bit 0 set -> 002EA858 (epilogue) | skipped: returns 0 before reading the movement body's +0xF0
+PASS  R1 all eight readers branch on bit 0 to their exit, skipping their movement work
+PASS  R2 00267260 and 002EA7F0 return 0 when attached
+FAILS 0

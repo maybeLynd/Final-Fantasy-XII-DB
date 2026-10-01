@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence and lessons</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f3f0; --surface: #fcfcfb; --surface-2: #f0efec; --border: #e2e0da;
+  --text: #0b0b0b; --text-2: #52514e; --muted: #7a7873;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --neutral: #c9c7c1;
+  --good: #0ca30c; --warn: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --link: #1c5cab; --chip: #e7e5df;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #33332f;
+    --text: #ffffff; --text-2: #c3c2b7; --muted: #8f8d85;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --neutral: #4a4945;
+    --link: #86b6ef; --chip: #2c2c29;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #33332f;
+  --text: #ffffff; --text-2: #c3c2b7; --muted: #8f8d85;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --neutral: #4a4945;
+  --link: #86b6ef; --chip: #2c2c29;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; padding: 14px 16px 6px; max-width: 1400px; margin: 0 auto; }
+header h1 { font-size: 19px; margin: 0; }
+header .meta { color: var(--text-2); font-size: 12.5px; }
+main { max-width: 1400px; margin: 0 auto; padding: 0 16px 40px; }
+.grid { display: grid; gap: 14px; }
+.tiles { grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); }
+.cards { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.two { grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.card.click { cursor: pointer; }
+.card.click:hover, .card.click:focus-visible { border-color: var(--s1); outline: none; }
+h2 { font-size: 16px; margin: 30px 0 4px; }
+h3 { font-size: 13.5px; margin: 0 0 8px; color: var(--text-2); font-weight: 600; }
+p.intro { color: var(--text-2); margin: 0 0 10px; max-width: 900px; }
+.big { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+.sub { color: var(--muted); font-size: 12px; }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; padding: 1px 8px; border-radius: 99px; background: var(--chip); color: var(--text-2); white-space: nowrap; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+.bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--surface-2); margin: 6px 0 2px; }
+.bar > i { display: block; height: 100%; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 2px 10px; font-size: 12.5px; margin-top: 8px; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
+td.n, th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+td.wide { min-width: 240px; }
+.scroll { max-height: 560px; overflow: auto; padding: 0; }
+.scroll table { margin: 0; }
+.up { color: var(--good); } .down { color: var(--critical); } .flat { color: var(--muted); }
+.badge { display: inline-block; font-size: 11px; font-weight: 650; padding: 1px 7px; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+.b-good { color: var(--good); } .b-bad { color: var(--critical); } .b-warn { color: var(--s4); } .b-info { color: var(--s1); } .b-mute { color: var(--muted); }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 8px 0; }
+input[type=search], select { font: inherit; font-size: 13px; padding: 5px 9px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+input[type=search] { min-width: min(320px, 100%); }
+.btn { font: inherit; font-size: 12.5px; padding: 5px 12px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); cursor: pointer; }
+.btn:hover, .btn:focus-visible { border-color: var(--s1); outline: none; }
+a.path { color: var(--link); text-decoration: none; cursor: pointer; }
+a.path:hover { text-decoration: underline; }
+.hbars { display: grid; grid-template-columns: minmax(120px, max-content) 1fr max-content; gap: 4px 10px; align-items: center; font-size: 12.5px; }
+.hbars .track { height: 10px; background: var(--surface-2); border-radius: 5px; overflow: hidden; }
+.hbars .track i { display: block; height: 100%; background: var(--s1); }
+ul.findings { list-style: none; margin: 0; padding: 0; columns: 2 380px; column-gap: 28px; font-size: 13px; }
+ul.findings li { break-inside: avoid; padding: 2px 0; }
+ul.findings li.l1 { padding-left: 18px; font-size: 12.5px; }
+ul.findings li.l2 { padding-left: 36px; font-size: 12px; }
+dialog { width: min(1100px, 94vw); max-height: 88vh; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--text); padding: 0; }
+dialog::backdrop { background: rgba(0,0,0,.45); }
+dialog .dh { display: flex; gap: 10px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+dialog .dh h3 { margin: 0; flex: 1; font-size: 14px; color: var(--text); }
+dialog pre { margin: 0; padding: 12px 16px; max-height: calc(88vh - 60px); overflow: auto; font: 12px/1.45 ui-monospace, "Cascadia Mono", Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+#toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 6px 14px; border-radius: 8px; font-size: 12.5px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+#toast.on { opacity: .92; }
+.err { color: var(--critical); }
+.note { color: var(--muted); font-size: 12px; margin-top: 6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Evidence &amp; lessons</h1>
+  <span class="meta" id="meta">loading…</span>
+</header>
+<main id="main"><p class="sub">Loading the latest generation…</p></main>
+<dialog id="viewer"><div class="dh"><h3 id="vtitle"></h3><span id="vbadge"></span><button class="btn" id="vclose">Close</button></div><pre id="vbody"></pre></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const DASH = '<span class="sub" title="not measured">—</span>';
+const num = x => x == null ? DASH : Number(x).toLocaleString();
+const pct = (n, d) => d ? (100 * n / d).toFixed(1) + "%" : "—";
+const TONE = {PASS: "good", FAIL: "bad", UNMEASURED: "mute", ANSWERED: "good", PARTIAL: "warn", OPEN: "bad", BLOCKED: "bad",
+  WITHDRAWN: "mute", UNKNOWN: "mute", UNMARKED: "mute", resolved: "good", open: "bad", unrecognised: "bad",
+  explained: "good", standard: "info", external: "info", bucket: "warn", undeclared: "bad"};
+const badge = (s, label) => s == null || s === "" ? DASH : `<span class="badge b-${TONE[s] || "mute"}">${esc(label || s)}</span>`;
+function mb(b) { if (b == null) return DASH; const m = b / 1048576; return m >= 1024 ? (m / 1024).toFixed(1) + " GB" : m >= 1 ? m.toFixed(1) + " MB" : (b / 1024).toFixed(1) + " KB"; }
+function when(ts) { const d = Date.parse(ts); return isNaN(d) ? esc(ts || "—") : esc(new Date(d).toLocaleString()); }
+const pathLink = (path, label) => path ? `<a class="path" href="#" data-copy="${esc(path)}" title="${esc(path)} (click to copy the path)">${esc(label || path)}</a>` : DASH;
+function delta(m) {
+  const d = m.delta || {};
+  if (d.pp != null) { const good = m.direction === "down" ? d.pp < 0 : m.direction === "up" ? d.pp > 0 : null;
+    return ` <span class="${d.pp === 0 || good == null ? "flat" : good ? "up" : "down"}">${d.pp > 0 ? "+" : ""}${d.pp.toFixed(2)} pp</span>`; }
+  if (d.count != null && d.count !== 0) { const good = m.direction === "down" ? d.count < 0 : m.direction === "up" ? d.count > 0 : null;
+    return ` <span class="${good == null ? "flat" : good ? "up" : "down"}">${d.count > 0 ? "+" : ""}${d.count.toLocaleString()}</span>`; }
+  return "";
+}
+function tileM(m) {
+  const val = m.denominator != null ? `${num(m.numerator)} <span class="sub" style="font-size:13px;font-weight:400">of ${num(m.denominator)}</span>` : num(m.numerator);
+  return `<div class="card" title="${esc(m.limits || "")}"><h3>${esc(m.label)}</h3><div class="big">${val}</div>
+    <div class="sub">${m.denominator ? esc(pct(m.numerator, m.denominator)) : "a count"}${delta(m)}</div></div>`;
+}
+function kpi(label, value, sub, tone) {
+  return `<div class="card"><h3>${esc(label)}</h3><div class="big ${tone ? "b-" + tone : ""}">${value == null ? "—" : Number(value).toLocaleString()}</div>${sub ? `<div class="sub">${esc(sub)}</div>` : ""}</div>`;
+}
+function failedBox(sec, what) { return `<div class="card err">${esc(what)} could not be built: ${esc(sec && sec.failed || "no data in this generation")}. Shown as unmeasured, never as empty.</div>`; }
+
+let V = null, GEN = null;
+const ui = {lq: "", ls: "", fq: "", rs: "", rq: "", rsec: "", rshow: 200};
+
+function sectionReview(v) {
+  const M = v.measures || [];
+  const rows = (v.rows || {data: []}).data;
+  return `<h2>Review health</h2><p class="intro">Every claim in the database is meant to be checked by someone other than its author. These numbers say how much review has been done, how many verdicts are recorded in a form a machine can read, whether the sealed run receipts still match their hashes, and how many corrections are still waiting to reach every page that repeats them.</p>
+    <div class="grid tiles">${M.map(tileM).join("")}</div>
+    <div class="card scroll" style="margin-top:14px"><table><thead><tr>${((v.rows || {}).columns || []).map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>
+    ${rows.length ? rows.map(r => `<tr>${r.map((c, i) => `<td class="${i ? "" : "mono"}">${esc(c)}</td>`).join("")}</tr>`).join("") : `<tr><td colspan="3" class="sub">Nothing is waiting for review.</td></tr>`}</tbody></table></div>`;
+}
+
+function sectionLessons(L, F) {
+  if (!L || L.failed) return `<h2>Lessons ledger</h2>` + failedBox(L, "The lessons ledger");
+  const k = L.kpis, top = L.instruments || [], mx = Math.max(1, ...top.map(x => x[1]));
+  let h = `<h2>Lessons ledger</h2><p class="intro">Every time this database got something wrong and corrected it, the correction is recorded here with what was claimed, what is true, and which way of measuring produced the wrong answer, so the same mistake is caught by a rule next time instead of being made again.</p>
+    <div class="grid tiles">${kpi("Lessons recorded", k.recorded, "rows in CONTRADICTIONS.tsv")}${kpi("Still open", k.open, "a kind the goal gate does not accept as resolved", k.open ? "bad" : "")}
+    ${kpi("Resolved", k.resolved, "corrected, withdrawn, retracted, superseded or overturned")}${kpi("Cause not yet written", k.unsummarised, "the correction or instrument cell is empty", k.unsummarised ? "bad" : "")}
+    ${kpi("Source line gone", k.source_gone, "the page was rewritten since; the record is kept")}</div>
+    <div class="grid two" style="margin-top:14px"><div class="card"><h3>What produced the wrong answers (top ${top.length} instruments)</h3><div class="hbars">
+    ${top.map(([n, c]) => `<span class="mono">${esc(n)}</span><span class="track"><i style="width:${100 * c / mx}%"></i></span><span class="n">${c}</span>`).join("")}</div></div>
+    <div class="card"><h3>By kind</h3><dl class="kv">${Object.entries(L.kinds || {}).map(([a, b]) => `<dt>${esc(a)}</dt><dd>${num(b)}</dd>`).join("")}</dl>
+    <p class="note">Source: ${pathLink(L.source)} (${esc(L.identity || "")}). Kinds are read the way <span class="mono">goal_gate.py</span> reads them.</p></div></div>
+    <div class="controls"><input type="search" id="lq" placeholder="Search the ledger (id, words, instrument, page)" value="${esc(ui.lq)}">
+    <select id="ls"><option value="">Every state</option>${["resolved", "open", "unrecognised"].map(s => `<option ${ui.ls === s ? "selected" : ""}>${s}</option>`).join("")}</select><span class="sub" id="lcount"></span></div>
+    <div class="card scroll"><table><thead><tr><th>ID</th><th>Date</th><th>State</th><th>Kind</th><th>What was claimed</th><th>What is true</th><th>Instrument</th><th>Where</th></tr></thead><tbody id="lbody"></tbody></table></div>`;
+  if (F && !F.failed) {
+    h += `<h3 style="margin-top:18px">${esc(F.heading || "Instrument findings")}</h3><p class="intro">${esc(F.intro || "")} Each title is a section of ${pathLink(F.source_path, F.source_label || "COVERAGE.md")}; click one to copy its path.</p>
+      <div class="controls"><input type="search" id="fq" placeholder="Search ${F.entries.length.toLocaleString()} findings" value="${esc(ui.fq)}"><span class="sub" id="fcount"></span></div>
+      <div class="card scroll" style="padding:12px 16px"><ul class="findings" id="flist"></ul></div>`;
+  } else h += failedBox(F, "The instrument-findings list");
+  return h;
+}
+function drawLessons() {
+  const L = V.evidence.lessons; if (!L || L.failed) return;
+  const q = ui.lq.toLowerCase(), s = ui.ls;
+  const rows = L.rows.filter(r => (!s || r.state === s) && (!q || [r.id, r.claim, r.correction, r.instrument, r.document, r.category, r.kind].join(" ").toLowerCase().includes(q)));
+  document.getElementById("lcount").textContent = `${rows.length.toLocaleString()} of ${L.rows.length.toLocaleString()} lessons`;
+  document.getElementById("lbody").innerHTML = rows.map(r => `<tr><td class="mono">${esc(r.id)}</td><td style="white-space:nowrap">${esc(r.date)}</td><td>${badge(r.state)}</td><td>${esc(r.kind)}</td>
+    <td class="wide">${esc(r.claim)}</td><td class="wide">${esc(r.correction)}</td><td class="mono">${esc(r.instrument)}</td>
+    <td>${pathLink(r.path, r.document.split("/").pop() + (r.line ? ":" + r.line : ""))}<div class="sub">${esc(r.category)}${r.source_status && r.source_status !== "present" ? " · source " + esc(r.source_status) : ""}</div></td></tr>`).join("")
+    || `<tr><td colspan="8" class="sub">No lesson matches.</td></tr>`;
+}
+function drawFindings() {
+  const F = V.evidence.findings; if (!F || F.failed) return;
+  const q = ui.fq.toLowerCase();
+  const es = F.entries.filter(e => !q || e[1].toLowerCase().includes(q));
+  document.getElementById("fcount").textContent = `${es.length.toLocaleString()} of ${F.entries.length.toLocaleString()} findings`;
+  document.getElementById("flist").innerHTML = es.map(([lv, title, path]) => `<li class="l${Math.min(2, lv)}">${pathLink(path, title)}</li>`).join("") || `<li class="sub">No finding matches.</li>`;
+}
+
+function sectionChecks(C) {
+  if (!C || C.failed) return `<h2>Verification checks</h2>` + failedBox(C, "The verification checks");
+  const cnt = s => C.cards.filter(c => c.status === s).length;
+  return `<h2>Verification checks</h2><p class="intro">The database's own checkers, re-run on every dashboard build: each one tests a rule mechanically, so a mistake is caught by a machine rather than noticed by luck. A red card is a finding to look at, not a broken page; a grey one could not be measured this time and is never counted as a pass. Click a card for its full output.</p>
+    <div class="controls"><span class="pill"><span class="dot" style="background:var(--good)"></span>${cnt("PASS")} pass</span><span class="pill"><span class="dot" style="background:var(--critical)"></span>${cnt("FAIL")} fail</span><span class="pill"><span class="dot" style="background:var(--neutral)"></span>${cnt("UNMEASURED")} unmeasured</span>
+    ${C.run_seconds != null ? `<span class="sub">the build's check run took ${C.run_seconds} s</span>` : ""}</div>
+    <div class="grid cards">${C.cards.map((c, i) => `<article class="card click" tabindex="0" data-check="${i}"><div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><h3 class="mono" style="margin:0">${esc(c.id)}</h3>${badge(c.status)}</div>
+      <div style="margin-top:6px">${esc(c.what)}</div>
+      <dl class="kv">${(c.numbers || []).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${num(v)}</dd>`).join("")}</dl>
+      <div class="sub" style="margin-top:8px">${esc(c.reason || "")}${c.baseline_exit != null ? ` · accepted baseline: exit ${esc(c.baseline_exit)}` : ""}</div>
+      <div class="sub">${c.seconds != null ? `took ${c.seconds} s · ` : ""}ran ${when(c.ran_at)}${c.captured ? " · " + esc(c.captured) : ""}</div></article>`).join("")}</div>
+    <h3 style="margin-top:18px">Not run at build (slow / writes files)</h3><div class="card"><table><thead><tr><th>Checker</th><th>Why</th><th>Detail</th></tr></thead><tbody>
+    ${(C.excluded || []).map(x => `<tr><td class="mono">${esc(x.id)}</td><td>${esc(x.why)}</td><td>${esc(x.detail)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+
+function sectionFormats(R) {
+  if (!R || R.failed) return `<h2>Format registry</h2>` + failedBox(R, "The format registry");
+  const k = R.kpis;
+  return `<h2>Format registry</h2><p class="intro">Every kind of file the game ships, counted straight from the game's archive index, with the page that explains its layout. A format is <i>explained</i> when a sheet documents what the game reads from it, <i>standard</i> or <i>external</i> when it is a public format or documented elsewhere, and <i>bucket</i> when the extension holds many unrelated formats that are documented one by one.</p>
+    <div class="grid tiles">${kpi("File types in the archive", k.extensions, (k.files == null ? "" : k.files.toLocaleString() + " files"))}${kpi("Covered", k.covered, "explained, standard or external")}
+    ${kpi("Buckets", k.bucket, "several formats under one extension")}${kpi("Undeclared", k.undeclared, "no sheet and no disposition yet", k.undeclared ? "bad" : "")}</div>
+    <div class="card scroll" style="margin-top:14px"><table><thead><tr><th>Format</th><th>State</th><th class="n">Files</th><th class="n">Size</th><th>Where in the archive</th><th>Evidence (format sheet)</th></tr></thead><tbody>
+    ${R.rows.map(r => `<tr><td class="mono"><b>.${esc(r.ext)}</b></td><td>${r.state == null ? DASH : badge(r.state)}${r.twice ? ' <span class="sub" title="two pages declare this format">claimed twice</span>' : ""}</td>
+      <td class="n">${num(r.files)}</td><td class="n">${mb(r.bytes)}</td><td class="sub">${esc(r.dirs)}</td><td>${pathLink(r.sheet_path, r.sheet)}</td></tr>`).join("")}</tbody></table></div>
+    ${(R.signatures || []).length ? `<details style="margin-top:10px"><summary class="sub">${R.signatures.length} formats documented inside the .bin / .dat buckets, by their byte signature</summary><div class="card scroll" style="margin-top:6px"><table><thead><tr><th>Signature</th><th>Inside</th><th>Format sheet</th></tr></thead><tbody>
+      ${R.signatures.map(s => `<tr><td class="mono">${esc(s[0])}</td><td class="mono">.${esc(s[2])}</td><td>${pathLink(s[3], s[1])}</td></tr>`).join("")}</tbody></table></div></details>` : ""}
+    <p class="note">${esc(R.limits || "")} Why the dispositions exist: ${pathLink(R.docs[0])}; the last undeclared extensions: ${pathLink(R.docs[1])}.</p>`;
+}
+
+function sectionRegister(Q) {
+  if (!Q || Q.failed) return `<h2>Question register</h2>` + failedBox(Q, "The question register");
+  const order = ["ANSWERED", "PARTIAL", "OPEN", "BLOCKED", "WITHDRAWN", "UNKNOWN", "UNMARKED"];
+  const sts = order.filter(s => Q.counts[s] != null).concat(Object.keys(Q.counts).filter(s => !order.includes(s)));
+  const secs = [...new Set(Q.rows.map(r => r.section))];
+  return `<h2>Question register</h2><p class="intro">Every open question the database has ever asked, with its current answer. The status is read exactly the way the goal gate reads it (<span class="mono">check_questions.py</span>), so these counts are the ones that decide whether the database is finished.</p>
+    <div class="grid tiles">${sts.map(s => `<div class="card"><h3>${badge(s)}</h3><div class="big">${num(Q.counts[s])}</div><div class="sub">${esc(pct(Q.counts[s], Q.total))} of ${num(Q.total)} rows${Q.gate_counts && Q.gate_counts[s] != null && Q.gate_counts[s] !== Q.counts[s] ? ` · gate printed ${Q.gate_counts[s]}` : ""}</div></div>`).join("")}</div>
+    ${Q.note ? `<p class="note">${esc(Q.note)}</p>` : ""}
+    <div class="controls"><select id="rs"><option value="">Every status</option>${sts.map(s => `<option ${ui.rs === s ? "selected" : ""}>${s}</option>`).join("")}</select>
+    <select id="rsec"><option value="">Every section</option>${secs.map(s => `<option ${ui.rsec === s ? "selected" : ""}>${esc(s)}</option>`).join("")}</select>
+    <input type="search" id="rq" placeholder="Search id, question or answer" value="${esc(ui.rq)}"><span class="sub" id="rcount"></span></div>
+    <div class="card scroll" style="max-height:720px"><table><thead><tr><th>ID</th><th>Status</th><th>Section</th><th>Question</th><th>Answer (excerpt)</th></tr></thead><tbody id="rbody"></tbody></table></div>
+    <div class="controls" id="rmore"></div>`;
+}
+function drawRegister() {
+  const Q = V.evidence.register; if (!Q || Q.failed) return;
+  const q = ui.rq.toLowerCase();
+  const rows = Q.rows.filter(r => (!ui.rs || r.status === ui.rs) && (!ui.rsec || r.section === ui.rsec) && (!q || (r.id + " " + r.question + " " + r.answer).toLowerCase().includes(q)));
+  const shown = rows.slice(0, ui.rshow);
+  document.getElementById("rcount").textContent = `${rows.length.toLocaleString()} of ${Q.rows.length.toLocaleString()} rows`;
+  document.getElementById("rbody").innerHTML = shown.map(r => `<tr><td class="mono" style="white-space:nowrap">${esc(r.id)}</td><td>${badge(r.status)}</td><td class="sub">${esc(r.section)}</td>
+    <td class="wide">${esc(r.question)}</td><td class="wide sub">${r.answer ? esc(r.answer) : DASH}</td></tr>`).join("") || `<tr><td colspan="5" class="sub">No row matches.</td></tr>`;
+  document.getElementById("rmore").innerHTML = rows.length > shown.length ? `<button class="btn" id="rmorebtn">Show ${Math.min(200, rows.length - shown.length)} more</button><span class="sub">showing ${shown.length.toLocaleString()}</span>` : "";
+  const b = document.getElementById("rmorebtn"); if (b) b.onclick = () => { ui.rshow += 200; drawRegister(); };
+}
+
+function openCheck(c) {
+  document.getElementById("vtitle").textContent = c.id + (c.script ? "  (" + c.script + " " + (c.args || []).join(" ") + ")" : "");
+  document.getElementById("vbadge").innerHTML = badge(c.status);
+  document.getElementById("vbody").textContent = (c.reason ? "status: " + c.status + " - " + c.reason + "\n\n" : "") + (c.output || "(no output captured)");
+  document.getElementById("viewer").showModal();
+}
+let toastT;
+function toast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 1600); }
+
+function render(r) {
+  V = r.view; const E = V.evidence || {};
+  document.getElementById("meta").textContent = "generation " + ((r.meta || {}).generation || "?") + " · as of " + ((V.source || {}).as_of || "");
+  let h = `<p class="intro" style="margin-top:6px">What is proven and how. Reviews and receipts, the mistakes this database has made and the rule each one left behind, the checkers that re-run on every build, the file formats with the evidence for each, and every question with its answer. Unmeasured values show a dash, never 0.</p>`;
+  if (V.status !== "OK") h += `<p class="note err">This view is ${esc(V.status)}: ${esc((V.source || {}).limits || "")}</p>`;
+  h += sectionReview(V) + sectionLessons(E.lessons, E.findings) + sectionChecks(E.checks) + sectionFormats(E.formats) + sectionRegister(E.register);
+  h += `<p class="sub" style="margin-top:24px">Every number is built by code from this generation's captured inputs (${esc((V.source || {}).identity || "")}).</p>`;
+  document.getElementById("main").innerHTML = h;
+  const bind = (id, key, fn, reset) => { const el = document.getElementById(id); if (el) el[el.tagName === "SELECT" ? "onchange" : "oninput"] = () => { ui[key] = el.value; if (reset) ui.rshow = 200; fn(); }; };
+  bind("lq", "lq", drawLessons); bind("ls", "ls", drawLessons); bind("fq", "fq", drawFindings);
+  bind("rs", "rs", drawRegister, true); bind("rsec", "rsec", drawRegister, true); bind("rq", "rq", drawRegister, true);
+  drawLessons(); drawFindings(); drawRegister();
+  document.querySelectorAll("[data-check]").forEach(el => { const c = E.checks.cards[+el.dataset.check];
+    el.onclick = () => openCheck(c); el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCheck(c); } }; });
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[data-copy]"); if (!a) return;
+  e.preventDefault();
+  const p = a.dataset.copy;
+  (navigator.clipboard ? navigator.clipboard.writeText(p) : Promise.reject()).then(() => toast("Path copied: " + p), () => toast(p));
+});
+document.getElementById("vclose").onclick = () => document.getElementById("viewer").close();
+async function load() {
+  try {
+    const r = await (await fetch("/api/view/evidence", {cache: "no-store"})).json();
+    if (!r.view) { document.getElementById("main").innerHTML = `<p class="err">${esc(r.status)}: ${esc(r.why || (r.problems || []).join("; ") || r.error || "")}</p>`; GEN = null; return; }
+    if (!r.view.evidence) { document.getElementById("main").innerHTML = `<p class="err">This generation predates the Evidence &amp; lessons page (no evidence sections). The next build adds them.</p>`; return; }
+    const g = (r.meta || {}).generation;
+    if (g && g === GEN) return;              // same generation: keep the reader's filters, scroll and open viewer
+    if (document.getElementById("viewer").open) return;
+    const y = window.scrollY;
+    GEN = g; render(r);
+    window.scrollTo(0, y);                   // a new generation redraws in place; the reader keeps their place
+  } catch (e) { document.getElementById("main").innerHTML = `<p class="err">dashboard unreachable: ${esc(e)}</p>`; GEN = null; }
+}
+load(); setInterval(load, 30000);
+</script>
+</body>
+</html>

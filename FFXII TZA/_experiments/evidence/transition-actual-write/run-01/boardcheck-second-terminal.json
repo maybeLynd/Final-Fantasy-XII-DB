@@ -1,0 +1,15 @@
+{
+  "label": "boardcheck-second",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\run-01\\original\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "boardcheck",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\run-01\\private\\board.json"
+  ],
+  "returncode": 0,
+  "stdout": "board ok: ok\n",
+  "stderr": "",
+  "terminal": true
+}

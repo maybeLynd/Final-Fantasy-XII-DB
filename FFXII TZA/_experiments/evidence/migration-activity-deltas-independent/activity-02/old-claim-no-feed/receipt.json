@@ -1,0 +1,391 @@
+{
+  "name": "old-claim-no-feed",
+  "expected_liveness": "UNKNOWN",
+  "expected_claim_kind": "claimed",
+  "observed_liveness": "UNKNOWN",
+  "observed_claim_kind": "claimed",
+  "combat_colored_lanes": [],
+  "combat_muted_lanes": [
+    "OPUS"
+  ],
+  "actual_recent_writers": [],
+  "input_sha256": "a12818bff0771881fd86a1d55f2ef8cb2cb53e03f7ac09bf384557a2951e6fff",
+  "result": {
+    "lanes": [
+      "OPUS",
+      "FABLE",
+      "ASTRA",
+      "SWE2-FRONTIER",
+      "SWE2-DATA",
+      "SWE2-ORACLE",
+      "SWE2-STRUCT",
+      "SWE2-EC7",
+      "SWE2-CONTRACT",
+      "SWE2-AUDIT-SPEC",
+      "SWE2-AUDIT-SEM"
+    ],
+    "colors": {
+      "SWE2-STRUCT": [
+        "#b0306e",
+        "#ff8cc6"
+      ],
+      "SWE2-AUDIT-SEM": [
+        "#8a2c2c",
+        "#f2a5a5"
+      ],
+      "ASTRA": [
+        "#b3261e",
+        "#ff8a80"
+      ],
+      "SWE2-DATA": [
+        "#a8530a",
+        "#ffb366"
+      ],
+      "SWE2-EC7": [
+        "#0e7c86",
+        "#5fdbe6"
+      ],
+      "SWE2-AUDIT-SPEC": [
+        "#3b3f99",
+        "#a4a8ff"
+      ],
+      "OPUS": [
+        "#1f5fa8",
+        "#6ea8fe"
+      ],
+      "SWE2-FRONTIER": [
+        "#1e7b34",
+        "#6fdd8b"
+      ],
+      "SWE2-ORACLE": [
+        "#6b4a2f",
+        "#d9b38c"
+      ],
+      "SWE2-CONTRACT": [
+        "#6d6a00",
+        "#dcd75c"
+      ],
+      "FABLE": [
+        "#7b3fb3",
+        "#c29ffa"
+      ]
+    },
+    "liveness": {
+      "OPUS": [
+        "UNKNOWN",
+        "no session feed for this lane; last board write 120 min ago"
+      ],
+      "FABLE": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "ASTRA": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-FRONTIER": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-DATA": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-ORACLE": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-STRUCT": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-EC7": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-CONTRACT": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-AUDIT-SPEC": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ],
+      "SWE2-AUDIT-SEM": [
+        "UNKNOWN",
+        "no session feed for this lane"
+      ]
+    },
+    "categories": [
+      {
+        "code": "W",
+        "label": "World & maps",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "C",
+        "label": "Combat & damage",
+        "working": [],
+        "muted": [
+          "OPUS"
+        ],
+        "items": [
+          {
+            "lane": "OPUS",
+            "kind": "claimed",
+            "task": "LABELLED-OPUS-OLD-CLAIM",
+            "status": "ACTIVE",
+            "priority": "P1",
+            "groups": [
+              "C"
+            ],
+            "stage": "Labelled old claim; required original API precondition",
+            "updated_at": "2027-01-15T06:00:00+00:00",
+            "blocker": "",
+            "next": "fixture only"
+          }
+        ]
+      },
+      {
+        "code": "E",
+        "label": "Enemies & AI",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "S",
+        "label": "Spawning, death & respawn",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "P",
+        "label": "Player & party",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "I",
+        "label": "Items, equipment & progression",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "T",
+        "label": "Story, quests & events",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "M",
+        "label": "Menus & controls",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "G",
+        "label": "Animation, graphics & audio",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "V",
+        "label": "Save/load & persistence",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "D",
+        "label": "Scripts & game data/VBF",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "N",
+        "label": "Engine & supporting systems",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "whole",
+        "label": "Whole database / cross-cutting",
+        "working": [],
+        "muted": [],
+        "items": []
+      },
+      {
+        "code": "untied",
+        "label": "Code not yet tied to a game system",
+        "working": [],
+        "muted": [],
+        "items": []
+      }
+    ],
+    "by_agent": [
+      {
+        "lane": "OPUS",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane; last board write 120 min ago",
+        "color": [
+          "#1f5fa8",
+          "#6ea8fe"
+        ],
+        "working": [
+          {
+            "lane": "OPUS",
+            "kind": "claimed",
+            "task": "LABELLED-OPUS-OLD-CLAIM",
+            "status": "ACTIVE",
+            "priority": "P1",
+            "groups": [
+              "C"
+            ],
+            "stage": "Labelled old claim; required original API precondition",
+            "updated_at": "2027-01-15T06:00:00+00:00",
+            "blocker": "",
+            "next": "fixture only"
+          }
+        ],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "FABLE",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#7b3fb3",
+          "#c29ffa"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "ASTRA",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#b3261e",
+          "#ff8a80"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-FRONTIER",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#1e7b34",
+          "#6fdd8b"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-DATA",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#a8530a",
+          "#ffb366"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-ORACLE",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#6b4a2f",
+          "#d9b38c"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-STRUCT",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#b0306e",
+          "#ff8cc6"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-EC7",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#0e7c86",
+          "#5fdbe6"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-CONTRACT",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#6d6a00",
+          "#dcd75c"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-AUDIT-SPEC",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#3b3f99",
+          "#a4a8ff"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      },
+      {
+        "lane": "SWE2-AUDIT-SEM",
+        "liveness": "UNKNOWN",
+        "basis": "no session feed for this lane",
+        "color": [
+          "#8a2c2c",
+          "#f2a5a5"
+        ],
+        "working": [],
+        "waiting": [],
+        "waiting_count": 0
+      }
+    ],
+    "feed": {
+      "poll_ts": null,
+      "board_revision": 2
+    }
+  },
+  "exception": null
+}

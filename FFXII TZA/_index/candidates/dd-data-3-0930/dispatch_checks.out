@@ -1,0 +1,6 @@
+PASS D1 kind-2 stamp is unconditional; 00254A10 gates only the +0xA6 == 7 branch
+PASS D2 mode = dword 01E02814 (.data initial 0x0A); 0xD81 has bit 10 set, so the predicate is 1 - 01E02814 .data 0xA
+PASS D3 002DD680 calls 002B0280 - ['002DD784']
+PASS C1 control: kind 2's row is null and kind 0's column 0 is 002A9980 - 2A9980 2A8C50 2A9F00
+RESULT the kind-2 stamp is unconditional (the region predicate gates a resource branch), and 002DD680 hands kind-2 text to 002B0280
+FAILS 0

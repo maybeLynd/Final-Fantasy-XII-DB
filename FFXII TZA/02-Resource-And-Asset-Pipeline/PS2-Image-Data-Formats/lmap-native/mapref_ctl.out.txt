@@ -1,0 +1,4 @@
+map_ref size 12288 hdr 4d 52 46 02 30 00 00 00 rows 1530
+us A same 384 / 384 ctl next 0 ctl +7 0 | D+2 same 97 / 97 ctl next 0
+de A same 384 / 384 ctl next 0 ctl +7 0 | D+2 same 97 / 97 ctl next 0
+it A same 384 / 384 ctl next 0 ctl +7 0 | D+2 same 97 / 97 ctl next 0

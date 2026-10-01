@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-145",
+ "result_refs": [
+  "tail commit c00e84457"
+ ],
+ "note": "batch-145 tail: publish d93d86b87 + seal dded02200 + tail c00e84457 (all private-index/publish_paths.sh, no stale-index sweeps); resume updated to sealed state"
+}

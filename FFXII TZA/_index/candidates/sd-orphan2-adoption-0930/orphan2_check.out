@@ -1,0 +1,12 @@
+PASS SD-41 recs=['sd41-stamp-digits-0930'] tracked=True shas-ancestor=True scripts=['sd41_stamp_digits.py=0'] missing=[]
+PASS SD-120 recs=['sd120-binding-ops-0930'] tracked=True shas-ancestor=True scripts=['sd120_emu.py=none', 'sd120_ops.py=0'] missing=[]
+PASS SD-140 recs=['sd140-vertex-prep-kernel-0930'] tracked=True shas-ancestor=True scripts=['sd140_emu.py=none', 'sd140_kernel.py=0'] missing=[]
+PASS SD-162 recs=['sd162-trial-award-path-0930'] tracked=True shas-ancestor=True scripts=['sd162_award_path.py=0'] missing=[]
+PASS SD-165 recs=['sd165-alloc-null-tests-0930'] tracked=True shas-ancestor=True scripts=['sd165_nulltests.py=0'] missing=[]
+PASS SD-180 recs=['sd180-181-emitter-walk-0930'] tracked=True shas-ancestor=True scripts=['sd180_walk.py=0'] missing=[]
+PASS SD-181 recs=['sd180-181-emitter-walk-0930'] tracked=True shas-ancestor=True scripts=['sd180_walk.py=0'] missing=[]
+PASS SD-190 recs=['auditsem-review-dd-owner-read-5-0930'] tracked=True shas-ancestor=True scripts=['dd5_sem.py=0', 'sd_rows_check.py=none', 'strike_check.py=none'] missing=[]
+PASS SD-192 recs=['sd192-attached-bit-readers-0930'] tracked=True shas-ancestor=True scripts=['sd192_readers.py=0'] missing=[]
+PASS SD-160 recs=['sd160-free-target-type3-0930'] tracked=True shas-ancestor=True scripts=['sd160_census.py=none', 'sd160_check.py=0'] missing=[]
+PASS C1 control
+FAILS 0

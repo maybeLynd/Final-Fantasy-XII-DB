@@ -1,0 +1,7 @@
+# NativeLeaf.FlagBit1SetClear - EC-7 family C
+# if arg2 nonzero or [this+0x20] with 2 else and it with ~2; return.
+address	targets
+0018B070	
+0018B080	
+0018B090	
+0018B0A0	

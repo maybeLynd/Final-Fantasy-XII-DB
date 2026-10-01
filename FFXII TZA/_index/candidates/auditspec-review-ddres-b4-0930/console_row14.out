@@ -1,0 +1,7 @@
+S1 dword stores to [reg+0xA88]: 2 (all disp-0xA88 accesses 15)
+   001D1503 mov dword ptr [rdi + 0xa88], ebx   owner 001D0390
+   001D536D mov dword ptr [rbx + 0xa88], 0xe   owner 001D5260
+control 001D536D found: True
+S3 row 14 @008FD2D0: 2 3 DE DD 6 8 CC 9 A 65 66 122 0 0 0 0 0 0 0 0 0 0
+S3 non-zero=12 all within renderer bound (1..0x126): True
+S3 dword after row 14 (008FD328) = 74656574 (ASCII => table ends at 008FD328)

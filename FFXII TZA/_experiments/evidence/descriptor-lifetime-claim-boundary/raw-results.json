@@ -1,0 +1,244 @@
+[
+  {
+    "variant": "original",
+    "fixture": "supplied guest head and two nodes, one above4GiB; no live allocation provenance",
+    "code_sha256": "4f773d1e8a86fdc0679db27c2f585fcfce9413659797da17a635a510c0f684b9",
+    "entry_rsp": "0x61000808",
+    "end": "0x62000000",
+    "final_rsp": "0x61000810",
+    "instruction_count": 44,
+    "head": "0x50000080",
+    "head_after": [
+      "0x50000080",
+      "0x50000080"
+    ],
+    "nodes": [
+      "0x52000100",
+      "0x1002000100"
+    ],
+    "before": {
+      "0x52000100": "a5a5a5a5a5a5a5a508010002100000008000005000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "0x1002000100": "5a5a5a5a5a5a5a5a800000500000000008010052000000005a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a"
+    },
+    "after": {
+      "0x52000100": "a5a5a5a5a5a5a5a508010052000000000801005200000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "0x1002000100": "5a5a5a5a5a5a5a5a080100021000000008010002100000005a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a"
+    },
+    "write_events": [
+      {
+        "pc": "0x6b6736",
+        "address": "0x1002000110",
+        "bytes": 8,
+        "value": "0x50000080"
+      },
+      {
+        "pc": "0x6b673a",
+        "address": "0x50000080",
+        "bytes": 8,
+        "value": "0x1002000108"
+      },
+      {
+        "pc": "0x6b673d",
+        "address": "0x52000108",
+        "bytes": 8,
+        "value": "0x52000108"
+      },
+      {
+        "pc": "0x6b6740",
+        "address": "0x52000110",
+        "bytes": 8,
+        "value": "0x52000108"
+      },
+      {
+        "pc": "0x6b6736",
+        "address": "0x50000088",
+        "bytes": 8,
+        "value": "0x50000080"
+      },
+      {
+        "pc": "0x6b673a",
+        "address": "0x50000080",
+        "bytes": 8,
+        "value": "0x50000080"
+      },
+      {
+        "pc": "0x6b673d",
+        "address": "0x1002000108",
+        "bytes": 8,
+        "value": "0x1002000108"
+      },
+      {
+        "pc": "0x6b6740",
+        "address": "0x1002000110",
+        "bytes": 8,
+        "value": "0x1002000108"
+      }
+    ],
+    "sequence": [
+      "0x6b6700",
+      "0x6b6703",
+      "0x6b6706",
+      "0x6b6710",
+      "0x6b6713",
+      "0x6b6716",
+      "0x6b671a",
+      "0x6b671d",
+      "0x6b6721",
+      "0x6b6725",
+      "0x6b6728",
+      "0x6b672a",
+      "0x6b672e",
+      "0x6b6732",
+      "0x6b6736",
+      "0x6b673a",
+      "0x6b673d",
+      "0x6b6740",
+      "0x6b6744",
+      "0x6b6710",
+      "0x6b6713",
+      "0x6b6716",
+      "0x6b671a",
+      "0x6b671d",
+      "0x6b6721",
+      "0x6b6725",
+      "0x6b6728",
+      "0x6b672a",
+      "0x6b672e",
+      "0x6b6732",
+      "0x6b6736",
+      "0x6b673a",
+      "0x6b673d",
+      "0x6b6740",
+      "0x6b6744",
+      "0x6b6710",
+      "0x6b6713",
+      "0x6b6716",
+      "0x6b671a",
+      "0x6b671d",
+      "0x6b6721",
+      "0x6b6725",
+      "0x6b6728",
+      "0x6b6746"
+    ],
+    "calls_or_stubs": 0,
+    "normal_native_return": true
+  },
+  {
+    "variant": "node-prev-selflink-NOP-control",
+    "fixture": "supplied guest head and two nodes, one above4GiB; no live allocation provenance",
+    "code_sha256": "b109a9b17fc80c38cbe3c06767fb179ccb9519e1c841e2bd5f74a0d9a73372f5",
+    "entry_rsp": "0x61000808",
+    "end": "0x62000000",
+    "final_rsp": "0x61000810",
+    "instruction_count": 50,
+    "head": "0x50000080",
+    "head_after": [
+      "0x50000080",
+      "0x50000080"
+    ],
+    "nodes": [
+      "0x52000100",
+      "0x1002000100"
+    ],
+    "before": {
+      "0x52000100": "a5a5a5a5a5a5a5a508010002100000008000005000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "0x1002000100": "5a5a5a5a5a5a5a5a800000500000000008010052000000005a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a"
+    },
+    "after": {
+      "0x52000100": "a5a5a5a5a5a5a5a508010052000000008000005000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "0x1002000100": "5a5a5a5a5a5a5a5a080100021000000080000050000000005a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a"
+    },
+    "write_events": [
+      {
+        "pc": "0x6b6736",
+        "address": "0x1002000110",
+        "bytes": 8,
+        "value": "0x50000080"
+      },
+      {
+        "pc": "0x6b673a",
+        "address": "0x50000080",
+        "bytes": 8,
+        "value": "0x1002000108"
+      },
+      {
+        "pc": "0x6b673d",
+        "address": "0x52000108",
+        "bytes": 8,
+        "value": "0x52000108"
+      },
+      {
+        "pc": "0x6b6736",
+        "address": "0x50000088",
+        "bytes": 8,
+        "value": "0x50000080"
+      },
+      {
+        "pc": "0x6b673a",
+        "address": "0x50000080",
+        "bytes": 8,
+        "value": "0x50000080"
+      },
+      {
+        "pc": "0x6b673d",
+        "address": "0x1002000108",
+        "bytes": 8,
+        "value": "0x1002000108"
+      }
+    ],
+    "sequence": [
+      "0x6b6700",
+      "0x6b6703",
+      "0x6b6706",
+      "0x6b6710",
+      "0x6b6713",
+      "0x6b6716",
+      "0x6b671a",
+      "0x6b671d",
+      "0x6b6721",
+      "0x6b6725",
+      "0x6b6728",
+      "0x6b672a",
+      "0x6b672e",
+      "0x6b6732",
+      "0x6b6736",
+      "0x6b673a",
+      "0x6b673d",
+      "0x6b6740",
+      "0x6b6741",
+      "0x6b6742",
+      "0x6b6743",
+      "0x6b6744",
+      "0x6b6710",
+      "0x6b6713",
+      "0x6b6716",
+      "0x6b671a",
+      "0x6b671d",
+      "0x6b6721",
+      "0x6b6725",
+      "0x6b6728",
+      "0x6b672a",
+      "0x6b672e",
+      "0x6b6732",
+      "0x6b6736",
+      "0x6b673a",
+      "0x6b673d",
+      "0x6b6740",
+      "0x6b6741",
+      "0x6b6742",
+      "0x6b6743",
+      "0x6b6744",
+      "0x6b6710",
+      "0x6b6713",
+      "0x6b6716",
+      "0x6b671a",
+      "0x6b671d",
+      "0x6b6721",
+      "0x6b6725",
+      "0x6b6728",
+      "0x6b6746"
+    ],
+    "calls_or_stubs": 0,
+    "normal_native_return": true
+  }
+]

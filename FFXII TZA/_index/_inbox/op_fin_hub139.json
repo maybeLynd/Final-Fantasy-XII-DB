@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-139",
+ "result_refs": [
+  "batch-139: 22 bodies A-measured on 14 bearing hosts (1x 2-A + top 21 of 1-A, any_interior excluded from selection); anchors 4265 (+22), 0 MID; hash clean (3 known unreproduced); crossref 2810; 1 crossing row added (prefetch-manifests Save_Load_Settings); guard ADDS NOTHING (2810->2807)"
+ ],
+ "note": "batch-139 research finish"
+}

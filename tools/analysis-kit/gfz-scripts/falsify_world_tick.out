@@ -1,0 +1,7 @@
+SURVIVES  T0  845 B; call-site modes [0, 1, 1]; getter ['mov eax, dword ptr [rip + 0x1fadbe2]', 'ret']
+SURVIVES  T1  mov r14d, ecx; tests ['test r14d, r14d', 'test r14d, r14d', 'test r14d, r14d', 'test r14d, r14d']
+SURVIVES  T2  the queue drain at 00314078 precedes every mode test
+SURVIVES  T3  accesses [('00314047', 'mov dword ptr [rip + 0x1fae4f7], 1'), ('0031435D', 'mov dword ptr [rip + 0x1fae1e4], r13d'), ('00314960', 'mov eax, dword ptr [rip + 0x1fadbe2]')]; rets ['0031436C']
+SURVIVES  T4  16 accesses, 4 writes; image values FFFFFFFF / FFFFFFFF
+SURVIVES  T5  bounds are immediates; mode 1 starts at 3
+FAILS 0

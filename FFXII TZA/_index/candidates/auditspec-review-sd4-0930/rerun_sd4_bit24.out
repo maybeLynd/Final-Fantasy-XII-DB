@@ -1,0 +1,29 @@
+sets of bit 24 (with the other bits the same instruction sets):
+  00227680 002276D1 qword ptr [rdx], 0x1000000         []
+  00227680 002276D8 qword ptr [r8], 0x1000000          []
+  00227680 0022777C qword ptr [rbx], 0x1000000         []
+  00227680 00227ABD qword ptr [rbx], rax               [25, 27, 36]
+  00301140 003012A1 qword ptr [rbx], 0x1000000         []
+  00307300 00307A97 qword ptr [rbx], 0x1000000         []
+  00313400 00313469 qword ptr [rbx], rax               [50]
+  00313480 003134EB qword ptr [rbx], rax               [51]
+  00313500 00313537 qword ptr [rbx], 0x1000000         []
+  00760700 00761499 dword ptr [rcx], 0x1000000         []
+clears of bit 24 (with the other bits the same mask clears):
+  00227680 00227775 qword ptr [rdx], 0xfffffffffeffffff []
+  00227680 00227C28 qword ptr [rbx], 0xfffffffffeffffff []
+  00227680 00227CA7 qword ptr [rbx], 0xfffffffffeffffff []
+  002D8050 002D80DF qword ptr [rsi], 0xfffffffffc0fffff [20, 21, 22, 23, 25]
+  00307C70 00307CA2 qword ptr [rbx], rax               [50]
+  00307C70 00307CD7 qword ptr [rbx], rax               [51]
+  003083A0 003083A6 qword ptr [rcx], 0xfffffffffeffffff []
+  003105D0 0031066F qword ptr [rbx], rax               [50, 51]
+  003250F0 0032517C qword ptr [rbx], 0xfffffffffeffffff []
+PASS  T1 BattleUnit_EnterPartyCombatStance 00313400 sets 24 with 50
+PASS  T2 BattleUnit_ExitPartyCombatStance 00313480 sets 24 with 51
+PASS  T3 00313500 (from BattleUnit_UpdateCombatNavigationStep 00325BB0) sets 25 and 8, then 24
+PASS  T4 Battle_ProcessActionTarget 00307300 and the revival 00301140 set 24
+PASS  T5 the reaction-animation handler 003250F0 clears 24 (0032517C) or 24 with 25 (003083A0 via 00325175)
+PASS  T6 BattleUnit_CancelAndResetCurrentAction 003105D0 clears 24 with 50 and 51; 00307C70 clears 24 with 50 or with 51
+PASS  R1 the capability recompute 0023B040 sets inhibit-mask bit 1 while bit 24 is set (0023B131-0023B14F)
+FAILS 0

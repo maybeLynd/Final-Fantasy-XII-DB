@@ -1,0 +1,146 @@
+{
+  "status": "PASS",
+  "mode": "positive",
+  "hits": 40,
+  "sources": {
+    "run.py": "5b92b5cabf25e4ade07b7b2f5c5743c097609bd45a420a1e898ea0da7ae8e8b1",
+    "timeout_cleanup.py": "398f54b88615bd4a920278569936a4dd441b983f1e09ef893abfd583f0cf61c0",
+    "hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a"
+  },
+  "pid": 38236,
+  "breakpoint": 2965536636928,
+  "baseline": {
+    "unix": 1789104684.7428823,
+    "exit": null,
+    "beats": 1,
+    "debugger_read_ok": true,
+    "debugger_present": false
+  },
+  "arming": [
+    [
+      40904,
+      true
+    ],
+    [
+      14744,
+      true
+    ],
+    [
+      40752,
+      true
+    ],
+    [
+      33568,
+      true
+    ],
+    [
+      35544,
+      true
+    ],
+    [
+      14744,
+      true
+    ],
+    [
+      40752,
+      true
+    ],
+    [
+      33568,
+      true
+    ],
+    [
+      35544,
+      true
+    ]
+  ],
+  "attached": {
+    "unix": 1789104686.7500641,
+    "exit": null,
+    "beats": 41,
+    "debugger_read_ok": true,
+    "debugger_present": true
+  },
+  "cleanup": {
+    "status": "PASS",
+    "reason": "stopped-event clear and readback",
+    "clears": [
+      [
+        40904,
+        true
+      ],
+      [
+        14744,
+        true
+      ],
+      [
+        40752,
+        true
+      ],
+      [
+        33568,
+        true
+      ],
+      [
+        9604,
+        true
+      ]
+    ],
+    "verified": [
+      [
+        40904,
+        true
+      ],
+      [
+        14744,
+        true
+      ],
+      [
+        40752,
+        true
+      ],
+      [
+        33568,
+        true
+      ],
+      [
+        9604,
+        true
+      ]
+    ],
+    "breakpoint_tid": 9604
+  },
+  "detach": true,
+  "post": [
+    {
+      "unix": 1789104686.791366,
+      "exit": null,
+      "beats": 41,
+      "debugger_read_ok": true,
+      "debugger_present": false
+    },
+    {
+      "unix": 1789104687.0918112,
+      "exit": null,
+      "beats": 47,
+      "debugger_read_ok": true,
+      "debugger_present": false
+    },
+    {
+      "unix": 1789104687.3923779,
+      "exit": null,
+      "beats": 53,
+      "debugger_read_ok": true,
+      "debugger_present": false
+    },
+    {
+      "unix": 1789104687.6925857,
+      "exit": null,
+      "beats": 59,
+      "debugger_read_ok": true,
+      "debugger_present": false
+    }
+  ],
+  "child_final_exit": 1
+}

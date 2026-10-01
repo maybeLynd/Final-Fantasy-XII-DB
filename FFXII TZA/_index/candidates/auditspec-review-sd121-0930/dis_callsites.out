@@ -1,0 +1,89 @@
+002628B0  mov       qword ptr [rsp + 0x10], rbx
+002628B5  mov       qword ptr [rsp + 0x18], rbp
+002628BA  mov       qword ptr [rsp + 0x20], rsi
+002628BF  push      rdi
+002628C0  sub       rsp, 0x50
+002628C4  mov       rax, qword ptr [rip + 0x1ce1f65]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+002628CB  xor       rax, rsp
+002628CE  mov       qword ptr [rsp + 0x40], rax
+002628D3  movsxd    rdi, ecx
+002628D6  lea       rax, [rip + 0x1e36533]   ; -> 02098E10 (virtual tail / unmapped)
+002628DD  imul      rbx, rdi, 0x288
+002628E4  mov       esi, 1
+002628E9  add       rbx, rax
+002628EC  test      ecx, ecx
+002628EE  je        0x262905
+002628F0  cmp       edi, 3
+002628F3  jne       0x26292a
+002628F5  mov       edx, edi
+002628F7  xor       ecx, ecx
+002628F9  call      0x359200
+002628FE  call      0x3dc710
+00262903  jmp       0x26292a
+00262905  call      0x3ec5f0
+0026290A  call      0x3ec690
+0026290F  call      0x3dc710
+00262914  mov       ecx, esi
+00262916  call      0x16d6a0
+0026291B  call      0x16d6a0
+00262920  call      0x3636a0
+00262925  call      0x360dd0
+0026292A  xor       ebp, ebp
+0026292C  test      byte ptr [rbx + 0x10], sil
+00262930  je        0x262d96
+00262936  mov       ecx, edi
+00262938  mov       qword ptr [rip + 0x1e37431], rbx   ; -> 02099D70 (virtual tail / unmapped)
+0026293F  call      0x3603f0
+00262944  mov       ecx, edi
+00262946  call      0x3605a0
+0026294B  mov       rcx, qword ptr [rbx + 0xe8]
+00262952  test      rcx, rcx
+00262955  je        0x262963
+00262957  call      0x3697f0
+0026295C  mov       qword ptr [rbx + 0xe8], rbp
+00262963  inc       word ptr [rbx + 0x202]
+0026296A  mov       ecx, edi
+0026296C  call      0x3e9970
+00262971  call      0x3b6c20
+00262976  call      0x3df900
+0026297B  call      0x3de320
+00262980  mov       ecx, edi
+00262982  call      0x3dd380
+00262987  mov       ecx, edi
+00262989  call      0x3dee10
+0026298E  mov       ecx, edi
+00262990  call      0x36de70
+00262995  mov       ecx, edi
+00262997  call      0x36e080
+0026299C  mov       rcx, rbx
+---
+0026C8C0  mov       qword ptr [rsp + 8], rbx
+0026C8C5  mov       qword ptr [rsp + 0x10], rbp
+0026C8CA  mov       qword ptr [rsp + 0x18], rsi
+0026C8CF  push      rdi
+0026C8D0  push      r12
+0026C8D2  push      r13
+0026C8D4  push      r14
+0026C8D6  push      r15
+0026C8D8  sub       rsp, 0x20
+0026C8DC  mov       r13, qword ptr [rip + 0x1e2d48d]   ; -> 02099D70 (virtual tail / unmapped)
+0026C8E3  lea       r12, [rip - 0x4fba]   ; -> 00267930 u32=245C8948 f32=4.78212e-17
+0026C8EA  test      r8, r8
+0026C8ED  movsxd    rbp, ecx
+---
+0026CA20  call      0x377440
+0026CA25  test      eax, eax
+0026CA27  je        0x26ca2e
+0026CA29  call      0x25a990
+0026CA2E  mov       ecx, esi
+0026CA30  call      0x377480
+0026CA35  test      eax, eax
+0026CA37  jne       0x26ca3e
+0026CA39  call      0x25aa30
+0026CA3E  mov       ecx, 8
+0026CA43  call      0x3aca90
+0026CA48  call      0x360110
+0026CA4D  call      0x2e24b0
+0026CA52  call      0x3ec850
+0026CA57  call      0x36e3b0
+---

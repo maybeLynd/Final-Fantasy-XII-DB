@@ -1,0 +1,75 @@
+----
+0030B2A0 lea rcx, [rip + 0x1be0a19]
+0030B2A7 mov qword ptr [rsp + 0x58], rdi
+0030B2AC mov qword ptr [rsp + 0x60], r12
+0030B2B1 mov r12d, 0xf000
+0030B2B7 mov qword ptr [rsp + 0x28], r13
+0030B2BC mov r13d, 0xe000
+0030B2C2 mov qword ptr [rsp + 0x20], r15
+0030B2C7 mov r15d, 0xffff
+0030B2CD nop dword ptr [rax]
+0030B2D0 mov rax, qword ptr [rip + 0x2bb3d81]
+0030B2D7 test rax, rax
+0030B2DA je 0x30b333
+0030B2DC mov ecx, dword ptr [rax + 0xc]
+0030B2DF call 0x20e600
+----
+0030B31B lea rcx, [rip + 0x1be099e]
+0030B322 imul r8d, edx
+0030B326 lea ebx, [r8 + rax]
+0030B32A jmp 0x30b335
+0030B32C lea rcx, [rip + 0x1be098d]
+0030B333 xor ebx, ebx
+0030B335 mov rdi, qword ptr [rip + 0x2bb3e54]
+0030B33C add rdi, rsi
+0030B33F test byte ptr [rbx + 0x14], 1
+0030B343 jne 0x30b352
+0030B345 test byte ptr [rdi + 0x59c8], 1
+0030B34C jne 0x30b468
+0030B352 test byte ptr [rdi + 0x59c8], 2
+0030B359 jne 0x30b468
+----
+0030B32C lea rcx, [rip + 0x1be098d]
+0030B333 xor ebx, ebx
+0030B335 mov rdi, qword ptr [rip + 0x2bb3e54]
+0030B33C add rdi, rsi
+0030B33F test byte ptr [rbx + 0x14], 1
+0030B343 jne 0x30b352
+0030B345 test byte ptr [rdi + 0x59c8], 1
+0030B34C jne 0x30b468
+0030B352 test byte ptr [rdi + 0x59c8], 2
+0030B359 jne 0x30b468
+0030B35F cmp byte ptr [rbx + 0x18], 0
+0030B363 jne 0x30b375
+0030B365 cmp byte ptr [rbx + 0x1c], 0
+0030B369 jne 0x30b375
+----
+0030B46A lea rcx, [rip + 0x1be084f]
+0030B471 inc rsi
+0030B474 cmp rsi, r14
+0030B477 jl 0x30b2d0
+0030B47D mov r15, qword ptr [rsp + 0x20]
+0030B482 mov r13, qword ptr [rsp + 0x28]
+0030B487 mov r12, qword ptr [rsp + 0x60]
+0030B48C mov rdi, qword ptr [rsp + 0x58]
+0030B491 mov rbx, qword ptr [rsp + 0x50]
+0030B496 mov eax, 1
+0030B49B add rsp, 0x30
+0030B49F pop r14
+0030B4A1 pop rsi
+0030B4A2 pop rbp
+----
+003097FA lea r15, [rip + 0x1be24bf]
+00309801 test r8, r8
+00309804 je 0x309843
+00309806 mov ecx, dword ptr [r8 + 0xc]
+0030980A call 0x20e600
+0030980F test rax, rax
+00309812 je 0x30983c
+00309814 mov rax, qword ptr [rip + 0x2bb58dd]
+0030981B mov ecx, dword ptr [rax + 0xc]
+0030981E call 0x20e600
+00309823 mov r8, qword ptr [rip + 0x2bb58ce]
+0030982A lea ecx, [rbx - 0x1000]
+00309830 movzx edx, word ptr [r8 + 8]
+00309835 imul ecx, edx

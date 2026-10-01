@@ -1,0 +1,11 @@
+{
+ "action": "finish",
+ "task": "FABLE-REQ-SWE2EC7-BQ23-RELABEL-AND-TWO-NOTES",
+ "result_refs": [
+  "Database/Tools/work/graph/functions.tsv",
+  "Database/FFXII TZA/_index/candidates/bq23-tier6-b/bq23_ordered_residue.py",
+  "Database/FFXII TZA/22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md",
+  "Database/FFXII TZA/16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md"
+ ],
+ "note": "Applied. graph/functions.tsv: 7 EASTL relabels (001FDA60/001FD9A0/001FDAC0/00200140 TreeDestroy* family + 001FC3A0 RootListTreeDestroy + 001FC770/001FF990 TreeClone*; CxxStandardLibrary->EASTL head swap) and 2 Phyre relabels (005A7BF0 CompositeKeyUniqueInsert, 0067F9D0 RedBlackTreePackedParentColorEraseFixup -> Phyre.OrderedContainerRuntime). V1 updated to the extended counts; bq23_ordered_residue.py now reports FAILS 0 (V2 seven EASTL subtree routines incl. self-recursive DoCopySubtree; V3 packed-colour node on both Phyre members; V4 the 3 MSVC _Tree members still fail the EASTL shape). Notes corrected: cluster-header EC7-52 (0067F9D0 is PRedBlackTreeNode packed-colour, not MSVC _Tree) and font-kerning EC7-44 (001FC770 self-recurses; it is DoCopySubtree)."
+}

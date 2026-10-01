@@ -1,0 +1,51 @@
+{
+  "valid_return_cases": 145,
+  "expected_invalid_state_cases": 1,
+  "full_entry_valid_cases": 24,
+  "predicate_cases": 116,
+  "setter_cases": 5,
+  "reached_bodies": [
+    "0x23b040",
+    "0x26bd40",
+    "0x322600",
+    "0x322920",
+    "0x2e8100",
+    "0x41fca0",
+    "0x303ec0",
+    "0x313f60",
+    "0x3272a0",
+    "0x3135c0",
+    "0x3137f0",
+    "0x31b770",
+    "0x3592c0",
+    "0x359200",
+    "0x3588b0",
+    "0x30d9a0",
+    "0x377c20",
+    "0x3590d0",
+    "0x263e30",
+    "0x263ff0",
+    "0x26d6d0",
+    "0x236850",
+    "0x236820",
+    "0x3148f0",
+    "0x26d6f0",
+    "0x2ef2b0",
+    "0x2e9bb0",
+    "0x2ec5b0",
+    "0x2ef640"
+  ],
+  "unreached_bodies": [
+    "0x4235c0"
+  ],
+  "reads": 1866,
+  "writes": 147,
+  "all_observed_bytes_replayed": true,
+  "exact_output_and_movement_write_order": true,
+  "negative_control": {
+    "intervention": "Private receipt omits the original requested-speed write while retaining return and ABI flags.",
+    "rejected": true,
+    "reason": "('immobilize-positive', '0x50080000')"
+  },
+  "result_sha256": "6a8def4d6f7339d8c1015148113eb246bd86caa6f5b218f2a1a34913d080633d"
+}

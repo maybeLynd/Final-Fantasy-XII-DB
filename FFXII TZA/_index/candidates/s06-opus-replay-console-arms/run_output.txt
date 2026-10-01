@@ -1,0 +1,7 @@
+I1_I3_table_static                 PASS  282 entries inside the body, 227 distinct, 56 on 001D4BFA
+I2_out_of_range_is_a_noop          PASS  ids 0..11, 294..299, -1 and 0x7FFFFFFF: no arm selected, nothing written, both directions
+I3_shared_arm_does_nothing         PASS  all 56 ids reach 001D4BFA and write nothing
+dispatch_selects_the_table_arm     PASS  for every id 12..293 the jump at 001D16AE lands on table[id - 12]
+postcondition_observed             PASS  observed: which arms complete under the fixture and what they write
+I4_float_steps_observed            PASS  observed: the value each completed float-stepping arm writes from zero, i.e. its step
+ok allowed 2137

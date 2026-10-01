@@ -1,0 +1,204 @@
+{
+  "question": "Provenance of SPEC42 nonzero-cell bytes: valid raw cell read versus injection/live versus unbacked raw-offset alias",
+  "method": "A originalPEsection/header and existingguarded-reader positive/negative controls; zero original/native/emulator/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "preferred_base": "0x120000",
+    "target": "0x1f83530",
+    "target_bytes": 8,
+    "raw_end": "0x1f7e400",
+    "virtual_end": "0x2f97530",
+    "target_section": {
+      "name": ".data",
+      "header_file_offset": "0x2d8",
+      "virtual_size": 18511152,
+      "rva": 30212096,
+      "raw_size": 1631232,
+      "raw_offset": 30205440
+    },
+    "section_table_sha256": "a5451f22b0fa60bac5bc61eee8f826198ea92a659eb8a2b5a9320dd6fafbcf63"
+  },
+  "tools": {
+    "utc": "2026-09-28T09:59:28.432123+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+  },
+  "driver_sha256": "481891f10c14c1c8594d61557a50fd914c1aa077ad589b0ed47932313c87f7fc",
+  "spec": {
+    "source": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format#section-table-section-headers",
+    "section": "Section Table: VirtualSize/SizeOfRawData/PointerToRawData",
+    "paraphrase": "A virtual region extending beyond initialized bytes is zero-filled during image mapping. Raw offsets apply to the serialized bytes, not arbitrary addresses throughout VirtualSize.",
+    "limits": "Source image mapping rule, not observation after loader callbacks/game initialization/writes"
+  },
+  "sections": [
+    {
+      "name": ".text",
+      "header_file_offset": "0x288",
+      "virtual_size": 7996981,
+      "rva": 4096,
+      "raw_size": 7997440,
+      "raw_offset": 1536
+    },
+    {
+      "name": ".rdata",
+      "header_file_offset": "0x2b0",
+      "virtual_size": 22206460,
+      "rva": 8003584,
+      "raw_size": 22206464,
+      "raw_offset": 7998976
+    },
+    {
+      "name": ".data",
+      "header_file_offset": "0x2d8",
+      "virtual_size": 18511152,
+      "rva": 30212096,
+      "raw_size": 1631232,
+      "raw_offset": 30205440
+    },
+    {
+      "name": ".pdata",
+      "header_file_offset": "0x300",
+      "virtual_size": 428556,
+      "rva": 48726016,
+      "raw_size": 429056,
+      "raw_offset": 31836672
+    },
+    {
+      "name": ".rodata",
+      "header_file_offset": "0x328",
+      "virtual_size": 4544,
+      "rva": 49156096,
+      "raw_size": 4608,
+      "raw_offset": 32265728
+    },
+    {
+      "name": ".gfids",
+      "header_file_offset": "0x350",
+      "virtual_size": 48,
+      "rva": 49164288,
+      "raw_size": 512,
+      "raw_offset": 32270336
+    },
+    {
+      "name": ".tls",
+      "header_file_offset": "0x378",
+      "virtual_size": 9,
+      "rva": 49168384,
+      "raw_size": 512,
+      "raw_offset": 32270848
+    },
+    {
+      "name": "_RDATA",
+      "header_file_offset": "0x3a0",
+      "virtual_size": 41552,
+      "rva": 49172480,
+      "raw_size": 41984,
+      "raw_offset": 32271360
+    },
+    {
+      "name": ".rsrc",
+      "header_file_offset": "0x3c8",
+      "virtual_size": 309296,
+      "rva": 49217536,
+      "raw_size": 309760,
+      "raw_offset": 32313344
+    },
+    {
+      "name": ".reloc",
+      "header_file_offset": "0x3f0",
+      "virtual_size": 234336,
+      "rva": 49528832,
+      "raw_size": 234496,
+      "raw_offset": 32623104
+    }
+  ],
+  "positive": [
+    {
+      "label": "one-constant",
+      "va": "0x1cebba8",
+      "bytes": 4,
+      "raw_hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "method": "Actual existing guarded shipping-reader file read"
+    },
+    {
+      "label": "encoder-source",
+      "va": "0x20e620",
+      "bytes": 9,
+      "raw_hex": "2b0d0a4fd7018bc1c3",
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+      "method": "Actual existing guarded shipping-reader file read"
+    },
+    {
+      "label": "last-backed-eight",
+      "va": "0x1f7e3f8",
+      "bytes": 8,
+      "raw_hex": "0000000000000000",
+      "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+      "method": "Actual existing guarded shipping-reader file read"
+    }
+  ],
+  "negative": [
+    {
+      "label": "base-dword",
+      "va": "0x1f83530",
+      "bytes": 4,
+      "rejected": true,
+      "error": "'image read outside shipped bytes: 1f83530'",
+      "method": "Actual existing guarded shipping-reader refusal, not observed zero bytes"
+    },
+    {
+      "label": "base-qword",
+      "va": "0x1f83530",
+      "bytes": 8,
+      "rejected": true,
+      "error": "'image read outside shipped bytes: 1f83530'",
+      "method": "Actual existing guarded shipping-reader refusal, not observed zero bytes"
+    },
+    {
+      "label": "first-unbacked",
+      "va": "0x1f7e400",
+      "bytes": 8,
+      "rejected": true,
+      "error": "'image read outside shipped bytes: 1f7e400'",
+      "method": "Actual existing guarded shipping-reader refusal, not observed zero bytes"
+    },
+    {
+      "label": "straddle-backed-end",
+      "va": "0x1f7e3fc",
+      "bytes": 8,
+      "rejected": true,
+      "error": "'image read outside shipped bytes: 1f7e3fc'",
+      "method": "Actual existing guarded shipping-reader refusal, not observed zero bytes"
+    }
+  ],
+  "unsafe_formula_control": {
+    "formula": "raw_offset + (targetVA - preferred_base - sectionRVA), checked only against VirtualSize",
+    "file_offset": "0x1e61b30",
+    "candidate_hex": "90fb0500bafb0500",
+    "quoted_low4_match": true,
+    "actual_file_owner_section": {
+      "name": ".pdata",
+      "header_file_offset": "0x300",
+      "virtual_size": 428556,
+      "rva": 48726016,
+      "raw_size": 429056,
+      "raw_offset": 31836672
+    },
+    "actual_owner_va": "0x2f9d130",
+    "owner_guarded_read_matches": true,
+    "limits": "Deliberately unsafe host address calculation, NOT demonstrated actual SPEC invocation or runtime cell value"
+  },
+  "consumer": {
+    "path": "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-CKPT10R2-EXECUTED.md",
+    "sha256": "8bc8ef3dffcd6d66ef573c0e223622fe8ce9ff926d25da5ed330de77e862819d",
+    "retained": "review-preimage.md",
+    "quoted": "Cell contents90FB0500 nonzero",
+    "needed": "Identify actual input/producer/mapping method or explicit injected/live provenance; preserve original plus additive correction, repair demonstrated producer/procedure and inventory only its dependent claims"
+  },
+  "interpretation": "01F83530 is within virtual.data but outside serializedrawbytes. A file-backed nonzero-cell sample cannot be read there through valid original file mapping. Existingguardedreader correctlyrefuses4/8B; knownloadzero finding reused. Deliberatelyuncheckedformula reproducesquotedlow4 atfileoff1E61B30, bytesbelongelsewhere. This demonstratesafailurehypothesis notactualcause/SPECpath. Independentcodecmodularproof42 valid; no nativebaseorprocess-lifetimezero inferred.",
+  "limits": "No new discovery of priorBSSloadzero/writer census, no newloader/classifier/index regeneration, no actualSPECproduceridentity or defect inventory yet, no injectedmemory or livesample, processvalue/initpostcallbacks/lifetime/basewriters unknown. Quotedreviewprovenance must be corrected/labelled byowner; do not retract unrelatedacceptedsource/domain/control evidence.",
+  "cleanup": "Read-only certifiedimage/retainedconsumer/source/context; no game/input/process/instrument/save/config/reference/peerwrites. FF12 process inventory returnednone; PC OFF, S19spentunapproved/DBGOALNOT_MET. Owneractualpath/provenance repair and independent acceptance pending."
+}

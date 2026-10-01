@@ -1,0 +1,280 @@
+{
+ "ok": true,
+ "ard": {
+  "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rsn_b\\area\\rsn_b.ard",
+  "sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992"
+ },
+ "actions": {
+  "count": 543,
+  "stride": 60,
+  "rows": 1980838448
+ },
+ "action_parameters_nonzero": 165,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4267,
+ "results": {
+  "E4_three_parameters_third_negated": {
+   "pass_": true,
+   "parameters": [
+    12,
+    2,
+    4
+   ],
+   "calls": [
+    [
+     "write 00321850",
+     0
+    ],
+    [
+     "propagate 003219D0",
+     2
+    ],
+    [
+     "adjust 00321B00",
+     4294967292
+    ]
+   ],
+   "before": {
+    "foe0": [
+     0,
+     0,
+     30,
+     30
+    ],
+    "foe1": [
+     0,
+     5,
+     0,
+     0
+    ]
+   },
+   "after": {
+    "foe0": [
+     0,
+     12,
+     26,
+     26
+    ],
+    "foe1": [
+     0,
+     5,
+     0,
+     0
+    ]
+   },
+   "note": "shipped action 0 (+0x1D / +0x1F / +0x20 = 12 / 2 / 4): 003216E0 makes exactly three calls - write, propagate, and adjust with the NEGATED third parameter (edx = -4)"
+  },
+  "E2_threat_is_stored_on_the_target": {
+   "pass_": true,
+   "before": [
+    0,
+    0,
+    30,
+    30
+   ],
+   "after": [
+    0,
+    12,
+    26,
+    26
+   ],
+   "note": "member 0 hits foe 0: FOE 0's vector gains threat for id 0 (0 -> 12) and its entries for members 1 / 2 fall (30 -> 26 / 26); the timer byte (entry 0 of the vector) is untouched"
+  },
+  "E5_grudge_alone_does_not_propagate": {
+   "pass_": true,
+   "foe1_before": [
+    0,
+    5,
+    0,
+    0
+   ],
+   "foe1_after": [
+    0,
+    5,
+    0,
+    0
+   ],
+   "note": "foe 1 already holds 5 for member 0 but does NOT gain from the hit on foe 0: with a direct target, 003219D0 also requires foe 1's list at +0xBC8 (count +0xBC4, 16-byte entries) to hold the target's handle [target+0x10] (00321A82-00321AB4)"
+  },
+  "E5_propagation_needs_grudge_and_perception": {
+   "pass_": true,
+   "cases": {
+    "grudge 5, target listed": {
+     "ok": true,
+     "foe1": [
+      0,
+      7,
+      0,
+      0
+     ]
+    },
+    "grudge 0, target listed": {
+     "ok": true,
+     "foe1": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "grudge 5, null direct target": {
+     "ok": true,
+     "foe1": [
+      0,
+      7,
+      0,
+      0
+     ]
+    }
+   },
+   "note": "003219D0(id 0, 2, target): foe 1 rises only when it already holds a grudge AND lists the direct target's handle; a zero grudge stays zero even when listed; with a null direct target the list is not consulted"
+  },
+  "first_grudge_seeds_the_vector": {
+   "pass_": true,
+   "vector": [
+    0,
+    22,
+    1,
+    1
+   ],
+   "note": "foe 0 holding no grudge, write id 0 += 12: the entry becomes 22 (+10 at 0032193A, taken when 00321770 returns 0 - not taken in E-2, where the vector already held 30 / 30) and the zero entries for the other valid ids become 1 (0032194B-003219A5: the first grudge walks the vector through the class-2 validator)"
+  },
+  "E3_class_gates": {
+   "pass_": true,
+   "foe_caster": {
+    "calls": [],
+    "foe0": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "party_target": {
+    "calls": [
+     [
+      "write 00321850",
+      0
+     ]
+    ]
+   },
+   "note": "a foe-class caster (stats +5 = 1) makes no call at all (003216E0's gate at 0032170D reads the CASTER's stats +5); a write aimed at a party unit returns without a table write (003218D0 requires the target's stats +5 == 1)"
+  },
+  "E8_suppression_gates_the_write": {
+   "pass_": true,
+   "cases": {
+    "target status 0": {
+     "ok": true,
+     "entry_id0": 22
+    },
+    "target status bit 0": {
+     "ok": true,
+     "entry_id0": 0
+    },
+    "target status bit 31": {
+     "ok": true,
+     "entry_id0": 0
+    }
+   },
+   "note": "00321850 writes id 0's entry for a target with status 0, and writes nothing when the target's status has bit 0 or bit 31 (mask 0x80000003 at 003218AC)"
+  },
+  "E6_E7_decay_interval_and_step": {
+   "pass_": true,
+   "scale_1": [
+    {
+     "call": 30,
+     "edx": -10,
+     "vector_after": [
+      0,
+      15,
+      2,
+      1
+     ]
+    },
+    {
+     "call": 60,
+     "edx": -10,
+     "vector_after": [
+      0,
+      5,
+      1,
+      1
+     ]
+    },
+    {
+     "call": 90,
+     "edx": -10,
+     "vector_after": [
+      0,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "scale_2": [
+    {
+     "call": 60,
+     "edx": -10,
+     "vector_after": [
+      0,
+      15,
+      2,
+      1
+     ]
+    },
+    {
+     "call": 120,
+     "edx": -10,
+     "vector_after": [
+      0,
+      5,
+      1,
+      1
+     ]
+    }
+   ],
+   "note": "the decay fires write-all with edx = -10 on calls 30, 60, 90, 120 at FrameLimit scale 1.0 and on calls 60, 120 at 2.0; entries 25 / 12 / 5 become 15 / 2 / 1, then 5 / 1 / 1, then 1 / 1 / 1 - a held grudge is FLOORED AT 1, never forgotten (0032191D-00321923); the counter is byte 0 of the same vector (E-1)"
+  }
+ }
+}

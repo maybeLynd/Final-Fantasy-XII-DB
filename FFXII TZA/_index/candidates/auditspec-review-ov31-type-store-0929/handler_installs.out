@@ -1,0 +1,19 @@
+00394130 [(3753549, 'lea', 'rdx, [rip - 0x524]', 8)]
+    00394648  jne 0x39465e
+    0039464A  xor r8d, r8d
+    0039464D  lea rdx, [rip - 0x524]
+    00394654  mov ecx, 0xf0
+    00394659  jmp 0x244f50
+    0039465E  ret 
+    0039465F  int3 
+003939B0 [(3753329, 'lea', 'rdx, [rip - 0xbc8]', 8)]
+    0039456C  mov ecx, 0x1d0
+    00394571  lea rdx, [rip - 0xbc8]
+    00394578  mov qword ptr [rsp + 0x28], rax
+    0039457D  call 0x244f50
+00394070 [(3753112, 'lea', 'rdx, [rip - 0x42f]', 8)]
+    00394492  add byte ptr [rbp + 0x14], dh
+    00394495  xor r8d, r8d
+    00394498  lea rdx, [rip - 0x42f]
+    0039449F  mov ecx, 0xd8
+    003944A4  call 0x244f50

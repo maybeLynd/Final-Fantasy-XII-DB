@@ -1,0 +1,11 @@
+distinct .ebp 7565, scripts 198302
+register opcodes (control vs the histogram): {'0x36': 146597, '0x37': 58912, '0x38': 140336, '0x39': 25357, '0x3a': 3798, '0x3b': 1465, '0x3c': 81, '0x3d': 81, '0x3e': 220947, '0x3f': 38225, '0x40': 14724, '0x41': 23503, '0x42': 5290, '0x43': 1465, '0x44': 81, '0x45': 81}
+register | scripts reading it | read but never written by the same script | first linear touch is a read (also written)
+  I0   20344       0       0   e.g. 
+  I1    5177       0     434   e.g. 
+  I2    1962       0       0   e.g. 
+  I3   16196       0       0   e.g. 
+  F0    1047       9       0   e.g. rbn_a03.ebp@286AE, rbn_a03.ebp@286AE, rbn_a03.ebp@286AE
+  F1     709       9       0   e.g. rbn_a03.ebp@286AE, rbn_a03.ebp@286AE, rbn_a03.ebp@286AE
+  F2      81       9       0   e.g. rbn_a03.ebp@286AE, rbn_a03.ebp@286AE, rbn_a03.ebp@286AE
+  F3      81       9       0   e.g. rbn_a03.ebp@286AE, rbn_a03.ebp@286AE, rbn_a03.ebp@286AE

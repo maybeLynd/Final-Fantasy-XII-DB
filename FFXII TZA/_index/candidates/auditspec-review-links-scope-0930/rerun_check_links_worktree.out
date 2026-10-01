@@ -1,0 +1,19 @@
+scanned 2609 markdown files, 61879 relative links
+evidence captures not judged (package subdirectories under _experiments/evidence): 4631 link(s)
+case-sensitivity waivers in STRICT_WAIVERS: 0  - nothing is being excused; every link below is judged
+
+BROKEN AT HEAD (14):
+  analysis-kit\gfz-scripts\_ov_section.md  ->  candidates/register-idless-boxes-0929/README.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  candidates/register-triage/batch-K-scope-rulings.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../02-Resource-And-Asset-Pipeline/the-nonempty-prf-registration-and-specialized-relocation.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../02-Resource-And-Asset-Pipeline/the-nonempty-prf-registration-and-specialized-relocation.md
+  analysis-kit\gfz-scripts\_ov_section.md  ->  ../02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md

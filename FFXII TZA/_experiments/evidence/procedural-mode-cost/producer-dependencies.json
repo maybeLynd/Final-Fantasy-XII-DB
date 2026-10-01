@@ -1,0 +1,101 @@
+{
+  "producers": [
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/arg_extent_scan.py",
+      "sha256": "1d1983ad21657febc9c6e7568332a74e194f0d9a15892ae4a51a5a8e3e545194",
+      "head": "0461576ebe47256522c25c4debac3ac7f05a75ba",
+      "same_as_head_normalized": true,
+      "dependency_lines": [
+        {
+          "line": 43,
+          "text": "    from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_AC_WRITE"
+        },
+        {
+          "line": 149,
+          "text": "                if op.access & CS_AC_WRITE:"
+        },
+        {
+          "line": 200,
+          "text": "                if op.type == X86_OP_REG and (op.access & CS_AC_WRITE) and op.reg in tainted:"
+        },
+        {
+          "line": 218,
+          "text": "    acc = SFS.accessors_for(img, md, sfns, slot, static)"
+        }
+      ],
+      "retained": "retained/producer-preimages/arg_extent_scan.py"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/census_receiver_fixpoint.py",
+      "sha256": "cf5ea900cf4e4eb5b3d995796a2965b2f34d101c8bd35fe6e24345b4555af1d4",
+      "head": "0461576ebe47256522c25c4debac3ac7f05a75ba",
+      "same_as_head_normalized": true,
+      "dependency_lines": [
+        {
+          "line": 258,
+          "text": "from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_AC_READ, CS_AC_WRITE"
+        },
+        {
+          "line": 521,
+          "text": "                            if op.access & CS_AC_WRITE: wr[(dp, op.size)] += 1"
+        },
+        {
+          "line": 522,
+          "text": "                            if op.access & CS_AC_READ:  rd[(dp, op.size)] += 1"
+        },
+        {
+          "line": 530,
+          "text": "                            if op.access & CS_AC_READ:  _v2[0] = 1"
+        },
+        {
+          "line": 531,
+          "text": "                            if op.access & CS_AC_WRITE: _v2[1] = 1"
+        }
+      ],
+      "retained": "retained/producer-preimages/census_receiver_fixpoint.py"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/disp_image_census.py",
+      "sha256": "0951ef33cc218aa3e863149c7f2d4b5288c9a8dd93fd4ebdd16b8828433bd45a",
+      "head": "0461576ebe47256522c25c4debac3ac7f05a75ba",
+      "same_as_head_normalized": true,
+      "dependency_lines": [
+        {
+          "line": 94,
+          "text": "                acc = (\"w\" if op.access & capstone.CS_AC_WRITE else \"\") + \\"
+        },
+        {
+          "line": 95,
+          "text": "                      (\"r\" if op.access & capstone.CS_AC_READ else \"\")"
+        }
+      ],
+      "retained": "retained/producer-preimages/disp_image_census.py"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/singleton_field_scan.py",
+      "sha256": "e79a6c6070652e88d2800f99bad0e1cfc09ab36bc4c9704f6e7de1da95215c21",
+      "head": "0461576ebe47256522c25c4debac3ac7f05a75ba",
+      "same_as_head_normalized": true,
+      "dependency_lines": [
+        {
+          "line": 52,
+          "text": "    from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_AC_READ, CS_AC_WRITE"
+        },
+        {
+          "line": 199,
+          "text": "                        if op.access & CS_AC_WRITE:"
+        },
+        {
+          "line": 267,
+          "text": "                    if op.access & CS_AC_WRITE:"
+        },
+        {
+          "line": 304,
+          "text": "                        if op.type == X86_OP_REG and (op.access & CS_AC_WRITE) \\"
+        }
+      ],
+      "retained": "retained/producer-preimages/singleton_field_scan.py"
+    }
+  ],
+  "limitation": "Specific procedure dependency evidence only. No rerun or bulk output retraction. FRONTIER must assign exact affected-result/consumer checks. Shared reg_tracking.op_kind is already corrected; own capture bypass is fixed by reuse."
+}

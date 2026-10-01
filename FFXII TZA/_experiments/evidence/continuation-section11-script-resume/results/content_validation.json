@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "yaml_blocks": 8,
+  "local_file_links": 116,
+  "external_links_unvalidated": [],
+  "anchor_fragments": "not independently validated; file targets checked",
+  "layouts": [
+    {
+      "type": "VmValueStack",
+      "size": 644,
+      "rows": 5,
+      "gaps": 0,
+      "overlaps": 0
+    },
+    {
+      "type": "ActorWaitSlot",
+      "size": 40,
+      "rows": 15,
+      "gaps": 0,
+      "overlaps": 0
+    }
+  ],
+  "unrelated_tsv_lines_identical": true,
+  "python_syntax": [
+    "validate_content.py",
+    "verify_overlay.py",
+    "run_review.py",
+    "review_retained.py"
+  ],
+  "unrelated_files_identical": 10861
+}

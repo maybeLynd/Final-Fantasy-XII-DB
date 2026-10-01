@@ -1,0 +1,149 @@
+{
+  "status": "NORMAL_CFG_CLOSED_NOT_COUNT_SEMANTIC_ACCEPTANCE",
+  "normal_cfg": {
+    "entry": "0x1b7850",
+    "end_exclusive": "0x1b7cde",
+    "instructions": 276,
+    "returns": [
+      "0x1b7940",
+      "0x1b7c9c",
+      "0x1b7cdd"
+    ],
+    "calls": [
+      {
+        "pc": "0x1b78c9",
+        "target": "0x61d9c0"
+      },
+      {
+        "pc": "0x1b78de",
+        "target": "0x19ce20"
+      },
+      {
+        "pc": "0x1b78f0",
+        "target": "0x19cb20"
+      },
+      {
+        "pc": "0x1b78fc",
+        "target": "0x796e20"
+      },
+      {
+        "pc": "0x1b790d",
+        "target": "0x796350"
+      },
+      {
+        "pc": "0x1b791e",
+        "target": "0x1b6c50"
+      },
+      {
+        "pc": "0x1b7997",
+        "target": "0x60dd70"
+      },
+      {
+        "pc": "0x1b79a3",
+        "target": "0x610990"
+      },
+      {
+        "pc": "0x1b79c1",
+        "target": "0x625f00"
+      },
+      {
+        "pc": "0x1b79d5",
+        "target": "0x5cdaa0"
+      },
+      {
+        "pc": "0x1b79e2",
+        "target": "0x628100"
+      },
+      {
+        "pc": "0x1b7a17",
+        "target": "0x60dd70"
+      },
+      {
+        "pc": "0x1b7a24",
+        "target": "0x610990"
+      },
+      {
+        "pc": "0x1b7a43",
+        "target": "0x625f00"
+      },
+      {
+        "pc": "0x1b7a58",
+        "target": "0x5cdaa0"
+      },
+      {
+        "pc": "0x1b7a65",
+        "target": "0x628100"
+      },
+      {
+        "pc": "0x1b7a9b",
+        "target": "0x60dd70"
+      },
+      {
+        "pc": "0x1b7aa7",
+        "target": "0x610990"
+      },
+      {
+        "pc": "0x1b7ac5",
+        "target": "0x625f00"
+      },
+      {
+        "pc": "0x1b7ada",
+        "target": "0x5cdaa0"
+      },
+      {
+        "pc": "0x1b7ae7",
+        "target": "0x628100"
+      },
+      {
+        "pc": "0x1b7b08",
+        "target": "0x18d240"
+      },
+      {
+        "pc": "0x1b7b31",
+        "target": "0x1b81b0"
+      },
+      {
+        "pc": "0x1b7b48",
+        "target": "0x18d240"
+      },
+      {
+        "pc": "0x1b7b71",
+        "target": "0x1b81b0"
+      },
+      {
+        "pc": "0x1b7b88",
+        "target": "0x18d240"
+      },
+      {
+        "pc": "0x1b7bb1",
+        "target": "0x1b81b0"
+      },
+      {
+        "pc": "0x1b7bd0",
+        "target": "0x63a990"
+      },
+      {
+        "pc": "0x1b7c27",
+        "target": "0x584730"
+      },
+      {
+        "pc": "0x1b7c3a",
+        "target": "0x1b80c0"
+      },
+      {
+        "pc": "0x1b7c4d",
+        "target": "0x1b72b0"
+      },
+      {
+        "pc": "0x1b7cbc",
+        "target": "qword ptr [rax + 8]"
+      },
+      {
+        "pc": "0x1b7cc6",
+        "target": "0x18a120"
+      }
+    ]
+  },
+  "earlier": "texture-resize-input-root-closure-incomplete-01.json",
+  "limits": "Missingtail fixed additively; existing source bytes reused. Count dataflow/independent review remain pending"
+}

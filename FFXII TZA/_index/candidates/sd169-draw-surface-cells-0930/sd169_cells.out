@@ -1,0 +1,4 @@
+PASS  G1 boot: width cells 512 / 512, height 448
+PASS  G2 +0x9C = the transfer width: BITBLTBUF SBW/DBW (>> 6) and TRXREG RRW (strips of 16 lines), local -> local
+PASS  G3 +0xA0: set to 512 at boot, read once into a call to the empty stub 0016D6A0 - no register, no effect
+FAILS 0

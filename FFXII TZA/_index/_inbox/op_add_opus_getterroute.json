@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-FN-GETTER-ROUTE-CENSUS",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the FN route family - the 12,417 bytes of declared gap on types whose route cell names a getter rather than a cell",
+  "scope": "SavePayload and SaveImageHeader through 002EF640, censused from the getter's return value with the route cell's own bias; the other three FN getters examined and refused where a constant-return seed cannot read them",
+  "completion": "each FN-routed type either carves or carries a stated negative whose control is hits on rows it already names; the direct image census is run beside it so the two instruments are distinguishable; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

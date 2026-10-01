@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "FRONTIER-REQ-SWE2-EC7-UQ107-FIELDMAP-CORRECTION-0927",
+ "agent": "SWE2-EC7",
+ "note": "Correction already landed at fe8b5486c: the 00312170 paragraph in the-battle-unit-field-map.md now reads the cmove pair at 0031221E-00312232 as setting bit 8 iff the action row's +0x0C bit 13 (0x2000) is set and bit 9 iff bit 14 (0x4000) is set, with a 'Corrected 2026-09-27, UQ-107: the earlier set-unless reading was inverted' marker.",
+ "result_refs": [
+  "fe8b5486c",
+  "Database/FFXII TZA/04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md"
+ ]
+}

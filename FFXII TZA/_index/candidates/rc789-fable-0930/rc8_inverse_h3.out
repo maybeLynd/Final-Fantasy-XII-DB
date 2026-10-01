@@ -1,0 +1,8 @@
+H: cell loaders 4, getter callers 14; H1 (with callees to 3 hops) 662 functions
+W: non-stack +0x13C store functions 145 (stores 159)
+CONTROL ctor 001EF2D0 in H1: True | its store in W: True
+W & H1: 4 functions
+  0018CD90 [callee of H]: 0018D063 mov qword ptr [rbx + 0x138], rdi
+  001D0390 [callee of H]: 001D04EE mov qword ptr [rdi + 0x138], rax
+  001EB190 [callee of H]: 001EB26B mov dword ptr [rsi + 0x13c], ebp
+  001EF2D0 [callee of H]: 001EF389 mov dword ptr [rbx + 0x13c], 3

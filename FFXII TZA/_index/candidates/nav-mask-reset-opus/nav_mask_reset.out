@@ -1,0 +1,5 @@
+PASS  E 003912E0 clears [02AEE0B0] for [02AEE0B8] bytes through memset before any branch or other call
+PASS  O ORs through [02AEE0B0] and returns it; the four register arguments are saved elsewhere - no destination argument
+PASS  M mutants rejected: clear register rcx -> rdx; memset call NOPed
+PASS  S NavGridParams +0x50 states the per-entry clear; the contract names the global cell, not a caller-supplied mask
+FAILS 0

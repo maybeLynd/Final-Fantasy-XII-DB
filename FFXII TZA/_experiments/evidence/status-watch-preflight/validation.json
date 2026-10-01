@@ -1,0 +1,45 @@
+{
+  "result": "PASS_PREPARATION_ONLY",
+  "cases": 9,
+  "controls": [
+    {
+      "name": "wrong directory target",
+      "rejected": true
+    },
+    {
+      "name": "wrong count",
+      "rejected": true
+    },
+    {
+      "name": "wrong stride",
+      "rejected": true
+    },
+    {
+      "name": "truncated final row",
+      "rejected": true
+    },
+    {
+      "name": "row3 name-key low byte changed to6",
+      "rejected": true
+    },
+    {
+      "name": "row3 name-key high byte changed; low-byte join alone accepts",
+      "rejected": true
+    },
+    {
+      "name": "empty watch budget",
+      "rejected": true
+    },
+    {
+      "name": "Doom row6 proposed populated control",
+      "rejected": true
+    },
+    {
+      "name": "Stop row3 single8B misses1C",
+      "rejected": true
+    }
+  ],
+  "positive": "Full15B byte-interval covers all three row3 populated slots; not a hardware watch specification.",
+  "semantic_live_closure": [],
+  "observed_game_process": false
+}

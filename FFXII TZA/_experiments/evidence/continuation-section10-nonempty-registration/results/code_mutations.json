@@ -1,0 +1,2322 @@
+[
+  {
+    "variant": "prf1_wrong_table_base",
+    "rejected": true,
+    "required_failure": "prf1_effect_section_offset",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": false,
+          "actual": 240,
+          "expected": 256
+        }
+      ],
+      "checks": 14,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "skip_v0_child_normalization",
+    "rejected": true,
+    "required_failure": "prf0_normalizes_child_padding",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": false,
+          "actual": -6510615555426900571,
+          "expected": 0
+        }
+      ],
+      "checks": 2,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "use_section_offset_instead_of_metadata",
+    "rejected": true,
+    "required_failure": "registration0_ticket_uses_metadata_not_section_offset",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf1_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf1_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "sparse_zero_offset_skipped",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "sparse_result_keeps_authored_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "unsupported_PRF_version_no_match",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "plain_header_match_offset",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "plain_header_match_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "unsupported_mode_nonzero_offset_returns_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "unsupported_mode_zero_offset_returns_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "valid_mode_sum_wraps_to_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_ticket_uses_metadata_not_section_offset",
+          "pass": false,
+          "actual": 805307584,
+          "expected": 805308096
+        }
+      ],
+      "checks": 35,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "skip_specialized_first_pair",
+    "rejected": true,
+    "required_failure": "registration0_specialized_nonzero_relocations",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf1_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf1_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "sparse_zero_offset_skipped",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "sparse_result_keeps_authored_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "unsupported_PRF_version_no_match",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "plain_header_match_offset",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "plain_header_match_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "unsupported_mode_nonzero_offset_returns_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "unsupported_mode_zero_offset_returns_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "valid_mode_sum_wraps_to_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_context_source_base",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_source_representation",
+          "pass": true,
+          "actual": 805306755,
+          "expected": 805306755
+        },
+        {
+          "name": "registration0_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "registration0_specialized_nonzero_relocations",
+          "pass": false,
+          "actual": 0,
+          "expected": 1
+        }
+      ],
+      "checks": 40,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "skip_context_destruction",
+    "rejected": true,
+    "required_failure": "registration0_context_reclaimed",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf1_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf1_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "sparse_zero_offset_skipped",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "sparse_result_keeps_authored_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "unsupported_PRF_version_no_match",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "plain_header_match_offset",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "plain_header_match_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "unsupported_mode_nonzero_offset_returns_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "unsupported_mode_zero_offset_returns_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "valid_mode_sum_wraps_to_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_context_source_base",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_source_representation",
+          "pass": true,
+          "actual": 805306755,
+          "expected": 805306755
+        },
+        {
+          "name": "registration0_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "registration0_specialized_nonzero_relocations",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_specialized_first_word",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration0_specialized_second_word",
+          "pass": true,
+          "actual": 805308180,
+          "expected": 805308180
+        },
+        {
+          "name": "registration0_registration_writes_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_registration_writes_subtype",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_same_key_returns_existing_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_same_key_does_not_relocate_twice",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration0_same_key_keeps_ticket",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_same_key_allocates_no_context",
+          "pass": true,
+          "actual": 11968,
+          "expected": 11968
+        },
+        {
+          "name": "registration0_bank_removed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_context_reclaimed",
+          "pass": false,
+          "actual": 1,
+          "expected": 0
+        }
+      ],
+      "checks": 50,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "ignore_existing_bank_match",
+    "rejected": true,
+    "required_failure": "registration0_same_key_returns_existing_index",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf1_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf1_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "sparse_zero_offset_skipped",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "sparse_result_keeps_authored_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "unsupported_PRF_version_no_match",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "plain_header_match_offset",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "plain_header_match_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "unsupported_mode_nonzero_offset_returns_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "unsupported_mode_zero_offset_returns_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "valid_mode_sum_wraps_to_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_context_source_base",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_source_representation",
+          "pass": true,
+          "actual": 805306755,
+          "expected": 805306755
+        },
+        {
+          "name": "registration0_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "registration0_specialized_nonzero_relocations",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_specialized_first_word",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration0_specialized_second_word",
+          "pass": true,
+          "actual": 805308180,
+          "expected": 805308180
+        },
+        {
+          "name": "registration0_registration_writes_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_registration_writes_subtype",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_same_key_returns_existing_index",
+          "pass": false,
+          "actual": 1,
+          "expected": 0
+        }
+      ],
+      "checks": 45,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "skip_nested_refresh",
+    "rejected": true,
+    "required_failure": "refresh_relocates_specialized_first_word",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf1_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf1_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "sparse_zero_offset_skipped",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "sparse_result_keeps_authored_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "unsupported_PRF_version_no_match",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "plain_header_match_offset",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "plain_header_match_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "unsupported_mode_nonzero_offset_returns_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "unsupported_mode_zero_offset_returns_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "valid_mode_sum_wraps_to_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_context_source_base",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration0_context_source_representation",
+          "pass": true,
+          "actual": 805306755,
+          "expected": 805306755
+        },
+        {
+          "name": "registration0_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "registration0_specialized_nonzero_relocations",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_specialized_first_word",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration0_specialized_second_word",
+          "pass": true,
+          "actual": 805308180,
+          "expected": 805308180
+        },
+        {
+          "name": "registration0_registration_writes_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_registration_writes_subtype",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_same_key_returns_existing_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_same_key_does_not_relocate_twice",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration0_same_key_keeps_ticket",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration0_same_key_allocates_no_context",
+          "pass": true,
+          "actual": 11968,
+          "expected": 11968
+        },
+        {
+          "name": "registration0_bank_removed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_context_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_arena8_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_external_source_preserved",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_source_arena_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_no_diagnostics",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration1_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration1_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration1_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration1_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration1_context_source_base",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration1_context_source_representation",
+          "pass": true,
+          "actual": 805306755,
+          "expected": 805306755
+        },
+        {
+          "name": "registration1_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "registration1_specialized_nonzero_relocations",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration1_specialized_first_word",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration1_specialized_second_word",
+          "pass": true,
+          "actual": 805308180,
+          "expected": 805308180
+        },
+        {
+          "name": "registration1_registration_writes_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration1_registration_writes_subtype",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_same_key_returns_existing_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_same_key_does_not_relocate_twice",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration1_same_key_keeps_ticket",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration1_same_key_allocates_no_context",
+          "pass": true,
+          "actual": 11968,
+          "expected": 11968
+        },
+        {
+          "name": "registration1_bank_removed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_context_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_arena8_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_external_source_preserved",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration1_source_arena_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration1_no_diagnostics",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration2_entry_mode",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration2_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration2_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration2_context_source_base",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "registration2_context_source_representation",
+          "pass": true,
+          "actual": 805307328,
+          "expected": 805307328
+        },
+        {
+          "name": "registration2_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "registration2_specialized_nonzero_relocations",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration2_specialized_first_word",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration2_specialized_second_word",
+          "pass": true,
+          "actual": 805308180,
+          "expected": 805308180
+        },
+        {
+          "name": "registration2_registration_writes_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration2_registration_writes_subtype",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_copy_mode_does_not_relocate_original_payload",
+          "pass": true,
+          "actual": 48,
+          "expected": 48
+        },
+        {
+          "name": "registration2_same_key_returns_existing_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_same_key_does_not_relocate_twice",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "registration2_same_key_keeps_ticket",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration2_same_key_allocates_no_context",
+          "pass": true,
+          "actual": 11968,
+          "expected": 11968
+        },
+        {
+          "name": "registration2_bank_removed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_context_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_arena8_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_copied_backing_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_source_arena_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration2_no_diagnostics",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration3_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration3_ticket_generation",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration3_ticket_uses_metadata_not_section_offset",
+          "pass": true,
+          "actual": 805309120,
+          "expected": 805309120
+        },
+        {
+          "name": "registration3_context_nonnull",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration3_context_source_base",
+          "pass": true,
+          "actual": 805309120,
+          "expected": 805309120
+        },
+        {
+          "name": "registration3_context_source_representation",
+          "pass": true,
+          "actual": 805306755,
+          "expected": 805306755
+        },
+        {
+          "name": "registration3_lookup_names_nonempty_A00_record",
+          "pass": true,
+          "actual": 805309152,
+          "expected": 805309152
+        },
+        {
+          "name": "registration3_specialized_nonzero_relocations",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration3_specialized_first_word",
+          "pass": true,
+          "actual": 805309200,
+          "expected": 805309200
+        },
+        {
+          "name": "registration3_specialized_second_word",
+          "pass": true,
+          "actual": 805309204,
+          "expected": 805309204
+        },
+        {
+          "name": "registration3_registration_writes_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration3_registration_writes_subtype",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_same_key_returns_existing_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_same_key_does_not_relocate_twice",
+          "pass": true,
+          "actual": 805309200,
+          "expected": 805309200
+        },
+        {
+          "name": "registration3_same_key_keeps_ticket",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "registration3_same_key_allocates_no_context",
+          "pass": true,
+          "actual": 11968,
+          "expected": 11968
+        },
+        {
+          "name": "registration3_bank_removed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_context_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_arena8_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_external_source_preserved",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration3_source_arena_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration3_no_diagnostics",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited0_entry_admitted",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "limited0_missing_named_FEF_leaves_no_ticket",
+          "pass": true,
+          "actual": 4294967295,
+          "expected": 4294967295
+        },
+        {
+          "name": "limited0_no_context_allocated",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited0_all_owned_allocations_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited1_entry_admitted",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited1_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "limited1_ticket_exhaustion_stores_zero",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited1_no_context_allocated",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited1_all_owned_allocations_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited2_entry_admitted",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited2_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "limited2_bad_signature_still_has_ticket",
+          "pass": true,
+          "actual": 536870976,
+          "expected": 536870976
+        },
+        {
+          "name": "limited2_bad_signature_lookup_empty",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "limited2_all_owned_allocations_reclaimed",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "disposing_context_does_not_unrelocate_borrowed_bytes",
+          "pass": true,
+          "actual": 805308176,
+          "expected": 805308176
+        },
+        {
+          "name": "re_registering_mutated_source_adds_base_again",
+          "pass": true,
+          "actual": 1610616304,
+          "expected": 1610616304
+        },
+        {
+          "name": "repeat_registration_cleanup",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "original_compactor_moves_nonempty_source",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "new_backing_is_prior_hole",
+          "pass": true,
+          "actual": 805307328,
+          "expected": 805307328
+        },
+        {
+          "name": "source_context_stale_before_refresh",
+          "pass": true,
+          "actual": 805312576,
+          "expected": 805312576
+        },
+        {
+          "name": "nested_word_stale_before_refresh",
+          "pass": true,
+          "actual": 805312656,
+          "expected": 805312656
+        },
+        {
+          "name": "refresh_updates_nonempty_context",
+          "pass": true,
+          "actual": 805308096,
+          "expected": 805308096
+        },
+        {
+          "name": "refresh_relocates_lookup",
+          "pass": true,
+          "actual": 805308128,
+          "expected": 805308128
+        },
+        {
+          "name": "refresh_relocates_specialized_first_word",
+          "pass": false,
+          "actual": 805312656,
+          "expected": 805308176
+        }
+      ],
+      "checks": 152,
+      "failures": 1
+    }
+  },
+  {
+    "variant": "skip_registration_ticket_store",
+    "rejected": true,
+    "required_failure": "registration0_ticket_generation",
+    "record": {
+      "cases": [
+        {
+          "name": "prf0_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf0_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf0_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf0_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf0_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf0_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_normalizes_root_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_normalizes_child_padding",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_effect_section_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "prf1_effect_section_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_second_section_offset",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "prf1_second_section_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "prf1_wrong_name_not_found",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_failed_index_reset",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_wildcard_selects_root",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "prf1_PRF_root_offset_valid_index_stays_minus1",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "prf1_ALL_literal_selects_named_child",
+          "pass": true,
+          "actual": 384,
+          "expected": 384
+        },
+        {
+          "name": "sparse_zero_offset_skipped",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "sparse_result_keeps_authored_index",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "unsupported_PRF_version_no_match",
+          "pass": true,
+          "actual": -1,
+          "expected": -1
+        },
+        {
+          "name": "plain_header_match_offset",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "plain_header_match_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "unsupported_mode_nonzero_offset_returns_offset",
+          "pass": true,
+          "actual": 256,
+          "expected": 256
+        },
+        {
+          "name": "unsupported_mode_zero_offset_returns_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "valid_mode_sum_wraps_to_NULL",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_index",
+          "pass": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "registration0_bank_count",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_entry_mode",
+          "pass": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "registration0_ticket_generation",
+          "pass": false,
+          "actual": 4294967295,
+          "expected": 536870976
+        }
+      ],
+      "checks": 34,
+      "failures": 1
+    }
+  }
+]

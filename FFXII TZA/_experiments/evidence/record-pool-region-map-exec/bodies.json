@@ -1,0 +1,35 @@
+{
+ "real": [
+  {
+   "name": "rmap",
+   "va": "0x266ad0",
+   "end": "0x266ba3",
+   "size": 211,
+   "sha256": "4928f1a31f05e79c0b06e07ab9a53526d8c65f71ca170be311eb6ab2b68a4b2c"
+  },
+  {
+   "name": "alloc",
+   "va": "0x2679f0",
+   "end": "0x267ba4",
+   "size": 436,
+   "sha256": "f0cdd8fec19300f9083b2c7180ae3ab50696a21db3120eadd0ff6ba12100156d"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "memset",
+   "va": "0x861ec0",
+   "note": "00861EC0 CRT memset thunk (jmp qword IAT): entry-intercepted; zero-fill semantics implemented harness-side because the import target is outside the image"
+  },
+  {
+   "name": "init",
+   "va": "0x266530",
+   "note": "00266530 per-record init ctor (~600 B, 8 callees incl. 00266AD0 itself): scripted stub, args (mgr, pool, index) captured per call"
+  },
+  {
+   "name": "alloc fn-ptr",
+   "va": "qword[mgr+0x88] (planted)",
+   "note": "indirect allocator call through the manager slot: planted stub at 0x63000000 returns the fixture pool; size arg captured"
+  }
+ ]
+}

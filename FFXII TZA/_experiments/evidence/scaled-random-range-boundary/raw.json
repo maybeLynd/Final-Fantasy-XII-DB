@@ -1,0 +1,581 @@
+{
+  "method": "B isolated original58B, injected arithmetic entry state; new strict-range boundary question",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": "0x120000",
+    "parent_commit": "0bcc3d620c620234f2f987b00e70ffe8f6d0c08e",
+    "parent_entry": "0x3d8e50",
+    "parent_body_sha256": "32f4c93324e6c153518b5b42e85597f75495de8f66171fd58daf355e7b9a063a",
+    "parent_source_sha256": "3df5bcb608e1b3c373e8ff063d44eacbb126462fd636be54caf37108e504925a",
+    "parent_manifest_sha256": "07d0b975c3b538d9f94f5ffda5e21f0989aea122131b681fb2c54b51b543c316",
+    "window_sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "one_va": "0x1ef93fc",
+    "one_hex": "0000803f"
+  },
+  "tools": {
+    "recorded_before_capture_utc": "2026-09-28T03:06:46.288018+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "unicorn": "2.1.0",
+    "unicorn_module_sha256": "0e8ac7115c755994a968fa865bd1b2f2075edea715c17e91d62af2cc52c13392",
+    "binaries": [
+      {
+        "label": "unicorn",
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+        "bytes": 9343488,
+        "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75"
+      },
+      {
+        "label": "capstone",
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "bytes": 7576576,
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "driver_sha256": "a74b8a5e829e6c6245167fde605359cee2bf7a4693945315fcb22a105121c9cb",
+  "observer_reuse": {
+    "prior_capture_sha256": "f6b818ce9cd6148a424044293919b62e9c9819f031d17540d580c5186887c6bf",
+    "prior_function_sha256": "01c34e5fef9a6b2f5c09751e1150f482be4ff14985709ae485cf8eb7b28c9383",
+    "adopted_function_sha256": "dcab44d6c50c362bdd12637d5d885da076c73da24e94973079251c7d16970aa8",
+    "prior_cases_not_rerun": true,
+    "changes": "Added direct initial XMM1/RSP/MXCSR reads after setup before emulation; observation only. New sample/amplitude cases, host prediction handles overflow. Earlier incomplete capture retained and held; original instruction window unchanged."
+  },
+  "cases": [
+    {
+      "name": "smallest-positive-subnormal-endpoint",
+      "intervention": "Injected arithmetic-window entry state; original instructions unchanged",
+      "mutated": false,
+      "input": {
+        "amplitude_bits": "0x1",
+        "sample_bits": "0x3fffffff",
+        "entry": "0x3d8f3f",
+        "stop": "0x3d8f79",
+        "rsp": "0x60001800",
+        "mxcsr": "0x1f80"
+      },
+      "running_code_sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8",
+      "before": {
+        "0x22d8f30": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x60001830": "01000000",
+        "0x1ef93fc": "0000803f"
+      },
+      "initial_state": {
+        "rsp": "0x60001800",
+        "sample_bits": "0x3fffffff",
+        "mxcsr": "0x1f80"
+      },
+      "visited": [
+        "0x3d8f3f",
+        "0x3d8f44",
+        "0x3d8f4b",
+        "0x3d8f52",
+        "0x3d8f56",
+        "0x3d8f5d",
+        "0x3d8f65",
+        "0x3d8f6d",
+        "0x3d8f71"
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "size": 8,
+          "provider_value": 1
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "size": 8,
+          "provider_value": 1
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e8",
+          "size": 8,
+          "provider_value": -6510615555426900571
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "size": 4,
+          "provider_value": 2
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "size": 4,
+          "provider_value": 1
+        }
+      ],
+      "writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "bytes": "0100000000000000"
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "bytes": "0100000000000000a5a5a5a5a5a5a5a5"
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "bytes": "02000000"
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "bytes": "01000000"
+        }
+      ],
+      "reads": [
+        {
+          "pc": "0x3d8f3f",
+          "address": "0x60001830",
+          "size": 4
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f30",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f38",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f5d",
+          "address": "0x1ef93fc",
+          "size": 4
+        }
+      ],
+      "after": {
+        "0x22d8f30": "0100000000000000a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "02000000a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "0100000000000000a5a5a5a5a5a5a5a5",
+        "0x60001830": "01000000",
+        "0x1ef93fc": "0000803f"
+      },
+      "output_bits": "0x1",
+      "model": {
+        "original_order": "0x1",
+        "factored": "0x1"
+      },
+      "stop_pc": "0x3d8f79",
+      "rsp_after": "0x60001800",
+      "mxcsr_after": "0x1f80",
+      "failure": null
+    },
+    {
+      "name": "ordinary-normal-strict-interior-control",
+      "intervention": "Injected arithmetic-window entry state; original instructions unchanged",
+      "mutated": false,
+      "input": {
+        "amplitude_bits": "0x3f000000",
+        "sample_bits": "0x3fffffff",
+        "entry": "0x3d8f3f",
+        "stop": "0x3d8f79",
+        "rsp": "0x60001800",
+        "mxcsr": "0x1f80"
+      },
+      "running_code_sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8",
+      "before": {
+        "0x22d8f30": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x60001830": "0000003f",
+        "0x1ef93fc": "0000803f"
+      },
+      "initial_state": {
+        "rsp": "0x60001800",
+        "sample_bits": "0x3fffffff",
+        "mxcsr": "0x1f80"
+      },
+      "visited": [
+        "0x3d8f3f",
+        "0x3d8f44",
+        "0x3d8f4b",
+        "0x3d8f52",
+        "0x3d8f56",
+        "0x3d8f5d",
+        "0x3d8f65",
+        "0x3d8f6d",
+        "0x3d8f71"
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "size": 8,
+          "provider_value": 1056964608
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "size": 8,
+          "provider_value": 1056964608
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e8",
+          "size": 8,
+          "provider_value": -6510615555426900571
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "size": 4,
+          "provider_value": 1065353215
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "size": 4,
+          "provider_value": 1056964606
+        }
+      ],
+      "writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "bytes": "0000003f00000000"
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "bytes": "0000003f00000000a5a5a5a5a5a5a5a5"
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "bytes": "ffff7f3f"
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "bytes": "feffff3e"
+        }
+      ],
+      "reads": [
+        {
+          "pc": "0x3d8f3f",
+          "address": "0x60001830",
+          "size": 4
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f30",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f38",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f5d",
+          "address": "0x1ef93fc",
+          "size": 4
+        }
+      ],
+      "after": {
+        "0x22d8f30": "0000003f00000000a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "ffff7f3fa5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "feffff3e00000000a5a5a5a5a5a5a5a5",
+        "0x60001830": "0000003f",
+        "0x1ef93fc": "0000803f"
+      },
+      "output_bits": "0x3efffffe",
+      "model": {
+        "original_order": "0x3efffffe",
+        "factored": "0x3efffffe"
+      },
+      "stop_pc": "0x3d8f79",
+      "rsp_after": "0x60001800",
+      "mxcsr_after": "0x1f80",
+      "failure": null
+    },
+    {
+      "name": "largest-positive-finite-product-overflow",
+      "intervention": "Injected arithmetic-window entry state; original instructions unchanged",
+      "mutated": false,
+      "input": {
+        "amplitude_bits": "0x7f7fffff",
+        "sample_bits": "0x3fffffff",
+        "entry": "0x3d8f3f",
+        "stop": "0x3d8f79",
+        "rsp": "0x60001800",
+        "mxcsr": "0x1f80"
+      },
+      "running_code_sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8",
+      "before": {
+        "0x22d8f30": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x60001830": "ffff7f7f",
+        "0x1ef93fc": "0000803f"
+      },
+      "initial_state": {
+        "rsp": "0x60001800",
+        "sample_bits": "0x3fffffff",
+        "mxcsr": "0x1f80"
+      },
+      "visited": [
+        "0x3d8f3f",
+        "0x3d8f44",
+        "0x3d8f4b",
+        "0x3d8f52",
+        "0x3d8f56",
+        "0x3d8f5d",
+        "0x3d8f65",
+        "0x3d8f6d",
+        "0x3d8f71"
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "size": 8,
+          "provider_value": 2139095039
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "size": 8,
+          "provider_value": 2139095039
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e8",
+          "size": 8,
+          "provider_value": -6510615555426900571
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "size": 4,
+          "provider_value": 2139095040
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "size": 4,
+          "provider_value": 2139095040
+        }
+      ],
+      "writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "bytes": "ffff7f7f00000000"
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "bytes": "ffff7f7f00000000a5a5a5a5a5a5a5a5"
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "bytes": "0000807f"
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "bytes": "0000807f"
+        }
+      ],
+      "reads": [
+        {
+          "pc": "0x3d8f3f",
+          "address": "0x60001830",
+          "size": 4
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f30",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f38",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f5d",
+          "address": "0x1ef93fc",
+          "size": 4
+        }
+      ],
+      "after": {
+        "0x22d8f30": "ffff7f7f00000000a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "0000807fa5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "0000807f00000000a5a5a5a5a5a5a5a5",
+        "0x60001830": "ffff7f7f",
+        "0x1ef93fc": "0000803f"
+      },
+      "output_bits": "0x7f800000",
+      "model": {
+        "original_order": "0x7f800000",
+        "factored": "0x7f7ffffd"
+      },
+      "stop_pc": "0x3d8f79",
+      "rsp_after": "0x60001800",
+      "mxcsr_after": "0x1f80",
+      "failure": null
+    },
+    {
+      "name": "normal-subtract-to-add-detector",
+      "intervention": "Fixture branch patch SUBSS->ADDSS",
+      "mutated": true,
+      "input": {
+        "amplitude_bits": "0x3f000000",
+        "sample_bits": "0x3fffffff",
+        "entry": "0x3d8f3f",
+        "stop": "0x3d8f79",
+        "rsp": "0x60001800",
+        "mxcsr": "0x1f80"
+      },
+      "running_code_sha256": "6d619641106433b8cf0764a9d541b463e2e4fa2cd56b88060a14c0736f19828d",
+      "before": {
+        "0x22d8f30": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x60001830": "0000003f",
+        "0x1ef93fc": "0000803f"
+      },
+      "initial_state": {
+        "rsp": "0x60001800",
+        "sample_bits": "0x3fffffff",
+        "mxcsr": "0x1f80"
+      },
+      "visited": [
+        "0x3d8f3f",
+        "0x3d8f44",
+        "0x3d8f4b",
+        "0x3d8f52",
+        "0x3d8f56",
+        "0x3d8f5d",
+        "0x3d8f65",
+        "0x3d8f6d",
+        "0x3d8f71"
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "size": 8,
+          "provider_value": 1056964608
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "size": 8,
+          "provider_value": 1056964608
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e8",
+          "size": 8,
+          "provider_value": -6510615555426900571
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "size": 4,
+          "provider_value": 1065353215
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "size": 4,
+          "provider_value": 1069547520
+        }
+      ],
+      "writes": [
+        {
+          "pc": "0x3d8f44",
+          "address": "0x22d8f30",
+          "bytes": "0000003f00000000"
+        },
+        {
+          "pc": "0x3d8f56",
+          "address": "0x22d92e0",
+          "bytes": "0000003f00000000a5a5a5a5a5a5a5a5"
+        },
+        {
+          "pc": "0x3d8f65",
+          "address": "0x22d91a0",
+          "bytes": "ffff7f3f"
+        },
+        {
+          "pc": "0x3d8f71",
+          "address": "0x22d92e0",
+          "bytes": "0000c03f"
+        }
+      ],
+      "reads": [
+        {
+          "pc": "0x3d8f3f",
+          "address": "0x60001830",
+          "size": 4
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f30",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f4b",
+          "address": "0x22d8f38",
+          "size": 8
+        },
+        {
+          "pc": "0x3d8f5d",
+          "address": "0x1ef93fc",
+          "size": 4
+        }
+      ],
+      "after": {
+        "0x22d8f30": "0000003f00000000a5a5a5a5a5a5a5a5",
+        "0x22d91a0": "ffff7f3fa5a5a5a5a5a5a5a5a5a5a5a5",
+        "0x22d92e0": "0000c03f00000000a5a5a5a5a5a5a5a5",
+        "0x60001830": "0000003f",
+        "0x1ef93fc": "0000803f"
+      },
+      "output_bits": "0x3fc00000",
+      "model": {
+        "original_order": "0x3efffffe",
+        "factored": "0x3efffffe"
+      },
+      "stop_pc": "0x3d8f79",
+      "rsp_after": "0x60001800",
+      "mxcsr_after": "0x1f80",
+      "failure": null
+    }
+  ],
+  "consumer": {
+    "path": "Database/FFXII TZA/21-RNG-And-Determinism/rng-streams.md",
+    "sha256": "e39cf57cb42f6a9882900bf1ff5ab3a8dda65745be9b9f39e22db4286f486d2b",
+    "head": "d3612042c6d646b3633cd7347a877c5a52cd5657"
+  },
+  "preflight": {
+    "method": "Host source prediction only, no original execution",
+    "sample_bits": "0x3fffffff",
+    "subnormal_amplitude_bits": "0x1",
+    "predicted_product_bits": "0x2",
+    "predicted_output_bits": "0x1",
+    "normal_amplitude_bits": "0x3f000000",
+    "predicted_normal_output_bits": "0x3efffffe"
+  },
+  "limits": "Injected sample/stack/scratch/MXCSR1F80 (masked exceptions, nearest, no DAZ/FTZ). Entry omits recurrence/nativeSave/initial amplitude guard; stop omits nativeRestore/full return/caller. No proof samplemax or amplitude boundaries occur in normal gameplay, actual game MXCSR, native CPU exception/status semantics, universal subnormal handling or full-function range. No old0.3f order case rerun.",
+  "cleanup": "Disposable emulator instances only; no game/PC controls, process attach, save/config/reference writes; no live health/cleanup claimed."
+}

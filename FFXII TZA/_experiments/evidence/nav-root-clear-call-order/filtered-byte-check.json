@@ -1,0 +1,81 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "c99f5507d8c1e3b3bc71d3d84fc9087e82ea55ac"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "ec6ccddc60d8293e81fef52b423ec35b8977f2de"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "bdcc29ffb4d495ab0bace5f273dc112eb086a549"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "408d6cec7493fbbe1c02b93ca16f67b48c72e796"
+    },
+    {
+      "path": "raw-source.json",
+      "git_blob": "341a7dcf3c932f3a3409b9eaaf3c1c31b60467b5"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "0ed1c1b65e2d501b5db2ab9d7604cec73dec913c"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "0ccc88e2cf40da3d047c7a31b74be9687caeeda9"
+    },
+    {
+      "path": "retained/__pycache__/reg_tracking.cpython-314.pyc",
+      "git_blob": "4ef23d410cd90639d8a7ab15eeff4ef50a5d26d7"
+    },
+    {
+      "path": "retained/__pycache__/shipping-reader.cpython-314.pyc",
+      "git_blob": "71d6e2e067ba5e50b349c884a7e15565a448e690"
+    },
+    {
+      "path": "retained/area-caller.bin",
+      "git_blob": "9822f26d6517966281ddadb258f3a051e55999f6"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "c99f5507d8c1e3b3bc71d3d84fc9087e82ea55ac"
+    },
+    {
+      "path": "retained/labelled-swapped-call-targets.bin",
+      "git_blob": "55c2cca89b6ab413e5e5cc3e299d8db16496c675"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/root-clear.bin",
+      "git_blob": "9efe44003ec57ccf04d9fe9117022e188fad1677"
+    },
+    {
+      "path": "retained/root-type-preimage.tsv",
+      "git_blob": "049f6e366879d9e6fa3b8d11960a8979b5b7621d"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/teardown-parent-manifest.json",
+      "git_blob": "22e7b254c730108ec5e51e548657d4520ba2cfdf"
+    },
+    {
+      "path": "retained/teardown-parent-raw.json",
+      "git_blob": "bbd6413953c067670b8c1a157f94d9e9ccde3e65"
+    }
+  ]
+}

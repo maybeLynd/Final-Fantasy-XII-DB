@@ -1,0 +1,8 @@
+target 003DFE60: 2 rel32 references
+   003320EC jmp ecx=0x0  | and rdx, rax ; xor ecx, ecx ; jmp 0x3dfe60
+   0033211F jmp ecx=0x1  | 
+target 003DFD00: 4 rel32 references
+   00320961 call ecx=0x0  | mov edx, ecx ; xor ecx, ecx ; call 0x3dfd00
+   003209CB call ecx=0x0  | mov edx, ecx ; xor ecx, ecx ; call 0x3dfd00
+   00354FE8 call ecx=0x0  | mov edx, eax ; xor ecx, ecx ; call 0x3dfd00
+   0050EBD7 call ecx=?  | xchg edx, eax

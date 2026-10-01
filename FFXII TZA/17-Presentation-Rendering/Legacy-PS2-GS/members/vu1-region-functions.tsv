@@ -1,0 +1,352 @@
+address	name	size	role	evidence
+00470000	FUN_00470000	69	other	non-micro callers: 003E75A0,003E7D50
+00470050	FUN_00470050	97	other	non-micro callers: 0051E580,0051E6C0,0051E7C0,0051E880
+004700C0	FUN_004700c0	23	other	non-micro callers: 003E7500
+004700E0	FUN_004700e0	332	other(no-caller)	no caller in E8/E9 index
+00470230	FUN_00470230	448	other(no-caller)	no caller in E8/E9 index
+004703F0	FUN_004703f0	198	other	non-micro callers: 0046FD00
+004704C0	FUN_004704c0	195	other	non-micro callers: 0046FD00
+00470590	FUN_00470590	202	other	non-micro callers: 0046FD00
+00470660	FUN_00470660	280	other	non-micro callers: 0046FD00
+00470780	FUN_00470780	798	other(no-caller)	no caller in E8/E9 index
+00470AA0	FUN_00470aa0	208	other(no-caller)	no caller in E8/E9 index
+00470B70	FUN_00470b70	827	other(no-caller)	no caller in E8/E9 index
+00470EB0	FUN_00470eb0	581	other(no-caller)	no caller in E8/E9 index
+00471100	FUN_00471100	50	other	non-micro callers: 0033F020
+00471140	FUN_00471140	10	other	non-micro callers: 003E1350
+00471150	FUN_00471150	220	other	non-micro callers: 003E00C0
+00471230	FUN_00471230	189	other	non-micro callers: 003E00C0
+004712F0	FUN_004712f0	24	other	non-micro callers: 003E3D70
+00471310	FUN_00471310	18	other	non-micro callers: 003E1610
+00471330	FUN_00471330	65	other	non-micro callers: 0033F020
+00471380	FUN_00471380	28	other	non-micro callers: 003E1350
+004713A0	FUN_004713a0	520	other	non-micro callers: 003E00C0
+004715B0	FUN_004715b0	23	other	non-micro callers: 003E3D70
+004715D0	FUN_004715d0	31	other	non-micro callers: 003E1610
+004715F0	FUN_004715f0	65	other	non-micro callers: 0033F020
+00471640	FUN_00471640	27	other	non-micro callers: 003E1350
+00471660	FUN_00471660	49	other	non-micro callers: 003E3D70
+004716A0	FUN_004716a0	290	other	non-micro callers: 003E00C0
+004717D0	FUN_004717d0	6	other	non-micro callers: 003E4140
+004717E0	FUN_004717e0	239	other	non-micro callers: 003E00C0
+004718D0	FUN_004718d0	31	other	non-micro callers: 003E1610
+004718F0	FUN_004718f0	165	other	non-micro callers: 0033F020
+004719A0	FUN_004719a0	9	other	non-micro callers: 003E1350
+004719B0	FUN_004719b0	54	other	non-micro callers: 003E1C50
+004719F0	FUN_004719f0	291	other	non-micro callers: 003E0740,003E0860,003E3D70
+00471B20	FUN_00471b20	63	other	non-micro callers: 003E12A0
+00471B60	FUN_00471b60	733	other	non-micro callers: 003E00C0
+00471E40	FUN_00471e40	1434	other	non-micro callers: 003E00C0
+004723E0	FUN_004723e0	331	other	non-micro callers: 00471B60
+00472550	FUN_00472550	41	other	non-micro callers: 003E1610
+00472580	FUN_00472580	645	other	non-micro callers: 0033F020
+00472810	FUN_00472810	4	other	non-micro callers: 003E1350
+00472820	FUN_00472820	302	other	non-micro callers: 003E0740,003E0860,003E3D70
+00472950	FUN_00472950	20	other	non-micro callers: 003E1610
+00472970	FUN_00472970	860	other	non-micro callers: 003E00C0
+00472CD0	FUN_00472cd0	1329	other	non-micro callers: 003E00C0
+00473210	FUN_00473210	593	other	non-micro callers: 0033F020
+00473470	FUN_00473470	8	other(no-caller)	no caller in E8/E9 index
+00473480	FUN_00473480	8	other(no-caller)	no caller in E8/E9 index
+00473490	FUN_00473490	43	other	non-micro callers: 0034FED0
+004734C0	FUN_004734c0	46	other	non-micro callers: 00350380
+004734F0	FUN_004734f0	5	other	non-micro callers: 00348D30
+00473500	FUN_00473500	207	other	non-micro callers: 003477B0,00347CD0,003E8440,003E8690
+004735D0	FUN_004735d0	5	other	non-micro callers: 00351E70,003E8440,003E85B0,003E8690
+004735E0	FUN_004735e0	23	other	non-micro callers: 003486A0,003E8350,003E8440
+00473600	FUN_00473600	7	other	non-micro callers: 003480D0
+00473610	thunk_FUN_00270150	5	other	non-micro callers: 003438A0
+00473620	FUN_00473620	24	other	non-micro callers: 00343050,003436B0
+00473640	FUN_00473640	61	other	non-micro callers: 00342880,00342CB0
+00473680	thunk_FUN_0026fa80	5	other	non-micro callers: 003436B0,00355300,00360710,00360A50
+00473690	FUN_00473690	64	other	non-micro callers: 003472A0,00347BE0
+004736D0	FUN_004736d0	11	other	non-micro callers: 003483E0
+004736E0	FUN_004736e0	37	other	non-micro callers: 00340230,00348800
+00473710	FUN_00473710	38	other	non-micro callers: 003429F0,0034B060
+00473740	FUN_00473740	39	other	non-micro callers: 00343180
+00473770	FUN_00473770	41	other	non-micro callers: 003434F0,0034C1D0
+004737A0	FUN_004737a0	46	other	non-micro callers: 0034C6A0
+004737D0	FUN_004737d0	67	other	non-micro callers: 00346E60,00347600
+00473820	FUN_00473820	14	other	non-micro callers: 00347F80
+00473830	FUN_00473830	156	other	non-micro callers: 003533B0,0035A6F0
+004738D0	FUN_004738d0	164	other	non-micro callers: 00340640,00341B20,00348C50,0034A110
+00473980	FUN_00473980	120	other	non-micro callers: 00340CB0,003421D0,00349220
+00473A00	FUN_00473a00	130	other	non-micro callers: 00341140,00341EE0,00349620,0034A4C0
+00473A90	FUN_00473a90	123	other	non-micro callers: 00341690,00342500,00349AD0
+00473B10	FUN_00473b10	7	other(no-caller)	no caller in E8/E9 index
+00473B20	FUN_00473b20	5	other	non-micro callers: 00351460,00351EE0
+00473B30	FUN_00473b30	20	other	non-micro callers: 00352350
+00473B50	FUN_00473b50	12	other	non-micro callers: 0037F4D0,0037F860
+00473B60	FUN_00473b60	12	other	non-micro callers: 0037F4D0,0037F860
+00473B70	FUN_00473b70	19	other	non-micro callers: 0037EB90,0037EC70,003BC160,003BC4E0
+00473B90	FUN_00473b90	29	other	non-micro callers: 003456E0,0037E8D0
+00473BB0	FUN_00473bb0	213	other	non-micro callers: 0037EB90,0037EC70,003BC160,003BD1B0
+00473C90	FUN_00473c90	37	other	non-micro callers: 00344C60
+00473CC0	FUN_00473cc0	92	other	non-micro callers: 003BD1B0,003BDB30,003BE3A0
+00473D20	FUN_00473d20	36	other	non-micro callers: 00379D20
+00473D50	FUN_00473d50	86	other	non-micro callers: 0037FEA0
+00473DB0	FUN_00473db0	86	other	non-micro callers: 0037FEA0
+00473E10	thunk_FUN_0017ff50	5	other	non-micro callers: 0034F140
+00473E20	FUN_00473e20	50	other	non-micro callers: 0034F570
+00473E60	FUN_00473e60	25	other	non-micro callers: 0034EA10
+00473E80	FUN_00473e80	372	other	non-micro callers: 0034E340
+00474020	thunk_FUN_00182f30	5	other(no-caller)	no caller in E8/E9 index
+00474030	thunk_FUN_00183150	5	other	non-micro callers: 0034D360
+00474040	FUN_00474040	37	other(no-caller)	no caller in E8/E9 index
+00474070	FUN_00474070	140	other	non-micro callers: 003545B0
+00474100	FUN_00474100	404	other(no-caller)	no caller in E8/E9 index
+004742A0	FUN_004742a0	777	other	non-micro callers: 00358CB0
+004745B0	FUN_004745b0	21	other	non-micro callers: 003590E0
+004745D0	FUN_004745d0	45	other	non-micro callers: 003658F0,00365DD0
+00474600	FUN_00474600	75	other	non-micro callers: 00365990
+00474650	FUN_00474650	35	other	non-micro callers: 003649A0
+00474680	FUN_00474680	50	other	non-micro callers: 003692D0
+004746C0	FUN_004746c0	42	other	non-micro callers: 003692D0
+004746F0	FUN_004746f0	26	other	non-micro callers: 0036A2A0,0036CB00
+00474710	FUN_00474710	3065	other	non-micro callers: 00475390
+00475310	FUN_00475310	121	other	non-micro callers: 0036F4D0
+00475390	FUN_00475390	31	other(no-caller)	no caller in E8/E9 index
+004753B0	FUN_004753b0	1322	VU-helper(sticky-flag-user)	calls 0022CC40/0022CC30
+004758E0	FUN_004758e0	5010	microprogram(registrar);microprogram(template)	registrar census;MPG emit table 008631E0 rdx
+00476C80	FUN_00476c80	494	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+00476E70	FUN_00476e70	199	other	non-micro callers: 0046D730
+00476F40	FUN_00476f40	491	other	non-micro callers: 00418880
+00477130	FUN_00477130	430	other	non-micro callers: 00373860,00418880
+004772E0	FUN_004772e0	139	other	non-micro callers: 0041FCF0
+00477370	FUN_00477370	265	other	non-micro callers: 003E7450
+00477480	FUN_00477480	347	other	non-micro callers: 0042C410,0042C8F0
+004775E0	FUN_004775e0	39	other	non-micro callers: 004213E0
+00477610	FUN_00477610	38	other	non-micro callers: 00520D30
+00477640	FUN_00477640	41	other	non-micro callers: 0041E860
+00477670	FUN_00477670	92	other	non-micro callers: 003E6A20
+004776D0	FUN_004776d0	117	other	non-micro callers: 003714A0
+00477750	FUN_00477750	330	other	non-micro callers: 0053AB50
+004778A0	FUN_004778a0	46	other	non-micro callers: 004269A0
+004778D0	FUN_004778d0	571	other	non-micro callers: 0053AB50
+00477B10	FUN_00477b10	889	other	non-micro callers: 0053AB50
+00477E90	FUN_00477e90	76	other	non-micro callers: 00477B10
+00477EE0	RenderModelInstanceContainer_InitializeStorage	52	other	non-micro callers: 0041E3A0
+00477F20	RenderModelInstanceContainer_ProcessActiveEntries	261	other	non-micro callers: 0041E4D0
+00478030	RenderModelInstanceContainer_TeardownAllEntries	12	other	non-micro callers: 0041E500
+00478040	RenderModelInstanceContainer_Reset	35	other	non-micro callers: 0041E3A0
+00478070	RenderModelInstanceContainer_DestroyInstanceByIndex	57	other	non-micro callers: 0041E860
+004780B0	ResourceTable_ResolveEntryBySignedIndex16	8	other	non-micro callers: 003714A0,003E55B0,004201F0,0042F4C0
+004780C0	FUN_004780c0	215	other	non-micro callers: 0041F340
+004781A0	RenderModelInstanceContainer_QueueActiveEntryCallback_Mode1	59	other(no-caller)	no caller in E8/E9 index
+004781E0	RenderModelInstanceContainer_BuildSortedActiveListCallback	138	other(no-caller)	no caller in E8/E9 index
+00478270	thunk_FUN_00504940	5	other(no-caller)	no caller in E8/E9 index
+00478280	FUN_00478280	3925	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004791E0	FUN_004791e0	398	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+00479370	FUN_00479370	219	XGKICK-shaped-leaf	form: 1 indirect call, 14 rip refs, 219B (vs 004EF860 219B)
+00479450	FUN_00479450	379	startup-template	called only from hub 0037DF90/0037E0F0
+004795D0	FUN_004795d0	116	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+00479650	FUN_00479650	4524	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+0047A800	FUN_0047a800	446	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+0047A9C0	FUN_0047a9c0	4396	microprogram(registrar);microprogram(template)	registrar census;MPG emit table 008631E0 rdx
+0047BAF0	FUN_0047baf0	571	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+0047BD30	FUN_0047bd30	98	other	non-micro callers: 00377230
+0047BDA0	FUN_0047bda0	128	other	non-micro callers: 0043EAB0
+0047BE20	FUN_0047be20	331	other	non-micro callers: 0043EBF0
+0047BF70	FUN_0047bf70	36	other	non-micro callers: 0043E9C0
+0047BFA0	FUN_0047bfa0	8	other	non-micro callers: 0043ED30
+0047BFB0	FUN_0047bfb0	944	sub-program	called only from microprograms (E8/E9 index)
+0047C360	FUN_0047c360	7647	microprogram(registrar)	registrar census
+0047E140	FUN_0047e140	943	startup-template	called only from hub 0037DF90/0037E0F0
+0047E4F0	FUN_0047e4f0	7673	microprogram(registrar);VU-helper(sticky-flag-user)	registrar census;calls 0022CC40/0022CC30
+004802F0	FUN_004802f0	420	startup-template	called only from hub 0037DF90/0037E0F0
+004804A0	FUN_004804a0	8037	microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	registrar census;calls 0022CC40/0022CC30;references VU mem/regs, not installed
+00482410	FUN_00482410	471	startup-template	called only from hub 0037DF90/0037E0F0
+004825F0	FUN_004825f0	619	VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs, not installed
+00482860	FUN_00482860	11044	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+00485390	FUN_00485390	1023	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+00485790	FUN_00485790	9230	microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	registrar census;calls 0022CC40/0022CC30;references VU mem/regs, not installed
+00487BA0	FUN_00487ba0	445	startup-template	called only from hub 0037DF90/0037E0F0
+00487D60	FUN_00487d60	551	VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs, not installed
+00487F90	FUN_00487f90	937	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+00488340	FUN_00488340	10225	microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	registrar census;calls 0022CC40/0022CC30;references VU mem/regs, not installed
+0048AB40	FUN_0048ab40	1067	startup-template	called only from hub 0037DF90/0037E0F0
+0048AF70	FUN_0048af70	7931	microprogram(registrar);VU-helper(VU-state-toucher)	registrar census;references VU mem/regs, not installed
+0048CE70	FUN_0048ce70	965	startup-template	called only from hub 0037DF90/0037E0F0
+0048D240	FUN_0048d240	619	VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs, not installed
+0048D4B0	FUN_0048d4b0	8026	microprogram(registrar);VU-helper(VU-state-toucher)	registrar census;references VU mem/regs, not installed
+0048F410	FUN_0048f410	887	startup-template	called only from hub 0037DF90/0037E0F0
+0048F790	FUN_0048f790	291	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+0048F8C0	FUN_0048f8c0	13425	microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	registrar census;calls 0022CC40/0022CC30;references VU mem/regs, not installed
+00492D40	FUN_00492d40	854	startup-template	called only from hub 0037DF90/0037E0F0
+004930A0	FUN_004930a0	9714	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004956A0	FUN_004956a0	509	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004958A0	FUN_004958a0	8260	microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	registrar census;calls 0022CC40/0022CC30;references VU mem/regs, not installed
+004978F0	FUN_004978f0	458	startup-template	called only from hub 0037DF90/0037E0F0
+00497AC0	FUN_00497ac0	7567	microprogram(template)	MPG emit table 008631E0 rdx
+00499850	FUN_00499850	452	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+00499A20	FUN_00499a20	7726	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+0049B850	FUN_0049b850	393	startup-template	called only from hub 0037DF90/0037E0F0
+0049B9E0	FUN_0049b9e0	6439	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+0049D310	FUN_0049d310	545	startup-template	called only from hub 0037DF90/0037E0F0
+0049D540	FUN_0049d540	10573	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+0049FE90	FUN_0049fe90	509	startup-template	called only from hub 0037DF90/0037E0F0
+004A0090	FUN_004a0090	7029	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004A1C10	FUN_004a1c10	536	startup-template	called only from hub 0037DF90/0037E0F0
+004A1E30	FUN_004a1e30	4887	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004A3150	FUN_004a3150	603	startup-template	called only from hub 0037DF90/0037E0F0
+004A33B0	FUN_004a33b0	3683	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004A4220	FUN_004a4220	495	startup-template	called only from hub 0037DF90/0037E0F0
+004A4410	FUN_004a4410	7857	VU-helper(sticky-flag-user);VU1-microprogram(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004A6490	FUN_004a6490	743	startup-template	called only from hub 0037DF90/0037E0F0
+004A6780	FUN_004a6780	1172	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004A6C20	FUN_004a6c20	7223	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004A8860	FUN_004a8860	660	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004A8B00	FUN_004a8b00	8992	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004AAE20	FUN_004aae20	405	startup-template	called only from hub 0037DF90/0037E0F0
+004AAFC0	FUN_004aafc0	10366	VU1-microprogram(VU-state-toucher)	references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004AD840	FUN_004ad840	409	startup-template	called only from hub 0037DF90/0037E0F0
+004AD9E0	FUN_004ad9e0	813	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004ADD10	FUN_004add10	8938	microprogram(template)	MPG emit table 008631E0 rdx
+004B0000	FUN_004b0000	555	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004B0230	FUN_004b0230	2365	VU-helper(sticky-flag-user);VU1-microprogram(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs; registered VU1 microprogram - passed to 003A33B0/003A2F70 by the effect-type walk (UQ-213 correction 2026-09-27)
+004B0B70	FUN_004b0b70	376	startup-template	called only from hub 0037DF90/0037E0F0
+004B0CF0	FUN_004b0cf0	619	VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs, not installed
+004B0F60	FUN_004b0f60	553	VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs, not installed
+004B1190	FUN_004b1190	32136	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004B8F20	FUN_004b8f20	2250	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004B97F0	FUN_004b97f0	66	sub-program	called only from microprograms (E8/E9 index)
+004B9840	FUN_004b9840	46	sub-program	called only from microprograms (E8/E9 index)
+004B9870	FUN_004b9870	32	sub-program	called only from microprograms (E8/E9 index)
+004B9890	FUN_004b9890	55	sub-program	called only from microprograms (E8/E9 index)
+004B98D0	FUN_004b98d0	21	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B98F0	FUN_004b98f0	21	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9910	FUN_004b9910	22	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9930	FUN_004b9930	20	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9950	FUN_004b9950	19	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9970	FUN_004b9970	21	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9990	FUN_004b9990	30	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B99B0	FUN_004b99b0	21	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B99D0	FUN_004b99d0	20	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B99F0	FUN_004b99f0	22	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9A10	FUN_004b9a10	22	sub-program	called only from microprograms (E8/E9 index)
+004B9A30	FUN_004b9a30	82	sub-program	called only from microprograms (E8/E9 index)
+004B9A90	FUN_004b9a90	82	sub-program	called only from microprograms (E8/E9 index)
+004B9AF0	FUN_004b9af0	95	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9B50	FUN_004b9b50	46	sub-program	called only from microprograms (E8/E9 index)
+004B9B80	FUN_004b9b80	59	sub-program	called only from microprograms (E8/E9 index)
+004B9BC0	FUN_004b9bc0	35	sub-program	called only from microprograms (E8/E9 index)
+004B9BF0	FUN_004b9bf0	47	sub-program	called only from microprograms (E8/E9 index)
+004B9C20	FUN_004b9c20	47	sub-program	called only from microprograms (E8/E9 index)
+004B9C50	FUN_004b9c50	77	sub-program	called only from microprograms (E8/E9 index)
+004B9CA0	FUN_004b9ca0	79	sub-program	called only from microprograms (E8/E9 index)
+004B9CF0	FUN_004b9cf0	79	sub-program	called only from microprograms (E8/E9 index)
+004B9D40	FUN_004b9d40	20	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9D60	FUN_004b9d60	21	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004B9D80	FUN_004b9d80	171	sub-program	called only from microprograms (E8/E9 index)
+004B9E30	FUN_004b9e30	41	sub-program	called only from microprograms (E8/E9 index)
+004B9E60	FUN_004b9e60	50	sub-program	called only from microprograms (E8/E9 index)
+004B9EA0	FUN_004b9ea0	8826	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004BC120	FUN_004bc120	510	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004BC320	FUN_004bc320	12184	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004BF2C0	FUN_004bf2c0	569	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004BF500	FUN_004bf500	5994	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004C0C70	FUN_004c0c70	545	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004C0EA0	FUN_004c0ea0	4501	microprogram(registrar);VU-helper(VU-state-toucher)	registrar census;references VU mem/regs, not installed
+004C2040	FUN_004c2040	281	startup-template	called only from hub 0037DF90/0037E0F0
+004C2160	FUN_004c2160	5292	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004C3610	FUN_004c3610	426	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004C37C0	FUN_004c37c0	4739	microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	registrar census;calls 0022CC40/0022CC30;references VU mem/regs, not installed
+004C4A50	FUN_004c4a50	494	startup-template	called only from hub 0037DF90/0037E0F0
+004C4C40	FUN_004c4c40	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004C4D20	FUN_004c4d20	3755	microprogram(registrar);microprogram(template)	registrar census;MPG emit table 008631E0 rdx
+004C5BD0	FUN_004c5bd0	542	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004C5DF0	FUN_004c5df0	3508	microprogram(registrar);microprogram(template)	registrar census;MPG emit table 008631E0 rdx
+004C6BB0	FUN_004c6bb0	555	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004C6DE0	FUN_004c6de0	3851	microprogram(registrar);microprogram(template)	registrar census;MPG emit table 008631E0 rdx
+004C7CF0	FUN_004c7cf0	524	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004C7F00	FUN_004c7f00	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004C7FE0	FUN_004c7fe0	146	startup-template	called only from hub 0037DF90/0037E0F0
+004C8080	FUN_004c8080	509	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004C8280	FUN_004c8280	157	startup-template	called only from hub 0037DF90/0037E0F0
+004C8320	FUN_004c8320	28422	microprogram(template)	MPG emit table 008631E0 rdx
+004CF230	FUN_004cf230	78	sub-program	called only from microprograms (E8/E9 index)
+004CF280	FUN_004cf280	197	VU-helper(VU-state-toucher)	references VU mem/regs, not installed; NOT the leaf form (0 calls, 3 rip refs) - different role
+004CF350	FUN_004cf350	92	sub-program	called only from microprograms (E8/E9 index)
+004CF3B0	FUN_004cf3b0	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004CF490	FUN_004cf490	5098	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004D0880	FUN_004d0880	720	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004D0B50	FUN_004d0b50	337	startup-template	called only from hub 0037DF90/0037E0F0
+004D0CB0	FUN_004d0cb0	450	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004D0E80	FUN_004d0e80	274	startup-template	called only from hub 0037DF90/0037E0F0
+004D0FA0	FUN_004d0fa0	11709	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004D3D60	FUN_004d3d60	181	startup-template	called only from hub 0037DF90/0037E0F0
+004D3E20	FUN_004d3e20	445	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004D3FE0	FUN_004d3fe0	255	startup-template	called only from hub 0037DF90/0037E0F0
+004D40E0	FUN_004d40e0	14891	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004D7B10	FUN_004d7b10	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004D7BF0	FUN_004d7bf0	10177	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004DA3C0	FUN_004da3c0	157	startup-template	called only from hub 0037DF90/0037E0F0
+004DA460	FUN_004da460	423	startup-template	called only from hub 0037DF90/0037E0F0
+004DA610	FUN_004da610	53	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004DA650	FUN_004da650	584	startup-template	called only from hub 0037DF90/0037E0F0
+004DA8A0	FUN_004da8a0	1327	microprogram(template)	MPG emit table 008631E0 rdx
+004DADD0	FUN_004dadd0	650	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004DB060	FUN_004db060	523	startup-template	called only from hub 0037DF90/0037E0F0
+004DB270	FUN_004db270	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004DB350	FUN_004db350	4953	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004DC6B0	FUN_004dc6b0	498	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004DC8B0	FUN_004dc8b0	6	other	non-micro callers: 004DC6B0,004E2930
+004DC8C0	FUN_004dc8c0	44	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004DC8F0	FUN_004dc8f0	260	startup-template	called only from hub 0037DF90/0037E0F0
+004DCA00	FUN_004dca00	507	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004DCC00	FUN_004dcc00	4581	microprogram(template)	MPG emit table 008631E0 rdx
+004DDDF0	FUN_004dddf0	5479	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004DF360	FUN_004df360	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004DF440	FUN_004df440	6957	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004E0F70	FUN_004e0f70	6587	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004E2930	FUN_004e2930	863	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004E2C90	FUN_004e2c90	53	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004E2CD0	FUN_004e2cd0	261	startup-template	called only from hub 0037DF90/0037E0F0
+004E2DE0	FUN_004e2de0	814	startup-template	called only from hub 0037DF90/0037E0F0
+004E3110	FUN_004e3110	155	startup-template	called only from hub 0037DF90/0037E0F0
+004E31B0	FUN_004e31b0	44	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004E31E0	FUN_004e31e0	18098	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004E78A0	FUN_004e78a0	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004E7980	FUN_004e7980	52	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004E79C0	FUN_004e79c0	199	startup-template	called only from hub 0037DF90/0037E0F0
+004E7A90	FUN_004e7a90	707	other	non-micro callers: 0037E0F0,004E7980
+004E7D60	FUN_004e7d60	44	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004E7D90	FUN_004e7d90	15212	microprogram(template);VU-helper(sticky-flag-user)	MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004EB910	FUN_004eb910	1387	VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)	calls 0022CC40/0022CC30;references VU mem/regs, not installed
+004EBE80	FUN_004ebe80	2769	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004EC960	FUN_004ec960	515	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004ECB70	FUN_004ecb70	216	VU-helper(VU-state-toucher);XGKICK-shaped-leaf	references VU mem/regs, not installed; form-matches 004EF860 (219B, 1 indirect call r11, 14 rip refs)
+004ECC50	FUN_004ecc50	3334	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004ED960	FUN_004ed960	482	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004EDB50	FUN_004edb50	7440	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004EF860	FUN_004ef860	219	VU-helper(VU-state-toucher);XGKICK-shaped-leaf(reference)	references VU mem/regs, not installed; the 219B reference leaf (1 indirect call r11, 14 rip refs)
+004EF940	FUN_004ef940	22073	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004F4F80	FUN_004f4f80	992	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004F5360	FUN_004f5360	7440	VU-helper(VU-state-toucher)	references VU mem/regs, not installed
+004F7070	FUN_004f7070	24541	microprogram(registrar);microprogram(template);VU-helper(sticky-flag-user)	registrar census;MPG emit table 008631E0 rdx;calls 0022CC40/0022CC30
+004FD060	FUN_004fd060	1104	MPG-packet-builder;startup-template	calls 008631E0;called only from hub 0037DF90/0037E0F0
+004FD4B0	FUN_004fd4b0	2261	other	non-micro callers: 0053D780
+004FDD90	FUN_004fdd90	10	other	non-micro callers: 0041E4D0
+004FDDA0	FUN_004fdda0	1221	other	non-micro callers: 004FDD90
+004FE270	FUN_004fe270	122	other	non-micro callers: 003E54B0,003E6150,0046C6E0,0046C8F0
+004FE2F0	FUN_004fe2f0	204	other	non-micro callers: 00384E50,003E56E0,003E6310,004256E0
+004FE3C0	FUN_004fe3c0	14	other	non-micro callers: 0028F2F0,0028F8B0,0028FA70,0028FAF0
+004FE3D0	FUN_004fe3d0	79	other	non-micro callers: 00465F60,00466070
+004FE420	RenderCommandBuffer_ConfigureBackingRange	120	other	non-micro callers: 003A1D50,003A1E10,00466070
+004FE4A0	FUN_004fe4a0	60	other	non-micro callers: 00538350,005387B0
+004FE4E0	FUN_004fe4e0	545	other	non-micro callers: 00537FF0,005383B0
+004FE710	FUN_004fe710	529	other	non-micro callers: 00537FF0,005383B0
+004FE930	FUN_004fe930	413	other	non-micro callers: 00537BA0,00537CC0,00537FF0,005383B0
+004FEAD0	FUN_004fead0	1430	other	non-micro callers: 00537BA0,00537CC0,00537FF0,005383B0
+004FF080	FUN_004ff080	79	other	non-micro callers: 003A8020,003A8290
+004FF0D0	FUN_004ff0d0	56	other	non-micro callers: 003A4290,003A56F0,003A7EE0,003A8290
+004FF110	FUN_004ff110	146	other	non-micro callers: 003A8020
+004FF1B0	FUN_004ff1b0	59	other	non-micro callers: 0052F560
+004FF1F0	FUN_004ff1f0	59	other	non-micro callers: 0052F560
+004FF230	FUN_004ff230	63	other	non-micro callers: 00537C80,00537FA0,00538350,005387B0
+004FF270	FUN_004ff270	55	other	non-micro callers: 003A7DC0,003A7E80
+004FF2B0	FUN_004ff2b0	5	other	non-micro callers: 003B9FB0,005375B0,005388F0,006C9B20
+004FF2C0	FUN_004ff2c0	85	other	non-micro callers: 0046E990,0046EFD0
+004FF320	FUN_004ff320	52	other	non-micro callers: 003A7730,003A77F0
+004FF360	FUN_004ff360	109	other	non-micro callers: 003A92D0
+004FF440	FUN_004ff440	3553	other	non-micro callers: 0043F450

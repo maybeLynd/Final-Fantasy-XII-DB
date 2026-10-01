@@ -1,0 +1,66 @@
+{
+  "finished": true,
+  "controls": [
+    {
+      "name": "incomplete-good-cases",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py",
+        "--raw",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\reducer-controls\\incomplete-good-cases\\raw.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 42, in <module>\n    result=reduce(w,a.raw or w/'run-01/raw.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 6, in reduce\n    assert r['finished'] is True and 'fatal' not in r and r['source_and_inputs_unchanged'] is True,'INCOMPLETE_CAPTURE'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: INCOMPLETE_CAPTURE\n",
+      "expected": "INCOMPLETE_CAPTURE",
+      "terminal": true
+    },
+    {
+      "name": "nonzero-good-json",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py",
+        "--raw",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\reducer-controls\\nonzero-good-json\\raw.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 42, in <module>\n    result=reduce(w,a.raw or w/'run-01/raw.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 24, in reduce\n    assert c['returncode']==0 and not c['stderr'] and c['terminal'] is True and c['parse_error'] is None,'UPSTREAM_FAILED'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: UPSTREAM_FAILED\n",
+      "expected": "UPSTREAM_FAILED",
+      "terminal": true
+    },
+    {
+      "name": "missing-null-result",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py",
+        "--raw",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\reducer-controls\\missing-null-result\\raw.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 42, in <module>\n    result=reduce(w,a.raw or w/'run-01/raw.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 25, in reduce\n    p=c['parsed'];assert isinstance(p,dict) and 'result' in p and 'exception' in p and p['exception'] is None,'MISSING_RESULT'\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_RESULT\n",
+      "expected": "MISSING_RESULT",
+      "terminal": true
+    },
+    {
+      "name": "wrong-argv-flag",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py",
+        "--raw",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\reducer-controls\\wrong-argv-flag\\raw.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 42, in <module>\n    result=reduce(w,a.raw or w/'run-01/raw.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 28, in reduce\n    assert len(args[3:])==8 and args[3::2]==['--source','--input','--kind','--subsystems'],'WRONG_INVOCATION'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: WRONG_INVOCATION\n",
+      "expected": "WRONG_INVOCATION",
+      "terminal": true
+    }
+  ],
+  "credit": "producer reducer tests only; no new original-function observations or independent acceptance"
+}

@@ -1,0 +1,29 @@
+001C9740  pushfq    
+001C9741  je        0x1c9746
+001C9743  add       byte ptr [rax - 0x73], cl
+001C9746  adc       eax, 0x73112d
+001C974B  lea       rcx, [rip + 0x1db7c76]   ; -> 01F813C8 (virtual tail / unmapped)
+001C9752  test      al, al
+001C9754  jne       0x1c9759
+001C9756  mov       rcx, rdi
+001C9759  call      0x1ff740
+001C975E  mov       rcx, rax
+001C9761  call      0x200b80
+001C9766  cmp       eax, 1
+001C9769  sete      bl
+001C976C  call      0x193d50
+001C9771  lea       rdx, [rip + 0x7311b0]   ; -> 008FA928 u32=64616853 f32=1.66321e+22
+001C9778  mov       rcx, rdi
+001C977B  mov       byte ptr [rax + 0x4a2], bl
+001C9781  call      0x1ff740
+001C9786  mov       rcx, rax
+001C9789  call      0x200be0
+---
+0018F300  mov       dword ptr [rdi + 0x30], eax
+0018F303  mov       eax, dword ptr [rsi + 0x16c]
+0018F309  mov       dword ptr [rdi + 0x34], eax
+0018F30C  movzx     eax, byte ptr [rsi + 0x164]
+0018F313  mov       byte ptr [rdi + 0x21], al
+0018F316  movzx     eax, byte ptr [rsi + 0x4a2]
+0018F31D  mov       byte ptr [rdi + 0x9a], al
+---

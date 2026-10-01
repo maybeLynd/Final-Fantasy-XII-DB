@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\transition-actual-write\\controls.py"
+  ],
+  "driver_sha256": "d31052c5ff52aad9ac038ff3429b62bd7d025241dd0f5607cd58f2586a5ce23d",
+  "checker_sha256": "08d2bc80f1224c74032c230c47dd529947c1903ce7d271822889d040166af275",
+  "output_sha256": "c702eba61e554fea0a2f6c1c341b2eee6eb325084dfea41142a93b1f6515e17b",
+  "returncode": 0,
+  "stdout": "[{\"case\": \"missing-second\", \"refused\": true, \"exception_type\": \"FileNotFoundError\"}, {\"case\": \"nonzero-first\", \"refused\": true, \"exception_type\": \"AssertionError\"}, {\"case\": \"changed-second-state\", \"refused\": true, \"exception_type\": \"AssertionError\"}]\n",
+  "stderr": "",
+  "terminal": true
+}

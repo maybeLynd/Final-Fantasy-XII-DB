@@ -1,0 +1,692 @@
+{
+ "cases": {
+  "M4_mode4_rewrites_tables_0_1_3_keeps_table2_base": true,
+  "M5_mode5_restores_table3_to_its_prior_content": true,
+  "X_modes_4_and_5_differ_only_in_table3": true
+ },
+ "differing_tables": [
+  "t3_5A90"
+ ],
+ "mode4": {
+  "after": {
+   "t0_5A5A": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t1_5A6C": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t2_5A7E": [
+    "0101",
+    "0202",
+    "0303",
+    "0404",
+    "0505",
+    "0606",
+    "0707",
+    "0808",
+    "0909"
+   ],
+   "t3_5A90": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ]
+  },
+  "before": {
+   "t0_5A5A": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t1_5A6C": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t2_5A7E": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t3_5A90": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ]
+  },
+  "ladder": 4,
+  "returned": true,
+  "stopped_at": []
+ },
+ "mode4_prior3": {
+  "after": {
+   "t0_5A5A": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t1_5A6C": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t2_5A7E": [
+    "0101",
+    "0202",
+    "0303",
+    "0404",
+    "0505",
+    "0606",
+    "0707",
+    "0808",
+    "0909"
+   ],
+   "t3_5A90": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ]
+  },
+  "before": {
+   "t0_5A5A": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t1_5A6C": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t2_5A7E": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t3_5A90": [
+    "3000",
+    "3001",
+    "3002",
+    "3003",
+    "3004",
+    "3005",
+    "3006",
+    "3007",
+    "3008"
+   ]
+  },
+  "ladder": 4,
+  "returned": true,
+  "stopped_at": []
+ },
+ "mode5": {
+  "after": {
+   "t0_5A5A": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t1_5A6C": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t2_5A7E": [
+    "0101",
+    "0202",
+    "0303",
+    "0404",
+    "0505",
+    "0606",
+    "0707",
+    "0808",
+    "0909"
+   ],
+   "t3_5A90": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ]
+  },
+  "before": {
+   "t0_5A5A": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t1_5A6C": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t2_5A7E": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t3_5A90": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ]
+  },
+  "ladder": 5,
+  "returned": true,
+  "stopped_at": []
+ },
+ "mode5_prior3": {
+  "after": {
+   "t0_5A5A": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t1_5A6C": [
+    "FFFF",
+    "FFFF",
+    "0003",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "t2_5A7E": [
+    "0101",
+    "0202",
+    "0303",
+    "0404",
+    "0505",
+    "0606",
+    "0707",
+    "0808",
+    "0909"
+   ],
+   "t3_5A90": [
+    "3000",
+    "3001",
+    "3002",
+    "3003",
+    "3004",
+    "3005",
+    "3006",
+    "3007",
+    "3008"
+   ]
+  },
+  "before": {
+   "t0_5A5A": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t1_5A6C": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t2_5A7E": [
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE",
+    "EEEE"
+   ],
+   "t3_5A90": [
+    "3000",
+    "3001",
+    "3002",
+    "3003",
+    "3004",
+    "3005",
+    "3006",
+    "3007",
+    "3008"
+   ]
+  },
+  "ladder": 5,
+  "returned": true,
+  "stopped_at": []
+ },
+ "ok": true,
+ "other_flags": {
+  "0": {
+   "after": {
+    "t0_5A5A": [
+     "0101",
+     "0202",
+     "0303",
+     "0404",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    "t1_5A6C": [
+     "0101",
+     "0202",
+     "0303",
+     "0404",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    "t2_5A7E": [
+     "0101",
+     "0202",
+     "0303",
+     "0404",
+     "0505",
+     "0606",
+     "0707",
+     "0808",
+     "0909"
+    ],
+    "t3_5A90": [
+     "0101",
+     "0202",
+     "0303",
+     "0404",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ]
+   },
+   "before": {
+    "t0_5A5A": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t1_5A6C": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t2_5A7E": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t3_5A90": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ]
+   },
+   "ladder": 0,
+   "returned": true,
+   "stopped_at": []
+  },
+  "1": {
+   "after": {
+    "t0_5A5A": [
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "0099",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    "t1_5A6C": [
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "0099",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    "t2_5A7E": [
+     "0101",
+     "0202",
+     "0303",
+     "0404",
+     "0505",
+     "0606",
+     "0707",
+     "0808",
+     "0909"
+    ],
+    "t3_5A90": [
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "0099",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ]
+   },
+   "before": {
+    "t0_5A5A": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t1_5A6C": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t2_5A7E": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t3_5A90": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ]
+   },
+   "ladder": 1,
+   "returned": true,
+   "stopped_at": []
+  },
+  "2": {
+   "after": {
+    "t0_5A5A": [
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "001A",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    "t1_5A6C": [
+     "FFFF",
+     "FFFF",
+     "0303",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    "t2_5A7E": [
+     "0101",
+     "0202",
+     "0303",
+     "0404",
+     "0505",
+     "0606",
+     "0707",
+     "0808",
+     "0909"
+    ],
+    "t3_5A90": [
+     "0101",
+     "0202",
+     "0303",
+     "001A",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ]
+   },
+   "before": {
+    "t0_5A5A": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t1_5A6C": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t2_5A7E": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ],
+    "t3_5A90": [
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE",
+     "EEEE"
+    ]
+   },
+   "ladder": 2,
+   "returned": true,
+   "stopped_at": []
+  }
+ }
+}

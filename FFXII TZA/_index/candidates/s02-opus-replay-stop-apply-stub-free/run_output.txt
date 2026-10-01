@@ -1,0 +1,10 @@
+world_registry_initialised_inert         PASS
+SS6_clean_registry_apply_is_a_no_op      PASS
+SS6_request_raises_dirty_and_apply_clears_it PASS
+SS1_bitset_never_read                    PASS
+SS3_only_first_qword_and_fade_read       PASS
+SS2_combine_is_AND_over_28_with_all_ones_identity PASS
+SS4_fade_is_min_of_nonnegative_and_consumed PASS
+SS5_bit41_in_every_record_B_after_apply  PASS
+SS1_control_bitset_does_not_change_the_outcome PASS
+ALL PASS

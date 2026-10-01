@@ -1,0 +1,8 @@
+chunks in 00630000-0063FFFF: 419
++0x50 node writers (lea or add shape, non-self store): 3 sites in 1 functions: 00639160
+  00639160  lea at 00639212 -> store 00639229  mov qword ptr [rdx], r8
+  00639160  add at 0063921A -> store 00639225  mov qword ptr [r8 + 8], rdx
+  00639160  lea at 00639231 -> store 00639244  mov qword ptr [r14], rdx
+positive control 00639160 lea shape: PASS; add shape: PASS
+== X. same sweep with the PACKAGE's store regex (hex-only displacement)
+  [r8 + 8] matched by package regex: False; by this script's: True

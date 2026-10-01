@@ -1,0 +1,93 @@
+PASS text resolver control: 0x87E is 'Save complete.' :: Save complete.
+PASS 0x1D scan positive control 00581D4D found
+PASS 0x1D posts through 00247510 in the save/load region are exactly 0057EA0D, 0057EC1F, 0057F48E, 00581D4D :: 0057EA0D,0057EC1F,0057F48E,00581D4D
+PASS class 0x3 stored at 0057EBFE :: mov dword ptr [rsp + 0x20], 3
+PASS class 0xd stored at 0057E983 :: mov dword ptr [rsp + 0x80], 0xd
+PASS 0057EBB0 acts only for queue kind 3 (cmp ecx,3)
+PASS 0057EC60 registers callback 0057EBB0 then queues kind 3
+PASS 0057EA40 registers callback 0057E950 then queues kind 4
+PASS 0057E950 queues kind 5 on kind-4 success in save mode
+PASS 00580A80 reads the status at payload+8
+PASS 00580B40 reads the status at payload+8
+PASS 00580CD0 reads the status at payload+8
+PASS 003BB2C0 arms command 5 and zeroes the qword at 02B40E14 (status 02B40E18) and 02B40E10
+PASS 003BB3B0 arms command 4 and zeroes the qword at 02B40E14 (status 02B40E18) and 02B40E10
+PASS 00580EB0 state table image+0x461268 = 15 published arms :: 00580F15 00580F27 00580F41 00580F56 00580F95 0058103D 00580F6B 00580F80 00581052 00581141 00581149 0058115E 005811FF 00581218 00581218
+PASS state 2 arm 00580F41 selects popup 0x15
+PASS state 3 arm 00580F56 selects popup 0x13
+PASS state 4 arm 00580F95 selects popup 0x10
+PASS state 5 arm 0058103D selects popup 0x16
+PASS state 6 arm 00580F6B selects popup 0x19
+PASS state 7 arm 00580F80 selects popup 0x1a
+PASS state 8 arm 00581052 selects popup 0x11
+PASS state 9 arm 00581141 selects popup 0x17
+PASS state 10 arm 00581149 selects popup 0x12
+PASS state 11 arm 0058115E selects popup 0xf
+PASS state 12 arm 005811FF selects popup 0x18
+PASS states 0xD/0xE show the caller's popup (dil = r8d at 00580ED8)
+      popup 0x00 text 0x80f kind 1 flags 0x00 se 0x5 :: No memory card {AE}PS{87}{AF} found in / MEMORY CARD {0F}R{80}{80}{80}.
+      popup 0x01 text 0x811 kind 3 flags 0x00 se 0x25 :: Insufficient disk space. / In order to create a save game, at least / {0F}N{80}{80}KB of free space is required.
+      popup 0x02 text 0x81a kind 0 flags 0x00 se 0x25 :: No save data found for / FINAL FANTASY {13}{83} THE ZODIAC AGE.
+      popup 0x03 text 0x810 kind 1 flags 0x00 se 0x25 :: Failed to read memory card {AE}PS{87}{AF} / in MEMORY CARD {0F}R{80}{80}{80}.
+      popup 0x04 text 0x814 kind 0 flags 0x00 se 0x25 :: Failed to format memory card {AE}PS{87}{AF}.
+      popup 0x05 text 0x818 kind 0 flags 0x00 se 0x25 :: Save failed.
+      popup 0x06 text 0x81c kind 0 flags 0x00 se 0x25 :: Load failed.
+      popup 0x07 text 0x878 kind 4 flags 0x00 se 0x25 :: Corrupt save data. FINAL FANTASY XII requires / at least {0F}N{80}{80}KB of free space to save your game. / Are you sure you wish to continue?
+      popup 0x08 text 0x879 kind 0 flags 0x00 se 0x25 :: The selected file is in use by another game. / Unable to overwrite.
+      popup 0x09 text 0x828 kind 4 flags 0x00 se 0x25 :: Unable to overwrite other game data. / FINAL FANTASY XII requires at least / {0F}N{80}{80}KB of free space to save your game.
+      popup 0x0a text 0x86d kind 0 flags 0x00 se 0x25 :: Unable to load. / Save data is corrupted.
+      popup 0x0b text 0xc87 kind 0 flags 0x00 se 0x25 :: 
+      popup 0x0c text 0x86c kind 0 flags 0x00 se 0x25 :: No memory cards {AE}PS{87}{AF} found. FINAL FANTASY XII / requires at least {0F}N{80}{80}KB of free space to save your / game. Are you sure you wish to continue?
+      popup 0x0d text 0x86b kind 4 flags 0x01 se 0x25 :: Insufficient free space on memory cards {AE}PS{87}{AF} in / MEMORY CARD slots {86} and {87}. FINAL FANTASY XII / requires at least {0F}N{80}{80}KB of free space to save your / game. Are you sure you wish to continue?
+      popup 0x0e text 0x80e kind 0 flags 0x08 se 0x69 :: Checking save data... / Please do not close FINAL FANTASY {13}{83} THE ZODIAC AGE / before these checks are complete.
+      popup 0x0f text 0x813 kind 0 flags 0x08 se 0x25 :: Formatting memory card {AE}PS{87}{AF}. Do not / remove{A2}insert memory card {AE}PS{87}{AF} or / DUALSHOCK{B7}{87} analog controller.
+      popup 0x10 text 0x817 kind 0 flags 0x18 se 0x0 :: Saving... / Please do not close FINAL FANTASY {13}{83} THE ZODIAC AGE.
+      popup 0x11 text 0x81b kind 0 flags 0x18 se 0x0 :: Loading... / Please do not close FINAL FANTASY {13}{83} THE ZODIAC AGE.
+      popup 0x12 text 0x812 kind 2 flags 0x03 se 0x25 :: Memory card {AE}PS{87}{AF} in MEMORY CARD {0F}R{80}{80}{80} / is not formatted. Format it now?
+      popup 0x13 text 0x815 kind 0 flags 0x03 se 0x25 :: Save data for FINAL FANTASY {13}{83} THE ZODIAC AGE / already exists. Overwrite it?
+      popup 0x14 text 0x819 kind 0 flags 0x03 se 0x25 :: Exit save screen without saving?
+      popup 0x15 text 0x87d kind 0 flags 0x03 se 0x25 :: Create new save data for / FINAL FANTASY {13}{83} THE ZODIAC AGE?
+      popup 0x16 text 0x87e kind 0 flags 0x10 se 0x0 :: Save complete.
+      popup 0x17 text 0x87f kind 0 flags 0x10 se 0x0 :: Load complete.
+      popup 0x18 text 0x880 kind 1 flags 0x30 se 0x0 :: Format of memory card {AE}PS{87}{AF} in / MEMORY CARD {0F}R{80}{80}{80} successful.
+      popup 0x19 text 0x816 kind 0 flags 0x03 se 0x25 :: {0F}J{80}{92}If you resume from this file, / all trial mode progress will be lost. / Are you sure you wish to proceed?{0F}J{80}{9B}
+      popup 0x1a text 0x81d kind 0 flags 0x03 se 0x25 :: {0F}J{80}{92}Your Trial Version save data will no longer / be playable. Are you sure?{0F}J{80}{9B}
+      popup 0x1b text 0x891 kind 0 flags 0x00 se 0x5 :: That key is already being used. / Override current setting?
+      popup 0x1c text 0x892 kind 0 flags 0x00 se 0x5 :: That key cannot be used.
+      popup 0x1d text 0x893 kind 0 flags 0x00 se 0x5 :: Key assignment not complete!
+      popup 0x1e text 0x899 kind 0 flags 0x00 se 0x5 :: Keyboard {86} controls cannot be left unassigned. / Please assign a key.
+PASS popup 0x0 text contains 'No memory card' :: No memory card {AE}PS{87}{AF} found in / MEMORY CARD {0F}R{8
+PASS popup 0x1 text contains 'Insufficient disk space' :: Insufficient disk space. / In order to create a save game, a
+PASS popup 0x3 text contains 'Failed to read memory card' :: Failed to read memory card {AE}PS{87}{AF} / in MEMORY CARD {
+PASS popup 0x4 text contains 'Failed to format' :: Failed to format memory card {AE}PS{87}{AF}.
+PASS popup 0x5 text contains 'Save failed' :: Save failed.
+PASS popup 0x6 text contains 'Load failed' :: Load failed.
+PASS popup 0x10 text contains 'Saving' :: Saving... / Please do not close FINAL FANTASY {13}{83} THE Z
+PASS popup 0x11 text contains 'Loading' :: Loading... / Please do not close FINAL FANTASY {13}{83} THE 
+PASS popup 0x13 text contains 'already exists' :: Save data for FINAL FANTASY {13}{83} THE ZODIAC AGE / alread
+PASS popup 0x15 text contains 'Create new save data' :: Create new save data for / FINAL FANTASY {13}{83} THE ZODIAC
+PASS popup 0x16 text contains 'Save complete' :: Save complete.
+PASS popup 0x17 text contains 'Load complete' :: Load complete.
+PASS popup 0x12 text contains 'is not formatted' :: Memory card {AE}PS{87}{AF} in MEMORY CARD {0F}R{80}{80}{80} 
+PASS popup 0x19 text contains 'trial mode progress' :: {0F}J{80}{92}If you resume from this file, / all trial mode 
+PASS popup 0x1a text contains 'Trial Version' :: {0F}J{80}{92}Your Trial Version save data will no longer / b
+PASS 00580A80 closes the popup in states 2,3,5,6,7,0xA,0xC,0xE :: [2, 3, 5, 6, 7, 10, 12, 14]
+PASS 00580A80 enters state 0xD with popup 0
+PASS 00580B40 constant at 00580B72 = r8d, 3 :: r8d, 3
+PASS 00580B40 constant at 00580B86 = r8d, r8d :: r8d, r8d
+PASS 00580B40 constant at 00580B9A = r8d, 1 :: r8d, 1
+PASS 00580B40 constant at 00580BB1 = r9b, 0xa :: r9b, 0xa
+PASS 00580B40 constant at 00580BDE = r9b, 4 :: r9b, 4
+PASS 00580B40 constant at 00580BFC = r9b, 3 :: r9b, 3
+PASS 00580B40 constant at 00580C10 = r9b, 2 :: r9b, 2
+PASS 00580B40 constant at 00580CA2 = r9b, 6 :: r9b, 6
+PASS 00580B40 constant at 00580CA7 = r9b, 8 :: r9b, 8
+PASS 00580CD0 success -> state 5
+PASS 00580CD0 failure -> state 0xD with popup 5
+PASS 23 E8/E9 sites reach 00580EB0 :: 23
+PASS no conditional jump reaches 00580EB0 :: []
+PASS no absolute qword pointer to 00580EB0 in the file
+PASS state scan control: it sees states 6 and 8 (loaded as r9b at 00580CA2 / 00580CA7)
+PASS no call site loads state 7 (dl / r9b / sil) :: []
+      states loaded as immediates at the sites: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14]
+FAILS 0

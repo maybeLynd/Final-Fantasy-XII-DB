@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-92",
+ "result_refs": [
+  "commit:5445d160d"
+ ],
+ "note": "19-path publish; guard ADDS NOTHING 104=104; all 22 interior-cited"
+}

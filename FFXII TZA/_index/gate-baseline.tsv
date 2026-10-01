@@ -1,0 +1,172 @@
+# Accepted state of the kit's checkers, recorded 2026-09-14.
+#
+# THIS IS A RECORD OF DEBT, NOT A TARGET. A non-zero exit here means a
+# checker is reporting findings that are known and adjudicated - 176 stale
+# provenance stamps, for instance. run_gates.py reports what MOVED against
+# this file, because a runner that demanded universal green would be red
+# forever and would teach everyone to ignore it.
+#
+# Re-baselining a red checker makes the red go away without fixing
+# anything. The digest column covers each checker's whole output, so a
+# checker that stays red but gets WORSE still moves; and a refresh that
+# silences something shows up in this file's own diff.
+#
+# checker	exit	digest	last_line
+check_absence_claims.py	0	b1cfce8647db5957	... 49 more
+check_address_index.py	0	34ac93e6f33fae65	citing one. Order and counts are not checked and may still differ.
+check_already_answered.py	0	270d504f0c06e38c	self-test ok: finds the document, both register rows, and tells answered from open
+check_answered_not_established.py	0	ede5cd41d30efaa4	DIFFERENT-SUBJECT      2
+check_assets.py	0	a38ef421b088a7f1	shape of a version field, and the magic census refuses to call that either way.
+check_banned_evidence.py	0	b3dcb4f247b9fb44	A raw grep returns 330 and is dominated by one directory name; the split is the result.
+check_body_hashes.py	0	db565c8a408a15b9	no mismatch: every citation that can be recomputed reproduces, head and tail.
+check_call_chains.py	0	fed13f032e4f8fe0	total mechanical defects: 0
+check_census_generation.py	0	88572063ca469e5c	stamp consistent with the certified parent.
+check_census_overlap.py	0	24d52aab4d6966fc	that a layout claim about one is a layout claim about the other.
+check_census_widths.py	0	64a7edfb8929df46	ROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 0
+check_census_writers.py	1	9f68a50ad0017829	.gitignore excludes, so this line told every reader to run a file they did not have.
+check_citation_shape.py	0	c9cdcb6bbd0bbeaf	004A0090   7029 B  cited once by 17-Presentation-Rendering\Legacy-PS2-GS\the-vif1-vu1-laye
+check_cited_instruments.py	0	66e80bc71c0d94b6	asserts they stay fixed.
+check_cited_site_widths.py	0	6624a2dd133ddb5d	CONTROL, same probe at a neighbouring aligned displacement:  6
+check_consistency.py	0	868f9dc02f152bad	consistent: no address is described two different ways
+check_contract_globals.py	0	166208f74239477b	control passed: 3 visible writer(s) -- 001E04B4, 001E04CB, 001E0610.
+check_contract_runtime.py	0	0c27c7a3d021cdc9	`contract:` frontmatter and it becomes checkable.
+check_contract_runtime_links.py	0	a5a5c0b88937e06c	28 experiment->contract links resolved; 0 not reflected in the contract:
+check_counts.py	0	4119ca3b09da6c6b	enumeration, the arithmetic on the page agrees with itself.
+check_coverage.py	0	d83c1052c52cbfce	COVERAGE consistent: 365 documents across 28 categories
+check_coverage_cross.py	0	ca8ee862958640fb	cited some other way               2846
+check_coverage_dimensions.py	0	b9e9784ede4bd8f6	Every figure matches what the corpus produces now.
+check_crossref_clean.py	0	4e35ed0c81d5878b	self-test ok: parses both values, ignores absence, ignores prose
+check_delta_additivity.py	0	d278fcff9d0f1b73	check_transfer_eligible.py probes. Both must hold before a stamp moves.
+check_denominators.py	0	a20e1aeb9157ed18	no percentage relies on an undeclared certified population
+check_dimension_figures.py	0	a312f3c9e272ae7f	control passed: the extractor finds current dimension values quoted in the indexes.
+check_dispositions.py	0	870e5231439b2a7a	see this file's docstring and EC-7 for why that is a three-identity decision.
+check_doc_claims.py	0	740cf2f1dfc4e608	judged will fail it again, which is the behaviour FINAL-AUDIT pass 28 needs.
+check_doc_self.py	0	e144d5cb277fb2d9	With the control passing, that is a real negative.
+check_ebp.py	0	db017daa19f78581	[x] section_019    25-EBP-Script-Container/Sections/section-019.md
+check_entry_only_sizes.py	0	b6b5b50b9eaa39d1	40-byte body can hide a subtlety. The buckets bound the argument; they settle no row.
+check_evidence_widths.py	0	560dcf4ef68a0e50	cited only through a bare [reg], base unresolved:      22 in 22 types
+check_experiment_schema.py	0	a3714045b2f88d52	../19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md
+check_experiments.py	0	661a4defecfb5e37	could have noticed at all.
+check_family_forms.py	0	c26d96eb9da2bd73	NO-CLAIM    74 families   7435 bodies   no single unambiguous size; declining
+check_family_spans.py	0	d0a7832b91973340	TOTAL 69 unclaimed = 59 A-measured + 5 cited-not-A + 5 DARK
+check_float_typed_as_int.py	0	a68c3fdac4b543a8	are written exactly that way.
+check_format_row_purity.py	0	e99fa79ac43cd3f5	denominator is precisely what the census exists to stop an author doing.
+check_formats.py	0	81479ce56fbdd177	vbf-bigfile-index            02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Table
+check_frontier.py	0	28b4739e2b8e27f4	open with all of its artifacts present, which is why that case is advisory.
+check_frontier_shape.py	0	7bb4135cc9c5b106	scattered through documented code, they would not be.
+check_gate26.py	0	032d6abffed1f92c	control passed: 4 of 47 live, within expectation.
+check_generator_artifacts.py	0	a7a6c2ca7f80f6db	no generator artifacts in published prose
+check_global_claims.py	0	51b8d7ea5b1958b9	| > **⚠ Corrected 2026-09-14 (FABLE): they are not constants, and one writer derives them 
+check_index_figures.py	0	9b6390c15d7de2ca	control passed: the extractor finds live figures quoted in the indexes.
+check_instance_aliases.py	0	f7a5492615627a7c	declared containment
+check_layout_units.py	0	e99bf548ae3e33e7	(run --self-test to confirm the check still fires; a clean run from a broken parser is wor
+check_layouts.py	0	2394a6545a0bdbde	fill one with a plausible name.
+check_links.py	0	97211ee534fbbf45	all relative links resolve HERE; 2 resolve only on this filesystem (see above)
+check_located_not_read.py	0	8d92f90df84392b8	not evidence of provenance, and this column exists because a guess from one was wrong.
+check_named_not_cited.py	0	38ac3ea9dce3979c	... 8 more
+check_names.py	0	0f023fd55b469b69	ztc01_s01                                            02-Resource-And-Asset-Pipeline\PS2-Im
+check_nonfunction_dependency.py	0	1e2d3bfbc779dc1b	uncorrected claim - is a separate test, and writing a stamp is a separate act.
+check_novelty_claims.py	0	1f70829b5b5b6103	that nobody can eyeball every such claim across the corpus.
+check_nowriter_claims.py	0	ce7bda186e804827	UNREAD : 0
+check_propagation.py	0	64788a0f2916a9ae	self-test: PASS  (used 1, survivors 1: ['16-UI\\stale.md'])
+check_provenance.py	1	5f031e7db72e3093	CURRENT parent. Do not rewrite the stamps; re-verify and then update them.
+check_question_ids.py	1	c6555238c28f515c	owner's call, which is why this reports and routes rather than editing.
+check_questions.py	0	158257af9ebd232c	questions consistent: the table and the document checklists agree
+check_register_masks.py	0	e38d2d566fb69dd0	check_register_masks self-test: 7 of 7
+check_rules_index.py	0	79ac79403f179531	source has lost. Counts and ordering are reported above, not enforced.
+check_script_catalog.py	0	b55a7ac6f2ca5fc4	the rest of pass 25 and are NOT checked here - this makes the pass cheaper, not closed.
+check_self_contradiction.py	0	41f44be026fd3aaf	no document asserts that an address is never written and then writes it
+check_sidefile_headers.py	0	afd458d2caabb2c8	# the indexing code; every cited run-start was re-decoded against the image. 24 rows
+check_source_hygiene.py	0	1cf899264cf2360c	self-test ok: catches the backspace that made a regex unmatchable, silent on tabs, newline
+check_store_artifacts.py	0	9159665f35c17f4e	none - every name is a name and every ctype is a type
+check_stranded_absence.py	0	2b27ad8d2ad29a84	control passed: the corpus contains repaired lines this recognises.
+check_stranded_unknowns.py	0	a4a1799990b18672	...33 more, pass --limit
+check_stranded_unread.py	0	c35e2b393a6d457f	census versus a body, a field versus a function. The tool reports; a person judges.
+check_strided_fields.py	0	cf680b3ec2ea0a94	UNEXPLAINED - not because nothing was found. A new stride with a silent row fails again.
+check_tier_inflation.py	0	b9075c3b7648f184	to it for tier 2, is the reading pass 8 asks for and is not mechanical.
+check_tier_presence.py	0	f3ebd0ef85002da8	No tier VALUE is judged here, and 'PROVEN' is as much a stated tier as '1'.
+check_transfer_eligible.py	1	1510407104946547	control passed: 52 document(s) cite a resolved address.
+check_type_refs.py	0	54196899895db587	DANGLING references inside the store: 0
+check_uncompared_pairs.py	0	10be799a7d685bdc	self-test ok: reports the pair in two documents, skips the pair sharing a document and the
+check_untouched_runs.py	0	2bce92ee4d894d57	instruction form, a shared call target. Adjacency is none of those.
+check_untrusted_answers.py	0	07922d188d874cf3	doing. The point of the measurement is that those are different queues.
+check_upstream_markers.py	0	9c999e9e69f4838a	tags were withdrawn 2026-09-12 (CF-1) for carrying no libxml2 evidence.
+check_verb_shape_slots.py	0	b2573acf2f4861a6	no handler at all                            4
+#
+# Adopted 2026-09-15 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_parity_current.py	0	3d4a039d0de04ca7	PARITY-STATUS.md matches its generator
+check_surface_figures.py	0	d539a8de693a109b	surface figures agree with the authoritative stores
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_name_reservations.py	0	4804b4330dd9f158	no field name is installed over another agent's reservation.
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_residual_depth.py	0	adff0ca16ff5db4e	only prose naming the body is the queue it is waiting in.
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_counts_vs_tables.py	0	b190b0d03ccefadc	counts consistent: every mismatch above a table has been read and ruled on
+check_literal_base_access.py	0	bee0f8b519814514	walks that happen to be invisible to that one instrument.
+check_publish_neighbours.py	0	4158e2bcd8e72028	self-test: pass
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_future_dates.py	0	cb3a286e4b82da15	the classifier has collapsed and the count above is a count of nothing.
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_alias_boxes.py	0	789dce8a4296b517	no question is tracked as open under two identities.
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_premise_refuted.py	0	e7982f3d4041f058	no open question claims nothing is known about a type the store has named.
+#
+# Adopted 2026-09-16 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_name_artifacts.py	0	e12b27513530edd7	every named field carries a name rather than a piece of its own row.
+#
+# Adopted 2026-09-20 - checkers that post-date the baseline above. Nothing already
+# in this file was re-recorded.
+check_absence_vs_imagebase.py	0	8c4323dfe40736cd	reached: 2 site(s), e.g. 0047B066 in FUN_0047a9c0   [INDEXED - reaches a range, not one ad
+check_alignment.py	1	ef8353628018b1e4	RenderResourceEntryBuffer      size 0x1c     strictest align 8  remainder 4  [17-Presentat
+check_arithmetic.py	0	209350f9fc2b457a	from mathematics out of context. Pass 18 is not satisfied by this tool alone.
+check_array_heads.py	0	258465bfc6025799	total: 5 candidate(s) across 4 type(s), 47 byte(s)
+check_bulk_write_lifetime.py	0	18f642573ed75960	memset at 007DCDE3 in 007DCD70 rcx not traced
+check_chain_transitions.py	0	0ee81cd09dd9b04c	run here is not pass 21 satisfied, it is pass 21 having something to read.
+check_cited_artifacts.py	0	79eaaa329dbba1ed	iterate the maps, so a type absent from them is never compared at all.
+check_clear_exhaustion.py	0	25249339976a4542	written to the store; this narrows which sites to read, and nothing more.
+check_copy_displacements.py	1	6fe0dff9014d45df	flag says the CITATION does not establish it, which is the claim worth checking.
+check_ctor_clears.py	0	7c18d088b79670ce	will catch, because nothing reads them yet.
+check_ctype_width.py	0	4d42c89098a6ace9	opposite direction.
+check_ctype_widths.py	0	e5670a9d1801b108	cannot embed itself.
+check_default_instance_writers.py	0	448533d7738cb552	default instances on record: 173
+check_duplicate_sections.py	0	710ffe96cccc40fb	shape of an append-only log rather than a defect - 40 in one file, none of them wrong.
+check_embed_overlap.py	0	12b77580d97d736c	incompatible things about the same bytes.
+check_embed_parent_fields.py	0	00a68c71a5163da9	owning page. Recorded as a documentation gap, not counted as a defect.
+check_evidence_propagated.py	0	6b8c922de09d5d2c	none - every function this session established is already carried in a counting form
+check_imagebase_relative_refs.py	0	09678d526d07284a	constant' about. That sentence does not mean nothing reaches it.
+check_interior_anchors.py	0	34236178101eef3c	A boundary anchor is NOT a certificate - it only removes this one failure mode.
+check_interior_offsets.py	0	35dda9934a9ce076	Widget +0xA2  declared, as it must be
+check_interior_releases.py	0	56ac9fb70a4a87a0	or its VALUE loaded, and that is what distinguishes the two.
+check_literal_citations.py	0	5da55122624a6a8d	CANDIDATE - the bytes agree with the error's shape, and a reader confirms the claim.
+check_prose_only_edges.py	0	bfddf83c142cabf3	writing the child type there would have been wrong by one indirection.
+check_released_interiors.py	0	0989fd27a5e50660	storage` and `a declared destructor runs here` - have not been reconciled.
+check_repeated_records.py	0	62bb429a4939dd64	none
+check_route_collisions.py	0	de49e92958243ddb	verdict: clean apart from the known duplicate
+check_route_counts.py	0	a5e6b07c21b3cd8a	that made AuthoredTableHeader's route wrong, so those come first.
+check_route_extents.py	0	5c254656227116f0	and a count can legitimately name a populated subset. These are two measurements.
+check_span_access.py	0	5ca5d35e9fd9b202	widths and overlapping qwords. Even a LEAD means read the base register first.
+check_span_propagation.py	0	c8314ee3b5fd9e72	types with the most: CharacterRenderRecord 3, SecondaryContext 3, ManagerSub0209BE80_AB30 
+check_stale_reasons.py	0	3366ae0ad25c0abc	string, or in an unrelated case. What this replaces is nobody ever re-reading a reason.
+check_static_spans.py	1	20309eff6bd5ff59	02ADD100  FieldRecordTable  and  FieldRecord
+check_static_vs_ptr_routes.py	0	3c6339ad674cb81e	CONTROL  ManagerSingleton0209BE80                 expect POINTER-SLOT SHAPE got POINTER-SL
+check_storage_class.py	0	8cc6cfaa8196d411	hard failures: 0
+check_taken_address_writes.py	0	fe5d2a2c33ecc690	+0xB0      25 site(s)
+check_team_lock.py	0	933eee3908d1511d	all controls behave
+check_uninformative_widths.py	0	19420acc96e19677	only that nothing in the census supports the declared width.
+check_unread_spans_in_image.py	0	5539fa5777883591	compiler padding, an inline array, or a field - and is printed to be read, not counted.
+check_unread_vs_census.py	0	325277fb8ff71af5	tell a `lea` from a `mov dword`; nothing is counted as an error.
+check_zero_width_fields.py	0	8d7087849ab1cfa3	it. That is why these went unnoticed while the store reported 0 sum mismatches.

@@ -1,0 +1,40 @@
+{
+ "real": [
+  {
+   "name": "ladder",
+   "va": "0x30d9a0",
+   "end": "0x30da09",
+   "size": 105,
+   "sha256": "95f7f1b5c004c22f947956d3629d6e2cb39671677134d1dce69fdf8a5aadd0f2"
+  },
+  {
+   "name": "pred",
+   "va": "0x377c20",
+   "end": "0x377c6e",
+   "size": 78,
+   "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea"
+  },
+  {
+   "name": "index",
+   "va": "0x3148f0",
+   "end": "0x31490b",
+   "size": 27,
+   "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c"
+  },
+  {
+   "name": "ctx",
+   "va": "0x2ef2b0",
+   "end": "0x2ef2c4",
+   "size": 20,
+   "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7"
+  },
+  {
+   "name": "base",
+   "va": "0x2ef640",
+   "end": "0x2ef648",
+   "size": 8,
+   "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802"
+  }
+ ],
+ "stubbed": []
+}

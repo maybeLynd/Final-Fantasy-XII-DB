@@ -1,0 +1,148 @@
+{
+  "status": "VALID_SETUP_EVIDENCE_ONLY",
+  "intended_save_question": "INCOMPLETE: older load and returned title never reached",
+  "method": "Offline reduction of retained live reads and OS-input observations",
+  "pulses": {
+    "title-enter": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 32,
+      "index": 49,
+      "held_seconds": 0.3572305000270717
+    },
+    "load-modern-enter": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 32,
+      "index": 49,
+      "held_seconds": 0.35586839995812625
+    },
+    "dismiss-modern-enter": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 32,
+      "index": 49,
+      "held_seconds": 0.3560643999953754
+    },
+    "open-main-menu-r": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 32,
+      "index": 17,
+      "held_seconds": 0.3559761000215076
+    },
+    "cancel-status-c": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 33,
+      "index": 2,
+      "held_seconds": 0.35667829995509237
+    },
+    "select-config-i": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 32,
+      "index": 8,
+      "held_seconds": 0.356670800014399
+    },
+    "open-config-enter": {
+      "samples": {
+        "baseline": 35,
+        "held": 34,
+        "release": 1
+      },
+      "positive_held_samples": 33,
+      "index": 49,
+      "held_seconds": 0.3553035000222735
+    }
+  },
+  "samples": [
+    {
+      "index": 0,
+      "full_spans": 26,
+      "battle_stamp": "0x5071901",
+      "levels": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "keep_nonzero_bytes": [
+        328,
+        0
+      ],
+      "field_id": "0xe3",
+      "battle_sha256": "5b519af71f4b0838951ee03cc81808875c437591d4fd7f1632864314b2749fd8",
+      "keep_bindings": [
+        1872940928,
+        1872902976
+      ],
+      "history": [
+        300,
+        227,
+        305,
+        0
+      ]
+    },
+    {
+      "index": 1,
+      "full_spans": 26,
+      "battle_stamp": "0x5071901",
+      "levels": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "keep_nonzero_bytes": [
+        328,
+        0
+      ],
+      "field_id": "0xe3",
+      "battle_sha256": "5b519af71f4b0838951ee03cc81808875c437591d4fd7f1632864314b2749fd8",
+      "keep_bindings": [
+        1872940928,
+        1872902976
+      ],
+      "history": [
+        300,
+        227,
+        305,
+        0
+      ]
+    }
+  ],
+  "negative_controls_rejected": [
+    "empty",
+    "no_detection"
+  ],
+  "cleanup_verified": true,
+  "limits": [
+    "Registration is not menu acceptance: inspect the associated screenshots.",
+    "A held navigation key can repeat; one pulse is not one menu step.",
+    "No same-process older load, lifetime, reset writer or native call order is established.",
+    "One initialized modern field; sequential reads are not atomic."
+  ]
+}

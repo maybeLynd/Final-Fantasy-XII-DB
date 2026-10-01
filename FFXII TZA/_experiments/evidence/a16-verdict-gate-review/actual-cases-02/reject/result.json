@@ -1,0 +1,21 @@
+{
+  "case": "reject",
+  "is_review": true,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "0119d29cb33dd635a282d26219bb608abf5c1491fba1fe45d1d85882989c2be5",
+  "after_sha256": "1beef41caf673bbe0c65bd11dff0bbae1c5b775c84c4973e1e6cc7e401ccc427",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:REJECT"
+  ],
+  "plan": [
+    {
+      "kind": "REPAIR",
+      "review": "FIXTURE-A16-REJECT",
+      "detail": "AUTO-REPAIR-FIXTURE-A16-REJECT",
+      "has_operation": true
+    }
+  ]
+}

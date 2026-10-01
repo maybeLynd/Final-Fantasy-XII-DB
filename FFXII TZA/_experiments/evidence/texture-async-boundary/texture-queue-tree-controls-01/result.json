@@ -1,0 +1,39 @@
+{
+  "status": "PASS_ACTUAL_TREE_REDUCER_REFUSALS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "positive_reused": true,
+  "positive_result_sha256": "9fefadf5a221790bb2e6675ff61a6684479740adaed67cfd43d6bf2135950120",
+  "refusals": [
+    {
+      "case": "missing-wrapper",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "missing original/adapter prerequisite",
+      "expected_error_seen": true
+    },
+    {
+      "case": "false-count-field",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "disagree",
+      "expected_error_seen": true
+    },
+    {
+      "case": "consistent-count-byte",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong/incomplete tree body",
+      "expected_error_seen": true
+    },
+    {
+      "case": "wrong-helper-extent",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong helper leaf boundaries",
+      "expected_error_seen": true
+    }
+  ],
+  "driver_sha256": "72caa8b3b438d830eb7c30f37eeed4b1ea0814c5e49a491ef659c7b6e648354f",
+  "reader_sha256": "19fd8898ce9d3aef39f2245b3e9ae12d9d4fe9341b6fefcf4fbd69bc6d92568d",
+  "limits": "Producer CLI controls on synthetic altered source, not native execution, new shipping samples or independent acceptance. All children terminal."
+}

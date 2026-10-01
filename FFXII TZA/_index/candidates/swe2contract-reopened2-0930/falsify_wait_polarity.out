@@ -1,0 +1,24 @@
+PASS W0 image is the certified FFXII_TZA.exe 73461d08...
+PASS W1 0025DF00 is 1228 B, 329 instructions, last ret at 0025E3CB (page: 329 instructions, ret at 0025E3CB)
+PASS W1b no direct jump leaves the extent (0 found)
+PASS W2 0025DF88 r14 = 00120000; dispatch on byte [rsi+0x14], cmp 7, ja 0025E127; table at 0025E3CC (page: 0025E3CC, kind >= 8 -> no interpreter arm)
+PASS W3 kinds -> arms: 0->0025E127 1->0025E0BE 2->0025E0BE 3->0025E027 4->0025E091 5->0025E00A 6->0025E058 7->0025E083 (page: 0->0025E127 1/2->0025E0BE 3->0025E027 4->0025E091 5->0025E00A 6->0025E058 7->0025E083)
+PASS W4 kind 3: 003DBF60 finds an entry -> 0025E127 (holds); 0xFF -> +0x14=1, +0x27=1, back to 0025DFA0
+PASS W5 kind 4: 003DC050 finds none -> 0025E127 (holds); found -> 003DB2A0(record, index), +0x14=1, no +0x27 store, back to 0025DFA0
+PASS W6 kind 5: 002674B0 non-zero -> 0025E127 (holds); zero -> +0x14=1, no +0x27 store
+PASS W7 kind 6: 003DB640 bit set -> 0025E127 (holds); clear -> +0x14=1, +0x27=1
+PASS W8 kind 7: 00267420 then 0025E08F jmp 0025E06E into kind 6's tail (shares the +0x27 store)
+PASS W9 0025E127 mov byte [rsi+0x16], 1 then 0025E12B (the blocked / no-interpreter exit, request+16)
+PASS W10 0025E0BE arm calls 0025E4C0 at 0025E0D3 with (r15 slot, rdi record, rsi wait slot)
+PASS W11 stores covering wait +0x27: 0025E04F 0025E07A (page: kinds 3 and 6/7 only, 0025E04F and 0025E07A)
+PASS W11b '= 1' stores to wait +0x14: 0025E01E 0025E04B 0025E076 0025E0B5 (page: four, at completing transitions)
+PASS W12 4 back-edges to 0025DFA0, each right after '+0x14 = 1'; 0 branches from the interpreter arm onward re-enter the dispatch; the one indirect jump is the dispatch; the loop head stores nothing to +0x14 -> a second dispatch reads kind 1 and takes the interpreter arm, which only exits (at most two dispatches)
+PASS W12b the loop head and the arms call 10 functions; their direct closure is 168 functions
+LIMIT W12 a callee that rewrote record +0x11 would make the re-dispatch read another wait slot. In the closure, byte stores covering +0x11 are in 003DB7A0 003DC130 003DC1B0 (read here: each base is a 0x14-stride resource entry, not the record); wider stores covering it are in 00226280 00226BE0 002EBFA0 002EC2C0, whose bases are not typed here. Indirect calls are not followed.
+PASS W13a 0025DF6F-0025DF83: r8d = 2; comiss speed(+0x7C), 0.0; cmova r8d, ebp (ebp = 0); speed scaled by [01DFE0BC] = 1.0
+PASS W13b executed: speed 1.5 -> mode 0, 0.0 -> 2, -1.5 -> 2, NaN -> 2 (mode 0 when the speed is positive, 2 otherwise)
+BROKEN-ON-PAGE W13 the page's section 11 sentence 'with mode 2 when that speed is positive and 0 otherwise' inverts this; it is struck and corrected on the page 2026-10-01 (not counted: the check above is the measurement)
+PASS C1 control: kind 3's entry repointed to 0025E0BE -> W3's comparison fails on the copy
+PASS C2 control: a planted 'mov byte [rsi+0x27], 1' is seen by the census (W11 would read three sites)
+PASS C3 control: a dword store at +0x24 is counted as covering +0x27
+FAILS 0

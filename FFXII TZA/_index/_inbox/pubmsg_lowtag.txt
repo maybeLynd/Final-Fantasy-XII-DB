@@ -1,0 +1,10 @@
+sn1: low-tag census + e2+ singles resolved
+
+01 = intra-item field separator (576x; ctrl msg29 SE/Voice toggles
+split as SE·Voice·ON; chains 01 01 for empty fields). 18 rare (5x,
+arity unpinned) -- low-tag arity question closed. e2 = per-item bullet
+(kana-tail position ~wo), e3 = ン katakana tail, e4-fe = single-byte
+icon plane parallel to the 10 20-3f two-byte block (e6 title mark,
+e7+ numbered item icons, ff x919 indent pad). .msb byte grammar is
+now fully classified; only icon-plane glyph semantics (font texture)
+and ~10 kanji remain.

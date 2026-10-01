@@ -1,0 +1,6 @@
+PASS  P1 connected-controller gate on [02EA95A0], one-shot connect / disconnect logs
+PASS  P2 16 GetDigitalActionData calls -> bytes +0x43C..+0x44B
+PASS  P3 2 analog actions: x * 256 -> +0x414/+0x418, y * -256 -> +0x420/+0x424
+PASS  P4 vibration: motor bytes +0x98 / +0x99 x 256
+PASS  P5 then the device's binding list is updated (007A15A0)
+FAILS 0

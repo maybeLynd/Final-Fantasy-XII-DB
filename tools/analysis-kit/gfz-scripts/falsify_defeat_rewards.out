@@ -1,0 +1,11 @@
+D1   SURVIVES  extent 857 B; last two direct calls ['00317090', '00808C40']
+D2   SURVIVES  ['xor ecx, ecx', 'xor ecx, ecx']; calls ['002F8BB0', '002F90C0']; flag window ['call 0x236780', 'mov ecx, dword ptr [r14 + 8]', 'test eax, eax', 'mov r8d, ebx', 'cmovne edi, ebp']; 0028FB80 at ['00312518']
+D3   SURVIVES  walk ['mov ecx, dword ptr [rdi + 0x18c]', 'mov eax, 0x5f5e0ff', 'add ecx, ebx', 'cmp ecx, eax', 'cmova ecx, eax', 'mov dword ptr [rdi + 0x18c], ecx'] ... ; 003124A3 `call 0x30c650`
+D4   SURVIVES  ['mov rax, qword ptr [r14 + 0x698]', 'movzx edi, byte ptr [rax + 0x1c2]', 'movzx eax, byte ptr [rax + 0x88]', 'sub edi, eax', 'mov rax, qword ptr [r14 + 0xe78]', 'imul edi, dword ptr [rax + 0x30]', 'mov rax, qword ptr [r14 + 0xe70]', 'add edi, dword ptr [rax + 0x30]']
+D5   SURVIVES  ['test byte ptr [rdi + 0x69], 0x10', 'test byte ptr [rdi + 0x79], 0x10']; lea eax, [r12 + rcx]; lea r12d, [rax + rcx*4]
+D6   SURVIVES  ['test edx, edx', 'cmovns ebp, edx', 'call 0x254ee0', 'sub ebp, ebx', 'call 0x469e80']
+D7   SURVIVES  caps {3220461: 'mov eax, 0xf423f', 3220479: 'mov eax, 0x3e7', 3220536: 'mov eax, 0x5f5e0ff', 3220604: 'mov eax, 0x1869f'}; display clamps ['mov esi, 0xf423f', 'cmp edi, esi', 'cmovg edi, esi', 'mov eax, 0x3e7', 'cmp ebx, eax', 'cmovg ebx, eax']
+D8   SURVIVES  delta stored at [rsp + 0x30]: True; ['test ecx, ecx', 'jle 0x469eb7']; event 0x26 through 0046AB10: True
+D9   SURVIVES  install window reads ['02EBF140', '02EBF148']; +0xE70/+0xE78 stored and definition +0x22/+0x24 read: True
+D10  SURVIVES  00254EE0 carries the 99,999,999 bound (0x5F5E0FF): True
+BROKEN 0: none

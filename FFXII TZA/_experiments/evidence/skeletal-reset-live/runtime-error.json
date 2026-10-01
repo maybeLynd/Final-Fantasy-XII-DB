@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-20T04:02:09.657Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 112004178,
+    "title": "Microsoft Visual C++ Runtime Library"
+  },
+  "accessibility": {
+    "focused_element": "0 dialog Microsoft Visual C++ Runtime Library Secondary Actions: Raise",
+    "tree": "Window: \"Microsoft Visual C++ Runtime Library\", App: FFXII_TZA.exe.\n\t0 dialog Microsoft Visual C++ Runtime Library Secondary Actions: Raise\n\t\t1 button OK ID: 2\n\t\t2 image ID: 20\n\t\t3 text Runtime Error! Program: This application has requested the Runtime to terminate it in an unusual way. Please contact the application's support team for more information. ID: 65535\n\t\t4 title bar (settable, string) Value: Microsoft Visual C++ Runtime Library\n\t\t\t5 button Close\n\nThe focused UI element is 0 dialog Microsoft Visual C++ Runtime Library Secondary Actions: Raise."
+  }
+}

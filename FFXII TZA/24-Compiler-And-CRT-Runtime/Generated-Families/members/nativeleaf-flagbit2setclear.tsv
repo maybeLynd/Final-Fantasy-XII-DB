@@ -1,0 +1,8 @@
+# NativeLeaf.FlagBit2SetClear - EC-7 family C
+# clear a member flag bit at [rcx+X]; if arg2 nonzero set bit (1<<1);
+# # return.
+address	targets
+0026A320	
+0026A3A0	
+0026AF30	
+0026BA60	

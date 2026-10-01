@@ -1,0 +1,102 @@
+== S1 393FF0: direct call/jmp targets (owner 00393FF0 FUN_00393ff0, size 118)
+   00393FFD -> 0x249580
+   00394029 -> 0x2493d0
+   00394048 -> 0x249320
+   00394061 -> 0x249410
+   raw callers of 2493D0: 21; includes 393FF0 sites: ['394029']
+   raw callers of 249320: 4; includes 393FF0 sites: ['394048']
+== S2 factories 2493D0 / 249320 -> common 249210
+  002493D0 size 57 calls [('0x2493de', '0x249210'), ('0x2493ef', '0x24a4e0')]
+  00249320 size 43 calls [('0x249332', '0x249210')]
+   raw callers of 249210: 25
+== S3 249210 descriptor build (lea targets, stores, 32E620, +0x18)
+   00249246 inc     eax
+   00249258 mov     qword ptr [rbx], rax
+   0024926F mov     qword ptr [rsp + 0x30], rcx
+   00249274 lea     rax, [rip + 0x345] -> 002495C0
+   0024927E mov     qword ptr [rsp + 0x40], rax
+   00249286 mov     dword ptr [rsp + 0x38], ebx
+   0024928D mov     qword ptr [rbx], rbp
+   00249290 movdqu  xmmword ptr [rsp + 0x48], xmm0
+   00249296 call    0x32e400
+   002492A6 call    0x16d6a0
+   002492B4 call    0x36c1d0
+   002492C5 call    0x36a100
+   002492CC call    0x36a190
+   002492D4 call    0x36c140
+   002492D9 lea     rax, [rsp + 0x30]
+   002492F3 call    0x32e620
+   002492F8 inc     word ptr [rbp + 0x18]
+   002492FC lea     r11, [rsp + 0x60]
+== S4 2495C0 completion body (full)
+   002495C0 mov     qword ptr [rsp + 0x10], rbx
+   002495C5 push    rdi
+   002495C6 sub     rsp, 0x40
+   002495CA mov     rax, qword ptr [rip + 0x1cfb25f]
+   002495D1 xor     rax, rsp
+   002495D4 mov     qword ptr [rsp + 0x38], rax
+   002495D9 movsxd  rbx, ecx
+   002495DC mov     rax, qword ptr [rbx + 0x10]
+   002495E0 test    rax, rax
+   002495E3 je      0x2495ea
+   002495E5 mov     rcx, rbx
+   002495E8 call    rax
+   002495EA mov     rdi, qword ptr [rbx]
+   002495ED inc     word ptr [rdi + 0x1a]
+   002495F1 test    byte ptr [rdi], 2
+   002495F4 movzx   eax, word ptr [rdi + 0x1a]
+   002495F8 je      0x249637
+   002495FA cmp     ax, word ptr [rdi + 0x18]
+   002495FE jne     0x249637
+   00249600 cmp     dword ptr [rdi + 4], 0
+   00249604 je      0x24960b
+   00249606 call    qword ptr [rdi + 0x10]
+   00249609 jmp     0x249637
+   0024960B mov     rcx, qword ptr [rdi + 8]
+   0024960F xorps   xmm0, xmm0
+   00249612 mov     dword ptr [rsp + 0x20], 0x10
+   0024961A movdqu  xmmword ptr [rsp + 0x28], xmm0
+   00249620 test    rcx, rcx
+   00249623 je      0x249634
+   00249625 mov     rax, qword ptr [rcx]
+   00249628 test    rax, rax
+   0024962B je      0x249634
+   0024962D lea     rdx, [rsp + 0x20]
+   00249632 call    rax
+   00249634 and     dword ptr [rdi], 0xfffffffe
+   00249637 and     dword ptr [rbx + 0x20], 0xfffffffe
+   0024963B mov     rcx, qword ptr [rsp + 0x38]
+   00249640 xor     rcx, rsp
+   00249643 call    0x808c40
+   00249648 mov     rbx, qword ptr [rsp + 0x58]
+   0024964D add     rsp, 0x40
+   00249651 pop     rdi
+   00249652 ret     
+   size 147
+== S5 who forms 2495C0 / 248700 as an address (raw rip sweep, all .text)
+  002495C0: 1 verified rip refs ['00249274 in 00249210 FUN_00249210']; raw-only 0; reloc ptrs 0
+  00248700: 1 verified rip refs ['002491DC in 002491B0 FUN_002491b0']; raw-only 0; reloc ptrs 0
+== S6 separate watcher factory 2491B0 / handler 248700 / 2494F0
+  2491B0 calls [('0x2491f0', '0x244f50'), ('0x249201', '0x808c40')]
+  248700 calls [('0x24871d', '0x5c5230'), ('0x248731', '0x2f8040'), ('0x248746', '0x2494f0'), ('0x24874e', '0x245020'), ('0x24876f', '0x2f8040'), ('0x24877e', '0x2fa560'), ('0x248792', '0x247950')]
+  2494F0 owner 002494F0 FUN_002494f0 size 138
+   00249525 call    qword ptr [rcx + 0x10]
+   00249530 call    0x808c40
+   00249562 call    rax
+   0024956F call    0x808c40
+  24947D owner 00249410 FUN_00249410  24955D owner 002494F0 FUN_002494f0
+== S7 controller 582860: guard deriving the jump table
+   00582886 mov     rsi, rdx
+   00582889 dec     eax
+   0058288B mov     rbx, rcx
+   0058288E cmp     eax, 0x12
+   00582891 ja      0x582f24
+   00582897 cdqe    
+   00582899 lea     rcx, [rip - 0x4628a0]
+   005828A0 mov     eax, dword ptr [rcx + rax*4 + 0x462f54]
+   005828A7 add     rax, rcx
+   005828AA jmp     rax
+   005828AC mov     edx, 0x15
+  last instruction of the decoded body: 00582F50 ret  fsize 1777
+  table 582F54 x19 (rva -> va): 0:005828AC 1:00582A31 2:00582F24 3:00582F24 4:00582F24 5:00582F24 6:00582F24 7:00582F24 8:00582F24 9:00582F24 10:00582F24 11:00582B2C 12:00582F24 13:00582F24 14:00582F24 15:005829C0 16:00582F24 17:00582E81 18:00582AE9
+  entry 20 (past bound): 00582B7C

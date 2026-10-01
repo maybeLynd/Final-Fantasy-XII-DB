@@ -1,0 +1,10 @@
+{
+  "stage": "before any row verdict/control/result",
+  "failed_assertion": "len(sizes)>35000",
+  "observed_listed_rows": 38161,
+  "observed_filtered_entries": 34270,
+  "source_sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+  "driver_sha256": "f683e8bd077c30062eb05bdfcefb875a64a2d08df3bb227626e703f2698d8301",
+  "diagnosis": "New driver guessed a lower bound instead of using actual canonical population. Remove guessed counter threshold; retain nonempty input, exact complete source hash and selected-row membership gates.",
+  "result": "INVALID_PREFLIGHT, no semantic results"
+}

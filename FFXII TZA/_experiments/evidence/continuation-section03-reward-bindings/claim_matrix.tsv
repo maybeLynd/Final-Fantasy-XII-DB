@@ -1,0 +1,9 @@
+id	claim	primary_source	evidence_class	checks	limit
+R03-1	NULL EXP remains shared-mode divided; mode selects formula path	002F8BB0;003124BC;003124C6	original native synthetic + static caller	71 control suite;mutant skip_xp_division	no rendered payout/full orchestration
+R03-2	LP lacks EXP owner search and divisor; distinct global/id gates	002F90C0;0031B860	original native synthetic	orphan/global/id controls	not proof real caller supplies orphan stats
+R03-3	FF selector can match FFFF with permissive bounds	0031B810;002367A0;00322C50	original native synthetic	count256 sentinel fixture	shipped reachability not established
+R03-4	Signed EXP divide/wrap; unsigned LP byte; gate-sensitive null row reads	002F8BB0;002F90C0	original native synthetic	arithmetic/modifier/fault-child controls	invalid rows not induced in game
+R03-5	Retained pointers stable but actual reward headers/rows not captured	EXP-081 original raw files	retained historical observation independently reduced	88 spans;10 corruptions;old checker replay	no values/lifetime/causal inference
+R03-6	Pointer selector/stride construction uses low32 arithmetic before QWORD store	0023A570;0020E600	static original instructions	selected manifest/disassembly	not live sampled descriptor contents
+R03-7	Stable old balance gives equal pre-cap gil differences, distinct stored gain	00312280;00254EE0;00469E80	static original instructions + stated arithmetic assumptions	full selected static body ranges	no full orchestration or subscriber behavior tested
+R03-8	Gil notifier payload is six QWORDs; delta at payload+10/RSP+30	00469E80	static original instructions	register/frame-base disassembly	event dispatch/subscribers not executed

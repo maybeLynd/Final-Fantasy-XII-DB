@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\text-overlap-boundary\\check.py"
+  ],
+  "checker_sha256": "c501a5dc87f7743d37ef1098c3a6c51e74569ea2191cf5272fd6d21654cf6af0",
+  "returncode": 0,
+  "stdout": "{\n  \"verdict\": \"REJECT scoped unique-overlap measure at exact original source\",\n  \"fixtures\": [\n    {\n      \"case\": \"disjoint\",\n      \"unique\": 0,\n      \"reported\": 0\n    },\n    {\n      \"case\": \"double\",\n      \"unique\": 8,\n      \"reported\": 8\n    },\n    {\n      \"case\": \"triple\",\n      \"unique\": 8,\n      \"reported\": 12\n    }\n  ],\n  \"canonical_unique\": 1758,\n  \"canonical_reported\": 1759,\n  \"multiply_covered_segments\": [\n    {\n      \"start\": 3334208,\n      \"end\": 3334209,\n      \"depth\": 3,\n      \"contributors\": [\n        [\n          3334176,\n          3334209\n        ],\n        [\n          3334192,\n          3334225\n        ],\n        [\n          3334208,\n          3334246\n        ]\n      ]\n    }\n  ],\n  \"source_commit\": \"17d6cdc2915b22b1743cdd2e2c6acc2fcdf6f5e2\",\n  \"limits\": \"Physical extent accounting only; no re-adjudication of UC1 extents, native behavior, class tiling or full migration/database acceptance.\"\n}\n",
+  "stderr": "",
+  "terminal": true
+}

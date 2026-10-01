@@ -1,0 +1,5 @@
+PASS  V1 the EASTL relabel landed (18 EASTL / 12 CxxStandardLibrary) 18 / 12
+PASS  V2 seven EASTL subtree routines (5 DoNukeSubtree-shaped incl. the inlined clear, 2 DoCopySubtree) nuke=[True, True, True, True, True] copy=[True, True]
+PASS  V3 005A7BF0 / 0067F9D0 use the packed-colour node (parent|colour at +0x10); 005A7BF0 keys on node +0x18; the descriptor ctor self-links its node at +8 
+PASS  V4 sensitivity: the MSVC _Tree members fail the EASTL shape 
+FAILS 0

@@ -1,0 +1,43 @@
+{
+  "section": "SECTION-08",
+  "status": "PASS",
+  "read_only": true,
+  "strict_frontmatter_files": [
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+    "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+    "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md"
+  ],
+  "contracts_with_16_sections": [
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md"
+  ],
+  "existing_file_links": 87,
+  "unavailable_external_tool_links": [],
+  "broken_local_links": [],
+  "new_types": 1,
+  "new_fields": 9,
+  "new_type_extent": "0x1C",
+  "gap_or_overlap": false,
+  "unrelated_type_field_bytes": [
+    {
+      "file": "_types/types.tsv",
+      "original_bytes_recovered": true,
+      "sha256": "b99a404f2996de1aab7bb72e623cf5cbf04298ceae793ac8380c728764c50fb5"
+    },
+    {
+      "file": "_types/fields.tsv",
+      "original_bytes_recovered": true,
+      "sha256": "4f009c66212e9ce5ffa809d447cde3059187adf2e9e4bb81a352343049de2a4d"
+    }
+  ],
+  "python_sources_parsed": [
+    "run_review.py",
+    "test_overlay.py",
+    "validate_content.py",
+    "verify_overlay.py"
+  ],
+  "limits": "Content/shape validation only, not semantic peer acceptance or every anchor check."
+}

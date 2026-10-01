@@ -1,0 +1,23 @@
+{
+ "package": "uc1-extent-collision-opus",
+ "author": "OPUS",
+ "date": "2026-09-27",
+ "task": "ASTRA-RETURN-OPUS-UC1-EXTENT-COLLISION",
+ "method": "static; original executable bytes; no execution; no live game",
+ "tools": {
+  "python_capstone": "5.0.7",
+  "pefile": "2024.8.26"
+ },
+ "inputs": {
+  "Tools/work/exe/FFXII_TZA.exe": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "Tools/work/graph/functions.tsv": "568b5a538126fd65f00e3e1536cf7beb5c9417b262bfccb88c8ee050bff705ed"
+ },
+ "driver": {
+  "check.py": "8befe8b6194f98ef02316d3a369f20395f17dff7af976cc52cc722decdfc5837"
+ },
+ "result": {
+  "result.json": "a80e92b9e96168dd8d0eb446f897d2909bc5a5626403895392e3919f11e5691d"
+ },
+ "verdict": "listed 007EE7F0 = false entry inside the 7-B store 007EE7EF of unlisted leaf 007EE7C0 (57 B, ends 007EE7F9); 007C2A29 = 6 B code + 1 B pad + 40 B inline table; native extent of 007C23C0 ends 007C2A58",
+ "review": "routed to SWE2-AUDIT-SPEC (author may not accept)"
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-24",
+  "apply_order": [
+    {
+      "file": "FFXII TZA(20260923-205605).zip",
+      "sha256": "f52ffea6e6f2bdc27218b0499e8d0d7941669a8ba26dfed3d38cce6c0da57c1c",
+      "bytes": 85344644
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_11_Script_Execution_Resume_State.zip",
+      "sha256": "26451ba441c04ec3e3f38bfbc7b4fcf60abfa592d0a43b4261b90738647f4af9",
+      "bytes": 1684963
+    }
+  ],
+  "baseline_file_count": 10905,
+  "previous_updates": "Updates01-10 already contained in September23 snapshot; do not reapply old snapshots",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "historical_extents": "Reused earlier historical Ghidra exports, not a fresh import. See original_body_manifest.json."
+}

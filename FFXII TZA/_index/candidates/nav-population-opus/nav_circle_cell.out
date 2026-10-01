@@ -1,0 +1,5 @@
+PASS  D 004690B0: two inclusive bands (comiss / jb, jae) then four strict corner tests (ja x3, seta); no calls, no stores
+PASS  F ASTRA's ten cases reproduced by an independent float32 model: [1, 0, 1, 0, 0, 0, 0, 1, 0]; r^2 bits 41C80003 / 41C7FFFE; the ja->jae mutant accepts the exact tangency
+PASS  X 0x40A00001 squared is inexact in binary32 (IEEE inexact status required: native 1FA0); 5.0 squared is exact (no status)
+PASS  S NavGridParams cellBitsetArray carries the overlap predicate rule
+FAILS 0

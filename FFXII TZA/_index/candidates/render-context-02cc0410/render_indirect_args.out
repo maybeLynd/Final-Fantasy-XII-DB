@@ -1,0 +1,5 @@
+PASS  C feature level >= 11_0: CreateBuffer {16 B, DEFAULT, bind 0, CPU 0, misc 0x10 DRAWINDIRECT_ARGS, stride 4} into +0x7B8
+PASS  U 0061EDA4: CopyStructureCount(dst = +0x7B8, 0, uav) then CopyResource(other, +0x7B8)
+PASS  L the teardown releases and nulls it
+PASS  W +0x7B8 names the draw-indirect buffer and its feature-level condition
+FAILS 0

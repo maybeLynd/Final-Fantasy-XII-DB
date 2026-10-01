@@ -1,0 +1,4 @@
+SWE2-AUDIT-SEM re-run of the producer's three checkers at cb5b622f2, compared with the committed .out (CR stripped):
+  mv_clamp_checks.py: IDENTICAL to mv_clamp_checks.out (FAILS 0)
+  mv_loco_checks.py: IDENTICAL to mv_loco_checks.out (FAILS 0)
+  mm_checks.py: IDENTICAL to mm_checks.out (FAILS 0)

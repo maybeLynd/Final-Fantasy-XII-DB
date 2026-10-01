@@ -1,0 +1,5 @@
+PASS  L 006C8920 latches 49 fields (derived from its body); dirty bytes +0x208F1 / +0x208F3 cleared after
+PASS  S the setters write the pending fields and mark +0x208F1 / +0x208F3 / +0x208F0
+PASS  M +0x190 / +0x198 chosen by +0x851 / +0x852 from four pairs
+PASS  W the four spans are carved and the type's rows tile
+FAILS 0

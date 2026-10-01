@@ -1,0 +1,19 @@
+{
+ "real": [
+  {
+   "name": "subject",
+   "va": "0x3eaa70",
+   "end": "0x3eab55",
+   "size": 229,
+   "sha256": "e9fc42d1d025b496088e0d080900ec74e1ea323425ab022fab89e76d7b2190de"
+  },
+  {
+   "name": "varget",
+   "va": "0x265270",
+   "end": "0x26528c",
+   "size": 28,
+   "sha256": "17c90ed9080aa333f0908e9c6377230bb6fb15504dcb38a15ffec22e1fd9fe24"
+  }
+ ],
+ "stubbed": []
+}

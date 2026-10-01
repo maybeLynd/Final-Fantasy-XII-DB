@@ -1,0 +1,44 @@
+{
+  "local_behavior": "Empty/noeligible list selects slot0; no empty-list/no-match rejection or table-pointer validity test on this path.",
+  "reset_behavior": "22C930 clears only installedCount, not pointer-table bytes. Fresh decoder entry subsequently imports ESI0 and MSCAL selects retained slot0 after flush.",
+  "sentinel_limit": "Under only valid MPG-produced u16 list entries, best0/u16 never reaches10000; sentinel comparison does not reject absence of a candidate. Arbitrary corrupted list contents unqualified.",
+  "witnesses": [
+    {
+      "incoming_list": [],
+      "request": 4,
+      "selected_slot": 0,
+      "path": "ESI0 jumps directly to22CB0E"
+    },
+    {
+      "incoming_list": [
+        5,
+        7
+      ],
+      "request": 4,
+      "selected_slot": 0,
+      "path": "Both unsigned JB paths leave initialEAX0"
+    },
+    {
+      "incoming_list": [
+        5,
+        7
+      ],
+      "request": 6,
+      "selected_slot": 5,
+      "path": "5 qualifies,7 skipped"
+    },
+    {
+      "incoming_list": [
+        7,
+        5
+      ],
+      "request": 8,
+      "selected_slot": 7,
+      "path": "7 qualifies,5 cannot lower best"
+    }
+  ],
+  "consumer_qualification": "Largest eligible address if one exists; otherwise slot0. Count reset removes eligibility list count but does not erase pointer table. Slot0 must be valid if dispatch is allowed.",
+  "not_claimed": "No actual invalid shipped command, null/stale function invocation, callback/drawing effects, normal reset frequency, universal capacity/lifetime or full family census.",
+  "limits": "Local original flow, not native helper/callback effects, normal reset scheduling, actual packet occurrence, all-time state/table extent or rendered consequences. Existing imm16/unmasked and room-only type qualification preserved, not rediscovered.",
+  "propagation": "PENDING FABLE/OPUS/independent review"
+}

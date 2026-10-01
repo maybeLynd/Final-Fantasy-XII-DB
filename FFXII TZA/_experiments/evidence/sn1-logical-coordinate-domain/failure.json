@@ -1,0 +1,22 @@
+{
+  "status": "INVALID_GLOBAL_ASSERTION_PHASE_BEFORE_RESULT",
+  "cause": "Final full-four-module counts/control assertions were incorrectly indented inside module loop; after ctrl incomplete missing[] cannot match expected six btl/map records. Barrier correctly failed before result.",
+  "repair": "Move full-source/control/absence assertions after all modules; retain old checker, no parent input/record recapture or native/compiler execution.",
+  "old_checker_sha256": "9ea01c4dc9be6646f54b05ecb6bee333a97f827d441b751528ffba032fa993e5",
+  "corrected_checker_sha256": "9fc0b482263c0a5a2402efbef2b28c9400b26a346df3e313b6e72491ef266946",
+  "second_failure": {
+    "status": "INVALID_RAW_TERMINAL5C_CONTINUATION_DOMAIN_BEFORE_RESULT",
+    "cause": "Global-phase fix then reaches actual original mapctrl source whose CP932 terminal character contains byte5C; assertion identifies non-ASCII alias. First preparation classified raw terminal5C as continuation, so its map logical2766 is not accepted.",
+    "repair": "Decode CP932 and classify terminal ASCII backslash, retaining raw byte/decoded distinction. Actual source negative and --fault-raw-byte-fold regression; mapped-domain counts adjusted against raw preparation alias counts, not overwritten.",
+    "affected": "64 raw-byte candidate preparation/source classification and FABLE unpublished logical_lines.py raw-byte cont() corpus count/procedure; original63 ev544 all ASCII/call controls unaffected",
+    "old_checker_sha256": "9fc0b482263c0a5a2402efbef2b28c9400b26a346df3e313b6e72491ef266946",
+    "corrected_checker_sha256": "fbfbde1c46a834f2be437f6098bf737834eed4a7001b0e6828818f9e846f394d"
+  },
+  "provenance_collection": {
+    "status": "INVALID_PROVENANCE_COLLECTION_BEFORE_FREEZE",
+    "cause": "_codecs_jp is built-in in this Python, no __file__; freezer incorrectly assumed extension pyd. Input/reducer/default/fault receipts already passed but package not yet frozen/published.",
+    "repair": "Read own loaded Python core provider path through ctypes.pythonapi handle/GetModuleFileNameW and hash actual file; record built-in/spec origin/provider-file limits. Preserve fresh-default generation receipt/hash instead of rerunning its creation.",
+    "old_freezer_sha256": "c0d907c7e3c75688fa62441ec23b18a762aac9477b5ca756e2f76c4f09e42cc9",
+    "corrected_freezer_sha256": "1ed7036664af270b263118a78103d50ba613a2fcfa3aac0a4dc7f902e4ad4490"
+  }
+}

@@ -1,0 +1,788 @@
+{
+  "pid": 12200,
+  "command": [
+    "Database/FFXII TZA/_experiments/evidence/EXP-019-ledger/observe_ledger.py",
+    "--pid",
+    "12200",
+    "--seconds",
+    "3",
+    "--out",
+    "Database/FFXII TZA/_experiments/evidence/EXP-019-ledger/stepping-qualified.json"
+  ],
+  "start_unix": 1789095986.622203,
+  "status": "OBSERVED",
+  "states": [
+    {
+      "pool": 1730892736,
+      "capacity": 32,
+      "units": [
+        {
+          "slot": 0,
+          "address": 1730892736,
+          "header": "1d00000400000200090010000000000090b32f6700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731179408,
+          "bkei": 0,
+          "lane_map": 0,
+          "map_raw": null,
+          "resolved_slot": null,
+          "page": 35334420,
+          "kind": 0,
+          "hp": 103,
+          "hp_raw": "67000000",
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 1,
+          "address": 1730896656,
+          "header": "01000000000000000a0010000000000070ba2f6700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731181168,
+          "bkei": 0,
+          "lane_map": 0,
+          "map_raw": null,
+          "resolved_slot": null,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 2,
+          "address": 1730900576,
+          "header": "01000000000000000b0010000000000050c12f6700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731182928,
+          "bkei": 0,
+          "lane_map": 0,
+          "map_raw": null,
+          "resolved_slot": null,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 3,
+          "address": 1730904496,
+          "header": "01000000000000000c0010000000000030c82f6700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731184688,
+          "bkei": 0,
+          "lane_map": 0,
+          "map_raw": null,
+          "resolved_slot": null,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 4,
+          "address": 1730908416,
+          "header": "1d00a004000102001800200000000000b01a306700000000",
+          "group": 1,
+          "mode": 1,
+          "actor": 1731205808,
+          "bkei": 0,
+          "lane_map": 1731135348,
+          "map_raw": "020008",
+          "resolved_slot": 0,
+          "page": 1730854912,
+          "kind": 1,
+          "hp": 134,
+          "hp_raw": "86000000",
+          "spawn": 1730854784,
+          "spawn_head": "0200000000000000000000000000000000000000"
+        },
+        {
+          "slot": 5,
+          "address": 1730912336,
+          "header": "1d00a0040001020019002000000000002021306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731207456,
+          "bkei": 0,
+          "lane_map": 1731135351,
+          "map_raw": "0101",
+          "resolved_slot": 1,
+          "page": 1730855504,
+          "kind": 1,
+          "hp": 6111,
+          "hp_raw": "df170000",
+          "spawn": 1730855376,
+          "spawn_head": "0200000000000000000001000000000000000100"
+        },
+        {
+          "slot": 6,
+          "address": 1730916256,
+          "header": "01000000000000001a001000000000009027306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731209104,
+          "bkei": 0,
+          "lane_map": 1731135353,
+          "map_raw": "07ff02090f15191d",
+          "resolved_slot": 255,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 7,
+          "address": 1730920176,
+          "header": "1d00a004000102001b00200000000000002e306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731210752,
+          "bkei": 1,
+          "lane_map": 1731135361,
+          "map_raw": "06ff030a10161a",
+          "resolved_slot": 3,
+          "page": 1730856688,
+          "kind": 1,
+          "hp": 84,
+          "hp_raw": "54000000",
+          "spawn": 1730856560,
+          "spawn_head": "0200000000000000000003000000000098000100"
+        },
+        {
+          "slot": 8,
+          "address": 1730924096,
+          "header": "01000000000000001c001000000000007034306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731212400,
+          "bkei": 0,
+          "lane_map": 1731135368,
+          "map_raw": "06ff040b11171b",
+          "resolved_slot": 255,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 9,
+          "address": 1730928016,
+          "header": "01000000000000001d00100000000000e03a306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731214048,
+          "bkei": 0,
+          "lane_map": 1731135375,
+          "map_raw": "06ff050c12181c",
+          "resolved_slot": 255,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 10,
+          "address": 1730931936,
+          "header": "01000000000000001e001000000000005041306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731215696,
+          "bkei": 0,
+          "lane_map": 1731135382,
+          "map_raw": "04ff060d13",
+          "resolved_slot": 255,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        },
+        {
+          "slot": 11,
+          "address": 1730935856,
+          "header": "01000000000000001f00100000000000c047306700000000",
+          "group": 0,
+          "mode": 0,
+          "actor": 1731217344,
+          "bkei": 0,
+          "lane_map": 1731135387,
+          "map_raw": "04ff070e14",
+          "resolved_slot": 255,
+          "page": 0,
+          "kind": null,
+          "hp": null,
+          "hp_raw": null,
+          "spawn": 0,
+          "spawn_head": null
+        }
+      ],
+      "ledger_raw": "010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "table": 34184688,
+      "slot3": 0,
+      "actor_gate": 95,
+      "dispatch_gate": 26,
+      "field_gate": 0,
+      "scale": 2.0
+    }
+  ],
+  "samples": [
+    {
+      "start_seconds": 5.8400000852998346e-05,
+      "end_seconds": 0.000650499998300802,
+      "frame_before": 1473,
+      "frame_after": 1473,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.050471599999582395,
+      "end_seconds": 0.05087260000073002,
+      "frame_before": 1476,
+      "frame_after": 1476,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.10062230000039563,
+      "end_seconds": 0.10110269999859156,
+      "frame_before": 1479,
+      "frame_after": 1479,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.1508337000013853,
+      "end_seconds": 0.1512656999984756,
+      "frame_before": 1482,
+      "frame_after": 1482,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.20116179999968153,
+      "end_seconds": 0.201558799999475,
+      "frame_before": 1485,
+      "frame_after": 1485,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.25138829999923473,
+      "end_seconds": 0.2518390000004729,
+      "frame_before": 1488,
+      "frame_after": 1488,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.30182549999881303,
+      "end_seconds": 0.3022590000000491,
+      "frame_before": 1491,
+      "frame_after": 1492,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.3520724000009068,
+      "end_seconds": 0.35265140000046813,
+      "frame_before": 1494,
+      "frame_after": 1495,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.40212919999976293,
+      "end_seconds": 0.4025609999989683,
+      "frame_before": 1497,
+      "frame_after": 1498,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.4530656999995699,
+      "end_seconds": 0.4535753999989538,
+      "frame_before": 1501,
+      "frame_after": 1501,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.5035730999989028,
+      "end_seconds": 0.5039660000002186,
+      "frame_before": 1504,
+      "frame_after": 1504,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.554011399999581,
+      "end_seconds": 0.5544002999995428,
+      "frame_before": 1507,
+      "frame_after": 1507,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.6040561000008893,
+      "end_seconds": 0.6044499999989057,
+      "frame_before": 1510,
+      "frame_after": 1510,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.6542745000006107,
+      "end_seconds": 0.6546616000014183,
+      "frame_before": 1513,
+      "frame_after": 1513,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.7045465999981388,
+      "end_seconds": 0.7049765999981901,
+      "frame_before": 1516,
+      "frame_after": 1516,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.7549140999981319,
+      "end_seconds": 0.7553551999990304,
+      "frame_before": 1519,
+      "frame_after": 1519,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.8054273999987345,
+      "end_seconds": 0.8058146000003035,
+      "frame_before": 1522,
+      "frame_after": 1522,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.8561461999997846,
+      "end_seconds": 0.856544499998563,
+      "frame_before": 1525,
+      "frame_after": 1525,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.906401399999595,
+      "end_seconds": 0.9067895000007411,
+      "frame_before": 1528,
+      "frame_after": 1528,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 0.9567153999996663,
+      "end_seconds": 0.9571066999997129,
+      "frame_before": 1531,
+      "frame_after": 1531,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.0071032000014384,
+      "end_seconds": 1.0074932999996236,
+      "frame_before": 1534,
+      "frame_after": 1534,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.0575960999995004,
+      "end_seconds": 1.0579849999994622,
+      "frame_before": 1537,
+      "frame_after": 1537,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.107950500001607,
+      "end_seconds": 1.1083642999983567,
+      "frame_before": 1540,
+      "frame_after": 1540,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.1582655999991402,
+      "end_seconds": 1.1586539999989327,
+      "frame_before": 1543,
+      "frame_after": 1543,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.208727799999906,
+      "end_seconds": 1.2091489000013098,
+      "frame_before": 1546,
+      "frame_after": 1546,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.2591781000010087,
+      "end_seconds": 1.259565799999109,
+      "frame_before": 1549,
+      "frame_after": 1549,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.3092716999999539,
+      "end_seconds": 1.309668199999578,
+      "frame_before": 1552,
+      "frame_after": 1552,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.359549299999344,
+      "end_seconds": 1.359963200000493,
+      "frame_before": 1555,
+      "frame_after": 1555,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.4096621999997296,
+      "end_seconds": 1.4100786000017251,
+      "frame_before": 1558,
+      "frame_after": 1558,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.4597982000013872,
+      "end_seconds": 1.4601896999993187,
+      "frame_before": 1561,
+      "frame_after": 1561,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.5098723999981303,
+      "end_seconds": 1.5102617999982613,
+      "frame_before": 1564,
+      "frame_after": 1564,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.5602604000014253,
+      "end_seconds": 1.5606609999995271,
+      "frame_before": 1567,
+      "frame_after": 1567,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.6103207000014663,
+      "end_seconds": 1.6109054000007745,
+      "frame_before": 1570,
+      "frame_after": 1570,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.6606449999999313,
+      "end_seconds": 1.6610331999982009,
+      "frame_before": 1573,
+      "frame_after": 1573,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.710938399999577,
+      "end_seconds": 1.711327799999708,
+      "frame_before": 1576,
+      "frame_after": 1576,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.761501799999678,
+      "end_seconds": 1.7621533999990788,
+      "frame_before": 1579,
+      "frame_after": 1579,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.8118592999999237,
+      "end_seconds": 1.812424399999145,
+      "frame_before": 1582,
+      "frame_after": 1582,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.8619824999987031,
+      "end_seconds": 1.8623980000011215,
+      "frame_before": 1585,
+      "frame_after": 1585,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.9120699999984936,
+      "end_seconds": 1.912521199999901,
+      "frame_before": 1588,
+      "frame_after": 1588,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 1.9625310000010359,
+      "end_seconds": 1.9629220999995596,
+      "frame_before": 1591,
+      "frame_after": 1591,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.0129209000006085,
+      "end_seconds": 2.0133520000017597,
+      "frame_before": 1594,
+      "frame_after": 1594,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.0633887000003597,
+      "end_seconds": 2.0637769999993907,
+      "frame_before": 1597,
+      "frame_after": 1597,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.1138925999985076,
+      "end_seconds": 2.114442999998573,
+      "frame_before": 1600,
+      "frame_after": 1600,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.1644253999984358,
+      "end_seconds": 2.1648088000001735,
+      "frame_before": 1603,
+      "frame_after": 1603,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.214545300001191,
+      "end_seconds": 2.2149323000012373,
+      "frame_before": 1606,
+      "frame_after": 1606,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.2647686999989673,
+      "end_seconds": 2.26518710000164,
+      "frame_before": 1609,
+      "frame_after": 1609,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.314906899999187,
+      "end_seconds": 2.315294600000925,
+      "frame_before": 1612,
+      "frame_after": 1612,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.3651194999984,
+      "end_seconds": 2.3655050000015763,
+      "frame_before": 1615,
+      "frame_after": 1615,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.41540299999906,
+      "end_seconds": 2.4157926000007137,
+      "frame_before": 1618,
+      "frame_after": 1618,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.4656463999999687,
+      "end_seconds": 2.466024400000606,
+      "frame_before": 1621,
+      "frame_after": 1621,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.5160845999998855,
+      "end_seconds": 2.5164715999999316,
+      "frame_before": 1624,
+      "frame_after": 1624,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.566229799998837,
+      "end_seconds": 2.5666201999993064,
+      "frame_before": 1627,
+      "frame_after": 1627,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.6166067000012845,
+      "end_seconds": 2.6170458999986295,
+      "frame_before": 1630,
+      "frame_after": 1630,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.6669196000002557,
+      "end_seconds": 2.6674472999984573,
+      "frame_before": 1633,
+      "frame_after": 1633,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.7174477000007755,
+      "end_seconds": 2.7178650999994716,
+      "frame_before": 1636,
+      "frame_after": 1636,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.767764600001101,
+      "end_seconds": 2.7681613999993715,
+      "frame_before": 1639,
+      "frame_after": 1639,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.8179860999989614,
+      "end_seconds": 2.8187632000008307,
+      "frame_before": 1642,
+      "frame_after": 1642,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.86825079999835,
+      "end_seconds": 2.8686438000004273,
+      "frame_before": 1645,
+      "frame_after": 1645,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.9188109999995504,
+      "end_seconds": 2.919287799999438,
+      "frame_before": 1648,
+      "frame_after": 1649,
+      "state_index": 0
+    },
+    {
+      "start_seconds": 2.9689445000003616,
+      "end_seconds": 2.969410699999571,
+      "frame_before": 1651,
+      "frame_after": 1652,
+      "state_index": 0
+    }
+  ],
+  "source_sha256": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-019-ledger\\observe_ledger.py": "85dc4f959e76df6db7274c25bb34d0caa19e2548388f20dfbfd1f938e75ae91b",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928"
+  },
+  "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "module_verdict": "clean",
+  "watched_modules": [],
+  "modules": [
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+    "c:\\windows\\system32\\ntdll.dll",
+    "c:\\windows\\system32\\kernel32.dll",
+    "c:\\windows\\system32\\kernelbase.dll",
+    "c:\\windows\\system32\\user32.dll",
+    "c:\\windows\\system32\\win32u.dll",
+    "c:\\windows\\system32\\gdi32.dll",
+    "c:\\windows\\system32\\iphlpapi.dll",
+    "c:\\windows\\system32\\gdi32full.dll",
+    "c:\\windows\\system32\\ucrtbase.dll",
+    "c:\\windows\\system32\\msvcp_win.dll",
+    "c:\\windows\\system32\\advapi32.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+    "c:\\windows\\system32\\msvcrt.dll",
+    "c:\\windows\\system32\\shell32.dll",
+    "c:\\windows\\system32\\sechost.dll",
+    "c:\\windows\\system32\\rpcrt4.dll",
+    "c:\\windows\\system32\\ole32.dll",
+    "c:\\windows\\system32\\combase.dll",
+    "c:\\windows\\system32\\oleaut32.dll",
+    "c:\\windows\\system32\\imm32.dll",
+    "c:\\windows\\system32\\msvcp140.dll",
+    "c:\\windows\\system32\\dinput8.dll",
+    "c:\\windows\\system32\\winmm.dll",
+    "c:\\windows\\system32\\dbghelp.dll",
+    "c:\\windows\\system32\\dwmapi.dll",
+    "c:\\windows\\system32\\d3d11.dll",
+    "c:\\windows\\system32\\dxgi.dll",
+    "c:\\windows\\system32\\xinput9_1_0.dll",
+    "c:\\windows\\system32\\vcruntime140.dll",
+    "c:\\windows\\system32\\vcruntime140_1.dll",
+    "c:\\windows\\system32\\powrprof.dll",
+    "c:\\windows\\system32\\dbgcore.dll",
+    "c:\\windows\\system32\\umpdc.dll",
+    "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+    "c:\\windows\\system32\\psapi.dll",
+    "c:\\windows\\system32\\cfgmgr32.dll",
+    "c:\\windows\\system32\\inputhost.dll",
+    "c:\\windows\\system32\\coremessaging.dll",
+    "c:\\windows\\system32\\bcryptprimitives.dll",
+    "c:\\windows\\system32\\kernel.appcore.dll",
+    "c:\\program files (x86)\\steam\\steamclient64.dll",
+    "c:\\windows\\system32\\ws2_32.dll",
+    "c:\\windows\\system32\\shlwapi.dll",
+    "c:\\windows\\system32\\crypt32.dll",
+    "c:\\windows\\system32\\imagehlp.dll",
+    "c:\\windows\\system32\\setupapi.dll",
+    "c:\\windows\\system32\\version.dll",
+    "c:\\program files (x86)\\steam\\tier0_s64.dll",
+    "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+    "c:\\windows\\system32\\mswsock.dll",
+    "c:\\windows\\system32\\secur32.dll",
+    "c:\\windows\\system32\\bcrypt.dll",
+    "c:\\windows\\system32\\sspicli.dll",
+    "c:\\windows\\system32\\shcore.dll",
+    "c:\\windows\\system32\\cryptbase.dll",
+    "c:\\windows\\system32\\windows.storage.dll",
+    "c:\\windows\\system32\\uxtheme.dll",
+    "c:\\windows\\system32\\devobj.dll",
+    "c:\\windows\\system32\\wintrust.dll",
+    "c:\\windows\\system32\\msasn1.dll",
+    "c:\\windows\\system32\\nvapi64.dll",
+    "c:\\windows\\system32\\cryptnet.dll",
+    "c:\\windows\\system32\\wldp.dll",
+    "c:\\windows\\system32\\drvstore.dll",
+    "c:\\windows\\system32\\dxcore.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+    "c:\\windows\\system32\\directxdatabasehelper.dll",
+    "c:\\windows\\system32\\cryptsp.dll",
+    "c:\\windows\\system32\\rsaenh.dll",
+    "c:\\windows\\system32\\nvspcap64.dll",
+    "c:\\windows\\system32\\profapi.dll",
+    "c:\\windows\\system32\\ntmarta.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+    "c:\\windows\\system32\\dcomp.dll",
+    "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+    "c:\\windows\\system32\\hid.dll",
+    "c:\\windows\\system32\\msctf.dll",
+    "c:\\windows\\system32\\clbcatq.dll",
+    "c:\\windows\\system32\\wbem\\wbemprox.dll",
+    "c:\\windows\\system32\\wbemcomn.dll",
+    "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+    "c:\\windows\\system32\\wbem\\fastprox.dll",
+    "c:\\windows\\system32\\amsi.dll",
+    "c:\\windows\\system32\\userenv.dll",
+    "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.3-0\\mpoav.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+    "c:\\windows\\system32\\mmdevapi.dll",
+    "c:\\windows\\system32\\audioses.dll",
+    "c:\\windows\\system32\\resourcepolicyclient.dll",
+    "c:\\windows\\system32\\windows.ui.dll",
+    "c:\\windows\\system32\\xinput1_4.dll",
+    "c:\\windows\\system32\\uiautomationcore.dll",
+    "c:\\windows\\system32\\oleacc.dll",
+    "c:\\windows\\system32\\threadpoolwinrt.dll",
+    "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9257\\modules\\discord_hook-1\\discord_hook\\c2391bcbbf7df4\\discordhook64.dll"
+  ],
+  "code_identity": [
+    {
+      "rva": 4096,
+      "bytes": 7996981,
+      "sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4"
+    }
+  ],
+  "end_unix": 1789095989.6837718
+}

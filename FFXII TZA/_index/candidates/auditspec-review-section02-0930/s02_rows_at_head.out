@@ -1,0 +1,15 @@
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x000'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x020'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x023'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x028'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x02C'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x030'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x034'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x048'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x050'}
+SAME    fields.tsv {'type': 'ResourceRequestSlot', 'offset': '0x064'}
+SAME    fields.tsv {'type': 'ResourceRequestQueue', 'offset': '0x00'}
+SAME    fields.tsv {'type': 'ResourceRequestQueue', 'offset': '0x08'}
+SAME    fields.tsv {'type': 'ResourceRequestQueue', 'offset': '0x10'}
+SAME    types.tsv {'type': 'ResourceRequestQueue'}
+rows 14, unchanged since SECTION-02: 14

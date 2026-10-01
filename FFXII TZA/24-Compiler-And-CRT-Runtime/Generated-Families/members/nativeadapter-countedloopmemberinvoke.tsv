@@ -1,0 +1,10 @@
+# NativeAdapter.CountedLoopMemberInvoke - EC-7 family C
+# # iterate ebx over a member count field (mask 0x7fffffff, min 1); per
+# # index call a member lookup twice reading [rax] and call shared
+# # 005CCB80 when positive.
+address	targets
+0062B020	005CCB80,00623D70
+0062B090	005CCB80,00623DB0
+0062B100	005CCB80,00623DF0
+0062B170	005CCB80,00623E30
+0062B1E0	005CCB80,00623E70

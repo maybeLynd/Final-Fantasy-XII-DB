@@ -1,0 +1,8 @@
+{
+  "input_sha256": "aebdab4c7c92589bb6b3f45b6a91101ce5258cce361d7a4e9493b279274144ac",
+  "cases": 40,
+  "replay_reads": 609,
+  "replay_writes": 117,
+  "missing_publication_mutation_rejected": true,
+  "pass_all": true
+}

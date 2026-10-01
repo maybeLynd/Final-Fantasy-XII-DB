@@ -1,0 +1,32 @@
+{
+  "start_unix": 1789088202.7407157,
+  "scope": "targeted callback controls, not a complete mutation campaign",
+  "cases": [
+    {
+      "name": "baseline",
+      "status": "MATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\baseline-zsfaai58\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\final-baseline\\baseline\\run"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "status": "TARGETED_CONTROLS_PASSED",
+  "instrument_sha256": "4668effcd41a472727451de59f8ccfa20f2a22fc0c47064789b5fc100c5b0b98",
+  "end_unix": 1789088207.0146084,
+  "production_sources_unchanged": true
+}

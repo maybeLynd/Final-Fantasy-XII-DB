@@ -1,0 +1,46 @@
+{
+  "historical": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-001-gamesetting-frametimebase-20260908T083051.json",
+      "sha256": "c5612b0697e77d3caa3df22e816ffc5e24492e91891c3c741641435e37398644",
+      "literal_rows_rechecked_from_printed_values": [
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL"
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-001-gamesetting-frametimebase-20260908T083341.json",
+      "sha256": "ae290252ecd3cd6f2385c95e2c0004660031437eeaf73030873b2759cef68534",
+      "literal_rows_rechecked_from_printed_values": [
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 1768972144 (0x69705F70) FAIL"
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-001-gamesetting-frametimebase-20260908T084110.json",
+      "sha256": "5c23a6ba64f216b3204058a4c3de4dd7a24d00a821d7a0aabe5809561c57d59d",
+      "literal_rows_rechecked_from_printed_values": [
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 1095786320 (0x41505F50) FAIL",
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 1095786320 (0x41505F50) FAIL"
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-001-gamesetting-frametimebase-20260908T092218.json",
+      "sha256": "aa21d16edde936b2d1d7d188da6fbd1a577c8a6ac12048d26d6e9e5503102b7e",
+      "literal_rows_rechecked_from_printed_values": [
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL",
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL",
+        "C1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS",
+        "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL"
+      ]
+    }
+  ],
+  "scope": "Printed literal rows only, no new runtime evidence or retrospective source qualification",
+  "exp042_pin": "1ff612753c3768166fc9ab25670c36f3fefdf11939a9f2545392db3a2cc18cde",
+  "current_source_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+  "exp042_requalification_required": true
+}

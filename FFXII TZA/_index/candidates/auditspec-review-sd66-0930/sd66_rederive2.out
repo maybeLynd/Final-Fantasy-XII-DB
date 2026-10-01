@@ -1,0 +1,10 @@
+02CF8370  ctor/vtable/RTTI: [('00631A60', '00D581C0', 'Phyre::PClassDescriptor'), ('00633390', '00D581C0', 'Phyre::PClassDescriptor')]
+          loaded (mov reg, [G]) in: {'00634540 FUN_00634540': 3}
+02CF8580  ctor/vtable/RTTI: [('00631E20', '00D581C0', 'Phyre::PClassDescriptor'), ('00633390', '00D581C0', 'Phyre::PClassDescriptor')]
+          loaded (mov reg, [G]) in: {'006349B0 FUN_006349b0': 11}
+02CF8680  ctor/vtable/RTTI: [('00632000', '00D581C0', 'Phyre::PClassDescriptor'), ('00633390', '00D581C0', 'Phyre::PClassDescriptor')]
+          loaded (mov reg, [G]) in: {'006352A0 FUN_006352a0': 2}
+02CF8880  ctor/vtable/RTTI: [('006323C0', '00D581C0', 'Phyre::PClassDescriptor'), ('00633390', '00D581C0', 'Phyre::PClassDescriptor')]
+          loaded (mov reg, [G]) in: {'006357E0 FUN_006357e0': 1}
+02CF9530  ctor/vtable/RTTI: [('00633390', '00D581C0', 'Phyre::PClassDescriptor')]
+          loaded (mov reg, [G]) in: {'00635DC0 FUN_00635dc0': 2}

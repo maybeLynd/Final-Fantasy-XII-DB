@@ -1,0 +1,158 @@
+A  vtable calls in 007A1CD0 (slot disp, r8 cell, r9 cell -> use -> store):
+   007A1D06  +0x18  r8=- r9=-  use=[]  store=-  scale=-
+   007A1D61  +0x48  r8=02EA95A0 r9=02EA9548  use=['007A1D77 movzx ecx, byte ptr [rax]']  store=byte +0x43f  scale=-
+   007A1D8A  +0x48  r8=02EA95A0 r9=02EA9530  use=['007A1DA0 movzx ecx, byte ptr [rax]']  store=byte +0x43e  scale=-
+   007A1DB3  +0x48  r8=02EA95A0 r9=02EA9538  use=['007A1DC9 movzx ecx, byte ptr [rax]']  store=byte +0x43d  scale=-
+   007A1DDC  +0x48  r8=02EA95A0 r9=02EA9540  use=['007A1DF2 movzx ecx, byte ptr [rax]']  store=byte +0x43c  scale=-
+   007A1E05  +0x48  r8=02EA95A0 r9=02EA9550  use=['007A1E1B movzx ecx, byte ptr [rax]']  store=byte +0x440  scale=-
+   007A1E2E  +0x48  r8=02EA95A0 r9=02EA9568  use=['007A1E44 movzx ecx, byte ptr [rax]']  store=byte +0x441  scale=-
+   007A1E57  +0x48  r8=02EA95A0 r9=02EA9558  use=['007A1E6D movzx ecx, byte ptr [rax]']  store=byte +0x442  scale=-
+   007A1E80  +0x48  r8=02EA95A0 r9=02EA9570  use=['007A1E96 movzx ecx, byte ptr [rax]']  store=byte +0x443  scale=-
+   007A1EA9  +0x48  r8=02EA95A0 r9=02EA9588  use=['007A1EBF movzx ecx, byte ptr [rax]']  store=byte +0x444  scale=-
+   007A1ED2  +0x48  r8=02EA95A0 r9=02EA9580  use=['007A1ED5 movzx ecx, byte ptr [rax]']  store=byte +0x445  scale=-
+   007A1EFB  +0x48  r8=02EA95A0 r9=02EA9560  use=['007A1F11 movzx ecx, byte ptr [rax]']  store=byte +0x446  scale=-
+   007A1F24  +0x48  r8=02EA95A0 r9=02EA9578  use=['007A1F3A movzx ecx, byte ptr [rax]']  store=byte +0x447  scale=-
+   007A1F4D  +0x48  r8=02EA95A0 r9=02EA9510  use=['007A1F63 movzx ecx, byte ptr [rax]']  store=byte +0x448  scale=-
+   007A1F76  +0x48  r8=02EA95A0 r9=02EA9528  use=['007A1F8C movzx ecx, byte ptr [rax]']  store=byte +0x449  scale=-
+   007A1F9F  +0x48  r8=02EA95A0 r9=02EA9518  use=['007A1FB5 movzx ecx, byte ptr [rax]']  store=byte +0x44a  scale=-
+   007A1FC8  +0x48  r8=02EA95A0 r9=02EA9520  use=['007A1FDE movzx ecx, byte ptr [rax]']  store=byte +0x44b  scale=-
+   007A1FF1  +0x60  r8=02EA95A0 r9=02EA9590  use=['007A200E movss xmm0, dword ptr [rax + 4]']  store=dword +0x414  scale=256.0
+   007A2028  +0x60  r8=02EA95A0 r9=02EA9590  use=['007A2045 movss xmm0, dword ptr [rax + 8]']  store=dword +0x420  scale=-256.0
+   007A205F  +0x60  r8=02EA95A0 r9=02EA9598  use=['007A207C movss xmm0, dword ptr [rax + 4]']  store=dword +0x418  scale=256.0
+   007A2096  +0x60  r8=02EA95A0 r9=02EA9598  use=['007A20B2 movss xmm0, dword ptr [rax + 8]']  store=dword +0x424  scale=-256.0
+   007A20E9  +0x88  r8=02EA95A0 r9=02EA9598  use=[]  store=-  scale=-
+   slot counts: +0x18 x1, +0x48 x16, +0x60 x4, +0x88 x1
+B  digital handle cells: 16 calls, 16 distinct, min 02EA9510 max 02EA9588, contiguous qwords: True
+   analog handle cells: ['02EA9590', '02EA9598'] ; overlap with digital: []
+   controller handle (r8) in every +0x48/+0x60 call: ['02EA95A0']
+D  rip references to 02EA9500..02EA95B0 image-wide (writes marked W):
+     00792BBC  mov rcx, qword ptr [rip + 0x2716945]
+   W 00792BDB  mov qword ptr [rip + 0x27169be], rax
+     00792BE2  mov rcx, qword ptr [rip + 0x271691f]
+     00792BF6  mov rcx, qword ptr [rip + 0x271690b]
+     00792C03  mov rdx, qword ptr [rip + 0x2716996]
+     00792C20  mov rcx, qword ptr [rip + 0x27168e1]
+     00792C50  mov rcx, qword ptr [rip + 0x27168b1]
+     0079775D  mov rcx, qword ptr [rip + 0x2711da4]
+     0079776F  mov rcx, qword ptr [rip + 0x2711d92]
+     007977C1  mov eax, dword ptr fs:[rip + 0x2711d38]
+     00797800  mov r8d, dword ptr [rip + 0x2711cf9]
+     00797813  mov eax, dword ptr [rip + 0x2711ce7]
+   W 0079781B  mov dword ptr [rip + 0x2711cdf], eax
+   W 00797927  mov qword ptr [rip + 0x2711bda], rcx
+     007998EA  mov rcx, qword ptr [rip + 0x270fc17]
+     007A1CF7  mov rcx, qword ptr [rip + 0x270780a]
+     007A1D11  mov r8, qword ptr [rip + 0x2707888]
+     007A1D3D  mov r8, qword ptr [rip + 0x270785c]
+     007A1D4B  mov rcx, qword ptr [rip + 0x27077b6]
+     007A1D57  mov r9, qword ptr [rip + 0x27077ea]
+     007A1D63  mov r9, qword ptr [rip + 0x27077c5]
+     007A1D70  mov r8, qword ptr [rip + 0x2707829]
+     007A1D80  mov rcx, qword ptr [rip + 0x2707781]
+     007A1D8C  mov r9, qword ptr [rip + 0x27077a4]
+     007A1D99  mov r8, qword ptr [rip + 0x2707800]
+     007A1DA9  mov rcx, qword ptr [rip + 0x2707758]
+     007A1DB5  mov r9, qword ptr [rip + 0x2707783]
+     007A1DC2  mov r8, qword ptr [rip + 0x27077d7]
+     007A1DD2  mov rcx, qword ptr [rip + 0x270772f]
+     007A1DDE  mov r9, qword ptr [rip + 0x270776a]
+     007A1DEB  mov r8, qword ptr [rip + 0x27077ae]
+     007A1DFB  mov rcx, qword ptr [rip + 0x2707706]
+     007A1E07  mov r9, qword ptr [rip + 0x2707759]
+     007A1E14  mov r8, qword ptr [rip + 0x2707785]
+     007A1E24  mov rcx, qword ptr [rip + 0x27076dd]
+     007A1E30  mov r9, qword ptr [rip + 0x2707720]
+     007A1E3D  mov r8, qword ptr [rip + 0x270775c]
+     007A1E4D  mov rcx, qword ptr [rip + 0x27076b4]
+     007A1E59  mov r9, qword ptr [rip + 0x270770f]
+     007A1E66  mov r8, qword ptr [rip + 0x2707733]
+     007A1E76  mov rcx, qword ptr [rip + 0x270768b]
+     007A1E82  mov r9, qword ptr [rip + 0x27076fe]
+     007A1E8F  mov r8, qword ptr [rip + 0x270770a]
+     007A1E9F  mov rcx, qword ptr [rip + 0x2707662]
+     007A1EAB  mov r9, qword ptr [rip + 0x27076cd]
+     007A1EB8  mov r8, qword ptr [rip + 0x27076e1]
+     007A1EC8  mov rcx, qword ptr [rip + 0x2707639]
+     007A1EDE  mov rcx, qword ptr [rip + 0x2707623]
+     007A1EE8  mov r9, qword ptr [rip + 0x2707671]
+     007A1EF4  mov r8, qword ptr [rip + 0x27076a5]
+     007A1EFD  mov r9, qword ptr [rip + 0x2707673]
+     007A1F0A  mov r8, qword ptr [rip + 0x270768f]
+     007A1F1A  mov rcx, qword ptr [rip + 0x27075e7]
+     007A1F26  mov r9, qword ptr [rip + 0x27075e2]
+     007A1F33  mov r8, qword ptr [rip + 0x2707666]
+     007A1F43  mov rcx, qword ptr [rip + 0x27075be]
+     007A1F4F  mov r9, qword ptr [rip + 0x27075d1]
+     007A1F5C  mov r8, qword ptr [rip + 0x270763d]
+     007A1F6C  mov rcx, qword ptr [rip + 0x2707595]
+     007A1F78  mov r9, qword ptr [rip + 0x2707598]
+     007A1F85  mov r8, qword ptr [rip + 0x2707614]
+     007A1F95  mov rcx, qword ptr [rip + 0x270756c]
+     007A1FA1  mov r9, qword ptr [rip + 0x2707577]
+     007A1FAE  mov r8, qword ptr [rip + 0x27075eb]
+     007A1FBE  mov rcx, qword ptr [rip + 0x2707543]
+     007A1FCA  mov r9, qword ptr [rip + 0x27075be]
+     007A1FD7  mov r8, qword ptr [rip + 0x27075c2]
+     007A1FE7  mov rcx, qword ptr [rip + 0x270751a]
+     007A1FF4  mov rcx, qword ptr [rip + 0x270750d]
+     007A2000  mov r9, qword ptr [rip + 0x2707589]
+     007A2007  mov r8, qword ptr [rip + 0x2707592]
+     007A202B  mov rcx, qword ptr [rip + 0x27074d6]
+     007A2037  mov r9, qword ptr [rip + 0x270755a]
+     007A203E  mov r8, qword ptr [rip + 0x270755b]
+     007A2062  mov rcx, qword ptr [rip + 0x270749f]
+     007A206E  mov r9, qword ptr [rip + 0x2707523]
+     007A2075  mov r8, qword ptr [rip + 0x2707524]
+     007A20A7  mov rcx, qword ptr [rip + 0x270745a]
+     007A20E2  mov rdx, qword ptr [rip + 0x27074b7]
+E  007A15A0:
+   007A15A0  mov qword ptr [rsp + 8], rbx
+   007A15A5  mov qword ptr [rsp + 0x10], rsi
+   007A15AA  push rdi
+   007A15AB  sub rsp, 0x20
+   007A15AF  mov rbx, qword ptr [rcx + 0x18]
+   007A15B3  lea rdi, [rcx + 0x18]
+   007A15B7  xor esi, esi
+   007A15B9  cmp rbx, rdi
+   007A15BC  cmove rbx, rsi
+   007A15C0  test rbx, rbx
+   007A15C3  je 0x7a1625
+   007A15C5  mov rax, qword ptr [rbx + 0x38]
+   007A15C9  test rax, rax
+   007A15CC  je 0x7a1600
+   007A15CE  movzx ecx, byte ptr [rbx + 0x30]
+   007A15D2  movzx eax, byte ptr [rax]
+   007A15D5  test cl, cl
+   007A15D7  jne 0x7a15e2
+   007A15D9  cmp al, 1
+   007A15DB  jne 0x7a15e2
+   007A15DD  mov byte ptr [rbx + 0x31], al
+   007A15E0  jmp 0x7a15e6
+   007A15E2  mov byte ptr [rbx + 0x31], sil
+   007A15E6  cmp cl, 1
+   007A15E9  jne 0x7a15f7
+   007A15EB  test al, al
+   007A15ED  jne 0x7a15f7
+   007A15EF  mov byte ptr [rbx + 0x32], cl
+   007A15F2  mov byte ptr [rbx + 0x30], al
+   007A15F5  jmp 0x7a1613
+   007A15F7  mov byte ptr [rbx + 0x32], sil
+   007A15FB  mov byte ptr [rbx + 0x30], al
+   007A15FE  jmp 0x7a1613
+   007A1600  mov rax, qword ptr [rbx + 0x40]
+   007A1604  test rax, rax
+   007A1607  je 0x7a1613
+   007A1609  mov edx, dword ptr [rax]
+   007A160B  mov rcx, rbx
+   007A160E  call 0x79a5f0
+   007A1613  mov rax, qword ptr [rbx]
+   007A1616  cmp rax, rdi
+   007A1619  mov rbx, rax
+   007A161C  cmove rbx, rsi
+   007A1620  test rbx, rbx
+   007A1623  jne 0x7a15c5
+   007A1625  mov rbx, qword ptr [rsp + 0x30]
+   007A162A  mov rsi, qword ptr [rsp + 0x38]
+   007A162F  add rsp, 0x20
+   007A1633  pop rdi
+   007A1634  ret 

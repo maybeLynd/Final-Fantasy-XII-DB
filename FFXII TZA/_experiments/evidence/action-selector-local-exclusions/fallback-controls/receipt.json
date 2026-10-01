@@ -1,0 +1,64 @@
+{
+  "driver_sha256": "da7c01e040df07b80113a5ea758e4d7d6296cfa310b9f65bf577c1e26cb8f3cc",
+  "original_checker_sha256": "0c9afe2854f3accfb6aa005def36163e70f73bcaa5de86c03adb5f73a4b3d379",
+  "adaptation": "W/ROOT input literals only; checker logic unchanged",
+  "cases": [
+    {
+      "case": "positive",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\positive\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\positive\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 0,
+      "result_exists": true,
+      "control_passed": true,
+      "adapted_checker_sha256": "18b039eceb75c19f55cf2d9b5b76888f8252d101312ff8310fdec8f22aad0a18"
+    },
+    {
+      "case": "missing_wrapper_completion",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\missing_wrapper_completion\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\missing_wrapper_completion\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "702a5ea8a92174922e56a2528454bd20469aa006578f73ac48a49ca6fedc992f"
+    },
+    {
+      "case": "wrong_dispatch_extent",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\wrong_dispatch_extent\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\wrong_dispatch_extent\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "97c65d6f45be1867a6abab80c912ecbab78641d8682098fd2bcf6acfe961e60c"
+    },
+    {
+      "case": "missing_required_raw",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\missing_required_raw\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\fallback-prerequisite-controls-01\\missing_required_raw\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "869ed35a74ea2ff8075b081ad7d45087838da3893258189b0c3f6293bcf74d2d"
+    }
+  ],
+  "scope": "producer path controls, not original-code executions or independent acceptance"
+}

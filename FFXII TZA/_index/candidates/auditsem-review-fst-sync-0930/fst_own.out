@@ -1,0 +1,24 @@
+Q 001A0BB0 push rdi
+Q 001A0BB2 sub rsp, 0x30
+Q 001A0BB6 mov qword ptr [rsp + 0x20], 0xfffffffffffffffe
+Q 001A0BBF mov qword ptr [rsp + 0x40], rbx
+Q 001A0BC4 mov qword ptr [rsp + 0x50], rbp
+Q 001A0BC9 mov qword ptr [rsp + 0x58], rsi
+Q 001A0BCE mov rbx, rdx
+Q 001A0BD1 mov rdi, rcx
+Q 001A0BD4 cmp dword ptr [rdx], 0
+Q 001A0BD7 je 0x1a0c3b
+Q 001A0BD9 test r8b, r8b
+Q 001A0BDC je 0x1a0be5
+Q 001A0BDE call 0x1a07b0
+Q 001A0BE3 jmp 0x1a0c3b
+Q 001A0BE5 lea rbp, [rcx + 0x28]
+Q 001A0BE9 mov qword ptr [rsp + 0x48], rbp
+Q 001A0BEE mov rcx, rbp
+Q 001A0BF1 call 0x5cd4f0
+F 001D6FB0: last r8 write 001D7076 mov r8b, 1; call 001D707C; branches landing between: none
+   expectation mov r8b, 1     -> MATCH
+   expectation xor r8d, r8d   -> no match
+F 001D6D90: last r8 write 001D6E4B xor r8d, r8d; call 001D6E51; branches landing between: none
+   expectation mov r8b, 1     -> no match
+   expectation xor r8d, r8d   -> MATCH

@@ -1,0 +1,57 @@
+[
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-start-p\\pulse.py",
+    "sha256": "e832bc527567a8170f7ce6cbef4e233aa6d24f768de550ea3539810c1a35c41a",
+    "retained": "sources/pulse.py.e832bc527567.source"
+  },
+  {
+    "path": "Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_input_probe.py",
+    "sha256": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+    "retained": "sources/runtime_input_probe.py.7a635333e0a8.source"
+  },
+  {
+    "path": "Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py",
+    "sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "retained": "sources/runtime_probe.py.83775bcc6263.source"
+  },
+  {
+    "path": "Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py",
+    "sha256": "5629e6368f838fda31084486578ec9c7479d3f5bf99100516acf9651b466bb6a",
+    "retained": "sources/ffxii_runtime.py.5629e6368f83.source"
+  },
+  {
+    "path": "Database\\Tools\\analysis-kit\\gfz-scripts\\window_focus.py",
+    "sha256": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+    "retained": "sources/window_focus.py.6011507801e0.source"
+  },
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+    "sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+    "retained": "sources/step.py.01fdada816ca.source"
+  },
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\EXP-037-command-observer\\observe.py",
+    "sha256": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3",
+    "retained": "sources/observe.py.2dbe98a2e12c.source"
+  },
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\resumed\\input_sample.py",
+    "sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf",
+    "retained": "sources/input_sample.py.aa2dbe1d797a.source"
+  },
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-start-p\\observe.py",
+    "sha256": "61b1e3be13047471ce808d3667145007672f725395f673d10305a03bd36cbcbf",
+    "retained": "sources/observe.py.61b1e3be1304.source"
+  },
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-start-p\\pulse.py",
+    "sha256": "ed70ddd758ee15c1d3996109586969c8acb307b9f3721de4c766bfbb3d988f3e",
+    "retained": "sources/pulse.py.ed70ddd758ee.source"
+  },
+  {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-start-p\\observe.py",
+    "sha256": "478ee7b5ba72f0cd304d189cd8fb24889e65470f6d269ca74c8e3d9d4c08048a",
+    "retained": "sources/observe.py.478ee7b5ba72.source"
+  }
+]

@@ -1,0 +1,64 @@
+0074C790  mov       rax, rsp
+0074C793  mov       qword ptr [rax + 0x18], rbx
+0074C797  push      rbp
+0074C798  push      rsi
+0074C799  push      r13
+0074C79B  push      r14
+0074C79D  push      r15
+0074C79F  sub       rsp, 0x120
+0074C7A6  mov       rbp, qword ptr [rsp + 0x188]
+0074C7AE  mov       r14, r8
+0074C7B1  movaps    xmmword ptr [rax - 0x38], xmm6
+0074C7B5  test      rbp, rbp
+0074C7B8  movaps    xmmword ptr [rax - 0x48], xmm7
+0074C7BC  mov       r13, rdx
+0074C7BF  movaps    xmmword ptr [rax - 0x58], xmm8
+0074C7C4  sete      r15b
+0074C7C8  cmp       byte ptr [rsp + 0x1d8], 0
+0074C7D0  movaps    xmm8, xmm3
+0074C7D4  movaps    xmmword ptr [rax - 0x68], xmm9
+0074C7D9  mov       rsi, rcx
+0074C7DC  movaps    xmmword ptr [rax - 0x78], xmm10
+0074C7E1  je        0x74c7e8
+0074C7E3  call      0x731db0
+0074C7E8  xor       ebx, ebx
+0074C7EA  mov       qword ptr [rsp + 0x158], r12
+0074C7F2  test      r15b, r15b
+0074C7F5  je        0x74c818
+0074C7F7  mov       rcx, qword ptr [rsi + 0x28]
+0074C7FB  lea       edx, [rbx + 8]
+0074C7FE  call      0x725150
+0074C803  mov       rcx, qword ptr [rsi + 0x28]
+0074C807  lea       edx, [rbx + 2]
+0074C80A  mov       rax, qword ptr [rcx]
+0074C80D  call      qword ptr [rax + 0x160]
+0074C813  mov       r12d, ebx
+0074C816  jmp       0x74c820
+0074C818  mov       r12d, dword ptr [rsp + 0x190]
+0074C820  mov       eax, dword ptr [r13 + 0x5c]
+0074C824  xorps     xmm6, xmm6
+0074C827  xorps     xmm7, xmm7
+0074C82A  mov       dword ptr [rsp + 0x28], ebx
+0074C82E  xorps     xmm9, xmm9
+0074C832  mov       dword ptr [rsp + 0x20], ebx
+0074C836  xorps     xmm10, xmm10
+0074C83A  mov       r9b, 1
+0074C83D  cvtsi2ss  xmm6, rax
+0074C842  mov       eax, dword ptr [r13 + 0x60]
+0074C846  xor       r8d, r8d
+0074C849  xor       edx, edx
+0074C84B  mov       rcx, r14
+0074C84E  cvtsi2ss  xmm7, rax
+0074C853  mov       eax, dword ptr [r14 + 0x5c]
+0074C857  mulss     xmm6, dword ptr [r13 + 0x88]
+0074C860  mulss     xmm7, dword ptr [r13 + 0x8c]
+0074C869  addss     xmm6, dword ptr [r13 + 0x90]
+0074C872  cvtsi2ss  xmm9, rax
+0074C877  mov       eax, dword ptr [r14 + 0x60]
+0074C87B  addss     xmm7, dword ptr [r13 + 0x94]
+0074C884  cvtsi2ss  xmm10, rax
+0074C889  call      0x7224c0
+0074C88E  test      eax, eax
+0074C890  js        0x74ca50
+0074C896  xor       edx, edx
+---

@@ -1,0 +1,19 @@
+battle_pack copies: 9
+ch: section 0x1920 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+cn: section 0x1928 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+de: section 0x2120 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+es: section 0x2078 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+fr: section 0x1DC0 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+in: section 0x1910 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+it: section 0x1E40 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+kr: section 0x1DE0 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}
+us: section 0x1DD0 magic b'st2e' rows 256 stride 32 (next word 0) first +0x20 sha256 3bde828b4bfb9b9a
+   entry opcodes 0x36/0x37: 0 []; distinct opcodes 22; entry-0 relation byte counts {1: 137, 2: 68, 4: 51}

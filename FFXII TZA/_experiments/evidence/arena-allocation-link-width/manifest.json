@@ -1,0 +1,41 @@
+{
+  "evidence_class": "Previously completed isolated original allocator composition on EXP077 output fixtures; seven cases plus one targeted mutation; no live game; sealing/review reads saved data only",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "allocation-result.json": {
+      "bytes": 697473,
+      "sha256": "3f943302e3924560564e8c830e0480be25f194e650529cc913df155296720c13"
+    },
+    "allocation_probe.py": {
+      "bytes": 7861,
+      "sha256": "93686cbe2151c161c9a7e70146f59aebd3d01dc699de6c8779bb805da81192f5"
+    },
+    "collect.py": {
+      "bytes": 4015,
+      "sha256": "cd9daebbd1cbe5484a2f5661a8aaf0bdaca03dbc17a39b170e5caa9908729f45"
+    },
+    "mutation-result.json": {
+      "bytes": 110184,
+      "sha256": "8dccbe86ee00556236561b3e3b24ae917a920a48f7aa057c66e359c1156797b2"
+    },
+    "mutation_control.py": {
+      "bytes": 1581,
+      "sha256": "6bdf7aea460a4c48e125ae4cca47297c6b4f0ee8128b29465c39cb7ff8e9fd19"
+    },
+    "primary.json": {
+      "bytes": 86401,
+      "sha256": "5bfba1aac37c796bd0c727be274d30fbbb584ee5d2a9868cb8f177248502f085"
+    },
+    "review.json": {
+      "bytes": 10056,
+      "sha256": "0baaba3e6c352825d0b4a5b9aff7be577472f23fe1680b5a5b691abb2af6fb9f"
+    },
+    "review_capture.py": {
+      "bytes": 5889,
+      "sha256": "e09ac177d6de920baba52f6695a9c8a4e9db13eba2bca742e93da041c3aadc42"
+    }
+  }
+}

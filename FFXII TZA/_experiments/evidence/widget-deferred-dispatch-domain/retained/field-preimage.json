@@ -1,0 +1,6 @@
+{
+  "source_path": "Database/FFXII TZA/_types/fields.tsv",
+  "whole_source_sha256": "e7e8e0ffdc2570711c4e09724df54172d47ec17629232684a210c9a174d54091",
+  "projection_sha256": "350c4797e0a9dae138e43d143c85c1615c5a77be5ab4cd1d9620694c143867c3",
+  "scope": "Exact full rows of the only two types used by producer S; not whole types validation"
+}

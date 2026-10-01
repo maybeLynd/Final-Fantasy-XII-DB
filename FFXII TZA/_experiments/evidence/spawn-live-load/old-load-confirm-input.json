@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-13T09:30:24.557Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 15273332,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "screenshot": "old-load-confirm-input.jpg",
+  "note": "Mouse confirm with slot004 selected. Ordinary UI trigger; no injected native call."
+}

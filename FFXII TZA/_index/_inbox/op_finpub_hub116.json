@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-116",
+ "result_refs": [
+  "commit:8dcc58901"
+ ],
+ "note": "batch-116 publish: 35 paths, guard ADDS NOTHING (134->132, 2 weather rows accounted); crossref 134 = 128 + 8 OPUS-owned - 2 cleared, zero batch-owned"
+}

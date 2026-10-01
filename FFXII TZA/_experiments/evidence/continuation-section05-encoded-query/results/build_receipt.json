@@ -1,0 +1,18 @@
+{
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "flags": [
+    "gcc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fno-strict-aliasing",
+    "-fPIE",
+    "-pie"
+  ],
+  "source_sha256": "dd593dbd36386da74477534b28a7da1548aa03ae2786e15c5bd000bd1e650dad",
+  "binary_sha256": "19f1ecbc82d41ff9ff3f27cf0a9b50edc1ddd49b8f0df911c081a53be30960d9",
+  "system": "Linux",
+  "machine": "x86_64"
+}

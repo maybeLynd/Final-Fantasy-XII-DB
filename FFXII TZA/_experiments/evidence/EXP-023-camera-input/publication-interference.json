@@ -1,0 +1,9 @@
+{
+  "peer_commit": "8c87452",
+  "peer_paths": [
+    "Database/FFXII TZA/_index/TYPE-COVERAGE.md",
+    "Database/FFXII TZA/_index/_inbox/TEAM.json",
+    "Database/FFXII TZA/_types/fields.tsv"
+  ],
+  "assessment": "No experiment/instrument/raw-evidence path touched. Staging began after this commit and exact staged scope/bytes passed. Link/board gates rerun after disclosure; no rollback of peer source."
+}

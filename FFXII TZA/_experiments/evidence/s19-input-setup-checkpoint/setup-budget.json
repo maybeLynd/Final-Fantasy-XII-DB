@@ -1,0 +1,30 @@
+{
+  "blocker": "title/Stepping launch-menu-input",
+  "attempts": 2,
+  "active_troubleshooting_seconds": 110.09899997711182,
+  "limit_attempts": 2,
+  "limit_seconds": 600,
+  "controls_started": true,
+  "status": "STOP_LOSS_REACHED_INPUT",
+  "initial_input": "Return sent with no observed acceptance",
+  "recoveries": [
+    {
+      "hypothesis": "Current modern Cross confirm swaps to C",
+      "input": "c",
+      "result": "no visible Load Game transition; selected modern config not proven in-process"
+    },
+    {
+      "hypothesis": "Explicit game foreground needed",
+      "input": "Return after activate_window",
+      "result": "no visible Load Game transition"
+    }
+  ],
+  "separate_read_access_blocker": {
+    "attempts": 2,
+    "status": "RESOLVED",
+    "first_control": "untyped/typed game module enumeration denied5; same-process positive32 modules",
+    "second_control": "outside sandbox93 game modules with image+ntdll; both untyped/typed succeed, prototype cause refuted"
+  },
+  "next_discriminator": "Before another load, qualify actual in-process binding path and FF12 registration/acceptance using a bounded approved control. No renewed allowance through reopening/renaming; additional setup needs approval and a bounded objective.",
+  "troubleshooting_measurement": "Upper bound: elapsed wall time from initial Return to final no-acceptance observation, including diagnostic/tool/observation waits, not measured CPU/active work time."
+}

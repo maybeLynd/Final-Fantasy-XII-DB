@@ -1,0 +1,33 @@
+{
+  "controls": [
+    {
+      "name": "single-text",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n"
+    },
+    {
+      "name": "all-text",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n"
+    },
+    {
+      "name": "single-bytes",
+      "returncode": 0,
+      "stdout": "Database/FFXII TZA/_experiments/evidence/dashboard-shell-reconciliation/run-01/server.log\n",
+      "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n"
+    },
+    {
+      "name": "all-bytes",
+      "returncode": 0,
+      "stdout": "Database/FFXII TZA/_experiments/evidence/dashboard-shell-reconciliation/run-01/server.log\n",
+      "stderr": "warning: unable to access 'C:\\Users\\Kristian/.config/git/ignore': Permission denied\n"
+    }
+  ],
+  "helper_newline_constants": [
+    "'\\n'",
+    "'\\n'",
+    "'\\n'"
+  ]
+}

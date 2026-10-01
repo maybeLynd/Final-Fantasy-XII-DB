@@ -1,0 +1,64 @@
+{
+  "driver_sha256": "bb6a5a9c4900889a56a21d29bc082b7fdccdc7b9bab5d36039ba2ea9541c0656",
+  "original_checker_sha256": "f52b12862b1edc648f40922c25f766d3d2f54c81ba0998b99a4ce1dac3c1fcca",
+  "adaptation": "only W/ROOT input literals; checker logic unchanged",
+  "results": [
+    {
+      "case": "positive",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\positive\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\positive\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 0,
+      "control_passed": true,
+      "adapted_checker_sha256": "f59d15b41cd74f38446aab0045b8bad8b1e81c85bff211e64c89acb282a453ab",
+      "result_exists": true
+    },
+    {
+      "case": "missing_wrapper_completion",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\missing_wrapper_completion\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\missing_wrapper_completion\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "control_passed": true,
+      "adapted_checker_sha256": "9a7752e43f68e52c0d336ece0d96f2b31b3ee8be17fabd2d3c0fcc792b9d64d1",
+      "result_exists": false
+    },
+    {
+      "case": "failed_upstream_role",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\failed_upstream_role\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\failed_upstream_role\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "control_passed": true,
+      "adapted_checker_sha256": "2b5120aa946ab89786df156cbcfc7dd25673c9ad249b125e3c21188b24f9e48e",
+      "result_exists": false
+    },
+    {
+      "case": "missing_required_input",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\missing_required_input\\checker-input-adapted.py",
+        "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\spattack-prerequisite-controls-01\\missing_required_input\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "control_passed": true,
+      "adapted_checker_sha256": "403aac546a688809003fe261101a9c7d631a336b033da8900b0b3fd06a3e036c",
+      "result_exists": false
+    }
+  ],
+  "scope": "actual producer-checker prerequisites; not new FF12 data or independent review"
+}

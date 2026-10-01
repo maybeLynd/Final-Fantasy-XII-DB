@@ -1,0 +1,84 @@
+{
+  "files": {
+    "baseline-checker.py.bin": {
+      "bytes": 8121,
+      "sha256": "9de854e8e3c472a52b89180151dbb7025d2cd9c2bedf25ff09babf25dbad4fc3"
+    },
+    "compare_advisories.py": {
+      "bytes": 3175,
+      "sha256": "602e0a1f2bd07be9755c438c0086e6699e2659b369f467934fb9763266c63f25"
+    },
+    "comparison.json": {
+      "bytes": 77330,
+      "sha256": "51be5fbfed63d1f0eb33a8cad40866358efe4b99f6fdcec07cd7fe36e74be324"
+    },
+    "initial-unreserved-validation.json": {
+      "bytes": 22623,
+      "sha256": "4b7e2047062e1e0342e1931c15dcc2883c9e8e8e260be992a887b75f86730dc7"
+    },
+    "publication-validation.json": {
+      "bytes": 22661,
+      "sha256": "aff2678a38236eb22366a8fc72626a70a959f05c7c0db4d5c1536a983fcc0316"
+    },
+    "question-ledger.md.bin": {
+      "bytes": 499856,
+      "sha256": "3c85b4c3b6bba9015b329b4ee6ec4bd4b95cf8398a53cfcea90513705bc81fc1"
+    },
+    "rules-before.md.bin": {
+      "bytes": 99332,
+      "sha256": "0853a37855f0a4c53be0429dcc12a2c152d6069c8f549107dafb993a689bfbaf"
+    },
+    "source-01.md.bin": {
+      "bytes": 15773,
+      "sha256": "000b7b39c2bb313279154f111f2c782daba160409f6e5b65d4b0f7b775609e65"
+    },
+    "source-02.md.bin": {
+      "bytes": 11452,
+      "sha256": "87e67f1e08fed529422ddf4444e5fa937e41eff0940460da1ee9c5a96b016342"
+    },
+    "source-03.md.bin": {
+      "bytes": 6695,
+      "sha256": "201b5a561db47a7ee9078267f3d7b226ed0ac20b8bbf13e1b3fc2d2a11da20f2"
+    },
+    "source-04.md.bin": {
+      "bytes": 50020,
+      "sha256": "edb95274a94552de52f3e5333c74d9cc3aa3febb2512fdc6c19ef503953f60ba"
+    },
+    "source-05.md.bin": {
+      "bytes": 41955,
+      "sha256": "77e144b1d50682b9ecbb794a8796f39c63562cd03887defcdd1df573fdbe995a"
+    },
+    "source-06.md.bin": {
+      "bytes": 29217,
+      "sha256": "c51ccd2fefdd689b7e50f590f4325d916371f8ae594836ab05903fc29f467dc1"
+    },
+    "source-07.md.bin": {
+      "bytes": 52015,
+      "sha256": "0622df6856b766b567d76ecdb7707d5b6a33fb8a5359ffe46028509cb949b03f"
+    },
+    "source-08.md.bin": {
+      "bytes": 9428,
+      "sha256": "6b585bd29509e50ef340e94815a8741306ad638b5301d43d263bd9d5550f4138"
+    },
+    "source-09.md.bin": {
+      "bytes": 6259,
+      "sha256": "babc99f0f3b1378e86ae20236f24b464e0078ed3c73614667bbb8527c72d0a60"
+    },
+    "validate_publication.py": {
+      "bytes": 3781,
+      "sha256": "bb8aae169b9c17cd9a3ca0583afd0ff71238821e220fb302f8075e6953700dfb"
+    },
+    "validated-check_answered_not_established.py.bin": {
+      "bytes": 7743,
+      "sha256": "53e62c57b0479b485ebb373edb8d1abdd96c86031e1cddf1bb320bba00152de5"
+    },
+    "validated-check_questions.py.bin": {
+      "bytes": 12671,
+      "sha256": "a76407cb15a3aadaefab99021bcbeb054ac37bc1de31fda5c313ed148acb8c39"
+    },
+    "validated-test_answered_advisories.py.bin": {
+      "bytes": 3070,
+      "sha256": "fbe1a1b6b5d46e5798b1f099a892768bf45942cb325f6313525773b9d282c3fb"
+    }
+  }
+}

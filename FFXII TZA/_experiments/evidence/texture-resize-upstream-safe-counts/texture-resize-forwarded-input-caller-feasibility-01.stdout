@@ -1,0 +1,3 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+Verified selected directCALL sites; fragment-only feasibility, incomingR9D semantic closure pending
+0x1babb2 FRAGMENT 0x1baa30 0x1bafe7 [('0x1bab92', 'lea', 'rcx, [rdi + 1]'), ('0x1bab96', 'call', 'qword ptr [rip + 0x707e6c]'), ('0x1bab9c', 'movsx', 'ecx, byte ptr [rax + 3]'), ('0x1baba0', 'sub', 'ecx, 0x30'), ('0x1baba3', 'mov', 'r8d, r13d'), ('0x1baba6', 'mov', 'edx, r13d'), ('0x1baba9', 'shl', 'dx, cl'), ('0x1babac', 'xor', 'ecx, ecx'), ('0x1babae', 'lea', 'r9d, [rcx + 0x20]'), ('0x1babb2', 'call', '0x183780'), ('0x1babb7', 'movsxd', 'rcx, dword ptr [rbp + 0x48]')]

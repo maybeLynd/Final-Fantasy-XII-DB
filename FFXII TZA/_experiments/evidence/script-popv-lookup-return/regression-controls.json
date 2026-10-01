@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-lookup-emits-write",
+    "returncode": 1,
+    "expected": "Read-only original lookup has no event write"
+  },
+  {
+    "argument": "--fault-return-used",
+    "returncode": 1,
+    "expected": "Original store overwrites lookup return before use"
+  },
+  {
+    "argument": "--fault-disable-write-detector",
+    "returncode": 1,
+    "expected": "Private load-to-store is detected as a write"
+  }
+]

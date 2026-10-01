@@ -1,0 +1,132 @@
+002FEB80  mov       qword ptr [rsp + 0x18], rbx
+002FEB85  push      rbp
+002FEB86  push      rsi
+002FEB87  push      rdi
+002FEB88  push      r14
+002FEB8A  push      r15
+002FEB8C  sub       rsp, 0x60
+002FEB90  movaps    xmmword ptr [rsp + 0x50], xmm6
+002FEB95  mov       rsi, rcx
+002FEB98  mov       rcx, qword ptr [rip + 0x2bc0559]   ; -> 02EBF0F8 (virtual tail / unmapped)
+002FEB9F  xor       ebx, ebx
+002FEBA1  movaps    xmmword ptr [rsp + 0x40], xmm7
+002FEBA6  mov       rbp, r9
+002FEBA9  movaps    xmmword ptr [rsp + 0x30], xmm8
+002FEBAF  mov       r14, r8
+002FEBB2  mov       r15, rdx
+002FEBB5  test      rcx, rcx
+002FEBB8  je        0x2febc0
+002FEBBA  mov       r10d, dword ptr [rcx + 4]
+002FEBBE  jmp       0x2febc3
+002FEBC0  mov       r10d, ebx
+002FEBC3  mov       rax, qword ptr [rsi + 0x698]
+002FEBCA  movzx     edx, word ptr [rax + 0x50]
+002FEBCE  lea       eax, [r10 + 0x1000]
+002FEBD5  cmp       edx, eax
+002FEBD7  jae       0x2fec1d
+002FEBD9  test      rcx, rcx
+002FEBDC  je        0x2fec1d
+002FEBDE  mov       ecx, dword ptr [rcx + 0xc]
+002FEBE1  call      0x20e600
+002FEBE6  test      rax, rax
+002FEBE9  je        0x2fec1d
+002FEBEB  mov       rax, qword ptr [rip + 0x2bc0506]   ; -> 02EBF0F8 (virtual tail / unmapped)
+002FEBF2  mov       ecx, dword ptr [rax + 0xc]
+002FEBF5  call      0x20e600
+002FEBFA  mov       rcx, qword ptr [rsi + 0x698]
+002FEC01  movzx     edi, word ptr [rcx + 0x50]
+002FEC05  mov       rcx, qword ptr [rip + 0x2bc04ec]   ; -> 02EBF0F8 (virtual tail / unmapped)
+002FEC0C  sub       edi, 0x1000
+002FEC12  movzx     edx, word ptr [rcx + 8]
+002FEC16  imul      edi, edx
+002FEC19  add       edi, eax
+002FEC1B  jmp       0x2fec20
+002FEC1D  mov       rdi, rbx
+002FEC20  mov       rcx, qword ptr [rsi + 0x10]
+002FEC24  lea       r8, [rsp + 0x90]
+002FEC2C  lea       rdx, [rsp + 0x98]
+002FEC34  call      0x265090
+002FEC39  movss     xmm6, dword ptr [rsp + 0x90]
+002FEC42  lea       r8, [rsp + 0xa8]
+002FEC4A  mov       rcx, qword ptr [r15 + 0x10]
+002FEC4E  lea       rdx, [rsp + 0x20]
+002FEC53  maxss     xmm6, dword ptr [rsp + 0x98]
+002FEC5C  call      0x265090
+002FEC61  movss     xmm8, dword ptr [rsp + 0xa8]
+002FEC6B  xor       r9d, r9d
+002FEC6E  maxss     xmm8, dword ptr [rsp + 0x20]
+002FEC75  mov       r8, rdi
+002FEC78  mov       rdx, r14
+002FEC7B  mov       rcx, rsi
+002FEC7E  addss     xmm8, xmm6
+002FEC83  call      0x320d70
+002FEC88  mov       r9d, 1
+002FEC8E  mov       r8, rdi
+002FEC91  mov       rdx, r14
+002FEC94  mov       rcx, rsi
+002FEC97  movaps    xmm7, xmm0
+002FEC9A  call      0x320d70
+002FEC9F  movaps    xmm6, xmm0
+002FECA2  xorps     xmm0, xmm0
+002FECA5  ucomiss   xmm7, xmm0
+002FECA8  jp        0x2fecac
+002FECAA  je        0x2fecb8
+002FECAC  ucomiss   xmm6, xmm0
+002FECAF  jp        0x2fecb3
+002FECB1  je        0x2fecb8
+002FECB3  mov       ebx, 1
+002FECB8  mov       rax, qword ptr [rsi + 0x698]
+002FECBF  mov       rcx, r14
+002FECC2  movzx     edx, word ptr [rax + 0x50]
+002FECC6  call      0x309300
+002FECCB  movaps    xmm2, xmm0
+002FECCE  test      ebx, ebx
+002FECD0  je        0x2fecdf
+002FECD2  addss     xmm6, xmm7
+002FECD6  movaps    xmm1, xmm6
+002FECD9  addss     xmm1, xmm2
+002FECDD  jmp       0x2fecfb
+002FECDF  mulss     xmm0, dword ptr [rip + 0x5f4419]   ; -> 008F3100 u32=3F19999A f32=0.6
+002FECE7  movaps    xmm1, xmm2
+002FECEA  mulss     xmm1, dword ptr [rip + 0x5f4416]   ; -> 008F3108 u32=3F4CCCCD f32=0.8
+002FECF2  movaps    xmm7, xmm0
+002FECF5  movaps    xmm6, xmm1
+002FECF8  movaps    xmm1, xmm2
+002FECFB  addss     xmm6, xmm8
+002FED00  addss     xmm7, xmm8
+002FED05  test      rbp, rbp
+002FED08  je        0x2fed14
+002FED0A  addss     xmm1, xmm8
+002FED0F  movss     dword ptr [rbp], xmm1
+002FED14  mov       rax, qword ptr [rsp + 0xb0]
+002FED1C  test      rax, rax
+002FED1F  je        0x2fed25
+002FED21  movss     dword ptr [rax], xmm6
+002FED25  mov       rax, qword ptr [rsp + 0xb8]
+002FED2D  test      rax, rax
+002FED30  je        0x2fed36
+002FED32  movss     dword ptr [rax], xmm7
+002FED36  mov       rbx, qword ptr [rsp + 0xa0]
+002FED3E  xor       eax, eax
+002FED40  movaps    xmm6, xmmword ptr [rsp + 0x50]
+002FED45  movaps    xmm7, xmmword ptr [rsp + 0x40]
+002FED4A  movaps    xmm8, xmmword ptr [rsp + 0x30]
+002FED50  add       rsp, 0x60
+002FED54  pop       r15
+002FED56  pop       r14
+002FED58  pop       rdi
+002FED59  pop       rsi
+002FED5A  pop       rbp
+002FED5B  ret       
+002FED5C  int3      
+002FED5D  int3      
+002FED5E  int3      
+002FED5F  int3      
+002FED60  or        dword ptr [rcx], 0x800000
+002FED66  mov       rax, qword ptr [rcx + 0x698]
+002FED6D  test      rax, rax
+002FED70  je        0x2fed79
+002FED72  movzx     r8d, byte ptr [rax + 5]
+002FED77  jmp       0x2fed7f
+002FED79  mov       r8d, 0xff
+---

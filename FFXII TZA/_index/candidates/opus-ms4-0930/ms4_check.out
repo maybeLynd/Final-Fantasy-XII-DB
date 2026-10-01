@@ -1,0 +1,6 @@
+PASS  M1 container 0x179E0 bytes, procedure 003CB650; id 14 -> default 003CB9CF, id 0x20 -> 003CB7DB
+PASS  M2 activation delivers static message (14, 0, 0, 0); the 11 references to 02B47760 (in 002B6570 002BA040 003CB3D0 003CB3E0 003CB410 003CB440) never activate or message it; 003CA2F0 activates 02B47758 (control); the container activates itself only at 003CB7DE
+PASS  M3 the 0x20 arm sends the page {14, 0, index, 0}, index = 003BC160() in mode 6 else 003C0380(field)
+PASS  M4 the page procedure 003CB4F0 takes id 14 to its preload arm 003CB581
+PASS  M5 stack-built message 14 sends: ['00292AB2', '003CB835']; static message-14 structs passed: ['00246BFF->01E0C0E0']
+FAILS 0

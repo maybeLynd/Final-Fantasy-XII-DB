@@ -1,0 +1,6 @@
+PASS  C1 001F0AD0 movss block targets == 144: 144
+PASS  C2 loader block targets == 29: 29
+PASS  C3 loader movss block store sites == 48: 48
+  non-movss loader store: 001C8FB5 mov -> +0x43C
+PASS  C4 the 29 meet 001D1660's block write targets in 21: 21
+intersection of the 144 and the 29: 0

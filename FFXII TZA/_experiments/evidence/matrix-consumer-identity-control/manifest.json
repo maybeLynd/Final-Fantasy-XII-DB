@@ -1,0 +1,54 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4848,
+      "sha256": "8de1a0f933ba66674476e9aee31648d23b52bf4db5b03d9f0431a447c5991613"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3316,
+      "sha256": "4334e26d0f4a2ea4618b5dc68826cbf71c77f9a07f07c8af4ac1a9de70d004fc"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1519,
+      "sha256": "100ba05908bb9db233d693a5cfc70013e156a2480d43d22ecf1a4c13fd49d2b8"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 7591,
+      "sha256": "fc5975ec4644dfeb04e5d8d63a51af9a81b372e97d705fae1dc8093bb9ef203a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2613,
+      "sha256": "65c41a6c7ebf9dff0bcc543fde4b54b882be82ad7cc041a17fb0971f9cf705a9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 964,
+      "sha256": "3180f95032ced6a5cdc4e5182cb43c8be7c8a21ff0ed6ad8d6e78d2425fda85f"
+    },
+    {
+      "path": "retained/alias_check.py",
+      "bytes": 6059,
+      "sha256": "9f1359b341cc7cd5d5f87ced48eccafd88283ba3b6bb498f87fd23dea8a79d0d"
+    },
+    {
+      "path": "retained/consumer-README.md",
+      "bytes": 2877,
+      "sha256": "95dec42b17c000cdb34b37e373b4eda0922fb8ab7478f46177a49fd769129fa6"
+    },
+    {
+      "path": "retained/primitives.md",
+      "bytes": 123908,
+      "sha256": "d55c8735c6aee1255ca06d5cdf2184272d43f6f49e7053b7f36a1f7766002401"
+    }
+  ]
+}

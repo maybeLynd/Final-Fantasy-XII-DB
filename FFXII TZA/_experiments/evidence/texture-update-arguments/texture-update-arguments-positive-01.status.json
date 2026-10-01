@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-update-arguments.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-update-arguments-result-01.json"
+  ],
+  "exit": 1,
+  "checker_sha256": "93c0707da941502ebc38848bb32b58a588ef28e5bb4ea54a6c92fdb298140d18"
+}

@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-13T10:41:29.670Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 21894358,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "screenshots": [
+    {
+      "height": 720,
+      "id": "screenshot-0",
+      "originX": 1920,
+      "originY": 1080,
+      "width": 1280,
+      "zIndex": 0
+    },
+    {
+      "height": 167,
+      "id": "screenshot-1",
+      "originX": 1724,
+      "originY": 950,
+      "width": 262,
+      "zIndex": 1
+    }
+  ]
+}

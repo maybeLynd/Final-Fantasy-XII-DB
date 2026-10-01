@@ -1,0 +1,30 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	page	nameWord	u16: 0x2800 x1, 0x2801 x1, 0x2802 x1, 0x2803 x1, 0x2804 x1 (32 distinct)	0031E1D4* movzx ecx, word ptr [rax] | 0031E20E* movzx edx, word ptr [rax] | 0053662B movzx eax, word ptr [rcx]	name word 0x2800 + id (bank 5)	STATIC	TYPES
+0x02	1	page	listOrderKey4	u8: 255 x4, 20 x2, 23 x2, 29 x1, 28 x1 (27 distinct)	0031E248* movzx eax, byte ptr [rbp + 2]	order key of status listing 4 (0xFF = excluded)	STATIC	TYPES
+0x03	3	pad	reservedZero03	u8: 0 x96 (1 distinct)	-	const=0x00	-	TYPES
+0x06	2	page	classWord	u16: 0x20 x9, 0xa400 x4, 0xa0df x2, 0xb000 x2, 0xe000 x2 (17 distinct)	00237D28* test word ptr [rcx + 6], r14w | 002C4D0F movzx ebx, word ptr [rcx + 6] | 002C4D62 test word ptr [rcx + 6], ax | 002C4DB7 test word ptr [rcx + 6], ax | 002C4E05 test word ptr [rcx + 6], ax | 0031E295* movzx eax, word ptr [rbp + 6] | 0038540C test word ptr [rcx + 6], r14w | 0038546C test word ptr [rcx + 6], r14w | 003854CC test word ptr [rcx + 6], r14w | 0038552C test word ptr [rcx + 6], bp | 0038675D test word ptr [rcx + 6], si | 003873FE test word ptr [rcx + 6], r12w | 0038746E test word ptr [rcx + 6], r12w | 003874DE test word ptr [rcx + 6], r12w | 0038754D test word ptr [rcx + 6], r14w | 00387806 test word ptr [rcx + 6], ax | 00387D72 test word ptr [rcx + 6], ax | 00387DC6 test byte ptr [rcx + 6], 0x20 | 00387E17 test word ptr [rcx + 6], ax | 0038FDC6 test word ptr [rcx + 6], r12w | 00390953 test byte ptr [rcx + 6], 0x20 | 003909A5 test word ptr [rcx + 6], ax | 0046A34D test word ptr [rcx + 6], bx	class word; bit 13 = harmful	STATIC	TYPES
+0x08	1	page	baseDuration	u8: 255 x11, 60 x4, 40 x3, 50 x3, 20 x2 (13 distinct)	00386EE0* cmp byte ptr [rcx + 8], 0xff | 00386F4F cmp byte ptr [rcx + 8], 0xff | 003877A6 cmp byte ptr [rcx + 8], 0xff | 00387883 movzx eax, byte ptr [rsi + 8] | 0038788D movzx eax, byte ptr [rbx + 8] | 0038792C movzx eax, byte ptr [rbx + 8] | 00387938 movzx eax, byte ptr [rbp + 8] | 00387C57 cmp byte ptr [rcx + 8], 0xff | 0038FE64* cmp byte ptr [rcx + 8], 0xff	base duration, 0xFF never expires	STATIC	TYPES
+0x09	1	page	durationUnit	u8: 0 x27, 45 x1, 100 x1, 120 x1, 1 x1 (6 distinct)	00386E76* movzx eax, byte ptr [rcx + 9] | 00387714* movzx eax, byte ptr [rcx + 9]	beat / duration unit	STATIC	TYPES
+0x0a	2	page	effectPoolKey	u16: 0x2ee0 x1, 0x2ee1 x1, 0x2ee2 x1, 0x2ee3 x1, 0x2ee4 x1 (32 distinct)	0031E288* movzx ecx, word ptr [rsi + 0xa]	0x2EE0 + id	STATIC	TYPES
+0x0c	4	page	clearMask	u32: 0x0 x24, 0x7ffef57c x1, 0x1ffc0004 x1, 0x20000 x1, 0x2000000 x1 (9 distinct)	0030E68A* mov eax, dword ptr [rcx + 0xc]	statuses this one clears	STATIC	TYPES
+0x10	1	page	listOrderKey0	u8: 20 x2, 23 x2, 30 x1, 29 x1, 28 x1 (30 distinct)	0031E22C* movzx eax, byte ptr [rbp + 0x10]	order key of status listing 0	STATIC	TYPES
+0x11	1	shape	b11	u8: 255 x27, 29 x1, 28 x1, 30 x1, 27 x1 (6 distinct)	-	0xFF or 27-31 (list-key-shaped); no reader	DATA	PASS
+0x12	1	shape	b12	u8: 255 x31, 31 x1 (2 distinct)	-	0xFF on 31 rows, 31 on one; no reader	DATA	PASS
+0x13	1	page	listOrderKey3	u8: 255 x4, 20 x2, 23 x2, 28 x1, 27 x1 (27 distinct)	0031E241* movzx eax, byte ptr [rbp + 0x13]	order key of status listing 3	STATIC	TYPES
+0x14	1	shape	b14	u8: 255 x28, 30 x1, 28 x1, 29 x1, 31 x1 (5 distinct)	-	0xFF or 28-31; no reader	DATA	PASS
+0x15	1	shape	b15	u8: 255 x29, 30 x1, 31 x1, 29 x1 (4 distinct)	-	0xFF or 29-31; no reader	DATA	PASS
+0x16	1	shape	b16	u8: 255 x28, 31 x1, 30 x1, 29 x1, 28 x1 (5 distinct)	-	0xFF or 28-31; no reader	DATA	PASS
+0x17	1	shape	b17	u8: 255 x25, 30 x1, 29 x1, 28 x1, 27 x1 (8 distinct)	-	0xFF or 25-31; no reader	DATA	PASS
+0x18	1	shape	b18	u8: 255 x29, 30 x1, 29 x1, 31 x1 (4 distinct)	-	0xFF or 29-31; no reader	DATA	PASS
+0x19	1	shape	b19	u8: 255 x28, 28 x1, 30 x1, 31 x1, 29 x1 (5 distinct)	-	0xFF or 28-31; no reader	DATA	PASS
+0x1a	1	shape	b1A	u8: 255 x27, 30 x1, 29 x1, 28 x1, 31 x1 (6 distinct)	-	0xFF or 27-31; no reader	DATA	PASS
+0x1b	1	shape	b1B	u8: 255 x31, 31 x1 (2 distinct)	-	0xFF on 31 rows, 31 on one; no reader	DATA	PASS
+0x1c	1	shape	b1C	u8: 255 x29, 31 x1, 29 x1, 30 x1 (4 distinct)	-	0xFF or 29-31; no reader	DATA	PASS
+0x1d	1	shape	b1D	u8: 255 x30, 31 x1, 30 x1 (3 distinct)	-	0xFF or 30-31; no reader	DATA	PASS
+0x1e	1	shape	b1E	u8: 255 x32 (1 distinct)	-	0xFF on all 32 rows; no reader	DATA	PASS
+0x1f	1	shape	b1F	u8: 255 x32 (1 distinct)	-	0xFF on all 32 rows; no reader	DATA	PASS
+0x20	4	page	blockingMask	u32: 0x80000003 x25, 0x80000043 x1, 0x88000003 x1, 0x80000007 x1, 0x90000003 x1 (8 distinct)	00387E5D* mov eax, dword ptr [rcx + 0x20] | 0038FE0D* mov eax, dword ptr [rcx + 0x20] | 003909DC* mov eax, dword ptr [rdi + 0x20]	statuses that block this one	STATIC	TYPES
+0x24	1	page	specialHandlingFlags	u8: 0 x26, 1 x3, 8 x1, 2 x1, 4 x1 (5 distinct)	0031E2A5* movzx ecx, byte ptr [rbp + 0x24] | 0031E2B7 movzx eax, byte ptr [rbp + 0x24] | 0031E2C6 movzx ecx, byte ptr [rbp + 0x24] | 0031E2D6 movzx eax, byte ptr [rbp + 0x24]	four flag bits fanned into the applied record +0x25	STATIC	TYPES
+0x25	1	pad	reservedZero25	u8: 0 x32 (1 distinct)	-	const=0x00	-	TYPES
+0x26	1	page	listOrderKey1	u8: 255 x12, 20 x2, 23 x2, 30 x1, 29 x1 (19 distinct)	0031E233* movzx eax, byte ptr [rbp + 0x26]	order key of status listing 1	STATIC	TYPES
+0x27	1	page	listOrderKey2	u8: 20 x2, 23 x2, 30 x1, 29 x1, 28 x1 (30 distinct)	0031E23A* movzx eax, byte ptr [rbp + 0x27]	order key of status listing 2	STATIC	TYPES

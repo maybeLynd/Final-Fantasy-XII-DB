@@ -1,0 +1,189 @@
+002659D0 0fb74116                 movzx eax, word ptr [rcx + 0x16]
+002659D4 ba01000000               mov edx, 1
+002659D9 ffc0                     inc eax
+002659DB 25ff070000               and eax, 0x7ff
+002659E0 0f44c2                   cmove eax, edx
+002659E3 66894116                 mov word ptr [rcx + 0x16], ax
+002659E7 c3                       ret
+003589B0 4885c9                   test rcx, rcx
+003589B3 741e                     je 0x3589d3
+003589B5 0fb74116                 movzx eax, word ptr [rcx + 0x16]
+003589B9 0fb65115                 movzx edx, byte ptr [rcx + 0x15]
+003589BD 25ff070000               and eax, 0x7ff
+003589C2 0fb709                   movzx ecx, word ptr [rcx]
+003589C5 83e20f                   and edx, 0xf
+003589C8 c1e004                   shl eax, 4
+003589CB 0bc2                     or eax, edx
+003589CD c1e010                   shl eax, 0x10
+003589D0 0bc1                     or eax, ecx
+003589D2 c3                       ret
+003589D3 33c0                     xor eax, eax
+003589D5 c3                       ret
+0031B7E0 4883ec28                 sub rsp, 0x28
+0031B7E4 f60555dbd60110           test byte ptr [rip + 0x1d6db55], 0x10
+0031B7EB 7416                     je 0x31b803
+0031B7ED e8bed00300               call 0x3588b0
+0031B7F2 4885c0                   test rax, rax
+0031B7F5 740c                     je 0x31b803
+0031B7F7 488bc8                   mov rcx, rax
+0031B7FA 4883c428                 add rsp, 0x28
+0031B7FE e92d86f4ff               jmp 0x263e30
+0031B803 33c0                     xor eax, eax
+0031B805 4883c428                 add rsp, 0x28
+0031B809 c3                       ret
+003588B0 4883ec28                 sub rsp, 0x28
+003588B4 85c9                     test ecx, ecx
+003588B6 7507                     jne 0x3588bf
+003588B8 33c0                     xor eax, eax
+003588BA 4883c428                 add rsp, 0x28
+003588BE c3                       ret
+003588BF 48895c2430               mov qword ptr [rsp + 0x30], rbx
+003588C4 8bc1                     mov eax, ecx
+003588C6 48897c2420               mov qword ptr [rsp + 0x20], rdi
+003588CB 8bf9                     mov edi, ecx
+003588CD c1ef14                   shr edi, 0x14
+003588D0 c1e810                   shr eax, 0x10
+003588D3 81e7ff070000             and edi, 0x7ff
+003588D9 83e00f                   and eax, 0xf
+003588DC 0fb7d9                   movzx ebx, cx
+003588DF 83f805                   cmp eax, 5
+003588E2 734a                     jae 0x35892e
+003588E4 8bc8                     mov ecx, eax
+003588E6 e805b7f0ff               call 0x263ff0
+003588EB 488b4808                 mov rcx, qword ptr [rax + 8]
+003588EF 4885c9                   test rcx, rcx
+003588F2 743a                     je 0x35892e
+003588F4 48833800                 cmp qword ptr [rax], 0
+003588F8 7434                     je 0x35892e
+003588FA 3b5820                   cmp ebx, dword ptr [rax + 0x20]
+003588FD 7d2f                     jge 0x35892e
+003588FF f6401001                 test byte ptr [rax + 0x10], 1
+00358903 7429                     je 0x35892e
+00358905 3b19                     cmp ebx, dword ptr [rcx]
+00358907 7d25                     jge 0x35892e
+00358909 488b44d908               mov rax, qword ptr [rcx + rbx*8 + 8]
+0035890E 4885c0                   test rax, rax
+00358911 741b                     je 0x35892e
+00358913 0fb74816                 movzx ecx, word ptr [rax + 0x16]
+00358917 33d2                     xor edx, edx
+00358919 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+0035891E 3bcf                     cmp ecx, edi
+00358920 488b7c2420               mov rdi, qword ptr [rsp + 0x20]
+00358925 480f45c2                 cmovne rax, rdx
+00358929 4883c428                 add rsp, 0x28
+0035892D c3                       ret
+0035892E 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+00358933 33c0                     xor eax, eax
+00358935 488b7c2420               mov rdi, qword ptr [rsp + 0x20]
+0035893A 4883c428                 add rsp, 0x28
+0035893E c3                       ret
+00263FF0 4863c1                   movsxd rax, ecx
+00263FF3 488d0d164ee301           lea rcx, [rip + 0x1e34e16]
+00263FFA 4869c088020000           imul rax, rax, 0x288
+00264001 4803c1                   add rax, rcx
+00264004 c3                       ret
+00263E30 488b4130                 mov rax, qword ptr [rcx + 0x30]
+00263E34 c3                       ret
+003220E0 48895c2408               mov qword ptr [rsp + 8], rbx
+003220E5 4889742410               mov qword ptr [rsp + 0x10], rsi
+003220EA 57                       push rdi
+003220EB 4883ec20                 sub rsp, 0x20
+003220EF 33ff                     xor edi, edi
+003220F1 488bd9                   mov rbx, rcx
+003220F4 4885c9                   test rcx, rcx
+003220F7 7504                     jne 0x3220fd
+003220F9 8bf7                     mov esi, edi
+003220FB eb07                     jmp 0x322104
+003220FD e8ae680300               call 0x3589b0
+00322102 8bf0                     mov esi, eax
+00322104 488bcb                   mov rcx, rbx
+00322107 e8c438f4ff               call 0x2659d0
+0032210C 4885db                   test rbx, rbx
+0032210F 7504                     jne 0x322115
+00322111 8bdf                     mov ebx, edi
+00322113 eb0a                     jmp 0x32211f
+00322115 488bcb                   mov rcx, rbx
+00322118 e893680300               call 0x3589b0
+0032211D 8bd8                     mov ebx, eax
+0032211F e82c500000               call 0x327150
+00322124 4885c0                   test rax, rax
+00322127 7403                     je 0x32212c
+00322129 8b7808                   mov edi, dword ptr [rax + 8]
+0032212C 3bf7                     cmp esi, edi
+0032212E 754e                     jne 0x32217e
+00322130 f6050972d60110           test byte ptr [rip + 0x1d67209], 0x10
+00322137 742b                     je 0x322164
+00322139 8bcb                     mov ecx, ebx
+0032213B e870670300               call 0x3588b0
+00322140 4885c0                   test rax, rax
+00322143 741f                     je 0x322164
+00322145 488bc8                   mov rcx, rax
+00322148 e8e31cf4ff               call 0x263e30
+0032214D 4885c0                   test rax, rax
+00322150 7412                     je 0x322164
+00322152 488b8098060000           mov rax, qword ptr [rax + 0x698]
+00322159 4885c0                   test rax, rax
+0032215C 7406                     je 0x322164
+0032215E 0fb64004                 movzx eax, byte ptr [rax + 4]
+00322162 eb05                     jmp 0x322169
+00322164 b8ff000000               mov eax, 0xff
+00322169 0fb6c8                   movzx ecx, al
+0032216C 488b051dd0b902           mov rax, qword ptr [rip + 0x2b9d01d]
+00322173 8988a45a0000             mov dword ptr [rax + 0x5aa4], ecx
+00322179 e882430000               call 0x326500
+0032217E 488b742438               mov rsi, qword ptr [rsp + 0x38]
+00322183 8bc3                     mov eax, ebx
+00322185 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+0032218A 4883c420                 add rsp, 0x20
+0032218E 5f                       pop rdi
+0032218F c3                       ret
+00327150 4057                     push rdi
+00327152 4883ec20                 sub rsp, 0x20
+00327156 488b153380b902           mov rdx, qword ptr [rip + 0x2b98033]
+0032715D 0fb682a45a0000           movzx eax, byte ptr [rdx + 0x5aa4]
+00327164 3c27                     cmp al, 0x27
+00327166 7755                     ja 0x3271bd
+00327168 0fb6c0                   movzx eax, al
+0032716B 488d7a08                 lea rdi, [rdx + 8]
+0032716F 4869c8c8010000           imul rcx, rax, 0x1c8
+00327176 4803f9                   add rdi, rcx
+00327179 7442                     je 0x3271bd
+0032717B 48895c2430               mov qword ptr [rsp + 0x30], rbx
+00327180 33db                     xor ebx, ebx
+00327182 e8c9f6f0ff               call 0x236850
+00327187 85c0                     test eax, eax
+00327189 7e25                     jle 0x3271b0
+0032718B 0f1f440000               nop dword ptr [rax + rax]
+00327190 8bcb                     mov ecx, ebx
+00327192 e889f6f0ff               call 0x236820
+00327197 4885c0                   test rax, rax
+0032719A 7409                     je 0x3271a5
+0032719C 4839b898060000           cmp qword ptr [rax + 0x698], rdi
+003271A3 740d                     je 0x3271b2
+003271A5 ffc3                     inc ebx
+003271A7 e8a4f6f0ff               call 0x236850
+003271AC 3bd8                     cmp ebx, eax
+003271AE 7ce0                     jl 0x327190
+003271B0 33c0                     xor eax, eax
+003271B2 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+003271B7 4883c420                 add rsp, 0x20
+003271BB 5f                       pop rdi
+003271BC c3                       ret
+003271BD 33c0                     xor eax, eax
+003271BF 4883c420                 add rsp, 0x20
+003271C3 5f                       pop rdi
+003271C4 c3                       ret
+00236820 85c9                     test ecx, ecx
+00236822 781e                     js 0x236842
+00236824 8b05767ee501             mov eax, dword ptr [rip + 0x1e57e76]
+0023682A ffc8                     dec eax
+0023682C 3bc8                     cmp ecx, eax
+0023682E 7f12                     jg 0x236842
+00236830 4863c1                   movsxd rax, ecx
+00236833 4869c0500f0000           imul rax, rax, 0xf50
+0023683A 480305477ee501           add rax, qword ptr [rip + 0x1e57e47]
+00236841 c3                       ret
+00236842 33c0                     xor eax, eax
+00236844 c3                       ret
+00236850 8b054a7ee501             mov eax, dword ptr [rip + 0x1e57e4a]
+00236856 c3                       ret

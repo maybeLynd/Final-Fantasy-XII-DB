@@ -1,0 +1,5 @@
+PASS L1  closed 32-byte body, no call, no write; enable byte 022C6D18 + i, id 022C6D28 + 4i, else -1
+PASS L2  gate uint32(+0x28 - 1) <= 2 and esi == 0; nothing reads eax between the lookup and the store call
+PASS L3  0026D530's first three instructions do not touch rax; 0026D53B overwrites eax
+PASS C  a planted store of eax after the call is reported as a use
+FAILS 0

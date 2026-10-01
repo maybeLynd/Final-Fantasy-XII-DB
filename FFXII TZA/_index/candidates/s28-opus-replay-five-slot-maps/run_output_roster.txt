@@ -1,0 +1,4 @@
+writer_keeps_its_own_side_only     PASS  records 0..3 into slots 0..3: the bijection holds. Assigning over an occupant vacates the INCOMING record's old slot and resets it, but the DISPLACED occupant keeps +0x12 = its slot and +0x0F = 2 (only its context's +0x152 is set) - the writer itself breaks the bijection. A null actor stores nothing. Slot 7 passes the sign test and is STORED at roster[7], past the four-entry array, with +0x12 = 7 and +0x0F = 3
+bulk_clears_break_it               PASS  002695A0, 0026DB30 and 0025BFB0's bit-0 arm zero the roster and touch no record: every former member keeps +0x12 = its slot, and the bijection is broken until each is assigned again; 0025BFB0 without bit 0 leaves the roster
+readers                            PASS  00263750 returns the occupant, NULL past slot 3
+ok

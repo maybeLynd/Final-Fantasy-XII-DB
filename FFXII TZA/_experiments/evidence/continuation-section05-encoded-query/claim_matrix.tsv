@@ -1,0 +1,13 @@
+claim	conclusion	evidence_class	checks	limits
+Q05-01	Registry nibble is class minus5; full and biased table views coincide	S05+R143+N05	shipped_registry.tsv; review_retained.py	shipped mapping; no all-runtime mutation proof
+Q05-02	Validator lower/upper boundaries and existing all-class coverage	S05+R143+N05	results/independent_retained_review.json; class19_validator_*	retained campaign not rerun, synthetic counts
+Q05-03	Class-selected input lanes; class12 no-read error; class1 no repacking	S05+N05	fill_class_*; class12_rejects_without_validator; class1_to19_*	one baseline per class plus selected controls, not all branches
+Q05-04	Rebase widths, conditional preservation, prefixes and derived reset	S05+N05	rebase_*; prefix_sum_uses_wrapping32	high-address and modified offset/count states are synthetic
+Q05-05	Direct failure versus wrappers; reused buffers and stale success fields	S05+N05	direct_rejection_*; row_failure_*; id_failure_*; later_success_*	no concurrency or reentrancy certificate
+Q05-06	Class10 strided tail through93, auxiliary08 and gaps	S05+N05	class10_*; tail_six mutant	output element purpose not assigned
+Q05-07	Equipment bit54 read-modify-write	S05+N05	equipment_bit54_*; equipment_all_category_arms_write_flag_bit	downstream consumers mostly historical
+Q05-08	Inventory channels query present state and handler kind	S05+N05	packed_*; bitset_*; query_*	full mutator paths not newly executed
+Q05-09	Borrowed names/description chains and typed output widths	S05+N05	row_name_*; action_*; command_*; school_*; licence_*; status_*	fixture pointers are not lifetime proof
+Q05-10	Three key-item row intervals versus four-descriptor admission	S05+N05	keyitem_*; fourth_key_*	fourth interval live reachability unknown
+Q05-11	Row arithmetic truncation and nonuniform null-pointer preconditions	S05+N05	query_row_*; name_only_class2_*; null_row_*	faults in isolated children only
+Q05-12	Whole record tail exclusion and old current producer claims corrected	production propagation	canonical_changes.diff; canonical_row_changes.json	peer acceptance pending; no L2/global score changes

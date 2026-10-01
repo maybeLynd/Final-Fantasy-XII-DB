@@ -1,0 +1,148 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "real_bodies_executed": [
+  {
+   "va": "0x866200",
+   "span": "0x866200-0x8666AB",
+   "sha256": "94c281753ab2cc317781bee05a9e188102e9e062c27cd10aaecc48d17dd2f584",
+   "note": "writer: GetTempPathW+path build, SetFileAttributesW x3, tmp _wfopen_s wb, rand->abs->signed%32 -> header+8 and [02EB3868], SAFH+declared+rot header fwrite, _aligned_malloc dst/src, deflate-9 via 0087AF40, encrypt via 00865AE0, ciphertext fwrite, fclose, verify-_wfopen rb, CopyFileW tmp->target (+target->sav_org backup when 02B40E04 set), cleanup. Returns 0 on BOTH the full commit and the deflate-overflow abort"
+  },
+  {
+   "va": "0x8666B0",
+   "span": "0x8666B0-0x8669F1",
+   "sha256": "fcff770274b2963638143e28a3679eb41fcee0288fd172759ae14bd71edd6f49",
+   "note": "reader: _wfopen_s rb, fseek/ftell/fread, gates size<=4 (raw-fill fallback), SAFH magic (raw-fill), size<=12 (truncate), n<=31 unsigned (reject before store), store n->[02EB3868], declared<=0x100000 (reject after store), inner 00865D90, exact-length jne, positive jle, byte-push loop into global vector via 00865720"
+  },
+  {
+   "va": "0x865D90",
+   "span": "0x865D90-0x865E2E",
+   "sha256": "068e6751ffaa24b0ebcafe1489e63c4d42845c18e9036ac17f6af9da6737158a",
+   "note": "reader inner driver: copies ciphertext, calls decrypt 00865840 then inflate 0080C5A0, returns al"
+  },
+  {
+   "va": "0x865840",
+   "span": "0x865840-0x865AD7",
+   "sha256": "4e8665898cc1f188417d2450c443da6234bb05ed5276251666d36174bf5acb10",
+   "note": "decrypt: CryptAcquireContextW (+NEWKEYSET retry flags=8), CryptCreateHash MD5, strncpy title 32, two-memcpy rotate by [02EB3868], B[31]=0, strlen hash (31), CryptDeriveKey RC4 flags=0x800000, 1000-byte chunk loop (Final = chunk<0x3E8 literal), writes total to [rdx]"
+  },
+  {
+   "va": "0x865AE0",
+   "span": "0x865AE0-0x865D89",
+   "sha256": "950399cdbd9a568266b9b891441f36089ec9e424b6698ce95f106c226b7b691b",
+   "note": "encrypt: identical prologue/hash/derive, esi=[rdx] is dst capacity decremented per chunk, CryptEncrypt per 1000-byte chunk (bufcap arg = remaining capacity), [rdx]=total out"
+  },
+  {
+   "va": "0x87AF40",
+   "span": "0x87AF40-0x87B033",
+   "sha256": "3a1ddc2c17b739c189339880ed87637e9b30328bcbc2599c1c43b19bf27856d2",
+   "note": "deflate wrapper: zstream init, deflateInit2 (level 9) -> 0087C9F0, deflate loop -> 0087BD60, deflateEnd -> 0087C6C0; nonzero return on dst-capacity overflow"
+  },
+  {
+   "va": "0x80C5A0",
+   "span": "0x80C5A0-0x80C5B8",
+   "sha256": "94aab5691231a844771266faf01c22bbfe3481bbbcda421abf962255c35b63cd",
+   "note": "inflate wrapper thunk into 0080C5C0"
+  },
+  {
+   "va": "0x80C5C0",
+   "span": "0x80C5C0-0x80C713",
+   "sha256": "45820e6c6085fdcc4351af329c99c0c6ee1e67af9fca927ddd913ff71ca24beb",
+   "note": "inflate implementation head (shipped zlib 1.2.11; the whole subtree under it executes natively)"
+  },
+  {
+   "va": "0x866150",
+   "span": "0x866150-0x8661FC",
+   "sha256": "cb9e46bbfb9f12eab03676b97954d81f42536f3b1737d3e50f8d43df35d25350",
+   "note": "vector insert helper: vtable +0x10 alloc / +0x18 free, memmove for the gap - calls memmove(dst,0,0) on empty vectors (real CRT semantics: no deref at n=0)"
+  },
+  {
+   "va": "0x865720",
+   "span": "0x865720-0x865833",
+   "sha256": "847188145815724a29631dd65551d5ed6a4258c31ef50cb6f30744d9f7f67eba",
+   "note": "vector push/grow helper used by the reader fill loop"
+  },
+  {
+   "va": "0x808C40",
+   "span": "0x808C40-0x808C8F",
+   "sha256": "42102333a0ef3c65cc89ad5a9118143983f5630fa4d6e9f09319a1d30aa31ba0",
+   "note": "__security_check_cookie: xor stack cookie vs [01F44830], jmp __report_gsfailure-style tail on mismatch (planted cookie matches so it returns)"
+  },
+  {
+   "va": "0x861EBA",
+   "span": "0x861EBA-0x861EC0",
+   "sha256": "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03",
+   "note": "memcpy import thunk jmp [0x8C2A68]; slot planted to the memcpy HLE"
+  },
+  {
+   "va": "0x861EC0",
+   "span": "0x861EC0-0x861EC6",
+   "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+   "note": "memset import thunk jmp [0x8C2A60]; slot planted to the memset HLE"
+  },
+  {
+   "va": "0x19C580",
+   "span": "0x19C580-0x19C5CF",
+   "sha256": "c6853df3b59f5542d12fe827bec6f75e7409c86d2827804ee59328f8068a8305",
+   "note": "CRT locked-IO wrapper reached by fwrite/fread call sites"
+  }
+ ],
+ "hle_imports": {
+  "CRT": [
+   "rand",
+   "memcpy",
+   "memmove",
+   "memset",
+   "strncpy",
+   "strlen",
+   "malloc",
+   "calloc",
+   "free",
+   "_aligned_malloc",
+   "_aligned_free",
+   "_wfopen_s",
+   "_wfopen",
+   "fseek",
+   "ftell",
+   "fread",
+   "fwrite",
+   "fclose",
+   "_wremove",
+   "_invalid_parameter_noinfo_noreturn",
+   "_Xout_of_range",
+   "_Xlength_error"
+  ],
+  "CryptoAPI (faithful RC4/MD5 model)": [
+   "CryptAcquireContextW (NEWKEYSET retry honored)",
+   "CryptCreateHash",
+   "CryptHashData (accumulates)",
+   "CryptDeriveKey (RC4 KSA over the MD5 digest)",
+   "CryptEncrypt/CryptDecrypt (keystream persists across chunks per key)",
+   "CryptDestroyKey",
+   "CryptDestroyHash",
+   "CryptReleaseContext"
+  ],
+  "KERNEL32": [
+   "GetTempPathW",
+   "SetFileAttributesW",
+   "CopyFileW"
+  ]
+ },
+ "globals_planted": {
+  "0x1F44830": "__security_cookie image (planted so cookie checks pass)",
+  "0x2EB3868": "rotation amount n (writer stores; encrypt/decrypt movsxd it)",
+  "0x2EB386C": "writer-tail bookkeeping dword",
+  "0x2B40E04": "writer backup-pending flag: when set and target exists, CopyFileW first backs target -> sav_org",
+  "0x1F44D40": "global save byte vector {begin,end,cap,vtbl}; writer reads payload from it, reader fills it",
+  "0x1CCFCF8": "real .rdata: 32-char title 'FINAL FANTASY XII THE ZODIAC AGE'"
+ },
+ "fixture_layout": {
+  "CTX 0x60004000": "writer ctx: +4 mode dword, +8 inline wchar target path",
+  "PATHW 0x60006000": "reader path argument (wide)",
+  "VTAB 0x60007000": "vector allocator vtable: slots +0x10 alloc_v, +0x18 free_v -> HLE stubs",
+  "HEAP 0x40000000": "16 MiB guest heap (host-backed pages)",
+  "ENC_SRC 0x40700000 / ENC_DST 0x40800000 / ENC_LEN 0x40900000": "unit-call buffers for direct encrypt/decrypt invocations",
+  "STACK 0x61000000": "1 MiB stack; RETQ 0x62000000 single-byte ret pad",
+  "STUBS 0x50000000": "HLE stubs (one 0x10 slot per import, ret-padded); TRAP 0x50010000 index-encoded trap stubs for every unhandled IAT slot"
+ },
+ "emulator_note": "All guest memory is host-backed via mem_map_ptr + ctypes buffers (the vendored/stock unicorn 2.1.x DLLs intermittently fail uc_mem_write/read on mapped pages; emulation itself is unaffected). Verified stable: 2 consecutive full-suite processes, identical 46/46 + 9/9 mutant results."
+}

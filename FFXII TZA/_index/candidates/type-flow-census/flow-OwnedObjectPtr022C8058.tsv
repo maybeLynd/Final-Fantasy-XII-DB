@@ -1,0 +1,6 @@
+function	site	field	width	kind	instruction
+0035B790	0035B790	0x0	8	w	mov qword ptr [rip + 0x1f6c8bd], 0
+0035B840	0035B886	0x0	8	r	mov rcx, qword ptr [rip + 0x1f6c7cb]
+0035B840	0035B897	0x0	8	w	mov qword ptr [rip + 0x1f6c7b6], 0
+0035B8D0	0035B8DB	0x0	8	r	mov rcx, qword ptr [rip + 0x1f6c776]
+0035B8D0	0035B8EC	0x0	8	w	mov qword ptr [rip + 0x1f6c761], 0

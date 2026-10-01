@@ -1,0 +1,5 @@
+PASS M1  fragment order: sign-corrected divide by 8, bts on the loaded byte, store, occupancy inc
+PASS M2  model vs ASTRA's executed cases (byte, bit, stored low byte): {0: (0, 0, 1), 287: (35, 7, 128), 288: (36, 0, 1), -1: (0, 31, 0), -8: (-1, 0, 1)}; occupancy 255 + 1 -> 0
+PASS M3  ids come from a count reset to 0, from 0x80 upward, and from 0xA0 + i with i from 0: none negative
+PASS C  a plain shift-and-mask gives (-1, 7) for id -1, not the observed (0, 31)
+FAILS 0

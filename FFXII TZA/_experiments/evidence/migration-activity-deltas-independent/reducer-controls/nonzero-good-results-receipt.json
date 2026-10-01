@@ -1,0 +1,15 @@
+{
+  "name": "nonzero-good-results",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\check.py",
+    "--activity",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\reducer-controls\\nonzero-good-results"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\check.py\", line 73, in <module>\n    result=reduce(w,a.activity or w/'activity-02')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-activity-deltas-independent\\check.py\", line 9, in reduce\n    inv=load(d/'invocation.json');assert inv['terminal'] and inv['returncode']==0 and not inv['stderr'],'UPSTREAM_FAILED'\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: UPSTREAM_FAILED\n",
+  "expected": "UPSTREAM_FAILED",
+  "terminal": true
+}

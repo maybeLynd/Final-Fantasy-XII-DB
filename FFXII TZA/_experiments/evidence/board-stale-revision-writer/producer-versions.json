@@ -1,0 +1,8 @@
+{
+  "root_capture_sha256": "33482d46021173cde6b3e9ef86d86a727143ed3e581fcb9664593d9de34e9924",
+  "root_capture_status": "NOT_EXECUTED after wording-only overlap qualification; actual drivers retained separately at run-01/capture.py and run-02/capture.py",
+  "checker_sha256": "d02ad817743f1711ce2e2e4f4dec3ce0ae89060c8be5d55142a9b0803e349b6c",
+  "checker_status": "EXECUTED, check-terminal-r2.json; independent acceptance separate",
+  "raw_receipts_immutable": true,
+  "full_A13": "NOT_ACCEPTED"
+}

@@ -1,0 +1,16 @@
+[scratch_sel2] redirected 1 write(s) to C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\SWE2-AUDIT-SEM\gcr\out
+seeds (tail-643 frontier + prior members): 138
+shared machinery helpers (frontier, fan-in>=2): 9
+   00616210  x2
+   00661A70  x2
+   00668E10  x2
+   006B09E0  x3
+   006B1600  x5
+   006B19A0  x2
+   006B33F0  x4
+   006B6820  x2
+   006D5810  x2
+members: 99   census predicate hits: 486 (owned/A: 387, free: 0)
+   non-member ownership: Phyre serialization scalar-conversion initialisers x143, Phyre PRendering module x61, A x48, two-member class-descriptor registrars (m_count + m_els) x38, Phyre PAnimation module x32, Phyre PInputs module x17, Phyre PGeometry module x12, Phyre PPostProcessing module x10
+members: 99 (one family); with a guarded-form auxiliary callee: 76 (information only; census guarded-form bodies 525)
+wrote C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\22-Middleware-PhyreEngine\Reflection-And-Class-Metadata\members\guarded-class-registration-stubs.tsv 99

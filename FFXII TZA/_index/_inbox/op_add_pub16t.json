@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-UQ218-P16T",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish pass-16 tail: SWE2-DATA resume block (hash 9d3e3aeac) + board state",
+  "scope": "named paths only",
+  "completion": "commit hash recorded; @publication released",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

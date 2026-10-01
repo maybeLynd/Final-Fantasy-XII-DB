@@ -1,0 +1,15 @@
+[
+  {
+    "path": "Database/Tools/analysis-kit/gfz-scripts/falsify_heading_delta.py",
+    "copy": "retained/producer/falsify_heading_delta.py",
+    "sha256": "578e5da014089183f69d78162ec3a1551bdc6538b11c8879cb83a9b3b8dcc842",
+    "commit": "82abaac960bda32fdc806212e67a07b0f73cb406",
+    "state": "present",
+    "limits": "Source inspected, producer test not run; no external checks credited as ASTRA executions"
+  },
+  {
+    "path": "Database/FFXII TZA/_index/candidates/opus-heading-delta-falsification-pass-1/README.md",
+    "state": "missing-at-selected-path",
+    "limits": "No producer artifact inferred from missing file"
+  }
+]

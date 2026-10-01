@@ -1,0 +1,244 @@
+{
+ "pass": 2,
+ "total": 2,
+ "ok": true,
+ "results": {
+  "constants_read": {
+   "45": 0.7853981852531433,
+   "120": 2.094395160675049,
+   "20": 0.3490658700466156
+  },
+  "single_call_grid": {
+   "pass_": true,
+   "n": 21120,
+   "violations": {
+    "returned": [],
+    "BL1_BL2_entry": [],
+    "BL2_idle_unchanged": [],
+    "BL3_latch": [],
+    "BL4_band_keeps": [],
+    "release_below_20": [],
+    "rate_and_direction": [],
+    "S14_committed_direction": [],
+    "BL5_pair": [],
+    "BL6_snap": []
+   },
+   "violation_counts": {
+    "returned": 0,
+    "BL1_BL2_entry": 0,
+    "BL2_idle_unchanged": 0,
+    "BL3_latch": 0,
+    "BL4_band_keeps": 0,
+    "release_below_20": 0,
+    "rate_and_direction": 0,
+    "S14_committed_direction": 0,
+    "BL5_pair": 0,
+    "BL6_snap": 0
+   },
+   "branches_exercised": {
+    "idle": 3840,
+    "turning": 17280,
+    "snap": 5040,
+    "committed_direction": 3840,
+    "rate_step": 8400,
+    "latch_set_by_BL3": 1440,
+    "latch_blocked_by_BL3": 1440,
+    "band_kept_latch_1": 4800,
+    "release_below_20_from_1": 960
+   }
+  },
+  "histories": {
+   "pass_": true,
+   "BL2_hysteresis_50_through_40": true,
+   "BL2_fresh_40_never_turns": true,
+   "BL4_latch_kept_through_60": true,
+   "BL4_fresh_60_slow": true,
+   "BL6_snap_ends_loop": true,
+   "all_returned": true,
+   "trace_50": [
+    {
+     "heading": 0.0,
+     "result": 0.10000000149011612,
+     "err_deg": 50.0,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.10000000149011612,
+     "result": 0.20000000298023224,
+     "err_deg": 44.27,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.20000000298023224,
+     "result": 0.30000001192092896,
+     "err_deg": 38.541,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.30000001192092896,
+     "result": 0.4000000059604645,
+     "err_deg": 32.811,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.4000000059604645,
+     "result": 0.5,
+     "err_deg": 27.082,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.5,
+     "result": 0.6000000238418579,
+     "err_deg": 21.352,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.6000000238418579,
+     "result": 0.7000000476837158,
+     "err_deg": 15.623,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.7000000476837158,
+     "result": 0.8000000715255737,
+     "err_deg": 9.893,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.8000000715255737,
+     "result": 0.8726646304130554,
+     "err_deg": 4.163,
+     "turning": false,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    }
+   ],
+   "trace_150_fast": [
+    {
+     "heading": 0.0,
+     "result": 0.30000001192092896,
+     "err_deg": 150.0,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.30000001192092896,
+     "result": 0.6000000238418579,
+     "err_deg": 132.811,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.6000000238418579,
+     "result": 0.9000000357627869,
+     "err_deg": 115.623,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 0.9000000357627869,
+     "result": 1.2000000476837158,
+     "err_deg": 98.434,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 1.2000000476837158,
+     "result": 1.5,
+     "err_deg": 81.245,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 1.5,
+     "result": 1.7999999523162842,
+     "err_deg": 64.056,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 1.7999999523162842,
+     "result": 2.0999999046325684,
+     "err_deg": 46.868,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 2.0999999046325684,
+     "result": 2.3999998569488525,
+     "err_deg": 29.679,
+     "turning": true,
+     "latch": 1,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 2.3999998569488525,
+     "result": 2.499999761581421,
+     "err_deg": 12.49,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 2.499999761581421,
+     "result": 2.5999996662139893,
+     "err_deg": 6.761,
+     "turning": true,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    },
+    {
+     "heading": 2.5999996662139893,
+     "result": 2.6179938316345215,
+     "err_deg": 1.031,
+     "turning": false,
+     "latch": 0,
+     "pair": 2,
+     "ok": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "target_source_sha256": "77f6d04f622b4081509e994a16e78fa51a0459b5170c4c7e7aa0af8f39c94e26",
+  "harness_sha256": "e9ef874f7bb59e576bcb7673e70e192bfdd1f946db2e1059fc1cc6e238668007",
+  "native_code_before": {
+    "bytes": 34,
+    "sha256": "c639bcca3e93e214f6f6dea52197438af849b80173c724722b2603d28b8297f8"
+  },
+  "baseline": {
+    "unix": 1789108461.4261699,
+    "exit": null,
+    "debugger": false,
+    "beats": 1
+  },
+  "command": [
+    "C:\\Python314\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-038-handler-stack\\capture.py",
+    "--pid",
+    "37120",
+    "--addr",
+    "0x1bf619c0021",
+    "--seconds",
+    "2",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-039-stack-native-control\\cold\\capture"
+  ],
+  "capture_exit": 0,
+  "post": [
+    {
+      "unix": 1789108463.660712,
+      "exit": null,
+      "debugger": false,
+      "beats": 45
+    },
+    {
+      "unix": 1789108463.9613225,
+      "exit": null,
+      "debugger": false,
+      "beats": 51
+    },
+    {
+      "unix": 1789108464.26161,
+      "exit": null,
+      "debugger": false,
+      "beats": 57
+    },
+    {
+      "unix": 1789108464.561835,
+      "exit": null,
+      "debugger": false,
+      "beats": 62
+    }
+  ],
+  "native_code_after": {
+    "bytes": 34,
+    "sha256": "c639bcca3e93e214f6f6dea52197438af849b80173c724722b2603d28b8297f8"
+  },
+  "known_return_address": 1921487994889,
+  "hits": 0,
+  "final_exits": [
+    0,
+    1
+  ]
+}

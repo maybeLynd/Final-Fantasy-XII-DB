@@ -1,0 +1,341 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-texture-async-count-path.py",
+      "bytes": 3606,
+      "sha256": "5fecf503d1578fbc6a17ceec6881fced56067daaa982df163dcb19f6ab65f696"
+    },
+    {
+      "path": "capture-texture-queue-entry.py",
+      "bytes": 2708,
+      "sha256": "240628edebab38499222e3685d2e0b027136e75fd190bd6a250044a5bfb50a8a"
+    },
+    {
+      "path": "capture-texture-queue-tree-boundary.py",
+      "bytes": 2880,
+      "sha256": "498ab831d70d45eb3e989a86df61471bef1a496ddbcd9597beeefc0254db2a70"
+    },
+    {
+      "path": "control-texture-async-admission-02.py",
+      "bytes": 3394,
+      "sha256": "fc9cdbf0120cbd297992edd28e35e660987a44bb536460dbe5a7802b14ab3173"
+    },
+    {
+      "path": "control-texture-async-admission.py",
+      "bytes": 3161,
+      "sha256": "b86e48401156ce13d2362d84c45525b50ed2de41ca0c642f2590eae6c004531c"
+    },
+    {
+      "path": "control-texture-queue-tree.py",
+      "bytes": 2734,
+      "sha256": "72caa8b3b438d830eb7c30f37eeed4b1ea0814c5e49a491ef659c7b6e648354f"
+    },
+    {
+      "path": "freeze-texture-async-boundary.py",
+      "bytes": 9527,
+      "sha256": "4eb3805c51a235efa591f00aef200cc2135a81d9d90aa3966309ab41d0a82497"
+    },
+    {
+      "path": "prove-texture-async-admission-boundary.py",
+      "bytes": 10238,
+      "sha256": "4f04d9069d2c39abd7d6851624626ec7da415c8c52a63a5f6da87cfff2457f91"
+    },
+    {
+      "path": "prove-texture-queue-tree-boundary.py",
+      "bytes": 8968,
+      "sha256": "19fd8898ce9d3aef39f2245b3e9ae12d9d4fe9341b6fefcf4fbd69bc6d92568d"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6045,
+      "sha256": "12499e9da13545b368d39d7c7941cd9498fbdaca2a996e034fded0f79c788d62"
+    },
+    {
+      "path": "source-prerequisites.json",
+      "bytes": 1700,
+      "sha256": "12c47acbc45c3166c832c84a89c5ecbc472432696a8158c51aa870448157aa35"
+    },
+    {
+      "path": "texture-async-admission-boundary-result-01.json",
+      "bytes": 8035,
+      "sha256": "6d832694cf85fa13b5d480203aaf807753085084a9575b30670f8f3bb31a945a"
+    },
+    {
+      "path": "texture-async-admission-controls-01/consistent-copy-byte/status.json",
+      "bytes": 168,
+      "sha256": "96647ef3ac886ac6bb02b5e4d610aef1e41d33b3a8b75f93199ae3ea91195da0"
+    },
+    {
+      "path": "texture-async-admission-controls-01/consistent-copy-byte/stderr",
+      "bytes": 975,
+      "sha256": "fb57cdfb1459ad150d15bd9c60ca00b0e7b34be0911004be1204ae07bf26d207"
+    },
+    {
+      "path": "texture-async-admission-controls-01/consistent-copy-byte/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-01/consistent-copy-byte/texture-async-count-path-source-01.json",
+      "bytes": 93262,
+      "sha256": "2a3cc71969b00b66765ecf2de490e34420ccfc452cda2aeaaef22266de9a3c5a"
+    },
+    {
+      "path": "texture-async-admission-controls-01/false-copy-role/status.json",
+      "bytes": 140,
+      "sha256": "cad281e4cb311cc7bdff69e9831b8d56bd16042663ddfd63e92af951d3d7fcd2"
+    },
+    {
+      "path": "texture-async-admission-controls-01/false-copy-role/stderr",
+      "bytes": 981,
+      "sha256": "205fa8e7a8ee23f864b78832de6d8ab479b4ae447d4fe32058b5d0b46b584708"
+    },
+    {
+      "path": "texture-async-admission-controls-01/false-copy-role/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-01/false-copy-role/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "a466a7a7645b8c2ae85140a9cf8eac828ec6d606d3d076ec96416a442d6a4609"
+    },
+    {
+      "path": "texture-async-admission-controls-01/missing-wrapper/status.json",
+      "bytes": 169,
+      "sha256": "dad3827b27c850930ce006c0b7f05f0ded46f0ba5860551b52fd3c6b6598f34d"
+    },
+    {
+      "path": "texture-async-admission-controls-01/missing-wrapper/stderr",
+      "bytes": 1179,
+      "sha256": "610583cf52f844747c1aeeefb4e3038aa534ac0d51ea9b0c1f4154b286fc0684"
+    },
+    {
+      "path": "texture-async-admission-controls-01/missing-wrapper/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-01/missing-wrapper/texture-async-count-path-source-01.json",
+      "bytes": 93259,
+      "sha256": "111534f12318b80dc0a33b66ed4bc19e5f9f8c19d50c85f11b4ddc5955ea3c48"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-root/status.json",
+      "bytes": 157,
+      "sha256": "3bf4ec2720d59d776c1646852330ce758ba61e6116dc2f7c60b85d39143333b2"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-root/stderr",
+      "bytes": 770,
+      "sha256": "3ef4e5f2b6f923a3e01e947e3e214ea6467fc31aeb869c61787ba15f64789a5a"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-root/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-root/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "1d76c5823f905a4589a8a117b4b92be12a2363c884a92042e8fe88603d07120e"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-table/status.json",
+      "bytes": 168,
+      "sha256": "4dd6721ea6f0605351d9d9ef212d9f59e39c975c49e424e9994dc1c0017e61f4"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-table/stderr",
+      "bytes": 1260,
+      "sha256": "45607057ddc792fba88fba2723c031d4028cea7ccccb997b7cbea17fa69591dd"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-table/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-01/wrong-table/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "350a5ec8906bffb40eb6d849623d089a860f148068ad0316c44a9f19b4a269c0"
+    },
+    {
+      "path": "texture-async-admission-controls-02/consistent-copy-register/status.json",
+      "bytes": 171,
+      "sha256": "7034fb9bd0ee86af86b738b11ea174a995f6b264ecf3b686805afe696632c638"
+    },
+    {
+      "path": "texture-async-admission-controls-02/consistent-copy-register/stderr",
+      "bytes": 876,
+      "sha256": "25ec17084a0d00bd621e8c1633794043315cea03a24002db6df7cb99091edb73"
+    },
+    {
+      "path": "texture-async-admission-controls-02/consistent-copy-register/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-02/consistent-copy-register/texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "e5f1ef8a1fc49a0e66ed1568dc14c7a1a1fe51f509fbeb488c0828fe0f2a1939"
+    },
+    {
+      "path": "texture-async-admission-controls-02/missing-copy-record/status.json",
+      "bytes": 156,
+      "sha256": "6ea46a2e29b5c503f024df94ee3cf0f213159d4b88154f0a5946d5ca6739f1ea"
+    },
+    {
+      "path": "texture-async-admission-controls-02/missing-copy-record/stderr",
+      "bytes": 1124,
+      "sha256": "e400eb71ac380f31eab712681c308eed839de891afaa7fc7943b639bf53472d5"
+    },
+    {
+      "path": "texture-async-admission-controls-02/missing-copy-record/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-admission-controls-02/missing-copy-record/texture-async-count-path-source-01.json",
+      "bytes": 92821,
+      "sha256": "fd6784c3083fb51e61dc4a61e925a343d5df027f4e02e41c5df3bc253398a91c"
+    },
+    {
+      "path": "texture-async-admission-controls-02/result.json",
+      "bytes": 2643,
+      "sha256": "684420bfe938bf16a80f722bf90ab136d9d9cd48f6c520119539c37289f3666e"
+    },
+    {
+      "path": "texture-async-count-path-source-01.json",
+      "bytes": 93258,
+      "sha256": "9f06c5ce1f305b9ed4f162fd04a3c3895602582964c6ac39aeacbb8837dde079"
+    },
+    {
+      "path": "texture-async-vtable-preparation-01.json",
+      "bytes": 1602,
+      "sha256": "b1a7359dbc8ba70bd9752d8a29fdd15d184c8f9eb13dd7a0f42ec1d10d3d59fc"
+    },
+    {
+      "path": "texture-queue-entry-source-01.json",
+      "bytes": 29978,
+      "sha256": "8a5a8e3e2227affed3044be4010834bfa6b99cd718db693221b15c9d671b9957"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/consistent-count-byte/status.json",
+      "bytes": 164,
+      "sha256": "44e7c6249d851b7afb300475334ec82b7cc814f93d75bbe295eca678f2084f27"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/consistent-count-byte/stderr",
+      "bytes": 854,
+      "sha256": "d35f168bbf492f51fe3bdacbf3828638d53dcf3aa8e98835516debfe1346048a"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/consistent-count-byte/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/consistent-count-byte/texture-queue-tree-source-02.json",
+      "bytes": 89575,
+      "sha256": "87bac66ffa83950cb8530eae969fc008f0be50eda3e17dc7052b53c2a7cf2999"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/false-count-field/status.json",
+      "bytes": 142,
+      "sha256": "e85fb029779dedfad2511a74e284bc8e2f6ad901e4192cf6364a2c93fa6cb037"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/false-count-field/stderr",
+      "bytes": 953,
+      "sha256": "f08beb5436ceea12aa3da43f81c86fb202a109fa0b447635680cb3fd21b8d918"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/false-count-field/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/false-count-field/texture-queue-tree-source-02.json",
+      "bytes": 89575,
+      "sha256": "009eca1ce87025e9f92d4ba881fed4331133703273586a2e5bfe9427209c9838"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/missing-wrapper/status.json",
+      "bytes": 169,
+      "sha256": "dad3827b27c850930ce006c0b7f05f0ded46f0ba5860551b52fd3c6b6598f34d"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/missing-wrapper/stderr",
+      "bytes": 1157,
+      "sha256": "6157c4cae3a5e56e90831e866939af3848b5743ae4883f5c045b82c80eb305e2"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/missing-wrapper/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/missing-wrapper/texture-queue-tree-source-02.json",
+      "bytes": 89576,
+      "sha256": "44c62456f3748ff9f455ac469d4f7c24cfa00dfbf33bb40dc9697ca51dce8b40"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/result.json",
+      "bytes": 1343,
+      "sha256": "5e5c282a84b187fe45986dee242185cff79f8e238b71e920b8fcd599a7e5b442"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/wrong-helper-extent/status.json",
+      "bytes": 164,
+      "sha256": "2e8c6796dc11c3f6f5e0e7d86e7491e1d5024e091252225be69b174ef25679ee"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/wrong-helper-extent/stderr",
+      "bytes": 892,
+      "sha256": "6d143e471e681b995473ae020c01c17d2751ff237a6d5cb8df942531b88efa48"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/wrong-helper-extent/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-queue-tree-controls-01/wrong-helper-extent/texture-queue-tree-source-02.json",
+      "bytes": 89575,
+      "sha256": "17662146441ae76eb8876c986417dec36b04c94e65a7cdbc7a3e3fef6eb23fab"
+    },
+    {
+      "path": "texture-queue-tree-result-01.json",
+      "bytes": 5642,
+      "sha256": "9fefadf5a221790bb2e6675ff61a6684479740adaed67cfd43d6bf2135950120"
+    },
+    {
+      "path": "texture-queue-tree-source-02.json",
+      "bytes": 89575,
+      "sha256": "1987673c4dd8c328e5ee0b2206612c465507407581ec34d0374806381fbcc422"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

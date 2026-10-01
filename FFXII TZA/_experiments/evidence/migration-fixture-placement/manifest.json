@@ -1,0 +1,105 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 2722,
+      "sha256": "e4d6d7327367cae8adbcf7e649b2757e3d5b10d7a50e6f5a25f7cb9e024a156c"
+    },
+    {
+      "path": "controls-after.py",
+      "bytes": 3863,
+      "sha256": "3bf9092b30835690ce03a4144c49a7dfa1f265baaf2d9aff1e9452ee3bbba032"
+    },
+    {
+      "path": "controls-before.py",
+      "bytes": 3717,
+      "sha256": "fae1a654b274b367c8efb907fdf542a3b4b0cf0091714ac3f51d8370787625e1"
+    },
+    {
+      "path": "freeze-after.py",
+      "bytes": 2747,
+      "sha256": "6868b119be1a206587fd4300f5178f367ef8a5fedaec310faa0f2de4c95bd43b"
+    },
+    {
+      "path": "freeze-before.py",
+      "bytes": 1889,
+      "sha256": "aacd1922a2bd1ac7fdbf69744ce2826be5c02837c73e35fcc7c0fc68a3fd06e8"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1382,
+      "sha256": "e9042daf5f4de489911e01297b020034f4f79caa5a6e23057686865d79ba8e23"
+    },
+    {
+      "path": "reader-02/original-return-repr.txt",
+      "bytes": 106,
+      "sha256": "6cf309ee64a918a59eb46646fcb072077b2f43a35ff9c55eff811e31c0f1b42e"
+    },
+    {
+      "path": "reader-02/raw.json",
+      "bytes": 687,
+      "sha256": "3666dd8ad0f2fa7015c38eaa552d73eeaf6757d4886f9a2d3cc3f7a16b80d549"
+    },
+    {
+      "path": "reader-correction.py",
+      "bytes": 2437,
+      "sha256": "48bd550e11d5b930f5cf6c632b0671baa682d1a3d142d056f39896bb8a367f4a"
+    },
+    {
+      "path": "reader-root-inputs.json",
+      "bytes": 2875,
+      "sha256": "f79b8bc8d1a9a5414f21878c0c430e3f8a9705d72da2c3392e4733d7dea07308"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3655,
+      "sha256": "6cf332b0056e53812a075681292ebdcfdd92f897203a916363d5f8bac217e6b6"
+    },
+    {
+      "path": "result.json",
+      "bytes": 345,
+      "sha256": "4a15ad8d4f1add81826ff7772d7315a24098fd3980949acb4dff9c55a6655377"
+    },
+    {
+      "path": "run-01/actual-default-receipt.json",
+      "bytes": 1343,
+      "sha256": "0ace2fb7377cb75650de548523625493d0d5f78bc741b9210f33b63b1f7eebf5"
+    },
+    {
+      "path": "run-01/clean-source-receipt.json",
+      "bytes": 671,
+      "sha256": "660244b1d31a5cd2b379dd04e868dd5fd59a29a43a07746eadc89956cf1b0da8"
+    },
+    {
+      "path": "run-01/driver.py",
+      "bytes": 3717,
+      "sha256": "fae1a654b274b367c8efb907fdf542a3b4b0cf0091714ac3f51d8370787625e1"
+    },
+    {
+      "path": "run-01/missing-source-receipt.json",
+      "bytes": 991,
+      "sha256": "efe471b0dd6e2e311396c8933acff4cce5db55cf22105107583ce02bc2e2c904"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 7238,
+      "sha256": "fba273ea14624d1eaf0851c40c6760da07829cfc84eb5e78d8e0c1aec488a59b"
+    },
+    {
+      "path": "run-01/reader-source.py",
+      "bytes": 32447,
+      "sha256": "3f5e8fc467606a46e7cb23bb00328f0dc14621cf2eb80f84b31fa2b5401328c2"
+    },
+    {
+      "path": "run-01/same-source-preflight-receipt.json",
+      "bytes": 1325,
+      "sha256": "897b8ea0dd5d78859268c9772dff556d01013d06969399499ceaecddf4e6e41e"
+    }
+  ]
+}

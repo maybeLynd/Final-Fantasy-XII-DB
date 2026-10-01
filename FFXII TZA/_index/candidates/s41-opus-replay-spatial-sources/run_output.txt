@@ -1,0 +1,15 @@
+real_initialisers_audio_callbacks_listener                                       PASS
+slot34_targets_are_the_five_contract_bodies                                      PASS
+no_fence_no_fault                                                                PASS
+SA1_all_five_write_D0_DF_and_E0                                                  PASS
+SA1_nothing_outside_D0_E0_written_by_two_classes                                 PASS
+SA2_ambient_w_1_direction_copies_vector_and_forces_w                             PASS
+SA3_ambient_direction_E0_always_1                                                PASS
+SA3_point_dynamic_polygon_E0_is_distance_below_radius                            PASS
+SA4_the_other_four_classes_never_write_the_radius                                PASS
+SA4_dynamic_mode0_path_leaves_the_radius_unwritten_as_the_gate_predicts          PASS
+SA5_base_vtable_slot34_is_zero                                                   PASS
+SA6_slot39_true_for_point_dynamic_polygon_false_for_ambient_direction            PASS
+outside D0..E0: {'Dynamic': [], 'Point': [], 'Ambient': [], 'Direction': [], 'Polygon': []}
+{'Dynamic_in': ([0.0, 0.0, 0.0, 0.0], 1, 10.0, 0.0), 'Dynamic_out': ([0.0, 0.0, 0.0, 0.0], 1, 2.0, 0.0), 'Dynamic_r0': ([0.0, 0.0, 0.0, 0.0], 0, 0.0, 0.0), 'Point_in': ([1.0, 2.0, 3.0, 7.0], 1, 10.0, 3.74166), 'Point_out': ([1.0, 2.0, 3.0, 7.0], 0, 2.0, 3.74166), 'Point_r0': ([0.0, 0.0, 0.0, 0.0], 0, 0.0, 0.0), 'Ambient_in': ([0.0, 0.0, 0.0, 1.0], 1, 10.0, 0.0), 'Ambient_out': ([0.0, 0.0, 0.0, 1.0], 1, 2.0, 0.0), 'Ambient_r0': ([0.0, 0.0, 0.0, 1.0], 1, 0.0, 0.0), 'Direction_in': ([1.0, 2.0, 3.0, 1.0], 1, 10.0, 3.74166), 'Direction_out': ([1.0, 2.0, 3.0, 1.0], 1, 2.0, 3.74166), 'Direction_r0': ([1.0, 2.0, 3.0, 1.0], 1, 0.0, 3.74166), 'Polygon_in': ([1.0, 2.0, 3.0, 1.0], 1, 10.0, 3.74166), 'Polygon_out': ([1.0, 2.0, 3.0, 1.0], 0, 2.0, 3.74166), 'Polygon_r0': ([0.0, 0.0, 0.0, 0.0], 0, 0.0, 0.0), 'Polygon_mode1': ([-1.9577, 1.4139, 1.4139, 1.0], 1, 10.0, 2.79836)}
+ALL PASS

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Reconstruction/Tests/mutation_test.py",
+    "group_completion",
+    "--exe",
+    "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "--indices",
+    "72",
+    "--out",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\return-control"
+  ],
+  "exit_code": 3,
+  "stdout": "1/1 KILLED line 148: 1 -> 2\nRESULT: INCOMPLETE counts: {'NO_BUILD': 0, 'EQUIVALENT': 0, 'TIMEOUT': 0, 'INVALID': 0, 'KILLED': 1, 'SURVIVED': 0} evidence: C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\return-control\n",
+  "stderr": ""
+}

@@ -1,0 +1,270 @@
+{
+  "section": 11,
+  "base_archive": "FFXII TZA(20260923-205605).zip",
+  "base_sha256": "f52ffea6e6f2bdc27218b0499e8d0d7941669a8ba26dfed3d38cce6c0da57c1c",
+  "root": "FFXII TZA",
+  "files": [
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-interpreter-core.md",
+      "before_sha256": "30c6293505e849072aa999c1a90376001aff5ff4d35828c79911bbcbc3aa8460",
+      "after_sha256": "44caa97b3c0f352c405801e3ca614ed33fe5f798777a7a839b7d413631a73258",
+      "bytes": 16076
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md",
+      "before_sha256": "cad1c514c7350322008b2c44c669a1cea58066e12667f630b0a90ed6327a0fd9",
+      "after_sha256": "7ba6d9a5aa0fdae0af27608c241749b2c00c682e78b093f01042464d5823b166",
+      "bytes": 14706
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md",
+      "before_sha256": "8cf1bcbc98256f5d0170c1722b54804f2bb9ce7316c77be93c4efaee3454c9d2",
+      "after_sha256": "b878ef345db542be0f1670fcb89dc60bc4ae7a07ff74f8f673e3069ce9b4a5f3",
+      "bytes": 29517
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md",
+      "before_sha256": null,
+      "after_sha256": "71e90c5e49a303e34f20a356503fa70b75144d59d6010fbe38532ca48a2f7f67",
+      "bytes": 8260
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md",
+      "before_sha256": "379b83bf3d28ca871e37d6b5ebaed0894650ad3ca6467f5c7b1731530ccfc80e",
+      "after_sha256": "006cecddee853a6b4382cd4276501c350fcb9a96d7ee2bb76b07d9a0502ab254",
+      "bytes": 69820
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md",
+      "before_sha256": "670b9269e9b0e5bb9b6555e6d3eddc36dfc415a11046f7a43414ca29cf8b5570",
+      "after_sha256": "0cc8658eca9712242c0faa9e82c81988929e4a614ed56658f5040d669cb35849",
+      "bytes": 43611
+    },
+    {
+      "path": "_experiments/EXP-085-verb-lifecycle-execution.md",
+      "before_sha256": "b228f99b0c12516d45479dfd81ea1194a4c92fec49fb5ee8d8bf93aa9fb76500",
+      "after_sha256": "a81248dd770b552d0c124fec32d18f51018d62da7825c0bbad9478b3e791f0ef",
+      "bytes": 8552
+    },
+    {
+      "path": "_experiments/EXP-106-field-runtime-pass-exec.md",
+      "before_sha256": "e8b811bfa7d6032c25a478f1e5163aa4777273b6636929ccb56dd420903bf657",
+      "after_sha256": "03fd6d968a5b8e9e9fa936d4879fbdfbbd3709a49c383498507cc7efb44480a3",
+      "bytes": 15693
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/README.md",
+      "before_sha256": null,
+      "after_sha256": "df49a9508f44e2542575fbc05fa4de3885d44a3225fc072acc340009b7a7853a",
+      "bytes": 3350
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/REVIEW.md",
+      "before_sha256": null,
+      "after_sha256": "e89ba3c677c4b0d19678fefcca38dfc8223b69ba174de4505d9eab4d6d6f414d",
+      "bytes": 11632
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/canonical_changes.diff",
+      "before_sha256": null,
+      "after_sha256": "6d73257d1d796ce3faae69d357fd92dcc880aac22d84cea3599ffca7c35a6461",
+      "bytes": 239730
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/canonical_preimages.json",
+      "before_sha256": null,
+      "after_sha256": "0d42aa47c5945f529e67f411223a7df656a02f2eaedc4d0d453c94c60ba16413",
+      "bytes": 3054
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/canonical_row_changes.json",
+      "before_sha256": null,
+      "after_sha256": "139270f68e1cf5e7ef6614001d8883504ff810dae1b5afb134d0a9343e62d95d",
+      "bytes": 38512
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/claim_matrix.tsv",
+      "before_sha256": null,
+      "after_sha256": "07c1e448efb0a639e29f6b4767e716889127324fc9757b81621ac61e237b4a6b",
+      "bytes": 1287
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/input_manifest.json",
+      "before_sha256": null,
+      "after_sha256": "47c5d74241fff3f1c35123947ad8432dc22fd4735238442a5cf1e63795e94e45",
+      "bytes": 1175
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/modified_paths.json",
+      "before_sha256": null,
+      "after_sha256": "ff5725d56c1c199f0211b1f19c6774b1f64419563dbcbb7c6b52e0b1caf6e5ef",
+      "bytes": 566
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/native_controls.c",
+      "before_sha256": null,
+      "after_sha256": "8f7652e1867002ef9dee811ca548e44d3a492261c97a1a33c7c4632414ef8323",
+      "bytes": 20442
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/new_mechanism_path.json",
+      "before_sha256": null,
+      "after_sha256": "80d6bbd3800525ad6116c19727d4abba4d488b0994cae3d3adbd5f1831d26737",
+      "bytes": 112
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/opcode_dispatch_lengths.tsv",
+      "before_sha256": null,
+      "after_sha256": "a7ccf748c7102d72f6fb32cb5d8228dfd327e7f877b276a70cc0db7555b35f48",
+      "bytes": 1621
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/original_body_manifest.json",
+      "before_sha256": null,
+      "after_sha256": "4721a501fd3d19ac637277b886e4c552b2cd9a2cbbe9c971a82a6363d7af34c9",
+      "bytes": 21418
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/original_disassembly.txt",
+      "before_sha256": null,
+      "after_sha256": "7c990c170b321252a6dce575b6f24069af04e26d1a82aa3462e5bceba4f071a4",
+      "bytes": 331991
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/body_verification.json",
+      "before_sha256": null,
+      "after_sha256": "e192f385c2dec177a0a71488818f3cb3ecabc4fa343034034115d6e11dfbb621",
+      "bytes": 9969
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/code_mutations.json",
+      "before_sha256": null,
+      "after_sha256": "95ed676538843498313a70f5d5f01eaa22149664a51ad12be3748ac939c30b0d",
+      "bytes": 2747
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/content_validation.json",
+      "before_sha256": null,
+      "after_sha256": "826cb1496b03b1086d64bfed40ec08cd4afd6131f977b2b03f75f3c22b6405d4",
+      "bytes": 636
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/delivery_validation.json",
+      "before_sha256": null,
+      "after_sha256": "2288ceef7fa574f234966bd9cde1fc0186b356a2e44682662623cdd6d879ae2d",
+      "bytes": 528
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/native_baseline.json",
+      "before_sha256": null,
+      "after_sha256": "f2bb955575f9b19bc695faaa655190e3ba63592044fe40c9c9ff5e417d10dc59",
+      "bytes": 17514
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/native_repeat.json",
+      "before_sha256": null,
+      "after_sha256": "f2bb955575f9b19bc695faaa655190e3ba63592044fe40c9c9ff5e417d10dc59",
+      "bytes": 17514
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/overlay_checker_controls.json",
+      "before_sha256": null,
+      "after_sha256": "63b4055202a5bf07ee94f6eedef8c0a04bf9775fbd898be7e7c57fa244af3728",
+      "bytes": 1169
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/retained_negative_controls.json",
+      "before_sha256": null,
+      "after_sha256": "d40c9c3563f878779b4c95a69d17de535107ca21d88cee3cb9efa9682de10ac2",
+      "bytes": 996
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/retained_review.json",
+      "before_sha256": null,
+      "after_sha256": "68cfe9c2715c53ee46fd24936cd812c20be3b6f7fdd08d9249740e8c3d49db82",
+      "bytes": 633
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/summary.json",
+      "before_sha256": null,
+      "after_sha256": "b5bc7bbd54d79ae1a407ed8e1cd35a1f32bb476a8b4c4dcc71a9ae704f91e571",
+      "bytes": 661
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/results/unchanged_files.json",
+      "before_sha256": null,
+      "after_sha256": "ed90d60c6c3e5e88b876fbce6fd7defd6bc8c0971eaf8ce3cc7a1b0eb42b22a7",
+      "bytes": 722725
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/review_retained.py",
+      "before_sha256": null,
+      "after_sha256": "514eeac16c7f54ce40018d26bec9fbc7a5cdb4c74e9ab9244242a5a628159d83",
+      "bytes": 3664
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/run_review.py",
+      "before_sha256": null,
+      "after_sha256": "0780fd74cce7ffb1eead4959bb50eee520be73048b4729412eafd2f06c3aa9ca",
+      "bytes": 5897
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/scope.json",
+      "before_sha256": null,
+      "after_sha256": "8b20991652a4ec6eeac567f13d017979a9bd850fb86e9ad97aa257cde2f128a8",
+      "bytes": 1711
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/source_inputs.json",
+      "before_sha256": null,
+      "after_sha256": "97f9d2ec14a569809198accc1fba50ad855f0a44d9d391d31b0d41e0caed3f90",
+      "bytes": 3479
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/tested_callbacks.tsv",
+      "before_sha256": null,
+      "after_sha256": "876c89a30dd992e8838d9509cf8e9740430a3d1caed75bc3afc41f095790445e",
+      "bytes": 331
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/validate_content.py",
+      "before_sha256": null,
+      "after_sha256": "7b3edd1ef54f41bf171bd0055f247e6ad3048325c2a3e39af40f0712424d8d3c",
+      "bytes": 4555
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/variant_plan.json",
+      "before_sha256": null,
+      "after_sha256": "836acdb4b5d41962a63877bf8046e7ff6ca202740371279aad06f57b68c8da35",
+      "bytes": 1834
+    },
+    {
+      "path": "_experiments/evidence/continuation-section11-script-resume/verify_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "037f13c481a3671d40277549c54b29101c59d82049a8e647b01bb1e2446c396e",
+      "bytes": 1911
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "before_sha256": "80c7203a8e6648da10f4429f88652db3117fd174acf05e2ed02f161d55c11d24",
+      "after_sha256": "b24ecde093fec8a5c6080572e8dbe31a406c431b52aa71b28782177585513322",
+      "bytes": 22878
+    },
+    {
+      "path": "_types/fields.tsv",
+      "before_sha256": "23368df6ac3f9b27477e7bd0d5dfec9a6108fa6f23ab5ea7573210b93db170c6",
+      "after_sha256": "473e89f806e0afdd5104752cb42983a5c1271f35f718a503ef74f9ebe0c10d66",
+      "bytes": 10683663
+    },
+    {
+      "path": "_types/types.tsv",
+      "before_sha256": "0b270d8349c1618ef3011c4e0703d641e6c99649ce82499c30a6881e2d58e4fa",
+      "after_sha256": "f6b0a41f4f4b2dc17acb4027117e6a7f5ff11b947a269b78d92ef32804ded71e",
+      "bytes": 1661692
+    }
+  ],
+  "excluded_from_own_hash": [
+    "PATCH_MANIFEST.json"
+  ],
+  "policy": "Read-only preflight; new peer edits require merging. No TEAM/L2/score/reconstruction edits."
+}

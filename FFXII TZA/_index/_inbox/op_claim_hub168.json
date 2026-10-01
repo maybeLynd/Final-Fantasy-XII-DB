@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-168",
+ "agent": "SWE2-EC7",
+ "note": "Claiming batch 168: 4 multi-caller (00159420 248B/5c, 0015A330 786B/3c, 00159E60 137B/2c, 002739D0 41B/2c) + top-18 1-A by size (667..143 B). Frontier 5,134 after batch 167 + peer coverage.",
+ "resources": [
+  {
+   "key": "target:frontier-shared-callee-hubs"
+  }
+ ]
+}

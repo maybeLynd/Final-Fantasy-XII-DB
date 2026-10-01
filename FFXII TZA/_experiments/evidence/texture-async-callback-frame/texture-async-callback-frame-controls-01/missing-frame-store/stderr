@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-callback-frame.py", line 86, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-callback-frame.py", line 35, in main
+    annotations=[S.validate(q) for q in (render,bank)]
+                 ~~~~~~~~~~^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 40, in validate
+    raise ValueError("empty/mixed original bytes")
+ValueError: empty/mixed original bytes

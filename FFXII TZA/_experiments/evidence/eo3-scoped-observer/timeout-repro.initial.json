@@ -1,0 +1,146 @@
+{
+  "result": {
+    "status": "MATCHED_PENDING_HEALTH",
+    "hits": [
+      {
+        "unix": 0.0,
+        "tid": 11,
+        "rip": 512,
+        "rsp": 4096,
+        "rcx": 1,
+        "rdx": 2,
+        "r8": 3,
+        "r9": 4,
+        "rdi": 1250999896491,
+        "r10": 1250999896491,
+        "rbx": 1250999896491,
+        "rax": 1250999896491
+      }
+    ],
+    "observations": [
+      {
+        "decision": "CONTINUE",
+        "source": "synthetic Python callback only"
+      }
+    ],
+    "arming": [
+      [
+        11,
+        true
+      ],
+      [
+        12,
+        true
+      ]
+    ],
+    "errors": [],
+    "cleanup": {
+      "status": "PASS",
+      "reason": "stopped-event clear and readback",
+      "clears": [
+        [
+          11,
+          true
+        ],
+        [
+          12,
+          true
+        ]
+      ],
+      "verified": [
+        [
+          11,
+          true
+        ],
+        [
+          12,
+          true
+        ]
+      ],
+      "breakpoint_tid": 12
+    },
+    "detach": true,
+    "abort": null,
+    "handle_closed": true
+  },
+  "callbacks": [
+    [
+      11,
+      1250999896491
+    ]
+  ],
+  "aborts": [],
+  "resumes": [
+    "owned"
+  ],
+  "calls": [
+    [
+      "event",
+      "attach"
+    ],
+    [
+      "slots",
+      11,
+      [
+        512
+      ]
+    ],
+    [
+      "slots",
+      12,
+      [
+        512
+      ]
+    ],
+    [
+      "continue",
+      null,
+      65538
+    ],
+    [
+      "event",
+      "owned"
+    ],
+    [
+      "observe",
+      11
+    ],
+    [
+      "resume",
+      "owned"
+    ],
+    [
+      "continue",
+      "owned",
+      65538
+    ],
+    [
+      "event",
+      "create"
+    ],
+    [
+      "continue",
+      null,
+      65538
+    ],
+    [
+      "event",
+      "cleanup"
+    ],
+    [
+      "slots",
+      11,
+      []
+    ],
+    [
+      "slots",
+      12,
+      []
+    ],
+    [
+      "continue",
+      null,
+      65538
+    ]
+  ]
+}

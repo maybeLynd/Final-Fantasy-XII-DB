@@ -1,0 +1,67 @@
+PASS  K1 192 [vtable+0x78] dispatch sites in 114 functions (OPUS: 192 / 114)
+      E3 001B0190 001B02D6 object built by a DynGeo3DInstance constructor
+      E3 001B03D0 001B0514 object built by a DynGeoTextureInstance constructor
+      E4 0020E6C0 0020E967 same object dispatched at +0x138 (0020E9AB)
+      E4 00213140 00213228 same object dispatched at +0x100 (00213199)
+      E4 00213FE0 002140E9 same object dispatched at +0x100 (0021403F)
+      E4 00215440 00215537 same object dispatched at +0x138 (00215719)
+      E4 00215440 0021556D same object dispatched at +0x138 (00215719)
+      E4 00215440 002155D2 same object dispatched at +0x138 (00215719)
+      E2 005A3E50 005A3E8E this is .?AV?$PClassDescriptorHeader@VPAnimationClipBinding@PAnimation@Phyre@@@Phyre@@
+      E2 005D18C0 005D18FE this is .?AV?$PClassDescriptorHeaderWithoutDefaultConstructor@VPParameterBuffer@PRendering@Phyre@@@Phyre@@
+      E2 006CAB50 006CAB69 this is PrimitiveRendererD3D11
+      E2 006CEE50 006CEE8E this is .?AV?$PClassDescriptorHeader@VPModifierNetworkInfoPacket@PDynamicGeometry@Phyre@@@Phyre@@
+      E2 006D9E30 006D9E6E this is .?AV?$PClassDescriptorHeader@VPOccluderGeometryObject@POccluderGeometry@Phyre@@@Phyre@@
+      E2 00724600 007246BC this is PPFX::IGPUDevice
+      E2 00832DD0 00832E82 this is btCompoundShape
+      E2 008330A0 00833235 this is btCompoundShape
+      E2 00833BA0 00833BBB this is btCapsuleShape
+      E2 00835CE0 00835D00 this is btCylinderShape
+      E2 00836D20 00836D2C this is btBvhTriangleMeshShape
+      E2 00837F00 00837F30 this is btSphereShape
+      E2 008581A0 008581A3 this is btDiscreteDynamicsWorld
+      E4 00863850 00863AA7 same object dispatched at +0x138 (00863A6E)
+      E4 00863D80 00863F24 same object dispatched at +0x138 (00864085)
+      E4 00864330 008645B0 same object dispatched at +0x128 (00864702)
+      E4 00864860 00864B71 same object dispatched at +0x138 (00864C31)
+      classes: {'E1': 133, 'E2': 13, 'E3': 2, 'E4': 10, 'RESIDUE': 34}
+      RESIDUE 001F3AE0 001F3BFC obj=rcx ('M', '001F3BEA qword ptr [rbx]')
+      RESIDUE 0020FF10 00210178 obj=rcx ('M', '00210140 qword ptr [rip + 0x1db34b1]')
+      RESIDUE 0020FF10 002101EA obj=rcx ('M', '002101C3 qword ptr [rip + 0x1db342e]')
+      RESIDUE 002143E0 0021448E obj=rsi ('U', 'argument rdx of 002143E0: no direct caller')
+      RESIDUE 00214540 0021457A obj=rdx ('U', 'argument rdx of 00214540: no direct caller')
+      RESIDUE 006F8740 006F883D obj=rcx ('M', '006F881F qword ptr [rbx + 0x20]')
+      RESIDUE 0070CF00 0070CF86 obj=rcx ('M', '0070CF61 qword ptr [r11 + 0x20]')
+      RESIDUE 0070CFA0 0070CFFC obj=rcx ('M', '0070CFDB qword ptr [rdi + 0x20]')
+      RESIDUE 00736D60 00736F2B obj=rcx ('M', '00736F17 qword ptr [rbp + 0x38]')
+      RESIDUE 007370A0 007372BB obj=rcx ('M', '007372A7 qword ptr [rbp + 0x38]')
+      RESIDUE 00738840 00738BBC obj=rcx ('M', '00738BA7 qword ptr [r13 + 0x38]')
+      RESIDUE 0073BD30 0073C2B2 obj=rcx ('M', '0073C29C qword ptr [rbx + 0x38]')
+      RESIDUE 0073D370 0073D429 obj=rcx ('M', '0073D411 qword ptr [rbx + 0x38]')
+      RESIDUE 0073DFA0 0073E18F obj=rcx ('M', '0073E17F qword ptr [rbx + 0x38]')
+      RESIDUE 0073EA00 0073EAB1 obj=rdi ('M', '0073EA7D qword ptr [rsp + 0x170]')
+      RESIDUE 0073EA00 0073ECD4 obj=rdi ('M', '0073EA7D qword ptr [rsp + 0x170]')
+      RESIDUE 0073EA00 0073EDC4 obj=rdi ('M', '0073EA7D qword ptr [rsp + 0x170]')
+      RESIDUE 0073F290 0073F362 obj=rcx ('M', '0073F349 qword ptr [rbx + 0x38]')
+      RESIDUE 007407E0 00740928 obj=rcx ('M', '00740912 qword ptr [rbx + 0x38]')
+      RESIDUE 0075D4E0 0075D7FB obj=rcx ('M', '0075D7F0 qword ptr [rdi]')
+      RESIDUE 0075D4E0 0075D978 obj=rcx ('M', '0075D970 qword ptr [rbx]')
+      RESIDUE 0075DA10 0075DBEB obj=rbx ('M', '006FF4B4 qword ptr [rbx - 8]'); ('M', '0075DCD4 qword ptr [rdx + 0xa8]'); ('U', 'argument rdx of 0075DD70: no direct caller')
+      RESIDUE 0075DA10 0075DCA2 obj=rbx ('M', '006FF4B4 qword ptr [rbx - 8]'); ('M', '0075DCD4 qword ptr [rdx + 0xa8]'); ('U', 'argument rdx of 0075DD70: no direct caller')
+      RESIDUE 0077FFE0 00780095 obj=rcx ('M', '0078008A qword ptr [rax + 0x38]')
+      RESIDUE 0078EAF0 0078F342 obj=rcx ('M', '0078F331 qword ptr [rbp + 0x78]')
+      RESIDUE 007AB5C0 007AB9E8 obj=rax ('R', '0x7ab1e0')
+      RESIDUE 00831380 0083194C obj=rdi ('M', '0084CD6E qword ptr [rbx + 0x30]'); ('M', '0084CE61 qword ptr [rbx + 0x38]'); ('U', 'argument rcx of 00831230: no direct caller')
+      RESIDUE 008330A0 0083323E obj=rbx (no vtable load)
+      RESIDUE 008420F0 00842146 obj=rdi ('R', '0x85e680'); ('U', 'argument rcx of 00837680: no direct caller')
+      RESIDUE 008420F0 00842170 obj=rdi ('R', '0x85e680'); ('U', 'argument rcx of 00837680: no direct caller')
+      RESIDUE 00855B80 0085617E obj=rax ('R', 'qword ptr [rax + 0x18]')
+      RESIDUE 00862D40 00862DF9 obj=rbx ('U', 'argument rdx of 00862D40: no direct caller')
+      RESIDUE 00862EC0 00862F77 obj=rbx ('U', 'argument rdx of 00862EC0: no direct caller')
+      RESIDUE 008651A0 00865222 obj=rbx ('U', 'argument rdx of 008651A0: no direct caller')
+PASS  K2 the window procedure's application call 0079914C (object [0x2ea5368]) is not excluded by E1
+PASS  K3 E2 types 0017D1A0's this as GameApplication and does not exclude it
+PASS  K4 GameApplication vtable = 31 slots; slot 30 is called at 0079C23A, so a slot >= 31 excludes the class
+PASS  K5 007B58C0 / 007BC2B0 return an indexed handle-table load ([table + i*40 + 0x20]), treated as E1
+PASS  S1 partition: E1 133, E2 13, E3 2, E4 10, residue 34
+FAILS 0

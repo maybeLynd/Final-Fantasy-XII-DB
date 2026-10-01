@@ -1,0 +1,10 @@
+# NativeAdapter.HandleRecordOutFloatInit - EC-7 family C
+# resolve arg1 via shared ActorHandle_ResolveRegistryEntryByPackedId
+# # 003588B0; chase [rax+0xC0]->word through the 0x740-stride table requiring
+# # +0x284 set; call a member op on arg2 then store 1.0f at [arg2+0xC]; on
+# # failure zero the out record and still store 1.0f.
+address	targets
+002E9A90	003588B0,003E4E90
+002E9D10	003588B0,003E5700
+002EA0E0	003588B0,003E5910
+002EA160	003588B0,003E59F0

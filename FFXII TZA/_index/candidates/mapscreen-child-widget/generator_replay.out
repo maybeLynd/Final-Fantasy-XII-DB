@@ -1,0 +1,7 @@
+PASS  R MapScreenContainer 0x00C0 regenerated == store
+PASS  R Widget 0x068 regenerated == store
+PASS  R Widget 0x070 regenerated == store
+PASS  R Widget 0x074 regenerated == store
+PASS  R Widget 0x078 regenerated == store
+PASS  C --patch rc 0, check on the regenerated file rc 0
+FAILS 0

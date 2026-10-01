@@ -1,0 +1,36 @@
+string starts [0, 18, 38, 44, 60, 70, 82, 96, 110, 122, 138, 148]
+decoded offsets == string starts: True
+keys [2147483652] indices True
+record bytes match raw: True
+  idx  0 textColor          off 144 size 16 fixup [2147483652, 0, 0, 148]
+  idx  1 alphaThreshold     off 184 size  4 fixup [2147483652, 1, 0, 44]
+  idx  2 outlineColor       off 128 size 16 fixup [2147483652, 2, 0, 82]
+  idx  3 outlineValues      off 112 size 16 fixup [2147483652, 3, 0, 96]
+  idx  4 shadowColor        off  96 size 16 fixup [2147483652, 4, 0, 110]
+  idx  5 shadowUVOffset     off 176 size  8 fixup [2147483652, 5, 0, 122]
+  idx  6 glowColor          off  80 size 16 fixup [2147483652, 6, 0, 60]
+  idx  7 glowValues         off 168 size  8 fixup [2147483652, 7, 0, 70]
+  idx  8 softEdges          off 160 size  8 fixup [2147483652, 8, 0, 138]
+  idx  9 BitmapFontTexture  off  56 size 24 fixup [2147483652, 9, 0, 0]
+  idx 10 LinearClampSampler off  32 size 24 fixup [2147483652, 10, 0, 18]
+  idx 11 World              off  32 size 64 fixup [2147483652, 11, 0, 38]
+max masked size over all 12: 64
+MUT shipped                            len=8 any_AE0=False whole_AE0=False
+MUT size word 0x9C0                    len=2496 any_AE0=False whole_AE0=False
+MUT size word 0x9C1                    len=2497 any_AE0=True whole_AE0=False
+MUT size word 0x9C3                    len=2499 any_AE0=True whole_AE0=False
+MUT size word 0x9C4                    len=2500 any_AE0=True whole_AE0=True
+MUT size word 0x29C1                   len=2497 any_AE0=True whole_AE0=False
+MUT offset word 0x9C0 (size 8)         len=8 any_AE0=False whole_AE0=False
+MUT name softEdges->XoftEdges          REFUSED ValueError: missing/ambiguous softEdges definition
+MUT class44 parent word -> 0           REFUSED ValueError: missing/cyclic inherited field m_offset
+members named m_size (name offset 0x822): [7, 65, 124, 137]  class44's member index: 137
+MUT first m_size (other class) off -> 0 len=8 any_AE0=False whole_AE0=False
+MUT class44 m_size member offset 2 -> 0 REFUSED ValueError: capture-location packed layout
+MUT swap record bytes 8<->1            REFUSED ValueError: distinct named extent controls
+CLI unchanged-copy (positive)    exit=0 result_exists=True stderr_tail=
+CLI incomplete-source            exit=1 result_exists=False stderr_tail=ValueError: missing/incomplete original source prerequisite
+CLI missing-caller               exit=1 result_exists=False stderr_tail=FileNotFoundError: [Errno 2] No such file or directory: 'C:\\t\\auditspec\\fe-cli-jzjaf7a_
+CLI changed-shipping-asset       exit=1 result_exists=False stderr_tail=ValueError: wrong original shader asset
+CLI changed-copy-displacement    exit=1 result_exists=False stderr_tail=ValueError: original consumer/binding instruction prerequisite 0x1ea5c1
+disposable dir C:\t\auditspec\fe-cli-jzjaf7a_

@@ -1,0 +1,28 @@
+# NativeAdapter.CallThenReturnZero - EC-7 family C, declared on generated-function-families.md
+#
+# 19 members. Body size(s): 16 B x19.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 19 external target(s): 0 shared across all 19 members, and 19 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 20 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+005A0D20
+005CA280
+005CA290
+005CA2A0
+0060F210
+0060F220
+0060F230
+0060F280
+0060F290
+0060F2A0
+0060F2B0
+0060F2C0
+0062A860
+006731B0
+0067A230
+006D56E0
+008624C0
+008762E0

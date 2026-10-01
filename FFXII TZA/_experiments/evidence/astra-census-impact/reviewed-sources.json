@@ -1,0 +1,84 @@
+{
+  "scope": "Bounded source impact assessment; no claim of exhaustive historical tool certification",
+  "discovery": "rg over Python files in ASTRA work and experiment evidence; reg_name|regs_access|CS_AC_WRITE|tracked|taint, excluding python-libs and retained sources directories. No remaining discovery errors.",
+  "sources": [
+    {
+      "path": "Database/Tools/work/ASTRA/pointer_primary.py",
+      "sha256": "a257046038665c2fa26cc613a1b08bb06da8df12118ce705a37e56fb71fdf898",
+      "git_blob": "9bc40812f12d51b8751831ecc7e8bec5eee75c12",
+      "assessment": "RIP target decoding only; no propagated register state."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/authored-reference-lifetime-review/collect.py",
+      "sha256": "a257046038665c2fa26cc613a1b08bb06da8df12118ce705a37e56fb71fdf898",
+      "git_blob": "9bc40812f12d51b8751831ecc7e8bec5eee75c12",
+      "assessment": "Same bounded pointer collector; indexed access omission explicitly controlled."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/authored-reference-lifetime-review/reviewed-ripscan.py",
+      "sha256": "236e7cee6eebf73d8fb0885346876a6efba99c04caebb96c63bbb55029a1ab47",
+      "git_blob": "5c3ae13a11f22fd1d58894c73fd37ff15bcf2154",
+      "assessment": "Retained peer RIP-only candidate instrument; no receiver propagation."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/mgrmark-reload-discriminator/check.py",
+      "sha256": "fa6ebf8385f5b494f059aa82b031de85699d13e9d7fde1d64bd14b99c7c8acf4",
+      "git_blob": "9f9e382f15f512776b2429ae49b2981847a9a983",
+      "assessment": "Pinned local selected nonvolatile writers, all aliases and direct store equation; returning-call ABI assumption."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/regfile-reuse-identity/check.py",
+      "sha256": "4c2b6a4ca719cba76f4690b2df67e40262199060d7a51126e78a1363563e0df6",
+      "git_blob": "794a3ce5d4e14ebe34d2077624cad878c8fadcb8",
+      "assessment": "Pinned local nonvolatile writers, all aliases and same root; returning-call ABI assumption."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/spawn-manager-dispatch/check.py",
+      "sha256": "03012d8e45b0fc98221b7ab344aa9b357161051bbd1783a3f6e0285fbedd43e9",
+      "git_blob": "afced779fea9d060907b220ed243017dc46747b3",
+      "assessment": "Retained event replay/explicit callback cases, not a register census."
+    },
+    {
+      "path": "Database/Tools/work/ASTRA/spawn_manager_check.py",
+      "sha256": "03012d8e45b0fc98221b7ab344aa9b357161051bbd1783a3f6e0285fbedd43e9",
+      "git_blob": "afced779fea9d060907b220ed243017dc46747b3",
+      "assessment": "Working event replay source, not a register census."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/katano-savedata/aq18_span_write_census.py",
+      "sha256": "0a1e25dcd6326e39b01e419a38854bf40a8eab1f2e710c87949619d4510e02d6",
+      "git_blob": "46aad89fd5e99ba51c6fef186564a9717a392676",
+      "assessment": "Retained OPUS exact-address tracker; defective synthetic partial-alias and register-add controls."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-024-group-approach/forward_block.py",
+      "sha256": "f47d53eab731f9ce8db7f0335fcf8fb262e7e66fd60befe4f2b1cb59e01e1890",
+      "git_blob": "7aba5b214c03f1f29182760dde9ce12348e31e4f",
+      "assessment": "Tracked actor means input-navigation identity, not machine-register tracking."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-024-group-approach/seal.py",
+      "sha256": "d7ad39de09a049efd6e91ab13b310c60da649ecc0968c991d10dd3318b83f069",
+      "git_blob": "7ac0f277a4095cbbcf2e008e96724af40000f058",
+      "assessment": "Seal/navigation keyword candidate, not register dataflow."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-020-contradictions/validated-contradiction_index.py",
+      "sha256": "782df6057bb1e246b8dccbd70b84b5492c30793bb0fc79178b1ca22ef48f395b",
+      "git_blob": "cced6d011c005810dca71ecda4f6e00aea7ac2a1",
+      "assessment": "Prose reference to taint; ledger extractor, not register dataflow."
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-020-contradictions/baseline-old.py",
+      "sha256": "555d2a2a01264fe6cae02ac0e3f6580e8c5a74c88c1f96bc4f46323eae4ff76d",
+      "git_blob": "a67ca1b9b1496838bc2362e210ecf4d8648961db",
+      "assessment": "Historical ledger extractor keyword candidate, not register dataflow."
+    },
+    {
+      "path": "Database/Tools/work/ASTRA/efx_source_publish.py",
+      "sha256": "cf4d1f9e9f8285eba6b4784cbb5052f869cb785cf32b76a671da65ce2dfc108d",
+      "git_blob": "6ed3fd6f0863cd47d6112010b9857382c01d2701",
+      "assessment": "Publication-message use of tracked, not register dataflow."
+    }
+  ]
+}

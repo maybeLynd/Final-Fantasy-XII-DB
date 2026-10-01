@@ -1,0 +1,6 @@
+{
+  "at_utc": "2026-09-21T10:37:36.595169+00:00",
+  "harness_sha256": "196c791d94261af3d532d274b036689f1b2aafbaa1cf58a472f3a78f7aacb16a",
+  "feasibility_sha256": "e49cfed42306785d371f2d3c44f4ae1be0ceedb35c5d3e0286bf256479c57be8",
+  "controls": "Three original-code return/cookie/stack/nonvolatile/canary controls pass; center equal within1e-6; opposite axis channels discriminate >.99 versus <1e-6. Full campaign authorized by this local feasibility check."
+}

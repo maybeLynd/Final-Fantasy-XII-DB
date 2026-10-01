@@ -1,0 +1,83 @@
+{
+ "allowed_functions": 4,
+ "cases": {
+  "R1_bit_clear_class2_scales_08_and_05": true,
+  "R2_bit4_set_leaves_accuracy": true,
+  "R3_class_0_or_1_leaves_accuracy": true,
+  "R4_only_that_bit_gates": true,
+  "W3_the_class_is_read_verbatim_not_rebanded": true
+ },
+ "ok": true,
+ "steps": {
+  "step35": {
+   "bit4_class1": [
+    true,
+    100
+   ],
+   "bit4_class2": [
+    true,
+    100
+   ],
+   "clear_class0": [
+    true,
+    100
+   ],
+   "clear_class1": [
+    true,
+    100
+   ],
+   "clear_class2": [
+    true,
+    80
+   ],
+   "others_set_class2": [
+    true,
+    80
+   ]
+  },
+  "step36": {
+   "bit4_class1": [
+    true,
+    100
+   ],
+   "bit4_class2": [
+    true,
+    100
+   ],
+   "clear_class0": [
+    true,
+    100
+   ],
+   "clear_class1": [
+    true,
+    100
+   ],
+   "clear_class2": [
+    true,
+    50
+   ],
+   "others_set_class2": [
+    true,
+    50
+   ]
+  }
+ },
+ "weather_getter": {
+  "0": [
+   true,
+   0
+  ],
+  "1": [
+   true,
+   1
+  ],
+  "2": [
+   true,
+   2
+  ],
+  "5": [
+   true,
+   5
+  ]
+ }
+}

@@ -1,0 +1,24 @@
+# 17 pure thread-safe magic-static singleton initialisation stubs.
+# Entire call set is exactly {_Init_thread_header 008092FC,
+# _Init_thread_footer 0080929C, atexit wrapper 00808B90}; the payload
+# is inlined stores only. Census-wide scan is self-bounding: all other
+# matches are owned (StaticDescriptorSingleton x13, Phyre modules x5)
+# or A-measured x3. Sizes 98-474B vary with the inlined payload.
+# address	size
+005CDA30	112
+00630340	98
+006318A0	440
+00631A60	474
+00631C40	474
+00631E20	474
+00632000	474
+006321E0	474
+006323C0	474
+006325A0	474
+006372B0	98
+00637440	98
+006374B0	206
+00637580	206
+00637650	206
+00637720	220
+006378D0	206

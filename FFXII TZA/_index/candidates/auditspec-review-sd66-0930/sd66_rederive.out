@@ -1,0 +1,10 @@
+raw call/jmp [reg + 0x40] sites in .text: 169
+sites whose register is not loaded from a static within 8 instructions: 150
+  of those, vtable read through `lea rX, [static]` (second form): 0 sites, statics []
+statics with no vtable found (unclassified): 5 statics, 19 sites
+   02CF8580 x11  (in ..data)
+   02CF8370 x3  (in ..data)
+   02CF8680 x2  (in ..data)
+   02CF9530 x2  (in ..data)
+   02CF8880 x1  (in ..data)
+PClassDescriptor static sites: 0 in 0 bodies

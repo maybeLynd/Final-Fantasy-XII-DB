@@ -1,0 +1,6 @@
+SURVIVES  A0  341 non-null, 18 null, all in .text; next qword 0000000400000002
+SURVIVES  A1  [('002FDDA0', 249), ('002FDA60', 57), ('002FDC30', 25), ('002FE660', 6), ('002FE7D0', 1), ('002FE840', 1), ('002FE8D0', 1), ('002FE910', 1)]
+SURVIVES  A2  tail jmp with only rcx; 002FDDA0 re-reads +0x714
+SURVIVES  A3  both consumers subtract 0x4000, bound at 0x166 and read 01EEC460; the dispatcher returns -1
+SURVIVES  A4  events 0x2001 and 0x2010 in the dispatcher
+FAILS 0

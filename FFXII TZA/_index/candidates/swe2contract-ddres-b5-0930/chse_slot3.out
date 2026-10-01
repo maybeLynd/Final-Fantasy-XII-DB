@@ -1,0 +1,19 @@
+PASS  T1 table readers ['002EA530', '002ED950']; loader lea control True
+PASS  T2 bound +8, row = (idx+1)<<4
+PASS  T3 callers ['002E60F0', '002EA6E0', '002ED910']; control 002E6152 True
+PASS  T4 002E60F0 word [row + 2*pass]; 002EA6E0 null test only; 002ED910 movsx word [row + 6]
+PASS  T5 003212E0 first; the row only on null actor or a negative result
+PASS  T6 [+0x698]+5 == 1 -> word [[+0xE60]+0x26], else -1
+PASS  T7 0037B85B -> edi -> edx of 0036F0F0 at 0037B896; negative -> state 7
+PASS  T8 input 0031C250(actor) True; ids above 13 pass through True; special ids ['0->2EB7BC', '1->2EB7BC', '2->2EB7D1', '3->2EB7D1', '4->2EB7D1', '5->2EB7D1', '6->2EB7D1', '7->2EB7D1', '8->2EB7C4', '9->2EB7C4', '10->2EB7D1', '11->2EB7D1', '12->2EB7CC', '13->2EB7CC']
+PASS  T11 loader accesses via rdi []; 002ED950 accesses via rcx [(3070402, 'cmp', 'edx, dword ptr [rcx + 8]')]
+PASS  T9 callers of 002ED910 ['0037B4D0']
+PASS  T10 raw E8/E9 hits 4, all inside the known callers True; data references 0 (.pdata entries 1); controls True
+D1  charseinfo_c row 0 slots ['0xFFFF', '0x00C8', '0x013A', '0x0000'] -> slot 3 as read (movsx) = 0
+D1  charseinfo_n row 1 slots ['0xFFFF', '0x00D7', '0xFFFF', '0xFFFF'] -> slot 3 as read (movsx) = -1
+D1  charseinfo_w row 2 slots ['0x0108', '0xFFFF', '0xFFFF', '0xFFFF'] -> slot 3 as read (movsx) = -1
+D2  authored slot-3 values (signed, as read): 39 in total
+D2  charseinfo_c: 14 values, range 0..14, distinct 10
+D2  charseinfo_m: 1 values, range 17..17, distinct 1
+D2  charseinfo_n: 11 values, range 6..63, distinct 11
+D2  charseinfo_s: 13 values, range 18..30, distinct 13

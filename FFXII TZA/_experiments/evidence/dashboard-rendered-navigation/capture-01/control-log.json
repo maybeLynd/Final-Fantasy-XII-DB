@@ -1,0 +1,42 @@
+{
+  "method": "HOST_BROWSER",
+  "url": "http://127.0.0.1:8765/",
+  "browser": {
+    "id": "1",
+    "name": "Codex In-app Browser"
+  },
+  "ownedTab": "2",
+  "createdInBackground": true,
+  "actions": [
+    {
+      "action": "AX click12",
+      "status": "REFUSED_STALE_IDENTIFIER",
+      "accepted": false
+    },
+    {
+      "action": "observed exact-role overview OK",
+      "status": "OVERVIEW_HEADING_OBSERVED"
+    },
+    {
+      "action": "observed exact-role Agent Activity live",
+      "status": "AX_INTERMEDIATE_THEN_ACTIVITY_DOM_OBSERVED"
+    },
+    {
+      "action": "observed exact-role My Progress STALE",
+      "status": "NO_MATCHES_REFUSED",
+      "accepted": false
+    }
+  ],
+  "cleanup": {
+    "closeReturned": true,
+    "ownedTabListedAfter": false
+  },
+  "savedAt": "2026-09-29T13:11:47.234Z",
+  "limits": [
+    "ordered observations not atomic",
+    "log time after captures",
+    "no source-module/PID identity proof",
+    "no database totals acceptance",
+    "no FF12 action"
+  ]
+}

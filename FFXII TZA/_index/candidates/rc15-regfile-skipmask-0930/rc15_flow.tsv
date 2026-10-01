@@ -1,0 +1,29 @@
+function	address	kind	instruction	record_offset
+0025AE00	0025AEC2	WRITE	mov word ptr [rax + rdi*2 + 0xc8], r15w	A+?
+0025AF60	0025AFA1	WRITE	mov word ptr [rax + rbx*2 + 0xc8], di	A+?
+0025E4C0	00261624	WRITE	mov dword ptr [r15 + 0x64], eax	A+0x64
+0025E4C0	00261635	WRITE	mov dword ptr [r15 + 0x68], eax	A+0x68
+0025E4C0	00261646	WRITE	mov dword ptr [r15 + 0x6c], eax	A+0x6c
+0025E4C0	00261657	WRITE	mov dword ptr [r15 + 0x70], eax	A+0x70
+0025E4C0	00261668	WRITE	movss dword ptr [r15 + 0x74], xmm0	A+0x74
+0025E4C0	0026167B	WRITE	movss dword ptr [r15 + 0x78], xmm0	A+0x78
+0025E4C0	0026168E	WRITE	movss dword ptr [r15 + 0x7c], xmm0	A+0x7c
+0025E4C0	002616A1	WRITE	movss dword ptr [r15 + 0x80], xmm0	A+0x80
+0025E4C0	002616AF	READ	mov edx, dword ptr [r15 + 0x64]	A+0x64
+0025E4C0	002616C0	READ	mov edx, dword ptr [r15 + 0x68]	A+0x68
+0025E4C0	002616D1	READ	mov edx, dword ptr [r15 + 0x6c]	A+0x6c
+0025E4C0	002616E2	READ	mov edx, dword ptr [r15 + 0x70]	A+0x70
+0025E4C0	002616F3	READ	movss xmm1, dword ptr [r15 + 0x74]	A+0x74
+0025E4C0	00261706	READ	movss xmm1, dword ptr [r15 + 0x78]	A+0x78
+0025E4C0	00261719	READ	movss xmm1, dword ptr [r15 + 0x7c]	A+0x7c
+0025E4C0	0026172C	READ	movss xmm1, dword ptr [r15 + 0x80]	A+0x80
+002652D0	0026530B	READ	movzx eax, word ptr [rdx + rsi*2 + 0xc8]	A+?
+00269860	00269951	READ	movzx eax, word ptr [rdi + rbx*2 + 0xc8]	A+?
+0034C6A0	0034C6DA	BULK-READ	cmovs	rsi=A+0x0
+0037CF50	0037CF71	BULK-READ	cmovs	rsi=A+0x0
+003DB2A0	003DB39D	READ	movzx eax, byte ptr [rdx + 0x94]	A+?
+003DB2A0	003DB3AB	WRITE	mov byte ptr [rdx + 0x94], al	A+?
+003DB2A0	003DB3D1	READ	movzx eax, byte ptr [rdx + 0x8c]	A+?
+003DB2A0	003DB3E0	WRITE	mov byte ptr [rdx + 0x8c], cl	A+?
+003DB420	003DB4A0	READ	movzx r8d, byte ptr [rbx + rbp + 0x94]	A+?
+003DB6E0	003DB710	READ	movzx ebx, byte ptr [rdi + r8 + 0x94]	A+?

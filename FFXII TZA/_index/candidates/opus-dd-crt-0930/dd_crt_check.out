@@ -1,0 +1,4 @@
+PASS  A1 _Buynode0: 00714860 / 00714920 -> 0x30, 0071F180 -> 0x60 from 00210EC0; all three links = the head
+PASS  A2 _Buynode: colour/_Isnil word zeroed, value built at +0x20 (a 16-byte pair; two strings for B)
+PASS  A3 a second 0x30 constructor path 00712F20 -> 00714920
+FAILS 0

@@ -1,0 +1,45 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 1752,
+      "sha256": "84a6384b24e552b4ce40be5f734bbc797fd495c2913948d5a9db8f40b6bccfa7"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6275,
+      "sha256": "376b618fca1e78f43ffa148d4bc65eb04e2133d3fa2d530cbc3799d5624c30ba"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1839,
+      "sha256": "bc82b25b4fd541d69e1b284cfad8855a119793cdf1e98ac3817bc02d581f042f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4196,
+      "sha256": "2c0d29250a0bfe8469573cca7e5455c15533c8399a037d39121ff0b356954871"
+    },
+    {
+      "path": "retained/the-two-transform-primitives.md",
+      "bytes": 123292,
+      "sha256": "27667ba52ee64fc469d07df981fb0412859584ad592542d5d25e0d590018643a"
+    },
+    {
+      "path": "source.json",
+      "bytes": 12083,
+      "sha256": "bf788a0fdc986b91e5afa2bac15af1763a959075798726bcba084a6f0d9be405"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 85268,
+      "sha256": "9f564c9ab03be202d0b4e5d35d1575032edcb905bef430be50ca1889cf2b2880"
+    }
+  ],
+  "limits": "A shipping bytes/source symbolic reduction and exact finite conditional examples; zero new B/C. Owner incorporation/independent acceptance pending. No library/native cookie/caller/lifetime/enginewide representation guarantee."
+}

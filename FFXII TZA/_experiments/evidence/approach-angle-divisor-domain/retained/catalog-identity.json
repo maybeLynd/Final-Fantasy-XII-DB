@@ -1,0 +1,16 @@
+{
+  "path": "Database/Tools/work/graph/functions.tsv",
+  "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+  "row": {
+    "entry": "00339630",
+    "name": "BattleAction_FindApproachGeometryAroundTarget",
+    "body_bytes": "1061",
+    "owner": "",
+    "final_no_owner": "false",
+    "thunk": "false",
+    "noreturn": "false",
+    "comment_len": "4168",
+    "tags": "ABI_CURATED_TYPED;ContextAuditV100;ContextAuditV104;ContextAuditV31;ContextAuditV90;ContextAuditV99;ContextDepthBaseline_A;ContextDepth_A;FFXII;FFXII_COMBAT;FFXII_MOVEMENT;FFXII_MULTIPLAYER;FFXII_TARGETING;FFXII_V100;FFXII_V103;FFXII_V20;FFXII_V21;FFXII_V22;FFXII_V23;FFXII_V24;FFXII_V25;FFXII_V26;FFXII_V27;FFXII_V28;FFXII_V29;FFXII_V30;FFXII_V31;FFXII_V40;FFXII_V90;FunctionEvidenceV100;FunctionEvidenceV120AuditWIP;FunctionEvidenceV40;FunctionEvidenceV90;GFZ.V120WIP.MovementExit.FinalLegacyChallengeClosed;GFZ.V120WIP.X0.LegacyV30TopTaxonomyBoundaryClosed;GFZ.V121.CodeDomain.Gameplay.Combat.NativeSemanticHelper;MechanismContextV120AuditWIP;MilestoneAuditV100;MilestoneAuditV30;MilestoneAuditV90;NegativeClosureV103;NegativeClosureV110;TaxonomyV30;TaxonomyV30_Leaf_5_1_Movement_orders_steering_publication;TaxonomyV30_Top_Movement;V99_CombatActionCategoryParse"
+  },
+  "limits": "Bounded catalog span, not .pdata/logical-body certification"
+}

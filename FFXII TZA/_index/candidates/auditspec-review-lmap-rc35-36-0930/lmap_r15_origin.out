@@ -1,0 +1,93 @@
+003C2320 prologue (r15 origin):
+  003C2320 push rbx
+  003C2322 push rbp
+  003C2323 push rdi
+  003C2324 push r12
+  003C2326 push r13
+  003C2328 push r14
+  003C232A sub rsp, 0x48
+  003C232E movzx eax, word ptr [rdx]
+  003C2331 xor r14d, r14d
+  003C2334 mov word ptr [rcx + 4], ax
+  003C2338 mov r13d, r9d
+  003C233B movzx eax, word ptr [rdx + 2]
+  003C233F mov rbp, rcx
+  003C2342 mov word ptr [rcx + 6], ax
+  003C2346 movzx eax, byte ptr [rdx + 4]
+  003C234A cmp al, 0xff
+  003C234C mov qword ptr [rsp + 0x40], r15
+  003C2351 movzx eax, al
+  003C2354 mov r15, rdx
+  003C2357 mov dword ptr [rsp + 0x88], r14d
+003C2320 around the r15 reads and the two 003BDDE0 calls:
+  003C23E0 jl 0x3c2439
+  003C23E2 sti 
+  003C23E3 dec dword ptr [rax - 0x75]
+  003C23E6 xor eax, 0x27833f5
+  003C23EB mov qword ptr [rbp + 0x10], rax
+  003C23EF movzx eax, word ptr [r15]
+  003C23F3 movzx edi, word ptr [r15 + 0xc]
+  003C23F8 mov ebx, dword ptr [r15 + 0x10]
+  003C23FC mov ecx, edi
+  003C2525 add byte ptr [rax], 0
+  003C2528 add byte ptr [rbx - 0x7372b32d], cl
+  003C252E and al, 0x90
+  003C2530 add byte ptr [rax], al
+  003C2532 add byte ptr [rax - 0x77], cl
+  003C2535 and al, 0x20
+  003C2538 lea r8, [rsp + 0x34]
+  003C253D mov ecx, edi
+  003C253F call 0x3bdde0
+  003C2544 test rax, rax
+  003C2547 je 0x3c255f
+  003C2549 cmp dword ptr [rsp + 0x90], r14d
+  003C2551 je 0x3c255f
+  003C2553 movzx eax, word ptr [rsp + 0x80]
+  003C255B mov word ptr [rbp + 0x22], ax
+  003C255F mov eax, dword ptr [rbp + 0x1c]
+  003C2562 and eax, 1
+  003C2565 jne 0x3c25bd
+  003C2567 movzx eax, byte ptr [r15 + 0x14]
+  003C256C cmp al, 0xff
+  003C256E je 0x3c25b1
+  003C2570 movzx edx, al
+  003C2573 lea r9, [rsp + 0x80]
+  003C257B lea r8, [rsp + 0x90]
+  003C2583 mov qword ptr [rsp + 0x20], r14
+  003C2588 mov ecx, r13d
+  003C258B call 0x3bdde0
+  003C2590 cmp dword ptr [rsp + 0x90], r14d
+  003C2598 jne 0x3c25b1
+  003C259A cmp dword ptr [rsp + 0x80], r14d
+  003C25A2 je 0x3c25b1
+  003C25A4 movzx ecx, word ptr [rax + 0xc]
+  003C25A8 call 0x377a40
+  003C25AD test eax, eax
+  003C25AF jne 0x3c25bd
+  003C25B1 mov ecx, 0x3ec
+  003C25B6 call 0x2f9860
+  003C25BB jmp 0x3c262e
+  003C25BD mov ecx, dword ptr [r15 + 0xc]
+  003C25C1 cmp ecx, -1
+  003C25C4 jne 0x3c2629
+003BE3A0 before the call at 003BE554:
+  003BE500 movsxd rbp, r12d
+  003BE503 test r12d, r12d
+  003BE506 jle 0x3be63c
+  003BE50C mov qword ptr [rsp + 0x2c0], rdi
+  003BE514 lea rbx, [r14 + 4]
+  003BE518 mov r14d, dword ptr [rsp + 0x38]
+  003BE51D lea rdi, [rsp + 0x70]
+  003BE522 mov qword ptr [rsp + 0x2b0], r15
+  003BE52A mov r15d, dword ptr [rsp + 0x30]
+  003BE52F nop 
+  003BE530 movzx eax, byte ptr [rdi - 0x10]
+  003BE534 lea rcx, [rbx - 4]
+  003BE538 mov r8d, dword ptr [rdi]
+  003BE53B mov r9d, esi
+  003BE53E mov rdx, qword ptr [rdi - 8]
+  003BE542 mov byte ptr [rbx - 3], al
+  003BE545 lea rax, [rsp + 0x60]
+  003BE54A mov dword ptr [rsp + 0x28], r12d
+  003BE54F mov qword ptr [rsp + 0x20], rax
+  003BE554 call 0x3c2320

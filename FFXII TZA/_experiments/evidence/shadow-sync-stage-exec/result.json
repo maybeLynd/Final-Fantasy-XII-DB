@@ -1,0 +1,10 @@
+{
+ "cases": 25,
+ "pass": 25,
+ "fails": [],
+ "mutants": {
+  "killed": 38,
+  "alive": 0,
+  "badsite": 0
+ }
+}

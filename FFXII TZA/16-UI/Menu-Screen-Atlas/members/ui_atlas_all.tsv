@@ -1,0 +1,268 @@
+procedure	subtree	frontier	label	installed_by	message_ids	layout_key_families	constant_files	effect_registry
+0017CDE0	1	0	-	00298250	-	-	-	-
+00227EE0	26	18	message window	00227E70	1,2,4	GeneralFrame,MessageLine,NobuMessage	-	-
+002280B0	2	2	pause menu (child: installed by the procedure or its direct callee)	00227E20	1,2	-	-	-
+00228130	39	33	-	00228700	1,2,4,18	-	-	-
+002284F0	16	16	-	00228490	1,2,10,18	-	-	-
+00228C70	55	48	pause menu	002289D0	1,2,4,10,12,18	PauseMenu	-	-
+00229590	26	25	-	002282F0	1,2,4,15,18	-	-	-
+0023B330	16	11	-	0023BD40	1,4,10,12,14	-	-	-
+0023B6F0	29	22	-	0023BD40	1,4,10,12,13	-	-	-
+0023BD40	29	25	-	0023BCC0	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18	-	-	-
+0023C5C0	44	43	-	0023CE10	1,2,10,12,13	-	-	-
+0023CE10	50	47	-	0023CC90	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18	-	-	-
+0023D6B0	50	44	-	0023ED80	1,3,10	-	-	-
+0023D890	31	25	-	0023E770	1,3	-	-	-
+0023DB40	50	44	-	0023CE10	1,3,10	-	-	-
+0023DD10	31	25	-	0023E770	1,3	-	-	-
+0023E020	49	43	-	0023DFC0	1,2,12,15,18	-	-	-
+0023E400	2	2	-	0023ED80	-	-	-	-
+0023E560	25	21	-	0023FBE0	1,2,12,15,18	-	-	-
+0023E770	47	40	-	0023E710 0023ED80	1,10	-	-	-
+0023EA10	9	9	-	0023E400	1,3	-	-	-
+0023EBE0	46	40	-	0023ED80	1,2,10	-	-	-
+0023FBE0	36	34	-	0023BD40 0023CE10 00240680 002406F0	1,4,10,12,14,15,18	-	-	-
+00240AD0	8	5	-	00240D60	1,10,12,14,18	-	-	-
+00241D40	56	44	confirm window + message window	00241BF0 00241C90	1,2,4,10,12,15,18,19	ConfirmCaption,ConfirmCursor,ConfirmWindow,GeneralFrame,MessageLine,NobuMessage	-	-
+002445D0	1	1	-	00247AE0	-	-	-	-
+00248700	7	7	handbook + battle log (child: installed by the procedure or its direct callee)	002491B0	1,2	-	-	-
+002509D0	15	14	-	00251D90	1,18	-	-	-
+00252030	24	23	handbook + battle log (child: installed by the procedure or its direct callee)	00253780	1,2,12,15,18	-	-	-
+00253780	47	43	handbook + battle log	00253970	1,12,16	ActiveLog	clutpack_ys.bin,fontcolor.bin,key_signal_data.bin,menubtlwndinfo.bin,menuhandbook.bin,menumap_area.bin,mini_guest_face.bin,monotone_chr.bin,mrppack_ys.bin,tex2pack_ys.bin,texpack_ys.bin	-
+00275F10	1	1	world map + help message (child: installed by the procedure or its direct callee)	002747B0	1,16,18	-	-	-
+00276D30	57	51	battle command menu	00279E20	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53	BattleMenu	-	-
+002778C0	150	137	battle command menu + help message	00276D30	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45	BattleCommand,BtlCommand,General,GeneralFrame,HelpMessage	-	-
+00279E20	62	57	-	00276650	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52	General,GeneralFrame	-	-
+0027AA70	22	17	-	00279E20	1,2,12,24,53	-	-	-
+0027AD70	20	18	scroll bar / list	BattleMenu_UpdateCommandSelectionAndDispatch	1,4,12,18	ScrollList	-	-
+0027C870	12	11	-	00279E20	-	-	-	-
+0027EA70	1	1	-	0027EBC0	1,10,14,18	-	-	-
+0027F5D0	83	67	world map + location map	0027F540	18	-	Loca.mrp,LocaBack_c.tm2,Loca_8_c.tm2,meshdata.mg,w_line01.tm2,w_menu.mrp,w_shade_p.tm2	-
+0027FB70	38	28	-	00280A00	1,2,18	-	-	-
+00280140	101	67	-	00280A00	1,2,4,18	-	-	-
+00280DE0	138	117	menu list	00280D20	1,2,10,12,13,14,15,16,18,19,287	CommandMenu,MenuList	-	-
+00283A10	7	6	menu list (child: installed by the procedure or its direct callee)	002839B0	1,2,18	-	-	-
+00283BB0	18	18	-	00285290 002C1FF0	1,2,3,4	-	-	-
+00284450	11	9	-	00285290 002C1FF0	1,2,3,17,18	-	-	-
+00285290	98	80	menu list (child: installed by the procedure or its direct callee)	00284E90	1,2,10,12,14,18,20	-	-	-
+002878E0	51	51	-	0027E9E0	-	-	-	-
+0028B860	3	3	-	002899A0	1,2,4,6,14,15,18	-	-	-
+00290FF0	2	2	-	00290EB0	-	-	-	-
+00291D90	10	10	-	002920C0	1,2,18	-	-	-
+00292390	21	21	menu list	00293170	1,2,12,14,18	ListItem	-	-
+00293010	1	1	menu list + action list (child: installed by the procedure or its direct callee)	00292FA0	1,18	-	-	-
+00298250	9	9	battle command menu	002985D0	1,2,15	BattleCommand,CPCWindowHeight,GeneralFrame	-	-
+002985C0	13	11	battle command menu (child: installed by the procedure or its direct callee)	00298250	-	-	-	-
+002985D0	6	6	-	00296940	1,2,18	GeneralFrame	-	-
+00299090	11	10	-	0029BE50	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29	-	-	-
+00299AC0	1	1	-	0029C850	1,17	-	-	-
+00299D10	14	10	level-up blink	00296860	1,2,3,15	LevelupBlink	-	-
+0029A0A0	75	66	-	0029BB40	1,2,3,4,29	-	-	-
+0029B700	1	1	-	0029BE50	-	-	-	-
+0029BC80	4	4	-	00296AA0	1,2,4	-	-	-
+0029BE50	83	76	-	002964D0	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30	GeneralFrame	-	-
+0029C530	6	5	-	00297100	1,2,3,14,15	-	-	-
+0029CF90	14	9	screen mask	0029D290	1,4,18	MaskGradation	-	-
+0029D340	5	4	-	00280D20 0029D290 002C99E0	1,4,18	-	-	-
+0029D550	2	2	NG signal (child: installed by the procedure or its direct callee)	0029D4D0	1,2,4,14,15,19,20	-	-	-
+0029E110	10	10	NG signal	0029E0E0	1,2,15,18	NgSignal	-	-
+0029E7D0	1	1	-	0029ECB0	-	-	-	-
+002A1FB0	6	6	-	002A1D40 002A1EB0 002A1F20 002A7E20	1,2,12,16,18	-	-	-
+002A3960	5	4	message window	002A70B0	1,2,4,18	MessageWin	-	-
+002A6190	92	80	message window	002A2C00	1,2,3,4,10,12,15,18,21	FontItalic,MessageLine,MessageWin,MsgWin,NobuMessage,SystemWindow	-	-
+002A86A0	70	50	message window	002A7F70 002A8100 002A8220	1,4,18,25	MessageLine,MsgWin,NobuMessage	-	-
+002B6CE0	1	1	-	002B7590	1,15	-	-	-
+002B7590	32	28	-	002B6350	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43	-	-	-
+002B7B80	153	139	track map	002B6350	-	ExtraTrack,TrackMap	-	-
+002BA240	3	2	-	002B7590 002BA700 003CB650	1,14,16,18	-	-	-
+002BA700	73	69	-	002B9D30	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43	Na	-	-
+002BAF80	189	171	location map	002B9D30	-	BaseMap,ExtraLoca	-	-
+002BC310	1	1	-	002BA700	1,15	-	-	-
+002BC9C0	2	2	-	002B9BE0	1,4,14	-	-	-
+002BCA70	5	3	-	002B9BE0	1,4	-	-	-
+002BD680	3	3	location map (child: installed by the procedure or its direct callee)	002BA310	-	-	-	-
+002BE490	7	7	-	002BE450	-	-	-	-
+002BE4F0	10	8	battle log	002BDCE0	1,2,4,6,15,17,20,22	ActiveLog	-	-
+002BF690	7	7	help message	002BF4F0	1,2,12,15	HelpMessage	-	-
+002BF8C0	1	1	help message (child: installed by the procedure or its direct callee)	002BFB40	1,2,4	-	-	-
+002C0870	45	36	target info	002C0F30	1,2,3,6,15	TargetInfo	-	-
+002C0B40	1	1	-	002BDCE0	1,3	-	-	-
+002C0BE0	9	9	-	002BDCE0	1,2,3,4,17,21,22	-	-	-
+002C1000	5	3	-	002C1FF0	1,2,18	-	-	-
+002C13C0	19	15	message window	002C1390	1,2,4,14,15,18,19,20	MessageLine,NobuMessage	-	-
+002C1E20	1	1	status window	002C1DA0	1,18	StatusAlone	-	-
+002C2320	98	90	menu list + action list	002C2280	8	ActionList,CommandMenu,MenuList	-	-
+002C3560	26	25	menu list (child: installed by the procedure or its direct callee)	002C2F60	1,2,14,15,18	-	-	-
+002C4460	32	30	action list	002C41F0	1,2,14,15,18	ActionList	-	-
+002C59D0	57	56	action list	002C2320	1,8,9,10,12,18	ActionList	-	-
+002C9120	8	4	-	002C99E0	1,2,4,18	-	-	-
+002C9570	8	4	-	002C99E0	1,2,4,18	-	-	-
+002CA1F0	1	1	license board (child: installed by the procedure or its direct callee)	002CA150	1,18	-	-	-
+002CA6C0	2	2	-	002CBF80	1,2,4	-	-	-
+002CABF0	3	3	-	002CBF80	1,2,3,4	-	-	-
+002CB150	1	1	-	002CBF80	-	-	-	-
+002CB4B0	2	2	-	002CBF80	1,2,4	-	-	-
+002CBF80	2	2	menu list + action list (child: installed by the procedure or its direct callee)	002CBDA0 002CBE40 002CBED0	1,18	-	-	-
+002CCE70	4	3	pause menu (child: installed by the procedure or its direct callee)	002CCD40	1,4,18,19	-	-	-
+002CD170	4	4	menu list	002C9BF0	1,2,4,18	MenuList	-	-
+002CDF20	14	14	confirm window	002CDEA0	1,2,12,15,18,19	ConfirmWindow	-	-
+002CE370	4	4	menu list (child: installed by the procedure or its direct callee)	002CE2F0	1,12,15,18	-	-	-
+002CE7E0	2	2	handbook (child: installed by the procedure or its direct callee)	002CD800	1,2,4,18	-	-	-
+002CEB40	24	23	scroll bar / list	002CEFA0	1,2,18	ScrollMark	-	-
+002CF440	2	2	silhouette	002CF3E0	1,4,18	SilhouettePos,SilhouetteWidth	-	-
+002CF740	17	9	menu list (child: installed by the procedure or its direct callee)	002CF710	1,18	-	-	-
+002CF940	2	0	menu list (child: installed by the procedure or its direct callee)	002CF8B0	1,2,18	-	-	-
+002D1420	28	20	message window	002D14E0	1,4,17	MessageLine	-	-
+002D2DB0	50	44	scroll bar / list	002D14E0	1,2,4,5,26	ScrollBar,ScrollDown,ScrollMark,ScrollTable,ScrollUp	-	-
+002D5590	1	1	-	002D5830	1,2	-	-	-
+002D5690	1	1	-	002D59E0	1,2,4,18	-	-	-
+002D5830	1	1	-	002D59E0	1,2,18	-	-	-
+002D59E0	1	1	-	002D4FB0	1,2	-	-	-
+002D5C80	3	3	-	002D5EB0	1,2,3	-	-	-
+002D5E00	1	1	-	002D5EB0	-	-	-	-
+002D5EB0	54	44	-	002D5030	1,2,4,10,14,15,18,20	Na	-	-
+002D66D0	13	13	auto window	002D7B40	1,2,4,18,19,20	AutoWindow,GeneralFrame	-	-
+002D6CA0	10	9	-	002D7840	1,2,4,18	-	-	-
+002D6EE0	3	3	-	002D7840	1,16,18	-	Tuto_win_c.tm2	-
+002D70F0	67	58	-	002D7070	16	-	-	-
+0035C160	7	6	-	0035C0D0	1,4,12,18	-	-	-
+0035C960	57	44	-	0035CFA0	1,2,18	-	-	-
+0035D6B0	50	44	-	0035D080	1,2,12,18	-	-	-
+0035DAF0	15	15	-	0035DC60	1,2,18	-	-	-
+0035E070	35	32	message window	0035DF40	1,2,18	FontItalic,MessageLine,MessageWin,NobuMessage,NobuMsg,TalkingMessage	-	-
+00366B80	12	12	-	00366740	1,2,4	-	-	-
+0037E350	21	19	world map + location map (child: installed by the procedure or its direct callee)	0037FF80	1,16	-	-	-
+0037F4D0	26	21	quest list	0037F3B0 0037F440	1,16,18	-	menuquest.dat,menuquest.lst	-
+003939B0	24	24	-	00394530	1,2,9,10,12,14,18,19	-	-	-
+00393EA0	9	9	-	00394600	1,2	-	-	-
+00394070	5	5	-	00394460	1,16,18	-	title.mrp,title_logo.tm2	-
+00394130	92	57	-	00394640	1,2,18	-	-	-
+003BC4E0	28	22	location map	003BC450	1,16,18	-	menumap_common.bin,menumap_location.bin,menumap_world.bin	-
+003C5910	29	26	-	003C80C0	-	-	-	-
+003C8B70	64	58	-	003C8A20	1,2,8,10,18	-	-	-
+003C95C0	1	1	-	003C9A30	1,2,3,14,15	-	-	-
+003C9A30	15	14	-	003C98E0 003C99D0	1,2,14,15,16,18,19	-	-	-
+003CA310	19	15	-	003CA860	1,2,12,18	-	-	-
+003CA530	22	11	-	003CAE00	1,2	-	-	-
+003CA860	2	1	-	003CA280	1,2,18,29,30	-	-	-
+003CAB00	32	18	-	003CA860	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31	-	-	-
+003CAE00	1	1	-	003CA860	1,14	-	-	-
+003CB150	22	14	-	003CB0C0	1,2,14,15,16,18	-	-	-
+003CB4F0	13	12	-	003CB650	1,14,16,18	-	-	-
+003CB650	40	36	-	003CB440	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44	-	-	-
+003EEEC0	6	6	-	003EF830	1,2,15,18	-	-	-
+003EF050	1	1	-	003EF770	1,2,10,12,14,15,18,19	-	-	-
+003EF2E0	37	31	-	003EF830	1,2	-	-	-
+003EF4A0	1	1	-	003EFAA0	1,2,14,15,18,19	-	-	-
+003EF830	35	34	-	003EF750	1,2,12,16,18	-	-	-
+003F4060	11	11	shop (child: installed by the procedure or its direct callee)	003F4690	1,2,18	-	-	-
+003F4330	3	2	shop (child: installed by the procedure or its direct callee)	003F4690	1,10,14,18	GeneralFrame	-	-
+003F4840	3	3	shop	003F47E0 003F4DD0	1,12,14,15,16,18	-	shop_new.mrp	-
+003F4E70	17	16	-	003F4BD0	1,2,16,18	-	-	-
+003F8250	13	11	-	003F7E80	1,2,4,14,15	-	-	-
+003F8510	6	5	-	003F8640	1,4	-	-	-
+003FACF0	5	3	-	003F9F40	1,2,3,14,15	-	-	-
+003FAF10	16	13	-	003F9E50	1,2,4,14,15	-	-	-
+003FC3F0	4	3	-	003F9F40	1,2,15	-	-	-
+003FCD20	3	3	status window (child: installed by the procedure or its direct callee)	003FCCC0 003FD6B0 003FD860	1,18	-	-	-
+003FD1D0	1	1	status window (child: installed by the procedure or its direct callee)	003FD860	1,12,18	-	-	-
+003FDFE0	68	59	status window	003FDA20	1,10,12,15,18	StatusAlone	-	-
+003FE5D0	1	1	menu list + action list (child: installed by the procedure or its direct callee)	003FE410	1,15,18	-	-	-
+003FEE40	2	2	-	003FEDC0	1,18	-	-	-
+003FF360	107	95	status window + action list	003FF160	12	ActionList,StatusAlone	-	-
+00403380	1	1	location map (child: installed by the procedure or its direct callee)	00402680	1,3,4,24	-	-	-
+00405310	32	27	boss gauge	00406A60	1,2,4,14,18,19	BossGauge	-	-
+004061F0	19	18	boss gauge (child: installed by the procedure or its direct callee)	00405310	1,2,14,18	-	-	-
+00406A60	14	13	-	004051B0	1,2,4,18	-	-	-
+00406E80	12	11	-	00408300	1,2,18	-	-	-
+00407590	22	20	-	00406E80	1,2,14,19,20	-	-	-
+004079A0	21	19	-	00406E80	1,2,14,19,20	-	-	-
+00474100	38	34	message window	00474070	1,4,12,18	FontItalic,MessageLine,MessageWin,NobuMsg,TalkingMessage	-	-
+0053E380	36	25	-	0053ED10	1,2,4,18	-	-	-
+0053EB90	15	15	-	0053ED10	1,2,16	-	sf_logo_c.tm2	-
+0053EEA0	7	5	-	0053EB30	1,2,16	-	-	-
+00551E00	6	6	world map (child: installed by the procedure or its direct callee)	005528C0	1,24	-	-	-
+00551F00	15	15	world map (child: installed by the procedure or its direct callee)	005528C0	1,14,24	-	-	-
+00552250	64	61	world map + help message	00550400	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41	HelpMessage,WorldMap	-	-
+005528C0	98	96	world map	00552250	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42	WorldMap	-	-
+00553AE0	1	0	world map	005528C0	1,4	MapName,RegionText	-	-
+005542D0	27	27	world map (child: installed by the procedure or its direct callee)	005528C0	1,2,10,12,14,15	-	-	-
+00555330	1	1	world map + help message (child: installed by the procedure or its direct callee)	00552250	1,4,24	-	-	-
+005565E0	16	15	license board	005572B0	1,4,18,25	LicenseBoard	-	-
+005569F0	50	36	license board + message window	005571F0	1,2,4,18	LicenseBoard,MessageLine,NobuMessage	-	-
+00556DB0	1	1	license board (child: installed by the procedure or its direct callee)	00556D20	1,18	-	-	-
+00556F90	47	35	message window	00556EC0	1,2,18	MessageLine,NobuMessage	-	-
+00557760	9	8	license board (child: installed by the procedure or its direct callee)	00557370	1,4,18	-	-	-
+00557DB0	55	50	license board	00557AE0	10	LicenseBoard	-	fx-remove,fx-spawn
+00558BB0	3	3	-	00560910	1,2	-	-	-
+00558CE0	7	6	license board (child: installed by the procedure or its direct callee)	00558C40	1,2,18	-	-	-
+00558FB0	37	36	license board	00558F20	1,2,15,16,18,20	-	Maru_c.tm2,Maru_c_2.tm2,lic_B_4_c.tm2,lic_B_8_c.tm2	fx-reset
+005595E0	2	2	-	00561E90	1,18	-	-	-
+005599D0	15	12	-	00559860	1,2,4,18,19,20	General	-	-
+0055A340	17	16	license board	00557430	1,2,4,18,25	LicenseBoard	-	-
+0055A8A0	16	16	world map	0055A810	1,4,18	WorldMap	-	-
+0055CD40	141	127	license board + world map (child: installed by the procedure or its direct callee)	0055C690	1,2,4,8,9,10,12,15,18,19,20,23,285	General,Na	-	fx-remove,fx-spawn
+00560910	41	36	-	005601B0	1,2,8,9,10,12,14,16,18,19,20	-	-	-
+00561390	38	37	license board + world map	00561300	1,15,16,18,20	-	Lic_Bk.tm2,cm2_win_c.tm2,lic_8_c.tm2,lic_8_c2.tm2,lic_8_c3.tm2,license_chip.bin,meshdata.mg	fx-reset
+005618E0	6	5	-	00561830	1,2,18	-	-	-
+005636F0	37	33	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00563930	36	32	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00563B10	37	33	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00563D20	36	32	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00565E00	73	63	menu list	00565DD0	8	CommandMenu,MenuList	-	-
+00566680	27	25	item sort + confirm window	005665B0	1,2,12,15,18	ConfirmWindow,ItemSort	-	-
+00566A70	2	2	-	00567200	1,2	-	-	-
+00566C10	3	3	gambits	00567200 0056C170	1,2,3,4	GambitIcon	-	-
+00567200	1	1	-	00564010 00567190	1,18	-	-	-
+005677A0	2	2	menu list (child: installed by the procedure or its direct callee)	00567770	1,2,14,18	-	-	-
+005691E0	120	111	gambits + action list	00568B30	1,2,5,8,9,10,12,16,17,18,19,20,22,26,289	ActionList,GambitAction,GambitTarget,GambitTutorial	-	-
+0056B4D0	56	53	gambits + message window	0056B350	1,2,8,9,10,12,15,18,19	GambitTutorial,General,MessageLine,NobuMessage	-	-
+0056C060	2	2	-	0056C170	1,2	-	-	-
+0056C170	1	1	gambits + message window (child: installed by the procedure or its direct callee)	0056ADA0	1,18	-	-	-
+0056D370	57	49	shop	0056C950	1,2,12,18	ShopItem	-	-
+0056E140	45	44	shop	0056DD50	1,8,9,10,12,14,15,18,19,20	ShopItem	-	-
+0056EA40	4	3	handbook (child: installed by the procedure or its direct callee)	00574E80	1,3,18,19	-	-	-
+0056EF60	15	14	handbook (child: installed by the procedure or its direct callee)	00574E80	1,12,16,18	-	-	-
+0056F410	8	6	handbook (child: installed by the procedure or its direct callee)	0056F3C0 00574E00	-	-	-	-
+0056F550	1	1	handbook (child: installed by the procedure or its direct callee)	00574D00	1,18	-	-	-
+0056F810	26	20	menu list	00574D00	1,10,12,14,15,18	CommandMenu,MenuList	-	-
+0056FCB0	2	2	-	005742D0	-	-	-	-
+0056FD30	1	1	-	0056FEF0	1,3	-	-	-
+005701B0	47	41	-	0056EC10	1,10,12,14,15,16,18,19	-	-	-
+00570460	1	1	-	0056FEF0	-	-	-	-
+00570530	3	3	-	0056EF60	-	-	-	-
+00570630	9	8	-	00570080	1,3	-	-	-
+00570890	1	1	handbook (child: installed by the procedure or its direct callee)	00574E80	1,18	-	-	-
+00571A50	47	41	-	00570BF0	1,2,10,12,14,15,18,20	-	-	-
+00572460	1	1	handbook (child: installed by the procedure or its direct callee)	00572E10	1,3,14,15,18	-	-	-
+00572600	4	3	handbook (child: installed by the procedure or its direct callee)	00572E10	1,10,14,15,18	General	-	-
+00572E10	75	72	handbook	0056EE10	1,2,10,12,14,15,16,18,19	-	menuhandbook_order.bin	fx-remove,fx-reset,fx-set,fx-spawn
+00573B40	1	1	-	00574BA0	-	-	-	-
+005742D0	35	29	-	00570080	1,3,10,12,14,15,18	-	-	-
+00574AD0	1	1	-	00574A00	-	-	-	-
+00574E80	47	38	handbook	00574CB0 00575580	1,2,12,14,16,18	-	HandBack2_c.tm2	-
+00575870	23	17	quest list (child: installed by the procedure or its direct callee)	00575810	1,2,16,18	-	-	-
+005771F0	10	9	quest list	00577100	1,2,12,14,16,18	-	menuquest.dat	-
+00577F90	2	2	-	00577F00	1,18,19	-	-	-
+00578450	5	4	-	005781A0	1,10,12,14	-	-	-
+005789D0	42	40	-	00578920	1,10,12,14,15,16,18	Na	-	-
+00579420	27	25	-	00579130	1,2,10,12,14,15,18,19,20	-	-	-
+00579AF0	33	33	-	00579990 00579A40	1,2,16,18	-	-	-
+0057A4E0	10	10	shop (child: installed by the procedure or its direct callee)	0057A480	1,2	-	-	-
+0057A620	26	26	shop (child: installed by the procedure or its direct callee)	0057A980	1,12,18	-	-	-
+0057AC10	75	67	shop	0057A620	1,2,3,10,12,14,15,18	ShopItem	-	-
+0057B890	84	78	shop + menu list	0057B800	1,2,8,10,12,14,15,16,18,19,20	CommandMenu,MenuList	Shop_8_c.tm2	-
+0057C480	38	29	confirm window + message window	0057C380	1,2,4,10,12,18,19	ConfirmCaption,ConfirmWindow,GeneralFrame,MessageLine,NobuMessage	-	-
+0057E4D0	19	15	save / load UI (installer name)	SaveWrite_OpenOperationController	1,2,4,12	-	-	-
+0057E610	1	1	save / load UI (installer name) (child: installed by the procedure or its direct callee)	0057EDB0	-	-	-	-
+0057E8D0	1	1	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,18	-	-	-
+0057EB30	1	1	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,18	-	-	-
+0057EDB0	2	2	save / load UI (installer name)	SaveLoad_HandleStorageStatusResultAndAdvanceController	1,15,18	-	-	-
+0057F360	16	16	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,2,12,15,18	-	-	-
+0057F7D0	5	5	save / load UI (installer name) (child: installed by the procedure or its direct callee)	00583990	1,2,18	-	-	-
+0057FE80	32	31	save / load UI (installer name)	SaveLoad_HandleStorageStatusResultAndAdvanceController	1,2,10,12,14,15,18	-	-	-
+00581490	6	6	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,2,15,18	-	-	-
+005819F0	40	31	save / load UI (installer name)	SaveLoad_ControllerTransitionStateMachine	1,15,18	-	-	-
+005823B0	27	26	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,2,18	-	-	-
+00582860	85	62	save / load UI (installer name)	SaveLoad_OpenController	1,2,12,16,18,19	-	icon.sys,icon1.ico	-
+005C5230	1	1	-	002465F0 00279E20 0029C770 0029C9D0 002BF3D0 002C0870 005C51A0 007A0180 00808C90 BattleMenu_UpdateCommandSelectionAndDispatch	-	-	-	-

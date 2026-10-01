@@ -1,0 +1,9 @@
+# NativeAdapter.CallBoolNormalizeReturn - EC-7 family C
+# # call a member op; return setne(al).
+address	targets
+001803D0	001E4AE0
+001803F0	001E4B00
+00180410	001E4B20
+00180460	001E4B40
+00180480	001E4B60
+00180600	001E5250

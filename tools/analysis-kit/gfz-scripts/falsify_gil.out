@@ -1,0 +1,8 @@
+SURVIVES  N0  72 / 11 / 5 B; thunk jmp 0x253690
+SURVIVES  N1  floor then cap at 0x5F5E0FF, then the store
+SURVIVES  N2  gain 6 / spend 7 / zero skips the call to 00254F07
+SURVIVES  N3  delta from the raw argument at sub edx, dword ptr [rax + 8], clamp at 00254F07
+SURVIVES  N4  setter 12 calls + 1 tail-jump = 13 functions; getter 19 calls + jmp from ['00309BF0']; thunk 2 calls + 1 tail-jump = 3 functions; overlap 0; raw sweep agrees True; ['BattleAction_ConsumeExecutionResources', 'BattleAction_PrepareExecutionResources', 'BattleAction_RefundReservedExecutionResources']
+SURVIVES  N5  003F4AA0 gates on +0 bit 0 and calls GetGil and SetGil
+SURVIVES  K1  (REFUTES '00290130 is statically orphaned') its one inbound edge is the thunk 002E1A50 (thunk_FUN_00290130); the thunk is called at ['00344C9A'] in FUN_00344C60, the begin handler of verb 037C questresultwindow; 00290130 calls ['003F8C60', '003F4AA0', '003F4BD0', '00808C40']; no other route form (rip/imm 0, qword 0, RVA only in ['.pdata'])
+FAILS 0

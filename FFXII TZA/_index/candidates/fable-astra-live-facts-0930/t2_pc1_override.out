@@ -1,0 +1,192 @@
+== .data bytes 01E027F0..01E0281F (file):
+  01E027F0  00000020 00000037 00000006 00000001
+  01E02800  00000101 FFFFFFFF FFFFFFFF 00000001
+  01E02810  FFFFFFFF 0000000A 00000001 00000006
+
+== S1. rip-relative accesses covering either target (raw .text sweep, any width, bases up to 16 bytes below)
+  00408CC3  mov       ecx, dword ptr [rip + 0x19f9b3b]               [00408C30 FUN_00408c30]  read size=4  -> 01E02804 covers ['01E02804']
+  00408DCB  mov       r9d, dword ptr [rip + 0x19f9a3e]               [00408C30 FUN_00408c30]  read size=4  -> 01E02810 covers ['01E02810']
+  00408E25  mov       ecx, dword ptr [rip + 0x19f99e5]               [00408C30 FUN_00408c30]  read size=4  -> 01E02810 covers ['01E02810']
+  00408E80  movzx     eax, word ptr [rip + 0x19f9989]                [00408C30 FUN_00408c30]  read size=2  -> 01E02810 covers ['01E02810']
+  raw-only (unverified): []
+PASS S1-control  the known reads 00408CC3 (01E02804) and 00408DCB (01E02810) are found by this sweep
+PASS S1  no rip-relative store covers either target; accesses: ['00408CC3', '00408DCB', '00408E25', '00408E80']
+
+== S2. image-base-relative displacements, any base / index register, disp in [0x1CE2600, 0x1CE2900) (= VA 01E02600..01E02900)
+  raw-only (unverified disp32 byte matches): []
+PASS S2-control  the same detector finds the image-base-relative read 002DF7BF [r15+rbx*8+0x203f000]
+PASS S2  no image-base-relative operand into 01E02600..01E028FF: 0
+
+== S3. stored absolute pointers: DIR64 relocations and raw unaligned qwords anywhere in the file into [01E02604, 01E02814)
+  reloc: []
+  raw qwords: []
+  raw dword counts (VA, RVA) anywhere in the file: {'01E02804': (0, 0), '01E02810': (0, 0)}
+PASS S3-control  the reloc sweep finds the vtable 01CB2508 slot 0 -> 00793EB0
+PASS S3  no stored qword pointer into [01E02604, 01E02814)
+
+== S4. absolute 32-bit VA forms (imm32 / disp32 equal to a VA in 01E02600..01E02900), owned code only
+  00471727  movss     xmm0, dword ptr [rdx + rcx*4 + 0x1e02670]      [004716A0 FUN_004716a0] -> 01E02670
+PASS S4-control  the same detector finds the imm32 0x02000000 at 001A14E6
+  note: a disp32 in this range with an image-base register (e.g. rdx = lea 00120000) is an image-base-relative access to VA+0x120000, not to this window
+PASS S4  no absolute-VA-form STORE in 01E02600..01E028FF (hits, all reads: ['00471727'])
+
+== S5. every rip-relative ADDRESS FORMATION (lea) into 01E02700..01E02900, register followed to the stores made through it
+  001AF5EA  lea       rax, [rip + 0x1c531ff]                         [001AF470 FUN_001af470] -> 01E027F0
+     ESCAPES (stored as a pointer): 001AF5F1  mov       qword ptr [rcx + 0x3be8], rax                  [001AF470 FUN_001af470]
+  001AF606  lea       rax, [rip + 0x1c531e7]                         [001AF470 FUN_001af470] -> 01E027F4
+     ESCAPES (stored as a pointer): 001AF60D  mov       qword ptr [rcx + 0x40c0], rax                  [001AF470 FUN_001af470]
+  004B3ECA  lea       rdx, [rip + 0x194e95f]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B3EDE  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9D80, arg ['rdx']: stores through it before overwrite/call/ret: none
+  004B451A  lea       rdx, [rip + 0x194e30f]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B452E  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B5925  lea       rdx, [rip + 0x194cf04]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B5939  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B596A  lea       rdx, [rip + 0x194cebf]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B597F  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B59B7  lea       rdx, [rip + 0x194ce72]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B59CC  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B5A18  lea       rdx, [rip + 0x194ce11]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B5A2C  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B6EE5  lea       rdx, [rip + 0x194b944]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B6EF9  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B6F2A  lea       rdx, [rip + 0x194b8ff]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B6F3F  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B6F77  lea       rdx, [rip + 0x194b8b2]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B6F8C  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B6FD5  lea       rdx, [rip + 0x194b854]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B6FE9  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B7708  lea       rdx, [rip + 0x194b121]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B772C  call      0x4b9a10                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9A10, arg ['rdx']: stores through it before overwrite/call/ret: none
+  004B7795  lea       rdx, [rip + 0x194b08c]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B77A3  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9C50, arg ['rdx']: stores through it before overwrite/call/ret: none
+  004B77A8  lea       rdx, [rip + 0x194b079]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B77B6  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B77BB  lea       rdx, [rip + 0x194b066]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B77C9  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B77CE  lea       rdx, [rip + 0x194b053]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B77DC  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B77E1  lea       rdx, [rip + 0x194b040]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B77EF  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B7858  lea       rdx, [rip + 0x194afc9]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B7866  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B786B  lea       rdx, [rip + 0x194afb6]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B7879  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B787E  lea       rdx, [rip + 0x194afa3]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B788C  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B7891  lea       rdx, [rip + 0x194af90]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B789F  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B78A4  lea       rdx, [rip + 0x194af7d]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B78B2  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B7975  lea       rdx, [rip + 0x194aeac]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B7983  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9CF0, arg ['rdx']: stores through it before overwrite/call/ret: none
+  004B7988  lea       rdx, [rip + 0x194ae99]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B7996  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B799B  lea       rdx, [rip + 0x194ae86]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B79A9  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B79AE  lea       rdx, [rip + 0x194ae73]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B79BC  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B79C1  lea       rdx, [rip + 0x194ae60]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B79CF  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B7D62  lea       rdx, [rip + 0x194aac7]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B7D80  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B7DAF  lea       rdx, [rip + 0x194aa7a]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B7DC3  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8157  lea       rdx, [rip + 0x194a6ca]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8165  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B81CD  lea       rdx, [rip + 0x194a65c]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B81E1  call      0x4b9e60                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9E60, arg ['rdx']: stores through it before overwrite/call/ret: none
+  004B82B3  lea       rdx, [rip + 0x194a56e]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B82C8  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B82CD  lea       rdx, [rip + 0x194a554]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B82DB  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B82E0  lea       rdx, [rip + 0x194a541]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B82EE  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B82F3  lea       rdx, [rip + 0x194a52e]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8301  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8306  lea       rdx, [rip + 0x194a51b]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8314  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8319  lea       rdx, [rip + 0x194a508]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8327  call      0x4b9ca0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9CA0, arg ['rdx']: stores through it before overwrite/call/ret: none
+  004B832C  lea       rdx, [rip + 0x194a4f5]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B833A  call      0x4b9ca0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B833F  lea       rdx, [rip + 0x194a4e2]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B834D  call      0x4b9ca0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8352  lea       rdx, [rip + 0x194a4cf]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8360  call      0x4b9ca0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8365  lea       rdx, [rip + 0x194a4bc]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8373  call      0x4b9ca0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8378  lea       rdx, [rip + 0x194a4a9]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8386  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B838B  lea       rdx, [rip + 0x194a496]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8399  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B839E  lea       rdx, [rip + 0x194a483]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B83AC  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B83B1  lea       rdx, [rip + 0x194a470]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B83BF  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B83C4  lea       rdx, [rip + 0x194a45d]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B83D2  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8436  lea       rdx, [rip + 0x194a3f3]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B845A  call      0x4b9a10                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B84C3  lea       rdx, [rip + 0x194a35e]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B84D1  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B84D6  lea       rdx, [rip + 0x194a34b]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B84E4  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B84E9  lea       rdx, [rip + 0x194a338]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B84F7  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B84FC  lea       rdx, [rip + 0x194a325]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B850A  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B850F  lea       rdx, [rip + 0x194a312]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B851D  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8586  lea       rdx, [rip + 0x194a29b]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8594  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8599  lea       rdx, [rip + 0x194a288]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B85A7  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B85AC  lea       rdx, [rip + 0x194a275]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B85BA  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B85BF  lea       rdx, [rip + 0x194a262]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B85CD  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B85D2  lea       rdx, [rip + 0x194a24f]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B85E0  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B86A3  lea       rdx, [rip + 0x194a17e]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B86B1  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B86B6  lea       rdx, [rip + 0x194a16b]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B86C4  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B86C9  lea       rdx, [rip + 0x194a158]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B86D7  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B86DC  lea       rdx, [rip + 0x194a145]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B86EA  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B86EF  lea       rdx, [rip + 0x194a132]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B86FD  call      0x4b9cf0                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8A96  lea       rdx, [rip + 0x1949d93]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B8AB2  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8AE1  lea       rdx, [rip + 0x1949d48]                         [004B1190 FUN_004b1190] -> 01E02830
+     PASSED TO CALL: 004B8AF5  call      0x4b9d80                                       [004B1190 FUN_004b1190] (live ['rdx'])
+  004B8E80  lea       rdx, [rip + 0x19499a1]                         [004B1190 FUN_004b1190] -> 01E02828
+     PASSED TO CALL: 004B8E8E  call      0x4b9c50                                       [004B1190 FUN_004b1190] (live ['rdx'])
+       callee 004B9A10, arg ['rcx']: stores through it before overwrite/call/ret: ['004B9A20 movss dword ptr [rcx + 0xc], xmm0']
+PASS S5-callee-control  the one-level callee check finds 004B9A10's store 004B9A20 movss [rcx+0xc] when told rcx is the pointer
+PASS S5-control  the known address-takes 001AF5EA (01E027F0) and 001AF606 (01E027F4) are found
+PASS S5  no store through a formed address reaches a target or is indexed: []
+
+== S6. the escaped pointers: 001AF470's registry slots +0x3BE8 (01E027F0) and +0x40C0 (01E027F4)
+  (a) every other instruction with displacement 0x3BE8 / 0x40C0 / 0x3B00 (raw disp sweep over .text):
+     001AF5F1  mov       qword ptr [rcx + 0x3be8], rax                  [001AF470 FUN_001af470]  STORE size=8
+     001AF60D  mov       qword ptr [rcx + 0x40c0], rax                  [001AF470 FUN_001af470]  STORE size=8
+     00645A3A  mov       qword ptr [rbx + 0x40c0], 0x7f7fffff           [006458A0 FUN_006458a0]  STORE size=8
+     001AF477  mov       qword ptr [rcx + 0x3b00], rax                  [001AF470 FUN_001af470]  STORE size=8
+     001CA63F  lea       rbx, [rax + 0x3b00]                            [001CA600 FUN_001ca600]  read size=8
+     002D8011  lea       eax, [rdx + 0x3b00]                            [002D7FC0 FUN_002d7fc0]  read size=4
+  (b) the consumer 001CA600 (rbx = 001B1C00() + 0x3B00 at 001CA63F): loads of slot +0xE8 / +0x5C0 and the store through each
+     001CAA15  mov       rcx, qword ptr [rbx + 0xe8]                    [001CA600 FUN_001ca600]  read size=8
+        -> 001CAA23  mov       dword ptr [rcx], eax                           [001CA600 FUN_001ca600]  STORE size=4 disp=0x0
+     001CBF75  mov       rcx, qword ptr [rbx + 0x5c0]                   [001CA600 FUN_001ca600]  read size=8
+        -> 001CBF83  mov       dword ptr [rcx], eax                           [001CA600 FUN_001ca600]  STORE size=4 disp=0x0
+PASS S6-control  the consumer's registry base 001CA63F lea rbx,[rax+0x3b00] is found
+
+FAILS 0

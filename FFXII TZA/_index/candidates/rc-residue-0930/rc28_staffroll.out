@@ -1,0 +1,29 @@
+PASS C1 the switch table's 11 arms lie inside 002DF9A0 - 002DFBCB 002DFC2B 002DFC8B 002DFCEB 002DFD4B 002DFDAB 002DFDF6 002DFED9 002DFF32 002DFF32 002DFE80
+PASS C2 the language name table reads JP US FR DE IT ES UK KR CH ASIA IN CN - JP US FR DE IT ES UK KR CH ASIA IN CN
+(2) kind-7 .btm sizes (ids 0xDA..0xDF) per language
+   US   [42240, 42240, 29184, 29184, 32256, 32256]
+   KR   [-1, -1, -1, -1, -1, -1]
+   CN   [-1, -1, -1, -1, -1, -1]
+   CH   [42240, 42240, 29184, 29184, 32256, 32256]
+   IN   [42240, 42240, 29184, 29184, 32256, 32256]
+PASS C3 FileSizeTable_US sizes the six .btm positively
+PASS R2a FileSizeTable_KR and _CN hold -1 (no file) for all six .btm ids
+PASS R2b the read issuer refuses an entry of -1 before resolving a path (002DF7B0 / 002DF7B9 -> 002DF85D returns 0)
+PASS R2c the size query returns a non-positive entry unrounded (0032E43D jle 0032E44B)
+PASS C1 us tables 8..11 = the 78 of table 6 plus 49 more - 78 + 49
+PASS C2 the us/menu04.bin ex00 scan decodes 'Hiroshi Minagawa' - ['Hiroshi Minagawa', 'Hiroyuki Ito (Game Design)']
+   lang 1 US menu03.bin -> test_battle/us/BinaryFile/menu03.bin: 512 rows, accented-49 chars none, outside both sets none
+   lang 1 US menu04.bin -> test_battle/us/BinaryFile/menu04.bin: 1024 rows, accented-49 chars none, outside both sets \u3000
+   lang 2 FR menu03.bin -> test_battle/fr/BinaryFile/menu03.bin: 512 rows, accented-49 chars none, outside both sets none
+   lang 2 FR menu04.bin -> test_battle/fr/BinaryFile/menu04.bin: 1024 rows, accented-49 chars \xc1\xe1\xe8\xe9\xed\xf1\xf3\xf6\xfa, outside both sets \u3000
+   lang 3 DE menu03.bin -> test_battle/de/BinaryFile/menu03.bin: 512 rows, accented-49 chars none, outside both sets none
+   lang 3 DE menu04.bin -> test_battle/de/BinaryFile/menu04.bin: 1024 rows, accented-49 chars \xc1\xe1\xe8\xe9\xed\xf1\xf3\xf6\xfa, outside both sets \u3000
+   lang 4 IT menu03.bin -> test_battle/it/BinaryFile/menu03.bin: 512 rows, accented-49 chars none, outside both sets none
+   lang 4 IT menu04.bin -> test_battle/it/BinaryFile/menu04.bin: 1024 rows, accented-49 chars \xc1\xe1\xe8\xe9\xed\xf1\xf3\xf6\xfa, outside both sets \u3000
+   lang 5 ES menu03.bin -> test_battle/es/BinaryFile/menu03.bin: 512 rows, accented-49 chars none, outside both sets none
+   lang 5 ES menu04.bin -> test_battle/es/BinaryFile/menu04.bin: 1024 rows, accented-49 chars \xc1\xe1\xe8\xe9\xed\xf1\xf3\xf6\xfa, outside both sets \u3000
+   lang 6 UK menu03.bin -> test_battle/in/BinaryFile/menu03.bin: 512 rows, accented-49 chars none, outside both sets none
+   lang 6 UK menu04.bin -> test_battle/in/BinaryFile/menu04.bin: 1024 rows, accented-49 chars none, outside both sets \u3000
+   accented-49 occurrences over the six arms: 72
+RESULT accented glyphs in staff-roll text of the us-pack arms: \xc1\xe1\xe8\xe9\xed\xf1\xf3\xf6\xfa
+FAILS 0

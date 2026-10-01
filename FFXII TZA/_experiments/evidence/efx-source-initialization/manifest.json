@@ -1,0 +1,57 @@
+{
+  "evidence_class": "A:static shipping bodies; no original-code/live execution for this package",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "caller.json": {
+      "bytes": 24324,
+      "sha256": "324937919a1c58cccb73c25402ddb91129bca03358877ec93937e14b52ea1e5a"
+    },
+    "collect-caller.py": {
+      "bytes": 3814,
+      "sha256": "57e174dc01e63285c243da4835236e7c9782912a49aec4808e663996dbf9febb"
+    },
+    "collect-constructors.py": {
+      "bytes": 3837,
+      "sha256": "b94b569e162adf26d492dbb301083cbb66ab19389d34fdaaddbc87e77ea419c7"
+    },
+    "collect-owner.py": {
+      "bytes": 3839,
+      "sha256": "c8f9f739485411666d3669625f56422b461aa9e0080eac6537f39352ad21b900"
+    },
+    "collect-primary.py": {
+      "bytes": 3832,
+      "sha256": "a440c9f683b8f771bc75456a2e81abf6d3b2e1a4bfa5d0bc837b99f1e964d31b"
+    },
+    "constructors.json": {
+      "bytes": 31268,
+      "sha256": "37ca960c3bf5ee009bd98c56a76e7c72427ab90622344d42519cf1972c981685"
+    },
+    "edges.txt": {
+      "bytes": 266,
+      "sha256": "c29932a37802b278631f2ddc84d281700532f475e332e966c9af607dd85a313c"
+    },
+    "owner.json": {
+      "bytes": 26848,
+      "sha256": "947eae6f7c6a1f75cefbe80ff9a8720f2f61a37f4fa1f34456b7314ee2f84a16"
+    },
+    "primary.json": {
+      "bytes": 40691,
+      "sha256": "e66bb8d2f18ae70b4c207739a377c9ec83984cd863abd0a9215fe5f4bcb77ca7"
+    },
+    "review.json": {
+      "bytes": 4174,
+      "sha256": "1af9cc799164cc6ce836adfb851b555e2c33df717670ca38a0ed554dc9e41fc4"
+    },
+    "scan.json": {
+      "bytes": 16913,
+      "sha256": "16a9c903bbb501685562431732f5b774a5ce5db14b73224d0559fb472da6d9ea"
+    },
+    "scan.py": {
+      "bytes": 3899,
+      "sha256": "1ad04a519e6a166b42c21733cb6763f7c577b9c0ed19b1ef5b435a317b3015d3"
+    }
+  }
+}

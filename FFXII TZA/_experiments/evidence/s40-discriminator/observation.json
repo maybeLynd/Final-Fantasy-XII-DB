@@ -1,0 +1,48 @@
+{
+  "result": "A_DISCRIMINATOR_CORRECTION; NO_NEW_RUNTIME_RESULT; PENDING_REVIEW",
+  "question": "Can requested source-glare/flags reads establish normal scene binding or successful library init?",
+  "hypotheses": {
+    "scene_H1": "constructor-only glare values",
+    "scene_H2": "authored Common equal glare values applied",
+    "init_H1": "object/flags stored before refusal",
+    "init_H2": "successful immediate-context initialization"
+  },
+  "constructor": {
+    "glare_luminance_bits": "3f4ccccd",
+    "glare_threshold_bits": "3dcccccd",
+    "dof_enable": 1
+  },
+  "selected_resource": "jsondata/cutscenes/alc_a0100.json",
+  "selected_authored": {
+    "mGlareLuminance": 0.8,
+    "mGlareThreshold": 0.1,
+    "EnableDof": 0,
+    "mDofFocusDistance": 4.0,
+    "mDofApertureFnumber": 9.5
+  },
+  "equal_glare_cannot_discriminate": true,
+  "dof_enable_separates_constructor_only_from_this_Common_expectation": true,
+  "retained_init_counterexample": {
+    "class": "accepted retained B with disclosed deferred-device model",
+    "object_nonnull": true,
+    "flags20C": "20001",
+    "Initialize_result": "80070057",
+    "plus108": "0",
+    "expected_fault": "read68"
+  },
+  "established": [
+    "original constructor glare/enable stores",
+    "one selected scene authored Common values",
+    "requested equal glare values fit constructor-only",
+    "retained original-code refusal stores matching flags/non-null object"
+  ],
+  "unresolved": [
+    "actual initialized map/cutscene resource and active preset",
+    "normal live scene loader/producer occurrence",
+    "real immediate device/library success, scheduling and presentation",
+    "canonical consumer agreement"
+  ],
+  "next_C": "Only after named consumer/state/trigger: read-only stable object/source/library snapshots with initialized-state/health controls; choose active non-default field against ctor or qualified producer transition. DOF0 refutes ctor-only but does not identify its writer on its own.",
+  "limits": "No new original-code execution/live observation. Authored decimal comparison is not a test of native JSON conversion. One scene, no corpus universal. Device model refusal is not live game failure. No claims about absent writers/readers.",
+  "cleanup": "No process/control/memory/input/instrument opened; no save/config/reference writes."
+}

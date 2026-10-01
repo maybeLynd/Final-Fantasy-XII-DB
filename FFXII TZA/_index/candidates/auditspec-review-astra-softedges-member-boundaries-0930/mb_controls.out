@@ -1,0 +1,11 @@
+(A) captured instructions 313; byte mismatches vs EXE 0; mnemonic/args mismatches vs fresh decode 0
+    checker's hardcoded dispatcher bytes == EXE: True ; callback bytes == EXE: True
+(B) unchanged copy                               exit=0 result=True expected=pass | CHECKED three bounded original-source claims; installed-array binding remains OPEN
+(B) missing callback source                      exit=1 result=False expected=refuse | FileNotFoundError: [Errno 2] No such file or directory: 'C:\\t\\auditspec\\mb-cli-qznwha0g\\mis
+(B) continuation missing its last range          exit=1 result=False expected=refuse | ValueError: normal resolver continuation unverified/incomplete
+(B) callback xor eax,eax -> 2-byte nop (hash recomputed) exit=1 result=False expected=refuse | ValueError: status propagation changed
+(B) dispatcher null return 0x15 -> 0x16 (hash recomputed) exit=1 result=False expected=refuse | ValueError: dispatcher boundary changed
+(B) 59ED3F args text eax -> rax                  exit=1 result=False expected=refuse | ValueError: required original operation changed: 0x59ed3f
+(B) 59ED42 BYTES add rax,r13 -> add eax,r13d, text kept exit=0 result=True expected=GAP probe | CHECKED three bounded original-source claims; installed-array binding remains OPEN
+(B) 60EFFD BYTES mov eax,5 -> mov eax,0, text kept exit=0 result=True expected=GAP probe | CHECKED three bounded original-source claims; installed-array binding remains OPEN
+disposable dir removed: True

@@ -1,0 +1,82 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "30a4c1a202e71848c331ed3a4136e772eb3b7493"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "8ff5492e1cc116b6fc44863e876e19014676841e"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "dbd2b945e4660949db7556aa44139bfd2fac5242"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "f2af8b94683736685c6d5f899757a27a356bd197"
+  },
+  {
+    "path": "fault-accept-green-default.stderr",
+    "git_blob": "4157e617d39afe6fec7255668df0997fe563684b"
+  },
+  {
+    "path": "fault-accept-green-default.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-real-number-dim-minus-one.stderr",
+    "git_blob": "f343d6634dc434a543f364cb09e966a535833f75"
+  },
+  {
+    "path": "fault-real-number-dim-minus-one.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "757c97079762b0ab4957f4b4de53cd22548aae46"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "20bfb728c6a2c8dd059e7f1d1b027c78b16572a6"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "b898d89b517b2474791cd2b3b96d2357c2b5ed2d"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "0651c45eff702bbb5c618f8d63d25069410a39ba"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "584ec4ef30b04f010a968c79672602c3177e7613"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "28132fb07b60a4993d98ce30403649ffda961c6d"
+  },
+  {
+    "path": "retained/consumer-before.md",
+    "git_blob": "2b27c7617f3ef77ba72c553a015af370d48d5c48"
+  },
+  {
+    "path": "retained/fable-array-clamp-primary.py",
+    "git_blob": "220f3f5dde044111870cf9fd5f15298786b839a8"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/resolver591.bin",
+    "git_blob": "d4c2d5c031bc0d63d66d12c4b4a895898e23e26f"
+  }
+]

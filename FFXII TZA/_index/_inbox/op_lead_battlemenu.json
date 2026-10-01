@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-LEAD-BATTLE-MENU-OBJECT",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "An undeclared object with real structure, found by dismissing a check_span_access lead rather than by looking for it: the thing BattleMenu_UpdateCommandSelectionAndDispatch (002778C0, 9,374 B) operates on through rsi.",
+  "scope": "a new game-side type; no row exists and no census artifact exists",
+  "completion": "a census from proven entry points and a declared type, or a recorded reason it cannot be seeded",
+  "dependencies": [],
+  "resources": [{"key": "note:battle-menu-object"}],
+  "known_evidence": "Read from the shipping image 2026-09-20 while checking why FrameMarkerSingleton01F82C80 +0x2C38 scored 100% coherence in check_span_access - 24 of the 27 sites in that displacement window are in 002778C0 alone, on base rsi, and the frame-marker type's own census functions (001D5650..001D6250) are disjoint from 0x27xxxx. THE STRUCTURE: two 0x1620 WIDGETS CONSTRUCTED IN PLACE at rsi+0xF0 and rsi+0x1710 (sites 002779FA and 00277A16, `mov edx,0x1620` then `call 00245000`); a lea'd sub-object at +0x2D30; a dword at +0x2D38; THREE (qword, dword) PAIRS ON A 0x20 STRIDE at +0x2D50/+0x2D58, +0x2D70/+0x2D78 and +0x2D90/+0x2D98, each qword a stored pointer and each dword written from the same zeroed register; a dword counter at +0x2DB0 read-modify-written in four places; and a word at +0x2DB4 decremented and compared. Minimum extent 0x2DB6.",
+  "missing_information": "What rsi is - the object has no name, no declared type, no census and no route. Whether the three 0x20 pairs are an array of three or three named members needs the reader that a census would provide.",
+  "why_it_matters": "It is GAME-SIDE and undeclared, which is the charter's first frontier, and it is not small: the two in-place widgets alone are 0x1620 each and the object runs to at least 0x2DB6. The widget instances also add to the population the sized-by-argument ctype rule now governs - and unlike the instances found by the store-wide sweep, these two have their EXTENT readable at the construction site.",
+  "what_is_blocked": "Nothing. This is a lead with an entry point, which is what a census needs; it is filed rather than pursued because declaring a new type is a package and this was found while closing a different question."
+ }
+}

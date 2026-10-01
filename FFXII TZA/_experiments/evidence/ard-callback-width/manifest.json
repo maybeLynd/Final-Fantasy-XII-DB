@@ -1,0 +1,282 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "ard-callback-width-capture-01.status.json",
+      "bytes": 444,
+      "sha256": "9556f0dc2df5f8f155b5fc3a2cc1a901bb84b4b12d9850c2efb8bfa0326314a9"
+    },
+    {
+      "path": "ard-callback-width-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-capture-01.stdout",
+      "bytes": 165,
+      "sha256": "96de6c961293559b69a704b6a7b691679e3c8246e498d3bf904b27bfc503dcc8"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/ard-callback-width-capture-01.status.json",
+      "bytes": 444,
+      "sha256": "bf5a7b68690076f37cb510293e19a72577bb18797a0d7bcbfed1a89964d6799f"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/ard-callback-width-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/ard-callback-width-capture-01.stdout",
+      "bytes": 165,
+      "sha256": "96de6c961293559b69a704b6a7b691679e3c8246e498d3bf904b27bfc503dcc8"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/ard-callback-width-source-01.json",
+      "bytes": 56183,
+      "sha256": "3e348bed99c03ac0fd9c11f14eb42233e461081cdf461d52fc2b4532f90beec4"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/capture-ard-callback-width.py",
+      "bytes": 2411,
+      "sha256": "61947a5b37153ce1423cf2c258724f3667c3ff52f5d0e777d1daaa92076f6e08"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/status.json",
+      "bytes": 809,
+      "sha256": "0eb29ea498749d9fe5a85ac1131e2a5074a1471f41665cc6d514395d91f804e4"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/stderr",
+      "bytes": 755,
+      "sha256": "f3647275a245b5ef409fe9b7cafd6a91da5e56541b8a054faa0098ecce673ca1"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-01/failed-capture/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/ard-callback-width-capture-01.status.json",
+      "bytes": 444,
+      "sha256": "9556f0dc2df5f8f155b5fc3a2cc1a901bb84b4b12d9850c2efb8bfa0326314a9"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/ard-callback-width-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/ard-callback-width-capture-01.stdout",
+      "bytes": 165,
+      "sha256": "96de6c961293559b69a704b6a7b691679e3c8246e498d3bf904b27bfc503dcc8"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/ard-callback-width-source-01.json",
+      "bytes": 44674,
+      "sha256": "f54a6d45348f291bf22e89e6fb8f77e98acbfee692557785f6dc650eb34246e7"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/capture-ard-callback-width.py",
+      "bytes": 2411,
+      "sha256": "61947a5b37153ce1423cf2c258724f3667c3ff52f5d0e777d1daaa92076f6e08"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/status.json",
+      "bytes": 815,
+      "sha256": "50fd8032babcd37b05b46f5f8895e145ceb4b2703c97ea5538f8033282b65f51"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/stderr",
+      "bytes": 766,
+      "sha256": "0dadcb592780fa6f676c42eb7a5f6e188f3952f6d98669dc04c3d81b6afdfc02"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-01/missing-loader-tail/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "ard-callback-width-controls-01/result.json",
+      "bytes": 3148,
+      "sha256": "10df60a1280bb8af7341456018b5aabda4f3816c20cd88abcce3deb3dd604bea"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/ard-callback-width-capture-01.status.json",
+      "bytes": 444,
+      "sha256": "9556f0dc2df5f8f155b5fc3a2cc1a901bb84b4b12d9850c2efb8bfa0326314a9"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/ard-callback-width-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/ard-callback-width-capture-01.stdout",
+      "bytes": 165,
+      "sha256": "96de6c961293559b69a704b6a7b691679e3c8246e498d3bf904b27bfc503dcc8"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/ard-callback-width-source-01.json",
+      "bytes": 56183,
+      "sha256": "e9082155adbdfd6107c1fff2fe210e0b9d9c259d38d3ae9fc21ff96f0b61041e"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/capture-ard-callback-width.py",
+      "bytes": 2411,
+      "sha256": "61947a5b37153ce1423cf2c258724f3667c3ff52f5d0e777d1daaa92076f6e08"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/status.json",
+      "bytes": 806,
+      "sha256": "859f9be456b132e86d9e0c5ea874a289117fd268a96cb0bde3cc0f5003b4f4b8"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/stderr",
+      "bytes": 766,
+      "sha256": "0dadcb592780fa6f676c42eb7a5f6e188f3952f6d98669dc04c3d81b6afdfc02"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-01/wrong-root-input/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "ard-callback-width-controls-run-01.status.json",
+      "bytes": 339,
+      "sha256": "43acd0bee925d91ef2e6076887f44df7912386451e5446f6dc43053aeb5e4752"
+    },
+    {
+      "path": "ard-callback-width-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-controls-run-01.stdout",
+      "bytes": 55,
+      "sha256": "cef9273c93a594e87eb1e9d3cd94c51c4172409d5410a073a71b94d04c7c2d71"
+    },
+    {
+      "path": "ard-callback-width-method-01.json",
+      "bytes": 1923,
+      "sha256": "76a0e108c89f04e671816aafdb993509f0a81a8b670c1e57f8c0ea8e6551bd4d"
+    },
+    {
+      "path": "ard-callback-width-positive-01.status.json",
+      "bytes": 443,
+      "sha256": "309339008977c8cb473cecf3972df854c0c9fb52540c18d88ad72cb4506e6126"
+    },
+    {
+      "path": "ard-callback-width-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ard-callback-width-positive-01.stdout",
+      "bytes": 113,
+      "sha256": "d6ed6dc6faff3cc11deafebc2692afa836aa6952410be9ee10ced74bd57a6d8a"
+    },
+    {
+      "path": "ard-callback-width-result-01.json",
+      "bytes": 12005,
+      "sha256": "c5a3afd211209675930b7d3b2879e5f4dc42f497a0d9b94b5bd96133b4455eb9"
+    },
+    {
+      "path": "ard-callback-width-source-01.json",
+      "bytes": 56183,
+      "sha256": "3e348bed99c03ac0fd9c11f14eb42233e461081cdf461d52fc2b4532f90beec4"
+    },
+    {
+      "path": "capture-ard-callback-width.py",
+      "bytes": 2411,
+      "sha256": "61947a5b37153ce1423cf2c258724f3667c3ff52f5d0e777d1daaa92076f6e08"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "control-ard-callback-width.py",
+      "bytes": 2957,
+      "sha256": "6ca37a4813480e21d28831a716e904946373a47dbbcd95ae30f0192a41d5f842"
+    },
+    {
+      "path": "freeze-ard-callback-width.py",
+      "bytes": 7478,
+      "sha256": "4ab5c8b0a15c62ce0a7a758e35f7feecc1a9f2550db8c5b2167e5e4f530fbaff"
+    },
+    {
+      "path": "prove-ard-callback-width.py",
+      "bytes": 9744,
+      "sha256": "9228986e0b014bf40bcc9dcadafcd005567600089975ad2ed6ed085c16bef3b9"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4180,
+      "sha256": "c698295c152e6e9c3f07dabe84598d40972a6e41e96744cc9a7dd8aa56952f6e"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "native_path_budget_units": 6763
+}

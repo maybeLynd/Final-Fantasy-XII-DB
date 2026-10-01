@@ -1,0 +1,31 @@
+PASS  control P: seeded at 00380D30 with rcx = actor, 00380DA6 `mov dword [rbx], eax` is ACTOR+3
+PASS  control O: object-state setter stores (21) all loaded/other through the slot table read at 022C6F28: ['L(G022C6F28+0x0)']
+PASS  bodies analysed: 113 (contexts 214); recursion or depth cuts: 9, of which carry the actor: 0
+stores by class: {'ACTOR-other': 4, 'UNKNOWN': 41, 'loaded/other': 376, 'stack': 1322}
+  ACTOR-oth 002E45E0 002E48CA or byte ptr [rsi + 0xd], 0x10                size 1 base A+0xd
+  ACTOR-oth 002E45E0 002E48D0 and byte ptr [rsi + 0xd], 0xef               size 1 base A+0xd
+actor pointer stored to non-stack memory (escapes): 0
+PASS  indirect calls/jumps reached: 12, through an import slot: 12, into engine code: 0
+  DISPATCH  00809620 0080962B call qword ptr [rip + 0xb8c1f]       KERNEL32.dll!SetUnhandledExceptionFilter
+  DISPATCH  00809620 00809634 call qword ptr [rip + 0xb8d86]       KERNEL32.dll!UnhandledExceptionFilter
+  DISPATCH  00809620 0080963A call qword ptr [rip + 0xb8b78]       KERNEL32.dll!GetCurrentProcess
+  DISPATCH  00809620 0080964D jmp qword ptr [rip + 0xb8d64]        KERNEL32.dll!TerminateProcess
+  DISPATCH  00809848 00809853 call qword ptr [rip + 0xb8917]       KERNEL32.dll!RtlCaptureContext
+  DISPATCH  00809848 0080986D call qword ptr [rip + 0xb8b5d]       KERNEL32.dll!RtlLookupFunctionEntry
+  DISPATCH  00809848 008098A4 call qword ptr [rip + 0xb8b1e]       KERNEL32.dll!RtlVirtualUnwind
+  DISPATCH  00861F02 00861F02 jmp qword ptr [rip + 0x60cc8]        api-ms-win-crt-math-l1-1-0.dll!atan2f
+  DISPATCH  00861F08 00861F08 jmp qword ptr [rip + 0x60c9a]        api-ms-win-crt-math-l1-1-0.dll!cosf
+  DISPATCH  00861F0E 00861F0E jmp qword ptr [rip + 0x60c9c]        api-ms-win-crt-math-l1-1-0.dll!sinf
+  DISPATCH  00861F14 00861F14 jmp qword ptr [rip + 0x60c9e]        api-ms-win-crt-math-l1-1-0.dll!sqrtf
+  DISPATCH  0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]        KERNEL32.dll!IsProcessorFeaturePresent
+indirect calls/jumps receiving the actor: 0
+stores with an untracked base: 13; of them able to reach byte +3 of their own base: 2
+  RESIDUE   0022F9B0 0022FAB7 mov qword ptr [rax], rbx                    
+            base rax <- 0022FA95 mov rax, qword ptr [rsp + 0x30]
+            slot [rsp+0x30] writer 0022FA17 mov qword ptr [rsp + 0x30], rax ; source 0022FA07 lea rax, [rbp - 0x60]
+            slot [rsp+0x30] writer 0022FAC9 mov qword ptr [rsp + 0x30], rax ; source 0022FABA add rax, 8
+            slot [rsp+0x30] writer 0022FAED mov qword ptr [rsp + 0x30], rdx ; source 0022FAE2 lea rdx, [rbp - 0x38]
+            slot [rsp+0x30] writer 0022FE9F add qword ptr [rsp + 0x30], 0x10
+  RESIDUE   0022F9B0 0022FDD1 movss dword ptr [rax], xmm0                 
+            base rax <- 0022FD87 mov rax, qword ptr [rsp + 0x48]
+            slot [rsp+0x48] writer 0022FA2D mov qword ptr [rsp + 0x48], r8 ; source the entry register

@@ -1,0 +1,59 @@
+== 002ED6A0 head
+  002ED6A0 push rbx
+  002ED6A2 sub rsp, 0x20
+  002ED6A6 test byte ptr [rcx + 0xb], 0x40
+  002ED6AA mov r8, rdx
+  002ED6AD mov rbx, rcx
+  002ED6B0 je 0x2ed6cf
+  002ED6B2 add rdx, 0x50
+  002ED6B6 lea rcx, [r8 + 0x30]
+  002ED6BA call 0x26e530
+  002ED6BF and byte ptr [rbx + 0xb], 0x7f
+  002ED6C3 shl al, 7
+  002ED6C6 or byte ptr [rbx + 0xb], al
+  002ED6C9 add rsp, 0x20
+  002ED6CD pop rbx
+  002ED6CE ret 
+  002ED6CF mov eax, dword ptr [rdx + 0x60]
+  002ED6D2 mov dword ptr [rdx + 0x50], eax
+  002ED6D5 mov eax, dword ptr [rdx + 0x64]
+  002ED6D8 mov dword ptr [rdx + 0x54], eax
+  002ED6DB mov eax, dword ptr [rdx + 0x68]
+  002ED6DE mov dword ptr [rdx + 0x58], eax
+  002ED6E1 mov eax, dword ptr [rdx + 0x6c]
+  002ED6E4 mov dword ptr [rdx + 0x5c], eax
+== caller 002E4AC0..002E4AED
+  002E4AC0 push rcx
+  002E4AC1 add dword ptr [rax], eax
+  002E4AC3 add byte ptr [rax - 0xcee8be0], ch
+  002E4AC9 movups xmm6, xmmword ptr [rip + 0x1a070d8]
+  002E4AD0 movaps xmm7, xmm6
+  002E4AD3 movaps xmm8, xmm6
+  002E4AD7 jmp 0x2e4b0c
+  002E4AD9 movss xmm6, dword ptr [rbp + 0x20]
+  002E4ADE movss xmm7, dword ptr [rbp + 0x24]
+  002E4AE3 movss xmm8, dword ptr [rbp + 0x28]
+  002E4AE9 test al, 0x10
+  002E4AEB jne 0x2e4b0c
+  002E4AED mov rdx, qword ptr [rdx + 0x138]
+== caller 002E5AF0..002E5B5A
+  002E5AF0 clc 
+== 003A4290 prologue
+  003A4290 mov rax, rsp
+  003A4293 push rbp
+  003A4294 push rbx
+  003A4295 push rsi
+  003A4296 push rdi
+  003A4297 push r12
+  003A4299 push r13
+  003A429B push r14
+  003A429D push r15
+  003A429F lea rbp, [rax - 0xf8]
+  003A42A6 sub rsp, 0x1b8
+  003A42AD movaps xmmword ptr [rax - 0x58], xmm6
+  003A42B1 movaps xmmword ptr [rax - 0x68], xmm7
+  003A42B5 movaps xmmword ptr [rax - 0x78], xmm8
+  003A42BA mov rax, qword ptr [rip + 0x1ba056f]
+  003A42C1 xor rax, rsp
+  003A42C4 mov qword ptr [rbp + 0x78], rax
+  003A42C8 mov rdi, r8

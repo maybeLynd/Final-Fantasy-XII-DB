@@ -1,0 +1,51 @@
+PASS  C1 startscene sites 34125 (RC-5: 34,125)
+PASS  C2 every PUSHV operand's descriptor decodes to a legal class and width (bad: 0)
+   3141 of the non-constant operands are variables whose only non-constant stores are the increment x = x + k; their values lie in [min constant, max constant + the file's total increments]: overall [0, 102]; widest single-variable span 95
+
+startscene: 34125 sites; non-constant operands 3429; bounded exactly by constant stores 0; not exactly bounded 3429
+    3141  variable: constant stores plus x = x + k increments (interval above)
+     117  variable: x = x + k increments only, no constant store in scope (its initial value plus up to 13)
+      72  variable: x = x + k increments only, no constant store in scope (its initial value plus up to 8)
+      45  variable: x = x + k increments only, no constant store in scope (its initial value plus up to 5)
+      27  variable: x = x + k increments only, no constant store in scope (its initial value plus up to 3)
+      27  variable: x = x + k increments only, no constant store in scope (its initial value plus up to 1)
+   45 of the non-constant operands are variables whose only non-constant stores are the increment x = x + k; their values lie in [min constant, max constant + the file's total increments]: overall [1, 67]; widest single-variable span 66
+
+startscene_4b3: 1260 sites; non-constant operands 45; bounded exactly by constant stores 0; not exactly bounded 45
+      45  variable: constant stores plus x = x + k increments (interval above)
+   4 of the non-constant operands are variables whose only non-constant stores are the increment x = x + k; their values lie in [min constant, max constant + the file's total increments]: overall [0, 3]; widest single-variable span 3
+
+eventread_e8: 5482 sites; non-constant operands 66; bounded exactly by constant stores 0; not exactly bounded 66
+      32  variable never stored by a POPV in scope (initial value only)
+      28  operand is an expression (OPSUB)
+       4  variable: constant stores plus x = x + k increments (interval above)
+       2  variable has a non-constant store: call:aask
+
+summoneventread: 4 sites; non-constant operands 4; bounded exactly by constant stores 0; not exactly bounded 4
+       4  operand is an expression (OPSUB)
+
+eventread: 4437 sites; non-constant operands 0; bounded exactly by constant stores 0; not exactly bounded 0
+
+debug_eventload: 274 sites; non-constant operands 0; bounded exactly by constant stores 0; not exactly bounded 0
+
+debug_eventload operand tuples (push order: manager, set id): 274 sites in ['btlctrl.ebp', 'ctrl.ebp', 'evctrl.ebp', 'mapctrl.ebp']
+     56  (('const', 1), ('const', 84))
+     54  (('const', 1), ('const', 83))
+     52  (('const', 1), ('const', 81))
+     24  (('const', 1), ('const', 80))
+     24  (('const', 1), ('const', 85))
+     14  (('const', 1), ('const', 82))
+      8  (('const', 4), ('const', 3))
+      6  (('const', 4), ('const', 2))
+      6  (('const', 4), ('const', 4))
+      6  (('const', 4), ('const', 5))
+      6  (('const', 1), ('const', 86))
+      2  (('const', 1), ('const', 1))
+      2  (('const', 1), ('const', 9))
+      2  (('const', 1), ('const', 19))
+      2  (('const', 1), ('const', 20))
+      2  (('const', 1), ('const', 23))
+      2  (('const', 1), ('const', 22))
+      2  (('const', 1), ('const', 4))
+      2  (('const', 1), ('const', 16))
+      2  (('const', 1), ('const', 505))

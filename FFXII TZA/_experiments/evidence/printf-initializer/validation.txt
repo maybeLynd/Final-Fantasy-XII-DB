@@ -1,0 +1,2 @@
+check.py --mutations after newline repair: exit0; original-image replay and all four corrupted-evidence controls passed.
+No FF12 or isolated original-code execution.

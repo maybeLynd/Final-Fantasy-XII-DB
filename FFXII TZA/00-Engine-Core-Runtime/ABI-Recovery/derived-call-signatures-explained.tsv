@@ -1,0 +1,443 @@
+addr	arity	int_regs	flt_regs	returns_rax	home_spill	lower_bound	insns	explained_by
+0017D470	0	-	-	1	-	0	5	declared: NativeAdapter.CallResultField32Getter
+00195DF0	1	rcx	-	1	-	0	122	A-measured
+00196550	0	-	-	1	-	0	37	A-measured
+001965E0	0	-	-	1	-	0	47	A-measured
+001967D0	0	-	-	1	-	0	120	declared: Phyre PhyreCore module
+00197160	2	rcx,rdx	-	1	-	0	367	A-measured
+001976E0	1	rcx	-	1	-	0	2	declared: NativeLeaf.FieldByteGetter
+001976F0	1	rcx	-	1	-	0	2	declared: NativeLeaf.FieldByteGetter
+00197700	1	rcx	-	1	-	0	2	declared: NativeLeaf.FieldByteGetter
+00197710	4	rdx,r8,r9	-	1	-	0	30	A-measured
+00197780	1	rcx	-	1	-	0	2	declared: NativeLeaf.FieldByteGetter
+00197EE0	0	-	-	1	-	0	51	A-measured
+00198000	0	-	-	1	-	0	372	A-measured
+001986D0	1	rcx	-	0	-	0	2	declared: NativeLeaf.FieldClear
+00198790	0	-	-	1	-	0	2	declared: Trivial global accessors
+001989D0	2	rcx,rdx	-	0	-	0	2	declared: NativeLeaf.FieldByteStore
+001989E0	2	rcx,rdx	-	0	-	0	2	declared: NativeLeaf.FieldByteStore
+001989F0	2	rcx,rdx	-	0	-	0	2	declared: NativeLeaf.FieldByteStore
+00198B60	0	-	-	1	-	0	182	A-measured
+00198E70	2	rcx,rdx	-	0	-	0	2	declared: NativeLeaf.FieldByteStore
+001993B0	0	-	-	1	-	0	215	A-measured
+001C1720	4	rcx,rdx,r8,r9	-	1	-	0	70	A-measured
+001C18E0	0	-	-	1	-	0	2	declared: Trivial global accessors
+001DE050	2	rcx,rdx	-	1	-	0	84	A-measured
+001DE5D0	3	rcx,rdx,r8	-	1	-	0	437	A-measured
+001DED50	1	rcx	-	1	-	0	67	A-measured
+001DF240	1	rcx	-	1	-	0	22	A-measured
+001DF350	3	rcx,rdx,r8	-	1	-	0	279	A-measured
+001E09B0	1	rcx	-	0	-	0	15	declared: NativeAdapter.DoubleCallResultTailCallSavedThis
+001E09E0	1	rcx	-	0	-	0	15	declared: NativeAdapter.DoubleCallResultTailCallSavedThis
+001E0C10	0	-	-	0	-	0	5	declared: NativeAdapter.CallResultTailCall
+001E0D80	0	-	-	0	-	0	5	declared: NativeAdapter.CallResultTailCall
+001E0DA0	1	rcx	-	0	-	0	9	declared: NativeAdapter.CallResultWithSavedIntTailCall
+001E0E30	0	-	-	0	-	0	5	declared: NativeAdapter.CallResultTailCall
+001E0E50	0	-	-	0	-	0	5	declared: NativeAdapter.CallResultTailCall
+001E0F20	0	-	-	0	-	0	5	declared: NativeAdapter.CallResultTailCall
+001E1100	1	rcx	-	0	-	0	9	declared: NativeAdapter.ByteSaveSecondArgResultTailCall2
+00235E80	0	-	-	1	-	0	2	declared: NativeLeaf.ConstantDwordReturn
+00235E90	0	-	-	1	-	0	2	declared: NativeLeaf.ConstantDwordReturn
+002367A0	1	rcx	-	1	-	0	38	A-measured
+00238880	1	rcx	-	1	-	0	110	A-measured
+00238A80	0	-	-	1	-	0	8	A-measured
+0023A070	1	rcx	-	1	-	1	38	A-measured
+0023AF50	0	-	-	1	-	0	52	A-measured
+0023B040	0	-	-	1	-	0	123	A-measured
+00248EE0	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+00248EF0	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+00248F00	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+00248F10	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+002501E0	0	-	-	0	-	0	3	declared: NativeLeaf.PairedStaticConstStore
+00252E60	2	rcx,rdx	-	1	-	0	62	A-measured
+00253A80	0	-	-	1	-	0	60	A-measured
+00253C70	0	-	-	1	-	0	412	A-measured
+00255260	1	rcx	-	1	-	0	17	A-measured
+0025D460	1	rcx	-	1	-	0	7	A-measured
+0025D9E0	1	rcx	-	1	rcx	0	364	A-measured
+0025DF00	2	rcx,rdx	-	1	-	0	329	A-measured
+0025E4C0	3	rcx,rdx,r8	-	1	rcx	0	3229	A-measured
+002621D0	4	rcx,rdx,r8,r9	-	1	rcx	0	126	A-measured
+00263750	1	rcx	-	1	-	0	8	A-measured
+00263770	1	rcx	-	1	-	0	17	A-measured
+00265090	1	rcx	-	1	-	1	8	A-measured
+00268850	4	rcx,rdx,r8,r9	-	1	-	0	161	A-measured
+00269C70	2	rcx,rdx	-	1	-	0	66	A-measured
+002778C0	2	rcx,rdx	-	1	-	0	2061	A-measured
+002D66C0	1	rcx	-	0	-	0	2	declared: Trivial global accessors
+002EF290	0	-	-	1	-	0	2	declared: NativeLeaf.ConstantDwordReturn
+002EF2A0	0	-	-	1	-	0	2	declared: NativeLeaf.ConstantDwordReturn
+002EF2D0	0	-	-	0	-	0	8	A-measured
+002EF300	1	rcx	-	1	-	0	18	A-measured
+002EF370	1	rcx	-	0	-	0	8	A-measured
+002EF390	1	rcx	-	1	-	0	11	A-measured
+002EF3C0	1	rcx	-	1	-	0	13	A-measured
+002EF410	1	rcx	-	1	-	0	29	A-measured
+002EF510	1	rcx	-	1	-	0	9	A-measured
+002EF5F0	0	-	-	0	-	0	8	A-measured
+002EF620	0	-	-	1	-	0	2	declared: Trivial global accessors
+002EF630	0	-	-	1	-	0	2	declared: Trivial global accessors
+002EF640	0	-	-	1	-	0	2	A-measured
+002EF650	0	-	-	0	-	0	11	A-measured
+002EF690	0	-	-	0	-	0	36	A-measured
+002F88B0	4	rcx,rdx,r9	-	1	-	0	200	A-measured
+002F8E50	3	rcx,rdx,r8	-	1	-	0	10	A-measured
+002F9180	2	rcx,rdx	-	1	-	0	8	A-measured
+002F95D0	2	rcx,rdx	-	1	-	0	155	A-measured
+002F9820	1	rcx	-	1	-	0	16	A-measured
+002F9F20	2	rdx	-	1	-	0	108	A-measured
+002FA1A0	1	rcx	-	1	-	0	25	A-measured
+002FD150	4	rcx,rdx,r8,r9	-	1	-	0	221	A-measured
+002FD8D0	2	rcx,rdx	-	1	-	0	50	A-measured
+002FD970	2	rcx,rdx	-	1	-	0	78	A-measured
+002FE660	1	rcx	-	1	-	0	74	A-measured
+002FE8D0	1	rcx	-	1	-	0	14	A-measured
+002FE910	1	rcx	-	1	-	0	13	A-measured
+002FFED0	0	-	-	1	-	0	8	declared: NativeAdapter.CallBoolNormalizeReturnSete
+002FFF50	3	rcx,rdx,r8	-	1	-	0	77	A-measured
+00300060	0	-	-	1	-	0	56	A-measured
+00300280	1	rcx	-	1	-	0	36	A-measured
+003003F0	4	rcx,r9	xmm2	1	-	0	39	A-measured
+003037A0	2	rcx,rdx	-	1	-	0	45	A-measured
+00305110	2	rcx,rdx	-	1	-	0	77	A-measured
+00305230	2	rcx,rdx	-	1	-	0	130	A-measured
+00305430	2	rcx,rdx	-	1	-	0	137	A-measured
+00306010	1	rcx	-	0	-	0	57	A-measured
+003064F0	2	rdx	-	1	-	0	35	A-measured
+003065D0	0	-	-	1	-	0	83	A-measured
+00306BA0	0	-	-	1	-	0	4	A-measured
+00307D10	1	rcx	-	1	-	0	58	A-measured
+00308040	2	rcx,rdx	-	1	-	0	68	A-measured
+00308270	1	rcx	-	1	-	0	25	A-measured
+00308C20	4	rcx,rdx,r8,r9	-	1	-	0	108	A-measured
+00309990	0	-	-	1	-	0	61	A-measured
+00309F30	2	rcx,rdx	-	1	-	0	37	A-measured
+0030A4E0	3	rdx,r8	-	1	-	0	126	A-measured
+0030ADC0	1	rcx	-	1	-	0	31	A-measured
+0030B050	1	rcx	-	1	-	0	42	A-measured
+0030B180	1	rcx	-	1	-	0	61	A-measured
+0030B270	0	-	-	1	-	0	151	A-measured
+0030B570	2	rcx,rdx	-	1	-	0	50	A-measured
+0030B6A0	1	rcx	-	1	-	0	50	A-measured
+0030B770	0	-	-	1	-	0	32	A-measured
+0030B7F0	2	rcx,rdx	-	1	-	0	62	A-measured
+0030B950	2	rcx,rdx	-	1	-	0	29	A-measured
+0030BA30	0	-	-	1	-	0	19	A-measured
+0030BD00	3	rcx,rdx,r8	-	1	-	0	108	A-measured
+0030BF20	1	rcx	-	1	-	0	36	A-measured
+0030C010	1	rcx	-	1	-	0	51	A-measured
+0030C890	3	rcx,rdx,r8	-	1	-	0	69	A-measured
+0030C970	1	rcx	-	1	-	0	64	A-measured
+0030CA50	1	rcx	-	1	-	0	13	A-measured
+0030CBE0	0	-	-	1	-	0	154	A-measured
+0030CF40	0	-	-	1	-	0	25	A-measured
+0030D550	0	-	-	1	-	0	34	A-measured
+0030D810	0	-	-	1	-	0	37	A-measured
+0030D9A0	0	-	-	1	-	0	30	A-measured
+0030DFA0	0	-	-	1	-	0	32	A-measured
+0030E010	0	-	-	1	-	0	18	A-measured
+0030EDA0	1	rcx	-	1	-	0	66	A-measured
+0030EEA0	2	rdx	-	1	-	0	33	A-measured
+0030EFF0	1	rcx	-	1	-	0	75	A-measured
+0030F130	3	rcx,rdx,r8	-	1	-	0	108	A-measured
+0030FAA0	0	-	-	1	-	0	75	A-measured
+0030FBE0	0	-	-	1	-	0	76	A-measured
+00310870	4	rcx,rdx,r8,r9	-	1	-	0	43	A-measured
+00311B20	4	rdx,r8,r9	-	1	r8,rdx	0	121	A-measured
+00313120	0	-	-	1	-	0	172	A-measured
+00313DB0	2	rdx	-	1	-	0	91	A-measured
+00316CD0	2	rcx,rdx	-	1	-	0	8	A-measured
+00316CF0	1	rcx	-	0	-	0	17	A-measured
+00316D70	2	rcx,rdx	-	1	-	0	17	A-measured
+00316DF0	2	rcx,rdx	-	1	-	0	183	A-measured
+003170E0	1	rcx	-	1	-	0	63	A-measured
+003172E0	1	rcx	-	1	-	0	84	A-measured
+00318B40	3	rcx,rdx,r8	-	1	-	0	97	A-measured
+00319460	3	-	xmm2	1	-	0	11	A-measured
+0031A300	2	rcx,rdx	-	1	-	0	79	A-measured
+0031A410	3	rcx,rdx,r8	-	1	-	0	63	A-measured
+0031A510	4	rcx,rdx,r8,r9	-	1	-	0	75	A-measured
+0031A630	4	rcx,rdx,r8,r9	-	1	-	0	65	A-measured
+0031A710	3	rcx,rdx,r8	-	1	-	0	47	A-measured
+0031ABF0	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+0031AC90	3	rcx,rdx	xmm2	0	-	1	14	A-measured
+0031B770	1	rcx	-	1	-	0	34	A-measured
+0031B810	1	rcx	-	1	-	0	20	A-measured
+0031E9F0	1	rcx	-	1	-	0	28	A-measured
+00321190	4	rcx,r9	-	1	-	0	102	A-measured
+00321530	1	rcx	-	1	-	0	40	A-measured
+00321840	0	-	-	0	-	1	2	A-measured
+00322C50	2	rcx,rdx	-	1	-	0	253	A-measured
+00323540	1	rcx	-	0	-	0	34	A-measured
+003236B0	1	rcx	-	1	-	0	16	A-measured
+003236F0	2	rcx,rdx	-	1	-	0	17	A-measured
+00323740	2	rcx,rdx	-	1	-	0	17	A-measured
+003237C0	1	rcx	-	1	-	0	60	A-measured
+00323910	4	rcx,rdx,r8,r9	-	1	-	0	189	A-measured
+00323EC0	2	rcx,rdx	-	1	-	0	94	A-measured
+00324100	1	rcx	-	1	-	0	57	A-measured
+003242F0	1	rcx	-	1	-	0	27	A-measured
+00324F20	1	rcx	-	1	-	0	92	A-measured
+00325080	0	-	-	0	-	0	2	A-measured
+00326030	2	rcx,rdx	-	1	-	0	37	A-measured
+00326110	4	rcx,rdx,r9	-	1	-	0	52	A-measured
+003261D0	1	rcx	-	1	-	0	211	A-measured
+00326500	0	-	-	1	-	0	78	A-measured
+003272E0	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+003273D0	2	rcx,rdx	-	1	-	0	272	A-measured
+00327850	1	rcx	-	1	rdx	1	4	A-measured
+003279B0	2	rcx,rdx	-	1	-	0	26	A-measured
+00327BE0	2	rcx,rdx	-	1	-	0	20	A-measured
+00327C40	2	rcx,rdx	-	1	-	0	30	A-measured
+00327CB0	2	rcx,rdx	-	1	-	0	77	A-measured
+00327DE0	1	rcx	-	1	-	0	99	A-measured
+00327F80	0	-	-	1	-	0	108	A-measured
+00328140	2	rcx,rdx	-	1	-	0	93	A-measured
+003282D0	2	rcx,rdx	-	1	-	0	35	A-measured
+00328B20	1	rcx	-	1	-	0	43	A-measured
+00328DB0	2	rcx,rdx	-	1	-	0	144	A-measured
+00329080	3	rcx,rdx,r8	-	1	-	0	73	A-measured
+0032A4D0	3	rcx,rdx,r8	-	1	-	0	82	A-measured
+00347E00	4	r9	-	0	-	0	7	declared: ScriptVM.VerbAdapter
+00349F90	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+0034A790	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+0034E580	4	r9	-	0	-	0	15	declared: ScriptVM.VerbAdapter
+0034F680	4	rcx,r9	-	0	-	0	16	declared: ScriptVM.VerbAdapter
+0034FCF0	4	rcx,r9	-	0	-	0	16	declared: ScriptVM.VerbAdapter
+00350200	4	rcx,r9	-	0	-	0	16	declared: ScriptVM.VerbAdapter
+003505B0	4	rcx,r9	-	0	-	0	16	declared: ScriptVM.VerbAdapter
+00355C00	1	rcx	-	0	-	0	9	declared: ScriptVM.VerbAdapter
+00355F20	1	rcx	-	0	-	0	9	declared: ScriptVM.VerbAdapter
+00356350	1	rcx	-	0	-	0	9	declared: ScriptVM.VerbAdapter
+003566B0	1	rcx	-	0	-	0	9	declared: ScriptVM.VerbAdapter
+00358A00	2	rcx,rdx	-	1	-	0	8	A-measured
+00358A20	1	-	xmm0	1	-	0	74	A-measured
+00358BB0	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+00358BC0	0	-	-	0	-	0	39	A-measured
+00358F90	3	rdx,r8	-	0	-	0	64	A-measured
+003590D0	0	-	-	1	-	0	2	declared: Trivial global accessors
+00359330	3	rcx,rdx,r8	-	1	-	0	26	A-measured
+0035A620	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+0035A630	0	-	-	0	-	1	1	declared: internal tail-call forwarders
+0035E810	0	-	-	1	-	0	2	declared: Trivial global accessors
+0035E9A0	1	rcx	-	0	-	0	2	declared: Trivial global accessors
+0035E9B0	1	-	xmm0	1	-	0	12	A-measured
+0035ED40	1	rcx	-	0	-	0	2	declared: Trivial global accessors
+0035EE50	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035EF70	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035EFD0	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035F030	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035F090	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035F1A0	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035F200	2	rcx,rdx	-	1	-	0	28	declared: NativeLeaf.ClampedTableLookup
+0035F260	0	-	-	1	-	0	110	A-measured
+0035FCA0	0	-	-	1	-	0	82	A-measured
+0035FDD0	1	rcx	-	1	-	0	74	A-measured
+0035FF80	0	-	-	0	-	0	2	declared: Trivial global accessors
+0035FF90	0	-	-	1	-	0	65	A-measured
+00360080	0	-	-	0	-	0	15	A-measured
+00369080	0	-	-	1	-	1	23	A-measured
+00369170	0	-	-	0	-	0	5	A-measured
+0036FF70	0	-	-	1	-	0	2	declared: Trivial global accessors
+0036FFC0	0	-	-	1	-	0	2	declared: Trivial global accessors
+0036FFD0	0	-	-	1	-	0	2	declared: Trivial global accessors
+0036FFE0	0	-	-	1	-	0	2	declared: Trivial global accessors
+00377C20	0	-	-	1	-	0	23	A-measured
+00384C30	2	rcx,rdx	-	1	-	0	151	A-measured
+00384E50	1	rcx	-	1	-	0	71	A-measured
+00384F40	2	rdx	-	1	-	0	163	A-measured
+00387130	0	-	-	1	-	0	116	A-measured
+003872D0	3	rcx,r8	-	1	-	0	213	A-measured
+00387F40	2	rdx	-	0	-	0	7	A-measured
+00387F70	3	rdx,r8	-	1	-	0	28	A-measured
+00388250	3	rcx,rdx,r8	-	0	-	0	48	A-measured
+00388320	3	rdx,r8	-	0	-	0	11	A-measured
+003888C0	2	rdx	-	1	-	0	8	A-measured
+003888F0	1	rcx	-	1	-	0	40	A-measured
+00388990	3	r8	-	1	-	0	7	A-measured
+003889C0	3	r8	-	1	-	0	7	A-measured
+003889F0	3	rcx,rdx,r8	-	1	-	0	82	A-measured
+00388B50	2	rcx,rdx	-	1	-	0	51	A-measured
+00388C10	2	rdx	-	1	-	0	77	A-measured
+00388D50	3	rcx,rdx,r8	-	1	-	0	80	A-measured
+00388E80	1	rcx	-	1	-	0	43	A-measured
+00388F20	3	rcx,rdx,r8	-	1	-	0	38	A-measured
+00388FB0	2	rdx	-	1	-	0	8	A-measured
+00388FE0	0	-	-	1	-	0	24	A-measured
+003890C0	0	-	-	1	-	0	24	A-measured
+003891F0	3	r8	-	1	-	0	11	A-measured
+00389230	3	r8	-	1	-	0	21	A-measured
+00389290	3	rcx,r8	-	1	-	0	34	A-measured
+00389310	3	r8	-	1	-	0	26	A-measured
+00389370	3	rdx,r8	-	1	-	0	153	A-measured
+003895D0	3	r8	-	1	-	0	13	A-measured
+00389610	3	r8	-	1	-	0	13	A-measured
+00389650	3	r8	-	1	-	0	6	A-measured
+00389670	0	-	-	1	-	0	14	A-measured
+00389820	3	rdx,r8	-	1	-	0	79	A-measured
+00389950	3	rdx,r8	-	1	-	0	66	A-measured
+00389A50	3	r8	-	1	-	0	24	A-measured
+00389AB0	2	rcx,rdx	-	1	-	0	73	A-measured
+00389BE0	2	rdx	-	1	-	0	31	A-measured
+00389C60	3	rcx,r8	-	1	-	0	93	A-measured
+00389DD0	2	rcx,rdx	-	1	-	0	100	A-measured
+00389F80	1	rcx	-	1	-	0	94	A-measured
+0038A470	1	rcx	-	1	-	0	66	A-measured
+0038A590	2	rcx,rdx	-	1	-	0	55	A-measured
+0038A680	3	rcx,rdx,r8	-	1	-	0	97	A-measured
+0038A820	2	rcx,rdx	-	1	-	0	99	A-measured
+0038A9D0	0	-	-	1	-	0	46	A-measured
+0038AA90	0	-	-	1	-	0	23	A-measured
+0038ABC0	2	rcx,rdx	-	1	-	0	100	A-measured
+0038AF20	2	rdx	-	1	-	0	13	A-measured
+0038AF50	3	r8	-	0	-	0	10	A-measured
+0038AF90	3	rcx,r8	-	1	-	0	30	A-measured
+0038B010	3	r8	-	1	-	0	67	A-measured
+0038B150	3	rcx,r8	-	1	-	0	51	A-measured
+0038B220	3	rdx,r8	-	1	-	0	275	A-measured
+0038B950	3	rcx,rdx,r8	-	1	-	0	174	A-measured
+0038BC00	3	rcx,rdx,r8	-	1	-	0	129	A-measured
+0038BE00	3	r8	-	1	-	0	7	A-measured
+0038C920	3	r8	-	0	-	0	6	A-measured
+0038C940	3	rcx,rdx,r8	-	1	-	0	102	A-measured
+0038CB00	3	rcx,rdx,r8	-	1	-	0	59	A-measured
+0038CC10	1	rcx	-	1	-	0	59	A-measured
+0038CCF0	2	rdx	-	1	-	0	26	A-measured
+0038CD60	2	rdx	-	1	-	0	59	A-measured
+0038CE40	2	rdx	-	1	-	0	59	A-measured
+0038CF20	2	rdx	-	1	-	0	59	A-measured
+0038D000	2	rdx	-	1	-	0	59	A-measured
+0038D0E0	3	r8	-	1	-	1	28	A-measured
+0038D180	3	rcx,rdx,r8	-	1	-	0	53	A-measured
+0038D230	2	rdx	-	1	-	0	22	A-measured
+0038D340	3	rcx,r8	-	1	-	0	57	A-measured
+0038D400	3	rcx,rdx,r8	-	1	-	0	119	A-measured
+0038D630	2	rcx,rdx	-	1	-	0	17	A-measured
+0038D680	3	rdx,r8	-	1	-	0	9	A-measured
+0038D6B0	3	rcx,rdx,r8	-	1	-	0	69	A-measured
+0038D7E0	2	rdx	-	1	-	0	105	A-measured
+0038D970	1	rcx	-	1	-	0	44	A-measured
+0038DA00	1	rcx	-	1	-	0	34	A-measured
+0038DA90	1	rcx	-	1	-	0	37	A-measured
+0038DB10	0	-	-	1	-	0	14	A-measured
+0038DB50	3	rcx,rdx,r8	-	1	-	0	97	A-measured
+0038DD20	3	rcx,rdx,r8	-	1	-	0	113	A-measured
+0038DF00	3	rcx,rdx,r8	-	1	-	0	92	A-measured
+0038E080	3	rcx,rdx,r8	-	1	-	0	133	A-measured
+0038E2D0	3	rdx,r8	-	1	-	0	117	A-measured
+0038E480	3	rcx,rdx,r8	-	1	-	0	64	A-measured
+0038E590	3	rdx,r8	-	1	-	0	122	A-measured
+0038E720	1	rcx	-	1	-	0	22	A-measured
+0038E770	2	rdx	-	1	-	0	23	A-measured
+0038E7C0	3	rcx,r8	-	1	-	0	43	A-measured
+0038E950	1	rcx	-	1	-	0	32	A-measured
+0038E9D0	2	rcx,rdx	-	1	-	0	35	A-measured
+0038EA60	3	rcx,rdx,r8	-	1	-	0	24	A-measured
+0038EAB0	3	r8	-	1	-	0	16	A-measured
+0038EAF0	0	-	-	1	-	0	11	A-measured
+0038EB30	0	-	-	1	-	0	45	A-measured
+0038EBE0	3	rcx,r8	-	1	-	0	96	A-measured
+0038ED40	1	rcx	-	1	-	0	56	A-measured
+0038EE10	0	-	-	1	-	0	6	A-measured
+0038EF60	0	-	-	1	-	0	15	A-measured
+0038EFB0	2	rdx	-	1	-	0	50	A-measured
+0038F060	3	rdx,r8	-	1	-	0	50	A-measured
+0038F120	2	rdx	-	1	-	0	36	A-measured
+0038F1B0	2	rdx	-	1	-	0	75	A-measured
+0038F2D0	0	-	-	1	-	0	45	A-measured
+0038F380	2	rcx,rdx	-	1	-	0	6	A-measured
+0038F3A0	2	rdx	-	1	-	0	80	A-measured
+0038F4C0	2	rdx	-	1	-	0	63	A-measured
+0038F5A0	0	-	-	0	-	0	2	declared: Trivial global accessors
+0038F5B0	2	rdx	-	1	-	0	33	A-measured
+0038F630	3	rcx,rdx,r8	-	1	-	0	45	A-measured
+0038F6F0	3	rdx,r8	-	1	-	0	71	A-measured
+0038F800	2	rcx,rdx	-	1	-	0	35	A-measured
+0038F8E0	0	-	-	1	-	0	34	A-measured
+0038F970	0	-	-	1	-	0	24	A-measured
+0038F9D0	1	rcx	-	1	-	0	116	A-measured
+0038FCE0	3	rcx,rdx,r8	-	1	-	0	151	A-measured
+0038FF20	3	r8	-	1	-	0	103	A-measured
+003900C0	3	r8	-	1	-	0	45	A-measured
+00390170	3	r8	-	1	-	0	4	A-measured
+00390190	3	rcx,rdx,r8	-	1	-	0	45	A-measured
+00390240	3	rcx,rdx,r8	-	0	-	0	42	A-measured
+003902F0	3	rdx,r8	-	1	-	0	36	A-measured
+00390390	3	rdx,r8	-	1	-	0	191	A-measured
+003907E0	3	r8	-	1	-	0	50	A-measured
+003908A0	3	rcx,rdx,r8	-	1	-	0	143	A-measured
+003BB220	2	rcx,rdx	-	1	-	0	60	A-measured
+003DA710	3	rcx,rdx,r8	-	1	-	0	9	A-measured
+003DB2A0	2	rcx,rdx	-	1	-	0	105	A-measured
+003DB6E0	1	rcx	-	1	-	0	45	A-measured
+003DB7A0	4	rcx,rdx,r8,r9	-	1	-	0	226	A-measured
+003DBCF0	3	rcx,rdx,r8	-	1	-	0	55	A-measured
+003DBDC0	2	rcx,rdx	-	1	-	0	54	A-measured
+003DBF60	3	rcx,rdx,r8	-	1	-	0	69	A-measured
+003DC050	3	rcx,rdx,r8	-	1	-	0	31	A-measured
+003DC130	2	rcx,rdx	-	1	-	0	36	A-measured
+003DC240	2	rcx,rdx	-	1	-	0	13	A-measured
+003DC270	2	rcx,rdx	-	1	-	0	13	A-measured
+003DC2A0	2	rcx,rdx	-	1	-	0	14	A-measured
+003DC2D0	0	-	-	1	-	0	15	A-measured
+003DFD00	3	rcx,rdx,r8	-	1	-	0	44	A-measured
+00408B00	0	-	-	1	-	0	2	declared: Trivial global accessors
+0050D2B0	4	r9	-	0	-	0	15	declared: ScriptVM.VerbAdapter
+0053DD10	0	-	-	1	-	0	2	declared: ScriptVM.VerbAdapter
+0057E310	1	rcx	-	1	-	0	98	A-measured
+0057E4D0	2	rcx,rdx	-	1	-	1	80	A-measured
+00580840	3	rcx,rdx,r8	-	1	-	0	139	A-measured
+00580CD0	2	rcx,rdx	-	1	-	0	105	A-measured
+00580EB0	3	rcx,rdx,r8	-	1	-	0	215	A-measured
+00581DA0	2	rcx,rdx	-	1	-	0	139	A-measured
+00582040	1	rcx	-	1	-	0	91	A-measured
+00582240	1	rcx	-	1	-	0	95	A-measured
+00582540	2	rcx,rdx	-	1	-	0	82	A-measured
+00582860	2	rcx,rdx	-	1	-	0	371	A-measured
+00583920	0	-	-	1	-	0	2	declared: Trivial global accessors
+00583C00	0	-	-	1	-	0	38	A-measured
+00583CB0	0	-	-	1	-	0	38	A-measured
+00584210	0	-	-	1	-	0	100	A-measured
+005844A0	4	r9	-	1	-	0	56	A-measured
+00584610	4	rcx,rdx,r8,r9	-	1	-	0	67	A-measured
+005B80C0	2	rcx,rdx	-	1	-	0	7	declared: Phyre PAnimation module
+007935C0	1	rcx	-	1	-	0	32	declared: Phyre PFramework module
+00794110	2	rcx,rdx	-	1	-	0	40	declared: Phyre PFramework module
+00794200	2	rcx,rdx	-	1	-	0	33	declared: Phyre PFramework module
+00794280	2	rcx,rdx	-	1	-	0	25	declared: Phyre PFramework module
+007942E0	2	rcx,rdx	-	1	-	0	33	declared: Phyre PFramework module
+00794360	2	rcx,rdx	-	1	-	0	33	declared: Phyre PFramework module
+00799A80	0	-	-	1	-	0	34	declared: Phyre PFramework module
+00799DD0	3	rcx,rdx,r8	-	1	-	0	29	declared: Phyre PFramework module
+00799E40	3	rcx,rdx,r8	-	1	-	0	62	declared: Phyre PFramework module
+00799F40	3	rcx,rdx,r8	-	1	-	0	76	declared: Phyre PFramework module
+0079A5F0	1	rcx	-	1	-	0	42	declared: Phyre PFramework module
+0079BF70	1	rcx	-	1	-	0	6	declared: Phyre PFramework module
+0079C140	1	rcx	-	1	-	0	361	A-measured
+0079CEC0	1	rcx	-	1	-	0	50	declared: Phyre PFramework module
+0079D010	1	rcx	-	1	rcx	0	114	A-measured
+0079D560	1	rcx	-	1	-	0	16	declared: Phyre PFramework module
+0079D5B0	1	rcx	-	1	-	0	16	declared: Phyre PFramework module
+0079D630	2	rcx,rdx	-	1	-	0	8	declared: Phyre PFramework module
+0079D650	2	rcx,rdx	-	1	-	0	9	declared: Phyre PFramework module
+0079D670	2	rcx,rdx	-	1	-	0	9	declared: Phyre PFramework module
+0079D690	0	-	-	0	-	0	2	declared: Phyre PFramework module
+0079D6A0	2	rdx	-	1	-	0	22	declared: Phyre PFramework module
+0079D730	2	rdx	-	1	-	0	60	declared: Phyre PFramework module
+0079DA10	2	rcx,rdx	-	1	-	0	522	A-measured
+007A02F0	1	rcx	-	1	-	0	19	declared: Phyre PFramework module
+007A0340	1	rcx	-	1	-	0	34	declared: Phyre PFramework module
+007A05D0	1	rcx	-	1	-	0	120	declared: Phyre PFramework module
+007A0B40	2	rcx,rdx	-	1	-	0	3	declared: Phyre PFramework module
+007A10A0	4	rcx,rdx,r8,r9	-	1	-	0	56	declared: Phyre PFramework module
+007A15A0	1	rcx	-	1	-	0	50	declared: Phyre PFramework module
+007A1640	1	rcx	-	1	-	0	80	declared: Phyre PFramework module
+007A1790	1	rcx	-	1	-	0	163	declared: Phyre PFramework module
+007A1A50	1	rcx	-	1	-	0	145	declared: Phyre PFramework module
+007A1CD0	1	rcx	-	1	-	0	217	A-measured
+007A2140	1	rcx	-	1	-	0	178	declared: Phyre PFramework module
+007A2440	1	rcx	-	1	-	0	898	A-measured
+007A3110	0	-	-	1	-	0	16	declared: Phyre PFramework module
+00859EA0	1	rcx	-	0	-	0	2	declared: Bullet physics library
+0085DDE0	2	rcx,rdx	-	1	-	0	291	declared: Bullet physics library
+00861F38	0	-	-	0	-	0	1	declared: external import stubs

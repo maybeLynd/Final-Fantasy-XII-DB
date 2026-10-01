@@ -1,0 +1,14 @@
+{
+  "case": "failed_role",
+  "exit": 1,
+  "result_exists": false,
+  "expected_accepted": false,
+  "control_pass": true,
+  "invocation": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "failed_role/prove-title-member-notification.py",
+    "failed_role/result.json"
+  ],
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "d32072ed46a7274efcd371501c1463e4d8b67d690e0767491220aca60cb6ce49"
+}

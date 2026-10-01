@@ -1,0 +1,7 @@
+PASS  C 47 writes; unresolved register sources: []; whole-word/xor merges: ['002B6450', '002B7ABB', '002B7AE9', '002B9E35', '002BA10E', '002BAEC5', '002BAEF3', '003CB996', '003CB9C4']
+PASS  C2 the whole-word stores toggle bit 2 or add bits 0-1; the xor merges are masked to 0x40 / 0x30: no bit 9-11
+PASS  9 bit 9 set ['002BB8BD'], cleared ['002B784E', '002BABE7'] (each after the both-slots-empty test and 003C21B0)
+PASS  10 bit 10 set ['002B6249', '002BA011'] by the two mode-5 openers, never cleared
+PASS  11 bit 11 set only ['002BAA79'], never cleared
+PASS  O 02B45800/04 written only by 003C6360, called only from the NPS2 consumer with the record's origin +0x10/+0x14
+FAILS 0

@@ -1,0 +1,22 @@
+R1 00632B30 raw branches: ['E8 0063942C in 006393A0 FUN_006393a0']; rip address-taken: 0 (raw-only 1); DIR64 pointers: 0
+R1 006393A0 raw branches: ['E8 0059AEA7 in 0059AC00 FUN_0059ac00']; rip address-taken: 0 (raw-only 2); DIR64 pointers: 0
+R1 0059AC00 raw branches: ['E8 0059E227 in 0059E070 FUN_0059e070']; rip address-taken: 0 (raw-only 2); DIR64 pointers: 0
+R2 the entry builder, 0059B430 at 0059B7BE..0059B7E6 (rsi walks the namespace's 36-byte class records):
+  0059B5D7 mov r9, qword ptr [r13]
+  0059B5E7 mov r11d, dword ptr [r9 + 8]
+  0059B5EB add r11, 8
+  0059B5F3 lea r11, [r9 + r11*4]
+  0059B604 mov rsi, r11
+  0059B7B9 lea eax, [rdx - 1]
+  0059B7BC mov ecx, eax
+  0059B7BE lea rax, [rax + rax*2]
+  0059B7C2 shl rax, 4
+  0059B7C6 add rax, qword ptr [r13 + 0x30]
+  0059B7CA mov r10, qword ptr [rsp + 0x28]
+  0059B7CF mov qword ptr [r14 + 8], rsi
+  0059B7D3 add rsi, 0x24
+  0059B7D7 mov qword ptr [r14], rax
+  0059B7DA mov qword ptr [r14 + 0x10], rbx
+  0059B7DE mov qword ptr [r14 + 0x18], rdi
+  0059B7E2 mov qword ptr [r14 + 0x28], r8
+  0059B7E6 add r14, 0x30

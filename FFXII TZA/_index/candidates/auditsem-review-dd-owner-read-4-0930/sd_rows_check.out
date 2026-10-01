@@ -1,0 +1,51 @@
+new SD rows at 4415dba48: 10  SD-160 SD-161 SD-162 SD-163 SD-164 SD-165 SD-166 SD-167 SD-168 SD-169
+
+SD-160 at-commit OPEN   HEAD OPEN     addrs 00263C20 00315820
+   register rows sharing an address: AA-7[ANSWERED](00315820), AL-3[ANSWERED](00263C20)
+   candidate folders (at parent) sharing an address: a-surface-bare-citations.tsv(00315820), dd-owner-read-0929(00315820), fable-crossings-prose-false-clears.tsv(00263C20), functions-cited-deep-by-two-documents.tsv(00315820), neighbour-dispositions.tsv(00263C20,00315820), ov58d-pointer-flow-0930(00315820), pass22-tripwires.tsv(00263C20), s20-opus-replay-commit(00263C20), s32-opus-replay-defeat-rewards(00315820), uq2-caller-route(00263C20)
+   named on: steam-integration-and-achievement-catalogue.md
+
+SD-161 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: steam-integration-and-achievement-catalogue.md
+
+SD-162 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: steam-integration-and-achievement-catalogue.md
+
+SD-163 at-commit OPEN   HEAD OPEN     addrs 007A1CD0
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: auditsem-review-takebacks2-0930(007A1CD0), dm2-code27(007A1CD0), rc10-log-gates-0930(007A1CD0), rc789-fable-0930(007A1CD0), rc9-log-channels-0930(007A1CD0)
+   named on: steam-integration-and-achievement-catalogue.md
+
+SD-164 at-commit OPEN   HEAD OPEN     addrs 0036A2A0 0036AAD0 0036ABE0 0036BFE0
+   register rows sharing an address: CT-3[ANSWERED](0036A2A0), RC-11[ANSWERED](0036BFE0)
+   candidate folders (at parent) sharing an address: auditsem-review-p22-b1-0930(0036BFE0), auditspec-ratify-legacy-verdicts-0929(0036A2A0), fable-astra-live-facts-0930(0036A2A0,0036BFE0), fable-returns-0928g(0036AAD0,0036ABE0,0036BFE0), nav-grid-alloc-return-opus(0036BFE0), ov26-frp-bounds-fable(0036BFE0), rc11-arena-ten-0930(0036BFE0), residual-139-explanation-depth.tsv(0036A2A0), residual-30-citations.tsv(0036A2A0), residual-30-shape-validation.tsv(0036A2A0), residual-band-vs-outcome.tsv(0036A2A0), s36-opus-replay-request-router(0036BFE0), s38-runtime-per-invariant-exposure.md(0036A2A0,0036AAD0,0036ABE0,0036BFE0), s47-runtime-per-invariant-exposure.md(0036A2A0), worktree-drift-2026-09-25(0036A2A0)
+   named on: where-the-games-memory-comes-from.md
+
+SD-165 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: where-the-games-memory-comes-from.md
+
+SD-166 at-commit OPEN   HEAD OPEN     addrs 003EDAD0 01FD4A30
+   register rows sharing an address: BF-7[ANSWERED](003EDAD0), OV-40[ANSWERED](003EDAD0), OV-41[ANSWERED](003EDAD0), UQ-218[ANSWERED](003EDAD0)
+   candidate folders (at parent) sharing an address: frontier-apply-bundle-0929b(003EDAD0), functions-cited-deep-by-two-documents.tsv(003EDAD0), ov40-reregistration-fable(003EDAD0), ov41-efx-children-fable(003EDAD0), pass22-neighbour-worklist.tsv(003EDAD0), rc11-arena-ten-0930(003EDAD0), resource-ownership-falsification-pass-1-0930(003EDAD0), s47-runtime-per-invariant-exposure.md(003EDAD0), swe2contract-ddres-b1-0930(003EDAD0), undeclared-written-statics(003EDAD0), uq218-cm-entry-residues(003EDAD0), uq218-embedded-efx-sweep(003EDAD0)
+   named on: where-the-games-memory-comes-from.md
+
+SD-167 at-commit OPEN   HEAD OPEN     addrs 0036B160 0036B980 0036C4B0
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: fable-astra-live-facts-0930(0036B160), neighbour-dispositions.tsv(0036B160,0036B980), ov40-reregistration-fable(0036B160), rc4-capture-machine-0930(0036B980)
+   named on: where-the-games-memory-comes-from.md
+
+SD-168 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: where-the-games-memory-comes-from.md
+
+SD-169 at-commit OPEN   HEAD OPEN     addrs 00244200 0039D0C0
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(00244200), rc4-capture-machine-0930(0039D0C0)
+   named on: where-the-games-memory-comes-from.md

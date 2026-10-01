@@ -1,0 +1,7 @@
+{
+  "phase": "after capture/cleanup; additive supplement, not a retroactive pre-launch binary measurement",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "base": "C:\\Python314\\python.exe",
+  "base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+}

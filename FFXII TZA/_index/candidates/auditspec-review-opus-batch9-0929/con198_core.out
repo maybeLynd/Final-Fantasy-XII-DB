@@ -1,0 +1,62 @@
+0018CFC8  mov       dword ptr [rbx + 0x348], edi
+0018CFCE  lea       rcx, [rbx + 0x378]
+0018CFD5  call      0x645db0
+---
+00645DB0  push      rbx
+00645DB2  sub       rsp, 0x20
+00645DB6  mov       rbx, rcx
+00645DB9  call      0x6461b0
+00645DBE  xor       eax, eax
+00645DC0  mov       qword ptr [rbx + 0x50], rax
+00645DC4  mov       qword ptr [rbx + 0x58], rax
+00645DC8  mov       qword ptr [rbx + 0x60], rax
+00645DCC  mov       qword ptr [rbx + 0x68], rax
+00645DD0  lea       rax, [rip + 0x71c7f9]   ; -> 00D625D0 u32=00647530 f32=9.22559e-39
+00645DD7  mov       qword ptr [rbx], rax
+---
+00191DA0  mov       qword ptr [rsp + 0x10], rbx
+00191DA5  mov       qword ptr [rsp + 0x18], rbp
+00191DAA  push      rsi
+00191DAB  sub       rsp, 0x50
+00191DAF  cmp       byte ptr [rcx + 0x3e8], 0
+00191DB6  mov       rsi, r8
+00191DB9  mov       rbp, rdx
+00191DBC  mov       rbx, rcx
+00191DBF  je        0x191e7a
+00191DC5  cmp       byte ptr [rcx + 0x3e9], 0
+00191DCC  je        0x191e7a
+00191DD2  cmp       byte ptr [rcx + 0x4a3], 0
+00191DD9  je        0x191e10
+00191DDB  call      0x189120
+00191DE0  mov       rcx, rax
+00191DE3  call      0x1867c0
+00191DE8  mov       rbx, rax
+00191DEB  call      0x193d50
+00191DF0  mov       rcx, rax
+00191DF3  mov       r9, rbx
+00191DF6  mov       r8, rsi
+00191DF9  mov       rdx, rbp
+00191DFC  mov       rbx, qword ptr [rsp + 0x68]
+00191E01  mov       rbp, qword ptr [rsp + 0x70]
+00191E06  add       rsp, 0x50
+00191E0A  pop       rsi
+00191E0B  jmp       0x1925d0
+00191E10  mov       qword ptr [rsp + 0x60], rdi
+00191E15  xor       edi, edi
+00191E17  cmp       byte ptr [r8 + 8], dil
+00191E1B  jne       0x191e22
+00191E1D  mov       r9, qword ptr [r8]
+00191E20  jmp       0x191e25
+00191E22  mov       r9, rdi
+00191E25  mov       r8, qword ptr [rbx + 0x290]
+00191E2C  add       rcx, 0x378
+00191E33  mov       byte ptr [rsp + 0x20], 1
+00191E38  call      0x65a630
+00191E3D  xor       eax, eax
+---
+0065A630  movzx     eax, byte ptr [rsp + 0x28]
+0065A635  mov       byte ptr [rsp + 0x28], al
+0065A639  jmp       0x65a640
+0065A63E  int3      
+0065A63F  int3      
+---

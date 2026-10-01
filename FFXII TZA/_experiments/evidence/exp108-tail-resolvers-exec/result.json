@@ -1,0 +1,35 @@
+{
+ "cases": {
+  "f56-basic": "ok",
+  "f56-deadarg": "ok",
+  "f56-null": "ok",
+  "f56-word0": "ok",
+  "f56-negword": "ok",
+  "f56-sign": "ok",
+  "f56-badptr": "ok",
+  "f60-basic": "ok",
+  "f60-neg1": "ok",
+  "f60-low16": "ok",
+  "f60-hineg": "ok",
+  "f60-neg2": "ok",
+  "f60-zero": "ok",
+  "f60-off0": "ok"
+ },
+ "mutants": {
+  "m-f56-tab": "killed",
+  "m-f56-test": "killed",
+  "m-f56-jne": "killed",
+  "m-f56-movzx": "killed",
+  "m-f56-wdisp": "killed",
+  "m-f56-add": "killed",
+  "m-f56-cdqe": "killed",
+  "m-f60-sx": "killed",
+  "m-f60-ffff": "killed",
+  "m-f60-je": "killed",
+  "m-f60-disp": "killed",
+  "m-f60-st290": "killed",
+  "m-f60-add80": "killed",
+  "m-f60-addr8": "killed"
+ },
+ "bad_sites": []
+}

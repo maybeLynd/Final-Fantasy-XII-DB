@@ -1,0 +1,9 @@
+# NativeLeaf.TaggedOutRecordVptrStore - EC-7 family C
+# if arg1 non-null vcall [this+8] at member offset +[this+0x10] on
+# # arg1-8+index; if arg3 matches a member rip|1 tag, store the result into
+# # the out record and return 1 else 0.
+address	targets
+005CBEB0	
+006B6200	
+006B62F0	
+006B6360	

@@ -1,0 +1,23 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PUB-SAVEPAYLOAD-COPIES",
+  "kind": "research",
+  "priority": "P2",
+  "target": "publish the save payload bulk-copy extents and the bounded absence result",
+  "scope": "SavePayload field rows, singleton_field_scan --static, OPUS audit/resume",
+  "completion": "pending",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   },
+   {
+    "key": "file:database/ffxii tza/_index/_inbox/opus.md"
+   },
+   {
+    "key": "file:database/ffxii tza/_types/fields.tsv"
+   }
+  ]
+ }
+}

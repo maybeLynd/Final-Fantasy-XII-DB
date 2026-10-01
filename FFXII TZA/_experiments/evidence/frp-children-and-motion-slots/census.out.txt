@@ -1,0 +1,18 @@
+control: files {'.cm': 1066, '.ca': 3164} (container page: 3,164 .ca, 1,066 .cm); versions [(('.ca', 0), 1969), (('.ca', 1), 1195), (('.cm', 0), 1066)]
+P1  children whose first four bytes are not a tag: 0 ; absent slots in version-1 tables: 72827
+.ca children by tag: [('@FMC', 31942), ('@FMN', 18303), ('@FMW', 18303), ('@FRM', 3164)]
+.cm children by tag: [('@FCP', 1066), ('@FTR', 1066), ('@FOR', 1066), ('@FDM', 1045), ('@FTE', 1044), ('@FCT', 1044), ('@FMC', 209), ('@FEF', 144), ('@FMN', 111), ('@FMW', 111)]
+P2  .ca files where @FMN and @FMW counts differ: 0
+P3  @FRM per file (extension, count) -> files: [(('.ca', 1), 3164), (('.cm', 0), 1066)]
+.ca order of child kinds (runs collapsed), commonest:
+     2786  @FMC @FMN @FMW @FRM
+      378  @FRM
+.cm order of child kinds (runs collapsed), commonest:
+      855  @FCP @FTR @FDM @FOR @FTE @FCT
+      144  @FCP @FTR @FDM @FOR @FTE @FCT @FEF
+       45  @FCP @FTR @FDM @FOR @FTE @FCT @FMC @FMN @FMW
+       21  @FCP @FTR @FOR
+        1  @FCP @FTR @FDM @FOR
+@FMN commonest names at +0x10: ['idle00', 'walk_f_l1', 'walk_f_r2', 'run_l3', 'sp20', 'sp40', 'run_r4', 'sp50']
+@FMW commonest names at +0x10: ['idle00', 'walk_f_l1', 'walk_f_r2', 'run_l3', 'sp20', 'sp40', 'run_r4', 'sp50']
+@FRM commonest names at +0x10: ['c1004_00', 'c1004_10', 'c1004_10_3000', 'c1004_10_3001', 'c1004_10_3002', 'c1004_11', 'c1004_20', 'c1004_21']

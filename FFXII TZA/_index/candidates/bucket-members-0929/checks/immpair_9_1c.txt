@@ -1,0 +1,14 @@
+code store-pair hits: 0
+  data 008C2000 fmt <BB 091c aligned hits 19
+  data 008C2000 fmt <BB 1c09 aligned hits 29
+  data 008C2000 fmt <HH 09001c00 aligned hits 0
+  data 008C2000 fmt <HH 1c000900 aligned hits 0
+  data 008C2000 fmt <II 090000001c000000 aligned hits 0
+  data 008C2000 fmt <II 1c00000009000000 aligned hits 0
+  data 01DF0000 fmt <BB 091c aligned hits 0
+  data 01DF0000 fmt <BB 1c09 aligned hits 1
+  data 01DF0000 fmt <HH 09001c00 aligned hits 0
+  data 01DF0000 fmt <HH 1c000900 aligned hits 0
+  data 01DF0000 fmt <II 090000001c000000 aligned hits 0
+  data 01DF0000 fmt <II 1c00000009000000 aligned hits 0
+data pair hits (aligned): 49

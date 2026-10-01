@@ -1,0 +1,100 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4866,
+      "sha256": "1b0c0397f705a0d71883b5d43b57399c5675ad1b39750545e4c61b72a0f40953"
+    },
+    {
+      "path": "context.py",
+      "bytes": 1374,
+      "sha256": "b4698eecba8ac80c144029fb78958137d34455a8a7862b27511d1dec10240fa8"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2136,
+      "sha256": "5fd06c11db99e7b430e5a5a5cd1e97a78aefde3f2a50b3865ded72f455b16dd1"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1502,
+      "sha256": "412ae961e2ad829ad81e4966d9618048c1145bca33bac2a4073b80b21bf41b46"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2079,
+      "sha256": "96680399909e5278d424d88ca5bd43798efb492569a082efff40fd881361ec95"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3884,
+      "sha256": "30d31ef028e2baf7c8aa15ca08d3631ec16f2f32ff8181fcc31d4a0fe54cc68e"
+    },
+    {
+      "path": "result.json",
+      "bytes": 499503,
+      "sha256": "a0893aaf5c02b4bfb74579acd3aee5907018f454c36dfa64e4fbb180712a9430"
+    },
+    {
+      "path": "retained/admission-membership.tsv",
+      "bytes": 2707,
+      "sha256": "9f66b522bc246af3eb4461261acee734c19302b54a075dbacc5e4f055728619a"
+    },
+    {
+      "path": "retained/band.tsv",
+      "bytes": 6236,
+      "sha256": "1f53ebb39ebc713249b7b2b97398e2be06a7450d1f40523b37fcae39b19e4e68"
+    },
+    {
+      "path": "retained/errata.tsv",
+      "bytes": 4807,
+      "sha256": "4cabc5f7527f8fe021a1e548878ab410789d214948a78c8766c24a756f34db5e"
+    },
+    {
+      "path": "retained/external-target-context.json",
+      "bytes": 3495,
+      "sha256": "6700da7715891e9b9c44b8af28832fe02ebdb848fb322dfcf27fb475fde6deb9"
+    },
+    {
+      "path": "retained/initial-failed-review.py",
+      "bytes": 8364,
+      "sha256": "f683e8bd077c30062eb05bdfcefb875a64a2d08df3bb227626e703f2698d8301"
+    },
+    {
+      "path": "retained/initial-failure.json",
+      "bytes": 622,
+      "sha256": "ec26f0b23b8aecb48e13cf92a972e3024529fdaea0ea2b990f7ce5184cf34d49"
+    },
+    {
+      "path": "retained/listed-span-projection.tsv",
+      "bytes": 458756,
+      "sha256": "64bd223adabcb90df5f5f7d760bf4b8451462645142b066ddc9b21dd952bc21d"
+    },
+    {
+      "path": "retained/old-flow.py",
+      "bytes": 8990,
+      "sha256": "b267b5565dce8bfb8de4a0d955529ebfebd9eba3e2a3bc24e982d59e24873be4"
+    },
+    {
+      "path": "retained/peer-producer.py",
+      "bytes": 9302,
+      "sha256": "a9d406cccee3516e82096ebca6489d12d220c7d70e0a597882adf38057bf8026"
+    },
+    {
+      "path": "retained/peer-README.md",
+      "bytes": 3590,
+      "sha256": "5bd51e7f6d92da8cb9605215452d4ec7742ac1499145fb1276f87845ff768dc5"
+    },
+    {
+      "path": "review.py",
+      "bytes": 8549,
+      "sha256": "d5ec31eac8299c05bde76852559645395a1eca03ce0c9f992da129e5cc28569a"
+    }
+  ],
+  "limits": "Independent bounded100 selected extents only; external/indirect exits and wholefunction/population/admission semantics remain unproved"
+}

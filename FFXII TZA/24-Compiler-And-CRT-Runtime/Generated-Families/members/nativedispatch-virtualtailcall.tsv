@@ -1,0 +1,22 @@
+# NativeDispatch.VirtualTailCall - EC-7 family C, declared on generated-function-families.md
+#
+# 13 members. Body size(s): 9 B x6, 7 B x3, 6 B x2.
+# 13 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 13 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00616E24
+00616E54
+00616E84
+00616EB8
+00616EC8
+00616EDC
+00616EF4
+00616F00
+006A2A50
+006CAC20
+007A3CD0
+00855500
+008581A0

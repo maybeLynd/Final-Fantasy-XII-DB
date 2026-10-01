@@ -1,0 +1,1097 @@
+[
+  {
+    "name": "positive-observer-id0",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0x0",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": 0,
+      "row": 0,
+      "col": 0,
+      "occupancy": 0,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000100",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "provider_value": 1
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "bytes": "01"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000100",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0x0"
+    },
+    "failure": null
+  },
+  {
+    "name": "last-in-record-id287",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0x11f",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": 287,
+      "row": 0,
+      "col": 0,
+      "occupancy": 0,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000123",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000123",
+        "size": 1,
+        "provider_value": 128
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000123",
+        "size": 1,
+        "bytes": "80"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000123",
+          "before": "00",
+          "after": "80"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0x11f"
+    },
+    "failure": null
+  },
+  {
+    "name": "next-record-id288",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0x120",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": 288,
+      "row": 0,
+      "col": 0,
+      "occupancy": 0,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000124",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000124",
+        "size": 1,
+        "provider_value": 1
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000124",
+        "size": 1,
+        "bytes": "01"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000124",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0x120"
+    },
+    "failure": null
+  },
+  {
+    "name": "last-cell-id288-occupancy-alias",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0x120",
+        "21": "0x1",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": 288,
+      "row": 0,
+      "col": 1,
+      "occupancy": 0,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000148",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000149",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 1
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000149",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "01"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000149",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000101000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000149",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0x120"
+    },
+    "failure": null
+  },
+  {
+    "name": "negative-one-no-low-byte-bit",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0xffffffff",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": -1,
+      "row": 0,
+      "col": 0,
+      "occupancy": 0,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000100",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "provider_value": 0
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "bytes": "00"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0xffffffff"
+    },
+    "failure": null
+  },
+  {
+    "name": "negative-eight-prefix-write",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0xfffffff8",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": -8,
+      "row": 0,
+      "col": 0,
+      "occupancy": 0,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x400000ff",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x400000ff",
+        "size": 1,
+        "provider_value": 165
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x400000ff",
+        "size": 1,
+        "bytes": "a5"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a50000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x400000ff",
+          "before": "a4",
+          "after": "a5"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0xfffffff8"
+    },
+    "failure": null
+  },
+  {
+    "name": "occupancy255-wrap",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+    "mutated": false,
+    "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+    "initial": {
+      "registers": {
+        "230": "0x0",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": 0,
+      "row": 0,
+      "col": 0,
+      "occupancy": 255,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000100",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "provider_value": 1
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "provider_value": 0
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "bytes": "01"
+      },
+      {
+        "pc": "0x39242b",
+        "address": "0x40000148",
+        "size": 1,
+        "bytes": "00"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000100",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000148",
+          "before": "ff",
+          "after": "00"
+        }
+      ],
+      "r12d": "0x0"
+    },
+    "failure": null
+  },
+  {
+    "name": "observer-NOP-INC-control",
+    "intervention": "Injected post-positive-overlap register/global/two-cell layout; private NOP-INC data control",
+    "mutated": true,
+    "running_sha256": "c98664f1b007350a4d1ef995d8210e6c9849dbbd8dec18493cb6f46d751daceb",
+    "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502909090",
+    "initial": {
+      "registers": {
+        "230": "0x0",
+        "21": "0x0",
+        "23": "0x0",
+        "253": "0x202"
+      },
+      "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+      "focus_address": "0x400000f0",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "id": 0,
+      "row": 0,
+      "col": 0,
+      "occupancy": 255,
+      "layout": {
+        "width": 2,
+        "stride": 36,
+        "records_base": "0x40000100",
+        "records_bytes": 72,
+        "occupancy_base": "0x40000148",
+        "occupancy_bytes": 2,
+        "scratch_bytes": 36
+      }
+    },
+    "visits": [
+      "0x3923d6",
+      "0x3923dc",
+      "0x3923df",
+      "0x3923e0",
+      "0x3923e3",
+      "0x3923e6",
+      "0x3923e8",
+      "0x3923eb",
+      "0x3923ee",
+      "0x3923f0",
+      "0x3923f4",
+      "0x3923fb",
+      "0x3923fd",
+      "0x392404",
+      "0x392407",
+      "0x39240a",
+      "0x39240f",
+      "0x392412",
+      "0x392416",
+      "0x39241c",
+      "0x39241f",
+      "0x392421",
+      "0x392424",
+      "0x39242b",
+      "0x39242c",
+      "0x39242d"
+    ],
+    "reads": [
+      {
+        "pc": "0x3923d6",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x3923f4",
+        "address": "0x2aee0a0",
+        "size": 8
+      },
+      {
+        "pc": "0x3923fd",
+        "address": "0x2aee0b8",
+        "size": 4
+      },
+      {
+        "pc": "0x39240a",
+        "address": "0x40000100",
+        "size": 1
+      },
+      {
+        "pc": "0x392416",
+        "address": "0x2aee060",
+        "size": 4
+      },
+      {
+        "pc": "0x392424",
+        "address": "0x2aee0a8",
+        "size": 8
+      }
+    ],
+    "raw_writes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "provider_value": 1
+      }
+    ],
+    "post_write_bytes": [
+      {
+        "pc": "0x392412",
+        "address": "0x40000100",
+        "size": 1,
+        "bytes": "01"
+      }
+    ],
+    "after": {
+      "stop_pc": "0x39242e",
+      "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+      "changed": [
+        {
+          "address": "0x40000100",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "r12d": "0x0"
+    },
+    "failure": null
+  }
+]

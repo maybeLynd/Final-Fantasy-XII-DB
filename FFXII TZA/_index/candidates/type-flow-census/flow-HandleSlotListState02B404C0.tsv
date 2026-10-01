@@ -1,0 +1,37 @@
+function	site	field	width	kind	instruction
+003B4160	003B4174	0x20	8	r	mov rbx, qword ptr [rip + 0x278c365]
+003B4160	003B419D	0x0	1	wr	inc byte ptr [rip + 0x278c31d]
+003B4160	003B41AB	0x4	4	r	mov eax, dword ptr [rip + 0x278c313]
+003B4160	003B41BB	0x4	4	w	mov dword ptr [rip + 0x278c303], eax
+003B4160	003B41DD	0x4	4	r	mov eax, dword ptr [rip + 0x278c2e1]
+003B4160	003B41E3	0x8	8	r	mov rcx, qword ptr [rip + 0x278c2de]
+003B4160	003B422E	0x10	8	w	mov qword ptr [rip + 0x278c29b], rbx
+003B4160	003B423D	0x8	8	w	mov qword ptr [rip + 0x278c284], rbx
+003B4160	003B426E	0x10	8	r	mov rax, qword ptr [rip + 0x278c25b]
+003B4160	003B4275	0x10	8	w	mov qword ptr [rip + 0x278c254], rbx
+003B42B0	003B42B0	0x8	8	r	mov rax, qword ptr [rip + 0x278c211]
+003B42B0	003B42CE	0x0	1	wr	dec byte ptr [rip + 0x278c1ec]
+003B42B0	003B42ED	0x8	8	w	mov qword ptr [rip + 0x278c1d4], rcx
+003B42B0	003B4306	0x10	8	w	mov qword ptr [rip + 0x278c1c3], rcx
+003B4310	003B438A	0x28	8	addr	lea rbp, [rip + 0x278c157]
+003B4770	003B477B	0x20	8	r	add rax, qword ptr [rip + 0x278bd5e]
+003B4790	003B4794	0x20	8	r	mov rcx, qword ptr [rip + 0x278bd45]
+003B4790	003B47B6	0x20	8	w	mov qword ptr [rip + 0x278bd23], rax
+003B4790	003B47C2	0x20	8	r	mov rcx, qword ptr [rip + 0x278bd17]
+003B4790	003B47D0	0x28	4	w	mov dword ptr [rip + 0x278bd0e], 3
+003B4790	003B47DA	0x30	8	w	mov qword ptr [rip + 0x278bd0f], rax
+003B4790	003B47EA	0x38	4	w	mov dword ptr [rip + 0x278bd04], 5
+003B4790	003B47F4	0x40	8	w	mov qword ptr [rip + 0x278bd05], rax
+003B4790	003B4807	0x1	1	w	mov byte ptr [rip + 0x278bcb3], 0
+003B4790	003B480E	0x4	4	w	mov dword ptr [rip + 0x278bcb0], edx
+003B4790	003B481F	0x0	1	w	mov byte ptr [rip + 0x278bc9b], dl
+003B4790	003B4825	0x8	8	w	mov qword ptr [rip + 0x278bc9c], rdx
+003B4790	003B482C	0x10	8	w	mov qword ptr [rip + 0x278bc9d], rdx
+003B4840	003B4846	0x8	8	r	mov rbx, qword ptr [rip + 0x278bc7b]
+003B4840	003B48E4	0x8	8	w	mov qword ptr [rip + 0x278bbdd], rax
+003B4840	003B48FE	0x10	8	w	mov qword ptr [rip + 0x278bbcb], rax
+003B49E0	003B49EB	0x20	8	r	add r8, qword ptr [rip + 0x278baee]
+003B4A30	003B4A30	0x1	1	wr	or byte ptr [rip + 0x278ba8b], cl
+003B4A40	003B4A42	0x1	1	wr	and byte ptr [rip + 0x278ba79], cl
+003B4A50	003B4A6A	0x8	8	r	mov rbx, qword ptr [rip + 0x278ba57]
+003B4A50	003B4A94	0x1	1	r	test byte ptr [rip + 0x278ba27], al

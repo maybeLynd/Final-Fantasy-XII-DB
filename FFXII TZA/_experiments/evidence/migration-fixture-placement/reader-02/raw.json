@@ -1,0 +1,18 @@
+{
+  "method": "A affected original reader rerun only; no freezer control repetition",
+  "driver_sha256": "48bd550e11d5b930f5cf6c632b0671baa682d1a3d142d056f39896bb8a367f4a",
+  "prior_raw_sha256": "fba273ea14624d1eaf0851c40c6760da07829cfc84eb5e78d8e0c1aec488a59b",
+  "prior_overall_status": "INVALID_TYPEERROR_RETAINED",
+  "source_sha256": "3f5e8fc467606a46e7cb23bb00328f0dc14621cf2eb80f84b31fa2b5401328c2",
+  "finished": true,
+  "observation": {
+    "file": "04-Actor-Entity/control.md",
+    "line": 1,
+    "ticked": false,
+    "ids": [
+      "W-999"
+    ],
+    "label": "- [ ] **W-999.** labelled retained-root control"
+  },
+  "all_published_members_unchanged": true
+}

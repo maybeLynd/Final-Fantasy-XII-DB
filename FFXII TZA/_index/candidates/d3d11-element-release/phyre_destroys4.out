@@ -1,0 +1,4 @@
+PASS  R +0x120 <- 0x80-byte btCompoundShape (00832390); +0x118 <- 0x2C0-byte btRigidBody (00852DB0)
+PASS  D the four physics destroys
+PASS  S PPhysicsRigidBodyBullet +0x118 / +0x120 re-cut, tiling kept; four destroy cells reduced
+FAILS 0

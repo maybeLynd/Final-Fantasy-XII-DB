@@ -1,0 +1,9 @@
+SURVIVES  M0  sizes all six as cited
+SURVIVES  M1  CON-191: kind-7 and kind-0xB packets into the storage queue; both kind-7 calls pass (path, image, 8)
+SURVIVES  M2  icon.sys / static.ico / %s%03d; state 2 deletes kind 0, state 3 kind 1
+SURVIVES  M3  weights ok; full 1DA, short 17C (states 1, 2, 7, 8)
+SURVIVES  M4  the short variant branches inside state 2's completion; the flag is the request's +0x18 bit 0
+SURVIVES  M5  state 7 writes 0x56690 bytes; state 8 stamps {checksum, 1}
+SURVIVES  M6  00862130 calls _wfopen_s (mode 'rb'), fclose, _wremove in that order
+SURVIVES  M7  CON-192: the state table sends 4, 5, 6 to one arm, 7 to the submission (00581EB0) and 8 to the stamp (00581FA8)
+FAILS 0

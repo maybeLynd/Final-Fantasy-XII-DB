@@ -1,0 +1,4 @@
+PASS  C 476 accessed offsets; 179 of the type's 181 declared rows reached
+PASS  R 0 stretch rows -> 0 rows (0 fields, 0 gaps); each cut tiles its span
+PASS  W no stretch row left; the type's rows tile
+FAILS 0

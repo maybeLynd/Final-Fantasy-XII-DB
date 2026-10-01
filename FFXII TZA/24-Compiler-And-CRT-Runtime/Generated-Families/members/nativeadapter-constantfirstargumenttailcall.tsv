@@ -1,0 +1,20 @@
+# NativeAdapter.ConstantFirstArgumentTailCall - EC-7 family C, declared on generated-function-families.md
+#
+# 11 members. Body size(s): 10 B x11.
+# 4 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 11 external target(s): 0 shared across all 11 members, and 11 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 11 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+002549F0
+00254A60
+00254A80
+00266D00
+002A7EC0
+002E2390
+002EA520
+0035B720
+0036F450
+0037CFF0
+003C5120

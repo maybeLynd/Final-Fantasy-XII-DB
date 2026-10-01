@@ -1,0 +1,101 @@
+0025B600  push      rbx
+0025B602  sub       rsp, 0x30
+0025B606  call      0x3590d0
+0025B60B  mov       ecx, eax
+0025B60D  call      0x3588b0
+0025B612  mov       rbx, rax
+0025B615  test      rax, rax
+0025B618  je        0x25b735
+0025B61E  call      0x3b7730
+0025B623  test      eax, eax
+0025B625  je        0x25b735
+0025B62B  mov       rax, qword ptr [rbx + 0xc0]
+0025B632  test      rax, rax
+0025B635  je        0x25b652
+0025B637  test      byte ptr [rax + 0x14f], 1
+0025B63E  jne       0x25b735
+0025B644  cmp       qword ptr [rax + 0x138], 0
+---
+0025B720  add       byte ptr [rbx + rcx*4 - 0x3d], al
+0025B724  mov       rcx, rdi
+0025B727  lea       edx, [r9 + 6]
+0025B72B  call      0x3dbb60
+0025B730  mov       rdi, qword ptr [rsp + 0x48]
+0025B735  add       rsp, 0x30
+0025B739  pop       rbx
+0025B73A  ret       
+0025B73B  int3      
+0025B73C  int3      
+0025B73D  int3      
+0025B73E  int3      
+0025B73F  int3      
+0025B740  push      rbx
+0025B742  sub       rsp, 0x20
+0025B746  call      0x3590d0
+0025B74B  mov       ecx, eax
+0025B74D  call      0x3588b0
+0025B752  mov       rbx, rax
+0025B755  test      rax, rax
+0025B758  je        0x25b7cd
+0025B75A  call      0x3b7730
+---
+0025B740  push      rbx
+0025B742  sub       rsp, 0x20
+0025B746  call      0x3590d0
+0025B74B  mov       ecx, eax
+0025B74D  call      0x3588b0
+0025B752  mov       rbx, rax
+0025B755  test      rax, rax
+0025B758  je        0x25b7cd
+0025B75A  call      0x3b7730
+0025B75F  test      eax, eax
+0025B761  je        0x25b7cd
+0025B763  mov       rax, qword ptr [rbx + 0xc0]
+0025B76A  test      rax, rax
+0025B76D  je        0x25b782
+0025B76F  test      byte ptr [rax + 0x14f], 1
+0025B776  jne       0x25b7cd
+0025B778  cmp       qword ptr [rax + 0x138], 0
+0025B780  je        0x25b7cd
+0025B782  test      byte ptr [rbx + 9], 1
+0025B786  je        0x25b7cd
+0025B788  movzx     eax, byte ptr [rbx + 8]
+0025B78C  shr       eax, 1
+0025B78E  and       eax, 1
+0025B791  je        0x25b7cd
+0025B793  call      0x265680
+0025B798  test      eax, eax
+0025B79A  je        0x25b7cd
+0025B79C  mov       rax, qword ptr [rbx + 0xc0]
+0025B7A3  test      rax, rax
+0025B7A6  je        0x25b7cd
+0025B7A8  mov       rax, qword ptr [rax + 0x138]
+0025B7AF  test      rax, rax
+0025B7B2  je        0x25b7cd
+0025B7B4  cmp       word ptr [rax + 0x88], 0
+0025B7BC  je        0x25b7cd
+0025B7BE  mov       ecx, 1
+0025B7C3  add       rsp, 0x20
+0025B7C7  pop       rbx
+0025B7C8  jmp       0x238b20
+0025B7CD  add       rsp, 0x20
+0025B7D1  pop       rbx
+0025B7D2  ret       
+0025B7D3  int3      
+0025B7D4  int3      
+0025B7D5  int3      
+0025B7D6  int3      
+0025B7D7  int3      
+0025B7D8  int3      
+0025B7D9  int3      
+0025B7DA  int3      
+0025B7DB  int3      
+0025B7DC  int3      
+0025B7DD  int3      
+0025B7DE  int3      
+0025B7DF  int3      
+0025B7E0  mov       qword ptr [rsp + 8], rbx
+0025B7E5  push      rdi
+0025B7E6  sub       rsp, 0x20
+0025B7EA  mov       rdi, rcx
+---

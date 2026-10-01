@@ -1,0 +1,84 @@
+R1 rip accesses covering 02064AD3: 17 (raw-only in window 6)
+   00229EA0 movsx eax, byte ptr [rip + 0x1e3ac2c]            tgt=02064AD3 w=1 store=False  00229EA0 FUN_00229ea0
+   00229F00 mov   byte ptr [rip + 0x1e3abcd], cl             tgt=02064AD3 w=1 store=True  00229F00 FUN_00229f00
+   0022A1A0 mov   byte ptr [rip + 0x1e3a92c], 0              tgt=02064AD3 w=1 store=True  0022A0B0 FUN_0022a0b0
+   0022A554 cmp   byte ptr [rip + 0x1e3a578], 2              tgt=02064AD3 w=1 store=False  0022A550 FUN_0022a550
+   0022A600 movsx edx, byte ptr [rip + 0x1e3a4cc]            tgt=02064AD3 w=1 store=False  0022A580 FUN_0022a580
+   0022A685 movsx rax, byte ptr [rip + 0x1e3a446]            tgt=02064AD3 w=1 store=False  0022A580 FUN_0022a580
+   0022ACA0 cmp   byte ptr [rip + 0x1e39e2c], 2              tgt=02064AD3 w=1 store=False  0022A770 FUN_0022a770
+   0022AFF2 mov   byte ptr [rip + 0x1e39ada], 3              tgt=02064AD3 w=1 store=True  0022AF50 FUN_0022af50
+   0022B097 mov   byte ptr [rip + 0x1e39a35], 5              tgt=02064AD3 w=1 store=True  0022B000 FUN_0022b000
+   0022B5C1 cmp   byte ptr [rip + 0x1e3950b], 2              tgt=02064AD3 w=1 store=False  0022B0B0 MainLoop_Draw
+   0022B74E mov   byte ptr [rip + 0x1e3937e], 1              tgt=02064AD3 w=1 store=True  0022B6E0 FUN_0022b6e0
+   0022B84F movzx ecx, byte ptr [rip + 0x1e3927d]            tgt=02064AD3 w=1 store=False  0022B7E0 FUN_0022b7e0
+   0022B85B mov   byte ptr [rip + 0x1e39272], cl             tgt=02064AD3 w=1 store=True  0022B7E0 FUN_0022b7e0
+   0022B8A1 cmp   byte ptr [rip + 0x1e3922c], bl             tgt=02064AD3 w=1 store=False  0022B7E0 FUN_0022b7e0
+   0022BB81 mov   byte ptr [rip + 0x1e38f4b], 2              tgt=02064AD3 w=1 store=True  0022B8C0 MainLoop_UpdateAndRenderFrame
+   0022BDB2 cmp   byte ptr [rip + 0x1e38d1a], 5              tgt=02064AD3 w=1 store=False  0022BC20 FUN_0022bc20
+   0022BDC5 mov   byte ptr [rip + 0x1e38d07], 2              tgt=02064AD3 w=1 store=True  0022BC20 FUN_0022bc20
+R1 image-base-relative accesses in 02064AC8..02064AD3: 0 (raw-only 0)
+R2 00229F00 raw call/jmp sites: ['002E09A0 FUN_002e09a0@2E0D39', '002E2240 FUN_002e2240@2E2257', '002E2240 FUN_002e2240@2E2274']
+R2 jcc: []  rip refs: []  relocs: 0
+   before 2E0D39: 002E0D2D in al, 0xe7 | 002E0D2F add dword ptr [rbx], eax | 002E0D31 add dl, byte ptr [rax] | 002E0D33 add byte ptr [rcx + 4], bh | 002E0D39 call 0x229f00
+   before 2E2257: 002E224B iretd  | 002E224C out 1, eax | 002E224E add eax, dword ptr [rdx] | 002E2250 adc byte ptr [rax], al | 002E2252 mov ecx, 6 | 002E2257 call 0x229f00
+   before 2E2274: 002E2268 iretd  | 002E2269 out 1, eax | 002E226B cld  | 002E226C std  | 002E226D out dx, eax
+R3 listing 00229F00..00229F10
+   00229F00 mov byte ptr [rip + 0x1e3abcd], cl
+   00229F06 ret 
+   00229F07 int3 
+   00229F08 int3 
+   00229F09 int3 
+   00229F0A int3 
+   00229F0B int3 
+   00229F0C int3 
+   00229F0D int3 
+   00229F0E int3 
+   00229F0F int3 
+R3 listing 0022B830..0022B862
+   0022B830 xor ecx, ecx
+   0022B832 call 0x2507c0
+   0022B837 mov ecx, 1
+   0022B83C call 0x32e520
+   0022B841 mov ebx, 2
+   0022B846 test eax, eax
+   0022B848 jne 0x22b861
+   0022B84A call 0x37c2e0
+   0022B84F movzx ecx, byte ptr [rip + 0x1e3927d]
+   0022B856 test eax, eax
+   0022B858 cmove ecx, ebx
+   0022B85B mov byte ptr [rip + 0x1e39272], cl
+R3 listing 0022BDA8..0022BDCC
+   0022BDA8 call 0x24b4f0
+   0022BDAD call 0x374fd0
+   0022BDB2 cmp byte ptr [rip + 0x1e38d1a], 5
+   0022BDB9 je 0x22bde0
+   0022BDBB call 0x16d6a0
+   0022BDC0 call 0x263560
+   0022BDC5 mov byte ptr [rip + 0x1e38d07], 2
+R3 listing 0022A600..0022A660
+   0022A600 movsx edx, byte ptr [rip + 0x1e3a4cc]
+   0022A607 lea eax, [rdx - 4]
+   0022A60A test eax, 0xfffffffd
+   0022A60F je 0x22a630
+   0022A611 xor ecx, ecx
+   0022A613 lea eax, [rdx - 2]
+   0022A616 mov dword ptr [rip + 0x1daa44c], ecx
+   0022A61C test eax, 0xfffffffc
+   0022A621 jne 0x22a638
+   0022A623 cmp edx, 4
+   0022A626 je 0x22a638
+   0022A628 mov dword ptr [rip + 0x1daa456], ebx
+   0022A62E jmp 0x22a644
+   0022A630 mov ecx, ebx
+   0022A632 mov dword ptr [rip + 0x1daa430], ebx
+   0022A638 xor ebx, ebx
+   0022A63A mov dword ptr [rip + 0x1daa444], ebx
+   0022A640 test ecx, ecx
+   0022A642 jne 0x22a675
+   0022A644 xor eax, eax
+   0022A646 cmp dword ptr [rip + 0x1e3a48c], eax
+   0022A64C sete al
+   0022A64F mov dword ptr [rip + 0x1e3a483], eax
+   0022A655 test ebx, ebx
+   0022A657 je 0x22a675
+   0022A659 call 0x35e6f0

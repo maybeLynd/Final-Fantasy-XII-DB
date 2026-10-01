@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-assignment-attribution-boundary\check.py", line 43, in <module>
+    if '--fault-universal-minus-one' in sys.argv:assert groups[415][0]['text'].strip().startswith('askpos('),'Universal minus-one misattributes retained original positive call'
+                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: Universal minus-one misattributes retained original positive call

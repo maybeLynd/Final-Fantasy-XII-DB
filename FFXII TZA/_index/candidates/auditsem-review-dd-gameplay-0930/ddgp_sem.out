@@ -1,0 +1,61 @@
+PASS X1 00312280 is named BattleUnit_ProcessDefeatRewardsAndLoot in the function table (the struck ...AndRetire) | BattleUnit_ProcessDefeatRewardsAndLoot
+PASS X2 counter 11 (0xB) is fed with each recipient's awarded LP: 00312484 edx=esi, 00312489 mov cl,0xb, 00312496 call 00316A50
+PASS X3 00317090 (78 B) = span * [+0xE78]u16 + [+0xE70]u16, span = level +0x1C2 - baseline +0x88; ecx=0x11; jmp 00253770
+PASS X3 00253770 is a 5-byte thunk jmp 00316A50; 002E2380 (12 B) is ecx=0x11 + jmp 00253770 (the second counter-17 feeder)
+PASS X4 the LP-to-gil test is byte +0x69 / +0x79 bit 4, i.e. bit 12 of the 16-byte layers at +0x68 / +0x78 (effect id 12) | gil += level*LP*5 (r12 + rcx + 4*rcx)
+PASS X5 00236780 (17 B) returns bit 14 of dword [[02EBF190]+4]
+PASS X5 bit 14 is set from request bit 2 of 02089344 (00239A6C test al,4 -> or [rax+4],0x4000 -> and ~4) and 00238A50 sets that bit
+PASS X6 the experience add is skipped while 00236780 is up (00312429 call, 00312430 jne over the 00312444 store)
+PASS X6 and the presentation EXP is replaced by ebp (0) under the same flag (00312505 call, 00312513 cmovne edi, ebp)
+PASS X25 sizes: 00319490 148 B, 003377C0 565 B, 00319CA0 394 B (0x18A), 00319A20 227 B | (148, 565, 394, 227)
+PASS G19 the drop is attempted only on a nonzero 00319490 answer (00312588 call, 00312597 je)
+PASS X7 002F8E50 (30 B) = (r8+1) * ecx * edx / 100 and 002F9180 (21 B) = ecx * edx / 100 (0x51EB851F, sar 5)
+PASS X7 their call sites pass base HP (stats +0x08) with row bytes +0x18/+0x19, and base MP (s16 stats +0x0C) with row +0x1D - no level
+PASS X9 the two 'affinity' dwords: rsi = stats+0x24 (002FEFAB); row +0x4C ORed into +0x38 (002FF0D3), row +0x48 into +0x3C (002FF0D9)
+PASS X8 the main value floors at 1: r15d = 1 (002FF5A7), cmp r14, r15 / jge / mov r8, r15 (002FF7B1-002FF7B6)
+PASS X10 +0x0A is read as a byte at 002F962B (ComputeModifiedResourceCostAmount) and 0031DBD2 (the class-20 filler)
+PASS G5 every +0x0A reader in the UQ-106 hop census reads one byte (so none reads +0x0B through a word); no +0x0B or +0x28 site | [('002F962B', '1'), ('00309054', '1'), ('00309178', '1'), ('00309D7E', '1')]
+PASS X11 data: 543 rows; +0x24 is 0xFFFF on 68, bit 15 set with +0x0C bit 30 clear on 39, bit 15 clear on 436 | (543, 68, 39, 436)
+PASS X11 data: +0x0B is non-zero (1-3) only on rows 182-207
+PASS X11 data: +0x3A takes 10-16 on 68 rows, 10 and 11 once each | [10, 11, 12, 13, 14, 15, 16] on 68
+PASS X11 data: +0x28 is 120-153 on 26 rows, 0xD0-0xE5 and 0xE7/0xEA/0xED/0xF1 (18 Quickenings + 8 Concurrences)
+PASS X11 data: rows 0x9C / 0x9D point at battle-text bank-0 entries 156 / 157 and carry +0x1E = 13 (GR-12)
+PASS G6 0030AC50 returns +0x24 & 0x7FFF only for bit 15 set with +0x0C bit 30 clear (0030AD10-0030AD2F)
+PASS G6 00325476 and 00325968 are cmp word [rcx+0x24], di / jne 00325702 and 003259E3, with edi = 0xFFFF (00325384)
+PASS G7 00312170 sets bit [+0x3A] (003121F5-00312203), ORs +0x13, +0x0C bits 13/14 as bits 8/9, and writes operand kind 10 via 00329E60 (0031225E)
+PASS F7 AiTargetSelector_ResolveOperandValue 00321190 is called with kind 10 by AiOrder_EvaluateTargetSelector (00303084 ecx=0xA, 00303088)
+PASS F7 ... and by 002FE660 for action ids 0x4122/0x4123 (esi = 0xA at 002FE6CD, 002FE6E7), which then sets / adds / bts / btr the value
+PASS X12 the first list runs at execution: BattleUnit_AdvanceStandardActionState calls BattleAction_EvaluateTargetPreviews at 00304F1D, which calls 00385680 at 00303910; 003859FF is its indirect step call
+PASS X13 the wait resolver dispatches kind = slot +0x14 through the table at image+0x13E3CC (0025DFF0-0025E008) | 0:0025E127 1:0025E0BE 2:0025E0BE 3:0025E027 4:0025E091 5:0025E00A 6:0025E058 7:0025E083
+PASS X13 kinds 3 and 6 store +0x27 = 1 (0025E04F, 0025E07A); kind 7 runs 0025E083 and joins kind 6's test at 0025E06E (0025E08F) | k3 0025E027 k6 0025E058 k7 0025E083
+PASS G1 control: the displacement-0x27 sweep over 0025DF00 / 0025E4C0 / 002621D0 finds the 2 sets and the 10 interpreter clears | 12 writes
+PASS G1 and finds no other access covering +0x27 there (byte or wider, any non-rip base)
+PASS G1 the two callees handed slot+0x18 (002674B0, 00267420) touch only its +4 / +0xA / +0xE (slot +0x1C/+0x22/+0x26), not +0xF | inc word ptr [rbx + 0xa]; movzx eax, word ptr [rbx + 0xa]; movzx edx, byte ptr [rbx + 0xe]; movzx edx, word ptr [rbx + 0xa]
+PASS X14 00321810 (47 B) forms [+0x6A0]+0x19 with lea and stores dl = 0 there (0032181F xor edx,edx; 00321834 mov [rcx], dl)
+PASS X15 unit flag bit 22 is set at 003130D2 (or qword [rbx], 0x400000) and cleared in 00308270 (mask 0xFFFFBFFFFFBFFFFF at 003082DF)
+PASS X15 the HUD count is two digits one per nibble, capped at 0x12 (00289DE7-00289E08)
+PASS G3 00307300 -> 0028E920 (26 B, jmp 00289D70); 0028AAA0 (1,692 B) has one caller, 00289A10 at 00289B7C, walking [+0x428] by +0x18
+PASS X16 02AEDFE4 is stored by ComputeComboChance at 00388648
+PASS X19 the return window is (int)([01DFE0B8] * 30.0) * [0208936C] (002337DE-00233801): the factor is 30 only at FrameLimit 30
+PASS X20 entry i chains only when mask 0x20>>i and 0x20>>(i+1) are both set (003016BE-003016E0), copying its own result buffer (r15) to [rsp+0x40]
+PASS X20 otherwise the next entry filters the original list (00301753 rsi = r13) into its own buffer (00301759-00301768)
+PASS X20 a non-empty entry that finds no one fails (003016AF jle 003017CB); the final pick reads buffer 0 only (003017B7)
+PASS X17 00321100 returns the index both when the class-0x17 check fails (00321130 je 00321158) and when the selector IS 0xFF (0032113D)
+PASS X18 the teardown copies 0xB0 bytes, eleven movups pairs from [rbx=+0x7A0] to [rbp=+0x6F0] (0025A6FC-0025A763)
+PASS G11 the context install 0025A180 copies [[[actor+0xC0]+0x138]+0x30..+0xDF] (a pointer at +0x138, not an inline block) to +0x7A0
+PASS G10 00359410 is PartyFocus_SetSecondaryPackedActorHandle (154 B) and calls at 00359424 / 00359499
+PASS F12 00273270 answers 0xFFFF on its two early exits (0027328F id 0, 00273299 no actor -> 002732C1 mov eax,0xffff)
+PASS F12 ... and 0 only when 0031FF70 leaves the preset: [rsp+0xCC] = 0x0000FFFF (002732A7), answer = that dword >> 16 (002732B5-002732BC)
+PASS G12 0027C625-0027C632 choose 0x9D when the entry equals the stashed item or is 0xFFFF, 0x9C otherwise (0027C637, 0027C65A)
+PASS X21 002536A0 (8 B) returns qword [020927C0]; the countB mask is 1 << (i & 7) (003166AC-003166C1)
+PASS X21 shop_first_open_entry returns a pointer: rbx zeroed (002FAD4F), set per entry (002FADB0/002FADBF), returned at 002FAE2D
+PASS G13 the transaction driver reads layout A: price dword +0x10 (0056D461), id word +8 (0056D464), bit 31 cleared (0056D468)
+PASS G13 layout B (0057DAD0) keeps the price at +8 and sets bit 31 on a zero price (0057DBCC, 0057DBDC); 0020-byte rows
+PASS G14 the list is built into widget +0xE0 (005656AE) and moved to [+0xC0 object]+0xC8, +0xE0 zeroed (0056E55A, 0056E561)
+PASS X24 the corrected subtree sizes are the extents: 563 / 143 / 233 / 1,001 / 491 / 21 B | [563, 143, 233, 1001, 491, 21]
+PASS G17 the unit install reads 02EBF148 (0023A965) and stores +0xE78 (0023A9F4)
+PASS F19 003377C0 is shared: besides 00319490 it is called from 00334E00 (x2), 00339630, 0033BD70 and taken by lea in 00317DE0 (DE-4's validator) | 00317DE0@00317E11(lea) 00319490@0031950C 00334E00@00334E65 00334E00@00335093 00339630@00339935 0033BD70@0033BE55 | 00337700: 00317DE0@00317DF7(lea) 003377C0@003379A4
+PASS F0 19 GR rows registered; draft placeholder ids leaked into the register rows GR-3 (FD-n401) and GR-8 (FD-n601) | ['GR-3', 'GR-8']
+PASS F2 the SD-160 census (af6684173, an ancestor of 797b72780) already tallies every constant both verbs pass: btlAtelSetUnitType 0-3, setfreetargettype 1/3/4/6 - GR-2 cites none of it
+PASS F16 GR-16 is a review-status row (no game question); its plan is a board review
+FAILS 0

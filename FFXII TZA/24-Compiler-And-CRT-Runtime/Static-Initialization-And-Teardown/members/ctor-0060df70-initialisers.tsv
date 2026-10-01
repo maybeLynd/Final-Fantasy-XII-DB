@@ -1,0 +1,7 @@
+# ctor-0060df70-initialisers -- EC-7 family C, XC-array cluster.
+# 2 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+001653E0	49	0060DF70	00808B90
+00169540	49	0060DF70	00808B90

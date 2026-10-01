@@ -1,0 +1,40 @@
+{
+  "section": "SECTION-08",
+  "base_and_required_overlays": [
+    {
+      "file": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_05_Encoded_ID_Query_Mechanism.zip",
+      "sha256": "afe8391d31a28a6f1c6e15f4d92a1f2d231b380bf73e1658aba850eedc6d1a24"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_06_Resource_Ownership_Lifetime.zip",
+      "sha256": "70c70a2e2d6d5bb9ecf8247750b9af68fdf9ad32df5341080468855937a6518c"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_07_Source_Movement_Refresh.zip",
+      "sha256": "4de8b1fcef86baa6364df1220b3c74c6ba30b2b9f1a53a0dfb5793ac745ded5a"
+    }
+  ],
+  "native_scaffold": "memory/ABI/arena primitives adapted from the delivered SECTION-07; prior controls not counted or rerun as new cases",
+  "historical_exports_archive": "FF12_RECONSTRUCTION_GRADE_COMPLETION_2026-09-22_211246.zip",
+  "historical_exports_sha256": "ead37fe30cd504ef5d6f3ca4dc3824d9d738862a54a2e54503a767e8a067c715"
+}

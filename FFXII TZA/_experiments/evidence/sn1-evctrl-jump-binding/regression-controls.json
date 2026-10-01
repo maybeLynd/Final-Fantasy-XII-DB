@@ -1,0 +1,23 @@
+[
+  {
+    "argument": "--fault-physical-map",
+    "returncode": 1,
+    "expected": "Original call must match continued logical source",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "3a658a10b0815a99c8d72e6f7af3d9846d409d5ec2a1743652391718241e35e6"
+  },
+  {
+    "argument": "--fault-ignore-splice-control",
+    "returncode": 1,
+    "expected": "Removing one actual continuation",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "457e6859a08f9a23b8a52e52de03cb08e7030ab2fab3daf23e6f5762eecb96c4"
+  },
+  {
+    "argument": "--fault-old-call-start",
+    "returncode": 1,
+    "expected": "Original source-call entry/variant precondition",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "48bd75001b3efe59dc75f5ec9f4a772d7d3d56b2c6f5f27edbb26c80a86a753e"
+  }
+]

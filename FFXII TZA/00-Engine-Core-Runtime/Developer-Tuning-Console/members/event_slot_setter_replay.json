@@ -1,0 +1,103 @@
+{
+ "mutant_same_name": {
+  "must_fail": [
+   "same_name_repeat"
+  ],
+  "verdict": {
+   "0001_without_sum": true,
+   "push_event_minus1": true,
+   "push_slot2": true,
+   "same_name_repeat": false,
+   "spc_": true,
+   "sum_and_spc": true,
+   "sum_with_0001": true,
+   "sum_without_0001": true
+  }
+ },
+ "mutant_sum_branch": {
+  "must_fail": [
+   "sum_with_0001",
+   "spc_"
+  ],
+  "verdict": {
+   "0001_without_sum": false,
+   "push_event_minus1": true,
+   "push_slot2": true,
+   "same_name_repeat": true,
+   "spc_": false,
+   "sum_and_spc": false,
+   "sum_with_0001": false,
+   "sum_without_0001": false
+  }
+ },
+ "ok": true,
+ "shipped": {
+  "0001_without_sum": {
+   "E8": 0,
+   "E9": 0,
+   "frees": 1,
+   "json": [],
+   "marker": -1
+  },
+  "push_event_minus1": {
+   "counter1": 0,
+   "marker": 1
+  },
+  "push_slot2": {
+   "counter2": 1,
+   "current": "spc_z0000",
+   "marker": 2
+  },
+  "same_name_repeat": {
+   "E8": 0,
+   "E9": 0,
+   "frees": 1,
+   "json": [],
+   "marker": -1
+  },
+  "spc_": {
+   "E8": 0,
+   "E9": 1,
+   "frees": 1,
+   "json": [],
+   "marker": -1
+  },
+  "sum_and_spc": {
+   "E8": 1,
+   "E9": 0,
+   "frees": 2,
+   "json": [
+    "sum_spc_0001.json"
+   ],
+   "marker": -1
+  },
+  "sum_with_0001": {
+   "E8": 1,
+   "E9": 0,
+   "frees": 2,
+   "json": [
+    "sum_a0001.json"
+   ],
+   "marker": -1
+  },
+  "sum_without_0001": {
+   "E8": 0,
+   "E9": 0,
+   "frees": 2,
+   "json": [
+    "sum_x0000.json"
+   ],
+   "marker": -1
+  }
+ },
+ "verdict": {
+  "0001_without_sum": true,
+  "push_event_minus1": true,
+  "push_slot2": true,
+  "same_name_repeat": true,
+  "spc_": true,
+  "sum_and_spc": true,
+  "sum_with_0001": true,
+  "sum_without_0001": true
+ }
+}

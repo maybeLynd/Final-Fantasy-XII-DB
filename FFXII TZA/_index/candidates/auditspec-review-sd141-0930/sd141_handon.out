@@ -1,0 +1,53 @@
+  0060890A lea rdx, [rip + 0x26af84f]
+  00608911 movups xmmword ptr [rcx + 0x40], xmm1
+  00608915 lea rcx, [rdi + 0x1e0]
+  0060891C movups xmm0, xmmword ptr [rax]
+  0060891F movups xmmword ptr [rcx], xmm0
+  00608922 movups xmm1, xmmword ptr [rax + 0x10]
+  00608926 movups xmmword ptr [rcx + 0x10], xmm1
+  0060892A movups xmm0, xmmword ptr [rax + 0x20]
+  0060892E movups xmmword ptr [rcx + 0x20], xmm0
+  00608932 movups xmm1, xmmword ptr [rax + 0x30]
+  00608936 movups xmmword ptr [rcx + 0x30], xmm1
+  0060893A movups xmm0, xmmword ptr [rax + 0x40]
+  0060893E movups xmmword ptr [rcx + 0x40], xmm0
+  00608942 movups xmm1, xmmword ptr [rax + 0x50]
+  00608946 movups xmmword ptr [rcx + 0x50], xmm1
+  0060894A movups xmm0, xmmword ptr [rax + 0x60]
+  0060894E movups xmmword ptr [rcx + 0x60], xmm0
+  00608952 movups xmm1, xmmword ptr [rax + 0x70]
+  00608956 movups xmmword ptr [rcx + 0x70], xmm1
+  0060895A movups xmm0, xmmword ptr [rax + 0x80]
+  00608961 movups xmmword ptr [rcx + 0x80], xmm0
+  00608968 movups xmm1, xmmword ptr [rax + 0x90]
+  0060896F movups xmmword ptr [rcx + 0x90], xmm1
+  00608976 movups xmm0, xmmword ptr [rax + 0xa0]
+  0060897D movups xmmword ptr [rcx + 0xa0], xmm0
+  00608984 movups xmm1, xmmword ptr [rax + 0xb0]
+  0060898B movups xmmword ptr [rcx + 0xb0], xmm1
+  00608992 lea rcx, [rdi + 0x2a0]
+  00608999 call 0x5dec50
+PASS  H1 006084B0 hands 02CB8160 in rdx to 005DEC50 (rcx = rdi + 0x2A0); rdx not rewritten in between
+  005DF3A0 d=0x2B0 w4  mov eax, dword ptr [rdx + 0x2b0]   -> global 02CB8410
+  005DF3AC d=0x2B4 w4  mov eax, dword ptr [rdx + 0x2b4]   -> global 02CB8414
+  005DEC50: 176 [rdx+d] reads, max d 0x2BC, ret at 005DF3D3, .pdata entry: None; callers ['005DF76C call', '00608999 call']
+PASS  H2 005DEC50 reads [rdx + 0x2B0] and [rdx + 0x2B4] = 02CB8410 / 02CB8414 (dword each)
+  00604879: call 0x6084b0   (preceded by lea rcx, [rbp + 0x270])
+  006047FB mov qword ptr [rbp + 0x7b8], 0
+  00604806 mov qword ptr [rbp + 0x7c0], 0
+  0060481A mov dword ptr [rbp + 0x7c8], 0x3f800000
+  00604872 lea rcx, [rbp + 0x270]
+  006048BB lea rdx, [rbp + 0x270]
+  0060490C lea rdx, [rbp + 0x270]
+  00604C12 lea rdx, [rbp + 0x270]
+  00605F33 movss xmm0, dword ptr [rbp + 0x7b4]
+  00605F44 movss xmm1, dword ptr [rbp + 0x7b0]
+  00605F55 movss xmm0, dword ptr [rbp + 0x7b8]
+  00605F66 movss xmm1, dword ptr [rbp + 0x7c0]
+  00605F77 movss xmm0, dword ptr [rbp + 0x7bc]
+  00605F88 movss xmm1, dword ptr [rbp + 0x7c4]
+  00605F99 movss xmm0, dword ptr [rbp + 0x7c8]
+  006061DB lea r8, [rbp + 0x270]
+PASS  H3 the snapshot at rbp+0x270 carries the pair at +0x550 / +0x554; 00604750 re-reads them (00605F66, 00605F88) into [r14+0x5D4] / [r14+0x5DC] and memcpy's the whole 0x598-byte snapshot (006048C2)
+  00861ED2: jmp qword ptr [rip + 0x60b28]
+FAILS 0

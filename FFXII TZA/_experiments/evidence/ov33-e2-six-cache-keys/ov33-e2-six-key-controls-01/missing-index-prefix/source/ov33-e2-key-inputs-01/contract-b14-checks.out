@@ -1,0 +1,332 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+
+== P7 (efx-and-efb-effect-containers.md)
+PASS Q1 00331990 asks MapRef_GetAuxValue0 first - 00331998  call 0x264f40
+PASS Q1 ... mode 0 - 0033199D  xor r8d, r8d
+PASS Q1 ... 00378A60(field, aux0, 0) - 003319A4  call 0x378a60
+PASS Q1 then MapRef_GetPrimaryFieldValue - 003319AB  call 0x264f10
+PASS Q1 ... mode 1 - 003319B0  mov r8d, 1
+PASS Q1 ... 00378A60(field, word +0, 1) as a tail jump - 003319BF  jmp 0x378a60
+PASS Q1 0050D4D0 (mapload) passes mode 1 - 0050D4DC  mov r8d, 1
+PASS Q1 ... and tail-jumps 00378A60 - 0050D4EA  jmp 0x378a60
+PASS Q1 00378A60 has exactly these three call sites - ['0x3319a4', '0x3319bf', '0x50d4ea']
+PASS Q1 00264F40 reads the block index (row word +2) ... - 00264F69  movsx rax, word ptr [rax + 2]
+PASS Q1 ... and the block's first word - 00264F79  movsx eax, word ptr [rcx + rax]
+PASS Q1 00264F10 returns the row's word +0 - 00264F39  movzx eax, word ptr [rax]
+PASS Q2 00378A60 keeps the mode in esi - 00378A89  mov esi, r8d
+PASS Q2 mode-1 arm: the teardown 00378230 before the request - 00378ACF  call 0x378230
+PASS Q2 mode-0 arm: skip test reads 02ADD0E0 ... - 00378AD6  mov eax, dword ptr [rip + 0x2764604]
+PASS Q2 ... skips the load when it equals 02ADD0DC - 00378AE6  je 0x378b56
+PASS Q2 the .efb request with the mode in ecx - 00378B29  mov ecx, esi
+PASS Q2 ... 00377DC0 - 00378B2B  call 0x377dc0
+PASS Q2 ... and the pack load 00378030 - 00378B41  call 0x378030
+PASS Q3 00377DC0: namespace 4 (r9d = 4 from the caller) - 00378B1A  mov r9d, 4
+PASS Q3 ... into ecx - 00377DFD  mov ecx, eax
+PASS Q3 ... the name through 002DF880 - 00377E09  call 0x2df880
+PASS Q3 the scan stops at '\' ... - 00377E69  cmp dl, 0x5c
+PASS Q3 ... or '/' - 00377E6E  cmp dl, 0x2f
+PASS Q3 stem length = length - slash - 5 (four characters off) - 00377E83  sub edi, 5
+PASS Q3 the prefix at 00D11110 is 'PS2Data\efb\'
+PASS Q3 the suffix bytes written are '.', 'e', 'f', 'b'
+PASS Q3 mode 1: completion 003788F0 - 00377F26  lea rax, [rip + 0x9c3]
+PASS Q3 ... block 0x43D170 - 00377F41  mov ecx, 0x43d170
+PASS Q3 ... kept at 02ADD050 - 00377F6F  mov qword ptr [rip + 0x27650da], rbx
+PASS Q3 ... size -1 - 00377F76  or r8d, 0xffffffff
+PASS Q3 ... requested - 00377F82  call 0x32e7b0
+PASS Q3 ... pending bit 0x20 - 00377F8E  or dword ptr [rip + 0x276515b], 0x20
+PASS Q3 mode 0: completion 003789A0 - 00377F97  lea rax, [rip + 0xa02]
+PASS Q3 ... block 0x43D170 - 00377FB2  mov ecx, 0x43d170
+PASS Q3 ... kept at 02ADD098 - 00377FE0  mov qword ptr [rip + 0x27650b1], rbx
+PASS Q3 ... size -1 - 00377FE7  or r8d, 0xffffffff
+PASS Q3 ... requested - 00377FF3  call 0x32e7b0
+PASS Q3 ... pending bit 0x40 - 00377FFF  or dword ptr [rip + 0x27650ea], 0x40
+PASS Q4 002DF880: a null name slot ... - 002DF89E  jne 0x2df8a4
+PASS Q4 ... returns -1 without a write - 002DF8A0  or eax, 0xffffffff
+PASS Q4 ... (ret) - 002DF8A3  ret 
+PASS Q4 00377DC0 does not test the return - 00377E0E  xor r15d, r15d
+PASS Q5 0032E7B0 is a jump to 0032E7C0 - 0032E7B0  jmp 0x32e7c0
+PASS Q5 0032E7C0: tail flag 1 - 0032E836  mov dword ptr [rsp + 0x28], 1
+PASS Q5 ... kind 0xFF - 0032E848  mov ecx, 0xff
+PASS Q5 ... 0032E870 - 0032E84D  call 0x32e870
+PASS Q5 0032E870 request field - 0032E8C9  call 0x32e990
+PASS Q5 0032E870 request field - 0032E92C  mov dword ptr [r10 + 0x28], esi
+PASS Q5 0032E870 request field - 0032E943  mov byte ptr [r10 + 0x21], r14b
+PASS Q5 0032E870 request field - 0032E94D  mov qword ptr [r10 + 0x38], rdi
+PASS Q5 0032E870 request field - 0032E951  mov qword ptr [r10 + 0x40], r8
+PASS Q5 0032E870 request field - 0032E969  mov word ptr [r10 + 0x22], 0
+PASS Q5 0032E870 request field - 0032E970  mov qword ptr [r10 + 0x70], rdi
+PASS Q5 0032E990: flag set -> the tail arm - 0032E9E9  jne 0x32ea1a
+PASS Q5 ... the new tail 022C51C8 - 0032EA21  mov qword ptr [rip + 0x1f967a0], rdx
+PASS Q6 the pump serves the head 022C51C0 - 0032E090  mov rbx, qword ptr [rip + 0x1f97129]
+PASS Q6 the state table: 1 -> 0032E0BD, 2 -> 0032E149, 3 and 4 -> 0032E163, 5 and 6 -> 0032E1AB - ['0x32e0bd', '0x32e149', '0x32e163', '0x32e163', '0x32e1ab', '0x32e1ab']
+PASS Q6 state 1: kind 0xFF ... - 0032E0D7  cmp al, 0xff
+PASS Q6 ... -> 002DF6C0 - 0032E111  call 0x2df6c0
+PASS Q6 ... 0 -> state 2 - 0032E127  mov byte ptr [rbx + 0x20], 2
+PASS Q6 002DF6C0 returns 0 on both branches
+PASS Q6 state 2 -> 3 - 0032E15A  mov byte ptr [rbx + 0x20], 3
+PASS Q6 state 3 waits on 0046DFE0 - 0032E163  call 0x46dfe0
+PASS Q6 0046DFE0 reports busy while the status word is -1 - 0046DFE7  cmp dword ptr [rip + 0x1cf1006], -1
+PASS Q6 0046E0E0 returns the status word 0215EFF4 - 0046E0E0  mov eax, dword ptr [rip + 0x1cf0f0e]
+PASS Q6 state = 5 + (status < 0) - 0032E1A3  sets al
+PASS Q6 ... - 0032E1A6  add al, 5
+PASS Q6 +0x22 == 0 -> the whole-file arm - 0032E1B1  je 0x32e266
+PASS Q6 state 5 -> 0032E330 - 0032E26F  call 0x32e330
+PASS Q6 otherwise -> 0032E370 - 0032E285  call 0x32e370
+PASS Q6 0032E330 calls back with ok = 1 - 0032E346  mov r8d, 1
+PASS Q6 0032E370 calls back only for a whole-file request (+0x28 == -1) - 0032E382  cmp dword ptr [rcx + 0x28], -1
+PASS Q6 ... with ok = 0 - 0032E38C  xor r8d, r8d
+PASS Q7 first branch: 0017D930 ... - 002DF6E1  call 0x17d930
+PASS Q7 ... 0017D930 tests the file-system object's +0x88 - 001D6B7B  cmp byte ptr [rax + 0x88], cl
+PASS Q7 ... 001D6EF0 - 002DF6EA  call 0x1d6ef0
+PASS Q7 ... 001D6B40(path) - 002DF6F6  call 0x1d6b40
+PASS Q7 ... the open 001D6F20(path, 1) - 002DF70C  call 0x1d6f20
+PASS Q7 ... a null open skips the read and writes no status - 002DF717  je 0x2df742
+PASS Q7 other branch: 001D6D90 - 002DF777  call 0x1d6d90
+PASS Q7 001D6D90 sets the status word to -1 - 001D6DD4  mov dword ptr [rax], 0xffffffff
+PASS Q7 ... callback 001D6D70 - 001D6DEF  lea rax, [rip - 0x86]
+PASS Q7 ... direct-callback byte - 001D6E08  mov byte ptr [rdi + 0x18], 1
+PASS Q7 ... job type 2 - 001D6E0C  mov dword ptr [rdi], 2
+PASS Q7 ... posted - 001D6E51  call 0x1a0bb0
+PASS Q8 001A07B0: type 2 -> 001A0CF0 - 001A080C  call 0x1a0cf0
+PASS Q8 001A0CF0's only caller is 001A07B0
+PASS Q8 001A0CF0: not open ... - 001A0D68  je 0x1a0d80
+PASS Q8 ... result 0xFFFFFFFE - 001A0D80  mov eax, 0xfffffffe
+PASS Q8 ... stored as the job result - 001A0D87  mov qword ptr [rbx + 0x10], rax
+PASS Q8 001A09E0 answers only for paths ending '.cm'
+PASS Q8 001A07B0 calls the job callback directly when +0x18 is set - 001A0840  cmp byte ptr [rdi + 0x18], 0
+PASS Q8 ... with the result - 001A084F  mov rcx, qword ptr [rdi + 0x10]
+PASS Q8 001D6D70 writes it to the status word - 001D6D7C  mov dword ptr [rax], ecx
+PASS Q8 the status pointer 01F82CC0 is written only by 001D6D90, 001D6FB0 and its own clear
+PASS Q9 003789A0: ok = 0 -> the failure arm - 003789C9  je 0x378a25
+PASS Q9 ... frees its own block - 00378A25  call 0x3697f0
+PASS Q9 ... clears bit 0x40 - 00378A2A  and dword ptr [rip + 0x27646bf], 0xffffffbf
+PASS Q9 ... clears 02ADD098 - 00378A31  mov qword ptr [rip + 0x276465c], 0
+PASS Q9 ok = 1 -> the stub - 003789EE  call 0x53dd10
+PASS Q9 0053DD10 is mov eax, 1 / ret
+PASS Q9 ... then publishes at 02ADD088 - 00378A0B  mov qword ptr [rip + 0x2764676], rax
+PASS Q9 003788F0 (mode 1) publishes at 02ADD088 after 0026FF90 - 0037895B  mov qword ptr [rip + 0x2764726], rax
+PASS Q9 02ADD088: written by 00377CC0, 003788F0, 003789A0 and the teardown, read only by the teardown - [(3636416, 3636538, 'W'), (3637808, 3638240, 'R'), (3637808, 3638259, 'R'), (3637808, 3638271, 'W'), (3639536, 3639643, 'W'), (3639712, 3639819, 'W')]
+PASS Q9 02ADD098 is touched only by 00377CC0, 00377DC0 and 003789A0 - [3636416, 3636672, 3639712]
+PASS Q10 001D6B40 -> 0020BE50 - 001D6B54  call 0x20be50
+PASS Q10 0020BE50 normalises through 0020C440 - 0020BF02  call 0x20c440
+PASS Q10 ... hashes through 00674A00 - 0020BF13  call 0x674a00
+PASS Q10 ... compares only the hash - 0020BF33  cmp dword ptr [rdx + 0x20], ebx
+PASS Q10 0020C440: '/' -> '\' - 0020C4D5  mov byte ptr [rcx], 0x5c
+PASS Q10 ... a doubled '\' keeps one - 0020C4EF  cmp byte ptr [rdi + 1], al
+PASS Q10 ... each byte through the CRT import at 008C2FF0 - 0020C4F7  call qword ptr [rip + 0x6b6af3]
+PASS Q10 ... trailing blanks off - 0020C523  cmp byte ptr [rbx], 0x20
+PASS Q10 008C2FF0 is toupper - toupper
+PASS Q10 00674A00: djb2 seed 0x1505 - 00674A03  mov eax, 0x1505
+PASS Q10 ... x 33 - 00674A10  imul eax, eax, 0x21
+PASS Q10 ... signed bytes - 00674A17  movsx edx, dl
+PASS Q10 ... bit 31 cleared - 00674A23  btr eax, 0x1f
+PASS Q10 the cache gains keys only through 0020B680 <- 001D6A20 <- 0059A9B0 <- 0059EE90 - ([(1927712, 1927763)], [(5876144, 5876388)], [(5893776, 5894583)])
+PASS Q10 0059A9B0 fills the entry by ReadFile from the open handle - 0059AA27  call qword ptr [rip + 0x327713]
+PASS Q10 008C2140 is ReadFile - ReadFile
+PASS Q11 map_ref.bin is MRF v2
+PASS Q11 1,315 rows - 1315
+PASS Q11 namespace 4's table is 01E5E500 (002DF9A0) - 002DF9E1  lea rax, [rip + 0x1b7eb18]
+PASS Q11 ... stored at 0215F020 = 0215F000 + 4 x 8 - 002DF9E8  mov qword ptr [rip + 0x1e7f631], rax
+PASS Q11 ... and nothing else writes 0215F020
+PASS Q11 control: 410 .efb names in the archive - 410
+PASS Q11 no mode-0 .efb name ships (1,281 fields name one) - {('absent', 'absent'): 249, ('null', 'null'): 34, ('absent', 'ships'): 945, ('absent', 'null'): 87}
+PASS Q11 mode 1 ships for 945 fields, names an absent .efb for 249, and names no package for 121 - {('absent', 'absent'): 249, ('null', 'null'): 34, ('absent', 'ships'): 945, ('absent', 'null'): 87}
+PASS Q11 34 fields' mode-0 index names no package
+PASS Q11 the two indices never name the same package - 0
+PASS Q11 control: the TSV's own_idx / block / block_idx equal the decoded rows in all 1,315 - 1315 rows
+PASS Q12 the 89 distinct mode-0 paths' keys collide with none of the 89414 archive names' keys - []
+PASS Q12 control: 00674A00 run under unicorn equals the Python key on three strings - [(2110605126, 2110605126), (888357516, 888357516), (907499069, 907499069)]
+PASS Q13 the installed game beside the archive has no loose PS2Data tree (top level: ConfigData, FFXII_TZA.vbf, FileSizeTables, x64) - []
+
+== P1 (fef-and-motion-entries.md)
+PASS A1 00504940 stores the @FEF entry pointer at +0x230 - 005049A7  mov qword ptr [rbx + 0x230], rax
+PASS A1 ... rdx = movsxd of its low dword ... - 005049B6  movsxd rdx, eax
+PASS A1 ... + 0x30 - 005049B9  add rdx, 0x30
+PASS A1 ... handed to 0016D6A0 - 005049BD  call 0x16d6a0
+PASS A1 0016D6A0 is ret 0
+PASS A1 ... and the register is not used again (next: the +0x1F8 copy) - 005049C2  mov rax, qword ptr [rbx + 0x1f8]
+PASS A2 003EDAD0 has exactly six direct call sites - ['0x26fcee', '0x2fc5d2', '0x3b0745', '0x3b226d', '0x3b2a75', '0x3b39b3']
+PASS A2 ... no rip reference to it
+PASS A2 ... and no qword in the image equals it - []
+PASS A3 0026FB90: rbp = the blob's size dword - 0026FCE2  movsxd rbp, dword ptr [r14]
+PASS A3 ... r14 += 0x10 - 0026FCE5  add r14, 0x10
+PASS A3 ... the blob pointer - 0026FCE9  mov rcx, r14
+PASS A4 01FD4A30 has one writer, the boot hub 0022A0B0 - [('0x22a0b0', '0x22a240', 'W'), ('0x22a0b0', '0x22a326', 'R'), ('0x2fc4a0', '0x2fc55b', 'R'), ('0x2fc4a0', '0x2fc5b3', 'R'), ('0x2fc860', '0x2fc956', 'R'), ('0x3b0660', '0x3b06f8', 'R'), ('0x3b2310', '0x3b23e3', 'R'), ('0x3b2310', '0x3b23f5', 'R')]
+PASS A4 ... the result of the allocation 0036D240(0x3000100) - 0022A22A  mov ecx, 0x3000100
+PASS A4 ... - 0022A236  call 0x36d240
+PASS A4 002FC4A0 passes [01FD4A30] - 002FC5B3  mov rcx, qword ptr [rip + 0x1cd8476]
+PASS A4 003B0660 loads [01FD4A30] into rbx - 003B06F8  mov rbx, qword ptr [rip + 0x1c24331]
+PASS A4 ... loads namespace 10 index 0 into it - 003B070A  lea ecx, [rdx + 0xa]
+PASS A4 ... - 003B070D  call 0x32e620
+PASS A4 ... and passes it - 003B0742  mov rcx, rbx
+PASS A4 ... index 0 - 003B06EE  xor edx, edx
+PASS A4 namespace 10's table is 01E127B8 (stored at 0215F050) - 002DF9FD  lea rax, [rip + 0x1b32db4]
+PASS A4 ... - 002DFA04  mov qword ptr [rip + 0x1e7f645], rax
+PASS A4 ... its entry 0 is c_all.efx - PS2Data\effect_finish\jp\common\c_all.efx
+PASS A4 002FC860 loads into it - 002FC956  mov r8, qword ptr [rip + 0x1cd80d3]
+PASS A4 ... - 002FC96F  call 0x32e620
+PASS A4 003B2310 loads namespace 12 into it - 003B23F0  mov ecx, 0xc
+PASS A4 ... - 003B23F5  mov r8, qword ptr [rip + 0x1c22634]
+PASS A5 003B2310 stores [01FD4A30] at the entry's +0x28 - 003B23EC  mov qword ptr [rbx + 0x28], rax
+PASS A5 003B2220 passes [entry + 0x28] - 003B2262  mov rcx, qword ptr [rbx + 0x28]
+PASS A5 003B25D0 walks 02EBE5E0 ... - 003B25FE  lea rbx, [rip + 0x2b0bfdb]
+PASS A5 ... 0x30 a step - 003B2696  add rbx, 0x30
+PASS A5 ... 32 entries - 003B269E  cmp r14d, 0x20
+PASS A5 over the 21 functions that address the table, +0x28 stores and bulk writes are: 003B1A80's 0, two rep movsq (entry moves), the 003B16B0 memset, two stack memsets, two bit clears in other tables - 003B16D0 call 0x861ec0; 003B1A06 rep movsq qword ptr [rdi], qword ptr [rsi]; 003B1B15 mov qword ptr [rbx + 0x28], rsi; 003B1C9D call 0x861ec0; 003B265B rep movsq qword ptr [rdi], qword ptr [rsi]; 003B29F7 and byte ptr [rax + 0x28], 0xfe; 003B2A56 call 0x861ec0; 003B2B77 and byte ptr [rax + 0x28], 0xfe
+PASS A5 003B1A80 writes 0 - 003B1B04  xor esi, esi
+PASS A5 003B16B0's memset is the table (02EBE5E0, 0x600 bytes) - 003B16C3  lea rcx, [rip + 0x2b0cf16]
+PASS A5 ... - 003B16CA  mov r8d, 0x600
+PASS A5 003B25D0's move copies entry + 0x30 over entry - 003B264C  mov rsi, r15
+PASS A5 003B29B0's and 003B2B40's +0x28 are bit clears in the 02EBDBE0 table - 003B29CD  lea rax, [rip + 0x2b0b20c]
+PASS A6 00558FB0 stores the 0057A2D0 result at [X + 0xD8] - 005591BB  mov qword ptr [rsi + 0xd8], rax
+PASS A6 ... and passes [X + 0xD8] - 0055920F  mov rcx, qword ptr [rbp + 0xd8]
+PASS A6 00561390 stores it - 0056177B  mov qword ptr [rsi + 0xd8], rax
+PASS A6 ... and passes it - 005614BE  mov rcx, qword ptr [rbx + 0xd8]
+PASS A6 00572E10 stores it at +0x11F8 - 00572EDF  mov qword ptr [rdi + 0x11f8], rax
+PASS A6 ... passes it - 00572F36  mov rcx, qword ptr [rdi + 0x11f8]
+PASS A6 ... then frees it - 00572F50  call 0x3697f0
+PASS A6 0057A2D0 has exactly those three callers
+PASS A6 0057A2D0 = 00249210(ctx, 7, edx + 0x31, ...) - 0057A2DF  lea r8d, [rdx + 0x31]
+PASS A6 ... - 0057A2E3  mov edx, 7
+PASS A6 ... returns [slot + 8] - 0057A2ED  mov rax, qword ptr [rax + 8]
+PASS A6 00249210 sizes the file - 00249296  call 0x32e400
+PASS A6 ... allocates - 002492CC  call 0x36a190
+PASS A6 ... keeps the buffer at [slot + 8] - 002492DE  mov qword ptr [rbx + 8], rdi
+PASS A6 ... and loads the file into it (namespace in ecx = 7) - 002492F0  mov ecx, r15d
+PASS A6 ... - 002492F3  call 0x32e620
+PASS A6 namespace 7's table is 01EDD7E0 - 002DFF78  lea rax, [rip + 0x1bfd861]
+PASS A6 ... indices 0x31..0x33 name the three menu .efx files - ['PS2Data\\effect_finish\\in\\menu\\m_all.efx', 'PS2Data\\effect_finish\\jp\\menu\\m_all2.efx', 'PS2Data\\effect_finish\\in\\menu\\m_all3.efx']
+PASS A6 the three call sites pass 0, 1 and 2 (indices 0x31, 0x32, 0x33)
+PASS A7 00409FE0: edx = dword[r14 + roundup64(size) - 4] - 0040A16F  mov edx, dword ptr [rax + r14 - 4]
+PASS A7 ... 003B38B0 - 0040A174  call 0x3b38b0
+PASS A7 003B38B0: rdi = offset + resolved base - 003B38DA  lea rdi, [rsi + rax]
+PASS A7 ... passed to 003EDAD0 - 003B39AD  mov rcx, rdi
+PASS A7 the file layer writes the model's length there (001A0CF0) - 001A0E1B  mov dword ptr [rax + rbp - 4], edi
+PASS A7 ... (001A0E50) - 001A0F4E  mov dword ptr [rax + rbp - 4], edi
+PASS A7 ... edi = the model read's byte count - 001A0DB0  mov edi, dword ptr [rbx + 0x10]
+PASS A7 ... and the companion is read at buffer + that count - 001A0DF0  add rdx, qword ptr [rsi + 0x100]
+PASS A7 144 @FEF models; in each the payload (EFX0010 at +0x30) lies below the model's length - 144
+PASS A8 namespace 12's .cm names (14 tables, 18 names): the 17 that ship all start '@FRP'; the rest are not in the archive - absent: ['ps2data/obj_finish/in/bg_obj/b00/b0015/b0015.cm']
+PASS A8 003EDAD0 tests the three EFX magics first
+PASS A9 the model instance is 0x260 bytes (00477EE0) - 00477EF3  mov edx, 0x260
+PASS A9 004780B0 resolves a model-pool entry - 004780B3  jmp 0x2ed570
+PASS A9 the binder's callback 00478270 is planted by 00478030 for 0051FF30 - 00478030  lea rdx, [rip + 0x239]
+PASS A9 0051FF30's callers: 00478030 (the model pool) and two other pools
+PASS A9 census (30 seed functions, 118 walked): +0x230 is touched at 005049A7 (the write) and two loop aliases - [('005049A7', 'w', 'B'), ('00504B8C', 'w', 'E560'), ('00504C10', 'r', 'E560')]
+PASS A9 alias 1: 005049E0's loop starts at +0x194 ... - 00504B49  lea rax, [rsi + 0x194]
+PASS A9 ... 20 dwords - 00504B96  cmp rbx, 0x14
+PASS A9 alias 2: 00504BC0's loop starts at +0x140 ... - 00504C00  lea rbx, [rax + 0x140]
+PASS A9 ... 16 dwords - 00504C07  mov edi, 0x10
+PASS A9 ... no escape, no unknown-offset access, no tagged indirect call
+PASS A9 control: the census finds batch 10's three +0x218 / +0x21C readers - ['0x5044d0', '0x504d30', '0x53ab50']
+
+== P4 (ftr-node-table.md)
+PASS G1 rbx = record + 0x1B8 (the 00373DC0 call passes rbx - 0x1B8) - 00372A98  lea rcx, [rbx - 0x1b8]
+PASS G1 00409300's output = record + 0xC0 - 00372BAF  lea r8, [rbx - 0xf8]
+PASS G1 ... - 00372BBC  call 0x409300
+PASS G1 004094D0's output = record + 0x150 - 00372BC1  lea r8, [rbx - 0x68]
+PASS G1 ... - 00372BCB  call 0x4094d0
+PASS G2 00409300: +0x3C = 1.0 - 0040936A  mov dword ptr [rdi + 0x3c], 0x3f800000
+PASS G2 bit 23 -> +0x30 - 004093A6  mov dword ptr [rdi + 0x30], ecx
+PASS G2 bit 24 -> +0x34 - 004093BD  mov dword ptr [rdi + 0x34], ecx
+PASS G2 bit 25 -> +0x38 - 004093D4  mov dword ptr [rdi + 0x38], ecx
+PASS G2 bits 26-28 as floats -> 0046D560(out, x, y, z) - 0040941B  call 0x46d560
+PASS G3 2pi at 01CEBC78 and 32768 at 00D10820
+PASS G3 0046D560: divide by 2pi, LUT 01F004E0, times 32768 - ['movss xmm5, dword ptr [rip + 0x187e70c]', 'lea r8, [rip + 0x1a92f6d]', 'movss xmm4, dword ptr [rip + 0x8a32a5]']
+PASS G3 0046D380: divide by 2pi, LUT 01F004E0, times 32768 - ['movss xmm5, dword ptr [rip + 0x187e8ec]', 'lea r8, [rip + 0x1a9314d]', 'movss xmm4, dword ptr [rip + 0x8a3485]']
+PASS G3 0046D560 masks the index to 0x7FFF - 0046D5B1  and eax, 0x7fff
+PASS G3 ... cos = index offset 0x2000 - 0046D582  mov ecx, 0x2000
+PASS G3 ... and writes rows 0-2 only (+0x00..+0x2C)
+PASS G4 004094D0: bit 21 - 004094FF  bt edx, 0x15
+PASS G4 ... sixteen dwords from the output's +0 - 00409520  mov dword ptr [r8 - 0x28], ecx
+PASS G4 ... else 0046D110 - 00409593  jmp 0x46d110
+PASS G4 0046D110 copies 01F204E0 - 0046D110  lea rdx, [rip + 0x1ab33c9]
+PASS G4 01F204E0 is the identity
+PASS G5 binder copy / scale seed - 00372BD0  mov eax, dword ptr [rbx - 0xc8]
+PASS G5 binder copy / scale seed - 00372BD6  mov dword ptr [rbx - 8], eax
+PASS G5 binder copy / scale seed - 00372BF9  mov dword ptr [rbx - 0x88], eax
+PASS G5 binder copy / scale seed - 00372C3C  mov dword ptr [rbx - 0xb0], 0x3f800000
+PASS G5 binder copy / scale seed - 00372C61  mov dword ptr [rbx + 0x20], 0x3f800000
+PASS G5 binder copy / scale seed - 00372C7D  mov dword ptr [rbx - 0x70], 0x3f800000
+PASS G6 27,561 records, every stream index inside the pool - 27561 27561
+PASS G6 the 36,871 rotation values lie in [-pi, pi] - 36871 -3.141593 3.141593
+PASS G6 every one of the 27,561 bit-21 matrices has last column (0, 0, 0, 1) - [((0.0, 0.0, 0.0, 1.0), 27561)]
+PASS G6 bit 29: 1,953 indices, all inside the pool, floats in [0.92, 1.38], 1.0 to four places in 1,697 - 1953 min 0.9249 max 1.3714 ones 1697
+
+== P6 (ftr-node-table.md)
+PASS C1 0041C260 - 0041C2E5  imul rbx, rax, 0x290
+PASS C1 0041C260 - 0041C2EF  lea rdx, [rbx + 0xc0]
+PASS C1 0041C260 - 0041C2F6  lea rcx, [rbx + 0x120]
+PASS C1 0041C260 - 0041C2FD  call 0x46d730
+PASS C1 0041C260 - 0041C302  mov eax, dword ptr [rbx + 0xf0]
+PASS C1 0041C260 - 0041C30F  mov dword ptr [rbx + 0x130], eax
+PASS C1 0041C260 - 0041C33B  mov eax, dword ptr [rbx + 0x100]
+PASS C1 0041C260 - 0041C359  mov dword ptr [rbx + 0x148], eax
+PASS C2 00373860 - 00373974  imul rbx, rax, 0x290
+PASS C2 00373860 - 00373998  mov dword ptr [rbx + 0x284], eax
+PASS C2 00373860 - 0037399E  movzx eax, word ptr [rbx + 0x270]
+PASS C2 00373860 - 003739AB  movzx eax, word ptr [rbx + 0x276]
+PASS C2 00373860 - 003739C2  lea rsi, [rdi + 0x80]
+PASS C2 00373860 - 003739CB  sub rsi, -0x80
+PASS C2 00373860 - 003739DD  test byte ptr [rbx + 0x280], 0x10
+PASS C2 00373860 - 003739EA  lea rdx, [rbx + 0x1a0]
+PASS C2 00373860 - 00373A04  lea r8, [rbx + 0xc0]
+PASS C2 00373860 - 00373ACC  lea r8, [rbx + 0x230]
+PASS C2 00373860 - 00373B3E  lea r8, [rbx + 0x150]
+PASS C2 00373860 - 00373A3C  lea r8, [rbx + 0x1c0]
+PASS C2 00373860 - 00373A43  lea rdx, [rbx + 0xf0]
+PASS C2 00373860 - 00373A68  lea r8, [rbx + 0x1e0]
+PASS C2 00373860 - 00373A6F  lea rdx, [rbx + 0x100]
+PASS C2 00373860 - 00373A80  movss xmm0, dword ptr [rbx + 0x10c]
+PASS C2 00373860 - 00373B58  lea r9, [rbx + 0x100]
+PASS C2 00373860 - 00373B66  lea rax, [rbx + 0x150]
+PASS C2 00373860 - 00373B6D  lea r8, [rbx + 0x230]
+PASS C2 00373860 - 00373B79  lea rdx, [rbx + 0xc0]
+PASS C2 00373860 - 00373B85  call 0x372610
+PASS C2 00373860 - 00373BE0  movsx rax, word ptr [rbx + 0x27e]
+PASS C2 00373860 - 00373BF7  movups xmm0, xmmword ptr [rcx + rdi + 0x80]
+PASS C2 00373860 - 00373C26  mov ecx, dword ptr [rcx + rdi + 0x284]
+PASS C3 00372610 - 0037266C  call 0x202d70
+PASS C3 00372610 - 00372679  lea rcx, [rip + 0x27677c0]
+PASS C3 00372610 - 00372680  call 0x202d70
+PASS C3 00372610 - 00372685  movss xmm2, dword ptr [rsi]
+PASS C3 00372610 - 003726C6  movss xmm2, dword ptr [rsi + 0xc]
+PASS C3 00372610 - 003726DC  mov r8, rdi
+PASS C3 00372610 - 003726E4  lea rcx, [rip + 0x2767795]
+PASS C3 00372610 - 003726EB  call 0x202d70
+PASS C3 00373860 copies 02AD9E40 to +0x80 - 00373B9C  lea rdx, [rip + 0x276629d]
+PASS C3 ... and 02AD9E80 to the +0x284 matrix - 00373BAE  lea rdx, [rip + 0x27662cb]
+PASS C4 00418880 - 0041947A  imul r15, rax, 0x290
+PASS C4 00418880 - 00419486  movzx eax, byte ptr [r15 + 0x28a]
+PASS C4 00418880 through r15 (the bone; r15 holds the owner elsewhere in the body): writes the local matrix +0xC0..+0xFF and +0x100..+0x10C, reads the staging +0x190 / +0x1A0 / +0x1B0 / +0x1D0 groups, and +0x280 / +0x28A - [('0x0', 'r'), ('0x100', 'w'), ('0x104', 'w'), ('0x108', 'w'), ('0x10c', 'w'), ('0x190', 'r'), ('0x194', 'r'), ('0x198', 'r'), ('0x1a0', 'r'), ('0x1a4', 'r'), ('0x1a8', 'r'), ('0x1b0', 'r'), ('0x1b4', 'r'), ('0x1b8', 'r'), ('0x1bc', 'r'), ('0x1d0', 'r'), ('0x1d4', 'r'), ('0x1d8', 'r'), ('0x1dc', 'r'), ('0x280', 'rw'), ('0x28a', 'rw'), ('0xc', 'rw'), ('0xc0', 'w'), ('0xd0', 'w'), ('0xe0', 'w'), ('0xf0', 'w'), ('0xf4', 'w'), ('0xf8', 'w'), ('0xfc', 'w')]
+PASS C5 003703A0 - 00370738  lea rdx, [r8 + 0x150]
+PASS C5 003703A0 - 0037073F  imul rcx, rax, 0x290
+PASS C5 003703A0 - 0037074D  call 0x202d60
+PASS C5 003703A0 - 0037075A  add rdx, 0x150
+PASS C5 003703A0 - 0037077C  sub rdx, -0x80
+PASS C5 003703A0 - 00370787  call 0x202d70
+PASS C5 003703A0 - 003707C6  mov rcx, qword ptr [rsi + 0x6c0]
+PASS C6 the skeleton pool is the render root's +0xD98 (0041F340 -> 0046E4D0 -> 00372820) - 0041F404  mov rsi, qword ptr [rax + 0xd98]
+PASS C6 control: the census finds the binder's two writes and 003713C0's two - [(3609536, 3609653), (3609536, 3609705), (3614752, 3614996), (3614752, 3615145)]
+PASS C6 +0x94 is read by 28 functions (104 sites, 60 seed functions, 110 walked) - 003703A0 00370E20 003713C0 00372710 003B8260 003E6DF0 003E6F90 003E7040 00417F40 0041D220 0041D560 0041DD40 004213E0 004215A0 00421B00 00422940 00427320 0042BDE0 0042BED0 0042C410 0042C8F0 0042D8B0 0042DCD0 0042DD90 0042E690 005201B0 00520320 00520E90
+PASS C6 every read loads ecx and the next call or jump on each path is 0020E600, with rcx untouched
+PASS C6 003713C0 hands the resolved tail to 003E1C50 - 00371487  call 0x3e1c50
+
+== P3 / P5 (ftr-node-table.md)
+PASS B1 the binder reads the authored flag word only as 'test 0x100' (twice)
+PASS B1 ... and the link word at +0 - 00372B15  mov ecx, dword ptr [r14]
+PASS B2 003E5AD0: ids below 0x20 ... - 003E5AE7  cmp edx, 0x20
+PASS B2 ... index the u16 table at +0x14C - 003E5AEF  movzx eax, word ptr [rcx + rax*2 + 0x14c]
+PASS B2 ... 0x104 -> payload +0x3A - 003E5B00  movzx eax, word ptr [r8 + 0x3a]
+PASS B2 ... 0x105 -> +0x3C - 003E5B0E  movzx eax, word ptr [r8 + 0x3c]
+PASS B2 ... 0x106 -> +0x3E - 003E5B1C  movzx eax, word ptr [r8 + 0x3e]
+PASS B2 0041F010 mode 0: the slot's bone word from FCP section 3 - 0041F158  movzx eax, word ptr [rax + rbp*2]
+PASS B2 the trail resolver 003711D0 compares the index with the skeleton's +0x88 count - 00371215  movsx ecx, word ptr [rbx + 0x88]
+PASS B2 ... and refuses one at or past it - 0037121F  cmp ebp, ecx
+PASS D1 the FCP page records UQ-220 ANSWERED 2026-09-26 (FABLE): section 2 is the rig of seventeen controllers
+
+== control
+PASS Z1 extract == archive: ps2data/obj_finish/in/monster/m11/m1132/m1132.cm
+PASSES 317
+FAILS 0

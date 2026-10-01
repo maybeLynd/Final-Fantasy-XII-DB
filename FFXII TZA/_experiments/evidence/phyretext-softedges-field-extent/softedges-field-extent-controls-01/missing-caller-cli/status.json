@@ -1,0 +1,14 @@
+{
+  "name": "missing-caller-cli",
+  "status": "PASS_EXPECTED_UPSTREAM_FAIL",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-field-extent.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\missing-caller-cli",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\missing-caller-cli\\MUST-NOT-EXIST.json"
+  ],
+  "exit": 1,
+  "result_exists": false,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "0099c3bea0ef2a00120463c2aa61b647c0223fb06d6036ac7e4c4f3f47f38c1f"
+}

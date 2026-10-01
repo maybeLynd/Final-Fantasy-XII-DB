@@ -1,0 +1,782 @@
+{
+ "view": "executable",
+ "title": "Executable - every .text byte once, and the function-level dimensions",
+ "status": "PARTIAL",
+ "source": {
+  "identity": "image 73461d089620; functions.tsv c0e1de8f650f; COVERAGE-DIMENSIONS.md af8622e4eac8",
+  "as_of": "2026-09-29T13:55:42Z",
+  "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image; program_coverage.py",
+  "limits": "byte classes are the boundary axis; behavior (READ / EXPLAINED) and observed execution are UNMEASURED here; data inside .text other than held rows is counted as UNKNOWN until a ruling classifies it; the fill rule is single-byte: multi-byte NOP fill counts as UNKNOWN, and a CC/90 byte inside unclassified data would count as fill"
+ },
+ "measures": [
+  {
+   "id": "bytes-listed",
+   "label": "bytes in listed function bodies (population)",
+   "numerator": 7428490,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 7428490,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 7428490,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "bytes-frontier",
+   "label": "bytes in UC-1 frontier bodies (population, unexplained by ruling)",
+   "numerator": 22709,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)",
+   "direction": "down",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 22709,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 22709,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "bytes-funclet",
+   "label": "bytes in EH funclets (code outside the population)",
+   "numerator": 59737,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 59737,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 59737,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "bytes-held",
+   "label": "bytes in held rows (declared uncertainty, never counted as code)",
+   "numerator": 3795,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)",
+   "direction": "down",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 3795,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 3795,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "bytes-fill",
+   "label": "alignment fill: runs of int3 (CC) / nop (90) bytes outside every body",
+   "numerator": 265234,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 265234,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 265234,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "bytes-unknown",
+   "label": "UNKNOWN bytes (no body, no held row, not fill)",
+   "numerator": 217016,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)",
+   "direction": "down",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 217016,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 217016,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "bytes-overlap",
+   "label": "bytes claimed by more than one population body (counted once above)",
+   "numerator": 1759,
+   "denominator": 7996981,
+   "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "listed extents that overlap a neighbour",
+   "direction": "down",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 1759,
+     "denominator": 7996981
+    },
+    "new": {
+     "numerator": 1759,
+     "denominator": 7996981
+    }
+   }
+  },
+  {
+   "id": "population",
+   "label": "functions in the population (34269 listed + 795 frontier = 35064 (series break 2026-09-28; 25 held, 5 extended, 1 removed))",
+   "numerator": 35064,
+   "denominator": null,
+   "scope": "uc1_band.apply",
+   "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "a versioned population; admitted frontier bodies are not explained",
+   "direction": "none"
+  },
+  {
+   "id": "compiler-template-generated",
+   "label": "compiler/template generated",
+   "numerator": 9319,
+   "denominator": 38161,
+   "scope": "1. Discovery \u2014 what exists",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 9319,
+     "denominator": 38161
+    },
+    "new": {
+     "numerator": 9319,
+     "denominator": 38161
+    }
+   }
+  },
+  {
+   "id": "thunks",
+   "label": "thunks",
+   "numerator": 998,
+   "denominator": 38161,
+   "scope": "1. Discovery \u2014 what exists",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 998,
+     "denominator": 38161
+    },
+    "new": {
+     "numerator": 998,
+     "denominator": 38161
+    }
+   }
+  },
+  {
+   "id": "authored-functions-neither-",
+   "label": "authored functions (neither)",
+   "numerator": 28661,
+   "denominator": 38161,
+   "scope": "1. Discovery \u2014 what exists",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 28661,
+     "denominator": 38161
+    },
+    "new": {
+     "numerator": 28661,
+     "denominator": 38161
+    }
+   }
+  },
+  {
+   "id": "authored-functions-with-a-semantic-name",
+   "label": "authored functions with a semantic name",
+   "numerator": 1270,
+   "denominator": 28661,
+   "scope": "2. Identity \u2014 naming and ownership",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 1270,
+     "denominator": 28661
+    },
+    "new": {
+     "numerator": 1270,
+     "denominator": 28661
+    }
+   }
+  },
+  {
+   "id": "authored-functions-with-an-owner-assigne",
+   "label": "authored functions with an owner assigned",
+   "numerator": 9238,
+   "denominator": 28661,
+   "scope": "2. Identity \u2014 naming and ownership",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 9238,
+     "denominator": 28661
+    },
+    "new": {
+     "numerator": 9238,
+     "denominator": 28661
+    }
+   }
+  },
+  {
+   "id": "authored-functions-cited-anywhere-in-a-s",
+   "label": "authored functions cited anywhere in a system document",
+   "numerator": 14290,
+   "denominator": 28661,
+   "scope": "3. Citation \u2014 a proxy for attention, **not** for understanding",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 14290,
+     "denominator": 28661
+    },
+    "new": {
+     "numerator": 14290,
+     "denominator": 28661
+    }
+   }
+  },
+  {
+   "id": "authored-functions-in-a-document-s-key-a",
+   "label": "authored functions in a document's Key addresses table",
+   "numerator": 2083,
+   "denominator": 28661,
+   "scope": "3. Citation \u2014 a proxy for attention, **not** for understanding",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 2083,
+     "denominator": 28661
+    },
+    "new": {
+     "numerator": 2083,
+     "denominator": 28661
+    }
+   }
+  },
+  {
+   "id": "recorded-only-in-a-tsv-side-file-explain",
+   "label": "recorded only in a `.tsv` side file, explained by no document",
+   "numerator": 12928,
+   "denominator": 28661,
+   "scope": "3. Citation \u2014 a proxy for attention, **not** for understanding",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "down",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 12928,
+     "denominator": 28661
+    },
+    "new": {
+     "numerator": 12928,
+     "denominator": 28661
+    }
+   }
+  },
+  {
+   "id": "edges-whose-caller-is-an-eh-funclet-hand",
+   "label": "edges whose caller is an EH funclet/handler (excluded)",
+   "numerator": 3834,
+   "denominator": 90525,
+   "scope": "4. Callgraph \u2014 with banned-evidence edges removed",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 3834,
+     "denominator": 90525
+    },
+    "new": {
+     "numerator": 3834,
+     "denominator": 90525
+    }
+   }
+  },
+  {
+   "id": "authored-functions-with-1-non-eh-caller",
+   "label": "authored functions with >=1 non-EH caller",
+   "numerator": 18463,
+   "denominator": 28661,
+   "scope": "4. Callgraph \u2014 with banned-evidence edges removed",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 18463,
+     "denominator": 28661
+    },
+    "new": {
+     "numerator": 18463,
+     "denominator": 28661
+    }
+   }
+  },
+  {
+   "id": "of-those-having-at-least-one-writer",
+   "label": "of those, having at least one writer",
+   "numerator": 11224,
+   "denominator": 35879,
+   "scope": "5. Globals \u2014 readers and writers",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 11224,
+     "denominator": 35879
+    },
+    "new": {
+     "numerator": 11224,
+     "denominator": 35879
+    }
+   }
+  },
+  {
+   "id": "of-those-cited-in-any-system-document",
+   "label": "of those, cited in any system document",
+   "numerator": 3830,
+   "denominator": 35879,
+   "scope": "5. Globals \u2014 readers and writers",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 3830,
+     "denominator": 35879
+    },
+    "new": {
+     "numerator": 3830,
+     "denominator": 35879
+    }
+   }
+  },
+  {
+   "id": "accesses-in-the-committed-artifact",
+   "label": "accesses in the committed artifact",
+   "numerator": 1,
+   "denominator": 41,
+   "scope": "6. Types and fields",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 1,
+     "denominator": 41
+    },
+    "new": {
+     "numerator": 1,
+     "denominator": 41
+    }
+   }
+  },
+  {
+   "id": "distinct-offsets",
+   "label": "distinct offsets",
+   "numerator": 1,
+   "denominator": 26,
+   "scope": "6. Types and fields",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 1,
+     "denominator": 26
+    },
+    "new": {
+     "numerator": 1,
+     "denominator": 26
+    }
+   }
+  },
+  {
+   "id": "contributing-functions",
+   "label": "contributing functions",
+   "numerator": 1,
+   "denominator": 5,
+   "scope": "6. Types and fields",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 1,
+     "denominator": 5
+    },
+    "new": {
+     "numerator": 1,
+     "denominator": 5
+    }
+   }
+  },
+  {
+   "id": "types-in-the-store",
+   "label": "types in the store",
+   "numerator": 444,
+   "denominator": 457,
+   "scope": "6. Types and fields",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 444,
+     "denominator": 457
+    },
+    "new": {
+     "numerator": 444,
+     "denominator": 457
+    }
+   }
+  },
+  {
+   "id": "of-those-non-phyre",
+   "label": "of those, non-Phyre",
+   "numerator": 109,
+   "denominator": 122,
+   "scope": "6. Types and fields",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "none",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 109,
+     "denominator": 122
+    },
+    "new": {
+     "numerator": 109,
+     "denominator": 122
+    }
+   }
+  },
+  {
+   "id": "behavioural-contracts",
+   "label": "behavioural contracts",
+   "numerator": 47,
+   "denominator": 333,
+   "scope": "7. Documents \u2014 status, confidence, contracts, runtime validation",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 47,
+     "denominator": 333
+    },
+    "new": {
+     "numerator": 47,
+     "denominator": 333
+    }
+   }
+  },
+  {
+   "id": "of-those-at-contract-ready-or-beyond",
+   "label": "of those at `CONTRACT READY` or beyond",
+   "numerator": 14,
+   "denominator": 47,
+   "scope": "7. Documents \u2014 status, confidence, contracts, runtime validation",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 14,
+     "denominator": 47
+    },
+    "new": {
+     "numerator": 14,
+     "denominator": 47
+    }
+   }
+  },
+  {
+   "id": "documents-citing-any-runtime-live-proces",
+   "label": "documents citing any runtime/live-process evidence",
+   "numerator": 17,
+   "denominator": 333,
+   "scope": "7. Documents \u2014 status, confidence, contracts, runtime validation",
+   "instrument": "program_coverage.py (COVERAGE-DIMENSIONS.md)",
+   "as_of": "2026-09-29T13:55:42Z",
+   "limits": "as generated; citation is attention, not understanding",
+   "direction": "up",
+   "delta": {
+    "pp": 0.0,
+    "old": {
+     "numerator": 17,
+     "denominator": 333
+    },
+    "new": {
+     "numerator": 17,
+     "denominator": 333
+    }
+   }
+  }
+ ],
+ "rows": {
+  "columns": [
+   "largest UNKNOWN gaps",
+   "bytes",
+   "next body"
+  ],
+  "data": [
+   [
+    "0013C730..0014750F",
+    44511,
+    "00147B00"
+   ],
+   [
+    "0012AC90..0012B978",
+    3304,
+    "0012B980"
+   ],
+   [
+    "00133BC0..00134892",
+    3282,
+    "00147B00"
+   ],
+   [
+    "0015765C..001580EB",
+    2703,
+    "00158B40"
+   ],
+   [
+    "001580EC..00158B33",
+    2631,
+    "00158B40"
+   ],
+   [
+    "001560EC..00156B14",
+    2600,
+    "00158B40"
+   ],
+   [
+    "00156C4C..0015764F",
+    2563,
+    "00158B40"
+   ],
+   [
+    "00153752..0015410F",
+    2493,
+    "00158B40"
+   ],
+   [
+    "00152362..00152CFA",
+    2456,
+    "00158B40"
+   ],
+   [
+    "001505C0..00150EF1",
+    2353,
+    "00158B40"
+   ],
+   [
+    "00152E22..00153751",
+    2351,
+    "00158B40"
+   ],
+   [
+    "00134EA7..001356D4",
+    2093,
+    "00147B00"
+   ],
+   [
+    "0012A510..0012AC8B",
+    1915,
+    "0012B980"
+   ],
+   [
+    "00129BE5..0012A289",
+    1700,
+    "0012A290"
+   ],
+   [
+    "0013BD20..0013C37A",
+    1626,
+    "00147B00"
+   ],
+   [
+    "00147510..00147AF2",
+    1506,
+    "00147B00"
+   ],
+   [
+    "001309F7..00130FD6",
+    1503,
+    "00133B40"
+   ],
+   [
+    "0015558C..00155B64",
+    1496,
+    "00158B40"
+   ],
+   [
+    "00134911..00134EA6",
+    1429,
+    "00147B00"
+   ],
+   [
+    "0012C8EC..0012CE80",
+    1428,
+    "00133B40"
+   ],
+   [
+    "00154ACC..0015505F",
+    1427,
+    "00158B40"
+   ],
+   [
+    "001518C2..00151E3F",
+    1405,
+    "00158B40"
+   ],
+   [
+    "00150EF2..00151406",
+    1300,
+    "00158B40"
+   ],
+   [
+    "0014C870..0014CCF0",
+    1152,
+    "00158B40"
+   ],
+   [
+    "00155B65..00155FE4",
+    1151,
+    "00158B40"
+   ],
+   [
+    "0012E4C0..0012E922",
+    1122,
+    "00133B40"
+   ],
+   [
+    "00151E40..00152274",
+    1076,
+    "00158B40"
+   ],
+   [
+    "00133710..00133B40",
+    1072,
+    "00133B40"
+   ],
+   [
+    "00139753..00139B3B",
+    1000,
+    "00147B00"
+   ],
+   [
+    "00151407..001517ED",
+    998,
+    "00158B40"
+   ]
+  ]
+ },
+ "definition": "v1",
+ "delta_basis": {
+  "generation": "g20260929T134925Z-df1756",
+  "committed_at": "2026-09-29T13:49:29Z"
+ }
+}

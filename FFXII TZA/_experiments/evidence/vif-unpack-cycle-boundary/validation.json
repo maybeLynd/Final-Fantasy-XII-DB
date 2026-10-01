@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "valid_original_returns": 11,
+  "controlled_guest_faults": 1,
+  "cases": 12,
+  "controls": [
+    {
+      "name": "missing-source-observer",
+      "rejected": true
+    },
+    {
+      "name": "actual-read-end-substituted-for-return",
+      "rejected": true
+    },
+    {
+      "name": "universal-stride-error-at-CL1",
+      "rejected": true
+    },
+    {
+      "name": "next-header-not-observed",
+      "rejected": true
+    },
+    {
+      "name": "guard-fault-promoted-to-completion",
+      "rejected": true
+    },
+    {
+      "name": "positive-format-control-broken",
+      "rejected": true
+    },
+    {
+      "name": "changed-original-body",
+      "rejected": true
+    },
+    {
+      "name": "zero-case-run",
+      "rejected": true
+    }
+  ],
+  "reran_original_code": false
+}

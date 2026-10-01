@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control-bts-primary-admission.py"
+  ],
+  "driver_sha256": "6da917dbcd49e93bd1b6815fcf38381fafe49d2b9cc18403634e89d83f21657a"
+}

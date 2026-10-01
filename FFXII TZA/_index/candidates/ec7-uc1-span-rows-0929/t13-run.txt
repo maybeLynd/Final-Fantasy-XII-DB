@@ -1,0 +1,17 @@
+PPFX       {'bodies': 733, 't1 pass': 733, 't3 callers pass': 731, 't3 callees pass': 733, 't1+t3 pass': 731, 'unreferenced': 617}
+SEAD       {'bodies': 1, 't1 pass': 1, 't3 callers pass': 1, 't3 callees pass': 1, 't1+t3 pass': 1, 'unreferenced': 0}
+libvorbis  {'bodies': 17, 't1 pass': 17, 't3 callers pass': 17, 't3 callees pass': 17, 't1+t3 pass': 17, 'unreferenced': 17}
+libvpx     {'bodies': 4, 't1 pass': 4, 't3 callers pass': 4, 't3 callees pass': 4, 't1+t3 pass': 4, 'unreferenced': 0}
+wrote 731 -> 23-Third-Party-Libraries/PostEffects-Yebis-PPFX/members/ppfx-span-uc1.tsv
+wrote 1 -> 18-Audio/members/sead-span-uc1.tsv
+wrote 4 -> 23-Third-Party-Libraries/members/libvpx-vp8-decoder-uc1.tsv
+PPFX TEST 1 control: census entry 006DA860 just below the span -> refused
+PPFX TEST 3 control: the family's 1610 listed members through the same test - callers FAIL 452, callees FAIL 1
+SEAD TEST 1 control: census entry 007A4310 just below the span -> refused
+SEAD TEST 3 control: the family's 1127 listed members through the same test - callers FAIL 181, callees FAIL 0
+libvorbis TEST 1 control: census entry 00880020 just below the span -> refused
+libvorbis TEST 3 control: the family's 116 listed members through the same test - callers FAIL 57, callees FAIL 0
+libvpx TEST 1 control: census entry 0016DA60 just below the span -> refused
+libvpx TEST 3 control: the family's 116 listed members through the same test - callers FAIL 29, callees FAIL 4
+TEST 3 sensitivity: of 40 UC-1 bodies outside every span, 39 fail the PPFX reference test (e.g. 00125753 0017E760 0017E780 00195340)
+reference kinds into UC-1 bodies: {'branch': 152, 'call': 3, 'dir64:.data': 2, 'dir64:.rdata': 4, 'raw-only': 5, 'rip': 1, 'rva32:.rdata': 251}

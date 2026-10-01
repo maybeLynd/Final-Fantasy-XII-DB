@@ -1,0 +1,54 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"A23_EVIDENCE_SLICE_VALID_NOT_ACCEPTED\", \"generation\": \"g20260929T184345Z-92fe9f\", \"progress\": \"PARTIAL\", \"overview\": \"OK\", \"historical_zip_generation\": \"g20260929T075521Z-fbf2f8\", \"a23\": \"INCOMPLETE_NOT_ACCEPTED\"}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "375904a489ed551bf43aefb615e94ecf86ccb215c4a6db61661fc39276c2018a"
+  },
+  {
+    "case": "failed-verifier",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\preflight-cases\\failed-verifier\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\preflight-cases\\failed-verifier\\check.py\", line 24, in <module>\n    assert vr['terminal'] is True and vr['returncode']==0 and not vr['stderr']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "375904a489ed551bf43aefb615e94ecf86ccb215c4a6db61661fc39276c2018a"
+  },
+  {
+    "case": "changed-served-view",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\preflight-cases\\changed-served-view\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\preflight-cases\\changed-served-view\\check.py\", line 15, in <module>\n    assert r['status']==200 and r['bytes']>0 and sha(W/r['body_file'])==r['sha256']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "375904a489ed551bf43aefb615e94ecf86ccb215c4a6db61661fc39276c2018a"
+  },
+  {
+    "case": "fictional-a23-pass",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\preflight-cases\\fictional-a23-pass\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\preflight-cases\\fictional-a23-pass\\check.py\", line 58, in <module>\n    assert verdict['item']=='A23' and verdict['status']=='INCOMPLETE_NOT_ACCEPTED'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "375904a489ed551bf43aefb615e94ecf86ccb215c4a6db61661fc39276c2018a"
+  }
+]

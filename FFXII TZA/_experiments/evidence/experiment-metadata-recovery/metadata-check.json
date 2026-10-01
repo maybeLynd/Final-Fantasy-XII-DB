@@ -1,0 +1,354 @@
+{
+  "scope": "Metadata parsing and retained-byte integrity only; no original-code rerun, live validation or semantic closure.",
+  "records": [
+    {
+      "record": "EXP-037-command-observer.md",
+      "original_body_sha256": "d01d5b86273fe3b87b2ee5d01c1b912d6d3e1871944dfcf460938f332acf4930",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 5,
+      "parsed_evidence_class": "offline preparation",
+      "contract": "none - Observer preparation with mocked process memory and time; no game-behavior contract observation."
+    },
+    {
+      "record": "EXP-038-handler-stack.md",
+      "original_body_sha256": "51013c62e9c41d215d730ea1a33ed65c6fc1753c286e052729201af31f2a8f67",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 10,
+      "parsed_evidence_class": "offline preparation",
+      "contract": "none - Stack-capture preparation with mocked APIs; no FF12 handler or native fixture execution in this record."
+    },
+    {
+      "record": "EXP-039-stack-native-control.md",
+      "original_body_sha256": "54281336dc6f82823353a4555b00fb4f1a2bbee07e9cbe633ad21ed0f48b9687",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 16,
+      "parsed_evidence_class": "native instrument control",
+      "contract": "none - Disposable generated native fixture validates instrumentation; it executes no shipping FF12 instructions."
+    },
+    {
+      "record": "EXP-040-cancel-snapshot-control.md",
+      "original_body_sha256": "84520df8bd93d6d5b3a7d9445f98ca7ceb28a01153098188d10f861cdbe59aaa",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 10,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../07-Combat-Action/CONTRACT-commit-action.md"
+    },
+    {
+      "record": "EXP-041-config-pointer-closure.md",
+      "original_body_sha256": "20654a8458ae5cd4afbcc4434a89673fc8236728e32514fbbcc71d5d923ff7c2",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "retained-evidence assessment",
+      "contract": "../19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md"
+    },
+    {
+      "record": "EXP-042-command-source-refresh.md",
+      "original_body_sha256": "302368eed8c312433f0d6882a7008735e3a87a75d864934dda3ed6c688835e44",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 5,
+      "parsed_evidence_class": "offline preparation",
+      "contract": "none - Observer source-pin refresh and mocked controls; no new game-behavior observation."
+    },
+    {
+      "record": "EXP-043-target-buffer-boundary.md",
+      "original_body_sha256": "bc6544a11606a8cea403cbae677a8655f9c7e87d1857dcfd336df908bab3943d",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../07-Combat-Action/CONTRACT-battle-target-buffer.md"
+    },
+    {
+      "record": "EXP-044-check-verdict.md",
+      "original_body_sha256": "5f281778bf8137e5dbf869fbd4eb42010ea7ba99b33a3e719d27abc4c03a915e",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "offline tool reproduction",
+      "contract": "none - Runtime-checker verdict reproduction and repair under fake process boundaries; not a game operation."
+    },
+    {
+      "record": "EXP-045-observer-repaired-dependency.md",
+      "original_body_sha256": "80c0ef4b63cacb6cb57cc3af0dee04fd498bcdb0aa699807702b3d24048fe800",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "offline preparation",
+      "contract": "none - Observer dependency qualification under fake memory and time; no native game observation."
+    },
+    {
+      "record": "EXP-046-target-buffer-reset.md",
+      "original_body_sha256": "81fce649234a96b1b0b71192d3c40c673ad437c9d2a7f5281dcdd74993b0d886",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 5,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../07-Combat-Action/CONTRACT-battle-target-buffer.md"
+    },
+    {
+      "record": "EXP-047-attacker-mask-reset.md",
+      "original_body_sha256": "9bed00b301583ed0dc82b868aa5b2436243cb6c8c2347880cf07a7574c364bd5",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../07-Combat-Action/CONTRACT-commit-action.md"
+    },
+    {
+      "record": "EXP-048-handle-discriminator-advance.md",
+      "original_body_sha256": "14de801a1fb8d131cfdd8a691745e4bb81f53ab656c35638336b73b9938906fa",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 9,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../04-Actor-Entity/CONTRACT-field-runtime-pass.md"
+    },
+    {
+      "record": "EXP-049-handle-renewal-focus.md",
+      "original_body_sha256": "013446a06b255512cc6b62f447e517b4412258b9a48e91a59500c5c5fe2b5de4",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 13,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../04-Actor-Entity/CONTRACT-field-runtime-pass.md"
+    },
+    {
+      "record": "EXP-050-focus-fallback-selection.md",
+      "original_body_sha256": "6c8623cf2ac7dfc999cc7e331a9692c2a96ee9276cc619319e7459630e1f8c96",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 5,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Focus fallback selection 00326500 is outside the existing party-slot assignment contract; its native queries and dispatcher are omitted."
+    },
+    {
+      "record": "EXP-051-focus-commit-reentrancy.md",
+      "original_body_sha256": "d6361934d771af7cbdb185dcc3815e2e763f811ede9b37d21b0cfbca398014b0",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Deferred focus commit 00358BC0 is outside the existing party-slot assignment contract; controlled teardown changes do not prove native reentrancy."
+    },
+    {
+      "record": "EXP-052-loot-pickup-selection.md",
+      "original_body_sha256": "9c3eae8297d73e38c8d6b784b5d58926caae07db5c8d1e60c61c5f4dbd869ef8",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies linked-list loot selection 00319850; experience and licence award is a different operation."
+    },
+    {
+      "record": "EXP-053-loot-overlap-controls.md",
+      "original_body_sha256": "022ad71125031882c524bece6412e3456da0d2755aeb042758b92f218e520df2",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 9,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies overlap pickup search 002FB150; geometry and selection evidence remain on the loot page."
+    },
+    {
+      "record": "EXP-054-loot-caller-geometry.md",
+      "original_body_sha256": "a43ac3a36a3859ac6f0ffc44bcfd165ca8d830725b170e9e387d5185581bb1af",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 7,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies this periodic loot eligibility and grant/removal dispatch segment; actual grant and removal are omitted."
+    },
+    {
+      "record": "EXP-055-loot-collection-effects.md",
+      "original_body_sha256": "d241c74ed3c24525e6896276aabea65b35bf27cf2c08da3e9cf4c3d9cd243118",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies loot-node collection and retirement 00319920/003197B0; the inventory grant and presentation effects are stubbed."
+    },
+    {
+      "record": "EXP-056-save-normalize-roundtrip.md",
+      "original_body_sha256": "a0334d6bedd979ddbf5c5a16becf0386c61bb4d864e0c4ab4b298c2446a14cd9",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../21-RNG-And-Determinism/CONTRACT-gameplay-generators.md"
+    },
+    {
+      "record": "EXP-057-save-checksum-controls.md",
+      "original_body_sha256": "6587a46c02a05e9769a689a2ecaace8a1477e58bd736969685186f70bdefa0b7",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 6,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../19-Save-Load-Settings/CONTRACT-save-image-buffers.md"
+    },
+    {
+      "record": "EXP-058-save-validator-controls.md",
+      "original_body_sha256": "98adeaf61c8efd461dedd953a82759036256916fb1bb0e48724f155a32c91960",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies runtime-format header predicate 00255260; save-image-buffers covers whole-buffer clear, getter and copy, not header acceptance."
+    },
+    {
+      "record": "EXP-059-formula-copyout-controls.md",
+      "original_body_sha256": "a4cc58690d75068e5e3b45613f973971de81cf804618837666771834118b3407",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Numeric scratch copy-out is outside the preparation-step family contract for calculator slots 60-79; no preparation member executes."
+    },
+    {
+      "record": "EXP-060-result-numeric-dispatch.md",
+      "original_body_sha256": "018799d9950f405d8f29954864248ac4169896b62caa678dd1fc73f6a60c2a58",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md"
+    },
+    {
+      "record": "EXP-061-mp-writer-controls.md",
+      "original_body_sha256": "079e7611c935afaf64d0a9897f4eab8b78c58a94a14c33b446df7650aeed5241",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 8,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies MP and secondary-resource writers; the HP writer contract is a different operation."
+    },
+    {
+      "record": "EXP-062-mp-composition.md",
+      "original_body_sha256": "dc5c6c94eeed4f230bc9f250639943d3ea499d5ba7da03fa5ced50a600f64f28",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 10,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies this numeric copy-out to MP composition; HP effects and preparation members are not executed."
+    },
+    {
+      "record": "EXP-063-mp-cost-controls.md",
+      "original_body_sha256": "1c58b48fca44fc961c949446b6afe97f54f2922e89c697630955248770e34c59",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 12,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies action MP cost 00309110 and its modifier chain; commit-action is commitment, not cost computation."
+    },
+    {
+      "record": "EXP-064-resource-payer-controls.md",
+      "original_body_sha256": "0ffb7d7dc64e0ceb1584b61aa60f5fc62789f8946fb0ca780096e14e238b8c7b",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 5,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md"
+    },
+    {
+      "record": "EXP-065-resource-consume-controls.md",
+      "original_body_sha256": "3679a9a14cc189beb555fc3e845c937620bf785ef3ee70e22361721e56e17187",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 5,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies execution-resource consumption 00305640; commit-action and inventory class storage do not specify this caller."
+    },
+    {
+      "record": "EXP-066-consume-native-composition.md",
+      "original_body_sha256": "86146b3d5820e6d386e9c28b90303fd3de1d93cef8052bd7988be969af99d4dd",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 16,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies this cost-to-consume-to-MP composition; the HP and inventory storage operations are not executed."
+    },
+    {
+      "record": "EXP-067-ui-router-controls.md",
+      "original_body_sha256": "97ffc258d97eb500ecd01bf9ea37807f1f8a800326a4c4bff951c96f4725e542",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 7,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - No existing contract specifies UI router dispatch 00254B50; the widget-object contract specifies a different allocation and message boundary."
+    },
+    {
+      "record": "EXP-068-ui-generic-controls.md",
+      "original_body_sha256": "cc92a39a78190fb682f0d89f93b38d6444fad5605d67753bb0fad25ecd0e7f44",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 4,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../16-UI/Widget-Object-Model/CONTRACT-widget-object.md"
+    },
+    {
+      "record": "EXP-069-ui-native-feedback.md",
+      "original_body_sha256": "3e9570693bc2f164a2b5011c1edc8691065ef9dc7108054ea3457e04f964cd29",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 9,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "../16-UI/Widget-Object-Model/CONTRACT-widget-object.md"
+    },
+    {
+      "record": "EXP-070-procedural-rng-controls.md",
+      "original_body_sha256": "48513b0161e4ce86db8f2ae575ba70647f89a5f9d27dba07b2af8077348c843a",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 10,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Gameplay-generators explicitly covers LCG and gameplay MT only; this procedural generator and shared scratch are a separate family."
+    },
+    {
+      "record": "EXP-071-procedural-rng-init.md",
+      "original_body_sha256": "af5f9558b810cae4836c22958284f9ea10d3be7245b943ddc5ed92f1e7662e86",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 10,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Procedural initialization and draws are outside the LCG/MT gameplay-generators contract; native startup dependencies are omitted."
+    },
+    {
+      "record": "EXP-072-facing-writer-controls.md",
+      "original_body_sha256": "5c223062375cc42a99990780c3317a375a1b5c2f4b245cadd015af0bbf0db353",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 10,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Facing-and-steering lists different entry points; writer 002E5E10 is not an executed substitute for its 0026B5A0/0026C090 or unread 002E5FB0 paths."
+    },
+    {
+      "record": "EXP-073-facing-reapply-comparison.md",
+      "original_body_sha256": "5fa6327feffab633f82ffd9ff40881b9d126663735bd58acc18446676c6da1e9",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 12,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Reapply 002E5F90 and helper 0033CB70 are different from the facing-and-steering contract entry set; equivalence to those entries is not established."
+    },
+    {
+      "record": "EXP-074-angle-conversion-boundary.md",
+      "original_body_sha256": "64b96764093a5c9820398ccd2d25b7f9cb5504ad490640a4c5a662a007d6c977",
+      "original_raw_body_matches": true,
+      "original_git_text_body_matches": true,
+      "historical_files_checked": 12,
+      "parsed_evidence_class": "isolated original-code",
+      "contract": "none - Conversion-boundary controls run 002E5F90/002E5E10/0033CB70, not the facing-and-steering contract entry set; a category match is insufficient."
+    }
+  ],
+  "evidence_classes": {
+    "offline preparation": 4,
+    "native instrument control": 1,
+    "isolated original-code": 31,
+    "retained-evidence assessment": 1,
+    "offline tool reproduction": 1
+  }
+}

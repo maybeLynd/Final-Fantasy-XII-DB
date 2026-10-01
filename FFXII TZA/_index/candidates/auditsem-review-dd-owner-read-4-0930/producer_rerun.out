@@ -1,0 +1,7 @@
+SWE2-AUDIT-SEM re-run of dd-data-4-0930's six scripts at HEAD 940b5ffcf (run pin f55dd3c9a is an ancestor of 4415dba48)
+fx54_consumers: exit 0, FAILS 0, output IDENTICAL to the committed .out (CRLF-insensitive)
+frp_checks: exit 0, FAILS 0, output IDENTICAL to the committed .out (CRLF-insensitive)
+rrp_checks: exit 0, FAILS 0, output IDENTICAL to the committed .out (CRLF-insensitive)
+pf_env_checks: exit 0, FAILS 0, output IDENTICAL to the committed .out (CRLF-insensitive)
+pf_steam_checks: exit 0, FAILS 0, output IDENTICAL to the committed .out (CRLF-insensitive)
+pf_mem_checks: exit 0, FAILS 0, output IDENTICAL to the committed .out (CRLF-insensitive)

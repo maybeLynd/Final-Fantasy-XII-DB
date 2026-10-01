@@ -1,0 +1,131 @@
+rip refs to 02EBF190: 318
+
+(a) stores through a block-derived register, any width (covering-disp view):
+   ref 00233C97  00233C9E mov dword ptr [rax + 0x5b00], ebx  (w=4 disp=0x5b00)
+   ref 002370D8  002370DF mov dword ptr [rax], 0x5071901  (w=4 disp=0x0)
+   ref 00237118  00237121 mov dword ptr [rax + 0x5acc], ecx  (w=4 disp=0x5acc)
+   ref 00237127  0023712E mov dword ptr [rax + 0x5ac8], ecx  (w=4 disp=0x5ac8)
+   ref 002399EE  002399FB or dword ptr [rax + 4], 0x2000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00239A0B  00239A18 or dword ptr [rax + 4], 0x4000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00239A28  00239A35 or dword ptr [rax + 4], 0x1000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00239A4F  00239A56 or dword ptr [rax + 4], 0x2000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00239A70  00239A77 or dword ptr [rax + 4], 0x4000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 0023A2C0  0023A2CB or dword ptr [rax + 4], 0x2000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 0023A390  0023A39B or dword ptr [rax + 4], 0x1000  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 002EF416  002EF424 movups xmmword ptr [rax + 0x5ae0], xmm0  (w=16 disp=0x5ae0)
+   ref 002EF42B  002EF435 mov dword ptr [rax + 0x5b04], edx  (w=4 disp=0x5b04)
+   ref 002EF445  002EF44C movups xmmword ptr [rax + 0x5ad0], xmm0  (w=16 disp=0x5ad0)
+   ref 002EF477  002EF47E or dword ptr [rax + 0x5b04], 2  (w=4 disp=0x5b04)
+   ref 002EF485  002EF48C and dword ptr [rax + 0x5b04], 0xfffffffe  (w=4 disp=0x5b04)
+   ref 003009BA  003009C1 or dword ptr [rax + 4], 0x100  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 003009CD  003009D4 or dword ptr [rax + 4], 0x80  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 003009E0  003009E7 or dword ptr [rax + 4], 0x40  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 003009F0  003009F7 or dword ptr [rax + 4], 1  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00300B47  00300B5A or dword ptr [rcx + 4], eax  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00303D94  00303DB8 mov dword ptr [r8 + 0x5b04], edx  (w=4 disp=0x5b04)
+   ref 00303DBF  00303DC6 or dword ptr [rax + 0x5ae0], 0xc  (w=4 disp=0x5ae0)
+   ref 00303DCD  00303DD4 mov dword ptr [rax + 0x5ae4], 0x43340000  (w=4 disp=0x5ae4)
+   ref 00303E28  00303E37 mov dword ptr [rcx + 0x5aec], 0  (w=4 disp=0x5aec)
+   ref 00303E55  00303E71 xor dword ptr [rcx + 0x5ae0], eax  (w=4 disp=0x5ae0)
+   ref 00303F52  00303F59 mov dword ptr [rcx + 0x5aec], esi  (w=4 disp=0x5aec)
+   ref 00303FAB  00303FB6 movss dword ptr [rax + 0x5ae8], xmm1  (w=4 disp=0x5ae8)
+   ref 00303FD6  00303FDD or dword ptr [rax + 0x5ae0], 0xc  (w=4 disp=0x5ae0)
+   ref 00303FE6  00303FFD xor dword ptr [rcx + 0x5ae0], eax  (w=4 disp=0x5ae0)
+   ref 0030401F  0030403B xor dword ptr [rcx + 0x5ae0], eax  (w=4 disp=0x5ae0)
+   ref 00304125  00304131 or dword ptr [rax + 0x5ae0], 1  (w=4 disp=0x5ae0)
+   ref 00304404  0030440B and dword ptr [rax + 0x5ae0], 0xfffffffe  (w=4 disp=0x5ae0)
+   ref 00304461  00304468 mov dword ptr [rax + 0x5ae4], 0x43340000  (w=4 disp=0x5ae4)
+   ref 0030447E  00304485 movss dword ptr [rax + 0x5ae4], xmm0  (w=4 disp=0x5ae4)
+   ref 00304497  0030449E movss dword ptr [rax + 0x5ae8], xmm0  (w=4 disp=0x5ae8)
+   ref 0030453F  00304546 mov dword ptr [rcx + 0x5aec], 0  (w=4 disp=0x5aec)
+   ref 00304568  00304584 xor dword ptr [rcx + 0x5ae0], eax  (w=4 disp=0x5ae0)
+   ref 003046C7  003046D0 mov dword ptr [rcx + 0x5aec], esi  (w=4 disp=0x5aec)
+   ref 003046ED  00304709 xor dword ptr [rcx + 0x5ae0], eax  (w=4 disp=0x5ae0)
+   ref 0030470F  00304718 and dword ptr [rax + 0x5ae0], 0xfffffffe  (w=4 disp=0x5ae0)
+   ref 0030471F  00304726 and dword ptr [rax + 0x5ae0], 0xfffffff3  (w=4 disp=0x5ae0)
+   ref 0030472C  00304734 mov dword ptr [rax + 0x5ae4], esi  (w=4 disp=0x5ae4)
+   ref 0030473A  00304741 mov dword ptr [rax + 0x5ae8], esi  (w=4 disp=0x5ae8)
+   ref 00304747  0030474E mov dword ptr [rax + 0x5aec], esi  (w=4 disp=0x5aec)
+   ref 00304770  00304780 xor dword ptr [rax + 0x5ae0], ecx  (w=4 disp=0x5ae0)
+   ref 00306931  00306949 mov dword ptr [rdx + 0x5b04], ecx  (w=4 disp=0x5b04)
+   ref 0030699E  003069A8 movss dword ptr [rax + 0x5ad8], xmm0  (w=4 disp=0x5ad8)
+   ref 003069B0  003069B7 movss dword ptr [rax + 0x5adc], xmm0  (w=4 disp=0x5adc)
+   ref 003069F8  00306A16 mov dword ptr [rdx + 0x5b04], ecx  (w=4 disp=0x5b04)
+   ref 00306A1C  00306A23 or dword ptr [rax + 0x5ae0], 0xc  (w=4 disp=0x5ae0)
+   ref 00306A2A  00306A31 mov dword ptr [rax + 0x5ae4], 0x43340000  (w=4 disp=0x5ae4)
+   ref 00306A6D  00306A81 mov dword ptr [rcx + 0x5b04], eax  (w=4 disp=0x5b04)
+   ref 00307200  00307221 mov dword ptr [r8 + 0x5b04], edx  (w=4 disp=0x5b04)
+   ref 00307240  00307261 mov dword ptr [r8 + 0x5b04], edx  (w=4 disp=0x5b04)
+   ref 0030D975  0030D97C mov dword ptr [rax + 0x5b08], edi  (w=4 disp=0x5b08)
+   ref 0030DA10  0030DA19 mov dword ptr [rax + 0x5b04], ecx  (w=4 disp=0x5b04)
+   ref 0030DA1F  0030DA26 mov dword ptr [rax + 0x5b08], ecx  (w=4 disp=0x5b08)
+   ref 00311BC8  00311BD7 or dword ptr [rax + 4], 0x800  (w=4 disp=0x4)  <== covers +4/+5 (page-relative view)
+   ref 00313550  0031356E mov dword ptr [r8 + 0x5b04], edx  (w=4 disp=0x5b04)
+   ref 0031377D  0031378A mov dword ptr [rcx + 0x5ad8], eax  (w=4 disp=0x5ad8)
+   ref 0031379C  003137A3 movss dword ptr [rax + 0x5ad8], xmm0  (w=4 disp=0x5ad8)
+   ref 00313844  00313858 mov dword ptr [rcx + 0x5b04], eax  (w=4 disp=0x5b04)
+   ref 003138A5  003138AE mov dword ptr [rax + 0x5ad8], ecx  (w=4 disp=0x5ad8)
+   ref 003138B4  003138BB mov dword ptr [rax + 0x5adc], ecx  (w=4 disp=0x5adc)
+   ref 0031723C  0031726B movss dword ptr [rcx + 0x5ac8], xmm1  (w=4 disp=0x5ac8)
+   ref 0031723C  0031727C add dword ptr [rcx + 0x5acc], eax  (w=4 disp=0x5acc)
+   ref 00317282  0031729C movss dword ptr [rcx + 0x5ac8], xmm1  (w=4 disp=0x5ac8)
+   ref 003172A4  003172BC mov dword ptr [rcx + 0x5acc], 0x5f5e0ff  (w=4 disp=0x5acc)
+   ref 003172C6  003172CD mov dword ptr [rax + 0x5ac8], 0  (w=4 disp=0x5ac8)
+   ref 0032216C  00322173 mov dword ptr [rax + 0x5aa4], ecx  (w=4 disp=0x5aa4)
+   ref 00322200  00322209 mov dword ptr [rax + 0x5acc], ecx  (w=4 disp=0x5acc)
+   ref 0032220F  00322216 mov dword ptr [rax + 0x5ac8], ecx  (w=4 disp=0x5ac8)
+   ref 0032669C  003266A3 mov dword ptr [rax + 0x5aa4], ecx  (w=4 disp=0x5aa4)
+   ref 003266C7  00326717 movups xmmword ptr [r15], xmm0  (w=16 disp=0x0)  <== covers +4/+5 (block-relative view)  <== covers +4/+5 (page-relative view)
+   ref 003266C7  00326720 movups xmmword ptr [rdi + 0x36], xmm0  (w=16 disp=0x36)
+   ref 003266C7  00326728 mov qword ptr [rdi + 0x1a], 0xffffffffffffffff  (w=8 disp=0x1a)
+   ref 003266C7  0032673E movups xmmword ptr [r14], xmm0  (w=16 disp=0x0)  <== covers +4/+5 (block-relative view)  <== covers +4/+5 (page-relative view)
+   ref 003266C7  00326747 movups xmmword ptr [rdi + 0x48], xmm0  (w=16 disp=0x48)
+   ref 0032782F  00327836 mov dword ptr [rax + 0x5aa4], ecx  (w=4 disp=0x5aa4)
+   ref 00327850  0032785A mov dword ptr [rax + 0x5aa4], edx  (w=4 disp=0x5aa4)
+   ref 00327FB0  00327FF9 nop dword ptr [rax]  (w=4 disp=0x0)
+   ref 00329DB4  00329DC2 mov dword ptr [rax + 0x5aa4], ecx  (w=4 disp=0x5aa4)
+   ref 00329DCD  00329DF6 movups xmmword ptr [rcx + 0x5a5a], xmm0  (w=16 disp=0x5a5a)
+   ref 00329DCD  00329E04 movups xmmword ptr [rcx + 0x5a6c], xmm0  (w=16 disp=0x5a6c)
+   ref 00329DCD  00329E12 movups xmmword ptr [rcx + 0x5a7e], xmm0  (w=16 disp=0x5a7e)
+   ref 00329DCD  00329E20 movups xmmword ptr [rcx + 0x5a90], xmm0  (w=16 disp=0x5a90)
+   ref 00329E40  00329E47 mov dword ptr [rax + 0x5acc], ecx  (w=4 disp=0x5acc)
+   ref 00329E4D  00329E54 mov dword ptr [rax + 0x5ac8], 0  (w=4 disp=0x5ac8)
+   ref 00385BE3  00385BEA mov dword ptr [rax + 0x5b00], ecx  (w=4 disp=0x5b00)
+   ref 005699F7  00569A1F mov dword ptr [r8 + 0x7370], ecx  (w=4 disp=0x7370)
+   ref 00569AF8  00569B20 mov dword ptr [r8 + 0x7370], ecx  (w=4 disp=0x7370)
+   ref 0056A168  0056A19E and dword ptr [rbx + 0x358], 0xfffffffd  (w=4 disp=0x358)
+   ref 005842BD  005842C4 and dword ptr [rax + 0x5b04], 0xfffffffe  (w=4 disp=0x5b04)
+   ref 0058437D  0058438C and dword ptr [rax + 0x5b04], 0xfffffffe  (w=4 disp=0x5b04)
+   ref 00584463  0058446A and dword ptr [rax + 0x5b04], 0xfffffffd  (w=4 disp=0x5b04)
+wide stores covering +4/+5 at a constant-offset view: 15
+
+(b) calls with rcx = block-derived pointer:
+   ref 00234360  0023437E call 0x30e990
+   ref 00235AF9  00235B76 call 0x2ef4a0
+   ref 002370C4  002370D3 call 0x861ec0
+   ref 0023AEFA  0023AF03 call 0x326030
+   ref 0023AF08  0023AF1D call 0x327de0
+   ref 00303F52  00303F82 call 0x30d9a0
+   ref 00306931  0030694F call 0x35c620
+   ref 00306A6D  00306A87 call 0x35c620
+   ref 0030FBB1  0030FBC7 call 0x861ec0
+   ref 00313844  0031385E call 0x35c620
+   ref 0031A430  0031A46F call 0x317930
+   ref 0031A430  0031A4AD call 0x318b40
+   ref 0031A430  0031A4CA call 0x30fed0
+   ref 0031A430  0031A4D2 call 0x31b860
+   ref 0031A54D  0031A59C call 0x317930
+   ref 0031A54D  0031A5D5 call 0x318b40
+   ref 0031A54D  0031A5ED call 0x30fed0
+   ref 0031A54D  0031A5F5 call 0x31b860
+   ref 0031C11E  0031C17F call 0x31c000
+   ref 00326116  003261A6 call 0x316df0
+   ref 00328BF7  00328C23 call 0x328990
+   ref 00328BF7  00328C35 call 0x328990
+   ref 00328BF7  00328C66 call 0x30fed0
+   ref 00328CFB  00328D04 call 0x326030
+   ref 005685DA  0056867C call 0x243260
+   ref 005688EB  0056890A call 0x5683f0
+rep string ops with rdi block-derived: []
+PASS P tracker sees stores through the derived register at all - 156
+FAILS 0

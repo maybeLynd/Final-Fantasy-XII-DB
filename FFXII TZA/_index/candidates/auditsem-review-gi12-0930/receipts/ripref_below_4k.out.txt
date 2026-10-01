@@ -1,0 +1,119 @@
+003DE65C  lea ebp, [rip + 0x277acf6]    ; -> 02B59358
+003DE700  movsx edx, byte ptr [rip + 0x277ac49]    ; -> 02B59350
+003DE72E  lea ebp, [rip + 0x277ac3e]    ; -> 02B59372
+003DE7C8  mov byte ptr [rip + 0x277ab82], dh    ; -> 02B59350
+003DE931  movsx eax, byte ptr [rip + 0x277aa18]    ; -> 02B59350
+003DE93B  mov byte ptr [rip + 0x277aa0f], al    ; -> 02B59350
+003DE94C  movsx eax, byte ptr [rip + 0x277a9fd]    ; -> 02B59350
+003DE956  mov byte ptr [rip + 0x277a9f4], al    ; -> 02B59350
+003DEB4D  lea ebp, [rip + 0x277a82d]    ; -> 02B59380
+003DEB5B  lea edi, [rip + 0x277b0bf]    ; -> 02B59C20
+003DEB62  lea eax, [rip + 0x277b0cc]    ; -> 02B59C34
+003DEB86  lea ebp, [rip + 0x277a7d4]    ; -> 02B59360
+003DEC49  lea eax, [rip + 0x277afe5]    ; -> 02B59C34
+003DECB6  lea eax, [rip + 0x277a6a4]    ; -> 02B59360
+003DEDBB  lea edx, [rip + 0x277ae5f]    ; -> 02B59C20
+003DEE38  lea esi, [rip + 0x277ade2]    ; -> 02B59C20
+003DEE48  lea ecx, [rip + 0x277a512]    ; -> 02B59360
+003DEF4D  lea esi, [rip + 0x277accd]    ; -> 02B59C20
+003DEF87  lea ecx, [rip + 0x277a3d3]    ; -> 02B59360
+003DF005  lea ecx, [rip + 0x277ac15]    ; -> 02B59C20
+003DF034  lea ebx, [rip + 0x277a326]    ; -> 02B59360
+003DF0B7  lea ecx, [rip + 0x277a2a3]    ; -> 02B59360
+003DF107  lea ecx, [rip + 0x277a253]    ; -> 02B59360
+003DF135  lea ebx, [rip + 0x277a225]    ; -> 02B59360
+003DF205  lea edx, [rip + 0x277a155]    ; -> 02B59360
+003DF389  lea eax, [rip + 0x2779fd1]    ; -> 02B59360
+003DF413  lea ecx, [rip + 0x277a807]    ; -> 02B59C20
+003DF4D6  lea eax, [rip + 0x2779e84]    ; -> 02B59360
+003DF5B2  mov dword ptr [rip + 0x277a754], 1    ; -> 02B59D10
+003DF5BD  mov dword ptr [rip + 0x277a6b5], eax    ; -> 02B59C78
+003DF5C4  mov dword ptr [rip + 0x277a6ee], eax    ; -> 02B59CB8
+003DF5CB  mov dword ptr [rip + 0x277a707], eax    ; -> 02B59CD8
+003DF5D2  mov dword ptr [rip + 0x277a720], eax    ; -> 02B59CF8
+003DF5D9  mov dword ptr [rip + 0x277a691], eax    ; -> 02B59C70
+003DF5E0  mov dword ptr [rip + 0x277a6ca], eax    ; -> 02B59CB0
+003DF5E7  mov dword ptr [rip + 0x277a67b], eax    ; -> 02B59C68
+003DF5EE  mov dword ptr [rip + 0x277a6b4], eax    ; -> 02B59CA8
+003DF5F5  mov dword ptr [rip + 0x277a6d5], eax    ; -> 02B59CD0
+003DF5FC  mov dword ptr [rip + 0x277a6ee], eax    ; -> 02B59CF0
+003DF603  mov dword ptr [rip + 0x277a657], eax    ; -> 02B59C60
+003DF60A  mov dword ptr [rip + 0x277a690], eax    ; -> 02B59CA0
+003DF611  mov dword ptr [rip + 0x277a641], eax    ; -> 02B59C58
+003DF618  mov dword ptr [rip + 0x277a67a], eax    ; -> 02B59C98
+003DF61F  mov dword ptr [rip + 0x277a6a3], eax    ; -> 02B59CC8
+003DF626  mov dword ptr [rip + 0x277a6bc], eax    ; -> 02B59CE8
+003DF62D  mov dword ptr [rip + 0x277a61d], eax    ; -> 02B59C50
+003DF634  mov dword ptr [rip + 0x277a656], eax    ; -> 02B59C90
+003DF63B  mov dword ptr [rip + 0x277a607], eax    ; -> 02B59C48
+003DF642  mov dword ptr [rip + 0x277a640], eax    ; -> 02B59C88
+003DF649  mov dword ptr [rip + 0x277a671], eax    ; -> 02B59CC0
+003DF650  mov dword ptr [rip + 0x277a68a], eax    ; -> 02B59CE0
+003DF657  mov dword ptr [rip + 0x277a5e3], eax    ; -> 02B59C40
+003DF65E  mov dword ptr [rip + 0x277a61c], eax    ; -> 02B59C80
+003DF664  mov dword ptr [rip + 0x277a6ae], eax    ; -> 02B59D18
+003DF691  and dword ptr [rip + 0x277a680], 0xfffffffe    ; -> 02B59D18
+003DF69A  or dword ptr [rip + 0x277a677], 1    ; -> 02B59D18
+003DF6BD  mov dword ptr [rip + 0x277a651], eax    ; -> 02B59D14
+003DF6C3  mov dword ptr [rip + 0x277a647], eax    ; -> 02B59D10
+003DF6CA  mov dword ptr [rip + 0x277a638], eax    ; -> 02B59D08
+003DF6D1  mov dword ptr [rip + 0x277a629], eax    ; -> 02B59D00
+003DF7B4  mov eax, dword ptr [rip + 0x277a55e]    ; -> 02B59D18
+003DF7C6  mov dword ptr [rip + 0x277a54c], eax    ; -> 02B59D18
+003DF7EB  mov dword ptr [rip + 0x277a50f], eax    ; -> 02B59D00
+003DF7F2  mov dword ptr [rip + 0x277a510], eax    ; -> 02B59D08
+003DF7F8  mov dword ptr [rip + 0x277a512], eax    ; -> 02B59D10
+003DF7FE  mov dword ptr [rip + 0x277a510], eax    ; -> 02B59D14
+003DF81C  lea eax, [rip + 0x277a4ba]    ; -> 02B59CDC
+003DF823  lea edx, [rip + 0x277a497]    ; -> 02B59CC0
+003DF853  mov dword ptr [rip + 0x277a4a7], eax    ; -> 02B59D00
+003DF85A  mov dword ptr [rip + 0x277a4a8], eax    ; -> 02B59D08
+003DF860  mov dword ptr [rip + 0x277a4aa], eax    ; -> 02B59D10
+003DF866  mov dword ptr [rip + 0x277a4a8], eax    ; -> 02B59D14
+003DF8B2  mov dword ptr [rip + 0x277a448], edi    ; -> 02B59D00
+003DF8BE  mov dword ptr [rip + 0x277a444], esi    ; -> 02B59D08
+003DF8C9  mov dword ptr [rip + 0x277a445], ebx    ; -> 02B59D14
+003DF8D4  mov dword ptr [rip + 0x277a436], ebp    ; -> 02B59D10
+003DF8F1  lea ecx, [rip + 0x277a429]    ; -> 02B59D20
+003DF90A  mov dword ptr [rip + 0x277a410], eax    ; -> 02B59D20
+003DF910  and byte ptr [rip + 0x277a40a], 0xfe    ; -> 02B59D21
+003DF918  mov dword ptr [rip + 0x277a412], eax    ; -> 02B59D30
+003DF91F  mov dword ptr [rip + 0x277a413], eax    ; -> 02B59D38
+003DF925  mov byte ptr [rip + 0x277a3f4], 2    ; -> 02B59D20
+003DF92D  adc dword ptr [rip + 0x277a3f1], eax    ; -> 02B59D24
+003DF934  mov dword ptr [rip + 0x277a3fa], eax    ; -> 02B59D34
+003DF93A  mov dword ptr [rip + 0x277a3f8], 0x80808080    ; -> 02B59D3C
+003DF944  mov dword ptr [rip + 0x277a3f2], 0x80000000    ; -> 02B59D40
+003DF950  mov byte ptr [rip + 0x277a3e6], cl    ; -> 02B59D3C
+003DF956  mov byte ptr [rip + 0x277a3e1], dl    ; -> 02B59D3D
+003DF95D  mov byte ptr [rip + 0x277a3db], al    ; -> 02B59D3E
+003DF964  mov byte ptr [rip + 0x277a3d5], cl    ; -> 02B59D3F
+003DF970  mov byte ptr [rip + 0x277a3ca], cl    ; -> 02B59D40
+003DF976  mov byte ptr [rip + 0x277a3c5], dl    ; -> 02B59D41
+003DF97D  mov byte ptr [rip + 0x277a3bf], al    ; -> 02B59D42
+003DF984  mov byte ptr [rip + 0x277a3b9], cl    ; -> 02B59D43
+003DF990  movzx eax, byte ptr [rip + 0x277a38a]    ; -> 02B59D21
+003DF9A0  mov byte ptr [rip + 0x277a37b], cl    ; -> 02B59D21
+003DF9B2  adc dword ptr [rip + 0x277a378], eax    ; -> 02B59D30
+003DF9C2  adc dword ptr [rip + 0x277a35c], eax    ; -> 02B59D24
+003DF9CA  adc dword ptr [rip + 0x277a358], ecx    ; -> 02B59D28
+003DF9E2  adc dword ptr [rip + 0x277a344], eax    ; -> 02B59D2C
+003DFA08  mov byte ptr [rip + 0x277a311], 4    ; -> 02B59D20
+003DFA10  mov byte ptr [rip + 0x277a309], 3    ; -> 02B59D20
+003DFA18  mov byte ptr [rip + 0x277a301], 2    ; -> 02B59D20
+003DFA20  mov byte ptr [rip + 0x277a2f9], 1    ; -> 02B59D20
+003DFA28  mov byte ptr [rip + 0x277a2f1], 0    ; -> 02B59D20
+003DFA32  adc dword ptr [rip + 0x277a2fc], eax    ; -> 02B59D34
+003DFA3A  adc dword ptr [rip + 0x277a2f8], ecx    ; -> 02B59D38
+003DFA60  lea ebx, [rip + 0x277a2e2]    ; -> 02B59D48
+003DFA8B  mov ecx, dword ptr [rip + 0x277a2c7]    ; -> 02B59D58
+003DFA9C  mov dword ptr [rip + 0x277a2b6], esi    ; -> 02B59D58
+003DFAD0  mov ebx, dword ptr [rip + 0x277a272]    ; -> 02B59D48
+003DFC15  mov eax, dword ptr [rip + 0x277a13d]    ; -> 02B59D58
+003DFCC1  mov edx, dword ptr [rip + 0x277a091]    ; -> 02B59D58
+003DFD04  lea ecx, [rip + 0x277a03e]    ; -> 02B59D48
+003DFDA4  mov dword ptr [rip + 0x2779faa], 0    ; -> 02B59D58
+003DFDAF  movq qword ptr [rip + 0x2779f92], mm0    ; -> 02B59D48
+003DFDC1  mov dword ptr [rip + 0x2779f91], ecx    ; -> 02B59D58
+003DFE64  lea ecx, [rip + 0x2779ede]    ; -> 02B59D48
+refs: 118

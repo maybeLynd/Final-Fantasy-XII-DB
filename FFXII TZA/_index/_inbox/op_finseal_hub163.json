@@ -1,0 +1,11 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-163",
+ "result_refs": [
+  "bf3c65a5b",
+  "8f9ecd738",
+  "084245f89"
+ ],
+ "note": "Sealed 084245f89. Publish bf3c65a5b + efx splice 8f9ecd738 carry the 22 batch-163 entries + anchors; finpub 35215, seal claim 35219.",
+ "summary": ""
+}

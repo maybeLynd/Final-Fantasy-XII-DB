@@ -1,0 +1,12 @@
+NOTE: a HOT breakpoint perturbs the game -- it starves input and can stop other code
+      running at all (EW-7). Arm the target ALONE; take the control in its own run.
+pid 35004   breakpoints: 003A1C50, 003A1C8C   (NO CONTROL -- a zero will be unproven)
+wrote C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\EXP-016-cleanup\positive-trace.tsv: 2 hit(s) in the order seen
+threads armed            : 103
+target CPU while attached: 0.031 s over 0.1 s wall  (35 %, it kept running)
+
+  target  003A1C50  hits 1
+      rcx=00000000000000ED rdx=0000000000000000 r8=00000000020984C0 r9=000000000215F200
+  target  003A1C8C  hits 1
+      rcx=00000000000000ED rdx=0000000000000000 r8=00000000020984C0 r9=000000000215F200
+

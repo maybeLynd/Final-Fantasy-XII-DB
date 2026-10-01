@@ -1,0 +1,13 @@
+PASS  T2 rows decoded from 0019FFD0  144 rows
+  T2 companion kinds: {'.efx chara\\h': 144}
+  T2 sample: [('g0014', 'PS2Data\\effect_finish\\jp\\chara\\h0035.efx'), ('g0017', 'PS2Data\\effect_finish\\jp\\chara\\h0036.efx'), ('g0018', 'PS2Data\\effect_finish\\jp\\chara\\h0031.efx'), ('g0037', 'PS2Data\\effect_finish\\jp\\chara\\h0037.efx')]
+PASS  T1 rows decoded from 0040A230  144 rows (page: 144)
+  T1 -> T2 join: {'companion chara\\h%d.efx': 144}
+PASS  J every T1 row keys a T2 companion chara\h%d.efx  {'companion chara\\h%d.efx': 144}
+  external effect numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] ... n=144 rows, 125 distinct companions
+  shipped chara/h*.efx: 126; named by T2: 125; shipped but not named: ['h0000.efx']
+  extract membership: T1 144/144, T2 144/144
+PASS  X every T1 model and T2 companion is a shipped file  
+PASS  P the arm's instructions  12 sites
+PASS  K the strings  'chara\\h' '%d.efx'
+FAILS 0

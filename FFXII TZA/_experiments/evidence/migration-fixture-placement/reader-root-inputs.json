@@ -1,0 +1,42 @@
+{
+  "format": "ASTRA-inert-fixture-byte-capsule-1",
+  "limits": "Extract only into private work outside canonical database; not native FF12 state",
+  "members": [
+    {
+      "path": "04-Actor-Entity/control.md",
+      "bytes": 49,
+      "sha256": "eacae2fa1e0af09b40865bbe2f6305076e9d0d983c1423ef674e60147f27b7f0",
+      "base64": "LSBbIF0gKipXLTk5OS4qKiBsYWJlbGxlZCByZXRhaW5lZC1yb290IGNvbnRyb2wNCg=="
+    },
+    {
+      "path": "archived-fixture/04-Actor-Entity/answered.md",
+      "bytes": 227,
+      "sha256": "637d97b0ced3c61a371fbdcee2c1bf0606bb501669d0772ca0598e93b6c7e48b",
+      "base64": "LS0tDQpzdGF0dXM6IERPQ1VNRU5URUQNCi0tLQ0KIyBMYWJlbGxlZCBhbnN3ZXJlZCBwYWdlDQotIFsgXSAqKlctOTAzLioqIGxpdmUgcmVnaXN0ZXIgb2JsaWdhdGlvbiwgbm90IGEgc2Vjb25kIHJlcXVpcmVtZW50DQotIFsgXSAqKlctOTAyLioqIG9wZW4gcGFnZSBhZ2FpbnN0IGFuc3dlcmVkIHJvdywgcmV0YWluIHJlc2lkdWUNCi0gWyBdIGluZGVwZW5kZW50IGlkbGVzcyBvYmxpZ2F0aW9uDQo="
+    },
+    {
+      "path": "archived-fixture/04-Actor-Entity/dispositioned.md",
+      "bytes": 109,
+      "sha256": "fddd211606777a53da1227069f1bf96c9cdfbfaff36baa2307720e1b482bc5e1",
+      "base64": "LS0tDQpzdGF0dXM6IERPQ1VNRU5URUQgKFNVUEVSU0VERUQgYWNjZXB0ZWQtZGlzcG9zaXRpb24gcmVzaWR1ZSBXLTkwMSkNCi0tLQ0KIyBMYWJlbGxlZCBkaXNwb3NpdGlvbmVkIHBhZ2UNCg=="
+    },
+    {
+      "path": "archived-fixture/04-Actor-Entity/partial.md",
+      "bytes": 121,
+      "sha256": "db334fb9f3613b0ec7ef37d1b309c8b9014829bc7339537418cd6118c745a2ff",
+      "base64": "LS0tDQpzdGF0dXM6IFBBUlRJQUwNCnJlYWRpbmVzczogQkVIQVZJT1JBTExZIFVOREVSU1RPT0QNCi0tLQ0KIyBMYWJlbGxlZCBwYXJ0aWFsIGNvdmVyYWdlIGRlc3BpdGUgdW5kZXJzdG9vZCBtZWNoYW5pc20NCg=="
+    },
+    {
+      "path": "archived-fixture/_index/candidates/register-triage/batch-K-scope-rulings.md",
+      "bytes": 144,
+      "sha256": "778887541033aa138ce9f385defd80ed002e012539a6e9c25930d46d0b948ff0",
+      "base64": "IyBMYWJlbGxlZCBpbmRlcGVuZGVudCBmaXh0dXJlDQojIyBDbGFzcyAyOiBOT1QgQSBRVUVTVElPTiwgd2l0aCBhIGNhcnJpZXINCnwgcm93IHwgY2FycmllciB8DQp8LS0tfC0tLXwNCnwgVy05MDEgfCBgQVNUUkEtRklYLUNBUlJJRVItMDAwMWAgfA0K"
+    },
+    {
+      "path": "archived-fixture/_index/OPEN-QUESTIONS.md",
+      "bytes": 441,
+      "sha256": "7db43b5619129d17fc330fae2b742db9e0af55ffa0eddcae6f1df77ea6374e7e",
+      "base64": "IyBMYWJlbGxlZCBpbmRlcGVuZGVudCBmaXh0dXJlDQojIyBXLiBGaXh0dXJlDQp8IElEIHwgUXVlc3Rpb24gfCBTdGF0dXMgfA0KfC0tLXwtLS18LS0tfA0KfCBXLTkwMSB8IGNhcnJpZXIgb2JsaWdhdGlvbiB8ICoqTk9UIEEgUVVFU1RJT04gMjAyNi0wOS0yNioqIC0gY2FycmllciB0YXNrIHwNCnwgVy05MDIgfCBhbnN3ZXJlZCBbcGFnZV0oLi4vMDQtQWN0b3ItRW50aXR5L2Fuc3dlcmVkLm1kKSB8ICoqQU5TV0VSRUQqKiAtIGxhYmVsbGVkIGNsb3N1cmUgfA0KfCBXLTkwMyB8IG9wZW4gW3BhZ2VdKC4uLzA0LUFjdG9yLUVudGl0eS9hbnN3ZXJlZC5tZCkgfCAqKk9QRU4qKiAtIHN0aWxsIGxpdmUgfA0KfCBXLTkwNCB8IGV4Y2x1ZGVkIHwgKipXSVRIRFJBV04qKiAtIGxhYmVsbGVkIGV4Y2x1c2lvbiB8DQp8IH5+Vy05MDV+fiB8IHN0cnVjayB8ICoqQ0xPU0VEKiogfA0K"
+    }
+  ]
+}

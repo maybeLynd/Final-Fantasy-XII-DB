@@ -1,0 +1,270 @@
+0036E3B0  xor       r8d, r8d
+0036E3B3  lea       r9, [rip - 0x24e3ba]   ; -> 00120000 (virtual tail / unmapped)
+0036E3BA  mov       edx, r8d
+0036E3BD  lea       r10d, [r8 + 0x1f]
+0036E3C1  test      edx, edx
+0036E3C3  jns       0x36e3ca
+0036E3C5  mov       eax, r8d
+0036E3C8  jmp       0x36e3d3
+0036E3CA  cmp       edx, r10d
+0036E3CD  mov       eax, edx
+0036E3CF  cmovg     eax, r10d
+0036E3D3  cdqe      
+0036E3D5  inc       edx
+0036E3D7  lea       rcx, [rax + rax*2]
+0036E3DB  mov       dword ptr [r9 + rcx*8 + 0x21b94b0], r8d
+0036E3E3  mov       word ptr [r9 + rcx*8 + 0x21b94b4], r8w
+0036E3EC  mov       qword ptr [r9 + rcx*8 + 0x21b94c0], r8
+0036E3F4  cmp       edx, 0x20
+0036E3F7  jl        0x36e3c1
+0036E3F9  mov       eax, r8d
+0036E3FC  mov       edx, 0x3f
+0036E401  test      eax, eax
+0036E403  jns       0x36e40a
+0036E405  mov       ecx, r8d
+0036E408  jmp       0x36e411
+0036E40A  cmp       eax, edx
+0036E40C  mov       ecx, eax
+0036E40E  cmovg     ecx, edx
+0036E411  movsxd    rcx, ecx
+0036E414  mov       dword ptr [r9 + rcx*4 + 0x21b97b0], r8d
+0036E41C  test      eax, eax
+0036E41E  jns       0x36e425
+0036E420  mov       ecx, r8d
+0036E423  jmp       0x36e42c
+0036E425  cmp       eax, edx
+0036E427  mov       ecx, eax
+0036E429  cmovg     ecx, edx
+0036E42C  movsxd    rcx, ecx
+0036E42F  mov       dword ptr [r9 + rcx*4 + 0x21b98b0], r8d
+0036E437  test      eax, eax
+0036E439  jns       0x36e440
+0036E43B  mov       ecx, r8d
+0036E43E  jmp       0x36e447
+0036E440  cmp       eax, edx
+0036E442  mov       ecx, eax
+0036E444  cmovg     ecx, edx
+0036E447  movsxd    rcx, ecx
+0036E44A  inc       eax
+0036E44C  mov       dword ptr [r9 + rcx*4 + 0x21b99b0], r8d
+0036E454  cmp       eax, 0x40
+0036E457  jl        0x36e401
+0036E459  ret       
+0036E45A  int3      
+0036E45B  int3      
+0036E45C  int3      
+0036E45D  int3      
+0036E45E  int3      
+0036E45F  int3      
+0036E460  sub       rsp, 0x28
+0036E464  mov       r9d, edx
+0036E467  test      ecx, ecx
+0036E469  jns       0x36e46f
+0036E46B  xor       ecx, ecx
+0036E46D  jmp       0x36e479
+0036E46F  mov       eax, 0x1f
+0036E474  cmp       ecx, eax
+0036E476  cmovg     ecx, eax
+0036E479  movsxd    rax, ecx
+0036E47C  lea       rcx, [rax + rax*2]
+0036E480  lea       rax, [rip + 0x1f6b029]   ; -> 022D94B0 (virtual tail / unmapped)
+0036E487  cmp       dword ptr [rax + rcx*8], 0
+0036E48B  je        0x36e4a4
+0036E48D  test      r8, r8
+0036E490  lea       rdx, [rsp + 0x30]
+0036E495  cmovne    rdx, r8
+0036E499  mov       dword ptr [rdx], r9d
+0036E49C  mov       ecx, dword ptr [rax + rcx*8]
+0036E49F  call      0x24f3c0
+0036E4A4  add       rsp, 0x28
+0036E4A8  ret       
+0036E4A9  int3      
+0036E4AA  int3      
+0036E4AB  int3      
+0036E4AC  int3      
+0036E4AD  int3      
+0036E4AE  int3      
+0036E4AF  int3      
+---
+0036E4B0  cmp       ecx, 0x3f
+0036E4B3  ja        0x36e4c3
+0036E4B5  movsxd    rax, ecx
+0036E4B8  lea       rcx, [rip + 0x1f6b3f1]   ; -> 022D98B0 (virtual tail / unmapped)
+0036E4BF  mov       eax, dword ptr [rcx + rax*4]
+0036E4C2  ret       
+0036E4C3  xor       eax, eax
+0036E4C5  ret       
+0036E4C6  int3      
+0036E4C7  int3      
+0036E4C8  int3      
+0036E4C9  int3      
+0036E4CA  int3      
+0036E4CB  int3      
+0036E4CC  int3      
+0036E4CD  int3      
+0036E4CE  int3      
+0036E4CF  int3      
+0036E4D0  jmp       0x26fec0
+0036E4D5  int3      
+0036E4D6  int3      
+0036E4D7  int3      
+0036E4D8  int3      
+0036E4D9  int3      
+0036E4DA  int3      
+0036E4DB  int3      
+0036E4DC  int3      
+0036E4DD  int3      
+0036E4DE  int3      
+0036E4DF  int3      
+0036E4E0  cmp       ecx, 0x3f
+0036E4E3  ja        0x36e4f3
+0036E4E5  movsxd    rax, ecx
+0036E4E8  lea       rcx, [rip + 0x1f6b2c1]   ; -> 022D97B0 (virtual tail / unmapped)
+0036E4EF  mov       eax, dword ptr [rcx + rax*4]
+0036E4F2  ret       
+0036E4F3  xor       eax, eax
+0036E4F5  ret       
+0036E4F6  int3      
+0036E4F7  int3      
+0036E4F8  int3      
+0036E4F9  int3      
+0036E4FA  int3      
+0036E4FB  int3      
+0036E4FC  int3      
+0036E4FD  int3      
+0036E4FE  int3      
+0036E4FF  int3      
+---
+0036E620  cmp       ecx, 0x3f
+0036E623  ja        0x36e633
+0036E625  movsxd    rax, ecx
+0036E628  lea       rcx, [rip + 0x1f6b381]   ; -> 022D99B0 (virtual tail / unmapped)
+0036E62F  mov       eax, dword ptr [rcx + rax*4]
+0036E632  ret       
+0036E633  xor       eax, eax
+0036E635  ret       
+0036E636  int3      
+0036E637  int3      
+0036E638  int3      
+0036E639  int3      
+0036E63A  int3      
+0036E63B  int3      
+0036E63C  int3      
+0036E63D  int3      
+0036E63E  int3      
+0036E63F  int3      
+---
+0036E7B0  test      ecx, ecx
+0036E7B2  jns       0x36e7c4
+0036E7B4  xor       ecx, ecx
+0036E7B6  movsxd    rax, ecx
+0036E7B9  lea       rcx, [rip + 0x1f6b0f0]   ; -> 022D98B0 (virtual tail / unmapped)
+0036E7C0  mov       dword ptr [rcx + rax*4], edx
+0036E7C3  ret       
+0036E7C4  mov       eax, 0x3f
+0036E7C9  cmp       ecx, eax
+0036E7CB  cmovg     ecx, eax
+0036E7CE  movsxd    rax, ecx
+0036E7D1  lea       rcx, [rip + 0x1f6b0d8]   ; -> 022D98B0 (virtual tail / unmapped)
+0036E7D8  mov       dword ptr [rcx + rax*4], edx
+0036E7DB  ret       
+0036E7DC  int3      
+0036E7DD  int3      
+0036E7DE  int3      
+0036E7DF  int3      
+0036E7E0  test      ecx, ecx
+0036E7E2  jns       0x36e7f4
+0036E7E4  xor       ecx, ecx
+0036E7E6  movsxd    rax, ecx
+0036E7E9  lea       rcx, [rip + 0x1f6afc0]   ; -> 022D97B0 (virtual tail / unmapped)
+0036E7F0  mov       dword ptr [rcx + rax*4], edx
+0036E7F3  ret       
+0036E7F4  mov       eax, 0x3f
+0036E7F9  cmp       ecx, eax
+0036E7FB  cmovg     ecx, eax
+---
+0036E880  test      ecx, ecx
+0036E882  jns       0x36e894
+0036E884  xor       ecx, ecx
+0036E886  movsxd    rax, ecx
+0036E889  lea       rcx, [rip + 0x1f6b120]   ; -> 022D99B0 (virtual tail / unmapped)
+0036E890  mov       dword ptr [rcx + rax*4], edx
+0036E893  ret       
+0036E894  mov       eax, 0x3f
+0036E899  cmp       ecx, eax
+0036E89B  cmovg     ecx, eax
+0036E89E  movsxd    rax, ecx
+0036E8A1  lea       rcx, [rip + 0x1f6b108]   ; -> 022D99B0 (virtual tail / unmapped)
+0036E8A8  mov       dword ptr [rcx + rax*4], edx
+0036E8AB  ret       
+0036E8AC  int3      
+0036E8AD  int3      
+0036E8AE  int3      
+0036E8AF  int3      
+0036E8B0  mov       qword ptr [rsp + 0x18], rbp
+0036E8B5  mov       qword ptr [rsp + 0x20], rsi
+0036E8BA  push      r14
+0036E8BC  sub       rsp, 0x30
+---
+0036E040  mov       eax, 0x3f
+0036E045  test      ecx, ecx
+0036E047  jns       0x36e062
+0036E049  xor       ecx, ecx
+0036E04B  cmp       ecx, eax
+0036E04D  cmovg     ecx, eax
+0036E050  movsxd    rax, ecx
+0036E053  lea       rcx, [rip + 0x1f6b856]   ; -> 022D98B0 (virtual tail / unmapped)
+0036E05A  mov       dword ptr [rcx + rax*4], 0
+0036E061  ret       
+0036E062  cmp       ecx, eax
+0036E064  cmovg     ecx, eax
+0036E067  test      ecx, ecx
+0036E069  jns       0x36e04b
+0036E06B  xor       ecx, ecx
+0036E06D  movsxd    rax, ecx
+0036E070  lea       rcx, [rip + 0x1f6b839]   ; -> 022D98B0 (virtual tail / unmapped)
+0036E077  mov       dword ptr [rcx + rax*4], 0
+0036E07E  ret       
+0036E07F  int3      
+---
+0036E160  mov       eax, 0x3f
+0036E165  test      ecx, ecx
+0036E167  jns       0x36e182
+0036E169  xor       ecx, ecx
+0036E16B  cmp       ecx, eax
+0036E16D  cmovg     ecx, eax
+0036E170  movsxd    rax, ecx
+0036E173  lea       rcx, [rip + 0x1f6b636]   ; -> 022D97B0 (virtual tail / unmapped)
+0036E17A  mov       dword ptr [rcx + rax*4], 0
+0036E181  ret       
+0036E182  cmp       ecx, eax
+0036E184  cmovg     ecx, eax
+0036E187  test      ecx, ecx
+0036E189  jns       0x36e16b
+0036E18B  xor       ecx, ecx
+0036E18D  movsxd    rax, ecx
+0036E190  lea       rcx, [rip + 0x1f6b619]   ; -> 022D97B0 (virtual tail / unmapped)
+0036E197  mov       dword ptr [rcx + rax*4], 0
+0036E19E  ret       
+0036E19F  int3      
+0036E1A0  mov       eax, 0x3f
+0036E1A5  test      ecx, ecx
+0036E1A7  jns       0x36e1c2
+0036E1A9  xor       ecx, ecx
+0036E1AB  cmp       ecx, eax
+0036E1AD  cmovg     ecx, eax
+0036E1B0  movsxd    rax, ecx
+0036E1B3  lea       rcx, [rip + 0x1f6b7f6]   ; -> 022D99B0 (virtual tail / unmapped)
+0036E1BA  mov       dword ptr [rcx + rax*4], 0
+0036E1C1  ret       
+0036E1C2  cmp       ecx, eax
+0036E1C4  cmovg     ecx, eax
+0036E1C7  test      ecx, ecx
+0036E1C9  jns       0x36e1ab
+0036E1CB  xor       ecx, ecx
+0036E1CD  movsxd    rax, ecx
+0036E1D0  lea       rcx, [rip + 0x1f6b7d9]   ; -> 022D99B0 (virtual tail / unmapped)
+0036E1D7  mov       dword ptr [rcx + rax*4], 0
+0036E1DE  ret       
+0036E1DF  int3      
+---

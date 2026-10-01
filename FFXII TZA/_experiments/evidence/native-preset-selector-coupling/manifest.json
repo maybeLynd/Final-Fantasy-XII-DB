@@ -1,0 +1,100 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 9618,
+      "sha256": "f27f03f790413658d3d2076bd5d3da793246f2d8650f9c80fe458e224df817e2"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2097,
+      "sha256": "9460ec53b85ef1851598cbe68880895af480b724cb74401f8bd982e88c9fcb54"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1591,
+      "sha256": "b53ad4c73cb670f0b9c184c88a8a94f135f213bcc7fecb71f77e2234cfa311a1"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2273,
+      "sha256": "b3e4b71dc9a88d6a06265e666ed98471b9dbd3a1ba81a0a75c73f5949694df54"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 47024,
+      "sha256": "8919b53b84549c397487b1647e1cdd1076a6c1f5b551c8063ca87dac36ec5622"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5718,
+      "sha256": "346b87b23eef664f60b2d78b923b5848ec5f6f473d0232a023b83d163baac744"
+    },
+    {
+      "path": "result.json",
+      "bytes": 16518,
+      "sha256": "da8adfd5a4e2ea04eccefea9e8f5bc6d3cc67abf87e8d5609058c538fb7ae702"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 6400,
+      "sha256": "14ce31d56fcd74d7e21a40916f25d892d4a34b77ded00072230144e29c1bd5ff"
+    },
+    {
+      "path": "retained/extent-manifest.json",
+      "bytes": 4403,
+      "sha256": "79175607d2f2fa077990bc9f50cefaa9429482e403f70952df7ccbbb6ccc3bb2"
+    },
+    {
+      "path": "retained/extent-raw.json",
+      "bytes": 281969,
+      "sha256": "1c0607ef41a4756a71b2d56f4ff089cf9719ac562388996f78176871135d5444"
+    },
+    {
+      "path": "retained/first.bin",
+      "bytes": 64,
+      "sha256": "fbbd3b6bd3fa9d1423d9e603b58f8e3a4026e40e24d6fba74c75020d06e29338"
+    },
+    {
+      "path": "retained/mode-byte.bin",
+      "bytes": 1,
+      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "path": "retained/original353.bin",
+      "bytes": 353,
+      "sha256": "d418baa0308c940764c58f007d81ff558a2feb1dfc0e612cc52537a7e7b9d8df"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/second.bin",
+      "bytes": 560,
+      "sha256": "1d9d5a335a33e150f45401a65f16cf0b7d97eb04c989b6b8b83028ca8f44b08c"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/third.bin",
+      "bytes": 560,
+      "sha256": "ccbfc7f7d0eb66fc048bf95fa771b4cffcd612a0b668312465b112a652e5866e"
+    },
+    {
+      "path": "source.py",
+      "bytes": 6400,
+      "sha256": "14ce31d56fcd74d7e21a40916f25d892d4a34b77ded00072230144e29c1bd5ff"
+    }
+  ],
+  "limits": "A one353Bsource/table conditional recipe, not original/native/live execution, named system/type/field meaning or admission; independent acceptance pending"
+}

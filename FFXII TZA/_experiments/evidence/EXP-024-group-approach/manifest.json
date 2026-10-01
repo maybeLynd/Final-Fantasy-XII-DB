@@ -1,0 +1,176 @@
+{
+  "files": {
+    "after-fixed-block.jpg": {
+      "bytes": 160698,
+      "sha256": "04b4add0a82279e614cda2a587812b6fdcec4b9aaeaccaae35d24741c9952702"
+    },
+    "approachB-00.json": {
+      "bytes": 10815,
+      "sha256": "1bb5a49e5b568f5c21ed8685533095b9f64dcb0395f3c36a74dbbaa84f89a290"
+    },
+    "approachB-01.json": {
+      "bytes": 16951,
+      "sha256": "def9a3c94ebc6d4f712925f2aa52a7bbc9fef4e85a2377c99364c31f57af1b1c"
+    },
+    "approachB-02.json": {
+      "bytes": 16932,
+      "sha256": "2cfd0b54c28778da309a13a422eadeb982ff9091d382c1ea459100d5f20e6f69"
+    },
+    "approachB-03.json": {
+      "bytes": 16937,
+      "sha256": "318ea78a04729378b2a92a01f36d0129d33e811769284c9dd08c4a84f00a9f18"
+    },
+    "approachB-04.json": {
+      "bytes": 16973,
+      "sha256": "1b650c828df43a2737cf6f2356bf90f57cf2619b66f1967382098b9b6a4aa10f"
+    },
+    "approachB-05.json": {
+      "bytes": 17021,
+      "sha256": "132f68a2c829d51ba42fbf57d7261dcc8c93dd0a71ce37a4201cc2564b443281"
+    },
+    "approachB-06.json": {
+      "bytes": 17010,
+      "sha256": "6c822eb23f7e47946be071eddd531ebe25782de062e6973f966e0d07f04651d6"
+    },
+    "approachB-07.json": {
+      "bytes": 17055,
+      "sha256": "d7d226dab44b9734cfa2f4ec14968009fb541fce01e28ba243f1e85434667e04"
+    },
+    "approachB-08.json": {
+      "bytes": 17091,
+      "sha256": "7b691676bb8e13dcfda8c8014567ea730c47a1bef07a49d9ff3a6956d24ded5d"
+    },
+    "approachB-09.json": {
+      "bytes": 17094,
+      "sha256": "25f537eb776af9b54bd54b9b7aa8fbb38d2074bd0516cface77ca75b6893ce9a"
+    },
+    "approachB-block.json": {
+      "bytes": 41589,
+      "sha256": "b3ff8d9462b33def00ec5ec4404a9e3f9abac6b8150d3106eb137ce1f4ad075b"
+    },
+    "before-fixed-block.jpg": {
+      "bytes": 147741,
+      "sha256": "f0900566a56df12b796cdce580b12345353739ada468b491461df595334e27de"
+    },
+    "camera-adjustment.jpg": {
+      "bytes": 161774,
+      "sha256": "3806e250c36c83e36509c1472e64fd5e14225aeb6a4dc4fcec52de2b2f1febd9"
+    },
+    "cleanup.py": {
+      "bytes": 2032,
+      "sha256": "f57ef94f48c985e8ed84f4932ff90e76bb0b8f000801600548734e6dcf5cb04a"
+    },
+    "close-receipt.json": {
+      "bytes": 264,
+      "sha256": "7b084718b0eaff1a93fb2aba3f83c114f765aee47ef0fddba6834956addbd4ac"
+    },
+    "dismiss-load.json": {
+      "bytes": 7365,
+      "sha256": "c37ab84c5dd8d3193124a7aee24e5219df969845de05091391045539397e8391"
+    },
+    "environment.json": {
+      "bytes": 2408,
+      "sha256": "0a4c6931a374d763ab9ff53ef97bf9e5c3151ff0cf948243478a938abd79fa98"
+    },
+    "field-before.jpg": {
+      "bytes": 164391,
+      "sha256": "a8756d8964eb8433f816de4fb9015148bba4432ee183fe044149526376270001"
+    },
+    "first-window-expiry.json": {
+      "bytes": 455,
+      "sha256": "96c2ed3e5e572b935b8bdd75b916218a9fa79cd7878682cdd2bcd1c17b0756cd"
+    },
+    "forward_block.py": {
+      "bytes": 2465,
+      "sha256": "f47d53eab731f9ce8db7f0335fcf8fb262e7e66fd60befe4f2b1cb59e01e1890"
+    },
+    "launch.json": {
+      "bytes": 263,
+      "sha256": "e8b8df485a45427cd15fc5dfd4fe73a355e9117a9df2ac57e80b3b2397a806cd"
+    },
+    "load-menu.json": {
+      "bytes": 7361,
+      "sha256": "ac7911ae976febd5398c47538694dfee2ffc7144d38ce382492ac41110f8f9ed"
+    },
+    "load-stepping.json": {
+      "bytes": 7365,
+      "sha256": "c1b766a8fa475670b702c6b744a752a4c53cd2701e430a4df1f2f7e86a6fef12"
+    },
+    "named-save.jpg": {
+      "bytes": 89672,
+      "sha256": "e081d5ba04ece5afe104f9b8cc3ac8a4e61b577ae4237b36ddf168db8f342ffc"
+    },
+    "qualified.json": {
+      "bytes": 20047,
+      "sha256": "421e5b8f31e7f401b29d42bd5b68b84a03442e4ffe462be9138b4578a40549d7"
+    },
+    "save-before.json": {
+      "bytes": 2915,
+      "sha256": "e312d80faaadd6f958cd6ce5a3bccbd01293eb987485dc1fdbc4a32caa379715"
+    },
+    "save-restored.json": {
+      "bytes": 3173,
+      "sha256": "cd3b9d65a228c7547262506035a0e4dcb4181a680b1358be9b37cccfde8d2cd2"
+    },
+    "seal.py": {
+      "bytes": 4117,
+      "sha256": "d7ad39de09a049efd6e91ab13b310c60da649ecc0968c991d10dd3318b83f069"
+    },
+    "setup.py": {
+      "bytes": 1429,
+      "sha256": "8780a05b228162a92b64299f4a745070826146d2c10d6e27c35e3927935a0a0d"
+    },
+    "step-01.json": {
+      "bytes": 16658,
+      "sha256": "402509eac5a1f3666920e53d4df48a6d156301567eeeb55a3a45e9c5060bfa54"
+    },
+    "step-02-camera.json": {
+      "bytes": 16673,
+      "sha256": "cccccb5ae4b1c999c5ceeffccc16ac231604a91fe565cf7e722d716ba6dc61d9"
+    },
+    "step-03.json": {
+      "bytes": 16823,
+      "sha256": "51484b505eeb05fa7c3f60dc309d4952d799f931f893918a930db3d04ac92eae"
+    },
+    "step-cleanup-controls.json": {
+      "bytes": 858,
+      "sha256": "a7183b61b421dd8ca8f2d6a0878a35e6cfc579f4a0f0187a03ab7936c3372025"
+    },
+    "step.py": {
+      "bytes": 6007,
+      "sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca"
+    },
+    "test_step_cleanup.py": {
+      "bytes": 2925,
+      "sha256": "fa28a500dcfae2dcaaeaa4fc9f4b636b5390cc4d1cbca7b8a72a6c11c8130bde"
+    },
+    "validated-ffxii_runtime.py.bin": {
+      "bytes": 44574,
+      "sha256": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928"
+    },
+    "validated-key_packet.py.bin": {
+      "bytes": 2059,
+      "sha256": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59"
+    },
+    "validated-observe_ledger.py.bin": {
+      "bytes": 6680,
+      "sha256": "85dc4f959e76df6db7274c25bb34d0caa19e2548388f20dfbfd1f938e75ae91b"
+    },
+    "validated-runtime_probe.py.bin": {
+      "bytes": 14957,
+      "sha256": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f"
+    },
+    "validated-step.py.bin": {
+      "bytes": 6007,
+      "sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca"
+    },
+    "validated-window_focus.py.bin": {
+      "bytes": 5068,
+      "sha256": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d"
+    },
+    "validation.json": {
+      "bytes": 4351,
+      "sha256": "0fe5ea7a0530a12876269cbfd27382682eda1c836bcc392d8e1f871efe705e41"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"STATIC_ONLY_BOUNDARIES_VALID\", \"first_selected_arg5\": 0, \"step_direct_hit_counts\": [0, 2, 2, 1], \"class_stability\": \"OPEN\", \"limits\": \"No normal gameplay, initialized ownership, universal second-arg zero, full nested effects or presentation claim.\"}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "529d0b8ed99f9a836259decdd4130d69d63ff2d907d8042eaedd770945b5a9f0"
+  },
+  {
+    "case": "failed-upstream",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\failed-upstream\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\failed-upstream\\check.py\", line 22, in <module>\n    assert node_receipt['terminal'] is True and node_receipt['returncode'] == 0 and not node_receipt['stderr']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "529d0b8ed99f9a836259decdd4130d69d63ff2d907d8042eaedd770945b5a9f0"
+  },
+  {
+    "case": "missing-result",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\missing-result\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\missing-result\\check.py\", line 20, in <module>\n    node_saved = load('node-reader-feasibility.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\missing-result\\check.py\", line 8, in load\n    def load(name): return json.loads((W/name).read_bytes())\n                                      ~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\heading-source-consumers\\\\preflight-cases\\\\missing-result\\\\node-reader-feasibility.json'\n",
+    "terminal": true,
+    "checker_sha256": "529d0b8ed99f9a836259decdd4130d69d63ff2d907d8042eaedd770945b5a9f0"
+  },
+  {
+    "case": "fictional-class-closure",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\fictional-class-closure\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-source-consumers\\preflight-cases\\fictional-class-closure\\check.py\", line 17, in <module>\n    assert json.loads(arg_receipts[0]['stdout']) == arg_saved\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "529d0b8ed99f9a836259decdd4130d69d63ff2d907d8042eaedd770945b5a9f0"
+  }
+]

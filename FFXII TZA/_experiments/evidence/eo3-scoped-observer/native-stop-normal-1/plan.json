@@ -1,0 +1,54 @@
+{
+  "arm": "normal",
+  "nonce": "3e7571e5-255c-40ec-b945-9e62f2aa1d94",
+  "parent_pid": 43952,
+  "sources": {
+    "Database/Tools/work/ASTRA/eo3-observer/native_stop_control.py": "4e1157eadeccd6446321deec53790cbd668b20db33e53f589af9f662f225abb9",
+    "Database/Tools/work/ASTRA/eo3-observer/capture_scoped.py": "872ae50ba7c0cd0b2351c2b522d03d59698eadd26271e45f2ce46d74e0c5e7ca",
+    "Database/Tools/work/ASTRA/eo3-observer/project.py": "8641102f878091819ef93a696c70e56094579b157dcf97e9afa71f7cd2e4bbca",
+    "Database/Tools/analysis-kit/gfz-scripts/runtime_probe.py": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/run.py": "e7e699a2fdb7f59051668e1d893bcbed6a0ce3832b427a98beef9b29090edac6",
+    "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/fixture.py": "41a90a19db11ca7deb48362092bc9234b3c5288c224387aadcace4986e7adf96",
+    "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/preserve.bin": "82486c57c1054d44549a1a04fe1d0e41a345ab5c6366fa023ab44f0877dae620",
+    "Database/FFXII TZA/_experiments/evidence/exp127-native-dispatch-control/run.py": "4e7659eea7b8aaa3026e9404b960fb45691b2a4fce08d88bfed20ae7221477ed",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/ownership.py": "8f75d7f7fe1545a323acb58169c836a717f2b1ddad403231c3ebb1b710862c2b",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/cleanup_candidate.py": "c737324fadc5a126e413dc2b71aff3c3ca3ffc12d4f14e0cdfd04bfc1c53cb20",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a"
+  },
+  "host": {
+    "windows": [
+      10,
+      0,
+      26200,
+      2,
+      ""
+    ],
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_binary": "C:\\Python314\\python.exe",
+    "python_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+    "modules": {
+      "kernel32.dll": {
+        "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+        "sha256": "8f8629741558b5df71def4e1dd8ef9645d4f806b949762c47757c50fea1a9e6d"
+      },
+      "kernelbase.dll": {
+        "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+        "sha256": "becad014fb8efa8cb5e314931cca92778ad42c649b12a6909632cacd68af4f40"
+      },
+      "ntdll.dll": {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+        "sha256": "a74f7482085eab125ccc09152ab7e0b5994bcb13e1a7b29880bdbb24179ecb8b"
+      },
+      "python314.dll": {
+        "path": "C:\\Python314\\python314.dll",
+        "sha256": "fde89cdb5c2d08ae65de7ef4abca1876c93ba3796002f5ac0bf7e4d4f5a94da0"
+      }
+    }
+  },
+  "method": "native synthetic stopped-event/abort control; no FF12 or original instructions",
+  "question": "Does the owned stopped callback precede resume, and does abort prevent the successor marker?"
+}

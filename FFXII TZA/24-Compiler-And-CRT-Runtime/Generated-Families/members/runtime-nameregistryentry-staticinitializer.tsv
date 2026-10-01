@@ -1,0 +1,65 @@
+# Runtime.NameRegistryEntry.StaticInitializer - EC-7 family C, declared on generated-function-families.md
+#
+# 56 members. Body size(s): 32 B x56.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 2 external target(s): 2 shared across all 56 members.
+#
+# NOT dispositioned: the 2 shared implementations these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00162430
+00162450
+00162470
+00162490
+001624B0
+001624D0
+001624F0
+00162510
+00162530
+00162550
+00162570
+00162590
+001625B0
+001625D0
+001625F0
+00162610
+00162630
+00162650
+00162670
+00162690
+001626B0
+001626D0
+001626F0
+00162710
+00162730
+00162750
+00162770
+00162790
+001627B0
+001627D0
+001627F0
+00162810
+00162830
+00162850
+00162870
+00162890
+001628B0
+001628D0
+001628F0
+00162910
+00162930
+00162950
+00162970
+00162990
+001629B0
+001629D0
+001629F0
+00162A10
+00162A30
+00162A50
+00162A70
+00162A90
+00162AB0
+00162AD0
+00162AF0
+00162B10

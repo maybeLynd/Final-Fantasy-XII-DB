@@ -1,0 +1,64 @@
+# NativeAdapter.ForwardSecondArgumentCallReturnTrue - EC-7 family C, declared on generated-function-families.md
+#
+# 47 members. Body size(s): 19 B x47.
+#
+# THE FORM GROUP IS 48. `005D46D0` was removed 2026-09-14 (OPUS) because it is now
+# measured A - `CONTRACT-phyre-class-descriptor.md`, at `readiness: CONTRACT READY`,
+# cites `005D46D7`, an address strictly inside its 19 bytes. A beats a declaration, and
+# that page only became visible to the census when SWE2-AUDIT-SPEC adjudicated the two
+# maturity ladders into one (9efc6221). So the count fell because a member got BETTER
+# understood, not worse: the form claim below is still 48 bodies of one shape, and this
+# file is the 47 the family still disposes of.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 48 external target(s): 0 shared across all 48 members, and 48 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 48 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+005A3420
+005C33D0
+005CE320
+005CF190
+005CFAB0
+005D0DF0
+005D2010
+005D32D0
+005D4710
+005D7A50
+006004F0
+00600510
+00600630
+00611670
+00611780
+00611C30
+00612080
+00612210
+00612F60
+00613230
+0062F1E0
+0062F6C0
+00642930
+0065ECF0
+0065EFD0
+0065FEE0
+00660B30
+00660CF0
+00660E70
+00661670
+00670340
+006703A0
+00674A30
+0067C720
+00680420
+00680AC0
+006880D0
+0068B350
+0068C4C0
+0068DF30
+006AB2D0
+006C2C10
+006C48B0
+006C75E0
+006CF7B0
+00868FE0
+00877840

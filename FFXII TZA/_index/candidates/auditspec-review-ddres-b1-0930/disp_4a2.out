@@ -1,0 +1,4 @@
+0018F316  root 0018EEE0  r   1B  movzx eax, byte ptr [rsi + 0x4a2]
+001C977B  root 001C7940  w   1B  mov byte ptr [rax + 0x4a2], bl
+total 2 sites, 1 writes, 1 byte-width writes
+control 001C977B (writer) PASS, 0018F316 (reader) PASS

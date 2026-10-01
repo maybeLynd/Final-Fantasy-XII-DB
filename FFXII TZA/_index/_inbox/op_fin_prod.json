@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-PRODUCER-TEST",
+ "result_refs": ["commit:725dbd400"],
+ "note": "published. Producer test: 699 of 767 encoder call sites store the result into a structure field, so an encoded reference field is as a rule runtime-produced; but the five +0x94 writers are not RenderStrideC0Element, so that field's writer stays unfound and the encoder-then-store pattern is merely excluded. Extent rules exhausted at three bindings, recorded in the scanner so nobody rebuilds them expecting more. Two ctype rows adjudicated after check_ctype_width.py - the SINGULAR tool I had rebuilt instead of running - corrected my reading: all four scalar disagreements are explains:yes and my float[2] change destroyed store-width information, so I reverted three edits and my duplicate check and re-applied only the two the real gate calls `neither`. neither 2 -> 0. Also caught an EOL flip from io.open without newline='' that had turned fields.tsv and the scanner CRLF; git diff hid it, cmp found it, both restored before publishing."
+}

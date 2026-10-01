@@ -1,0 +1,375 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 398,
+      "sha256": "20cbedeb3b4ecfd1d86f8ddc04bf42617828b73dc7d0d60d39e41218f2a282f5"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8141,
+      "sha256": "89653eda421e0c441471a0d8a278d2cec2f4076533a1bc197d1b98d965305be0"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4855,
+      "sha256": "da62bbb9ac4414a5e2ddfc89511ac783bd845e652f2b7d775de7f0978c92334c"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2216,
+      "sha256": "5137aae52fdb29c643bb5999f1d2f90f884f352fc8d46436e1f18c32bfeeced6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3399,
+      "sha256": "9cdd4931c627948885f02dc20aa74d0d1d3074cf7da7ed61564b52a1e93902a7"
+    },
+    {
+      "path": "reducer-controls/failed-writer-exit-hidden.json",
+      "bytes": 58399,
+      "sha256": "4379a90fe2c6333bf4e6e036e079a5e6de93515eb8f2c25d7a3c9b512f7cb324"
+    },
+    {
+      "path": "reducer-controls/missing-field.json",
+      "bytes": 57046,
+      "sha256": "22dd229350a43a315e73a5d959785d99bdb1d3ab2bb7b95c85ae918f8e1c40e1"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 2495,
+      "sha256": "e721197391bf0270207601b8e72f90342f2a5881d74ab249bc07a11cfbe963d2"
+    },
+    {
+      "path": "reducer-controls.py",
+      "bytes": 969,
+      "sha256": "53a6d1902e417ef2faafde443839e6a5b0ab5a77c0b9b080e1404810ed915c01"
+    },
+    {
+      "path": "run-01/driver-before-run.py",
+      "bytes": 8141,
+      "sha256": "89653eda421e0c441471a0d8a278d2cec2f4076533a1bc197d1b98d965305be0"
+    },
+    {
+      "path": "run-01/fields/commit-full40-crlf/receipt.json",
+      "bytes": 1370,
+      "sha256": "1772f1c3624d3cc7c29a911eb49875fb9ec3d93554b838b013e3b66cab493882"
+    },
+    {
+      "path": "run-01/fields/commit-full40-crlf/TEAM.json",
+      "bytes": 4137,
+      "sha256": "0e275243d576f7607445a54271edfd3f606362767db8ac0b3c499d18f498bb48"
+    },
+    {
+      "path": "run-01/fields/commit-full40-lf/receipt.json",
+      "bytes": 1355,
+      "sha256": "4c119ebda672649348f125494f388ae1b6f33cbbab57404771385032ace0f82c"
+    },
+    {
+      "path": "run-01/fields/commit-full40-lf/TEAM.json",
+      "bytes": 4135,
+      "sha256": "e8ef5cefc235334652f3a36e0053270f73daba345d64a5d8f9f058d5c929230c"
+    },
+    {
+      "path": "run-01/fields/valid-full40/receipt.json",
+      "bytes": 2562,
+      "sha256": "30cc39c7ca1dbb7b25ba125411df153f476eaac111d3d45008cad00195434cef"
+    },
+    {
+      "path": "run-01/fields/valid-full40/TEAM.json",
+      "bytes": 4133,
+      "sha256": "15f529dba4b454465e84e678206d3f0fc5335c653dbcb65089927466a37f6f21"
+    },
+    {
+      "path": "run-01/fields/verdict-lf/receipt.json",
+      "bytes": 1212,
+      "sha256": "724e6a6d6996623fba511fd3691c3136075050569f058e8651ccc0e77a1fb6b9"
+    },
+    {
+      "path": "run-01/fields/verdict-lf/TEAM.json",
+      "bytes": 4135,
+      "sha256": "69853bfbaa0598a64ef6cbe6ae8b078a7e9cee99aebc2b3fdb6b6c3b3e35f336"
+    },
+    {
+      "path": "run-01/labelled-child-entry-guard.py",
+      "bytes": 1195,
+      "sha256": "fcfbe94c11b2c1943dc2f88d174368ed31bf823908b939fc1276661104b6b38f"
+    },
+    {
+      "path": "run-01/original-team.py",
+      "bytes": 54156,
+      "sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480"
+    },
+    {
+      "path": "run-01/prior-raw.json",
+      "bytes": 24052,
+      "sha256": "6ac38415d63f06968592cf3d96bbf1ce6ffdf0485f39bde5f097466e1d16a315"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 58399,
+      "sha256": "174a593f51973836d6db9edcdf3fd8b68275f7b466fd8b267fa1591c9ba33697"
+    },
+    {
+      "path": "run-01/regression/conflicting-verdict/receipt.json",
+      "bytes": 1286,
+      "sha256": "39fc3b0a34b1a682ef917dbb6669ac4c06461222fdbcca8ba078c839a3ae55bc"
+    },
+    {
+      "path": "run-01/regression/conflicting-verdict/TEAM.json",
+      "bytes": 4284,
+      "sha256": "f8fcfcaaa59a0d0b09ae782928690630b253e5dea0eb9ae29f970ef9190edfee"
+    },
+    {
+      "path": "run-01/regression/malformed-string/receipt.json",
+      "bytes": 1216,
+      "sha256": "23b502c684f0082e22ee3e089164095f63ea95a5dee4dee137b99463e0fd982a"
+    },
+    {
+      "path": "run-01/regression/malformed-string/TEAM.json",
+      "bytes": 4087,
+      "sha256": "be4d3b7c77dfff2f7bbb0bbc1ffdcc9b361037212fb64ca2647e748d58c9f4c3"
+    },
+    {
+      "path": "run-01/regression/missing-commit/receipt.json",
+      "bytes": 1236,
+      "sha256": "3b13b7fd1f81bd86e5f9c0deec9086618223be9e2b79d9205a8ab5d702199340"
+    },
+    {
+      "path": "run-01/regression/missing-commit/TEAM.json",
+      "bytes": 4209,
+      "sha256": "ae58bce5c16ff04c9ec03b1e3908cd74fe3d958006fb1fd85c3023f540eba5fa"
+    },
+    {
+      "path": "run-01/regression/missing-verdict/receipt.json",
+      "bytes": 1235,
+      "sha256": "a3549d2f8db78fb0431a4a8f1150eab302f73b4b00fc1aa2025218f1d2acae53"
+    },
+    {
+      "path": "run-01/regression/missing-verdict/TEAM.json",
+      "bytes": 4247,
+      "sha256": "9d4841081ea3d534310ea7ae6dbffa3003d15210a21bbb712ebb9e1e45c9fb53"
+    },
+    {
+      "path": "run-01/regression/no-owner/receipt.json",
+      "bytes": 1196,
+      "sha256": "9b2aa32516997eeea915b27b815c512cb3e9a270c54703aec44d7d67c38ce8a7"
+    },
+    {
+      "path": "run-01/regression/no-owner/TEAM.json",
+      "bytes": 4235,
+      "sha256": "78ba99f9b20d3021fbff1509be565ee3748e2edda48dd61fc34eb306b3d38e01"
+    },
+    {
+      "path": "run-01/regression/non-sha-commit/receipt.json",
+      "bytes": 1257,
+      "sha256": "65fd4df5956cc5ce4c811a3d4206f3699c562d0a7de4b125cf353976188b4ec8"
+    },
+    {
+      "path": "run-01/regression/non-sha-commit/TEAM.json",
+      "bytes": 4216,
+      "sha256": "6c1a7452dd4f2594f8bc24711904145b6059221715472a9de26463a8a0444076"
+    },
+    {
+      "path": "run-01/regression/self-review/receipt.json",
+      "bytes": 1274,
+      "sha256": "96ea104975f848e9b4a8c9ee062f47316096640520ea8993176c554262b39e14"
+    },
+    {
+      "path": "run-01/regression/self-review/TEAM.json",
+      "bytes": 4280,
+      "sha256": "522a5da746b054de9f3389926885622bf1661de75329fe3556e22e526a52309b"
+    },
+    {
+      "path": "run-01/regression/self-review-reject/receipt.json",
+      "bytes": 1288,
+      "sha256": "1ebc7c64a97cdd046e0b21ade37b13fab857e9db7b8af23c5a1a156b7ee85b5a"
+    },
+    {
+      "path": "run-01/regression/self-review-reject/TEAM.json",
+      "bytes": 4129,
+      "sha256": "ce5c14caf1e8d7ae00b69f0a79e9b80af6bb266a5fd025c3bfd6f0ba0c3b11c2"
+    },
+    {
+      "path": "run-01/regression/typed-author/receipt.json",
+      "bytes": 1226,
+      "sha256": "22558a4df6b94d508c89ed7d02b94875dc8bd3d7c27e403244c413f699749564"
+    },
+    {
+      "path": "run-01/regression/typed-author/TEAM.json",
+      "bytes": 4267,
+      "sha256": "f220ec2025f48afdeb2bf9ca6a96be2b72a12cd5ed68b1367758f9808f01fc37"
+    },
+    {
+      "path": "run-01/regression/typed-commit/receipt.json",
+      "bytes": 1262,
+      "sha256": "4b2bcaab503b1e5354c849d8cd31dbfac020b2c4992b0360b0a9800629bf2897"
+    },
+    {
+      "path": "run-01/regression/typed-commit/TEAM.json",
+      "bytes": 4239,
+      "sha256": "046f16c33628b30c984282e219226f8bfc6c3e592d24160f7d5dfa6e23e5e237"
+    },
+    {
+      "path": "run-01/regression/typed-record/receipt.json",
+      "bytes": 1256,
+      "sha256": "ee46a6364501e2d8251a5b308cb26e04bbe816d6ef2cf11be59b9aeac8ae1e16"
+    },
+    {
+      "path": "run-01/regression/typed-record/TEAM.json",
+      "bytes": 4226,
+      "sha256": "ac521e2f2560fc551d0ab1d93ac07b61d4e56dcd566d6f667a7764672310480a"
+    },
+    {
+      "path": "run-01/regression/valid-accept/receipt.json",
+      "bytes": 2566,
+      "sha256": "40c6413af9d471db1b494f08967460c377bff51bae3c06d54ef0a3aaa24f02ad"
+    },
+    {
+      "path": "run-01/regression/valid-accept/TEAM.json",
+      "bytes": 4284,
+      "sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951"
+    },
+    {
+      "path": "run-01/regression/valid-reject/receipt.json",
+      "bytes": 2584,
+      "sha256": "2874a42c46fabaefd72aa9d1c59c86bfba5482923a4f156fe39e6d4bd83654de"
+    },
+    {
+      "path": "run-01/regression/valid-reject/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/__pycache__/team.cpython-314.pyc",
+      "bytes": 67831,
+      "sha256": "b43b3283a35dba4606262c166c35352e8b326ea092439d55fb766b8e9eba8933"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "bytes": 55351,
+      "sha256": "43c9137bf422748fccf880f2ab3ed9da829ae07600c265fb63e7fe0c12296ac3"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "bytes": 13797,
+      "sha256": "0b06ced7b711f3a64926cad6ccc467cd10adf7e8a23086fb24f118a4c4114f7e"
+    },
+    {
+      "path": "run-01/writer/exists-absent/child.json",
+      "bytes": 2155,
+      "sha256": "557a9fd2077ecffaaa02f7afec13294a4f4065dbbc6acd08f41dc08a6e5131b9"
+    },
+    {
+      "path": "run-01/writer/exists-absent/receipt.json",
+      "bytes": 3523,
+      "sha256": "5924b06b818d9f595c7468e430d1394cf8e8427c83b905d3555ec656ef0f82ec"
+    },
+    {
+      "path": "run-01/writer/exists-absent/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "run-01/writer/exists-derived-id/child.json",
+      "bytes": 2162,
+      "sha256": "51a07e9aaddef758ec9f2f1bdc8538b9fa0c3f3498bedd2e9ba665d623226db5"
+    },
+    {
+      "path": "run-01/writer/exists-derived-id/receipt.json",
+      "bytes": 3479,
+      "sha256": "0b59929a9797aa24dc45e2313a37d5904b0c9963055ca8466a29faeeb9ed059e"
+    },
+    {
+      "path": "run-01/writer/exists-derived-id/TEAM.json",
+      "bytes": 7241,
+      "sha256": "479c11022b09dcd01561a1dc501a8f710560d6f83563578c43347d2d75076597"
+    },
+    {
+      "path": "run-01/writer/exists-other-id/child.json",
+      "bytes": 2158,
+      "sha256": "8e487dd57400e18d0a88ed47cefdede305871f52c32aafe06e4207762457ea1c"
+    },
+    {
+      "path": "run-01/writer/exists-other-id/receipt.json",
+      "bytes": 3530,
+      "sha256": "1f64eaba60b48123f2f99c6eebdfe34e1ee9ae4a085dea067afaccaf26092203"
+    },
+    {
+      "path": "run-01/writer/exists-other-id/TEAM.json",
+      "bytes": 7253,
+      "sha256": "1481cd237308deeea6f54297b5a6651094cd34f33ff160b15a8846d687300d39"
+    },
+    {
+      "path": "run-01/writer/nonzero-error/child.json",
+      "bytes": 2173,
+      "sha256": "c739555b1e9228c64658cbd8dc80adcf63b94769abb34472a15c37770d3a0e20"
+    },
+    {
+      "path": "run-01/writer/nonzero-error/receipt.json",
+      "bytes": 3577,
+      "sha256": "72ec1109d57fb5af1023a48236d62b14e548637e630d598d4f627323ad64be60"
+    },
+    {
+      "path": "run-01/writer/nonzero-error/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "run-01/writer/nonzero-marker/child.json",
+      "bytes": 2153,
+      "sha256": "6479347fc4830a1efd10dc94a8611cff0d2b0a6b0009fb90acf641d9cf6a1887"
+    },
+    {
+      "path": "run-01/writer/nonzero-marker/receipt.json",
+      "bytes": 3517,
+      "sha256": "c01f1080b663d9a21f8a44ca1729a64ed5600b750170e5bd09bc81c8e610b119"
+    },
+    {
+      "path": "run-01/writer/nonzero-marker/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "run-01/writer/zero-marker/child.json",
+      "bytes": 2150,
+      "sha256": "3d960525756139291537a6564af7f1d351dfa1225131aa44b2a00eac2c31c7d0"
+    },
+    {
+      "path": "run-01/writer/zero-marker/receipt.json",
+      "bytes": 3458,
+      "sha256": "fc08ac9b205f2d6c299c05b3f75ae4e4070d2712616227572ff5cfa1bcf080c8"
+    },
+    {
+      "path": "run-01/writer/zero-marker/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "run-01/writer/zero-no-marker/child.json",
+      "bytes": 2161,
+      "sha256": "caa240c8a5c8ccc16f1588a5f957409af655412c9317360f63c61beb9784246f"
+    },
+    {
+      "path": "run-01/writer/zero-no-marker/receipt.json",
+      "bytes": 3541,
+      "sha256": "25f48fa3aa288af6c1367109aff1392134d5d4816866167d870607e6f3ba33a2"
+    },
+    {
+      "path": "run-01/writer/zero-no-marker/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "run.py",
+      "bytes": 453,
+      "sha256": "f31aebcfa6a962193706b46f09189085a01f468bf3a228453707b603a708140a"
+    }
+  ]
+}

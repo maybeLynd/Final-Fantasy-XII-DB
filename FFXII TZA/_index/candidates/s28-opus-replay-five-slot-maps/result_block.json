@@ -1,0 +1,156 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4269,
+ "results": {
+  "BS1_BS2_binder_arms": {
+   "pass_": true,
+   "arms": {
+    "unbound": {
+     "ok": true,
+     "cell_after": "21B290C",
+     "calls": [
+      "00237DF0 runtime reset",
+      "002370C0 block reset",
+      "00237DF0 runtime reset",
+      "002370C0 block reset"
+     ]
+    },
+    "bound, magic wrong": {
+     "ok": true,
+     "calls": [
+      "00237DF0 runtime reset",
+      "002370C0 block reset"
+     ],
+     "magic_after": "5071901"
+    },
+    "bound, magic right, reference matching": {
+     "ok": true,
+     "calls": [
+      "00233C5E body"
+     ],
+     "fault": null
+    },
+    "bound, magic right, reference differing": {
+     "ok": true,
+     "calls": [
+      "00237DF0 runtime reset",
+      "002370C0 block reset"
+     ],
+     "fault": null
+    }
+   },
+   "note": "unbound: the cell becomes the active save buffer + 0x4E68C and 00237DF0 runs twice; bound with a wrong magic: once, no body; bound with the right magic: the body and no reset - but ONLY when the block agrees with the reference image at active + 0x2200: otherwise the first call 00235AF0 rebuilds the block and the magic test then sends it to the reset"
+  },
+  "BS3_BS5_reset_leaves": {
+   "pass_": true,
+   "magic": "5071901",
+   "maps": [
+    [
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    [
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000"
+    ],
+    [
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000"
+    ],
+    [
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000"
+    ],
+    [
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000",
+     "0000"
+    ]
+   ],
+   "other_nonzero_bytes": 0,
+   "resolver_after_reset": {
+    "0": "FF",
+    "1": "00",
+    "2": "00",
+    "3": "00",
+    "4": "00"
+   },
+   "note": "the reset zeroes exactly 0x7410 bytes, rewrites the magic 05071901, and fills ONLY map 0 with FFFF; maps 1-4 stay 0, so the resolver answers FF for class 0 and 00 - a slot-zero reading - for classes 1-4"
+  }
+ }
+}

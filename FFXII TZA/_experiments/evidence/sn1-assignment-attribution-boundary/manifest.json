@@ -1,0 +1,185 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 3925,
+      "sha256": "4010347eb186e2996d4a2ecf10ff1d17826f120ba54b04db36d25e36c548bcfa"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7331,
+      "sha256": "115539dd4493c46e305803a9491a66622fcac26a46fae68e9fbf9265d5244ef7"
+    },
+    {
+      "path": "correct-helper-label.py",
+      "bytes": 1097,
+      "sha256": "d5a11446528b43ba9512743e71dd36fbc119e967b037a31bfa130ca89d8d76c2"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 474,
+      "sha256": "4a611e1a14fe7596436dfc9eafdc8881b86662c53fa87f67dd13ae9389e49c9e"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 113,
+      "sha256": "2469311a9d880086ccef6a384cc4a6eff316af111b0fd8a0998f1fd33ff4a04c"
+    },
+    {
+      "path": "fault-literal-only-attribution.stderr",
+      "bytes": 581,
+      "sha256": "2294274012070e2c33f1dc42c320f6ff599008138d529340e34e6d601d05335e"
+    },
+    {
+      "path": "fault-literal-only-attribution.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-tagged-group-as-statement.stderr",
+      "bytes": 483,
+      "sha256": "08562f33d0f0354d1eced53cce9604ed534183e7f37520738a2cd50b1f3e0065"
+    },
+    {
+      "path": "fault-tagged-group-as-statement.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-universal-minus-one.stderr",
+      "bytes": 551,
+      "sha256": "c63f7abc4c50cdc2e1a4b66ffbcdf1a1ec8ad1d2b4c7efdbffcaeac68678b8c6"
+    },
+    {
+      "path": "fault-universal-minus-one.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 4008,
+      "sha256": "a76503f0fdb50cd11287e67878ae021de342bbd0243603f6450efeb92ab220b8"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3115,
+      "sha256": "3b09bdee2e99793162f256b85b79b49d7a41bd8d845f0d7ad0caf7afaf6af5db"
+    },
+    {
+      "path": "helper-label-correction.json",
+      "bytes": 802,
+      "sha256": "b347f0c2281815047ff58cc2a58ecb69836462dfac0b6376427e6031bb16f711"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1295,
+      "sha256": "ca0fca72c82b38f8352c6999a2dff0816056cc5441e5f01f0674317737d96a4b"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 3639,
+      "sha256": "86ce29bc12f9cf3bc818d5d232e66131d4023b74d39bf950940d80c766ee2b10"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4247,
+      "sha256": "33f81239706299ec7282c43d5d2311679a21180f707df1e08d88df0983d88ccb"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 424,
+      "sha256": "55b1aa4ca4881d5a514d0b5a795b51e98eeacfd2d199420a3112b8e8de093652"
+    },
+    {
+      "path": "result.json",
+      "bytes": 16777,
+      "sha256": "64425df0de83d5e441d5312951ea3b57c90fbb3dbbb25e814dff5c76183666b1"
+    },
+    {
+      "path": "retained/check-before-reused-call-control.py",
+      "bytes": 7331,
+      "sha256": "115539dd4493c46e305803a9491a66622fcac26a46fae68e9fbf9265d5244ef7"
+    },
+    {
+      "path": "retained/checker-at-additive-control-preparation.py",
+      "bytes": 7331,
+      "sha256": "115539dd4493c46e305803a9491a66622fcac26a46fae68e9fbf9265d5244ef7"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "bytes": 126112,
+      "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06"
+    },
+    {
+      "path": "retained/evctrl.ebp",
+      "bytes": 38720,
+      "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "bytes": 57816,
+      "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5"
+    },
+    {
+      "path": "retained/opus-logical-primary-before.py",
+      "bytes": 9690,
+      "sha256": "ba543aedb0cfcf926abb49db849d4e794976e8bb7a8b5995bc641641d012a996"
+    },
+    {
+      "path": "retained/opus-lookup-primary-before.py",
+      "bytes": 12411,
+      "sha256": "5e1d7e5df591dd481910745b57c87cfe0a16a779ec6e14a26483fcd8f3acd7ad"
+    },
+    {
+      "path": "retained/parent61-raw.json",
+      "bytes": 68726,
+      "sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3"
+    },
+    {
+      "path": "retained/parent63-manifest.json",
+      "bytes": 5942,
+      "sha256": "8d5b030e6607b7b5d83c9e4e5b7e29afc174a44835cd03ea79467315579a6d40"
+    },
+    {
+      "path": "retained/parent63-result.json",
+      "bytes": 18096,
+      "sha256": "7e78371591db248e659275102d2dc58c2066fc59ab9ca0ec692525e01b279103"
+    },
+    {
+      "path": "retained/parent65-manifest.json",
+      "bytes": 7841,
+      "sha256": "9d188e909afb357a44436b8bd37e0dee00a73e620d253cd15379eba693e33ce0"
+    },
+    {
+      "path": "retained/parent65-result.json",
+      "bytes": 12565,
+      "sha256": "1fc7112ba4ae78085a53b49bd4f9f51e2d6fb356e64a3dd7416131a2c8914f3b"
+    },
+    {
+      "path": "retained/result-before-reused-call-control.json",
+      "bytes": 16408,
+      "sha256": "4e547a0b008c2a73d5e0c1c49eca4ca8501ad067a9f0378989876a5762e5f5f2"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "bytes": 602,
+      "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48"
+    },
+    {
+      "path": "reuse-call-control.py",
+      "bytes": 834,
+      "sha256": "7fd5e6b8e9b2de9eadb0b75c025e44b6ab418c28b9e549648d4b7765a511715c"
+    }
+  ],
+  "limits": "Four original assignment/tag boundary samples, no universal shift/compiler cause/native effects or semantic acceptance.65 original incomplete publication explicitly qualified by additive correction."
+}

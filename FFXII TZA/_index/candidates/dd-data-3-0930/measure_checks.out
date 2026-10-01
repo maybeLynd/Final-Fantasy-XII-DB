@@ -1,0 +1,10 @@
+PASS A1 one ret; eax = r12d, or -1 when arg4 && armed && not met
+PASS A2 r12d = characters: init 0, +1 per character arm, + the interpreter's reported count
+PASS A3 armed = ctx+0x10C8 non-empty; met = memcmp match; arg4 at [rsp+0x3C] - memcmp
+PASS A4 the stop-set 00916548 is the string 0F 23 (the '#' page-wait escape) - 0f2300000f3500000f318080
+PASS A5 state +0xAA: subtracted when negative at three breaks, starting width when positive
+PASS A6 stepper: modes 3 and 7 decrement +0x88; mode 3's expiry sets +0x9B = 0x1E - 2AC06B 2AC06B 2AC04F 2ABF9F 2AC06B 2ABFFC 2AC1AB 2AC18B
+PASS C1 control: 002B2150 nulls 0209CC48 from a zeroed rax
+PASS C2 control: another thunk resolves to a different import - memset
+RESULT 002AF340 returns the characters laid out up to the stop string, or -1 when an armed stop-set is never met; 002ABB20's stop string is the '#' page-wait escape 0F 23
+FAILS 0

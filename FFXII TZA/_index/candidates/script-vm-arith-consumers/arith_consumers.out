@@ -1,0 +1,8 @@
+PASS  C 0025D740 anchors True; consumers 0A..0F [True, True, True, True, True, True]; finite (-1, 0, 1); NaN decisions {'EQ': 0, 'NE': 1, 'GT': 1, 'LS': 0, 'GTE': 1, 'LSE': 0}; host IEEE GT/GTE on NaN {'GT': 0, 'GTE': 0} (rejected); jumps into the int path from outside it []; int 1 vs float 1.5 -> -1, truncating model -> 0 (rejected)
+PASS  D anchors True, entry ebp = 1 / xmm7 = 0 True; model 6/3, 6/0, 6/-0, 6/NaN -> (2.0, 0.0, 0.0, True); rejected: NaN-as-zero gives 0.0 for 6/NaN, reversed operands give 0.5 for 6/3
+PASS  I anchors True, only cdq between the zero test and idiv True, zero -> push int 0 True, both-int test True; model 20/3, -20/3, MIN/1, 7/0, MIN/-1 -> (6, -6, -2147483648, 0, 'FAULT'); rejected: wrap (MIN) and saturate (MAX) for MIN/-1
+PASS  F anchors True, store helper sign-extends +0x1C True; model (2,3)[1,0], (65536,65536)[32768,0], [65535,65535] -> (3, -2147483648, -1); rejected: first-dimension-fastest gives 1, 64-bit gives 2^31
+PASS  R anchors True, no r8d write between the width OR and the store True; model 02FFFFFE+1, 02FFFFFF+1, 02000000-1 -> ['72FFFFFF', '73000000', 'FFFFFFFF'] (class, width) [(2, 7), (3, 7), (7, 15)]; rejected: a final 24-bit mask gives 72000000
+PASS  M OPMOD anchors True; no test or branch before the idiv True; model 7%3, -7%3, 7%0, MIN%-1 -> (1, -1, 'FAULT', 'FAULT')
+PASS  U each pop stores the decremented count before its tag test (00267E1F, 002624E1, 0025D77C); a bad tag reads int 0 (00267E3B) or float 0.0 in the comparator (0025D875 from 0025D767); 008620C0 tail-jumps to 0016D6A0 = C2 00 00 (ret 0): True
+FAILS 0

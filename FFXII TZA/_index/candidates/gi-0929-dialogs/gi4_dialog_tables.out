@@ -1,0 +1,92 @@
+PASS text resolver control: 0x3E8 is 'Yes' :: Yes
+== A. the 00D23688 table
+      rec  0 @ 00D23688 label 0x1b5f 'Hunts' help 0x1f47 'Hunt information and progress.' key 0x06 flag 1
+      rec  1 @ 00D2368E label 0x1b5c 'Bestiary' help 0x1f44 'Insights on foes you have defeated.' key 0x05 flag 1
+      rec  2 @ 00D23694 label 0x1b5d 'Sky Pirate's Den' help 0x1f45 'What will it take to fill the den{9A}' key 0x07 flag 1
+      rec  3 @ 00D2369A label 0x1b5e 'Traveler's Tips' help 0x1f46 'Hints for the wary adventurer.' key 0x04 flag 2
+      rec  4 @ 00D236A0 label 0x1b58 '' help 0x1f40 '' key 0x0b flag 0
+      rec  5 @ 00D236A6 label 0x1b59 '' help 0x1f41 '' key 0x0c flag 0
+      rec  6 @ 00D236AC label 0x1b5b '' help 0x1f43 '' key 0x0d flag 0
+      rec  7 @ 00D236B2 label 0x1b5a '' help 0x1f42 '' key 0x0e flag 0
+      rec  8 @ 00D236B8 label 0x1b5e 'Traveler's Tips' help 0x1f46 'Hints for the wary adventurer.' key 0x0f flag 0
+      rec  9 @ 00D236BE label 0x1b5c 'Bestiary' help 0x1f44 'Insights on foes you have defeated.' key 0x11 flag 0
+      rec 10 @ 00D236C4 label 0x1b5f 'Hunts' help 0x1f47 'Hunt information and progress.' key 0x10 flag 0
+      rec 11 @ 00D236CA label 0x1b5d 'Sky Pirate's Den' help 0x1f45 'What will it take to fill the den{9A}' key 0x12 flag 0
+PASS the next object starts at 00D236D0 (eight 0x80000000 dwords, lea'd at 0056EB88)
+PASS reader 0056F694: movzx edx, word ptr [r12 + rcx*2 + 2] :: movzx edx, word ptr [r12 + rcx*2 + 2]
+PASS reader 0056F69A: movzx ecx, word ptr [r12 + rcx*2] :: movzx ecx, word ptr [r12 + rcx*2]
+PASS reader 0056F32B: movzx ecx, word ptr [rax + rcx*2] :: movzx ecx, word ptr [rax + rcx*2]
+PASS reader 00574AAD: movzx ecx, word ptr [rax + rcx*2] :: movzx ecx, word ptr [rax + rcx*2]
+PASS reader 0056F98D: movzx eax, byte ptr [r8 + rcx*2 + 0xc0368c] :: movzx eax, byte ptr [r8 + rcx*2 + 0xc0368c]
+PASS reader 005732AC: movzx edx, byte ptr [r9 + rcx*2 + 0xc036a4] :: movzx edx, byte ptr [r9 + rcx*2 + 0xc036a4]
+PASS reader 00571ECD: movzx edx, byte ptr [r9 + rcx*2 + 0xc036a4] :: movzx edx, byte ptr [r9 + rcx*2 + 0xc036a4]
+PASS reader 0056F795: movzx ecx, byte ptr [r14 + rcx*2 + 4] :: movzx ecx, byte ptr [r14 + rcx*2 + 4]
+PASS reader 0056EDB4: movzx edi, byte ptr [rax + rcx*2] :: movzx edi, byte ptr [rax + rcx*2]
+PASS reader 005721EB: movzx edx, byte ptr [rax + rcx*2] :: movzx edx, byte ptr [rax + rcx*2]
+PASS lea at 0056F678 -> 00D23688 :: 00D23688
+PASS lea at 0056F76C -> 00D23688 :: 00D23688
+PASS lea at 0056FAEF -> 00D23688 :: 00D23688
+PASS lea at 0056F324 -> 00D236A0 :: 00D236A0
+PASS lea at 00574AA6 -> 00D236A0 :: 00D236A0
+PASS lea at 0056EDAD -> 00D236A4 :: 00D236A4
+PASS lea at 005721E4 -> 00D236A4 :: 00D236A4
+PASS rip sweep of 00D23688..00D236D0 finds exactly the seven lea sites above (control: 0056F678 among them) :: ['0056EDAD->00D236A4', '0056F324->00D236A0', '0056F678->00D23688', '0056F76C->00D23688', '0056FAEF->00D23688', '005721E4->00D236A4', '00574AA6->00D236A0']
+PASS displacement sweep of 0xC03688..0xC036D0 finds exactly 0056F98D, 00571ECD, 005732AC (all +4 byte reads) :: ['0056F98D movzx eax, byte ptr [r8 + rcx*2 + 0xc0368c]', '00571ECD movzx edx, byte ptr [r9 + rcx*2 + 0xc036a4]', '005732AC movzx edx, byte ptr [r9 + rcx*2 + 0xc036a4]']
+PASS reader framing: 4 of 4 menu keys name the handbook page titled with the menu row's own label :: 4
+PASS REGRESSION: the published framing {kind, flag, u16, u16} at 0xC0368C / 0xC036A4 agrees 0 of 4 :: 0
+PASS menu option 0 is 'Hunts' with key 6 (the published row paired kind 6 with Bestiary)
+PASS menu keys 6,5,7,4 = Hunts, Bestiary, Sky Pirate's Den, Traveler's Tips
+PASS handbook half keys are 0x0B..0x12 and flags 0
+PASS page kinds 0-3 titles share one row in all nine locales
+PASS the shared row reads 'NOT USED' in fr and 'DUMMY' in es :: {'us': '', 'de': '(Unused', 'es': 'DUMMY', 'fr': 'NOT USED', 'it': '', 'in': 'G', 'kr': 'H', 'cn': 'I', 'ch': 'J'}
+== B. the handbook key is a saved-cursor slot
+PASS 002527B0 bases on [020927C0]
+PASS 002527B0 stores word +0x30, byte +0x70, dword +0x90 (banks 6/7/8), clamped
+PASS table-key call at 005732B5 passes bank 6 :: lea ecx, [rbx + 6]
+PASS table-key call at 00571ED6 passes bank 6 :: mov ecx, 6
+PASS table-key call at 005721EF passes bank 6 :: lea ecx, [r8 + 6]
+PASS table-key call at 0056EDCF passes bank 6 :: mov ecx, 6
+== C. single installers
+PASS 0056F810: exactly one rip reference, at 00574D28 :: ['00574D28']
+PASS 0056F810: no absolute qword pointer in the file
+PASS 0056F810: every RVA-dword hit is a {begin, end} range record :: ['0x1e94b04:.pdata', '0x1e94b0c:.pdata']
+PASS 00556F90: exactly one rip reference, at 00556EF3 :: ['00556EF3']
+PASS 00556F90: no absolute qword pointer in the file
+PASS 00556F90: every RVA-dword hit is a {begin, end} range record :: ['0x1c6e72c:.rdata', '0x1c6e73c:.rdata', '0x1e937b0:.pdata']
+PASS 00574D00 is called only from 00574E80 (005750CD) :: ['005750CD']
+PASS 00556EC0 is called only from 00557DB0 (00557E76, 00557EE5) :: ['00557E76', '00557EE5']
+PASS 00557DB0 writes the requested board to +0x3D1 at 00558549
+PASS 00556F90 id 2 builds the title from 0x3ED + index and the body from 0x838 + index
+PASS 0x3ED..0x3F8 are the twelve board names (White Mage .. Shikari)
+PASS 0x838 is a board description ending 'Preview License Board' :: .{AF}{02}{0F}o{80} Preview License Board
+== D. the confirm window's +0x630 word
+PASS 0057C380 has exactly three callers (002CE08E, 002CE6BF, 00566941) and no jcc :: ['002CE08E', '002CE6BF', '00566941']
+PASS 0057C380 is the only rip reference to 0057C480
+PASS 0057C480 copies record +0x20 into +0x630
+PASS Yes/No producer 002CDF20 passes 0xC812
+PASS sort producer 00566680 passes 0x8036
+PASS notice producer 002CE370 uses flag words 0x411A/0x511A/0x611A/0x1411A/0x1511A :: ['0x411a', '0x511a', '0x611a', '0x1411a', '0x1511a']
+PASS notice passes edi as the flag word (002CE6BB)
+PASS positive control: the producers' union sets the used sound classes 0x4 and 0x100 :: 0x1f93e
+PASS no producer sets 0x40 / 0x80 / 0x200 / 0x400 :: 0x1f93e
+PASS bit test at 0057C506: test byte ptr [rsi + 0x630], 0x20 :: test byte ptr [rsi + 0x630], 0x20
+PASS bit test at 0057C6F3: test byte ptr [rsi + 0x630], 8 :: test byte ptr [rsi + 0x630], 8
+PASS bit test at 0057C7C0: test dword ptr [rsi + 0x630], 0x800 :: test dword ptr [rsi + 0x630], 0x800
+PASS bit test at 0057C93E: test dword ptr [rsi + 0x630], 0x8000 :: test dword ptr [rsi + 0x630], 0x8000
+PASS bit test at 0057C9E1: bt ecx, 0xc :: bt ecx, 0xc
+PASS bit test at 0057CA16: bt ecx, 0x10 :: bt ecx, 0x10
+PASS bit test at 0057CAD1: test al, 2 :: test al, 2
+PASS bit test at 0057CB8F: test dl, 4 :: test dl, 4
+PASS bit test at 0057CB9B: test dl, 0x40 :: test dl, 0x40
+PASS bit test at 0057CBA7: test dl, dl :: test dl, dl
+PASS bit test at 0057CBB2: bt edx, 8 :: bt edx, 8
+PASS bit test at 0057CBBF: bt edx, 9 :: bt edx, 9
+PASS bit test at 0057CBCC: bt edx, 0xa :: bt edx, 0xa
+PASS bit test at 0057C7F6: bt eax, 0xd :: bt eax, 0xd
+PASS bit test at 0057CD77: test dword ptr [rbx + 0x630], 0x4000 :: test dword ptr [rbx + 0x630], 0x4000
+PASS bit test at 0057C34A: test dword ptr [rcx + 0x630], 0x4000 :: test dword ptr [rcx + 0x630], 0x4000
+PASS 0x800 sets the list child's +0xE4 bit 0x80 (0057C7CC), which 002D2DB0 tests at 002D3829
+PASS the list plays its +0xFC byte as the decide sound (002D4114 read, 00249C60 at 002D4234)
+PASS 0057CB16 writes the list's +0xFC (0057CBD7)
+PASS header rows: 0x4B48 is 'HINWEIS' and 0x4B42 'AUSWAHL' in de :: ('HINWEIS', 'AUSWAHL')
+FAILS 0

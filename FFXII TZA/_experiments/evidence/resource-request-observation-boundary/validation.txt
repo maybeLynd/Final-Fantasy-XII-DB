@@ -1,0 +1,2 @@
+Read-only original-instruction and retained-observation comparison. Exit:0
+Verified 5 complete original bodies, 42 anchors and 15 calculated boundaries against the retained observation. Offset 0x801 becomes 0x800; -0x801 becomes -0x800. Slot +0x5C has a dword zero write. No execution.

@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-upper-inclusive",
+    "returncode": 1,
+    "expected": "Changed upper predicate rejected"
+  },
+  {
+    "argument": "--fault-zero-dimension-is-edge",
+    "returncode": 1,
+    "expected": "Zero-dimension edge assumption rejected"
+  },
+  {
+    "argument": "--fault-rank-is-dimension",
+    "returncode": 1,
+    "expected": "Zero dimension is not zero rank"
+  }
+]

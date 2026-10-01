@@ -1,0 +1,19 @@
+# Runtime.Registry.StringLookup - EC-7 family C, declared on generated-function-families.md
+#
+# 10 members. Body size(s): 87 B x10.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 10 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+006C04C0
+006C25D0
+006D9860
+006D9C50
+00876280
+00876670
+00876A80
+00876E60
+00877240
+00879760

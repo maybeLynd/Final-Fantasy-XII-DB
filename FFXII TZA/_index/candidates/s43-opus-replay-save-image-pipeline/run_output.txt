@@ -1,0 +1,6 @@
+SV1_getters_and_spacing            PASS  the three getters return 02164280 / 021BA940 / 02211000; with the backup 022676C0 the gaps are 0x566C0 each - 0x30 of padding past each 0x56690 image
+SV2_copies_complete_with_tail      PASS  002EF570 copies all 0x56690 active bytes to the backup and 002EF690 all capture bytes to the submission buffer, the last 16 (the tail after the 0xACD-block loop) included; the 0x30 of padding after each image is not written
+SV6_selector_first_then_copy_then_writer PASS  00236760 (bit 12 of d[q[02EBF190]+4], planted 1) runs before the first byte of the copy; the tail jump reaches 0020E540 with ecx = that selector, rdx = the submission buffer, r8d = 0x56690 (the recorded boundary)
+SV4_backup_unread_by_the_family    PASS  none of the other six bodies reads the backup buffer (its image-wide single reference is 002EF570's lea - static)
+SV5_two_clears                     PASS  002EF5F0 zeroes exactly 0x56690 bytes (the padding keeps its 0xAB) and tail-jumps to 0016D6A0; 002EF650 zeroes the same extent, calls 0016D6A0, and only then enters the reinitialiser 00253A80 (the buffer is all zero at its entry); 00253A80 applies sound settings through the audio registry (the recorded boundary), so 002EF2D0 / 00238A80 are not reached here
+ok

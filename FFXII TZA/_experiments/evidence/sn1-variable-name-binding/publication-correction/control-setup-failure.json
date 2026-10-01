@@ -1,0 +1,6 @@
+{
+  "status": "INVALID_COPY_CONTROL_SETUP",
+  "cause": "Constructed AST Expr statement lacked lineno; original selected copy call already had locations. Execution did not reach copy, no control receipt or package freeze.",
+  "old_source_sha256": "40f060c16f4e6096e85dca58257f713861543a48a32f148c79afba80d11426e4",
+  "repair": "Fix missing locations on wrapper statement; reconcile already-installed publisher and owned existing fixture, no overwrite of source/input/package."
+}

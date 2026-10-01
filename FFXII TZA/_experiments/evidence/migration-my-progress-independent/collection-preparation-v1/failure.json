@@ -1,0 +1,10 @@
+{
+  "status": "INVALID_FIXTURE_STATUS_SHAPE",
+  "driver_sha256": "35bbb9182e2098c4afa0bd594561e7b1f9b013b924507a460f825fdc55a9b88a",
+  "facts_sha256": "c2d59a9296e5779e15d2d0b52a414dc90cd53ea5b06ea9972974061b94f9c5c3",
+  "collection_finished": false,
+  "cause": "Fixture used DOCUMENTED (SUPERSEDED ...) parenthetical status. Original progress._status_word strips reasons only after space-em-dash-space or space-hyphen-space; full parenthetical token is not STATUS_BEARING.",
+  "observed": "Actual collector marked parenthetical page not documented. No completed DD-split acceptance from this attempt.",
+  "correction": "Use supported DOCUMENTED - SUPERSEDED reason delimiter; preserve original source/fixture/facts/driver. Add error receipt hook to current collection driver; no producer rule weakened or changed.",
+  "limits": "Original fixture contains intentionally stale DOCUMENTED/open-box page. DD literal status parsing is not certification of the five-condition DOCUMENTED ruling; P residue must remain visible."
+}

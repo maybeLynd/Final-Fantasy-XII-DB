@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-170",
+ "note": "Tail commit 9c14ead4e (resume + TEAM.json + applied ops).",
+ "result_refs": ["9c14ead4e"]
+}

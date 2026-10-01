@@ -1,0 +1,35 @@
+{
+  "name": "self-review-reject",
+  "input_sha256": "ce5c14caf1e8d7ae00b69f0a79e9b80af6bb266a5fd025c3bfd6f0ba0c3b11c2",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\regression\\self-review-reject\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"SELF-REVIEW\",\n  \"review\": \"REVIEW-SELF-REVIEW\",\n  \"detail\": \"reviewer OPUS is the author; not an independent review\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "terminal": true,
+  "report": [
+    {
+      "transition": "SELF-REVIEW",
+      "review": "REVIEW-SELF-REVIEW",
+      "detail": "reviewer OPUS is the author; not an independent review",
+      "status": "-"
+    }
+  ],
+  "original_plan": [
+    [
+      "SELF-REVIEW",
+      "REVIEW-SELF-REVIEW",
+      "reviewer OPUS is the author; not an independent review",
+      null
+    ]
+  ],
+  "board_unchanged": true,
+  "writer_invoked": false,
+  "expected": "SELF-REVIEW"
+}

@@ -1,0 +1,168 @@
+[
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ImageAddressArenaBlockHeader",
+      "offset": "0x15",
+      "size": "1",
+      "name": "blockFlags",
+      "ctype": "uint8",
+      "meaning": "mask 0x02 = in the arena membership tree: set after insertion by 0036D170 and by the handle issue 0036C4B0 (0036C501 insert, 0036C513 set); cleared after removal by 0036A000 and by the handle release 0036A9C0 (0036AA88 test). Mask 0x04 is cleared by 0036C4B0 and 0036A9C0 (0036C511, 0036AA84)",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "evidence": "FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)"
+    },
+    "after": {
+      "type": "ImageAddressArenaBlockHeader",
+      "offset": "0x15",
+      "size": "1",
+      "name": "blockFlags",
+      "ctype": "uint8",
+      "meaning": "Bit0x02: membership in the arena movable-block tree. Bit0x04: inhibits selection by the exact-size and physical-successor compaction paths. Removing membership excludes the controlled block from both selectors; release restores eligibility. This is not a nesting retain count or thread-safe pin proof. Existing issue/release writes are historical evidence.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20) || SECTION-07 original-instruction controls and disassembly: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; source movement is original, consumers and arenas synthetic; formal peer acceptance pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ImageAddressArenaBlockHeader",
+      "offset": "0x18",
+      "size": "4",
+      "name": "payloadLength",
+      "ctype": "uint32",
+      "meaning": "FFD40 for the one 1 MiB fixture EXP-077 drove, which is size - 0x280 - 0x40. ONE SIZE WAS TESTED THE RELATION IS STATIC: the arena initialiser passes usableBytes - 0x40 to the header constructor 0036A490, which stores it here at 0036A50F, and 0x40 is this type's own size.",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "evidence": "EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. || THE RELATION TO THE ARENA'S usableBytes IS STATIC, NOT FITTED - 2026-09-21 (OPUS). The arena initialiser reads +0x5C back at 00369FC7, subtracts 0x40 at 00369FD0 and passes the result as the third argument to the header constructor 0036A490, which stores it here at 0036A50F (`mov dword ptr [rbx + 0x18], esi`). So payloadLength = usableBytes - 0x40 BY CONSTRUCTION, and 0x40 is exactly this type's declared size - the header consumes the first 0x40 bytes of the span it describes. The 0xFFD40 the one fixture produced is 0xFFD80 - 0x40, which the arithmetic now explains rather than merely agreeing with. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+    },
+    "after": {
+      "type": "ImageAddressArenaBlockHeader",
+      "offset": "0x18",
+      "size": "4",
+      "name": "payloadLength",
+      "ctype": "uint32",
+      "meaning": "Payload allocation byte extent, excluding the 0x40 header. Used as a signed ordering key and by the original relocation producer 0036A2A0 as the copy/reallocation length via 004746F0. Not necessarily the semantic used length of a resource. Positive low-address fixtures test full capacity preservation; arbitrary huge/negative lengths are not made safe.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. || THE RELATION TO THE ARENA'S usableBytes IS STATIC, NOT FITTED - 2026-09-21 (OPUS). The arena initialiser reads +0x5C back at 00369FC7, subtracts 0x40 at 00369FD0 and passes the result as the third argument to the header constructor 0036A490, which stores it here at 0036A50F (`mov dword ptr [rbx + 0x18], esi`). So payloadLength = usableBytes - 0x40 BY CONSTRUCTION, and 0x40 is exactly this type's declared size - the header consumes the first 0x40 bytes of the span it describes. The 0xFFD40 the one fixture produced is 0xFFD80 - 0x40, which the arithmetic now explains rather than merely agreeing with. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || SECTION-07 original-instruction controls and disassembly: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; source movement is original, consumers and arenas synthetic; formal peer acceptance pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ImageAddressArenaBlockHeader",
+      "offset": "0x20",
+      "size": "4",
+      "name": "handleSlotRef",
+      "ctype": "uint32",
+      "meaning": "the ENCODED reference to the block's handle slot, stored by 0036AF20 (0036B009) and decoded there to reuse a live slot",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "evidence": "FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20)"
+    },
+    "after": {
+      "type": "ImageAddressArenaBlockHeader",
+      "offset": "0x20",
+      "size": "4",
+      "name": "handleSlotRef",
+      "ctype": "uint32",
+      "meaning": "Encoded reference to the handle slot. During original block movement 0036A2A0 decodes/reuses that slot, publishes the destination header before payload copy, and updates slot/header generation correspondence. Stable handle value does not preserve an old raw payload pointer.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "FABLE 2026-09-12 re-read of ASTRA's lifetime evidence sections 17-18 (0036B410, 0036B4E0, 0036A000, 0036D170, 0036AF20) || SECTION-07 original-instruction controls and disassembly: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; source movement is original, consumers and arenas synthetic; formal peer acceptance pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ImageAddressArenaRecord",
+      "offset": "0x0062",
+      "size": "1",
+      "name": "flag62",
+      "ctype": "uint8",
+      "meaning": "THREE ACCESSES IN THREE FUNCTIONS, which is unusually good for a byte: written 0 by 003697C0 at 003697E4 and by the initialiser at 00369F81, and READ by 00369CF0 at 00369D17 (`movzx eax, byte ptr [rcx + 0x62]`). A flag with a real reader. NOT UNDERSTOOD: what the reader decides on it. Found by this type's own census artifact once the ARRAY route became censusable, 2026-09-20 (OPUS); 02-Resource-And-Asset-Pipeline/image-address-arena-record-accesses.tsv. ",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+    },
+    "after": {
+      "type": "ImageAddressArenaRecord",
+      "offset": "0x0062",
+      "size": "1",
+      "name": "movementSinceClear",
+      "ctype": "uint8",
+      "meaning": "Movement-since-clear latch. Initialized/explicitly cleared by 00369D30/003697C0; set to1 after completed movement by 00369C60 and allocation-pressure fallback0036BFE0; read by00369CF0. It does not certify consumer repair. 00332660 queries arena6 then statically calls0041E500/00426950 and clears the latch before continuing; whole scheduling/callback semantics remain bounded.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || SECTION-07: _experiments/evidence/continuation-section07-source-movement/REVIEW.md; original read/clear/move and pressure paths tested; no live frame guarantee."
+    }
+  },
+  {
+    "file": "_types/types.tsv",
+    "before": {
+      "type": "ImageAddressArenaRecord",
+      "size": "0xA8",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "022D7FD0 + id * 0xA8, ids 0..14 - fifteen records",
+      "allocation_site": "IMAGE 022D7FD0 - fifteen records of 0xA8 in .bss. The record itself is never allocated; the BACKING it points at comes through an imported malloc path and is not part of this record.",
+      "ctor": "00369D30 initializer (707 B); its block-header writer is 0036A490 (215 B)",
+      "dtor": "none observed",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "level": "L2",
+      "evidence": "EXP-077 (ASTRA, 2026-09-12) executed the initializer 00369D30 as shipped bytes under Unicorn and checked the record's fields individually at THREE backing addresses - 40010000, 80010000 and 100010000 - so the field-to-backing relationship holds across a range rather than for one fixture. Re-verified by OPUS against the image before use: the body sha256 16466da3... matches, and the id bound at 00369D47 is cmp esi,0xE / ja, UNSIGNED, which is what rejects the negative id that 00369D3B sign-extended. The 0xA8 stride and the 022D7FD0 base are also read by 0036BC60, which splits linked free blocks across fifteen such records. || ALLOCATOR-SIDE EVIDENCE, 2026-09-20 (OPUS), and a census caveat this row should carry. 0036BC60 reaches a record with 'lea rax, [022D7FD0] ; imul rbx, rcx, 0xa8 ; add rbx, rax' (0036BCA9-0036BCBE) after bounding the id with 'cmp ecx, 0xE ; ja', which re-confirms base, stride and count from the allocation side as well as the initialiser side. It also sets byte +0x02 to 1 on entry (0036BCC5) and rounds every request up to a multiple of 0x40 (0036BC92-0036BC9D) - the same 0x40 as the block header, so payload and header share one granularity. THE CAVEAT: a fixed-address census of this table MISSES 0036BC60 completely. An `xor ebx, ebx` on the out-of-range error arm sits between the base computation and its uses in linear order, so the base is killed before the reads. That is blind spot 9 in _index/ABSENCE-CLAIM-GATE.md, found here; static_array_census.py now reports such boundaries in LAST_POSTJMP_KILLS. Measured effect on this table: 41 accesses versus 57 under the alternative reading, and the SAME 26 offsets either way. || EXP-127 DOES NOT LICENSE A PROMOTION OF THIS TYPE, 2026-09-21 (OPUS), consuming ASTRA-RETURN-OPUS-EXP127-INSTRUMENT-BOUNDARY. RECORDED AS A FORWARD GUARD, NOT A CORRECTION - nothing on this type or any other in the store cites EXP-127, checked by searching both types.tsv and fields.tsv for it, so no present claim moves. THE RISK ASTRA NAMES IS A FUTURE PROMOTION and this cell is where it would happen. THE BOUNDARY: EXP-127's raw review is ACCEPT-WITH-NARROWING and its session is marked INVALID_POST_TRACE. An accepted audit and a successful API return are NOT a healthy session, and neither is evidence about arena semantics. A new exact-source control demonstrates a foreign-step dispatch defect, and all 5,658 saved step events still match configured ownership in the recorded fields - so the defect is demonstrated and NO CAUSAL LINK to the fatal dialog is established. One extra 003E3C7A event occurs during cleanup outside the 2,113 logged pairs and is unexplained. WHAT THIS TYPE ACTUALLY RESTS ON, and it is a different and stronger class: EXP-077 and EXP-078 executed the initializer 00369D30 as SHIPPED BYTES under Unicorn with no callee stubs, checking the record's fields at three separate backing addresses. That is isolated original-code execution, which does not depend on any session being healthy. The one live citation on this type is EXP-079's records for arenas 2-14, which is a different experiment from EXP-127 and is not implicated by this return. SO THE RULE FOR ANYONE PROMOTING THIS TYPE LATER: EXP-127 may not be cited as evidence that an arena was initialised, that animation state was live, or that a session was healthy. Native qualification and a healthy FF12 session are both still absent.",
+      "documents": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+      "route": "ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id"
+    },
+    "after": {
+      "type": "ImageAddressArenaRecord",
+      "size": "0xA8",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "022D7FD0 + id * 0xA8, ids 0..14 - fifteen records",
+      "allocation_site": "IMAGE 022D7FD0 - fifteen records of 0xA8 in .bss. The record itself is never allocated; the BACKING it points at comes through an imported malloc path and is not part of this record.",
+      "ctor": "00369D30 initializer (707 B); its block-header writer is 0036A490 (215 B)",
+      "dtor": "none observed",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "level": "L2",
+      "evidence": "EXP-077 (ASTRA, 2026-09-12) executed the initializer 00369D30 as shipped bytes under Unicorn and checked the record's fields individually at THREE backing addresses - 40010000, 80010000 and 100010000 - so the field-to-backing relationship holds across a range rather than for one fixture. Re-verified by OPUS against the image before use: the body sha256 16466da3... matches, and the id bound at 00369D47 is cmp esi,0xE / ja, UNSIGNED, which is what rejects the negative id that 00369D3B sign-extended. The 0xA8 stride and the 022D7FD0 base are also read by 0036BC60, which splits linked free blocks across fifteen such records. || ALLOCATOR-SIDE EVIDENCE, 2026-09-20 (OPUS), and a census caveat this row should carry. 0036BC60 reaches a record with 'lea rax, [022D7FD0] ; imul rbx, rcx, 0xa8 ; add rbx, rax' (0036BCA9-0036BCBE) after bounding the id with 'cmp ecx, 0xE ; ja', which re-confirms base, stride and count from the allocation side as well as the initialiser side. It also sets byte +0x02 to 1 on entry (0036BCC5) and rounds every request up to a multiple of 0x40 (0036BC92-0036BC9D) - the same 0x40 as the block header, so payload and header share one granularity. THE CAVEAT: a fixed-address census of this table MISSES 0036BC60 completely. An `xor ebx, ebx` on the out-of-range error arm sits between the base computation and its uses in linear order, so the base is killed before the reads. That is blind spot 9 in _index/ABSENCE-CLAIM-GATE.md, found here; static_array_census.py now reports such boundaries in LAST_POSTJMP_KILLS. Measured effect on this table: 41 accesses versus 57 under the alternative reading, and the SAME 26 offsets either way. || EXP-127 DOES NOT LICENSE A PROMOTION OF THIS TYPE, 2026-09-21 (OPUS), consuming ASTRA-RETURN-OPUS-EXP127-INSTRUMENT-BOUNDARY. RECORDED AS A FORWARD GUARD, NOT A CORRECTION - nothing on this type or any other in the store cites EXP-127, checked by searching both types.tsv and fields.tsv for it, so no present claim moves. THE RISK ASTRA NAMES IS A FUTURE PROMOTION and this cell is where it would happen. THE BOUNDARY: EXP-127's raw review is ACCEPT-WITH-NARROWING and its session is marked INVALID_POST_TRACE. An accepted audit and a successful API return are NOT a healthy session, and neither is evidence about arena semantics. A new exact-source control demonstrates a foreign-step dispatch defect, and all 5,658 saved step events still match configured ownership in the recorded fields - so the defect is demonstrated and NO CAUSAL LINK to the fatal dialog is established. One extra 003E3C7A event occurs during cleanup outside the 2,113 logged pairs and is unexplained. WHAT THIS TYPE ACTUALLY RESTS ON, and it is a different and stronger class: EXP-077 and EXP-078 executed the initializer 00369D30 as SHIPPED BYTES under Unicorn with no callee stubs, checking the record's fields at three separate backing addresses. That is isolated original-code execution, which does not depend on any session being healthy. The one live citation on this type is EXP-079's records for arenas 2-14, which is a different experiment from EXP-127 and is not implicated by this return. SO THE RULE FOR ANYONE PROMOTING THIS TYPE LATER: EXP-127 may not be cited as evidence that an arena was initialised, that animation state was live, or that a session was healthy. Native qualification and a healthy FF12 session are both still absent. || SECTION-07 (2026-09-23): original source selection/relocation, allocation-pressure retry and movement latch are connected to actual EFX refresh controls; _experiments/evidence/continuation-section07-source-movement/REVIEW.md. Type extent/readiness are not promoted. Physical movement does not prove every borrowed reference safe.",
+      "documents": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md; 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "route": "ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id"
+    }
+  },
+  {
+    "file": "_types/types.tsv",
+    "before": {
+      "type": "ImageAddressArenaBlockHeader",
+      "size": "0x40",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "backing + 0x280 for the initial free block; later blocks at allocator-chosen offsets",
+      "allocation_site": "INTERIOR the arena backing - the initial header at backing +0x280, later headers at allocator-chosen offsets, carved by 0036BC60. The backing itself comes through _aligned_malloc, so the header has no allocation of its own; 0036C9D0 unlinks a header by tagging its word 0xFF99 rather than freeing it.",
+      "ctor": "0036A490 writes the initial header (215 B)",
+      "dtor": "unlinked by 0036C9D0, which tags the header word 0xFF99 rather than freeing it",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "level": "L2",
+      "evidence": "EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. EXTENT SETTLED 2026-09-17 (SWE2-STRUCT, OPUS-REQ-SWE2-STRUCT-UNSIZED-TYPES): the header is a FIXED 0x40 bytes - 00369860 takes the header as payload-0x40 (003698C1 lea rbx,[rcx-0x40]) and payloadLength at +0x18 is size-0x280-0x40 for the fixture. The variable part is the payload AFTER the header, which is not part of this type.",
+      "documents": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+      "route": ""
+    },
+    "after": {
+      "type": "ImageAddressArenaBlockHeader",
+      "size": "0x40",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "backing + 0x280 for the initial free block; later blocks at allocator-chosen offsets",
+      "allocation_site": "INTERIOR the arena backing - the initial header at backing +0x280, later headers at allocator-chosen offsets, carved by 0036BC60. The backing itself comes through _aligned_malloc, so the header has no allocation of its own; 0036C9D0 unlinks a header by tagging its word 0xFF99 rather than freeing it.",
+      "ctor": "0036A490 writes the initial header (215 B)",
+      "dtor": "unlinked by 0036C9D0, which tags the header word 0xFF99 rather than freeing it",
+      "readiness": "CLASSIFIED",
+      "confidence": "HIGH",
+      "level": "L2",
+      "evidence": "EXP-077 (ASTRA) establishes the initial free block at backing+0x280 with word FF12 and a dword payload length at +0x18. EXP-078 (ASTRA) runs seven allocation cases with NO callee stubs and identifies the neighbour links at +0x0C/+0x10 as the failing path, distinct from the free-list links at +0x04/+0x08. Re-read by OPUS from the unlinker 0036C9D0: 0036CA60 call 0020E600 decodes a neighbour reference, 0036CA75 mov [rsi+0xc],eax and 0036CA8A mov [rdi+0x10],eax store the re-encoded pair THROUGH THAT DECODED POINTER, and 0036CA92/0036CA99 tag the header word 0xFF99 on unlink. EXTENT SETTLED 2026-09-17 (SWE2-STRUCT, OPUS-REQ-SWE2-STRUCT-UNSIZED-TYPES): the header is a FIXED 0x40 bytes - 00369860 takes the header as payload-0x40 (003698C1 lea rbx,[rcx-0x40]) and payloadLength at +0x18 is size-0x280-0x40 for the fixture. The variable part is the payload AFTER the header, which is not part of this type. || SECTION-07 (2026-09-23): original source selection/relocation, allocation-pressure retry and movement latch are connected to actual EFX refresh controls; _experiments/evidence/continuation-section07-source-movement/REVIEW.md. Type extent/readiness are not promoted. Physical movement does not prove every borrowed reference safe.",
+      "documents": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md; 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "route": ""
+    }
+  }
+]

@@ -1,0 +1,7 @@
+# NativeLeaf.TwoFloatStore - EC-7 family C
+# store xmm1->[+0x1E8] and xmm2->[+0x1EC]; return.
+address	targets
+00180870	
+00194310	
+00194470	
+00214B10	

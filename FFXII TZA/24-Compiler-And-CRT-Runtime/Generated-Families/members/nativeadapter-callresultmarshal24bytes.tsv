@@ -1,0 +1,25 @@
+# NativeAdapter.CallResultMarshal24Bytes - EC-7 family C, declared on generated-function-families.md
+#
+# 16 members. Body size(s): 39 B x16.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 16 external target(s): 0 shared across all 16 members, and 16 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 16 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+005A3CE0
+005A4CC0
+005CE0B0
+005CF490
+005D03E0
+005D1C70
+005D50B0
+005D5950
+005D6720
+005D6BB0
+005D77D0
+005D7E00
+006898D0
+0068CBB0
+006BB5D0
+006CF2A0

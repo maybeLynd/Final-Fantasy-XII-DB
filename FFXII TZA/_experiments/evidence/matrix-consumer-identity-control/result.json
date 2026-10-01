@@ -1,0 +1,8 @@
+{
+  "verdict": "CONFIRMED_CONSUMER_IDENTITY_GUARD_GAP",
+  "raw_sha256": "fc5975ec4644dfeb04e5d8d63a51af9a81b372e97d705fae1dc8093bb9ef203a",
+  "controls": 2,
+  "established": "Published alias_check.py passes all five obligations on both exact reference and a distinct whole-image identity with unchanged cited bodies. Its own source does not enforce the certified-image identity.",
+  "limits": "Offline Python checker under labelled supplied-read intervention, no FF12 machine-code run or reference/peer file mutation. Known correct source-body/alias result is not refuted; historical run image identity not inferred either way. No claim of wrong semantic output or native acceptance.",
+  "repair_required": "Owner pin/check exact expected image identity before decode, preserve native/model distinction, add wrong-identity rejection control and corrected run/procedure receipt; existing independent matrix consumer reviewer must review producer change."
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-logical-coordinate-domain\check.py", line 59, in <module>
+    assert [(x['module'],x['block'],x['physical'],x['logical']) for x in source_blocks]==[(x['module'],x['block'],x['physical'],x['logical']+(len(x['non_ascii_terminal5c']) if counter_mode=='RAW_TERMINAL5C_CANDIDATE' else 0)) for x in prep['source_blocks']], 'Decoded logical domain corrects raw terminal-byte candidate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Decoded logical domain corrects raw terminal-byte candidate

@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-REQ-EC7-EXTENT-ERRATA-0026C8C0",
+ "agent": "SWE2-EC7",
+ "resources": [
+  {
+   "key": "request:ec7/extent-errata-0026c8c0"
+  }
+ ],
+ "note": "claiming the 0026C8C0 extent-errata adjudication"
+}

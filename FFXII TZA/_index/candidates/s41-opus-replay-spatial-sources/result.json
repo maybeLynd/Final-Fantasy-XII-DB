@@ -1,0 +1,541 @@
+{
+ "base_vtable_slot34": "0",
+ "cases": {
+  "SA1_all_five_write_D0_DF_and_E0": true,
+  "SA1_nothing_outside_D0_E0_written_by_two_classes": true,
+  "SA2_ambient_w_1_direction_copies_vector_and_forces_w": true,
+  "SA3_ambient_direction_E0_always_1": true,
+  "SA3_point_dynamic_polygon_E0_is_distance_below_radius": true,
+  "SA4_dynamic_mode0_path_leaves_the_radius_unwritten_as_the_gate_predicts": true,
+  "SA4_the_other_four_classes_never_write_the_radius": true,
+  "SA5_base_vtable_slot34_is_zero": true,
+  "SA6_slot39_true_for_point_dynamic_polygon_false_for_ambient_direction": true,
+  "no_fence_no_fault": true,
+  "real_initialisers_audio_callbacks_listener": true,
+  "slot34_targets_are_the_five_contract_bodies": true
+ },
+ "init": {
+  "audio": true,
+  "callbacks": true,
+  "listener": true
+ },
+ "listener": "7307C060",
+ "listener_pos": [
+  0.0,
+  0.0,
+  0.0,
+  1.0
+ ],
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "Ambient_in": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 10.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Ambient_out": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 2.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Ambient_r0": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 0.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Direction_in": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 10.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Direction_out": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 2.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Direction_r0": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 0.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Dynamic_in": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "E0": 1,
+   "E4": 10.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Dynamic_out": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "E0": 1,
+   "E4": 2.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Dynamic_r0": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "E0": 0,
+   "E4": 0.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "E0"
+   ]
+  },
+  "Point_in": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    7.0
+   ],
+   "E0": 1,
+   "E4": 10.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Point_out": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    7.0
+   ],
+   "E0": 0,
+   "E4": 2.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Point_r0": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "E0": 0,
+   "E4": 0.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "E0"
+   ]
+  },
+  "Polygon_in": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 10.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Polygon_mode1": {
+   "D0": [
+    -1.9577,
+    1.4139,
+    1.4139,
+    1.0
+   ],
+   "E0": 1,
+   "E4": 10.0,
+   "bad": [],
+   "dist": 2.79836,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Polygon_out": {
+   "D0": [
+    1.0,
+    2.0,
+    3.0,
+    1.0
+   ],
+   "E0": 0,
+   "E4": 2.0,
+   "bad": [],
+   "dist": 3.74166,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "D0",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "DA",
+    "DB",
+    "DC",
+    "DD",
+    "DE",
+    "DF",
+    "E0"
+   ]
+  },
+  "Polygon_r0": {
+   "D0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "E0": 0,
+   "E4": 0.0,
+   "bad": [],
+   "dist": 0.0,
+   "faults": [],
+   "ok": true,
+   "writes": [
+    "E0"
+   ]
+  }
+ },
+ "slot34_targets": {
+  "Ambient": "007F1D10",
+  "Direction": "007F1F80",
+  "Dynamic": "007F1340",
+  "Point": "007F1A50",
+  "Polygon": "007F25E0"
+ },
+ "slot39": {
+  "Ambient": 0,
+  "Direction": 0,
+  "Dynamic": 1,
+  "Point": 1,
+  "Polygon": 1
+ },
+ "writes_E4": {
+  "Ambient": false,
+  "Direction": false,
+  "Dynamic": false,
+  "Point": false,
+  "Polygon": false
+ },
+ "writes_outside_D0_E0": {
+  "Ambient": [],
+  "Direction": [],
+  "Dynamic": [],
+  "Point": [],
+  "Polygon": []
+ }
+}

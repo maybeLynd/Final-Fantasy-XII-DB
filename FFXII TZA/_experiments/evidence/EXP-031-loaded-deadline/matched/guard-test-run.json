@@ -1,0 +1,7 @@
+{
+  "initial_attempt": "Missing copied expected-results fixture; no completed comparison. Title input was issued afterward using the previously controlled unchanged guard; not a passed current test.",
+  "repair": "Copy exact existing expected-results fixture, rerun comparison before further input.",
+  "exit_code": 0,
+  "stdout": "Four original offline guard controls reproduced; no OS input or process access.\n",
+  "stderr": ""
+}

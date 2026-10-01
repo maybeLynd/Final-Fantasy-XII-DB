@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-HBCARRY-0922",
+ "agent": "SWE2-DATA",
+ "resources": [{"key": "@publication"}],
+ "note": "Carry commit: monster-tail doc fix (v0/v3 corpus joins) + op_fin_hbaux.json + resume update."
+}

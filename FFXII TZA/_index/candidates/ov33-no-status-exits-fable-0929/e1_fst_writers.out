@@ -1,0 +1,13 @@
+# rip-relative: 2 verified, 7860 raw-only
+  002DF96D lea    rax, [rip + 0x2be456c]                   -> 02EC3EE0  002DF960 FUN_002df960  
+  002E0432 lea    rcx, [rip + 0x2be3aa7]                   -> 02EC3EE0  002DF9A0 FUN_002df9a0  
+# image-base-relative: 1 verified, 1475 raw-only
+  002DF7B0 cmp    dword ptr [r15 + rax*4 + 0x2da3ee0], -1   002DF780 FUN_002df780  
+# absolute imm/disp: 720 verified, 1587 raw-only
+  as a MEMORY displacement (absolute address form): 0
+  as an arithmetic immediate only (not an address operand): 720, by owner: {'unlisted': 720}
+# DIR64 relocs into range: 0
+control 002DF96D found: True
+control 002DF7B0 found: True
+FAILS 0
+STATUS COMPLETE

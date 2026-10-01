@@ -1,0 +1,29 @@
+{
+  "path": "Database/Tools/work/graph/functions.tsv",
+  "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+  "rows": [
+    {
+      "entry": "0020E600",
+      "name": "ImageAddress_ResolveRuntimePointer",
+      "body_bytes": "10",
+      "owner": "CoreRuntimeScheduling",
+      "final_no_owner": "false",
+      "thunk": "false",
+      "noreturn": "false",
+      "comment_len": "5501",
+      "tags": "ABI_CURATED_TYPED;AuthoredData;CategoryExitV108;CategoryExitV110;CategoryStatusV108;ContextAuditV100;ContextAuditV101;ContextAuditV104;ContextAuditV105;ContextAuditV106;ContextAuditV107;ContextAuditV108;ContextAuditV109;ContextAuditV31;ContextAuditV90;ContextAuditV92;ContextAuditV93;ContextAuditV96;ContextAuditV98;ContextAuditV99;ContextDepthBaseline_B;ContextDepth_B;CorrectionRecordV100;CorrectionRecordV90;FFXII;FFXII.CoreRuntimeScheduling;FFXII_V100;FFXII_V108;FFXII_V20;FFXII_V21;FFXII_V22;FFXII_V23;FFXII_V24;FFXII_V25;FFXII_V26;FFXII_V27;FFXII_V28;FFXII_V29;FFXII_V30;FFXII_V31;FFXII_V40;FFXII_V90;Foundational;FunctionEvidenceV100;FunctionEvidenceV108;FunctionEvidenceV40;FunctionEvidenceV90;GFZ.V120.PrimaryOwner.CoreRuntimeScheduling;GFZ.V120WIP.PrimaryOwner.CoreRuntimeScheduling;GFZ.V120WIP.X0.CoreRuntimeReconstructionBI.Owner;GFZ9.InputBoundaryV118;ImageAddress;MechanismContextV108;MilestoneAuditV100;MilestoneAuditV110;MilestoneAuditV30;MilestoneAuditV90;Multiplayer;TaxonomyV30;TaxonomyV30_Leaf_1_2_Image_address_runtime_pointer_encoding;TaxonomyV30_Top_Core;V101_CombatAICategoryParse;V92_ItemsCategoryParse;V93_SaveLoadSettingsCategoryParse;V96_StatusCategoryParse;V98_CombatFormulaCategoryParse;V99_CombatActionCategoryParse"
+    },
+    {
+      "entry": "0020E620",
+      "name": "RuntimePointer_EncodeImageAddress",
+      "body_bytes": "9",
+      "owner": "CoreRuntimeScheduling",
+      "final_no_owner": "false",
+      "thunk": "false",
+      "noreturn": "false",
+      "comment_len": "3653",
+      "tags": "ABI_CURATED_TYPED;AuthoredData;CategoryExitV108;CategoryExitV110;ContextAuditV100;ContextAuditV105;ContextAuditV106;ContextAuditV108;ContextAuditV109;ContextAuditV31;ContextAuditV90;ContextAuditV93;ContextDepthBaseline_B;ContextDepth_B;CorrectionRecordV100;CorrectionRecordV90;FFXII;FFXII.CoreRuntimeScheduling;FFXII_V100;FFXII_V108;FFXII_V20;FFXII_V21;FFXII_V22;FFXII_V23;FFXII_V24;FFXII_V25;FFXII_V26;FFXII_V27;FFXII_V28;FFXII_V29;FFXII_V30;FFXII_V31;FFXII_V40;FFXII_V90;Foundational;FunctionEvidenceV100;FunctionEvidenceV108;FunctionEvidenceV40;FunctionEvidenceV90;GFZ.V120.PrimaryOwner.CoreRuntimeScheduling;GFZ.V120WIP.PrimaryOwner.CoreRuntimeScheduling;GFZ.V120WIP.X0.CoreRuntimeReconstructionBI.Owner;GFZ9.InputBoundaryV118;ImageAddress;MechanismContextV108;MilestoneAuditV100;MilestoneAuditV110;MilestoneAuditV30;MilestoneAuditV90;Multiplayer;TaxonomyV30;TaxonomyV30_Leaf_1_2_Image_address_runtime_pointer_encoding;TaxonomyV30_Top_Core;V93_SaveLoadSettingsCategoryParse"
+    }
+  ],
+  "limits": "Catalog corroboration only; original bytes and complete leaves checked separately"
+}

@@ -1,0 +1,3 @@
+Verified original identity and 8 complete recorded body spans.
+Static camera-update sites: {"0022A770": ["0022A936", "0022AC2E", "0022ADC7"], "0022B8C0": ["0022BA77", "0022BAAD"]}
+This is static site count, NOT executed calls per frame or live RNG consumption.

@@ -1,0 +1,86 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "image_base": "0x120000",
+ "bodies": {
+  "0x20e600": {
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6"
+  },
+  "0x253690": {
+   "end": "0x25369b",
+   "size": 11,
+   "sha256": "8fa9521fb3876692"
+  },
+  "0x254ee0": {
+   "end": "0x254f28",
+   "size": 72,
+   "sha256": "a2aa6c9d90b497e4"
+  },
+  "0x2fd150": {
+   "end": "0x2fd420",
+   "size": 720,
+   "sha256": "3ff8852d0e0fed6b"
+  },
+  "0x2fd780": {
+   "end": "0x2fd874",
+   "size": 244,
+   "sha256": "a725eb102e6a8bd7"
+  },
+  "0x2fd880": {
+   "end": "0x2fd8c6",
+   "size": 70,
+   "sha256": "5a5d5c7f8f4fa113"
+  },
+  "0x2fd8d0": {
+   "end": "0x2fd965",
+   "size": 149,
+   "sha256": "18f9e511ce022c0a"
+  },
+  "0x2fd970": {
+   "end": "0x2fda5d",
+   "size": 237,
+   "sha256": "035f67c81516a6d3"
+  },
+  "0x3008a0": {
+   "end": "0x300b7e",
+   "size": 734,
+   "sha256": "1effbee3baf70d5d"
+  },
+  "0x309440": {
+   "end": "0x30945e",
+   "size": 30,
+   "sha256": "c842df2ad47a7a3f"
+  },
+  "0x309f30": {
+   "end": "0x309fac",
+   "size": 124,
+   "sha256": "e2ebaef60e9f248c"
+  },
+  "0x30adc0": {
+   "end": "0x30ae29",
+   "size": 105,
+   "sha256": "cec7b1ba058e7e4a"
+  },
+  "0x30b180": {
+   "end": "0x30b270",
+   "size": 240,
+   "sha256": "7960175c4bbef923"
+  },
+  "0x30b270": {
+   "end": "0x30b4a4",
+   "size": 564,
+   "sha256": "4791d2c188c1c927"
+  },
+  "0x30b570": {
+   "end": "0x30b630",
+   "size": 192,
+   "sha256": "c1ffd68988790058"
+  },
+  "0x322c50": {
+   "end": "0x322c9a",
+   "size": 74,
+   "sha256": "862d33a63f0cbc34"
+  }
+ }
+}

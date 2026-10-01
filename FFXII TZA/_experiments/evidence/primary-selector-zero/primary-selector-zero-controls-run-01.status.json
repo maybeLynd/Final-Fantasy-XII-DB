@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control-primary-selector-zero.py"
+  ],
+  "driver_sha256": "db850049b52aad622530fc678b8e01d4ea243c7d1c19115f40cb356062ec642d"
+}

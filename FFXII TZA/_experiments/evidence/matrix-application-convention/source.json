@@ -1,0 +1,49 @@
+{
+  "method": "A existing verified original-code capture and fresh consumer interpretation",
+  "existing_B_commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+  "consumer_origin_commit": "d98879552",
+  "references": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/gs-coordinate-conversion/source.json",
+      "commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+      "retained": "retained/gs-source.json",
+      "bytes": 33520,
+      "sha256": "467e3ea5e5a13015b103585831bfb22adc106aeaac9dcb6f86f453e22e367d9d"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/gs-coordinate-conversion/raw-results.json",
+      "commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+      "retained": "retained/gs-raw-results.json",
+      "bytes": 412187,
+      "sha256": "904079d9a34e109a46f1df153ea67e439cea98c6af2bcefb30e1457746853e29"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/gs-coordinate-conversion/observation.json",
+      "commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+      "retained": "retained/gs-observation.json",
+      "bytes": 7642,
+      "sha256": "5356d230d65d8800e83ca1645b68f1ed4c1fc6bddf84dd3e2695f70ec803c5db"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/gs-coordinate-conversion/validation.json",
+      "commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+      "retained": "retained/gs-validation.json",
+      "bytes": 346,
+      "sha256": "4b6454f0c6eb80defac2d1067f5d68bceba71f139557cb93de9277e00b7ca142"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/gs-coordinate-conversion/manifest.json",
+      "commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+      "retained": "retained/gs-manifest.json",
+      "bytes": 1894,
+      "sha256": "a2d1defc4397880abcf66833fa956e73c9ade98cda6b81fd4cc888ee3b07255e"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/EXP-219-kind1C-catchall-emit-internals-exec.md",
+      "retained": "retained/EXP-219-kind1C-catchall-emit-internals-exec.md",
+      "bytes": 7696,
+      "sha256": "db4f973706fe132018e822499620db4233ae959d3240941233782e2f50d3dba4"
+    }
+  ],
+  "limits": "No new B/native/live execution or universal matrix type/convention/ordinary renderer claim. Existing original-code execution retains its supplied state and pending independent acceptance."
+}

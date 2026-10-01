@@ -1,0 +1,557 @@
+== pair counts by head class: {'load': 908, 'call': 25, 'lea': 259, 'helper': 39, 'static-head': 469, 'other': 10}
+
+== inline register-formed heads (lea [B + D]) by D:
+   [('0x10', 3), ('0x18', 7), ('0x1a8', 2), ('0x28', 1), ('0x38', 6), ('0x50', 6), ('0x8', 14), ('0x80', 1), ('0x90', 206), ('0xa0', 11), ('0xd0', 1)]
+  D=0x60:
+  D=0x68:
+  D=0xb0:
+  D=0xb8:
+CONTROL +0x80 inline insert 0062EFD0 found: True [('0062F051', '0062F059')]
+   D=0x90 pairs: 206 functions 44 ; D=0xA0 pairs: 11 functions 8
+
+== static (rip-formed) heads:
+   00222080 FUN_00222080  stores 002220F8 / 00222110  head 01FD4140  not a static descriptor
+   002225B0 FUN_002225b0  stores 00222628 / 00222640  head 01FD4140  not a static descriptor
+   003EB250 FUN_003eb250  stores 003EB2BE / 003EB2A4  head 02B5EB20  not a static descriptor
+   003EB470 FUN_003eb470  stores 003EB4E3 / 003EB4C9  head 02B5EB70  not a static descriptor
+   003EB500 FUN_003eb500  stores 003EB586 / 003EB576  head 02B5EB70  not a static descriptor
+   003EB5F0 FUN_003eb5f0  stores 003EB68B / 003EB67B  head 02B5EB70  not a static descriptor
+   005A02D0 FUN_005a02d0  stores 005A0403 / 005A03FC  head 02CACDC0  not a static descriptor
+   005A02D0 FUN_005a02d0  stores 005A0406 / 005A03F5  head 02CACDC0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADC21 / 005ADC1A  head 02CB0C30  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADC24 / 005ADC13  head 02CB0C30  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADCF6 / 005ADCEF  head 02CB0C90  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADCF9 / 005ADCE8  head 02CB0C90  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADDCB / 005ADDC4  head 02CB0CF0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADDCE / 005ADDBD  head 02CB0CF0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADEA0 / 005ADE99  head 02CB0D50  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADEA3 / 005ADE92  head 02CB0D50  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADF75 / 005ADF6E  head 02CB0DB0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005ADF78 / 005ADF67  head 02CB0DB0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE043 / 005AE03C  head 02CB0E10  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE046 / 005AE035  head 02CB0E10  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE118 / 005AE111  head 02CB0E70  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE11B / 005AE10A  head 02CB0E70  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE1E6 / 005AE1DF  head 02CB0ED0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE1E9 / 005AE1D8  head 02CB0ED0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE2BB / 005AE2B4  head 02CB0F30  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE2BE / 005AE2AD  head 02CB0F30  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE390 / 005AE389  head 02CB0F90  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE393 / 005AE382  head 02CB0F90  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE465 / 005AE45E  head 02CB0FF0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE468 / 005AE457  head 02CB0FF0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE53A / 005AE533  head 02CB1050  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE53D / 005AE52C  head 02CB1050  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE60F / 005AE608  head 02CB10B0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE612 / 005AE601  head 02CB10B0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE6E4 / 005AE6DD  head 02CB1110  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE6E7 / 005AE6D6  head 02CB1110  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE7B9 / 005AE7B2  head 02CB1170  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE7BC / 005AE7AB  head 02CB1170  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE887 / 005AE880  head 02CB11D0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE88A / 005AE879  head 02CB11D0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE95C / 005AE955  head 02CB1230  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AE95F / 005AE94E  head 02CB1230  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEA31 / 005AEA2A  head 02CB1290  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEA34 / 005AEA23  head 02CB1290  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEAFF / 005AEAF8  head 02CB12F0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEB02 / 005AEAF1  head 02CB12F0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEBD4 / 005AEBCD  head 02CB1350  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEBD7 / 005AEBC6  head 02CB1350  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AECA2 / 005AEC9B  head 02CB13B0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AECA5 / 005AEC94  head 02CB13B0  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AED70 / 005AED69  head 02CB1410  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AED73 / 005AED62  head 02CB1410  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEE3E / 005AEE37  head 02CB1470  not a static descriptor
+   005AD8F0 FUN_005ad8f0  stores 005AEE41 / 005AEE30  head 02CB1470  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF477 / 005AF470  head 02CB17B0  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF47A / 005AF469  head 02CB17B0  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF541 / 005AF53A  head 02CB1810  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF544 / 005AF533  head 02CB1810  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF60B / 005AF604  head 02CB1870  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF60E / 005AF5FD  head 02CB1870  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF6D5 / 005AF6CE  head 02CB18D0  not a static descriptor
+   005AF3B0 FUN_005af3b0  stores 005AF6D8 / 005AF6C7  head 02CB18D0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFC8C / 005AFC85  head 02CB1CB0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFC8F / 005AFC7E  head 02CB1CB0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFD56 / 005AFD4F  head 02CB1D10  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFD59 / 005AFD48  head 02CB1D10  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFE20 / 005AFE19  head 02CB1D70  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFE23 / 005AFE12  head 02CB1D70  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFEEA / 005AFEE3  head 02CB1DD0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFEED / 005AFEDC  head 02CB1DD0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFFB4 / 005AFFAD  head 02CB1E30  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005AFFB7 / 005AFFA6  head 02CB1E30  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B0077 / 005B0070  head 02CB1E90  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B007A / 005B0069  head 02CB1E90  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B0141 / 005B013A  head 02CB1EF0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B0144 / 005B0133  head 02CB1EF0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B020B / 005B0204  head 02CB1F50  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B020E / 005B01FD  head 02CB1F50  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B02D5 / 005B02CE  head 02CB1FB0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B02D8 / 005B02C7  head 02CB1FB0  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B039F / 005B0398  head 02CB2010  not a static descriptor
+   005AFBC0 FUN_005afbc0  stores 005B03A2 / 005B0391  head 02CB2010  not a static descriptor
+   005B1900 FUN_005b1900  stores 005B1B8E / 005B1B87  head 02CB3040  not a static descriptor
+   005B1900 FUN_005b1900  stores 005B1B91 / 005B1B80  head 02CB3040  not a static descriptor
+   005B1900 FUN_005b1900  stores 005B1C58 / 005B1C51  head 02CB30A0  not a static descriptor
+   005B1900 FUN_005b1900  stores 005B1C5B / 005B1C4A  head 02CB30A0  not a static descriptor
+   005B1900 FUN_005b1900  stores 005B1D22 / 005B1D1B  head 02CB3100  not a static descriptor
+   005B1900 FUN_005b1900  stores 005B1D25 / 005B1D14  head 02CB3100  not a static descriptor
+   005B2860 FUN_005b2860  stores 005B2921 / 005B291A  head 02CB3620  not a static descriptor
+   005B2860 FUN_005b2860  stores 005B2924 / 005B2913  head 02CB3620  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4D9C / 005E4D95  head 02CE3200  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4D9F / 005E4D8E  head 02CE3200  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4E66 / 005E4E5F  head 02CE3260  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4E69 / 005E4E58  head 02CE3260  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4F30 / 005E4F29  head 02CE32C0  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4F33 / 005E4F22  head 02CE32C0  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4FFA / 005E4FF3  head 02CE3320  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E4FFD / 005E4FEC  head 02CE3320  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E50C4 / 005E50BD  head 02CE3380  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E50C7 / 005E50B6  head 02CE3380  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E518E / 005E5187  head 02CE33E0  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E5191 / 005E5180  head 02CE33E0  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E5258 / 005E5251  head 02CE3440  not a static descriptor
+   005E4AA0 FUN_005e4aa0  stores 005E525B / 005E524A  head 02CE3440  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E5E08 / 005E5E01  head 02CE3E90  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E5E0B / 005E5DFA  head 02CE3E90  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E5ED2 / 005E5ECB  head 02CE3EF0  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E5ED5 / 005E5EC4  head 02CE3EF0  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E5F9C / 005E5F95  head 02CE3F50  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E5F9F / 005E5F8E  head 02CE3F50  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E6066 / 005E605F  head 02CE3FB0  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E6069 / 005E6058  head 02CE3FB0  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E6130 / 005E6129  head 02CE4010  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E6133 / 005E6122  head 02CE4010  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E61FA / 005E61F3  head 02CE4070  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E61FD / 005E61EC  head 02CE4070  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E62C4 / 005E62BD  head 02CE40D0  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E62C7 / 005E62B6  head 02CE40D0  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E638E / 005E6387  head 02CE4130  not a static descriptor
+   005E5400 FUN_005e5400  stores 005E6391 / 005E6380  head 02CE4130  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7629 / 005E7622  head 02CE74E0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E762C / 005E761B  head 02CE74E0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E76F3 / 005E76EC  head 02CE7540  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E76F6 / 005E76E5  head 02CE7540  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E77B6 / 005E77AF  head 02CE75A0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E77B9 / 005E77A8  head 02CE75A0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7880 / 005E7879  head 02CE7600  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7883 / 005E7872  head 02CE7600  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7943 / 005E793C  head 02CE7660  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7946 / 005E7935  head 02CE7660  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7A06 / 005E79FF  head 02CE76C0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7A09 / 005E79F8  head 02CE76C0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7AD0 / 005E7AC9  head 02CE7720  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7AD3 / 005E7AC2  head 02CE7720  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7B93 / 005E7B8C  head 02CE7780  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7B96 / 005E7B85  head 02CE7780  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7C5D / 005E7C56  head 02CE77E0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7C60 / 005E7C4F  head 02CE77E0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7D20 / 005E7D19  head 02CE7840  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7D23 / 005E7D12  head 02CE7840  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7DE3 / 005E7DDC  head 02CE78A0  not a static descriptor
+   005E7070 FUN_005e7070  stores 005E7DE6 / 005E7DD5  head 02CE78A0  not a static descriptor
+   005EAF40 FUN_005eaf40  stores 005EB23D / 005EB236  head 02CE9B00  not a static descriptor
+   005EAF40 FUN_005eaf40  stores 005EB240 / 005EB22F  head 02CE9B00  not a static descriptor
+   00634830 FUN_00634830  stores 006348C3 / 006348DB  head 02CF8500  not a static descriptor
+   00634830 FUN_00634830  stores 006348D8 / 006348CA  head 01F2DFB0  not a static descriptor
+   00634830 FUN_00634830  stores 006348DB / 006348C3  head 01F2DFB0  not a static descriptor
+   00635470 FUN_00635470  stores 006354F5 / 0063550D  head 02CF8810  not a static descriptor
+   00635470 FUN_00635470  stores 0063550A / 006354FC  head 01F2E140  not a static descriptor
+   00635470 FUN_00635470  stores 0063550D / 006354F5  head 01F2E140  not a static descriptor
+   00635470 FUN_00635470  stores 006355A5 / 006355BD  head 02CF8810  not a static descriptor
+   00635470 FUN_00635470  stores 006355BA / 006355AC  head 01F2E190  not a static descriptor
+   00635470 FUN_00635470  stores 006355BD / 006355A5  head 01F2E190  not a static descriptor
+   00635470 FUN_00635470  stores 00635653 / 0063566B  head 02CF8810  not a static descriptor
+   00635470 FUN_00635470  stores 00635668 / 0063565A  head 01F2E1E0  not a static descriptor
+   00635470 FUN_00635470  stores 0063566B / 00635653  head 01F2E1E0  not a static descriptor
+   00635470 FUN_00635470  stores 00635701 / 00635719  head 02CF8810  not a static descriptor
+   00635470 FUN_00635470  stores 00635716 / 00635708  head 01F2E230  not a static descriptor
+   00635470 FUN_00635470  stores 00635719 / 00635701  head 01F2E230  not a static descriptor
+   00635980 FUN_00635980  stores 006359FB / 00635A13  head 02CF8A20  not a static descriptor
+   00635980 FUN_00635980  stores 00635A10 / 00635A02  head 01F2E290  not a static descriptor
+   00635980 FUN_00635980  stores 00635A13 / 006359FB  head 01F2E290  not a static descriptor
+   00635980 FUN_00635980  stores 00635AA2 / 00635ABA  head 02CF8A10  not a static descriptor
+   00635980 FUN_00635980  stores 00635AB7 / 00635AA9  head 01F2E2E0  not a static descriptor
+   00635980 FUN_00635980  stores 00635ABA / 00635AA2  head 01F2E2E0  not a static descriptor
+   00635B80 FUN_00635b80  stores 00635BF7 / 00635C0F  head 02CF8B10  not a static descriptor
+   00635B80 FUN_00635b80  stores 00635C0C / 00635BFE  head 01F2E7B0  not a static descriptor
+   00635B80 FUN_00635b80  stores 00635C0F / 00635BF7  head 01F2E7B0  not a static descriptor
+   006491B0 FUN_006491b0  stores 00649307 / 00649300  head 02D38090  not a static descriptor
+   006491B0 FUN_006491b0  stores 0064930A / 006492F9  head 02D38090  not a static descriptor
+   006491B0 FUN_006491b0  stores 006493D1 / 006493CA  head 02D380F0  not a static descriptor
+   006491B0 FUN_006491b0  stores 006493D4 / 006493C3  head 02D380F0  not a static descriptor
+   006491B0 FUN_006491b0  stores 0064949B / 00649494  head 02D38150  not a static descriptor
+   006491B0 FUN_006491b0  stores 0064949E / 0064948D  head 02D38150  not a static descriptor
+   006491B0 FUN_006491b0  stores 00649565 / 0064955E  head 02D381B0  not a static descriptor
+   006491B0 FUN_006491b0  stores 00649568 / 00649557  head 02D381B0  not a static descriptor
+   006491B0 FUN_006491b0  stores 00649628 / 00649621  head 02D38210  not a static descriptor
+   006491B0 FUN_006491b0  stores 0064962B / 0064961A  head 02D38210  not a static descriptor
+   00666550 FUN_00666550  stores 006666AC / 006666A5  head 02D3BA50  not a static descriptor
+   00666550 FUN_00666550  stores 006666AF / 0066669E  head 02D3BA50  not a static descriptor
+   00666550 FUN_00666550  stores 00666776 / 0066676F  head 02D3BAB0  not a static descriptor
+   00666550 FUN_00666550  stores 00666779 / 00666768  head 02D3BAB0  not a static descriptor
+   00666550 FUN_00666550  stores 00666840 / 00666839  head 02D3BB10  not a static descriptor
+   00666550 FUN_00666550  stores 00666843 / 00666832  head 02D3BB10  not a static descriptor
+   006668B0 FUN_006668b0  stores 00666D88 / 00666D81  head 02D3C010  not a static descriptor
+   006668B0 FUN_006668b0  stores 00666D8B / 00666D7A  head 02D3C010  not a static descriptor
+   00675740 FUN_00675740  stores 006759DB / 006759D4  head 02D3EA00  not a static descriptor
+   00675740 FUN_00675740  stores 006759DE / 006759CD  head 02D3EA00  not a static descriptor
+   00675740 FUN_00675740  stores 00675AB3 / 00675AAC  head 02D3EA60  not a static descriptor
+   00675740 FUN_00675740  stores 00675AB6 / 00675AA5  head 02D3EA60  not a static descriptor
+   00675740 FUN_00675740  stores 00675B8B / 00675B84  head 02D3EAC0  not a static descriptor
+   00675740 FUN_00675740  stores 00675B8E / 00675B7D  head 02D3EAC0  not a static descriptor
+   00675740 FUN_00675740  stores 00675C63 / 00675C5C  head 02D3EB20  not a static descriptor
+   00675740 FUN_00675740  stores 00675C66 / 00675C55  head 02D3EB20  not a static descriptor
+   00675740 FUN_00675740  stores 00675D2D / 00675D26  head 02D3EB80  not a static descriptor
+   00675740 FUN_00675740  stores 00675D30 / 00675D1F  head 02D3EB80  not a static descriptor
+   006784E0 FUN_006784e0  stores 0067884F / 00678848  head 02D3F650  not a static descriptor
+   006784E0 FUN_006784e0  stores 00678852 / 00678841  head 02D3F650  not a static descriptor
+   006788C0 FUN_006788c0  stores 006789F8 / 006789F1  head 02D3F710  not a static descriptor
+   006788C0 FUN_006788c0  stores 006789FB / 006789EA  head 02D3F710  not a static descriptor
+   006788C0 FUN_006788c0  stores 00678AD0 / 00678AC9  head 02D3F770  not a static descriptor
+   006788C0 FUN_006788c0  stores 00678AD3 / 00678AC2  head 02D3F770  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067E787 / 0067E780  head 02E405B0  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067E78A / 0067E779  head 02E405B0  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067E851 / 0067E84A  head 02E40610  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067E854 / 0067E843  head 02E40610  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067E91B / 0067E914  head 02E40670  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067E91E / 0067E90D  head 02E40670  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067EA54 / 0067EA4D  head 02E40730  not a static descriptor
+   0067E6C0 FUN_0067e6c0  stores 0067EA57 / 0067EA46  head 02E40730  not a static descriptor
+   00681C50 FUN_00681c50  stores 00681D11 / 00681D0A  head 02E42440  not a static descriptor
+   00681C50 FUN_00681c50  stores 00681D14 / 00681D03  head 02E42440  not a static descriptor
+   00681F30 FUN_00681f30  stores 00681FF7 / 00681FF0  head 02E424A0  not a static descriptor
+   00681F30 FUN_00681f30  stores 00681FFA / 00681FE9  head 02E424A0  not a static descriptor
+   00681F30 FUN_00681f30  stores 006820C1 / 006820BA  head 02E42500  not a static descriptor
+   00681F30 FUN_00681f30  stores 006820C4 / 006820B3  head 02E42500  not a static descriptor
+   00681F30 FUN_00681f30  stores 0068218B / 00682184  head 02E42560  not a static descriptor
+   00681F30 FUN_00681f30  stores 0068218E / 0068217D  head 02E42560  not a static descriptor
+   00681F30 FUN_00681f30  stores 00682263 / 0068225C  head 02E425C0  not a static descriptor
+   00681F30 FUN_00681f30  stores 00682266 / 00682255  head 02E425C0  not a static descriptor
+   00694260 FUN_00694260  stores 006946A2 / 0069469B  head 02E4A560  not a static descriptor
+   00694260 FUN_00694260  stores 006946A5 / 00694694  head 02E4A560  not a static descriptor
+   00694260 FUN_00694260  stores 0069477A / 00694773  head 02E4A5C0  not a static descriptor
+   00694260 FUN_00694260  stores 0069477D / 0069476C  head 02E4A5C0  not a static descriptor
+   00694260 FUN_00694260  stores 00694852 / 0069484B  head 02E4A620  not a static descriptor
+   00694260 FUN_00694260  stores 00694855 / 00694844  head 02E4A620  not a static descriptor
+   00694260 FUN_00694260  stores 00694923 / 0069491C  head 02E4A680  not a static descriptor
+   00694260 FUN_00694260  stores 00694926 / 00694915  head 02E4A680  not a static descriptor
+   006949A0 FUN_006949a0  stores 0069535A / 00695353  head 02E4AE60  not a static descriptor
+   006949A0 FUN_006949a0  stores 0069535D / 0069534C  head 02E4AE60  not a static descriptor
+   006949A0 FUN_006949a0  stores 00695424 / 0069541D  head 02E4AEC0  not a static descriptor
+   006949A0 FUN_006949a0  stores 00695427 / 00695416  head 02E4AEC0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695B7D / 00695B76  head 02E4BF40  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695B80 / 00695B6F  head 02E4BF40  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695C47 / 00695C40  head 02E4BFA0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695C4A / 00695C39  head 02E4BFA0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695D0A / 00695D03  head 02E4C000  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695D0D / 00695CFC  head 02E4C000  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695DCD / 00695DC6  head 02E4C060  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695DD0 / 00695DBF  head 02E4C060  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695E97 / 00695E90  head 02E4C0C0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695E9A / 00695E89  head 02E4C0C0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695F5A / 00695F53  head 02E4C120  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00695F5D / 00695F4C  head 02E4C120  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 0069601D / 00696016  head 02E4C180  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00696020 / 0069600F  head 02E4C180  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 006960E0 / 006960D9  head 02E4C1E0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 006960E3 / 006960D2  head 02E4C1E0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 006961AA / 006961A3  head 02E4C240  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 006961AD / 0069619C  head 02E4C240  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 0069626D / 00696266  head 02E4C2A0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00696270 / 0069625F  head 02E4C2A0  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 00696337 / 00696330  head 02E4C300  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 0069633A / 00696329  head 02E4C300  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 006963FA / 006963F3  head 02E4C360  not a static descriptor
+   00695AB0 FUN_00695ab0  stores 006963FD / 006963EC  head 02E4C360  not a static descriptor
+   00696470 FUN_00696470  stores 00696EC1 / 00696EBA  head 02E4BB90  not a static descriptor
+   00696470 FUN_00696470  stores 00696EC4 / 00696EB3  head 02E4BB90  not a static descriptor
+   00696470 FUN_00696470  stores 00696F8B / 00696F84  head 02E4BBF0  not a static descriptor
+   00696470 FUN_00696470  stores 00696F8E / 00696F7D  head 02E4BBF0  not a static descriptor
+   00696470 FUN_00696470  stores 00697055 / 0069704E  head 02E4BC50  not a static descriptor
+   00696470 FUN_00696470  stores 00697058 / 00697047  head 02E4BC50  not a static descriptor
+   00696470 FUN_00696470  stores 0069711F / 00697118  head 02E4BCB0  not a static descriptor
+   00696470 FUN_00696470  stores 00697122 / 00697111  head 02E4BCB0  not a static descriptor
+   00696470 FUN_00696470  stores 006971E9 / 006971E2  head 02E4BD10  not a static descriptor
+   00696470 FUN_00696470  stores 006971EC / 006971DB  head 02E4BD10  not a static descriptor
+   00696470 FUN_00696470  stores 006972B3 / 006972AC  head 02E4BD70  not a static descriptor
+   00696470 FUN_00696470  stores 006972B6 / 006972A5  head 02E4BD70  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697B8D / 00697B86  head 02E4CD70  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697B90 / 00697B7F  head 02E4CD70  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697C57 / 00697C50  head 02E4CDD0  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697C5A / 00697C49  head 02E4CDD0  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697D21 / 00697D1A  head 02E4CE30  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697D24 / 00697D13  head 02E4CE30  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697DEB / 00697DE4  head 02E4CE90  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697DEE / 00697DDD  head 02E4CE90  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697EB5 / 00697EAE  head 02E4CEF0  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697EB8 / 00697EA7  head 02E4CEF0  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697F7F / 00697F78  head 02E4CF50  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00697F82 / 00697F71  head 02E4CF50  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00698049 / 00698042  head 02E4CFB0  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 0069804C / 0069803B  head 02E4CFB0  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00698113 / 0069810C  head 02E4D010  not a static descriptor
+   00697AC0 FUN_00697ac0  stores 00698116 / 00698105  head 02E4D010  not a static descriptor
+   006A72B0 FUN_006a72b0  stores 006A743C / 006A7435  head 02E4D7B0  not a static descriptor
+   006A72B0 FUN_006a72b0  stores 006A743F / 006A742E  head 02E4D7B0  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A81F7 / 006A81F0  head 02E4DC30  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A81FA / 006A81E9  head 02E4DC30  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A82C1 / 006A82BA  head 02E4DC90  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A82C4 / 006A82B3  head 02E4DC90  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A838B / 006A8384  head 02E4DCF0  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A838E / 006A837D  head 02E4DCF0  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A8455 / 006A844E  head 02E4DD50  not a static descriptor
+   006A7EE0 FUN_006a7ee0  stores 006A8458 / 006A8447  head 02E4DD50  not a static descriptor
+   006AAA80 FUN_006aaa80  stores 006AAB47 / 006AAB40  head 02E4E820  not a static descriptor
+   006AAA80 FUN_006aaa80  stores 006AAB4A / 006AAB39  head 02E4E820  not a static descriptor
+   006AAA80 FUN_006aaa80  stores 006AAC11 / 006AAC0A  head 02E4E880  not a static descriptor
+   006AAA80 FUN_006aaa80  stores 006AAC14 / 006AAC03  head 02E4E880  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006AB8AC / 006AB8A5  head 02E4EBF0  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006AB8AF / 006AB89E  head 02E4EBF0  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABA56 / 006ABA4F  head 02E4ED10  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABA59 / 006ABA48  head 02E4ED10  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABB20 / 006ABB19  head 02E4ED70  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABB23 / 006ABB12  head 02E4ED70  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABBEA / 006ABBE3  head 02E4EDD0  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABBED / 006ABBDC  head 02E4EDD0  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABCB4 / 006ABCAD  head 02E4EE30  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABCB7 / 006ABCA6  head 02E4EE30  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABD77 / 006ABD70  head 02E4EE90  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABD7A / 006ABD69  head 02E4EE90  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABE41 / 006ABE3A  head 02E4EEF0  not a static descriptor
+   006AB7E0 FUN_006ab7e0  stores 006ABE44 / 006ABE33  head 02E4EEF0  not a static descriptor
+   006AD0A0 FUN_006ad0a0  stores 006AD1D5 / 006AD1CE  head 02E4F3F0  not a static descriptor
+   006AD0A0 FUN_006ad0a0  stores 006AD1D8 / 006AD1C7  head 02E4F3F0  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE417 / 006AE410  head 02E4FA00  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE41A / 006AE409  head 02E4FA00  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE4E1 / 006AE4DA  head 02E4FA60  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE4E4 / 006AE4D3  head 02E4FA60  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE5AB / 006AE5A4  head 02E4FAC0  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE5AE / 006AE59D  head 02E4FAC0  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE675 / 006AE66E  head 02E4FB20  not a static descriptor
+   006AE350 FUN_006ae350  stores 006AE678 / 006AE667  head 02E4FB20  not a static descriptor
+   006AFC20 FUN_006afc20  stores 006AFD50 / 006AFD49  head 02E500C0  not a static descriptor
+   006AFC20 FUN_006afc20  stores 006AFD53 / 006AFD42  head 02E500C0  not a static descriptor
+   006AFDC0 FUN_006afdc0  stores 006AFE10 / 006AFE14  head 01F2EB78  not a static descriptor
+   006AFF00 FUN_006aff00  stores 006AFF4A / 006AFF4E  head 01F2EB78  not a static descriptor
+   006B04B0 PhyreRandom_RegisterGenerateRandomFloat01  stores 006B0571 / 006B056A  head 02E50270  not a static descriptor
+   006B04B0 PhyreRandom_RegisterGenerateRandomFloat01  stores 006B0574 / 006B0563  head 02E50270  not a static descriptor
+   006B0B20 FUN_006b0b20  stores 006B0CC8 / 006B0CC1  head 02E50930  not a static descriptor
+   006B0B20 FUN_006b0b20  stores 006B0CCB / 006B0CBA  head 02E50930  not a static descriptor
+   006B0B20 FUN_006b0b20  stores 006B0D8E / 006B0D87  head 02E50990  not a static descriptor
+   006B0B20 FUN_006b0b20  stores 006B0D91 / 006B0D80  head 02E50990  not a static descriptor
+   006B0B20 FUN_006b0b20  stores 006B0E4D / 006B0E46  head 02E509F0  not a static descriptor
+   006B0B20 FUN_006b0b20  stores 006B0E50 / 006B0E3F  head 02E509F0  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B1068 / 006B1061  head 02E50ED0  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B106B / 006B105A  head 02E50ED0  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B112E / 006B1127  head 02E50F30  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B1131 / 006B1120  head 02E50F30  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B11ED / 006B11E6  head 02E50F90  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B11F0 / 006B11DF  head 02E50F90  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B12AC / 006B12A5  head 02E50FF0  not a static descriptor
+   006B0EC0 FUN_006b0ec0  stores 006B12AF / 006B129E  head 02E50FF0  not a static descriptor
+   006B1320 FUN_006b1320  stores 006B14C8 / 006B14C1  head 02E50450  not a static descriptor
+   006B1320 FUN_006b1320  stores 006B14CB / 006B14BA  head 02E50450  not a static descriptor
+   006B1320 FUN_006b1320  stores 006B158E / 006B1587  head 02E504B0  not a static descriptor
+   006B1320 FUN_006b1320  stores 006B1591 / 006B1580  head 02E504B0  not a static descriptor
+   006B1600 FUN_006b1600  stores 006B17A8 / 006B17A1  head 02E50690  not a static descriptor
+   006B1600 FUN_006b1600  stores 006B17AB / 006B179A  head 02E50690  not a static descriptor
+   006B1600 FUN_006b1600  stores 006B186E / 006B1867  head 02E506F0  not a static descriptor
+   006B1600 FUN_006b1600  stores 006B1871 / 006B1860  head 02E506F0  not a static descriptor
+   006B1600 FUN_006b1600  stores 006B192D / 006B1926  head 02E50750  not a static descriptor
+   006B1600 FUN_006b1600  stores 006B1930 / 006B191F  head 02E50750  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1B48 / 006B1B41  head 02E50BD0  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1B4B / 006B1B3A  head 02E50BD0  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1C0E / 006B1C07  head 02E50C30  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1C11 / 006B1C00  head 02E50C30  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1CCD / 006B1CC6  head 02E50C90  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1CD0 / 006B1CBF  head 02E50C90  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1D8C / 006B1D85  head 02E50CF0  not a static descriptor
+   006B19A0 FUN_006b19a0  stores 006B1D8F / 006B1D7E  head 02E50CF0  not a static descriptor
+   006B33F0 FUN_006b33f0  stores 006B3598 / 006B3591  head 02E516F0  not a static descriptor
+   006B33F0 FUN_006b33f0  stores 006B359B / 006B358A  head 02E516F0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4270 / 006B4269  head 02E519D0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4273 / 006B4262  head 02E519D0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4345 / 006B433E  head 02E51A30  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4348 / 006B4337  head 02E51A30  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4413 / 006B440C  head 02E51A90  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4416 / 006B4405  head 02E51A90  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B44E1 / 006B44DA  head 02E51AF0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B44E4 / 006B44D3  head 02E51AF0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B45B6 / 006B45AF  head 02E51B50  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B45B9 / 006B45A8  head 02E51B50  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B468B / 006B4684  head 02E51BB0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B468E / 006B467D  head 02E51BB0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4760 / 006B4759  head 02E51C10  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4763 / 006B4752  head 02E51C10  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4835 / 006B482E  head 02E51C70  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4838 / 006B4827  head 02E51C70  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B490A / 006B4903  head 02E51CD0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B490D / 006B48FC  head 02E51CD0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B49DF / 006B49D8  head 02E51D30  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B49E2 / 006B49D1  head 02E51D30  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4AB4 / 006B4AAD  head 02E51D90  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4AB7 / 006B4AA6  head 02E51D90  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4B82 / 006B4B7B  head 02E51DF0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4B85 / 006B4B74  head 02E51DF0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4C57 / 006B4C50  head 02E51E50  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4C5A / 006B4C49  head 02E51E50  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4D25 / 006B4D1E  head 02E51EB0  not a static descriptor
+   006B41A0 FUN_006b41a0  stores 006B4D28 / 006B4D17  head 02E51EB0  not a static descriptor
+   006B6820 FUN_006b6820  stores 006B687F / 006B6883  head 01F2EBB8  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF2A1 / 006BF29A  head 02E592E0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF2A4 / 006BF293  head 02E592E0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF36B / 006BF364  head 02E59340  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF36E / 006BF35D  head 02E59340  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF435 / 006BF42E  head 02E593A0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF438 / 006BF427  head 02E593A0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF4FF / 006BF4F8  head 02E59400  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF502 / 006BF4F1  head 02E59400  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF5C2 / 006BF5BB  head 02E59460  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF5C5 / 006BF5B4  head 02E59460  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF68C / 006BF685  head 02E594C0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF68F / 006BF67E  head 02E594C0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF74F / 006BF748  head 02E59520  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF752 / 006BF741  head 02E59520  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF812 / 006BF80B  head 02E59580  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF815 / 006BF804  head 02E59580  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF8DC / 006BF8D5  head 02E595E0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF8DF / 006BF8CE  head 02E595E0  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF99F / 006BF998  head 02E59640  not a static descriptor
+   006BED60 FUN_006bed60  stores 006BF9A2 / 006BF991  head 02E59640  not a static descriptor
+   006C5A50 FUN_006c5a50  stores 006C5EB6 / 006C5EAF  head 02E5B5B0  not a static descriptor
+   006C5A50 FUN_006c5a50  stores 006C5EB9 / 006C5EA8  head 02E5B5B0  not a static descriptor
+   006C5A50 FUN_006c5a50  stores 006C5F80 / 006C5F79  head 02E5B610  not a static descriptor
+   006C5A50 FUN_006c5a50  stores 006C5F83 / 006C5F72  head 02E5B610  not a static descriptor
+   006C8310 FUN_006c8310  stores 006C84B2 / 006C84AB  head 02E5BD70  not a static descriptor
+   006C8310 FUN_006c8310  stores 006C84B5 / 006C84A4  head 02E5BD70  not a static descriptor
+   007927C0 FUN_007927c0  stores 007927FD / 00792815  head 01F401E8  not a static descriptor
+   00792870 FUN_00792870  stores 007928B8 / 007928C2  head 01F401E8  not a static descriptor
+   00792940 FUN_00792940  stores 00792988 / 00792992  head 01F401E8  not a static descriptor
+   007943E0 FUN_007943e0  stores 007944AC / 007944A5  head 02EAC3A0  not a static descriptor
+   007943E0 FUN_007943e0  stores 007944AF / 0079449E  head 02EAC3A0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794576 / 0079456F  head 02EAC400  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794579 / 00794568  head 02EAC400  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794640 / 00794639  head 02EAC460  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794643 / 00794632  head 02EAC460  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794703 / 007946FC  head 02EAC4C0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794706 / 007946F5  head 02EAC4C0  not a static descriptor
+   007943E0 FUN_007943e0  stores 007947CD / 007947C6  head 02EAC520  not a static descriptor
+   007943E0 FUN_007943e0  stores 007947D0 / 007947BF  head 02EAC520  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794890 / 00794889  head 02EAC580  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794893 / 00794882  head 02EAC580  not a static descriptor
+   007943E0 FUN_007943e0  stores 0079495A / 00794953  head 02EAC5E0  not a static descriptor
+   007943E0 FUN_007943e0  stores 0079495D / 0079494C  head 02EAC5E0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794A24 / 00794A1D  head 02EAC640  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794A27 / 00794A16  head 02EAC640  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794AEE / 00794AE7  head 02EAC6A0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794AF1 / 00794AE0  head 02EAC6A0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794BB8 / 00794BB1  head 02EAC700  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794BBB / 00794BAA  head 02EAC700  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794C7B / 00794C74  head 02EAC760  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794C7E / 00794C6D  head 02EAC760  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794D45 / 00794D3E  head 02EAC7C0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794D48 / 00794D37  head 02EAC7C0  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794E0F / 00794E08  head 02EAC820  not a static descriptor
+   007943E0 FUN_007943e0  stores 00794E12 / 00794E01  head 02EAC820  not a static descriptor
+   00794E80 FUN_00794e80  stores 00794F4C / 00794F45  head 02EAC990  not a static descriptor
+   00794E80 FUN_00794e80  stores 00794F4F / 00794F3E  head 02EAC990  not a static descriptor
+   00794E80 FUN_00794e80  stores 00795024 / 0079501D  head 02EAC9F0  not a static descriptor
+   00794E80 FUN_00794e80  stores 00795027 / 00795016  head 02EAC9F0  not a static descriptor
+   00794E80 FUN_00794e80  stores 007950FC / 007950F5  head 02EACA50  not a static descriptor
+   00794E80 FUN_00794e80  stores 007950FF / 007950EE  head 02EACA50  not a static descriptor
+   00794E80 FUN_00794e80  stores 007951CD / 007951C6  head 02EACAB0  not a static descriptor
+   00794E80 FUN_00794e80  stores 007951D0 / 007951BF  head 02EACAB0  not a static descriptor
+   00794E80 FUN_00794e80  stores 0079529E / 00795297  head 02EACB10  not a static descriptor
+   00794E80 FUN_00794e80  stores 007952A1 / 00795290  head 02EACB10  not a static descriptor
+   00795320 FUN_00795320  stores 007953E7 / 007953E0  head 02EAC280  not a static descriptor
+   00795320 FUN_00795320  stores 007953EA / 007953D9  head 02EAC280  not a static descriptor
+   00795320 FUN_00795320  stores 007954B1 / 007954AA  head 02EAC2E0  not a static descriptor
+   00795320 FUN_00795320  stores 007954B4 / 007954A3  head 02EAC2E0  not a static descriptor
+   00795590 FUN_00795590  stores 007956C5 / 007956BE  head 02EACBD0  not a static descriptor
+   00795590 FUN_00795590  stores 007956C8 / 007956B7  head 02EACBD0  not a static descriptor
+   00795590 FUN_00795590  stores 0079578F / 00795788  head 02EACC30  not a static descriptor
+   00795590 FUN_00795590  stores 00795792 / 00795781  head 02EACC30  not a static descriptor
+   00797460 FUN_00797460  stores 007975BE / 007975C8  head 01F401F8  not a static descriptor
+   0086D670 FUN_0086d670  stores 0086D835 / 0086D82E  head 02EB7500  not a static descriptor
+   0086D670 FUN_0086d670  stores 0086D838 / 0086D827  head 02EB7500  not a static descriptor
+   0086D670 FUN_0086d670  stores 0086D90D / 0086D906  head 02EB7560  not a static descriptor
+   0086D670 FUN_0086d670  stores 0086D910 / 0086D8FF  head 02EB7560  not a static descriptor
+CONTROL rip-formed insert into PNamespace descriptor +0xA0 (00635980, head 02CF8A20) found: True
+objects with an inline static insert at +0x80/+0x90/+0xA0: 4 ; in the 315 static list: 0 ; PNamespace 02CF8980 among them: True
+static-head inserts whose head is +0x60/+0x68/+0xB0/+0xB8 of a descriptor-typed object: []
+
+== head-insert helpers (head is an unmodified entry argument): 15
+  helper 001BC8C0 FUN_001bc8c0 head-arg ['rdx'], 2 raw call sites; head forms: {'?': 1, 'lea -0x18': 1}
+      site 001BC9B5 in 001BC950 FUN_001bc950: ('?', 'call before')
+      site 001BCF05 in 001BCE30 FUN_001bce30: ('lea', -24, '001BCEFD lea rdx, [rbp - 0x18]')
+  helper 001DA0F0 FUN_001da0f0 head-arg ['r8'], 3 raw call sites; head forms: {'?': 1, 'lea 0x20': 1, 'lea 0x118': 1}
+      site 001DA02D in 001D9FD0 FUN_001d9fd0: ('?', 'call before')
+      site 001DA7F6 in 001DA610 FUN_001da610: ('lea', 32, '001DA7EB lea r8, [rsp + 0x20]')
+      site 001DAA6A in 001DA9E0 FUN_001da9e0: ('lea', 280, '001DAA5A lea rbx, [rsi + 0x118]')
+  helper 00217B10 FUN_00217b10 head-arg ['rdx'], 4 raw call sites; head forms: {'?': 3, 'other': 1}
+      site 00217F80 in 00217F10 FUN_00217f10: ('?', 'call before')
+      site 00218244 in 002181A0 FUN_002181a0: ('other', '00218233 pop rdi')
+      site 0021858A in 00218380 FUN_00218380: ('?', 'call before')
+      site 0021D028 in 0021CE30 FUN_0021ce30: ('?', 'call before')
+  helper 002E9360 FUN_002e9360 head-arg ['rcx'], 2 raw call sites; head forms: {'?': 2}
+      site 002E663D in 002E65A0 FUN_002e65a0: ('?', 'call before')
+      site 002E6DEA in 002E6D60 FUN_002e6d60: ('?', 'call before')
+  helper 002E9470 FUN_002e9470 head-arg ['rcx'], 2 raw call sites; head forms: {'lea -0x10': 1, '?': 1}
+      site 002E69E8 in 002E6900 FUN_002e6900: ('lea', -16, '002E69E4 lea rcx, [r15 - 0x10]')
+      site 002E6AF8 in 002E6A80 FUN_002e6a80: ('?', 'call before')
+  helper 002EAEB0 FUN_002eaeb0 head-arg ['rcx'], 7 raw call sites; head forms: {'other': 4, '?': 3}
+      site 002E3E14 in 002E3DC0 FUN_002e3dc0: ('other', '002E3DF5 mov rax, qword ptr [rax + 8]')
+      site 002E3E6E in 002E3E20 FUN_002e3e20: ('other', '002E3E33 mov rcx, qword ptr [rip + 0x1e7bf1e]')
+      site 002E3EF0 in 002E3E90 FUN_002e3e90: ('other', '002E3EC5 mov rax, qword ptr [rax + 8]')
+      site 002E4DDC in 002E4D20 FUN_002e4d20: ('?', 'call before')
+      site 002E62AB in 002E60F0 FUN_002e60f0: ('?', 'call before')
+      site 002EEB88 in 002EEB20 FUN_002eeb20: ('?', 'call before')
+      site 002EEC78 in 002EEB20 FUN_002eeb20: ('other', '002EEC55 mov rax, qword ptr [rax + 8]')
+  helper 002EB690 FUN_002eb690 head-arg ['rcx'], 2 raw call sites; head forms: {'other': 1, '?': 1}
+      site 002EB654 in 002EB5E0 FUN_002eb5e0: ('other', '002EB63D add r11, rax')
+      site 002EB661 in 002EB5E0 FUN_002eb5e0: ('?', 'call before')
+  helper 003EB470 FUN_003eb470 head-arg ['rcx'], 3 raw call sites; head forms: {'other': 3}
+      site 003EB1C9 in 003EB190 FUN_003eb190: ('other', '003EB1C0 mov rcx, qword ptr [rcx + rax*8]')
+      site 003EB6E5 in 003EB6C0 FUN_003eb6c0: ('other', '003EB6DC mov rcx, qword ptr [rcx + rax*8]')
+      site 0050E383 in 0050E370 FUN_0050e370: ('other', '0050E37C movsxd rcx, eax')
+  helper 005360C0 FUN_005360c0 head-arg ['rcx'], 1 raw call sites; head forms: {'abs 02EBB6A0': 1}
+      site 00467C8E in 00467BF0 FUN_00467bf0: ('abs', 49002144, '')
+  helper 006B67D0 FUN_006b67d0 head-arg ['rcx'], 70 raw call sites; head forms: {'abs 02CB3C98': 1, 'abs 02CB3A68': 1, 'abs 02CB40F8': 1, 'abs 02CB5048': 1, 'abs 02CB4788': 1, 'abs 02CB4328': 1, 'abs 02CB5278': 1, 'abs 02CB4BE8': 1}
+      006B67D0 sites resolved to an absolute head: 70 of 70; any at +0x60/+0x68/+0xB0/+0xB8 of a descriptor-typed object: []
+  helper 0071F240 FUN_0071f240 head-arg ['rdx'], 5 raw call sites; head forms: {'?': 3, 'other': 2}
+      site 00714FCE in 00714DC0 FUN_00714dc0: ('?', 'window')
+      site 00715031 in 00714DC0 FUN_00714dc0: ('?', 'call before')
+      site 007150A5 in 00714DC0 FUN_00714dc0: ('other', '00715054 mov rcx, qword ptr [rbx]')
+      site 0071F842 in 0071F590 FUN_0071f590: ('?', 'call before')
+      site 0071F8F5 in 0071F590 FUN_0071f590: ('other', '0071F8A4 mov rcx, qword ptr [rbx]')
+  helper 00799BD0 FUN_00799bd0 head-arg ['rdx'], 2 raw call sites; head forms: {'?': 1, 'other': 1}
+      site 0079BCCB in 0079BA10 FUN_0079ba10: ('?', 'call before')
+      site 0079BD7E in 0079BA10 FUN_0079ba10: ('other', '0079BD2D mov rcx, qword ptr [rbx]')
+  helper 00799DD0 FUN_00799dd0 head-arg ['rdx'], 0 raw call sites; head forms: {}
+  helper 00799E40 FUN_00799e40 head-arg ['rdx'], 0 raw call sites; head forms: {}
+  helper 00799F40 FUN_00799f40 head-arg ['rdx'], 0 raw call sites; head forms: {}
+CONTROL helper 006B67D0 detected: True ; its head forms: {'abs 02CB3C98': 1, 'abs 02CB3A68': 1, 'abs 02CB40F8': 1, 'abs 02CB5048': 1, 'abs 02CB4788': 1, 'abs 02CB4328': 1, 'abs 02CB5278': 1, 'abs 02CB4BE8': 1, 'abs 02CB54A8': 1, 'abs 02CB56D8': 1, 'abs 02CB4E18': 1, 'abs 02CB49B8': 1, 'abs 02CB5908': 1, 'abs 02CB3EC8': 1, 'abs 02CB45D8': 1, 'abs 02CEBFE8': 1, 'abs 02CECF38': 1, 'abs 02CEBDB8': 1, 'abs 02CEC678': 1, 'abs 02CEC218': 1, 'abs 02CEC448': 1, 'abs 02CEB728': 1, 'abs 02CEB958': 1, 'abs 02CEA148': 1, 'abs 02CECD08': 1, 'abs 02CEC8A8': 1, 'abs 02CEBB88': 1, 'abs 02CEB2C8': 1, 'abs 02CEAC38': 1, 'abs 02CEA7D8': 1, 'abs 02CEAA08': 1, 'abs 02CEA5A8': 1, 'abs 02CEAE68': 1, 'abs 02CEB4F8': 1, 'abs 02CEA378': 1, 'abs 02CE9F18': 1, 'abs 02CEB118': 1, 'abs 02CECB58': 1, 'abs 02CF6D88': 1, 'abs 02CF6FB8': 1, 'abs 02CF96F8': 1, 'abs 02D383B8': 1, 'abs 02D3C9F8': 1, 'abs 02D3DDA8': 1, 'abs 02D3D4E8': 1, 'abs 02D3DFD8': 1, 'abs 02D3D948': 1, 'abs 02D3DB78': 1, 'abs 02D3D2B8': 1, 'abs 02D3CC28': 1, 'abs 02D3D798': 1, 'abs 02D3CED8': 1, 'abs 02D3D108': 1, 'abs 02E402F8': 1, 'abs 02E4D238': 1, 'abs 02E4DF78': 1, 'abs 02E4FD38': 1, 'abs 02E585E8': 1, 'abs 02E58A48': 1, 'abs 02E58818': 1, 'abs 02E5A268': 1, 'abs 02E5ABC8': 1, 'abs 02E5B9E8': 1, 'abs 02E5B838': 1, 'abs 02E9F998': 1, 'abs 02E9FBC8': 1, 'abs 02E9F768': 1, 'abs 02EB79A8': 1, 'abs 02EB7778': 1, 'abs 02EBA178': 1}
+
+== forward value census: every lea r,[B + D] whose register VALUE is stored to memory other than its own self-link,
+   or passed in an argument register to a direct call of a detected helper at that helper's head argument
+  D=0x90: 212 sites in 50 functions
+  D=0x60: 4 sites in 4 functions
+     001B6CE0 FUN_001b6ce0  lea 001B6D06 -> 001B6D0A stored: mov qword ptr [rbx + 0x20], rax
+     001D9FD0 FUN_001d9fd0  lea 001DA004 -> 001DA02D passed to helper 001DA0F0
+     0041E3A0 RenderResourceRoot_InitializeSubcontainers  lea 0041E3DA -> 0041E3E5 stored: mov qword ptr [rsi + 0xd98], rax
+     0060DF70 FUN_0060df70  lea 0060E3D6 -> 0060E3DD stored: mov qword ptr [rdi + 0x20], rax
+  D=0xb0: 5 sites in 5 functions
+     001A5B30 FUN_001a5b30  lea 001A5B8A -> 001A5B92 stored: mov qword ptr [rbp - 0x58], rax
+     00602EA0 FUN_00602ea0  lea 00602F0C -> 00602F1B stored: mov qword ptr [rbp - 0x78], rax
+     0060B980 FUN_0060b980  lea 0060BAC8 -> 0060BACF stored: mov qword ptr [rbp + 0x68], rax
+     0079AF20 FUN_0079af20  lea 0079AFE0 -> 0079AFE7 stored: mov qword ptr [rbx + 0x58], rcx
+     0081EAA0 FUN_0081eaa0  lea 0081EAF1 -> 0081EAFC stored: mov qword ptr [rax + 0x18], rcx
+
+== stored qword pointers (DIR64 relocs) to S+0x60/0x68/0xB0/0xB8 of a static descriptor:
+   []
+  control: the same reloc test at +0x80/+0x90/+0xA0: 0 hits []
+
+static descriptors loaded: 315

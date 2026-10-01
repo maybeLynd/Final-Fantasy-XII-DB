@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_WITNESS_ADDRESS",
+  "exit": 1,
+  "failed_witness": "394026",
+  "result_created": false,
+  "semantic_conclusions": 0,
+  "next": "Use the retained original caller instruction address, preserve invalid attempt."
+}

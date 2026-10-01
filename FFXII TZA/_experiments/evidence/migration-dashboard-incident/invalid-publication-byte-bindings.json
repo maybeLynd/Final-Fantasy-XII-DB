@@ -1,0 +1,252 @@
+{
+  "commit": "cccd7c04c488744ed4d99600ba1232cd7e4e0856",
+  "status": "INVALID_COMMITTED_MANIFEST_BYTE_BINDING",
+  "mismatches": [
+    {
+      "path": "cleanup-native-verification.json",
+      "expected_bytes": 1829,
+      "committed_bytes": 1759,
+      "expected_sha": "e47a5b02775d8473ab1ad03edf6c6a06a316cd9dd74e4e5095c1d107e2981c82",
+      "committed_sha": "c14a4eb5b4f64d4d23d9f5da46f47d845bf43ae16c7096ac3ce2299c64a89a33"
+    },
+    {
+      "path": "cleanup-verification.json",
+      "expected_bytes": 1132,
+      "committed_bytes": 1081,
+      "expected_sha": "75132921c1be86d3bdda00d0f06b352a02f7fc909a37e3d87ba3aa21a9d7fbb3",
+      "committed_sha": "628e03fe6158c10ac5e14dc1f6e6e6762b516b7a49360350e65cd061e28655cd"
+    },
+    {
+      "path": "post-source-identity.json",
+      "expected_bytes": 1247,
+      "committed_bytes": 1220,
+      "expected_sha": "f3e94377de11021150b0bba1fe8890f2974a872406049fbc801613a0ff5f81ea",
+      "committed_sha": "6ed0dc63a2904d5fc9e98770a73d6b073db28406e5ee0c0f23218f142b083fb5"
+    },
+    {
+      "path": "preparation-v1/original-manifest.json",
+      "expected_bytes": 27703,
+      "committed_bytes": 26998,
+      "expected_sha": "3e22fcc337853b9f0ccabf6b7c8c1d5c399bed9516853fa87995f27f781442f7",
+      "committed_sha": "8a3b0f22e5be65b3a77b6a6be8deda09b7bf1994a8d7403851cd23c652ea15ab"
+    },
+    {
+      "path": "preparation-v2/original-manifest.json",
+      "expected_bytes": 28543,
+      "committed_bytes": 27813,
+      "expected_sha": "032911ebbc0ab961f9cfb02eb67a41d4ada3b4dd8bf304017ab13381216dd716",
+      "committed_sha": "29c1224c5836ae2e9ef6b2b80593308ef7f6d4f1779400fd0afc438d8d10d333"
+    },
+    {
+      "path": "prepared-reducer-correction.json",
+      "expected_bytes": 450,
+      "committed_bytes": 444,
+      "expected_sha": "63d7808cac3c190d0d1ea54a03f418451c5c544de3e9f0e09d5466b7fbdd1341",
+      "committed_sha": "16b5062c2466dcbb0ce9334826dc4b2f072c8e8d3de96576564d10a5fc898cd5"
+    },
+    {
+      "path": "prepublication-log-name-correction.json",
+      "expected_bytes": 1804,
+      "committed_bytes": 1760,
+      "expected_sha": "74e3890acf7545b3cf1abd75962a796ead3d362cdfe2acfa81fed192b10fb277",
+      "committed_sha": "b72c8b56de5c618b7b826d2b353a494c20874afc1bc4f2b4f51c46a2e2625584"
+    },
+    {
+      "path": "raw.json",
+      "expected_bytes": 369225,
+      "committed_bytes": 358911,
+      "expected_sha": "c086edb58c0914b2197993c88c28e5cceadbebeb981d3289abd424d166ab41ac",
+      "committed_sha": "5c4ce0957f22d2ca55c654b3ddf5c1506019b1a8ed1388f1649159372a2879e1"
+    },
+    {
+      "path": "real-build-observation/external-retained-inputs.json",
+      "expected_bytes": 9549,
+      "committed_bytes": 9376,
+      "expected_sha": "8a42d80fa7be2510b9ad100665ecc8fc385f26e485ed46c545d7cc77245344c9",
+      "committed_sha": "be75f8f077103ebf4d02cc0721319e78db175c76c7e35c4a3ed5881c3227c93a"
+    },
+    {
+      "path": "real-build-observation/outputs/view-evidence.json",
+      "expected_bytes": 4251,
+      "committed_bytes": 4065,
+      "expected_sha": "b4d4393a501803ac544bdd58deff72097c3874289ec7f354fda27d9b43b200d1",
+      "committed_sha": "245d1f441f9587b430d7d03d29a74cbf2d3c35c8e43f779f93d3a2ef03e612e7"
+    },
+    {
+      "path": "real-build-observation/outputs/view-executable.json",
+      "expected_bytes": 820,
+      "committed_bytes": 811,
+      "expected_sha": "0d543bbcfc42d4630937a180416ceaad82affe76eaab7d6b006c6586da8362a1",
+      "committed_sha": "21a2cbb13dbbdfa7b8195f5c8deab7fad468e32c3cf9b3de7b70bbe46bff7a51"
+    },
+    {
+      "path": "real-build-observation/outputs/view-fleet.json",
+      "expected_bytes": 3235,
+      "committed_bytes": 3101,
+      "expected_sha": "8b2b3b33fc1974fa6c4e2bee6f786cd0b10d6cc876487fa37abe4cf1ff530478",
+      "committed_sha": "9bec17094317ab029ba15797304b57bd7f5ac69c8acaf50346b2dd1e33e19264"
+    },
+    {
+      "path": "real-build-observation/outputs/view-overview.json",
+      "expected_bytes": 11664,
+      "committed_bytes": 11312,
+      "expected_sha": "694c1855fde35bdd8a8c1984d1d304ca530bf7bc9621079e161123ce40cd5b4a",
+      "committed_sha": "25270b64422ffeb6254c836db7f1a171bde2af9b3fccf60a69ecf1f647c4581b"
+    },
+    {
+      "path": "real-build-observation/outputs/view-systems.json",
+      "expected_bytes": 56671,
+      "committed_bytes": 54351,
+      "expected_sha": "5325088b35a59b31701c96753ba11a47bc1191ab8be1b298e7ed4e9694d45129",
+      "committed_sha": "5cc21bc02dc769ca7d03737fd292ce1b607a5dfd8c3a3c990a577b525bd00b52"
+    },
+    {
+      "path": "real-build-observation/outputs/view-types.json",
+      "expected_bytes": 1505,
+      "committed_bytes": 1425,
+      "expected_sha": "280c27c2384f266af0fa8e3a27868b874a910cd3d9b7ef8e5e2037e4aaa44053",
+      "committed_sha": "4e14662ab4b756e24a36e0e70902b12bda3d4148913148c2f3da612aa8d4546b"
+    },
+    {
+      "path": "real-build-observation/outputs/view-vbf.json",
+      "expected_bytes": 18185,
+      "committed_bytes": 17162,
+      "expected_sha": "638b494146967882569694584046b08093be743924c333de6d59dc03d4d10050",
+      "committed_sha": "9cba8b686f8e7b2d8f81411f3e61c1c96f7ce1440469ab74556bb04c25ca580d"
+    },
+    {
+      "path": "reducer-controls.json",
+      "expected_bytes": 2627,
+      "committed_bytes": 2585,
+      "expected_sha": "f82e807917e44552a81c8f3ab50417f57ea0435dd9d3eabe63ecdb76bba00299",
+      "committed_sha": "d114e7b0a66ec6c039f6054429354e2a1abbf83e8bff2d47df08509a9cefadc1"
+    },
+    {
+      "path": "result.json",
+      "expected_bytes": 1876,
+      "committed_bytes": 1862,
+      "expected_sha": "f7bed41bbf54c3480a05af868289d32294372a950273f36b8ccdd7b6ba781de3",
+      "committed_sha": "9452c2fc13be705b7775c5208d1ba0c75b00fabee38c81b081cef45c56274fcc"
+    },
+    {
+      "path": "run-01/external-baseline/server-log.txt",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "993080a40691378aef766e9502804815be0c2d8ad8b6c9aa4322e4e9ad228fa1",
+      "committed_sha": "04be9049454432909b72600fc2ad64ad3782c161cff57a319f92349a1c6c4cfb"
+    },
+    {
+      "path": "run-01/external-baseline/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "d1ebb8229f5cd79c15c7ba68afd4b3daa78586329de2d9dbc168d6c745f4df68",
+      "committed_sha": "6693c68df41ac80a64168b4d75766cf763b487f9c79e8d83b203c13a7d882c83"
+    },
+    {
+      "path": "run-01/failed-build/store/failures.jsonl",
+      "expected_bytes": 466,
+      "committed_bytes": 464,
+      "expected_sha": "7a89a2c32e6f1d0fa1870fe8e2a798a5975cbb4860a27085bc6926b36e38eb08",
+      "committed_sha": "890ec3794a07043c8c3757356a11ecc2b597f6621c1b57abe837193af464ca41"
+    },
+    {
+      "path": "run-01/failed-build/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "33810f427de095684a2e5259ba6c5a5496eabde8acf6ff5a2beb5495616e92a2",
+      "committed_sha": "88f8f74ef86cc14561f41cc1efb900512deb4b9f9f488295ba9dcd7acf34d2c3"
+    },
+    {
+      "path": "run-01/input-tamper/server-log.txt",
+      "expected_bytes": 166,
+      "committed_bytes": 165,
+      "expected_sha": "eff5b4656c7c0b37802416c69cdc7a37d7fe2931f374c05322ddf7c79ee30f2a",
+      "committed_sha": "7ef44f0aff6c51a640e4393582661981ef33c096b4867ba2f48eea95a0770ab7"
+    },
+    {
+      "path": "run-01/input-tamper/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "1bc999b43c598be9437c1ae01d1ed8ded30a296c38251eec0a998e653b89d4d9",
+      "committed_sha": "f05d8d5dcffd3a4211be4dc2ba23f8c3a516feabe0a770ca6f28e2649c08996d"
+    },
+    {
+      "path": "run-01/raw.json",
+      "expected_bytes": 369225,
+      "committed_bytes": 358911,
+      "expected_sha": "c086edb58c0914b2197993c88c28e5cceadbebeb981d3289abd424d166ab41ac",
+      "committed_sha": "5c4ce0957f22d2ca55c654b3ddf5c1506019b1a8ed1388f1649159372a2879e1"
+    },
+    {
+      "path": "run-01/source/Database/FFXII TZA/_index/workflow/DASHBOARD-MEANINGS.md",
+      "expected_bytes": 12418,
+      "committed_bytes": 12289,
+      "expected_sha": "eea1f04a77ecc3535b1e872204c2523fabc015423ea7fedec5342f3cbd3a9285",
+      "committed_sha": "3ce41a9b90c366598d6aea392aef43a8fefe171ee306c8e1170f29698b5bc5c4"
+    },
+    {
+      "path": "run-01/stale-reader/server-log.txt",
+      "expected_bytes": 166,
+      "committed_bytes": 165,
+      "expected_sha": "b7ec9417e73a64a477a77e9964452378e6e3f1682af047e755c61719d10257bc",
+      "committed_sha": "9af9b7911a369c71ce9b915514ce9b7121823ee33d7d49d5997378c76bf59838"
+    },
+    {
+      "path": "run-01/stale-reader/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "76f7f3900ea02a561917638ef586e554c1164c9396f26ae8a78bc4305095a245",
+      "committed_sha": "b94089fd4c33bf552d271eff912e13642f086fe46c14be6bcd08b3af895ee107"
+    },
+    {
+      "path": "run-01/stat-preserved-tamper/server-log.txt",
+      "expected_bytes": 175,
+      "committed_bytes": 174,
+      "expected_sha": "25acfc383a4e2e6156ed9491b8c19cbd26ccb65d8f8a0515e4f2d9bc2b9a8e78",
+      "committed_sha": "c1e7cdff0d9ae30f2913970dbe71c8106862209f9af651f46e61ba9ad2a65e22"
+    },
+    {
+      "path": "run-01/stat-preserved-tamper/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "5a5c314a1b292ab3e33b9daf11f8e2f6cb82cdfa9295e0c9ae79673caf29121a",
+      "committed_sha": "ca32f536e0adb01c8224fb7cc9238c197731d7c9005ffa5e10db71b7230b2a5a"
+    },
+    {
+      "path": "run-01/unknown-format/server-log.txt",
+      "expected_bytes": 168,
+      "committed_bytes": 167,
+      "expected_sha": "95d15ac403adbbfa26241fc8f879941746a83294f8ffa697975617b6ef8ba1b2",
+      "committed_sha": "6164c4e8b400f34dd82cf76557c1c064f42e7257a56e435cda441a75d012d9db"
+    },
+    {
+      "path": "run-01/unknown-format/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "3b815962feaba2b0fde48f98c7c5ed7ce8c7cf7a772fbb3dd577f7b4925cfcd6",
+      "committed_sha": "bba4b860a9030d4089acc79b7566acc2625548738ce30d829ee33825715b54c8"
+    },
+    {
+      "path": "run-01/volatile-mid-build/store/history.jsonl",
+      "expected_bytes": 171,
+      "committed_bytes": 170,
+      "expected_sha": "dc966e4d3e31c7f0d87a1c3339173ec52fc2c79815aafa9b81fd752f9e6c2439",
+      "committed_sha": "faca542c96e738f76558ae0bf222b7094743c7b365d5627000760ee30ae1f9d7"
+    },
+    {
+      "path": "run-01/warm-tamper/server-log.txt",
+      "expected_bytes": 165,
+      "committed_bytes": 164,
+      "expected_sha": "02025e1901ff578ff37a6b60f3c0837b8b9fe9b35a7c89d04661f7e4e719973a",
+      "committed_sha": "47d832381b1797961294efcc9d31613433a675608971dc688cc266088e98e131"
+    },
+    {
+      "path": "run-01/warm-tamper/store/history.jsonl",
+      "expected_bytes": 342,
+      "committed_bytes": 340,
+      "expected_sha": "cad4e6d5bf74a3c7ea8e47c9cb498b96b2520815610c14f8b811958dde572854",
+      "committed_sha": "3234c545069678ba4c821f2b776d28f721967e341c613570e1a9b6aa676646b0"
+    }
+  ],
+  "original_commit_receipt_exists": false
+}

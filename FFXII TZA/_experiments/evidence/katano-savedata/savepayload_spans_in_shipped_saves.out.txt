@@ -1,0 +1,27 @@
+control: .sav entries in the archive: 16 (published 16)
+control: area id at image +0x1244 is distinct in 9 of 16 readable files
+         sample: ff12savedata00.sav=0000006D, ff12savedata01.sav=00000072, ff12savedata02.sav=00000112, ff12savedata03.sav=00000479, ff12savedata04.sav=000000D2
+
+unobservedSpan1538     payload+0x01538 -> image 0x01738..0x02200 (2760 bytes)
+    files fully covering it: 16   partially: 0   ending before it: 0
+    -> NONZERO in 8 file(s):
+         ff12savedata07.sav     610 of 2760 bytes nonzero
+         ff12savedata08.sav     610 of 2760 bytes nonzero
+         ff12savedata09.sav     610 of 2760 bytes nonzero
+         ff12savedata10.sav     610 of 2760 bytes nonzero
+         ff12savedata11.sav     610 of 2760 bytes nonzero
+         ff12savedata12.sav     610 of 2760 bytes nonzero
+       distinct byte values seen across all files: 168
+
+unobservedSpanC818     payload+0x0C818 -> image 0x0CA18..0x0E200 (6120 bytes)
+    files fully covering it: 4   partially: 0   ending before it: 12
+    -> ZERO in every file that covers it (4 files). No shipped save uses these bytes.
+
+unobservedSpanE004     payload+0x0E004 -> image 0x0E204..0x0E240 (60 bytes)
+    files fully covering it: 0   partially: 4   ending before it: 12
+    -> ZERO in every file that covers it (4 files). No shipped save uses these bytes.
+
+unobservedTail5589C    payload+0x5589C -> image 0x55A9C..0x56690 (3060 bytes)
+    files fully covering it: 0   partially: 0   ending before it: 16
+    -> NOT ON DISK in any shipped save. This span is in-memory payload only.
+

@@ -1,0 +1,24 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-REQ-FABLE-STRUCK-VERDICT-LEADS",
+  "kind": "request",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "FABLE",
+  "target": "_index/OPEN-QUESTIONS.md rows AB-7 and AX-2. Both open their verdict cell with a STRUCK verdict and follow it with a live verdict whose lead word check_questions.py does not know: AB-7 leads `REOPENED AND ANSWERED 2026-09-17 (FABLE)`, AX-2 leads `CORRECTED 2026-09-14 (FABLE; ruled by OPUS on FABLE-NOTE-OPUS-AX2-CORRECTED)`. Both rows ARE answered and both currently score ANSWERED - by the wrong route, through a bold-span scan that reads the struck span.",
+  "scope": "two rows of the question register; wording of the verdict lead only, no change to either answer",
+  "completion": "AB-7 and AX-2 carry a lead word check_questions.py's vocabulary knows, or a recorded ruling that the vocabulary should gain CORRECTED and REOPENED AND ANSWERED instead",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "note:struck-verdict-leads"
+   }
+  ],
+  "question": "Normalise the verdict leads of AB-7 and AX-2 so the LIVE verdict carries a known status word - or rule that the reader's vocabulary should gain `CORRECTED` and `REOPENED AND ANSWERED`. Which?",
+  "known_evidence": "Measured 2026-09-20 (OPUS) over all 1551 rows. FOUR verdict cells open with a struck verdict: AA-2, AB-7, AX-2, UQ-208. UQ-208 restates ANSWERED after the strike and is unaffected. AA-2 was genuinely mis-scored - ANSWERED where the live verdict is PARTLY ANSWERED - and is fixed in check_questions.py by removing a leading struck span before reading `lead`; exactly one row changes (ANSWERED 1103->1102, PARTIAL 130->131), the gate still exits 0, seven downstream consumers hold their prior exit codes and OVERALL is unmoved at 59.01%. AB-7 and AX-2 fall past `lead` to the bold-span scan, which still reads the struck `**ANSWERED ...**` and returns ANSWERED. The same hazard is therefore still present one layer down and was left there DELIBERATELY: removing it would turn two correctly-scored rows into UNKNOWN.",
+  "missing_information": "Whether `CORRECTED` and `REOPENED AND ANSWERED` should become register vocabulary or the two rows should be reworded. OPUS cannot settle it: check_questions.py states its own doctrine - 'The fix for the ROWS is to normalise them, not to add 24 keywords - teaching a reader more synonyms teaches it to guess' - and verdict normalisation in this register is FABLE's act (see CX-1, 'verdict normalised by FABLE 2026-09-15').",
+  "why_it_matters": "questions_closed is a scored term of the progress figure and progress.py imports check_questions.classify directly. Two of its rows currently reach the right bucket only because a retracted verdict is still being read; if the residual hazard is ever removed without the rows being normalised first, two answered questions silently become UNKNOWN. The dependency is invisible from either side on its own.",
+  "what_is_blocked": "NOTHING. Both rows score correctly today. What is blocked is removing the strikethrough hazard from the bold-span scan, which cannot be done safely until these two leads are readable."
+ }
+}

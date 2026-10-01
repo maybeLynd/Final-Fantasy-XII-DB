@@ -1,0 +1,4 @@
+PASS  F1 file occurrences resolved to instructions: {'0x20050223': ['002EF2A0'], '0x5071901': ['00233C4D', '00235E90', '002370DF']}
+PASS  F2 instructions using either value: ['00233C4D', '00235E90', '002370DF', '002EF2A0']
+PASS  F3 date / digit strings in the file: {'2005[-/._ ]?0?2[-/._ ]?2': 0, '20050223': 0, '05[-/._ ]?07[-/._ ]?19': 0, '05071901': 0, '2\x000\x000\x005\x00.{0,4}2\x003\x00': 0}
+FAILS 0

@@ -1,0 +1,5 @@
+PASS  K +0x43B8 is the lock around the flag +0x4380 (read in both, cleared by 00172160)
+PASS  R 00171790: 0x28-stride critical-section array +0x43B0 deleted and freed; +0x43A8 freed; six per-row pointer arrays freed (14 frees, each on [p-8])
+PASS  T 00172160: semaphores +0x4428 released, threads +0x4420 joined and closed, +0x4430 closed; +0x4420 / +0x4428 / +0x4410 / +0x4418 freed
+PASS  S +0x42F0..+0x4443 re-cut as generated (or re-cut / renamed since by a later record of this package, covering the same bytes); Vp8DecoderInstance still tiles 0x4480
+FAILS 0

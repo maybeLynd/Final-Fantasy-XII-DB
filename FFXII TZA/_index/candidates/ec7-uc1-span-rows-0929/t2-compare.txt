@@ -1,0 +1,13 @@
+PPFX       UC-1 in span 733 | in-run ok | members out 1610 -> in 2343 (+733, of them UC-1 733, other 0; dropped 0) | control findings identical: True (lines byte-identical: False)
+    count changes in 'control outbound': {'00861F6E': ('42', '43')}
+    TEST 2 holds
+SEAD       UC-1 in span   1 | in-run ok | members out 1136 -> in 1137 (+1, of them UC-1 1, other 0; dropped 0) | control findings identical: True (lines byte-identical: True)
+    TEST 2 holds
+libvorbis  UC-1 in span  17 | in-run ASSERTION FAILED | members out 116 -> in 0 (+0, of them UC-1 0, other 0; dropped 116) | control findings identical: n/a (run stopped) (lines byte-identical: True)
+    Tremor + vorbisfile: object entries 107, members 102 (A-measured or declared elsewhere: 007F41A0 007F5CC0 007F7FF0 007FE0F0 007FF1C0), callers from outside the object and its client: 0 , entries joined by nothing: 0
+    CRI HCA decoder: object entries 53, members 53 (A-measured or declared elsewhere: none), callers from outside the object and its client: 0 , entries joined by nothing: 0
+    libvorbis: object entries 139, members 133 (A-measured or declared elsewhere: 008822F0 008845A0 008888F0 0088DE20 00893E80 00894EE0), callers from outside the object and its client: 0 , entries joined by nothing: 15 008824F0 008832D0 00884090 008858B0 00888650 00888690 00888700 00888780 00889330 0088DB60 008922A0 00892990 00893A80 00893AC0 00895570
+    AssertionError
+    TEST 2 FAILS
+libvpx     UC-1 in span   4 | in-run ok | members out 116 -> in 120 (+4, of them UC-1 4, other 0; dropped 0) | control findings identical: True (lines byte-identical: True)
+    TEST 2 holds

@@ -1,0 +1,5 @@
+PASS  N1 001EDF00: vtable store + return; the name in rdx is never read
+PASS  F1 001FF6B0: ensure-object, then tail-jump to the find 001FF4F0
+PASS  F2 001FF740: 17 calling functions, 669 call sites
+PASS  A1 the destructors 008A69F0 / 008A70F0 go to 00808B90 by tail jump
+FAILS 0

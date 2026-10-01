@@ -1,0 +1,23 @@
+{
+  "name": "generic--missing-object",
+  "source": "generic",
+  "original_case": "missing-object",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--missing-object\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--missing-object\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "9d793eef5b00cf66de9d86bb01eb938b8dd1006a96f5576706cc345b97700f78",
+  "upstream_sha256": "9f98c5399bfdea478abe8c69f1c52c5135553a67199a1ab7df43b3313bd649b9",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py does not define ['obj']\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

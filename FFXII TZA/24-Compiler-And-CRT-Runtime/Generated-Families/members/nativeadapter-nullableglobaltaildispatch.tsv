@@ -1,0 +1,14 @@
+# NativeAdapter.NullableGlobalTailDispatch - EC-7 family C
+# # load a member-specific global; if non-null, jne-tail-dispatch to a
+# # member-specific function.
+address	targets
+001AD450	001ACF80
+001C0DB0	001C0960
+001C18F0	001C0F20
+001DB600	001A1460
+001DB620	001A14D0
+0029DF90	00244F00
+00394400	00244F00
+00401FE0	00244F00
+00567750	00244F00
+0056C380	00244DD0

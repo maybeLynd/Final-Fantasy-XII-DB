@@ -1,0 +1,4578 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "image_base": "0x120000",
+ "cases": 104,
+ "cases_total": 104,
+ "mutants_detected": 10,
+ "mutants_total": 10,
+ "results": [
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lgate",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "lgate-zero"
+  },
+  {
+   "rets": [
+    "0x2a"
+   ],
+   "rets64": [
+    "0x2a"
+   ],
+   "trace": [
+    [
+     "lgate",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "lgate-pos"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "lgate",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "lgate-neg"
+  },
+  {
+   "rets": [
+    "0x40100f50"
+   ],
+   "rets64": [
+    "0x40100f50"
+   ],
+   "trace": [
+    [
+     "uget",
+     "rcx=1",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "uget-in"
+  },
+  {
+   "rets": [
+    "0x40101ea0"
+   ],
+   "rets64": [
+    "0x40101ea0"
+   ],
+   "trace": [
+    [
+     "uget",
+     "rcx=2",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "uget-last"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "uget",
+     "rcx=3",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "uget-oob"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "uget",
+     "rcx=ffffffff",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "uget-neg"
+  },
+  {
+   "rets": [
+    "0x4"
+   ],
+   "rets64": [
+    "0x4"
+   ],
+   "trace": [
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "ucount"
+  },
+  {
+   "rets": [
+    "0x40101ea0"
+   ],
+   "rets64": [
+    "0x40101ea0"
+   ],
+   "trace": [
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=2",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "find-hit"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=1",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "find-miss"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "find",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "find-null"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "find-empty"
+  },
+  {
+   "rets": [
+    "0x40100000"
+   ],
+   "rets64": [
+    "0x40100000"
+   ],
+   "trace": [
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "find-order"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-0"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-1"
+  },
+  {
+   "rets": [
+    "0x2"
+   ],
+   "rets64": [
+    "0x2"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-2"
+  },
+  {
+   "rets": [
+    "0x4"
+   ],
+   "rets64": [
+    "0x4"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-4"
+  },
+  {
+   "rets": [
+    "0x5"
+   ],
+   "rets64": [
+    "0x5"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-8"
+  },
+  {
+   "rets": [
+    "0x3"
+   ],
+   "rets64": [
+    "0x3"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=10",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flagfn-set"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=10",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flagfn-clear"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=10",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flagfn-oob"
+  },
+  {
+   "rets": [
+    "0x2"
+   ],
+   "rets64": [
+    "0x2"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=3",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flags-3"
+  },
+  {
+   "rets": [
+    "0x5"
+   ],
+   "rets64": [
+    "0x5"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flags-C"
+  },
+  {
+   "rets": [
+    "0x5"
+   ],
+   "rets64": [
+    "0x5"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flags-18"
+  },
+  {
+   "rets": [
+    "0x4"
+   ],
+   "rets64": [
+    "0x4"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mode-flags-14"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "single",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "single-yes"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "single",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "single-no-0"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "single",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "single-no-5"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "single",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=10",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "single-no-flagfn"
+  },
+  {
+   "rets": [
+    "0x7"
+   ],
+   "rets64": [
+    "0x7"
+   ],
+   "trace": [
+    [
+     "idxget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "idx-pos"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "idxget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "idx-neg"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "desig",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=41",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "desig-hit0"
+  },
+  {
+   "rets": [
+    "0x8"
+   ],
+   "rets64": [
+    "0x8"
+   ],
+   "trace": [
+    [
+     "desig",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=9",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "desig-hit8"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "desig",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=7e",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "desig-miss"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "desig",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=ff",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "desig-ff"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "desig",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=5",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "desig-hibyte"
+  },
+  {
+   "rets": [
+    "0x40"
+   ],
+   "rets64": [
+    "0x40"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-sel0"
+  },
+  {
+   "rets": [
+    "0x41"
+   ],
+   "rets64": [
+    "0x41"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-sel1"
+  },
+  {
+   "rets": [
+    "0x42"
+   ],
+   "rets64": [
+    "0x42"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-sel2"
+  },
+  {
+   "rets": [
+    "0x43"
+   ],
+   "rets64": [
+    "0x43"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=3"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-sel3"
+  },
+  {
+   "rets": [
+    "0x44"
+   ],
+   "rets64": [
+    "0x44"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=4"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-sel4"
+  },
+  {
+   "rets": [
+    "0xff"
+   ],
+   "rets64": [
+    "0xff"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=5"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-sel5"
+  },
+  {
+   "rets": [
+    "0xff"
+   ],
+   "rets64": [
+    "0xff"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=9",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=9"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-gate9"
+  },
+  {
+   "rets": [
+    "0xff"
+   ],
+   "rets64": [
+    "0xff"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=ffffffff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=ffffffff"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-gate-neg"
+  },
+  {
+   "rets": [
+    "0x55"
+   ],
+   "rets64": [
+    "0x55"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=8",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=8"
+    ]
+   ],
+   "faults": [],
+   "name": "b9f0-idx8"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=2",
+     "rdx=4"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k2-in"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=2",
+     "rdx=6"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k2-edge"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k2-oob"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ffffffff"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k2-neg"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=17",
+     "rdx=8"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k17-in"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=17",
+     "rdx=9"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k17-oob"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k0"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=21",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "bnd-k33"
+  },
+  {
+   "rets": [
+    "0x400208f0"
+   ],
+   "rets64": [
+    "0x400208f0"
+   ],
+   "trace": [
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "res-ok"
+  },
+  {
+   "rets": [
+    "0x40024580"
+   ],
+   "rets64": [
+    "0x40024580"
+   ],
+   "trace": [
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "res-b27"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "res-b28"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "resolve",
+     "rcx=9",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=9",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=9"
+    ]
+   ],
+   "faults": [],
+   "name": "res-idx9"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "resolve",
+     "rcx=ffffffff",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=ffffffff",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=ffffffff"
+    ]
+   ],
+   "faults": [],
+   "name": "res-idxneg"
+  },
+  {
+   "rets": [
+    "0x40100f50"
+   ],
+   "rets64": [
+    "0x40100f50"
+   ],
+   "trace": [
+    [
+     "uscan",
+     "rcx=7",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "uscan-hit"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "uscan",
+     "rcx=8",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=8"
+    ]
+   ],
+   "faults": [],
+   "name": "uscan-miss"
+  },
+  {
+   "rets": [
+    "0x40100f50"
+   ],
+   "rets64": [
+    "0x40100f50"
+   ],
+   "trace": [
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "uscan-ff"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "uscan",
+     "rcx=7",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "uscan-gatefail"
+  },
+  {
+   "rets": [
+    "0x40100f50"
+   ],
+   "rets64": [
+    "0x40100f50"
+   ],
+   "trace": [
+    [
+     "uscan",
+     "rcx=7",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "uscan-nullstats"
+  },
+  {
+   "rets": [
+    "0x40100f50"
+   ],
+   "rets64": [
+    "0x40100f50"
+   ],
+   "trace": [
+    [
+     "party",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=7",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "party-hit"
+  },
+  {
+   "rets": [
+    "0x40100000"
+   ],
+   "rets64": [
+    "0x40100000"
+   ],
+   "trace": [
+    [
+     "party",
+     "rcx=9",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=9"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "party-gatefail"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "party",
+     "rcx=9",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=9"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "party-gatefail-nomatch"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "party",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=7",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "party-memid-gatefail"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-single-hit"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-kind1"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-id1b"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-id27"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-id28"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-mask0"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-mask31"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-rcp-nounit"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-desig-mismatch"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-corpse-null"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-corpse-nostats"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-corpse-kind0"
+  },
+  {
+   "rets": [
+    "0xa4"
+   ],
+   "rets64": [
+    "0xa4"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-mod-dbl6b"
+  },
+  {
+   "rets": [
+    "0xa4"
+   ],
+   "rets64": [
+    "0xa4"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-mod-dbl7b"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-mod-zero"
+  },
+  {
+   "rets": [
+    "0xfffffff6"
+   ],
+   "rets64": [
+    "0xfffffff6"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-negative"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=10"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-1"
+  },
+  {
+   "rets": [
+    "0x29"
+   ],
+   "rets64": [
+    "0x29"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=10"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=11",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=11"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=3"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-2"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-0"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=1a",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=1a"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-skip-1a"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=19",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=19"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-count-19"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=10"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-masked"
+  },
+  {
+   "rets": [
+    "0xfffffffb"
+   ],
+   "rets64": [
+    "0xfffffffb"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=10"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=2"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=11",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=11"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=3"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-neg"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-ok"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-gate-on"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-id-06"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-id-07"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-id-1a"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-id-27"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-id-28"
+  },
+  {
+   "rets": [
+    "0xa4"
+   ],
+   "rets64": [
+    "0xa4"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-mod-dbl"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-mod-20"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-mask1"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-kind1"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-rcp-null"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "lp-corpse-null"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=3",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ],
+    [
+     "uscan",
+     "rcx=10",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=10"
+    ]
+   ],
+   "faults": [],
+   "name": "xp-div-3slot"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "uget",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "ucount",
+     "rcx=2",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-find-698->699",
+   "detected": true,
+   "probe": "find-hit"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "single",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-single-1->2",
+   "detected": true,
+   "probe": "single-yes"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "mode",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "flag77",
+     "rcx=8",
+     "rdx=0"
+    ],
+    [
+     "idxget",
+     "rcx=8",
+     "rdx=0"
+    ],
+    [
+     "ef2b0",
+     "rcx=8",
+     "rdx=0"
+    ],
+    [
+     "ef640",
+     "rcx=8",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-mode-b3->b4",
+   "detected": true,
+   "probe": "mode-8"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "desig",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=9",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-dscan-9->8",
+   "detected": true,
+   "probe": "desig-hit8"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "b9f0",
+     "rcx=3",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-b9f0-5a5a->5a5b",
+   "detected": true,
+   "probe": "b9f0-sel1"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "rcx=17",
+     "rdx=8"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-arm17-9->8",
+   "detected": true,
+   "probe": "bnd-k17-in"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "uscan",
+     "rcx=7",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=7"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-uscan-w4->w5",
+   "detected": true,
+   "probe": "uscan-hit"
+  },
+  {
+   "rets": [
+    "0x52"
+   ],
+   "rets64": [
+    "0x52"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "desig",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "dscan",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "resolve",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "b9f0",
+     "rcx=2",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-xpmask-3->2",
+   "detected": true,
+   "probe": "xp-rcp-mask0"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "xp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "find",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "ucount",
+     "rcx=0",
+     "rdx=40100000"
+    ],
+    [
+     "uget",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "single",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "mode",
+     "rcx=1",
+     "rdx=40100000"
+    ],
+    [
+     "flag77",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "idxget",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef2b0",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "ef640",
+     "rcx=2",
+     "rdx=40100000"
+    ],
+    [
+     "party",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=0"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=1",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=1"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ],
+    [
+     "party",
+     "rcx=2",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=17",
+     "rdx=2"
+    ],
+    [
+     "uscan",
+     "rcx=ff",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "rcx=2",
+     "rdx=ff"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-div-4->3",
+   "detected": true,
+   "probe": "xp-div-3slot"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "lp",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ],
+    [
+     "lgate",
+     "rcx=400208f0",
+     "rdx=40100000"
+    ]
+   ],
+   "faults": [],
+   "name": "mut-lp-1a->1b",
+   "detected": true,
+   "probe": "lp-id-1a"
+  }
+ ]
+}

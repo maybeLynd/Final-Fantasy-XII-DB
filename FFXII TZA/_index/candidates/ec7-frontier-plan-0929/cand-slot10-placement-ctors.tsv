@@ -1,0 +1,232 @@
+entry	bytes	status	declared_by	shape_nullcheck_ret1	class
+005848D0	55	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PSerialization::PBinary::PClusterHeaderBase>
+00584B30	60	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PSerialization::PBinary::PClusterHeaderD3D11>
+00584DB0	88	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PSerialization::PBinary::PClusterHeader>
+00585040	28	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PSerialization::PBinary::PInternal::PInstanceListHeader>
+005A0F60	72	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationChannelTarget>
+005A1230	35	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationController>
+005A1510	104	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PBlendableAnimationSource>
+005A17D0	31	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationTargetBlenderController>
+005A1BA0	45	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationClip>
+005A1E70	25	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PTimeController>
+005A2060	79	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationChannelBase>
+005A23E0	34	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PTimeIntervalController>
+005A26F0	93	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationChannel>
+005A28B0	44	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimatableComponent>
+005A2C40	45	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationSlotFilter>
+005A2D00	56	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationDataSourceListEntry>
+005A30B0	35	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PTimeScaleOffsetController>
+005A3200	87	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationConstantChannel>
+005A3550	31	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationNetworkInstanceTarget>
+005A36F0	30	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationSet>
+005A3CB0	24	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationSlotListIndex>
+005A4300	41	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationWeightedBlenderController>
+005A4570	12	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingChannelMap>
+005A4C40	21	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingDataBlockCache>
+005A4F60	41	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationAdditiveBlenderController>
+005A5090	19	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationChannelTimes>
+005A53F0	35	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationEventController>
+005A5800	70	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationNetworkInstance>
+005A5B20	31	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationSpuTargetBlenderController>
+005CDC00	33	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPassInfo>
+005CE010	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferRWTexture2D>
+005CE780	16	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PConstantBufferBase>
+005CEBF0	65	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PSamplerState>
+005CEEF0	20	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierNetworkDynamicMeshSegment>
+005CF2B0	48	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTexture2DBase>
+005CF410	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferRWTexture3D>
+005CF520	48	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PMeshInstanceSegmentContext>
+005CF970	45	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterDefinition>
+005CFF00	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTexture3D>
+005D0090	20	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PStructuredBufferBase>
+005D03C0	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferSampler>
+005D06E0	32	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPassParameterLocationTypes>
+005D09D0	27	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderStreamDefinition>
+005D0CE0	29	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferStructuredBuffer>
+005D1700	47	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTextureCubeMapBase>
+005D17F0	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPass>
+005D18A0	30	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderProgramParamsAndStreams>
+005D1E20	31	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PMeshInstanceBounds>
+005D2090	63	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PConstantBuffer>
+005D21E0	29	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferRWStructuredBuffer>
+005D27B0	51	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PSceneRenderPass>
+005D2B80	17	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationSlotFilterDeferredLoad>
+005D3090	29	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferByteAddressBuffer>
+005D34A0	14	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPassStateBase>
+005D38D0	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTexture2D>
+005D3C60	40	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShader>
+005D4100	63	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PStructuredBuffer>
+005D4230	33	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer>
+005D4E50	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferTexture2D>
+005D5240	64	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PEffect>
+005D5930	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureConstantBuffer>
+005D5D80	51	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTexture3DBase>
+005D5DF0	32	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPassBase>
+005D5FE0	42	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PSamplerStateBase>
+005D6600	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferTexture3D>
+005D6870	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTextureCubeMap>
+005D6B50	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferDataBlock>
+005D6B70	17	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferLocationType>
+005D7530	15	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PIndirectArgsBufferBase>
+005D76A0	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferTextureCubeMap>
+005D7B60	44	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTextureCommonBase>
+005D7DC0	25	declared	NativeAdapter.NullableOutRecordHeaderInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferIndexDataBlock>
+005D7DE0	21	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer>
+005D8090	65	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PIndirectArgsBuffer>
+00611340	101	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTexture3DD3D11>
+00611420	24	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPassStateD3D11>
+00611A10	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShaderPassD3D11>
+00611D60	100	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PConstantBufferD3D11>
+006123F0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTexture2DD3D11>
+006127C0	90	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PStructuredBufferD3D11>
+00612A40	24	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PStreamInputDescD3D11>
+00612D00	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PTextureCubeMapD3D11>
+00613170	65	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PIndirectArgsBufferD3D11>
+006135E0	56	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PSamplerStateD3D11>
+0062EF20	19	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PClusterDependencyList>
+0063E840	87	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PFXAA>
+0063E9C0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMotionBlurBase>
+0063EA60	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PAtmosphericsBase>
+0063EF60	69	declared	NativeAdapter.OutRecordVtablePairStore	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PDepthOfField>
+0063F2A0	58	declared	NativeAdapter.NullableOutRecordVptrCall	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PAtmosphericsD3D11>
+0063F3F0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PScreenSpaceReflectionBase>
+0063F580	69	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMotionBlurD3D11>
+0063F6E0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMLAABase>
+0063F9A0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PDeferredLightingBase>
+0063FC80	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PGlowBase>
+0063FF00	58	declared	NativeAdapter.NullableOutRecordVptrCall	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PScreenSpaceReflectionD3D11>
+00640280	69	declared	NativeAdapter.OutRecordVtablePairStore	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PAtmospherics>
+00640340	58	declared	NativeAdapter.NullableOutRecordVptrCall	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMLAAD3D11>
+006404D0	80	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMotionBlur>
+00640900	109	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PGlowGPUBase>
+00640D00	69	declared	NativeAdapter.OutRecordVtablePairStore	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PScreenSpaceReflection>
+00640E40	69	declared	NativeAdapter.OutRecordVtablePairStore	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PLowResParticles>
+00640FD0	69	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMLAA>
+00641280	93	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionBase>
+006414F0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PDeferredLightingD3D11>
+00641590	109	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PGlowD3D11>
+00641B50	83	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMaterialPostEffect>
+00641BB0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PCelShadingBase>
+00641D40	93	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionD3D11>
+006421B0	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PGlow>
+00642420	69	declared	NativeAdapter.OutRecordVtablePairStore	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PDeferredLighting>
+00642540	58	declared	NativeAdapter.NullableOutRecordVptrCall	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PCelShadingD3D11>
+006426F0	104	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PScreenSpaceAmbientOcclusion>
+00642CD0	76	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PFXAABase>
+00642E70	97	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PDepthOfFieldBase>
+00642F50	28	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PPostEffectManager>
+00643000	69	declared	NativeAdapter.OutRecordVtablePairStore	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PCelShading>
+00643530	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PMeshParticleSystemBase>
+006435D0	76	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PFXAAD3D11>
+006437E0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PPostEffectBase>
+00643C10	58	declared	NativeAdapter.NullableOutRecordVptrCall	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPostProcessing::PDepthOfFieldD3D11>
+0065E7C0	27	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierNetworkInstance>
+0065EA30	51	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PMeshSegmentBase>
+0065EC80	28	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PIndexDataBlockBase>
+0065EEF0	65	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PMesh>
+0065F310	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PMeshSegmentD3D11>
+0065F340	39	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PIndexDataBlockBufferD3D11>
+0065F690	39	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PDataBlockBufferD3D11>
+0065F960	22	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PVertexStream>
+0065FB20	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PMeshSegment>
+0065FFF0	96	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PIndexDataBlockD3D11>
+00660470	99	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PDataBlockD3D11>
+00660A20	29	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PDataBlockBase>
+00660D10	27	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PSkeletonJointBounds>
+00660F80	112	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PIndexDataBlock>
+006611F0	35	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PShape>
+00661330	115	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGeometry::PDataBlock>
+0066FE10	16	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PAnimation::PAnimationEventList>
+00674E50	58	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PAssetReferenceImport>
+00678120	24	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PCamera>
+0067C660	35	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PText::PBitmapFontCharInfo>
+0067E4D0	62	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PWorldMatrix>
+006807F0	29	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PScripting::PAsyncProcessHeader>
+00680C20	58	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PScripting::PScriptCallbackHandler>
+00680F40	56	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PScripting::PScript>
+00687BD0	121	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsMeshBase>
+00687DC0	159	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsTaperedCylinder>
+00688570	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCharacterControllerBullet>
+006886D0	46	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsWorld>
+00688870	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsRigidBodyBase>
+00688BE0	117	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsShapeBullet>
+00688DE0	143	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsMeshBullet>
+00688ED0	159	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsTaperedCapsule>
+006895C0	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCharacterController>
+00689830	27	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsInterfaceBase>
+00689AF0	117	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsShape>
+00689B70	173	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsMesh>
+00689D50	149	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsPlaneBase>
+0068A4B0	18	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PRaycastResult>
+0068A770	64	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsRigidBodyBullet>
+0068AC60	124	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsSphereBase>
+0068AEB0	142	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCylinderBase>
+0068AF40	65	declared	NativeAdapter.OutRecordZeroInitMemberInit	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsInterfaceBullet>
+0068AF90	156	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsPlaneBullet>
+0068B9E0	94	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsWorldBase>
+0068BC70	80	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsRigidBody>
+0068BF10	128	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsSphereBullet>
+0068C100	149	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCylinderBullet>
+0068C1A0	186	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsPlane>
+0068C8D0	162	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsSphere>
+0068CAF0	179	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCylinder>
+0068D190	134	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsBoxBase>
+0068D220	149	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCapsuleBase>
+0068D830	24	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCharacterCamera>
+0068DC40	145	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsBoxBullet>
+0068DCE0	156	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCapsuleBullet>
+0068E4C0	16	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsMaterial>
+0068E4D0	24	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsWorldBullet>
+0068E790	175	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsBox>
+0068E840	186	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCapsule>
+0068EC20	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PPhysics::PPhysicsCharacterControllerBase>
+006A7090	15	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PString>
+006A7B10	88	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGameplay::PTrigger>
+006A95F0	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGameplay::PQuarryComponent>
+006AA8A0	58	declared	NativeAdapter.ExplainedCalleeForwarder	Y	Phyre::PClassDescriptorConcrete<class Phyre::PComponent>
+006AB4A0	40	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PEntity>
+006ACEE0	69	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PCameraOrthographic>
+006AD750	79	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PCameraPerspective>
+006ADE00	64	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInstancesComponent>
+006B3D60	73	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PScene::PNode>
+006B6AB0	32	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PMeshSegmentContext>
+006BB350	102	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierNetworkDynamicMesh>
+006BE990	82	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PLight>
+006C0860	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShadowCaster>
+006C0A80	52	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PRendering::PShadowCaster::PShadowSplit>
+006C2960	29	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierNetworkInstanceInput>
+006C4A60	82	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PLOD::PLODLevel>
+006C4D60	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PLOD::PLODGroup>
+006CDF00	85	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PGameplay::PTriggerReceiverComponent>
+006CEA50	13	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_Buffer>
+006CECF0	15	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PRenderStreamInput>
+006CF4F0	24	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierAndInputs>
+006CFA50	58	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PDynamicGeometry::PModifierNetwork>
+007913B0	24	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PFramework::PDebugUtils>
+007919A0	44	declared	CxxObjectLifecycle.ConditionalTeardownReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PFramework::PInputMapper>
+00866FA0	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceVisionTrackerY>
+00867080	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionQuatZ>
+00867160	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMouseDeltaY>
+00867720	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceVisionTrackerZ>
+00867800	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionQuatW>
+008678E0	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceTouchRotate>
+00867D60	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionAngularVelocityX>
+00867E40	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceTouchPinch>
+00868420	56	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputAction>
+00868670	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionAngularVelocityY>
+00868750	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceTouchTwoFingerDragX>
+00868C10	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceKey>
+00868E20	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionAngularVelocityZ>
+00868F00	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceTouchTwoFingerDragY>
+00869670	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceJoypadButton>
+008697E0	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionLinearAccelerationX>
+008698C0	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceTouchDragX>
+00869E20	83	frontier		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceJoypadAxis>
+00869F50	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionLinearAccelerationY>
+0086A090	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceTouchDragY>
+0086A5D0	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMouseButton>
+0086A6B0	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionLinearAccelerationZ>
+0086A790	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionQuatX>
+0086AD30	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceVisionTrackerX>
+0086AE70	44	A		Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMouseDeltaX>
+0086AEA0	58	declared	NativeAdapter.OutRecordDescriptorInitReturnTrue	Y	Phyre::PClassDescriptorConcrete<class Phyre::PInputs::PInputSourceMotionQuatY>

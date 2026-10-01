@@ -1,0 +1,11 @@
+SURVIVES  G0  [251, 676, 17]
+SURVIVES  G1  call sites ['002FA9AE']; store mov qword ptr [rsp + 0x30], rax; match cmp rsi, qword ptr [rsp + 0x30] / jne 0x2fab8d
+SURVIVES  G2  jumps to the epilogue from ['002FAD75', '002FADCA', '002FADEC', '002FAE0D', '002FAE1F']; exits outside the body []; rets ['002FAE3A']
+SURVIVES  G3  xor ecx, ecx | xor ebx, ebx -> movzx eax, byte ptr [rbx]
+SURVIVES  G4  only in kind 1 ['movzx r8d, byte ptr [rbx + 1]']; only in kind 2 ['xor r8d, r8d']
+SURVIVES  G5  movzx eax, byte ptr [rbx] | cmp byte ptr [rbx], 2 | cmp byte ptr [rbx], 3 -> inc esi
+SURVIVES  G6  call sites ['002536F4', '0056F482', '00583F2A']
+SURVIVES  G7  [rdi + 4] resolves per pass at ['002FAD56', '002FAD63', '002FAD7B', '002FAD88', '002FAD9D', '002FADAD']
+SURVIVES  G8  three movzx + jge
+SURVIVES  G9  rung 12 at 00D1062D, 8 B per rung, rung 1's fields at 00D105D0 = (0, 0, 0); fall-through mov al, 1
+FAILS 0

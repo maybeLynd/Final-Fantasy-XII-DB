@@ -1,0 +1,17 @@
+PASS  control: store to 02064ACC at 0022A1A7 found
+00186130  001861F3  w    mov    dword ptr [rip + 0x2b31e87], 0           -> 02CB8084
+00186410  00186453  r    cmp    dword ptr [rip + 0x2b31c2b], eax         -> 02CB8084
+00186410  001865C6  w    mov    dword ptr [rip + 0x2b31ab8], eax         -> 02CB8084
+00186CD0  00186D31  w    mov    dword ptr [rip + 0x2b3134d], eax         -> 02CB8084
+00186CD0  00186D62  w    mov    dword ptr [rip + 0x2b3131c], ebp         -> 02CB8084
+00186CD0  00186D7A  w    mov    dword ptr [rip + 0x2b31303], r12d        -> 02CB8084
+00186CD0  00186E5E  r    mov    ebx, dword ptr [rip + 0x2b31220]         -> 02CB8084
+00186CD0  00186E9B  r    mov    r9d, dword ptr [rip + 0x2b311e2]         -> 02CB8084
+00186CD0  00186F50  r    mov    ebx, dword ptr [rip + 0x2b3112e]         -> 02CB8084
+00186CD0  0018710D  r    mov    ebx, dword ptr [rip + 0x2b30f71]         -> 02CB8084
+00187950  00187A9D  r    cmp    dword ptr [rip + 0x2b305e1], eax         -> 02CB8084
+00187950  00187B92  w    mov    dword ptr [rip + 0x2b304ec], eax         -> 02CB8084
+00188DA0  00188DC0  r    mov    edx, dword ptr [rip + 0x2b2f2be]         -> 02CB8084
+00188DA0  00188DE7  r    mov    edx, dword ptr [rip + 0x2b2f297]         -> 02CB8084
+00188DA0  00188DF2  r    mov    edx, dword ptr [rip + 0x2b2f28c]         -> 02CB8084
+00188DA0  00188E04  r    mov    edx, dword ptr [rip + 0x2b2f27a]         -> 02CB8084

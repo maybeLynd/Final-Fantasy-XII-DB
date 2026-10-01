@@ -1,0 +1,26 @@
+{
+  "name": "data-exit-two",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-exit-two\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-exit-two\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "data",
+    "exits": [
+      0,
+      1
+    ]
+  },
+  "upstream_sha256": "53d980c4d8e4ce8551d2a1fe046bb29b0c79dcdf1f86151a977c1d78cc93ec6f",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py exit 2 (accepted: [0, 1])\n",
+  "stderr": "",
+  "timed_out": false
+}

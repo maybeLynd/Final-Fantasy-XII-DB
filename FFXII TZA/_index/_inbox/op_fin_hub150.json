@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-150",
+ "note": "Batch 150 (22 bodies -> 17 hosts): 3 multi-caller (006238E0 4-A / 0028FD70 / 0035D080) + top-19 1-A by size; the GI cluster keeps closing (006272C0 resolve-and-place dispatcher, 0061E340 8-slot dirty-publish, 0061EBE0 indexed accessor, 006238E0 three-ring flush). Gates: anchors 4535 (all 22 counted), 0 MID/0 outside-body; address checker 0 UNSUPPORTED in new entries; hash clean (26 standing unreproduced); crossref 2861 findings / 400 dispositioned; neighbour guard ADDS NOTHING after 6 crossing paragraphs across 4 docs accounting 6 standing pairs (2850->2846).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/analysis-kit/gfz-scripts/hub150_dumps.txt",
+  "Database/Tools/work/hub150_callers.txt"
+ ]
+}

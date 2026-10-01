@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-115",
+ "result_refs": [
+  "batch-115: 22 bodies A-measured, +88 across 11 hosts; anchors 3721 (+22) 0 MID; gates+hash clean; crossref 128 (2 peer-owned rows, zero batch-owned)"
+ ],
+ "note": "batch-115 research complete"
+}

@@ -1,0 +1,17 @@
+# NativeLeaf.FieldConstStore - EC-7 family C
+# # mov [rcx+off], member const (nonzero); ret - constant field initialiser.
+address	targets
+00193930	
+00198700	
+004158E0	
+0045FD00	
+0047BFA0	
+00515600	
+00519870	
+0051E5D0	
+0051E790	
+0051E7B0	
+00529D40	
+0052A8A0	
+0052B5D0	
+00865560	

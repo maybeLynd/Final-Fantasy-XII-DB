@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "command": "inspect-texture-resize-input-callers.py",
+  "limits": "fragment-only feasible positive count question; no semantic/pass outside scope"
+}

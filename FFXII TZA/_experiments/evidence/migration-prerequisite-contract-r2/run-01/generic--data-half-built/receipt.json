@@ -1,0 +1,23 @@
+{
+  "name": "generic--data-half-built",
+  "source": "generic",
+  "original_case": "data-half-built",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--data-half-built\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--data-half-built\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "b92ed486fc8b1b7d621d5a088127245b27d3bae8ccfe06a1df4d3f5888cb36e2",
+  "upstream_sha256": "d10aaa9dafba73fa7acf48acec18cc97fcd32c1d40dc45df9434ac3041ffd062",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py: incomplete required data object\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

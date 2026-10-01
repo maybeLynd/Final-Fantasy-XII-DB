@@ -1,0 +1,162 @@
+{
+  "method": "A exact original32bitLEA/signedCMOV semantics; actual unchanged consumer clamp() and original default executed in Python, not FF12/native/guest/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "original_source_entry": "0x262440",
+    "original_source_bytes": 591,
+    "original_source_sha256": "7909d30a3b1f82ee5e5c91a507d9313be45c5ccc5b71d210f1fac2ae3f595241",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "parent69_commit": "3a7de76ecd7ccd815f28664b2500d5cf267652d1",
+    "consumer_primary_commit": "7af8e8da4f71efcad9c6efa310a90568037c5d90",
+    "consumer_primary_sha256": "d3ebc621a7b4630a9f3f1febbde2d6afe6e94d843dca84f77de5c58188f2a4ce",
+    "consumer_function_ast_sha256": "decdd3977b7462e6fe3ccd6534484c14a8ebf1266c2e81db240904b00e540e46"
+  },
+  "instructions": [
+    {
+      "pc": "0x2624d5",
+      "hex": "8b7500",
+      "mnemonic": "mov",
+      "args": "esi, dword ptr [rbp]",
+      "memory": [
+        "r"
+      ]
+    },
+    {
+      "pc": "0x26250c",
+      "hex": "85c0",
+      "mnemonic": "test",
+      "args": "eax, eax",
+      "memory": []
+    },
+    {
+      "pc": "0x26250e",
+      "hex": "8bcb",
+      "mnemonic": "mov",
+      "args": "ecx, ebx",
+      "memory": []
+    },
+    {
+      "pc": "0x262510",
+      "hex": "0f49c8",
+      "mnemonic": "cmovns",
+      "args": "ecx, eax",
+      "memory": []
+    },
+    {
+      "pc": "0x262513",
+      "hex": "8d46ff",
+      "mnemonic": "lea",
+      "args": "eax, [rsi - 1]",
+      "memory": [
+        "addr"
+      ]
+    },
+    {
+      "pc": "0x262516",
+      "hex": "3bce",
+      "mnemonic": "cmp",
+      "args": "ecx, esi",
+      "memory": []
+    },
+    {
+      "pc": "0x262518",
+      "hex": "0f4cc1",
+      "mnemonic": "cmovl",
+      "args": "eax, ecx",
+      "memory": []
+    }
+  ],
+  "consumer_default": {
+    "returncode": 0,
+    "stdout": "PASS K1  ebx = 0; index in eax from the int or float pop paths (or 0 on an empty stack); dimension a signed dword\nPASS K2  index' = min(max(index, 0), dim - 1), strict compare\nPASS K3  (index, dim) -> index': {(5, 3): 2, (-2, 3): 0, (1, 3): 1, (0, 0): -1, (4, 0): -1, (2, -2): -3}\nPASS C  a cmovle model admits index 3 for dim 3; the image's cmovl gives 2\nFAILS 0\n",
+    "stderr": "",
+    "unchanged": true
+  },
+  "cases": [
+    {
+      "index": 5,
+      "dimension": 3,
+      "actual_original_fable_model": 2,
+      "decoded_lea_upper_bits": "00000002",
+      "source_predicted_signed_clamped": 2,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": -2,
+      "dimension": 3,
+      "actual_original_fable_model": 0,
+      "decoded_lea_upper_bits": "00000002",
+      "source_predicted_signed_clamped": 0,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": 0,
+      "actual_original_fable_model": -1,
+      "decoded_lea_upper_bits": "ffffffff",
+      "source_predicted_signed_clamped": -1,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 2,
+      "dimension": -2,
+      "actual_original_fable_model": -3,
+      "decoded_lea_upper_bits": "fffffffd",
+      "source_predicted_signed_clamped": -3,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": -2147483647,
+      "actual_original_fable_model": -2147483648,
+      "decoded_lea_upper_bits": "80000000",
+      "source_predicted_signed_clamped": -2147483648,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": -2147483648,
+      "actual_original_fable_model": -2147483649,
+      "decoded_lea_upper_bits": "7fffffff",
+      "source_predicted_signed_clamped": 2147483647,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": -1,
+      "dimension": -2147483648,
+      "actual_original_fable_model": -2147483649,
+      "decoded_lea_upper_bits": "7fffffff",
+      "source_predicted_signed_clamped": 2147483647,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 2147483647,
+      "dimension": -2147483648,
+      "actual_original_fable_model": -2147483649,
+      "decoded_lea_upper_bits": "7fffffff",
+      "source_predicted_signed_clamped": 2147483647,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    }
+  ],
+  "driver_sha256": "6f17753023f2af35166aed642abea9142b46b86816c708f0500e52ec3c1b5911",
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "providers": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "consumer": {
+    "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md",
+    "sha256": "f0f343b0b70e33512b063c2320e8877e12e36a5cbfa53c8be1ba3d13747fc1c3"
+  },
+  "limits": "SignedMIN dimension case is injected conditionalanalysis, not an observedasset/value/gamefault. Existing69nonemptyprecondition intact; only universalnegativeformula/producerwidth extrapolation affected. Fullresolver/storage/flattenoverflow/validity/nativefault/lifetime/reachability/live OPEN. PC OFF/S19/fullL1+L2 NOT_MET"
+}

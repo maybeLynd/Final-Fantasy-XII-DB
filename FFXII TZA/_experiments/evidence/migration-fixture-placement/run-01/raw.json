@@ -1,0 +1,125 @@
+{
+  "method": "A actual owned freezer invocation and original current question reader on private labelled root",
+  "driver_sha256": "fae1a654b274b367c8efb907fdf542a3b4b0cf0091714ac3f51d8370787625e1",
+  "producer_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py",
+  "producer_sha256": "6868b119be1a206587fd4300f5178f367ef8a5fedaec310faa0f2de4c95bd43b",
+  "original_publication": "037557884af3ed9b687b6bb8b2a34855c0703cdd",
+  "fixture_members": [
+    {
+      "path": "collection-01/fixture-db/04-Actor-Entity/answered.md",
+      "bytes": 227,
+      "sha256": "637d97b0ced3c61a371fbdcee2c1bf0606bb501669d0772ca0598e93b6c7e48b"
+    },
+    {
+      "path": "collection-01/fixture-db/04-Actor-Entity/dispositioned.md",
+      "bytes": 109,
+      "sha256": "fddd211606777a53da1227069f1bf96c9cdfbfaff36baa2307720e1b482bc5e1"
+    },
+    {
+      "path": "collection-01/fixture-db/04-Actor-Entity/partial.md",
+      "bytes": 121,
+      "sha256": "db334fb9f3613b0ec7ef37d1b309c8b9014829bc7339537418cd6118c745a2ff"
+    },
+    {
+      "path": "collection-01/fixture-db/_index/candidates/register-triage/batch-K-scope-rulings.md",
+      "bytes": 144,
+      "sha256": "778887541033aa138ce9f385defd80ed002e012539a6e9c25930d46d0b948ff0"
+    },
+    {
+      "path": "collection-01/fixture-db/_index/OPEN-QUESTIONS.md",
+      "bytes": 441,
+      "sha256": "7db43b5619129d17fc330fae2b742db9e0af55ffa0eddcae6f1df77ea6374e7e"
+    },
+    {
+      "path": "collection-02/fixture-db/04-Actor-Entity/answered.md",
+      "bytes": 227,
+      "sha256": "637d97b0ced3c61a371fbdcee2c1bf0606bb501669d0772ca0598e93b6c7e48b"
+    },
+    {
+      "path": "collection-02/fixture-db/04-Actor-Entity/dispositioned.md",
+      "bytes": 109,
+      "sha256": "48ae3b9de6b7162fe8d31d14aa0701bbbee4589551d26616f0506338e5e5c364"
+    },
+    {
+      "path": "collection-02/fixture-db/04-Actor-Entity/partial.md",
+      "bytes": 121,
+      "sha256": "db334fb9f3613b0ec7ef37d1b309c8b9014829bc7339537418cd6118c745a2ff"
+    },
+    {
+      "path": "collection-02/fixture-db/_index/candidates/register-triage/batch-K-scope-rulings.md",
+      "bytes": 144,
+      "sha256": "778887541033aa138ce9f385defd80ed002e012539a6e9c25930d46d0b948ff0"
+    },
+    {
+      "path": "collection-02/fixture-db/_index/OPEN-QUESTIONS.md",
+      "bytes": 441,
+      "sha256": "7db43b5619129d17fc330fae2b742db9e0af55ffa0eddcae6f1df77ea6374e7e"
+    }
+  ],
+  "cases": [
+    {
+      "name": "actual-default",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 17, in <module>\n    fixture_preflight(W)  # actual default invocation, BEFORE mkdir/copytree/publish\n    ~~~~~~~~~~~~~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 10, in fixture_preflight\n    assert not roots,'NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE: '+', '.join(roots)\n           ^^^^^^^^^\nAssertionError: NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE: C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-my-progress-independent/collection-01/fixture-db, C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-my-progress-independent/collection-02/fixture-db\n",
+      "expected_marker": "NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE",
+      "terminal": true
+    },
+    {
+      "name": "same-source-preflight",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py",
+        "--preflight-only"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 15, in <module>\n    fixture_preflight(source)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 10, in fixture_preflight\n    assert not roots,'NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE: '+', '.join(roots)\n           ^^^^^^^^^\nAssertionError: NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE: C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-my-progress-independent/collection-01/fixture-db, C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-my-progress-independent/collection-02/fixture-db\n",
+      "expected_marker": "NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE",
+      "terminal": true
+    },
+    {
+      "name": "clean-source",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py",
+        "--preflight-only",
+        "--preflight-source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-fixture-placement\\run-01\\clean"
+      ],
+      "returncode": 0,
+      "stdout": "FIXTURE_PLACEMENT_PREFLIGHT_ONLY_NO_WRITES\n",
+      "stderr": "",
+      "expected_marker": "FIXTURE_PLACEMENT_PREFLIGHT_ONLY_NO_WRITES",
+      "terminal": true
+    },
+    {
+      "name": "missing-source",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py",
+        "--preflight-only",
+        "--preflight-source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-fixture-placement\\run-01\\absent"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 14, in <module>\n    assert source.is_dir(),'Missing preparation source is not valid empty evidence'\n           ~~~~~~~~~~~~~^^\nAssertionError: Missing preparation source is not valid empty evidence\n",
+      "expected_marker": "Missing preparation source",
+      "terminal": true
+    }
+  ],
+  "finished": false,
+  "fatal": {
+    "type": "TypeError",
+    "detail": "tuple indices must be integers or slices, not str"
+  }
+}

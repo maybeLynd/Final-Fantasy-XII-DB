@@ -1,0 +1,8 @@
+{
+  "result": "SCOPED_OBSERVATIONS_SUPPORTED_RETURN_TRANSITION_UNPROVED",
+  "navigation": "Progress baseline -> Overview -> Activity observed",
+  "refused_inputs": 2,
+  "cleanup": "owned tab closed; absent from inventory",
+  "source": "later HTTP PAGE byte match only",
+  "limits": "No full A17/M3, totals, taxonomy, adapters, deployment or FF12 acceptance. Evidence author review pending."
+}

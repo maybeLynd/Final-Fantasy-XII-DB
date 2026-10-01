@@ -1,0 +1,9 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-SN1-DBGMSB",
+ "agent": "SWE2-DATA",
+ "resources": [
+  {"key": "@publication"}
+ ],
+ "note": "SN-1 narrowing: .sbn/.msb/.dbg inner layouts decoded (companions page + OPEN-QUESTIONS + AUDIT-LOG + ADDRESS-INDEX regen)"
+}

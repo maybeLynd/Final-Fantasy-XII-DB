@@ -1,0 +1,10 @@
+SURVIVES  B0  texpack 002467A0 tests and stores 0208EA88 (request 7/0xD6) and never touches +0x3D8; [*(0209AC30)+0x3D8] is the tex2pack blob, tested and read by 00280670
+SURVIVES  B1  fontpack_it 0039C3F0: 02AEE868 / 7/0xD5; 002808D0: +0x3D0 / 7/0xD3 and +0x3C8 / 7/0xD4
+SURVIVES  B2  0039C150 reads directory dwords ['+0x00', '+0x04', '+0x08', '+0x0C', '+0x10', '+0x14', '+0x18', '+0x1C']; bindings {'+0x00': '02AEE810', '+0x04': '02AEE850', '+0x08': '02AEE870', '+0x0C': '02AEE878', '+0x10': '02AEE880', '+0x14': '02AEE888', '+0x18': '02AEE848', '+0x1C': '02AEE880'}
+SURVIVES  B3  dir 0 -> +0x08, dir 1 -> +0x190; dirs 2/4/5/6 bound only into null fields; dir 3 never read; faces 0xB/0xD/0xE/0xF
+SURVIVES  B4  tex2pack: +0x338..+0x380 step 8 with offsets step 4 via 0024A1D0, dir 10 raw at +0x388; clutpack: +0x390..+0x3A8
+SURVIVES  B5  002A00F0 is called by ['00280980'] (loop bound 0x5C = 23 dwords); 002808D0 only requests
+SURVIVES  B6  0025A160 <- [('00304060', '003040B7', 'call'), ('00304140', '00304152', 'call'), ('00356CB0', '00356CC2', 'jmp')]; 00356CB0 is verb 01CB setbehindcameratype; bound: ['cmp ecx, dword ptr [rax + 4]', 'jge 0x25a17c'] (signed, upper only)
+SURVIVES  B7  00259370: mov eax, ecx -> [02098DF0]; null and count <= 0 rejected; selector 02098DF8 zeroed; tail 00259FE0
+SURVIVES  B8  fontcolor count -> 0215E6B8, pairs -> 0215E6C8; monotone_chr 0x74 + edi, +0x880, clutpack +0x390 -> alloc + 0x1DC0
+FAILS 0

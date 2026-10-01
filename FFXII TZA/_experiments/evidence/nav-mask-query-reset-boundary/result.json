@@ -1,0 +1,50 @@
+{
+  "method": "A source argument/flow/pointer provenance only; no FF12/native/emulator/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "parent_result_sha256": "b0d6e0c05e0bca6151f01a48019c0a73f2f608eb964095267fe0538e8b21786f",
+    "parent_manifest_sha256": "cedc18b1efd79904661370e0e28a6655e7fca667aee0f46ddce229798cc47230"
+  },
+  "driver_sha256": "dc834c092d0d99a238e01c1d2a2b493ac7e6e8f55ce880a359f22b3d1e95c731",
+  "bindings": {
+    "clear_pointer_cell": "0x2aee0b0",
+    "or_pointer_cell": "0x2aee0b0",
+    "returned_pointer_cell": "0x2aee0b0",
+    "clear_length_cell": "0x2aee0b8",
+    "call": "0x39130e",
+    "or_write": "0x3913c4"
+  },
+  "flow": {
+    "clear_before_all_loops_on_normal_entry": true,
+    "no_early_branch_before_clear": true,
+    "call_pcs": [
+      "0x39130e"
+    ],
+    "opaque_call_assumption": "Conforming memset returns; actual cleared bytes and loaded implementation unobserved"
+  },
+  "controls": {
+    "original_entry_binding": true,
+    "private_wrong_register_rejected": true,
+    "private_omitted_call_rejected": true,
+    "original_binding_refuses_both": true
+  },
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/_types/fields.tsv",
+      "full_source_sha256": "926943bc74629cf11bbacf63726798ec27b72e2d2d4422a7978b9f2ba436709c",
+      "retained": "mask-field-preimage.tsv",
+      "retained_sha256": "caa9eebb2cbb3e2b46a3a8d1f4110655232c16643cf47fb7bfcc88c41c330954"
+    },
+    {
+      "path": "Database/FFXII TZA/06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+      "full_source_sha256": "a2fa28dcfd41d229ca191697ce252845b5f71782048b113909b297ec1670d3ac",
+      "retained": "contract-preimage.md",
+      "retained_sha256": "a2fa28dcfd41d229ca191697ce252845b5f71782048b113909b297ec1670d3ac"
+    }
+  ],
+  "interpretation": "Each normal entry requests zeroing of the global-owned working mask with sign-extended cellBitsetBytes, before clamp/query loops; its OR accumulation and returned pointer are loaded from the same global cell. It is not a destination supplied through an incoming argument. Reset storage effect requires valid writable block/nonnegative appropriate size and conforming native memset, not a observed live clear.",
+  "limits": "Normal entry only, arbitrary midfunction entry/intervention excluded. Repeated global loads do not prove atomic identity or stable pointer under reentrancy/concurrency; actual initialized storage/nativeclear/return effects and normalgame reachability remain unobserved. It is shared through a global, not proven thread-local/callerowned, but actual scheduling/singlethread/exclusiveuse not established here."
+}

@@ -1,0 +1,49 @@
+PASS  negative control: sites whose format pointer (rdx) the dataflow calls a constant: 0 (must be 0)
+PASS  control: sites 245 in 136 functions (page: 245 in 136); literal sites whose literal is in the resolved set: 202 of 202
+unreached sites: 0
+  literal site 00685115 (in 00684F60) also receives 3 through a jump into its call: channel 2,3
+computed sites: 43; resolved: 43; unresolved: 0
+channel values over all sites (a site with two possible values counts under both): 0: 16, 1: 103, 2: 97, 3: 30
+  0017E8E0 0017EA1E ch=1            
+  0017F3B0 0017F46D ch=1            
+  001946E0 00194796 ch=1            
+  001B7850 001B79D5 ch=1            
+  001D1660 001D4636 ch=2            
+  00596890 00596D4C ch=3            
+  0059B430 0059B980 ch=2            
+  0059B430 0059B77F ch=1            
+  0059BA40 0059BB43 ch=1            
+  0059BA40 0059BBCB ch=1            
+  0059C250 0059C587 ch=1            
+  0059C700 0059CAEA ch=1            
+  0059CE30 0059D187 ch=1            
+  0059D6A0 0059D74C ch=2            
+  0059D940 0059DD79 ch=1            
+  005CCD00 005CCF6C ch=2            
+  005CCD00 005CCF8B ch=2            
+  005CCD00 005CCF99 ch=2            
+  005F05F0 005F064F ch=1            
+  00600F30 00601E24 ch=1            
+  0062A0A0 0062A22A ch=1            
+  0062A0A0 0062A2C0 ch=1            
+  0062A0A0 0062A362 ch=1            
+  00639160 006391F2 ch=1            
+  0066F970 0066F99A ch=1            
+  0066FAB0 0066FADA ch=1            
+  00677CE0 00677D3E ch=2            
+  00684F60 0068503F ch=3            
+  00686280 006865DB ch=1            
+  00686280 006867C7 ch=1            
+  006B89C0 006B8A20 ch=1            
+  006CBD20 006CBE1D ch=2            
+  006CD390 006CD3EF ch=1            
+  00795DC0 00795ED4 ch=2            
+  0079B300 0079B73E ch=3            
+  0079C140 0079C42B ch=2            
+  0079D430 0079D482 ch=2            
+  0079F150 0079F1F0 ch=2            
+  0079F750 0079F874 ch=2            
+  0079F750 0079F8BB ch=2            
+  0079F750 0079F966 ch=2            
+  007A05D0 007A068A ch=2            
+  007A2140 007A2280 ch=2            

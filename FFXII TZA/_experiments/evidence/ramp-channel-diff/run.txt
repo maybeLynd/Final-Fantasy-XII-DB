@@ -1,0 +1,9 @@
+diff_ramp_channels - the shipped ramp channels against ramp_channels.c
+  exe    : C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\exe\FFXII_TZA.exe
+  driver : C:\Users\Kristian\source\repos\XIIOnline\Reconstruction\Tests\Differential\ramp_channels_driver.exe
+
+483 commands, 129 compared lines
+  slot dumps          : 87
+  allocator calls seen: 3
+129 comparisons, 0 mismatches
+RESULT: OK

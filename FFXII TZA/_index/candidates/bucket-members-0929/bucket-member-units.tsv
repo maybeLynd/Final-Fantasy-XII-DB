@@ -1,0 +1,589 @@
+# every logical unit of .bin/.dat -> its member format; entries = archive entries (locale copies) of that unit carrying that signature
+ext	unit	signature	entries	family
+bin	ps2data/add_motion/highmodelreplace.bin	00 00 63 00	1	highmodelreplace
+bin	ps2data/add_motion/skeletonmapping.bin	01 00 00 00	1	skeletonmapping
+bin	ps2data/image/ff12/bin/btlctrl.bin	0B 00 00 80	2	scriptimage
+bin	ps2data/image/ff12/bin/ctrl.bin	0B 00 00 80	2	scriptimage
+bin	ps2data/image/ff12/bin/evctrl.bin	0B 00 00 80	2	scriptimage
+bin	ps2data/image/ff12/bin/filelistlocalin.bin	98 00 00 00	2	filelistlocalin
+bin	ps2data/image/ff12/bin/mapctrl.bin	0B 00 00 80	2	scriptimage
+bin	ps2data/image/ff12/bin/mapjumpgroupflagrom.bin	'FLAG'	9	flagrom
+bin	ps2data/image/ff12/bin/mapjumpgroupinit.bin	'FLAG'	9	flagdef
+bin	ps2data/image/ff12/bin/navimapdata.bin	4E 41 56 02	3	NAV
+bin	ps2data/image/ff12/bin/npcdic.bin	'NPC0'	9	NPC0
+bin	ps2data/image/ff12/bin/planmapname.bin	'PLMN'	9	PLMN
+bin	ps2data/image/ff12/bin/questbase.bin	'QST1'	9	QST1
+bin	ps2data/image/ff12/common/behindcamera.bin	00 00 00 00	1	behindcamera
+bin	ps2data/image/ff12/common/charseinfo_b.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_c.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_g.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_m.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_n.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_s.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_t.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/charseinfo_w.bin	'CHSE'	2	CHSE
+bin	ps2data/image/ff12/common/eventmemorylist.bin	'EVME'	1	EVME
+bin	ps2data/image/ff12/common/eventvib.bin	'VIB0'	1	VIB0
+bin	ps2data/image/ff12/common/fhmusicdata.bin	1B 00 00 00	1	fhmusicdata
+bin	ps2data/image/ff12/common/gramap_weatherinfo.bin	'GRMI'	2	GRMI
+bin	ps2data/image/ff12/common/map_ref.bin	4D 52 46 02	2	MRF
+bin	ps2data/image/ff12/common/musicctrl.bin	'MUS0'	2	MUS0
+bin	ps2data/image/ff12/common/musicinfo.bin	80 00 00 00	2	musicinfo
+bin	ps2data/image/ff12/common/pc_skillmotion.bin	21 00 00 00	2	pcskillmotion
+bin	ps2data/image/ff12/common/soundfoottable.bin	'FOOT'	1	FOOT
+bin	ps2data/image/ff12/common/summoneffectdata.bin	'dP<d'	1	summoneffectdata
+bin	ps2data/image/ff12/common/test_area_ref.bin	00 00 01 00	2	testarearef
+bin	ps2data/image/ff12/common/test_map_ref.bin	01 00 00 00	1	testmapref
+bin	ps2data/image/ff12/katano/event.bin	'ashd'	1	ashd
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest07.bin	BA BA A3 A3	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest08.bin	'CCdd'	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest09.bin	'CCdd'	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest10.bin	D1 D1 F4 F4	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest11.bin	C9 C9 E3 E3	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest12.bin	C9 C9 E3 E3	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest13.bin	D1 D1 F4 F4	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest14.bin	E5 E5 E5 E5	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest15.bin	'//22'	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/face_guest16.bin	E5 E5 E5 E5	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/fontcolor.bin	07 01 00 00	2	fontcolor
+bin	ps2data/image/ff12/myoshiok/bin_menu/item_clut.bin	00 00 00 80	2	itemclut
+bin	ps2data/image/ff12/myoshiok/bin_menu/key_signal_data.bin	'sign'	9	sign
+bin	ps2data/image/ff12/myoshiok/bin_menu/license_chip.bin	01 00 02 00	2	licensechip
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe00.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe01.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe02.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe03.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe04.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe05.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/map_efe06.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/menu_version.bin	'MENU'	2	MENU
+bin	ps2data/image/ff12/myoshiok/bin_menu/menubtlwndinfo.bin	'bwin'	9	bwin
+bin	ps2data/image/ff12/myoshiok/bin_menu/mini_guest_face.bin	00 00 00 00	9	binmenuimage
+bin	ps2data/image/ff12/myoshiok/bin_menu/monotone_chr.bin	'CLT2'	2	monotonechr
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook.bin	'hcom'	9	hcom
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge.bin	'hctg'	9	hctg
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster.bin	'hctg'	9	hctg
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_order.bin	'hodr'	9	hodr
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person.bin	'hctg'	9	hctg
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story.bin	'hctg'	9	hctg
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial.bin	'hctg'	9	hctg
+bin	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world.bin	'hctg'	9	hctg
+bin	ps2data/image/ff12/myoshiok/in_sdver/packfiles/clutpack_ys.bin	40 00 00 00	1	packdirectory
+bin	ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	80 00 00 00	1	packdirectory
+bin	ps2data/image/ff12/myoshiok/in_sdver/packfiles/tex2pack_ys.bin	40 00 00 00	1	packdirectory
+bin	ps2data/image/ff12/myoshiok/in_sdver/packfiles/texpack_ys.bin	40 00 00 00	1	packdirectory
+bin	ps2data/image/ff12/myoshiok/packfiles/clutpack_ys.bin	40 00 00 00	9	packdirectory
+bin	ps2data/image/ff12/myoshiok/packfiles/fontpack_fs.bin	40 00 00 00	6	packdirectory
+bin	ps2data/image/ff12/myoshiok/packfiles/fontpack_it.bin	40 00 00 00	6	packdirectory
+bin	ps2data/image/ff12/myoshiok/packfiles/mrppack_ys.bin	80 00 00 00	9	packdirectory
+bin	ps2data/image/ff12/myoshiok/packfiles/tex2pack_ys.bin	40 00 00 00	9	packdirectory
+bin	ps2data/image/ff12/myoshiok/packfiles/texpack_ys.bin	40 00 00 00	9	packdirectory
+bin	ps2data/image/ff12/myoshiok/quest/menuquest00.bin	8C 01 70 02	8	menuquest
+bin	ps2data/image/ff12/myoshiok/quest/menuquest00.bin	8C 01 74 07	1	menuquest
+bin	ps2data/image/ff12/myoshiok/quest/menuquest01.bin	94 03 94 03	9	menuquest
+bin	ps2data/image/ff12/myoshiok/quest/menuquest02.bin	38 00 38 00	9	menuquest
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_area.bin	'amap'	9	amap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_common.bin	'cmap'	9	cmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_guide00.bin	'gmap'	9	gmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_guide01.bin	'gmap'	8	gmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_guide02.bin	'gmap'	6	gmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_guide03.bin	'gmap'	6	gmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_guide04.bin	'gmap'	6	gmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_location.bin	'lmap'	9	lmap
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub00.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub01.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub01_e3.bin	'sloc'	1	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub02.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub03.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub04.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub05.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub06.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub07.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub07_e3.bin	'sloc'	1	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub08.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub09.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub10.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub11.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub12.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub13.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub14.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub15.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub16.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub17.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub18.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub19.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub20.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub21.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub22.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub23.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub24.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub25.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub25_e3.bin	'sloc'	1	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub26.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub26_e3.bin	'sloc'	1	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub27.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub28.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub29.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub30.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub31.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub32.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub33.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub34.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub35.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub36.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub37.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub38.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub39.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub40.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub41.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub42.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub43.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub44.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub45.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub46.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_sub47.bin	'sloc'	9	sloc
+bin	ps2data/image/ff12/myoshiok/worldmap/menumap_world.bin	'wmap'	9	wmap
+bin	ps2data/image/ff12/test_battle/binaryfile/ability_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/action_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/actionchip_data.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/attribute_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/basic_skill.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/basic_skill_basic_skill_name.bin	41 05 00 00	2	st2enames
+bin	ps2data/image/ff12/test_battle/binaryfile/battle_message.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/battle_pack.bin	47 00 00 00	9	battlepack
+bin	ps2data/image/ff12/test_battle/binaryfile/board_1.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_10.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_11.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_12.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_2.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_3.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_4.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_5.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_6.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_7.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_8.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/board_9.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/bukitye_data.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/chr_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/comac_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/commandpack.bin	3A 03 00 00	4	commandpack
+bin	ps2data/image/ff12/test_battle/binaryfile/damagemp_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/dougu_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/drop.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/eis_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/eitm_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/eventitem_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/g_daiji_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/gambit_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/growth_rate.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/growth_rate_growth_rate_name.bin	80 00 00 00	2	st2enames
+bin	ps2data/image/ff12/test_battle/binaryfile/help_action.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/help_menu.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/help_penelosdiary.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/horidashi.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/hpmpbase_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/jochumodel_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/key_signal.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/license_board.bin	'licd'	4	licd
+bin	ps2data/image/ff12/test_battle/binaryfile/license_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_ability.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_action.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_common.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_daijinamono.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_eventitem.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_gambit.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_license.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_sobicategory.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_status.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/listhelp_targetchip.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/logicpack.bin	1E 05 00 00	2	logicpack
+bin	ps2data/image/ff12/test_battle/binaryfile/m_daiji_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/maho_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menkyo_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu00.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu01.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu02.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu03.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu04.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu_command.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu_command_template.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu_expansion.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu_mapname.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/menu_message.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/mgccategory_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/mons_act.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/mons_category.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/mons_race.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/move_support.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/movie.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/object_data.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/penelosdiary.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/price_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/q_daiji_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/questreward_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/questtitle.bin	'st2e'	9	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/s_daiji_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/savemember_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/saveparty_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/shoki_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/shop_data.bin	64 00 00 00	4	shopdata
+bin	ps2data/image/ff12/test_battle/binaryfile/sobicategory_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/status_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/target_data.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/targetchip_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/tutorial_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/unit_data.bin	'st2e'	2	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/waza_data.bin	'st2e'	4	st2e
+bin	ps2data/image/ff12/test_battle/binaryfile/wepjob_matrix.bin	01 00 17 00	4	wepjobmatrix
+bin	ps2data/image/ff12/test_battle/binaryfile/word.bin	0F 00 00 00	9	wordbanks
+bin	ps2data/image/ff12/test_battle/binaryfile/yugoyaku_data.bin	'st2e'	4	st2e
+dat	gamedata/d3d11/artdata/font/font00.dat	01 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/font_bookman.dat	0D 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/font_iwa_g12.dat	0E 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/font_square.dat	0F 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/font_stf_a.dat	11 00 00 00	2	fontdat
+dat	gamedata/d3d11/artdata/font/font_stf_as.dat	12 00 00 00	2	fontdat
+dat	gamedata/d3d11/artdata/font/font_stf_b.dat	13 00 00 00	2	fontdat
+dat	gamedata/d3d11/artdata/font/font_stf_bs.dat	14 00 00 00	2	fontdat
+dat	gamedata/d3d11/artdata/font/font_stf_c.dat	15 00 00 00	2	fontdat
+dat	gamedata/d3d11/artdata/font/font_stf_cs.dat	16 00 00 00	2	fontdat
+dat	gamedata/d3d11/artdata/font/font_venus.dat	0B 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/fontex_expand.dat	02 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/fontex_subtitle.dat	03 00 00 00	5	fontdat
+dat	gamedata/d3d11/artdata/font/fontguide.dat	04 00 00 00	4	fontdat
+dat	gamedata/d3d11/artdata/font/fontmonster.dat	07 00 00 00	4	fontdat
+dat	gamedata/d3d11/artdata/font/fontquest.dat	05 00 00 00	4	fontdat
+dat	gamedata/d3d11/artdata/font/fonttutorial.dat	06 00 00 00	4	fontdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge.dat	'hchk'	9	hchk
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge000.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge001.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge002.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge003.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge004.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge005.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge006.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge007.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge008.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge009.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge010.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge011.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge012.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge013.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge014.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge015.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge016.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge017.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge018.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge019.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge020.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge021.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge022.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge023.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge024.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge025.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge026.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge027.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_knowledge028.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster.dat	'hchk'	9	hchk
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster000.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster001.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster002.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster003.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster004.dat	'hdat'	5	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster004.dat	'himg'	4	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster005.dat	'hdat'	1	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster005.dat	'himg'	8	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster006.dat	'hdat'	1	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster006.dat	'himg'	8	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster007.dat	'hdat'	1	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster007.dat	'himg'	8	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster008.dat	'hdat'	1	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster008.dat	'himg'	8	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster009.dat	'hdat'	1	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster009.dat	'himg'	8	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster010.dat	'hdat'	1	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster010.dat	'himg'	8	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster011.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster012.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster013.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster014.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster015.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster016.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster017.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster018.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster019.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster020.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster021.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster022.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster023.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster024.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster025.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster026.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster027.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster028.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster029.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster030.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster031.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster032.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster033.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster034.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster035.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster036.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster037.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster038.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster039.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster040.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster041.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster042.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster043.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster044.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster045.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster046.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster047.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster048.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster049.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster050.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster051.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster052.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster053.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster054.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster055.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster056.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster057.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster058.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster059.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster060.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster061.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster062.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster063.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster064.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster065.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster066.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster067.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster068.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster069.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster070.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster071.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster072.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster073.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster074.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster075.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster076.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster077.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster078.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster079.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster080.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster081.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster082.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster083.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster084.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster085.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster086.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster087.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster088.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster089.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster090.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster091.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster092.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster093.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster094.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster095.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster096.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster097.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster098.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster099.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster100.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster101.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster102.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster103.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster104.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster105.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster106.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster107.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster108.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster109.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster110.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster111.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster112.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster113.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster114.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster115.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster116.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster117.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster118.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster119.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster120.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster121.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster122.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster123.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster124.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster125.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster126.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster127.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster128.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster129.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster130.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster131.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster132.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster133.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster134.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster135.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster136.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster137.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster138.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster139.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster140.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster141.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster142.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster143.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster144.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster145.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster146.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster147.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster148.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster149.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster150.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster151.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster152.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster153.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster154.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster155.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster156.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster157.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster158.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster159.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster160.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster161.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster162.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster163.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster164.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster165.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster166.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster167.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster168.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster169.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster170.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster171.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster172.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster173.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster174.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster175.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster176.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster177.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster178.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster179.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster180.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster181.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster182.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster183.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster184.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster185.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster186.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster187.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster188.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster189.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster190.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster191.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster192.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster193.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster194.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster195.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster196.dat	'himg'	6	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster197.dat	'himg'	4	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster198.dat	'himg'	3	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster199.dat	'himg'	3	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster200.dat	'himg'	2	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster201.dat	'himg'	2	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster202.dat	'himg'	2	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_monster203.dat	'himg'	1	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person.dat	'hchk'	9	hchk
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person000.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person001.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person002.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person003.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person004.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person005.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person006.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person007.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person008.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person009.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person010.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person011.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person012.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person013.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person014.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person015.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person016.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person017.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person018.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person019.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person020.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person021.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person022.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person023.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person024.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person025.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_person026.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story.dat	'hchk'	9	hchk
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story000.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story001.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story002.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story003.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story004.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story005.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story006.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story007.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story008.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story009.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story010.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story011.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story012.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story013.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story014.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story015.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story016.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story017.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story018.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story019.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story020.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story021.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story022.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story023.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story024.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story025.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_story026.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial.dat	'hchk'	9	hchk
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial000.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial001.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial002.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial003.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial004.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial005.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial006.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial007.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_tutorial008.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world.dat	'hchk'	9	hchk
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world000.dat	'hdat'	9	hdat
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world001.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world002.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world003.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world004.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world005.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world006.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world007.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world008.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world009.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world010.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world011.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world012.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world013.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world014.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world015.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world016.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world017.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world018.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world019.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world020.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world021.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/handbook/menuhandbook_world022.dat	'himg'	9	himg
+dat	ps2data/image/ff12/myoshiok/quest/menuquest.dat	'qstd'	9	qstd

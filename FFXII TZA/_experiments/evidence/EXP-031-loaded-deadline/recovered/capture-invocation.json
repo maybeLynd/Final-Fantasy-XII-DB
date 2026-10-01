@@ -1,0 +1,21 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database/FFXII TZA/_experiments/evidence/EXP-030-deadline-integration/capture.py",
+    "--pid",
+    "40504",
+    "--addr",
+    "003A1C50",
+    "--seconds",
+    "1",
+    "--out",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\recovered\\deadline-capture"
+  ],
+  "start_unix": 1789336165.0401454,
+  "method": "Intervention: one hardware entry breakpoint for1s, requested stopped cleanup, detach",
+  "status": "CLI_RETURNED",
+  "exit_code": 0,
+  "stdout": "PASS hits 195\n",
+  "stderr": "",
+  "end_unix": 1789336166.226765
+}

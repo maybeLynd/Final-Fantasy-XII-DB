@@ -1,0 +1,16 @@
+{
+  "name": "clean-source",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py",
+    "--preflight-only",
+    "--preflight-source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-fixture-placement\\run-01\\clean"
+  ],
+  "returncode": 0,
+  "stdout": "FIXTURE_PLACEMENT_PREFLIGHT_ONLY_NO_WRITES\n",
+  "stderr": "",
+  "expected_marker": "FIXTURE_PLACEMENT_PREFLIGHT_ONLY_NO_WRITES",
+  "terminal": true
+}

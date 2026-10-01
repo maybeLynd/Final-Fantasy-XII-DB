@@ -1,0 +1,6 @@
+# NativeLeaf.BumpAllocPop - EC-7 family C
+# rax=[this+0x10]; store to [this+0x30]; advance [this+0x10] by 0x10;
+# # return.
+address	targets
+002714A0	
+002714E0	

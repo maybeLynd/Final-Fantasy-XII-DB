@@ -1,0 +1,105 @@
+{
+  "status": "INTEGER_CONVERSION_PRECEDES_WIDTH_SATURATION",
+  "method": "B isolated original post-resolve integer-kind POPV stage, stop before notification; explicit second-entry ABI intervention invokes verified original store leaf. No stubs/nativeCPU/live/caller/resolver/callback execution",
+  "raw_sha256": "df5259006a355893e87886ba64408bb1f1cac61f15dbf3387eeca914647e0c92",
+  "observations": [
+    {
+      "tag": 2,
+      "depth": 1,
+      "float32_bits_or_int_bits": "3fe00000",
+      "width": 0,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "01000000",
+      "destination_little_endian": "01",
+      "stage_instructions": 14,
+      "store_instructions": 20,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 2,
+      "depth": 1,
+      "float32_bits_or_int_bits": "4effffff",
+      "width": 0,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "80ffff7f",
+      "destination_little_endian": "ff",
+      "stage_instructions": 14,
+      "store_instructions": 20,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 2,
+      "depth": 1,
+      "float32_bits_or_int_bits": "4f000000",
+      "width": 0,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "00000080",
+      "destination_little_endian": "00",
+      "stage_instructions": 14,
+      "store_instructions": 18,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 2,
+      "depth": 1,
+      "float32_bits_or_int_bits": "4effffff",
+      "width": 3,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "80ffff7f",
+      "destination_little_endian": "0080",
+      "stage_instructions": 14,
+      "store_instructions": 22,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 2,
+      "depth": 1,
+      "float32_bits_or_int_bits": "4f000000",
+      "width": 3,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "00000080",
+      "destination_little_endian": "0180",
+      "stage_instructions": 14,
+      "store_instructions": 18,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 1,
+      "depth": 1,
+      "float32_bits_or_int_bits": "7fffffff",
+      "width": 0,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "ffffff7f",
+      "destination_little_endian": "ff",
+      "stage_instructions": 12,
+      "store_instructions": 20,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 2,
+      "depth": 0,
+      "float32_bits_or_int_bits": "3fe00000",
+      "width": 0,
+      "intervention": "originalinstructions/injectedentry-state",
+      "converted_dword_little_endian": "00000000",
+      "destination_little_endian": "00",
+      "stage_instructions": 5,
+      "store_instructions": 20,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "tag": 2,
+      "depth": 1,
+      "float32_bits_or_int_bits": "3fe00000",
+      "width": 0,
+      "intervention": "privateCVTT->CVT",
+      "converted_dword_little_endian": "02000000",
+      "destination_little_endian": "02",
+      "stage_instructions": 14,
+      "store_instructions": 20,
+      "guest_mxcsr_after": "0x1f80"
+    }
+  ],
+  "interpretation": "Under injected validtag2/integer-kind/MXCSR1F80 gueststate, originalCVTT convertsfloat32 1.75 to1, largestbelow2^31 to7FFFFF80, +2^31 to80000000; originalstore interprets signedinput thenclamps: u8 +2^31 inputstores00, s16stores8001 ratherthan8000 frombelowboundary. Originaltag1 rawINT_MAXstoresFF; emptystackzero. ExplicitprivateCVTT->CVT makes1.75->2/store02, notshippingbehavior. Staticoriginalkindbranch/write+20/storecall establishes intendedlocalorder, notfullnormalVMcaller/live reachability.",
+  "limits": "Two bounded original operations composed by injectedentryABI. Fullresolver/notification omitted atboundaries, nostubs, no fullPOPVexecution orlivegame/nativeCPU/unmaskedexceptions/MXCSRflagsparity. Actualbankstate/lifetime/callerreachability andcallbackbeforestoreeffects OPEN. Masked conversion sentinel notproofnativeexceptionstatus. No sourcechanged/realfloatclampreplacement/generalfloatdomain claim. Independentacceptance/consumer incorporation pending; PC OFF/S19/fullL1+L2 NOT_MET"
+}

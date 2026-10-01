@@ -1,0 +1,757 @@
+{
+  "changes": [
+    {
+      "store": "types.tsv",
+      "key": "EfxCallerTemplate",
+      "before": {
+        "type": "EfxCallerTemplate",
+        "size": "0x890",
+        "category": "17-Presentation-Rendering",
+        "instance": "a caller's stack template; 0024B3A0 heap-copies the whole 0x890 into the object the EFX pages call a CONTEXT, links it into 020910A0[template byte 0] and publishes it at 02F97340 (0024B477)",
+        "allocation_site": "MIXED BY STAGE. CALLER first - the six shipped constructors build the 0x890 template in their own stack frames - then HEAP: 0024B3A0 copies the whole 0x890 into a heap object, links it into 020910A0[template byte 0] and publishes it at 02F97340 (0024B477).",
+        "ctor": "the caller zeroes it and fills the fields below - six shipped constructors, enumerated twice over (callgraph edges and a linear .text E8 sweep of all 0024B3A0 call sites agree: 0026FC8A, 002FC54B, 003B073A, 003B2255, 003B2A6A, 003B39A4): 002FC4A0 (type 1), 0026FB90 (type 2, the EFB wrapper), 003B38B0 (type 3), 003B29B0 (type 4), 003B0660 (type 5, arena-7), 003B2220 (type 7)",
+        "dtor": "not established here RESOLVED 2026-09-20 (OPUS) FROM THIS TYPE'S OWN INSTANCE COLUMN, which already answers it: `a caller's stack template`. A stack template has no destructor because it dies with the frame that built it - the same disposition this store gives WidgetMessage (`built on the caller's stack`) and EvaluationContext. WHAT PERSISTS IS A DIFFERENT OBJECT: the instance column records that 0024B3A0 heap-copies the whole 0x890 into what the EFX pages call a CONTEXT, links it into 020910A0[template byte 0] and publishes it at 02F97340 (0024B477). Any release belongs to that context, not to this template, so `not established here` was asking about the wrong object. NOT CLAIMED: whether the heap context is ever released - that is a question about the context and belongs on its row.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "EXTENT PROVEN TWICE: 003B3945 mov r8d,0x890 before the memset at 003B3972, and 0024B3A0 copies the full 0x890 (authored-reference-lifetime-evidence.md sec.16). Declared 2026-09-13 by OPUS on ASTRA-REQ-OPUS-EFX-SOURCE-FIELDS; ASTRA supplied the field evidence from eleven complete original bodies, OPUS re-read 003B38B0 from the image before declaring. A HAZARD WORTH RECORDING: 003B38B0's template base is rsp+0x20, so its stores at rsp+0x878/0x880/0x884 are template +0x858/+0x860/+0x864 - NOT +0x878/+0x880/+0x884, which are run pointers 0024B3A0 clears. Stack offsets and template offsets differ by 0x20 throughout that body and conflating them invents an overlap that is not there",
+        "documents": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md; 17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+        "route": "SLOTPTR 0x020910A0 stride=0x8"
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "size": "0x890",
+        "category": "17-Presentation-Rendering",
+        "instance": "a caller's stack template; 0024B3A0 heap-copies the whole 0x890 into the object the EFX pages call a CONTEXT, links it into 020910A0[template byte 0] and publishes it at 02F97340 (0024B477)",
+        "allocation_site": "MIXED BY STAGE. CALLER first - the six shipped constructors build the 0x890 template in their own stack frames - then HEAP: 0024B3A0 copies the whole 0x890 into a heap object, links it into 020910A0[template byte 0] and publishes it at 02F97340 (0024B477).",
+        "ctor": "the caller zeroes it and fills the fields below - six shipped constructors, enumerated twice over (callgraph edges and a linear .text E8 sweep of all 0024B3A0 call sites agree: 0026FC8A, 002FC54B, 003B073A, 003B2255, 003B2A6A, 003B39A4): 002FC4A0 (type 1), 0026FB90 (type 2, the EFB wrapper), 003B38B0 (type 3), 003B29B0 (type 4), 003B0660 (type 5, arena-7), 003B2220 (type 7)",
+        "dtor": "The caller stack template has no heap destructor. Its separately allocated runtime clone is destroyed by 0024F410: unlink context, rebind selectors, release owned payloads and all lookup allocations, remove matching instances and free the clone via 003697F0/00369860. 003B37E0 calls the matching-instance walk first as well. This is now executed in bounded SECTION-06 fixtures; complete child/service lifetimes remain open.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "EXTENT PROVEN TWICE: 003B3945 mov r8d,0x890 before the memset at 003B3972, and 0024B3A0 copies the full 0x890 (authored-reference-lifetime-evidence.md sec.16). Declared 2026-09-13 by OPUS on ASTRA-REQ-OPUS-EFX-SOURCE-FIELDS; ASTRA supplied the field evidence from eleven complete original bodies, OPUS re-read 003B38B0 from the image before declaring. A HAZARD WORTH RECORDING: 003B38B0's template base is rsp+0x20, so its stores at rsp+0x878/0x880/0x884 are template +0x858/+0x860/+0x864 - NOT +0x878/+0x880/+0x884, which are run pointers 0024B3A0 clears. Stack offsets and template offsets differ by 0x20 throughout that body and conflating them invents an overlap that is not there || CURRENT SECTION-06: clone lifetime and source-vs-table ownership independently executed. Context+2 mask4 is borrow policy for bulk800/A00 payloads, NOT blanket immunity for every allocation. Lookup buffers are owned regardless. Destruction leaves working-selector globals pointing into freed storage. SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance.",
+        "documents": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md; 17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+        "route": "SLOTPTR 0x020910A0 stride=0x8"
+      }
+    },
+    {
+      "store": "types.tsv",
+      "key": "RenderResourceEntry",
+      "before": {
+        "type": "RenderResourceEntry",
+        "size": "0x50",
+        "category": "17-Presentation-Rendering",
+        "instance": "rows of RenderResourceEntryBank's element block; capacity 0x140 per that bank's construction, reached through 002ED570",
+        "allocation_site": "0051F9F0 allocates the whole block at capacity x rowStride into the bank's +0x28; rows are not separately allocated",
+        "ctor": "00409710 (writes the +0x00 word and the +0x04 dword)",
+        "dtor": "none per row - rows live inside the bank's single heap block, so no row is individually destroyed; no per-row teardown was found.",
+        "readiness": "DISCOVERED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "THE 0x50 ROW OF RenderResourceEntryBank, declared 2026-09-19 (OPUS). THE SEEDING IS WHAT MADE IT TRACTABLE, not more effort. The 0xC0 element had 78 attributable resolver sites; this one has exactly ONE, so that approach could not carry it. It is seeded instead on the four functions PROVED to receive the entry as argument 0, which 00409FE0 establishes directly: 0040A055 calls 002ED570 and 0040A05D does `mov rdi, rax`, and that rdi is then passed to 00409710 (0040A060), 00409A60 (0040A06E) and 00409A30 (0040A0AC); 00409600 ResourceEntry_GetResolvedBasePointer is the fourth and the store already named it. AND BECAUSE THOSE ARE INITIALISERS RATHER THAN CONSUMERS THE CENSUS IS WRITER-RICH: every one of the eleven offsets carries a write except +0x28, which is read-modify-write. That is the OPPOSITE bias to the 0xC0 element's census, and it is why three fields there sat as `role unread` until the constructor was found - seeding on a resolver's return finds readers. The lesson is recorded on that row too. CONTROL AND BOUND: the store's three cited fields - +0x04 the kind tested against 0 and 1 at 00409619/0040961D, and +0x30/+0x38 the reference and its resolved cache read under the 02B62E10 guard at 0040962B-00409634 - all appear, and NOTHING lands at or beyond 0x50 at windows 0x50, 0x200 or 0x1000, corroborating the stride 00409F10 passes to 0051F9F0. FOUR SPANS ARE UNOBSERVED, 22 of 80 bytes, named rather than divided up. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || THIS ROUTE DOES NOT DETERMINE THIS TYPE, and the defect is mine, from today. Found while trying to PERSIST a census artifact so this type's children would become projectable - project_embed_census.py reported `parent has no census` for all five render types I declared, because I censused them and never wrote the artifacts. THE ROUTE IS SHARED. `FN 0x002ED570+0x0` is carried by BOTH RenderStrideC0Element and RenderResourceEntry, because 002ED570 is the slot resolver shared by all three render-root banks and its return is whichever bank's element went in. A route is supposed to say how to reach an object; this one reaches three different types and names one. QUANTIFIED RATHER THAN ASSERTED: running gen_route_seeded_census.py on this route BARE seeds 87 hosts and reports 43 offsets; restricting the hosts to the 60 that classify_slot_resolver_sites.py attributes to one bank gives 26. THE BARE RUN ADDS SEVENTEEN OFFSETS belonging to other banks' elements - +0x02, +0x20, +0x24, +0x28, +0x30, +0x38, +0x44, +0x48, +0xA4, +0xAC, +0xB2, +0xB3, +0xB6, +0xB8, +0xB9, +0xBA, +0xBB - and NOTHING IN THE OUTPUT SAYS SO. It is not an error, it is a larger and plausible census, which is the dangerous shape. SO NO CENSUS ARTIFACT IS PERSISTED FOR THIS TYPE. A conflated *-accesses.tsv on disk would be worse than none, because the projection tool and the width gate both consume those files and would inherit the conflation silently. The restriction is recorded here instead: seed `FN 0x002ED570+0x0` ONLY at hosts classify_slot_resolver_sites.py attributes to this type's bank. A NEW KIT CHECK CAME OUT OF IT: check_route_uniqueness.py reports routes shared by more than one type and marks the seedable ones. Store-wide there are THREE, of which TWO are seedable. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || SHARED ROUTE, RESTRICTION RECORDED 2026-09-20 (OPUS): this route is shared with RenderStrideC0Element - `FN 0x002ED570+0x0` names the shared getter and not which bank it was asked for. These are rows of RenderResourceEntryBank's element block, 0x50 each, capacity 0x140; the other is RenderStrideC0Bank's, 0xC0 each, capacity 0x0A0. One accessor, two banks, and the route does not say which.",
+        "documents": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+        "route": "FN 0x002ED570+0x0"
+      },
+      "after": {
+        "type": "RenderResourceEntry",
+        "size": "0x50",
+        "category": "17-Presentation-Rendering",
+        "instance": "rows of RenderResourceEntryBank's element block; capacity 0x140 per that bank's construction, reached through 002ED570",
+        "allocation_site": "0051F9F0 allocates the whole block at capacity x rowStride into the bank's +0x28; rows are not separately allocated",
+        "ctor": "00409710 (writes the +0x00 word and the +0x04 dword)",
+        "dtor": "00409730 performs per-row teardown: 00427B00(reference+30) clears selected consumer references; 0051EE80(entry+10) releases embedded owned source; clears mode/reference/size, invalidates index/ticket, leaves resolvedCache+38 unchanged. 00409D60 first cancels the context ticket, then tears down this row and removes the bank slot. The row allocation itself is not individually freed.",
+        "readiness": "DISCOVERED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "CURRENT SECTION-06: real per-row teardown is established, unlike the earlier none-found dtor. The embedded buffer transfers 0x20 bytes by the two 0051EEB0 MOVAPS stores, consuming parent+2C as opaque copied descriptor tail. +40 is source-header size and +44 is a generation-bearing effect ticket with real DWORD producer/consumer, not a width inferred solely from FF stores. SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. || HISTORICAL SEED/CENSUS LIMITS (not current proof of field absence): THE 0x50 ROW OF RenderResourceEntryBank, declared 2026-09-19 (OPUS). THE SEEDING IS WHAT MADE IT TRACTABLE, not more effort. The 0xC0 element had 78 attributable resolver sites; this one has exactly ONE, so that approach could not carry it. It is seeded instead on the four functions PROVED to receive the entry as argument 0, which 00409FE0 establishes directly: 0040A055 calls 002ED570 and 0040A05D does `mov rdi, rax`, and that rdi is then passed to 00409710 (0040A060), 00409A60 (0040A06E) and 00409A30 (0040A0AC); 00409600 ResourceEntry_GetResolvedBasePointer is the fourth and the store already named it. AND BECAUSE THOSE ARE INITIALISERS RATHER THAN CONSUMERS THE CENSUS IS WRITER-RICH: every one of the eleven offsets carries a write except +0x28, which is read-modify-write. That is the OPPOSITE bias to the 0xC0 element's census, and it is why three fields there sat as `role unread` until the constructor was found - seeding on a resolver's return finds readers. The lesson is recorded on that row too. CONTROL AND BOUND: the store's three cited fields - +0x04 the kind tested against 0 and 1 at 00409619/0040961D, and +0x30/+0x38 the reference and its resolved cache read under the 02B62E10 guard at 0040962B-00409634 - all appear, and NOTHING lands at or beyond 0x50 at windows 0x50, 0x200 or 0x1000, corroborating the stride 00409F10 passes to 0051F9F0. FOUR SPANS ARE UNOBSERVED, 22 of 80 bytes, named rather than divided up. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || THIS ROUTE DOES NOT DETERMINE THIS TYPE, and the defect is mine, from today. Found while trying to PERSIST a census artifact so this type's children would become projectable - project_embed_census.py reported `parent has no census` for all five render types I declared, because I censused them and never wrote the artifacts. THE ROUTE IS SHARED. `FN 0x002ED570+0x0` is carried by BOTH RenderStrideC0Element and RenderResourceEntry, because 002ED570 is the slot resolver shared by all three render-root banks and its return is whichever bank's element went in. A route is supposed to say how to reach an object; this one reaches three different types and names one. QUANTIFIED RATHER THAN ASSERTED: running gen_route_seeded_census.py on this route BARE seeds 87 hosts and reports 43 offsets; restricting the hosts to the 60 that classify_slot_resolver_sites.py attributes to one bank gives 26. THE BARE RUN ADDS SEVENTEEN OFFSETS belonging to other banks' elements - +0x02, +0x20, +0x24, +0x28, +0x30, +0x38, +0x44, +0x48, +0xA4, +0xAC, +0xB2, +0xB3, +0xB6, +0xB8, +0xB9, +0xBA, +0xBB - and NOTHING IN THE OUTPUT SAYS SO. It is not an error, it is a larger and plausible census, which is the dangerous shape. SO NO CENSUS ARTIFACT IS PERSISTED FOR THIS TYPE. A conflated *-accesses.tsv on disk would be worse than none, because the projection tool and the width gate both consume those files and would inherit the conflation silently. The restriction is recorded here instead: seed `FN 0x002ED570+0x0` ONLY at hosts classify_slot_resolver_sites.py attributes to this type's bank. A NEW KIT CHECK CAME OUT OF IT: check_route_uniqueness.py reports routes shared by more than one type and marks the seedable ones. Store-wide there are THREE, of which TWO are seedable. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || SHARED ROUTE, RESTRICTION RECORDED 2026-09-20 (OPUS): this route is shared with RenderStrideC0Element - `FN 0x002ED570+0x0` names the shared getter and not which bank it was asked for. These are rows of RenderResourceEntryBank's element block, 0x50 each, capacity 0x140; the other is RenderStrideC0Bank's, 0xC0 each, capacity 0x0A0. One accessor, two banks, and the route does not say which.",
+        "documents": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+        "route": "FN 0x002ED570+0x0"
+      }
+    },
+    {
+      "store": "types.tsv",
+      "key": "RenderResourceEntryBuffer",
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "size": "0x1C",
+        "category": "17-Presentation-Rendering",
+        "instance": "embedded at RenderResourceEntry +0x10; one per resource entry",
+        "allocation_site": "none - embedded in the entry, which is itself a row of the bank's single heap block. The BUFFER it points at is grown by 0051EEB0.",
+        "ctor": "0051EE10 (zeroes +0x00, +0x08 and +0x10; sets the granularity to 0x800)",
+        "dtor": "none found - the header is embedded, so it is not separately destroyed; whether the buffer at +0x08 is ever freed was not read here.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "A GROWABLE BUFFER HEADER embedded at RenderResourceEntry +0x10, declared 2026-09-19 (OPUS). THE SEMANTICS COME FROM ONE FUNCTION READ END TO END rather than from field shapes: 0051EF90(desc, src, count) loads capacity from +0x10 (0051EFAA) and used from +0x18 (0051EFB0), adds the count and compares (0051EFB4/0051EFB7), and when it does not fit reads the growth granularity from +0x14 (0051EFBC), computes ceil(count/granularity) by `lea eax,[rsi-1]; div r9d` (0051EFCB-0051EFD3), multiplies back (0051EFD6), forms `new capacity = old + that` (0051EFDD) and calls the reserve 0051EEB0. It then appends through the buffer pointer at +0x08 (0051EFE9) at the used offset (0051EFF2). THE CONSTRUCTOR'S ODD STORE IS EXPLAINED BY THAT: 0051EE12's `mov qword ptr [rcx+0x14], 0x800` is not a qword field - it writes BOTH dwords, setting the granularity to 0x800 and zeroing used in one instruction, which is why a naive reading would have declared a 64-bit field spanning +0x14..+0x1B. THE EXTENT IS CONFIRMED TWO WAYS, which is what makes this declarable where the skeleton is not: the census reaches +0x18 and no further at windows 0x20, 0x80 and 0x400, so the object ends at 0x1C - and 0x1C is exactly the span already allotted to it inside RenderResourceEntry, derived independently from that type's own adjacency. Two derivations, one number. NOT CLAIMED: that this is a store-wide utility. The five functions that take it (0051EE10, 0051EEB0, 0051EF90, 0051F020, 0051EE00, 006B5C70) have two to five callers each, so on present evidence it is private to this entry - the NAME says so even though the SHAPE is a perfectly generic dynamic array, and if it is later found elsewhere the rename is cheap. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || THE DECLARED EXTENT CANNOT BE A C `sizeof`, AND THIS IS NOT RESOLVED - 2026-09-20 (OPUS), from check_alignment.py (`size 0x1C, strictest align 8, remainder 4`). The type holds an 8-byte pointer at +0x008, so its alignment is 8 and any C `sizeof` for it must be a multiple of 8. 0x1C is not. TWO READINGS, AND NOTHING MEASURED CHOOSES BETWEEN THEM. (a) The type is really 0x20 with four bytes of TAIL PADDING, and the parent's `unobservedDword02C` at RenderResourceEntry +0x02C IS that padding - which would make the parent's layout natural, since 0x10 + 0x20 = 0x30 lands exactly on the 8-aligned `reference`. (b) The `size` column means the OCCUPIED SPAN rather than a sizeof, in which case 0x1C is right and the question is about the column's meaning rather than this type. DELIBERATELY NOT CHANGED. Reading (a) is tidy and would consume `unobservedDword02C`, an unexplained gap, purely to make the layout look complete - and nothing observed writes +0x2C. An extent is not evidence about the bytes past it. Recorded so a reconstruction knows it cannot emit this type as a plain C struct at 0x1C whichever reading holds: it must pad to 0x20 or inline the members into the parent. || TAIL-PADDING REPORT ADJUDICATED 2026-09-20 (OPUS). check_alignment reports size 0x1C as not a multiple of 8, which is this type's strictest alignment because of the void* at +0x08, remainder 4. THAT IS THE PARENT'S PADDING AND THE PARENT DECLARES IT: this type is EMBED RenderResourceEntry +0x10, the parent's own row for it is bufferDescriptor at +0x10 with a width of 28, and the next parent row is unobservedDword02C at +0x2C. So the four bytes the alignment rule wants are accounted for ONE LEVEL UP, where they belong - an embedded region's extent is the span between its neighbours, and inventing a tail pad here would take those four bytes from a row that already has them.",
+        "documents": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+        "route": "EMBED RenderResourceEntry +0x10"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "size": "0x20",
+        "category": "17-Presentation-Rendering",
+        "instance": "embedded at RenderResourceEntry +0x10; one per resource entry",
+        "allocation_site": "Header is embedded at RenderResourceEntry+10, not separately allocated. Its source backing is allocated by 0051F020/0051EEB0 through 003AB8B0 (arena6): kind0 raw allocation, kind1 tagged allocation, other kinds zero. Fixed field width does not certify all movement/lifetime rules.",
+        "ctor": "0051EE10 clears kind, source and capacity; writes growth=0x800 and used=0. 0051F020 allocates backing and optional-zeroes it. Opaque header+4/+1C are not initialized by these reviewed stores.",
+        "dtor": "0051EE80 releases source through 003AB7C0 and resets semantic fields through 0051EE10. 0051EEB0 first allocates/copies to replacement, then releases old source and transfers both 16-byte descriptor lanes; outstanding outside pointers are not repaired by resize itself.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "0x20 STORAGE TRANSFER ESTABLISHED FROM ORIGINAL STORES, NOT ALIGNMENT GUESSING: 0051EF5F/64 load two stack lanes and 0051EF73/76 store 16 bytes at header+0 and +10. Thus parent+2C belongs to the transferred descriptor tail, superseding the prior 0x1C occupied-span/parent-padding ruling. Meaning and stable value of +4/+1C remain unclaimed: the local temporary does not initialize those padding bytes. Resize copies min(old capacity,new capacity), preserves used even if shrinking, and writes replacement kind=0. The constructor writes growth/used together at +14 but they are separate DWORDs. SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance.",
+        "documents": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+        "route": "EMBED RenderResourceEntry +0x10"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x002",
+        "size": "1",
+        "name": "flagsByte2",
+        "ctype": "uint8",
+        "meaning": "flag byte. Its low nibble is CONSTRUCTION-FINAL: all six constructors memset the 0x890 template, and only two OR 0x0C into +0x002 - the type-2 EFB loader 0026FB90 (0026FC60) and the type-3 constructor 003B38B0 (003B3984); the type-1 (002FC4A0), type-4 (003B29B0), type-5 (003B0660) and type-7 (003B2220) constructors leave it zero and 0024B3A0 copies the byte verbatim into the heap context. Post-copy exactly two bodies write it, both the same nibble merge new = (old & 0x0F) | (entry+0x16 & 0xF0): 0026FD26 on a type-2 context and 003B22A0 on a type-7 context. So bits 0-3 never change after construction; bits 4-7 merge in from a slot record's +0x16",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "003B3984 or byte ptr [rsp+0x22], 0xc BIT 2 (0x04) IDENTIFIED 2026-09-13 (ASTRA-REQ-OPUS-EFX-INPUT-LIFETIME): it means THIS CONTEXT IS PUBLISHED/SHARED, and it does two jobs that were verified separately before being joined. 003B348A test byte ptr [rcx+2],4 / je - 003B3480 publishes the context into the global 02F97340 and runs the rebase ONLY when the bit is set. 003A9613 test byte ptr [rax+2],4 / jne - the teardown 003A9600 (and its mirror 003A9950) SKIPS releasing the chunk at +0x870 / +0x878 when the bit is set, while still clearing the pointer. So the same bit that authorises publication withholds the free, which reads as deliberate: a shared context's chunk is owned elsewhere. OBJECT IDENTITY IS BY WRITE SITE, NOT BY OFFSET: 003B34B2 stores this very object into 02F97340 and the teardown reads that same global (all three RIP displacements resolved and compared). WRITER CENSUS CLOSED 2026-09-13 (OPUS-REQ-SWE2-STRUCT-EFXFLAG-WRITERS, SWE2-STRUCT): the complete writer set is {six constructor memsets -> 0; or 0x0C in 0026FB90 and 003B38B0 only; the 0024B3A0 bulk copy propagating the byte; the merges at 0026FD26 and 003B22A0}. Coverage: all six 0024B3A0 call sites enumerated twice - callgraph edges and a linear .text E8 sweep agree on 0026FC8A, 002FC54B, 003B073A, 003B2255, 003B2A6A, 003B39A4, and no indirect references to the copier exist; every referencer of 02F97340 (60 refs / 28 fns) and of the five interior-pointer globals 02EBEF70/78/90/A0/A8 covered by gptr-seeded hop_scan (214 accesses in 64 fns; positive controls FOUND - reader 003A9613 and known writer 0026FD26 both surfaced); all thirteen 020910A0 referencers hand-decoded (none stores +0x002; several walk the sibling 0x3B0 family whose links are +0x348/+0x350 on the +0x50 slots and which is published at 02F97348 by the 0024B270 copier - a different type, not a context); the 0024F610 list-finder callers, the publisher argument chains and all seven constructor callers hand-decoded; hop-8/hop-10 upper bounds (2436 and 1862 fns) audited and every additional disp-2 write verified a false propagation chain onto another record type (001AAF80 generic record copier, 00266530 ActorStorage, 0036B160 handle records, 0017C890 stream writer, 007F6FB0 buffer writer). VERDICT: the OR is NOT universal - exactly types 2 and 3 carry it - so bit 0x04 is set iff template type is 2 or 3, and the release at 003A9625 (mirror 003A9975) IS reachable: any type-1/4/5/7 context takes it when +0x003 bit 0 is latched and the run pointer is non-null, which is the designed path for the run-collected types 4 and 5. RESIDUAL LIMIT, stated not closed: a context stashed into an opaque object field (002FC550 caller+0x08, 003B2266 caller+0x08, 003B39A9 node+0x18) and read back by a body touching no seeded surface escapes this census; none is known. BIT 0x08 shares the same provenance - the 0x0C sets both bits - and is tested separately at 00500CBC and 00503E85; its distinct meaning is not claimed here."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x002",
+        "size": "1",
+        "name": "flagsByte2",
+        "ctype": "uint8",
+        "meaning": "On the runtime clone, mask4 chooses borrowed800/A00 runs and gates source refresh. Type2 and type3 caller templates set0x0C; other reviewed constructors leave it clear. This is independent of byte3 mask1 cleanup layout: nonbulk cleanup still frees individual entries. Known nibble merges preserve the target low nibble; arbitrary nested/global stability is not proven.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        3
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x003",
+        "size": "1",
+        "name": "lifecycleByte3",
+        "ctype": "uint8",
+        "meaning": "control byte; bit 0 is the run-collected latch. The only writer in the enumerated population is 003EDAD0 (or byte ptr [rcx+3],1 at 003EDBB3; and byte ptr [rax+3],0xfe at 003EDB87); readers test bit 0 at 003A960D and 003A995D (the teardowns select the run-pointer release path versus the table walk), 003A75C9, 003A7D3D, 003EDC1D, and 0024FCFE reads the whole byte",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "all sites verified by body decode under the same census as +0x002 (OPUS-REQ-SWE2-STRUCT-EFXFLAG-WRITERS, 2026-09-13): the bit-0 gate at 003A960D is the precondition for the +0x002 bit-2 test at 003A9613, so +0x003 bit 0 set AND +0x002 bit 2 clear is the condition for the release at 003A9625. The +0x002 writer-census limits apply to this byte too - an unseeded stash-field reader could hold further writers"
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x003",
+        "size": "1",
+        "name": "lifecycleByte3",
+        "ctype": "uint8",
+        "meaning": "Runtime clone bulk-run latch (mask1). Parser clears/conditionally sets it from the context type; teardown selects bulk-run origins versus individual table entries. This is independent of byte2 borrow mask4. The native fixture tests both branches; no unknown flags receive invented meanings.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2112
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x840",
+        "size": "8",
+        "name": "buffer400",
+        "ctype": "void*",
+        "meaning": "pointer to a separately allocated 0x400-byte buffer (&ctx+0x840 published to 02EBEF..) || pointer to a separately allocated 0x400-byte buffer: 0024B3A0 publishes &ctx+0x840 to 02EBEFA0 (0024B49A/0024B4A1); 003A7D00 allocs 0x400 via 0036A100, stores it through the global into this field, memsets the buffer",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "width from the qword store through the published address (003A7D1D mov qword ptr [rcx], rax with rcx = [02EBEFA0]). Read as a list anchor by FUN_003b1ba0 (003B1DDD et seq. mov rcx, qword ptr [rax + 0x840])."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x840",
+        "size": "8",
+        "name": "buffer400",
+        "ctype": "void*",
+        "meaning": "Runtime clone owns this separately allocated 0x400-byte lookup buffer. 003A7D30 releases it independently of payload ownership; the field itself is not an ownership/liveness certificate after context destruction.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2120
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x848",
+        "size": "8",
+        "name": "bufferA00",
+        "ctype": "void*",
+        "meaning": "pointer to a separately allocated 0xA00-byte buffer || pointer to a separately allocated 0xA00-byte buffer: &ctx+0x848 published to 02EBEF90 (0024B4AD/0024B4B4); allocated and zeroed by 003A9560",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "as +0x840; the alloc size 0xA00 is at 003A9564."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x848",
+        "size": "8",
+        "name": "bufferA00",
+        "ctype": "void*",
+        "meaning": "Runtime clone owns this 0xA00-byte 320-slot lookup table. Family800 registers borrowed/copied payload pointers into it. 003A9600 always frees the table; bulk borrowed run storage is separately exempt. Nonbulk cleanup walks indices1..319.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2128
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x850",
+        "size": "8",
+        "name": "buffer1800",
+        "ctype": "void*",
+        "meaning": "pointer to a separately allocated 0x1800-byte buffer || pointer to a separately allocated 0x1800-byte buffer: &ctx+0x850 published to 02EBEF78 (0024B4C0/0024B4C7); allocated and zeroed by 003A9920",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "as +0x840; the alloc size 0x1800 is at 003A9924. Read at 003B1EB7/003B1EDB."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x850",
+        "size": "8",
+        "name": "buffer1800",
+        "ctype": "void*",
+        "meaning": "Runtime clone owns this 0x1800-byte 768-slot lookup table. FamilyA00 payload pointers can be borrowed. 003A9950 always releases the lookup allocation; nonbulk cleanup walks individual entries1..767, ignoring the borrow exemption for bulk runs.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2136
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x858",
+        "size": "8",
+        "name": "resolvedSourceBase",
+        "ctype": "void*",
+        "meaning": "the FULL resolved source base, 8 bytes - the one pointer-width field of the three source fields",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "003B399C mov qword ptr [rsp+0x878], rdi, template +0x858 REBASE WRITER AND ITS BOUND, ADDED 2026-09-13 (CONTRACT-efx-source-rebase.md): 0024D970 is the only writer besides the builder - 0024D9A7 mov qword ptr [rdi+0x858], rsi publishes the FULL 64-bit new base. THE DELTA IT REPAIRS WITH IS ONLY 32 BITS: 0024D984 sub ebx, dword ptr [rcx+0x858] reads THIS FIELD AS A DWORD to compute low32(new) - low32(old), and every repair walk sign-extends it (3A8FF0, 3A9BA0, 3A9860 movsxd; 3AA3D0 forwards edx to 00501420/00503F10, which movsxd). So the repair is exact IF AND ONLY IF |newBase - oldBase| < 2 GiB. Above that the published base here is still correct while every repaired pointer is shifted by the wrong amount, and nothing detects the disagreement. ASTRA observed the 4 GiB case (delta truncates to zero, pointers not moved at all); the failure actually begins at 2 GiB."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x858",
+        "size": "8",
+        "name": "resolvedSourceBase",
+        "ctype": "void*",
+        "meaning": "Full resolved source base of runtime context, source+signed offset in type3 constructor. 003B3480 compares a fresh resolution and 0024D970 republishes the full new base after selected pointer repair. Not a pin or lifetime proof.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2144
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x860",
+        "size": "4",
+        "name": "sourceArgLow32A",
+        "ctype": "uint32",
+        "meaning": "the caller's original ECX, stored as a DWORD. MUST NOT be modelled as the low half of a 64-bit pointer with +0x864: they are two independent 4-byte stores from two different registers",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "003B398E mov dword ptr [rsp+0x880], ebp, template +0x860 ROLE ESTABLISHED 2026-09-13 (ASTRA-REQ-OPUS-EFX-REBASE, CONTRACT-efx-source-rebase.md): this is the TAGGED SOURCE HANDLE and it is SIGNED. 003B34F5 movsxd rcx, dword ptr [rbx+0x860] sign-extends it and passes it to the resolver 003AB7F0, which tests the low two bits as a TAG (003AB803 test dl,3): untagged returns the input unchanged, tagged goes to 0036B130, which strips the tag (and rax,0xFFFFFFFC), loads [rax+8] and adds 0x40. The earlier row text - that +0x860 and +0x864 are two independent dwords that must NOT be modelled as the halves of one 64-bit pointer - STANDS, and this says what they are instead."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x860",
+        "size": "4",
+        "name": "sourceArgLow32A",
+        "ctype": "uint32",
+        "meaning": "Type3 source32 argument (raw low address or tagged slot), sign-extended when sent to 003AB7F0. It is independent of offset32 at+864. The low tag selects representation, not the context borrow policy.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2148
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x864",
+        "size": "4",
+        "name": "sourceArgLow32B",
+        "ctype": "uint32",
+        "meaning": "the caller's original EDX, stored as a DWORD; see the +0x860 note",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "003B3995 mov dword ptr [rsp+0x884], esi, template +0x864 ROLE ESTABLISHED 2026-09-13 (ASTRA-REQ-OPUS-EFX-REBASE, CONTRACT-efx-source-rebase.md): a SIGNED 32-bit OFFSET added to the resolver's result, not a second handle. 003B3501 movsxd rsi, dword ptr [rbx+0x864] then 003B3508 add rsi, rax, so newBase = sext(+0x864) + resolve(+0x860); that sum is compared against the full 64-bit +0x858 at 003B350B and drives the rebase at 0024D970 when it differs. ASTRA's report named the sign-extension at +0x860 only; +0x864 is sign-extended by the very next instruction and is equally load-bearing, because it is what turns a resolved block base into this caller's source base."
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x864",
+        "size": "4",
+        "name": "sourceArgLow32B",
+        "ctype": "uint32",
+        "meaning": "Independent signed32 source offset; constructor and refresh add sign-extended value to source resolver result. Not high pointer bits.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2160
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x870",
+        "size": "8",
+        "name": "runPointer0",
+        "ctype": "void*",
+        "meaning": "one of four run pointers 0024B3A0 clears on the heap copy",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "authored-reference-lifetime-evidence.md sec.16: 0024B3A0 clears +870/+878/+880/+888"
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x870",
+        "size": "8",
+        "name": "runPointer0",
+        "ctype": "void*",
+        "meaning": "Runtime800 run origin: parser publishes an arena8 copy when byte2 mask4 clear, else caller run pointer. Bulk cleanup frees only owned copy and clears field either way. The selected source-refresh walk updates lookup pointers but leaves this origin unchanged; it can be stale while context remains active.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "EfxCallerTemplate",
+        2168
+      ],
+      "before": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x878",
+        "size": "8",
+        "name": "runPointer1",
+        "ctype": "void*",
+        "meaning": "run pointer, cleared by 0024B3A0",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "as +0x870"
+      },
+      "after": {
+        "type": "EfxCallerTemplate",
+        "offset": "0x878",
+        "size": "8",
+        "name": "runPointer1",
+        "ctype": "void*",
+        "meaning": "RuntimeA00 run origin with same copy/borrow/bulk-cleanup rule as+870. 003A9950 clears it in bulk mode even when borrowed. Selected rebase walks do not store this origin; full subtype semantics remain separate.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0024B3A0/003EDAD0/0024F410/003B38B0/003B3480"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntry",
+        16
+      ],
+      "before": {
+        "type": "RenderResourceEntry",
+        "offset": "0x010",
+        "size": "28",
+        "name": "bufferDescriptor",
+        "ctype": "RenderResourceEntryBuffer",
+        "meaning": "A SUB-OBJECT WITH ITS OWN CONSTRUCTOR, not declared here. Its address is taken five times - 00409BAF, 00409BBE, 00409BD0, 00409805 and 00409648 - and passed to 0051EE10, 0051EF90, 0051F020, 006B5C70 and 0051EE00. Relative to its own base it carries a dword at +0x00 (0051EE1A), a pointer at +0x08 (0051EE1C, read at 0051EFE9 and 006B5C70), a dword at +0x10 (0051EE20), a CAPACITY OF 0x800 at +0x14 (0051EE12 writes it, and that store is a QWORD so it zeroes +0x18 in the same instruction) and a counter at +0x18 that 0051F002 accumulates into with `add`. A buffer or stream descriptor; censusing it properly is a separate package and it occupies its span here. NOW DECLARED as RenderResourceEntryBuffer, and its measured extent of 0x1C matches the span this row allotted it from adjacency alone - two independent derivations of the same number.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntry",
+        "offset": "0x010",
+        "size": "32",
+        "name": "bufferDescriptor",
+        "ctype": "RenderResourceEntryBuffer",
+        "meaning": "Embedded RenderResourceEntryBuffer with 0x20 transferred extent. 0051EEB0 copies two16-byte lanes, through parent+2F. Contains kind, source, capacity, growth quantum, used, and opaque transferred padding. 0x800 at child+14 is growth, not initial capacity.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 00409A60/00409D60/00409730/0051EEB0"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntry",
+        44
+      ],
+      "before": {
+        "type": "RenderResourceEntry",
+        "offset": "0x02C",
+        "size": "4",
+        "name": "unobservedDword02C",
+        "ctype": "u8[4]",
+        "meaning": "no access in a census seeded on the four functions proved to receive this object, run at three window sizes. Named as unobserved rather than divided into plausible fields.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || BATCH RECEIVER CENSUS 2026-09-21 (OPUS), census_receiver_fixpoint.py driven over EVERY anchor this type has - the recorded route, MSVC class RTTI (subobject-offset-0 vtables only, since a biased base would make [rcx+d] mean d+offs of a different object) and getters found by hand in earlier passes. RESULTS ARE UNIONED BY INSTRUCTION ADDRESS, never by adding access counts: two seeds reach overlapping call graphs and summing double-counts every site both found. A run reaching ZERO functions is discarded as a seed that never started, not recorded as a converged zero - the route STATIC 0209AC60 does exactly that while the cell 0209AC30 reaches 198 functions. Limits carried: a receiver spilled to the stack, passed in a register other than rcx, or reached through an index register is NOT followed, so a zero means NOT REACHED BY ANY ANCHOR THIS TYPE HAS, never not read. Anchors run: call 002ED570 -> 99 functions in 5 rounds. FOR THIS SPAN: 1 (displacement,width) pair(s) at 11 distinct site(s) - 10 read, 1 write. +0x002C 4B x11 003DFE87,003DFE9C."
+      },
+      "after": null,
+      "reason": "now explicitly part of child0x20 transferred extent; opaque semantics preserved in child+1C"
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntry",
+        48
+      ],
+      "before": {
+        "type": "RenderResourceEntry",
+        "offset": "0x030",
+        "size": "8",
+        "name": "reference",
+        "ctype": "void*",
+        "meaning": "THE STORE'S OWN CITED FIELD, the reference of the reference/cache pair read under the 02B62E10 guard at 0040962B-00409634. A qword, written twice and read twice here.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntry",
+        "offset": "0x030",
+        "size": "8",
+        "name": "reference",
+        "ctype": "void*",
+        "meaning": "Mode1 retained source representation set by00409A60; may be raw/tagged. 00409730 clears references then zeros this field WITHOUT freeing external backing. Source matching00409D60 uses an exact comparison here, unlike cached/decoded alternatives.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 00409A60/00409D60/00409730/0051EEB0"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntry",
+        56
+      ],
+      "before": {
+        "type": "RenderResourceEntry",
+        "offset": "0x038",
+        "size": "8",
+        "name": "resolvedCache",
+        "ctype": "void*",
+        "meaning": "THE STORE'S OWN CITED FIELD, the resolved cache of that pair. 0040A08F writes it from r14 - but ONLY in the arm 0040A079 takes, not the 0040A055 arm, so the two construction paths differ in whether the cache is seeded.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntry",
+        "offset": "0x038",
+        "size": "8",
+        "name": "resolvedCache",
+        "ctype": "void*",
+        "meaning": "Resolved cache for mode1 source, initialized/conditionally refreshed by original accessors. 00409730 does NOT clear it. Surviving cache bits after reset do not imply a live source or active entry.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 00409A60/00409D60/00409730/0051EEB0"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntry",
+        64
+      ],
+      "before": {
+        "type": "RenderResourceEntry",
+        "offset": "0x040",
+        "size": "4",
+        "name": "dword040",
+        "ctype": "uint32",
+        "meaning": "written twice; role unread.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntry",
+        "offset": "0x040",
+        "size": "4",
+        "name": "sourceSize",
+        "ctype": "uint32",
+        "meaning": "DWORD copied from resolved source header+8 by00409A60, cleared by00409730. This is distinct from embedded-buffer capacity/used fields.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 00409A60/00409D60/00409730/0051EEB0"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntry",
+        68
+      ],
+      "before": {
+        "type": "RenderResourceEntry",
+        "offset": "0x044",
+        "size": "4",
+        "name": "dword044",
+        "ctype": "uint32",
+        "meaning": "0040A17C writes it from 003B38B0's return and 0040A1B3 reads it back, so a value obtained once and reused. What 003B38B0 returns is not read here.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || WIDTH RESTS ON NO INFORMATION - 2026-09-20 (OPUS), from a store-wide sweep. Every access the census records at this displacement is a store of a BYTE-REPEATING value (all 0xFF bytes), and such a store is identical however the span is divided: it cannot distinguish one 4-byte field from two narrower ones. The declared width is therefore not evidenced here. NOT A CLAIM THAT IT IS WRONG - only that nothing supports it. No other instance of this shape is available to settle it."
+      },
+      "after": {
+        "type": "RenderResourceEntry",
+        "offset": "0x044",
+        "size": "4",
+        "name": "effectTicket",
+        "ctype": "uint32",
+        "meaning": "Generation-bearing effect ticket returned by003B38B0, stored at0040A17C and read as DWORD at00409EB8 before003B37E0. -1 denotes absent/retired; exact ID validation precedes context cancellation. Width is supported by value-bearing accesses, not merely FF fills.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 00409A60/00409D60/00409730/0051EEB0"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        0
+      ],
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x000",
+        "size": "4",
+        "name": "dword000",
+        "ctype": "uint32",
+        "meaning": "the constructor zeroes it at 0051EE1A and it is read twice; the append path never touches it, so its role is unread. NOT assumed to be an element size just because a growable buffer usually has one.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x000",
+        "size": "4",
+        "name": "sourceKind",
+        "ctype": "uint32",
+        "meaning": "Selects source allocation family through003AB8B0:0 raw,1 tagged,other returns0. Constructor sets0;0051EEB0 replacement temporary also sets0. Not an element stride.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0051EE10/0051F020/0051EEB0/0051EE80/0051EF90"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        4
+      ],
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x004",
+        "size": "4",
+        "name": "unobservedDword004",
+        "ctype": "u8[4]",
+        "meaning": "no access in a census run at three window sizes. Sits between a dword and an 8-byte aligned pointer, so it is plausibly alignment padding - plausibly, which is why it is named as unobserved rather than as padding.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x004",
+        "size": "4",
+        "name": "opaqueCopiedBytes004",
+        "ctype": "u8[4]",
+        "meaning": "Opaque four bytes transferred as part of the first16-byte lane by0051EEB0. Not initialized by the reviewed local temporary/constructor; semantic meaning and stable value unclaimed. A previous no-access census did not account for the wide copy.",
+        "readiness": "DISCOVERED",
+        "confidence": "UNKNOWN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0051EE10/0051F020/0051EEB0/0051EE80/0051EF90"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        8
+      ],
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x008",
+        "size": "8",
+        "name": "buffer",
+        "ctype": "void*",
+        "meaning": "the buffer pointer: zeroed by the constructor at 0051EE1C and loaded at 0051EFE9 immediately before the append. The most-read field of the five.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x008",
+        "size": "8",
+        "name": "buffer",
+        "ctype": "void*",
+        "meaning": "Source representation owned by this buffer: raw pointer or tagged slot. Resolver003AB7F0 obtains data. 0051EE80 releases it through003AB7C0; resize releases old after copying. External pointers to old backing are not fixed here.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0051EE10/0051F020/0051EEB0/0051EE80/0051EF90"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        16
+      ],
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x010",
+        "size": "4",
+        "name": "capacity",
+        "ctype": "int32",
+        "meaning": "0051EFAA loads it as the bound the append tests against, and 0051EFDD forms the new capacity from it. Zeroed by the constructor.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x010",
+        "size": "4",
+        "name": "capacity",
+        "ctype": "uint32",
+        "meaning": "Allocated capacity bound. Append compares unsigned and reserve copies min(old capacity,new capacity), NOT min(used,new capacity). Zeroed by0051EE10; read original0051EF0C/14 and0051EFAA.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0051EE10/0051F020/0051EEB0/0051EE80/0051EF90"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        20
+      ],
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x014",
+        "size": "4",
+        "name": "growthGranularity",
+        "ctype": "int32",
+        "meaning": "0051EFBC reads it as the quantum the growth is rounded up to; ZERO IS A SPECIAL CASE the code handles at 0051EFC3/0051EFC5 by growing a single unit. The constructor sets it to 0x800 - and does so with a QWORD store at 0051EE12 that zeroes `used` in the same instruction.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x014",
+        "size": "4",
+        "name": "growthGranularity",
+        "ctype": "uint32",
+        "meaning": "Growth quantum, initialized0x800; zero selects the alternate growth calculation. It is not current capacity. Preserved by reserve and reset by teardown.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0051EE10/0051F020/0051EEB0/0051EE80/0051EF90"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        24
+      ],
+      "before": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x018",
+        "size": "4",
+        "name": "used",
+        "ctype": "int32",
+        "meaning": "0051EFB0 reads it, the append adds the incoming count to it and 0051F002 accumulates into it with `add`. Zeroed as the upper half of the constructor's qword store.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x018",
+        "size": "4",
+        "name": "used",
+        "ctype": "uint32",
+        "meaning": "Used byte count incremented by append. Reserve preserves it even for a smaller capacity; caller must not assume used<=capacity after arbitrary reserve. Cleared by0051EE10/0051EE80.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL SITES: 0051EE10/0051F020/0051EEB0/0051EE80/0051EF90"
+      }
+    },
+    {
+      "store": "fields.tsv",
+      "key": [
+        "RenderResourceEntryBuffer",
+        28
+      ],
+      "before": null,
+      "after": {
+        "type": "RenderResourceEntryBuffer",
+        "offset": "0x01C",
+        "size": "4",
+        "name": "opaqueCopiedTail01C",
+        "ctype": "u8[4]",
+        "meaning": "Final four bytes of 0x20 descriptor copied by0051EF76. Local reserve temporary does not initialize this tail; meaning and deterministic value unclaimed. Previously a separate parent+2C gap; physical inclusion now proven by actual wide stores.",
+        "readiness": "DISCOVERED",
+        "confidence": "UNKNOWN",
+        "evidence": "SECTION-06 original-code production 2026-09-22; 02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md; _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md. Local validation, not formal peer acceptance. ORIGINAL STORE:0051EF76 movaps [rdi+10],xmm1 covers child10..1F."
+      }
+    }
+  ],
+  "target_field_rows_before": 41,
+  "target_field_rows_after": 41,
+  "scope": "only three named type rows and their targeted fields; all other TSV lines preserved"
+}

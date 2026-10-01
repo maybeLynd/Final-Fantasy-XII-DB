@@ -1,0 +1,9 @@
+# NativeAdapter.FloatFetchPushForward - EC-7 family C
+# call a member float-fetch producing xmm0; push the float via shared
+# # VMValueStack_PushFloat32Bits 00267F60; tail-dispatch to a member op
+# # forwarding this + arg3 + arg4.
+address	targets
+00342040	002644E0,00267F60,0034EB40
+00348240	002640E0,00267F60,00357980
+0034FFF0	002644E0,00267F60,0034F470
+003548B0	002640E0,00267F60,00357A20

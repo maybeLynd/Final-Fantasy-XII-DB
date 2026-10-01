@@ -1,0 +1,57 @@
+{
+  "question": "Does the class20 slot validity guard exclude ordinary action ids511..534?",
+  "method": "A original source witnesses/jump-table resolution + exhaustive bounded u16 predicate; no code execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "9fd429f301e86d94fd68ad09a487ae7aa1d39556436611ef000f52831752d263",
+  "raw_sha256": "b68e052df6e19c6674c8e8cc692ec4dc764e7e31223d82eaff6328e0bcfe2bc5",
+  "caller_raw_sha256": "dbf82f16cfcd2859b763bc5d0ab436be28a18458c0fd8f68a7ec75f55c9ba30f",
+  "table_receipt_sha256": "0c7cbbebc515e2a9be7db0d10657c468f944222dd01dd61e391f475c98063dd3",
+  "class20_jump_table_bytes": "7e2c20009a2c2000b42c2000ce2c2000e82c2000022d20002c2d2000562d2000802d2000aa2d2000d42d2000fe2d2000282e2000912e2000bb2e2000e52e20000f2f2000392f2000632f2000722f20008c2f2000a62f2000af2f2000b82f2000cb2f2000de2f2000f12f20000430200017302000bb2e2000bb2e2000cb2f2000",
+  "class20_target": "0x322f72",
+  "descriptor_global": "02EBF138",
+  "initialized_count_premise": 543,
+  "input_domain": "slot+1C movzx unsigned16",
+  "accepted_ids": [
+    0,
+    542
+  ],
+  "rejected_ids": [
+    543,
+    65535
+  ],
+  "candidate_ids_accepted": [
+    511,
+    512,
+    513,
+    514,
+    515,
+    516,
+    517,
+    518,
+    519,
+    520,
+    521,
+    522,
+    523,
+    524,
+    525,
+    526,
+    527,
+    528,
+    529,
+    530,
+    531,
+    532,
+    533,
+    534
+  ],
+  "controls": {
+    "boundary542_accepted": true,
+    "boundary543_refused": true,
+    "empty_count_refuses_all": true,
+    "private_count511_refuses_candidate511": true,
+    "private_reversed_upper_branch_refused": true
+  },
+  "conclusion": "REFUTED: class20 bounds exclude these candidates. Under initialized table premises they are valid ids.",
+  "limits": "No slot allocation, command/AI/script selection, immutable initialized codec, readiness-helper progress or successful asset/owner admission is established. Exhaustive predicate evaluation is static reasoning, not original-code execution."
+}

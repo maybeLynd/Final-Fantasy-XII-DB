@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-exception-filter-tail\check.py", line 44, in <module>
+    if '--fault-name-ordinal' in sys.argv:assert imports[0x8c27c8]['symbol'] is not None,'Ordinal identity is not a captured import-by-name'
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Ordinal identity is not a captured import-by-name

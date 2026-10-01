@@ -1,0 +1,26 @@
+{
+  "result": "PASS_A_CONTROL_REVIEW",
+  "cases": 4,
+  "controls": [
+    {
+      "name": "equal glare observations establish scene binding",
+      "rejected": true
+    },
+    {
+      "name": "object and flags alone qualify successful healthy initialization",
+      "rejected": true
+    },
+    {
+      "name": "wrong executable identity",
+      "rejected": true
+    },
+    {
+      "name": "setter transcript swapped without matching original bytes",
+      "rejected": true
+    }
+  ],
+  "positive": "selected DOF enable differs from original ctor; actual scene activation remains unprepared",
+  "native_fixture_rerun": false,
+  "live_run": false,
+  "fresh_semantic_live_closure": []
+}

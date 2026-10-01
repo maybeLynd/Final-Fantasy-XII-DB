@@ -1,0 +1,8 @@
+payload_base_002EF2B0              PASS  {'n': 1}
+schedule_00377970                  PASS  {'n': 47740, 'mismatches': 0, 'note': 'count=152; ungated ([02098E20] bit0 clear) reads progress 0'}
+schedule_negative_index_observed    {'-1': [0, True, []], '-2': [0, False, ['72010000', 'Invalid memory read (UC_ERR_READ_UNMAPPED)']], '-5': [0, False, ['72010000', 'Invalid memory read (UC_ERR_READ_UNMAPPED)']]}
+gate_0032A8A0                      PASS  {'n': 262144, 'mismatches': 0, 'note': 'gate(0xFFFF) = 0'}
+newgame_list_00379160              PASS  {'n': 53, 'mismatches': 0, 'note': '53 list entries, 52 Primary bits set'}
+reset_002EF2D0                     PASS  {'n': 1, 'mismatches': 0, 'note': 'memset size 0x1538 bounded by the guards; tail jump applies the list'}
+evmem_absent_00377440              PASS  {'n': 65541, 'mismatches': 0, 'note': '0 when listed (inverted), 1 otherwise; the 32-bit id is compared whole'}
+6/6 pass

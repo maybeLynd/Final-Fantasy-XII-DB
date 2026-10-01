@@ -1,0 +1,66 @@
+0023DAA3 -> 002F9860 r9=01E0BF60 (next HUD key 01E0C348 at +0x3E8): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 002F98CF 0x20e600 {'r9': '01E0BF60'}
+0023DF23 -> 002F9860 r9=01E0BF60 (next HUD key 01E0C348 at +0x3E8): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 002F98CF 0x20e600 {'r9': '01E0BF60'}
+00254030 -> 0017E7D0 rdx=01E0C2CC (next HUD key 01E0C348 at +0x7C): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 0017E7D0 tail 0x16d6a0 {'rdx': '01E0C2CC'}
+00254BC7 -> 0017E7D0 rcx=01E0C2CC (next HUD key 01E0C348 at +0x7C): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 0017E7D0 tail 0x16d6a0 {'rcx': '01E0C2CC'}
+00274F39 -> 00202B70 rdx=0209AB90 (next HUD key 0209ABFC at +0x6C): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 00202B7E 0x217060 {'rdx': '0209AB90'}
+00274F93 -> 00202B70 rdx=0209AB90 (next HUD key 0209ABFC at +0x6C): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 00202B7E 0x217060 {'rdx': '0209AB90'}
+002764A5 -> 00203170 rcx=0209AB90 (next HUD key 0209ABFC at +0x6C): accesses 4, max extent +0x40, indexed 0, hand-ons 0, stores 0
+00296302 -> 002732E0 r8=0209C2BE (next HUD key 0209C494 at +0x1D6): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 002732F2 0x35bb20 {'r8': '0209C2BE'}
+00296387 -> 003F8A30 rdx=0209C240 (next HUD key 0209C494 at +0x254): accesses 6, max extent +0x38, indexed 0, hand-ons 0, stores 2
+0029639B -> 003F8A30 rdx=0209C298 (next HUD key 0209C494 at +0x1FC): accesses 6, max extent +0x38, indexed 0, hand-ons 0, stores 2
+002963E2 -> 003F89C0 rcx=0209C240 (next HUD key 0209C494 at +0x254): accesses 4, max extent +0x50, indexed 0, hand-ons 2, stores 0
+     hand-on 003F89E5 0x861ec0 {'rcx': '0209C240'}
+     hand-on 003F8A0C rax {'rcx': '0209C240'}
+00296402 -> 003F89C0 rcx=0209C298 (next HUD key 0209C494 at +0x1FC): accesses 4, max extent +0x50, indexed 0, hand-ons 2, stores 0
+     hand-on 003F89E5 0x861ec0 {'rcx': '0209C298'}
+     hand-on 003F8A0C rax {'rcx': '0209C298'}
+00296416 -> 003F8A50 rdx=0209C240 (next HUD key 0209C494 at +0x254): accesses 3, max extent +0x38, indexed 0, hand-ons 0, stores 2
+0029642A -> 003F8A50 rdx=0209C298 (next HUD key 0209C494 at +0x1FC): accesses 3, max extent +0x38, indexed 0, hand-ons 0, stores 2
+0029CAFE -> 0039BEC0 r8=0209C330 (next HUD key 0209C494 at +0x164): accesses 0, max extent +0x0, indexed 0, hand-ons 0, stores 0
+0029CB3C -> 0039BB60 r8=0209C330 (next HUD key 0209C494 at +0x164): accesses 0, max extent +0x0, indexed 0, hand-ons 0, stores 0
+002A1C86 -> 002B3C30 rdx=0209CB90 (next HUD key 0209CC10 at +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons 2, stores 1
+     hand-on 002B3C8D 0x2b24b0 {'r8': '0209CB90'}
+     hand-on 002B3D21 0x2b2150 {'rdx': '0209CB90'}
+002A1CDF -> 002D89E0 r9=0209CB90 (next HUD key 0209CC10 at +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons 3, stores 0
+     hand-on 002D8A20 0x364980 {'rcx': '0209CB90', 'r9': '0209CB90'}
+     hand-on 002D8A5C 0x3659f0 {'r8': '0209CB90'}
+     hand-on 002D8A7B 0x2b3400 {'rdx': '0209CB90'}
+002A5440 -> 002B4090 rdx=0209C990 (next HUD key 0209CC10 at +0x280): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 002B40AB 0x2b49f0 {'rdx': '0209C990'}
+002ADBC9 -> 002AE610 rdx=01E0CE08 (next HUD key 01E0CE94 at +0x8C): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 002AE760 0x3ffc60 {'rcx': '01E0CE08'}
+002B19A2 -> 002AE610 rdx=01E0CE04 (next HUD key 01E0CE94 at +0x90): accesses 0, max extent +0x0, indexed 0, hand-ons 1, stores 0
+     hand-on 002AE760 0x3ffc60 {'rcx': '01E0CE04'}
+002B756A -> 00285F00 rcx=0209E5D0 (next HUD key 0209E618 at +0x48): accesses 2, max extent +0x6, indexed 0, hand-ons 0, stores 0
+002BA21A -> 00285F00 rcx=0209E608 (next HUD key 0209E618 at +0x10): accesses 2, max extent +0x6, indexed 0, hand-ons 0, stores 0
+00400389 -> 004006A0 rcx=01E0C590 (next HUD key 01E0C5B0 at +0x20): accesses 4, max extent +0x20, indexed 0, hand-ons 1, stores 0
+     hand-on 004006D6 0x377780 {'rcx': '01E0C590'}
+not followed: 00244EF5 call rax rdx=01E0C0F8 (next HUD key +0x250)
+not followed: 00246C09 call rax rdx=01E0C0E0 (next HUD key +0x268)
+not followed: 00267A79 call [r15+0x88] rdx=01E0C32E (next HUD key +0x1A)
+not followed: 0029626F jmp 00861EC0 (thunk) rcx=0209C240 (next HUD key +0x254)
+not followed: 002A1C0E call 00861EBA (thunk) rcx=0209CB90 (next HUD key +0x80)
+level 2: 00217060 rdx=0209AB90 (next HUD key +0x6C): accesses 16, max extent +0x40, indexed 0, hand-ons []
+level 2: 00364980 rcx=0209CB90 (next HUD key +0x80): accesses 2, max extent +0x2, indexed 0, hand-ons []
+level 2: 00364980 r9=0209CB90 (next HUD key +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons []
+level 2: 003659F0 r8=0209CB90 (next HUD key +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons []
+level 2: 002B3400 rdx=0209CB90 (next HUD key +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons ['002B3418 0x2ac1e0']
+level 2: 002B49F0 rdx=0209C990 (next HUD key +0x280): accesses 1, max extent +0x1, indexed 1, hand-ons ['002B4A6A 0x2b1fb0']
+     indexed 002B4BB7 mov byte ptr [rcx + r12], 0 (base 0209C990 w1)
+level 2: 003FFC60 rcx=01E0CE08 (next HUD key +0x8C): accesses 5, max extent +0x3, indexed 0, hand-ons []
+level 2: 003FFC60 rcx=01E0CE04 (next HUD key +0x90): accesses 5, max extent +0x3, indexed 0, hand-ons []
+level 2: 0035BB20 r8=0209C2BE (next HUD key +0x1D6): accesses 0, max extent +0x0, indexed 0, hand-ons []
+level 2: 0020E600 r9=01E0BF60 (next HUD key +0x3E8): accesses 0, max extent +0x0, indexed 0, hand-ons []
+level 2: 002B24B0 r8=0209CB90 (next HUD key +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons ['002B25F2 0x2b2150', '002B2692 0x2af340']
+level 2: 002B2150 rdx=0209CB90 (next HUD key +0x80): accesses 2, max extent +0x2, indexed 0, hand-ons ['002B2256 0x17f940']
+level 2: 00377780 rcx=01E0C590 (next HUD key +0x20): accesses 0, max extent +0x0, indexed 0, hand-ons ['00377784 0x3148f0']
+level 2: 002AC1E0 rdx=0209CB90 (next HUD key +0x80): accesses 0, max extent +0x0, indexed 0, hand-ons []
+level 2: 002B1FB0 rdx=0209C990 (next HUD key +0x280): accesses 0, max extent +0x0, indexed 0, hand-ons []
+key hits in followed callees (levels 1-2): 0

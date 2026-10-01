@@ -1,0 +1,4 @@
+PASS  R slot-0 deleting destructors 00647470 / 00647D40; sized deletes 0xD0 / 0xD70 = the store's sizes
+PASS  D 006466E0 / 00646A30 hand +0x80..+0x98 / +0xD68 to the render-target release 006505A0
+PASS  S the two spans re-cut as generated (name, ctype, meaning), tiling kept
+FAILS 0

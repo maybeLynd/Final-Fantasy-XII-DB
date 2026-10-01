@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-116",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "batch-116 tail: commit remaining op files + sealed resume state",
+  "scope": "batch-116 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-116"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

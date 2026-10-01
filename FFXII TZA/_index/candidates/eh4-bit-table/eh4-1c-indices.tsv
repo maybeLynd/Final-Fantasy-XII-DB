@@ -1,0 +1,33 @@
+index	disposition	preset_rows	engine	script_enables	script_disables	meaning
+0	PRODUCED-MEANING-NOT-CLAIMED	7		0	0	
+1	NEVER-SET			0	0	
+2	NAMED	5,6,7	set/clear	16940	12289	entry-group first slot, superseded by 10 (page, fifteenth pass)
+3	PRODUCED-MEANING-NOT-CLAIMED	1,2	clear	76	1507	
+4	PRODUCED-MEANING-NOT-CLAIMED	1,2		295	1	
+5	PRODUCED-MEANING-NOT-CLAIMED	1,2		253	0	
+6	PRODUCED-MEANING-NOT-CLAIMED	3,4		0	0	
+7	PRODUCED-MEANING-NOT-CLAIMED	7		6	0	
+8	NAMED		set/clear	1500	1376	overhead-display eligibility pair with 13 (page, sixteenth pass)
+9	NEVER-SET			0	0	
+10	NAMED	7	set/clear	0	0	entry-group second slot (page, fifteenth pass)
+11	PRODUCED-MEANING-NOT-CLAIMED	7	set	19	0	
+12	SCRIPT-SET-UNCLEARED			1525	0	
+13	NAMED		set/clear	1500	1376	overhead-display eligibility pair with 8 (page, sixteenth pass)
+14	PRODUCED-MEANING-NOT-CLAIMED	7		6	0	
+15	NEVER-SET			0	0	
+16	PRODUCED-MEANING-NOT-CLAIMED	5,6,7		81	482	
+17	PRODUCED-MEANING-NOT-CLAIMED	5,6,7		80	158	
+18	NEVER-SET			0	0	
+19	NEVER-SET			0	0	
+20	NEVER-SET			0	0	
+21	NEVER-SET			0	0	
+22	NEVER-SET			0	0	
+23	NEVER-SET			0	0	
+24	NEVER-SET			0	0	
+25	NEVER-SET			0	0	
+26	NEVER-SET			0	0	
+27	NEVER-SET			0	0	
+28	NEVER-SET			0	0	
+29	NEVER-SET			0	0	
+30	NEVER-SET			0	0	
+31	NEVER-SET			0	0	

@@ -1,0 +1,7 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	shape	w00	u16: 0x0 x4, 0x53 x2, 0x40 x1, 0x42 x1, 0x43 x1 (28 distinct)	-	64-91 (0 on 4 rows); no reader in the slot-loading functions	DATA	PASS
+0x02	2	pass	sortKey	u16: 0x0 x1, 0x1 x1, 0x2 x1, 0x3 x1, 0x4 x1 (32 distinct)	0031D631* movzx eax, word ptr [rsi + 2]	list sort key -> query +0x30 (32 distinct)	STATIC	PASS
+0x04	1	page	icon	u8: 113 x28, 0 x4 (2 distinct)	0031D425* movzx eax, byte ptr [rcx + 4]	icon frame -> query +0x2C (UQ-130)	STATIC	BAZ
+0x05	1	pad	pad05	u8: 0 x32 (1 distinct)	-	const=0x00	-	PASS
+0x06	2	pass	descriptionId	u16: 0x4e60 x1, 0x4e61 x1, 0x4e62 x1, 0x4e63 x1, 0x4e64 x1 (32 distinct)	0031D3CE* movzx ecx, word ptr [rcx + 6]	description string id -> 002F9860 -> query +0x10	STATIC	PASS
+0x08	2	page	nameWord	u16: 0x6040 x1, 0x6041 x1, 0x6042 x1, 0x6043 x1, 0x6044 x1 (32 distinct)	0031D320* movzx ecx, word ptr [rax + 8] | 0031D368* movzx edx, word ptr [rax + 8]	name word (bank 12)	STATIC	EID

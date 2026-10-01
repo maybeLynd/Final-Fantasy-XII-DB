@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-57",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "measure the top 22 2-A-band frontier bodies from the shipping image and place semantic sections on bearing hosts",
+  "scope": "00394E50, 00394DA0, 00394850, 00394800, 003936B0, 00393630, 00393460, 00393220, 00392F30, 00384420, 00382B70, 00382B50, 0037ED80, 0037E5B0, 0037E4F0, 0037DC30, 0037CE80, 0037C8D0, 00379E30, 00377B60, 00377A90, 00377520",
+  "completion": "all 22 bodies A-measured; gates clean; publish-neighbours adds nothing",
+  "dependencies": [
+   "SWE2-EC7-SHARED-HUB-IDENTIFICATION-56"
+  ],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

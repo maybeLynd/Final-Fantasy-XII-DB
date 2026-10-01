@@ -1,0 +1,47 @@
+== CON-192 dispatch in 00581DA0
+  00581DFA  mov edx, dword ptr [rax + rcx*4 + 0x462020]
+  00581E04  jmp rdx
+00581DB0  add       byte ptr [rax], al
+00581DB2  mov       rax, qword ptr [rip + 0x19c2a77]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+00581DB9  xor       rax, rsp
+00581DBC  mov       qword ptr [rsp + 0x140], rax
+00581DC4  movzx     esi, dl
+00581DC7  mov       rbx, rcx
+00581DCA  call      0x2ef640
+00581DCF  mov       rdi, rax
+00581DD2  cmp       byte ptr [rbx + 0xcc], sil
+00581DD9  je        0x581ffb
+00581DDF  movzx     r8d, sil
+00581DE3  dec       r8d
+  table 00582020 (as rva32 + image base): ['00581E06', '00581E46', '00581E76', '00581E9E', '00581E9E', '00581E9E', '00581EB0', '00581FA8', '246E8948', '815A5710']
+== CON-193 template bytes 00917268: 35 00 00 00 00 04 62 00
+  PASS dword1 = 00620400 bits [10, 17, 21, 22]
+== CON-194 002DDD70
+002DDD70  movzx     eax, word ptr [rip + 0x1e80965]   ; -> 0215E6DC (virtual tail / unmapped)
+002DDD77  test      ax, ax
+002DDD7A  je        0x2ddd81
+002DDD7C  cwde      
+002DDD7D  and       eax, 1
+002DDD80  ret       
+002DDD81  mov       rax, qword ptr [rip + 0x1e80958]   ; -> 0215E6E0 (virtual tail / unmapped)
+002DDD88  mov       eax, dword ptr [rax]
+002DDD8A  shr       eax, 0xc
+002DDD8D  not       eax
+002DDD8F  and       eax, 1
+002DDD92  ret       
+002DDD93  int3      
+002DDD94  int3      
+002DDD95  int3      
+002DDD96  int3      
+002DDD97  int3      
+002DDD98  int3      
+002DDD99  int3      
+002DDD9A  int3      
+002DDD9B  int3      
+002DDD9C  int3      
+002DDD9D  int3      
+002DDD9E  int3      
+002DDD9F  int3      
+== CON-196 lea targets in 0040A230
+  PASS 144 rip lea targets in 0040A230 (289 insns), 0 not an .rdata PS2Data obj_finish .cm string
+FAILS 0

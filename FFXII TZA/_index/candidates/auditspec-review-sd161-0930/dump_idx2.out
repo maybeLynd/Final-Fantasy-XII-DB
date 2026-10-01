@@ -1,0 +1,677 @@
+== 00315820 (36 instructions, to 003158A4)
+00315820  cmp       ecx, 0x200
+00315826  jae       0x3158a4
+00315828  push      rsi
+00315829  sub       rsp, 0x20
+0031582D  mov       qword ptr [rsp + 0x30], rbx
+00315832  mov       qword ptr [rsp + 0x38], rdi
+00315837  mov       esi, ecx
+00315839  call      0x2536a0
+0031583E  cmp       byte ptr [rax + rsi + 0x3404], 0
+00315846  je        0x31586d
+00315848  call      0x2536a0
+0031584D  cmp       byte ptr [rax + rsi + 0x3404], 0
+00315855  jne       0x31585c
+00315857  or        ebx, 0xffffffff
+0031585A  jmp       0x31586f
+0031585C  call      0x2536a0
+00315861  movzx     ebx, byte ptr [rax + rsi + 0x3404]
+00315869  dec       ebx
+0031586B  jmp       0x31586f
+0031586D  xor       ebx, ebx
+0031586F  mov       ecx, esi
+00315871  call      0x315d50
+00315876  cmp       eax, -1
+00315879  jne       0x315895
+0031587B  inc       ebx
+0031587D  mov       eax, 0xfe
+00315882  cmp       ebx, eax
+00315884  cmova     ebx, eax
+00315887  inc       bl
+00315889  call      0x2536a0
+0031588E  mov       byte ptr [rax + rsi + 0x3404], bl
+00315895  mov       rbx, qword ptr [rsp + 0x30]
+0031589A  mov       rdi, qword ptr [rsp + 0x38]
+0031589F  add       rsp, 0x20
+003158A3  pop       rsi
+003158A4  ret       
+== 00315A20 (27 instructions, to 00315A86)
+00315A20  cmp       ecx, 0x100
+00315A26  jae       0x315a86
+00315A28  push      rsi
+00315A29  sub       rsp, 0x20
+00315A2D  mov       esi, ecx
+00315A2F  mov       qword ptr [rsp + 0x30], rbx
+00315A34  mov       qword ptr [rsp + 0x38], rdi
+00315A39  mov       edi, esi
+00315A3B  shr       rdi, 3
+00315A3F  test      edx, edx
+00315A41  je        0x315a58
+00315A43  call      0x2536a0
+00315A48  and       esi, 7
+00315A4B  movzx     ebx, byte ptr [rax + rdi + 0x334c]
+00315A53  bts       ebx, esi
+00315A56  jmp       0x315a6b
+00315A58  call      0x2536a0
+00315A5D  and       esi, 7
+00315A60  movzx     ebx, byte ptr [rax + rdi + 0x334c]
+00315A68  btr       ebx, esi
+00315A6B  call      0x2536a0
+00315A70  mov       byte ptr [rax + rdi + 0x334c], bl
+00315A77  mov       rbx, qword ptr [rsp + 0x30]
+00315A7C  mov       rdi, qword ptr [rsp + 0x38]
+00315A81  add       rsp, 0x20
+00315A85  pop       rsi
+00315A86  ret       
+== 00315A90 (13 instructions, to 00315AC8)
+00315A90  sub       rsp, 0x28
+00315A94  cmp       ecx, 0x200
+00315A9A  jae       0x315ac4
+00315A9C  mov       qword ptr [rsp + 0x20], rbx
+00315AA1  mov       ebx, ecx
+00315AA3  call      0x2536a0
+00315AA8  cmp       byte ptr [rax + rbx + 0x3404], 0
+00315AB0  jne       0x315abf
+00315AB2  call      0x2536a0
+00315AB7  mov       byte ptr [rax + rbx + 0x3404], 1
+00315ABF  mov       rbx, qword ptr [rsp + 0x20]
+00315AC4  add       rsp, 0x28
+00315AC8  ret       
+== 00315AD0 (139 instructions, to 00315CC2)
+00315AD0  push      rdi
+00315AD2  sub       rsp, 0x20
+00315AD6  mov       edi, r8d
+00315AD9  cmp       cl, 6
+00315ADC  je        0x315aeb
+00315ADE  mov       r8d, r9d
+00315AE1  add       rsp, 0x20
+00315AE5  pop       rdi
+00315AE6  jmp       0x315b50
+00315AEB  mov       qword ptr [rsp + 0x30], rbx
+00315AF0  mov       qword ptr [rsp + 0x38], rsi
+00315AF5  mov       esi, edx
+00315AF7  test      r9d, r9d
+00315AFA  je        0x315b13
+00315AFC  call      0x2536a0
+00315B01  cmp       edi, 8
+00315B04  jae       0x315b34
+00315B06  movzx     ebx, byte ptr [rax + rsi + 0x3604]
+00315B0E  bts       ebx, edi
+00315B11  jmp       0x315b28
+00315B13  call      0x2536a0
+00315B18  cmp       edi, 8
+00315B1B  jae       0x315b34
+00315B1D  movzx     ebx, byte ptr [rax + rsi + 0x3604]
+00315B25  btr       ebx, edi
+00315B28  call      0x2536a0
+00315B2D  mov       byte ptr [rax + rsi + 0x3604], bl
+00315B34  mov       rbx, qword ptr [rsp + 0x30]
+00315B39  mov       rsi, qword ptr [rsp + 0x38]
+00315B3E  add       rsp, 0x20
+00315B42  pop       rdi
+00315B43  ret       
+00315B44  int3      
+00315B45  int3      
+00315B46  int3      
+00315B47  int3      
+00315B48  int3      
+00315B49  int3      
+00315B4A  int3      
+00315B4B  int3      
+00315B4C  int3      
+00315B4D  int3      
+00315B4E  int3      
+00315B4F  int3      
+00315B50  mov       qword ptr [rsp + 8], rbx
+00315B55  mov       qword ptr [rsp + 0x10], rbp
+00315B5A  mov       qword ptr [rsp + 0x18], rsi
+00315B5F  push      rdi
+00315B60  sub       rsp, 0x20
+00315B64  mov       esi, edx
+00315B66  mov       ebp, r8d
+00315B69  cmp       cl, 5
+00315B6C  jae       0x315bd8
+00315B6E  movzx     eax, cl
+00315B71  lea       rdx, [rip - 0x1f5b78]   ; -> 00120000
+00315B78  lea       rcx, [rax + rax]
+00315B7C  movzx     eax, word ptr [rcx + rdx + 0xbf0640]
+00315B84  cmp       esi, eax
+00315B86  jae       0x315cae
+00315B8C  movzx     eax, word ptr [rcx + rdx + 0xbf0630]
+00315B94  add       esi, eax
+00315B96  mov       edi, esi
+00315B98  shr       rdi, 3
+00315B9C  call      0x2536a0
+00315BA1  and       esi, 7
+00315BA4  movzx     ebx, byte ptr [rax + rdi + 0x330c]
+00315BAC  test      ebp, ebp
+00315BAE  je        0x315bc4
+00315BB0  bts       ebx, esi
+00315BB3  call      0x2536a0
+00315BB8  mov       byte ptr [rax + rdi + 0x330c], bl
+00315BBF  jmp       0x315cae
+00315BC4  btr       ebx, esi
+00315BC7  call      0x2536a0
+00315BCC  mov       byte ptr [rax + rdi + 0x330c], bl
+00315BD3  jmp       0x315cae
+00315BD8  jne       0x315c26
+00315BDA  cmp       esi, 0x30
+00315BDD  jae       0x315cae
+00315BE3  mov       rdi, rsi
+00315BE6  shr       rdi, 3
+00315BEA  call      0x2536a0
+00315BEF  and       esi, 7
+00315BF2  movzx     ebx, byte ptr [rax + rdi + 0x33f4]
+00315BFA  test      ebp, ebp
+00315BFC  je        0x315c12
+00315BFE  bts       ebx, esi
+00315C01  call      0x2536a0
+00315C06  mov       byte ptr [rax + rdi + 0x33f4], bl
+00315C0D  jmp       0x315cae
+00315C12  btr       ebx, esi
+00315C15  call      0x2536a0
+00315C1A  mov       byte ptr [rax + rdi + 0x33f4], bl
+00315C21  jmp       0x315cae
+00315C26  cmp       cl, 6
+00315C29  jne       0x315c75
+00315C2B  cmp       esi, 0x200
+00315C31  jae       0x315cae
+00315C33  xor       edi, edi
+00315C35  call      0x2536a0
+00315C3A  test      ebp, ebp
+00315C3C  je        0x315c50
+00315C3E  cmp       edi, 8
+00315C41  jae       0x315c6c
+00315C43  movzx     ebx, byte ptr [rax + rsi + 0x3604]
+00315C4B  bts       ebx, edi
+00315C4E  jmp       0x315c60
+00315C50  cmp       edi, 8
+00315C53  jae       0x315c6c
+00315C55  movzx     ebx, byte ptr [rax + rsi + 0x3604]
+00315C5D  btr       ebx, edi
+00315C60  call      0x2536a0
+00315C65  mov       byte ptr [rax + rsi + 0x3604], bl
+00315C6C  inc       edi
+00315C6E  cmp       edi, 8
+00315C71  jl        0x315c35
+00315C73  jmp       0x315cae
+00315C75  cmp       cl, 7
+00315C78  jne       0x315cae
+00315C7A  cmp       esi, 0x1e
+00315C7D  jae       0x315cae
+00315C7F  mov       rdi, rsi
+00315C82  shr       rdi, 3
+00315C86  call      0x2536a0
+00315C8B  and       esi, 7
+00315C8E  movzx     ebx, byte ptr [rax + rdi + 0x3848]
+00315C96  test      ebp, ebp
+00315C98  je        0x315c9f
+00315C9A  bts       ebx, esi
+00315C9D  jmp       0x315ca2
+00315C9F  btr       ebx, esi
+00315CA2  call      0x2536a0
+00315CA7  mov       byte ptr [rax + rdi + 0x3848], bl
+00315CAE  mov       rbx, qword ptr [rsp + 0x30]
+00315CB3  mov       rbp, qword ptr [rsp + 0x38]
+00315CB8  mov       rsi, qword ptr [rsp + 0x40]
+00315CBD  add       rsp, 0x20
+00315CC1  pop       rdi
+00315CC2  ret       
+== 00315B50 (95 instructions, to 00315CC2)
+00315B50  mov       qword ptr [rsp + 8], rbx
+00315B55  mov       qword ptr [rsp + 0x10], rbp
+00315B5A  mov       qword ptr [rsp + 0x18], rsi
+00315B5F  push      rdi
+00315B60  sub       rsp, 0x20
+00315B64  mov       esi, edx
+00315B66  mov       ebp, r8d
+00315B69  cmp       cl, 5
+00315B6C  jae       0x315bd8
+00315B6E  movzx     eax, cl
+00315B71  lea       rdx, [rip - 0x1f5b78]   ; -> 00120000
+00315B78  lea       rcx, [rax + rax]
+00315B7C  movzx     eax, word ptr [rcx + rdx + 0xbf0640]
+00315B84  cmp       esi, eax
+00315B86  jae       0x315cae
+00315B8C  movzx     eax, word ptr [rcx + rdx + 0xbf0630]
+00315B94  add       esi, eax
+00315B96  mov       edi, esi
+00315B98  shr       rdi, 3
+00315B9C  call      0x2536a0
+00315BA1  and       esi, 7
+00315BA4  movzx     ebx, byte ptr [rax + rdi + 0x330c]
+00315BAC  test      ebp, ebp
+00315BAE  je        0x315bc4
+00315BB0  bts       ebx, esi
+00315BB3  call      0x2536a0
+00315BB8  mov       byte ptr [rax + rdi + 0x330c], bl
+00315BBF  jmp       0x315cae
+00315BC4  btr       ebx, esi
+00315BC7  call      0x2536a0
+00315BCC  mov       byte ptr [rax + rdi + 0x330c], bl
+00315BD3  jmp       0x315cae
+00315BD8  jne       0x315c26
+00315BDA  cmp       esi, 0x30
+00315BDD  jae       0x315cae
+00315BE3  mov       rdi, rsi
+00315BE6  shr       rdi, 3
+00315BEA  call      0x2536a0
+00315BEF  and       esi, 7
+00315BF2  movzx     ebx, byte ptr [rax + rdi + 0x33f4]
+00315BFA  test      ebp, ebp
+00315BFC  je        0x315c12
+00315BFE  bts       ebx, esi
+00315C01  call      0x2536a0
+00315C06  mov       byte ptr [rax + rdi + 0x33f4], bl
+00315C0D  jmp       0x315cae
+00315C12  btr       ebx, esi
+00315C15  call      0x2536a0
+00315C1A  mov       byte ptr [rax + rdi + 0x33f4], bl
+00315C21  jmp       0x315cae
+00315C26  cmp       cl, 6
+00315C29  jne       0x315c75
+00315C2B  cmp       esi, 0x200
+00315C31  jae       0x315cae
+00315C33  xor       edi, edi
+00315C35  call      0x2536a0
+00315C3A  test      ebp, ebp
+00315C3C  je        0x315c50
+00315C3E  cmp       edi, 8
+00315C41  jae       0x315c6c
+00315C43  movzx     ebx, byte ptr [rax + rsi + 0x3604]
+00315C4B  bts       ebx, edi
+00315C4E  jmp       0x315c60
+00315C50  cmp       edi, 8
+00315C53  jae       0x315c6c
+00315C55  movzx     ebx, byte ptr [rax + rsi + 0x3604]
+00315C5D  btr       ebx, edi
+00315C60  call      0x2536a0
+00315C65  mov       byte ptr [rax + rsi + 0x3604], bl
+00315C6C  inc       edi
+00315C6E  cmp       edi, 8
+00315C71  jl        0x315c35
+00315C73  jmp       0x315cae
+00315C75  cmp       cl, 7
+00315C78  jne       0x315cae
+00315C7A  cmp       esi, 0x1e
+00315C7D  jae       0x315cae
+00315C7F  mov       rdi, rsi
+00315C82  shr       rdi, 3
+00315C86  call      0x2536a0
+00315C8B  and       esi, 7
+00315C8E  movzx     ebx, byte ptr [rax + rdi + 0x3848]
+00315C96  test      ebp, ebp
+00315C98  je        0x315c9f
+00315C9A  bts       ebx, esi
+00315C9D  jmp       0x315ca2
+00315C9F  btr       ebx, esi
+00315CA2  call      0x2536a0
+00315CA7  mov       byte ptr [rax + rdi + 0x3848], bl
+00315CAE  mov       rbx, qword ptr [rsp + 0x30]
+00315CB3  mov       rbp, qword ptr [rsp + 0x38]
+00315CB8  mov       rsi, qword ptr [rsp + 0x40]
+00315CBD  add       rsp, 0x20
+00315CC1  pop       rdi
+00315CC2  ret       
+== 00315CD0 (33 instructions, to 00315D44)
+00315CD0  cmp       ecx, 0x100
+00315CD6  jae       0x315d44
+00315CD8  mov       qword ptr [rsp + 0x18], rsi
+00315CDD  push      rdi
+00315CDE  sub       rsp, 0x20
+00315CE2  mov       esi, ecx
+00315CE4  movzx     edi, dl
+00315CE7  cmp       dl, 0x10
+00315CEA  jae       0x315d3a
+00315CEC  mov       qword ptr [rsp + 0x30], rbx
+00315CF1  mov       qword ptr [rsp + 0x38], rbp
+00315CF6  mov       ebp, esi
+00315CF8  shr       rbp, 1
+00315CFB  call      0x2536a0
+00315D00  movzx     ebx, byte ptr [rax + rbp + 0x336c]
+00315D08  test      sil, 1
+00315D0C  je        0x315d1a
+00315D0E  and       bl, 0xf
+00315D11  shl       dil, 4
+00315D15  or        bl, dil
+00315D18  jmp       0x315d24
+00315D1A  movzx     eax, bl
+00315D1D  xor       al, dil
+00315D20  and       al, 0xf
+00315D22  xor       bl, al
+00315D24  call      0x2536a0
+00315D29  mov       byte ptr [rax + rbp + 0x336c], bl
+00315D30  mov       rbp, qword ptr [rsp + 0x38]
+00315D35  mov       rbx, qword ptr [rsp + 0x30]
+00315D3A  mov       rsi, qword ptr [rsp + 0x40]
+00315D3F  add       rsp, 0x20
+00315D43  pop       rdi
+00315D44  ret       
+== 00315E90 (141 instructions, to 00316096)
+00315E90  cmp       cl, 0x1f
+00315E93  jae       0x316096
+00315E99  push      rdi
+00315E9A  sub       rsp, 0x30
+00315E9E  mov       qword ptr [rsp + 0x40], rbx
+00315EA3  movzx     edi, cl
+00315EA6  mov       qword ptr [rsp + 0x50], rsi
+00315EAB  xor       ebx, ebx
+00315EAD  movzx     esi, cl
+00315EB0  cmp       esi, 0x1e
+00315EB3  jae       0x315ee5
+00315EB5  call      0x2536a0
+00315EBA  mov       edx, esi
+00315EBC  mov       ecx, esi
+00315EBE  shr       rdx, 3
+00315EC2  and       ecx, 7
+00315EC5  movzx     r8d, byte ptr [rax + rdx + 0x3844]
+00315ECE  mov       eax, ebx
+00315ED0  mov       edx, 1
+00315ED5  shl       edx, cl
+00315ED7  test      dl, r8b
+00315EDA  setne     al
+00315EDD  test      eax, eax
+00315EDF  jne       0x316087
+00315EE5  mov       qword ptr [rsp + 0x28], r14
+00315EEA  movzx     r14d, dil
+00315EEE  mov       qword ptr [rsp + 0x20], r15
+00315EF3  lea       r15, [rip - 0x1f5efa]   ; -> 00120000
+00315EFA  movzx     eax, byte ptr [r15 + r14*8 + 0xbf0462]
+00315F03  cmp       eax, 7
+00315F06  ja        0x31607d
+00315F0C  mov       ecx, dword ptr [r15 + rax*4 + 0x1f6098]
+00315F14  add       rcx, r15
+00315F17  jmp       rcx
+00315F19  movzx     ecx, dil
+00315F1D  call      0x3165c0
+00315F22  mov       ebx, eax
+00315F24  test      eax, eax
+00315F26  jne       0x315f30
+00315F28  mov       ebx, dword ptr [r15 + r14*8 + 0xbf0464]
+00315F30  movzx     ecx, dil
+00315F34  call      0x316760
+00315F39  cmp       eax, ebx
+00315F3B  jl        0x31607d
+00315F41  jmp       0x316045
+00315F46  mov       ecx, dword ptr [r15 + r14*8 + 0xbf0464]
+00315F4E  mov       eax, ecx
+00315F50  sar       eax, 0x10
+00315F53  movzx     edi, ax
+00315F56  movzx     ebx, cx
+00315F59  cmp       ebx, edi
+00315F5B  jae       0x316045
+00315F61  xor       edx, edx
+00315F63  movzx     ecx, bx
+00315F66  call      0x309ec0
+00315F6B  test      eax, eax
+00315F6D  je        0x315f7a
+00315F6F  inc       ebx
+00315F71  cmp       ebx, edi
+00315F73  jb        0x315f61
+00315F75  jmp       0x316045
+00315F7A  cmp       ebx, edi
+00315F7C  jb        0x31607d
+00315F82  jmp       0x316045
+00315F87  movzx     ecx, dil
+00315F8B  mov       qword ptr [rsp + 0x48], rbp
+00315F90  call      0x3165c0
+00315F95  mov       ebp, eax
+00315F97  movzx     ecx, dil
+00315F9B  test      ebp, ebp
+00315F9D  mov       eax, 0x10
+00315FA2  cmove     ebp, eax
+00315FA5  call      0x3166f0
+00315FAA  mov       r8d, ebx
+00315FAD  nop       dword ptr [rax]
+00315FB0  mov       ecx, r8d
+00315FB3  mov       edx, 1
+00315FB8  shl       edx, cl
+00315FBA  inc       r8d
+00315FBD  and       edx, eax
+00315FBF  lea       ecx, [rbx + 1]
+00315FC2  cmove     ecx, ebx
+00315FC5  mov       ebx, ecx
+00315FC7  cmp       r8d, 0x10
+00315FCB  jl        0x315fb0
+00315FCD  cmp       ecx, ebp
+00315FCF  mov       rbp, qword ptr [rsp + 0x48]
+00315FD4  jl        0x31607d
+00315FDA  jmp       0x316045
+00315FDC  call      0x3160c0
+00315FE1  test      eax, eax
+00315FE3  je        0x31607d
+00315FE9  jmp       0x316045
+00315FEB  call      0x3161a0
+00315FF0  test      eax, eax
+00315FF2  je        0x31607d
+00315FF8  jmp       0x316045
+00315FFA  mov       rcx, qword ptr [rip + 0x1fac54f]   ; -> 022C2550
+00316001  movsxd    rdx, dword ptr [r15 + r14*8 + 0xbf0464]
+00316009  test      rcx, rcx
+0031600C  je        0x31607d
+0031600E  add       rcx, 8
+00316012  je        0x31607d
+00316014  movzx     eax, word ptr [rcx]
+00316017  add       eax, ecx
+00316019  mov       ecx, eax
+0031601B  je        0x31607d
+0031601D  movzx     eax, word ptr [rax]
+00316020  add       eax, ecx
+00316022  mov       ecx, eax
+00316024  je        0x31607d
+00316026  movzx     eax, word ptr [rax]
+00316029  add       eax, ecx
+0031602B  mov       ecx, eax
+0031602D  je        0x31607d
+0031602F  movzx     eax, word ptr [rax + 2]
+00316033  cmp       edx, eax
+00316035  jge       0x31607d
+00316037  movzx     ecx, word ptr [rcx + rdx*2 + 4]
+0031603C  call      0x315420
+00316041  test      eax, eax
+00316043  jle       0x31607d
+00316045  cmp       esi, 0x1e
+00316048  jae       0x316070
+0031604A  mov       rdi, rsi
+0031604D  shr       rdi, 3
+00316051  call      0x2536a0
+00316056  and       esi, 7
+00316059  movzx     ebx, byte ptr [rax + rdi + 0x3844]
+00316061  bts       ebx, esi
+00316064  call      0x2536a0
+00316069  mov       byte ptr [rax + rdi + 0x3844], bl
+00316070  mov       ecx, dword ptr [r15 + r14*4 + 0xbf0550]
+00316078  call      0x8632b0
+0031607D  mov       r14, qword ptr [rsp + 0x28]
+00316082  mov       r15, qword ptr [rsp + 0x20]
+00316087  mov       rbx, qword ptr [rsp + 0x40]
+0031608C  mov       rsi, qword ptr [rsp + 0x50]
+00316091  add       rsp, 0x30
+00316095  pop       rdi
+00316096  ret       
+== 00316930 (80 instructions, to 00316A4A)
+00316930  push      rbx
+00316932  sub       rsp, 0x20
+00316936  mov       qword ptr [rsp + 0x40], rdi
+0031693B  mov       ecx, 1
+00316940  mov       qword ptr [rsp + 0x48], r14
+00316945  call      0x283270
+0031694A  xor       ebx, ebx
+0031694C  mov       qword ptr [rsp + 0x30], rbp
+00316951  mov       edi, ebx
+00316953  mov       qword ptr [rsp + 0x38], rsi
+00316958  lea       r14, [rip + 0x1bd67d1]   ; -> 01EED130
+0031695F  nop       
+00316960  mov       rcx, qword ptr [rip + 0x1fabbe9]   ; -> 022C2550
+00316967  test      rcx, rcx
+0031696A  je        0x316a14
+00316970  add       rcx, 8
+00316974  je        0x316a14
+0031697A  movzx     eax, word ptr [rcx]
+0031697D  add       eax, ecx
+0031697F  mov       ecx, eax
+00316981  je        0x316a14
+00316987  movzx     eax, word ptr [rax]
+0031698A  add       eax, ecx
+0031698C  mov       ecx, eax
+0031698E  je        0x316a14
+00316994  movzx     edx, word ptr [rax]
+00316997  add       edx, ecx
+00316999  je        0x316a14
+0031699B  movzx     r9d, word ptr [rdx + 2]
+003169A0  mov       eax, ebx
+003169A2  mov       r8, rbx
+003169A5  test      r9d, r9d
+003169A8  je        0x3169ca
+003169AA  add       rdx, 4
+003169AE  nop       
+003169B0  cmp       eax, 0xb
+003169B3  jae       0x316a14
+003169B5  movzx     ecx, word ptr [rdx]
+003169B8  cmp       edi, ecx
+003169BA  je        0x3169ca
+003169BC  inc       eax
+003169BE  inc       r8
+003169C1  add       rdx, 2
+003169C5  cmp       eax, r9d
+003169C8  jl        0x3169b0
+003169CA  cmp       eax, r9d
+003169CD  je        0x316a14
+003169CF  movsx     ebp, word ptr [r14 + r8*2]
+003169D4  cmp       ebp, -1
+003169D7  je        0x316a14
+003169D9  mov       esi, edi
+003169DB  call      0x2536a0
+003169E0  cmp       byte ptr [rax + rsi + 0x3404], bl
+003169E7  je        0x3169fc
+003169E9  call      0x2536a0
+003169EE  movzx     edx, byte ptr [rax + rsi + 0x3404]
+003169F6  dec       edx
+003169F8  test      edx, edx
+003169FA  jg        0x316a14
+003169FC  mov       ecx, ebp
+003169FE  call      0x315dc0
+00316A03  test      eax, eax
+00316A05  je        0x316a14
+00316A07  call      0x2536a0
+00316A0C  mov       byte ptr [rax + rsi + 0x3404], 2
+00316A14  inc       edi
+00316A16  cmp       edi, 0x200
+00316A1C  jl        0x316960
+00316A22  mov       r14, qword ptr [rsp + 0x48]
+00316A27  mov       rdi, qword ptr [rsp + 0x40]
+00316A2C  mov       rsi, qword ptr [rsp + 0x38]
+00316A31  mov       rbp, qword ptr [rsp + 0x30]
+00316A36  movzx     ecx, bl
+00316A39  call      0x315e90
+00316A3E  inc       ebx
+00316A40  cmp       ebx, 0x1e
+00316A43  jl        0x316a36
+00316A45  add       rsp, 0x20
+00316A49  pop       rbx
+00316A4A  jmp       0x3162e0
+== 00316A50 (104 instructions, to 00316BEA)
+00316A50  cmp       cl, 0x1e
+00316A53  jae       0x316bea
+00316A59  mov       qword ptr [rsp + 0x20], rsi
+00316A5E  push      rdi
+00316A5F  sub       rsp, 0x20
+00316A63  mov       qword ptr [rsp + 0x30], rbx
+00316A68  mov       edi, edx
+00316A6A  mov       qword ptr [rsp + 0x38], rbp
+00316A6F  movzx     esi, cl
+00316A72  movzx     ebp, cl
+00316A75  mov       qword ptr [rsp + 0x40], r14
+00316A7A  lea       r14, [rip - 0x1f6a81]   ; -> 00120000
+00316A81  cmp       byte ptr [r14 + rbp*8 + 0xbf0460], 0
+00316A8A  jne       0x316b51
+00316A90  movzx     ecx, byte ptr [r14 + rbp*8 + 0xbf0462]
+00316A99  test      ecx, ecx
+00316A9B  je        0x316af4
+00316A9D  cmp       ecx, 1
+00316AA0  jne       0x316bd1
+00316AA6  cmp       edx, dword ptr [r14 + rbp*8 + 0xbf0464]
+00316AAE  jne       0x316bd1
+00316AB4  movzx     esi, sil
+00316AB8  cmp       esi, 0x1e
+00316ABB  jae       0x316ae2
+00316ABD  mov       edi, esi
+00316ABF  shr       rdi, 3
+00316AC3  call      0x2536a0
+00316AC8  and       esi, 7
+00316ACB  movzx     ebx, byte ptr [rax + rdi + 0x3844]
+00316AD3  bts       ebx, esi
+00316AD6  call      0x2536a0
+00316ADB  mov       byte ptr [rax + rdi + 0x3844], bl
+00316AE2  mov       ecx, dword ptr [r14 + rbp*4 + 0xbf0550]
+00316AEA  call      0x8632b0
+00316AEF  jmp       0x316bd1
+00316AF4  movzx     ecx, sil
+00316AF8  call      0x3165c0
+00316AFD  test      eax, eax
+00316AFF  jne       0x316b09
+00316B01  mov       eax, dword ptr [r14 + rbp*8 + 0xbf0464]
+00316B09  cmp       edi, eax
+00316B0B  jl        0x316bd1
+00316B11  movzx     esi, sil
+00316B15  cmp       esi, 0x1e
+00316B18  jae       0x316b3f
+00316B1A  mov       edi, esi
+00316B1C  shr       rdi, 3
+00316B20  call      0x2536a0
+00316B25  and       esi, 7
+00316B28  movzx     ebx, byte ptr [rax + rdi + 0x3844]
+00316B30  bts       ebx, esi
+00316B33  call      0x2536a0
+00316B38  mov       byte ptr [rax + rdi + 0x3844], bl
+00316B3F  mov       ecx, dword ptr [r14 + rbp*4 + 0xbf0550]
+00316B47  call      0x8632b0
+00316B4C  jmp       0x316bd1
+00316B51  movzx     ecx, sil
+00316B55  call      0x3166f0
+00316B5A  mov       ebx, eax
+00316B5C  movzx     eax, byte ptr [r14 + rbp*8 + 0xbf0462]
+00316B65  test      al, al
+00316B67  je        0x316b7e
+00316B69  cmp       al, 3
+00316B6B  je        0x316b73
+00316B6D  cmp       al, 8
+00316B6F  je        0x316bd1
+00316B71  jmp       0x316bbd
+00316B73  lea       eax, [rdi - 0xe2]
+00316B79  bts       ebx, eax
+00316B7C  jmp       0x316bbd
+00316B7E  movzx     eax, byte ptr [r14 + rbp*8 + 0xbf0460]
+00316B87  cmp       al, 2
+00316B89  jne       0x316ba5
+00316B8B  mov       eax, 0x7fff
+00316B90  sub       eax, ebx
+00316B92  cmp       edi, eax
+00316B94  jl        0x316b9d
+00316B96  mov       ebx, 0x7fff
+00316B9B  jmp       0x316bbd
+00316B9D  add       ebx, edi
+00316B9F  jns       0x316bbd
+00316BA1  xor       ebx, ebx
+00316BA3  jmp       0x316bbd
+00316BA5  cmp       al, 4
+00316BA7  jne       0x316bbb
+00316BA9  mov       eax, 0x7fffffff
+00316BAE  sub       eax, ebx
+00316BB0  cmp       edi, eax
+00316BB2  jl        0x316b9d
+00316BB4  mov       ebx, 0x7fffffff
+00316BB9  jmp       0x316bbd
+00316BBB  add       ebx, edi
+00316BBD  movzx     ecx, sil
+00316BC1  call      0x315e90
+00316BC6  mov       edx, ebx
+00316BC8  movzx     ecx, sil
+00316BCC  call      0x316bf0
+00316BD1  mov       rbp, qword ptr [rsp + 0x38]
+00316BD6  mov       rbx, qword ptr [rsp + 0x30]
+00316BDB  mov       r14, qword ptr [rsp + 0x40]
+00316BE0  mov       rsi, qword ptr [rsp + 0x48]
+00316BE5  add       rsp, 0x20
+00316BE9  pop       rdi
+00316BEA  ret       

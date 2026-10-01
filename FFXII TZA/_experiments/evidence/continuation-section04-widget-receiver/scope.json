@@ -1,0 +1,93 @@
+{
+  "bodies": [
+    {
+      "entry": "003939B0",
+      "seeds": {
+        "rcx": [
+          "consumer",
+          0
+        ],
+        "rdx": [
+          "message",
+          0
+        ],
+        "rsp": [
+          "stack",
+          0
+        ]
+      },
+      "jump_table": {
+        "site": "003939F5",
+        "address": "00393E48",
+        "entries": 19,
+        "base": "00120000"
+      }
+    },
+    {
+      "entry": "00394070",
+      "seeds": {
+        "rcx": [
+          "asset",
+          0
+        ],
+        "rdx": [
+          "message",
+          0
+        ],
+        "rsp": [
+          "stack",
+          0
+        ]
+      }
+    },
+    {
+      "entry": "00393FF0",
+      "seeds": {
+        "rcx": [
+          "asset",
+          0
+        ],
+        "rsp": [
+          "stack",
+          0
+        ]
+      }
+    },
+    {
+      "entry": "002465F0",
+      "seeds": {
+        "rcx": [
+          "asset",
+          0
+        ],
+        "r9": [
+          "init_args",
+          0
+        ],
+        "rsp": [
+          "stack",
+          0
+        ]
+      }
+    },
+    {
+      "entry": "00394530",
+      "seeds": {
+        "rsp": [
+          "stack",
+          0
+        ]
+      }
+    }
+  ],
+  "global_root_slots": {
+    "02AEE4C0": "asset",
+    "02AEE4C8": "consumer"
+  },
+  "limitations": [
+    "Explicit entry identities require the separately verified creator/handler chains.",
+    "Conservative intra-function fixed-offset dataflow; no stack-spill recovery, general alias analysis, dynamic-index extent proof or pointee typing.",
+    "No whole-game exhaustive scanner claim.",
+    "Original Tools/hop_scan.py or the particular flawed producer was not included and is not patched."
+  ]
+}

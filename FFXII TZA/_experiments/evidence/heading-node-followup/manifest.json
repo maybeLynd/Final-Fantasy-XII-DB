@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4735,
+      "sha256": "fda64843acd437a0fd13e32bf72b0b9bc0ca018b0a324012aa96d78492947a8c"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 3523,
+      "sha256": "cca8663ea485cac88a6bb6a0b29bf524b79a21a49cc1ffe0ab80ddfce65ea4c6"
+    },
+    {
+      "path": "handoff-header.txt",
+      "bytes": 2211,
+      "sha256": "12cc3fe33024326160645efa886632d09020f0ff257286f1de3c7dabc1797655"
+    },
+    {
+      "path": "node-67-002F2530.bin",
+      "bytes": 2094,
+      "sha256": "4742d726c8b2419db3ad1ec224251005aad8a10ed15d1bca99fced519fb71b05"
+    },
+    {
+      "path": "node-67-004607C0.bin",
+      "bytes": 894,
+      "sha256": "7da41d7f0e87a17e7e4ab9ac572f013c1ff9529fd979cc55cb5e80cd0fc081f5"
+    },
+    {
+      "path": "NODE-67-READER-PLAN.md",
+      "bytes": 893,
+      "sha256": "35e31a0f4d32db2b3c97528c33239e4ad70670f35cf9f3e7f3079e9acab91a24"
+    },
+    {
+      "path": "node-67-reader-result.json",
+      "bytes": 13312,
+      "sha256": "27349828a86e396808535e9e643d65839642c11e273f35cf2f35fbb46269f976"
+    },
+    {
+      "path": "node-67-reader-source.py",
+      "bytes": 4887,
+      "sha256": "b7996575af4433c12ef7054faf70a399a826047a6d848b2390b54ca949ba827c"
+    },
+    {
+      "path": "NODE-FOLLOWUP-RESULT.md",
+      "bytes": 3259,
+      "sha256": "78b2a559ee914c8364f7df4ce9a2212e3af6a741d0583a5be1cef29c9f15e531"
+    },
+    {
+      "path": "node-followup-terminal.json",
+      "bytes": 3135,
+      "sha256": "3c197eb895322f74cb63ef5467a7aacb6914f557d1d2f192d76b4ce61e52318e"
+    },
+    {
+      "path": "NODE-OSCILLATOR-PLAN.md",
+      "bytes": 1420,
+      "sha256": "3e533c1fdc84bf30cbdc6f3fefe16ab9e2175298627fe1ce3e25ba989a2899a0"
+    },
+    {
+      "path": "oscillator-gate-0052BBD0.bin",
+      "bytes": 925,
+      "sha256": "8be01e3d755688e289572bdc87c44ebad8acd282e5aa079ee8be8142a227b992"
+    },
+    {
+      "path": "oscillator-gate-result.json",
+      "bytes": 55988,
+      "sha256": "950ec55d9a24ecbc07c9dea0f1b948e3ec99000d8f23a377116d846e5ed68b90"
+    },
+    {
+      "path": "oscillator-gate-source.py",
+      "bytes": 5547,
+      "sha256": "ef3e233ef8766fa4dd31db699f0fb38d19992b788ab2e919a7c1fe172dbe91cc"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 5247,
+      "sha256": "d2ab75d8a148e7b07431ec81f343ed6c30425ba494528a21bba251798bd8303d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2068,
+      "sha256": "fe09e86761341b0a27c59faee096278e204044cf04164ca47c3272d5c5c75d70"
+    },
+    {
+      "path": "record-identity.py",
+      "bytes": 1182,
+      "sha256": "b5d7fb7687334f5d6819c292ab38093c57d20e922464abcde635b810f4e4db6a"
+    },
+    {
+      "path": "result.json",
+      "bytes": 672,
+      "sha256": "b69037becd0d039e85f2f8f6eba67389fe5035e016d8f7391dd6a31b0ec205f8"
+    },
+    {
+      "path": "retained/the-per-model-oscillator-subsystem.md",
+      "bytes": 29739,
+      "sha256": "edb568bba781d056044027ad14524ff85a2c32fa3f9365e453e245eeeb753398"
+    },
+    {
+      "path": "run-checks.py",
+      "bytes": 2124,
+      "sha256": "f15a33ed3f79dd7ecb537c6ca20c4dada743033e9a6cfc719161687530d140d6"
+    },
+    {
+      "path": "tool-identity.json",
+      "bytes": 1654,
+      "sha256": "ba1d88bbd30ccd3c675ab7fb21a25879ebd3354ea032b102ab3fb32072ab628e"
+    }
+  ],
+  "limits": "Method A source only. Type67 one-hop field reader and type72 clear/installer loop conditional on normal ABI/returns. No initialized/live/class/lifetime/scheduling/presentation conclusion or full L1+L2 award."
+}

@@ -1,0 +1,160 @@
+== 0032AB60 (35 instructions, to 0032ABD8)
+0032AB60  sub       rsp, 0x28
+0032AB64  lea       eax, [rcx - 2]
+0032AB67  mov       r8d, edx
+0032AB6A  cmp       eax, 0x1fd
+0032AB6F  ja        0x32abd4
+0032AB71  mov       qword ptr [rsp + 0x30], rbx
+0032AB76  mov       eax, ecx
+0032AB78  cdq       
+0032AB79  mov       qword ptr [rsp + 0x20], rdi
+0032AB7E  and       edx, 7
+0032AB81  mov       ebx, 1
+0032AB86  add       eax, edx
+0032AB88  mov       edi, eax
+0032AB8A  and       eax, 7
+0032AB8D  sub       eax, edx
+0032AB8F  sar       edi, 3
+0032AB92  mov       ecx, eax
+0032AB94  shl       ebx, cl
+0032AB96  test      r8d, r8d
+0032AB99  je        0x32abb9
+0032AB9B  call      0x2ef2b0
+0032ABA0  movsxd    rcx, edi
+0032ABA3  mov       rdi, qword ptr [rsp + 0x20]
+0032ABA8  or        byte ptr [rax + rcx + 0x14f4], bl
+0032ABAF  mov       rbx, qword ptr [rsp + 0x30]
+0032ABB4  add       rsp, 0x28
+0032ABB8  ret       
+0032ABB9  call      0x2ef2b0
+0032ABBE  movsxd    rcx, edi
+0032ABC1  not       bl
+0032ABC3  mov       rdi, qword ptr [rsp + 0x20]
+0032ABC8  and       byte ptr [rax + rcx + 0x14f4], bl
+0032ABCF  mov       rbx, qword ptr [rsp + 0x30]
+0032ABD4  add       rsp, 0x28
+0032ABD8  ret       
+== 0046B290 (55 instructions, to 0046B34D)
+0046B290  mov       qword ptr [rsp + 8], rbx
+0046B295  mov       qword ptr [rsp + 0x10], rsi
+0046B29A  push      rdi
+0046B29B  sub       rsp, 0x20
+0046B29F  mov       r8d, edx
+0046B2A2  mov       eax, ecx
+0046B2A4  cdq       
+0046B2A5  mov       ebx, 1
+0046B2AA  and       edx, 7
+0046B2AD  add       eax, edx
+0046B2AF  mov       edi, eax
+0046B2B1  and       eax, 7
+0046B2B4  sub       eax, edx
+0046B2B6  sar       edi, 3
+0046B2B9  mov       ecx, eax
+0046B2BB  mov       esi, eax
+0046B2BD  shl       ebx, cl
+0046B2BF  test      r8d, r8d
+0046B2C2  je        0x46b32d
+0046B2C4  call      0x2ef2b0
+0046B2C9  cmp       dword ptr [rax + 0x1040], 0xffff
+0046B2D3  jae       0x46b2e0
+0046B2D5  call      0x2ef2b0
+0046B2DA  inc       dword ptr [rax + 0x1040]
+0046B2E0  call      0x2ef2b0
+0046B2E5  movsxd    rcx, edi
+0046B2E8  or        byte ptr [rax + rcx + 0x1020], bl
+0046B2EF  mov       eax, esi
+0046B2F1  cdq       
+0046B2F2  and       edx, 7
+0046B2F5  add       eax, edx
+0046B2F7  mov       ebx, eax
+0046B2F9  and       eax, 7
+0046B2FC  sub       eax, edx
+0046B2FE  sar       ebx, 3
+0046B301  mov       edi, eax
+0046B303  call      0x2ef2b0
+0046B308  movsxd    rdx, ebx
+0046B30B  movzx     ecx, byte ptr [rdx + rax + 0x1000]
+0046B313  btr       ecx, edi
+0046B316  mov       byte ptr [rdx + rax + 0x1000], cl
+0046B31D  mov       rbx, qword ptr [rsp + 0x30]
+0046B322  mov       rsi, qword ptr [rsp + 0x38]
+0046B327  add       rsp, 0x20
+0046B32B  pop       rdi
+0046B32C  ret       
+0046B32D  call      0x2ef2b0
+0046B332  mov       rsi, qword ptr [rsp + 0x38]
+0046B337  not       bl
+0046B339  movsxd    rcx, edi
+0046B33C  and       byte ptr [rax + rcx + 0x1020], bl
+0046B343  mov       rbx, qword ptr [rsp + 0x30]
+0046B348  add       rsp, 0x20
+0046B34C  pop       rdi
+0046B34D  ret       
+== 0046B350 (11 instructions, to 0046B376)
+0046B350  mov       qword ptr [rsp + 8], rbx
+0046B355  push      rdi
+0046B356  sub       rsp, 0x20
+0046B35A  mov       edi, edx
+0046B35C  movsxd    rbx, ecx
+0046B35F  call      0x2ef2b0
+0046B364  mov       word ptr [rax + rbx*2 + 0x1164], di
+0046B36C  mov       rbx, qword ptr [rsp + 0x30]
+0046B371  add       rsp, 0x20
+0046B375  pop       rdi
+0046B376  ret       
+== 0046B3F0 (43 instructions, to 0046B486)
+0046B3F0  mov       qword ptr [rsp + 8], rbx
+0046B3F5  mov       qword ptr [rsp + 0x10], rsi
+0046B3FA  push      rdi
+0046B3FB  sub       rsp, 0x20
+0046B3FF  mov       r8d, edx
+0046B402  movsxd    rsi, ecx
+0046B405  mov       eax, esi
+0046B407  mov       ebx, 1
+0046B40C  cdq       
+0046B40D  and       edx, 7
+0046B410  add       eax, edx
+0046B412  mov       edi, eax
+0046B414  and       eax, 7
+0046B417  sub       eax, edx
+0046B419  sar       edi, 3
+0046B41C  mov       ecx, eax
+0046B41E  shl       ebx, cl
+0046B420  test      r8d, r8d
+0046B423  je        0x46b466
+0046B425  movsxd    rdi, edi
+0046B428  call      0x2ef2b0
+0046B42D  test      byte ptr [rax + rdi + 0x1000], bl
+0046B434  jne       0x46b477
+0046B436  call      0x2ef2b0
+0046B43B  or        byte ptr [rax + rdi + 0x1000], bl
+0046B442  call      0x3148f0
+0046B447  mov       ebx, eax
+0046B449  call      0x2ef2b0
+0046B44E  mov       word ptr [rax + rsi*2 + 0x1164], bx
+0046B456  mov       rbx, qword ptr [rsp + 0x30]
+0046B45B  mov       rsi, qword ptr [rsp + 0x38]
+0046B460  add       rsp, 0x20
+0046B464  pop       rdi
+0046B465  ret       
+0046B466  call      0x2ef2b0
+0046B46B  movsxd    rcx, edi
+0046B46E  not       bl
+0046B470  and       byte ptr [rax + rcx + 0x1000], bl
+0046B477  mov       rbx, qword ptr [rsp + 0x30]
+0046B47C  mov       rsi, qword ptr [rsp + 0x38]
+0046B481  add       rsp, 0x20
+0046B485  pop       rdi
+0046B486  ret       
+== 0046B490 (11 instructions, to 0046B4B6)
+0046B490  mov       qword ptr [rsp + 8], rbx
+0046B495  push      rdi
+0046B496  sub       rsp, 0x20
+0046B49A  mov       edi, edx
+0046B49C  movsxd    rbx, ecx
+0046B49F  call      0x2ef2b0
+0046B4A4  mov       byte ptr [rax + rbx + 0x1064], dil
+0046B4AC  mov       rbx, qword ptr [rsp + 0x30]
+0046B4B1  add       rsp, 0x20
+0046B4B5  pop       rdi
+0046B4B6  ret       

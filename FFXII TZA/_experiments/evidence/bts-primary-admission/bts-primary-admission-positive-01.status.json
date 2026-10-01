@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-primary-admission.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-result-01.json"
+  ],
+  "checker_sha256": "1587dc4f9e0278744485d92a71e7bddde537a19e6af1bcb6637a038b758e8217"
+}

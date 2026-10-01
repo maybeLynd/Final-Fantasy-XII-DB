@@ -1,0 +1,23 @@
+00227F90  add       esp, 0x40
+00227F93  pop       rdi
+00227F94  ret       
+00227F95  lea       rcx, [rsi + 0xc0]
+00227F9C  call      0x2abec0
+00227FA1  xor       eax, eax
+00227FA3  mov       rbx, qword ptr [rsp + 0x60]
+00227FA8  mov       rsi, qword ptr [rsp + 0x68]
+00227FAD  add       rsp, 0x40
+00227FB1  pop       rdi
+00227FB2  ret       
+00227FB3  mov       r8, qword ptr [rdx + 8]
+00227FB7  lea       rax, [rsp + 0x58]
+00227FBC  mov       qword ptr [rsp + 0x30], 0
+00227FC5  lea       rcx, [rsi + 0xc0]
+00227FCC  mov       qword ptr [rsp + 0x28], rax
+00227FD1  mov       r9d, 1
+00227FD7  lea       rax, [rsp + 0x50]
+00227FDC  xor       edx, edx
+00227FDE  mov       qword ptr [rsp + 0x20], rax
+00227FE3  call      0x2b3280
+00227FE8  xor       edx, edx
+---

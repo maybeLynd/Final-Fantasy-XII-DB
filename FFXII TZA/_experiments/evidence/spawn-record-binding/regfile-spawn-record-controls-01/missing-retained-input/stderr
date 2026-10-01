@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-regfile-spawn-record.py", line 162, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-regfile-spawn-record.py", line 31, in main
+    if p.stat().st_size!=x['bytes'] or P.sha(p)!=x['sha256']:raise ValueError('retained input changed')
+       ~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 654, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\missing-retained-input\\regfile-spawn-record-inputs-01\\section12-original-body-manifest.json'

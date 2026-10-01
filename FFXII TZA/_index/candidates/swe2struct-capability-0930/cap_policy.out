@@ -1,0 +1,25 @@
+PASS C0   the image is the certified EXE  -- 73461d0896204b1c
+PASS P1   positive control: the decoder gives row 1 bit 21 at the four hand-read Save/Load sites, set / clear as the page's table  -- {'005823F8': ('0x2e1ca0', 1, 21), '0058252C': ('0x2e1c20', 1, 21), '005828B4': ('0x2e1c20', 1, 21), '00582F1B': ('0x2e1ca0', 1, 21)}
+PASS P2   01E0C2C0 (88 bytes) hashes to the page's SHA-256 eadec033...
+PASS F1   01E0C2C0 decoded equals section 2's table (bits 4, 7, 11-21 zero)  -- {0: [2], 1: [1, 3, 5], 2: [3], 3: [2], 5: [5], 6: [14], 8: [1, 21], 9: [5, 14], 10: [3]}
+PASS F2   00254500 (67 B) walks 11 x 2 = 22 policy bits over 01E0C2C0 (base 01E0C2C4 - 4, stride 8)  -- tab=0x1e0c2c4
+PASS F3   00313A00 (289 B) writes row 2, bits 0-8, 10, 11, 12, 20, each once, through 002E1C20 / 002E1CA0  -- {'rows': [2], 'bits': [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 20]}
+PASS F4   the selection-only bits (call rdi, rdi = SET iff [02089350] != 0) are 0, 2-8, 11, 12, 20 - bit 5 included  -- {'reg': 'rdi', 'bits': [0, 2, 3, 4, 5, 6, 7, 8, 11, 12, 20]}
+PASS F5   the tail jmp 002E1C40(ecx = esi, edx = 5) writes only the words 0215F1AC (bts if ecx == 0, else btr) and 0215F1B4 (btr) - not the policy table 0215F1C0..0215F1FF  -- ['0215F1AC', '0215F1B4']
+PASS F6   row-2 bits through 01E0C2C0 inhibit exactly requests 1, 2, 3, 5, 14, 21  -- [1, 2, 3, 5, 14, 21]
+PASS F7   002E1CD0: ecx != 0 falls through to the clear (and ~0x139203, 002E1CE3); ecx == 0 jumps to the set (or 0x139203, 002E1CFA)
+PASS F8   002E0FA0: 29 call sites across 25 functions; 00313A00's callers are 00234590 and 00313DB0  -- 29 / 25
+PASS L1   0023B040: rdi = 003272A0's result, unwritten 0023B089..0023B15E; every branch in 0023B0AE..0023B151 stays inside  -- 10 branches
+PASS L2   003272A0 returns the unit only when byte [unit] & 8 (unit flag bit 3), else 0 (003272CB-003272D0)
+PASS L3   00236A60 clears flag bits 2 and 3 (and 0xFFFFB0E3 at 00236AA6) and nulls +0x698 (00236AB4) on one straight line
+PASS L4   typed census: BattleUnit +0x698 is written only at 00236AB4 (zero) and 0023ABFA  -- ['00236AB4', '0023ABFA']
+PASS L5   typed census: the flag-word writes able to set bit 2 or 3 are 0023AC56 (bit 2) and 00233B4B (bit 3) only; 19 register-valued writes all resolve without bits 2/3  -- {'imm': ['00233B4B:8', '0023AC56:4'], 'unresolved': []}
+PASS L6   0023A570: bit 2 (0023AC56) is reached only through the arm 0023ABFA, and r15 there is rax + 0x80 after a non-null test (class-1 path) or [02EBF190] + 8 + 0x1C8 * row (class-0 path) - never zero  -- {'jumps in': [], 'skip1': [], 'skip2': ['0023AA2A->0023ABCA', '0023AA44->0023ABCA'], 'late r15': []}
+PASS L7   00233AD0: the only bit-3 setter 00233B4B is entered only past the bit-2 test (jne 00233AF1 -> 00233B0D)  -- ['00233AF1->00233B0D', '00233B14->00233B26', '00233B38->00233B43']
+PASS L8   002368D0 allocates the 0x20 x 0xF50 unit pool, stores it at 0208E688 and memsets it to zero (00236943)
+PASS L9   0023A570 reads [unit + 0x698] + 4 guarded only by flag bit 2 (0023A59C-0023A5A8): the engine's own bit-2 => armed reading
+PASS L10  outside the typed census, the immediate bit-2/3 setters at offset 0 are the 10 pinned non-unit bases  -- ['0023429B', '0031F305', '00321324', '0032134D', '00321386', '003213AF', '003213CC', '0032968C', '003298A3', '003346D4']
+PASS L11  every call 0023B040 makes between the leader lookup and 0023B15E (003272A0, 002E8100, 00313F60, 00322600 x2, 00322920 x2) has a direct-call closure with no indirect call and no path to 00236A60 / 0023A570
+PASS M1   003592C0: after updating bit ecx of 022C8005, bit 0 of the four-byte OR decides the 0026D6D0 call on actor [022C7FE0]; 0023B040 passes ecx = 1 (0023B1C2), so its write never decides that branch
+CHECKS 23
+FAILS 0

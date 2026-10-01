@@ -1,0 +1,395 @@
+Browser tab: 2, Title: "FF12 database dashboard", URL: "http://127.0.0.1:8765/".
+0 AXWebArea FF12 database dashboard, URL: 127.0.0.1:8765/
+	1 container
+		2 text FF12 database dashboard read-only; serves the verified CURRENT generation only
+		34 text Next full refresh: 22:51
+		35 text generation g20260929T130427Z-5a3153 committed 2026-09-29T13:04:31Z | since the snapshot: team, watchdog moved (live sources; next build picks it up) | earlier failure, resolved by the current generation: input team changed while being snapshotted
+	5 container tabs
+		36 button My Progress PARTIAL
+			37 text My Progress 
+			38 text PARTIAL
+		39 button Agent Activity live
+			40 text Agent Activity 
+			41 text live
+		42 button overview OK
+			43 text overview 
+			44 text OK
+		45 button systems OK
+			46 text systems 
+			47 text OK
+		48 button vbf PARTIAL
+			49 text vbf 
+			50 text PARTIAL
+		51 button executable PARTIAL
+			52 text executable 
+			53 text PARTIAL
+		54 button types OK
+			55 text types 
+			56 text OK
+		57 button evidence PARTIAL
+			58 text evidence 
+			59 text PARTIAL
+		60 button fleet PARTIAL
+			61 text fleet 
+			62 text PARTIAL
+	33 container main
+		63 heading Overview - where the whole database stands OK, Value: 2
+			64 text Overview - where the whole database stands  OK
+		65 text source {"identity":"goal gate NOT_MET; register rows 1648","as_of":"2026-09-29T13:03:44Z","instrument":"goal_gate.py --json / check_questions.py, captured 2026-09-29T13:03:44Z","limits":"DB_GOAL is the gate's verdict, not this dashboard's; a package stage is as recorded in its file"}
+		66 table
+			67 row
+				68 cell
+					69 text measure
+				70 cell
+					71 text value
+				72 cell
+					73 text scope
+				74 cell
+					75 text instrument
+				76 cell
+					77 text as of
+				78 cell
+					79 text limits
+			80 row
+				81 cell
+					82 text register rows ANSWERED (accepted answers)
+				83 cell
+					84 text 85.9% 1422 / 1656
+					85 text 0.0%
+				86 cell
+					87 text OPEN-QUESTIONS (reporter)
+				88 cell
+					89 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				90 cell
+					91 text 2026-09-29T13:03:44Z
+				92 cell
+					93 text reporter's L1 scoring (1656 rows scored); counted once each; STALE per the reporter's own check
+			94 row
+				95 cell
+					96 text rows DISPOSITIONED: closed for the gate, UNANSWERED in fact (NAS 17, OEB 16)
+				97 cell
+					98 text 2.0% 33 / 1656
+					99 text 0.0%
+				100 cell
+					101 text OPEN-QUESTIONS (reporter)
+				102 cell
+					103 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				104 cell
+					105 text 2026-09-29T13:03:44Z
+				106 cell
+					107 text reporter's L1 scoring (1656 rows scored); counted once each; STALE per the reporter's own check
+			108 row
+				109 cell
+					110 text rows WITHDRAWN / superseded / not a question (DISSOLVED 2, NOT A QUESTION 43, SUPERSEDED 129, WITHDRAWN 7)
+				111 cell
+					112 text 10.9% 181 / 1656
+					113 text 0.0%
+				114 cell
+					115 text OPEN-QUESTIONS (reporter)
+				116 cell
+					117 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				118 cell
+					119 text 2026-09-29T13:03:44Z
+				120 cell
+					121 text not learned; not counted as answers
+			122 row
+				123 cell
+					124 text rows PARTIAL (block the gate)
+				125 cell
+					126 text 0.3% 5 / 1656
+					127 text 0.0%
+				128 cell
+					129 text OPEN-QUESTIONS (reporter)
+				130 cell
+					131 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				132 cell
+					133 text 2026-09-29T13:03:44Z
+				134 cell
+					135 text residue named on each row; check_questions (captured) agrees: PARTIAL 5 of 1648 rows
+			136 row
+				137 cell
+					138 text rows OPEN or BLOCKED
+				139 cell
+					140 text 0.8% 14 / 1656
+					141 text 0.0%
+				142 cell
+					143 text OPEN-QUESTIONS (reporter)
+				144 cell
+					145 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				146 cell
+					147 text 2026-09-29T13:03:44Z
+				148 cell
+					149 text reporter's L1 scoring (1656 rows scored); counted once each; STALE per the reporter's own check
+			150 row
+				151 cell
+					152 text rows in no class above (other status words: UNKNOWN 1)
+				153 cell
+					154 text 0.1% 1 / 1656
+					155 text 0.0%
+				156 cell
+					157 text OPEN-QUESTIONS (reporter)
+				158 cell
+					159 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				160 cell
+					161 text 2026-09-29T13:03:44Z
+				162 cell
+					163 text the remainder, shown so nothing is silently dropped; each needs a class
+			164 row
+				165 cell
+					166 text page-local obligations: unticked page boxes with no register id (0 on untracked pages)
+				167 cell
+					168 text 0
+				169 cell
+					170 text page checklists (check_questions.read_boxes via the reporter)
+				171 cell
+					172 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				173 cell
+					174 text 2026-09-29T13:03:44Z
+				175 cell
+					176 text required unless dispositioned; 19 further unticked boxes belong to live register rows
+			177 row
+				178 cell
+					179 text obligations transferred with their residue (untracked 0)
+				180 cell
+					181 text 60
+				182 cell
+					183 text batch-K transfers (transfer_audit via the reporter)
+				184 cell
+					185 text progress_report.py snapshot 525941a462251b8b (2026-09-29T13:03:43+00:00); STALE: generated 2026-09-29T13:03:43+00:00, fp 7fe0d8987b58 vs current ebbfa9ecc3d6
+				186 cell
+					187 text 2026-09-29T13:03:44Z
+				188 cell
+					189 text a transfer is not closure: it blocks until its destination resolves it
+			190 row
+				191 cell
+					192 text package items claiming completion while a linked board task is open (A02)
+				193 cell
+					194 text 0.0% 0 / 34
+					195 text 0.0%
+				196 cell
+					197 text completion-packages/*.md x board
+				198 cell
+					199 text package_checks
+				200 cell
+					201 text 2026-09-29T13:03:44Z
+				202 cell
+					203 text a consistency check, not a derivation of acceptance
+			204 row
+				205 cell
+					206 text package items whose linked board tasks are all DONE but whose stage has not moved
+				207 cell
+					208 text 2.9% 1 / 34
+					209 text 0.0%
+				210 cell
+					211 text completion-packages/*.md x board
+				212 cell
+					213 text package_checks
+				214 cell
+					215 text 2026-09-29T13:03:44Z
+				216 cell
+					217 text likely stale item stages; FABLE updates them
+			218 row
+				219 cell
+					220 text packages whose recorded stage is not their earliest item's stage
+				221 cell
+					222 text 0.0% 0 / 4
+					223 text 0.0%
+				224 cell
+					225 text completion-packages/*.md
+				226 cell
+					227 text package_checks
+				228 cell
+					229 text 2026-09-29T13:03:44Z
+				230 cell
+					231 text FABLE's rule: the package stage is the earliest non-adjacent item stage
+		232 content list
+			233 container
+				234 AXListMarker • 
+				235 text completion packages - recorded stages, checked against their items and the board
+				236 content list
+					237 container
+						238 AXListMarker ◦ 
+						239 text PKG-GP-HP-LETHAL  accepted-and-incorporated items 9
+						240 content list
+							241 container
+								242 AXListMarker ■ 
+								243 text G1 stale-text  accepted-and-incorporated owner FABLE (page edit), reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1
+							244 container
+								245 AXListMarker ■ 
+								246 text G2 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1
+							247 container
+								248 AXListMarker ■ 
+								249 text G3 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1
+							250 container
+								251 AXListMarker ■ 
+								252 text G4 stale-text  accepted-and-incorporated owner OPUS, reviewer non-OPUS auditor, board links FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-2
+							253 container
+								254 AXListMarker ■ 
+								255 text G5 stale-text (label)  dispositioned owner OPUS / FABLE, reviewer AUDIT-SEM, board links OPUS-REQ-FRONTIER-G5-DEFEAT-REWARDS-LABEL
+							256 container
+								257 AXListMarker ■ 
+								258 text G6 incorporation  dispositioned owner OPUS, reviewer —, board links none
+							259 container
+								260 AXListMarker ■ 
+								261 text G7 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1
+							262 container
+								263 AXListMarker ■ 
+								264 text G8 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1, FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-2
+							265 container
+								266 AXListMarker ■ 
+								267 text G9 review  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-G9-HP-LETHAL-FRESH-READER
+					268 container
+						269 AXListMarker ◦ 
+						270 text PKG-GP-SPAWN-RESPAWN  accepted-and-incorporated items 9
+						271 content list
+							272 container
+								273 AXListMarker ■ 
+								274 text P1 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-SPAWN-RESPAWN-1
+							275 container
+								276 AXListMarker ■ 
+								277 text P2 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-SPAWN-RESPAWN-1
+							278 container
+								279 AXListMarker ■ 
+								280 text P3 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-SPAWN-RESPAWN-1
+							281 container
+								282 AXListMarker ■ 
+								283 text P4 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-SPAWN-RESPAWN-1
+							284 container
+								285 AXListMarker ■ 
+								286 text P5 stale-text  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-SPAWN-P5-P6-P7B
+							287 container
+								288 AXListMarker ■ 
+								289 text P6 stale-text  accepted-and-incorporated owner FABLE, reviewer —, board links FABLE-REQ-AUDITSEM-SPAWN-P5-P6-P7B
+							290 container
+								291 AXListMarker ■ 
+								292 text P7 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-SPAWN-P5-P6-P7B
+							293 container
+								294 AXListMarker ■ 
+								295 text P8 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-SPAWN-RESPAWN-1
+							296 container
+								297 AXListMarker ■ 
+								298 text P9 review  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-P9-SPAWN-FRESH-READER
+					299 container
+						300 AXListMarker ◦ 
+						301 text PKG-GP-STATUS-POISON  evidence-ready items 10
+						302 content list
+							303 container
+								304 AXListMarker ■ 
+								305 text Q1 stale-text (candidate)  evidence-ready owner FABLE, reviewer AUDIT-SPEC, board links none
+							306 container
+								307 AXListMarker ■ 
+								308 text Q2 stale-text (candidate)  incorporation owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REREVIEW-POISON-Q2, FABLE-REQ-AUDITSEM-REVIEW-POISON-PAGES, FABLE-REQ-FRONTIER-APPLY-Q2-APPLIER
+							309 container
+								310 AXListMarker ■ 
+								311 text Q3 stale-text (candidate)  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-POISON-PAGES
+							312 container
+								313 AXListMarker ■ 
+								314 text Q4 stale-text (candidate)  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-POISON-PAGES
+							315 container
+								316 AXListMarker ■ 
+								317 text Q5 stale-text (candidate)  evidence-ready owner FABLE (contract); the verdict row goes to its owner, reviewer AUDIT-SPEC, board links none
+							318 container
+								319 AXListMarker ■ 
+								320 text Q6 gap  evidence-ready owner OPUS (replay owner), on FABLE's request, reviewer ASTRA, board links FABLE-REQ-ASTRA-REVIEW-POISON-Q6, LINK-DONE yes
+							321 container
+								322 AXListMarker ■ 
+								323 text Q7 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-POISON-PAGES
+							324 container
+								325 AXListMarker ■ 
+								326 text Q8 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-REVIEW-POISON-PAGES
+							327 container
+								328 AXListMarker ■ 
+								329 text Q9 gap  evidence-ready owner FABLE, reviewer AUDIT-SPEC, board links none
+							330 container
+								331 AXListMarker ■ 
+								332 text Q10 review  accepted-and-incorporated owner FABLE, reviewer AUDIT-SEM, board links FABLE-REQ-AUDITSEM-Q10-POISON-FRESH-READER
+					333 container
+						334 AXListMarker ◦ 
+						335 text PKG-TECH-SCRIPTVM-VALUE  accepted-and-incorporated items 6
+						336 content list
+							337 container
+								338 AXListMarker ■ 
+								339 text T1 review  accepted-and-incorporated owner FABLE, reviewer AUDIT-SPEC (FABLE-REQ-AUDITSPEC-REVIEW-ARITH), board links FABLE-REQ-AUDITSPEC-REVIEW-ARITH
+							340 container
+								341 AXListMarker ■ 
+								342 text T2 review  accepted-and-incorporated owner FABLE, reviewer AUDIT-SPEC, board links FABLE-REQ-AUDITSPEC-REVIEW-SCRIPTVM-STORE-EDITS
+							343 container
+								344 AXListMarker ■ 
+								345 text T3 disposition  accepted-and-incorporated owner FABLE, reviewer AUDIT-SPEC, board links ASTRA-REQ-FABLE-NATIVE-DIVIDE-CONSUMER-SCOPE
+							346 container
+								347 AXListMarker ■ 
+								348 text T4 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SPEC, board links none
+							349 container
+								350 AXListMarker ■ 
+								351 text T5 gap  accepted-and-incorporated owner FABLE, reviewer AUDIT-SPEC, board links none
+							352 container
+								353 AXListMarker ■ 
+								354 text T6 review  accepted-and-incorporated owner FABLE, reviewer AUDIT-SPEC, board links FABLE-REQ-AUDITSPEC-T6-SCRIPTVM-FRESH-READER, FABLE-REQ-AUDITSPEC-T6B-PUSHP-FRESH-READER
+		355 table
+			356 row
+				357 cell
+					358 text state
+				359 cell
+					360 text value
+			361 row
+				362 cell
+					363 text 1. migration acceptance (M0-M5)
+				364 cell
+					365 text NOT ACCEPTED - no migration acceptance receipt exists; matrix items are NOT_RUN until a non-author receipt names its commit (see _index/workflow/IMPLEMENTATION-MAP.md delivery links)
+			366 row
+				367 cell
+					368 text 2. package acceptance
+				369 cell
+					370 text 3 of 4 completion packages accepted-and-incorporated (as recorded; stages: PKG-GP-HP-LETHAL accepted-and-incorporated, PKG-GP-SPAWN-RESPAWN accepted-and-incorporated, PKG-GP-STATUS-POISON evidence-ready, PKG-TECH-SCRIPTVM-VALUE accepted-and-incorporated)
+			371 row
+				372 cell
+					373 text 3. whole database (goal_gate)
+				374 cell
+					375 text NOT_MET - questions outstanding: OPEN=14, PARTIAL=5
+			376 row
+				377 cell
+					378 text goal gate: scope
+				379 cell
+					380 text OK -- population sealed, 0 residual
+			381 row
+				382 cell
+					383 text goal gate: provenance
+				384 cell
+					385 text OK -- every doc verified against the certified parent
+			386 row
+				387 cell
+					388 text goal gate: verdicts
+				389 cell
+					390 text OK -- all 52 registered systems verdict MET
+			391 row
+				392 cell
+					393 text goal gate: questions
+				394 cell
+					395 text UNMET -- questions outstanding: OPEN=14, PARTIAL=5
+			396 row
+				397 cell
+					398 text goal gate: transfers
+				399 cell
+					400 text OK -- transfer audit: 60 obligations checked, 0 untracked
+			401 row
+				402 cell
+					403 text goal gate: contradictions
+				404 cell
+					405 text OK -- every contradiction carries a resolved disposition
+			406 row
+				407 cell
+					408 text goal gate: families
+				409 cell
+					410 text UNMET -- requirement families unmet: DA=88, DD=119, F=12577
+			411 row
+				412 cell
+					413 text goal gate: acceptance
+				414 cell
+					415 text UNMET -- no committed receipt of a complete clean thirty-pass run
+			416 row
+				417 cell
+					418 text goal gate: next
+				419 cell
+					420 text resolve or carry an accepted disposition for every register row
+
+The focused UI element is 42 button overview OK

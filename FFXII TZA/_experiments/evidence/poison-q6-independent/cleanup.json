@@ -1,0 +1,34 @@
+{
+  "originals": [
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/check.py",
+      "sha256": "2cbc80696fe72fc38d8854d97b0f6ca5e5d68be34d4823a169f058c1c16fa9d7",
+      "unchanged_since_preparation": true
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/poison.py",
+      "sha256": "56e361340d94d6b5f7b610163a2e4d56914b7f814e875423d0e01c0ae7b571d5",
+      "unchanged_since_preparation": true
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/poison_result.json",
+      "sha256": "38643e333c2de709024b712b929a4102c8d775f8c94fd9b3db9397f29ac4d14f",
+      "unchanged_since_preparation": true
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/pkg-gp-status-poison/q6.md",
+      "sha256": "028053740c449c963236512f88e60f5fcd219a2c31b5cb26e7dcac6c90ed8b22",
+      "unchanged_since_preparation": true
+    },
+    {
+      "path": "Database/FFXII TZA/10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md",
+      "sha256": "12d6c4a9b026a27aeeda1076d09b7650c40a8b8fd24309083fd9af9ea650c7c3",
+      "unchanged_since_preparation": true
+    }
+  ],
+  "reference_unchanged": true,
+  "graph_unchanged": true,
+  "live_game_or_pc_control_used": false,
+  "private_capture_process_terminal": true,
+  "prior_author_result_json_equal_current": true
+}

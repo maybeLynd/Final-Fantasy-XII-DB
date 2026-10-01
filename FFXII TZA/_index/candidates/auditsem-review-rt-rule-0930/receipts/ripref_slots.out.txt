@@ -1,0 +1,69 @@
+00236E73  lea ecx, [rip + 0x2c8821f]    ; -> 02EBF098
+00236E8D  lea ecx, [rip + 0x2c881fd]    ; -> 02EBF090
+00236EA7  lea ecx, [rip + 0x2c881db]    ; -> 02EBF088
+00236EC1  lea ecx, [rip + 0x2c881b9]    ; -> 02EBF080
+00236EDB  lea ecx, [rip + 0x2c88197]    ; -> 02EBF078
+00236EF5  lea ecx, [rip + 0x2c88175]    ; -> 02EBF070
+002FD553  mov eax, dword ptr [rip + 0x2bc1b17]    ; -> 02EBF070
+002FD57D  mov eax, dword ptr [rip + 0x2bc1aed]    ; -> 02EBF070
+002FD58C  mov ecx, dword ptr [rip + 0x2bc1ade]    ; -> 02EBF070
+0031CAD2  mov eax, dword ptr [rip + 0x2ba25c0]    ; -> 02EBF098
+0031CAEF  mov eax, dword ptr [rip + 0x2ba25a3]    ; -> 02EBF098
+0031CAFE  mov eax, dword ptr [rip + 0x2ba2594]    ; -> 02EBF098
+0031CB1B  mov eax, dword ptr [rip + 0x2ba2577]    ; -> 02EBF098
+0031CB4D  mov eax, dword ptr [rip + 0x2ba2545]    ; -> 02EBF098
+0031CB5C  mov ecx, dword ptr [rip + 0x2ba2536]    ; -> 02EBF098
+0031CB92  mov ecx, dword ptr [rip + 0x2ba2500]    ; -> 02EBF098
+0031CBA4  mov ecx, dword ptr [rip + 0x2ba24ee]    ; -> 02EBF098
+0031D11C  mov eax, dword ptr [rip + 0x2ba1f6e]    ; -> 02EBF090
+0031D14A  mov eax, dword ptr [rip + 0x2ba1f40]    ; -> 02EBF090
+0031D159  mov ecx, dword ptr [rip + 0x2ba1f31]    ; -> 02EBF090
+0031D18B  mov ecx, dword ptr [rip + 0x2ba1eff]    ; -> 02EBF090
+0031D19D  mov ecx, dword ptr [rip + 0x2ba1eed]    ; -> 02EBF090
+0031D1D3  mov eax, dword ptr [rip + 0x2ba1eb7]    ; -> 02EBF090
+0031D1EC  mov eax, dword ptr [rip + 0x2ba1e9e]    ; -> 02EBF090
+0031D1FB  mov ecx, dword ptr [rip + 0x2ba1e8f]    ; -> 02EBF090
+0031D226  mov eax, dword ptr [rip + 0x2ba1e64]    ; -> 02EBF090
+0031D23F  mov eax, dword ptr [rip + 0x2ba1e4b]    ; -> 02EBF090
+0031D24E  mov ecx, dword ptr [rip + 0x2ba1e3c]    ; -> 02EBF090
+0031D273  mov eax, dword ptr [rip + 0x2ba1e17]    ; -> 02EBF090
+0031D294  mov eax, dword ptr [rip + 0x2ba1df6]    ; -> 02EBF090
+0031D2A7  mov ecx, dword ptr [rip + 0x2ba1de3]    ; -> 02EBF090
+0031D2C6  mov eax, dword ptr [rip + 0x2ba1dbc]    ; -> 02EBF088
+0031D2F4  mov eax, dword ptr [rip + 0x2ba1d8e]    ; -> 02EBF088
+0031D303  mov ecx, dword ptr [rip + 0x2ba1d7f]    ; -> 02EBF088
+0031D339  mov ecx, dword ptr [rip + 0x2ba1d49]    ; -> 02EBF088
+0031D34B  mov ecx, dword ptr [rip + 0x2ba1d37]    ; -> 02EBF088
+0031D385  mov eax, dword ptr [rip + 0x2ba1cfd]    ; -> 02EBF088
+0031D39E  mov eax, dword ptr [rip + 0x2ba1ce4]    ; -> 02EBF088
+0031D3AD  mov ecx, dword ptr [rip + 0x2ba1cd5]    ; -> 02EBF088
+0031D3DC  mov eax, dword ptr [rip + 0x2ba1ca6]    ; -> 02EBF088
+0031D3F5  mov eax, dword ptr [rip + 0x2ba1c8d]    ; -> 02EBF088
+0031D404  mov ecx, dword ptr [rip + 0x2ba1c7e]    ; -> 02EBF088
+0031D42D  mov eax, dword ptr [rip + 0x2ba1c55]    ; -> 02EBF088
+0031D44E  mov eax, dword ptr [rip + 0x2ba1c34]    ; -> 02EBF088
+0031D461  mov ecx, dword ptr [rip + 0x2ba1c21]    ; -> 02EBF088
+0031D489  mov eax, dword ptr [rip + 0x2ba1bf1]    ; -> 02EBF080
+0031D4B7  mov eax, dword ptr [rip + 0x2ba1bc3]    ; -> 02EBF080
+0031D4C6  mov ecx, dword ptr [rip + 0x2ba1bb4]    ; -> 02EBF080
+0031D4FC  mov ecx, dword ptr [rip + 0x2ba1b7e]    ; -> 02EBF080
+0031D50E  mov ecx, dword ptr [rip + 0x2ba1b6c]    ; -> 02EBF080
+0031D548  mov eax, dword ptr [rip + 0x2ba1b32]    ; -> 02EBF080
+0031D561  mov eax, dword ptr [rip + 0x2ba1b19]    ; -> 02EBF080
+0031D570  mov ecx, dword ptr [rip + 0x2ba1b0a]    ; -> 02EBF080
+0031D59F  mov eax, dword ptr [rip + 0x2ba1adb]    ; -> 02EBF080
+0031D5B8  mov eax, dword ptr [rip + 0x2ba1ac2]    ; -> 02EBF080
+0031D5C7  mov ecx, dword ptr [rip + 0x2ba1ab3]    ; -> 02EBF080
+0031D5F0  mov eax, dword ptr [rip + 0x2ba1a8a]    ; -> 02EBF080
+0031D609  mov eax, dword ptr [rip + 0x2ba1a71]    ; -> 02EBF080
+0031D61C  mov ecx, dword ptr [rip + 0x2ba1a5e]    ; -> 02EBF080
+0031D684  mov eax, dword ptr [rip + 0x2ba19e6]    ; -> 02EBF070
+0031D69D  mov eax, dword ptr [rip + 0x2ba19cd]    ; -> 02EBF070
+0031D6AC  mov ecx, dword ptr [rip + 0x2ba19be]    ; -> 02EBF070
+00322D2D  mov eax, dword ptr [rip + 0x2b9c365]    ; -> 02EBF098
+00322E29  mov ecx, dword ptr [rip + 0x2b9c261]    ; -> 02EBF090
+00322E45  mov ecx, dword ptr [rip + 0x2b9c23d]    ; -> 02EBF088
+00322E5A  mov ecx, dword ptr [rip + 0x2b9c220]    ; -> 02EBF080
+00322E6F  mov ecx, dword ptr [rip + 0x2b9c203]    ; -> 02EBF078
+00322E92  mov eax, dword ptr [rip + 0x2b9c1d8]    ; -> 02EBF070
+refs: 68

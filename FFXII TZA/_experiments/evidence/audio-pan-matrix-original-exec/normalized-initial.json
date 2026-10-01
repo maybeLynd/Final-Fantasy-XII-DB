@@ -1,0 +1,43 @@
+{
+  "mono_byte_240": [
+    0.1830398291349411,
+    0.9831054210662842
+  ],
+  "mirror_input": [
+    0.9831054210662842,
+    0.1830398440361023
+  ],
+  "stereo_spread_zero": [
+    [
+      0.5657317042350769,
+      0.8245892524719238
+    ],
+    [
+      0.8245893120765686,
+      0.5657316446304321
+    ]
+  ],
+  "equal_stereo_input_linear_mix": [
+    1.3903210163116455,
+    1.390320897102356
+  ],
+  "stereo_spread_one": [
+    [
+      0.1830398291349411,
+      0.9831054210662842
+    ],
+    [
+      0.1830398291349411,
+      0.9831054210662842
+    ]
+  ],
+  "interpretation": "Numeric output coefficients only. Equal stereo-input mixing is a calculation from measured rows, not rendered audio.",
+  "controls": "Mono center/axes and listener-origin positives; source-order/spread discriminators; incomplete run rejected; mutated half-turn changes side.",
+  "rejected_malformed_receipts": [
+    "empty",
+    "missing_return",
+    "zero_cases",
+    "wrong_channel_bits",
+    "missing_output_write"
+  ]
+}

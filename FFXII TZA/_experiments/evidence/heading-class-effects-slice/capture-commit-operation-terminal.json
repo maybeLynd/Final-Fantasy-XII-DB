@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-commit-operation.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 1,\n  \"extent_status\": [\n    [\n      \"0x3a9490\",\n      \"UNWIND_UNION_MATCH\",\n      128,\n      128\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "a3873e7f7f0fb81e65fa12efa97dfc7a475013647c1187242fea726fe855cefc"
+}

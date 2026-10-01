@@ -1,0 +1,67 @@
+# NOT A DECLARED FAMILY. Evidence for the named render-pass registry at 02CBF998.
+# Each row: a 12-byte teardown `lea rcx,[node] ; jmp 005DDD60`, the registry node it
+# unlinks, and the name that node is registered under - recovered from the
+# REGISTRATION SITE, because the nodes sit past the raw end of .data and their
+# name field is written at run time, not stored in the image.
+# register 005FDCB0: 0 ok, 0x11 null name, 0x12 duplicate name. node: +0 name, +8 next.
+teardown	node	registered_name	registration_site	disposition
+008B0380	02D36F80	AddToInscatter	00164B50	untouched
+008B0390	02D36F60	AddToIrradiance	00164B80	untouched
+008A6CC0	01F83000	AlphaModeClipRender	0015CD20	untouched
+008A6CD0	01F82FE0	AlphaModeRender	0015CD50	untouched
+008B03B0	02D36E20	Cel	00164BE0	untouched
+008B03A0	02D37A60	CelInverted	00164BB0	untouched
+008B03C0	02D37B80	CompositeScreenSpaceReflection	00164C10	untouched
+008B03E0	02D37420	CompositeToScreen	00164C70	untouched
+008B03D0	02D37440	CompositeToScreenTiled	00164C40	untouched
+008B03F0	02D36F40	CopyInscatter	00164CA0	untouched
+008B0400	02D36F20	CopyIrradiance	00164CD0	untouched
+008B0410	02D37B60	DownsampleScreenSpaceReflectionDepth	00164D00	untouched
+008B0420	02D36DA0	GenerateGlowBuffer	00164D30	untouched
+008B0430	02D37480	GenerateLightingInstantLightsTiled	00164D60	untouched
+008B0440	02D37460	GenerateLightingTiled	00164D90	untouched
+008B0450	02D36EA0	InitialiseInscattering	00164DC0	untouched
+008A6C60	01F82D38	MapShadowRender	0015CC60	untouched
+008B0470	02D37FE0	MaterialPostEffect	00164E20	untouched
+008B0460	02D38000	MaterialPostEffectInverted	00164DF0	untouched
+008A6CE0	01F83040	NearFadeClipRender	0015CD80	untouched
+008A6CF0	01F83020	NearFadeRender	0015CDB0	untouched
+008A6CA0	01F82E68	OpaqueDepth	0015CCC0	untouched
+008A6CB0	01F82E88	OpaqueGray	0015CCF0	untouched
+008B0480	02D36EE0	PrecomputeMultipleIrradiance	00164E50	untouched
+008B0490	02D36F00	PrecomputeMultipleScattering	00164E80	untouched
+008B04A0	02D36EC0	PrecomputeRadiance	00164EB0	untouched
+008B04B0	02D36E60	PrecomputeSingleIrradiance	00164EE0	untouched
+008B04C0	02D36E80	PrecomputeSingleScattering	00164F10	untouched
+008B04D0	02D36E40	PrecomputeTransmittance	00164F40	untouched
+008B04F0	02D36FA0	RenderAtmosphere	00164FA0	untouched
+008B04E0	02D37FC0	RenderAtmosphereInverted	00164F70	untouched
+008B0510	02D37680	RenderCameraMotionBlur	00165000	untouched
+008B0500	02D376A0	RenderCameraMotionBlurInverted	00164FD0	untouched
+008B0520	02D37400	RenderDirectionalLight	00165030	untouched
+008B0530	02D37600	RenderDoFComposite	00165060	untouched
+008B0540	02D375C0	RenderDoFHorizontal	00165090	untouched
+008B0550	02D375E0	RenderDoFVertical	001650C0	untouched
+008B0570	02D36DC0	RenderFXAA	00165120	untouched
+008B0560	02D37860	RenderFXAAInverted	001650F0	untouched
+008B0580	02D377E0	RenderGaussianBlurX	00165150	untouched
+008B05B0	02D37800	RenderGaussianBlurY	001651E0	untouched
+008B05A0	02D37820	RenderGaussianBlurYComposite	001651B0	untouched
+008B0590	02D37840	RenderGaussianBlurYCompositeCombine	00165180	untouched
+008B05C0	02D373C0	RenderPointLight	00165210	untouched
+008B05D0	02D36DE0	RenderRGBL	00165240	untouched
+008B05E0	02D36E00	RenderScreenSpaceReflection	00165270	untouched
+008B05F0	02D373E0	RenderSpotLight	001652A0	untouched
+008B6E90	02E5BEA8	RenderText_AlphaBlend	00167A40	untouched
+008B6EA0	02E5BEC8	RenderText_AlphaTest	00167A70	untouched
+008B6EB0	02E5BEE8	RenderText_HardEdges	00167AA0	untouched
+008B6EF0	02E5BF08	RenderText_SoftEdges	00167B60	untouched
+008B6EC0	02E5BF68	RenderText_SoftEdgesAndGlow	00167AD0	untouched
+008B6ED0	02E5BF28	RenderText_SoftEdgesAndOutline	00167B00	untouched
+008B6EE0	02E5BF48	RenderText_SoftEdgesAndShadow	00167B30	untouched
+008B0600	02D36FC0	RenderTextures	001652D0	untouched
+008B0610	02D36FE0	ResetTextures	00165300	untouched
+008B0620	02D37B40	ScreenSpaceReflectionPrePass	00165330	untouched
+008A6D10	01F82FA0	ShadowRender	0015CE10	untouched
+008A6D00	01F82FC0	ShadowRenderWithRef	0015CDE0	untouched
+008A69D0	01F81220	VideoScreen	0015C510	untouched

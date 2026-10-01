@@ -1,0 +1,7 @@
+PASS  I OPDIV int: divisor = first pop (ebx), dividend = second; only `test ebx, ebx / je 0025E682` (push int 0) precedes cdq / idiv ebx
+PASS  F OPDIV float: top -> xmm6 divisor, next -> xmm0 dividend; ucomiss xmm6, xmm7 / jp / jne -> divss xmm0, xmm6; only ordered-equal substitutes xmm7; tag 2 result
+PASS  Z the interpreter writes xmm7 only at 0025E55F (zero) and 00261DBC (restore); ebp only at 0025E555 (= 1) besides push/pop; ebp writes ['0x25e522', '0x25e555']
+PASS  M OPMOD: two pops, cdq / idiv ebx with no test of the divisor; the remainder edx is pushed as an int
+PASS  U 0025F0DA's frame (0025E550 chained to 0025E4C0) has no handler; direct callers up to 0017CCD0: {'0x25df00': '0x808ba8', '0x25d9e0': None, '0x314020': None, '0x22a770': None, '0x22b8c0': None, '0x22bc20': None, '0x22a580': None, '0x22a490': None, '0x17d6e0': None, '0x17ccd0': None}
+PASS  C controls: the handler reader reports 00808BA8 on 0025DF00; F keeps jp and rejects reversed division; I holds no quotient guard
+FAILS 0

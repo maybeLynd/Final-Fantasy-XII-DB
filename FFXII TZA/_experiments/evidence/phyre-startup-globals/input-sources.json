@@ -1,0 +1,20 @@
+[
+  {
+    "source": "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-default-instances.tsv",
+    "copy": "phyre-default-instances.tsv",
+    "bytes": 17492,
+    "sha256": "4dafd16e6b2e3b3f0be3708fe2faa28f9e4ce0ada2db61e88051f66137db5484"
+  },
+  {
+    "source": "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-parent-chain.tsv",
+    "copy": "phyre-class-parent-chain.tsv",
+    "bytes": 23241,
+    "sha256": "0c758b179efe598d3c7a39ee483052636c52ecb397dd8c411b0f7c0501d6d403"
+  },
+  {
+    "source": "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-instance-sizes.tsv",
+    "copy": "phyre-class-instance-sizes.tsv",
+    "bytes": 9501,
+    "sha256": "1ac47fe55c47f1bb34aceed023fcdf71acfb73b750832d1d06d48fa09e36bda9"
+  }
+]

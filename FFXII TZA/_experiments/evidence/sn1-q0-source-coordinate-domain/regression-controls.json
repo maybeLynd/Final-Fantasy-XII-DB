@@ -1,0 +1,16 @@
+[
+  {
+    "argument": "--fault-clamp-missing-line",
+    "returncode": 1,
+    "expected": "Missing-coordinate control must not clamp",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "0710d80166261c61a4b14e4323026a4de1fc31236d10344980dbce540c667b7b"
+  },
+  {
+    "argument": "--fault-two-padding",
+    "returncode": 1,
+    "expected": "Two-record suffix assumption",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "850b3583402e9f2be539506dbbe57f6ba668157cfe0a9ca431276603628d6359"
+  }
+]

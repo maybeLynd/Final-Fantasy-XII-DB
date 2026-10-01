@@ -1,0 +1,5 @@
+function	name	site	disp	kind	instruction	route	note
+00303A00	BattleAction_EvaluateTargetPreviewRecursive	00303B9D	0x0	w	mov qword ptr [rdi + rax*8 + 0x988], 0	embed BattleUnit+0x988	
+003191B0	Battle_ProcessActionTargetEntry	0031930C	0x0	r	cmp qword ptr [rbx + rax*8 + 0x988], 0	embed BattleUnit+0x988	
+003191B0	Battle_ProcessActionTargetEntry	0031931A	0x0	addr	lea rsi, [rbx + 0x988]	embed BattleUnit+0x988	
+00322760	FUN_00322760	0032281A	0x0	r	mov rcx, qword ptr [rbx + rcx*8 + 0x988]	embed BattleUnit+0x988	

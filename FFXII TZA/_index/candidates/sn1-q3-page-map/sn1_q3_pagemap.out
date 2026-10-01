@@ -1,0 +1,5 @@
+PASS  M1 50 scopes; map = last instruction before byte 32k, rest zero; mismatches []
+PASS  M2 q2 = {ceil(instructions/32); byte of instruction 32j}; mismatches []
+PASS  X btlctrl sc18 / sc19 maps identical ['0xffffffff', '0xb'], X = 1 / 2; X / E over 50 scopes 0.46..1.00
+PASS  C formula without the -1 matches 0 scopes; old listA reading pulls a pad zero into listA on ['ctrl sc5 (X 1, entries 0)', 'btlctrl sc2 (X 1, entries 0)', 'btlctrl sc19 (X 2, entries 1)']
+FAILS 0

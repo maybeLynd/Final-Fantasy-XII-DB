@@ -1,0 +1,7 @@
+functions scanned: 175 (closure of 0057F360 depth 3: 39, save module: 147)
+seed disp 0xd8, all=True; 8-byte [reg+seed] loads followed: 10
+FIELD hits (+0x48/+0x4C/+0x58/+0x60 mod 0xA0) through a loaded [reg+0xD8]: 4
+  0057F2BE cmp dword ptr [rcx + rax + 4], 0  (disp 0x4, mod A0 0x4, w4) after load 0057F2B3 in 0057F280 FUN_0057f280
+  0057FA59 and dword ptr [rdx + 8], 0xfffffffe  (disp 0x8, mod A0 0x8, w4) after load 0057FA52 in 0057FA30 FUN_0057fa30
+  0057FBB3 and dword ptr [rcx + 8], 0xfffffffe  (disp 0x8, mod A0 0x8, w4) after load 0057FBAC in 0057FB00 FUN_0057fb00
+  0057FC0E or dword ptr [rcx + 8], 1  (disp 0x8, mod A0 0x8, w4) after load 0057FC07 in 0057FB00 FUN_0057fb00

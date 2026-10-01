@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-SWE2-EC7-BB1-001EF060-CORRECTION-0927",
+ "agent": "SWE2-EC7",
+ "note": "Claiming the owner correction on the 001EF060 note in character-render-object.md: the body sign-flips the 3x4 floats read from rdx and writes them to [[rcx+8]]; rdx is unchanged.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

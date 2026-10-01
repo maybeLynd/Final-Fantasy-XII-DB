@@ -1,0 +1,95 @@
+1. references to 01DF0900..03: 15 (writes 3) in ['00186130', '00186410', '00186CD0', '00187950']
+    0018614C 00186130 cmp   dword ptr [rip + 0x1c6a7ad], 0               w4 
+    0018644D 00186410 mov   eax, dword ptr [rip + 0x1c6a4ad]             w4 
+    001864C3 00186410 mov   ecx, dword ptr [rip + 0x1c6a437]             w4 
+    0018650D 00186410 mov   ecx, dword ptr [rip + 0x1c6a3ed]             w4 
+    0018655C 00186410 mov   ecx, dword ptr [rip + 0x1c6a39e]             w4 
+    001865BD 00186410 mov   eax, dword ptr [rip + 0x1c6a33d]             w4 
+    00186D2B 00186CD0 mov   eax, dword ptr [rip + 0x1c69bcf]             w4 
+    00186D68 00186CD0 mov   dword ptr [rip + 0x1c69b92], ebp             w4 WRITE
+    00186D81 00186CD0 mov   dword ptr [rip + 0x1c69b78], r12d            w4 WRITE
+    00187A7A 00187950 mov   dword ptr [rip + 0x1c68e80], eax             w4 WRITE
+    00187A82 00187950 mov   eax, dword ptr [rip + 0x1c68e78]             w4 
+    00187AC7 00187950 mov   ecx, dword ptr [rip + 0x1c68e33]             w4 
+    00187B18 00187950 mov   ecx, dword ptr [rip + 0x1c68de2]             w4 
+    00187B61 00187950 mov   ecx, dword ptr [rip + 0x1c68d99]             w4 
+    00187B8C 00187950 mov   eax, dword ptr [rip + 0x1c68d6e]             w4 
+   8-byte pointers to the word in the file: 0; 4-byte RVAs: 0
+   .data initial value: 4
+2a. 00186CD0 (scene constructor 00184F20 -> 00186CD0, 00185056):
+  ok   00186D2B  mov eax, dword ptr [rip + 0x1c69bcf]              -> 01DF0900
+  ok   00186D31  mov dword ptr [rip + 0x2b3134d], eax              -> 02CB8084
+  ok   00186D37  call 0x796e20                                   
+  ok   00186D3C  mov ebp, dword ptr [rax + 0xd3c]                
+  ok   00186D50  test ebp, ebp                                   
+  ok   00186D52  je 0x186d70                                     
+  ok   00186D54  cmp ebp, 1                                      
+  ok   00186D57  mov byte ptr [rsi + 0xdba], 1                   
+  ok   00186D5E  cmove ebp, r12d                                 
+  ok   00186D68  mov dword ptr [rip + 0x1c69b92], ebp              -> 01DF0900
+  ok   00186D70  mov byte ptr [rsi + 0xdba], r12b                
+  ok   00186D81  mov dword ptr [rip + 0x1c69b78], r12d             -> 01DF0900
+  ok   00796E20  mov rax, qword ptr [rip + 0x270e541]              -> 02EA5368
+2b. 007980A0 (boot; called from 007A3770): framework +0xD20 base, +0x1C = +0xD3C
+  ok   00798545  mov rdi, qword ptr [rip + 0x270ce1c]              -> 02EA5368
+  ok   0079854C  add rdi, 0xd20                                  
+  ok   00798563  mov rcx, qword ptr [rip + 0x17ea7b6]              -> 01F82D20
+  ok   0079856A  call 0x1de570                                   
+  ok   0079856F  mov dword ptr [rdi + 0x1c], eax                 
+   callers of 007980A0: ['007A377E', '007A378D']
+2c. 001DE570: count = table[(cfg+0x20) mod 5]
+  ok   001DE570  mov r8d, dword ptr [rcx + 0x20]                 
+  ok   001DE574  mov eax, 0xcccccccd                             
+  ok   001DE58C  mov eax, dword ptr [rcx + r8*4]                 
+   table 00900EE8 = (1, 2, 4, 8, 9)
+   callers of 001DE570: ['001D4A6F in 001D1660', '001D51C1 in 001D5120', '0079856A in 007980A0']
+2d. 00187950 and the scene field +0xDC8
+  ok   00187A6D  cmp byte ptr [r14 + 1], r12b                    
+  ok   00187A73  mov eax, dword ptr [r14 + 0xdc8]                
+  ok   00187A7A  mov dword ptr [rip + 0x1c68e80], eax              -> 01DF0900
+  ok   00189520  mov byte ptr [rcx + 1], 1                       
+  ok   00189524  mov dword ptr [rcx + 0xdc8], edx                
+  ok   00184F54  xor esi, esi                                    
+  ok   00185046  mov dword ptr [rdi + 0xdc8], esi                
+  ok   001D4A6F  call 0x1de570                                   
+  ok   001D4A80  call 0x189520                                   
+  ok   001D51C1  call 0x1de570                                   
+  ok   001D51D2  call 0x189520                                   
+   every write covering a +0xDC8 field image-wide: ['00185046/00184F20 mov dword ptr [rdi + 0xdc8], esi', '001CCD69/001CCB20 mov qword ptr [rdi + 0xdc8], rax', '00236AFC/00236A60 mov word ptr [rdi + 0xdc8], bx', '003002D0/00300280 mov word ptr [rbx + 0xdc8], di', '003056BA/00305640 mov word ptr [rbp + 0xdc8], ax', '003082B2/00308270 mov word ptr [rbx + 0xdc8], ax', '0030EF93/0030EF20 mov word ptr [rbx + 0xdc8], ax', '00189524/00189520 mov dword ptr [rcx + 0xdc8], edx']
+   callers of 00189520: ['001D4A80 in 001D1660', '001D51D2 in 001D5120']
+2e. displacement stores to +0xD20..+0xD54 in the 70 functions that load [02EA5368] or call its getter:
+    00792452 00792350 mov byte ptr [rsi + 0xd20], r14b
+    00792459 00792350 mov dword ptr [rsi + 0xd24], 0x500
+    00792463 00792350 mov dword ptr [rsi + 0xd28], 0x2d0
+    0079246D 00792350 mov dword ptr [rsi + 0xd2c], 0x18
+    00792477 00792350 mov qword ptr [rsi + 0xd30], 8
+    00792482 00792350 mov qword ptr [rsi + 0xd38], r14
+    00792489 00792350 mov dword ptr [rsi + 0xd40], r14d
+    00792490 00792350 mov dword ptr [rsi + 0xd44], 1
+    0079249A 00792350 mov byte ptr [rsi + 0xd48], r14b
+    007924A1 00792350 mov dword ptr [rsi + 0xd4c], 1
+    007924AB 00792350 mov dword ptr [rsi + 0xd54], 2
+3. render side
+  ok   001864C3  mov ecx, dword ptr [rip + 0x1c6a437]              -> 01DF0900
+  ok   001864C9  mov dword ptr [rax + 8], ecx                    
+  ok   001864B3  lea rdx, [rip + 0x2c56]                           -> 00189110
+  ok   00189110  mov rax, qword ptr [rcx + 0x10]                 
+  ok   00189114  mov rcx, qword ptr [rax]                        
+  ok   00189117  movzx eax, byte ptr [rax + 8]                   
+  ok   0018911B  mov byte ptr [rcx + 9], al                      
+  ok   0061FEB0  mov rcx, qword ptr [rbx + 0x20]                 
+  ok   0061FEC1  movzx eax, byte ptr [rcx + 9]                   
+  ok   0061FECC  mov dword ptr [rsp + 0x5c], eax                 
+  ok   0061FED0  cmp eax, 7                                      
+  ok   0061FED5  mov dword ptr [rsp + 0x5c], 4                   
+  ok   0061FEDD  mov dword ptr [rsp + 0x60], 0x10                
+  ok   0061FEE7  cmp eax, 9                                      
+  ok   0061FEEC  mov dword ptr [rsp + 0x5c], 8                   
+  ok   0061FEF4  mov dword ptr [rsp + 0x60], 0x10                
+  ok   0061FEFE  cmp eax, 1                                      
+  ok   0061FF01  jbe 0x61ff2c                                    
+  ok   0061FE7A  mov dword ptr [rsp + 0x48], r12d                
+  ok   006200CF  lea rdx, [rsp + 0x48]                           
+  ok   006200E5  call qword ptr [rax + 0x28]                     
+   the image's anti-aliasing label list at 01DF0270 (no code or data reference to it was found): ['Off', 'MSAA2X', 'MSAA4X', 'MSAA8X', 'CSAA16x', 'CSAA16XQ', 'MSAA16x']
+FAILS 0 []

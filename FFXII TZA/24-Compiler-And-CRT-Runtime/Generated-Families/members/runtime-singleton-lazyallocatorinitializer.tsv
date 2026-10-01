@@ -1,0 +1,20 @@
+# Runtime.Singleton.LazyAllocatorInitializer - EC-7 family C, declared on generated-function-families.md
+#
+# 8 members. Body size(s): 64 B x8.
+# 9 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 9 external target(s): 1 shared across all 8 members, and 8 that are member-specific.
+#
+# NOT dispositioned: the 1 shared implementation these members reach, and the 9 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+# 001B7EE0 was dropped 2026-09-16: since measured as A (individually explained), and A beats a declaration.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+0019CDE0
+0019EF40
+001B29F0
+001BBFC0
+001BE3E0
+001D5090
+001DDA70
+001F0810
+# A-drift 2026-09-17: 1 member(s) removed, since measured as A: 001C2F00

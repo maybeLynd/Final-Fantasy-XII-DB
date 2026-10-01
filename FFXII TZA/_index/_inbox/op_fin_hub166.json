@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-166",
+ "note": "Batch 166 DONE: 22/22 bodies decoded from shipping bytes and appended to 16 bearing hosts with interior anchors. Gates: anchors 5,073 (0 MID, 0 outside); address gate 0 unsupported in new content; hash audit standing set only (26 unreproduced); neighbour guard ADDS NOTHING (2772->2767, 5 standing pairs cleared; covering prose in world-tick/mode-ladder/status-shows).",
+ "result_refs": ["_index/AUDIT-LOG.md#ec7-200-batch-166-seal"]
+}

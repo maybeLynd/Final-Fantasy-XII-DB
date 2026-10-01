@@ -1,0 +1,10 @@
+# NativeAdapter.SharedNormalizeTailCallZero - EC-7 family C
+# # call shared Movement normaliser 0026A1A0 (rcx=rdx, edx=0); restore the
+# # caller's four args; tail-call a member op.
+address	targets
+00341390	0026A1A0,00357D10
+0034AEC0	0026A1A0,00357BA0
+0034B670	0026A1A0,00357DE0
+0034FB40	0026A1A0,003578B0
+003544A0	0026A1A0,00357C40
+003551A0	0026A1A0,00357B10

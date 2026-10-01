@@ -1,0 +1,12 @@
+PASS S1 0023702A movsxd rcx, dword [rax+0x11c]
+PASS S1 00237031 mov qword [02EBF200], rcx
+PASS S1 control: 02EBF008 goes through the registrar 003845F0
+PASS S2 02EBF200 has exactly one rip reference, the write at 00237031
+PASS S2 control: 02EBF1F8 shows the read at 002385A9
+PASS S3 00233E00 bounds cl <= 0xB
+PASS S3 00233E00 loop: start 02EBF1A8, step 0x30, stop before 02EBF208, widest read rcx+0x20 -> last slot 02EBF1F8
+PASS S3 002368D0 rep stosq over 12 qwords from 02EBF1A0
+PASS S3 00237630 bounds cl <= 0xB
+PASS S3 00238260 bounds cl <= 0xB before 00238319
+PASS S3 00328990 bounds r8d <= 0xB
+FAILS 0

@@ -1,0 +1,30 @@
+{
+  "status": "FROZEN_STATIC_CONDITIONAL_PRODUCER_EVIDENCE_NOT_ACCEPTANCE",
+  "members": [
+    {
+      "path": "PLAN.md",
+      "bytes": 2144,
+      "sha256": "7f326286d130356c2920b784b5811531f55acd65b5258b901f303ee976abd6c9"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 5104,
+      "sha256": "1f2331d2aff81e3f0c94f70f9c9c46bb016d4efb736a3b1d4b01c228893577bc"
+    },
+    {
+      "path": "r13-dominance.py",
+      "bytes": 10175,
+      "sha256": "bc16136ccc9756296b6d019701ea70986323d7a2f049083a8502e4246faf59c1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 16640,
+      "sha256": "b1ab50207029df410bfdb8e906b85b887fdcf6f154f24f7368803743c6ba6d64"
+    },
+    {
+      "path": "terminal.json",
+      "bytes": 198,
+      "sha256": "e67cd788825d79f1021a4509061df1d55cec1551c089b77e5342c381280e1b0e"
+    }
+  ]
+}

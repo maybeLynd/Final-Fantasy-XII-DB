@@ -1,0 +1,110 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4832,
+      "sha256": "6f17753023f2af35166aed642abea9142b46b86816c708f0500e52ec3c1b5911"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3945,
+      "sha256": "e9c5116d82e78e0d9907a23712db18b0eb582a479829ade76381e52e969ea3bb"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 423,
+      "sha256": "2c4b0723d7d28e9a4a3fbf090125f9421aa97c39a09338b28b169101e36f7311"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 69,
+      "sha256": "c3e312aa31e181928389569c7567b01015e131548854ab811f3cb57f4f2fd657"
+    },
+    {
+      "path": "fault-accept-green-default.stderr",
+      "bytes": 539,
+      "sha256": "17bd97d19f7cb9081d85cbb874aec91b9d538acdeaa73d9d0a25ff02fd8a2ced"
+    },
+    {
+      "path": "fault-accept-green-default.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-real-number-dim-minus-one.stderr",
+      "bytes": 499,
+      "sha256": "da897e1bdeb2ee82e296bd75433ac4df67187ed940f5ed9eff902f5f995d038e"
+    },
+    {
+      "path": "fault-real-number-dim-minus-one.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2200,
+      "sha256": "364739eef065aeb9fcef022f1f05b3cdbbd98f5782c0e24d8db7d2fce33b3087"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3012,
+      "sha256": "2fc5a5b5ce1edda90e019991adb75fae61de88b45ceb7a1946fae3aaa8268c76"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1133,
+      "sha256": "33db7896245d46c80e3cdba899c09afc6db4910ffbb7b8da38633008be3de219"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 6489,
+      "sha256": "dbda7352c496fd4a1feb5850fe2a9d649a67b838e94cdd0785db322a4eed02ba"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2787,
+      "sha256": "f23c261cd08c72698ff3a57f15f4d385e0fbc031a78954cefcf378c62c9119c3"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 342,
+      "sha256": "86f317353e6a8a49646232394b5b5388058055e635cddf59748362026f9600e7"
+    },
+    {
+      "path": "result.json",
+      "bytes": 4577,
+      "sha256": "5496838b6c199205d1fcb899e57205218b5a32376f387ff8ff2efd1184aa2fb0"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 44009,
+      "sha256": "f0f343b0b70e33512b063c2320e8877e12e36a5cbfa53c8be1ba3d13747fc1c3"
+    },
+    {
+      "path": "retained/fable-array-clamp-primary.py",
+      "bytes": 3468,
+      "sha256": "d3ebc621a7b4630a9f3f1febbde2d6afe6e94d843dca84f77de5c58188f2a4ce"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/resolver591.bin",
+      "bytes": 591,
+      "sha256": "7909d30a3b1f82ee5e5c91a507d9313be45c5ccc5b71d210f1fac2ae3f595241"
+    }
+  ],
+  "limits": "ActualconsumerPythondefault/function boundary defect versusdecodedoriginal32bitLEA conditionalreasoning; notFF12execution/actualasset/nativefault/live/independentacceptance proof."
+}

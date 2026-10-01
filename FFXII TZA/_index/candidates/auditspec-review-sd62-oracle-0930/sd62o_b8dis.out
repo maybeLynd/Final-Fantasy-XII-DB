@@ -1,0 +1,328 @@
+#### b8dis.py 00632D80 00632DE0
+00632D80  xor       r10d, r10d
+00632D83  lea       rax, [rcx + 0x50]
+00632D87  mov       qword ptr [rax], rax
+00632D8A  mov       qword ptr [rax + 8], rax
+00632D8E  lea       rax, [rcx + 8]
+00632D92  mov       qword ptr [rax], rax
+00632D95  mov       qword ptr [rax + 8], rax
+00632D99  mov       qword ptr [rax + 0x10], rax
+00632D9D  mov       dword ptr [rax + 0x18], r10d
+00632DA1  mov       qword ptr [rax + 0x20], r10
+00632DA5  mov       eax, dword ptr [rsp + 0x28]
+00632DA9  mov       dword ptr [rcx + 0x3c], eax
+00632DAC  lea       rax, [rcx + 0x60]
+00632DB0  mov       qword ptr [rcx + 0x30], r8
+00632DB4  mov       dword ptr [rcx + 0x38], r9d
+00632DB8  mov       qword ptr [rcx + 0x40], r10
+00632DBC  mov       qword ptr [rcx + 0x48], r10
+00632DC0  mov       qword ptr [rax], rax
+00632DC3  mov       qword ptr [rax + 8], rax
+00632DC7  lea       rax, [rip + 0x7253f2]   ; -> 00D581C0 u32=00657140 f32=9.31601e-39
+00632DCE  mov       qword ptr [rcx], rax
+00632DD1  mov       rax, qword ptr [rsp + 0x30]
+00632DD6  mov       qword ptr [rcx + 0x70], rdx
+00632DDA  mov       qword ptr [rcx + 0x78], rax
+---
+#### b8dis.py 006388F0 00638990
+006388F0  and       al, 0x50
+006388F2  call      0x637440
+006388F7  movzx     ebx, byte ptr [rsi]
+006388FA  mov       edi, 0x7b5
+006388FF  mov       qword ptr [rsp + 0x28], rsi
+00638904  mov       r14, rax
+00638907  mov       r8, rsi
+0063890A  mov       edx, edi
+0063890C  mov       ecx, ebx
+0063890E  test      ebx, ebx
+00638910  je        0x638934
+00638912  nop       dword ptr [rax]
+00638916  nop       word ptr [rax + rax]
+00638920  and       ecx, 0x1f
+00638923  imul      edx, edx, 0x21
+00638926  lea       r8, [r8 + 1]
+0063892A  add       edx, ecx
+0063892C  movzx     ecx, byte ptr [r8]
+00638930  test      ecx, ecx
+00638932  jne       0x638920
+00638934  mov       dword ptr [rsp + 0x20], edx
+00638938  mov       rcx, r14
+0063893B  lea       rdx, [rsp + 0x20]
+00638940  call      0x6311d0
+00638945  test      rax, rax
+00638948  je        0x63894e
+0063894A  xor       al, al
+0063894C  jmp       0x6389a4
+0063894E  mov       rcx, rsi
+00638951  test      ebx, ebx
+00638953  je        0x638973
+00638955  nop       word ptr [rax + rax]
+00638960  and       ebx, 0x1f
+00638963  imul      edi, edi, 0x21
+00638966  lea       rcx, [rcx + 1]
+0063896A  add       edi, ebx
+0063896C  movzx     ebx, byte ptr [rcx]
+0063896F  test      ebx, ebx
+00638971  jne       0x638960
+00638973  mov       rdx, rbp
+00638976  mov       dword ptr [rbp + 0x20], edi
+00638979  mov       rcx, r14
+0063897C  mov       qword ptr [rbp + 0x28], rsi
+00638980  call      0x6314b0
+00638985  test      rax, rax
+00638988  je        0x638991
+0063898A  mov       eax, 0x12
+---
+#### b8dis.py 006363B3 006363E0
+006363B3  mov       dword ptr [rsp + 0x20], edx
+006363B7  mov       rcx, r12
+006363BA  lea       rdx, [rsp + 0x20]
+006363BF  call      0x6311d0
+006363C4  test      rax, rax
+006363C7  je        0x6363d1
+006363C9  mov       rcx, rax
+006363CC  call      0x638f00
+006363D1  mov       rdx, rbx
+006363D4  mov       qword ptr [rbx + 0x70], rbp
+006363D8  mov       rcx, rbp
+006363DB  call      0x639160
+---
+#### b8dis.py 00637A70 00637B70
+00637A70  mov       qword ptr [rsp + 8], rbx
+00637A75  mov       qword ptr [rsp + 0x10], rsi
+00637A7A  push      rdi
+00637A7B  sub       rsp, 0x20
+00637A7F  mov       rax, qword ptr gs:[0x58]
+00637A88  xor       edi, edi
+00637A8A  mov       ecx, dword ptr [rip + 0x28772ac]   ; -> 02EAED3C (virtual tail / unmapped)
+00637A90  mov       r8d, 4
+00637A96  mov       rdx, qword ptr [rax + rcx*8]
+00637A9A  mov       eax, dword ptr [r8 + rdx]
+00637A9E  cmp       dword ptr [rip + 0x26c1a48], eax   ; -> 02CF94EC (virtual tail / unmapped)
+00637AA4  jg        0x637bd1
+00637AAA  mov       rbx, qword ptr [rip + 0x18f688f]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+00637AB1  lea       rsi, [rip + 0x18f6888]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+00637AB8  mov       dword ptr [rip + 0x18f688e], 1   ; -> 01F2E350 u32=00000000 f32=0
+00637AC2  cmp       rbx, rsi
+00637AC5  je        0x637b60
+00637ACB  test      rbx, rbx
+00637ACE  je        0x637b60
+00637AD4  lea       rdx, [rbx - 0x50]
+00637AD8  test      rdx, rdx
+00637ADB  je        0x637b60
+00637AE1  lea       r9, [rip + 0x26c0788]   ; -> 02CF8270 (virtual tail / unmapped)
+00637AE8  nop       dword ptr [rax + rax]
+00637AF0  mov       dword ptr [rdx + 0xf4], edi
+00637AF6  mov       rax, rdx
+00637AF9  nop       dword ptr [rax]
+00637B00  cmp       rax, r9
+00637B03  je        0x637b1a
+00637B05  mov       ecx, dword ptr [rax + 0xf0]
+00637B0B  add       dword ptr [rdx + 0xf4], ecx
+00637B11  mov       rax, qword ptr [rax + 0x78]
+00637B15  test      rax, rax
+00637B18  jne       0x637b00
+00637B1A  mov       rax, qword ptr [rdx + 0x78]
+00637B1E  mov       r8d, dword ptr [rdx + 0xf0]
+00637B25  test      rax, rax
+00637B28  je        0x637b32
+00637B2A  mov       ecx, dword ptr [rax + 0xf8]
+00637B30  jmp       0x637b34
+00637B32  mov       ecx, edi
+00637B34  test      r8d, r8d
+00637B37  mov       eax, edi
+00637B39  cmovg     eax, r8d
+00637B3D  add       eax, ecx
+00637B3F  mov       dword ptr [rdx + 0xf8], eax
+00637B45  mov       rdx, qword ptr [rdx + 0x50]
+00637B49  cmp       rdx, rsi
+00637B4C  je        0x637b59
+00637B4E  test      rdx, rdx
+00637B51  je        0x637b59
+00637B53  add       rdx, -0x50
+00637B57  jne       0x637af0
+00637B59  mov       rbx, qword ptr [rip + 0x18f67e0]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+00637B60  mov       dword ptr [rip + 0x18f67e6], 2   ; -> 01F2E350 u32=00000000 f32=0
+00637B6A  cmp       rbx, rsi
+00637B6D  je        0x637bc1
+---
+#### b8dis.py 008AF490 008AF500
+008AF490  mov       qword ptr [rsp + 8], rbx
+008AF495  push      rdi
+008AF496  sub       rsp, 0x20
+008AF49A  mov       rbx, qword ptr [rip + 0x167ee9f]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+008AF4A1  lea       rdi, [rip + 0x167ee98]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+008AF4A8  cmp       rbx, rdi
+008AF4AB  je        0x8af4ef
+008AF4AD  test      rbx, rbx
+008AF4B0  je        0x8af4ef
+008AF4B2  add       rbx, -0x50
+008AF4B6  je        0x8af4ef
+008AF4B8  mov       rcx, rbx
+008AF4BB  test      rbx, rbx
+008AF4BE  je        0x8af4d6
+008AF4C0  mov       rbx, qword ptr [rbx + 0x50]
+008AF4C4  cmp       rbx, rdi
+008AF4C7  je        0x8af4d4
+008AF4C9  test      rbx, rbx
+008AF4CC  je        0x8af4d4
+008AF4CE  add       rbx, -0x50
+008AF4D2  jmp       0x8af4d6
+008AF4D4  xor       ebx, ebx
+008AF4D6  test      byte ptr [rcx + 0xfc], 1
+008AF4DD  je        0x8af4ea
+008AF4DF  mov       rax, qword ptr [rcx]
+008AF4E2  mov       edx, 1
+008AF4E7  call      qword ptr [rax + 0x38]
+008AF4EA  test      rbx, rbx
+008AF4ED  jne       0x8af4b8
+008AF4EF  mov       rbx, qword ptr [rsp + 0x30]
+008AF4F4  add       rsp, 0x20
+008AF4F8  pop       rdi
+008AF4F9  ret       
+008AF4FA  int3      
+008AF4FB  int3      
+008AF4FC  int3      
+008AF4FD  int3      
+008AF4FE  int3      
+008AF4FF  int3      
+---
+#### b8dis.py 00638C90 00638DA0
+00638C90  mov       qword ptr [rsp + 0x18], rbp
+00638C95  push      rsi
+00638C96  push      r12
+00638C98  push      r13
+00638C9A  push      r14
+00638C9C  push      r15
+00638C9E  sub       rsp, 0x20
+00638CA2  mov       rax, qword ptr gs:[0x58]
+00638CAB  lea       rbp, [rip + 0x18f567e]   ; -> 01F2E330 u32=01F2E330 f32=8.92228e-38
+00638CB2  mov       ecx, dword ptr [rip + 0x2876084]   ; -> 02EAED3C (virtual tail / unmapped)
+00638CB8  lea       r14, [rip + 0x18f5681]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+00638CBF  mov       edx, 4
+00638CC4  lea       r15, [rip + 0x18f568d]   ; -> 01F2E358 u32=01F2E358 f32=8.9223e-38
+00638CCB  xor       r12d, r12d
+00638CCE  mov       rsi, qword ptr [rax + rcx*8]
+00638CD2  add       rsi, rdx
+00638CD5  mov       eax, dword ptr [rsi]
+00638CD7  cmp       dword ptr [rip + 0x26c080f], eax   ; -> 02CF94EC (virtual tail / unmapped)
+00638CDD  jg        0x638dc0
+00638CE3  mov       qword ptr [rsp + 0x50], rbx
+00638CE8  lea       r13, [rip + 0x18f5651]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+00638CEF  mov       qword ptr [rsp + 0x58], rdi
+00638CF4  nop       dword ptr [rax]
+00638CF8  nop       dword ptr [rax + rax]
+00638D00  mov       rax, qword ptr [rip + 0x18f5639]   ; -> 01F2E340 u32=01F2E340 f32=8.92228e-38
+00638D07  cmp       rax, r13
+00638D0A  je        0x638d9c
+00638D10  test      rax, rax
+00638D13  je        0x638d9c
+00638D19  lea       rdi, [rax - 0x50]
+00638D1D  test      rdi, rdi
+00638D20  je        0x638d9c
+00638D22  mov       rbx, qword ptr [rdi + 0x70]
+00638D26  lea       rdx, [rdi + 0x50]
+00638D2A  mov       rcx, qword ptr [rdx]
+00638D2D  mov       rax, qword ptr [rdx + 8]
+00638D31  mov       qword ptr [rcx + 8], rax
+00638D35  mov       qword ptr [rax], rcx
+00638D38  lea       rax, [rbx + 0x10]
+00638D3C  mov       qword ptr [rdx], rdx
+00638D3F  mov       qword ptr [rdx + 8], rdx
+00638D43  mov       rcx, qword ptr [rax]
+00638D46  cmp       rcx, rax
+00638D49  cmove     rcx, r12
+00638D4D  test      rcx, rcx
+00638D50  lea       rax, [rcx - 0x50]
+00638D54  cmove     rax, r12
+00638D58  test      rax, rax
+00638D5B  jne       0x638d8d
+00638D5D  mov       eax, dword ptr [rip + 0x26c0789]   ; -> 02CF94EC (virtual tail / unmapped)
+00638D63  cmp       eax, dword ptr [rsi]
+00638D65  jg        0x638e27
+00638D6B  cmp       rbx, rbp
+00638D6E  je        0x638d8d
+00638D70  cmp       eax, dword ptr [rsi]
+00638D72  jg        0x638e96
+00638D78  mov       rcx, qword ptr [rbx]
+00638D7B  mov       rax, qword ptr [rbx + 8]
+00638D7F  mov       qword ptr [rcx + 8], rax
+00638D83  mov       qword ptr [rax], rcx
+00638D86  mov       qword ptr [rbx], rbx
+00638D89  mov       qword ptr [rbx + 8], rbx
+00638D8D  and       dword ptr [rdi + 0xfc], 0xbfffffff
+00638D97  jmp       0x638d00
+---
+#### b8dis.py 00635B80 00635C80
+00635B80  sub       rsp, 0x38
+00635B84  mov       qword ptr [rsp + 0x20], 0xfffffffffffffffe
+00635B8D  lea       rcx, [rip + 0x26c2eec]   ; -> 02CF8A80 (virtual tail / unmapped)
+00635B94  call      0x6388c0
+00635B99  mov       ecx, dword ptr [rip + 0x287919d]   ; -> 02EAED3C (virtual tail / unmapped)
+00635B9F  mov       rax, qword ptr gs:[0x58]
+00635BA8  mov       edx, 4
+00635BAD  mov       rcx, qword ptr [rax + rcx*8]
+00635BB1  mov       eax, dword ptr [rdx + rcx]
+00635BB4  cmp       dword ptr [rip + 0x26c396e], eax   ; -> 02CF9528 (virtual tail / unmapped)
+00635BBA  jle       0x635c2f
+00635BBC  lea       rcx, [rip + 0x26c3965]   ; -> 02CF9528 (virtual tail / unmapped)
+00635BC3  call      0x8092fc
+00635BC8  cmp       dword ptr [rip + 0x26c3959], -1   ; -> 02CF9528 (virtual tail / unmapped)
+00635BCF  jne       0x635c2f
+00635BD1  lea       rdx, [rip + 0x7231b8]   ; -> 00D58D90 u32=49746567 f32=1.00105e+06
+00635BD8  lea       rcx, [rip + 0x26c2ea1]   ; -> 02CF8A80 (virtual tail / unmapped)
+00635BDF  call      0x5a7a40
+00635BE4  test      rax, rax
+00635BE7  jne       0x635c16
+00635BE9  mov       rax, qword ptr [rip + 0x26c2f28]   ; -> 02CF8B18 (virtual tail / unmapped)
+00635BF0  lea       rcx, [rip + 0x26c2f19]   ; -> 02CF8B10 (virtual tail / unmapped)
+00635BF7  mov       qword ptr [rip + 0x18f8bb2], rcx   ; -> 01F2E7B0 u32=01F2E7B0 f32=8.92292e-38
+00635BFE  mov       qword ptr [rip + 0x18f8bb3], rax   ; -> 01F2E7B8 u32=01F2E7B0 f32=8.92292e-38
+00635C05  lea       rcx, [rip + 0x18f8ba4]   ; -> 01F2E7B0 u32=01F2E7B0 f32=8.92292e-38
+00635C0C  mov       qword ptr [rax], rcx
+00635C0F  mov       qword ptr [rip + 0x26c2f02], rcx   ; -> 02CF8B18 (virtual tail / unmapped)
+00635C16  lea       rcx, [rip + 0x279813]   ; -> 008AF430 u32=38EC8348 f32=0.000112778
+00635C1D  call      0x808b90
+00635C22  nop       
+00635C23  lea       rcx, [rip + 0x26c38fe]   ; -> 02CF9528 (virtual tail / unmapped)
+00635C2A  call      0x80929c
+00635C2F  lea       rax, [rip + 0x72343a]   ; -> 00D59070 u32=0067E690 f32=9.54177e-39
+00635C36  mov       qword ptr [rip + 0x18f8ba3], rax   ; -> 01F2E7E0 u32=00000000 f32=0
+00635C3D  lea       rax, [rip + 0x62ac]   ; -> 0063BEF0 u32=245C8948 f32=4.78212e-17
+00635C44  mov       qword ptr [rip + 0x18f8b9d], rax   ; -> 01F2E7E8 u32=00000000 f32=0
+00635C4B  lea       rax, [rip + 0x18f8b8e]   ; -> 01F2E7E0 u32=00000000 f32=0
+00635C52  mov       qword ptr [rip + 0x18f8b7f], rax   ; -> 01F2E7D8 u32=00000000 f32=0
+00635C59  lea       rdx, [rip + 0x26c2e20]   ; -> 02CF8A80 (virtual tail / unmapped)
+00635C60  mov       rcx, qword ptr [rip + 0x26c2e89]   ; -> 02CF8AF0 (virtual tail / unmapped)
+00635C67  call      0x639160
+00635C6C  mov       eax, dword ptr [rip + 0x26c2f0a]   ; -> 02CF8B7C (virtual tail / unmapped)
+00635C72  bts       eax, 0x1e
+00635C76  mov       dword ptr [rip + 0x26c2f00], eax   ; -> 02CF8B7C (virtual tail / unmapped)
+00635C7C  test      al, 1
+00635C7E  je        0x635cbb
+---
+#### b8dis.py 006391FF 00639250
+006391FF  mov       rdx, qword ptr [rdi + 0x78]
+00639203  test      rdx, rdx
+00639206  je        0x63922e
+00639208  cmp       qword ptr [rdx + 0x70], rbx
+0063920C  jne       0x63922e
+0063920E  mov       rcx, qword ptr [rdx + 0x50]
+00639212  lea       r8, [rdi + 0x50]
+00639216  mov       rax, qword ptr [r8 + 8]
+0063921A  add       rdx, 0x50
+0063921E  mov       qword ptr [rcx + 8], rax
+00639222  mov       qword ptr [rax], rcx
+00639225  mov       qword ptr [r8 + 8], rdx
+00639229  mov       qword ptr [rdx], r8
+0063922C  jmp       0x639247
+0063922E  mov       rcx, qword ptr [r14]
+00639231  lea       rdx, [rdi + 0x50]
+00639235  mov       rax, qword ptr [rdx + 8]
+00639239  mov       qword ptr [rcx + 8], rax
+0063923D  mov       qword ptr [rax], rcx
+00639240  mov       qword ptr [rdx + 8], r14
+00639244  mov       qword ptr [r14], rdx
+00639247  mov       r14, qword ptr [rsp + 0x38]
+0063924C  test      rbp, rbp
+---

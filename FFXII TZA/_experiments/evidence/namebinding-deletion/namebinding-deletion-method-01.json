@@ -1,0 +1,35 @@
+{
+  "question": "OV25 carried name-binding ownership residue: who marks removal mask04 and how pending completion/release drain handle a source without early free or invalid unregister?",
+  "hypotheses": [
+    "H1 pending notcomplete record marks04 only; callback unpins/suppressesregistration, marks08, thenqueues record for release; drain skipsbankunregister beforebackingfree",
+    "H2 removal immediatelyfrees pending source or completion stillregisters/queuesnormalconsumer despite04"
+  ],
+  "method": "A retained families evidence plus bounded original code/dataflow; B only if a genuinely unproved bounded native operation remains, C only for named natural overlap/scheduling residue",
+  "why_cheaper_sufficient": "Exact flags/order/list/generation branch and calls are original local rules. Live/no-hit sampling cannot strengthen those conditional rules. Actual original natural simultaneous bankfull/keycollision states remain separateOV21requests.",
+  "identity": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "existing": "ov25-queue-clients-fable README/families.py S/L/M returnedclassification; priorpeer counts controls notours",
+  "targets": [
+    "002EAEB0",
+    "002E4D20",
+    "002EA6E0",
+    "002E6D60",
+    "002E9360",
+    "002E60F0"
+  ],
+  "controls": [
+    "Actualreviewedadapter store/LEA/RMW invocation",
+    "Completeoriginalbody/normalCFG/pointercarrierbranchcontrols",
+    "Comparepending flags18mask02 and record19mask04 override; negativeclaims bounded to original local paths",
+    "Required upstream failed/missing input remainsrefusal, rawcode/dataidentity gates"
+  ],
+  "acceptance": "Exactproducer flag04, callbackregistration gate/continuationreturn, ownerrelease-list order andsourcefree call arguments established; disclosed exception19mask04 andopaque callee/precondition limits.",
+  "falsification": "Any reached localfree/unregisteronmark-onlypendingarm, registrationunder04, or consumercontinuationindependentof04 refutes H1. Missingcallee effects keepphysicalcompletion OPEN.",
+  "budget": "Atmost6initial boundedfunctions (<3KiB expected); keep source-directed escalation only if exact free/list consumer needed.",
+  "consumer": [
+    "FABLE OV25familynamebinding semantic",
+    "OPUS ownership/state/ABI contracts",
+    "FRONTIER carriedownerpagebox andOV21 lifetimeprep"
+  ],
+  "cleanup": "Readonlyreference/retainedfiles; finiteprivatecontrols; no FF12/process/control/save/config/reference/peer mutation",
+  "completion": "Validated published package independentreview/canonicalincorporation separate; noexperimentorcountgoal"
+}

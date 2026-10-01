@@ -1,0 +1,14 @@
+uc1_span_tests exit 0
+tsv diff lines vs committed: 0
+t13 diff lines vs committed: 0
+ppfx out exit 0
+ppfx in exit 0
+sead out exit 0
+sead in exit 0
+vpx out exit 0
+vpx in exit 0
+vorbis out exit 0
+vorbis in exit 1
+t2_compare exit 0
+t2-compare diff vs committed:
+IDENTICAL

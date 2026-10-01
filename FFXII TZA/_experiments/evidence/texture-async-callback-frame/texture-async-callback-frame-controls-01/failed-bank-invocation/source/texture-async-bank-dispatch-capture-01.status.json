@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-texture-async-bank-dispatch.py"
+  ],
+  "exit": 0,
+  "driver_sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+}

@@ -1,0 +1,1788 @@
+{
+ "HelpMessageWidget0500": {
+  "handlers": [
+   "0x2bf690"
+  ],
+  "hits": {
+   "50:4": {
+    "00243309": [
+     1,
+     0,
+     "xor edx, dword ptr [r15]"
+    ],
+    "0024331C": [
+     1,
+     0,
+     "xor edx, dword ptr [r15]"
+    ],
+    "00243322": [
+     0,
+     1,
+     "mov dword ptr [r15], edx"
+    ],
+    "00243333": [
+     0,
+     1,
+     "mov dword ptr [r15], ecx"
+    ]
+   },
+   "58:8": {
+    "00243305": [
+     0,
+     1,
+     "mov qword ptr [r15 + 8], r12"
+    ]
+   }
+  },
+  "rows": [
+   [
+    80,
+    16,
+    "unobservedSpan0050"
+   ],
+   [
+    188,
+    4,
+    "unobservedSpan00BC"
+   ]
+  ]
+ },
+ "PaneListWidget0B68": {
+  "handlers": [
+   "0x29bb40",
+   "0x29be50"
+  ],
+  "hits": {
+   "190:8": {
+    "00247935": [
+     1,
+     0,
+     "mov rax, qword ptr [rcx + 0x10]"
+    ]
+   },
+   "1C0:4": {
+    "00246647": [
+     1,
+     0,
+     "xor ecx, dword ptr [rdi + 0x40]"
+    ],
+    "00246650": [
+     1,
+     0,
+     "xor ecx, dword ptr [rdi + 0x40]"
+    ],
+    "00246660": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0x40], ecx"
+    ],
+    "0024666D": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0x40], eax"
+    ],
+    "002466D1": [
+     1,
+     1,
+     "and dword ptr [rdi + 0x40], 0xffffbfff"
+    ],
+    "002466F2": [
+     1,
+     1,
+     "or dword ptr [rdi + 0x40], eax"
+    ],
+    "002475F2": [
+     1,
+     0,
+     "mov eax, dword ptr [rcx + 0x40]"
+    ],
+    "002475FE": [
+     0,
+     1,
+     "mov dword ptr [rcx + 0x40], eax"
+    ]
+   },
+   "1C4:2": {
+    "002466FA": [
+     0,
+     1,
+     "mov word ptr [rdi + 0x44], ax"
+    ],
+    "00247945": [
+     0,
+     1,
+     "mov word ptr [rcx + 0x44], dx"
+    ]
+   },
+   "1C4:4": {
+    "00246670": [
+     1,
+     1,
+     "and dword ptr [rdi + 0x44], 0xfff8ffff"
+    ],
+    "0024667E": [
+     1,
+     0,
+     "mov edx, dword ptr [rdi + 0x44]"
+    ]
+   },
+   "1C8:8": {
+    "00246687": [
+     0,
+     1,
+     "mov qword ptr [rdi + 0x48], rax"
+    ],
+    "00247583": [
+     0,
+     1,
+     "mov qword ptr [rcx + 0x48], rax"
+    ]
+   },
+   "1FC:4": {
+    "002466D8": [
+     1,
+     1,
+     "and dword ptr [rdi + 0x7c], 0xfffffff0"
+    ]
+   },
+   "218:4": {
+    "00246711": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0x98], eax"
+    ]
+   },
+   "21C:4": {
+    "00246717": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0x9c], 0x800080"
+    ]
+   },
+   "220:1": {
+    "0024670A": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xa0], 0x80"
+    ]
+   },
+   "221:2": {
+    "002466E6": [
+     0,
+     1,
+     "mov word ptr [rdi + 0xa1], 0xff80"
+    ]
+   },
+   "223:1": {
+    "002475EC": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa3], al"
+    ]
+   },
+   "224:1": {
+    "0024760A": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa4], al"
+    ]
+   },
+   "225:1": {
+    "00247619": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa5], al"
+    ]
+   },
+   "226:1": {
+    "00247628": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa6], al"
+    ]
+   },
+   "227:1": {
+    "00247637": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa7], al"
+    ]
+   },
+   "228:1": {
+    "00247646": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa8], al"
+    ]
+   },
+   "229:1": {
+    "00247655": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xa9], al"
+    ]
+   },
+   "22A:1": {
+    "00247664": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xaa], al"
+    ]
+   },
+   "22B:1": {
+    "00247673": [
+     0,
+     1,
+     "mov byte ptr [rcx + 0xab], al"
+    ]
+   },
+   "22C:1": {
+    "002466A1": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xac], 0xf9"
+    ],
+    "002466CB": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xac], cl"
+    ]
+   },
+   "22D:1": {
+    "00246695": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xad], 0xf9"
+    ],
+    "002466C1": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xad], al"
+    ]
+   },
+   "234:4": {
+    "0024675C": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xb4], 1"
+    ]
+   },
+   "238:4": {
+    "00246700": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xb8], 0x3f800000"
+    ]
+   }
+  },
+  "rows": [
+   [
+    392,
+    184,
+    "unobservedSpan0188"
+   ]
+  ]
+ },
+ "Widget02CA6C80": {
+  "handlers": [
+   "0x474100"
+  ],
+  "hits": {
+   "1C8:4": {
+    "00474210": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0x1c8], eax"
+    ]
+   },
+   "1CC:4": {
+    "00474219": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0x1cc], eax"
+    ]
+   },
+   "1D0:4": {
+    "00474166": [
+     1,
+     0,
+     "mov ecx, dword ptr [rcx + 0x1d0]"
+    ],
+    "00474222": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0x1d0], eax"
+    ]
+   },
+   "1D4:4": {
+    "00474160": [
+     1,
+     0,
+     "mov edx, dword ptr [rcx + 0x1d4]"
+    ],
+    "00474231": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0x1d4], eax"
+    ]
+   }
+  },
+  "rows": [
+   [
+    200,
+    272,
+    "unobservedTail00C8"
+   ]
+  ]
+ },
+ "Widget02CA9790": {
+  "handlers": [
+   "0x57b890"
+  ],
+  "hits": {
+   "168:2": {
+    "0057B740": [
+     1,
+     0,
+     "movzx ecx, word ptr [rbx]"
+    ],
+    "0057B74C": [
+     1,
+     0,
+     "movzx ecx, word ptr [rbx]"
+    ]
+   },
+   "D0:8": {
+    "002CD4EB": [
+     0,
+     1,
+     "mov qword ptr [rbx + 8], rdx"
+    ],
+    "0057B983": [
+     1,
+     0,
+     "mov rbx, qword ptr [rsi + 0xd0]"
+    ],
+    "0057BAC9": [
+     1,
+     0,
+     "mov rcx, qword ptr [rsi + 0xd0]"
+    ],
+    "0057BB51": [
+     1,
+     0,
+     "mov rcx, qword ptr [rsi + 0xd0]"
+    ]
+   }
+  },
+  "rows": [
+   [
+    194,
+    2,
+    "unobservedSpan00C2"
+   ],
+   [
+    197,
+    3,
+    "unobservedSpan00C5"
+   ],
+   [
+    208,
+    8,
+    "unobservedSpan00D0"
+   ],
+   [
+    224,
+    88,
+    "unobservedSpan00E0"
+   ],
+   [
+    324,
+    4,
+    "unobservedSpan0144"
+   ],
+   [
+    340,
+    4,
+    "unobservedSpan0154"
+   ],
+   [
+    360,
+    256,
+    "unobservedTail0168"
+   ]
+  ]
+ },
+ "Widget02CA99B0": {
+  "handlers": [
+   "0x5819f0"
+  ],
+  "hits": {
+   "108:16": {
+    "005835CD": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x20], xmm1"
+    ]
+   },
+   "118:16": {
+    "005835D7": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x30], xmm0"
+    ]
+   },
+   "128:16": {
+    "005835E1": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x40], xmm1"
+    ]
+   },
+   "138:16": {
+    "005835EB": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x50], xmm0"
+    ]
+   },
+   "148:16": {
+    "005835F5": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x60], xmm1"
+    ]
+   },
+   "158:16": {
+    "005835FF": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x70], xmm0"
+    ]
+   },
+   "168:16": {
+    "0058360C": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x80], xmm0"
+    ]
+   },
+   "178:16": {
+    "0058361C": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x90], xmm1"
+    ]
+   },
+   "188:16": {
+    "0058362C": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0xa0], xmm0"
+    ]
+   },
+   "198:16": {
+    "0058363C": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0xb0], xmm0"
+    ]
+   },
+   "1A8:1": {
+    "005834C0": [
+     1,
+     0,
+     "cmp byte ptr [rdx + 1], 0"
+    ],
+    "00583525": [
+     1,
+     0,
+     "cmp byte ptr [rdx + 1], 0"
+    ]
+   },
+   "C0:8": {
+    "00581A3A": [
+     1,
+     0,
+     "mov rcx, qword ptr [rdi + 0xc0]"
+    ],
+    "00581A7F": [
+     0,
+     1,
+     "mov qword ptr [rdi + 0xc0], rcx"
+    ]
+   },
+   "C8:1": {
+    "00581AF0": [
+     1,
+     0,
+     "test byte ptr [rdi + 0xc8], 1"
+    ],
+    "00581F8E": [
+     1,
+     0,
+     "test byte ptr [rbx + 0xc8], 1"
+    ]
+   },
+   "C8:4": {
+    "00581A72": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xc8], 0"
+    ],
+    "00581AC4": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xc8], eax"
+    ],
+    "00581E32": [
+     1,
+     0,
+     "mov edx, dword ptr [rbx + 0xc8]"
+    ],
+    "00581E62": [
+     1,
+     0,
+     "mov edx, dword ptr [rbx + 0xc8]"
+    ]
+   },
+   "CC:1": {
+    "00581ABD": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xcc], 0"
+    ],
+    "00581DD2": [
+     1,
+     0,
+     "cmp byte ptr [rbx + 0xcc], sil"
+    ],
+    "00581FF4": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xcc], sil"
+    ]
+   },
+   "CD:1": {
+    "00581A95": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xcd], dl"
+    ],
+    "00581E15": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581E46": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581E80": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581EB0": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581EE0": [
+     1,
+     0,
+     "movzx ecx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581EEC": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581F1E": [
+     1,
+     0,
+     "movzx ecx, byte ptr [rbx + 0xcd]"
+    ],
+    "00581FC1": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xcd]"
+    ]
+   },
+   "CE:1": {
+    "00581A9B": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xce], 0"
+    ],
+    "00581E9E": [
+     1,
+     0,
+     "movzx ecx, byte ptr [rbx + 0xce]"
+    ]
+   },
+   "D0:4": {
+    "00581AA5": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xd0], edx"
+    ],
+    "00581ED7": [
+     1,
+     0,
+     "mov edx, dword ptr [rbx + 0xd0]"
+    ]
+   },
+   "D4:4": {
+    "00581AB1": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xd4], eax"
+    ]
+   },
+   "D8:4": {
+    "00581EF8": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xd8], eax"
+    ],
+    "00581FA8": [
+     1,
+     0,
+     "mov eax, dword ptr [rbx + 0xd8]"
+    ]
+   },
+   "DC:4": {
+    "00581B1B": [
+     0,
+     1,
+     "mov dword ptr [rdi + 0xdc], 0"
+    ],
+    "00581FE3": [
+     1,
+     1,
+     "add dword ptr [rbx + 0xdc], edx"
+    ],
+    "00581FE9": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbx + 0xdc]"
+    ]
+   },
+   "E0:8": {
+    "00581A8A": [
+     0,
+     1,
+     "mov qword ptr [rdi + 0xe0], rdx"
+    ]
+   },
+   "E8:4": {
+    "00583310": [
+     0,
+     1,
+     "mov dword ptr [r14], eax"
+    ]
+   },
+   "EC:1": {
+    "00583329": [
+     0,
+     1,
+     "mov byte ptr [r14 + 4], al"
+    ]
+   },
+   "EE:2": {
+    "0058345C": [
+     0,
+     1,
+     "mov word ptr [r14 + 6], cx"
+    ]
+   },
+   "F4:4": {
+    "005835B6": [
+     0,
+     1,
+     "mov dword ptr [r14 + 0xc], eax"
+    ]
+   },
+   "F8:16": {
+    "005835C3": [
+     0,
+     1,
+     "movups xmmword ptr [r14 + 0x10], xmm0"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    1008,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "Widget02CA99B4": {
+  "handlers": [
+   "0x57fe80"
+  ],
+  "hits": {
+   "E8:1": {
+    "00580376": [
+     1,
+     1,
+     "add byte ptr [rbx + 0xe8], 0xff"
+    ],
+    "00581204": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xe8], 0x78"
+    ]
+   },
+   "EB:1": {
+    "0058053A": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xeb], dil"
+    ],
+    "0058100A": [
+     1,
+     0,
+     "movzx eax, byte ptr [rbx + 0xeb]"
+    ],
+    "005810C1": [
+     1,
+     0,
+     "movzx edx, byte ptr [rbx + 0xeb]"
+    ]
+   }
+  },
+  "rows": [
+   [
+    232,
+    1,
+    "unobservedSpan00E8"
+   ],
+   [
+    235,
+    1,
+    "unobservedSpan00EB"
+   ],
+   [
+    248,
+    192,
+    "unobservedSpan00F8"
+   ]
+  ]
+ },
+ "Widget02CA99E8": {
+  "handlers": [
+   "0x57e4d0"
+  ],
+  "hits": {
+   "100:8": {
+    "0057E42F": [
+     0,
+     1,
+     "mov qword ptr [rdi + 0x100], 0x56690"
+    ]
+   },
+   "C0:8": {
+    "0057E522": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xc0], rax"
+    ],
+    "0057E545": [
+     1,
+     0,
+     "cmp qword ptr [rbx + 0xc0], 0"
+    ],
+    "0057E56E": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xc0], rax"
+    ]
+   },
+   "C8:4": {
+    "0057E57F": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc8], 1"
+    ],
+    "0057E5E0": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc8], eax"
+    ]
+   },
+   "F8:8": {
+    "0057E423": [
+     0,
+     1,
+     "mov qword ptr [rdi + 0xf8], rsi"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    184,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton01EFAC10": {
+  "handlers": [
+   "0x393ea0"
+  ],
+  "hits": {
+   "C0:1": {
+    "00393EC6": [
+     1,
+     0,
+     "movzx ecx, byte ptr [rdi + 0xc0]"
+    ],
+    "00393F06": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xc0], 3"
+    ],
+    "00393F3F": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xc0], 3"
+    ],
+    "00393F61": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xc0], 2"
+    ],
+    "00393FAF": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xc0], 1"
+    ],
+    "00393FC8": [
+     0,
+     1,
+     "mov byte ptr [rdi + 0xc0], 0"
+    ]
+   },
+   "C1:1": {
+    "003BB330": [
+     1,
+     0,
+     "movzx eax, byte ptr [rcx]"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    72,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton01FD4940": {
+  "handlers": [
+   "0x229590"
+  ],
+  "hits": {
+   "C4:4": {
+    "0022981D": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0xc4]"
+    ],
+    "00229881": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0xc4], eax"
+    ],
+    "0022998B": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0xc4], 1"
+    ]
+   }
+  },
+  "rows": [
+   [
+    196,
+    4,
+    "unobservedSpan00C4"
+   ]
+  ]
+ },
+ "WidgetSingleton0208E6C8": {
+  "handlers": [
+   "0x240ad0"
+  ],
+  "hits": {
+   "C0:8": {
+    "00240B70": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbx + 0xc0]"
+    ],
+    "00240BD7": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbx + 0xc0]"
+    ],
+    "00240C2D": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbx + 0xc0]"
+    ],
+    "00240CA8": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xc0], rcx"
+    ],
+    "00240CB4": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbx + 0xc0]"
+    ],
+    "00240CC5": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00240CDB": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00240CEB": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbx + 0xc0]"
+    ],
+    "00240D15": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00240D23": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00240D31": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00240D3F": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbx + 0xc0]"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    8,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton0208E6D8": {
+  "handlers": [
+   "0x23fbe0"
+  ],
+  "hits": {
+   "C1:1": {
+    "0023D533": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xc1], dl"
+    ]
+   }
+  },
+  "rows": [
+   [
+    193,
+    1,
+    "unobservedSpan00C1"
+   ],
+   [
+    195,
+    5,
+    "unobservedSpan00C3"
+   ],
+   [
+    212,
+    4,
+    "unobservedSpan00D4"
+   ],
+   [
+    240,
+    992,
+    "unobservedSpan00F0"
+   ],
+   [
+    1234,
+    6,
+    "unobservedTail04D2"
+   ]
+  ]
+ },
+ "WidgetSingleton0209C300": {
+  "handlers": [
+   "0x29c530"
+  ],
+  "hits": {
+   "C0:4": {
+    "0029C6C9": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc0], eax"
+    ]
+   },
+   "C4:2": {
+    "0029C6D3": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xc4], ax"
+    ]
+   },
+   "C6:2": {
+    "0029C6DE": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xc6], ax"
+    ]
+   },
+   "C8:2": {
+    "0029C6E9": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xc8], ax"
+    ]
+   },
+   "CA:2": {
+    "0029C6F4": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xca], ax"
+    ]
+   },
+   "D0:4": {
+    "0029C706": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xd0], eax"
+    ]
+   },
+   "D4:2": {
+    "0029C710": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xd4], ax"
+    ]
+   },
+   "D6:2": {
+    "0029C71B": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xd6], ax"
+    ]
+   },
+   "D8:2": {
+    "0029C726": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xd8], ax"
+    ]
+   },
+   "DA:2": {
+    "0029C734": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xda], ax"
+    ]
+   },
+   "E0:2": {
+    "0029C755": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xe0], di"
+    ]
+   },
+   "E6:2": {
+    "0029C569": [
+     1,
+     1,
+     "or word ptr [rbx + 0xe6], 4"
+    ],
+    "0029C579": [
+     1,
+     1,
+     "or word ptr [rbx + 0xe6], 8"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    48,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton022C83A8": {
+  "handlers": [
+   "0x35daf0"
+  ],
+  "hits": {
+   "C0:8": {
+    "0035DC36": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xc0], rdi"
+    ]
+   },
+   "C4:4": {
+    "0035DB5F": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbx + 0xc4]"
+    ],
+    "0035DB75": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc4], esi"
+    ]
+   },
+   "C8:4": {
+    "0035DB7B": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc8], edi"
+    ],
+    "0035DB9F": [
+     1,
+     0,
+     "cmp edi, dword ptr [rbx + 0xc8]"
+    ],
+    "0035DBAB": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc8], edi"
+    ],
+    "0035DC3D": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0xc8], edi"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    16,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton02AEE4D0": {
+  "handlers": [
+   "0x394130"
+  ],
+  "hits": {
+   "C0:1": {
+    "003941AD": [
+     1,
+     0,
+     "movzx ecx, byte ptr [rbx + 0xc0]"
+    ],
+    "0039420B": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xc0], 2"
+    ],
+    "00394270": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xc0], 2"
+    ],
+    "0039428B": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xc0], 1"
+    ],
+    "003942A4": [
+     0,
+     1,
+     "mov byte ptr [rbx + 0xc0], 0"
+    ]
+   },
+   "C2:2": {
+    "00394197": [
+     1,
+     0,
+     "movzx eax, word ptr [rbx + 0xc2]"
+    ],
+    "003941A6": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xc2], ax"
+    ],
+    "003941C5": [
+     1,
+     0,
+     "cmp word ptr [rbx + 0xc2], 0"
+    ],
+    "003942AB": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xc2], cx"
+    ],
+    "00394322": [
+     0,
+     1,
+     "mov word ptr [rbx + 0xc2], ax"
+    ]
+   },
+   "C8:16": {
+    "00394234": [
+     1,
+     0,
+     "movups xmm0, xmmword ptr [rbx + 0xc8]"
+    ],
+    "003942CE": [
+     0,
+     1,
+     "movups xmmword ptr [rbx + 0xc8], xmm0"
+    ]
+   },
+   "D8:16": {
+    "0039423F": [
+     1,
+     0,
+     "movups xmm1, xmmword ptr [rbx + 0xd8]"
+    ],
+    "003942D9": [
+     0,
+     1,
+     "movups xmmword ptr [rbx + 0xd8], xmm1"
+    ]
+   },
+   "E8:8": {
+    "0039424A": [
+     1,
+     0,
+     "movsd xmm0, qword ptr [rbx + 0xe8]"
+    ],
+    "003942E5": [
+     0,
+     1,
+     "movsd qword ptr [rbx + 0xe8], xmm0"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    48,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton02CA8FE0": {
+  "handlers": [
+   "0x558ce0"
+  ],
+  "hits": {
+   "C0:8": {
+    "00558DBE": [
+     0,
+     1,
+     "mov qword ptr [rsi + 0xc0], rax"
+    ]
+   },
+   "C8:4": {
+    "00558DCB": [
+     0,
+     1,
+     "mov dword ptr [rsi + 0xc8], ecx"
+    ],
+    "00558E86": [
+     1,
+     0,
+     "mov ecx, dword ptr [rcx + 0xc8]"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    16,
+    "unobservedSpan00C0"
+   ]
+  ]
+ },
+ "WidgetSingleton02CA9678": {
+  "handlers": [
+   "0x557db0"
+  ],
+  "hits": {
+   "140:8": {
+    "00558005": [
+     0,
+     1,
+     "mov qword ptr [rbp + 0x140], rcx"
+    ]
+   },
+   "148:8": {
+    "0055801A": [
+     0,
+     1,
+     "mov qword ptr [rbp + 0x148], rcx"
+    ]
+   },
+   "150:8": {
+    "0055802F": [
+     0,
+     1,
+     "mov qword ptr [rbp + 0x150], rcx"
+    ]
+   },
+   "15E:2": {
+    "00558135": [
+     0,
+     1,
+     "mov word ptr [rbp + 0x15e], ax"
+    ],
+    "00558A30": [
+     1,
+     0,
+     "cmp word ptr [rcx + 0x15e], di"
+    ],
+    "00558A4F": [
+     1,
+     0,
+     "movsx ecx, word ptr [rbx + 0x15e]"
+    ],
+    "00558AB1": [
+     0,
+     1,
+     "mov word ptr [rbx + 0x15e], si"
+    ]
+   },
+   "162:2": {
+    "00558ACB": [
+     0,
+     1,
+     "mov word ptr [rbx + 0x162], ax"
+    ]
+   },
+   "354:4": {
+    "00557FF1": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0x354], eax"
+    ],
+    "005580E9": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x354]"
+    ],
+    "00558434": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x354]"
+    ],
+    "005585D9": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x354]"
+    ],
+    "00558783": [
+     0,
+     1,
+     "mov dword ptr [rcx + 0x354], edx"
+    ],
+    "005588E1": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbx + 0x354]"
+    ]
+   },
+   "35C:4": {
+    "00558186": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0x35c], esi"
+    ],
+    "005581E8": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x35c]"
+    ],
+    "00558220": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x35c]"
+    ],
+    "005585F0": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x35c]"
+    ],
+    "0055890B": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbx + 0x35c]"
+    ],
+    "00558998": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbx + 0x35c]"
+    ],
+    "005589CE": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbx + 0x35c]"
+    ]
+   },
+   "360:4": {
+    "005581A6": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0x360], eax"
+    ],
+    "005581DC": [
+     1,
+     0,
+     "mov edx, dword ptr [rbp + 0x360]"
+    ],
+    "00558217": [
+     1,
+     0,
+     "mov edx, dword ptr [rbp + 0x360]"
+    ],
+    "005585E4": [
+     1,
+     0,
+     "mov edx, dword ptr [rbp + 0x360]"
+    ],
+    "00558935": [
+     1,
+     0,
+     "add edx, dword ptr [rbx + 0x360]"
+    ],
+    "0055898F": [
+     1,
+     0,
+     "mov edx, dword ptr [rbx + 0x360]"
+    ],
+    "005589C6": [
+     1,
+     0,
+     "mov edx, dword ptr [rbx + 0x360]"
+    ]
+   },
+   "368:4": {
+    "0055830C": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x368]"
+    ],
+    "0055831B": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0x368], ebx"
+    ],
+    "005586C7": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp + 0x368]"
+    ],
+    "005586D8": [
+     0,
+     1,
+     "mov dword ptr [rbp + 0x368], ebx"
+    ],
+    "00558730": [
+     1,
+     0,
+     "mov ecx, dword ptr [rbp]"
+    ],
+    "0055873C": [
+     0,
+     1,
+     "mov dword ptr [rbp], ebx"
+    ],
+    "005588D2": [
+     1,
+     0,
+     "mov ecx, dword ptr [rcx + 0x368]"
+    ],
+    "00558940": [
+     0,
+     1,
+     "mov dword ptr [rbx + 0x368], eax"
+    ]
+   },
+   "380:2": {
+    "00558620": [
+     0,
+     1,
+     "mov word ptr [rbp + 0x380], 0x1840"
+    ]
+   },
+   "382:1": {
+    "00558629": [
+     0,
+     1,
+     "mov byte ptr [rbp + 0x382], 0x38"
+    ]
+   },
+   "383:2": {
+    "00558610": [
+     0,
+     1,
+     "mov word ptr [rbp + 0x383], 0x4a45"
+    ]
+   },
+   "385:1": {
+    "00558619": [
+     0,
+     1,
+     "mov byte ptr [rbp + 0x385], 0x6b"
+    ]
+   },
+   "C0:8": {
+    "00557BD2": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00557C0E": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00557CC1": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00557D22": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00557D5D": [
+     1,
+     0,
+     "mov rax, qword ptr [rbx + 0xc0]"
+    ],
+    "00557FE1": [
+     0,
+     1,
+     "mov qword ptr [rbp + 0xc0], rcx"
+    ],
+    "00558105": [
+     1,
+     0,
+     "mov rax, qword ptr [rbp + 0xc0]"
+    ],
+    "005582D5": [
+     1,
+     0,
+     "mov rax, qword ptr [rbp + 0xc0]"
+    ],
+    "005583C2": [
+     1,
+     0,
+     "mov rax, qword ptr [rbp + 0xc0]"
+    ],
+    "005583D2": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbp + 0xc0]"
+    ],
+    "005583E3": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbp + 0xc0]"
+    ],
+    "00558408": [
+     1,
+     0,
+     "mov rax, qword ptr [rbp + 0xc0]"
+    ],
+    "00558416": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbp + 0xc0]"
+    ],
+    "00558498": [
+     1,
+     0,
+     "mov rax, qword ptr [rbp + 0xc0]"
+    ],
+    "00558657": [
+     1,
+     0,
+     "mov rax, qword ptr [rbp + 0xc0]"
+    ],
+    "0055877C": [
+     1,
+     0,
+     "mov rax, qword ptr [rcx + 0xc0]"
+    ]
+   },
+   "D0:8": {
+    "00556ED5": [
+     1,
+     0,
+     "cmp qword ptr [rcx + 0xd0], 0"
+    ],
+    "00556F26": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xd0], rax"
+    ],
+    "005583A6": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbp + 0xd0]"
+    ],
+    "005583B7": [
+     0,
+     1,
+     "mov qword ptr [rbp + 0xd0], rbx"
+    ],
+    "00558536": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbp + 0xd0]"
+    ],
+    "0055866F": [
+     1,
+     0,
+     "mov rcx, qword ptr [rbp + 0xd0]"
+    ],
+    "00558682": [
+     0,
+     1,
+     "mov qword ptr [rbp + 0xd0], rbx"
+    ]
+   },
+   "D8:8": {
+    "00557349": [
+     1,
+     0,
+     "mov rcx, qword ptr [rcx + 0xd8]"
+    ],
+    "0055735A": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xd8], 0"
+    ],
+    "00557387": [
+     1,
+     0,
+     "cmp qword ptr [rcx + 0xd8], 0"
+    ],
+    "005573CB": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xd8], rax"
+    ]
+   },
+   "E0:8": {
+    "00557289": [
+     1,
+     0,
+     "mov rcx, qword ptr [rcx + 0xe0]"
+    ],
+    "0055729A": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xe0], 0"
+    ],
+    "005572C7": [
+     1,
+     0,
+     "cmp qword ptr [rcx + 0xe0], 0"
+    ],
+    "0055730B": [
+     0,
+     1,
+     "mov qword ptr [rbx + 0xe0], rax"
+    ]
+   }
+  },
+  "rows": [
+   [
+    192,
+    8,
+    "unobservedSpan00C0"
+   ],
+   [
+    208,
+    24,
+    "unobservedSpan00D0"
+   ],
+   [
+    248,
+    96,
+    "unobservedSpan00F8"
+   ],
+   [
+    350,
+    2,
+    "unobservedSpan015E"
+   ],
+   [
+    354,
+    2,
+    "unobservedSpan0162"
+   ],
+   [
+    364,
+    480,
+    "unobservedSpan016C"
+   ],
+   [
+    852,
+    4,
+    "unobservedSpan0354"
+   ],
+   [
+    857,
+    11,
+    "unobservedSpan0359"
+   ],
+   [
+    872,
+    4,
+    "unobservedSpan0368"
+   ],
+   [
+    880,
+    12,
+    "unobservedSpan0370"
+   ],
+   [
+    896,
+    8,
+    "unobservedSpan0380"
+   ],
+   [
+    908,
+    4,
+    "unobservedTail038C"
+   ]
+  ]
+ }
+}

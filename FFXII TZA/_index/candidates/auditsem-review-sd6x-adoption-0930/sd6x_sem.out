@@ -1,0 +1,46 @@
+PASS D1 pre has 20 SD-16x rows, post has 10 pre=20 post=10
+PASS D2 kept copy == first copy at 4415dba48 (byte-identical)
+PASS D1 nothing but SD-60..67 and the second SD-16x copy changed other_removed=0 other_added=0
+INFO D3 SD-160: dropped-copy-only tokens 3; on cited page 3; nowhere on page []
+INFO D3 SD-161: dropped-copy-only tokens 3; on cited page 3; nowhere on page []
+INFO D3 SD-162: dropped-copy-only tokens 0; on cited page 0; nowhere on page []
+INFO D3 SD-163: dropped-copy-only tokens 0; on cited page 0; nowhere on page []
+INFO D3 SD-164: dropped-copy-only tokens 0; on cited page 0; nowhere on page []
+INFO D3 SD-165: dropped-copy-only tokens 0; on cited page 0; nowhere on page []
+INFO D3 SD-166: dropped-copy-only tokens 5; on cited page 5; nowhere on page []
+INFO D3 SD-167: dropped-copy-only tokens 0; on cited page 0; nowhere on page []
+INFO D3 SD-168: dropped-copy-only tokens 0; on cited page 0; nowhere on page []
+INFO D3 SD-169: dropped-copy-only tokens 2; on cited page 2; nowhere on page []
+PASS D3 SD-165: dropped copy asked the player-visible question
+PASS D3 SD-165: kept copy does not ask it
+PASS D3 SD-165: the page line citing SD-165 still asks the dropped question (narrowing N1)
+PASS D4 register ended with a newline before 583b096f7
+PASS D4 finding (correction C2): the register has no trailing newline after 583b096f7
+PASS R1 SD-60 cites 5f7bd30da and record sd60-gibegineff-blocks-0930; commit touched it
+PASS R3 SD-60 status ANSWERED matches record record~ANSWERED
+PASS R1 SD-61 cites 73e6ff01f and record sd61-pannotation-fields-0930; commit touched it
+PASS R3 SD-61 status ANSWERED matches record record~ANSWERED
+PASS R1 SD-62 cites e2777d3c8 and record sd62-static-array-elements-0930; commit touched it
+PASS R3 SD-62 status PARTIAL matches record record~PARTIAL
+PASS R1 SD-63 cites ce6a553b2 and record sd63-scene-parameter-layout-0930; commit touched it
+PASS R3 SD-63 status ANSWERED matches record record~ANSWERED
+PASS R1 SD-64 cites 02d334dbe and record sd64-file-only-names-0930; commit touched it
+PASS R3 SD-64 status ANSWERED matches record record~ANSWERED
+PASS R1 SD-65 cites 49f9a523b and record sd65-dynamic-class-route-0930; commit touched it
+PASS R3 SD-65 status ANSWERED matches record record~ANSWERED
+PASS R1 SD-66 cites ba2580021 and record sd66-attach-slot-writers-0930; commit touched it
+PASS R3 SD-66 status ANSWERED matches record record~ANSWERED
+PASS R1 SD-67 cites aac0f6798 and record sd67-stream-bindings-type-0930; commit touched it
+PASS R3 SD-67 status ANSWERED matches record record~ANSWERED
+PASS R2 SD-60 carries the batch-2 narrowing missing=[]
+PASS R2 SD-61 carries the batch-2 narrowing missing=[]
+PASS R2 SD-62 carries the batch-2 narrowing missing=[]
+PASS R2 SD-66 carries the batch-2 narrowing missing=[]
+PASS R2 SD-67 carries the batch-2 narrowing missing=[]
+PASS C1 control: removing a token from a kept row is detected
+PASS B1 SD-60: 006CAF40 copies 16 dwords to renderer +0x10..+0x4C and sets byte +0x208F3 = 1
+PASS B2 SD-60: the first resolver 0039D1D0 is lea rax,[02AEEB20]; ret
+PASS B3 SD-61: first site forms r8 (type), r9d = 0, rdx = 02CF8570 (key) within the 12 before the call
+PASS B4 SD-67: 005E6860 -> 00632A10 with offset 0x38, kind 4, element size 8
+INFO dropped-copy tokens absent from the cited page: 0
+FAILS 0

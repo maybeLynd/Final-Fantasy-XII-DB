@@ -1,0 +1,3 @@
+CONTROL synthetic mov ecx,0x2e; mov eax,1; shl rax,cl: PASS
+image-wide register-index uses of 0x2E: 0
+FAILS 0

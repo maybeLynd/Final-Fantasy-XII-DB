@@ -1,0 +1,252 @@
+{
+  "view": "executable",
+  "title": "Executable - every .text byte once, and the function-level dimensions",
+  "status": "PARTIAL",
+  "source": {
+    "identity": "image 73461d089620; functions.tsv e12212400b59; COVERAGE-DIMENSIONS.md ccf855580d96",
+    "as_of": "CONTROL_TIME",
+    "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image; program_coverage.py",
+    "limits": "byte classes are the boundary axis; behavior (READ / EXPLAINED) and observed execution are UNMEASURED here; data inside .text other than held rows is counted as UNKNOWN until a ruling classifies it; the fill rule is single-byte: multi-byte NOP fill counts as UNKNOWN, and a CC/90 byte inside unclassified data would count as fill"
+  },
+  "measures": [
+    {
+      "id": "bytes-listed",
+      "label": "bytes in listed function bodies (population)",
+      "numerator": 12,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)"
+    },
+    {
+      "id": "bytes-frontier",
+      "label": "bytes in UC-1 frontier bodies (population, unexplained by ruling)",
+      "numerator": 0,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)"
+    },
+    {
+      "id": "bytes-funclet",
+      "label": "bytes in EH funclets (code outside the population)",
+      "numerator": 0,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)"
+    },
+    {
+      "id": "bytes-held",
+      "label": "bytes in held rows (declared uncertainty, never counted as code)",
+      "numerator": 0,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)"
+    },
+    {
+      "id": "bytes-fill",
+      "label": "alignment fill: runs of int3 (CC) / nop (90) bytes outside every body",
+      "numerator": 301582,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)"
+    },
+    {
+      "id": "bytes-unknown",
+      "label": "UNKNOWN bytes (no body, no held row, not fill)",
+      "numerator": 7695387,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "physical boundary axis only: a byte inside a body is not READ or EXPLAINED (behavior is UNMEASURED here)"
+    },
+    {
+      "id": "bytes-overlap",
+      "label": "bytes claimed by more than one population body (each such byte once; counted once above)",
+      "numerator": 8,
+      "denominator": 7996981,
+      "scope": ".text 00121000..008C1635 (7996981 bytes), each byte counted once",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "listed extents that overlap a neighbour; unique bytes, not covers (12 additional covers over them). Definition v2: v1 generations counted additional covers here, so no delta is taken across the change"
+    },
+    {
+      "id": "population",
+      "label": "functions in the population (3 listed + 0 frontier = 3 (series break 2026-09-28; 0 held, 0 extended, 0 removed))",
+      "numerator": 3,
+      "denominator": null,
+      "scope": "uc1_band.apply",
+      "instrument": "build_views.text_intervals over functions.tsv + uc1_band.apply + the certified image",
+      "as_of": "CONTROL_TIME",
+      "limits": "a versioned population; admitted frontier bodies are not explained"
+    }
+  ],
+  "rows": {
+    "columns": [
+      "largest UNKNOWN gaps",
+      "bytes",
+      "next body"
+    ],
+    "data": [
+      [
+        "0013C730..0014750F",
+        44511,
+        "-"
+      ],
+      [
+        "003CFF95..003D22C0",
+        9003,
+        "-"
+      ],
+      [
+        "005F5CF8..005F731A",
+        5666,
+        "-"
+      ],
+      [
+        "003CE30F..003CF5DC",
+        4813,
+        "-"
+      ],
+      [
+        "001D1A14..001D2B3E",
+        4394,
+        "-"
+      ],
+      [
+        "004BCB81..004BDBB4",
+        4147,
+        "-"
+      ],
+      [
+        "0066CD00..0066DBED",
+        3821,
+        "-"
+      ],
+      [
+        "004FF440..0050024C",
+        3596,
+        "-"
+      ],
+      [
+        "0031D7CD..0031E5B5",
+        3560,
+        "-"
+      ],
+      [
+        "004B5C59..004B6A36",
+        3549,
+        "-"
+      ],
+      [
+        "0055CD40..0055DAF9",
+        3513,
+        "-"
+      ],
+      [
+        "00495D16..00496A44",
+        3374,
+        "-"
+      ],
+      [
+        "003D47D2..003D54DE",
+        3340,
+        "-"
+      ],
+      [
+        "0012AC90..0012B978",
+        3304,
+        "-"
+      ],
+      [
+        "00133BC0..00134892",
+        3282,
+        "-"
+      ],
+      [
+        "00821A41..0082270F",
+        3278,
+        "-"
+      ],
+      [
+        "0047C3B0..0047D070",
+        3264,
+        "-"
+      ],
+      [
+        "006E8A81..006E96D8",
+        3159,
+        "-"
+      ],
+      [
+        "004F0EA5..004F1AD1",
+        3116,
+        "-"
+      ],
+      [
+        "004B2A55..004B3608",
+        2995,
+        "-"
+      ],
+      [
+        "00125850..001263E2",
+        2962,
+        "-"
+      ],
+      [
+        "007A2597..007A3105",
+        2926,
+        "-"
+      ],
+      [
+        "004ECDEA..004ED945",
+        2907,
+        "-"
+      ],
+      [
+        "00844090..00844B67",
+        2775,
+        "-"
+      ],
+      [
+        "0015765C..001580EB",
+        2703,
+        "-"
+      ],
+      [
+        "004A6C20..004A7678",
+        2648,
+        "-"
+      ],
+      [
+        "001223D0..00122E27",
+        2647,
+        "-"
+      ],
+      [
+        "001580EC..00158B33",
+        2631,
+        "-"
+      ],
+      [
+        "002C4720..002C515F",
+        2623,
+        "-"
+      ],
+      [
+        "004DE199..004DEBC7",
+        2606,
+        "-"
+      ]
+    ]
+  }
+}

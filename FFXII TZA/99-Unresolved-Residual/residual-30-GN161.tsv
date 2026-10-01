@@ -1,0 +1,47 @@
+# The residual population AT GN161 - 30 bodies carrying no GFZ.V121.CodeDomain.
+# Written for CT-3, which asked whether a successor census exists for the GN160 residual
+# of 139. It did not: residual-order.tsv, residual-crossref.tsv and
+# residual-109-classification.tsv are all keyed to the 139, one generation stale.
+# CT-3 is ANSWERED 2026-09-14 (OPUS) - "it did not exist, and now it does", and THIS FILE
+# is the successor it was asking for. Recorded here because the header named an answered
+# question in the present tense, which reads as an open one to anybody arriving at the
+# file rather than at the register.
+#
+# band is check_residual_depth.py's, against the rule in the-unresolved-158.md:
+#   DESCRIBED  a passage says what it does, and no passage refuses  -> taggable from prose
+#   CONTESTED  described somewhere and refused somewhere           -> read both, then decide
+#   UNREAD     nothing says what it does                           -> the body must be read
+# `unresolved = 0` is CHECKPOINT work (EVIDENCE-STANDARD addendum 2026-09-13t): a DESCRIBED
+# row needs tagging in the GZF and re-certification, not documentation.
+# old_tier is residual-order.tsv's queue position, kept so the two files can be joined.
+address	size	old_tier	band	role	disclaimed	bare	list	evidence_page	evidence
+0018EEE0	1581	2	DESCRIBED	1	0	3	0	17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md	FUN_0018EEE0(FUN_00193D50(), ctx, FUN_00193DA0, 1, isCurrentScreen);
+001D72F0	937	1	DESCRIBED	4	0	4	1	00-Engine-Core-Runtime/Application-Root/game-application.md	[the between-two-frames page](../../22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md), runs the same step (`00250570`); and the two render passes `0
+001D7A20	932	1	DESCRIBED	3	0	1	1	00-Engine-Core-Runtime/Application-Root/game-application.md	render pass list `00187950` through `001D7280`) and `001D7A20` (from the slot-4 pump through
+0020AC30	572	1	DESCRIBED	11	0	23	0	18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	## 11. Opened 2026-09-03 — `0020AC30`, and the engine reading meaning out of a bank's filename
+0020F3E0	1779	2	DESCRIBED	4	0	1	2	17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md	`0020F3E0` handles one PACKED GIF packet. For each register slot:
+00226640	861	1	DESCRIBED	15	1	0	0	00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md	method: complete bodies of the start 00226BE0, the per-id record filler 00227680, the apply step 00226280, the per-actor pass 00226640 and 002269A0, the classifiers 00263
+00246C20	1178	2	DESCRIBED	5	0	2	0	05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	With self flag0 set it optionally calls`002479B0` while flag13 is set, then calls`00246C20`.
+00247AE0	1348	2	DESCRIBED	3	0	1	0	05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	`002445D0`, the root handler installed by`00247AE0`, handles message1 locally:
+0024B580	324	2	DESCRIBED	4	0	1	1	99-Unresolved-Residual/the-unresolved-158.md	## `0024B580` read — the one residual whose entry nothing names (2026-09-14, OPUS)
+00256960	828	1	DESCRIBED	1	0	4	0	17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md	`00256960` 828 B and `00256CA0` 694 B complete for their field reads; `00255410` 195 B, `002554E0`
+00258350	1942	1	DESCRIBED	9	1	3	0	17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md	**Extents read**: `00258350` 1,942 B complete (ends `ret` at `00258A8E`, tail to `00258AE1`);
+0026F470	1361	1	DESCRIBED	3	0	1	0	03-World-Area-Field/Weather/weather-probability-and-transition-roll.md	(`0024F680`), allocates one if absent, and runs `0026F470` over the EFB's **binding table** —
+00275570	1835	4	DESCRIBED	1	0	1	1	00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md	| `00275570` | 1835 | cubic easing ramp: divides a constant by count `0209A76C` (`002755BD`–`002755C5`), then iterates steps evaluating `t²`/`t³` terms with constants `00
+0028BB50	2387	3	DESCRIBED	2	0	4	1	00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md	FUN_0028BB50(n); /* the per-node update */
+002ABF70	577	2	DESCRIBED	8	0	11	2	16-UI/Request-Router/ui-request-router.md	interior addresses of `002ABF70` for the same reason: switch arms are not functions.
+002AC5F0	7489	1	DESCRIBED	40	2	37	4	05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md	`0025C830`, `00268D10`, `00272CB0`, `00272CE0`, `002AC5F0`, `002B0280`). The `+0x100` count is
+002AE610	1281	2	DESCRIBED	14	1	9	3	16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	`002AE610` converts an integer to characters by **repeated subtraction of powers of ten**, using a
+002AF340	1563	2	DESCRIBED	15	0	6	4	16-UI/Request-Router/ui-request-router.md	**Not established by this join:** what `002AF340` returns (that page says so outright, and the
+002B2150	861	2	DESCRIBED	21	0	8	2	16-UI/License-Board-View/the-license-board-screen-widgets.md	`003FFDA0`/`003FFEE0`, `00474650` → `003A22A0`), the text-format engine `002A9F00`/`002AE450`/`002B2150` and its
+002B6350	541	2	DESCRIBED	3	0	0	0	00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md	| presentation objects (`0209E5C0`, `02B47730`/`58`/`60`) | `002B6220` (62 B — lazy-creates `0209E5C0` through `002B6350(5)`, ORs `0x500` into its `+0x179D2` flags word, 
+002BA310	543	4	DESCRIBED	3	0	0	1	12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	indexes `rcx + (r9d + 8) × 0x18`, and **`8 × 0x18 = 0xC0`** — precisely where `002BA310` put
+002C3D70	1151	4	DESCRIBED	3	1	0	1	00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md	| `002C3D70` | 1151 | round-robin channel picker: collects `[entry+0x40]&1` from the 4-entry ring `rcx+0xC0` starting at index word `[rcx+0x7A4]`, then scans the ring mod
+0036A2A0	495	1	DESCRIBED	14	0	6	1	24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md	`0036A2A0`, `0036CB00`, and the retry allocator `0036BFE0`, whose result the wrappers stamp themselves. Whether
+00402000	511	4	DESCRIBED	4	0	1	0	12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	**Where the records come from.** `00402000(rows, mapDesc)` builds the array both readers walk
+00565E00	1914	2	DESCRIBED	8	0	9	1	16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	- **`00565E00`** (the tail-jump-installed widget the protocol page's DL-2 list names) reads
+00566680	997	4	DESCRIBED	7	0	4	1	16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	`00556F90` message window, `00566680` item-sort bar — the reusable leaf layer.
+0056E140	632	3	DESCRIBED	4	0	1	0	16-UI/Shop-Screens/the-shop-screens.md	| `0056DD50` | **panel rebuild** — installs the whole child set (`00564780`/`00564AC0`/`00567190`/`005674B0`/`0056C950`) and the `0056E140` widget (`lea` at `0056DD66`) |
+0056F810	621	4	DESCRIBED	7	0	4	0	16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	[The shared dialogs](../Shared-Dialogs/the-shared-dialog-widgets.md): `0056F810` menu list, `0057C480` confirm,
+00572920	679	2	DESCRIBED	4	0	2	0	16-UI/Handbook/the-handbook-screen.md	| 12 | `005731A7` | sub-commands `0xE`, `0x12`, `0x8100`–`0x8102`: `0xE` with arg `0xC` → `00572920` + `005704A0` (`00573244`) — page select; `0x12` clears `+0x11E0`/`+0x
+005771F0	758	4	DESCRIBED	7	0	3	0	16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	**Screens read so far.** [The quest list](../Quest-List/the-quest-list-screen.md): `005771F0` plus its three

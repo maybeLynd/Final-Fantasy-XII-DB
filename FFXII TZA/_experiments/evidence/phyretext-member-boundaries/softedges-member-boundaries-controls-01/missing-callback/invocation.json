@@ -1,0 +1,12 @@
+{
+  "case": "missing-callback",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-softedges-member-boundaries.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\missing-callback\\source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\missing-callback\\result.json"
+  ],
+  "exit": 1,
+  "result_exists": false,
+  "status": "PASS_REFUSED"
+}

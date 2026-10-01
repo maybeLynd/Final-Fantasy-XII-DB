@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-147",
+ "result_refs": [
+  "publish commit c0e89c61f (11 pure-addition hosts + AUDIT-LOG + 5 inbox lifecycle ops via publish_paths.sh, private index; real index normalized to HEAD after)"
+ ],
+ "note": "batch-147 publish: 22 bodies (1x3-caller + 3x2-caller multi-caller frontier + top-18 1-A by size), 11 committed hosts; anchors 4458 standing, all 22 batch anchors counted, 0 MID, 0 outside-body; body-paragraph address checker 0 UNSUPPORTED in the batch's 22 entries; hash clean (standing set); crossref 2875 findings / 400 dispositioned; publish-neighbour guard ADDS NOTHING after 5 crossing-section sentences on 3 docs accounting 8 standing pairs (world-tick Resource/ActorEntity/Save_Load_Settings/Script_VM_Native_Bridge, gi-render Resource, phyre Resource; UNACCOUNTED NEIGHBOUR 2873 -> 2865). All 22 entries + anchors verified at HEAD."
+}

@@ -1,0 +1,11 @@
+claim	meaning	original_anchors	assertions	limit
+A12-1	Issuer/target identity and insertion state	00268850;002689F0;002689F7	deferral_depends_on_issuer;target_class_does_not_defer;same_actor_not_immediately_started	Synthetic actor identities; no missing-target safety claim
+A12-2	Entry admission and priority/FIFO	003DB580;003DBCF0;003DB7A0;003DB6E0	kind0_occupied_refuses;kind2_same_id_admits;kind4_same_id_refuses;highest_channel_wins;fifo_successor_after_remove	Configured finite arrays, not actual game allocation census
+A12-3	Selective request reset	0025D460;003DBDC0	start_preserves_scratch;start_preserves_other_slot	Other initializers and runtime allocation lifetime not validated
+A12-4	Start/return receipts and same-invocation resume	003DBDC0;003DB2A0;003DC0D0;0025DF00;0025E4C0	reqsw_receipt_before_body;reqsw_target_still_not_run;target_RET_posts_receipt;reqew_continues_after_return	Selected bytecode, no real frame timing
+A12-5	Receipt exhaustion and correlation key	003DC050;003DBCF0	startwait_no_receipt_allocated;endwait_receipt_failure_ignored;wrong_channel_does_not_resume;wrong_resume_offset_does_not_resume	No shipped deadlock or universal delivery assertion
+A12-6	Wait polarity and completion footprint	0025DF00;0025E127;0025E0BE;003DBF60;003DB640	kind3_sees_queued_state1_entry;reqsw_consumes_receipt;kind6_sets_marker;kind5_does_not_write_marker	Idle configured services, outer driver not executed
+A12-7	Ordered list cursor is not simultaneous barrier	00267420;002674B0	kind7_cursor_stops_at_active_second_actor;kind7_does_not_recheck_passed_actor;kind5_cursor_exhausted	Producer, resource ownership and malformed bounds remain open
+A12-8	Original entry-wait opcode producer	0025E4C0 opcode32	opcode32_kind3;opcode32_saves_encoded_target;opcode32_resumes_after_removal;opcode32_absent_continues	Representative opcode, not complete variable/reference behavior
+A12-9	Channel clamping differs from submission mask	003DB7A0;00268850	high_channel_entry_clamps_to2;submitted_mask_uses_unclamped7	Out-of-domain synthetic channel, no normal-game reachability
+A12-10	Serviced marker is predicate-controlled	0025DF00;001EDDA0;001ED180	serviced_gate_skips_once;serviced_gate_clears_marker;serviced_gate_later_invocation_executes	Not a universal one-frame delay

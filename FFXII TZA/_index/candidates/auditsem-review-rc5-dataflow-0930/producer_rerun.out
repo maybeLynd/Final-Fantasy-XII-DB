@@ -1,0 +1,1 @@
+rc5_constprop.py: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive); 405 sites, 20 constant controls reproduced, 0 unsound files

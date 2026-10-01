@@ -1,0 +1,28 @@
+# NativeAdapter.CallResultMarshalCompositeRecord - EC-7 family C, declared on generated-function-families.md
+#
+# 19 members. Body size(s): 58 B x19.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 19 external target(s): 0 shared across all 19 members, and 19 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 19 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00867040
+00867120
+008677C0
+008678A0
+00867980
+00867E00
+00867E80
+00868710
+00868790
+00868EC0
+00868F40
+00869880
+00869900
+00869FF0
+0086A0D0
+0086A750
+0086A830
+0086AE30
+0086AF40

@@ -1,0 +1,62 @@
+table 01E0BF60: 45 consecutive image pointers; qword after = 0x0
+nodes whose id byte != table index: [(0, 2), (1, 2), (39, 23), (40, 23), (41, 23), (42, 23), (43, 23), (44, 23)]
+node 0x12 type 2
+node 0x13 type 6
+node 0x14 type 6
+node 0x15 type 6
+parents of 0x13: [(0, 19, '1300fc04000d'), (1, 18, '1300fc04000d'), (2, 19, '1300fc04000d')]
+parents of 0x14: [(0, 20, '1400fd04010d'), (1, 19, '1400fd04010d'), (2, 20, '1400fd04010d')]
+parents of 0x15: [(0, 21, '1500fe04020d'), (1, 20, '1500fe04020d'), (2, 21, '1500fe04020d')]
+root 0 type 0 children ids [32, 33, 31, 3, 4, 5, 6, 8, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 35, 36, 37]
+root 1 type 0 children ids [24, 26, 25, 34, 32, 33, 31, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+root 2 type 0 children ids [32, 33, 31, 3, 4, 5, 6, 8, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+type histogram: [(0, 3), (1, 4), (2, 8), (3, 1), (5, 7), (6, 3), (7, 2), (8, 2), (9, 2), (10, 2), (11, 7), (12, 1), (13, 3)]
+--- 0023EBE0 around the change call
+0023EC40 add byte ptr [rax], al
+0023EC42 add bh, bh
+0023EC44 enter 0x1beb, 0x40
+0023EC48 test bh, 0x20
+0023EC4B je 0x23ed00
+0023EC51 movzx ecx, byte ptr [rbx + 0xd2]
+0023EC58 cmp eax, ecx
+0023EC5A jae 0x23ed00
+0023EC60 inc eax
+0023EC62 mov dword ptr [rsp + 0x30], eax
+0023EC66 cmp eax, edx
+0023EC68 je 0x23ed00
+0023EC6E movzx ecx, byte ptr [rbx + 0xc0]
+0023EC75 lea rdx, [rsp + 0x30]
+0023EC7A call 0x240750
+--- 00240750 head
+00240750 lea eax, [rcx - 4]
+00240753 cmp eax, 0x22
+00240756 ja 0x2407a3
+00240758 lea r9, [rip - 0x12075f]
+0024075F movzx eax, byte ptr [r9 + rax + 0x1207c0]
+00240768 mov r8d, dword ptr [r9 + rax*4 + 0x1207a8]
+00240770 add r8, r9
+00240773 jmp r8
+00240776 xor eax, eax
+00240778 cmp dword ptr [rdx], eax
+0024077A sete al
+0024077D mov dword ptr [rdx], eax
+0024077F jmp 0x2407f0
+00240784 xor eax, eax
+00240786 cmp dword ptr [rdx], eax
+00240788 setne al
+0024078B mov dword ptr [rdx], eax
+0024078D jmp 0x2407f0
+00240792 inc dword ptr [rdx]
+00240794 jmp 0x2407f0
+00240799 xor eax, eax
+0024079B cmp dword ptr [rdx], 1
+desc 0: type 0, +1 = 2, count 27, listed as a child by []
+desc 1: type 0, +1 = 2, count 23, listed as a child by []
+desc 2: type 0, +1 = 2, count 24, listed as a child by []
+desc 23: type 5, +1 = 23, count 0, listed as a child by [(0, 23), (1, 22), (2, 23)]
+desc 39: type 5, +1 = 23, count 0, listed as a child by []
+desc 40: type 5, +1 = 23, count 0, listed as a child by []
+desc 41: type 5, +1 = 23, count 0, listed as a child by []
+desc 42: type 5, +1 = 23, count 0, listed as a child by []
+desc 43: type 5, +1 = 23, count 0, listed as a child by []
+desc 44: type 5, +1 = 23, count 0, listed as a child by []

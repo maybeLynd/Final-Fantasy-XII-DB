@@ -1,0 +1,14 @@
+thunk 00253770: ['00253770 jmp 0x316a50'] -> OK
+  direct               site 00253770 in 00253770 thunk_FUN_00316a50                  id(ecx)=?      amount(edx)=?
+  direct               site 00254F02 in 00254EE0 GameState_SetGil                    id(ecx)=?      amount(edx)=?
+  direct               site 00312496 in 00312280 BattleUnit_ProcessDefeatRewardsAndL id(ecx)=?      amount(edx)=esi
+  direct               site 0056D4D2 in 0056D370 FUN_0056d370                        id(ecx)=?      amount(edx)=word ptr [rax + 8]
+  via thunk 00253770   site 0028F0E3 in 0028F0C0 FUN_0028f0c0                        id(ecx)=0x12   amount(edx)=ecx
+  via thunk 00253770   site 002E2387 in 002E2380 FUN_002e2380                        id(ecx)=0x11   amount(edx)=ecx
+  via thunk 00253770   site 003057A5 in 00305640 BattleAction_ConsumeExecutionResour id(ecx)=edx    amount(edx)=1
+  via thunk 00253770   site 00311475 in 003112F0 BattleFormula_ApplyTargetResult     id(ecx)=?      amount(edx)=1
+  via thunk 00253770   site 003170D8 in 00317090 FUN_00317090                        id(ecx)=0x11   amount(edx)=ecx
+  via thunk 00253770   site 003171E7 in 003171C0 FUN_003171c0                        id(ecx)=?      amount(edx)=1
+sites setting counter 17 (ecx = 0x11): ['002E2387 (via thunk 00253770) in 002E2380', '003170D8 (via thunk 00253770) in 00317090']
+CONTROL thunk is jmp 00316A50 and the census's three direct feeders (00254EE0, 00312280, 0056D370) are found: PASS
+FAILS 0

@@ -1,0 +1,4 @@
+PRE_and_marshalling_00683C30       PASS  a NULL data pointer is refused before any load; rdx itself is dereferenced first (a NULL buffer faults); the load receives L, data, length and name as the recorded values
+I1_I2_fork_and_mode_guards         PASS  first byte 0x1B -> luaU_undump, anything else -> luaY_parser; with mode NULL no guard fires; a mode that excludes the chunk's kind is refused (the message is formatted) before either path
+I3_header_18_compared_17_read      PASS  the shipped 5.2 float header passes; a flip at ANY of header bytes 1..17 is refused (with the message recorded); 16 bytes is 'truncated': 17 are read after the dispatcher's 0x1B
+ok

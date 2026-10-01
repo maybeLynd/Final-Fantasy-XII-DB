@@ -1,0 +1,111 @@
+direct sites into 003DB2A0: 7 ['0025B456 call', '0025E0B0 call', '00261241 call', '002613E5 call', '00262708 call', '00262788 call', '003DB506 call']
+direct sites into 003DB420: 7 ['00261312 call', '0026133A call', '00261499 call', '002697B2 call', '002697C0 call', '0035299C call', '00353695 call']
+== handlers 00261301..0026133F
+  00261301 mov rcx, r10
+  00261304 call 0x267e10
+  00261309 mov r8d, ebp
+  0026130C mov rcx, r15
+  0026130F lea edx, [rax + 1]
+  00261312 call 0x3db420
+  00261317 jmp 0x25e651
+  0026131C mov rcx, r10
+  0026131F call 0x267e10
+  00261324 lea edx, [rax + 1]
+  00261327 movsx eax, byte ptr [r15 + 0x11]
+  0026132C cmp edx, eax
+  0026132E jg 0x2613c5
+  00261334 xor r8d, r8d
+  00261337 mov rcx, r15
+  0026133A call 0x3db420
+  0026133F mov rcx, r15
+== 003DB420 head
+  003DB420 push rbx
+  003DB422 sub rsp, 0x30
+  003DB426 mov rbx, rcx
+  003DB429 test rcx, rcx
+  003DB42C je 0x3db545
+  003DB432 movzx r9d, byte ptr [rcx + 0x88]
+  003DB43A xor eax, eax
+  003DB43C mov qword ptr [rsp + 0x40], rbp
+  003DB441 test edx, edx
+  003DB443 mov qword ptr [rsp + 0x48], rsi
+  003DB448 movzx esi, byte ptr [rcx + 0x89]
+  003DB44F cmovns eax, edx
+  003DB452 mov qword ptr [rsp + 0x58], r12
+  003DB457 movzx r12d, word ptr [rcx + 6]
+  003DB45C mov qword ptr [rsp + 0x28], r14
+  003DB461 mov qword ptr [rsp + 0x20], r15
+  003DB466 cmp r8d, 3
+  003DB46A jne 0x3db473
+  003DB46C lea r9d, [rax + 1]
+  003DB470 xor r8d, r8d
+  003DB473 xor r14d, r14d
+  003DB476 movsxd r15, eax
+  003DB479 cmp r8d, 4
+  003DB47D lea ecx, [r9 - 1]
+  003DB481 movsxd rbp, ecx
+  003DB484 cmovne r14d, r8d
+  003DB488 cmp rbp, r15
+  003DB48B jl 0x3db53e
+  003DB491 mov qword ptr [rsp + 0x50], rdi
+  003DB496 mov edi, 1
+  003DB49B rol edi, cl
+  003DB49D nop dword ptr [rax]
+  003DB4A0 movzx r8d, byte ptr [rbx + rbp + 0x94]
+  003DB4A9 test r12d, edi
+  003DB4AC je 0x3db50b
+  003DB4AE xor eax, eax
+  003DB4B0 cmp r8d, 0xff
+== the four non-interpreter callers of 003DB420 (12 instructions before each)
+ -- 002697B2
+   0026979A int3 
+   0026979B int3 
+   0026979C int3 
+   0026979D int3 
+   0026979E int3 
+   0026979F int3 
+   002697A0 push rbx
+   002697A2 sub rsp, 0x20
+   002697A6 mov edx, 1
+   002697AB mov rbx, rcx
+   002697AE lea r8d, [rdx + 2]
+   002697B2 call 0x3db420
+ -- 002697C0
+   0026979E int3 
+   0026979F int3 
+   002697A0 push rbx
+   002697A2 sub rsp, 0x20
+   002697A6 mov edx, 1
+   002697AB mov rbx, rcx
+   002697AE lea r8d, [rdx + 2]
+   002697B2 call 0x3db420
+   002697B7 xor edx, edx
+   002697B9 mov rcx, rbx
+   002697BC lea r8d, [rdx + 3]
+   002697C0 call 0x3db420
+ -- 0035299C
+   0035297D int3 
+   0035297E int3 
+   0035297F int3 
+   00352980 push rbx
+   00352982 sub rsp, 0x20
+   00352986 mov rcx, r9
+   00352989 mov rbx, rdx
+   0035298C call 0x267e10
+   00352991 mov r8d, 4
+   00352997 mov edx, eax
+   00352999 mov rcx, rbx
+   0035299C call 0x3db420
+ -- 00353695
+   0035366D mov rbx, r9
+   00353670 call 0x267e10
+   00353675 mov rcx, rbx
+   00353678 mov edi, eax
+   0035367A call 0x267e10
+   0035367F mov ecx, eax
+   00353681 call 0x264010
+   00353686 mov r8d, 4
+   0035368C lea edx, [rdi + 1]
+   0035368F mov rcx, rax
+   00353692 mov rbx, rax
+   00353695 call 0x3db420

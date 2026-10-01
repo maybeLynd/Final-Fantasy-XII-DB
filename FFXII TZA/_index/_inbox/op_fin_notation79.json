@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "FRONTIER-REQ-EC7-POINTER-CELL-FIELD-NOTATION",
+ "result_refs": [
+  "commit:911783520"
+ ],
+ "note": "ALREADY SATISFIED - FABLE's committed sweep 911783520 covered both listed pages (ui-layout-parameters-and-editor-schema.md, loader-bound-bin-families.md); every listed line now spells the canonical form. Verified zero banned forms ([0209AC30 + 0xNN], [0209AC30+0xNN], bare 0209AC30+0xNN) remain on the two pages; the only corpus remnants are in AUDIT-LOG.md (history, excluded), EVIDENCE-STANDARD.md (rule examples) and peer inboxes. No edit needed from me."
+}

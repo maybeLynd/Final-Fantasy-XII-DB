@@ -1,0 +1,2621 @@
+[
+{
+"func": "0017F160",
+"site": "0017F168",
+"vtload": "0017F165",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0053AFFE qword ptr [r12 + 0x6b8]"
+]
+]
+},
+{
+"func": "001B0190",
+"site": "001B02D6",
+"vtload": "001B02CC",
+"obj": "rbx",
+"class": "E3",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"R",
+"0x1fbb40"
+]
+]
+},
+{
+"func": "001B03D0",
+"site": "001B0514",
+"vtload": "001B050A",
+"obj": "rdi",
+"class": "E3",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"R",
+"0x1fb870"
+]
+]
+},
+{
+"func": "001F3AE0",
+"site": "001F3BFC",
+"vtload": "001F3BF9",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"001F3BEA qword ptr [rbx]"
+]
+]
+},
+{
+"func": "0020E6C0",
+"site": "0020E967",
+"vtload": "0020E945",
+"obj": "rbx",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 0020E6C0: no direct caller"
+]
+]
+},
+{
+"func": "0020FF10",
+"site": "00210178",
+"vtload": "00210154",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"00210140 qword ptr [rip + 0x1db34b1]"
+]
+]
+},
+{
+"func": "0020FF10",
+"site": "002101EA",
+"vtload": "002101E7",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"002101C3 qword ptr [rip + 0x1db342e]"
+]
+]
+},
+{
+"func": "00213140",
+"site": "00213228",
+"vtload": "00213208",
+"obj": "rsi",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 00213140: no direct caller"
+]
+]
+},
+{
+"func": "00213FE0",
+"site": "002140E9",
+"vtload": "002140BF",
+"obj": "r14",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 00213FE0: no direct caller"
+]
+]
+},
+{
+"func": "002143E0",
+"site": "0021448E",
+"vtload": "00214464",
+"obj": "rsi",
+"class": "RESIDUE",
+"terms": [
+[
+"U",
+"argument rdx of 002143E0: no direct caller"
+]
+]
+},
+{
+"func": "00214540",
+"site": "0021457A",
+"vtload": "0021454A",
+"obj": "rdx",
+"class": "RESIDUE",
+"terms": [
+[
+"U",
+"argument rdx of 00214540: no direct caller"
+]
+]
+},
+{
+"func": "00215440",
+"site": "00215537",
+"vtload": "0021551D",
+"obj": "rsi",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 001FB8E0: no direct caller"
+]
+]
+},
+{
+"func": "00215440",
+"site": "0021556D",
+"vtload": "0021554F",
+"obj": "rsi",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 001FB8E0: no direct caller"
+]
+]
+},
+{
+"func": "00215440",
+"site": "002155D2",
+"vtload": "002155B0",
+"obj": "rsi",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 001FB8E0: no direct caller"
+]
+]
+},
+{
+"func": "0059BED0",
+"site": "0059C14C",
+"vtload": "0059C13D",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0059BF10 qword ptr [r10 + 0x10]"
+]
+]
+},
+{
+"func": "005A3E50",
+"site": "005A3E8E",
+"vtload": "005A3E80",
+"obj": "rdi",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 005A3E50: no direct caller"
+]
+]
+},
+{
+"func": "005D18C0",
+"site": "005D18FE",
+"vtload": "005D18F0",
+"obj": "rbx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 005D18C0: no direct caller"
+]
+]
+},
+{
+"func": "0061DCA0",
+"site": "0061DD3F",
+"vtload": "0061DD2B",
+"obj": "r11",
+"class": "E1",
+"terms": [
+[
+"M",
+"0061DCBD qword ptr [rax + 0x108]"
+]
+]
+},
+{
+"func": "0061E760",
+"site": "0061E80D",
+"vtload": "0061E807",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0061E786 qword ptr [rdx + 0x110]"
+]
+]
+},
+{
+"func": "0061EE30",
+"site": "0061F01D",
+"vtload": "0061F01A",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0061F00C qword ptr [rdi + 0x110]"
+]
+]
+},
+{
+"func": "006215A0",
+"site": "00621B94",
+"vtload": "00621B8D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00621B7F qword ptr [r13 + 0x110]"
+]
+]
+},
+{
+"func": "00621C00",
+"site": "00621EA2",
+"vtload": "00621E9B",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00621E8E qword ptr [rdi + 0x110]"
+]
+]
+},
+{
+"func": "006239C0",
+"site": "00623A94",
+"vtload": "00623A88",
+"obj": "r14",
+"class": "E1",
+"terms": [
+[
+"M",
+"00623A25 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "00623B10",
+"site": "00623B8D",
+"vtload": "00623B80",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0061ECD3 qword ptr [rcx + 0x110]"
+]
+]
+},
+{
+"func": "00623B10",
+"site": "00623BEA",
+"vtload": "00623BDC",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0061ECD3 qword ptr [rcx + 0x110]"
+]
+]
+},
+{
+"func": "00624980",
+"site": "00624A7F",
+"vtload": "00624A7C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624A57 qword ptr [r14 + 0x108]"
+]
+]
+},
+{
+"func": "00624980",
+"site": "00624ABC",
+"vtload": "00624AB9",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624A94 qword ptr [r14 + 0x108]"
+]
+]
+},
+{
+"func": "00624980",
+"site": "00624AF9",
+"vtload": "00624AF6",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624AD1 qword ptr [r14 + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624CB7",
+"vtload": "00624C96",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624CE3",
+"vtload": "00624CC6",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624D0F",
+"vtload": "00624CF2",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624D3B",
+"vtload": "00624D1E",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624D67",
+"vtload": "00624D4A",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624D93",
+"vtload": "00624D76",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624DBF",
+"vtload": "00624DA2",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "00624C30",
+"site": "00624DEB",
+"vtload": "00624DCE",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00624C47 qword ptr [rdx + 0x108]"
+]
+]
+},
+{
+"func": "0062C360",
+"site": "0062C51A",
+"vtload": "0062C50D",
+"obj": "r14",
+"class": "E1",
+"terms": [
+[
+"M",
+"0062C4DE qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "0062C570",
+"site": "0062C7CD",
+"vtload": "0062C7C0",
+"obj": "r14",
+"class": "E1",
+"terms": [
+[
+"M",
+"0062C604 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "00670590",
+"site": "00670663",
+"vtload": "00670659",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00670636 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "00670690",
+"site": "00670763",
+"vtload": "00670759",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00670736 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "00674610",
+"site": "00674717",
+"vtload": "00674709",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"006746E6 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "006A27C0",
+"site": "006A27E9",
+"vtload": "006A27E1",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006A27D5 qword ptr [rcx + 0x130]"
+]
+]
+},
+{
+"func": "006A4670",
+"site": "006A46E0",
+"vtload": "006A46D6",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006A46CA qword ptr [rbx + 0x130]"
+]
+]
+},
+{
+"func": "006A4710",
+"site": "006A47A6",
+"vtload": "006A479C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006A4790 qword ptr [rbx + 0x130]"
+]
+]
+},
+{
+"func": "006A4A60",
+"site": "006A4D56",
+"vtload": "006A4D53",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006A4D4C qword ptr [rbx + 0x120]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006C9E99",
+"vtload": "006C9E96",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006C9E8F qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA076",
+"vtload": "006CA073",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA04B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA0B6",
+"vtload": "006CA0B3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA08B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA0F6",
+"vtload": "006CA0F3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA0CB qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA136",
+"vtload": "006CA133",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA10B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA176",
+"vtload": "006CA173",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA14B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA1B6",
+"vtload": "006CA1B3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA18B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA1F6",
+"vtload": "006CA1F3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA1CB qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA236",
+"vtload": "006CA233",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA20B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA276",
+"vtload": "006CA273",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA24B qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006C9CD0",
+"site": "006CA2F6",
+"vtload": "006CA2F3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CA2CB qword ptr [rbx + 0x108]"
+]
+]
+},
+{
+"func": "006CAB50",
+"site": "006CAB69",
+"vtload": "006CAB58",
+"obj": "rcx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 006CAB50: no direct caller"
+]
+]
+},
+{
+"func": "006CB540",
+"site": "006CB56B",
+"vtload": "006CB560",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CB553 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "006CB590",
+"site": "006CB5BB",
+"vtload": "006CB5B0",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006CB5A3 qword ptr [rax + 0x110]"
+]
+]
+},
+{
+"func": "006CEE50",
+"site": "006CEE8E",
+"vtload": "006CEE80",
+"obj": "rdi",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 006CEE50: no direct caller"
+]
+]
+},
+{
+"func": "006D9E30",
+"site": "006D9E6E",
+"vtload": "006D9E60",
+"obj": "rdi",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 006D9E30: no direct caller"
+]
+]
+},
+{
+"func": "006F2850",
+"site": "006F2939",
+"vtload": "006F2936",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006F2927 qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "006F2850",
+"site": "006F2A0C",
+"vtload": "006F2A09",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"006F2A00 qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "006F2CB0",
+"site": "006F30B3",
+"vtload": "006F30A8",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"006F3042 qword ptr [rcx + rax*8 + 0x70]"
+],
+[
+"M",
+"006F3060 qword ptr [rax + 0xa8]"
+],
+[
+"M",
+"006F3069 qword ptr [rdi + 0x58]"
+]
+]
+},
+{
+"func": "006F2CB0",
+"site": "006F30DF",
+"vtload": "006F30D1",
+"obj": "r14",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"006F307C qword ptr [rbx + 0xa8]"
+]
+]
+},
+{
+"func": "006F2CB0",
+"site": "006F34F4",
+"vtload": "006F34EC",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"006F3042 qword ptr [rcx + rax*8 + 0x70]"
+],
+[
+"M",
+"006F3060 qword ptr [rax + 0xa8]"
+],
+[
+"M",
+"006F3069 qword ptr [rdi + 0x58]"
+]
+]
+},
+{
+"func": "006F2CB0",
+"site": "006F3504",
+"vtload": "006F34FC",
+"obj": "r14",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"006F307C qword ptr [rbx + 0xa8]"
+]
+]
+},
+{
+"func": "006F4C40",
+"site": "006F506F",
+"vtload": "006F5040",
+"obj": "r15",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"006F4EE7 qword ptr [rdx + rax*8 + 0x70]"
+],
+[
+"M",
+"006F4F07 qword ptr [r14 + 0xa8]"
+],
+[
+"M",
+"006F4F1B qword ptr [r14 + 0xa8]"
+],
+[
+"M",
+"006F4F2E qword ptr [rax + 0xa8]"
+],
+[
+"M",
+"006F4F3A qword ptr [rbx + 0x58]"
+]
+]
+},
+{
+"func": "006F4C40",
+"site": "006F5270",
+"vtload": "006F5268",
+"obj": "r15",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"006F4EE7 qword ptr [rdx + rax*8 + 0x70]"
+],
+[
+"M",
+"006F4F07 qword ptr [r14 + 0xa8]"
+],
+[
+"M",
+"006F4F1B qword ptr [r14 + 0xa8]"
+],
+[
+"M",
+"006F4F2E qword ptr [rax + 0xa8]"
+],
+[
+"M",
+"006F4F3A qword ptr [rbx + 0x58]"
+]
+]
+},
+{
+"func": "006F8740",
+"site": "006F883D",
+"vtload": "006F883A",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"006F881F qword ptr [rbx + 0x20]"
+]
+]
+},
+{
+"func": "0070CF00",
+"site": "0070CF86",
+"vtload": "0070CF83",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0070CF61 qword ptr [r11 + 0x20]"
+]
+]
+},
+{
+"func": "0070CFA0",
+"site": "0070CFFC",
+"vtload": "0070CFF9",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0070CFDB qword ptr [rdi + 0x20]"
+]
+]
+},
+{
+"func": "0070E1B0",
+"site": "0070E34E",
+"vtload": "0070E34B",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0070E340 qword ptr [rbx + 0x50]"
+]
+]
+},
+{
+"func": "0070E1B0",
+"site": "0070E485",
+"vtload": "0070E482",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0070E47C qword ptr [rbx + 0x50]"
+]
+]
+},
+{
+"func": "007224C0",
+"site": "0072266A",
+"vtload": "00722667",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0072265F qword ptr [rbx + 0x28]"
+]
+]
+},
+{
+"func": "00724600",
+"site": "007246BC",
+"vtload": "007246A4",
+"obj": "rdi",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 007249E0: no direct caller"
+]
+]
+},
+{
+"func": "00736D60",
+"site": "00736F2B",
+"vtload": "00736F25",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"00736F17 qword ptr [rbp + 0x38]"
+]
+]
+},
+{
+"func": "007370A0",
+"site": "007372BB",
+"vtload": "007372B5",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"007372A7 qword ptr [rbp + 0x38]"
+]
+]
+},
+{
+"func": "00738700",
+"site": "0073878F",
+"vtload": "0073878C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00738780 qword ptr [rdi + 0x22298]"
+]
+]
+},
+{
+"func": "00738700",
+"site": "00738813",
+"vtload": "00738810",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00738805 qword ptr [rdi + 0x22298]"
+]
+]
+},
+{
+"func": "00738840",
+"site": "00738BBC",
+"vtload": "00738BB6",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"00738BA7 qword ptr [r13 + 0x38]"
+]
+]
+},
+{
+"func": "00739530",
+"site": "00739C9D",
+"vtload": "00739C95",
+"obj": "r14",
+"class": "E1",
+"terms": [
+[
+"M",
+"007397BE qword ptr [rbp + 0x138]"
+]
+]
+},
+{
+"func": "00739DF0",
+"site": "0073A753",
+"vtload": "0073A749",
+"obj": "r13",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"00739E85 qword ptr [rbp + 0x550]"
+]
+]
+},
+{
+"func": "00739DF0",
+"site": "0073A894",
+"vtload": "0073A889",
+"obj": "r13",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"00739E85 qword ptr [rbp + 0x550]"
+]
+]
+},
+{
+"func": "0073BD30",
+"site": "0073C2B2",
+"vtload": "0073C2AF",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073C29C qword ptr [rbx + 0x38]"
+]
+]
+},
+{
+"func": "0073BD30",
+"site": "0073C4FF",
+"vtload": "0073C4EE",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0073C4B7 qword ptr [rbp + 0x200]"
+]
+]
+},
+{
+"func": "0073BD30",
+"site": "0073C56A",
+"vtload": "0073C55D",
+"obj": "r15",
+"class": "E1",
+"terms": [
+[
+"M",
+"0073C521 qword ptr [rbp + 0x208]"
+]
+]
+},
+{
+"func": "0073D370",
+"site": "0073D429",
+"vtload": "0073D423",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073D411 qword ptr [rbx + 0x38]"
+]
+]
+},
+{
+"func": "0073DFA0",
+"site": "0073E18F",
+"vtload": "0073E18C",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073E17F qword ptr [rbx + 0x38]"
+]
+]
+},
+{
+"func": "0073E570",
+"site": "0073E63A",
+"vtload": "0073E631",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0073E5A6 qword ptr [rbp + 0x9f]"
+]
+]
+},
+{
+"func": "0073E570",
+"site": "0073E8DC",
+"vtload": "0073E8CE",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0073E5A6 qword ptr [rbp + 0x9f]"
+]
+]
+},
+{
+"func": "0073E570",
+"site": "0073E9BE",
+"vtload": "0073E9B3",
+"obj": "rsi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0073E5A6 qword ptr [rbp + 0x9f]"
+]
+]
+},
+{
+"func": "0073EA00",
+"site": "0073EAB1",
+"vtload": "0073EA9F",
+"obj": "rdi",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073EA7D qword ptr [rsp + 0x170]"
+]
+]
+},
+{
+"func": "0073EA00",
+"site": "0073ECD4",
+"vtload": "0073ECC7",
+"obj": "rdi",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073EA7D qword ptr [rsp + 0x170]"
+]
+]
+},
+{
+"func": "0073EA00",
+"site": "0073EDC4",
+"vtload": "0073EDBA",
+"obj": "rdi",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073EA7D qword ptr [rsp + 0x170]"
+]
+]
+},
+{
+"func": "0073F290",
+"site": "0073F362",
+"vtload": "0073F35F",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0073F349 qword ptr [rbx + 0x38]"
+]
+]
+},
+{
+"func": "007407E0",
+"site": "00740928",
+"vtload": "00740925",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"00740912 qword ptr [rbx + 0x38]"
+]
+]
+},
+{
+"func": "007422F0",
+"site": "00742748",
+"vtload": "00742745",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00742736 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007422F0",
+"site": "0074283D",
+"vtload": "0074283A",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074282F qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007422F0",
+"site": "00742851",
+"vtload": "0074284E",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00742845 qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "007428B0",
+"site": "00742A17",
+"vtload": "00742A14",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00742A08 qword ptr [rsi + 0xa8]"
+]
+]
+},
+{
+"func": "00742B30",
+"site": "00742CEA",
+"vtload": "00742CE7",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00742CDB qword ptr [rsi + 0xa8]"
+]
+]
+},
+{
+"func": "0074C790",
+"site": "0074C8EC",
+"vtload": "0074C8DE",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074C8B3 qword ptr [rbp + 0xa8]"
+]
+]
+},
+{
+"func": "0074C790",
+"site": "0074CA3D",
+"vtload": "0074CA35",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"0074C8B3 qword ptr [rbp + 0xa8]"
+]
+]
+},
+{
+"func": "0074D120",
+"site": "0074D32E",
+"vtload": "0074D320",
+"obj": "rbx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074D2F4 qword ptr [rsi + 0xa8]"
+]
+]
+},
+{
+"func": "0074D5D0",
+"site": "0074D720",
+"vtload": "0074D713",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074D6E4 qword ptr [rbx + 0xa8]"
+]
+]
+},
+{
+"func": "0074E620",
+"site": "0074E6D9",
+"vtload": "0074E6CA",
+"obj": "r8",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074E692 qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "0074E620",
+"site": "0074E86F",
+"vtload": "0074E86C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074E861 qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "0074E8D0",
+"site": "0074E9D1",
+"vtload": "0074E9CE",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0074E9B8 qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "00751620",
+"site": "007523F4",
+"vtload": "007523F1",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"007523EA qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00751620",
+"site": "00752451",
+"vtload": "0075244E",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00752447 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00753240",
+"site": "00753404",
+"vtload": "00753401",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"007533F7 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "00753240",
+"site": "00753414",
+"vtload": "00753411",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00753407 qword ptr [r14 + 0xa8]"
+]
+]
+},
+{
+"func": "00753240",
+"site": "0075346E",
+"vtload": "0075346B",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00753462 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "00753240",
+"site": "0075347D",
+"vtload": "0075347A",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00753471 qword ptr [r14 + 0xa8]"
+]
+]
+},
+{
+"func": "00754CF0",
+"site": "00754F9B",
+"vtload": "00754F88",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00754F75 qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "00754CF0",
+"site": "00754FAA",
+"vtload": "00754FA7",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00754F9E qword ptr [rsi + 0xa8]"
+]
+]
+},
+{
+"func": "00754CF0",
+"site": "0075582B",
+"vtload": "00755828",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00755821 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00754CF0",
+"site": "0075583A",
+"vtload": "00755837",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0075582E qword ptr [rsi + 0xa8]"
+]
+]
+},
+{
+"func": "007558E0",
+"site": "00755B86",
+"vtload": "00755B7E",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00755B6F qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "007558E0",
+"site": "00755B95",
+"vtload": "00755B92",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00755B89 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007558E0",
+"site": "0075640A",
+"vtload": "00756407",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00756400 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "007558E0",
+"site": "00756419",
+"vtload": "00756416",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0075640D qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007564C0",
+"site": "00756765",
+"vtload": "0075675D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0075673B qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "007564C0",
+"site": "00756774",
+"vtload": "00756771",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00756768 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007564C0",
+"site": "00757010",
+"vtload": "0075700D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00757006 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "007564C0",
+"site": "0075701F",
+"vtload": "0075701C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00757013 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007570C0",
+"site": "00757788",
+"vtload": "00757783",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00757774 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "007570C0",
+"site": "0075779A",
+"vtload": "00757797",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0075778B qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "007570C0",
+"site": "00757F1A",
+"vtload": "00757F17",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00757F10 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "007570C0",
+"site": "00757F29",
+"vtload": "00757F26",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00757F1D qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "00757FD0",
+"site": "0075842F",
+"vtload": "0075842C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00758422 qword ptr [r12 + 0xa8]"
+]
+]
+},
+{
+"func": "00757FD0",
+"site": "0075843E",
+"vtload": "0075843B",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00758432 qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "00757FD0",
+"site": "00758772",
+"vtload": "0075876F",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00758763 qword ptr [r12 + 0xa8]"
+]
+]
+},
+{
+"func": "00757FD0",
+"site": "00758782",
+"vtload": "0075877F",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00758776 qword ptr [r13 + 0xa8]"
+]
+]
+},
+{
+"func": "00759490",
+"site": "00759711",
+"vtload": "0075970E",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"007596C9 qword ptr [r12 + 0x28]"
+]
+]
+},
+{
+"func": "0075D4E0",
+"site": "0075D7FB",
+"vtload": "0075D7F8",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0075D7F0 qword ptr [rdi]"
+]
+]
+},
+{
+"func": "0075D4E0",
+"site": "0075D978",
+"vtload": "0075D975",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0075D970 qword ptr [rbx]"
+]
+]
+},
+{
+"func": "0075DA10",
+"site": "0075DBEB",
+"vtload": "0075DBE2",
+"obj": "rbx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"006FF4B4 qword ptr [rbx - 8]"
+],
+[
+"M",
+"0075DCD4 qword ptr [rdx + 0xa8]"
+],
+[
+"U",
+"argument rdx of 0075DD70: no direct caller"
+]
+]
+},
+{
+"func": "0075DA10",
+"site": "0075DCA2",
+"vtload": "0075DC9A",
+"obj": "rbx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"006FF4B4 qword ptr [rbx - 8]"
+],
+[
+"M",
+"0075DCD4 qword ptr [rdx + 0xa8]"
+],
+[
+"U",
+"argument rdx of 0075DD70: no direct caller"
+]
+]
+},
+{
+"func": "007621F0",
+"site": "0076236F",
+"vtload": "0076235B",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00762354 qword ptr [rcx + 0xa8]"
+]
+]
+},
+{
+"func": "00762750",
+"site": "00762AA0",
+"vtload": "00762A9D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00762A91 qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "00762750",
+"site": "00762B65",
+"vtload": "00762B62",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00762B5B qword ptr [r15 + 0xa8]"
+]
+]
+},
+{
+"func": "00762750",
+"site": "00762CA6",
+"vtload": "00762CA3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00762C8F qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "00762750",
+"site": "00762D60",
+"vtload": "00762D5D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00762D54 qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "00763890",
+"site": "00763DB2",
+"vtload": "00763DAF",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00763DA8 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00763890",
+"site": "00763E4F",
+"vtload": "00763E4C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00763E45 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00764240",
+"site": "00764FA1",
+"vtload": "00764F9E",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00764F97 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00764240",
+"site": "00765020",
+"vtload": "0076501D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00765016 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "007677B0",
+"site": "00767BC6",
+"vtload": "00767BC3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00767BBC qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "007677B0",
+"site": "00767C21",
+"vtload": "00767C14",
+"obj": "rbx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00767BE5 qword ptr [r14 + 0xa8]"
+]
+]
+},
+{
+"func": "007677B0",
+"site": "00767D51",
+"vtload": "00767D4E",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00767D47 qword ptr [rax + 0xa8]"
+]
+]
+},
+{
+"func": "00769FC0",
+"site": "0076A36D",
+"vtload": "0076A36A",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0076A32F qword ptr [rbx + 0x28]"
+]
+]
+},
+{
+"func": "00771B30",
+"site": "00771C06",
+"vtload": "00771C03",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00771BF3 qword ptr [rbp + 0xa8]"
+]
+]
+},
+{
+"func": "00774260",
+"site": "007742FD",
+"vtload": "007742FA",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"007742F0 qword ptr [rsi + 0xa8]"
+]
+]
+},
+{
+"func": "00774260",
+"site": "00774320",
+"vtload": "0077431D",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00774313 qword ptr [rbx + 0xa8]"
+]
+]
+},
+{
+"func": "007764C0",
+"site": "00776F98",
+"vtload": "00776F8A",
+"obj": "rdi",
+"class": "E1",
+"terms": [
+[
+"M",
+"00776CB5 qword ptr [rcx + 0xa8]"
+]
+]
+},
+{
+"func": "007764C0",
+"site": "00777036",
+"vtload": "00777033",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00777026 qword ptr [r12 + 0xa8]"
+]
+]
+},
+{
+"func": "007764C0",
+"site": "0077729D",
+"vtload": "0077729A",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00777290 qword ptr [r12 + 0xa8]"
+]
+]
+},
+{
+"func": "007764C0",
+"site": "007772BC",
+"vtload": "007772B9",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"007772B0 qword ptr [rcx + 0xa8]"
+]
+]
+},
+{
+"func": "007788A0",
+"site": "00778AE7",
+"vtload": "00778AE2",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00778ADB qword ptr [rbx + 0xa8]"
+]
+]
+},
+{
+"func": "007788A0",
+"site": "00778B11",
+"vtload": "00778B0C",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00778B05 qword ptr [rbx + 0xa8]"
+]
+]
+},
+{
+"func": "007788A0",
+"site": "00778D0F",
+"vtload": "00778D0A",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00778D02 qword ptr [r12 + 0xa8]"
+]
+]
+},
+{
+"func": "007788A0",
+"site": "00778F8A",
+"vtload": "00778F82",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00778F7B qword ptr [rdi + 0xa8]"
+]
+]
+},
+{
+"func": "0077FFE0",
+"site": "00780095",
+"vtload": "00780092",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0078008A qword ptr [rax + 0x38]"
+]
+]
+},
+{
+"func": "00788430",
+"site": "0078849D",
+"vtload": "00788494",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"C",
+"0"
+],
+[
+"M",
+"00788490 qword ptr [rcx + 0x30]"
+]
+]
+},
+{
+"func": "00789DE0",
+"site": "00789DEA",
+"vtload": "00789DE7",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"M",
+"00789DE0 qword ptr [rcx + 0xe0]"
+]
+]
+},
+{
+"func": "0078E3C0",
+"site": "0078E4C1",
+"vtload": "0078E4A7",
+"obj": "r15",
+"class": "E1",
+"terms": [
+[
+"M",
+"0078E3D6 qword ptr [rcx + 0x80]"
+]
+]
+},
+{
+"func": "0078EAF0",
+"site": "0078F342",
+"vtload": "0078F33F",
+"obj": "rcx",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0078F331 qword ptr [rbp + 0x78]"
+]
+]
+},
+{
+"func": "007AB5C0",
+"site": "007AB9E8",
+"vtload": "007AB9DD",
+"obj": "rax",
+"class": "RESIDUE",
+"terms": [
+[
+"R",
+"0x7ab1e0"
+]
+]
+},
+{
+"func": "007BAEC0",
+"site": "007BB366",
+"vtload": "007BB351",
+"obj": "rax",
+"class": "E1",
+"terms": [
+[
+"R",
+"0x7bc2b0"
+]
+]
+},
+{
+"func": "007E8B90",
+"site": "007E8BA6",
+"vtload": "007E8BA3",
+"obj": "rcx",
+"class": "E1",
+"terms": [
+[
+"R",
+"0x7b58c0"
+]
+]
+},
+{
+"func": "00831380",
+"site": "0083194C",
+"vtload": "00831946",
+"obj": "rdi",
+"class": "RESIDUE",
+"terms": [
+[
+"M",
+"0084CD6E qword ptr [rbx + 0x30]"
+],
+[
+"M",
+"0084CE61 qword ptr [rbx + 0x38]"
+],
+[
+"U",
+"argument rcx of 00831230: no direct caller"
+]
+]
+},
+{
+"func": "00832DD0",
+"site": "00832E82",
+"vtload": "00832E6C",
+"obj": "rbx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 00832DD0: no direct caller"
+]
+]
+},
+{
+"func": "008330A0",
+"site": "00833235",
+"vtload": "0083322F",
+"obj": "rbx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 008330A0: no direct caller"
+]
+]
+},
+{
+"func": "008330A0",
+"site": "0083323E",
+"vtload": "00833238",
+"obj": "rbx",
+"class": "RESIDUE",
+"terms": []
+},
+{
+"func": "00833390",
+"site": "00833439",
+"vtload": "00833429",
+"obj": "rbx",
+"class": "E1",
+"terms": [
+[
+"M",
+"0069FDC3 qword ptr [rdi + 0x120]"
+]
+]
+},
+{
+"func": "00833BA0",
+"site": "00833BBB",
+"vtload": "00833BAF",
+"obj": "rcx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 00833BA0: no direct caller"
+]
+]
+},
+{
+"func": "00835CE0",
+"site": "00835D00",
+"vtload": "00835CEF",
+"obj": "rcx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 00835CE0: no direct caller"
+]
+]
+},
+{
+"func": "00836D20",
+"site": "00836D2C",
+"vtload": "00836D26",
+"obj": "rcx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 00836D20: no direct caller"
+]
+]
+},
+{
+"func": "00837F00",
+"site": "00837F30",
+"vtload": "00837F0F",
+"obj": "rcx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 00837F00: no direct caller"
+]
+]
+},
+{
+"func": "008420F0",
+"site": "00842146",
+"vtload": "00842120",
+"obj": "rdi",
+"class": "RESIDUE",
+"terms": [
+[
+"R",
+"0x85e680"
+],
+[
+"U",
+"argument rcx of 00837680: no direct caller"
+]
+]
+},
+{
+"func": "008420F0",
+"site": "00842170",
+"vtload": "0084216D",
+"obj": "rdi",
+"class": "RESIDUE",
+"terms": [
+[
+"R",
+"0x85e680"
+],
+[
+"U",
+"argument rcx of 00837680: no direct caller"
+]
+]
+},
+{
+"func": "00855B80",
+"site": "0085617E",
+"vtload": "00856167",
+"obj": "rax",
+"class": "RESIDUE",
+"terms": [
+[
+"R",
+"qword ptr [rax + 0x18]"
+]
+]
+},
+{
+"func": "008581A0",
+"site": "008581A3",
+"vtload": "008581A0",
+"obj": "rcx",
+"class": "E2",
+"terms": [
+[
+"U",
+"argument rcx of 008581A0: no direct caller"
+]
+]
+},
+{
+"func": "00862D40",
+"site": "00862DF9",
+"vtload": "00862DD5",
+"obj": "rbx",
+"class": "RESIDUE",
+"terms": [
+[
+"U",
+"argument rdx of 00862D40: no direct caller"
+]
+]
+},
+{
+"func": "00862EC0",
+"site": "00862F77",
+"vtload": "00862F53",
+"obj": "rbx",
+"class": "RESIDUE",
+"terms": [
+[
+"U",
+"argument rdx of 00862EC0: no direct caller"
+]
+]
+},
+{
+"func": "00863850",
+"site": "00863AA7",
+"vtload": "00863A7D",
+"obj": "rsi",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 00863850: no direct caller"
+]
+]
+},
+{
+"func": "00863D80",
+"site": "00863F24",
+"vtload": "00863F04",
+"obj": "r13",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 00863D80: no direct caller"
+]
+]
+},
+{
+"func": "00864330",
+"site": "008645B0",
+"vtload": "0086458C",
+"obj": "r14",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 00864330: no direct caller"
+]
+]
+},
+{
+"func": "00864860",
+"site": "00864B71",
+"vtload": "00864B4D",
+"obj": "r14",
+"class": "E4",
+"terms": [
+[
+"U",
+"argument rdx of 00864860: no direct caller"
+]
+]
+},
+{
+"func": "008651A0",
+"site": "00865222",
+"vtload": "008651FE",
+"obj": "rbx",
+"class": "RESIDUE",
+"terms": [
+[
+"U",
+"argument rdx of 008651A0: no direct caller"
+]
+]
+}
+]

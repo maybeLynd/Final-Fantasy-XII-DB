@@ -1,0 +1,13 @@
+from pathlib import Path
+import json
+W=Path(__file__).resolve().parent;R=W/'run-01';raw=json.loads((R/'raw.json').read_text());assert raw['verdict']=='INVALID' and raw['exception']['type']=='AssertionError'
+(R/'outer-driver-before-run.py').write_bytes((W/'run.py').read_bytes())
+s=(W/'capture.py').read_text();assert s== (R/'driver-before-run.py').read_text()
+s=s.replace("R=W/'run-01'","R=W/'run-02'").replace("C=git('rev-parse','HEAD').decode().strip();raw=", "C=json.loads((W/'run-01/raw.json').read_text())['source_commit'];raw=")
+s=s.replace("q.stdout.strip()=='PASS'", "q.stdout.startswith('CURRENT '+gid+' committed ') and q.stdout.strip().endswith('no input drift')")
+s=s.replace("for name in ['empty-history','aligned-latest','latest-missing-progress']:", "raw['preparation_failure']={'raw_sha256':sha((W/'run-01/raw.json').read_bytes()),'terminal_sha256':sha((W/'capture-terminal.json').read_bytes()),'limit':'INVALID failed verifier-output precondition; empty control retained, aligned generation reused'}\n for name in ['empty-history','aligned-latest','latest-missing-progress']:")
+s=s.replace("  st=G.Store(str(R/name/'store'));made=[]\n  if name=='aligned-latest':made.append(create(st,30,True))", "  if name=='empty-history':\n   row=copy.deepcopy(next(x for x in json.loads((W/'run-01/raw.json').read_text())['cases'] if x['name']==name));row['retained_from_run01']=True;row['store_relative']='../run-01/empty-history/store';raw['cases'].append(row);continue\n  st=G.Store(str((W/'run-01/aligned-latest/store') if name=='aligned-latest' else R/name/'store'));made=[]\n  if name=='aligned-latest':\n   man,d,probs=st.open_current();assert not probs;gid=man['generation'];q=subprocess.run([sys.executable,'-B',str(S/'Database/Tools/analysis-kit/gfz-scripts/generation.py'),'verify',st.root],capture_output=True,text=True,timeout=10);assert q.returncode==0 and not q.stderr and q.stdout.startswith('CURRENT '+gid+' committed ') and q.stdout.strip().endswith('no input drift');made.append(dict(generation=gid,manifest_sha256=sha(Path(d,G.MANIFEST).read_bytes()),required_outputs=sorted(man['outputs']),verify=dict(argv=q.args,returncode=q.returncode,stdout=q.stdout,stderr=q.stderr,terminal=True),created_in_run01=True))")
+s=s.replace("row=dict(name=name,generations=made", "row=dict(name=name,store_relative='../run-01/aligned-latest/store' if name=='aligned-latest' else name+'/store',generations=made")
+assert "q.stdout.strip()=='PASS'" not in s and "R=W/'run-02'" in s
+(W/'capture.py').write_text(s);q=(W/'run.py').read_text();q=q.replace("f=W/'capture-terminal.json'", "f=W/'capture-terminal-02.json'");(W/'run.py').write_text(q)
+print('CORRECTED_ACTUAL_DEFAULT_VERIFIER_PRECONDITION; ORIGINAL_BYTES_RETAINED')

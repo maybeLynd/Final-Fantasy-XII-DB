@@ -1,0 +1,334 @@
+--- staged in the private index (this is the whole commit) ---
+1	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/.gitattributes
+21	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/PLAN.md
+57	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/README.md
+32	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/capture.py
+60	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/check.py
+11	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/codec-tool-identity.json
+8	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/default-invocation-receipt.json
+0	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/default-invocation.stderr
+1	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/default-invocation.stdout
+9	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/failure.json
+5	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/fault-accept-shifted-operand.stderr
+0	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/fault-accept-shifted-operand.stdout
+5	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/fault-ignore-count-domain.stderr
+0	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/fault-ignore-count-domain.stdout
+5	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/fault-ignore-name-directory.stderr
+0	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/fault-ignore-name-directory.stdout
+233	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/feasibility.json
+11	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/feasibility.py
+189	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/filtered-byte-check.json
+21	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/freeze.py
+240	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/manifest.json
+1867	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/raw.json
+23	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/regression-controls.json
+7	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/repair.py
+417	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/result.json
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/btlctrl.dbg
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/btlctrl.ebp
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/btlctrl.sbn
+51	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/check-before-comment-fix.py
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/ctrl.dbg
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/ctrl.ebp
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/ctrl.sbn
+843	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/debug-primary-before.md
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/evctrl.dbg
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/evctrl.ebp
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/evctrl.sbn
+55	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/front-tables-primary.py
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/mapctrl.dbg
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/mapctrl.ebp
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/mapctrl.sbn
+2295	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/parent61-raw.json
+658	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/parent61-result.json
+163	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/reg_tracking.py
+-	-	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/resolver591.bin
+19	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/selected-sbn-functions.py
+930	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/shipping-reader.py
+552	0	Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/variables-primary-before.md
+55	3	Database/FFXII TZA/_index/_inbox/ASTRA.md
+1120	23	Database/FFXII TZA/_index/_inbox/TEAM.json
+--- committed ---
+ec5e54a99 ASTRA: sampled original variable name and packed storage descriptor binding
+publish_paths.sh: committed sha: ec5e54a990122f7a071cc1d2c811dfd2271e96b3
+--- repository index, untouched by the commit above ---
+
+publish_paths.sh: @publication held by ASTRA (ASTRA-PUBLISH-SN1-VARIABLE-BINDING) -- that is you, proceeding
+current block refreshed in C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_index\_inbox\ASTRA.md (rev 37649)
+publish_paths.sh: changed lines  Database/FFXII TZA/_index/_inbox/ASTRA.md: +55 -3
+publish_paths.sh: changed lines  Database/FFXII TZA/_index/_inbox/TEAM.json: +1120 -23
+publish_paths.sh: WARNING -- added line(s) carry agent id(s) that are not ASTRA and were not on the replaced line(s):
+  Database/FFXII TZA/_index/_inbox/ASTRA.md :: OPUS :: OPUS/FABLE/DATA/SPEC delivered once. Producer checks are not independent acceptance.
+Database/FFXII TZA/_index/_inbox/ASTRA.md :: FABLE :: OPUS/FABLE/DATA/SPEC delivered once. Producer checks are not independent acceptance.
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "ASTRA-REQ-OPUS-SN1-VARIABLE-BINDING"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "checkpoint": "No OPUS change needed; re-run today: sn1_logical_lines.py FAILS 0, output identical. OPUS's con
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "checkpoint": "No OPUS change needed; re-run today: sn1_logical_lines.py FAILS 0, output identical. OPUS's con
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "checkpoint": "No OPUS change needed; re-run today: sn1_logical_lines.py FAILS 0, output identical. OPUS's con
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "checkpoint": "65 Method A before setup. Question: original ev POPV0x61 at pc16 is source-compatible test_load
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "checkpoint": "65 Method A before setup. Question: original ev POPV0x61 at pc16 is source-compatible test_load
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-MOTION-BLUR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: motion blur constructor correction",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-REQ-AUDITSPEC-REVIEW-MOTION-BLUR-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: SWE2-AUDIT-SPEC :: "assigned_to": "SWE2-AUDIT-SPEC",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "scope": "independent review of a correction of OPUS's own rows",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "known_evidence": "OPUS commit (this publish); motion_blur_ctor.out",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-ATMOS-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: atmospherics constructor defaults",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "ASTRA-REQ-OPUS-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "checkpoint": "OPUS: independent corpus discriminator for operand -> T0 name"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "id": "ASTRA-REQ-FABLE-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "assigned_to": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "checkpoint": "ACCEPT in d18739d69 _index/candidates/sn1-q0-source-domain (variable_binding.py V1 V2 C, FAILS 
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "checkpoint": "ACCEPT in d18739d69 _index/candidates/sn1-q0-source-domain (variable_binding.py V1 V2 C, FAILS 
+Database/FFXII TZA/_index/_inbox/TEAM.json :: SWE2-DATA :: "assigned_to": "SWE2-DATA",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: SWE2-AUDIT-SPEC :: "assigned_to": "SWE2-AUDIT-SPEC",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "id": "FABLE-PUB-SN1-VARBIND",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "requester": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "assigned_to": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-CTOR-CLAIMS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: constructor-claim audit",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-CKPT-0928AD",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: checkpoint",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "checkpoint": "66 Method A preselected:65 exact sampled T0/name identity supports ev POPV61=test_load_flg. Fou
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "checkpoint": "66 Method A preselected:65 exact sampled T0/name identity supports ev POPV61=test_load_flg. Fou
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-REKEY-MPS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-REKEY-MPS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "64 actual 012f56e56168a97b50c3f1e4ec27e9d0620b91e5 exact owned blobs/body/epoch/39-member manifest ve
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "64 actual 012f56e56168a97b50c3f1e4ec27e9d0620b91e5 exact owned blobs/body/epoch/39-member manifest ve
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "64 actual 012f56e56168a97b50c3f1e4ec27e9d0620b91e5 exact owned blobs/body/epoch/39-member manifest ve
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "ASTRA-REQ-OPUS-SN1-CP932-DOMAIN",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "OPUS: verify own consumers"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "ASTRA-REQ-OPUS-SN1-CP932-DOMAIN",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "No OPUS change needed; re-run today: sn1_logical_lines.py FAILS 0, output identical. OPUS's consumers
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "No OPUS change needed; re-run today: sn1_logical_lines.py FAILS 0, output identical. OPUS's consumers
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "No OPUS change needed; re-run today: sn1_logical_lines.py FAILS 0, output identical. OPUS's consumers
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "65 Method A before setup. Question: original ev POPV0x61 at pc16 is source-compatible test_load_flg=0
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "65 Method A before setup. Question: original ev POPV0x61 at pc16 is source-compatible test_load_flg=0
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-MOTION-BLUR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: motion blur constructor correction",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-MOTION-BLUR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-MOTION-BLUR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-REQ-AUDITSPEC-REVIEW-MOTION-BLUR-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: SWE2-AUDIT-SPEC :: "assigned_to": "SWE2-AUDIT-SPEC",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "scope": "independent review of a correction of OPUS's own rows",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "known_evidence": "OPUS commit (this publish); motion_blur_ctor.out",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-ATMOS-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: atmospherics constructor defaults",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-ATMOS-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-ATMOS-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-REQ-AUDITSPEC-REVIEW-MOTION-BLUR-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "ASTRA-REQ-OPUS-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "id": "ASTRA-REQ-FABLE-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "assigned_to": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: SWE2-DATA :: "assigned_to": "SWE2-DATA",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: SWE2-AUDIT-SPEC :: "assigned_to": "SWE2-AUDIT-SPEC",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "65 sampled original variable identity/control package retained; OPUS/FABLE/DATA/SPEC routed once.64 a
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "65 sampled original variable identity/control package retained; OPUS/FABLE/DATA/SPEC routed once.64 a
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "id": "FABLE-PUB-SN1-VARBIND",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "requester": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "assigned_to": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "FABLE (Claude Opus 5.5)"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-CTOR-CLAIMS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: constructor-claim audit",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-CTOR-CLAIMS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-CTOR-CLAIMS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-REQ-AUDITSPEC-REVIEW-MOTION-BLUR-CTOR",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "id": "OPUS-PUB-CKPT-0928AD",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "requester": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "assigned_to": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "target": "OPUS: checkpoint",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-CKPT-0928AD",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "OPUS-PUB-CKPT-0928AD",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "task": "FABLE-PUB-SN1-VARBIND",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "FABLE (Claude Opus 5.5) claiming @publication for this task"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "66 Method A preselected:65 exact sampled T0/name identity supports ev POPV61=test_load_flg. Four new 
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "66 Method A preselected:65 exact sampled T0/name identity supports ev POPV61=test_load_flg. Four new 
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "task": "FABLE-PUB-SN1-VARBIND",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "agent": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "task": "ASTRA-REQ-OPUS-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "OPUS: independent corpus discriminator for operand -> T0 name"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "task": "ASTRA-REQ-FABLE-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "FABLE (Claude Opus 5.5) taking this to close it"
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "agent": "FABLE",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "task": "ASTRA-REQ-FABLE-SN1-VARIABLE-BINDING",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "ACCEPT in d18739d69 _index/candidates/sn1-q0-source-domain (variable_binding.py V1 V2 C, FAILS 0): wi
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "ACCEPT in d18739d69 _index/candidates/sn1-q0-source-domain (variable_binding.py V1 V2 C, FAILS 0): wi
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "author": "OPUS",
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "note": "65 sampled original variable identity/control package retained; OPUS/FABLE/DATA/SPEC routed once.64 a
+Database/FFXII TZA/_index/_inbox/TEAM.json :: FABLE :: "note": "65 sampled original variable identity/control package retained; OPUS/FABLE/DATA/SPEC routed once.64 a
+Database/FFXII TZA/_index/_inbox/TEAM.json :: OPUS :: "author": "OPUS",
+  That can be a legitimate citation, or a peer's parked inline edit riding your
+  publish. The heading guard cannot see these; diff the path before re-running.
+publish_paths.sh: drift: -- 0 open-claim drift candidate(s) (report-only; hand review)
+publish_paths.sh: mirror: index built 2026-09-25T20:49:09+00:00, pin=worktree, generator=f28cf6d7b961
+publish_paths.sh: mirror:   STALE generator: a parser/module or the schema changed since the build (every table is downstream)
+publish_paths.sh: mirror:   STALE citations: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE citations: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE contract_claims: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE contract_sections: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE doc_fields: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE doc_names: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE doc_names: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE documents: tree:Database/FFXII TZA;.md changed since the build
+publish_paths.sh: mirror:   STALE edges: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE field_access: file:Database/FFXII TZA/_types/field-access-index.tsv changed since the build
+publish_paths.sh: mirror:   STALE fields: file:Database/FFXII TZA/_types/fields.tsv changed since the build
+publish_paths.sh: mirror:   STALE functions: file:Database/Tools/work/graph/functions.tsv changed since the build
+publish_paths.sh: mirror:   STALE global_refs: file:Database/Tools/work/h78/rip_data_refs.tsv changed since the build
+publish_paths.sh: mirror:   STALE questions: file:Database/FFXII TZA/_index/OPEN-QUESTIONS.md changed since the build
+publish_paths.sh: mirror:   STALE reconstructions: tree:Reconstruction;* changed since the build
+publish_paths.sh: mirror:   STALE script_verbs: file:Database/FFXII TZA/01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-dispatch.tsv changed since the build
+publish_paths.sh: mirror:   STALE types: file:Database/FFXII TZA/_types/types.tsv changed since the build
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: in the working copy of 'Database/FFXII TZA/_index/_inbox/TEAM.json', LF will be replaced by CRLF the next time Git touches it
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied
+warning: in the working copy of 'Database/FFXII TZA/_index/_inbox/TEAM.json', LF will be replaced by CRLF the next time Git touches it
+warning: unable to access 'C:\Users\Kristian/.config/git/ignore': Permission denied

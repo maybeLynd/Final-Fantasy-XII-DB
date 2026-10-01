@@ -1,0 +1,8 @@
+01FD4A30  0022A240  w  mov      qword ptr [rip + 0x1daa7e9], rax             0022A0B0 FUN_0022a0b0
+01FD4A30  0022A326  r  mov      rdx, qword ptr [rip + 0x1daa703]             0022A0B0 FUN_0022a0b0
+01FD4A30  002FC55B  r  mov      rax, qword ptr [rip + 0x1cd84ce]             002FC4A0 FUN_002fc4a0
+01FD4A30  002FC5B3  r  mov      rcx, qword ptr [rip + 0x1cd8476]             002FC4A0 FUN_002fc4a0
+01FD4A30  002FC956  r  mov      r8, qword ptr [rip + 0x1cd80d3]              002FC860 FUN_002fc860
+01FD4A30  003B06F8  r  mov      rbx, qword ptr [rip + 0x1c24331]             003B0660 FUN_003b0660
+01FD4A30  003B23E3  r  mov      rax, qword ptr [rip + 0x1c22646]             003B2310 FUN_003b2310
+01FD4A30  003B23F5  r  mov      r8, qword ptr [rip + 0x1c22634]              003B2310 FUN_003b2310

@@ -1,0 +1,1 @@
+{"action": "finish", "task": "SWE2EC7-PUB-EXTENT-VERDICT", "note": "ca667ee9 published (TEAM.json + ops; verdict TSV lives untracked beside its input in Tools/work/FABLE/, which is gitignored); releasing @publication", "result_refs": ["commit ca667ee9"]}

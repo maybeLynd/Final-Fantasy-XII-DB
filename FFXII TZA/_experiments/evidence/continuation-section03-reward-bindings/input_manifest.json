@@ -1,0 +1,80 @@
+{
+  "section": "SECTION-03",
+  "inputs": [
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/current-complete-memory.json",
+      "bytes": 2880061,
+      "sha256": "a9ada099cd80f560bf989671cac0ff3be1b4df4d9eb426b2424feea74acc3f33"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/current-field-memory.json",
+      "bytes": 2901142,
+      "sha256": "9c5769b39267890b4b9d6d3ad9a0b3adce89538a5dd904504f00666f3db97693"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/manifest.json",
+      "bytes": 5580,
+      "sha256": "d7adb215fd0b4c5f90affd6e35edab8bb84e6305adbb85032d2cf13c29279257"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/cleanup.json",
+      "bytes": 4528,
+      "sha256": "3225769472a7e13a57e2a2ca8150da2ff98e934b7aaa2dd0ae3e50f6f9f25979"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/exit-check.json",
+      "bytes": 154,
+      "sha256": "99640365b15d35c18d2392b5bce191fcd75516609b1f3e4a8f7924065049a5f9"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/save-before.json",
+      "bytes": 4403,
+      "sha256": "44a625a6fefca4d043e98246b534b52ff61999387d54f9f2704f4d9592ab89d6"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/observe.py",
+      "bytes": 7899,
+      "sha256": "3fd84bbf8ffb7acb6f398333275193d7af13bea895f284ded4ccda86689b5438"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/source-review.json",
+      "bytes": 707,
+      "sha256": "735463955259b13ded4bb55e415bcbe6deec4111fe7bfa2bb55bd7abc49f296a"
+    },
+    {
+      "path": "_experiments/evidence/retained-reward-bindings/check.py",
+      "bytes": 11332,
+      "sha256": "3f08906206eb273415e81f52fd3144d965dc4f29330d8afa1dae2964cabc2a45"
+    },
+    {
+      "path": "_experiments/evidence/retained-reward-bindings/observation.json",
+      "bytes": 8687,
+      "sha256": "f27af5a72a0f8b139674dcaad8b6bba126a0c0debad3c236b7754593462bbef7"
+    },
+    {
+      "path": "_experiments/evidence/reward-gate-exec/bodies.json",
+      "bytes": 5812,
+      "sha256": "c61eedcddf0dedd5414e954dd3c887671753f1ec96f3015225f1ef8fb79f6cae"
+    },
+    {
+      "path": "_experiments/evidence/reward-gate-exec/check.py",
+      "bytes": 39731,
+      "sha256": "3546d9bb3de911b3be9e146f45982336c18025eb3cd61b62febd89234d410e9a"
+    },
+    {
+      "path": "_experiments/evidence/EXP-075-reward-index-prechecks/0023A570.bin",
+      "bytes": 1808,
+      "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/current-complete-before.jpg",
+      "bytes": 71810,
+      "sha256": "08a967520ebd67493bbefdda437e74c0f66380f0410cc3b3ded0d4997ef78939"
+    },
+    {
+      "path": "_experiments/evidence/battleunit-live-bindings/current-field-after.jpg",
+      "bytes": 162913,
+      "sha256": "b4ad97ba36acbf300c5cc4bd0cf8b69aecd22c6b80f29020dc4a4edd837422ce"
+    }
+  ]
+}

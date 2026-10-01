@@ -1,0 +1,3 @@
+PASS  K1 001C977B is in 001C7940, not in the console 001D1660
+PASS  K2 +0x4A2 key = 'mUseLinearTonemap' (control 'mMapObjectShadowFadeRange'); the lea after the store = 'ShadowValueB'
+PASS  K3 0018F316 is in 0018EEE0 and stores to [rdi+0x9a]

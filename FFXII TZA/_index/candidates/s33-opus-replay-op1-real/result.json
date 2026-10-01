@@ -1,0 +1,402 @@
+{
+ "cases": {
+  "R1_world_built_by_shipped_code": true,
+  "R2_op1_real_fills_slot0_and_the_handle_is_its_truncated_address": true,
+  "R3_later_creates_take_the_next_slot_at_the_list_tail": true,
+  "R4_tick_resolves_each_handle_to_its_slot": true,
+  "R5_retired_visuals_keep_their_slot_and_op1_runs_out_at_the_14th_create": true,
+  "R6_zero_handle_faults_the_tick_lookup_bounded": true,
+  "R7_a_retired_visual_holds_its_slot_for_51_updates": true,
+  "S1_truncating_store_unguarded_lookup_and_the_managers_arena": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "R1": {
+   "binds": {
+    "partytop_4_c": {
+     "flags": "14A2",
+     "offset": "15FC0",
+     "plus_18": "15FC0",
+     "plus_20": "15FD0",
+     "plus_30": "0",
+     "render_entered": false,
+     "stopped_at": "24A25E"
+    },
+    "partytop_8_c": {
+     "flags": "13A2",
+     "offset": "1F440",
+     "plus_18": "1F440",
+     "plus_20": "1F450",
+     "plus_30": "0",
+     "render_entered": false,
+     "stopped_at": "24A25E"
+    }
+   },
+   "bundle_sha256": "df45f07c16d3249b559ebed9101d04a31a929503a76533c75d9eb0dc41ae9093",
+   "mgr": "76200000",
+   "mgr_zero_block": true,
+   "plus_249A": "FFFF",
+   "pool_init_ok": true,
+   "records": [
+    "battle_4_c",
+    "targetline_p",
+    "s_font_c",
+    "battle_4_p",
+    "mini_face_c",
+    "partytop_4_c",
+    "partytop_8_c",
+    "party_grd_2",
+    "icons_c",
+    "extra_c"
+   ],
+   "records_in_registry": true,
+   "register_stopped_at": "28083B",
+   "subinit_ok": true
+  },
+  "R2": {
+   "cache_2690": "208F730",
+   "cache_2698": "208F6E8",
+   "create": {
+    "events": [
+     [
+      "op1",
+      "762057E0",
+      "700FEFD0",
+      "2",
+      "0"
+     ],
+     [
+      "record_lookup",
+      "9152E8",
+      "700FEFD0",
+      "2",
+      "0"
+     ],
+     [
+      "record_lookup",
+      "9152D8",
+      "0",
+      "177A448",
+      "208F730"
+     ],
+     [
+      "sound",
+      "50",
+      "A",
+      "164",
+      "1"
+     ]
+    ],
+    "handles": [
+     "76205A50",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "occupied": [
+     0
+    ],
+    "ok": true,
+    "op1_return": "76205A50"
+   },
+   "list_head": "76205A50",
+   "node0_handle": "76205A50",
+   "slot0": {
+    "f264": -0.25,
+    "flag": "1",
+    "phase": 1,
+    "table": 0,
+    "tier": 2
+   }
+  },
+  "R3": {
+   "creates": [
+    {
+     "events": [
+      [
+       "op1",
+       "762057E0",
+       "700FEFD0",
+       "2",
+       "0"
+      ],
+      [
+       "sound",
+       "50",
+       "700FEE50",
+       "11C",
+       "0"
+      ]
+     ],
+     "handles": [
+      "76205A50",
+      "76205CF0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "occupied": [
+      0,
+      1
+     ],
+     "ok": true,
+     "op1_return": "76205CF0"
+    },
+    {
+     "events": [
+      [
+       "op1",
+       "762057E0",
+       "700FEFD0",
+       "2",
+       "0"
+      ],
+      [
+       "sound",
+       "50",
+       "0",
+       "E6",
+       "0"
+      ]
+     ],
+     "handles": [
+      "76205A50",
+      "76205CF0",
+      "76205F90",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "occupied": [
+      0,
+      1,
+      2
+     ],
+     "ok": true,
+     "op1_return": "76205F90"
+    }
+   ],
+   "links": [
+    [
+     "76205CF0",
+     "0"
+    ],
+    [
+     "76205F90",
+     "76205A50"
+    ],
+    [
+     "0",
+     "76205CF0"
+    ]
+   ]
+  },
+  "R4": {
+   "lookups": [
+    [
+     "hit",
+     "76205A50"
+    ],
+    [
+     "hit",
+     "76205CF0"
+    ],
+    [
+     "hit",
+     "76205F90"
+    ]
+   ],
+   "ok": true,
+   "states": [
+    1,
+    1,
+    1
+   ]
+  },
+  "R5": {
+   "creates": [
+    {
+     "n": 4,
+     "occupied": 4,
+     "op1_return": "76206230",
+     "retired": []
+    },
+    {
+     "n": 5,
+     "occupied": 5,
+     "op1_return": "762064D0",
+     "retired": []
+    },
+    {
+     "n": 6,
+     "occupied": 6,
+     "op1_return": "76206770",
+     "retired": []
+    },
+    {
+     "n": 7,
+     "occupied": 7,
+     "op1_return": "76206A10",
+     "retired": []
+    },
+    {
+     "n": 8,
+     "occupied": 8,
+     "op1_return": "76206CB0",
+     "retired": []
+    },
+    {
+     "n": 9,
+     "occupied": 9,
+     "op1_return": "76206F50",
+     "retired": []
+    },
+    {
+     "n": 10,
+     "occupied": 10,
+     "op1_return": "762071F0",
+     "retired": []
+    },
+    {
+     "n": 11,
+     "occupied": 11,
+     "op1_return": "76207490",
+     "retired": [
+      "76205A50"
+     ]
+    },
+    {
+     "n": 12,
+     "occupied": 12,
+     "op1_return": "76207730",
+     "retired": [
+      "76205CF0"
+     ]
+    },
+    {
+     "n": 13,
+     "occupied": 13,
+     "op1_return": "762079D0",
+     "retired": [
+      "76205F90"
+     ]
+    },
+    {
+     "n": 14,
+     "occupied": 13,
+     "op1_return": "0",
+     "retired": [
+      "76206230"
+     ]
+    },
+    {
+     "n": 15,
+     "occupied": 13,
+     "op1_return": "0",
+     "retired": [
+      "762064D0"
+     ]
+    }
+   ],
+   "first_zero_handle_create": 14,
+   "retired_slots_flags": [
+    "3",
+    "3",
+    "3",
+    "3"
+   ]
+  },
+  "R6": {
+   "halt": [
+    "00000272",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "last_lookup": [
+    "lookup",
+    "762057E0",
+    "0",
+    "0",
+    "0"
+   ],
+   "last_pc": "3FA730",
+   "ok": false,
+   "zero_handle_nodes": [
+    3,
+    4
+   ]
+  },
+  "R7": {
+   "freed_at_update": {
+    "0": 51,
+    "1": 51,
+    "2": 51,
+    "3": 51,
+    "4": 51
+   },
+   "halt": [],
+   "last_pc": "3FA81E",
+   "list_after": "76206770",
+   "live_slots": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "ok": true,
+   "retired_slots": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "S1": {
+   "arena_select": [
+    "mov edx, 0xf",
+    "lea ecx, [rdx - 0xc]",
+    "call 0x36c1d0"
+   ],
+   "block_is_malloc": [
+    "movsxd rcx, ecx",
+    "jmp 0x85e730"
+   ],
+   "boot_arena3": [
+    "mov r8d, 0xd20000",
+    "mov ecx, 3",
+    "call 0x369d30"
+   ],
+   "boot_block": [
+    "mov ecx, 0xd20100",
+    "call 0x36d240"
+   ],
+   "lookup_first": "test byte ptr [rdx + 0x272], 1",
+   "mgr_alloc": [
+    "mov ecx, 0x10fd0",
+    "call 0x271420",
+    "mov qword ptr [rip + 0x1e0c5a5], rax"
+   ],
+   "store_58": "mov dword ptr [rbx + 0x58], eax"
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "NOT ACCEPTED",
+  "reason": "Hard-coded UTF-16 length36 for RSA_SQEX_FFXII_TZA omitted its terminator; exact terminated-string assertion failed before receipt. Correct bound is38 bytes.",
+  "source_sha256": "ebc55f491266457db3dc7c84aa624cb47152025518a13d8ad24e68dcf079285c",
+  "executed_original_cases": 0,
+  "second_attempt": {
+    "source_sha256": "e2ad9bd699c188d849cefcf43621583108af7ad7b8e6005bf47967ffe49f122c",
+    "status": "NOT ACCEPTED",
+    "reason": "Provider span92 also omitted final terminator; use bounded code-unit scan instead of guessed lengths.",
+    "executed_original_cases": 0
+  }
+}

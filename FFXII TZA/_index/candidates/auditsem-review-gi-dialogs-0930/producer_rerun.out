@@ -1,0 +1,4 @@
+gi2_hcom_hodr: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+gi4_dialog_tables: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+gi13_saveload_states: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)
+gi4_mask800: exit 0, FAILS 0, output identical to the committed .out (CRLF-insensitive)

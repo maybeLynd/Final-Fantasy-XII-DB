@@ -1,0 +1,98 @@
+00228380 FUN_00228380: branch refs 1, rip refs 0, relocs 0
+    00253CC3 call  00253C70 InputGameplay_ArbitrateDigitalInputAndModalState
+00229AF0 FUN_00229af0: branch refs 1, rip refs 0, relocs 0
+    0017D4B0 jmp   0017D4B0 thunk_FUN_00229af0
+0017D4B0 thunk_FUN_00229af0: branch refs 1, rip refs 0, relocs 0
+    007A3B74 jmp   007A3B20 FUN_007a3b20
+002282F0 FUN_002282f0: branch refs 1, rip refs 0, relocs 0
+    00228435 jmp   00228380 FUN_00228380
+00229590 FUN_00229590: branch refs 0, rip refs 1, relocs 0
+    0022832E lea   002282F0 FUN_002282f0
+PASS  control: 00253C70 found as a caller of 00228380
+-- 00229AF0 FUN_00229af0
+  00229AF0 sub rsp, 0x28
+  00229AF4 mov dword ptr [rip + 0x1bd8cfe], 0
+  00229AFE call 0x2e0fa0
+  00229B03 bt eax, 0x15   <== bit 21
+  00229B07 jae 0x229b17
+  00229B09 mov ecx, 1
+  00229B0E add rsp, 0x28
+  00229B12 jmp 0x2e1020
+  00229B17 mov ecx, 0xf
+  00229B1C call 0x226bd0
+  00229B21 test eax, eax
+  00229B23 jne 0x229b39
+  00229B25 mov edx, 1
+  00229B2A lea ecx, [rax + 0x3f]
+  00229B2D mov r8d, edx
+  00229B30 add rsp, 0x28
+  00229B34 jmp 0x2df370
+  00229B39 add rsp, 0x28
+  00229B3D ret 
+-- 00228380 FUN_00228380
+  00228380 mov qword ptr [rsp + 8], rbx
+  00228385 mov qword ptr [rsp + 0x10], rsi
+  0022838A push rdi
+  0022838B sub rsp, 0x20
+  0022838F call 0x2e0fa0
+  00228394 mov esi, eax
+  00228396 mov ebx, 1
+  0022839B call 0x17e4c0
+  002283A0 test eax, eax
+  002283A2 jne 0x2283b3
+  002283A4 cmp qword ptr [rip + 0x1dac59c], 0
+  002283AC jne 0x2283b3
+  002283AE call 0x228490
+  002283B3 xor edi, edi
+  002283B5 cmp qword ptr [rip + 0x1dac58c], rdi
+  002283BC setne dil
+  002283C0 call 0x3603c0
+  002283C5 test eax, eax
+  002283C7 jne 0x22843a
+  002283C9 call 0x17d930
+  002283CE test eax, eax
+  002283D0 jne 0x22843a
+  002283D2 cmp dword ptr [rip + 0x1dac578], eax
+  002283D8 je 0x22843a
+  002283DA bt esi, 0x15   <== bit 21
+  002283DE jae 0x2283ef
+  002283E0 mov ecx, ebx
+  002283E2 call 0x2e1020
+  002283E7 bt eax, 0x15   <== bit 21
+  002283EB jae 0x22843a
+  002283ED xor ebx, ebx
+  002283EF cmp qword ptr [rip + 0x1dac549], 0
+  002283F7 jne 0x22840b
+  002283F9 mov eax, dword ptr [rip + 0x1dac2fd]
+  002283FF test eax, eax
+  00228401 jle 0x228420
+  00228403 dec eax
+  00228405 mov dword ptr [rip + 0x1dac2f1], eax
+  0022840B mov eax, 1
+  00228410 mov rbx, qword ptr [rsp + 0x30]
+  00228415 mov rsi, qword ptr [rsp + 0x38]
+  0022841A add rsp, 0x20
+  0022841E pop rdi
+  0022841F ret 
+  00228420 test edi, edi
+  00228422 je 0x22843a
+  00228424 mov ecx, ebx
+  00228426 mov rbx, qword ptr [rsp + 0x30]
+  0022842B mov rsi, qword ptr [rsp + 0x38]
+  00228430 add rsp, 0x20
+  00228434 pop rdi
+  00228435 jmp 0x2282f0
+  0022843A mov rbx, qword ptr [rsp + 0x30]
+  0022843F xor eax, eax
+  00228441 mov rsi, qword ptr [rsp + 0x38]
+  00228446 add rsp, 0x20
+  0022844A pop rdi
+  0022844B ret 
+name 002E0FA0 FUN_002e0fa0
+name 002E1020 FUN_002e1020
+name 00226BD0 FUN_00226bd0
+name 002DF370 FUN_002df370
+name 00228480 FUN_00228480
+name 00244F50 FUN_00244f50
+name 00253C70 InputGameplay_ArbitrateDigitalInputAndModalState
+name 007A3B20 FUN_007a3b20

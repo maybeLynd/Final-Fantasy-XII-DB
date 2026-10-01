@@ -1,0 +1,124 @@
+{
+ "pass": 4,
+ "total": 4,
+ "ok": true,
+ "field": 464,
+ "selector": 351,
+ "map_ref_sha256": "7c63552fd2c57438bea4eb1f27d6f52f4f6e7bd2430dbb5af0373a04e15b728b",
+ "mweather_sha256": "25612c852fd18fe9a0da60c2d6e88cc9d385b5fca96d6d4ec313c88e181c4ce9",
+ "results": {
+  "EV1_tail_call_with_zero_arguments": {
+   "tail_registers_at_002E3D40": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "presentation_entry_registers": [
+    5,
+    0,
+    1,
+    4294967295
+   ],
+   "pass": true
+  },
+  "EV6_only_DBC_is_pre_cleared": {
+   "writes_in_order": [
+    [
+     "02099DBC",
+     4,
+     0
+    ],
+    [
+     "021654E0",
+     1,
+     2
+    ],
+    [
+     "02099DA8",
+     4,
+     2
+    ],
+    [
+     "02099DAC",
+     4,
+     2
+    ],
+    [
+     "02099DB0",
+     4,
+     0
+    ],
+    [
+     "02099DBC",
+     4,
+     0
+    ],
+    [
+     "021654E1",
+     1,
+     0
+    ]
+   ],
+   "published": {
+    "DA8": 2,
+    "DAC": 2,
+    "DB0": 0,
+    "DBC": 0
+   },
+   "pass": true
+  },
+  "EV6_unloaded_table_keeps_stale_values": {
+   "published_after": {
+    "DA8": "DEAD0001",
+    "DAC": "DEAD0002",
+    "DB0": "DEAD0003",
+    "DBC": "0"
+   },
+   "stale_planted": {
+    "DA8": "DEAD0001",
+    "DAC": "DEAD0002",
+    "DB0": "DEAD0003",
+    "DBC": "DEAD0004"
+   },
+   "writes": [
+    [
+     "02099DBC",
+     4,
+     0
+    ],
+    [
+     "021654E0",
+     1,
+     2
+    ],
+    [
+     "021654E1",
+     1,
+     0
+    ]
+   ],
+   "pass": true
+  },
+  "EV5_band_from_the_preset": {
+   "bands": {
+    "1": {
+     "preset": 2,
+     "DAC": 1,
+     "want": 1
+    },
+    "2": {
+     "preset": 4,
+     "DAC": 2,
+     "want": 2
+    },
+    "3": {
+     "preset": 5,
+     "DAC": 2,
+     "want": 2
+    }
+   },
+   "pass": true
+  }
+ }
+}

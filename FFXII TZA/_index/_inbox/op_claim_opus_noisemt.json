@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-GRAPHICS-MT-ADDRESS-AND-CONSUMER-CENSUS",
+ "agent": "OPUS",
+ "note": "I5 said the graphics MT may have no fixed state address because its twist routine 0018EE20 has no rip-relative operand, and told the reader not to go looking. The premise is true and the inference is wrong: it asked what the CALLEE names instead of what the CALLERS pass. Every call site in the image passes one fixed address as a literal lea - 0015BD13 and 0015BD1F in the seeder 0015BCF0, 0019483B and 001948C9 in the noise-texture builder 001946E0, four sites, three calls, all `lea rcx, [rip -> 01F7F600]`. The types store has had STATIC 0x01F7F600 since 2026-09-21, so this was a canonical summary disagreeing with raw state. CONSUMER CENSUS, EXHAUSTIVE: over every rip-relative operand into [01F7F600, +0x9C4), ZERO bodies touch the 624-dword array directly and exactly TWO take its address - the seeder and the one drawing body - so 'presentation noise only' is now a complete count rather than the absence of a counter-example. AND THE CENSUS CONTRADICTED MY OWN ROW, filed as CON-155: the type row said the graphics index sits at 01F7FFC0, but that cell is touched 4 times and EVERY ACCESS IS 8 BYTES, walked as a pointer (mov rax,[X] / mov ecx,[rax] / add rax,4 / mov [X],rax), which would span +0x9C0..+0x9C7 and cross the declared 0x9C4 extent; neither graphics generator routine touches it, while the gameplay instance's +0x9C0 IS written by its own seeder at 4 bytes across four bodies. A third cell, 01F7FFC8, has 6 four-byte accesses in the same one body and gates the twist before being decremented. RESOLVED BY THE ROW'S OWN PRINCIPLE, applied above the array instead of below it - the same argument that keeps the gameplay lazy-init byte out of the type. Nothing re-extended; the index row stands and now names the instance it describes; the two cells are declared as GraphicsNoiseDrawCursor (8) and GraphicsNoiseRefillCount (4), which the types-MET criterion requires of contract-named state. 589 types / 7,109 fields / 0 errors / 0 gaps. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

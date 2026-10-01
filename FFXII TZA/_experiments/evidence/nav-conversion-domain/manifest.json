@@ -1,0 +1,50 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 1793,
+      "sha256": "718bf90630275478e07ed93b36bb176ca02d7f3388c04748dd2482f5189aeee0"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5029,
+      "sha256": "2d67d08504e5b9aa5e3f42bdb5266065f32a73f99a3a3b8335f67a2cfeec6cfc"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1569,
+      "sha256": "57ad7975c80e44eadde3cd195cc743928e9b688f49fd0df8abce382288686678"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4827,
+      "sha256": "257c65e8ef93c50f8661200f4afa35c9f9b01cf46bc8ecbf10954c8479ef7a71"
+    },
+    {
+      "path": "retained/how-a-unit-finds-its-way-across-the-navigation-mesh.md",
+      "bytes": 34506,
+      "sha256": "68ec49836b8106e640fc5c895853c92ee1da628ed30abd607fab4918f2230d0d"
+    },
+    {
+      "path": "retained/query-source.json",
+      "bytes": 39367,
+      "sha256": "ad119fb4989851ddffae7f75c5f84f168616ea56566a303d98de80fea03d2bc6"
+    },
+    {
+      "path": "source.json",
+      "bytes": 21494,
+      "sha256": "2a02386b98f61ede2a16972ee2ea1e9d52298a049468d2163b264384f08072e7"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1350,
+      "sha256": "9628a01ff1e1365a15f0624ab863f812b4e06ed17f34d702c86b5b1114fe026a"
+    }
+  ],
+  "limits": "A retained original source/stable finite interval proof. Zero new B/C, native classifier/MXCSR/atomicity/initializer effects unobserved. Nonnegative int32-safe != in-table. Existing upper-edge evidence untouched. Owner/independent acceptance pending."
+}

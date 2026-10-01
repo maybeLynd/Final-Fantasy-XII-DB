@@ -1,0 +1,15 @@
+GL1_clamp_in_the_setter            PASS  every write lands once at 00254F1F, clamped to [0, 99,999,999]: -5 -> 0, 100,000,000 -> 99,999,999, 0x7FFFFFFF -> 99,999,999, -0x80000000 -> 0
+GL2_GL4_meter_kind_and_zero_delta  PASS  a gain meters kind 6 with |delta|, a spend kind 7 with |delta|; a zero delta calls no meter and STILL stores
+GL3_delta_before_clamp             PASS  old 0, set 200,000,000: the meter records a gain of 200,000,000 while 99,999,999 is stored
+GL2_console_writer_is_metered      PASS  Debug_SetGilToMaximum 003058B0 (`mov ecx, 99,999,999; jmp 00254EE0`) from 5: metered as a gain of 99,999,994, like any other writer
+GL5_two_getter_entries             PASS  00253690 and the 5-byte thunk 00309BF0 (`jmp 00253690`) both return the stored 4242
+delta_wraps_to_a_metered_gain      PASS  old 100, set -2,147,483,648: `sub edx, [rax+8]` wraps to +0x7FFFFF9C, so the write is METERED AS A GAIN (kind 6) of 2,147,483,548 while 0 is stored - GL-4's 'a negative one ... kind 7' does not hold at the 32-bit edge
+meter_counters_accumulate_and_saturate PASS  from zeroed counters: gains of 1,000,000,000 and 1,500,000,000 leave the kind-6 counter at [020927C0]+0x3860 at 1,000,000,000 then 0x7FFFFFFF (saturated, not wrapped); a spend of 300 lands in the kind-7 counter at +0x3864
+meter_counters_observed            PASS  the real meter 00316A50 writes the counter block [020927C0] on each metered write; the offsets and values are recorded (their meaning is not claimed)
+ok
+prepare_reserves_the_cost_and_takes_it_from_gil                      PASS
+refund_gives_it_back_and_clears_the_reservation                      PASS
+reserve_then_refund_invisible_in_balance_visible_twice_in_counters   PASS
+commit_keeps_the_charge_and_ends_the_reservation                     PASS
+a_refund_after_commit_gives_nothing_back                             PASS
+ALL PASS ability 0 cost 100

@@ -1,0 +1,303 @@
+{
+ "ok": true,
+ "allowed_functions": 4250,
+ "results": {
+  "EQ1_partner_test_asymmetric": {
+   "pass_": true,
+   "results": {
+    "(off, main)": 1,
+    "(main, off)": 0,
+    "(0xFFFF, main)": 1,
+    "(off, 0xFFFF)": 1
+   },
+   "note": "record(arg2)[+0x11] == record(arg1)[+0x09]: 1 with (off-hand, main); swapping gives 0; either side 0xFFFF gives 1"
+  },
+  "EQ2_shield_exempt_only_inline": {
+   "pass_": true,
+   "results": {
+    "chain(shield | bow)": 1,
+    "partner(shield, bow)": 0,
+    "chain(ammo23 | bow)": 1,
+    "chain(ammo24 | bow)": 0,
+    "chain(ammo24 | empty main)": 1,
+    "partner(ammo24, 0xFFFF)": 1
+   },
+   "note": "the chain admits a shield whatever the main hand requires; the standalone refuses it; the non-shield partner rule agrees in both; an empty main hand passes both"
+  },
+  "EQ3_packed_slot_and_exemption": {
+   "pass_": true,
+   "slot": {
+    "in slot 2": 1,
+    "in slot 1": 0,
+    "in slot 3": 0
+   },
+   "licence_without_exemption": 0,
+   "licence_with_bit4": 1,
+   "note": "bits 7..5 = 2 is eligible in slot 2 only; with no licence bits the gate returns 0 through the board lookup; bit 4 set returns 1 without the board lookup"
+  },
+  "EQ5_forbidden_mask": {
+   "pass_": true,
+   "results": {
+    "mask 0": 1,
+    "bit 7 set (item class 7)": 0,
+    "all bits but 7": 1,
+    "mask 0, licence bit clear": 0
+   },
+   "note": "the bit for the item's class SET rejects; every other bit set still admits; the licence board is the last test"
+  },
+  "EQ6_selector_and_index_bypass": {
+   "pass_": true,
+   "results": {
+    "selector 0, all forbidden": 0,
+    "selector 2, all forbidden, no licence": 1,
+    "licence gate, selector 2": 1,
+    "licence gate, index 0, no licence": 0,
+    "licence gate by stats[+4]": {
+     "6": 0,
+     "7": 1,
+     "39": 1
+    }
+   },
+   "note": "selector non-zero admits past a mask that forbids everything and an empty licence board; the gate alone also returns 1 for it and for stats[+4] > 6 (6 still needs the board)"
+  },
+  "EQ7_two_classes_one_range": {
+   "pass_": true,
+   "validator_sequence": [
+    [
+     "validate",
+     "6",
+     "4160"
+    ],
+    [
+     "class6_arm"
+    ],
+    [
+     "validate",
+     "1",
+     "4160"
+    ],
+    [
+     "class6_arm"
+    ]
+   ],
+   "id_past_count": {
+    "chain": 0,
+    "gate": 0
+   },
+   "note": "the chain validates class 6 and the gate class 1; class 1 on a 0x1xxx id is looked up (00309440: family code 6) and re-dispatched to the SAME class-6 range test; an id past the header count fails both, and that is the gate's 0 exit"
+  },
+  "wrapper_owned_test_always_on": {
+   "pass_": true,
+   "results": {
+    "total 1, reserved 0": {
+     "wrapper": 1,
+     "chain, owned test off": 1,
+     "chain, owned test on": 1
+    },
+    "total 1, reserved 1": {
+     "wrapper": 0,
+     "chain, owned test off": 1,
+     "chain, owned test on": 0
+    },
+    "total 0": {
+     "wrapper": 0,
+     "chain, owned test off": 1,
+     "chain, owned test on": 0
+    },
+    "total 3, reserved 2": {
+     "wrapper": 1,
+     "chain, owned test off": 1,
+     "chain, owned test on": 1
+    },
+    "wrapper, index 0x28": 0
+   },
+   "note": "the wrapper always passes 1 as the chain's fifth argument; the count tested is 002FD8D0 mode 0 = (word & 0x3FF) - (word >> 10), the inventory contract's kind-0 'available' = total - reserved, and must be >= 1; an index above 0x27 is refused before the chain"
+  },
+  "EQ8_EQ4_recommender_order": {
+   "pass_": true,
+   "out": [
+    "1020",
+    "1190",
+    "FFFF",
+    "FFFF",
+    "1234"
+   ],
+   "trace": [
+    [
+     "wrap",
+     0,
+     "1000",
+     "1000",
+     1
+    ],
+    [
+     "compare",
+     "FFFF",
+     "1000",
+     0
+    ],
+    [
+     "wrap",
+     0,
+     "1001",
+     "1020",
+     32
+    ],
+    [
+     "compare",
+     "1000",
+     "1020",
+     0
+    ],
+    [
+     "wrap",
+     1,
+     "1184",
+     "1190",
+     13
+    ],
+    [
+     "compare",
+     "FFFF",
+     "1190",
+     0
+    ],
+    [
+     "wrap",
+     1,
+     "1191",
+     "11A3",
+     19
+    ],
+    [
+     "wrap",
+     0,
+     "1021",
+     "10C7",
+     167
+    ],
+    [
+     "partner",
+     "10D5",
+     "1020"
+    ],
+    [
+     "wrap",
+     1,
+     "10C8",
+     "10D5",
+     14
+    ],
+    [
+     "partner",
+     "10D5",
+     "1020"
+    ],
+    [
+     "wrap",
+     1,
+     "10D6",
+     "10D6",
+     1
+    ],
+    [
+     "partner",
+     "10D6",
+     "1020"
+    ],
+    [
+     "compare",
+     "FFFF",
+     "10D6",
+     1
+    ],
+    [
+     "wrap",
+     1,
+     "10D7",
+     "1190",
+     186
+    ],
+    [
+     "partner",
+     "1190",
+     "1020"
+    ],
+    [
+     "compare",
+     "10D6",
+     "1190",
+     0
+    ],
+    [
+     "wrap",
+     1,
+     "1191",
+     "11A3",
+     19
+    ],
+    [
+     "wrap",
+     2,
+     "10DC",
+     "1117",
+     60
+    ],
+    [
+     "wrap",
+     3,
+     "1118",
+     "1153",
+     60
+    ]
+   ],
+   "note": "slot 0 is decided first (0x1020 beats 0x1000); the slot-0 epilogue drops nothing new but tests the CARRIED off-hand 0x10D5 against 0x1020 before slot 1 starts; slot 1 walks 0x10C8..0x11A3 (EQ-4's 0x11A4 bound) and every candidate the chain admits, the shield included, is re-tested by 002F7EC0 at 002FA013 against out[0]; ids 0x1184..0x11A3 compare in mode 0; slots 2/3 walk their ranges; out[4] = 0x1234 is passed through"
+  },
+  "EQ8b_empty_main_forced_then_offhand_dropped": {
+   "pass_": true,
+   "out": [
+    "1000",
+    "FFFF",
+    "FFFF",
+    "FFFF",
+    "FFFF"
+   ],
+   "trace": [
+    [
+     "wrap",
+     0,
+     "1000",
+     "10C7",
+     200
+    ],
+    [
+     "partner",
+     "10D5",
+     "1000"
+    ],
+    [
+     "wrap",
+     1,
+     "10C8",
+     "11A3",
+     220
+    ],
+    [
+     "wrap",
+     2,
+     "10DC",
+     "1117",
+     60
+    ],
+    [
+     "wrap",
+     3,
+     "1118",
+     "1153",
+     60
+    ]
+   ],
+   "note": "no slot-0 candidate is admitted: the epilogue writes 0x1000, then 002F7EC0(0x10D5, 0x1000) fails and the carried shield becomes 0xFFFF"
+  }
+ }
+}

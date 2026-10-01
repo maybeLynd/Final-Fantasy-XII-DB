@@ -1,0 +1,61 @@
+{
+  "status": "PREPARATION_ONLY_NOT_VTABLE_EXTENT_OR_SEMANTIC_CLOSURE",
+  "method": "A",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "vtable": "0xd54348",
+  "COL": "0x1d12448",
+  "type_descriptor": "0x1f5c5a0",
+  "name": ".?AV?$TAsyncUpdate@VPTexture2DD3D11@PRendering@Phyre@@@@",
+  "raw_bytes": "4824d10100000000f01f620000000000c824d1010000000000206200000000006d5f7374617465006d5f766572746578506172616d657465724c6f636174696f6e00000000000000",
+  "ordered_qwords": [
+    {
+      "offset": "0x0",
+      "value": "0x621ff0",
+      "section": ".text",
+      "pdata": []
+    },
+    {
+      "offset": "0x8",
+      "value": "0x1d124c8",
+      "section": ".rdata",
+      "pdata": []
+    },
+    {
+      "offset": "0x10",
+      "value": "0x622000",
+      "section": ".text",
+      "pdata": []
+    },
+    {
+      "offset": "0x18",
+      "value": "0x65746174735f6d",
+      "section": null,
+      "pdata": []
+    },
+    {
+      "offset": "0x20",
+      "value": "0x7865747265765f6d",
+      "section": null,
+      "pdata": []
+    },
+    {
+      "offset": "0x28",
+      "value": "0x6574656d61726150",
+      "section": null,
+      "pdata": []
+    },
+    {
+      "offset": "0x30",
+      "value": "0x6f697461636f4c72",
+      "section": null,
+      "pdata": []
+    },
+    {
+      "offset": "0x38",
+      "value": "0x6e",
+      "section": null,
+      "pdata": []
+    }
+  ],
+  "limits": "First64B physical preparation; table extent, actual virtual slot use and native effects still require source binding. No execution."
+}

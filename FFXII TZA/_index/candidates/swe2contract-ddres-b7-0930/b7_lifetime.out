@@ -1,0 +1,38 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS D1 002FC3C0 extent 183 B - 183
+PASS D1 reads rec+0x23 - 002FC3C6  movzx eax, byte ptr [rcx + 0x23]
+PASS D1 low nibble - 002FC3CD  and eax, 0xf
+PASS D1 bounded to 7 - 002FC3D0  cmp eax, 7
+PASS D1 table read (RVA 0x1DC478 = 002FC478) - 002FC3E2  mov edx, dword ptr [rcx + rax*4 + 0x1dc478]
+PASS D1 indirect jump - 002FC3EC  jmp rdx
+PASS D1 eight table targets inside the body - 002FC46F 002FC3EE 002FC3F9 002FC411 002FC46F 002FC43E 002FC452 002FC46F
+PASS D1 arm calls 0024F410 - 002FC442  call 0x24f410
+PASS M1 rip references into the map - 00369D79(00369D30,lea) 0036A282(0036A280,lea)
+PASS M1 control: the push's indexed read - 0036C272  movzx eax, byte ptr [rax + rbx + 0x21b89a8]
+PASS M1 image-displacement form: one instruction only, in 0036C1F0 - 0036C1F0@0036C276
+PASS S1 0024D540 callers = the three main-loop frame functions - 0022B0B0 0022B8C0 0022BC20
+PASS S1 003B3480 caller = the handle resolver - 003B3C00
+PASS S1 0024D970 callers - 003B3480 003B3550
+PASS E1 switch byte +0x44 - 0050050B  movzx eax, byte ptr [r8 + 0x44]
+PASS E1 bound 0xD1 - 00500510  cmp eax, 0xd1
+PASS E1 byte index table - 0050051B  movzx eax, byte ptr [r9 + rax + 0x3e0774]
+PASS E1 dword target table - 00500524  mov ecx, dword ptr [r9 + rax*4 + 0x3e06b4]
+PASS G1 free clears the +0x3E word - 00369B4F  mov word ptr [rbx + 0x3e], si
+PASS G1 022D8E1C is the allocator's fallback read - 0036BD19  mov eax, dword ptr [rip + 0x1f6d0fd]
+PASS C1 one store to header +0x1C: 0036A517 in the header writer - 0036A517
+PASS C1 the stored word is the writer's fourth argument - 0036A4C0  mov edi, r9d
+PASS C1 readers of +0x1C - 0036A034 0036A266 0036A36D 0036A45D 0036B005 0036D19A
+PASS C1 every caller of 0036A490 passes the arena's word +0x60 - 00369FD4:movzx r9d, word ptr [rbx + 0x60]; 0036BBA1:movzx r9d, word ptr [r15 + 0x60]; 0036BE58:movzx r9d, word ptr [rbx + 0x60]; 0036BE79:movzx r9d, word ptr [rbx + 0x60]; 0036C2CB:movzx r9d, word ptr [rcx + 0x60]; 0036C407:movzx r9d, word ptr [rbp + 0x60]; 0036CDAA:movzx r9d, word ptr [r14 + 0x60]
+PASS C1 the +0x60 word is a counter the allocation paths increment - 0036BC31 0036BFC5 0036C35B 0036C470 0036CE3E
+PASS R1 J-C lead word SUPERSEDED - SUPERSEDED 2026-09-27 (FABLE, CLAUDE OPU
+PASS R1 CD-2 lead word SUPERSEDED - SUPERSEDED 2026-09-27 (FABLE, CLAUDE OPU
+PASS R1 BW-2 lead word SUPERSEDED - SUPERSEDED 2026-09-26 (FABLE, CLAUDE OPU
+PASS R1 OV-24 lead word SUPERSEDED - SUPERSEDED 2026-09-29 (SWE2-FRONTIER): D
+PASS R1 OV-25 lead word ANSWERED - ANSWERED 2026-09-29 (FABLE, CLAUDE OPUS 
+PASS R1 OV-26 lead word ANSWERED - ANSWERED 2026-09-29 (FABLE, APPLIED BY S
+PASS R1 OV-27 lead word NOT A QUESTION - NOT A QUESTION 2026-09-29 (SWE2-FRONTIER
+PASS R1 OV-28 lead word NOT A QUESTION - NOT A QUESTION 2026-09-29 (SWE2-FRONTIER
+PASS R1 SD-166 lead word OPEN - OPEN 2026-09-30 (SWE2-DATA), STATIC:** *
+PASS A1 SD-166 record tracked and states the answer
+FAILS 0

@@ -1,0 +1,171 @@
+{
+  "status": "PARTIAL_POSITIVE_ORIGINAL_CAMPAIGN_INCOMPLETE",
+  "method": "C",
+  "pid": 40504,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "text_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+  "pulses": [
+    {
+      "receipt": "title-enter.json",
+      "sha256": "f2057a07c946bd80a19ea76ee5f74475d93834a6119c24da2b1e7a7006403c49",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.3548250000021653,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 33,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "load-enter.json",
+      "sha256": "8256c4054b1de3420b7144cc779a9c9d447e8e651cff2ac3eca515ef2c3010fc",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35756039999978384,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "dismiss-enter.json",
+      "sha256": "4f21953236193746f502ed47c692b687493f81cf7393f359e85923ee5dbfa066",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35549080000055255,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 33,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "baseline-enter.json",
+      "sha256": "24b5492c698e577b7a6e8cc3a3a5308621a75428bfe2b3be98ca8c16e5d5256c",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35720470000524074,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 33,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "baseline-c.json",
+      "sha256": "d11c2a4e7a363815c1b73b998add06675ea040f75ce79c150b1b70c12fc1f75c",
+      "expected_index": 2,
+      "code": 30,
+      "held_seconds": 0.3577627999984543,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "capture-enter.json",
+      "sha256": "541edb2d0545d1b7efca2db97f49fa3c10ea361255e47723b5a6b6d8a5697dc4",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.3542185000042082,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "capture-c.json",
+      "sha256": "a797a72bde7266584b4a9e2029ff3f466b773a31ea2e40a774ffe1e37f0fe8c4",
+      "expected_index": 2,
+      "code": 30,
+      "held_seconds": 0.35602120000112336,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    }
+  ],
+  "capture": {
+    "hits": 195,
+    "entry": "003A1C50",
+    "hit_threads": [
+      24956
+    ],
+    "cleared_threads": 101,
+    "verified_threads": 101,
+    "api_records": 2601,
+    "detach_unix": 1789336166.2105286,
+    "sources": {
+      "capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+      "timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+      "api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+      "hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6"
+    }
+  },
+  "windows": {
+    "baseline": {
+      "samples": 6247,
+      "end_seconds": 64.99534710000444,
+      "debugger_samples": 0,
+      "cpu_10s_deltas": [
+        4.828125,
+        4.515625,
+        4.484375,
+        4.34375,
+        4.640625,
+        4.75
+      ],
+      "input_offsets": {
+        "enter": 28.89786124229431,
+        "c": 142.055725812912
+      }
+    },
+    "capture": {
+      "samples": 6240,
+      "end_seconds": 64.99768829999812,
+      "debugger_samples": 105,
+      "cpu_10s_deltas": [
+        4.640625,
+        4.3125,
+        4.53125,
+        4.546875,
+        4.296875,
+        4.59375
+      ],
+      "input_offsets": {
+        "enter": 289.65439677238464,
+        "c": 304.20638489723206
+      },
+      "post_detach_seconds": 20.944263499994122,
+      "post_detach_samples": 2009,
+      "post_detach_5s_cpu_deltas": [
+        2.171875,
+        2.28125,
+        2.234375,
+        2.234375
+      ]
+    }
+  },
+  "original_campaign_complete": false,
+  "outstanding_controls": [
+    "separate 65-second post window",
+    "matched input timing across three windows"
+  ],
+  "cleanup_verified": true,
+  "prior_failed_brief_input_cause": "UNRESOLVED",
+  "combat_command_queued": false,
+  "combat_action_executed": false,
+  "presentation": "Screenshots inspected: named Stepping save, load complete, field; menu opens and closes before/after tracing; Vaan103/103.",
+  "limitations": [
+    "No separate post window; no timing-equivalent CPU/overhead comparison.",
+    "Debugging and simulated input are interventions; no memory writes or injected native gameplay calls.",
+    "Debugger presence and CPU are sampled sequentially, not atomic whole-process proof.",
+    "One loaded state and one 1-second site; no combat handler, stack extension or long-run qualification.",
+    "Clean modules means the recorded census and watched-module policy; no universal module-state guarantee."
+  ]
+}

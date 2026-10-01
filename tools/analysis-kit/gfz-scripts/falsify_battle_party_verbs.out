@@ -1,0 +1,9 @@
+SURVIVES  B0  sizes all 17 as cited; verb rows as tabled
+SURVIVES  B1  003601B0 sets / 003601C0 clears bit cl of 022CB720; every begin raises 0x13; the slot-0..3 preamble in the three verbs
+SURVIVES  B2  negatives skipped; the leader noted; reconcile only on a subset of (non-guest & 0x7F); leader set from the first requested selector whenever the leader was not requested - independent of the reconcile branch
+SURVIVES  B3  setbattlememberone, removebattlemember (count > 1), the guest-only pair, the main-only lock, the add/remove begin
+SURVIVES  B4  pending = !(read-in ended); ended = no task, or the cursor past 3 on a positive step, or below 0 otherwise; the flag cleared when done
+SURVIVES  B5  remove: mutate, then raise; add: raise, then mutate; state 0 falls through into 1; state 2 waits
+SURVIVES  B6  nine slots, validity class 0x17, kept when <= 6 or 0x1A..0xFE
+SURVIVES  B7  (PRECISION on section 2) setbattlemember raises the flag at 0034D542 before its first pop at 0034D558; the other begins pop first
+FAILS 0

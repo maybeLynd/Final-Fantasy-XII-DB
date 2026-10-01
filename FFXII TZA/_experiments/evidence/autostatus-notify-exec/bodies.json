@@ -1,0 +1,93 @@
+{
+ "real": [
+  {
+   "name": "resolver",
+   "va": "0x20e600",
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "name": "getter",
+   "va": "0x236820",
+   "end": "0x236845",
+   "size": 37,
+   "sha256": "f53995268db38c36b63da2cdd7f5979c5600294e05010a97c09aa149f9129578"
+  },
+  {
+   "name": "count",
+   "va": "0x236850",
+   "end": "0x236857",
+   "size": 7,
+   "sha256": "78967330e777673e22aa8a475b61095e6cc0b7ce4b6641c5e641f713cca6ab33"
+  },
+  {
+   "name": "mm3",
+   "va": "0x2f8e50",
+   "end": "0x2f8e6e",
+   "size": 30,
+   "sha256": "6739b5f2f438d4e640d407256a93354558821359f9f776b43bd113f5dc57e7aa"
+  },
+  {
+   "name": "mm2",
+   "va": "0x2f9180",
+   "end": "0x2f9195",
+   "size": 21,
+   "sha256": "62317a0b4770b687f5edc8bef0f0e7eeb1b71b4a60970d27007cfbe96ea93981"
+  },
+  {
+   "name": "subject",
+   "va": "0x2fef30",
+   "end": "0x2ffa5b",
+   "size": 2859,
+   "sha256": "3b64c3a46b5951b2235d24437f9d22f90e3aa1aefe65c58c55c6fee3ae28d2ce"
+  },
+  {
+   "name": "cls",
+   "va": "0x309440",
+   "end": "0x30945e",
+   "size": 30,
+   "sha256": "c842df2ad47a7a3fc7ddc292f81a9e8f0a4d6e80c1121e5f9d3ef50424550f2b"
+  },
+  {
+   "name": "find",
+   "va": "0x31b860",
+   "end": "0x31b8b3",
+   "size": 83,
+   "sha256": "9a162077226a0c37d235edf972c43ef16187e594054b0d54eb7ddfd2cddcca8f"
+  },
+  {
+   "name": "eqgate",
+   "va": "0x31e9a0",
+   "end": "0x31e9e4",
+   "size": 68,
+   "sha256": "c2864813f1ee2cd145df65e09dea4dabe93c2de1bf2af6141daa7740c78dd03e"
+  },
+  {
+   "name": "eqclass",
+   "va": "0x31e9f0",
+   "end": "0x31ea4d",
+   "size": 93,
+   "sha256": "e23130f0be576114641d708b9de841c9f3adec5c51eab8f7bad8f013b726b4fd"
+  },
+  {
+   "name": "validity",
+   "va": "0x322c50",
+   "end": "0x323051",
+   "size": 1025,
+   "sha256": "8a944ad6185050d17911f914a56145320f9f604d3f95eec59e86ef5a2777786d"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "reset",
+   "va": "0x3105d0",
+   "note": "scripted boundary (X token + arg capture)"
+  },
+  {
+   "name": "apply",
+   "va": "0x307d10",
+   "note": "scripted boundary (A token + arg capture)"
+  }
+ ]
+}

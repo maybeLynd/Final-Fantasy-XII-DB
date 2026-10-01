@@ -1,0 +1,8 @@
+# NativeAdapter.BoolArgFetchResultTail - EC-7 family C
+# bl=setne(arg1); call a member fetch; tail-dispatch to a member op with
+# # (result,saved bool).
+address	targets
+0017F720	001863E0,00189120
+00182390	001863F0,00189120
+00182810	00193D50,00193F70
+001848E0	001B7F20,001B83B0

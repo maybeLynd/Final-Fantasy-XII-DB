@@ -1,0 +1,6 @@
+PASS S1 .data raw bytes end below the descriptor span - raw end 01F7E400
+   249 distinct class-descriptor globals in the schema; 249 inside the span; 249 with no file bytes
+PASS S2 every class-descriptor global has no file bytes
+PASS C1 control: 01F2E5A0 has file bytes, not all zero
+RESULT the descriptors read as zeroes because they sit in .data's zero-filled virtual tail
+FAILS 0

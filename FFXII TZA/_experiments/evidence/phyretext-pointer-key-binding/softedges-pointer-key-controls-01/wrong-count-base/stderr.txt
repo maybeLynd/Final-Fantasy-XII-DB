@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-pointer-key-binding.py", line 39, in <module>
+    need(patch,0x59cd07,'mov','r9d, dword ptr [r12 + 0x14]');need(patch,0x59cd25,'call','qword ptr [rax + 0x40]')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-pointer-key-binding.py", line 21, in need
+    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,a):raise ValueError('required operation changed '+hex(pc))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required operation changed 0x59cd07

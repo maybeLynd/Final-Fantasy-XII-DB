@@ -1,0 +1,5 @@
+L  >256 B clean          2 rows, 1 read a nonvolatile before writing it:
+     00131B50  00131B50 psubw xmm1, xmm10 (xmm10)
+L  65-256 B admitted    99 rows, 0 read a nonvolatile before writing it
+L  1-64 B admitted     696 rows, 0 read a nonvolatile before writing it
+C  sensitivity: 21 of 162 `continuation` rows fail L (one-directional: a fail marks a continuation, a pass proves nothing); specificity: 0 failures among the 795 admitted bodies above

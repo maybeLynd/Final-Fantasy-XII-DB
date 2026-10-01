@@ -1,0 +1,48 @@
+PASS P1 0056A010 passes movsx word [record + 0x60] to the setter - ecx, word ptr [rax + 0x60]
+   0032925D mov word ptr [rdi + 0x60], ax
+   00329471 mov word ptr [rdi + 0x60], ax
+   00329462 sub rdx, r14
+   00329465 mov eax, dword ptr [r14 + 0x3c]
+   00329469 mov dword ptr [rdi + 0x48], eax
+   0032946C movzx eax, byte ptr [r14 + 4]
+PASS P2 00329220 writes word +0x60 exactly twice: the clear at 0032925D and the page's BYTE +4, zero-extended, at 00329471 (0032946C movzx) - 2
+PASS P3 0023AC80 keeps its edx in r15d and writes it as the page's word +4 at 0023AD8E
+PASS P4 00237DF0 initialises party page i with edx = i (0xFFFF for i = 0xFF), i < 0x28
+PASS P4 00239960 initialises party page i with edx = i (0xFFFF for i = 0xFF), i < 0x28
+   raw callers of 0023AC80: 00237E26 in 00237DF0 00239AC4 in 00239960 0023A7A9 in 0023A570
+PASS P5 the third caller (0023A7A9 in 0023A570) passes a SpawnKeep entry + 0x80, not a party-block page - 0023A7A9
+W1 functions referencing 02EBF190: 176 (raw sites 318)
+PASS W1 no function referencing 02EBF190 writes +4/+5 of a page it derives from it - 0 writes
+PASS C1 control: seeded on 0023AC80's page argument (rcx) the tracker finds the 0023AD8E write
+   C2 0031A4A0 mov word ptr [rdi + 0x50], bp in 0031A410
+   C2 0031A5C8 mov word ptr [rdi + 0x50], bp in 0031A510
+   C2 0032671B mov word ptr [r15 + 0x10], ax in 003266C0
+   C2 00326742 mov word ptr [r14 + 0x10], ax in 003266C0
+   C2 003268DC mov word ptr [r14 + 0x24], r8w in 003266C0
+   C2 0032695F mov word ptr [rcx + 0x12], r8w in 003266C0
+   C2 0032696F mov word ptr [rcx + 0x36], r8w in 003266C0
+   C2 0032697A mov word ptr [rcx + 0x12], r13w in 003266C0
+   C2 00327EE6 mov word ptr [rsi + 0x28], cx in 00327DE0
+   C2 00327EEE mov word ptr [rsi + 0x26], cx in 00327DE0
+   C2 00327EF6 mov word ptr [rsi + 0x2a], cx in 00327DE0
+   C2 00327EFE mov word ptr [rsi + 0x2e], cx in 00327DE0
+PASS C2 control: through the same 02EBF190 derivation the tracker sees byte/word writes at other displacements (30)
+S1 decompiled scripts read: 1114
+   addguestbattlemember   selector  7  x2
+   addguestbattlemember   selector  8  x1
+   addguestbattlemember   selector  9  x1
+   addguestbattlemember   selector 10  x3
+   addguestbattlemember   selector 11  x7
+   addguestbattlemember   selector 12  x4
+   addguestbattlemember   selector 13  x8
+   addguestbattlemember   selector 14  x1
+   addpartymember         selector  0  x2
+   addpartymember         selector  1  x7
+   addpartymember         selector  2  x10
+   addpartymember         selector  3  x10
+   addpartymember         selector  4  x5
+   addpartymember         selector  5  x11
+PASS S1 shipped scripts add main-character selectors exactly 0..5 with literal arguments - [0, 1, 2, 3, 4, 5]
+PASS S1 control: the guest verb is found with guest-band selectors (7..25)
+RESULT party page byte +4 = page index 0..0x27; the record +0x60 is that index (zero-extended) or 0xFFFF
+FAILS 0

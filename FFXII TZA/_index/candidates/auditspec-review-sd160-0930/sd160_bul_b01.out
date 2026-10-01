@@ -1,0 +1,15 @@
+sec len 28270 dir 267D0 n 45 pool 27F40
+segment start 267C1 (PC03), next start None
+bytes x-24..x+12: 00 00 23 00 00 00 00 00 00 00 00 00 00 00 00 00 c9 02 00 00 06 00 ff 00 5e 65 02 00 2a 00 00 00 60 73 01 00
+segment decoded to end 267D0
+resumed decode from x-12:
+  26E90  00
+  26E91  00
+  26E92  00
+  26E93  00
+  26E94  C9 0002
+  26E97  00
+  26E98  06
+  26E99  00
+  26E9A  FF 5E00
+  26E9D  65 0002

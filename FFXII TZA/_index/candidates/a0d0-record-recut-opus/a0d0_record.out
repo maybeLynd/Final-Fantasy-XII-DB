@@ -1,0 +1,6 @@
+PASS  S 003F7F0D builds the 0x110 element in place (00245000) with handler 003F8250
+PASS  H 003F8250: +0xE0 bound object, +0x104 index, +0x100 t, +0xE8 / +0xF0 / +0xF8 rects, +0x108 flag, header +0x38
+PASS  I 003F8140: current rect +0xE8 = from +0xF8 + (target +0xF0 - from) * t +0x100
+PASS  C 003F8790: four child pointers at +0xC0 (this - local + local + 0xC0), matched to [this + 0xE0] + 0x740
+PASS  W header embedded; no absence row over the 20 accessed displacements; the element tiles 0x110
+FAILS 0

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-store-saturation\check.py", line 34, in <module>
+    if '--fault-no-write-as-undetected' in sys.argv:assert not any(x['width']==5 and x['writes'] for x in raw['cases']),'No-write claim must retain positive width5 write detector'
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No-write claim must retain positive width5 write detector

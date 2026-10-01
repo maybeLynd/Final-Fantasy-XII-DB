@@ -1,0 +1,3 @@
+@echo off
+call "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat" >nul
+cl /nologo /W4 /O2 /Brepro /D_CRT_SECURE_NO_WARNINGS /Fe:"C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\group-validator\omit-third-call-k0_yp3je\group-driver.exe" "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\group-validator\omit-third-call-k0_yp3je\Tests\Differential\group_completion_driver.c" "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\group-validator\omit-third-call-k0_yp3je\Game\Spawn\group_completion.c" /link /Brepro

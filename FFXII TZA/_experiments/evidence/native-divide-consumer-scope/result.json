@@ -1,0 +1,111 @@
+{
+  "status": "EXACT_Z_FRAGMENT_ACCEPTS_FAILED_PREREQUISITES",
+  "method": "A exact source producer-fragment prerequisite controls plus original shipping-byte independent shared-adapter scan; no shipping-code execution",
+  "raw_sha256": "ac34cf86a7745a194b8fdf317f3ecf83d9b03f2aa1e81ef3cec5238eecb59934",
+  "observations": [
+    {
+      "mode": "baseline",
+      "source_Z_pass": true,
+      "required_analysis_errors": [],
+      "scan_calls": [
+        {
+          "pc": "0x25e4c0",
+          "supplied_bytes": 144,
+          "decoded_bytes": 144,
+          "input_sha256": "ba87ca44cff14631cabbc4c8f5ffb1f85b39f049dd0fc5c430903fdccd4b3f40",
+          "private_selected_bytes": 144
+        },
+        {
+          "pc": "0x25e550",
+          "supplied_bytes": 14475,
+          "decoded_bytes": 14475,
+          "input_sha256": "63022df4f6885d604e59699660245c989830400e944ca124baa222e38ba1caa4",
+          "private_selected_bytes": 14475
+        },
+        {
+          "pc": "0x25e550",
+          "supplied_bytes": 23,
+          "decoded_bytes": 23,
+          "input_sha256": "b53642a932e7893f2a0ec329d4d1a36eed14de3bf2839973dc4e128616108b87",
+          "private_selected_bytes": 23
+        }
+      ],
+      "wx": [
+        "0x25e55f",
+        "0x261dbc"
+      ]
+    },
+    {
+      "mode": "analysis-error",
+      "source_Z_pass": true,
+      "required_analysis_errors": [
+        {
+          "pc": "0x25e4c0",
+          "kind": "Private required register-analysis exception"
+        }
+      ],
+      "scan_calls": [
+        {
+          "pc": "0x25e4c0",
+          "supplied_bytes": 144,
+          "decoded_bytes": 144,
+          "input_sha256": "ba87ca44cff14631cabbc4c8f5ffb1f85b39f049dd0fc5c430903fdccd4b3f40",
+          "private_selected_bytes": 144
+        },
+        {
+          "pc": "0x25e550",
+          "supplied_bytes": 14475,
+          "decoded_bytes": 14475,
+          "input_sha256": "63022df4f6885d604e59699660245c989830400e944ca124baa222e38ba1caa4",
+          "private_selected_bytes": 14475
+        },
+        {
+          "pc": "0x25e550",
+          "supplied_bytes": 23,
+          "decoded_bytes": 23,
+          "input_sha256": "b53642a932e7893f2a0ec329d4d1a36eed14de3bf2839973dc4e128616108b87",
+          "private_selected_bytes": 23
+        }
+      ],
+      "wx": [
+        "0x25e55f",
+        "0x261dbc"
+      ]
+    },
+    {
+      "mode": "decode-short",
+      "source_Z_pass": true,
+      "required_analysis_errors": [],
+      "scan_calls": [
+        {
+          "pc": "0x25e4c0",
+          "supplied_bytes": 144,
+          "decoded_bytes": 144,
+          "input_sha256": "ba87ca44cff14631cabbc4c8f5ffb1f85b39f049dd0fc5c430903fdccd4b3f40",
+          "private_selected_bytes": 144
+        },
+        {
+          "pc": "0x25e550",
+          "supplied_bytes": 14475,
+          "decoded_bytes": 14449,
+          "input_sha256": "63022df4f6885d604e59699660245c989830400e944ca124baa222e38ba1caa4",
+          "private_selected_bytes": 14449
+        },
+        {
+          "pc": "0x25e550",
+          "supplied_bytes": 23,
+          "decoded_bytes": 23,
+          "input_sha256": "b53642a932e7893f2a0ec329d4d1a36eed14de3bf2839973dc4e128616108b87",
+          "private_selected_bytes": 23
+        }
+      ],
+      "wx": [
+        "0x25e55f",
+        "0x261dbc"
+      ]
+    }
+  ],
+  "interpretation": "Exact immutable Z fragment keeps PASS after an injected required register-analysis exception and a private truncated decode after its known restore. It checks the positive writer list but does not make analysis/decode completeness a prerequisite. Independent current baseline fully decodes literal claimed ranges with reviewed adapter; valid arithmetic/guard and these bounded writer observations are not retracted. Full producer default/metadata U/native state not executed or certified here.",
+  "consumer_change": "OPUS owns smallest Z producer prerequisite/coverage repair and affected negative-claim limits. Qualify U as metadata handler catalogue unless allowed primary dispatch/code proof supports semantic routing; preserve structural parse exception in governing standard. Correct81/82 static-vs-executed labels, default-empty-registry vs actual onlymodule, generic guesterror vs observednative vector. Route consumer/reviewer once, no peer edits.",
+  "limits": "Exact immutable Z fragment accepts injected required-analysis failure and shortened decode while downstream Z stays true. Baseline independent scan covers given ranges with no error; do not retract valid source arithmetic or current baseline writer observations. Not full peer default/actual decoder failure/whole function semantics/native initialization/callback preservation/exception delivery/no-catch/lifetime/OS outcome. Metadata handler catalogue distinct from semantic routing. PC OFF/S19/fullL1+L2 NOT_MET"
+}

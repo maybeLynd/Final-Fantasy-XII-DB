@@ -1,0 +1,12 @@
+I1_mode5_sets_+38_and_fires_nothing                                      PASS
+I1_I2_bit_written_into_the_other_word_fires_nothing                      PASS
+control_presence_change_fires_side_effects_with_real_callees             PASS
+I1_addendum_the_real_recompute_rewrites_+3C_after_the_add                PASS
+I3_every_mode_refuses_when_already_in_the_requested_state                PASS
+I4_cascade_calls_are_mode_0_and_one_level_deep                           PASS
+I4_present_bit_cleared_absent_bit_refused                                PASS
+I5_no_heap_import_and_no_operator_new_in_any_case                        PASS
+no_fence_no_fault_in_any_case                                            PASS
+EXP-086-stubbed callees that ran real: ['0030B8E0', '0030B9B0', '0030FED0', '0031B860', '0046A800']
+KO cascade: 25 inner mode-0 calls; control side effects: ['extra 0046A800']
+ALL PASS

@@ -1,0 +1,22 @@
+committed g20260930T195014Z-fd9311 -> C:\t\auditspec\bv_9_632njo\store
+PASS  B1 views {'depth': 'OK', 'evidence': 'OK', 'executable': 'PARTIAL', 'fleet': 'PARTIAL', 'glance': 'OK', 'journey': 'OK', 'journey_entries': 'OK', 'overview': 'OK', 'progress': 'OK', 'systems': 'OK', 'types': 'OK', 'vbf': 'OK'}; malformed {}
+committed g20260930T195221Z-683c40 -> C:\t\auditspec\bv_9_632njo\store
+PASS  B2 adapter raised RuntimeError: injected adapter failure
+retrying after: inputs moved during the build: l2
+retrying after: inputs moved during the build: l2
+PASS  B3 inputs moved during the build: l2
+PASS  B4 served g20260930T195221Z-683c40
+PASS  B5 .text 7996981 bytes = sum of classes 7996981; population 35065 (uc1_band 35065); image external (hashed, not copied)
+PASS  B6 items {'F1': ['LINK-DONE'], 'F2': ['FALSE-COMPLETE'], 'F3': []}; package ['STAGE-MISMATCH'] (recorded review, earliest research)
+PASS  B7 undeclared in this build []; an added measure is caught [('overview', 'a-new-count')]
+PASS  B8 fixtures (unique, extra, sweep, pre-repair) {'disjoint': (0, 0, (0, 0), 0), 'double': (8, 8, (8, 8), 8), 'triple': (12, 16, (12, 16), 16), 'astra-real': (33, 34, (33, 34), 34)}; real: measure 1758, sweep (1758, 1759), pre-repair 1759; definition v4
+PASS  B9 {'na': 'N/A - definition changed', 'why': 'view definition v1 -> v4', 'old': {'numerator': 1759, 'denominator': 7996981}, 'new': {'numerator': 1758, 'denominator': 7996981}}
+PASS  B11 unknown bytes v3 41558 -> v4 25060 (16498 moved); extent rule of the chained-tails ruling (series break 2026-09-30): 362 entries grown by 17325 bytes from 364 adjudicated errata extents
+retrying after: inputs moved during the build: uc1_band.py
+retrying after: inputs moved during the build: uc1_band.py
+PASS  B10 bound True (c33e45d28c45); edited helper -> inputs moved during the build: uc1_band.py
+PASS  B12 page evidence; definition v3; old measures missing []; sections {'lessons': 'ok', 'findings': 'ok', 'checks': 'ok', 'register': 'ok', 'formats': 'ok'}
+PASS  B13 view {'WITHDRAWN': 180, 'ANSWERED': 1561, 'PARTIAL': 10, 'OPEN': 35}; check_questions.read_table {'WITHDRAWN': 180, 'ANSWERED': 1561, 'PARTIAL': 10, 'OPEN': 35}; gate printed {'rows': 1786, 'ANSWERED': 1561, 'PARTIAL': 10, 'OPEN': 35, 'BLOCKED': 0} (agrees True)
+PASS  B14 ledger rows 202; data rows 202; contradiction_index.read_ledger 202
+PASS  B15 run_one {'exit1': ('FAIL', 'exit 1: the checker reports findings'), 'crash': ('UNMEASURED', 'crashed: RuntimeError: boom'), 'silent': ('UNMEASURED', 'exit 0 with no output: a clean run and a'), 'exit3': ('UNMEASURED', 'exit 3 is not a verdict (2 usually means'), 'slow': ('UNMEASURED', 'exceeded 3 s and was stopped'), 'marker': ('FAIL', 'the output reports a failure (^FAILS [1-'), 'clean': ('PASS', 'exit 0')}; captured {'cq-inconsistent': 'FAIL', 'cq-empty': 'UNMEASURED', 'gg-garbage': 'UNMEASURED', 'gg-exit2': 'UNMEASURED', 'gg-notmet': 'FAIL', 'pc-stale': 'FAIL'}; no check record -> Counter({'UNMEASURED': 15})
+FAILS 0

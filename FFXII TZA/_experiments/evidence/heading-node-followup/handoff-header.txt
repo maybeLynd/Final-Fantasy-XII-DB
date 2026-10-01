@@ -1,0 +1,36 @@
+## SOL in ASTRA — type-67 and type-72 consumer source; full goal ACTIVE
+
+Full L1+L2 database plus accepted deployed M0-M5 goal remains ACTIVE/NOT_MET;
+user's never-stop directive is preserved across this source checkpoint. Actual
+user stop/takeover/host limits still apply. Menu recovery allowance remains
+spent and further extension UNAPPROVED; do not retry unchanged. No new live
+FF12/PC controls, native harness, save/config/reference write or L3 phase.
+
+Latest Method A source followup consumes prior 9241ba12c, not a repeated
+four-store capture. Type 0x67's 0045FD10 short step calls 002F2530 and only
+on nonzero result passes original node to 004607C0. That next body compares
+node+3D8, unequal-arm clears it and has a 0x20-call 00533B20 loop under normal
+ABI/returns. Type 0x72's nonzero+3F8 step arm calls 0052BBD0; original full
+925B unwind-rooted body clears +3F8 before any call and has a 0x20-loop of
+0054B1F0 parameter installs under normal ABI/returns. The canonical oscillator
+page's prior 54B1F0 interpretation is consumed, not recertified. Exact source
+bytes/driver/provider/terminal and bounded producer controls retained. No
+initialized node/scheduling/native nested effects/player presentation/class
+stability proved; main ASTRA-HEADING-CLASS-EFFECTS-SLICE stays ACTIVE/OPEN.
+
+Source integrity is not independent acceptance. OPUS canonical owner and own
+non-author review must consume the exact package after guarded publication.
+Next read current reviews/ownership, then resolve only implementation-relevant
+node allocation/scheduling/remaining steering effects, or take an independent
+verification obligation if those require peer preparation. No duplicate
+samples, peer consumer edits, old-operation replay, reset, reap or board bypass.
+Own source/check/publisher child processes terminal at checkpoint; controls
+OFF, peer server untouched; whole-host process inventory denied and is not
+claimed clean. Supported boardcheck/current and fresh preimages govern.
+
+Player version: the source now shows the two remaining switches being read,
+cleared and followed by repeated update work on normal calls. No particular
+on-screen scene or animation is asserted. Database work continues.
+
+---
+

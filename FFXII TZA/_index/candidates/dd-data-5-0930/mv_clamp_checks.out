@@ -1,0 +1,112 @@
+PASS A1 arguments copied to the workbench: rcx -> 022D92B0, rdx -> 022D92C0, r8 -> 022D92A0
+   constants: C0 [01EF93F0] = 0.0, C1 [01EF93FC] = 1.0
+PASS A2 t = C0 - dot * (C1 / |dir|^2), clamped by maxss C0 / minss C1; degenerate |dir|^2 <= 0 returns C0 - C0=0 C1=1
+PASS A3 the squared distance |(B-A) + t*dir|^2 goes to 022D92D4 and 022D92E4; t returns in xmm0
+   callers of the three entries (call site, owner, owner size):
+     003632CC -> 00361DE0  in 003631B0 (512 B)
+     003632BA -> 003623C0  in 003631B0 (512 B)
+     0036228A -> 00363FD0  in 00362230 (388 B)
+   A4 loads of 022D92D4 / 022D92E4 after a call to 00363FD0 in the calling function: 1
+     call 0036228A -> 00362292 movss xmm0, dword ptr [rip + 0x1f7703a]
+PASS A4 every caller of 00363FD0 is listed (the census is non-empty)
+   A5 image-wide: 234 stores, 182 loads of the two cells; loading functions:
+     002487A0 (745 B): 002489A8 movss
+     00248A90 (888 B): 00248CD7 movss
+     0024C060 (857 B): 0024C25C movss
+     0025C830 (3118 B): 0025CD43 subss
+     002F1D90 (289 B): 002F1DF7 subss, 002F1E24 movss
+     002F1EC0 (121 B): 002F1ECD movss
+     002F2530 (2094 B): 002F2770 movss, 002F27F5 movss, 002F288A movss, 002F28F7 movss
+     002F3360 (523 B): 002F3409 movss, 002F34DD movss
+     002F35C0 (387 B): 002F35E9 movss, 002F365C movss
+     0035DCC0 (492 B): 0035DDFE movss
+     00362230 (388 B): 00362292 movss
+     00363FD0 (537 B): 00364052 movss
+     003B0C50 (656 B): 003B0DD2 movss
+     003CCC20 (761 B): 003CCDFD cvttss2si
+     003D83A0 (2190 B): 003D8A8E movss
+     003D92C0 (1301 B): 003D933A movss, 003D93E8 movss, 003D94AF movss
+     00432030 (710 B): 00432106 movss
+     00432300 (2486 B): 004326D9 movss
+     00432CC0 (1519 B): 00432F1E movss
+     004332B0 (1402 B): 004334C1 movss
+     00434900 (360 B): 004349D6 movss
+     00434A70 (466 B): 00434AE2 movss
+     0043EEB0 (140 B): 0043EEC6 movss
+     00441B30 (872 B): 00441D8D movss
+     004428F0 (1587 B): 0044295F movss, 00442A0C movss, 00442B28 movss, 00442D2F movss
+     00442F30 (1437 B): 00443028 subss, 0044306D movss, 004430DC mulss, 0044313E mulss
+     00445B50 (1269 B): 00445BC7 movss, 00445C75 movss, 00445EB0 movss
+     00447830 (1436 B): 004478AB movss, 00447959 movss, 00447C32 movss
+     00448800 (1387 B): 00448873 movss, 00448921 movss, 00448BD9 movss
+     004490D0 (1157 B): 00449148 movss
+     00449560 (965 B): 004495C7 movss, 0044973B movss, 004497E5 movss
+     0044A180 (1071 B): 0044A1ED movss, 0044A29B movss, 0044A3E3 movss
+     0044A620 (3483 B): 0044A8B4 movss, 0044AA39 movss, 0044ABB7 movss
+     0044B3C0 (1273 B): 0044B479 movss, 0044B527 movss, 0044B78B movss
+     0044B8C0 (160 B): 0044B8D5 movss
+     0044BAC0 (3461 B): 0044BBA7 movss, 0044C587 movss, 0044C5E9 movss
+     0044C850 (959 B): 0044C8A8 movss, 0044CA2D movss, 0044CAD7 movss
+     0044D840 (1215 B): 0044D8AD movss, 0044D95B movss, 0044DA3E movss, 0044DACF movss
+     0044F4C0 (1066 B): 0044F52F movss, 0044F5DD movss, 0044F69A movss
+     004500C0 (959 B): 00450118 movss, 0045029F movss, 00450349 movss
+     00450CE0 (1118 B): 00450D4F movss, 00450DFD movss, 00450EB8 movss
+     00452020 (1118 B): 0045208F movss, 0045213D movss, 004521F8 movss
+     00452C70 (1118 B): 00452CDF movss, 00452D8D movss, 00452E48 movss
+     00453810 (1118 B): 0045387F movss, 0045392D movss, 004539E8 movss
+     00454480 (1066 B): 004544EF movss, 0045459D movss, 0045465A movss
+     00454F90 (1018 B): 00454FFF movss, 004550AD movss, 00455168 movss
+     004562B0 (1000 B): 0045631D movss, 004563CB movss, 00456511 movss
+     00456B00 (1000 B): 00456B6D movss, 00456C1B movss, 00456D61 movss
+     00457980 (1154 B): 004579ED movss, 00457AF5 movss, 00457C3A movss
+     00459BD0 (1086 B): 00459C3F movss, 00459D47 movss, 00459E8A movss
+     0045AA50 (1154 B): 0045AABD movss, 0045ABC5 movss, 0045AD0A movss
+     0045B640 (1154 B): 0045B6AD movss, 0045B7B5 movss, 0045B8FA movss
+     0045C450 (1155 B): 0045C4BF movss, 0045C56D movss, 0045C62A movss
+     0045CDC0 (1155 B): 0045CE2F movss, 0045CEDD movss, 0045CF9A movss
+     0045D7D0 (1155 B): 0045D83F movss, 0045D8ED movss, 0045D9AA movss
+     0045E3C0 (1213 B): 0045E42F movss, 0045E4DD movss, 0045E598 movss
+     0045F140 (1213 B): 0045F1AF movss, 0045F25D movss, 0045F318 movss
+     004607C0 (894 B): 00460820 movss, 004608CE movss, 0046098B movss
+     00462160 (241 B): 0046219C movss
+     004630D0 (644 B): 00463100 movss
+     00463D20 (644 B): 00463D50 movss
+     004649A0 (392 B): 004649E4 movss
+     004FE4E0 (545 B): 004FE525 movss, 004FE602 movss
+     004FE710 (529 B): 004FE754 movss, 004FE831 movss
+     004FEAD0 (1430 B): 004FEB23 movss, 004FEE1E movss, 004FEF9E movss
+     00508C90 (3861 B): 00509450 movss, 00509AA0 movss
+     00522810 (608 B): 00522840 movss
+     00523380 (2160 B): 005235C5 movss, 00523AE7 movss
+     005259E0 (813 B): 00525A10 movss, 00525AD9 movss
+     00526D80 (844 B): 00526E07 movss, 00526EB3 movss
+     00527DC0 (644 B): 00527DF0 movss
+     00528820 (644 B): 00528850 movss
+     00528F00 (691 B): 00528F83 movss
+     00529D50 (917 B): 00529DB1 movss, 00529E5F movss, 00529F1C movss
+     0052A8B0 (1273 B): 0052A90F movss, 0052A9BD movss, 0052AA7A movss
+     0052B5E0 (1519 B): 0052B63D movss, 0052B6ED movss, 0052B7A7 movss
+     0052BBD0 (925 B): 0052BC54 movss, 0052BD04 movss, 0052BDBE movss
+     0052CF60 (1025 B): 0052CF99 movss, 0052D24F movss
+     0052F560 (532 B): 0052F6CC movss
+     0052F780 (1312 B): 0052FA8D movss
+     0052FCA0 (1421 B): 0053000B movss
+     00530230 (1338 B): 00530554 movss
+     00530770 (1715 B): 00530C25 movss
+     00530E40 (1898 B): 00531384 movss
+     005318A0 (1288 B): 00531BA1 movss
+     00531DB0 (1329 B): 005320D3 movss
+     00537CC0 (466 B): 00537D60 movss, 00537E0E movss
+PASS C1 control: the sweep sees 00363FD0's own store to 022D92D4 (003641DC)
+   A6 the outcode history 022D9130:
+     0025A8E0 (164 B): 0025A8E5 load, 0025A8F1 store, 0025A90E store, 0025A926 store, 0025A939 store, 0025A948 store
+     0025C830 (3118 B): 0025CEFA load
+     003623C0 (1122 B): 003625FB load, 00362611 store, 0036262B store, 00362644 store, 00362653 store, 00362662 store
+     00521450 (1886 B): 00521942 load, 00521966 store, 00521990 store, 005219A4 store, 005219BA store, 005219C8 store
+PASS A6 0025C830 reads the history (0025CEFA)
+PASS C2 control: the caller sweep finds 0025C830's calls to 0025A8E0, the last two (0025CEE2, 0025CEF5) just before the history read - ['0025CDF4', '0025CE07', '0025CEE2', '0025CEF5']
+PASS A7 00362230 walks [r8+0x14] segments of 0x20 bytes from r8+0x40 (start +0, direction +0x10), calls 00363FD0 for each, and keeps the segment whose squared distance 022D92D4 is smallest; it writes start + t*dir (w = 1.0) to rdx and returns the record's float +0x30
+PASS A8 003631B0 selects the shape from the record's byte +9 (& 0x7F): 0 ellipse 00361DE0, 1 box 003623C0, 2 segment chain 00362230, other: the point unchanged
+   the records are offsets added to the base at 022CBAF0 (00363263)
+   callers of 003631B0: 00362B76 in 00362850, 00362BB7 in 00362850
+FAILS 0

@@ -1,0 +1,11 @@
+scanning 34270 function bodies for 2 address(es)
+CONTROL 02EBF190: 318 reference(s)
+  control passes - absence below is meaningful
+
+addresses with at least one reference: 1 of 1
+
+  02EBF3C4  3 ref(s) in 3 function(s)
+      0037D80A  mov     dword ptr [rip + 0x2b41bb0], 1                  [fn 0037D7F0]
+      0037D9FF  cmp     dword ptr [rip + 0x2b419bf], ebx                [fn 0037D970]
+      0037DDC0  mov     dword ptr [rip + 0x2b415fe], ecx                [fn 0037DDC0]
+

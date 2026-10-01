@@ -1,0 +1,9 @@
+{
+  "verdict": "ACCEPT scoped overlap/helper repair",
+  "repair": "cdbf25a5d711654ccbb883f472309c3f42df290f",
+  "population_controls": 40,
+  "actual_adapter_cases": 4,
+  "definition_change": "N/A, both sides retained",
+  "strict_helper": "bound; same-size-mid-build and missing-begin refuse, CURRENT/history unchanged",
+  "limits": "Original repository Python with labelled fixtures and only executable adapter enabled; no game code/live/full census/full build/deployment. Original helper path declared; drift control redirects only its input to disposable copy. Not every display/deployed module, source-before-import, third-party bindings, all views, whole A05/A23/M3 or L1L2."
+}

@@ -1,0 +1,7 @@
+PASS  S edi = 1; xmm7 = first pop (right), xmm6 = second (left); ucomiss / jp / jne -> 0; else comiss xmm7, xmm6 / cmova edi, -1
+PASS  K OPEQ..OPLSE: call 0025D740, test eax, eax, then sete / setne / setg / sets / setns / setle cl
+PASS  M finite (-1, 0, 1), NaN left/right/both (1, 1, 1); NaN decisions {'EQ': 0, 'NE': 1, 'GT': 1, 'LS': 0, 'GTE': 1, 'LSE': 0}; the host's NaN > x and NaN >= x give {'GT': 0, 'GTE': 0}
+PASS  I depth >= 2 and both tags 1: top -> ebp, lower -> esi, signed cmp esi, ebp; equal 0, cmovl -1 when lower < top, else +1
+PASS  X any other tag pair: int operands cvtdq2ps (top 0025D869, lower 0025D8A6), floats movss, then the float compare
+PASS  P (RN, RU): both-int 16777217/16777216 (1, 1), mixed (0, 1), reversed (0, -1), 123/124 (-1, -1); all-float, always-nearest and reversed-order models rejected
+FAILS 0

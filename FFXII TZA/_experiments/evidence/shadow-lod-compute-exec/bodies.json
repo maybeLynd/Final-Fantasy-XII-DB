@@ -1,0 +1,86 @@
+{
+ "real": [
+  {
+   "va": "0x3b5980",
+   "lo": "0x3b5980",
+   "hi": "0x3b5bf5",
+   "span": 629,
+   "insns": 124,
+   "cov": 1.0,
+   "sha256": "57bec2bfda24e7b4bc9bd284dbad8e43caeb14d19521bf4a0efa42c804d61f78",
+   "indirect": [],
+   "name": "lodc"
+  },
+  {
+   "va": "0x3b5c00",
+   "lo": "0x3b5c00",
+   "hi": "0x3b5cd6",
+   "span": 214,
+   "insns": 54,
+   "cov": 1.0,
+   "sha256": "6836d80de522ce66de80bc5fe4d17d29048f82ed0cdbc063bafe65852d98d107",
+   "indirect": [],
+   "name": "acc"
+  },
+  {
+   "va": "0x3b5ce0",
+   "lo": "0x3b5ce0",
+   "hi": "0x3b5d38",
+   "span": 88,
+   "insns": 21,
+   "cov": 1.0,
+   "sha256": "0551a060a7716205f46b97afb157b00f21d7c6b4991daa8bd762ecbd88fe9fe0",
+   "indirect": [],
+   "name": "cpy"
+  },
+  {
+   "va": "0x3b5d40",
+   "lo": "0x3b5d40",
+   "hi": "0x3b5e15",
+   "span": 213,
+   "insns": 33,
+   "cov": 1.0,
+   "sha256": "5769ff056af0722ec7ac641839fbbab045a38f5543fa675dbdb863a9af183293",
+   "indirect": [],
+   "name": "init"
+  },
+  {
+   "va": "0x3b5e20",
+   "lo": "0x3b5e20",
+   "hi": "0x3b5ff9",
+   "span": 473,
+   "insns": 108,
+   "cov": 1.0,
+   "sha256": "fe9cf726806640efc6e4a19ca2b0850e278b30fcbf55de8920143af19f1c7995",
+   "indirect": [],
+   "name": "fsync"
+  },
+  {
+   "va": "0x3b6000",
+   "lo": "0x3b6000",
+   "hi": "0x3b601b",
+   "span": 27,
+   "insns": 7,
+   "cov": 1.0,
+   "sha256": "e977c40f4812f73f28f02c9a139f873073f3e06ee4257c9b8b86b8b68b480661",
+   "indirect": [],
+   "name": "clre"
+  },
+  {
+   "va": "0x36dd80",
+   "lo": "0x36dd80",
+   "hi": "0x36dd8f",
+   "span": 15,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "058c6fd3c13ba441657ad658d69ab47453d9e2ae355901573ea3f962dd2a543f",
+   "indirect": [],
+   "name": "leaf"
+  }
+ ],
+ "scripted": [
+  "0x421ff0",
+  "0x3e6f70",
+  "0x861f14"
+ ]
+}

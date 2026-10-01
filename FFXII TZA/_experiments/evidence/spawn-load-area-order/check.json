@@ -1,0 +1,45 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "complete_catalog_bodies": 11,
+  "extra_complete_guard_body": true,
+  "constants_and_guard": [
+    {
+      "address": "0x16d6a0",
+      "bytes": "c20000",
+      "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b",
+      "instructions": [
+        {
+          "address": "0x16d6a0",
+          "mnemonic": "ret",
+          "operands": "0"
+        }
+      ]
+    },
+    {
+      "address": "0xd1181c",
+      "bytes": "059a883c",
+      "sha256": "e8f4c5952d13e33fe5eb9b597239c13326bb3d675edf71e2c555ed8f10be07ef",
+      "float": 0.016675004735589027
+    },
+    {
+      "address": "0x9002bc",
+      "bytes": "0ad7a33c",
+      "sha256": "8b35fe1a9b331dc0217e0419be35288af59676e9c57022a334110ab0e4799df4",
+      "float": 0.019999999552965164
+    },
+    {
+      "address": "0x1cebc08",
+      "bytes": "00000040",
+      "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d",
+      "float": 2.0
+    },
+    {
+      "address": "0x1cebda0",
+      "bytes": "00000080000000800000008000000080",
+      "sha256": "df141773470ba96aff5d6e9264a0bd638c9c6f3bb7ad30881cf4db943b5dd021"
+    }
+  ],
+  "method": "A only",
+  "limits": "Local complete bodies and call-edge controls, not global scheduling or live pointer validity.",
+  "checks": "pass"
+}

@@ -1,0 +1,93 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "ab0007bf5c88777c2b14e333fc0da7e583db54ab"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "95d72fb4fab917252f16f7416a967f2345a5ed6e"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "2168d24f4d33fc1a0981034853747501cfbf7026"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "6c1f8bd8fbd110f167e39b169a9c53705e0d4574"
+    },
+    {
+      "path": "raw-source.json",
+      "git_blob": "53e9d0de980466fd04240d3bff807d70b0433860"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "e15a9efc95d56cdf2084511d6aafb52940ea3a63"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "d379e8e51786fd312908d2efe65c60121637abc0"
+    },
+    {
+      "path": "retained/__pycache__/reg_tracking.cpython-314.pyc",
+      "git_blob": "04e438a8ac7ba62a1e3001cfbb43907b5b587a9c"
+    },
+    {
+      "path": "retained/__pycache__/shipping-reader.cpython-314.pyc",
+      "git_blob": "a7d97da191ae22506f8b2711bf27f82cdcc22cd7"
+    },
+    {
+      "path": "retained/allocation-parent-manifest.json",
+      "git_blob": "63cb901e7ed4675795560c5015c4b0ca13e07980"
+    },
+    {
+      "path": "retained/allocation-parent-result.json",
+      "git_blob": "b3dbc2811ab8aa9c6d9bd4f0396686b385a47a07"
+    },
+    {
+      "path": "retained/contract-preimage.md",
+      "git_blob": "ef67c024fa88bafc3869d0c723b20c3091c327ce"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "ab0007bf5c88777c2b14e333fc0da7e583db54ab"
+    },
+    {
+      "path": "retained/labelled-omitted-clear-call.bin",
+      "git_blob": "4a83215a6b363c9dd98494c710d6673b59922dbc"
+    },
+    {
+      "path": "retained/labelled-wrong-clear-register.bin",
+      "git_blob": "5f6354f4a4886923f3cf7c17225becdd87d887cb"
+    },
+    {
+      "path": "retained/mask-field-preimage.tsv",
+      "git_blob": "ad7b549c9fba6fc1b328ebe981bb3d100dcd3c5a"
+    },
+    {
+      "path": "retained/memset-thunk.bin",
+      "git_blob": "e913fc6c27b648efaadf3cc1723c36e4f4eb4393"
+    },
+    {
+      "path": "retained/query.bin",
+      "git_blob": "6a7bae3e13d0029fb3c1f2e979eadb383cc000e5"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "validation-tool-identity.json",
+      "git_blob": "1cfc967fe4c913efd43aa7056087f29a9884e5a4"
+    }
+  ]
+}

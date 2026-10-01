@@ -1,0 +1,40 @@
+{
+  "files": {
+    "00265020.bin": {
+      "bytes": 61,
+      "sha256": "cf09b85d637d05ca695217249179536c30ad2813ed42f5fc678f79963eec6e2d"
+    },
+    "00265090.bin": {
+      "bytes": 27,
+      "sha256": "62b887608f045a0c5a7471cb2f206678328cf1f0c252b98b88818463c08a7b3e"
+    },
+    "002FB150.bin": {
+      "bytes": 253,
+      "sha256": "9fc6be11bfb894b78f0d3c834522d9a3b1074d69fc31d186286fdd727c0c64a1"
+    },
+    "003DA710.bin": {
+      "bytes": 21,
+      "sha256": "c08a30a8cc6071cbca91011f60139a8bb54432f0316ee73c17d3447497c08659"
+    },
+    "004686D0.bin": {
+      "bytes": 35,
+      "sha256": "212e8cdc3a6b95d4dad332e540dfbebbae758a33fa379089882658c60fa66d9e"
+    },
+    "00861F14.bin": {
+      "bytes": 6,
+      "sha256": "bef9ef31cf27c89527cd3a858721dbf8901af34b5103f2f3ce175138fc4daa76"
+    },
+    "check.py": {
+      "bytes": 8768,
+      "sha256": "033102b9dcf35148e654b0b1c8f3b5e2c87525fc465f151a152fd5b5e98cdbb7"
+    },
+    "disassembly.txt": {
+      "bytes": 5859,
+      "sha256": "99eba8becf6a91790f6a54379a038ea2e97c881d2f1f5a000c90ba6adfed5bca"
+    },
+    "result.json": {
+      "bytes": 37883,
+      "sha256": "9aff095a7e8864655b296e2686c815588ce8e4b1cff37913d07611944dd36ea9"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+00186DD6 mov qword ptr [rsi + 0xb28], rax
+001D041F movups xmmword ptr [rdi + 0xb24], xmm0
+001D042C mov dword ptr [rdi + 0xb2c], eax
+002832C7 mov byte ptr [rax + 0xb2d], 0xff
+00283400 mov byte ptr [rax + 0xb2d], cl
+002969E5 mov qword ptr [rcx + 0xb28], rdx
+0048AF4C mov dword ptr [rcx + 0xb2c], 0x42c80000
+004B95D3 mov qword ptr [rbx + 0xb2c], 0x20070006
+004B95D4 mov dword ptr [rbx + 0xb2c], 0x20070006
+0070A822 mov dword ptr [rcx + 0xb2c], r9d
+0070A823 mov dword ptr [rcx + 0xb2c], ecx
+stores covering +0xb2d: 11

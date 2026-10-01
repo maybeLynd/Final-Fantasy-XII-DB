@@ -1,0 +1,9 @@
+{
+  "status": "INVALID_SOURCE_MATCHER_PRECONDITION",
+  "stage": "REDUCER_BEFORE_RESULT",
+  "cause": "Actual retained btlctrl physical line5 assignment has trailing Japanese // comment. Checker copied a strict whole-line pattern without the established61 optional comment suffix; raw capture valid, no result produced.",
+  "old_check_sha256": "6a582ded1dfe2b4ee08aa74c07900b9bcea6722d66a66015fdb7e08b58b3d0b7",
+  "raw_sha256": "36ad6ff860dbb165d927a8518a86e52c8f2366d55737239720f19dfed3dc2e87",
+  "repair": "Assignment matcher accepts optional trailing // text, as original61. Preserve exact source bytes, variable identity requires metadata and encoded controls; no raw recapture.",
+  "feasibility_limits": "Feasibility guessed map slot20 wanted curmenu; actual61/source is mp_debugmenu_flg. UNVALIDATED preparation retained; never promoted that guessed name."
+}

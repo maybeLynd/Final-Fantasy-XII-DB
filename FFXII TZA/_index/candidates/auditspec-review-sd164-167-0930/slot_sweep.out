@@ -1,0 +1,17 @@
+record array 022D7FD0..022D89A8
+(a) rip refs into the array: 19; offset/kind counts: [((0, 'lea'), 19)]
+    rip refs landing on +0xA0..+0xA7 of any record: 0 []
+(b) image-base-form operands with disp = array + 0xA8k (+0 or +0xA0): 0
+(c) disp 0xA0 operands in 00369000..0036E000: 7
+    00369250 movaps xmm0, xmmword ptr [rsp + 0xa0]               R root=003691E0
+    00369E36 mov    qword ptr [rbx + 0xa0], r8                   W root=00369D30
+    0036A86E mov    qword ptr [rsp + 0xa0], rax                  W root=0036A850
+    0036A9A6 mov    rcx, qword ptr [rsp + 0xa0]                  R root=0036A850
+    0036C02D mov    rax, qword ptr [rdx + 0xa0]                  R root=0036BFE0
+    0036C5B6 mov    qword ptr [rcx + rax + 0xa0], rdx            W root=00000000
+    0036C5C1 mov    qword ptr [rax + 0xa0], rdx                  W root=00000000
+(d) control: 0036C5B6 in W set: True; 00369E36 in W set: True
+callers 0022A0B0: ['0017D5CC call root=0017D4C0']
+callers 00266D10: ['0022A3F7 call root=0022A0B0']
+callers 002EA320: ['0026714B call root=00266D10']
+dir64: {'0022A0B0': [], '00266D10': [], '002EA320': []}

@@ -1,0 +1,9 @@
+PASS N1 005AABB0 = PAnnotationWithValue<uint> slot 0: calls 006B6750, frees 0x38 - .?AV?$PAnnotationWithValue@I@Phyre@@
+PASS N2 flag word = edi = 0
+   00632A10: 165 sites from 124 callers; most from one caller: 006668B0 with 7 (1503 B)
+   006B66C0: 70 sites from 70 callers; most from one caller: 005B4E00 with 1 (816 B)
+   00632960: 682 sites from 248 callers; most from one caller: 006949A0 with 20 (2798 B)
+PASS C1 control: 165 direct sites of 00632A10
+PASS N3 the largest per-caller count is reported - 20 sites, caller 00696470 (3757 B) into 00632960
+RESULT the destructor's one caller is PAnnotationWithValue<uint>'s deleting destructor; the flag word is 0
+FAILS 0

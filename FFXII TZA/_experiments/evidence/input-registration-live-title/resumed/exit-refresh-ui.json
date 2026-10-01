@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-13T11:36:53.997Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 3675546,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "accessibility": {
+    "focused_element": "1 dialog Exit Dialog Secondary Actions: Raise",
+    "tree": "Window: \"FINAL FANTASY XII THE ZODIAC AGE\", App: FFXII_TZA.exe.\n\t0 window (disabled) FINAL FANTASY XII THE ZODIAC AGE Secondary Actions: Raise\n\t\t1 dialog Exit Dialog Secondary Actions: Raise\n\t\t\t2 button OK ID: 1\n\t\t\t3 button Cancel ID: 2\n\t\t\t4 image ID: 20\n\t\t\t5 text Do you really want to exit game? ID: 65535\n\t\t\t6 title bar\n\t\t\t\t7 button Close\n\t\t8 title bar\n\t\t\t9 menu bar System ID: MenuBar\n\t\t\t\t10 menu item System\n\t\t\t11 button Minimize\n\t\t\t12 button Maximize\n\t\t\t13 button Close\n\t\t1 dialog Exit Dialog Secondary Actions: Raise\n\t\t\t2 button OK ID: 1\n\t\t\t3 button Cancel ID: 2\n\t\t\t4 image ID: 20\n\t\t\t5 text Do you really want to exit game? ID: 65535\n\t\t\t6 title bar\n\t\t\t\t7 button Close\n\nThe focused UI element is 1 dialog Exit Dialog Secondary Actions: Raise."
+  },
+  "prior_error": "element 8 is not available in cached app state for FFXII_TZA.exe"
+}

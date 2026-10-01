@@ -1,0 +1,8 @@
+# NativeAdapter.MemberFieldSpanTailCall - EC-7 family C
+# # r8=this+off, rcx=[this+off2]+disp, r9=arg1, rdx=this; tail-call a
+# # member-specific op (two observed).
+address	targets
+00537F10	003A56C0
+00537F70	003A56C0
+005382F0	003A56C0
+00538320	003A56C0

@@ -1,0 +1,4 @@
+reach sets: R0 (no jcc) 382; R1c (pdata-attributed jcc edges added, 0 edges) 382; added []
+  0025B225 call -> 00234200 reaches (R0 True, R1c True)
+  0023423F call -> 00300140 reaches (R0 True, R1c True)
+window: 175 direct call/tail sites (package S9 prints 174), 0 cross-function jcc sites

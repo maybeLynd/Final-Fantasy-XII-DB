@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-bank-dispatch.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-result-01.json"
+  ],
+  "exit": 0,
+  "checker_sha256": "6e47a0aadf0ca41b2f4e4c041df1ae680e04da43530edecfe845ca5597ec7b44"
+}

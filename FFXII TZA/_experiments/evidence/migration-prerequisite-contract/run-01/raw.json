@@ -1,0 +1,476 @@
+{
+  "method": "A labelled synthetic controls through actual composer subprocesses",
+  "driver_sha256": "897e30c1646a3de3af1e1c1f3724ab165f5b96259ee322d4ef569cfb8369756d",
+  "helper_sha256": "33526f21056500984c0afc3e290d1f58553177455f99932bf30de2bcca4306fa",
+  "helper_commit": "de83673fd798a18619306e3d1d9668d3bde02fdb",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "venv_executable": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "child_executable": "C:\\Python314\\python.exe",
+  "cases": [
+    {
+      "name": "valid-tagged",
+      "expected_accepted": true,
+      "actually_accepted": true,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\valid-tagged\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\valid-tagged\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "01856ed5cda409aee21ba5f038b6d0fb0d1967c50afb1d840bfc85e42ccc4174",
+      "returncode": 0,
+      "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "fail-with-zero-exit",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\fail-with-zero-exit\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\fail-with-zero-exit\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "b1e0c7d46322c25b29c32b7c1d78ec9ca095b35d11d82e47abeb1ff2c4e57ba1",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py exited 0 but printed FAIL lines: FAIL  B required\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "nonzero-exit",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\nonzero-exit\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\nonzero-exit\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "15916d42d8b4e476b5e2fb0dd877f79e0901cba9237162331fef8972ade04e12",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py exit 1 (accepted: [0])\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "missing-file",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-file\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-file\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": null,
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL missing: upstream.py\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "upstream-exception",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\upstream-exception\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\upstream-exception\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "af30f394aceedde08d018f69510f231fa5f5906fe5728eea90d39ea17fbf015e",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py raised RuntimeError: deliberate required failure\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "malformed-output",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\malformed-output\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\malformed-output\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "779841a8a05fdf156637319b37a744608b71f81e12d906a706765dad9f14c3cb",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py output is malformed: ['unrecognized output']\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "same-count-changed-tags",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\same-count-changed-tags\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\same-count-changed-tags\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "a53f1e1de20deccf442ec6eb976fd3c404fa11d372bfbca4be4d87d09cb6c2f7",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py checks ['A', 'C'], expected exactly ['A', 'B']\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "missing-object",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-object\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-object\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "9f98c5399bfdea478abe8c69f1c52c5135553a67199a1ab7df43b3313bd649b9",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py does not define ['obj']\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "missing-footer",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-footer\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-footer\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "cb8d0cc6c8716733de6696d891b2d21b9f3b10fc0c42010d61e034d38ecde636",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py output does not end with 'FAILS 0' (last line 'PASS  B required')\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "data-declared-findings",
+      "expected_accepted": true,
+      "actually_accepted": true,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-declared-findings\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-declared-findings\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "data",
+        "exits": [
+          0,
+          1
+        ]
+      },
+      "upstream_sha256": "238e02273bb35dbc2fb0470e3e5effad473f490bfdcb44bb568af3d8260d5a1f",
+      "returncode": 0,
+      "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "data-exit-two",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-exit-two\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-exit-two\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "data",
+        "exits": [
+          0,
+          1
+        ]
+      },
+      "upstream_sha256": "53d980c4d8e4ce8551d2a1fe046bb29b0c79dcdf1f86151a977c1d78cc93ec6f",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py exit 2 (accepted: [0, 1])\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "data-half-built",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-half-built\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-half-built\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "data",
+        "exits": [
+          0,
+          1
+        ]
+      },
+      "upstream_sha256": "d10aaa9dafba73fa7acf48acec18cc97fcd32c1d40dc45df9434ac3041ffd062",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py: incomplete required data object\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "default-tab-fail",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\default-tab-fail\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\default-tab-fail\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "c3a7a80663d4fd398c07ca2d0f643b5610a5f5d4762612d695478fc5be6549c8",
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py output is malformed: ['FAIL\\tA\\trequired failure']\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "custom-tab-pass",
+      "expected_accepted": true,
+      "actually_accepted": true,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\custom-tab-pass\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\custom-tab-pass\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A"
+        ],
+        "exits": [
+          0
+        ],
+        "separator": "tab"
+      },
+      "upstream_sha256": "042858c42f0505338f8beed1982e9686b20d08030f0176ff96ac26973e4ea06d",
+      "returncode": 0,
+      "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "custom-tab-fail",
+      "expected_accepted": false,
+      "actually_accepted": true,
+      "expectation_met": false,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\custom-tab-fail\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\custom-tab-fail\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A"
+        ],
+        "exits": [
+          0
+        ],
+        "separator": "tab"
+      },
+      "upstream_sha256": "c3a7a80663d4fd398c07ca2d0f643b5610a5f5d4762612d695478fc5be6549c8",
+      "returncode": 0,
+      "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+      "stderr": "",
+      "timed_out": false
+    },
+    {
+      "name": "bounded-timeout",
+      "expected_accepted": false,
+      "actually_accepted": false,
+      "expectation_met": true,
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\bounded-timeout\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\bounded-timeout\\declaration.json"
+      ],
+      "declaration": {
+        "mode": "tagged",
+        "tags": [
+          "A",
+          "B"
+        ],
+        "exits": [
+          0
+        ]
+      },
+      "upstream_sha256": "b425ea00b36072de56267fe417b3fc393bac545d8e0879650698ae975c695377",
+      "returncode": null,
+      "stdout": "",
+      "stderr": "",
+      "timed_out": true
+    }
+  ],
+  "first_adopter": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\candidates\\sn1-layouts\\test_sn1_prereq.py",
+    "available": true,
+    "sha256": "b7827cc0e1d7e378042262afd8c531331b22a70456bf66e883b3f27dbbe953f4",
+    "returncode": 0,
+    "stdout": "PASS  V valid: exit 0, PASS  P prerequisite sn1_variable_bindin; partition N..C equal to 2c7d810c8's .out: True\nPASS  F1 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exit 1; FAIL  T table counts [56, 92, 115, 127] = T0 counts; evctrl [0x61] = 010\nPASS  F2 exit 1, FAIL  P prerequisite sn1_variable_binding.py: missing: sn1_variable_binding.py\nPASS  F3 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py raised SyntaxError: '(' was never closed (sn1_variable_binding.py, line 81)\nPASS  F4 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exited 0 but printed FAIL lines: FAIL  T table counts [56, 92, 115, 127] = T0 co\nPASS  F5 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py checks ['Q', 'T', 'S', 'B', 'A', 'G', 'D'], expected exactly ['Q', 'T', 'S', 'B'\nPASS  F6 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py does not define ['SBN']\nPASS  F7 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py output is malformed: ['note: extra line']\nPASS  F8 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exit 1; FAIL  Q prerequisite sn1_q0_domain.py: sn1_q0_domain.py exit 1; producer alone: exit 1, FAIL  Q prerequisite sn1_q0_domain.py: sn1_q0_domain.py exit 1\nPASS  F9 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exit 1; FAIL  Q prerequisite sn1_q0_domain.py: missing: sn1_q0_domain.py\nPASS  F10 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py output does not end with 'FAILS 0' (last line 'PASS  Q prerequisite sn1_q0_domai\nsource: this folder\nFAILS 0\n",
+    "stderr": "",
+    "timed_out": false
+  },
+  "helper_unchanged": true,
+  "finished": true
+}

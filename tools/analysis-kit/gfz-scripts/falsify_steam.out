@@ -1,0 +1,7 @@
+SURVIVES  K1  (MEETS I-1's falsifier; substance survives) stores to 01F83450 ['0020CD71 in 0020CD30', '0020CDED in 0020CD80'] (linear ['0020CD72', '0020CDEE']); the second stores 0 after freeing 0x80 bytes; 0020CE00 ['mov rax, qword ptr [rip + 0x1d76649]', 'ret']; 008632B0 null test then jmp 0020CE60
+SURVIVES  W2  SetAchievement sites 0020CE60 ['0020CEB2'], 0020CB50 ['0020CBF2', '0020CC5F'], each after the +0x190 and +0x18 tests; every slot-0x38 call through the context in ['0020C940', '0020CB50', '0020CE10', '0020CE60']
+SURVIVES  W3  row 6 also awards entries 31..37
+SURVIVES  W4  by-id rows (key1, key2, entry) [(244, 18, 31), (724, 4, 32), (284, 5, 34), (302, 0, 35), (196, 1, 36), (177, 1, 37), (151, 1, 38)]; by-index call sites 6, literal 0 index []
+SURVIVES  W5  SteamAPI_RunCallbacks call sites ['007A312E']
+SURVIVES  W6  SteamInternal_ContextInit -> SteamAPI_Init -> manager -> SteamAPI_RestartAppIfNecessary; call qword ptr [rip + 0x12ac2f]
+FAILS 0

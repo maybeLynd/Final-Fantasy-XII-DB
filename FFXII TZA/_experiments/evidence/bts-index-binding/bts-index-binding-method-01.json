@@ -1,0 +1,22 @@
+{
+  "question": "Do authored bts_* area indices select one of the four zero-count reward ARDs under the normal MRF and indexed map-script resource paths?",
+  "hypotheses": [
+    "metadata bts indices select a populated/empty ARD",
+    "bts metadata indices instead have missing ARD/script table entries",
+    "metadata name is insufficient to prove actual script-to-field reachability"
+  ],
+  "major_system": "WorldAreaField / authored battle-resource binding / GR18 E1",
+  "consumer": "FABLE GR18 semantic record and OPUS GR18 adjudication, after independent SPEC review",
+  "method": "A: original literal installation/dataflow plus exact primary MRF and retained FST data",
+  "cheaper_evidence": "Returned FABLE corpus census names bts residual but omits numeric binding; do not repeat census. Existing static MRF/test-map descriptions establish layouts but not this join. Existing retained source/FST reused.",
+  "discriminator": "Join namespace26 authored bts metadata indices to MRF word+4; inspect exact namespace21 slots2*area and namespace5 slots3*field with all installed literal alternatives and retained twelve FST arrays. Qualify normal-source refresh and size-guard paths.",
+  "controls": [
+    "regular title/populated asp_b and empty-table asp_a nonnull paths/positive sizes",
+    "failed upstream invocation cannot produce result",
+    "wrong row word/changed input must refuse; NMB naming does not establish actual script execution"
+  ],
+  "acceptance": "Exact source/pointer/input identities and complete focused nonzero cases; report null/missing mappings separately from no-evidence; conditional normal indexing only. Do not certify whole GR18 or all bts reachability.",
+  "failure": "Mismatch or failed/incomplete/stale prerequisite invalidates result; preserve receipt and revise method before retry.",
+  "restoration": "Read-only original/extract/retained input files, copies in owned W only; no game/control/native/process/save/config/reference writes",
+  "parked": "Menu extension still unapproved; EXP127 invalid, no repetition"
+}

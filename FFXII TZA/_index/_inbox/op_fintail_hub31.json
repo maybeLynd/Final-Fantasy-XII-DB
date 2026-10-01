@@ -1,0 +1,3 @@
+{"action":"finish","task":"SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-31",
+ "result_refs":["commit:45e8e7cf5"],
+ "note":"tailed: seal op files + sealed resume state"}

@@ -1,0 +1,169 @@
+{
+ "ok": true,
+ "allowed_functions": 4250,
+ "results": {
+  "leader_derived": {
+   "pass_": true,
+   "leader": "76302000",
+   "note": "003272A0 resolves the focus handle through 003588B0 (generation, table, slot) and 00263E30 to the planted leader"
+  },
+  "PF7_bit14_raises_0_and_2_only": {
+   "pass_": true,
+   "cases": {
+    "status 0": {
+     "ok": true,
+     "bit0 (00359200)": 0,
+     "bit2 (003592C0)": 0,
+     "not bit1 (tail)": 1
+    },
+    "bit 14 only (0x4000)": {
+     "ok": true,
+     "bit0 (00359200)": 1,
+     "bit2 (003592C0)": 1,
+     "not bit1 (tail)": 1
+    },
+    "bit 3 (0x8, in both masks)": {
+     "ok": true,
+     "bit0 (00359200)": 1,
+     "bit2 (003592C0)": 1,
+     "not bit1 (tail)": 0
+    },
+    "bit 27 (0x08000000, in both masks)": {
+     "ok": true,
+     "bit0 (00359200)": 1,
+     "bit2 (003592C0)": 1,
+     "not bit1 (tail)": 0
+    },
+    "bit 1 (in the gate 0x80000003)": {
+     "ok": true,
+     "bit0 (00359200)": 1,
+     "bit2 (003592C0)": 1,
+     "not bit1 (tail)": 0
+    }
+   },
+   "note": "status 0 suppresses nothing; a status whose only bit is 14 raises suppression bits 0 and 2 and leaves bit 1 clear (0x8800403B hits, 0x8800003B misses); bit 3, in both masks, raises all three"
+  },
+  "PF8_null_stats_faults_mid_function": {
+   "pass_": true,
+   "fault": "00000064",
+   "last_instructions": [
+    "0023B159",
+    "0023B15B",
+    "0023B15E"
+   ],
+   "note": "a leader whose +0x698 is null passes the first check (0023B0AB sends it on), then 0023B15E dereferences the unguarded second load: the recompute faults reading address 0x64"
+  },
+  "PF3_deferred_until_commit": {
+   "pass_": true,
+   "case": {
+    "after_request": {
+     "current": "500003",
+     "pending": "500004",
+     "kind": 1
+    },
+    "leader_between": "76302000",
+    "commit_ok": true,
+    "order": [
+     "release outgoing 00358B40",
+     "push 002681D0",
+     "00259800",
+     "teardown thunk 0025A680 (flag 1)",
+     "re-read pending 00358C24",
+     "store current 00358C2F",
+     "clear kind 00358C35",
+     "resolve 00358C3C",
+     "tail push 00358C52",
+     "push 002681D0"
+    ],
+    "after_commit": {
+     "current": "500004",
+     "pending": "500004",
+     "kind": 0
+    }
+   },
+   "note": "the request writes pending and kind 1 and moves nothing: the leader getter still returns the old leader; the commit installs the new handle"
+  },
+  "PF4_redundant_commit_still_pushes": {
+   "pass_": true,
+   "case": {
+    "after_request": {
+     "current": "500003",
+     "pending": "500003",
+     "kind": 1
+    },
+    "leader_between": "76302000",
+    "commit_ok": true,
+    "order": [
+     "store current 00358C2F",
+     "clear kind 00358C35",
+     "resolve 00358C3C",
+     "tail push 00358C52",
+     "push 002681D0"
+    ],
+    "after_commit": {
+     "current": "500003",
+     "pending": "500003",
+     "kind": 0
+    }
+   },
+   "note": "pending = current: 00358BE4 jumps straight to the store - no release, no teardown, no re-read - but the store, the kind clear, the resolve and the push all run"
+  },
+  "PF5_PF6_order_and_the_summon_call": {
+   "pass_": true,
+   "kind1": {
+    "after_request": {
+     "current": "500003",
+     "pending": "500004",
+     "kind": 1
+    },
+    "leader_between": "76302000",
+    "commit_ok": true,
+    "order": [
+     "release outgoing 00358B40",
+     "push 002681D0",
+     "00259800",
+     "teardown thunk 0025A680 (flag 1)",
+     "re-read pending 00358C24",
+     "store current 00358C2F",
+     "clear kind 00358C35",
+     "resolve 00358C3C",
+     "tail push 00358C52",
+     "push 002681D0"
+    ],
+    "after_commit": {
+     "current": "500004",
+     "pending": "500004",
+     "kind": 0
+    }
+   },
+   "kind2": {
+    "after_request": {
+     "current": "500003",
+     "pending": "500004",
+     "kind": 2
+    },
+    "leader_between": "76302000",
+    "commit_ok": true,
+    "order": [
+     "release outgoing 00358B40",
+     "push 002681D0",
+     "00259800",
+     "teardown thunk 0025A690 (flag 0)",
+     "003D9B80 (the summon-only call)",
+     "re-read pending 00358C24",
+     "store current 00358C2F",
+     "clear kind 00358C35",
+     "resolve 00358C3C",
+     "tail push 00358C52",
+     "push 002681D0"
+    ],
+    "after_commit": {
+     "current": "500004",
+     "pending": "500004",
+     "kind": 0
+    }
+   },
+   "note": "a real change releases the outgoing leader (00358B40), calls 00259800, runs the teardown, and only then re-reads pending, stores it, clears the kind, resolves and pushes; kind 1 takes thunk 0025A680 (flag 1), kind 2 - set by the summon upgrade 003594C0 - takes 0025A690 (flag 0), and only that path calls 003D9B80. The pending handle is not cleared by the commit"
+  }
+ }
+}

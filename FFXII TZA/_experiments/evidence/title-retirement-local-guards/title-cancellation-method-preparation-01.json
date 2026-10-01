@@ -1,0 +1,21 @@
+{
+  "method": "A retained original evidence then missing named getter/key source",
+  "question": "Does title24A680(mode1) itself cancel/drain pending2495C0 ticket callbacks, or only retire its resource-handle record?",
+  "hypotheses": [
+    "synchronous ticket cancellation/drain",
+    "handle release with ticket/callback lifetime left to separate channels"
+  ],
+  "existing_evidence": "Published title0fcf9349e with SECTION04 exact24A680d9acb85e and181610/1B1960; existing sender-site correction already routed, not repeated.",
+  "discriminator": "Trace24A680 actual callee/dataflow and compare resource pool0208F580(64x48) vs ticket pool02090790(12x20); derive any proven branch invariant/counterexample without claiming omitted callee effects or natural state.",
+  "controls": "Pinned EXE and retained manifest/raw bytes, shared adapter store/LEA/RMW; complete selected code/branch proof with checked producer exit; no zero/missing cases accepted.",
+  "limits": "24A680 local release stores do not themselves prove transitive no-cancellation; omitted calls/free/lazy-init remain open until inspected. No game or forced-state reachability.",
+  "consumer": "FABLE OV29/title page; scoped independent SPEC review if a new coherent claim results",
+  "next_missing_sources": [
+    [
+      "0x1b1440",
+      "0x1b14df",
+      "0x1d7831c"
+    ]
+  ],
+  "cleanup": "Method A only, synchronous child exits; no process/game/instrument/save/config/reference mutation"
+}

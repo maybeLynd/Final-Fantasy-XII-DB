@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-160",
+ "result_refs": [
+  "51c95a702"
+ ],
+ "note": "batch-160 publish 51c95a702: 22 entries + interior anchors across 11 bearing hosts (17 files, +207/0, all verified at HEAD); efx contract committed as HEAD+tail splice (overlay carrier, FRONTIER publishes wholesale). Audit entry appended; crossing prose on ui-layout + command-state-word + katano cleared 4 standing findings.",
+ "summary": ""
+}

@@ -1,0 +1,17 @@
+INVALID C:\Users\Kristian\AppData\Local\Temp\tmpmkz1kb_x\invalid.json
+test_ambiguous_missing_and_unreadable_fail (__main__.CaptureTests.test_ambiguous_missing_and_unreadable_fail) ... ok
+test_bounded_positive_preserves_selected_sample (__main__.CaptureTests.test_bounded_positive_preserves_selected_sample) ... ok
+test_cli_failure_receipt_and_exclusive_output_without_os_imports (__main__.CaptureTests.test_cli_failure_receipt_and_exclusive_output_without_os_imports) ... ok
+test_duration_and_zero_samples_fail (__main__.CaptureTests.test_duration_and_zero_samples_fail) ... ok
+test_health_loss_and_floor_stop_immediately (__main__.CaptureTests.test_health_loss_and_floor_stop_immediately) ... ok
+test_player_reuse_between_samples_is_invalid (__main__.CaptureTests.test_player_reuse_between_samples_is_invalid) ... ok
+test_sample_cap_even_if_clock_stalls (__main__.CaptureTests.test_sample_cap_even_if_clock_stalls) ... ok
+test_control_short_and_changed_live_text_fail (__main__.QualificationTests.test_control_short_and_changed_live_text_fail) ... ok
+test_executable_base_and_module_failures (__main__.QualificationTests.test_executable_base_and_module_failures) ... ok
+test_pinned_dependencies_and_source_receipts (__main__.QualificationTests.test_pinned_dependencies_and_source_receipts) ... ok
+test_real_disk_bytes_positive_against_fake_memory (__main__.QualificationTests.test_real_disk_bytes_positive_against_fake_memory) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.164s
+
+OK

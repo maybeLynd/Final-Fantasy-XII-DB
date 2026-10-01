@@ -1,0 +1,13 @@
+predicate members owned by another family (collisions, not written): 0 
+A-measured bodies that pass the predicate (qualifying callers, stay A, not members): 2
+ImGui runs 00791D80-00792350 + 00795F10-00796180 + 00796E70-007973D0 + 00798D70-00798E90: entries 12, seeds 5, members 9
+  excluded A-measured                                                           3  00791D80 00791E70 00796FC0
+control outbound targets: 00808C40(1) 00861E90(1) 00861E96(1)
+control inbound A-measured qualifying callers: 00791E70
+control inbound convention callers: 008B7D40
+control .data globals referenced: 01F40380(16) 01F44830(1) 02EACD78(4)
+Traceback (most recent call last):
+  File "C:\w\opx\Database\FFXII TZA\23-Third-Party-Libraries\members\select_imgui.py", line 169, in <module>
+    assert set(members) >= set(CALLBACKS) | {0x791D80, 0x792090}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

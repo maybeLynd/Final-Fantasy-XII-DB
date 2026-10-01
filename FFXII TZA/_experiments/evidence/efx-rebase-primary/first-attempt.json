@@ -1,0 +1,7 @@
+{
+  "status": "SETUP_FAILED",
+  "original_code_cases": 0,
+  "error": "ModuleNotFoundError: No module named unicorn.x86_const",
+  "followup": "Directory listing python-libs/unicorn denied by filesystem permissions; no original instruction executed. Request scoped executor access without changing code.",
+  "script_sha256": "53d38d02a21c24cba2853aa8e5c7c9092968f97b8c0b6ec884d3d9965a430b2b"
+}

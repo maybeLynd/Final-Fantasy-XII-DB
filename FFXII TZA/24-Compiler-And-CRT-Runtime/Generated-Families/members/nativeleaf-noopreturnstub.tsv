@@ -1,0 +1,41 @@
+# NativeLeaf.NoOpReturnStub - EC-7 family C, declared on generated-function-families.md
+#
+# 32 members. Body size(s): 3 B x32.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 32 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+006DA8C0
+006DA980
+00731E90
+00786B80
+008A9290
+008A92A0
+008A92B0
+008A92C0
+008A92D0
+008A92E0
+008A92F0
+008A9300
+008A9310
+008A9320
+008A9330
+008A9340
+008A9350
+008A9360
+008A9370
+008A9380
+008A9390
+008A93A0
+008A93B0
+008AB770
+008AB780
+008B57D0
+008B57E0
+008B57F0
+008B8630
+008B8640
+008B8670
+008B8D80

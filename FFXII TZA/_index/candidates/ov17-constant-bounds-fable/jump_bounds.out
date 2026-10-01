@@ -1,0 +1,5 @@
+PASS  J jump index bounded; out of range -> offset 0
+PASS  T 10036 files, 237662 jump tables; tables past the section: 0; offsets past the script's end: 0; entries AT the end: 31235, targeted by a jump: 0
+PASS  C 9351553 jump operands; at or past the table count: 0 []
+PASS  M sensitivity: 137244 jump operands at the table's last slot
+FAILS 0

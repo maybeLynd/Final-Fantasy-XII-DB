@@ -1,0 +1,89 @@
+PASS  C1 verb rows = 1960 (1,960)
+PASS  C2 old snapshot depth totals [616, 851, 944] (page 616 / 851 / 944)
+PASS  C3 every GN160 depth-1 row lies in the old snapshot's tie range 
+owner-tag control S2 (arg_handler rows): old 1857 of 1888, cur 1857 of 1888
+owner-tag control P1 (begin/poll/result rows, all bridge): old 1890 of 1922, cur 1890 of 1922
+PASS  C4 section 2's 1,857 of 1,888 and pass 1's 1,890 of 1,922 both reproduce at the current census
+PASS  C4b the two readings are the same at the old and the current snapshot
+PASS  C5 one tie assignment on the old snapshot reproduces all fourteen GN160 rows and the omitted 11 
+PASS  C5b the same holds on the current census
+PASS  C6 negative control: an out-of-range target (Movement 179) is rejected by the matcher
+info: ActorEntity 160 with Party 53 jointly feasible: False
+
+=== depth 1: labelled cur 616 (old 616); tied verbs cur 36 (old 36) ===
+subsystem                          page    old    cur  cur-any     old range     cur range
+Movement                            182    182    182      195     [180,192]     [180,192]
+ActorEntity                         142    162    162      172     [130,162]     [130,162]
+Presentation                         42     42     42       42       [42,42]       [42,42]
+Party                                51     37     37       62       [37,53]       [37,53]
+Audio                                36     36     36       37       [36,37]       [36,37]
+Input                                35     35     35       35       [35,35]       [35,35]
+Spawn_Encounter_Lifecycle            31     31     31       32       [31,32]       [31,32]
+WorldAreaField                       29     26     26       36       [26,32]       [26,32]
+Story_Event_Quest_Hunt               21     21     21       21       [21,21]       [21,21]
+CoreRuntimeScheduling                11     11     11       12       [10,12]       [10,12]
+UI                                    8      8      8        8         [8,8]         [8,8]
+CombatFormula                         7      7      7        7         [7,7]         [7,7]
+Resource                              6      4      4       11        [4,11]        [4,11]
+CombatAction                                 3      3        3         [3,3]         [3,3]
+Rewards_Progression_Economy           4      3      3        4         [3,4]         [3,4]
+CombatAI                                     2      2        2         [2,2]         [2,2]
+Items_Equipment_Shops_License                2      2        2         [1,2]         [1,2]
+RNG_Random_Selection                         2      2        2         [2,2]         [2,2]
+PlatformOnlineAchievements                   1      1        2         [1,2]         [1,2]
+Save_Load_Settings                           1      1        2         [1,2]         [1,2]
+TOTAL (partition)                   605    616    616
+
+=== depth 2: labelled cur 851 (old 851); tied verbs cur 89 (old 89) ===
+subsystem                          page    old    cur  cur-any     old range     cur range
+ActorEntity                                262    262      345     [209,262]     [209,262]
+Movement                                   232    232      267     [232,243]     [232,243]
+Presentation                                70     70       84       [69,72]       [69,72]
+Save_Load_Settings                          56     56       63       [28,57]       [28,57]
+Audio                                       50     50       51       [50,51]       [50,51]
+Input                                       41     41       42       [39,41]       [39,41]
+Party                                       31     31      118       [31,49]       [31,49]
+WorldAreaField                              25     25       63       [25,41]       [25,41]
+CoreRuntimeScheduling                       21     21       38       [18,26]       [18,26]
+Items_Equipment_Shops_License               11     11       13       [11,11]       [11,11]
+CombatFormula                                8      8        9         [7,8]         [7,8]
+UI                                           8      8       11         [8,8]         [8,8]
+Spawn_Encounter_Lifecycle                    7      7       32        [7,29]        [7,29]
+CombatAction                                 6      6        6         [6,6]         [6,6]
+Resource                                     6      6       15        [6,10]        [6,10]
+Story_Event_Quest_Hunt                       6      6       27        [6,25]        [6,25]
+Rewards_Progression_Economy                  4      4        5         [4,5]         [4,5]
+RNG_Random_Selection                         3      3        7         [2,4]         [2,4]
+CombatAI                                     2      2        3         [2,3]         [2,3]
+PlatformOnlineAchievements                   2      2        2         [2,2]         [2,2]
+Status_Periodic_Terminal                     0      0        3         [0,0]         [0,0]
+TOTAL (partition)                          851    851
+
+=== depth 3: labelled cur 944 (old 944); tied verbs cur 61 (old 61) ===
+subsystem                          page    old    cur  cur-any     old range     cur range
+ActorEntity                                284    284      435     [253,284]     [253,284]
+Movement                                   236    236      292     [236,245]     [236,245]
+Presentation                                88     88      165       [86,96]       [86,96]
+Save_Load_Settings                          65     65       88       [61,70]       [61,70]
+Audio                                       57     57       66       [56,57]       [56,57]
+CoreRuntimeScheduling                       49     49      122       [35,53]       [35,53]
+Input                                       43     43       56       [43,45]       [43,45]
+Party                                       23     23      171       [23,36]       [23,36]
+WorldAreaField                              20     20       93       [20,35]       [20,35]
+UI                                          16     16       20       [12,16]       [12,16]
+Resource                                    15     15       72       [15,20]       [15,20]
+CombatFormula                                9      9       15         [8,9]         [8,9]
+Items_Equipment_Shops_License                9      9       20        [8,12]        [8,12]
+CombatAction                                 6      6        9         [4,6]         [4,6]
+Spawn_Encounter_Lifecycle                    6      6       35         [6,7]         [6,7]
+Rewards_Progression_Economy                  4      4        7         [4,5]         [4,5]
+Story_Event_Quest_Hunt                       4      4       33        [4,12]        [4,12]
+PlatformOnlineAchievements                   3      3        5         [3,3]         [3,3]
+RNG_Random_Selection                         3      3       10         [2,4]         [2,4]
+CombatAI                                     2      2        6         [2,2]         [2,2]
+Status_Periodic_Terminal                     2      2       12         [2,2]         [2,2]
+TOTAL (partition)                          944    944
+
+depth-1 label changes old -> cur (alphabetical tie-break both sides): 0
+
+FAILS 0

@@ -1,0 +1,17 @@
+control: .ker entries: 34 (published 34); .fex entries: 14 (published 14); font .dat: 63
+language directories: ['ch', 'cn', 'jp', 'kr', 'us'] ; fontlist.ah exists for: ['ch', 'cn', 'jp', 'kr', 'us']
+ch (11 fonts): fontex_expand(f2) fex 465 keys 5795 values exact; fontex_subtitle(f2) fex 171 keys 21001 values exact; font00(f0); font_bookman(f0); font_iwa_g12(f0); font_venus(f1) ker 325 pairs; font_square(f1) ker 51 pairs; fontguide(f0); fonttutorial(f0); fontquest(f0); fontmonster(f2) fex 6 keys 905 values exact
+cn (11 fonts): fontex_expand(f2) fex 447 keys 5239 values exact; fontex_subtitle(f2) fex 171 keys 20909 values exact; font00(f0); font_bookman(f0); font_iwa_g12(f0); font_venus(f1) ker 325 pairs; font_square(f1) ker 51 pairs; fontguide(f0); fonttutorial(f0); fontquest(f0); fontmonster(f2) fex 7 keys 1255 values exact
+jp (17 fonts): fontex_expand(f2) fex 482 keys 8608 values exact; fontex_subtitle(f2) fex 172 keys 17334 values exact; font00(f0); font_bookman(f0); font_iwa_g12(f0); font_venus(f1) ker 325 pairs; font_square(f1) ker 51 pairs; fontguide(f0); fonttutorial(f0); fontquest(f0); fontmonster(f2) fex 14 keys 2820 values exact; font_stf_a(f1) ker 1237 pairs; font_stf_as(f1) ker 1237 pairs; font_stf_b(f1) ker 1237 pairs; font_stf_bs(f1) ker 1237 pairs; font_stf_c(f1) ker 1237 pairs; font_stf_cs(f1) ker 1237 pairs
+kr (11 fonts): fontex_expand(f2) fex 389 keys 3498 values exact; fontex_subtitle(f3) ker 39 pairs fex 177 keys 18741 values exact; font00(f1) ker 380 pairs; font_bookman(f0); font_iwa_g12(f0); font_venus(f1) ker 325 pairs; font_square(f1) ker 51 pairs; fontguide(f0); fonttutorial(f0); fontquest(f0); fontmonster(f2) fex 7 keys 413 values exact
+us (12 fonts): font00(f0); fontex_subtitle(f1) ker 8887 pairs; font_bookman(f0); font_iwa_g12(f0); font_venus(f1) ker 1111 pairs; font_square(f1) ker 51 pairs; font_stf_a(f1) ker 1237 pairs; font_stf_as(f1) ker 1237 pairs; font_stf_b(f1) ker 1237 pairs; font_stf_bs(f1) ker 1237 pairs; font_stf_c(f1) ker 1237 pairs; font_stf_cs(f1) ker 1237 pairs
+.dat shape: [('size == 0x28 + 0x24 * count', 62)] ; flags: [(0, 26), (1, 24), (2, 11), (3, 1)]
+.ker: [('requested .ker: size % 12 == 0', 25)] ; .fex: [('requested .fex: exact', 12)]
+font .dat not requested by a list: ['us/fontex_expand.dat']
+.ker not requested: ['ch/font00.ker', 'ch/fontex_expand.ker', 'cn/font00.ker', 'cn/fontex_expand.ker', 'jp/font00.ker', 'jp/font_iwa_g12.ker', 'kr/fontex_expand.ker', 'us/font00.ker', 'us/font_iwa_g12.ker']
+.fex not requested: ['us/fontex_expand.fex', 'us/fontex_subtitle.fex']
+  unrequested us/fontex_expand.fex: by the parser's rules 1 records, values past the end at 16 (n = 580165673); first words ['0x2294a029', '0x0', '0x56f0', '0x2294a029', '0x1', '0x65e6']
+    as {key, index, value} triples: size % 12 == 0, 9032 triples, 483 keys, every key's indices run 0,1,2,...: True
+  unrequested us/fontex_subtitle.fex: by the parser's rules 1 records, values past the end at 16 (n = 580164320); first words ['0x22949ae0', '0x0', '0x54', '0x22949ae0', '0x1', '0x68']
+    as {key, index, value} triples: size % 12 == 0, 11481 triples, 217 keys, every key's indices run 0,1,2,...: True
+all .ker sizes are multiples of 12: True

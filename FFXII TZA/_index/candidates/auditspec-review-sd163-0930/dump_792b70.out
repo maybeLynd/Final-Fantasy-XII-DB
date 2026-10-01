@@ -1,0 +1,67 @@
+00792B70  mov       rax, rsp
+00792B73  push      rdi
+00792B74  sub       rsp, 0xc0
+00792B7B  mov       qword ptr [rsp + 0x20], 0xfffffffffffffffe
+00792B84  mov       qword ptr [rax + 0x10], rbx
+00792B88  mov       qword ptr [rax + 0x18], rbp
+00792B8C  mov       qword ptr [rax + 0x20], rsi
+00792B90  mov       rax, qword ptr [rip + 0x17b1c99]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+00792B97  xor       rax, rsp
+00792B9A  mov       qword ptr [rsp + 0xb0], rax
+00792BA2  mov       rsi, rcx
+00792BA5  mov       qword ptr [rsp + 0x28], rcx
+00792BAA  xor       edx, edx
+00792BAC  call      0x792940
+00792BB1  nop       
+00792BB2  lea       rax, [rip + 0x151faff]   ; -> 01CB26B8 u32=007942E0 f32=1.11361e-38
+00792BB9  mov       qword ptr [rsi], rax
+00792BBC  mov       rcx, qword ptr [rip + 0x2716945]   ; -> 02EA9508 (virtual tail / unmapped)
+00792BC3  mov       rax, qword ptr [rcx]
+00792BC6  lea       rdx, [rsp + 0x30]
+00792BCB  call      qword ptr [rax + 0x18]
+00792BCE  test      eax, eax
+00792BD0  jle       0x792c78
+00792BD6  mov       rax, qword ptr [rsp + 0x30]
+00792BDB  mov       qword ptr [rip + 0x27169be], rax   ; -> 02EA95A0 (virtual tail / unmapped)
+00792BE2  mov       rcx, qword ptr [rip + 0x271691f]   ; -> 02EA9508 (virtual tail / unmapped)
+00792BE9  mov       rax, qword ptr [rcx]
+00792BEC  lea       rdx, [rip + 0x1520d09]   ; -> 01CB38FC u32=626F6C47 f32=1.10414e+21
+00792BF3  call      qword ptr [rax + 0x28]
+00792BF6  mov       rcx, qword ptr [rip + 0x271690b]   ; -> 02EA9508 (virtual tail / unmapped)
+00792BFD  mov       r9, qword ptr [rcx]
+00792C00  mov       r8, rax
+00792C03  mov       rdx, qword ptr [rip + 0x2716996]   ; -> 02EA95A0 (virtual tail / unmapped)
+00792C0A  call      qword ptr [r9 + 0x30]
+00792C0E  xor       ebx, ebx
+00792C10  mov       edi, ebx
+00792C12  lea       rbp, [rip - 0x672c19]   ; -> 00120000 (virtual tail / unmapped)
+00792C19  nop       dword ptr [rax]
+00792C20  mov       rcx, qword ptr [rip + 0x27168e1]   ; -> 02EA9508 (virtual tail / unmapped)
+00792C27  mov       rax, qword ptr [rcx]
+00792C2A  mov       rdx, qword ptr [rdi + rbp + 0x1e20210]
+00792C32  call      qword ptr [rax + 0x40]
+00792C35  mov       qword ptr [rdi + rbp + 0x2d89510], rax
+00792C3D  add       rdi, 8
+00792C41  cmp       rdi, 0x80
+00792C48  jl        0x792c20
+00792C4A  nop       word ptr [rax + rax]
+00792C50  mov       rcx, qword ptr [rip + 0x27168b1]   ; -> 02EA9508 (virtual tail / unmapped)
+00792C57  mov       r8, qword ptr [rcx]
+00792C5A  mov       rdx, qword ptr [rbx + rbp + 0x1e20290]
+00792C62  call      qword ptr [r8 + 0x58]
+00792C66  mov       qword ptr [rbx + rbp + 0x2d89590], rax
+00792C6E  add       rbx, 8
+00792C72  cmp       rbx, 0x10
+00792C76  jl        0x792c50
+00792C78  mov       rax, rsi
+00792C7B  mov       rcx, qword ptr [rsp + 0xb0]
+00792C83  xor       rcx, rsp
+00792C86  call      0x808c40
+00792C8B  lea       r11, [rsp + 0xc0]
+00792C93  mov       rbx, qword ptr [r11 + 0x18]
+00792C97  mov       rbp, qword ptr [r11 + 0x20]
+00792C9B  mov       rsi, qword ptr [r11 + 0x28]
+00792C9F  mov       rsp, r11
+00792CA2  pop       rdi
+00792CA3  ret       
+---

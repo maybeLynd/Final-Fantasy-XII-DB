@@ -1,0 +1,21 @@
+{
+  "case": "accept",
+  "is_review": true,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "7c9744ce01c6072750a56ab88e41c6f7aecf43214e263cf928d1b9c948b56a38",
+  "after_sha256": "f75e2612f7109e5c5d4d8da65edaf976c195696b6c1a30561f1a1093c8151fe1",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:ACCEPT"
+  ],
+  "plan": [
+    {
+      "kind": "INCORPORATE",
+      "review": "FIXTURE-A16-ACCEPT",
+      "detail": "AUTO-INCORP-FIXTURE-A16-ACCEPT",
+      "has_operation": true
+    }
+  ]
+}

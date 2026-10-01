@@ -1,0 +1,95 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A: original image-relative table; no execution",
+  "address": "0x27fad0",
+  "bytes": 84,
+  "raw_hex": "c1f9150031fa150031fa150031fa1500dbf8150031fa150031fa150031fa150031fa150031fa150031fa150031fa150031fa150011fa150031fa15008ef915009df91500a9f9150031fa150031fa1500c1f91500",
+  "sha256": "4b6697dfa7e833a7f8000b568a69d97fa2f4b9362e9c8554e8b452afc38f4b78",
+  "index_rule": "message19: unsigned(request-2)<=20; otherwise 0x27fa31",
+  "rows": [
+    {
+      "request": 2,
+      "target": "0x27f9c1"
+    },
+    {
+      "request": 3,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 4,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 5,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 6,
+      "target": "0x27f8db"
+    },
+    {
+      "request": 7,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 8,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 9,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 10,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 11,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 12,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 13,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 14,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 15,
+      "target": "0x27fa11"
+    },
+    {
+      "request": 16,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 17,
+      "target": "0x27f98e"
+    },
+    {
+      "request": 18,
+      "target": "0x27f99d"
+    },
+    {
+      "request": 19,
+      "target": "0x27f9a9"
+    },
+    {
+      "request": 20,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 21,
+      "target": "0x27fa31"
+    },
+    {
+      "request": 22,
+      "target": "0x27f9c1"
+    }
+  ]
+}

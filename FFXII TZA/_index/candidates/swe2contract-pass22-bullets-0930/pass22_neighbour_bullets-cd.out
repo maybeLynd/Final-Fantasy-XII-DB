@@ -1,0 +1,14 @@
+PASS  K2 direction label rule
+PASS  K1 detail string truncation matches audit_crossrefs (4 + '(+N more)')
+PUBLISHABLE     00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md       pairs=5 bullets=5
+PUBLISHABLE     00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md                       pairs=17 bullets=17
+PUBLISHABLE     00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md                    pairs=6 bullets=5
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/hchk-hctg-hdat-handbook-indexes.md             pairs=20 bullets=20
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md    pairs=8 bullets=8
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-008.md                                                      pairs=2 bullets=4
+TOTAL {'residual pairs (no bullet, no row)': 0, 'PUBLISHABLE': 6, 'flags': 0}
+R6 TRIPWIRE PAIRS INCLUDED []
+V8 EXTRA {'25-EBP-Script-Container/Sections/section-008.md': "EXTRA verified bullets ['Presentation', 'Resource']; rows held back ['Presentation', 'Resource']"}
+SELECTION RULES {'registry detail in sorted order': 31, 'registry rows': 58, 'inbound first-3 = frequency order': 21, 'inbound lists': 47, 'V7 named bodies checked': 144, 'V7 substantive edges checked': 141, 'substantive = first sorted hits': 13, 'substantive lists': 47, 'EXTRA bullets': 2}
+BYTE-FOR-BYTE REPRODUCIBLE PAGES 0 of 6: every CLIENT / SERVICE bullet carries a chosen body list and a chosen 'Substantive edges' list that no ordering of the hit set reproduces (SELECTION RULES above)
+FAILS 0

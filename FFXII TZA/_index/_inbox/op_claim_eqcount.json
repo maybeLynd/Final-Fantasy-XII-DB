@@ -1,0 +1,1 @@
+{"action": "claim", "task": "AUDITSEM-CONTRA-DATA-SEQREC-EQCOUNT-7095", "agent": "SWE2-DATA", "resources": [{"key": "file:database/ffxii tza/18-audio/sound-selection/sound-trigger.md"}], "note": "u16-width equality figure 7,095 -> 7,086; one-number prose fix"}

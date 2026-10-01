@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-51",
+ "agent": "SWE2-EC7",
+ "resources": [
+  {
+   "key": "target:frontier-shared-callee-hubs"
+  }
+ ],
+ "note": "claiming shared-hub batch 51 (EC7-86)"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "INVALID_EXTENT_PRECONDITION",
+  "failure": "capture.py line25 asserted one runtime-function end3929FE, failed before normalized result/source controls",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "5faccc1ec8b948cb3be3fdcc06aaa40bbac93ceeb7da6edfcd06998e258dd42e",
+  "retained_partial_files": [
+    "driver-before-run.py",
+    "populator.bin",
+    "reg_tracking.py",
+    "registry-count-getter.bin",
+    "shipping-reader.py",
+    "source-rules-before-run.py"
+  ],
+  "old_driver_preserved_before_edit": true,
+  "no_original_instructions_executed": true
+}

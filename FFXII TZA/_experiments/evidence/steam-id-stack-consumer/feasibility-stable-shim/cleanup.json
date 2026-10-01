@@ -1,0 +1,17 @@
+{
+  "normal_return": false,
+  "allocations": [
+    {
+      "address": 2706125619200,
+      "freed": true
+    },
+    {
+      "address": 2706084986880,
+      "freed": true
+    },
+    {
+      "address": 1179648,
+      "freed": true
+    }
+  ]
+}

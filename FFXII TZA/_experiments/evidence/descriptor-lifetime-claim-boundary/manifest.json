@@ -1,0 +1,62 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 6855,
+    "sha256": "7990bda4e0257481dfe5f9fc3ea8a6f99a9c7d193822f012b93564a008f6415e"
+  },
+  "observation.json": {
+    "bytes": 1694,
+    "sha256": "82ccac30abe13b976c2f3925246c508318dcae3c45dd90c60e61542df17dc0fb"
+  },
+  "PLAN.md": {
+    "bytes": 2547,
+    "sha256": "4df789d62713b12a48a10bf510311feebbe93fc00c0879014f9313a6794eaf26"
+  },
+  "probe.py": {
+    "bytes": 4678,
+    "sha256": "92e0b96a3caadaacc67361190f76e2d4e1a3b7d912d7b58f4a9b269386e128c1"
+  },
+  "qualification-failure.txt": {
+    "bytes": 939,
+    "sha256": "57cf3d3df15cd6b47cd8e5359e46d94c634047c6e65584df39ae551aa717cb63"
+  },
+  "raw-results.json": {
+    "bytes": 6131,
+    "sha256": "0558658deb8c65e30c08c1d31583344ab957a6060887e8d11d1963f2085f4d61"
+  },
+  "README.md": {
+    "bytes": 4540,
+    "sha256": "678ae143f150d750b2b84be954830e29ade75b066a4473d96a80a21eef19940d"
+  },
+  "retained/00-check.py": {
+    "bytes": 18880,
+    "sha256": "66ef8cdc2ddf1fb958b531d8502d7ff9aa0530b3d67df7609b82604890fd2f27"
+  },
+  "retained/01-result.json": {
+    "bytes": 14915,
+    "sha256": "09bf1d8b7c5c97404e1361f35d72c56cbb6f26b1d7ab371948966861f7830888"
+  },
+  "retained/02-bodies.json": {
+    "bytes": 858,
+    "sha256": "a9f789356d333bfcecebc76cdcf39cdaf35b784500966aaab6d954901a4e6fa0"
+  },
+  "retained/03-EXP-097-class-descriptor-dtor-exec.md": {
+    "bytes": 8384,
+    "sha256": "c4e9d4ef3885ba8a59572476798aa9c330808f30c3d1575ce3a3caeae0fcfb94"
+  },
+  "retained/04-CONTRACT-phyre-class-descriptor.md": {
+    "bytes": 61872,
+    "sha256": "18f6a5e08208136a45959030c5cf0b3511d05f72aa4f6120f548ecf4df5d43ef"
+  },
+  "source.json": {
+    "bytes": 28042,
+    "sha256": "6036d72889070a572497f30b270ff6ad9af0151d0e4dba53fa7596703374a301"
+  },
+  "validation.json": {
+    "bytes": 722,
+    "sha256": "754aada864e0fb0abd2d988cc8252aa17dcc715e3a327533632e055c8d65ed45"
+  }
+}

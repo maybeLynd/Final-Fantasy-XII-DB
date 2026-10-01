@@ -1,0 +1,23 @@
+{
+  "name": "generic--data-exit-two",
+  "source": "generic",
+  "original_case": "data-exit-two",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--data-exit-two\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--data-exit-two\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "b92ed486fc8b1b7d621d5a088127245b27d3bae8ccfe06a1df4d3f5888cb36e2",
+  "upstream_sha256": "53d980c4d8e4ce8551d2a1fe046bb29b0c79dcdf1f86151a977c1d78cc93ec6f",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py exit 2 (accepted: [0, 1])\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

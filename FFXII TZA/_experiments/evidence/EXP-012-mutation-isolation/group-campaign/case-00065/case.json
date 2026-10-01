@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "target": "Game/Spawn/group_completion.c",
+  "input_hashes": {
+    "Game/Spawn/group_completion.c": "ca3d5dbdf7fcb2a4b8dfbffa2c6d11920d1b057a866279c95b3cef902afa429f",
+    "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+    "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+    "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+  },
+  "driver_sha256": "40061e4f7faeeacec78dc02d887a831ba330a177d1adc8570e51c2341ccfeecf",
+  "case_removed": true,
+  "mutation_outcome": "KILLED"
+}

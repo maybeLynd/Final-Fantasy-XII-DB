@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-root-retirement.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-result-01.json"
+  ],
+  "exit": 0,
+  "checker_sha256": "30eb014248ad9b77f57177bdb87e84d4ea005803f80c164b61498e5b22b469b4"
+}

@@ -1,0 +1,1 @@
+{"action": "claim", "task": "FRONTIER-REQ-SWE2-DATA-PARENT-RESIDUAL-ARTIFACT", "agent": "SWE2-DATA", "resources": [{"key": "note:astra-offline/parent-residual-artifact"}], "note": "verify_GFZ_PARENT residual was regenerated against stale GN161 coverage; current identity = GN162, unresolved=0"}

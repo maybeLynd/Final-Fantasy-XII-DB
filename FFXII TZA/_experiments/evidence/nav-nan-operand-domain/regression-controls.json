@@ -1,0 +1,16 @@
+[
+  {
+    "argument": "--fault-universal-nan-reject",
+    "returncode": 1,
+    "expected": "Universal NaN rejection",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "55a7272962be1b22fb239ff2ca19fb09da0aa1ee3e115b676db1fb9325c87dbd"
+  },
+  {
+    "argument": "--fault-physical-row-hash",
+    "returncode": 1,
+    "expected": "Normalized row identity mismatch",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "27504099ca1854faac747da1853b27c72c485d4093f064aca1dd9fa5a8dc3c99"
+  }
+]

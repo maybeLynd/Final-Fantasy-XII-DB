@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-wraps",
+    "returncode": 1,
+    "expected": "Original guest IDIV overflows before quotient reaches MOV"
+  },
+  {
+    "argument": "--fault-saturates",
+    "returncode": 1,
+    "expected": "No saturated quotient is delivered by original guest slice"
+  },
+  {
+    "argument": "--fault-private-also-fails",
+    "returncode": 1,
+    "expected": "Private IDIV-NOP control reaches stop; setup does not cause the exception"
+  }
+]

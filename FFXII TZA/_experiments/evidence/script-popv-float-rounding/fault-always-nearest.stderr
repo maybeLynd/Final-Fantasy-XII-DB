@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-float-rounding\check.py", line 26, in <module>
+    if '--fault-always-nearest' in sys.argv:assert p['value_bits']=='0000804b','Directed RC changes original float conversion value'
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Directed RC changes original float conversion value

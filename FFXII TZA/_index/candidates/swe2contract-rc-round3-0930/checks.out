@@ -1,0 +1,15 @@
+== publish 2 (register rows applied): check_questions.py --db 'Database/FFXII TZA' (SWE2-CONTRACT)
+   open-claim drift candidates (hand review, not a gate): 247
+   premise-drift candidates (EC-3; hand review): 4 retracted-only, 990 struck+live (779 rows checked)
+   ANSWERED rows citing untracked or missing evidence     : 0
+   rows whose cell count differs from their table header  : 0
+
+questions consistent: the table and the document checklists agree
+
+== documented_rule.py on the four pages
+READY               02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cl2-menu-colour-tables.md  kinds=RC-29:answered,RC-30:answered boxes=0 live=- disposed=- missing=-
+READY               02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/btm-exfont-bitmaps.md  kinds=RC-26:answered,RC-27:answered,RC-28:answered,RC-37:answered,UQ-364:answered boxes=0 live=- disposed=- missing=-
+READY               02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/as7-menu-graphics-containers.md  kinds=RC-22:answered,RC-24:answered,RC-25:answered boxes=0 live=- disposed=- missing=-
+PARTIAL             00-Engine-Core-Runtime/Developer-Tuning-Console/the-event-slot-panel-and-its-dead-feeder.md  kinds= boxes=1 live=RC-5 disposed=- missing=-
+TALLY PARTIAL=1 READY=3 of 4
+FAILS 0

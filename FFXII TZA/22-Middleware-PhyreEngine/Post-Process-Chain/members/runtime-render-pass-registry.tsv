@@ -1,0 +1,67 @@
+address	name	band	submitted_by_a_post_effect_worker
+# Named render-pass records registered at runtime through FUN_005DC6F0(record, name, 0) from a
+# CRT initializer. 60 records. Distinct from the STATIC stride-0x20 array at 01F2D6A0-01F2DD80
+# (56 records, see 22-Middleware-PhyreEngine/Post-Process-Chain/members/named-render-pass-array.tsv):
+# these live in .data virtual tail and are zero at rest, so only the initializer names them.
+# Enumerated 2026-09-22 (FABLE). The last column marks the 24 passes the eleven post-effect
+# workers install at [ctx+0x80] before their 0060B980 submissions.
+01F81220	VideoScreen	game	
+01F82D38	MapShadowRender	game	
+01F82E68	OpaqueDepth	game	
+01F82E88	OpaqueGray	game	
+01F82FA0	ShadowRender	game	
+01F82FC0	ShadowRenderWithRef	game	
+01F82FE0	AlphaModeRender	game	
+01F83000	AlphaModeClipRender	game	
+01F83020	NearFadeRender	game	
+01F83040	NearFadeClipRender	game	
+02D36DA0	GenerateGlowBuffer	phyre-post-effect	yes
+02D36DC0	RenderFXAA	phyre-post-effect	yes
+02D36DE0	RenderRGBL	phyre-post-effect	yes
+02D36E00	RenderScreenSpaceReflection	phyre-post-effect	yes
+02D36E20	Cel	phyre-post-effect	yes
+02D36E40	PrecomputeTransmittance	phyre-post-effect	
+02D36E60	PrecomputeSingleIrradiance	phyre-post-effect	
+02D36E80	PrecomputeSingleScattering	phyre-post-effect	
+02D36EA0	InitialiseInscattering	phyre-post-effect	
+02D36EC0	PrecomputeRadiance	phyre-post-effect	
+02D36EE0	PrecomputeMultipleIrradiance	phyre-post-effect	
+02D36F00	PrecomputeMultipleScattering	phyre-post-effect	
+02D36F20	CopyIrradiance	phyre-post-effect	
+02D36F40	CopyInscatter	phyre-post-effect	
+02D36F60	AddToIrradiance	phyre-post-effect	
+02D36F80	AddToInscatter	phyre-post-effect	
+02D36FA0	RenderAtmosphere	phyre-post-effect	yes
+02D36FC0	RenderTextures	phyre-post-effect	
+02D36FE0	ResetTextures	phyre-post-effect	
+02D373C0	RenderPointLight	phyre-post-effect	yes
+02D373E0	RenderSpotLight	phyre-post-effect	yes
+02D37400	RenderDirectionalLight	phyre-post-effect	yes
+02D37420	CompositeToScreen	phyre-post-effect	yes
+02D37440	CompositeToScreenTiled	phyre-post-effect	yes
+02D37460	GenerateLightingTiled	phyre-post-effect	
+02D37480	GenerateLightingInstantLightsTiled	phyre-post-effect	
+02D375C0	RenderDoFHorizontal	phyre-post-effect	yes
+02D375E0	RenderDoFVertical	phyre-post-effect	yes
+02D37600	RenderDoFComposite	phyre-post-effect	yes
+02D37680	RenderCameraMotionBlur	phyre-post-effect	yes
+02D376A0	RenderCameraMotionBlurInverted	phyre-post-effect	
+02D377E0	RenderGaussianBlurX	phyre-post-effect	yes
+02D37800	RenderGaussianBlurY	phyre-post-effect	yes
+02D37820	RenderGaussianBlurYComposite	phyre-post-effect	yes
+02D37840	RenderGaussianBlurYCompositeCombine	phyre-post-effect	
+02D37860	RenderFXAAInverted	phyre-post-effect	
+02D37A60	CelInverted	phyre-post-effect	
+02D37B40	ScreenSpaceReflectionPrePass	phyre-post-effect	yes
+02D37B60	DownsampleScreenSpaceReflectionDepth	phyre-post-effect	yes
+02D37B80	CompositeScreenSpaceReflection	phyre-post-effect	yes
+02D37FC0	RenderAtmosphereInverted	phyre-post-effect	
+02D37FE0	MaterialPostEffect	phyre-post-effect	yes
+02D38000	MaterialPostEffectInverted	phyre-post-effect	
+02E5BEA8	RenderText_AlphaBlend	text	
+02E5BEC8	RenderText_AlphaTest	text	
+02E5BEE8	RenderText_HardEdges	text	
+02E5BF08	RenderText_SoftEdges	text	
+02E5BF28	RenderText_SoftEdgesAndOutline	text	
+02E5BF48	RenderText_SoftEdgesAndShadow	text	
+02E5BF68	RenderText_SoftEdgesAndGlow	text	

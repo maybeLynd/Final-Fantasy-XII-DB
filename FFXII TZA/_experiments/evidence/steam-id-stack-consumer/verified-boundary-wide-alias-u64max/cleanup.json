@@ -1,0 +1,22 @@
+{
+  "normal_return": true,
+  "allocations": [
+    {
+      "address": 1637685592064,
+      "freed": true
+    },
+    {
+      "address": 1637685526528,
+      "freed": true
+    },
+    {
+      "address": 1179648,
+      "freed": true
+    }
+  ],
+  "returned": 1511506142,
+  "raw_sha256": "4b541fcb1c88971bd33975a2b2e82df5e122ce11ed7bd9fb033f730d4321929a",
+  "source_and_code_unchanged": true,
+  "crt_sha256_after": "5c52e3a303baaac0e0af8bd9b96134993da34bc9d834a31ef37e1d2cdc7fe192",
+  "debugger_present": false
+}

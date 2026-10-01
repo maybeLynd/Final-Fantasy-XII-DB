@@ -1,0 +1,43 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\arg5-source-boundary.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"FIRST_SELECTED_POSITION_CALL_ARG5_ZERO_STATIC\",\n  \"method\": \"A only; original retained/PE source, no machine-code/live execution\",\n  \"first_call\": {\n    \"pc\": \"0x2e4751\",\n    \"arg5\": 0,\n    \"proof\": \"local XOR then no CALL/RBX write or internal incoming edge before DWORD stack store\",\n    \"selection\": \"Predicate nonzero arm only; normal parent entry/return and valid ABI frame, no arbitrary interior intervention\"\n  },\n  \"second_call\": {\n    \"pc\": \"0x2e4928\",\n    \"source_register\": \"EBX\",\n    \"status\": \"Conditional on normal native/library ABI preservation and valid frame; not observed actual value\",\n    \"intervening_sources\": [\n      {\n        \"entry\": \"0x264460\",\n        \"extent_status\": \"UNPROVED_CATALOGUE_ONLY\",\n        \"explicit_RBX_writes\": [],\n        \"external_jumps\": []\n      },\n      {\n        \"entry\": \"0x26afe0\",\n        \"extent_status\": \"UNWIND_UNION_MATCH\",\n        \"explicit_RBX_writes\": [\n          {\n            \"pc\": \"0x26afe6\",\n            \"instruction\": \"mov rbx, rcx\"\n          },\n          {\n            \"pc\": \"0x26b081\",\n            \"instruction\": \"mov rbx, qword ptr [rbx + 0xc0]\"\n          },\n          {\n            \"pc\": \"0x26b08d\",\n            \"instruction\": \"mov rbx, qword ptr [rbx + 0x138]\"\n          },\n          {\n            \"pc\": \"0x26b0bc\",\n            \"instruction\": \"pop rbx\"\n          }\n        ],\n        \"external_jumps\": []\n      },\n      {\n        \"entry\": \"0x3a1920\",\n        \"extent_status\": \"UNPROVED_CATALOGUE_ONLY\",\n        \"explicit_RBX_writes\": [],\n        \"external_jumps\": [\n          {\n            \"pc\": \"0x3a1950\",\n            \"target\": \"0x861f14\"\n          }\n        ]\n      },\n      {\n        \"entry\": \"0x3a1d30\",\n        \"extent_status\": \"UNPROVED_CATALOGUE_ONLY\",\n        \"explicit_RBX_writes\": [],\n        \"external_jumps\": [\n          {\n            \"pc\": \"0x3a1d42\",\n            \"target\": \"0x861f14\"\n          }\n        ]\n      },\n      {\n        \"entry\": \"0x4686d0\",\n        \"extent_status\": \"UNPROVED_CATALOGUE_ONLY\",\n        \"explicit_RBX_writes\": [],\n        \"external_jumps\": [\n          {\n            \"pc\": \"0x4686ee\",\n            \"target\": \"0x861f14\"\n          }\n        ]\n      }\n    ],\n    \"declared_math_boundary\": {\n      \"thunk\": \"0x861f14\",\n      \"bytes\": \"ff259e0c0600\",\n      \"iat\": \"0x8c2bb8\",\n      \"imports\": [\n        {\n          \"dll\": \"api-ms-win-crt-math-l1-1-0.dll\",\n          \"name\": \"sqrtf\",\n          \"iat_va\": \"0x8c2bb8\"\n        }\n      ],\n      \"limits\": \"Static name/slot only; current resolved module/native effects unobserved\"\n    }\n  },\n  \"class_stability\": \"OPEN\",\n  \"driver_sha256\": \"dcbe4be9f80382729746b9fb8d8f189e66e8eb5c63114d37fd83ac37aa120b79\",\n  \"reference_sha256\": \"73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8\",\n  \"tool_identity\": {\n    \"python\": \"3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]\",\n    \"capstone\": \"5.0.7\",\n    \"pefile_path\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\FFXII TZA\\\\_experiments\\\\evidence\\\\heading-extent-repair-review\\\\python-deps\\\\pefile.py\",\n    \"pefile_sha256\": \"0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345\",\n    \"adapter_sha256\": \"5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38\"\n  },\n  \"limits\": \"First call zero-argument branch can be analyzed when its callee class gate admits it. Do not prune the second nonzero branch without the stated ABI/state evidence; no class/lifetime/normal gameplay reachability closure.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "driver_sha256": "dcbe4be9f80382729746b9fb8d8f189e66e8eb5c63114d37fd83ac37aa120b79"
+  },
+  {
+    "case": "intervening-call",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\arg5-source-boundary.py",
+      "--fault-intervening-call"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\arg5-source-boundary.py\", line 32, in <module>\n    assert not calls_before and not incoming, 'Local zero proof cannot swallow an intervening call or mid-entry source edge'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Local zero proof cannot swallow an intervening call or mid-entry source edge\n",
+    "terminal": true,
+    "driver_sha256": "dcbe4be9f80382729746b9fb8d8f189e66e8eb5c63114d37fd83ac37aa120b79"
+  },
+  {
+    "case": "mid-entry-edge",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\arg5-source-boundary.py",
+      "--fault-mid-entry-edge"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\arg5-source-boundary.py\", line 32, in <module>\n    assert not calls_before and not incoming, 'Local zero proof cannot swallow an intervening call or mid-entry source edge'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Local zero proof cannot swallow an intervening call or mid-entry source edge\n",
+    "terminal": true,
+    "driver_sha256": "dcbe4be9f80382729746b9fb8d8f189e66e8eb5c63114d37fd83ac37aa120b79"
+  }
+]

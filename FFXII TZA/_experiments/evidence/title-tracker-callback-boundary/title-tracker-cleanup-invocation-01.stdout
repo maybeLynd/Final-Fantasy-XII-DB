@@ -1,0 +1,2 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+Captured complete normal tracker boundary and named registration helper; callee/scheduling effects still separate

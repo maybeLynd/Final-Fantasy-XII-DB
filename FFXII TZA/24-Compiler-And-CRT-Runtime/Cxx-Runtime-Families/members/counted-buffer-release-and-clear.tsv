@@ -1,0 +1,16 @@
+# counted-buffer release-and-clear, 68-byte form - EC-7 family C
+# # If the record's own-flag is clear, free the buffer via 00584730; either way
+# # zero the {size, ptr} fields.
+address	targets
+00597B00	00584730
+00597B50	00584730
+00597BA0	00584730
+00597BF0	00584730
+00597C40	00584730
+00597C90	00584730
+00597CE0	00584730
+00597D30	00584730
+00597D80	00584730
+00597DD0	00584730
+00597E20	00584730
+00597E70	00584730

@@ -1,0 +1,246 @@
+function	name	site	disp	kind	instruction	route	note
+003112F0	BattleFormula_ApplyTargetResult	00311384	0x2C	r	test dword ptr [rbx + 0x2c], 0x80000	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311394	0x140	r	test dword ptr [rbx + 0x140], 0x4000	seed	
+003112F0	BattleFormula_ApplyTargetResult	003113CB	0x11C	r	movzx eax, byte ptr [rbx + 0x11c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003113E9	0x11D	r	movzx eax, byte ptr [rbx + 0x11d]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311423	0x32	addr	lea r15, [rbx + 0x32]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311430	0x32	r	cmp byte ptr [r15], r13b	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031148D	0x38	r	cmp dword ptr [rbx + 0x38], -1	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311493	0x38	r	movzx ecx, word ptr [rbx + 0x38]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003114D2	0x140	r	mov ecx, dword ptr [rbx + 0x140]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003114F2	0x54	r	cmp dword ptr [rbx + 0x54], r13d	seed	
+003112F0	BattleFormula_ApplyTargetResult	003114FB	0x5C	addr	lea r15, [rbx + 0x5c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311507	0xDC	addr	lea r12, [rbx + 0xdc]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311510	0x54	r	mov eax, dword ptr [rbx + 0x54]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311518	0xDC	r	movsx eax, word ptr [r12]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311521	0x5C	r	mov r9d, dword ptr [r15]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031156A	0x58	r	cmp dword ptr [rbx + 0x58], 0	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311577	0x58	r	mov eax, dword ptr [rbx + 0x58]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003115B9	0x5C	addr	lea rcx, [rbx + 0x5c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003115D0	0x5C	r	mov eax, dword ptr [rcx]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003115E5	0xDC	addr	lea rax, [rbx + 0xdc]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003115F0	0xDC	r	movzx ecx, word ptr [rax]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003115F8	0x13C	w	mov word ptr [rax + r9 + 0x60], cx	seed	idx
+003112F0	BattleFormula_ApplyTargetResult	00311608	0x2C	r	mov ecx, dword ptr [rbx + 0x2c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311620	0x24	r	mov edx, dword ptr [rbx + 0x24]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031166A	0x2C	r	mov ecx, dword ptr [rbx + 0x2c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311673	0x2A	r	movsx edx, word ptr [rbx + 0x2a]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003116A6	0x1D	r	movzx ecx, byte ptr [rbx + 0x1d]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003116AE	0x2C	r	mov eax, dword ptr [rbx + 0x2c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311700	0x2C	r	mov edx, dword ptr [rbx + 0x2c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031172F	0x20	r	mov edx, dword ptr [rbx + 0x20]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311744	0x2C	r	mov r9d, dword ptr [rbx + 0x2c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031174F	0x28	r	movsx edx, word ptr [rbx + 0x28]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311781	0x140	r	mov r12d, dword ptr [rbx + 0x140]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311788	0x3C	addr	lea r15, [rbx + 0x3c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003117B0	0x3C	r	movzx edx, byte ptr [r15]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003117E4	0x3E	addr	lea r15, [rbx + 0x3e]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003117F0	0x3E	r	movzx edx, byte ptr [r15]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031181B	0x42	r	movzx eax, word ptr [rbx + 0x42]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031182B	0x44	r	movzx eax, word ptr [rbx + 0x44]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031183B	0x46	r	movzx eax, word ptr [rbx + 0x46]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031184B	0x48	r	movzx eax, word ptr [rbx + 0x48]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031185B	0x4A	r	movzx eax, word ptr [rbx + 0x4a]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031186B	0x4C	r	movzx eax, word ptr [rbx + 0x4c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031187B	0x4E	r	movzx eax, word ptr [rbx + 0x4e]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031188B	0x50	r	movzx eax, word ptr [rbx + 0x50]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003118A1	0x11E	r	movzx ecx, word ptr [rbx + 0x11e]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003118BF	0x120	r	movzx ecx, word ptr [rbx + 0x120]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003118DD	0x122	r	movzx ecx, word ptr [rbx + 0x122]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003118FB	0x124	r	movzx ecx, word ptr [rbx + 0x124]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031193C	0x128	r	movzx ecx, byte ptr [rbx + 0x128]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311964	0x129	r	movzx ecx, byte ptr [rbx + 0x129]	seed	
+003112F0	BattleFormula_ApplyTargetResult	0031198C	0x12A	r	movzx ecx, byte ptr [rbx + 0x12a]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003119B4	0x12B	r	movzx ecx, byte ptr [rbx + 0x12b]	seed	
+003112F0	BattleFormula_ApplyTargetResult	003119DC	0x12C	r	movzx ecx, byte ptr [rbx + 0x12c]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311A06	0x12D	r	movzx ecx, byte ptr [rbx + 0x12d]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311A30	0x12E	r	movzx ecx, byte ptr [rbx + 0x12e]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311A5A	0x12F	r	movzx ecx, byte ptr [rbx + 0x12f]	seed	
+003112F0	BattleFormula_ApplyTargetResult	00311A84	0x8	r	mov ebx, dword ptr [rbx + 8]	seed	
+003848E0	BattleFormula_InitializeResultRecord	003848FE	0x5C	addr	lea rcx, [rbx + 0x5c]	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384907	0x38	w	mov dword ptr [rbx + 0x38], r8d	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038490B	0x30	w	mov word ptr [rbx + 0x30], ax	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038490F	0x11C	w	mov word ptr [rbx + 0x11c], ax	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384916	0xDC	addr	lea rax, [rbx + 0xdc]	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038491D	0x11E	w	mov word ptr [rbx + 0x11e], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384929	0x120	w	mov word ptr [rbx + 0x120], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384931	0x122	w	mov word ptr [rbx + 0x122], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384939	0x124	w	mov word ptr [rbx + 0x124], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384941	0x3C	w	mov word ptr [rbx + 0x3c], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384946	0x3E	w	mov dword ptr [rbx + 0x3e], r8d	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384950	0x5C	w	mov dword ptr [rcx], r8d	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384953	0x60	addr	lea rcx, [rcx + 4]	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384957	0xDC	w	mov word ptr [rax], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038495B	0xDE	addr	lea rax, [rax + 2]	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384965	0x42	w	mov word ptr [rbx + 0x42], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038496A	0x44	w	mov word ptr [rbx + 0x44], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038496F	0x46	w	mov word ptr [rbx + 0x46], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384974	0x48	w	mov word ptr [rbx + 0x48], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384979	0x4A	w	mov word ptr [rbx + 0x4a], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038497E	0x4C	w	mov word ptr [rbx + 0x4c], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384983	0x4E	w	mov word ptr [rbx + 0x4e], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384988	0x50	w	mov word ptr [rbx + 0x50], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	0038498D	0x2C	rw	or dword ptr [rbx + 0x2c], 1	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384991	0x130	w	mov word ptr [rbx + 0x130], r8w	seed	
+003848E0	BattleFormula_InitializeResultRecord	00384999	0x138	w	mov dword ptr [rbx + 0x138], r8d	seed	
+003848E0	BattleFormula_InitializeResultRecord	003849A0	0x13C	w	mov dword ptr [rbx + 0x13c], r8d	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BAF	0x138	r	cmp dword ptr [r9 + 0x138], -1	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BC9	0x138	r	movzx ecx, byte ptr [r9 + 0x138]	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BD7	0x13C	r	mov ecx, dword ptr [r9 + 0x13c]	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BF0	0x34	r	cmp byte ptr [r9 + 0x34], 0	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385C1B	0x33	r	cmp byte ptr [rbx + 0x33], 0	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385C45	0x32	r	cmp byte ptr [rbx + 0x32], 0	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385C6F	0x1C	r	cmp byte ptr [rbx + 0x1c], 1	seed	
+00385F60	BattleFormula_ResolveTargetResult	00386029	0x0	r	test byte ptr [rbx], 0x20	seed	
+00385F60	BattleFormula_ResolveTargetResult	00386082	0x0	rw	and dword ptr [rbx], 0xffffffdf	seed	
+00385F60	BattleFormula_ResolveTargetResult	003860A7	0x4	w	mov byte ptr [rbx + 4], 6	seed	
+00385F60	BattleFormula_ResolveTargetResult	003860E3	0x18	r	xor ecx, dword ptr [rbx + 0x18]	seed	
+00385F60	BattleFormula_ResolveTargetResult	003860E9	0x18	r	xor ecx, dword ptr [rbx + 0x18]	seed	
+00385F60	BattleFormula_ResolveTargetResult	003860EC	0x18	w	mov dword ptr [rbx + 0x18], ecx	seed	
+00385F60	BattleFormula_ResolveTargetResult	003860FA	0x18	w	mov dword ptr [rbx + 0x18], ecx	seed	
+00385F60	BattleFormula_ResolveTargetResult	00386108	0x18	w	mov dword ptr [rbx + 0x18], eax	seed	
+00385F60	BattleFormula_ResolveTargetResult	0038610B	0x4	r	movzx eax, byte ptr [rbx + 4]	seed	
+00385F60	BattleFormula_ResolveTargetResult	0038612D	0x4	w	mov byte ptr [rbx + 4], r12b	seed	
+00387FD0	BattleFormula_RollSpecialGuardOutcome	0038823B	0x4	w	mov byte ptr [rax + 4], 0xb	seed	
+00388660	BattleFormula_RollAndStoreComboCount	003886F1	0x18	rw	and dword ptr [rax + 0x18], 0xfffffffd	seed	
+00388660	BattleFormula_RollAndStoreComboCount	0038887A	0x18	rw	or dword ptr [rax + 0x18], 2	seed	
+00388660	BattleFormula_RollAndStoreComboCount	00388891	0x18	r	test byte ptr [rax + 0x18], 2	seed	
+00388990	FUN_00388990	003889AF	0x140	rw	or dword ptr [rax + 0x140], 0x100	seed	
+003889C0	FUN_003889c0	003889E2	0x140	rw	or dword ptr [rax + 0x140], 0x200	seed	
+00388D50	FUN_00388d50	00388E45	0x140	rw	or dword ptr [rax + 0x140], 0x800	seed	
+00388D50	FUN_00388d50	00388E57	0x8	w	mov dword ptr [rax + 8], edi	seed	
+00388D50	FUN_00388d50	00388E62	0x8	w	mov dword ptr [rcx + 8], eax	seed	
+00389140	BattleFormula_RollPrimaryFormulaResourceReactionMode2Chance	003891D9	0x18	rw	or dword ptr [rax + 0x18], 1	seed	
+003896B0	BattleFormula_RollAvoidGuardParryOutcome	00389717	0x4	w	mov byte ptr [rax + 4], 4	seed	
+003896B0	BattleFormula_RollAvoidGuardParryOutcome	00389730	0x4	w	mov byte ptr [rax + 4], 3	seed	
+00389820	FUN_00389820	0038987E	0x4	w	mov byte ptr [rax + 4], 3	seed	
+00389820	FUN_00389820	0038988F	0x18	rw	or dword ptr [rax + 0x18], 8	seed	
+00389950	FUN_00389950	003899AA	0x4	w	mov byte ptr [rax + 4], 3	seed	
+00389950	FUN_00389950	003899BB	0x18	rw	or dword ptr [rax + 0x18], 8	seed	
+00389C60	FUN_00389c60	00389D58	0x138	w	mov dword ptr [rax + 0x138], ecx	seed	
+0038B6A0	BattleFormula_ApplyActionElementAffinity	0038B786	0x140	rw	or dword ptr [rax + 0x140], 2	seed	
+0038B6A0	BattleFormula_ApplyActionElementAffinity	0038B7F2	0x140	rw	or dword ptr [rax + 0x140], 0x400	seed	
+0038B6A0	BattleFormula_ApplyActionElementAffinity	0038B863	0x140	rw	or dword ptr [rax + 0x140], 4	seed	
+0038B6A0	BattleFormula_ApplyActionElementAffinity	0038B932	0x140	rw	or dword ptr [rax + 0x140], 8	seed	
+0038BE00	FUN_0038be00	0038BE04	0x18	r	test byte ptr [rax + 0x18], 1	seed	
+0038BE30	BattleFormula_ApplyEquipmentElementAffinity	0038C1E6	0x140	rw	or dword ptr [rax + 0x140], 2	seed	
+0038BE30	BattleFormula_ApplyEquipmentElementAffinity	0038C3BE	0x140	rw	or dword ptr [rax + 0x140], 0x400	seed	
+0038BE30	BattleFormula_ApplyEquipmentElementAffinity	0038C590	0x140	rw	or dword ptr [rax + 0x140], 4	seed	
+0038BE30	BattleFormula_ApplyEquipmentElementAffinity	0038C8F5	0x140	rw	or dword ptr [rax + 0x140], 8	seed	
+0038D280	BattleFormula_FinalizeTargetHpMagnitude	0038D2C4	0x140	rw	or dword ptr [rax + 0x140], 1	seed	
+0038D6B0	FUN_0038d6b0	0038D6D5	0x140	rw	or dword ptr [rax + 0x140], ecx	seed	
+0038D6B0	FUN_0038d6b0	0038D6E9	0x2C	rw	or dword ptr [rax + 0x2c], 0x400	seed	
+0038D6B0	FUN_0038d6b0	0038D759	0x2C	rw	and dword ptr [rax + 0x2c], 0xfffffbff	seed	
+0038DB50	FUN_0038db50	0038DBC2	0x140	rw	or dword ptr [rax + 0x140], 1	seed	
+0038E080	FUN_0038e080	0038E12D	0x140	rw	or dword ptr [rax + 0x140], 0x2000	seed	
+0038E080	FUN_0038e080	0038E168	0x140	rw	and dword ptr [rax + 0x140], 0xffffdfff	seed	
+0038E080	FUN_0038e080	0038E1E0	0x140	rw	or dword ptr [rax + 0x140], 0x2000	seed	
+0038E080	FUN_0038e080	0038E216	0x140	rw	and dword ptr [rax + 0x140], 0xffffdfff	seed	
+0038E080	FUN_0038e080	0038E224	0x140	r	test dword ptr [rax + 0x140], 0x2000	seed	
+0038E080	FUN_0038e080	0038E2B3	0x140	rw	or dword ptr [rax + 0x140], 0x2000	seed	
+0038E480	FUN_0038e480	0038E4AB	0x140	rw	or dword ptr [rax + 0x140], ecx	seed	
+0038EAB0	FUN_0038eab0	0038EAD5	0x2C	rw	or dword ptr [rax + 0x2c], 0x40000	seed	
+0038EBE0	FUN_0038ebe0	0038ECBC	0x13C	w	mov dword ptr [rcx + 0x13c], r8d	seed	
+0038F630	FUN_0038f630	0038F6DA	0x2C	rw	or dword ptr [rax + 0x2c], 0x80000	seed	
+0038F6F0	FUN_0038f6f0	0038F7E9	0x8	w	mov dword ptr [rax + 8], ebx	seed	
+0038FC10	BattleFormula_CalcRemoveEligibleCandidateStatuses	0038FC83	0x58	rw	or dword ptr [rcx + 0x58], eax	seed	
+0038FCE0	FUN_0038fce0	0038FE25	0x54	rw	or dword ptr [rax + 0x54], ebx	seed	
+0038FCE0	FUN_0038fce0	0038FEE0	0x54	r	cmp dword ptr [rax + 0x54], 0	seed	
+0038FF20	FUN_0038ff20	0038FF7A	0x3C	w	mov byte ptr [rcx + 0x3c], al	seed	
+0038FF20	FUN_0038ff20	0038FFCC	0x3D	w	mov byte ptr [rcx + 0x3d], al	seed	
+0038FF20	FUN_0038ff20	00390083	0x42	w	mov word ptr [rax + rdi*2 + 0x42], dx	seed	idx
+003900C0	FUN_003900c0	00390118	0x3E	w	mov byte ptr [rcx + 0x3e], al	seed	
+003900C0	FUN_003900c0	00390164	0x3F	w	mov byte ptr [rcx + 0x3f], al	seed	
+00390170	FUN_00390170	0039017E	0x2C	rw	or dword ptr [rax + 0x2c], 0x80000	seed	
+003902F0	FUN_003902f0	0039031E	0x12C	rw	or byte ptr [rax + 0x12c], r9b	seed	
+003902F0	FUN_003902f0	0039032F	0x12D	rw	or byte ptr [rax + 0x12d], r9b	seed	
+003902F0	FUN_003902f0	00390340	0x12F	rw	or byte ptr [rax + 0x12f], r9b	seed	
+00390390	FUN_00390390	0039048E	0x2C	rw	or dword ptr [rax + 0x2c], 0x800000	seed	
+00390680	BattleFormula_SelectPoachRewardItem95_5	003907C8	0x2C	rw	or dword ptr [rax + 0x2c], 0x80000	seed	
+003907E0	FUN_003907e0	00390893	0x130	w	mov word ptr [rax + 0x130], dx	seed	
+003908A0	FUN_003908a0	003908BB	0x0	r	mov edx, dword ptr [rax]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469EF7	0x8	r	mov eax, dword ptr [r9 + 8]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F01	0x24	r	mov eax, dword ptr [r9 + 0x24]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F2B	0x38	r	mov eax, dword ptr [r9 + 0x38]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F68	0x140	r	test dword ptr [r15 + 0x140], 0x100	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F86	0x140	r	test dword ptr [r15 + 0x140], 0x200	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469FA4	0x140	r	test dword ptr [r15 + 0x140], 0x800	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469FC2	0x140	r	test dword ptr [r15 + 0x140], 0x400	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469FFF	0x4	r	cmp byte ptr [r15 + 4], 6	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A08F	0x2C	r	mov eax, dword ptr [r15 + 0x2c]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A097	0x24	r	mov ecx, dword ptr [r15 + 0x24]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A0A1	0x24	r	add ecx, dword ptr [r15 + 0x24]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A0AC	0x2A	r	movsx eax, word ptr [r15 + 0x2a]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A0B6	0x2A	r	movsx ecx, word ptr [r15 + 0x2a]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A208	0x58	r	test byte ptr [r15 + 0x58], r12b	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A21B	0x2C	r	mov ecx, dword ptr [r15 + 0x2c]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A265	0x24	r	mov eax, dword ptr [r15 + 0x24]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A28C	0x2C	r	mov eax, dword ptr [r15 + 0x2c]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A29C	0x2A	r	movsx eax, word ptr [r15 + 0x2a]	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A30A	0x58	r	test dword ptr [r15 + 0x58], r12d	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A3C4	0x4	r	cmp byte ptr [r15 + 4], 6	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A3D7	0x2C	r	test dword ptr [r15 + 0x2c], 0x800000	seed	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A3F5	0x4	r	cmp byte ptr [r15 + 4], sil	seed	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BAF	0x138	r	cmp dword ptr [r9 + 0x138], -1	arg3+0x0<003112F0@0031137A	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BC9	0x138	r	movzx ecx, byte ptr [r9 + 0x138]	arg3+0x0<003112F0@0031137A	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BD7	0x13C	r	mov ecx, dword ptr [r9 + 0x13c]	arg3+0x0<003112F0@0031137A	
+00385BA0	BattleFormula_ApplyResultMetadata	00385BF0	0x34	r	cmp byte ptr [r9 + 0x34], 0	arg3+0x0<003112F0@0031137A	
+00385BA0	BattleFormula_ApplyResultMetadata	00385C1B	0x33	r	cmp byte ptr [rbx + 0x33], 0	arg3+0x0<003112F0@0031137A	
+00385BA0	BattleFormula_ApplyResultMetadata	00385C45	0x32	r	cmp byte ptr [rbx + 0x32], 0	arg3+0x0<003112F0@0031137A	
+00385BA0	BattleFormula_ApplyResultMetadata	00385C6F	0x1C	r	cmp byte ptr [rbx + 0x1c], 1	arg3+0x0<003112F0@0031137A	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469EF7	0x8	r	mov eax, dword ptr [r9 + 8]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F01	0x24	r	mov eax, dword ptr [r9 + 0x24]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F2B	0x38	r	mov eax, dword ptr [r9 + 0x38]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F68	0x140	r	test dword ptr [r15 + 0x140], 0x100	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469F86	0x140	r	test dword ptr [r15 + 0x140], 0x200	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469FA4	0x140	r	test dword ptr [r15 + 0x140], 0x800	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469FC2	0x140	r	test dword ptr [r15 + 0x140], 0x400	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	00469FFF	0x4	r	cmp byte ptr [r15 + 4], 6	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A08F	0x2C	r	mov eax, dword ptr [r15 + 0x2c]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A097	0x24	r	mov ecx, dword ptr [r15 + 0x24]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A0A1	0x24	r	add ecx, dword ptr [r15 + 0x24]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A0AC	0x2A	r	movsx eax, word ptr [r15 + 0x2a]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A0B6	0x2A	r	movsx ecx, word ptr [r15 + 0x2a]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A208	0x58	r	test byte ptr [r15 + 0x58], r12b	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A21B	0x2C	r	mov ecx, dword ptr [r15 + 0x2c]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A265	0x24	r	mov eax, dword ptr [r15 + 0x24]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A28C	0x2C	r	mov eax, dword ptr [r15 + 0x2c]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A29C	0x2A	r	movsx eax, word ptr [r15 + 0x2a]	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A30A	0x58	r	test dword ptr [r15 + 0x58], r12d	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A3C4	0x4	r	cmp byte ptr [r15 + 4], 6	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A3D7	0x2C	r	test dword ptr [r15 + 0x2c], 0x800000	arg3+0x0<00385BA0@00385C85	
+00469EC0	BattleFormula_DispatchPostResultEvents	0046A3F5	0x4	r	cmp byte ptr [r15 + 4], sil	arg3+0x0<00385BA0@00385C85	
+003848E0	BattleFormula_InitializeResultRecord	003848FE	0x5C	addr	lea rcx, [rbx + 0x5c]	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384907	0x38	w	mov dword ptr [rbx + 0x38], r8d	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038490B	0x30	w	mov word ptr [rbx + 0x30], ax	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038490F	0x11C	w	mov word ptr [rbx + 0x11c], ax	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384916	0xDC	addr	lea rax, [rbx + 0xdc]	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038491D	0x11E	w	mov word ptr [rbx + 0x11e], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384929	0x120	w	mov word ptr [rbx + 0x120], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384931	0x122	w	mov word ptr [rbx + 0x122], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384939	0x124	w	mov word ptr [rbx + 0x124], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384941	0x3C	w	mov word ptr [rbx + 0x3c], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384946	0x3E	w	mov dword ptr [rbx + 0x3e], r8d	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384950	0x5C	w	mov dword ptr [rcx], r8d	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384953	0x60	addr	lea rcx, [rcx + 4]	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384957	0xDC	w	mov word ptr [rax], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038495B	0xDE	addr	lea rax, [rax + 2]	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384965	0x42	w	mov word ptr [rbx + 0x42], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038496A	0x44	w	mov word ptr [rbx + 0x44], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038496F	0x46	w	mov word ptr [rbx + 0x46], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384974	0x48	w	mov word ptr [rbx + 0x48], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384979	0x4A	w	mov word ptr [rbx + 0x4a], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038497E	0x4C	w	mov word ptr [rbx + 0x4c], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384983	0x4E	w	mov word ptr [rbx + 0x4e], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384988	0x50	w	mov word ptr [rbx + 0x50], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	0038498D	0x2C	rw	or dword ptr [rbx + 0x2c], 1	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384991	0x130	w	mov word ptr [rbx + 0x130], r8w	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	00384999	0x138	w	mov dword ptr [rbx + 0x138], r8d	arg0+0x0<00385F60@0038600F	
+003848E0	BattleFormula_InitializeResultRecord	003849A0	0x13C	w	mov dword ptr [rbx + 0x13c], r8d	arg0+0x0<00385F60@0038600F	
+003847C0	BattleFormula_BuildEvaluationContext	003848A1	0x0	r	test byte ptr [rsi], 0x20	arg1+0x0<00385F60@003860D5	
+0046A870	FUN_0046a870	0046A8E7	0x32	r	cmp byte ptr [rsi + 0x32], 0	arg3+0x0<00469EC0@0046A504	
+0046A870	FUN_0046a870	0046A8F6	0x33	r	cmp byte ptr [rsi + 0x33], 0	arg3+0x0<00469EC0@0046A504	
+0046A870	FUN_0046a870	0046A905	0x34	r	cmp byte ptr [rsi + 0x34], 0	arg3+0x0<00469EC0@0046A504	
+0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0030E5FF	0x0	addr	lea r8, [rsp + 0x80]	ctor	record is the caller's frame slot rsp+0x80, memset then passed to callees
+0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0030E621	0x0	addr	lea rcx, [rsp + 0x80]	ctor	record is the caller's frame slot rsp+0x80, memset then passed to callees
+0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0030E610	0x2c	r	test byte ptr [rsp + 0xac], bpl	ctor	record is the caller's frame slot rsp+0x80, memset then passed to callees

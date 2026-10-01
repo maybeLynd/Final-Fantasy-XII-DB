@@ -1,0 +1,6 @@
+SURVIVES  F0  202 slots; slot 202 = 3F80000000060303
+SURVIVES  F1  152 targets; 42 no-ops; multi-id {'00388FE0': [23, 24], '00389670': [40, 45, 46], '00389F80': [60, 63], '0038AA90': [61, 64, 75], '0038AAF0': [65, 76], '0038D280': [113, 125], '0038F5A0': [115, 160]}
+SURVIVES  F2  0016D6A0 bytes c20000
+SURVIVES  F3  band writers of the scratch: 16 of 16 distinct targets ['00389DD0', '00389F80', '0038A110', '0038A1F0', '0038A2D0', '0038A3A0']; the finalize reads ['02AEE054', '02AEE058', '02AEE05C']
+SURVIVES  F4  8 Roll* steps; without a generator call within two levels: none
+FAILS 0

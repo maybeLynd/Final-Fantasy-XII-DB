@@ -1,0 +1,10 @@
+# NativeAdapter.NullableOutRecordVptrCall - EC-7 family C
+# # if the out-record pointer is non-null, call a member op on it and
+# # install a member rip vtable pointer; return 1. Sibling of
+# # OutRecordDescriptorInitReturnTrue (different call/store shape).
+address	targets
+0063F2A0	00645520
+0063FF00	00646250
+00640340	00645EC0
+00642540	006457E0
+00643C10	00645D20

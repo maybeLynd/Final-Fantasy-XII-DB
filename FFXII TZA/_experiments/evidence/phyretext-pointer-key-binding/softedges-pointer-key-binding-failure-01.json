@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_NO_RESULT",
+  "exit": 1,
+  "exception": "ValueError: required operation changed0x59cd07",
+  "driver_sha256": "5d1f667943aaf2e8e909d4d22951b377ff887118e75431e3bce2bb827e20c193",
+  "result_exists": false,
+  "cause": "Checker guessed count-source register R14; original59CD07 reads R12+14. No semantic output or published conclusion depended on failed reduction.",
+  "repair": "Use exact original instruction; preserve pre-assignment destination write59CD14 among remaining effects."
+}

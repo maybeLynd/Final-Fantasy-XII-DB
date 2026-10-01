@@ -1,0 +1,135 @@
+{
+ "view": "fleet",
+ "title": "Fleet - lanes and their active work",
+ "status": "PARTIAL",
+ "source": {
+  "identity": "TEAM.json rev 38749; watchdog-state present",
+  "as_of": "2026-09-29T02:32:06Z",
+  "instrument": "v_fleet",
+  "limits": "model, effort, account limits and utilisation are UNKNOWN (not exposed to this adapter); Claude lanes are not in the watchdog"
+ },
+ "measures": [
+  {
+   "id": "active",
+   "label": "tasks ACTIVE on the board",
+   "numerator": 14,
+   "denominator": null,
+   "scope": "board",
+   "instrument": "v_fleet",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "one row per active claim"
+  }
+ ],
+ "rows": {
+  "columns": [
+   "lane",
+   "active task",
+   "updated",
+   "checkpoint"
+  ],
+  "data": [
+   [
+    "ASTRA",
+    "OPUS-REQ-ASTRA-VERIFY-DASH-INCIDENT",
+    "2026-09-29T02:28",
+    "Resumed active goal from5087418df after supportedboardPASS/currentheaderSTALE no"
+   ],
+   [
+    "FABLE",
+    "FRONTIER-REQ-FABLE-UQ218-SEMANTIC-RESIDUE",
+    "2026-09-29T02:03",
+    "FABLE (Claude Opus 5.5, session bf2f59ae): supplying UQ-218 residue evidence und"
+   ],
+   [
+    "FABLE",
+    "FABLE-PUB-UQ218-RESIDUE",
+    "2026-09-29T02:31",
+    "FABLE (Claude Opus 5.5) claiming @publication for this task"
+   ],
+   [
+    "OPUS",
+    "FRONTIER-REQ-OPUS-WORKFLOW-M0M1-DELIVERY",
+    "2026-09-28T23:54",
+    "M0 map + first bounded change"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "FRONTIER-REQ-AUDITSPEC-AUDITED-PROMOTION-SWEEP",
+    "2026-09-19T19:59",
+    "AUDIT-SPEC claiming the AUDITED promotion sweep; working eligible pages in bound"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-VIRTUAL-SLOT",
+    "2026-09-29T02:26",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-NAV-MASK-RESET",
+    "2026-09-29T02:27",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-NAV-POPULATION",
+    "2026-09-29T02:28",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-SN1-Q0-DOMAIN",
+    "2026-09-29T02:29",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-MOTION-BLUR-CTOR",
+    "2026-09-29T02:31",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-SCRIPT-VAR-REF",
+    "2026-09-29T02:32",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-AUDIT-SPEC",
+    "OPUS-REQ-AUDITSPEC-REVIEW-SN1-PREREQ",
+    "2026-09-29T02:29",
+    "claiming OPUS+FRONTIER batch"
+   ],
+   [
+    "SWE2-DATA",
+    "SWE2-DATA-UQ218-MOTION-RESIDUE",
+    "2026-09-28T04:21",
+    "claiming UQ-218 motion-entry residue package"
+   ],
+   [
+    "SWE2-EC7",
+    "SWE2-EC7-SHARED-HUB-IDENTIFICATION-170",
+    "2026-09-28T04:21",
+    "Claiming batch 170: 3 multi (00442460 82B, 00399B10 107B, 0031AB80 88B, all 2c) "
+   ],
+   [
+    "(watchdog) SWE2-AUDIT-SPEC",
+    "in flight",
+    "",
+    ""
+   ],
+   [
+    "(watchdog) SWE2-DATA",
+    "in flight",
+    "",
+    ""
+   ],
+   [
+    "(watchdog) SWE2-ORACLE",
+    "in flight",
+    "",
+    ""
+   ]
+  ]
+ }
+}

@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "ARG5-PLAN.md",
+      "bytes": 1232,
+      "sha256": "c50410ed29fe4c5a302b328c63d6c66e0d2f70ff9bf58b1b8c75b507ebb67932"
+    },
+    {
+      "path": "arg5-source-boundary.py",
+      "bytes": 6351,
+      "sha256": "dcbe4be9f80382729746b9fb8d8f189e66e8eb5c63114d37fd83ac37aa120b79"
+    },
+    {
+      "path": "arg5-source-result.json",
+      "bytes": 3592,
+      "sha256": "4e0cc007acc4f1fdb254aaecadb2839ed0b8eddda7611cea42c91e0979fb3901"
+    },
+    {
+      "path": "arg5-source-terminal.json",
+      "bytes": 6214,
+      "sha256": "8d2b7839a2ddd8a799c6bdba87f351c406236d438be4cdde299234dba262fe9f"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3154,
+      "sha256": "529d0b8ed99f9a836259decdd4130d69d63ff2d907d8042eaedd770945b5a9f0"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 4368,
+      "sha256": "3470c6f9e06e39d02cd21743929abdb96b7344f29f11a8544daa7eaf84c85733"
+    },
+    {
+      "path": "handoff-header.txt",
+      "bytes": 2292,
+      "sha256": "e52930d781eeadfa4fbf41c81e43b95badbc91581d1c9e715fd58121eeec6d2a"
+    },
+    {
+      "path": "node-reader-feasibility.json",
+      "bytes": 40413,
+      "sha256": "ef076d9e957ce96d2651796be4cb728b808a6086b7817ef02b26f1cbc644f0ef"
+    },
+    {
+      "path": "node-reader-feasibility.py",
+      "bytes": 6153,
+      "sha256": "5be723ee593e0baca094c7ad6b37a2b786dff464493c72fb46efb421535520d9"
+    },
+    {
+      "path": "NODE-READER-PLAN.md",
+      "bytes": 1259,
+      "sha256": "1a88edf1651e080b8d99ead0a9c1cb5b19036307ef807b7fa29ebf3104b035af"
+    },
+    {
+      "path": "NODE-READER-RESULT.md",
+      "bytes": 2172,
+      "sha256": "24d828226f6799099dda85f3a129c6d608483208c8132d6d1cb2d381b61d633b"
+    },
+    {
+      "path": "node-reader-terminal.json",
+      "bytes": 44317,
+      "sha256": "6e804093dfebb7eb66abfa96147364dcbf1989cc65f1362477685ff914be3092"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 5255,
+      "sha256": "139ccf04cffa2174e87df04c8d152e1571a6d24f2bc530dd32d660d36f8295ad"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3219,
+      "sha256": "2c56fb62587c29addbf158a14041bc86946e7abc620a203376dc4b2cb4c05513"
+    },
+    {
+      "path": "run-checks.py",
+      "bytes": 1950,
+      "sha256": "11a11ca2d80cbc4211f2e44ac669e93dae30abf1eb5341e2f2fd502013980729"
+    }
+  ],
+  "limits": "Method A source only. First selected arg5 zero, later call conditional; three candidate direct type readers, fourth unresolved. No initialized/live/class/lifetime/scheduling conclusion or full L1+L2 award."
+}

@@ -1,0 +1,1 @@
+{"action": "claim", "task": "FABLE-REQ-SWE2-DATA-VOICE-CUE-TO-SCRIPT-LINE-MAP", "agent": "SWE2-DATA", "resources": [{"key": "note:voice-cue-script-map"}], "note": "census of voice-verb args in shipped .ebp vs VSP1 cue counts; reuses req-channel decode machinery"}

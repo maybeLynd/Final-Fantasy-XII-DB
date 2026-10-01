@@ -1,0 +1,16 @@
+D1 disp 0xDAC: verified accesses 12 (stores 6, other 6), raw-only candidates 3
+  store 00185020 in 00184F20 size 4 src reg esi    | mov dword ptr [rdi + 0xdac], esi
+  store 00187891 in 00187860 size 4 src imm 3      | mov dword ptr [rbx + 0xdac], 3
+  store 001878B3 in 00187860 size 4 src imm 4      | mov dword ptr [rbx + 0xdac], 4
+  store 001878D5 in 00187860 size 4 src imm 0      | mov dword ptr [rbx + 0xdac], 0
+  store 001878E5 in 00187860 size 4 src imm 7      | mov dword ptr [rbx + 0xdac], 7
+  store 0047E4E7 in 0047E140 size 4 src reg r9d    | mov dword ptr [rcx + 0xdac], r9d
+  CONTROL five known writers present: True
+D2 disp 0xCB8: verified accesses 8 (stores 4, other 4), raw-only candidates 32
+  store 0018624D in 00186230 size 4 src reg eax    | mov dword ptr [rcx + 0xcb8], eax
+  store 0018715A in 00186CD0 size 4 src reg r12d   | mov dword ptr [rsi + 0xcb8], r12d
+  store 006FF816 in 006FF5D0 size 8 src reg rax    | mov qword ptr [rdi + 0xcb8], rax
+  store 00707655 in 00000000 size 8 src reg xmm0   | movsd qword ptr [rcx + 0xcb8], xmm0
+D3 vtable 00D49930 slot2 00600D20 slot0 005E2BC0 class .?AVPRenderer@PRendering@Phyre@@
+D3 vtable 00D498F0 slot2 00600D20 slot0 005E2C40 class .?AVPRendererBase@PRendering@Phyre@@
+D3 vtable 00D49910 slot2 00600E30 slot0 005E2C90 class .?AVPRendererForJobs@PRendering@Phyre@@

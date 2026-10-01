@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-bts-index-binding.py", line 105, in <module>
+    if __name__ == '__main__': main()
+                               ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-bts-index-binding.py", line 31, in main
+    C.main(); raw = json.loads(out.read_text())
+    ~~~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-index-path.py", line 69, in main
+    instructions=decode(blob,a)))
+                 ~~~~~~^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-index-path.py", line 53, in decode
+    raise ValueError('incomplete decoder span %x: covered %x of %x; next %x' % (a,covered,len(blob),a+covered))
+ValueError: incomplete decoder span 2df9a0: covered b3b of b3c; next 2e04db

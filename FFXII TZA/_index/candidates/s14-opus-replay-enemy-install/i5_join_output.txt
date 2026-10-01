@@ -1,0 +1,11 @@
+I1_I4_enemy_install_every_definition PASS  class 1 (ids 0x0100..0x0115) over all 22 definitions of the shipped rsn_b.ard: each returns 1; +0x698 = spawn + 0x80 (the spawn's embedded stats), +0x6A0 = the spawn, +0xE60 = the definition row, +0xE68 = the [02EBF150] row chosen by def +0, +0xE70 / +0xE78 = the [02EBF148] / [02EBF140] rows chosen by def +0x22 / +0x24; the reset and the REAL spawn initializer 0023AC80 run
+I8_class1_float_from_byte_27       PASS  on class 1, unit +0x6C = float(class row byte +0x27) - no x1.5 (that is class 0's +0x2B path)
+I5_row_bound_is_the_shipped_count  PASS  row index = the shipped count (22) or 0xFF: returns 0 and KEEPS bit 26 - the bound failure at 0023A662 jumps to 0023A63A, past the bit-26 clear at 0023A633 that only other classes take - with no spawn initialization; row count - 1 installs
+I6_freshness_gate                  PASS  byte[spawn] & 5 == 0 (0 or 2): the real initializer runs, one counter word is written and spawn +0x12 takes the old count; bit 0 or bit 2 set: neither runs and +0x12 keeps its value - the install still returns 1
+I7_tracked_registration_needs_a_code PASS  bhm_c.ard (11 definitions, codes 0 and 1): 00328FF0(0, def+3 & 3, unit+0xEA9) writes the tracked table 02EC1380 row 0 = {slot, code} exactly for the definitions whose code is nonzero, and writes nothing for code 0
+ok
+J0_shipped_table_passes                  PASS
+J1_missing_count_rejects                 PASS
+J2_zero_count_rejects                    PASS
+J3_bound_is_count_minus_one              PASS
+ALL PASS {"dj3": 10, "idx50": 14, "count": 15, "runs": {"shipped": {"ok": true, "returned": 1, "path": ["passed 0023A72C"], "guard_reached": true, "spawn_init": true}, "slot_null": {"ok": true, "returned": 0, "path": ["rejected 0023A63A"], "guard_reached": true, "spawn_init": false}, "count_0": {"ok": true, "returned": 0, "path": ["rejected 0023A63A"], "guard_reached": true, "spawn_init": false}, "count_eq_index": {"ok": true, "returned": 0, "path": ["rejected 0023A63A"], "guard_reached": true, "spawn_init": false}, "count_index_plus_1": {"ok": true, "returned": 1, "path": ["passed 0023A72C"], "guard_reached": true, "spawn_init": true}}}

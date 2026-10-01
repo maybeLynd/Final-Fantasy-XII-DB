@@ -1,0 +1,126 @@
+{
+  "method": "A actual CLI/private validated fixtures; one explicit failed-writer intervention",
+  "source_tree_commit": "4ed1ad40e43f1fd5dbfdb0f9bd2e6b68bccd8d4c",
+  "driver_sha256": "286fbc3b63e1f29cb15498a2ebb495d7d65998f8b899c0704fd3b2fa6d25f84a",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "sources": {
+    "transitions.py": {
+      "sha256": "3f6c8ed51d067d6516cfebdfdeabee957df82b6a92acc0e51cca0cd601a2e9b8",
+      "path": "Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "blob": "322daab339fecaa9a7e83ddcd0c9411302455b58",
+      "last_commit": "c545ed76060aae750c398422b371cea80b8119c3"
+    },
+    "team.py": {
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6",
+      "path": "Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "blob": "7084d894fa05f8afa5502e56870beadff94b3f62",
+      "last_commit": "a70307d377ed97473b731ca9c774c6bcdb2bed7c"
+    }
+  },
+  "cases": [
+    {
+      "name": "valid-reject",
+      "expected": "repair",
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+          "--board",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\valid-reject\\TEAM.json",
+          "--agent",
+          "SWE2-FRONTIER",
+          "--apply",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-VALID-REJECT\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-VALID-REJECT\",\n  \"status\": \"created\"\n }\n]\n",
+        "stderr": "",
+        "parsed_report": [
+          {
+            "transition": "REPAIR",
+            "review": "REVIEW-VALID-REJECT",
+            "detail": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+            "status": "created"
+          }
+        ],
+        "timed_out": false,
+        "child_reaped": true
+      },
+      "added": [
+        {
+          "id": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+          "kind": "request",
+          "priority": "P2",
+          "assigned_to": "OPUS",
+          "target": "REVIEW-VALID-REJECT -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+          "scope": "repair after rejected review",
+          "question": "Review REVIEW-VALID-REJECT REJECTED c545ed76060aae750c398422b371cea80b8119c3 (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: ['receipt:labelled-fixture']. Review note: labelled fixture",
+          "known_evidence": "review REVIEW-VALID-REJECT (commit c545ed76060aae750c398422b371cea80b8119c3)",
+          "missing_information": "the next step's result",
+          "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+          "what_is_blocked": "the reviewed claim's completion",
+          "completion": "committed, with receipts",
+          "resources": [
+            {
+              "key": "request:auto-repair-review-valid-reject"
+            }
+          ],
+          "dependencies": [],
+          "transition_of": {
+            "review": "REVIEW-VALID-REJECT",
+            "commit": "c545ed76060aae750c398422b371cea80b8119c3"
+          },
+          "requester": "SWE2-FRONTIER",
+          "agent": null,
+          "status": "READY",
+          "started_at": null,
+          "updated_at": "2026-09-29T06:38:22+00:00",
+          "checkpoint": "Queued by SWE2-FRONTIER"
+        }
+      ],
+      "revision": 1,
+      "history": [
+        {
+          "at": "2026-09-29T06:38:22+00:00",
+          "agent": "SWE2-FRONTIER",
+          "operation": {
+            "action": "add",
+            "task": {
+              "id": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+              "kind": "request",
+              "priority": "P2",
+              "assigned_to": "OPUS",
+              "target": "REVIEW-VALID-REJECT -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+              "scope": "repair after rejected review",
+              "question": "Review REVIEW-VALID-REJECT REJECTED c545ed76060aae750c398422b371cea80b8119c3 (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: ['receipt:labelled-fixture']. Review note: labelled fixture",
+              "known_evidence": "review REVIEW-VALID-REJECT (commit c545ed76060aae750c398422b371cea80b8119c3)",
+              "missing_information": "the next step's result",
+              "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+              "what_is_blocked": "the reviewed claim's completion",
+              "completion": "committed, with receipts",
+              "resources": [
+                {
+                  "key": "request:auto-repair-review-valid-reject"
+                }
+              ],
+              "dependencies": [],
+              "transition_of": {
+                "review": "REVIEW-VALID-REJECT",
+                "commit": "c545ed76060aae750c398422b371cea80b8119c3"
+              },
+              "requester": "SWE2-FRONTIER"
+            }
+          },
+          "session": "ASTRA-labelled-private-transition-controls"
+        }
+      ],
+      "board_sha256": "06da94d960bcdacb1600ebdb09a4d65c610ce4ab68cd25c9950db7e6bbf62e6b"
+    }
+  ],
+  "finished": false,
+  "fatal": {
+    "type": "TimeoutExpired",
+    "reason": "Command '['C:\\\\Python314\\\\python.exe', '-B', 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-transitions-independent\\\\run-01\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\transitions.py', '--board', 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-transitions-independent\\\\run-01\\\\valid-accept\\\\TEAM.json', '--agent', 'SWE2-FRONTIER', '--apply', '--json']' timed out after 20 seconds"
+  }
+}

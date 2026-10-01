@@ -1,0 +1,2 @@
+022D89A8  00369D79  r  lea      rcx, [rip + 0x1f6ec28]                       00369D30 FUN_00369d30
+022D89A8  0036A282  r  lea      rcx, [rip + 0x1f6e71f]                       0036A280 FUN_0036a280

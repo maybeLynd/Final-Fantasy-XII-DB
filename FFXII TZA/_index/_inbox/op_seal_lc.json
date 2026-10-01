@@ -1,0 +1,1 @@
+{"action": "add", "task": {"id": "EC7-SEAL-LIFECYCLE-FORM-BATCH", "kind": "research", "priority": "P3", "requester": "SWE2-EC7", "assigned_to": "SWE2-EC7", "target": "seal board state after the lifecycle-form batch publish", "scope": "TEAM.json + SWE2-EC7 inbox + op files", "completion": "commit landed", "dependencies": [], "resources": [{"key": "@publication"}]}}

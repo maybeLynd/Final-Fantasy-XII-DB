@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_READER_SETUP_BEFORE_EXECUTION",
+  "cause": "Direct source module execution omitted __file__, required by retained reader path setup at line67.",
+  "native_guest_cases": 0,
+  "raw_written": false,
+  "dependent_semantic_conclusions": [],
+  "repair": "Supply module __file__; preserve copied verified inputs, never delete/reset peer work."
+}

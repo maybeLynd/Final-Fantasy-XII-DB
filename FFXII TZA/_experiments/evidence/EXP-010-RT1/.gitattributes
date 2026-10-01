@@ -1,0 +1,4 @@
+# Preserve exact receipt/source bytes: their SHA-256 values are part of the evidence.
+* -text whitespace=cr-at-eol
+# Raw stdout includes intentional trailing blank lines; retain the instrument's output.
+*.txt -whitespace

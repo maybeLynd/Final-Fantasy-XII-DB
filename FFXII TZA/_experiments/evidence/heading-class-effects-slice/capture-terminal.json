@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 15,\n  \"extent_status\": [\n    [\n      \"0x264460\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      37,\n      null\n    ],\n    [\n      \"0x265020\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      61,\n      null\n    ],\n    [\n      \"0x267310\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      22,\n      null\n    ],\n    [\n      \"0x26afe0\",\n      \"UNWIND_UNION_MATCH\",\n      222,\n      222\n    ],\n    [\n      \"0x26c120\",\n      \"UNWIND_UNION_MATCH\",\n      354,\n      354\n    ],\n    [\n      \"0x3587c0\",\n      \"UNWIND_UNION_MATCH\",\n      50,\n      50\n    ],\n    [\n      \"0x3588b0\",\n      \"UNWIND_UNION_MATCH\",\n      143,\n      143\n    ],\n    [\n      \"0x3590d0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      7,\n      null\n    ],\n    [\n      \"0x3a1920\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      53,\n      null\n    ],\n    [\n      \"0x3a19c0\",\n      \"UNWIND_UNION_MATCH\",\n      268,\n      268\n    ],\n    [\n      \"0x3a1ad0\",\n      \"UNWIND_UNION_MATCH\",\n      217,\n      217\n    ],\n    [\n      \"0x3a1d30\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      23,\n      null\n    ],\n    [\n      \"0x3da6a0\",\n      \"UNWIND_UNION_MATCH\",\n      112,\n      112\n    ],\n    [\n      \"0x4686d0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      35,\n      null\n    ],\n    [\n      \"0x808c40\",\n      \"UNWIND_UNION_MATCH\",\n      33,\n      33\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "e6eef80f103e4063d8687929397b2a121f013496c1bce85d6df48a4ff57fdeb9"
+}

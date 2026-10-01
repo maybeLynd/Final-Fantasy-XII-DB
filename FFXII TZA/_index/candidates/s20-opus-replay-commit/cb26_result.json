@@ -1,0 +1,88 @@
+{
+ "cases": {
+  "A_success_recommits_its_own_action_and_advances": true,
+  "F_failed_recommit_returns_0_after_the_cancel_ran": true,
+  "G_gate_refusal_touches_nothing": true
+ },
+ "failed_recommit": {
+  "b6B4": 0,
+  "counter": 0,
+  "events": [
+   [
+    "commit",
+    "ABC",
+    543,
+    "100000",
+    1
+   ],
+   [
+    "cancel"
+   ]
+  ],
+  "halt": [],
+  "ok": true,
+  "partner": 0,
+  "ret": 0,
+  "writes_6B7_6B8": [
+   [
+    "003106EB",
+    "+6B7",
+    2,
+    0
+   ]
+  ]
+ },
+ "failed_recommit_counter_after": 0,
+ "failed_recommit_partner_after": 0,
+ "gate_refused": {
+  "b6B4": 0,
+  "counter": 2,
+  "events": [],
+  "halt": [],
+  "ok": true,
+  "partner": 119,
+  "ret": 0,
+  "writes_6B7_6B8": []
+ },
+ "ok": true,
+ "success": {
+  "b6B4": 5,
+  "counter": 3,
+  "events": [
+   [
+    "commit",
+    "ABC",
+    16,
+    "100000",
+    1
+   ],
+   [
+    "cancel"
+   ]
+  ],
+  "halt": [],
+  "ok": true,
+  "partner": 119,
+  "ret": 1,
+  "writes_6B7_6B8": [
+   [
+    "003106EB",
+    "+6B7",
+    2,
+    0
+   ],
+   [
+    "0030FA65",
+    "+6B8",
+    1,
+    119
+   ],
+   [
+    "0030FA79",
+    "+6B7",
+    1,
+    3
+   ]
+  ]
+ }
+}

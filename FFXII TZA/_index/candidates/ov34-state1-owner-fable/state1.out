@@ -1,0 +1,5 @@
+PASS  A array users: ['003DD380', '003DD420', '003DD4C0', '003DD8D0', '003DD980'] + leaf helpers (no .pdata) at ['003DD743', '003DD773', '003DD79D', '003DD7C9', '003DD7E3', '003DD7ED', '003DD7F4', '003DD7FB', '003DDA34', '003DDA47']
+PASS  D deleters: state1 -> free + clear to 0; state3 -> 5
+PASS  G readers act only on state 4
+PASS  C callback 003DD850 referenced only at ['003DDA83']; submitter 003DDA70 called only from ['003DD644']; absolute pointers: 0
+FAILS 0

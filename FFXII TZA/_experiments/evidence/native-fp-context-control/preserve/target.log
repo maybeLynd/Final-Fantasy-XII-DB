@@ -1,0 +1,12 @@
+
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\native-fp-context-control\run.py", line 224, in <module>
+    if args.target: target(args.target,args.mode)
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\native-fp-context-control\run.py", line 86, in target
+    verify_sample(row,mode)
+    ~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\native-fp-context-control\fixture.py", line 75, in verify_sample
+    assert after == expected, 'defined FP state changed outside the specified gate'
+           ^^^^^^^^^^^^^^^^^
+AssertionError: defined FP state changed outside the specified gate

@@ -1,0 +1,778 @@
+{
+ "ok": true,
+ "ard": {
+  "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rsn_b\\area\\rsn_b.ard",
+  "sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992",
+  "defs": 22
+ },
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4263,
+ "results": {
+  "I1_I4_enemy_install_every_definition": {
+   "pass_": true,
+   "definitions": 22,
+   "rows": {
+    "0": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "1": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "2": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "3": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "4": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "5": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "6": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "7": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "8": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "9": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 120,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "10": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 120,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "11": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "12": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "13": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "14": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "15": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "16": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "17": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 120,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "18": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 120,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "19": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "20": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 166,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    },
+    "21": {
+     "ok": true,
+     "returned": 1,
+     "flags": "0000000004000004",
+     "stats_698_is_spawn_80": true,
+     "spawn_6A0": true,
+     "E60_is_def_row": true,
+     "E68_is_class_row": true,
+     "E70_is_base_row": true,
+     "E78_is_per_level_row": true,
+     "f6C": 20.0,
+     "class_byte_27": 20,
+     "spawn_init_writes": 120,
+     "calls": [
+      "reset 00236A60",
+      "spawn init 0023AC80",
+      "track 00328FF0"
+     ],
+     "def_plus3_code": 0,
+     "tracked_writes": []
+    }
+   },
+   "note": "class 1 (ids 0x0100..0x0115) over all 22 definitions of the shipped rsn_b.ard: each returns 1; +0x698 = spawn + 0x80 (the spawn's embedded stats), +0x6A0 = the spawn, +0xE60 = the definition row, +0xE68 = the [02EBF150] row chosen by def +0, +0xE70 / +0xE78 = the [02EBF148] / [02EBF140] rows chosen by def +0x22 / +0x24; the reset and the REAL spawn initializer 0023AC80 run"
+  },
+  "I8_class1_float_from_byte_27": {
+   "pass_": true,
+   "values": [
+    20.0
+   ],
+   "note": "on class 1, unit +0x6C = float(class row byte +0x27) - no x1.5 (that is class 0's +0x2B path)"
+  },
+  "I5_row_bound_is_the_shipped_count": {
+   "pass_": true,
+   "cases": {
+    "row = count": {
+     "ok": true,
+     "returned": 0,
+     "bit26": 1,
+     "spawn_init": false
+    },
+    "row 0xFF": {
+     "ok": true,
+     "returned": 0,
+     "bit26": 1,
+     "spawn_init": false
+    },
+    "row count - 1": {
+     "ok": true,
+     "returned": 1,
+     "bit26": 1,
+     "spawn_init": true
+    }
+   },
+   "note": "row index = the shipped count (22) or 0xFF: returns 0 and KEEPS bit 26 - the bound failure at 0023A662 jumps to 0023A63A, past the bit-26 clear at 0023A633 that only other classes take - with no spawn initialization; row count - 1 installs"
+  },
+  "I6_freshness_gate": {
+   "pass_": true,
+   "cases": {
+    "fresh (byte 0 = 0)": {
+     "ok": true,
+     "returned": 1,
+     "spawn_init": true,
+     "counter_writes": [
+      [
+       "0023A838",
+       "208D354",
+       10
+      ]
+     ],
+     "spawn_12": 9
+    },
+    "byte 0 bit 0 set": {
+     "ok": true,
+     "returned": 1,
+     "spawn_init": false,
+     "counter_writes": [],
+     "spawn_12": 171
+    },
+    "byte 0 bit 2 set": {
+     "ok": true,
+     "returned": 1,
+     "spawn_init": false,
+     "counter_writes": [],
+     "spawn_12": 171
+    },
+    "byte 0 bit 1 only": {
+     "ok": true,
+     "returned": 1,
+     "spawn_init": true,
+     "counter_writes": [
+      [
+       "0023A838",
+       "208D354",
+       11
+      ]
+     ],
+     "spawn_12": 10
+    }
+   },
+   "note": "byte[spawn] & 5 == 0 (0 or 2): the real initializer runs, one counter word is written and spawn +0x12 takes the old count; bit 0 or bit 2 set: neither runs and +0x12 keeps its value - the install still returns 1"
+  },
+  "I7_tracked_registration_needs_a_code": {
+   "pass_": true,
+   "area": {
+    "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\bhm_c\\area\\bhm_c.ard",
+    "sha256": "c778e09a0118821dd126b0d2d60ab612325a0de0b787260b3bc6ecd8f0eeabbd",
+    "defs": 11
+   },
+   "codes": [
+    0,
+    1
+   ],
+   "defs": {
+    "0": {
+     "ok": true,
+     "returned": 1,
+     "code": 1,
+     "slot_EA9": 0,
+     "tracked_writes": [
+      [
+       "0032900C",
+       "2EC1384",
+       1
+      ],
+      [
+       "00329011",
+       "2EC1380",
+       0
+      ]
+     ],
+     "row0": [
+      0,
+      1
+     ]
+    },
+    "1": {
+     "ok": true,
+     "returned": 1,
+     "code": 1,
+     "slot_EA9": 0,
+     "tracked_writes": [
+      [
+       "0032900C",
+       "2EC1384",
+       1
+      ],
+      [
+       "00329011",
+       "2EC1380",
+       0
+      ]
+     ],
+     "row0": [
+      0,
+      1
+     ]
+    },
+    "2": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    },
+    "3": {
+     "ok": true,
+     "returned": 1,
+     "code": 1,
+     "slot_EA9": 0,
+     "tracked_writes": [
+      [
+       "0032900C",
+       "2EC1384",
+       1
+      ],
+      [
+       "00329011",
+       "2EC1380",
+       0
+      ]
+     ],
+     "row0": [
+      0,
+      1
+     ]
+    },
+    "4": {
+     "ok": true,
+     "returned": 1,
+     "code": 1,
+     "slot_EA9": 0,
+     "tracked_writes": [
+      [
+       "0032900C",
+       "2EC1384",
+       1
+      ],
+      [
+       "00329011",
+       "2EC1380",
+       0
+      ]
+     ],
+     "row0": [
+      0,
+      1
+     ]
+    },
+    "5": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    },
+    "6": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    },
+    "7": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    },
+    "8": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    },
+    "9": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    },
+    "10": {
+     "ok": true,
+     "returned": 1,
+     "code": 0,
+     "slot_EA9": 0,
+     "tracked_writes": [],
+     "row0": [
+      0,
+      0
+     ]
+    }
+   },
+   "note": "bhm_c.ard (11 definitions, codes 0 and 1): 00328FF0(0, def+3 & 3, unit+0xEA9) writes the tracked table 02EC1380 row 0 = {slot, code} exactly for the definitions whose code is nonzero, and writes nothing for code 0"
+  }
+ }
+}

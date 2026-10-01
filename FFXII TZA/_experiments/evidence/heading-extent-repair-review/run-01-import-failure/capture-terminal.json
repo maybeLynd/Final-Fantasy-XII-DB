@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\capture.py"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\capture.py\", line 4, in <module>\n    import capstone,pefile\nModuleNotFoundError: No module named 'pefile'\n",
+  "terminal": true,
+  "driver_sha256": "563cf971e733d9d752c9c710888e9236d393aa0bcfbe4a106389e5060bd561e2"
+}

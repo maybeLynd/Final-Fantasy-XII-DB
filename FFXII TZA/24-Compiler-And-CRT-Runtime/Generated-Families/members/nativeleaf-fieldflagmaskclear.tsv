@@ -1,0 +1,9 @@
+# NativeLeaf.FieldFlagMaskClear - EC-7 family C
+# # and [rcx+off], member mask; ret - flag-bit clear, byte and dword widths.
+address	targets
+00313F70	
+0040ED80	
+00472810	
+00512A80	
+0051A370	
+0051B840	

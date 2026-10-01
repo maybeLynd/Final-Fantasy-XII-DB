@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-initial.py",
+      "bytes": 5045,
+      "sha256": "37dd0f1789dd8eb22ae2fe4c76176c6a7368fc2adcbf3f8bf7a8b148c4bceda4"
+    },
+    {
+      "path": "capture-terminal-initial.json",
+      "bytes": 1131,
+      "sha256": "4111aa3da482a8e08670996a86a6ecf3204cd6f05ebd9ffaf2d6eda00c08f1f2"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 2306,
+      "sha256": "c9b6f3fab868d857a0a6afc25067c71c9329f5af81153793427a4364c0209434"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 5772,
+      "sha256": "c663e871afc276db0dcd2c45910ea05b726c46b6c9c65b85337a0df5b700936d"
+    },
+    {
+      "path": "check-terminal.json",
+      "bytes": 1432,
+      "sha256": "64a140aa8b137d6a5c95545dfd4f3fb9eae4eb7747ef8e1205f9fa76e21a4d17"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5182,
+      "sha256": "7559778b668c453d848dc7470d85bbe622c69f78b3e265f7c16b2cd880e8c25b"
+    },
+    {
+      "path": "controls-terminal.json",
+      "bytes": 1173,
+      "sha256": "53c781d2e5b3bfd44dacef33978f9b55e99899c45a284e630a4cbd7c8f443b6a"
+    },
+    {
+      "path": "controls.py",
+      "bytes": 1653,
+      "sha256": "d22ad272493b8a25230c3fb4e79a511a260d40cfdf0a481891b7d45ffa28a29b"
+    },
+    {
+      "path": "preparation-gate-controls.json",
+      "bytes": 5432,
+      "sha256": "a8690c0f56eb6cfae5112c201f3217710922662a61b6b07fbb55d303f6504082"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 8332,
+      "sha256": "4181c8f6fba12f432e0a0cd56e9123d1b1c48a2f6b5bcdf8ba4302ae3e0f16a4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5366,
+      "sha256": "e11f282a859350ccf41a08f8b670843ccd379d2b585e70bc71184cfb864f1a21"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 532,
+      "sha256": "3acb80e8e68514ba5e097e5052ff8495ef6ef80c64c230a6fbfa3871c33ce387"
+    },
+    {
+      "path": "result.json",
+      "bytes": 910,
+      "sha256": "d131584f760e8a906860fa5fbb2a9c7e65c1f136ae53c3594c4863b6f617aa0a"
+    },
+    {
+      "path": "run-01/failure.txt",
+      "bytes": 707,
+      "sha256": "58173625cd44a8ffb0e98e47070665e7fa372186fa71078a0aa088279ec84755"
+    },
+    {
+      "path": "run-01/MANIFEST.json",
+      "bytes": 8118,
+      "sha256": "a53cf5955380b47267028b8b2221bbdb1eb0b622686cf6579354c6efd7443df8"
+    },
+    {
+      "path": "run-01/source/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-01/source/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-01/source/uc1_band.py",
+      "bytes": 6914,
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b"
+    },
+    {
+      "path": "run-01/view-executable.json",
+      "bytes": 20450,
+      "sha256": "e77f107473fa7795ec5a2a11c32d72e14159cdb1f2834a304bfb60c1a373f291"
+    },
+    {
+      "path": "run-02/bound-positive-inputs/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-02/bound-positive-inputs/uc1_1_64",
+      "bytes": 37250,
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa"
+    },
+    {
+      "path": "run-02/bound-positive-inputs/uc1_65_256",
+      "bytes": 11254,
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97"
+    },
+    {
+      "path": "run-02/identity.json",
+      "bytes": 2654,
+      "sha256": "06b1ee89ba285fbb5870ddaac07f7a73084745a3f1c47d891cf3211d7ac0c8a0"
+    },
+    {
+      "path": "run-02/MANIFEST.json",
+      "bytes": 8118,
+      "sha256": "a53cf5955380b47267028b8b2221bbdb1eb0b622686cf6579354c6efd7443df8"
+    },
+    {
+      "path": "run-02/observation.json",
+      "bytes": 1730,
+      "sha256": "eec10eeab37a492751b1c170d3a8f600fe008896d52f71c910a0513de3990075"
+    },
+    {
+      "path": "run-02/original-declarations.json",
+      "bytes": 3697,
+      "sha256": "bc026f48ef117c8bef9b94434b77ac253f386ccb6bda7e11c948b61b8d179314"
+    },
+    {
+      "path": "run-02/pre-declaration-identity.json",
+      "bytes": 2129,
+      "sha256": "644a8db4ee4c98b88170b8d02c4d481eaec3eb65778cac7786bdee8997183db3"
+    },
+    {
+      "path": "run-02/selected-original-functions.json",
+      "bytes": 7609,
+      "sha256": "13b6a27c0fb8dda50745d189578b7580ec331c26e24180f9683663df6aca38b3"
+    },
+    {
+      "path": "run-02/source/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-02/source/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-02/source/uc1_band.py",
+      "bytes": 6914,
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b"
+    },
+    {
+      "path": "run-02/view-executable.json",
+      "bytes": 20450,
+      "sha256": "e77f107473fa7795ec5a2a11c32d72e14159cdb1f2834a304bfb60c1a373f291"
+    }
+  ],
+  "limits": "Integrity is not independent acceptance. Selected retained manifest/output and static dependency path only; no full build, source-change drift/skip/export, loaded helper version or FF12 execution."
+}

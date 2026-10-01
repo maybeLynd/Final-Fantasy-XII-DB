@@ -1,0 +1,157 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS V1 index base - 0019B0E5  call 0x1f4340
+PASS V1 r15 = the verified index buffer - 001F453B  mov r15, qword ptr [rbx]
+PASS V1 keys start at +0x10 - 001F453E  lea rdx, [r15 + 0x10]
+PASS V1 count is the u32 at +8 - 001F4542  mov ecx, dword ptr [r15 + 8]
+PASS V1 16 bytes per key - 001F4549  shl r12d, 4
+PASS V1 records follow the keys - 001F454D  add r12, rdx
+PASS V1 32 bytes per record - 001F4550  shl rcx, 5
+PASS V1 string table starts 4 bytes past the records - 001F4554  lea r13, [rcx + 4]
+PASS V1 its u32 length sits just before - 001F455B  mov ecx, dword ptr [r13 - 4]
+PASS V1 the length counts itself - 001F455F  add rcx, -4
+PASS V1 block table = string table end - 001F4566  mov qword ptr [rbx + 0x68], rcx
+PASS V2 last record's size - 001F4574  mov r8, qword ptr [rcx + r12 + 8]
+PASS V2 in 64 KiB blocks - 001F4579  shr r8, 0x10
+PASS V2 plus its first block (+0) - 001F457D  add r8d, dword ptr [rcx + r12]
+PASS V2 block count stored - 001F4581  mov dword ptr [rbx + 0x60], r8d
+PASS V2 a partial tail adds one - 001F458F  movzx eax, word ptr [rcx + r12 + 8]
+PASS V3 flag array sized by the block count - 001F45A9  mov qword ptr [rbx + 0x70], rax
+PASS V3 stored size 0? - 001F45C4  cmp word ptr [rax + rcx*2], di
+PASS V3 -> flag 0 - 001F45CE  mov byte ptr [rcx + rax], dil
+PASS V3 else flag 1 - 001F45D4  mov byte ptr [rcx + rax], 1
+PASS V3 per record: size mod 64 KiB - 001F463C  movzx r8d, ax
+PASS V3 last block = first + blocks - 1 - 001F464B  add ecx, dword ptr [r10]
+PASS V3 stored size == size mod 64 KiB? - 001F4658  cmp rcx, r8
+PASS V3 -> that tail's flag 0 - 001F4661  mov byte ptr [rdx + rax], 0
+PASS V4 name offset rebased to a pointer - 001F462D  add qword ptr [r10 + 0x18], r13
+PASS V4 key i (r9 = 2i, 8-byte scale) - 001F466C  lea rdx, [rdi + r9*8]
+PASS V4 insert - 001F4677  call 0x1f4720
+PASS V4 node key copied to +0x18 - 001F477E  movups xmmword ptr [rbx + 0x18], xmm0
+PASS V4 node value = the record - 001F4785  mov qword ptr [rbx + 0x28], rax
+PASS V4 insert compares +0x18 signed - 001F4008  cmp rcx, rdx
+PASS V4 then +0x20 - 001F4013  cmp qword ptr [r8 + 0x20], rax
+PASS V5 lookup: high half first - 001F47E7  mov rax, qword ptr [rdx + 0x18]
+PASS V5 lookup: signed - 001F47EE  jl 0x1f480c
+PASS V5 lookup: second half - 001F47F2  cmp qword ptr [rdx + 0x20], r9
+PASS V5 hit -> node +0x28 - 001F4824  lea rax, [rdx + 0x28]
+PASS V5 then opens a handle on it - 001F4834  jmp 0x1f4250
+PASS V5 key = CALG_MD5 - 0019AF2B  mov edx, 0x8003
+PASS V5 over the caller's string - 0019AF5B  call qword ptr [rip + 0x7270df]
+PASS V5 the only lookup call - 0019AF92  call 0x1f47d0
+PASS V5 001F47D0 has one caller (0019AEE0) - [(1683168, 1683346)]
+PASS V6 handle +0x18 = the record - 002150B4  mov qword ptr [rcx + 0x18], rdx
+PASS V6 read planner takes the record - 0019A791  mov r14, qword ptr [r9 + 0x18]
+PASS V6 +0 = first block index - 0019A7AB  mov ebx, dword ptr [r14]
+PASS V6 +0x10 = archive offset of that block - 0019A7AE  mov rdi, qword ptr [r14 + 0x10]
+PASS V6 block table - 0019A7BB  mov r9, qword ptr [r13 + 0x68]
+PASS V6 stored u16 size - 0019A7D9  movzx ecx, word ptr [r9 + rax*2]
+PASS V6 0 means 64 KiB - 0019A7E6  mov eax, 0x10000
+PASS V6 read clamped to +8 (size) - 00215143  cmp rax, qword ptr [rcx + 8]
+PASS V6 SEEK_END from +8 - 0021523E  mov rcx, qword ptr [rax + 8]
+PASS V6 size getter - 00215284  mov rax, qword ptr [rax + 8]
+PASS V7 flags - 0019AA5E  mov r8, qword ptr [rax + 0x70]
+PASS V7 flag test - 0019AA93  cmp byte ptr [rbp + r8], bl
+PASS V7 compressed -> uncompress - 0019AAAE  call 0x80c5a0
+PASS V7 raw -> 0x200 x 0x80 copy - 0019AA7D  mov r12d, 0x200
+PASS V7 0080C5A0 is the uncompress shim - 0080C5AE  call 0x80c5c0
+PASS V7 which inits inflate with version - 0080C5FD  lea rdx, [rip + 0x14bada0]
+PASS V7 version string - '1.2.11'
+PASS V8 record reads: +0 x1, +8 x5, +0x10 x1, nothing at +4 or +0x18 - [('0019A7AB', 0), ('0019A7AE', 16), ('00215143', 8), ('00215149', 8), ('0021523E', 8), ('00215264', 8), ('00215284', 8)]
+PASS V8 the one escape is the request's +0x60 - [(1681264, 1681460, frozenset({'B'}), 'mov qword ptr [rax + 0x60], r14')]
+PASS V8 request +0x60 is read nowhere in its life cycle - walked 0019A860 0019A9B0 0019AA20 0019AFE0 0019B130
+PASS V9 handle pool 0x2D8 = 8 + 15 x 0x30 - 001F4687  mov ecx, 0x2d8
+PASS V9 fifteen - 001F4695  mov esi, 0xf
+PASS V9 each opened on the archive path - 001F46F2  call 0x215290
+PASS V9 with fopen - 002152AD  call qword ptr [rip + 0x6adc45]
+PASS V9 a 16th on demand when all are busy - 001F42DC  lea ecx, [rbx + 0x30]
+PASS V9 and opened the same way - 001F4308  call 0x215290
+PASS V9 a lookup takes the first handle whose in-use byte is 0 - 001F4290  cmp byte ptr [rax], bl
+PASS V9 of fifteen - 001F429E  cmp r8, 0xf
+PASS V9 blocks arrive through CRT fread (the opener's import) - 0019A8D1  call qword ptr [rip + 0x728619]
+PASS V9 that slot is the opener's fread slot 008C2EF0
+PASS A1 header: SRYK, u32 index length, u32 count, u32 zero - 11995716 B, 89414 entries
+PASS A2 block table fills the header exactly - 957553 blocks = last first-block 957552 + 1
+PASS A3 key i = MD5(name i) - 89414 of 89414
+PASS A3 the 16-byte keys are unique
+PASS A3 the key array is not in tree order (the tree is the only index)
+PASS A4 the 26 zero-size entries: +4 = 1,703,388, all jsondata/cutscenes/*.json
+PASS A4 +4 equals +0 in every entry with bytes - 89388 of 89414; the other 26 have size 0
+PASS A5 +0x10 = index length + stored sizes of all earlier blocks - 89388 entries
+PASS A5 payload runs from the index end to the digest - 11995716 + 31184936451 = 31196932183 - 16
+PASS A6 blocks are contiguous in record order
+PASS A7 name offsets ascend and index a lower-case table - first 'gamedata/titleimage/in/sqex logo size_ffx.tga'
+PASS A8 raw blocks: 189861 full (stored 0), 1697 tails (stored == size mod 64 KiB)
+PASS A9 engine-rule decode of three entries gives their sizes - all-zlib gamedata/d3d11/artdata/shared/map/akuse01_34ea0797ae3e81ef_f39975c6e704ddd0_2ab50.dds.phyre 177342 B; tail-raw gamedata/d3d11/artdata/map/ztc01/ztc0106/cubemapconfigs.txt 34 B; full-raw ps2data/sound/se/sead_data_win/se610/se610011.win.sab 201360 B
+PASS N1 packed id: number = low 16 bits - 002ED6F0  movzx r10d, cx
+PASS N1 letter = bits 16..23 - 002ED6FA  movzx eax, cl
+PASS N1 from 'C' - 002ED6FD  add eax, -0x43
+PASS N1 to 'w' - 002ED700  cmp eax, 0x34
+PASS N1 else the default - 002ED703  ja 0x2ed840
+PASS N1 default kind 1 - 002ED840  mov eax, 1
+PASS N1 the kinds 002ED6F0 can emit - C:15 M:18 N:20 S:24 b:22 c:14 g:13 m:34 n:19 s:23 t:25 w:16 others:1
+PASS N1 26 is not among them
+PASS N2 002E98F0 calls it - 002E9900  call 0x2ed6f0
+PASS N2 kind 1? - 002E9905  cmp dword ptr [rbx], 1
+PASS N2 then index + 0x33 - 002E990A  add dword ptr [rdi], 0x33
+PASS N3 001BB397 decoder - 001BB38A  call 0x2e98f0
+PASS N3 001BB397 kind out-slot (rdx) - 001BB382  lea rdx, [rsp + 0x68]
+PASS N3 001BB397 kind in ecx - 001BB393  mov ecx, dword ptr [rsp + 0x68]
+PASS N3 001BB397 the call - 001BB397  call 0x2df980
+PASS N3 001F5E64 decoder - 001F5E59  call 0x2e98f0
+PASS N3 001F5E64 kind out-slot (rdx) - 001F5E55  lea rdx, [rbp + 4]
+PASS N3 001F5E64 kind in ecx - 001F5E61  mov ecx, dword ptr [rbp + 4]
+PASS N3 001F5E64 the call - 001F5E64  call 0x2df980
+PASS N3 00863144 decoder - 00863137  call 0x2e98f0
+PASS N3 00863144 kind out-slot (rdx) - 00863132  lea rdx, [rsp + 0x24]
+PASS N3 00863144 kind in ecx - 00863140  mov ecx, dword ptr [rsp + 0x24]
+PASS N3 00863144 the call - 00863144  call 0x2df980
+PASS N3 002EEF70 decoder - 002EEF63  call 0x2ed6f0
+PASS N3 002EEF70 kind out-slot (rdx) - 002EEF5A  lea rdx, [rsp + 0x58]
+PASS N3 002EEF70 kind in ecx - 002EEF6C  mov ecx, dword ptr [rsp + 0x58]
+PASS N3 002EEF70 the call - 002EEF70  call 0x2df980
+PASS N4 manager 0 - 001DA2FB  xor ecx, ecx
+PASS N4 0032F170 - 001DA2FD  call 0x32f170
+PASS N4 kind slot r8 - 001DA2F7  lea r8, [rbp + 0x50]
+PASS N4 kind in ecx - 001DA318  mov ecx, dword ptr [rbp + 0x50]
+PASS N4 0032F170: manager <= 0 - 0032F172  jle 0x32f19e
+PASS N4 -> index id*3 - 0032F19E  lea eax, [rdx + rdx*2]
+PASS N4 -> kind 5 - 0032F1A1  mov dword ptr [r8], 5
+PASS N5 ResourcePath_Get's eleven sites
+PASS N5 ResourcePath_Copy has one site
+PASS N5 its function has one caller
+PASS N5 that caller passes 4 in r9d - 00378B1A  mov r9d, 4
+PASS N5 r9d -> eax - 00377DED  mov eax, r9d
+PASS N5 eax -> ecx (kind) - 00377DFD  mov ecx, eax
+PASS N6 0032E620 hands the kind on - 0032E6DB  mov ecx, edi
+PASS N6 to the slot filler - 0032E6DD  call 0x32e870
+PASS N6 slot +0x21 = kind - 0032E943  mov byte ptr [r10 + 0x21], r14b
+PASS N6 slot +0x24 = index - 0032E902  mov dword ptr [r10 + 0x24], ebp
+PASS N6 state 1 of 0032E070 is 0032E0BD
+PASS N6 which reads the kind - 0032E0D3  movzx eax, byte ptr [rbx + 0x21]
+PASS N6 and the index - 0032E0DB  mov edx, dword ptr [rbx + 0x24]
+PASS N6 into 0046E030 - 0032E0F1  call 0x46e030
+PASS N6 which calls the third consumer - 0046E03E  call 0x2df780
+PASS N6 size test first (-1 refuses) - 002DF7B0  cmp dword ptr [r15 + rax*4 + 0x2da3ee0], -1
+PASS N6 then g_pathTables[kind] - 002DF7BF  mov rax, qword ptr [r15 + rbx*8 + 0x203f000]
+PASS N6 [index] - 002DF7CC  mov rdi, qword ptr [rax + r14*8]
+PASS N6 of 0032E620's 51 sites, 15 pass an immediate kind and one is 0x1A (00324637) - 00324637
+PASS N6 the assembler passes its loop index as the index - 00324627  mov edx, eax
+PASS N6 the assembler's bound: 301 ids - 00324597  mov edi, 0x12d
+PASS N6 its {size, request id} pairs at 022C27B8, stride 8 - 00324607  lea rbx, [rsi + r9*8]
+PASS N6 loop test - 00324678  cmp eax, edi
+PASS N7 ResourcePath_Init installs 94 array bases
+PASS N7 kind 37's two bases - 01ECBCF0 01EA4D00
+PASS N7 kind 37 @01ECBCF0: next base after 2,964 slots; 1,316 paths at 120..2,963, stride 4 - slots 2964 paths 1316 first 120 last 2963 {'ebp': 329, 'mot': 329, 'snd': 329, 'vpcjp': 329}
+PASS N7 kind 37 @01EA4D00: next base after 2,964 slots; 1,316 paths at 120..2,963, stride 4 - slots 2964 paths 1316 first 120 last 2963 {'ebp': 329, 'mot': 329, 'snd': 329, 'vpcjp': 329}
+PASS N6 the sized kind-26 ids past the assembler's 301 are tri_a..tri_t - ['tri_a.nmb'] .. ['tri_t.nmb']
+PASS N1 the letters agree with the tables: kind 22 b0001.cm, 14 c1004.cm, 34 m1002.cm - {22: 'b0001.cm', 14: 'c1004.cm', 34: 'm1002.cm'}
+PASS N7 all 12 .fst files size kind 37 at ids 120..2,963 (1,080) and kind 26 at 48..320 (166) - [(26, 166, 48, 320), (37, 1080, 120, 2963)]
+PASS N8 region - 1 indexes the switch - 002DFBAF  lea eax, [r8 - 1]
+PASS N8 eleven arms - 002DFBB3  cmp eax, 0xa
+PASS N8 regions whose arm installs the ch array (002DFE58) - [7, 8, 11] -> ['KR', 'CH', 'CN']
+PASS N8 the same argument names the .fst
+PASS N8 (the .fst name reads the language table by r8) - 002E03F5  mov r9, qword ptr [r10 + r8*8 + 0x1d68b00]
+PASS N8 r8 is written once before, by the argument - 002DF9C2
+PASS N8 and no call before that use could clobber it
+FAILS 0

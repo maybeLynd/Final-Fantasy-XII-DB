@@ -1,0 +1,85 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 2408,
+      "sha256": "c0d0eacb91ba3778cce0663527aa72a196351ad071001c44ae3298355c923e63"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4461,
+      "sha256": "9851ec86daad98e34815620317ab2317faa8e83dd380565f961b3846624a7321"
+    },
+    {
+      "path": "check_direction.py",
+      "bytes": 2441,
+      "sha256": "9976a9a94656a1f73583f06c61ed91e9267aed7c5b2396707dbea1e309351e5a"
+    },
+    {
+      "path": "dependency-inspection.json",
+      "bytes": 364,
+      "sha256": "7fd065bd4c400525c3cef651a711d7fc3f681efc757cf71025454db1edaa4daa"
+    },
+    {
+      "path": "fix_direction.py",
+      "bytes": 3357,
+      "sha256": "7a27c1f4d0c379a1e3cd8c4c8f22c654b41128bef7d80c49c7556d824290b42e"
+    },
+    {
+      "path": "historical-capstone-access/receipt.json",
+      "bytes": 629,
+      "sha256": "fddf20a5a3b4a009261e56273765603bd7f6a2f1110397c2ba4677a3f0c6a9fd"
+    },
+    {
+      "path": "historical-capstone-access/source.json",
+      "bytes": 17700,
+      "sha256": "8de9a08f8485e8d89a2ff289028ecaad680501a0bbd5b8993b2a3c6e528e9c1e"
+    },
+    {
+      "path": "matrix-buffer-alias-access-correction.json",
+      "bytes": 8531,
+      "sha256": "150a39ee9dc9246e7ed2584bc6c32ee74c4a27d2f0e5c3a768fdb490320b3b78"
+    },
+    {
+      "path": "operand_direction.py",
+      "bytes": 661,
+      "sha256": "448c5b944c614b134557aef1aed33b22d2ca5120ed9ba955385002aa1a3ddd8e"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1972,
+      "sha256": "b95cf09ab16355b19b1f0b785716ab6aebc135de77f669edb295223db24651b3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4951,
+      "sha256": "5e0085b7b0ada1504d0cec14449cab38c175f4b09fdbd6ef926baf7a730f7a35"
+    },
+    {
+      "path": "retained/matrix-buffer-alias-source.json",
+      "bytes": 19514,
+      "sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500"
+    },
+    {
+      "path": "retained/rng-streams.md",
+      "bytes": 52464,
+      "sha256": "ea10eaa92c557afa51346730b44e54092fbdb807e5a305e90093f7f04d877646"
+    },
+    {
+      "path": "source.json",
+      "bytes": 18643,
+      "sha256": "d207898e5b33482c0ece77ab039c444e3ef09f530e9c0dccf131aba43b3ef0e7"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1385,
+      "sha256": "622bf1572012a5b73c9228ed56ddfc2182c0ce6d8bd0a6d147c488fb4c4aa7be"
+    }
+  ],
+  "limits": "A original direct-mode cost and actual packed-store/LEA source-role regression; zero new B/C. Native calls/live modes/effects unobserved. Published19 inputs unchanged; additive2-row metadata correction, byte-based semantics unaffected. Independent/owner acceptance pending."
+}

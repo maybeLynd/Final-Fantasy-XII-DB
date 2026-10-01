@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-162",
+ "note": "batch 162 (EC7-196): 22 bodies decoded+anchored across 17 bearing hosts - camera speed-mode factor 00229D20 (states 1-3/5 defer to 00182EE0, else 1.333f); battle-unit event-code accept gate 004230A0 + +0x294 flag arms 004272A0/00427860 + +0x2CA emit 003B4930; rig conditional child-resolve 003E7040; accessor-hub banked teardown/rebuild 002B9B30; authored-expression lazy pool init 003B4790 (0036C1D0/0036A100 arena pair); widget availability emit 00241B40 (0x8100/0x8101); ownerless fixed-offset broadcast trio 00539CF0/00539270/00539560; FramePump list reaper 003F24D0; settings code-to-pair map 0027BDE0; battle-mode commit selector 0042DF10; glyph signed-angle write 0026BC70; audio keyed lookup-or-insert 002061A0; weather mark-process-sweep 004000E0; efx bit-gated aggregate 0036B080; quest-list rect rescale 00403550; ui-layout lazy +0x2E0 record 002CBED0; game-app named float-pair register 00181E70. Gates: anchors 4986 0 MID; address 0 UNSUPPORTED in new content.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub162_dumps.txt",
+  "Database/Tools/work/hub162_callers.txt"
+ ]
+}

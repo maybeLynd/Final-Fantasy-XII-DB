@@ -1,0 +1,15 @@
+{
+  "name": "nonzero-with-good-json",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py",
+    "--run",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\reducer-controls\\nonzero-with-good-json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 52, in <module>\n    result=reduce(a.run or w/'run-01',w/'capture.py')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 27, in reduce\n    assert c['returncode']==0 and c['stderr']=='' and c['parse_error'] is None, 'UPSTREAM_FAILED'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: UPSTREAM_FAILED\n",
+  "expected_refusal": "UPSTREAM_FAILED",
+  "terminal": true
+}

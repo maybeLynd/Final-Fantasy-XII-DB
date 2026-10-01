@@ -1,0 +1,45 @@
+set
+   00304EF3 movabs rax, 0x400000000000
+   00304EFD or qword ptr [rdi], rax
+   00304F00 mov eax, 0xd0
+bit-30 arm and guarded clear
+   00304F62 test dword ptr [r15 + 0xc], 0x40000000
+   00304F6A je 0x304f91
+   00304F6C mov eax, dword ptr [rip + 0x1fbd1ee]
+   00304F72 add eax, -5
+   00304F75 cmp eax, 1
+   00304F78 jbe 0x30500a
+   00304F7E inc byte ptr [rsi + 4]
+   00304F81 mov eax, r14d
+   00304F84 mov r15, qword ptr [rsp + 0x108]
+   00304F8C jmp 0x30501a
+   00304F91 mov eax, dword ptr [r12]
+   00304F95 and eax, 0xa
+   00304F98 cmp al, 0xa
+   00304F9A jne 0x304fc3
+   00304F9C mov ecx, dword ptr [rdi + 8]
+   00304F9F movabs rax, 0xffffbfffffffffff
+   00304FA9 and qword ptr [rdi], rax
+   00304FAC call 0x3273b0
+leader test
+   0023B0D4 movabs rax, 0x400000000000
+   0023B0DE mov ebx, r14d
+   0023B0E1 mov ecx, ebp
+   0023B0E3 cmove ebx, esi
+   0023B0E6 test qword ptr [rdi], rax
+   0023B0E9 cmovne ebx, r14d
+   0023B0ED call 0x322600
+slot free memset
+   002342C3 xor edx, edx
+   002342C5 mov r8d, 0xf50
+   002342CB mov rcx, rbx
+   002342CE call 0x861ec0
+   002342D3 and dword ptr [rbx], 0xfffffffe
+   002342D6 mov rbx, qword ptr [rsp + 0x30]
+slot allocate memset
+   002344C7 xor edx, edx
+   002344C9 mov r8d, 0xf50
+   002344CF mov rcx, rbx
+   002344D2 call 0x861ec0
+   002344D7 or dword ptr [rbx], 1
+   002344DA mov rdx, rbx

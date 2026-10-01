@@ -1,0 +1,29 @@
+files 169
+the 21 names found in ANY file's namespace pool: none
+C1 accepted PAssetReference  arrays -> ['ArtData/chr/chara/c10/c1004/mws/c1004.dae#LODNODE_0', 'ArtData/chr/chara/c10/c1004/mws/c1004.dae#LODNODE_0Shape']
+C1 accepted PString          arrays -> ['s0_model', 's10_n_hkata_r']
+C1 rejected PAssetReference  arrays -> ['AlphaThreshold', 'AnimNormalSampler1']
+C1 rejected PString          arrays -> ['?K0 >']
+placement under accepted layout:
+    16455  PShaderVertexProgram arrays
+    13133  PShaderFragmentProgram arrays
+     4939  PShaderGeometryProgram arrays
+      568  PShaderParameterDefinition arrays
+       92  PShaderStreamDefinition arrays
+       92  PStreamInputDescD3D11 arrays
+       17  PMaterialSwitch arrays
+        5  PShaderPassInfo arrays
+placement under rejected layout:
+    16297  PShaderVertexProgram arrays
+    13353  PShaderFragmentProgram arrays
+     3902  PShaderGeometryProgram arrays
+     1305  PShaderParameterCaptureBufferLocationTypeConstantBuffer objects
+      145  PShaderPass objects
+       92  PStreamInputDescD3D11 arrays
+       67  PShaderParameterDefinition arrays
+       48  PAssetReference arrays
+       36  PShaderPassInfo arrays
+       28  PShaderStreamDefinition arrays
+       17  PParameterBuffer objects
+        6  PShaderParameterDefinition objects
+        5  PShaderPassInfo objects

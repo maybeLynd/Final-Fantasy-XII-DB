@@ -1,0 +1,7 @@
+rip insns=615 raw-only=4 unowned=[]
+referencing functions=28 accessing=24 lea-only=['00162410', '001BC9D0', '00607F00', '008AB7C0']
+25 in (referencing, accessing): False
+image-base-relative (disp=rva) verified=0 raw-only=17 []
+absolute imm/disp32 verified=0
+DIR64 stored pointers into block=0 []
+control 02064ACC writer 0022A1A7 present: True

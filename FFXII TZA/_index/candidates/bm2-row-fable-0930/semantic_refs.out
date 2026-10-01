@@ -1,0 +1,26 @@
+00160BF0 00160BF0 FUN_00160bf0                            refs 1
+00160C30 00160C30 FUN_00160c30                            refs 1
+00160C70 00160C70 FUN_00160c70                            refs 1
+00160CB0 00160CB0 FUN_00160cb0                            refs 1
+00160CF0 00160CF0 FUN_00160cf0                            refs 1
+00160D30 00160D30 FUN_00160d30                            refs 1
+00160D70 00160D70 FUN_00160d70                            refs 1
+00160DB0 00160DB0 FUN_00160db0                            refs 1
+00160DF0 00160DF0 FUN_00160df0                            refs 1
+00160E30 00160E30 FUN_00160e30                            refs 1
+00160E70 00160E70 FUN_00160e70                            refs 1
+00160EB0 00160EB0 FUN_00160eb0                            refs 1
+00160EF0 00160EF0 FUN_00160ef0                            refs 1
+00160F30 00160F30 FUN_00160f30                            refs 1
+00160F70 00160F70 FUN_00160f70                            refs 1
+00160FB0 00160FB0 FUN_00160fb0                            refs 1
+00160FF0 00160FF0 FUN_00160ff0                            refs 1
+00161030 00161030 FUN_00161030                            refs 1
+00161070 00161070 FUN_00161070                            refs 1
+005C5C80 005C5C80 FUN_005c5c80                            refs 23
+005C6F20 005C6F20 FUN_005c6f20                            refs 3
+005C72A0 005C72A0 FUN_005c72a0                            refs 3
+005CB150 005CB150 FUN_005cb150                            refs 19
+getters 19, named ['005C5C80', '005C6F20', '005C72A0', '005CB150'], other []
+CONTROL composer 005C72A0 found: PASS
+FAILS 0

@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "c79504aeda77cec520015249f7ab97ad9b715735f2d21066cfed5071cbb6c2b0",
+  "check_sha256": "7a5fcc9700df81e3040bd3ad62a829c8dbc88ed9e9769103a1cf103d2d536471",
+  "raw_unchanged_sha256": "df5259006a355893e87886ba64408bb1f1cac61f15dbf3387eeca914647e0c92",
+  "path": "Actual retained raw-default only, no new guest/native/VM/game execution; original8 guestcases retained"
+}

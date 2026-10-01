@@ -1,0 +1,35 @@
+PASS image SHA-256
+   register parent: SD-14x/16x ids SD-140 SD-141; duplicated ids none
+PASS R1 control: the parent already had SD-140 and SD-141 (b47a560bd) and no duplicate
+   register commit: SD-14x/16x ids SD-140 SD-141 SD-160 SD-161 SD-162 SD-163 SD-164 SD-165 SD-166 SD-167 SD-168 SD-169; duplicated ids SD-160 SD-161 SD-162 SD-163 SD-164 SD-165 SD-166 SD-167 SD-168 SD-169
+PASS R1 the commit registers SD-160..SD-169 twice each (20 rows, 10 ids)
+   register HEAD  : SD-14x/16x ids SD-140 SD-141 SD-160 SD-161 SD-162 SD-163 SD-164 SD-165 SD-166 SD-167 SD-168 SD-169; duplicated ids SD-160 SD-161 SD-162 SD-163 SD-164 SD-165 SD-166 SD-167 SD-168 SD-169
+   _set_new_mode slot 008C2B78 refs ['00862046 in 00862046']; 00809B4B jumps through SetUnhandledExceptionFilter
+PASS M1 slot referenced only by the thunk 00862046, whose only caller is 00808D5C's tail jmp
+PASS M1 00808D5C = SetUnhandledExceptionFilter(handler); _set_new_mode(005C5230() = 0) - MSVC pre_cpp_initialization
+PASS M1 008C31D0 is a null qword passed by 00808D78 (lea); 008C31D8 holds 00808D5C, the first initializer
+   _Xbad_alloc slot 008C2608: 23 references (23 call/jmp) in 14 functions
+PASS M2 23 call/jmp sites in 14 functions (second implementation)
+PASS N1 00408F30: eight dword compares +0..+0x1C, 0 on full match, 1 on mismatch
+PASS N1 FindEntry takes a NON-zero NameEquals return as the hit; only the thunk reaches it; 4 callers, no name, '@FRM'
+   0026D910 rip stores: 02099DA8 02099DAC 02099DB0 02099DBC
+PASS E1 0026D910 stores exactly the four globals
+   unstruck 'five globals' lines at the commit: ["**Pick a variant index, look up the field's authored row, publish five globals.**"]
+PASS E2 FINDING: an unstruck 'publish five globals' line survives the four-globals correction
+PASS S1 003171C0 tallies only if [+0x698]+5 == 1, type != 3, word +0x52 != 0xFFFF; 00315820 gates on id < 0x200 and 00315D50 == -1
+   bodies with a displacement in 0x3844..0x386B: 003154B0(1) 003156E0(1) 00315910(3) 00315B50(2) 00315E90(3) 003162E0(1) 00316440(1) 00316670(1) 003166F0(1) 00316810(2) 00316A50(4) 00316BF0(1) 00316C60(1) 0084E2F0(10) 008502D0(1) 00850490(1) 008505B0(5)
+   bodies forming base+0x384C (counter block) with lea: 003162E0 003166F0 00316810 00316BF0 00316C60
+PASS S2 the counter block base (+0x384C) is formed only by the accessor family the page's 2026-09-18 census names
+PASS S2 00316810 stores only 0x7FFFFFFE (kind 4) / 0x7FFE, 0xFFFE (kind 2); 00316C60 stores 99,999
+PASS S3 kind-4 arm: add, then jns keeps it, else 0 (and INT_MAX saturation above)
+   0036C5A0 callers ['002EA320@002EA4F3', '002EA320@002EA504'] -> [('ecx, 0xa', '  ; -> 002E6D60'), ('ecx, 6', '  ; -> 002E6D60')]
+PASS H1 setter 0036C5A0 writes desc+0xA0; only callers set arenas 6 and 10 to 002E6D60; init zeroes it; 0036BFE0 calls it
+PASS H2 002E6D60: one ret (002E6E24), reached only through 002E6E1E xor eax, eax - it always answers 0
+   0036B160: 13 sites in 9 bodies ['002E60F0', '002E6700', '002E6EB0', '0036ED50', '003A13F0', '003AB8B0', '003DC5B0', '003DD4C0', '0050DAD0']
+   0036B970 (-> 0036B980): 2 sites in 2 bodies ['00378BC0', '003DF2C0']
+PASS H3 the handle entries have 15 sites in 11 bodies; OV-40's record already traces 003DC5B0 and 002E6EB0 as handle takers
+   RC-11 arena values over 135 push sites: ['2', '3', '4', '5', '6', '8', '9', '10', '11', '12', '13', '14']
+PASS H4 RC-11's 135-site push census (at the parent) selects no arena 7
+   00432300: 23 sites in 8 bodies ['002F2D60', '00434CD0', '00435050', '004355D0', '00437130', '00438860', '004434D0', '00444340']
+PASS K1 the byte kernel 00432300 is shared: both consumers and both emit paths (00437130, 00438860) call it
+FAILS 0

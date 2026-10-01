@@ -1,0 +1,18 @@
+pid 13964   held-array at 0x000000000E49C030, 256 bytes
+baseline: all 256 bytes zero
+foreground: the game (hwnd 0xd2b0ebe), verified
+
+CONTROL, no key held for 0.35 s : clean
+
+SENDINPUT vk=0xd up=False accepted=2 requested=2
+SENDINPUT vk=0xd up=True accepted=2 requested=2
+  Enter     vk 0x0d  ->  indices while held: [49]                    still set after release: none
+
+keys tried            : 1
+keys that moved a byte: 1
+polls that lost focus : 0
+
+MEASURED MAPPING  (index -> the game's own code, index + 28)
+  Enter     index  49  code  77  (no GameSetting.ini name)
+SENDINPUT vk=0xd up=True accepted=2 requested=2
+ 

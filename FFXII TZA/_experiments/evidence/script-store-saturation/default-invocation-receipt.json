@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "capture_sha256": "03377acecfdd508d376160a91b1814adc38aff8048ad6ba5f20478b7ddf5f021",
+  "check_sha256": "da037c5194125635b1334199e5d8ca1843f94c7ec6507058f0d3ee80e93871be",
+  "raw_unchanged_sha256": "29977ba23e01b97a05ac820c242fc3381b1025f5de30a967e123e46de21dce07",
+  "extra_unchanged_sha256": "2e69609c3e3f8ce4d8609089d95a3b37e65873355a3acfa635f8f7384d1eae51",
+  "path": "Actual retained raw-default; reducer only, original25 guest cases never replayed"
+}

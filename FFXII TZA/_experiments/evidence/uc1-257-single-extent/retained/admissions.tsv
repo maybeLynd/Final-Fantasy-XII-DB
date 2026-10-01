@@ -1,0 +1,1489 @@
+# Per-row adjudication of the unlisted code blocks, for the UC-1 population change.
+# Voted 3-0 (FABLE, OPUS, ASTRA) 2026-09-13: admit distinct bodies as unexplained frontier,
+# never as a D exception. `body` rows are admitted; `continuation` rows extend an existing
+# extent; `ambiguous` rows are a declared uncertainty band and are never silently dropped.
+# Regenerate with gfz-scripts/unlisted_admissions.py --out <this file>.
+# `table` rows (added 2026-09-25, OPUS) open with >= 3 image-base RVAs into the predecessor: its
+# inline jump table - data, not admitted. Control: 0 of the listed bodies meet the test.
+# `decodes_to_end` is the body-shape gate: a linear decode from the first byte reaching the
+# last. Listed bodies pass 100.0/99.8/98.7/97.8/92.6 % by size band; the admitted rows pass
+# 99.6/87.8/45.0/42.9/44.4 % (computed on this run; tables are not admitted). A `no` does not mean the bytes are data - it means the
+# BOUNDARY is not established, which is why no denominator has moved.
+# `referenced` counts only the two pass-6-admissible routes - rel32 call/jmp + RIP lea, and
+# base-relocation DIR64. `routes` names every route that lists the block; `pdata` (the PE
+# exception directory) is unwind metadata, banned as evidence under FINAL-AUDIT-PROTOCOL
+# pass 6, so a `pdata` route never makes `referenced` yes. Split per OPUS-REQ-SWE2-EC7-
+# UNLISTED-REFERENCED-ROUTES, 2026-09-17 - the earlier union made exactly one body row
+# look referenced on unwind data alone.
+start_va	bytes	prev_entry	prev_last_ins	referenced	routes	aligned16	decodes_to_end	verdict	why
+00121E11	1	00121DB0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00124BFB	29	001249D0	jmp	no	-	no	no	table	inline jump table of 001249D0: 7 image-base RVAs into it; remainder 0 B not classified
+00125743	33	00125740	ret	no	-	no	yes	body	predecessor ends in ret
+00125770	223	00125740	ret	no	-	yes	yes	body	predecessor ends in ret
+00129640	414	001294D0	ret	no	-	yes	yes	body	predecessor ends in ret
+00129BE5	1700	00129870	ret	no	-	no	yes	body	predecessor ends in ret
+0012A510	1915	0012A290	ret	no	-	yes	yes	body	predecessor ends in ret
+0012AC90	3304	0012A290	ret	no	-	yes	yes	body	predecessor ends in ret
+0012C02C	835	0012B980	ret	no	-	no	no	body	predecessor ends in ret
+0012C370	3647	0012B980	ret	no	-	yes	no	body	predecessor ends in ret
+0012D1B0	4879	0012B980	ret	no	-	yes	no	body	predecessor ends in ret
+0012E4C0	3231	0012B980	ret	no	-	yes	no	body	predecessor ends in ret
+0012F160	959	0012B980	ret	no	-	yes	no	body	predecessor ends in ret
+0012F520	9775	0012B980	ret	no	-	yes	no	body	predecessor ends in ret
+00131B50	6911	0012B980	ret	no	-	yes	yes	body	predecessor ends in ret
+00133650	1264	0012B980	ret	no	-	yes	yes	body	predecessor ends in ret
+00133BBF	3283	00133B40	ret	no	-	no	yes	body	predecessor ends in ret
+001348A0	3636	00133B40	ret	no	-	yes	yes	body	predecessor ends in ret
+001356E0	511	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+001358E0	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+001359B0	1295	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00135EC0	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00135F90	3615	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00136DB0	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00136E80	1295	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00137390	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00137460	1295	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00137970	2319	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00138280	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00138350	1295	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00138860	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00138930	1295	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+00138E40	5359	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013A330	815	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013A660	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013A730	2927	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013B2A0	815	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013B5D0	207	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013B6A0	815	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013B9D0	846	00133B40	ret	no	-	yes	no	body	predecessor ends in ret
+0013BD20	2575	00133B40	ret	no	-	yes	yes	body	predecessor ends in ret
+0013C730	46018	00133B40	ret	no	-	yes	yes	body	predecessor ends in ret
+001482A2	379	0014824F	ret	no	-	no	yes	body	predecessor ends in ret
+00148584	312	001484DB	ret	no	-	no	yes	body	predecessor ends in ret
+001489E0	272	001488D0	ret	no	-	yes	yes	body	predecessor ends in ret
+00148BB3	141	00148B70	ret	no	-	no	yes	body	predecessor ends in ret
+00148D64	60	00148D10	ret	no	-	no	yes	body	predecessor ends in ret
+00148F41	543	00148F10	repz ret	no	-	no	yes	body	predecessor ends in repz ret
+001491CE	146	001491A0	repz ret	no	-	no	yes	body	predecessor ends in repz ret
+001492FF	113	001492B0	repz ret	no	-	no	yes	body	predecessor ends in repz ret
+00149504	263	00149450	ret	no	-	no	yes	body	predecessor ends in ret
+0014B1D0	847	0014A48A	ret	no	-	yes	no	body	predecessor ends in ret
+0014B520	367	0014A48A	ret	no	-	yes	no	body	predecessor ends in ret
+0014B690	2763	0014A48A	ret	no	-	yes	yes	body	predecessor ends in ret
+0014C4E6	891	0014C221	ret	no	-	no	yes	body	predecessor ends in ret
+0014C870	1311	0014C221	ret	no	-	yes	no	body	predecessor ends in ret
+0014CD90	744	0014C221	ret	no	-	yes	yes	body	predecessor ends in ret
+0014D080	2383	0014C221	ret	no	-	yes	no	body	predecessor ends in ret
+0014D9D0	511	0014C221	ret	no	-	yes	no	body	predecessor ends in ret
+0014DBD0	3917	0014C221	ret	no	-	yes	yes	body	predecessor ends in ret
+0014EB20	6810	0014C221	ret	no	-	yes	yes	body	predecessor ends in ret
+001505C0	6271	0014C221	ret	no	-	yes	no	body	predecessor ends in ret
+00151E40	12831	0014C221	ret	no	-	yes	no	body	predecessor ends in ret
+00155060	15059	0014C221	ret	no	-	yes	yes	body	predecessor ends in ret
+00158C97	250	00158C09	ret	no	-	no	yes	body	predecessor ends in ret
+0015AE4A	8	0015AC50	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+0016EE40	48	0016ECE0	ret	yes	dir64	yes	yes	body	predecessor ends in ret
+0016EE80	63	0016EE70	ret	yes	dir64	yes	yes	body	predecessor ends in ret
+0016EFF0	56	0016EEC0	ret	yes	dir64	yes	yes	body	predecessor ends in ret
+0016F030	49	0016EEC0	ret	yes	dir64	yes	yes	body	predecessor ends in ret
+0017DD5A	94	0017DB90	ret	no	-	no	no	table	inline jump table of 0017DB90: 23 image-base RVAs into it; remainder 0 B not classified
+0017E1AB	93	0017E070	ret	no	-	no	no	table	inline jump table of 0017E070: 23 image-base RVAs into it; remainder 0 B not classified
+0017E681	95	0017E540	ret	no	-	no	no	table	inline jump table of 0017E540: 23 image-base RVAs into it; remainder 0 B not classified
+0017E760	20	0017E740	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0017E780	20	0017E740	jmp	no	-	yes	yes	body	predecessor ends in jmp
+00182723	5	001826E0	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+0018792A	34	00187860	jmp	no	-	no	no	table	inline jump table of 00187860: 8 image-base RVAs into it; remainder 0 B not classified
+00194CB9	14	00194B00	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00194E97	14	00194CD0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0019505E	1	00194F50	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00195340	21	00195310	ret	no	-	yes	yes	body	predecessor ends in ret
+001957FE	20	00195670	cmp	no	-	no	yes	continuation	falls through from cmp, unreferenced
+00195924	20	00195820	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0019B3FE	1	0019B2F0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+001A6A10	6	001A5B30	pop	no	-	yes	yes	continuation	falls through from pop, unreferenced
+001A8B8A	9	001A7F10	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+001AA7CE	1	001AA6C0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+001ACEEC	24	001ACC30	ret	no	-	no	no	table	inline jump table of 001ACC30: 6 image-base RVAs into it; remainder 0 B not classified
+001B0A13	1	001B07A0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+001C7845	5	001C76E0	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+001CC5FA	5	001CA600	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+001CC995	5	001CC920	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+001CFCEC	1176	001CD0E0	ret	no	-	no	no	table	inline jump table of 001CD0E0: 294 image-base RVAs into it; remainder 0 B not classified
+001D028B	247	001D0190	ret	no	-	no	yes	table	inline jump table of 001D0190: 6 image-base RVAs into it; remainder 222 B not classified
+001D4C19	1131	001D1660	ret	no	-	no	no	table	inline jump table of 001D1660: 282 image-base RVAs into it; remainder 0 B not classified
+001D6956	46	001D68F0	ret	no	-	no	yes	table	inline jump table of 001D68F0: 11 image-base RVAs into it; remainder 0 B not classified
+001D976E	50	001D9400	ret	no	-	no	yes	table	inline jump table of 001D9400: 12 image-base RVAs into it; remainder 0 B not classified
+001DDAC0	223	001DDAB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+001DDDEE	29	001DDC40	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+001DDFB3	17	001DDE10	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+001E0870	124	001E0650	ret	no	-	yes	no	table	inline jump table of 001E0650: 31 image-base RVAs into it; remainder 0 B not classified
+001FE2FD	27	001FE150	ret	no	-	no	no	table	inline jump table of 001FE150: 6 image-base RVAs into it; remainder 0 B not classified
+001FE4A5	27	001FE320	ret	no	-	no	no	table	inline jump table of 001FE320: 6 image-base RVAs into it; remainder 0 B not classified
+001FE800	24	001FE6B0	ret	no	-	yes	no	table	inline jump table of 001FE6B0: 6 image-base RVAs into it; remainder 0 B not classified
+001FED7D	27	001FEC30	ret	no	-	no	no	table	inline jump table of 001FEC30: 6 image-base RVAs into it; remainder 0 B not classified
+001FF4D3	29	001FF210	ret	no	-	no	no	table	inline jump table of 001FF210: 7 image-base RVAs into it; remainder 0 B not classified
+002002BF	25	002001F0	ret	no	-	no	no	table	inline jump table of 002001F0: 6 image-base RVAs into it; remainder 0 B not classified
+00202653	125	00201EB0	ret	no	-	no	no	table	inline jump table of 00201EB0: 10 image-base RVAs into it; remainder 84 B not classified
+00203F67	1	00203E60	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00208628	168	002085B0	ret	no	-	no	no	body	predecessor ends in ret
+00208C0B	85	00208710	ret	no	-	no	no	table	inline jump table of 00208710: 21 image-base RVAs into it; remainder 0 B not classified
+002096E0	156	00209530	ret	no	-	yes	no	table	inline jump table of 00209530: 10 image-base RVAs into it; remainder 116 B not classified
+0020F2E8	32	0020F2A0	ret	no	-	no	no	table	inline jump table of 0020F2A0: 8 image-base RVAs into it; remainder 0 B not classified
+0020FAD4	192	0020F3E0	call	no	-	no	no	table	inline jump table of 0020F3E0: 21 image-base RVAs into it; remainder 108 B not classified
+0020FDD7	141	0020FCA0	ret	no	-	no	no	table	inline jump table of 0020FCA0: 15 image-base RVAs into it; remainder 80 B not classified
+00214FB2	1	00214C30	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00227CB4	112	00227680	ret	no	-	no	no	table	inline jump table of 00227680: 28 image-base RVAs into it; remainder 0 B not classified
+002294A1	103	00228C70	ret	no	-	no	no	table	inline jump table of 00228C70: 25 image-base RVAs into it; remainder 0 B not classified
+0022A751	31	0022A580	ret	no	-	no	yes	table	inline jump table of 0022A580: 7 image-base RVAs into it; remainder 0 B not classified
+0022E6AB	25	0022E340	jmp	no	-	no	no	table	inline jump table of 0022E340: 6 image-base RVAs into it; remainder 0 B not classified
+00232470	24	00232380	ret	no	-	yes	no	table	inline jump table of 00232380: 6 image-base RVAs into it; remainder 0 B not classified
+0023B6C2	45	0023B530	ret	no	-	no	no	table	inline jump table of 0023B530: 5 image-base RVAs into it; remainder 23 B not classified
+0023BAF7	36	0023B6F0	ret	no	-	no	no	table	inline jump table of 0023B6F0: 3 image-base RVAs into it; remainder 23 B not classified
+0023C56B	73	0023BD40	ret	no	-	no	no	table	inline jump table of 0023BD40: 18 image-base RVAs into it; remainder 0 B not classified
+0023D4A1	75	0023CE10	ret	no	-	no	no	table	inline jump table of 0023CE10: 18 image-base RVAs into it; remainder 0 B not classified
+0023EF52	42	0023ED80	ret	no	-	no	yes	table	inline jump table of 0023ED80: 10 image-base RVAs into it; remainder 0 B not classified
+0023FB7A	98	0023F8B0	ret	no	-	no	no	table	inline jump table of 0023F8B0: 8 image-base RVAs into it; remainder 64 B not classified
+002402AC	132	0023FBE0	ret	no	-	no	no	table	inline jump table of 0023FBE0: 33 image-base RVAs into it; remainder 0 B not classified
+002403B1	62	00240330	ret	no	-	no	no	table	inline jump table of 00240330: 6 image-base RVAs into it; remainder 35 B not classified
+00240518	140	002403F0	ret	no	-	no	no	table	inline jump table of 002403F0: 35 image-base RVAs into it; remainder 0 B not classified
+0024065C	28	002405F0	ret	no	-	no	no	table	inline jump table of 002405F0: 7 image-base RVAs into it; remainder 0 B not classified
+002407A8	59	00240750	jmp	no	-	no	no	table	inline jump table of 00240750: 6 image-base RVAs into it; remainder 35 B not classified
+00240968	140	002407F0	jmp	no	-	no	no	table	inline jump table of 002407F0: 35 image-base RVAs into it; remainder 0 B not classified
+002413D0	9	00240DE0	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+002425B0	76	00241D40	ret	no	-	yes	no	table	inline jump table of 00241D40: 19 image-base RVAs into it; remainder 0 B not classified
+00243511	111	002432B0	ret	no	-	no	no	table	inline jump table of 002432B0: 27 image-base RVAs into it; remainder 0 B not classified
+0024B6C4	36	0024B580	ret	no	-	no	no	table	inline jump table of 0024B580: 9 image-base RVAs into it; remainder 0 B not classified
+0024BF8C	68	0024B9B0	ret	no	-	no	no	table	inline jump table of 0024B9B0: 17 image-base RVAs into it; remainder 0 B not classified
+0024C5DA	38	0024C550	jmp	no	-	no	no	table	inline jump table of 0024C550: 9 image-base RVAs into it; remainder 0 B not classified
+0024D02A	38	0024CFF0	ret	no	-	no	no	table	inline jump table of 0024CFF0: 9 image-base RVAs into it; remainder 0 B not classified
+0024D305	39	0024D140	ret	no	-	no	yes	table	inline jump table of 0024D140: 9 image-base RVAs into it; remainder 0 B not classified
+0024D91F	33	0024D770	ret	no	-	no	yes	table	inline jump table of 0024D770: 8 image-base RVAs into it; remainder 0 B not classified
+0024DEAC	36	0024DE70	ret	no	-	no	no	table	inline jump table of 0024DE70: 9 image-base RVAs into it; remainder 0 B not classified
+0024E2BD	27	0024E210	ret	no	-	no	no	table	inline jump table of 0024E210: 6 image-base RVAs into it; remainder 0 B not classified
+0024E3BD	39	0024E2F0	ret	no	-	no	no	table	inline jump table of 0024E2F0: 9 image-base RVAs into it; remainder 0 B not classified
+0024E5E4	90	0024E4B0	ret	no	-	no	no	table	inline jump table of 0024E4B0: 4 image-base RVAs into it; remainder 74 B not classified
+0025249B	33	00252030	ret	no	-	no	yes	table	inline jump table of 00252030: 8 image-base RVAs into it; remainder 0 B not classified
+0025344A	50	00253240	ret	no	-	no	no	table	inline jump table of 00253240: 12 image-base RVAs into it; remainder 0 B not classified
+00253BF5	32	00253BC0	ret	no	-	no	yes	body	predecessor ends in ret
+002546E6	30	00254560	jmp	no	-	no	yes	table	inline jump table of 00254560: 7 image-base RVAs into it; remainder 0 B not classified
+00254C57	49	00254B50	ret	no	-	no	no	table	inline jump table of 00254B50: 6 image-base RVAs into it; remainder 24 B not classified
+002552FC	48	00255290	ret	no	-	no	no	table	inline jump table of 00255290: 6 image-base RVAs into it; remainder 24 B not classified
+00259013	25	00258EE0	jmp	no	-	no	no	table	inline jump table of 00258EE0: 6 image-base RVAs into it; remainder 0 B not classified
+0025D9C0	18	0025D950	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+0025E3CC	32	0025DF00	ret	no	-	no	no	table	inline jump table of 0025DF00: 8 image-base RVAs into it; remainder 0 B not classified
+00261DF6	402	0025E4C0	ret	no	-	no	no	table	inline jump table of 0025E4C0: 100 image-base RVAs into it; remainder 0 B not classified
+0026268F	49	00262440	ret	no	-	no	no	table	inline jump table of 00262440: 12 image-base RVAs into it; remainder 0 B not classified
+00264A8E	38	00264A40	ret	no	-	no	yes	table	inline jump table of 00264A40: 9 image-base RVAs into it; remainder 0 B not classified
+00264E7A	38	00264E40	ret	no	-	no	no	table	inline jump table of 00264E40: 9 image-base RVAs into it; remainder 0 B not classified
+0026517E	26	002650B0	ret	no	-	no	yes	table	inline jump table of 002650B0: 6 image-base RVAs into it; remainder 0 B not classified
+002657BC	24	00265770	ret	no	-	no	yes	table	inline jump table of 00265770: 6 image-base RVAs into it; remainder 0 B not classified
+00266BA3	33	00266AD0	ret	no	-	no	no	table	inline jump table of 00266AD0: 8 image-base RVAs into it; remainder 0 B not classified
+00266C30	32	00266BD0	ret	no	-	yes	no	table	inline jump table of 00266BD0: 8 image-base RVAs into it; remainder 0 B not classified
+002680E8	24	00267FC0	ret	no	-	no	no	table	inline jump table of 00267FC0: 6 image-base RVAs into it; remainder 0 B not classified
+002681A4	24	00268100	ret	no	-	no	yes	table	inline jump table of 00268100: 6 image-base RVAs into it; remainder 0 B not classified
+002697F0	10	002697E0	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+00269E00	24	00269DD0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00269F00	21	00269EE0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0026AF70	7	0026AF40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0026CDF2	1	0026C8C0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0026D50F	25	0026D3E0	ret	no	-	no	no	table	inline jump table of 0026D3E0: 6 image-base RVAs into it; remainder 0 B not classified
+0026D5F2	26	0026D530	ret	no	-	no	no	table	inline jump table of 0026D530: 6 image-base RVAs into it; remainder 0 B not classified
+0026DC50	5	0026DC40	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+00274B9A	4	002748E0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00277851	100	00276D30	ret	no	-	no	no	table	inline jump table of 00276D30: 11 image-base RVAs into it; remainder 53 B not classified
+00279D5E	194	002778C0	ret	no	-	no	no	table	inline jump table of 002778C0: 14 image-base RVAs into it; remainder 136 B not classified
+0027A9DE	142	00279E20	ret	no	-	no	no	table	inline jump table of 00279E20: 22 image-base RVAs into it; remainder 52 B not classified
+0027BB06	94	0027B880	ret	no	-	no	no	table	inline jump table of 0027B880: 23 image-base RVAs into it; remainder 0 B not classified
+0027BE87	73	0027BDE0	ret	no	-	no	no	table	inline jump table of 0027BDE0: 18 image-base RVAs into it; remainder 0 B not classified
+0027C1C0	84	0027C150	ret	no	-	yes	no	table	inline jump table of 0027C150: 21 image-base RVAs into it; remainder 0 B not classified
+0027C69D	135	0027C3D0	ret	no	-	no	no	table	inline jump table of 0027C3D0: 6 image-base RVAs into it; remainder 108 B not classified
+0027D56E	78	0027D480	ret	no	-	no	no	table	inline jump table of 0027D480: 19 image-base RVAs into it; remainder 0 B not classified
+0027E384	80	0027E050	jmp	no	-	no	no	table	inline jump table of 0027E050: 20 image-base RVAs into it; remainder 0 B not classified
+0027FAD0	84	0027F5D0	ret	no	-	yes	no	table	inline jump table of 0027F5D0: 21 image-base RVAs into it; remainder 0 B not classified
+00280045	159	0027FB70	ret	no	-	no	no	table	inline jump table of 0027FB70: 39 image-base RVAs into it; remainder 0 B not classified
+0028064F	31	002805D0	ret	no	-	no	no	table	inline jump table of 002805D0: 3 image-base RVAs into it; remainder 18 B not classified
+002813FE	226	00280DE0	jmp	no	-	no	no	table	inline jump table of 00280DE0: 22 image-base RVAs into it; remainder 136 B not classified
+002818EF	275	002814E0	ret	no	-	no	no	table	inline jump table of 002814E0: 9 image-base RVAs into it; remainder 238 B not classified
+00282571	215	00281ED0	ret	no	-	no	no	table	inline jump table of 00281ED0: 19 image-base RVAs into it; remainder 136 B not classified
+0028380C	48	00283730	ret	no	-	no	no	table	inline jump table of 00283730: 12 image-base RVAs into it; remainder 0 B not classified
+00285654	80	00285290	ret	no	-	no	no	table	inline jump table of 00285290: 20 image-base RVAs into it; remainder 0 B not classified
+00285FB8	40	00285F60	ret	no	-	no	no	table	inline jump table of 00285F60: 10 image-base RVAs into it; remainder 0 B not classified
+0028BAFA	74	0028B860	ret	no	-	no	no	table	inline jump table of 0028B860: 18 image-base RVAs into it; remainder 0 B not classified
+0028F09C	24	0028F000	ret	no	-	no	no	table	inline jump table of 0028F000: 6 image-base RVAs into it; remainder 0 B not classified
+0028FC8A	30	0028FBE0	ret	no	-	no	no	table	inline jump table of 0028FBE0: 7 image-base RVAs into it; remainder 0 B not classified
+00295C7D	35	00295C20	ret	no	-	no	no	table	inline jump table of 00295C20: 8 image-base RVAs into it; remainder 0 B not classified
+002969D0	12	00296960	ret	no	-	yes	yes	body	predecessor ends in ret
+002976E7	33	00297640	ret	no	-	no	no	table	inline jump table of 00297640: 8 image-base RVAs into it; remainder 0 B not classified
+002994A0	57	00299090	ret	no	-	yes	no	table	inline jump table of 00299090: 7 image-base RVAs into it; remainder 29 B not classified
+0029C4CF	93	0029BE50	ret	no	-	no	no	table	inline jump table of 0029BE50: 8 image-base RVAs into it; remainder 60 B not classified
+0029D97B	81	0029D550	jmp	no	-	no	no	table	inline jump table of 0029D550: 20 image-base RVAs into it; remainder 0 B not classified
+002A2AAB	33	002A2A60	ret	no	-	no	no	table	inline jump table of 002A2A60: 8 image-base RVAs into it; remainder 0 B not classified
+002A31A3	65	002A30B0	ret	no	-	no	no	table	inline jump table of 002A30B0: 16 image-base RVAs into it; remainder 0 B not classified
+002A380C	24	002A3730	ret	no	-	no	no	table	inline jump table of 002A3730: 6 image-base RVAs into it; remainder 0 B not classified
+002A698B	85	002A6190	ret	no	-	no	no	table	inline jump table of 002A6190: 21 image-base RVAs into it; remainder 0 B not classified
+002A83EB	25	002A8220	ret	no	-	no	no	table	inline jump table of 002A8220: 6 image-base RVAs into it; remainder 0 B not classified
+002A866D	43	002A8550	ret	no	-	no	no	table	inline jump table of 002A8550: 10 image-base RVAs into it; remainder 0 B not classified
+002A8BF4	84	002A86A0	ret	no	-	no	yes	table	inline jump table of 002A86A0: 21 image-base RVAs into it; remainder 0 B not classified
+002ABA5D	60	002AB8F0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+002AC1B1	35	002ABF70	ret	no	-	no	yes	table	inline jump table of 002ABF70: 8 image-base RVAs into it; remainder 0 B not classified
+002AE331	284	002AC5F0	jmp	no	-	no	no	table	inline jump table of 002AC5F0: 50 image-base RVAs into it; remainder 81 B not classified
+002B1BA9	228	002B0280	ret	no	-	no	no	table	inline jump table of 002B0280: 36 image-base RVAs into it; remainder 81 B not classified
+002B498D	94	002B4810	ret	no	-	no	no	table	inline jump table of 002B4810: 6 image-base RVAs into it; remainder 67 B not classified
+002B51D6	102	002B49F0	jmp	no	-	no	no	table	inline jump table of 002B49F0: 8 image-base RVAs into it; remainder 68 B not classified
+002B619E	5	002B6140	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+002B71B9	82	002B6DB0	ret	no	-	no	no	table	inline jump table of 002B6DB0: 10 image-base RVAs into it; remainder 39 B not classified
+002B7B19	98	002B7590	ret	no	-	no	no	table	inline jump table of 002B7590: 13 image-base RVAs into it; remainder 43 B not classified
+002B8E6F	107	002B7B80	ret	no	-	no	no	table	inline jump table of 002B7B80: 16 image-base RVAs into it; remainder 42 B not classified
+002BAF1D	98	002BA700	ret	no	-	no	no	table	inline jump table of 002BA700: 13 image-base RVAs into it; remainder 43 B not classified
+002BC24A	108	002BAF80	ret	no	-	no	no	table	inline jump table of 002BAF80: 16 image-base RVAs into it; remainder 42 B not classified
+002BC96E	81	002BC3E0	ret	no	-	no	no	table	inline jump table of 002BC3E0: 10 image-base RVAs into it; remainder 39 B not classified
+002BD876	62	002BD680	ret	no	-	no	no	table	inline jump table of 002BD680: 15 image-base RVAs into it; remainder 0 B not classified
+002BE873	89	002BE4F0	jmp	no	-	no	yes	table	inline jump table of 002BE4F0: 22 image-base RVAs into it; remainder 0 B not classified
+002C0ED0	88	002C0BE0	ret	no	-	yes	no	table	inline jump table of 002C0BE0: 22 image-base RVAs into it; remainder 0 B not classified
+002C17A6	82	002C13C0	ret	no	-	no	no	table	inline jump table of 002C13C0: 20 image-base RVAs into it; remainder 0 B not classified
+002C2C18	44	002C2320	ret	no	-	no	yes	table	inline jump table of 002C2320: 11 image-base RVAs into it; remainder 0 B not classified
+002C5E73	73	002C59D0	ret	no	-	no	yes	table	inline jump table of 002C59D0: 18 image-base RVAs into it; remainder 0 B not classified
+002C9BA4	36	002C9B30	ret	no	-	no	yes	table	inline jump table of 002C9B30: 9 image-base RVAs into it; remainder 0 B not classified
+002CA572	70	002CA490	ret	no	-	no	yes	table	inline jump table of 002CA490: 17 image-base RVAs into it; remainder 0 B not classified
+002CD8F1	43	002CD8A0	ret	no	-	no	no	table	inline jump table of 002CD8A0: 10 image-base RVAs into it; remainder 0 B not classified
+002CD9D5	257	002CD920	ret	no	-	no	no	table	inline jump table of 002CD920: 17 image-base RVAs into it; remainder 186 B not classified
+002CDD05	282	002CDAE0	ret	no	-	no	no	table	inline jump table of 002CDAE0: 22 image-base RVAs into it; remainder 191 B not classified
+002CE226	78	002CDF20	ret	no	-	no	no	table	inline jump table of 002CDF20: 19 image-base RVAs into it; remainder 0 B not classified
+002CE726	114	002CE370	ret	no	-	no	no	table	inline jump table of 002CE370: 28 image-base RVAs into it; remainder 0 B not classified
+002D1A9C	36	002D1870	ret	no	-	no	no	table	inline jump table of 002D1870: 9 image-base RVAs into it; remainder 0 B not classified
+002D4310	24	002D3BA0	ret	no	-	yes	no	table	inline jump table of 002D3BA0: 6 image-base RVAs into it; remainder 0 B not classified
+002D65CD	83	002D5EB0	ret	no	-	no	no	table	inline jump table of 002D5EB0: 20 image-base RVAs into it; remainder 0 B not classified
+002D6938	80	002D66D0	jmp	no	-	no	yes	table	inline jump table of 002D66D0: 20 image-base RVAs into it; remainder 0 B not classified
+002D754B	53	002D70F0	ret	no	-	no	no	table	inline jump table of 002D70F0: 13 image-base RVAs into it; remainder 0 B not classified
+002E04AF	45	002DF9A0	ret	no	-	no	no	table	inline jump table of 002DF9A0: 11 image-base RVAs into it; remainder 0 B not classified
+002E0E08	28	002E0DA0	ret	no	-	no	yes	table	inline jump table of 002E0DA0: 7 image-base RVAs into it; remainder 0 B not classified
+002E0F1C	80	002E0E30	ret	no	-	no	no	table	inline jump table of 002E0E30: 20 image-base RVAs into it; remainder 0 B not classified
+002E1231	87	002E11B0	ret	no	-	no	no	table	inline jump table of 002E11B0: 21 image-base RVAs into it; remainder 0 B not classified
+002E1372	78	002E12E0	ret	no	-	no	no	table	inline jump table of 002E12E0: 19 image-base RVAs into it; remainder 0 B not classified
+002E1426	42	002E13C0	ret	no	-	no	no	table	inline jump table of 002E13C0: 10 image-base RVAs into it; remainder 0 B not classified
+002E4C90	70	002E4C70	ret	no	-	yes	yes	body	predecessor ends in ret
+002E5B00	96	002E5750	jmp	no	-	yes	yes	body	predecessor ends in jmp
+002E62DB	37	002E60F0	ret	no	-	no	no	table	inline jump table of 002E60F0: 9 image-base RVAs into it; remainder 0 B not classified
+002EB5D0	11	002EB540	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+002EB7D4	56	002EB7A0	ret	no	-	no	no	table	inline jump table of 002EB7A0: 14 image-base RVAs into it; remainder 0 B not classified
+002EBD40	19	002EBC90	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+002EC3C0	43	002EC380	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+002ECD20	41	002ECCF0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+002ED250	68	002ED200	ret	no	-	yes	yes	body	predecessor ends in ret
+002ED350	76	002ED320	ret	no	-	yes	yes	body	predecessor ends in ret
+002ED854	105	002ED6F0	ret	no	-	no	no	table	inline jump table of 002ED6F0: 13 image-base RVAs into it; remainder 53 B not classified
+002ED9D6	90	002ED950	ret	no	-	no	yes	table	inline jump table of 002ED950: 22 image-base RVAs into it; remainder 0 B not classified
+002EE99E	34	002EE430	ret	no	-	no	no	table	inline jump table of 002EE430: 8 image-base RVAs into it; remainder 0 B not classified
+002F32A9	177	002F31C0	ret	no	-	no	no	table	inline jump table of 002F31C0: 7 image-base RVAs into it; remainder 146 B not classified
+002F3A2C	402	002F3910	jmp	no	-	no	no	table	inline jump table of 002F3910: 48 image-base RVAs into it; remainder 210 B not classified
+002F3E87	403	002F3BC0	ret	no	-	no	no	table	inline jump table of 002F3BC0: 48 image-base RVAs into it; remainder 210 B not classified
+002F4380	397	002F4020	ret	no	-	yes	no	table	inline jump table of 002F4020: 47 image-base RVAs into it; remainder 209 B not classified
+002F72F6	138	002F6AB0	ret	no	-	no	no	table	inline jump table of 002F6AB0: 34 image-base RVAs into it; remainder 0 B not classified
+002FBCCA	546	002FBA60	ret	no	-	no	no	table	inline jump table of 002FBA60: 72 image-base RVAs into it; remainder 256 B not classified
+002FC477	33	002FC3C0	ret	no	-	no	no	table	inline jump table of 002FC3C0: 8 image-base RVAs into it; remainder 0 B not classified
+002FCA98	28	002FCA00	ret	no	-	no	no	table	inline jump table of 002FCA00: 7 image-base RVAs into it; remainder 0 B not classified
+002FE531	295	002FDDA0	ret	no	-	no	no	table	inline jump table of 002FDDA0: 6 image-base RVAs into it; remainder 268 B not classified
+002FE77A	76	002FE660	ret	no	-	no	yes	table	inline jump table of 002FE660: 5 image-base RVAs into it; remainder 54 B not classified
+002FE7D0	106	002FE660	ret	yes	dir64	yes	yes	body	predecessor ends in ret
+002FEE80	48	002FEE20	ret	no	-	yes	no	table	inline jump table of 002FEE20: 12 image-base RVAs into it; remainder 0 B not classified
+00303603	401	00301AD0	ret	no	-	no	no	table	inline jump table of 00301AD0: 31 image-base RVAs into it; remainder 276 B not classified
+00305042	54	00304850	ret	no	-	no	no	table	inline jump table of 00304850: 13 image-base RVAs into it; remainder 0 B not classified
+00306739	27	003065D0	ret	no	-	no	no	table	inline jump table of 003065D0: 6 image-base RVAs into it; remainder 0 B not classified
+00306AEF	25	00306760	ret	no	-	no	no	table	inline jump table of 00306760: 6 image-base RVAs into it; remainder 0 B not classified
+00306CEC	156	00306BD0	ret	no	-	no	no	table	inline jump table of 00306BD0: 7 image-base RVAs into it; remainder 128 B not classified
+00307BB4	44	00307300	ret	no	-	no	no	table	inline jump table of 00307300: 11 image-base RVAs into it; remainder 0 B not classified
+0030A4A1	51	0030A370	ret	no	-	no	no	table	inline jump table of 0030A370: 12 image-base RVAs into it; remainder 0 B not classified
+0030BE53	45	0030BD00	ret	no	-	no	no	table	inline jump table of 0030BD00: 11 image-base RVAs into it; remainder 0 B not classified
+0030DB40	48	0030DAE0	ret	no	-	yes	no	table	inline jump table of 0030DAE0: 12 image-base RVAs into it; remainder 0 B not classified
+0030E88B	89	0030E360	jmp	no	-	no	no	table	inline jump table of 0030E360: 14 image-base RVAs into it; remainder 32 B not classified
+00311E7D	5	00311E20	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+00312AF5	64	00312730	ret	no	-	no	no	table	inline jump table of 00312730: 6 image-base RVAs into it; remainder 37 B not classified
+00312D86	93	00312B40	ret	no	-	no	no	table	inline jump table of 00312B40: 11 image-base RVAs into it; remainder 47 B not classified
+00316097	33	00315E90	ret	no	-	no	no	table	inline jump table of 00315E90: 8 image-base RVAs into it; remainder 0 B not classified
+003177E4	40	003176E0	ret	no	-	no	no	table	inline jump table of 003176E0: 10 image-base RVAs into it; remainder 0 B not classified
+00319035	83	00318CD0	jmp	no	-	no	no	table	inline jump table of 00318CD0: 20 image-base RVAs into it; remainder 0 B not classified
+0031A200	36	00319F50	ret	no	-	yes	no	table	inline jump table of 00319F50: 9 image-base RVAs into it; remainder 0 B not classified
+0031AD90	17	0031ACC0	ret	no	-	yes	yes	body	predecessor ends in ret
+0031E598	128	0031C5D0	ret	no	-	no	no	table	inline jump table of 0031C5D0: 32 image-base RVAs into it; remainder 0 B not classified
+0031EA4D	66	0031E9F0	ret	no	-	no	no	table	inline jump table of 0031E9F0: 9 image-base RVAs into it; remainder 27 B not classified
+0031FB76	81	0031EB20	ret	no	-	no	no	table	inline jump table of 0031EB20: 11 image-base RVAs into it; remainder 35 B not classified
+003205DF	89	003204E0	ret	no	-	no	yes	table	inline jump table of 003204E0: 4 image-base RVAs into it; remainder 72 B not classified
+003212A9	43	00321190	ret	no	-	no	yes	table	inline jump table of 00321190: 10 image-base RVAs into it; remainder 0 B not classified
+003222C2	73	00322280	ret	no	-	no	yes	body	predecessor ends in ret
+00323051	131	00322C50	ret	no	-	no	no	table	inline jump table of 00322C50: 32 image-base RVAs into it; remainder 0 B not classified
+003238E3	41	00323890	ret	no	-	no	no	table	inline jump table of 00323890: 10 image-base RVAs into it; remainder 0 B not classified
+00324234	74	003241D0	ret	no	-	no	no	table	inline jump table of 003241D0: 11 image-base RVAs into it; remainder 30 B not classified
+00325207	88	003250F0	ret	no	-	no	no	table	inline jump table of 003250F0: 7 image-base RVAs into it; remainder 59 B not classified
+0032571F	177	00325260	ret	no	-	no	no	table	inline jump table of 00325260: 11 image-base RVAs into it; remainder 132 B not classified
+00329F40	40	00329E60	ret	no	-	yes	yes	table	inline jump table of 00329E60: 10 image-base RVAs into it; remainder 0 B not classified
+0032E2CD	27	0032E070	ret	no	-	no	no	table	inline jump table of 0032E070: 6 image-base RVAs into it; remainder 0 B not classified
+0035429F	25	00354230	ret	no	-	no	yes	table	inline jump table of 00354230: 6 image-base RVAs into it; remainder 0 B not classified
+0035809E	26	00357F00	ret	no	-	no	yes	table	inline jump table of 00357F00: 6 image-base RVAs into it; remainder 0 B not classified
+003594C0	27	003594B0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0035A11E	26	0035A0C0	ret	no	-	no	no	table	inline jump table of 0035A0C0: 6 image-base RVAs into it; remainder 0 B not classified
+0035A196	30	0035A140	ret	no	-	no	yes	table	inline jump table of 0035A140: 7 image-base RVAs into it; remainder 0 B not classified
+0035AEFB	7	0035AE30	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0035CECE	58	0035CA70	ret	no	-	no	no	table	inline jump table of 0035CA70: 14 image-base RVAs into it; remainder 0 B not classified
+00361436	34	00361340	ret	no	-	no	yes	table	inline jump table of 00361340: 8 image-base RVAs into it; remainder 0 B not classified
+00365660	55	003655F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00366636	90	00366110	ret	no	-	no	no	table	inline jump table of 00366110: 22 image-base RVAs into it; remainder 0 B not classified
+00368BEF	19	00368B00	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+003690E8	5	00369080	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+0036E9A0	5	0036E8B0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0036EFB6	13	0036EEB0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0036F22E	13	0036F0F0	mov	no	pdata	no	yes	continuation	falls through from mov; listed only by .pdata, which pass 6 bans as evidence
+003750E5	55	00374FD0	ret	no	-	no	no	table	inline jump table of 00374FD0: 13 image-base RVAs into it; remainder 0 B not classified
+00375676	54	00375500	jmp	no	-	no	no	table	inline jump table of 00375500: 13 image-base RVAs into it; remainder 0 B not classified
+00375B39	59	00375AE0	ret	no	-	no	no	table	inline jump table of 00375AE0: 14 image-base RVAs into it; remainder 0 B not classified
+003793D5	83	003792E0	ret	no	-	no	no	table	inline jump table of 003792E0: 20 image-base RVAs into it; remainder 0 B not classified
+0037954D	83	00379430	ret	no	-	no	no	table	inline jump table of 00379430: 20 image-base RVAs into it; remainder 0 B not classified
+00379F50	18	00379F40	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0037AA00	69	0037A9B0	ret	no	-	yes	yes	body	predecessor ends in ret
+0037AC7B	33	0037AA90	ret	no	-	no	no	table	inline jump table of 0037AA90: 8 image-base RVAs into it; remainder 0 B not classified
+0037C137	97	0037B4D0	ret	no	-	no	no	table	inline jump table of 0037B4D0: 24 image-base RVAs into it; remainder 0 B not classified
+0037C4E8	572	0037C3F0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00392F87	25	00392F30	ret	no	-	no	no	table	inline jump table of 00392F30: 6 image-base RVAs into it; remainder 0 B not classified
+00393128	56	00392FC0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00393362	66	00393240	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00393E45	79	003939B0	ret	no	-	no	no	table	inline jump table of 003939B0: 19 image-base RVAs into it; remainder 0 B not classified
+00398591	27	00398480	ret	no	-	no	no	table	inline jump table of 00398480: 6 image-base RVAs into it; remainder 0 B not classified
+003A1EE0	59	003A1E50	ret	no	-	yes	no	table	inline jump table of 003A1E50: 4 image-base RVAs into it; remainder 43 B not classified
+003A1F8D	81	003A1F20	ret	no	-	no	no	table	inline jump table of 003A1F20: 5 image-base RVAs into it; remainder 58 B not classified
+003A553E	258	003A4290	ret	no	-	no	no	table	inline jump table of 003A4290: 64 image-base RVAs into it; remainder 0 B not classified
+003A68E2	258	003A56F0	ret	no	-	no	no	table	inline jump table of 003A56F0: 64 image-base RVAs into it; remainder 0 B not classified
+003A9350	154	003A92D0	ret	no	-	yes	no	body	predecessor ends in ret
+003AA1BA	42	003A9EF0	ret	no	-	no	no	table	inline jump table of 003A9EF0: 10 image-base RVAs into it; remainder 0 B not classified
+003AA692	26	003AA470	ret	no	-	no	no	table	inline jump table of 003AA470: 6 image-base RVAs into it; remainder 0 B not classified
+003B0B51	31	003B0AD0	ret	no	-	no	no	table	inline jump table of 003B0AD0: 7 image-base RVAs into it; remainder 0 B not classified
+003B0EE0	76	003B0C50	ret	no	-	yes	no	table	inline jump table of 003B0C50: 19 image-base RVAs into it; remainder 0 B not classified
+003B14C2	34	003B1310	jmp	no	-	no	yes	table	inline jump table of 003B1310: 8 image-base RVAs into it; remainder 0 B not classified
+003B18B8	32	003B1710	jmp	no	-	no	no	table	inline jump table of 003B1710: 8 image-base RVAs into it; remainder 0 B not classified
+003B1A5B	33	003B18E0	ret	no	-	no	yes	table	inline jump table of 003B18E0: 8 image-base RVAs into it; remainder 0 B not classified
+003B25A2	34	003B2510	ret	no	-	no	yes	table	inline jump table of 003B2510: 8 image-base RVAs into it; remainder 0 B not classified
+003B2D61	31	003B2CE0	ret	no	-	no	no	table	inline jump table of 003B2CE0: 7 image-base RVAs into it; remainder 0 B not classified
+003B6950	83	003B6930	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+003B69B0	83	003B6930	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+003B9852	378	003B8670	ret	no	-	no	no	table	inline jump table of 003B8670: 62 image-base RVAs into it; remainder 128 B not classified
+003BA942	66	003BA7B0	ret	no	-	no	no	table	inline jump table of 003BA7B0: 16 image-base RVAs into it; remainder 0 B not classified
+003BAE50	84	003BAC90	jmp	no	-	yes	no	table	inline jump table of 003BAC90: 21 image-base RVAs into it; remainder 0 B not classified
+003BB1D3	73	003BAEB0	ret	no	-	no	no	table	inline jump table of 003BAEB0: 18 image-base RVAs into it; remainder 0 B not classified
+003C53B1	35	003C5130	ret	no	-	no	no	table	inline jump table of 003C5130: 8 image-base RVAs into it; remainder 0 B not classified
+003C5D97	73	003C5910	jmp	no	-	no	yes	table	inline jump table of 003C5910: 18 image-base RVAs into it; remainder 0 B not classified
+003C8923	33	003C87B0	ret	no	-	no	no	table	inline jump table of 003C87B0: 8 image-base RVAs into it; remainder 0 B not classified
+003C8AFD	31	003C8A50	ret	no	-	no	no	table	inline jump table of 003C8A50: 7 image-base RVAs into it; remainder 0 B not classified
+003C9DF6	78	003C9A30	jmp	no	-	no	no	table	inline jump table of 003C9A30: 19 image-base RVAs into it; remainder 0 B not classified
+003CADB5	62	003CAB00	ret	no	-	no	no	table	inline jump table of 003CAB00: 7 image-base RVAs into it; remainder 31 B not classified
+003CB2D6	74	003CB150	ret	no	-	no	no	table	inline jump table of 003CB150: 18 image-base RVAs into it; remainder 0 B not classified
+003CB9EC	100	003CB650	ret	no	-	no	no	table	inline jump table of 003CB650: 14 image-base RVAs into it; remainder 44 B not classified
+003CD297	33	003CCF20	ret	no	-	no	no	table	inline jump table of 003CCF20: 8 image-base RVAs into it; remainder 0 B not classified
+003CD570	32	003CD2C0	ret	no	-	yes	no	table	inline jump table of 003CD2C0: 8 image-base RVAs into it; remainder 0 B not classified
+003DCF20	51	003DCF10	ret	no	-	yes	yes	body	predecessor ends in ret
+003DE3E0	23	003DE3A0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+003DFE38	32	003DFDD0	ret	no	-	no	no	table	inline jump table of 003DFDD0: 8 image-base RVAs into it; remainder 0 B not classified
+003E15C5	71	003E1350	ret	no	-	no	no	table	inline jump table of 003E1350: 17 image-base RVAs into it; remainder 0 B not classified
+003E1885	71	003E1610	ret	no	-	no	no	table	inline jump table of 003E1610: 17 image-base RVAs into it; remainder 0 B not classified
+003EAD97	33	003EAD10	ret	no	-	no	no	table	inline jump table of 003EAD10: 8 image-base RVAs into it; remainder 0 B not classified
+003EAFEA	34	003EADE0	ret	no	-	no	no	table	inline jump table of 003EADE0: 8 image-base RVAs into it; remainder 0 B not classified
+003EF238	76	003EF050	jmp	no	-	no	no	table	inline jump table of 003EF050: 19 image-base RVAs into it; remainder 0 B not classified
+003EF625	79	003EF4A0	jmp	no	-	no	no	table	inline jump table of 003EF4A0: 19 image-base RVAs into it; remainder 0 B not classified
+003F403F	29	003F3E40	ret	no	-	no	no	table	inline jump table of 003F3E40: 7 image-base RVAs into it; remainder 0 B not classified
+003F4A53	73	003F4840	jmp	no	-	no	no	table	inline jump table of 003F4840: 18 image-base RVAs into it; remainder 0 B not classified
+003F5030	52	003F4E70	ret	no	-	yes	yes	body	predecessor ends in ret
+003F7000	79	003F6FD0	ret	no	-	yes	yes	body	predecessor ends in ret
+003F9E43	2	003F9720	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00405723	77	00405310	ret	no	-	no	no	table	inline jump table of 00405310: 19 image-base RVAs into it; remainder 0 B not classified
+00417C29	51	00417AD0	jmp	no	-	no	no	table	inline jump table of 00417AD0: 12 image-base RVAs into it; remainder 0 B not classified
+0042095B	69	00420890	ret	no	-	no	no	table	inline jump table of 00420890: 3 image-base RVAs into it; remainder 56 B not classified
+0042158C	9	004213E0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+004223F0	7	00422380	ret	yes	dir64	yes	yes	body	predecessor ends in ret
+00423118	78	004230A0	ret	no	-	no	no	table	inline jump table of 004230A0: 4 image-base RVAs into it; remainder 62 B not classified
+00425D5E	94	004256E0	ret	no	-	no	no	table	inline jump table of 004256E0: 23 image-base RVAs into it; remainder 0 B not classified
+00427843	25	00427320	ret	no	-	no	no	table	inline jump table of 00427320: 6 image-base RVAs into it; remainder 0 B not classified
+004278D0	11	004278B0	ret	no	-	yes	yes	body	predecessor ends in ret
+0042C35B	166	0042BED0	ret	no	-	no	no	table	inline jump table of 0042BED0: 9 image-base RVAs into it; remainder 129 B not classified
+0042FCC0	18	0042FCB0	ret	no	-	yes	yes	body	predecessor ends in ret
+004308AE	26	004307C0	ret	no	-	no	no	table	inline jump table of 004307C0: 6 image-base RVAs into it; remainder 0 B not classified
+004309A4	24	004308D0	ret	no	-	no	no	table	inline jump table of 004308D0: 6 image-base RVAs into it; remainder 0 B not classified
+0043140E	26	00431350	ret	no	-	no	no	table	inline jump table of 00431350: 6 image-base RVAs into it; remainder 0 B not classified
+004314BB	25	00431430	ret	no	-	no	no	table	inline jump table of 00431430: 6 image-base RVAs into it; remainder 0 B not classified
+00431D11	31	00431B10	ret	no	-	no	no	table	inline jump table of 00431B10: 7 image-base RVAs into it; remainder 0 B not classified
+0043EA19	141	0043E9C0	ret	no	-	no	no	table	inline jump table of 0043E9C0: 10 image-base RVAs into it; remainder 98 B not classified
+0043EB38	182	0043EAB0	ret	no	-	no	no	table	inline jump table of 0043EAB0: 19 image-base RVAs into it; remainder 106 B not classified
+0043EC78	182	0043EBF0	ret	no	-	no	no	table	inline jump table of 0043EBF0: 19 image-base RVAs into it; remainder 106 B not classified
+0043EDB5	185	0043ED30	ret	no	-	no	no	table	inline jump table of 0043ED30: 19 image-base RVAs into it; remainder 106 B not classified
+004417D4	402	0043F450	jmp	no	-	no	no	table	inline jump table of 0043F450: 48 image-base RVAs into it; remainder 210 B not classified
+00441A8F	154	00441970	ret	no	-	no	no	body	predecessor ends in ret
+004422DF	37	00442170	ret	no	-	no	no	table	inline jump table of 00442170: 9 image-base RVAs into it; remainder 0 B not classified
+004424B2	38	00442460	ret	no	-	no	no	table	inline jump table of 00442460: 9 image-base RVAs into it; remainder 0 B not classified
+004630A9	27	00462540	ret	no	-	no	yes	table	inline jump table of 00462540: 6 image-base RVAs into it; remainder 0 B not classified
+00463D08	24	00463460	ret	no	-	no	no	table	inline jump table of 00463460: 6 image-base RVAs into it; remainder 0 B not classified
+004654E3	41	00465120	jmp	no	-	no	yes	table	inline jump table of 00465120: 10 image-base RVAs into it; remainder 0 B not classified
+00465CA5	43	00465690	ret	no	-	no	no	table	inline jump table of 00465690: 10 image-base RVAs into it; remainder 0 B not classified
+004664EE	86	00466420	ret	no	-	no	no	table	inline jump table of 00466420: 21 image-base RVAs into it; remainder 0 B not classified
+0046B684	7	0046B560	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0046C692	74	0046C250	ret	no	-	no	no	table	inline jump table of 0046C250: 18 image-base RVAs into it; remainder 0 B not classified
+0046C896	50	0046C6E0	jmp	no	-	no	no	table	inline jump table of 0046C6E0: 12 image-base RVAs into it; remainder 0 B not classified
+0046CB62	50	0046C8F0	jmp	no	-	no	yes	table	inline jump table of 0046C8F0: 12 image-base RVAs into it; remainder 0 B not classified
+0046FF67	57	0046FD00	ret	no	-	no	no	table	inline jump table of 0046FD00: 14 image-base RVAs into it; remainder 0 B not classified
+0047252B	33	004723E0	ret	no	-	no	no	table	inline jump table of 004723E0: 8 image-base RVAs into it; remainder 0 B not classified
+00473FF4	40	00473E80	ret	no	-	no	no	table	inline jump table of 00473E80: 10 image-base RVAs into it; remainder 0 B not classified
+0048CE6B	5	0048AF70	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+004A62C1	458	004A4410	jmp	no	-	no	no	table	inline jump table of 004A4410: 14 image-base RVAs into it; remainder 399 B not classified
+004DA3B1	12	004D7BF0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+004E7892	10	004E31E0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+004EB8FC	5	004E7D90	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+004FD04D	6	004F7070	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+004FF066	26	004FEAD0	ret	no	-	no	no	table	inline jump table of 004FEAD0: 6 image-base RVAs into it; remainder 0 B not classified
+004FF3CD	109	004FF360	ret	no	-	no	no	body	predecessor ends in ret
+00500221	185	004FF440	ret	no	-	no	no	table	inline jump table of 004FF440: 19 image-base RVAs into it; remainder 106 B not classified
+005006B1	405	005004C0	jmp	no	-	no	no	table	inline jump table of 005004C0: 48 image-base RVAs into it; remainder 210 B not classified
+00500956	42	00500850	ret	no	-	no	no	table	inline jump table of 00500850: 10 image-base RVAs into it; remainder 0 B not classified
+00500A30	40	00500980	ret	no	-	yes	no	table	inline jump table of 00500980: 10 image-base RVAs into it; remainder 0 B not classified
+005010EB	163	00500C00	ret	no	-	no	no	table	inline jump table of 00500C00: 8 image-base RVAs into it; remainder 130 B not classified
+005066EC	6	00505E00	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0051A242	50	00519B60	ret	no	-	no	no	table	inline jump table of 00519B60: 12 image-base RVAs into it; remainder 0 B not classified
+00520B2B	165	00520800	ret	no	-	no	yes	table	inline jump table of 00520800: 9 image-base RVAs into it; remainder 128 B not classified
+005227F4	24	00522300	ret	no	-	no	no	table	inline jump table of 00522300: 6 image-base RVAs into it; remainder 0 B not classified
+005259C6	26	00524E30	ret	no	-	no	no	table	inline jump table of 00524E30: 6 image-base RVAs into it; remainder 0 B not classified
+005263D7	25	00526080	ret	no	-	no	no	table	inline jump table of 00526080: 6 image-base RVAs into it; remainder 0 B not classified
+00526D5C	24	00526A10	ret	no	-	no	no	table	inline jump table of 00526A10: 6 image-base RVAs into it; remainder 0 B not classified
+00527DA2	26	005271D0	ret	no	-	no	no	table	inline jump table of 005271D0: 6 image-base RVAs into it; remainder 0 B not classified
+00528804	24	00528150	ret	no	-	no	no	table	inline jump table of 00528150: 6 image-base RVAs into it; remainder 0 B not classified
+00528EDB	25	00528B50	ret	no	-	no	no	table	inline jump table of 00528B50: 6 image-base RVAs into it; remainder 0 B not classified
+0052CF3E	26	0052C070	jmp	no	-	no	no	table	inline jump table of 0052C070: 6 image-base RVAs into it; remainder 0 B not classified
+00530E23	25	00530770	ret	no	-	no	no	table	inline jump table of 00530770: 6 image-base RVAs into it; remainder 0 B not classified
+0053699C	32	00536410	ret	no	-	no	no	table	inline jump table of 00536410: 8 image-base RVAs into it; remainder 0 B not classified
+00536DA8	36	005369C0	ret	no	-	no	no	table	inline jump table of 005369C0: 9 image-base RVAs into it; remainder 0 B not classified
+0053899A	184	00538910	ret	no	-	no	yes	table	inline jump table of 00538910: 19 image-base RVAs into it; remainder 106 B not classified
+0053D12F	2	0053AB50	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+0053F3AD	59	0053F0D0	ret	no	-	no	no	table	inline jump table of 0053F0D0: 14 image-base RVAs into it; remainder 0 B not classified
+0054D5B9	75	0054C6B0	ret	no	-	no	no	table	inline jump table of 0054C6B0: 18 image-base RVAs into it; remainder 0 B not classified
+0054EA33	49	0054E040	ret	no	-	no	no	table	inline jump table of 0054E040: 12 image-base RVAs into it; remainder 0 B not classified
+00552857	94	00552250	ret	no	-	no	no	table	inline jump table of 00552250: 13 image-base RVAs into it; remainder 41 B not classified
+00553A69	113	005528C0	ret	no	-	no	no	table	inline jump table of 005528C0: 17 image-base RVAs into it; remainder 42 B not classified
+00554271	83	00553F40	ret	no	-	no	yes	table	inline jump table of 00553F40: 11 image-base RVAs into it; remainder 36 B not classified
+00554A15	63	005542D0	ret	no	-	no	no	table	inline jump table of 005542D0: 15 image-base RVAs into it; remainder 0 B not classified
+005594E4	80	00558FB0	ret	no	-	no	no	table	inline jump table of 00558FB0: 20 image-base RVAs into it; remainder 0 B not classified
+00559DD1	83	005599D0	jmp	no	-	no	no	table	inline jump table of 005599D0: 20 image-base RVAs into it; remainder 0 B not classified
+0055B310	209	0055B2B0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0055DB2C	164	0055CD40	jmp	no	-	no	no	table	inline jump table of 0055CD40: 41 image-base RVAs into it; remainder 0 B not classified
+0055FEAB	37	0055FB20	ret	no	-	no	no	table	inline jump table of 0055FB20: 9 image-base RVAs into it; remainder 0 B not classified
+00560E89	83	00560910	ret	no	-	no	no	table	inline jump table of 00560910: 20 image-base RVAs into it; remainder 0 B not classified
+0056440F	33	00564380	ret	no	-	no	no	table	inline jump table of 00564380: 8 image-base RVAs into it; remainder 0 B not classified
+00564621	47	00564430	ret	no	-	no	no	table	inline jump table of 00564430: 11 image-base RVAs into it; remainder 0 B not classified
+00564C4A	46	00564B90	ret	no	-	no	no	table	inline jump table of 00564B90: 11 image-base RVAs into it; remainder 0 B not classified
+0056657A	42	00565E00	ret	no	-	no	no	table	inline jump table of 00565E00: 10 image-base RVAs into it; remainder 0 B not classified
+00569F1A	106	005691E0	ret	no	-	no	no	table	inline jump table of 005691E0: 26 image-base RVAs into it; remainder 0 B not classified
+0056A758	28	0056A3D0	ret	no	-	no	no	table	inline jump table of 0056A3D0: 7 image-base RVAs into it; remainder 0 B not classified
+0056BB7E	78	0056B4D0	ret	no	-	no	no	table	inline jump table of 0056B4D0: 19 image-base RVAs into it; remainder 0 B not classified
+0056C03A	30	0056BE40	ret	no	-	no	no	table	inline jump table of 0056BE40: 7 image-base RVAs into it; remainder 0 B not classified
+0056DC9D	87	0056DC30	ret	no	-	no	no	table	inline jump table of 0056DC30: 13 image-base RVAs into it; remainder 32 B not classified
+0056E3B8	80	0056E140	jmp	no	-	no	no	table	inline jump table of 0056E140: 20 image-base RVAs into it; remainder 0 B not classified
+0056E9CB	105	0056E880	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0056FA7D	75	0056F810	jmp	no	-	no	no	table	inline jump table of 0056F810: 18 image-base RVAs into it; remainder 0 B not classified
+00570410	76	005701B0	jmp	no	-	yes	yes	table	inline jump table of 005701B0: 19 image-base RVAs into it; remainder 0 B not classified
+00571F0B	81	00571A50	jmp	no	-	no	no	table	inline jump table of 00571A50: 20 image-base RVAs into it; remainder 0 B not classified
+0057339E	78	00572E10	ret	no	-	no	no	table	inline jump table of 00572E10: 19 image-base RVAs into it; remainder 0 B not classified
+00574719	75	005742D0	ret	no	-	no	no	table	inline jump table of 005742D0: 18 image-base RVAs into it; remainder 0 B not classified
+0057552C	72	00574E80	ret	no	-	no	no	table	inline jump table of 00574E80: 18 image-base RVAs into it; remainder 0 B not classified
+005774E6	98	005771F0	jmp	no	-	no	no	table	inline jump table of 005771F0: 24 image-base RVAs into it; remainder 0 B not classified
+00578196	2	00578120	add	no	-	no	yes	continuation	falls through from add, unreferenced
+00578EF9	75	005789D0	jmp	no	-	no	no	table	inline jump table of 005789D0: 18 image-base RVAs into it; remainder 0 B not classified
+0057993B	81	00579420	ret	no	-	no	no	table	inline jump table of 00579420: 20 image-base RVAs into it; remainder 0 B not classified
+0057B153	73	0057AC10	ret	no	-	no	no	table	inline jump table of 0057AC10: 18 image-base RVAs into it; remainder 0 B not classified
+0057BCE3	81	0057B890	jmp	no	-	no	no	table	inline jump table of 0057B890: 20 image-base RVAs into it; remainder 0 B not classified
+0057CCA8	76	0057C480	ret	no	-	no	no	table	inline jump table of 0057C480: 19 image-base RVAs into it; remainder 0 B not classified
+0057CEBC	92	0057CE10	ret	no	-	no	no	table	inline jump table of 0057CE10: 23 image-base RVAs into it; remainder 0 B not classified
+0057D514	197	0057CF20	ret	no	-	no	no	table	inline jump table of 0057CF20: 5 image-base RVAs into it; remainder 177 B not classified
+0057DA60	105	0057D620	jmp	no	-	yes	no	table	inline jump table of 0057D620: 9 image-base RVAs into it; remainder 69 B not classified
+005806B9	379	0057FB00	ret	no	-	no	no	covered	inside listed 0057FE80, which the function list has grown to cover since the block census
+00580B0A	54	00580A80	ret	no	-	no	no	table	inline jump table of 00580A80: 13 image-base RVAs into it; remainder 0 B not classified
+00581266	62	00580EB0	ret	no	-	no	yes	table	inline jump table of 00580EB0: 15 image-base RVAs into it; remainder 0 B not classified
+00581D72	34	00581B70	ret	no	-	no	no	table	inline jump table of 00581B70: 8 image-base RVAs into it; remainder 0 B not classified
+00582020	32	00581DA0	ret	no	-	yes	no	table	inline jump table of 00581DA0: 8 image-base RVAs into it; remainder 0 B not classified
+0058220C	52	00582040	jmp	no	-	no	no	table	inline jump table of 00582040: 13 image-base RVAs into it; remainder 0 B not classified
+00582F51	111	00582860	ret	no	-	no	no	table	inline jump table of 00582860: 27 image-base RVAs into it; remainder 0 B not classified
+00596871	31	00595EF0	ret	no	-	no	no	table	inline jump table of 00595EF0: 7 image-base RVAs into it; remainder 0 B not classified
+00596FA3	29	00596890	jmp	no	-	no	no	table	inline jump table of 00596890: 7 image-base RVAs into it; remainder 0 B not classified
+005C672D	1	005C62C0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+005CCBD9	10	005CCBA0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+005CD313	16	005CD1E0	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+005F0B71	243	005F08E0	ret	no	-	no	no	table	inline jump table of 005F08E0: 8 image-base RVAs into it; remainder 208 B not classified
+005FD624	217	005FD5F0	ret	no	-	no	no	body	predecessor ends in ret
+005FE862	206	005FE350	ret	no	-	no	no	table	inline jump table of 005FE350: 51 image-base RVAs into it; remainder 0 B not classified
+00602677	229	00600F30	ret	no	-	no	no	table	inline jump table of 00600F30: 57 image-base RVAs into it; remainder 0 B not classified
+00602CF9	416	00602A40	ret	no	-	no	no	body	predecessor ends in ret
+00603726	74	00602EA0	jmp	no	-	no	no	table	inline jump table of 00602EA0: 18 image-base RVAs into it; remainder 0 B not classified
+00606571	95	00604750	ret	no	-	no	no	table	inline jump table of 00604750: 23 image-base RVAs into it; remainder 0 B not classified
+006078E3	161	00607410	ret	no	-	no	no	table	inline jump table of 00607410: 40 image-base RVAs into it; remainder 0 B not classified
+0060AAB7	80	0060A410	ret	no	-	no	no	table	inline jump table of 0060A410: 8 image-base RVAs into it; remainder 47 B not classified
+0061BFC1	79	0061BF40	ret	no	-	no	no	table	inline jump table of 0061BF40: 19 image-base RVAs into it; remainder 0 B not classified
+0061C05B	33	0061C010	ret	no	-	no	no	table	inline jump table of 0061C010: 8 image-base RVAs into it; remainder 0 B not classified
+0061C136	26	0061C080	ret	no	-	no	no	table	inline jump table of 0061C080: 6 image-base RVAs into it; remainder 0 B not classified
+0061C19B	33	0061C150	ret	no	-	no	no	table	inline jump table of 0061C150: 8 image-base RVAs into it; remainder 0 B not classified
+0061C22F	25	0061C1C0	ret	no	-	no	no	table	inline jump table of 0061C1C0: 6 image-base RVAs into it; remainder 0 B not classified
+0062756F	194	006272C0	ret	no	-	no	no	table	inline jump table of 006272C0: 8 image-base RVAs into it; remainder 161 B not classified
+00627F00	4	00627E50	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0062A710	213	0062A0A0	ret	no	-	yes	no	table	inline jump table of 0062A0A0: 13 image-base RVAs into it; remainder 161 B not classified
+0062CF0C	204	0062CD40	ret	no	-	no	no	table	inline jump table of 0062CD40: 51 image-base RVAs into it; remainder 0 B not classified
+0063E3C7	6	0063E2E0	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+00668A65	110	00667C80	ret	no	-	no	no	table	inline jump table of 00667C80: 14 image-base RVAs into it; remainder 51 B not classified
+00682CF3	37	00682AA0	ret	no	-	no	no	table	inline jump table of 00682AA0: 9 image-base RVAs into it; remainder 0 B not classified
+006A3A5C	48	006A3980	jmp	no	-	no	yes	table	inline jump table of 006A3980: 12 image-base RVAs into it; remainder 0 B not classified
+006A3D06	26	006A3C20	ret	no	-	no	no	table	inline jump table of 006A3C20: 6 image-base RVAs into it; remainder 0 B not classified
+006A3DBF	25	006A3D40	ret	no	-	no	no	table	inline jump table of 006A3D40: 6 image-base RVAs into it; remainder 0 B not classified
+006ABF89	12	006ABEC0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+006BA6B7	104	006BA630	ret	no	-	no	no	table	inline jump table of 006BA630: 13 image-base RVAs into it; remainder 51 B not classified
+006BA78E	206	006BA720	ret	no	-	no	no	table	inline jump table of 006BA720: 51 image-base RVAs into it; remainder 0 B not classified
+006C9ACE	26	006C8CA0	ret	no	-	no	no	table	inline jump table of 006C8CA0: 6 image-base RVAs into it; remainder 0 B not classified
+006DA960	3	006DA8F0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DA970	3	006DA8F0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DAA00	5	006DA990	ret	no	-	yes	yes	body	predecessor ends in ret
+006DAA10	5	006DA990	ret	no	-	yes	yes	body	predecessor ends in ret
+006DAA20	5	006DA990	ret	no	-	yes	yes	body	predecessor ends in ret
+006DAA30	5	006DA990	ret	no	-	yes	yes	body	predecessor ends in ret
+006DAA40	5	006DA990	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB300	15	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB320	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB340	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB360	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB380	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB3A0	8	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB3B0	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB3D0	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB3F0	8	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB400	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB420	14	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB440	14	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB460	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB480	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB4A0	12	006DB1B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DB4E0	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB500	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB520	14	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB540	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB560	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB580	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB5A0	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB5C0	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB5E0	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB600	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB620	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB640	12	006DB4C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB680	12	006DB660	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB6A0	21	006DB660	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB6C0	21	006DB660	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB6E0	21	006DB660	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB740	12	006DB700	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB760	12	006DB700	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB7A0	12	006DB780	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB7E0	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB800	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB820	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB840	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB860	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB880	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB8A0	12	006DB7C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB8E0	12	006DB8C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB920	12	006DB900	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB940	18	006DB900	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB960	12	006DB900	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB980	12	006DB900	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB9C0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DB9E0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBA00	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBA20	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBA40	14	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBA60	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBA80	14	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBAA0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBAC0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBAE0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBB00	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBB20	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBB40	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBB60	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBB80	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBBA0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBBC0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBBE0	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBC00	12	006DB9A0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBC40	12	006DBC20	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBC80	12	006DBC60	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBCA0	12	006DBC60	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBCC0	12	006DBC60	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBCE0	12	006DBC60	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBD00	12	006DBC60	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DBD50	12	006DBD20	ret	no	-	yes	yes	body	predecessor ends in ret
+006DBDA0	12	006DBD70	ret	no	-	yes	yes	body	predecessor ends in ret
+006DBDC0	12	006DBD70	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC020	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC040	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC060	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC080	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC0A0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC0C0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC0E0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC100	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC120	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC140	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC160	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC180	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC1A0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC1C0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC1E0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC200	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC220	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC240	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC260	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC280	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC2A0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC2C0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC2E0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC300	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC320	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC340	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC360	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC380	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC3A0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC3C0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC3E0	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC400	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC420	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC440	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC460	12	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC480	38	006DBF40	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC4E0	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC500	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC520	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC540	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC560	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC580	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC5A0	12	006DC4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC5E0	12	006DC5C0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC620	38	006DC600	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC680	12	006DC650	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC6A0	12	006DC650	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC6C0	12	006DC650	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC6E0	12	006DC650	ret	no	-	yes	yes	body	predecessor ends in ret
+006DC720	12	006DC700	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC740	12	006DC700	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC780	12	006DC760	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC7A0	12	006DC760	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC7C0	18	006DC760	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC7E0	12	006DC760	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC800	12	006DC760	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC840	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC860	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC880	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC8A0	18	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC8C0	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC8E0	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC900	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC920	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC940	15	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC960	15	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC980	14	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC9A0	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC9C0	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DC9E0	12	006DC820	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCA30	12	006DCA00	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCA50	12	006DCA00	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCA70	12	006DCA00	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCA90	12	006DCA00	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCAB0	39	006DCA00	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCAE0	30	006DCA00	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCB50	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCB70	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCB90	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCBB0	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCBD0	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCBF0	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCC10	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCC30	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCC50	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCC70	12	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCC90	15	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCCB0	15	006DCB10	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCD00	21	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCD20	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCD40	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCD60	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCD80	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCDA0	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCDC0	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCDE0	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCE00	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCE20	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCE40	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCE60	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCE80	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCEA0	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCEC0	14	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCEE0	16	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCF00	15	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCF20	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCF40	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCF60	12	006DCCD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006DCFD0	21	006DCF80	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DCFF0	12	006DCF80	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD010	12	006DCF80	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD030	15	006DCF80	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD050	12	006DCF80	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD070	12	006DCF80	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD0E0	12	006DD090	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD150	21	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD170	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD190	15	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD1B0	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD1D0	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD1F0	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD210	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD230	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD250	15	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD270	30	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD2A0	80	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD300	32	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD330	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD350	34	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD380	24	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD3A0	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD3C0	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD3E0	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD400	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD420	12	006DD100	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD470	12	006DD440	ret	no	-	yes	yes	body	predecessor ends in ret
+006DD490	12	006DD440	ret	no	-	yes	yes	body	predecessor ends in ret
+006DD4B0	12	006DD440	ret	no	-	yes	yes	body	predecessor ends in ret
+006DD4D0	12	006DD440	ret	no	-	yes	yes	body	predecessor ends in ret
+006DD520	12	006DD4F0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD590	16	006DD570	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD790	12	006DD720	ret	no	-	yes	yes	body	predecessor ends in ret
+006DD7F0	12	006DD7B0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD850	12	006DD810	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD8B0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD8D0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD8F0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD910	21	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD930	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD950	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD970	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD990	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD9B0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD9D0	16	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DD9F0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDA10	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDA30	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDA50	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDA70	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDA90	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDAB0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDAD0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDAF0	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDB10	12	006DD870	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDB70	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDB90	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDBB0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDBD0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDBF0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDC10	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDC30	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDC50	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDC70	18	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDC90	18	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDCB0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDCD0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDCF0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDD10	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDD30	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDD50	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDD70	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDD90	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDDB0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDDD0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDDF0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDE10	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDE30	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDE50	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDE70	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDE90	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDEB0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDED0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDEF0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDF10	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDF30	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDF50	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDF70	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDF90	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDFB0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDFD0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DDFF0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE010	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE030	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE050	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE070	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE090	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE0B0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE0D0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE0F0	12	006DDB30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DE140	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE160	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE180	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE1A0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE1C0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE1E0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE200	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE220	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE240	21	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE260	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE280	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE2A0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE2C0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE2E0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE300	21	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE320	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE340	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE360	21	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE380	21	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE3A0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE3C0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE3E0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE400	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE420	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE440	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE460	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE480	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE4A0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE4C0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE4E0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE500	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE520	19	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE540	25	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE560	19	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE580	27	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE5B0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE5D0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE5F0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE610	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE630	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE650	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE670	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE690	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE6B0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE6D0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE6F0	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE710	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DE730	12	006DE110	ret	no	-	yes	yes	body	predecessor ends in ret
+006DEFD0	12	006DEF30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DEFF0	12	006DEF30	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006DF040	15	006DF010	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF270	5	006DF210	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF280	5	006DF210	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF3A0	8	006DF350	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF3B0	12	006DF350	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF460	15	006DF440	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF510	8	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF520	27	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF550	22	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF570	27	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF5A0	22	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF5C0	27	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006DF5F0	22	006DF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006E10A0	15	006E1070	ret	no	-	yes	yes	body	predecessor ends in ret
+006E1170	47	006E1130	ret	no	-	yes	yes	body	predecessor ends in ret
+006E19A0	13	006E1910	ret	no	-	yes	yes	body	predecessor ends in ret
+006E1F60	81	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E1FC0	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2020	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2080	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E20E0	81	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2140	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E21A0	71	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E21F0	73	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2240	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E22A0	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2300	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2360	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E23C0	83	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2420	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2480	81	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E24E0	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2540	85	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E25A0	87	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2600	85	006E1F10	ret	no	-	yes	yes	body	predecessor ends in ret
+006E29F0	87	006E2860	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2A50	85	006E2860	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2AB0	87	006E2860	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2B10	77	006E2860	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2B70	87	006E2860	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2BD0	77	006E2860	ret	no	-	yes	yes	body	predecessor ends in ret
+006E2FC5	47	006E2C30	ret	no	-	no	no	table	inline jump table of 006E2C30: 11 image-base RVAs into it; remainder 0 B not classified
+006E33B1	47	006E3000	ret	no	-	no	no	table	inline jump table of 006E3000: 11 image-base RVAs into it; remainder 0 B not classified
+006E5610	81	006E54D0	ret	no	-	yes	yes	body	predecessor ends in ret
+006E9838	13	006E5A20	mov	no	-	no	yes	continuation	falls through from mov, unreferenced
+006EF670	28	006EF480	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1500	3	006F1270	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1510	44	006F1270	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1590	44	006F1550	ret	no	-	yes	yes	body	predecessor ends in ret
+006F15D0	51	006F1550	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1610	44	006F1550	ret	no	-	yes	yes	body	predecessor ends in ret
+006F16A0	23	006F1650	ret	no	-	yes	yes	body	predecessor ends in ret
+006F16C0	20	006F1650	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1730	49	006F16E0	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1770	61	006F16E0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+006F17C0	100	006F16E0	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1830	3	006F16E0	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1840	3	006F16E0	ret	no	-	yes	yes	body	predecessor ends in ret
+006F19D0	89	006F19A0	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1A30	89	006F19A0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+006F1D10	35	006F1CD0	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1D80	9	006F1D40	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1D90	9	006F1D40	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1DA0	26	006F1D40	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1DC0	19	006F1D40	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1DE0	6	006F1D40	ret	no	-	yes	yes	body	predecessor ends in ret
+006F1DF0	6	006F1D40	ret	no	-	yes	yes	body	predecessor ends in ret
+006F2A30	3	006F2850	ret	no	-	yes	yes	body	predecessor ends in ret
+006F2A40	17	006F2850	ret	no	-	yes	yes	body	predecessor ends in ret
+006F2A60	40	006F2850	ret	no	-	yes	yes	body	predecessor ends in ret
+006F2A90	31	006F2850	ret	no	-	yes	yes	body	predecessor ends in ret
+006F2AC0	31	006F2850	ret	no	-	yes	yes	body	predecessor ends in ret
+006FD4B0	72	006FD110	ret	no	-	yes	yes	body	predecessor ends in ret
+006FD500	78	006FD110	ret	no	-	yes	yes	body	predecessor ends in ret
+006FD560	26	006FD110	ret	no	-	yes	yes	body	predecessor ends in ret
+006FD650	82	006FD580	ret	no	-	yes	yes	body	predecessor ends in ret
+006FD6B0	97	006FD580	ret	no	-	yes	yes	body	predecessor ends in ret
+006FD720	56	006FD580	ret	no	-	yes	yes	body	predecessor ends in ret
+006FDCF0	25	006FD760	ret	no	-	yes	yes	body	predecessor ends in ret
+006FDEE0	25	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FDF00	76	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FDF60	46	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FDFA0	78	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE000	39	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE030	52	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE070	8	006FDD10	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE160	64	006FE080	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE490	32	006FE380	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE580	3	006FE4C0	ret	no	-	yes	yes	body	predecessor ends in ret
+006FE5E0	49	006FE590	jmp	no	-	yes	yes	body	predecessor ends in jmp
+006FEF20	47	006FEEF0	ret	no	-	yes	yes	body	predecessor ends in ret
+006FEF60	7	006FEEF0	ret	no	-	yes	yes	body	predecessor ends in ret
+006FEFC0	45	006FEF70	ret	no	-	yes	yes	body	predecessor ends in ret
+006FF000	10	006FEF70	ret	no	-	yes	yes	body	predecessor ends in ret
+006FF010	47	006FEF70	ret	no	-	yes	yes	body	predecessor ends in ret
+00706840	59	007067E0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706890	30	007067E0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706F00	9	00706E40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706F10	9	00706E40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706F20	9	00706E40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706F30	9	00706E40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706F40	9	00706E40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00706F50	9	00706E40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007074E0	25	00707370	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707600	9	00707560	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707610	80	00707560	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707740	128	00707670	ret	no	-	yes	yes	body	predecessor ends in ret
+007077D0	48	00707670	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707810	27	00707670	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707840	26	00707670	ret	no	-	yes	yes	body	predecessor ends in ret
+00707860	26	00707670	ret	no	-	yes	yes	body	predecessor ends in ret
+00707930	24	00707880	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707AE0	33	00707A40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707B10	30	00707A40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00707ED0	147	00707DA0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708010	16	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708030	15	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708050	12	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708070	12	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708090	18	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007080B0	16	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007080D0	57	00707F70	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708270	204	00708110	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708350	88	00708110	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007085A0	86	00708540	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708600	220	00708540	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007086F0	18	00708540	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708770	79	00708740	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708830	111	007087D0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007088B0	111	007087D0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708930	34	007087D0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708960	21	007087D0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708A10	22	007089E0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708A60	29	00708A30	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00708A90	27	00708A30	ret	no	-	yes	yes	body	predecessor ends in ret
+00709C70	9	00709C20	ret	no	-	yes	yes	body	predecessor ends in ret
+00709C80	9	00709C20	ret	no	-	yes	yes	body	predecessor ends in ret
+00709D00	8	00709C90	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709D80	8	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709D90	55	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709DD0	133	00709D10	ret	no	-	yes	yes	body	predecessor ends in ret
+00709E60	29	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709E90	21	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709EB0	65	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709F00	17	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00709F20	19	00709D10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A000	75	00709FB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A0D0	25	0070A060	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A160	21	0070A0F0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A180	30	0070A0F0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A1B0	52	0070A0F0	ret	no	-	yes	yes	body	predecessor ends in ret
+0070A310	26	0070A260	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A330	16	0070A260	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A3D0	47	0070A350	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A500	9	0070A480	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A590	45	0070A510	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A5D0	26	0070A510	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A5F0	27	0070A510	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070A7D0	17	0070A690	ret	no	-	yes	yes	body	predecessor ends in ret
+0070AAF0	82	0070AA80	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AB50	37	0070AA80	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070ACF0	9	0070ACB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AD00	9	0070ACB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AD10	26	0070ACB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AD30	41	0070ACB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AD60	81	0070ACB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070ADC0	60	0070ACB0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AF70	9	0070AED0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070AF80	9	0070AED0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070B000	36	0070AF90	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070B030	25	0070AF90	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B050	25	0070AF90	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B120	7	0070B070	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B130	18	0070B070	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B240	13	0070B150	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B260	44	0070B150	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B350	57	0070B2A0	ret	no	-	yes	yes	body	predecessor ends in ret
+0070B440	106	0070B390	ret	no	-	yes	yes	body	predecessor ends in ret
+0070BD60	21	0070BB00	ret	no	-	yes	yes	body	predecessor ends in ret
+0070D1E0	31	0070D190	ret	no	-	yes	yes	body	predecessor ends in ret
+0070D210	31	0070D190	ret	no	-	yes	yes	body	predecessor ends in ret
+0070DC80	10	0070DC10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070DDE0	48	0070DD40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070DE20	6	0070DD40	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070DE30	10	0070DD40	ret	no	-	yes	yes	body	predecessor ends in ret
+0070DEE0	73	0070DE40	ret	no	-	yes	yes	body	predecessor ends in ret
+0070DF30	73	0070DE40	ret	no	-	yes	yes	body	predecessor ends in ret
+0070DF80	73	0070DE40	ret	no	-	yes	yes	body	predecessor ends in ret
+0070E760	46	0070E600	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070F6E0	91	0070F670	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070F750	53	0070F670	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0070F790	46	0070F670	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00710000	73	0070FF10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00710050	61	0070FF10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711230	16	007111C0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711250	16	007111C0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711270	16	007111C0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711290	16	007111C0	ret	no	-	yes	yes	body	predecessor ends in ret
+007112B0	12	007111C0	ret	no	-	yes	yes	body	predecessor ends in ret
+007112D0	12	007111C0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007114E0	7	00711480	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007117F0	33	007116A0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711860	31	00711820	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007118C0	11	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007118E0	38	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711910	48	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711950	58	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711990	19	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007119B0	36	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007119E0	70	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711A30	18	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711A50	16	00711890	ret	no	-	yes	yes	body	predecessor ends in ret
+00711A70	18	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711A90	16	00711890	ret	no	-	yes	yes	body	predecessor ends in ret
+00711AB0	18	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711AD0	16	00711890	ret	no	-	yes	yes	body	predecessor ends in ret
+00711AF0	55	00711890	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711B30	16	00711890	ret	no	-	yes	yes	body	predecessor ends in ret
+00711BA0	14	00711B50	ret	no	-	yes	yes	body	predecessor ends in ret
+00711BC0	7	00711B50	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711BD0	50	00711B50	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711C60	11	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711C80	50	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711CC0	50	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711D00	50	00711C10	ret	no	-	yes	yes	body	predecessor ends in ret
+00711D40	50	00711C10	ret	no	-	yes	yes	body	predecessor ends in ret
+00711D80	9	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711D90	8	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711DA0	8	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711DB0	9	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711DC0	17	00711C10	ret	no	-	yes	yes	body	predecessor ends in ret
+00711DE0	17	00711C10	ret	no	-	yes	yes	body	predecessor ends in ret
+00711E00	9	00711C10	ret	no	-	yes	yes	body	predecessor ends in ret
+00711E10	52	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711E50	52	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711E90	52	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711ED0	52	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+00711F10	52	00711C10	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007120D0	6	00712090	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+007120E0	21	00712090	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+00712100	21	00712090	jmp	no	-	yes	yes	body	predecessor ends in jmp
+00712120	6	00712090	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+00712130	68	00712090	jmp	no	-	yes	yes	body	predecessor ends in jmp
+00712180	353	00712090	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+007122F0	5	00712090	jmp	no	-	yes	yes	body	predecessor ends in jmp
+00712300	21	00712090	jmp	yes	rel32/lea	yes	yes	body	predecessor ends in jmp
+00712320	56	00712090	jmp	no	-	yes	yes	body	predecessor ends in jmp
+00712360	17	00712090	jmp	no	-	yes	yes	body	predecessor ends in jmp
+007137BC	92	00713760	jmp	no	-	no	no	body	predecessor ends in jmp
+00713898	103	00713820	ret	no	-	no	no	table	inline jump table of 00713820: 8 image-base RVAs into it; remainder 71 B not classified
+007143CD	55	00714370	jmp	no	-	no	no	table	inline jump table of 00714370: 13 image-base RVAs into it; remainder 0 B not classified
+00715D40	47	00715CC0	ret	no	-	yes	yes	body	predecessor ends in ret
+00716796	1	00716410	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00716FA0	24	00716F10	ret	no	-	yes	yes	body	predecessor ends in ret
+00717010	13	00716FC0	ret	no	-	yes	yes	body	predecessor ends in ret
+00717730	42	00717650	jmp	no	-	yes	yes	body	predecessor ends in jmp
+00718760	43	00718610	ret	no	-	yes	yes	body	predecessor ends in ret
+007187A0	43	00718610	ret	no	-	yes	yes	body	predecessor ends in ret
+00718820	45	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718860	22	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718880	33	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+007188B0	43	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+007188F0	43	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718930	22	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718950	33	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718980	43	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+007189C0	43	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718A00	43	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718A40	43	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718A80	45	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718AC0	45	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718B00	45	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718B40	45	007187E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718EC0	43	00718DF0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718F00	43	00718DF0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718F40	43	00718DF0	ret	no	-	yes	yes	body	predecessor ends in ret
+00718F80	43	00718DF0	ret	no	-	yes	yes	body	predecessor ends in ret
+00719360	5	00719300	ret	no	-	yes	yes	body	predecessor ends in ret
+00719370	5	00719300	ret	no	-	yes	yes	body	predecessor ends in ret
+0071A57F	122	0071A4F0	ret	no	-	no	no	table	inline jump table of 0071A4F0: 7 image-base RVAs into it; remainder 93 B not classified
+0071AC08	368	0071A630	ret	no	-	no	no	table	inline jump table of 0071A630: 92 image-base RVAs into it; remainder 0 B not classified
+0071AFDA	138	0071AD80	ret	no	-	no	no	table	inline jump table of 0071AD80: 34 image-base RVAs into it; remainder 0 B not classified
+0071B16C	7	0071B070	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0071B32F	129	0071B1B0	ret	no	-	no	no	table	inline jump table of 0071B1B0: 16 image-base RVAs into it; remainder 64 B not classified
+0071B4A0	15	0071B3C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0071B5E5	124	0071B550	ret	no	-	no	no	table	inline jump table of 0071B550: 14 image-base RVAs into it; remainder 65 B not classified
+0071B6B0	132	0071B670	ret	no	-	yes	no	body	predecessor ends in ret
+0071B780	52	0071B740	ret	no	-	yes	yes	body	predecessor ends in ret
+0071B800	59	0071B7C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0071B850	103	0071B7C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0071BB70	32	0071BB00	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+0071C6B0	25	0071C550	ret	no	-	yes	yes	body	predecessor ends in ret
+0071CB30	20	0071C6D0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0071CB50	16	0071C6D0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0071CB70	10	0071C6D0	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0071CCF0	18	0071CCE0	ret	no	-	yes	yes	body	predecessor ends in ret
+0071F9D0	12	0071F970	ret	no	-	yes	yes	body	predecessor ends in ret
+0071FB90	81	0071FA90	ret	no	-	yes	yes	body	predecessor ends in ret
+007202B0	97	00720220	ret	no	-	yes	yes	body	predecessor ends in ret
+007236F0	102	00723440	ret	no	-	yes	yes	body	predecessor ends in ret
+00723F82	26	00723CA0	jmp	no	-	no	no	table	inline jump table of 00723CA0: 6 image-base RVAs into it; remainder 0 B not classified
+007242C0	6	007241E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00725160	6	00725150	ret	no	-	yes	yes	body	predecessor ends in ret
+00725170	6	00725150	ret	no	-	yes	yes	body	predecessor ends in ret
+00725180	6	00725150	ret	no	-	yes	yes	body	predecessor ends in ret
+00725190	6	00725150	ret	no	-	yes	yes	body	predecessor ends in ret
+007251A0	6	00725150	ret	no	-	yes	yes	body	predecessor ends in ret
+007251E0	6	007251D0	ret	no	-	yes	yes	body	predecessor ends in ret
+00725200	6	007251F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00725210	6	007251F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00725230	6	00725220	ret	no	-	yes	yes	body	predecessor ends in ret
+00725240	6	00725220	ret	no	-	yes	yes	body	predecessor ends in ret
+00725250	6	00725220	ret	no	-	yes	yes	body	predecessor ends in ret
+00725260	6	00725220	ret	no	-	yes	yes	body	predecessor ends in ret
+007273B0	27	007273A0	ret	no	-	yes	yes	body	predecessor ends in ret
+00727B70	3	00727AE0	ret	no	-	yes	yes	body	predecessor ends in ret
+00728980	20	00728960	ret	no	-	yes	yes	body	predecessor ends in ret
+00728A60	13	007289A0	ret	no	-	yes	yes	body	predecessor ends in ret
+00728AB0	73	00728A80	ret	no	-	yes	yes	body	predecessor ends in ret
+00728C60	97	00728BC0	ret	no	-	yes	yes	body	predecessor ends in ret
+007298DD	48	00729870	ret	no	-	no	no	body	predecessor ends in ret
+007299DD	191	00729920	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0072A310	3	0072A2B0	ret	no	-	yes	yes	body	predecessor ends in ret
+0072E29C	5	0072DFD0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0072EE00	16	0072EC00	ret	no	-	yes	yes	body	predecessor ends in ret
+0072EE20	65	0072EC00	ret	no	-	yes	yes	body	predecessor ends in ret
+0072EF10	12	0072EE70	ret	no	-	yes	yes	body	predecessor ends in ret
+0072EF30	16	0072EE70	ret	no	-	yes	yes	body	predecessor ends in ret
+0072EF50	65	0072EE70	ret	no	-	yes	yes	body	predecessor ends in ret
+0072F040	12	0072EFA0	ret	no	-	yes	yes	body	predecessor ends in ret
+0072F070	64	0072F060	ret	no	-	yes	yes	body	predecessor ends in ret
+0072F3F0	128	0072F300	ret	no	-	yes	yes	body	predecessor ends in ret
+0072F69E	54	0072F480	ret	no	-	no	no	table	inline jump table of 0072F480: 13 image-base RVAs into it; remainder 0 B not classified
+0072F940	12	0072F930	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0075B6F0	18	0075B5F0	ret	no	-	yes	yes	body	predecessor ends in ret
+0075D9D0	30	0075D4E0	ret	no	-	yes	yes	body	predecessor ends in ret
+0075DA00	3	0075D4E0	ret	no	-	yes	yes	body	predecessor ends in ret
+0075E1A0	3	0075E140	ret	no	-	yes	yes	body	predecessor ends in ret
+0075EF20	22	0075EEC0	ret	no	-	yes	yes	body	predecessor ends in ret
+0075F3D0	49	0075F390	ret	no	-	yes	yes	body	predecessor ends in ret
+0075F540	25	0075F4B0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760140	24	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760160	35	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760190	24	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+007601B0	35	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+007601E0	88	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760240	70	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760290	57	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+007602D0	63	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760320	12	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+00760340	76	007600F0	ret	yes	rel32/lea	yes	yes	body	predecessor ends in ret
+007603A0	51	007600F0	ret	no	-	yes	yes	body	predecessor ends in ret
+007606E0	12	007604A0	ret	no	-	yes	yes	body	predecessor ends in ret
+0076666F	4	007651F0	ret	no	-	no	yes	body	predecessor ends in ret
+00767FF0	37	007677B0	ret	no	-	yes	yes	body	predecessor ends in ret
+007681B0	3	00768020	ret	no	-	yes	yes	body	predecessor ends in ret
+007682F0	13	00768260	ret	no	-	yes	yes	body	predecessor ends in ret
+00768310	20	00768260	ret	no	-	yes	yes	body	predecessor ends in ret
+00768470	73	00768390	ret	no	-	yes	yes	body	predecessor ends in ret
+00768530	27	007684C0	ret	no	-	yes	yes	body	predecessor ends in ret
+00768560	27	007684C0	ret	no	-	yes	yes	body	predecessor ends in ret
+00768590	45	007684C0	ret	no	-	yes	yes	body	predecessor ends in ret
+007685D0	27	007684C0	ret	no	-	yes	yes	body	predecessor ends in ret
+00769360	9	007692D0	ret	no	-	yes	yes	body	predecessor ends in ret
+00769370	9	007692D0	ret	no	-	yes	yes	body	predecessor ends in ret
+00769380	9	007692D0	ret	no	-	yes	yes	body	predecessor ends in ret
+00769390	9	007692D0	ret	no	-	yes	yes	body	predecessor ends in ret
+007693A0	9	007692D0	ret	no	-	yes	yes	body	predecessor ends in ret
+0076ABE0	93	0076ABA0	ret	no	-	yes	yes	body	predecessor ends in ret
+0076AE02	34	0076AC50	ret	no	-	no	no	table	inline jump table of 0076AC50: 8 image-base RVAs into it; remainder 0 B not classified
+0076B030	32	0076AE30	ret	no	-	yes	no	table	inline jump table of 0076AE30: 8 image-base RVAs into it; remainder 0 B not classified
+0076B0E0	55	0076B060	ret	no	-	yes	yes	body	predecessor ends in ret
+0076B120	97	0076B060	ret	no	-	yes	yes	body	predecessor ends in ret
+0076B190	63	0076B060	ret	no	-	yes	yes	body	predecessor ends in ret
+0076B480	108	0076B3F0	ret	no	-	yes	yes	body	predecessor ends in ret
+0076B500	114	0076B3F0	ret	no	-	yes	yes	body	predecessor ends in ret
+0076BA80	9	0076BA40	ret	no	-	yes	yes	body	predecessor ends in ret
+0076BC30	117	0076BA90	ret	no	-	yes	yes	body	predecessor ends in ret
+0076C310	12	0076BFA0	ret	no	-	yes	yes	body	predecessor ends in ret
+0076F3E8	6	0076CC70	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00771920	30	00771600	ret	no	-	yes	yes	body	predecessor ends in ret
+00771950	60	00771600	ret	no	-	yes	yes	body	predecessor ends in ret
+00773369	39	00772410	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007733A0	69	00772410	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+00773E90	6	00773480	ret	no	-	yes	yes	body	predecessor ends in ret
+007741D0	37	00773EA0	ret	no	-	yes	yes	body	predecessor ends in ret
+00774200	3	00773EA0	ret	no	-	yes	yes	body	predecessor ends in ret
+00774210	61	00773EA0	ret	no	-	yes	yes	body	predecessor ends in ret
+0077A670	31	0077A640	ret	no	-	yes	yes	body	predecessor ends in ret
+0077DB90	6	0077BF30	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0077EE80	21	0077ECE0	ret	no	-	yes	yes	body	predecessor ends in ret
+0077FA60	77	0077F960	ret	no	-	yes	yes	body	predecessor ends in ret
+0077FAC0	19	0077F960	ret	no	-	yes	yes	body	predecessor ends in ret
+00780E60	34	00780D90	ret	no	-	yes	yes	body	predecessor ends in ret
+00780E90	13	00780D90	ret	no	-	yes	yes	body	predecessor ends in ret
+00781940	5	00781930	ret	no	-	yes	yes	body	predecessor ends in ret
+007840A4	36	00783F90	ret	no	-	no	no	table	inline jump table of 00783F90: 9 image-base RVAs into it; remainder 0 B not classified
+007841BD	31	007840D0	ret	no	-	no	no	table	inline jump table of 007840D0: 7 image-base RVAs into it; remainder 0 B not classified
+00784349	43	007841F0	ret	no	-	no	no	table	inline jump table of 007841F0: 10 image-base RVAs into it; remainder 0 B not classified
+007845B8	56	00784380	ret	no	-	no	no	table	inline jump table of 00784380: 14 image-base RVAs into it; remainder 0 B not classified
+00785110	66	007850C0	ret	no	-	yes	yes	body	predecessor ends in ret
+00785160	130	007850C0	ret	no	-	yes	yes	body	predecessor ends in ret
+007854C0	3	007853F0	ret	no	-	yes	yes	body	predecessor ends in ret
+007875E0	3	007872F0	ret	no	-	yes	yes	body	predecessor ends in ret
+007884C0	17	00788430	ret	no	-	yes	yes	body	predecessor ends in ret
+00788540	15	007884E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00788560	50	007884E0	ret	no	-	yes	yes	body	predecessor ends in ret
+00788790	15	00788720	ret	no	-	yes	yes	body	predecessor ends in ret
+007887B0	62	00788720	ret	no	-	yes	yes	body	predecessor ends in ret
+00789200	61	00789160	ret	no	-	yes	yes	body	predecessor ends in ret
+007894C0	15	00789470	ret	no	-	yes	yes	body	predecessor ends in ret
+00789684	9	007895F0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0078A390	23	0078A240	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B4C0	87	0078B470	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B520	90	0078B470	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B820	17	0078B7C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B840	4	0078B7C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B850	39	0078B7C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B880	3	0078B7C0	ret	no	-	yes	yes	body	predecessor ends in ret
+0078B9B0	17	0078B940	ret	no	-	yes	yes	body	predecessor ends in ret
+0078C000	3	0078BD30	ret	no	-	yes	yes	body	predecessor ends in ret
+0078C710	22	0078C080	ret	no	-	yes	yes	body	predecessor ends in ret
+0078E7E0	3	0078E740	ret	no	-	yes	yes	body	predecessor ends in ret
+0078EAA0	72	0078EA70	ret	no	-	yes	yes	body	predecessor ends in ret
+0078F3AF	5	0078EAF0	ret	no	-	no	yes	body	predecessor ends in ret
+0078F4E0	4	0078F3C0	ret	no	-	yes	yes	body	predecessor ends in ret
+00799785	216	00798FF0	ret	no	-	no	no	table	inline jump table of 00798FF0: 12 image-base RVAs into it; remainder 165 B not classified
+00799F19	39	00799E40	ret	no	-	no	no	table	inline jump table of 00799E40: 9 image-base RVAs into it; remainder 0 B not classified
+0079A04E	42	00799F40	ret	no	-	no	no	table	inline jump table of 00799F40: 10 image-base RVAs into it; remainder 0 B not classified
+0079A68B	41	0079A5F0	ret	no	-	no	no	table	inline jump table of 0079A5F0: 10 image-base RVAs into it; remainder 0 B not classified
+0079D6FE	38	0079D6A0	ret	no	-	no	no	table	inline jump table of 0079D6A0: 9 image-base RVAs into it; remainder 0 B not classified
+0079D84C	72	0079D730	ret	no	-	no	yes	table	inline jump table of 0079D730: 18 image-base RVAs into it; remainder 0 B not classified
+007A104E	38	007A0FC0	jmp	no	-	no	no	table	inline jump table of 007A0FC0: 9 image-base RVAs into it; remainder 0 B not classified
+007A379D	4	007A3770	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007A5E43	2	007A5B50	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007A9D29	1	007A9A10	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007A9F1C	24	007A9E50	ret	no	-	no	no	table	inline jump table of 007A9E50: 6 image-base RVAs into it; remainder 0 B not classified
+007AC07F	217	007AB5C0	ret	no	-	no	no	table	inline jump table of 007AB5C0: 54 image-base RVAs into it; remainder 0 B not classified
+007ACCF0	44	007AC4F0	ret	no	-	yes	no	table	inline jump table of 007AC4F0: 11 image-base RVAs into it; remainder 0 B not classified
+007AD239	1	007ACD30	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007B1E0C	1	007B1AB0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007B21EF	2	007B1E10	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007B2C19	27	007B2BD0	ret	no	-	no	no	table	inline jump table of 007B2BD0: 6 image-base RVAs into it; remainder 0 B not classified
+007B2C95	27	007B2C40	ret	no	-	no	no	table	inline jump table of 007B2C40: 6 image-base RVAs into it; remainder 0 B not classified
+007B2F64	1	007B2CB0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007B4371	315	007B31A0	ret	no	-	no	no	table	inline jump table of 007B31A0: 23 image-base RVAs into it; remainder 220 B not classified
+007B58BC	1	007B5690	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007B66CF	1	007B6350	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007B77D5	1	007B7460	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007BB5C4	68	007BAEC0	ret	no	-	no	no	table	inline jump table of 007BAEC0: 17 image-base RVAs into it; remainder 0 B not classified
+007BC290	1	007BBFB0	DECODE-SHORT	no	-	yes	no	continuation	falls through from DECODE-SHORT, unreferenced
+007BE892	2	007BE590	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007C181F	1	007C1620	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007C2270	3	007C1830	DECODE-SHORT	no	-	yes	no	continuation	falls through from DECODE-SHORT, unreferenced
+007C2A29	47	007C23C0	int3	no	-	no	no	body	predecessor ends in int3
+007C30B9	3	007C2A60	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007C322A	1	007C30C0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007C43E7	3	007C4030	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007C5647	3	007C4790	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007C5974	2	007C5760	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007C9BF8	36	007C92F0	int3	no	-	no	yes	body	predecessor ends in int3
+007C9E6C	2	007C9C20	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007CA341	2	007C9FB0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007CA9CF	1	007CA7C0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007CAF6D	2	007CAB80	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007CB311	2	007CAF70	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007CD915	1	007CD350	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007CE6FC	40	007CDC20	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007D180F	37	007D16C0	ret	no	-	no	no	table	inline jump table of 007D16C0: 9 image-base RVAs into it; remainder 0 B not classified
+007D1EAF	37	007D1C80	ret	no	-	no	no	table	inline jump table of 007D1C80: 9 image-base RVAs into it; remainder 0 B not classified
+007D3AAC	212	007D3560	ret	no	-	no	no	table	inline jump table of 007D3560: 53 image-base RVAs into it; remainder 0 B not classified
+007D5E6F	213	007D5BD0	ret	no	-	no	no	table	inline jump table of 007D5BD0: 53 image-base RVAs into it; remainder 0 B not classified
+007D8B8A	34	007D8A70	ret	no	-	no	yes	table	inline jump table of 007D8A70: 8 image-base RVAs into it; remainder 0 B not classified
+007D8F42	34	007D8E40	ret	no	-	no	no	table	inline jump table of 007D8E40: 8 image-base RVAs into it; remainder 0 B not classified
+007DB89B	33	007DB7A0	ret	no	-	no	no	table	inline jump table of 007DB7A0: 8 image-base RVAs into it; remainder 0 B not classified
+007DC315	35	007DC1F0	ret	no	-	no	no	table	inline jump table of 007DC1F0: 8 image-base RVAs into it; remainder 0 B not classified
+007DE2E1	1	007DE120	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007DE8BB	9	007DE2F0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007DEB30	1	007DE8D0	DECODE-SHORT	no	-	yes	no	continuation	falls through from DECODE-SHORT, unreferenced
+007DF1E2	5	007DEFB0	int3	no	-	no	yes	body	predecessor ends in int3
+007DF310	2	007DF1F0	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007E259C	1	007E0B60	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007E3CC5	31	007E3450	call	no	-	no	no	table	inline jump table of 007E3450: 7 image-base RVAs into it; remainder 0 B not classified
+007E41F4	2	007E3CF0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007E4D46	3	007E48D0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007E6356	1	007E5E80	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+007E9960	1	007E96A0	DECODE-SHORT	no	-	yes	no	continuation	falls through from DECODE-SHORT, unreferenced
+007EA84E	1	007EA460	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007EBA34	8	007EAA60	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007ED498	26	007EBAD0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007EDA1E	3	007ED580	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007EE7C0	48	007EE730	ret	yes	rel32/lea	yes	no	body	predecessor ends in ret
+007EF0DB	33	007EEA00	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007F3057	33	007F2FA0	ret	no	-	no	no	table	inline jump table of 007F2FA0: 8 image-base RVAs into it; remainder 0 B not classified
+007F311B	37	007F3080	ret	no	-	no	no	table	inline jump table of 007F3080: 9 image-base RVAs into it; remainder 0 B not classified
+007F37FD	2	007F3570	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+007F3DDD	1	007F3950	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007F4088	40	007F3E60	ret	no	-	no	no	table	inline jump table of 007F3E60: 10 image-base RVAs into it; remainder 0 B not classified
+007F6719	13	007F6330	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+007FE525	6	007FE0F0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00804BBC	32	00804860	ret	no	-	no	no	table	inline jump table of 00804860: 8 image-base RVAs into it; remainder 0 B not classified
+00808AEB	2	00808A54	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+00808D49	1	00808C90	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00808EC2	34	00808D78	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+00809240	1	00809124	DECODE-SHORT	no	-	yes	no	continuation	falls through from DECODE-SHORT, unreferenced
+008098EE	2	008098D4	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+00809D65	27	00809D20	ret	no	-	no	yes	body	predecessor ends in ret
+00809FEE	642	00809D80	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0080DE76	126	0080C750	ret	no	-	no	no	table	inline jump table of 0080C750: 31 image-base RVAs into it; remainder 0 B not classified
+0080E5DE	8	0080E300	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0080EDD0	12	0080E940	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0080F9F9	51	0080F800	ret	no	-	no	no	table	inline jump table of 0080F800: 12 image-base RVAs into it; remainder 0 B not classified
+008117BD	52	00811700	ret	no	-	no	no	table	inline jump table of 00811700: 3 image-base RVAs into it; remainder 37 B not classified
+0081672F	85	008162F0	jmp	no	-	no	no	table	inline jump table of 008162F0: 7 image-base RVAs into it; remainder 56 B not classified
+008179EB	105	008178F0	ret	no	-	no	no	table	inline jump table of 008178F0: 26 image-base RVAs into it; remainder 0 B not classified
+00817CB1	107	00817B00	ret	no	-	no	no	table	inline jump table of 00817B00: 26 image-base RVAs into it; remainder 0 B not classified
+00819D26	77	00819C90	ret	no	-	no	no	table	inline jump table of 00819C90: 10 image-base RVAs into it; remainder 35 B not classified
+0081A9E4	67	0081A8C0	ret	no	-	no	no	table	inline jump table of 0081A8C0: 8 image-base RVAs into it; remainder 35 B not classified
+0081AB71	70	0081AA30	ret	no	-	no	no	table	inline jump table of 0081AA30: 8 image-base RVAs into it; remainder 35 B not classified
+0081AF7C	67	0081AE20	ret	no	-	no	no	table	inline jump table of 0081AE20: 8 image-base RVAs into it; remainder 35 B not classified
+0081B478	67	0081B310	ret	no	-	no	no	table	inline jump table of 0081B310: 8 image-base RVAs into it; remainder 35 B not classified
+0081B636	69	0081B4C0	ret	no	-	no	no	table	inline jump table of 0081B4C0: 8 image-base RVAs into it; remainder 35 B not classified
+0081BDE5	31	0081BCF0	ret	no	-	no	no	table	inline jump table of 0081BCF0: 7 image-base RVAs into it; remainder 0 B not classified
+0081C290	107	0081C020	call	no	-	yes	no	table	inline jump table of 0081C020: 7 image-base RVAs into it; remainder 79 B not classified
+0081C9B5	73	0081C830	ret	no	-	no	no	table	inline jump table of 0081C830: 7 image-base RVAs into it; remainder 42 B not classified
+0081CD2B	56	0081CC40	ret	no	-	no	no	table	inline jump table of 0081CC40: 6 image-base RVAs into it; remainder 31 B not classified
+0081CF0C	116	0081CE00	ret	no	-	no	no	table	inline jump table of 0081CE00: 29 image-base RVAs into it; remainder 0 B not classified
+0081D19D	55	0081CF80	jmp	no	-	no	no	table	inline jump table of 0081CF80: 13 image-base RVAs into it; remainder 0 B not classified
+0081D345	1	0081D2B0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081D394	1	0081D350	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081D51D	1	0081D3E0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081D8F4	1	0081D790	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081D995	1	0081D900	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081DA0F	1	0081D9A0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081E4A6	2	0081E420	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081E75D	2	0081E5A0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081E916	2	0081E800	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081F1E9	1	0081F0A0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081F882	1	0081F700	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0081FDEB	47	0081FCA0	ret	no	-	no	no	table	inline jump table of 0081FCA0: 6 image-base RVAs into it; remainder 22 B not classified
+00820361	1	00820260	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082163A	94	00821520	ret	no	-	no	no	table	inline jump table of 00821520: 23 image-base RVAs into it; remainder 0 B not classified
+0082294A	162	008216A0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00822B81	56	008229F0	ret	no	-	no	no	table	inline jump table of 008229F0: 6 image-base RVAs into it; remainder 29 B not classified
+00822CD3	1	00822BC0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082321D	1	00823030	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082365F	1	008235B0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+008240E3	189	00823910	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+008245EC	2	008243C0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+008248F7	3	008245F0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00824D46	186	00824900	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00824FEE	4	00824E00	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+008251E5	4	00825000	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082527B	1	008251F0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+008253BF	1	00825280	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00829A62	1	00829810	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00829D6E	1	00829B10	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00829E07	6	00829D70	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+00829E85	5	00829E10	call	no	-	no	yes	ambiguous	predecessor ends in call; callee noreturn not tested
+0082A165	4	00829F50	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082A5C8	2	0082A280	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082A657	5	0082A5D0	call	no	-	no	yes	ambiguous	predecessor ends in call; callee noreturn not tested
+0082AF8F	1	0082AD40	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082B172	1	0082AFA0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082B298	1	0082B180	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082B5F6	314	0082B570	ret	no	-	no	no	table	inline jump table of 0082B570: 16 image-base RVAs into it; remainder 248 B not classified
+0082C8B6	2	0082C6E0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082CE48	203	0082CCC0	call	no	-	no	no	table	inline jump table of 0082CCC0: 9 image-base RVAs into it; remainder 167 B not classified
+0082D28D	278	0082D130	ret	no	-	no	no	table	inline jump table of 0082D130: 12 image-base RVAs into it; remainder 227 B not classified
+0082D780	274	0082D5C0	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0082DCDB	1	0082DC30	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082E041	5	0082DCE0	call	no	-	no	yes	ambiguous	predecessor ends in call; callee noreturn not tested
+0082E341	8	0082E050	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082E48D	2	0082E350	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082E62E	4	0082E490	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082E6BE	1	0082E640	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082E785	1	0082E6C0	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082E8DD	2	0082E790	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+0082EE59	47	0082EDA0	jmp	no	-	no	no	table	inline jump table of 0082EDA0: 11 image-base RVAs into it; remainder 0 B not classified
+0082EFD3	45	0082EEF0	ret	no	-	no	yes	table	inline jump table of 0082EEF0: 11 image-base RVAs into it; remainder 0 B not classified
+0082FFCC	60	0082FE40	ret	no	-	no	no	table	inline jump table of 0082FE40: 15 image-base RVAs into it; remainder 0 B not classified
+008306B5	1	00830540	DECODE-SHORT	no	-	no	no	continuation	falls through from DECODE-SHORT, unreferenced
+00830EE5	59	00830EB0	jmp	no	-	no	yes	table	inline jump table of 00830EB0: 14 image-base RVAs into it; remainder 0 B not classified
+00831954	56	00831380	jmp	no	-	no	no	table	inline jump table of 00831380: 14 image-base RVAs into it; remainder 0 B not classified
+0083DDB3	62	0083B780	ret	no	-	no	no	table	inline jump table of 0083B780: 8 image-base RVAs into it; remainder 29 B not classified
+008618FD	1	00860E90	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00862028	6	00862022	jmp	yes	rel32/lea	no	yes	body	predecessor ends in jmp
+00862034	6	0086202E	jmp	yes	rel32/lea	no	yes	body	predecessor ends in jmp
+008824F0	98	008824C0	ret	no	-	yes	yes	body	predecessor ends in ret
+008832D0	13	00882C20	ret	no	-	yes	yes	body	predecessor ends in ret
+00883C46	34	00883A60	ret	no	-	no	yes	table	inline jump table of 00883A60: 8 image-base RVAs into it; remainder 0 B not classified
+00884090	98	00883E90	ret	no	-	yes	yes	body	predecessor ends in ret
+008858B0	117	00885310	ret	no	-	yes	yes	body	predecessor ends in ret
+00888650	54	00887810	ret	no	-	yes	yes	body	predecessor ends in ret
+00888690	92	00887810	ret	no	-	yes	yes	body	predecessor ends in ret
+00888700	108	00887810	ret	no	-	yes	yes	body	predecessor ends in ret
+00888780	31	00887810	ret	no	-	yes	yes	body	predecessor ends in ret
+008888C0	34	008887B0	ret	no	-	yes	yes	body	predecessor ends in ret
+00889330	30	00889300	ret	no	-	yes	yes	body	predecessor ends in ret
+0088C6BE	2	0088AD40	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+0088D4E0	18	0088D110	ret	no	-	yes	yes	body	predecessor ends in ret
+0088DB60	15	0088D890	ret	no	-	yes	yes	body	predecessor ends in ret
+0088FAC3	8	0088E8C0	DECODE-SHORT	no	-	no	yes	continuation	falls through from DECODE-SHORT, unreferenced
+0088FAE0	43	0088E8C0	DECODE-SHORT	no	-	yes	yes	continuation	falls through from DECODE-SHORT, unreferenced
+008922A0	28	00892150	ret	no	-	yes	yes	body	predecessor ends in ret
+00892990	29	00892610	jmp	no	-	yes	yes	body	predecessor ends in jmp
+0089378D	11	008932B0	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00893A80	45	00893860	ret	no	-	yes	yes	body	predecessor ends in ret
+00893AC0	64	00893860	ret	no	-	yes	yes	body	predecessor ends in ret
+00894ECD	5	00894850	pop	no	-	no	yes	continuation	falls through from pop, unreferenced
+00895570	27	00894EE0	ret	no	-	yes	yes	body	predecessor ends in ret

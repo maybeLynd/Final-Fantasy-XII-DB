@@ -1,0 +1,178 @@
+# CANDIDATE screen, 2026-09-21 (OPUS): contract-named MUTABLE STATE with no declared type.
+# Produced by applying the accepted types-MET criterion (SWE2-AUDIT-SEM, 8f7050694 - a cell cannot
+# reach MET while a contract-named piece of state sits outside the store) to all 51 systems, so that
+# the remaining PARTIAL cells carry enumerable work lists instead of an unexplained label.
+#
+# THIS IS A SUPERSET SCREEN, NOT A REQUIRED-WORK LIST, and the difference is load-bearing. The ruling
+# scoped its two findings to state a contract names in its OWN sections (S-3 / S-5); this scans each
+# contract document whole, so it also catches addresses cited in passing. Every row is a CANDIDATE
+# for the auditor to accept or reject; none is a claim that the system owns that state.
+#
+# Filters, and why each exists: only .data (which carries BSS in its virtual tail) - .rdata is vtables,
+# strings, RTTI and import thunks, and leaving it in inflated a first pass from 398 to 572; .text is
+# excluded because a function is not state; addresses that are round multiples of 0x10000 are dropped
+# as masks and bounds that merely parse as addresses. An address is DECLARED if types.tsv names it in
+# route/instance/allocation_site, OR if it falls inside a declared type's extent - a field of an
+# already-declared record is covered, and counting it would invent work the store has done.
+#
+# OVERLAP WITH AN EXISTING CHECK, stated rather than discovered later. check_contract_globals.py
+# already enumerates the data globals contracts cite - it reports 684 where this finds 673, the
+# difference being its .rdata rows and this one's round-number filter - and it classifies them by
+# whether a WRITER is visible in the image. That is a different axis from this one, which asks
+# whether the address is DECLARED IN _types. A global can have three visible writers and still be
+# undeclared, and that is exactly the population the types-MET criterion is about. Anyone
+# extending this should consider folding the declared/undeclared column into that checker rather
+# than keeping two enumerations of the same citation set.
+# HOW MUCH OF THE REMAINDER IS ACTUALLY DECLARABLE - measured, not assumed (OPUS, 2026-09-21).
+# The rows left are NOT a list of that many declarations waiting to be written, and the densest
+# system shows why. S-05's addresses cluster: 022D91A0..022D9330 holds eleven of them inside 0x190
+# bytes. Two readings were possible - one record with eleven fields, or eleven separate statics -
+# and the discriminator is whether code LEAs a base and indexes it or addresses each absolutely.
+# Measured over that region: 8,806 direct rip-relative accesses at 104 DISTINCT addresses, against
+# only 6 leas and ZERO accesses through an index register. So it is a dense block of individual
+# globals - roughly one every four bytes - and neither response is right: declaring it as one
+# record would invent a layout, and declaring 104 scalar types would bloat the store to describe a
+# compiler's data segment. A block like this needs the auditor to scope WHICH of its addresses the
+# contract actually leans on, which is a judgement, not a sweep.
+#
+# The rows that ARE straightforwardly declarable look like the thirteen already done on 2026-09-21:
+# an isolated address with a small, complete reference set, where the instructions give a width, a
+# direction and often the role outright. 01F44830 is the counter-example in the other direction - a
+# single address with 2,216 references that turned out to be __security_cookie, cited by four
+# contracts and owned by none of them.
+#             base pointer, or data a page simply quotes. A row like this is NOT undeclared state;
+# S-43 AND S-48'S LARGEST SHARED REGION, characterised 2026-09-21 (OPUS) so it is not swept.
+# 02B40E00..02B41000 carries S-43's densest cluster (16 addresses) and sits beside S-48's
+# 02B40518 cluster. The store describes NONE of it, so it is genuinely undeclared - but it is not
+# one record. Measured: 214 direct rip-relative references at 18 distinct addresses, 15 leas at 7,
+# and (see the WITHDRAWN clause below) across 24 functions concentrated in 003BA7B0/003BA990/003BAC90/
+# 003BAEB0 - the resource-request layer the pages attribute it to. That is the same shape as
+# S-05's block: module-level globals addressed absolutely, plus a few buffers whose addresses are
+# taken (02B40EC8 receives a name copy). Declaring one record would invent a layout; declaring 18
+# scalars would describe a translation unit's data segment.
+# NOTE FOR WHOEVER SCOPES IT: the pages call 02B40E14 'a 402-byte state machine bounded at 0xF
+# into a sixteen-arm jump table'. The 402 bytes are the FUNCTION's size, not the data's - the
+# bracket in [02B40E14] means the cell holds the state value. The eight consecutive dwords at
+# 02B40E00..02B40E28 are the plausible context record if a boundary is ever wanted, but nothing
+# measured here establishes one.
+# THE LARGEST UNDECLARED STRUCTURE IN THIS SCREEN, measured 2026-09-21 (OPUS): the band at
+# 02EBF000..02EBF3FE, which S-09 names as the authored-data table registry and which S-04, S-14
+# and S-32 also cite. It has 2,343 direct rip-relative references at 91 distinct addresses across
+# 472 FUNCTIONS, 67 leas at 51 addresses, and ZERO indexed accesses; the gap between consecutive
+# referenced addresses is 8 bytes in 73 of 90 cases. That is a slot table, and _types carries NO
+# TYPE FOR IT - by reference count it is the single biggest gap the criterion has surfaced.
+# IT IS NOT DECLARED HERE ON PURPOSE. FABLE has already read this band closely: their pages record
+# a census over 02EBF000-02EBF178 across 239 functions, and answer 2026-09-12 that there is NO
+# HEADER, that 02EBF000 is a float written by 0039AF20, and that 02EBF004 is unreferenced. A naive
+# 'array of 8-byte slots from 02EBF000' would contradict all three of those findings on its first
+# row. The declaration needs those readings reconciled with the slot spacing first, which is a
+# semantic question for the band's owner and not something to settle from spacing alone.
+# WITHDRAWN 2026-09-21 (OPUS): every 'ZERO indexed accesses' clause above. The test behind it
+# asked whether the RIP-RELATIVE operand carried an index register, and an indexed table is not
+# written that way. It is written `lea rcx,[table]` and then `[rax + rcx]`, with the index added
+# AFTER the lea - 0032F6E3 and 003321B6 do exactly that on 022C6D20, which the pages describe as
+# 022C6D20[m], a per-slot byte array. So that counter can never be non-zero for the pattern it was
+# meant to rule out, and its zero was never evidence. The clause is withdrawn from all three
+# region notes. What still stands in each is the independent evidence: the distinct-address count,
+# the gap distribution, the store-and-pages check, and in S-05's case 8,806 references at 104
+# addresses in 416 bytes. The conclusions are unchanged; one of their supports was not a support.
+# THE RIGHT TEST, for whoever needs it: track the lea's destination register and look for an index
+# on a memory operand based on THAT register - which is what SEED=slots in
+# census_receiver_fixpoint.py already does, and another reason to use the kit's census rather than
+# a fresh discriminator.
+# AND THE QUESTION THE WITHDRAWN CLAUSE WAS SUPPOSED TO ANSWER, now answered with a test that
+# passes its control (OPUS, 2026-09-21). The test: take the destination register of
+# `lea reg,[table]` and look for a memory operand INDEXED off that register in the same body.
+# CONTROL FIRST - 022C6D20, which the pages call 022C6D20[m] and whose two sites were read by
+# hand: the test returns exactly those two, 0032F6EA `movsx eax, byte ptr [rax + rcx]` and
+# 003321BD `mov byte ptr [rbx + rdx], 1`. Note SEED=slots does NOT cover this case and returns
+# zero functions on that same known positive: that seed needs the indexed load to yield a
+# POINTER it can follow, and this table holds bytes. Recommending it was my error.
+#   S-05  022D91A0 : 0 indexed sites, 6 plain leas   -> separate globals, CONFIRMED.
+#   S-43/48 02B40E00: 1 indexed site, at 02B40EC8 with a 16-byte movups - the name buffer being
+#                     block-copied, not an element access -> module data block, CONFIRMED.
+#   S-09  02EBF000 : 16 INDEXED SITES - the band really does contain indexed tables, and the
+#                     strides are visible: 02EBF1A0 indexed by rax*8 and rcx*8 (qword elements,
+#                     e.g. 00233E14 `cmp qword ptr [rcx + rax*8], 0`) and 02EBF278 by rsi*4
+#                     (dword elements, 0022FFBF `movss dword ptr [rcx + rsi*4], xmm1`). That is
+#                     concrete input for the slot-origin question routed to FABLE - the band is
+#                     not one uniform table, it has at least two element widths at two bases.
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+# CONTROL, and it is the reason to trust the screen at all: S-01 and S-46 are the two systems the
+# ruling scored by hand. After ten scalar declarations on 2026-09-21 this screen shows S-01 at ZERO
+# remaining candidates and S-46 at one, and the addresses it had listed for them are exactly the
+# ones the ruling named plus the wider-scan extras. The screen agrees with the hand scoring where
+# they overlap. S-01 reaching zero here is NOT a MET verdict - re-scoring is the auditor's.
+# WHAT THE REMAINING COUNT IS, measured 2026-09-21 (OPUS) and corrected twice on the way.
+# Of the 338 distinct addresses the screen listed before this correction:
+#    48  were ALREADY DESCRIBED in the store - just not in a cell this screen used to read. That
+#        was a defect in the screen, not a gap in the store, and it is fixed: the declared-test now
+#        reads fields.tsv and types.tsv whole. 02099FF0 is the case that exposed it - documented as
+#        ActorManagerSlot's groupPersistentBank, 0x200 bytes over 77 offsets, in a field row's
+#        evidence. After the fix the screen reports 314 rather than 368.
+#    47  have NO CODE REFERENCE ANYWHERE. Nothing names them by absolute address: table entries
+#        reached by index, interior fields off a base pointer, or data a page quotes.
+#    53  are referenced ONLY by lea - record or array BASES, so ONE record declaration covers each.
+#   205  are accessed by code AND described nowhere in the store. THAT is the honest remaining
+#        declaration work - 61% of the raw count, and still an upper bound, because some of it is
+#        machinery no subsystem owns (01F44830 is __security_cookie: 2,216 reads, four contracts
+#        cite it, none owns it).
+#
+# A CAUTION FOR WHOEVER WORKS THE 53 BASES. Profiling them with an ad-hoc register tracker produced
+# NEGATIVE displacements on four unrelated bases with the identical -0x80..+0x80 signature. Four
+# unrelated types do not share one layout: the tracker was missing `lea rax,[rax+0x80]`, the pointer
+# advance in an unrolled copy loop, so real offsets +0x00..+0x70 were recorded as negatives off the
+# advanced pointer. census_receiver_fixpoint.py already handles that - it is one of the four fixes
+# in its own docstring. USE IT rather than rebuilding a tracker without its fixes.
+system	subsystem	named_state	undeclared	addresses
+S-43	The save image — buffers, header and payload	87	61	01E0C1E8 01E0C3BC 01E0C3E0 01E0C3E8 01E0C3EC 01E0CF84 01E0CF88 01EED078 01EFE384 01EFE388 01F2DEB8 01F2DEC0 01F2DEC8 01F2FEB0 01F2FEB4 01F3021C 01F30220 01F44D40 01F44D48 01F7F590 0208D45C 02091098 0209AC10 021BA940 02211000 022676C0 022CA470 022CBE95 02B40554 02B4055C 02B407C0 02B40E04 02B40E0C 02B40E10 02B40E14 02B40E18 02B40E1C 02B40E20 02B40E24 02B40E28 02B40EC0 02B40EC8 02B40EF0 02B40EF8 02B40EFC 02B40FE0 02B40FE4 02B4112C 02B41130 02B41160 02CC03D8 02CC0400 02CEDA10 02CEDA18 02CF7368 02CF7480 02EAED3C 02EAF8E0 02EAF8E8 02EB3868 02ED4310
+S-48	Authored command ramp channels — the channel	43	32	01DF6E38 01DF6E40 01E02801 01EED130 01EF93F0 01EF93FC 01EFFAF0 01F004E0 01F20A98 01F20E60 01FC3E8C 0215EFDC 022C2550 022C7F90 022C7F92 022C7FE0 022D8FB0 022D9148 022D914C 02B3F550 02B3F554 02B3F560 02B3F56F 02B40518 02B40520 02B40524 02B40528 02B4052C 02B40538 02CA4410 02EBA2E0 02EBA3F8
+S-09	The authored-data table registry — the 63 sl	65	30	0208D310 0208D312 0208D318 0208E680 02EBF000 02EBF008 02EBF010 02EBF018 02EBF028 02EBF030 02EBF060 02EBF068 02EBF070 02EBF078 02EBF080 02EBF088 02EBF090 02EBF098 02EBF0A0 02EBF0A8 02EBF0B0 02EBF0B8 02EBF0C0 02EBF0C8 02EBF0D0 02EBF158 02EBF160 02EBF168 02EBF178 02EBF180
+S-15	The field runtime pass — how one frame drive	37	28	02092734 02099A88 02099AB7 02099ABC 02099D3F 02099D78 0215F1A0 0215F1A1 0215F1A8 021C804C 022C2550 022C59F0 022C5C00 022C6C00 022C6D00 022C6D18 022C6D1D 022C6D20 022C6D28 022C6D40 022C6D58 022C6E70 022CB726 022CF1B3 02A1A386 02A1A388 02A1A39A 02C85B78
+S-05	Shared transform workbench — the matrix area	30	26	01EF93F0 01EF93F8 01EF93FC 022D8F08 022D8F0C 022D8F80 022D8F90 022D91A0 022D91A4 022D91B0 022D91F0 022D9210 022D9220 022D922F 022D9300 022D9304 022D9310 022D9330 02AEE900 02AEE908 02AEE910 02AEEA20 02AEEBF0 02AEECB0 02F8F2C6 02F8F2F8
+S-38	Character rendering — the render object, the	29	18	01EEBAA8 01EEBAAC 01EED130 01EFF940 01F00410 01F7F538 020972F0 02097B80 02164204 022C2550 02AD9B50 02B3F550 02B40520 02B40528 02EBD480 02EBDB98 02EBDBA0 02EBDBA8
+S-35	The input stack, binding profiles and the ca	32	17	01DF09C0 01DF0A80 01DF13E0 01DF1470 01DF1738 01F462C8 01F7F4B8 01FD4A68 022CB680 02EA06D8 02EA0748 02EB8260 02EB82D8 02EB8348 02EB83B8 02EB8428 02EB9D80
+S-41	Sound request to voice — the audio boundary,	16	11	01FD36B4 01FD36C0 02091098 022C7FE0 022CB726 02AEF3D8 02AEF3FC 02AEF400 02AEF404 02AEF410 02F8F23C
+S-02	The world tick and the field frame — the per	25	10	01E0C45C 01E0C460 01E0CE88 020CFC90 020CFD40 020CFD88 02AED5F0 02B457D8 02B45970 02EBB7A4
+S-49	Phyre asset container and class-descriptor s	24	9	01F498A0 01F49980 02CAA080 02CAA140 02CAA19C 02CB8600 02CFDB50 02D01D30 02D3F800
+S-17	Group completion and respawn — the dead-memb	21	8	01FD46D4 0208D334 0208D45C 0209A2C4 0215F1C0 022C2578 022C8004 02CA4410
+S-36	The widget object model, its message protoco	24	7	01E02820 01E0C0F8 02064AD2 02064AD3 02090790 022CBE90 022CBE98
+S-07	The zone-script VM — the 100-opcode interpre	9	6	01F26720 01F28DD8 01F29418 01F29440 02CDB4F4 02CDB505
+S-10	The authored expression evaluator — how an a	6	5	022D9138 022D91A0 022D92E0 022D92EF 022D92F0
+S-22	The formula step table and calculator slots	16	5	01EFA5C0 01EFA808 01EFAC08 01EFAC10 01F44000
+S-39	The render command list and the graphics-thr	8	5	01DF08FC 01DFE0C4 01F7F594 02EAF6D8 02EBA3F8
+S-34	Persistent flag banks and event memory	9	3	02ADD0A8 02ADD0C8 02ADD0D0
+S-40	Post-processing — the Yebis effect catalogue	4	3	01F3BA80 01F3BA90 02EA0B40
+S-47	The resource entry tree and arena reference	8	3	027A2E10 02B40514 02EBD480
+S-11	Field records and area transition — `navimap	4	2	02099DE7 02EBB7D0
+S-13	Actor storage, manager slots and the unit po	9	2	022C8000 02F8F2A0
+S-14	Battle-unit construction from its definition	14	2	01E09350 02EBF168
+S-20	Command commit and action dispatch — the mom	5	2	022C1788 022C1DB8
+S-26	The status write and the two-layer effect mo	6	2	0208D45C 02091098
+S-28	Party roster, control suppression and the le	7	2	02099ABC 0215FD56
+S-32	Enemy death and its rewards — experience and	11	2	0209A2A9 02EBF168
+S-42	Field music selection — the area's ladder, t	4	2	022C7FE0 02CA6C60
+S-03	Battle runtime mode ladder — who owns the pa	7	1	02B457E0
+S-06	Developer tuning console — 282 commands over	3	1	01DF6E68
+S-12	Weather — the slot state model, the probabil	13	1	02ADD0B0
+S-16	Spawn placement, the keep window and retirem	1	1	01F004E0
+S-18	Locomotion and steering — heading and speed	7	1	02EBD480
+S-19	The movement body pool and the separation pa	5	1	02649E10
+S-23	The HP write and the lethal transition	6	1	0208D45C
+S-25	Gambit evaluation, set selection and enmity	4	1	01EEC460
+S-33	World loot pickups — the ten-slot pool, the	8	1	0208D45C
+S-44	Game settings and locale	14	1	01F7CD80
+S-45	Steam integration and achievements	2	1	022C2550
+S-01	Application root and boot — the VBF mount, t	4	0	
+S-04	Encoded-id space and class registry — the fi	5	0	
+S-08	The resource request queue and file layer —	8	0	
+S-21	Result application and post-result events —	0	0	
+S-24	Stat derivation and the auto-status rebuild	4	0	
+S-27	The periodic tick — regen, drain, MP, what e	0	0	
+S-29	Inventory, item use and equipment compatibil	3	0	
+S-30	Shops and the bazaar — stock ladders, the lo	3	0	
+S-31	The licence board and the licence check	3	0	
+S-37	Text rendering and the control-code language	4	0	
+S-46	RNG streams and which roll is on which gener	13	0	
+S-50	Lua core loader surface — the chunk loader a	0	0	
+S-51	The navigation mesh and the corridor-query l	3	0	

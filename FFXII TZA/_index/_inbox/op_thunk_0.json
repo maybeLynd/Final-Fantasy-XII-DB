@@ -1,0 +1,5 @@
+{
+ "action": "resume",
+ "task": "OPUS-CLASS-DESCRIPTOR-THUNK-FRONTMATTER-ROW-IS-MINE",
+ "note": "Unblocked: the page is clean at HEAD - SWE2-EC7's unpublished EC7-19 section has left the working tree, so publishing this path no longer sweeps their work into my commit."
+}

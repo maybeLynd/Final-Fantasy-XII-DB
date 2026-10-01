@@ -1,0 +1,63 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS S1 cache enabled? - 0059EEDC  call 0x1d6b20
+PASS S1 path predicate - 0059EEE8  call 0x865390
+PASS S1 selector forced to 5 - 0059EEF1  mov byte ptr [r15 + 0x18], 5
+PASS S1 001D6B20 asks 0020C710 - 001D6B24  call 0x20c710
+PASS S2 00865390 gets 001DB210's object - 00865399  call 0x1db210
+PASS S2 then tail-calls 001DB050 - 008653A9  jmp 0x1db050
+PASS S2 the four names - ['c1004', 'c1005', 'c1006', 'c1019']
+PASS S2 the folder prefix - 'PS2Data\\obj_finish\\in\\chara\\c10\\'
+PASS S2 the separator word
+PASS S2 stride 6 - 001DB19B  add rdi, 6
+PASS S2 bound 0x18 (four names) - 001DB19F  cmp rbp, 0x18
+PASS S2 prefix copy is strncpy (IAT 008C2F70) - 001DB161  call qword ptr [rip + 0x6e7e09]
+PASS S2 match returns 1 - 001DB1D3  mov eax, 1
+PASS S3 selector - 3 - 0059EEFB  lea eax, [rcx - 3]
+PASS S3 <= 2 skips the log - 0059EEFE  cmp al, 2
+PASS S3 notcache tag - 0059EF02  lea rdx, [rip + 0x788a07]
+PASS S3 selector 0 takes the plain tag - 0059EF10  lea rdx, [rip + 0x788a19]
+PASS S3 tags
+PASS S3 selector 0 never tries route 1 - 0059EF38  cmp byte ptr [r15 + 0x18], sil
+PASS S3 (sil is zero) - 0059EED4  xor esi, esi
+PASS S4 r12b starts 0 - 0059EED6  xor r12b, r12b
+PASS S4 001D6B90 - 0059EFAB  call 0x1d6b90
+PASS S4 selector 5 test - 0059EFB4  cmp byte ptr [r15 + 0x18], 5
+PASS S4 001D6B70 - 0059EFBB  call 0x1d6b70
+PASS S4 flag -> fill - 0059EFC4  mov r12b, 1
+PASS S4 else fill unless selector 1 - 0059EFC9  cmp byte ptr [r15 + 0x18], 1
+PASS S4 setne - 0059EFCE  setne r12b
+PASS S4 fill gate - 0059F1AB  test r12b, r12b
+PASS S4 cache fill - 0059F1B7  call 0x59a9b0
+PASS S4 r12b writers are exactly the three - 0059EED6 0059EFC4 0059EFCE
+PASS S6 001D6B90 asks 0020C720 - 001D6B94  call 0x20c720
+PASS S6 0020C720 reads the low-memory byte 01F83441 - 0020C720  movzx eax, byte ptr [rip + 0x1d76d1a]
+PASS S6 setter: total physical memory under 1 GiB - 0020C674  cmp rcx, 0x40000000
+PASS S6 setter: clear - 0020C67D  mov byte ptr [rip + 0x1d76dbd], 0
+PASS S6 setter: budget at its 32 MB floor - 0020C684  cmp rax, 0x2000000
+PASS S6 setter: set - 0020C68C  mov byte ptr [rip + 0x1d76dae], 1
+PASS S6 001D6B70 takes the FileCache singleton - 001D6B74  call 0x1dada0
+PASS S6 001DADA0 reads 01F82CF0 - 001DADA0  mov rax, qword ptr [rip + 0x1da7f49]
+PASS S6 and tests its +0x88 byte - 001D6B7B  cmp byte ptr [rax + 0x88], cl
+PASS S6 the low-memory byte's only writers are in 0020C610 - 0020C67D 0020C68C
+PASS S5 selector into route 1 - 0059EFD2  movsx edx, byte ptr [r15 + 0x18]
+PASS S5 route 1 entry - 0059EFE5  call 0x1d6d20
+PASS S5 forwarded as r8d - 001D6D4F  mov r8d, esi
+PASS S5 to the lookup - 001D6D55  call 0x20c1b0
+PASS U1 buffer passed in rdx - 0059F0DD  lea rdx, [rsp + 0x20]
+PASS U1 the widening call - 0059F0EA  call 0x599250
+PASS U1 return value overwritten - 0059F0EF  lea rax, [r14 + 0xf]
+PASS U1 rsp-based addressing after the call - 0059F104 sub rsp, rax 0059F107 lea r14, [rsp + 0x20] 0059F1EE lea rsp, [rbp + 0x10]
+PASS U1 converter: surrogate range - 005992E2  lea ecx, [rax - 0xd800]
+PASS A1 0020C230 - 0020C230  lea rsi, [rdi + 0x58]
+PASS A1 0020C23C - 0020C23C  call 0x5cd4f0
+PASS A1 0020C242 - 0020C242  mov rcx, qword ptr [rdi + 0x38]
+PASS A1 0020C246 - 0020C246  lea r8, [rdi + 0x28]
+PASS A1 0020C255 - 0020C255  cmp dword ptr [rcx + 0x20], edx
+PASS A1 0020C2B3 - 0020C2B3  call 0x5cd820
+PASS A1 0020C2C1 - 0020C2C1  call 0x5cd820
+PASS B1 0059EE90 callers include the Audio body 00225BA0 - 00225BA0 00597930 00597970 00597A70 0059ED70 0059EE10
+PASS B1 0079FB10 calls 00597970
+PASS B1 0079FB10 calls 0059D920
+PASS B1 0079FB10 calls 00598100
+FAILS 0

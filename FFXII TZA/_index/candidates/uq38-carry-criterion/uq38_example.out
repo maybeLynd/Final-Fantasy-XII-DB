@@ -1,0 +1,3 @@
+PASS  E1 a register value carried across a bank store in 003CD840 003CD872 psrldq xmm0, 1 | 003CD877 mov byte ptr [rip + 0x1f0b724], al | 003CD87D movd eax, xmm0
+PASS  E2 control: no triple where there is no bank store (00861EC0) 
+FAILS 0

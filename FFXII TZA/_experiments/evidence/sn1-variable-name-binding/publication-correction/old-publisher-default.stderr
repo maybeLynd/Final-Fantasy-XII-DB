@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-variable-name-binding\publication\publish.py", line 8, in <module>
+    validate_manifest_pins('Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding',pins)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-variable-name-binding\publication\manifest_closure.py", line 7, in validate_manifest_pins
+    p=(pkg/rel).as_posix();assert p in pins,'Manifest member absent from reviewed pins: '+p
+                                  ^^^^^^^^^
+AssertionError: Manifest member absent from reviewed pins: Database/FFXII TZA/_experiments/evidence/sn1-variable-name-binding/retained/__pycache__/reg_tracking.cpython-314.pyc

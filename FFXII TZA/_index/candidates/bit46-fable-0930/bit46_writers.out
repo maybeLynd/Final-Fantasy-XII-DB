@@ -1,0 +1,25 @@
+sweep: 67 hits; movabs 3, bt-family imm 0x2E 0, high-dword [reg+4] forms 3
+  0023B0D4 movabs rax, 0x400000000000                      in 0023B040 0023B040 PartyControl_RecomputeSuppressionFromLeaderBattleState
+  00304EF3 movabs rax, 0x400000000000                      in 00304850 00304850 BattleUnit_AdvanceStandardActionState
+  00304F9F movabs rax, 0xffffbfffffffffff                  in 00304850 00304850 BattleUnit_AdvanceStandardActionState
+  00239A18 or     dword ptr [rax + 4], 0x4000              in 00239960 00239960 FUN_00239960
+  00239A21 and    dword ptr [rax + 4], 0xffffbfff          in 00239960 00239960 FUN_00239960
+  00239A77 or     dword ptr [rax + 4], 0x4000              in 00239960 00239960 FUN_00239960
+C0 control: 00304EF3, 00304F9F, 0023B0D4 found PASS
+C1 one set: 00304EF3 movabs + 00304EFD or qword ptr [rdi], rax PASS
+C2 the EXACT single-bit clear mask appears only at 00304F9F-00304FA9, guarded by ([unit+0x690] & 0xA) == 0xA on the bit-30-clear arm PASS
+widened sweep: 7 movabs masks applied to a qword in memory that change bit 46
+  002D82D3-002D82DD and qword ptr [rsi]          mask 0xFFF8001FFFFFFFFF in 002D81D0 002D81D0 FUN_002d81d0
+  00304967-00304975 and qword ptr [rdi]          mask 0xFFFFBFF75FFFCFFF in 00304850 00304850 BattleUnit_AdvanceStandardActionState
+  00304DDD-00304DEB and qword ptr [rdi]          mask 0xFFFFBFF75FFFCFFF in 00304850 00304850 BattleUnit_AdvanceStandardActionState
+  00304EF3-00304EFD or  qword ptr [rdi]          mask 0x0000400000000000 in 00304850 00304850 BattleUnit_AdvanceStandardActionState
+  00304F9F-00304FA9 and qword ptr [rdi]          mask 0xFFFFBFFFFFFFFFFF in 00304850 00304850 BattleUnit_AdvanceStandardActionState
+  003082CB-003082DF and qword ptr [rbx]          mask 0xFFFFBFFFFFBFFFFF in 00308270 00308270 FUN_00308270
+  0031063F-0031064B and qword ptr [rbx]          mask 0xFFFFBFF75FFFCFFF in 003105D0 003105D0 BattleUnit_CancelAndResetCurrentAction
+C7 widened sweep finds the composite clears 00304967, 00304DDD, 0031063F, 003082CB (+ 00304F9F clear, 00304EF3 set) PASS
+C8 regression: the exact-mask test finds none of the four composite clears (the defect C7 fixes) PASS
+C3 bit-30 arm 00304F62-00304F8C: no write through rdi; 00304F7E inc byte ptr [rsi + 4] advances the phase PASS
+C4 every high-dword [reg+4] hit is in 00239960 and addresses [02EBF190]+4 PASS
+C5 00300EAA / 00300198 store the loaded qword with only bit 14 cleared (btr ..., 0xe) PASS
+C6 0023B0E6 tests the party leader's qword; 0023B0E9 cmovne ebx, r14d (= -1) PASS
+FAILS 0

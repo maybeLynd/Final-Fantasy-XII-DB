@@ -1,0 +1,82 @@
+# raw sites (E8/E9/0F8x) targeting the producers
+002492F3 call -> 0032E620 builder  owner 00249210 FUN_00249210  on-boundary
+0024AC9F call -> 0032E620 builder  owner 0024AC30 FUN_0024ac30  on-boundary
+00259E6E call -> 0032E620 builder  owner 00259DF0 FUN_00259df0  on-boundary
+00268809 call -> 0032E620 builder  owner 00268750 MapRef_BeginLoadResources  on-boundary
+0026883E call -> 0032E620 builder  owner 00268750 MapRef_BeginLoadResources  on-boundary
+00291D04 call -> 0032E620 builder  owner 00291C80 FUN_00291c80  on-boundary
+002C900B call -> 0032E620 builder  owner 002C8EE0 FUN_002c8ee0  on-boundary
+002E6277 call -> 0032E620 builder  owner 002E60F0 FUN_002e60f0  on-boundary
+002E700C call -> 0032E620 builder  owner 002E6EB0 FUN_002e6eb0  on-boundary
+002EA5A9 call -> 0032E620 builder  owner 002EA530 FUN_002ea530  on-boundary
+002EAE08 call -> 0032E620 builder  owner 002EAD50 FUN_002ead50  on-boundary
+002EF336 call -> 0032E620 builder  owner 002EF300 FUN_002ef300  on-boundary
+002FC96F call -> 0032E620 builder  owner 002FC860 FUN_002fc860  on-boundary
+00324637 call -> 0032E620 builder  owner 00324510 FUN_00324510  on-boundary
+0032E6DD call -> 0032E870 slot fill  owner 0032E620 FUN_0032e620  on-boundary
+0032E759 call -> 0032E870 slot fill  owner 0032E620 FUN_0032e620  on-boundary
+0032E7A2 call -> 0032E870 slot fill  owner 0032E780 FUN_0032e780  on-boundary
+0032E7B0 jmp  -> 0032E7C0 string-keyed  owner 0032E7B0 thunk_FUN_0032e7c0  on-boundary
+0032E84D call -> 0032E870 slot fill  owner 0032E7C0 FUN_0032e7c0  on-boundary
+0032EC01 call -> 0032E620 builder  owner 0032EB40 FUN_0032eb40  on-boundary
+0032F670 call -> 0032E620 builder  owner 0032F430 FUN_0032f430  on-boundary
+0032FE9E call -> 0032E620 builder  owner 0032FCA0 ActorResource_BeginManagerResourceSetLoad  on-boundary
+0032FF0B call -> 0032E620 builder  owner 0032FCA0 ActorResource_BeginManagerResourceSetLoad  on-boundary
+0032FF76 call -> 0032E620 builder  owner 0032FCA0 ActorResource_BeginManagerResourceSetLoad  on-boundary
+0032FFE2 call -> 0032E620 builder  owner 0032FCA0 ActorResource_BeginManagerResourceSetLoad  on-boundary
+00330444 call -> 0032E620 builder  owner 00330310 ActorResource_BeginPrimaryPayloadLoad  on-boundary
+00330FE5 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+003310BA call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+00331140 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+003311CC call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+00331280 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+0033133F call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+003313D9 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+00331499 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+00331533 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+003315D6 call -> 0032E7B0 thunk->0032E7C0  owner 003306E0 FUN_003306e0  on-boundary
+00331D70 call -> 0032E7B0 thunk->0032E7C0  owner 003319D0 FUN_003319d0  on-boundary
+00331DF9 call -> 0032E7B0 thunk->0032E7C0  owner 003319D0 FUN_003319d0  on-boundary
+00331E86 call -> 0032E7B0 thunk->0032E7C0  owner 003319D0 FUN_003319d0  on-boundary
+00331F11 call -> 0032E7B0 thunk->0032E7C0  owner 003319D0 FUN_003319d0  on-boundary
+00360D19 call -> 0032E620 builder  owner 00360C70 FUN_00360c70  on-boundary
+003658C7 call -> 0032E620 builder  owner 00365810 FUN_00365810  on-boundary
+00365967 call -> 0032E620 builder  owner 003658F0 FUN_003658f0  on-boundary
+0036EDF7 call -> 0032E620 builder  owner 0036ED50 FUN_0036ed50  on-boundary
+0036EE7E call -> 0032E620 builder  owner 0036ED50 FUN_0036ed50  on-boundary
+00377F82 call -> 0032E7B0 thunk->0032E7C0  owner 00377DC0 FUN_00377dc0  on-boundary
+00377FF3 call -> 0032E7B0 thunk->0032E7C0  owner 00377DC0 FUN_00377dc0  on-boundary
+003780E3 call -> 0032E620 builder  owner 00378030 FUN_00378030  on-boundary
+003785E6 call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+0037865F call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+003786FD call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+0037876F call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+003787E1 call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+00378841 call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+003788D2 call -> 0032E620 builder  owner 00378540 FUN_00378540  on-boundary
+00379EFE call -> 0032E620 builder  owner 00379E90 FUN_00379e90  on-boundary
+003844C9 call -> 0032E620 builder  owner 00384420 FUN_00384420  on-boundary
+0039C45D call -> 0032E620 builder  owner 0039C3F0 FUN_0039c3f0  on-boundary
+003A151A call -> 0032E620 builder  owner 003A13F0 FUN_003a13f0  on-boundary
+003A1599 call -> 0032E620 builder  owner 003A13F0 FUN_003a13f0  on-boundary
+003A1618 call -> 0032E620 builder  owner 003A13F0 FUN_003a13f0  on-boundary
+003B070D call -> 0032E620 builder  owner 003B0660 FUN_003b0660  on-boundary
+003B2424 call -> 0032E620 builder  owner 003B2310 FUN_003b2310  on-boundary
+003B5427 call -> 0032E620 builder  owner 003B53C0 FUN_003b53c0  on-boundary
+003DC683 call -> 0032E620 builder  owner 003DC5B0 FUN_003dc5b0  on-boundary
+003DCCCD call -> 0032E620 builder  owner 003DCBC0 FUN_003dcbc0  on-boundary
+003DDAB9 call -> 0032E620 builder  owner 003DDA70 FUN_003dda70  on-boundary
+003DF593 call -> 0032E620 builder  owner 003DF550 FUN_003df550  on-boundary
+003E9F59 call -> 0032E620 builder  owner 003E9EF0 FUN_003e9ef0  on-boundary
+003EA97F call -> 0032E620 builder  owner 003EA820 AreaArd_LoadOrUnloadFieldResource  on-boundary
+003EAE4C call -> 0032E780 head-insert  owner 003EADE0 FUN_003eade0  on-boundary
+003EAF9A call -> 0032E780 head-insert  owner 003EADE0 FUN_003eade0  on-boundary
+0050E039 call -> 0032E620 builder  owner 0050DFE0 FUN_0050dfe0  on-boundary
+0051ED89 call -> 0032E620 builder  owner 0051ED10 FUN_0051ed10  on-boundary
+# on-boundary sites: 74 (of 74 raw)
+control 002492F3 listed: True
+control 0032E84D listed: True
+control 0032EC01 listed: True
+windows written: e1_producer_windows.txt
+FAILS 0
+STATUS COMPLETE

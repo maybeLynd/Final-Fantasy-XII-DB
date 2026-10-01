@@ -1,0 +1,8 @@
+# NativeAdapter.FlagByteConditionalOp - EC-7 family C
+# if [arg1+8]!=0, call shared 005CDAA0 with ecx=3 + member rip arg; if
+# # [arg1+0x20] non-null call shared 006108C0 on it; return 1.
+address	targets
+005CE800	005CDAA0,006108C0
+005D0CA0	005CDAA0,006108C0
+005D4ED0	005CDAA0,006108C0
+005D7200	005CDAA0,006108C0

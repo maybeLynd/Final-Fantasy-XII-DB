@@ -1,0 +1,114 @@
+002E6000  test      rcx, rcx
+002E6003  je        0x2e6080
+002E6005  push      rsi
+002E6006  sub       rsp, 0x40
+002E600A  mov       qword ptr [rsp + 0x50], rbx
+002E600F  mov       esi, edx
+002E6011  mov       rbx, qword ptr [rcx + 0xc0]
+002E6018  test      rbx, rbx
+002E601B  je        0x2e6076
+002E601D  cmp       dword ptr [rbx], -1
+002E6020  je        0x2e6076
+002E6022  movzx     eax, byte ptr [rcx + 3]
+002E6026  and       al, 0xe0
+002E6028  cmp       al, 0x60
+002E602A  jne       0x2e6076
+002E602C  test      byte ptr [rbx + 0x14f], 1
+002E6033  mov       qword ptr [rsp + 0x58], rdi
+002E6038  mov       rdi, qword ptr [rcx + 0xb8]
+002E603F  jne       0x2e6071
+002E6041  movaps    xmmword ptr [rsp + 0x30], xmm6
+002E6046  movss     xmm6, dword ptr [rdi + 4]
+002E604B  call      0x263910
+002E6050  movss     xmm3, dword ptr [rdi + 8]
+002E6055  addss     xmm6, xmm0
+002E6059  movss     xmm1, dword ptr [rdi]
+002E605D  movzx     ecx, word ptr [rbx]
+002E6060  mov       dword ptr [rsp + 0x20], esi
+002E6064  movaps    xmm2, xmm6
+002E6067  call      0x3ec3d0
+002E606C  movaps    xmm6, xmmword ptr [rsp + 0x30]
+002E6071  mov       rdi, qword ptr [rsp + 0x58]
+002E6076  mov       rbx, qword ptr [rsp + 0x50]
+002E607B  add       rsp, 0x40
+002E607F  pop       rsi
+002E6080  ret       
+---
+0025B600  push      rbx
+0025B602  sub       rsp, 0x30
+0025B606  call      0x3590d0
+0025B60B  mov       ecx, eax
+0025B60D  call      0x3588b0
+0025B612  mov       rbx, rax
+0025B615  test      rax, rax
+0025B618  je        0x25b735
+0025B61E  call      0x3b7730
+0025B623  test      eax, eax
+0025B625  je        0x25b735
+0025B62B  mov       rax, qword ptr [rbx + 0xc0]
+0025B632  test      rax, rax
+0025B635  je        0x25b652
+0025B637  test      byte ptr [rax + 0x14f], 1
+0025B63E  jne       0x25b735
+0025B644  cmp       qword ptr [rax + 0x138], 0
+0025B64C  je        0x25b735
+0025B652  test      byte ptr [rbx + 9], 1
+0025B656  je        0x25b735
+0025B65C  movzx     eax, byte ptr [rbx + 8]
+0025B660  shr       eax, 1
+0025B662  and       eax, 1
+0025B665  je        0x25b735
+0025B66B  call      0x265680
+0025B670  test      eax, eax
+0025B672  je        0x25b735
+0025B678  mov       rax, qword ptr [rbx + 0xc0]
+0025B67F  test      rax, rax
+0025B682  je        0x25b735
+0025B688  mov       rcx, qword ptr [rax + 0x138]
+0025B68F  test      rcx, rcx
+0025B692  je        0x25b735
+0025B698  movsx     rax, word ptr [rcx + 0x88]
+0025B6A0  test      eax, eax
+0025B6A2  je        0x25b735
+0025B6A8  mov       qword ptr [rsp + 0x48], rdi
+0025B6AD  lea       rdi, [rip + 0x1e3eb5c]   ; -> 0209A210 (virtual tail / unmapped)
+0025B6B4  mov       rdi, qword ptr [rdi + rax*8]
+0025B6B8  test      rdi, rdi
+0025B6BB  je        0x25b730
+0025B6BD  cmp       byte ptr [rdi + 0x18], 1
+0025B6C1  jne       0x25b6c7
+0025B6C3  xor       ebx, ebx
+0025B6C5  jmp       0x25b70b
+0025B6C7  movzx     eax, word ptr [rdi + 0xe0]
+0025B6CE  mov       ecx, 0xffff
+0025B6D3  cmp       ax, cx
+0025B6D6  jne       0x25b704
+0025B6D8  mov       rax, qword ptr [rdi + 0x40]
+0025B6DC  mov       rbx, qword ptr [rip + 0x1e3d72d]   ; -> 02098E10 (virtual tail / unmapped)
+0025B6E3  mov       ecx, dword ptr [rax + 0x18]
+0025B6E6  call      0x20e600
+0025B6EB  mov       ecx, eax
+0025B6ED  mov       eax, 0xc
+0025B6F2  cmp       ax, word ptr [rcx + rbx]
+0025B6F6  jge       0x25b6ff
+0025B6F8  movsx     ebx, word ptr [rcx + rbx + 0x1a]
+0025B6FD  jmp       0x25b707
+0025B6FF  or        ebx, 0xffffffff
+0025B702  jmp       0x25b707
+0025B704  movzx     ebx, ax
+0025B707  test      ebx, ebx
+0025B709  js        0x25b730
+0025B70B  call      0x2678c0
+0025B710  cmp       byte ptr [rdi + 0x18], 1
+0025B714  je        0x25b730
+0025B716  xor       r9d, r9d
+0025B719  mov       dword ptr [rsp + 0x20], 0
+0025B721  mov       r8d, ebx
+0025B724  mov       rcx, rdi
+0025B727  lea       edx, [r9 + 6]
+0025B72B  call      0x3dbb60
+0025B730  mov       rdi, qword ptr [rsp + 0x48]
+0025B735  add       rsp, 0x30
+0025B739  pop       rbx
+0025B73A  ret       
+---

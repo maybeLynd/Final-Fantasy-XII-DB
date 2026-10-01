@@ -1,0 +1,22 @@
+{
+  "byu_x0100.ebp": {
+    "bytes": 29824,
+    "sha256": "06b7907154256b82282a361ba98a4148ccce2f71a2ad5aae24013a88e23ed261"
+  },
+  "check.py": {
+    "bytes": 4975,
+    "sha256": "271533a2027f3684c44c64bceac1bddc4f3cefd1c3b5f41f53d101ed77aa2ff2"
+  },
+  "observation.json": {
+    "bytes": 23058,
+    "sha256": "8757f96fce4c73bfc25e5e59b3d7b1c42b7c2543f08edc8ef65a01f89c35c0ce"
+  },
+  "README.md": {
+    "bytes": 6413,
+    "sha256": "febc838a1291fec768a8b178005e312053ef1a552352870f807437bacf3b3da3"
+  },
+  "validation.txt": {
+    "bytes": 271,
+    "sha256": "d1b505b46342a881c421dbc8fb0d7193cdf26830994254cc14a37ad00424a3d1"
+  }
+}

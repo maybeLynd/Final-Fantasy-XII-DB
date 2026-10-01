@@ -1,0 +1,8 @@
+{
+ "ok": true,
+ "failures": [],
+ "imports": [
+  "iat:api-ms-win-crt-time-l1-1-0.dll!_time64",
+  "iat:api-ms-win-crt-time-l1-1-0.dll!clock"
+ ]
+}

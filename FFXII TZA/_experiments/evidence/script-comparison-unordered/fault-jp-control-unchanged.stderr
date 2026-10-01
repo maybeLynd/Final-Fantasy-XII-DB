@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-comparison-unordered\check.py", line 47, in <module>
+    if '--fault-jp-control-unchanged' in sys.argv:assert raw['cases'][6]['result_signed']==raw['cases'][3]['result_signed'],'Private JP removal changes unordered result to zero'
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Private JP removal changes unordered result to zero

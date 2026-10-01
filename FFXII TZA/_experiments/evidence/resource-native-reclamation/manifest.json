@@ -1,0 +1,29 @@
+{
+  "evidence_class": "A:four newly reviewed complete shipping bodies; six sealed earlier helper bodies reread/reused; no new original-code/live run",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect-free.py": {
+      "bytes": 3832,
+      "sha256": "9eff335cdb388903c8b27204b7422404584bfc8df719a20febe8b237a2e18433"
+    },
+    "collect-order.py": {
+      "bytes": 3943,
+      "sha256": "b4a70e8832f7dfc8868af9629f748b31181f4750ce5a2d161346854af22c8d6c"
+    },
+    "free.json": {
+      "bytes": 51591,
+      "sha256": "9a74e72f5c2e64f5c47827daae76c3b7994f66d8782cf289a97edf0c7700bc24"
+    },
+    "order.json": {
+      "bytes": 30623,
+      "sha256": "1580144e24f38a5e4541f4a8950a566e3f888a0d2caa788ea63386ccb2d38ce8"
+    },
+    "review.json": {
+      "bytes": 4272,
+      "sha256": "efeba77c11cf4b4dff78fc79c56bdfd10629a6b77f6d6d2078610d83609fa7c6"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "identity": {
+    "pid": 36004,
+    "creation": 134344736236782786,
+    "image": "C:\\Python314\\python.exe",
+    "image_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+  },
+  "parent_pid": 32872,
+  "nonce": "688206a8-a240-4355-95e9-3e1c37a47dda",
+  "tid": 50292,
+  "code_address": 2944603258880,
+  "gate_address": 2944603259149,
+  "guard_address": 2944603262976,
+  "buffer_address": 2944603193344,
+  "path_address": 2944603196160,
+  "counter_address": 2944603195904,
+  "path_hex": "505332446174615c6566625c73796e7468657469635f73746f707065642e65666200",
+  "code_hex": "534881ec000200004889cb480fae0424480fae8300060000f30f6f8300000000f30f6f8b10000000f30f6f9320000000f30f6f9b30000000f30f6fa340000000f30f6fab50000000f30f6fb360000000f30f6fbb70000000f3440f6f8380000000f3440f6f8b90000000f3440f6f93a0000000f3440f6f9bb0000000f3440f6fa3c0000000f3440f6fabd0000000f3440f6fb3e0000000f3440f6fbbf0000000dbe3d9ab04010000dbab20010000dbab30010000dbab40010000dbab50010000dbab60010000dbab70010000dbab80010000dbab900100000fae9300010000480fae830002000048ff83000a00004889bb100a0000488dbb000b00004c8d93000a000048b888776655443322119048ff83080a0000488bbb100a0000480fae8300040000480fae0c24480fae8300080000b8dec0175a4881c4000200005bc3",
+  "sources": {
+    "Database/Tools/work/ASTRA/eo3-observer/native_stop_control.py": "4e1157eadeccd6446321deec53790cbd668b20db33e53f589af9f662f225abb9",
+    "Database/Tools/work/ASTRA/eo3-observer/capture_scoped.py": "872ae50ba7c0cd0b2351c2b522d03d59698eadd26271e45f2ce46d74e0c5e7ca",
+    "Database/Tools/work/ASTRA/eo3-observer/project.py": "8641102f878091819ef93a696c70e56094579b157dcf97e9afa71f7cd2e4bbca",
+    "Database/Tools/analysis-kit/gfz-scripts/runtime_probe.py": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/run.py": "e7e699a2fdb7f59051668e1d893bcbed6a0ce3832b427a98beef9b29090edac6",
+    "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/fixture.py": "41a90a19db11ca7deb48362092bc9234b3c5288c224387aadcace4986e7adf96",
+    "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/preserve.bin": "82486c57c1054d44549a1a04fe1d0e41a345ab5c6366fa023ab44f0877dae620",
+    "Database/FFXII TZA/_experiments/evidence/exp127-native-dispatch-control/run.py": "4e7659eea7b8aaa3026e9404b960fb45691b2a4fce08d88bfed20ae7221477ed",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/ownership.py": "8f75d7f7fe1545a323acb58169c836a717f2b1ddad403231c3ebb1b710862c2b",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/cleanup_candidate.py": "c737324fadc5a126e413dc2b71aff3c3ca3ffc12d4f14e0cdfd04bfc1c53cb20",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/original/timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a"
+  }
+}

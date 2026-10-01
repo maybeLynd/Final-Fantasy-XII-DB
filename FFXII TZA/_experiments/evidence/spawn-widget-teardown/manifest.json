@@ -1,0 +1,94 @@
+{
+  "source_serialization": {
+    "constants.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-constants.json",
+      "bytes": 704,
+      "sha256": "e41e9dfffc895e4213fdc492ae7b79146cdfbac47a323c480a5366a486d47d78",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_primary.py",
+      "bytes": 4753,
+      "sha256": "55fa3996106588b99066787a7214ce53d62eb8451c341f1cee0fadebfd75e06a",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-primary.json",
+      "bytes": 44637,
+      "sha256": "c03240c7e7ed97171d35e8e236dff8f5ed308aab3e468c9ff7fcfdd388cd2df2",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "helpers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_helpers.py",
+      "bytes": 4744,
+      "sha256": "8ea023001077e219c8d10d5aa27092fb27b2a019f61dd251f518e208d9fb5b7a",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "helpers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-helpers.json",
+      "bytes": 31964,
+      "sha256": "788be82743a636e8192f72d39b3e80bd3c82a7401fb8e4f106925454419f73ef",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_check.py",
+      "bytes": 4108,
+      "sha256": "6a3b1f50fd5e6dbc00edd19ee2ec467da5f60303595b42eb919379e1ebd109a3",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-check.json",
+      "bytes": 6269,
+      "sha256": "b74280331d411930e81ecf3fae4fd956d892cd121ee3aeec4937c88ae4d82adb",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "check.json": {
+      "bytes": 6269,
+      "sha256": "b74280331d411930e81ecf3fae4fd956d892cd121ee3aeec4937c88ae4d82adb"
+    },
+    "check.py": {
+      "bytes": 4108,
+      "sha256": "6a3b1f50fd5e6dbc00edd19ee2ec467da5f60303595b42eb919379e1ebd109a3"
+    },
+    "constants.json": {
+      "bytes": 704,
+      "sha256": "e41e9dfffc895e4213fdc492ae7b79146cdfbac47a323c480a5366a486d47d78"
+    },
+    "helpers.json": {
+      "bytes": 30726,
+      "sha256": "3e152daedd5e63326bfde6f783673a13d5e34cdf1cf7020c158190b977a464b5"
+    },
+    "helpers.py": {
+      "bytes": 4744,
+      "sha256": "8ea023001077e219c8d10d5aa27092fb27b2a019f61dd251f518e208d9fb5b7a"
+    },
+    "primary.json": {
+      "bytes": 42921,
+      "sha256": "f789c3e4ff2fe904edcc62077500630febe0d88a478962b7d3593a09a5ade393"
+    },
+    "primary.py": {
+      "bytes": 4753,
+      "sha256": "55fa3996106588b99066787a7214ce53d62eb8451c341f1cee0fadebfd75e06a"
+    },
+    "README.md": {
+      "bytes": 2536,
+      "sha256": "0da3f5f5a5a12b8a36e1518045001bcc8bbfd85004566ceb8f0c95b061d13489"
+    }
+  }
+}

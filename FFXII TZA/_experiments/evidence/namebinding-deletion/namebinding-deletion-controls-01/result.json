@@ -1,0 +1,64 @@
+{
+  "status": "PASS_ACTUAL_DELETION_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "1050a23115236e08698cbe204c335bf050f12bb187f0479447cc5b04e0b965e8",
+  "positive_reused": {
+    "path": "namebinding-deletion-result-01.json",
+    "sha256": "686500b75a1f33e586f12e0100a380e5f363ca78406e35d1beaa66cc52a7f79d"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-deletion.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-removal-mask",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-deletion.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\changed-removal-mask\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\changed-removal-mask"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-generation-clear",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-deletion.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\changed-generation-clear\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\changed-generation-clear"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-namebinding-deletion.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\missing-source\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-controls-01\\missing-source"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "8a54e2678e3f30ff3e87e6df76327b90369cee922957cac0ebe14bdf3fec76e6",
+  "limits": "Four actual CLI prerequisite/identity refusals plus sufficient retained positive; not native execution, independent semantic acceptance or new generation-width discovery"
+}

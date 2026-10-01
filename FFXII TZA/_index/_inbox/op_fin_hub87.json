@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-87",
+ "result_refs": [
+  "audit:xref_hub87"
+ ],
+ "note": "22 frontier bodies (top 22 of 1-A, 006CAFC0..00624490) measured and placed on 8 bearing hosts; 22/22 interior-cited; anchors 3,103/0 MID/0 not-in-body; links/consistency/questions clean; byte/hash audit reproduces; crossref vs baseline checked; ready to publish"
+}

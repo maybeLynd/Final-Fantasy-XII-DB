@@ -1,0 +1,92 @@
+function	name	site	disp	kind	instruction	route	note
+00307300	Battle_ProcessActionTarget	00307460	0x8	r	test byte ptr [rbx], 0x10	seed	
+00307300	Battle_ProcessActionTarget	00307511	0xEA8	rw	and dword ptr [rbx + 0xea0], eax	seed	
+00307300	Battle_ProcessActionTarget	00307568	0x6A0	r	mov r8, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307599	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307642	0x10	addr	lea r8, [rbx + 8]	seed	
+00307300	Battle_ProcessActionTarget	003076CE	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307742	0x10	addr	lea r8, [rbx + 8]	seed	
+00307300	Battle_ProcessActionTarget	00307770	0x10	addr	lea r8, [rbx + 8]	seed	
+00307300	Battle_ProcessActionTarget	00307798	0x30	w	mov dword ptr [rbx + 0x28], eax	seed	
+00307300	Battle_ProcessActionTarget	0030784C	0x6A0	r	mov rcx, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307876	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	003078F8	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	0030794A	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	00307992	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	003079BF	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	003079C3	0xD8	w	movups xmmword ptr [rbx + 0xd0], xmm0	seed	
+00307300	Battle_ProcessActionTarget	003079CA	0xE8	w	movups xmmword ptr [rbx + 0xe0], xmm0	seed	
+00307300	Battle_ProcessActionTarget	003079D6	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	003079E8	0x6A8	r	mov rax, qword ptr [rbx + 0x6a0]	seed	
+00307300	Battle_ProcessActionTarget	003079F8	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	003079FC	0x8	rw	or qword ptr [rbx], 0x4000000	seed	
+00307300	Battle_ProcessActionTarget	00307A03	0x164	w	movss dword ptr [rbx + 0x15c], xmm6	seed	
+00307300	Battle_ProcessActionTarget	00307A0B	0x168	w	movss dword ptr [rbx + 0x160], xmm6	seed	
+00307300	Battle_ProcessActionTarget	00307A36	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307A48	0x6A8	r	mov rax, qword ptr [rbx + 0x6a0]	seed	
+00307300	Battle_ProcessActionTarget	00307A5C	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	00307A75	0x6A8	r	mov rax, qword ptr [rbx + 0x6a0]	seed	
+00307300	Battle_ProcessActionTarget	00307A87	0x18	r	mov rcx, qword ptr [rbx + 0x10]	seed	
+00307300	Battle_ProcessActionTarget	00307A97	0x8	rw	or qword ptr [rbx], 0x1000000	seed	
+00307300	Battle_ProcessActionTarget	00307A9E	0x6A0	r	mov r8, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307ACC	0x6A0	r	mov rcx, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307B2B	0x6A0	r	mov rcx, qword ptr [rbx + 0x698]	seed	
+00307300	Battle_ProcessActionTarget	00307B3F	0x6A0	r	mov rcx, qword ptr [rbx + 0x698]	seed	
+00328480	BattleUnit_SubmitResultReactionMode	0032848F	0x18	r	mov rcx, qword ptr [rcx + 0x10]	arg0+0x8<00307300@003076A8	
+00328480	BattleUnit_SubmitResultReactionMode	003284A7	0x18	r	mov rax, qword ptr [rbx + 0x10]	arg0+0x8<00307300@003076A8	
+00329F70	FUN_00329f70	00329F75	0x10	r	mov ecx, dword ptr [rcx + 8]	arg0+0x8<00307300@00307727	
+00311F70	FUN_00311f70	00311FF5	0x18	r	mov rcx, qword ptr [rdi + 0x10]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	00312039	0x18	r	mov rcx, qword ptr [rdi + 0x10]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	0031205E	0x18	r	mov rcx, qword ptr [rdi + 0x10]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	00312062	0xD8	w	movups xmmword ptr [rdi + 0xd0], xmm6	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	00312069	0xE8	w	movups xmmword ptr [rdi + 0xe0], xmm6	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	00312079	0x6A0	r	mov rax, qword ptr [rdi + 0x698]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	0031208B	0x6A8	r	mov rax, qword ptr [rdi + 0x6a0]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	0031209C	0x18	r	mov rcx, qword ptr [rdi + 0x10]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	003120A0	0x8	rw	or qword ptr [rdi], 0x4000000	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	003120A7	0x164	w	movss dword ptr [rdi + 0x15c], xmm6	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	003120AF	0x168	w	movss dword ptr [rdi + 0x160], xmm6	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	003120DE	0x6A0	r	mov rax, qword ptr [rdi + 0x698]	arg1+0x8<00307300@00307890	
+00311F70	FUN_00311f70	003120F0	0x6A8	r	mov rax, qword ptr [rdi + 0x6a0]	arg1+0x8<00307300@00307890	
+003299B0	BattleUnit_DispatchActorPresentationEvent	003299C2	0x34	w	mov dword ptr [rcx + 0x2c], r8d	arg0+0x8<00307300@00307A70	
+003299B0	BattleUnit_DispatchActorPresentationEvent	003299E0	0x18	r	mov rcx, qword ptr [rcx + 0x10]	arg0+0x8<00307300@00307A70	
+003299B0	BattleUnit_DispatchActorPresentationEvent	003299EE	0x64	w	mov dword ptr [rdi + 0x5c], ebx	arg0+0x8<00307300@00307A70	
+003299B0	BattleUnit_DispatchActorPresentationEvent	003299F6	0x34	w	mov dword ptr [rdi + 0x2c], 0	arg0+0x8<00307300@00307A70	
+003125E0	BattleUnit_ComputePresentationSuppressionMask	003125EA	0x8	r	mov eax, dword ptr [rcx]	arg0+0x8<00307300@00307A82	
+003125E0	BattleUnit_ComputePresentationSuppressionMask	003125F9	0x6A0	r	mov rcx, qword ptr [rcx + 0x698]	arg0+0x8<00307300@00307A82	
+00323350	BattleAction_ApplyKnockbackImpulse	00323396	0x6A0	r	mov rcx, qword ptr [rdx + 0x698]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	003233AA	0x8	r	test byte ptr [rdx], 0x10	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	003233D5	0xE8	r	movss xmm6, dword ptr [rbx + 0xe0]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	003233EA	0xF0	r	movss xmm7, dword ptr [rbx + 0xe8]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	00323429	0xE8	r	subss xmm0, dword ptr [rbx + 0xe0]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	0032343B	0xF0	r	subss xmm1, dword ptr [rbx + 0xe8]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	0032346F	0x168	r	movss xmm0, dword ptr [rbx + 0x160]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	0032347E	0x168	r	subss xmm0, dword ptr [rbx + 0x160]	arg1+0x8<00307300@00307B04	
+00323350	BattleAction_ApplyKnockbackImpulse	003234C9	0x10	r	mov ecx, dword ptr [rbx + 8]	arg1+0x8<00307300@00307B04	
+002F91A0	BattleAction_ComputeTargetPrimaryResourceGainFromHpDamage	002F91DB	0x6A0	r	mov rcx, qword ptr [r9 + 0x698]	arg1+0x8<00307300@00307B26	
+002F91A0	BattleAction_ComputeTargetPrimaryResourceGainFromHpDamage	002F91FD	0x6A0	r	mov rax, qword ptr [r9 + 0x698]	arg1+0x8<00307300@00307B26	
+002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	002F9298	0x6A0	r	mov rcx, qword ptr [rbp + 0x698]	arg1+0x8<00307300@00307B78	
+002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	002F93A5	0x6A0	r	mov rcx, qword ptr [rbp + 0x698]	arg1+0x8<00307300@00307B78	
+00321850	BattleEnmity_WriteForCombatantId	00321862	0x6A8	r	mov rax, qword ptr [rcx + 0x6a0]	arg0+0x8<003216E0@0032172E	
+00321850	BattleEnmity_WriteForCombatantId	00321896	0x6A0	r	mov rcx, qword ptr [rcx + 0x698]	arg0+0x8<003216E0@0032172E	
+00321850	BattleEnmity_WriteForCombatantId	003218C0	0x6A0	r	mov rax, qword ptr [rdi + 0x698]	arg0+0x8<003216E0@0032172E	
+00321850	BattleEnmity_WriteForCombatantId	00321953	0x6A8	r	mov rax, qword ptr [rdi + 0x6a0]	arg0+0x8<003216E0@0032172E	
+003219D0	BattleEnmity_PropagateToPerceivingFoes	00321A93	0x18	r	mov r8, qword ptr [rbp + 0x10]	arg2+0x8<003216E0@0032173F	
+00321B00	BattleEnmity_AdjustOtherRelevantCombatants	00321B11	0x6A0	r	mov r10, qword ptr [rcx + 0x698]	arg0+0x8<003216E0@00321753	
+00321B00	BattleEnmity_AdjustOtherRelevantCombatants	00321BAD	0x6A8	r	mov rax, qword ptr [r15 + 0x6a0]	arg0+0x8<003216E0@00321753	
+00321B00	BattleEnmity_AdjustOtherRelevantCombatants	00321BC8	0x6A0	r	mov rcx, qword ptr [r15 + 0x698]	arg0+0x8<003216E0@00321753	
+00321B00	BattleEnmity_AdjustOtherRelevantCombatants	00321BF2	0x6A0	r	mov rax, qword ptr [r15 + 0x698]	arg0+0x8<003216E0@00321753	
+00321B00	BattleEnmity_AdjustOtherRelevantCombatants	00321C7F	0x6A8	r	mov rax, qword ptr [r15 + 0x6a0]	arg0+0x8<003216E0@00321753	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030AB84	0x18	r	mov rcx, qword ptr [rbx + 0x10]	arg1+0x8<00312170@003121EB	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030ABAF	0x8	r	test byte ptr [rbx], 0x10	arg1+0x8<00312170@003121EB	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030ABD4	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	arg1+0x8<00312170@003121EB	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030ABF0	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	arg1+0x8<00312170@003121EB	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030AB76	0x18	r	mov rcx, qword ptr [rcx + 0x10]	arg0+0x8<0030B9B0@0030B9CF	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030ABA6	0x8	r	test byte ptr [rdi], 0x10	arg0+0x8<0030B9B0@0030B9CF	
+0030AB40	BattleTarget_ClassifyRelationshipClass	0030ABB8	0x6A0	r	mov rdx, qword ptr [rdi + 0x698]	arg0+0x8<0030B9B0@0030B9CF	
+0030B7F0	BattleTarget_ComputeUnitEligibilityMask	0030B80A	0x8	r	mov r8d, dword ptr [rcx]	arg0+0x8<0030B9B0@0030B9EE	
+0030B7F0	BattleTarget_ComputeUnitEligibilityMask	0030B817	0xC	r	test byte ptr [rcx + 4], 0x20	arg0+0x8<0030B9B0@0030B9EE	
+0030B7F0	BattleTarget_ComputeUnitEligibilityMask	0030B860	0x6A0	r	mov rdx, qword ptr [rbx + 0x698]	arg0+0x8<0030B9B0@0030B9EE	
+0030B7F0	BattleTarget_ComputeUnitEligibilityMask	0030B88D	0x6A0	r	mov rax, qword ptr [rbx + 0x698]	arg0+0x8<0030B9B0@0030B9EE	
+002FB6C0	BattleAction_LookupPrimaryResourceGainFactorByHpDamage	002FB752	0x6A0	r	mov rcx, qword ptr [r14 + 0x698]	arg0+0x8<002F91A0@002F9219	
+002FB6C0	BattleAction_LookupPrimaryResourceGainFactorByHpDamage	002FB810	0x6A0	r	mov rcx, qword ptr [r14 + 0x698]	arg0+0x8<002F91A0@002F9219	

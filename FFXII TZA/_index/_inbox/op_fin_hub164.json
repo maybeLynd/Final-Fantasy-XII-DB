@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-164",
+ "note": "batch 164 (EC7-198): 22 bodies decoded+anchored across 18 bearing hosts - system-stop emit-and-clear 0041D790 (0x10000000 publish); ui-layout rate setter 002418F0 (+0xB8 reciprocal) + 020927F0 slot wire 00250E90; character-fade paired channel copy 00370180 (519B); thunk request builder 00280750 (381B, 11-cell packet + 00249180); efx three-phase finish 004253D0 (overlay splice); resource-queue deferred-init pump 0037C2E0 (02EBF3DC state machine); FramePump timed refresh 003F30D0; ta-list per-node jitter 001A7770; render-pool 022C6F28 row sweep 00427BD0; actor-storage two-delta normal 003A1C90; blinking-icon format dispatch 003800D0; recipe get-or-create 002CBDA0 (0x170 + proc 002CBF80); nine-patch mode classifier 002A7ED0 + three-slot normalize 002A8410 (+0x7C rewrite); boot-fixups worker spawn 00259DF0 + static initializers 004DA3C0/004C8280; ebp2 wrapped-angle 003355A0; ownerless bucketed unlink 0024C3C0 (020910A0/02092170); ebp section-006 two-row drain 003C2210; menu-effect teardown 003A9950 (02F97340/02EBEF78). Gates: anchors 5030 0 MID; address 0 UNSUPPORTED in new content; neighbour guard ADDS NOTHING after crossing prose in 6 docs (13 standing pairs cleared, 2791 -> 2778); hash audit standing set only.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub164_dumps.txt",
+  "Database/Tools/work/hub164_callers.txt"
+ ]
+}

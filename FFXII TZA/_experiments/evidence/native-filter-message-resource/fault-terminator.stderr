@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-filter-message-resource\check.py", line 61, in <module>
+    if '--fault-terminator' in sys.argv:assert english['selected']['utf16_hex'].endswith('0000'),'RT_STRING stores counted UTF16; no included nul terminator for this entry'
+                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+AssertionError: RT_STRING stores counted UTF16; no included nul terminator for this entry

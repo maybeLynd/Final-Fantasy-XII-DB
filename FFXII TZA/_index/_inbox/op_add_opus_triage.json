@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-TRIAGE-THE-TOP-UNCOVERED-CLUSTERS",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the clusters the writable-static sweep ranks highest, read one at a time instead of counted",
+  "scope": "01F44D40 and the block beside the EE/VU0 register bank; and a discriminator added to the sweep so a region of separate statics stops looking like one large object",
+  "completion": "each cluster read is classified with the evidence that classified it; anything not an object is recorded as not an object rather than declared; anything whose identity needs semantics is routed; the sweep reports the discriminator so the next reader is not misled the same way",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

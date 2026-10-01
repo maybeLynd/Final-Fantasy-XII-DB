@@ -1,0 +1,8 @@
+{
+  "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md": "986db19ae916801c889cbc7679a941484a9174963d3b6355bfc55b48bf7c8649",
+  "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md": "b28a0f03a6d8e6fe5c1bc7b1e486f503081fe0525d178e8aa5bebf49182cd542",
+  "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md": "b7666c74ae6cf70514f097ca9517cae89906f0eccdb077393108f7fa8319c019",
+  "_types/types.tsv": "1b94670ecb44e6567c36ab4145abbb61c40bcda10393e1c5a892875f53fbb21a",
+  "_types/fields.tsv": "13eb1806dce7d209d46b481e04b4dae1c4d622e1e3d6675369d86b1ad5177c42",
+  "_index/_inbox/EXTERNAL-CONTINUATION.md": "f7d0cd2bc0e4873a1a7f5958aa06c28d9a0d91c7e26793790b26e8567bbc55fb"
+}

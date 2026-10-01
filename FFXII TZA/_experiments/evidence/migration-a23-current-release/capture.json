@@ -1,0 +1,109 @@
+{
+  "method": "actual deployed HTTP GET; no server/store mutation",
+  "base_url": "http://127.0.0.1:8765",
+  "observed": [
+    {
+      "name": "status-before",
+      "path": "/api/status",
+      "utc_start": "2026-09-29T18:45:44.466577+00:00",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 18:45:44 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1096"
+      },
+      "bytes": 1096,
+      "sha256": "c9179a61f51c9239543e5069b4ef37d0a6cae1d16ccc49d292e4d5631d3b276b",
+      "body_file": "raw-http/status-before.body",
+      "error": null
+    },
+    {
+      "name": "root",
+      "path": "/",
+      "utc_start": "2026-09-29T18:45:44.649960+00:00",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 18:45:44 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "20446"
+      },
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86",
+      "body_file": "raw-http/root.body",
+      "error": null
+    },
+    {
+      "name": "progress",
+      "path": "/api/view/progress",
+      "utc_start": "2026-09-29T18:45:44.651545+00:00",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 18:45:44 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "207353"
+      },
+      "bytes": 207353,
+      "sha256": "b47cfebcbb28059053c1ea4b39cca2917267c6a99cc701ce09484eed7ea79e22",
+      "body_file": "raw-http/progress.body",
+      "error": null
+    },
+    {
+      "name": "overview",
+      "path": "/api/view/overview",
+      "utc_start": "2026-09-29T18:45:44.786818+00:00",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 18:45:44 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "16976"
+      },
+      "bytes": 16976,
+      "sha256": "d22735348c6769dc07427a1a995861afe88da9936b111125741dc4a94e18a9cb",
+      "body_file": "raw-http/overview.body",
+      "error": null
+    },
+    {
+      "name": "status-after",
+      "path": "/api/status",
+      "utc_start": "2026-09-29T18:45:44.946318+00:00",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 18:45:45 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1096"
+      },
+      "bytes": 1096,
+      "sha256": "c9179a61f51c9239543e5069b4ef37d0a6cae1d16ccc49d292e4d5631d3b276b",
+      "body_file": "raw-http/status-after.body",
+      "error": null
+    }
+  ],
+  "complete": true,
+  "generation_before": "g20260929T184345Z-92fe9f",
+  "generation_after": "g20260929T184345Z-92fe9f",
+  "same_generation": true,
+  "reader_stale_before": false,
+  "reader_stale_after": false,
+  "problems_before": [],
+  "problems_after": [],
+  "view_states_after": {
+    "progress": "PARTIAL",
+    "overview": "OK",
+    "systems": "OK",
+    "vbf": "PARTIAL",
+    "executable": "PARTIAL",
+    "types": "OK",
+    "evidence": "PARTIAL",
+    "fleet": "PARTIAL"
+  }
+}

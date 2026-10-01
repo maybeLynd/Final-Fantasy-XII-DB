@@ -1,0 +1,140 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8535,
+      "sha256": "2e6070bc39fdd02b95f12094d19bf8f25b38f234cf3b62edb340ec75c9af2572"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3893,
+      "sha256": "f043bfb9f0c0d1826e89e68276e5ffb5e65cc959047c3ac3499d699a76eeeb08"
+    },
+    {
+      "path": "cleanup.json",
+      "bytes": 401,
+      "sha256": "467e208dfeca58abe8a862a7286ce4df8447006c643d259d61c18d604eabce1b"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3278,
+      "sha256": "7737ee8224bdb03a38a0f22cd0a032025e257240b34ec479bfd8aadc4475c1f9"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1599,
+      "sha256": "864f90808177b7a7b4babf6df849600c3e9163a5a42421ccefba4b8495582eeb"
+    },
+    {
+      "path": "mutation.json",
+      "bytes": 772,
+      "sha256": "af9af097d59c60688f427bb773eb17b2714de85d8f6b5e41fc71ddbe7ba991bb"
+    },
+    {
+      "path": "partial-receipts.json",
+      "bytes": 1988,
+      "sha256": "2b74ad4560a4e742f3065a121b75d1cd7669bba1e8ed17912600f77dc3ce954e"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2539,
+      "sha256": "79d8cebdd7db9f49a939982ee884f45b1aab551eb5364480c98b9dc717c2720c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3843,
+      "sha256": "2532d468ffe56058693a298b1ba4a1df27417f3a06cfca22224a3933181da493"
+    },
+    {
+      "path": "result.json",
+      "bytes": 7722,
+      "sha256": "6e9d5cb950d869bfe8fcf67873c13990da97099f36e4a5121ff1ae90ba3f3d41"
+    },
+    {
+      "path": "retained/0020E600.bin",
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "retained/0020E620.bin",
+      "bytes": 9,
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "retained/00229E70.bin",
+      "bytes": 37,
+      "sha256": "749953009c38a262b64c21f7bed7057d31ff25de5d32469b00ec0e55382bb5fa"
+    },
+    {
+      "path": "retained/00339630.bin",
+      "bytes": 1061,
+      "sha256": "8a75e847cb7520bb1e19c64607ac094482fb0ad6ba8c825c7a8f8c363478d1f6"
+    },
+    {
+      "path": "retained/changed-view-changed-image.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/changed-view-changed-image.stdout",
+      "bytes": 355,
+      "sha256": "940c41eed27cd2f512c8537aa8d398b5bcfb9fb28c5390efad10d52ee14ff88a"
+    },
+    {
+      "path": "retained/changed-view.txt",
+      "bytes": 9804,
+      "sha256": "454eec2be385a6faeb551a491705854e37579eacbdf2cd37ce12a9090a82c3d4"
+    },
+    {
+      "path": "retained/consumer-readme.md",
+      "bytes": 2425,
+      "sha256": "660ff3810cc10d8786f5ef07e72878a363e41f289f346b061fc878a6a83484ad"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 8535,
+      "sha256": "2e6070bc39fdd02b95f12094d19bf8f25b38f234cf3b62edb340ec75c9af2572"
+    },
+    {
+      "path": "retained/original-pair.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/original-pair.stdout",
+      "bytes": 355,
+      "sha256": "536af028b9ec7c90786190b53f3428a01d3225ce749af6b7a0c7f85b4510a648"
+    },
+    {
+      "path": "retained/original-view.txt",
+      "bytes": 9803,
+      "sha256": "6c6fe1a11470963bcc9b0b7bc1b54103f367f4c573c0dbe7b933c1e7c05686b0"
+    },
+    {
+      "path": "retained/producer.py",
+      "bytes": 4410,
+      "sha256": "43dca61efbdb1a720a0fd4d0d1c157e3b29367d368d50a28230bca43b66a9978"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/stale-view-changed-image.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/stale-view-changed-image.stdout",
+      "bytes": 355,
+      "sha256": "536af028b9ec7c90786190b53f3428a01d3225ce749af6b7a0c7f85b4510a648"
+    }
+  ],
+  "limits": "A actualconfiguredhostproducer/inputpaircontrol, fourverifiedsources; privatechangedbinaryneverexecuted/removed. No original/native/live semantics or historicaldefaultcachewrongness."
+}

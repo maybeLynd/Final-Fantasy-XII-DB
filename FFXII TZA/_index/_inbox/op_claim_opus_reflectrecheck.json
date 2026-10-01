@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-PHYRE-REFLECTION-REDERIVED-AND-THE-DEBT-MEASURED",
+ "agent": "OPUS",
+ "note": "Every call site of the member registrar 00632960 decoded again from the image: 682 sites, 680 with the owning class resolved, 246 distinct class descriptors, 2 unresolved - and the two are the page's BL-3 pair, 00632A41 and 00632B89. Every number matches the page and phyre-field-schema.tsv, so the pipeline 613 of this store's field rows rest on now has a second independent reading behind it. MY FIRST DECODER WAS WRONG AND LOOKED FINE: peeking backwards 30 instructions for `lea rdx, [rip -> descriptor]` cannot see a descriptor arriving through a register copy or a hoist, which is exactly how a compiler emits a run of registrations against one class, so 89 sites came back unresolved; the number to beat was 2, and knowing it was 2 is what made the failure visible. Forward dataflow fixed the class, and tracking integer constants in registers as well as addresses took offset recovery from 523 to 680. THE MEASUREMENT FOR THE ROUTE QUESTION: of 321 P* types, 178 register members and 143 register none, and the debt sits on the wrong side - 7,786 unobserved bytes on the classes that DO register, 16,965 on those that do not, with PMeshParticleSystemBase alone accounting for 12,640 of the second figure and its descriptor 02D359A0 appearing at zero of the 682 sites. So reflection is not a route and cannot become one: it names members for a subset and never says where an instance lives, and even where it speaks the store's own import tool records that the schema is a SAMPLE of each class's members rather than a layout. This is the structural half of OPUS-REQ-FABLE-IS-AN-INSTANCE-ROUTE-KNOWABLE-FOR-ENGINE-BUILT-PHYRE-OBJECTS, measured rather than argued; THE RULING IS FABLE'S AND I HAVE NOT MADE IT. Nothing written to a row - the store already said, on the class that matters most, exactly what the second reading found. Claiming @publication for the inbox block.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

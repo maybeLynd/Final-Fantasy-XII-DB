@@ -1,0 +1,71 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"STATIC_NORMAL_ENTRY_STORES_VALID\",\n  \"method\": \"A; retained certified original code, no native/game execution\",\n  \"class_stability\": \"OPEN\",\n  \"effects\": [\n    {\n      \"entry\": \"0x45fd00\",\n      \"store\": \"dword[node+0x3d8]=1\",\n      \"owner_RDX_and_value_R8D\": \"unused in these entry instructions\",\n      \"scope\": \"MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim\"\n    },\n    {\n      \"entry\": \"0x529d40\",\n      \"store\": \"dword[node+0x3d4]=1\",\n      \"owner_RDX_and_value_R8D\": \"unused in these entry instructions\",\n      \"scope\": \"MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim\"\n    },\n    {\n      \"entry\": \"0x52a8a0\",\n      \"store\": \"dword[node+0x434]=1\",\n      \"owner_RDX_and_value_R8D\": \"unused in these entry instructions\",\n      \"scope\": \"MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim\"\n    },\n    {\n      \"entry\": \"0x52b5d0\",\n      \"store\": \"dword[node+0x3f8]=1\",\n      \"owner_RDX_and_value_R8D\": \"unused in these entry instructions\",\n      \"scope\": \"MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim\"\n    }\n  ],\n  \"existing_family_disposition\": \"PRESERVED/CONSUMED, not newly classified\",\n  \"timing_or_flag_meaning\": \"UNRESOLVED; no30-frame delay or dirty/reset semantic inference\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "5dcefacd7f8a5b44cbf444ef3a4581866ac648eb934995db65e5ba2a06f255c2"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py",
+      "--fault-upstream-failed"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py\", line 15, in <module>\n    assert terminal['terminal'] is True and terminal['returncode'] == 0 and not terminal['stderr'], 'Required original capture did not pass'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required original capture did not pass\n",
+    "terminal": true,
+    "checker_sha256": "5dcefacd7f8a5b44cbf444ef3a4581866ac648eb934995db65e5ba2a06f255c2"
+  },
+  {
+    "case": "missing-entry",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py",
+      "--fault-missing-entry"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py\", line 31, in <module>\n    assert len(raw['callees']) == 4 and {int(f['entry'],16) for f in raw['callees']} == set(expected), 'Incomplete entry set'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Incomplete entry set\n",
+    "terminal": true,
+    "checker_sha256": "5dcefacd7f8a5b44cbf444ef3a4581866ac648eb934995db65e5ba2a06f255c2"
+  },
+  {
+    "case": "30-frame-delay",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py",
+      "--fault-30-frame-delay"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py\", line 47, in <module>\n    if '--fault-30-frame-delay' in sys.argv: assert any('r8' in i.op_str for i in ins), 'Forwarding30 is not a delay observation; these instructions do not read it'\n                                                    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Forwarding30 is not a delay observation; these instructions do not read it\n",
+    "terminal": true,
+    "checker_sha256": "5dcefacd7f8a5b44cbf444ef3a4581866ac648eb934995db65e5ba2a06f255c2"
+  },
+  {
+    "case": "class-closure",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py",
+      "--fault-class-closure"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-commit-tail-supplement\\check.py\", line 48, in <module>\n    if '--fault-class-closure' in sys.argv: assert False, 'Initialized node nonalias/lifetime/class stability is not established by entry stores'\n                                                   ^^^^^\nAssertionError: Initialized node nonalias/lifetime/class stability is not established by entry stores\n",
+    "terminal": true,
+    "checker_sha256": "5dcefacd7f8a5b44cbf444ef3a4581866ac648eb934995db65e5ba2a06f255c2"
+  }
+]

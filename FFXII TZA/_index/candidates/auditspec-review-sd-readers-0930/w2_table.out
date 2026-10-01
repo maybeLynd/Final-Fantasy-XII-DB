@@ -1,0 +1,3 @@
+functions scanned: 175 (closure of 0057F360 depth 3: 39, save module: 147)
+seed disp 0xd8, all=False; 8-byte [reg+seed] loads followed: 10
+FIELD hits (+0x48/+0x4C/+0x58/+0x60 mod 0xA0) through a loaded [reg+0xD8]: 0

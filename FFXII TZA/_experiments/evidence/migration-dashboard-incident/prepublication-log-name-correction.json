@@ -1,0 +1,44 @@
+{
+  "reason": "Publication refused ignored *.log names before any commit. Byte-identical log copies renamed server-log.txt; future freeze invocation uses that naming. No force/guard bypass or raw/capture replay; original prepared package and attempt diagnostics preserved.",
+  "previous_manifest_sha256": "032911ebbc0ab961f9cfb02eb67a41d4ada3b4dd8bf304017ab13381216dd716",
+  "renames": [
+    {
+      "old": "run-01/external-baseline/server.log",
+      "new": "run-01/external-baseline/server-log.txt",
+      "sha256": "993080a40691378aef766e9502804815be0c2d8ad8b6c9aa4322e4e9ad228fa1",
+      "bytes": 171
+    },
+    {
+      "old": "run-01/input-tamper/server.log",
+      "new": "run-01/input-tamper/server-log.txt",
+      "sha256": "eff5b4656c7c0b37802416c69cdc7a37d7fe2931f374c05322ddf7c79ee30f2a",
+      "bytes": 166
+    },
+    {
+      "old": "run-01/stale-reader/server.log",
+      "new": "run-01/stale-reader/server-log.txt",
+      "sha256": "b7ec9417e73a64a477a77e9964452378e6e3f1682af047e755c61719d10257bc",
+      "bytes": 166
+    },
+    {
+      "old": "run-01/stat-preserved-tamper/server.log",
+      "new": "run-01/stat-preserved-tamper/server-log.txt",
+      "sha256": "25acfc383a4e2e6156ed9491b8c19cbd26ccb65d8f8a0515e4f2d9bc2b9a8e78",
+      "bytes": 175
+    },
+    {
+      "old": "run-01/unknown-format/server.log",
+      "new": "run-01/unknown-format/server-log.txt",
+      "sha256": "95d15ac403adbbfa26241fc8f879941746a83294f8ffa697975617b6ef8ba1b2",
+      "bytes": 168
+    },
+    {
+      "old": "run-01/warm-tamper/server.log",
+      "new": "run-01/warm-tamper/server-log.txt",
+      "sha256": "02025e1901ff578ff37a6b60f3c0837b8b9fe9b35a7c89d04661f7e4e719973a",
+      "bytes": 165
+    }
+  ],
+  "raw_unchanged": true,
+  "result_unchanged": true
+}

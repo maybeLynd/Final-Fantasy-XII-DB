@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PUB-STRUCK-VERDICT-LEAD-READER",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "publish the strikethrough-hazard instrument survey: check_questions.py lead fix, COVERAGE-DIMENSIONS 7a survey subsection, FABLE routing, resume",
+  "scope": "check_questions.py + _index/COVERAGE-DIMENSIONS.md + _index/_inbox/OPUS.md + op files; hold @publication through publish",
+  "completion": "publish commit recorded",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

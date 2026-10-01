@@ -1,0 +1,377 @@
+{
+ "real": [
+  {
+   "name": "noop",
+   "va": "0x16d6a0",
+   "end": "0x16d6a3",
+   "size": 3,
+   "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b"
+  },
+  {
+   "name": "xref",
+   "va": "0x210710",
+   "end": "0x210754",
+   "size": 68,
+   "sha256": "4f74eb1cf2ec1a9e2adb852c270505749b1d0fd3db04cae069828c8c9e6f1b74"
+  },
+  {
+   "name": "grow",
+   "va": "0x210a60",
+   "end": "0x210a89",
+   "size": 41,
+   "sha256": "febe7aa5ec612357efbb22bb7b93dbf980aea727e2689a2505010157420bdd24"
+  },
+  {
+   "name": "get2",
+   "va": "0x210b30",
+   "end": "0x210b51",
+   "size": 33,
+   "sha256": "ea8ea8891d006e48e7003725910f41d7fe01afb31df618b8e4d66088651318ac"
+  },
+  {
+   "name": "fork",
+   "va": "0x210c00",
+   "end": "0x210c28",
+   "size": 40,
+   "sha256": "ad944b29779b7fad97cedcc40c238a9c9add19e548b8bc63d71be0ddf39dd4dd"
+  },
+  {
+   "name": "relscan",
+   "va": "0x212910",
+   "end": "0x212943",
+   "size": 51,
+   "sha256": "9777d4383abb573837adc8f9dc4e837e4609c2e4781b471531345402172a011a"
+  },
+  {
+   "name": "rcal",
+   "va": "0x212950",
+   "end": "0x21296c",
+   "size": 28,
+   "sha256": "c5d7a1f75f6a715bcd63cf9acd313b3267325f601842d1adc2602d46342e4d24"
+  },
+  {
+   "name": "treeins",
+   "va": "0x219d80",
+   "end": "0x219e21",
+   "size": 161,
+   "sha256": "269e90de7790693916e70f51b81e3f69caa23c4d3a3c7de8953a7fa72a60288e"
+  },
+  {
+   "name": "sep",
+   "va": "0x219ea0",
+   "end": "0x219f3d",
+   "size": 157,
+   "sha256": "e3b739704bdb775678e2ca5b3ab0ee719d45d63a5b6e79191a1bd90476ae57d3"
+  },
+  {
+   "name": "seb",
+   "va": "0x21b5b0",
+   "end": "0x21b63a",
+   "size": 138,
+   "sha256": "ef84bd75af79e39ea7c212ffd02aa7787d8504593f1a6cd2a5f88095f557e573"
+  },
+  {
+   "name": "poolpop",
+   "va": "0x2204a0",
+   "end": "0x220541",
+   "size": 161,
+   "sha256": "ec783ae355d994c9ae62195f84e1f0871b6843eab0d2f9395d166006174e7a41"
+  },
+  {
+   "name": "voicepop",
+   "va": "0x220550",
+   "end": "0x2205f1",
+   "size": 161,
+   "sha256": "aac098e72a5016ce49ba1a33f0015b1bed87a48fcb3ecaf07fb5dc4d84df385c"
+  },
+  {
+   "name": "popb",
+   "va": "0x220ce0",
+   "end": "0x220d2f",
+   "size": 79,
+   "sha256": "4f840376db6a3c4b298fbe80d85f7e6e0fdf8a358aad67a1902b263a6ec119ea"
+  },
+  {
+   "name": "popw",
+   "va": "0x220d30",
+   "end": "0x220d3c",
+   "size": 12,
+   "sha256": "7eb7fea95a875b4cf2f2b177b8b44057514d6366ba8eefe32b613bf707d28e26"
+  },
+  {
+   "name": "pushb",
+   "va": "0x221210",
+   "end": "0x22121c",
+   "size": 12,
+   "sha256": "35de5690a2760e367c25637092145b78afebde50403514fdf7bd40e81b1c574f"
+  },
+  {
+   "name": "vctx",
+   "va": "0x221710",
+   "end": "0x221718",
+   "size": 8,
+   "sha256": "2901c486e10b6d23562455c45bed5ccabf8e1ec63d4968f3f16b9502843a49bc"
+  },
+  {
+   "name": "lazy",
+   "va": "0x221d10",
+   "end": "0x221d56",
+   "size": 70,
+   "sha256": "ad3ce7f4c0a69ea2947aab7d86aa3d8c9904028b53d2dfe06e5bed9f41facde3"
+  },
+  {
+   "name": "alloc",
+   "va": "0x221d60",
+   "end": "0x221df2",
+   "size": 146,
+   "sha256": "d73a527d94dfca5d542810fbe28d4862f6a7adabecb3f675ee8dc1adef045293"
+  },
+  {
+   "name": "getv",
+   "va": "0x221e00",
+   "end": "0x221e53",
+   "size": 83,
+   "sha256": "0ac34ae95b01508555d4e4496d11146b3a72c719075cb8e180bdc8078078e2c2"
+  },
+  {
+   "name": "fslot",
+   "va": "0x221e60",
+   "end": "0x221ecc",
+   "size": 108,
+   "sha256": "9a4e9d88efd6e37895e2a063a604d31db63d2ab13604afa0a9b5b1c88163b919"
+  },
+  {
+   "name": "fid",
+   "va": "0x221f40",
+   "end": "0x221fac",
+   "size": 108,
+   "sha256": "657c962adcb94050b9ff129458037a4ee4f95c7df02435226421ecdb0fa8c6f4"
+  },
+  {
+   "name": "osweep",
+   "va": "0x222050",
+   "end": "0x222074",
+   "size": 36,
+   "sha256": "76b056633b719563a3e16dbd8aac6e678557b7719807bce99aa4752cdd45b684"
+  },
+  {
+   "name": "sweep",
+   "va": "0x222280",
+   "end": "0x22233f",
+   "size": 191,
+   "sha256": "c7bd713b47443e7cf301ff7e7b4df9a493b9915d1c80cad785f93279f6b47ae1"
+  },
+  {
+   "name": "pshim",
+   "va": "0x223160",
+   "end": "0x223184",
+   "size": 36,
+   "sha256": "682e4ea5b0128b8487719fbf682b89716c7d3e66e0d871650b48298e411ef670"
+  },
+  {
+   "name": "wsep",
+   "va": "0x223190",
+   "end": "0x2232f4",
+   "size": 356,
+   "sha256": "7223ce8e6be798800dc6ca1696c585392664661eaeea9eef767ed6fb8873d1f6"
+  },
+  {
+   "name": "wshim",
+   "va": "0x224540",
+   "end": "0x224564",
+   "size": 36,
+   "sha256": "682e4ea5b0128b8487719fbf682b89716c7d3e66e0d871650b48298e411ef670"
+  },
+  {
+   "name": "wseb",
+   "va": "0x224570",
+   "end": "0x22486b",
+   "size": 763,
+   "sha256": "4149dac44ebc0fd40cc474639171508278ba36fd77aceae7697b5d5dacd8a9c0"
+  },
+  {
+   "name": "w18",
+   "va": "0x225580",
+   "end": "0x225584",
+   "size": 4,
+   "sha256": "61c0057b461fa7383c0683f7603ad1454f0c40a6fcdf98cba1a1a51da1d1c61f"
+  },
+  {
+   "name": "w10",
+   "va": "0x225590",
+   "end": "0x225594",
+   "size": 4,
+   "sha256": "3118e42787a6f4545e3111ffd4f059154e0a2d5899f7b46c609eb89fb299f2b4"
+  },
+  {
+   "name": "vctor",
+   "va": "0x2255c0",
+   "end": "0x22560a",
+   "size": 74,
+   "sha256": "5a804c1094395aad9756be71f67cc950fdfb2b41e4ba144eda9695ec460566e6"
+  },
+  {
+   "name": "r2c",
+   "va": "0x225670",
+   "end": "0x225674",
+   "size": 4,
+   "sha256": "4d8bbabf4078fb522f1b7e5fa9e993af5e9c941d53117c673ecfde3a5feca5c7"
+  },
+  {
+   "name": "t10",
+   "va": "0x225680",
+   "end": "0x225684",
+   "size": 4,
+   "sha256": "74032ad0e931f3c4730df99da43479f9f5315cc898c7c8614278631cb2c16a62"
+  },
+  {
+   "name": "r24",
+   "va": "0x225690",
+   "end": "0x225694",
+   "size": 4,
+   "sha256": "e27121b8816e0aef2ed29676899d26e79f66af7e5ee5aed902be7208122bb635"
+  },
+  {
+   "name": "r14",
+   "va": "0x2256a0",
+   "end": "0x2256a4",
+   "size": 4,
+   "sha256": "01d3abacb68aac3537badfe563d0e21d0244fb61db1d805bcef8f455407fad96"
+  },
+  {
+   "name": "rst",
+   "va": "0x2256b0",
+   "end": "0x2256dc",
+   "size": 44,
+   "sha256": "ca3c677e49f643c8c260ec56f1ef2a473c5173da0637f08cd50c5d2e68fc827a"
+  },
+  {
+   "name": "w2c",
+   "va": "0x2256e0",
+   "end": "0x2256e4",
+   "size": 4,
+   "sha256": "74fd5c9b710590ad4936c931124bfd7f9685141f34a104747f470cb173982832"
+  },
+  {
+   "name": "pan",
+   "va": "0x2256f0",
+   "end": "0x2257b5",
+   "size": 197,
+   "sha256": "e5706f110074d410fb4d60c51ecf93c9d3f3c6de330293624964bb3b6cb3b60c"
+  },
+  {
+   "name": "w24",
+   "va": "0x2257c0",
+   "end": "0x2257c4",
+   "size": 4,
+   "sha256": "7de0d4408474479ff27f4cb4c86034fc4f9b8d945eeb4ee9e7420140e40de33d"
+  },
+  {
+   "name": "w14",
+   "va": "0x2257d0",
+   "end": "0x2257d4",
+   "size": 4,
+   "sha256": "3e701ee47c2f883b8c0442e03f0f2272f3f29b54115acef09dc6903e7f9aa5a5"
+  },
+  {
+   "name": "vol",
+   "va": "0x2257e0",
+   "end": "0x22582c",
+   "size": 76,
+   "sha256": "01c2e8702b8550c680971dc0294c8be964276e511252533159a8dca4481ae08c"
+  },
+  {
+   "name": "lock",
+   "va": "0x5cd4f0",
+   "end": "0x5cd4f9",
+   "size": 9,
+   "sha256": "17ce6239e622dce19837d28784fc98cf6ac742243ffa4fce4eb1728007bbf886"
+  },
+  {
+   "name": "unlock",
+   "va": "0x5cd820",
+   "end": "0x5cd840",
+   "size": 32,
+   "sha256": "1e27ca30ec97e9e209ec5fdf56e90034af5d3faf4b8ac1f6fdf1ea1a8a202b7f"
+  },
+  {
+   "name": "cookie",
+   "va": "0x808c40",
+   "end": "0x808c61",
+   "size": 33,
+   "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "spin",
+   "va": "0x5cc930",
+   "note": "mixer-wait fence 005CC930: entry-intercepted; stub writes configured state to the elem register's +0x30"
+  },
+  {
+   "name": "spn2",
+   "va": "0x5ccb80",
+   "note": "second fence 005CCB80 inside the spin loop; sequence-configured states"
+  },
+  {
+   "name": "s6d",
+   "va": "0x7a6db0",
+   "note": "shared_ptr carrier 007A6DB0: copies src ptr to dst, plants dst+0x110 flag byte (s6d_flag)"
+  },
+  {
+   "name": "s70",
+   "va": "0x7a7010",
+   "note": "refcount read 007A7010 -> eax (==3 arms the s7a reset)"
+  },
+  {
+   "name": "s78",
+   "va": "0x7a78b0",
+   "note": "weak-lock/validity 007A78B0 -> eax; nonzero arms 002256B0 voice reset"
+  },
+  {
+   "name": "s7a",
+   "va": "0x7a7a20",
+   "note": "shared_ptr reset 007A7A20"
+  },
+  {
+   "name": "s8c",
+   "va": "0x7a8cf0",
+   "note": "polymorphic bounds/contains 007A8CF0 -> al (default 1; case-configured)"
+  },
+  {
+   "name": "s5a/s80/s81/s87/se0/se9",
+   "va": "0x7a5a00/0x7a8060/0x7a81f0/0x7a87c0/0x7a7e00/0x7a7e90",
+   "note": "0x7a* carrier bodies inside the ~at/~ac arms and the PAN/VOL tails -- entry-intercepted, configured returns"
+  },
+  {
+   "name": "at",
+   "va": "0x221940",
+   "note": "bus-attach arm A 00221940 (callback path): scripted stub -- the attach closure is a separate contract's subject"
+  },
+  {
+   "name": "ac",
+   "va": "0x221c70",
+   "note": "bus-attach arm B 00221C70: scripted stub (same disclosure class)"
+  },
+  {
+   "name": "d6d/da6",
+   "va": "0x16d6d0/0x16da60",
+   "note": "pool tree extract/relink STL utilities inside the pool pops -- entry-intercepted (silent inside quiet zones)"
+  },
+  {
+   "name": "m99",
+   "va": "0x199db0",
+   "note": "std::map insert 00199DB0: writes the out-pair at r8; bookkeeping result unused by the pool pops"
+  },
+  {
+   "name": "vt",
+   "va": "0x40880000",
+   "note": "planted vtail target (elem.vtable+0x50): fixture scratch body, disclosed"
+  },
+  {
+   "name": "allocator fns",
+   "va": "planted",
+   "note": "list allocator alloc/free member fn-ptrs at obj+0x10/+0x18 -> fixture scratch bodies (mov rax,imm;ret / xor eax;ret)"
+  }
+ ]
+}

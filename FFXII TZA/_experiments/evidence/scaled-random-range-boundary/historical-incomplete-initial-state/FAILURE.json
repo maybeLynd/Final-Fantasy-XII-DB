@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_INITIAL_STATE_PROOF",
+  "cause": "Added check incorrectly treats first003D8F44 qword store as sample. Primary3D8F3F MOVSXD loads amplitude fromstack and3D8F44 stores that amplitude; sample arrives separately in XMM1. Prior observer lacks direct pre-execution register read.",
+  "trust": "Raw output/transition observations retained provisionally. Exact input-state proof/semantic acceptance held until corrected instrument control. No original instruction corruption or live game failure.",
+  "affected": "This range package; prior23 uses same observer without direct pre-execution register reads. Old23 observations/source controls are preserved, no blanket semantic rejection; its input-proof limit is routed to existing consumer/reviewer context.",
+  "next": "Add pre-execution XMM1/RSP/MXCSR reads to adopted observer, distinguish amplitude store from sample, rerun only three new boundaries plus detector; no old0.3f run."
+}

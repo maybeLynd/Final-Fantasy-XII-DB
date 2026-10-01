@@ -1,0 +1,19 @@
+{
+  "action": "add",
+  "task": {
+    "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-153",
+    "kind": "research",
+    "priority": "P3",
+    "requester": "SWE2-EC7",
+    "assigned_to": "SWE2-EC7",
+    "target": "frontier-shared-callee-hubs batch 153: regenerated multi-caller band (00206C20/0023F190/00204F00/00273780/00273750 2-A) + top-17 1-A by size (00206640/00206430/00205330/00206340/0042B690/0042B770/003F5290/004780C0/0046BE80/004022F0/00159340/0033BED0/001EF1A0/001A7770/004308D0/00250F30/003A20C0)",
+    "scope": "all 22 ranked bodies: dump, route to bearing hosts, append evidence-backed sections",
+    "completion": "22/22 interior-cited + gates clean",
+    "dependencies": [],
+    "resources": [
+      {
+        "key": "target:frontier-shared-callee-hubs"
+      }
+    ]
+  }
+}

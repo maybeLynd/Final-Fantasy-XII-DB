@@ -1,0 +1,10 @@
+# NativeAdapter.MallocRecordEmplaceTailCall - EC-7 family C
+# # malloc(0x20) via shared 0085E730; member-construct the record; push-back
+# # into [this]'s end-pointer vector (fallback shared grow 001AB570); read
+# # global state via shared 0018B4E0; tail-call shared 0018AFF0.
+address	targets
+0018B5D0	0018AFF0,0018B4E0,001AB570,001F17B0,0085E730
+0018B670	0018AFF0,0018B4E0,001AB570,001F17E0,0085E730
+0018BDD0	0018AFF0,0018B4E0,001AB570,001F19B0,0085E730
+0018BF00	0018AFF0,0018B4E0,001AB570,001F1AF0,0085E730
+0018C450	0018AFF0,0018B4E0,001AB570,001F1B20,0085E730

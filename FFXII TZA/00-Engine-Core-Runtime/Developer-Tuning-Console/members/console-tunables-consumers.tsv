@@ -1,0 +1,103 @@
+# console-tunables-consumers - the 97 .data addresses the console's arms touch, with what names them and who reads them (FABLE, 2026-09-17).
+# arm_ids / labels: from Tools/work/repos-d2/console_arms.tsv and console-command-names.md. setting_name: the string key the scene-config loaders
+#   001C7940 / 001C3D50 store into the address (the key whose lea precedes the map lookup 001FF740 that precedes the store; corrected 2026-09-17, the first version took the nearest lea in 008FA700..008FAB00 and mis-keyed most block stores). outside_readers: functions referencing the
+#   address other than the console 001D1660, the menu filler 001CD0E0 and the two loaders (rip-target census of .text).
+# in_block: 1 when the address lies in the 1,132-byte block at 02CB7FD0.
+addr	in_block	arm_ids	labels	setting_name	outside_readers
+01DF6E48	0	12	Read Json Data	-	001C5930 ; 001C5F20 ; 001C61F0 ; 001C6C00 
+01DFE190	0	28	Use PS2 lighting	EnableIBL	001BD9D0 
+01DFE191	0	28,99	Fresnel Reflection enable; Use PS2 lighting	-	001A5B30 ; 001F8D10 
+01DFE192	0	28,61	Camera Light enable; Use PS2 lighting	-	001F8D10 
+01DFE194	0	111	IBL Diffuse/Classic Ambient factor	-	001BD9D0 
+01DFE1AC	0	169	SSS Diffuse a	-	-
+01E02801	0	287	FrameSkip Enabled	-	001E05F0 (CoreRuntimeScheduling)
+01F7E340	0	274	Anisotropic filtering 	-	0017D000 (CoreRuntimeScheduling); 0018E4A0 ; 0018F8F0 ; 0018FE00 ; 00190260 ; 00190760 ; 00191560 ; 001930F0 ; 001D5120 ; 001E3EB0 ; 001E59B0 ; 001E5C40 ; 001E6040 ; 001EE8E0 ; 0020E6C0 ; 0020ED30 ; 00215CB0 ; 00863D80 ; 00864330 ; 00864860 
+01F82D20	0	134,166,263,264,271,272,273,274,275,276,277,278,279,280,281,283,284,285	Ambient Occlusion ; Anisotropic filtering ; Anti-aliasing ; Apply Graphic Quality Default ; BackBufferCount ; Brightness; Camera Revise Enable; Character self-shadow ; Depth of Field ; Frame Limit (Apply save config file & restart game) ; Game Display Resolution; Game Window Mode; Glare ; Post process AA ; Shadows Quality ; Use soft particle; Vsync ; Water Quality	-	0017D8F0 ; 0017D9C0 ; 0017DB90 ; 0017E070 ; 0017E210 ; 0017E260 ; 0017E270 ; 0017E420 ; 0017E430 ; 0017E520 ; 0017E530 ; 0017E540 ; 0017E6E0 ; 0017E740 ; 0018A840 ; 0018AC50 ; 0018D850 ; 0018F510 ; 0018F6B0 ; 00193DA0 ; 00195DF0 InputManager_RestoreDefaultBindingProfiles(Input); 00198B60 InputManager_MaterializeRuntimeBindingProfiles(Input); 001A2130 ; 001BC9D0 ; 001BD940 ; 001D5120 ; 001DC5C0 ; 001DC650 ; 001DC7A0 ; 001DC830 ; 001DC920 ; 001DC940 ; 001DCD30 ; 001DCEB0 ; 001DD0B0 ; 001DD170 ; 001DD420 ; 001DD8E0 ; 001DDBA0 ; 001DF2C0 ; 001F0570 ; 001FA820 ; 006C9CD0 ; 00795DC0 ; 007980A0 ; 00798FF0 ; 0079B300 ; 0079C140 (Input); 0079E520 (Input); 0079EBA0 ; 0079F750 ; 007A0340 ; 007A04F0 ; 007A0C60 (PlatformOnlineAchievements); 007A0FC0 ; 007A3810 ; 007A3AA0 ; 007A3C10 ; 007A3D50 
+01F82ED0	0	112	IBL Diffuse limit	-	-
+01F82EE4	0	170	SSS Diffuse b	-	-
+02CB7FD0	1	28,147	Map BGNPC Fresnel Enabled; Use PS2 lighting	-	00162410 ; 001A2130 ; 001BC9D0 ; 00607F00 ; 006084B0 ; 008AB7C0 
+02CB7FD4	1	148	Map BGNPC Fresnel Intensity	-	-
+02CB7FD8	1	149	Map BGNPC Fresnel Power	-	-
+02CB7FDC	1	150	Map BGNPC Fresnel Clamp Value	-	-
+02CB7FE0	1	151	Map BGNPC Fresnel Skin Intensity	-	-
+02CB7FE4	1	28,152	Map Camera Light Enabled; Use PS2 lighting	-	-
+02CB7FE8	1	136	Map Eye Specular Power Modifier	-	-
+02CB7FEC	1	137	Map Eye Specular Power Eye Camera Distance Factor	-	-
+02CB7FF0	1	138	Map Eye Specular Intensity Before Clamp Modifier	-	-
+02CB7FF4	1	139	Map Eye Specular Intensity Before Clamp Eye Camera Distance Factor	-	-
+02CB7FF8	1	140	Map Eye Specular Intensity After Clamp Modifier	mEyeMapSpecularIntensityAfterClampModifier	-
+02CB7FFC	1	141	Map Eye Specular Intensity After Clamp Eye Camera Distance Factor	-	-
+02CB8000	1	142	Map Eye CubeMap Intensity Modifier	-	-
+02CB8004	1	143	Map Eye Specular Blend Modifier	-	-
+02CB8008	1	153	Map Eye Camera Light X Modifier	-	-
+02CB800C	1	154	Map Eye Camera Light Y Modifier	-	-
+02CB8010	1	155	Map Eye Camera Light Z Modifier	-	-
+02CB8014	1	144	Map Eye Diffuse Modifier	-	-
+02CB8018	1	145	Map Eye Ambient Modifier	-	-
+02CB801C	1	146	Map Eye Ambient Bound	-	-
+02CB8020	1	156	Map Hair Specular Power Modifier	-	-
+02CB8024	1	157	Map Hair Specular Power Eye Camera Distance Factor	-	-
+02CB8028	1	158	Map Hair Specular Intensity Before Clamp Modifier	-	-
+02CB802C	1	159	Map Hair Specular Intensity Before Clamp Eye Camera Distance Factor	-	-
+02CB8030	1	160	Map Hair Specular Intensity After Clamp Modifier	-	-
+02CB8034	1	161	Map Hair Specular Intensity After Clamp Eye Camera Distance Factor	-	-
+02CB8038	1	162	Map Hair Camera Light X Modifier	-	-
+02CB803C	1	163	Map Hair Camera Light Y Modifier	-	-
+02CB8040	1	164	Map Hair Camera Light Z Modifier	-	-
+02CB8044	1	120	Water Refraction Factor	mDebugRefractionFactor	-
+02CB8048	1	121	Water Specular Factor	mDebugWaterSpecFactor	-
+02CB804C	1	135	Water Texture Reflection Factor	mDebugWaterTexBlendFactor	-
+02CB8050	1	122	Water Extra Debug Factor Two	mDebugWaterExtraFactorTwo	-
+02CB8054	1	123	Water Extra Debug Cubemap Factor	mDebugWaterCubemapFactor	-
+02CB8058	1	124	Water Extra Debug Roughness Factor	mDebugWaterRoughnessFactor	-
+02CB805C	1	125	Water Parallax Occlusion Debug Factor	mDebugWaterParallaxFactor	-
+02CB8060	1	126	Water Fresnel Factor	mDebugWaterFresnelFactor	-
+02CB806C	1	119	Map IBL Diffuse Intensity	mMapIrrCubemapIntensity	-
+02CB8080	1	28	Use PS2 lighting	mMapAmbientColorCutPercent	-
+02CB80A0	1	95	Fresnel Specular intensity	chrFresnelSpecularIntensity	-
+02CB80A4	1	96	Fresnel Specular power	chrFresnelSpecularPower	-
+02CB80A8	1	97	Fresnel Specular Clamp Value	chrFresnelSpecularClampValue	-
+02CB80AC	1	98	Fresnel Specular Skin Intensity	chrFresnelSpecularSkinIntensity	-
+02CB80B0	1	63	Hair Camera Light Direction X Bias	-	-
+02CB80B4	1	64	Hair Camera Light Direction Y Bias	-	-
+02CB80B8	1	65	Hair Camera Light Direction Z Bias	-	-
+02CB80BC	1	66	Hair Specular Power Modifier	-	-
+02CB80C0	1	67	Hair Specular Power Eye-Camera Distance Factor	-	-
+02CB80C4	1	68	Hair Specular Intensity Before Clamp Modifier	-	-
+02CB80C8	1	69	Hair Specular Intensity Before Clamp Eye-Camera Distance Factor	-	-
+02CB80CC	1	70	Hair Specular Intensity After Clamp Modifier	-	-
+02CB80D0	1	71	Hair Specular Intensity After Clamp Eye-Camera Distance Factor	-	-
+02CB80D4	1	90	Eye A and B Cube Map Blend Factor	mEyeABCubeMapBlendFactor	-
+02CB80D8	1	91	Eye A and B Specular Blend Modifier	mEyeABSpecularBlendModifier	-
+02CB80DC	1	92	Eye A and B Ambient Scale	-	-
+02CB80E0	1	93	Eye A and B Ambient Bound	-	-
+02CB80E4	1	94	Eye A and B Specular Shadow Modifier	mEyeABSpecularShadowModifier	-
+02CB80E8	1	72	Eye Type A Camera Light Direction X Bias	-	-
+02CB80EC	1	73	Eye Type A Camera Light Direction Y Bias	-	-
+02CB80F0	1	74	Eye Type A Camera Light Direction Z Bias	-	-
+02CB80F4	1	75	Eye Type A Specular Power Modifier	-	-
+02CB80F8	1	76	Eye Type A Specular Power Eye-Camera Distance Factor	-	-
+02CB80FC	1	77	Eye Type A Specular Intensity Before Clamp Modifier	-	-
+02CB8100	1	78	Eye Type A Specular Intensity Before Clamp Eye-Camera Distance Factor	-	-
+02CB8104	1	79	Eye Type A Specular Intensity After Clamp Modifier	mEyeASpecularIntensityAfterClampModifier	-
+02CB8108	1	80	Eye Type A Specular Intensity After Clamp Eye-Camera Distance Factor	-	-
+02CB810C	1	81	Eye Type B Camera Light Direction X Bias	-	-
+02CB8110	1	82	Eye Type B Camera Light Direction Y Bias	-	-
+02CB8114	1	83	Eye Type B Camera Light Direction Z Bias	-	-
+02CB8118	1	84	Eye Type B Specular Power Modifier	-	-
+02CB811C	1	85	Eye Type B Specular Power Eye-Camera Distance Factor	-	-
+02CB8120	1	86	Eye Type B Specular Intensity Before Clamp Modifier	-	-
+02CB8124	1	87	Eye Type B Specular Intensity Before Clamp Eye-Camera Distance Factor	-	-
+02CB8128	1	88	Eye Type B Specular Intensity After Clamp Modifier	mEyeBSpecularIntensityAfterClampModifier	-
+02CB812C	1	89	Eye Type B Specular Intensity After Clamp Eye-Camera Distance Factor	-	-
+02CB8130	1	28,108	Diffuse intensity; Use PS2 lighting	-	-
+02CB8134	1	28,109	Specular intensity; Use PS2 lighting	-	-
+02CB8138	1	28,110	Cube map intensity; Use PS2 lighting	mCubemapIntensity	001846B0 ; 001846F0 
+02CB813C	1	53	Debug Cubemap	-	-
+02CB8140	1	107	Cube map factor	-	-
+02CB8144	1	113	IBL Diffuse intensity	-	-
+02CB8148	1	30	Display normal only	-	001E2AF0 
+02CB814C	1	32	Display texture density	-	-
+02CB8150	1	31	Use vertex color	-	001E2AF0 
+02CB8434	1	167	SSS enable	-	001F3740 (Presentation); 006084B0 
+02CB8438	1	168	SSS Width	-	006084B0 

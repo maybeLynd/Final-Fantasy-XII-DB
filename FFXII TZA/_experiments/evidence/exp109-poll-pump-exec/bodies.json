@@ -1,0 +1,254 @@
+{
+ "real": [
+  {
+   "va": "0x32e070",
+   "lo": "0x32e070",
+   "hi": "0x32e2cd",
+   "span": 605,
+   "insns": 156,
+   "cov": 1.0,
+   "sha256": "2d2969f632f35e73083a2c69919037f7e024241a89953e3ac3043dae71fc2692",
+   "indirect": [
+    {
+     "site": "0x32e0bb",
+     "form": "jmp rcx (six-arm JTAB dispatch)",
+     "src": "d[rdi+rax*4+0x20e2d0] offsets BD/49/63/63/AB/AB +image base",
+     "planted": "shipped table (rdata-in-text, verified)"
+    },
+    {
+     "site": "0x32e189",
+     "form": "call rax",
+     "src": "task S4 progress callback q[+0x48]",
+     "planted": "0x63020000 fixture trampoline"
+    }
+   ],
+   "name": "e070"
+  },
+  {
+   "va": "0x35ea30",
+   "lo": "0x35ea30",
+   "hi": "0x35ea37",
+   "span": 7,
+   "insns": 2,
+   "cov": 1.0,
+   "sha256": "7291ee7b107b799ac411300b9830c98922e42842bbe26cc8e1b90b7d74c97efb",
+   "indirect": [],
+   "name": "ea30"
+  },
+  {
+   "va": "0x35eb70",
+   "lo": "0x35eb70",
+   "hi": "0x35ec72",
+   "span": 258,
+   "insns": 61,
+   "cov": 1.0,
+   "sha256": "1c55aeee5eceda79009eae233d0ce6b45edf874a3ad614ec3c7808c7fd377fc2",
+   "indirect": [],
+   "name": "eb70"
+  },
+  {
+   "va": "0x32e330",
+   "lo": "0x32e330",
+   "hi": "0x32e36b",
+   "span": 59,
+   "insns": 19,
+   "cov": 1.0,
+   "sha256": "79763ea7a2fb561791f9a72dbeb0a817d879b523521bc5aaff6148776c6dea14",
+   "indirect": [
+    {
+     "site": "0x32e34f",
+     "form": "call rax",
+     "src": "task retire callback q[+0x40]",
+     "planted": "0x63010000 fixture trampoline"
+    }
+   ],
+   "name": "e330"
+  },
+  {
+   "va": "0x32e370",
+   "lo": "0x32e370",
+   "hi": "0x32e3ae",
+   "span": 62,
+   "insns": 21,
+   "cov": 1.0,
+   "sha256": "aa058cfc581844e4c4ea3015d1571f9be3ec05bc6a8a7802a4f75af03d52ef69",
+   "indirect": [
+    {
+     "site": "0x32e392",
+     "form": "call rax",
+     "src": "task retire callback q[+0x40] (d28==-1 gated)",
+     "planted": "0x63010000 fixture trampoline"
+    }
+   ],
+   "name": "e370"
+  },
+  {
+   "va": "0x32e3b0",
+   "lo": "0x32e3b0",
+   "hi": "0x32e3ea",
+   "span": 58,
+   "insns": 19,
+   "cov": 1.0,
+   "sha256": "2bd53c85fbfacc6ef778714046d419ffc534e169b6649fb86811d8d2d1ae5026",
+   "indirect": [
+    {
+     "site": "0x32e3c2",
+     "form": "call rax",
+     "src": "task progress callback q[+0x50]",
+     "planted": "0x63030000 fixture trampoline"
+    }
+   ],
+   "name": "e3b0"
+  },
+  {
+   "va": "0x32ec40",
+   "lo": "0x32ec40",
+   "hi": "0x32ecd3",
+   "span": 147,
+   "insns": 35,
+   "cov": 1.0,
+   "sha256": "b6f44040a8fbbe788af165a41558b8b7bb15f12cd551a7b910ae9e042fc2e4aa",
+   "indirect": [
+    {
+     "site": "0x32ecce",
+     "form": "jmp 0x16d6a0",
+     "src": "direct tail into the ret-0 leaf",
+     "planted": "shipped target"
+    }
+   ],
+   "name": "ec40"
+  },
+  {
+   "va": "0x35e810",
+   "lo": "0x35e810",
+   "hi": "0x35e818",
+   "span": 8,
+   "insns": 2,
+   "cov": 1.0,
+   "sha256": "7e5c2147549b2220efb3d57aa2b13e3ab5319482a02aaded1401c5e99f8f7f0a",
+   "indirect": [],
+   "name": "e810"
+  },
+  {
+   "va": "0x368c70",
+   "lo": "0x368c70",
+   "hi": "0x368c77",
+   "span": 7,
+   "insns": 2,
+   "cov": 1.0,
+   "sha256": "9c91f0686c5536a83963232bc8f44b680399f759eee4de6a89ffbdbdda625c56",
+   "indirect": [],
+   "name": "g8c70"
+  },
+  {
+   "va": "0x46e0e0",
+   "lo": "0x46e0e0",
+   "hi": "0x46e0e7",
+   "span": 7,
+   "insns": 2,
+   "cov": 1.0,
+   "sha256": "fc5a77ee699203e0b72a6a746c91e206dd65086c9b23861eeac3a6e5580eb744",
+   "indirect": [],
+   "name": "ge0e0"
+  },
+  {
+   "va": "0x16d6a0",
+   "lo": "0x16d6a0",
+   "hi": "0x16d6a3",
+   "span": 3,
+   "insns": 1,
+   "cov": 1.0,
+   "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b",
+   "indirect": [],
+   "name": "g6a0"
+  },
+  {
+   "va": "0x8620c0",
+   "lo": "0x8620c0",
+   "hi": "0x8620ce",
+   "span": 14,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "0d21a1f5d20ef0ba8d7d3e91c612aeb506cbd465779fd79134051c832e1ae95e",
+   "indirect": [
+    {
+     "site": "0x8620c9",
+     "form": "jmp 0x16d6a0",
+     "src": "yield tail (rdx=0x1ccf998 residual)",
+     "planted": "shipped target"
+    }
+   ],
+   "name": "g20c0"
+  },
+  {
+   "va": "0x3697f0",
+   "lo": "0x3697f0",
+   "hi": "0x3697fd",
+   "span": 13,
+   "insns": 5,
+   "cov": 1.0,
+   "sha256": "efed31070c81261c142e309cfde282b4b566c4b36e4e28e53f1f817025d4cfca",
+   "indirect": [
+    {
+     "site": "0x3697f7",
+     "form": "jmp 0x369860",
+     "src": "free-if-nonnull tail into PREL",
+     "planted": "shipped target"
+    }
+   ],
+   "name": "g97f0"
+  },
+  {
+   "va": "0x369860",
+   "lo": "0x369860",
+   "hi": "0x369c51",
+   "span": 1009,
+   "insns": 246,
+   "cov": 1.0,
+   "sha256": "5538203672b80cf5eac78f1f8461b082aaf5ffc3566f8f7eb5c912100d2b1872",
+   "indirect": [
+    {
+     "site": "0x369a79",
+     "form": "call qword [rip+disp]",
+     "src": "q[0x8c2d80] (ships rdata ptr 0x1ccf02c)",
+     "planted": "0x46dfe0"
+    },
+    {
+     "site": "0x369ab7",
+     "form": "call qword [rip+disp]",
+     "src": "q[0x8c2d80] (ships rdata ptr 0x1ccf02c)",
+     "planted": "0x46dfe0"
+    }
+   ],
+   "name": "prel"
+  },
+  {
+   "va": "0x46dfe0",
+   "lo": "0x46dfe0",
+   "hi": "0x46dff2",
+   "span": 18,
+   "insns": 5,
+   "cov": 1.0,
+   "sha256": "63dd59e452a71ffda84dbc0367e636bf395a668bdadfaf2f326705aa376817a7",
+   "indirect": [],
+   "name": "flag"
+  }
+ ],
+ "scripted": [
+  "0x3eadd0",
+  "0x46e030",
+  "0x2df6c0",
+  "0x46dd50",
+  "0x3e9780",
+  "0x36fd50",
+  "0x3bb790",
+  "0x862090",
+  "0x17d3e0",
+  "0x3691b0",
+  "0x369190",
+  "0x35e7a0",
+  "0x63010000",
+  "0x63020000",
+  "0x63030000"
+ ]
+}

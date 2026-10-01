@@ -1,0 +1,16 @@
+site	kind	function	class	last_ecx_write
+0027BADE	call	0027B880	CONST 1	mov ecx, 1
+0027BD0B	call	0027BC10	CONST 1	mov ecx, 1
+0027CFBD	call	0027CE70	CONST 1	lea ecx, [r15 - 0x7f]
+003F4219	call	003F41C0	DYNAMIC	mov ecx, eax
+0056E4A8	call	0056E410	DYNAMIC	mov ecx, eax
+0057A32C	call	0057A300	CONST 18	mov ecx, 0x12
+0057A7BB	call	0057A620	CONST 6	mov ecx, 6
+0057AA40	call	0057AA00	CONST 6	mov ecx, 6
+0057ACCE	call	0057AC10	CONST 6	mov ecx, 6
+0057B31A	call	0057B1A0	CONST 6	mov ecx, 6
+0057DB50	call	0057DAD0	DYNAMIC	mov ecx, r9d
+0057DCA2	call	0057DC30	CONST 1	mov ecx, r12d
+0057DDCE	call	0057DD60	CONST 9	mov ecx, 9 MULTI
+0057DE3A	call	0057DD60	CONST 8	mov ecx, 8
+0057DF35	call	0057DED0	CONST 6	mov ecx, 6

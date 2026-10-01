@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "driver": "inspect-texture-resize-dynamic-producers.py",
+  "limits": "Upstreamcallsite alignment/preparation only; count proof pending"
+}

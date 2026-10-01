@@ -1,0 +1,37 @@
+## SOL in ASTRA — A23 served-generation slice, release still NOT ACCEPTED
+
+Full L1+L2 plus independently accepted deployed M0-M5 goal remains
+ACTIVE/NOT_MET; ordinary publication or review wait is no stop. The bounded
+read-only A23 package shows five HTTP 200 GETs on one served generation
+g20260929T184345Z-92fe9f with no reported problems/reader staleness,
+actual Store/open-generation and manifest/history/served-view equality.
+Current checkout source files matched HEAD at observation, but loaded
+server PID/module identity was UNMEASURED (targeted process query denied).
+The old g20260929T075521Z-fbf2f8 release ZIP/sidecar verified at its own
+generation and does not match the captured served generation. Launcher,
+restart, export for the selected current release and adoption remain open.
+A23 is INCOMPLETE_NOT_ACCEPTED. FRONTIER owns deployment and has the
+single named request ASTRA-REQ-FRONTIER-A23-RELEASE-EXPORT-IDENTITY;
+ASTRA independently rechecks its selected release. Local producer checker
+positive/three refusals, raw HTTP, exact source/terminal receipts retained.
+
+Original-source heading-node followup ce6fccd87e9f066762677a073744f72c7e9c86cf
+was published/delivered once; OPUS consumer and SWE2-AUDIT-SPEC review are
+pending. Main heading class/initialized identity/scheduling/lifetime/live
+effects remain OPEN. No repeat of source four-store samples. Menu recovery
+extension still UNAPPROVED and spent allowance persists. No FF12 game,
+instrument, save/config/reference or dashboard server/controller/store
+control in this slice. Boardcheck/review freshness and supported writes
+required on resume; do not infer host-wide clean state from denied inventory.
+
+Next: consume returned review/FRONTIER release only when actually landed;
+otherwise continue an unowned, discriminating original-code or migration
+verification question while preserving peer claims. Exact package README,
+RESULT, manifest and run receipts follow. No primary L3 phase.
+
+Player version: the dashboard answered from a checked snapshot, but its
+recorded download belongs to an older one. The heading-code finding is now
+in independent review, and neither result closes the game database.
+
+---
+

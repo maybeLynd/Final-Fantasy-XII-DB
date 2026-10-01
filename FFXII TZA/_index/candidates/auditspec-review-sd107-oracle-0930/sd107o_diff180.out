@@ -1,0 +1,5 @@
+package census 180, raw scan 184, common 180
+  raw-scan only 0020E76F  pdata-root 0020E6C0  8B [rdx+0x9c], r8  in a kit function: 0020E6C0
+  raw-scan only 008638FE  pdata-root 00863850  8B [rdx+0x9c], r8  in a kit function: 00863850
+  raw-scan only 008643DC  pdata-root 00864330  8B [rdx+0x9c], r8  in a kit function: 00864330
+  raw-scan only 00864922  pdata-root 00864860  8B [rdx+0x9c], r8  in a kit function: 00864860

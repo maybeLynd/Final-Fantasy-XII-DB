@@ -1,0 +1,2 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+Retained two original normal continuations only [('0x62ecc2', '0x62ed36', '3d5137ccbd4e8f9daf3c56e53b94d5cf354c3cc5ff5f60ed7d816e15249529ae'), ('0x62ed36', '0x62ed3c', 'ac829edc8d3d5ff13f0d67c2504827d5bc4a860f9e0462749c945b7728053f34')]

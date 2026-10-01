@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sp1-prerequisite-02\bad_archive_control.py", line 27, in <module>
+    names, blocks = vbfextract.load_index(f)
+                    ~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users/Kristian/source/repos/XIIOnline/agent_flow/tools\vbfextract.py", line 15, in load_index
+    assert magic == b"SRYK"
+           ^^^^^^^^^^^^^^^^
+AssertionError

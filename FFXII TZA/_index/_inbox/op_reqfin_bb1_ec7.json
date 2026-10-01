@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "FRONTIER-REQ-SWE2-EC7-BB1-001EF060-CORRECTION-0927",
+ "agent": "SWE2-EC7",
+ "note": "Corrected the 001EF060 note in character-render-object.md: it reads the nine floats from rdx, XORs each with the 0x80000000 sign mask (01CEBDA0), and writes the sign-flipped 3x4 to [[rcx+8]] at 001EF126-001EF166; rdx is unchanged. Verified in the bytes via disasm (movss loads from rdx, stores through [rcx+8]) and FABLE's bb1_methods.py FAILS 0.",
+ "result_refs": [
+  "Database/FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object.md"
+ ]
+}

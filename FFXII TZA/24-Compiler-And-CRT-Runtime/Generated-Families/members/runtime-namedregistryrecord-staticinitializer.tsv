@@ -1,0 +1,72 @@
+# Runtime.NamedRegistryRecord.StaticInitializer - EC-7 family C, declared on generated-function-families.md
+#
+# 60 members. Body size(s): 42 B x60.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 2 external target(s): 2 shared across all 60 members.
+# +3 members (0015CD20, 0015CD80, 0015CDB0) appended 2026-09-16 by
+# select_xc_array_clusters.py - .CRT$XI entries sharing the family's size,
+# callee 005DC6F0, atexit tail, and 28/42 fixed byte positions.
+#
+# NOT dispositioned: the 2 shared implementations these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0015C510
+0015CC60
+0015CCC0
+0015CCF0
+0015CD50
+0015CDE0
+0015CE10
+00164B50
+00164B80
+00164BB0
+00164BE0
+00164C10
+00164C40
+00164C70
+00164CA0
+00164CD0
+00164D00
+00164D30
+00164D60
+00164D90
+00164DC0
+00164DF0
+00164E20
+00164E50
+00164E80
+00164EB0
+00164EE0
+00164F10
+00164F40
+00164F70
+00164FA0
+00164FD0
+00165000
+00165030
+00165060
+00165090
+001650C0
+001650F0
+00165120
+00165150
+00165180
+001651B0
+001651E0
+00165210
+00165240
+00165270
+001652A0
+001652D0
+00165300
+00165330
+00167A40
+00167A70
+00167AA0
+00167AD0
+00167B00
+00167B30
+00167B60
+0015CD20
+0015CD80
+0015CDB0

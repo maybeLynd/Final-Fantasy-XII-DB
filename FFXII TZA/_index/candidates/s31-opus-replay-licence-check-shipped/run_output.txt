@@ -1,0 +1,7 @@
+bind_shipped_tables                  PASS  003845F0 binds the three slots from the relocated directory: licence records 361 x 24, ability rows 543 x 60, party-slot rows 40 x 128
+builder_every_ability_matches_model  PASS  002F8FA0(1, id) over all 543 shipped ability ids: the mask agrees with an independent decode of the licence records every time; 118 ids are granted by at least one record
+I3_escape_bit_census                 PASS  with nothing owned, exactly the 98 rows whose +0x2C has bit 0x2000 are licensed (Quickening ids aside)
+I4_any_single_square                 PASS  for 40 granted ids: owning any single one of the records that list the id licenses it; owning an unrelated record does not
+I5_quickenings_counted_over_shipped_rows PASS  slots 0..5 each name three Quickening ids and together cover 0xD0..0xE1 exactly; slot 6's row is 00 00 00. The k-th id is licensed once k+1 of bits 0..17 are owned. ANOTHER slot's id is absent from the row (0030A330 -> 3) and is licensed as soon as 4 bits are owned (signed setl) - for every slot, including slot 6
+licence_records_0_17                 PASS  licence records 0..17 - the bits 00324020 counts - are all kind 19 and list no id; no kind-1 mask over the 543 ability ids sets any of them, so they are read only as the Quickening count
+ok

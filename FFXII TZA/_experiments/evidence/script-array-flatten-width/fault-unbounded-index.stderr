@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-array-flatten-width\check.py", line 24, in <module>
+    if '--fault-unbounded-index' in sys.argv:assert c['predicted_signed_handler_index']==unbounded,'Originallow32 field is signed at handler, not unboundedrowmajor'
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Originallow32 field is signed at handler, not unboundedrowmajor

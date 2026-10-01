@@ -1,0 +1,206 @@
+====================================================================================================
+_experiments/evidence/uc1-extent-collision-opus/README.md  REVIEW lines: 6  signature applies: True
+  L24:
+       22|   - an absolute qword;
+       23|   - an image-relative dword;
+    >  24|   - a `.pdata` begin;
+       25|   - an export.
+  L30:
+       28| - **Controls:**
+       29|   - the known LEA `007EC4F1` → `007EE7C0`;
+    >  30|   - the `.pdata` begins of the listed neighbours `007EE730` and `007EE800`;
+       31|   - a planted `rel32` call to `007EE7F0` in a copy of the image (a mutant), which the scan
+  L41:
+       39| | D1, as listed | From `007EE7F0` the bytes decode as `mov [rcx+0x138],ecx; xor eax,eax; ret`. That stores the **receiver pointer's own low dword**, where the reached path stores the computed `[[rcx+0x60]+0x18] - edx` through `r9 = rcx`. It is a different instruction, not an entry into the same one. |
+       40| | D2 | **`007EE7F0`: zero producers** of every kind. `007EE7EF`: zero. |
+    >  41| | Controls | `007EE7C0`: the LEA is found. `007EE730` and `007EE800`: their `.pdata` begins and their LEAs from `007EBAD0` are found. The mutant's planted call is found. |
+       42| | D2, `.rdata` value | One further `007EE7C0` hit, a dword `0x006CE7C0` at `00D8A838`, is recorded, not hidden. It sits in a 16-slot run with an 8-byte stride, and **none of the other 15 values is a listed entry**. That is a coincidental value, not a code table. |
+  L79:
+       77| | `007C2A30`–`007C2A58` | 40 | Inline data: ten image-relative dwords, every one targeting the predecessor. The predecessor's own `007C27F2 mov ecx,[rdx+rax*4+0x6A2A30]` reads them. |
+       78| 
+    >  79| The compiler's `.pdata` chain for `007C23C0` runs `007C23C0`…`007C2A23`–`007C2A58`, so its
+       80| **native unwind extent ends after the table**.
+  L80:
+       78| 
+       79| The compiler's `.pdata` chain for `007C23C0` runs `007C23C0`…`007C2A23`–`007C2A58`, so its
+    >  80| **native unwind extent ends after the table**.
+       81| 
+  L85:
+       83| extents:
+       84| - the **instruction extent** `[007C23C0, 007C2A2F)`;
+    >  85| - the **native (unwind) extent** `[007C23C0, 007C2A58)`, whose last 41 B are owned pad and
+       86|   inline table data.
+====================================================================================================
+_index/candidates/b2b-opus-funclet-section-split/README.md  REVIEW lines: 2  signature applies: True
+  L5:
+        3| **Evidence class: STATIC. `live_game: false`.**
+        4| 
+    >   5| **The question.** The funclet page's group D is 128 unwind funclets whose bodies look exactly like an `atexit`
+        6| destructor thunk: `lea rcx,[rip+global]; …; jmp dtor`. Their funclet identity rested on two things:
+  L21:
+       19| | `S4` | `atexit` registrations are `lea rcx,[rip+F]` right before a call or jmp to `00808B90`. They register **1,569** functions: **1,567 in `.text$yd`, none in `.text$x`**, and 2 in the CRT itself (`00809244`, `00809CD4`). The page's controls `008A81D0` and `008A9240` are among them. |
+       20| | `S5` | **By body alone, no, for 75 of the 128.** **1,144** registered `.text$yd` thunks have exactly the `lea rcx,[rip+N]; jmp N` shape. The 53 `add rcx` variants have no registered twin in this image. |
+    >  21| | `S6` | `.text$x` holds only funclets. Its 425 `.pdata` starts are 418 declared funclets and 7 RDX-frame bodies (`mov rbp, rdx`, the SEH scope-table handlers). None of them is registered with `atexit`. |
+       22| 
+====================================================================================================
+_index/candidates/con198-exit-attribution-0930/README.md  REVIEW lines: 4  signature applies: True
+  L9:
+        7| 
+        8| The page note, the P7 row and the CON-198 row said that all three exits from the post-effect family's code band are
+    >   9| "this PFXAA". One exit is a construction, and the other two are exception-unwind funclets. P7 now asserts each owner
+       10| from the C++ EH (FH3) unwind maps:
+  L10:
+        8| The page note, the P7 row and the CON-198 row said that all three exits from the post-effect family's code band are
+        9| "this PFXAA". One exit is a construction, and the other two are exception-unwind funclets. P7 now asserts each owner
+    >  10| from the C++ EH (FH3) unwind maps:
+       11| - **`0018CFD5` → `00645DB0`:** the construction, the PFXAA at `context + 0x378` inside `0018CD90`.
+  L12:
+       10| from the C++ EH (FH3) unwind maps:
+       11| - **`0018CFD5` → `00645DB0`:** the construction, the PFXAA at `context + 0x378` inside `0018CD90`.
+    >  12| - **`008965EC`:** an unwind action of `0018CD90` (FuncInfo `008C6C28`, map `01D5574C`, three states). It does
+       13|   `mov rcx, [rdx + 0x40]` / `add rcx, 0x378` / `jmp 0018D0D0`, and `0018D0D0` jumps to `00646770`, the
+  L15:
+       13|   `mov rcx, [rdx + 0x40]` / `add rcx, 0x378` / `jmp 0018D0D0`, and `0018D0D0` jumps to `00646770`, the
+       14|   PFXAABase destructor chain.
+    >  15| - **`0089E870`:** the single unwind action of `006458A0`, PDeferredLightingBase's installer (map `01DACB10`). It
+       16|   goes to `00646AB0`, PPostEffectBase.
+====================================================================================================
+_index/candidates/fragment-size-sweep-0929/README.md  REVIEW lines: 3  signature applies: True
+  L8:
+        6| ## Why this sweep
+        7| 
+    >   8| Two corrections today came from reading a shrink-wrapped function's first `.pdata` fragment as the whole function:
+        9| - CON-170: `003266DB`, taken for "a dispatched handler";
+  L20:
+       18| | 4 x `0032E620` (75 B) | false positive: 75 B is a script-verb caller's size on the same line |
+       19| | `00399110` (16 B) | false positive: "16-byte records" |
+    >  20| | EXP-061 `0030E060` (57 B) | false positive: the record says the first unwind entry covers only 57 bytes, on purpose |
+       21| | widget page `00248220` (85 B) | already corrected on the page on 2026-09-15 (190 B) |
+  L29:
+       27| ## The catalogue's short tails (measured, not corrected here)
+       28| 
+    >  29| - **270 catalogue functions end before their own chained unwind fragments do**, 16,361 bytes in all. Every chain is
+       30|   contiguous: 3,828 chained roots, 0 non-contiguous.
+====================================================================================================
+_index/candidates/heading-full-extent-repair-0929/README.md  REVIEW lines: 2  signature applies: True
+  L16:
+       14| - **The check that let it through.** OPUS's own falsification pass 1 (H0-H7) targeted sections 2-10 and never tested
+       15|   section 14, so its PASS said nothing about the closure. H8 now:
+    >  16|   - validates the interposed body's extent through `.pdata` chain membership, contiguity, catalogue size and its `ret`;
+       17|   - only then counts calls.
+  L37:
+       35| 
+       36| regression: `Database/Tools/analysis-kit/gfz-scripts/falsify_heading_delta.py` H8. It fails unless:
+    >  37| - every `.pdata` fragment rooted at `002E45E0` tiles contiguously to the catalogue's 963 B;
+       38| - the first fragment has no `ret`;
+====================================================================================================
+_index/candidates/k14-closure-stores-0930/README.md  REVIEW lines: 1  signature applies: True
+  L70:
+       68| - **The 12 indirect dispatches:**
+       69|   - 7 are the security-cookie failure path in `00809620`/`00809848`: `RtlCaptureContext`, `RtlLookupFunctionEntry`,
+    >  70|     `RtlVirtualUnwind`, `SetUnhandledExceptionFilter`, `UnhandledExceptionFilter`, `GetCurrentProcess` and
+       71|     `TerminateProcess`. It ends the process.
+====================================================================================================
+_index/candidates/pre-audit-dry-run-0930/README.md  REVIEW lines: 4  signature applies: True
+  L26:
+       24| moved. Re-read on the current text:
+       25| - `00-Engine-Core-Runtime/Object-Model/vtable-method-index.md`:
+    >  26|   - line 2649 still subtracts the `Unwind@`/`Catch_All@` funclets from the population (the original verdict's
+       27|     subject);
+  L32:
+       30|   - FALSE-POSITIVE.
+       31| - `24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md`:
+    >  32|   - the eight lines are PE section tables and a permission map where `.pdata` is a row, a POGO contribution list, a
+       33|     funclet share, the function name `__ArrayUnwind`, an address located "inside `.pdata`", and the link to the ban
+  L33:
+       31| - `24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md`:
+       32|   - the eight lines are PE section tables and a permission map where `.pdata` is a row, a POGO contribution list, a
+    >  33|     funclet share, the function name `__ArrayUnwind`, an address located "inside `.pdata`", and the link to the ban
+       34|     itself;
+  L35:
+       33|     funclet share, the function name `__ArrayUnwind`, an address located "inside `.pdata`", and the link to the ban
+       34|     itself;
+    >  35|   - none rests a claim on unwind data.
+       36|   - FALSE-POSITIVE.
+====================================================================================================
+_index/candidates/uc1-band-257-up/README.md  REVIEW lines: 1  signature applies: True
+  L13:
+       11| - The byte-table test BT1-BT4.
+       12| - U: a non-leaf body with no `.pdata` entry at or over it.
+    >  13| - X: a `.pdata` entry beginning inside the block.
+       14| 
+====================================================================================================
+_index/candidates/uc1-extent-collision-consumer-check.md  REVIEW lines: 2  signature applies: True
+  L19:
+       17| - The predecessor `007C23C0` is extended, and no body is added.
+       18| - Its **instruction extent** is `[007C23C0, 007C2A2F)`.
+    >  19| - Its **native (unwind) extent** is `[007C23C0, 007C2A58)`. The `.pdata` chain ends there.
+       20| - The last 41 B of the native extent are a 1-B `nop` pad plus the 40-B jump table that
+  L29:
+       27| - **W3**, all 47 B at `007C2A29` counted as instructions.
+       28| 
+    >  29| It also carries live controls: the `007EC4F1` LEA, the `007EE730` and `007EE800` `.pdata`
+       30| begins, and a planted-call mutant.
+====================================================================================================
+_index/candidates/uc1-held-rows-opus/README.md  REVIEW lines: 2  signature applies: True
+  L38:
+       36| remaining 108 bytes stay open.
+       37| 
+    >  38| Three of the seven also lie inside the listed function's own unwind range (`003A92D0`, `004FF360` and `00729870` each run
+       39| to the held block's end). This is consistent: MSVC places the tables after the function's last `ret`, inside its unwind
+  L39:
+       37| 
+       38| Three of the seven also lie inside the listed function's own unwind range (`003A92D0`, `004FF360` and `00729870` each run
+    >  39| to the held block's end). This is consistent: MSVC places the tables after the function's last `ret`, inside its unwind
+       40| range.
+====================================================================================================
+_index/candidates/uc1-pass2-extent-and-tables.md  REVIEW lines: 1  signature applies: True
+  L11:
+        9| `uc1_citation_worklist.py` (pass 1, published at `5a1d44a87`) tested "is this cited address listed"
+       10| against `W.Image()`. That loads the **34,270 non-funclet bodies**: the right population for code
+    >  11| censuses, and the wrong one for listing. The 22 cited `Unwind@` / `Catch_All@` addresses in
+       12| `00896280`–`008A6960` are **listed** in `functions.tsv`, and pass 1 reported them as unlisted.
+====================================================================================================
+_index/candidates/uq2-caller-route/README.md  REVIEW lines: 2  signature applies: True
+  L7:
+        5| 
+        6| **Rule, made sound.** Position 1 of `f` is `T*` when two conditions hold.
+    >   7| 1. `f`'s address is taken nowhere. The control scans for 8-byte and 4-byte RVA occurrences outside `.pdata`. Every
+        8|    function's own `.pdata` record holds its RVA, which first made almost every function look address-taken.
+  L8:
+        6| **Rule, made sound.** Position 1 of `f` is `T*` when two conditions hold.
+        7| 1. `f`'s address is taken nowhere. The control scans for 8-byte and 4-byte RVA occurrences outside `.pdata`. Every
+    >   8|    function's own `.pdata` record holds its RVA, which first made almost every function look address-taken.
+        9| 2. Every direct `call` / tail-`jmp` site of `f` passes `T + 0` in `rcx`, on a flow-census record that holds either:
+====================================================================================================
+04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md  REVIEW lines: 2  signature applies: True
+  L396:
+      394|    nothing in these eight functions distinguishes them beyond the three constants.~~ **Verified
+      395|    owner-side 2026-09-22 (SWE2-CONTRACT): FABLE's note stands.** An E8/E9 rel32 census over all
+    > 396|    35,713 `.pdata` bodies finds exactly **13 call sites** for the eight functions, every owner a
+      397|    verb handler, and the partition is total — A side: `003DA400` ← `camerastart_7d`/`_7e`
+  L505:
+      503| | the reverse-lookup subscript is unbounded | `003DA4B9 mov word [rbx + rax*2 + 0x18], si` with `rax` from the entry's own `+0x04`, clamped below and never capped above; **executed** with a fifth argument of 250, which writes at `slot + 0x20C` — outside the `0x200` slot and into planted guard bytes | 1 (static + **executed**) | PROVEN |
+      504| | `entry+0x0C` is the channel playback clock, `entry+0x10` the rate multiplier | all four bind callers pass `xmm2 = 0.0f` (`xorps` at `0034F33A`/`0034F985`/`0034933A`/`00349785`); the ticks advance `clock += frameStep × rate × const` — A `003DA050` at `003DA0F3`–`003DA111` over `rbx = entry+0x0C`, B `003DCFB0` at `003DD08B`–`003DD0A5` over `rbx = entry+0x08` — and pass it to the samplers (`003DA13
+    > 505| | side A is the camera-shot table, side B the camera-shake table | E8/E9 census over all `.pdata` bodies: 13 call sites for the eight functions, **every owner a verb handler** — A: `camerastart_7d`/`_7e`→`003DA400`, `resumebehindcamera_289`/`_1e4`→`003DA370`, `camerastop_54`/`_53`→`003DA4D0`, `camerachange`→`003DA570`; B: `camerashakestart_1a2`/`_1a3`→`003DD230`, `camerashakeclear`→`003DCF60`, `ca
+      506| | `lookupIndex` exceeds 1 in shipped play | the mechanism admits it — clamped only below (`003DA46E` cmovns; B resolves negatives via stub `005C5230`), stored unbounded at `003DA4B9`/`003DD2EC` (`slot + 0x18`/`+0x1C + 2×idx`); the exercise is authored — FABLE's script corpus: literal `110` in one `camerastart_7d` call, `getcamerasubframe` results in 38 of 39 | 1 (static) + authored corpus | PROVEN
+====================================================================================================
+17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md  REVIEW lines: 1  signature applies: True
+  L131:
+      129| **Postcondition.** On success, every technique and uniform the compiled effect exposes has a handle
+      130| in the receiver and the caller proceeds to the vtable step at `0072D8D9`. On failure, the receiver
+    > 131| is left in whatever state the partial registration reached — **nothing observed unwinds it** — and
+      132| the caller abandons the sequence.
+====================================================================================================
+_index/candidates/text-gap-append-0930/README.md  REVIEW lines: 2  signature applies: True
+  L16:
+       14| - The registry marks the appended rows with a dated header line.
+       15| - `textgap_rule13.py` gives hand verdicts to the 13 appended rows the verifier still listed. Each was checked
+    >  16|   against the image's 35,713 `.pdata` ranges and decoded:
+       17|   - **`00129640` is UNLISTED.** It is a body start: the previous body ends `pop rbp; ret`, and this one opens with
+  L21:
+       19|   - **Six addresses are interior points of the unlisted run `0012B980..00133B40`.** That run has no `.pdata` at
+       20|     all, so they are deferred on UC-1.
+    >  21|   - **Four addresses are interior to real `.pdata` extents of bodies the list cuts short:** `00808ED9`,
+       22|     `00121E11`, `0015AE4A`, and `0036F22E` (a chained fragment).
+total REVIEW lines on the 15 subjects: 35

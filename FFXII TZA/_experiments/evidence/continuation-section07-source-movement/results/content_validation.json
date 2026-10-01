@@ -1,0 +1,596 @@
+{
+  "section": "SECTION-07",
+  "read_only": true,
+  "errors": [],
+  "frontmatter": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "valid": true
+    },
+    {
+      "path": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "valid": true
+    }
+  ],
+  "markdown_file_links": [
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_types/types.tsv",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "authored-data-table-registry.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "the-source-block-mover-and-separate-consumer-refresh.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_experiments/EXP-084-efx-source-rebase-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/PASS22-WHAT-ACCOUNTING-MEANS.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_index/PASS22-WHAT-ACCOUNTING-MEANS.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "the-source-block-mover-and-separate-consumer-refresh.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "target": "the-source-block-mover-and-separate-consumer-refresh.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-077-arena-initializer-address-width.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-079-arena-live-placement.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../25-EBP-Script-Container/Container/ebp2-container.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-078-arena-allocation-link-width.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../00-Engine-Core-Runtime/Application-Root/game-application.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-123-alloc-core-exec.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-122-alloc-dispatch-exec.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-121-exp109-queue-tails-exec.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/EXP-126-alloc-free-path-exec.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_index/COVERAGE-DIMENSIONS.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "exists": true
+    },
+    {
+      "source": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "target": "../../_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section05-encoded-query/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section04-widget-receiver/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section02-resource-queue/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section01-result-install/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "target": "../_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "target": "the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/README.md",
+      "target": "REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/README.md",
+      "target": "../../../02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/README.md",
+      "target": "PATCH_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "native_controls.c",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "run_review.py",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "original_disassembly.txt",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/summary.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/body_verification.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/native_baseline.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/native_repeat.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/code_mutations.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/overlap_import_boundary.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "claim_matrix.tsv",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "canonical_row_changes.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "canonical_preimages.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "source_inputs.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "canonical_changes.diff",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/content_validation.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "results/overlay_checker_controls.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "PATCH_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "target": "verify_overlay.py",
+      "exists": true
+    }
+  ],
+  "external_file_references": [
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../../Tools/analysis-kit/gfz-scripts/falsify_efx_rebase.py",
+      "available": false,
+      "scope": "inherited external reference; not shipped or validated"
+    }
+  ],
+  "target_layouts": [
+    {
+      "type": "ImageAddressArenaBlockHeader",
+      "size": 64,
+      "fields": 24,
+      "gap_bytes": 0,
+      "overlap_bytes": 0
+    },
+    {
+      "type": "ImageAddressArenaRecord",
+      "size": 168,
+      "fields": 25,
+      "gap_bytes": 0,
+      "overlap_bytes": 0
+    }
+  ],
+  "target_rows_checked": 4,
+  "python_parse": [
+    "validate_content.py",
+    "run_review.py",
+    "verify_overlay.py",
+    "test_overlay.py"
+  ],
+  "json_parse": [
+    "canonical_preimages.json",
+    "original_body_manifest.json",
+    "source_inputs.json",
+    "canonical_row_changes.json",
+    "results/content_validation.json",
+    "results/native_repeat.json",
+    "results/body_verification.json",
+    "results/overlay_checker_controls.json",
+    "results/code_mutations.json",
+    "results/overlap_import_boundary.json",
+    "results/summary.json",
+    "results/native_baseline.json"
+  ],
+  "unrelated_tsv_preservation": {
+    "types.tsv": {
+      "byte_identical_non_target_lines": 594
+    },
+    "fields.tsv": {
+      "byte_identical_non_target_lines": 7225
+    }
+  },
+  "baseline_files": 10756,
+  "unchanged_baseline_files": 10749,
+  "unexpected_baseline_changes": [],
+  "passed": true
+}

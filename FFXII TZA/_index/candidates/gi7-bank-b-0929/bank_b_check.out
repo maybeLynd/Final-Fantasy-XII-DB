@@ -1,0 +1,15 @@
+B1 references into 02CA4668..02CA48C8:
+   02CA4668 in 00417110  mov
+   02CA4668 in 00417810  mov
+   02CA4698 in 00417C60  mov
+   02CA4670 in 0041CCA0  lea
+   02CA4670 in 0041D6D0  lea
+   02CA4668 in 0041D6E0  mov
+B1 OK (control: bank-A slot 5 read in 00417C60 found)
+B2 image-base-relative hits: [] control hits: 2 OK
+B3 raw callers of 0041D6D0: ['00426A1C']
+B3 OK
+B4 pair table slot 5 = 00417C60 flag 1 OK
+B5 002EA492: rdx -> 0016D6A0, ecx, 5 OK
+B5 002EA5FB: rdx -> 0016D6A0, ecx, 5 OK
+FAILS 0 []

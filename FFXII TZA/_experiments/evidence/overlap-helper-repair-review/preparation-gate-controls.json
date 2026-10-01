@@ -1,0 +1,82 @@
+[
+  {
+    "case": "valid",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-overlap-review-gate-piasbz56"
+    ],
+    "returncode": 0,
+    "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "gate_sha256": "136f9aa1fd8024ff32ea13ec8fe27031732aeb3f383d67af515e20a93bc8278a"
+  },
+  {
+    "case": "missing-runner",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-overlap-review-gate-93n95w10"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 7, in controls_preflight\n    root=Path(root);rs=json.loads((root/'checks-terminal.json').read_bytes())\n                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\AppData\\\\Local\\\\Temp\\\\astra-overlap-review-gate-93n95w10\\\\checks-terminal.json'\n",
+    "terminal": true,
+    "gate_sha256": "136f9aa1fd8024ff32ea13ec8fe27031732aeb3f383d67af515e20a93bc8278a"
+  },
+  {
+    "case": "nonzero-positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-overlap-review-gate-uqa8vsb_"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 10, in controls_preflight\n    assert rs[0]['returncode']==0 and not rs[0]['stderr']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "136f9aa1fd8024ff32ea13ec8fe27031732aeb3f383d67af515e20a93bc8278a"
+  },
+  {
+    "case": "empty-results",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-overlap-review-gate-86m_jjoa"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 8, in controls_preflight\n    assert len(rs)==5 and [r['case'] for r in rs]==['positive','upstream-failed','additional-as-unique','v1-comparable','unbound-helper-valid']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "136f9aa1fd8024ff32ea13ec8fe27031732aeb3f383d67af515e20a93bc8278a"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-overlap-review-gate-d3xxfxhs"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\prepare-publication.py\", line 15, in controls_preflight\n    assert capture['terminal'] is True and capture['returncode']==0 and not capture['stderr'] and capture['driver_sha256']==sha(root/'capture.py')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "136f9aa1fd8024ff32ea13ec8fe27031732aeb3f383d67af515e20a93bc8278a"
+  }
+]

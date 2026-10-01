@@ -1,0 +1,8 @@
+{
+  "first_run": "check.py exit1: AssertionError in RIP target obligation, line18; no PASS and no owner delivery/publication existed",
+  "retained_producer_preimage": "first-check.py",
+  "actual_primary": "0039132B length7 + displacement0275CD32 = 02AEE064, not guessed02AEE068. Raw qword row-count load, upper clamp uses LEA EAX / low32 bits.",
+  "correction": "Fix the source check's expected row-count load address to02AEE064; all prior result inputs/opcodes remain immutable. Main proof still awaiting corrected impacted check.",
+  "impact": "Own expected-address obligation only. No published/canonical field claim changed, no index regression alleged, no instrument/native/live run occurred. Conditional raw-low32 count clamp result remains subject to the corrected check.",
+  "rerun_scope": "Affected read-only check only; no repeat source capture or two settled producer controls."
+}

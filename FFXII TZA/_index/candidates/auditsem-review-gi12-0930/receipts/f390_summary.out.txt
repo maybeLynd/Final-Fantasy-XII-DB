@@ -1,0 +1,3 @@
+fragments [('0040F390', '0040F3BD'), ('0040F3BD', '0040F3DC'), ('0040F3DC', '0040FED4'), ('0040FED4', '0040FEDE'), ('0040FEDE', '0040FEE4')] total bytes 2900
+calls {'0x20e600': 56, '0x3d8e50': 4, '0x861ec0': 2}
+stores 84

@@ -1,0 +1,41 @@
+S1 02B581A0 slots: 10 referencing functions, 35 with callees; field writes at ['0x10']:
+   003DD609 in 003DD4C0 FUN_003dd4c0                 mov word ptr [rbx + 0x10], ax
+PASS C1 02B581A0 slots census lists the expected filler 003DD609
+S1 02B59360 slots: 11 referencing functions, 34 with callees; field writes at ['0x2c']:
+   003DF4EA in 003DF440 FUN_003df440                 mov word ptr [rbx + 0x2c], ax
+PASS C1 02B59360 slots census lists the expected filler 003DF4EA
+S1 02B5D0B0 slots: 20 referencing functions, 43 with callees; field writes at ['0xc', '0xe']:
+   003EA06B in 003E9F80 FUN_003e9f80                 mov word ptr [rbx + r14*2 + 0xc], ax
+PASS C1 02B5D0B0 slots census lists the expected filler 003EA06B
+S1 02B5E0E0 struct: 9 referencing functions, 11 with callees; field writes at ['0x1c', '0x18']:
+   003EB088 in 003EB050 FUN_003eb050                 mov qword ptr [rip + 0x2773069], rax
+   003EB10C in 003EB100 FUN_003eb100                 mov dword ptr [rip + 0x2772fe6], 0x24
+PASS C1 02B5E0E0 struct census lists the expected filler 003EB10C
+S2 decompiled scripts 1114: debug_filesize 0, debug_fileread 0 calls (control setposparty 788)
+PASS C2 the corpus read is live (setposparty found)
+PASS S2 no shipped script calls debug_filesize or debug_fileread
+   003C2043 mov rcx, qword ptr [rax + 0xe8]
+   003C204A movzx edx, word ptr [rcx + 8]
+   003C2058 lea r8, [rdi*8 + 4]
+   003C2068 movzx eax, byte ptr [r8 + 1]
+   003C206F je 0x3c20a4
+   003C2071 mov edx, 7
+   003C2076 movzx r8d, al
+   003C207A add r8d, 0xe1
+   003C208D call 0x249210
+   003C2092 mov rcx, qword ptr [rax + 8]
+   003C209D mov qword ptr [rax + 0x118], rcx
+PASS S3a 003C1F00 requests kind 7, id 0xE1 + byte [menumap_common entry + 1] (non-zero) and keeps it at widget +0x118
+   ch  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   cn  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   de  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   es  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   fr  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   in  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   it  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   kr  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+   us  b'cmap' entries 48; byte +1 non-zero: entry 40 = 1 -> id 0xE2 Loca_gil.cl2, entry 46 = 2 -> id 0xE3 Loca_bhm.cl2
+PASS C3 menumap_common: 48 entries, 47 distinct persistence groups - 48 / 47
+S3 selector values that ship: [1, 2] -> ids ['0xe2', '0xe3']
+PASS S3b the shipped selectors request Loca_gil.cl2 (0xE2) and Loca_bhm.cl2 (0xE3); none selects 0xE4
+FAILS 0

@@ -1,0 +1,77 @@
+002287D0 no-head None
+00228C70 proc [(10,)]
+0023B6F0 proc [(10,)]
+0023BD40 proc [(10,)]
+0023C5C0 proc [(10,)]
+0023CE10 proc [(10,)]
+0023D6B0 proc [(10,)]
+0023DB40 proc [(10,)]
+0023F240 no-head None
+0023FBE0 proc [(12,)]
+00240DE0 no-head None
+00241D40 proc [(10,)]
+00253C70 no-head None
+002778C0 proc [(10, 11)]
+0027AA70 proc [(2,)]
+0027EA70 proc [(10,)]
+00280DE0 proc [(10,)]
+00284EC0 no-head None
+002878E0 proc [(10,), (2,)]
+0029B870 no-head None
+002A5CC0 no-head None
+002A5F40 no-head None
+002A6190 proc [(10,)]
+002A9980 no-head None
+002C2320 proc [(10,)]
+002C59D0 proc [(10,)]
+002D3900 no-head None
+002D5EB0 proc [(10,)]
+003C87B0 no-head None
+003C8B70 proc [(10,)]
+003CAB00 proc [(31,)]
+003EF050 proc [(10,)]
+003F4330 proc [(10,)]
+003FDAD0 no-head None
+003FF360 proc [(10,)]
+005519E0 proc [(2,)]
+00552250 proc [(10,)]
+005528C0 proc [(10, 11)]
+005542D0 proc [(10,)]
+0055C740 no-head None
+00560910 proc [(10,)]
+00564D30 no-head None
+00564E10 no-head None
+0056CA60 no-head None
+0056DED0 no-head None
+00571A50 proc [(10,)]
+00572600 proc [(10,)]
+00572E10 proc [(10,)]
+005742D0 proc [(10,)]
+005789D0 proc [(10,)]
+0057AC10 proc [(10,)]
+PASS A1  51 readers; the 27 message-10 procs all agree except []
+PASS A2  message-2 / message-31 readers: [(2,)] [(2,)] [(31,)]
+H 002287D0 via procs: [] | other roots: ['0017CCD0']
+H 0023F240 via procs: [('0023FBE0', (10,))] | other roots: []
+H 00240DE0 via procs: [('0023BD40', (10,)), ('0023CE10', (10,))] | other roots: []
+H 00253C70 via procs: [] | other roots: ['0017CCD0']
+H 00284EC0 via procs: [('00285290', (10,))] | other roots: []
+H 0029B870 via procs: [('0029BE50', (10,))] | other roots: []
+H 002A5CC0 via procs: [('002A6190', (10,))] | other roots: []
+H 002A5F40 via procs: [('002A6190', (10,))] | other roots: []
+H 002A9980 via procs: [] | other roots: []
+H 002D3900 via procs: [('00240AD0', (10,)), ('00241D40', (10,)), ('002778C0', (10, 11)), ('00280DE0', (10,)), ('002A6190', (10,)), ('002BD680', (10,)), ('002C2320', (10,)), ('002C59D0', (10,)), ('003939B0', (10,)), ('003FDFE0', (10,)), ('003FF360', (10,)), ('005542D0', (10,)), ('005651E0', (10,)), ('00565E00', (10,)), ('0056E140', (10,)), ('0056F810', (10,)), ('005742D0', (10,)), ('00578450', (10,)), ('00579420', (10,)), ('0057B890', (10,)), ('0057C480', (10,)), ('0057FE80', (10,))] | other roots: []
+H 003C87B0 via procs: [('00280140', (1,)), ('00280140', (18,)), ('00285290', (12,)), ('0029BE50', (10,)), ('0035D6B0', (18,)), ('003C8B70', (10,))] | other roots: ['0017CCD0', '00304140', '0033F640', '0050DA20']
+H 003FDAD0 via procs: [('003FDFE0', (10,))] | other roots: []
+H 0055C740 via procs: [('0055CD40', (10,))] | other roots: []
+H 00564D30 via procs: [('005651E0', (10,))] | other roots: []
+H 00564E10 via procs: [('005651E0', (10,)), ('00565E00', (10,))] | other roots: []
+H 0056CA60 via procs: [('0056E140', (10,))] | other roots: []
+H 0056DED0 via procs: [('0056E140', (10,))] | other roots: []
+PASS P1  two more procs read only in a message-10 arm: ['002C2320', '003FF360']
+PASS P2  six helpers reached only from message-10 arms, with no other root: {'002D3900': 22, '003FDAD0': 1, '00564D30': 1, '00564E10': 2, '0056CA60': 1, '0056DED0': 1}
+PASS P3  002878E0 reads in its message-10 and message-2 arms; 0027E9E0 creates its window (0027EA1F), stores it at 0209AC18 and attaches it to [0208EA40] (0027EA57)
+PASS C1  control: 002BD680 (lea eax, [rcx - 1] bias) - message 10 -> 002BD714, which holds both calls to 002D3900 (002BD71F, 002BD745); message 9 -> 002BD834
+PASS P4  002A9980 is reached only by 002B3930's table jump (kinds 0 and 1 of 009164C0); 002B3930's callers: ['002A5CC0', '0057C480']; 0057C480's call is in its message-(10,) arm
+T   placed 49 of 51; not placed: ['0023FBE0', '003C87B0']
+FAILS 0

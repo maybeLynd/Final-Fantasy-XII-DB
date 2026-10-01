@@ -1,0 +1,35 @@
+{
+  "question": "Does refs(img) bind its boundary gate to that image?",
+  "method": "A only source/image parsing; unchanged actual producer definitions selected by AST, bounded48B section/text scan projection; no original/native/emulator/game instruction execution",
+  "reference": {
+    "producer_path": "Database/FFXII TZA/_index/candidates/yebis-preset-selector/yebis_preset.py",
+    "producer_sha256": "93db6a101ae4b0116ad7faccbbfceba71cf6cdbda49db9a1b5a1d61df607f53f",
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "entry": "00712090",
+    "candidate": "00712095",
+    "target": "006DAA30",
+    "bytes": 48,
+    "file_offset": 6231696,
+    "root": "00712090",
+    "containing_pdata": [
+      [
+        "00712090",
+        "007120C0"
+      ]
+    ],
+    "selected_original_sha256": "2869baf5bd4ae33255959a1b226cb5b6130c560586895dea63cb8424fc61f793",
+    "selected_corrected_sha256": "33f53e4f8e46fbb09bf853414918bc7ca7e610f99068bb0654c94b580034e77c"
+  },
+  "raw_sha256": "7dbe83d1c9df54f696c9491ddf03e5867ff9fdb7abb4dca797f4f18dccc2dc83",
+  "established": "Actual unchanged refs(img) accepts E8/rel32 payload at00712095 inside a private MOV immediate, because boundary ignores img and reads original d. Corrected default forwards img in all3 boundary calls and decodes img: realCALL at00712090 remains detected, immediate payload rejected.",
+  "not_established": "Historical default original-image census wrong; any actual computed caller; full image unreachable; all instruction boundaries/PE gaps/leaf roots; YEBIS family association false; any game behavior. Projection is48B, not a new whole-image scan.",
+  "affected_claims": "FABLE planted-reference control cannot establish image-consistent boundaries for changed inputs. Qualify no-call language to actual searched patterns/boundary algorithm; computed/encoded/derived inside/outside-image paths remain unresolved. Preserve positive shared third-table/YEBIS association and source selector coupling.",
+  "required_change": "FABLE producer boundary must use img and refs must forward img on actual invocation path; add realCALL/immediate-data control. Adjust producer/check/procedure and only dependent caller/unreachability consumers, preserving prior record/additive correction; OPUS/SPEC review separate.",
+  "cleanup": {
+    "original_reference_unchanged": true,
+    "peer_producer_unchanged": true,
+    "pc_off": true,
+    "private_images": "Only in-memory data bytearrays, not executable copies, no deploy/launch/other process/save/config writes"
+  },
+  "limits": "A source-only private in-memory patches, actual selected unchanged functions plus disclosed local two-site repair/default scoped projection. Original bytes never execute/deploy, no native/live/source tables modified; no semantic acceptance/admission shortcut. PC OFF/S19 extension unapproved/full L1+L2 NOT_MET."
+}

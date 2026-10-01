@@ -1,0 +1,37 @@
+case | baseline ret/RIP@RETQ/final_rip/matches_record | with commit writes ret/RIP@RETQ/final_rip | identical
+null-set           | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+empty-sub          | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+empty-sub3         | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+sub0-match         | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+sub1-match         | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+sub2-walk          | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+sub3-walk          | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+sub4-walk          | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+sub5-walk          | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+commit-fail-cont   | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+commit-never       | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+eval-then-match    | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+all-nomatch        | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+res-40-skip        | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-40-noctx       | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-80-skip        | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-c0             | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-mode0          | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+resume-at-rec      | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-ctx-4001       | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-rec-41         | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+res-rec-81         | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+count-shrink       | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+count-grow         | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+notify-sent        | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+notify-sentinel    | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+notify-nomode      | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+neg-index          | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+suspended          | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+sentinel           | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+unit-arm-neg       | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+roll-nomatch       | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+roll-match         | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+slotfail           | ret=0 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=0 reached_RETQ=True rip=62000000 faults=[] | True
+slot-hit-match     | ret=1 reached_RETQ=True rip=62000000 ok=True faults=[] | ret=1 reached_RETQ=True rip=62000000 faults=[] | True
+identical cases: 35/35

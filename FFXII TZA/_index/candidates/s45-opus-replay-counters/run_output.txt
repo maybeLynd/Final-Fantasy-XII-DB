@@ -1,0 +1,10 @@
+K1_kind4_saturates_on_every_kind4_id                                       PASS
+K2_kind2_saturates_and_leaves_the_neighbour                                PASS
+K3_store_writes_kind_bytes_at_block_plus_384C_plus_offset                  PASS
+K4_ids_30_31_255_rejected_by_read_store_and_update                         PASS
+K5_update_evaluates_before_it_stores                                       PASS
+K6_award_bit_set_then_null_manager_returns_no_steam_call                   PASS
+B_manager_builder_registers_1101_1102_1103_then_needs_the_steam_interface  PASS
+world_bound_by_the_shipped_binder                                          PASS
+{"K1": {"6": {"ok": true, "kind": 4, "saturated": "7FFFFFFF", "exact": 105}, "7": {"ok": true, "kind": 4, "saturated": "7FFFFFFF", "exact": 105}, "11": {"ok": true, "kind": 4, "saturated": "7FFFFFFF", "exact": 105}, "17": {"ok": true, "kind": 4, "saturated": "7FFFFFFF", "exact": 105}}, "K2": {"ok": true, "id0": "7FFF", "id1_neighbour": "1234"}, "K3": {"store_id0": [["+384C", 2, "00316C45"]], "store_id6": [["+3860", 4, "00316C30"]]}, "K5_K6": {"ok": true, "calls": ["evaluate", "award", "manager getter", "store"], "writes": [["+3844", 1, "00316069"], ["+384E", 2, "00316C45"]], "steam_imports": [], "bitmap": "02000000", "manager_cell": "0"}, "B": {"completed": false, "halt": ["import SteamInternal_ContextInit"], "registered_callback_ids": [1101, 1102, 1103], "manager_cell": "0"}}
+ALL PASS

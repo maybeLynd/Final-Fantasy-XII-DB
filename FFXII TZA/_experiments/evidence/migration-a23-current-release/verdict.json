@@ -1,0 +1,11 @@
+{
+  "item": "A23",
+  "status": "INCOMPLETE_NOT_ACCEPTED",
+  "supported_slice": "A stable deployed HTTP capture matched a verified manifest and two served output views; historical release ZIP verified at its old generation",
+  "missing": [
+    "matching current release export and sidecar",
+    "loaded process PID/path/module identity",
+    "launcher/restart and full release adoption evidence"
+  ],
+  "full_l1_l2_goal": "ACTIVE_NOT_MET"
+}

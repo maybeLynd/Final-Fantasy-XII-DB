@@ -1,0 +1,5 @@
+EV1_tail_call_with_zero_arguments  PASS
+EV6_only_DBC_is_pre_cleared        PASS
+EV6_unloaded_table_keeps_stale_values PASS
+EV5_band_from_the_preset           PASS
+4/4 pass (field 464, selector 351)

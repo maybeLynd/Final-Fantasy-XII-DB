@@ -1,0 +1,1 @@
+fst_r8_mode.py (python -B, at HEAD): exit 0, FAILS 0, output identical to the committed .out

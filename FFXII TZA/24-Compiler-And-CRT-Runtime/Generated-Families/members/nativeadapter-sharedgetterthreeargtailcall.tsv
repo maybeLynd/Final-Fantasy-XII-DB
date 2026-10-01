@@ -1,0 +1,9 @@
+# NativeAdapter.SharedGetterThreeArgTailCall - EC-7 family C
+# # save arg1..arg3; call shared getter 00210B30; forward (result,
+# # arg1..arg3) to a member tail target.
+address	targets
+001DBAC0	002109F0,00210B30
+001DBCA0	00210A50,00210B30
+001DBE90	00210B30,00210C50
+001DC240	00210B30,00211220
+001DC350	00210B30,002112C0

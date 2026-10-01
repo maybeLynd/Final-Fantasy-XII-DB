@@ -1,0 +1,17 @@
+{
+ "instruction": "001CDBF7 mov rax, qword ptr [rsi + rdx*8 + 0x1cd6e68]",
+ "displacement": "1CD6E68",
+ "table": "1DF6E68",
+ "table_section": ".data",
+ "literal_section": ".rdata",
+ "index_plus_1_all": true,
+ "populated": 111,
+ "form_3letters_4digits": true,
+ "prefixes_contiguous": false,
+ "duplicates": {
+  "dst0104": [
+   230,
+   232
+  ]
+ }
+} 17

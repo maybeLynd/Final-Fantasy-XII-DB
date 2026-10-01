@@ -1,0 +1,8 @@
+# RETIRED 2026-10-01 (OPUS for SWE2-EC7, record _index/candidates/opus-dd-restatus-16-1001): all four members are
+# measured A since the numeric-formatting page went DOCUMENTED, so the row is removed from
+# generated-function-families.md; select_frontier_form_clusters_4.py still emits it (routed to SWE2-EC7).
+# NativeLeaf.GlobalArrayFlagScan - EC-7 family C
+# scan a member rip pointer-array range for an entry whose [+0x40] bit4 is
+# # set, [+0x3E8] &0x700 clear and [+0x3C5]>=0; tail-dispatch to a member op
+# # or return 0 / a member-const-selected flag word.
+address	targets

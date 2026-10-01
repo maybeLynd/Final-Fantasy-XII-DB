@@ -1,0 +1,20 @@
+{
+  "activity.py": {
+    "path": "Database/Tools/dashboard/activity.py",
+    "sha256": "b13a1d6b8d3a7bb891d5cb7bd1f6d4c86c5ed4673071020d420bef6118bda4a7",
+    "bytes": 10224,
+    "last_commit": "8ddc8c7e8e91be7019229c3df8084f53430804bb"
+  },
+  "server.py": {
+    "path": "Database/Tools/dashboard/server.py",
+    "sha256": "ab2d162e4dcdece88011146c5aa8949033e042c72dbe40caab356533d08a5f46",
+    "bytes": 44211,
+    "last_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e"
+  },
+  "VIEW-SCHEMA.md": {
+    "path": "Database/Tools/dashboard/VIEW-SCHEMA.md",
+    "sha256": "49d96c3a2c617d1988e748616c37abec2db5720230689d6be23263b929da6573",
+    "bytes": 5323,
+    "last_commit": "763d466d6fb022acfb7df756d28eab28dcd0fbd0"
+  }
+}

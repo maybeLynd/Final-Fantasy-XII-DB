@@ -1,0 +1,13 @@
+{
+  "mode": "receipt and original-byte verification, not a new semantic experiment",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "original_ranges_checked": true,
+  "actual_driver_bindings_checked": true,
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "extractor_sha256": "1841f666b28fb737bf02ab3bb0ea90a7515273f74533a772e7f7131c0e0de611",
+  "required_upstream_results_checked": true,
+  "no_process_or_save_config_access": true,
+  "whole_archive_sha256": "not computed; exact selected entry/table identities retained",
+  "first_packet_unchanged": true,
+  "newly_closed_whole_runtime_questions": 0
+}

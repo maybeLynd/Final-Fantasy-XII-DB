@@ -1,0 +1,5 @@
+003097FA lea r15, [rip + 0x1be24bf]
+00309874 mov eax, dword ptr [r9 + r15 + 0x3c]
+0030987F mov rax, qword ptr [r9 + r15 + 0x50]
+003098B3 mov r15, qword ptr [rsp + 0x20]
+ret at 003098C3

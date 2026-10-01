@@ -1,0 +1,23 @@
+{
+  "name": "generic--same-count-changed-tags",
+  "source": "generic",
+  "original_case": "same-count-changed-tags",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--same-count-changed-tags\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--same-count-changed-tags\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "9d793eef5b00cf66de9d86bb01eb938b8dd1006a96f5576706cc345b97700f78",
+  "upstream_sha256": "a53f1e1de20deccf442ec6eb976fd3c404fa11d372bfbca4be4d87d09cb6c2f7",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py checks ['A', 'C'], expected exactly ['A', 'B']\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

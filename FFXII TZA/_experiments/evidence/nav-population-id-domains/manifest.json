@@ -1,0 +1,185 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "bind_trailer.py",
+      "bytes": 4897,
+      "sha256": "c978e53247c4a51169a1ce0f8b992f0f825caac85afa095ccad94f9b942ed159"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7400,
+      "sha256": "f381a7747570fc89b026b25d27588ed2750586d1cd7ddc2dbd8f01eeacb2f657"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6866,
+      "sha256": "f9063550df886a395c4393bd1b0108decbd50a75ec843df764321976f4842b09"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 4687,
+      "sha256": "3a1d4767be06f4032b71ce9d692aef7f6d86e80c06ca611204684a2e19bd0d47"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1694,
+      "sha256": "03a43b9436b58bb758ff6e14aa224117223df25766810a5654d06068bb9e2741"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/capture-before-fix.py",
+      "bytes": 6979,
+      "sha256": "5faccc1ec8b948cb3be3fdcc06aaa40bbac93ceeb7da6edfcd06998e258dd42e"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/diagnostic.json",
+      "bytes": 650,
+      "sha256": "2019779f19984002250da61331cb2868251f1e222b0be35fdd22b78fb7c8719d"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/driver-before-run.py",
+      "bytes": 6979,
+      "sha256": "5faccc1ec8b948cb3be3fdcc06aaa40bbac93ceeb7da6edfcd06998e258dd42e"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/populator.bin",
+      "bytes": 702,
+      "sha256": "8e60161f8bebd0385a60a699a5965e24a269214def6d80cf7365e1a2c38cbcbe"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/registry-count-getter.bin",
+      "bytes": 14,
+      "sha256": "77124682a228c757c74274cb065f26a4c190ae53c29a5b7d602ffc3bd97b66d2"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/source-rules-before-run.py",
+      "bytes": 3776,
+      "sha256": "65eb6fd7ab05fcddf759e22b984bd399f95fcef12711bb24f2c55897b963dfca"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/source-rules-before-fix.py",
+      "bytes": 3776,
+      "sha256": "65eb6fd7ab05fcddf759e22b984bd399f95fcef12711bb24f2c55897b963dfca"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2478,
+      "sha256": "c8cf15b8b47de3aade3dd3cb35b80597978f0944a8609594f672bd2056d3c1c6"
+    },
+    {
+      "path": "raw-source.json",
+      "bytes": 57309,
+      "sha256": "17074b127cd99a0abc7f6bb23e15132838de0bf6296a67a66998d2516ebfb9d3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6779,
+      "sha256": "c47be4238ff2b5c740149610cc099679f3f54ef41f326d71517d1a781d2e5919"
+    },
+    {
+      "path": "result.json",
+      "bytes": 4155,
+      "sha256": "840f37b93323e79e88fdbbf664e68702c77d501266bdbb9935e4dca4aabacd22"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 7400,
+      "sha256": "f381a7747570fc89b026b25d27588ed2750586d1cd7ddc2dbd8f01eeacb2f657"
+    },
+    {
+      "path": "retained/grid-count-fields-preimage.tsv",
+      "bytes": 2594,
+      "sha256": "61cf5bc726cf2a3dacd36ee363dd9eb82feafb0e712d379cee0f7923f3edd383"
+    },
+    {
+      "path": "retained/labelled-pointer-limit-129.bin",
+      "bytes": 702,
+      "sha256": "6b11ae938aefa4eef24d7f6b2a5571728f57ec71865ffb3cc6aa711c08db4753"
+    },
+    {
+      "path": "retained/labelled-single-count-read.bin",
+      "bytes": 702,
+      "sha256": "90ea18f81eb74de00d4a9407326758b2c3431188e6b1174e3378227c09ee68d1"
+    },
+    {
+      "path": "retained/pointer-type-preimage.tsv",
+      "bytes": 3225,
+      "sha256": "4522fc73a6b78ed9c852156c0e74c0e8a7813bdb9c4b8878ac15c667de55124f"
+    },
+    {
+      "path": "retained/populator.bin",
+      "bytes": 702,
+      "sha256": "8e60161f8bebd0385a60a699a5965e24a269214def6d80cf7365e1a2c38cbcbe"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/registry-count-getter.bin",
+      "bytes": 14,
+      "sha256": "77124682a228c757c74274cb065f26a4c190ae53c29a5b7d602ffc3bd97b66d2"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source-rules-before-run.py",
+      "bytes": 4700,
+      "sha256": "cc7e4cf58bc2385250dc9b4f2f290dbf2f935ce5b755cc400471f533a62eec9a"
+    },
+    {
+      "path": "retained/teardown-parent-raw.json",
+      "bytes": 7089,
+      "sha256": "5dddc43d8bff2a889054a048be684b6f0aff0d89f9ae0c4598b1b86b48b7d84c"
+    },
+    {
+      "path": "retained/trailer-binding/driver-before-run.py",
+      "bytes": 4897,
+      "sha256": "c978e53247c4a51169a1ce0f8b992f0f825caac85afa095ccad94f9b942ed159"
+    },
+    {
+      "path": "retained/trailer-binding/root-return-getter.bin",
+      "bytes": 8,
+      "sha256": "5d47abc6d65df87be2cb6f88c7048023162d3dce392aa89ac453f89d8b4a359d"
+    },
+    {
+      "path": "retained/trailer-binding/trailer-fields-preimage.tsv",
+      "bytes": 3659,
+      "sha256": "0be8f8d3a123a7b092f8f111967afc01ea55350412e22f95741d55bfe51163f5"
+    },
+    {
+      "path": "retained/trailer-binding/trailer-type-preimage.tsv",
+      "bytes": 1150,
+      "sha256": "df20e2916c81bccad395a29edeb2bbcd6c310757efb76ed5230e174d2e7a5b1d"
+    },
+    {
+      "path": "source_rules.py",
+      "bytes": 4700,
+      "sha256": "cc7e4cf58bc2385250dc9b4f2f290dbf2f935ce5b755cc400471f533a62eec9a"
+    },
+    {
+      "path": "trailer-binding-result.json",
+      "bytes": 2874,
+      "sha256": "ba774461bbdb967a9f8b87cc8473a1c72adcbbe984a459830f910e02a2976f14"
+    }
+  ],
+  "limits": "A source domains/count-stability qualification and positive trailer consumer; failed first precondition retained, no actual race/native marking/whole lifetime proof"
+}

@@ -1,0 +1,95 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "architecture.json",
+      "bytes": 898,
+      "sha256": "e1a3be2980d09823e7565638db8c4e08777858112aaca69384f733b09f25c97d"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3445,
+      "sha256": "bb62c4343fa88077c7ac73dd593822302684f01daf8d6f4b06ce91860528bb01"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 7346,
+      "sha256": "2205e7b08e942e3fa701d772a5f7f988e201f8561f39468f6725e9ebb2606057"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1987,
+      "sha256": "3070d90d424a7e741ae97fbd9aa8e7fa1eb1279a8dbb038ff28ae544365a0e5b"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1957,
+      "sha256": "7741610dd38b34ab917a4d2a71c170b6b9e5ec1e7d0ddcfb19cedc17e96d6f83"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2266,
+      "sha256": "09bf75d3d88bb5c03a0bf49996ac6329a71964d823cae89b33eee62dfe314096"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3138,
+      "sha256": "ee9517129a0f489b45b8d15ab83bbdb9af2f81b4569a3ce78655ebce61b02140"
+    },
+    {
+      "path": "result.json",
+      "bytes": 9304,
+      "sha256": "eed8699d08cb9a89ed01653cec4875fa31650785c2947921e99ba7eb2d01d3e2"
+    },
+    {
+      "path": "retained/bit3-helper.bin",
+      "bytes": 14,
+      "sha256": "1a10ebbd918d920b5cfa5189e32bfb2ca76862e1ec3ec21aa8b6ccb29eafceca"
+    },
+    {
+      "path": "retained/cache-mutation.json",
+      "bytes": 670,
+      "sha256": "ee263622355bd6dbe9398f2ec383d995858af95cf5aa737910de4018bdec1b84"
+    },
+    {
+      "path": "retained/gate.bin",
+      "bytes": 32,
+      "sha256": "609303b5acc1bdc6ff4231f024d6476c3742b00f5ba213f616e827fd20700b25"
+    },
+    {
+      "path": "retained/gg1-readme.md",
+      "bytes": 4227,
+      "sha256": "fd0d5a93bb87b882bfeb17d8eb9e84ad5f88916ad84fc5503ac074aaa0ba1f3c"
+    },
+    {
+      "path": "retained/gg1_order.py",
+      "bytes": 5985,
+      "sha256": "b40c3708d13416baa76226e95b99931e2f8769bd3d7893a85cb1707773c0f38c"
+    },
+    {
+      "path": "retained/input-contract.md",
+      "bytes": 35342,
+      "sha256": "2aae10592df3302dc77e9686bad511c918c1a168601342cb90f4fd59812765f7"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/zero.bin",
+      "bytes": 3,
+      "sha256": "16e0c14e5e528b300f9314743220a07b957d07cfe8a4abe5bcf17f57f25b7414"
+    },
+    {
+      "path": "tool-identity-supplement.json",
+      "bytes": 362,
+      "sha256": "a8a69a1917de2cdd495576bced53bf52feb1288717dcb50ce3b502359ce59791"
+    }
+  ],
+  "limits": "Source/ISA/Python checker-control only; no FF12 original-code/native/live execution, actual MXCSR or accumulator-domain proof"
+}

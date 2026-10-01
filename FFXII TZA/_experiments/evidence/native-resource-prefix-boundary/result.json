@@ -1,0 +1,222 @@
+{
+  "status": "STATIC_PREFIX_CHECK_NOT_FULL_COUNTED_TEXT_VALIDATION",
+  "method": "A verified retained original159B selector/source accesses and four supplied logical-span counterexamples; no execution",
+  "raw_sha256": "04c9181c4a313c74866b8692f059e411c62fcbb384921079131bf1afd49231ef",
+  "observations": [
+    {
+      "name": "complete-one-unit",
+      "declared_size": 18,
+      "previous_prefix_steps": [
+        {
+          "index": 0,
+          "prefix_offset": 0,
+          "length": 0
+        },
+        {
+          "index": 1,
+          "prefix_offset": 2,
+          "length": 0
+        },
+        {
+          "index": 2,
+          "prefix_offset": 4,
+          "length": 0
+        },
+        {
+          "index": 3,
+          "prefix_offset": 6,
+          "length": 0
+        },
+        {
+          "index": 4,
+          "prefix_offset": 8,
+          "length": 0
+        },
+        {
+          "index": 5,
+          "prefix_offset": 10,
+          "length": 0
+        },
+        {
+          "index": 6,
+          "prefix_offset": 12,
+          "length": 0
+        }
+      ],
+      "current_prefix": 14,
+      "pointer_lt_end": true,
+      "source_word_access": [
+        14,
+        16
+      ],
+      "word_fits_logical_span": true,
+      "count": 1,
+      "full_counted_end": 18,
+      "full_counted_span_fits": true,
+      "conditional_source_result": "PREFIX+14",
+      "provenance": "Source calculation with supplied successful API state, not interpreter/guest/native/live execution"
+    },
+    {
+      "name": "prefix-only-one-unit",
+      "declared_size": 16,
+      "previous_prefix_steps": [
+        {
+          "index": 0,
+          "prefix_offset": 0,
+          "length": 0
+        },
+        {
+          "index": 1,
+          "prefix_offset": 2,
+          "length": 0
+        },
+        {
+          "index": 2,
+          "prefix_offset": 4,
+          "length": 0
+        },
+        {
+          "index": 3,
+          "prefix_offset": 6,
+          "length": 0
+        },
+        {
+          "index": 4,
+          "prefix_offset": 8,
+          "length": 0
+        },
+        {
+          "index": 5,
+          "prefix_offset": 10,
+          "length": 0
+        },
+        {
+          "index": 6,
+          "prefix_offset": 12,
+          "length": 0
+        }
+      ],
+      "current_prefix": 14,
+      "pointer_lt_end": true,
+      "source_word_access": [
+        14,
+        16
+      ],
+      "word_fits_logical_span": true,
+      "count": 1,
+      "full_counted_end": 18,
+      "full_counted_span_fits": false,
+      "conditional_source_result": "PREFIX+14",
+      "provenance": "Source calculation with supplied successful API state, not interpreter/guest/native/live execution"
+    },
+    {
+      "name": "one-byte-selected-prefix",
+      "declared_size": 15,
+      "previous_prefix_steps": [
+        {
+          "index": 0,
+          "prefix_offset": 0,
+          "length": 0
+        },
+        {
+          "index": 1,
+          "prefix_offset": 2,
+          "length": 0
+        },
+        {
+          "index": 2,
+          "prefix_offset": 4,
+          "length": 0
+        },
+        {
+          "index": 3,
+          "prefix_offset": 6,
+          "length": 0
+        },
+        {
+          "index": 4,
+          "prefix_offset": 8,
+          "length": 0
+        },
+        {
+          "index": 5,
+          "prefix_offset": 10,
+          "length": 0
+        },
+        {
+          "index": 6,
+          "prefix_offset": 12,
+          "length": 0
+        }
+      ],
+      "current_prefix": 14,
+      "pointer_lt_end": true,
+      "source_word_access": [
+        14,
+        16
+      ],
+      "word_fits_logical_span": false,
+      "count": null,
+      "full_counted_end": null,
+      "full_counted_span_fits": null,
+      "conditional_source_result": "UNESTABLISHED_WORD_READ_OUTCOME",
+      "provenance": "Source calculation with supplied successful API state, not interpreter/guest/native/live execution"
+    },
+    {
+      "name": "complete-empty-selected",
+      "declared_size": 16,
+      "previous_prefix_steps": [
+        {
+          "index": 0,
+          "prefix_offset": 0,
+          "length": 0
+        },
+        {
+          "index": 1,
+          "prefix_offset": 2,
+          "length": 0
+        },
+        {
+          "index": 2,
+          "prefix_offset": 4,
+          "length": 0
+        },
+        {
+          "index": 3,
+          "prefix_offset": 6,
+          "length": 0
+        },
+        {
+          "index": 4,
+          "prefix_offset": 8,
+          "length": 0
+        },
+        {
+          "index": 5,
+          "prefix_offset": 10,
+          "length": 0
+        },
+        {
+          "index": 6,
+          "prefix_offset": 12,
+          "length": 0
+        }
+      ],
+      "current_prefix": 14,
+      "pointer_lt_end": true,
+      "source_word_access": [
+        14,
+        16
+      ],
+      "word_fits_logical_span": true,
+      "count": 0,
+      "full_counted_end": 16,
+      "full_counted_span_fits": true,
+      "conditional_source_result": "NULL",
+      "provenance": "Source calculation with supplied successful API state, not interpreter/guest/native/live execution"
+    }
+  ],
+  "interpretation": "Exact source checks currentpointer<resourceend then reads u16 length and returns nonempty prefix. Supplied id7837/priorsevenempty records put prefix14; size16/count1 conditionally returns that prefix while fulltext ends18. Size15 still passes current-pointer check but two-byte prefix read exceeds logicalend, physical outcome unestablished. Zero complete prefix returnsnull. This falsifies a selector-alone fullspan postcondition, not actual native API acceptance or game safety.",
+  "consumer_change": "Use conditional nonempty borrowed length-prefix result, not validated complete UTF16 span; callers/reconstruction need explicit resource-validation preconditions. Preserve native API validity/reach/lifetime uncertainty, no actual crash inference.",
+  "limits": "Conditional source result assuming preceding native LoadResource/LockResource/SizeofResource succeed with supplied state. Does not prove Windows accepts malformed blocks or actual native/game reachability/callback effects/physical read fault/language/module initialization/lifetime/visiblemessage. Incomplete selected word outcome unknown, only source read attempt established. Four cases are calculations, not guest/live tests. PC OFF/S19/fullL1+L2 NOT_MET"
+}

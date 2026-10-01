@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\fallback-prerequisite-controls-01\wrong_dispatch_extent\checker-input-adapted.py", line 25, in <module>
+    if r.get('wrapper_complete') is not True or r['jump_table'].get('entries')!=6:raise ValueError('dispatch wrapper prerequisite')
+                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: dispatch wrapper prerequisite

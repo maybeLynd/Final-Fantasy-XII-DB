@@ -1,0 +1,10 @@
+field	reader addresses	value census (144 files, 144 entries)	meaning	evidence
+presence	00504F00 00504FCE..00504FDE (offset -> rec+0x214); 00504F6C..00504F84 via 00504E70 (sub-record rec+0x228); 00409FE0 0040A0A4..0040A0B4 (-1 -> skip)	monster 82, npc 27, summon 26, gadget 9; one @FEF per file; always entry 6 of 7 and the last entry; entry ends exactly at the @FRP length (144/144)	per-model embedded effect	STATIC+DATA
++0x04 u32	-	0 (144/144)	kind	DATA
++0x0C u32	-	1 (144/144)	count (one effect file)	DATA
++0x10 char[0x20]	-	== file basename 144/144; zero-filled after the name 144/144	model name	DATA
++0x30 char[8]	-	"EFX0010\0" 144/144	start of a complete EFX file	DATA
++0x38 f32	-	1.0 (144/144)	EFX header field	DATA
++0x3C u32	-	== entryLen - 0x30 in 144/144	EFX file's own size = the rest of the entry	DATA
+consumer A	00504940: 005049A2 (004096C0 -> rec+0x230), 005049B3..005049BD: 0016D6A0(dword[file+0x44], FEF+0x30)	-	0016D6A0 is `ret 0` (C2 00 00): the embedded EFX pointer is handed to a stub on this path	STATIC
+consumer B	00409FE0 (via 0041E580 <- 002E4DB4, 002E4EFA, 003DC371, 003DD8AB): gates on @FEF, parses the container name's last 5 chars, table 02B64380, 003B38B0(source, offset) at 0040A174 -> resource +0x44; "chara\h" + "%d.efx" parse (0040A189..0040A1C4) -> 003B3B10	-	builds an EFX context; whether its source/offset is the embedded @FEF bytes is NOT established (the offset is read at 0040A16F from source + roundup64(size) - 4, and no .cm dword equals the EFX offset in 143/144)	STATIC (partial)

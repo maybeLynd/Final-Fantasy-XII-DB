@@ -1,0 +1,9 @@
+{
+  "status": "PASS_ISOLATED_ORIGINAL_CODE",
+  "cases": 8,
+  "complete_shipping_functions": 4,
+  "native_or_live_cases": 0,
+  "stubs": 0,
+  "interior_entries": 0,
+  "limits": "Bounded finite controlled composition; not native rendering, original initialization, exhaustive FP domain, independent acceptance or full mutation campaign."
+}

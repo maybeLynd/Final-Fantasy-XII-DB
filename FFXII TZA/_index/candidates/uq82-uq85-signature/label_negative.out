@@ -1,0 +1,5 @@
+PASS A  sizes/magic {'ch': (3470, b'NAV'), 'cn': (3470, b'NAV'), 'in': (3470, b'NAV')}, printable runs {'ch': 0, 'cn': 0, 'in': 0}
+PASS AC  control file D:/FFXII_TZA_extract\ps2data\image\ff12\ch\bin\filelistlocalin.bin: 22545 runs, one naming navimapdata
+PASS B  112 bodies (the predicate and 111 direct callers, the thunk among them); bodies with a string operand: {}
+PASS BC  control 001CD0E0 resolves 138 strings incl. 'Use Town'/'Use Field'
+FAILS 0

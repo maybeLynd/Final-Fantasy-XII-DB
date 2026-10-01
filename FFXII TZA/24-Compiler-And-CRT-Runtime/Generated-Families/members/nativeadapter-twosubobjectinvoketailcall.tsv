@@ -1,0 +1,10 @@
+# NativeAdapter.TwoSubobjectInvokeTailCall - EC-7 family C
+# # call a member op on this+off then this+off2; tail-call a member op on
+# # this.
+address	targets
+00219470	002194A0,00219530
+0021AA60	0021AA90,0021AB20
+0021E7A0	0021E8F0,0021EC20
+0021E7D0	0021E9F0,0021ECC0
+0021E800	0021EA70,0021ED60
+0021E830	0021EAF0,0021EE00

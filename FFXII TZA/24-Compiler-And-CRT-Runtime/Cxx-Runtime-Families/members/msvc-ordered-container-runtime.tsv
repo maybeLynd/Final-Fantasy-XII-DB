@@ -1,0 +1,49 @@
+# MSVC std::_Tree runtime - the 23 members, from the shipping EXE
+#
+# Authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base
+# 0x00120000 already included. Found by the _Isnil signature - cmp byte ptr [reg+0x19], 0 on a
+# non-stack base - which EASTL's rbtree_node_base has no member for; the EASTL family scores zero
+# on it across 521 instructions and is the control.
+#
+# instantiation  grouped by which rotation pair each erase calls, not by address. A and B share a
+#                rotation pair. '-' is the two inserts, which inline their rotations and so cannot
+#                be grouped this way.
+# read           'whole' = disassembled end to end; 'profile' = store offsets, callee set and
+#                caller count only.
+# EVERY MEMBER IS FUN_xxxxxxxx IN THE FUNCTION LIST. This family has no names to inherit.
+#
+# 22 of these 23 members carry the _Isnil signature; 0071EE70, the payload destructor, does not,
+# which is why the image's 45 carriers split 22 members + 23 non-members rather than 23 + 22.
+# The 23 non-members are container-level operations - insert wrappers, lower_bound/find descents
+# and four large consumers - and are dispositioned under MT-3, not here.
+#
+# COLLISION RESOLVED 2026-09-16 (SWE2-EC7, OPUS-REQ-EC7-MSVC-FAMILY-COLLIDES-WITH-YEBIS): the PPFX
+# span selector had also claimed the 17 members inside 006DA880-007911E0 on position alone. Each
+# carries the _Isnil test at +0x19 (16) or is the family's own payload destructor (0071EE70), so
+# they are MSVC-emitted template code the linker placed inside the Yebis object region - this
+# family keeps them; ppfx-span.tsv was regenerated without them.
+#
+# 00714B00 (the pair A / B right rotation) removed 2026-09-30 (OPUS): it is measured A - read whole on the-ordered-container-runtime.md section 9 - and A beats a declaration.
+address	name	bytes	instructions	instantiation	role	callers	callees	read	write_profile	note
+00712F60	FUN_00712f60	679	190	-	insert+rebalance	3	00210EB0	whole	+00:12 +08:18 +10:12 +18:11	node 0x30, rotations inlined
+00714980	FUN_00714980	80	24	A	destroy subtree	4	00210EB0	profile		
+00714B60	FUN_00714b60	126	35	A	tidy	2	00210EB0,00714980	whole	+00:1 +08:2 +10:1	
+00714BE0	FUN_00714be0	126	35	A	tidy	2	00210EB0,00714980	profile	+00:1 +08:2 +10:1	
+00714C60	FUN_00714c60	126	35	A	tidy	2	00210EB0,00714980	profile	+00:1 +08:2 +10:1	
+00714CE0	FUN_00714ce0	218	65	A	erase range	2	00714B60,00714DC0	profile	+00:2	
+00714DC0	FUN_00714dc0	840	241	A	erase node+rebalance	5	00210EB0,00714B00,0071F240	whole	+00:6 +08:8 +10:5 +18:18	pair A
+00715110	FUN_00715110	218	65	A	erase range	2	00714BE0,00714DC0	profile	+00:2	
+007151F0	FUN_007151f0	218	65	A	erase range	2	00714C60,00714DC0	profile	+00:2	
+0071E500	FUN_0071e500	680	192	-	insert+rebalance	2	00210EB0,0071EE70	whole	+00:12 +08:18 +10:12 +18:11	node 0x60; destroys the payload only on the throw path (read whole in falsification pass 1)
+0071EE70	FUN_0071ee70	148	40	B	payload destructor	8	001DFA10	profile	+00:3 +10:2 +18:2	
+0071F1E0	FUN_0071f1e0	89	26	B	destroy subtree	1	00210EB0,0071EE70	profile		
+0071F240	FUN_0071f240	85	27	A	rotation	2		profile	+00:4 +08:6 +10:2	pair A mirror
+0071F3A0	FUN_0071f3a0	136	38	B	tidy	1	00210EB0,0071EE70,0071F1E0	whole	+00:1 +08:2 +10:1	destroys the payload at +0x20 first
+0071F4B0	FUN_0071f4b0	218	65	B	erase range	2	0071F3A0,0071F590	profile	+00:2	
+0071F590	FUN_0071f590	978	281	B	erase node+rebalance	1	00210EB0,00714B00,0071EE70,0071F240	profile	+00:10 +08:16 +10:9 +18:18	pair A
+00799B80	FUN_00799b80	80	24	C	destroy subtree	1	00210EB0	profile		
+00799BD0	FUN_00799bd0	85	27	C	rotation	1		whole	+00:4 +08:6 +10:2	pair C
+00799C30	FUN_00799c30	89	27	C	rotation	1		whole	+00:2 +08:6 +10:4	pair C mirror
+0079B0D0	FUN_0079b0d0	126	35	C	tidy	1	00210EB0,00799B80	profile	+00:1 +08:2 +10:1	
+0079B930	FUN_0079b930	218	65	C	erase range	1	0079B0D0,0079BA10	whole	+00:2	
+0079BA10	FUN_0079ba10	978	282	C	erase node+rebalance	1	00210EB0,00799BD0,00799C30	profile	+00:10 +08:16 +10:9 +18:18	pair C

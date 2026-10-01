@@ -1,0 +1,2 @@
+OBSERVING 23532 for 50.0 seconds
+OBSERVED  C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\EXP-010-RT1\visual-window.json

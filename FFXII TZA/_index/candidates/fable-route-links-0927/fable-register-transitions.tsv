@@ -1,0 +1,96 @@
+commit	row	from	to	record
+403d7aeac	BF-5	PARTLY ANSWERED	ANSWERED	_index/candidates/bf5-inert-opcodes/bf5_inert_opcode_census.py
+347566aa4	UQ-70	OPEN	PARTIAL	_index/candidates/uq70-name-tables/uq70_name_tables.py
+2457cb712	FW-1	OPEN	ANSWERED	_index/candidates/fw1-tunable-consumers/fw1_tunable_consumers.py
+2a4c98d0e	FI-3	OPEN	ANSWERED	_index/candidates/fi3-subobject-interiors/fi3_subobject_interiors.py
+4edb8f3a7	FF-2	OPEN	ANSWERED	_index/candidates/ff2-waypoint-table/ff2_waypoint_table.py
+10c7b072e	CW-3	OPEN	ANSWERED	_index/candidates/cw3-field-registrars/cw3_field_registrars.py
+74dfc2ede	CZ-2	OPEN	ANSWERED	_index/candidates/cz2-start-waiter-pairing/cz2_start_waiter_pairing.py
+9909f25bd	CE-3	OPEN	ANSWERED	_index/candidates/ce3-arity-disagreements/ce3_arity_paths.py
+8cf2454c6	BH-2	OPEN	ANSWERED	_index/candidates/bh4-region-callers/bh4_region_callers.py
+8cf2454c6	BH-4	OPEN	ANSWERED	_index/candidates/bh4-region-callers/bh4_region_callers.py
+97b724655	FO-5	OPEN	ANSWERED	_index/candidates/fo5-block-ranges/fo5_block_ranges.py
+6010770f2	FR-2	OPEN	ANSWERED	_index/candidates/fr2-icon-pair/fr2_icon_pair.py
+1085dd544	PC-1	OPEN	PARTIAL	_index/candidates/pc1-ff12config/pc1_ff12config.py
+1e6a4b93b	CU-3	OPEN	ANSWERED	_index/candidates/cu3-fixup-tables/cu3_fixup_tables.py
+04e3f4e17	FG-1	OPEN	PARTIAL	_index/candidates/fg1-clan-primer/fg1_clan_primer.py
+e0eb30a9d	BG-6	OPEN	ANSWERED	_index/candidates/bg56-gi-bodies/bg56_gi_bodies.py
+e0eb30a9d	BG-5	OPEN	ANSWERED	_index/candidates/bg56-gi-bodies/bg56_gi_bodies.py
+19ba6d1f2	BN-1	PARTIAL	ANSWERED	_index/candidates/bn1-bullet-version/bn1_bullet_version.py
+16a70c02e	FG-2	PARTIAL	ANSWERED	_index/candidates/fg2-battle-state-mirror/fg2_battle_state_mirror.py
+71da4d57b	CL-1	ANSWERED	ANSWERED	_index/candidates/cl1-registrar-complete/cl1_registrar_complete.py
+b57b08f44	GA-1	PARTIAL	PARTIAL	_index/candidates/ga1-status-order-keys/ga1_status_order_keys.py
+7f8ecdffd	BC-5	OPEN	ANSWERED	_index/candidates/bc5-final-is-in-place/bc5_final_is_in_place.py
+7424a725a	BB-4	OPEN	?index) the asset loa	_index/candidates/bb4-render-object-per-model/bb4_render_object_per_model.py
+3b10c6177	BB-3	OPEN	ANSWERED	_index/candidates/bb3-render-object-slot-order/bb3_slot_order.py
+0c194102e	UQ-333	OPEN	?id, the engine's mod	_index/candidates/uq333-high-detail-letters/uq333_letters.py
+ac4a8d43e	BE-6	PARTLY ANSWERED	PARTLY ANSWERED	_index/candidates/be6-two-pump-singletons/be6_two_singletons.py
+e7e49edc8	UQ-68	PARTIAL	PARTIAL	_index/candidates/uq68-kind-source/uq68_kind_source.py
+8a138a887	CC-7	PARTIAL	ANSWERED	_index/candidates/cc7-ard-base-growth/cc7_base_growth.py
+83647eb21	FE-7	OPEN	ANSWERED	_index/candidates/fe7-order-reach/fe7_order_reach.py
+dd3470a53	FG-1	PARTIAL	ANSWERED	_index/candidates/fg1-residue/fg1_residue.py
+dd3470a53	UQ-215	PARTIAL	PARTIAL	_index/candidates/uq215-unpack-strides/unpack_strides.py
+9bbd3fdb3	BL-8	PARTIAL	PARTIAL	-
+0c7013524	GG-1	OPEN	OPEN	-
+463128297	GF-4	SUPERSEDED	SUPERSEDED	-
+38db3fc4c	SR-5	SUPERSEDED	SUPERSEDED	-
+44e0f6f06	GB-2	OPEN	ANSWERED	_index/candidates/gb2-env-class-4/gb2_env_class.py
+75a1b1946	BQ-23	OPEN	PARTIAL	_index/candidates/bq23-tier6/bq23_tier6.py
+f5a4e44ec	DZ-1	OPEN	ANSWERED	_index/candidates/dz1-target-line/dz1_target_line.py
+a7a86c4dd	ER-1	OPEN	ANSWERED	_index/candidates/er1-name-binding/er1_table.py
+ce72b767e	UQ-322	OPEN	PARTIAL	_index/candidates/uq322-residue-families/uq322_families.py
+4c0e3fc35	J-C	OPEN	SUPERSEDED	-
+3f61049ee	UQ-193	OPEN	PARTIAL	_index/candidates/uq193-release-sites/uq193_release_sites.py
+b69413c9c	FI-1	OPEN	ANSWERED	_index/candidates/fi1-offset-names/
+4dcf71b60	UQ-194	OPEN	ANSWERED	_index/candidates/uq194-event-entry/
+ba1da098f	BQ-9	OPEN	ANSWERED	_index/candidates/bq9-sync-arity/bq9_sync_arity.py
+2f036e408	UQ-196	PARTIAL	SUPERSEDED	-
+edd315c10	CG-6	OPEN	ANSWERED	_index/candidates/cg6-no-consumer/
+b4c9f8662	UQ-332	PARTIAL	ANSWERED	_index/candidates/uq332-no-reader/
+3e65d2391	UQ-322	PARTIAL	ANSWERED	_index/candidates/uq322-residue-families/uq322_families.py
+192da7da2	BC-1	PARTIAL	ANSWERED	_index/candidates/bc1-selector-enum/
+7f1f06958	CD-2	PARTIAL	SUPERSEDED	-
+f4550a7d2	UQ-314	PARTIAL	ANSWERED	_index/candidates/uq314-imgui-dormant/
+71859306c	BF-1	?Narrowed 2026-09-11 	ANSWERED	_index/candidates/bf1-opcode-semantics/README.md
+23f411c41	DM-2	PARTIAL	PARTIAL	_index/candidates/dm2-code27/
+282522927	UQ-46	PARTIAL	ANSWERED	_index/candidates/uq46-packet-ends/
+680159025	UQ-212	OPEN	OPEN	_index/candidates/uq212-class3/uq212_no_names.py
+4708d7310	UQ-146	PARTIAL	SUPERSEDED	-
+71a0ed9c0	FE-4	OPEN	ANSWERED	_index/candidates/fe4-untouched-ranges/
+c404f9ce9	DO-2	OPEN	ANSWERED	_index/candidates/do2-branching-readings/do2-branching-readings.tsv
+7fc12239d	Y-1	OPEN	ANSWERED	_index/candidates/y1-layout-key-uses/y1-layout-key-uses.tsv
+0e0c3bfd6	W-5	PARTIAL	ANSWERED	_index/candidates/w5-inverted-passes/
+a8f59e312	AR-5	OPEN	PARTIAL	_index/candidates/ar5-vtable-dispatch/
+9ec3636ef	X-8	OPEN	PARTIAL	_index/candidates/x8-library-versions/
+132ff4f44	BT-4	PARTIAL	ANSWERED	_index/candidates/bt4-event-motion-slots/
+635c174a9	UQ-204	PARTIAL	ANSWERED	_index/candidates/uq204-element-type-emits/uq204-element-type-emits.tsv
+3f9cd5db0	BB-1	PARTLY ANSWERED	ANSWERED	_index/candidates/bb1-render-object-methods/bb1-methods.tsv
+6d6fb9f4e	PA-1	PARTIAL	ANSWERED	_index/candidates/pa1-application-slot-dispatch/
+b5c784580	FJ-3	PARTLY ANSWERED	NO ADMISSIBLE SOURCE	_index/candidates/nas-package-4-2026-09-27/
+ce60b64dc	GA-1	PARTIAL	ANSWERED	_index/candidates/ga1-status-open-bytes/
+feba87373	UQ-133	PARTIAL	ANSWERED	_index/candidates/uq133-first-visit/
+fcc1e1d73	UQ-107	PARTIAL	ANSWERED	_index/candidates/uq107-action-flag-bits/
+47f4f86bf	WC-1	PARTIAL	ANSWERED	_index/candidates/wc1-eps-preset-fields/
+77caacac1	FJ-4	PARTIAL	ANSWERED	_index/candidates/fj4-display-record-readers/
+af306922a	G-5	PARTLY ANSWERED	ANSWERED	_index/candidates/g5-sequences-and-sync/g5_sequences_and_sync.py
+af306922a	UQ-80	PARTIAL	PARTIAL	_index/candidates/uq80-table-field-coverage/
+48217a442	UQ-213	OPEN	PARTIAL	_index/candidates/uq213-microprogram-draws/
+91b9669ea	UQ-215	PARTIAL	PARTIAL	_index/candidates/uq215-no-data-borne-packets/
+68e540a32	BE-6	PARTLY ANSWERED	PARTLY ANSWERED	_index/candidates/be6-two-pump-singletons/README-all-roles.md
+bb4d0dab9	DM-2	PARTIAL	NO ADMISSIBLE SOURCE	_index/candidates/nas-package-5-2026-09-27/
+aaa3ec221	UQ-191	PARTIAL	ANSWERED	_index/candidates/uq191-shadow-channels-pc/
+696f99305	UQ-193	PARTIAL	ANSWERED	_index/candidates/uq193-container-contract/
+061f2188c	UQ-68	PARTIAL	ANSWERED	_index/candidates/uq68-kind5-foecraft/
+d0420c96c	PC-1	PARTIAL	PARTIAL	_index/candidates/pc1-config-route/
+6956d4158	UC-2	PARTIAL	ANSWERED	_index/candidates/uc2-libvpx-dispatch/
+de6d5ed1b	BL-8	PARTIAL	PARTIAL	_index/candidates/bl8-b0-walkers/
+a94e63b6f	BQ-23	PARTIAL	PARTIAL	_index/candidates/bq23-tier6-b/
+ba6c129e3	BL-8	PARTIAL	NO ADMISSIBLE SOURCE	_index/candidates/bl8-b0-nas-review-opus/
+ba6c129e3	WC-1	ANSWERED	ANSWERED	_index/candidates/wc1-eps-preset-fields/
+163b88aae	X-8	PARTIAL	PARTIAL	_index/candidates/x8-jsonbox-062/
+6c92d15b2	UQ-38	PARTIAL	PARTIAL	_index/candidates/uq38-carry-criterion/
+8d69b47ec	T-9	OPEN	ANSWERED	_index/candidates/t9-crt-gfids/
+30a0eb723	BQ-23	PARTIAL	PARTIAL	_index/candidates/bq23-tier6-c/
+f3625d0dc	BQ-23	PARTIAL	ANSWERED	_index/candidates/bq23-tier6-d/
+03c573fe6	X-8	PARTIAL	NO ADMISSIBLE SOURCE	_index/candidates/nas-package-6-2026-09-27/
+03c573fe6	UQ-80	PARTIAL	SUPERSEDED	_index/candidates/register-triage/batch-K-scope-rulings.md

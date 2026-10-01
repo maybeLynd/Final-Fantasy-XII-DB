@@ -1,0 +1,9 @@
+# Allocator retry conditional return domain
+
+Question: does36A190's flag1 establish success-or-fatal/no-null return for the navigation builder, or does its local retry path still admit null when callback/reclaim retry conditions are clear? FABLE memory-page opening claims neverchecks actualarrival/allOOM instantclose; OPUS allocation/caller contracts consume native-return assumptions. Exact code and conditional boundaries, not runtime or actual failure.
+
+Method A: verified10B36A190,141B36A1A0,261B36BFE0 full logical code throughRET/tail. Primary original directcall and stack-arg writes, retryreturn CFG and selected final branch controls sufficient. Opaque callback36C03B, reclaim36AAD0/36ABE0 and allocator36BC60 are not executed; their state/results/preconditions independent. Existing arena selection semantics reused not recounted.
+
+Distinguish finalRAX0/nonnull and reclaimEDI0/nonzero, callbackESI0/nonzero. Static predicates should yield RETURN onnonnull; fornull RET iffEDI0 andESI0, otherwisebackedge36C013. Branch-flip control must reverse that final zero-callback decision and immutablebody identity refuses the onebytechangedsource. Verify original incoming fifth/sixth stack-slot read absence locally, no claim about native stackinspection/callbackeffects. Driver/rawsource before assertions; exactshared reviewed operandpolicy for memory roles. Bounded3bodies/finaldiamond, no generalobserver/CFGexport/census.
+
+Acceptance nonempty source matchingcertified73461d, complete boundeddecode, exactcaller flagsite/stackABI/branchtargets, decisive localreturn vsloop controls and documented opaque limits. Fail on any identity/coverage ambiguity. Successfulsource check not actualnull/OOM/crash, normalreachability or whole failure/lifetime policy. Ownerreview/consumer correction required. Cleanup reference/peers read only; PC OFF; S19budgetspent/extraunapproved; goalNOT_MET.

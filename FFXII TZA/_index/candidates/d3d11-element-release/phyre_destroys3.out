@@ -1,0 +1,7 @@
+PASS  E PShadowCaster +0x58 is built by the sampler's constructor body and destroyed by its destructor body
+PASS  L PLODGroup: m_levels destroyed at stride 0x38, then the +0x28 array (count +0x20) freed
+PASS  A 00639A60: construct gets the buffer, destroy gets buffer + [desc+0xF8]; PAnimationController's construct writes its own vtable at the buffer's +0
+PASS  D POctreeData, PScriptableComponent, PTriggerReceiverComponent, PInstancesComponent, PBlendableAnimationSource bodies
+PASS  Q the --patch generator's destroy text equals the store cell for all seven types (a row-only amendment fails)
+PASS  S seven destroy cells reduced; PShadowCaster +0x58 typed PSamplerStateD3D11 at its width; PLODGroup +0x20 re-cut; tiling kept
+FAILS 0

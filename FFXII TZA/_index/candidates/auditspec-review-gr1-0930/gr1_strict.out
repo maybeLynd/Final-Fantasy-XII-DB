@@ -1,0 +1,59 @@
+covering writes credited: 17
+   of which read-modify-write or other non-mov: none
+   00341669 in 00341600: mov dword ptr [r14 + 0xc], edi
+   00341A72 in 003419F0: mov dword ptr [r14 + 0xc], edi
+   00342807 in 00342770: mov dword ptr [rdi + 0xc], 0
+   0034293F in 00342910: mov byte ptr [rdi - 1], cl
+   003437E6 in 003437A0: mov dword ptr [r14 + 0xc], ebx
+   00343AC3 in 00343A30: mov dword ptr [rdi + 0xc], ebx
+   00343B8D in 00343B00: mov dword ptr [rsi + 0xc], r15d
+   0034AF69 in 0034AF50: mov qword ptr [rbx + 8], rax
+   003536CB in 003536B0: movss dword ptr [rdi + 0xc], xmm0
+   0035404B in 00354030: movss dword ptr [rdi + 0xc], xmm0
+   00354169 in 00354120: mov dword ptr [r14 + 0xc], edi
+   00354D1B in 00354D00: mov dword ptr [rdi + 0xc], eax
+   00354DE9 in 00354DA0: mov dword ptr [r14 + 0xc], edi
+   00357E82 in 00357DE0: movss dword ptr [rsi + 0xc], xmm8
+   0050CA74 in 0050CA40: mov qword ptr [rbx + 8], rax
+   0050D6B8 in 0050D660: mov qword ptr [rsi + 8], rax
+   0050E1CC in 0050E150: mov qword ptr [r14 + 8], rax
+== per command-read
+   0/736 poll   handler 00342CE0 read 0035806F in 00357F00 mov r8d, dword ptr [rsi + 0xc]           | local False | begin 00341600 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/1155 poll   handler 00342CE0 read 0035806F in 00357F00 mov r8d, dword ptr [rsi + 0xc]           | local False | begin 003419F0 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/555 result handler 00342F80 read 00342FB5 in 00342F80 mov edx, dword ptr [rbx + 0xc]           | local False | begin 00342770 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/555 result handler 00342F80 read 00342FE6 in 00342F80 mov edx, dword ptr [rbx + 0xc]           | local False | begin 00342770 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/1051 poll   handler 00344200 read 00344229 in 00344200 mov ecx, dword ptr [rbx + 0xc]           | local False | begin 00343A30 W=False -> NOT-COVERED
+   0/512 result handler 00344550 read 00344593 in 00344550 mov eax, dword ptr [rbx + 0xc]           | local False | begin 00343B00 W=False -> NOT-COVERED
+   0/868 result handler 00344AE0 read 00342FB5 in 00342F80 mov edx, dword ptr [rbx + 0xc]           | local False | begin 00344410 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/868 result handler 00344AE0 read 00342FE6 in 00342F80 mov edx, dword ptr [rbx + 0xc]           | local False | begin 00344410 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/1294 result handler 00344AE0 read 00342FB5 in 00342F80 mov edx, dword ptr [rbx + 0xc]           | local False | begin 003437A0 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/1294 result handler 00344AE0 read 00342FE6 in 00342F80 mov edx, dword ptr [rbx + 0xc]           | local False | begin 003437A0 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/1052 poll   handler 00345FB0 read 00344229 in 00344200 mov ecx, dword ptr [rbx + 0xc]           | local False | begin 00344D80 W=False -> NOT-COVERED
+   0/1053 poll   handler 00345FB0 read 00344229 in 00344200 mov ecx, dword ptr [rbx + 0xc]           | local False | begin 00345AE0 W=False -> NOT-COVERED
+   0/349 poll   handler 0034B350 read 0034B370 in 0034B350 mov rcx, qword ptr [rdi + 8]             | local False | begin 0034AF50 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/349 poll   handler 0034B350 read 0034B37B in 0034B350 mov rcx, qword ptr [rdi + 8]             | local False | begin 0034AF50 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/605 begin  handler 0034FB40 read 00357918 in 003578B0 movss xmm0, dword ptr [rdi + 0xc]        | local True | begin 0034FB40 W=True -> COVERED-LOCAL
+   0/608 begin  handler 0034FB40 read 00357918 in 003578B0 movss xmm0, dword ptr [rdi + 0xc]        | local True | begin 0034FB40 W=True -> COVERED-LOCAL
+   0/724 begin  handler 00350260 read 00357918 in 003578B0 movss xmm0, dword ptr [rdi + 0xc]        | local True | begin 00350260 W=True -> COVERED-LOCAL
+   0/726 begin  handler 00350260 read 00357918 in 003578B0 movss xmm0, dword ptr [rdi + 0xc]        | local True | begin 00350260 W=True -> COVERED-LOCAL
+   0/1331 poll   handler 00353AC0 read 00353AC0 in 00353AC0 movss xmm3, dword ptr [r8 + 0xc]         | local None | begin 003536B0 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/1332 poll   handler 003544F0 read 003544F0 in 003544F0 movss xmm2, dword ptr [r8 + 0xc]         | local None | begin 00354030 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/180 result handler 00354A20 read 00354A28 in 00354A20 mov r8d, dword ptr [r8 + 0xc]            | local None | begin 00354120 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/141 poll   handler 00355350 read 003553C0 in 00355350 mov r8d, dword ptr [rsi + 0xc]           | local False | begin 00354D00 W=True -> COVERED-BY-BEGIN (W(begin))
+   0/179 result handler 003556B0 read 003556B8 in 003556B0 mov r8d, dword ptr [r8 + 0xc]            | local None | begin 00354DA0 W=True -> COVERED-BY-BEGIN (W(begin))
+   def/43 poll   handler 0050CB00 read 0050CB0A in 0050CB00 mov rcx, qword ptr [r8 + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/44 poll   handler 0050CB00 read 0050CB0A in 0050CB00 mov rcx, qword ptr [r8 + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/87 poll   handler 0050CB00 read 0050CB0A in 0050CB00 mov rcx, qword ptr [r8 + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/93 poll   handler 0050CB00 read 0050CB0A in 0050CB00 mov rcx, qword ptr [r8 + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/94 poll   handler 0050CB00 read 0050CB0A in 0050CB00 mov rcx, qword ptr [r8 + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/43 result handler 0050CBD0 read 0050CBF7 in 0050CBD0 mov r9, qword ptr [rdi + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/93 result handler 0050CBD0 read 0050CBF7 in 0050CBD0 mov r9, qword ptr [rdi + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/44 result handler 0050CD80 read 0050CDA6 in 0050CD80 mov r9, qword ptr [rdi + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/94 result handler 0050CD80 read 0050CDA6 in 0050CD80 mov r9, qword ptr [rdi + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/87 result handler 0050CF20 read 0050CF47 in 0050CF20 mov r9, qword ptr [rdi + 8]              | local False | begin 0050CA40 W=False -> NOT-COVERED
+   def/0 begin  handler 0050D660 read 0050D6CA in 0050D660 mov rcx, qword ptr [rsi + 8]             | local True | begin 0050D660 W=True -> COVERED-LOCAL
+   def/0 poll   handler 0050D710 read 0050D728 in 0050D710 mov rbx, qword ptr [rbx + 8]             | local False | begin 0050D660 W=True -> COVERED-BY-BEGIN (W(begin))
+   def/0 result handler 0050D810 read 0050D82E in 0050D810 mov rdx, qword ptr [rbx + 8]             | local False | begin 0050D660 W=True -> COVERED-BY-BEGIN (W(begin))
+   def/167 poll   handler 0050E210 read 0050E214 in 0050E210 mov rcx, qword ptr [r8 + 8]              | local False | begin 0050E150 W=True -> COVERED-BY-BEGIN (W(begin))
+   def/167 result handler 0050E2D0 read 0050E2E7 in 0050E2D0 mov rcx, qword ptr [rax + 8]             | local False | begin 0050E150 W=True -> COVERED-BY-BEGIN (W(begin))
+tally: {'COVERED-BY-BEGIN (W(begin))': 19, 'NOT-COVERED': 14, 'COVERED-LOCAL': 5}

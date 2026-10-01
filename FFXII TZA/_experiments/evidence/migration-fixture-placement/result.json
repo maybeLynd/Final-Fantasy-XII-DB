@@ -1,0 +1,10 @@
+{
+  "status": "SCOPED_PRODUCER_GUARD_AND_READER_CORRECTION",
+  "original_run": "INVALID_TYPEERROR_RETAINED",
+  "retained_terminal_producer_controls": 4,
+  "fresh_corrected_reader_observations": 1,
+  "published_old_inputs": "PRESERVED",
+  "other_walkers": "NOT_CERTIFIED",
+  "independent_acceptance": "PENDING",
+  "full_L1_L2": false
+}

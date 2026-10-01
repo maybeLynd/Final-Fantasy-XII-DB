@@ -1,0 +1,96 @@
+PASS  K2 direction label rule
+PASS  K1 detail string truncation matches audit_crossrefs (4 + '(+N more)')
+PUBLISHABLE     00-Engine-Core-Runtime/Application-Root/game-application.md                                          pairs=6 bullets=6
+PUBLISHABLE     00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md                            pairs=9 bullets=8
+PUBLISHABLE     00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md                           pairs=12 bullets=12
+PUBLISHABLE     00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md                             pairs=7 bullets=6
+PUBLISHABLE     00-Engine-Core-Runtime/CONTRACT-boot-fixups.md                                                       pairs=7 bullets=6
+PUBLISHABLE     00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md                                             pairs=8 bullets=1
+PUBLISHABLE     00-Engine-Core-Runtime/CONTRACT-transform-primitives.md                                              pairs=3 bullets=3
+PUBLISHABLE     00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md                                  pairs=2 bullets=2
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/ARM-CATALOGUE-WORK-DIVISION.md                       pairs=2 bullets=1
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md                   pairs=4 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md                   pairs=8 bullets=8
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md                  pairs=4 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md                 pairs=2 bullets=2
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md                 pairs=2 bullets=2
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-F-ids-172-203.md                 pairs=5 bullets=5
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-G-ids-204-235.md                 pairs=4 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md                 pairs=4 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-I-ids-268-293.md                 pairs=3 bullets=3
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md                             pairs=2 bullets=2
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md                 pairs=10 bullets=10
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md                          pairs=4 bullets=1
+PUBLISHABLE     00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md                            pairs=8 bullets=8
+PUBLISHABLE     00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md                                          pairs=16 bullets=16
+PUBLISHABLE     00-Engine-Core-Runtime/Object-Model/rtti-vtable-object-model.md                                      pairs=5 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/Object-Model/vtable-method-index.md                                           pairs=7 bullets=6
+PUBLISHABLE     00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md    pairs=6 bullets=6
+FACTS-VERIFIED  00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md       pairs=5 bullets=5  FLAGS: V5 InputGameplay: every listed substantive edge calls a >40-caller helper (helper-only crossing?)
+FACTS-VERIFIED  00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md                       pairs=17 bullets=17  FLAGS: V5 Movement: every listed substantive edge calls a >40-caller helper (helper-only crossing?) | V5 InputGameplay: every listed substantive edge calls a >40-caller helper (helper-only crossing?)
+PUBLISHABLE     00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md         pairs=6 bullets=5
+PUBLISHABLE     00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md                  pairs=4 bullets=3
+FACTS-VERIFIED  00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md                    pairs=6 bullets=5  FLAGS: V5 Script_VM_Native_Bridge: every listed substantive edge calls a >40-caller helper (helper-only crossing?) | V5 World: every listed substantive edge calls a >40-caller helper (helper-only crossing?)
+PUBLISHABLE     00-Engine-Core-Runtime/Shared-Transform-Workbench/the-workbench-has-a-save-and-restore-and-nine-functions-use-it.md pairs=4 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md                   pairs=3 bullets=3
+PUBLISHABLE     00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md                pairs=5 bullets=5
+PUBLISHABLE     00-Engine-Core-Runtime/duplicated-function-names-and-how-to-resolve-them.md                          pairs=7 bullets=6
+PUBLISHABLE     00-Engine-Core-Runtime/the-all-ones-empty-convention.md                                              pairs=8 bullets=7
+PUBLISHABLE     00-Engine-Core-Runtime/the-encoded-id-class-registry.md                                              pairs=11 bullets=10
+PUBLISHABLE     00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md                                  pairs=6 bullets=4
+PUBLISHABLE     00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md                              pairs=12 bullets=12
+PUBLISHABLE     00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md                                              pairs=7 bullets=3
+PUBLISHABLE     01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md                                       pairs=2 bullets=2
+PUBLISHABLE     01-Script-VM-Native-Bridge/Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md pairs=2 bullets=2
+PUBLISHABLE     01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md            pairs=4 bullets=4
+PUBLISHABLE     01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md pairs=2 bullets=2
+PUBLISHABLE     01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md      pairs=5 bullets=3
+PUBLISHABLE     01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md                       pairs=6 bullets=4
+PUBLISHABLE     01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md      pairs=3 bullets=2
+PUBLISHABLE     01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md                    pairs=3 bullets=1
+PUBLISHABLE     01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md                               pairs=9 bullets=7
+PUBLISHABLE     01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md            pairs=8 bullets=8
+PUBLISHABLE     01-Script-VM-Native-Bridge/Verb-Dispatch/the-shape-of-the-verb-population.md                         pairs=8 bullets=8
+PUBLISHABLE     01-Script-VM-Native-Bridge/Verb-Dispatch/what-each-script-verb-touches.md                            pairs=7 bullets=7
+PUBLISHABLE     01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md                                pairs=3 bullets=3
+PUBLISHABLE     01-Script-VM-Native-Bridge/scriptvm-native-dispatch-table.md                                         pairs=9 bullets=9
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md    pairs=2 bullets=2
+FACTS-VERIFIED  02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/hchk-hctg-hdat-handbook-indexes.md             pairs=20 bullets=20  FLAGS: V5 UI: every listed substantive edge calls a >40-caller helper (helper-only crossing?) | V5 Save_Load_Settings: every listed substantive edge calls a >40-caller helper (helper-only crossing?)
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md                 pairs=4 bullets=1
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/loader-bound-bin-families.md                   pairs=3 bullets=3
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md                      pairs=1 bullets=1
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/tim2-images-and-the-seven-slot-registry.md     pairs=2 bullets=2
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/unnamed-bin-families.md                        pairs=1 bullets=1
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ah-asset-header-manifests.md                   pairs=1 bullets=1
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md                  pairs=2 bullets=1
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/Standard-Formats/shipped-standard-formats.md                          pairs=4 bullets=4
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/area-nmb-index.md       pairs=3 bullets=3
+FACTS-VERIFIED  02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md    pairs=8 bullets=8  FLAGS: V5 UI: every listed substantive edge calls a >40-caller helper (helper-only crossing?)
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md pairs=13 bullets=13
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md    pairs=3 bullets=2
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md pairs=1 bullets=1
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md        pairs=9 bullets=9
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md             pairs=6 bullets=6
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md                               pairs=6 bullets=6
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/resource-section-addressing.md                                        pairs=3 bullets=3
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md               pairs=4 bullets=4
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md                 pairs=3 bullets=3
+PUBLISHABLE     02-Resource-And-Asset-Pipeline/the-resource-request-queue.md                                         pairs=2 bullets=2
+PUBLISHABLE     25-EBP-Script-Container/Container/ebp2-container.md                                                  pairs=8 bullets=8
+PUBLISHABLE     25-EBP-Script-Container/README.md                                                                    pairs=1 bullets=1
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-002-text.md                                                 pairs=3 bullets=3
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-004.md                                                      pairs=3 bullets=3
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-006.md                                                      pairs=3 bullets=3
+FACT-MISMATCH   25-EBP-Script-Container/Sections/section-008.md                                                      pairs=2 bullets=4  ISSUES: V6 bullet Presentation has no generated pair | V6 bullet Resource has no generated pair | V6 registry row Presentation has no generated pair
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-009.md                                                      pairs=3 bullets=3
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-010.md                                                      pairs=5 bullets=5
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-011.md                                                      pairs=2 bullets=2
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-012.md                                                      pairs=2 bullets=2
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-014.md                                                      pairs=5 bullets=5
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-016.md                                                      pairs=8 bullets=7
+PUBLISHABLE     25-EBP-Script-Container/Sections/section-019.md                                                      pairs=4 bullets=4
+PUBLISHABLE     26-PKFL-Package-Container/Container/pkfl-package-container.md                                        pairs=5 bullets=5
+TOTAL {'residual pairs (no bullet, no row)': 16, 'PUBLISHABLE': 84, 'flags': 8, 'FACTS-VERIFIED': 5, 'FACT-MISMATCH': 1}
+SELECTION RULES {'registry detail in sorted order': 257, 'registry rows': 461, 'inbound first-3 = frequency order': 166, 'inbound lists': 322, 'V7 named bodies checked': 961, 'V7 substantive edges checked': 996, 'substantive = first sorted hits': 167, 'substantive lists': 377}
+BYTE-FOR-BYTE REPRODUCIBLE PAGES 0 of 90: every CLIENT / SERVICE bullet carries a chosen body list and a chosen 'Substantive edges' list that no ordering of the hit set reproduces (SELECTION RULES above)
+FAILS 0

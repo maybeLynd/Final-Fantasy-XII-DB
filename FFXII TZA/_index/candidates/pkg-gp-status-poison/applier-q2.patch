@@ -1,0 +1,31 @@
+diff --git a/Database/FFXII TZA/07-Combat-Action/applying-a-result-to-a-target.md b/Database/FFXII TZA/07-Combat-Action/applying-a-result-to-a-target.md
+index 550ce744b..781754227 100644
+--- a/Database/FFXII TZA/07-Combat-Action/applying-a-result-to-a-target.md	
++++ b/Database/FFXII TZA/07-Combat-Action/applying-a-result-to-a-target.md	
+@@ -61,7 +61,7 @@ steal/effect selectors and gil use zero. **All-`FF` is not neutral**: it selects
+ | `+0x54` | **32-bit mask of statuses to apply**, with per-status parameters at `+0x5C` (dword each) and `+0xDC` (`s16` each) |
+ | `+0x58` | **32-bit remove mask over the same status IDs**, parameters zeroed, mode 0 |
+ | `+0x3C` (2 bytes) · `+0x3E` (4 bytes) | mutable-layer **set** (mode 2) and **clear** (mode 0) respectively |
+-| `+0x42 … +0x50` (8 × `s16`) | **written straight into the target's `+0x17C` array** — the status duration timers |
++| `+0x42 … +0x50` (8 × `s16`) | **written straight into the target's `+0x17C` array** — ~~the status duration timers~~ the eight effect-slot timers (stage 3's countdown, keyed by the effect table; not the 32 statuses' durations, which are `+0xBC`) *(renamed 2026-09-29, FABLE; `_index/candidates/pkg-gp-status-poison/timers.md`)* |
+ | `+0x24` / `+0x2A` | the target's two applied numbers |
+ | `+0x20` / `+0x28` | **the source's two numbers, in the same call** |
+ | `+0x1D` (`s8`) | a **multiplier** — applied as `target[+0x28] × value` |
+@@ -136,7 +136,7 @@ two sides everywhere in this engine:
+ |---|---|
+ | Are `+0x54` and `+0x58` two halves of one 64-bit mask? | **No** — different loops, different call arguments (`+0x58`'s pass parameters `0, 0` and a different mode), and each is tested against `0` separately before its loop. |
+ | Is `-1` universally a sentinel? | **No (SECTION-01 correction).** Copy loops skip all negative values; selected scalar fields skip `-1`; masks and presence fields use zero. The old all-ones neutral conclusion was false. |
+-| Does the `+0x42 …` block really write the status timers? | It writes `target + 0x17C … +0x18A` — **the array a separate document established as the status duration timers**, decremented one step per tick. Two independent reads, same array. |
++| Does the `+0x42 …` block really write the status timers? | It writes `target + 0x17C … +0x18A` — **the array a separate document established as ~~the status duration timers~~ the eight effect-slot timers** *(renamed 2026-09-29, FABLE; `_index/candidates/pkg-gp-status-poison/timers.md`)*, decremented one step per tick. Two independent reads, same array. |
+ | Is `r14d` a return value? | **No** — the function returns `void`; it is consumed only by the final `0030FED0` guard. |
+ | Could the source-side calls be the target's, misread? | They are in a `param_2 != 0` block using `+0x20`/`+0x28` and pass **`0` where the target block passes the source** — a distinct argument shape, not a repeat. |
+ 
+@@ -178,7 +178,7 @@ the stats offsets the BKBI record's (unit `+0x698`), unit offsets the battle uni
+ | 12 | `003116A6`–`003116E0` | `+0x1D != 0` | `BattleStats_ModifySecondaryResource(targetStats, targetStats->w_28 × (s8)+0x1D, flags)` — **the secondary pool `+0x06` changed by `+0x1D` whole max-MP units** (`+0x28` is max MP; the pool is the charge store kind-5 / 6 actions spend, `CS-3`), so `+0x1D` is a signed charge count; flags (~~`!`b8→4, b11→5~~ **`!`b12→4, b16→5** — the same two as step 11, `003116B8`–`003116C9`; and `0x400` when the multiplier is negative) |
+ | 13 | `003116F3`–`00311778` | source stats | **the source's own two numbers**: `+0x2C` bit 7 → HP on the source with value `+0x20`, no source, flags (~~`!`b1→4, `!`b11→6, b4→5~~ **`!`b5→4, `!`b17→6, b9→5**, `0031170A`–`00311729`), absolute when bit 1 (`00311739 call r12`); bit 13 → MP on the source with `+0x28`, flags (~~`!`b7→4, b10→5~~ **`!`b11→4, b15→5**, `00311753`–`0031176A`), absolute when bit 2 (`00311775 call r15`) — corrected 2026-09-11 |
+ | 14 | `00311781`–`00311819` | target stats | ~~statuses to remove~~ **status-layer bytes**: `+0x3C`, `+0x3D` (`0xFF` = none) → `BattleStats_ModifyStatusLayerStateAndProcessSideEffects(targetStats, byte, -1, 0x200 \| (+0x140 bit 6 ? 2 : 0), mode 2)`; `+0x3E`–`+0x41` → the same with `0`, `0x200 \| (bit 7 ? 2 : 0)`, mode `0`. `r14d = 1` each. **Mode 2 sets and mode 0 clears the mutable layer `+0x68`** ([the status write](../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md) §2.8), so these are **two layer effects to add and four to remove** |
+-| 15 | `0031181B`–`0031189B` | — | eight `s16` at `+0x42`–`+0x50` → target `+0x17C`–`+0x18A` when non-negative — the status timers |
++| 15 | `0031181B`–`0031189B` | — | eight `s16` at `+0x42`–`+0x50` → target `+0x17C`–`+0x18A` when non-negative — ~~the status timers~~ the effect-slot timers *(renamed 2026-09-29, FABLE; `_index/candidates/pkg-gp-status-poison/timers.md`)* |
+ | 16 | `0031189B`–`00311915` | target stats byte `+5 == 1` | four foe stat deltas: `+0x11E` → `w_08 += v − b_2A`, `+0x120` → `w_0A += v − b_2B`, `+0x122` → `w_12 += v − b_2F`, `+0x124` → `w_14 += v − b_30`; `r14d = 1` each |
+ | 17 | `00311919`–`00311A7E` | target unit spawn-backed | record `+0x128`–`+0x12B` OR into spawn-record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A`; `+0x12C`–`+0x12F` AND-NOT the same four; each also `spawnRecord->d_00 \|= 0x80`; `r14d = 1` each |
+ | 18 | `00311A84`–`00311A9E` | `+0x08 != 0` | **gil**: `GameState_SetGil` (`00254EE0`) of `max(GameState_GetGil() (`00253690`) − value, 0)` — a deduction, floored at zero. **Only one recipe reaches it** (2026-09-12): step slot 163 (`0038F6F0`) is the whole committed list of recipe 99, action `0x103` "gil bug" — the trap whose line is "… Your pockets feel lighter" — and writes `(1 + mt19937 % actionRow[+0x10]) × (1 + mt19937 % target level +0x1C2)`, `0` when the party holds no gil; the other writer, slot 18, fills a *preview* record that never reaches this applier (the gil throw is charged by Consume from unit `+0xE54`) |

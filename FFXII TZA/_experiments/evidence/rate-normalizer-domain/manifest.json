@@ -1,0 +1,95 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3739,
+      "sha256": "5a626debfa75ef3be2dca1e1cc03e082d6435271fef73ae974b98ff14b12504d"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 9457,
+      "sha256": "7fc4a0abc0f2469b84c19c175f14de166c87149f1d605f2d2a71dbac6cf48c72"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2005,
+      "sha256": "d11204da33695618869661a0f07fc7934d61d0f43daeac54c11df3a5d53bb9c5"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1502,
+      "sha256": "a21f1d9443b8f7dd5c3edf38199af25c3f60aced996a580c1f962a4894a3b6d9"
+    },
+    {
+      "path": "isa.json",
+      "bytes": 892,
+      "sha256": "2ab0b3f0567a993abdb6e95cb32eb1e07f9ed94c61a3bb6312b55858a7481590"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1994,
+      "sha256": "86de5fe681afa8fcb50cf64595e1d0573e5f14f94b437d0b79d754808ee94534"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3987,
+      "sha256": "397d642814169f174a9567096003f0b63dd760726b2c014efbdd14f7da22b324"
+    },
+    {
+      "path": "result.json",
+      "bytes": 9856,
+      "sha256": "a4514f85c288ff528bc15d67bb046b7231c7be5ed77464ddf7901254eb8d7c55"
+    },
+    {
+      "path": "retained/animation-mechanism.md",
+      "bytes": 34163,
+      "sha256": "b2afcc370237494bbc3754d94f91fbb927d268e6a43ccf2839627390cb05b058"
+    },
+    {
+      "path": "retained/caller-identities.json",
+      "bytes": 763,
+      "sha256": "602124ad22bee44e3c083f0bf41ef48221259d64833d529c640085dd467757a4"
+    },
+    {
+      "path": "retained/catalog-identity.json",
+      "bytes": 821,
+      "sha256": "1255154947e78f72cd012716d264e8562cb8297eac708d20c6dbc73fdfbf4ad2"
+    },
+    {
+      "path": "retained/field-preimage.json",
+      "bytes": 2506,
+      "sha256": "e361a8a4d518914e9fe975429cac8961f22bae46f1b5af192b49bf360c6354ee"
+    },
+    {
+      "path": "retained/one.bin",
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "path": "retained/shared-neighbours.md",
+      "bytes": 36796,
+      "sha256": "a1d28b4753c2ca850b5c3addcbdf1e0fb4f90cbd082118d031c9668121c0a58b"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.bin",
+      "bytes": 37,
+      "sha256": "749953009c38a262b64c21f7bed7057d31ff25de5d32469b00ec0e55382bb5fa"
+    },
+    {
+      "path": "retained/widget-contract.md",
+      "bytes": 86602,
+      "sha256": "2e79681927a6a1460807bdcfc6b7c52ff09989e71357a345718d7edcc8fd5f03"
+    }
+  ],
+  "limits": "Whole37B and primary COMISS ISA conditional predictions only; no original/native/emulator/live or actual rate/MXCSR/exception continuation"
+}

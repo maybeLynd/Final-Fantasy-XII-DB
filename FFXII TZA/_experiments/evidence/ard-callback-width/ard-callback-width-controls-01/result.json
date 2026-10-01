@@ -1,0 +1,51 @@
+{
+  "status": "PASS_ACTUAL_ARD_WIDTH_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "9228986e0b014bf40bcc9dcadafcd005567600089975ad2ed6ed085c16bef3b9",
+  "positive_reused": {
+    "path": "ard-callback-width-result-01.json",
+    "sha256": "c5a3afd211209675930b7d3b2879e5f4dc42f497a0d9b94b5bd96133b4455eb9"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ard-callback-width.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "required ARD capture invocation failed or stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "wrong-root-input",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ard-callback-width.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\wrong-root-input\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\wrong-root-input"
+      ],
+      "exit": 1,
+      "expected_error": "required original ARD identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-loader-tail",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ard-callback-width.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\missing-loader-tail\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\missing-loader-tail"
+      ],
+      "exit": 1,
+      "expected_error": "required original ARD identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "6ca37a4813480e21d28831a716e904946373a47dbbcd95ae30f0192a41d5f842",
+  "limits": "Actual producer prerequisite/identity controls, not new original execution or independent semantic acceptance"
+}

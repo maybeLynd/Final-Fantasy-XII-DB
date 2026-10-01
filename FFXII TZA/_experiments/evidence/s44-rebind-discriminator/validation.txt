@@ -1,0 +1,6 @@
+Exact source identity and complete named spans verified; registry nodes: 240
+S44 distinct nonzero integers: 47 named at same integer: 47
+The integer join does not prove the meaning of the S44 slots or a consumer relationship.
+Rival framing verified: all95 old records borrow the next node name and are high by one.
+Bounded active source codes: 42 intersection: [28, 30, 31, 35, 44, 46, 50, 51, 53, 64, 65, 66, 67, 77, 78, 91, 92, 93, 94]
+Retained live control, re-reduced only: {"baseline": 35, "corresponding_code": 77, "empty_samples_rejected": true, "held": 34, "no_detection_rejected": true, "observed_index": 49, "pid": 22784, "positive": 32, "release": 1, "sha256": "3c5ad2507a7fb4692d8b398518a74ddd8465ec2c4aa61889e3d62867a0f4a02b"}

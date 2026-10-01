@@ -1,0 +1,36 @@
+00247A11 base 0208ED68 stride 0x10  target-base 0xd028c (53288 iterations to reach)  exits: 00247A19 inc r8d | 00247A2A cmp r8d, ebx
+0024CA40 base 02091150 stride 0x40  target-base 0xcdea4 (13178 iterations to reach)  exits: 0024CA63 sub rcx, 1
+0024CF25 base 02092664 stride 0x4  target-base 0xcc990 (209508 iterations to reach)  exits: 0024CF27 test ecx, ecx | 0024CF36 sub rdi, 1
+0024EBD0 base 020926A0 stride 0x4  target-base 0xcc954 (209493 iterations to reach)  exits: 0024EBD0 cmp dword ptr [rbx], esi | 0024EBE1 sub rdi, 1
+00255720 base 02092810 stride 0xbb0  target-base 0xcc7e4 (279 iterations to reach)  exits: 0025576D sub rsi, 1 | 0025577A cmp rdi, r14
+00259670 base 02098428 stride 0x860  target-base 0xc6bcc (379 iterations to reach)  exits: 002597B9 cmp rdi, rbp
+00259EF0 base 02097304 stride 0x110  target-base 0xc7cf0 (3008 iterations to reach)  exits: 00259F3F cmp rdi, rbp
+0025A010 base 02097D40 stride 0x860  target-base 0xc72b4 (380 iterations to reach)  exits: 0025A093 cmp rbx, rdi
+00266EF0 base 02098E20 stride 0x288  target-base 0xc61d4 (1252 iterations to reach)  exits: 00266F16 inc edi | 00266F34 cmp edi, 5
+0026C980 base 02099014 stride 0x288  target-base 0xc5fe0 (1251 iterations to reach)  exits: 0026C9A5 cmp rax, rcx
+0026EA13 base 0209A3E0 stride 0x8  target-base 0xc4c14 (100738 iterations to reach)  exits: 0026EA1E cmp rsi, rdi
+0026EA30 base 0209A4E0 stride 0x8  target-base 0xc4b14 (100706 iterations to reach)  exits: 0026EA3B cmp rdi, rsi
+0026EA47 base 0209A5E0 stride 0x8  target-base 0xc4a14 (100674 iterations to reach)  exits: 0026EA52 cmp rsi, rdi
+00270F80 base 0209A770 stride 0x40  target-base 0xc4884 (12578 iterations to reach)  exits: 00270FA3 sub r10, 1
+00291CB0 base 0209BEA0 stride 0x10  target-base 0xc3154 (49941 iterations to reach)  exits: 00291D09 inc ebx | 00291D12 cmp ebx, 0xa
+002962F4 base 0209BFBE stride 0xc0  target-base 0xc3036 (4160 iterations to reach)  exits: 002962F4 test byte ptr [rbx - 0x58], 2 | 002962FA test byte ptr [rbx], 2 | 00296307 test rax, rax | 00296338 cmp rbx, rsi
+002A8520 base 0209CC18 stride 0x8  target-base 0xc23dc (99451 iterations to reach)  exits: 002A852F cmp rbx, rsi
+002C8F10 base 0209E640 stride 0x10  target-base 0xc09b4 (49307 iterations to reach)  exits: 002C8F36 test edi, edi | 002C8F4F test edi, edi | 002C8FC5 sub rcx, 1 | 002C8FCF sub ebx, 0x880 | 002C9013 inc edi | 002C9019 cmp edi, 2
+002DE3E0 base 0215EF52 stride 0x8  target-base 0xa2 (20 iterations to reach)  exits: 002DE3E2 inc ecx | 002DE3F4 cmp ecx, 0x10
+00255820 base 02092C94 stride 0xbb0  target-base 0xcc360 (279 iterations to reach)  exits: 0025584A cmp rax, rcx
+00196D50 base 01DF1788 stride 0x15c  target-base 0x1107c (200 iterations to reach)  exits: 00196DB8 cmp rax, r8
+0015C2D0 base 01DF161C stride 0x80  target-base 0x111e8 (547 iterations to reach)  exits: 0015C31D sub r8, 1
+0015C370 base 01DF1778 stride 0x80  target-base 0x1108c (545 iterations to reach)  exits: 0015C3BD sub r8, 1
+0015C410 base 01DF18D4 stride 0x80  target-base 0x10f30 (542 iterations to reach)  exits: 0015C45D sub r8, 1
+0015C4B0 base 01DF1A30 stride 0x80  target-base 0x10dd4 (539 iterations to reach)  exits: 0015C4FD sub rdx, 1
+001962B0 base 01DF1738 stride 0x80  target-base 0x110cc (545 iterations to reach)  exits: 001962FD sub rax, 1
+00196350 base 01DF1894 stride 0x80  target-base 0x10f70 (542 iterations to reach)  exits: 0019639D sub rax, 1
+001963F0 base 01DF19F0 stride 0x80  target-base 0x10e14 (540 iterations to reach)  exits: 0019643D sub r8, 1
+00196D50 base 01DF1788 stride 0x15c  target-base 0x11088 (200 iterations to reach)  exits: 00196DB8 cmp rax, r8
+0015C2D0 base 01DF161C stride 0x80  target-base 0x111f4 (547 iterations to reach)  exits: 0015C31D sub r8, 1
+0015C370 base 01DF1778 stride 0x80  target-base 0x11098 (545 iterations to reach)  exits: 0015C3BD sub r8, 1
+0015C410 base 01DF18D4 stride 0x80  target-base 0x10f3c (542 iterations to reach)  exits: 0015C45D sub r8, 1
+0015C4B0 base 01DF1A30 stride 0x80  target-base 0x10de0 (539 iterations to reach)  exits: 0015C4FD sub rdx, 1
+001962B0 base 01DF1738 stride 0x80  target-base 0x110d8 (545 iterations to reach)  exits: 001962FD sub rax, 1
+00196350 base 01DF1894 stride 0x80  target-base 0x10f7c (542 iterations to reach)  exits: 0019639D sub rax, 1
+001963F0 base 01DF19F0 stride 0x80  target-base 0x10e20 (540 iterations to reach)  exits: 0019643D sub r8, 1

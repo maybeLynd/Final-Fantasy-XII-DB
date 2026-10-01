@@ -1,0 +1,8 @@
+I1_constructor_field_list          PASS  over pools filled 0xAA and 0x55, 0032E450 changes only +0x10..+0x21 (links, state, kind), +0x28..+0x2B, +0x58..+0x5B (= slot index) and +0x64..+0x67 (= -1) in every slot; every other byte survives
+I4_counter_wrap_signed             PASS  counter 0xFFFFFF: id = (0xFFFFFF << 6) + slot in 32 bits, then the counter resets to 1 (next id (1 << 6) + slot). A corrupted 0x7FFFFFFF increments to 0x80000000 and 0x80000005 to 0x80000006: the compare is signed (cmovg), not a clamp
+I6_offset_truncates_toward_zero    PASS  the slot's +0x2C is the descriptor offset truncated TOWARD ZERO to a 0x800 multiple: 0x1234 -> 0x1000, -1 -> 0, -0x801 -> -0x800; the extremes do not overflow
+I7_recycle_does_not_sanitize       PASS  0032EC40 changes only the recycled slot's links (+0x10..+0x1F) and id (+0x64 = -1), plus neighbours' links; kind, index, byte count, offset, callbacks, destination and an unobserved planted qword at +0x68 all survive
+ok
+I2_every_slot_on_exactly_one_list_through_enqueues_and_recycles      PASS
+I3_65th_request_stalls_through_the_pump_and_returns_a_slot           PASS
+ALL PASS {"returned": true, "stopped_at": [], "id": "1040", "pacer_polls": 1, "pump_entered": 1, "full_before": {"free": 0, "pending": 64}, "after": {"free": 63, "pending": 1, "disjoint_cover": true}}

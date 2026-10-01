@@ -1,0 +1,14 @@
+SURVIVES  V0  all nineteen sizes as cited
+SURVIVES  V1  table ['00258F78', '00258F9F', '00258F9F', '00258FA8', '00258FE3', '00258FF1']; five marker texts; layer 4's 0x3C00 / 0x3700 bracket and extra call; layer 5's extra call before its marker
+SURVIVES  V2  group order [2, 3, 5, 6, 9, 1, 7, 4]; drain 003A3740; both waits loop to the test (00259052 -> 00259050, 002590D7 -> 002590D5)
+SURVIVES  V3  020910F0 heads, the group gate, 02092700 published and reset to -1, +0x348 / +0x3A8 / +0x378 >> 12, gate(container, 1), make current
+SURVIVES  V4  8 refused; bit (group - 1) for 1-4 and 7; 02F8F29E for 2; 02EBEF68 for 5
+SURVIVES  V5  ten stores (container, resource, eight pointers); +0x848 -> 02EBEF90, +0x1B8 -> 02EBEF88; tail-jump 0024FCF0
+SURVIVES  V6  kinds 2..9 -> ['0024D7CD', '0024D87B', '0024D8F4', '0024D7FC', '0024D7FC', '0024D90F', '0024D90F', '0024D7FC']
+SURVIVES  V7  layer 3 calls ['001EB150', '00862C10', '0039D570', '0039D3F0', '00862FD0', '00863010', '00862E50', '00862E90', '003A3990', '0016D6A0', '00862C30', '001EB110']
+SURVIVES  V8  forwarders, the row reset, the latch, the submit (004758E0, 0x438), the reseed, and 001B2530's stores
+SURVIVES  V9  (REFUTES) the zeroed table is 0209E6C0 + id * 48; the notify gets the caller's rdx / r8 and r9 = 0
+SURVIVES  V10  (REFUTES) 0017FEE0 vs 0017FE60 is chosen by 0017D980's answer (001B2583); edi > 5 (setg) is the argument; emit 2 always 0017FEE0, emit 3 0017FDE0
+SURVIVES  V11  (REFUTES) 00258EE0 calls 0039CFF0 at ['00258FBB', '00258FDC'] only, inside layer 4's arm; 002D7D90 gets r8 = 0x100, r9 = 0xE0, fifth argument 1
+SURVIVES  V12  (REFUTES 'on reload') 0024C640's one call site in 00258EE0 is ['00258F8B'], the shared tail after the grouped pass that layers ['1', '2', '4'] reach on every request; 002590F0 also calls it
+FAILS 0

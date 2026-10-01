@@ -1,0 +1,61 @@
+S1 call 00305CC0 at 00305BA5: rdx from 00305B95 mov rdx, qword ptr [rbx + 0x6e8]; jumped-in sources none
+S1 call 00305CC0 at 00305C1A: rdx from 00305C0C test rdx, rdx; jumped-in sources none
+S1 call 00305CC0 at 00305C58: rdx from 00305C3E mov rdx, qword ptr [rbx + 0x6e0]; jumped-in sources ['00305BDE lea rdx -> 01EEC370, jmp 00305C52']
+S1 call 00305CC0 at 00305C71: rdx from 00305C61 mov rdx, qword ptr [rbx + 0x6f0]; jumped-in sources ['00305B89 lea rdx -> 01EEC320, jmp 00305C68']
+   built-in set 01EEC320: 2 records
+      01EEC340 action 0096 entries [('0x1', 0, '0x0', 0), ('0x0', 0, '0x0', 0), ('0x0', 0, '0x0', 0)]
+      01EEC358 action 4125 entries [('0x0', 0, '0x0', 0), ('0x0', 0, '0x0', 0), ('0x0', 0, '0x0', 0)]
+   built-in set 01EEC370: 1 records
+      01EEC390 action 0096 entries [('0x1', 0, '0x0', 0), ('0x0', 0, '0x0', 0), ('0x0', 0, '0x0', 0)]
+S2 qword stores to [reg + 0x6E0/0x6E8/0x6F0/0x6F8]: 51
+   001D0BFC in 001D0390  +0x6E0  mov qword ptr [rdi + 0x6e0], rax
+   001D0C0A in 001D0390  +0x6E8  mov qword ptr [rdi + 0x6e8], rax
+   001D0EE2 in 001D0390  +0x6F0  mov qword ptr [rdi + 0x6f0], rax
+   001D0EFE in 001D0390  +0x6F8  mov qword ptr [rdi + 0x6f8], rax
+   00236BAF in 00236A60  +0x6F8  mov qword ptr [rdi + 0x6f8], rsi
+   00236BB6 in 00236A60  +0x6F0  mov qword ptr [rdi + 0x6f0], rsi
+   00236BBD in 00236A60  +0x6E8  mov qword ptr [rdi + 0x6e8], rsi
+   00236BC4 in 00236A60  +0x6E0  mov qword ptr [rdi + 0x6e0], rsi
+   00239081 in 0023904E  +0x6E0  mov qword ptr [rbx + 0x6e0], rax
+   00239093 in 00239093  +0x6E0  mov qword ptr [rbx + 0x6e0], rax
+   0023A95E in 0023A570  +0x6E0  mov qword ptr [rdi + 0x6e0], rax
+   0023AB9F in 0023A570  +0x6E0  mov qword ptr [rdi + 0x6e0], rax
+   0023ABB5 in 0023A570  +0x6F0  mov qword ptr [rdi + 0x6f0], rax
+   002EE5E5 in 002EE53B  +0x6E0  mov qword ptr [rax + 0x6e0], 1
+   002FE08E in 002FE025  +0x6E0  mov qword ptr [rbx + 0x6e0], rdi
+   002FED9E in no-pdata  +0x6E8  mov qword ptr [rcx + 0x6e8], rax
+   002FEE05 in no-pdata  +0x6E8  mov qword ptr [rcx + 0x6e8], rax
+   002FF9CC in 002FEF30  +0x6F8  mov qword ptr [r14 + 0x6f8], rbp
+   00300155 in 00300140  +0x6F8  mov qword ptr [rbx + 0x6f8], r8
+   00300E68 in 00300E40  +0x6F8  mov qword ptr [rdi + 0x6f8], rsi
+   0030119C in 00301166  +0x6F8  mov qword ptr [rbx + 0x6f8], rdi
+   0030126B in 00301166  +0x6E8  mov qword ptr [rbx + 0x6e8], rax
+   00305C25 in 00305AB0  +0x6F8  mov qword ptr [rbx + 0x6f8], rax
+   00305C45 in 00305AB0  +0x6F8  mov qword ptr [rbx + 0x6f8], rax
+   0030AFB2 in 0030AF30  +0x6F8  mov qword ptr [rbx + 0x6f8], r8
+   0030F331 in 0030F2D0  +0x6E8  mov qword ptr [rdx + 0x6e8], rax
+   00311DE1 in 00311CF0  +0x6F8  mov qword ptr [rbx + 0x6f8], rax
+   00313458 in 00313400  +0x6E8  mov qword ptr [rbx + 0x6e8], rax
+   003134DA in 00313480  +0x6E8  mov qword ptr [rbx + 0x6e8], rax
+   0035E100 in 0035E100  +0x6F0  mov qword ptr [rsp + 0x6f0], rdi
+   0035E108 in 0035E100  +0x6E8  mov qword ptr [rsp + 0x6e8], r12
+   0035E13E in 0035E100  +0x6E0  mov qword ptr [rsp + 0x6e0], r13
+   0035E26F in 0035E26F  +0x6F8  mov qword ptr [rsp + 0x6f8], rsi
+   0041FB8B in 0041F730  +0x6E8  mov qword ptr [rbx + 0x6e8], rsi
+   0041FB92 in 0041F730  +0x6F0  mov qword ptr [rbx + 0x6f0], rsi
+   0041FB99 in 0041F730  +0x6F8  mov qword ptr [rbx + 0x6f8], rsi
+   0042014C in 004200A0  +0x6F8  mov qword ptr [rbx + 0x6f8], rdi
+   004201CB in 004200A0  +0x6E8  mov qword ptr [rbx + 0x6e8], rdi
+   004201D5 in 004200A0  +0x6F0  mov qword ptr [rbx + 0x6f0], rdi
+   006FF7D5 in 006FF5D0  +0x6F0  mov qword ptr [rdi + 0x6f0], rsi
+   0070092F in 006FF900  +0x6F0  mov qword ptr [rsi + 0x6f0], rcx
+   00706289 in 00705520  +0x6F0  mov qword ptr [rsi + 0x6f0], r13
+   00746806 in 007467E0  +0x6E0  mov qword ptr [rbp + 0x6e0], rax
+   007546D1 in 007546D1  +0x6E8  mov qword ptr [rsp + 0x6e8], rbx
+   007C090F in 007C05C0  +0x6E0  mov qword ptr [rdi + 0x6e0], rax
+   007C0916 in 007C05C0  +0x6E8  mov qword ptr [rdi + 0x6e8], r12
+   007C091D in 007C05C0  +0x6F0  mov qword ptr [rdi + 0x6f0], r12
+   007C0B23 in 007C05C0  +0x6F0  mov qword ptr [rdi + 0x6f0], r8
+   007C11A8 in 007C1100  +0x6E0  mov qword ptr [rdi + 0x6e0], rax
+   007CE47D in 007CDF88  +0x6F0  mov qword ptr [rsi + 0x6f0], rdi
+   007CE486 in 007CDF88  +0x6E8  mov qword ptr [rsi + 0x6e8], rdi

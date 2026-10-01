@@ -1,0 +1,17 @@
+RC-29 rip-relative references into the block: ['001D150F in 001D0390 -> 008FCE00', '001D537D in 001D5260 -> 008FCE00', '001D542A in 001D5260 -> 008FCE00']
+RC-29 image-base-relative references (disp 0x7DCE00): ['001CD186 mov edx, dword ptr [rsi + rcx*4 + 0x7dce00]']
+PASS  K29a three rip-relative references (001D150F, 001D537D, 001D542A) and one image-base-relative read (001CD186)
+PASS  K29b 001D5260 sets 14 pages (+0xA88 = 0xE); the block is 14 x 0x58 bytes = 14 pages x 22 u32
+PASS  K29c every u32 in the block is a console command id <= 0x126 (max 0x126)
+PASS  K30a 003C9950's byte +0xC1 takes only 5, 2, 00D11720[.] = [0, 2, 3, 4, 3, 6, 0, 0], or the 003C9A30 loop index 0..6: id 0x0E..0x14
+PASS  K30b 002CEAE0's byte +0xB2D is set (with the gate bit) only from a guest member's id word +0x60 = its BattleStatsRecord definitionRowIndex (00283400); otherwise 0xFF with the gate clear (002832C7, 002832D5)
+K30c 00D23740[0..7] = [552, 660, 716, 756, 796, 852, 0, 0] ; 00575C30 is called only from ['00575B2B']
+PASS  K30c for arg[0] 0..5 the id is >= 0x228 + unsigned words, so 0xE2..0xE4 is unreachable; arg[0] 6 or 7 gives 0 + the words
+PASS  K31a 0037EFC0: count u16 +0x0E, entries at +0x10 stride 8, first match, string = lst + u16 [+8] + u16 [entry+2]
+PASS  K31b all 9 files: header +4 = [100]; directory ids unique; entry +4 words [0, 3, 4]
+PASS  K32 00274780 returns buf + s32[buf + 8i]; the file is two {offset, size} entries (0x10+0x2C0, 0x2D0+0x3280) filling its 13648 bytes
+K34 00D23270 name table: [('main0.psd', 'w_main0'), ('main1.psd', 'w_main1'), ('main2.psd', 'w_main2'), ('main3.psd', 'w_main3'), ('upper', 'w_shade_p'), ('linetex', 'w_line01')]
+K34 kind-7 rows 0xA8..0xAE (region 1): {168: 'PS2Data\\image\\FF12\\myoshiok\\in\\WorldMap\\meshdata.mg', 169: None, 170: 'PS2Data\\image\\FF12\\myoshiok\\us\\Tm2_Menu\\w_shade_p.tm2', 171: 'PS2Data\\image\\FF12\\myoshiok\\us\\Tm2_Menu\\w_main0.tm2', 172: 'PS2Data\\image\\FF12\\myoshiok\\us\\Tm2_Menu\\w_main1.tm2', 173: 'PS2Data\\image\\FF12\\myoshiok\\us\\Tm2_Menu\\w_main2.tm2', 174: 'PS2Data\\image\\FF12\\myoshiok\\us\\Tm2_Menu\\w_main3.tm2'}
+PASS  K34 main0..3.psd -> w_main0..3 in 00D23270, and kind 7 0xAB..0xAE = Tm2_Menu w_main0..3.tm2, 0xA8 = meshdata.mg
+
+FAILS 0

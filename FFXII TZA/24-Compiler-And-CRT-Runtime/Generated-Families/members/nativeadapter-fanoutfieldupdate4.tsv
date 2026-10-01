@@ -1,0 +1,8 @@
+# NativeAdapter.FanoutFieldUpdate4 - EC-7 family C
+# same fan-out idiom as FanoutFieldUpdate5 with four fixed-offset field ops
+# # and a +0x39C-style tail field return.
+address	targets
+0050C450	004304F0,00430AF0,00500470
+005323F0	00430AF0,00442380
+00537FA0	003A3FB0,004304F0,004FF230
+0053AAC0	0042FCF0,004304F0,00430AF0,00500470

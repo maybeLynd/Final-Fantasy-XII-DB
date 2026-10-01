@@ -1,0 +1,7 @@
+{
+  "case": "failed-helper-result",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "missing/failed helper prerequisite",
+  "expected_error_seen": true
+}

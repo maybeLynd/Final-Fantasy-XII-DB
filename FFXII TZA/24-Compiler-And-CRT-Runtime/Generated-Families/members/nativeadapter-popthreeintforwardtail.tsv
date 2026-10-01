@@ -1,0 +1,9 @@
+# NativeAdapter.PopThreeIntForwardTail - EC-7 family C
+# pop three ints from the arg record via shared VMValueStack_
+# # PopInt32CoerceFloat32 00267E10; compose via shared 00264010 + 00263F10;
+# # tail-dispatch to a member op with (result,arg2,arg3).
+address	targets
+00348C50	00263F10,00264010,00267E10,004738D0
+00349220	00263F10,00264010,00267E10,00473980
+00349620	00263F10,00264010,00267E10,00473A00
+00349AD0	00263F10,00264010,00267E10,00473A90

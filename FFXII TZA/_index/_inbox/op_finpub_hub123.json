@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-123",
+ "result_refs": [
+  "commit:3b79a0285"
+ ],
+ "note": "batch-123 publish: 30 paths, guard ADDS NOTHING (HEAD 2863 -> publish 2855, 8 pairs accounted by the new crossing rows)"
+}

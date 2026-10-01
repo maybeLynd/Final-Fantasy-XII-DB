@@ -1,0 +1,10 @@
+PASS  S the reader instructions  19 sites
+stats: {'elements': 18049, 'empty part list (kind 0)': 1871, 'files high': 132, 'files normal': 913, 'high flag-0 list resolves in partner @FDM': 132, 'high flag-0 list would fail in its own @FDM (control)': 59, 'high flag-1 list resolves in own @FDM part 0': 132, 'high with a base-model partner': 132, 'normal flag-0 list resolves in own @FDM': 1759}
+part packing kinds (all records x 3 parts): {0: 1871, 1: 1565, 2: 311, 3: 15}
+descriptor bytes +8..+0xB: {'00000000': 12044}
+PASS  C1 no non-empty list has a kind outside 1..3 or overruns its @FOR entry  
+PASS  C2 normal models: every flag-0 list resolves in its own @FDM  1759 lists
+PASS  C3 high models: every flag-0 list resolves in the base model's @FDM  132 lists; 59 of them would fail in the high model's own @FDM
+PASS  C4 every flag-1 list is a high model's and resolves in its own @FDM part 0  132 high
+PASS  C5 descriptor bytes +8..+0xB are zero in every shipped descriptor  12044 descriptors
+FAILS 0

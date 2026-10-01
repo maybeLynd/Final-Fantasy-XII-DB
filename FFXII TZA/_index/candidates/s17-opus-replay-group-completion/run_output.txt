@@ -1,0 +1,10 @@
+G1_registration_sets_member_bits                             PASS
+G2_death_recorded_no_completion_while_a_member_lives         PASS
+G3_death_is_idempotent                                       PASS
+G4_last_death_completes_with_real_locks_and_dispatch         PASS
+G5_outsider_death_cannot_complete                            PASS
+G6_reregistration_clears_dead_bit_no_one_shot                PASS
+G7_group_zero_registers_nothing                              PASS
+G8_reset_zeroes_masks_clears_flag_bit0_only                  PASS
+{"G1": {"ok": true, "e98": [1, 1], "ledger": {"member": 3, "dead": 0, "flags": 0}}, "G4": {"ok": true, "ret": 1, "halt": [], "events": [["lock_00307140", "1", "2EC13C0"], ["lock_00238B70", "1", "0"], ["lock_00238AE0", "1", "20"], ["dispatch_003299B0", "76280F50", "2005"]], "ledger": {"member": 3, "dead": 3, "flags": 1}, "state_340": "A0"}, "G5": {"after_unregister": {"member": 1, "dead": 0, "flags": 0}, "outsider_death": {"ok": true, "ret": 0, "halt": [], "events": [], "ledger": {"member": 1, "dead": 2, "flags": 0}, "state_340": "0"}, "member_death": {"ok": true, "ret": 1, "halt": [], "events": [["lock_00307140", "1", "2EC13C0"], ["lock_00238B70", "1", "0"], ["lock_00238AE0", "1", "20"], ["dispatch_003299B0", "76280000", "2005"]], "ledger": {"member": 1, "dead": 3, "flags": 1}, "state_340": "A0"}}, "G6": {"first_completion": 1, "after_reregister": {"member": 3, "dead": 2, "flags": 1}, "second_completion": {"ok": true, "ret": 1, "halt": [], "events": [["lock_00307140", "1", "2EC13C0"], ["lock_00238B70", "1", "0"], ["lock_00238AE0", "1", "A0"], ["dispatch_003299B0", "76280000", "2005"]], "ledger": {"member": 3, "dead": 3, "flags": 1}, "state_340": "A0"}}, "G7": {"setgroup0_ok": true, "e98": 0, "ledgers_unchanged": true, "death": {"ok": true, "ret": 0, "halt": [], "events": [], "ledger": {"member": 0, "dead": 0, "flags": 0}, "state_340": "0"}}, "G8": {"ok": true, "all_masks_zero": true, "flags": [254]}}
+ALL PASS

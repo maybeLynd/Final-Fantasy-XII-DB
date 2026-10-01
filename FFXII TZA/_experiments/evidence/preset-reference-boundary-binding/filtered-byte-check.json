@@ -1,0 +1,101 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "adapter.py",
+      "git_blob": "1e570f9ecc638d82d71122678b5ce4c1186327fa"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "c44f0e86f0214827d346ea546100905c4cc37510"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "d962c2a88ba058860bf3a815749af426e29559d5"
+    },
+    {
+      "path": "fault-old-binding.stderr",
+      "git_blob": "1d7a123d1b3b0065b044e36b9c3ba85e884867bc"
+    },
+    {
+      "path": "fault-old-binding.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "89ca11654a38b1e70c24c8c40b4377cd13cf5a49"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "git_blob": "c2c74837c900ba11f298a53d1f5ba798e9084322"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "bccbf72e158ca24f2e5da0f33cf2a4992581f69a"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "7bb85b5fc5229e298d85024007e26fde7d59194e"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "08e062d9af15b45fce8a6d4668dcfe337e422a50"
+    },
+    {
+      "path": "regression-control.json",
+      "git_blob": "c1328ae606588934de31348d5adadceaf7bb6a7d"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "9bc4d1ae069cc617341fbcbd2cf4399b69387110"
+    },
+    {
+      "path": "retained/adapter-before-run.py",
+      "git_blob": "1e570f9ecc638d82d71122678b5ce4c1186327fa"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "c44f0e86f0214827d346ea546100905c4cc37510"
+    },
+    {
+      "path": "retained/immediate-payload.bin",
+      "git_blob": "ce158a927f96302d447a5a35c43e4c6ea02163da"
+    },
+    {
+      "path": "retained/original-window.bin",
+      "git_blob": "772cbb095e4625ed9586730dd5e91da581b777e4"
+    },
+    {
+      "path": "retained/original.bin",
+      "git_blob": "772cbb095e4625ed9586730dd5e91da581b777e4"
+    },
+    {
+      "path": "retained/producer-original.py",
+      "git_blob": "2921370d33447e16779095615562499c06a33517"
+    },
+    {
+      "path": "retained/producer-output.txt",
+      "git_blob": "5f0aefb4fd06e5eb514b36e69f1401e777b3ed2a"
+    },
+    {
+      "path": "retained/producer-readme.md",
+      "git_blob": "39713b624935869825c74da3f8e3a0eb6f9dda5e"
+    },
+    {
+      "path": "retained/real-call.bin",
+      "git_blob": "fef652ca6cc9d44d9530202db52261fd77443c3f"
+    },
+    {
+      "path": "retained/selected-corrected.py",
+      "git_blob": "4dc918b941ec291a970eba333a9bab181110b86a"
+    },
+    {
+      "path": "retained/selected-original.py",
+      "git_blob": "621cc6b627d5917f5410c1437d97db6b4a0af5a4"
+    }
+  ]
+}

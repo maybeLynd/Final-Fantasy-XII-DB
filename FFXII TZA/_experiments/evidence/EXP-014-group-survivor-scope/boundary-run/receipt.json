@@ -1,0 +1,83 @@
+{
+  "status": "TWO_AFFECTED_MUTANTS_DETECTED_WITH_CROSS_CONTROLS",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "unicorn": "2.1.4",
+  "instruments": {
+    "Reconstruction\\Tests\\mutation_test.py": "3abc54c8b86bfa672eef9a46ba7565716bd613d761c4d7d26365d29b718fd50a",
+    "Reconstruction\\Tests\\Differential\\diff_group_completion.py": "eb9b9472e78b812f2cb483068e4ad4a71a64015b0a54925da4a9f22d3221ac40"
+  },
+  "probe_sha256": "c751e090001e3cf5095eb83c9f54c59ec8633c81e171d537a16c43104e3d1f91",
+  "results": [
+    {
+      "candidate": "baseline",
+      "fixture": "bkei-boundary",
+      "index": null,
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "source_sha256": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+      "mismatched_cases": [],
+      "final_bytes_equal": true,
+      "original_return": 1,
+      "candidate_return": 1
+    },
+    {
+      "candidate": "baseline",
+      "fixture": "flag-boundary",
+      "index": null,
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "source_sha256": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+      "mismatched_cases": [],
+      "final_bytes_equal": true,
+      "original_return": 1,
+      "candidate_return": 1
+    },
+    {
+      "candidate": "index-47",
+      "fixture": "bkei-boundary",
+      "index": 47,
+      "driver_sha256": "0235d7f1505378423d7bd759012fd039ddebc808acac596990532f81d73e99ad",
+      "source_sha256": "47d7f30f6e73515e42667da31f02017c6ee8156966a1ec8dc2ddaa51d24b31a2",
+      "mismatched_cases": [
+        0
+      ],
+      "final_bytes_equal": false,
+      "original_return": 1,
+      "candidate_return": 0
+    },
+    {
+      "candidate": "index-47",
+      "fixture": "flag-boundary",
+      "index": 47,
+      "driver_sha256": "0235d7f1505378423d7bd759012fd039ddebc808acac596990532f81d73e99ad",
+      "source_sha256": "47d7f30f6e73515e42667da31f02017c6ee8156966a1ec8dc2ddaa51d24b31a2",
+      "mismatched_cases": [],
+      "final_bytes_equal": true,
+      "original_return": 1,
+      "candidate_return": 1
+    },
+    {
+      "candidate": "index-69",
+      "fixture": "bkei-boundary",
+      "index": 69,
+      "driver_sha256": "46c5afb5df05cfbf1c88c22e42f68262ef44fe1e41def34b67d63088cd0fe5df",
+      "source_sha256": "2c7b62400890d1399cf0a0450193229f287b0f396380ded62efe95eaa9b98153",
+      "mismatched_cases": [],
+      "final_bytes_equal": true,
+      "original_return": 1,
+      "candidate_return": 1
+    },
+    {
+      "candidate": "index-69",
+      "fixture": "flag-boundary",
+      "index": 69,
+      "driver_sha256": "46c5afb5df05cfbf1c88c22e42f68262ef44fe1e41def34b67d63088cd0fe5df",
+      "source_sha256": "2c7b62400890d1399cf0a0450193229f287b0f396380ded62efe95eaa9b98153",
+      "mismatched_cases": [
+        0
+      ],
+      "final_bytes_equal": false,
+      "original_return": 1,
+      "candidate_return": 1
+    }
+  ],
+  "production_inputs_stable": true
+}

@@ -1,0 +1,79 @@
+{
+  "method": "HOST_BROWSER, then read-only HTTP and static source comparison",
+  "head": "56be8763fc5349bb0ec1b60e700a87014f35a914",
+  "source_path": "Database/Tools/dashboard/server.py",
+  "source_last_commit": "7c14ecf567699d13a6ce9eddeb3e720fa9f5ff4d",
+  "source_sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+  "source_git_blob": "9266a5abfb30cda3e1330d2bb670ca0135bb0a16",
+  "page_matches_later_http": true,
+  "http_after_browser": [
+    {
+      "url": "http://127.0.0.1:8765/",
+      "started": "2026-09-29T13:14:10.736675+00:00",
+      "finished": "2026-09-29T13:14:10.752422+00:00",
+      "status": 200,
+      "headers": [
+        [
+          "Server",
+          "ff12-dashboard/1 Python/3.14.6"
+        ],
+        [
+          "Date",
+          "Tue, 29 Sep 2026 13:14:10 GMT"
+        ],
+        [
+          "Content-Type",
+          "text/html; charset=utf-8"
+        ],
+        [
+          "Cache-Control",
+          "no-store"
+        ],
+        [
+          "Content-Length",
+          "20446"
+        ]
+      ],
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+    },
+    {
+      "url": "http://127.0.0.1:8765/api/status",
+      "started": "2026-09-29T13:14:10.752465+00:00",
+      "finished": "2026-09-29T13:14:10.908945+00:00",
+      "status": 200,
+      "headers": [
+        [
+          "Server",
+          "ff12-dashboard/1 Python/3.14.6"
+        ],
+        [
+          "Date",
+          "Tue, 29 Sep 2026 13:14:10 GMT"
+        ],
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Cache-Control",
+          "no-store"
+        ],
+        [
+          "Content-Length",
+          "1096"
+        ]
+      ],
+      "bytes": 1096,
+      "sha256": "5a16c41137e77f70f316d414d80111c1c008b9f4c3841bbbd4355ed73380cf93"
+    }
+  ],
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "tool": "mcp__cua_repl.js; browser1 IAB; owned tab2; read-only local navigation",
+  "limits": [
+    "HTTP receipts obtained after browser closure; not atomic with UI",
+    "PAGE byte equality does not identify loaded Python module, process or dependencies",
+    "No game, host-controller or adapter acceptance"
+  ]
+}

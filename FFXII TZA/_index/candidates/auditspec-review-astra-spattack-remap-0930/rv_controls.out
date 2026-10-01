@@ -1,0 +1,7 @@
+positive          exit=0 result=True  REFUTED arithmetic-only exclusion; candidate511..534 survive; CF/FFFF queue sentinel collision retained
+  failed01 capture spans: [('0x3067c2', '0x306a9a'), ('0x30db70', '0x30dc43'), ('0x30dc8b', '0x30dca6')]
+failed01_asis     exit=1 result=False  ValueError: capture invocation incomplete/changed
+  failed01 capture spans: [('0x3067c2', '0x306a9a'), ('0x30db70', '0x30dc43'), ('0x30dc8b', '0x30dca6')]
+failed01_forged   exit=0 result=True  REFUTED arithmetic-only exclusion; candidate511..534 survive; CF/FFFF queue sentinel collision retained
+mnemonic_only     exit=1 result=False  ValueError: source remap witness changed
+bytes_consistent  exit=1 result=False  ValueError: original span differs

@@ -1,0 +1,39 @@
+{
+  "status": "PASS_ACTUAL_CAPACITY_CALLER_REFUSALS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "positive_reused": true,
+  "positive_result_sha256": "e00a04d0ab2a6af9f9409e903a78fd2f242449a83e745578f5a4e295445dd866",
+  "refusals": [
+    {
+      "case": "missing-helper-result",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-helper-result",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "missing/failed helper prerequisite",
+      "expected_error_seen": true
+    },
+    {
+      "case": "consistent-wrong-min",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong/incomplete capacity caller body",
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-chained-fragment",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "missing normal caller fragments",
+      "expected_error_seen": true
+    }
+  ],
+  "driver_sha256": "f9822e083c340abfb6a46cff4513eca61d33efa5d575d4c65260e221f816c23c",
+  "reader_sha256": "7c14ba3ac418073fba8d3d76ce9b1194661704846e93b2769de8b069d8d35efc",
+  "limits": "Producer CLI controls on altered/missing source; no native/live, independent acceptance or extra positive capture. All children terminal."
+}

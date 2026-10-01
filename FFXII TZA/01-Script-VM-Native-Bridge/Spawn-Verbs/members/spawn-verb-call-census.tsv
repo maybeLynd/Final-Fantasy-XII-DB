@@ -1,0 +1,8 @@
+call_id	verb	opcode	sites	scripts
+3001	btlAtelSetUnit	CALLPOPA	60714	4518
+3015	btlAtelSetCallGroup	CALLPOPA	60714	4518
+3016	btlAtelSetTotalEntryNumber	CALLPOPA	29916	4518
+304A	btlAtelGetRespawnTime	CALL	15885	2565
+304B	btlAtelDecideEntryGroupByPreviousMap	CALL	118575	4032
+305C	btlAtelSetKeepWorkGroup	CALLPOPA	245124	4518
+305F	btlAtelDecideEntryGroupByContinuous	CALL	118782	3987

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database/Tools/analysis-kit/gfz-scripts/ffxii_runtime.py",
+    "state"
+  ],
+  "start_unix": 1789085935.2294824,
+  "end_unix": 1789085935.9474404,
+  "exit_code": 0,
+  "stdout": "pid 23532\n  verdict        MENU   (save buffer empty and area id 12 -- the front-end. WHICH menu screen is not knowable from memory alone; photograph it)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        12\n  save buffer    00000000000000000000000000000000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+  "stderr": ""
+}

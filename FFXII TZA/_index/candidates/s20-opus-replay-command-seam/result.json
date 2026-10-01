@@ -1,0 +1,176 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4264,
+ "results": {
+  "CS1_seam_records_pending_not_commit": {
+   "pass_": true,
+   "cases": {
+    "target 0 (self)": {
+     "ok": true,
+     "ret": 0,
+     "fields": {
+      "708": "0",
+      "710": "0",
+      "714": "0",
+      "BA0": "4005",
+      "BB8": "100001"
+     },
+     "commit_field_writes": [],
+     "calls": [
+      "00317E60"
+     ]
+    },
+    "target 0x200002": {
+     "ok": true,
+     "ret": 0,
+     "fields": {
+      "708": "0",
+      "710": "0",
+      "714": "0",
+      "BA0": "4005",
+      "BB8": "200002"
+     },
+     "commit_field_writes": [],
+     "calls": [
+      "00317E60"
+     ]
+    }
+   },
+   "note": "00311CF0(unit, target, r8b, command 0x4005) returns 0 and records the command as PENDING: +0xBA0 = 0x4005, +0xBB8 = the target (the unit's own id +8 when the target is 0), then calls 00317E60 - and writes NOTHING in +0x708..+0x71F"
+  },
+  "CS1_seam_refusals": {
+   "pass_": true,
+   "cases": {
+    "status bit 3 (0x8800203B only)": {
+     "ok": true,
+     "ret": "0",
+     "BA0": "0",
+     "calls": []
+    },
+    "status bit 0 (0x80000003)": {
+     "ok": true,
+     "ret": "FFFFFFFE",
+     "BA0": "0",
+     "calls": [
+      "00377C20"
+     ]
+    },
+    "command 0x113 while +0x714 = 0x113": {
+     "ok": true,
+     "ret": "FFFFFFFE",
+     "BA0": "0",
+     "calls": []
+    },
+    "null stats": {
+     "ok": true,
+     "ret": "FFFFFFFE",
+     "BA0": "0"
+    }
+   },
+   "note": "three refusals, two return values: a status bit only in 0x8800203B returns 0 (indistinguishable from success) with nothing recorded; bit 0 (0x80000003 with 00377C20 false), command 0x113 over a current 0x113, or a null stats pointer return -2"
+  },
+  "CS2_commit_writes_the_three_fields": {
+   "pass_": true,
+   "cases": {
+    "no reset": {
+     "ok": true,
+     "ret": 1,
+     "fields": {
+      "708": "762D0000",
+      "710": "100001",
+      "714": "4005",
+      "BA0": "0",
+      "BB8": "0"
+     },
+     "phase_6B4": 0,
+     "calls": [],
+     "writers": [
+      "0030F7F9",
+      "0030F800",
+      "0030F806",
+      "0030F823"
+     ]
+    },
+    "reset first": {
+     "ok": true,
+     "ret": 1,
+     "fields": {
+      "708": "762D0000",
+      "710": "100001",
+      "714": "4005",
+      "BA0": "0",
+      "BB8": "0"
+     },
+     "phase_6B4": 0,
+     "calls": [
+      "reset 003105D0"
+     ],
+     "writers": [
+      "0030F7F9",
+      "0030F800",
+      "0030F806",
+      "0030F823",
+      "0031071B",
+      "00310722",
+      "00310729"
+     ]
+    }
+   },
+   "note": "0030F760(unit, ctx, id 0x4005, focus 0x100001, reset) stores +0x708 = ctx, +0x710 = focus, +0x714 = id and phase +0x6B4 = 0 (from 7); its fifth argument runs the reset 003105D0 first"
+  },
+  "CS5_dispatch_reads_the_committed_id": {
+   "pass_": true,
+   "seam_only": {
+    "ok": true,
+    "ret": "FFFFFFFF",
+    "stop": null
+   },
+   "after_commit": {
+    "stop": "002FDA60"
+   },
+   "handler_for_4005": "002FDA60",
+   "note": "after the seam alone (+0xBA0 = 0x4005, +0x714 = 0) the dispatcher 00305080 returns -1; after the commit it reaches table[5] = 002FDA60 (a recorded stop at the handler entry) - the dispatch reads +0x714, not the pending +0xBA0"
+  }
+ }
+}

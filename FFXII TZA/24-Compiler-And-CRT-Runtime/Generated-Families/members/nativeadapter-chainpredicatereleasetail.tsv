@@ -1,0 +1,9 @@
+# NativeAdapter.ChainPredicateReleaseTail - EC-7 family C
+# # call a member predicate on this; if true call a second member op on
+# # this, then tail-call a member release op.
+address	targets
+005DD5E0	00616420,00625EC0,0062B7B0
+005DE210	00616C00,00625EF0,0062BB40
+005DE250	00616C60,00625F00,0062BCB0
+005DE2D0	00616CC0,00625F10,0062BF40
+005DE350	00616D20,00625F20,0062C100

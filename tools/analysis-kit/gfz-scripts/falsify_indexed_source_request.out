@@ -1,0 +1,6 @@
+SURVIVES  I1  owners 02B581A0 + (16g + i) * 0x1C; state 0 only; annotation +8; state 2; mask 02B58A60 + 4g |= 1 << i
+SURVIVES  I2  enable 022C6D18 + g, selector 022C6D28 + 4g; kinds 5 / 8 / 1; group 4 refused by the length and offset providers
+SURVIVES  I3  slot 02098E10 + 0x288 g; mode 02ADD930 (4 when 02ADD931 is set); hold byte slot + 0x201
+SURVIVES  I4  mask bit AND state 2; failures -> state 0 with the bit kept; arena 11 (mode 2, +0x17 & 0x40) then 6, class 5; pin, reclassify, low16 kind / low16 index + 1; hold -> 1 else submit; bit cleared; route byte at the common tail
+SURVIVES  I5  kind and index sign-extended; submit 0032E620; state 3 written without testing the result
+FAILS 0

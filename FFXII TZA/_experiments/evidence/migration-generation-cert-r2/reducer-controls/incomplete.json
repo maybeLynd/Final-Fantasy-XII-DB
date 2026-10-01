@@ -1,0 +1,473 @@
+{
+  "method": "A exact original published Python library + actual external CLI; private archive/folder fixtures, not FF12/native/live",
+  "commit": "f145d442f2e3f844fdf9c448c3a6c85e291e8c30",
+  "source_sha256": "5e42238d766b6a245dd5697ed536213380c9402850ce2a8669056a1cf36c2c2e",
+  "source_blob": "c1db5c39c1a933f99261828923162a9f097f7620",
+  "driver_sha256": "d0e9977c977928864e3a561e6322f028cf1520aa367ee51caf53b3079b5f3f66",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "retained_manifest_sha256": "a61aaee0edfc4db712953a309f1b5ae96a4673314871755a2f8b1484f2ed4857",
+  "cases": [
+    {
+      "name": "positive",
+      "archive": "positive.zip",
+      "sha256": "5e5b5bdca1f09d3ee27f878d8ba2742f018e0abd28d91d533e4e8b0e993e73b8",
+      "origin": "Exact immutable97c4c1b65 archive bytes verified against original manifest; new reader execution",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "VERIFIED",
+      "info": {
+        "generation": "g20260929T071157Z-69ff7d",
+        "members": 3
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\positive.zip"
+        ],
+        "returncode": 0,
+        "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "duplicate-zip-member",
+      "archive": "duplicate-zip-member.zip",
+      "sha256": "136cc354a6399d7913344d2d34837e2bfbc9b4ead4b4cdf11b8ed624e62f2270",
+      "origin": "Exact immutable97c4c1b65 archive bytes verified against original manifest; new reader execution",
+      "entries": [
+        {
+          "name": "outputs/view.json",
+          "sha256": "5cec957a0c5cf3e202e810583c423cc139d716af05dc4a49b7ff203ed6bb78f8"
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "duplicate member names: one name, several physical entries",
+        "duplicates": [
+          "outputs/view.json"
+        ],
+        "entries": 4
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\duplicate-zip-member.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"duplicate member names: one name, several physical entries\", \"duplicates\": [\"outputs/view.json\"], \"entries\": 4}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "unknown-format-zip",
+      "archive": "unknown-format-zip.zip",
+      "sha256": "f13040b84eb39c42e0cdb196059154827a0d7fa0373166935cdf1bf7a5e46b15",
+      "origin": "Exact immutable97c4c1b65 archive bytes verified against original manifest; new reader execution",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "ee9a70d68a8aa191b817311f172d4446e3d616fd7e8f5fec48432e55b86682bf"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "UNSUPPORTED: manifest format 'ff12-generation-unknown' is not one this reader knows ['ff12-generation-1', 'ff12-generation-2'] - the reader is older than the writer; restart it rather than trusting its verdict",
+        "generation": "g20260929T071157Z-69ff7d"
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\unknown-format-zip.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"UNSUPPORTED: manifest format 'ff12-generation-unknown' is not one this reader knows ['ff12-generation-1', 'ff12-generation-2'] - the reader is older than the writer; restart it rather than trusting its verdict\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "malformed-manifest-zip",
+      "archive": "malformed-manifest-zip.zip",
+      "sha256": "8b5224a81a715195bf1b8604495bbf4d7b6f8116a70ed21c49a53d1371daf03b",
+      "origin": "Exact immutable97c4c1b65 archive bytes verified against original manifest; new reader execution",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "be302461cda285db3ed2d45fb767b23e08ca8808b35a638009937df22b332d73"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "manifest is not JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+        "generation": null
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\malformed-manifest-zip.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"manifest is not JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\", \"generation\": null}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "array-manifest",
+      "archive": "array-manifest.zip",
+      "sha256": "e008acc5d38b377a3d26aff0e54a0c2467c839d019a0109b27e3ae8ae4597766",
+      "origin": "Labelled manifest intervention on retained valid ZIP; original member bytes except manifest",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "manifest is list, not an object",
+        "generation": null
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\array-manifest.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"manifest is list, not an object\", \"generation\": null}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "wrong-output-shape",
+      "archive": "wrong-output-shape.zip",
+      "sha256": "bfa33d0daa15cc3681161285c2c375ca52c30787103e35530c808ea4f943ec49",
+      "origin": "Labelled manifest intervention on retained valid ZIP; original member bytes except manifest",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "906e11b1c8ca49bebd3727b59aebd15978685a1d154c6956ba4d7c5dd3e5d271"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "manifest outputs is not an object",
+        "generation": "g20260929T071157Z-69ff7d"
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\wrong-output-shape.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"manifest outputs is not an object\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "typed-input-state",
+      "archive": "typed-input-state.zip",
+      "sha256": "19035d16efa8ad2f43ddf785338c505d22fe2ccfc6585bc9980ad4844aaaef96",
+      "origin": "Labelled manifest intervention on retained valid ZIP; original member bytes except manifest",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "e6f9d2dd0d5eeee71a4b2e7759597b759dc1f13387c7e5a33fa0e6037a007ccf"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "input 'data' carries no state",
+        "generation": "g20260929T071157Z-69ff7d"
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\typed-input-state.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"input 'data' carries no state\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "unknown-input-state",
+      "archive": "unknown-input-state.zip",
+      "sha256": "99a6848b4e981a9ea5fb6f74069734082670d0ea0136d87146525e656531bd10",
+      "origin": "Labelled manifest intervention on retained valid ZIP; removed one now-unrecognized input snapshot",
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "7aff17b77b3959b52d7a23ddfc6b143ffb448de1cb20f43ffe3a9c7859b05ca5"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "label": "VERIFIED",
+      "info": {
+        "generation": "g20260929T071157Z-69ff7d",
+        "members": 2
+      },
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\unknown-input-state.zip"
+        ],
+        "returncode": 0,
+        "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 2}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "malformed-folder",
+      "generation": "g20260929T071158Z-376657",
+      "before_manifest_sha256": "0a5373f1bca6e25b76ab52fb3846cb5827b253d21ef091796fed9ce59d8ea4f5",
+      "after_manifest_sha256": "4dc30da277ef94bb6a7086bad8c676db33414b08cca45e957a498539c9c80a58",
+      "object": null,
+      "problems": [
+        "manifest is not JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      ],
+      "exception": null,
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+          "status",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\malformed-folder"
+        ],
+        "returncode": 1,
+        "stdout": "INVALID manifest does not match the CURRENT pointer (tampered or replaced); manifest is not JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n",
+        "stderr": "",
+        "terminal": true
+      },
+      "intervention": "MalformedJSON private copied store manifest; original CURRENT pointer retained, hash mismatch also expected in CLI"
+    }
+  ],
+  "owned_cli_processes": [
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\positive.zip"
+      ],
+      "returncode": 0,
+      "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\duplicate-zip-member.zip"
+      ],
+      "returncode": 1,
+      "stdout": "UNVERIFIED {\"reason\": \"duplicate member names: one name, several physical entries\", \"duplicates\": [\"outputs/view.json\"], \"entries\": 4}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\unknown-format-zip.zip"
+      ],
+      "returncode": 1,
+      "stdout": "UNVERIFIED {\"reason\": \"UNSUPPORTED: manifest format 'ff12-generation-unknown' is not one this reader knows ['ff12-generation-1', 'ff12-generation-2'] - the reader is older than the writer; restart it rather than trusting its verdict\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\malformed-manifest-zip.zip"
+      ],
+      "returncode": 1,
+      "stdout": "UNVERIFIED {\"reason\": \"manifest is not JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\", \"generation\": null}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\array-manifest.zip"
+      ],
+      "returncode": 1,
+      "stdout": "UNVERIFIED {\"reason\": \"manifest is list, not an object\", \"generation\": null}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\wrong-output-shape.zip"
+      ],
+      "returncode": 1,
+      "stdout": "UNVERIFIED {\"reason\": \"manifest outputs is not an object\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\typed-input-state.zip"
+      ],
+      "returncode": 1,
+      "stdout": "UNVERIFIED {\"reason\": \"input 'data' carries no state\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "verify-zip",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\unknown-input-state.zip"
+      ],
+      "returncode": 0,
+      "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 2}\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\generation.py",
+        "status",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\run-01\\malformed-folder"
+      ],
+      "returncode": 1,
+      "stdout": "INVALID manifest does not match the CURRENT pointer (tampered or replaced); manifest is not JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n",
+      "stderr": "",
+      "terminal": true
+    }
+  ],
+  "finished": false,
+  "child_limit": "Main verify-zip/status branches inspected: no child launch; --self-test branch excluded from actual args. No earlier transition cleanup claim.",
+  "source_restored": true
+}

@@ -1,0 +1,105 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8340,
+      "sha256": "6f6e16eb4d639c326246d8ad6b4dc3d3f71655bbde31f2e7195427a0c747a143"
+    },
+    {
+      "path": "check.py",
+      "bytes": 9513,
+      "sha256": "ef939d168bc8236912dfc72f952dfcf81cb7515f346d14cb7c0f23d1cb4d6bf9"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2187,
+      "sha256": "781714a14b8bdeee2e3a0be6820f006b7a1560fb7732f22fd6a40d23302a2c14"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1682,
+      "sha256": "b62dc696df49fb10a0b39bf6566724452d28ae7713d9d91a544ba98325ae5cc8"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "bytes": 56810,
+      "sha256": "d92f0768dfb427fe0e1704a0bf426fd35766d43a58c67e80d9db8a79770fd415"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2941,
+      "sha256": "1e001cd831bc644dfce4a767e6e7b56a5b40c75a023b1bc7da51c17780d00e67"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 2741,
+      "sha256": "09e2ab7bcd11b8750d35ca350b5886834f81520f3cd8d001477f6b8a69a8611c"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 77789,
+      "sha256": "dff486236e3400b693a9e3a71d38584b6868d6bcfaa1be7e242be72075c4d178"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5562,
+      "sha256": "2c385ee4f90077d9148cbf17112447ee50c61ad4671723f2e4fbad47ab80d662"
+    },
+    {
+      "path": "result.json",
+      "bytes": 16235,
+      "sha256": "fd43193c2d21bd576e450ff4974ca6683de3281b13c0516d71edc1815b00d0a4"
+    },
+    {
+      "path": "retained/caller679.bin",
+      "bytes": 679,
+      "sha256": "952ac4880d6be155c35a37c1ff8e5ecbbcae8603cc4d2cafbaaeb287c1046913"
+    },
+    {
+      "path": "retained/capture-before-run.py",
+      "bytes": 8340,
+      "sha256": "6f6e16eb4d639c326246d8ad6b4dc3d3f71655bbde31f2e7195427a0c747a143"
+    },
+    {
+      "path": "retained/carrier.md",
+      "bytes": 81783,
+      "sha256": "515d21bb53894cd692bb38bdcd1b3bff1c148e83c32ed6fbca4520c3df75f7b2"
+    },
+    {
+      "path": "retained/flow.py",
+      "bytes": 8990,
+      "sha256": "b267b5565dce8bfb8de4a0d955529ebfebd9eba3e2a3bc24e982d59e24873be4"
+    },
+    {
+      "path": "retained/navigation.md",
+      "bytes": 41950,
+      "sha256": "88ef92808bb8a50a15575dcc6d4db092369ba32a3e9ab4dfa9c0383e726b3efe"
+    },
+    {
+      "path": "retained/original237.bin",
+      "bytes": 237,
+      "sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "source.json",
+      "bytes": 12895,
+      "sha256": "50749846935594db35cc1fef71e30ee2f5012156e7ee3cb950d0619f8425c04c"
+    }
+  ],
+  "limits": "A source and B isolated full237B finite-value boundary tests under injected MXCSR1F80; no native/live state/caller occurrence/all geometry or exception-domain proof; independent acceptance pending"
+}

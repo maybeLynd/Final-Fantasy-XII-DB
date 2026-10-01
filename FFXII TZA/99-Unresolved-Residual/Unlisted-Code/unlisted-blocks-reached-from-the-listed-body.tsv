@@ -1,0 +1,66 @@
+# Adjudicated unlisted blocks that are reached from the listed body before them.
+#
+# OPUS 2026-09-21, answering FABLE-REQ-OPUS-BODY-BYTES-IS-TRUNCATED-AT-INDIRECT-JUMP-TABLES.
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, base 0x00120000.
+#
+# A block reached by the previous listed function's own control flow is a TAIL of it, not a
+# distinct body. Same walk and same control as the companion file.
+#
+# 51 of the 1,471 adjudicated blocks are reached. 34 already carry verdict=continuation, so
+# the adjudication had them right; 14 carry verdict=body and are MISCLASSIFIED; 3 are
+# ambiguous. NONE of the 139 established-floor blocks is among them.
+#
+# The verdict column here is the one the admissions table currently holds, NOT a correction:
+# moving a verdict moves the population ceiling, and that change is the blocked UC-1 task.
+start_va	prev_entry	verdict	in_established_floor
+00829E85	00829E10	ambiguous	no
+0082A657	0082A5D0	ambiguous	no
+0082E041	0082DCE0	ambiguous	no
+00148F41	00148F10	body	no
+001491CE	001491A0	body	no
+001492FF	001492B0	body	no
+006A3A5C	006A3980	body	no
+007137BC	00713760	body	no
+0076666F	007651F0	body	no
+0078F3AF	0078EAF0	body	no
+007A104E	007A0FC0	body	no
+007C2A29	007C23C0	body	no
+007C9BF8	007C92F0	body	no
+007DF1E2	007DEFB0	body	no
+00830EE5	00830EB0	body	no
+00862028	00862022	body	no
+00862034	0086202E	body	no
+0015AE4A	0015AC50	continuation	no
+00182723	001826E0	continuation	no
+0019505E	00194F50	continuation	no
+001957FE	00195670	continuation	no
+0019B3FE	0019B2F0	continuation	no
+001A6A10	001A5B30	continuation	no
+001AA7CE	001AA6C0	continuation	no
+001B0A13	001B07A0	continuation	no
+001C7845	001C76E0	continuation	no
+001CC5FA	001CA600	continuation	no
+001CC995	001CC920	continuation	no
+00203F67	00203E60	continuation	no
+00274B9A	002748E0	continuation	no
+002ABA5D	002AB8F0	continuation	no
+002B619E	002B6140	continuation	no
+00311E7D	00311E20	continuation	no
+003690E8	00369080	continuation	no
+0036F22E	0036F0F0	continuation	no
+004EB8FC	004E7D90	continuation	no
+0053D12F	0053AB50	continuation	no
+0056E9CB	0056E880	continuation	no
+00578196	00578120	continuation	no
+005C672D	005C62C0	continuation	no
+005CD313	005CD1E0	continuation	no
+0063E3C7	0063E2E0	continuation	no
+006E9838	006E5A20	continuation	no
+00716796	00716410	continuation	no
+0076F3E8	0076CC70	continuation	no
+007E6356	007E5E80	continuation	no
+007FE525	007FE0F0	continuation	no
+008618FD	00860E90	continuation	no
+0088C6BE	0088AD40	continuation	no
+0089378D	008932B0	continuation	no
+00894ECD	00894850	continuation	no

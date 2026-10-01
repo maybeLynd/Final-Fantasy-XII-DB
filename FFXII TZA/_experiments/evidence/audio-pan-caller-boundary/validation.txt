@@ -1,0 +1,2 @@
+Read-only original caller verification. Exit 0
+Verified complete original voice caller, scalar overrides, mixer arguments and output-major matrix placement. No execution or live cue claim.

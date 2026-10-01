@@ -1,0 +1,8 @@
+# NativeAdapter.LazySingletonAllocInit - EC-7 family C
+# if the member rip global is null: allocate a member-sized record via
+# # shared 00210EC0, init it via a member op, store it to the global.
+address	targets
+0018A620	0018A380,00210EC0
+00193D50	0018CD90,00210EC0
+001EBA40	001EB190,00210EC0
+001F0850	001EF2D0,00210EC0

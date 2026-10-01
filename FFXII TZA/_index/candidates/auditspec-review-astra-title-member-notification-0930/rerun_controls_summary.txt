@@ -1,0 +1,8 @@
+exercise-title-member-prerequisites.py re-run by SWE2-AUDIT-SPEC 2026-09-30 into a scratch case dir outside the repo (C:/t/auditspec/tmn-cases)
+status COMPLETE driver_sha256 ac2f4e3c668d42cdddced6d083b4d9d7456c648e919fefcce79589e7672d7e2a
+positive exit 0 result_exists True control_pass True
+incomplete_wrapper exit 1 result_exists False control_pass True
+failed_role exit 1 result_exists False control_pass True
+missing_source exit 1 result_exists False control_pass True
+changed_instruction_bytes exit 1 result_exists False control_pass True
+rerun_result.json vs title-member-notification-result-03.json: 15 keys, identical=True

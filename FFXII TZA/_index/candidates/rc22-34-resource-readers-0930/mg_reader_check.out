@@ -1,0 +1,143 @@
+== A. reader instructions
+PASS 00274783 mov eax, dword ptr [rcx + rax*8]
+PASS 00274786 add rax, rcx
+PASS 0056312D xor edx, edx
+PASS 0056313C mov edx, 1
+PASS 00555A50 movsxd rax, dword ptr [rcx + 0x10]
+PASS 00555A57 shl r8, 5
+PASS 00563160 cmp dword ptr [rax + 0x14], edi
+PASS 0056314D lea r14, [rip + 0x7c011c]
+PASS 005631BB mov rcx, qword ptr [r14 + r11*8 + 8]
+PASS 005631C5 call 0x24a5a0
+PASS 005631CA mov qword ptr [rbx], rax
+PASS 0024A5A3 lea r9, [rip + 0x1e44fd6]
+PASS 0024A5B0 test byte ptr [r9 + 0x38], 0x20
+PASS 0024A5DA add r9, 0x48
+PASS 0024A5DE cmp r10d, 0x40
+PASS 002493EF call 0x24a4e0
+PASS 002493FB mov qword ptr [rbx + 0x18], rax
+PASS 002493F4 lea rcx, [rip + 0x275]
+PASS 00249674 mov rcx, qword ptr [rcx + 0x18]
+PASS 00249678 jmp 0x24a1d0
+PASS 00562FB6 mov r8d, 0xa8
+PASS 00562FDA mov qword ptr [r14 + 0x10], r8
+PASS 00562FCB lea rsi, [rip + 0x7c01ee]
+PASS 00563000 lea r8d, [rbx + 0xaa]
+PASS 0056301F call 0x2493d0
+PASS 00562F30 mov rcx, qword ptr [rcx]
+PASS 0055576D mov eax, dword ptr [rbp + 0xc]
+PASS 0055577A movsxd rdx, dword ptr [rbp + 8]
+PASS 005557F9 movsxd rsi, dword ptr [rbp + 8]
+PASS 00555808 cmp dword ptr [rbp + 0x14], r14d
+PASS 00555830 movsxd rdi, dword ptr [rbp + 0x10]
+PASS 00555884 mov r8, qword ptr [rdi]
+PASS 0055588C mov rax, qword ptr [r8 + 0x20]
+PASS 00555898 movzx ebx, word ptr [rax + 0x14]
+PASS 0055589C movzx ebp, word ptr [rax + 0x16]
+PASS 005558BE mov r14d, 4
+PASS 00555900 mulss xmm0, dword ptr [rsi]
+PASS 0055590B mulss xmm1, dword ptr [rsi + 4]
+PASS 00555910 add rsi, 0x20
+PASS 005558F0 movsx eax, word ptr [rdi + 0x18]
+PASS 0055593C movsx eax, word ptr [rdi + 0x1e]
+PASS 00555858 call 0x181870
+PASS 00555660 movsxd rdx, dword ptr [rdi + 0x10]
+PASS 00555681 cmp ebx, dword ptr [rdi + 0x14]
+PASS 00555D5E movsxd r13, dword ptr [rcx + 8]
+PASS 00555D64 movsxd rax, dword ptr [rcx]
+PASS 00555D6A movsxd rdx, dword ptr [rdx + 0x10]
+PASS 00555D77 lea r14, [rcx + rdx*2]
+PASS 00555D7B cmp dword ptr [r15 + 0x14], esi
+PASS 00555DB2 cmp esi, 0x20
+PASS 00555DF3 cmp ax, bx
+PASS 00555E38 and ebx, 0x7fff
+PASS 00555E3E shl rbx, 5
+PASS 00555E68 movd xmm0, dword ptr [rbx]
+PASS 00555E71 cvtdq2ps xmm0, xmm0
+PASS 00555E53 lea r8, [rbx + 0x10]
+PASS 00555B96 movabs rcx, 0x3000000000008000
+PASS 00555BA6 mov qword ptr [r10 + 8], 0x412
+PASS 00555BB7 movsx eax, word ptr [r8 + 0x18]
+PASS 005562E8 mov qword ptr [rcx], 0xa
+PASS 005562F3 mov eax, 0x4c
+PASS 005562F8 mov r8d, 0x5c
+PASS 00556311 mov qword ptr [rax + 8], 0
+PASS 00562F70 mov rdx, qword ptr [rcx + 8]
+PASS 00562F74 mov rcx, qword ptr [rcx + 0x20]
+PASS 0055A91C mov rcx, qword ptr [rdi + 0xc8]
+PASS 0055A923 mov edx, 1
+PASS 0055A954 xor ecx, ecx
+== B. raw E8/E9 sites of the sub-mesh consumers (.text, function-list independent)
+PASS 00274780 FUN_00274780: sites ['0055A928', '00563133', '00563144']
+PASS 00555A50 FUN_00555a50: sites ['0056316A', '005631E8']
+PASS 00555400 FUN_00555400: sites ['0055A967', '00562F78']
+PASS 00555D10 FUN_00555d10: sites ['0055567A']
+PASS 005556A0 FUN_005556a0: sites ['00562F33']
+PASS 00562F30 FUN_00562f30: sites ['005527D2']
+PASS 00562F40 FUN_00562f40: sites ['005536B7']
+PASS 00563110 FUN_00563110: sites ['00552362']
+PASS 00562F90 FUN_00562f90: sites ['005505D0']
+PASS rip references into the 00D23270 bind table: 0056314D->00D23270, 00563157->00D232D0
+PASS control: 0055A8A0 has its installer lea at 0055A84B (found ['0055A84B'])
+PASS 00274780: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00555400: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 005556A0: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00555A50: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00555D10: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00562F30: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00562F40: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00562F90: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+PASS 00563110: no rip reference, no aligned data qword (indirect reach none): rip [] qword@fileoff []
+== C. both shipped meshdata.mg under the reader model
+PASS in and ch copies byte-identical (13648 B)
+PASS directory {offset,size} x2 = [('0x10', '0x2c0'), ('0x2d0', '0x3280')]
+PASS the two sub-meshes tile the file exactly (0x10+0x2C0 = 0x2D0, 0x2D0+0x3280 = EOF)
+   sub0 @0x10: idxOff 0x2A0 idxCount 16  vtxOff 0xA0 vtxCount 16  slotOff 0x20 slotCount 4
+PASS sub0 header 0x18 B + 8 zero bytes before the slots
+PASS sub0 slots end (0xA0) <= vertices (0xA0)
+PASS sub0 vertices (16 x 0x20) end exactly at the index stream
+PASS sub0 index stream (16 x u16) ends 0 B before the sub-mesh end
+   sub1 @0x2D0: idxOff 0x2B00 idxCount 956  vtxOff 0x60 vtxCount 341  slotOff 0x20 slotCount 2
+PASS sub1 header 0x18 B + 8 zero bytes before the slots
+PASS sub1 slots end (0x60) <= vertices (0x60)
+PASS sub1 vertices (341 x 0x20) end exactly at the index stream
+PASS sub1 index stream (956 x u16) ends 8 B before the sub-mesh end
+   sub0 slot0: name 'main0.psd'  indexStart    0 indexCount    4 colour (126, 126, 126, 127)
+PASS sub0 slot0 index range inside the stream
+   sub0 slot1: name 'main1.psd'  indexStart    4 indexCount    4 colour (126, 126, 126, 127)
+PASS sub0 slot1 index range inside the stream
+   sub0 slot2: name 'main2.psd'  indexStart    8 indexCount    4 colour (126, 126, 126, 127)
+PASS sub0 slot2 index range inside the stream
+   sub0 slot3: name 'main3.psd'  indexStart   12 indexCount    4 colour (126, 126, 126, 127)
+PASS sub0 slot3 index range inside the stream
+   sub1 slot0: name ''           indexStart    0 indexCount  956 colour (126, 126, 126, 127)
+PASS sub1 slot0 index range inside the stream
+   sub1 slot1: name ''           indexStart    0 indexCount    0 colour (0, 0, 0, 0)
+PASS sub1 slot1 index range inside the stream
+PASS sub0: every vertex = (s, t, 1, 1)(x, 0, z, 1) floats
+PASS sub0: s, t in [0, 1] (scaled by the texture size)
+PASS sub0: each slot's index strip (restart flag on its first index) covers the same two triangles as 005556A0's fixed k3,k0,k1,k2 emission
+   sub0 x values [0.0, 1.0, 2.0]  z values [-1.25, -1.0, 0.0]
+PASS sub1: vertex +0x00..+0x0C are small s32 colour values
+PASS sub1: position (x, 0, z, 1)
+PASS sub1: every index & 0x7FFF < vertexCount 341
+PASS sub1: the stream opens with a restart
+   sub1: 956 indices, 174 strips (bit-15 restarts)
+   sub1 distinct vertex colours: 5; first [(127, 127, 127, 0), (127, 127, 127, 11), (127, 127, 127, 58)]
+PASS control: +0x04 (0x2C0) is sub0's SIZE, not an offset to an index table (0x10 + 0x2C0 = sub1's offset)
+== D. RC-34: slot name -> texture
+   00D23270: [('main0.psd', 'w_main0'), ('main1.psd', 'w_main1'), ('main2.psd', 'w_main2'), ('main3.psd', 'w_main3'), ('upper', 'w_shade_p'), ('linetex', 'w_line01')]
+PASS bind table = main0..3.psd -> w_main0..3, upper -> w_shade_p, linetex -> w_line01
+PASS table end sentinel 00D232D0 is the next datum (the loop bound, not a 7th row)
+   00D231C0: [('w_shade_p', 2), ('w_main0', 1), ('w_main1', 1), ('w_main2', 1), ('w_main3', 1), ('w_icon_p', 2), ('w_line01', 2), ('w_line02', 2), ('w_win_c', 2), ('map_gra_c', 2), ('baseicon', 2)]
+PASS loader row 1: name w_main0 -> kind 7 id 0xAB -> PS2Data\image\FF12\myoshiok\in\Tm2_Menu\w_main0.tm2
+PASS shipped: in/tm2_menu/w_main0.tm2
+PASS loader row 2: name w_main1 -> kind 7 id 0xAC -> PS2Data\image\FF12\myoshiok\in\Tm2_Menu\w_main1.tm2
+PASS shipped: in/tm2_menu/w_main1.tm2
+PASS loader row 3: name w_main2 -> kind 7 id 0xAD -> PS2Data\image\FF12\myoshiok\in\Tm2_Menu\w_main2.tm2
+PASS shipped: in/tm2_menu/w_main2.tm2
+PASS loader row 4: name w_main3 -> kind 7 id 0xAE -> PS2Data\image\FF12\myoshiok\in\Tm2_Menu\w_main3.tm2
+PASS shipped: in/tm2_menu/w_main3.tm2
+PASS control: kind 7 id 0xA8 -> PS2Data\image\FF12\myoshiok\in\WorldMap\meshdata.mg
+PASS sub1's world-map texture obj+0x20 = loader row 0 = w_shade_p (id 0xAA)
+FAILS 0

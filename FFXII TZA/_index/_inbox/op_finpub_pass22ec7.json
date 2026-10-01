@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-PASS22-DEBT-DISP-0929",
+ "note": "Publish c9b951983: 527 crossing-section dispositions across 65 pages; fresh audit_crossrefs run shows 0 UNACCOUNTED NEIGHBOUR on the EC7 band (2425 -> 1898 corpus-wide).",
+ "result_refs": ["c9b951983"]
+}

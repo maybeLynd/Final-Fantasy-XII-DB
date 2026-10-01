@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-130",
+ "result_refs": [
+  "batch-130: 22 bodies A-measured on 2 bearing hosts (top 22 of 1-A; the 005004C0 effect-element creation arms types 0x44-0x68 + 00545EF0 'j' footprint computer); anchors 4045 (+22), 0 MID; hash clean; guard ADDS NOTHING (2861->2859)"
+ ],
+ "note": "batch-130 research: 22 bodies dumped/decoded/routed/appended; all static gates clean"
+}

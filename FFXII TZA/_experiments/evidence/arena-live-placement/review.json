@@ -1,0 +1,1885 @@
+{
+  "method": "Saved-data reconciliation only; no live reads or game-code execution.",
+  "observations": [
+    {
+      "label": "title",
+      "sample": 0,
+      "mask": "0x2bfc",
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "base": 0,
+      "selected": 2,
+      "arenas": [
+        {
+          "id": 2,
+          "backing": "0x6cc90040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6cc90040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6cc91100",
+              "prefix": "12ff0c0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1825140352
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6cc975c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825140352,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6cc975c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825140352,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "backing": "0x6ea67040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6ea67040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6ea687c0",
+              "prefix": "12ff080300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1856504000
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6ead82c0",
+              "prefix": "12ffff0300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1856864640,
+                "0x10": 1862643200
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6ead82c0",
+              "prefix": "12ffff0300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1856864640,
+                "0x10": 1862643200
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "backing": "0x65f60040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x65f60040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x65f602c0",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711174528
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x65f602c0",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711174528
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x65f602c0",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711174528
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "backing": "0x66079040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66079040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6607a1c0",
+              "prefix": "12ff050500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711776960
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x660a0c80",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711918656,
+                "0x10": 1712488256
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x660a0c80",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711918656,
+                "0x10": 1712488256
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "backing": "0x6f798040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6f798040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6f79f840",
+              "prefix": "12ffff0600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1870856768,
+                "0xc": 0,
+                "0x10": 1870296192
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6f79f840",
+              "prefix": "12ffff0600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1870856768,
+                "0xc": 0,
+                "0x10": 1870296192
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7638edc0",
+              "prefix": "12ffff06c044b175",
+              "header_links_u32": {
+                "0x4": 1974551744,
+                "0x8": 0,
+                "0xc": 1983441216,
+                "0x10": 1983450688
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "backing": "0x763a0040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x763a0040",
+              "prefix": "4546583030313000"
+            },
+            {
+              "field": "0x38",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x90",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x98",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "backing": "0x793b2040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x793b2040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x793b4100",
+              "prefix": "12ff0a0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2033928704
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x794bfb80",
+              "prefix": "12ffff0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 2067464704,
+                "0xc": 2035021696,
+                "0x10": 2067370368
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7b3b0bc0",
+              "prefix": "12ffff0800023b7b",
+              "header_links_u32": {
+                "0x4": 2067464704,
+                "0x8": 0,
+                "0xc": 2067466688,
+                "0x10": 2067467648
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "backing": "0x7b3ca040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7b3ca040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7b3cab00",
+              "prefix": "12ff0a0900000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2067704640
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "backing": "0x7c5d3040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7c5d3040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7c5d42c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x7c5d42c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7c5d42c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "backing": "0x66127f80",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66127f80",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x90",
+              "address": "0x66128100",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x66128100",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "title",
+      "sample": 1,
+      "mask": "0x2bfc",
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "base": 0,
+      "selected": 2,
+      "arenas": [
+        {
+          "id": 2,
+          "backing": "0x6cc90040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6cc90040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6cc91100",
+              "prefix": "12ff0c0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1825140352
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6cc975c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825140352,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6cc975c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825140352,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "backing": "0x6ea67040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6ea67040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6ea687c0",
+              "prefix": "12ff080300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1856504000
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6ead82c0",
+              "prefix": "12ffff0300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1856864640,
+                "0x10": 1862643200
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6ead82c0",
+              "prefix": "12ffff0300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1856864640,
+                "0x10": 1862643200
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "backing": "0x65f60040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x65f60040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x65f602c0",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711174528
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x65f602c0",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711174528
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x65f602c0",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711174528
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "backing": "0x66079040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66079040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6607a1c0",
+              "prefix": "12ff050500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711776960
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x660a0c80",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711918656,
+                "0x10": 1712488256
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x660a0c80",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711918656,
+                "0x10": 1712488256
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "backing": "0x6f798040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6f798040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6f79f840",
+              "prefix": "12ffff0600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1870856768,
+                "0xc": 0,
+                "0x10": 1870296192
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6f79f840",
+              "prefix": "12ffff0600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1870856768,
+                "0xc": 0,
+                "0x10": 1870296192
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7638edc0",
+              "prefix": "12ffff06c044b175",
+              "header_links_u32": {
+                "0x4": 1974551744,
+                "0x8": 0,
+                "0xc": 1983441216,
+                "0x10": 1983450688
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "backing": "0x763a0040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x763a0040",
+              "prefix": "4546583030313000"
+            },
+            {
+              "field": "0x38",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x90",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x98",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "backing": "0x793b2040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x793b2040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x793b4100",
+              "prefix": "12ff0a0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2033928704
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x794bfb80",
+              "prefix": "12ffff0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 2067464704,
+                "0xc": 2035021696,
+                "0x10": 2067370368
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7b3b0bc0",
+              "prefix": "12ffff0800023b7b",
+              "header_links_u32": {
+                "0x4": 2067464704,
+                "0x8": 0,
+                "0xc": 2067466688,
+                "0x10": 2067467648
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "backing": "0x7b3ca040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7b3ca040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7b3cab00",
+              "prefix": "12ff0a0900000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2067704640
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "backing": "0x7c5d3040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7c5d3040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7c5d42c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x7c5d42c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7c5d42c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "backing": "0x66127f80",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66127f80",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x90",
+              "address": "0x66128100",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x66128100",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "loaded",
+      "sample": 0,
+      "mask": "0x6bfc",
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "base": 0,
+      "selected": 2,
+      "arenas": [
+        {
+          "id": 2,
+          "backing": "0x6cc90040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6cc90040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6cc91100",
+              "prefix": "12ff0c0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1825140352
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6d3d91c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825142208,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6d3d91c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825142208,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "backing": "0x6ea67040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6ea67040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6ea687c0",
+              "prefix": "12ff080300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1856504000
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6eac0f40",
+              "prefix": "12ffff0300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1856857536,
+                "0xc": 1856769344,
+                "0x10": 1856856832
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6eaeec80",
+              "prefix": "12ffff03406bad6e",
+              "header_links_u32": {
+                "0x4": 1856858944,
+                "0x8": 0,
+                "0xc": 1856956608,
+                "0x10": 1863169792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "backing": "0x65f60040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x65f60040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x65f602c0",
+              "prefix": "12ff050400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1710641792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x65f65280",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1710621376,
+                "0x10": 1711123840
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x65f65280",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1710621376,
+                "0x10": 1711123840
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "backing": "0x66079040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66079040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6607a1c0",
+              "prefix": "12ff050500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711776960
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6608ef40",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711861504,
+                "0x10": 1712385792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6608ef40",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711861504,
+                "0x10": 1712385792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "backing": "0x6f798040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6f798040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6f79f840",
+              "prefix": "12ff050600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1870268544
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6f7a6d80",
+              "prefix": "12ffff0600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1877738048,
+                "0xc": 1870287168,
+                "0x10": 1870296192
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x75f51780",
+              "prefix": "12ffff06c070f475",
+              "header_links_u32": {
+                "0x4": 1978953920,
+                "0x8": 0,
+                "0xc": 1978996416,
+                "0x10": 1983146304
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "backing": "0x763a0040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x763a0040",
+              "prefix": "4546583030313000"
+            },
+            {
+              "field": "0x38",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x90",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x98",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "backing": "0x793b2040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x793b2040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x793b4100",
+              "prefix": "12ff0a0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2033928704
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x794b1740",
+              "prefix": "12ffff0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 2067443968,
+                "0xc": 2034963456,
+                "0x10": 2067442240
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7b3b1b80",
+              "prefix": "12ffff08c0b53a7b",
+              "header_links_u32": {
+                "0x4": 2067445184,
+                "0x8": 0,
+                "0xc": 2067470784,
+                "0x10": 2067471680
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "backing": "0x7b3ca040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7b3ca040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7b3cab00",
+              "prefix": "12ff0a0900000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2067704640
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "backing": "0x7c5d2040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7c5d2040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7c5d32c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x7c5d32c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7c5d32c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "backing": "0x66127f80",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66127f80",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x90",
+              "address": "0x6612b000",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1712492800,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6612b000",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1712492800,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "backing": "0x6610ef40",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6610ef40",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x90",
+              "address": "0x6610f0c0",
+              "prefix": "12ffff0e00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6610f0c0",
+              "prefix": "12ffff0e00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "loaded",
+      "sample": 1,
+      "mask": "0x6bfc",
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "base": 0,
+      "selected": 2,
+      "arenas": [
+        {
+          "id": 2,
+          "backing": "0x6cc90040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6cc90040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6cc91100",
+              "prefix": "12ff0c0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1825140352
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6d3d91c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825142208,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6d3d91c0",
+              "prefix": "12ffff0200000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1825142208,
+                "0x10": 1851146176
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "backing": "0x6ea67040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6ea67040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6ea687c0",
+              "prefix": "12ff080300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1856504000
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6eac0f40",
+              "prefix": "12ffff0300000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1856857536,
+                "0xc": 1856769344,
+                "0x10": 1856856832
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6eaeec80",
+              "prefix": "12ffff03406bad6e",
+              "header_links_u32": {
+                "0x4": 1856858944,
+                "0x8": 0,
+                "0xc": 1856956608,
+                "0x10": 1863169792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "backing": "0x65f60040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x65f60040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x65f602c0",
+              "prefix": "12ff050400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1710641792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x65f65280",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1710621376,
+                "0x10": 1711123840
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x65f65280",
+              "prefix": "12ffff0400000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1710621376,
+                "0x10": 1711123840
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "backing": "0x66079040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66079040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6607a1c0",
+              "prefix": "12ff050500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1711776960
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6608ef40",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711861504,
+                "0x10": 1712385792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6608ef40",
+              "prefix": "12ffff0500000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1711861504,
+                "0x10": 1712385792
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "backing": "0x6f798040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6f798040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x6f79f840",
+              "prefix": "12ff050600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 1870268544
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x6f7a6d80",
+              "prefix": "12ffff0600000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 1877738048,
+                "0xc": 1870287168,
+                "0x10": 1870296192
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x75f51780",
+              "prefix": "12ffff06c070f475",
+              "header_links_u32": {
+                "0x4": 1978953920,
+                "0x8": 0,
+                "0xc": 1978996416,
+                "0x10": 1983146304
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "backing": "0x763a0040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x763a0040",
+              "prefix": "4546583030313000"
+            },
+            {
+              "field": "0x38",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x90",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            },
+            {
+              "field": "0x98",
+              "address": "0x763a2940",
+              "prefix": "0000000000000000",
+              "meaning": "Readable zero bytes; not an FF12 block header."
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "backing": "0x793b2040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x793b2040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x793b4100",
+              "prefix": "12ff0a0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2033928704
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x794b1740",
+              "prefix": "12ffff0800000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 2067443968,
+                "0xc": 2034963456,
+                "0x10": 2067442240
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7b3b1b80",
+              "prefix": "12ffff08c0b53a7b",
+              "header_links_u32": {
+                "0x4": 2067445184,
+                "0x8": 0,
+                "0xc": 2067470784,
+                "0x10": 2067471680
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "backing": "0x7b3ca040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7b3ca040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7b3cab00",
+              "prefix": "12ff0a0900000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 2067704640
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "backing": "0x7c5d2040",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x7c5d2040",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x38",
+              "address": "0x7c5d32c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x90",
+              "address": "0x7c5d32c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x7c5d32c0",
+              "prefix": "12ffff0b00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "backing": "0x66127f80",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x66127f80",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x90",
+              "address": "0x6612b000",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1712492800,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6612b000",
+              "prefix": "12ffff0d00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 1712492800,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "backing": "0x6610ef40",
+          "inspected": [
+            {
+              "field": "0x8",
+              "address": "0x6610ef40",
+              "prefix": "544b4d414c4c4f43"
+            },
+            {
+              "field": "0x90",
+              "address": "0x6610f0c0",
+              "prefix": "12ffff0e00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            },
+            {
+              "field": "0x98",
+              "address": "0x6610f0c0",
+              "prefix": "12ffff0e00000000",
+              "header_links_u32": {
+                "0x4": 0,
+                "0x8": 0,
+                "0xc": 0,
+                "0x10": 0
+              },
+              "decode_limit": "Base zero: nonzero references numerically retain their address; target lifetime not tested."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Reads are sequential, not atomic.",
+    "Decoded link targets were not generally read.",
+    "Enabled mask does not prove a usable allocator; arena7 is an explicit exception.",
+    "Module names and EXE text identity do not prove all process memory is unmodified."
+  ],
+  "status": "PASS_BOUNDED_SAVED_REVIEW",
+  "samples": 4,
+  "pointed_spans": 154,
+  "changed_backing": {
+    "arena": 11,
+    "title": "0x7c5d3040",
+    "loaded": "0x7c5d2040"
+  },
+  "newly_enabled": {
+    "arena": 14,
+    "backing": "0x6610ef40"
+  },
+  "input_hashes": {
+    "cleanup-first-attempt.json": "b97b5d086bb5cc8f826409556354e2c9a0c38caa19e3711383b7c253c68be1be",
+    "cleanup-resume.json": "134f9207c5557882fd969e86cf88e17e8a28337805ceca3bf7b8a7fdc0466575",
+    "cleanup.json": "6e068d2eafa72e98b29143552867044265a51475f0b1631186905db384742d7a",
+    "cloud-after.json": "2472f88c68f5951db11f3e00d8cdc1934debe8a9a43e990ce55ed9825605f547",
+    "cloud-before.json": "30acdd512a24662596a81f2843e836b12ad309552bea38ef136e1341a03b070c",
+    "environment.json": "5c89d37c15f48eadecea3039138b3ae69ac0c83de00cc5c09fb837883f96168d",
+    "exit-check.json": "4596dd672830293e959706848ce8a4de27135192b09c57096122cd7e7b2ce493",
+    "input-close.json": "c50fd57cfbf2abbf2b8155cfdbacf71d0f6ac8122b0860c8f77dc64921a6164f",
+    "input-dismiss-load.json": "8030756315bfddc6b54a63a913dfbf0868fd97585611c2df2e5f3f4da859a503",
+    "input-load-menu.json": "1cf60c15a0760dfca7c26d040e4006a8411588c286c2a5254f429f3003d497bd",
+    "input-responsiveness.json": "a83b950e0146401986760edd304f8e7aba3031a62603e754982acfa2785ebd2d",
+    "input-selected-save.json": "8d0eaa24ebf1c00a7861f3a8a4f72b0623ade5b47ede371ebfacf40c5b5606d6",
+    "input-title-click.json": "4f97ffc9b0197a13fe159d360d09eebd76042d2520c901cd393320f4d7a07157",
+    "loaded-after.json": "b255d18a1006ebc8f12b20f64cd249df84bdf71192c39860521683d0b9554567",
+    "loaded-before.json": "d1ceaf7236a5959598e86eedbd68475f2d0a3606ab3652262ce6aa82de0b67ce",
+    "loaded-memory.json": "f9e29523a09ede9630acd6d8cb1a5a58df923d800698f909dc369da9e1c00907",
+    "process.json": "2047bea9bd0239a847343db36b2066f66acb99bf09688436cdddc4e234e1215e",
+    "responsive-menu.json": "8a608c8bf2693a32cfe6456953da24a5b96c9581aef9e3839551535d7001c05a",
+    "save-before.json": "6573dc54e09ebf0e0df70497e0e6537929e9f60ca9e784b01f2ee843f59d4554",
+    "title-after.json": "2038691f45a5cb8cc76c7b0c86fa816d754c2138b52ca1fc12511010b829bf9b",
+    "title-before.json": "7b9b33b739eb6c29a09245a633f68f2a045a56b5a39bf9f855112f2ee891e8ae",
+    "title-memory.json": "383096bad826c2ce49eec8a9a8c8d79d07ffae052952d544f80ae30fd35b4896"
+  }
+}

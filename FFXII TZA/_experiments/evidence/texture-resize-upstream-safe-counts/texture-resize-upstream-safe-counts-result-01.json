@@ -1,0 +1,463 @@
+{
+  "status": "PRODUCER_CHECKED_SELECTED_UPSTREAM_COUNTS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "question": "Can these selected upstream original normal paths supply the80000000 masked-zero residue to the two lower count floors?",
+  "hypotheses": [
+    "Selected source count admits80000000",
+    "Dominating selected source definitions constrain counts to1/4/32"
+  ],
+  "result": "REFUTED on selected paths: constants1/4/32 survive max(1,u32) unchanged and remain nonzero after AND7FFFFFFF. The arbitrary-input80000000 counterexample remains valid outside this selected coverage.",
+  "source_pins": [
+    {
+      "path": "texture-resize-dynamic-input-producers-source-01.json",
+      "sha256": "3daa41853ec1d29cf02675bc735f9ad5fd0265fb01fd3c5002c265901e190cfd"
+    },
+    {
+      "path": "texture-resize-forwarded-input-caller-source-01.json",
+      "sha256": "2dc6271a25192ffa055d6ddc1ecc1787c3b5ac08be9f631bcd3ad2b7e1194e65"
+    },
+    {
+      "path": "texture-resize-palette-root-edges-source-01.json",
+      "sha256": "663a187ff11a27edc14f0247314878391bba6330fd631c0f7b1bb389dc8f21d7"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 326,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 373,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 74,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "normal_cfgs": [
+    {
+      "entry": "0x180e70",
+      "end_exclusive": "0x180ff1",
+      "instructions": 110,
+      "returns": [
+        "0x180ff0"
+      ],
+      "calls": [
+        {
+          "pc": "0x180f8e",
+          "target": "0x17f3b0"
+        },
+        {
+          "pc": "0x180f96",
+          "target": "0x1b1c00"
+        },
+        {
+          "pc": "0x180fac",
+          "target": "0x1b20b0"
+        },
+        {
+          "pc": "0x180fdb",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x181000",
+      "end_exclusive": "0x181188",
+      "instructions": 110,
+      "returns": [
+        "0x181187"
+      ],
+      "calls": [
+        {
+          "pc": "0x181122",
+          "target": "0x17f3b0"
+        },
+        {
+          "pc": "0x18112a",
+          "target": "0x1b1c00"
+        },
+        {
+          "pc": "0x181140",
+          "target": "0x1b20b0"
+        },
+        {
+          "pc": "0x181172",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x183760",
+      "end_exclusive": "0x18377f",
+      "instructions": 7,
+      "returns": [
+        "0x18377e"
+      ],
+      "calls": [
+        {
+          "pc": "0x183775",
+          "target": "0x17e8e0"
+        }
+      ]
+    },
+    {
+      "entry": "0x183780",
+      "end_exclusive": "0x183799",
+      "instructions": 6,
+      "returns": [
+        "0x183798"
+      ],
+      "calls": [
+        {
+          "pc": "0x18378f",
+          "target": "0x17e8e0"
+        }
+      ]
+    },
+    {
+      "entry": "0x1837a0",
+      "end_exclusive": "0x1837bf",
+      "instructions": 7,
+      "returns": [
+        "0x1837be"
+      ],
+      "calls": [
+        {
+          "pc": "0x1837b5",
+          "target": "0x17e8e0"
+        }
+      ]
+    },
+    {
+      "entry": "0x1837c0",
+      "end_exclusive": "0x1839fd",
+      "instructions": 152,
+      "returns": [
+        "0x1839fc"
+      ],
+      "calls": [
+        {
+          "pc": "0x183830",
+          "target": "0x861eba"
+        },
+        {
+          "pc": "0x1839dd",
+          "target": "0x17e8e0"
+        },
+        {
+          "pc": "0x1839ed",
+          "target": "0x808c40"
+        }
+      ]
+    },
+    {
+      "entry": "0x183eb0",
+      "end_exclusive": "0x183ed4",
+      "instructions": 8,
+      "returns": [
+        "0x183ed3"
+      ],
+      "calls": [
+        {
+          "pc": "0x183eca",
+          "target": "0x17e8e0"
+        }
+      ]
+    },
+    {
+      "entry": "0x1baa30",
+      "end_exclusive": "0x1bafe7",
+      "instructions": 373,
+      "returns": [
+        "0x1bafe6"
+      ],
+      "calls": [
+        {
+          "pc": "0x1baaac",
+          "target": "qword ptr [rip + 0x707f56]"
+        },
+        {
+          "pc": "0x1baad1",
+          "target": "0x18a330"
+        },
+        {
+          "pc": "0x1bab96",
+          "target": "qword ptr [rip + 0x707e6c]"
+        },
+        {
+          "pc": "0x1babb2",
+          "target": "0x183780"
+        },
+        {
+          "pc": "0x1babee",
+          "target": "0x1edf00"
+        },
+        {
+          "pc": "0x1bac10",
+          "target": "0x1edf00"
+        },
+        {
+          "pc": "0x1bac7d",
+          "target": "qword ptr [rip + 0x707d85]"
+        },
+        {
+          "pc": "0x1baca4",
+          "target": "0x18a330"
+        },
+        {
+          "pc": "0x1baccc",
+          "target": "qword ptr [rip + 0x707d36]"
+        },
+        {
+          "pc": "0x1bacec",
+          "target": "qword ptr [rip + 0x707d16]"
+        },
+        {
+          "pc": "0x1bad0c",
+          "target": "qword ptr [rip + 0x707cf6]"
+        },
+        {
+          "pc": "0x1bad79",
+          "target": "0x1b9d80"
+        },
+        {
+          "pc": "0x1bad86",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1bad96",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1bada7",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1badb8",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1badc9",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1badda",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1bae97",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baeaa",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baec5",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baed8",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baef4",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baf07",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baf1a",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baf2c",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baf44",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1baf64",
+          "target": "0x1b9a10"
+        },
+        {
+          "pc": "0x1bafa7",
+          "target": "0x220390"
+        },
+        {
+          "pc": "0x1bafc1",
+          "target": "qword ptr [rax + 0x18]"
+        }
+      ]
+    }
+  ],
+  "selected_argument_paths": [
+    {
+      "root": "0x180e70",
+      "call": "0x180f8e",
+      "definition": "0x180f87",
+      "incoming_floor_u32": 1,
+      "after_floor": 1,
+      "masked": 1
+    },
+    {
+      "root": "0x181000",
+      "call": "0x181122",
+      "definition": "0x18111f",
+      "incoming_floor_u32": 1,
+      "after_floor": 1,
+      "masked": 1
+    },
+    {
+      "root": "0x183760",
+      "call": "0x183775",
+      "definition": "0x18376a",
+      "incoming_floor_u32": 4,
+      "after_floor": 4,
+      "masked": 4
+    },
+    {
+      "root": "0x1837a0",
+      "call": "0x1837b5",
+      "definition": "0x1837aa",
+      "incoming_floor_u32": 1,
+      "after_floor": 1,
+      "masked": 1
+    },
+    {
+      "root": "0x1837c0",
+      "call": "0x1839dd",
+      "definition": "0x1839cb",
+      "incoming_floor_u32": 4,
+      "after_floor": 4,
+      "masked": 4
+    },
+    {
+      "root": "0x183eb0",
+      "call": "0x183eca",
+      "definition": "0x183ec4",
+      "incoming_floor_u32": 1,
+      "after_floor": 1,
+      "masked": 1
+    },
+    {
+      "root": "0x1baa30",
+      "call": "0x1babb2",
+      "definition": "0x1babae",
+      "incoming_floor_u32": 32,
+      "after_floor": 32,
+      "masked": 32
+    }
+  ],
+  "forwarding_chain": {
+    "caller": "0x1babb2",
+    "caller_count": 32,
+    "leaf": "0x183780",
+    "leaf_call": "0x18378f",
+    "target": "0x17e8e0",
+    "property": "R9 unchanged before leaf call; later lower count-floor proof is retained/qualified"
+  },
+  "required_result_pins": [
+    {
+      "path": "texture-resize-input-domain-result-01.json",
+      "sha256": "603cb3a9d083860c022cfabd671215915ec6c5964033beb8f337afaf63670129",
+      "checker_path": "prove-texture-resize-input-domain.py",
+      "checker_sha256": "b0b8cb0b3c3dc10dfe8baa50da2498269206a785098bff93531f343e6493c351",
+      "source_pins": [
+        {
+          "path": "texture-resize-input-callers-source-01.json",
+          "sha256": "2578aeabba32317f96c38da4a26e7d3d833ad8c442e1cdd347e2dd65fbb0a19d"
+        },
+        {
+          "path": "texture-resize-input-root-prefix-source-01.json",
+          "sha256": "3c2682383fec3a5adf63b532ea0fec0062b455c239660ca9b7cfc8794e4abd7b"
+        },
+        {
+          "path": "texture-resize-input-tail-source-01.json",
+          "sha256": "8b28f30933ab2df45883d97deb84d221221378cad46592ebc45c52dcceb38bd3"
+        }
+      ],
+      "annotation_prerequisites": [
+        {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 724,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        },
+        {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 60,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        },
+        {
+          "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+          "instruction_records": 20,
+          "capstone": "5.0.7",
+          "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+          "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+          "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+        }
+      ],
+      "independent_acceptance": "PENDING"
+    }
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "texture-resize-input-domain-positive-01.status.json",
+      "sha256": "cae16611b733b7735b261b289071623be8a773bafe7a44977f45e6350fbb83b3",
+      "checked_exit": 0
+    }
+  ],
+  "observations": [
+    "Two complete palette normal roots supply1 viaR8D->R9D; their source pixel-count EDX16/256 is a different argument, not texture element count",
+    "Four other prepared wrappers overwriteR9D with1/4 immediately before their normal call",
+    "183780 passes incomingR9 unchanged; its selected1BABB2 caller establishesRCX0 then LEA R9D[RCX+20], yielding32. Earlier1BAB52 load ofR9D fromresource+F8 is overwritten, not this call count",
+    "Complete normal CFG/definition domination proves this bounded argument property; it does not prove any root naturally executes with valid initialized resources"
+  ],
+  "assumptions": [
+    "Original normal entry/return, ordinary ABI, valid private stack/objects, no interference or exceptional/interior entries",
+    "Qualified lower count-floor/private-slot prerequisites retained; opaque lower callees obey their stated premises"
+  ],
+  "limitations": [
+    "Seven prepared upstream sites plus one selected forwarder caller; reference search is not complete direct/indirect/RVA/virtual/registry closure",
+    "No universal texturecount<=32, initialized allocation, native callback/scheduling/lifetime, save/resource success, naturally executed call or game-crash conclusion",
+    "1837C0 buffer/conversion safety and exception-handler semantics are outside this count proof",
+    "No new original-code/harness/emulated/live runs; producer checks are not independent acceptance"
+  ],
+  "affected_claims": [
+    "OPUS selected renderer texture count-domain contract:1/4/32 excludes raw/masked zero on these paths",
+    "FABLE natural zero-count question: other callers/indirect binding or a violated premise needed; these selected paths need no game test"
+  ],
+  "next_discriminator": "Bind remaining direct/indirect/registry callers only for a named universal producer claim, or move to independent pending-ticket lifetime/callback-dispatch obligation. Do not repeat these constants/samples.",
+  "learned_precondition": "Containing palette child fragments alone were not whole normal roots; retained543B children were reused and only234B missing edges captured. Parent triples are distinct despite shared unwind address.",
+  "checker_sha256": "46200b1fe181c36a2fb46c18c4b8e8de9614e4de37ea5bd82602ace50be63567",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Finite file reads/CFG/dataflow only; no PC/game/input/instrument/save/config/reference or peer-process writes"
+}

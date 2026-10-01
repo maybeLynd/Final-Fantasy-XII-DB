@@ -1,0 +1,218 @@
+== 007A1CD0 in .pdata [007A1CD0, 007A2134)
+007A1CD0  push      rbx   <==
+007A1CD2  sub       rsp, 0xe0
+007A1CD9  mov       rax, qword ptr [rip + 0x17a2b50]   ; -> 01F44830 u32=2DDFA232
+007A1CE0  xor       rax, rsp
+007A1CE3  mov       qword ptr [rsp + 0xd0], rax
+007A1CEB  mov       rbx, rcx
+007A1CEE  mov       qword ptr [rsp + 0x50], 0
+007A1CF7  mov       rcx, qword ptr [rip + 0x270780a]   ; -> 02EA9508 (virtual tail)
+007A1CFE  lea       rdx, [rsp + 0x50]
+007A1D03  mov       rax, qword ptr [rcx]
+007A1D06  call      qword ptr [rax + 0x18]
+007A1D09  test      eax, eax
+007A1D0B  jle       0x7a20f2
+007A1D11  mov       r8, qword ptr [rip + 0x2707888]   ; -> 02EA95A0 (virtual tail)
+007A1D18  cmp       qword ptr [rsp + 0x50], r8
+007A1D1D  jne       0x7a20f2
+007A1D23  cmp       byte ptr [rbx + 0xa9], 0
+007A1D2A  jne       0x7a1d4b
+007A1D2C  lea       rdx, [rip + 0x1511bd5]   ; -> 01CB3908 u32=61657453
+007A1D33  mov       ecx, 2
+007A1D38  call      0x5cdaa0
+007A1D3D  mov       r8, qword ptr [rip + 0x270785c]   ; -> 02EA95A0 (virtual tail)
+007A1D44  mov       byte ptr [rbx + 0xa9], 1
+007A1D4B  mov       rcx, qword ptr [rip + 0x27077b6]   ; -> 02EA9508 (virtual tail)
+007A1D52  lea       rdx, [rsp + 0x20]
+007A1D57  mov       r9, qword ptr [rip + 0x27077ea]   ; -> 02EA9548 (virtual tail)
+007A1D5E  mov       rax, qword ptr [rcx]
+007A1D61  call      qword ptr [rax + 0x48]
+007A1D64  mov       r9, qword ptr [rip + 0x27077c5]   ; -> 02EA9530 (virtual tail)
+007A1D6B  lea       rdx, [rsp + 0x22]
+007A1D70  mov       r8, qword ptr [rip + 0x2707829]   ; -> 02EA95A0 (virtual tail)
+007A1D77  movzx     ecx, byte ptr [rax]
+007A1D7A  mov       byte ptr [rbx + 0x43f], cl
+007A1D80  mov       rcx, qword ptr [rip + 0x2707781]   ; -> 02EA9508 (virtual tail)
+007A1D87  mov       rax, qword ptr [rcx]
+007A1D8A  call      qword ptr [rax + 0x48]
+007A1D8D  mov       r9, qword ptr [rip + 0x27077a4]   ; -> 02EA9538 (virtual tail)
+007A1D94  lea       rdx, [rsp + 0x20]
+007A1D99  mov       r8, qword ptr [rip + 0x2707800]   ; -> 02EA95A0 (virtual tail)
+007A1DA0  movzx     ecx, byte ptr [rax]
+007A1DA3  mov       byte ptr [rbx + 0x43e], cl
+007A1DA9  mov       rcx, qword ptr [rip + 0x2707758]   ; -> 02EA9508 (virtual tail)
+007A1DB0  mov       rax, qword ptr [rcx]
+007A1DB3  call      qword ptr [rax + 0x48]
+007A1DB6  mov       r9, qword ptr [rip + 0x2707783]   ; -> 02EA9540 (virtual tail)
+007A1DBD  lea       rdx, [rsp + 0x22]
+007A1DC2  mov       r8, qword ptr [rip + 0x27077d7]   ; -> 02EA95A0 (virtual tail)
+007A1DC9  movzx     ecx, byte ptr [rax]
+007A1DCC  mov       byte ptr [rbx + 0x43d], cl
+007A1DD2  mov       rcx, qword ptr [rip + 0x270772f]   ; -> 02EA9508 (virtual tail)
+007A1DD9  mov       rax, qword ptr [rcx]
+007A1DDC  call      qword ptr [rax + 0x48]
+007A1DDF  mov       r9, qword ptr [rip + 0x270776a]   ; -> 02EA9550 (virtual tail)
+007A1DE6  lea       rdx, [rsp + 0x20]
+007A1DEB  mov       r8, qword ptr [rip + 0x27077ae]   ; -> 02EA95A0 (virtual tail)
+007A1DF2  movzx     ecx, byte ptr [rax]
+007A1DF5  mov       byte ptr [rbx + 0x43c], cl
+007A1DFB  mov       rcx, qword ptr [rip + 0x2707706]   ; -> 02EA9508 (virtual tail)
+007A1E02  mov       rax, qword ptr [rcx]
+007A1E05  call      qword ptr [rax + 0x48]
+007A1E08  mov       r9, qword ptr [rip + 0x2707759]   ; -> 02EA9568 (virtual tail)
+007A1E0F  lea       rdx, [rsp + 0x22]
+007A1E14  mov       r8, qword ptr [rip + 0x2707785]   ; -> 02EA95A0 (virtual tail)
+007A1E1B  movzx     ecx, byte ptr [rax]
+007A1E1E  mov       byte ptr [rbx + 0x440], cl
+007A1E24  mov       rcx, qword ptr [rip + 0x27076dd]   ; -> 02EA9508 (virtual tail)
+007A1E2B  mov       rax, qword ptr [rcx]
+007A1E2E  call      qword ptr [rax + 0x48]
+007A1E31  mov       r9, qword ptr [rip + 0x2707720]   ; -> 02EA9558 (virtual tail)
+007A1E38  lea       rdx, [rsp + 0x20]
+007A1E3D  mov       r8, qword ptr [rip + 0x270775c]   ; -> 02EA95A0 (virtual tail)
+007A1E44  movzx     ecx, byte ptr [rax]
+007A1E47  mov       byte ptr [rbx + 0x441], cl
+007A1E4D  mov       rcx, qword ptr [rip + 0x27076b4]   ; -> 02EA9508 (virtual tail)
+007A1E54  mov       rax, qword ptr [rcx]
+007A1E57  call      qword ptr [rax + 0x48]
+007A1E5A  mov       r9, qword ptr [rip + 0x270770f]   ; -> 02EA9570 (virtual tail)
+007A1E61  lea       rdx, [rsp + 0x22]
+007A1E66  mov       r8, qword ptr [rip + 0x2707733]   ; -> 02EA95A0 (virtual tail)
+007A1E6D  movzx     ecx, byte ptr [rax]
+007A1E70  mov       byte ptr [rbx + 0x442], cl
+007A1E76  mov       rcx, qword ptr [rip + 0x270768b]   ; -> 02EA9508 (virtual tail)
+007A1E7D  mov       rax, qword ptr [rcx]
+007A1E80  call      qword ptr [rax + 0x48]
+007A1E83  mov       r9, qword ptr [rip + 0x27076fe]   ; -> 02EA9588 (virtual tail)
+007A1E8A  lea       rdx, [rsp + 0x20]
+007A1E8F  mov       r8, qword ptr [rip + 0x270770a]   ; -> 02EA95A0 (virtual tail)
+007A1E96  movzx     ecx, byte ptr [rax]
+007A1E99  mov       byte ptr [rbx + 0x443], cl
+007A1E9F  mov       rcx, qword ptr [rip + 0x2707662]   ; -> 02EA9508 (virtual tail)
+007A1EA6  mov       rax, qword ptr [rcx]
+007A1EA9  call      qword ptr [rax + 0x48]
+007A1EAC  mov       r9, qword ptr [rip + 0x27076cd]   ; -> 02EA9580 (virtual tail)
+007A1EB3  lea       rdx, [rsp + 0x22]
+007A1EB8  mov       r8, qword ptr [rip + 0x27076e1]   ; -> 02EA95A0 (virtual tail)
+007A1EBF  movzx     ecx, byte ptr [rax]
+007A1EC2  mov       byte ptr [rbx + 0x444], cl
+007A1EC8  mov       rcx, qword ptr [rip + 0x2707639]   ; -> 02EA9508 (virtual tail)
+007A1ECF  mov       rax, qword ptr [rcx]
+007A1ED2  call      qword ptr [rax + 0x48]
+007A1ED5  movzx     ecx, byte ptr [rax]
+007A1ED8  mov       byte ptr [rbx + 0x445], cl
+007A1EDE  mov       rcx, qword ptr [rip + 0x2707623]   ; -> 02EA9508 (virtual tail)
+007A1EE5  mov       rax, qword ptr [rcx]
+007A1EE8  mov       r9, qword ptr [rip + 0x2707671]   ; -> 02EA9560 (virtual tail)
+007A1EEF  lea       rdx, [rsp + 0x20]
+007A1EF4  mov       r8, qword ptr [rip + 0x27076a5]   ; -> 02EA95A0 (virtual tail)
+007A1EFB  call      qword ptr [rax + 0x48]
+007A1EFE  mov       r9, qword ptr [rip + 0x2707673]   ; -> 02EA9578 (virtual tail)
+007A1F05  lea       rdx, [rsp + 0x22]
+007A1F0A  mov       r8, qword ptr [rip + 0x270768f]   ; -> 02EA95A0 (virtual tail)
+007A1F11  movzx     ecx, byte ptr [rax]
+007A1F14  mov       byte ptr [rbx + 0x446], cl
+007A1F1A  mov       rcx, qword ptr [rip + 0x27075e7]   ; -> 02EA9508 (virtual tail)
+007A1F21  mov       rax, qword ptr [rcx]
+007A1F24  call      qword ptr [rax + 0x48]
+007A1F27  mov       r9, qword ptr [rip + 0x27075e2]   ; -> 02EA9510 (virtual tail)
+007A1F2E  lea       rdx, [rsp + 0x20]
+007A1F33  mov       r8, qword ptr [rip + 0x2707666]   ; -> 02EA95A0 (virtual tail)
+007A1F3A  movzx     ecx, byte ptr [rax]
+007A1F3D  mov       byte ptr [rbx + 0x447], cl
+007A1F43  mov       rcx, qword ptr [rip + 0x27075be]   ; -> 02EA9508 (virtual tail)
+007A1F4A  mov       rax, qword ptr [rcx]
+007A1F4D  call      qword ptr [rax + 0x48]
+007A1F50  mov       r9, qword ptr [rip + 0x27075d1]   ; -> 02EA9528 (virtual tail)
+007A1F57  lea       rdx, [rsp + 0x22]
+007A1F5C  mov       r8, qword ptr [rip + 0x270763d]   ; -> 02EA95A0 (virtual tail)
+007A1F63  movzx     ecx, byte ptr [rax]
+007A1F66  mov       byte ptr [rbx + 0x448], cl
+007A1F6C  mov       rcx, qword ptr [rip + 0x2707595]   ; -> 02EA9508 (virtual tail)
+007A1F73  mov       rax, qword ptr [rcx]
+007A1F76  call      qword ptr [rax + 0x48]
+007A1F79  mov       r9, qword ptr [rip + 0x2707598]   ; -> 02EA9518 (virtual tail)
+007A1F80  lea       rdx, [rsp + 0x20]
+007A1F85  mov       r8, qword ptr [rip + 0x2707614]   ; -> 02EA95A0 (virtual tail)
+007A1F8C  movzx     ecx, byte ptr [rax]
+007A1F8F  mov       byte ptr [rbx + 0x449], cl
+007A1F95  mov       rcx, qword ptr [rip + 0x270756c]   ; -> 02EA9508 (virtual tail)
+007A1F9C  mov       rax, qword ptr [rcx]
+007A1F9F  call      qword ptr [rax + 0x48]
+007A1FA2  mov       r9, qword ptr [rip + 0x2707577]   ; -> 02EA9520 (virtual tail)
+007A1FA9  lea       rdx, [rsp + 0x22]
+007A1FAE  mov       r8, qword ptr [rip + 0x27075eb]   ; -> 02EA95A0 (virtual tail)
+007A1FB5  movzx     ecx, byte ptr [rax]
+007A1FB8  mov       byte ptr [rbx + 0x44a], cl
+007A1FBE  mov       rcx, qword ptr [rip + 0x2707543]   ; -> 02EA9508 (virtual tail)
+007A1FC5  mov       rax, qword ptr [rcx]
+007A1FC8  call      qword ptr [rax + 0x48]
+007A1FCB  mov       r9, qword ptr [rip + 0x27075be]   ; -> 02EA9590 (virtual tail)
+007A1FD2  lea       rdx, [rsp + 0x28]
+007A1FD7  mov       r8, qword ptr [rip + 0x27075c2]   ; -> 02EA95A0 (virtual tail)
+007A1FDE  movzx     ecx, byte ptr [rax]
+007A1FE1  mov       byte ptr [rbx + 0x44b], cl
+007A1FE7  mov       rcx, qword ptr [rip + 0x270751a]   ; -> 02EA9508 (virtual tail)
+007A1FEE  mov       rax, qword ptr [rcx]
+007A1FF1  call      qword ptr [rax + 0x60]
+007A1FF4  mov       rcx, qword ptr [rip + 0x270750d]   ; -> 02EA9508 (virtual tail)
+007A1FFB  lea       rdx, [rsp + 0x38]
+007A2000  mov       r9, qword ptr [rip + 0x2707589]   ; -> 02EA9590 (virtual tail)
+007A2007  mov       r8, qword ptr [rip + 0x2707592]   ; -> 02EA95A0 (virtual tail)
+007A200E  movss     xmm0, dword ptr [rax + 4]
+007A2013  mulss     xmm0, dword ptr [rip + 0x1739e5]   ; -> 00915A00 u32=43800000
+007A201B  cvttss2si eax, xmm0
+007A201F  mov       dword ptr [rbx + 0x414], eax
+007A2025  mov       rax, qword ptr [rcx]
+007A2028  call      qword ptr [rax + 0x60]
+007A202B  mov       rcx, qword ptr [rip + 0x27074d6]   ; -> 02EA9508 (virtual tail)
+007A2032  lea       rdx, [rsp + 0x28]
+007A2037  mov       r9, qword ptr [rip + 0x270755a]   ; -> 02EA9598 (virtual tail)
+007A203E  mov       r8, qword ptr [rip + 0x270755b]   ; -> 02EA95A0 (virtual tail)
+007A2045  movss     xmm0, dword ptr [rax + 8]
+007A204A  mulss     xmm0, dword ptr [rip + 0x1511ca6]   ; -> 01CB3CF8 u32=C3800000
+007A2052  cvttss2si eax, xmm0
+007A2056  mov       dword ptr [rbx + 0x420], eax
+007A205C  mov       rax, qword ptr [rcx]
+007A205F  call      qword ptr [rax + 0x60]
+007A2062  mov       rcx, qword ptr [rip + 0x270749f]   ; -> 02EA9508 (virtual tail)
+007A2069  lea       rdx, [rsp + 0x38]
+007A206E  mov       r9, qword ptr [rip + 0x2707523]   ; -> 02EA9598 (virtual tail)
+007A2075  mov       r8, qword ptr [rip + 0x2707524]   ; -> 02EA95A0 (virtual tail)
+007A207C  movss     xmm0, dword ptr [rax + 4]
+007A2081  mulss     xmm0, dword ptr [rip + 0x173977]   ; -> 00915A00 u32=43800000
+007A2089  cvttss2si eax, xmm0
+007A208D  mov       dword ptr [rbx + 0x418], eax
+007A2093  mov       rax, qword ptr [rcx]
+007A2096  call      qword ptr [rax + 0x60]
+007A2099  movzx     r9d, byte ptr [rbx + 0x99]
+007A20A1  mov       r8d, 0x100
+007A20A7  mov       rcx, qword ptr [rip + 0x270745a]   ; -> 02EA9508 (virtual tail)
+007A20AE  movzx     edx, r8w
+007A20B2  movss     xmm0, dword ptr [rax + 8]
+007A20B7  mulss     xmm0, dword ptr [rip + 0x1511c39]   ; -> 01CB3CF8 u32=C3800000
+007A20BF  cvttss2si eax, xmm0
+007A20C3  mov       dword ptr [rbx + 0x424], eax
+007A20C9  mov       r10, qword ptr [rcx]
+007A20CC  movzx     eax, r8w
+007A20D0  imul      r9d, eax
+007A20D4  movzx     eax, byte ptr [rbx + 0x98]
+007A20DB  mov       r8d, eax
+007A20DE  imul      r8d, edx
+007A20E2  mov       rdx, qword ptr [rip + 0x27074b7]   ; -> 02EA95A0 (virtual tail)
+007A20E9  call      qword ptr [r10 + 0x88]
+007A20F0  jmp       0x7a2113
+007A20F2  cmp       byte ptr [rbx + 0xa9], 0
+007A20F9  je        0x7a2113
+007A20FB  lea       rdx, [rip + 0x1511826]   ; -> 01CB3928 u32=61657453
+007A2102  mov       ecx, 2
+007A2107  call      0x5cdaa0
+007A210C  mov       byte ptr [rbx + 0xa9], 0
+007A2113  mov       rcx, rbx
+007A2116  call      0x7a15a0
+007A211B  mov       rcx, qword ptr [rsp + 0xd0]
+007A2123  xor       rcx, rsp
+007A2126  call      0x808c40
+007A212B  add       rsp, 0xe0
+007A2132  pop       rbx
+007A2133  ret       

@@ -1,0 +1,8 @@
+definition 1: slots ['2074', '202B', '2074', '2033', 'FFFF'] extras ['209D', '204C']
+LC1_LC3_one_stream_three_steps     PASS  400 kills of grm_e def 1: every one of the 1881 writes to 022C256C is exactly three steps (x*0x41C64E6D + 0x3039) after the previous write, whichever inlined roll body made it - one stream, three steps per draw; all writes come from the four roll bodies
+LC4_variable_draws                 PASS  each kill draws once per non-empty slot (4), once more per kept slot, and once per extra that reaches its roll; the per-kill total varies over [4, 5, 6, 7] with the outcomes
+LC7_prefill_and_bucket_plus_one    PASS  over a 0xAB-filled buffer every entry ends as a valid item with quantity >= 1 or exactly {FFFF, 0}; each kept slot's stored quantity is its bucket (read before `inc eax` at 00318225) plus one
+merge_duplicate_slots              PASS  grm_e def 1 holds id 2074 in slots 0 and 2: whenever both are kept, entry 2 is cleared to {FFFF, 0} and its quantity is added to entry 0 (003182A0-003182D5) - a merge pass the contract does not state
+extras_not_reached                 PASS  both extra-item calls return without drawing in every kill: their condition query 0030B0E0 needs the item-family storage (descriptor +8), which this world does not build - recorded, not covered
+LC6_rank_is_the_default_profile    PASS  with 022C3164 = 0 every slot roll receives the chain rank 022C3158 as its profile (0..3); with it > 0 the profile body 00318820 runs first and makes the kill's first draw
+ok

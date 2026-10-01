@@ -1,0 +1,111 @@
+{
+  "status": "ORIGINAL_UNWIND_CONTINUATION_SOURCE",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "rows": [
+    {
+      "start": "0x59ec40",
+      "end": "0x59ec53",
+      "unwind_address": "0x1d928bc",
+      "flags": 0,
+      "prologue": 13,
+      "codes": 6,
+      "raw_unwind": "010d06000d7209e007d005c003700230",
+      "chain": null
+    },
+    {
+      "start": "0x59ec53",
+      "end": "0x59ec5b",
+      "unwind_address": "0x1d928cc",
+      "flags": 4,
+      "prologue": 5,
+      "codes": 2,
+      "raw_unwind": "2105020005540f0040ec470053ec4700bc28c701",
+      "chain": [
+        "0x59ec40",
+        "0x59ec53",
+        "0x1d928bc"
+      ]
+    },
+    {
+      "start": "0x59ec5b",
+      "end": "0x59ec77",
+      "unwind_address": "0x1d928e0",
+      "flags": 4,
+      "prologue": 5,
+      "codes": 2,
+      "raw_unwind": "210502000564070053ec47005bec4700cc28c701",
+      "chain": [
+        "0x59ec53",
+        "0x59ec5b",
+        "0x1d928cc"
+      ]
+    },
+    {
+      "start": "0x59ec77",
+      "end": "0x59eccc",
+      "unwind_address": "0x1d928f4",
+      "flags": 4,
+      "prologue": 5,
+      "codes": 2,
+      "raw_unwind": "2105020005f406005bec470077ec4700e028c701",
+      "chain": [
+        "0x59ec5b",
+        "0x59ec77",
+        "0x1d928e0"
+      ]
+    },
+    {
+      "start": "0x59eccc",
+      "end": "0x59ecf2",
+      "unwind_address": "0x1d92908",
+      "flags": 4,
+      "prologue": 0,
+      "codes": 0,
+      "raw_unwind": "210000005bec470077ec4700e028c701",
+      "chain": [
+        "0x59ec5b",
+        "0x59ec77",
+        "0x1d928e0"
+      ]
+    },
+    {
+      "start": "0x59ecf2",
+      "end": "0x59ed0b",
+      "unwind_address": "0x1d92918",
+      "flags": 4,
+      "prologue": 0,
+      "codes": 0,
+      "raw_unwind": "2100000053ec47005bec4700cc28c701",
+      "chain": [
+        "0x59ec53",
+        "0x59ec5b",
+        "0x1d928cc"
+      ]
+    },
+    {
+      "start": "0x59ed0b",
+      "end": "0x59ed61",
+      "unwind_address": "0x1d92928",
+      "flags": 4,
+      "prologue": 0,
+      "codes": 0,
+      "raw_unwind": "2100000040ec470053ec4700bc28c701",
+      "chain": [
+        "0x59ec40",
+        "0x59ec53",
+        "0x1d928bc"
+      ]
+    },
+    {
+      "start": "0x59ed70",
+      "end": "0x59ee0c",
+      "unwind_address": "0x1d52d78",
+      "flags": 0,
+      "prologue": 26,
+      "codes": 10,
+      "raw_unwind": "011a0a001a7409001a6408001a5407001a3406001a3216e0",
+      "chain": null
+    }
+  ],
+  "limits": "Physical exception-table entries/chain flags only; normal control and semantic function extent must be checked."
+}

@@ -1,0 +1,6 @@
+PASS  T texture bases: 'destroyed whilst still mapped' when byte +0x08 != 0, then unlink +0x20 through 006108C0
+PASS  M PSamplerStateD3D11: release +0x20, clear m_flags bit 7, base
+PASS  N PNameComponent: unlink the {next, prev} link at +0x18, free m_name unless bit 0, PComponent destructor
+PASS  V PShaderVertexProgramD3D11: 0062BAB0 releases +0x90 (and +0x00, +0x88), the input-layout array goes to 00619070, then 00616B40
+PASS  S seven destroy cells reduced; four spans re-cut with tiling kept
+FAILS 0

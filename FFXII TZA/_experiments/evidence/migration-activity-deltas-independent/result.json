@@ -1,0 +1,18 @@
+{
+  "verdict": "REJECT_ACTIVITY_WRITER_ATTRIBUTION",
+  "source_commit": "8ddc8c7e8e91be7019229c3df8084f53430804bb",
+  "activity_cases": 6,
+  "defects": [
+    "peer assignment falsely credits recipient write",
+    "genuine lane note omitted from recent-write fallback"
+  ],
+  "prior_preparation": "INVALID_NO_SEMANTIC_RESULTS",
+  "deployed_generation": "g20260929T090807Z-917468",
+  "deployed_timer": "one OK sample last_run+1800 matched",
+  "deltas": "NOT_TESTED",
+  "rendered_UI": "NOT_TESTED",
+  "loaded_activity_module_identity": "UNVERIFIED",
+  "whole_dashboard_acceptance": false,
+  "full_L1_L2": false,
+  "independent_acceptance_of_evidence": "PENDING"
+}

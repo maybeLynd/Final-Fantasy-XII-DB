@@ -1,0 +1,7 @@
+{
+  "case": "missing-chained-fragment",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "missing normal caller fragments",
+  "expected_error_seen": true
+}

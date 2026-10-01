@@ -1,0 +1,27 @@
+   00611A10 mov qword ptr [rsp + 0x10], rdx
+   00611A15 sub rsp, 0x38
+   00611A19 mov qword ptr [rsp + 0x20], 0xfffffffffffffffe
+   00611A22 mov qword ptr [rsp + 0x50], rdx
+   00611A27 test rdx, rdx
+   00611A2A je 0x611a35
+   00611A2C mov rcx, rdx
+   00611A2F call 0x615dd0
+   00611A34 nop 
+   00611A35 mov al, 1
+   00611A37 add rsp, 0x38
+   00611A3B ret 
+ callee 00615DD0:
+   00615DD0 push rbx
+   00615DD2 sub rsp, 0x20
+   00615DD6 mov rbx, rcx
+   00615DD9 call 0x5dc8b0
+   00615DDE lea rcx, [rbx + 0x30]
+   00615DE2 call 0x615ed0
+   00615DE7 xor eax, eax
+   00615DE9 mov qword ptr [rbx + 0x1c0], rax
+   00615DF0 mov dword ptr [rbx + 0x1c8], eax
+   00615DF6 mov qword ptr [rbx + 0x1cc], rax
+   00615DFD mov qword ptr [rbx + 0x1d8], rax
+   00615E04 mov qword ptr [rbx + 0x1e0], rax
+   00615E0B mov dword ptr [rbx + 0x1e8], eax
+   00615E11 mov qword ptr [rbx + 0x1ec], rax

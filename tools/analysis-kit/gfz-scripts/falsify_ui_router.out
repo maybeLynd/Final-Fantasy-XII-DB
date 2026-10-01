@@ -1,0 +1,10 @@
+SURVIVES  U0  [263, 85, 1002, 193, 29, 71, 123, 104]
+SURVIVES  U1  mask and ebx, 0x7fff; arms {'00254BFB': [1, 4], '00254C04': [3], '00254C0D': [5], '00254C16': [12], '00254C24': [24], '00254C2D': [2, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}; raw pass mov ecx, ebp
+SURVIVES  U2  latch cmp dword ptr [rip + 0x1e3dbbc], 1 before the policy call at ['00254B80']; bt r10d, ebx; root cmp qword ptr [rax + 0xc0], 0 / cmp qword ptr [rax + 0xb8], 0; table non-zero 9, union 20402E
+SURVIVES  U3  cells (writers / readers): {'0215F1A0': (['002E09A0', '002E15D0', '002E1A60', '002E1AE0', '002E1B10'], ['002E09A0', '002E12D0']), '0215F1A1': (['002E09A0', '002E15D0', '002E1690'], ['002E1A60', '002E1AE0', '002E1B10', '002E25B0']), '0215F1A4': (['002E09A0', '002E15D0', '002E1A60', '002E1AE0', '002E1B10'], ['002E09A0']), '0215F1A8': (['002E09A0', '002E15D0', '002E1A60', '002E1AE0', '002E1B10'], ['002E09A0'])}; producer sites ['00253D78 call', '00253EE6 call', '00253F44 call', '00253F53 call', '0035C81E call', '0035D750 call', '0050DAC4 jmp']
+SURVIVES  U4  post returns mov eax, 1; policy call ['002E1B2C'], behind an id-2 compare, bit-0 test after
+SURVIVES  U5  00252B40 writes ['02092730', '02092734', '020927D8'] and tail-jumps 00254740; the router writes []
+SURVIVES  U6  readers ['00253C70', '00254B50', '003F4E70']; writers ['00252B40', '00252D90', '00252DE0'] at ['00252B46', '00252DCB', '00252E05']
+SURVIVES  U7  drain call sites ['0031427D in 00314020']
+SURVIVES  U8  root tests at 00280A1A / 00280A28, then 00252B40 at 00280A60; widget procs ['0027FB70', '00280140']
+FAILS 0

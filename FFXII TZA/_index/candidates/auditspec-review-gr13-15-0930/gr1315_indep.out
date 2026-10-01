@@ -1,0 +1,212 @@
+== R. raw references (rel32 E8/E9, jcc 0F 8x, rip lea/mov, abs64 [DIR64?], rva32)
+  005651E0 rel/jcc ['00563721 jmp', '00563953 jmp', '00563B41 jmp', '00563D43 jmp'] | rip [] | abs64 [] | rva32 3
+  005636F0 rel/jcc [] | rip ['00564C0A lea r9, [rip - 0x1521]'] | abs64 [] | rva32 1
+  00563930 rel/jcc [] | rip ['00564C13 lea r9, [rip - 0x12ea]'] | abs64 [] | rva32 1
+  00563B10 rel/jcc [] | rip ['00564C1C lea r9, [rip - 0x1113]'] | abs64 [] | rva32 1
+  00563D20 rel/jcc [] | rip ['00564C25 lea r9, [rip - 0xf0c]'] | abs64 [] | rva32 1
+  0056E140 rel/jcc [] | rip ['0056DD65 lea r9, [rip + 0x3d3]'] | abs64 [] | rva32 1
+  0056D370 rel/jcc [] | rip ['0056C9BC lea rdx, [rip + 0x9ad]'] | abs64 [] | rva32 1
+  00564B90 rel/jcc ['005663DB call'] | rip [] | abs64 [] | rva32 1
+  00564AC0 rel/jcc ['00564C34 call', '0056DD79 call'] | rip [] | abs64 [] | rva32 1
+  002D2600 rel/jcc ['002D14AE call'] | rip [] | abs64 [] | rva32 4
+  002D28E0 rel/jcc ['002D14C1 call'] | rip [] | abs64 [] | rva32 4
+  002D1420 rel/jcc [] | rip ['002D1504 lea rdx, [rip - 0xeb]'] | abs64 [] | rva32 1
+  002D2DB0 rel/jcc [] | rip ['002D14ED lea rdx, [rip + 0x18bc]'] | abs64 [] | rva32 3
+  005655F0 rel/jcc ['003FD83D call', '003FD9F1 call', '003FDD76 call', '005641B2 call', '00565110 call', '0056E535 call'] | rip [] | abs64 [] | rva32 1
+  00564780 rel/jcc ['005640F0 call', '0056DD98 call'] | rip [] | abs64 [] | rva32 3
+  control: 005636F0's four tail jumps must include 00563721; 00564B90's leas must include 00564C0A
+== L. 0057DAD0 stores re-based to the entry (rbx = entry + 8 from 0057DAFF; r14 = rbx - 8 from 0057DB55)
+  0057DB76 mov word ptr [rbx + 4], ax      -> entry + 0xC (2B)
+  0057DB7E mov word ptr [rbx], ax          -> entry + 0x8 (2B)
+  0057DB85 mov byte ptr [rbx + 2], al      -> entry + 0xA (1B)
+  0057DB98 mov qword ptr [r14], rax        -> entry + 0x0 (8B)
+  0057DB9F mov dword ptr [rbx + 8], ecx    -> entry + 0x10 (4B)
+  0057DBA2 mov word ptr [rbx + 6], ax      -> entry + 0xE (2B)
+  0057DBCC mov dword ptr [rbx + 8], eax    -> entry + 0x10 (4B)
+  0057DBE0 mov dword ptr [rbx + 8], eax    -> entry + 0x10 (4B)
+== M. message dispatch
+  0056E140: eax = msg - 1 (0056E14B); 0056E14D cmp eax, 0x13 ; 0056E150 ja 0x56e3ab ; default 0056E3AB -> 0056E3B3 jmp 0x5c5230
+    msg 26 -> eax 25 > 0x13 -> default: True
+    table 0056E3B8 msgs 1..20 -> 1:0056E16D 2:0056E3AB 3:0056E3AB 4:0056E3AB 5:0056E3AB 6:0056E3AB 7:0056E3AB 8:0056E2B4 9:0056E2F6 10:0056E259 11:0056E3AB 12:0056E269 13:0056E3AB 14:0056E212 15:0056E322 16:0056E3AB 17:0056E3AB 18:0056E374 19:0056E222 20:0056E356
+    any table arm = 005651E0 or a list proc: False
+  005C5230: 005C5230 xor eax, eax ; 005C5232 ret 
+  005636F0 cmp 0x1a ['005637B0 cmp eax, 0x1a'] ; tail to 005651E0 ['00563721 jmp 0x5651e0']
+  00563930 cmp 0x1a ['005639B0 cmp eax, 0x1a'] ; tail to 005651E0 ['00563953 jmp 0x5651e0']
+  00563B10 cmp 0x1a ['00563BD3 cmp eax, 0x1a'] ; tail to 005651E0 ['00563B41 jmp 0x5651e0']
+  00563D20 cmp 0x1a ['00563DA0 cmp eax, 0x1a'] ; tail to 005651E0 ['00563D43 jmp 0x5651e0']
+  002D2DB0 (list control proc) msg 26 arm: 002D2DFF cmp ecx, 0x15 / 002D2E02 je 0x2d2e11 / 002D2E11 mov rcx, qword ptr [rbx + 0xc8] .. 002D2E29 call rax
+    (ecx = msg-1-1-2-1 = msg-5 at 002D2DFF, so 0x15 = message 26: forwarded to the procedure of [control+0xC8])
+== J. 00564B90 id switch
+  00564B9C lea rcx, [rip + 0x7be7fd] ; -> 00D233A0
+  00564BC7 jmp 0x564bd1
+  00564BD9 mov rax, qword ptr [rip + 0x1b36050] ; -> 0209AC30
+  00564BE9 lea eax, [r10 - 0x405]
+  00564BF3 ja 0x564c2c
+  00564BF5 lea rdx, [rip - 0x444bfc] ; -> 00120000
+  00564C08 jmp rcx
+  00564C0A lea r9, [rip - 0x1521] ; -> 005636F0
+  00564C11 jmp 0x564c2c
+  00564C13 lea r9, [rip - 0x12ea] ; -> 00563930
+  00564C1A jmp 0x564c2c
+  00564C1C lea r9, [rip - 0x1113] ; -> 00563B10
+  00564C23 jmp 0x564c2c
+  00564C25 lea r9, [rip - 0xf0c] ; -> 00563D20
+  00564C39 mov rcx, qword ptr [rip + 0x1b35ff0] ; -> 0209AC30
+  00564C71 add byte ptr [rip - 0x33ffbbb4], r12b ; -> -33A96F3B
+== K. +0x17F stores image-wide (any width covering +0x17F)
+  0018CE3D root 0018CD90 4B mov dword ptr [rbx + 0x17c], 0x3f000000
+  001A8C4D root 001A8BA0 8B mov qword ptr [rsp + 0x178], r14
+  001AABC4 root 001AA9E0 8B mov qword ptr [rsi + 0x17c], rax
+  001BDD3E root 001BDD20 8B mov qword ptr [rbp + 0x178], rbx
+  001C436F root 001C3D50 4B movss dword ptr [rax + 0x17c], xmm0
+  001C7D5A root 001C7940 4B movss dword ptr [rax + 0x17c], xmm0
+  001D1032 root 001D0390 8B mov qword ptr [rdi + 0x178], rax
+  001E487A root 001E4000 8B mov qword ptr [rbx + 0x178], rax
+  001E5449 root -------- 4B movss dword ptr [rcx + 0x17c], xmm3
+  001EF892 root 001EF6D0 4B mov dword ptr [rbp + 0x17c], 0
+  001F7BFF root 001F7790 8B mov qword ptr [rdi + 0x178], rax
+  002363FF root 00236300 4B movss dword ptr [rbx + 0x17c], xmm0
+  00239F6B root 00239E10 4B mov dword ptr [rdi + 0x17c], eax
+  0025727D root -------- 8B mov qword ptr [r8 + 0x178], rcx
+  00257286 root -------- 8B mov qword ptr [r8 + 0x178], r10
+  00258912 root 00258350 8B add qword ptr [rbx + 0x178], 0x2c
+  002589AE root 00258350 8B add qword ptr [rbx + 0x178], 0x40
+  00266133 root 00265FF0 4B mov dword ptr ds:[r14 + 0x17c], 0x40490fdb
+  00293937 root 00293310 8B mov qword ptr [rsp + 0x178], rax
+  00295106 root 00294B50 8B mov qword ptr [rsp + 0x178], r13
+  002D8442 root 002D83B0 1B add byte ptr [rdx + 0x17f], bh
+  002F6B96 root 002F6AB0 8B mov qword ptr [rsi + 0x178], r14
+  002F6D85 root 002F6AB0 8B mov qword ptr [rsi + 0x178], rax
+  00311834 root 003112F0 2B mov word ptr [rdi + 0x17e], ax
+  003714B6 root 003714A0 8B mov qword ptr [rbp + 0x178], rbx
+  003DD293 root 003DD230 4B movss dword ptr [rbx + rsi*8 + 0x17c], xmm6
+  003FD36F root 003FD360 1B mov byte ptr [rcx + 0x17f], al
+  00401A56 root 004019F0 8B mov qword ptr [rsp + 0x178], rdi
+  00406530 root 004061F0 4B mov dword ptr [rsi + 0x17c], ebp
+  00406559 root 004061F0 4B mov dword ptr [rsi + 0x17c], ebp
+  004066F5 root 004061F0 8B mov qword ptr [rsi + 0x178], rbp
+  004069E1 root 004068B0 4B add dword ptr [rbx + 0x17c], eax
+  004069FF root 004068B0 4B mov dword ptr [rbx + 0x17c], esi
+  0041EEDA root 0041EDE0 4B mov dword ptr [rbx + 0x17c], 0x3f800000
+  0041F115 root 0041F010 4B mov dword ptr [rbx + 0x17c], 0x3f800000
+  0041F8CF root 0041F730 4B mov dword ptr [rbx + 0x17c], 0x3f800000
+  00421B9F root 00421B00 4B mov dword ptr [rbx + 0x17c], 0x3f800000
+  004354A1 root 004352C0 4B mov dword ptr [rbx + 0x17c], eax
+  00435577 root 004354E0 4B mov dword ptr [rdi + 0x17c], eax
+  0047E363 root -------- 8B mov qword ptr [rcx + 0x178], 8
+  00485621 root 00485390 8B mov qword ptr [rbx + 0x178], 0xe
+  0048AD5C root -------- 8B mov qword ptr [rcx + 0x178], 0xe
+  0048D0AB root 0048CE70 8B mov qword ptr [rbx + 0x178], 0xe
+  0048F609 root -------- 8B mov qword ptr [rcx + 0x178], 0xe
+  00492F36 root 00492D40 8B mov qword ptr [rcx + 0x178], 0xe
+  0049D517 root -------- 8B mov qword ptr [rcx + 0x178], 0x412
+  004A0062 root -------- 8B mov qword ptr [rcx + 0x178], 6
+  004A1DE2 root -------- 8B mov qword ptr [rcx + 0x178], 6
+  004A334A root -------- 8B mov qword ptr [rcx + 0x178], 0x47
+  004A66F2 root -------- 8B mov qword ptr [rcx + 0x178], 0x42
+  004A8AC4 root 004A8860 8B mov qword ptr [rbx + 0x178], 6
+  004ADADA root 004AD9E0 4B movss dword ptr [rbx + 0x17c], xmm0
+  004ADB8B root 004AD9E0 4B movss dword ptr [rbx + 0x17c], xmm0
+  004B91CF root 004B8F20 4B mov dword ptr [rbx + 0x17c], 0x80
+  004C0E72 root 004C0C70 8B mov qword ptr [rbx + 0x178], 0x412
+  004D0AF1 root 004D0880 8B mov qword ptr [rbx + 0x178], 0x47
+  004D0E53 root 004D0CB0 8B mov qword ptr [rbx + 0x178], rdx
+  004D3FB4 root 004D3E20 8B mov qword ptr [rbx + 0x178], rdi
+  004DA879 root 004DA650 8B mov qword ptr [rbx + 0x178], rax
+  004DB037 root 004DADD0 8B mov qword ptr [rbx + 0x178], 0x3f350481
+  004DCBC2 root 004DCA00 4B mov dword ptr [rbx + 0x17c], 0x50000001
+  004E2BA7 root 004E2930 8B mov qword ptr [rbx + 0x178], rax
+  004E3073 root 004E2DE0 4B mov dword ptr [rbx + 0x17c], 0xbf800000
+  004E7CB8 root 004E7A90 4B mov dword ptr [rbx + 0x17c], 0xbf800000
+  004F5215 root 004F4F80 8B mov qword ptr [rbx + 0x178], rdx
+  004FD2F5 root 004FD060 4B mov dword ptr [rbx + 0x17c], 0x80
+  004FDB12 root 004FD4B0 8B mov qword ptr [rsi + 0x178], rcx
+  00504B7A root 005049E0 8B mov qword ptr [rsi + 0x178], rbp
+  0052A292 root 0052A130 4B mov dword ptr [rdi + 0x17c], eax
+  005527E8 root 00552250 2B mov word ptr [rbx + 0x17e], r14w
+  00555812 root 005556A0 8B mov qword ptr [rsp + 0x178], r12
+  00556A6B root 005569F0 8B mov qword ptr [rsp + 0x178], r14
+  0055CF04 root 0055CD40 8B mov qword ptr [rdi + 0x178], rcx
+  005647B4 root 00564780 1B mov byte ptr [rcx + 0x17f], r15b
+  00581AF6 root 005819F0 4B add dword ptr [rcx + 0x17c], edi
+  005B2D88 root 005B2D60 8B mov qword ptr [rbp + 0x178], rsi
+  005DF008 root -------- 4B mov dword ptr [rcx + 0x17c], eax
+  00604D74 root 00604750 8B movsd qword ptr [r14 + 0x178], xmm0
+  00615FCF root 00615ED0 8B mov qword ptr [rcx + 0x178], rdx
+  0061ED34 root 0061ED00 8B call qword ptr [rax + 0x178]
+  0061EDF8 root 0061ED70 8B call qword ptr [rdi + 0x178]
+  0061EF75 root 0061EE30 8B call qword ptr [rax + 0x178]
+  0061F350 root 0061F200 8B call qword ptr [rax + 0x178]
+  006296B4 root 00629690 8B mov qword ptr [rbp + 0x178], rdi
+  0062AD03 root 0062AB00 8B call qword ptr [rax + 0x178]
+  0062BA9C root 0062BA30 8B mov qword ptr [rbx + 0x178], rdi
+  006456AA root 00645520 8B mov qword ptr [rbx + 0x178], rax
+  00656395 root 006561D0 8B mov qword ptr [rdi + 0x178], rax
+  00674761 root 00674610 8B call qword ptr [rax + 0x178]
+  0069117C root 00691120 8B mov qword ptr [rbx + 0x178], 0x3f800000
+  00692617 root 00692540 4B mov dword ptr [rdi + 0x17c], eax
+  006A5C2F root 006A5C00 8B mov qword ptr [rsp + 0x178], rbp
+  006CB0AF root 006CAFC0 8B mov qword ptr [rbx + 0x178], rdi
+  006E735F root 006E5A20 8B movsd qword ptr [rbp + 0x178], xmm0
+  006FF6DB root 006FF5D0 8B mov qword ptr [rdi + 0x178], rsi
+  00704E50 root 006FF900 4B mov dword ptr [rbp + 0x17c], 0x3f800000
+  00705CFC root 00705520 8B mov qword ptr [rsi + 0x178], r13
+  0072C264 root 0072A320 4B mov dword ptr [rsi + 0x17c], eax
+  0076C110 root 0076BFA0 8B mov qword ptr [rcx + 0x178], rdx
+  00777E46 root 00777D80 8B mov qword ptr [rbp + 0x178], r12
+  00778788 root 00777D80 8B mov qword ptr [rbp + 0x178], r12
+  00779852 root 00779830 4B mov dword ptr [rcx + 0x17c], esi
+  00779878 root 00779830 4B mov dword ptr [rbx + 0x17c], 0x10
+  007798A7 root 00779830 4B mov dword ptr [rbx + 0x17c], 8
+  007798C5 root 00779830 4B mov dword ptr [rbx + 0x17c], 0x18
+  007798D1 root 00779830 4B mov dword ptr [rcx + 0x17c], edx
+  0077FFC4 root 0077FF90 8B call qword ptr [r9 + 0x178]
+  007803C1 root 00780260 8B call qword ptr [r9 + 0x178]
+  00780409 root 00780260 8B call qword ptr [r9 + 0x178]
+  0078048C root 00780260 8B call qword ptr [r9 + 0x178]
+  0078ED19 root 0078EAF0 8B mov qword ptr [rsp + 0x178], r15
+  00792231 root 00792090 16B movups xmmword ptr [rcx + 0x17c], xmm0
+  00792EEA root 00792DD0 8B mov qword ptr [rbx + 0x178], rdi
+  00793B76 root 007939A0 4B mov dword ptr [rbx + 0x17c], eax
+  00798078 root 00798000 4B mov dword ptr [rcx + 0x17c], eax
+  0079873C root 007980A0 8B mov qword ptr [rbp + 0x178], 0xf
+  007A04C0 root 007A0410 4B mov dword ptr [rbp + 0x17c], edi
+  007A24F9 root 007A2440 4B mov dword ptr [rbx + 0x17c], eax
+  007A2506 root 007A2440 4B add dword ptr [rbx + 0x17c], eax
+  007B5750 root 007B5690 8B mov qword ptr [rsp + 0x178], rdi
+  007C2548 root 007C23C0 8B mov qword ptr [rsp + 0x178], r12
+  007C9DA2 root 007C9C20 8B mov qword ptr [rsp + 0x178], r15
+  007CCF0C root 007CCDD0 8B mov qword ptr [rsp + 0x178], rdi
+  007D22CF root 007D2150 4B mov dword ptr [rcx + 0x17c], r14d
+  007ED5D8 root 007ED580 8B mov qword ptr [rsp + 0x178], r14
+  00816324 root 008162F0 8B mov qword ptr [rbp + 0x178], rax
+  00853E13 root 00853C90 4B mov dword ptr [rdi + 0x17c], eax
+  total 127 (memory-destination, non-cmp/test) instructions covering +0x17F; control 005647B4 & 003FD371 present: False
+== P. the 14 +0x10 read sites
+  0056CC7E cmp dword ptr [rsi + 0x10], 0x80000000  dword+0x10=True root 0056CBC0  cmp-sentinel
+  0056CCA2 mov eax, dword ptr [rsi + 0x10]  dword+0x10=True root 0056CBC0  masked@0056CCA7(btr)
+  0056CE07 cmp dword ptr [rdi + 0x10], 0x80000000  dword+0x10=True root 0056CD50  cmp-sentinel
+  0056CE31 mov eax, dword ptr [rdi + 0x10]  dword+0x10=True root 0056CD50  masked@0056CE37(btr)
+  0056CFF3 cmp dword ptr [r14 + 0x10], 0x80000000  dword+0x10=True root 0056CF10  cmp-sentinel
+  0056D023 mov eax, dword ptr [r14 + 0x10]  dword+0x10=True root 0056CF10  masked@0056D02B(btr)
+  0056D0C8 mov r9d, dword ptr [r14 + 0x10]  dword+0x10=True root 0056CF10  masked@0056D0CC(btr)
+  0056D267 cmp dword ptr [rdi + 0x10], 0x80000000  dword+0x10=True root 0056D1B0  cmp-sentinel
+  0056D291 mov eax, dword ptr [rdi + 0x10]  dword+0x10=True root 0056D1B0  masked@0056D297(btr)
+  0056D461 mov ebx, dword ptr [rax + 0x10]  dword+0x10=True root 0056D370  masked@0056D468(btr)
+  0056D8F1 mov r9d, dword ptr [rdi + 0x10]  dword+0x10=True root 0056D870  masked@0056D8F5(btr)
+  0056DBCA mov r9d, dword ptr [rbp + 0x10]  dword+0x10=True root 0056DA80  masked@0056DBD5(btr)
+  0056E71A cmp dword ptr [rcx + 0x10], 0x80000000  dword+0x10=True root 0056E700  cmp-sentinel
+  0056E797 mov r9d, dword ptr [r11 + 0x10]  dword+0x10=True root 0056E700  masked@0056E7A3(btr)
+  cmp-sentinel 5, masked 9, total 14
+== Q. row-consumer sweep image-wide: qword loads of +0xC8/+0xD0/+0xE0 followed through the loaded register to a dword +0x10 read
+  qword loads (mov/add) of +0xC8/+0xD0/+0xE0 image-wide: 1351
+  root 0056D370: 0056D461(mov ebx, dword ptr [rax + 0x10] <- 0056D450 +0xD0)
+  root 0069F150: 0069F41A(mov dword ptr [rcx + rdx*8 + 0x10], eax <- 0069F409 +0xC8)
+  root 007D1500: 007D1534(movss xmm14, dword ptr [rax + 0x10] <- 007D150A +0xE0)
+  of the 14 P sites the sweep finds: 1 (['0056CC7E', '0056CCA2', '0056CE07', '0056CE31', '0056CFF3', '0056D023', '0056D0C8', '0056D267', '0056D291', '0056D8F1', '0056DBCA', '0056E71A', '0056E797'] missing)
+  sweep hits outside the 14 P sites: 2
+== T. tables
+  00D233A0 first 0x40 bytes: 05040000060401000704020008040300090404000d0405000e0406000f040700970508009805090099050a009a050b009b050c009c050d009d050e009e050f00
+  00D23920 u16 x4: ['0x5af', '0x0', '0x5a2', '0x0']
+  00D23D60 bytes: 1415161718191a1b1d000000 ; 00D23D6C bytes: 08090a0b0c0f0000
+  00D0F990 bytes: [4, 0, 0, 0, -1, -1, -1, -1] ; 00D113B8[0..11]: [6, 6, 6, 6, 5, 9, 8, 7, 10, 11, 12, 18]

@@ -1,0 +1,5 @@
+PASS  I sn1_q0_domain.py runs clean (FAILS 0) and provides resolve() / lookup()
+PASS  S one-based: [True, True, True, True]; zero-based: [False, False, False, False]; texts [('btlctrl', 531, 'loop_flg\t= 0;', 'mapjump_menu_flg\t= 1;'), ('btlctrl', 537, 'mapjump_menu_flg\t= 1;', ''), ('mapctrl', 729, 'dvar(2, test);', 'dvar(3, mp_debugmenu_flg);'), ('mapctrl', 736, 'dvar(3, mp_debugmenu_flg);', 'switch( nowlocationmap() )')]
+PASS  C immediate + 1 matches 0, line + 1 matches 0 (of 4)
+PASS  L lookup() on the anchors [True, True, True, True]; tallies {'LINE': 53719, 'UNRESOLVED': 6, 'PAD': 59}
+FAILS 0

@@ -1,0 +1,21 @@
+AUDITOR: live board unchanged = False
+{
+  "revision": 40454,
+  "outcomes": [
+    [
+      "missing-verdict",
+      "DONE",
+      "VERDICT-MISSING"
+    ],
+    [
+      "exact-accept",
+      "DONE",
+      "INCORPORATE"
+    ],
+    [
+      "malformed-verdict-lf",
+      "DONE",
+      "VERDICT-MISSING"
+    ]
+  ]
+}

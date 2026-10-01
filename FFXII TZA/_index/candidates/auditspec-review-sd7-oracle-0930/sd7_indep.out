@@ -1,0 +1,90 @@
+pdata entries: 35713
+
+== A: raw sweep, displacement 0x78
+decoded candidates 192: on a .pdata-range instruction boundary 188, inside a range but off-boundary 0, outside .pdata 4
+  form call base=r10 index=-                    36
+  form call base=r8 index=-                     24
+  form call base=rax index=-                    124
+  form call base=rdx index=-                    2
+  form jmp base=rax index=-                     2
+package 192 sites: 192; mine on boundary: 188; in both: 188
+  PKG-ONLY  0017F168 jmp qword ptr [rax + 0x78]
+  PKG-ONLY  00789DEA jmp qword ptr [rax + 0x78]
+  PKG-ONLY  007E8BA6 jmp qword ptr [rax + 0x78]
+  PKG-ONLY  008581A3 jmp qword ptr [rax + 0x78]
+  OUTSIDE-PDATA 0017F168 jmp qword ptr [rax + 0x78]   (preceding decode: x + 0x60] | 0017F15C ret  | 0017F15D int3  | 0017F15E int3  | 0017F15F int3  | 0017F160 test rcx, rcx | 0017F163 je 0x17f16c | 0017F165 mov rax, qword ptr [rcx])
+  OUTSIDE-PDATA 00789DEA jmp qword ptr [rax + 0x78]   (preceding decode: 0789DDB int3  | 00789DDC int3  | 00789DDD int3  | 00789DDE int3  | 00789DDF int3  | 00789DE0 mov rcx, qword ptr [rcx + 0xe0] | 00789DE7 mov rax, qword ptr [rcx])
+  OUTSIDE-PDATA 007E8BA6 jmp qword ptr [rax + 0x78]   (preceding decode: | 007E8B8F int3  | 007E8B90 cmp dword ptr [rcx + 0x1e8], 2 | 007E8B97 jne 0x7e8ba3 | 007E8B99 mov dword ptr [rcx + 0x1e8], 3 | 007E8BA3 mov rax, qword ptr [rcx])
+  OUTSIDE-PDATA 008581A3 jmp qword ptr [rax + 0x78]   (preceding decode:  00858198 add dword ptr [rax], eax | 0085819A add bl, al | 0085819C int3  | 0085819D int3  | 0085819E int3  | 0085819F int3  | 008581A0 mov rax, qword ptr [rcx])
+  (off-boundary candidates are byte coincidences inside other instructions: 0)
+functions (pdata begin) holding the 188: 119
+
+== A0 control: same sweep at displacement 0xF0 must contain 0079C23A
+  0079C23A found: True   (17 decoded 0xF0 candidates)
+
+== B: GameApplication vtable and derivation
+  vtable 008C5760 class .?AVGameApplication@@: 31 consecutive code pointers; next qword 2E2E2F2E2E2F2E2E (a COL: False)
+  slot 15 = 0017D1A0; slot 30 = 0079E880
+  type descriptor RVA 0x1e275f0 name .?AVGameApplication@@
+  dwords equal to the TD RVA in data sections: 2 at 01CEC004 01CEC060
+  CHD 01CEC020 numBases 4 most-derived .?AVGameApplication@@
+
+== C: E1 rule probe
+  E1 rows: 133; load-displacement histogram: {'0xa8': 73, '0x108': 22, '0x110': 15, 'idx': 4, '0x58': 4, '0x130': 3, '0x28': 3, '0x9f': 3, '0x120': 2, '0x50': 2, '0x22298': 2, '0x550': 2, '0x6b8': 1, '0x10': 1, '0x138': 1, '0x200': 1, '0x208': 1, '0x30': 1, '0xe0': 1, '0x80': 1}
+  E1 rows excluded by indexed loads / resolver / 0 only: 0
+  E1 loads based on a frame register (stack slot E1's rsp exemption does not cover): 7
+    00623B10 00623B8D 0061ECD3 qword ptr [rcx + 0x110]  frame regs ['rcx']
+    00623B10 00623BEA 0061ECD3 qword ptr [rcx + 0x110]  frame regs ['rcx']
+    00764240 00764FA1 00764F97 qword ptr [rax + 0xa8]  frame regs ['rax']
+    00764240 00765020 00765016 qword ptr [rax + 0xa8]  frame regs ['rax']
+    007677B0 00767BC6 00767BBC qword ptr [rax + 0xa8]  frame regs ['rax']
+    007677B0 00767D51 00767D47 qword ptr [rax + 0xa8]  frame regs ['rax']
+    0078E3C0 0078E4C1 0078E3D6 qword ptr [rcx + 0x80]  frame regs ['r8', 'rcx']
+
+== D: E4 windows
+  0020E6C0 site 0020E967 obj rbx vtload 0020E945 -> 0020E9AB call qword ptr [rax + 0x138] ; obj writes before it: []
+  00213140 site 00213228 obj rsi vtload 00213208 -> 0021338E call qword ptr [rdi + 0x100] ; obj writes before it: []
+  00213FE0 site 002140E9 obj r14 vtload 002140BF -> 002141CA call qword ptr [rdi + 0x100] ; obj writes before it: []
+  00215440 site 00215537 obj rsi vtload 0021551D -> 00215719 call qword ptr [r8 + 0x138] ; obj writes before it: []
+  00215440 site 0021556D obj rsi vtload 0021554F -> 00215719 call qword ptr [r8 + 0x138] ; obj writes before it: []
+  00215440 site 002155D2 obj rsi vtload 002155B0 -> 00215719 call qword ptr [r8 + 0x138] ; obj writes before it: []
+  00863850 site 00863AA7 obj rsi vtload 00863A7D -> big dispatch precedes the site or not reached linearly ; obj writes before it: ['00863B29 mov rsi, qword ptr [r11 + 0x28]']
+  00863D80 site 00863F24 obj r13 vtload 00863F04 -> 00864085 call qword ptr [rax + 0x138] ; obj writes before it: []
+  00864330 site 008645B0 obj r14 vtload 0086458C -> 00864702 call qword ptr [rax + 0x128] ; obj writes before it: []
+  00864860 site 00864B71 obj r14 vtload 00864B4D -> 00864C31 call qword ptr [r8 + 0x138] ; obj writes before it: []
+
+== E: E3 constructors
+  001FBB40: 001FBB4E lea rax, [rip + 0x708883] -> vtable 009043D8 .?AVDynGeo3DInstance@@
+  001FB870: 001FB87E lea rax, [rip + 0x708aa3] -> vtable 00904328 .?AVDynGeoTextureInstance@@
+
+== F: E2 method vtable memberships (raw aligned qwords)
+  005A3E50 (site 005A3E8E): qwords 1, classes ['.?AV?$PClassDescriptorHeader@VPAnimationClipBinding@PAnimation@Phyre@@@Phyre@@']
+  005D18C0 (site 005D18FE): qwords 1, classes ['.?AV?$PClassDescriptorHeaderWithoutDefaultConstructor@VPParameterBuffer@PRendering@Phyre@@@Phyre@@']
+  006CAB50 (site 006CAB69): qwords 1, classes ['.?AVPrimitiveRendererD3D11@@']
+  006CEE50 (site 006CEE8E): qwords 1, classes ['.?AV?$PClassDescriptorHeader@VPModifierNetworkInfoPacket@PDynamicGeometry@Phyre@@@Phyre@@']
+  006D9E30 (site 006D9E6E): qwords 1, classes ['.?AV?$PClassDescriptorHeader@VPOccluderGeometryObject@POccluderGeometry@Phyre@@@Phyre@@']
+  007249E0 (site 007246BC): qwords 1, classes ['.?AVIGPUDevice@PPFX@@']
+  00832DD0 (site 00832E82): qwords 1, classes ['.?AVbtCompoundShape@@']
+  008330A0 (site 00833235): qwords 1, classes ['.?AVbtCompoundShape@@']
+  00833BA0 (site 00833BBB): qwords 6, classes ['.?AVbtCapsuleShape@@', '.?AVbtConvexHullShape@@', '.?AVbtConvexInternalShape@@', '.?AVbtPolyhedralConvexAabbCachingShape@@', '.?AVbtPolyhedralConvexShape@@', '.?AVbtTriangleShape@@']
+  00835CE0 (site 00835D00): qwords 1, classes ['.?AVbtCylinderShape@@']
+  00836D20 (site 00836D2C): qwords 2, classes ['.?AVbtBvhTriangleMeshShape@@', '.?AVbtTriangleMeshShape@@']
+  00837F00 (site 00837F30): qwords 1, classes ['.?AVbtSphereShape@@']
+  008581A0 (site 008581A3): qwords 2, classes ['.?AVbtDiscreteDynamicsWorld@@']
+
+== G: rows whose regval terms were collected in callers, where a function in the chain is address-taken
+  non-residue rows with caller-side terms: 19; with an address-taken function among their <=3-level direct-caller chain: 0
+
+== C2: E1 load base registers, and rbp bases in rbp-frame functions
+    rbp-based E1 load 007397BE qword ptr [rbp + 0x138] in 00739582; frame regs []
+    rbp-based E1 load 00739E85 qword ptr [rbp + 0x550] in 00739DF0; frame regs ['rax']
+    rbp-based E1 load 00739E85 qword ptr [rbp + 0x550] in 00739DF0; frame regs ['rax']
+    rbp-based E1 load 0073C4B7 qword ptr [rbp + 0x200] in 0073BD30; frame regs ['rax']
+    rbp-based E1 load 0073C521 qword ptr [rbp + 0x208] in 0073BD30; frame regs ['rax']
+    rbp-based E1 load 0073E5A6 qword ptr [rbp + 0x9f] in 0073E570; frame regs ['rax']
+    rbp-based E1 load 0073E5A6 qword ptr [rbp + 0x9f] in 0073E570; frame regs ['rax']
+    rbp-based E1 load 0073E5A6 qword ptr [rbp + 0x9f] in 0073E570; frame regs ['rax']
+    rbp-based E1 load 0074C8B3 qword ptr [rbp + 0xa8] in 0074C898; frame regs []
+    rbp-based E1 load 0074C8B3 qword ptr [rbp + 0xa8] in 0074C898; frame regs []
+    rbp-based E1 load 00771BF3 qword ptr [rbp + 0xa8] in 00771B30; frame regs ['rax']
+  bases: {'r12': 7, 'r10': 1, 'rax': 26, 'rdx': 11, 'rdi': 16, 'r13': 8, 'rcx': 11, 'r14': 10, 'rbx': 25, 'rbp': 11, 'r15': 11, 'rsi': 6}

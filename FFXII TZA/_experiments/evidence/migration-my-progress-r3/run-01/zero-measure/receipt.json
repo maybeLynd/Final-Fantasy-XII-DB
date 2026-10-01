@@ -1,0 +1,186 @@
+{
+  "name": "zero-measure",
+  "kind": "measure",
+  "origin": "core-01/invalid-terminal-required0-input.json",
+  "input_sha256": "ba5989be3a292af73c14154d8899aa010e6b4eea0c34ca4f756965b48058d3e0",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\probe.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source",
+    "--input",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\zero-measure\\input.json",
+    "--kind",
+    "measure",
+    "--subsystems",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\subsystems.tsv"
+  ],
+  "returncode": 0,
+  "stdout": "{\"kind\": \"measure\", \"result\": {\"version\": \"MP-2\", \"measured\": false, \"failed\": {\"T\": \"ValueError: the reporter supplies 0 terminal passes; the final-audit protocol requires exactly 30\"}, \"gaps\": {}, \"q_split\": {\"answered\": 1, \"dispositioned\": 0, \"remaining\": 0, \"excluded\": 0, \"dd_answered\": 1, \"dd_dispositioned\": 0}, \"scopes\": {\"union\": {\"accepted\": 15, \"total\": 15}, \"L1\": {\"accepted\": 10, \"total\": 10}, \"L2\": {\"accepted\": 11, \"total\": 11}, \"union_exF\": {\"accepted\": 14, \"total\": 14}}, \"families\": {\"Q\": {\"accepted\": 1, \"total\": 1}, \"P\": {\"accepted\": 1, \"total\": 1}, \"F\": {\"accepted\": 1, \"total\": 1}, \"DD\": {\"accepted\": 1, \"total\": 1}, \"DA\": {\"accepted\": 1, \"total\": 1}, \"DV\": {\"accepted\": 1, \"total\": 1}, \"R\": {\"accepted\": 1, \"total\": 1}, \"X\": {\"accepted\": 1, \"total\": 1}, \"E\": {\"accepted\": 1, \"total\": 1}, \"K\": {\"accepted\": 1, \"total\": 1}, \"L2\": {\"accepted\": 5, \"total\": 5}, \"T\": {\"accepted\": 0, \"total\": 0}}, \"categories\": {\"W\": {\"accepted\": 0, \"total\": 0}, \"C\": {\"accepted\": 0, \"total\": 0}, \"E\": {\"accepted\": 12, \"total\": 12}, \"S\": {\"accepted\": 0, \"total\": 0}, \"P\": {\"accepted\": 12, \"total\": 12}, \"I\": {\"accepted\": 0, \"total\": 0}, \"T\": {\"accepted\": 0, \"total\": 0}, \"M\": {\"accepted\": 0, \"total\": 0}, \"G\": {\"accepted\": 0, \"total\": 0}, \"V\": {\"accepted\": 0, \"total\": 0}, \"D\": {\"accepted\": 3, \"total\": 3}, \"N\": {\"accepted\": 0, \"total\": 0}, \"whole\": {\"accepted\": 0, \"total\": 0}, \"untied\": {\"accepted\": 0, \"total\": 0}}, \"terminal\": {\"accepted\": null, \"required\": 30}, \"unplaced\": [], \"duplicates_merged\": 0, \"excluded\": [], \"remaining\": {}, \"ready\": false, \"why_not_ready\": \"requirements are not fully enumerated: T: reader failed\", \"change\": null}, \"exception\": null, \"modules\": {\"requirements\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-r3\\\\run-01\\\\source\\\\Database\\\\Tools\\\\dashboard\\\\requirements.py\", \"server\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-r3\\\\run-01\\\\source\\\\Database\\\\Tools\\\\dashboard\\\\server.py\", \"generation\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-r3\\\\run-01\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\generation.py\"}}\n",
+  "stderr": "",
+  "parsed": {
+    "kind": "measure",
+    "result": {
+      "version": "MP-2",
+      "measured": false,
+      "failed": {
+        "T": "ValueError: the reporter supplies 0 terminal passes; the final-audit protocol requires exactly 30"
+      },
+      "gaps": {},
+      "q_split": {
+        "answered": 1,
+        "dispositioned": 0,
+        "remaining": 0,
+        "excluded": 0,
+        "dd_answered": 1,
+        "dd_dispositioned": 0
+      },
+      "scopes": {
+        "union": {
+          "accepted": 15,
+          "total": 15
+        },
+        "L1": {
+          "accepted": 10,
+          "total": 10
+        },
+        "L2": {
+          "accepted": 11,
+          "total": 11
+        },
+        "union_exF": {
+          "accepted": 14,
+          "total": 14
+        }
+      },
+      "families": {
+        "Q": {
+          "accepted": 1,
+          "total": 1
+        },
+        "P": {
+          "accepted": 1,
+          "total": 1
+        },
+        "F": {
+          "accepted": 1,
+          "total": 1
+        },
+        "DD": {
+          "accepted": 1,
+          "total": 1
+        },
+        "DA": {
+          "accepted": 1,
+          "total": 1
+        },
+        "DV": {
+          "accepted": 1,
+          "total": 1
+        },
+        "R": {
+          "accepted": 1,
+          "total": 1
+        },
+        "X": {
+          "accepted": 1,
+          "total": 1
+        },
+        "E": {
+          "accepted": 1,
+          "total": 1
+        },
+        "K": {
+          "accepted": 1,
+          "total": 1
+        },
+        "L2": {
+          "accepted": 5,
+          "total": 5
+        },
+        "T": {
+          "accepted": 0,
+          "total": 0
+        }
+      },
+      "categories": {
+        "W": {
+          "accepted": 0,
+          "total": 0
+        },
+        "C": {
+          "accepted": 0,
+          "total": 0
+        },
+        "E": {
+          "accepted": 12,
+          "total": 12
+        },
+        "S": {
+          "accepted": 0,
+          "total": 0
+        },
+        "P": {
+          "accepted": 12,
+          "total": 12
+        },
+        "I": {
+          "accepted": 0,
+          "total": 0
+        },
+        "T": {
+          "accepted": 0,
+          "total": 0
+        },
+        "M": {
+          "accepted": 0,
+          "total": 0
+        },
+        "G": {
+          "accepted": 0,
+          "total": 0
+        },
+        "V": {
+          "accepted": 0,
+          "total": 0
+        },
+        "D": {
+          "accepted": 3,
+          "total": 3
+        },
+        "N": {
+          "accepted": 0,
+          "total": 0
+        },
+        "whole": {
+          "accepted": 0,
+          "total": 0
+        },
+        "untied": {
+          "accepted": 0,
+          "total": 0
+        }
+      },
+      "terminal": {
+        "accepted": null,
+        "required": 30
+      },
+      "unplaced": [],
+      "duplicates_merged": 0,
+      "excluded": [],
+      "remaining": {},
+      "ready": false,
+      "why_not_ready": "requirements are not fully enumerated: T: reader failed",
+      "change": null
+    },
+    "exception": null,
+    "modules": {
+      "requirements": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source\\Database\\Tools\\dashboard\\requirements.py",
+      "server": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source\\Database\\Tools\\dashboard\\server.py",
+      "generation": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py"
+    }
+  },
+  "parse_error": null,
+  "terminal": true
+}

@@ -1,0 +1,22 @@
+{
+ "committed_at": "2026-09-29T07:11:58Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T071158Z-376657",
+ "generator": {},
+ "inputs": {
+  "data": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\input",
+   "sha256": "080a9ed428559ef602668b4c00f114f1a11c3f6b02a435f0bdc154578e4d7f22",
+   "size": 3,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view.json": {
+   "sha256": "7ebf267e8655ee35d6ccb3f22d98bd335c394b1942a2ea6f720986db57cc5717",
+   "size": 19
+  }
+ },
+ "parent": "g20260929T071157Z-69ff7d",
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

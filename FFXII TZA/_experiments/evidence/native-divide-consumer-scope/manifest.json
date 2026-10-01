@@ -1,0 +1,150 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7186,
+      "sha256": "90c527e5391240ae30feb1e57ba0e412d603a4bb5f6bd802ac8f95f196e870ee"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4445,
+      "sha256": "bb3e48c0d9562ef422691db3de05b8c0a9343e2084440b87dde009501da5897f"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 425,
+      "sha256": "33251597470d85695ee130df17f2d8efbc9c5d8c9a4515523c3c5e2bdf76103b"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 98,
+      "sha256": "447603e647135a0915abf98d0c75bd9001b49c78209caf89243bcfd6ecb791a1"
+    },
+    {
+      "path": "failed-no-cmp-capture.py",
+      "bytes": 7194,
+      "sha256": "e4c95293daf2ed7d922c5a486da1265e2fe75738b9986bd7051669632a7547a3"
+    },
+    {
+      "path": "failed-no-cmp-receipt.json",
+      "bytes": 408,
+      "sha256": "c6f601fd5015fa87e3f01eeb9f079925c1556ae0a78d6e8cd45fe0ef02a0f5fa"
+    },
+    {
+      "path": "fault-rejects-analysis.stderr",
+      "bytes": 520,
+      "sha256": "70411f790552893e564951007e3fe64f3f5fd213afae4b4aac5afdd6efcf8d20"
+    },
+    {
+      "path": "fault-rejects-analysis.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-rejects-short-decode.stderr",
+      "bytes": 488,
+      "sha256": "be4a197424896ea51892cf7cdc26df642c17ef0f40c1c863fa8ad5b34678d031"
+    },
+    {
+      "path": "fault-rejects-short-decode.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-retract-baseline.stderr",
+      "bytes": 582,
+      "sha256": "7368ad2c221c9622b30d826344b7be318091149b82c3d3d93f32d259180f88dc"
+    },
+    {
+      "path": "fault-retract-baseline.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3080,
+      "sha256": "3974c5636619ee0f53030a611e5efcdde61b69145e2247aceb118db013a41f63"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3221,
+      "sha256": "97cbb7843cd812fe75b09aff7ab331520de6009014bcb5445cb2ae4d49988aba"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 3845,
+      "sha256": "9184899fec625aa606fe14df0f8163154b85978d70d7a7e85fa67ee32b765fe2"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 543876,
+      "sha256": "ac34cf86a7745a194b8fdf317f3ecf83d9b03f2aa1e81ef3cec5238eecb59934"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4083,
+      "sha256": "21c921e1bf4b351eeab1dd78bfe0096148ab5c09c96ee1b33248129ed82cd115"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 540,
+      "sha256": "0ff019535bc5909e8069f962c6fc3f08d79f63e1e947a1b4dd6fb1a9d62ed8bf"
+    },
+    {
+      "path": "result.json",
+      "bytes": 4912,
+      "sha256": "46f2bf9ce22caaea8bc68c1fe75ea3b5878aa80f654c0c9a64e7040568f136c8"
+    },
+    {
+      "path": "retained/claimed-scan-25e4c0.bin",
+      "bytes": 144,
+      "sha256": "ba87ca44cff14631cabbc4c8f5ffb1f85b39f049dd0fc5c430903fdccd4b3f40"
+    },
+    {
+      "path": "retained/claimed-scan-25e550.bin",
+      "bytes": 14475,
+      "sha256": "63022df4f6885d604e59699660245c989830400e944ca124baa222e38ba1caa4"
+    },
+    {
+      "path": "retained/divide.out",
+      "bytes": 1008,
+      "sha256": "00a80f2f6b48773723b25486e2c91c66772a5d576360d37f4a5100e5a83c1b73"
+    },
+    {
+      "path": "retained/divide.py",
+      "bytes": 9809,
+      "sha256": "f52730e057ffe590f965ac9d561b735950ae4e708ed2cf61b78944ae2e5c458e"
+    },
+    {
+      "path": "retained/exact-Z-fragment.py",
+      "bytes": 831,
+      "sha256": "251269a73792d46fcdf42c13a1681155dfc5890b72e78f19c218eef949744263"
+    },
+    {
+      "path": "retained/README.md",
+      "bytes": 5183,
+      "sha256": "bef70de449be674bc63f263d7d33cf2d8a2ffc086fa435f7c7b6c2c967c0f073"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "A exact Z producer-fragment controls/current complete literal-range baseline, not full peer default/original-code/native/no-catch/independent acceptance"
+}

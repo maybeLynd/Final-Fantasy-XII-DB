@@ -1,0 +1,15 @@
+   002778C0: 9 sites, 1 writes: 00277CD8R 00278022R 00278135W 002782B5R 00278870R 002789DDR 00278F72R 002793B3R 00279CB3R
+   00276D30: 1 sites, 0 writes: 00276FC5R
+   00279E20: 4 sites, 1 writes: 0027A5A1W 0027A5C9R 0027A647R 0027A6D8R
+PASS C1 control: the page's two quoted sites are found
+PASS S1 fourteen sites over the three functions; the dispatcher has nine with one write; 00279E20 one write and three reads - total 14
+   002778C0 base r15 <- 002778EF mov r15, qword ptr [rcx + 0xd0]
+   00276D30 base rdi <- 00276D5C mov rdi, rcx
+   00279E20 base rdi <- 0027A439 mov rdi, rax
+   00245000 call 00276DE6 in 00276D30 installs handler 002778C0, size 0x2dc0
+   00245000 call 0027A42D in 00279E20 installs handler 00276D30, size 0x3010
+   (40 direct calls to 00245000 scanned)
+PASS C2 control: 00279E20 builds 0x3010-byte children with handler 00276D30 at 0027A42D
+PASS S4 the dispatcher's +0xD0 is the 0x3010 parent widget (init message +8) - id-1 arm 00277925
+RESULT one object type: the 0x3010-byte command-menu widget whose handler is 00276D30 - read by it directly, written by 00279E20 on each child it builds, and reached by the 0x2DC0-byte dispatcher 002778C0 through its parent pointer +0xD0
+FAILS 0

@@ -1,0 +1,9 @@
+SURVIVES  K0  closure 102 bodies; generator entries in it none; LCG-cell users in it none
+SURVIVES  K1  rip-relative writes outside __report_gsfailure: [('0032A6E0', '0032A735', '022D91B0')] (RDEC returns: ret); BMASK memsets and ORs through [02AEE0B0] and returns it; __report_gsfailure sites 7
+SURVIVES  K2  022D91B0..+0x10 is engine-wide: 473 references, 53 writing functions, 48 reading functions, 1 of which read it at their entry (e.g. ['003970A0']); none of its readers is in the closure; BMASK's memset (length [02AEE0B8]) at 0039130E precedes its first OR at 003913C4
+SURVIVES  K3  BLKCHK exit 0033601C: ['mov rbx, qword ptr [rsp + 0x30]', 'mov eax, 1']; GATE neg/sbb/and 2 present; PVAL cmove ebx, eax; PATHW ['mov eax, 1', 'jmp 0x33a544']
+SURVIVES  K4  00335FB5 movzx esi, byte ptr [rax + 0x174]; re-load ['mov rax, qword ptr [rbx + 0x108]']; 00335FEB cmp byte ptr [rax + 0x174], 3
+SURVIVES  K5  QWALK calls 5; VADD 00202B10 called True
+SURVIVES  K6  GATE identity ['movzx ecx, byte ptr [r9 + 0xea9]']; 00358925 cmovne rax, rdx
+SURVIVES  K7  PVAL ucomiss xmm7, xmm1 / jp 0x335ba9 / jne 0x335ba9; GATE 00335822 je 0x335b39; first callee-saved spill 00335836
+FAILS 0

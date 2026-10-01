@@ -1,0 +1,5 @@
+HT1_HT2_table_shape                PASS  359 slots, 341 non-null, 8 distinct handlers (002FDDA0 x249, 002FDA60 x57), each a .text address; the qword past the bound is 0000000400000002
+HT3_HT5_tail_call_and_minus_one    PASS  all 359 ids plus 0x3FFF / 0x4167 / 0xFFFF / 0: a non-empty slot reaches exactly table[id - 0x4000] with rcx = the unit and nothing else passed (the tail-call); an empty slot or an id out of range returns -1 from the dispatcher itself
+HT6_event_before_dispatch          PASS  003299B0 posts before the tail-call: 0x2010 only for a party record (kind 0) of type 0x1A with bit 1 of the battle-state block's +0x5AE0, otherwise 0x2001; the event lands in unit +0x5C
+HT4_one_table_one_bound            PASS  the dispatcher (003050E1) and the availability check (003018F0) resolve the same table 01EEC460 and both bound the index at 0x166 (003050D8, 003018E3) - static, read from the instructions; the availability body is not executed
+ok

@@ -1,0 +1,33 @@
+{
+  "experiment": "EXP-067-ui-router-controls",
+  "files": {
+    "00254B50.bin": {
+      "bytes": 263,
+      "sha256": "9ab5c3f609a8b886a1876813c746ce12907c205f8a446d7060411ad74dfd4d78"
+    },
+    "00254C58.bin": {
+      "bytes": 24,
+      "sha256": "1cfed7281d85ddfd27f928a0239ba54f4a2e476834228a0a69fcc09bef2001b7"
+    },
+    "00254C70.bin": {
+      "bytes": 24,
+      "sha256": "3c66c04e630abd1dfe0d2aa1e089f44afc74afece69946ea1489e188f3600175"
+    },
+    "01E0C2C0.bin": {
+      "bytes": 88,
+      "sha256": "eadec033c5635a6d9375347f46ff568904bd02c1fc465c931bc9f12d714bfd49"
+    },
+    "check.py": {
+      "bytes": 6434,
+      "sha256": "08486c56d905c3c956d948def776a3a9c30120369fa1e96f36d1e17ddfb532f0"
+    },
+    "disassembly.txt": {
+      "bytes": 3745,
+      "sha256": "97f8812b25518895c62bd06e3e2ca19ff96b1e6f1e5e1e58ffd14af5a91062d4"
+    },
+    "result.json": {
+      "bytes": 290216,
+      "sha256": "947d84c20ade296fe82be7f9c908095065503aecbc13314573f868f450fcd688"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+PASS O1  00277ACD (a read of 02F9736A) is in the arm at 00277A64, which messages [10, 11] reach; message 2 goes to 00278A3B
+PASS O2  002481C0's callers ['00250540', '002506D0', '00250730', '002507C0', '002508E0']; in 002507C0 the send follows 'cmp ebx, 1'
+PASS O3  rebuild < world tick < UI pass: {'0022B8C0': ('0022B908', '0022BA23', '0022BA45'), '0022BC20': ('0022BC50', '0022BCCF', '0022BD08')}
+PASS O4  field frame: rebuild 0022A7F6 < pause step 0022A8D7 < 002507C0(r15d=1) 0022AB83 < world tick 0022ABD8 < 002507C0(edi) 0022AC17
+PASS O5  pre-arbiter send gated by 003583A0 (bit 3 of 022C7F92) and 02064AC0 == 0.0; post-arbiter send by 003583A0
+PASS O5b  image bytes 0f 2e c7 7a 12 75 10 41 8b cf e8 38: ucomiss, jp and jne both to 0022AB90 past the send 0022AB83 (PF = 0 and ZF = 1 needed); the JP->NOP mutant is refused
+PASS O6  00314020 -> 002E0D90 at ['00314137', '003141F2'] (the second only when esi == 0) -> 00253C50 -> 00253C70
+PASS C  control: message 1 -> 00277925; the default arm 00279D2C takes 31 ids
+FAILS 0

@@ -1,0 +1,376 @@
+{
+ "ok": true,
+ "battle_pack_sha256": "d1bb89aac759cfcd4eb181715d9e88afb78d62a9a3fcffa6242f365f182cbc98",
+ "allowed_functions": 4244,
+ "results": {
+  "bind_shipped_tables": {
+   "pass_": true,
+   "licence": [
+    361,
+    24
+   ],
+   "ability": [
+    543,
+    60
+   ],
+   "party_slots": [
+    40,
+    128
+   ],
+   "note": "003845F0 binds the three slots from the relocated directory: licence records 361 x 24, ability rows 543 x 60, party-slot rows 40 x 128"
+  },
+  "builder_every_ability_matches_model": {
+   "pass_": true,
+   "abilities": 543,
+   "with_a_licence": 118,
+   "mismatches": [],
+   "licence_bits_0_17_in_any_kind1_mask": [],
+   "note": "002F8FA0(1, id) over all 543 shipped ability ids: the mask agrees with an independent decode of the licence records every time; 118 ids are granted by at least one record"
+  },
+  "I3_escape_bit_census": {
+   "pass_": true,
+   "escape_rows": 98,
+   "licensed_with_empty_board": 98,
+   "note": "with nothing owned, exactly the 98 rows whose +0x2C has bit 0x2000 are licensed (Quickening ids aside)"
+  },
+  "I4_any_single_square": {
+   "pass_": true,
+   "checked": 40,
+   "note": "for 40 granted ids: owning any single one of the records that list the id licenses it; owning an unrelated record does not"
+  },
+  "I5_quickenings_counted_over_shipped_rows": {
+   "pass_": true,
+   "slot_rows": {
+    "0": [
+     "D0",
+     "D1",
+     "D2"
+    ],
+    "1": [
+     "DC",
+     "DD",
+     "DE"
+    ],
+    "2": [
+     "D3",
+     "D4",
+     "D5"
+    ],
+    "3": [
+     "D6",
+     "D7",
+     "D8"
+    ],
+    "4": [
+     "D9",
+     "DA",
+     "DB"
+    ],
+    "5": [
+     "DF",
+     "E0",
+     "E1"
+    ],
+    "6": [
+     "00",
+     "00",
+     "00"
+    ]
+   },
+   "per_slot_counts": {
+    "0": {
+     "0": [
+      0,
+      0,
+      0
+     ],
+     "1": [
+      1,
+      0,
+      0
+     ],
+     "2": [
+      1,
+      1,
+      0
+     ],
+     "3": [
+      1,
+      1,
+      1
+     ]
+    },
+    "1": {
+     "0": [
+      0,
+      0,
+      0
+     ],
+     "1": [
+      1,
+      0,
+      0
+     ],
+     "2": [
+      1,
+      1,
+      0
+     ],
+     "3": [
+      1,
+      1,
+      1
+     ]
+    },
+    "2": {
+     "0": [
+      0,
+      0,
+      0
+     ],
+     "1": [
+      1,
+      0,
+      0
+     ],
+     "2": [
+      1,
+      1,
+      0
+     ],
+     "3": [
+      1,
+      1,
+      1
+     ]
+    },
+    "3": {
+     "0": [
+      0,
+      0,
+      0
+     ],
+     "1": [
+      1,
+      0,
+      0
+     ],
+     "2": [
+      1,
+      1,
+      0
+     ],
+     "3": [
+      1,
+      1,
+      1
+     ]
+    },
+    "4": {
+     "0": [
+      0,
+      0,
+      0
+     ],
+     "1": [
+      1,
+      0,
+      0
+     ],
+     "2": [
+      1,
+      1,
+      0
+     ],
+     "3": [
+      1,
+      1,
+      1
+     ]
+    },
+    "5": {
+     "0": [
+      0,
+      0,
+      0
+     ],
+     "1": [
+      1,
+      0,
+      0
+     ],
+     "2": [
+      1,
+      1,
+      0
+     ],
+     "3": [
+      1,
+      1,
+      1
+     ]
+    }
+   },
+   "cross_slot": {
+    "0": {
+     "id": "D3",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    },
+    "1": {
+     "id": "D0",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    },
+    "2": {
+     "id": "D0",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    },
+    "3": {
+     "id": "D0",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    },
+    "4": {
+     "id": "D0",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    },
+    "5": {
+     "id": "D0",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    },
+    "6": {
+     "id": "D0",
+     "search": 3,
+     "3_bits": 0,
+     "4_bits": 1
+    }
+   },
+   "note": "slots 0..5 each name three Quickening ids and together cover 0xD0..0xE1 exactly; slot 6's row is 00 00 00. The k-th id is licensed once k+1 of bits 0..17 are owned. ANOTHER slot's id is absent from the row (0030A330 -> 3) and is licensed as soon as 4 bits are owned (signed setl) - for every slot, including slot 6"
+  },
+  "licence_records_0_17": {
+   "pass_": true,
+   "records": [
+    {
+     "record": 0,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 1,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 2,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 3,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 4,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 5,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 6,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 7,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 8,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 9,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 10,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 11,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 12,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 13,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 14,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 15,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 16,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    },
+    {
+     "record": 17,
+     "kind": 19,
+     "class": 1,
+     "ids": []
+    }
+   ],
+   "in_any_kind1_mask": [],
+   "note": "licence records 0..17 - the bits 00324020 counts - are all kind 19 and list no id; no kind-1 mask over the 543 ability ids sets any of them, so they are read only as the Quickening count"
+  }
+ }
+}

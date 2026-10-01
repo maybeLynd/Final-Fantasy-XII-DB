@@ -1,0 +1,39 @@
+{
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "python_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "modules": [
+    {
+      "name": "unicorn",
+      "version": "2.1.0",
+      "files": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\__init__.py",
+          "bytes": 305,
+          "sha256": "0e8ac7115c755994a968fa865bd1b2f2075edea715c17e91d62af2cc52c13392"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+          "bytes": 9343488,
+          "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75"
+        }
+      ]
+    },
+    {
+      "name": "capstone",
+      "version": "5.0.7",
+      "files": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+          "bytes": 43853,
+          "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+          "bytes": 7576576,
+          "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 443,
+      "sha256": "2f9d4a9aef991c1d75247bb6a9b40a3fee2f3e42c51d80a8ab38d6a2a271c88d"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8086,
+      "sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600"
+    },
+    {
+      "path": "catalogue-intervention.json",
+      "bytes": 2364,
+      "sha256": "3be161e5988ebdeb679463594f32b730cc493fdbcd4f68450bb0873cfdf21192"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5599,
+      "sha256": "f38d3e9de03962dd2477249dd391fbd2e974a2bb9f694516c23b2f20ee902e43"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 7055,
+      "sha256": "2f2caed92d3c7185de29a284eb2842911a304cbf96f2eced434c8007cbda7779"
+    },
+    {
+      "path": "ENVIRONMENT-LESSON.md",
+      "bytes": 487,
+      "sha256": "6bb1cdf3e0df4444fa8a50877f415a53834af089ce39b041b8189b91e6c2e3a1"
+    },
+    {
+      "path": "gate-controls/empty-checks/capture-terminal.json",
+      "bytes": 443,
+      "sha256": "2f9d4a9aef991c1d75247bb6a9b40a3fee2f3e42c51d80a8ab38d6a2a271c88d"
+    },
+    {
+      "path": "gate-controls/empty-checks/capture.py",
+      "bytes": 8086,
+      "sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600"
+    },
+    {
+      "path": "gate-controls/empty-checks/check.py",
+      "bytes": 5599,
+      "sha256": "f38d3e9de03962dd2477249dd391fbd2e974a2bb9f694516c23b2f20ee902e43"
+    },
+    {
+      "path": "gate-controls/empty-checks/checks-terminal.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "gate-controls/empty-checks/result.json",
+      "bytes": 1428,
+      "sha256": "19cafba2dfc72010aa92a56be549cb16edad26557293850bbeca399698aead0a"
+    },
+    {
+      "path": "gate-controls/failed-upstream/capture-terminal.json",
+      "bytes": 400,
+      "sha256": "73f545bc9845448517256553db4be093f055f1d9093db70bb1a7188721a5e661"
+    },
+    {
+      "path": "gate-controls/failed-upstream/capture.py",
+      "bytes": 8086,
+      "sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600"
+    },
+    {
+      "path": "gate-controls/failed-upstream/check.py",
+      "bytes": 5599,
+      "sha256": "f38d3e9de03962dd2477249dd391fbd2e974a2bb9f694516c23b2f20ee902e43"
+    },
+    {
+      "path": "gate-controls/failed-upstream/checks-terminal.json",
+      "bytes": 7055,
+      "sha256": "2f2caed92d3c7185de29a284eb2842911a304cbf96f2eced434c8007cbda7779"
+    },
+    {
+      "path": "gate-controls/failed-upstream/result.json",
+      "bytes": 1428,
+      "sha256": "19cafba2dfc72010aa92a56be549cb16edad26557293850bbeca399698aead0a"
+    },
+    {
+      "path": "gate-controls/missing-checks/capture-terminal.json",
+      "bytes": 443,
+      "sha256": "2f9d4a9aef991c1d75247bb6a9b40a3fee2f3e42c51d80a8ab38d6a2a271c88d"
+    },
+    {
+      "path": "gate-controls/missing-checks/capture.py",
+      "bytes": 8086,
+      "sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600"
+    },
+    {
+      "path": "gate-controls/missing-checks/check.py",
+      "bytes": 5599,
+      "sha256": "f38d3e9de03962dd2477249dd391fbd2e974a2bb9f694516c23b2f20ee902e43"
+    },
+    {
+      "path": "gate-controls/missing-checks/result.json",
+      "bytes": 1428,
+      "sha256": "19cafba2dfc72010aa92a56be549cb16edad26557293850bbeca399698aead0a"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/capture-terminal.json",
+      "bytes": 443,
+      "sha256": "2f9d4a9aef991c1d75247bb6a9b40a3fee2f3e42c51d80a8ab38d6a2a271c88d"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/capture.py",
+      "bytes": 8086,
+      "sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/check.py",
+      "bytes": 5599,
+      "sha256": "f38d3e9de03962dd2477249dd391fbd2e974a2bb9f694516c23b2f20ee902e43"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/checks-terminal.json",
+      "bytes": 6667,
+      "sha256": "a7a3103ec31920c899f3886d28ede617e8697c4dad0565ff4495b917be22bd81"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/result.json",
+      "bytes": 1428,
+      "sha256": "19cafba2dfc72010aa92a56be549cb16edad26557293850bbeca399698aead0a"
+    },
+    {
+      "path": "gate-controls/positive/capture-terminal.json",
+      "bytes": 443,
+      "sha256": "2f9d4a9aef991c1d75247bb6a9b40a3fee2f3e42c51d80a8ab38d6a2a271c88d"
+    },
+    {
+      "path": "gate-controls/positive/capture.py",
+      "bytes": 8086,
+      "sha256": "e9ffd9b354e2b06c0eb298f797eb9ccd2716ccc3ccfae850475cbee7e7748600"
+    },
+    {
+      "path": "gate-controls/positive/check.py",
+      "bytes": 5599,
+      "sha256": "f38d3e9de03962dd2477249dd391fbd2e974a2bb9f694516c23b2f20ee902e43"
+    },
+    {
+      "path": "gate-controls/positive/checks-terminal.json",
+      "bytes": 7055,
+      "sha256": "2f2caed92d3c7185de29a284eb2842911a304cbf96f2eced434c8007cbda7779"
+    },
+    {
+      "path": "gate-controls/positive/result.json",
+      "bytes": 1428,
+      "sha256": "19cafba2dfc72010aa92a56be549cb16edad26557293850bbeca399698aead0a"
+    },
+    {
+      "path": "h8-input-intervention.py",
+      "bytes": 1101,
+      "sha256": "277ccb8951be1d57fe39178101ffec53dbdadcb9b738da7aaa50eb2de509c368"
+    },
+    {
+      "path": "identity-before.json",
+      "bytes": 5342,
+      "sha256": "6855ec563933706d4b19858addfcac412d1a245ca1bb82813bbfdc125c5bf278"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 5342,
+      "sha256": "6855ec563933706d4b19858addfcac412d1a245ca1bb82813bbfdc125c5bf278"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2393,
+      "sha256": "0e90e75d46a5d152ea43bc475caaf92c87dd0b3114303ee08d854b64edce225f"
+    },
+    {
+      "path": "preparation-controls-terminal.json",
+      "bytes": 6335,
+      "sha256": "c51d26659544fe8877f418e73455b47f42a55bc6f33f10a61100d4e3a73a0967"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 8197,
+      "sha256": "dca32ca13e6ff8501c949ddfc404c3a46ebd6511852982c3f9136a43f6091d31"
+    },
+    {
+      "path": "producer-terminal.json",
+      "bytes": 3734,
+      "sha256": "35930b75cacbc1fee193b5b1b5ed0b797e9682d5e6f44bc6ce7aac049a97f5a6"
+    },
+    {
+      "path": "python-deps/ordlookup/__init__.py",
+      "bytes": 786,
+      "sha256": "fe7e3869702abb571846d74bc34ea4966e8f75a6603530fe3f9e03c982d736a7"
+    },
+    {
+      "path": "python-deps/ordlookup/oleaut32.py",
+      "bytes": 11759,
+      "sha256": "d3199a7ea2f1ef42a93cb8b20acc752de67789671cb4248584e2b43f441e5aaf"
+    },
+    {
+      "path": "python-deps/ordlookup/ws2_32.py",
+      "bytes": 6003,
+      "sha256": "0879ce2fee63d738838f61332e69a149d463c177649c78935295d7f335604810"
+    },
+    {
+      "path": "python-deps/ordlookup/wsock32.py",
+      "bytes": 2034,
+      "sha256": "f029bc58669eae582a7087c630fd8be8f9f5aa2df6f7cecaa13f8f1e1199ed17"
+    },
+    {
+      "path": "python-deps/pefile.py",
+      "bytes": 301767,
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 51050,
+      "sha256": "d51de83037ee8e49cd021d5cd338c2860b2bac3fb60a3f99df7f418f5c08ba55"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5953,
+      "sha256": "cb333e782562810b778773aaf05fea2778bab603472f28f3f9eec32c022df027"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1428,
+      "sha256": "19cafba2dfc72010aa92a56be549cb16edad26557293850bbeca399698aead0a"
+    },
+    {
+      "path": "retained/caller330.bin",
+      "bytes": 330,
+      "sha256": "f739335670ae32f1bffe17b78e178d4ee4a009406894fd1f064a6cc76ea813e9"
+    },
+    {
+      "path": "retained/contract.md",
+      "bytes": 21293,
+      "sha256": "c66e6caf52cfa8217feccf4ed18c3ece8867a3dea1444715720bec6a07ea6681"
+    },
+    {
+      "path": "retained/functions.tsv",
+      "bytes": 7008993,
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "retained/intervening-body963.bin",
+      "bytes": 963,
+      "sha256": "40220180106db95c8d66bb8e47227ef9edb3f62b31ee4dafb891f5612cc06d8d"
+    },
+    {
+      "path": "retained/prior-intervening-body.json",
+      "bytes": 52320,
+      "sha256": "f3cff230ac6b308e94ddb227c6a4131834b77f225800c71e663fb959bb81698e"
+    },
+    {
+      "path": "retained/producer-879652c93.py",
+      "bytes": 10634,
+      "sha256": "6af01dfc0b50e9e36fa4160b0c08fa55b841583dd88123a7c677dc9d663d615e"
+    },
+    {
+      "path": "retained/producer-source.py",
+      "bytes": 10812,
+      "sha256": "4ff039139b2da694f63b9b7b49e85c805e9cfcd9b29d6c4e4b280d71ffb82ead"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/repair-readme.md",
+      "bytes": 2486,
+      "sha256": "fb0a9d468e19c4d0b3f66de32a2c12b7e1da11d4cf317ea4bd42b453e42d3d02"
+    },
+    {
+      "path": "run-01-import-failure/capture-terminal.json",
+      "bytes": 651,
+      "sha256": "aa2e2b8c2d83db7fb2d8e845d0f23fe4a96198a9c9d6c02ff9c60cf25d358017"
+    },
+    {
+      "path": "run-01-import-failure/capture.py",
+      "bytes": 7615,
+      "sha256": "563cf971e733d9d752c9c710888e9236d393aa0bcfbe4a106389e5060bd561e2"
+    }
+  ],
+  "limits": "Integrity is not semantic acceptance. Original static/retained movement extent repair review and producer Python/catalogue-reader intervention; CLI failure-status gap retained. No native/live/class effects/full migration/L1L2 acceptance."
+}

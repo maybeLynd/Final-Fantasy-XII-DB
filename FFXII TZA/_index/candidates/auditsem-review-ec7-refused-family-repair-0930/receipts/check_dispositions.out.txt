@@ -1,0 +1,8 @@
+  A  individually explained (interior cite, evidence-bearing page)   :   9302
+  B  class-explained          (declared)                               :   3063
+  C  dispositioned            (declared)                               :  16890
+  D  declared exception       (declared, NOT counted as explained)     :      0
+  explained (A + B + C)                                                :  29255  83.43%
+  frontier  (declared by nothing)                                      :   5809
+  families accepted: 334   refused: 0
+self-test: 13 case(s) passed, including every refusal reason

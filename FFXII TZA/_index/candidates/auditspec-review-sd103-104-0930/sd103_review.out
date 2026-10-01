@@ -1,0 +1,32 @@
+R1 002B3480 (197 bytes)
+   002B348A call 0x29cb50
+   002B3492 call 0x29cb60
+   002B34A6 add rsp, 0x20
+   002B34BA cmp dword ptr [rsi + 0x1c], ebx
+   002B34CC lea rcx, [rax + rax*2]
+   002B34D0 mov rax, qword ptr [rip + 0x1de9769]   ; global 0209CC40
+   002B34DB call 0x2432b0
+   002B34E2 cmp edi, dword ptr [rsi + 0x1c]
+   002B34EC cmp dword ptr [rbp + 0x1c], ebx
+   002B3506 add rax, 0x2a
+   002B3510 lea rcx, [rax + rax*2]
+   002B3514 mov rax, qword ptr [rip + 0x1de9725]   ; global 0209CC40
+   002B351F call 0x2432b0
+   002B3526 cmp ebx, dword ptr [rbp + 0x1c]
+   002B352B call 0x2b5c90
+   002B353F add rsp, 0x20
+R2 002B5C90 slot loads:
+   002B5F53 mov rcx, qword ptr [rbx + 0x1060]
+   002B601A mov rcx, qword ptr [rbx + 0x1078]
+   002B60A6 mov rcx, qword ptr [rbx + 0x1090]
+R3 002432B0 row stores / count:
+   002432E3 and esi, 0x3ff
+   00243305 mov qword ptr [r15 + 8], r12
+   00243313 and edx, 0x3fffc
+   00243322 mov dword ptr [r15], edx
+   00243329 shr ecx, 0x1c
+   00243333 mov dword ptr [r15], ecx
+   0024338C mov qword ptr [r15 + 0x10], 0
+   002433AA mov qword ptr [r15 + 0x10], rax
+   002433FB shr eax, 0x1c
+R4 rows: 42 -> +0x400; 174..176 -> +0x1060, +0x1078, +0x1090; rows below 0x10C8: 179

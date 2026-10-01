@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-THE-CLUSTER-VERDICT-COLUMN-IS-REMOVED",
+ "agent": "OPUS",
+ "note": "01F2E0D0 scored 3.69 cells per writing body, the strongest single-object signal in the list, and it is a BANK OF SINGLETONS: its bodies are the Phyre reflection machinery 006352A0 / 006372B0 / 008AF5E0, and SEVEN of the field schema's 109 type objects live inside it - 01F2E3C0, 01F2E460, 01F2E4B0, 01F2E500, 01F2E550, 01F2E5A0, 01F2E690, four of them exactly 0x50 apart. Seven is not a coincidence: member-registration-and-the-recovered-field-schema.md says 411 of the 682 registered fields are primitives drawn from just SEVEN PTypeDefault objects. The heuristic called many objects one because a constructor that builds siblings touches all their cells, which counting cannot tell from one object's fields. I THEN TRIED A SECOND VERDICT AND IT WAS WORSE: residue-counting labelled almost every cluster a bank of stride 0x8, because 8-aligned cells all sit at residue zero and the smallest stride always wins; raising the floor to 0x10 moved the failure rather than fixing it, and 02CAAD10 came back as 'a bank of stride 0x10, 2 residues over 722 cells', which is 8-byte spacing said twice. THE VERDICT COLUMN IS REMOVED. The sweep now prints the SHAPE - cells, bodies, cells-per-body, widths and the spacing histogram - and the deciding is done by reading. That change immediately surfaced the fact that identifies 01F44D40: spacing 0x20 x298, a 0x20 record 298 times, which was invisible while the tool was printing a guess. NOTHING WAS DECLARED THIS ROUND AND THAT IS THE RESULT: five clusters read, one was a type, and a tool that had told me otherwise would have cost five wrong declarations. Claiming @publication for the inbox block.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

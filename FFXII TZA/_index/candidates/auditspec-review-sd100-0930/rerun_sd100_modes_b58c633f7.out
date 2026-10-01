@@ -1,0 +1,17 @@
+PASS  M1 modes 0/1/4 -> 002AC06B, 2 -> 002AC04F, 3 -> 002ABF9F, 5 -> 002ABFFC, 6 -> 002AC1AB (exit), 7 -> 002AC18B
+PASS  M2 mode 3: timed hold that keeps typing; ends in mode 0
+PASS  M3 mode 5: rate stepping (+0x9C per tick, a step every 30), no +0x88
+PASS  M4 modes 0/1/4: type and page; mode 2: count the fade word down, then the same
+PASS  M6 mode 7: count +0x88 down with the text frozen, then mode 0
+      mode 0    002A5CC0@002A5E75 002ABF70@002ABFC3 002ABF70@002AC1A4 002AC1E0@002AC239 002B3D50@002B3D68
+      mode 1    002A8C50@002A8D2B 002A8C50@002A9923
+      mode 2    002A8C50@002A989E
+      mode 3    002A8C50@002A9428
+      mode 4    002A8C50@002A9193 002B0280@002B199A
+      mode 5    002A8C50@002A97EA 002A8C50@002A98B5 002AC5F0@002AD225
+      mode 6    002A6190@002A67DB 002A9980@002A9AA2 002A9980@002A9D1C
+      mode 7    002A3250@002A3556
+      mode al   002B3950@002B3963
+      mode dil  002A9980@002A9A27
+PASS  M5 the writer census of the mode byte (text code below 00700000): 20 stores
+FAILS 0

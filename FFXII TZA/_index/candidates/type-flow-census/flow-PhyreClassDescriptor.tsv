@@ -1,0 +1,146 @@
+function	site	field	width	kind	instruction
+00163E30	00163E3A	0x0	8	addr	lea rdx, [rip + 0x2b9442f]
+00163F20	00163F27	0x0	8	addr	lea rdx, [rip + 0x2b94342]
+00163FA0	00163FA7	0x0	8	addr	lea rdx, [rip + 0x2b942c2]
+00164010	00164017	0x0	8	addr	lea rdx, [rip + 0x2b94252]
+00164090	0016409A	0x0	8	addr	lea rdx, [rip + 0x2b941cf]
+00164100	00164107	0x0	8	addr	lea rdx, [rip + 0x2b94162]
+00164180	00164184	0x0	8	addr	lea rcx, [rip + 0x2b940e5]
+00164180	00164197	0x38	4	w	mov dword ptr [rip + 0x2b94107], 0
+00164180	001641A8	0x0	8	w	mov qword ptr [rip + 0x2b940c1], rax
+0062FB80	0062FBA8	0x0	8	addr	lea r9, [rip + 0x26c86c1]
+006305A0	006305AF	0x38	4	r	mov eax, dword ptr [rip + 0x26c7cf3]
+006305A0	006305B5	0x0	8	addr	lea rsi, [rip + 0x26c7cb4]
+006305A0	006305E0	0x80	8	addr	lea rdi, [rsi + 0x80]
+006305A0	006305E7	0x80	8	r	mov rbx, qword ptr [rdi]
+006305A0	00630624	0x78	8	r	mov rsi, qword ptr [rsi + 0x78]
+00630BE0	00630BEF	0x38	4	r	mov eax, dword ptr [rip + 0x26c76b3]
+00630BE0	00630BF5	0x0	8	addr	lea rsi, [rip + 0x26c7674]
+00630BE0	00630C20	0x80	8	addr	lea rdi, [rsi + 0x80]
+00630BE0	00630C27	0x88	8	r	mov rbx, qword ptr [rdi + 8]
+00630BE0	00630C64	0x78	8	r	mov rsi, qword ptr [rsi + 0x78]
+006314B0	006314BA	0x18	1	r	movzx eax, byte ptr [rdx + 0x18]
+006314B0	006314BE	0x8	8	addr	lea rbx, [rdx + 8]
+006314B0	006314D8	0x18	8	wr	add qword ptr [rbx + 0x10], rax
+006314B0	006314DC	0x8	8	w	mov qword ptr [rbx], rcx
+006314B0	006314DF	0x10	8	w	mov qword ptr [rdx + 0x10], rcx
+006314B0	00631507	0x20	4	r	mov ecx, dword ptr [r10 + 0x20]
+006314B0	00631532	0x28	8	r	mov rax, qword ptr [r10 + 0x28]
+006314B0	00631589	0x18	1	r	movzx eax, byte ptr [rbx + 0x10]
+006314B0	00631598	0x18	8	w	mov qword ptr [rbx + 0x10], rax
+006318A0	006318E3	0x50	8	addr	lea rax, [rbx + 0x50]
+006318A0	006318E7	0x50	8	w	mov qword ptr [rax], rax
+006318A0	006318EA	0x58	8	w	mov qword ptr [rax + 8], rax
+006318A0	006318EE	0x8	8	addr	lea rax, [rbx + 8]
+006318A0	006318F2	0x8	8	w	mov qword ptr [rax], rax
+006318A0	006318F5	0x10	8	w	mov qword ptr [rax + 8], rax
+006318A0	006318F9	0x18	8	w	mov qword ptr [rax + 0x10], rax
+006318A0	006318FD	0x20	4	w	mov dword ptr [rax + 0x18], edi
+006318A0	00631900	0x28	8	w	mov qword ptr [rax + 0x20], rdi
+006318A0	0063190B	0x30	8	w	mov qword ptr [rbx + 0x30], rax
+006318A0	0063190F	0x60	8	addr	lea rax, [rbx + 0x60]
+006318A0	00631913	0x38	4	w	mov dword ptr [rbx + 0x38], 1
+006318A0	0063191A	0x3C	4	w	mov dword ptr [rbx + 0x3c], 1
+006318A0	00631921	0x40	8	w	mov qword ptr [rbx + 0x40], rdi
+006318A0	00631925	0x48	8	w	mov qword ptr [rbx + 0x48], rdi
+006318A0	00631929	0x60	8	w	mov qword ptr [rax], rax
+006318A0	0063192C	0x68	8	w	mov qword ptr [rax + 8], rax
+006318A0	00631937	0x0	8	w	mov qword ptr [rbx], rax
+006318A0	0063193A	0x80	8	addr	lea rax, [rbx + 0x80]
+006318A0	00631941	0x70	8	w	mov qword ptr [rbx + 0x70], rsi
+006318A0	0063194A	0x78	8	w	mov qword ptr [rbx + 0x78], rdi
+006318A0	0063194E	0x80	8	w	mov qword ptr [rax], rax
+006318A0	00631951	0x88	8	w	mov qword ptr [rax + 8], rax
+006318A0	00631955	0x90	8	addr	lea rax, [rbx + 0x90]
+006318A0	0063195C	0x90	8	w	mov qword ptr [rax], rax
+006318A0	0063195F	0x98	8	w	mov qword ptr [rax + 8], rax
+006318A0	00631963	0xA0	8	addr	lea rax, [rbx + 0xa0]
+006318A0	0063196A	0xA0	8	w	mov qword ptr [rax], rax
+006318A0	0063196D	0xA8	8	w	mov qword ptr [rax + 8], rax
+006318A0	00631971	0xB0	8	addr	lea rax, [rbx + 0xb0]
+006318A0	00631978	0xB0	8	w	mov qword ptr [rax], rax
+006318A0	0063197B	0xB8	8	w	mov qword ptr [rax + 8], rax
+006318A0	0063197F	0xC0	8	w	mov qword ptr [rbx + 0xc0], rdi
+006318A0	00631986	0xC8	8	w	mov qword ptr [rbx + 0xc8], rdi
+006318A0	0063198D	0xD0	8	w	mov qword ptr [rbx + 0xd0], rdi
+006318A0	00631994	0xD8	8	w	mov qword ptr [rbx + 0xd8], rdi
+006318A0	0063199B	0xE0	8	w	mov qword ptr [rbx + 0xe0], rdi
+006318A0	006319A8	0xE8	4	w	mov dword ptr [rbx + 0xe8], eax
+006318A0	006319BB	0x0	8	w	mov qword ptr [rbx], rax
+006318A0	006319C1	0xEC	4	w	mov dword ptr [rbx + 0xec], 0xffffffff
+006318A0	006319CB	0xF0	8	w	mov qword ptr [rbx + 0xf0], rdi
+006318A0	006319D2	0xF8	8	w	mov qword ptr [rbx + 0xf8], rdi
+00632E80	00632EA6	0x38	4	r	mov r9d, dword ptr [r9 + 0x38]
+00632E80	00632EAA	0x3C	4	r	mov r10d, dword ptr [rbx + 0x3c]
+00632E80	00632ED9	0x38	4	r	mov eax, dword ptr [rbx + 0x38]
+00633390	006333BC	0x0	8	w	mov qword ptr [rcx], rax
+00633390	006333BF	0xE8	4	r	mov eax, dword ptr [rcx + 0xe8]
+00633390	006333DC	0x70	8	r	mov rcx, qword ptr [rcx + 0x70]
+00633390	006333E6	0x90	8	addr	lea r14, [r15 + 0x90]
+00633390	006333ED	0x90	8	r	mov rdi, qword ptr [r14]
+00633390	0063344E	0xA0	8	addr	lea rsi, [r15 + 0xa0]
+00633390	00633455	0xA0	8	r	mov rdi, qword ptr [rsi]
+00633390	006334B2	0x80	8	addr	lea r8, [r15 + 0x80]
+00633390	006334C0	0x80	8	r	mov rdx, qword ptr [r8]
+00633390	006334E4	0x90	8	r	mov rdx, qword ptr [r14]
+00633390	00633508	0xA0	8	r	mov rdx, qword ptr [rsi]
+00633390	0063352C	0xB0	8	addr	lea r8, [r15 + 0xb0]
+00633390	00633533	0xB0	8	r	mov rdx, qword ptr [r8]
+00633390	00633557	0x60	8	addr	lea rcx, [r15 + 0x60]
+00633390	00633568	0x0	8	w	mov qword ptr [r15], rax
+006344A0	006344A4	0x70	8	r	mov rcx, qword ptr [rip + 0x26c3e35]
+006344A0	006344B2	0xFC	4	wr	or dword ptr [rip + 0x26c3eb3], 0x20
+006344A0	006344B9	0x0	8	addr	lea rdx, [rip + 0x26c3db0]
+006344A0	006344C0	0xC0	8	w	mov qword ptr [rip + 0x26c3e69], rax
+006344A0	006344CE	0xC8	8	w	mov qword ptr [rip + 0x26c3e63], rax
+006344A0	006344DC	0xD0	8	w	mov qword ptr [rip + 0x26c3e5d], rax
+006344A0	006344E8	0xFC	4	r	mov eax, dword ptr [rip + 0x26c3e7e]
+006344A0	006344F2	0xFC	4	w	mov dword ptr [rip + 0x26c3e74], eax
+006344A0	006344FC	0x8	8	addr	lea rax, [rip + 0x26c3d75]
+006344A0	00634503	0x8	8	w	mov qword ptr [rip + 0x26c3d6e], rax
+006344A0	0063450A	0x0	8	addr	lea rcx, [rip + 0x26c3d5f]
+006344A0	00634511	0x10	8	w	mov qword ptr [rip + 0x26c3d68], rax
+006344A0	00634518	0x18	8	w	mov qword ptr [rip + 0x26c3d69], rax
+006344A0	00634521	0x20	4	w	mov dword ptr [rip + 0x26c3d69], eax
+006344A0	00634527	0x28	8	w	mov qword ptr [rip + 0x26c3d6a], rax
+00635CC0	00635D2D	0x0	8	addr	lea rax, [rip + 0x26c253c]
+00635DC0	00635E29	0x0	8	addr	lea rdx, [rip + 0x26c2440]
+00636920	00636962	0x0	8	addr	lea rdx, [rip + 0x26c1907]
+00636920	0063697E	0x30	8	r	mov r9, qword ptr [rip + 0x26c191b]
+006372A0	006372A0	0x0	8	addr	lea rax, [rip + 0x26c0fc9]
+00637A70	00637AE1	0x0	8	addr	lea r9, [rip + 0x26c0788]
+006388C0	006388CA	0x30	8	r	mov rsi, qword ptr [rcx + 0x30]
+006388C0	00638976	0x20	4	w	mov dword ptr [rbp + 0x20], edi
+006388C0	0063897C	0x28	8	w	mov qword ptr [rbp + 0x28], rsi
+006388C0	00638991	0x8	8	addr	lea rdx, [rbp + 8]
+00639160	0063916F	0x30	8	r	mov rsi, qword ptr [rdx + 0x30]
+00639160	006391FF	0x78	8	r	mov rdx, qword ptr [rdi + 0x78]
+00639160	00639212	0x50	8	addr	lea r8, [rdi + 0x50]
+00639160	00639216	0x58	8	r	mov rax, qword ptr [r8 + 8]
+00639160	00639225	0x58	8	w	mov qword ptr [r8 + 8], rdx
+00639160	00639231	0x50	8	addr	lea rdx, [rdi + 0x50]
+00639160	00639235	0x58	8	r	mov rax, qword ptr [rdx + 8]
+00639160	00639240	0x58	8	w	mov qword ptr [rdx + 8], r14
+0063B6F0	0063B75C	0x0	8	addr	lea rax, [rip + 0x26bcb0d]
+0063CFD0	0063CFE4	0x0	8	addr	lea r8, [rip + 0x26bb285]
+0063D640	0063D646	0x58	8	r	mov rax, qword ptr [rdx + 0x58]
+0063D640	0063D64A	0x50	8	addr	lea r8, [rdx + 0x50]
+0063D640	0063D64E	0x50	8	r	mov rdx, qword ptr [rdx + 0x50]
+0063D640	0063D662	0x50	8	w	mov qword ptr [r8], r8
+0063D640	0063D665	0x58	8	w	mov qword ptr [r8 + 8], r8
+0063E410	0063E416	0xF4	4	w	mov dword ptr [rcx + 0xf4], r8d
+0063E410	0063E425	0x0	8	addr	lea r9, [rip + 0x26b9e44]
+0063E410	0063E435	0xF0	4	r	mov ecx, dword ptr [rax + 0xf0]
+0063E410	0063E43B	0xF4	4	wr	add dword ptr [rdx + 0xf4], ecx
+0063E410	0063E441	0x78	8	r	mov rax, qword ptr [rax + 0x78]
+0063E410	0063E44A	0x78	8	r	mov rax, qword ptr [rdx + 0x78]
+0063E410	0063E44E	0xF0	4	r	mov r9d, dword ptr [rdx + 0xf0]
+0063E410	0063E46A	0xF8	4	w	mov dword ptr [rdx + 0xf8], r8d
+0063E410	0063E47F	0xF8	4	w	mov dword ptr [rdx + 0xf8], r8d
+0067F700	0067F702	0x18	1	r	movzx r8d, byte ptr [rdx + 0x10]
+0067F700	0067F70A	0x18	8	r	mov rax, qword ptr [rdx + 0x10]
+0067F700	0067F730	0x18	1	r	movzx eax, byte ptr [r9 + 0x10]
+0067F700	0067F73D	0x18	8	r	add rcx, qword ptr [r9 + 0x10]
+006B6700	006B6710	0x60	8	r	mov rdx, qword ptr [r8]
+008AF190	008AF197	0x0	8	addr	lea rcx, [rip + 0x24490d2]
+008AF190	008AF19E	0x0	8	w	mov qword ptr [rip + 0x24490cb], rax

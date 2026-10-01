@@ -1,0 +1,60 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 2275,
+      "sha256": "ce25e8b0e5c407aec23bca5cbae662d66ee738030f161e64b1021d8e12c0b639"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 4413,
+      "sha256": "6f85f12559d4a2c57b5fa6955f7402aba06414946d2e8681d5caa195dcff02c5"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1156,
+      "sha256": "5d9096765cd183aba38d5bf6118c37e1d8f495f2f433b2a76076883a825cd85c"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1545,
+      "sha256": "315184f43e285804077bfcf1b4218731eba885fcde41fb52be86e81706338a8a"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1938,
+      "sha256": "6138025c7f890280d0e5e67b674a3c29aadd51d72c91b556c0aafcb5d03b8846"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2781,
+      "sha256": "8d23868498d1cac61898c9b46ce7d6c591725c04967021baa58ab72958b94fe6"
+    },
+    {
+      "path": "result.json",
+      "bytes": 4386,
+      "sha256": "a467b2a13d2733151edfd43da6743d6e55261b577176daa025af1a59773d9c00"
+    },
+    {
+      "path": "retained/contract.md",
+      "bytes": 29214,
+      "sha256": "20e67c73f7d361618e20851bf3f49941c21bddf78b3fe5829e75f368c07b538d"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "bytes": 1750,
+      "sha256": "8729cfb9b9d7a96280d26ae027049700cac749d26fa91df08b2454470a90c0fe"
+    },
+    {
+      "path": "retained/source.json",
+      "bytes": 11052,
+      "sha256": "913ecddea7723b31dc82cece03234ece711c025e747b74cef3baa0aada584827"
+    }
+  ],
+  "limits": "Original source prefix/conditional count bits only; no native execution, huge-loop completion/fault, original C signedness or live occurrence established"
+}

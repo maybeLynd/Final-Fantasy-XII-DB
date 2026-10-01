@@ -1,0 +1,34 @@
+PASS  S1 image 73461D08..21F8
+PASS  D1 ops 1,2,3,5,6,7 get (rcx = 02B477A0 working buffer, rdx = record rbx)
+PASS  D2 ops 4 / 8 get (02B477A0, a second CLUT decoded from the handle at record +0x20 into 02B487A0 / 02B497A0, record)
+PASS  D3 per entry: 003CD840(entry+8 -> 02B477A0, n = word +2); ops; 003D2B60(02B477A0 -> entry+0x10, n)
+PASS  D4 +0xA delay, +0x34 elapsed, +8 lifetime -> release, +0x10/+0x15 loop -> +0x36 local time, +0 opcode
+PASS  D5 003CD2C0: same ops on 02B4A7A0 (+ 02B4B7A0 / 02B4C7A0 for ops 4 / 8), expired records released by 003CD650
+PASS  D6 00431B10: record +0x36 = 004314E0 time, +3 = 0xFF, +0x12 = count, kinds 1,2,3,5,6,7 -> ops 1,2,3,5,6,7; kind 4 -> none
+PASS  P0 all eight: t = +0x36 / +0xE, mask = +3 bits 0-3, entries [+0x14, +0x14 + +0x12) of 16 B
+PASS  P1 op1 0050AC20: shift = t * s16 +0x20; mode +0x22: 0 rotate (mod n), 1 clamped shift, 2 mirror (mod 2n); memcpy via a stack copy
+PASS  P2 op2 00506B40: t capped by +0x28; s16 x4 vector +0x20..+0x26; mode +0x2A: 0 additive (t <= 255, 00506A40 product, << 8), 1 proportional (>>8, *v >>7)
+PASS  P3 op3 005080A0: target colour RGBA8 dword +0x20; mode +0x26: 1 crossfade over +0x24 frames, 0 fixed-step approach (copy at t >= 255)
+PASS  P4 op4 0050A100: the same two modes as op3 with the second decoded CLUT as the per-entry target
+PASS  P5 op5 00509BB0: luma weights (77, 150, 29) / 256 at 00D22850; duration word +0x20; lanes 0-2 only
+PASS  P6 op6 00507490: tint colour +0x20..+0x22, strength = the halfword at +0x23 (0x80 = 1.0), duration word +0x24; lanes 0-2
+PASS  P7 op7 00508C90: head = t * s16 +0x24, colour +0x20, ramp width byte +0x26 (256.0 / width, float), the unmasked step kept at 022D92F0
+PASS  P8 op8 00507120: weight = (int)(256 * curve(t)), curve = the key table at qword +0x28 through 0053DB50
+PASS  M1 op1 = permute the range: rotate / clamped shift / mirror by t*speed; mode 3+ no-op (400/400 trials exact)
+PASS  M2 op2 = mode 0: add v*t (colour units); mode 1: add (c*v/128)*t; t capped by +0x28 (160/160 trials exact)
+PASS  M3 op3 = fade the range to one RGBA8 colour: mode 1 crossfade over +0x24, mode 0 step t per channel (160/160 trials exact)
+PASS  M4 op4 = fade the range to the second CLUT's entries, the same two modes as op3 (160/160 trials exact)
+PASS  M5 op5 = desaturate lanes 0-2 toward Y = (77 R + 150 G + 29 B) / 256 over +0x20 frames (160/160 trials exact)
+PASS  M6 op6 = tint lanes 0-2 toward colour: F = A + (G/128)(col*256 - A), G = halfword +0x23; crossfade to F over +0x24 (200/200 trials exact)
+PASS  M7 op7 = sweep the colour through the range at t*speed entries with a linear ramp of +0x26 entries (300/300 trials exact)
+PASS  M8 op8 = crossfade the range to the second CLUT by weight (int)(256 * curve(t)) (60/60 trials exact)
+PASS  K1 003CD840(src, buf, n): n = 1 / 16 / 256 RGBA8 CLUT entries -> 4 x s32 lanes byte << 8; n = 256 read in PS2 CSM1 order
+PASS  K2 003D2B60(buf, dst, n): lanes >> 8 clamped to 0..255, packed back to RGBA8 in the same order - the working buffer is a CLUT
+PASS  K3 0053DB50: 16-byte keys (time, value, in-tangent +8, out-tangent +0xC), bisection, cubic Hermite (max err 2.1e-06; 0.25 -> 0.15625, not linear)
+PASS  Q1 op7 negative speed with a non-zero start byte writes below 02B477A0 (14 of 300 M7 trials; modelled exactly)
+PASS  Q2 00431B10 kind 5 writes duration 100 at record +0x24 and item byte 7 at +0x23, so op6's strength halfword is 0x64xx (~200x the 0x80 unit)
+PASS  Q3 op1 mode 2 is not periodic in s: shift -7 gives [4, 3, 2, 1, 0, 1], shift +5 (same residue mod 12) gives [4, 3, 2, 1, 0, 0]
+PASS  X1 allocator 003CCC20 copies 48 bytes (+0x00..+0x2F, the operands the ops read at +0x20..+0x2A) and zeroes +0x34 / +0x38 / +0x40 - the largest-unclassified page section 18 says a 32-byte payload
+PASS  X2 handle entry +0x28 / +0x30 = operation-list head / tail (read by both dispatchers), record +0x38 / +0x40 = next / prev; writers 003CCC20 (link) and 003CCF20 (unlink) - section 18 says +0x28/+0x30 'written only' and +0x38/+0x40 writers not found
+PASS  X3 00431B10 zero-extends the op1 / op7 speed byte, so the expression path never takes op7's negative arm (Q1) or op1's negative shifts
+FAILS 0

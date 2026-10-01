@@ -1,0 +1,134 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_old_save_boundary_primary.py",
+      "bytes": 4746,
+      "sha256": "e57c3425905096d084bbac64dee8db5eb722422da9a244f909b02244b7e313b2",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-old-save-boundary-primary.json",
+      "bytes": 23782,
+      "sha256": "098165cfa26c72d1c47e81590229fd0691c999dc0dc682c75dadec160440ebd1",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "helpers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_old_save_boundary_helpers.py",
+      "bytes": 4737,
+      "sha256": "e6914bdc41cc32cde0f49b8f9ede217e7b1c2b4080fc745048653359bbc0f317",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "helpers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-old-save-boundary-helpers.json",
+      "bytes": 30552,
+      "sha256": "41266ac96a3016bab06ba133373524a4c1e0f3c28eba4b9baf04fe5111039dc6",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "mirror.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_old_save_boundary_mirror.py",
+      "bytes": 4728,
+      "sha256": "b0bb1f4ac1414636cb4986bb7f17408439496c13a37324cfc1c32febb5604c65",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "mirror.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-old-save-boundary-mirror.json",
+      "bytes": 6861,
+      "sha256": "fe5c9d2a7f025073c5e679532661ab13f01e9eda788ef64a7e4839092e26e195",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "capture.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_old_save_boundary_capture.py",
+      "bytes": 4737,
+      "sha256": "a4d356ac307e359817fa9992c8509a0c7d13a68edd7fc702ebeda1336096463a",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "capture.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-old-save-boundary-capture.json",
+      "bytes": 30490,
+      "sha256": "a060e6b2ffd18c25e24741f9d11ecbf9679b6a3dc6ef4dbbfab6cafa80f4facc",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_old_save_boundary_check.py",
+      "bytes": 5584,
+      "sha256": "6ab8f128a85499b5e380f6526c6e2b6fff9700c4eee41d411f18c777d56a2729",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-old-save-boundary-check.json",
+      "bytes": 11664,
+      "sha256": "8b70a7a1d9441d6d2363a7c2b49a93827a4e8f049b5c3d696b139f06037bcf79",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "capture.json": {
+      "bytes": 29374,
+      "sha256": "0617a8675db02ed1836c9cffe62733261baa1b99f673347156db74aff5097c55"
+    },
+    "capture.py": {
+      "bytes": 4737,
+      "sha256": "a4d356ac307e359817fa9992c8509a0c7d13a68edd7fc702ebeda1336096463a"
+    },
+    "check.json": {
+      "bytes": 11664,
+      "sha256": "8b70a7a1d9441d6d2363a7c2b49a93827a4e8f049b5c3d696b139f06037bcf79"
+    },
+    "check.py": {
+      "bytes": 5584,
+      "sha256": "6ab8f128a85499b5e380f6526c6e2b6fff9700c4eee41d411f18c777d56a2729"
+    },
+    "existing-work.json": {
+      "bytes": 8846,
+      "sha256": "fe8efe2a4ecfe2978f6700eb2d282114c27e9655daaad267b21384103f583aae"
+    },
+    "helpers.json": {
+      "bytes": 29406,
+      "sha256": "5a9854d0a38f87d108451ad052a0774633dbd42173d4824c42dd52c5a8c0aa4a"
+    },
+    "helpers.py": {
+      "bytes": 4737,
+      "sha256": "e6914bdc41cc32cde0f49b8f9ede217e7b1c2b4080fc745048653359bbc0f317"
+    },
+    "mirror.json": {
+      "bytes": 6601,
+      "sha256": "5d71f6f72d396ec7f2ee9b4397e630a2284581681d342d86fe30ae152aef1dfa"
+    },
+    "mirror.py": {
+      "bytes": 4728,
+      "sha256": "b0bb1f4ac1414636cb4986bb7f17408439496c13a37324cfc1c32febb5604c65"
+    },
+    "primary.json": {
+      "bytes": 22872,
+      "sha256": "575d337d279fe651190082a7eea72d6c91583d78e9d78fe9117670aefa327e81"
+    },
+    "primary.py": {
+      "bytes": 4746,
+      "sha256": "e57c3425905096d084bbac64dee8db5eb722422da9a244f909b02244b7e313b2"
+    },
+    "README.md": {
+      "bytes": 4151,
+      "sha256": "e9b98b612faad3e523ab7d657a26c68288fce821f499c7e98060e1149bfb90a7"
+    }
+  }
+}

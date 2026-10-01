@@ -1,0 +1,7 @@
+# SWE2-AUDIT-SEM: dd-data-3-0930 checkers re-run at 0b1f3a2fb (python -B), compared with the committed .out (CR-insensitive)
+dispatch_checks.py exit=0 IDENTICAL FAILS 0
+measure_checks.py exit=0 IDENTICAL FAILS 0
+shared_context_checks.py exit=0 IDENTICAL FAILS 0
+ui_2fe0_sites.py exit=0 IDENTICAL FAILS 0
+ui_bi17_dispatch.py exit=0 IDENTICAL FAILS 0
+widget_draw_checks.py exit=0 IDENTICAL FAILS 0

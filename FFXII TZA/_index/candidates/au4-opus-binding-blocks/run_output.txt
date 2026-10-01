@@ -1,0 +1,4 @@
+A1_each_initialiser_writes_three_records_codes_and_axis_tables PASS
+A2_stride_0x420_and_the_stated_end_is_record_2s_table      PASS
+A3_next_global_is_block3_plus_0x420                        PASS
+ALL PASS

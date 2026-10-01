@@ -1,0 +1,113 @@
+== 16-UI/Gambit-Screens/the-gambit-screens.md
+   status: status: "DOCUMENTED — GI-1 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-g
+   GI-1 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — the premise does not hold: `+0x14` bit
+   B  200 [## Not yet established] ## Not yet established
+   B  214 [## Not yet established] **Corrected 2026-09-18 (FABLE): the address was misread, and the record does decide.** The operand at `00566F60` resolves to **`0208F570`**, the 60 Hz tick counter every UI frame advances ([
+   B  293 [## Falsification pass] *Not yet established*, and whether `00566C10`'s icon set is condition- or action-type art.
+   B residue-word lines: 3
+== 16-UI/Handbook/the-handbook-screen.md
+   status: status: "DOCUMENTED — GI-2 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-DIALOGS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-resta
+   GI-2 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — Both premises were wrong. `hcom` is no
+   B   27 [] - "hcom | explained | menuhandbook.bin (.bin member): {hcom, u32 103, u16 self-relative node web, u32 constants} - (kind 7, 0xC8) by 003158B0 into 022C2550, walked by 00315D50; node semantic
+   B   28 [] - "hodr | explained | menuhandbook_order.bin (.bin member): {hodr, u32 101, u32 33, 32-byte records[33]} (12 + 33*32 = 1068) - (kind 7, 0xC9) by 00572D80 into rbx+0x1200, placement walk 0057
+   B  366 [## Not yet established] ## Not yet established
+   B residue-word lines: 3
+== 16-UI/License-Board-View/the-license-board-screen-widgets.md
+   status: status: "DOCUMENTED — GI-3 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-g
+   GI-3 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — id 285 is not a board vocabulary: it i
+   B  122 [## 5. The cursor handler — `00557DB0` (2,475 B)] in the census. The `+0x37D` byte at `00557DF0` is the cursor's move-mode. *(Narrowed 2026-09-18, FABLE, from its six sites — all inside `00557DB0`, the id-10 arm's owner:* it is read once, a
+   B  206 [## 8. Controls and limits] not yet named), which of `005565E0`/`0055A340`/`00557760` draws which layer, and~~ the `+0x37D` cursor move-mode
+   B residue-word lines: 2
+== 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md
+   status: status: "DOCUMENTED — GI-4 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-DIALOGS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-resta
+   GI-4 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — `00556F90`'s id-2 arm is fed by the li
+   B  207 [## Not yet established] ## Not yet established
+   B residue-word lines: 1
+== 16-UI/Shop-Screens/the-shop-screens.md
+   status: status: "DOCUMENTED — GI-5 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-g
+   GI-5 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — `+0xE4` of the trade panel `0056D370` 
+   B  207 [## The `0056E140` widget, decoded (SWE2-FRONTIER, switch-families pack] `002CFCF0`, `0027EE80`) are named by call site only — not read in this pass.
+   B  250 [## Not yet established] ## Not yet established
+   B residue-word lines: 2
+== 16-UI/Unlabelled-Panes/the-unlabelled-procedures.md
+   status: status: "DOCUMENTED — GI-6 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-g
+   GI-6 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — there is no second-level kind: `00571A
+   B  140 [## What this settles] All 25 unlabelled rows resolve to panes of documented screens or to three screen families the key evidence missed (license launcher, handbook content pages, item/equip). None is a previously
+   B  142 [## Not yet established] ## Not yet established
+   B residue-word lines: 2
+== 17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md
+   status: status: "DOCUMENTED — GI-7 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI7, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-restatus-gi-
+   GI-7 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — bank B is a one-slot bank: `0041D6D0` 
+   B  149 [## 6. Residuals] is not yet traced to a drain.~~ **Traced 2026-09-29 (FABLE, GI-7) - bank B is a one-slot bank for
+   B  253 [## Where the commands are authored, and which are never authored (FABL] system; what each subtype means to the handler is the battle side's and was not read here.
+   B  297 [## The commands that run the motion itself: `0x00`, `0x03`, `0x08`, `0] the container - 108,511 authored, one or two per block. What it does with the section was not read.*
+   B  348 [### What is authored (FABLE)] **Not read here:** the seven arms past their first store; the `0x80` arm's nested switch; what `003AFC10` builds;
+   B  388 [### What is authored (FABLE)] **Not read here:** `00372800`'s lookup beyond its `0xFFFF` contract; what name key `29` is; why `0x3F` zeroes its
+   B  454 [### What is authored (FABLE)] **Not read here:** `00423790`.
+   B  497 [## `word[record + 0x2F2]`: the field two commands key on marks a **sub] **Not read here:** `004219C0`, the sibling writer, beyond confirming its two stores match; what the key argument
+   B  548 [### What is authored (FABLE)] **Not read here:** `00373060` (read only for its shape — it resolves two image pointers and indexes a `0x292`-stride
+   B  633 [### What is authored (FABLE)] **Not read here:** what `word[+0x2F2]` counts  (settled under `0x2F`).
+   B  695 [### What is authored (FABLE)] **Not read here:** what the pool's slots are for (`003D8300`, the release, and the slot's own `+0x30`/`+0x40` were
+   B  755 [### What is authored, and what is not (FABLE)] **Not read here:** what a "sub-resource variant" is on the model side (`RenderModelInstance_RemoveSubresourceVariantBinding`
+   B  852 [## Command `0x09`: play this bone motion - and where the blend rule is] > *Not read:* `0041B650`, `00409190` and `003AB7F0`, and the tail past the loop.
+   B residue-word lines: 17
+== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md
+   status: status: "DOCUMENTED — GI-8 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-resta
+   GI-8 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — every walk of element types `0x00`–`0x
+   B   45 [## 1. The method vocabulary] (739 B)**. The tail helpers themselves are not read this pass — marked
+   B   46 [## 1. The method vocabulary] `not read` per row.
+   B  107 [### Type `0x01`] | step | `00442520` | base stepper + tail `00442600` (`not read`) |
+   B  133 [### Type `0x03`] | step | `004427A0` | base + tail `004428F0` (`not read`) |
+   B  187 [### Type `0x08`] | step | `0044A5F0` | base + tail `0044B3C0` (`not read`) |
+   B  271 [## Two walks traced to the render command, 2026-09-19 (FABLE): `0x01` ] | 1-7 | `0039D970` (point, 348 B, read whole); the line's `0039D6C0` (457 B) **not read** | first **appends a `0x28`-byte entry to the depth-sorted display list** (`[02F8F2F8]`, count word `
+   B  277 [## Two walks traced to the render command, 2026-09-19 (FABLE): `0x01` ] + Cd; `0x46` = Cd x (1 - As) - **an inference from the encoding; the consumer of record `+0x38` was not read**, and mode
+   B  345 [## Type `0x02`'s walk, read 2026-09-19 (FABLE): a sprite] **Not read (explicit):**  *(all ten read 2026-09-19 - [an effect element, frame by frame](an-effect-element-frame-by-frame.md))*;
+   B  394 [## What every walk draws, and who authors it (GI-8, 2026-09-29, FABLE)] row gradient by its call shape - that body is translated VU0 code, not read line by line).
+   B residue-word lines: 9
+== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md
+   status: status: "DOCUMENTED — GI-9 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-resta
+   GI-9 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — the seven types are named, and so are 
+   B   98 [## Package status — all 65 handled types now have a first read] table, record map, and call signature on a page. ~~Still `not read` everywhere:
+   B  269 [## What these seven types are (GI-9, 2026-09-29, FABLE)] *Nothing of GI-9 remains open (2026-09-29): the last item, what `0xD0`'s blend selector produces on screen, is
+   B residue-word lines: 2
+== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md
+   status: status: "DOCUMENTED — GI-10 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-rest
+   GI-10 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — every tail of the band is read. `0x72`
+   B   57 [## `0x60` / `0x61` / `0x62` — one family] `0044B960` + own tail (`0045C450` / `0045CDC0` / `0045D7D0`, all `not read`);
+   B  164 [## What this group establishes — and what it does not] **Not read (explicit):** ~~all step/update tails (`0045C450`, `0045CDC0`,
+   B  167 [## What this group establishes — and what it does not] `0054E040`); `00431770` still `not read` (third-variant init used at `0xF0`
+   B  299 [## The four simulation cores and the ability names (GI-10, 2026-09-29,] *Nothing of GI-10 remains open (2026-09-29). The coverage limit on names above is not a residue: no ability-keyed
+   B  362 [## Cross-subsystem neighbours — FINAL-AUDIT pass 22] **ActorEntity — SERVICE, MECHANICAL (7 edges).** The registry's 2026-09-14 GENUINELY-IRRELEVANT verdict for this pair covered one edge: the actor state-interpolation body `003F1E90` calling 
+   B residue-word lines: 5
+== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md
+   status: status: "DOCUMENTED — GI-11 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-EFFECTS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-rest
+   GI-11 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — all fifteen tails of `0x80`–`0x97` are
+   B   82 [## The variant-selector walks] | `0045B2A0` (`0x95`) | `*rcx != 0` | shared tail (`not read`) |
+   B   86 [## The variant-selector walks] | `0045BAD0` (`0x97`) | `*rcx != 0` | shared tail (10 B, `not read`) |
+   B  120 [## Not read] ## Not read
+   B residue-word lines: 3
+== 17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md
+   status: status: "DOCUMENTED — GI-12 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI12, ACCEPT-WITH-NARROWING applied on the page, cfc5a4863); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (
+   GI-12 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — (1) each of the thirty evaluators belo
+   B residue-word lines: 0
+== 19-Save-Load-Settings/the-save-load-screen-widgets.md
+   status: status: "DOCUMENTED — GI-13 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-DIALOGS, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-rest
+   GI-13 register:  **ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5)** — 3, `0xD` and `0xF` are notification cl
+   B   86 [## Not yet established] ## Not yet established
+   B residue-word lines: 1
+== C shop page
+      4 status: "DOCUMENTED — GI-5 answered 2026-09-29 (FABLE), review (FABLE-REQ-AUDITSEM-REVIEW-GI-UI, ACCEPT, d998217e2); documented_rule.py READY, no open box or live id; owner re-status 2026-09-30 (SWE2-FRONTIER, record dd-
+     12 - "0057A4E0"
+     48 | `0057A4E0` | leaf widget (construct/reconcile only) | `0057A480` (called by `0056D370`) |
+     60 | 12 | `0057BB1D` | sub-commands: `0x8000` re-highlight row `msg->b` (`0057BB4B`); `0xF` toggle `+0x150 & 0x20` and clear the child's `+0xE0 & 0x200000` list-mode bit (`0057BB8C`); `0x12` → `002470D0` + set that bit (`00
+     86 ## `0057A4E0` — the leaf
+     88 `0057A4E0` (313 B) answers only ids 1 and 2 — construct and reconcile. It and its twin `0057A300` both call `0030BAF0` + `0035D380` — a stock/availability descriptor row, not a screen.
+     95 `0057A4E0` — union 226, atlas subtree rule: depth ≤3, stop at other widget procedures and
+    147 | `0057A300` | twin of `0057A4E0` — `0030BAF0` + `0035D380` descriptor row | `0057A32C` `call 0035D380` |
+    148 | `0057A480` | `0057A4E0` installer | `0057A484` `mov rax,[rip+0x19ca3a5]` |
+    149 | `0057A4E0` | leaf proc (ids 1,2) — stock/availability descriptor row | `0057A502` `call 003F4670` |
+    179 | `0057A4E0` P (leaf widget, `0057A480`) | `DefUnderBlackBandH`, `DeftopBlackBandH`, `ListHelpBlackBandH` | `movzx` byte loads, `cmovne` between top/under heights, packed into a `[rsp+0x24]`-family band descriptor — the 
+    187 `0057B890` is the shop's outer menu — the "Buy / Sell / …" list with the `Shop_8_c.tm2` banner — owning the cursor and forwarding input to its `+0x148` menu-list child. Its `0x8001` sub-command is the mode switch into th
+    252 - ~~which `0xF`/`0x12` sub-command ids correspond to which parent notifications~~ — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): both are decoded below, which answers the question.* **narrowed
+    254 from its id-15 arm, `0056E322`) — a pre-destroy flag report to `+0x188`. `0x12` on the menu list
+    257 - ~~`0057A4E0`'s contents beyond "descriptor row"~~ — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): read 2026-09-18 (FABLE) in the `0057A4E0` section above, a styled text element built at id 1.*

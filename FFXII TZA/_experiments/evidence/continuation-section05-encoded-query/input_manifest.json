@@ -1,0 +1,41 @@
+{
+  "baseline_chain": [
+    {
+      "archive": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+      "files": 10597
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017",
+      "files": 27
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa",
+      "files": 31
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f",
+      "files": 37
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d",
+      "files": 39
+    }
+  ],
+  "unchanged_inputs": [
+    {
+      "path": "_experiments/evidence/s04-validator-arms/check.py",
+      "sha256": "156c04d1458806bdcb2a144a5e76c9e94af23efda71f4cc804a3180d09a2a8bd",
+      "size": 13078
+    },
+    {
+      "path": "_experiments/evidence/s04-validator-arms/result.json",
+      "sha256": "0e9f2410db08a4837c2d9c6100ccc9511fd7442fc99003b6aaddaa33f14d35d7",
+      "size": 68893
+    }
+  ]
+}

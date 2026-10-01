@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-negative-rounding\check.py", line 25, in <module>
+    if '--fault-positive-bit-order-for-negative' in sys.argv:assert model==actual_bits,'Positive-domain RU bitincrement cannot be reused for negativeinput'
+                                                                    ^^^^^^^^^^^^^^^^^^
+AssertionError: Positive-domain RU bitincrement cannot be reused for negativeinput

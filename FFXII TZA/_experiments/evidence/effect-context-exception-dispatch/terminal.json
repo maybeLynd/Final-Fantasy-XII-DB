@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "status": "TERMINAL_SUCCESS",
+  "command": "Collaboration/Tools/analysis/venv/Scripts/python.exe Database/Tools/work/ASTRA/effect-context-exception-dispatch/check.py"
+}

@@ -1,0 +1,28 @@
+{
+  "method": "A: original repository Python/CLI, not FF12 native or live game",
+  "head": "ba0ab89c9db892167b6d002799698e711d67c496",
+  "source_last_commit": "bf000cdc96d3ca9ec7fb461d0e066572d6657041",
+  "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+  "source_sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480",
+  "source_git_blob": "c756aac9a3d7234cd82f23e0238c530d215a65d6",
+  "module_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_executable_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "python_base_executable": "C:\\Python314\\python.exe",
+  "python_base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+  "driver_sha256": "cd797b815c83103e022fbd097d468792bf81fb73392c7baf83e6f39d467ea7c6",
+  "platform": "win32",
+  "interventions": [
+    "explicit synthetic schema-valid private board initialized once",
+    "Copy exact prior successful private board+journal to a new private path; no fresh-positive replay"
+  ],
+  "limits": "No production-board write, recovery, lock substitution, interrupted prefix, idempotent task transition, removed-lock, host controller or deployment proof.",
+  "retained_positive": {
+    "raw_sha256": "40e6c1d988eceb1d741c080c6578d3582b99ae773b6d9a4f782f72885d299ed2",
+    "driver_sha256": "cc408101714f5035c94ec8532d8628f36c8b230be7cddf5ba3541fda303cb297",
+    "board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+    "journal_sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9",
+    "status": "Original overall run INVALID; successful fresh writer observation reused only at its stated scope"
+  }
+}

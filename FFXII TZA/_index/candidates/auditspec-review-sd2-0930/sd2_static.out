@@ -1,0 +1,13 @@
+00366B80  E8/E9 0 (index 0)  jcc 0  u64 []  rva32 3 ['.rdata:01D7A8B4', '.rdata:01D7A8C4', '.pdata:02FBC180']
+002432B0  E8/E9 113 (index 113)  jcc 0  u64 []  rva32 3 ['.rdata:01D6970C', '.rdata:01D6971C', '.pdata:02FA823C']
+          0036705C in sites: True
+00366A30  E8/E9 2 (index 2)  jcc 0  u64 []  rva32 1 ['.pdata:02FBC174']
+          sites ['00366E26', '00366E8B']
+00367110  E8/E9 1 (index 1)  jcc 0  u64 []  rva32 1 ['.pdata:02FBC1A4']
+          sites ['00366CDB']
+[01E0C1E8] = 009152B0 -> b'battle_4_c'
+0024A1EB  lea rsi, [rdx + 0x10]
+0024A1FE  mov rax, qword ptr [rsi + 0x18]
+0024A218  mov rcx, qword ptr [rsi + 0x18]
+0024A22C  mov qword ptr [rbx + 0x18], rdx
+0024A238  mov qword ptr [rbx + 0x20], rsi

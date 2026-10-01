@@ -1,0 +1,227 @@
+{
+  "Common": {
+    "mGammaValue": 1.0,
+    "mUSMBlur": 1.2,
+    "mUSMIntensity": 0.45,
+    "mUSMThreshold": 0.04,
+    "lightOrientation": 0.0,
+    "lightHeight": 0.0,
+    "mDofFocusDistance": 4.0,
+    "mDofApertureFnumber": 9.5,
+    "mShadowValueLerpMinForMap": 0.6,
+    "mShadowValueLerpMinForChr": 0.7,
+    "mCascadeNumber": 3,
+    "mCascadePartition0": 0.008,
+    "mCascadePartition1": 0.016,
+    "mCascadePartition2": 0.035,
+    "mGlareLuminance": 0.8,
+    "mGlareThreshold": 0.1,
+    "EnableYebis": 1,
+    "m_fBlurBetweenCascadesAmount": 0.005,
+    "mColorR": 0.5,
+    "mColorG": 0.5,
+    "mColorB": 0.5,
+    "mContrastR": 0.5,
+    "m_iPCFBlurSizeForMap": 3,
+    "ShadowValueR": 0.0,
+    "ShadowValueG": 0.0,
+    "ShadowValueB": 0.0,
+    "m_iPCFBlurSize": 8,
+    "m_iBlurBetweenCascades": 1,
+    "EnableShadow": 1,
+    "EnableUSM": 1,
+    "EnableDof": 0,
+    "mSAOBiasChr": 0.01,
+    "mSAORadiusChr": 1.0,
+    "mSAOIntensityChr": 1.0,
+    "mSAOBiasSce": 6.0,
+    "mSAORadiusSce": 1.0,
+    "mSAOIntensitySce": 1.0,
+    "mHBAOBiasChr": 1.0,
+    "mHBAORadiusChr": 1.0,
+    "mHBAOIntensityChr": 0.5,
+    "mHBAOBiasSce": 30.0,
+    "mHBAORadiusSce": 1.25,
+    "mHBAOIntensitySce": 1.0,
+    "mSAOFadeoutScale": 1.0,
+    "mHBAOFadeoutScale": 5.0,
+    "PresetDof 1": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 2": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 3": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 4": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 5": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 6": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 7": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 8": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 9": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 10": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 11": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 12": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 13": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 14": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 15": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 16": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 17": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 18": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 19": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 20": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 21": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 22": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 23": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 24": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 25": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 26": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 27": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 28": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 29": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 30": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 31": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "PresetDof 32": {
+      "mDofFocusDistance": 4.0,
+      "mDofApertureFnumber": 9.5
+    },
+    "EnableIBL": 1,
+    "mMotionBlurEnabled": 0,
+    "chrCameraLightEnabled": 1
+  },
+  "Cut 1": {
+    "mShadowValueLerpMinForChr": 0.9,
+    "mShadowValueLerpMinForMap": 0.65,
+    "mContrastR": 0.5,
+    "m_iPCFBlurSize": 8,
+    "EnableDof": 1,
+    "mDofFocusDistanceLock": 1,
+    "mDofApertureFnumberLock": 1,
+    "mDofApertureFnumber": 8.0,
+    "mDofFocusDistance": 6.4
+  },
+  "Cut 2": {
+    "mShadowValueLerpMinForChr": 0.9,
+    "mShadowValueLerpMinForMap": 0.65,
+    "mContrastR": 0.5,
+    "m_iPCFBlurSize": 8,
+    "EnableDof": 1,
+    "mDofApertureFnumberLock": 1,
+    "mDofFocusDistanceLock": 1,
+    "mDofApertureFnumber": 16.0,
+    "mDofFocusDistance": 7.45
+  },
+  "Cut 3": {
+    "mShadowValueLerpMinForChr": 0.9,
+    "mShadowValueLerpMinForMap": 0.65,
+    "mContrastR": 0.5,
+    "m_iPCFBlurSize": 8,
+    "mCascadePartition0": 0.032,
+    "mCascadePartition2": 0.138,
+    "mCascadePartition1": 0.081,
+    "EnableDof": 1,
+    "mDofApertureFnumberLock": 1,
+    "mDofFocusDistanceLock": 1,
+    "mDofApertureFnumber": 5.6,
+    "mDofFocusDistance": 8.2
+  },
+  "Cut 4": {
+    "mShadowValueLerpMinForChr": 0.9,
+    "mShadowValueLerpMinForMap": 0.65,
+    "mContrastR": 0.5,
+    "m_iPCFBlurSize": 8,
+    "EnableDof": 1,
+    "mDofApertureFnumberLock": 1,
+    "mDofFocusDistanceLock": 1,
+    "mDofApertureFnumber": 11.0,
+    "mDofFocusDistance": 5.5
+  }
+}

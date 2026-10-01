@@ -1,0 +1,28 @@
+PASS C1 the switch table's 11 arms lie inside 002DF9A0 - 002DFBCB 002DFC2B 002DFC8B 002DFCEB 002DFD4B 002DFDAB 002DFDF6 002DFED9 002DFF32 002DFF32 002DFE80
+PASS C2 the language name table reads JP US FR DE IT ES UK KR CH ASIA IN CN - JP US FR DE IT ES UK KR CH ASIA IN CN
+   lang  0 JP   kind-7 array 01EDD7E0  fontpack_fs: in
+        btm dirs: in in in in in in
+   lang  1 US   kind-7 array 01EC73A0  fontpack_fs: us
+        btm dirs: in in in in in in
+   lang  2 FR   kind-7 array 01EDFE70  fontpack_fs: us
+        btm dirs: in in in in in in
+   lang  3 DE   kind-7 array 01E2D370  fontpack_fs: us
+        btm dirs: in in in in in in
+   lang  4 IT   kind-7 array 01E6BF40  fontpack_fs: us
+        btm dirs: in in in in in in
+   lang  5 ES   kind-7 array 01E4E640  fontpack_fs: us
+        btm dirs: in in in in in in
+   lang  6 UK   kind-7 array 01E8AB20  fontpack_fs: us
+        btm dirs: in in in in in in
+   lang  7 KR   kind-7 array 01E0E530  fontpack_fs: kr
+        btm dirs: kr kr kr kr kr kr
+   lang  8 CH   kind-7 array 01E5A3D0  fontpack_fs: ch
+        btm dirs: ch ch ch ch ch ch
+   lang  9 ASIA kind-7 array 01EDD7E0  fontpack_fs: in
+        btm dirs: in in in in in in
+   lang 10 IN   kind-7 array 01EDD7E0  fontpack_fs: in
+        btm dirs: in in in in in in
+   lang 11 CN   kind-7 array 01EABBA0  fontpack_fs: cn
+        btm dirs: cn cn cn cn cn cn
+PASS C3 the default path (lang 0, JP) reaches the common tail 002DFF7F
+FAILS 0

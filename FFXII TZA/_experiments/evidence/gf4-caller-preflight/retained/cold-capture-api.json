@@ -1,0 +1,1433 @@
+[
+  {
+    "unix": 1789108461.5021458,
+    "operation": "DebugActiveProcess",
+    "result": 1,
+    "error": null
+  },
+  {
+    "unix": 1789108461.5021627,
+    "operation": "DebugSetProcessKillOnExit",
+    "result": 1,
+    "error": null
+  },
+  {
+    "unix": 1789108461.502191,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 3,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022008,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502208,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022118,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022287,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 2,
+    "pid": 37120,
+    "tid": 34368
+  },
+  {
+    "unix": 1789108461.5022316,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 34368,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022354,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 2,
+    "pid": 37120,
+    "tid": 40640
+  },
+  {
+    "unix": 1789108461.5022378,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 40640,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502242,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 2,
+    "pid": 37120,
+    "tid": 18588
+  },
+  {
+    "unix": 1789108461.5022442,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 18588,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022483,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022504,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502254,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022564,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022597,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022638,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022676,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.50227,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022736,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.502276,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022798,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022824,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022862,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022886,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022922,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5022948,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5022984,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023007,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023046,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023067,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502311,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023131,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502317,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023193,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023227,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023263,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023296,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.502332,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023355,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023377,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023413,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023437,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023475,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023499,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023534,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023558,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023592,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023613,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023649,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023673,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023706,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.502373,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023768,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023792,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023837,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023859,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023892,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023918,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5023954,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5023978,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502401,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5024033,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.502555,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.50256,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5025644,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 6,
+    "pid": 37120,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5025666,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 3232,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5025718,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 2,
+    "pid": 37120,
+    "tid": 38344
+  },
+  {
+    "unix": 1789108461.5025756,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 38344,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5026352,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 1,
+    "pid": 37120,
+    "tid": 38344,
+    "exception": 2147483651,
+    "address": 140734905727664
+  },
+  {
+    "unix": 1789108461.5413692,
+    "operation": "OpenThread",
+    "result": 616,
+    "error": null,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108461.5414035,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108461.5414336,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108461.5414448,
+    "operation": "OpenThread",
+    "result": 616,
+    "error": null,
+    "tid": 34368
+  },
+  {
+    "unix": 1789108461.5414608,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108461.5414865,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108461.5415106,
+    "operation": "OpenThread",
+    "result": 616,
+    "error": null,
+    "tid": 40640
+  },
+  {
+    "unix": 1789108461.5415282,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108461.5415416,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108461.5415492,
+    "operation": "OpenThread",
+    "result": 616,
+    "error": null,
+    "tid": 18588
+  },
+  {
+    "unix": 1789108461.541566,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108461.5415814,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108461.5415878,
+    "operation": "OpenThread",
+    "result": 616,
+    "error": null,
+    "tid": 38344
+  },
+  {
+    "unix": 1789108461.5416024,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108461.5416195,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 616,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108461.541627,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 38344,
+    "status": 65538
+  },
+  {
+    "unix": 1789108461.5416627,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 4,
+    "pid": 37120,
+    "tid": 38344
+  },
+  {
+    "unix": 1789108461.5416746,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 38344,
+    "status": 65538
+  },
+  {
+    "unix": 1789108463.613954,
+    "operation": "timeout_cleanup_begin",
+    "pid": 37120
+  },
+  {
+    "unix": 1789108463.6140301,
+    "operation": "DebugBreakProcess",
+    "result": 1,
+    "error": null
+  },
+  {
+    "unix": 1789108463.61407,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 2,
+    "pid": 37120,
+    "tid": 39756
+  },
+  {
+    "unix": 1789108463.6140854,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 39756,
+    "status": 65538
+  },
+  {
+    "unix": 1789108463.61412,
+    "operation": "WaitForDebugEvent",
+    "result": 1,
+    "error": null,
+    "event": 1,
+    "pid": 37120,
+    "tid": 39756,
+    "exception": 2147483651,
+    "address": 140734905727664
+  },
+  {
+    "unix": 1789108463.6514013,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108463.651438,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 4294905840,
+      "Dr7": 1025
+    }
+  },
+  {
+    "unix": 1789108463.6514785,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6514997,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 34368
+  },
+  {
+    "unix": 1789108463.6515188,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108463.6515353,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6515489,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 40640
+  },
+  {
+    "unix": 1789108463.6515625,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108463.6515741,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6515808,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 18588
+  },
+  {
+    "unix": 1789108463.651591,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 1921487994913,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 1
+    }
+  },
+  {
+    "unix": 1789108463.6516023,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6516082,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 39756
+  },
+  {
+    "unix": 1789108463.6516197,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6516316,
+    "operation": "SetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048592,
+    "context": {
+      "ContextFlags": 1048592,
+      "Rip": 0,
+      "Rsp": 0,
+      "EFlags": 0,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6516416,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 3232
+  },
+  {
+    "unix": 1789108463.6516528,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048603,
+    "context": {
+      "ContextFlags": 1048603,
+      "Rip": 140734905981204,
+      "Rsp": 820809426616,
+      "EFlags": 582,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6516633,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 34368
+  },
+  {
+    "unix": 1789108463.6516738,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048603,
+    "context": {
+      "ContextFlags": 1048603,
+      "Rip": 140734905993844,
+      "Rsp": 820812444952,
+      "EFlags": 582,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.651681,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 40640
+  },
+  {
+    "unix": 1789108463.651691,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048603,
+    "context": {
+      "ContextFlags": 1048603,
+      "Rip": 140734905993844,
+      "Rsp": 820815461016,
+      "EFlags": 582,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6516974,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 18588
+  },
+  {
+    "unix": 1789108463.6517065,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048603,
+    "context": {
+      "ContextFlags": 1048603,
+      "Rip": 140734905993844,
+      "Rsp": 820818475720,
+      "EFlags": 582,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.651712,
+    "operation": "OpenThread",
+    "result": 624,
+    "error": null,
+    "tid": 39756
+  },
+  {
+    "unix": 1789108463.651722,
+    "operation": "GetThreadContext",
+    "result": 1,
+    "error": null,
+    "handle": 624,
+    "requested_flags": 1048603,
+    "context": {
+      "ContextFlags": 1048603,
+      "Rip": 140734905727665,
+      "Rsp": 820821490696,
+      "EFlags": 582,
+      "Dr0": 0,
+      "Dr1": 0,
+      "Dr2": 0,
+      "Dr3": 0,
+      "Dr6": 0,
+      "Dr7": 0
+    }
+  },
+  {
+    "unix": 1789108463.6517286,
+    "operation": "stopped_cleanup",
+    "status": "PASS",
+    "reason": "stopped-event clear and readback",
+    "clears": [
+      [
+        3232,
+        true
+      ],
+      [
+        34368,
+        true
+      ],
+      [
+        40640,
+        true
+      ],
+      [
+        18588,
+        true
+      ],
+      [
+        39756,
+        true
+      ]
+    ],
+    "verified": [
+      [
+        3232,
+        true
+      ],
+      [
+        34368,
+        true
+      ],
+      [
+        40640,
+        true
+      ],
+      [
+        18588,
+        true
+      ],
+      [
+        39756,
+        true
+      ]
+    ],
+    "breakpoint_tid": 39756
+  },
+  {
+    "unix": 1789108463.6517346,
+    "operation": "ContinueDebugEvent",
+    "result": 1,
+    "error": null,
+    "pid": 37120,
+    "tid": 39756,
+    "status": 65538
+  },
+  {
+    "unix": 1789108463.6517358,
+    "operation": "timeout_cleanup_end",
+    "status": "PASS",
+    "reason": "stopped-event clear and readback",
+    "clears": [
+      [
+        3232,
+        true
+      ],
+      [
+        34368,
+        true
+      ],
+      [
+        40640,
+        true
+      ],
+      [
+        18588,
+        true
+      ],
+      [
+        39756,
+        true
+      ]
+    ],
+    "verified": [
+      [
+        3232,
+        true
+      ],
+      [
+        34368,
+        true
+      ],
+      [
+        40640,
+        true
+      ],
+      [
+        18588,
+        true
+      ],
+      [
+        39756,
+        true
+      ]
+    ],
+    "breakpoint_tid": 39756
+  },
+  {
+    "unix": 1789108463.651765,
+    "operation": "DebugActiveProcessStop",
+    "result": 1,
+    "error": null
+  },
+  {
+    "unix": 1789108463.6517706,
+    "operation": "capture_end",
+    "status": "PASS",
+    "errors": [],
+    "detach": true
+  }
+]

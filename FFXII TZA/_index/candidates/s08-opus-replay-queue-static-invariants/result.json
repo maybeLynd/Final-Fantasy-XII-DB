@@ -1,0 +1,82 @@
+{
+ "ok": true,
+ "allowed_functions": 4245,
+ "results": {
+  "I1_constructor_field_list": {
+   "pass_": true,
+   "bytes_written_per_slot": [
+    "+10..+21",
+    "+28..+2B",
+    "+58..+5B",
+    "+64..+67"
+   ],
+   "counter_after": 1,
+   "note": "over pools filled 0xAA and 0x55, 0032E450 changes only +0x10..+0x21 (links, state, kind), +0x28..+0x2B, +0x58..+0x5B (= slot index) and +0x64..+0x67 (= -1) in every slot; every other byte survives"
+  },
+  "I4_counter_wrap_signed": {
+   "pass_": true,
+   "ids": [
+    "3FFFFFC0",
+    "00000041",
+    "FFFFFFC2",
+    "00000143"
+   ],
+   "counter_after": [
+    "1",
+    "2",
+    "80000000",
+    "80000006"
+   ],
+   "note": "counter 0xFFFFFF: id = (0xFFFFFF << 6) + slot in 32 bits, then the counter resets to 1 (next id (1 << 6) + slot). A corrupted 0x7FFFFFFF increments to 0x80000000 and 0x80000005 to 0x80000006: the compare is signed (cmovg), not a clamp"
+  },
+  "I6_offset_truncates_toward_zero": {
+   "pass_": true,
+   "stored": {
+    "1234": "1000",
+    "7FF": "0",
+    "800": "800",
+    "FFFFFFFF": "0",
+    "FFFFF801": "0",
+    "FFFFF800": "FFFFF800",
+    "FFFFF7FF": "FFFFF800",
+    "FFFFEDCC": "FFFFF000",
+    "7FFFFFFF": "7FFFF800",
+    "80000000": "80000000"
+   },
+   "note": "the slot's +0x2C is the descriptor offset truncated TOWARD ZERO to a 0x800 multiple: 0x1234 -> 0x1000, -1 -> 0, -0x801 -> -0x800; the extremes do not overflow"
+  },
+  "I7_recycle_does_not_sanitize": {
+   "pass_": true,
+   "recycled_slot_bytes_changed": [
+    "+10",
+    "+11",
+    "+12",
+    "+13",
+    "+64",
+    "+65",
+    "+66",
+    "+67"
+   ],
+   "other_slots_changed": {
+    "1": [
+     "+18",
+     "+19",
+     "+1A",
+     "+1B"
+    ]
+   },
+   "retained": {
+    "arg": "77",
+    "kind": "9",
+    "index": "20",
+    "bytes": "647",
+    "offset": "3000",
+    "cb": "AAAA",
+    "cancel": "BBBB",
+    "dest": "76310000",
+    "planted_68": "1122334455667788"
+   },
+   "note": "0032EC40 changes only the recycled slot's links (+0x10..+0x1F) and id (+0x64 = -1), plus neighbours' links; kind, index, byte count, offset, callbacks, destination and an unobserved planted qword at +0x68 all survive"
+  }
+ }
+}

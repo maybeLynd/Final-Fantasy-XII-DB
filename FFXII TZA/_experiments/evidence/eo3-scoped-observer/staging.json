@@ -1,0 +1,38 @@
+{
+  "method": "A - exact shipping instruction analysis",
+  "original_code_executed": false,
+  "live_game": false,
+  "reference_executable_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "body_sha256": "fd809da61a8fa839bf201af9f6825d88f18b23023b5522775c5f95be8d625606",
+  "source_observation_sha256": "d27b875481392ad15193eec6f0f3ef49129fc7f60082f780d522892967d545b9",
+  "capstone": "5.0.7",
+  "effects": [
+    {
+      "address": 3336262,
+      "bytes": "8bd7",
+      "instruction": "mov edx, edi",
+      "reads": [
+        "edi"
+      ],
+      "writes": [
+        "edx"
+      ]
+    },
+    {
+      "address": 3336264,
+      "bytes": "b9ff000000",
+      "instruction": "mov ecx, 0xff",
+      "reads": [],
+      "writes": [
+        "ecx"
+      ]
+    }
+  ],
+  "established": "Immediately before 0032E84D executes, RDI still holds P, RDX is zero_extend(low32(P)), and ECX is FF. Neither intervening instruction writes RDI. One stopped full-GPR observation can compare P and the staged low half.",
+  "affected": "FABLE resource queue EO3 table says RDI at0032E846 is the only place the original exists and a trace needs both sites. Those requirements are false for this verified sequence.",
+  "limits": [
+    "No actual allocator value, caller or queue issuance observed.",
+    "A call-boundary hit still does not prove call execution/completion.",
+    "This corrects the necessary observation sites; it does not establish historical crash cause."
+  ]
+}

@@ -1,0 +1,1 @@
+{"action":"add","task":{"id":"OPUS-PUB-WIDGET-CHAIN","kind":"research","priority":"P1","requester":"OPUS","assigned_to":"OPUS","target":"publish the three-level widget hierarchy under _AB30, every extent from its construction argument","scope":"_types/types.tsv + op files","completion":"publish commit recorded","dependencies":[],"resources":[{"key":"@publication"}]}}

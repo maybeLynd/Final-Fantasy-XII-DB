@@ -1,0 +1,10 @@
+# NativeAdapter.NamedRecordRegisterPair - EC-7 family C
+# # call shared registrar 001FB840 with a member string; tail-call shared
+# # 0020E630 with a second member string and the saved arg.
+address	targets
+00862E90	001FB840,0020E630
+00863010	001FB840,0020E630
+00863B90	001FB840,0020E630
+00865170	001FB840,0020E630
+008652F0	001FB840,0020E630
+00865360	001FB840,0020E630

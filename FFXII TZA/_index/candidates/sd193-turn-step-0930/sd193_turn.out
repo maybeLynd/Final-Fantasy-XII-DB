@@ -1,0 +1,7 @@
+PASS  H1 pi = 3.141593, 2pi, multiplier 01DFE0BC = 1.0 in the file (0.5 after the boot fixup)
+PASS  H2 003A1AD0 = constant-rate shortest-path approach; 003A1980 = min(|x|, s)
+PASS  H3 003EC510 = the delta forced into one turning direction
+PASS  E1 mode 2 shortest-way approach, modes 0/1 fixed-direction step, else the target
+PASS  E2 holds for animation ids 0x0D/0x35/0x36; 0 for an invalid record
+PASS  M1 model: approach(0,1,.25)=.25, (0,-1,.25)=-.25, snaps within a step, crosses the +-pi seam the short way
+FAILS 0

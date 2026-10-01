@@ -1,0 +1,17 @@
+control US kind 8 rows 120..127 all positive: True [27520, 1060864, 26624, 876544, 100096, 2064384, 200704, 1777664]
+set 355 kind  8 rows 1420..1423: -1 in all 12 languages: True
+set 355 kind 37 rows 1420..1423: -1 in all 12 languages: True
+set 398 kind  8 rows 1592..1595: -1 in all 12 languages: True
+set 398 kind 37 rows 1592..1595: -1 in all 12 languages: True
+set 440 kind  8 rows 1760..1763: -1 in all 12 languages: True
+set 440 kind 37 rows 1760..1763: -1 in all 12 languages: True
+
+gate branches (each skips its request when the size for the same pair is negative / non-positive):
+  request 0032FE9E  gate 0032FE5E js 0x32feb8  (skips past the request: True)
+  request 0032FF0B  gate 0032FED2 jl 0x32ff25  (skips past the request: True)
+  request 0032FF76  gate 0032FF38 js 0x32ff90  (skips past the request: True)
+  request 0032FFE2  gate 0032FFA3 jl 0x32fffc  (skips past the request: True)
+  request 00330444  gate 00330378 jle 0x330456  (skips past the request: True)
+  request 0032EC01 (0032EB40, tail of 00330310) gate 0032EBB3 jle 0x32ec06 (size <= 0x800 skips)
+FAILS 0
+STATUS COMPLETE

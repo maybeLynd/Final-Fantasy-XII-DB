@@ -1,0 +1,277 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-texture-async-bank-dispatch.py",
+      "bytes": 3404,
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    },
+    {
+      "path": "control-texture-async-bank-dispatch.py",
+      "bytes": 3865,
+      "sha256": "2342003214ec85b00948313c4234090b83060f4324d8701b9a3923d88203d94d"
+    },
+    {
+      "path": "freeze-texture-async-bank-dispatch.py",
+      "bytes": 8619,
+      "sha256": "d367418422cc50b72c18aae5a7662a4e73b5107b7ff9e519162f3d09208f3865"
+    },
+    {
+      "path": "prove-texture-async-bank-dispatch.py",
+      "bytes": 12813,
+      "sha256": "6e47a0aadf0ca41b2f4e4c041df1ae680e04da43530edecfe845ca5597ec7b44"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4485,
+      "sha256": "f127b537dbf69c3711c4a19a20108cf38947432a72c88f3b61a0fbc0066e4b16"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.status.json",
+      "bytes": 349,
+      "sha256": "39a68310f3300880f85211d74e8dc8aac006d7fae7038987b1d64fee42697fc5"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.stdout",
+      "bytes": 707,
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/source/capture-texture-async-bank-dispatch.py",
+      "bytes": 3404,
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/source/texture-async-bank-dispatch-capture-01.status.json",
+      "bytes": 349,
+      "sha256": "39a68310f3300880f85211d74e8dc8aac006d7fae7038987b1d64fee42697fc5"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/source/texture-async-bank-dispatch-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/source/texture-async-bank-dispatch-capture-01.stdout",
+      "bytes": 707,
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/source/texture-async-bank-dispatch-source-01.json",
+      "bytes": 38741,
+      "sha256": "96258b82a4d4647bdf996df41e33540f3032ac858ad95de56ea9aedcab45832a"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/status.json",
+      "bytes": 781,
+      "sha256": "047c57022d88f9f83c8f680132f025ed610ff42e9afda36aa7dfd4ec65d624b4"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/stderr",
+      "bytes": 807,
+      "sha256": "6c5c22b78baba1cbebea7fab2e688ca1b54f7819e9a9e124599953c7f702a3f7"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-opcode/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/source/capture-texture-async-bank-dispatch.py",
+      "bytes": 3404,
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/source/texture-async-bank-dispatch-capture-01.status.json",
+      "bytes": 349,
+      "sha256": "39a68310f3300880f85211d74e8dc8aac006d7fae7038987b1d64fee42697fc5"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/source/texture-async-bank-dispatch-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/source/texture-async-bank-dispatch-capture-01.stdout",
+      "bytes": 707,
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/source/texture-async-bank-dispatch-source-01.json",
+      "bytes": 38741,
+      "sha256": "b7a5b1d8d4460d29a0788812aa62eaea3fefb26cd82bf19ac144feb0a7f744be"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/status.json",
+      "bytes": 808,
+      "sha256": "2599f658a795c343390c90fc4fba9efd3968cd19382641dfa21907edc42efafb"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/stderr",
+      "bytes": 807,
+      "sha256": "6c5c22b78baba1cbebea7fab2e688ca1b54f7819e9a9e124599953c7f702a3f7"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/consistent-userdata-offset/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/source/capture-texture-async-bank-dispatch.py",
+      "bytes": 3404,
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/source/texture-async-bank-dispatch-capture-01.status.json",
+      "bytes": 360,
+      "sha256": "7f68f285e1a59cbc0b71384c3eee19cbbc940bbf477c39a3ee239e249ab39c10"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/source/texture-async-bank-dispatch-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/source/texture-async-bank-dispatch-capture-01.stdout",
+      "bytes": 707,
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/source/texture-async-bank-dispatch-source-01.json",
+      "bytes": 38741,
+      "sha256": "75fb672a306b7a228e14131ad242fa228f49f98b3be9e33cd9e707ad81348b9a"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/status.json",
+      "bytes": 805,
+      "sha256": "f2bb04350df404bb4d3a253879221a33db434fb0b4f13fe43d96b2ce6cb2fa74"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/stderr",
+      "bytes": 891,
+      "sha256": "39a4aaf25982e9d27846acdef684bfd2c3f37e14300f9ec5235e41868f5aaf2b"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/failed-capture-invocation/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/source/capture-texture-async-bank-dispatch.py",
+      "bytes": 3404,
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/source/texture-async-bank-dispatch-capture-01.status.json",
+      "bytes": 349,
+      "sha256": "39a68310f3300880f85211d74e8dc8aac006d7fae7038987b1d64fee42697fc5"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/source/texture-async-bank-dispatch-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/source/texture-async-bank-dispatch-capture-01.stdout",
+      "bytes": 707,
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/source/texture-async-bank-dispatch-source-01.json",
+      "bytes": 34399,
+      "sha256": "d06deacc66885a1b47ba780dc2e2b3ff86ed8b577b5798589e5e8e77fdfac6c8"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/status.json",
+      "bytes": 787,
+      "sha256": "7aea465e835f04b2e472a6d44ce3d1946c7c3e64ed23a5a5ab4e4f58fa261e90"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/stderr",
+      "bytes": 807,
+      "sha256": "6c5c22b78baba1cbebea7fab2e688ca1b54f7819e9a9e124599953c7f702a3f7"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/missing-normal-tail/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-01/result.json",
+      "bytes": 3870,
+      "sha256": "b5716758268d6ac69422b7222438c3462abb1289dfed2b69d8e05c71846483da"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-run-01.status.json",
+      "bytes": 349,
+      "sha256": "f59a087d93233bbd9e2629c65c2a2a5862af6e8765445f9c977c6038288f11dc"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-controls-run-01.stdout",
+      "bytes": 72,
+      "sha256": "2031e51a01f566432a58460a700c15048f70ceb809384f7eea699084ab2e3486"
+    },
+    {
+      "path": "texture-async-bank-dispatch-method-01.json",
+      "bytes": 3040,
+      "sha256": "d78e293de0d0f01800caa9794b9012d3d226ffc92bac40a6d6062c76953516ab"
+    },
+    {
+      "path": "texture-async-bank-dispatch-positive-01.status.json",
+      "bytes": 461,
+      "sha256": "c71665e5f8625c40ebfb1309a021452867da9a767e02cd831a166a76015292b4"
+    },
+    {
+      "path": "texture-async-bank-dispatch-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-bank-dispatch-positive-01.stdout",
+      "bytes": 129,
+      "sha256": "8381e8415ff6fd672ffb791dc5aa4214c0d58c73f98b666d8d2775892729c43e"
+    },
+    {
+      "path": "texture-async-bank-dispatch-result-01.json",
+      "bytes": 15467,
+      "sha256": "6ffa4e4ceffbd9be6b30ed86d71195e596c21d7341a504210313e226f866f0d9"
+    },
+    {
+      "path": "texture-async-bank-dispatch-source-01.json",
+      "bytes": 38741,
+      "sha256": "75fb672a306b7a228e14131ad242fa228f49f98b3be9e33cd9e707ad81348b9a"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "native_path_budget_units": 8012
+}

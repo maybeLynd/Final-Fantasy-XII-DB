@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_OBSERVER_LABEL_BEFORE_ACCEPTANCE",
+  "detected_by": "check.py derive initial primitive==mode assertion",
+  "cause": "Observer labelled primitive byte1F83560; original20FE7B store and20FBA0 load identify1F83562. Full CPU instruction/counter traces retained but canonical semantic acceptance withheld.",
+  "affected": "All eight groups primitive identity/state labels and overall package acceptance; no alreadyaccepted/live evidence depends on this new package.",
+  "correction": "Derive/validate all seven field bindings from original RIP operands before execution; rerun affected bounded groups. No FF12/process/reference change."
+}

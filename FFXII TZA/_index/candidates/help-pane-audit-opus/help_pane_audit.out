@@ -1,0 +1,5 @@
+PASS  H the element is built whole at 002BFCCA; 00247930 reads Widget.parent; 002BFBFC's rdi is the parent (its +0x4E8 cursor)
+PASS  P 0029C850 builds and drives a 0xC0 widget at this + 0xC0
+PASS  S +0xB58 is a pane-slot index (x 0x160 into paneSlots0240, reading each slot's +0x9A)
+PASS  W HelpMessageSlotRecord0100's header is widgetBase0000; PaneListWidget0B68 has nestedWidget0C0 and selectedSlot; both tile
+FAILS 0

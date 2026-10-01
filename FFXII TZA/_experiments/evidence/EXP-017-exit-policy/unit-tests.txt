@@ -1,0 +1,9 @@
+test_attach_failure_never_sets_policy_or_detaches (__main__.Setup.test_attach_failure_never_sets_policy_or_detaches) ... ok
+test_policy_and_detach_errors_both_survive (__main__.Setup.test_policy_and_detach_errors_both_survive) ... ok
+test_policy_failure_aborts_main_before_context_or_event_work (__main__.Setup.test_policy_failure_aborts_main_before_context_or_event_work) ... ok
+test_success_connects_before_setting_policy (__main__.Setup.test_success_connects_before_setting_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK

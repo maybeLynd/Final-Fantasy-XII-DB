@@ -1,0 +1,85 @@
+== A 00322C50 dispatch
+   00322C50 mov     qword ptr [rsp + 8], rbx
+   00322C55 push    rdi
+   00322C56 sub     rsp, 0x20
+   00322C5A lea     eax, [rcx - 1]
+   00322C5D mov     ebx, edx
+   00322C5F cmp     eax, 0x1f
+   00322C62 ja      0x322c8d
+   00322C64 lea     rdi, [rip - 0x202c6b]
+   00322C6B nop     dword ptr [rax + rax]
+   00322C70 cdqe    
+   00322C72 mov     ecx, dword ptr [rdi + rax*4 + 0x203054]
+   00322C79 add     rcx, rdi
+   00322C7C jmp     rcx
+   table 00323054 (32 x rva32): 0:322C7E 1:322C9A 2:322CB4 3:322CCE 4:322CE8 5:322D02 6:322D2C 7:322D56 8:322D80 9:322DAA 10:322DD4 11:322DFE 12:322E28 13:322E91 14:322EBB 15:322EE5 16:322F0F 17:322F39 18:322F63 19:322F72 20:322F8C 21:322FA6 22:322FAF 23:322FB8 24:322FCB 25:322FDE 26:322FF1 27:323004 28:323017 29:322EBB 30:322EBB 31:322FCB
+   class 0x14 -> index 19 -> 00322F72
+   00322F72 mov     rcx, qword ptr [rip + 0x2b9c1bf]
+   00322F79 xor     eax, eax
+   00322F7B test    rcx, rcx
+   00322F7E je      0x32302a
+   00322F84 mov     ecx, dword ptr [rcx + 4]
+   0032302A mov     ecx, eax
+   0032302C mov     edx, eax
+   0032302E cmp     ebx, edx
+   00323030 jl      0x322c8d
+   00323036 lea     eax, [rcx - 1]
+   00323039 cmp     ebx, eax
+   0032303B jg      0x322c8d
+   00323041 mov     eax, 1
+   00323046 mov     rbx, qword ptr [rsp + 0x30]
+   0032304B add     rsp, 0x20
+   0032304F pop     rdi
+   00323050 ret     
+== B caller 0030CBE0 (slot list walk), class-20 call and the row pointer
+   0030CC11 mov     ecx, dword ptr [rbx + 0x20]
+   0030CC14 call    0x31b7e0
+   0030CC19 mov     rdi, rax
+   0030CC1C test    rax, rax
+   0030CC1F je      0x30cde6
+   0030CC25 movzx   edx, word ptr [rbx + 0x1c]
+   0030CC29 mov     ecx, 0x14
+   0030CC2E lea     r8d, [rcx - 0x13]
+   0030CC32 call    0x322c50
+   0030CC37 test    eax, eax
+   0030CC39 je      0x30cde6
+   0030CC3F mov     rcx, qword ptr [rip + 0x2bb24f2]
+   0030CC46 test    rcx, rcx
+   0030CC49 je      0x30cde6
+   0030CC4F mov     ecx, dword ptr [rcx + 0xc]
+   0030CC52 call    0x20e600
+   0030CC57 test    rax, rax
+   0030CC5A je      0x30cde6
+   0030CC60 mov     rax, qword ptr [rip + 0x2bb24d1]
+   0030CC67 mov     ecx, dword ptr [rax + 0xc]
+   0030CC6A call    0x20e600
+   0030CC6F mov     rcx, qword ptr [rip + 0x2bb24c2]
+   0030CC76 movzx   esi, word ptr [rcx + 8]
+   0030CC7A movzx   ecx, word ptr [rbx + 0x1c]
+   0030CC7E imul    esi, ecx
+   0030CC81 add     esi, eax
+   0030CC83 je      0x30cde6
+   0030CC89 mov     r8d, esi
+   0030CC8C mov     rdx, rdi
+   0030CC8F mov     rcx, rbx
+   0030CD93 mov     rdx, rsi
+   0030CD96 mov     rcx, rdi
+   0030CD99 call    0x30ce10
+== C references
+   0030CE10 rel32 1 ['0030CD99 call'] jcc [] data {'abs64': [], 'rva32': ['01D7512C(.rdata)', '01D7513C(.rdata)', '02FB3954(.pdata)']}
+   0030CBE0 rel32 1 ['002346F4 call'] jcc [] data {'abs64': [], 'rva32': ['01D74AA4(.rdata)', '01D74AB4(.rdata)', '02FB3928(.pdata)', '02FB3930(.pdata)']}
+   00322C50 rel32 110 jcc [] data {'abs64': [], 'rva32': ['02FB5658(.pdata)']}
+   class-20 call sites among 00322C50 callers (ecx=0x14 set in the 3 instructions before the call):
+    1 ['0030CC32'] (known positive 0030CC32 present: True)
+== D 003845F0 header fields rewritten
+   0038460E mov dword ptr [rdx + 0xc], eax
+   0038461E mov dword ptr [r8 + 0x10], eax
+   0038462F mov dword ptr [r8 + 0x18], eax
+   00384640 mov dword ptr [r8 + 0x1c], eax
+   00384662 mov dword ptr [rdi + 0x14], eax
+== E emulation of 00322C50 (class 0x14)
+   count 543                    accepted 0..542 (543 ids, contiguous True) ; 511..534 all accepted: True
+   count 511 (control)          accepted 0..510 (511 ids, contiguous True) ; 511..534 all accepted: False
+   count 0 (control)            accepted none ; 511..534 all accepted: False
+   null descriptor (control)    accepted none ; 511..534 all accepted: False
+   unmapped accesses: []  direct calls executed inside 00322C50: []

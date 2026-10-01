@@ -1,0 +1,69 @@
+{
+  "method": "A one verifiednormalcaller and source store/order controls, no original/native/emulator/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "parent_raw_sha256": "5dddc43d8bff2a889054a048be684b6f0aff0d89f9ae0c4598b1b86b48b7d84c",
+    "parent_manifest_sha256": "679922b9835318b29b417423450342b423e467b2595caa365fd0bb40ba01841f"
+  },
+  "driver_sha256": "92a117ad9c1e376bf29510714e4bd8317a30661922de82248e937b1021afeb63",
+  "calls": [
+    {
+      "pc": "0x2341c4",
+      "target": "0x30fe60"
+    },
+    {
+      "pc": "0x2341c9",
+      "target": "0x383a20"
+    },
+    {
+      "pc": "0x2341d0",
+      "target": "0x306570"
+    },
+    {
+      "pc": "0x2341d5",
+      "target": "0x392710"
+    },
+    {
+      "pc": "0x2341da",
+      "target": "0x2faec0"
+    },
+    {
+      "pc": "0x2341df",
+      "target": "0x31bd60"
+    },
+    {
+      "pc": "0x2341eb",
+      "target": "0x325080"
+    },
+    {
+      "pc": "0x2341f0",
+      "target": "0x319b10"
+    }
+  ],
+  "normal_order": {
+    "root_clear_call": "0x2341c9",
+    "grid_teardown_call": "0x2341d5",
+    "intervening_call": "0x2341d0",
+    "intervening_target": "0x306570",
+    "root_store_cell": "0x2aedfb0",
+    "root_store_bytes": 8,
+    "root_store_value": 0,
+    "tail": "0x2fa470"
+  },
+  "control": {
+    "private_root_call": "0x2341d5",
+    "private_grid_call": "0x2341c9",
+    "private_order_reversed": true,
+    "immutable_source_binding_refuses": true
+  },
+  "consumer": {
+    "path": "Database/FFXII TZA/_types/types.tsv",
+    "full_source_sha256": "a74fa85bfbb9aeae14221d701740cf59a3d515bc32ee3520d15993bfbb8077e5",
+    "retained_sha256": "6ee9e469937a172b93cb1a2df47be5a10bb29258c9b2c905ec6f2b7ab1c12cd9"
+  },
+  "interpretation": "At normalentry with preceding/intervening calls returning conformingly, direct call383A20 precedes call392710. Rootzero leaf and gridteardown source matchthe same reference. This narrows a localcall-order fact only; an opaque interveningcall can rebind/schedule, so stablezero/readiness/normalruntimeordering notproved.",
+  "limits": "First30FE60, intervening306570, latercalls/tail nativeeffects unproved, including root rebind/transitive packunload/callbacks. This is not wholecallerclosure/dynamicreachability or universal rootclear-beforepackunload/everyrebuild/no-leak/exclusivity/atomicity proof. Sibling2368D0 distinctsource notrecaptured/censused; actuallive state scheduling remainsopen."
+}

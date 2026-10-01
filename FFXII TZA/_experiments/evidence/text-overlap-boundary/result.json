@@ -1,0 +1,45 @@
+{
+  "verdict": "REJECT scoped unique-overlap measure at exact original source",
+  "fixtures": [
+    {
+      "case": "disjoint",
+      "unique": 0,
+      "reported": 0
+    },
+    {
+      "case": "double",
+      "unique": 8,
+      "reported": 8
+    },
+    {
+      "case": "triple",
+      "unique": 8,
+      "reported": 12
+    }
+  ],
+  "canonical_unique": 1758,
+  "canonical_reported": 1759,
+  "multiply_covered_segments": [
+    {
+      "start": 3334208,
+      "end": 3334209,
+      "depth": 3,
+      "contributors": [
+        [
+          3334176,
+          3334209
+        ],
+        [
+          3334192,
+          3334225
+        ],
+        [
+          3334208,
+          3334246
+        ]
+      ]
+    }
+  ],
+  "source_commit": "17d6cdc2915b22b1743cdd2e2c6acc2fcdf6f5e2",
+  "limits": "Physical extent accounting only; no re-adjudication of UC1 extents, native behavior, class tiling or full migration/database acceptance."
+}

@@ -1,0 +1,260 @@
+== L. lea bases
+  001AF4A8 lea rax  0209ABFC root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF4AF mov qword ptr [rcx + 0x3b28], rax
+  001AF50A lea rax  0209BA6C root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF511 mov qword ptr [rcx + 0x3b60], rax
+  001AF702 lea rax  0209C310 root 00000000 | next key +0x184 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF709 mov qword ptr [rcx + 0x3c78], rax
+  001AF844 lea rax  0209C494 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF84B mov qword ptr [rcx + 0x3d28], rax
+  001AF87C lea rax  0209AC00 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF883 mov qword ptr [rcx + 0x3d38], rax
+  001AF8C2 lea rax  0209BA64 root 00000000 | next key +0x8 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF8C9 mov qword ptr [rcx + 0x3d60], rax
+  001AF8D0 lea rax  0209BA68 root 00000000 | next key +0x4 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF8D7 mov qword ptr [rcx + 0x3d68], rax
+  001AF8EC lea rax  0209BA78 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF8F3 mov qword ptr [rcx + 0x3d78], rax
+  001AF916 lea rax  0209BA60 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AF91D mov qword ptr [rcx + 0x3d90], rax
+  001AFA4A lea rax  0209CC10 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFA51 mov qword ptr [rcx + 0x3e40], rax
+  001AFAF2 lea rax  0209E5A8 root 00000000 | next key +0x70 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFAF9 mov qword ptr [rcx + 0x3e98], rax
+  001AFB00 lea rax  0209E5AC root 00000000 | next key +0x6C | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFB07 mov qword ptr [rcx + 0x3ea0], rax
+  001AFB1C lea rax  0209E5D8 root 00000000 | next key +0x40 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFB23 mov qword ptr [rcx + 0x3eb0], rax
+  001AFB2A lea rax  0209E5DC root 00000000 | next key +0x3C | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFB31 mov qword ptr [rcx + 0x3eb8], rax
+  001AFD14 lea rax  0209E618 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFD1B mov qword ptr [rcx + 0x3fd0], rax
+  001AFD68 lea rax  0209BA70 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFD6F mov qword ptr [rcx + 0x4000], rax
+  001AFD76 lea rax  0209BA74 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFD7D mov qword ptr [rcx + 0x4008], rax
+  001AFDBC lea rax  0209E628 root 00000000 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFDC3 mov qword ptr [rcx + 0x4030], rax
+  001AFF1A lea rax  0209E620 root 00000000 | next key +0x8 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001AFF21 mov qword ptr [rcx + 0x4100], rax
+  001B00B0 lea rax  0209E624 root 00000000 | next key +0x4 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001B00B7 mov qword ptr [rcx + 0x41f8], rax
+  001B4551 lea rax  01E0CF90 root 001B44A0 | next key +0x4 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001B4558 mov qword ptr [rbx + 0x2f8], rax
+  001B455F lea rax  01E0CF94 root 001B44A0 | next key +0x0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  001B4566 mov qword ptr [rbx + 0x300], rax
+  0023DA22 lea r9   01E0BF60 root 0023D890 | next key +0x3E8 | accesses 2 (max extent +0x8) indexed 2 | handed on 1 | stored 0
+      hand-on 0023DAA3 0x2f9860 {'r9': '01E0BF60'}
+      indexed 0023DA2E mov rdx, qword ptr [r9 + rcx*8]  (base 01E0BF60 w8)
+      indexed 0023DA62 mov rdx, qword ptr [r9 + rcx*8]  (base 01E0BF60 w8)
+  0023DEA2 lea r9   01E0BF60 root 0023DD10 | next key +0x3E8 | accesses 2 (max extent +0x8) indexed 2 | handed on 1 | stored 0
+      hand-on 0023DF23 0x2f9860 {'r9': '01E0BF60'}
+      indexed 0023DEAE mov rdx, qword ptr [r9 + rcx*8]  (base 01E0BF60 w8)
+      indexed 0023DEE2 mov rdx, qword ptr [r9 + rcx*8]  (base 01E0BF60 w8)
+  0023E47F lea rcx  01E0BF60 root 0023E400 | next key +0x3E8 | accesses 1 (max extent +0x8) indexed 1 | handed on 0 | stored 0
+      indexed 0023E486 mov rcx, qword ptr [rcx + rax*8]  (base 01E0BF60 w8)
+  0023E7D2 lea rdi  01E0BF60 root 0023E770 | next key +0x3E8 | accesses 2 (max extent +0x8) indexed 2 | handed on 0 | stored 0
+      indexed 0023E7DE mov rdx, qword ptr [rdi + rcx*8]  (base 01E0BF60 w8)
+      indexed 0023E813 mov rcx, qword ptr [rdi + rax*8]  (base 01E0BF60 w8)
+  0023E906 lea rdi  01E0BF60 root 0023E770 | next key +0x3E8 | accesses 1 (max extent +0x8) indexed 1 | handed on 0 | stored 0
+      indexed 0023E90D mov rcx, qword ptr [rdi + rax*8]  (base 01E0BF60 w8)
+  0023EB1D lea rdx  01E0BF60 root 0023EA10 | next key +0x3E8 | accesses 1 (max extent +0x8) indexed 1 | handed on 0 | stored 0
+      indexed 0023EB24 mov rdx, qword ptr [rdx + rax*8]  (base 01E0BF60 w8)
+  0023EFD6 lea rsi  01E0BF60 root 0023EFC0 | next key +0x3E8 | accesses 6 (max extent +0x8) indexed 5 | handed on 0 | stored 0
+      indexed 0023F0A5 mov r8, qword ptr [rsi + r9*8]  (base 01E0BF60 w8)
+      indexed 0023F0D6 mov rdx, qword ptr [rsi + rcx*8]  (base 01E0BF60 w8)
+      indexed 0023F0EE mov rcx, qword ptr [rsi + r9*8]  (base 01E0BF60 w8)
+      indexed 0023F117 mov r8, qword ptr [rsi + r9*8]  (base 01E0BF60 w8)
+      indexed 0023F144 mov rdx, qword ptr [rsi + rdx*8]  (base 01E0BF60 w8)
+  0023EFEE lea rdx  01E0BF70 root 0023EFC0 | next key +0x3D8 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  0023EFF7 lea rdx  01E0BF68 root 0023EFC0 | next key +0x3E0 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  0023F1D4 lea r9   01E0BF60 root 00000000 | next key +0x3E8 | accesses 3 (max extent +0x8) indexed 3 | handed on 0 | stored 0
+      indexed 0023F1DB mov rdx, qword ptr [r9 + rax*8]  (base 01E0BF60 w8)
+      indexed 0023F206 mov rdx, qword ptr [r9 + rcx*8]  (base 01E0BF60 w8)
+      indexed 0023F219 mov rdx, qword ptr [r9 + rcx*8]  (base 01E0BF60 w8)
+  002405B7 lea r8   01E0BF60 root 00000000 | next key +0x3E8 | accesses 1 (max extent +0x8) indexed 1 | handed on 0 | stored 0
+      indexed 002405BE mov r8, qword ptr [r8 + rax*8]  (base 01E0BF60 w8)
+  00242709 lea rbp  01E0C150 root 002426F0 | next key +0x1F8 | accesses 4 (max extent +0x18) indexed 4 | handed on 0 | stored 0
+      indexed 0024274E movss xmm0, dword ptr [rbp + r8*8]  (base 01E0C150 w4)
+      indexed 00242785 mov rax, qword ptr [rbp + r8*8 + 8]  (base 01E0C158 w8)
+      indexed 0024278D mov rax, qword ptr [rbp + r8*8 + 0x10]  (base 01E0C160 w8)
+      indexed 002427CF movsx eax, word ptr [rbp + r8*8 + 4]  (base 01E0C154 w2)
+  00244EEB lea rdx  01E0C0F8 root 00244DD0 | next key +0x250 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00244EF5 rax {'rdx': '01E0C0F8'}
+  00246BFF lea rdx  01E0C0E0 root 00246AD0 | next key +0x268 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00246C09 rax {'rdx': '01E0C0E0'}
+  00249FF4 lea rbx  01E0C1D0 root 00249FD0 | next key +0x178 | accesses 8 (max extent +0x8) indexed 0 | handed on 0 | stored 0
+  00253FFC lea rdx  01E0C2C4 root 00253C70 | next key +0x84 | accesses 2 (max extent +0x4) indexed 0 | handed on 1 | stored 0
+      hand-on 00254030 0x17e7d0 {'rdx': '01E0C2CC'}
+  0025450C lea rdx  01E0C2C4 root 00254500 | next key +0x84 | accesses 2 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00254B88 lea rcx  01E0C2C4 root 00254B50 | next key +0x84 | accesses 2 (max extent +0x4) indexed 0 | handed on 1 | stored 0
+      hand-on 00254BC7 0x17e7d0 {'rcx': '01E0C2CC'}
+  00267A3A lea rdx  01E0C32A root 002679F0 | next key +0x1E | accesses 2 (max extent +0x2) indexed 0 | handed on 1 | stored 0
+      hand-on 00267A79 qword ptr [r15 + 0x88] {'rdx': '01E0C32E'}
+  00267ABB lea r8   01E0C328 root 002679F0 | next key +0x20 | accesses 3 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00274F2E lea rdx  0209AB90 root 00274CB0 | next key +0x6C | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00274F39 0x202b70 {'rdx': '0209AB90'}
+  00274F65 lea rdx  0209AB90 root 00274CB0 | next key +0x6C | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00274F93 0x202b70 {'rdx': '0209AB90'}
+  00276494 lea rcx  0209AB90 root 00276430 | next key +0x6C | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002764A5 0x203170 {'rcx': '0209AB90'}
+  0028612B lea rax  01E0C3F0 root 00286010 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00286453 lea rax  01E0C3F0 root 002862A0 | next key +0x54 | accesses 2 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00286604 lea rax  01E0C3F0 root 00286500 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  002868D3 lea rax  01E0C3F0 root 00286780 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00286BC6 lea rax  01E0C3F0 root 00286A80 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00286F0E lea rax  01E0C3F0 root 00286D60 | next key +0x54 | accesses 2 (max extent +0x4) indexed 1 | handed on 0 | stored 0
+      indexed 00286F1A nop word ptr [rax + rax]  (base 01E0C3F0 w2)
+  002872D3 lea rax  01E0C3F0 root 002870D0 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00287464 lea r15  01E0C3F0 root 00287400 | next key +0x54 | accesses 2 (max extent +0x4) indexed 1 | handed on 0 | stored 0
+      indexed 0028752A nop word ptr [rax + rax]  (base 01E0C3F0 w2)
+  002876CB lea rbx  01E0C3F0 root 002875D0 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  002878B2 lea rax  01E0C3F0 root 00000000 | next key +0x54 | accesses 2 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00287F3F lea rax  01E0C3F0 root 00287E60 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00288194 lea rax  01E0C3F0 root 002880B0 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  0028838E lea rax  01E0C3F0 root 002882F0 | next key +0x54 | accesses 2 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  002885EE lea rax  01E0C3F0 root 00288500 | next key +0x54 | accesses 2 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  0028889E lea rax  01E0C3F0 root 002887B0 | next key +0x54 | accesses 2 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00288BE0 lea rax  01E0C3F0 root 00288A60 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00288E9F lea rax  01E0C3F0 root 00288DB0 | next key +0x54 | accesses 1 (max extent +0x4) indexed 0 | handed on 0 | stored 0
+  00292D0B lea r10  01E0C490 root 00292B70 | next key +0xC0 | accesses 1 (max extent +0x8) indexed 1 | handed on 0 | stored 0
+      indexed 00292D12 mov r10, qword ptr [r10 + rax*8]  (base 01E0C490 w8)
+  00296262 lea rcx  0209C240 root 00000000 | next key +0x254 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 0029626F tail 0x861ec0 {'rcx': '0209C240'}
+  00296287 lea r8   0209C2BE root 00000000 | next key +0x1D6 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  002962C0 lea rax  0209C240 root 00000000 | next key +0x254 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  002962ED lea rsi  0209C2BE root 002962D0 | next key +0x1D6 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  00296380 lea rdx  0209C240 root 00296360 | next key +0x254 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00296387 0x3f8a30 {'rdx': '0209C240'}
+  00296394 lea rdx  0209C298 root 00296360 | next key +0x1FC | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 0029639B 0x3f8a30 {'rdx': '0209C298'}
+  002963D9 lea rcx  0209C240 root 00296360 | next key +0x254 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002963E2 0x3f89c0 {'rcx': '0209C240'}
+  002963FB lea rcx  0209C298 root 00296360 | next key +0x1FC | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00296402 0x3f89c0 {'rcx': '0209C298'}
+  0029640F lea rdx  0209C240 root 00296360 | next key +0x254 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 00296416 0x3f8a50 {'rdx': '0209C240'}
+  00296423 lea rdx  0209C298 root 00296360 | next key +0x1FC | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 0029642A 0x3f8a50 {'rdx': '0209C298'}
+  00297C27 lea r8   0209C2BE root 00297C10 | next key +0x1D6 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  0029CAC0 lea rax  0209C320 root 00000000 | next key +0x174 | accesses 5 (max extent +0x1C) indexed 0 | handed on 1 | stored 0
+      hand-on 0029CAFE tail 0x39bec0 {'r8': '0209C330'}
+  0029CB16 lea rbx  0209C320 root 0029CB10 | next key +0x174 | accesses 1 (max extent +0x8) indexed 0 | handed on 0 | stored 0
+  0029CBA9 lea rdi  0209C390 root 0029CB80 | next key +0x104 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  0029CC4B lea rbx  0209C390 root 0029CC00 | next key +0x104 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  002A1C01 lea rbx  0209CB90 root 002A1B00 | next key +0x80 | accesses 1 (max extent +0x1) indexed 1 | handed on 3 | stored 0
+      hand-on 002A1C0E 0x861eba {'rcx': '0209CB90'}
+      hand-on 002A1C86 0x2b3c30 {'rdx': '0209CB90'}
+      hand-on 002A1CDF 0x2d89e0 {'r9': '0209CB90'}
+      indexed 002A1C20 mov byte ptr [r15 + rbx], sil  (base 0209CB90 w1)
+  002A5434 lea rdx  0209C990 root 002A5330 | next key +0x280 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002A5440 0x2b4090 {'rdx': '0209C990'}
+  002A544A lea rax  0209C990 root 002A5330 | next key +0x280 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  002AC2C3 lea rax  01E0CDFC root 00000000 | next key +0x98 | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 0
+  002ADB98 lea rdx  01E0CE08 root 002AC5F0 | next key +0x8C | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002ADBC9 0x2ae610 {'rdx': '01E0CE08'}
+  002B1961 lea rdx  01E0CE04 root 002B0280 | next key +0x90 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002B19A2 0x2ae610 {'rdx': '01E0CE04'}
+  002B5B96 lea rbp  01E0CE30 root 002B5B60 | next key +0x64 | accesses 1 (max extent +0x1) indexed 1 | handed on 0 | stored 0
+      indexed 002B5C0C mov byte ptr [r14 + rbp], al  (base 01E0CE30 w1)
+  002B5C22 lea rbx  01E0CE3A root 002B5B60 | next key +0x5A | accesses 1 (max extent +0x1) indexed 0 | handed on 0 | stored 0
+  002B5D5C lea r15  01E0CE10 root 002B5C90 | next key +0x84 | accesses 1 (max extent +0x1) indexed 0 | handed on 0 | stored 0
+  002B7563 lea rcx  0209E5D0 root 002B7540 | next key +0x48 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002B756A 0x285f00 {'rcx': '0209E5D0'}
+  002BA213 lea rcx  0209E608 root 002BA1F0 | next key +0x10 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002BA21A 0x285f00 {'rcx': '0209E608'}
+  002BA6D3 lea rcx  0209E608 root 002BA6B0 | next key +0x10 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002BA6DA 0x285f00 {'rcx': '0209E608'}
+  002BC2E2 lea rcx  0209E608 root 002BC2C0 | next key +0x10 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 0
+      hand-on 002BC2E9 0x285f00 {'rcx': '0209E608'}
+  002BDB3B lea rax  0209E610 root 00000000 | next key +0x8 | accesses 1 (max extent +0x1) indexed 1 | handed on 0 | stored 0
+      indexed 002BDB42 movzx eax, byte ptr [rcx + rax]  (base 0209E610 w1)
+  002DFE5F lea rcx  01E0CFA0 root 002DF9A0 | next key +0x28DC5C | accesses 0 (max extent +0x0) indexed 0 | handed on 0 | stored 1
+      stored  002DFE66 mov qword ptr [rip + 0x1e7f23b], rcx
+  0040032C lea rbx  01E0C590 root 004001D0 | next key +0x20 | accesses 0 (max extent +0x0) indexed 0 | handed on 1 | stored 2
+      hand-on 00400389 0x4006a0 {'rcx': '01E0C590'}
+      stored  0040033D mov qword ptr [rsp + 0x28], rbx
+      stored  00400368 mov qword ptr [rsp + 0x28], rbx
+  94 lea sites walked; 63 with a hand-on, index, store or key hit
+== X. operands near the 11 keys outside the block
+  0209ABFC mBtlCommandScrollTableOffsetY  operands 31 (non-rip 0); covering 1 (0027DF7F rip w4)
+  0209AC00 BattleMistCount0Offset         operands 33 (non-rip 0); covering 1 (0027CFD4 rip w4)
+  0209BA60 ExpLpPositionOffsetY           operands 3 (non-rip 0); covering 2 (0028B39A rip w2, 0028B613 rip w2)
+  0209BA6C mExpEffectOffsetY              operands 10 (non-rip 0); covering 2 (0028B1BB rip w4, 0028B21A rip w4)
+  0209BA70 ExpNumOffsetX                  operands 12 (non-rip 0); covering 1 (0028B1F0 rip w4)
+  0209BA74 LpNumOffsetX                   operands 14 (non-rip 0); covering 1 (0028B236 rip w4)
+  0209BA78 EXPLPNumOffsetX                operands 17 (non-rip 0); covering 2 (0028B24A rip w4, 0028B5F1 rip w2)
+  0209C494 NgSignalOffsetBaseX            operands 3 (non-rip 0); covering 1 (0029E251 rip w2)
+  0209CC10 MsgWinLogUpCursorOffset        operands 2 (non-rip 0); covering 1 (002A89CF rip w4)
+  0209E618 OverHeadStatusOffsetX          operands 70 (non-rip 0); covering 1 (002C8756 rip w4)
+  0209E628 SilhouettePosX                 operands 74 (non-rip 0); covering 2 (002CF4FA rip w2, 002CF580 rip w2)
+== I. indexed image-base-relative operands in the block, with context
+  -- 00266588  root 00266530
+     00266548 sub rsp, 0x30
+     0026654C mov rsi, qword ptr [rcx]
+     0026654F lea r11, [rip - 0x146556]
+     00266556 movsxd r10, r8d
+     00266559 xor r13d, r13d
+     0026655C mov ebp, 8
+     00266561 mov r14, rcx
+     00266564 mov rdi, r10
+     00266567 mov r15d, ebp
+     0026656A mov rbx, qword ptr [rdx + r10*8 + 8]
+     0026656F movzx eax, byte ptr [rbx + 3]
+     00266573 and byte ptr [rbx + 0x14], 0x7f
+     00266577 and eax, 0x1f
+     0026657A mov qword ptr [rbx + 0xec], r13
+     00266581 mov byte ptr [rbx + 0xf5], 0xff
+     00266588 movzx edx, byte ptr [r11 + rax*4 + 0x1cec329]
+  -- 00266B83  root 00000000
+  -- 0027E122  root 0027E050
+     0027E0E2 adc dword ptr [rax], 0x44000015
+     0027E0E8 mov dword ptr [rcx + 0x4c8], ecx
+     0027E0EE mov dword ptr [rcx + 0x4c0], 8
+     0027E0F8 lea rcx, [rip - 0xebf]
+     0027E0FF jmp 0x27e2f0
+     0027E104 movzx eax, r8w
+     0027E108 mov dword ptr [rcx + 0x4dc], eax
+     0027E10E lea eax, [rsi - 0x10]
+     0027E111 mov dword ptr [rcx + 0x4c8], r9d
+     0027E118 mov qword ptr [rcx + 0x4d4], r14
+     0027E11F movsxd rcx, eax
+     0027E122 mov eax, dword ptr [rdx + rcx*4 + 0x1cec398]
+  -- 002AECA3  root 002AEB20
+     002AEC63 add dh, byte ptr [rbx]
+     002AEC65 ror byte ptr [rbx + 0x148d48cb], 0x88
+     002AEC6C lea rcx, [rip - 0x18ec73]
+     002AEC73 movzx eax, byte ptr [rdx + rcx + 0x7f6670]
+     002AEC7B jmp 0x2aee2e
+     002AEC80 cmp dword ptr [rip + 0x20192fd], 0
+     002AEC87 je 0x2aee1d
+     002AEC8D call 0x228480
+     002AEC92 test eax, eax
+     002AEC94 jne 0x2aee1d
+     002AEC9A mov eax, ebx
+     002AEC9C lea rcx, [rip - 0x18eca3]
+     002AECA3 movzx edx, byte ptr [rax + rcx + 0x1cece30]
+  -- 002AEE26  root 002AEB20
+     002AEDE6 add byte ptr fs:[rsi + 0xf], ah
+     002AEDEA outsb dx, byte ptr [rsi]
+     002AEDEB enter 0x5b0f, -0x37
+     002AEDEF mulss xmm1, xmm12
+     002AEDF4 movaps xmm0, xmm1
+     002AEDF7 mulss xmm0, xmm11
+     002AEDFC subss xmm1, xmm0
+     002AEE00 mulss xmm1, dword ptr [rip + 0x1a3cd60]
+     002AEE08 addss xmm13, xmm1
+     002AEE0D test edi, edi
+     002AEE0F je 0x2aee56
+     002AEE11 xor ecx, ecx
+     002AEE13 call 0x39bb00
+     002AEE18 mov r13, rax
+     002AEE1B jmp 0x2aee5e
+     002AEE1D mov eax, ebx
+     002AEE1F lea rcx, [rip - 0x18ee26]
+     002AEE26 movzx eax, byte ptr [rax + rcx + 0x1cece10]
+== controls
+PASS  T1 track() reports SD-141's hand-on 00608999 call 005DEC50 rdx=02CB8160
+PASS  T2 track() reports 004001D0 handing 01E0C590 on: [(4195209, '0x4006a0', {'rcx': '01E0C590'})]
+PASS  X0 no non-rip operand covers any of the 11 outside keys
+FAILS 0

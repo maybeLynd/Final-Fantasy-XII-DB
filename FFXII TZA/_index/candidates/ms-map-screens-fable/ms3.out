@@ -1,0 +1,5 @@
+PASS  K constructor: allocate + construct (memset); no attach
+PASS  P the creators attach the page (rdx) under the container (rcx), never the container itself
+PASS  N 125 attach call sites, 0 with a container global loaded in the 40 bytes before
+PASS  F 48 loads of the two globals; attach calls within 12 instructions after one: none
+FAILS 0

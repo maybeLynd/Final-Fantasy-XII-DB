@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\preset-reference-boundary-binding\check.py", line 25, in <module>
+    assert actual==c['corrected_default_path'], 'Default source binding regression: actual refs(img) must reject the immediate-data payload'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Default source binding regression: actual refs(img) must reject the immediate-data payload

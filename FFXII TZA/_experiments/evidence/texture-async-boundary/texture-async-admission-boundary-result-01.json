@@ -1,0 +1,228 @@
+{
+  "status": "PRODUCER_CHECKED_ASYNC_ADMISSION_BOUNDARY_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-async-count-path-source-01.json",
+      "sha256": "9f06c5ce1f305b9ed4f162fd04a3c3895602582964c6ac39aeacbb8837dde079"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 328,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfgs": [
+    {
+      "entry": "0x6160b0",
+      "end_exclusive": "0x61613b",
+      "instructions": 33,
+      "returns": [
+        "0x61613a"
+      ],
+      "calls": [
+        {
+          "pc": "0x6160c2",
+          "target": "0x5dcbe0"
+        }
+      ]
+    },
+    {
+      "entry": "0x62c360",
+      "end_exclusive": "0x62c563",
+      "instructions": 134,
+      "returns": [
+        "0x62c562"
+      ],
+      "calls": [
+        {
+          "pc": "0x62c4c7",
+          "target": "0x62eb90"
+        },
+        {
+          "pc": "0x62c4d3",
+          "target": "0x615bc0"
+        },
+        {
+          "pc": "0x62c4d9",
+          "target": "0x5fd050"
+        },
+        {
+          "pc": "0x62c51a",
+          "target": "qword ptr [rax + 0x78]"
+        },
+        {
+          "pc": "0x62c523",
+          "target": "0x5fcf20"
+        },
+        {
+          "pc": "0x62c52b",
+          "target": "0x225690"
+        },
+        {
+          "pc": "0x62c535",
+          "target": "0x5fd050"
+        },
+        {
+          "pc": "0x62c53a",
+          "target": "0x5fcf20"
+        },
+        {
+          "pc": "0x62c542",
+          "target": "0x5cd7d0"
+        }
+      ]
+    },
+    {
+      "entry": "0x62eb90",
+      "end_exclusive": "0x62ebbd",
+      "instructions": 11,
+      "returns": [
+        "0x62ebbc"
+      ],
+      "calls": [
+        {
+          "pc": "0x62ebb3",
+          "target": "0x199db0"
+        }
+      ]
+    },
+    {
+      "entry": "0x622010",
+      "end_exclusive": "0x6221dc",
+      "instructions": 147,
+      "returns": [
+        "0x6221db"
+      ],
+      "calls": [
+        {
+          "pc": "0x62207b",
+          "target": "0x5fd050"
+        },
+        {
+          "pc": "0x6220fd",
+          "target": "qword ptr [rax + 0x180]"
+        },
+        {
+          "pc": "0x622190",
+          "target": "0x584730"
+        }
+      ]
+    }
+  ],
+  "checker_sha256": "4f04d9069d2c39abd7d6851624626ec7da415c8c52a63a5f6da87cfff2457f91",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "copy_trace": [
+    {
+      "pc": "0x62c40d",
+      "source_offset": 0,
+      "object_offset": 192,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c415",
+      "source_offset": 16,
+      "object_offset": 208,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c41e",
+      "source_offset": 32,
+      "object_offset": 224,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c427",
+      "source_offset": 48,
+      "object_offset": 240,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c430",
+      "source_offset": 64,
+      "object_offset": 256,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c439",
+      "source_offset": 80,
+      "object_offset": 272,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c442",
+      "source_offset": 96,
+      "object_offset": 288,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c452",
+      "source_offset": 112,
+      "object_offset": 304,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c45e",
+      "source_offset": 128,
+      "object_offset": 320,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c469",
+      "source_offset": 144,
+      "object_offset": 336,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c475",
+      "source_offset": 160,
+      "object_offset": 352,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c481",
+      "source_offset": 176,
+      "object_offset": 368,
+      "bytes": 16
+    },
+    {
+      "pc": "0x62c48c",
+      "source_offset": 192,
+      "object_offset": 384,
+      "bytes": 8
+    }
+  ],
+  "question": "What does the2D asynchronous admission path write/pass, and does the bound update entry settle the pending-counter writer?",
+  "established": [
+    "626C-style naming is not used: exact62C360 checks unsigned input index<max(1,masked count), returns3 otherwise, and returns0x15 when selected element+0 isNULL. Maskedcount0 permits index0 before that resource read; actual zero-count validity remains a caller obligation.",
+    "When DWORD[object+B4]&10000 isclear,62C360 copies exactly200B in input order from R8+0..C7 into object+C0..187, before writing the embedded async object data and calling62EB90. This is12 sequential16B load/store pairs and one8B pair, not a full staged snapshot or general overlap-safe copy.",
+    "The queued-path data object is selected element+40; its+8 receives the original object pointer and its+10 receives the unsigned input index. The same RTTI-bound virtual0 atD54348\u2192621FF0 loads those two fields and tail-calls622010. No actual queue callback execution or natural title-object binding is observed.",
+    "62EB90 passes that saved pointer through a local record and calls199DB0 on context+38*zeroextend32(inputR8D). Its R9D is loaded from byte[entryRSP+18] after subtracting38, rather than taken from incomingR9D. Initialized value/meaning and199DB0 behavior remain open; no uninitialized-state or deferred-execution claim follows.",
+    "622010 directly reads the element+28 block and calls context vslot180 for mip indices0 through its limit, at most12 calls under normal ABI-preserving returns. On its later maskedcount1 arm it calls584730 for the selected+28 block and nulls that field. Native graphics/free effects, dynamic count/storage and actual scheduling remain unproved.",
+    "Reused accepted constructor premise: for a valid nonwrapping object,6160B0 sets count1 and the inline element+0/resource and+38/observed wait counter to0, then binds the embedded table at element+40. Hence an immediately unchanged fresh object is rejected by admission with0x15 and has a nonpositive drain field. This is source-state initialization, not observed loaded gameplay."
+  ],
+  "unresolved": [
+    "Who raises/lowers the element wait counter and its relationship to queued/inflight work: these sources do not establish the complete write closure",
+    "199DB0 entry/queue/flag behavior and whether callback execution is deferred or synchronous",
+    "Actual constructed/loaded object identity, resource binding, scheduler thread, lifetime/reuse/cancellation and natural title reachability",
+    "Meaning/readers of the200B tail remain unknown; physical copy extent does not identify a portable native structure"
+  ],
+  "assumptions": [
+    "ABI-correct normally returning original functions and valid object/element/input storage",
+    "Stable count/storage and nonwrapping correctly sized0x188 object for constructor/admission composition",
+    "Opaque native calls and nonvolatile registers obey the stated normal-return premises; source/target overlap safety is not assumed"
+  ],
+  "affected_claims": [
+    "OPUS PTexture2DD3D11+C0..187 physical write extent and callback/userdata ABI",
+    "FABLE Phyre async scheduling versus wait-counter and separate renderer/title queues"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Only original file reads and synchronous analysis; no game/process/input/instrument/save/config/reference/peer writes"
+}

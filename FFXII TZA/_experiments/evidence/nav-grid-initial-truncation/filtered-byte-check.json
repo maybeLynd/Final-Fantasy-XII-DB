@@ -1,0 +1,53 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "676c4da4094b868da20610feaf0ca5dc19c966cf"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "407d5f26a846bdea76780071fa7da039f7bd998e"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "0e857b44705c6bf568699a2f550313b5b4371f78"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "694719f7e8311b29614bf46a70b591d806d19b06"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "ed989fc426a005a45b1fbfae330bc1447e053b9c"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "ea4dd85f8ff4d8a73837ea312bbb4cc79b500cb1"
+    },
+    {
+      "path": "retained/corridor-contract.md",
+      "git_blob": "bd036575f08209c107c1fef881ab17610623e2ba"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "git_blob": "39318527e1dd84ff27602920d9366a76d79e40ff"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.json",
+      "git_blob": "0d0751a4c3f4efa8626c272a7b2594873d781e8b"
+    },
+    {
+      "path": "retained/window.bin",
+      "git_blob": "da5ad7a79c444773f14370cbeeb09828eb4c70ef"
+    }
+  ]
+}

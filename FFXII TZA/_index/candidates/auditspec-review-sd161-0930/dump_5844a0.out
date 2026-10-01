@@ -1,0 +1,57 @@
+== 005844A0 (56 instructions, to 0058457E)
+005844A0  mov       qword ptr [rsp + 8], rbx
+005844A5  push      rdi
+005844A6  sub       rsp, 0x20
+005844AA  mov       ecx, 1
+005844AF  mov       ebx, r9d
+005844B2  call      0x283270
+005844B7  mov       r8d, ebx
+005844BA  xor       edx, edx
+005844BC  xor       ecx, ecx
+005844BE  call      0x583d60
+005844C3  test      ebx, ebx
+005844C5  je        0x5844ce
+005844C7  call      0x2ef620
+005844CC  jmp       0x5844fc
+005844CE  call      0x2ef640
+005844D3  cmp       dword ptr [rsp + 0x50], 0
+005844D8  jne       0x5844f0
+005844DA  lea       rcx, [rax + 0xe240]
+005844E1  xor       edx, edx
+005844E3  mov       r8d, 0x40420
+005844E9  call      0x861ec0
+005844EE  jmp       0x5844fc
+005844F0  lea       rcx, [rax + 0x4e660]
+005844F7  call      0x2ef510
+005844FC  call      0x2ef640
+00584501  mov       rdi, rax
+00584504  lea       rbx, [rax + 0x4e68c]
+0058450B  cmp       byte ptr [rbx], 0
+0058450E  je        0x584574
+00584510  call      0x234ed0
+00584515  lea       rax, [rdi + 0x2200]
+0058451C  mov       ecx, 0xc0
+00584521  lea       rax, [rax + 0x80]
+00584528  movups    xmm0, xmmword ptr [rbx]
+0058452B  lea       rbx, [rbx + 0x80]
+00584532  movups    xmmword ptr [rax - 0x80], xmm0
+00584536  movups    xmm1, xmmword ptr [rbx - 0x70]
+0058453A  movups    xmmword ptr [rax - 0x70], xmm1
+0058453E  movups    xmm0, xmmword ptr [rbx - 0x60]
+00584542  movups    xmmword ptr [rax - 0x60], xmm0
+00584546  movups    xmm1, xmmword ptr [rbx - 0x50]
+0058454A  movups    xmmword ptr [rax - 0x50], xmm1
+0058454E  movups    xmm0, xmmword ptr [rbx - 0x40]
+00584552  movups    xmmword ptr [rax - 0x40], xmm0
+00584556  movups    xmm1, xmmword ptr [rbx - 0x30]
+0058455A  movups    xmmword ptr [rax - 0x30], xmm1
+0058455E  movups    xmm0, xmmword ptr [rbx - 0x20]
+00584562  movups    xmmword ptr [rax - 0x20], xmm0
+00584566  movups    xmm1, xmmword ptr [rbx - 0x10]
+0058456A  movups    xmmword ptr [rax - 0x10], xmm1
+0058456E  sub       rcx, 1
+00584572  jne       0x584521
+00584574  mov       rbx, qword ptr [rsp + 0x30]
+00584579  add       rsp, 0x20
+0058457D  pop       rdi
+0058457E  ret       

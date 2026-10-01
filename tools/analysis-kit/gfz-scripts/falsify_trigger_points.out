@@ -1,0 +1,8 @@
+SURVIVES  P0  648 B
+SURVIVES  P1  10.0 at 008F8180; threshold [['00901B34']] = 1.2999999523162842
+SURVIVES  P2  unit height mov dword ptr [rsp + 0x54], edi; point height mov dword ptr [rsp + 0x44], 0
+SURVIVES  P3  cmp r8d, 0x4b
+SURVIVES  P4  mov ebx, 0x20
+SURVIVES  P5  test byte ptr [rcx + 0x6c], 0x20 / test byte ptr [rcx + 0x7c], 0x20 / cmp al, 0xc
+SURVIVES  P6  7 setters; bodies drawing and setting: ['002F8060', '002FAFD0']
+FAILS 0

@@ -1,0 +1,327 @@
+{
+  "at_utc": "2026-09-20T03:47:10.892458+00:00",
+  "method": "A: source and shipping-byte preflight; no live test performed",
+  "python": "3.14.6",
+  "capstone": "5.0.7",
+  "chosen": {
+    "dir": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64",
+    "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "exists": true,
+    "unexpected_files": [],
+    "modules_dir": false,
+    "hook_ini": false,
+    "launch_options": "",
+    "clean": true,
+    "label": "steam-vanilla",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "build_ok": true
+  },
+  "environment": [
+    {
+      "dir": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64",
+      "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "exists": true,
+      "unexpected_files": [],
+      "modules_dir": false,
+      "hook_ini": false,
+      "launch_options": "",
+      "clean": true,
+      "label": "steam-vanilla",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "build_ok": true
+    },
+    {
+      "dir": "D:\\FFXII MP Mod\\FFXII_TestClient3\\x64",
+      "exe": "D:\\FFXII MP Mod\\FFXII_TestClient3\\x64\\FFXII_TZA.exe",
+      "exists": false,
+      "label": "mod-client-3"
+    },
+    {
+      "dir": "D:\\FFXII MP Mod\\FFXII_TestClient1\\x64",
+      "exe": "D:\\FFXII MP Mod\\FFXII_TestClient1\\x64\\FFXII_TZA.exe",
+      "exists": true,
+      "unexpected_files": [
+        "dinput8.dll",
+        "ff12-trampoline.dll",
+        "hook.ini",
+        "simpleLog.dll"
+      ],
+      "modules_dir": true,
+      "hook_ini": true,
+      "module_files": [
+        "00-ff12-tkmalloc.dll",
+        "XIIOnline.command.json",
+        "XIIOnline.session.json",
+        "XIIOnline.session.p1.json",
+        "XIIOnline.session.p2.json",
+        "XIIOnlineNet.dll",
+        "XIIOnlineNet.log",
+        "XIIOnlineNet.pdb",
+        "config",
+        "ff12-file-loader.dll",
+        "ff12-lua-loader.dll"
+      ],
+      "launch_options": "",
+      "clean": false,
+      "label": "mod-client-1",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "build_ok": true
+    },
+    {
+      "dir": "D:\\FFXII MP Mod\\FFXII_TestClient2\\x64",
+      "exe": "D:\\FFXII MP Mod\\FFXII_TestClient2\\x64\\FFXII_TZA.exe",
+      "exists": true,
+      "unexpected_files": [
+        "dinput8.dll",
+        "ff12-trampoline.dll",
+        "hook.ini",
+        "simpleLog.dll"
+      ],
+      "modules_dir": true,
+      "hook_ini": true,
+      "module_files": [
+        "00-ff12-tkmalloc.dll",
+        "XIIOnline.session.p1.json",
+        "XIIOnline.session.p2.json",
+        "XIIOnline.session.p3.json",
+        "XIIOnlineNet.dll",
+        "XIIOnlineNet.log",
+        "XIIOnlineNet.pdb",
+        "config",
+        "ff12-file-loader.dll",
+        "ff12-lua-loader.dll"
+      ],
+      "launch_options": "",
+      "clean": false,
+      "label": "mod-client-2",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "build_ok": true
+    }
+  ],
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "target_hex": "48895c24084889742410574883ec20488bf18b8988000000e8b3a9e2ff33ff488bd839be8c0000007633660f1f4400008b4e78e898a9e2ff8b0b4805300200004869c9900200004803c8e8f1f4e1ffffc7488d5b043bbe8c00000072d3488b5c2430488b7424384883c4205fc3",
+  "target_sha256": "de32a6a5ea6bdf5c88ee98452efa87981010f7f0646cfd237222e543392b7913",
+  "instructions": [
+    {
+      "address": 4078640,
+      "size": 5,
+      "mnemonic": "mov",
+      "operands": "qword ptr [rsp + 8], rbx",
+      "hex": "48895c2408"
+    },
+    {
+      "address": 4078645,
+      "size": 5,
+      "mnemonic": "mov",
+      "operands": "qword ptr [rsp + 0x10], rsi",
+      "hex": "4889742410"
+    },
+    {
+      "address": 4078650,
+      "size": 1,
+      "mnemonic": "push",
+      "operands": "rdi",
+      "hex": "57"
+    },
+    {
+      "address": 4078651,
+      "size": 4,
+      "mnemonic": "sub",
+      "operands": "rsp, 0x20",
+      "hex": "4883ec20"
+    },
+    {
+      "address": 4078655,
+      "size": 3,
+      "mnemonic": "mov",
+      "operands": "rsi, rcx",
+      "hex": "488bf1"
+    },
+    {
+      "address": 4078658,
+      "size": 6,
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [rcx + 0x88]",
+      "hex": "8b8988000000"
+    },
+    {
+      "address": 4078664,
+      "size": 5,
+      "mnemonic": "call",
+      "operands": "0x20e600",
+      "hex": "e8b3a9e2ff"
+    },
+    {
+      "address": 4078669,
+      "size": 2,
+      "mnemonic": "xor",
+      "operands": "edi, edi",
+      "hex": "33ff"
+    },
+    {
+      "address": 4078671,
+      "size": 3,
+      "mnemonic": "mov",
+      "operands": "rbx, rax",
+      "hex": "488bd8"
+    },
+    {
+      "address": 4078674,
+      "size": 6,
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rsi + 0x8c], edi",
+      "hex": "39be8c000000"
+    },
+    {
+      "address": 4078680,
+      "size": 2,
+      "mnemonic": "jbe",
+      "operands": "0x3e3c8d",
+      "hex": "7633"
+    },
+    {
+      "address": 4078682,
+      "size": 6,
+      "mnemonic": "nop",
+      "operands": "word ptr [rax + rax]",
+      "hex": "660f1f440000"
+    },
+    {
+      "address": 4078688,
+      "size": 3,
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [rsi + 0x78]",
+      "hex": "8b4e78"
+    },
+    {
+      "address": 4078691,
+      "size": 5,
+      "mnemonic": "call",
+      "operands": "0x20e600",
+      "hex": "e898a9e2ff"
+    },
+    {
+      "address": 4078696,
+      "size": 2,
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [rbx]",
+      "hex": "8b0b"
+    },
+    {
+      "address": 4078698,
+      "size": 6,
+      "mnemonic": "add",
+      "operands": "rax, 0x230",
+      "hex": "480530020000"
+    },
+    {
+      "address": 4078704,
+      "size": 7,
+      "mnemonic": "imul",
+      "operands": "rcx, rcx, 0x290",
+      "hex": "4869c990020000"
+    },
+    {
+      "address": 4078711,
+      "size": 3,
+      "mnemonic": "add",
+      "operands": "rcx, rax",
+      "hex": "4803c8"
+    },
+    {
+      "address": 4078714,
+      "size": 5,
+      "mnemonic": "call",
+      "operands": "0x203170",
+      "hex": "e8f1f4e1ff"
+    },
+    {
+      "address": 4078719,
+      "size": 2,
+      "mnemonic": "inc",
+      "operands": "edi",
+      "hex": "ffc7"
+    },
+    {
+      "address": 4078721,
+      "size": 4,
+      "mnemonic": "lea",
+      "operands": "rbx, [rbx + 4]",
+      "hex": "488d5b04"
+    },
+    {
+      "address": 4078725,
+      "size": 6,
+      "mnemonic": "cmp",
+      "operands": "edi, dword ptr [rsi + 0x8c]",
+      "hex": "3bbe8c000000"
+    },
+    {
+      "address": 4078731,
+      "size": 2,
+      "mnemonic": "jb",
+      "operands": "0x3e3c60",
+      "hex": "72d3"
+    },
+    {
+      "address": 4078733,
+      "size": 5,
+      "mnemonic": "mov",
+      "operands": "rbx, qword ptr [rsp + 0x30]",
+      "hex": "488b5c2430"
+    },
+    {
+      "address": 4078738,
+      "size": 5,
+      "mnemonic": "mov",
+      "operands": "rsi, qword ptr [rsp + 0x38]",
+      "hex": "488b742438"
+    },
+    {
+      "address": 4078743,
+      "size": 4,
+      "mnemonic": "add",
+      "operands": "rsp, 0x20",
+      "hex": "4883c420"
+    },
+    {
+      "address": 4078747,
+      "size": 1,
+      "mnemonic": "pop",
+      "operands": "rdi",
+      "hex": "5f"
+    },
+    {
+      "address": 4078748,
+      "size": 1,
+      "mnemonic": "ret",
+      "operands": "",
+      "hex": "c3"
+    }
+  ],
+  "sources": {
+    "Database\\FFXII TZA\\_experiments\\evidence\\skeletal-reset-live\\snapshot.py": "787089b343485586b856082a89de9aa48a1be2b7769bfe40f0773decf7c85d6f",
+    "Database\\FFXII TZA\\_experiments\\evidence\\skeletal-reset-live\\pulse.py": "1c0e4810d6c24002cc5bf083f90f92150f0fea9ccd07120d5f13be0c6fdce638",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "5629e6368f838fda31084486578ec9c7479d3f5bf99100516acf9651b466bb6a",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\process_liveness.py": "b6d6ef01c3fc4803115743cad610e70344a4935e48f4bd7807b6217ef7264ec4",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_input_probe.py": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\window_focus.py": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\recovered\\observe.py": "d97d08b14cac47c57264c49f06da87ff731d4dfd13c32970ad6b89473a89c675",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\recovered\\pulse.py": "8abbecb0b0ae43e0624728b652ed3f8902ae70a011a2de8c1669031497ff2e2d",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-037-command-observer\\observe.py": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3",
+    "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\resumed\\input_sample.py": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf"
+  },
+  "retained_positive": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\recovered\\deadline-capture\\result.json",
+    "sha256": "abd9345d90dcb98436908d7a26c86492636da7e8c8171efb4298e916bc0ec3a8",
+    "hits": 195,
+    "limit": "First recovered positive; no matched-timing or general instrument validity inferred"
+  },
+  "input_adapter": "Only roots and current task guard changed; existing pulse algorithm unchanged"
+}

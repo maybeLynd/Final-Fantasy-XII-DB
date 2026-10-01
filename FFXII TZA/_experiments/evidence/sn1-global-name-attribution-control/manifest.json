@@ -1,0 +1,135 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4607,
+      "sha256": "7382c45dc54e60079bd6a2caf710e2e449ebfe3c54510b1f6ffe3bec42b06b5a"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6426,
+      "sha256": "d8c2e7dcdbf8dcafec4cab4f84f74a89d88db7e7fd0a044cc77062b4d8533917"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 429,
+      "sha256": "be7c229f56a108f95d7587d181fa840813a50a64f1a5004e637ec8223c7857a9"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 144,
+      "sha256": "74d2dcbc0969c325d1b083f719c3a090eb0ce1aea4832a621276690f83c66449"
+    },
+    {
+      "path": "fault-attribution-implies-name-shift.stderr",
+      "bytes": 499,
+      "sha256": "bbe099e0330b5df96929df7fb44fa74cea3791c4680923d012081c44de09e23f"
+    },
+    {
+      "path": "fault-attribution-implies-name-shift.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-current-group-is-variable-binding.stderr",
+      "bytes": 505,
+      "sha256": "6c81e08ca6b56fecbf5f718b6e3070ef382fbce4353a4f463fc939ea9b35e134"
+    },
+    {
+      "path": "fault-current-group-is-variable-binding.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2819,
+      "sha256": "015e9d9872ff97f262fd1f44aa8cf7de635a54eaeab963bc40a219116f667ade"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2968,
+      "sha256": "4bc69e2bbf74d39909d1e1fbb843fd6cfa966c5baa42e237cfbc5039e2ad2619"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1071,
+      "sha256": "038f69c318e2095f65cf1bc4c313e53e342402502497de53b5ceec0a572afe13"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 68540,
+      "sha256": "90cf31a7a17bd113639cb93f862b7709d2b25359a04c58671b762a0f44a07b28"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3165,
+      "sha256": "7bd728264d3352f0b475100943484042b7e09b3f6de28f9a5f633514e216514a"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 318,
+      "sha256": "3f6db473d07ec405c3d6d8ad45dbe89714c55b05009c07242831a995768e6bf6"
+    },
+    {
+      "path": "result.json",
+      "bytes": 51474,
+      "sha256": "94b5f7b595950364a03ec75288bdd7322218dde14fd37a19d6ec5213c55787b2"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "bytes": 126112,
+      "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06"
+    },
+    {
+      "path": "retained/evctrl.ebp",
+      "bytes": 38720,
+      "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "bytes": 57816,
+      "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5"
+    },
+    {
+      "path": "retained/opus-variable-binding-primary.py",
+      "bytes": 8948,
+      "sha256": "98d0e1c6ebab3995b9e0440a2c4b98f30dc1399845e0f11adbb8f9e91426a5a5"
+    },
+    {
+      "path": "retained/parent61-raw.json",
+      "bytes": 68726,
+      "sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3"
+    },
+    {
+      "path": "retained/parent65-publication-correction.json",
+      "bytes": 8241,
+      "sha256": "3b7f0afd53267740f215cff2212fa4ba5a3149f41846acd08d3aa9092f2ffadc"
+    },
+    {
+      "path": "retained/resolver591.bin",
+      "bytes": 591,
+      "sha256": "7909d30a3b1f82ee5e5c91a507d9313be45c5ccc5b71d210f1fac2ae3f595241"
+    },
+    {
+      "path": "retained/selected-opus-on.py",
+      "bytes": 170,
+      "sha256": "6fce4459417cac67206ca0f99268d683d816cc40a5918727cfdba1ccb591c61e"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "bytes": 602,
+      "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48"
+    }
+  ],
+  "limits": "62 selected original global descriptor/name identities independent ofsource-marker offset; not universal115order/live values/type meanings or independent acceptance."
+}

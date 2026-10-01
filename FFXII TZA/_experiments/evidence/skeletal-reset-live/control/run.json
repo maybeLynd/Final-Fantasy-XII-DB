@@ -1,0 +1,45 @@
+{
+  "status": "QUALIFIED_WINDOW",
+  "arm": "control",
+  "start_unix": 1789876837.8302221,
+  "runner_sha256": "9ddf971c69ab315ae4f5a821c64f2a1150f793067a9fb8368fab8a47bb8298d4",
+  "process": {
+    "pid": 31940,
+    "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe"
+  },
+  "observer_command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-u",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\recovered\\observe.py",
+    "--pid",
+    "31940",
+    "--seconds",
+    "12",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeletal-reset-live\\control\\liveness.json"
+  ],
+  "capture_command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\capture.py",
+    "--pid",
+    "31940",
+    "--seconds",
+    "1",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeletal-reset-live\\control\\capture",
+    "--addr",
+    "003A1C50"
+  ],
+  "observer_pid": 53568,
+  "observer_ready_unix": 1789876838.1413279,
+  "capture_start_unix": 1789876839.1419327,
+  "capture_returncode": 0,
+  "capture_end_unix": 1789876840.4193816,
+  "observer_returncode": 0,
+  "live_cpu_after_detach_seconds": 4.78125,
+  "positive_hits": 202,
+  "hits_by_rip": {
+    "003A1C50": 202
+  },
+  "end_unix": 1789876850.2009714
+}

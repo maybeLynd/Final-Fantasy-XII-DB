@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-01/00-progress-dom.txt",
+      "bytes": 10661,
+      "sha256": "bd71d95bbec2e6004967a3998d93c79464d5763afa0ad6db45357d6a797d1aa5"
+    },
+    {
+      "path": "capture-01/01-activity-immediate-ax.txt",
+      "bytes": 10765,
+      "sha256": "84f39beb977185cc1e0a274e28f0c362530443504b273aa64adea89205d5f595"
+    },
+    {
+      "path": "capture-01/02-activity-dom.txt",
+      "bytes": 9643,
+      "sha256": "bad57c97d5ee4bdf6a98f79f46fc395504329a0e2078224c87f2dcfd8eef4134"
+    },
+    {
+      "path": "capture-01/03-return-immediate-ax.txt",
+      "bytes": 10807,
+      "sha256": "7d228062ffa97ba1e0a83b881a7afa7aedad6b41852b4f9034c709464da95cb5"
+    },
+    {
+      "path": "capture-01/04-return-dom.txt",
+      "bytes": 10216,
+      "sha256": "c8f7bb4cf2da1737d467521d97bd81a2532e8d870cd526ce3c6f94e32c48965b"
+    },
+    {
+      "path": "capture-01/05-return.jpg",
+      "bytes": 122916,
+      "sha256": "58be1562f36944922e01d748297e926b10ffd688bfccfdd216aebf53270a594f"
+    },
+    {
+      "path": "capture-01/control-log.json",
+      "bytes": 1829,
+      "sha256": "6f5ffae59eaf652d051e218347faabb45b0f223d7ebef7732e46c67f903e756a"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4738,
+      "sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 6278,
+      "sha256": "e9026f8dab95e0d9a27fffc7deb2dd6ce50f192b9c91bfc8150a0f31f351fa17"
+    },
+    {
+      "path": "gate-controls/empty-checks/check.py",
+      "bytes": 4738,
+      "sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+    },
+    {
+      "path": "gate-controls/empty-checks/checks-terminal.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "gate-controls/empty-checks/identity.json",
+      "bytes": 1957,
+      "sha256": "981d3617f44ae3a68318c4501d07952d0b2ec53e0469c1440c7ad127357be6c4"
+    },
+    {
+      "path": "gate-controls/empty-checks/preflight-terminal.json",
+      "bytes": 2491,
+      "sha256": "74279f840e37073c0337299df03f5c443fee0df238acbf0d1661884e8ab9d673"
+    },
+    {
+      "path": "gate-controls/empty-checks/preflight.py",
+      "bytes": 2274,
+      "sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305"
+    },
+    {
+      "path": "gate-controls/empty-checks/result.json",
+      "bytes": 812,
+      "sha256": "d5ce076066b498a9e850ef0cba68e70fd6f44781ae87cd1b982c21f156c6afd8"
+    },
+    {
+      "path": "gate-controls/failed-upstream/check.py",
+      "bytes": 4738,
+      "sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+    },
+    {
+      "path": "gate-controls/failed-upstream/checks-terminal.json",
+      "bytes": 6278,
+      "sha256": "e9026f8dab95e0d9a27fffc7deb2dd6ce50f192b9c91bfc8150a0f31f351fa17"
+    },
+    {
+      "path": "gate-controls/failed-upstream/identity.json",
+      "bytes": 1957,
+      "sha256": "981d3617f44ae3a68318c4501d07952d0b2ec53e0469c1440c7ad127357be6c4"
+    },
+    {
+      "path": "gate-controls/failed-upstream/preflight-terminal.json",
+      "bytes": 2448,
+      "sha256": "805295cd913aba6c48b1c3556fd64c391663b35954006256f10ffc5fa415e725"
+    },
+    {
+      "path": "gate-controls/failed-upstream/preflight.py",
+      "bytes": 2274,
+      "sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305"
+    },
+    {
+      "path": "gate-controls/failed-upstream/result.json",
+      "bytes": 812,
+      "sha256": "d5ce076066b498a9e850ef0cba68e70fd6f44781ae87cd1b982c21f156c6afd8"
+    },
+    {
+      "path": "gate-controls/missing-checks/check.py",
+      "bytes": 4738,
+      "sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+    },
+    {
+      "path": "gate-controls/missing-checks/identity.json",
+      "bytes": 1957,
+      "sha256": "981d3617f44ae3a68318c4501d07952d0b2ec53e0469c1440c7ad127357be6c4"
+    },
+    {
+      "path": "gate-controls/missing-checks/preflight-terminal.json",
+      "bytes": 2491,
+      "sha256": "74279f840e37073c0337299df03f5c443fee0df238acbf0d1661884e8ab9d673"
+    },
+    {
+      "path": "gate-controls/missing-checks/preflight.py",
+      "bytes": 2274,
+      "sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305"
+    },
+    {
+      "path": "gate-controls/missing-checks/result.json",
+      "bytes": 812,
+      "sha256": "d5ce076066b498a9e850ef0cba68e70fd6f44781ae87cd1b982c21f156c6afd8"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/check.py",
+      "bytes": 4738,
+      "sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/checks-terminal.json",
+      "bytes": 5890,
+      "sha256": "9c53263ab13e10592a9f73d19a0eff124ba741cb87d6ef3597b24abb966e6860"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/identity.json",
+      "bytes": 1957,
+      "sha256": "981d3617f44ae3a68318c4501d07952d0b2ec53e0469c1440c7ad127357be6c4"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/preflight-terminal.json",
+      "bytes": 2491,
+      "sha256": "74279f840e37073c0337299df03f5c443fee0df238acbf0d1661884e8ab9d673"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/preflight.py",
+      "bytes": 2274,
+      "sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/result.json",
+      "bytes": 812,
+      "sha256": "d5ce076066b498a9e850ef0cba68e70fd6f44781ae87cd1b982c21f156c6afd8"
+    },
+    {
+      "path": "gate-controls/positive/check.py",
+      "bytes": 4738,
+      "sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+    },
+    {
+      "path": "gate-controls/positive/checks-terminal.json",
+      "bytes": 6278,
+      "sha256": "e9026f8dab95e0d9a27fffc7deb2dd6ce50f192b9c91bfc8150a0f31f351fa17"
+    },
+    {
+      "path": "gate-controls/positive/identity.json",
+      "bytes": 1957,
+      "sha256": "981d3617f44ae3a68318c4501d07952d0b2ec53e0469c1440c7ad127357be6c4"
+    },
+    {
+      "path": "gate-controls/positive/preflight-terminal.json",
+      "bytes": 2491,
+      "sha256": "74279f840e37073c0337299df03f5c443fee0df238acbf0d1661884e8ab9d673"
+    },
+    {
+      "path": "gate-controls/positive/preflight.py",
+      "bytes": 2274,
+      "sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305"
+    },
+    {
+      "path": "gate-controls/positive/result.json",
+      "bytes": 812,
+      "sha256": "d5ce076066b498a9e850ef0cba68e70fd6f44781ae87cd1b982c21f156c6afd8"
+    },
+    {
+      "path": "http-shell.bin",
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+    },
+    {
+      "path": "http-status.bin",
+      "bytes": 1128,
+      "sha256": "f1c9ec205298e8601cadb3eb4a78bd8e8f9f2402b673f49451be2800e0dd5a8e"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 1957,
+      "sha256": "981d3617f44ae3a68318c4501d07952d0b2ec53e0469c1440c7ad127357be6c4"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2098,
+      "sha256": "320d0d6ed85c2adc5d7aa220a4f7fadd4ceec9cb88233421c05ad326e27f55aa"
+    },
+    {
+      "path": "preflight-terminal.json",
+      "bytes": 2491,
+      "sha256": "74279f840e37073c0337299df03f5c443fee0df238acbf0d1661884e8ab9d673"
+    },
+    {
+      "path": "preflight.py",
+      "bytes": 2274,
+      "sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305"
+    },
+    {
+      "path": "preparation-controls-terminal.json",
+      "bytes": 6276,
+      "sha256": "59ad89964b129ad58d6e7b5284ef9c86269859f6b8dc8e986e979d53584d3813"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 8068,
+      "sha256": "3bcbe4ee0c1018254430641c63bc12a5fba5191f4fde6ed05d8deba1441f1cf0"
+    },
+    {
+      "path": "raw-capture-index.json",
+      "bytes": 1559,
+      "sha256": "9779052a622a93e10946e6727043da5b1a69e9526f1a9c0db387ccc1d6064006"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4336,
+      "sha256": "a4c923ba90ae660b3651675df332f046a6246ec3fedec98e9646be90a8290f5e"
+    },
+    {
+      "path": "result.json",
+      "bytes": 812,
+      "sha256": "d5ce076066b498a9e850ef0cba68e70fd6f44781ae87cd1b982c21f156c6afd8"
+    },
+    {
+      "path": "server-source.py",
+      "bytes": 44677,
+      "sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb"
+    }
+  ],
+  "limits": "Integrity is not semantic acceptance. One HOST_BROWSER rendered Activity to Progress return; non-atomic raw DOM/AX/JPEG/HTTP, no event-handler trace, loaded-module identity, totals/allviews/A17/M3/migration/FF12/L1L2 acceptance."
+}

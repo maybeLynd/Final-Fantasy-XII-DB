@@ -1,0 +1,104 @@
+[
+  {
+    "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+    "sha256": "c8e68d8776609843b3737cb8a72952d6f3c57375c61e4515f7e9f4ebabccd95f",
+    "excerpts": [
+      {
+        "line": 56,
+        "text": "| `+0x2C` | file offset, **rounded up to `0x800`** |"
+      },
+      {
+        "line": 92,
+        "text": "**I6 \u2014 the file offset is always rounded up to `0x800`**, both in the whole-file path and the"
+      }
+    ]
+  },
+  {
+    "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/the-resource-request-queue.md",
+    "sha256": "4c15add1a9289a3634ccb21116782368a9e96c5462dd9caae831a38683563f8c",
+    "excerpts": [
+      {
+        "line": 73,
+        "text": "first part `+0x28 = min(bytes, 0x80000)`, `+0x50 = 0`, and the file offset `+0x2C` rounded up to"
+      },
+      {
+        "line": 80,
+        "text": "(`0032E8CE`\u2013`0032E97C`): `+0x24` index, `+0x2C` the descriptor's `+0` offset rounded up to `0x800`,"
+      },
+      {
+        "line": 84,
+        "text": "`+0x18`, `+0x60` its `+8`, `+0x22`, `+0x5C` and `+0` zero. It returns the request id."
+      },
+      {
+        "line": 309,
+        "text": "  +0x28 i32  bytesThisPart     +0x2C i32 fileOffset (rounded up to 0x800)"
+      },
+      {
+        "line": 313,
+        "text": "  +0x5C i32  zero              +0x60 i32 arg (descriptor +8)     +0x64 i32 requestId = (counter << 6) | slot"
+      }
+    ]
+  },
+  {
+    "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md",
+    "sha256": "839753842acc329210868de39896ddc6ed0194f2484d81040c669f6bc05edb39",
+    "excerpts": [
+      {
+        "line": 88,
+        "text": "slot's `+0x2C` rounded up to `0x800` (`0032E8FB`\u2013`0032E918`) and the byte budget the pump `0032E070`"
+      }
+    ]
+  },
+  {
+    "path": "Database/FFXII TZA/_types/fields.tsv",
+    "sha256": "cdf03e8a1e5a4161c9d6ca28462a11b86a2284c21bce5bfdeea25ea525aaf757",
+    "excerpts": [
+      {
+        "line": 4068,
+        "text": "ResourceRequestSlot\t0x028\t4\tbytes\tuint32\tthe byte count of the current part. Zero in state 1 means there is nothing to read and the request retires immediately; the state-5 requeue arm resizes it to min(+0x30, +0x34).\tTYPE RESOLVED\tPROVEN\tMeasured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+      },
+      {
+        "line": 4069,
+        "text": "ResourceRequestSlot\t0x02C\t4\toffset\tuint32\tthe read offset, advanced by the part size on each chunk - AND THEN ROUNDED DOWN to a 0x800 boundary by the signed-bias form `cdq` / `+edx` / `&0x7ff` / subtract / `&0xfffff800`, so a negative value rounds toward zero rather than away from it.\tTYPE RESOLVED\tPROVEN\tMeasured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+      },
+      {
+        "line": 4077,
+        "text": "ResourceRequestSlot\t0x05C\t4\tunobservedSpan005C\tu8[4]\tno access at any displacement in this span in the cleaned census.\tTYPE RESOLVED\tPROVEN\tMeasured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+      }
+    ]
+  },
+  {
+    "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv",
+    "sha256": "496f28a305fb1a63b376affe7619e5d6c73e89db050b82cdd8ebf555798abf38",
+    "excerpts": [
+      {
+        "line": 1,
+        "text": "# ResourceRequestSlot - emitted by Database/Tools/work/OPUS/emit_request_slot_census.py, which calls gfz-scripts/receiver_flow_census.py"
+      },
+      {
+        "line": 2,
+        "text": "# SEED 0032E070 - the pump, seeded from the pending head 022C51C0 it reloads in its own loop; seeded from global 022C51C0; jump tables supplied: 0x32E0BB=0x32E2D0:6"
+      },
+      {
+        "line": 3,
+        "text": "# SEED 0032E330 - the delivery callback dispatcher - 0032E330(slot)"
+      },
+      {
+        "line": 4,
+        "text": "# SEED 0032E370 - the failure callback dispatcher - 0032E370(slot)"
+      },
+      {
+        "line": 5,
+        "text": "# SEED 0032E3B0 - the part callback dispatcher - 0032E3B0(slot)"
+      },
+      {
+        "line": 6,
+        "text": "# SEED 0032E590 - the cancel path for a request not yet issued"
+      },
+      {
+        "line": 7,
+        "text": "# SEED 0032EC40 - unlink and push back on the free list - 0032EC40(slot)"
+      }
+    ]
+  }
+]

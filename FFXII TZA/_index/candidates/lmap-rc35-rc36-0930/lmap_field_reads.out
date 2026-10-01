@@ -1,0 +1,103 @@
+callers of 003BF430: 10 functions, 25 call sites
+reads of P+0x0C: 43
+  +0x0C  call 003BCE2F in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003BCE2F in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE2F in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE66 in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003BCE66 in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE66 in 003BCDE0: read at 003BCE94  movzx eax, word ptr [rbx + 0xc]
+  +0x0C  call 003BCE66 in 003C1180: read at 003C11A6  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE66 in 003C1180: read at 003C11CA  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE66 in 003C1180: read at 003C11DC  movzx ebx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE66 in 003C1180: read at 003C11FE  movzx edx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCE66 in 003C1180: read at 003C1218  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BCF39 in 003BCDE0: read at 003BCF45  cmp word ptr [rax + 0xc], r12w
+  +0x0C  call 003BCFA5 in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003BCFA5 in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BEE5B in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003BEE5B in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BEE5B in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BEE95 in 003BED70: read at 003BEEE9  movzx edi, word ptr [rax + 0xc]
+  +0x0C  call 003BF0CB in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003BF0CB in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BF0CB in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BF105 in 003BED70: read at 003BF159  movzx edi, word ptr [rax + 0xc]
+  +0x0C  call 003BF933 in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003BF933 in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BF933 in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003BF962 in 003BF920: read at 003BF973  movzx eax, word ptr [rax + 0xc]
+  +0x0C  call 003C040A in 003C0380: read at 003C0416  movzx ecx, word ptr [rax + 0xc]
+  +0x0C  call 003C0760 in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003C0760 in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C0760 in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C0798 in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003C0798 in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C0D3D in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003C0D3D in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C0D3D in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C140D in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003C140D in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C140D in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C1447 in 003C12B0: read at 003C148B  movzx edi, word ptr [rax + 0xc]
+  +0x0C  call 003C1B3E in 003BCBA0: read at 003BCBAF  movzx esi, word ptr [rcx + 0xc]
+  +0x0C  call 003C1B3E in 003BCBA0: read at 003BCBF7  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C1B3E in 003C18A0: read at 003C1936  movzx ecx, word ptr [rdi + 0xc]
+  +0x0C  call 003C1B78 in 003C1A20: read at 003C1BE8  movzx edi, word ptr [r13 + 0xc]
+all P reads by offset: {12: 43, 14: 20, 16: 32, 22: 8, 20: 8, 18: 8, 0: 5, 2: 5, 17: 1}
+  call 003BCE2F in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003BCE2F in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003BCE2F in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003BCE2F in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003BCE66 in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003BCE66 in 003BCDE0: 003BCE94 +0xc
+  call 003BCE66 in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003BCE66 in 003C1180: 003C11A6 +0xc; 003C11CA +0xc; 003C11DC +0xc; 003C11FE +0xc; 003C1215 +0x10; 003C1218 +0xc; 003C122C +0x0; 003C1234 +0x2
+  call 003BCF39 in 003BCDE0: 003BCF45 +0xc; 003BCF74 +0x10
+  call 003BCFA5 in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003BCFA5 in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003BCFA5 in 003C1980: 003C19A6 +0xe; 003C19B6 +0x10
+  call 003BDE36 in 003BDDE0: 003BDF06 +0x11
+  call 003BDEB4 in 003BDDE0: 003BDEC0 +0x10
+  call 003BE039 in 003BDFF0: 003BE049 +0x10
+  call 003BEE16 in 003BED70: 003BEE2C +0x10
+  call 003BEE5B in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003BEE5B in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003BEE5B in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003BEE5B in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003BEE95 in 003BED70: 003BEEE6 +0x0; 003BEEE9 +0xc; 003BEEED +0x10; 003BEEFF +0x2
+  call 003BF086 in 003BED70: 003BF09C +0x10
+  call 003BF0CB in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003BF0CB in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003BF0CB in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003BF0CB in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003BF105 in 003BED70: 003BF156 +0x0; 003BF159 +0xc; 003BF15D +0x10; 003BF16F +0x2
+  call 003BF933 in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003BF933 in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003BF933 in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003BF933 in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003BF962 in 003BF920: 003BF973 +0xc
+  call 003C040A in 003C0380: 003C0416 +0xc
+  call 003C0760 in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003C0760 in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003C0760 in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003C0760 in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003C0798 in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003C0798 in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003C0D3D in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003C0D3D in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003C0D3D in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003C0D3D in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003C13CB in 003C12B0: 003C13DE +0x10
+  call 003C140D in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003C140D in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003C140D in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003C140D in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003C1447 in 003C12B0: 003C1488 +0x0; 003C148B +0xc; 003C148F +0x10; 003C14A4 +0x2
+  call 003C1AF6 in 003C1A20: 003C1B0A +0x10
+  call 003C1B3E in 003BCBA0: 003BCBAF +0xc; 003BCBF7 +0xc
+  call 003C1B3E in 003C06E0: 003C06EB +0xe; 003C06F9 +0x10
+  call 003C1B3E in 003C0F70: 003C0F78 +0x16; 003C0FBC +0x14; 003C1030 +0x12
+  call 003C1B3E in 003C18A0: 003C18BF +0xe; 003C18D3 +0x10; 003C1936 +0xc
+  call 003C1B78 in 003C1A20: 003C1BE3 +0x0; 003C1BE8 +0xc; 003C1BED +0x10; 003C1C02 +0x2
+PASS  control: 003BCDE0's +0x0C comparison is found
+PASS  control: 003C0740 is a caller

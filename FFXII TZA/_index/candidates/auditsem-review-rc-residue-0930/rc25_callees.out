@@ -1,0 +1,18 @@
+0030E990 fragments 1  stores covering rcx+4/+5: none
+002EF4A0 fragments 0  stores covering rcx+4/+5: none
+00861EC0 fragments 0  stores covering rcx+4/+5: none
+00326030 fragments 0  stores covering rcx+4/+5: none
+00327DE0 fragments 1  stores covering rcx+4/+5: none
+0030D9A0 fragments 1  stores covering rcx+4/+5: none
+0035C620 fragments 0  stores covering rcx+4/+5: none
+00317930 fragments 4  stores covering rcx+4/+5: none
+00318B40 fragments 1  stores covering rcx+4/+5: none
+0030FED0 fragments 1  stores covering rcx+4/+5: none
+0031B860 fragments 1  stores covering rcx+4/+5: none
+0031C000 fragments 1  stores covering rcx+4/+5: none
+00316DF0 fragments 4  stores covering rcx+4/+5: none
+00328990 fragments 3  stores covering rcx+4/+5: none
+00243260 fragments 0  stores covering rcx+4/+5: none
+005683F0 fragments 0  stores covering rcx+4/+5: none
+CONTROL 0023AC80: ['0023AD8E mov word ptr [rdi + 4], r15w']
+PASS control

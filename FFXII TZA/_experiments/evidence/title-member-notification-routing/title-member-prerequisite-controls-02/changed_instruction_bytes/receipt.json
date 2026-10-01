@@ -1,0 +1,14 @@
+{
+  "case": "changed_instruction_bytes",
+  "exit": 1,
+  "result_exists": false,
+  "expected_accepted": false,
+  "control_pass": true,
+  "invocation": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "changed_instruction_bytes/prove-title-member-notification.py",
+    "changed_instruction_bytes/result.json"
+  ],
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "a3dd75f1176ab519d96f451c63a6c98185f11eadae5c099371d8f92af9d380a7"
+}

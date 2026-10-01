@@ -1,0 +1,1 @@
+callee_nonvol.py: fails silently (no output) when run from its folder with no arguments; with the 15 callee addresses as arguments and cwd Database/Tools/work/FABLE/pub140-scratch (it shells out to disr.py there) it exits 0 and matches callee_nonvol.out line for line

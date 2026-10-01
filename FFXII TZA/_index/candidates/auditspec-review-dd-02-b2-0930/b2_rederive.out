@@ -1,0 +1,146 @@
+M 002A00F0: 40 instructions (.pdata root 002A00F0)
+M   002A00F6 cmp byte ptr [rcx + 3], 1
+M   002A00FF mov ecx, dword ptr [rcx + 8]
+M   002A0104 mov qword ptr [rsp + 0x38], rbp
+M   002A0109 mov qword ptr [rsp + 0x40], rdi
+M   002A0116 mov dword ptr [rsi + 8], eax
+M   002A011E mov ecx, dword ptr [rsi + 0x28]
+M   002A012A mov dword ptr [rsi + 0x28], eax
+M   002A0137 cmp dword ptr [rsi + 0x24], edi
+M   002A013C mov qword ptr [rsp + 0x30], rbx
+M   002A0141 lea rbx, [rax + 8]
+M   002A0145 mov ecx, dword ptr [rbx]
+M   002A014E mov dword ptr [rbx], eax
+M   002A0150 lea rbx, [rbx + 0xc]
+M   002A0156 cmp edi, dword ptr [rsi + 0x24]
+M   002A015B mov rbx, qword ptr [rsp + 0x30]
+M   002A0160 mov rdi, qword ptr [rsp + 0x40]
+M   002A0165 mov rbp, qword ptr [rsp + 0x38]
+M   002A016A mov byte ptr [rsi + 3], 1
+M   operands with +0x2c: []  control +0x24 present: True
+A 0024AA00 first 24 instructions:
+A   0024AA00 mov qword ptr [rsp + 0x18], rbx
+A   0024AA05 push rdi
+A   0024AA06 sub rsp, 0x20
+A   0024AA0A movzx r10d, byte ptr [rcx + 2]
+A   0024AA0F mov rdi, rcx
+A   0024AA12 movzx ebx, r8w
+A   0024AA16 mov ecx, 0x100
+A   0024AA1B movzx r8d, cx
+A   0024AA1F mov r11, rdx
+A   0024AA22 imul r10d, r8d
+A   0024AA26 movzx eax, byte ptr [rdi + 3]
+A   0024AA2A add r10w, ax
+A   0024AA2E cmp bx, r10w
+A   0024AA32 jb 0x24aa44
+A   0024AA34 mov eax, 1
+A   0024AA39 mov rbx, qword ptr [rsp + 0x40]
+A   0024AA3E add rsp, 0x20
+A   0024AA42 pop rdi
+A   0024AA43 ret
+A   0024AA44 mov qword ptr [rsp + 0x30], rbp
+A   0024AA49 mov qword ptr [rsp + 0x38], rsi
+A   0024AA4E cmp r9w, r10w
+A   0024AA52 ja 0x24aa5a
+A   0024AA54 test r9w, r9w
+L 0037EFC0: 37 instructions; memory operands:
+L   0037EFCB mov r8, qword ptr [rax + 0xd0]
+L   0037EFD9 movzx r10d, word ptr [r8 + 0xe]
+L   0037EFE8 lea rcx, [r8 + 0x10]
+L   0037EFEC nop dword ptr [rax]
+L   0037EFF0 cmp word ptr [rcx], r11w
+L   0037F00E lea rax, [r8 + rax*8]
+L   0037F01C movzx edx, word ptr [rax + 2]
+L   0037F02A movzx ecx, word ptr [r8 + 8]
+L 0037E5B0: 126 instructions; memory operands:
+L   0037E5B0 mov qword ptr [rsp + 0x18], rbx
+L   0037E5C4 mov rsi, qword ptr [rax + 0xc8]
+L   0037E5D2 mov rbx, qword ptr [rsp + 0x40]
+L   0037E5E1 movzx eax, word ptr [rsi + 0xa]
+L   0037E5E9 mov qword ptr [rsp + 0x30], rdi
+L   0037E5F1 mov ecx, dword ptr [rsi + rdi*8 + 0xc]
+L   0037E5F5 mov qword ptr [rsp + 0x38], r14
+L   0037E5FA lea r14, [rsi + rdi*8]
+L   0037E603 mov qword ptr [rbx], rax
+L   0037E608 mov eax, dword ptr [r14 + 0x10]
+L   0037E617 mov word ptr [rbx + 8], ax
+L   0037E61B mov eax, dword ptr [r14 + 0x10]
+L   0037E622 mov byte ptr [rbx + 0xa], al
+L   0037E625 mov eax, dword ptr [r14 + 0x10]
+L   0037E62C mov byte ptr [rbx + 0xb], al
+L   0037E62F mov word ptr [rbx + 0xc], dx
+L   0037E638 lea rcx, [rsi + 0x10]
+L   0037E63C nop dword ptr [rax]
+L   0037E640 mov eax, dword ptr [rcx]
+L   0037E642 xor eax, dword ptr [r14 + 0x10]
+L   0037E64A inc word ptr [rbx + 0xc]
+L   0037E65F mov r9, qword ptr [rdi + 0xd0]
+L   0037E66B movzx eax, word ptr [r9 + 0xe]
+L   0037E677 movzx r10d, word ptr [rbx + 8]
+L   0037E67F lea rax, [r9 + 0x10]
+L   0037E686 cmp word ptr [rax], r10w
+L   0037E69E mov byte ptr [rbx + 0xe], dl
+L   0037E6A6 movzx eax, byte ptr [rcx + 4]
+L   0037E6AC mov byte ptr [rbx + 0xe], al
+L   0037E6AF movzx eax, byte ptr [r14 + 0x10]
+L   0037E6B4 mov r14, qword ptr [rsp + 0x38]
+L   0037E6B9 mov byte ptr [rbx + 0xf], al
+L   0037E6BC mov r9, qword ptr [rdi + 0xd0]
+L   0037E6C3 mov rdi, qword ptr [rsp + 0x30]
+L   0037E6CD movzx eax, word ptr [r9 + 0xe]
+L   0037E6D9 movzx r10d, word ptr [rbx + 8]
+L   0037E6E1 lea rax, [r9 + 0x10]
+L   0037E6E8 cmp word ptr [rax], r10w
+L   0037E706 lea rcx, [r9 + rcx*8]
+L   0037E713 lea rdx, [r9 + rdx*8]
+G 00274780:
+G   00274780 movsxd rax, edx
+G   00274783 mov eax, dword ptr [rcx + rax*8]
+G   00274786 add rax, rcx
+G   00274789 ret
+G 00D23270 name table (qword pointers -> strings):
+G   +00 0000000000D23350 main0.psd reloc
+G   +08 0000000000D232E8 w_main0 reloc
+G   +10 0000000000D23360 main1.psd reloc
+G   +18 0000000000D232F0 w_main1 reloc
+G   +20 0000000000D23370 main2.psd reloc
+G   +28 0000000000D232F8 w_main2 reloc
+G   +30 0000000000D23380 main3.psd reloc
+G   +38 0000000000D23300 w_main3 reloc
+G 005556A0: 208 instructions; operands with +0x10 / +0x14 displacements:
+G   00555808 cmp dword ptr [rbp + 0x14], r14d
+G   00555830 movsxd rdi, dword ptr [rbp + 0x10]
+G   00555898 movzx ebx, word ptr [rax + 0x14]
+G   005558E0 lea r8, [rsi + 0x10]
+G   005558E7 lea rdx, [r13 + 0x10]
+G   005559BF cmp r14d, dword ptr [rbp + 0x14]
+  005556A2 push rbp
+  005556CC mov rbp, rcx
+  005557B0 or ecx, 0xa0000007
+  005557B6 shr ecx, 3
+  005557B9 mov dword ptr [rax], 0x10000000
+  005557BF mov rax, qword ptr [rsp + 0x48]
+  005557C4 mov dword ptr [rax + 4], 0x13000000
+  005557CB mov rax, qword ptr [rsp + 0x48]
+  005557D0 mov dword ptr [rax + 8], ecx
+  005557D3 lea rcx, [rsp + 0x38]
+  005557D8 mov rax, qword ptr [rsp + 0x48]
+  005557DD mov dword ptr [rax + 0xc], 0x10000000
+  005557E4 add qword ptr [rsp + 0x48], 0x10
+  005557EA call 0x271080
+  005557EF lea rcx, [rsp + 0x38]
+  005557F4 call 0x270ff0
+  005557F9 movsxd rsi, dword ptr [rbp + 8]
+  005557FD xor r14d, r14d
+  00555800 add rsi, rbp
+  00555803 mov dword ptr [rsp + 0x30], r14d
+  00555808 cmp dword ptr [rbp + 0x14], r14d
+  0055580C jle 0x5559e7
+  00555812 mov qword ptr [rsp + 0x178], r12
+  0055581A mov r12d, r14d
+  0055581D movaps xmmword ptr [rsp + 0x160], xmm6
+  00555825 movaps xmmword ptr [rsp + 0x150], xmm7
+  0055582D nop dword ptr [rax]
+  00555830 movsxd rdi, dword ptr [rbp + 0x10]
+  00555834 add rdi, r12
+  00555837 add rdi, rbp

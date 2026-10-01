@@ -1,0 +1,9 @@
+{
+  "action": "finish",
+  "task": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+  "note": "private requirement control",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:ACCEPT-WITH-NARROWING"
+  ]
+}

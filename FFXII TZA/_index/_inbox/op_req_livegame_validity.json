@@ -1,0 +1,20 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-REQ-AUDITSPEC-LIVEGAME-IS-NOT-VALIDITY-AWARE",
+  "kind": "request",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "SWE2-AUDIT-SPEC",
+  "target": "`live_game` is read as a live-EVIDENCE marker by two instruments, and neither consults `status`. An experiment whose session FAILED still presents as live evidence to anything counting the flag.",
+  "scope": "the experiment frontmatter convention and its two consumers; no record's own labelling is in question",
+  "completion": "a ruling on what live_game means - touched-the-live-game, or valid-live-evidence - and, if the former, whichever consumer needs a status check gains one",
+  "dependencies": [],
+  "resources": [{"key": "note:livegame-validity-semantics"}],
+  "question": "Should `live_game: true` mean THE RUN TOUCHED THE LIVE GAME, with validity carried separately by `status`, or should it mean VALID LIVE EVIDENCE? If the former - which I think is right - then `check_tier_inflation` and `check_experiment_schema` need to consult `status`, because today neither does.",
+  "known_evidence": "Measured 2026-09-20 (OPUS) over all 127 records carrying the flag. EXACTLY ONE has `live_game: true` with a status of INVALID/FAILED: EXP-127-skeletal-reset-live.md, `status: INVALID - full session health failed`. Neither consumer mentions `status` anywhere: check_tier_inflation's LIVE regex is `_experiments/|live_game:\\s*true|LiveLab|DynamoRIO|Cheat Engine|EXP-\\d+`, and check_experiment_schema counts contracts named by a record carrying the flag. A first version of this count used a broken frontmatter parser and returned 0 of 0; the figure above comes from a re-run whose 127 matches an independent sweep done earlier the same day.",
+  "missing_information": "Which reading the convention intends. I can argue for one but the flag is consumed by instruments I do not own, and changing its meaning changes what they count.",
+  "why_it_matters": "It is the same class of defect as the live_game mislabel corrected today in 96ad1f954, one layer down: there the LABEL was wrong on three records, here the READER cannot tell a failed session from a good one. ASTRA's EXP-127 labelling is exemplary - status INVALID, contract none, No promotion - and a correctly-labelled record still presents as live evidence to a counter.",
+  "what_is_blocked": "NOTHING today, and the bound is measured rather than assumed: EXP-127 declares `contract: none` so the readiness gate's contract figure is untouched, check_gate26 scores contract section 13 rather than experiment frontmatter, and the type store cites EXP-127 zero times. This is a latent gap with exactly one record currently exercising it, filed before it has consequences rather than after."
+ }
+}

@@ -1,0 +1,48 @@
+# 38 thread-safe guarded initialisers, each building one Phyre class descriptor
+# that registers exactly two members named m_count and m_els - the count +
+# elements pair of a resizable-array-style reflection layout. PROVENANCE IS
+# THE MEMBER-NAMED LITERALS: every member contains disp32 references to BOTH
+# 00D27728 "m_count" and 00D32DC0 "m_els", each unique in the image, passed
+# to the member-registration calls 00632960/00632A10. Form-derived: 545 of
+# 815 byte positions identical; all members also call the three descriptor
+# constructors 006372A0/006373D0/00632D80 and _Init_thread_header x4.
+# select_two_member_descriptor_registrars.py --write
+entry	size
+005B5AE0	815
+005B5E10	815
+005B6140	815
+005B6470	815
+005B67A0	815
+005B6AD0	815
+005B6E00	815
+005B7130	815
+005B7460	815
+005ECB40	815
+005ECE70	815
+005ED4D0	815
+005ED800	815
+005EDB30	815
+005EDE60	815
+005EE190	815
+005EE4C0	815
+005EE7F0	815
+005EEB20	815
+005EEE50	815
+005EF180	815
+005EF4B0	815
+005EF7E0	815
+00618CA0	815
+00669140	815
+00669470	815
+006697A0	815
+00669AD0	815
+00669E00	815
+0066A130	815
+0067D810	815
+006AE780	815
+006BCF80	815
+006BD2B0	815
+006C1920	815
+006D2390	815
+006D26C0	815
+006D29F0	815

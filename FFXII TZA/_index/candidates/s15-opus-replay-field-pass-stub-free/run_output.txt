@@ -1,0 +1,10 @@
+P_fold_every_actor_driven_counters_up_publish_current                            PASS
+P_drive_counters_up_publish_current_bit0_equals_bit7                             PASS
+I1_drive_loop_runs_once_repeat_zero_times_exit_B                                 PASS
+I2_control_nibble_set_repeats_without_bound_until_the_replay_budget              PASS
+I3_no_focus_and_unresolved_handle_both_publish_null_indistinguishably            PASS
+I3_control_valid_handle_publishes_the_record                                     PASS
+I4_success_reported_with_no_actor_driven                                         PASS
+no_fence_no_fault                                                                PASS
+EXP-106-scripted callees that ran real: ['001ED180', '0025B250', '0025B600', '0025B740', '0025B820', '0025C170', '0025E400', '002681E0', '002E5030', '002E5750']
+ALL PASS

@@ -1,0 +1,8 @@
+claim_id	claim	assertions	original_sites	limit
+S11-1	Image-backed stack and depth reset	entry_clears_shared_depth_even_blocked;entry_does_not_erase_value_storage	0025E4D8	No full process-start or concurrent-use proof
+S11-2	Original command wait/resume	wait0_pc;wait1_return;wait2_phase;outer_continues_after_wait	002621D0;0034CF90;0034DCC0	Invocation counts, not live frames
+S11-3	Target versus issuer versus control	callact_uses_other_actor;phase1_and_zero_actor_control_counts_down;actor_control_forces_scratch_zero	00262225;00267310	Synthetic rebind, not allocator-generation identity
+S11-4	Result typing and capacity	real_getx_float_result;full_stack_depth_unchanged;full_stack_return_slot_still_written	0026B4C0;00262382	No all-callback proof
+S11-5	Stop/flush/budget distinctions	yield_discards_nonempty_stack;extra_operand_causes_second_poll_same_invocation;instruction_budget_65536_advance	0025E570;0025E60A;0025E613	Malformed-bytecode reachability not shown
+S11-6	Predecoded read is observable	length1_marker_still_reads_second_operand_byte;non_predecode_marker_at_page_end_returns	0025E5AF	Expected fault in child only
+S11-7	Typed arithmetic and persistent state	integer_add_wraps32;mixed_add_is_float;request_accumulator_survives_next_entry	0025E4C0	Only selected opcode paths

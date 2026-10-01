@@ -1,0 +1,57 @@
+A  references into 0216FCC0..0216FCF0
+  rip-relative:
+  image-base-relative:
+  data_refs 0216FCDC: {'abs64': [], 'rva32': []}
+  data_refs 0216FCCC: {'abs64': [], 'rva32': []}
+B  rip-relative references to the record-pointer cell 020927C0..020927C8
+     002502C7  mov rdx, qword ptr [rip + 0x1e424f2]  (size 8)
+     00250425  mov rdx, qword ptr [rip + 0x1e42394]  (size 8)
+     00252620  mov r9, qword ptr [rip + 0x1e40199]  (size 8)
+     002526D0  mov rcx, qword ptr [rip + 0x1e400e9]  (size 8)
+     00252704  mov rbp, qword ptr [rip + 0x1e400b5]  (size 8)
+     002527B0  mov r9, qword ptr [rip + 0x1e40009]  (size 8)
+     00252D10  mov rax, qword ptr [rip + 0x1e3faa9]  (size 8)
+     00252D57  add r9, qword ptr [rip + 0x1e3fa62]  (size 8)
+     00252EAB  mov rax, qword ptr [rip + 0x1e3f90e]  (size 8)
+     00252F85  mov rax, qword ptr [rip + 0x1e3f834]  (size 8)
+     00252FD0  mov rax, qword ptr [rip + 0x1e3f7e9]  (size 8)
+     00253019  mov rax, qword ptr [rip + 0x1e3f7a0]  (size 8)
+     0025313B  mov rax, qword ptr [rip + 0x1e3f67e]  (size 8)
+     002532A2  mov rcx, qword ptr [rip + 0x1e3f517]  (size 8)
+     002534A3  mov rax, qword ptr [rip + 0x1e3f316]  (size 8)
+     00253508  mov rax, qword ptr [rip + 0x1e3f2b1]  (size 8)
+     00253626  mov rax, qword ptr [rip + 0x1e3f193]  (size 8)
+     002536A0  mov rax, qword ptr [rip + 0x1e3f119]  (size 8)
+   W 00253990  mov qword ptr [rip + 0x1e3ee29], rax  (size 8)
+     00253A98  mov rcx, qword ptr [rip + 0x1e3ed21]  (size 8)
+     00253B15  mov rax, qword ptr [rip + 0x1e3eca4]  (size 8)
+     00253B2F  mov rbx, qword ptr [rip + 0x1e3ec8a]  (size 8)
+     00253B69  mov rcx, qword ptr [rip + 0x1e3ec50]  (size 8)
+     002542BA  mov rax, qword ptr [rip + 0x1e3e4ff]  (size 8)
+     00254CD6  mov rbx, qword ptr [rip + 0x1e3dae3]  (size 8)
+     00254DD0  mov rax, qword ptr [rip + 0x1e3d9e9]  (size 8)
+     00254E17  add r9, qword ptr [rip + 0x1e3d9a2]  (size 8)
+     00255040  mov rax, qword ptr [rip + 0x1e3d779]  (size 8)
+     002550F3  mov rax, qword ptr [rip + 0x1e3d6c6]  (size 8)
+     00255128  mov rax, qword ptr [rip + 0x1e3d691]  (size 8)
+     002551CA  mov rax, qword ptr [rip + 0x1e3d5ef]  (size 8)
+     0025520F  mov rdx, qword ptr [rip + 0x1e3d5a9]  (size 8)
+   (count 32)
+  image-base-relative:
+C  address-forming references to 02164280 (save image): lea / rip-relative, then image-base-relative
+     002EF57C  lea rax, [rip + 0x1e74cfd]  (size 8)
+     002EF5F6  lea rcx, [rip + 0x1e74c83]  (size 8)
+     002EF640  lea rax, [rip + 0x1e74c39]  (size 8)
+     002EF656  lea rcx, [rip + 0x1e74c23]  (size 8)
+  data_refs: {'abs64': [], 'rva32': []}
+C  address-forming references to 0216C480 (record = image+0x8200): lea / rip-relative, then image-base-relative
+  data_refs: {'abs64': [], 'rva32': []}
+C  address-forming references to 021BA940 (snapshot): lea / rip-relative, then image-base-relative
+     002EF620  lea rax, [rip + 0x1ecb319]  (size 8)
+     002EF6A4  lea rcx, [rip + 0x1ecb295]  (size 8)
+  data_refs: {'abs64': [], 'rva32': []}
+C  address-forming references to 02211000 (save buffer): lea / rip-relative, then image-base-relative
+     002EF630  lea rax, [rip + 0x1f219c9]  (size 8)
+     002EF69D  lea r8, [rip + 0x1f2195c]  (size 8)
+     002EF71E  lea rdx, [rip + 0x1f218db]  (size 8)
+  data_refs: {'abs64': [], 'rva32': []}

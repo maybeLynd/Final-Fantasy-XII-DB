@@ -1,0 +1,68 @@
+== A. operands starting in [02CB83D0, 02CB8418)
+  001C8F2B rip   sete     byte ptr [rip + 0x2aef4ca]                   start 02CB83FC w1   root 001C7940
+  001C8F68 rip   movss    dword ptr [rip + 0x2aef498], xmm0            start 02CB8408 w4   root 001C7940
+  001C8FAB rip   movss    dword ptr [rip + 0x2aef459], xmm0            start 02CB840C w4   root 001C7940
+  001C8FB5 rip   mov      dword ptr [rip + 0x2aef44d], 0x3f666666      start 02CB840C w4   root 001C7940
+  001C8FFF rip   movss    dword ptr [rip + 0x2aef40d], xmm0            start 02CB8414 w4  COVERS  root 001C7940
+  001C9040 rip   movss    dword ptr [rip + 0x2aef3c8], xmm0            start 02CB8410 w4  COVERS  root 001C7940
+  001F138A rip   mov      dword ptr [rip + 0x2ac705c], eax             start 02CB83EC w4   root 001F0AD0
+  001F1399 rip   mov      dword ptr [rip + 0x2ac7051], eax             start 02CB83F0 w4   root 001F0AD0
+  001F13B5 rip   mov      dword ptr [rip + 0x2ac7039], eax             start 02CB83F4 w4   root 001F0AD0
+  001F13C6 rip   mov      dword ptr [rip + 0x2ac702c], eax             start 02CB83F8 w4   root 001F0AD0
+  001F13D2 rip   mov      dword ptr [rip + 0x2ac7004], eax             start 02CB83DC w4   root 001F0AD0
+  001F1420 rip   movss    dword ptr [rip + 0x2ac6fa8], xmm3            start 02CB83D0 w4   root 001F0AD0
+  001F1431 rip   mov      dword ptr [rip + 0x2ac6fa9], eax             start 02CB83E0 w4   root 001F0AD0
+  001F149B rip   mov      dword ptr [rip + 0x2ac6f43], eax             start 02CB83E4 w4   root 001F0AD0
+  001F14A9 rip   movss    dword ptr [rip + 0x2ac6f4f], xmm0            start 02CB8400 w4   root 001F0AD0
+  001F14B9 rip   movss    dword ptr [rip + 0x2ac6f43], xmm1            start 02CB8404 w4   root 001F0AD0
+  001F14F7 rip   mov      dword ptr [rip + 0x2ac6edb], eax             start 02CB83D8 w4   root 001F0AD0
+  001F1505 rip   movss    dword ptr [rip + 0x2ac6ec7], xmm0            start 02CB83D4 w4   root 001F0AD0
+  001F1543 rip   mov      dword ptr [rip + 0x2ac6e9f], eax             start 02CB83E8 w4   root 001F0AD0
+  001FA8D8 rip   movss    xmm0, dword ptr [rip + 0x2abdb24]            start 02CB8404 w4   root 001FA820
+  001FA90C rip   movss    dword ptr [rip + 0x2abdaf0], xmm1            start 02CB8404 w4   root 001FA820
+  covering the pair: 2 -> ['001C8FFF movss', '001C9040 movss']
+  widest operand in the window: 4 bytes; indexed hits: 0; image-base-relative hits: 0; abs32 hits: 0
+== B. rip leas with target in [02CB7C10, 02CB8418)
+  00161754 lea rcx -> 02CB7CA0 (pair - 0x770)  root 00161750
+  00162414 lea rcx -> 02CB7FD0 (pair - 0x440)  root 00162410
+  00162B4C lea rcx -> 02CB7DA0 (pair - 0x670)  root 00162B30
+  001A272F lea rcx -> 02CB7FD0 (pair - 0x440)  root 001A2130
+  001BCC65 lea rcx -> 02CB7FD0 (pair - 0x440)  root 001BC9D0
+  005D6C74 lea rcx -> 02CB7CA0 (pair - 0x770)  root 005D6C70
+  005D6E64 lea r8 -> 02CB7CA0 (pair - 0x770)  root 005D6E50
+  005D7064 lea rcx -> 02CB7CA0 (pair - 0x770)  root 005D7060
+  005D7077 lea rcx -> 02CB7CA0 (pair - 0x770)  root 005D7060
+  005D7289 lea r8 -> 02CB7CA0 (pair - 0x770)  root 00000000
+  005F3419 lea rdx -> 02CB7CA0 (pair - 0x770)  root 005F33E0
+  005F3480 lea rcx -> 02CB7CA0 (pair - 0x770)  root 005F33E0
+  005F9792 lea rdx -> 02CB7CA0 (pair - 0x770)  root 005F9750
+  005FD2D7 lea rbx -> 02CB7DA0 (pair - 0x670)  root 005FD2A0
+  005FD309 lea rdi -> 02CB7DA8 (pair - 0x668)  root 005FD2A0
+  00607F12 lea rax -> 02CB7FD0 (pair - 0x440)  root 00607F00
+  0060887E lea rdx -> 02CB7FD0 (pair - 0x440)  root 006084B0
+  0060890A lea rdx -> 02CB8160 (pair - 0x2B0)  root 006084B0
+  00608AB9 lea rcx -> 02CB7CA0 (pair - 0x770)  root 00608A40
+  00608ACC lea rcx -> 02CB7CA0 (pair - 0x770)  root 00608A40
+  008AB197 lea rcx -> 02CB7CA0 (pair - 0x770)  root 00000000
+  008AB7C0 lea rcx -> 02CB7FD0 (pair - 0x440)  root 00000000
+  008ADEBC lea rcx -> 02CB7DA0 (pair - 0x670)  root 00000000
+  23 leas
+== C. stored pointers into [02CB7C10, 02CB8418)
+  relocations: 0 []
+  raw values outside .text (abs64/abs32/rva32): 1
+    rva32 at 00D16B63 = 02CB7C40 (.rdata)
+== D. callers of the writer 001C7940
+  ['001C62DA call', '001C735A jmp']
+  relocated slots holding 001C7940: []
+== controls
+PASS  K1 exact rip: writer stores 001C9040 / 001C8FFF and 02CB8404's reader 001FA8D8 (root 001FA820) found
+PASS  K2 wide coverage: 005ADC61 rip   movups   xmmword ptr [rip + 0x2703000], xmm0          start 02CB0C68 w16 COVERS re-found from start+8 and flagged COVERS
+PASS  K3 image-base-relative: 0036E414 `mov dword ptr [r9 + rcx*4 + 0x21b97b0], r8d`
+   K4 sample: 002AECA3 ibrel movzx    edx, byte ptr [rax + rcx + 0x1cece30]        start 01E0CE30 w1  COVERS indexed
+   K4 sample: 002AEE26 ibrel movzx    eax, byte ptr [rax + rcx + 0x1cece10]        start 01E0CE10 w1  COVERS indexed
+PASS  K4 index-only / scale-1 base+index image-base-relative forms occur (2 in 01E0C000..01E10000) and are decoded
+PASS  K5 relocation control: 6 DIR64 sites point into 01F2E330..01F2E36F
+== verdict inputs
+PASS  V1 the only operands covering 02CB8410..02CB8417 in any form are the writer's two movss stores
+PASS  V2 no relocated pointer targets 02CB7C10..02CB8417
+FAILS 0

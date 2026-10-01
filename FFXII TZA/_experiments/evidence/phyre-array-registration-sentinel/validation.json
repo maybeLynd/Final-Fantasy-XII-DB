@@ -1,0 +1,24 @@
+{
+  "status": "PASS_BOUNDED_STATIC_AND_AUTHORED",
+  "controls": {
+    "original_resource_positives": [
+      "PMesh count1",
+      "PAssetReference count83"
+    ],
+    "corruptions_rejected": [
+      "bad-list-id",
+      "short-namespace",
+      "name-middle",
+      "wrong-native-offset",
+      "wrong-native-descriptor",
+      "wrong-final-slot"
+    ]
+  },
+  "semantic_limits": [
+    "One named sentinel; historical137 cohort/count not reclassified.",
+    "Native type/field width unproved here; file member offset0 is not native+38.",
+    "Guarded registration path is static, not proof it executed in the title/scene.",
+    "Authored25 objects do not establish normal scene reachability, initialized runtime pointers or lifetime.",
+    "EXP124173 default capture does not contain this class; no recapture or default-byte value inferred."
+  ]
+}

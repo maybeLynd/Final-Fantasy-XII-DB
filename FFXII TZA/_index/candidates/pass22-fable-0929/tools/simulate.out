@@ -1,0 +1,77 @@
+== 01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md
+   before: ActorEntity 1, Audio 2, WorldAreaField 1
+   after:  ActorEntity 1, Audio 2, WorldAreaField 1
+   new cited functions: 0, held by R6 0, NOT held (new subjects) []
+   TARGET STILL OPEN ActorEntity 1
+   TARGET STILL OPEN Audio 2
+   TARGET STILL OPEN WorldAreaField 1
+== 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md
+   before: Audio 10, CombatFormula 152, Gameplay 132, Items_Equipment_Shops_License 64, RNG_Random_Selection 7, Save_Load_Settings 4
+   after:  Audio 10, Gameplay 132
+   new cited functions: 28, held by R6 28, NOT held (new subjects) []
+   target cleared: CombatFormula 152
+   target cleared: Items_Equipment_Shops_License 64
+   target cleared: RNG_Random_Selection 7
+   target cleared: Save_Load_Settings 4
+   new tripwire layers (R6-held far ends): ['Gameplay', 'Story_Event_Quest_Hunt']
+== 06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md
+   before: CoreRuntimeScheduling 4
+   after:  (none)
+   new cited functions: 3, held by R6 3, NOT held (new subjects) []
+   target cleared: CoreRuntimeScheduling 4
+== 07-Combat-Action/how-close-a-unit-must-stand-to-act.md
+   before: Rewards_Progression_Economy 1
+   after:  (none)
+   new cited functions: 1, held by R6 1, NOT held (new subjects) []
+   target cleared: Rewards_Progression_Economy 1
+   new tripwire layers (R6-held far ends): ['Status_Periodic_Terminal']
+== 13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md
+   before: CoreRuntimeScheduling 2, RNG_Random_Selection 2, Script_VM_Native_Bridge 2, WorldAreaField 2
+   after:  (none)
+   new cited functions: 6, held by R6 6, NOT held (new subjects) []
+   target cleared: CoreRuntimeScheduling 2
+   target cleared: RNG_Random_Selection 2
+   target cleared: Script_VM_Native_Bridge 2
+   target cleared: WorldAreaField 2
+   new tripwire layers (R6-held far ends): ['Input', 'Resource', 'Save_Load_Settings']
+== 15-Input/how-a-gamepad-becomes-a-controller-object.md
+   before: Script_VM_Native_Bridge 1
+   after:  (none)
+   new cited functions: 1, held by R6 1, NOT held (new subjects) []
+   target cleared: Script_VM_Native_Bridge 1
+== 17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md
+   before: UI 8, WorldAreaField 1
+   after:  UI 8
+   new cited functions: 1, held by R6 1, NOT held (new subjects) []
+   TARGET STILL OPEN UI 8
+   target cleared: WorldAreaField 1
+== 17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md
+   before: Input 1
+   after:  Input 1
+   new cited functions: 0, held by R6 0, NOT held (new subjects) []
+   TARGET STILL OPEN Input 1
+== 17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md
+   before: Movement 1
+   after:  (none)
+   new cited functions: 1, held by R6 1, NOT held (new subjects) []
+   target cleared: Movement 1
+   new tripwire layers (R6-held far ends): ['Script_VM_Native_Bridge']
+== 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+   before: CombatFormula 1, Input 6, Script_VM_Native_Bridge 57, Spawn_Encounter_Lifecycle 3
+   after:  CombatFormula 1, Input 6, Spawn_Encounter_Lifecycle 3
+   new cited functions: 5, held by R6 5, NOT held (new subjects) []
+   target cleared: Script_VM_Native_Bridge 57
+== 17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md
+   before: Movement 1, UI 1
+   after:  Movement 1, UI 1
+   new cited functions: 0, held by R6 0, NOT held (new subjects) []
+   TARGET STILL OPEN Movement 1
+   TARGET STILL OPEN UI 1
+== 22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md
+   before: Audio 1, CoreRuntimeScheduling 1, Platform 4
+   after:  CoreRuntimeScheduling 1, Platform 4
+   new cited functions: 2, held by R6 2, NOT held (new subjects) []
+   TARGET STILL OPEN CoreRuntimeScheduling 1
+   TARGET STILL OPEN Platform 4
+   target cleared: Audio 1
+pairs remaining across pages (incl. non-FABLE pairs on the page): 14

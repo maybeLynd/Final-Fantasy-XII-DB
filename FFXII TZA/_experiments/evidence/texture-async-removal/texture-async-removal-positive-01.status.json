@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-removal.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-removal-result-01.json"
+  ],
+  "exit": 0,
+  "checker_sha256": "3449076e85dd270ca42a362bdacc70387ae2b685450698f9427732dc6ff4ab0c"
+}

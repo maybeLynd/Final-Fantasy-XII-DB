@@ -1,0 +1,653 @@
+{
+  "status": "PASS",
+  "method": "A exact shipping bytes and source interpretation; no B/live execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "capstone_version": "5.0.7",
+  "collected_bodies": 10,
+  "reused": {
+    "path": "Database/FFXII TZA/_experiments/evidence/spawn-storage-completion/file.json",
+    "sha256": "0031fcb3df32c801c4e0c0b46258d4f58326c8f62c7250205cfba50c5e331723",
+    "addresses": [
+      "0x866200",
+      "0x8666b0"
+    ]
+  },
+  "sources": [
+    {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-primary.json",
+      "sha256": "cd525092e3a97672787beac4f445586e5cd750c4c2494d7fbd0e9df4375e6bf7"
+    },
+    {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-decode.json",
+      "sha256": "851588536b3dc8f0ea6d5d60f0eb1681e5e977c21a2f70d0adf128374423e3e5"
+    },
+    {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-zlib.json",
+      "sha256": "91b69e94fbd81fe28eef1f81cdcf6f52fc63febedd15ecced65e56360f25240e"
+    },
+    {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-inflate-init.json",
+      "sha256": "427649c76e56ae9415177794136bf1f076069470c1255fe3f14cb3420fb54542"
+    }
+  ],
+  "bodies": [
+    {
+      "address": "0x865d90",
+      "bytes": 158,
+      "sha256": "068e6751ffaa24b0ebcafe1489e63c4d42845c18e9036ac17f6af9da6737158a"
+    },
+    {
+      "address": "0x865ae0",
+      "bytes": 681,
+      "sha256": "950399cdbd9a568266b9b891441f36089ec9e424b6698ce95f106c226b7b691b"
+    },
+    {
+      "address": "0x87af40",
+      "bytes": 243,
+      "sha256": "3a1ddc2c17b739c189339880ed87637e9b30328bcbc2599c1c43b19bf27856d2"
+    },
+    {
+      "address": "0x865840",
+      "bytes": 663,
+      "sha256": "4e8665898cc1f188417d2450c443da6234bb05ed5276251666d36174bf5acb10"
+    },
+    {
+      "address": "0x80c5a0",
+      "bytes": 24,
+      "sha256": "94aab5691231a844771266faf01c22bbfe3481bbbcda421abf962255c35b63cd"
+    },
+    {
+      "address": "0x87c9f0",
+      "bytes": 50,
+      "sha256": "9ff978ca031439dc4f39e96c59f46edd2d909ed21a34a5af8c460d90f1f9edff"
+    },
+    {
+      "address": "0x861eba",
+      "bytes": 6,
+      "sha256": "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03"
+    },
+    {
+      "address": "0x80c5c0",
+      "bytes": 339,
+      "sha256": "45820e6c6085fdcc4351af329c99c0c6ee1e67af9fca927ddd913ff71ca24beb"
+    },
+    {
+      "address": "0x87c760",
+      "bytes": 655,
+      "sha256": "7ea93efab311a20fb51862ca3f67004a0968f1bcf9eace2024f847b189c53769"
+    },
+    {
+      "address": "0x80e040",
+      "bytes": 16,
+      "sha256": "8bc6261a17ee4fbaf9bb716095995f70854e7d7aa87cebb2b40c71630d8bd5fa"
+    },
+    {
+      "address": "0x866200",
+      "bytes": 1195,
+      "sha256": "94c281753ab2cc317781bee05a9e188102e9e062c27cd10aaecc48d17dd2f584"
+    },
+    {
+      "address": "0x8666b0",
+      "bytes": 833,
+      "sha256": "fcff770274b2963638143e28a3679eb41fcee0288fd172759ae14bd71edd6f49"
+    }
+  ],
+  "anchors": [
+    {
+      "address": "0x865dd9",
+      "bytes": "e862faffff",
+      "mnemonic": "call",
+      "operands": "0x865840"
+    },
+    {
+      "address": "0x865de3",
+      "bytes": "742b",
+      "mnemonic": "je",
+      "operands": "0x865e10"
+    },
+    {
+      "address": "0x865dfb",
+      "bytes": "e8a067faff",
+      "mnemonic": "call",
+      "operands": "0x80c5a0"
+    },
+    {
+      "address": "0x865e02",
+      "bytes": "7404",
+      "mnemonic": "je",
+      "operands": "0x865e08"
+    },
+    {
+      "address": "0x865e0e",
+      "bytes": "8906",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rsi], eax"
+    },
+    {
+      "address": "0x865932",
+      "bytes": "2bdf",
+      "mnemonic": "sub",
+      "operands": "ebx, edi"
+    },
+    {
+      "address": "0x865942",
+      "bytes": "4803d7",
+      "mnemonic": "add",
+      "operands": "rdx, rdi"
+    },
+    {
+      "address": "0x86594c",
+      "bytes": "7e13",
+      "mnemonic": "jle",
+      "operands": "0x865961"
+    },
+    {
+      "address": "0x865961",
+      "bytes": "c645ee00",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rbp - 0x12], 0"
+    },
+    {
+      "address": "0x865bd2",
+      "bytes": "2bdf",
+      "mnemonic": "sub",
+      "operands": "ebx, edi"
+    },
+    {
+      "address": "0x865be2",
+      "bytes": "4803d7",
+      "mnemonic": "add",
+      "operands": "rdx, rdi"
+    },
+    {
+      "address": "0x865bec",
+      "bytes": "7e13",
+      "mnemonic": "jle",
+      "operands": "0x865c01"
+    },
+    {
+      "address": "0x865c01",
+      "bytes": "c645ee00",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rbp - 0x12], 0"
+    },
+    {
+      "address": "0x8658f7",
+      "bytes": "ba03800000",
+      "mnemonic": "mov",
+      "operands": "edx, 0x8003"
+    },
+    {
+      "address": "0x86599f",
+      "bytes": "41b900008000",
+      "mnemonic": "mov",
+      "operands": "r9d, 0x800000"
+    },
+    {
+      "address": "0x8659a5",
+      "bytes": "ba01680000",
+      "mnemonic": "mov",
+      "operands": "edx, 0x6801"
+    },
+    {
+      "address": "0x865b97",
+      "bytes": "ba03800000",
+      "mnemonic": "mov",
+      "operands": "edx, 0x8003"
+    },
+    {
+      "address": "0x865c3f",
+      "bytes": "41b900008000",
+      "mnemonic": "mov",
+      "operands": "r9d, 0x800000"
+    },
+    {
+      "address": "0x865c45",
+      "bytes": "ba01680000",
+      "mnemonic": "mov",
+      "operands": "edx, 0x6801"
+    },
+    {
+      "address": "0x8659c2",
+      "bytes": "41bfe8030000",
+      "mnemonic": "mov",
+      "operands": "r15d, 0x3e8"
+    },
+    {
+      "address": "0x8659fe",
+      "bytes": "0f42f9",
+      "mnemonic": "cmovb",
+      "operands": "edi, ecx"
+    },
+    {
+      "address": "0x865a03",
+      "bytes": "742e",
+      "mnemonic": "je",
+      "operands": "0x865a33"
+    },
+    {
+      "address": "0x865a27",
+      "bytes": "7416",
+      "mnemonic": "je",
+      "operands": "0x865a3f"
+    },
+    {
+      "address": "0x865c66",
+      "bytes": "b9e8030000",
+      "mnemonic": "mov",
+      "operands": "ecx, 0x3e8"
+    },
+    {
+      "address": "0x865ca5",
+      "bytes": "0f42f9",
+      "mnemonic": "cmovb",
+      "operands": "edi, ecx"
+    },
+    {
+      "address": "0x865caa",
+      "bytes": "7439",
+      "mnemonic": "je",
+      "operands": "0x865ce5"
+    },
+    {
+      "address": "0x865cd2",
+      "bytes": "741d",
+      "mnemonic": "je",
+      "operands": "0x865cf1"
+    },
+    {
+      "address": "0x8663d0",
+      "bytes": "251f000080",
+      "mnemonic": "and",
+      "operands": "eax, 0x8000001f"
+    },
+    {
+      "address": "0x866464",
+      "bytes": "c744242009000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rsp + 0x20], 9"
+    },
+    {
+      "address": "0x86646c",
+      "bytes": "e8cf4a0100",
+      "mnemonic": "call",
+      "operands": "0x87af40"
+    },
+    {
+      "address": "0x866478",
+      "bytes": "7407",
+      "mnemonic": "je",
+      "operands": "0x866481"
+    },
+    {
+      "address": "0x866493",
+      "bytes": "e848f6ffff",
+      "mnemonic": "call",
+      "operands": "0x865ae0"
+    },
+    {
+      "address": "0x8667bc",
+      "bytes": "0f860d010000",
+      "mnemonic": "jbe",
+      "operands": "0x8668cf"
+    },
+    {
+      "address": "0x8667ed",
+      "bytes": "7713",
+      "mnemonic": "ja",
+      "operands": "0x866802"
+    },
+    {
+      "address": "0x866805",
+      "bytes": "83f81f",
+      "mnemonic": "cmp",
+      "operands": "eax, 0x1f"
+    },
+    {
+      "address": "0x866808",
+      "bytes": "0f87ca010000",
+      "mnemonic": "ja",
+      "operands": "0x8669d8"
+    },
+    {
+      "address": "0x866817",
+      "bytes": "81fa00001000",
+      "mnemonic": "cmp",
+      "operands": "edx, 0x100000"
+    },
+    {
+      "address": "0x86681d",
+      "bytes": "0f87b5010000",
+      "mnemonic": "ja",
+      "operands": "0x8669d8"
+    },
+    {
+      "address": "0x86685d",
+      "bytes": "e82ef5ffff",
+      "mnemonic": "call",
+      "operands": "0x865d90"
+    },
+    {
+      "address": "0x86686d",
+      "bytes": "7553",
+      "mnemonic": "jne",
+      "operands": "0x8668c2"
+    },
+    {
+      "address": "0x866871",
+      "bytes": "7e4f",
+      "mnemonic": "jle",
+      "operands": "0x8668c2"
+    },
+    {
+      "address": "0x80c5ae",
+      "bytes": "e80d000000",
+      "mnemonic": "call",
+      "operands": "0x80c5c0"
+    },
+    {
+      "address": "0x80c622",
+      "bytes": "e8191a0000",
+      "mnemonic": "call",
+      "operands": "0x80e040"
+    },
+    {
+      "address": "0x80c67f",
+      "bytes": "e8cc000000",
+      "mnemonic": "call",
+      "operands": "0x80c750"
+    },
+    {
+      "address": "0x80c6a3",
+      "bytes": "41290c24",
+      "mnemonic": "sub",
+      "operands": "dword ptr [r12], ecx"
+    },
+    {
+      "address": "0x80c6cb",
+      "bytes": "e830180000",
+      "mnemonic": "call",
+      "operands": "0x80df00"
+    },
+    {
+      "address": "0x80e046",
+      "bytes": "ba0f000000",
+      "mnemonic": "mov",
+      "operands": "edx, 0xf"
+    },
+    {
+      "address": "0x80e04b",
+      "bytes": "e900ffffff",
+      "mnemonic": "jmp",
+      "operands": "0x80df50"
+    },
+    {
+      "address": "0x87af91",
+      "bytes": "e85a1a0000",
+      "mnemonic": "call",
+      "operands": "0x87c9f0"
+    },
+    {
+      "address": "0x87afe7",
+      "bytes": "e8740d0000",
+      "mnemonic": "call",
+      "operands": "0x87bd60"
+    },
+    {
+      "address": "0x87b008",
+      "bytes": "e8b3160000",
+      "mnemonic": "call",
+      "operands": "0x87c6c0"
+    },
+    {
+      "address": "0x87c9f9",
+      "bytes": "41b90f000000",
+      "mnemonic": "mov",
+      "operands": "r9d, 0xf"
+    },
+    {
+      "address": "0x87ca04",
+      "bytes": "c744242800000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rsp + 0x28], 0"
+    },
+    {
+      "address": "0x87ca0c",
+      "bytes": "c744242008000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rsp + 0x20], 8"
+    },
+    {
+      "address": "0x87ca18",
+      "bytes": "e843fdffff",
+      "mnemonic": "call",
+      "operands": "0x87c760"
+    },
+    {
+      "address": "0x87c78e",
+      "bytes": "803831",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rax], 0x31"
+    },
+    {
+      "address": "0x87c797",
+      "bytes": "83bc248800000058",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rsp + 0x88], 0x58"
+    },
+    {
+      "address": "0x87c83d",
+      "bytes": "83fd09",
+      "mnemonic": "cmp",
+      "operands": "ebp, 9"
+    }
+  ],
+  "import_anchors": {
+    "0x8658af": "CryptAcquireContextW",
+    "0x8658d6": "CryptAcquireContextW",
+    "0x8658fc": "CryptCreateHash",
+    "0x865985": "CryptHashData",
+    "0x8659af": "CryptDeriveKey",
+    "0x865a1f": "CryptDecrypt",
+    "0x865cca": "CryptEncrypt",
+    "0x8663c5": "rand",
+    "0x861eba": "memcpy"
+  },
+  "literals": [
+    {
+      "address": "0x1ccfcf8",
+      "bytes": 33,
+      "raw_hex": "46494e414c2046414e544153592058494920544845205a4f444941432041474500",
+      "sha256": "9fd90df4075f223539402bd81b38fa592446ef1a899d0dde06565e7448e5699b",
+      "text": "FINAL FANTASY XII THE ZODIAC AGE",
+      "encoding": "ascii"
+    },
+    {
+      "address": "0x1ccfd20",
+      "bytes": 38,
+      "raw_hex": "5200530041005f0053005100450058005f00460046005800490049005f0054005a0041000000",
+      "sha256": "b3196f23b3ddaa72a4d13875af6d7faec793c796a8c09c4ff4a385524b74eec0",
+      "text": "RSA_SQEX_FFXII_TZA",
+      "encoding": "utf-16-le"
+    },
+    {
+      "address": "0x1ccfd90",
+      "bytes": 94,
+      "raw_hex": "4d006900630072006f0073006f0066007400200045006e00680061006e006300650064002000430072007900700074006f0067007200610070006800690063002000500072006f00760069006400650072002000760031002e0030000000",
+      "sha256": "f90ac0e6097c39a628bf470041a49a02f3685745f72640d070c7171a7ffa5deb",
+      "text": "Microsoft Enhanced Cryptographic Provider v1.0",
+      "encoding": "utf-16-le"
+    },
+    {
+      "address": "0x1cc73a4",
+      "bytes": 7,
+      "raw_hex": "312e322e313100",
+      "sha256": "296703a7d5d22ff5df6398fe1fc5c33e7a9bacb72dcce739825df678f16484e8",
+      "text": "1.2.11",
+      "encoding": "ascii"
+    }
+  ],
+  "source_derived_rotation_examples": [
+    {
+      "selector": 0,
+      "hashed_ascii": "FINAL FANTASY XII THE ZODIAC AG",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 1,
+      "hashed_ascii": "INAL FANTASY XII THE ZODIAC AGE",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 2,
+      "hashed_ascii": "NAL FANTASY XII THE ZODIAC AGEF",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 3,
+      "hashed_ascii": "AL FANTASY XII THE ZODIAC AGEFI",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 4,
+      "hashed_ascii": "L FANTASY XII THE ZODIAC AGEFIN",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 5,
+      "hashed_ascii": " FANTASY XII THE ZODIAC AGEFINA",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 6,
+      "hashed_ascii": "FANTASY XII THE ZODIAC AGEFINAL",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 7,
+      "hashed_ascii": "ANTASY XII THE ZODIAC AGEFINAL ",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 8,
+      "hashed_ascii": "NTASY XII THE ZODIAC AGEFINAL F",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 9,
+      "hashed_ascii": "TASY XII THE ZODIAC AGEFINAL FA",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 10,
+      "hashed_ascii": "ASY XII THE ZODIAC AGEFINAL FAN",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 11,
+      "hashed_ascii": "SY XII THE ZODIAC AGEFINAL FANT",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 12,
+      "hashed_ascii": "Y XII THE ZODIAC AGEFINAL FANTA",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 13,
+      "hashed_ascii": " XII THE ZODIAC AGEFINAL FANTAS",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 14,
+      "hashed_ascii": "XII THE ZODIAC AGEFINAL FANTASY",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 15,
+      "hashed_ascii": "II THE ZODIAC AGEFINAL FANTASY ",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 16,
+      "hashed_ascii": "I THE ZODIAC AGEFINAL FANTASY X",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 17,
+      "hashed_ascii": " THE ZODIAC AGEFINAL FANTASY XI",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 18,
+      "hashed_ascii": "THE ZODIAC AGEFINAL FANTASY XII",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 19,
+      "hashed_ascii": "HE ZODIAC AGEFINAL FANTASY XII ",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 20,
+      "hashed_ascii": "E ZODIAC AGEFINAL FANTASY XII T",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 21,
+      "hashed_ascii": " ZODIAC AGEFINAL FANTASY XII TH",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 22,
+      "hashed_ascii": "ZODIAC AGEFINAL FANTASY XII THE",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 23,
+      "hashed_ascii": "ODIAC AGEFINAL FANTASY XII THE ",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 24,
+      "hashed_ascii": "DIAC AGEFINAL FANTASY XII THE Z",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 25,
+      "hashed_ascii": "IAC AGEFINAL FANTASY XII THE ZO",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 26,
+      "hashed_ascii": "AC AGEFINAL FANTASY XII THE ZOD",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 27,
+      "hashed_ascii": "C AGEFINAL FANTASY XII THE ZODI",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 28,
+      "hashed_ascii": " AGEFINAL FANTASY XII THE ZODIA",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 29,
+      "hashed_ascii": "AGEFINAL FANTASY XII THE ZODIAC",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 30,
+      "hashed_ascii": "GEFINAL FANTASY XII THE ZODIAC ",
+      "hashed_bytes": 31
+    },
+    {
+      "selector": 31,
+      "hashed_ascii": "EFINAL FANTASY XII THE ZODIAC A",
+      "hashed_bytes": 31
+    }
+  ],
+  "limits": "No provider/file/allocator execution, no decoded save or native roundtrip. Core zlib effects use existing library disposition and identified call boundary. Local consumer/native/live closure awaits peers. Two literal-length extraction failures remain rejected."
+}

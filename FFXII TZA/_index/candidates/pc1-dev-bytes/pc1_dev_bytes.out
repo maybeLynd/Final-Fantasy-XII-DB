@@ -1,0 +1,8 @@
+PASS D1  52 rip accesses into the range; ten bytes covered only by ['00408BA0', '00408C30']; unknown-width accesses 0
+PASS D5  every one of the 19 accesses covering the ten bytes is a byte STORE (defaults in 00408BA0, file copies in 00408C30); none reads them
+PASS D2  image-base-relative forms into the range: 0
+PASS D3  addresses in the range stored as a qword VA or dword RVA: []
+PASS D4  addresses formed by lea: []
+PASS C1  control: the six read fields' getters are found: ['00408B10', '00408B40', '00408B50', '00408B60', '00408B70', '00408B80']
+PASS C2  control: a qword at 02B62DA8 covers 02B62DA9, a byte does not
+FAILS 0

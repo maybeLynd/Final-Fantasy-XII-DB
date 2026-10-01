@@ -1,0 +1,24 @@
+{
+  "status": "INVALID",
+  "label": "title",
+  "start_unix": 1790464010.885692,
+  "pid": 43880,
+  "method": "C read-only original process; no debugger or interventions",
+  "samples": [],
+  "tool_hashes": {
+    "Database/Tools/work/ASTRA/body-pool-occupancy/observe.py": "914e5f22ea875abb2317efd62576b9c927343bf15afa82ac4d72e1277d094e8f",
+    "Database/Tools/analysis-kit/gfz-scripts/runtime_probe.py": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "Database/Tools/analysis-kit/gfz-scripts/ffxii_runtime.py": "5629e6368f838fda31084486578ec9c7479d3f5bf99100516acf9651b466bb6a"
+  },
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "creation_filetime": 134349375615070115,
+  "image_base": 1179648,
+  "positive": "19930d0a1a0a",
+  "null_rejected": true,
+  "debugger_present": false,
+  "module_verdict": "unreadable",
+  "watched_modules": [],
+  "modules_before": [],
+  "read_handle_closed": true,
+  "end_unix": 1790464021.8668768
+}

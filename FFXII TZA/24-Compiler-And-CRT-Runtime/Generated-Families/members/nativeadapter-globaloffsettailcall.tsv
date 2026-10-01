@@ -1,0 +1,6 @@
+# NativeAdapter.GlobalOffsetTailCall - EC-7 family C
+# # rcx = member global + member offset; tail-call a member op.
+address	targets
+0028E220	002BDCE0
+0028E860	0028CA30
+0028FB60	0028A080

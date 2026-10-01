@@ -1,0 +1,177 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A: raw original indexed tables; no execution",
+  "tables": [
+    {
+      "address": "0x580b0c",
+      "count": 13,
+      "input_bias": 2,
+      "raw_hex": "c50a4600c50a4600f20a4600c50a4600c50a4600c50a4600f20a4600f20a4600c50a4600f20a4600c50a4600f20a4600c50a4600",
+      "sha256": "3389a5491f406a0874d6b5ca253a7c88e1b0f80e6f5b487189a2f1245d05729a",
+      "targets": [
+        {
+          "input": 2,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 3,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 4,
+          "address": "0x580af2"
+        },
+        {
+          "input": 5,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 6,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 7,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 8,
+          "address": "0x580af2"
+        },
+        {
+          "input": 9,
+          "address": "0x580af2"
+        },
+        {
+          "input": 10,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 11,
+          "address": "0x580af2"
+        },
+        {
+          "input": 12,
+          "address": "0x580ac5"
+        },
+        {
+          "input": 13,
+          "address": "0x580af2"
+        },
+        {
+          "input": 14,
+          "address": "0x580ac5"
+        }
+      ]
+    },
+    {
+      "address": "0x581268",
+      "count": 15,
+      "input_bias": 0,
+      "raw_hex": "150f4600270f4600410f4600560f4600950f46003d1046006b0f4600800f46005210460041114600491146005e114600ff1146001812460018124600",
+      "sha256": "05f333283a0353e839724d9c6acea6ff28cb2ed087656eb9b3599c86c1c9c2d2",
+      "targets": [
+        {
+          "input": 0,
+          "address": "0x580f15"
+        },
+        {
+          "input": 1,
+          "address": "0x580f27"
+        },
+        {
+          "input": 2,
+          "address": "0x580f41"
+        },
+        {
+          "input": 3,
+          "address": "0x580f56"
+        },
+        {
+          "input": 4,
+          "address": "0x580f95"
+        },
+        {
+          "input": 5,
+          "address": "0x58103d"
+        },
+        {
+          "input": 6,
+          "address": "0x580f6b"
+        },
+        {
+          "input": 7,
+          "address": "0x580f80"
+        },
+        {
+          "input": 8,
+          "address": "0x581052"
+        },
+        {
+          "input": 9,
+          "address": "0x581141"
+        },
+        {
+          "input": 10,
+          "address": "0x581149"
+        },
+        {
+          "input": 11,
+          "address": "0x58115e"
+        },
+        {
+          "input": 12,
+          "address": "0x5811ff"
+        },
+        {
+          "input": 13,
+          "address": "0x581218"
+        },
+        {
+          "input": 14,
+          "address": "0x581218"
+        }
+      ]
+    },
+    {
+      "address": "0x582fa0",
+      "count": 8,
+      "input_bias": 2,
+      "raw_hex": "7c2b4600c72b4600382c4600832c4600202f4600932c4600202f4600a32c4600",
+      "sha256": "aec4dfe05f40651bc4536a61df1826b73f7ca91bb53af0fb7fcc337ea27c636f",
+      "targets": [
+        {
+          "input": 2,
+          "address": "0x582b7c"
+        },
+        {
+          "input": 3,
+          "address": "0x582bc7"
+        },
+        {
+          "input": 4,
+          "address": "0x582c38"
+        },
+        {
+          "input": 5,
+          "address": "0x582c83"
+        },
+        {
+          "input": 6,
+          "address": "0x582f20"
+        },
+        {
+          "input": 7,
+          "address": "0x582c93"
+        },
+        {
+          "input": 8,
+          "address": "0x582f20"
+        },
+        {
+          "input": 9,
+          "address": "0x582ca3"
+        }
+      ]
+    }
+  ]
+}

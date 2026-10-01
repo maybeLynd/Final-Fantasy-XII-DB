@@ -1,0 +1,6 @@
+REC table 022C1740[0..9]: verified image-base-form accesses 4, raw-only 0
+  003111A4 STORE mov | qword ptr [r13 + rdi*8 + 0x21a1740], rbx | 00310DB0 BattleUnit_RunPeriodicCombatMaintenance
+  003111D0 read  mov | rcx, qword ptr [r13 + rbx*8 + 0x21a1740] | 00310DB0 BattleUnit_RunPeriodicCombatMaintenance
+  00311245 read  mov | r8, qword ptr [r13 + rbx*8 + 0x21a1740] | 00310DB0 BattleUnit_RunPeriodicCombatMaintenance
+  00311252 read  mov | r8, qword ptr [r13 + rbx*8 + 0x21a1740] | 00310DB0 BattleUnit_RunPeriodicCombatMaintenance
+state cell 02EBF190: verified image-base-form accesses 0, raw-only 0

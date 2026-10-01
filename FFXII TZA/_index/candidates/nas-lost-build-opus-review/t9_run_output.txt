@@ -1,0 +1,6 @@
+PASS  T1 .gfids declares 0x30 bytes = twelve dwords, and the file has no COFF symbol table [49, 48, 19, 10, 13, 16, 69, 113, 10, 98, 55, 11]
+   Rich builds [0, 23013, 23026, 24123, 24210, 24215, 30729, 40219, 40629, 41118, 65501]; C/C++ objects at 24215: 1007; prebuilt at {24123: 67, 24210: 97, 23026: 56}
+PASS  T2 linker 14.0; the game's code at 24215 (VS2015 U3); prebuilt objects at 24123 / 24210 / 23026 
+   runtime libraries scanned 74; objects with .gfids$y 1826; by library {'exe_initialize_mta.lib': 4, 'iso_stdio_wide_specifiers.lib': 4, 'legacy_stdio_definitions.lib': 8, 'legacy_stdio_wide_specifiers.lib': 4, 'libcmt.lib': 48, 'libcmtd.lib': 52, 'libconcrt.lib': 170, 'libconcrt1.lib': 170, 'libconcrtd.lib': 170, 'libconcrtd0.lib': 170, 'libconcrtd1.lib': 170, 'libcpmt.lib': 142}; value range (7, 8009)
+PASS  T3 the static runtime's own objects carry .gfids$y, and every value is an index into that object's symbol table 
+FAILS 0

@@ -1,0 +1,8 @@
+SURVIVES  S0  all seven sizes as cited
+SURVIVES  S1  thunk routes and their sites as stated; regex (.*)(\\plan_master\\([a-zA-Z]+)\\event\\)(.*)
+SURVIVES  S2  flags cleared first; same-name exit; eviction; sum_ -> 01F832E8 inside its arm; spc_ (sum_ absent) -> 01F832E9; one ret after the -1 restore
+SURVIVES  S3  name copied before the bound check; -1 and empty-name refusals; marker stored, never restored; counter by the reloaded marker
+SURVIVES  S4  the driver's two flag reads; 00180120 at 00229A53; 001EC4B0 from three functions
+SURVIVES  S5  (REFUTES) 001EC680 stores slot or -1 above 4 (cmova), not min(slot, 4); its only callers are 00354B63 / 00354ED0 - 0026B750 reaches the pusher without it
+SURVIVES  S6  (REFUTES 'three sites') 001CD0E0 reads the counter array base-relative at ['001CD26E', '001CD375', '001CD3AC', '001CD865']
+FAILS 0

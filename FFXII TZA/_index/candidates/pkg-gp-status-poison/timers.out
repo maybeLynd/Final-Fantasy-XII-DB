@@ -1,0 +1,3 @@
+PASS  T stage 3: effect-layer id -> effect table 02EBF040 row +6 = slot -> +0x17C[slot] - 1 -> result +0x42[slot]
+PASS  B stage 2 never addresses +0x17C; it is the 32 statuses' timer
+FAILS 0

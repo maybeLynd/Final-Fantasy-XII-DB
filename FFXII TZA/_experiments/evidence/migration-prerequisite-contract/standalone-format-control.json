@@ -1,0 +1,11 @@
+{
+  "input_sha256": "c3a7a80663d4fd398c07ca2d0f643b5610a5f5d4762612d695478fc5be6549c8",
+  "returncode": 0,
+  "stdout": "FAIL\tA\trequired failure\nFAILS 0\n",
+  "stderr": "",
+  "matched_verdict": "FAIL",
+  "matched_tag": "A",
+  "literal_space_prefix": false,
+  "composer_stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+  "composer_returncode": 0
+}

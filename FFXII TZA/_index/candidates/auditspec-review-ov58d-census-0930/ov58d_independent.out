@@ -1,0 +1,61 @@
+I1 002EF4A0 (size 103): rip operands, immediates, loop control
+  002EF4A0 lea rcx, [rip + 0x1ec3465]  -> 021B290C
+  002EF4AC lea rax, [rip + 0x1e76fcd]  -> 02166480
+  002EF504 jne 0x2ef4b3
+I2 00253970: stores to rip targets and the value's formation
+  0025397E mov qword ptr [rip + 0x1e3edd3], rax  -> 02092758
+  0025398A add rax, 0x8200
+  00253990 mov qword ptr [rip + 0x1e3ee29], rax  -> 020927C0
+  002539B5 mov qword ptr [rip + 0x1e3ee30], 0  -> 020927F0
+  002539CF lea rdx, [rip - 0x256]  -> 00253780
+  002539D9 mov word ptr [rip + 0x1bb88cc], ax  -> 01E0C2AC
+  002539E5 mov word ptr [rip + 0x1bb88c4], ax  -> 01E0C2B0
+  002539F6 mov dword ptr [rip + 0x1e3edc8], 1  -> 020927C8
+I3 00320AB0 full body:
+  00320AB0 sub rsp, 0x28
+  00320AB4 call 0x31b9f0
+  00320AB9 cmp al, 0x27
+  00320ABB jbe 0x320ac4
+  00320ABD xor eax, eax
+  00320ABF add rsp, 0x28
+  00320AC3 ret 
+  00320AC4 movzx eax, al
+  00320AC7 imul rcx, rax, 0x1c8
+  00320ACE mov rax, qword ptr [rip + 0x2b9e6bb]
+  00320AD5 add rax, 8
+  00320AD9 add rax, rcx
+  00320ADC add rsp, 0x28
+  00320AE0 ret 
+I3 arithmetic: records = 8 + 0x1C8*k, k in 0..39 -> last record 0x4580..0x4748 (end exclusive); region A starts 0x4748
+I4 00234ED0: r9 and store operands
+  00234ED2 mov r9d, 0x7374
+  00234EEE movsxd rcx, dword ptr [r9 + r8 - 4]
+  00234F03 movups xmmword ptr [rax + r8 - 0x858], xmm0
+  00234F15 movups xmmword ptr [rax + r8 - 0x848], xmm1
+  00234F27 movups xmmword ptr [rax + r8 - 0x838], xmm0
+  00234F38 mov dword ptr [rax + r8 - 0x828], ecx
+  00234F47 movsxd rcx, dword ptr [r9 + r8]
+  00234F5B movups xmmword ptr [rax + r8 - 0x690], xmm0
+  00234F6D movups xmmword ptr [rax + r8 - 0x680], xmm1
+  00234F7F movups xmmword ptr [rax + r8 - 0x670], xmm0
+  00234F90 mov dword ptr [rax + r8 - 0x660], ecx
+  00234F9F movsxd rcx, dword ptr [r9 + r8 + 4]
+  00234FB4 movups xmmword ptr [rax + r8 - 0x4c8], xmm0
+  00234FC6 movups xmmword ptr [rax + r8 - 0x4b8], xmm1
+  00234FD8 movups xmmword ptr [rax + r8 - 0x4a8], xmm0
+  00234FE9 mov dword ptr [rax + r8 - 0x498], ecx
+  00234FF8 movsxd rcx, dword ptr [r9 + r8 + 8]
+  0023500D movups xmmword ptr [rax + r8 - 0x300], xmm0
+  0023501F movups xmmword ptr [rax + r8 - 0x2f0], xmm1
+  00235031 movups xmmword ptr [rax + r8 - 0x2e0], xmm0
+  00235042 mov dword ptr [rax + r8 - 0x2d0], ecx
+  00235051 movsxd rcx, dword ptr [r9 + r8 + 0xc]
+  00235056 add r9, 0x14
+  0023506E movups xmmword ptr [rax + r8 - 0x138], xmm0
+  00235080 movups xmmword ptr [rax + r8 - 0x128], xmm1
+  00235092 movups xmmword ptr [rax + r8 - 0x118], xmm0
+  002350A3 mov dword ptr [rax + r8 - 0x108], ecx
+  002350AB cmp r9, 0x7414
+I5 raw callers of 002EF4A0: 1 235B76
+I5 raw callers of 00320AB0: 25 237207 237347 2F8C4E 2F9F5B 304217 3058F7 305997 305A47 30A503 30A804 30C337 30D227 30F437 30FB77 30FBFA
+I5 raw callers of 00234ED0: 2 229B71 584510

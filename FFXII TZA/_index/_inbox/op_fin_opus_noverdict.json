@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-THE-CLUSTER-VERDICT-COLUMN-IS-REMOVED",
+ "agent": "OPUS",
+ "note": "Committed 16be7dcf5. 01F2E0D0 is the bank of seven PTypeDefault singletons the reflection page already counts, identified from the field schema's own type objects rather than from the sweep, and the sharing measure had ranked it the strongest single object in the list. A second verdict, residue-counting, failed worse and in a way that looked like success. Both are reported and the column is gone: the sweep prints cells, bodies, cells-per-body, widths and the spacing histogram, and the deciding is done by reading - which immediately surfaced 01F44D40's 0x20 x 298 record spacing, invisible while the tool was printing a guess. NOTHING DECLARED THIS ROUND, WHICH IS THE RESULT: five clusters read, one was a type, and an automatic classifier would have cost five wrong declarations. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/_inbox/OPUS.md",
+  "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

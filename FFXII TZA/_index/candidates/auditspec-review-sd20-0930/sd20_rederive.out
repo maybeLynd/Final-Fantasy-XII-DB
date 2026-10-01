@@ -1,0 +1,25 @@
+factory 007AEA20 raw branches:
+  call 007B91E7 owner 007B9050
+  call 007DCF92 owner 007DCE20
+  call 007ED332 owner 007EBAD0
+rawcalls.json callers: ['007B91E7', '007DCF92', '007ED332']
+relocs -> factory: []
+rip refs to interface vtable 01CB5218: 4 verified, 0 raw-only
+  007B8ED0 lea rax, [rip + 0x14fc341]  owner 007B8E50
+  007B8F76 lea rax, [rip + 0x14fc29b]  owner 007B8F70
+  007DC886 lea rax, [rip + 0x14d898b]  owner 007DC730
+  007EA35D lea rax, [rip + 0x14caeb4]  owner 007EA050
+relocs -> interface vtable: []
+caller 007B9050 arg5 store before 007B91E7: 007B91E2 mov qword ptr [rsp + 0x20], rax
+caller 007DCE20 arg5 store before 007DCF92: 007DCF87 mov qword ptr [rsp + 0x20], rax
+caller 007EBAD0 arg5 store before 007ED332: 007ED32D mov qword ptr [rsp + 0x20], rdi
+007B9050 (007B9050 FUN_007b9050): branches ['call 007A49C1/007A4930'] relocs []
+007DCE20 (007DCE20 FUN_007dce20): branches ['jmp 007DCE07/007DCD70'] relocs []
+007EBAD0 (007EBAD0 FUN_007ebad0): branches ['call 007B5E20/007B5D20'] relocs []
+007A4930 (007A4930 FUN_007a4930): branches ['call 00679507/006794D0'] relocs []
+007DCD70 (007DCD70 FUN_007dcd70): branches ['call 007ACC9B/007AC4F0'] relocs []
+007B5D20 (007B5D20 FUN_007b5d20): branches ['call 007C3493/007C3230', 'call 007C860A/007C8440', 'call 007CCA6B/007CC880', 'call 007CECBE/007CEB80', 'call 007E9910/007E96A0'] relocs []
+RTTI 01CB5218 .?AVICoreSourceVoiceCallback@Core@Driver@Sd@SQEX@@
+RTTI 01CB5238 .?AVExternalSourceVoice@Driver@Sd@SQEX@@
+RTTI 01CB7B20 .?AVHCAMixerVoice@CRI@Driver@Sd@SQEX@@
+RTTI 01CB92A8 .?AVVoice@Driver@Sd@SQEX@@

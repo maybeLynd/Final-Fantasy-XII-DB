@@ -1,0 +1,4 @@
+PASS  O every test reads the centre and r; a NaN minA leaves corners c3 / c4 live
+PASS  N minA NaN with centre (13, 14), r 6 -> 1; finite control -> 1; NaN centre / radius -> 0; tangent control -> 0: [1, 1, 0, 0, 0]
+PASS  W cellBitsetArray states the per-operand NaN rule, not the blanket clause
+FAILS 0

@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-153",
+ "note": "Batch 153 (22 bodies -> 15 hosts): 5 multi-caller + top-17 1-A by size; the frontier closed mostly on helpers batch-152 cites promoted (six-body audio lexer family on the voice doc: 00206C20 decimal accumulator, 00206640 next-token decoder, 00206430 C-escape decoder, 00205330 range-bitmap setter, 00204F00 bit setter, 00206340 wide-char emit). Notable: 00273780/00273750 the per-frame-gate record probes, 0023F190 table-driven spawn-cost check, 0042B690/0042B770 the 022C6F28 four-visitor ladder completed, 0046BE80 filtered actor-index pack, 004308D0 ease-shape dispatcher, 003A20C0 paired command-record emitter, 00159340 CRT guarded-static accessor. 001A7770 routed to what-the-console-tunes (PARTIAL - non-bearing, no A-credit; correct subject home). Gates: anchors 4774 (+22 all counted), 0 MID/0 outside-body; address checker 0 UNSUPPORTED in new entries; hash clean (26 standing unreproduced); crossref 2864 findings / 401 dispositioned on live tree; neighbour guard refused 4 shared-callee pairs - accounted via crossing paragraphs on what-the-console-tunes (Audio+Presentation+Resource) and battle-unit-field-map (Party) -> ADDS NOTHING (2849->2845, 4 accounted).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub153_dumps.txt",
+  "Database/Tools/work/hub153_callers.txt"
+ ]
+}

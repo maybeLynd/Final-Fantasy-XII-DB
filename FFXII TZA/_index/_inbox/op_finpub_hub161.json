@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-161",
+ "result_refs": [
+  "990a4fbde"
+ ],
+ "note": "batch-161 publish 990a4fbde: 22 entries + interior anchors across 18 bearing hosts (+~110/0, all verified at HEAD); audit entry appended; crossing prose on ownerless-scratch + transform-workbench + group-wiped + item-id cleared 13 standing findings (2811 -> 2798).",
+ "summary": ""
+}

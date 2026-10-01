@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-SWEEP-FOR-UNDECLARED-WRITABLE-STATICS",
+ "agent": "OPUS",
+ "note": "Finding one object by reading a warning is not a method, so: every rip-relative operand written at least once - a store separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every range the store declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. 11,563 written targets, 11,150 not covered by any route cell, 1,253 clusters. THAT NUMBER IS NOT A COUNT OF MISSING TYPES AND IS NOT REPORTED AS ONE: route cells are not the store's only way of covering an address, and a cluster is a place to look. Two were read. THE DENSEST IS NOT AN OBJECT: 02E41000 takes 1,494 writes from 752 bodies across three cells - `mov [X], rax` / `mov dword [X+8], 0x8F` / `mov [X+0x10], rax` - and ZERO reads from anywhere in the image, an inlined diagnostic context that a reconstruction needs nothing from; declaring it would have been the wrong answer to a high number. THE THIRD WAS ALREADY MAPPED AND NOT DECLARED: 237 bodies at 022D9110, written by 0026EE00 of the Shared Transform Workbench, is the emulated PS2 EE/VU0 register bank that FABLE mapped register by register on 2026-09-14 - GPR[k] at 022D8F10+16k, HI, LO, the VU CLIP word, Q, ACC, vf[k] - and it had NO ROW IN _types/ at all, which is exactly the gap the accepted types-MET criterion names. Declared EeVu0RegisterBank, 70 rows tiling 0x590, with FABLE's semantics cited rather than re-derived and the ABI measured here: 248 bodies, 310 distinct displacements, widths read off the instructions rather than taken from a register's nominal size, and 15 registers the map names that nothing in the image touches recorded as such rather than given an access they do not have. THE INSTRUMENT'S LIMIT IS STATED WITH IT: it can only find state written through a rip-relative operand, so an object reached exclusively through a pointer is invisible to it - as SavePayload showed with five direct accesses in 353 KB. 591 types / 7,232 fields / 0 errors / 0 gaps. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

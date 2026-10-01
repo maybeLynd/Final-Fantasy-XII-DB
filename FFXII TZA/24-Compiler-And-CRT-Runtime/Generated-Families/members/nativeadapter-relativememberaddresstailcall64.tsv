@@ -1,0 +1,28 @@
+# NativeAdapter.RelativeMemberAddressTailCall64 - EC-7 family C, declared on generated-function-families.md
+#
+# 19 members. Body size(s): 35 B x19.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 19 external target(s): 0 shared across all 19 members, and 19 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 19 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+005CA350
+005CA380
+005CA3B0
+0060F480
+0060F4B0
+0060F4E0
+0060F590
+0060F5C0
+0060F5F0
+0060F620
+0060F650
+0060F680
+0062A8F0
+0063DF60
+00673380
+006733B0
+006733E0
+006A5A90
+006D56F0

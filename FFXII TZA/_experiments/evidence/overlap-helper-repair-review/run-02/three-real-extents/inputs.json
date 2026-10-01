@@ -1,0 +1,18 @@
+{
+  "functions": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\three-real-extents\\functions.tsv"
+  },
+  "uc1_1_64": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\three-real-extents\\band1.tsv"
+  },
+  "uc1_65_256": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\three-real-extents\\band2.tsv"
+  },
+  "exe": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "snapshot": false
+  },
+  "coverage_dims": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\three-real-extents\\coverage_dims.md"
+  }
+}

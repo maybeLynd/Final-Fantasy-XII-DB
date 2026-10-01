@@ -1,0 +1,87 @@
+known-offset stores into the mirror's copy of region A: 3 functions
+  00253A80  00253A93 call 0x861ec0
+  002EF5F0  002EF603 call 0x861ec0
+  002EF650  002EF663 call 0x861ec0
+known-offset stores anywhere in the backed-up image head: 69 functions
+  00229B40  8 stores  e.g. 00229BA2 movups xmmword ptr [rax - 0x80], xmm0; 00229BAA movups xmmword ptr [rax - 0x70], xmm1
+  00252610  2 stores  e.g. 00252681 mov byte ptr [rax + r9 + 0x70], r8b; 00252691 mov byte ptr [rax + r9 + 0x70], r8b
+  002526D0  1 stores  e.g. 002526E3 jmp 0x861ec0
+  002527B0  2 stores  e.g. 002527F7 mov byte ptr [rax + r9 + 0x70], r8b; 0025280A mov byte ptr [rax + r9 + 0x70], r8b
+  00253480  2 stores  e.g. 002534AA and byte ptr [rax + 0x3244], 1; 002534B1 and byte ptr [rax + 0x3245], 0xfe
+  00253A80  14 stores  e.g. 00253A93 call 0x861ec0; 00253AA7 call 0x861ec0
+  00254CC0  7 stores  e.g. 00254CF8 add qword ptr [rdi + 0x10], rcx; 00254D06 add qword ptr [rbx + 0x47e8], rcx
+  00254E80  1 stores  e.g. 00254E90 mov dword ptr [rcx + 0xc], eax
+  00254EE0  1 stores  e.g. 00254F1F mov dword ptr [rax + 8], ecx
+  00255040  1 stores  e.g. 00255047 mov qword ptr [rax + 0x47e8], 0
+  002628B0  2 stores  e.g. 00262A6A and byte ptr [rax + 0x1063], 0xbf; 00262A76 mov byte ptr [rax + 0x1534], bpl
+  00268320  1 stores  e.g. 0026836C mov byte ptr [rax + 0x1061], 1
+  0026A720  4 stores  e.g. 0026A731 and byte ptr [rax + 0x1063], 0xbf; 0026A73D mov byte ptr [rax + 0x1534], 0
+  0026D8F0  1 stores  e.g. 0026D8F9 mov byte ptr [rax + 0x1061], 1
+  0026D910  2 stores  e.g. 0026D95E mov byte ptr [rax + 0x1060], dil; 0026DA92 mov byte ptr [rax + 0x1061], 0
+  00280140  1 stores  e.g. 00280213 mov byte ptr [rax + 0x1061], dil
+  002DDA30  7 stores  e.g. 002DDA51 and dword ptr [rax], 0xffffdfff; 002DDA60 or dword ptr [rax], 0x2000
+  002DDC70  1 stores  e.g. 002DDC83 mov word ptr [rcx + 8], ax
+  002DDCA0  1 stores  e.g. 002DDCC7 mov word ptr [rax + 0xe], cx
+  002DDDE0  1 stores  e.g. 002DDDF3 mov word ptr [rax + 0xa], cx
+  002DDE40  1 stores  e.g. 002DDE53 mov word ptr [rax + 0xc], cx
+  002DDE60  12 stores  e.g. 002DDED9 movups xmmword ptr [rax], xmm0; 002DDEE3 movups xmmword ptr [rax + 0x10], xmm1
+  002DE060  2 stores  e.g. 002DE06D and dword ptr [rax], 0xfffffff7; 002DE070 or dword ptr [rax], ecx
+  002DE080  2 stores  e.g. 002DE08D and dword ptr [rax], 0xffffdfff; 002DE093 or dword ptr [rax], ecx
+  002DE0B0  1 stores  e.g. 002DE0C4 mov word ptr [rax + 8], cx
+  002DE0F0  2 stores  e.g. 002DE0FD and dword ptr [rdx], 0xfffff00f; 002DE103 or dword ptr [rdx], eax
+  002DE110  2 stores  e.g. 002DE122 mov word ptr [rax + 0xe], cx; 002DE13C mov word ptr [rax + 0xe], bx
+  002DE150  2 stores  e.g. 002DE15A and dword ptr [rax], 0xfffffffc; 002DE15D or dword ptr [rax], ecx
+  002DE160  2 stores  e.g. 002DE16D and dword ptr [rax + 4], 0xfffffdff; 002DE174 or dword ptr [rax + 4], ecx
+  002DE190  2 stores  e.g. 002DE19D and dword ptr [rax + 4], 0xfffffeff; 002DE1A4 or dword ptr [rax + 4], ecx
+  002DE1C0  2 stores  e.g. 002DE1CD and dword ptr [rax], 0xfffeffff; 002DE1D3 or dword ptr [rax], ecx
+  002DE1E0  2 stores  e.g. 002DE1ED and dword ptr [rax], 0xffff7fff; 002DE1F3 or dword ptr [rax], ecx
+  002DE200  2 stores  e.g. 002DE20D and dword ptr [rax], 0xffffbfff; 002DE213 or dword ptr [rax], ecx
+  002DE230  2 stores  e.g. 002DE23F and dword ptr [rdx], 0xffffefff; 002DE24B or dword ptr [rdx], eax
+  002DE250  2 stores  e.g. 002DE25D and dword ptr [rax + 4], 0xf87fffff; 002DE264 or dword ptr [rax + 4], ecx
+  002DE270  2 stores  e.g. 002DE27D and dword ptr [rax + 4], 0xffdfffff; 002DE284 or dword ptr [rax + 4], ecx
+  002DE290  1 stores  e.g. 002DE2A6 mov word ptr [rax + 0xa], cx
+  002DE2D0  2 stores  e.g. 002DE2DD and dword ptr [rax + 4], 0xffbfffff; 002DE2E4 or dword ptr [rax + 4], ecx
+  002DE2F0  2 stores  e.g. 002DE2FD and dword ptr [rax + 4], 0xfffffbff; 002DE304 or dword ptr [rax + 4], ecx
+  002DE310  1 stores  e.g. 002DE326 mov word ptr [rax + 0xc], cx
+  002EF2D0  1 stores  e.g. 002EF2E8 call 0x861ec0
+  002EF370  1 stores  e.g. 002EF37D mov byte ptr [rax + 0x1735], bl
+  002EF5F0  1 stores  e.g. 002EF603 call 0x861ec0
+  002EF650  1 stores  e.g. 002EF663 call 0x861ec0
+  00314530  2 stores  e.g. 00314563 or byte ptr [rax + 0x1062], 0x20; 00314586 mov dword ptr [rax + 0x105c], edx
+  003145E0  8 stores  e.g. 00314674 mov dword ptr [rax + 0x104c], ecx; 00314685 mov dword ptr [rax + 0x1044], esi
+  00314970  5 stores  e.g. 0031498D mov dword ptr [rax + 0x1044], 0xffffffff; 0031499C mov dword ptr [rax + 0x1048], 0xffffffff
+  003149E0  1 stores  e.g. 003149E9 and byte ptr [rax + 0x1062], 0xfb
+  00314A00  7 stores  e.g. 00314A09 and byte ptr [rax + 0x1062], 0xfe; 00314A15 and byte ptr [rax + 0x1062], 0xfd
+  00314B80  2 stores  e.g. 00314B8D and byte ptr [rax + 0x1062], 0xfe; 00314B99 or byte ptr [rax + 0x1062], cl
+  00314BB0  2 stores  e.g. 00314BBD and byte ptr [rax + 0x1062], 0xbf; 00314BCC or byte ptr [rax + 0x1062], cl
+  00314BE0  5 stores  e.g. 00314BF1 and byte ptr [rax + 0x1062], 0x7f; 00314BFD and byte ptr [rax + 0x1063], 0xcf
+  00314C40  2 stores  e.g. 00314C50 and byte ptr [rax + 0x1063], 0xfc; 00314C57 or byte ptr [rax + 0x1063], bl
+  00314C70  2 stores  e.g. 00314C7D and byte ptr [rax + 0x1062], 0xf7; 00314C8C or byte ptr [rax + 0x1062], cl
+  00314CA0  2 stores  e.g. 00314CAD and byte ptr [rax + 0x1062], 0xef; 00314CBC or byte ptr [rax + 0x1062], cl
+  00314CD0  2 stores  e.g. 00314CDD and byte ptr [rax + 0x1062], 0xfd; 00314CEB or byte ptr [rax + 0x1062], cl
+  00314D00  2 stores  e.g. 00314D0D and byte ptr [rax + 0x1062], 0xfb; 00314D1C or byte ptr [rax + 0x1062], cl
+  00314D80  1 stores  e.g. 00314D8D mov dword ptr [rax + 0x1048], ebx
+  00314DA0  1 stores  e.g. 00314DAD mov dword ptr [rax + 0x1054], ebx
+  00314DC0  1 stores  e.g. 00314DCD mov dword ptr [rax + 0x1044], ebx
+  00394130  5 stores  e.g. 0039423B movups xmmword ptr [rax + 8], xmm0; 00394246 movups xmmword ptr [rax + 0x18], xmm1
+  0046B290  2 stores  e.g. 0046B2DA inc dword ptr [rax + 0x1040]; 0046B316 mov byte ptr [rdx + rax + 0x1000], cl
+  00580CD0  1 stores  e.g. 00580D8E mov dword ptr [r9 + 0x50], eax
+  00581B70  1 stores  e.g. 00581D2B mov dword ptr [rax + 0x50], ecx
+  00581DA0  3 stores  e.g. 00581E0E mov qword ptr [rdi], rax; 00581FB4 mov dword ptr [rdi], eax
+  00583C00  8 stores  e.g. 00583C41 movups xmmword ptr [rax - 0x80], xmm0; 00583C49 movups xmmword ptr [rax - 0x70], xmm1
+  00583D60  19 stores  e.g. 00583DE4 mov byte ptr [rbx - 3], al; 00583DEE mov byte ptr [rbx - 2], al
+  00584210  25 stores  e.g. 00584259 mov qword ptr [rbx + 0x70], rax; 00584261 mov word ptr [rbx + 0x78], ax
+  005844A0  8 stores  e.g. 00584532 movups xmmword ptr [rax - 0x80], xmm0; 0058453A movups xmmword ptr [rax - 0x70], xmm1
+indexed stores whose lower bound lies in the image head: 12 functions
+  0032AB60  2 stores
+  0032ABF0  2 stores
+  0032AC70  2 stores
+  0032ACF0  2 stores
+  0032AD70  2 stores
+  0032ADF0  2 stores
+  0046B290  3 stores
+  0046B350  1 stores
+  0046B380  2 stores
+  0046B3F0  3 stores
+  0046B490  1 stores
+  00583D60  8 stores

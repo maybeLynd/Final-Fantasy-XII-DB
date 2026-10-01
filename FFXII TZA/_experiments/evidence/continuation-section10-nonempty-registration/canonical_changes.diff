@@ -1,0 +1,421 @@
+--- a/02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md
++++ b/02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md
+@@ -14,18 +14,19 @@
+     that date, NOT the method of the original derivation**, which this block never
+     carried; see this document's own Evidence section and `audit.last_pass_state`
+     for that.
+-last_reviewed: 2026-09-13
++last_reviewed: 2026-09-23
+ audit:
+   passes: 1                    # falsification passes survived. 0 = NOT yet fact.
+   last_pass: 2026-09-13
+   last_pass_state: opus-falsification-pass-1-2026-09-13
+   crossref_clean: false
+   reopened_count: 0
++
+ external_production:
+-  section: SECTION-07
++  section: SECTION-10
+   date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
++  evidence: _experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md
+ ---
+ 
+ # Contract — the EFX source rebase, and the ±2 GiB range it is correct over
+@@ -863,3 +864,20 @@
+ copy-boundary observation. It uses one diagnostic substitution, three imported bridges and a stated
+ combined-window entry/exit boundary. Formal independent acceptance is pending; historical audits,
+ TEAM and the L2 verdict are not promoted.
++
++
++## SECTION-10 — nonempty A00 subtype0 repair (external production, 2026-09-23)
++
++The [new fixture](../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md) extends prior default/empty records with original specialized fixups.
++`003A9BA0` first invokes `005004C0` on the moved record with the signed delta, then updates the
++lookup pointer. For A00 subtype0 the original dispatcher reaches `00500470`, whose four
++`004304F0` calls repair eight DWORD encoded-pointer fields at record+00/+04, +10/+14, +20/+24,
++and +30/+34. Nonzero offsets are used, so a no-op dispatcher cannot pass.
++
++The actual original compactor moves the allocation, preserving already-repaired words that still
++name the old location. Original refresh repairs the context base, lookup entry and nested encoded
++fields. Repeating refresh with an unchanged base preserves them. Identity/subtype are unchanged,
++while the borrowed run-origin field remains stale. Original context disposal and owner free are
++checked independently. This is not evidence that every specialized record or thread interleaving
++is safe. Optional configuration, full child/render execution, other subtype walks and the Windows
++overlap-copy dependency remain open. Local validation does not re-score an L2 verdict.
+--- a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md
++++ b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md
+@@ -24,11 +24,12 @@
+   last_pass_state:
+   crossref_clean: false
+   reopened_count: 0
++
+ external_production:
+-  section: SECTION-09
++  section: SECTION-10
+   date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section09-owner-producer/REVIEW.md
++  evidence: _experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md
+ ---
+ 
+ # Contract — resource input ownership, retention and release
+@@ -291,6 +292,37 @@
+   further source allocations even with byte storage available; a 128-handle fixture permits64 queued
+   requests in one producer call. These are fixture capacities, not newly asserted game-wide limits.
+ 
++## 10a. Nonempty registration and relocation — SECTION-10
++
++The original `00409FE0` path now runs with nonempty version0/1 PRF records and A00 subtype0
++payloads whose encoded fields are nonzero. It first reuses any matching tag/name bank entry. New
++entries normalize source names and select owning-copy versus retained-tagged backing. A missing
++named `@FEF` leaves an admitted bank entry without an effect ticket. A found section admits the
++specialized path but its offset is NOT the parser offset: metadata providers produce a size,
++rounded to64 bytes, and a DWORD at source+roundedSize-4 supplies the actual effect offset.
++
++The last five source-name bytes also select an external configuration-string pointer. These
++fixtures provide bounded names, valid pointers and the original no-configuration-result branch;
++optional `.cm` lookup/priority parsing and their producers are not executed.
++
++Type3 ticket creation and parsing borrow the selected entry backing. Original A00 registration
++writes lookup index/subtype and runs subtype0's four pair-relocation helpers on nonzero fields.
++For mode0, relocation changes the COPY while normalization has already changed input padding.
++For mode1, specialized fixups mutate externally owned source bytes. Same-key reuse does not parse
++again. After disposal, explicitly registering that same already-repaired external input again adds
++the base again in this synthetic sequence. No restored-relative-data or idempotence guard was found
++on the executed path; actual caller refresh/reload discipline remains required.
++
++Bank admission, valid ticket, and successfully parsed payload are separate observations. Exhausted
++ticket storage leaves an admitted entry with ticket0. An invalid effect signature can leave a valid
++ticket/context with no parsed record. These are discriminating fixtures, not observed game faults.
++
++After an ORIGINAL compactor move, the context/table and embedded encoded words are initially stale.
++Original `003B3480` -> `0024D970` -> `003A9BA0` repairs the nonempty record and its eight selected
++encoded values. Unchanged re-refresh does not add the delta twice. The borrowed run origin remains
++stale, and original disposal releases context/tables before the external owner releases its backing.
++[159 assertions, repeat,8 affected variants, and limits](../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md).
++
+ ## 11. Observable behaviour
+ 
+ The observable API differences include pointer identity, input mutation, retained lookup entries,
+@@ -334,13 +366,20 @@
+ execute; IO issuance, OS completion and nonempty footer services do not. One diagnostic substitution
+ and three CRT bridges remain explicit. [Reproduction](../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md).
+ 
++**SECTION-10:**159 passing original-instruction assertions, identical repeat,8 rejected variants.
++114 selected bodies and3 dispatch/signature data spans are pinned. Original nonempty PRF bank
++registration, lookup, subtype0 setup/fixup, allocator, movement, refresh and disposal run with
++synthetic metadata and payloads. One diagnostic substitution and3 memory/string import bridges;
++no live IO, rendering, optional config parsing or full subtype population. [Review](../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md).
++
+ ## 14. Unresolved
+ 
+ 1. Shipped asset alignment/size/index guarantees and complete format-specific pointer meanings.
+ 2. Whole-schedule and reentrancy safety, other external-owner families, and matching view lifetimes
+    across callbacks. A specific indexed-owner and view policy is now established, not a universal one.
+-3. Nonempty PRF/@FEF registration, specialized selection/setup and complex child ownership. The
+-   plain-header new-entry and same-key-reuse branches are executed in SECTION-08.
++3. Other specialized PRF/EFX subtypes, optional `.cm` priority/configuration producers, and complete
++   child creation/rendering ownership. SECTION-10 executes nonempty PRF0/1 and A00 subtype0 setup,
++   relocation, actual movement/repair and teardown, not all authored variants or scheduling.
+ 4. The actual service's issuance/completion and higher-level recovery after an owner remains3/5;
+    the eventual submission policy for held state1; callback single-delivery/reuse preconditions;
+    metadata creation/lifetime, caller bounds and loaded-data reachability of synthetic failure states.
+--- a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md
++++ b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md
+@@ -6,7 +6,7 @@
+ readiness: CONTRACT READY
+ confidence: PROVEN
+ implements: resource-section-addressing.md
+-entries: ["00409C30", "00409660", "004096C0", "00409600"]
++entries: ["00409C30", "00409660", "004096C0", "00409600", "00409780", "00409210", "00409A60"]
+ verified_against:
+   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+   method: address-resolution verification 2026-09-22 (FABLE) on this document's own citations, every
+@@ -16,13 +16,18 @@
+     test, and an image-wide sweep for the `@ALL` literal. **This records checks performed on that
+     date, not the method of the original derivation**, which is on the section-addressing page;
+     see §15.
+-last_reviewed: 2026-09-22
++last_reviewed: 2026-09-23
+ audit:
+   passes: 0                    # falsification passes survived. 0 = NOT yet fact.
+   last_pass:
+   last_pass_state:
+   crossref_clean: false
+   reopened_count: 0
++external_production:
++  section: SECTION-10
++  date: 2026-09-23
++  status: "locally validated; formal independent acceptance pending"
++  evidence: _experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md
+ ---
+ 
+ # Contract — resource section addressing
+@@ -92,28 +97,45 @@
+ to that zero base without testing it**. So for any offset other than `0` and `-1`, an entry of an
+ unsupported mode returns a **non-null pointer equal to the sign-extended offset itself**.
+ 
+-> **Only two things guarantee `NULL`: a null entry, and offset `-1`.** Not a bad mode, not an
+-> unresolvable handle, not a base of zero. *A reimplementation that validates the base — the obvious,
+-> safer choice — returns `NULL` where the original returns a small non-null pointer, and the
+-> difference shows up as a crash in the caller rather than as a failed lookup here.*
++The two explicit guards are null entry and offset `-1`. **They are not the only ways to return
++NULL:** unsupported mode with offset0 returns0, and `low32(base)+offset` can wrap to0 even in a valid
++mode. SECTION-10 executes cached base `0xFFFFFFF0` plus offset `0x10`, which returns NULL. Adding a
++new base-validity guard changes other native results; a small nonnull return alone does not prove
++that the referenced storage is readable. The fixtures establish arithmetic, not a live caller crash.
+ 
+ **RA-5 — Mode 1's cache is invalidated engine-wide by one byte.** `00409600` branches on
+ `entry+0x04`: mode 0 resolves from inline data at `+0x10`; mode 1 re-resolves through the handle at
+ `+0x30` and refreshes the cache at `+0x38` **only while `02B62E10` is non-zero** (`00409622`),
+-otherwise returning the cached pointer unexamined. *One global byte is the whole "resources may have
+-moved" signal, and while it is clear a stale cache is returned without any check that it is still
+-valid.*
++otherwise returning the cached pointer unexamined. This byte controls this cache-refresh path. It is not the complete movement/consumer protocol:
++SECTION-07 separately establishes the arena movement latch and EFX refresh paths. While the cache
++flag is clear, this accessor does not independently validate a stale cache.
+ 
+ **RA-6 — `-1` is the only failure value that crosses the boundary.** It is what the find-by-tag-and-name
+ path returns when nothing matches, and it is the one offset `004096C0` tests for (`004096D5
+ cmp ebx, -1`). *So "not found" and "found at offset −1" are indistinguishable by construction, and
+ every caller's failure handling rests on that single sentinel.*
+ 
++### RA-7 — PRF index and offset are separate outputs
++
++The container magic is `0x50524640` (bytes `@FRP`, often called PRF in handoffs). Version0 walks
++DWORD offsets at+30; version1 walks at+40 and skips zero slots. Offsets are relative to the TABLE
++BASE, not to each slot. The root is tested before children. A matching PRF root returns offset0
++but leaves index=-1; a matching plain header returns offset0/index0. Child matches return the
++actual authored slot index, including sparse slots. Unsupported versions and missing matches leave
++both outputs=-1. Do not use a negative index as proof that the offset failed.
++
++`00409A60` zero-pads the root and admitted child names before mode0 copy or mode1 retention.
++The normalized query is31 characters plus NUL; the direct matcher still compares all32 bytes.
++The code assumes readable, suitably terminated strings and valid offset/count tables; no malformed
++asset safety guarantee follows from these fixtures.
++
+ ## 5. State
+ 
+-**Owned:** nothing persistent — these four bodies are pure functions of their arguments and the entry.
+-**Written:** `entry+0x38`, the mode-1 cache, and only when RA-5's flag is set. **Read, never written:**
+-the section headers, the entry's mode, handle and inline data, and the global flag.
++**Owned allocations:** none by the lookup itself. The full lookup is not pure: it normalizes a
++nonnull name into shared scratch `02B62E20`, initializes the output index/offset, and may refresh
++entry+38 under RA-5. The separate setup `00409A60` normalizes names IN the supplied source before
++copying or borrowing it. Thus lookup observation and source setup have different write footprints.
++Mode0 holds an owning buffer descriptor at entry+10; it is not inline payload bytes.
+ 
+ ## 6. Relationships
+ 
+@@ -139,7 +161,7 @@
+ 
+ ## 10. Failure paths and edge conditions
+ 
+-- Null entry → `NULL`. Offset `-1` → `NULL`. **Everything else returns a pointer** (RA-4).
++- Null entry or offset `-1` → NULL. Otherwise return `sext32(low32(base)+offset)`, which may itself be zero (RA-4).
+ - A name longer than 31 characters cannot be matched (RA-2).
+ - A base whose low 32 bits plus the offset reach `0x80000000` is returned sign-extended (RA-3).
+ - Mode 1 with the flag clear returns whatever the cache holds, with no validity test (RA-5).
+@@ -159,13 +181,15 @@
+ 
+ ## 13. Runtime validation
+ 
+-**None by this contract.** S-09's row records live placement proven elsewhere; none of it executes
+-these four bodies. *Stated rather than left blank so a CONTRACT READY header is not read as evidence
+-of execution.*
++**SECTION-10 isolated original-code evidence:** nonempty PRF0/1 lookup and normalization,
++sparse version1 entries, wildcard/root/child outputs, invalid version/mode, and zero/wrapping
++resolution run against synthetic records. The complete package has159 named assertions and8
++rejected private-image variants; that aggregate is not159 section-addressing states. No live FF12
++or exhaustive authored archive is claimed. [Evidence, exact inputs and limits](../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md).
+ 
+ ## 14. Unresolved
+ 
+-- Who sets and clears `02B62E10`, and on what event.
++- Complete live scheduling/reentrancy of `02B62E10`; the owning page already records static setter/clearer sites. Do not confuse a static setter with whole-game timing proof.
+ - Whether any caller distinguishes "not found" from a genuine offset of `-1` (RA-6).
+ - The `.ard` binder, which is S-09's other uncontracted half and is not attempted here.
+ 
+--- a/02-Resource-And-Asset-Pipeline/resource-section-addressing.md
++++ b/02-Resource-And-Asset-Pipeline/resource-section-addressing.md
+@@ -1,7 +1,7 @@
+ ---
+ system: Resource section addressing (tag + name lookup)
+ category: 02-Resource-And-Asset-Pipeline
+-status: AUDITED
++status: REOPENED
+ owner_layer: PrimaryOwner:Resource
+ evidence_tier: 1
+ verified_against:
+@@ -9,19 +9,24 @@
+   transfers_to:
+     parent: 59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92
+     parent_tag: GN162
+-    basis: snapshot-identity across GN160 -> GN161 - this document cites none of the 109 functions batch R109 touched, so every per-function record it rests on is byte-identical in both annotation snapshots; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30
+-    verified: re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS
++    basis: "snapshot-identity across GN160 -> GN161 - this document cites none of the 109 functions batch R109 touched, so every per-function record it rests on is byte-identical in both annotation snapshots; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30"
++    verified: "re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS"
+     adjudicated: OPUS ruling 2026-09-14, _index/PROVENANCE-TRANSFER.md (six ledger figures re-derived)
+     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
+   snapshot_sha256: b57264ba73231665bf226da6d5761feee72df36c5999fc68ae14adfdd18fea34
+   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+-last_reviewed: 2026-09-13
++last_reviewed: 2026-09-23
+ audit:
+   passes: 2
+   last_pass: 2026-09-07
+   last_pass_state: GN160-xiionline-61-crossref-disposition
+   crossref_clean: true
+   reopened_count: 0
++external_production:
++  section: SECTION-10
++  date: 2026-09-23
++  status: "locally validated; formal independent acceptance pending"
++  evidence: _experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md
+ ---
+ 
+ # Resource section addressing
+@@ -119,8 +124,28 @@
+ is the shape of a "resources may have moved" signal.
+ 
+ An entry with any mode other than 0 or 1 resolves its **base** to `NULL`. That does **not** make the section
+-lookup fail closed: `004096C0` adds the offset to that zero base without a test (above), so only a null entry
+-or offset `-1` is a guaranteed `NULL` (corrected 2026-09-13).
++lookup fail closed: `004096C0` adds the offset to that zero base without a test (above), so the explicit null-entry and `-1` guards do not validate the base. SECTION-10 also executes
++zero-offset and modulo-sum returns of NULL; those guards are sufficient, not an exhaustive list of
++all zero results.
++
++## 2a. Nonempty PRF lookup and setup — SECTION-10
++
++[Original-code production](../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md) now executes both version0/+30 and version1/+40
++nonempty offset tables. These are fixed table-relative DWORD offsets, not slot-relative ones.
++Version1 skips zero slots; a later child keeps its original slot index. The root is tested first.
++A PRF root match has offset0 but index-1; a plain root match has both0. Missing/unsupported-version
++queries leave both-1. Callers must use the output appropriate to their API.
++
++`00409A60` pads the root and child names in the INPUT, including before copy-mode allocation.
++Borrowing does not make setup read-only. Query normalization uses shared scratch `02B62E20`;
++no arbitrary reentrant/thread-safe lookup is established. Base0+offset0 and a wrapping low32 sum
++can return NULL in addition to the explicit early guards.
++
++`00409FE0` uses its named `@FEF` lookup as an admission check, then reads the actual effect-data
++offset from a metadata-size-derived footer word. The two offsets are independently supplied and
++made unequal in the fixture. See [the complete registration/lifetime mechanism](the-nonempty-prf-registration-and-specialized-relocation.md).
++
++Historical page/audit receipts below remain history; they do not independently accept this update.
+ 
+ ## 3. Key addresses
+ 
+@@ -314,7 +339,7 @@
+ | Name key is 32 bytes, compared in full | eight 4-byte comparisons at offsets 0…0x1C in `00409C30` | 1 |
+ | `-1` is the not-found sentinel | explicit `section_offset != -1` guard in `004096C0` | 1 |
+ | Two storage modes with a cached mode 1 | complete body of `00409600` | 1 |
+-| ~~Lookup fails closed~~ **Corrected 2026-09-13:** only the null-entry and `-1` guards return `NULL`; the base is not tested, and the sum is `sign32(low32(base) + offset)` | `004096C8`–`004096E1` and `0040969C`–`004096A8` | 1 |
++| ~~Lookup fails closed~~ **Corrected 2026-09-13:** the null-entry and `-1` guards return NULL; the base is not tested, and the `sign32(low32(base) + offset)` sum may also be zero (SECTION-10) | `004096C8`–`004096E1` and `0040969C`–`004096A8` | 1 |
+ 
+ **On the inherited names.** Every function in §3 already carried a GFZ name. Under the rule
+ that *the GFZ is a claim, not a source*, each was read this session rather than trusted:
+--- a/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
++++ b/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
+@@ -7,17 +7,18 @@
+ verified_against:
+   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+   method: "SECTION-06 isolated original-instruction controls plus selected full-body static reads; simulated relocation, not live movement"
+-last_reviewed: 2026-09-22
++last_reviewed: 2026-09-23
+ audit:
+   passes: 0
+   last_pass:
+   last_pass_state: "local production; formal independent review pending"
+   crossref_clean: true
++
+ external_production:
+-  section: SECTION-08
++  section: SECTION-10
+   date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++  evidence: _experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md
+ ---
+ 
+ # Who owns a resource, and what can invalidate its pointers?
+@@ -53,7 +54,22 @@
+ with the new request's contents. The original-path control uses equal names/tags but different
+ sizes and payload bytes. The old bytes remain. This is cache reuse, not evidence that reload
+ repairs every reference. SECTION-06 did not execute the new-entry path. SECTION-08 now executes plain TEST-header
+-new-entry registration; PRF/@FEF discovery and specialized children remain separate.
++new-entry registration. SECTION-10 now adds nonempty PRF0/1 and A00 subtype0 registration,
++original nested-pointer repair after compaction and disposal. Other specialized children, optional
++configuration and actual game scheduling remain separate.
++
++### Nonempty admission is not a complete initialization verdict
++
++[SECTION-10](../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md) discriminates the named `@FEF` admission result from the separate metadata
++footer offset actually passed to the parser. The bank can admit an entry with no ticket after a
++missing named section, or ticket0 after ticket exhaustion; bad signature can retain a ticket/context
++without a parsed payload. Caller-safe inputs and error handling are not implied by the bank index.
++
++A00 subtype0 changes eight nonzero encoded fields in the borrowed selected backing. After genuine
++source movement, original specialized refresh repairs these as well as the lookup pointer. Setup
++is not idempotent on a disposed and then re-registered already-relocated external buffer: the tested
++sequence adds the base again. Copy mode instead repairs its owned copy, not those original payload
++fields. Source-name normalization still writes original input in both modes.
+ 
+ ## 2. The parser borrows mutable runs, not its lookup allocations
+ 
+--- a/_index/_inbox/EXTERNAL-CONTINUATION.md
++++ b/_index/_inbox/EXTERNAL-CONTINUATION.md
+@@ -1,6 +1,32 @@
+ # External production continuation — current handoff
+ 
+ **DB_GOAL=NOT_MET.** The endpoint is accepted whole-game L1+L2 plus its required independent readiness/terminal process. L3 implementation is later. A completed local section is not database completion.
++
++## SECTION-10 — nonempty PRF registration and specialized payload lifetime
++
++Date:2026-09-23. Local production complete; formal independent acceptance pending. Apply Update10
++AFTER Updates01–09 to September22 21:12:46. [Review](../../_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md).
++
++159 original-instruction assertions pass; identical repeat;8 affected mutants rejected. Nonempty
++PRF0/1 setup/lookup and full00409FE0, actual A00 subtype0 fixup, real compaction/refresh and teardown
++execute.114 selected original bodies and3 data spans pinned; no fresh Ghidra/live game is claimed.
++Only the inherited diagnostic and3 import bridges substitute behavior. Synthetic metadata selects
++the no-config-result branch; optional .cm lookup/priority parsing is not reached.
++
++Established: table-relative offsets at+30/+40; version1 sparse slots; PRF root offset0/index-1;
++source name normalization before copying/borrowing. @FEF search admits the specialized path but a
++metadata-aligned footer supplies the actual parser offset. Bank admission, ticket creation and
++successful payload parsing differ. Nonempty subtype0 writes eight encoded offsets in borrowed
++payload (or owned copy); real compaction leaves them stale until original specialized refresh.
++Same-key reuse skips parse, but dispose/re-register of already-mutated input adds base again in the
++synthetic control. A zero/wrapping pointer sum can returnNULL despite nonnull entry and offset!=-1.
++
++No types/TEAM/L2/global score/reconstruction/historical evidence changed. The section-addressing
++page is REOPENED for corrected claims, preserving old audit records. Next high-value obligation:
++trace a concrete held-state1 submission or outer error-recovery caller and the caller policy that
++supplies fresh versus previously relocated input. Prefer a whole causal path over enumerating more
++subtypes. Preserve optional configuration, live scheduling, specialized child ownership and the
++Windows overlapping-copy boundary as separate unknowns.
+ 
+ ## SECTION-09 — original owner producer, arming and terminal queue composition
+ 
+@@ -227,10 +253,11 @@
+ 
+ ## Next eligible production work
+ 
+-Peer acceptance of all six production sections remains pending. Current local frontier: original
+-source movement and correctly ordered consumer refresh, external-owner lifetime and nonempty child
+-paths. Missing live evidence belongs to its affected claims; it is not invented or waived.
+-
+-Deliver changed/new files only under the original FFXII TZA/ paths, with exact preimages and the
+-immediately preceding update. This is external production, not an OPUS/FABLE/ASTRA session,
+-TEAM claim, unattended worker or automatically granted independent acceptance.
++Independent acceptance of Updates01–10 remains pending. Current local frontier: concrete held-state1
++submission or outer terminal-error recovery, and caller policy for reusing already-relocated source
++bytes; other specialized consumers remain explicitly bounded. Do not repeat completed parser/mover
++controls merely to increase test counts. No evidence-class substitution or L2 waiver is authorized.
++
++Deliver changed/new files under their original FFXII TZA paths, with exact preimages and the previous
++update. This is local external production, not an OPUS/FABLE/ASTRA session, live TEAM claim or
++self-awarded independent acceptance.

@@ -1,0 +1,17 @@
+SURVIVES  E0  all nineteen sizes as cited
+SURVIVES  E1  fork in all nine: True; +0x49 percent test missing only in ['0x05']; type 0x02 reaches the spawn slots by jmp
+SURVIVES  E2  record choice, the two distance modes (lane 1 zeroed only in mode 2), the +4 / +8 window, the screen window
+SURVIVES  E3  unlink via +0x28 / +0x30, head +0x118, tail +0x128, push onto +0x120
+SURVIVES  E4  eight slots at +0x298 / +0x288 / +0x2A0 / +0x2C6, last-fired +0x1D0; tag 2 on trigger 2 with the odd-frame skip; tag 3 on 3
+SURVIVES  E5  direction kept above 0.0010; first-frame up vector from 02064AB0, lane 1 = 1.0, through [+8] + 0x40
+SURVIVES  E6  mode 3 -> 002F3570 in ['0x04', '0x05', '0x06', '0x07']; only 0x05 tests mode 6, with the pre-parent history
+SURVIVES  E7  round-up words {4: ['movzx ecx, word ptr [r14 + 0x670]'], 6: ['movzx eax, word ptr [r14 + 0x6d0]'], 7: ['movzx eax, word ptr [rdi + 0x6d0]']}; delayed colour time floored at 0; degree-tenths factor 0.00174533
+SURVIVES  E8  32 entries filled at age 0; 31 shifted on cadence frames; newest at +0x250
+SURVIVES  E9  0 only when [01DFE0C0] == 0 and [01F82E38] != 0
+SURVIVES  E10  (REFUTES) 5 recurrence steps (each '| 0x1FC00000') before the single state store at ['0044BA00']; the page says four; the 1.0 path reads [01CEBBA8] = 1.0
+SURVIVES  E11  (REFUTES) type byte = definition +0x44; with it 0 the base runs 002F3890 (history shift, colour copy) and 003A8950(2) at 002F2C76; the base never calls 005002E0 (0 calls)
+SURVIVES  E12  (REFUTES lifetime-only) trigger 3 + release twice: the lifetime arm 002F25B2..002F25D8 and the height arm 002F2A5F -> 002F2D37..002F2D52
+SURVIVES  E13  (REFUTES the counts) 0044B960 has 48 direct call sites, so it is a shared helper; the method's ten includes it, section 4's 'other seven' lists six types
+SURVIVES  E14  update dispatch 002F3910: type 0x00 is the base alone (002F2530); each of the nine runs the base then its cited tail; type 0x09 goes to the default 0043EAB0
+SURVIVES  E15  (REFUTES the dispatch page's two release labels) 002F3890 calls ['00398F90', '0039AF70', '00808C40'], copies the colour and shifts the history, no list field; 003A8950 (394 B) is the spawn slots; the release is 002F31C0
+FAILS 0

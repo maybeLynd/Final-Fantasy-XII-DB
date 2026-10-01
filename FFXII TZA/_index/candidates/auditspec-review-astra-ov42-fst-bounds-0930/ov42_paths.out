@@ -1,0 +1,70 @@
+== mapper call 001DA2FD in 001DA290 FUN_001da290 (244 insns)
+   out slots: ['[rbp + 0x48]', '[rbp + 0x50]']
+   001DA2FD call 0x32f170
+   001DA30D call 0x1edf00
+   001DA315 mov edx, dword ptr [rbp + 0x48]
+   001DA318 mov ecx, dword ptr [rbp + 0x50]
+   001DA31B call 0x2df980
+   001DA339 call 0x1edf00
+   001DA36C call qword ptr [rax + 0x10]
+   001DA3AA call qword ptr [rip + 0x6e8690]
+   001DA47A call 0x1a9e50
+   001DA494 call 0x1a5760
+   001DA4C0 call qword ptr [rax + 0x18]
+   001DA4D5 call 0x5cdaa0
+   001DA4F0 call 0x1dab30
+   001DA518 call 0x1dab30
+   001DA533 call 0x1dab30
+   001DA54A call 0x1a52a0
+   001DA54F call 0x1a1220
+   001DA557 call 0x1a0a90
+   001DA585 call qword ptr [rip + 0x6e8aad]
+   001DA59A call 0x16d6a0
+   001DA5A6 call 0x1a1220
+   001DA5B4 call 0x1a0bb0
+   001DA5E0 call qword ptr [rax + 0x18]
+== mapper call 003DD562 in 003DD4C0 FUN_003dd4c0 (139 insns)
+   out slots: ['[rsp + 0x90]', '[rsp + 0x88]']
+   003DD562 call 0x32f170
+   003DD56D call 0x32f290
+   003DD583 call 0x263ff0
+   003DD58B call 0x37b330
+   003DD5A1 call 0x36c1d0
+   003DD5A8 call 0x36b160
+   003DD5B3 call 0x36c140
+   003DD5C0 call 0x36c1d0
+   003DD5C7 call 0x36b160
+   003DD5CE call 0x36c140
+   003DD5EC call 0x36a000
+   003DD5F9 call 0x36c620
+   003DD5FE movzx eax, word ptr [rsp + 0x88]
+   003DD610 movzx eax, word ptr [rsp + 0x90]
+   003DD621 call 0x32f260
+   003DD62F call 0x267310
+   003DD644 call 0x3dda70
+== mapper call 003DF49A in 003DF440 FUN_003df440 (74 insns)
+   out slots: ['[rsp + 0x20]', '[rsp + 0x68]']
+   003DF49A call 0x32f170
+   003DF4A1 call 0x36a100
+   003DF4B4 call 0x36c1d0
+   003DF4BB call 0x36a190
+   003DF4C3 call 0x36c140
+   003DF4E3 movzx eax, word ptr [rsp + 0x68]
+   003DF4EE movzx eax, word ptr [rsp + 0x20]
+   003DF513 call 0x267310
+   003DF52F call 0x3df550
+== mapper call 003E9FE8 in 003E9F80 FUN_003e9f80 (93 insns)
+   out slots: ['[rsp + 0x20]', '[rsp + 0x58]']
+   003E9FE8 call 0x32f170
+   003EA005 mov dword ptr [rsp + 0x58], eax
+   003EA009 call 0x32f360
+   003EA031 call 0x36c1d0
+   003EA03C call 0x36a190
+   003EA043 call 0x36a100
+   003EA050 call 0x36c140
+   003EA061 call 0x861ec0
+   003EA066 movzx eax, word ptr [rsp + 0x58]
+   003EA071 movzx eax, word ptr [rsp + 0x20]
+   003EA090 call 0x36c140
+   003EA098 call 0x267310
+   003EA0AD call 0x3e9ef0

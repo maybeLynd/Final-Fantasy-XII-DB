@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-CONSUMER-CENSUS-SEED-DEFECT",
+ "agent": "OPUS",
+ "note": "A slot load is a register write with a memory source, so the walk's clobber branch cleared the very register the load had just made live. A consumer of the shape `mov rax, [rip -> 02CA8A80]` / `test rax, rax` / `movzx eax, byte ptr [rax+0xfc]` reported ZERO displacements while dereferencing the object on the next line. Caught by disbelieving a zero: GlyphRunWidget1498 has 5,032 gap bytes and the census said 8 loads / 0 displacements, so I hand-read all ten sites that touch the slot and the second was `mov rcx, [rbx+0xc0]`; the type has 24 displacements. THE FIRST PATCH CHANGED NOTHING - re-arming before the clobber chain let the chain clear it again on the same instruction - and a patch that changes nothing reads like a confirmed negative; re-arming AFTER the chain is the fix. Result: 37 never-censused PTR types go from 3 carved displacements to 24; the 11 types censused under the defect yield 21 more, 17 of them on WidgetSingleton02B457E0 alone; MessageWindowRecord goes 15 disps/2 bodies to 18/7; ManagerSingleton0209BE80 goes 7 to 57; and the C2 control now REFUSES 7 types it had passed silently. 87 evidence cells amended rather than deleted - the rows those runs carved are real accesses, the instrument never invented one; what was wrong is the count beside them and any reading of a zero as absence. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

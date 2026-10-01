@@ -1,0 +1,132 @@
+{
+ "cases": {
+  "C1_corpus_last_args_are_the_two_natives_or_literal_110": true,
+  "C2_max_index_110_stores_at_F4_inside_the_0x200_slot": true,
+  "T1_7e_and_1a3_push_minus1_7d_and_1a2_do_not": true,
+  "T1_four_handlers_slot_from_002640C0_three_pops_first_pop_is_arg5": true,
+  "T2_subframe_is_1_mainframe_is_0": true,
+  "T3_both_resets_read_the_current_slot_context_02099D70": true
+ },
+ "domain": "image sha256 73461d0896204b1c; corpus 1114 decompiled us field scripts",
+ "ok": true,
+ "results": {
+  "C1_counts": {
+   "camerashakestart_1a3": 328,
+   "camerastart_7d": 39,
+   "camerastart_7e": 3833
+  },
+  "C1_last_args_7d_1a2": {
+   "110": 1,
+   "getcameramainframe()": 1,
+   "getcamerasubframe()": 37
+  },
+  "C2_max_index": 110,
+  "C2_store_offset": "F4",
+  "T1": {
+   "camerashakestart_1a2": {
+    "binds": "003DD230",
+    "fifth_store": [
+     "dword ptr [rsp + 0x20], ebx"
+    ],
+    "pops": 3,
+    "pushes_minus1": false,
+    "slot_from_002640C0": true
+   },
+   "camerashakestart_1a3": {
+    "binds": "003DD230",
+    "fifth_store": [
+     "dword ptr [rsp + 0x20], ebx"
+    ],
+    "pops": 3,
+    "pushes_minus1": true,
+    "slot_from_002640C0": true
+   },
+   "camerastart_7d": {
+    "binds": "003DA400",
+    "fifth_store": [
+     "dword ptr [rsp + 0x20], ebx"
+    ],
+    "pops": 3,
+    "pushes_minus1": false,
+    "slot_from_002640C0": true
+   },
+   "camerastart_7e": {
+    "binds": "003DA400",
+    "fifth_store": [
+     "dword ptr [rsp + 0x20], ebx"
+    ],
+    "pops": 3,
+    "pushes_minus1": true,
+    "slot_from_002640C0": true
+   }
+  },
+  "T2": {
+   "0050D1C0_calls": [
+    "0x53dd10"
+   ],
+   "0050F100_calls": [
+    "0x5c5230"
+   ],
+   "0053DD10": [
+    [
+     5496080,
+     "mov",
+     "eax, 1"
+    ],
+    [
+     5496085,
+     "ret",
+     ""
+    ]
+   ],
+   "005C5230": [
+    [
+     6050352,
+     "xor",
+     "eax, eax"
+    ],
+    [
+     6050354,
+     "ret",
+     ""
+    ]
+   ]
+  },
+  "T3": {
+   "002640C0": [
+    [
+     2506944,
+     "mov",
+     "rax, qword ptr [rip + 0x1e35ca9]"
+    ],
+    [
+     2506951,
+     "ret",
+     ""
+    ]
+   ],
+   "reset_A_reads": [
+    4039567
+   ],
+   "reset_B_caller": [
+    [
+     3453184,
+     "sub",
+     "rsp, 0x28"
+    ],
+    [
+     3453188,
+     "call",
+     "0x2640c0"
+    ],
+    [
+     3453193,
+     "mov",
+     "rcx, rax"
+    ]
+   ]
+  },
+  "corpus_files": 1114
+ },
+ "static": true
+}

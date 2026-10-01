@@ -1,0 +1,10 @@
+{
+  "terminal": true,
+  "returncode": 1,
+  "tool_chunk": "e23992",
+  "exception": "KeyError: checkpoints",
+  "stage": "third receipt-control fixture mutation, before detector invocation",
+  "claim": "Invalid/incomplete campaign, no complete pass credited",
+  "provenance": "Transcribed original tool output and invocation; no rerun",
+  "source_limits": "Adjacent illustration reconstructs the failed mutator, not exact initial inline source identity"
+}

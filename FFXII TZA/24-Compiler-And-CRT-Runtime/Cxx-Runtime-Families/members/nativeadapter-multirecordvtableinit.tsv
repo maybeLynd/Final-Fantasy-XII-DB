@@ -1,0 +1,10 @@
+# NativeAdapter.MultiRecordVtableInit - EC-7 family C
+# zero three qwords of the out record; install member vtables via shared
+# # ctor stub 001EDF00 on this+0x18 and a stack record; zero-init the
+# # this+0x20 sub-record; then run the longer init pipeline via shared
+# # 00199DB0/005CC8A0/005CD0A0.
+address	targets
+0019C630	00199DB0,0019CD40,001EDF00,005CC8A0,005CD0A0
+001ADBA0	00199DB0,001B1B10,001EDF00,005CC8A0,005CD0A0
+001B3540	00199DB0,001B5D60,001EDF00,005CC8A0,005CD0A0
+001B36D0	00199DB0,001B5DE0,001EDF00,005CC8A0,005CD0A0

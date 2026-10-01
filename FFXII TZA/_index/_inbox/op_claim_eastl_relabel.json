@@ -1,0 +1,5 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-SWE2-EC7-EASTL-RBTREE-RELABEL",
+ "note": "Claiming: bq23_tier6 T4 partition identifies 18 OrderedContainerRuntime members as EASTL rbtree (helpers 0016D6D0/0016D720/0016D840 line-for-line + in-family callers); swap CodeDomain head CxxStandardLibrary->EASTL on those rows; 3 MSVC _Tree members keep label."
+}

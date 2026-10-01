@@ -1,0 +1,232 @@
+{
+ "ok": true,
+ "allowed_functions": 4244,
+ "results": {
+  "SS7_reach_executed_all_28_slots": {
+   "pass_": true,
+   "mismatches": [],
+   "reach_3_slots": [
+    11
+   ],
+   "per_slot": {
+    "0": {
+     "record_A": "00000034D4000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "1": {
+     "record_A": "00000034D4000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "2": {
+     "record_A": "00000034D4000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "3": {
+     "record_A": "00000034D4000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "4": {
+     "record_A": "00000024F9040707",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "5": {
+     "record_A": "00000034EB000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "6": {
+     "record_A": "00000004DB040707",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "7": {
+     "record_A": "00000024F9044307",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "8": {
+     "record_A": "00000030BD000060",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "9": {
+     "record_A": "00000030BD000060",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "10": {
+     "record_A": "00000030BF7F6060",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "11": {
+     "record_A": "0000002011000000",
+     "reach_computed": 3,
+     "managers_walked": [
+      0,
+      1,
+      2
+     ]
+    },
+    "12": {
+     "record_A": "00000024DD001F01",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "13": {
+     "record_A": "FFFFFFFFD5FFE0FF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "14": {
+     "record_A": "00000000BD000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "15": {
+     "record_A": "00000034D4000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "16": {
+     "record_A": "FFFFFFFFFEFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "17": {
+     "record_A": "FFFFFFFFFFFCFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "18": {
+     "record_A": "FFFFFFFFFFFCFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "19": {
+     "record_A": "FFFFFFFFFFFCFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "20": {
+     "record_A": "FFFFFFFFFEFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "21": {
+     "record_A": "FFFFFFFFFEFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "22": {
+     "record_A": "00000034D4000000",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "23": {
+     "record_A": "FFFFFFFFFFFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "24": {
+     "record_A": "FFFFFFFFFEFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "25": {
+     "record_A": "FFFFFFFFFFFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "26": {
+     "record_A": "FFFFFFFFFEFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    },
+    "27": {
+     "record_A": "FFFFFFFFFFFFFFFF",
+     "reach_computed": 1,
+     "managers_walked": [
+      0
+     ]
+    }
+   },
+   "slot0_with_flag_bit3": {
+    "ok": true,
+    "fault": null,
+    "record_A": "00000034D4000000",
+    "record_B": "0000000000000000",
+    "reach_computed": 1,
+    "managers_walked": [
+     0
+    ],
+    "active_bit_after": 1
+   },
+   "note": "00226BE0 runs to its return for every slot 0..27. The breadth is the value the code computes at 00226C94; it equals (~(A >> 30) & 2) | 1 of the record the code itself built, and the loop asks 00263FF0 for managers 0..breadth-1 exactly. Only slot 11 reaches 3 managers"
+  },
+  "slot0_record_depends_on_flag_bit3": {
+   "pass_": true,
+   "flag_clear": "00000034D4000000",
+   "flag_set": "00000034D4000000",
+   "differs": false,
+   "note": "slot 0's record is built through 002DDC30 (bit 3 of the flag word behind 0215E6E0); recorded both ways"
+  }
+ }
+}

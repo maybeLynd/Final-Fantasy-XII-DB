@@ -1,0 +1,27 @@
+scripts walked 10036 CALL-family sites 27623415
+CONTROL startscene rows 34125 (committed census: 34125) PASS
+eventplay       map    ok                         1341
+eventplay_ec    event  ok                         378
+eventplay_ec    map    ok                         4727
+eventplay_ec    other  ok                         116
+eventread       map    ok                         1413
+eventread_e8    event  ok                         378
+eventread_e8    map    ok                         4988
+eventread_e8    other  ok                         116
+startscene      event  ok                         29502
+startscene      map    ok                         4623
+startscene_4b3  event  ok                         1260
+summoneventread other  ok                         4
+startscene event distinct ids 126 range (0, 2000) non-constant 3429 minus1 0 top [('dyn:PUSHV', 3429), ('1', 2421), ('2', 2178), ('3', 2088), ('0', 1854), ('4', 1836), ('5', 1692), ('6', 1449)]
+startscene map distinct ids 53 range (0, 10000) non-constant 0 minus1 0 top [('2', 866), ('1', 587), ('4', 542), ('13', 360), ('0', 308), ('3', 299), ('6', 216), ('5', 173)]
+startscene_4b3 event distinct ids 36 range (1, 45) non-constant 45 minus1 0 top [('2', 144), ('3', 117), ('7', 81), ('8', 81), ('4', 81), ('1', 81), ('9', 72), ('10', 72)]
+eventread map all operand tuples 69 [('211', 207), ('606', 144), ('216', 126), ('217', 108), ('121', 108), ('215', 90), ('358', 36), ('108', 27), ('301', 18), ('304', 18), ('306', 9), ('300', 9)]
+eventread map distinct ids 69 range (30, 726) non-constant 0 minus1 0 top [('211', 207), ('606', 144), ('216', 126), ('217', 108), ('121', 108), ('215', 90), ('358', 36), ('108', 27)]
+eventread_e8 event all operand tuples 41 [('1;396', 18), ('1;280', 9), ('1;276', 9), ('1;232', 9), ('1;140', 9), ('1;255', 9), ('1;303', 9), ('1;307', 9), ('1;178', 9), ('1;207', 9), ('1;304', 9), ('1;152', 9)]
+eventread_e8 event distinct ids 1 range (1, 1) non-constant 0 minus1 0 top [('1', 378)]
+eventread_e8 map all operand tuples 214 [('0;427', 1332), ('1;299', 108), ('0;214', 90), ('0;701', 54), ('1;169', 45), ('0;226', 36), ('0;265', 36), ('0;724', 36), ('1;292', 36), ('1;295', 36), ('1;332', 36), ('1;201', 27)]
+eventread_e8 map distinct ids 2 range (0, 1) non-constant 0 minus1 0 top [('0', 3719), ('1', 1269)]
+eventread_e8 other all operand tuples 33 [('dyn:OPSUB;dyn:PUSHV', 26), ('0;dyn:PUSHV', 10), ('0;98', 6), ('0;505', 4), ('0;96', 4), ('0;88', 4), ('0;91', 4), ('0;93', 4), ('0;94', 4), ('0;16', 4), ('0;dyn:OPSUB', 2), ('0;90', 2)]
+eventread_e8 other distinct ids 2 range (0, 1) non-constant 26 minus1 0 top [('0', 88), ('dyn:OPSUB', 26), ('1', 2)]
+summoneventread other all operand tuples 1 [('dyn:OPSUB', 4)]
+summoneventread other distinct ids 0 range None non-constant 4 minus1 0 top [('dyn:OPSUB', 4)]

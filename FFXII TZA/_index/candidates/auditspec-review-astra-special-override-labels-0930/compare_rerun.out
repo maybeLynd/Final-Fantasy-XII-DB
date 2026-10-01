@@ -1,0 +1,10 @@
+rerun_label_result.json                  identical=True differing_keys=[]
+rerun_constructor-dependencies_raw.json  identical=True differing_keys=[]
+rerun_formatting-effects_raw.json        identical=True differing_keys=[]
+rerun_control_raw.json                   identical=True differing_keys=[]
+rerun_prereq_controls/result.json        identical=True differing_keys=[]
+  case positive             exit 0 created True passed True  last stderr: 
+  case missing_raw          exit 1 created False passed True  last stderr: 0930\\rerun_prereq_controls\\missing_raw\\special-override-formatting-effects-raw-01.json'
+  case incomplete_wrapper   exit 1 created False passed True  last stderr: ValueError: capture completion prerequisite
+  case changed_instruction  exit 1 created False passed True  last stderr: ValueError: original instruction/coverage prerequisite
+  case wrong_table_extent   exit 1 created False passed True  last stderr: ValueError: guard-derived switch data prerequisite

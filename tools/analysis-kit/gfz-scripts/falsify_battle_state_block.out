@@ -1,0 +1,9 @@
+SURVIVES  K1  (REFUTES 'the reset' = 002370C0 on the binder's paths) binder reaches ['00237DF0'] at ['00233C3F', '00233C48', '00233C59']; 00237DF0's first call 0023AF50, whose first call 002370C0; 00329CC0 called at 00237E41: True; conditional branches in 00237DF0 ['00237E30 jl']
+SURVIVES  K2  (REFUTES 'after a reset maps 1-4 are zero' for the binder's reset) 002370C0's callers ['002399E9 in 00239960', '0023AF56 in 0023AF50']; 00239960 tail-jumps to the full reset at ['0023998E']; its direct arm reaches 738 functions to depth 8 and none of 00329CC0 / 003266C0 / 00237DF0: none
+SURVIVES  K3  (REFUTES 'not two identical operations against the same input' for the block) 00237DF0 and 0023AF50 read no memory before their first call, and 002370C0 loads only the block pointer before the memset
+SURVIVES  B1  call 0x2ef640 | add rax, 0x4e68c | mov qword ptr [rip + 0x2c8b556], rax
+SURVIVES  B2  test rax, rax / jne 0x233c4d; cmp dword ptr [rax], 0x5071901 / je 0x233c5e; wrong magic falls through to jmp 0x237df0
+SURVIVES  B3  mov r8d, 0x7410 | call 0x861ec0 | mov dword ptr [rax], 0x5071901
+SURVIVES  B4  mov ecx, 0x5a48 .. mov word ptr [rcx + rax], dx .. cmp rcx, 0x5a5a
+SURVIVES  B5  mov dword ptr [rax + 0x5acc], ecx | mov dword ptr [rax + 0x5ac8], ecx
+FAILS 0

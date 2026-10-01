@@ -1,0 +1,14 @@
+{
+  "case": "missing_source",
+  "exit": 1,
+  "result_exists": false,
+  "expected_accepted": false,
+  "control_pass": true,
+  "invocation": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "missing_source/prove-title-member-notification.py",
+    "missing_source/result.json"
+  ],
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "ea1f7d6540f378a1b6170db7cd915aa60c0b713e96eff0b81fd53247149962d0"
+}

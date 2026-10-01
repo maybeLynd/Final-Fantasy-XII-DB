@@ -1,0 +1,7 @@
+SURVIVES  M1  resolve at 0030F791; its result kept in r15, with no test that returns
+SURVIVES  M2  <= 0x21E, or id - 0x4000 <= 0x166 as 16-bit arithmetic
+SURVIVES  M3  low range: reset +0x778, append [r15+0x10] or 0; both then reach 0030F7F2
+SURVIVES  M4  flags & ~3, three fields, phase 0, shadow copy; the commit reads the shadow: never
+SURVIVES  M5  003105D0 reads the shadow: ['movups xmm0, xmmword ptr [rbx + 0x718]', 'movsd xmm1, qword ptr [rbx + 0x728]']
+SURVIVES  M6  null unit and null +0x698 both exit before any write
+FAILS 0

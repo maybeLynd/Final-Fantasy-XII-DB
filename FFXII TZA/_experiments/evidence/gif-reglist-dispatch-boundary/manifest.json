@@ -1,0 +1,60 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6258,
+      "sha256": "0fe6864d6cafc93422a81d89d1e6b11d05f99bff054f425772798919c3561c44"
+    },
+    {
+      "path": "extract.py",
+      "bytes": 2997,
+      "sha256": "7a13c53e0a47d8e308185dc2f3a8d8cd1f09e5875aac51e2c81057f581b79b61"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 3296,
+      "sha256": "ab401d5b53cc8b614e1eef09c9e683c8d1020bb39ee598dca77ced19df6e7a65"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1894,
+      "sha256": "89965217dde1d0715d60058f848ed78ff9afeecc694c9081fca7a587f6778433"
+    },
+    {
+      "path": "primary.json",
+      "bytes": 17262,
+      "sha256": "1c94478a6d208546dab8ffe25c241ca89727ab6e73f4606ee4303f1db222c090"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3028,
+      "sha256": "905d02951483e1edc195fcb32c32861eb536395c7c949887c1e216e99cbecc72"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/primary.json",
+      "bytes": 22841,
+      "sha256": "3baed4e0a3eb2db29bc24b26e3671dcb0155541705cb21ed5bc100df3d8ad4df"
+    },
+    {
+      "path": "retained/the-vif1-vu1-layer.md",
+      "bytes": 61595,
+      "sha256": "c198dd9766682df36f630e83814111e505bb2a5477a1be5bfa4d1512359c1fa3"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 347,
+      "sha256": "442a9cd1bfd15e7c9a5fe1d027b1eaa3bd2b3cb561b9273f706aab6edc5d0a12"
+    }
+  ],
+  "limits": "Static original local mode/loop proof only; independent/owner acceptance and native effects unresolved."
+}

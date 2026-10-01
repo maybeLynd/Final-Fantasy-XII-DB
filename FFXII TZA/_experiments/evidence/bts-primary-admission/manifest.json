@@ -1,0 +1,327 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "bts-primary-admission-capture-01.status.json",
+      "bytes": 448,
+      "sha256": "4841d8833e4bbccd470cf7d89da7c9cdbb340d676c101ce44d68c962b7d72d0d"
+    },
+    {
+      "path": "bts-primary-admission-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-capture-01.stdout",
+      "bytes": 157,
+      "sha256": "cc144a7ffaead6c6d28274591922a19669ddd9fb87a108cf31352936d2325b80"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/bts-primary-admission-capture-01.status.json",
+      "bytes": 450,
+      "sha256": "69faf088cf01300437816c95558dff9988553940513fc221f4a49b084751ce78"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/bts-primary-admission-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/bts-primary-admission-capture-01.stdout",
+      "bytes": 157,
+      "sha256": "cc144a7ffaead6c6d28274591922a19669ddd9fb87a108cf31352936d2325b80"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/bts-primary-admission-source-01.json",
+      "bytes": 27465,
+      "sha256": "148cd766e6269e7702cdf0e3be7f2d3554ae26ff75b76f5c0618bef49cda5e9c"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/capture-bts-primary-admission.py",
+      "bytes": 2222,
+      "sha256": "653f8254b7e7b08c58eb4b43ab69610d1881ec2731a6c779fe973275036326e6"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/index-path-raw-02.json",
+      "bytes": 192936,
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/status.json",
+      "bytes": 799,
+      "sha256": "f7c1b0d3f5066a81e99908b5cbd2265177995274952f7a966773e97d3f387a09"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/stderr",
+      "bytes": 694,
+      "sha256": "953bb8007556a193acf34bb20915cb26ba4d8519c1cfc17139e310f318160aa4"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/failed-capture/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/bts-primary-admission-capture-01.status.json",
+      "bytes": 448,
+      "sha256": "4841d8833e4bbccd470cf7d89da7c9cdbb340d676c101ce44d68c962b7d72d0d"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/bts-primary-admission-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/bts-primary-admission-capture-01.stdout",
+      "bytes": 157,
+      "sha256": "cc144a7ffaead6c6d28274591922a19669ddd9fb87a108cf31352936d2325b80"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/bts-primary-admission-source-01.json",
+      "bytes": 27465,
+      "sha256": "148cd766e6269e7702cdf0e3be7f2d3554ae26ff75b76f5c0618bef49cda5e9c"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/capture-bts-primary-admission.py",
+      "bytes": 2222,
+      "sha256": "653f8254b7e7b08c58eb4b43ab69610d1881ec2731a6c779fe973275036326e6"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/index-path-raw-02.json",
+      "bytes": 192936,
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/status.json",
+      "bytes": 1007,
+      "sha256": "6f8579e95b6cc393dabfbbd0a0f7c78a448e610be958c4b97f69e3f3b2bcc5e8"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/stderr",
+      "bytes": 849,
+      "sha256": "ab9c6c1ffb248074793bb154e409d839fcdef346de86b0b24cf01a323ba5281b"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/missing-upstream/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/result.json",
+      "bytes": 3341,
+      "sha256": "30297c4f6141d2253beaf7973ed46df5c63c7418628ed1dbf368424dd2bf11e7"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/bts-primary-admission-capture-01.status.json",
+      "bytes": 448,
+      "sha256": "4841d8833e4bbccd470cf7d89da7c9cdbb340d676c101ce44d68c962b7d72d0d"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/bts-primary-admission-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/bts-primary-admission-capture-01.stdout",
+      "bytes": 157,
+      "sha256": "cc144a7ffaead6c6d28274591922a19669ddd9fb87a108cf31352936d2325b80"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/bts-primary-admission-source-01.json",
+      "bytes": 27464,
+      "sha256": "0ca15bd8aef273bf381203a1dcfc4a87ea4652799104aa7123719b77123eeaeb"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/capture-bts-primary-admission.py",
+      "bytes": 2222,
+      "sha256": "653f8254b7e7b08c58eb4b43ab69610d1881ec2731a6c779fe973275036326e6"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/index-path-raw-02.json",
+      "bytes": 192936,
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/status.json",
+      "bytes": 819,
+      "sha256": "ae3199b757121393f1aaeeb7289315421265e7340ac820fad479e17d3f30f914"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/stderr",
+      "bytes": 858,
+      "sha256": "b7e1a875198652893df890fd15d9e93b9121ab559d819231613143ee63d4e646"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-01/wrong-positive-guard/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "bts-primary-admission-controls-run-01.status.json",
+      "bytes": 340,
+      "sha256": "6d795954f0d1ee028b4847dc400fb2154b040506940bbd89786f4b414bc18678"
+    },
+    {
+      "path": "bts-primary-admission-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-controls-run-01.stdout",
+      "bytes": 58,
+      "sha256": "c6644cbc99ea5ef7d9e5948629b47d752bf9ed88bddd25f0a7e1f9a6fbf7b7e2"
+    },
+    {
+      "path": "bts-primary-admission-method-01.json",
+      "bytes": 1281,
+      "sha256": "c87cd81fdc1cf718887baf585b0fdd4b7866a91de5f31d3de09330a50b41eedb"
+    },
+    {
+      "path": "bts-primary-admission-positive-01.status.json",
+      "bytes": 447,
+      "sha256": "1321cb75ece3133671067c0e566ed302a336f8dcbdc707a3097269200a7e7bcb"
+    },
+    {
+      "path": "bts-primary-admission-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-positive-01.stdout",
+      "bytes": 111,
+      "sha256": "0352eac1227e25c651863b67e56d7504ea3acb5ba6047bb4912e1545731e8a31"
+    },
+    {
+      "path": "bts-primary-admission-positive-02.status.json",
+      "bytes": 584,
+      "sha256": "ae5e3b7e9b330ba8366e198f7a4fb1875d2a340174bb22267b23394e53088114"
+    },
+    {
+      "path": "bts-primary-admission-positive-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bts-primary-admission-positive-02.stdout",
+      "bytes": 111,
+      "sha256": "0352eac1227e25c651863b67e56d7504ea3acb5ba6047bb4912e1545731e8a31"
+    },
+    {
+      "path": "bts-primary-admission-result-01.json",
+      "bytes": 6265,
+      "sha256": "e6bda8a92541f02cc9ccceea23a1156f50b77850eb5c31753d86e6fcd7ca5f0c"
+    },
+    {
+      "path": "bts-primary-admission-result-02.json",
+      "bytes": 6518,
+      "sha256": "b2ac4ead1c536a1d87ed1a52852badd8339fb5eaeb18b6da85993c815bee33a0"
+    },
+    {
+      "path": "bts-primary-admission-source-01.json",
+      "bytes": 27465,
+      "sha256": "148cd766e6269e7702cdf0e3be7f2d3554ae26ff75b76f5c0618bef49cda5e9c"
+    },
+    {
+      "path": "capture-bts-primary-admission.py",
+      "bytes": 2222,
+      "sha256": "653f8254b7e7b08c58eb4b43ab69610d1881ec2731a6c779fe973275036326e6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "control-bts-primary-admission.py",
+      "bytes": 2834,
+      "sha256": "6da917dbcd49e93bd1b6815fcf38381fafe49d2b9cc18403634e89d83f21657a"
+    },
+    {
+      "path": "freeze-bts-primary-admission.py",
+      "bytes": 7525,
+      "sha256": "0b1f41abccbef30e9e73487f3020177390eab8751975348d7943530b6d856d2e"
+    },
+    {
+      "path": "index-path-raw-02.json",
+      "bytes": 192936,
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12"
+    },
+    {
+      "path": "prove-bts-primary-admission-before-canonical-dependency-01.py",
+      "bytes": 8265,
+      "sha256": "1587dc4f9e0278744485d92a71e7bddde537a19e6af1bcb6637a038b758e8217"
+    },
+    {
+      "path": "prove-bts-primary-admission.py",
+      "bytes": 9393,
+      "sha256": "bfe1f2ec0e8812826cd06c253018ed942e8fa421457574fcf15aba476be7aa4d"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3678,
+      "sha256": "67320d4793939dac1d7dff0c58a8034ca70e769fdb0a1a165c895f2f77948666"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "native_path_budget_units": 8196
+}

@@ -1,0 +1,10 @@
+# NativeAdapter.FanoutFieldUpdate5 - EC-7 family C
+# call a member op on this, then invoke member field-subobject ops at five
+# # fixed member offsets (e.g. +0xD0/+0x160/+0x1F0/+0x270) forwarding arg2;
+# # return &this[+0x280]-style tail field. External call count varies because
+# # some member callees fall inside a sibling member's body range.
+address	targets
+005324C0	004304F0,00430AF0,00442380
+00538350	003A3FB0,004304F0,004FE4A0,004FF230
+0053A9D0	0042FCF0,004304F0,00500470
+0054EE70	0042FCF0,00430AF0,00500470

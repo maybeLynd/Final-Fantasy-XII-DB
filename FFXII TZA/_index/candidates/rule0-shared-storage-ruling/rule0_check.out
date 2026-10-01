@@ -1,0 +1,6 @@
+PASS R1  00273A20: ['xor eax, eax', 'cmp qword ptr [rcx], rax', 'setne al', 'ret']
+PASS R2  002906FF reads +0xB240 after the liveness test and before the bit test at 00290707
+PASS R3  002964BA and 0029696A are reached behind the bit test or from the widget's own handler 002985D0
+PASS R4  literal set ['00290726']; literal clear ['00290617']; whole-register writes (not resolved) ['0028E427', '0028EAA8', '0028F98F', '002908A4', '0029097B', '00290D4B', '00290F8B']
+PASS C  the dominance test separates the proven site from the unproven one
+FAILS 0

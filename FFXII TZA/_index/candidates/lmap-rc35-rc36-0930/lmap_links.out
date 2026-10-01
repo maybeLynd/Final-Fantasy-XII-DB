@@ -1,0 +1,10 @@
+ch     sha b9cb48da markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+cn     sha b9cb48da markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+de     sha 282099be markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+es     sha 39ae9d6b markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+fr     sha e04fb7e8 markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+in     sha 0e122e08 markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+it     sha 52cb25f2 markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+kr     sha b9cb48da markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+us     sha b9cb48da markers 111  +0x14 {'A': 106, 'FF': 5}  +0x15 {'A': 33, 'B': 43, 'out': 35}
+all copies: +0x14 {'A': 954, 'FF': 45}; +0x15 {'A': 297, 'B': 387, 'out': 315}

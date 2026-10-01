@@ -1,0 +1,11 @@
+outputs	angle_table	ring_speakers	angles_deg	output_index	centre_flag	lfe_flag
+0	-	0	-	-	0	0
+1	02EADD28	1	runtime	0	0	0
+2	01F41CB8	2	90.0 270.0	1(FR) 0(FL)	0	0
+3	-	0	-	-	0	0
+4	-	0	-	-	0	0
+5	-	0	-	-	0	0
+6	01F41CD0	4	45.0 135.0 225.0 315.0	1(FR) 5(RR) 4(RL) 0(FL)	1	1
+7	-	0	-	-	0	0
+8	01F41CE0	6	45.0 90.0 135.0 225.0 270.0 315.0	1(FR) 7(SR) 5(RR) 4(RL) 6(SL) 0(FL)	1	1
+# front arc (used when the centre flag is set and the centre weight is above 0): angles_deg 0.0 45.0 315.0  output_index 2(C) 1(FR) 0(FL)

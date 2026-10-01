@@ -1,0 +1,31 @@
+key lookup feeding the +0x4A2 store (001C977B), decoded from an aligned start; strings resolved
+001C9718  call     0x200b50
+001C971D  movaps   xmm6, xmm0
+001C9720  call     0x1a9930
+001C9725  lea      rdx, [rip + 0x73114c]   ; -> 008FA878 'mUseLinearTonemap'
+001C972C  mov      rcx, rdi
+001C972F  movss    dword ptr [rax + 0x32c], xmm6
+001C9737  call     0x1ff740
+001C973C  mov      rcx, rax
+001C973F  call     0x200be0
+001C9744  lea      rdx, [rip + 0x73112d]   ; -> 008FA878 'mUseLinearTonemap'
+001C974B  lea      rcx, [rip + 0x1db7c76]   ; -> 01F813C8 (virtual tail)
+001C9752  test     al, al
+001C9754  jne      0x1c9759
+001C9756  mov      rcx, rdi
+001C9759  call     0x1ff740
+001C975E  mov      rcx, rax
+001C9761  call     0x200b80
+001C9766  cmp      eax, 1
+001C9769  sete     bl
+001C976C  call     0x193d50
+001C9771  lea      rdx, [rip + 0x7311b0]   ; -> 008FA928 'ShadowValueB'
+001C9778  mov      rcx, rdi
+001C977B  mov      byte ptr [rax + 0x4a2], bl
+001C9781  call     0x1ff740
+001C9786  mov      rcx, rax
+001C9789  call     0x200be0
+001C978E  lea      rdx, [rip + 0x731193]   ; -> 008FA928 'ShadowValueB'
+001C9795  lea      rcx, [rip + 0x1db7c2c]   ; -> 01F813C8 (virtual tail)
+001C979C  test     al, al
+001C979E  jne      0x1c97a3

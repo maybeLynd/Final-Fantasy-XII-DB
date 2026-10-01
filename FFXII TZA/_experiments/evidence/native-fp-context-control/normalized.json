@@ -1,0 +1,138 @@
+{
+  "method": "native disposable instrument control; no FF12 execution",
+  "capstone": "5.0.7",
+  "initial_invalid": {
+    "status": "INVALID_RETAINED",
+    "samples": 3,
+    "owned_hits": 1,
+    "fip_truncations": 1,
+    "reason": "target assertion exited while attached; requested cleanup could not complete; no health-qualified conclusion"
+  },
+  "arms": {
+    "full-observer": {
+      "session": "HEALTH_CONTROL_SATISFIED",
+      "whole_state_preserved": false,
+      "mode": "preserve",
+      "policy": "original-full",
+      "samples": 34,
+      "owned_hits": 21,
+      "fip_truncations": 21,
+      "xmm0_deliberately_zeroed": false,
+      "other_seeded_numeric_fields_preserved": true,
+      "caller_state_restored_every_return": true,
+      "context_read_flags": [
+        1048592,
+        1048603
+      ],
+      "context_write_flags": [
+        1048592,
+        1048603
+      ],
+      "native_before_fip": "0x251ce6900d2",
+      "trapped_after_fip": "0xce6900d2",
+      "post_detach_samples": 9,
+      "full_context_size": 1232,
+      "full_context_observed_alignment": 16,
+      "final_exits": {
+        "debugger": 0,
+        "target": 0
+      }
+    },
+    "narrow-preserve": {
+      "session": "HEALTH_CONTROL_SATISFIED",
+      "whole_state_preserved": false,
+      "mode": "preserve",
+      "policy": "control-debug-only",
+      "samples": 32,
+      "owned_hits": 21,
+      "fip_truncations": 21,
+      "xmm0_deliberately_zeroed": false,
+      "other_seeded_numeric_fields_preserved": true,
+      "caller_state_restored_every_return": true,
+      "context_read_flags": [
+        1048592,
+        1048603
+      ],
+      "context_write_flags": [
+        1048592,
+        1048593
+      ],
+      "native_before_fip": "0x26b7f6600d2",
+      "trapped_after_fip": "0x7f6600d2",
+      "post_detach_samples": 9,
+      "full_context_size": 1232,
+      "full_context_observed_alignment": 16,
+      "final_exits": {
+        "debugger": 0,
+        "target": 0
+      }
+    },
+    "narrow-change": {
+      "session": "HEALTH_CONTROL_SATISFIED",
+      "whole_state_preserved": false,
+      "mode": "change",
+      "policy": "control-debug-only",
+      "samples": 32,
+      "owned_hits": 21,
+      "fip_truncations": 21,
+      "xmm0_deliberately_zeroed": true,
+      "other_seeded_numeric_fields_preserved": true,
+      "caller_state_restored_every_return": true,
+      "context_read_flags": [
+        1048592,
+        1048603
+      ],
+      "context_write_flags": [
+        1048592,
+        1048593
+      ],
+      "native_before_fip": "0x209fdc900d2",
+      "trapped_after_fip": "0xfdc900d2",
+      "post_detach_samples": 9,
+      "full_context_size": 1232,
+      "full_context_observed_alignment": 16,
+      "final_exits": {
+        "debugger": 0,
+        "target": 0
+      }
+    },
+    "no-fp-request": {
+      "session": "HEALTH_CONTROL_SATISFIED",
+      "whole_state_preserved": false,
+      "mode": "preserve",
+      "policy": "control-debug-read-write",
+      "samples": 33,
+      "owned_hits": 21,
+      "fip_truncations": 21,
+      "xmm0_deliberately_zeroed": false,
+      "other_seeded_numeric_fields_preserved": true,
+      "caller_state_restored_every_return": true,
+      "context_read_flags": [
+        1048592,
+        1048593
+      ],
+      "context_write_flags": [
+        1048592,
+        1048593
+      ],
+      "native_before_fip": "0x279eed000d2",
+      "trapped_after_fip": "0xeed000d2",
+      "post_detach_samples": 9,
+      "full_context_size": 1232,
+      "full_context_observed_alignment": 16,
+      "final_exits": {
+        "debugger": 0,
+        "target": 0
+      }
+    }
+  },
+  "negative_checks": [
+    "empty capture cannot pass",
+    "failed cleanup cannot pass",
+    "changed XMM7 is detected",
+    "missing native sentinel is detected",
+    "full preservation claim rejects actual FIP change",
+    "native PXOR is rejected as unchanged numeric state"
+  ],
+  "conclusion": "Full x87 instruction-address preservation is refuted for these native breakpoint paths. Removing FP/INTEGER from resume writes, and then from reads too, did not prevent the observed FIP truncation. Numeric seed preservation and clean return do not imply all-state preservation. Mechanism and FF12 crash relevance remain unknown."
+}

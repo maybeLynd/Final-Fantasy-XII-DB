@@ -1,0 +1,38 @@
+[
+  {
+    "mutant": "skip_direct_dword_copy",
+    "expected_sensitive_case": "copy_without_any_status_mask",
+    "detected": true,
+    "failed_cases": [
+      "copy_without_any_status_mask",
+      "zero_copy_values_are_present",
+      "no_effect_status_sink_still_sets_tail_refresh"
+    ]
+  },
+  {
+    "mutant": "suppress_applier_dirty_flag",
+    "expected_sensitive_case": "no_effect_status_sink_still_sets_tail_refresh",
+    "detected": true,
+    "failed_cases": [
+      "no_effect_status_sink_still_sets_tail_refresh"
+    ]
+  },
+  {
+    "mutant": "wrong_tracked_base",
+    "expected_sensitive_case": "tracked_real_base_EC1380_not_E81380",
+    "detected": true,
+    "failed_cases": [
+      "tracked_real_base_EC1380_not_E81380",
+      "tracked_row1_stride_24",
+      "tracked_negative_index_allows_zero_code"
+    ]
+  },
+  {
+    "mutant": "omit_mode_failure_bit_clear",
+    "expected_sensitive_case": "install_mode2_clears_bit26_not42",
+    "detected": true,
+    "failed_cases": [
+      "install_mode2_clears_bit26_not42"
+    ]
+  }
+]

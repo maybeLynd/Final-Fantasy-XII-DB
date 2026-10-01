@@ -1,0 +1,818 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "ks-bound-max",
+   "trace": "K39 n g0 n g1",
+   "ok": true,
+   "obs": {
+    "ret": 1073745744
+   },
+   "exp_trace": "K39 n g0 n g1",
+   "faults": []
+  },
+  {
+   "name": "ks-bound-over",
+   "trace": "K40",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "K40",
+   "faults": []
+  },
+  {
+   "name": "ks-hit0",
+   "trace": "K3 n g0",
+   "ok": true,
+   "obs": {
+    "ret": 1073741824
+   },
+   "exp_trace": "K3 n g0",
+   "faults": []
+  },
+  {
+   "name": "ks-hit-mid",
+   "trace": "K5 n g0 n g1",
+   "ok": true,
+   "obs": {
+    "ret": 1073745744
+   },
+   "exp_trace": "K5 n g0 n g1",
+   "faults": []
+  },
+  {
+   "name": "ks-miss",
+   "trace": "K2 n g0 n g1 n g2 n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "K2 n g0 n g1 n g2 n",
+   "faults": []
+  },
+  {
+   "name": "ks-null-tab",
+   "trace": "K1 n g0 n g1 n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "K1 n g0 n g1 n",
+   "faults": []
+  },
+  {
+   "name": "ks-dup-first",
+   "trace": "K4 n g0",
+   "ok": true,
+   "obs": {
+    "ret": 1073741824
+   },
+   "exp_trace": "K4 n g0",
+   "faults": []
+  },
+  {
+   "name": "e30-read",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1234605616436508552
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "e30-zero",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "b760-null",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "b760-ok",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 43981
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "b750-read",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 90
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "e40-index",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1342705671
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "e40-neg",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 1342705660
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "e50-chain",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 51
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "e50-null-obj",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "e50-null-chain",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "tidx-2",
+   "trace": "t2",
+   "ok": true,
+   "obs": {
+    "ret": 1342701584
+   },
+   "exp_trace": "t2",
+   "faults": []
+  },
+  {
+   "name": "tidx-3",
+   "trace": "t3",
+   "ok": true,
+   "obs": {
+    "ret": 1342701592
+   },
+   "exp_trace": "t3",
+   "faults": []
+  },
+  {
+   "name": "tidx-4",
+   "trace": "t4",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "t4",
+   "faults": []
+  },
+  {
+   "name": "tidx-neg",
+   "trace": "t-1",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "t-1",
+   "faults": []
+  },
+  {
+   "name": "b8c0-hit",
+   "trace": "t1",
+   "ok": true,
+   "obs": {
+    "ret": 1911
+   },
+   "exp_trace": "t1",
+   "faults": []
+  },
+  {
+   "name": "b8c0-oob",
+   "trace": "t9",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "t9",
+   "faults": []
+  },
+  {
+   "name": "b8c0-null-entry",
+   "trace": "t0",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "t0",
+   "faults": []
+  },
+  {
+   "name": "hdec-ok",
+   "trace": "H5520001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 1342701632
+   },
+   "exp_trace": "H5520001 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-zero",
+   "trace": "H0",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H0",
+   "faults": []
+  },
+  {
+   "name": "hdec-fam5",
+   "trace": "H5550001",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5550001",
+   "faults": []
+  },
+  {
+   "name": "hdec-fam8",
+   "trace": "H5580001",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5580001",
+   "faults": []
+  },
+  {
+   "name": "hdec-no-array",
+   "trace": "H5520001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5520001 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-no-hdr",
+   "trace": "H5520001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5520001 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-idx-bound",
+   "trace": "H5520004 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5520004 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-dead",
+   "trace": "H5520001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5520001 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-elems-bound",
+   "trace": "H5520003 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5520003 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-null-elem",
+   "trace": "H5520000 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H5520000 f2",
+   "faults": []
+  },
+  {
+   "name": "hdec-tag-miss",
+   "trace": "H7720001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H7720001 f2",
+   "faults": []
+  },
+  {
+   "name": "b7e0-off",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "b7e0-ok",
+   "trace": "H5520001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 2457
+   },
+   "exp_trace": "H5520001 f2",
+   "faults": []
+  },
+  {
+   "name": "b7e0-dead",
+   "trace": "H7720001 f2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "H7720001 f2",
+   "faults": []
+  },
+  {
+   "name": "famidx-0",
+   "trace": "f0",
+   "ok": true,
+   "obs": {
+    "ret": 34180624
+   },
+   "exp_trace": "f0",
+   "faults": []
+  },
+  {
+   "name": "famidx-4",
+   "trace": "f4",
+   "ok": true,
+   "obs": {
+    "ret": 34183216
+   },
+   "exp_trace": "f4",
+   "faults": []
+  },
+  {
+   "name": "kind-ok",
+   "trace": "V2:2=1 R40=1343094848 R40=1343094848",
+   "ok": true,
+   "obs": {
+    "ret": 92
+   },
+   "exp_trace": "V2:2=1 R40=1343094848 R40=1343094848",
+   "faults": []
+  },
+  {
+   "name": "kind-ok0",
+   "trace": "V2:0=1 R40=1343094848 R40=1343094848",
+   "ok": true,
+   "obs": {
+    "ret": 33
+   },
+   "exp_trace": "V2:0=1 R40=1343094848 R40=1343094848",
+   "faults": []
+  },
+  {
+   "name": "kind-oob",
+   "trace": "V2:4=0",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "V2:4=0",
+   "faults": []
+  },
+  {
+   "name": "kind-neg",
+   "trace": "V2:FFFF=0",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "V2:FFFF=0",
+   "faults": []
+  },
+  {
+   "name": "kind-no-tab",
+   "trace": "V2:1=0",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "V2:1=0",
+   "faults": []
+  },
+  {
+   "name": "kind-no-resolve",
+   "trace": "V2:1=1 R0=0",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "V2:1=1 R0=0",
+   "faults": []
+  },
+  {
+   "name": "cls-ok",
+   "trace": "c1000",
+   "ok": true,
+   "obs": {
+    "ret": 6
+   },
+   "exp_trace": "c1000",
+   "faults": []
+  },
+  {
+   "name": "cls-famE",
+   "trace": "cE000",
+   "ok": true,
+   "obs": {
+    "ret": 3
+   },
+   "exp_trace": "cE000",
+   "faults": []
+  },
+  {
+   "name": "cls-famF",
+   "trace": "cF000",
+   "ok": true,
+   "obs": {
+    "ret": 4294967295
+   },
+   "exp_trace": "cF000",
+   "faults": []
+  },
+  {
+   "name": "cls-zero",
+   "trace": "c0",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "c0",
+   "faults": []
+  },
+  {
+   "name": "valid-auto-arm1",
+   "trace": "V1:2002 c2002=2",
+   "ok": true,
+   "obs": {
+    "ret": 1
+   },
+   "exp_trace": "V1:2002 c2002=2",
+   "faults": []
+  },
+  {
+   "name": "valid-auto-fail",
+   "trace": "V1:2005 c2005=2",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "V1:2005 c2005=2",
+   "faults": []
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-ks-bnd",
+   "va": "0x31B778",
+   "killed": true,
+   "divergent": 1,
+   "why": "kind bound 0x27 -> 0x26: kind 0x27 is refused",
+   "sample": [
+    [
+     "ks-bound-max",
+     "tr=K39 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-ks-ja",
+   "va": "0x31B779",
+   "killed": true,
+   "divergent": 7,
+   "why": "kind ja -> jbe: every in-range kind is refused",
+   "sample": [
+    [
+     "ks-bound-max",
+     "tr=K39 ret=0"
+    ],
+    [
+     "ks-bound-over",
+     "tr=K40 n g0 n g1 n ret=0"
+    ],
+    [
+     "ks-hit0",
+     "tr=K3 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-ks-stride",
+   "va": "0x31B78C",
+   "killed": true,
+   "divergent": 4,
+   "why": "kind stride 0x1C8 -> 0x1C0: row address off-grid",
+   "sample": [
+    [
+     "ks-bound-max",
+     "tr=K39 n g0 n g1 n ret=0"
+    ],
+    [
+     "ks-hit0",
+     "tr=K3 n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "ks-hit-mid",
+     "tr=K5 n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-ks-add8",
+   "va": "0x31B788",
+   "killed": true,
+   "divergent": 4,
+   "why": "kind +8 -> +0: expected back-pointer shifts by 8",
+   "sample": [
+    [
+     "ks-bound-max",
+     "tr=K39 n g0 n g1 n ret=0"
+    ],
+    [
+     "ks-hit0",
+     "tr=K3 n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "ks-hit-mid",
+     "tr=K5 n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-ks-tab",
+   "va": "0x31B77E",
+   "killed": true,
+   "divergent": 4,
+   "why": "kind table [0x2EBF190] -> [0x2EBF198]: decoy table",
+   "sample": [
+    [
+     "ks-bound-max",
+     "tr=K39 n g0 n g1 n ret=0"
+    ],
+    [
+     "ks-hit0",
+     "tr=K3 n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "ks-hit-mid",
+     "tr=K5 n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-b760-null",
+   "va": "0x31B763",
+   "killed": true,
+   "divergent": 1,
+   "why": "B760 jne -> jmp: null rcx dereferences [0+0x30]",
+   "sample": [
+    [
+     "b760-null",
+     "tr=- ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-750-off",
+   "va": "0x31B753",
+   "killed": true,
+   "divergent": 2,
+   "why": "B750 +0xEA9 -> +0xEA8: reads the wrong byte",
+   "sample": [
+    [
+     "b750-read",
+     "tr=- ret=0"
+    ],
+    [
+     "e50-chain",
+     "tr=- ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-e50-jne",
+   "va": "0x263E5D",
+   "killed": true,
+   "divergent": 2,
+   "why": "E50 jne -> je: a live chain reports -1",
+   "sample": [
+    [
+     "e50-chain",
+     "tr=- ret=ffffffff"
+    ],
+    [
+     "e50-null-chain",
+     "tr=- ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-7e0-flag",
+   "va": "0x31B7EA",
+   "killed": true,
+   "divergent": 2,
+   "why": "B7E0 flag bit 0x10 -> 0x20: gate never opens",
+   "sample": [
+    [
+     "b7e0-ok",
+     "tr=- ret=0"
+    ],
+    [
+     "b7e0-dead",
+     "tr=- ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-tidx-bnd",
+   "va": "0x263752",
+   "killed": true,
+   "divergent": 1,
+   "why": "TIDX bound 3 -> 2: index 3 refused",
+   "sample": [
+    [
+     "tidx-3",
+     "tr=t3 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-hdec-fam",
+   "va": "0x3588DB",
+   "killed": true,
+   "divergent": 1,
+   "why": "handle family mask 0xF -> 0x7: families 8+ wrap",
+   "sample": [
+    [
+     "hdec-fam8",
+     "tr=H5580001 f0 ret=50080040"
+    ]
+   ]
+  },
+  {
+   "name": "m-hdec-tag",
+   "va": "0x358927",
+   "killed": true,
+   "divergent": 5,
+   "why": "tag cmovne -> cmove: matching tag returns 0",
+   "sample": [
+    [
+     "hdec-ok",
+     "tr=H5520001 f2 ret=0"
+    ],
+    [
+     "hdec-null-elem",
+     "tr=H5520000 f2 ret=50080000"
+    ],
+    [
+     "hdec-tag-miss",
+     "tr=H7720001 f2 ret=50080040"
+    ]
+   ]
+  },
+  {
+   "name": "m-kind-s8",
+   "va": "0x31B92C",
+   "killed": true,
+   "divergent": 1,
+   "why": "KIND stride word[tab+8] -> word[tab+0xA]: wrong stride",
+   "sample": [
+    [
+     "kind-ok",
+     "tr=V2:2=1 R40=1343094848 R40=1343094848 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-kind-p7",
+   "va": "0x31B937",
+   "killed": true,
+   "divergent": 2,
+   "why": "KIND +7 -> +8: kind byte read one late",
+   "sample": [
+    [
+     "kind-ok",
+     "tr=V2:2=1 R40=1343094848 R40=1343094848 ret=0"
+    ],
+    [
+     "kind-ok0",
+     "tr=V2:0=1 R40=1343094848 R40=1343094848 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-cls-shr",
+   "va": "0x309445",
+   "killed": true,
+   "divergent": 5,
+   "why": "CLS shr 0xC -> 0xD: family split at the wrong bit",
+   "sample": [
+    [
+     "cls-ok",
+     "tr=c1000 ret=5"
+    ],
+    [
+     "cls-famE",
+     "tr=cE000 ret=c"
+    ],
+    [
+     "cls-famF",
+     "tr=cF000 ret=c"
+    ]
+   ]
+  },
+  {
+   "name": "m-resb",
+   "va": "0x20E605",
+   "killed": true,
+   "divergent": 3,
+   "why": "resolver base [0x1F83530] -> [0x1F83538]: decoy base",
+   "sample": [
+    [
+     "kind-ok",
+     "tr=V2:2=1 R40=1343160384 R40=1343160384 ret=0"
+    ],
+    [
+     "kind-ok0",
+     "tr=V2:0=1 R40=1343160384 R40=1343160384 ret=0"
+    ],
+    [
+     "kind-no-resolve",
+     "tr=V2:1=1 R0=1343160320 R0=1343160320 ret=0"
+    ]
+   ]
+  }
+ ],
+ "bodies_fired": [
+  "0x20E600",
+  "0x236820",
+  "0x236850",
+  "0x263750",
+  "0x263FF0",
+  "0x309440",
+  "0x31B770",
+  "0x322C50",
+  "0x3588B0"
+ ]
+}

@@ -1,0 +1,8 @@
+battle_pack.bin sha256 d1bb89aac759cfcd4eb181715d9e88afb78d62a9a3fcffa6242f365f182cbc98
+equipment rows: 557  bank-1 names: 544
+control 0x1168 Embroidered Tippet     +0x1A=27 +9=21
+control 0x116F Golden Amulet          +0x1A=28 +9=21
+control 0x1171 Firefly                +0x1A=29 +9=21
+rows with +0x1A == 12: 2
+  0x1000 Unarmed                +9=0 (not a rebuild category)
+  0x117F Cat-ear Hood           +9=22 (rebuild category 19-22)

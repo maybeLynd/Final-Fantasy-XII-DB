@@ -1,0 +1,140 @@
+commands 1960; unique handlers 1886; handlers retool has no size for: 0 []
+handlers touching the window: 46
+handler 00341600 roles ['begin']
+   W 00341600 00341669 w E24   off=24 w=4 mov dword ptr [r14 + 0xc], edi
+handler 003419F0 roles ['begin']
+   W 003419F0 00341A72 w E24   off=24 w=4 mov dword ptr [r14 + 0xc], edi
+handler 003425D0 roles ['begin']
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 00342770 roles ['begin']
+   W 00342770 00342807 w E24   off=24 w=4 mov dword ptr [rdi + 0xc], 0
+handler 00342910 roles ['begin']
+   W 00342910 0034293F w E0    off=27 w=1 mov byte ptr [rdi - 1], cl
+handler 00342CE0 roles ['poll']
+   R 00357F00 0035806F r E24   off=24 w=4 mov r8d, dword ptr [rsi + 0xc]
+handler 00342F80 roles ['result']
+   R 00342F80 00342FB5 r E24   off=24 w=4 mov edx, dword ptr [rbx + 0xc]
+   R 00342F80 00342FE6 r E24   off=24 w=4 mov edx, dword ptr [rbx + 0xc]
+handler 003437A0 roles ['begin']
+   W 00342770 00342807 w E24   off=24 w=4 mov dword ptr [rdi + 0xc], 0
+   W 003437A0 003437E6 w E24   off=24 w=4 mov dword ptr [r14 + 0xc], ebx
+handler 003439B0 roles ['begin']
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 00343A30 roles ['begin']
+   W 00343A30 00343AC3 w E24   off=24 w=4 mov dword ptr [rdi + 0xc], ebx
+handler 00343B00 roles ['begin']
+   W 00343B00 00343B8D w E24   off=24 w=4 mov dword ptr [rsi + 0xc], r15d
+handler 00344200 roles ['poll']
+   R 00344200 00344229 r E24   off=24 w=4 mov ecx, dword ptr [rbx + 0xc]
+handler 00344410 roles ['begin']
+   W 00342770 00342807 w E24   off=24 w=4 mov dword ptr [rdi + 0xc], 0
+handler 00344550 roles ['result']
+   R 00344550 00344593 r E24   off=24 w=4 mov eax, dword ptr [rbx + 0xc]
+handler 00344AE0 roles ['result']
+   R 00342F80 00342FB5 r E24   off=24 w=4 mov edx, dword ptr [rbx + 0xc]
+   R 00342F80 00342FE6 r E24   off=24 w=4 mov edx, dword ptr [rbx + 0xc]
+handler 00344D80 roles ['begin']
+   W 00343A30 00343AC3 w E24   off=24 w=4 mov dword ptr [rdi + 0xc], ebx
+handler 00345AE0 roles ['begin']
+   W 00343A30 00343AC3 w E24   off=24 w=4 mov dword ptr [rdi + 0xc], ebx
+handler 00345FB0 roles ['poll']
+   R 00344200 00344229 r E24   off=24 w=4 mov ecx, dword ptr [rbx + 0xc]
+handler 0034AF50 roles ['begin']
+   W 0034AF50 0034AF69 w E24   off=20 w=8 mov qword ptr [rbx + 8], rax
+handler 0034B350 roles ['poll']
+   R 0034B350 0034B370 r E24   off=20 w=8 mov rcx, qword ptr [rdi + 8]
+   R 0034B350 0034B37B r E24   off=20 w=8 mov rcx, qword ptr [rdi + 8]
+handler 0034B670 roles ['begin']
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 0034BA50 roles ['begin']
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 0034E360 roles ['begin']
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 0034FB40 roles ['begin']
+   R 003578B0 00357918 r E24   off=24 w=4 movss xmm0, dword ptr [rdi + 0xc]
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 00350260 roles ['begin']
+   R 003578B0 00357918 r E24   off=24 w=4 movss xmm0, dword ptr [rdi + 0xc]
+   W 00357DE0 00357E82 w E24   off=24 w=4 movss dword ptr [rsi + 0xc], xmm8
+handler 003536B0 roles ['begin']
+   W 003536B0 003536CB w E24   off=24 w=4 movss dword ptr [rdi + 0xc], xmm0
+handler 00353AC0 roles ['poll']
+   R 00353AC0 00353AC0 r E24   off=24 w=4 movss xmm3, dword ptr [r8 + 0xc]
+handler 00354030 roles ['begin']
+   W 00354030 0035404B w E24   off=24 w=4 movss dword ptr [rdi + 0xc], xmm0
+handler 00354120 roles ['begin']
+   W 00354120 00354169 w E24   off=24 w=4 mov dword ptr [r14 + 0xc], edi
+handler 003544F0 roles ['poll']
+   R 003544F0 003544F0 r E24   off=24 w=4 movss xmm2, dword ptr [r8 + 0xc]
+handler 00354A20 roles ['result']
+   R 00354A20 00354A28 r E24   off=24 w=4 mov r8d, dword ptr [r8 + 0xc]
+handler 00354D00 roles ['begin']
+   W 00354D00 00354D1B w E24   off=24 w=4 mov dword ptr [rdi + 0xc], eax
+handler 00354DA0 roles ['begin']
+   W 00354DA0 00354DE9 w E24   off=24 w=4 mov dword ptr [r14 + 0xc], edi
+handler 00355350 roles ['poll']
+   R 00355350 003553C0 r E24   off=24 w=4 mov r8d, dword ptr [rsi + 0xc]
+handler 003556B0 roles ['result']
+   R 003556B0 003556B8 r E24   off=24 w=4 mov r8d, dword ptr [r8 + 0xc]
+handler 0050CA40 roles ['begin']
+   W 0050CA40 0050CA74 w E24   off=20 w=8 mov qword ptr [rbx + 8], rax
+handler 0050CB00 roles ['poll']
+   R 0050CB00 0050CB0A r E24   off=20 w=8 mov rcx, qword ptr [r8 + 8]
+handler 0050CBD0 roles ['result']
+   R 0050CBD0 0050CBF7 r E24   off=20 w=8 mov r9, qword ptr [rdi + 8]
+handler 0050CD80 roles ['result']
+   R 0050CD80 0050CDA6 r E24   off=20 w=8 mov r9, qword ptr [rdi + 8]
+handler 0050CF20 roles ['result']
+   R 0050CF20 0050CF47 r E24   off=20 w=8 mov r9, qword ptr [rdi + 8]
+handler 0050D660 roles ['begin']
+   W 0050D660 0050D6B8 w E24   off=20 w=8 mov qword ptr [rsi + 8], rax
+   R 0050D660 0050D6CA r E24   off=20 w=8 mov rcx, qword ptr [rsi + 8]
+handler 0050D710 roles ['poll']
+   R 0050D710 0050D728 r E24   off=20 w=8 mov rbx, qword ptr [rbx + 8]
+handler 0050D810 roles ['result']
+   R 0050D810 0050D82E r E24   off=20 w=8 mov rdx, qword ptr [rbx + 8]
+handler 0050E150 roles ['begin']
+   W 0050E150 0050E1CC w E24   off=20 w=8 mov qword ptr [r14 + 8], rax
+handler 0050E210 roles ['poll']
+   R 0050E210 0050E214 r E24   off=20 w=8 mov rcx, qword ptr [r8 + 8]
+handler 0050E2D0 roles ['result']
+   R 0050E2D0 0050E2E7 r E24   off=20 w=8 mov rcx, qword ptr [rax + 8]
+== reads and the package's credited cover
+   0/141 poll   read 003553C0 in 00355350 (mov r8d, dword ptr [rsi + 0xc] off=24 w=4) | begin 00354D00 writes ['00354D1B'] | same-handler earlier []
+   0/179 result read 003556B8 in 003556B0 (mov r8d, dword ptr [r8 + 0xc] off=24 w=4) | begin 00354DA0 writes ['00354DE9'] | same-handler earlier []
+   0/180 result read 00354A28 in 00354A20 (mov r8d, dword ptr [r8 + 0xc] off=24 w=4) | begin 00354120 writes ['00354169'] | same-handler earlier []
+   0/349 poll   read 0034B370 in 0034B350 (mov rcx, qword ptr [rdi + 8] off=20 w=8) | begin 0034AF50 writes ['0034AF69'] | same-handler earlier []
+   0/349 poll   read 0034B37B in 0034B350 (mov rcx, qword ptr [rdi + 8] off=20 w=8) | begin 0034AF50 writes ['0034AF69'] | same-handler earlier []
+   0/512 result read 00344593 in 00344550 (mov eax, dword ptr [rbx + 0xc] off=24 w=4) | begin 00343B00 writes ['00343B8D'] | same-handler earlier []
+   0/555 result read 00342FB5 in 00342F80 (mov edx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00342770 writes ['00342807'] | same-handler earlier []
+   0/555 result read 00342FE6 in 00342F80 (mov edx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00342770 writes ['00342807'] | same-handler earlier []
+   0/605 begin  read 00357918 in 003578B0 (movss xmm0, dword ptr [rdi + 0xc] off=24 w=4) | begin 0034FB40 writes ['00357E82'] | same-handler earlier []
+   0/608 begin  read 00357918 in 003578B0 (movss xmm0, dword ptr [rdi + 0xc] off=24 w=4) | begin 0034FB40 writes ['00357E82'] | same-handler earlier []
+   0/724 begin  read 00357918 in 003578B0 (movss xmm0, dword ptr [rdi + 0xc] off=24 w=4) | begin 00350260 writes ['00357E82'] | same-handler earlier []
+   0/726 begin  read 00357918 in 003578B0 (movss xmm0, dword ptr [rdi + 0xc] off=24 w=4) | begin 00350260 writes ['00357E82'] | same-handler earlier []
+   0/736 poll   read 0035806F in 00357F00 (mov r8d, dword ptr [rsi + 0xc] off=24 w=4) | begin 00341600 writes ['00341669'] | same-handler earlier []
+   0/868 result read 00342FB5 in 00342F80 (mov edx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00344410 writes ['00342807'] | same-handler earlier []
+   0/868 result read 00342FE6 in 00342F80 (mov edx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00344410 writes ['00342807'] | same-handler earlier []
+   0/1051 poll   read 00344229 in 00344200 (mov ecx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00343A30 writes ['00343AC3'] | same-handler earlier []
+   0/1052 poll   read 00344229 in 00344200 (mov ecx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00344D80 writes ['00343AC3'] | same-handler earlier []
+   0/1053 poll   read 00344229 in 00344200 (mov ecx, dword ptr [rbx + 0xc] off=24 w=4) | begin 00345AE0 writes ['00343AC3'] | same-handler earlier []
+   0/1155 poll   read 0035806F in 00357F00 (mov r8d, dword ptr [rsi + 0xc] off=24 w=4) | begin 003419F0 writes ['00341A72'] | same-handler earlier []
+   0/1294 result read 00342FB5 in 00342F80 (mov edx, dword ptr [rbx + 0xc] off=24 w=4) | begin 003437A0 writes ['00342807', '003437E6'] | same-handler earlier []
+   0/1294 result read 00342FE6 in 00342F80 (mov edx, dword ptr [rbx + 0xc] off=24 w=4) | begin 003437A0 writes ['00342807', '003437E6'] | same-handler earlier []
+   0/1331 poll   read 00353AC0 in 00353AC0 (movss xmm3, dword ptr [r8 + 0xc] off=24 w=4) | begin 003536B0 writes ['003536CB'] | same-handler earlier []
+   0/1332 poll   read 003544F0 in 003544F0 (movss xmm2, dword ptr [r8 + 0xc] off=24 w=4) | begin 00354030 writes ['0035404B'] | same-handler earlier []
+   def/0 begin  read 0050D6CA in 0050D660 (mov rcx, qword ptr [rsi + 8] off=20 w=8) | begin 0050D660 writes ['0050D6B8'] | same-handler earlier ['0050D6B8@0050D660']
+   def/0 poll   read 0050D728 in 0050D710 (mov rbx, qword ptr [rbx + 8] off=20 w=8) | begin 0050D660 writes ['0050D6B8'] | same-handler earlier []
+   def/0 result read 0050D82E in 0050D810 (mov rdx, qword ptr [rbx + 8] off=20 w=8) | begin 0050D660 writes ['0050D6B8'] | same-handler earlier []
+   def/43 poll   read 0050CB0A in 0050CB00 (mov rcx, qword ptr [r8 + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/43 result read 0050CBF7 in 0050CBD0 (mov r9, qword ptr [rdi + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/44 poll   read 0050CB0A in 0050CB00 (mov rcx, qword ptr [r8 + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/44 result read 0050CDA6 in 0050CD80 (mov r9, qword ptr [rdi + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/87 poll   read 0050CB0A in 0050CB00 (mov rcx, qword ptr [r8 + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/87 result read 0050CF47 in 0050CF20 (mov r9, qword ptr [rdi + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/93 poll   read 0050CB0A in 0050CB00 (mov rcx, qword ptr [r8 + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/93 result read 0050CBF7 in 0050CBD0 (mov r9, qword ptr [rdi + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/94 poll   read 0050CB0A in 0050CB00 (mov rcx, qword ptr [r8 + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/94 result read 0050CDA6 in 0050CD80 (mov r9, qword ptr [rdi + 8] off=20 w=8) | begin 0050CA40 writes ['0050CA74'] | same-handler earlier []
+   def/167 poll   read 0050E214 in 0050E210 (mov rcx, qword ptr [r8 + 8] off=20 w=8) | begin 0050E150 writes ['0050E1CC'] | same-handler earlier []
+   def/167 result read 0050E2E7 in 0050E2D0 (mov rcx, qword ptr [rax + 8] off=20 w=8) | begin 0050E150 writes ['0050E1CC'] | same-handler earlier []

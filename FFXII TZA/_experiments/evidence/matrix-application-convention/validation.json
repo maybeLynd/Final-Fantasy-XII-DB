@@ -1,0 +1,8 @@
+{
+  "status": "PASS_EXISTING_CAPTURE_QUALIFICATION",
+  "existing_B_commit": "fcbffd545c30575039e80afc272680d6d71e9a38",
+  "existing_discriminating_case": "matrix-and-homogeneous-divide",
+  "new_original_code_or_live_cases": 0,
+  "real_operand_format_failure_control": true,
+  "limits": "Exact source/application pairing only. Independent acceptance and owner propagation pending."
+}

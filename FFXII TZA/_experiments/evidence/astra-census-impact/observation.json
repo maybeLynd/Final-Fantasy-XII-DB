@@ -1,0 +1,200 @@
+{
+  "method": "Synthetic instrument regression controls only; no original FF12 execution or live test",
+  "source_sha256": "0a1e25dcd6326e39b01e419a38854bf40a8eab1f2e710c87949619d4510e02d6",
+  "checker_sha256": "0efa244e2c6e2218f4a06abf83cd6cce3cca46f6c34cf1bd38b1c05f0c47e0d4",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "capstone_version": "5.0.7",
+  "unicorn_version": "2.1.0",
+  "cases": [
+    {
+      "name": "direct-positive",
+      "entry": "0x100000",
+      "synthetic_code_hex": "488d056f510602c60001",
+      "instructions": [
+        "00100000 lea rax, [rip + 0x206516f]",
+        "00100007 mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 35017078,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [
+        35017078
+      ],
+      "hit_is_accurate": true
+    },
+    {
+      "name": "call-kills-volatile",
+      "entry": "0x100100",
+      "synthetic_code_hex": "488d056f500602e8f47f0000c60001",
+      "instructions": [
+        "00100100 lea rax, [rip + 0x206506f]",
+        "00100107 call 0x108100",
+        "0010010C mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 0,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [],
+      "hit_is_accurate": true
+    },
+    {
+      "name": "call-preserves-nonvolatile",
+      "entry": "0x100200",
+      "synthetic_code_hex": "488d1d6f4f0602e8f47e0000c60301",
+      "instructions": [
+        "00100200 lea rbx, [rip + 0x2064f6f]",
+        "00100207 call 0x108100",
+        "0010020C mov byte ptr [rbx], 1"
+      ],
+      "actual_write": {
+        "address": 35017078,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [
+        35017078
+      ],
+      "hit_is_accurate": true
+    },
+    {
+      "name": "eax-zero-kills-full-rax",
+      "entry": "0x100300",
+      "synthetic_code_hex": "488d056f4e060231c0c60001",
+      "instructions": [
+        "00100300 lea rax, [rip + 0x2064e6f]",
+        "00100307 xor eax, eax",
+        "00100309 mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 0,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [],
+      "hit_is_accurate": true
+    },
+    {
+      "name": "al-zero-moves-outside-span",
+      "entry": "0x100400",
+      "synthetic_code_hex": "488d056f4d060230c0c60001",
+      "instructions": [
+        "00100400 lea rax, [rip + 0x2064d6f]",
+        "00100407 xor al, al",
+        "00100409 mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 35016960,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [
+        35017078
+      ],
+      "hit_is_accurate": false
+    },
+    {
+      "name": "ax-zero-moves-outside-span",
+      "entry": "0x100500",
+      "synthetic_code_hex": "488d056f4c06026631c0c60001",
+      "instructions": [
+        "00100500 lea rax, [rip + 0x2064c6f]",
+        "00100507 xor ax, ax",
+        "0010050A mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 34996224,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [
+        35017078
+      ],
+      "hit_is_accurate": false
+    },
+    {
+      "name": "al-write-changes-exact-target",
+      "entry": "0x100600",
+      "synthetic_code_hex": "488d056f4b0602b090c60001",
+      "instructions": [
+        "00100600 lea rax, [rip + 0x2064b6f]",
+        "00100607 mov al, 0x90",
+        "00100609 mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 35017104,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [
+        35017078
+      ],
+      "hit_is_accurate": false
+    },
+    {
+      "name": "add-index-base-zero-index",
+      "entry": "0x100700",
+      "synthetic_code_hex": "488d056f4a060231c94801c1c60101",
+      "instructions": [
+        "00100700 lea rax, [rip + 0x2064a6f]",
+        "00100707 xor ecx, ecx",
+        "00100709 add rcx, rax",
+        "0010070C mov byte ptr [rcx], 1"
+      ],
+      "actual_write": {
+        "address": 35017078,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [],
+      "hit_is_accurate": false
+    },
+    {
+      "name": "add-base-index-zero-index",
+      "entry": "0x100800",
+      "synthetic_code_hex": "488d056f49060231c94801c8c60001",
+      "instructions": [
+        "00100800 lea rax, [rip + 0x206496f]",
+        "00100807 xor ecx, ecx",
+        "00100809 add rax, rcx",
+        "0010080C mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 35017078,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [],
+      "hit_is_accurate": false
+    },
+    {
+      "name": "add-immediate-positive",
+      "entry": "0x100900",
+      "synthetic_code_hex": "488d056f4806024883c001c60001",
+      "instructions": [
+        "00100900 lea rax, [rip + 0x206486f]",
+        "00100907 add rax, 1",
+        "0010090B mov byte ptr [rax], 1"
+      ],
+      "actual_write": {
+        "address": 35017079,
+        "size": 1,
+        "value": 1
+      },
+      "scanner_addresses": [
+        35017079
+      ],
+      "hit_is_accurate": true
+    }
+  ],
+  "source_stdout": "payload base 02164480   contested span 02165176..02165480 (778 bytes)\nmemory operands resolved to an absolute address anywhere: 6\n\nACCESSES INSIDE THE CONTESTED SPAN: 6\n  00100007 in 00100000  ->  payload+0x0CF6  [w]  mov byte ptr [rax], 1\n  0010020C in 00100200  ->  payload+0x0CF6  [w]  mov byte ptr [rbx], 1\n  00100409 in 00100400  ->  payload+0x0CF6  [w]  mov byte ptr [rax], 1\n  0010050A in 00100500  ->  payload+0x0CF6  [w]  mov byte ptr [rax], 1\n  00100609 in 00100600  ->  payload+0x0CF6  [w]  mov byte ptr [rax], 1\n  0010090B in 00100900  ->  payload+0x0CF7  [w]  mov byte ptr [rax], 1\n\nCONTROL - accesses elsewhere in the same 0x1538 record: 0 at 0 distinct offsets\n\nLIMIT - calls handed a pointer into this record as an argument: 0 site(s), 0 distinct callees\n\nBLIND SPOT - INDEXED accesses whose known base lands in or before this record,\n             so the exact address is not fixed and the span cannot be excluded\n             for them: 0\n",
+  "limits": [
+    "Not evidence that these byte sequences occur in shipping FF12.",
+    "No whole-executable census rerun; historical totals have not been recalculated.",
+    "Known-address tracking differs from base provenance; retaining an unknown indexed address as exact would be unsound.",
+    "No change to peer-owned scanner or canonical type rows."
+  ]
+}

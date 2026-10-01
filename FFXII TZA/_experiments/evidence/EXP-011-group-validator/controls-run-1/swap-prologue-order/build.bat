@@ -1,0 +1,3 @@
+@echo off
+call "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat" >nul
+cl /nologo /W4 /O2 /Brepro /D_CRT_SECURE_NO_WARNINGS /Fe:"C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\group-validator\swap-prologue-order-5y3ti26i\group-driver.exe" "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\group-validator\swap-prologue-order-5y3ti26i\Tests\Differential\group_completion_driver.c" "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\group-validator\swap-prologue-order-5y3ti26i\Game\Spawn\group_completion.c" /link /Brepro

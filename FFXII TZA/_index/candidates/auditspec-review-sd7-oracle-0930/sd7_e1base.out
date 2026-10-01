@@ -1,0 +1,12 @@
+E1 rows 133: with a stack-derived load base 8, others 125; loads not on an aligned walk: []
+  00739530 00739C9D ['007397BE qword ptr [rbp + 0x138] (last write root 00739530 prologue: rbp = entry-0x58)']
+  00739DF0 0073A753 ['00739E85 qword ptr [rbp + 0x550] (last write 00739E08 lea rbp, [rax - 0x498])']
+  00739DF0 0073A894 ['00739E85 qword ptr [rbp + 0x550] (last write 00739E08 lea rbp, [rax - 0x498])']
+  0073BD30 0073C4FF ['0073C4B7 qword ptr [rbp + 0x200] (last write 0073BD4E lea rbp, [rax - 0x1b8])']
+  0073BD30 0073C56A ['0073C521 qword ptr [rbp + 0x208] (last write 0073BD4E lea rbp, [rax - 0x1b8])']
+  0073E570 0073E63A ['0073E5A6 qword ptr [rbp + 0x9f] (last write 0073E588 lea rbp, [rax - 0x2f])']
+  0073E570 0073E8DC ['0073E5A6 qword ptr [rbp + 0x9f] (last write 0073E588 lea rbp, [rax - 0x2f])']
+  0073E570 0073E9BE ['0073E5A6 qword ptr [rbp + 0x9f] (last write 0073E588 lea rbp, [rax - 0x2f])']
+positive control (8 rbp-frame rows all found): PASS
+negative control (0074C8EC / 0074CA3D / 00771C06 not found): PASS
+stack-derived rows beyond the 8: []

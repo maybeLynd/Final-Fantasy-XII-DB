@@ -1,0 +1,172 @@
+{
+  "source_serialization": {
+    "incomplete.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-field-incomplete.json",
+      "bytes": 3137,
+      "sha256": "d655b5cc7c5579422c989e1fe1674a65502dc70159c2cf67acb2b4e619d74203",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    },
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_field_primary.py",
+      "bytes": 4820,
+      "sha256": "e47fd24c3b3453113df906093ce61173cc46ebf817493c586fdc131317e16079",
+      "transform": "CRLF to LF only",
+      "source_newlines": "mixed",
+      "crlf_lines": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94
+      ]
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-field-primary.json",
+      "bytes": 93745,
+      "sha256": "c7e7dd7a0875f502aa6ac6caf32754c9e6dcfabeb47e45b81bb3d5fa96f1ca52",
+      "transform": "CRLF to LF only",
+      "source_newlines": "CRLF",
+      "crlf_lines": []
+    },
+    "callees.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_field_callees.py",
+      "bytes": 4847,
+      "sha256": "7ce078a5c8eda0530aee6e95b87b4b543518d298590e5a70924cf666892a891d",
+      "transform": "CRLF to LF only",
+      "source_newlines": "CRLF",
+      "crlf_lines": []
+    },
+    "callees.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-field-callees.json",
+      "bytes": 8654,
+      "sha256": "fd27b6cfa2b7d3d8a737997510f826f54e167aa9090e341e15717646a68e183a",
+      "transform": "CRLF to LF only",
+      "source_newlines": "CRLF",
+      "crlf_lines": []
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_field_check.py",
+      "bytes": 5653,
+      "sha256": "e112f9cd9264d1078ccf29d1719d71a4131b4aa407fda008485e0f4cabb67415",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-field-check.json",
+      "bytes": 6423,
+      "sha256": "7a63d6fbd7fc2604f2320e13dd924d9a1d1cdb1dd6979f4297a7acc45d3a18f7",
+      "transform": "identity",
+      "source_newlines": "LF",
+      "crlf_lines": []
+    }
+  },
+  "files": {
+    "callees.json": {
+      "bytes": 8318,
+      "sha256": "0b71ad8278f7048bb9a5684e2bf79a28f423fc79b8515bd4a2a751ef0afa6e7e"
+    },
+    "callees.py": {
+      "bytes": 4752,
+      "sha256": "66e51b149cb8d9384e79580dd6c4c32652aaa2bbdc6e05d5f30eb0dd49717397"
+    },
+    "check.json": {
+      "bytes": 6423,
+      "sha256": "7a63d6fbd7fc2604f2320e13dd924d9a1d1cdb1dd6979f4297a7acc45d3a18f7"
+    },
+    "check.py": {
+      "bytes": 5653,
+      "sha256": "e112f9cd9264d1078ccf29d1719d71a4131b4aa407fda008485e0f4cabb67415"
+    },
+    "incomplete.json": {
+      "bytes": 3137,
+      "sha256": "d655b5cc7c5579422c989e1fe1674a65502dc70159c2cf67acb2b4e619d74203"
+    },
+    "primary.json": {
+      "bytes": 90214,
+      "sha256": "758a8c334b49d83dc786043282b6bcbd3df3f982a76e470e7c21817bd1025576"
+    },
+    "primary.py": {
+      "bytes": 4743,
+      "sha256": "62f47351054746624cf0dcee6fdbdf45c5ee8f2509e3519e2b1f79575772779c"
+    },
+    "README.md": {
+      "bytes": 2787,
+      "sha256": "72fc6952e200933fd7289c2c7a5a67dc347266c64cd87a09eaf6d5d94ea5ec6a"
+    }
+  }
+}

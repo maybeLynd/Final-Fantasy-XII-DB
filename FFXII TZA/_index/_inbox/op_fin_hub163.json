@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-163",
+ "note": "batch 163 (EC7-197): 22 bodies decoded+anchored across 20 bearing hosts - rig stat-commit sink 00372710; efx shared finisher 00423FC0 (+0xC8 resolve + flag + 0041D790 + 004253D0); weather per-slot node splice 00400AC0 (559B); FramePump teardown 003F31B0 + node refresh 003F8B40 + timed-state commit 0028DFD0; game-app ring-buffer push 00600070; menu-effect record registration 0024EEE0 (02EBEFxx bank); license-board zoom lerp setter 00247300; prefetch name-table append 001C3420; command-seam 003DC410 classifier 00325A20; render-pool 022C6F28-mirror teardown 0042ED60; thunk lazy request pair 002808D0; npc-dict named-pair register 00181F20; render-list vector clone 001C3600; character-fade paired resolve 0046E590; battle-unit staged lookup 00469A50; workbench matrix-scalar 0044B8C0; level-up 192-entry id refresh 0046F290; audio octal accumulator 00208D40; accessor-hub vec3xmat4x3 00216FC0; ebp section-006 slot erase 0037F7C0. Gates: anchors 5008 0 MID; address 0 UNSUPPORTED in new content.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub163_dumps.txt",
+  "Database/Tools/work/hub163_callers.txt"
+ ]
+}

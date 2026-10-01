@@ -1,0 +1,2108 @@
+--- before/FFXII TZA/13-Rewards-Progression-Economy/CONTRACT-defeat-rewards-sequence.md
++++ after/FFXII TZA/13-Rewards-Progression-Economy/CONTRACT-defeat-rewards-sequence.md
+@@ -1,5 +1,5 @@
+ ---
+-contract: Pay out a kill — one function, one fixed order, and a display that is not what anyone received
++contract: Pay out a kill — local sequencing and mode-dependent presentation inputs
+ category: 13-Rewards-Progression-Economy
+ scope: subsystem
+ level: L2
+@@ -24,9 +24,21 @@
+   last_pass_state:
+   crossref_clean: false
+   reopened_count: 0
++production_review:
++  section: SECTION-03
++  status: locally validated; peer acceptance pending
++  scope: original reward consumers, selected caller instructions and retained binding observations
++  new_live_session: false
++
+ ---
+ 
+ # Contract — the defeat rewards sequence
++
++> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending.**
++> Corrected against original EXE instructions, 71 bounded native controls and independent review
++> of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
++> a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.
++> [Evidence, changed claims and limitations](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
+ 
+ > **Authored 2026-09-22 by FABLE.** S-32's binding gap is *"EXP/LP division only, of 5 pages"*. The
+ > loot rolls were taken at `8cfdf3851` and the gil paths at `68135b186`; **this takes the death
+@@ -34,8 +46,8 @@
+ >
+ > Written against FRONTIER's adequacy test: *a narrower contract is adequate exactly when the
+ > system's operations have no cross-operation invariant or ordering it leaves unstated.* §4 is six
+-> such invariants, and **DR-6 is one no page could state alone** — it is a disagreement between this
+-> function and the gil setter it calls.
++> such invariants. SECTION-03 corrects DR-2 and DR-6: they require following both caller and
++> callee, but the earlier undivided-NULL and differing-delta deductions were false.
+ 
+ ## 1. Purpose
+ 
+@@ -67,17 +79,22 @@
+ 
+ ### The six cross-operation invariants
+ 
+-**DR-1 — One function, one fixed order, and nothing re-enters it.** Build the recipient list →
+-per recipient compute, clamp, award, **re-derive the level**, notify → once for the party compute
+-the *undivided* amounts for the display → gil → place the drop at the unit's position → retire.
+-*Every reward the game pays for a kill is decided in this one body, in that order.*
+-
+-**DR-2 — The number on screen is produced by calling the SAME functions with a NULL recipient, so it
+-skips the division.** After the per-recipient loop closes (`003124AE`), `003124BC xor ecx, ecx` then
+-`call Reward_ComputeExperienceForRecipient`, and `003124C6 xor ecx, ecx` then
+-`call Reward_ComputeLicensePointsForRecipient` — both with the defeated unit in `rdx` and **zero in
+-`rcx`**. *The display shows the undivided award; every character receives it divided. They are not
+-the same number and nothing reconciles them.*
++**DR-1 — Local orchestration order, not a global non-reentrancy proof.** Build the recipient
++list → per recipient compute, clamp, award, re-derive level, notify → recompute presentation
++inputs with NULL recipients → gil → item placement → retirement. The visible order in this
++body is established. Callback re-entry and every external consequence have not been excluded.
++
++**DR-2 — NULL removes recipient-specific checks/modifiers, not shared EXP division.** After the
++loop at `003124AE`, the body zeroes ECX at `003124BC` and `003124C6` for calls to `002F8BB0`
++and `002F90C0`. The EXP callee still selects its branch through `003135C0`: in shared mode it
++counts exactly four lookup slots and divides if the count is positive. LP has no corresponding
++division or designated-mode gate. The caller clamps the fresh results and additionally suppresses
++EXP via the flag tested at `00312505/00312513` before `0028FB80`.
++
++A synthetic raw award 19 with two passing slots returns `EXP(NULL)=9` and `LP(NULL)=19`; an
++EXP-doubled recipient gets 18 while NULL still gets 9. The designated-mode NULL result is 19.
++These are native consumer checks plus static caller-argument checks, **not a fresh observed
++on-screen payout**. The presentation value can equal or differ from an individual's gain.
+ 
+ **DR-3 — Levelling is a SEARCH, not an increment.** The walk reads the level at `+0x1C2` and the
+ accumulated experience at `+0x18C` and steps while the next threshold is reachable
+@@ -100,18 +117,22 @@
+ accumulator the gil award uses (`00312549`). *So one character's status changes what the whole party
+ is paid.*
+ 
+-**DR-6 — The same gil movement is reported TWICE, by two different numbers, and they disagree at a
+-bound.** This path computes `current + award`, **floors it itself** (`00312556 test` /
+-`00312558 cmovns`), and passes the floored value to `GameState_SetGil` — which floors and caps
+-**again** and meters `raw − old` before its own clamp
+-([the gil contract's](CONTRACT-gil-storage-and-movement.md) `GL-3`). Then, at `00312562`, this body
+-computes `sub ebp, ebx` — **the ALREADY-FLOORED delta** — and reports it through a *second*
+-function, `00469E80`.
+-
+-> *So an ordinary award is reported identically twice, and an award that would drive gil below zero
+-> or above the ceiling is reported as two different amounts:* the setter's meter sees the unclamped
+-> movement, this path's reporter sees the clamped one. **Neither is wrong; they measure different
+-> things, and nothing in either body says so.**
++**DR-6 — Two reporting paths can both exceed the stored gain; a cap does not make their
++arithmetic deltas different.** The caller forms `requested = max(signed32(old + award), 0)`
++at `00312553`–`00312558`, and passes requested to the setter at `0031255D`. `00254EE0` computes
++`requested - current` before its own clamp to `[0, 99,999,999]`. It routes a positive magnitude
++to the increase meter, the negated magnitude of a negative delta to the decrease meter, or skips a zero delta.
++The caller then computes `requested - old` at `00312562` and calls `00469E80`.
++
++With no intervening balance change between those reads, both arithmetic differences are the
++same. The caller does **not** reload the upper-capped stored total before reporting. For old
++99,999,995 and award 10, both differences are 10 but stored gain is 4. For old 5 and award -10,
++requested is already zero: the setter meters a spend of 5 and the notifier receives -5.
++The notifier dispatches event `0x26` only for a positive argument; it is not a second ledger.
++
++These conclusions follow the original caller, setter and notifier instructions. No full gil
++orchestration/event runtime is executed by SECTION-03, and no global non-interference or
++subscriber-side interpretation is asserted.
+ 
+ ## 5. State
+ 
+@@ -123,14 +144,14 @@
+ 
+ | | |
+ |---|---|
+-| **Sibling** | [`CONTRACT-experience-and-licence-award.md`](CONTRACT-experience-and-licence-award.md) — the per-recipient division DR-2 bypasses |
++| **Sibling** | [`CONTRACT-experience-and-licence-award.md`](CONTRACT-experience-and-licence-award.md) — the distinct EXP/LP gates and mode-dependent NULL calls in DR-2 |
+ | **Sibling** | [`CONTRACT-loot-rolls-and-the-chain.md`](CONTRACT-loot-rolls-and-the-chain.md) — the drop this sequence places |
+-| **Calls** | [`CONTRACT-gil-storage-and-movement.md`](CONTRACT-gil-storage-and-movement.md) — DR-6 is the disagreement between them |
++| **Calls** | [`CONTRACT-gil-storage-and-movement.md`](CONTRACT-gil-storage-and-movement.md) — DR-6 compares requested, metered, notified and actually stored values |
+ | **Uncontracted** | the level-up page — S-32's last, not claimed here |
+ 
+ ## 7. State transitions
+ 
+-*recipients → per recipient: award, clamp, walk the level table, notify → undivided display → gil
++*recipients → per recipient: award, clamp, walk the level table, notify → fresh mode-dependent presentation inputs → gil
+ (floor, set, report) → drop → retire.* A recipient transitions level once per kill, by a walk rather
+ than a step (DR-3).
+ 
+@@ -140,9 +161,10 @@
+ 
+ ## 9. Determinism
+ 
+-**Deterministic in this body.** The drop it places is not — that is
+-[the loot contract's](CONTRACT-loot-rolls-and-the-chain.md) `LC-4`, and it is the only randomness a
+-kill involves.
++The inspected reward arithmetic is deterministic for fixed inputs. The drop path has its own
++[loot contract](CONTRACT-loot-rolls-and-the-chain.md), including `LC-4`. SECTION-03 has not ruled
++out randomness or state changes inside every growth/event/drop dependency, so the old universal
++"only randomness a kill involves" sentence is not retained as a proved invariant.
+ 
+ ## 10. Failure paths and edge conditions
+ 
+@@ -154,30 +176,38 @@
+ 
+ ## 11. Observable behaviour
+ 
+-The experience number that flies up after a kill is not what anyone got — it is the party's share
+-before it was divided. And a character under one particular status quietly turns the party's licence
+-points into money.
++The published EXP input is a fresh mode-dependent computation without recipient modifiers; it
++is not universally an undivided total or different from every recipient's gain. This review does
++not follow the rendering beyond the call boundary. The inherited status-12 conversion path
++replaces that recipient's LP with its gil contribution (DR-5).
+ 
+ ## 12. Reproduction formula
+ 
+-Kill with two eligible recipients and assert the displayed experience equals the **undivided**
+-amount while each recipient's gain is the divided one (DR-2). Give a recipient enough banked
+-experience for three levels and assert one kill advances all three (DR-3). Apply status 12 and assert
+-the recipient's LP is **zero** and the party's gil rose by `level × LP × 5` (DR-5). Award gil that
+-would exceed the ceiling and assert the setter's meter and `00469E80` receive **different** numbers
+-(DR-6).
++With fixed synthetic raw values 19 and two passing roster slots, assert NULL EXP 9 and LP 19,
++then EXP 18 for a doubled recipient and NULL EXP 19 in designated mode. These controls are in
++SECTION-03. A future full-path test must also account for caps, field-flag suppression and
++presentation/event consumers rather than equating a computed return with an observed display.
++
++DR-3/DR-5 still need their own complete-path acceptance. For the static DR-6 upper-bound example,
++old 99,999,995 plus award 10 predicts equal pre-cap differences 10 and stored gain 4, not two
++different reporting deltas. Test subscriber behavior separately from argument arithmetic.
+ 
+ ## 13. Runtime validation
+ 
+-**None.** No experiment executes this body. S-32's runtime cell is not addressed by this contract.
+-*Stated rather than left blank so a CONTRACT READY header is not read as evidence of execution.*
++**No complete execution of `00312280` is supplied by SECTION-03.** The new 71 original-instruction
++controls execute its EXP/LP consumers and their real gate closure under synthetic state. The
++caller, gil setter and notifier are inspected statically; EXP-081 is retained historical live
++observation of bindings, not reward payout. Formal peer acceptance and full S-32 obligations
++remain open. A CONTRACT READY header is not a whole-sequence execution claim.
+ 
+ ## 14. Unresolved
+ 
+ - ~~What `00469E80` does with the delta it is handed, and whether anything compares it against the
+-  setter's meter (DR-6).~~ **Read 2026-09-22 (SWE2-CONTRACT).** `00469E80(ecx=delta)` builds a
+-  zeroed seven-qword payload on its stack, stores the delta at `+0x30`, and — only when the delta
+-  is positive (`00469EA5 jle` skips the call) — dispatches event `0x26` through `0046AB10`
++  setter's meter (DR-6).~~ **Read 2026-09-22 (SWE2-CONTRACT); stack-relative payload count/offset corrected by
++  SECTION-03.** `00469E80(ecx=delta)` builds a
++  zeroed six-qword payload on its stack, stores the delta at **payload `+0x10`**
++  (`[rsp+0x30]` while the payload begins at `[rsp+0x20]`), and — only when the delta
++  is positive (`00469EA5 test` / `00469EA7 jle` skips the call) — dispatches event `0x26` through `0046AB10`
+   (`ecx=0`, `edx=0x26`, `r8=&payload`; `0046AB10` matches `{id word, key qword}` subscribers in a
+   runtime-built table at `02EFB560`). The payload is **transient** — it dies with the frame, and
+   `00469E80` stores nothing, so the second report is a notification, not a second ledger. It is
+@@ -204,21 +234,24 @@
+ 
+ | claim | evidence | tier |
+ |---|---|---|
+-| DR-2 — the null recipient | `003124BC` and `003124C6` read at their instructions, both after the loop back-edge at `003124AE`, with `rdx` holding the unit in each | 1 |
++| DR-2 — mode-dependent null recipient | Caller `003124BC/003124C6` plus complete original EXP/LP bodies and SECTION-03 synthetic controls; NULL is not proof of bypassed division | static original + isolated original execution |
+ | DR-3 — the walk | `00312432`–`00312460` read in order; the callee resolved to `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` | 1 |
+ | DR-4 — the four-byte offset | `0031253B` and `00312546` against the experience formula's `+0x34` on the same two records | 1 |
+ | DR-5 — the conversion and the ×5 | `00312409`/`0031240F` for both layers; the multiply decomposed from the two `lea`s at `00312421`/`00312425`; the accumulator joined at `00312549` | 1 |
+-| DR-6 — two reports | the gil path followed instruction by instruction from `00312553` through `0031255D` to `00312566`, **with the setter's own pre-clamp meter as the comparison** | 1 |
++| DR-6 — equal stable-input differences, stored upper clamp, positive-only notification | the gil path followed instruction by instruction from `00312553` through `0031255D` to `00312566`, **with the setter's own pre-clamp meter as the comparison** | 1 |
+ | DR-1, the caps and the recipient rule | [the death page](what-happens-when-an-enemy-dies.md), falsified 2026-09-03 | 1 |
+ | `00469E80` is the shared gil-change notifier — transient event-`0x26` post, positive deltas only | `00469E80`–`00469EBB` read whole; five callers censused (`002FD5D3`, `002FEF02`, `003004E5`, `003108CC`, `00312566`) | 1 |
+ | the display-side second cap bounds a fresh recompute, not the stored amount | `003124B4`–`00312518` read; `002F8BB0`/`002F90C0` = the uncapped per-recipient evaluators; `cmovg`/`0xF423F` and `0x3E7` at their instructions | 1 |
+ 
++[SECTION-03 review and exact production limitations](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
++
+ ## 16. Parity plan
+ 
+-L3 is out of scope. A reimplementation is judged on DR-1 through DR-6. **DR-2 is the one a port
+-"fixes" into a bug**: computing the display from the divided award is the obvious design and shows a
+-number the original never shows. **DR-6 is the one nobody notices** until the two counters are
+-compared.
++L3 is out of scope. Preserve the locally established order and each claim's evidence boundary.
++Do not introduce a NULL-recipient "undivided total" special case into EXP or an EXP-style divisor
++into LP. Do not substitute actual clamped balance movement for the pre-cap reporting delta
++without acknowledging that this changes native behavior. Full event/display and callback
++interactions need their own evidence before a whole-subsystem parity claim.
+ 
+ ## 16a. Crossings into other layers (FABLE, 2026-09-22)
+ 
+@@ -228,7 +261,7 @@
+   walk reads belong to that layer; **this contract asserts which fields are read and in what order,
+   not what any of them means elsewhere.**
+ - **PlatformOnlineAchievements — SERVICE, through the setter.** DR-6's first report reaches that
+-  layer's meter; *this contract asserts only that the two reports differ at a bound.*
++  layer's meter; its stable-input delta can equal the notifier argument while exceeding stored gain.
+ - **Presentation — MECHANICAL.** One callee of this body belongs to that layer. **DR-2 is about which
+   arguments the display calls receive, not about what draws the result**, and nothing here follows the
+   number past the call.
+--- before/FFXII TZA/13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md
++++ after/FFXII TZA/13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md
+@@ -14,602 +14,294 @@
+     that date, NOT the method of the original derivation**, which this block never
+     carried; see this document's own Evidence section and `audit.last_pass_state`
+     for that.
+-last_reviewed: 2026-09-11
++last_reviewed: 2026-09-22
+ audit:
+   passes: 1                    # falsification passes survived. 0 = NOT yet fact.
+   last_pass: 2026-09-12        # YYYY-MM-DD
+   last_pass_state: opus-experience-licence-award-pass-1  # snapshot SHA the pass ran against
+   crossref_clean: false        # audit_crossrefs.py reports nothing for this document
+   reopened_count: 0
++production_review:
++  section: SECTION-03
++  by: external-continuation
++  status: "PRODUCTION COMPLETE; formal peer acceptance pending"
++  evidence: _experiments/evidence/continuation-section03-reward-bindings/REVIEW.md
++  audit_scope: "Existing audit/annotation metadata is historical, not acceptance of these edits."
+ ---
+ 
+ # Contract — the experience and licence-point award
+ 
+-Two functions answer one question for one recipient and one corpse: what is owed. They share a
+-precondition set almost exactly, and the places where they differ are the interesting part, because
+-**a reconstruction that factored out the shared half would silently unify two different eligibility
+-rules.**
+-
+-The first contract in `13-Rewards-Progression-Economy`.
++**Current bounded production review — SECTION-03, 2026-09-22.** The original EXP/LP bodies and
++callee chain were re-read, **71 original-instruction controls** passed with an identical repeat,
++and six deliberately incorrect private-image variants failed their intended assertions.
++An independent reduction also checked **88 retained EXP-081 spans**. This is not a new live
++FF12 session, full rerun of the old Unicorn campaign, or formal peer acceptance.
++[Review, exact cases and limits](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
++
++The key correction is at the interface: **NULL recipient does not disable EXP division.** It
++skips recipient-only checks/modifiers; shared-mode EXP still counts four roster entries and
++performs signed division. **LP is not divided, and does not call the EXP owning-unit finder.**
++The old contract and related death pages had conflated these distinct rules.
+ 
+ ## 1. Purpose
+ 
+-`Reward_ComputeExperienceForRecipient` (`002F8BB0`) and `Reward_ComputeLicensePointsForRecipient`
+-(`002F90C0`) are pure computations: they read, they return a number, they write nothing. Everything
+-that makes a reward zero is a precondition, and all of them are silent.
++`002F8BB0` computes experience and `002F90C0` computes licence points for a recipient and a
++kind-1 subject unit. These routines compute values; the defeat orchestrator applies them.
++A zero result can mean rejection, an actual zero, signed division rounding toward zero, or
++an EXP zero modifier. It does not identify which condition occurred.
+ 
+ ## 2. Interface
+ 
+-| | |
++| Boundary | Meaning |
+ |---|---|
+-| entries | `002F8BB0` experience; `002F90C0` licence points |
+-| parameters | `rcx` = the recipient's `BattleStatsRecord` (may be NULL); `rdx` = the dying `BattleUnit` |
+-| returns | `eax`, the amount; **0 means both "nothing owed" and "not eligible"** |
+-| writes | none |
+-
+-Microsoft x64. Neither function reports *why* it returned zero, and §10 is the list of ways it can.
++| `RCX` | Recipient `BattleStatsRecord*`, **allowed to be NULL**. |
++| `RDX` | Subject/defeated `BattleUnit*`; NULL returns zero after earlier applicable gates. |
++| `EAX` | Signed 32-bit computed value; callers must preserve native wrap/divide semantics. |
++| Calling convention | Microsoft x64. No output-buffer parameter. |
++| Writes | No writes to the supplied records/rows in the selected bodies; stack saves are not persistent state. The native fixture additionally compares all synthetic data bytes. |
++
++These are not interchangeable predicates. In particular, an ownerless but otherwise valid
++kind-0 stats record is rejected by EXP and admitted by LP under the tested synthetic setup.
++That demonstrates an API distinction, not that the normal defeat caller supplies orphan records.
+ 
+ ## 3. Types
+ 
+-`BattleStatsRecord` for both the recipient and — reached through `BattleUnit +0x698` — the corpse.
+-`PartyRosterSlots` is not consulted; the party walk uses `0031B810` by index instead.
+-
+-| field | width | role here |
++| Object and offset | Width / role |
++|---|---|
++| recipient `+4`, `+5` | ID byte and kind byte. Non-NULL recipients must have kind zero. |
++| recipient `+0x3C`, `+0x64` | Status words, OR'd then tested with `0x80000003`. |
++| recipient `+0x6B`, `+0x7B` | Modifier bytes: EXP bit `0x08` doubles, then bit `0x20` zeroes; LP bit `0x10` doubles. |
++| subject `+0x698` | Stats pointer. Must be non-NULL, with stats kind `+5 == 1`. |
++| subject stats `+0x1C2`, `+0x88` | Two unsigned bytes, level and stored rebuild baseline, subtracted as integers. This consumer reads the actual baseline byte; it does not substitute a constant `1`. |
++| subject `+0xE70` | Base/addend row pointer, produced through registry slot `02EBF148`. |
++| subject `+0xE78` | Per-level/multiplier row pointer, produced through `02EBF140`. |
++| each reward row `+0x34` | 32-bit EXP coefficient. |
++| each reward row `+0x2F` | Unsigned byte LP coefficient. |
++
++The enemy arm at stats `+0x88` is distinct from the party Gambit interpretation of that region.
++The canonical mechanism is
++[how a battle unit is built](../04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md).
++No general row lifetime or complete pointee layout follows from these consumer offsets.
++
++## 4. Preconditions · postconditions · invariants
++
++| Test | EXP | LP |
+ |---|---|---|
+-| `+0x05` | u8 | the kind discriminator. **Recipient must be 0 (party); the corpse must be 1.** |
+-| `+0x04` | u8 | the id the eligibility filters test, and the two rewards filter it **differently** |
+-| `+0x3C`, `+0x64` | u32 | two status words, OR'd and masked `0x80000003` |
+-| `+0x6B`, `+0x7B` | u8 | two parallel modifier banks; bit 3 doubles, bit 5 zeroes |
+-| `+0x88` | u8 | on a kind-1 record, the enemy arm of the `gambitBlockByKind` union: **the third argument the rebuild stored**, `0030C4B1`, observed as `1` |
+-| `+0x1C2` | u8 | **the corpse's LEVEL**, `[0, 99]`, zeroed by the rebuild at `0030C496` before growth runs |
+-
+-and on the dying `BattleUnit` itself, two rows the store already names:
+-
+-| field | width | role here |
++| Global licence byte `00264150()` | Not consulted. | Checked first; any nonzero signed-byte result returns zero before dereferencing the arguments. |
++| Non-NULL recipient kind | Must be zero. | Must be zero. |
++| Owning-unit lookup `0031B860(recipient)` | Must succeed for a non-NULL recipient. | **Not called.** |
++| Recipient ID | Reject `0x1B..0x27`. | Admit `0..6`, `0x1A`, or `>=0x28`. |
++| Recipient status words | Mask `0x80000003` must be clear. | Same mask. |
++| Subject and subject stats | Both non-NULL; stats kind must be one. | Same. |
++| Reward-row pointers | No local NULL check once their formula reads are reached. | Same. |
++
++**NULL recipient bypasses only the recipient-specific rows of this table.** It does not bypass
++subject checks, the EXP mode decision/count, or the LP global gate.
++
++The LP ID-admission set is a subset of EXP's recipient ID set. That is **not** an implication
++that a record earning LP must earn EXP: the latter also has ownership, mode and modifier rules.
++
++## 5. State
++
++Inputs include the subject/recipient records, cached authored-row pointers, mode flags and
++roster maps. Stable inputs give deterministic arithmetic; the functions do not take an atomic
++snapshot of all those globals. A bracketed read is not proof that no concurrent/intermediate
++change can happen. No timing or lifetime guarantee is added here.
++
++## 6. Relationships and row production
++
++The kind-1 installer `0023A570` reads the enemy definition's words `+0x22` and `+0x24` to select
++rows via `02EBF148` and `02EBF140`. Original stores are `0023A9A5` and `0023A9F4`.
++
++For each non-NULL descriptor it decodes `[descriptor+0x0C]` with `0020E600`, rejects a zero
++decoded base on that path, then combines the unsigned 16-bit index and stride from `+8` with
++**32-bit** `imul`/`add` before zero-extending the result into the 64-bit unit field.
++
++```
++decoded = (zero_extend_u32(encoded) + relocation_base_u64) modulo 2^64
++stored_row = zero_extend_u32(index_u16 * stride_u16 + low32(decoded))
++```
++
++A zero encoded value decodes to the relocation base; it is not a universal NULL sentinel.
++A decoded address above 4 GiB can lose high bits in the stored row. Descriptor absence, decoded
++zero, and arithmetic wrap-to-zero are distinct paths. The complete installer and its earlier
++reset/rekey effects are outside a pure row-lookup abstraction; **failure is not transactional**.
++See [SECTION-01](../_experiments/evidence/continuation-section01-result-install/REVIEW.md).
++
++`0031B810(i)` is the shared-mode roster lookup. The native fixture uses the original lookup,
++unit scan, bounds and mode helpers rather than scripted replacements. Only reached branches
++of those helpers are covered; this is not certification of every bounds-dispatch arm.
++
++## 7. State transitions — exact computation
++
++Define `D = u8(subject.stats+0x1C2) - u8(subject.stats+0x88)`.
++Let `A` be the **signed interpretation of the low 32 bits** of
++`D * u32(perLevelRow+0x34) + u32(baseRow+0x34)`.
++
++**EXP:** after its gates, `003135C0()` selects the two modes.
++
++- Nonzero: call `00313800()`. A non-NULL recipient must equal
++  `00320AB0(returned_index, 1)`; NULL skips that comparison. Set the pre-modifier result to `A`.
++- Zero: enumerate **exactly four** entries through `0031B810(0..3)`. Count returned members
++  whose status mask is clear, excluding kind-zero IDs `0x1A..0x27` through the two separate
++  original tests. No member means zero without reading either reward row. Otherwise compute
++  `A / count` using signed `idiv`, truncating toward zero.
++- For a non-NULL recipient, double the resulting 32-bit value if either modifier byte has
++  bit `0x08`, then set it to zero if either has bit `0x20`. NULL skips both modifications.
++
++Consequences: `19 / 2` is `9`; doubling that share yields `18`, not `19`. NULL in the same
++shared state also returns `9`. In single-recipient mode NULL returns `19`. A zero roster returns
++zero even if the cached reward pointers are NULL, because this branch never reads them.
++
++The roster word-match excludes kind-1 records from ordinary byte selectors. Do **not** strengthen
++that into "only kind zero can ever be returned": `0xFF` has a `0xFFFF` comparison special case.
++A synthetic descriptor count of 256 plus a kind-`0xFF` record allows that sentinel to be returned
++and counted. This does not establish that a shipped initialized roster reaches the condition.
++
++**LP:** after its gates, compute the signed low-32-bit result of
++`D * u8(perLevelRow+0x2F) + u8(baseRow+0x2F)`. For a non-NULL recipient, either modifier byte's
++bit `0x10` doubles it. There is **no divisor, no designated-recipient test, no owning-unit search,
++and no EXP-style zero modifier** in this function.
++
++Neither function clamps negative results or 32-bit arithmetic wrap. The defeat caller's clamps
++are separate operations.
++
++## 8. Script · resource · event interactions
++
++The coefficient rows are authored data reached through cached pointers; the level/baseline bytes
++are runtime stats. The installer is where those relationships are established. EXP-081 observed
++selected initialized bindings, not the installer executing and not a reward event.
++
++The caller `00312280` invokes both computers with NULL recipient at `003124BE` and `003124CA`,
++clamps the fresh values, and may zero EXP under `00236780()` before passing values to
++`0028FB80` at `00312518`. **That is an unmodified, mode-dependent EXP share—not universally an
++undivided pool.** LP is an unmodified computed LP amount because LP was never divided.
++No screen rendering or complete defeat transaction was executed in this section.
++
++## 9. Determinism
++
++No RNG draw is made by the selected reward routines. Preserve input widths, modulo-32-bit
++arithmetic, signed division, and gate order. Caller/callee state can differ between separate
++invocations; "pure computation" is not a global synchronization guarantee.
++
++## 10. Failure paths and edge conditions
++
++- Zero is ambiguous: rejected inputs, a legitimate zero, rounding, and EXP zeroing share it.
++- Both subject NULL checks precede row dereferences. LP's global gate is earlier still.
++- A valid subject with a NULL multiplier row faults at `0x34` in EXP or `0x2F` in LP once the
++  formula is reached. The base-row faults have the same respective displacements. These were
++  isolated child-process controls, not crashes induced in FF12.
++- Zero roster avoids EXP row dereferences; it does not protect LP.
++- An out-of-range reward index against a positive descriptor count causes an early installer
++  rejection before later row stores. Earlier reset/rekey effects can already exist. Unsigned
++  zero-count underflow and missing-descriptor paths must not be collapsed into that case.
++- An LP coefficient `0xFE` is `254`, not `-2`; the original uses `movzx`.
++- The caller must not assume all nonzero/negative results represent a reachable gameplay award.
++
++## 11. Observable behaviour and retained binding evidence
++
++The historical EXP-081 samples contain reward-registry words and `BattleUnit+0xE70/+0xE78`
++inside the full before/after pools. At the completed-load popup both reward slots are zero and
++there are no occupied actor/stats-bound units. In the field, both slots are nonzero and three
++kind-1 units have nonzero reward pointers. The observed kind-zero unit's reward pointers are zero.
++
++| Field-stage unit slot | Base selector / cached pointer | Per-level selector / cached pointer |
+ |---|---|---|
+-| `+0xE70` `rewardBaseRow` | `void*` | its `+0x34` is the **addend**; cached from registry slot `02EBF148` |
+-| `+0xE78` `rewardPerLevelRow` | `void*` | its `+0x34` is the **per-level multiplier**; cached from registry slot `02EBF140` |
+-
+-**Both may be NULL, and this family does not check them** — see §10.
+-
+-**This contract derives those two names rather than accepting them.** The store records both as
+-*propagated, not derived from access patterns* (FABLE, `bfcb07e`). The arithmetic in §7
+-multiplies by `[+0xE78 + 0x34]` and adds `[+0xE70 + 0x34]`, so a per-level row supplying the
+-multiplier and a base row supplying the addend is exactly what the code does. Their support is
+-upgraded from propagated to derived.
+-
+-**`+0x88` is read here as a single byte off a kind-1 record**, at `002F8C6A` and `002F8CFE`
+-(`movzx eax, byte ptr [rax + 0x88]`), which is an independent consumer confirming the union declared
+-in `001668a` from the other side: on a party record those bytes are a `GambitConfig`, and on a
+-spawn-backed one the first byte is this. Two subsystems, one discriminator.
+-
+-## 4. Preconditions · postconditions · invariants
+-
+-**Shared by both, and each one returns 0 silently:**
+-
+-1. the recipient's kind byte `+0x05` must be `0`;
+-2. `(stats[+0x64] | stats[+0x3C]) & 0x80000003` must be zero — **the same mask and the same
+-   conjunction as the field-record action gate in `03-World-Area-Field`**, which is the third
+-   subsystem found using it;
+-3. the corpse must exist, its `BattleUnit +0x698` must be non-NULL, and that record's `+0x05` must
+-   be `1`.
+-
+-**And the id filter, which is NOT shared:**
+-
+-| | admitted |
++| 4 | `6 / 67483D90` | `4 / 67484050` |
++| 5 | `5 / 67483D58` | `3 / 67484018` |
++| 7 | `0 / 67483C40` | `0 / 67483F70` |
++
++Registry descriptor words are `67483C20` (base) and `67483F50` (per-level); the retained image
++address-base word is zero. All values repeat across both field samples and the reward-pointer
++bytes match the pool brackets.
++
++**No reward descriptor bytes or required reward-row prefix bytes were captured.** Selector/row
++address differences fit affine spacing `0x38`, with the selector-zero pointers `0x20` after the
++descriptor addresses. That is a conditional consistency observation, **not a read of header
++stride/count/encoded base, validation of coefficients, or proof of lifetime**. No payout amount,
++kill, or row dereference by a reward consumer was observed live in these captures.
++
++## 12. Reproduction formula
++
++The executable reproduction is the [SECTION-03 native fixture](../_experiments/evidence/continuation-section03-reward-bindings/native_controls.c).
++It runs the original reward functions and gate callees over synthetic records, without replacing
++application callees. Distinguishing controls include:
++
++- Shared roster counts 0..4 with NULL recipient; LP checked against the same states.
++- An EXP-doubled recipient versus NULL in a two-member roster: `18` versus `9`, while normal
++  EXP is `9`. LP-doubled versus NULL: `38` versus `19`.
++- Mode-one designated/mismatched/NULL recipients, including an invalid designation.
++- Kind-zero orphan stats: EXP `0`, LP `19` with the LP gate clear.
++- Recipient ID `0x1A` admitted for EXP/LP but excluded from the EXP divisor.
++- Exact masks/byte width, zero roster, negative division, arithmetic wrap, and NULL row accesses.
++
++All numeric values here belong to declared synthetic fixtures, not sampled authored coefficients.
++
++## 13. Runtime validation
++
++**Three evidence classes remain separate.**
++
++1. Historical reconstruction differential checks and [EXP-090](../_experiments/EXP-090-reward-gate-exec.md)
++   are the original campaigns, not rerun here. EXP-090 records 104 cases and ten mutations;
++   its scripted-predecessor cases must not be mistaken for initialized-game reachability.
++2. SECTION-03 executes 71 bounded controls on original CPU instructions, repeats identically,
++   and rejects six private-image variants. Synthetic state only; no application-call stubs.
++3. [EXP-081](../_experiments/EXP-081-live-battleunit-bindings.md) is a historical live read-only
++   capture. SECTION-03 independently rechecks its 88 spans and ten corrupted-record controls,
++   and replays the supplied retained-reward checker unchanged. This consumes existing evidence;
++   it does not run a fresh game session or grant formal peer acceptance.
++
++The old wording "live capture absent" was too broad for bindings, while "live reward calculation
++validated" would also be false. The observed binding words and unobserved reward contents are
++listed separately in §11.
++
++## 14. Unresolved
++
++- Actual reward-header counts/strides/encoded references and row coefficients in the sampled
++  session were not retained. New observation would be needed for those contents.
++- No continuous binding/allocation lifetime, setter-to-consumer chronology, death timing, or
++  rendered amount is established by EXP-081.
++- Shipped reachability of zero-count/missing descriptors, high relocation bases, level-zero
++  rewards, and the synthetic kind-`0xFF` roster case remains separately unproved.
++- Names and producer semantics of the status-mask bits and ID policies remain in their owning
++  system pages; reading a shared constant does not prove a shared control variable.
++- Full defeat orchestration, notification subscribers and all reward/growth/resource dependencies
++  are not certified by these two computers. No S-32 L2 verdict is changed by this production.
++
++The mapped gates are no longer all unknown: EXP-090 and the original chain explain their
++bounded decisions, and the selected paths run in SECTION-03. Do not keep assigning those same
++static gate questions as "live-only" merely because an old handoff said so.
++
++## 15. Evidence
++
++| Claim | Primary support and scope |
+ |---|---|
+-| experience (`002F8BF2`–`002F8BFA`) | everything **except** `0x1B`–`0x27` (`al - 0x1B`, `cmp 0xC`, `jbe` rejects) |
+-| licence points (`002F90E7`–`002F90F5`) | `0x00`–`0x06`, `0x1A`, and `0x28` upward — so `0x07`–`0x19` **and** `0x1B`–`0x27` are rejected |
+-
+-The experience filter is applied only when the kind byte is `0`, which it already must be, so the
+-guard is redundant there and is not in the licence path. **Anything that can earn licence points can
+-earn experience; the reverse is false.**
+-
+-Both functions are pure: no field of any record is written on any path.
+-
+-## 5. State
+-
+-None. Every input is read through the two arguments.
+-
+-## 6. Relationships
+-
+-- **`BattleStatsRecord +0x88`** — this is the second declared consumer of the union's enemy arm, the
+-  first being the level grower.
+-- **The `0x80000003` mask** ties this family to `CONTRACT-field-record-accessors` and to the combat
+-  and status paths that share it.
+-- `0031B810` supplies party members by index `0..3`; `0031B860` and `00320AB0` gate and resolve the
+-  single-recipient path; `00264150` gates licence points globally.
+-- **`BattleUnit_ApplyUnitDefinition` is the sole writer of both reward rows**, and it is where
+-  this family joins the authored data. The chain runs end to end:
+-
+-  ```
+-  authored .ard row  (registry slot 02EBF120)
+-    -> row word +0x22 indexes registry slot 02EBF148   -> BattleUnit +0xE70  rewardBaseRow
+-    -> row word +0x24 indexes registry slot 02EBF140   -> BattleUnit +0xE78  rewardPerLevelRow
+-      -> this contract reads +0x34 of each
+-  ```
+-
+-  Both use the `AuthoredTableHeader` idiom `CONTRACT-authored-table-row-lookup` specifies —
+-  `resolve(header +0x0C)` through `0020E600`, stride from the header's `u16` at `+0x08`, index
+-  times stride plus base (`0023A985`–`0023A9A5` and `0023A9C5`–`0023A9EC`). This confirms the
+-  unit-definition page's own table from the other side, which records those two words as
+-  bounds-checked against exactly those slots.
+-
+-## 7. State transitions — the computation
+-
+-**Experience, `002F8BB0`.** Two paths, selected by `003135C0`:
+-
+-*Single recipient* (`003135C0` non-zero). `00313800` names a recipient, `00320AB0(that, 1)` resolves
+-it, and if it is not the record passed in, the answer is **0**. Then:
+-
+-```
+-esi = (u8)corpse.level - (u8)corpse[0x88]         002F8C63, 002F8C6A, 002F8C71
+-esi *= [ unit.rewardPerLevelRow + 0x34 ]          002F8C73, 002F8C7A
+-esi += [ unit.rewardBaseRow     + 0x34 ]          002F8C7E, 002F8C85
+-```
+-
+-**That is the corpse's LEVEL minus the byte the rebuild stored at `+0x88`** — `1` on the enemy
+-branch as observed — so the base is `level - 1`, scaled and offset. CORRECTED 2026-09-11: an earlier
+-revision of this contract called `+0x1C2` an "award base", which the type store had already named
+-`level` with range `[0, 99]`.
+-
+-*Divided among the party* (`003135C0` zero). Walk slots `0` to `3` through `0031B810`, count the
+-members that pass preconditions 2 and the experience id filter into `ebp`, then:
+-
+-```
+-if (ebp == 0) esi = 0                             002F8CEC
+-else          esi = (same expression) / ebp       002F8D1C-002F8D1F: cdq / idiv ebp
+-```
+-
+-**`idiv` is SIGNED, and the subtraction feeding it can go negative** — `level - 1` is `-1` for a
+-level-0 corpse, and the rebuild at `0030C496` writes level `0` before growth runs. Nothing clamps it
+-before the divide. An unsigned divide here would not merely round
+-differently — it would turn a small negative into an enormous positive.
+-
+-**Then the recipient's own modifiers, in this order and no other** (`002F8D26`–`002F8D40`):
+-
+-```
+-if (recipient[0x6B] & 8)    || (recipient[0x7B] & 8)    esi += esi;   /* double */
+-if (recipient[0x6B] & 0x20) || (recipient[0x7B] & 0x20) esi  = 0;     /* none   */
+-```
+-
+-Three consequences a reconstruction must keep. **The doubling happens after the division**, so it
+-doubles a share and not the pool. **Zero wins over double**, because it is tested second and
+-assigns. And the two banks are checked with OR, so either one carries the effect alone.
+-
+-**Licence points, `002F90C0`.** Gated first by `00264150` — a non-zero return means **0**, before
+-any argument is examined. Then the shared preconditions with the licence id filter, and then
+-arithmetic of the same shape as the experience half but reading **different fields**:
+-
+-```
+-002F911B  edx = corpse[+0x1C2] - corpse[+0x88]        ; both through dying unit ->+0x698
+-002F912B  edx *= byte [unit.rewardPerLevelRow + 0x2F] ; a BYTE, not the dword +0x34
+-002F9136  edx += byte [unit.rewardBaseRow    + 0x2F]
+-002F914B  if (recipient[+0x6B] & 0x10) || (recipient[+0x7B] & 0x10) edx += edx   ; double
+-002F9159  return edx
+-```
+-
+-> **CORRECTED 2026-09-12 (`OPUS-CONTRA-LICENCE-PERCENTAGE`), and the error was mine, published the
+-> same morning.** This paragraph said the tail ends in `002F9180`'s `0x51EB851F` reciprocal — "the
+-> compiler's signed division by 100, so the licence award is a percentage". **`002F90C0` does not
+-> contain that instruction and never calls it.** The function's two returns are at `002F9165` and
+-> `002F9166`–`002F9172`, and `002F9173`–`002F917F` is `int3` padding; `002F9180` begins a **separate
+-> 21-byte function** ending at its own `ret` at `002F9194`, and a direct-reference sweep finds
+-> exactly one caller for it image-wide — `002FF090`, which is not this family. There is **no
+-> division in the licence award at all.**
+->
+-> The shape of the mistake is worth keeping: the cited address was real, the instructions at it were
+-> exactly what the claim described, and they were in another function. An address is not a citation
+-> until its containing body is checked.
+-
+-**The two halves double on different bits**: experience on bit 3 of either modifier bank and zeroes
+-on bit 5; licence on **bit 4** (`0x10`) of either, with no zeroing bit at all.
+-
+-## 8. Script · resource · event interactions
+-
+-Neither of the corpse's two inputs is read from authored data by this family, and neither is
+-authored directly. `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth`'s rebuild (`0030C470`)
+-zeroes the level at `0030C496` and then grows it, and stores its own third argument into `+0x88`
+-at `0030C4B1` on the kind-1 branch only. The authored row behind that rebuild sits at registry
+-slot `02EBF120` for enemies and `02EBF130` for party members; nothing in this family touches
+-either.
+-
+-## 9. Determinism
+-
+-Fully deterministic. No random input and no time dependence on any path read.
+-
+-## 10. Failure paths and edge conditions
+-
+-**Every rejection returns 0 and none of them is distinguishable from a genuine award of 0.** The
+-list, in evaluation order for experience: null recipient skips the recipient checks *but not the
+-corpse checks*; recipient kind non-zero; `0031B860` returning null; recipient id in `0x1B`–`0x27`;
+-either status word carrying `0x80000003`; null corpse; null `+0x698`; corpse kind not `1`; on the
+-single-recipient path, the resolved recipient not matching; on the divided path, zero eligible
+-members; and finally the `0x20` modifier bit on either bank.
+-
+-- **A NULL recipient is legal** and reaches the corpse checks (`002F8BCF` jumps past only the
+-  recipient block). It then returns whatever the corpse-side expression produces without any
+-  recipient modifier, because `002F8D21` tests `rdi` again before applying them.
+-- **The subtraction is unguarded**, see §7.
+-- **NEITHER REWARD ROW IS NULL-CHECKED HERE, AND BOTH CAN BE NULL.**
+-  `BattleUnit_ApplyUnitDefinition` writes NULL into them on its failure paths — `xor ecx, ecx`
+-  at `0023A9A3` and `0023A9EA`. This family then loads `+0xE78` at `002F8C73` and immediately does
+-  `imul esi, dword ptr [rax + 0x34]` at `002F8C7A`, with nothing between, so a NULL row faults at
+-  kill time and the failure surfaces far from its cause. **That half stands and was never the
+-  disputed one.**
+-
+-### The row pointer is built in 32-bit arithmetic, and three different things look like NULL
+-
+-**Added 2026-09-12 from `ASTRA-REQ-OPUS-NATIVE-REWARD-DECODE` / `EXP-076`**, which composed the
+-native decoder with the installer instead of scripting a resolver return. Three conditions had been
+-treated as one, and they are distinguishable in the instructions:
+-
+-| condition | what actually happens |
+-|---|---|
+-| **the encoded reference is 0** | `0020E600` is `mov eax, ecx` / `add rax, [01F83530]` / `ret`, so it returns **the relocation base**. A zero reference is **not** a null row |
+-| **the decoded base is 0** | only then is a zero reference a zero address — and `EXP-002` observed the base reading 0 at the title screen, which is what makes the two look identical in practice |
+-| **the stored row is NULL** | either the store came from `0023A9A3`/`0023A9EA`, the descriptor-missing path above, **or** the 32-bit arithmetic below truncated a real address to zero |
+-
+-**The arithmetic is the part a reimplementation gets wrong silently:**
+-
+-```asm
+-0023A994  movzx edx, word ptr [rcx + 8]      ; stride, u16
+-0023A998  movzx ecx, word ptr [rsi + 0x22]   ; index, u16
+-0023A99C  imul  ecx, edx                     ; 32-bit
+-0023A99F  add   ecx, eax                     ; 32-bit, over the resolver's LOW 32 only
+-0023A9A5  mov   qword ptr [rdi + 0xE70], rcx ; stored zero-extended to 64
+-```
+-
+-**Every step is 32-bit and the result is zero-extended**, so the high half of a decoded base is
+-**dropped here** — even though it survives elsewhere, including through the order pointer at
+-`+0x6E0`. Two consequences worth stating separately:
+-
+-1. **A base above 4 GiB stores a truncated, wrong pointer** — not a null one, and nothing complains.
+-2. **A non-zero base can still store exactly NULL**: with base `0x100000000`, reference 0 and index
+-   0 the low 32 bits are zero. `EXP-076` drives that as its own control, and it is the case where
+-   "the base is non-zero, therefore the row is valid" fails.
+-
+-> **So `encoded == 0`, `decoded == 0` and `stored == NULL` are three conditions with three causes,
+-> and they coincide only when the base's low 32 bits are zero** — which is the state the one live
+-> observation happens to have caught. A model that equates them is right today and for the wrong
+-> reason.
+->
+-> **What this does not establish:** the live relocation base, whether a shipped process ever has one
+-> above 4 GiB, and the native effects of `EXP-076`'s eight remaining stubs. Isolated original-code,
+-> with the arithmetic executed rather than modelled.
+-
+-### ⚠ CORRECTED 2026-09-12 — what puts a NULL in those rows is NOT an out-of-range index
+-
+-**This section said the NULL stores are *"taken when the definition row's word fails its bounds
+-check against the slot's count"*, and concluded that *"a unit whose definition carries an
+-out-of-range reward index is built successfully and faults when it is killed"*. Both halves are
+-wrong.** Raised by ASTRA as `ASTRA-CONTRA-OPUS-REWARD-PRECHECK` from `EXP-075` — the complete
+-1,808-byte installer executed from entry to return in fourteen fixtures — and re-read from the image
+-here before accepting it.
+-
+-**An out-of-range index with a positive count is rejected EARLY, and no unit is built.** The
+-installer carries **four** bound guards of one shape, each `index > count − 1 → 0023A63A`, and
+-`0023A63A` is `xor eax, eax` followed by a jump to the epilogue — **return 0, before any store**:
+-
+-| guard | jump | table slot | index field | at count 0 it… |
+-|---|---|---|---|---|
+-| `0023A6BB` | `ja` **unsigned** | `02EBF150` | `[rsi]` | **accepts every index** |
+-| `0023A726` | `jg` **signed** | `02EBF168` | `[rsi + 0x50]` | **rejects every index** |
+-| `0023A747` | `ja` **unsigned** | `02EBF148` | `[rsi + 0x22]` | **accepts every index** |
+-| `0023A768` | `ja` **unsigned** | `02EBF140` | `[rsi + 0x24]` | **accepts every index** |
+-
+-> **Three unsigned and one signed, and they disagree exactly at zero.** `dec ecx` on a count of 0
+-> gives `0xFFFFFFFF`; nothing is unsigned-above that, so the three `ja` guards pass anything, while
+-> the single `jg` compares against `−1` and rejects everything non-negative. **A zero-count or
+-> missing table is the case where an index gets through** — not an out-of-range index against a
+-> populated one.
+-
+-**And the late NULL stores test the descriptor, not the index.** `0023A97C je 0023A9A3` follows a
+-`test rax, rax` on **the resolver's return value**, and the slot-null test above it jumps to the same
+-label. So `0023A9A3` and `0023A9EA` mean *the table is absent or its base did not resolve*, which is
+-a different failure with a different cause and a different fix.
+-
+-**Three causes were collapsed into one**, and they are now separate:
+-
+-1. **out-of-range index, positive count** → rejected at the guard, **returns 0, nothing built**;
+-2. **zero or missing count** → the unsigned guards underflow and the index passes;
+-3. **absent descriptor or failed resolution** → the row pointer is stored NULL, and *that* is what
+-   the consumer later dereferences.
+-
+-**What is still open** and is not claimed either way: whether a shipped area can present an empty or
+-missing descriptor at all — that is loader and runtime reachability, and `EXP-075` is isolated
+-original-code with nine recording stubs, not a live observation.
+-- Licence points are gated globally before anything else, so on a save where `00264150` is non-zero
+-  no licence point is ever owed and nothing says why.
+-
+-## 11. Observable behaviour
+-
+-Not established; this is static. What would be observable: a party member under a status in the
+-`0x80000003` set earns nothing from a kill that pays everyone else; killing with one eligible member
+-pays the full share and with two pays half each; a double-EXP effect doubles the divided share rather
+-than the pool.
+-
+-## 12. Reproduction formula
+-
+-```c
+-int Reward_ComputeExperienceForRecipient(BattleStatsRecord *rcp, BattleUnit *corpse)
+-{
+-    if (rcp) {
+-        if (rcp->kind != 0)                       return 0;   /* 002F8BD4 */
+-        if (!sub_31B860())                        return 0;
+-        if ((uint8_t)(rcp->id - 0x1B) <= 0x0C)    return 0;   /* 002F8BF2 */
+-        if ((rcp->w64 | rcp->w3C) & 0x80000003)   return 0;   /* 002F8C00 */
+-    }
+-    if (!corpse || !corpse->stats)                return 0;
+-    if (corpse->stats->kind != 1)                 return 0;   /* 002F8C2A */
+-
+-    int v;
+-    if (sub_3135C0()) {
+-        if (rcp && rcp != sub_320AB0(sub_313800(), 1)) return 0;
+-        v = award(corpse);
+-    } else {
+-        int n = 0;
+-        for (int i = 0; i < 4; i++) {             /* 002F8C94-002F8CE5 */
+-            BattleUnit *m = sub_31B810(i);
+-            if (!m) continue;
+-            BattleStatsRecord *s = m->stats;
+-            if ((s->w64 | s->w3C) & 0x80000003) continue;
+-            if (s->kind == 0 && (uint8_t)(s->id - 0x1B) <= 0x0C) continue;
+-            n++;
+-        }
+-        if (n == 0) return 0;
+-        v = award(corpse) / n;                    /* SIGNED idiv */
+-    }
+-    if (rcp) {
+-        if ((rcp->b6B | rcp->b7B) & 0x08) v += v;
+-        if ((rcp->b6B | rcp->b7B) & 0x20) v  = 0;
+-    }
+-    return v;
+-}
+-
+-static int award(BattleUnit *c)   /* 002F8C63-002F8C85 */
+-{
+-    int v = (uint8_t)c->stats->level - (uint8_t)c->stats->b88;  /* level - 1, observed */
+-    v *= *(int *)((char *)c->rewardPerLevelRow + 0x34);
+-    v += *(int *)((char *)c->rewardBaseRow     + 0x34);
+-    return v;
+-}
+-```
+-
+-The binary tests the two modifier banks with two separate `test` instructions rather than an OR of
+-the bytes; the result is identical and the OR is written here for brevity.
+-
+-## 13. Runtime validation
+-
+-**Evidence class: isolated original-code, over both functions entire. Live capture: still absent.**
+-(2026-09-12)
+-
+-**What ran:** `002F8BB0` and `002F90C0` as shipped bytes under Unicorn at their real virtual
+-addresses, with six callees supplied as scripted oracles at their own real addresses — `0031B860`,
+-`003135C0`, `00313800`, `00320AB0`, `0031B810`, `00264150`. **What did not run:** anything inside
+-those six, which is every one of §14's open questions, and no caller.
+-
+-> **One of those six has since been executed on its own — `0031B860`, 2026-09-18 (OPUS, EXP-101).**
+-> This paragraph stays as written because it records what *this* run stubbed, and that was true. What
+-> is no longer true is the implication that the stub's behaviour was a fixture choice. Three things
+-> that matter to a caller are now measured rather than chosen: **the match is a full qword** at
+-> `unit+0x698` (`cmp qword ptr [rax+0x698], rdi` at `0031B892`, so a low-32 comparison finds the
+-> wrong unit), **the pool count is re-read every iteration** rather than hoisted, and **there is no
+-> base-null guard** — the index is guarded on both sides and the base is not, so `base = 0` with a
+-> count above 1 faults at `0xF50 + 0x698`. Full reading in
+-> [`CONTRACT-auto-status-rebuild.md`](../10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md)
+-> §13e.
+-
+-**Instrument:**
+-[`diff_reward_award.py`](../../../Reconstruction/Tests/Differential/diff_reward_award.py) against
+-[`reward_award.c`](../../../Reconstruction/Game/Rewards/reward_award.c).
+-
+-**Result: 1197 commands, 265 compared lines, 0 mismatches** — 45 experience answers over 13 distinct
+-values, 23 licence answers, and two negative results from the signed divide.
+-
+-### The level operand, settled
+-
+-`OPUS-CONTRA-FABLE-REWARD-LEVEL` disputed whether the formula reads the **recipient's** level or the
+-**corpse's**. Every case in this suite gives them different levels — the recipient at `0x30`, the
+-corpse at `0x10`, with different `+0x88` bytes — so the two readings cannot both match. The
+-reconstruction reads the **corpse's**, through the dying unit's own `+0x698`, and agrees with the
+-shipped bytes on all 265 lines.
+-
+-The control that reads the recipient's level instead does more than disagree: **it cannot run.** The
+-recipient pointer is allowed to be NULL on paths where the corpse is not, so a formula reading
+-`recipient[+0x1C2]` dereferences NULL where the original dereferences the corpse. The control
+-failed on all 265 lines, the driver dying at the first such case.
+-
+-### The positive control
+-
+-| control | what it restored | result |
+-|---|---|---|
+-| the level taken from the recipient | the wording published 2026-09-12 | **FAIL**, 265 of 265 |
+-| the licence award divided by 100 | this contract's own claim until `c3e8f80` | **FAIL**, 12 of 265 — `L 35` against `L 0` |
+-
+-### What execution added
+-
+-- **The divided path's member filter is not the experience filter.** It rejects a kind-0 member
+-  whose id is `0x1A` **as well as** `0x1B`–`0x27` — the first of those is the *licence* filter's
+-  exclusion. Driven at `0x19`, `0x1A`, `0x1B`, `0x27` and `0x28`: a member with id `0x1A` is
+-  eligible for experience and is still not counted in the divisor.
+-- ~~**A kind-1 member is counted whatever its id**, because both filter arms test the kind byte first.~~ **CORRECTED 2026-09-18 (OPUS, from `EXP-090`): true of the arms, unreachable on the real chain.** The arms do test `+0x05` first, so *given* a kind-1 member they count it. But a member only reaches them through `BattleUnit_FindByDefinitionSelector` (`002367A0`), which compares the caller's id against **`word [stats+4]`** (`002367DF`), and that word is the encoded definition id whose **high byte is the kind** — so a kind-1 record's word is `>= 0x100`. The roster paths supply a **zero-extended byte**: eight of the eleven call sites are literally `movzx eax, byte ptr […]` then `movzx ecx, al` (e.g. `0031B841`–`0031B849`, `0032659D`–`003265A1`, `00328E3D`–`00328E42`), and the only special case is `0xFF → 0xFFFF` (`002367E3`–`002367EE`), which is kind `0xFF`, not kind 1. **A byte cannot equal a word `>= 0x100`, so the divided path can only count kind-0 members.** The old reading was reachable only by feeding a kind-1 member straight to the arms, which is what the scripted oracle did.
+-- **The negative pool is real and survives the divide**: a level-0 corpse with `+0x88` of 1 gives a
+-  negative base, and `idiv` carries the sign into the share.
+-- **Every refusal returns 0 and none says which**: all six are driven, and each returns the same
+-  answer a legitimate zero would.
+-
+-### The mutation campaign
+-
+-**68 mutants: 67 KILLED, 0 SURVIVED, 1 EQUIVALENT, 0 INVALID,
+-0 NO_BUILD**, with `production_inputs_stable: true` and the four input hashes re-checked
+-against the files as published.
+-
+-A first run left three survivors, all the same shape: **every modifier case set the bank byte to
+-exactly the bit under test**, so a mask widened by bit 0 — `0x08` to `0x09`, `0x20` to `0x21`,
+-`0x10` to `0x11` — behaved identically. Driving each bank at `0x01` alone separates them.
+-
+-**No mutant survives.**
+-
+-### What is still owed, and it is live-only
+-
+-What `003135C0`, `00313800`, `0031B860`, `00320AB0` and `00264150` decide — §14's list — is
+-untouched by this pilot, which supplies all five. Whether a level-0 unit can be alive at kill time,
+-and so whether the negative path is reachable in play, is still the one observation that would
+-settle §7's signed divide.
+-
+-**Experiment records that name this contract** — found by `OPUS-CONTRACT-RUNTIME-AUDIT`, 2026-09-13. Each names this
+-contract in its own `contract:` frontmatter while this section did not cite it back.
+-
+-- [`EXP-075`](../_experiments/EXP-075-reward-index-prechecks.md) — **method -**, no declared method; cited in section 10, not here.
+-- [`EXP-076`](../_experiments/EXP-076-reward-decoder-composition.md) — **method -**, no declared method; cited in section 10, not here.
+-
+-**None of these is a live run**, so none of them changes the evidence-class statement at the
+-top of this section. They are listed because a reader auditing what has been executed against
+-this contract should not have to find them from the experiment side only.
+-
+-## 14. Unresolved
+-
+-- ~~What `003135C0`, `00313800`, `0031B860`, `00320AB0` and `00264150` decide. Their return values are
+-  used as gates here and their own semantics are not established.~~ **MEASURED by [`EXP-090`](../_experiments/EXP-090-reward-gate-exec.md)** (104/104 cases, 10/10 mutants, two stable runs), which reports all six gates' decision rules — `LGATE` a sign-extended byte at `0209A2A9`; `FIND` resolving stats→unit by a `[0208E6A0]`-count scan of `[0208E688] + i*0xF50` on `unit+0x698`; `SINGLE` as `0030D9A0() == 1` over the mode flags at `[[02EBF190]+0x5B04]`; `DESIG` the byte at `+0x5AD5` into a 9-slot low-byte `u16` scan at `+0x5A48`; `RESOLVE` bounding `byte <= 0x27` into `FRAME + 8 + b*0x1C8`; and `PARTY` gating via `00322C50` then `002367A0`. **Provenance, stated because it differs across the six:** `PARTY`'s rule is re-derived here from the bytes (§13); the other five are `EXP-090`'s measurements, cited rather than re-run.
+-- ~~`BattleUnit +0xE70` and `+0xE78`~~ — **fully resolved**: named by the store, derived by this
+-  contract's arithmetic (§3), and traced to registry slots `02EBF148` and `02EBF140` with the
+-  definition-row words that index them (§6). What the rows' own fields mean beyond `+0x34` is
+-  still open.
+-- Which statuses occupy bits 0, 1 and 31 of the `0x80000003` mask; the question is already open in
+-  `03-World-Area-Field`.
+-- Why the licence filter admits `0x1A` and `0x00`–`0x06` specifically.
+-
+-### `EXP-090` — consumed 2026-09-18 (OPUS)
+-
+-[`EXP-090-reward-gate-exec.md`](../_experiments/EXP-090-reward-gate-exec.md) executed this
+-contract's gate chain: **104/104 cases, 10/10 mutants, two stable runs.** It was published as a RUN
+-experiment and this contract did not name it, which `check_experiments` reports as **NOT CITED** —
+-the same shape that has twice hidden a contract asserting work undone. It is cited now.
+-
+-**What it changes here:** §14's first bullet (the six gates' semantics, above) and the kind-1
+-reading in §13 and §15's table. **What it does not:** every other row of §15 stands, and
+-`EXP-090` claims no live evidence — it is isolated original-code, so §13's *"nothing observed at
+-runtime"* is unchanged.
+-
+-**One scope note of my own.** The byte premise behind the kind-1 correction holds on the roster
+-paths, which are the ones this contract uses. It is **not** universal across `002367A0`'s eleven
+-callers: two locomotion sites pass `lea ecx, [reg - 0x4026]` / `[reg - 0x4129]`
+-(`00312970`, `00312C05`), order-goal codes biased down to a small index, and I did not establish
+-their upper bound. They belong to `BattleLocomotion_DecodeOrderGoal`, not to any award path.
+-
+-## 15. Evidence
+-
+-Static, from the shipping image (`73461D08…`), every entry disassembled and read. Nothing is
+-transcribed from the referenced page.
+-
+-**A CORRECTION TO THIS CONTRACT, made one commit after publishing it.** Section 3 originally
+-called `+0x1C2` "the corpse's award base". It is the level, and the type store already declared it
+-as `level, uint8, [0, 99]`. I described a field from its use in one expression without checking the
+-row that had already named it, which is the failure this store exists to prevent and a check that
+-cost one command. The correction is not cosmetic: it makes the award base read as `level - 1`, which
+-is what an experience formula should look like.
+-
+-The single most load-bearing observation is the one this contract did not go looking for:
+-`movzx eax, byte ptr [rax + 0x88]` at `002F8C6A` and `002F8CFE`, on a record whose `+0x05` this
+-function has just tested to be `1`. That is an independent confirmation, from a different subsystem
+-and a different author's code path, of the union recorded three commits earlier.
+-
+-**Claim table added 2026-09-12 (`OPUS-S15-CLAIM-TABLES-SIX`).** The prose above states the method
+-and is kept; this enumerates the claims so a pilot's `CONTRACT_MAP` can be derived from them.
+-**Neither function has been executed in any evidence class** (§13), so no row claims more than static
+-evidence — including the three rows §13 says a single observation would settle.
+-
+-| claim | evidence | tier | confidence |
+-|---|---|---|---|
+-| both functions are pure and write nothing | no store to any record field on any path of either body `002F8BB0`/`002F90C0` | 1 (isolated original-code) | PROVEN |
+-| a zero return means both "nothing owed" and "not eligible" | the six ways out in §10 all return `eax = 0` and none of them reports which | 1 (isolated original-code) | PROVEN |
+-| the recipient must be kind 0 and the corpse kind 1 | the `+0x05` tests in both bodies, against the declared discriminator: `002F8BD4`/`002F8C2A` (experience) and `002F90E2`/`002F9115` (licence) | 1 (isolated original-code) | PROVEN |
+-| the status mask 0x80000003 gates both awards | `(stats[+0x64] \| stats[+0x3C]) & 0x80000003` must be zero — `test eax, 0x80000003` at `002F8C06`/`002F8CAD` and `002F90FD`; the same mask and conjunction as the field-record action gate, a third subsystem using it | 1 (isolated original-code) | PROVEN |
+-| the two id filters are different, and licence is the narrower | experience rejects `0x1B`–`0x27` (`002F8BF2`–`002F8BFA`); licence admits only `0x00`–`0x06`, `0x1A` and `0x28` upward (`002F90E7`–`002F90F5`) | 1 (isolated original-code) | PROVEN |
+-| the reward rows supply a per-level multiplier and an addend, both at their +0x34 | `002F8C73`–`002F8C85` multiplies by `[+0xE78 + 0x34]` and adds `[+0xE70 + 0x34]`; this is what upgrades the two row names from propagated to derived | 1 (isolated original-code) | PROVEN |
+-| the base is the corpse's level minus the byte the rebuild stored at +0x88 | **both operands are the CORPSE's**, bound at `002F8BC9 mov r14, rdx` (the dying unit) and read through `002F8C5C mov rax, [r14+0x698]` as `002F8C63 movzx esi, [rax+0x1c2]` and `002F8C6A movzx eax, [rax+0x88]`; the recipient pointer `rdi` is not read again after the eligibility filters. `+0x1C2` is the declared level `[0, 99]` and `+0x88` the union's enemy arm, observed as `1`. An earlier revision called `+0x1C2` an "award base" and was corrected; a page published 2026-09-12 calls it the **recipient's** level, which is `OPUS-CONTRA-FABLE-REWARD-LEVEL` | 1 (isolated original-code) | PROVEN |
+-| both reward row pointers may be NULL and neither function checks them | no null test stands between the loads `002F8C73`/`002F8C7E` (and `002F8D07`/`002F8D12`) or `002F912B`/`002F9136` and the indexed reads of `+0xE70`/`+0xE78` | 1 (isolated original-code) | PROVEN |
+-| a NULL row comes from an ABSENT descriptor or a failed resolution, not from an out-of-range index | `0023A97C je 0023A9A3` follows `test rax,rax` on the resolver's return; the four bound guards at `0023A6BB`/`0023A726`/`0023A747`/`0023A768` reject an out-of-range index into `0023A63A`, which returns 0 before any store. Executed — `EXP-075` drove the whole installer in 14 fixtures and both private guard mutations were detected. **Corrects this contract's own earlier causal claim** | 1 (isolated original-code) | PROVEN |
+-| a zero ENCODED reference decodes to the relocation base, not to NULL | `0020E600` is `mov eax,ecx` / `add rax,[01F83530]` / `ret`, three instructions read whole. Executed — `EXP-076` composes the native decoder with the installer and its zero-sentinel mutation was detected | 1 (isolated original-code) | PROVEN |
+-| the stored row pointer is built in 32-BIT arithmetic and zero-extended, so a base above 4 GiB truncates and a non-zero base can store exactly NULL | `0023A99C imul ecx, edx`, `0023A99F add ecx, eax`, `0023A9A5 mov [rdi+0xE70], rcx`. Executed — `EXP-076` drives base `0x100000000` with reference 0 and index 0 as its own control | 1 (isolated original-code) | PROVEN |
+-| three of the four bound guards are UNSIGNED and one is SIGNED, so a zero count is the only case an index passes | `ja` at `0023A6BB`, `0023A747`, `0023A768` against `jg` at `0023A726`; `dec ecx` on 0 gives `0xFFFFFFFF` | 1 (isolated original-code) | PROVEN |
+-| the divided path uses a SIGNED divide over a subtraction that can go negative | `cdq` / `idiv ebp` at `002F8D1C`–`002F8D1F`; `level - 1` is `-1` for a level-0 corpse and the rebuild writes level 0 at `0030C496` before growth. Nothing clamps it | 1 (isolated original-code) | PROVEN |
+-| whether a level-0 unit can be alive at kill time is unknown | that is what decides whether the negative path is reachable — one observation, §13 | none | UNKNOWN |
+-| the doubling happens after the division, and zero wins over double | `002F8D26`–`002F8D40`, in that order: double adds, then zero assigns | 1 (isolated original-code) | PROVEN |
+-| either modifier bank carries the effect alone | the two banks `+0x6B` and `+0x7B` are tested with OR — `002F8D2A`/`002F8D2E` and `002F8D36`/`002F8D3A` in `002F8BB0`, `002F914B`/`002F9151` in `002F90C0` | 1 (isolated original-code) | PROVEN |
+-| licence points are gated globally before any argument is examined | `00264150` at the top of `002F90C0`: a non-zero return means 0 | 1 (isolated original-code) | PROVEN |
+-| the licence award reads +0x2F of both reward rows and doubles on bit 0x10, with no division anywhere | `002F912B`–`002F9157`. **This row said the award was a percentage truncated toward zero, citing `002F9183`** — an instruction in a separate 21-byte function that begins after this one's `int3` padding and is called only from `002FF090`. Corrected 2026-09-12, `OPUS-CONTRA-LICENCE-PERCENTAGE` | 1 (isolated original-code) | PROVEN |
+-| the divided path's member filter rejects id 0x1A as well as 0x1B-0x27 | `002F8CB9`–`002F8CDC`: two arms, both testing the kind byte first, the second excluding `0x1A` — which is the LICENCE filter's exclusion, not the experience one this contract names. Executed at `0x19`, `0x1A`, `0x1B`, `0x27` and `0x28` | 1 (isolated original-code) | PROVEN |
+-| ~~a kind-1 party member is counted whatever its id~~ **the divided path can only count kind-0 members** | the arms do test `+0x05` first (`002F8CB9`, `002F8CD0`) — but the selector `002367A0` compares a **byte** id against `word [stats+4]` (`002367DF`), whose high byte is the kind, so a kind-1 record's word is `>= 0x100` and never matches. The old row's evidence, *"Executed with a kind-1 member carrying `0x1A`"*, is the scripted oracle feeding the arms directly | 1 (isolated original-code, `EXP-090`; selector re-derived by OPUS) | PROVEN |
+-| the level operand is the CORPSE's, not the recipient's | `002F8BC9 mov r14, rdx` binds the dying unit and `002F8C5C` reads through **its** `+0x698`. Executed with the two levels deliberately different on every case; the control reading the recipient's failed on all 265 lines and could not even complete, because the recipient may be NULL where the corpse may not. Resolves `OPUS-CONTRA-FABLE-REWARD-LEVEL` | 1 (isolated original-code) | PROVEN |
+-| nothing observed at runtime | — see §13 | none | UNKNOWN |
+-
+-## 15a. Falsification pass 1 — 2026-09-12 (OPUS)
+-
+-**passes: 1 · last_pass: 2026-09-12**
+-
+-`002F8BB0` (430 B, 120 instructions) and `002F90C0` (179 B, 56) decoded whole. This contract leans on
+-**negative** claims, so each one's controls are enumerated rather than its absence asserted — and
+-`test`/`cmp` are excluded from the write detector, a mistake that cost a false write-list elsewhere
+-in this sweep.
+-
+-| claim | measured |
+-|---|---|
+-| **both functions are pure and write nothing** | **0 writes to any record** in either body. Residue named: **4** stack-frame writes in the experience path, **1** in the licence path, all `[rsp+N]` |
+-| the licence award has **no division anywhere** | `div`/`idiv` in `002F90C0`: **none** |
+-| the divided path uses a **signed** divide | `002F8D1C cdq` / `002F8D1D idiv ebp` |
+-| the mask `0x80000003` gates **both** awards | `002F8C06` and `002F8CAD` in experience, `002F90FD` in licence |
+-| the licence award reads `+0x2F` of both rows | `002F9132 movzx ecx, byte [rax+0x2F]` and `002F9140`, multiplied then added — **bytes**, and no divide |
+-
+-### The null-test claim is positional, so it was checked positionally
+-
+-*"Both reward row pointers may be NULL and neither function checks them — no null test stands between
+-`+0xE70`/`+0xE78` and the indexed read."* Every load-to-use pair, in order:
+-
+-```
+-002F8C73  mov rax,[r14+0xE78]   ->  002F8C7A  imul esi,[rax+0x34]     nothing between
+-002F8C7E  mov rax,[r14+0xE70]   ->  002F8C85  add  esi,[rax+0x34]     nothing between
+-002F8D07  mov rcx,[r14+0xE78]   ->  002F8D0E  imul eax,[rcx+0x34]     nothing between
+-002F8D12  mov rcx,[r14+0xE70]   ->  002F8D19  add  eax,[rcx+0x34]     nothing between
+-002F912B  mov rax,[rdi+0xE78]   ->  002F9132  movzx ecx,[rax+0x2F]    nothing between
+-002F9136  mov rax,[rdi+0xE70]   ->  002F9140  movzx ecx,[rax+0x2F]    one imul, no test
+-```
+-
+-The bodies do contain null tests — **13** in the experience path, **5** in the licence path — but
+-every one is on a *different* pointer, and all of them fall after the row reads. **The claim holds,
+-and the count of unrelated tests is what makes that worth stating.**
+-
+-### The four bound guards, with the compare that sets each one's flags
+-
+-They live in `BattleUnit_ApplyUnitDefinition` (`0023A570`, 1,808 B), not in either award function:
+-
+-| guard | branch | index source |
+-|---|---|---|
+-| `0023A6BB` | `ja` — **unsigned** | `movzx eax, word [rsi]` |
+-| `0023A726` | `jg` — **SIGNED** | `movzx eax, word [rsi+0x50]` |
+-| `0023A747` | `ja` — unsigned | `movzx eax, word [rsi+0x22]` |
+-| `0023A768` | `ja` — unsigned | `movzx eax, word [rsi+0x24]` |
+-
+-**Three unsigned and one signed, exactly as claimed** — and the mechanism is now on the page rather
+-than implied. Each is `movzx` (so the index is zero-extended, never negative), then `dec ecx` on the
+-count, then `cmp eax, ecx`. **With a count of zero, `ecx` becomes `0xFFFFFFFF`**: under `ja` nothing
+-is greater, so *every index passes*; under `jg` that same `ecx` is `−1`, so any index is greater and
+-*everything is rejected*. The one signed guard is the only one that fails closed on an empty table.
+-
+-**Not claimed:** no live observation; §13 unchanged.
++| NULL does not bypass shared EXP division | Original `002F8C34..002F8D24`; count 0..4 native controls and divide-removal mutant. |
++| EXP-only owning-unit search | `002F8BDE` versus whole LP body `002F90C0..002F9173`; orphan control and finder-guard mutant. |
++| EXP and LP coefficient widths / modifiers | Original `+0x34` dword versus `+0x2F` zero-extended byte loads; widening-mask and signed-byte mutants. |
++| Exact four-entry divisor and separate ID `0x1A` exclusion | `002F8CD8`, `002F8CE2`; native member/ID controls and loop-bound mutant. |
++| Original roster does not universally imply kind zero | `002367A0` sentinel comparison; bounded synthetic kind-`0xFF` control. |
++| Cached reward pointers / missing content | Independent parsing of original EXP-081 raw spans, not conclusions copied from its normalizer. |
++| Producer mapping and 32-bit row construction | `0023A965..0023A9FB` plus original decoder `0020E600`; static re-read and prior EXP-075/076 evidence. |
++| Caller uses NULL but does not thereby restore an undivided pool | `003124B4..0031251D` plus original computers; full caller not executed. |
++
++[Original body identities/disassembly and reproduction](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
++The preceding audit-pass and annotation-transfer records are historical; they do not certify the
++new revision. Prior raw experiments/programs remain untouched. No completion score, TEAM claim,
++L2 acceptance, or reconstruction implementation is edited here.
+ 
+ ## 16. Parity plan
+ 
+-Reproduce: the two **different** id filters, the signed division by the eligible count, the order
+-double-then-zero, the OR across the two modifier banks, and the licence path's divide-by-100 with
+-truncation toward zero. The id filters are the most likely to be wrongly unified.
+-
+-## 17. Related
+-
+-- `13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md`
+-- `08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md` — `+0x05`, `+0x88`
+-- `03-World-Area-Field/CONTRACT-field-record-accessors.md` — the same `0x80000003` conjunction
++A later implementation should preserve the null-recipient distinction, conditional owner check,
++mode-dependent EXP division, LP asymmetry, actual baseline byte, signed arithmetic, mask order,
++row-pointer construction, and rejection/zero ambiguity. Do not infer actual coefficients or
++lifetime from pointer samples. L3 implementation/parity is later; this package closes bounded
++production corrections and leaves formal peer acceptance pending.
++
++
++## Historical cross-system notes
++
++The following existing ownership/crossing notes are retained, not independently re-censused by SECTION-03.
+ 
+ ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
+ 
+--- before/FFXII TZA/13-Rewards-Progression-Economy/experience-and-license-point-award.md
++++ after/FFXII TZA/13-Rewards-Progression-Economy/experience-and-license-point-award.md
+@@ -1,7 +1,7 @@
+ ---
+ system: Experience and License Point award
+ category: 13-Rewards-Progression-Economy
+-status: PARTIAL — the exact payout operands and which path applies when are not resolved; several callees not read
++status: PARTIAL
+ owner_layer: PrimaryOwner:Rewards_Progression_Economy
+ evidence_tier: 1
+ verified_against:
+@@ -10,227 +10,153 @@
+   transfers_to:
+     parent: 59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92
+     parent_tag: GN162
+-    basis: snapshot-identity across GN160 -> GN161 - this document cites none of the 109 functions batch R109 touched, so every per-function record it rests on is byte-identical in both annotation snapshots; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30
+-    verified: re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS
++    basis: "snapshot-identity across GN160 -> GN161 - this document cites none of the 109 functions batch R109 touched, so every per-function record it rests on is byte-identical in both annotation snapshots; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30"
++    verified: "re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS"
+     adjudicated: OPUS ruling 2026-09-14, _index/PROVENANCE-TRANSFER.md (six ledger figures re-derived)
+     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
+   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+-last_reviewed: 2026-09-02
++last_reviewed: 2026-09-22
+ audit:
+   passes: 1
+   last_pass: 2026-09-02
+   last_pass_state: falsification-pass
+   crossref_clean: false
+   reopened_count: 0
++production_review:
++  section: SECTION-03
++  status: locally validated; peer acceptance pending
++  scope: original reward consumers, selected caller instructions and retained binding observations
++  new_live_session: false
++
+ ---
+ 
+ # Experience and License Point award
+ 
+-> Who gets EXP and LP when something dies, how much, and the status conditions that quietly
+-> cut a character out of the payout entirely.
+-
+-**PARTIAL.** The eligibility gates are read at tier 1 and are exact. The payout arithmetic is
+-read in outline — the terms and their order are visible, but not every operand is resolved.
+-Do not treat the formula as complete.
+-
+-## 1. What the player sees
+-
+-Kill something, and the party gains EXP and LP. Two things a player may have noticed without
+-being told:
+-
+-**EXP is shared.** The amount each character receives is divided by how many are eligible, so
+-a smaller active party earns more each.
+-
+-**A character in certain disabling states earns nothing from that kill** — not reduced, *zero*.
+-It is skipped before any arithmetic happens, and nothing on screen explains why.
+-
+-That second rule is the same condition that stops a character acting at all, which is why
+-being disabled during a fight costs progression as well as participation.
++> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending.**
++> Corrected against original EXE instructions, 71 bounded native controls and independent review
++> of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
++> a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.
++> [Evidence, changed claims and limitations](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
++
++**Current scope:** original EXP/LP gates and arithmetic are resolved at the bounded consumer level.
++Actual retained reward-table contents, producer lifetime and complete in-game payout remain outside
++this review. The authoritative detailed interface is the [award contract](CONTRACT-experience-and-licence-award.md).
++
++## 1. What the computers return
++
++These functions **recompute on each call**; they do not store progression. In the shared EXP
++branch, the base amount is divided by the passing count among **exactly four lookup slots**.
++The caller may iterate a larger candidate list, but it does not turn this divisor into a fifth-slot
++loop. Integer remainders are discarded. Recipient-specific doubling/zeroing can change the total,
++so total distributed EXP is not invariant under party changes.
++
++LP uses an independent gate and returns its row-derived amount without this divisor. In particular,
++**a NULL recipient is accepted by both computers**. NULL does not force the undivided EXP branch.
+ 
+ ## 2. Native mechanism
+ 
+-### The eligibility gate — shared with the action system
+-
+-`Reward_ComputeExperienceForRecipient(recipient_stats, defeated_foe)` refuses before computing
+-anything unless every clause holds:
+-
+-```c
+-recipient_stats != NULL
+-&& ( recipient[5] != 0 || BattleStats_FindOwningBattleUnit(recipient) != NULL )
+-&& ( recipient[5] != 0 || (byte)(recipient[4] - 0x1B) > 0x0C )
+-&& ( (recipient[0x64] | recipient[0x3C]) & 0x80000003 ) == 0        // <- status gate
+-&& defeated_foe != NULL
+-&& defeated_foe->pBkbi != NULL
+-&& *(char *)(&defeated_foe->pBkbi->wDefinitionSelector + 1) == 1     // foe must be this kind
++### EXP and LP share some conditions, not their entire gate
++
++| Condition | EXP `002F8BB0` | LP `002F90C0` |
++|---|---|---|
++| NULL recipient | Accepted; recipient checks/modifiers skipped | Accepted after the global LP gate |
++| Nonnull recipient kind | Must be 0 | Must be 0 |
++| Recipient identity | Excludes `0x1B..0x27`; owning-unit lookup must succeed | Admits `0..6`, `0x1A`, `>=0x28`; no owning-unit lookup |
++| Recipient status | `(u32[+0x3C] OR u32[+0x64]) & 0x80000003` must be zero | Same mask |
++| Subject | Nonnull unit, nonnull stats at `+0x698`, stats kind 1 | Same |
++| Additional gate | Current mode chooses shared vs designated EXP | Signed byte `0209A2A9` gate, before pointer reads |
++| Division | Shared branch only, including NULL-recipient calls | None |
++
++A synthetic ownerless kind-0 recipient returns EXP 0 but LP 19 under the same valid subject/row
++fixture. The mask's equality with an action-side constant does **not** mean patching one code site
++changes the other. Status words `+0x3C/+0x64` are also distinct from effect layers beginning at
++`+0x68/+0x78`; see the [stats map](../08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md).
++
++### Mode and membership
++
++`003135C0` selects the designated-recipient EXP branch when nonzero. For a nonnull recipient the
++resolved designated stats must equal the recipient. A NULL recipient skips that equality check.
++Both calls still follow the current mode; NULL in shared mode still traverses the four member slots.
++LP never calls the designated-mode or roster-divisor chain.
++
++The ordinary member-byte lookup excludes kind-1 stats, and the filter excludes kind-0 ID `0x1A`
++as well as `0x1B..0x27`. But "only kind 0 can ever count" is too strong: the `0xFF` selector
++sentinel can select a `0xFFFF` stats identity when the descriptor admits it. One synthetic
++original-code control establishes that exception, not shipped-game reachability of such a record.
++The prior game-language interpretation (summoner/Esper/mount) is retained in the linked sources;
++this update's native tests establish the numeric rules rather than recertifying all authored names.
++
++## 3. Key addresses
++
++| Address | Bounded role established here |
++|---|---|
++| `002F8BB0` | EXP computer, 430 original bytes; full original gate/lookup closure in native tests |
++| `002F90C0` | LP computer, 179 original bytes; no owner lookup/division |
++| `0031B860` | EXP recipient-to-unit finder |
++| `003135C0` / `00313800` | Mode selection / designated-index lookup |
++| `0031B810` / `002367A0` | Four-slot selector and original definition lookup |
++| `00320AB0` | Designated mapped-stats resolver |
++| `00312280` | Defeat caller; NULL argument, caps and presentation branch inspected statically |
++| `0028FB80` | Presentation call boundary; no new rendering observation |
++
++## 4. Data structures and formulas
++
++Let `level = u8[subject.stats+0x1C2]`, `baseline = u8[subject.stats+0x88]`,
++`baseRow = ptr[subject+0xE70]`, and `perLevelRow = ptr[subject+0xE78]`.
++
++```text
++rawEXP = signed32((level - baseline) * u32[perLevelRow+0x34] + u32[baseRow+0x34])
++EXP = rawEXP                         in the designated branch
++EXP = signed_trunc(rawEXP / n)       in the shared branch, n > 0
++EXP = 0                             in the shared branch, n == 0
++rawLP = (level - baseline) * u8[perLevelRow+0x2F] + u8[baseRow+0x2F]
+ ```
+ 
+-**`Reward_ComputeLicensePointsForRecipient` carries the identical `0x80000003` gate** and the
+-same foe check — verified independently in its own body.
+-
+-That mask is the one already documented on the action side: the field-record bit-15 system
+-tests `(statusLayer0 | statusLayer1) & 0x80000003` to decide whether a unit may act. Two
+-different subsystems, the same two-layer OR, the same three bits (0, 1 and 31).
+-
+-**So the states that stop you acting also stop you earning.** That is a single design rule
+-expressed in two places, and it was found by noticing the same constant twice rather than by
+-looking for it.
+-
+-The offsets differ between the two sites — `+0x64`/`+0x3C` here versus `+0x68`/`+0x78` in the
+-BKBI documentation — so these are either different structures or different views of one. ~~That
+-is **not** resolved; see §7.~~ **Resolved 2026-09-12 (FABLE): the same two words.** On the stats
+-record ([the stats-record field map](../08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md)) `+0x3C` and `+0x64` are the two `u32` **status words** the status write targets
+-(presence = `+0x3C | +0x64`), while `+0x68` and `+0x78` are the 16-byte **effect layers** (the
+-mutable status layer and the derived augment layer) the formula merge reads; the action gate on
+-[the bit-15 page](../03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md) §4 ORs `+0x3C` and `+0x64` and ignores the layers, and so does this one
+-(`002F90F7`–`002F90FD`: `mov eax, [rbx+0x64]; or eax, [rbx+0x3C]; test eax, 0x80000003`). The
+-"BKBI `+0x68`/`+0x78`" contrast was a category slip: those are not status words.
+-
+-### The payout, in outline
+-
+-Two paths are visible. A party-shared path counts eligible recipients into a divisor:
+-
+-```c
+-count = 0;
+-for (each eligible party member)  count++;
+-
+-if (count != 0)
+-    amount = ( foe->pBkbi->bLevel  -  <term>
+-             + *(int *)(foe->pAuthoredSection7Record + 0x34) ) / count;
++EXP arithmetic wraps at 32-bit machine width before signed division. Negative division truncates
++toward zero. LP coefficient loads are unsigned bytes. The consumers read the **current baseline**;
++a cited initializer supplying 1 is not an invariant enforced by either reward computer.
++
++For nonnull recipients, either effect-bank byte `+0x6B/+0x7B` bit `0x08` doubles EXP; bit `0x20`
++then zeros it. LP doubles on bit `0x10` and has no corresponding zero-bit branch. NULL skips all
++these recipient modifiers. Reached reward rows are dereferenced without row-null checks; earlier
++rejections can avoid them, so not every call with null rows faults.
++
++## 5. Call chain and presentation
++
++```text
++defeat caller
++  -> per candidate: EXP and LP computers -> caller clamps/writes progression
++  -> EXP(NULL, subject) -> still mode-dependent, divided in shared mode
++  -> LP(NULL, subject)  -> unmodified and undivided by this computer
++  -> separate caps and field-flag EXP suppression -> presentation call
+ ```
+ 
+-and a second path keyed on the foe's own growth baseline:
+-
+-```c
+-amount = (foe->pBkbi->bLevel - foe->pBkbi->bGrowthBaseLevel) * <term>;
+-
+-if (<condition>)  amount = amount * 2;      // a doubling bonus
+-if (<condition>)  amount = 0;               // a zeroing case
+-```
+-
+-What is solid: **the divisor is a count of eligible recipients**, an **authored value at
+-`+0x34` of the foe's section-7 record** participates, the foe's **level minus its growth base
+-level** drives the second path, and there is an explicit **×2** case and an explicit **zero**
+-case. The exact operands and which path applies when are not resolved.
+-
+-`BattleStats_GetByMappedBattleSlot(slot, 1)` is consulted and compared against the recipient,
+-so one path distinguishes a particular party member from the rest.
+-
+-**Resolved 2026-09-12 (FABLE) — the outline, whole** (`002F8BB0` read end to end; §9 has the
+-arithmetic). The two paths are **one expression**, `base = (foe level +0x1C2 − foe stats +0x88) ×
+-rewardPerLevelRow[+0x34] + rewardBaseRow[+0x34]`, and the "growth base level" is a **constant 1**:
+-the definition initializer sets its second argument to `1` on the enemy branch (`0023AD37`, `mov
+-edx, 1` → `r12d` → `r8d`, `0023AD8B`) and the grower stores that byte at `+0x88` (`0030C4B1`), so
+-the reward rows are quoted at level 1 and the per-level row is applied `level − 1` times
+-([the unit-definition page](../04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md) §7). The path selector `003135C0` is `BattleRuntime_GetMode0To5FromFlagsAndFieldBit15() == 1`
+-— **mode 1, the Esper summon** ([the mode ladder](../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md) §2c). While an Esper is out, `00313800` takes the
+-**summoner's** definition selector from the battle-state block's `+0x5AD5` and maps it through the
+-nine party-configuration selectors at `+0x5A48` (`00320890`, index 0–8; [the battle-state block](../11-Party/Battle-State-Block/the-battle-state-block-field-map.md) §2.4), and
+-`BattleStats_GetByMappedBattleSlot(index, 1)` resolves that index through the slot map to its stats
+-record (`0031B9F0`, then `[base] + 8 + slot × 0x1C8` for slots ≤ 39, `00320AB4`–`00320AD9`): **the
+-whole base goes to the summoner, undivided, and any other recipient gets 0** (`002F8C53`–`002F8C56`).
+-Outside a summon the divisor walks the **four battle-slot-map entries** (`0031B810`, the words at
+-`+0x5A5A` … `+0x5A90`) and counts each member that is not out of play (`0x80000003`), not an Esper
+-(party rows 27–39) and not the **Chocobo** (party row 26 = `0x1A`, [the kind page](../04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md) AL-2) — so neither
+-a summoned Esper nor a mount ever dilutes the split. That answers **N-6** as well: the member the
+-slot query distinguishes is the summoner.
+-
+-## 3. Key addresses
+-
+-| Address | Name | Verified |
+-|---|---|---|
+-| `002F8BB0` | `Reward_ComputeExperienceForRecipient` | ✅ gates read, arithmetic partial |
+-| `002F90C0` | `Reward_ComputeLicensePointsForRecipient` | ✅ same gate confirmed |
+-| `00253690` | `GameState_GetGil` | in corpus, not read |
+-| `00254EE0` | `GameState_SetGil` | in corpus, not read |
+-| `002F8FA0` | `LicenseData_BuildPrerequisiteNodeMaskForRequirement` | not read |
+-| `003135C0` / `00313800` | the summon-mode test (`0030D9A0() == 1`) / the summoner's party-configuration index (`00320890(+0x5AD5)`) | ✅ read 2026-09-12 |
+-| — | `BattleStats_FindOwningBattleUnit` | not read |
+-| `00320AB0` | `BattleStats_GetByMappedBattleSlot` | ✅ read 2026-09-12: `0031B9F0(index, 1)` → slot ≤ 39 → `[base] + 8 + slot × 0x1C8`, else null |
+-| `0028FB80` | `Reward_PublishExpLpPresentation` | ✅ read 2026-09-15 (research import, `MOB_LIFECYCLE_RESEARCH_HISTORY.md`): on the `[0209BE80]` presentation object at `+0x5380`, calls `00289D00` twice — `r9d = 0` then `r9d = 1`, the EXP and LP presentation arms — passing the amount arguments through |
+-
+-## 4. Data structures and formulas
+-
+-```
+-Recipient stats record
+-  +0x04   u8    compared against 0x1B..0x27 range when +0x05 is zero
+-  +0x05   u8    selects which eligibility clauses apply
+-  +0x3C   u32   status layer A  }  OR'd, then masked 0x80000003
+-  +0x64   u32   status layer B  }
+-
+-Defeated foe (BattleUnit)
+-  ->pBkbi->bLevel               u8
+-  ->pBkbi->bGrowthBaseLevel     u8
+-  ->pBkbi->wDefinitionSelector  +1 must equal 1
+-  ->pAuthoredSection7Record +0x34   i32, authored reward term
+-```
+-
+-**Eligibility — exact, both EXP and LP:**
+-
+-```
+-eligible  iff  (recipient[0x64] | recipient[0x3C]) & 0x80000003  ==  0
+-          &&   foe != NULL && foe.pBkbi != NULL
+-          &&   foe.pBkbi.wDefinitionSelector[+1] == 1
+-          &&   ( recipient[5] != 0
+-                 || ( FindOwningBattleUnit(recipient) != NULL
+-                      && (byte)(recipient[4] - 0x1B) > 0x0C ) )
+-```
+-
+-**Payout — partial, terms visible but incomplete:**
+-
+-```
+-count = number of eligible recipients
+-
+-shared path:   amount = ( foe.bLevel - <term> + authoredSection7[0x34] ) / count
+-growth path:   amount = ( foe.bLevel - foe.bGrowthBaseLevel ) * <term>
+-               if <cond>  amount *= 2
+-               if <cond>  amount  = 0
+-```
+-
+-`0x80000003` = bits 0, 1 and 31 — the same three bits the action gate tests.
+-
+-## 5. Call chain
+-
+-```
+-foe defeated
+-  -> defeat-reward orchestrator          (sole caller of both computers)
+-     -> per candidate recipient:
+-          Reward_ComputeExperienceForRecipient
+-          Reward_ComputeLicensePointsForRecipient
+-            -> eligibility gate           <- status mask 0x80000003
+-            -> count eligible recipients  <- the sharing divisor
+-            -> arithmetic
+-     -> orchestrator writes EXP/LP progression
+-```
+-
+-**Upstream:** combat death. **Downstream:** progression state; the orchestrator, not these
+-functions, performs the write.
+-
+-**Do not confuse with:** licence-grid mutation, which is Items/License-owned. This category
+-owns computation and progression only.
+-
+-## 6. Modding notes
+-
+-- **The status gate is shared with the action system.** Changing which states block acting will
+-  also change who earns EXP and LP, whether or not that was intended.
+-- **EXP is divided by a live count of eligible recipients**, so anything that changes
+-  eligibility changes everyone else's share.
+-- **An authored per-foe value at section-7 `+0x34`** feeds the shared path — a data knob, not a
+-  code constant.
+-- **There is a ×2 case and a zero case.** Both are real; ~~neither condition is yet identified~~
+-  **identified 2026-09-12 (FABLE):** layer ids **27** (×2 EXP), **28** (×2 LP) and **29** (EXP = 0)
+-  in either 128-bit effect layer, which in the shipped data only the accessories **Embroidered
+-  Tippet**, **Golden Amulet** and **Firefly** grant (§9).
+-- **During an Esper summon the summoner takes the whole award** and nobody else earns; the
+-  divisor otherwise counts the four slot-map members minus Espers and the Chocobo (§2).
+-- **XIIOnline:** rewards must be computed by the authority, not per client. The divisor depends
+-  on locally-observed eligibility, so two clients with different views of who is disabled will
+-  compute different shares from the same kill.
++For raw EXP/LP 19 with two passing members, the computers return `EXP(NULL)=9`, `LP(NULL)=19`.
++An EXP-doubled recipient gets 18; NULL gets 9, not 19. With the designated mode selected,
++`EXP(NULL)=19`. These are native synthetic calls plus statically checked caller arguments, **not
++new observed floating numbers in the game**. See the [defeat contract](CONTRACT-defeat-rewards-sequence.md).
++
++## 6. Retained reward bindings and modding boundaries
++
++Independent review of EXP-081 validates 88 retained spans in four samples. The two field samples
++have matching reward registry words and three stable pairs of unit reward pointers. Their spacing
++is consistent with a `0x38` stride and `descriptor+0x20` index-zero address, but **neither the
++reward headers nor required row prefixes were captured**. No actual XP/LP coefficient, drop,
++award, or row lifetime can be derived from those missing bytes.
++
++The enemy stats records in that observation are embedded working records, not authored definition
++rows. Modifying one should not be confused with editing the other's reward row. The producer's
++pointer construction and consumers' field accesses are separately verified original-code facts.
++
++For original-game edits, keep the EXP/LP gates distinct, preserve signed arithmetic and effect-bank
++order, and do not add a null-recipient division bypass. A multiplayer authority must likewise
++specify which observed mode and member state feed each computation; these consumers take no atomic
++snapshot of the entire party. No network implementation is part of this update.
+ 
+ ## 7. What is not known
+ 
+ - [x] ~~The full payout arithmetic — several operands unresolved.~~ **N-1 ANSWERED 2026-09-12
+-      (FABLE):** one expression on both paths (§9), `+0x88` a constant 1 from the definition
+-      initializer, the divisor the four slot-map members minus Espers and the Chocobo, the
++      (FABLE):** one expression on both paths (§9), `+0x88` the current baseline byte (the cited initializer path supplies 1), the divisor the four slot-map members minus Espers and the Chocobo, the
+       undivided path the Esper summon's summoner (§2).
+ - [x] ~~What triggers the **×2** bonus and what triggers the **zero** case.~~ **N-2 ANSWERED
+       2026-09-12 (FABLE):** effect ids 27 / 28 / 29 in either layer — *Doubles EXP earned*, *Doubles
+@@ -242,7 +168,7 @@
+       / `+0x78` are the 16-byte effect layers, a different pair the formula merge reads (§2).
+ - [x] ~~Meaning of `recipient[5]` and the `recipient[4] - 0x1B > 0x0C` range test.~~ **N-4 ANSWERED
+       2026-09-11:** `recipient[5]` is the definition table (0 party, 1 enemy) and `recipient[4]` the row
+-      in it, so the test admits every recipient except a party-table row `27`–`39` — **the thirteen
++      in it, so for a nonnull recipient EXP first requires kind 0 and an owner, then excludes rows `27`–`39` — **the thirteen
+       Espers** ([the kind page](../04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md) AL-2,
+       decoded from the party table's name references). A summoned Esper earns no EXP or LP; a guest does.
+ - [x] ~~What `wDefinitionSelector[+1] == 1` selects — which foes award anything at all. **N-5.**~~
+@@ -255,99 +181,31 @@
+       (`002F90E7`–`002F90F5`).
+ - [x] ~~Which party member `BattleStats_GetByMappedBattleSlot(slot, 1)` distinguishes.~~ **N-6
+       ANSWERED 2026-09-12 (FABLE): the summoner** — the query runs only in mode 1 (an Esper summon),
+-      `00313800` maps the block's `+0x5AD5` to its party-configuration index, and the whole base
+-      goes to that member while any other recipient gets 0 (§2).
++      `00313800` maps the block's `+0x5AD5` to its party-configuration index, and the whole EXP base
++      goes to that nonnull member while a different nonnull recipient gets 0; a NULL recipient
++      bypasses only this comparison. LP has no corresponding mode branch (§2).
+ - [x] ~~Gil award — `GameState_Get/SetGil` are in the corpus but unread.~~ **N-7 ANSWERED
+       2026-09-03** — see [`gil-storage-clamp-and-every-path-that-moves-it.md`](gil-storage-clamp-and-every-path-that-moves-it.md):
+       one setter, 13 direct callers, 5 owners, and the clamp `[0, 99,999,999]` lives in the
+       setter so every path inherits it.
+ 
+-## 8. Evidence
+-
+-| Claim | Evidence | Tier |
+-|---|---|---|
+-| EXP eligibility gate, exact | complete gate expression in `002F8BB0` | 1 |
+-| LP uses the identical status gate | same `& 0x80000003) == 0` and foe check in `002F90C0` | 1 |
+-| The mask matches the action gate | `0x80000003` over two OR'd status fields, as in `FieldData_GetActiveFieldRecordBit15` | 1 |
+-| EXP is divided by an eligible-recipient count | the counting loop increments a divisor used in the shared path | 1 |
+-| An authored foe value participates | `*(int *)(foe->pAuthoredSection7Record + 0x34)` | 1 |
+-| Level minus growth base drives the second path | `(bLevel - bGrowthBaseLevel) * …` | 1 |
+-| A ×2 and a zero case exist | explicit `amount * 2` and `amount = 0` assignments | 1 |
+-
+-**Why PARTIAL.** The gates are exact and were read in full. The arithmetic was read from a
+-decompilation whose intermediate operands I did not fully resolve, so the formula in §4 has
+-placeholders. Publishing it as complete would have been the more satisfying write-up and would
+-have put unverified terms into a formula a modder might rely on.
+-
+-## 9. Related
+-
+-- [`../03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md`](../03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md) — the same `0x80000003` mask gating action
+-- [`../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md`](../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md) — the two-layer status model
+-- [`../04-Actor-Entity/battleunit-slot-pool-and-actor-class.md`](../04-Actor-Entity/battleunit-slot-pool-and-actor-class.md) — BattleUnit identity
+-
+-## 9. Falsification pass 2026-09-02 — the formula, completed
+-
+-**Attack chosen.** This document says of itself: *"Do not treat the formula as complete."* Its §2 and
+-§4 carry `<term>` placeholders and unnamed conditions. The most useful attack on an admittedly
+-incomplete formula is to **finish it**, and see whether the completed version contradicts what was
+-already written. It does not — it fills it in.
+-
+-### EXP, complete
+-
+-```c
+-base = (foe->pBkbi->bLevel - foe->pBkbi->bGrowthBaseLevel)
+-       * *(int *)(foe->pAuthoredSection8Record + 0x34)
+-       + *(int *)(foe->pAuthoredSection7Record + 0x34);
+-
+-EXP  = shared path ? base / count      /* count = number of eligible recipients */
+-                   : base;             /* solo path, one recipient */
+-```
+-
+-The `<term>` in §4's shared path is **not** a different expression — **both paths compute the same
+-base**, and the shared path divides it by the eligible-recipient count. That is a cleaner rule than
+-the placeholder suggested, and it means **EXP per character falls as more characters qualify**,
+-while the total awarded stays constant.
+-
+-### LP, complete — and it uses different fields
+-
+-```c
+-LP = (foe->pBkbi->bLevel - foe->pBkbi->bGrowthBaseLevel)
+-     * (byte)*(foe->pAuthoredSection8Record + 0x2F)
+-     + (byte)*(foe->pAuthoredSection7Record + 0x2F);
+-```
+-
+-Two differences from EXP that matter to anyone editing enemy data:
+-
+-| | EXP | LP |
+-|---|---|---|
+-| Section 8 field | `+0x34`, **`int`** | `+0x2F`, **`byte`** |
+-| Section 7 field | `+0x34`, **`int`** | `+0x2F`, **`byte`** |
+-| Divided among recipients | **yes**, on the shared path | **no** |
+-
+-**LP is not split between characters.** Its multiplier and base are single bytes, so both are capped
+-at 255 where EXP's are full 32-bit values.
+-
+-### The three modifier bits, and they sit in a two-layer pair
+-
+-```c
+-if ((recipient[0x6B] & 0x08) || (recipient[0x7B] & 0x08))  EXP = EXP * 2;
+-if ((recipient[0x6B] & 0x20) || (recipient[0x7B] & 0x20))  EXP = 0;
+-if ((recipient[0x6B] & 0x10) || (recipient[0x7B] & 0x10))  LP  = LP  * 2;
+-```
+-
+-| Bit | Effect |
+-|---|---|
+-| `0x08` | **double EXP** |
+-| `0x10` | **double LP** |
+-| `0x20` | **zero EXP** |
+-
+-**Three separate effects, three separate bits, one byte** — and each is tested in **two parallel
+-bytes at `+0x6B` and `+0x7B`**, the same bit position in both. That is the convention documented in
+-[`../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md`](../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md):
+-an effect is set in either of two layers and the engine tests both. This is an **eleventh
+-independent sighting**, and the first at this offset pair — the status masks use `+0x3C`/`+0x64`,
+-these use `+0x6B`/`+0x7B`, so the pattern is a *convention applied at several field pairs* rather
+-than one pair of fields.
++
++## 8. Evidence and remaining scope
++
++[SECTION-03 review](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md) pins 24 original bodies, independently reviews 88 retained spans,
++and records 71 bounded native controls, six rejected code variants and ten corrupted-record
++controls. The old retained checker also reproduces its preserved output and four historical
++controls. No current Ghidra re-import, full EXP-090 campaign, fresh live session, or formal peer
++acceptance is claimed.
++
++**Still PARTIAL:** actual retained reward header/row bytes and lifetime, full payout/event behavior,
++and initialized-game reachability of synthetic edge states are not supplied by these observations.
++That is a real residual, not missing arithmetic placeholders.
++
++## 9. Historical shipped effect-name investigation (retained, not newly recertified)
++
++The following 2026-09-12 asset/name research is preserved from the supplied source. SECTION-03
++checks the consumer bits and widths, but does not rerun the full asset census or verify every name.
+ 
+ **In play**, these three bits are the machinery behind the game's EXP-doubling, LP-doubling and
+ no-EXP effects. ~~That correspondence is an **inference** from the arithmetic — nothing here names an
+@@ -372,13 +230,13 @@
+ loses nothing. Live confirmation queued: a Berserk / Bubble / HP-Critical member without the
+ accessory should show unchanged EXP and LP.
+ 
+-### Nothing was contradicted
+-
+-Every gate §2 records was re-read and holds, including the status gate
+-`(recipient[0x64] | recipient[0x3C]) & 0x80000003 == 0` and the foe-class test
+-`wDefinitionSelector[+1] == 1`. The completion is additive: the placeholders are filled, and the
+-document's warning that it was incomplete can now be removed for the arithmetic, though the
+-eligibility walk's `FUN_003135C0` / `FUN_00313800` selectors remain unread.
++
++### Prior conclusion corrected in SECTION-03
++
++The old page said "nothing was contradicted" while retaining an incorrect nonnull gate, shared
++EXP/LP ownership test, universal undivided-display inference and constant-total claim. Those
++conclusions are superseded by §§1–8 and the canonical contract. The historical audit count is
++preserved as history; it does not certify these new edits.
+ 
+ ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
+ 
+@@ -402,3 +260,4 @@
+ ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
+ 
+ **CombatAI — CLIENT.** `AiOrder_EvaluateTargetSelector`, owned by that layer, calls `0031B810` on this page. That caller is the selector evaluation, 6,963 bytes of it: it indexes its table at a **six-byte stride** and takes a word at `+6`, two bytes at `+8` and `+9` and a signed word at `+0xA` before deciding anything; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
++
+--- before/FFXII TZA/13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md
++++ after/FFXII TZA/13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md
+@@ -1,7 +1,7 @@
+ ---
+ system: How experience is computed and divided
+ category: 13-Rewards-Progression-Economy
+-status: AUDITED
++status: REOPENED
+ owner_layer: PrimaryOwner:Rewards_Progression_Economy
+ evidence_tier: 1
+ verified_against:
+@@ -9,13 +9,13 @@
+   transfers_to:
+     parent: 59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92
+     parent_tag: GN162
+-    basis: additive-annotation across GN159 -> GN161 - every step of the certified lineage is additive on the canonical record (internal 38161, owner 9409 and finalNo 585 constant at all five generations; each step's codeDomain and explicit rise equals its unresolved fall). Of the functions classified since GN159 this document cites none of batch R109's 109; the 21 classified before GN160 are named in AUDIT-LOG's batch records and not in a tracked machine-readable list, so identity is not claimed. Voided by any delta that removes or rewrites a comment, tag, name, prototype or body range.; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30
+-    verified: re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS
++    basis: "additive-annotation across GN159 -> GN161 - every step of the certified lineage is additive on the canonical record (internal 38161, owner 9409 and finalNo 585 constant at all five generations; each step's codeDomain and explicit rise equals its unresolved fall). Of the functions classified since GN159 this document cites none of batch R109's 109; the 21 classified before GN160 are named in AUDIT-LOG's batch records and not in a tracked machine-readable list, so identity is not claimed. Voided by any delta that removes or rewrites a comment, tag, name, prototype or body range.; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30"
++    verified: "re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS"
+     adjudicated: OPUS ruling 2026-09-14, _index/PROVENANCE-TRANSFER.md, lineage extension (twenty ledger figures across five generations)
+     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
+   snapshot_sha256: a9cead8777597cdca58f2a47f27153f5231d60ad2bc16c3da9df8253820b09bd
+   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+-last_reviewed: 2026-09-03
++last_reviewed: 2026-09-22
+ falsification_passes: 1
+ audit:
+   passes: 1
+@@ -23,120 +23,109 @@
+   last_pass_state: first-read-repos-55
+   crossref_clean: false
+   reopened_count: 0
++production_review:
++  section: SECTION-03
++  status: locally validated; peer acceptance pending
++  scope: original reward consumers, selected caller instructions and retained binding observations
++  new_live_session: false
++
+ ---
+ 
+ # How experience is computed and divided
+ 
+-`Reward_ComputeExperienceForRecipient` at **`002F8BB0`**, 430 bytes. Six documents cited it; none had
+-opened it.
++> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending.**
++> Corrected against original EXE instructions, 71 bounded native controls and independent review
++> of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
++> a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.
++> [Evidence, changed claims and limitations](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
+ 
+-## What the player sees
++`Reward_ComputeExperienceForRecipient` is **`002F8BB0`**, 430 bytes. Each invocation recomputes its
++result. The same body is used for nonnull recipients and for the caller's NULL-recipient
++presentation input; **NULL is not an unconditional undivided-total request**.
+ 
+-**Experience is computed once for the kill and then split between the eligible members of the active
+-party, by integer division.** A fifth member does not add experience; it divides the same amount
+-further. And the split is not a display convenience — **the division happens before the number is
+-awarded to anyone**, so the remainder is discarded, not carried.
+-
+-**Two status effects change the result, and they are checked on the recipient, not the kill:**
+-
+-| condition | effect |
+-|---|---|
+-| bit `0x08` of the status byte at `+0x6B` **or** `+0x7B` | **the award is doubled** (`002F8D34`, `add esi, esi`) |
+-| bit `0x20` of the status byte at `+0x6B` **or** `+0x7B` | **the award becomes zero** (`002F8D40`) |
+-
+-**Zeroing is checked after doubling and overrides it.** Both **status layers** are consulted for each
+-— the same two-layer arrangement the periodic tick uses, here at byte 3 of each layer.
+-
+-## The amount
++## Original arithmetic
+ 
+ ```asm
+-002F8CF7  movzx eax, byte ptr [rcx + 0x1c2]    ; a byte on the defeated unit's record
+-002F8CFE  movzx ecx, byte ptr [rcx + 0x88]     ; another byte on the same record
++002F8CF7  movzx eax, byte ptr [rcx+0x1C2]  ; current subject level
++002F8CFE  movzx ecx, byte ptr [rcx+0x88]   ; current baseline
+ 002F8D05  sub   eax, ecx
+-002F8D07  mov   rcx, qword ptr [r14 + 0xe78]
+-002F8D0E  imul  eax, dword ptr [rcx + 0x34]    ; x an int from one authored table
+-002F8D12  mov   rcx, qword ptr [r14 + 0xe70]
+-002F8D19  add   eax, dword ptr [rcx + 0x34]    ; + an int from a second authored table
++002F8D07  mov   rcx, qword ptr [r14+0xE78]
++002F8D0E  imul  eax, dword ptr [rcx+0x34]
++002F8D12  mov   rcx, qword ptr [r14+0xE70]
++002F8D19  add   eax, dword ptr [rcx+0x34]
+ 002F8D1C  cdq
+-002F8D1D  idiv  ebp                            ; / eligible party members
++002F8D1D  idiv  ebp
+ ```
+ 
+-```
+-award = ( (defeated.recA - defeated.recB) * tableX[+0x34] + tableY[+0x34] ) / eligible
+-```
++The shared branch computes `(level-baseline)*perLevel+base` in 32-bit width, then performs signed
++division by the eligible-slot count. `+0x1C2` and `+0x88` are **0x13A bytes apart**; the two
++load instruction starts are seven bytes apart. Those are different measurements.
+ 
+-**Two authored tables, not one.** The defeated unit carries pointers at `+0xE70` and `+0xE78`, and the
+-same field `+0x34` is read from each — one as a **multiplier**, one as a **flat term**. A single-table
+-reading would explain the same numbers and be wrong about how to change them.
++The undivided branch uses the same expression but is selected by the current mode, not by NULL.
++The consumer does not replace the current baseline with constant 1. Negative synthetic inputs are
++not clamped here; `-9 / 2` returns `-4`. The caller's payout caps are another operation.
+ 
+-**The division is signed and truncating** (`cdq` / `idiv`). The two source values are loaded with
+-`movzx` and then subtracted, so **the difference can go negative** if the second byte exceeds the
+-first. Nothing here clamps it, and no evidence in this function says the case is unreachable — the
+-document records the shape rather than asserting the range.
++## Gates and exactly four candidate slots
+ 
+-## Who counts as eligible
++A nonnull recipient needs kind 0, an owning unit, ID outside `0x1B..0x27`, and a clear
++`(status[+0x3C] OR status[+0x64]) & 0x80000003`. NULL skips those recipient checks. Both cases
++require a subject with nonnull stats of kind 1 before entering the mode-specific path.
+ 
+-```asm
+-002F8CE0  inc  ebx
+-002F8CE2  cmp  ebx, 0x4                        ; exactly four slots are examined
+-```
++When `003135C0()` is zero, the original loop reads **exactly four** `0031B810(i)` results. Its
++member filter omits masked records and kind-0 IDs `0x1A` and `0x1B..0x27`. A fifth candidate in
++the defeat caller is not a fifth iteration of this loop. With zero passing members it returns 0
++before row dereferences/division.
+ 
+-**Four slots**, fetched by `0031B810(i)`. A slot counts toward the divisor when its record passes
+-three tests:
++Ordinary selector-byte lookup cannot select a kind-1 identity word. However the special `0xFF`
++selector can match `0xFFFF` when its bounds descriptor permits it. SECTION-03 executes that
++synthetic case through the original lookup; it does not claim such a unit is normally created.
+ 
+-1. **`(rec[+0x64] | rec[+0x3C]) & 0x80000003` is clear** — the same set membership that gates target
+-   broadcast in `BattleUnit_CommitAction` and the periodic tick. Its meaning is still open
+-   (`PROPOSED-repos46-5`), but **its use here is unambiguous: members in that set are not counted, so
+-   their presence does not dilute the award.**
+-2. **`rec[+0x04]` is not in `0x1B … 0x27`** — written as `sub al, 0x1b; cmp al, 0xC; jbe`, a 13-value
+-   band expressed as a subtraction and an unsigned compare (`002F8CC5`).
+-3. **`rec[+0x04] != 0x1A`**, a separate single-value exclusion immediately below the band
+-   (`002F8CD8`).
++## Designated mode and NULL recipients
+ 
+-> **A 13-value band and a single value adjacent to it are excluded by two different tests, written
+-> separately.** Had they been one range the compiler would have emitted one; **two tests where one
+-> would do is usually two different reasons.**
++When `003135C0()` is nonzero, `00313800()` supplies the designated index. A **nonnull** recipient
++must match `00320AB0(index,1)`. NULL skips that comparison, but does not alter the mode itself.
++The linked [award page](experience-and-license-point-award.md) preserves the prior summoner/Esper
++interpretation and its asset references; the new controls establish numeric behavior.
+ 
+-Both exclusions apply only when `rec[+0x05] == 0`, which is the byte that elsewhere separates party
+-members from foes — **so the bands are read only for units on the party side.**
++| Synthetic state, raw amount 19 | Original EXP result |
++|---|---:|
++| Shared mode, NULL, 0 passing slots | 0 |
++| Shared mode, NULL, 1 passing slot | 19 |
++| Shared mode, NULL, 2 passing slots | 9 |
++| Shared mode, NULL, 3 passing slots | 6 |
++| Shared mode, NULL, 4 passing slots | 4 |
++| Designated mode, NULL | 19 |
++| Shared mode, doubled nonnull recipient, 2 slots | 18 |
+ 
+-**If the count is zero the award stays zero**: `test ebp, ebp / jz` at `002F8CEC` skips the whole
+-computation, so there is no division by zero and no fallback amount.
++Thus neither "computed once" nor "total remains constant" is guaranteed. Rounding discards the
++remainder; recipient modifiers, admission, and state changes can alter the accumulated sum.
+ 
+-## The single-recipient path
++## Recipient modifiers
+ 
+-When `003135C0()` returns non-zero the loop is not run at all: the caller's recipient must match
+-`00320AB0(mode, 1)`, and **the same expression is evaluated without the division** — the full amount to
+-one recipient. **The formula is written twice in this function**, once divided and once not, which is
+-why a reader who finds only one of them will believe the split is universal.
++For a nonnull recipient, bit `0x08` in either `+0x6B` or `+0x7B` doubles the computed result.
++Bit `0x20` then zeros it and wins over doubling. NULL skips both. These bytes belong to effect
++layers; they are not the status words used by the earlier mask test.
+ 
+-## Entry conditions
++LP is not this algorithm with narrower row fields. It has no owner lookup, designated mode, or
++four-slot divisor, has a separate global gate, and doubles on `0x10`. See the
++[shared EXP/LP contract](CONTRACT-experience-and-licence-award.md).
+ 
+-The award is computed only when the **defeated** unit's record byte `+0x05` is exactly `1`, reached
+-through `param_2 + 0x698`. Combined with the recipient-side `rec[+0x05] == 0`, **the function is
+-directional: it computes what one side earns for defeating the other, and the same byte decides which
+-side each unit is on.**
++## Caller and retained observations
+ 
+-## Falsification pass — 2026-09-03
++The defeat caller passes NULL at `003124BC/003124C6`, then applies fresh caps and an additional
++EXP suppression flag before `0028FB80`. In shared mode its recomputed EXP input is still divided.
++The old September3 conclusion that zeroing ECX proves an undivided display is **withdrawn**.
++Only call-boundary semantics are established here, not rendering or a fresh gameplay payout.
+ 
+-| attack | result |
+-|---|---|
+-| Is the divisor the party size, or a fixed constant? | **Neither** — it is a *count of slots passing three tests*, recomputed per call over exactly four slots (`002F8CE2`). |
+-| Is the `x`/`+` pair really two tables? | **Two distinct pointers on the defeated unit** — `+0xE70` and `+0xE78` — read at the same field `+0x34`. Two loads, two bases, one displacement. |
+-| Could `+0x1C2 − +0x88` be a single 16-bit field misread as two bytes? | **No.** Two separate `movzx` byte loads seven bytes apart, then `sub` (`002F8CF7`, `002F8CFE`, `002F8D05`). |
+-| Is the doubling additive or multiplicative? | `add esi, esi` — **doubling**, and it is applied to the already-divided value, not to the base. |
+-| Does zeroing win over doubling? | **Yes**, by order: the `0x20` test runs after the `0x08` test and unconditionally writes `0` (`002F8D36`–`002F8D40`). |
++EXP-081 retained field captures bind the subject's working stats and reward pointers, but capture
++no actual reward header or coefficient-row bytes. The observed pointer spacing is only consistent
++with the producer layout; it does not reveal coefficient values or prove lifetime.
+ 
+-**What this document does not claim:** what the two bytes on the defeated record hold, what
+-`003135C0` distinguishes, what the excluded kind bands `0x1B…0x27` and `0x1A` are, or what the
+-doubling and zeroing statuses are called.
++## Evidence and limits
+ 
+-> *All four answered 2026-09-12 (FABLE) on [the award page](experience-and-license-point-award.md)
+-> §2 and §9:* the two bytes are the foe's level and a constant 1 the definition initializer stores
+-> (`0023AD37` → `0030C4B1`); `003135C0` is "mode 1, an Esper summon", on which the summoner alone
+-> takes the whole base; the band `0x1B…0x27` is the thirteen Espers and `0x1A` the Chocobo; and
+-> the bits are effect ids 27 / 28 / 29 — *Doubles EXP earned*, *Doubles license points earned*,
+-> *Reduces EXP earned to 0* — which only the Embroidered Tippet, Golden Amulet and Firefly grant.
++SECTION-03's original-instruction controls, mutants, raw-byte review and exact provenance are in
++the [review](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md). Earlier audit metadata and the crossings below remain historical.
++Fresh game-session evidence, complete orchestration and peer acceptance remain separate.
+ 
+ ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
+ 
+@@ -160,3 +149,4 @@
+ **CombatFormula — CLIENT.** `FUN_00388d50`, owned by that layer, calls `0031B810` on this page. That caller is a 298-byte target predicate made on the same two-table resolution as the effective-action-id query - `byte[+5] == 0` indexes the `0x40`-byte rows at `0208D480` by `byte[+4]`, anything else the rows at `0208DE80` by the owning unit's `byte[+0xEA9]` - which it then compares against the handle in the unit's `dword[+0x710]`; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
+ 
+ **UI — CLIENT.** `BattleMenu_BuildCommandEntryList`, owned by that layer, calls `003135C0` on this page. That caller is the command-list build, and the ceiling is in the first instruction: the menu kind is bounded at **`0x22`** into a jump table, after which `dword[+0x40]` is zeroed and `dword[+0x44]` set to `-1` before any entry is written; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
++
+--- before/FFXII TZA/13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md
++++ after/FFXII TZA/13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md
+@@ -1,7 +1,7 @@
+ ---
+ system: What happens when an enemy dies
+ category: 13-Rewards-Progression-Economy
+-status: AUDITED
++status: REOPENED
+ owner_layer: PrimaryOwner:Rewards_Progression_Economy
+ evidence_tier: 1
+ verified_against:
+@@ -10,13 +10,13 @@
+   transfers_to:
+     parent: 59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92
+     parent_tag: GN162
+-    basis: snapshot-identity - every function this document cites has byte-identical per-function records in both annotation snapshots; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30
+-    verified: 8 cited function entries, 0 of them among the 128 records that changed across GN158..GN161 (check_delta_additivity.py, check_transfer_eligible.py); re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS
++    basis: "snapshot-identity - every function this document cites has byte-identical per-function records in both annotation snapshots; CARRIED TO GN162 2026-09-21 (OPUS): the GN161 -> GN162 advance is batch R30 and is MEASURED additive - 30 records changed, comment and tags only, 0 added, 0 removed, 0 immutable-field changes, 0 tag removals, 0 comments rewritten - and this document cites none of the 30"
++    verified: "8 cited function entries, 0 of them among the 128 records that changed across GN158..GN161 (check_delta_additivity.py, check_transfer_eligible.py); re-verified 2026-09-21 (OPUS) against the CURRENT certified parent: check_delta_additivity.py GN161 -> PARENT reports ADDITIVE with its control passing, and the two snapshots it read hash to the certified endpoints c16409ec (GN161) and 16a2a832 (GN162). check_transfer_eligible.py returns this document's clause as HOLDS"
+     adjudicated: OPUS-REQ-FABLE-PROVENANCE-TRANSFER-144 (9bedb5e0); re-targeted GN160 -> GN161 under EVIDENCE-STANDARD addendum 2026-09-14bh
+     previously: fa0db2933c988211ed4f3c76a7dbe3454fc95866745af4605c35177943d2f708 (GN160), superseded 2026-09-14
+     previously_transferred_to: 11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500 (GN161), superseded 2026-09-21
+   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+-last_reviewed: 2026-09-03
++last_reviewed: 2026-09-22
+ falsification_passes: 1
+ audit:
+   passes: 1
+@@ -24,9 +24,21 @@
+   last_pass_state: first-read-repos-55
+   crossref_clean: false
+   reopened_count: 0
++production_review:
++  section: SECTION-03
++  status: locally validated; peer acceptance pending
++  scope: original reward consumers, selected caller instructions and retained binding observations
++  new_live_session: false
++
+ ---
+ 
+ # What happens when an enemy dies
++
++> **SECTION-03 production review, 2026-09-22; independent peer acceptance pending.**
++> Corrected against original EXE instructions, 71 bounded native controls and independent review
++> of four retained EXP-081 samples. The historical audit/provenance metadata below/above is not
++> a new audit pass. No new live game session or complete defeat-orchestrator execution was performed.
++> [Evidence, changed claims and limitations](../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
+ 
+ `BattleUnit_ProcessDefeatRewardsAndRetire` at **`00312280`**, 857 bytes. Three documents leaned on it
+ and none had opened it — **and it is where experience, LP, gil, levelling and the item drop all
+@@ -37,15 +49,18 @@
+ 1. **Build the recipient list** — up to nine, each fetched by index and admitted only if its two
+    status words clear `0x80000003`, or a field-level check overrides.
+ 2. **Per recipient**: compute experience and LP, clamp, award, **re-derive the level**, notify.
+-3. **Once for the party**: compute the *undivided* amounts again and hand them to the display.
++3. **Once for presentation**: recompute with a NULL recipient, apply fresh caps and a field-flag
++   EXP suppression, and pass the resulting amounts onward. EXP remains mode-dependent; LP has no divisor.
+ 4. **Gil**, from the same two tables as experience.
+ 5. **The drop**, placed at the defeated unit's position.
+ 6. **Retire the unit.**
+ 
+-> **The number on your screen is not the number anyone received.** Step 3 calls the same experience
+-> and LP functions with **a null recipient**, which skips the division among eligible party members
+-> entirely (`0031_24BE`, `ecx` zeroed). **The display shows the undivided award; every character gets
+-> it divided.**
++**SECTION-03 correction:** NULL skips recipient checks/modifiers, not the shared-mode EXP
++roster/divisor. The original computers return EXP 9 and LP 19 for synthetic raw values 19 with
++two passing members; a doubled recipient gets EXP 18. NULL EXP becomes 19 in designated mode.
++`003124BC/003124C6` establish the NULL arguments, while `00312505` and `00312513` establish a
++separate flag-based EXP suppression before the presentation call. This is not a new observed
++on-screen value. See the [award contract](CONTRACT-experience-and-licence-award.md).
+ 
+ ## The caps
+ 
+@@ -87,9 +102,17 @@
+ > agree on the difference and differ by four bytes in the table, which is as strong a corroboration as
+ > this database has produced.
+ 
+-**Gil is added to the running total, clamped at zero from below, and the delta is reported
+-separately** — so the meter and the balance are computed from the same number here, unlike the
+-setter's own path where the delta is metered before the clamp.
++The caller floors `old + award` to zero, passes that requested total to `00254EE0`, then
++passes `requested - old` to `00469E80`. The setter meters that same difference before imposing
++its upper cap, assuming the compared old balance has not changed between reads. The notifier
++only dispatches a positive-delta event; it is not another stored balance.
++
++**A cap does not by itself make the two reported deltas differ.** With old balance 99,999,995
++and award 10, both delta calculations yield 10, but the stored balance increases by only 4.
++With old balance 5 and award -10, the caller requests zero: the setter sees a spend of 5 and
++the notifier receives -5 (and sends no positive event). These are bounded static arithmetic
++consequences, not new full-path runtime tests. See DR-6 in the
++[defeat contract](CONTRACT-defeat-rewards-sequence.md).
+ 
+ ## A status that turns LP into gil
+ 
+@@ -106,11 +129,11 @@
+ > **It is not a bonus on top; it is a conversion.** And the converted amount is pooled into the same
+ > accumulator the gil award uses, so **one character's status changes what the whole party is paid.**
+ 
+-## Falsification pass — 2026-09-03
++## Historical falsification pass — 2026-09-03 (one inference corrected)
+ 
+ | attack | result |
+ |---|---|
+-| Is the display value really undivided? | The same two functions are called with **`ecx` zeroed** at `003124BE` and `003124CA`, where the per-recipient calls pass the recipient. **Same callees, one argument different.** |
++| Does zero ECX prove undivided EXP? | **No; corrected in SECTION-03.** The NULL argument is real, but the callee still takes the shared divisor when that mode is selected. LP has no divisor in either case. |
+ | Is the LP conversion a bonus or a replacement? | **Replacement** — `lp` is overwritten with the running total's previous value before the award, so the recipient's LP add is zero. |
+ | Are gil and experience really the same tables? | Same two pointers (`+0xE70`, `+0xE78`), same difference of the same two bytes, **fields `+0x30` and `+0x34`.** |
+ | Does the recipient list admit nine or fewer? | The store is guarded at `< 9` and the counter increments in the same branch, **so the count cannot exceed the array** — both move together. |
+@@ -118,7 +141,7 @@
+ 
+ **What this document does not claim:** what `00317ED0`, `003171C0`, `00317090`, `00319490`,
+ `003180F0` or `00319CA0` do internally — the last three are the **drop placement chain** and are named
+-here only by position — what `00236780` distinguishes, or which status id 12 is called.
++here only by position — the semantic purpose of `00236780` beyond its verified suppression branch, or which status id 12 is called.
+ 
+ ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
+ 
+--- before/FFXII TZA/_experiments/EXP-081-live-battleunit-bindings.md
++++ after/FFXII TZA/_experiments/EXP-081-live-battleunit-bindings.md
+@@ -192,3 +192,24 @@
+ OPUS's `+698/+6A0/+E60/+E68` fields/contracts, and the open spawn/load frontier.
+ High-impact primary review and owned propagation are routed to FABLE/OPUS.
+ Do not promote a complete contract or full database on the strength of this run.
++
++## SECTION-03 reward-binding consumption — 2026-09-22
++
++The [independent retained review](evidence/continuation-section03-reward-bindings/REVIEW.md)
++reconstructs all 88 captured spans in four samples and checks 10 deliberately corrupted variants
++without importing the original observer/normalizer. Replaying the separate historical retained
++checker also exactly reproduces its observation and four negative controls. This is retrospective
++verification of the original files, **not a new live capture or new process-health test**.
++
++The two field samples retain stable registry words and three kind-1 units' reward-pointer pairs;
++working stats bind to their retained SpawnKeep records, not directly to authored definition rows.
++Their selector/address differences are consistent with stride `0x38` and an index-zero address at
++`descriptor+0x20`, but no actual reward header or required row prefix was captured. Header
++contents, reward coefficient values, payout, lifetime and producer timing remain unestablished by
++these observations. Zero registry words at the completed-load popup do not demonstrate a reached
++NULL-row reward call.
++
++The updated [award contract](../13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md)
++consumes exactly that bounded observation alongside separately verified producer instructions and
++71 synthetic original-code consumer checks. Raw EXP-081 files, prior acceptance records and TEAM
++claims are unchanged; peer acceptance of these new canonical edits remains pending.
+--- before/FFXII TZA/_experiments/EXP-090-reward-gate-exec.md
++++ after/FFXII TZA/_experiments/EXP-090-reward-gate-exec.md
+@@ -60,18 +60,19 @@
+   (`+8`, stride `0x1C8`, bound `0x27`), the five 9-entry u16 tables `+0x5A48`–`+0x5A90`, the mode
+   flags `+0x5B04` and the designated byte `+0x5AD5`. `00313800`'s scan and `0031B9F0` sel-0 read
+   the **same** table (`+0x5A48`).
+-- **F2 — the divided path can only ever count kind-0 members.** `0031B810` feeds a **byte**
+-  member id to `002367A0`, which compares the **word** at stats `+4` (`id | kind<<8`). A kind-1
+-  stats record can never match a member byte — so §13's "a kind-1 member is counted whatever its
+-  id" is unreachable through the real callee chain: the scripted oracle admitted states the real
+-  `0031B810`→`002367A0` path cannot produce. The member filter's kind!=0 arm is live code with no
+-  live inputs through this caller.
++- **F2 — ordinary byte selectors exclude kind-1 members, but the universal kind-0 claim is withdrawn.**
++  `0031B810` feeds a byte selector to the word-identity lookup. An ordinary byte cannot match
++  a kind-1 identity. However the already-recorded `0xFF`→`0xFFFF` substitution admits a kind-FF
++  identity when the descriptor's bound permits it. SECTION-03 supplies a count-256 synthetic
++  fixture exercising that real path, so "only kind 0 can ever count" overstates the proof.
++  This does not establish that initialized gameplay creates a valid kind-FF unit.
+ - **F3 — divided-path member filter measured against real records**: skip if mask
+   `(0x64|0x3C)&0x80000003`, or kind0 with `id==0x1A` or `id∈0x1B..0x27`; `n==0` returns 0 before
+   the signed `idiv` (`xp-div-0/1/2`, `xp-div-skip-1a`, `xp-div-count-19`, `xp-div-masked`,
+   `xp-div-neg` — `-10/2 = -5` carried signed).
+-- **F4 — single-mode path**: `003135C0` true ⇒ `rcp == 00320AB0(00313800(), 1)` — the recipient
+-  must be the record the designated byte resolves to (`xp-desig-mismatch` → 0).
++- **F4 — single-mode path**: if `003135C0` is true, a **nonnull** recipient must equal
++  `00320AB0(00313800(),1)` (`xp-desig-mismatch` → 0). NULL skips this comparison, but in shared
++  mode a NULL call still runs the four-slot divisor; NULL does not select the mode.
+ - **F5 — LP asymmetry confirmed under real gates**: `002F90C0` doubles on modifier bit `0x10`
+   (either bank) and has **no zeroing clause** — XP's bit `0x20` → 0 has no LP counterpart
+   (`lp-mod-20` still returns the award). LP's id filter admits `{≤6, 0x1A, ≥0x28}` — measured at
+@@ -115,3 +116,16 @@
+ Every mutant diverged on observable state: the find compare offset, the single-mode compare, the
+ mode bit tests, the desig scan bound, the table-select displacement, the dispatcher constant, the
+ unit-scan field offset, the XP mask, the member loop bound, and the LP id admit.
++
++## SECTION-03 independent production review — 2026-09-22
++
++[Retained bindings and consumers](evidence/continuation-section03-reward-bindings/REVIEW.md)
++adds 71 native synthetic original-code controls and six deliberately incorrect private-image
++variants. It independently verifies the 19-body reward/gate closure and selected producer/caller
++bodies, but does **not** rerun this original 104-case/10-mutant Unicorn campaign. Its program,
++raw result files and original case receipts remain unchanged.
++
++The corrected current contract distinguishes EXP's owning-unit check from LP's lack of that
++check, shared NULL EXP division, separate LP global/id gates, unsigned LP coefficients and
++modifier order. Historical campaign counts above remain historical, not new certification.
++Peer acceptance of the production changes is pending; no live game run is claimed.
+--- before/FFXII TZA/_index/_inbox/EXTERNAL-CONTINUATION.md
++++ after/FFXII TZA/_index/_inbox/EXTERNAL-CONTINUATION.md
+@@ -1,6 +1,33 @@
+ # External production continuation — current handoff
+ 
+ **DB_GOAL=NOT_MET.** The endpoint is accepted whole-game L1+L2 plus its required independent readiness/terminal process. L3 implementation is later. A completed local section is not database completion.
++
++## SECTION-03 — completed production, peer acceptance pending
++
++Date: 2026-09-22. Base: the September22 21:12:46 upload **plus Updates01 and02**. Apply the
++changed-files Update03 after Update02. [Review and reproduction](../../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md).
++
++The retained reward-binding section now independently checks all 88 spans in four EXP-081 samples,
++without claiming unobserved header/row bytes. The original EXP/LP consumers and their real gate
++chain run in 71 synthetic native controls with an identical repeat and six rejected code mutants.
++Ten corrupted retained records are rejected; the original retained checker separately reproduces
++its preserved output and four historical controls.24 selected original bodies match the EXE.
++
++Canonical corrections: NULL recipient does not bypass shared EXP division; LP has no owning-unit
++search/divisor/designated-mode check; candidate admission and divisor membership differ; the FF
++selector defeats a universal kind-zero-only assertion under stated synthetic bounds; formula
++widths, modifier order and null-row preconditions are explicit. Static caller review corrects the
++presentation inference, gil pre-cap delta comparison and notifier stack/payload offset.
++
++No new live session, full historical Unicorn campaign, complete defeat-orchestrator execution or
++formal acceptance was performed. Original experiment inputs/programs, TEAM, type stores, L2
++verdicts, global metrics and reconstruction source remain unchanged. The altered mechanism pages'
++old audit records remain historical, not acceptance of this production.
++
++**Next independent package:** the widget receiver/census defect around `WidgetSingleton02AEE4C0`
++(`003939D1` message-vs-receiver identity; `00393A23` LEA constant arithmetic), after refreshing
++current state. Preserve genuine initializer/access evidence, correct unsupported field consumers,
++and test impacted scanner logic when available. Do not repeat the already-closed reward gate work.
+ 
+ ## SECTION-02 — completed production, peer acceptance pending
+ 
+@@ -22,10 +49,8 @@
+ verdict or reconstruction source is changed. Actual peer acceptance remains with the authorized
+ reviewers; no external production result is self-certified as terminal acceptance.
+ 
+-**Next independent package:** retained reward bindings and their consumer contract, after checking
+-current raw inputs/previous consumption. Continue to preserve holes rather than turn pointers,
+-sampled values or producer models into proven lifetime/content. Section1's producer repairs remain
+-in its review, not silently marked complete by this package.
++**Historical next assignment (now completed locally by SECTION-03 above):** retained reward bindings
++and consumer contracts. Section1 producer repairs remain in its review, not silently completed.
+ 
+ ## SECTION-01 — completed production, peer acceptance pending
+ 
+@@ -45,8 +70,15 @@
+ 
+ ## Next eligible production work
+ 
+-Peer review of both completed sections is pending. Repair the affected Section1 original producer checks when the original emulator environment is available. Do not repeat the local 42 checks as a new discovery or count an identical rerun as new scope.
++Peer acceptance of all three production sections remains pending. Do not mark their local checks
++as a substitute for independent review or final certification. Section1/2 historical producer
++repairs that need their original emulator environment remain explicitly bounded.
+ 
+-SECTION-02 has now completed the local resource-request queue evidence-to-contract production package. For independent next progress, inspect the retained reward-bindings package. Refresh the latest uploaded state/ownership before choosing; previously answered branches should not be reopened. The exact missing callback, reachability and installed-game obligations remain explicit rather than silently credited.
++Proceed to the original-code widget receiver/census contradiction noted above, or a stronger
++currently eligible dependency if the user supplies a later state. Preserve the distinction between
++initializer facts, receiver accesses, message payloads and arithmetic such as LEA. Update only
++necessary canonical rows/docs and impacted controls; do not bulk relabel the type store.
+ 
+-At each next completed section return another changed-files-only overlay and record its base and predecessor. Do not repackage all unchanged files. This handoff identifies external production work, not the OPUS, FABLE or ASTRA session identity. No automatic/background continuation is claimed.
++At each completed section return a changed-files-only `FFXII TZA/` overlay with exact preimages and
++its predecessor. This handoff identifies external production, not any OPUS/FABLE/ASTRA session,
++TEAM claim, background process or automatically granted acceptance.

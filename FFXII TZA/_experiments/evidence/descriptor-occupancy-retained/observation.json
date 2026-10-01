@@ -1,0 +1,5586 @@
+{
+  "rows": [
+    {
+      "descriptor": "0x2cad140",
+      "name": "PAnimatableComponent",
+      "instance_size": 264,
+      "vtable": "0xd29e90",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad1a0",
+          "next": "0x2cad1a0",
+          "previous": "0x2cad1a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad1d0",
+          "next": "0x2cb0c30",
+          "previous": "0x2cb1470",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad1f0",
+          "next": "0x2cad1f0",
+          "previous": "0x2cad1f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1,
+        24
+      ],
+      "header_sha256": "b067d1fb98a0af0f34a6de7170ad6e1c8089cd11a6306b55e2c3cf850d0c76e1"
+    },
+    {
+      "descriptor": "0x2cad440",
+      "name": "PAnimationChannel",
+      "instance_size": 104,
+      "vtable": "0xd29d80",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad4a0",
+          "next": "0x2cad4a0",
+          "previous": "0x2cad4a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad4d0",
+          "next": "0x2cad4d0",
+          "previous": "0x2cad4d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad4f0",
+          "next": "0x2cad4f0",
+          "previous": "0x2cad4f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        25,
+        45
+      ],
+      "header_sha256": "6231b559262d10dc598b904362e3265f66c40e3f40a160b991f7fa484aac4040"
+    },
+    {
+      "descriptor": "0x2cad540",
+      "name": "PAnimationChannelBase",
+      "instance_size": 72,
+      "vtable": "0xd29580",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad5a0",
+          "next": "0x2cad5a0",
+          "previous": "0x2cad5a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad5d0",
+          "next": "0x2cad5d0",
+          "previous": "0x2cad5d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad5f0",
+          "next": "0x2cad5f0",
+          "previous": "0x2cad5f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        46,
+        70
+      ],
+      "header_sha256": "fc278a2c48f820d2a455e11b2352d6dea7ac32b7afa5dfae331ec2b89d197edf"
+    },
+    {
+      "descriptor": "0x2cad640",
+      "name": "PAnimationChannelTarget",
+      "instance_size": 56,
+      "vtable": "0xd28258",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad6a0",
+          "next": "0x2cad6a0",
+          "previous": "0x2cad6a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad6d0",
+          "next": "0x2cb17b0",
+          "previous": "0x2cb18d0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad6f0",
+          "next": "0x2cad6f0",
+          "previous": "0x2cad6f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        71,
+        97
+      ],
+      "header_sha256": "b3431a901f68f5134466117809d45e55a9cdf3306a34dce3798e33d5f2346ef8"
+    },
+    {
+      "descriptor": "0x2cad740",
+      "name": "PAnimationChannelTimes",
+      "instance_size": 24,
+      "vtable": "0xd2ca08",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad7a0",
+          "next": "0x2cad7a0",
+          "previous": "0x2cad7a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad7d0",
+          "next": "0x2cad7d0",
+          "previous": "0x2cad7d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad7f0",
+          "next": "0x2cad7f0",
+          "previous": "0x2cad7f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        98,
+        123
+      ],
+      "header_sha256": "c06df2b8c569d3de96889db0cc45210b6c7fc1dd2c8df980bdc51bfab547d7f1"
+    },
+    {
+      "descriptor": "0x2cad840",
+      "name": "PAnimationClip",
+      "instance_size": 56,
+      "vtable": "0xd29010",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad8a0",
+          "next": "0x2cad8a0",
+          "previous": "0x2cad8a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad8d0",
+          "next": "0x2cb1cb0",
+          "previous": "0x2cb2010",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad8f0",
+          "next": "0x2cad8f0",
+          "previous": "0x2cad8f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        124,
+        141
+      ],
+      "header_sha256": "7c866b34a8c23e30b01df77a71d6cd392018ff3035a9868e953e232a1dd9483c"
+    },
+    {
+      "descriptor": "0x2cadb40",
+      "name": "PAnimationClipBinding",
+      "instance_size": 8,
+      "vtable": "0xd2b768",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cadba0",
+          "next": "0x2cadba0",
+          "previous": "0x2cadba0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cadbd0",
+          "next": "0x2cadbd0",
+          "previous": "0x2cadbd0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cadbf0",
+          "next": "0x2cadbf0",
+          "previous": "0x2cadbf0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        142,
+        166
+      ],
+      "header_sha256": "982afb2bf52c704245e3a431f251c7bd6d50ad06da131a8d2c428fd6a0a61721"
+    },
+    {
+      "descriptor": "0x2cad940",
+      "name": "PAnimationClipBindingChannelMap",
+      "instance_size": 4,
+      "vtable": "0xd2bf48",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad9a0",
+          "next": "0x2cad9a0",
+          "previous": "0x2cad9a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad9d0",
+          "next": "0x2cad9d0",
+          "previous": "0x2cad9d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad9f0",
+          "next": "0x2cad9f0",
+          "previous": "0x2cad9f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        167,
+        201
+      ],
+      "header_sha256": "80804f80320702dc5aa8b53ce765017d7ae70f09da199d81ba965641cb1b996b"
+    },
+    {
+      "descriptor": "0x2cada40",
+      "name": "PAnimationClipBindingDataBlockCache",
+      "instance_size": 24,
+      "vtable": "0xd2c5e0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cadaa0",
+          "next": "0x2cadaa0",
+          "previous": "0x2cadaa0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cadad0",
+          "next": "0x2cadad0",
+          "previous": "0x2cadad0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cadaf0",
+          "next": "0x2cadaf0",
+          "previous": "0x2cadaf0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        202,
+        240
+      ],
+      "header_sha256": "e2d464609dcf34f97db626e7bc6bd14bcee2e62a86aee5b35d398d69607281e6"
+    },
+    {
+      "descriptor": "0x2cadd50",
+      "name": "PAnimationController",
+      "instance_size": 40,
+      "vtable": "0xd28538",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caddb0",
+          "next": "0x2caddb0",
+          "previous": "0x2caddb0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cadde0",
+          "next": "0x2cadde0",
+          "previous": "0x2cadde0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cade00",
+          "next": "0x2cade00",
+          "previous": "0x2cade00",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        241,
+        264
+      ],
+      "header_sha256": "1656f5e9ddda4dac93a6ee2f26e5084042a1a0704ab7c370e66eb8e0fb5c7d79"
+    },
+    {
+      "descriptor": "0x2cade50",
+      "name": "PAnimationDataSource",
+      "instance_size": 24,
+      "vtable": "0xd2c288",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cadeb0",
+          "next": "0x2cadeb0",
+          "previous": "0x2cadeb0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cadee0",
+          "next": "0x2cadee0",
+          "previous": "0x2cadee0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cadf00",
+          "next": "0x2cadf00",
+          "previous": "0x2cadf00",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        265,
+        288
+      ],
+      "header_sha256": "bd5fc5dd063e92254ae7014b253d0062b01f2d82520a6ddaed9c6b831aa4e4dd"
+    },
+    {
+      "descriptor": "0x2cae350",
+      "name": "PAnimationDataSourceListEntry",
+      "instance_size": 152,
+      "vtable": "0xd2a378",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cae3b0",
+          "next": "0x2cae3b0",
+          "previous": "0x2cae3b0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cae3e0",
+          "next": "0x2cae3e0",
+          "previous": "0x2cae3e0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cae400",
+          "next": "0x2cae400",
+          "previous": "0x2cae400",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        289,
+        321
+      ],
+      "header_sha256": "41c38529c84712c936a5f86b3351578bc6b2c69fbeb3d3486b5b026ce6291972"
+    },
+    {
+      "descriptor": "0x2cae050",
+      "name": "PAnimationEvent",
+      "instance_size": 8,
+      "vtable": "0xd2b640",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cae0b0",
+          "next": "0x2cae0b0",
+          "previous": "0x2cae0b0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cae0e0",
+          "next": "0x2cae0e0",
+          "previous": "0x2cae0e0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cae100",
+          "next": "0x2cae100",
+          "previous": "0x2cae100",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        322,
+        340
+      ],
+      "header_sha256": "c4aadffafc24d20337d5a132f9c736bf6bbc5587c75a16ad6f0e7c02c283e82a"
+    },
+    {
+      "descriptor": "0x2cadf50",
+      "name": "PAnimationEventController",
+      "instance_size": 40,
+      "vtable": "0xd2cdd8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cadfb0",
+          "next": "0x2cadfb0",
+          "previous": "0x2cadfb0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cadfe0",
+          "next": "0x2cadfe0",
+          "previous": "0x2cadfe0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cae000",
+          "next": "0x2cae000",
+          "previous": "0x2cae000",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        341,
+        369
+      ],
+      "header_sha256": "a5006c5e2d697b0c61930c1ec45c942f6302f54229572cde57d4aec01e0e93bd"
+    },
+    {
+      "descriptor": "0x2cae550",
+      "name": "PAnimationNetworkInstance",
+      "instance_size": 120,
+      "vtable": "0xd2d100",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cae5b0",
+          "next": "0x2cae5b0",
+          "previous": "0x2cae5b0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cae5e0",
+          "next": "0x2cae5e0",
+          "previous": "0x2cae5e0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cae600",
+          "next": "0x2cae600",
+          "previous": "0x2cae600",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        370,
+        398
+      ],
+      "header_sha256": "00517138c8d9ef2d6c2dd0cb31057e5a4a07293634c91114a1471c707a679d86"
+    },
+    {
+      "descriptor": "0x2caea60",
+      "name": "PAnimationSlotFilter",
+      "instance_size": 64,
+      "vtable": "0xd2a2f0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caeac0",
+          "next": "0x2caeac0",
+          "previous": "0x2caeac0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2caeaf0",
+          "next": "0x2caeaf0",
+          "previous": "0x2caeaf0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caeb10",
+          "next": "0x2caeb10",
+          "previous": "0x2caeb10",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        399,
+        422
+      ],
+      "header_sha256": "0b3ca1531e13370d92c0c0c071072a6c2551920ae259c8fc17ad4da6805af3e8"
+    },
+    {
+      "descriptor": "0x2cae960",
+      "name": "PAnimationSlotFilterDeferredLoad",
+      "instance_size": 16,
+      "vtable": "0xd29220",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cae9c0",
+          "next": "0x2cae9c0",
+          "previous": "0x2cae9c0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cae9f0",
+          "next": "0x2cae9f0",
+          "previous": "0x2cae9f0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caea10",
+          "next": "0x2caea10",
+          "previous": "0x2caea10",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        423,
+        458
+      ],
+      "header_sha256": "98099d3587224176e1c944ef472e9a4b14072d374a06647e749ebb3946d7a239"
+    },
+    {
+      "descriptor": "0x2cae760",
+      "name": "PAnimationSlotListIndex",
+      "instance_size": 24,
+      "vtable": "0xd2b430",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cae7c0",
+          "next": "0x2cae7c0",
+          "previous": "0x2cae7c0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cae7f0",
+          "next": "0x2cae7f0",
+          "previous": "0x2cae7f0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cae810",
+          "next": "0x2cae810",
+          "previous": "0x2cae810",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        459,
+        485
+      ],
+      "header_sha256": "3253e14f6ca81a36453bc36096601fb9fdc7e4f8d0137dbd7774fe4760ec718a"
+    },
+    {
+      "descriptor": "0x2caebe0",
+      "name": "PAnimationSpuTargetBlenderController",
+      "instance_size": 32,
+      "vtable": "0xd27e88",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caec40",
+          "next": "0x2caec40",
+          "previous": "0x2caec40",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2caec70",
+          "next": "0x2caec70",
+          "previous": "0x2caec70",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caec90",
+          "next": "0x2caec90",
+          "previous": "0x2caec90",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        486,
+        525
+      ],
+      "header_sha256": "c8605468adbe982869dbf5cd9b77ae597896c47e405a41d5e9f56b197a80d052"
+    },
+    {
+      "descriptor": "0x2caece0",
+      "name": "PAnimationTargetBlenderController",
+      "instance_size": 32,
+      "vtable": "0xd28b80",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caed40",
+          "next": "0x2caed40",
+          "previous": "0x2caed40",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2caed70",
+          "next": "0x2caed70",
+          "previous": "0x2caed70",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caed90",
+          "next": "0x2caed90",
+          "previous": "0x2caed90",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        526,
+        562
+      ],
+      "header_sha256": "be5e0dd422087242773cc892dd25cbdf727d9f7e6deb00e833f303b60e0830db"
+    },
+    {
+      "descriptor": "0x2d3e680",
+      "name": "PAssetReference",
+      "instance_size": 80,
+      "vtable": "0xd6bb88",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3e6e0",
+          "next": "0x2d3e6e0",
+          "previous": "0x2d3e6e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3e710",
+          "next": "0x2d3ea00",
+          "previous": "0x2d3eac0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3e730",
+          "next": "0x2d3e730",
+          "previous": "0x2d3e730",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        563,
+        581
+      ],
+      "header_sha256": "936509d2be2c413b576329dc17a0d36912dbed51d974b78b0f06254118950a7d"
+    },
+    {
+      "descriptor": "0x2d3e780",
+      "name": "PAssetReferenceImport",
+      "instance_size": 24,
+      "vtable": "0xd6bda0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3e7e0",
+          "next": "0x2d3e7e0",
+          "previous": "0x2d3e7e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3e810",
+          "next": "0x2d3e810",
+          "previous": "0x2d3e810",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3e830",
+          "next": "0x2d3e830",
+          "previous": "0x2d3e830",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        582,
+        606
+      ],
+      "header_sha256": "89015e73a096dbeb4012c76f5e7cf6642926def4a74947fe3de92329e4f087d1"
+    },
+    {
+      "descriptor": "0x2d367a0",
+      "name": "PAtmosphericsBase",
+      "instance_size": 648,
+      "vtable": "0xd59560",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d36800",
+          "next": "0x2d36800",
+          "previous": "0x2d36800",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d36830",
+          "next": "0x2d36830",
+          "previous": "0x2d36830",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d36850",
+          "next": "0x2d36850",
+          "previous": "0x2d36850",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        607,
+        627
+      ],
+      "header_sha256": "4e3be7ce6595f4a445fc644f45afbf2a55b935de671dfad52f25879d65178e50"
+    },
+    {
+      "descriptor": "0x2e3fa60",
+      "name": "PBitmapFont",
+      "instance_size": 56,
+      "vtable": "0xd6d3e0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e3fac0",
+          "next": "0x2e3fac0",
+          "previous": "0x2e3fac0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e3faf0",
+          "next": "0x2e3faf0",
+          "previous": "0x2e3faf0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e3fb10",
+          "next": "0x2e3fb10",
+          "previous": "0x2e3fb10",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        628,
+        642
+      ],
+      "header_sha256": "1d8189b025dc9088e6b912db0bf8250bf0c5e005808f2e1759139c6f2998e430"
+    },
+    {
+      "descriptor": "0x2e3f960",
+      "name": "PBitmapFontCharInfo",
+      "instance_size": 48,
+      "vtable": "0xd6d238",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e3f9c0",
+          "next": "0x2e3f9c0",
+          "previous": "0x2e3f9c0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e3f9f0",
+          "next": "0x2e3f9f0",
+          "previous": "0x2e3f9f0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e3fa10",
+          "next": "0x2e3fa10",
+          "previous": "0x2e3fa10",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        643,
+        665
+      ],
+      "header_sha256": "fbcfebf5155a168301005ead91e08fe56a5f6e3fccad18640598907e40138ba9"
+    },
+    {
+      "descriptor": "0x2cad040",
+      "name": "PBlendableAnimationSource",
+      "instance_size": 128,
+      "vtable": "0xd288e0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cad0a0",
+          "next": "0x2cad0a0",
+          "previous": "0x2cad0a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cad0d0",
+          "next": "0x2cad0d0",
+          "previous": "0x2cad0d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cad0f0",
+          "next": "0x2cad0f0",
+          "previous": "0x2cad0f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        666,
+        694
+      ],
+      "header_sha256": "bc87a7797a853d8fe761206def3e5264ae9532f21d921cac2007352bfa101575"
+    },
+    {
+      "descriptor": "0x2d3f210",
+      "name": "PCamera",
+      "instance_size": 192,
+      "vtable": "0xd6c788",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3f270",
+          "next": "0x2d3f270",
+          "previous": "0x2d3f270",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3f2a0",
+          "next": "0x2d3f650",
+          "previous": "0x2d3f650",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3f2c0",
+          "next": "0x2d3f2c0",
+          "previous": "0x2d3f2c0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        695,
+        705
+      ],
+      "header_sha256": "aea3fa67251ab889e720fde44905474f5e5388ed2769b824e137ea35045be9c8"
+    },
+    {
+      "descriptor": "0x2e4f290",
+      "name": "PCameraOrthographic",
+      "instance_size": 216,
+      "vtable": "0xd7d530",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e4f2f0",
+          "next": "0x2e4f2f0",
+          "previous": "0x2e4f2f0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4f320",
+          "next": "0x2e4f3f0",
+          "previous": "0x2e4f3f0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4f340",
+          "next": "0x2e4f340",
+          "previous": "0x2e4f340",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        706,
+        728
+      ],
+      "header_sha256": "63381c1690be8426d9d4f917edc1011c8866357120c347172b7cd9474043afd2"
+    },
+    {
+      "descriptor": "0x2e4f710",
+      "name": "PCameraPerspective",
+      "instance_size": 216,
+      "vtable": "0xd7d910",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e4f770",
+          "next": "0x2e4f770",
+          "previous": "0x2e4f770",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4f7a0",
+          "next": "0x2e4f7a0",
+          "previous": "0x2e4f7a0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4f7c0",
+          "next": "0x2e4f7c0",
+          "previous": "0x2e4f7c0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        729,
+        750
+      ],
+      "header_sha256": "f4d51218dccfaa61890d615a5b98c701012a2d0aa6bd7cd9269554605c678a53"
+    },
+    {
+      "descriptor": "0x2d3f310",
+      "name": "PCameraProjection",
+      "instance_size": 208,
+      "vtable": "0xd6c910",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3f370",
+          "next": "0x2d3f370",
+          "previous": "0x2d3f370",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3f3a0",
+          "next": "0x2d3f710",
+          "previous": "0x2d3f770",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3f3c0",
+          "next": "0x2d3f3c0",
+          "previous": "0x2d3f3c0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        751,
+        771
+      ],
+      "header_sha256": "ced4e06ee1c4347c7f23d09dd8cf15791d6f2ee6aff6dfaa376effcd8c71a462"
+    },
+    {
+      "descriptor": "0x2d361a0",
+      "name": "PCelShadingBase",
+      "instance_size": 192,
+      "vtable": "0xd5cac0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d36200",
+          "next": "0x2d36200",
+          "previous": "0x2d36200",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d36230",
+          "next": "0x2d36230",
+          "previous": "0x2d36230",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d36250",
+          "next": "0x2d36250",
+          "previous": "0x2d36250",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        772,
+        790
+      ],
+      "header_sha256": "0d76950e73089bf8bf416aaadc9030f1d577ef4c4e199f026749004dac02e7f0"
+    },
+    {
+      "descriptor": "0x2e41070",
+      "name": "PClassCallableMethodScript",
+      "instance_size": 104,
+      "vtable": "0xd6ebf8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e410d0",
+          "next": "0x2e410d0",
+          "previous": "0x2e410d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e41100",
+          "next": "0x2e41100",
+          "previous": "0x2e41100",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e41120",
+          "next": "0x2e41120",
+          "previous": "0x2e41120",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        791,
+        820
+      ],
+      "header_sha256": "b78891d44b373d9b50c95ce983dc67a51316e2a24f4b5aa3485e0a4907911a40"
+    },
+    {
+      "descriptor": "0x2ca9fa0",
+      "name": "PClusterHeaderBase",
+      "instance_size": 72,
+      "vtable": "0xd24650",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caa000",
+          "next": "0x2caa000",
+          "previous": "0x2caa000",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2caa030",
+          "next": "0x2caa030",
+          "previous": "0x2caa030",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caa050",
+          "next": "0x2caa050",
+          "previous": "0x2caa050",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        821,
+        842
+      ],
+      "header_sha256": "ecfff6139823b6558fd9b4585ef95610f98abd0f1fcf72b3dbc8791d54202e71"
+    },
+    {
+      "descriptor": "0x2ca9da0",
+      "name": "PClusterHeaderD3D11",
+      "instance_size": 84,
+      "vtable": "0xd24800",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2ca9e00",
+          "next": "0x2ca9e00",
+          "previous": "0x2ca9e00",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2ca9e30",
+          "next": "0x2ca9e30",
+          "previous": "0x2ca9e30",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2ca9e50",
+          "next": "0x2ca9e50",
+          "previous": "0x2ca9e50",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        843,
+        865
+      ],
+      "header_sha256": "8bfbccb4745450c8982b8211b2a320e7b55f6977617413793486b24a3e898f22"
+    },
+    {
+      "descriptor": "0x2e4e720",
+      "name": "PComponent",
+      "instance_size": 24,
+      "vtable": "0xd7ca40",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e4e780",
+          "next": "0x2e4e780",
+          "previous": "0x2e4e780",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4e7b0",
+          "next": "0x2e4e820",
+          "previous": "0x2e4e880",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4e7d0",
+          "next": "0x2e4e7d0",
+          "previous": "0x2e4e7d0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        866,
+        879
+      ],
+      "header_sha256": "241ebd9026898e55b83de78d52b8c9b6c892bfb99347070a3f357e39d16b4fe2"
+    },
+    {
+      "descriptor": "0x2cb6380",
+      "name": "PConstantBufferBase",
+      "instance_size": 12,
+      "vtable": "0xd370d8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb63e0",
+          "next": "0x2cb63e0",
+          "previous": "0x2cb63e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6410",
+          "next": "0x2cb6410",
+          "previous": "0x2cb6410",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6430",
+          "next": "0x2cb6430",
+          "previous": "0x2cb6430",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        880,
+        902
+      ],
+      "header_sha256": "56b67d27411180f479c338b46199b9ff65ff2765372f80cdf07b6ca70b97930e"
+    },
+    {
+      "descriptor": "0x2cb7ba0",
+      "name": "PContextVariantFoldingTable",
+      "instance_size": 20,
+      "vtable": "0xd37b48",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb7c00",
+          "next": "0x2cb7c00",
+          "previous": "0x2cb7c00",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7c30",
+          "next": "0x2cb7c30",
+          "previous": "0x2cb7c30",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7c50",
+          "next": "0x2cb7c50",
+          "previous": "0x2cb7c50",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        903,
+        933
+      ],
+      "header_sha256": "c422daccbd354e3fd766dc09ec82e3cb25e6838a414a7e3f46d5bc42d0d39700"
+    },
+    {
+      "descriptor": "0x2d39d40",
+      "name": "PDataBlockBase",
+      "instance_size": 32,
+      "vtable": "0xd65f78",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d39da0",
+          "next": "0x2d39da0",
+          "previous": "0x2d39da0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d39dd0",
+          "next": "0x2d39dd0",
+          "previous": "0x2d39dd0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d39df0",
+          "next": "0x2d39df0",
+          "previous": "0x2d39df0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        934,
+        951
+      ],
+      "header_sha256": "620735a129380869db4f68f04be6bbf3cd4f9167399f1cd1ff68cc97454873b4"
+    },
+    {
+      "descriptor": "0x2d39c40",
+      "name": "PDataBlockD3D11",
+      "instance_size": 136,
+      "vtable": "0xd65aa8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d39ca0",
+          "next": "0x2d39ca0",
+          "previous": "0x2d39ca0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d39cd0",
+          "next": "0x2d39cd0",
+          "previous": "0x2d39cd0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d39cf0",
+          "next": "0x2d39cf0",
+          "previous": "0x2d39cf0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        952,
+        970
+      ],
+      "header_sha256": "7d2718b93f1ae62e4d5f84598045c1735a0e97946a954c9ec6560cf35ff604c7"
+    },
+    {
+      "descriptor": "0x2ea9400",
+      "name": "PDebugUtils",
+      "instance_size": 88,
+      "vtable": "0x1cb0cc0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2ea9460",
+          "next": "0x2ea9460",
+          "previous": "0x2ea9460",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2ea9490",
+          "next": "0x2eac280",
+          "previous": "0x2eac2e0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2ea94b0",
+          "next": "0x2ea94b0",
+          "previous": "0x2ea94b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        971,
+        985
+      ],
+      "header_sha256": "dd93cef5c757d4f9bdcdacc8de7fffafdc4788bc26364379742c520693b1eaf2"
+    },
+    {
+      "descriptor": "0x2d34840",
+      "name": "PDeferredLightingBase",
+      "instance_size": 16856,
+      "vtable": "0xd5a638",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d348a0",
+          "next": "0x2d348a0",
+          "previous": "0x2d348a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d348d0",
+          "next": "0x2d348d0",
+          "previous": "0x2d348d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d348f0",
+          "next": "0x2d348f0",
+          "previous": "0x2d348f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        986,
+        1010
+      ],
+      "header_sha256": "66230e8cf4d933f1d879406fdc75fcb5816b5e984e41eb50227b18f171d36e78"
+    },
+    {
+      "descriptor": "0x2d34b40",
+      "name": "PDepthOfFieldBase",
+      "instance_size": 128,
+      "vtable": "0xd5df98",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d34ba0",
+          "next": "0x2d34ba0",
+          "previous": "0x2d34ba0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d34bd0",
+          "next": "0x2d34bd0",
+          "previous": "0x2d34bd0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d34bf0",
+          "next": "0x2d34bf0",
+          "previous": "0x2d34bf0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1011,
+        1031
+      ],
+      "header_sha256": "95a7b3ad5ef8276f9e6f3fca3632edfc9437b2f28b5368bf0747132e1f8342a2"
+    },
+    {
+      "descriptor": "0x2d39f40",
+      "name": "PDynamicDataBlock",
+      "instance_size": 40,
+      "vtable": "0xd63b78",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d39fa0",
+          "next": "0x2d39fa0",
+          "previous": "0x2d39fa0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d39fd0",
+          "next": "0x2d39fd0",
+          "previous": "0x2d39fd0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d39ff0",
+          "next": "0x2d39ff0",
+          "previous": "0x2d39ff0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1032,
+        1052
+      ],
+      "header_sha256": "23d442e6a06cd27a12bb1ec2ace315f304c3ead2eb677a6f2dec4804f30a1ddf"
+    },
+    {
+      "descriptor": "0x2d3a140",
+      "name": "PDynamicMesh",
+      "instance_size": 56,
+      "vtable": "0xd65640",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a1a0",
+          "next": "0x2d3a1a0",
+          "previous": "0x2d3a1a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a1d0",
+          "next": "0x2d3a1d0",
+          "previous": "0x2d3a1d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a1f0",
+          "next": "0x2d3a1f0",
+          "previous": "0x2d3a1f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1053,
+        1068
+      ],
+      "header_sha256": "96a6b0ec15ce9483e745849a9678257b57aeaee7b2c039bf48ce499d87338682"
+    },
+    {
+      "descriptor": "0x2cb6580",
+      "name": "PDynamicMeshInstance",
+      "instance_size": 24,
+      "vtable": "0xd419d0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb65e0",
+          "next": "0x2cb65e0",
+          "previous": "0x2cb65e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6610",
+          "next": "0x2cb6610",
+          "previous": "0x2cb6610",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6630",
+          "next": "0x2cb6630",
+          "previous": "0x2cb6630",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1069,
+        1092
+      ],
+      "header_sha256": "24985585caa2a2deba81ce14706eb8d7673bcce6481190e12d1ac322c11bbcb5"
+    },
+    {
+      "descriptor": "0x2d3a040",
+      "name": "PDynamicSegmentDesc",
+      "instance_size": 16,
+      "vtable": "0xd65bd8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a0a0",
+          "next": "0x2d3a0a0",
+          "previous": "0x2d3a0a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a0d0",
+          "next": "0x2d3a0d0",
+          "previous": "0x2d3a0d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a0f0",
+          "next": "0x2d3a0f0",
+          "previous": "0x2d3a0f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1093,
+        1115
+      ],
+      "header_sha256": "62b900c6b8b9ddd5bdbf66c5ac617e331d0c4c74a7834b37e5deb6633136bed3"
+    },
+    {
+      "descriptor": "0x2cb6680",
+      "name": "PEffect",
+      "instance_size": 120,
+      "vtable": "0xd3ff68",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb66e0",
+          "next": "0x2cb66e0",
+          "previous": "0x2cb66e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6710",
+          "next": "0x2cb6710",
+          "previous": "0x2cb6710",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6730",
+          "next": "0x2cb6730",
+          "previous": "0x2cb6730",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1116,
+        1126
+      ],
+      "header_sha256": "ca375d1c8c3b2e67ed01be74ce0f553a1c6a4a70926ff2b9c25654d75049cd74"
+    },
+    {
+      "descriptor": "0x2cb6780",
+      "name": "PEffectVariant",
+      "instance_size": 104,
+      "vtable": "0xd38cf0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb67e0",
+          "next": "0x2cb67e0",
+          "previous": "0x2cb67e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6810",
+          "next": "0x2cb6810",
+          "previous": "0x2cb6810",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6830",
+          "next": "0x2cb6830",
+          "previous": "0x2cb6830",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1127,
+        1144
+      ],
+      "header_sha256": "c493fa22a51413e8de67327908e45385d37f7eef824e68a5f8f25f38333a9166"
+    },
+    {
+      "descriptor": "0x2e4eaf0",
+      "name": "PEntity",
+      "instance_size": 56,
+      "vtable": "0xd7cec8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e4eb50",
+          "next": "0x2e4eb50",
+          "previous": "0x2e4eb50",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4eb80",
+          "next": "0x2e4ebf0",
+          "previous": "0x2e4ee30",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4eba0",
+          "next": "0x2e4eba0",
+          "previous": "0x2e4eba0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1145,
+        1155
+      ],
+      "header_sha256": "bc1c61a83c63a2245f41b83c08cf8d7981d508d9a303807a1d17740165f77760"
+    },
+    {
+      "descriptor": "0x2eb9e60",
+      "name": "PGameConfig",
+      "instance_size": 24,
+      "vtable": "0x1cd9b78",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb9ec0",
+          "next": "0x2eb9ec0",
+          "previous": "0x2eb9ec0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb9ef0",
+          "next": "0x2eb9ef0",
+          "previous": "0x2eb9ef0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb9f10",
+          "next": "0x2eb9f10",
+          "previous": "0x2eb9f10",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1156,
+        1170
+      ],
+      "header_sha256": "53f5270e2693942964cf4386f9661f98b53be01411a4664f21a25bf88455c074"
+    },
+    {
+      "descriptor": "0x2d35aa0",
+      "name": "PGlowBase",
+      "instance_size": 160,
+      "vtable": "0xd5a988",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d35b00",
+          "next": "0x2d35b00",
+          "previous": "0x2d35b00",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d35b30",
+          "next": "0x2d35b30",
+          "previous": "0x2d35b30",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d35b50",
+          "next": "0x2d35b50",
+          "previous": "0x2d35b50",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1171,
+        1183
+      ],
+      "header_sha256": "7cc075930daedae2c8d0be40f0a13a583dfeccaaef4f0e6a0ddb5a63c38e96d5"
+    },
+    {
+      "descriptor": "0x2d3a240",
+      "name": "PIndexDataBlockBase",
+      "instance_size": 20,
+      "vtable": "0xd645a8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a2a0",
+          "next": "0x2d3a2a0",
+          "previous": "0x2d3a2a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a2d0",
+          "next": "0x2d3a2d0",
+          "previous": "0x2d3a2d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a2f0",
+          "next": "0x2d3a2f0",
+          "previous": "0x2d3a2f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1184,
+        1206
+      ],
+      "header_sha256": "871082e2b617f6f8796c0b4ec7155d5a46942133a140ff5c427d5c4861782fb8"
+    },
+    {
+      "descriptor": "0x2d39a40",
+      "name": "PIndexDataBlockD3D11",
+      "instance_size": 128,
+      "vtable": "0xd65768",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d39aa0",
+          "next": "0x2d39aa0",
+          "previous": "0x2d39aa0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d39ad0",
+          "next": "0x2d39ad0",
+          "previous": "0x2d39ad0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d39af0",
+          "next": "0x2d39af0",
+          "previous": "0x2d39af0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1207,
+        1230
+      ],
+      "header_sha256": "a1306460a1a41d5c1d2ea08d26044c43c68a0e56a22d60f1a3235901b19d2d79"
+    },
+    {
+      "descriptor": "0x2eb6cf0",
+      "name": "PInputAction",
+      "instance_size": 40,
+      "vtable": "0x1cd11f8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb6d50",
+          "next": "0x2eb6d50",
+          "previous": "0x2eb6d50",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb6d80",
+          "next": "0x2eb7500",
+          "previous": "0x2eb7560",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb6da0",
+          "next": "0x2eb6da0",
+          "previous": "0x2eb6da0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1231,
+        1246
+      ],
+      "header_sha256": "33a934200010d65a021ccd544db7a41f3088a218e56838844eeb9d7c00a15b77"
+    },
+    {
+      "descriptor": "0x2ea5560",
+      "name": "PInputMapper",
+      "instance_size": 712,
+      "vtable": "0x1cb1178",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2ea55c0",
+          "next": "0x2ea55c0",
+          "previous": "0x2ea55c0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2ea55f0",
+          "next": "0x2eacbd0",
+          "previous": "0x2eacc30",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2ea5610",
+          "next": "0x2ea5610",
+          "previous": "0x2ea5610",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1247,
+        1262
+      ],
+      "header_sha256": "3e444b1a64192aa9dbe9ddf0ecdb8a6e75c83138a822caf4b4dcae8f9ad6ddf9"
+    },
+    {
+      "descriptor": "0x2eb52f0",
+      "name": "PInputSource",
+      "instance_size": 40,
+      "vtable": "0x1cd1170",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5350",
+          "next": "0x2eb5350",
+          "previous": "0x2eb5350",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5380",
+          "next": "0x2eb5380",
+          "previous": "0x2eb5380",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb53a0",
+          "next": "0x2eb53a0",
+          "previous": "0x2eb53a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1263,
+        1278
+      ],
+      "header_sha256": "add46055d055bbbdc9842ebea09e2563eabe82e55d3b77c7acf57838e8fabfda"
+    },
+    {
+      "descriptor": "0x2eb55f0",
+      "name": "PInputSourceJoypadAxis",
+      "instance_size": 56,
+      "vtable": "0x1cd3048",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5650",
+          "next": "0x2eb5650",
+          "previous": "0x2eb5650",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5680",
+          "next": "0x2eb5680",
+          "previous": "0x2eb5680",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb56a0",
+          "next": "0x2eb56a0",
+          "previous": "0x2eb56a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1279,
+        1304
+      ],
+      "header_sha256": "86e6401ac4b53c4384636c859fe9ef2451561900b58df8d2a7e7bcd480bc615f"
+    },
+    {
+      "descriptor": "0x2eb54f0",
+      "name": "PInputSourceJoypadButton",
+      "instance_size": 64,
+      "vtable": "0x1cd24e8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5550",
+          "next": "0x2eb5550",
+          "previous": "0x2eb5550",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5580",
+          "next": "0x2eb5580",
+          "previous": "0x2eb5580",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb55a0",
+          "next": "0x2eb55a0",
+          "previous": "0x2eb55a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1305,
+        1332
+      ],
+      "header_sha256": "bef78162b27acaf335f0573957212491d5da1cdd2c9623cae60cd5e5b9498026"
+    },
+    {
+      "descriptor": "0x2eb53f0",
+      "name": "PInputSourceKey",
+      "instance_size": 64,
+      "vtable": "0x1cd1a00",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5450",
+          "next": "0x2eb5450",
+          "previous": "0x2eb5450",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5480",
+          "next": "0x2eb5480",
+          "previous": "0x2eb5480",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb54a0",
+          "next": "0x2eb54a0",
+          "previous": "0x2eb54a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1333,
+        1351
+      ],
+      "header_sha256": "69b54835ba25d9e297eefa7aba781adc26b0ee48ec2f47198e76de777ad86fd3"
+    },
+    {
+      "descriptor": "0x2eb56f0",
+      "name": "PInputSourceMouseButton",
+      "instance_size": 56,
+      "vtable": "0x1cd3a68",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5750",
+          "next": "0x2eb5750",
+          "previous": "0x2eb5750",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5780",
+          "next": "0x2eb5780",
+          "previous": "0x2eb5780",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb57a0",
+          "next": "0x2eb57a0",
+          "previous": "0x2eb57a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1352,
+        1378
+      ],
+      "header_sha256": "6ddeb352b16600adf6bac101a08ec3e059b262bdb9273c6fb1a368275ec85509"
+    },
+    {
+      "descriptor": "0x2eb57f0",
+      "name": "PInputSourceMouseDeltaX",
+      "instance_size": 64,
+      "vtable": "0x1cd4338",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5850",
+          "next": "0x2eb5850",
+          "previous": "0x2eb5850",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5880",
+          "next": "0x2eb5880",
+          "previous": "0x2eb5880",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb58a0",
+          "next": "0x2eb58a0",
+          "previous": "0x2eb58a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1379,
+        1405
+      ],
+      "header_sha256": "6ad5fa4827144be9907161b940c9d179e37ab8630b3dd4cda3d5fc6662c40af0"
+    },
+    {
+      "descriptor": "0x2eb58f0",
+      "name": "PInputSourceMouseDeltaY",
+      "instance_size": 64,
+      "vtable": "0x1cd0348",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb5950",
+          "next": "0x2eb5950",
+          "previous": "0x2eb5950",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb5980",
+          "next": "0x2eb5980",
+          "previous": "0x2eb5980",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb59a0",
+          "next": "0x2eb59a0",
+          "previous": "0x2eb59a0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1406,
+        1432
+      ],
+      "header_sha256": "91aaadf3f9822d8fbfd9497f2a7af4ffc39f96c6fba89916878bc81d96bf822e"
+    },
+    {
+      "descriptor": "0x2ca9ea0",
+      "name": "PInstanceListHeader",
+      "instance_size": 36,
+      "vtable": "0xd24b58",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2ca9f00",
+          "next": "0x2ca9f00",
+          "previous": "0x2ca9f00",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2ca9f30",
+          "next": "0x2ca9f30",
+          "previous": "0x2ca9f30",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2ca9f50",
+          "next": "0x2ca9f50",
+          "previous": "0x2ca9f50",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1433,
+        1455
+      ],
+      "header_sha256": "92fed3d5355cf77bea93faab3bb4827e3e72f28f8bf71e3795a5c6e8490baca7"
+    },
+    {
+      "descriptor": "0x2e5ae00",
+      "name": "PLODGroup",
+      "instance_size": 104,
+      "vtable": "0xd85518",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5ae60",
+          "next": "0x2e5ae60",
+          "previous": "0x2e5ae60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5ae90",
+          "next": "0x2e5b5b0",
+          "previous": "0x2e5b610",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5aeb0",
+          "next": "0x2e5aeb0",
+          "previous": "0x2e5aeb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1456,
+        1468
+      ],
+      "header_sha256": "22ea3cb5f86c29993e8dc1ee75609ceb29134750677f2d808b3a43c13202cc66"
+    },
+    {
+      "descriptor": "0x2e5ad00",
+      "name": "PLODLevel",
+      "instance_size": 56,
+      "vtable": "0xd852b0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5ad60",
+          "next": "0x2e5ad60",
+          "previous": "0x2e5ad60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5ad90",
+          "next": "0x2e5ad90",
+          "previous": "0x2e5ad90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5adb0",
+          "next": "0x2e5adb0",
+          "previous": "0x2e5adb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1469,
+        1481
+      ],
+      "header_sha256": "7efc77f62b8455b02c19273550b8810a22ebc5d0d0ad242d53cd7fef26d4ba84"
+    },
+    {
+      "descriptor": "0x2e58db0",
+      "name": "PLight",
+      "instance_size": 64,
+      "vtable": "0xd82b58",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e58e10",
+          "next": "0x2e58e10",
+          "previous": "0x2e58e10",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e58e40",
+          "next": "0x2e592e0",
+          "previous": "0x2e59640",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e58e60",
+          "next": "0x2e58e60",
+          "previous": "0x2e58e60",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1482,
+        1491
+      ],
+      "header_sha256": "eda6ed2a3914d0349a936c4a7b8d86d7f1a4b3b18ff1f56d784cf64dafb92a13"
+    },
+    {
+      "descriptor": "0x2cb6b80",
+      "name": "PMaterial",
+      "instance_size": 40,
+      "vtable": "0xd3f8f0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb6be0",
+          "next": "0x2cb6be0",
+          "previous": "0x2cb6be0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6c10",
+          "next": "0x2ce3200",
+          "previous": "0x2ce3440",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6c30",
+          "next": "0x2cb6c30",
+          "previous": "0x2cb6c30",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1492,
+        1504
+      ],
+      "header_sha256": "afdac7552cc80a9aef3e1b09f4071335f49e38bd46e4a4c80fa787ce90a9de9c"
+    },
+    {
+      "descriptor": "0x2cb6a80",
+      "name": "PMaterialSwitch",
+      "instance_size": 16,
+      "vtable": "0xd3d030",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb6ae0",
+          "next": "0x2cb6ae0",
+          "previous": "0x2cb6ae0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6b10",
+          "next": "0x2cb6b10",
+          "previous": "0x2cb6b10",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6b30",
+          "next": "0x2cb6b30",
+          "previous": "0x2cb6b30",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1505,
+        1523
+      ],
+      "header_sha256": "a337af8b068790f0f4dfcbdf46b961e7273408e5e598110ba40e553f455259d4"
+    },
+    {
+      "descriptor": "0x2d3a640",
+      "name": "PMesh",
+      "instance_size": 128,
+      "vtable": "0xd64938",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a6a0",
+          "next": "0x2d3a6a0",
+          "previous": "0x2d3a6a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a6d0",
+          "next": "0x2d3c010",
+          "previous": "0x2d3c010",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a6f0",
+          "next": "0x2d3a6f0",
+          "previous": "0x2d3a6f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1524,
+        1532
+      ],
+      "header_sha256": "e67836151ab55f9c80a9dd0d24531292ed4b690350b3842deb1e2a48fd2c3574"
+    },
+    {
+      "descriptor": "0x2cb6e80",
+      "name": "PMeshInstance",
+      "instance_size": 200,
+      "vtable": "0xd3fe70",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb6ee0",
+          "next": "0x2cb6ee0",
+          "previous": "0x2cb6ee0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6f10",
+          "next": "0x2ce3e90",
+          "previous": "0x2ce4130",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6f30",
+          "next": "0x2cb6f30",
+          "previous": "0x2cb6f30",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1533,
+        1549
+      ],
+      "header_sha256": "8461da8236b19439aefc806f4b47ef2175c163afcedff31189ed79eac6207ec6"
+    },
+    {
+      "descriptor": "0x2cb6f80",
+      "name": "PMeshInstanceAttachPoint",
+      "instance_size": 24,
+      "vtable": "0xd369a8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb6fe0",
+          "next": "0x2cb6fe0",
+          "previous": "0x2cb6fe0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7010",
+          "next": "0x2cb7010",
+          "previous": "0x2cb7010",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7030",
+          "next": "0x2cb7030",
+          "previous": "0x2cb7030",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1550,
+        1577
+      ],
+      "header_sha256": "21ef33f8eed767b3277a91ff8783e64f6d76fc5e9c48aafe7ab9bdbd5013f70f"
+    },
+    {
+      "descriptor": "0x2cb7080",
+      "name": "PMeshInstanceBounds",
+      "instance_size": 48,
+      "vtable": "0xd3bfd8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb70e0",
+          "next": "0x2cb70e0",
+          "previous": "0x2cb70e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7110",
+          "next": "0x2cb7110",
+          "previous": "0x2cb7110",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7130",
+          "next": "0x2cb7130",
+          "previous": "0x2cb7130",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1578,
+        1600
+      ],
+      "header_sha256": "596f7ed2bfc3e3e6aaa39e0ff26460627ceded04d876afe53d19094d3ee2744b"
+    },
+    {
+      "descriptor": "0x2cb6c80",
+      "name": "PMeshInstanceSegmentStreamBinding",
+      "instance_size": 24,
+      "vtable": "0xd426d8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb6ce0",
+          "next": "0x2cb6ce0",
+          "previous": "0x2cb6ce0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb6d10",
+          "next": "0x2cb6d10",
+          "previous": "0x2cb6d10",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb6d30",
+          "next": "0x2cb6d30",
+          "previous": "0x2cb6d30",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1601,
+        1637
+      ],
+      "header_sha256": "1c0b1d1ed763a4575e386a6a712af109457dc3ec9f3a012901d1aa55902296cb"
+    },
+    {
+      "descriptor": "0x2d3a840",
+      "name": "PMeshSegmentBase",
+      "instance_size": 48,
+      "vtable": "0xd641e0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a8a0",
+          "next": "0x2d3a8a0",
+          "previous": "0x2d3a8a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a8d0",
+          "next": "0x2d3a8d0",
+          "previous": "0x2d3a8d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a8f0",
+          "next": "0x2d3a8f0",
+          "previous": "0x2d3a8f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1638,
+        1657
+      ],
+      "header_sha256": "f6b668a9c8c18fa378802ccf113b3a30544f861d68a7c7b613e9c1ed3b5fc688"
+    },
+    {
+      "descriptor": "0x2d39840",
+      "name": "PMeshSegmentD3D11",
+      "instance_size": 192,
+      "vtable": "0xd64d38",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d398a0",
+          "next": "0x2d398a0",
+          "previous": "0x2d398a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d398d0",
+          "next": "0x2d398d0",
+          "previous": "0x2d398d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d398f0",
+          "next": "0x2d398f0",
+          "previous": "0x2d398f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1658,
+        1678
+      ],
+      "header_sha256": "662406db503f264f3fd148975828830f861c20414b0322bc2671cdbd3c51df8f"
+    },
+    {
+      "descriptor": "0x2e5e030",
+      "name": "PModifierAndInputs",
+      "instance_size": 32,
+      "vtable": "0xd8b4c0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5e090",
+          "next": "0x2e5e090",
+          "previous": "0x2e5e090",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5e0c0",
+          "next": "0x2e5e0c0",
+          "previous": "0x2e5e0c0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5e0e0",
+          "next": "0x2e5e0e0",
+          "previous": "0x2e5e0e0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1679,
+        1700
+      ],
+      "header_sha256": "33dc0c656edb697d8e6bb3f0de541cc07a9a77841b8703fa09612a1fd53c9980"
+    },
+    {
+      "descriptor": "0x2e5e540",
+      "name": "PModifierNetwork",
+      "instance_size": 112,
+      "vtable": "0xd8a778",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5e5a0",
+          "next": "0x2e5e5a0",
+          "previous": "0x2e5e5a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5e5d0",
+          "next": "0x2e5e5d0",
+          "previous": "0x2e5e5d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5e5f0",
+          "next": "0x2e5e5f0",
+          "previous": "0x2e5e5f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1701,
+        1720
+      ],
+      "header_sha256": "db0a932082cb77f31a96bf66467bedf08cfad95fa6ce77973b27d258e3e1379b"
+    },
+    {
+      "descriptor": "0x2e5df30",
+      "name": "PModifierNetworkBuffer",
+      "instance_size": 24,
+      "vtable": "0xd8b310",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5df90",
+          "next": "0x2e5df90",
+          "previous": "0x2e5df90",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5dfc0",
+          "next": "0x2e5dfc0",
+          "previous": "0x2e5dfc0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5dfe0",
+          "next": "0x2e5dfe0",
+          "previous": "0x2e5dfe0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1721,
+        1746
+      ],
+      "header_sha256": "f7e781d2b1cefb464b3ecd054aca6a7329b193bfb10c1487826d384f602c745c"
+    },
+    {
+      "descriptor": "0x2e57f60",
+      "name": "PModifierNetworkDynamicMeshSegment",
+      "instance_size": 24,
+      "vtable": "0xd815b0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e57fc0",
+          "next": "0x2e57fc0",
+          "previous": "0x2e57fc0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e57ff0",
+          "next": "0x2e57ff0",
+          "previous": "0x2e57ff0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e58010",
+          "next": "0x2e58010",
+          "previous": "0x2e58010",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1747,
+        1784
+      ],
+      "header_sha256": "303ea442f3de55fe7979dcd908c619a77398126485ea51aa75ba8a3c20fc2f74"
+    },
+    {
+      "descriptor": "0x2e5e430",
+      "name": "PModifierNetworkInfoPacket",
+      "instance_size": 32,
+      "vtable": "0xd8b050",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5e490",
+          "next": "0x2e5e490",
+          "previous": "0x2e5e490",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5e4c0",
+          "next": "0x2e5e4c0",
+          "previous": "0x2e5e4c0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5e4e0",
+          "next": "0x2e5e4e0",
+          "previous": "0x2e5e4e0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1785,
+        1814
+      ],
+      "header_sha256": "3e0db5d7d3714b617ed22fbcffbfc0960b529df2774f83bd231da36db3f7d69c"
+    },
+    {
+      "descriptor": "0x2e5e330",
+      "name": "PModifierNetworkInfoPacket_Buffer",
+      "instance_size": 2,
+      "vtable": "0xd8ac50",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5e390",
+          "next": "0x2e5e390",
+          "previous": "0x2e5e390",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5e3c0",
+          "next": "0x2e5e3c0",
+          "previous": "0x2e5e3c0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5e3e0",
+          "next": "0x2e5e3e0",
+          "previous": "0x2e5e3e0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1815,
+        1851
+      ],
+      "header_sha256": "c2ca7b8ede9301078b085d69db7c1c353bd0ae6796cdf9386a1b9a1445c81ce9"
+    },
+    {
+      "descriptor": "0x2e5e130",
+      "name": "PModifierNetworkInfoPacket_ModifierCode",
+      "instance_size": 32,
+      "vtable": "0xd8bb48",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5e190",
+          "next": "0x2e5e190",
+          "previous": "0x2e5e190",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5e1c0",
+          "next": "0x2e5e1c0",
+          "previous": "0x2e5e1c0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5e1e0",
+          "next": "0x2e5e1e0",
+          "previous": "0x2e5e1e0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1852,
+        1894
+      ],
+      "header_sha256": "de9b9e27b05c2afbecd60445b7579e59f7595fbaec3da9ea502dd092db15c6f3"
+    },
+    {
+      "descriptor": "0x2e5e230",
+      "name": "PModifierNetworkInfoPacket_ModifierInstance",
+      "instance_size": 32,
+      "vtable": "0xd8a900",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5e290",
+          "next": "0x2e5e290",
+          "previous": "0x2e5e290",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5e2c0",
+          "next": "0x2e5e2c0",
+          "previous": "0x2e5e2c0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5e2e0",
+          "next": "0x2e5e2e0",
+          "previous": "0x2e5e2e0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1895,
+        1941
+      ],
+      "header_sha256": "e632a1244453132171257673a6c80c8375b85c76b4afbbc9f62d3d83d9268d8e"
+    },
+    {
+      "descriptor": "0x2e5a6c0",
+      "name": "PModifierNetworkInstance",
+      "instance_size": 40,
+      "vtable": "0xd84678",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5a720",
+          "next": "0x2e5a720",
+          "previous": "0x2e5a720",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5a750",
+          "next": "0x2e5a750",
+          "previous": "0x2e5a750",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5a770",
+          "next": "0x2e5a770",
+          "previous": "0x2e5a770",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1942,
+        1969
+      ],
+      "header_sha256": "342a201daeffcef8801375c541d29e2c94b3e52c3a4747fb57ca7181d5e03378"
+    },
+    {
+      "descriptor": "0x2e5a4c0",
+      "name": "PModifierNetworkInstanceInput",
+      "instance_size": 32,
+      "vtable": "0xd84300",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5a520",
+          "next": "0x2e5a520",
+          "previous": "0x2e5a520",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5a550",
+          "next": "0x2e5a550",
+          "previous": "0x2e5a550",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5a570",
+          "next": "0x2e5a570",
+          "previous": "0x2e5a570",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        1970,
+        2002
+      ],
+      "header_sha256": "259844c4e1b7fae9619ae768ca04a38c28c6e87ad02fb9518237c7734f7c5785"
+    },
+    {
+      "descriptor": "0x2e5a5c0",
+      "name": "PModifierNetworkInstancePacketInput",
+      "instance_size": 8,
+      "vtable": "0xd844c0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5a620",
+          "next": "0x2e5a620",
+          "previous": "0x2e5a620",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5a650",
+          "next": "0x2e5a650",
+          "previous": "0x2e5a650",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5a670",
+          "next": "0x2e5a670",
+          "previous": "0x2e5a670",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2003,
+        2041
+      ],
+      "header_sha256": "9b388dfe8866e9da5cb5aee7a9c58080c65e6d33da662147cdb8b3d95fa19b14"
+    },
+    {
+      "descriptor": "0x2d34e40",
+      "name": "PMotionBlurBase",
+      "instance_size": 3432,
+      "vtable": "0xd59468",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d34ea0",
+          "next": "0x2d34ea0",
+          "previous": "0x2d34ea0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d34ed0",
+          "next": "0x2d34ed0",
+          "previous": "0x2d34ed0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d34ef0",
+          "next": "0x2d34ef0",
+          "previous": "0x2d34ef0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2042,
+        2060
+      ],
+      "header_sha256": "3b39e92d74691edd9950b357b856312e982451fe39eac78c07149bececd76886"
+    },
+    {
+      "descriptor": "0x2e4ff60",
+      "name": "PNameComponent",
+      "instance_size": 48,
+      "vtable": "0xd7e6a8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e4ffc0",
+          "next": "0x2e4ffc0",
+          "previous": "0x2e4ffc0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4fff0",
+          "next": "0x2e4fff0",
+          "previous": "0x2e4fff0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e50010",
+          "next": "0x2e50010",
+          "previous": "0x2e50010",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2061,
+        2078
+      ],
+      "header_sha256": "17f64187c46ef6520ee7517c37c6249288f73b7aaae2f2e415de09f0b8b2decf"
+    },
+    {
+      "descriptor": "0x2e518d0",
+      "name": "PNode",
+      "instance_size": 104,
+      "vtable": "0xd80158",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e51930",
+          "next": "0x2e51930",
+          "previous": "0x2e51930",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e51960",
+          "next": "0x2e519d0",
+          "previous": "0x2e51eb0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e51980",
+          "next": "0x2e51980",
+          "previous": "0x2e51980",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2079,
+        2087
+      ],
+      "header_sha256": "45d57d05526c27c7e9d9d385a3d832aad06bf5a246b6ad385aa713cf7e92763f"
+    },
+    {
+      "descriptor": "0x2e5bbb0",
+      "name": "POccluderGeometryInstance",
+      "instance_size": 16,
+      "vtable": "0xd86708",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2e5bc10",
+          "next": "0x2e5bc10",
+          "previous": "0x2e5bc10",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5bc40",
+          "next": "0x2e5bc40",
+          "previous": "0x2e5bc40",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5bc60",
+          "next": "0x2e5bc60",
+          "previous": "0x2e5bc60",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2088,
+        2116
+      ],
+      "header_sha256": "affe131aa8d5e996953bb44a04683a76a61eaf4b2cc2256d5e75692f854daef2"
+    },
+    {
+      "descriptor": "0x2ea0850",
+      "name": "POccluderGeometryObject",
+      "instance_size": 48,
+      "vtable": "0xd8dfa8",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2ea08b0",
+          "next": "0x2ea08b0",
+          "previous": "0x2ea08b0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2ea08e0",
+          "next": "0x2ea08e0",
+          "previous": "0x2ea08e0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2ea0900",
+          "next": "0x2ea0900",
+          "previous": "0x2ea0900",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2117,
+        2143
+      ],
+      "header_sha256": "3a1684ea7f302866b66b4170de6ad70d664cf652c8ce93ba7ec0b91fab42f668"
+    },
+    {
+      "descriptor": "0x2eb9070",
+      "name": "POctree",
+      "instance_size": 80,
+      "vtable": "0x1cd92a0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb90d0",
+          "next": "0x2eb90d0",
+          "previous": "0x2eb90d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb9100",
+          "next": "0x2eb9100",
+          "previous": "0x2eb9100",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb9120",
+          "next": "0x2eb9120",
+          "previous": "0x2eb9120",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2144,
+        2154
+      ],
+      "header_sha256": "d6b64f361ef5be0527851b056090858b06eaa9b64162f3295e64f4135ddd6927"
+    },
+    {
+      "descriptor": "0x2eb9170",
+      "name": "POctreeData",
+      "instance_size": 56,
+      "vtable": "0x1cd9100",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb91d0",
+          "next": "0x2eb91d0",
+          "previous": "0x2eb91d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb9200",
+          "next": "0x2eb9200",
+          "previous": "0x2eb9200",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb9220",
+          "next": "0x2eb9220",
+          "previous": "0x2eb9220",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2155,
+        2169
+      ],
+      "header_sha256": "ef091b3768808aa2f299ef147b66b0730e51a24c70205b04da7d0baa59a7ba35"
+    },
+    {
+      "descriptor": "0x2eb9270",
+      "name": "POctreeWorld",
+      "instance_size": 200,
+      "vtable": "0x1cd8db0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2eb92d0",
+          "next": "0x2eb92d0",
+          "previous": "0x2eb92d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2eb9300",
+          "next": "0x2eb9300",
+          "previous": "0x2eb9300",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2eb9320",
+          "next": "0x2eb9320",
+          "previous": "0x2eb9320",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2170,
+        2185
+      ],
+      "header_sha256": "ae816360745cffbbc35a3ca114e27e90510e34fc9c5be46e906318da171c0a49"
+    },
+    {
+      "descriptor": "0x2cb7480",
+      "name": "PParameterBuffer",
+      "instance_size": 32,
+      "vtable": "0xd3bc30",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb74e0",
+          "next": "0x2cb74e0",
+          "previous": "0x2cb74e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7510",
+          "next": "0x2cb7510",
+          "previous": "0x2cb7510",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7530",
+          "next": "0x2cb7530",
+          "previous": "0x2cb7530",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2186,
+        2205
+      ],
+      "header_sha256": "720f0a56ba569aa45ce96f34b526ec5b5856f71e88834fc0a7283048d7339f88"
+    },
+    {
+      "descriptor": "0x2cb7380",
+      "name": "PParameterBufferBase",
+      "instance_size": 4,
+      "vtable": "0xd39b00",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb73e0",
+          "next": "0x2cb73e0",
+          "previous": "0x2cb73e0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7410",
+          "next": "0x2cb7410",
+          "previous": "0x2cb7410",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7430",
+          "next": "0x2cb7430",
+          "previous": "0x2cb7430",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2206,
+        2229
+      ],
+      "header_sha256": "934cfb3adf77373ca8aaf211b62b001d699ad85932ba38c5a1376d65faf9a1e4"
+    },
+    {
+      "descriptor": "0x2e478d0",
+      "name": "PPhysicsBoxBase",
+      "instance_size": 128,
+      "vtable": "0xd74a48",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e47930",
+          "next": "0x2e47930",
+          "previous": "0x2e47930",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e47960",
+          "next": "0x2e47960",
+          "previous": "0x2e47960",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e47980",
+          "next": "0x2e47980",
+          "previous": "0x2e47980",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2230,
+        2248
+      ],
+      "header_sha256": "00a1a79b7bf5b1e6781be4592537d7f2376b7d4f604e7371d0e856346b0c918d"
+    },
+    {
+      "descriptor": "0x2e48ad0",
+      "name": "PPhysicsCallbackData",
+      "instance_size": 40,
+      "vtable": "0xd74de8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48b30",
+          "next": "0x2e48b30",
+          "previous": "0x2e48b30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48b60",
+          "next": "0x2e48b60",
+          "previous": "0x2e48b60",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48b80",
+          "next": "0x2e48b80",
+          "previous": "0x2e48b80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2249,
+        2272
+      ],
+      "header_sha256": "69dc979a54e4fac9f7e4dd5ee393140f63e73c4fb3d7d362574644efd69c5108"
+    },
+    {
+      "descriptor": "0x2e47ad0",
+      "name": "PPhysicsCapsuleBase",
+      "instance_size": 136,
+      "vtable": "0xd74ad0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e47b30",
+          "next": "0x2e47b30",
+          "previous": "0x2e47b30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e47b60",
+          "next": "0x2e47b60",
+          "previous": "0x2e47b60",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e47b80",
+          "next": "0x2e47b80",
+          "previous": "0x2e47b80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2273,
+        2295
+      ],
+      "header_sha256": "2dba279bbcedb21a67c5fa00647f595f1f822f8fed74b7e1bb059365489e4ae5"
+    },
+    {
+      "descriptor": "0x2e47cd0",
+      "name": "PPhysicsCharacterCamera",
+      "instance_size": 520,
+      "vtable": "0xd74f20",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e47d30",
+          "next": "0x2e47d30",
+          "previous": "0x2e47d30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e47d60",
+          "next": "0x2e4a560",
+          "previous": "0x2e4a680",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e47d80",
+          "next": "0x2e47d80",
+          "previous": "0x2e47d80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2296,
+        2322
+      ],
+      "header_sha256": "7450d2b8b924f6e70d6883cb5dc58bf775a27433dabe9188357b2aabbf2f61a5"
+    },
+    {
+      "descriptor": "0x2e47dd0",
+      "name": "PPhysicsCharacterControllerBase",
+      "instance_size": 304,
+      "vtable": "0xd76258",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e47e30",
+          "next": "0x2e47e30",
+          "previous": "0x2e47e30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e47e60",
+          "next": "0x2e4ae60",
+          "previous": "0x2e4aec0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e47e80",
+          "next": "0x2e47e80",
+          "previous": "0x2e47e80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2323,
+        2357
+      ],
+      "header_sha256": "53701456e4fd4f43afcb962974b5ebdf4af3620d893185d8d677981e2ba3bc47"
+    },
+    {
+      "descriptor": "0x2e47fd0",
+      "name": "PPhysicsCylinderBase",
+      "instance_size": 128,
+      "vtable": "0xd72ee8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48030",
+          "next": "0x2e48030",
+          "previous": "0x2e48030",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48060",
+          "next": "0x2e48060",
+          "previous": "0x2e48060",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48080",
+          "next": "0x2e48080",
+          "previous": "0x2e48080",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2358,
+        2381
+      ],
+      "header_sha256": "c51c52d2e7e972972cc6aa4cb0e2abd22deee30a44baa638854ea56b3fc3bbf0"
+    },
+    {
+      "descriptor": "0x2e483d0",
+      "name": "PPhysicsMaterial",
+      "instance_size": 12,
+      "vtable": "0xd75ab0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48430",
+          "next": "0x2e48430",
+          "previous": "0x2e48430",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48460",
+          "next": "0x2e48460",
+          "previous": "0x2e48460",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48480",
+          "next": "0x2e48480",
+          "previous": "0x2e48480",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2382,
+        2401
+      ],
+      "header_sha256": "5153336e305a0ab5fec7bbba663a6ffff226743fa0b996c1af9e01e4f1420006"
+    },
+    {
+      "descriptor": "0x2e484d0",
+      "name": "PPhysicsMeshBase",
+      "instance_size": 120,
+      "vtable": "0xd70568",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48530",
+          "next": "0x2e48530",
+          "previous": "0x2e48530",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48560",
+          "next": "0x2e48560",
+          "previous": "0x2e48560",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48580",
+          "next": "0x2e48580",
+          "previous": "0x2e48580",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2402,
+        2421
+      ],
+      "header_sha256": "6202a593d8efeac16c0a09bf83efdece430edbec5ce9e01eee7b6d798b3526c4"
+    },
+    {
+      "descriptor": "0x2e486d0",
+      "name": "PPhysicsModel",
+      "instance_size": 24,
+      "vtable": "0xd742d8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48730",
+          "next": "0x2e48730",
+          "previous": "0x2e48730",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48760",
+          "next": "0x2e48760",
+          "previous": "0x2e48760",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48780",
+          "next": "0x2e48780",
+          "previous": "0x2e48780",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2422,
+        2438
+      ],
+      "header_sha256": "48d25941a0bf9ce9aa84accea624e4e7b9503fc5342f443874725a05b7b0274a"
+    },
+    {
+      "descriptor": "0x2e487d0",
+      "name": "PPhysicsPlaneBase",
+      "instance_size": 128,
+      "vtable": "0xd72220",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48830",
+          "next": "0x2e48830",
+          "previous": "0x2e48830",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48860",
+          "next": "0x2e48860",
+          "previous": "0x2e48860",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48880",
+          "next": "0x2e48880",
+          "previous": "0x2e48880",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2439,
+        2459
+      ],
+      "header_sha256": "45de3ddff655bbc223460bc4fad002fd6b4448bcd764b417e4da69c200be90f0"
+    },
+    {
+      "descriptor": "0x2e489d0",
+      "name": "PPhysicsRigidBodyBase",
+      "instance_size": 280,
+      "vtable": "0xd70fe0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48a30",
+          "next": "0x2e48a30",
+          "previous": "0x2e48a30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48a60",
+          "next": "0x2e4bb90",
+          "previous": "0x2e4bd70",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48a80",
+          "next": "0x2e48a80",
+          "previous": "0x2e48a80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2460,
+        2484
+      ],
+      "header_sha256": "d4b941a0cfa40dbb5ed071e4747992cbce05ba96d6615cb8402232733d928fbd"
+    },
+    {
+      "descriptor": "0x2e48cd0",
+      "name": "PPhysicsShapeBase",
+      "instance_size": 104,
+      "vtable": "0xd70440",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48d30",
+          "next": "0x2e48d30",
+          "previous": "0x2e48d30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48d60",
+          "next": "0x2e48d60",
+          "previous": "0x2e48d60",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48d80",
+          "next": "0x2e48d80",
+          "previous": "0x2e48d80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2485,
+        2505
+      ],
+      "header_sha256": "e0e14a3a72a853311f137eb7677165beb92ea07045e5ee7b3c1ec19a47e216d9"
+    },
+    {
+      "descriptor": "0x2e48ed0",
+      "name": "PPhysicsSphereBase",
+      "instance_size": 120,
+      "vtable": "0xd72df0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e48f30",
+          "next": "0x2e48f30",
+          "previous": "0x2e48f30",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e48f60",
+          "next": "0x2e48f60",
+          "previous": "0x2e48f60",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e48f80",
+          "next": "0x2e48f80",
+          "previous": "0x2e48f80",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2506,
+        2527
+      ],
+      "header_sha256": "7d3ba07a0fa9dc4d3284542c7624695fe2a0fb976d16c32b4692f9093c5cbd23"
+    },
+    {
+      "descriptor": "0x2e490d0",
+      "name": "PPhysicsTaperedCapsule",
+      "instance_size": 136,
+      "vtable": "0xd714f8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e49130",
+          "next": "0x2e49130",
+          "previous": "0x2e49130",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e49160",
+          "next": "0x2e49160",
+          "previous": "0x2e49160",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e49180",
+          "next": "0x2e49180",
+          "previous": "0x2e49180",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2528,
+        2553
+      ],
+      "header_sha256": "e5d44243bc85e83b2aaedc38ac17b3ccf4b4be1c5266fde599cc6572f14e0991"
+    },
+    {
+      "descriptor": "0x2e491d0",
+      "name": "PPhysicsTaperedCylinder",
+      "instance_size": 136,
+      "vtable": "0xd70678",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e49230",
+          "next": "0x2e49230",
+          "previous": "0x2e49230",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e49260",
+          "next": "0x2e49260",
+          "previous": "0x2e49260",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e49280",
+          "next": "0x2e49280",
+          "previous": "0x2e49280",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2554,
+        2580
+      ],
+      "header_sha256": "66d6ee6f05444f19ac534a0d3c96915b7e022956a90ef997803ba3780ac655ed"
+    },
+    {
+      "descriptor": "0x2e492d0",
+      "name": "PPhysicsWorldBase",
+      "instance_size": 96,
+      "vtable": "0xd73718",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e49330",
+          "next": "0x2e49330",
+          "previous": "0x2e49330",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e49360",
+          "next": "0x2e49360",
+          "previous": "0x2e49360",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e49380",
+          "next": "0x2e49380",
+          "previous": "0x2e49380",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2581,
+        2601
+      ],
+      "header_sha256": "3dda41c93a7a03afb52c0ce18c0af67b66e822ac2f2d2a3385aac43828b505ff"
+    },
+    {
+      "descriptor": "0x2d34740",
+      "name": "PPostEffectBase",
+      "instance_size": 80,
+      "vtable": "0xd5e950",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d347a0",
+          "next": "0x2d347a0",
+          "previous": "0x2d347a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d347d0",
+          "next": "0x2d347d0",
+          "previous": "0x2d347d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d347f0",
+          "next": "0x2d347f0",
+          "previous": "0x2d347f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2602,
+        2620
+      ],
+      "header_sha256": "777d9efa665a2430a475c64ded6d131732c8a8c2da06af86e41bde9bed4cf585"
+    },
+    {
+      "descriptor": "0x2e4e1e0",
+      "name": "PQuarryComponent",
+      "instance_size": 104,
+      "vtable": "0xd7c2a8",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2e4e240",
+          "next": "0x2e4e240",
+          "previous": "0x2e4e240",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4e270",
+          "next": "0x2e4e270",
+          "previous": "0x2e4e270",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4e290",
+          "next": "0x2e4e290",
+          "previous": "0x2e4e290",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2621,
+        2640
+      ],
+      "header_sha256": "11ebba76c55b75951c6ef5ffde0cd99a31ee2f987180be6df8f1ca403a7f5d46"
+    },
+    {
+      "descriptor": "0x2e493d0",
+      "name": "PRaycastResult",
+      "instance_size": 48,
+      "vtable": "0xd727c8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e49430",
+          "next": "0x2e49430",
+          "previous": "0x2e49430",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e49460",
+          "next": "0x2e49460",
+          "previous": "0x2e49460",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e49480",
+          "next": "0x2e49480",
+          "previous": "0x2e49480",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2641,
+        2658
+      ],
+      "header_sha256": "87d51da18d3c2815100cfbe61f81cdcd9a358a6b9f8f3860573ed3dfc84c9cc6"
+    },
+    {
+      "descriptor": "0x2e5de30",
+      "name": "PRenderStream",
+      "instance_size": 16,
+      "vtable": "0xd8b160",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5de90",
+          "next": "0x2e5de90",
+          "previous": "0x2e5de90",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5dec0",
+          "next": "0x2e5dec0",
+          "previous": "0x2e5dec0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5dee0",
+          "next": "0x2e5dee0",
+          "previous": "0x2e5dee0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2659,
+        2675
+      ],
+      "header_sha256": "5daa7bcb39e81051f151605717f437d4101840c52d50494af0c49c3601e431f5"
+    },
+    {
+      "descriptor": "0x2e5dd30",
+      "name": "PRenderStreamInput",
+      "instance_size": 8,
+      "vtable": "0xd8aea8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e5dd90",
+          "next": "0x2e5dd90",
+          "previous": "0x2e5dd90",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5ddc0",
+          "next": "0x2e5ddc0",
+          "previous": "0x2e5ddc0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5dde0",
+          "next": "0x2e5dde0",
+          "previous": "0x2e5dde0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2676,
+        2697
+      ],
+      "header_sha256": "c8334e6c7005851624ad7bc510c608b656a5f18c34ce89ffbb91c2b27f0f0301"
+    },
+    {
+      "descriptor": "0x2cb75a0",
+      "name": "PRenderTargetBase",
+      "instance_size": 16,
+      "vtable": "0xd39568",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb7600",
+          "next": "0x2cb7600",
+          "previous": "0x2cb7600",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7630",
+          "next": "0x2cb7630",
+          "previous": "0x2cb7630",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7650",
+          "next": "0x2cb7650",
+          "previous": "0x2cb7650",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2698,
+        2718
+      ],
+      "header_sha256": "3b526bc10664b1ddbc1774c9199fc5f00ef41428e68c205859bdf6dcc03556f8"
+    },
+    {
+      "descriptor": "0x2cb77a0",
+      "name": "PSamplerStateBase",
+      "instance_size": 32,
+      "vtable": "0xd40cd0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb7800",
+          "next": "0x2cb7800",
+          "previous": "0x2cb7800",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7830",
+          "next": "0x2ce74e0",
+          "previous": "0x2ce78a0",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7850",
+          "next": "0x2cb7850",
+          "previous": "0x2cb7850",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2719,
+        2739
+      ],
+      "header_sha256": "8db0337c230ee83296b41753108b36d1a9018beae8b35de29970077255901e12"
+    },
+    {
+      "descriptor": "0x2cb79a0",
+      "name": "PSceneRenderPass",
+      "instance_size": 80,
+      "vtable": "0xd3ca80",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb7a00",
+          "next": "0x2cb7a00",
+          "previous": "0x2cb7a00",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7a30",
+          "next": "0x2cb7a30",
+          "previous": "0x2cb7a30",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7a50",
+          "next": "0x2cb7a50",
+          "previous": "0x2cb7a50",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2740,
+        2759
+      ],
+      "header_sha256": "554c2d80a4792f3848f6632c3a5adf3ac6b71b7129f132b42699912c83839080"
+    },
+    {
+      "descriptor": "0x2d364a0",
+      "name": "PScreenSpaceReflectionBase",
+      "instance_size": 176,
+      "vtable": "0xd59ff8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d36500",
+          "next": "0x2d36500",
+          "previous": "0x2d36500",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d36530",
+          "next": "0x2d36530",
+          "previous": "0x2d36530",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d36550",
+          "next": "0x2d36550",
+          "previous": "0x2d36550",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2760,
+        2789
+      ],
+      "header_sha256": "2997ce4d109c67c3f4a25b1ceb4c39f195092e4bfcad8353cf75ada5e671e9c7"
+    },
+    {
+      "descriptor": "0x2e41470",
+      "name": "PScript",
+      "instance_size": 88,
+      "vtable": "0xd6f4d8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e414d0",
+          "next": "0x2e414d0",
+          "previous": "0x2e414d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e41500",
+          "next": "0x2e41500",
+          "previous": "0x2e41500",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e41520",
+          "next": "0x2e41520",
+          "previous": "0x2e41520",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2790,
+        2800
+      ],
+      "header_sha256": "d9e7e8656dde56fc9d4ec1da27a4915b06fc874df7d87ea76cac4588442d15c0"
+    },
+    {
+      "descriptor": "0x2e41170",
+      "name": "PScriptCallbackHandler",
+      "instance_size": 24,
+      "vtable": "0xd6f340",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e411d0",
+          "next": "0x2e411d0",
+          "previous": "0x2e411d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e41200",
+          "next": "0x2e41200",
+          "previous": "0x2e41200",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e41220",
+          "next": "0x2e41220",
+          "previous": "0x2e41220",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2801,
+        2826
+      ],
+      "header_sha256": "7bb283a1e34227431437ca9ce77e0b3b01b1163beb4d977af0a5b44b15ede028"
+    },
+    {
+      "descriptor": "0x2e5c050",
+      "name": "PScriptableComponent",
+      "instance_size": 64,
+      "vtable": "0xd89da8",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2e5c0b0",
+          "next": "0x2e5c0b0",
+          "previous": "0x2e5c0b0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5c0e0",
+          "next": "0x2e5c0e0",
+          "previous": "0x2e5c0e0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5c100",
+          "next": "0x2e5c100",
+          "previous": "0x2e5c100",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2827,
+        2850
+      ],
+      "header_sha256": "00351155df0df545b95e85139f2701149a97d9c5af2f64ce7db29887a0f43e67"
+    },
+    {
+      "descriptor": "0x2cb9000",
+      "name": "PShader",
+      "instance_size": 64,
+      "vtable": "0xd3e090",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9060",
+          "next": "0x2cb9060",
+          "previous": "0x2cb9060",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9090",
+          "next": "0x2cb9090",
+          "previous": "0x2cb9090",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb90b0",
+          "next": "0x2cb90b0",
+          "previous": "0x2cb90b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2851,
+        2861
+      ],
+      "header_sha256": "c3bcb74cf3a1d4386038299df061fbbdec43e380fb9dde2a5a4bf937e0ed9866"
+    },
+    {
+      "descriptor": "0x2cf1c40",
+      "name": "PShaderComputeProgramD3D11",
+      "instance_size": 144,
+      "vtable": "0xd51698",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cf1ca0",
+          "next": "0x2cf1ca0",
+          "previous": "0x2cf1ca0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cf1cd0",
+          "next": "0x2cf1cd0",
+          "previous": "0x2cf1cd0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cf1cf0",
+          "next": "0x2cf1cf0",
+          "previous": "0x2cf1cf0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2862,
+        2891
+      ],
+      "header_sha256": "e3e2fe59336dc521803ed6cac0a0e80fb38e6c61d3fd92aacc83f890c6125857"
+    },
+    {
+      "descriptor": "0x2cba500",
+      "name": "PShaderParameterCaptureBufferByteAddressBuffer",
+      "instance_size": 32,
+      "vtable": "0xd3d300",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba560",
+          "next": "0x2cba560",
+          "previous": "0x2cba560",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba590",
+          "next": "0x2cba590",
+          "previous": "0x2cba590",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba5b0",
+          "next": "0x2cba5b0",
+          "previous": "0x2cba5b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2892,
+        2941
+      ],
+      "header_sha256": "b418c3bc25218ff715e46a8632c0f1f34759e16e3e867636dea27b87544bfd42"
+    },
+    {
+      "descriptor": "0x2cba700",
+      "name": "PShaderParameterCaptureBufferDataBlock",
+      "instance_size": 24,
+      "vtable": "0xd417e0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba760",
+          "next": "0x2cba760",
+          "previous": "0x2cba760",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba790",
+          "next": "0x2cba790",
+          "previous": "0x2cba790",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba7b0",
+          "next": "0x2cba7b0",
+          "previous": "0x2cba7b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2942,
+        2983
+      ],
+      "header_sha256": "f902639244689596d4645ba8c5d606003aa01e9d60ca1a0accbf7c208ded24d4"
+    },
+    {
+      "descriptor": "0x2cba800",
+      "name": "PShaderParameterCaptureBufferIndexDataBlock",
+      "instance_size": 24,
+      "vtable": "0xd42ad0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba860",
+          "next": "0x2cba860",
+          "previous": "0x2cba860",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba890",
+          "next": "0x2cba890",
+          "previous": "0x2cba890",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba8b0",
+          "next": "0x2cba8b0",
+          "previous": "0x2cba8b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        2984,
+        3030
+      ],
+      "header_sha256": "65a7821b76de2b44bd74466909029512f2e82f3ef7b7a720fdef3d9e4b863bee"
+    },
+    {
+      "descriptor": "0x2cb9100",
+      "name": "PShaderParameterCaptureBufferLocation",
+      "instance_size": 2,
+      "vtable": "0xd3e678",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9160",
+          "next": "0x2cb9160",
+          "previous": "0x2cb9160",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9190",
+          "next": "0x2cb9190",
+          "previous": "0x2cb9190",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb91b0",
+          "next": "0x2cb91b0",
+          "previous": "0x2cb91b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3031,
+        3071
+      ],
+      "header_sha256": "959c948aa2578fd96bd8a19fc3507bf1483d019e6dcd6c644759f8aa3c42418f"
+    },
+    {
+      "descriptor": "0x2cb9200",
+      "name": "PShaderParameterCaptureBufferLocationSize",
+      "instance_size": 4,
+      "vtable": "0xd40620",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9260",
+          "next": "0x2cb9260",
+          "previous": "0x2cb9260",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9290",
+          "next": "0x2cb9290",
+          "previous": "0x2cb9290",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb92b0",
+          "next": "0x2cb92b0",
+          "previous": "0x2cb92b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3072,
+        3116
+      ],
+      "header_sha256": "2a85797066d1a3595b5eaa411bd8c44753f7859631f7a8f58719f7fe7d0e04e6"
+    },
+    {
+      "descriptor": "0x2cb9300",
+      "name": "PShaderParameterCaptureBufferLocationType",
+      "instance_size": 4,
+      "vtable": "0xd41868",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9360",
+          "next": "0x2cb9360",
+          "previous": "0x2cb9360",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9390",
+          "next": "0x2cb9390",
+          "previous": "0x2cb9390",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb93b0",
+          "next": "0x2cb93b0",
+          "previous": "0x2cb93b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3117,
+        3161
+      ],
+      "header_sha256": "d201eb0dad45c5c3d95302788f058055b2078dd4d044695f499d1d2492c0bd53"
+    },
+    {
+      "descriptor": "0x2cb9400",
+      "name": "PShaderParameterCaptureBufferLocationTypeConstantBuffer",
+      "instance_size": 16,
+      "vtable": "0xd42b98",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9460",
+          "next": "0x2cb9460",
+          "previous": "0x2cb9460",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9490",
+          "next": "0x2cb9490",
+          "previous": "0x2cb9490",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb94b0",
+          "next": "0x2cb94b0",
+          "previous": "0x2cb94b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3162,
+        3220
+      ],
+      "header_sha256": "8a22232978024c373f2110e87410763aa84424c17b25d4d9dca1965fb739dbf7"
+    },
+    {
+      "descriptor": "0x2cba600",
+      "name": "PShaderParameterCaptureBufferRWByteAddressBuffer",
+      "instance_size": 40,
+      "vtable": "0xd3e700",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba660",
+          "next": "0x2cba660",
+          "previous": "0x2cba660",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba690",
+          "next": "0x2cba690",
+          "previous": "0x2cba690",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba6b0",
+          "next": "0x2cba6b0",
+          "previous": "0x2cba6b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3221,
+        3272
+      ],
+      "header_sha256": "6af0b766fe0f1f697279a4587e7842b29b642d0f24b9a96a8576202e25ceb491"
+    },
+    {
+      "descriptor": "0x2cba400",
+      "name": "PShaderParameterCaptureBufferRWStructuredBuffer",
+      "instance_size": 32,
+      "vtable": "0xd3c408",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba460",
+          "next": "0x2cba460",
+          "previous": "0x2cba460",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba490",
+          "next": "0x2cba490",
+          "previous": "0x2cba490",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba4b0",
+          "next": "0x2cba4b0",
+          "previous": "0x2cba4b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3273,
+        3323
+      ],
+      "header_sha256": "c8c44eeb37807bc5f330e8170ab1c22ba1a279b4ddfe49a66ceae11305f4f70f"
+    },
+    {
+      "descriptor": "0x2cba900",
+      "name": "PShaderParameterCaptureBufferRWTexture2D",
+      "instance_size": 24,
+      "vtable": "0xd36878",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba960",
+          "next": "0x2cba960",
+          "previous": "0x2cba960",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba990",
+          "next": "0x2cba990",
+          "previous": "0x2cba990",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba9b0",
+          "next": "0x2cba9b0",
+          "previous": "0x2cba9b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3324,
+        3367
+      ],
+      "header_sha256": "4921b2cc02e1a62dfb279a5852d62ca9425d56094b20ba6d58996d8563290844"
+    },
+    {
+      "descriptor": "0x2cbaa00",
+      "name": "PShaderParameterCaptureBufferRWTexture3D",
+      "instance_size": 24,
+      "vtable": "0xd38308",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbaa60",
+          "next": "0x2cbaa60",
+          "previous": "0x2cbaa60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbaa90",
+          "next": "0x2cbaa90",
+          "previous": "0x2cbaa90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbaab0",
+          "next": "0x2cbaab0",
+          "previous": "0x2cbaab0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3368,
+        3411
+      ],
+      "header_sha256": "7db6e33a373200ee0f67577f27b19e9181673e3dc05a9a11d42d8556349b2029"
+    },
+    {
+      "descriptor": "0x2cba200",
+      "name": "PShaderParameterCaptureBufferSampler",
+      "instance_size": 24,
+      "vtable": "0xd39c00",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba260",
+          "next": "0x2cba260",
+          "previous": "0x2cba260",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba290",
+          "next": "0x2cba290",
+          "previous": "0x2cba290",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba2b0",
+          "next": "0x2cba2b0",
+          "previous": "0x2cba2b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3412,
+        3451
+      ],
+      "header_sha256": "534c948e79aa81acb1e410f8e6cd052320ba671af33a97807c4de64e6c81149c"
+    },
+    {
+      "descriptor": "0x2cba300",
+      "name": "PShaderParameterCaptureBufferStructuredBuffer",
+      "instance_size": 32,
+      "vtable": "0xd3ac58",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba360",
+          "next": "0x2cba360",
+          "previous": "0x2cba360",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba390",
+          "next": "0x2cba390",
+          "previous": "0x2cba390",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba3b0",
+          "next": "0x2cba3b0",
+          "previous": "0x2cba3b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3452,
+        3500
+      ],
+      "header_sha256": "dd859a31a136b04972bcb11908d967dfd832fcbfd8163bfc4cdf3e626f85630d"
+    },
+    {
+      "descriptor": "0x2cb9f00",
+      "name": "PShaderParameterCaptureBufferTexture2D",
+      "instance_size": 24,
+      "vtable": "0xd3fd78",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9f60",
+          "next": "0x2cb9f60",
+          "previous": "0x2cb9f60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9f90",
+          "next": "0x2cb9f90",
+          "previous": "0x2cb9f90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb9fb0",
+          "next": "0x2cb9fb0",
+          "previous": "0x2cb9fb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3501,
+        3542
+      ],
+      "header_sha256": "b6f26947d18561e73e1c38065660046941cc64999d329e98dcb9264772778afe"
+    },
+    {
+      "descriptor": "0x2cba000",
+      "name": "PShaderParameterCaptureBufferTexture3D",
+      "instance_size": 24,
+      "vtable": "0xd412b0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba060",
+          "next": "0x2cba060",
+          "previous": "0x2cba060",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba090",
+          "next": "0x2cba090",
+          "previous": "0x2cba090",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba0b0",
+          "next": "0x2cba0b0",
+          "previous": "0x2cba0b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3543,
+        3584
+      ],
+      "header_sha256": "4b9583f8d79409df8a2f8d56b4854c4ebcb38e97b3c5c299fcc7545cdf17d787"
+    },
+    {
+      "descriptor": "0x2cb9d00",
+      "name": "PShaderParameterCaptureBufferTextureBase",
+      "instance_size": 16,
+      "vtable": "0xd3d0b8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9d60",
+          "next": "0x2cb9d60",
+          "previous": "0x2cb9d60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9d90",
+          "next": "0x2cb9d90",
+          "previous": "0x2cb9d90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb9db0",
+          "next": "0x2cb9db0",
+          "previous": "0x2cb9db0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3585,
+        3628
+      ],
+      "header_sha256": "0803968d0029ee58cb7db8cd7aff961bbd72d9729acb8868ac2747d5466a9f04"
+    },
+    {
+      "descriptor": "0x2cba100",
+      "name": "PShaderParameterCaptureBufferTextureCubeMap",
+      "instance_size": 24,
+      "vtable": "0xd42510",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cba160",
+          "next": "0x2cba160",
+          "previous": "0x2cba160",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cba190",
+          "next": "0x2cba190",
+          "previous": "0x2cba190",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cba1b0",
+          "next": "0x2cba1b0",
+          "previous": "0x2cba1b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3629,
+        3675
+      ],
+      "header_sha256": "356a8cfe6852146f4c11d262fbc9e9cd8b83d9ca2dce9a919b13ddeeeef814a3"
+    },
+    {
+      "descriptor": "0x2cb9e00",
+      "name": "PShaderParameterCaptureConstantBuffer",
+      "instance_size": 24,
+      "vtable": "0xd40598",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9e60",
+          "next": "0x2cb9e60",
+          "previous": "0x2cb9e60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9e90",
+          "next": "0x2cb9e90",
+          "previous": "0x2cb9e90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb9eb0",
+          "next": "0x2cb9eb0",
+          "previous": "0x2cb9eb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3676,
+        3716
+      ],
+      "header_sha256": "d8848bd00f2f6883a9d30a83dc9f5660d94413d627dff099615c2c8d00a01be8"
+    },
+    {
+      "descriptor": "0x2cb9500",
+      "name": "PShaderParameterDefinition",
+      "instance_size": 24,
+      "vtable": "0xd38c48",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9560",
+          "next": "0x2cb9560",
+          "previous": "0x2cb9560",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9590",
+          "next": "0x2cb9590",
+          "previous": "0x2cb9590",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb95b0",
+          "next": "0x2cb95b0",
+          "previous": "0x2cb95b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3717,
+        3746
+      ],
+      "header_sha256": "ced06a703e4924305e2c342b48e0c998c6f2ceee2eee94147de60aa29fbcb45d"
+    },
+    {
+      "descriptor": "0x2cb9900",
+      "name": "PShaderPassBase",
+      "instance_size": 48,
+      "vtable": "0xd40b90",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9960",
+          "next": "0x2cb9960",
+          "previous": "0x2cb9960",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9990",
+          "next": "0x2cb9990",
+          "previous": "0x2cb9990",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb99b0",
+          "next": "0x2cb99b0",
+          "previous": "0x2cb99b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3747,
+        3765
+      ],
+      "header_sha256": "4cd5ffe609bbc3fb7e11376df0fc33dea25da80ac0d550a74f2dd5ab23b9b80a"
+    },
+    {
+      "descriptor": "0x2cf1440",
+      "name": "PShaderPassD3D11",
+      "instance_size": 704,
+      "vtable": "0xd50e30",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cf14a0",
+          "next": "0x2cf14a0",
+          "previous": "0x2cf14a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cf14d0",
+          "next": "0x2cf14d0",
+          "previous": "0x2cf14d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cf14f0",
+          "next": "0x2cf14f0",
+          "previous": "0x2cf14f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3766,
+        3785
+      ],
+      "header_sha256": "5499e23e5a3b1691aa0a0a0c51b339d01da8e1084e98bc1f567344061d3ba25d"
+    },
+    {
+      "descriptor": "0x2cb7aa0",
+      "name": "PShaderPassInfo",
+      "instance_size": 48,
+      "vtable": "0xd36260",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb7b00",
+          "next": "0x2cb7b00",
+          "previous": "0x2cb7b00",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb7b30",
+          "next": "0x2cb7b30",
+          "previous": "0x2cb7b30",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb7b50",
+          "next": "0x2cb7b50",
+          "previous": "0x2cb7b50",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3786,
+        3804
+      ],
+      "header_sha256": "581d964bb59c25caf4388f27f2d453ad66e0ed2841ee11da41d44dc7d1cdf6dc"
+    },
+    {
+      "descriptor": "0x2cb9b00",
+      "name": "PShaderPassStateBase",
+      "instance_size": 4,
+      "vtable": "0xd3d788",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cb9b60",
+          "next": "0x2cb9b60",
+          "previous": "0x2cb9b60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cb9b90",
+          "next": "0x2cb9b90",
+          "previous": "0x2cb9b90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cb9bb0",
+          "next": "0x2cb9bb0",
+          "previous": "0x2cb9bb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3805,
+        3828
+      ],
+      "header_sha256": "2b010cb27622fd4fa50a76ff5139bcd51899582e2d181f8c2619a3d04b110cd4"
+    },
+    {
+      "descriptor": "0x2cf1540",
+      "name": "PShaderPassStateD3D11",
+      "instance_size": 400,
+      "vtable": "0xd50688",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cf15a0",
+          "next": "0x2cf15a0",
+          "previous": "0x2cf15a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cf15d0",
+          "next": "0x2cf15d0",
+          "previous": "0x2cf15d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cf15f0",
+          "next": "0x2cf15f0",
+          "previous": "0x2cf15f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3829,
+        3853
+      ],
+      "header_sha256": "a078c487068198d363b05a80b9c3f03f9767488e39475d1589f10c9b1214c128"
+    },
+    {
+      "descriptor": "0x2cf1840",
+      "name": "PShaderProgramD3D11",
+      "instance_size": 120,
+      "vtable": "0xd52868",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cf18a0",
+          "next": "0x2cf18a0",
+          "previous": "0x2cf18a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cf18d0",
+          "next": "0x2cf18d0",
+          "previous": "0x2cf18d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cf18f0",
+          "next": "0x2cf18f0",
+          "previous": "0x2cf18f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3854,
+        3876
+      ],
+      "header_sha256": "b000e3be5c54016646a9c8fb299099a8f1a4f8e41cb69e84d1cb157756504756"
+    },
+    {
+      "descriptor": "0x2cbab00",
+      "name": "PShaderSource",
+      "instance_size": 40,
+      "vtable": "0xd379c0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbab60",
+          "next": "0x2cbab60",
+          "previous": "0x2cbab60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbab90",
+          "next": "0x2cbab90",
+          "previous": "0x2cbab90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbabb0",
+          "next": "0x2cbabb0",
+          "previous": "0x2cbabb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3877,
+        3893
+      ],
+      "header_sha256": "239a9cdca6472fdca0a4aaaf2b90c085dae3634ed05e9ffe8057cbe278972b87"
+    },
+    {
+      "descriptor": "0x2cbae00",
+      "name": "PShaderStreamDefinition",
+      "instance_size": 24,
+      "vtable": "0xd3a590",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbae60",
+          "next": "0x2cbae60",
+          "previous": "0x2cbae60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbae90",
+          "next": "0x2cbae90",
+          "previous": "0x2cbae90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbaeb0",
+          "next": "0x2cbaeb0",
+          "previous": "0x2cbaeb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3894,
+        3920
+      ],
+      "header_sha256": "7e32589bdd56ae301d39c3022ffce3e8cb5138877a3a038eb1ce599918120bb1"
+    },
+    {
+      "descriptor": "0x2cf1940",
+      "name": "PShaderVertexProgramD3D11",
+      "instance_size": 152,
+      "vtable": "0xd50790",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cf19a0",
+          "next": "0x2cf19a0",
+          "previous": "0x2cf19a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cf19d0",
+          "next": "0x2cf19d0",
+          "previous": "0x2cf19d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cf19f0",
+          "next": "0x2cf19f0",
+          "previous": "0x2cf19f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3921,
+        3949
+      ],
+      "header_sha256": "0cd65cda916cc00a76107004172dbbc21f812eed5382c0221469221fe9c60693"
+    },
+    {
+      "descriptor": "0x2e59dc0",
+      "name": "PShadowCaster",
+      "instance_size": 128,
+      "vtable": "0xd83350",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e59e20",
+          "next": "0x2e59e20",
+          "previous": "0x2e59e20",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e59e50",
+          "next": "0x2e59e50",
+          "previous": "0x2e59e50",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e59e70",
+          "next": "0x2e59e70",
+          "previous": "0x2e59e70",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3950,
+        3966
+      ],
+      "header_sha256": "bfa8394d7b23440bbdfc500b784ce8a284999b3a731313d398a7978a9f3c7729"
+    },
+    {
+      "descriptor": "0x2e59cc0",
+      "name": "PShadowSplit",
+      "instance_size": 232,
+      "vtable": "0xd834f8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e59d20",
+          "next": "0x2e59d20",
+          "previous": "0x2e59d20",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e59d50",
+          "next": "0x2e59d50",
+          "previous": "0x2e59d50",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e59d70",
+          "next": "0x2e59d70",
+          "previous": "0x2e59d70",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3967,
+        3982
+      ],
+      "header_sha256": "b136cb0cab7ce55ee9daecb00a7ad7a271b1e9c5244a53032e5527e00b40c25a"
+    },
+    {
+      "descriptor": "0x2d3ace0",
+      "name": "PShape",
+      "instance_size": 56,
+      "vtable": "0xd666f8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3ad40",
+          "next": "0x2d3ad40",
+          "previous": "0x2d3ad40",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3ad70",
+          "next": "0x2d3ad70",
+          "previous": "0x2d3ad70",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3ad90",
+          "next": "0x2d3ad90",
+          "previous": "0x2d3ad90",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3983,
+        3992
+      ],
+      "header_sha256": "869f9205e707f30c85a68560b947733cd82f813659abed9618c6ec5f7c5683d0"
+    },
+    {
+      "descriptor": "0x2d3a540",
+      "name": "PSkeletonJointBounds",
+      "instance_size": 32,
+      "vtable": "0xd66210",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a5a0",
+          "next": "0x2d3a5a0",
+          "previous": "0x2d3a5a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a5d0",
+          "next": "0x2d3a5d0",
+          "previous": "0x2d3a5d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a5f0",
+          "next": "0x2d3a5f0",
+          "previous": "0x2d3a5f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        3993,
+        4016
+      ],
+      "header_sha256": "928d0b0f574e3914ee9a1f1792006528408e02d3b5d8f4a07e3a1469cefeb799"
+    },
+    {
+      "descriptor": "0x2d3a740",
+      "name": "PSkinBoneRemap",
+      "instance_size": 4,
+      "vtable": "0xd66b50",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3a7a0",
+          "next": "0x2d3a7a0",
+          "previous": "0x2d3a7a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3a7d0",
+          "next": "0x2d3a7d0",
+          "previous": "0x2d3a7d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3a7f0",
+          "next": "0x2d3a7f0",
+          "previous": "0x2d3a7f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4017,
+        4034
+      ],
+      "header_sha256": "e9435a764fee9c219b1d7d3f71f32af28fadc4405317c7bc7684a9cc828b63cc"
+    },
+    {
+      "descriptor": "0x2cf1640",
+      "name": "PStreamInputDescD3D11",
+      "instance_size": 32,
+      "vtable": "0xd51b40",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cf16a0",
+          "next": "0x2cf16a0",
+          "previous": "0x2cf16a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cf16d0",
+          "next": "0x2cf16d0",
+          "previous": "0x2cf16d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cf16f0",
+          "next": "0x2cf16f0",
+          "previous": "0x2cf16f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4035,
+        4059
+      ],
+      "header_sha256": "875522181415bc197e8e1a3d0f7b408831560ba7ec525a8ecdcec3c180ce402f"
+    },
+    {
+      "descriptor": "0x2cbb500",
+      "name": "PStructuredBufferBase",
+      "instance_size": 20,
+      "vtable": "0xd39670",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbb560",
+          "next": "0x2cbb560",
+          "previous": "0x2cbb560",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbb590",
+          "next": "0x2cbb590",
+          "previous": "0x2cbb590",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbb5b0",
+          "next": "0x2cbb5b0",
+          "previous": "0x2cbb5b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4060,
+        4084
+      ],
+      "header_sha256": "442216a1ee0381e4248bd6efaf7ee6ed3425334b71669fa9380d853b0853b278"
+    },
+    {
+      "descriptor": "0x2cbb800",
+      "name": "PTexture2DBase",
+      "instance_size": 48,
+      "vtable": "0xd380b8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbb860",
+          "next": "0x2cbb860",
+          "previous": "0x2cbb860",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbb890",
+          "next": "0x2cbb890",
+          "previous": "0x2cbb890",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbb8b0",
+          "next": "0x2cbb8b0",
+          "previous": "0x2cbb8b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4085,
+        4102
+      ],
+      "header_sha256": "73507868d69d587ac3473ee407ba5895a5f1f32f30e91844756ff205cb7589bc"
+    },
+    {
+      "descriptor": "0x2cbba00",
+      "name": "PTexture3DBase",
+      "instance_size": 56,
+      "vtable": "0xd40a80",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbba60",
+          "next": "0x2cbba60",
+          "previous": "0x2cbba60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbba90",
+          "next": "0x2cbba90",
+          "previous": "0x2cbba90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbbab0",
+          "next": "0x2cbbab0",
+          "previous": "0x2cbbab0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4103,
+        4120
+      ],
+      "header_sha256": "a2e89009ca8eae602c628b2e31675909cb259a36dc88b313bff7f8d3e252a96d"
+    },
+    {
+      "descriptor": "0x2cbb700",
+      "name": "PTextureCommonBase",
+      "instance_size": 40,
+      "vtable": "0xd429a8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbb760",
+          "next": "0x2cbb760",
+          "previous": "0x2cbb760",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbb790",
+          "next": "0x2ce9b00",
+          "previous": "0x2ce9b00",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbb7b0",
+          "next": "0x2cbb7b0",
+          "previous": "0x2cbb7b0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4121,
+        4142
+      ],
+      "header_sha256": "7d3937f52e5b232e9181d250188797b11df04b4cd15dbda655bf4e5ddc745e35"
+    },
+    {
+      "descriptor": "0x2cbbc00",
+      "name": "PTextureCubeMapBase",
+      "instance_size": 48,
+      "vtable": "0xd3b670",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2cbbc60",
+          "next": "0x2cbbc60",
+          "previous": "0x2cbbc60",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2cbbc90",
+          "next": "0x2cbbc90",
+          "previous": "0x2cbbc90",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2cbbcb0",
+          "next": "0x2cbbcb0",
+          "previous": "0x2cbbcb0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4143,
+        4165
+      ],
+      "header_sha256": "3fd3af5708ee6e33e05f6d2c63369b28935a3703e2b9d8604bb86328cd5c7471"
+    },
+    {
+      "descriptor": "0x2caefe0",
+      "name": "PTimeIntervalController",
+      "instance_size": 40,
+      "vtable": "0xd299b0",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caf040",
+          "next": "0x2caf040",
+          "previous": "0x2caf040",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2caf070",
+          "next": "0x2caf070",
+          "previous": "0x2caf070",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caf090",
+          "next": "0x2caf090",
+          "previous": "0x2caf090",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4166,
+        4192
+      ],
+      "header_sha256": "d8b4c42d3bff9a2fef8cc05f750241cb243816542a762607f0c7997be19ab1e0"
+    },
+    {
+      "descriptor": "0x2caf0e0",
+      "name": "PTimeScaleOffsetController",
+      "instance_size": 32,
+      "vtable": "0xd2a5f8",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2caf140",
+          "next": "0x2caf140",
+          "previous": "0x2caf140",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2caf170",
+          "next": "0x2caf170",
+          "previous": "0x2caf170",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2caf190",
+          "next": "0x2caf190",
+          "previous": "0x2caf190",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4193,
+        4222
+      ],
+      "header_sha256": "d19c673fdbd91a3b18da5445accf11de45897c38db8969bb090d72171fcebc01"
+    },
+    {
+      "descriptor": "0x2e4d940",
+      "name": "PTrigger",
+      "instance_size": 88,
+      "vtable": "0xd7b8c8",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2e4d9a0",
+          "next": "0x2e4d9a0",
+          "previous": "0x2e4d9a0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4d9d0",
+          "next": "0x2e4d9d0",
+          "previous": "0x2e4d9d0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4d9f0",
+          "next": "0x2e4d9f0",
+          "previous": "0x2e4d9f0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4223,
+        4234
+      ],
+      "header_sha256": "f66c1dd23e53ea279bc23694797f5346c6429ecb6895558095d0279bd5526782"
+    },
+    {
+      "descriptor": "0x2e5c710",
+      "name": "PTriggerReceiverComponent",
+      "instance_size": 88,
+      "vtable": "0xd8a4a8",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2e5c770",
+          "next": "0x2e5c770",
+          "previous": "0x2e5c770",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5c7a0",
+          "next": "0x2e5c7a0",
+          "previous": "0x2e5c7a0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5c7c0",
+          "next": "0x2e5c7c0",
+          "previous": "0x2e5c7c0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4235,
+        4263
+      ],
+      "header_sha256": "cfe1da64aa1bf617c4f28fe90382b7783bec39d0422bd7adfab318c0f07dfe97"
+    },
+    {
+      "descriptor": "0x2e5c370",
+      "name": "PTriggerReceiverTypeCallbackData",
+      "instance_size": 40,
+      "vtable": "0xd8a0d8",
+      "prepared_default_bit31": false,
+      "links": {
+        "0x60": {
+          "head": "0x2e5c3d0",
+          "next": "0x2e5c3d0",
+          "previous": "0x2e5c3d0",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e5c400",
+          "next": "0x2e5c400",
+          "previous": "0x2e5c400",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e5c420",
+          "next": "0x2e5c420",
+          "previous": "0x2e5c420",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4264,
+        4299
+      ],
+      "header_sha256": "db270e6c474ff090d8fc30f3d088437dd52a3664caa2e815c17ffb46c7af9ffb"
+    },
+    {
+      "descriptor": "0x2e4e430",
+      "name": "PTypedObject",
+      "instance_size": 16,
+      "vtable": "0xd7c610",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e4e490",
+          "next": "0x2e4e490",
+          "previous": "0x2e4e490",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e4e4c0",
+          "next": "0x2e4e4c0",
+          "previous": "0x2e4e4c0",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e4e4e0",
+          "next": "0x2e4e4e0",
+          "previous": "0x2e4e4e0",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4300,
+        4315
+      ],
+      "header_sha256": "cc1f83cb354641518bd23e00a7ce0e8652c65473d7b4b98c5f6ebc29c0d293b7"
+    },
+    {
+      "descriptor": "0x2d3ade0",
+      "name": "PVertexStream",
+      "instance_size": 24,
+      "vtable": "0xd65360",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2d3ae40",
+          "next": "0x2d3ae40",
+          "previous": "0x2d3ae40",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2d3ae70",
+          "next": "0x2d3ae70",
+          "previous": "0x2d3ae70",
+          "state": "self-linked"
+        },
+        "0xb0": {
+          "head": "0x2d3ae90",
+          "next": "0x2d3ae90",
+          "previous": "0x2d3ae90",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4316,
+        4332
+      ],
+      "header_sha256": "674f08d4ded8fcf5d3bbbcd7342525aca850c13a23d14692d830ec246f1c3e3b"
+    },
+    {
+      "descriptor": "0x2e404b0",
+      "name": "PWorldMatrix",
+      "instance_size": 48,
+      "vtable": "0xd6de78",
+      "prepared_default_bit31": true,
+      "links": {
+        "0x60": {
+          "head": "0x2e40510",
+          "next": "0x2e40510",
+          "previous": "0x2e40510",
+          "state": "self-linked"
+        },
+        "0x90": {
+          "head": "0x2e40540",
+          "next": "0x2e405b0",
+          "previous": "0x2e40730",
+          "state": "non-self-linked"
+        },
+        "0xb0": {
+          "head": "0x2e40560",
+          "next": "0x2e40560",
+          "previous": "0x2e40560",
+          "state": "self-linked"
+        }
+      },
+      "raw_read_indexes": [
+        4333,
+        4348
+      ],
+      "header_sha256": "e4a9b0c3b0a5d6112470bbbd4e327f430873564f6a995c69de853d466312ffa9"
+    }
+  ],
+  "counts": {
+    "0x60": {
+      "self-linked": 173
+    },
+    "0x90": {
+      "non-self-linked": 24,
+      "self-linked": 149
+    },
+    "0xb0": {
+      "self-linked": 173
+    }
+  },
+  "method": "A retained C sample reduction; no new observation",
+  "source_raw_sha256": "25931a0cb4f734c941b04ad50281a7c18a86119c9d02c13b64e5d4b4f3ef0b05",
+  "source_pid": 34568,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "positive_descriptor": "0x2cad140",
+  "corruptions": [
+    {
+      "case": "changed-after",
+      "rejected": true
+    },
+    {
+      "case": "short-header",
+      "rejected": true
+    },
+    {
+      "case": "wrong-name",
+      "rejected": true
+    },
+    {
+      "case": "zero-case",
+      "rejected": true
+    }
+  ],
+  "synthetic_detector_controls": {
+    "null": "null/uninitialized-or-invalid",
+    "nonself": "non-self-linked"
+  },
+  "limits": [
+    "Title state only; 173 named/bracketed descriptors, not all410 statics or all heap descriptors.",
+    "Seven extra ancestor headers excluded from bracketed count; four failed mappings remain outside it.",
+    "Equal sequential brackets do not prove atomicity, continuous lifetime, or never-populated semantics.",
+    "Default preparation is separate: seven unprepared buffers remain unknown; no buffer interpretation changed.",
+    "Non-self control describes head words, not node ownership, payload or complete ring validity."
+  ]
+}

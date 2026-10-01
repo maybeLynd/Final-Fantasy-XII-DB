@@ -1,0 +1,11 @@
+diff --git "a/Database/FFXII TZA/01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md" "b/Database/FFXII TZA/01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md"
+--- "a/Database/FFXII TZA/01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md"
++++ "b/Database/FFXII TZA/01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md"
+@@ -759,6 +759,7 @@ body and the dispatcher's default is 0.**
+   the frame's scheduling and pointer utilities the driver, the interpreter and a leaf verb
+   share with the rest of the image — utilities consumed, not lifecycle relationships.
+   (edges: `edges.tsv`)
++- **Input — CLIENT (4 edges).** 4 inbound (Input bodies `002E09A0`, `00226BE0` call page-cited `00263FF0`, `00267310`, `ActorManager_GetRecordByOrdinal` (00358940)). Substantive edges include `00267310` is called by `002E09A0`; the remaining edges run through shared helpers the page cites.
+ ## The `002621D0` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
+ 
+ `VMNativeCommand_ExecuteLifecycle` (`002621D0`, 119 B exclusive body) splits

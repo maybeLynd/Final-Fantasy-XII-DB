@@ -1,0 +1,2 @@
+rc16_regfile_reads.py: exit 0 from the record folder; identical to the committed .out (CRLF-insensitive)
+t6_regfile_loads.py 2: FileNotFoundError from the record folder (../pub140-scratch/tools/rawcalls.json); with only that path made absolute (t6run/patch.py) it runs in 44 s and its output is identical to the committed t6_regfile_loads_h2.out

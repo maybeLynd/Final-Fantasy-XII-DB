@@ -1,0 +1,29 @@
+{
+  "name": "missing-footer",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-footer\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-footer\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "tagged",
+    "tags": [
+      "A",
+      "B"
+    ],
+    "exits": [
+      0
+    ]
+  },
+  "upstream_sha256": "cb8d0cc6c8716733de6696d891b2d21b9f3b10fc0c42010d61e034d38ecde636",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py output does not end with 'FAILS 0' (last line 'PASS  B required')\n",
+  "stderr": "",
+  "timed_out": false
+}

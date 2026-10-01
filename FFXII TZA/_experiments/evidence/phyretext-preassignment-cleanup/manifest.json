@@ -1,0 +1,446 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-softedges-array-descriptor-offset-extent-assumption-02.py",
+      "bytes": 4141,
+      "sha256": "24de0a775e3558852ab87475c8f357f6e17771196352a78e2ab930f297768586"
+    },
+    {
+      "path": "capture-softedges-array-descriptor-offset-pdata-assumption-01.py",
+      "bytes": 2277,
+      "sha256": "2ef16f68b380bdd052484200ea2a19d28c200746649637bdda1b8521e8139a1d"
+    },
+    {
+      "path": "capture-softedges-array-descriptor-offset.py",
+      "bytes": 4208,
+      "sha256": "b06b81ca66273d2b3e1140bd18026519ab6208eb70ba8669ced02d22c90706c3"
+    },
+    {
+      "path": "capture-softedges-parent-getter-pdata-assumption-01.py",
+      "bytes": 1823,
+      "sha256": "ebd4ef73e0fda33108a6ad28c9034ae0da81bd66d4653006b58ba2a3bb70b565"
+    },
+    {
+      "path": "capture-softedges-parent-getter.py",
+      "bytes": 2199,
+      "sha256": "6bbe30858f78ed8ae213d808b1c066890c6e1abcefea78c5885f36a829711e17"
+    },
+    {
+      "path": "capture-softedges-preassignment-cleanup.py",
+      "bytes": 1825,
+      "sha256": "2662be3975e9ffa635d886078b4fbbc33fe46525d64e9450f0ed582643a73924"
+    },
+    {
+      "path": "control-softedges-preassignment-cleanup.py",
+      "bytes": 2752,
+      "sha256": "e419070aef75ecb717ac75b5b81f3c90d2ddc98a3b26960c97c05128e042cc0e"
+    },
+    {
+      "path": "prepare-residue-packet-publication.py",
+      "bytes": 25279,
+      "sha256": "5ed63b823a67f64c7f9dd272b0d5f70092ec9d87d905a2e2d6f628d005d22964"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6482,
+      "sha256": "d1f29a5ca2c55542971aa937c886e2cd9d6a55744a0784dde0b8a61819b2b3f6"
+    },
+    {
+      "path": "reduce-softedges-preassignment-cleanup-first-pass-01.py",
+      "bytes": 10050,
+      "sha256": "2fff45eaf3be11cd15d7fff6ebbff857cb3db976168304e2ee3f44fe5ad6a831"
+    },
+    {
+      "path": "reduce-softedges-preassignment-cleanup.py",
+      "bytes": 10578,
+      "sha256": "d3ce80b081f2bd33f537aa83c52d9e78fb669d0303630527549b1287e1bd414d"
+    },
+    {
+      "path": "run-softedges-array-descriptor-offset.py",
+      "bytes": 4138,
+      "sha256": "1869886f6e07a657b674badbcd419668dce9e6e2bac8482ee7320bc792b9a439"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-code-01.json",
+      "bytes": 38230,
+      "sha256": "6708f7c608de7568af9e1ccbdee582a8d7d9bcad4b8d88ee020e4fdc1b785d80"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-failure-01.json",
+      "bytes": 4686,
+      "sha256": "619bc96a7624dbcd94a7650e263fbf93115ed3ab8fd4197d6204b473947bc372"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-failure-02.json",
+      "bytes": 1159,
+      "sha256": "a6094895deec065eb9fbc541afc50dba474a8d5d3b15382876d1f0c8ceb042b3"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-invocation-02.json",
+      "bytes": 2454,
+      "sha256": "98ad9bbccc54c6635fed9cbbadc7f6171ad65f3e7e78161e31c4436599d3a962"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-repaired-invocation-01.status.json",
+      "bytes": 305,
+      "sha256": "c88348a4084f908cf8f1efb54d941ceea32dcb34cbe4866b0e2ebd1f09c9ab3c"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-repaired-invocation-01.stderr",
+      "bytes": 412,
+      "sha256": "8f69758f523bcdefbe0c2b36f60de597e5a06aeb3aec5fc6bd8b201f697bf808"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-repaired-invocation-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-repaired-invocation-02.status.json",
+      "bytes": 305,
+      "sha256": "90f6b9e2387bca6286cbc4c0ea3b9e95317bd24eea1cb4d9965106615c11c77d"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-repaired-invocation-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-repaired-invocation-02.stdout",
+      "bytes": 198,
+      "sha256": "9a5bc147c6bf7d753ce58504b83a73f1e121123df89e0eb02000b904b5fc4b82"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/failed-writes-readable-output-receipt.status.json",
+      "bytes": 499,
+      "sha256": "b57fd3499a66a3b8a1bd336d83f5bc7848c24159c17d363c9536d04aea473a5a"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/failed-writes-readable-output-receipt.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/failed-writes-readable-output-receipt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/failed-writes-readable-output.json",
+      "bytes": 62,
+      "sha256": "4d9022c066bd281a4ae5b838c7a039db3b14e69a4004b0450f35b747c392ee1b"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/preexisting-stale-output.json",
+      "bytes": 25,
+      "sha256": "d2fe1c77a5495e47e5fd37d3cb25733903511cc3fde69cca001c644928d1f20b"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/zero-exit-missing-output-receipt.status.json",
+      "bytes": 359,
+      "sha256": "b71ec01c04168d9af6096ed5a8aeca8f5f786b4ee5e36cd70c465b01c58b89d0"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/zero-exit-missing-output-receipt.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-offset-invocation-controls-01/zero-exit-missing-output-receipt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-parent-getter-code-01.json",
+      "bytes": 1850,
+      "sha256": "c68c4d4e2549b4426937fa50aa17202f55deca3c0217e0dcf4dfce848c0caecb"
+    },
+    {
+      "path": "softedges-array-parent-getter-failure-01.json",
+      "bytes": 677,
+      "sha256": "0205e70807009711d90d2423299b4fae2d556ed386ed7628e71b48d0a41f6729"
+    },
+    {
+      "path": "softedges-array-parent-getter-gate-02.json",
+      "bytes": 434,
+      "sha256": "639762ab0bdbc6a987dc810cb13a2de4f4fe2108993b32654559baf6b1d4efcc"
+    },
+    {
+      "path": "softedges-array-parent-getter-invocation-01.status.json",
+      "bytes": 295,
+      "sha256": "9ff64fe3302068f5c479ef9aba31d200bbaef43b2452e1071e55ecf827db39f7"
+    },
+    {
+      "path": "softedges-array-parent-getter-invocation-01.stderr",
+      "bytes": 456,
+      "sha256": "e6af8f1619a00dfcedd526b197b9d25195fa5c8560e65fedec09670041030e33"
+    },
+    {
+      "path": "softedges-array-parent-getter-invocation-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-parent-getter-invocation-02.status.json",
+      "bytes": 295,
+      "sha256": "5a3124672d3ccfc7403fe27405db29402457658cfb1d20c17fd8d802e75c14f2"
+    },
+    {
+      "path": "softedges-array-parent-getter-invocation-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-array-parent-getter-invocation-02.stdout",
+      "bytes": 161,
+      "sha256": "5e744f50338f376fe2fb13a488c34c2d37ba3e7ccd0549cd7440fb1e6c722a4e"
+    },
+    {
+      "path": "softedges-elements-callback-source-01/facts.json",
+      "bytes": 5741,
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6"
+    },
+    {
+      "path": "softedges-elements-callback-source-01/original-code.json",
+      "bytes": 4348,
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61"
+    },
+    {
+      "path": "softedges-header-membership-code-01.json",
+      "bytes": 275363,
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-member-assignment-code-01.json",
+      "bytes": 12455,
+      "sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2"
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-preassignment-cleanup-code-01.json",
+      "bytes": 8770,
+      "sha256": "357636a59162adf892f8c86fd6d6ddd3ca425397638a33b8fa124fc18a5657b9"
+    },
+    {
+      "path": "softedges-preassignment-cleanup-result-01.json",
+      "bytes": 8003,
+      "sha256": "8a8d0d52904c59722d1f04aaa5115c417bd368cdb423e3b0ac9382359c4da607"
+    },
+    {
+      "path": "softedges-preassignment-cleanup-result-02.json",
+      "bytes": 8003,
+      "sha256": "e03ce5931028a7831c894587a21b20d381d692d54589e37ef7222c99a2e4a262"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/invocation.status.json",
+      "bytes": 679,
+      "sha256": "84ed07f882a7d9bd779e733702edf589f3dd3d1196aeca3f79afde757f2b557d"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/invocation.stderr",
+      "bytes": 950,
+      "sha256": "e7f9222c3fbd1a8a8aeb73aa53d73981ce406025dcb02730a4db8bb9b8ce9b4e"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-array-descriptor-offset-code-01.json",
+      "bytes": 38230,
+      "sha256": "6708f7c608de7568af9e1ccbdee582a8d7d9bcad4b8d88ee020e4fdc1b785d80"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-array-parent-getter-code-01.json",
+      "bytes": 1850,
+      "sha256": "c68c4d4e2549b4426937fa50aa17202f55deca3c0217e0dcf4dfce848c0caecb"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-elements-callback-source-01/facts.json",
+      "bytes": 5741,
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-elements-callback-source-01/original-code.json",
+      "bytes": 4348,
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-header-membership-code-01.json",
+      "bytes": 275363,
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-member-assignment-code-01.json",
+      "bytes": 12455,
+      "sha256": "a863b929c9b51a8b078cc67d0ed521c1c8dd7d94e0b2bd16c0ed4b65d75ae47f"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-borrowed-flag/source/softedges-preassignment-cleanup-code-01.json",
+      "bytes": 8770,
+      "sha256": "357636a59162adf892f8c86fd6d6ddd3ca425397638a33b8fa124fc18a5657b9"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/invocation.status.json",
+      "bytes": 677,
+      "sha256": "a175b97ba893ab330c48aedadd8fc7681aa868231ea7fa1275619edfd5e545a5"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/invocation.stderr",
+      "bytes": 858,
+      "sha256": "656132f3241575fae9f9e7ef85d88865deeeac49537b0c0b39ba5fce187f6b22"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-array-descriptor-offset-code-01.json",
+      "bytes": 38230,
+      "sha256": "8f85136cf829a15cf3aded667457f61a9b5774ee7a68e25ddf47f077657155a0"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-array-parent-getter-code-01.json",
+      "bytes": 1850,
+      "sha256": "c68c4d4e2549b4426937fa50aa17202f55deca3c0217e0dcf4dfce848c0caecb"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-elements-callback-source-01/facts.json",
+      "bytes": 5741,
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-elements-callback-source-01/original-code.json",
+      "bytes": 4348,
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-header-membership-code-01.json",
+      "bytes": 275363,
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-member-assignment-code-01.json",
+      "bytes": 12455,
+      "sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/false-parent-store/source/softedges-preassignment-cleanup-code-01.json",
+      "bytes": 8770,
+      "sha256": "357636a59162adf892f8c86fd6d6ddd3ca425397638a33b8fa124fc18a5657b9"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/invocation.status.json",
+      "bytes": 683,
+      "sha256": "5e694f0af4567576c11a47e22e4959b58568c74ebd2b3ce9fd4cd5081d3ca691"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/invocation.stderr",
+      "bytes": 1224,
+      "sha256": "4f823fdb657bcdeba80a8769d1b2927d9547c76f4a315103350ed7d527ce8e05"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-array-descriptor-offset-code-01.json",
+      "bytes": 38230,
+      "sha256": "6708f7c608de7568af9e1ccbdee582a8d7d9bcad4b8d88ee020e4fdc1b785d80"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-elements-callback-source-01/facts.json",
+      "bytes": 5741,
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-elements-callback-source-01/original-code.json",
+      "bytes": 4348,
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-header-membership-code-01.json",
+      "bytes": 275363,
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-member-assignment-code-01.json",
+      "bytes": 12455,
+      "sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/missing-parent-getter/source/softedges-preassignment-cleanup-code-01.json",
+      "bytes": 8770,
+      "sha256": "357636a59162adf892f8c86fd6d6ddd3ca425397638a33b8fa124fc18a5657b9"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/positive-invocation.status.json",
+      "bytes": 466,
+      "sha256": "ad978abed30da6d14b59e12ad9c3315d566b9d9149976ddde1ba8427664ce778"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/positive-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/positive-invocation.stdout",
+      "bytes": 127,
+      "sha256": "9c16e57687b3117366e462b19a1e486ecba62ad480f1053d03e79b73112c30a1"
+    },
+    {
+      "path": "softedges-preassignment-controls-01/result.json",
+      "bytes": 4167,
+      "sha256": "568c2d4ef0ba24d28368c1f785b07d93a975b73d7089fb708d048fc164b39aea"
+    },
+    {
+      "path": "softedges-preassignment-reducer-invocation-01.status.json",
+      "bytes": 466,
+      "sha256": "4cc2952ea13757953e1f7fe6ce9f88bbd6678973bb85cbf6aaa27d4c2718418a"
+    },
+    {
+      "path": "softedges-preassignment-reducer-invocation-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-preassignment-reducer-invocation-01.stdout",
+      "bytes": 127,
+      "sha256": "9c16e57687b3117366e462b19a1e486ecba62ad480f1053d03e79b73112c30a1"
+    }
+  ]
+}

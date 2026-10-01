@@ -1,0 +1,5 @@
+est_battle__cn__binaryfile__basic_skill_basic_skill_name.bin size    74868 count  1345 offsets[0]   5388 (4+4n=5384, 8+4n=5388) offsets[count]    74868 == size: True
+est_battle__cn__binaryfile__growth_rate_growth_rate_name.bin size     3310 count   128 offsets[0]    520 (4+4n=516, 8+4n=520) offsets[count]     3310 == size: True
+est_battle__kr__binaryfile__basic_skill_basic_skill_name.bin size    74868 count  1345 offsets[0]   5388 (4+4n=5384, 8+4n=5388) offsets[count]    74868 == size: True
+est_battle__kr__binaryfile__growth_rate_growth_rate_name.bin size     3310 count   128 offsets[0]    520 (4+4n=516, 8+4n=520) offsets[count]     3310 == size: True
+ata__image__ff12__test_battle__kr__binaryfile__logicpack.bin size  1035896 count  1310 offsets[0]   5248 (4+4n=5244, 8+4n=5248) offsets[count]  1035896 == size: True

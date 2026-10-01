@@ -1,0 +1,13 @@
+v1 resolved sites:  121843   (121818 distinct instructions)
+v2 resolved sites:  128486   (128460 distinct instructions)
+
+AGREE      121843
+MISPLACED       0   <- v1's defect firing at a real instruction
+V2-ONLY      6643   <- coverage the repair recovered
+V1-ONLY         0   <- must be 0, or the repair lost coverage
+
+Of the misplaced sites, ones where EITHER address lands in the contested span: 0
+span 02165176..02165480
+
+v1 span hits: 0    v2 span hits: 0
+v1 record hits: 12  v2 record hits: 12

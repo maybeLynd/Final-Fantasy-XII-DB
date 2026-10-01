@@ -1,0 +1,27 @@
+{
+  "name": "missing-commit",
+  "expected": "MALFORMED",
+  "input_sha256": "ae58bce5c16ff04c9ec03b1e3908cd74fe3d958006fb1fd85c3023f540eba5fa",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\missing-commit\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-MISSING-COMMIT\",\n  \"detail\": \"reviews field needs author (a board identity) and commit\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "parsed_report": [
+    {
+      "transition": "MALFORMED",
+      "review": "REVIEW-MISSING-COMMIT",
+      "detail": "reviews field needs author (a board identity) and commit",
+      "status": "-"
+    }
+  ],
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true
+}

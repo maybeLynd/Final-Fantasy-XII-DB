@@ -1,0 +1,447 @@
+{
+  "method": "A exact original closed lookup/caller/store-prefix disassembly; no original/guest/native/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "imagebase": "0x120000",
+    "selected67_files": [
+      {
+        "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/shipping-reader.py",
+        "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+        "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+      },
+      {
+        "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/reg_tracking.py",
+        "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+      },
+      {
+        "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/original194.bin",
+        "sha256": "c416b7a2f88c5da6a7e0f698091b554eb98f37e09b8fc01979c644f34e018b27",
+        "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+      }
+    ],
+    "lookup": {
+      "entry": "0x32f240",
+      "bytes": 32,
+      "sha256": "4b76b79eddaf32ad374c26bc0cdc3a50a575c30252e5d4dbcb59002b0d885aef"
+    },
+    "caller": {
+      "entry": "0x267f1e",
+      "bytes": 30,
+      "sha256": "a7e48c4a19ba1c22e490d9819fcae52460b30b3a391652b8225009ec6ed79e7b"
+    },
+    "store_prefix": {
+      "entry": "0x26d530",
+      "bytes": 23,
+      "sha256": "33e5e168b92268d35a3227b8e441a7e5bf171f7d8a9e3441c22c266db36d978d"
+    },
+    "access_adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "providers": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "driver_sha256": "cf49aa8f12b6d6a8a6f5f6d6bfd2edc3c0dfec8dd8251871cba8a60a30b478aa",
+  "lookup": [
+    {
+      "pc": "0x32f240",
+      "hex": "4863c1",
+      "mnemonic": "movsxd",
+      "args": "rax, ecx",
+      "reads": [
+        "rcx"
+      ],
+      "writes": [
+        "rax"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x32f243",
+      "hex": "488d0db60ddfff",
+      "mnemonic": "lea",
+      "args": "rcx, [rip - 0x20f24a]",
+      "reads": [
+        "rip"
+      ],
+      "writes": [
+        "rcx"
+      ],
+      "memory": [
+        {
+          "kind": "addr",
+          "size": 8,
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "disp": -2159178
+        }
+      ]
+    },
+    {
+      "pc": "0x32f24a",
+      "hex": "80bc08186d1a0200",
+      "mnemonic": "cmp",
+      "args": "byte ptr [rax + rcx + 0x21a6d18], 0",
+      "reads": [
+        "rax",
+        "rcx"
+      ],
+      "writes": [
+        "rflags"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "size": 1,
+          "base": "rax",
+          "index": "rcx",
+          "scale": 1,
+          "disp": 35286296
+        }
+      ]
+    },
+    {
+      "pc": "0x32f252",
+      "hex": "7408",
+      "mnemonic": "je",
+      "args": "0x32f25c",
+      "reads": [
+        "rflags"
+      ],
+      "writes": [],
+      "memory": []
+    },
+    {
+      "pc": "0x32f254",
+      "hex": "8b8481286d1a02",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rcx + rax*4 + 0x21a6d28]",
+      "reads": [
+        "rax",
+        "rcx"
+      ],
+      "writes": [
+        "rax"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "size": 4,
+          "base": "rcx",
+          "index": "rax",
+          "scale": 4,
+          "disp": 35286312
+        }
+      ]
+    },
+    {
+      "pc": "0x32f25b",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "args": "",
+      "reads": [
+        "rsp"
+      ],
+      "writes": [
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x32f25c",
+      "hex": "83c8ff",
+      "mnemonic": "or",
+      "args": "eax, 0xffffffff",
+      "reads": [
+        "rax"
+      ],
+      "writes": [
+        "rax",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x32f25f",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "args": "",
+      "reads": [
+        "rsp"
+      ],
+      "writes": [
+        "rsp"
+      ],
+      "memory": []
+    }
+  ],
+  "caller": [
+    {
+      "pc": "0x267f1e",
+      "hex": "8b4f28",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [rdi + 0x28]",
+      "reads": [
+        "rdi"
+      ],
+      "writes": [
+        "rcx"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "size": 4,
+          "base": "rdi",
+          "index": null,
+          "scale": 1,
+          "disp": 40
+        }
+      ]
+    },
+    {
+      "pc": "0x267f21",
+      "hex": "8d41ff",
+      "mnemonic": "lea",
+      "args": "eax, [rcx - 1]",
+      "reads": [
+        "rcx"
+      ],
+      "writes": [
+        "rax"
+      ],
+      "memory": [
+        {
+          "kind": "addr",
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "disp": -1
+        }
+      ]
+    },
+    {
+      "pc": "0x267f24",
+      "hex": "83f802",
+      "mnemonic": "cmp",
+      "args": "eax, 2",
+      "reads": [
+        "rax"
+      ],
+      "writes": [
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x267f27",
+      "hex": "7709",
+      "mnemonic": "ja",
+      "args": "0x267f32",
+      "reads": [
+        "rflags"
+      ],
+      "writes": [],
+      "memory": []
+    },
+    {
+      "pc": "0x267f29",
+      "hex": "85f6",
+      "mnemonic": "test",
+      "args": "esi, esi",
+      "reads": [
+        "rsi"
+      ],
+      "writes": [
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x267f2b",
+      "hex": "7505",
+      "mnemonic": "jne",
+      "args": "0x267f32",
+      "reads": [
+        "rflags"
+      ],
+      "writes": [],
+      "memory": []
+    },
+    {
+      "pc": "0x267f2d",
+      "hex": "e80e730c00",
+      "mnemonic": "call",
+      "args": "0x32f240",
+      "reads": [
+        "rip",
+        "rsp"
+      ],
+      "writes": [
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x267f32",
+      "hex": "488d4c2430",
+      "mnemonic": "lea",
+      "args": "rcx, [rsp + 0x30]",
+      "reads": [
+        "rsp"
+      ],
+      "writes": [
+        "rcx"
+      ],
+      "memory": [
+        {
+          "kind": "addr",
+          "size": 8,
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 48
+        }
+      ]
+    },
+    {
+      "pc": "0x267f37",
+      "hex": "e8f4550000",
+      "mnemonic": "call",
+      "args": "0x26d530",
+      "reads": [
+        "rip",
+        "rsp"
+      ],
+      "writes": [
+        "rsp"
+      ],
+      "memory": []
+    }
+  ],
+  "store_prefix": [
+    {
+      "pc": "0x26d530",
+      "hex": "4c8b4110",
+      "mnemonic": "mov",
+      "args": "r8, qword ptr [rcx + 0x10]",
+      "reads": [
+        "rcx"
+      ],
+      "writes": [
+        "r8"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "size": 8,
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "disp": 16
+        }
+      ]
+    },
+    {
+      "pc": "0x26d534",
+      "hex": "4c8bc9",
+      "mnemonic": "mov",
+      "args": "r9, rcx",
+      "reads": [
+        "rcx"
+      ],
+      "writes": [
+        "r9"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26d537",
+      "hex": "4863491c",
+      "mnemonic": "movsxd",
+      "args": "rcx, dword ptr [rcx + 0x1c]",
+      "reads": [
+        "rcx"
+      ],
+      "writes": [
+        "rcx"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "disp": 28
+        }
+      ]
+    },
+    {
+      "pc": "0x26d53b",
+      "hex": "418b4118",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [r9 + 0x18]",
+      "reads": [
+        "r9"
+      ],
+      "writes": [
+        "rax"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "size": 4,
+          "base": "r9",
+          "index": null,
+          "scale": 1,
+          "disp": 24
+        }
+      ]
+    },
+    {
+      "pc": "0x26d53f",
+      "hex": "c1e81c",
+      "mnemonic": "shr",
+      "args": "eax, 0x1c",
+      "reads": [
+        "rax"
+      ],
+      "writes": [
+        "rax",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26d542",
+      "hex": "83f805",
+      "mnemonic": "cmp",
+      "args": "eax, 5",
+      "reads": [
+        "rax"
+      ],
+      "writes": [
+        "rflags"
+      ],
+      "memory": []
+    }
+  ],
+  "consumer": {
+    "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md",
+    "sha256": "9fdd61be743f112b0677b6cc321fd5a7f0867af0e345a165fdc9382a423ea5cd"
+  },
+  "limits": "Original local source contract only, no actualtablevalues/nativefault/callerreachability/writer/othercallbacks/lifetime orliveproof.70 raw/result immutable; evidence may narrow its former omitted-helper gap. PC OFF/S19/fullL1+L2 NOT_MET"
+}

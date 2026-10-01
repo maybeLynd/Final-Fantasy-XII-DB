@@ -1,0 +1,17 @@
+{
+  "setup.py": {
+    "source": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-same-process\\setup.py",
+    "source_sha256": "62abb27f9f42ad371f10e24afd77151918ef04597e903c6756eeccff6724ccb9",
+    "adapted_sha256": "b64da1a54ef75f32c3326d63ac14e8c627c69dc3f4305f35e987029e625c4554"
+  },
+  "observe.py": {
+    "source": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-same-process\\observe.py",
+    "source_sha256": "927669001612aa56efd589975238a7779e0de51ea3c21cc1c69dbfccdbc1b69c",
+    "adapted_sha256": "61b1e3be13047471ce808d3667145007672f725395f673d10305a03bd36cbcbf"
+  },
+  "pulse.py": {
+    "source": "Database\\FFXII TZA\\_experiments\\evidence\\old-save-same-process\\pulse.py",
+    "source_sha256": "1f6439227bb24053b01e0a7758f714885ddbbb114ff3ec6e80fb2a011153ba76",
+    "adapted_sha256": "ed70ddd758ee15c1d3996109586969c8acb307b9f3721de4c766bfbb3d988f3e"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "supported": [
+    "Direct startup path17D000 ->17D4C0 ->22A0B0 ->379D20 tail3EAB60 ->51ED10 then global02B5E0D0=returned pointer.",
+    "Binding entry unconditionally calls shared loader with kind9/index32/callback3EAB90; no local old-pointer/one-shot guard.",
+    "Selected application entry sets ready113C last and never reads it; its null-allocation branch is not a ready/once gate.",
+    "Shared loader selects heap5 using36C1D0(5,9), allocates through36A190, restores selection36C140, passes pointer to requester and returns allocated RBX, not requester return. Callee internals not freshly qualified."
+  ],
+  "unresolved": [
+    "Normal framework invocation count/per-instance versus per-process initialization and possible reentry/reinitialization.",
+    "Heap5 block release/reset/teardown/alias paths and actual post-load pointer lifetime. One global writer count cannot establish these."
+  ],
+  "contradiction": "MC-1/page assert process lifetime/never freed while field-selection lifetime row explicitly says UNKNOWN/NOT EXERCISED; reconcile without guessing.",
+  "not_claimed": "No ordinary rebind or free observed/proved; no repeated injected call, no new census, no live startup/callback readiness/pointer-lifetime test.",
+  "next_cheapest_method": "Owner trace normal framework caller of17D150/17D000 and heap5 release/reset provenance offline first; only escalate remaining actual lifecycle question with prepared C trigger/controls/consumer.",
+  "propagation": "PENDING independent review and FABLE/OPUS adjudication; local publication not semantic closure.",
+  "limits": "Selected direct startup chain only, no whole-image writer/caller census repeated; no framework invocation/reinitialization proof, heap5 teardown/release proof, normal startup frequency or live pointer-lifetime observation. No native/injected call."
+}

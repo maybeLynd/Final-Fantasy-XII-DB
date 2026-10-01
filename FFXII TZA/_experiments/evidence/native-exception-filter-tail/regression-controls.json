@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-return-zero",
+    "returncode": 1,
+    "expected": "Original local RET is preceded by MOV EAX,1"
+  },
+  {
+    "argument": "--fault-cursor-before-text",
+    "returncode": 1,
+    "expected": "Original text request precedes cursor call"
+  },
+  {
+    "argument": "--fault-name-ordinal",
+    "returncode": 1,
+    "expected": "Ordinal identity is not a captured import-by-name"
+  }
+]

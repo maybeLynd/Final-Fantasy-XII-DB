@@ -1,0 +1,220 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 2440,
+      "sha256": "96254f91d7526cd4835b6ff52a9acea8627944364b2e5bdb2f0ff96b2d41ff20"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4461,
+      "sha256": "9851ec86daad98e34815620317ab2317faa8e83dd380565f961b3846624a7321"
+    },
+    {
+      "path": "check_direction.py",
+      "bytes": 2441,
+      "sha256": "9976a9a94656a1f73583f06c61ed91e9267aed7c5b2396707dbea1e309351e5a"
+    },
+    {
+      "path": "dependency-inspection.json",
+      "bytes": 364,
+      "sha256": "7fd065bd4c400525c3cef651a711d7fc3f681efc757cf71025454db1edaa4daa"
+    },
+    {
+      "path": "fix_direction.py",
+      "bytes": 3357,
+      "sha256": "7a27c1f4d0c379a1e3cd8c4c8f22c654b41128bef7d80c49c7556d824290b42e"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/.gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/capture.py",
+      "bytes": 2408,
+      "sha256": "c0d0eacb91ba3778cce0663527aa72a196351ad071001c44ae3298355c923e63"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/check.py",
+      "bytes": 4461,
+      "sha256": "9851ec86daad98e34815620317ab2317faa8e83dd380565f961b3846624a7321"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/check_direction.py",
+      "bytes": 2441,
+      "sha256": "9976a9a94656a1f73583f06c61ed91e9267aed7c5b2396707dbea1e309351e5a"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/dependency-inspection.json",
+      "bytes": 364,
+      "sha256": "7fd065bd4c400525c3cef651a711d7fc3f681efc757cf71025454db1edaa4daa"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/fix_direction.py",
+      "bytes": 3357,
+      "sha256": "7a27c1f4d0c379a1e3cd8c4c8f22c654b41128bef7d80c49c7556d824290b42e"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/historical-capstone-access/receipt.json",
+      "bytes": 629,
+      "sha256": "fddf20a5a3b4a009261e56273765603bd7f6a2f1110397c2ba4677a3f0c6a9fd"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/historical-capstone-access/source.json",
+      "bytes": 17700,
+      "sha256": "8de9a08f8485e8d89a2ff289028ecaad680501a0bbd5b8993b2a3c6e528e9c1e"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/manifest.json",
+      "bytes": 2890,
+      "sha256": "475e7ca6177381aefd3eb0ec5924fec2c4a4ed23121855361283bff244bde912"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/matrix-buffer-alias-access-correction.json",
+      "bytes": 8531,
+      "sha256": "150a39ee9dc9246e7ed2584bc6c32ee74c4a27d2f0e5c3a768fdb490320b3b78"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/operand_direction.py",
+      "bytes": 661,
+      "sha256": "448c5b944c614b134557aef1aed33b22d2ca5120ed9ba955385002aa1a3ddd8e"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/PLAN.md",
+      "bytes": 1972,
+      "sha256": "b95cf09ab16355b19b1f0b785716ab6aebc135de77f669edb295223db24651b3"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/README.md",
+      "bytes": 4951,
+      "sha256": "5e0085b7b0ada1504d0cec14449cab38c175f4b09fdbd6ef926baf7a730f7a35"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/retained/matrix-buffer-alias-source.json",
+      "bytes": 19514,
+      "sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/retained/rng-streams.md",
+      "bytes": 52464,
+      "sha256": "ea10eaa92c557afa51346730b44e54092fbdb807e5a305e90093f7f04d877646"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/source.json",
+      "bytes": 18643,
+      "sha256": "d207898e5b33482c0ece77ab039c444e3ef09f530e9c0dccf131aba43b3ef0e7"
+    },
+    {
+      "path": "historical-capstone-access/prepublication-v1/validation.json",
+      "bytes": 1385,
+      "sha256": "622bf1572012a5b73c9228ed56ddfc2182c0ce6d8bd0a6d147c488fb4c4aa7be"
+    },
+    {
+      "path": "historical-capstone-access/prior-frozen-manifest.json",
+      "bytes": 2890,
+      "sha256": "475e7ca6177381aefd3eb0ec5924fec2c4a4ed23121855361283bff244bde912"
+    },
+    {
+      "path": "historical-capstone-access/receipt.json",
+      "bytes": 629,
+      "sha256": "fddf20a5a3b4a009261e56273765603bd7f6a2f1110397c2ba4677a3f0c6a9fd"
+    },
+    {
+      "path": "historical-capstone-access/restricted-role-helper.py",
+      "bytes": 661,
+      "sha256": "448c5b944c614b134557aef1aed33b22d2ca5120ed9ba955385002aa1a3ddd8e"
+    },
+    {
+      "path": "historical-capstone-access/source.json",
+      "bytes": 17700,
+      "sha256": "8de9a08f8485e8d89a2ff289028ecaad680501a0bbd5b8993b2a3c6e528e9c1e"
+    },
+    {
+      "path": "matrix-buffer-alias-access-correction.json",
+      "bytes": 8531,
+      "sha256": "150a39ee9dc9246e7ed2584bc6c32ee74c4a27d2f0e5c3a768fdb490320b3b78"
+    },
+    {
+      "path": "operand_direction.py",
+      "bytes": 1345,
+      "sha256": "9a25d0a958cae6506e994213b11898ac17c6edf7a8f3eb79d958f073df1cde36"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2129,
+      "sha256": "2038243c640622b03f20ffba46e0e3a645dca105dc2513b5b1c3cf1433508e40"
+    },
+    {
+      "path": "policy-reuse.json",
+      "bytes": 595,
+      "sha256": "3139019e4eabd91898db987703b4cf8452feeca0a0a4b26218112e798f5f1f47"
+    },
+    {
+      "path": "producer-dependencies.json",
+      "bytes": 3896,
+      "sha256": "1563835546aef4044f6474f06610b4fe7eb3ee37207bc222774e11b1bcde011e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5771,
+      "sha256": "285354c4c86e197be4acb60c445c174fc51f148ae4541b906f07f810a5e9a753"
+    },
+    {
+      "path": "refresh_unpublished.py",
+      "bytes": 3281,
+      "sha256": "dc7c6b61e1aa86b58d3a194b6f470236584c7f6c4f68dd3dfc9d5506ef6b0a20"
+    },
+    {
+      "path": "retained/matrix-buffer-alias-source.json",
+      "bytes": 19514,
+      "sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500"
+    },
+    {
+      "path": "retained/producer-preimages/arg_extent_scan.py",
+      "bytes": 17150,
+      "sha256": "1d1983ad21657febc9c6e7568332a74e194f0d9a15892ae4a51a5a8e3e545194"
+    },
+    {
+      "path": "retained/producer-preimages/census_receiver_fixpoint.py",
+      "bytes": 48872,
+      "sha256": "cf5ea900cf4e4eb5b3d995796a2965b2f34d101c8bd35fe6e24345b4555af1d4"
+    },
+    {
+      "path": "retained/producer-preimages/disp_image_census.py",
+      "bytes": 7806,
+      "sha256": "0951ef33cc218aa3e863149c7f2d4b5288c9a8dd93fd4ebdd16b8828433bd45a"
+    },
+    {
+      "path": "retained/producer-preimages/singleton_field_scan.py",
+      "bytes": 21557,
+      "sha256": "e79a6c6070652e88d2800f99bad0e1cfc09ab36bc4c9704f6e7de1da95215c21"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/rng-streams.md",
+      "bytes": 52464,
+      "sha256": "ea10eaa92c557afa51346730b44e54092fbdb807e5a305e90093f7f04d877646"
+    },
+    {
+      "path": "source.json",
+      "bytes": 18972,
+      "sha256": "3df5bcb608e1b3c373e8ff063d44eacbb126462fd636be54caf37108e504925a"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1385,
+      "sha256": "622bf1572012a5b73c9228ed56ddfc2182c0ce6d8bd0a6d147c488fb4c4aa7be"
+    }
+  ],
+  "limits": "A only; direct mode sites and additive19 role correction. Pinned existing policy reused; old procedure/freeze preserved. Native callees/live initialization unobserved. No original byte recapture; independent acceptance and owner incorporation required."
+}

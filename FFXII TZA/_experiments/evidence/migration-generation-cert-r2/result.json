@@ -1,0 +1,14 @@
+{
+  "verdict": "REJECT",
+  "scope": "Exact repaired archive/folder admission f145d442f; original defects fixed, remaining unknown input-state semantic omission",
+  "source_commit": "f145d442f2e3f844fdf9c448c3a6c85e291e8c30",
+  "source_sha256": "5e42238d766b6a245dd5697ed536213380c9402850ce2a8669056a1cf36c2c2e",
+  "raw_sha256": "9a28c5d6f0d4102205f6e3039706449b1ca27364e26f105d13c3eb31645183c6",
+  "fixed": "Original retained duplicate4entries, unknownformat and malformedJSON now UNVERIFIED/library+CLIexit1/no traceback; malformedarray/outputshape/nonstringstate refused; copied folder malformedJSON reported None/problems and CLIINVALID/exit1.",
+  "defect": "Known-format manifest with one present nonexternal input changed to ASTRA_LABELLED_UNKNOWN_STATE and that snapshot removed is VERIFIED/library+CLIexit0 with one fewer member; all other state metadata/output bytes preserved.",
+  "cause": "parse_manifest validates state string type but not the documented present/empty/missing/unsupported vocabulary; both reader membership branches only include present/empty snapshots, so an unknown string silently loses its snapshot obligation.",
+  "control": "Unmodified retained valid ZIP VERIFIED; typed nonstring state refused; exact old fixtures bound to original97c4c1b65 manifest. All9 actual CLI invocations terminal/no stderr, library no exception.",
+  "limits": "Labelled manually modified private manifest/archive, not normal Store output, authentication of builder origin, deployed reporter integration, FF12 instructions/live or completeM1/M0-M5/fullL1L2. Prior settled export/interruption/input campaigns not repeated. Scoped fixes preserved; unsupported known optional state is not automatically a defect. Earlier transition descendant cleanup not established.",
+  "cleanup": "Private copies only; no controller/productionstore/board/game/save/config/reference writes in capture. Actual main args exclude self-test child branch; original inspected verify-zip/status path starts no children and subprocess handles terminal. No timeout accepted.",
+  "next": "OPUS enforce supported state vocabulary on shared parser and affected current certification consumers; preserve fixedformat/duplicate/JSON and validknown states. Re-review changed discriminator at exact finalsource; own evidence review separate."
+}

@@ -1,0 +1,14 @@
+SURVIVES  W0  all 38 sizes as cited
+SURVIVES  W1  caller sets as measured; submit priorities {'00259932': ['mov edx, 0x14'], '0025997C': ['mov edx, 0x14'], '003ED9A2': ['mov edx, 0x64']}
+SURVIVES  W2  eight 0xE0 slots to 02AEDD30; full -> straight to the view test; priority +0xD4, flag +0xD0
+SURVIVES  W3  best from -1; the flag cleared; slot 0 takes on eax > ebx, later slots on ebx < eax - strictly greater, earliest wins
+SURVIVES  W4  4/3 unless the mode byte is 1-3 or 5 (then the device's value); stored at 02AED4E0 / 02AED540 and passed as the projection's aspect
+SURVIVES  W5  constants [-0.0, 0.5, 0.7854, 1.0, 1.1547, 1.7778, 1000.0]; 003CBA50 scales by +0x10 and divides by the aspect
+SURVIVES  W6  the candidate calculation precedes both option compares, which test against the zero in ebx
+SURVIVES  W7  nine thunk sites, all in 0037D1F0; 00863C80 on the gameplay state 02EB3870 / 02EB4230
+SURVIVES  W8  five slots, +0x10 bit 0, the camera driver then the shake driver
+SURVIVES  W9  the four rejections; a negative draw becomes 0; the per-draw word +0x1C + draw x 2
+SURVIVES  W10  1a3 pushes -1 and pops it back as the draw; 019C pushes -1 and jumps to 1a3
+SURVIVES  W11  (REFUTES) 01A2's handler 003492F0 pushes nothing and pops the draw from the script (the first of three pops); 003DD230 has no upper bound on a non-negative draw (no compare on it)
+SURVIVES  W12  (REFUTES the label) 00229D20 returns 4/3 or tail-calls 00182EE0, which asks the device object (001DDAB0) through 001DD120 - the aspect of W4, not a speed-mode factor or an authored answer
+FAILS 0

@@ -1,0 +1,7 @@
+PASS  E 003B38B0 and 00409A60 <- only 00409FE0 <- only 0041E580 <- the four completions
+PASS  C each completion is taken only by its submit's lea (one instruction; the second hit is its REX-less alias)
+PASS  B B1-B4 each submit reads into the backing its completion registers: [True, True, True, True]
+PASS  F a count -1 failure calls back with ok = 0; no completion reads r8 (the pattern matches 'xor r8d, r8d')
+PASS  K the scans find known positives
+PASS  K2 the ok-read detector flags a synthetic `test r8d, r8d` and passes a write-first body
+FAILS 0

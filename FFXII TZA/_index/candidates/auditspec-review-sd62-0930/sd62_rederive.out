@@ -1,0 +1,13 @@
+R1 00632D80 raw call/jmp sites: 385  jcc: 0  relocs: 0
+R1 rdx source tally: {'call 0x6373d0': 384, None: 1}
+   odd site 00632EC1 in 00632E80 FUN_00632e80: None
+R2 01F2E330 qwords: ['01F2E330', '01F2E330', '01F2E340', '01F2E340', '00000000', '01F2E358', '01F2E358', '00000000']
+   relocated slots in the object: ['+0x10', '+0x30', '+0x18', '+0x0', '+0x28', '+0x8']
+R2 01F2E780 qwords: ['01F2E780', '01F2E780', '01F2E780', '01F2E780', '01F2E780', '01F2E780', '01F2E7B0', '01F2E7B0', '02CF8A80', '00D58D90']
+   relocated slots in the object: ['+0x0', '+0x20', '+0x40', '+0x8', '+0x28', '+0x48', '+0x10', '+0x30', '+0x38', '+0x18']
+R2 +0x48 string: b'getInstanceCount'
+R3 vtable 00D56D10 COL sig 1 type b'.?AV?$PClassDescriptorWithoutDefaultConstructor@VPWorld@Phyre@@@Phyre@@'
+R4 00632D80 uses of rdx:
+   00632DD6 mov qword ptr [rcx + 0x70], rdx
+R5 stored pointers to the name string: 1; to 01F2E780: relocs 6 (in-object 6)
+R5 rip refs to the name string: ['00635BD1 00635B80 FUN_00635b80', '006AE551 006AE350 FUN_006ae350']

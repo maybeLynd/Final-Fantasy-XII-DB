@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-117",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "publish batch-117 explicit path set via publish_paths.sh",
+  "scope": "batch-117 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2-EC7-SHARED-HUB-IDENTIFICATION-117"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

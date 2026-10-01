@@ -1,0 +1,12 @@
+LU3_three_cadences                 PASS  level 10 -> target 14, flags 2 (notification suppressed), no owning unit: 0030C650 returns with level 14; per level HP, MP and four float growth calls (4 / 4 / 16), the derived rebuild once (final level), no presentation
+LU8_growth_is_rolled               PASS  the same seed reproduces HP / MP exactly ([590, 71]), another seed changes them ([593, 70]); four levels draw the generator 8 times (HP and MP once each per level, the floats never), one level twice
+LU4_nonzero_kind_bare_increment    PASS  kind 1: the level reaches 14 through four bare increments; no growth call, no draw, HP / MP / floats untouched; with notification on it still returns without the poster (0030C7DB)
+LU1_LU2_cap_and_monotonic          PASS  98 -> 120 stores 99 once; 99 -> 120 stores nothing; 20 -> 10 and 20 -> 20 return before the loop with no call
+LU7_poster_runs_without_an_owner   PASS  flags 0 (notification on), NO owning unit: after four levels and the rebuild, 0046A690 (0030C7E4, before the owner test at 0030C7ED) posts event 4 and the run ends at the poster boundary; only flags bit 1 makes an unowned record silent
+ok
+control_slot_bound_reaches_floats_and_level_store        PASS
+shape1_HP_and_MP_run_and_are_stored_first                PASS
+shape1_faults_at_0030C757_on_address_0x1F                PASS
+shape1_no_float_growth_and_no_level_store                PASS
+slot_restored_run_matches_control                        PASS
+ALL PASS

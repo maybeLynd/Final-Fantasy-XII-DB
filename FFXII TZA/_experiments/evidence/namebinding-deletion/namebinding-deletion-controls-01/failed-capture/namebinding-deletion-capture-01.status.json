@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-namebinding-deletion.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\namebinding-deletion-source-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "66fcdf72c29c9489ca68bdfd8dd6162c7290f2c96b5b5febfa10339a55739ee8"
+}

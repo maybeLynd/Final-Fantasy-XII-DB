@@ -1,0 +1,28 @@
+{
+  "valid_returns": 31,
+  "expected_invalid_state": 1,
+  "reads": 317,
+  "writes": 4,
+  "reached_bodies": [
+    "0x51b9e0",
+    "0x51f240",
+    "0x3ab7f0",
+    "0x20e600",
+    "0x424230",
+    "0x41c760",
+    "0x41fca0",
+    "0x4235c0"
+  ],
+  "all_observed_memory_replayed": true,
+  "getter_vs_selector2_negative_control": true,
+  "selector0_actual_entry_flag_control": true,
+  "missing_cache_write_mutation": {
+    "rejected": true,
+    "reason": "('refresh-above2-sign-extension', '0x51f2bb')",
+    "return_and_abi_retained": true
+  },
+  "sources": {
+    "Database\\Tools\\work\\ASTRA\\render-event-result.json": "394ca31dff3f2fd27500502c71e38ce20d2e29ba321fed51f59d900a619323c7",
+    "Database\\Tools\\work\\ASTRA\\render-event-selection-controls.json": "a75c65b621c762c0726f509dde526f037081b222c164e498111d89f8f7c9be39"
+  }
+}

@@ -1,0 +1,5 @@
+PASS  L1 00632B30 <- 006393A0 @0063942C <- 0059AC00 @0059AEA7, nothing else
+PASS  L2 dynamic class: record +0x1C bit 0 set and no native descriptor; record +0 = 1-based super-class index
+PASS  L3 a flagged class left without a descriptor returns 0x13
+PASS  L4 dynamic members only in flagged classes, for file members with no native member
+FAILS 0

@@ -1,0 +1,12 @@
+PASS  S1 00266530: one caller 00267B79 in 002679F0, no rip reference
+PASS  S2a 002679F0: one caller 0026CEB0 in 0026CE60, no rip reference
+PASS  S2b 00267A79 allocates ebx bytes; 00267A8B memset(pool, 0, the same ebx)
+  0026CE60 callers: 0025BFF6 in 0025BFB0, 0032F227 in 0032F1B0
+corpus scripts: 1114
+PASS  D1 control: gol_b01 spawn00 holds the regI1 loop
+  regI1 loops by enclosing function: {'spawn00': 67, 'respawn00': 67, 'spawn01': 67, 'respawn01': 67, 'spawn02': 49, 'respawn02': 49, 'spawn03': 32, 'respawn03': 32, 'spawn04': 26, 'respawn04': 26, 'spawn05': 7, 'respawn05': 7, 'spawn06': 4, 'respawn06': 4, 'spawn07': 3, 'respawn07': 3, 'spawn08': 2, 'respawn08': 2, 'spawn09': 1, 'respawn09': 1} (total 516, files 12)
+D2 by-name requests of the takeover release / save functions, all scripts: none
+   rbn_a03:2086 computed-target request: sysReq(4, (local_var_s12f1_1 + regI0), 10);
+   rbn_a03:2092 computed-target request: sysReq(3, (local_var_s12f1_1 + regI0), 9);
+   rbn_a03:7070 computed-target request: sysReq(1, getmyid(), 4);
+FAILS 0

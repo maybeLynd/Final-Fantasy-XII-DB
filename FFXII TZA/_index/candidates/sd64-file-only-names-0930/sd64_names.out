@@ -1,0 +1,30 @@
+PASS  C1 169 files; lists end inside every file; c1004 PAssetReference arrays ['ArtData/chr/chara/c10/c1004/mws/c1004.dae#LODNODE_0'], PString arrays ['s0_model', 's10_n_hkata_r']
+
+file-only P-names (not a runtime class leaf, not in the file's namespace pool): 21
+   POSITION                     {'PShaderStreamDefinition arrays': 92, 'PShaderVertexProgram arrays': 2469, 'PStreamInputDescD3D11 arrays': 92}
+   POSITION_MORPH               {'PMaterialSwitch arrays': 13}
+   PROCEDURAL_TEXTURE_ENABLED   {'PMaterialSwitch arrays': 4}
+   PS2FogVec                    {'PShaderParameterDefinition arrays': 86, 'PShaderFragmentProgram arrays': 2299, 'PShaderGeometryProgram arrays': 641, 'PShaderVertexProgram arrays': 2430}
+   PS2HSMatrix                  {'PShaderParameterDefinition arrays': 24, 'PShaderFragmentProgram arrays': 545, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+   PS2MatLight                  {'PShaderFragmentProgram arrays': 1755, 'PShaderGeometryProgram arrays': 63, 'PShaderParameterDefinition arrays': 63, 'PShaderVertexProgram arrays': 1818}
+   PS2PLColor                   {'PShaderFragmentProgram arrays': 1755, 'PShaderGeometryProgram arrays': 63, 'PShaderParameterDefinition arrays': 63, 'PShaderVertexProgram arrays': 1818}
+   PS2PLPos                     {'PShaderFragmentProgram arrays': 1755, 'PShaderGeometryProgram arrays': 63, 'PShaderParameterDefinition arrays': 63, 'PShaderVertexProgram arrays': 1818}
+   PS2WHMatrix                  {'PShaderParameterDefinition arrays': 24, 'PShaderFragmentProgram arrays': 545, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+   PS2WHSMatrix                 {'PShaderFragmentProgram arrays': 1755, 'PShaderGeometryProgram arrays': 63, 'PShaderParameterDefinition arrays': 63, 'PShaderVertexProgram arrays': 1818}
+   PS2ZBias                     {'PShaderParameterDefinition arrays': 63}
+   PS2ZBiasEnabled              {'PShaderParameterDefinition arrays': 24, 'PShaderFragmentProgram arrays': 545, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+   PS2ZBiasInstance             {'PShaderParameterDefinition arrays': 24, 'PShaderFragmentProgram arrays': 545, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+   PS2ZBiasNoGS                 {'PShaderParameterDefinition arrays': 24, 'PShaderFragmentProgram arrays': 545, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+   PS2ZBiasOriginal             {'PShaderParameterDefinition arrays': 24, 'PShaderFragmentProgram arrays': 545, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+   PS_BlendCombine              {'PShaderPassInfo arrays': 1}
+   PS_Blur                      {'PShaderPassInfo arrays': 1}
+   PS_BufferRender              {'PShaderPassInfo arrays': 1}
+   PS_Combine                   {'PShaderPassInfo arrays': 1}
+   PS_RenderRGBL                {'PShaderPassInfo arrays': 1}
+   PTAlphaThreshold             {'PShaderParameterDefinition arrays': 23, 'PShaderFragmentProgram arrays': 544, 'PShaderGeometryProgram arrays': 578, 'PShaderVertexProgram arrays': 612}
+
+by owning list: {'PShaderStreamDefinition arrays': 92, 'PShaderVertexProgram arrays': 16455, 'PStreamInputDescD3D11 arrays': 92, 'PMaterialSwitch arrays': 17, 'PShaderParameterDefinition arrays': 568, 'PShaderFragmentProgram arrays': 13133, 'PShaderGeometryProgram arrays': 4939, 'PShaderPassInfo arrays': 5}
+PASS  C2 every occurrence sits in some instance list's array data - none in the namespace or the objects
+PASS  C3 the page's named examples are all in the set
+PASS  C4 non-program owners carry the names in registered PString members ['PMaterialSwitch::m_name', 'PShaderParameterDefinition::m_name', 'PShaderPassInfo::m_fragmentEntryPoint', 'PShaderStreamDefinition::m_name', 'PStreamInputDescD3D11::m_semantic']
+FAILS 0

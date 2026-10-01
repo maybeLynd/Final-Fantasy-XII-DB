@@ -1,0 +1,4 @@
+PASS P1  tag 1 raw, tag 2 cvttss2si, empty 0 -> record +0x20, then 0026D530
+PASS P2  modelled: {'1.75': 1, 'below': 2147483520, 'at': -2147483648, 'u8 below': 255, 'u8 at': 0, 's16 below': 32768, 's16 at': 32769}
+PASS C  round-to-nearest would store 2 for 1.75; saturating the float first would store 255 for 2^31
+FAILS 0

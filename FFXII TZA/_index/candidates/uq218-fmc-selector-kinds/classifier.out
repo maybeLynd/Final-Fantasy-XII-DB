@@ -1,0 +1,4 @@
+PASS  B band sites True; C1 at 01DFE0BC, C2 at 01DFE0B8; heading windows [-45.0, 45.0, 135.0, -135.0]
+PASS  F five FCP property ids passed to 004FE2F0 before each band is accepted: True
+PASS  R result = index + ((1 - esi) << 16); no -1 in the body: True
+FAILS 0

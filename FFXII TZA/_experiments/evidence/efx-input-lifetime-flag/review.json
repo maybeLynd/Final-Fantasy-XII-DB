@@ -1,0 +1,94 @@
+{
+  "evidence_class": "A: static shipping bodies only; no live/game-code execution",
+  "bodies": {
+    "0x24b3a0": {
+      "bytes": 321,
+      "sha256": "1f46cf590e16f664a3931cca95ecbe6e1dbec00cd16d225831bce39109a918f8"
+    },
+    "0x3a9730": {
+      "bytes": 90,
+      "sha256": "428780cc496c9aaf4a2be79c0b96723b1108af4789002cdc6bcfb2c8417dcabe"
+    },
+    "0x3a9a70": {
+      "bytes": 84,
+      "sha256": "1efc512950b5101f9b5cb213e53e973e7cd0671fb3c7eaf6d16cb5ad2ce4b1d0"
+    },
+    "0x26fb90": {
+      "bytes": 535,
+      "sha256": "84ecb73bf277ec84e53f61c6c6f36086709d2776347fa7951cfc7738fb6ac3c9"
+    },
+    "0x3b3480": {
+      "bytes": 200,
+      "sha256": "c64bc714afcd3a7451225b6d8b668210787e8d9ca6580327b51fce916c9b8984"
+    },
+    "0x3a9600": {
+      "bytes": 156,
+      "sha256": "43541ab13d3073abf1995296739ee3b449d09328f512d7e2f2b0166c0c7895be"
+    },
+    "0x3a9950": {
+      "bytes": 156,
+      "sha256": "dac8a3240872ac303d40bf1cf4e1fc3e1eee46abd3b9ff1e6ff26a6bed9e1fe5"
+    },
+    "0x442460": {
+      "bytes": 82,
+      "sha256": "daa8a100c2abe7641172513c02db3d0b8ead65d0011e7394bea0760e50e98fd2"
+    },
+    "0x5004c0": {
+      "bytes": 497,
+      "sha256": "47292beaac20a477154c25f93e5bcefbe4b373c54b7ac928846652d7fd103c98"
+    },
+    "0x3a9cc0": {
+      "bytes": 57,
+      "sha256": "340416b3ed06ba74b0f07a2983cd93a28d2ec7ada68cec91a80999945d692fc0"
+    },
+    "0x3a76f0": {
+      "bytes": 50,
+      "sha256": "ebb41886769a84e2c96e9fb1fd39d347081518162c999f6eaf0177855754ffcd"
+    },
+    "0x3a7d00": {
+      "bytes": 44,
+      "sha256": "bf1c321746f7601a818dc21560ca5cdf1a25dde5f318996819f25a40eac9ff8e"
+    },
+    "0x3a9560": {
+      "bytes": 44,
+      "sha256": "4e89dfe7e94a950082c04e6a3ae0bad55e75322efc96a45d4af68fbf6e0adefb"
+    },
+    "0x3a9920": {
+      "bytes": 44,
+      "sha256": "4c76895564486955d14b3ebad57cdc666a1668afd0e402909c3bbef704ff8395"
+    },
+    "0x3697f0": {
+      "bytes": 13,
+      "sha256": "efed31070c81261c142e309cfde282b4b566c4b36e4e28e53f1f817025d4cfca"
+    }
+  },
+  "scan": {
+    "candidates": 60,
+    "positive_controls": [
+      "0024B477 context publication",
+      "003EDB6F EFX context read"
+    ],
+    "limits": "Only RIP operand starts; aliases/indexed/overlapping accesses and unseen indirect targets are not exhausted."
+  },
+  "findings": [
+    "EFB zeroes890-byte template then ORs byte+2 with0C at26FC60; copies it into new context through24B3A0 before embedded EFX. Knownarena7 context1/5 callers supply zeroed templates with bit04 clear.",
+    "Constructor copies890bytes and initializes separate substructures/pointer arrays; correct nonoverlapping allocations are preconditions. Native allocation/CRT semantics are not reexecuted.",
+    "800 andA00 consumers directly write subtype/id metadata inside the selected payload and publish full payload pointers into word-id-indexed tables. Pointer table sizes A00bytes and1800bytes; these bodies do not bounds-check the word id.",
+    "Both consumers form downstream base argument inEDX by adding low32(payload) to dword2EBB738; dispatch interpretation remains unreviewed.",
+    "Selected effect dispatch bodies tail-dispatch onward; full-table target coverage and native handler effects not established.",
+    "Teardown when context+3 mask01 is set skips chunk-release call if context+2bit04 is set, but clears chunk pointer. If context+3 mask01 is clear, it iterates individual table entries1..319 or1..767 instead.",
+    "3B3480 is a guarded relocation front: for bit04 set, resolves context+860 through3AB7F0, adds signextended+864, compares+858, then conditionally calls24D970; these callees remain next frontier.",
+    "EFB post-parse26FD1A..26FD26 preserves existing context low nibble while importing high nibble from first nonnull slot flag."
+  ],
+  "open": [
+    "No statement that current EXP079 context used borrowed mode; its flag was never captured.",
+    "Pointer survival through all dispatched native effect handlers and parser return remains unproved.",
+    "Relocation-provider and rebase callee behavior; exact EFB buffer ownership/reuse and live timing.",
+    "Capacity/admission guarantees for payload word ids and decoder-width assumptions in effect handlers."
+  ],
+  "upstream": {
+    "Database\\Tools\\work\\graph\\functions.tsv": "2699b933bdaed8562a1082f17e986c8abeb4c1fb0eabc81e6f532d49926a67b6",
+    "Database\\FFXII TZA\\_experiments\\evidence\\arena7-backing-use\\destination.json": "d1fcd17e75f15d1b832fc6f410ef5c2db84919730ac035fccbf6f32040741cb8",
+    "Database\\FFXII TZA\\_experiments\\evidence\\arena7-backing-use\\consumers.json": "abb0556b4409628de9337bde1cfcbe9f9f205e54e311619b1f7d1837ce192820"
+  }
+}

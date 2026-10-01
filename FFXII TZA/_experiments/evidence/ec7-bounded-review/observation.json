@@ -1,0 +1,70 @@
+{
+  "method": "A: inspect and exercise existing metadata checker, not original FF12 instructions",
+  "checker_path": "Database/Tools/analysis-kit/gfz-scripts/check_dispositions.py",
+  "checker_sha256": "7c37590d675d3ebd355cf1af90c4584dbdd94e5f723011eba7a97e011e9133db",
+  "reviewer_sha256": "626f9319528bc15cfa2deb30d883e63e1961e223a60eff5ca5844c537a5e1d33",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "fixture_census": {
+    "00120000": 16,
+    "00120010": 16,
+    "00120020": 16
+  },
+  "cases": [
+    {
+      "label": "unique-positive-control",
+      "page": "---\nstatus: DOCUMENTED\nfunction_families:\n  - \"test | B | members.tsv | 2 | shared test shape; controlled metadata fixture only\"\n---\n",
+      "members": "00120010\n00120020\n",
+      "result": {
+        "total": 3,
+        "A": 0,
+        "B": 2,
+        "C": 0,
+        "D": 0,
+        "explained": 2,
+        "frontier": 1,
+        "entry_only": 0,
+        "any_interior": 0,
+        "documented_any": 0,
+        "families_accepted": 1,
+        "families_refused": 0,
+        "refusals": [],
+        "accepted": [
+          [
+            "case.md :: test",
+            "B",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "label": "duplicate-member",
+      "page": "---\nstatus: DOCUMENTED\nfunction_families:\n  - \"test | B | members.tsv | 2 | shared test shape; controlled metadata fixture only\"\n---\n",
+      "members": "00120010\n00120010\n",
+      "result": {
+        "total": 3,
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "explained": 1,
+        "frontier": 2,
+        "entry_only": 0,
+        "any_interior": 0,
+        "documented_any": 0,
+        "families_accepted": 1,
+        "families_refused": 0,
+        "refusals": [],
+        "accepted": [
+          [
+            "case.md :: test",
+            "B",
+            2
+          ]
+        ]
+      }
+    }
+  ],
+  "status": "CONFIRMED_DUPLICATE_MEMBER_DEFECT",
+  "limits": "No real family declared; no database census, game execution or weighted metric changed. This tests member cardinality, not semantic family validity or selector reproduction."
+}

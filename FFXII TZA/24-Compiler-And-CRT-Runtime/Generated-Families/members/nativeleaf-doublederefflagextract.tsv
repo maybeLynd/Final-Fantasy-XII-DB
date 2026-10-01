@@ -1,0 +1,9 @@
+# NativeLeaf.DoubleDerefFlagExtract - EC-7 family C
+# # rax=[rcx+X]; eax=[[rax]+Y]>>k&1; ret.
+address	targets
+001E4AE0	
+001E4B00	
+001E4B20	
+001E4B40	
+001E4B60	
+001E5250	

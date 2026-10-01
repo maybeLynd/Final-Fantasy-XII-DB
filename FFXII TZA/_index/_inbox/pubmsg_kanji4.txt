@@ -1,0 +1,11 @@
+sn1: kanji round-4 -- source-anchored; icon block identified
+
+Source/plaintext-verified: 1379=ta (sono[1379] suffix on 9 btlctrl
+category items; //罫線/その他), 1099=盗 (盗む; source 初期設定メニュー::盗む),
+124d/1241/1053=融合技 (融合メニュー::融合技), 1343=込 (読み込み),
+1075/1051/1084/1096=初期設定, 107f/123f=成功 (盗む&ドロップ成功100% verbatim
+source comment), 1098=率 (レア率設定 ~ StealRateMaxRare), 12d3=:.
+Corrected: 12dd/12de are a paired option bracket, not 再.
+Census: 103 unmapped codes but 574/867 occ = 10 20-10 3f icon plane
+(ctrl uses e4+ singles in the same slots) -- font texture needed.
+~10 kanji + brackets remain unresolved.

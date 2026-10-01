@@ -1,0 +1,29 @@
+{
+  "evidence_class": "static original backing paths plus isolated original initializer/header/encoder; one formatter stub; no live game or malloc execution",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect.py": {
+      "bytes": 4060,
+      "sha256": "21c1ad7a0982c7e7f9b379d92d7578ffd259ac43a632d98b972a4b29781bea5c"
+    },
+    "initializer-result.json": {
+      "bytes": 156125,
+      "sha256": "d7214b5fe028612a111796be5ecfff7c5aedce3832fa26b9bcfb313e0f90c283"
+    },
+    "initializer_probe.py": {
+      "bytes": 6767,
+      "sha256": "4e466a52171f0c514db44ccda97f304d061975c8199a0616bf0972901de1567a"
+    },
+    "primary.json": {
+      "bytes": 118126,
+      "sha256": "3d4ba47b0b10fcc81495304e454cfd3bffa0c3c4ec03906b6d1e6851ba18172d"
+    },
+    "review_results.py": {
+      "bytes": 1191,
+      "sha256": "421ace819dd21b57d69c7efbf53a722418899a2ac1e1e5fd8addaa66bc57da01"
+    }
+  }
+}

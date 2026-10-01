@@ -1,0 +1,219 @@
+{
+  "pid": 17072,
+  "phase": "prospective second attempt",
+  "start_unix": 1789101025.833403,
+  "pulses": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-00.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"READ_ONLY_SNAPSHOT\", \"after\": {\"frame_before\": 13704, \"frame_after\": 13704, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [75.37693786621094, 44.14732360839844, 262.19000244140625], \"position_raw\": \"fec09642dc96304252188343\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [137.14427185058594, 30.88383674621582, 204.01644897460938], \"position_raw\": \"ef2409431912f74136044c43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [164.3847198486328, 11.515225410461426, 156.0911102294922], \"position_raw\": \"7d6224435d3e384153171c43\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [116.60198974609375, 36.90340805053711, 260.51971435546875], \"position_raw\": \"3834e942179d134286428243\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [109.11552429199219, 35.8231086730957, 246.58079528808594], \"position_raw\": \"263bda42dd4a0f42af947643\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [111.83256530761719, 35.7460823059082, 253.319091796875], \"position_raw\": \"46aadf42fdfb0e42b0517d43\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-01.json",
+        "--key",
+        "Left",
+        "--hold",
+        "0.125"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x25 scan=0x4b flags=0x9 up=False accepted=1 requested=1\nSCANINPUT vk=0x25 scan=0x4b flags=0xb up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"Left\", \"seen_indices\": [63], \"after\": {\"frame_before\": 13745, \"frame_after\": 13745, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [75.37693786621094, 44.14732360839844, 262.19000244140625], \"position_raw\": \"fec09642dc96304252188343\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [137.14427185058594, 30.88383674621582, 204.01644897460938], \"position_raw\": \"ef2409431912f74136044c43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [162.75775146484375, 11.714292526245117, 157.05079650878906], \"position_raw\": \"fcc12243be6d3b41010d1d43\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [116.13587951660156, 36.69007110595703, 259.381103515625], \"position_raw\": \"9245e842a2c21242c8b08143\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [108.50617980957031, 35.78834533691406, 245.7953643798828], \"position_raw\": \"2a03d94244270f429dcb7543\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [112.56886291503906, 35.82946014404297, 254.30442810058594], \"position_raw\": \"4223e1425e510f42ef4d7e43\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-02.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 13838, \"frame_after\": 13838, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [80.67097473144531, 43.31812286376953, 259.36651611328125], \"position_raw\": \"8a57a142c2452d42eaae8143\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [138.88079833984375, 30.74462127685547, 204.4617462158203], \"position_raw\": \"7ce10a43fcf4f54135764c43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [158.2113494873047, 12.197519302368164, 156.09349060058594], \"position_raw\": \"1b361e430a294341ef171c43\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [114.92813110351562, 36.264686584472656, 256.9032897949219], \"position_raw\": \"34dbe5420a0f11429f738043\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [106.0251235961914, 35.92321014404297, 244.51927185058594], \"position_raw\": \"dd0cd4425eb10f42ef847443\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [114.72787475585938, 36.10484313964844, 255.86102294921875], \"position_raw\": \"ac74e5425c6b10426cdc7f43\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": "",
+      "gap": 81.00006335905006,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-03.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 13930, \"frame_after\": 13930, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [86.1414794921875, 42.19247055053711, 256.44891357421875], \"position_raw\": \"7048ac4217c5284276398043\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [139.57501220703125, 30.73836326599121, 204.6984100341797], \"position_raw\": \"34930b432be8f541cbb24c43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [156.2606201171875, 12.310023307800293, 155.65325927734375], \"position_raw\": \"b8421c43dbf544413ca71b43\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [113.58753967285156, 35.883426666259766, 254.6510467529297], \"position_raw\": \"d22ce342a1880f42aba67e43\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [103.57056427001953, 36.08464050292969, 243.2572479248047], \"position_raw\": \"2124cf42ac561042db417343\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [115.68467712402344, 36.485103607177734, 258.21038818359375], \"position_raw\": \"8e5ee742bff01142ee1a8143\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": "",
+      "gap": 75.26256445751606,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-04.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 14023, \"frame_after\": 14023, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [91.61198425292969, 39.766239166259766, 253.53050231933594], \"position_raw\": \"5639b742a1101f42cf877d43\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [140.7577362060547, 30.87760353088379, 204.31398010253906], \"position_raw\": \"fbc10c435505f74161504c43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [156.2606201171875, 12.310023307800293, 155.65325927734375], \"position_raw\": \"b8421c43dbf544413ca71b43\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [112.75569915771484, 35.568817138671875, 251.98745727539062], \"position_raw\": \"eb82e14278460e42cafc7b43\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [101.0888442993164, 36.295936584472656, 241.9824676513672], \"position_raw\": \"7d2dca420a2f114283fb7143\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [115.40949249267578, 36.59144973754883, 259.0144348144531], \"position_raw\": \"a9d1e642a55d1242d9818143\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [122.3622055053711, 34.93024444580078, 237.70936584472656], \"position_raw\": \"73b9f44292b80b4299b56d43\", \"hp\": 94}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": "",
+      "gap": 70.11832027090371,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-05.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 14116, \"frame_after\": 14116, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [96.99425506591797, 38.26618957519531, 250.65902709960938], \"position_raw\": \"0ffdc14294101942b6a87a43\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [140.82363891601562, 30.86174201965332, 204.12515258789062], \"position_raw\": \"dad20c43d9e4f6410a204c43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [156.2606201171875, 12.310023307800293, 155.65325927734375], \"position_raw\": \"b8421c43dbf544413ca71b43\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [111.92259216308594, 35.53398895263672, 249.32469177246094], \"position_raw\": \"5ed8df42ce220e421f537943\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [100.15477752685547, 36.38593292236328, 241.5028839111328], \"position_raw\": \"3f4fc842328b1142bd807143\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [113.77287292480469, 36.97760009765625, 261.27362060546875], \"position_raw\": \"b68be34210e9134206a38243\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [122.12435913085938, 34.619903564453125, 240.80014038085938], \"position_raw\": \"ac3ff442c87a0a42d6cc7043\", \"hp\": 94}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": "",
+      "gap": 64.35248409622088,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-06.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 14209, \"frame_after\": 14209, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [102.28829193115234, 36.77492141723633, 247.83462524414062], \"position_raw\": \"9b93cc4285191342aad57743\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [141.380615234375, 31.009862899780273, 202.3982696533203], \"position_raw\": \"70610d433314f841f5654a43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [157.32476806640625, 12.216535568237305, 153.10679626464844], \"position_raw\": \"24531d43ee764341571b1943\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [111.69485473632812, 35.555023193359375, 248.48828125], \"position_raw\": \"c463df4258380e42007d7843\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [98.65184020996094, 36.75281524658203, 243.2996826171875], \"position_raw\": \"be4dc542e2021342b84c7343\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [112.13716888427734, 37.47334671020508, 263.5330505371094], \"position_raw\": \"3b46e042b5e415423bc48343\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [122.0576400756836, 34.64568328857422, 241.6977996826172], \"position_raw\": \"831df4422e950a42a3b27143\", \"hp\": 94}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}]}}\n",
+      "stderr": "",
+      "gap": 60.21551336930414,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-07.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 14301, \"frame_after\": 14301, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [107.49409484863281, 35.81034851074219, 245.0572967529297], \"position_raw\": \"fafcd642cc3d0f42ab0e7543\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [141.82870483398438, 31.0103759765625, 200.14199829101562], \"position_raw\": \"26d40d434015f8415a244843\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [161.9127655029297, 11.855122566223145, 153.44276428222656], \"position_raw\": \"abe9214395ae3d4159711943\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [113.9352798461914, 35.271060943603516, 248.75540161132812], \"position_raw\": \"dddee34291150d4262c17843\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [97.58033752441406, 37.17117691040039, 245.8433837890625], \"position_raw\": \"2229c34249af1442e8d77543\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [110.85362243652344, 38.15330123901367, 265.30859375], \"position_raw\": \"0eb5dd42fb9c184280a78443\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [122.0576400756836, 34.64568328857422, 241.6977996826172], \"position_raw\": \"831df4422e950a42a3b27143\", \"hp\": 94}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [105.7740478515625, 29.90580940246582, 205.94805908203125], \"position_raw\": \"508cd342193fef41b4f24d43\", \"hp\": 94}]}}\n",
+      "stderr": "",
+      "gap": 56.73878052177278,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-08.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 14395, \"frame_after\": 14395, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [112.8763656616211, 34.896568298339844, 242.18582153320312], \"position_raw\": \"b3c0e14216960b42922f7243\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [141.82870483398438, 31.0103759765625, 200.14199829101562], \"position_raw\": \"26d40d434015f8415a244843\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [166.4006805419922, 11.795528411865234, 153.77879333496094], \"position_raw\": \"936626437cba3c415fc71943\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [116.34056091308594, 35.44418716430664, 250.22813415527344], \"position_raw\": \"5eaee842d9c60d42673a7a43\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [97.03400421142578, 37.58818435668945, 247.14317321777344], \"position_raw\": \"6911c2424d5a1642a7247743\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [109.66680908203125, 38.29530334472656, 265.0026550292969], \"position_raw\": \"6855db42642e194257808443\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [122.00067138671875, 34.65473175048828, 241.95762634277344], \"position_raw\": \"5800f442729e0a4227f57143\", \"hp\": 94}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [105.7740478515625, 29.90580940246582, 205.94805908203125], \"position_raw\": \"508cd342193fef41b4f24d43\", \"hp\": 94}]}}\n",
+      "stderr": "",
+      "gap": 51.1959325252867,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+        "--pid",
+        "17072",
+        "--field",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-09.json",
+        "--key",
+        "W",
+        "--hold",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "SCANINPUT vk=0x57 scan=0x11 flags=0x8 up=False accepted=1 requested=1\nSCANINPUT vk=0x57 scan=0x11 flags=0xa up=True accepted=1 requested=1\n{\"status\": \"CONTROLLED_PULSE\", \"key\": \"W\", \"seen_indices\": [22], \"after\": {\"frame_before\": 14487, \"frame_after\": 14487, \"rows\": [{\"slot\": 0, \"unit\": 1733886912, \"actor\": 1734173584, \"actor_class\": 3, \"movement\": 1734173872, \"group\": 0, \"mode\": 0, \"position\": [116.42456817626953, 34.78901672363281, 240.29286193847656], \"position_raw\": \"61d9e842f4270b42f94a7043\", \"hp\": 103}, {\"slot\": 1, \"unit\": 1733890832, \"actor\": 1734175344, \"actor_class\": 3, \"movement\": 1734175632, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 2, \"unit\": 1733894752, \"actor\": 1734177104, \"actor_class\": 3, \"movement\": 1734177392, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 3, \"unit\": 1733898672, \"actor\": 1734178864, \"actor_class\": 3, \"movement\": 1734179152, \"group\": 0, \"mode\": 0, \"position\": [65.04231262207031, 0.29389259219169617, 267.0249328613281], \"position_raw\": \"aa1582421779963e31838543\", \"hp\": null}, {\"slot\": 4, \"unit\": 1733902592, \"actor\": 1734199984, \"actor_class\": 3, \"movement\": 1734200272, \"group\": 1, \"mode\": 1, \"position\": [140.15701293945312, 30.809616088867188, 202.42552185058594], \"position_raw\": \"32280c43187af641ef6c4a43\", \"hp\": 134}, {\"slot\": 5, \"unit\": 1733906512, \"actor\": 1734201632, \"actor_class\": 3, \"movement\": 1734201920, \"group\": 0, \"mode\": 0, \"position\": [166.4006805419922, 11.795528411865234, 153.77879333496094], \"position_raw\": \"936626437cba3c415fc71943\", \"hp\": 6111}, {\"slot\": 6, \"unit\": 1733910432, \"actor\": 1734203280, \"actor_class\": 3, \"movement\": 1734203568, \"group\": 0, \"mode\": 0, \"position\": [116.6502685546875, 35.52857208251953, 250.9327392578125], \"position_raw\": \"f04ce942421d0e42c8ee7a43\", \"hp\": 84}, {\"slot\": 7, \"unit\": 1733914352, \"actor\": 1734204928, \"actor_class\": 3, \"movement\": 1734205216, \"group\": 0, \"mode\": 0, \"position\": [95.87109375, 37.66349411010742, 246.23121643066406], \"position_raw\": \"00bebf426ba71642313b7643\", \"hp\": 84}, {\"slot\": 8, \"unit\": 1733918272, \"actor\": 1734206576, \"actor_class\": 3, \"movement\": 1734206864, \"group\": 0, \"mode\": 0, \"position\": [108.3160400390625, 37.87602996826172, 262.5950927734375], \"position_raw\": \"d0a1d8420e8117422c4c8343\", \"hp\": 84}, {\"slot\": 9, \"unit\": 1733922192, \"actor\": 1734208224, \"actor_class\": 3, \"movement\": 1734208512, \"group\": 0, \"mode\": 0, \"position\": [121.8478012084961, 34.66673278808594, 242.2522430419922], \"position_raw\": \"13b2f342bcaa0a4293407243\", \"hp\": 94}, {\"slot\": 10, \"unit\": 1733926112, \"actor\": 1734209872, \"actor_class\": 3, \"movement\": 1734210160, \"group\": 0, \"mode\": 0, \"position\": [0.0, 0.0, 0.0], \"position_raw\": \"000000000000000000000000\", \"hp\": null}, {\"slot\": 11, \"unit\": 1733930032, \"actor\": 1734211520, \"actor_class\": 3, \"movement\": 1734211808, \"group\": 0, \"mode\": 0, \"position\": [105.7740478515625, 29.90580940246582, 205.94805908203125], \"position_raw\": \"508cd342193fef41b4f24d43\", \"hp\": 94}]}}\n",
+      "stderr": "",
+      "gap": 44.86646865066942,
+      "player_hp": 103,
+      "target_hp": 134,
+      "nonprogress": 0
+    }
+  ],
+  "status": "PULSE_LIMIT",
+  "initial_gap": 85.87948506037337,
+  "tracked_actor": 1734199984,
+  "end_unix": 1789101039.0009384
+}

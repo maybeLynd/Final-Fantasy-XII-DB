@@ -1,0 +1,48 @@
+== O1/O2 opcode arms of 003B8670 (extent 003B8670-003B99CC)
+  op   3 arm 003B87E7 reaching callees ['002EB740'] indirect []
+  op  13 arm 003B894E reaching callees ['002EB740'] indirect []
+  op  17 arm 003B8C77 reaching callees ['002FD0C0'] indirect []
+  op  24 arm 003B8E31 reaching callees [] indirect ['003B8E57 r8']
+  op  26 arm 003B89A9 reaching callees ['002EB740'] indirect []
+  op  31 arm 003B90A9 reaching callees [] indirect ['003B9120 qword ptr [rip + 0x509ed2]']
+  op  34 arm 003B91AE reaching callees ['002EB740'] indirect []
+  op  37 arm 003B9234 reaching callees ['002EB740'] indirect []
+  op  40 arm 003B936B reaching callees ['003B3C00'] indirect []
+  op 128 arm 003B92F3 reaching callees ['002EB740'] indirect []
+  opcodes with a reaching direct callee: [3, 13, 17, 26, 34, 37, 40, 128]
+  opcodes with an indirect call/jmp: [24, 31]
+  c_all opcode  5 arm 003B8A30: callees ['003B99D0'] ; reaching [] ; indirect []
+  c_all opcode  6 arm 003B8A5C: callees ['003326F0'] ; reaching [] ; indirect []
+  c_all opcode  9 arm 003B8AF5: callees ['00333620'] ; reaching [] ; indirect []
+  c_all opcode 25 arm 003B8E69: callees ['003B3EA0'] ; reaching [] ; indirect []
+  c_all opcode 26 arm 003B89A9: callees ['002EB740'] ; reaching ['002EB740'] ; indirect []
+  c_all opcode 39 arm 003B8A30: callees ['003B99D0'] ; reaching [] ; indirect []
+  c_all opcode 41 arm 003B93B3: callees ['00333520'] ; reaching [] ; indirect []
+== O3 event kinds passed to 002EB740, and 00319F50's kind arms
+  call 002EB740 at 003B887D; last [rsp+0x30] writes before it: ['003B8822 mov dword ptr [rsp + 0x30], ebp', '003B8860 lea r8, [rsp + 0x30]']
+  call 002EB740 at 003B8988; last [rsp+0x30] writes before it: ['003B895F mov dword ptr [rsp + 0x30], r12d', '003B8981 lea r8, [rsp + 0x30]']
+  call 002EB740 at 003B8A1C; last [rsp+0x30] writes before it: ['003B89ED mov dword ptr [rsp + 0x30], 3', '003B8A17 lea r8, [rsp + 0x30]']
+  call 002EB740 at 003B9208; last [rsp+0x30] writes before it: ['003B91B5 mov dword ptr [rsp + 0x30], 2', '003B9201 lea r8, [rsp + 0x30]']
+  kind 0 arm 00319FD8: reaching 0030E360 via ['003191B0'] ; indirect []
+  kind 1 arm 0031A031: reaching 0030E360 via [] ; indirect []
+  kind 2 arm 0031A042: reaching 0030E360 via ['00300520'] ; indirect []
+  kind 3 arm 0031A0B7: reaching 0030E360 via [] ; indirect []
+  kind 4 arm 0031A100: reaching 0030E360 via [] ; indirect []
+  kind 5 arm 0031A160: reaching 0030E360 via [] ; indirect []
+  kind 6 arm 0031A198: reaching 0030E360 via [] ; indirect []
+  kind 7 arm 0031A1AB: reaching 0030E360 via [] ; indirect []
+  kind 8 arm 0031A1C6: reaching 0030E360 via [] ; indirect []
+== C control: opcode 3's arm reaches: True
+== E5 sample: 0046EFD0's other launches against R0 (none may reach 00312280)
+  003A8240 reaches 00312280: False
+  003A8020 reaches 00312280: False
+  003A8AE0 reaches 00312280: False
+  004FF2C0 reaches 00312280: True
+  005372D0 reaches 00312280: False
+  0046EF10 reaches 00312280: False
+  00314960 reaches 00312280: False
+  001EDDA0 reaches 00312280: False
+  0020E600 reaches 00312280: False
+  control 003B8670 reaches: True
+== E4 spot check: the c_all path string
+  qword 01E127B8 -> 0096BEA0 : b'PS2Data\\effect_finish\\jp\\common\\c_all.efx'

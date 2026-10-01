@@ -1,0 +1,18 @@
+{
+  "section": "SECTION-09",
+  "baseline_files": 10807,
+  "changed_existing": 6,
+  "unchanged_existing": 10801,
+  "deleted_files": 0,
+  "all_expected_preimages_match": true,
+  "changed_paths": [
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+    "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+    "_index/_inbox/EXTERNAL-CONTINUATION.md",
+    "_types/fields.tsv",
+    "_types/types.tsv"
+  ],
+  "unchanged_hash_records_sha256": "1f56c307456777556923a118fc8d165ed9a12fbc69088a5b9cb65e56828e647d",
+  "meaning": "Every baseline file outside the six declared replacements rehashed unchanged, including previous update evidence and historical inputs."
+}

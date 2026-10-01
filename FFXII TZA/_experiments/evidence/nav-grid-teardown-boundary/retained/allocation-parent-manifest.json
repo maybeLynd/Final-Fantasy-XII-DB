@@ -1,0 +1,115 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 9148,
+      "sha256": "81e64a09cb1b8c5c4cde67a95aa38c1c5900ca2bc3a6c0e769b4bebb3252cc20"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5646,
+      "sha256": "aa20e8904a38a9012e3170c8f2247522385eecaabf34733871ee68ebf40878cb"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2812,
+      "sha256": "3dc1741af161dc1e01b815522cfbcbe48292b4c7439b41038c80a43b7339027e"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1565,
+      "sha256": "4d96a6bc4b8e50665eb1c1b53da3c8b2ede1e2d6e98f5727921b04b042741f99"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1853,
+      "sha256": "4fd927f4fcbcb681942d72fbafd504a67d1c4ccaa59a740001e2b265da835c5f"
+    },
+    {
+      "path": "raw-source.json",
+      "bytes": 47472,
+      "sha256": "d2e04f248a83f22ac795886dbc9d34ce6275ce149df6503fcdf595c6310ddc36"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5194,
+      "sha256": "1d780a8fd6f1a16ca9414cbf083f2370e40e56e7e018657851aee4c521926c1f"
+    },
+    {
+      "path": "result.json",
+      "bytes": 5105,
+      "sha256": "b0d6e0c05e0bca6151f01a48019c0a73f2f608eb964095267fe0538e8b21786f"
+    },
+    {
+      "path": "retained/builder.bin",
+      "bytes": 607,
+      "sha256": "0a7ec1000ef3d48a471ff9200675b11ef90717fedcb53b50afa84a4281e236f5"
+    },
+    {
+      "path": "retained/corridor-preimage.md",
+      "bytes": 34620,
+      "sha256": "a2fa28dcfd41d229ca191697ce252845b5f71782048b113909b297ec1670d3ac"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 9148,
+      "sha256": "81e64a09cb1b8c5c4cde67a95aa38c1c5900ca2bc3a6c0e769b4bebb3252cc20"
+    },
+    {
+      "path": "retained/labelled-clear-destination.bin",
+      "bytes": 607,
+      "sha256": "1d2fba50df589affca47c19779d7ff0587f205542f6d54fc0f71a66877ba752c"
+    },
+    {
+      "path": "retained/labelled-je-to-jne.bin",
+      "bytes": 104,
+      "sha256": "965b434f6e788f322dfcc1782e4233759015c7acb4314c1236201ea06e03243f"
+    },
+    {
+      "path": "retained/memset-thunk.bin",
+      "bytes": 6,
+      "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe"
+    },
+    {
+      "path": "retained/nav-fields-preimage.tsv",
+      "bytes": 33551,
+      "sha256": "d7fbae33eb1176be8c359fe89fc2a424e00fe665af4a266f4d55907b2182d594"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "bytes": 2345,
+      "sha256": "851b84134832d83580395ee58762f2074107de12bed4383682873ad488c3f2c2"
+    },
+    {
+      "path": "retained/parent-source.json",
+      "bytes": 35804,
+      "sha256": "abc3ced6752cb8875a581d3a4cd33f69c2e070d035dc2b8e598305ebcb6cf103"
+    },
+    {
+      "path": "retained/rebuild-preimage.md",
+      "bytes": 1798,
+      "sha256": "20d3edca8db78fedb56313c1570d7b24365098a207592dc99ea4d7711df701d3"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/wrapper.bin",
+      "bytes": 104,
+      "sha256": "333cd735610cc99d2d07bf9784e929447a813b5773b961d1f2639f6ec073aa0e"
+    }
+  ],
+  "limits": "A conditional source/ABI allocation-return and caller guard/order controls; opaque native allocator/sync/CRT and actual failure/lifetime/reachability unproved"
+}

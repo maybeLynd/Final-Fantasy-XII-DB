@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "separate_zip_extraction": true,
+  "known_preimage_compatible": true,
+  "merge_accepts_already_installed": true,
+  "payload_hashes_verified": 38,
+  "native_assertions": 139,
+  "mutants": 8,
+  "baseline_repeat_and_mutants_equal": true,
+  "source_sha256": "5e6e2254408208232376397291db6b24ca9ff10cd716f3cf5b3afa0972af95d9",
+  "driver_sha256": "9c34d6544014b90fd25dcf43a7ac6d237eb895873272a9918d438b6aaf3313ce",
+  "scope": "Tested on separate extraction against unchanged original EXE. Not Windows game deployment or acceptance."
+}

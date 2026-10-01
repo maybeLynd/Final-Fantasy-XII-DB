@@ -1,0 +1,564 @@
+{
+  "status": "VALID_SCOPED_NONAUTHOR_GATE_REVIEW",
+  "verdict": "ACCEPT",
+  "request": "OPUS-REQ-ASTRA-VERIFY-A16-FINISH-GATE-0929",
+  "source_sha256": {
+    "team.py": "b1faa731aa6d4edf638f869f679f19a0f28f0703b98f8faae0b7cc6847b5dcd6",
+    "transitions.py": "188ed23c635d0d037fc171074a2da5d7b97c1788ec27faa7ca2b0b0eccf86555"
+  },
+  "assigned_repair": "ed127d443",
+  "assigned_parser_ast_matches_current": true,
+  "live_read": {
+    "revision": 44308,
+    "sha256": "69a56f5ab111fc8b1a8a490581fc2b1753437efb38338f57d35e69d97df84175"
+  },
+  "live_validator_exit": 0,
+  "legacy_list_sha256": "77b0276b601025b01303505ed60e12f2b4ca654c97f79c7be5db6542685e5468",
+  "legacy_rows": [
+    {
+      "task": "OPUS-REQ-ASTRA-VERIFY-HEADING-EXTENT-REPAIR",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-ACTOR-REQUEST-PASS1",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-BATCH3-PASSES",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-COMBAT-FORMULA-PASSES",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-157",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-158",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-159-160",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-161",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-162",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-163-164",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-165",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-166-QUERY-PASS1",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON-167-MOVEMENT-PASSES",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-CON174-176",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-ITEMS-AND-CON173",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-LIFETIME-PASSES-0929",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-PARTY-PASSES-0929",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-SEAL",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-SPAWN-PLACEMENT-PASS1",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSEM-REVIEW-WORLD-LOOT-PASS1",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-A23-CURRENT-RELEASE-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-ACTIVITY-ATTRIBUTION-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-ACTIVITY-ATTRIBUTION-R2-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-BOARD-STALE-REVISION-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-DASHBOARD-RENDERED-RETURN",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-DASHBOARD-SHELL-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-DELTA-BASELINE-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-DELTA-ONE-BASIS-R2-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-FIXTURE-PRODUCER-GUARD",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-GENERATION-BOUNDARY-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-GENERATION-CERT-R2-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-GENERATION-CERT-R3-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-ALIAS-EXTENT",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-CLASS-EFFECTS-SLICE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-COMMIT-TAIL-SUPPLEMENT",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-EXTENT-REVIEW",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-NODE-FOLLOWUP",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-SOURCE-CONSUMERS",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-HEADING-STATUS-REPAIR",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-MY-PROGRESS-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-MY-PROGRESS-R3-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-OVERLAP-HELPER-REVIEW-CHECKER",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-PENDING-STATE-BINDING-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-POISON-Q6-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-RENDERED-NAVIGATION-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TEXT-OVERLAP-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TRANSITION-ACTUAL-WRITE-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TRANSITION-ADMISSION-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TRANSITION-LINE-BOUNDARY-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TRANSITION-WRITER-STATUS-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TRANSITIONS-R2-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TRANSITIONS-R3-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-TYPED-POP-REPORT-BOUNDARY",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "ASTRA-REQ-SPEC-UC1-DEPENDENCY-BINDING-EVIDENCE",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    },
+    {
+      "task": "OPUS-REQ-AUDITSPEC-REVIEW-A18-BYTES",
+      "present": true,
+      "status": "DONE",
+      "retired": false
+    }
+  ],
+  "cases": [
+    {
+      "case": "missing",
+      "is_review": true,
+      "expected_accept": false,
+      "exit": 1,
+      "status": "ACTIVE",
+      "before_sha256": "3c76252bea6c8c9b01a87cfad9563e93843015afe8cea5a4b449eac25d36e429",
+      "after_sha256": "3c76252bea6c8c9b01a87cfad9563e93843015afe8cea5a4b449eac25d36e429",
+      "result_refs": null,
+      "plan": []
+    },
+    {
+      "case": "trailing-lf",
+      "is_review": true,
+      "expected_accept": false,
+      "exit": 1,
+      "status": "ACTIVE",
+      "before_sha256": "2c0ca83aefca4eb4498b84b7674e90e1d2fc28347e7b7fa8e5f878d39c688ae2",
+      "after_sha256": "2c0ca83aefca4eb4498b84b7674e90e1d2fc28347e7b7fa8e5f878d39c688ae2",
+      "result_refs": null,
+      "plan": []
+    },
+    {
+      "case": "two-verdicts",
+      "is_review": true,
+      "expected_accept": false,
+      "exit": 1,
+      "status": "ACTIVE",
+      "before_sha256": "4cd281b7d85f27e5c1e5292395a2cfe04e7402859040de78a100b1c824515b88",
+      "after_sha256": "4cd281b7d85f27e5c1e5292395a2cfe04e7402859040de78a100b1c824515b88",
+      "result_refs": null,
+      "plan": []
+    },
+    {
+      "case": "partial",
+      "is_review": true,
+      "expected_accept": false,
+      "exit": 1,
+      "status": "ACTIVE",
+      "before_sha256": "272657ee82f6c778b683d7dbfccc7966498c5dc41e267046f5a31c7687030161",
+      "after_sha256": "272657ee82f6c778b683d7dbfccc7966498c5dc41e267046f5a31c7687030161",
+      "result_refs": null,
+      "plan": []
+    },
+    {
+      "case": "lowercase",
+      "is_review": true,
+      "expected_accept": false,
+      "exit": 1,
+      "status": "ACTIVE",
+      "before_sha256": "d81ad6534f22f8ee55fc9f4b9885a1a7d7e6f386a68ee187ff23316e9e24fc10",
+      "after_sha256": "d81ad6534f22f8ee55fc9f4b9885a1a7d7e6f386a68ee187ff23316e9e24fc10",
+      "result_refs": null,
+      "plan": []
+    },
+    {
+      "case": "accept",
+      "is_review": true,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "7c9744ce01c6072750a56ab88e41c6f7aecf43214e263cf928d1b9c948b56a38",
+      "after_sha256": "f75e2612f7109e5c5d4d8da65edaf976c195696b6c1a30561f1a1093c8151fe1",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:ACCEPT"
+      ],
+      "plan": [
+        {
+          "kind": "INCORPORATE",
+          "review": "FIXTURE-A16-ACCEPT",
+          "detail": "AUTO-INCORP-FIXTURE-A16-ACCEPT",
+          "has_operation": true
+        }
+      ]
+    },
+    {
+      "case": "accept-with-narrowing",
+      "is_review": true,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "b7e546246f2e5e52d027f8b19e1877e1e15c96219fd7d2d162a8bcef2979a8f1",
+      "after_sha256": "ecc38cba8600b0010d0df4ab3f7ea7d05250565c811e9b64b15a5e0b2e380d01",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:ACCEPT-WITH-NARROWING"
+      ],
+      "plan": [
+        {
+          "kind": "VERDICT-MANUAL",
+          "review": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+          "detail": "verdict:ACCEPT-WITH-NARROWING needs its named REVIEW-POLICY handling; no automatic transition",
+          "has_operation": false
+        }
+      ]
+    },
+    {
+      "case": "reject",
+      "is_review": true,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "0119d29cb33dd635a282d26219bb608abf5c1491fba1fe45d1d85882989c2be5",
+      "after_sha256": "1beef41caf673bbe0c65bd11dff0bbae1c5b775c84c4973e1e6cc7e401ccc427",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:REJECT"
+      ],
+      "plan": [
+        {
+          "kind": "REPAIR",
+          "review": "FIXTURE-A16-REJECT",
+          "detail": "AUTO-REPAIR-FIXTURE-A16-REJECT",
+          "has_operation": true
+        }
+      ]
+    },
+    {
+      "case": "escalate-fable",
+      "is_review": true,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "be565e755b6a5457f883c4d5f043ddac8eb9478db19c91b85fc55d1c66126f32",
+      "after_sha256": "00461ac45a6cec0c9c944443d0032ab3f3ff0b4170d6d249f10631975c34cfc4",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:ESCALATE-FABLE"
+      ],
+      "plan": [
+        {
+          "kind": "VERDICT-MANUAL",
+          "review": "FIXTURE-A16-ESCALATE-FABLE",
+          "detail": "verdict:ESCALATE-FABLE needs its named REVIEW-POLICY handling; no automatic transition",
+          "has_operation": false
+        }
+      ]
+    },
+    {
+      "case": "escalate-opus",
+      "is_review": true,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "d75b070dade8f9e40bed473884e15222ed5b18ef6360a9f69509bf4b3437750b",
+      "after_sha256": "bd1c6e7424d9f7e9319bf665b959cae0f70863fbe5823cda02bdedd955895514",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:ESCALATE-OPUS"
+      ],
+      "plan": [
+        {
+          "kind": "VERDICT-MANUAL",
+          "review": "FIXTURE-A16-ESCALATE-OPUS",
+          "detail": "verdict:ESCALATE-OPUS needs its named REVIEW-POLICY handling; no automatic transition",
+          "has_operation": false
+        }
+      ]
+    },
+    {
+      "case": "escalate-astra",
+      "is_review": true,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "4c876cfb623cfb072081abf0519ca47adbfeea0c6bbb3140f11af6e4aa728ca0",
+      "after_sha256": "7fa8107d1059e1c6a9551a4d71b90ce97b2681c8bbb7c431dde3bf8a1f34c265",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:ESCALATE-ASTRA"
+      ],
+      "plan": [
+        {
+          "kind": "VERDICT-MANUAL",
+          "review": "FIXTURE-A16-ESCALATE-ASTRA",
+          "detail": "verdict:ESCALATE-ASTRA needs its named REVIEW-POLICY handling; no automatic transition",
+          "has_operation": false
+        }
+      ]
+    },
+    {
+      "case": "plain-research",
+      "is_review": false,
+      "expected_accept": true,
+      "exit": 0,
+      "status": "DONE",
+      "before_sha256": "68e4d7b559b924342339ea591f5dce9e24b5e3e08a5fe4c4d7f4a8ef3e8356e7",
+      "after_sha256": "520121b69d72e0f2c4343ecd176efd3fd1fd58946e9476ddcfca1f5279c58f9f",
+      "result_refs": [
+        "receipt:plain"
+      ],
+      "plan": []
+    }
+  ],
+  "counts": {
+    "required_invalid": 5,
+    "policy_valid": 6,
+    "plain": 1
+  },
+  "checker_sha256": "80643c2eca0dc0120c183214750f23941a00eb906963ffa386d9ff7a1c837c0d",
+  "established": [
+    "All five required invalid forms refused by actual finish CLI, task ACTIVE and exact board bytes unchanged",
+    "All six policy verdicts admitted with exact refs; plain research remains admitted",
+    "Narrowing recognized as VERDICT-MANUAL without a next operation, independently through imported plan and actual CLI",
+    "Current read-only live validation passes; all55 named historical rows retained; no history rewritten"
+  ],
+  "limits": [
+    "Assigned repair parser matches current AST; current whole source also includes later changes, pinned separately",
+    "Offline real supported CLI/API on disposable boards; no production review->incorporation transaction or deployed host/wholeA16/M2 acceptance",
+    "Peer board writes can occur concurrently; this test does not assert whole live board unchanged. All writer argv explicitly target private fixtures",
+    "Old ASTRA reproduction7068c250a reused as prior defect evidence, not rerun or counted as a new control; OPUS campaign not counted as ours"
+  ],
+  "cleanup": "All foreground child invocations terminal/timeout-bounded; private fixture locks/journals retained as evidence; no shared source/live board writer/PC/game/process/instrument/save/config/reference mutation"
+}

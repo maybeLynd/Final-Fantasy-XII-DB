@@ -1,0 +1,75 @@
+N1 001EDF00 body:
+   001EDF00 lea rax, [rip + 0x714819]
+   001EDF07 mov qword ptr [rcx], rax
+   001EDF0A mov rax, rcx
+   001EDF0D ret 
+   001EDF0E int3 
+   001EDF0F int3 
+F2 001FF740 raw rel32 sites 669 (call 664, jmp 5, nodecode 0), jcc 0, abs64 0, rva32 ['01D61480(.rdata)', '02FA3E38(.pdata)']
+   owning listed functions: 17; sites outside any listed function: 0
+     001C2F50 3
+     001C3760 14
+     001C3D50 10
+     001C51D0 7
+     001C52C0 5
+     001C5530 2
+     001C5570 2
+     001C5750 4
+     001C6320 58
+     001C6E20 1
+     001C7360 4
+     001C7520 4
+     001C76E0 10
+     001C7940 314
+     001CA600 227
+     001CC800 3
+     001CC920 1
+F1 001FF6B0:
+   001FF6B0 push rdi
+   001FF6B2 sub rsp, 0x30
+   001FF6B6 mov qword ptr [rsp + 0x20], 0xfffffffffffffffe
+   001FF6BF mov qword ptr [rsp + 0x48], rbx
+   001FF6C4 mov qword ptr [rsp + 0x58], rsi
+   001FF6C9 mov rsi, rdx
+   001FF6CC mov rbx, rcx
+   001FF6CF cmp dword ptr [rcx], 3
+   001FF6D2 je 0x1ff717
+   001FF6D4 call 0x2001f0
+   001FF6D9 mov dword ptr [rbx], 3
+   001FF6DF mov ecx, 0x38
+   001FF6E4 call 0x210ec0
+   001FF6E9 mov rdi, rax
+   001FF6EC mov qword ptr [rsp + 0x40], rax
+   001FF6F1 test rax, rax
+   001FF6F4 je 0x1ff713
+   001FF6F6 lea rdx, [rip + 0x6f4a23]
+   001FF6FD lea rcx, [rsp + 0x50]
+   001FF702 call 0x1edf00
+   001FF707 mov rdx, rax
+   001FF70A mov rcx, rdi
+   001FF70D call 0x1fe510
+   001FF712 nop 
+   001FF713 mov qword ptr [rbx + 8], rax
+   001FF717 mov rdx, rsi
+   001FF71A mov rcx, qword ptr [rbx + 8]
+   001FF71E mov rbx, qword ptr [rsp + 0x48]
+   001FF723 mov rsi, qword ptr [rsp + 0x58]
+   001FF728 add rsp, 0x30
+   001FF72C pop rdi
+   001FF72D jmp 0x1ff4f0
+A1:
+   0015C620 sbb al, 0x64
+   0015C622 jbe 0x15c624
+   0015C624 mov qword ptr [rip + 0x1e24d35], rdi
+   0015C62B lea rcx, [rip + 0x74a3be]
+   0015C632 mov byte ptr [rdi], 0
+   0015C635 mov rsi, qword ptr [rsp + 0x40]
+   0015C63A add rsp, 0x20
+   0015C63E pop rdi
+   0015D6E0 mov qword ptr [rip + 0x1e259f1], rax
+   0015D6E7 lea rcx, [rip + 0x749a02]
+   0015D6EE mov byte ptr [rax], 0
+   0015D6F1 mov rsi, qword ptr [rsp + 0x40]
+   0015D6F6 add rsp, 0x20
+   0015D6FA pop rdi
+   0015D6FB jmp 0x808b90

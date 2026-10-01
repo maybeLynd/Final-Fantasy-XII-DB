@@ -1,0 +1,5 @@
+R1_all_groups_every_layout_class_carved_class2_pointers_inside     PASS
+R2_fcount_0xA_takes_site1_on_every_ctor_call_default_never         PASS
+R3_the_only_caller_supplies_the_default_allocator                  PASS
+{"layout_classes": [0, 1, 1, 2, 2, 3, 3, 3], "site1": [0, 6], "R3": {"bind_sites": ["0026C8E3 lea r12, [rip - 0x4fba]", "0026C8EA test r8, r8", "0026C8ED movsxd rbp, ecx", "0026C8F0 lea r14, [rip - 0x14c8f7]", "0026C8F7 mov r15, rdx", "0026C8FA cmovne r12, r8"], "caller_site": ["0032F95A lea r8, [rip - 0xc8031]", "0032F961 mov rdx, rdi", "0032F964 mov ecx, ebx", "0032F966 call 0x26c8c0"], "callers_of_0026C8C0": ["0032F850"], "r8_passed": "00267930"}}
+ALL PASS

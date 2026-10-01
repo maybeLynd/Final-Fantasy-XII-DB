@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "cases": [
+    {
+      "mode": "valid",
+      "send_up_sequence": [
+        false,
+        true
+      ],
+      "closed": [
+        true
+      ],
+      "status": "CONTROLLED_PULSE",
+      "error": null
+    },
+    {
+      "mode": "short",
+      "send_up_sequence": [
+        false,
+        true
+      ],
+      "closed": [
+        true
+      ],
+      "status": "INCOMPLETE",
+      "error": "ValueError('injected short read')"
+    },
+    {
+      "mode": "wrong",
+      "send_up_sequence": [
+        false,
+        true
+      ],
+      "closed": [
+        true
+      ],
+      "status": "INCOMPLETE",
+      "error": "AssertionError('wrong or ambiguous delivered code')"
+    }
+  ],
+  "input_events_delivered": 0,
+  "method": "Injected reader/focus/process controls; SendInput replaced by recorder"
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "phase": "DATABASE",
+  "revision": 0,
+  "recovery_epoch": 0,
+  "agents": {
+    "SWE2-CONTRACT": {
+      "agent_id": "SWE2-CONTRACT",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "FABLE": {
+      "agent_id": "FABLE",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-AUDIT-SEM": {
+      "agent_id": "SWE2-AUDIT-SEM",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-ORACLE": {
+      "agent_id": "SWE2-ORACLE",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-AUDIT-SPEC": {
+      "agent_id": "SWE2-AUDIT-SPEC",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "OPUS": {
+      "agent_id": "OPUS",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-FRONTIER": {
+      "agent_id": "SWE2-FRONTIER",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-STRUCT": {
+      "agent_id": "SWE2-STRUCT",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "ASTRA": {
+      "agent_id": "ASTRA",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-EC7": {
+      "agent_id": "SWE2-EC7",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    },
+    "SWE2-DATA": {
+      "agent_id": "SWE2-DATA",
+      "primary_specialty": "fixture only",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "last_checkpoint": "2026-09-29T06:30:00+00:00",
+      "status": "READY"
+    }
+  },
+  "tasks": [
+    {
+      "id": "REVIEW-CONFLICTING-VERDICT",
+      "kind": "research",
+      "priority": "P2",
+      "agent": "ASTRA",
+      "assigned_to": "ASTRA",
+      "status": "DONE",
+      "target": "labelled read-only fixture",
+      "scope": "synthetic routing admission",
+      "completion": "fixture only",
+      "checkpoint": "verdict:ACCEPT in prose is not a structured ref",
+      "started_at": "2026-09-29T06:30:00+00:00",
+      "updated_at": "2026-09-29T06:30:00+00:00",
+      "dependencies": [],
+      "resources": [
+        {
+          "key": "request:fixture/conflicting-verdict"
+        }
+      ],
+      "reviews": {
+        "author": "OPUS",
+        "commit": "c545ed76060aae750c398422b371cea80b8119c3",
+        "record": "Database/Tools/analysis-kit/gfz-scripts/transitions.py"
+      },
+      "result_refs": [
+        "verdict:ACCEPT",
+        "verdict:REJECT"
+      ]
+    }
+  ],
+  "history": [],
+  "checkpoints": []
+}

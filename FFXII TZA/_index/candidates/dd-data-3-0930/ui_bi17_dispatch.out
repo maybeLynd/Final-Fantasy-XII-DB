@@ -1,0 +1,26 @@
+PASS D1 003CCF20: 8 table targets inside the body - 003CD103 003CD117 003CD12B 003CD13F 003CD19F 003CD1B0 003CD1C1 003CD1D2
+   003CCF20 op 1 -> 0050AC20
+   003CCF20 op 2 -> 00506B40
+   003CCF20 op 3 -> 005080A0
+   003CCF20 op 4 -> 0036B130 003CD840 0050A100
+   003CCF20 op 5 -> 00509BB0
+   003CCF20 op 6 -> 00507490
+   003CCF20 op 7 -> 00508C90
+   003CCF20 op 8 -> 0036B130 003CD840 00507120 0036B130 003D2B60
+PASS D1 003CD2C0: 8 table targets inside the body - 003CD3F9 003CD40D 003CD421 003CD435 003CD492 003CD4A3 003CD4B4 003CD4C5
+   003CD2C0 op 1 -> 0050AC20
+   003CD2C0 op 2 -> 00506B40
+   003CD2C0 op 3 -> 005080A0
+   003CD2C0 op 4 -> 0036B130 003CD840 0050A100
+   003CD2C0 op 5 -> 00509BB0
+   003CD2C0 op 6 -> 00507490
+   003CD2C0 op 7 -> 00508C90
+   003CD2C0 op 8 -> 0036B130 003CD840 00507120 0036B130
+PASS C1 control: 003CCF20's arms reproduce the page's section 16 table
+   003CD2C0 arms calling the same operation as 003CCF20's for the same opcode: [1, 2, 3, 4, 5, 6, 7, 8]
+PASS D2 003CD2C0's opcode map decoded (every arm calls exactly one 0050xxxx operation or none)
+PASS T1 outer entry walk: +1 >= 0x80 gate, handle +8 into rsi, 003CD840 on it
+PASS T2 op list [rbp+0x28] / +0x38; opcodes 4 and 8 overwrite rsi
+PASS T3 tail gated on rsi after the list (003CD239); resolves +0x10, calls 003D2B60 with word +2
+RESULT same-operation opcodes 8 of 8: [1, 2, 3, 4, 5, 6, 7, 8]
+FAILS 0

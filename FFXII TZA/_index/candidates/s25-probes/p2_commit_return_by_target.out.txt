@@ -1,0 +1,12 @@
+0030F760 return by target word (arg5=1, r9=0, callees ret 0)
+  target=0x0000  rax=1  final_rip=62000000  reached_sentinel=True  fault=None  insns=67  stores={'+0x708': '0x40010000', '+0x710': '0x0', '+0x714': '0x0'}  callees=['003105D0', '0031B7E0', '00316CF0', '00316CD0']
+  target=0x0100  rax=1  final_rip=62000000  reached_sentinel=True  fault=None  insns=67  stores={'+0x708': '0x40010000', '+0x710': '0x0', '+0x714': '0x100'}  callees=['003105D0', '0031B7E0', '00316CF0', '00316CD0']
+  target=0x021E  rax=1  final_rip=62000000  reached_sentinel=True  fault=None  insns=67  stores={'+0x708': '0x40010000', '+0x710': '0x0', '+0x714': '0x21e'}  callees=['003105D0', '0031B7E0', '00316CF0', '00316CD0']
+  target=0x021F  rax=0  final_rip=62000000  reached_sentinel=True  fault=None  insns=40  stores={}  callees=['003105D0', '0031B7E0']
+  target=0x3FFF  rax=0  final_rip=62000000  reached_sentinel=True  fault=None  insns=40  stores={}  callees=['003105D0', '0031B7E0']
+  target=0x4000  rax=1  final_rip=62000000  reached_sentinel=True  fault=None  insns=61  stores={'+0x708': '0x40010000', '+0x710': '0x0', '+0x714': '0x4000'}  callees=['003105D0', '0031B7E0']
+  target=0x4086  rax=1  final_rip=62000000  reached_sentinel=True  fault=None  insns=61  stores={'+0x708': '0x40010000', '+0x710': '0x0', '+0x714': '0x4086'}  callees=['003105D0', '0031B7E0']
+  target=0x4166  rax=1  final_rip=62000000  reached_sentinel=True  fault=None  insns=61  stores={'+0x708': '0x40010000', '+0x710': '0x0', '+0x714': '0x4166'}  callees=['003105D0', '0031B7E0']
+  target=0x4167  rax=0  final_rip=62000000  reached_sentinel=True  fault=None  insns=40  stores={}  callees=['003105D0', '0031B7E0']
+  target=0x4168  rax=0  final_rip=62000000  reached_sentinel=True  fault=None  insns=40  stores={}  callees=['003105D0', '0031B7E0']
+  target=0xFFFF  rax=0  final_rip=62000000  reached_sentinel=True  fault=None  insns=40  stores={}  callees=['003105D0', '0031B7E0']

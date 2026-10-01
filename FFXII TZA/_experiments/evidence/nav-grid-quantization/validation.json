@@ -1,0 +1,8 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "complete_original_bodies": 3,
+  "qualified_import_controls": 2,
+  "conditional_arithmetic_illustrations": 2,
+  "new_original_code_native_or_live_cases": 0,
+  "limits": "Exact source/formula/identity/guard qualification only; no actual native math/allocation/init, independent acceptance or broad campaign."
+}

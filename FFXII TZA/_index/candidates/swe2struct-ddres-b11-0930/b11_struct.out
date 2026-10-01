@@ -1,0 +1,142 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS C1 loop start: slot offset 0x338 - 002807E8  mov ebx, 0x338
+PASS C1 name array base r11-0x68 - 002807F1  lea rdi, [r11 - 0x68]
+PASS C1 name array indexed by the slot offset - 002807F9  sub rdi, rbx
+PASS C1 name i loaded - 0028080E  mov rcx, qword ptr [rdi + rbx]
+PASS C1 registry kind 2 - 00280812  mov edx, 2
+PASS C1 registered by 0024A4E0 - 00280817  call 0x24a4e0
+PASS C1 slot stored at [0209AC30]+offset - 00280823  mov qword ptr [rbx + rcx], rax
+PASS C1 step 8 - 0028082E  add rbx, 8
+PASS C1 bound 0x388 (ten slots) - 00280832  cmp rbx, 0x388
+   slot names: +0x338 battle_4_c, +0x340 targetline_p, +0x348 s_font_c, +0x350 battle_4_p, +0x358 mini_face_c, +0x360 partytop_4_c, +0x368 partytop_8_c, +0x370 party_grd_2, +0x378 icons_c, +0x380 extra_c
+PASS C1 ten slots named, +0x338..+0x380 - 10
+PASS C1 slot +0x338 = battle_4_c - battle_4_c
+PASS C1 slot +0x360 = partytop_4_c - partytop_4_c
+PASS C1 control: slot +0x368 = partytop_8_c (the _00A0 texture of the hud-blocks record) - partytop_8_c
+PASS C1 control: the set is the loader-bound page's ten tex2pack names
+PASS C2 slot offset 0x338 - 0028068E  mov ebx, 0x338
+PASS C2 directory index 0 - 00280698  xor edi, edi
+PASS C2 slot read - 002806A0  mov rcx, qword ptr [rbx + rdx]
+PASS C2 the tex2pack blob +0x3D8 - 002806A9  mov rax, qword ptr [rdx + 0x3d8]
+PASS C2 directory entry i - 002806B0  mov edx, dword ptr [rdi + rax]
+PASS C2 bound by 0024A1D0 - 002806B6  call 0x24a1d0
+PASS C2 slot step 8 - 002806C2  add rbx, 8
+PASS C2 directory step 4 - 002806C6  add rdi, 4
+PASS C2 same bound 0x388 - 002806CA  cmp rbx, 0x388
+PASS C2 0024A1D0 puts the picture header (TIM2 +0x10) at atlas +0x20 - 0024A238  mov qword ptr [rbx + 0x20], rsi
+PASS C2 rsi = TIM2 + 0x10 - 0024A1EB  lea rsi, [rdx + 0x10]
+PASS C3 0035D460 returns [0209AC30]+0x338 - mov rax, qword ptr [rip + 0x1d3d7c9] / mov rax, qword ptr [rax + 0x338] / ret 
+PASS C3 0035D470 returns [0209AC30]+0x360 - mov rax, qword ptr [rip + 0x1d3d7b9] / mov rax, qword ptr [rax + 0x360] / ret 
+PASS C3 0035D480 returns [0209AC30]+0x368 - mov rax, qword ptr [rip + 0x1d3d7a9] / mov rax, qword ptr [rax + 0x368] / ret 
+PASS C4 the label atlas - 0028AC17  call 0x35d460
+PASS C4 atlas kept in rbx - 0028AC2A  mov rbx, rax
+PASS C4 picture header - 0028AC36  mov rdx, qword ptr [rbx + 0x20]
+PASS C4 T = header + 0x30 - 0028AC44  add rdx, 0x30
+PASS C4 page = u16[T+0x14] (code high byte 0) - 0028AC48  movzx ecx, word ptr [rdx + 0x14]
+PASS C4 entry = u16[T+0x16+page*2] (code low byte 1) - 0028AC4C  movzx r8d, word ptr [rdx + rcx*2 + 0x16]
+PASS C4 record table offset u16[T+0x10] - 0028AC52  movzx ecx, word ptr [rdx + 0x10]
+PASS C4 record = T + off + entry*8 - 0028AC5D  lea rsi, [rdx + r8*8]
+PASS C4 frame 14: record + 0x70 - 0028AC68  lea rdx, [rsi + 0x70]
+PASS C4 frame 14's size dword (+0x74) - 0028AD83  mov r8d, dword ptr [rsi + 0x74]
+PASS C5 cap test (packed count >= 0x12) - 0028AE49  cmp word ptr [r14 + 0x14], 0x12
+PASS C5 below the cap: next arm - 0028AE4F  jl 0x28ae69
+PASS C5 at the cap: code 1 - 0028AE5F  mov dword ptr [rsp + 0x28], 1
+PASS C5 below the cap: code 2 - 0028AE77  mov dword ptr [rsp + 0x28], 2
+PASS C5 the digit atlas - 0028AE7F  call 0x35d470
+PASS C5 digit = nibble of the packed count - 0028AE9E  and edi, 0xf
+PASS C5 page from the code's high byte - 0028AEFC  movzx ecx, word ptr [r8 + rax*2 + 0x14]
+PASS C5 plus the code's low byte - 0028AF02  add ecx, edx
+PASS C5 entry - 0028AF07  movzx edx, word ptr [r8 + rcx*2 + 0x14]
+PASS C5 frame = entry + digit - 0028AF12  add rdx, rax
+PASS C5 record = T + off + frame*8 - 0028AF24  lea rdi, [rcx + rdx*8]
+PASS C6 T = [atlas+0x20] + 0x30 - 0029F4F1  add r8, 0x30
+PASS C6 page = u16[T+0x14+(code>>8)*2] - 0029F4F5  movzx ecx, word ptr [r8 + rax*2 + 0x14]
+PASS C6 entry = u16[T+0x14+(page+(code&0xFF))*2] - 0029F505  movzx edx, word ptr [r8 + rcx*2 + 0x14]
+PASS C6 record = T + u16[T+0x10] + entry*8 - 0029F50F  lea r8, [rcx + rdx*8]
+PASS D1 us tex2pack_ys.bin in the archive
+PASS D1 de tex2pack_ys.bin in the archive
+PASS D1 fr tex2pack_ys.bin in the archive
+PASS D1 es tex2pack_ys.bin in the archive
+PASS D1 it tex2pack_ys.bin in the archive
+PASS D1 in tex2pack_ys.bin in the archive
+PASS D1 kr tex2pack_ys.bin in the archive
+PASS D1 ch tex2pack_ys.bin in the archive
+PASS D1 cn tex2pack_ys.bin in the archive
+PASS D1 in_sdver tex2pack_ys.bin in the archive
+PASS D1 us: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 us: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 us: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   us label index bytes sha256/16 = d015fd501e4b5d92
+PASS D3 control: partytop_4_c code 1 = ten 36x50 digit cells at y 273, x = 36k - [(0, 273, 36, 50), (36, 273, 36, 50), (72, 273, 36, 50)]
+PASS D3 control: partytop_4_c code 2 = ten 28x38 digit cells at y 331, x = 28k - [(0, 331, 28, 38), (28, 331, 28, 38), (56, 331, 28, 38)]
+PASS D3 control: frame 13 of the label code is a 16x16 placeholder at (0, 0) - (0, 0, 16, 16)
+PASS D1 de: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 de: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 de: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   de label index bytes sha256/16 = ccde2ad360b59f11
+PASS D1 fr: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 fr: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 fr: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   fr label index bytes sha256/16 = ca788e0954c5de5a
+PASS D1 es: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 es: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 es: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   es label index bytes sha256/16 = d73c8037f8d197dd
+PASS D1 it: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 it: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 it: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   it label index bytes sha256/16 = d1e1c013911edf24
+PASS D1 in: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 in: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 in: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   in label index bytes sha256/16 = c01fd8d496b9bebd
+PASS D1 kr: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 kr: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 kr: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   kr label index bytes sha256/16 = c01fd8d496b9bebd
+PASS D1 ch: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 ch: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 ch: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   ch label index bytes sha256/16 = c01fd8d496b9bebd
+PASS D1 cn: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D1 cn: entry 0 (battle_4_c) is 1024x512, 8-bit indexed - 1024x512 type 5
+PASS D2 cn: code 0x0001 frame 14 of battle_4_c = 130x60 at (120, 0) - (120, 0, 130, 60)
+   cn label index bytes sha256/16 = c01fd8d496b9bebd
+PASS D1 in_sdver: 11 directory slots, entries 0..9 are TIM2 - 11 live
+PASS D2 in_sdver: code 0x0001 frame 14 of battle_4_c = 37x17 at (126, 38) - (126, 38, 37, 17)
+   in_sdver label index bytes sha256/16 = b89c0f04a4c164d5
+   label picture groups: [['ch', 'cn', 'in', 'kr'], ['de'], ['es'], ['fr'], ['it'], ['us']]
+PASS D4 six distinct label pictures: us, de, fr, es, it, and in/kr/ch/cn shared - [['ch', 'cn', 'in', 'kr'], ['de'], ['es'], ['fr'], ['it'], ['us']]
+PASS S1 sale / purchase split on +0xE4 bit 0 - 0056D46F  test r8b, 1
+PASS S1 bit 0 clear: the purchase arm - 0056D476  je 0x56d49a
+PASS S1 sale commit Shop_CommitSaleItemAndGil - 0056D478  call 0x310870
+PASS S1 sale: field +0xE4 & 0x3FC0 - 0056D483  and eax, 0x3fc0
+PASS S1 sale: == 0x1C0 - 0056D488  cmp eax, 0x1c0
+PASS S1 sale: otherwise no counter - 0056D48D  jne 0x56d4d7
+PASS S1 sale: amount = the quantity word +0xDC - 0056D48F  movzx edx, word ptr [rdi + 0xdc]
+PASS S1 sale: counter 14 - 0056D496  mov cl, 0xe
+PASS S1 sale: joins the update call - 0056D498  jmp 0x56d4d2
+PASS S2 purchase commit Shop_CommitPurchaseItemAndGil - 0056D49A  call 0x2feeb0
+PASS S2 purchase: field == 0x2C0 - 0056D4AC  cmp eax, 0x2c0
+PASS S2 purchase: the test skips only 0030B630 - 0056D4B1  jne 0x56d4c5
+PASS S2 purchase: 0030B630 (guarded) - 0056D4C0  call 0x30b630
+PASS S2 purchase: selected row - 0056D4C5  mov rax, qword ptr [rdi + 0xd0]
+PASS S2 purchase: counter 19 - 0056D4CC  mov cl, 0x13
+PASS S2 purchase: amount = the row's id word +8 - 0056D4CE  movzx edx, word ptr [rax + 8]
+PASS S2 the update call - 0056D4D2  call 0x316a50
+PASS S3 id bound 30 - 00316A50  cmp cl, 0x1e
+PASS S3 kind byte 0 selects the trigger path - 00316A81  cmp byte ptr [r14 + rbp*8 + 0xbf0460], 0
+PASS S3 mode byte - 00316A90  movzx ecx, byte ptr [r14 + rbp*8 + 0xbf0462]
+PASS S3 mode 1 - 00316A9D  cmp ecx, 1
+PASS S3 mode 1 fires only when amount == threshold - 00316AA6  cmp edx, dword ptr [r14 + rbp*8 + 0xbf0464]
+PASS S3 not equal: return - 00316AAE  jne 0x316bd1
+PASS S3 then the award bitmap +0x3844 - 00316ACB  movzx ebx, byte ptr [rax + rdi + 0x3844]
+PASS S3 bit set - 00316AD3  bts ebx, esi
+PASS S4 descriptor 19 = kind 0, mode 1, threshold 53375 (0xD07F) - 000001007fd00000
+PASS S4 descriptor 14 = kind 2 (a 2-byte counter), offset 0x0C, mode 0 - 020c000000000000
+   counter 14: [(11, 'ACH_COUNT_SELL_EVITEM', 'Privateer')]; counter 19: [(17, 'ACH_SPECIAL_HORIDASHI', 'Collector')]
+PASS S5 counter 14 = ACH_COUNT_SELL_EVITEM, Privateer
+PASS S5 counter 19 = ACH_SPECIAL_HORIDASHI, Collector
+PASS S5 control: slot 19 (01E00258) = {13, ACH_COMPLETE_YUGOU, Mist Walker}, as the catalogue records
+FAILS 0

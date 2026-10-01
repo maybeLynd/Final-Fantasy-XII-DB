@@ -1,0 +1,11 @@
+# RefFlag.InvertedBitAlignedFreeReturnTrue - EC-7 family C
+# # dword flag bit inverted-test on [rdx+0x30]; if the record flag is set,
+# # free [rdx+0x18] via shared aligned-free wrapper 00584730; zero the
+# # {+0x18,+0x30} fields; return 1.
+address	targets
+005A17A0	00584730
+005A58A0	00584730
+005CF160	00584730
+005D04E0	00584730
+005D6FA0	00584730
+00674CA0	00584730

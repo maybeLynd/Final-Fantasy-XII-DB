@@ -1,0 +1,44 @@
+{
+  "question": "RC16 residue: when spawn-table selectors bind spawnNN/respawnNN, which ActorStorageRecord owns the selected function and interpreter register accesses?",
+  "hypotheses": [
+    "H1: several spawn selections for one authored actor execute on its existing pool record and share+64..83",
+    "H2: each spawn selection redirects execution to a distinct per-spawn record, preserving registers only per-entry"
+  ],
+  "method": "A retained returned evidence, then bounded original static call/argument dataflow",
+  "why": "RC16 accepted NARROWED already settles clear/persistence and excludes different-authored-actor reuse. The remaining identity is passed by original binding/scheduling/interpreter code; live address samples would be more expensive and weaker.",
+  "existing_evidence": [
+    "rc151617-fable-0930 README corrected0870d8b62",
+    "rc15-regfile-skipmask-0930 README1e4537034",
+    "auditsem-corrections-fable-0930 consumer-checka8aed6ca9",
+    "rc12-footer-channels-runstate-0930 spawn table list1->slot7/list4->slot14; reuse as existing, not rerun census"
+  ],
+  "source_identity": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "initial_targets": [
+    "0025AD10",
+    "0025AE00",
+    "00263D40",
+    "00269860",
+    "003DBDC0",
+    "0025D9E0",
+    "0025E4C0 prefix"
+  ],
+  "controls": [
+    "Exact original image/range/driver/adapter pins with actual store/LEA/RMW controls",
+    "Known list0/slot0 is separate positive; spawn7 versus respawn14; ensure override and target-record base remain joined",
+    "Required upstream exit/exception/complete status cannot become success on downstream PASS"
+  ],
+  "acceptance": "Original instruction provenance binds function selector and target record through selection, start and interpreter register base; no unsupported normal-reachability or timing claim.",
+  "falsification": "Any explicit different record redirection refutes same-record H1 for that path. An unresolved base/caller/indirect selection keeps the corresponding proposition OPEN, never inferred from missing hits.",
+  "stop": "Stop unchanged sufficient proof; bounded first slice only, no whole-census duplication or game launch.",
+  "consumer": [
+    "FABLE semantic RC16 question",
+    "OPUS/SWE2-CONTRACT interpreter/record types and owning pages",
+    "FRONTIER AQ11 prepared-live premise"
+  ],
+  "cleanup": "Finite file reads and disposable controls only; reference/save/config/peer publications immutable.",
+  "limitations": [
+    "External audits are corroboration, not our tests",
+    "Existing persistence/native-access bounds preserved",
+    "Natural occurrence/order/timing not inferred from static conditional path"
+  ]
+}

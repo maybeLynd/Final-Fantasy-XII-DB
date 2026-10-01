@@ -1,0 +1,36 @@
+{
+  "section": "SECTION-08",
+  "status": "locally validated; formal peer acceptance pending",
+  "native_assertions": 116,
+  "native_passed": 116,
+  "repeat_identical": true,
+  "mutants_rejected": 9,
+  "selected_body_records": 120,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "original_exe_unchanged": true,
+  "source_sha256": "e7fd7828b8ccc80f41cd9c800967ac6c57cb1792d0f79ac207a13b6b5e38e721",
+  "application_substitutions": [
+    "0017D2E0 diagnostic formatter: empty output and counter"
+  ],
+  "import_bridges": [
+    "008C2A60 memset",
+    "008C2A68 memcpy for non-overlap only",
+    "008C2F70 strncpy"
+  ],
+  "scope": "Original owner submit/delete/completion, queue requester and completion/error helpers, bank registration/matching/disposal, resource view, selected allocator/tree/move/context paths with synthetic state.",
+  "limitations": [
+    "No live FF12 process, OS IO, CRT-overlap result, observer deployment or game scheduling.",
+    "Callback is reached by direct fixture call or original completion helper; full queue pump and external service completion are not run.",
+    "003DD4C0 allocation producer and 0041FCF0/005371C0 consumer caller ordering are inspected statically, not whole-function executed.",
+    "Plain TEST source and default EFX subtype255 fixtures; full PRF/specialized children and their consumers are not validated.",
+    "Negative submitted index, bank exhaustion, same-name distinct owners and nested views are bounded controls, not claimed reachable in normal play.",
+    "Arena frees change the synthetic arena, not OS mapping lifetime; no threading/reentrancy guarantee.",
+    "Queue is explicitly reset during fixture cleanup; that reset is not claimed to perform normal cancellation.",
+    "Body hashes are identity, not instruction coverage; only affected mutations are run."
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0"
+  }
+}

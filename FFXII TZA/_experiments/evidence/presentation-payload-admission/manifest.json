@@ -1,0 +1,95 @@
+{
+  "method": "A - original instruction reading only",
+  "source_serialization": [
+    {
+      "file": "primary.json",
+      "work_source": "Database/Tools/work/ASTRA/presentation-payload-primary.json",
+      "source_bytes": 49398,
+      "source_sha256": "42b44205c8d4c465712a674faa7f8cd2149a27fb0aeb89aa4816072f303e019e",
+      "canonical_sha256": "ed9a7415097c33fb632441c4a7a2a043e952747b8ac579b0e627d3b5d72f5f06",
+      "reversible_transform": "Replace canonical LF with CRLF to recover exact collected receipt bytes."
+    },
+    {
+      "file": "callees.json",
+      "work_source": "Database/Tools/work/ASTRA/presentation-payload-callees.json",
+      "source_bytes": 38644,
+      "source_sha256": "fb0f289d9dd373e3e2deac38417b19d3b814f3bc2847654a2d3d3c7cee3f7ebc",
+      "canonical_sha256": "ce76788aced6fe1c5d45fba26d0f4c41a5814a2d1273a5d12acc832120cd3a68",
+      "reversible_transform": "Replace canonical LF with CRLF to recover exact collected receipt bytes."
+    },
+    {
+      "file": "resources.json",
+      "work_source": "Database/Tools/work/ASTRA/presentation-payload-resources.json",
+      "source_bytes": 37454,
+      "source_sha256": "1559a7ed2fe4c896174d4a509e0aeb97378ee3b1275a4a493a456f07f6ab69dd",
+      "canonical_sha256": "38b60a5a4e58341f89276745305f797c87a8fd568278d02321ff1672ab328cff",
+      "reversible_transform": "Replace canonical LF with CRLF to recover exact collected receipt bytes."
+    },
+    {
+      "file": "model.json",
+      "work_source": "Database/Tools/work/ASTRA/presentation-payload-model.json",
+      "source_bytes": 36638,
+      "source_sha256": "85d4e1ba80c1798731277b8f592522dce662e39e1a46d55700a0d6dabfff834b",
+      "canonical_sha256": "09a021c623e6e4d7c44142671ef1863720be0349dc06de0d1c6103a833c0b6ad",
+      "reversible_transform": "Replace canonical LF with CRLF to recover exact collected receipt bytes."
+    },
+    {
+      "file": "constants.json",
+      "work_source": "Database/Tools/work/ASTRA/presentation-payload-constants.json",
+      "source_bytes": 346,
+      "source_sha256": "d88f966866ca5f4a1c498fbb41b68ae15eb0116c45ce616f83e584767f74aa0d",
+      "canonical_sha256": "bc6ffd58e7946f9f8a87d639ab137921f8271a2ad933878605482912cba60920",
+      "reversible_transform": "Replace canonical LF with CRLF to recover exact collected receipt bytes."
+    }
+  ],
+  "files": {
+    "callees.json": {
+      "bytes": 37174,
+      "sha256": "ce76788aced6fe1c5d45fba26d0f4c41a5814a2d1273a5d12acc832120cd3a68"
+    },
+    "collect-callees.py": {
+      "bytes": 3803,
+      "sha256": "88696406c76c9d12420b63ae8074aa60c94f0500f9a3e39fb5cb72165eb353f5"
+    },
+    "collect-constants.py": {
+      "bytes": 2927,
+      "sha256": "f450665bf16d046579b773e6c6bf25939a1c1bd3cc798d808226c67277223ae6"
+    },
+    "collect-model.py": {
+      "bytes": 3765,
+      "sha256": "61cd49c1849b9d4a88c8f9de7366d8fb51447a085f316926eef6d59a9933f36d"
+    },
+    "collect-primary.py": {
+      "bytes": 3776,
+      "sha256": "81f916ccb08a7d1dda86ed2cb751be421dbf00fe3aac19f06e8740ef2ed0e605"
+    },
+    "collect-resources.py": {
+      "bytes": 3787,
+      "sha256": "9f8cf3f86b0ddb7a706445c36e0d7f8451b1d48763b7303b023570b6b0f68c68"
+    },
+    "constants.json": {
+      "bytes": 329,
+      "sha256": "bc6ffd58e7946f9f8a87d639ab137921f8271a2ad933878605482912cba60920"
+    },
+    "model.json": {
+      "bytes": 35242,
+      "sha256": "09a021c623e6e4d7c44142671ef1863720be0349dc06de0d1c6103a833c0b6ad"
+    },
+    "primary.json": {
+      "bytes": 47580,
+      "sha256": "ed9a7415097c33fb632441c4a7a2a043e952747b8ac579b0e627d3b5d72f5f06"
+    },
+    "README.md": {
+      "bytes": 3694,
+      "sha256": "72b10c2c08b4d2a4387b074db0d1c75ae8c6015c5e7952637f5bc84067113fa1"
+    },
+    "resources.json": {
+      "bytes": 35994,
+      "sha256": "38b60a5a4e58341f89276745305f797c87a8fd568278d02321ff1672ab328cff"
+    },
+    "review.json": {
+      "bytes": 7494,
+      "sha256": "b4f600c0e239f9ece77f83a9bb6a6c4f66458e71150583892ddde514d02541d0"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+PASS  V valid: exit 0, PASS  P prerequisite sn1_variable_bindin; partition N..C equal to 2c7d810c8's .out: True
+PASS  F1 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exit 1; FAIL  T table counts [56, 92, 115, 127] = T0 counts; evctrl [0x61] = 010
+PASS  F2 exit 1, FAIL  P prerequisite sn1_variable_binding.py: missing: sn1_variable_binding.py
+PASS  F3 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py raised SyntaxError: '(' was never closed (sn1_variable_binding.py, line 81)
+PASS  F4 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exited 0 but printed FAIL lines: FAIL  T table counts [56, 92, 115, 127] = T0 co
+PASS  F5 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py checks ['Q', 'T', 'S', 'B', 'A', 'G', 'D'], expected exactly ['Q', 'T', 'S', 'B'
+PASS  F6 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py does not define ['SBN']
+PASS  F7 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py output is malformed: ['note: extra line']
+PASS  F8 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exit 1; FAIL  Q prerequisite sn1_q0_domain.py: sn1_q0_domain.py exit 1; producer alone: exit 1, FAIL  Q prerequisite sn1_q0_domain.py: sn1_q0_domain.py exit 1
+PASS  F9 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py exit 1; FAIL  Q prerequisite sn1_q0_domain.py: missing: sn1_q0_domain.py
+PASS  F10 exit 1, FAIL  P prerequisite sn1_variable_binding.py: sn1_variable_binding.py output does not end with 'FAILS 0' (last line 'PASS  Q prerequisite sn1_q0_domai
+source: this folder
+FAILS 0

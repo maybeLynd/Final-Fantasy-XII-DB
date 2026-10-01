@@ -1,0 +1,511 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "lkup-active-head",
+   "ok": true
+  },
+  {
+   "name": "lkup-active-mid",
+   "ok": true
+  },
+  {
+   "name": "lkup-active-tail",
+   "ok": true
+  },
+  {
+   "name": "lkup-pending",
+   "ok": true
+  },
+  {
+   "name": "lkup-miss",
+   "ok": true
+  },
+  {
+   "name": "lkup-invisible",
+   "ok": true
+  },
+  {
+   "name": "lkup-empty",
+   "ok": true
+  },
+  {
+   "name": "aloc-first",
+   "ok": true
+  },
+  {
+   "name": "aloc-second",
+   "ok": true
+  },
+  {
+   "name": "aloc-mid",
+   "ok": true
+  },
+  {
+   "name": "aloc-exists",
+   "ok": true
+  },
+  {
+   "name": "aloc-exists-pend",
+   "ok": true
+  },
+  {
+   "name": "aloc-full",
+   "ok": true
+  },
+  {
+   "name": "aloc-lastfree",
+   "ok": true
+  },
+  {
+   "name": "aloc-third",
+   "ok": true
+  },
+  {
+   "name": "aloc-pendempty",
+   "ok": true
+  },
+  {
+   "name": "aloc-scanwrap",
+   "ok": true
+  },
+  {
+   "name": "prom-empty",
+   "ok": true
+  },
+  {
+   "name": "prom-single",
+   "ok": true
+  },
+  {
+   "name": "prom-multi",
+   "ok": true
+  },
+  {
+   "name": "prom-nohandle",
+   "ok": true
+  },
+  {
+   "name": "prom-pinbit1",
+   "ok": true
+  },
+  {
+   "name": "prom-staleprev",
+   "ok": true
+  },
+  {
+   "name": "prom-bit0pin",
+   "ok": true
+  },
+  {
+   "name": "reti-empty",
+   "ok": true
+  },
+  {
+   "name": "reti-none",
+   "ok": true
+  },
+  {
+   "name": "reti-all",
+   "ok": true
+  },
+  {
+   "name": "reti-one",
+   "ok": true
+  },
+  {
+   "name": "reti-children",
+   "ok": true
+  },
+  {
+   "name": "drain-mid",
+   "ok": true
+  },
+  {
+   "name": "reti-head-tail",
+   "ok": true
+  },
+  {
+   "name": "reti-tail-flag",
+   "ok": true
+  },
+  {
+   "name": "rele-null",
+   "ok": true
+  },
+  {
+   "name": "rele-active",
+   "ok": true
+  },
+  {
+   "name": "rele-pending",
+   "ok": true
+  },
+  {
+   "name": "rele-pending-mid",
+   "ok": true
+  },
+  {
+   "name": "rele-pending-head",
+   "ok": true
+  },
+  {
+   "name": "rele-pending-tail",
+   "ok": true
+  },
+  {
+   "name": "rele-retired",
+   "ok": true
+  },
+  {
+   "name": "rele-retired-c4neg",
+   "ok": true
+  },
+  {
+   "name": "rele-retired-nomids",
+   "ok": true
+  },
+  {
+   "name": "rele-retired-neg1",
+   "ok": true
+  },
+  {
+   "name": "ctor-fresh",
+   "ok": true
+  },
+  {
+   "name": "ctor-rec120",
+   "ok": true
+  },
+  {
+   "name": "ctor-allocpath",
+   "ok": true
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-lk-flagmsk",
+   "killed": true
+  },
+  {
+   "name": "m-lk-astride",
+   "killed": true
+  },
+  {
+   "name": "m-lk-ahead",
+   "killed": true
+  },
+  {
+   "name": "m-lk-phead",
+   "killed": true
+  },
+  {
+   "name": "m-lk-anext",
+   "killed": true
+  },
+  {
+   "name": "m-lk-pnext",
+   "killed": true
+  },
+  {
+   "name": "m-lk-skipcc",
+   "killed": true
+  },
+  {
+   "name": "m-lk-hitcc",
+   "killed": true
+  },
+  {
+   "name": "m-lk-miss",
+   "killed": true
+  },
+  {
+   "name": "m-al-livecmp",
+   "killed": true
+  },
+  {
+   "name": "m-al-livecell",
+   "killed": true
+  },
+  {
+   "name": "m-al-nfcell",
+   "killed": true
+  },
+  {
+   "name": "m-al-stride",
+   "killed": true
+  },
+  {
+   "name": "m-al-pheadcmp",
+   "killed": true
+  },
+  {
+   "name": "m-al-tailw",
+   "killed": true
+  },
+  {
+   "name": "m-al-nextw",
+   "killed": true
+  },
+  {
+   "name": "m-al-prevw",
+   "killed": true
+  },
+  {
+   "name": "m-al-tpend",
+   "killed": true
+  },
+  {
+   "name": "m-al-idw",
+   "killed": true
+  },
+  {
+   "name": "m-al-rinitarg",
+   "killed": true
+  },
+  {
+   "name": "m-al-flagor",
+   "killed": true
+  },
+  {
+   "name": "m-al-liveinc",
+   "killed": true
+  },
+  {
+   "name": "m-al-scanbound",
+   "killed": true
+  },
+  {
+   "name": "m-al-scanfield",
+   "killed": true
+  },
+  {
+   "name": "m-al-scancc",
+   "killed": true
+  },
+  {
+   "name": "m-al-wrapcc",
+   "killed": true
+  },
+  {
+   "name": "m-pr-epoc",
+   "killed": true
+  },
+  {
+   "name": "m-pr-epochsrc",
+   "killed": true
+  },
+  {
+   "name": "m-pr-hidfld",
+   "killed": true
+  },
+  {
+   "name": "m-pr-flagpin",
+   "killed": true
+  },
+  {
+   "name": "m-pr-xormsk",
+   "killed": true
+  },
+  {
+   "name": "m-pr-pendclr",
+   "killed": true
+  },
+  {
+   "name": "m-pr-prevunlink",
+   "killed": true
+  },
+  {
+   "name": "m-pr-aappend",
+   "killed": true
+  },
+  {
+   "name": "m-pr-flagor",
+   "killed": true
+  },
+  {
+   "name": "m-pr-endhp",
+   "killed": true
+  },
+  {
+   "name": "m-pr-endtp",
+   "killed": true
+  },
+  {
+   "name": "m-g68-400",
+   "killed": true
+  },
+  {
+   "name": "m-rt-flagmsk",
+   "killed": true
+  },
+  {
+   "name": "m-rt-nextsave",
+   "killed": true
+  },
+  {
+   "name": "m-rt-livedec",
+   "killed": true
+  },
+  {
+   "name": "m-rt-headfix",
+   "killed": true
+  },
+  {
+   "name": "m-rt-tailfix",
+   "killed": true
+  },
+  {
+   "name": "m-rt-nfzero",
+   "killed": true
+  },
+  {
+   "name": "m-rt-child",
+   "killed": true
+  },
+  {
+   "name": "m-rt-h1fld",
+   "killed": true
+  },
+  {
+   "name": "m-rt-h2fld",
+   "killed": true
+  },
+  {
+   "name": "m-rt-flagor",
+   "killed": true
+  },
+  {
+   "name": "m-dr-parent",
+   "killed": true
+  },
+  {
+   "name": "m-dr-child",
+   "killed": true
+  },
+  {
+   "name": "m-dr-sib",
+   "killed": true
+  },
+  {
+   "name": "m-hc1-stride",
+   "killed": true
+  },
+  {
+   "name": "m-hc1-fld",
+   "killed": true
+  },
+  {
+   "name": "m-hc1-and",
+   "killed": true
+  },
+  {
+   "name": "m-hc2-stride",
+   "killed": true
+  },
+  {
+   "name": "m-hc2-fld",
+   "killed": true
+  },
+  {
+   "name": "m-rl-nullcc",
+   "killed": true
+  },
+  {
+   "name": "m-rl-retmsk",
+   "killed": true
+  },
+  {
+   "name": "m-rl-flagor",
+   "killed": true
+  },
+  {
+   "name": "m-rl-2ae",
+   "killed": true
+  },
+  {
+   "name": "m-rl-284and",
+   "killed": true
+  },
+  {
+   "name": "m-rl-284op",
+   "killed": true
+  },
+  {
+   "name": "m-rl-pendmsk",
+   "killed": true
+  },
+  {
+   "name": "m-rl-pendhead",
+   "killed": true
+  },
+  {
+   "name": "m-rl-pendtail",
+   "killed": true
+  },
+  {
+   "name": "m-rl-nfzero",
+   "killed": true
+  },
+  {
+   "name": "m-rl-livecmp",
+   "killed": true
+  },
+  {
+   "name": "m-l2d-c4",
+   "killed": true
+  },
+  {
+   "name": "m-base-add",
+   "killed": true
+  },
+  {
+   "name": "m-bas2-sub",
+   "killed": true
+  },
+  {
+   "name": "m-ct-count",
+   "killed": true
+  },
+  {
+   "name": "m-ct-hact",
+   "killed": true
+  },
+  {
+   "name": "m-ct-flagor",
+   "killed": true
+  },
+  {
+   "name": "m-ct-epoch",
+   "killed": true
+  },
+  {
+   "name": "m-ct-t3w",
+   "killed": true
+  },
+  {
+   "name": "m-cl-memsz",
+   "killed": true
+  },
+  {
+   "name": "m-cl-linkfld",
+   "killed": true
+  },
+  {
+   "name": "m-cl-a4",
+   "killed": true
+  },
+  {
+   "name": "m-cl-450",
+   "killed": true
+  }
+ ],
+ "case_count": [
+  45,
+  45
+ ],
+ "mutant_count": [
+  79,
+  79
+ ]
+}

@@ -1,0 +1,16 @@
+G1 raw callers of 00306BD0: 1 -> 30CF0D(in 0030CE10 BattleAction_TryEnterGlobalSpecialSequence)
+   rip refs (lea / pointer loads): 0; relocated pointers: 0
+G1 raw callers of 00309230: 1 -> 306C4D(in 00306BD0 BattleAction_InitializeGlobalSpecialSequenceMode)
+   rip refs (lea / pointer loads): 0; relocated pointers: 0
+G2 0030CE80..0030CF12:
+  0030CE93 test dword ptr [rax + 0xc], 0x40000000
+  0030CE9A je 0x30cf31
+  0030CEA3 call 0x20e600
+  0030CEC2 cmp eax, 0xd0
+  0030CEC7 jb 0x30cf00
+  0030CECC call 0x20e600
+  0030CEEB cmp eax, 0xf1
+  0030CEF0 ja 0x30cf00
+  0030CEFB cmp eax, 1
+  0030CEFE jbe 0x30cf31
+  0030CF0D call 0x306bd0

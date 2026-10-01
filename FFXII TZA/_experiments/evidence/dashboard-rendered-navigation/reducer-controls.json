@@ -1,0 +1,14 @@
+[
+  {
+    "case": "cleanup",
+    "refused": true
+  },
+  {
+    "case": "destination",
+    "refused": true
+  },
+  {
+    "case": "failed-input",
+    "refused": true
+  }
+]

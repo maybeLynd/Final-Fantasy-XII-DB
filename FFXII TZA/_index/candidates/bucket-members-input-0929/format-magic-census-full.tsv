@@ -1,0 +1,306 @@
+# leading-signature census - census_format_magics.py, sample=100000
+# One signature per extension supports the `formats_explained` denominator.
+# Several is a LEAD, not a verdict: it is equally the shape of a version
+# field in the first four bytes. A human decides, and writes up which.
+ext	files	signature	in_sample	example
+phyre	35984	'RYHP'	35984	gamedata/d3d11/artdata/shared/map/aircon_00_e14b7111854f24f2_30aa012adf3b6379_55f0.dds.phyre
+txt	10253	'PS2D'	8752	prefetchdata/us/maps/alc_a01.txt
+txt	10253	'##To'	579	prefetchdata/us/maps/dor_a02.txt
+txt	10253	31 0D 0A 31	87	gamedata/d3d11/artdata/map/var50/var5001/cubemapconfigs.txt
+txt	10253	31 0D 0A 32	43	gamedata/d3d11/artdata/map/ztc01/ztc0106/cubemapconfigs.txt
+txt	10253	32 0D 0A 31	39	gamedata/d3d11/artdata/map/ztc01/ztc0108/cubemapconfigs.txt
+txt	10253	31 0D 0A 33	29	gamedata/d3d11/artdata/map/sav02/sav0205/cubemapconfigs.txt
+txt	10253	'BGnp'	26	gamedata/d3d11/artdata/map/var01/var0106/proceduraltextureconfigs.txt
+txt	10253	'rbl0'	24	gamedata/d3d11/artdata/map/rbl01/rbl0130/proceduraltextureconfigs.txt
+txt	10253	31 0D 0A 35	20	gamedata/d3d11/artdata/map/wdl01/wdl0107/cubemapconfigs.txt
+txt	10253	31 0D 0A 38	20	gamedata/d3d11/artdata/map/vic01/vic0105/cubemapconfigs.txt
+txt	10253	31 0D 0A 34	19	gamedata/d3d11/artdata/map/sav02/sav0209/cubemapconfigs.txt
+txt	10253	'ene0'	18	gamedata/d3d11/artdata/map/rbl03/rbl0301/proceduraltextureconfigs.txt
+txt	10253	32 0D 0A 32	17	gamedata/d3d11/artdata/map/ztc01/ztc0105/cubemapconfigs.txt
+txt	10253	'sav0'	17	gamedata/d3d11/artdata/map/sav02/sav0209/proceduraltextureconfigs.txt
+txt	10253	33 0D 0A 31	16	gamedata/d3d11/artdata/map/srb01/srb0102/cubemapconfigs.txt
+txt	10253	'mic0'	16	gamedata/d3d11/artdata/map/mic02/mic0208/proceduraltextureconfigs.txt
+txt	10253	'lus0'	16	gamedata/d3d11/artdata/map/lus01/lus0116/proceduraltextureconfigs.txt
+txt	10253	'mrm0'	15	gamedata/d3d11/artdata/map/mrm02/mrm0213/proceduraltextureconfigs.txt
+txt	10253	'hne0'	15	gamedata/d3d11/artdata/map/hne01/hne0115/proceduraltextureconfigs.txt
+txt	10253	'grm0'	15	gamedata/d3d11/artdata/map/grm01/grm0121/proceduraltextureconfigs.txt
+txt	10253	32 0D 0A 33	14	gamedata/d3d11/artdata/map/ztc01/ztc0103/cubemapconfigs.txt
+txt	10253	31 0D 0A 39	14	gamedata/d3d11/artdata/map/wdl01/wdl0106/cubemapconfigs.txt
+txt	10253	31 0D 0A 37	14	gamedata/d3d11/artdata/map/sav02/sav0201/cubemapconfigs.txt
+txt	10253	31 0D 0A 36	13	gamedata/d3d11/artdata/map/var20/var2001/cubemapconfigs.txt
+txt	10253	'fon0'	13	gamedata/d3d11/artdata/map/frs01/frs0111/proceduraltextureconfigs.txt
+txt	10253	'pla0'	12	gamedata/d3d11/artdata/map/pla01/pla0112/proceduraltextureconfigs.txt
+txt	10253	'alc0'	11	gamedata/d3d11/artdata/map/nomodelgroupmaps.txt
+txt	10253	'dst0'	11	gamedata/d3d11/artdata/map/rwg01/rwg0101/proceduraltextureconfigs.txt
+txt	10253	'gil0'	11	gamedata/d3d11/artdata/map/mfr01/mfr0108/proceduraltextureconfigs.txt
+txt	10253	'bog0'	11	gamedata/d3d11/artdata/map/bog01/bog0111/proceduraltextureconfigs.txt
+txt	10253	'ztc0'	10	gamedata/d3d11/artdata/map/ztc01/ztc0110/proceduraltextureconfigs.txt
+txt	10253	32 0D 0A 34	10	gamedata/d3d11/artdata/map/wdl01/wdl0102/cubemapconfigs.txt
+txt	10253	'rui0'	10	gamedata/d3d11/artdata/map/rui01/rui0110/proceduraltextureconfigs.txt
+txt	10253	'gol0'	10	gamedata/d3d11/artdata/map/pbc01/pbc0101/proceduraltextureconfigs.txt
+txt	10253	'dor0'	10	gamedata/d3d11/artdata/map/dor01/dor0111/proceduraltextureconfigs.txt
+txt	10253	33 0D 0A 32	9	gamedata/d3d11/artdata/map/ztc01/ztc0107/cubemapconfigs.txt
+txt	10253	'srb0'	9	gamedata/d3d11/artdata/map/srb01/srb0108/proceduraltextureconfigs.txt
+txt	10253	'rbn1'	9	gamedata/d3d11/artdata/map/slm10/slm1002/proceduraltextureconfigs.txt
+txt	10253	'pbc0'	9	gamedata/d3d11/artdata/map/rbl03/rbl0303/proceduraltextureconfigs.txt
+txt	10253	'frs0'	9	gamedata/d3d11/artdata/map/mnt01/mnt0110/proceduraltextureconfigs.txt
+txt	10253	'byu0'	9	gamedata/d3d11/artdata/map/byu52/byu5201/proceduraltextureconfigs.txt
+txt	10253	'##Ph'	9	prefetchdata/us/common.txt
+txt	10253	'mnt0'	8	gamedata/d3d11/artdata/map/mnt01/mnt0109/proceduraltextureconfigs.txt
+txt	10253	'bds0'	8	gamedata/d3d11/artdata/map/bds01/bds0112/proceduraltextureconfigs.txt
+txt	10253	34 0D 0A 31	7	gamedata/d3d11/artdata/map/ztc01/ztc0110/cubemapconfigs.txt
+txt	10253	32 0D 0A 36	7	gamedata/d3d11/artdata/map/ztc01/ztc0109/cubemapconfigs.txt
+txt	10253	'wdl0'	7	gamedata/d3d11/artdata/map/wdl01/wdl0107/proceduraltextureconfigs.txt
+txt	10253	31 0D 0A 2D	7	gamedata/d3d11/artdata/map/slm10/slm1002/cubemapconfigs.txt
+txt	10253	'rwg0'	7	gamedata/d3d11/artdata/map/rwg02/rwg0207/proceduraltextureconfigs.txt
+txt	10253	'rsn0'	7	gamedata/d3d11/artdata/map/rsn01/rsn0107/proceduraltextureconfigs.txt
+txt	10253	'mfr0'	7	gamedata/d3d11/artdata/map/mfr01/mfr0107/proceduraltextureconfigs.txt
+txt	10253	'bhm0'	7	gamedata/d3d11/artdata/map/bhm02/bhm0201/proceduraltextureconfigs.txt
+txt	10253	32 0D 0A 35	6	gamedata/d3d11/artdata/map/wdl01/wdl0101/cubemapconfigs.txt
+txt	10253	32 0D 0A 39	6	gamedata/d3d11/artdata/map/sav02/sav0204/cubemapconfigs.txt
+txt	10253	'rwf0'	6	gamedata/d3d11/artdata/map/rwf01/rwf0109/proceduraltextureconfigs.txt
+txt	10253	'ozm0'	6	gamedata/d3d11/artdata/map/ozm01/ozm0107/proceduraltextureconfigs.txt
+txt	10253	'gar0'	6	gamedata/d3d11/artdata/map/grm01/grm0109/proceduraltextureconfigs.txt
+txt	10253	33 0D 0A 33	5	gamedata/d3d11/artdata/map/var01/var0102/cubemapconfigs.txt
+txt	10253	33 0D 0A 34	5	gamedata/d3d11/artdata/map/srb01/srb0105/cubemapconfigs.txt
+txt	10253	'rrp0'	5	gamedata/d3d11/artdata/map/rrp01/rrp0106/proceduraltextureconfigs.txt
+txt	10253	32 0D 0A 37	5	gamedata/d3d11/artdata/map/rbl03/rbl0301/cubemapconfigs.txt
+txt	10253	'Airc'	5	gamedata/d3d11/artdata/map/alc02/alc0208/proceduraltextureconfigs.txt
+txt	10253	'shop'	4	gamedata/d3d11/artdata/map/vic01/vic0102/proceduraltextureconfigs.txt
+txt	10253	33 0D 0A 36	4	gamedata/d3d11/artdata/map/var01/var0104/cubemapconfigs.txt
+txt	10253	32 0D 0A 38	4	gamedata/d3d11/artdata/map/rrp01/rrp0106/cubemapconfigs.txt
+txt	10253	'bul0'	4	gamedata/d3d11/artdata/map/bul03/bul0301/proceduraltextureconfigs.txt
+txt	10253	33 0D 0A 38	3	gamedata/d3d11/artdata/map/vic01/vic0102/cubemapconfigs.txt
+txt	10253	'rbn0'	3	gamedata/d3d11/artdata/map/var20/var2001/proceduraltextureconfigs.txt
+txt	10253	'rbns'	3	gamedata/d3d11/artdata/map/var10/var1005/proceduraltextureconfigs.txt
+txt	10253	'rsn5'	3	gamedata/d3d11/artdata/map/rsn52/rsn5201/proceduraltextureconfigs.txt
+txt	10253	'nal0'	3	gamedata/d3d11/artdata/map/nal01/nal0103/proceduraltextureconfigs.txt
+txt	10253	'alc5'	3	gamedata/d3d11/artdata/map/alc50/alc5004/proceduraltextureconfigs.txt
+txt	10253	34 0D 0A 32	2	gamedata/d3d11/artdata/map/ztc01/ztc0102/cubemapconfigs.txt
+txt	10253	34 0D 0A 34	2	gamedata/d3d11/artdata/map/ztc01/ztc0101/cubemapconfigs.txt
+txt	10253	'vic0'	2	gamedata/d3d11/artdata/map/vic01/vic0105/proceduraltextureconfigs.txt
+txt	10253	35 0D 0A 31	2	gamedata/d3d11/artdata/map/slm01/slm0102/cubemapconfigs.txt
+txt	10253	37 0D 0A 31	2	gamedata/d3d11/artdata/map/rwg02/rwg0205/cubemapconfigs.txt
+txt	10253	'ald0'	2	gamedata/d3d11/artdata/map/rui01/rui0111/proceduraltextureconfigs.txt
+txt	10253	'gran'	2	gamedata/d3d11/artdata/map/rbn10/rbn1007/proceduraltextureconfigs.txt
+txt	10253	34 0D 0A 36	2	gamedata/d3d11/artdata/map/rbn01/rbn0104/cubemapconfigs.txt
+txt	10253	36 0D 0A 38	2	gamedata/d3d11/artdata/map/rbl01/rbl0111/cubemapconfigs.txt
+txt	10253	35 0D 0A 33	2	gamedata/d3d11/artdata/map/naf02/naf0204/cubemapconfigs.txt
+txt	10253	'arch'	2	gamedata/d3d11/artdata/map/naf02/naf0204/proceduraltextureconfigs.txt
+txt	10253	'back'	2	gamedata/d3d11/artdata/map/naf02/naf0202/proceduraltextureconfigs.txt
+txt	10253	'naf0'	2	gamedata/d3d11/artdata/map/naf01/naf0102/proceduraltextureconfigs.txt
+txt	10253	'glf0'	2	gamedata/d3d11/artdata/map/glf01/glf0104/proceduraltextureconfigs.txt
+txt	10253	'alc1'	2	gamedata/d3d11/artdata/map/dor50/dor5001/proceduraltextureconfigs.txt
+txt	10253	'Aspd'	2	gamedata/d3d11/artdata/map/asp01/asp0103/proceduraltextureconfigs.txt
+txt	10253	'numb'	2	ps2data/add_motion/pc1004_02_close.txt
+txt	10253	'1140'	1	gamedata/disableautosavelist/disableautosavelist.txt
+txt	10253	'ArtD'	1	gamedata/d3d11/artdata/shared/idmaps.txt
+txt	10253	'/Gam'	1	gamedata/d3d11/artdata/shared/phyremaps.txt
+txt	10253	'targ'	1	gamedata/d3d11/artdata/menu/texlist.txt
+txt	10253	34 0D 0A 33	1	gamedata/d3d11/artdata/map/wdl01/wdl0104/cubemapconfigs.txt
+txt	10253	34 0D 0A 39	1	gamedata/d3d11/artdata/map/vic01/vic0101/cubemapconfigs.txt
+txt	10253	'nuno'	1	gamedata/d3d11/artdata/map/slm10/slm1001/proceduraltextureconfigs.txt
+txt	10253	'shu5'	1	gamedata/d3d11/artdata/map/shu50/shu5001/proceduraltextureconfigs.txt
+txt	10253	38 0D 0A 31	1	gamedata/d3d11/artdata/map/rwg02/rwg0204/cubemapconfigs.txt
+txt	10253	36 0D 0A 32	1	gamedata/d3d11/artdata/map/rwg02/rwg0203/cubemapconfigs.txt
+txt	10253	36 0D 0A 31	1	gamedata/d3d11/artdata/map/rui01/rui0104/cubemapconfigs.txt
+txt	10253	31 0D 0A 30	1	gamedata/d3d11/artdata/map/rbn51/rbn5101/cubemapconfigs.txt
+txt	10253	'Add_'	1	gamedata/d3d11/artdata/map/rbn51/rbn5101/proceduraltextureconfigs.txt
+txt	10253	'rbn5'	1	gamedata/d3d11/artdata/map/rbn50/rbn5001/proceduraltextureconfigs.txt
+txt	10253	'n101'	1	gamedata/d3d11/artdata/map/rbl02/rbl0202/proceduraltextureconfigs.txt
+txt	10253	'g007'	1	gamedata/d3d11/artdata/map/rbl02/rbl0201/proceduraltextureconfigs.txt
+txt	10253	33 0D 0A 35	1	gamedata/d3d11/artdata/map/rbl01/rbl0129/cubemapconfigs.txt
+txt	10253	35 0D 0A 38	1	gamedata/d3d11/artdata/map/rbl01/rbl0109/cubemapconfigs.txt
+txt	10253	33 0D 0A 37	1	gamedata/d3d11/artdata/map/rbl01/rbl0106/cubemapconfigs.txt
+txt	10253	'hm_k'	1	gamedata/d3d11/artdata/map/ous01/ous0101/proceduraltextureconfigs.txt
+txt	10253	'nv_0'	1	gamedata/d3d11/artdata/map/nal03/nal0301/proceduraltextureconfigs.txt
+txt	10253	'ik_k'	1	gamedata/d3d11/artdata/map/nal02/nal0201/proceduraltextureconfigs.txt
+txt	10253	'er02'	1	gamedata/d3d11/artdata/map/nac20/nac2001/proceduraltextureconfigs.txt
+txt	10253	37 0D 0A 33	1	gamedata/d3d11/artdata/map/mrm02/mrm0204/cubemapconfigs.txt
+txt	10253	34 0D 0A 38	1	gamedata/d3d11/artdata/map/mfr01/mfr0103/cubemapconfigs.txt
+txt	10253	'g001'	1	gamedata/d3d11/artdata/map/gil50/gil5001/proceduraltextureconfigs.txt
+txt	10253	34 0D 0A 2D	1	gamedata/d3d11/artdata/map/fon01/fon0101/cubemapconfigs.txt
+txt	10253	34 0D 0A 35	1	gamedata/d3d11/artdata/map/enw01/enw0105/cubemapconfigs.txt
+txt	10253	35 0D 0A 37	1	gamedata/d3d11/artdata/map/dor01/dor0101/cubemapconfigs.txt
+txt	10253	'byu5'	1	gamedata/d3d11/artdata/map/byu51/byu5101/proceduraltextureconfigs.txt
+txt	10253	'bhm5'	1	gamedata/d3d11/artdata/map/bhm50/bhm5001/proceduraltextureconfigs.txt
+txt	10253	'Asp_'	1	gamedata/d3d11/artdata/map/asp01/asp0102/proceduraltextureconfigs.txt
+txt	10253	'alc2'	1	gamedata/d3d11/artdata/map/alc20/alc2001/proceduraltextureconfigs.txt
+txt	10253	'n103'	1	gamedata/d3d11/artdata/map/alc02/alc0201/proceduraltextureconfigs.txt
+txt	10253	'hc10'	1	ps2data/add_motion/add_motion_list.txt
+txt	10253	'numM'	1	ps2data/add_motion/hc1004_02.txt
+txt	10253	'#tit'	1	jsondata/parametersmanagermonstergallerystruct.txt
+txt	10253	'Json'	1	prefetchdata/us/events/212.txt
+ebp	10045	'EBP2'	10036	ps2data/plan_master/us/plan_map/ztc_d/ztc_d01/global/ztc_d01.ebp
+ebp	10045	07 00 00 80	9	ps2data/plan_master/us/event/evt_t/evt_t0020/evt_t0020.ebp
+sab	4609	'sabf'	4609	ps2data/sound/shout/us/shout65/shout65.orb.sab
+mot	4392	'PKFL'	4392	ps2data/plan_master/us/plan_map/wdl_b/wdl_b01/global/wdl_b01.mot
+efx	3288	'EFX0'	3288	ps2data/effect_finish/us/menu/m_all.efx
+ca	3164	'@FRP'	3164	ps2data/obj_finish/in/summon/s0031/s0031_00.ca
+dat	2948	'himg'	2721	ps2data/image/ff12/myoshiok/us/handbook/menuhandbook_knowledge002.dat
+dat	2948	'hdat'	101	ps2data/image/ff12/myoshiok/us/handbook/menuhandbook_knowledge000.dat
+dat	2948	'hchk'	54	ps2data/image/ff12/myoshiok/us/handbook/menuhandbook_knowledge.dat
+dat	2948	'qstd'	9	ps2data/image/ff12/myoshiok/us/quest/menuquest.dat
+dat	2948	01 00 00 00	5	gamedata/d3d11/artdata/font/us/font00.dat
+dat	2948	02 00 00 00	5	gamedata/d3d11/artdata/font/us/fontex_expand.dat
+dat	2948	03 00 00 00	5	gamedata/d3d11/artdata/font/us/fontex_subtitle.dat
+dat	2948	0D 00 00 00	5	gamedata/d3d11/artdata/font/us/font_bookman.dat
+dat	2948	0E 00 00 00	5	gamedata/d3d11/artdata/font/us/font_iwa_g12.dat
+dat	2948	0F 00 00 00	5	gamedata/d3d11/artdata/font/us/font_square.dat
+dat	2948	0B 00 00 00	5	gamedata/d3d11/artdata/font/us/font_venus.dat
+dat	2948	04 00 00 00	4	gamedata/d3d11/artdata/font/kr/fontguide.dat
+dat	2948	07 00 00 00	4	gamedata/d3d11/artdata/font/kr/fontmonster.dat
+dat	2948	05 00 00 00	4	gamedata/d3d11/artdata/font/kr/fontquest.dat
+dat	2948	06 00 00 00	4	gamedata/d3d11/artdata/font/kr/fonttutorial.dat
+dat	2948	11 00 00 00	2	gamedata/d3d11/artdata/font/us/font_stf_a.dat
+dat	2948	12 00 00 00	2	gamedata/d3d11/artdata/font/us/font_stf_as.dat
+dat	2948	13 00 00 00	2	gamedata/d3d11/artdata/font/us/font_stf_b.dat
+dat	2948	14 00 00 00	2	gamedata/d3d11/artdata/font/us/font_stf_bs.dat
+dat	2948	15 00 00 00	2	gamedata/d3d11/artdata/font/us/font_stf_c.dat
+dat	2948	16 00 00 00	2	gamedata/d3d11/artdata/font/us/font_stf_cs.dat
+ah	2564	'/Gam'	2559	gamedata/d3d11/artdata/map/ztc01/ztc0110/ztc0110_d3d11.ah
+ah	2564	'font'	5	gamedata/d3d11/artdata/font/us/fontlist.ah
+snd	2304	'PKFL'	2304	ps2data/plan_master/us/event/ztc_d/ztc_d0101/ztc_d0101.snd
+vpc	1809	'PKFL'	1809	ps2data/plan_master/us/event/ztc_d/ztc_d0101/ztc_d0101.vpc
+vpcjp	1809	'PKFL'	1809	ps2data/plan_master/us/event/ztc_d/ztc_d0101/ztc_d0101.vpcjp
+bin	1439	'sloc'	436	ps2data/image/ff12/myoshiok/us/worldmap/menumap_sub00.bin
+bin	1439	'st2e'	407	ps2data/image/ff12/test_battle/us/binaryfile/battle_message.bin
+bin	1439	00 00 00 00	73	ps2data/image/ff12/myoshiok/us/bin_menu/map_efe00.bin
+bin	1439	'hctg'	54	ps2data/image/ff12/myoshiok/us/handbook/menuhandbook_knowledge.bin
+bin	1439	'licd'	52	ps2data/image/ff12/test_battle/kr/binaryfile/board_1.bin
+bin	1439	40 00 00 00	42	ps2data/image/ff12/myoshiok/us/packfiles/clutpack_ys.bin
+bin	1439	'gmap'	35	ps2data/image/ff12/myoshiok/us/worldmap/menumap_guide00.bin
+bin	1439	'FLAG'	18	ps2data/image/ff12/us/bin/mapjumpgroupflagrom.bin
+bin	1439	'CCdd'	18	ps2data/image/ff12/myoshiok/us/bin_menu/face_guest08.bin
+bin	1439	D1 D1 F4 F4	18	ps2data/image/ff12/myoshiok/us/bin_menu/face_guest10.bin
+bin	1439	C9 C9 E3 E3	18	ps2data/image/ff12/myoshiok/us/bin_menu/face_guest11.bin
+bin	1439	E5 E5 E5 E5	18	ps2data/image/ff12/myoshiok/us/bin_menu/face_guest14.bin
+bin	1439	'CHSE'	16	ps2data/image/ff12/in/common/charseinfo_b.bin
+bin	1439	80 00 00 00	14	ps2data/image/ff12/test_battle/kr/binaryfile/growth_rate_growth_rate_name.bin
+bin	1439	'NPC0'	9	ps2data/image/ff12/us/bin/npcdic.bin
+bin	1439	'PLMN'	9	ps2data/image/ff12/us/bin/planmapname.bin
+bin	1439	'QST1'	9	ps2data/image/ff12/us/bin/questbase.bin
+bin	1439	47 00 00 00	9	ps2data/image/ff12/test_battle/us/binaryfile/battle_pack.bin
+bin	1439	0F 00 00 00	9	ps2data/image/ff12/test_battle/us/binaryfile/word.bin
+bin	1439	'amap'	9	ps2data/image/ff12/myoshiok/us/worldmap/menumap_area.bin
+bin	1439	'cmap'	9	ps2data/image/ff12/myoshiok/us/worldmap/menumap_common.bin
+bin	1439	'lmap'	9	ps2data/image/ff12/myoshiok/us/worldmap/menumap_location.bin
+bin	1439	'wmap'	9	ps2data/image/ff12/myoshiok/us/worldmap/menumap_world.bin
+bin	1439	94 03 94 03	9	ps2data/image/ff12/myoshiok/us/quest/menuquest01.bin
+bin	1439	38 00 38 00	9	ps2data/image/ff12/myoshiok/us/quest/menuquest02.bin
+bin	1439	'hcom'	9	ps2data/image/ff12/myoshiok/us/handbook/menuhandbook.bin
+bin	1439	'hodr'	9	ps2data/image/ff12/myoshiok/us/handbook/menuhandbook_order.bin
+bin	1439	BA BA A3 A3	9	ps2data/image/ff12/myoshiok/us/bin_menu/face_guest07.bin
+bin	1439	'//22'	9	ps2data/image/ff12/myoshiok/us/bin_menu/face_guest15.bin
+bin	1439	'sign'	9	ps2data/image/ff12/myoshiok/us/bin_menu/key_signal_data.bin
+bin	1439	'bwin'	9	ps2data/image/ff12/myoshiok/us/bin_menu/menubtlwndinfo.bin
+bin	1439	8C 01 70 02	8	ps2data/image/ff12/myoshiok/us/quest/menuquest00.bin
+bin	1439	0B 00 00 80	8	ps2data/image/ff12/in/bin/btlctrl.bin
+bin	1439	3A 03 00 00	4	ps2data/image/ff12/test_battle/kr/binaryfile/commandpack.bin
+bin	1439	64 00 00 00	4	ps2data/image/ff12/test_battle/kr/binaryfile/shop_data.bin
+bin	1439	01 00 17 00	4	ps2data/image/ff12/test_battle/kr/binaryfile/wepjob_matrix.bin
+bin	1439	4E 41 56 02	3	ps2data/image/ff12/in/bin/navimapdata.bin
+bin	1439	41 05 00 00	2	ps2data/image/ff12/test_battle/kr/binaryfile/basic_skill_basic_skill_name.bin
+bin	1439	1E 05 00 00	2	ps2data/image/ff12/test_battle/kr/binaryfile/logicpack.bin
+bin	1439	07 01 00 00	2	ps2data/image/ff12/myoshiok/in/bin_menu/fontcolor.bin
+bin	1439	00 00 00 80	2	ps2data/image/ff12/myoshiok/in/bin_menu/item_clut.bin
+bin	1439	01 00 02 00	2	ps2data/image/ff12/myoshiok/in/bin_menu/license_chip.bin
+bin	1439	'MENU'	2	ps2data/image/ff12/myoshiok/in/bin_menu/menu_version.bin
+bin	1439	'CLT2'	2	ps2data/image/ff12/myoshiok/in/bin_menu/monotone_chr.bin
+bin	1439	'GRMI'	2	ps2data/image/ff12/in/common/gramap_weatherinfo.bin
+bin	1439	4D 52 46 02	2	ps2data/image/ff12/in/common/map_ref.bin
+bin	1439	'MUS0'	2	ps2data/image/ff12/in/common/musicctrl.bin
+bin	1439	21 00 00 00	2	ps2data/image/ff12/in/common/pc_skillmotion.bin
+bin	1439	00 00 01 00	2	ps2data/image/ff12/in/common/test_area_ref.bin
+bin	1439	98 00 00 00	2	ps2data/image/ff12/in/bin/filelistlocalin.bin
+bin	1439	01 00 00 00	2	ps2data/image/ff12/common/test_map_ref.bin
+bin	1439	8C 01 74 07	1	ps2data/image/ff12/myoshiok/in/quest/menuquest00.bin
+bin	1439	'ashd'	1	ps2data/image/ff12/katano/event.bin
+bin	1439	'EVME'	1	ps2data/image/ff12/common/eventmemorylist.bin
+bin	1439	'VIB0'	1	ps2data/image/ff12/common/eventvib.bin
+bin	1439	1B 00 00 00	1	ps2data/image/ff12/common/fhmusicdata.bin
+bin	1439	'FOOT'	1	ps2data/image/ff12/common/soundfoottable.bin
+bin	1439	'dP<d'	1	ps2data/image/ff12/common/summoneffectdata.bin
+bin	1439	00 00 63 00	1	ps2data/add_motion/highmodelreplace.bin
+cm	1066	'@FRP'	1066	ps2data/obj_finish/in/weapon/w0001.cm
+json	830	7B 0D 0A 20	774	jsondata/init.json
+json	830	7B 7D	29	jsondata/0.json
+json	830	EMPTY	26	jsondata/cutscenes/sum_a0000.json
+json	830	7B 0D 0A 09	1	jsondata/uisize/uisize_sd.json
+mpk	550	20 00 00 00	550	ps2data/plan_master/map_ctrl/ztc01/ztc0110/bin/ztc0110.mpk
+tm2	447	'TIM2'	447	ps2data/image/ff12/myoshiok/us/tm2_menu/cm2_win_c.tm2
+efb	410	'EFB0'	410	ps2data/efb/alc0101.efb
+ard	332	'FF12'	332	ps2data/plan_master/in/plan_map/ztc_d/area/ztc_d.ard
+nmb	332	02 00 64 00	36	ps2data/plan_master/in/plan_map/ztc_d/area/ztc_d.nmb
+nmb	332	01 00 64 00	36	ps2data/plan_master/in/plan_map/wdl_b/area/wdl_b.nmb
+nmb	332	0A 00 64 00	30	ps2data/plan_master/in/plan_map/ztc_a/area/ztc_a.nmb
+nmb	332	06 00 64 00	30	ps2data/plan_master/in/plan_map/tri_d/area/tri_d.nmb
+nmb	332	03 00 64 00	24	ps2data/plan_master/in/plan_map/ztc_b/area/ztc_b.nmb
+nmb	332	08 00 64 00	24	ps2data/plan_master/in/plan_map/tri_j/area/tri_j.nmb
+nmb	332	05 00 64 00	20	ps2data/plan_master/in/plan_map/sav_b/area/sav_b.nmb
+nmb	332	0B 00 64 00	18	ps2data/plan_master/in/plan_map/tri_s/area/tri_s.nmb
+nmb	332	07 00 64 00	18	ps2data/plan_master/in/plan_map/tri_c/area/tri_c.nmb
+nmb	332	09 00 64 00	16	ps2data/plan_master/in/plan_map/ztc_c/area/ztc_c.nmb
+nmb	332	04 00 64 00	16	ps2data/plan_master/in/plan_map/rbl_k/area/rbl_k.nmb
+nmb	332	0E 00 64 00	14	ps2data/plan_master/in/plan_map/tri_q/area/tri_q.nmb
+nmb	332	0F 00 64 00	12	ps2data/plan_master/in/plan_map/tri_m/area/tri_m.nmb
+nmb	332	0C 00 64 00	12	ps2data/plan_master/in/plan_map/tri_i/area/tri_i.nmb
+nmb	332	00 00 64 00	8	ps2data/plan_master/in/plan_map/slm_a/area/slm_a.nmb
+nmb	332	0D 00 64 00	8	ps2data/plan_master/in/plan_map/rwg_c/area/rwg_c.nmb
+nmb	332	11 00 64 00	6	ps2data/plan_master/in/plan_map/wdl_a/area/wdl_a.nmb
+nmb	332	13 00 64 00	2	ps2data/plan_master/in/plan_map/tri_l/area/tri_l.nmb
+nmb	332	16 00 64 00	2	ps2data/plan_master/in/plan_map/rsn_b/area/rsn_b.nmb
+seb	248	'SeBl'	248	ps2data/sound/se/block/se000.seb
+mab	116	'mabf'	116	ps2data/sound/music/magi_data/win/music007.win.mab
+mrp	116	4D 52 50 00	116	ps2data/image/ff12/myoshiok/us/mrp_menu/e3_logo.mrp
+ta	45	'/Gam'	45	gamedata/d3d11/artdata/map/var50/var5001/var5001_anime_0_d3d11.ta
+mh	43	'.mhe'	43	ps2data/movie_finish/us/alx.mh
+webm	40	1A 45 DF A3	40	gamedata/d3d11/artdata/video/alx.webm
+adm	39	04 00 01 00	35	ps2data/add_motion/hc1004_02.adm
+adm	39	02 00 00 01	2	ps2data/add_motion/hn1017_03.adm
+adm	39	01 00 00 02	2	ps2data/add_motion/hs0003_01.adm
+ker	34	42 00 00 00	12	gamedata/d3d11/artdata/font/us/font_stf_a.ker
+ker	34	02 01 00 00	10	gamedata/d3d11/artdata/font/us/font_square.ker
+ker	34	20 00 00 00	5	gamedata/d3d11/artdata/font/us/font00.ker
+ker	34	03 04 00 00	3	gamedata/d3d11/artdata/font/kr/fontex_expand.ker
+ker	34	28 00 00 00	2	gamedata/d3d11/artdata/font/us/font_iwa_g12.ker
+ker	34	2D 00 00 00	1	gamedata/d3d11/artdata/font/kr/font00.ker
+ker	34	41 00 00 00	1	gamedata/d3d11/artdata/font/kr/fontex_subtitle.ker
+cl2	20	'CLT2'	20	ps2data/image/ff12/myoshiok/us/bin_menu/loca_bhm.cl2
+as7	18	41 37 00 40	16	ps2data/image/ff12/myoshiok/in/bin_menu/item_gra00.as7
+as7	18	41 37 0C 18	2	ps2data/image/ff12/myoshiok/in/bin_menu/char_silhouette.as7
+csv	17	'274,'	9	prefetchdata/us/eventlist.csv
+csv	17	'Name'	4	ps2data/soft_particle/softparticle_chara.csv
+csv	17	'MapN'	1	ps2data/opt.csv
+csv	17	'Map,'	1	ps2data/soft_particle/softparticle_bg.csv
+csv	17	'#tit'	1	jsondata/parametersmanageruisizestruct.csv
+csv	17	'name'	1	prefetchdata/ff12mapjump_custom_nocrystal.csv
+sav	16	00 00 00 00	12	ps2data/image/ff12/katano/ff12savedata00.sav
+sav	16	'FF12'	4	ps2data/image/ff12/katano/ff12savedata04.sav
+fex	14	E0 9A 94 22	7	gamedata/d3d11/artdata/font/us/fontex_subtitle.fex
+fex	14	B0 F7 02 52	4	gamedata/d3d11/artdata/font/kr/fontmonster.fex
+fex	14	29 A0 94 22	3	gamedata/d3d11/artdata/font/us/fontex_expand.fex
+btm	12	00 00 00 00	12	ps2data/image/ff12/myoshiok/in/exfont/font_stfc_normal.btm
+lst	9	'qstl'	9	ps2data/image/ff12/myoshiok/us/quest/menuquest.lst
+nfs	9	'TIM2'	9	ps2data/image/ff12/myoshiok/us/quest/menuquest.nfs
+dbg	8	E4 C4 01 00	2	ps2data/image/ff12/in/bin/btlctrl.dbg
+dbg	8	78 84 00 00	2	ps2data/image/ff12/in/bin/ctrl.dbg
+dbg	8	84 17 01 00	2	ps2data/image/ff12/in/bin/evctrl.dbg
+dbg	8	74 22 02 00	2	ps2data/image/ff12/in/bin/mapctrl.dbg
+msb	8	C0 00 01 00	2	ps2data/image/ff12/in/bin/btlctrl.msb
+msb	8	A8 00 01 00	2	ps2data/image/ff12/in/bin/ctrl.msb
+msb	8	BC 00 01 00	2	ps2data/image/ff12/in/bin/evctrl.msb
+msb	8	E4 00 01 00	2	ps2data/image/ff12/in/bin/mapctrl.msb
+sbn	8	03 00 00 00	4	ps2data/image/ff12/in/bin/btlctrl.sbn
+sbn	8	02 00 00 00	4	ps2data/image/ff12/in/bin/ctrl.sbn
+h	6	'// m'	4	ps2data/image/ff12/myoshiok/us/worldmap/menumap_sub.h
+h	6	EF BB BF 2F	2	ps2data/image/ff12/myoshiok/kr/quest/menuquest.h
+tga	2	00 00 02 00	2	gamedata/titleimage/in/sqex logo size_ffx.tga
+(none)	2	01 00 00 00	1	ps2data/square_ff12/ff12config
+(none)	2	'10.0'	1	ps2data/debglobal.bin/file1
+mg	2	10 00 00 00	2	ps2data/image/ff12/myoshiok/in/worldmap/meshdata.mg
+sys	2	'PS2D'	2	ps2data/image/ff12/myoshiok/in/bin_menu/icon.sys
+ico	2	00 00 01 00	2	ps2data/image/ff12/myoshiok/in/bin_menu/icon1.ico
+config	1	'scnf'	1	ps2data/sound/sead.win.config
+spp	1	'SPP1'	1	ps2data/sound/se/map/position_map/spp/env/env99.spp
+cnf	1	'BOOT'	1	ps2data/cdi/in/system.cnf

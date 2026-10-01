@@ -1,0 +1,261 @@
+HUD keys: 86 (TSV rows 335, distinct TSV globals 213); lowest 01E0C348 highest 0209E628
+== A. operands in the block
+  operands starting in window: 1283 (rip 1274, ibrel 5, abs32 4)
+  NONRIP 00266588 ibrel movzx    edx, byte ptr [r11 + rax*4 + 0x1cec329]      start 01E0C329 w1  COVERS indexed  root 00266530  next HUD key 01E0C348 +0x1F
+  NONRIP 00266B83 ibrel cmp      byte ptr [r9 + rax*4 + 0x1cec329], 1         start 01E0C329 w1  COVERS indexed  root 00000000  next HUD key 01E0C348 +0x1F
+  NONRIP 0027E122 ibrel mov      eax, dword ptr [rdx + rcx*4 + 0x1cec398]     start 01E0C398 w4  COVERS indexed  root 0027E050  next HUD key 01E0C3B0 +0x18
+  NONRIP 0028FC17 abs32 mov      rcx, qword ptr [eip + 0x1e0c261]             start 01E0C261 w8  COVERS  root 0028FBE0  next HUD key 01E0C348 +0xE7
+  NONRIP 002AECA3 ibrel movzx    edx, byte ptr [rax + rcx + 0x1cece30]        start 01E0CE30 w1  COVERS indexed  root 002AEB20  next HUD key 01E0CE94 +0x64
+  NONRIP 002AEE26 ibrel movzx    eax, byte ptr [rax + rcx + 0x1cece10]        start 01E0CE10 w1  COVERS indexed  root 002AEB20  next HUD key 01E0CE94 +0x84
+  NONRIP 0053C7C2 abs32 mov      r14, qword ptr [r14 + rax*8 + 0x1e0c9d0]     start 01E0C9D0 w8  COVERS indexed  root 0053AB50  next HUD key 01E0CDB8 +0x3E8
+  NONRIP 0053C7E1 abs32 mov      r14, qword ptr [r14 + rdx*8 + 0x1e0c990]     start 01E0C990 w8  COVERS indexed  root 0053AB50  next HUD key 01E0CDB8 +0x428
+  NONRIP 0053C807 abs32 mov      r15, qword ptr [rax + rcx*8 + 0x1e0ca10]     start 01E0CA10 w8  COVERS indexed  root 0053AB50  next HUD key 01E0CDB8 +0x3A8
+  operands covering a HUD key from a different start (wide / misaligned): 3
+    key 01E0C34C mBattleCommandItalicRevJp          <- 0027AE78 rip   mov      rax, qword ptr [rip + 0x1b914c9]             start 01E0C348 w8  COVERS
+    key 01E0C390 BattleMistIconWidth                <- 0027D000 rip   mov      rax, qword ptr [rip + 0x1b8f385]             start 01E0C38C w8  COVERS
+    key 01E0CF40 OverHeadStatusOffsetY              <- 002C8744 rip   mov      r8, qword ptr [rip + 0x1b447f1]              start 01E0CF3C w8  COVERS
+  non-rip operands covering a HUD key: 0
+== B. rip leas into the block
+  0023DA22 lea r9   -> 01E0BF60  root 0023D890  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023DEA2 lea r9   -> 01E0BF60  root 0023DD10  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023E47F lea rcx  -> 01E0BF60  root 0023E400  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023E7D2 lea rdi  -> 01E0BF60  root 0023E770  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023E906 lea rdi  -> 01E0BF60  root 0023E770  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023EB1D lea rdx  -> 01E0BF60  root 0023EA10  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023EFD6 lea rsi  -> 01E0BF60  root 0023EFC0  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023F1D4 lea r9   -> 01E0BF60  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  002405B7 lea r8   -> 01E0BF60  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x3E8
+  0023EFF7 lea rdx  -> 01E0BF68  root 0023EFC0  next HUD key 01E0C348 mScrollListHeight at +0x3E0
+  0023EFEE lea rdx  -> 01E0BF70  root 0023EFC0  next HUD key 01E0C348 mScrollListHeight at +0x3D8
+  001AF95C lea rax  -> 01E0C0D0  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x278
+  001AF96A lea rax  -> 01E0C0D4  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x274
+  001AF978 lea rax  -> 01E0C0D8  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x270
+  001AF986 lea rax  -> 01E0C0DC  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x26C
+  00246BFF lea rdx  -> 01E0C0E0  root 00246AD0  next HUD key 01E0C348 mScrollListHeight at +0x268
+  00244EEB lea rdx  -> 01E0C0F8  root 00244DD0  next HUD key 01E0C348 mScrollListHeight at +0x250
+  001AF48C lea rax  -> 01E0C110  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x238
+  001AF49A lea rax  -> 01E0C114  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x234
+  001AFF52 lea rax  -> 01E0C118  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x230
+  001AFF60 lea rax  -> 01E0C11C  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x22C
+  001AF518 lea rax  -> 01E0C120  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x228
+  001AF526 lea rax  -> 01E0C124  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x224
+  001AF534 lea rax  -> 01E0C128  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x220
+  001AF542 lea rax  -> 01E0C12C  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x21C
+  001AF550 lea rax  -> 01E0C130  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x218
+  001AF55E lea rax  -> 01E0C134  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x214
+  001AF56C lea rax  -> 01E0C138  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x210
+  001AF57A lea rax  -> 01E0C13C  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x20C
+  001AF588 lea rax  -> 01E0C140  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x208
+  001AF596 lea rax  -> 01E0C144  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x204
+  001AFCEA lea rax  -> 01E0C148  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x200
+  001AFCF8 lea rax  -> 01E0C14C  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x1FC
+  00242709 lea rbp  -> 01E0C150  root 002426F0  next HUD key 01E0C348 mScrollListHeight at +0x1F8
+  00249FF4 lea rbx  -> 01E0C1D0  root 00249FD0  next HUD key 01E0C348 mScrollListHeight at +0x178
+  00253FFC lea rdx  -> 01E0C2C4  root 00253C70  next HUD key 01E0C348 mScrollListHeight at +0x84
+  0025450C lea rdx  -> 01E0C2C4  root 00254500  next HUD key 01E0C348 mScrollListHeight at +0x84
+  00254B88 lea rcx  -> 01E0C2C4  root 00254B50  next HUD key 01E0C348 mScrollListHeight at +0x84
+  00267ABB lea r8   -> 01E0C328  root 002679F0  next HUD key 01E0C348 mScrollListHeight at +0x20  <= 0x40
+  00267A3A lea rdx  -> 01E0C32A  root 002679F0  next HUD key 01E0C348 mScrollListHeight at +0x1E  <= 0x40
+  001AF470 lea rax  -> 01E0C348  root 00000000  next HUD key 01E0C348 mScrollListHeight at +0x0  <= 0x40
+  001AF614 lea rax  -> 01E0C34C  root 00000000  next HUD key 01E0C34C mBattleCommandItalicRevJp at +0x0  <= 0x40
+  001AF622 lea rax  -> 01E0C350  root 00000000  next HUD key 01E0C350 mBattleCommandItalicRevUs at +0x0  <= 0x40
+  001AF7E2 lea rax  -> 01E0C354  root 00000000  next HUD key 01E0C354 BattleCommandNumTagWidth at +0x0  <= 0x40
+  001AF80C lea rax  -> 01E0C358  root 00000000  next HUD key 01E0C358 BattleCommandMistTagWidth at +0x0  <= 0x40
+  001AF81A lea rax  -> 01E0C35C  root 00000000  next HUD key 01E0C35C BattleCommandScrollBarWidth at +0x0  <= 0x40
+  001AF828 lea rax  -> 01E0C360  root 00000000  next HUD key 01E0C360 BattleCommandScrollTableOffsetX at +0x0  <= 0x40
+  001AF836 lea rax  -> 01E0C364  root 00000000  next HUD key 01E0C364 BattleCommandGillTagOffset at +0x0  <= 0x40
+  001B0024 lea rax  -> 01E0C368  root 00000000  next HUD key 01E0C368 BattleMenuLRCursorMoveX at +0x0  <= 0x40
+  001AF4B6 lea rax  -> 01E0C36C  root 00000000  next HUD key 01E0C36C mGambitPositionOffsetX at +0x0  <= 0x40
+  001AF4C4 lea rax  -> 01E0C370  root 00000000  next HUD key 01E0C370 mGambitPositionOffsetY at +0x0  <= 0x40
+  001AF47E lea rax  -> 01E0C374  root 00000000  next HUD key 01E0C374 mCommandTitleFontHeight at +0x0  <= 0x40
+  001AF7D4 lea rax  -> 01E0C378  root 00000000  next HUD key 01E0C378 BattleCommandNumPosX at +0x0  <= 0x40
+  001AF7F0 lea rax  -> 01E0C37C  root 00000000  next HUD key 01E0C37C BattleCommandMistPosX at +0x0  <= 0x40
+  001AF7FE lea rax  -> 01E0C380  root 00000000  next HUD key 01E0C380 BattleCommandMistPosY at +0x0  <= 0x40
+  001AF88A lea rax  -> 01E0C384  root 00000000  next HUD key 01E0C384 BattleMistCount1Offset at +0x0  <= 0x40
+  001AF898 lea rax  -> 01E0C388  root 00000000  next HUD key 01E0C388 BattleMistCount2Offset at +0x0  <= 0x40
+  001AF8A6 lea rax  -> 01E0C38C  root 00000000  next HUD key 01E0C38C BattleMistCount3Offset at +0x0  <= 0x40
+  001AF8B4 lea rax  -> 01E0C390  root 00000000  next HUD key 01E0C390 BattleMistIconWidth at +0x0  <= 0x40
+  001AF4D2 lea rax  -> 01E0C3B0  root 00000000  next HUD key 01E0C3B0 mCommandMenuStrHeight at +0x0  <= 0x40
+  001AF4E0 lea rax  -> 01E0C3B4  root 00000000  next HUD key 01E0C3BC PartyBlackBandGradH at +0x8  <= 0x40
+  001AF63E lea rax  -> 01E0C3B8  root 00000000  next HUD key 01E0C3BC PartyBlackBandGradH at +0x4  <= 0x40
+  001AF630 lea rax  -> 01E0C3BC  root 00000000  next HUD key 01E0C3BC PartyBlackBandGradH at +0x0  <= 0x40
+  001AF64C lea rax  -> 01E0C3C0  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x1C  <= 0x40
+  001AF65A lea rax  -> 01E0C3C4  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x18  <= 0x40
+  001AF668 lea rax  -> 01E0C3C8  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x14  <= 0x40
+  001AF676 lea rax  -> 01E0C3CC  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x10  <= 0x40
+  001AF684 lea rax  -> 01E0C3D0  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0xC  <= 0x40
+  001AF692 lea rax  -> 01E0C3D4  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x8  <= 0x40
+  001AF6A0 lea rax  -> 01E0C3D8  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x4  <= 0x40
+  001AF6AE lea rax  -> 01E0C3DC  root 00000000  next HUD key 01E0C3DC ListHelpBlackBandH at +0x0  <= 0x40
+  001AF6BC lea rax  -> 01E0C3E0  root 00000000  next HUD key 01E0C3E8 BlackBandAnimTime at +0x8  <= 0x40
+  001AF6CA lea rax  -> 01E0C3E4  root 00000000  next HUD key 01E0C3E8 BlackBandAnimTime at +0x4  <= 0x40
+  001AF6D8 lea rax  -> 01E0C3E8  root 00000000  next HUD key 01E0C3E8 BlackBandAnimTime at +0x0  <= 0x40
+  0028612B lea rax  -> 01E0C3F0  root 00286010  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00286453 lea rax  -> 01E0C3F0  root 002862A0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00286604 lea rax  -> 01E0C3F0  root 00286500  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  002868D3 lea rax  -> 01E0C3F0  root 00286780  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00286BC6 lea rax  -> 01E0C3F0  root 00286A80  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00286F0E lea rax  -> 01E0C3F0  root 00286D60  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  002872D3 lea rax  -> 01E0C3F0  root 002870D0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00287464 lea r15  -> 01E0C3F0  root 00287400  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  002876CB lea rbx  -> 01E0C3F0  root 002875D0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  002878B2 lea rax  -> 01E0C3F0  root 00000000  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00287F3F lea rax  -> 01E0C3F0  root 00287E60  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00288194 lea rax  -> 01E0C3F0  root 002880B0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  0028838E lea rax  -> 01E0C3F0  root 002882F0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  002885EE lea rax  -> 01E0C3F0  root 00288500  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  0028889E lea rax  -> 01E0C3F0  root 002887B0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00288BE0 lea rax  -> 01E0C3F0  root 00288A60  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  00288E9F lea rax  -> 01E0C3F0  root 00288DB0  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x54
+  001AF908 lea rax  -> 01E0C444  root 00000000  next HUD key 01E0C444 ExpLpPositionOffsetX at +0x0  <= 0x40
+  001AF4EE lea rax  -> 01E0C448  root 00000000  next HUD key 01E0C450 NumEffectLPOffsetY at +0x8  <= 0x40
+  001AF4FC lea rax  -> 01E0C44C  root 00000000  next HUD key 01E0C450 NumEffectLPOffsetY at +0x4  <= 0x40
+  001AF8DE lea rax  -> 01E0C450  root 00000000  next HUD key 01E0C450 NumEffectLPOffsetY at +0x0  <= 0x40
+  001AF8FA lea rax  -> 01E0C454  root 00000000  next HUD key 01E0C454 EXPLPNumOffsetY at +0x0  <= 0x40
+  001AF5A4 lea rax  -> 01E0C458  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0xF8
+  001AF5B2 lea rax  -> 01E0C45C  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0xF4
+  001AF5C0 lea rax  -> 01E0C460  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0xF0
+  001AFDE6 lea rax  -> 01E0C470  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0xE0
+  001AFDF4 lea rax  -> 01E0C474  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0xDC
+  001AF5CE lea rax  -> 01E0C484  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0xCC
+  00292D0B lea r10  -> 01E0C490  root 00292B70  next HUD key 01E0C550 LevelupBlinkSpeed at +0xC0
+  001AFFA6 lea rax  -> 01E0C550  root 00000000  next HUD key 01E0C550 LevelupBlinkSpeed at +0x0  <= 0x40
+  001AF5DC lea rax  -> 01E0C554  root 00000000  next HUD key 01E0C554 mCPCWindowHeight at +0x0  <= 0x40
+  001AF6E6 lea rax  -> 01E0C558  root 00000000  next HUD key 01E0C584 NgSignalOffsetBaseY at +0x2C  <= 0x40
+  001AF6F4 lea rax  -> 01E0C55C  root 00000000  next HUD key 01E0C584 NgSignalOffsetBaseY at +0x28  <= 0x40
+  001AF852 lea rax  -> 01E0C584  root 00000000  next HUD key 01E0C584 NgSignalOffsetBaseY at +0x0  <= 0x40
+  0040032C lea rbx  -> 01E0C590  root 004001D0  next HUD key 01E0C5B0 BossGaugeExColorR at +0x20  <= 0x40
+  001AF924 lea rax  -> 01E0C5B0  root 00000000  next HUD key 01E0C5B0 BossGaugeExColorR at +0x0  <= 0x40
+  001AF932 lea rax  -> 01E0C5B4  root 00000000  next HUD key 01E0C5B4 BossGaugeExColorG at +0x0  <= 0x40
+  001AF940 lea rax  -> 01E0C5B8  root 00000000  next HUD key 01E0C5B8 BossGaugeExColorB at +0x0  <= 0x40
+  001AF94E lea rax  -> 01E0C5BC  root 00000000  next HUD key 01E0C5BC BossGaugeExColorA at +0x0  <= 0x40
+  001AFF6E lea rax  -> 01E0CD90  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x28  <= 0x40
+  001AFF7C lea rax  -> 01E0CD94  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x24  <= 0x40
+  001AFF8A lea rax  -> 01E0CD98  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x20  <= 0x40
+  001AFF98 lea rax  -> 01E0CD9C  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x1C  <= 0x40
+  001B0040 lea rax  -> 01E0CDA0  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x18  <= 0x40
+  001AF9BE lea rax  -> 01E0CDA4  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x14  <= 0x40
+  001AF9CC lea rax  -> 01E0CDA8  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x10  <= 0x40
+  001AF9B0 lea rax  -> 01E0CDAC  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0xC  <= 0x40
+  001AF9DA lea rax  -> 01E0CDB0  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x8  <= 0x40
+  001AF9E8 lea rax  -> 01E0CDB4  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x4  <= 0x40
+  001AF9F6 lea rax  -> 01E0CDB8  root 00000000  next HUD key 01E0CDB8 MsgWinSignalOffsetY at +0x0  <= 0x40
+  001AFA66 lea rax  -> 01E0CDBC  root 00000000  next HUD key 01E0CDC4 FontBaseHeight at +0x8  <= 0x40
+  001AF994 lea rax  -> 01E0CDC0  root 00000000  next HUD key 01E0CDC4 FontBaseHeight at +0x4  <= 0x40
+  001AF9A2 lea rax  -> 01E0CDC4  root 00000000  next HUD key 01E0CDC4 FontBaseHeight at +0x0  <= 0x40
+  001AFA04 lea rax  -> 01E0CDD0  root 00000000  next HUD key 01E0CDE0 MsgWinLogUpDownCursorOffsetX at +0x10  <= 0x40
+  001AFA12 lea rax  -> 01E0CDD4  root 00000000  next HUD key 01E0CDE0 MsgWinLogUpDownCursorOffsetX at +0xC  <= 0x40
+  001AFA20 lea rax  -> 01E0CDD8  root 00000000  next HUD key 01E0CDE0 MsgWinLogUpDownCursorOffsetX at +0x8  <= 0x40
+  001AFA2E lea rax  -> 01E0CDDC  root 00000000  next HUD key 01E0CDE0 MsgWinLogUpDownCursorOffsetX at +0x4  <= 0x40
+  001AFA3C lea rax  -> 01E0CDE0  root 00000000  next HUD key 01E0CDE0 MsgWinLogUpDownCursorOffsetX at +0x0  <= 0x40
+  001AFA58 lea rax  -> 01E0CDE4  root 00000000  next HUD key 01E0CDE4 MsgWinLogDownCursorOffset at +0x0  <= 0x40
+  001B0008 lea rax  -> 01E0CDE8  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0xAC
+  001B0016 lea rax  -> 01E0CDEC  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0xA8
+  002AC2C3 lea rax  -> 01E0CDFC  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x98
+  002B1961 lea rdx  -> 01E0CE04  root 002B0280  next HUD key 01E0CE94 TargetInfoMoveY at +0x90
+  002ADB98 lea rdx  -> 01E0CE08  root 002AC5F0  next HUD key 01E0CE94 TargetInfoMoveY at +0x8C
+  002B5D5C lea r15  -> 01E0CE10  root 002B5C90  next HUD key 01E0CE94 TargetInfoMoveY at +0x84
+  002B5B96 lea rbp  -> 01E0CE30  root 002B5B60  next HUD key 01E0CE94 TargetInfoMoveY at +0x64
+  002B5C22 lea rbx  -> 01E0CE3A  root 002B5B60  next HUD key 01E0CE94 TargetInfoMoveY at +0x5A
+  001AFA9E lea rax  -> 01E0CE60  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x34  <= 0x40
+  001AFAAC lea rax  -> 01E0CE64  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x30  <= 0x40
+  001AFABA lea rax  -> 01E0CE68  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x2C  <= 0x40
+  001AFAC8 lea rax  -> 01E0CE6C  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x28  <= 0x40
+  001AFAD6 lea rax  -> 01E0CE70  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x24  <= 0x40
+  001AFAE4 lea rax  -> 01E0CE74  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x20  <= 0x40
+  001AFB0E lea rax  -> 01E0CE80  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x14  <= 0x40
+  001AFB38 lea rax  -> 01E0CE8C  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x8  <= 0x40
+  001AFB46 lea rax  -> 01E0CE90  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x4  <= 0x40
+  001AFB54 lea rax  -> 01E0CE94  root 00000000  next HUD key 01E0CE94 TargetInfoMoveY at +0x0  <= 0x40
+  001AFB62 lea rax  -> 01E0CE98  root 00000000  next HUD key 01E0CEA0 ActionListMistLineOffset at +0x8  <= 0x40
+  001AFB8C lea rax  -> 01E0CE9C  root 00000000  next HUD key 01E0CEA0 ActionListMistLineOffset at +0x4  <= 0x40
+  001AFB70 lea rax  -> 01E0CEA0  root 00000000  next HUD key 01E0CEA0 ActionListMistLineOffset at +0x0  <= 0x40
+  001B0078 lea rax  -> 01E0CEA4  root 00000000  next HUD key 01E0CEA4 ActionListMistNameOffset at +0x0  <= 0x40
+  001AFB7E lea rax  -> 01E0CEA8  root 00000000  next HUD key 01E0CEA8 ActionListMistTableOffset at +0x0  <= 0x40
+  001AFD30 lea rax  -> 01E0CEAC  root 00000000  next HUD key 01E0CEAC StatusAloneTopX at +0x0  <= 0x40
+  001AFD3E lea rax  -> 01E0CEB0  root 00000000  next HUD key 01E0CEB0 StatusAloneTopY at +0x0  <= 0x40
+  001AFD4C lea rax  -> 01E0CEB4  root 00000000  next HUD key 01E0CEB4 StatusAloneBottomX at +0x0  <= 0x40
+  001AFD5A lea rax  -> 01E0CEB8  root 00000000  next HUD key 01E0CEB8 StatusAloneBottomY at +0x0  <= 0x40
+  001AFF28 lea rax  -> 01E0CED4  root 00000000  next HUD key 01E0CED4 NAOverHeadTextOffsetY at +0x0  <= 0x40
+  001AFB9A lea rax  -> 01E0CED8  root 00000000  next HUD key 01E0CED8 HpGaugeEnmeyMin_R at +0x0  <= 0x40
+  001AFBA8 lea rax  -> 01E0CEDC  root 00000000  next HUD key 01E0CEDC HpGaugeEnmeyMin_G at +0x0  <= 0x40
+  001AFBB6 lea rax  -> 01E0CEE0  root 00000000  next HUD key 01E0CEE0 HpGaugeEnmeyMin_B at +0x0  <= 0x40
+  001AFBC4 lea rax  -> 01E0CEE4  root 00000000  next HUD key 01E0CEE4 HpGaugeEnmeyMin_A at +0x0  <= 0x40
+  001AFBD2 lea rax  -> 01E0CEE8  root 00000000  next HUD key 01E0CEE8 HpGaugeEnmeyMax_R at +0x0  <= 0x40
+  001AFBE0 lea rax  -> 01E0CEEC  root 00000000  next HUD key 01E0CEEC HpGaugeEnmeyMax_G at +0x0  <= 0x40
+  001AFBEE lea rax  -> 01E0CEF0  root 00000000  next HUD key 01E0CEF0 HpGaugeEnmeyMax_B at +0x0  <= 0x40
+  001AFBFC lea rax  -> 01E0CEF4  root 00000000  next HUD key 01E0CEF4 HpGaugeEnmeyMax_A at +0x0  <= 0x40
+  001AFC0A lea rax  -> 01E0CEF8  root 00000000  next HUD key 01E0CEF8 HpGaugeSideMin_R at +0x0  <= 0x40
+  001AFC18 lea rax  -> 01E0CEFC  root 00000000  next HUD key 01E0CEFC HpGaugeSideMin_G at +0x0  <= 0x40
+  001AFC26 lea rax  -> 01E0CF00  root 00000000  next HUD key 01E0CF00 HpGaugeSideMin_B at +0x0  <= 0x40
+  001AFC34 lea rax  -> 01E0CF04  root 00000000  next HUD key 01E0CF04 HpGaugeSideMin_A at +0x0  <= 0x40
+  001AFC42 lea rax  -> 01E0CF08  root 00000000  next HUD key 01E0CF08 HpGaugeSideMax_R at +0x0  <= 0x40
+  001AFC50 lea rax  -> 01E0CF0C  root 00000000  next HUD key 01E0CF0C HpGaugeSideMax_G at +0x0  <= 0x40
+  001AFC5E lea rax  -> 01E0CF10  root 00000000  next HUD key 01E0CF10 HpGaugeSideMax_B at +0x0  <= 0x40
+  001AFC6C lea rax  -> 01E0CF14  root 00000000  next HUD key 01E0CF14 HpGaugeSideMax_A at +0x0  <= 0x40
+  001AFC7A lea rax  -> 01E0CF18  root 00000000  next HUD key 01E0CF18 HpGaugeOtherMin_R at +0x0  <= 0x40
+  001AFC88 lea rax  -> 01E0CF1C  root 00000000  next HUD key 01E0CF1C HpGaugeOtherMin_G at +0x0  <= 0x40
+  001AFC96 lea rax  -> 01E0CF20  root 00000000  next HUD key 01E0CF20 HpGaugeOtherMin_B at +0x0  <= 0x40
+  001AFCA4 lea rax  -> 01E0CF24  root 00000000  next HUD key 01E0CF24 HpGaugeOtherMin_A at +0x0  <= 0x40
+  001AFCB2 lea rax  -> 01E0CF28  root 00000000  next HUD key 01E0CF28 HpGaugeOtherMax_R at +0x0  <= 0x40
+  001AFCC0 lea rax  -> 01E0CF2C  root 00000000  next HUD key 01E0CF2C HpGaugeOtherMax_G at +0x0  <= 0x40
+  001AFCCE lea rax  -> 01E0CF30  root 00000000  next HUD key 01E0CF30 HpGaugeOtherMax_B at +0x0  <= 0x40
+  001AFCDC lea rax  -> 01E0CF34  root 00000000  next HUD key 01E0CF34 HpGaugeOtherMax_A at +0x0  <= 0x40
+  001B0032 lea rax  -> 01E0CF38  root 00000000  next HUD key 01E0CF3C OverHeadStatusNumXSpace at +0x4  <= 0x40
+  001AFD06 lea rax  -> 01E0CF3C  root 00000000  next HUD key 01E0CF3C OverHeadStatusNumXSpace at +0x0  <= 0x40
+  001AFD22 lea rax  -> 01E0CF40  root 00000000  next HUD key 01E0CF40 OverHeadStatusOffsetY at +0x0  <= 0x40
+  001AFEF0 lea rax  -> 01E0CF44  root 00000000  next HUD key 01E0CF54 SilhouetteWidth at +0x10  <= 0x40
+  001AFEFE lea rax  -> 01E0CF48  root 00000000  next HUD key 01E0CF54 SilhouetteWidth at +0xC  <= 0x40
+  001AFF0C lea rax  -> 01E0CF4C  root 00000000  next HUD key 01E0CF54 SilhouetteWidth at +0x8  <= 0x40
+  001B00A2 lea rax  -> 01E0CF50  root 00000000  next HUD key 01E0CF54 SilhouetteWidth at +0x4  <= 0x40
+  001AFDD8 lea rax  -> 01E0CF54  root 00000000  next HUD key 01E0CF54 SilhouetteWidth at +0x0  <= 0x40
+  001AFDCA lea rax  -> 01E0CF6C  root 00000000  next HUD key 01E0CF6C SilhouettePosY at +0x0  <= 0x40
+  001AFEB8 lea rax  -> 01E0CF70  root 00000000  next HUD key 01E0CF94 FontItalicScale at +0x24  <= 0x40
+  001AFED4 lea rax  -> 01E0CF74  root 00000000  next HUD key 01E0CF94 FontItalicScale at +0x20  <= 0x40
+  001AFEE2 lea rax  -> 01E0CF78  root 00000000  next HUD key 01E0CF94 FontItalicScale at +0x1C  <= 0x40
+  001AFE8E lea rax  -> 01E0CF7C  root 00000000  next HUD key 01E0CF94 FontItalicScale at +0x18  <= 0x40
+  001B00BE lea rax  -> 01E0CF80  root 00000000  next HUD key 01E0CF94 FontItalicScale at +0x14  <= 0x40
+  001B0094 lea rax  -> 01E0CF8C  root 00000000  next HUD key 01E0CF94 FontItalicScale at +0x8  <= 0x40
+  001B4551 lea rax  -> 01E0CF90  root 001B44A0  next HUD key 01E0CF94 FontItalicScale at +0x4  <= 0x40
+  001B455F lea rax  -> 01E0CF94  root 001B44A0  next HUD key 01E0CF94 FontItalicScale at +0x0  <= 0x40
+  002DFE5F lea rcx  -> 01E0CFA0  root 002DF9A0  next HUD key 0209ABFC mBtlCommandScrollTableOffsetY at +0x28DC5C
+  leas outside 001AF470: 203; with a HUD key within 0x40 at or above the target: 132 -> ['00000000@01E0C348', '00000000@01E0C34C', '00000000@01E0C350', '00000000@01E0C354', '00000000@01E0C358', '00000000@01E0C35C', '00000000@01E0C360', '00000000@01E0C364', '00000000@01E0C368', '00000000@01E0C36C', '00000000@01E0C370', '00000000@01E0C374', '00000000@01E0C378', '00000000@01E0C37C', '00000000@01E0C380', '00000000@01E0C384', '00000000@01E0C388', '00000000@01E0C38C', '00000000@01E0C390', '00000000@01E0C3B0', '00000000@01E0C3B4', '00000000@01E0C3B8', '00000000@01E0C3BC', '00000000@01E0C3C0', '00000000@01E0C3C4', '00000000@01E0C3C8', '00000000@01E0C3CC', '00000000@01E0C3D0', '00000000@01E0C3D4', '00000000@01E0C3D8', '00000000@01E0C3DC', '00000000@01E0C3E0', '00000000@01E0C3E4', '00000000@01E0C3E8', '00000000@01E0C444', '00000000@01E0C448', '00000000@01E0C44C', '00000000@01E0C450', '00000000@01E0C454', '00000000@01E0C550', '00000000@01E0C554', '00000000@01E0C558', '00000000@01E0C55C', '00000000@01E0C584', '00000000@01E0C5B0', '00000000@01E0C5B4', '00000000@01E0C5B8', '00000000@01E0C5BC', '00000000@01E0CD90', '00000000@01E0CD94', '00000000@01E0CD98', '00000000@01E0CD9C', '00000000@01E0CDA0', '00000000@01E0CDA4', '00000000@01E0CDA8', '00000000@01E0CDAC', '00000000@01E0CDB0', '00000000@01E0CDB4', '00000000@01E0CDB8', '00000000@01E0CDBC', '00000000@01E0CDC0', '00000000@01E0CDC4', '00000000@01E0CDD0', '00000000@01E0CDD4', '00000000@01E0CDD8', '00000000@01E0CDDC', '00000000@01E0CDE0', '00000000@01E0CDE4', '00000000@01E0CE60', '00000000@01E0CE64', '00000000@01E0CE68', '00000000@01E0CE6C', '00000000@01E0CE70', '00000000@01E0CE74', '00000000@01E0CE80', '00000000@01E0CE8C', '00000000@01E0CE90', '00000000@01E0CE94', '00000000@01E0CE98', '00000000@01E0CE9C', '00000000@01E0CEA0', '00000000@01E0CEA4', '00000000@01E0CEA8', '00000000@01E0CEAC', '00000000@01E0CEB0', '00000000@01E0CEB4', '00000000@01E0CEB8', '00000000@01E0CED4', '00000000@01E0CED8', '00000000@01E0CEDC', '00000000@01E0CEE0', '00000000@01E0CEE4', '00000000@01E0CEE8', '00000000@01E0CEEC', '00000000@01E0CEF0', '00000000@01E0CEF4', '00000000@01E0CEF8', '00000000@01E0CEFC', '00000000@01E0CF00', '00000000@01E0CF04', '00000000@01E0CF08', '00000000@01E0CF0C', '00000000@01E0CF10', '00000000@01E0CF14', '00000000@01E0CF18', '00000000@01E0CF1C', '00000000@01E0CF20', '00000000@01E0CF24', '00000000@01E0CF28', '00000000@01E0CF2C', '00000000@01E0CF30', '00000000@01E0CF34', '00000000@01E0CF38', '00000000@01E0CF3C', '00000000@01E0CF40', '00000000@01E0CF44', '00000000@01E0CF48', '00000000@01E0CF4C', '00000000@01E0CF50', '00000000@01E0CF54', '00000000@01E0CF6C', '00000000@01E0CF70', '00000000@01E0CF74', '00000000@01E0CF78', '00000000@01E0CF7C', '00000000@01E0CF80', '00000000@01E0CF8C', '001B44A0@01E0CF90', '001B44A0@01E0CF94', '002679F0@01E0C328', '002679F0@01E0C32A', '004001D0@01E0C590']
+== C. stored pointers into the block
+  relocations: 13 ['01E0C158->01E0C120', '01E0C160->01E0C124', '01E0C170->01E0C128', '01E0C178->01E0C12C', '01E0C188->01E0C130', '01E0C190->01E0C134', '01E0C1A0->01E0C138', '01E0C1A8->01E0C13C', '01E0C1B8->01E0C140', '01E0C1C0->01E0C144', '01E0C598->01E0C5C0', '01E0C5A0->01E0C718', '01E0C5A8->01E0C730']
+  raw values outside .text: 47
+    rva32 at 008C5D48 = 01E0C0E8 (.rdata)
+    rva32 at 008C5D60 = 01E0C200 (.rdata)
+    rva32 at 008C6C78 = 01E0C298 (.rdata)
+    rva32 at 008C6C90 = 01E0C310 (.rdata)
+    rva32 at 008F35E0 = 01E0C390 (.rdata)
+    rva32 at 008F3610 = 01E0C880 (.rdata)
+    rva32 at 008F3638 = 01E0C900 (.rdata)
+    rva32 at 008F38E8 = 01E0C408 (.rdata)
+    rva32 at 008F3968 = 01E0C780 (.rdata)
+    rva32 at 008F39C8 = 01E0C4D8 (.rdata)
+    rva32 at 008F3C60 = 01E0C978 (.rdata)
+    rva32 at 008F3EC0 = 01E0CC08 (.rdata)
+    rva32 at 008F3F40 = 01E0CCD8 (.rdata)
+    rva32 at 008F4428 = 01E0CE60 (.rdata)
+    rva32 at 008F46E8 = 01E0CED8 (.rdata)
+    rva32 at 008F5F20 = 01E0CFC0 (.rdata)
+    rva32 at 008F9148 = 01E0D0A8 (.rdata)
+    abs32 at 01E0C158 = 01E0C120 (.data)
+    abs64 at 01E0C158 = 01E0C120 (.data)
+    abs32 at 01E0C160 = 01E0C124 (.data)
+    abs64 at 01E0C160 = 01E0C124 (.data)
+    abs32 at 01E0C170 = 01E0C128 (.data)
+    abs64 at 01E0C170 = 01E0C128 (.data)
+    abs32 at 01E0C178 = 01E0C12C (.data)
+    abs64 at 01E0C178 = 01E0C12C (.data)
+    abs32 at 01E0C188 = 01E0C130 (.data)
+    abs64 at 01E0C188 = 01E0C130 (.data)
+    abs32 at 01E0C190 = 01E0C134 (.data)
+    abs64 at 01E0C190 = 01E0C134 (.data)
+    abs32 at 01E0C1A0 = 01E0C138 (.data)
+== controls
+PASS  K1 image-base-relative: 0036E414 decoded
+PASS  K2 scale-1 base+index image-base-relative operands in the block are decoded: ['002AECA3 edx, byte ptr [rax + rcx + 0x1cece30]', '002AEE26 eax, byte ptr [rax + rcx + 0x1cece10]']
+PASS  K3 lea control: 004001D0's lea of 01E0C590 found
+PASS  K4 relocation control (01F2E330 self pointers)
+FAILS 0

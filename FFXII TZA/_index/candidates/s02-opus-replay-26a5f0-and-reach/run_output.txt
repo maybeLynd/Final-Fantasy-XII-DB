@@ -1,0 +1,67 @@
+PASS ss-init
+PASS ss-start
+PASS ss-start-idx0
+PASS ss-start-idxd
+PASS ss-stop
+PASS ss-stop-idle
+PASS ss-apply
+PASS ss-apply-gated
+PASS ss-apply-bits0
+PASS ss-apply-bitsff
+PASS ss-apply-watch
+PASS ss-apply-full
+PASS ss-apply-571
+PASS wt-latch-store
+PASS wt-latch-held
+PASS wt-latch-store-real
+PASS wt-drain
+PASS wt-drain-idle
+PASS wt-mode0
+PASS wt-mode1
+PASS wt-mode2
+PASS wt-mode0-gated
+PASS wt-latched
+PASS wt-deferred
+PASS wt-drain-live
+PASS wt-tail-branch
+PASS wt6-gate-on
+PASS wt6-gate-off
+PASS wt6-234590-s0
+PASS wt6-234590-s3
+PASS wt6-234520-s0
+PASS wt6-234520-s3
+PASS wt6-25d9e0-s0
+PASS wt6-25d9e0-s3
+PASS wt6-3db1f0-s2
+PASS wt6-3db1f0-idle
+PASS wt-mode0-wt6
+FAIL ss-record-id-00  unexpected fault [('mem', 19, 58, 1672848), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672848)]; id=0 A=00000034D4000000 B=00001F3A09001F1F reach=1; calls=['g2ddc30']; entered=['00182D10', '00198690', '00198790', '002DDC30']
+PASS ss-record-id-01
+PASS ss-record-id-02
+PASS ss-record-id-03
+PASS ss-record-id-04
+PASS ss-record-id-05
+PASS ss-record-id-06
+PASS ss-record-id-07
+PASS ss-record-id-08
+PASS ss-record-id-09
+PASS ss-record-id-10
+PASS ss-record-id-11
+FAIL ss-record-id-12  unexpected fault [('mem', 19, 58, 1672880), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672880)]; id=12 A=00000024DD001F01 B=00001F3A0B1F1F1F reach=1; calls=[]; entered=['00182CF0', '001986B0', '00198790']
+FAIL ss-record-id-13  unexpected fault [('mem', 19, 58, 1672816), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672816)]; id=13 A=FFFFFFFFD5FFE0FF B=FFFFFDFDFDFFFFFF reach=1; calls=[]; entered=['00182CD0', '00198670', '00198790']
+PASS ss-record-id-14
+FAIL ss-record-id-15  unexpected fault [('mem', 19, 58, 1672816), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672816)]; id=15 A=00000034D4000000 B=00001D3A09001F1F reach=1; calls=[]; entered=['00182CD0', '00198670', '00198790']
+PASS ss-record-id-16
+FAIL ss-record-id-17  unexpected fault [('mem', 19, 58, 1672880), ('uc', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 1672880)]; id=17 A=FFFFFFFFFFFCFFFF B=FFFFFFFFFFFCFFFF reach=1; calls=[]; entered=['00182CF0', '001986B0', '00198790']
+PASS ss-record-id-18
+PASS ss-record-id-19
+PASS ss-record-id-20
+PASS ss-record-id-21
+PASS ss-record-id-22
+PASS ss-record-id-23
+PASS ss-record-id-24
+PASS ss-record-id-25
+PASS ss-record-id-26
+PASS ss-record-id-27
+PASS ss-apply-bitset-invariance
+61/66 pass

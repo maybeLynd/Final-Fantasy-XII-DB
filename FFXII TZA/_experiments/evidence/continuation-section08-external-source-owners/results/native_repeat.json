@@ -1,0 +1,702 @@
+{
+  "cases": [
+    {
+      "name": "copy_source_was_pinned_at_actual_copy_import",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "one_source_copy_observed",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "copy_returns_source_to_movable_tree",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "copy_allocates_independent_backing",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "copy_preserves_marker",
+      "pass": true,
+      "actual": 145,
+      "expected": 145
+    },
+    {
+      "name": "copy_no_heap_leak",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "copy_releases_preexisting_pin_too",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "borrow_setup_retains_handle_not_resolved_pointer",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "borrow_setup_does_not_pin",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "valid_view_resolves_payload",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "valid_view_pins_source",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "pinned_view_prevents_exact_movement",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "pinned_view_keeps_address",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "second_view_returns_same_pointer",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "one_end_unpins_two_views",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "end_restores_movement_eligibility",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "source_relocated_after_view_end",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "entry_retains_stale_cache_before_next_lookup",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "next_view_refreshes_cache_and_returns_new_pointer",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "cache_now_matches_tag_resolution",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "view_test_allocation_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "wrong_section_returns_null",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "failed_lookup_leaves_eligibility_unchanged",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "not_published_while_submitted",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "completion_marks_owner_published",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "lookup_publishes_handle",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "completion_unpins_source",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "original_registration_adds_bank_row",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "registered_row_borrows_tagged_owner",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "registered_row_mode_is_reference",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "plain_non_efx_source_has_no_context_ticket",
+      "pass": true,
+      "actual": 4294967295,
+      "expected": 4294967295
+    },
+    {
+      "name": "published_owner_delete_frees_source",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "published_owner_delete_removes_bank_row",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "synchronous_delete_clears_handle_and_state",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "synchronous_delete_clears_aux_byte",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_does_not_publish_stale_handle",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "normal_lifecycle_no_heap_leak",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "full_bank_has_no_new_entry",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "callback_ignores_registration_failure",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "state4_lookup_is_not_registry_success_test",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "unregistered_owner_still_freed",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "inflight_delete_selects_state5",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "deferred_delete_keeps_owner_handle",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "deferred_delete_keeps_source_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "deferred_delete_keeps_source_pinned",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "deferred_delete_preserves_aux_byte",
+      "pass": true,
+      "actual": 167,
+      "expected": 167
+    },
+    {
+      "name": "repeat_delete_stays_pending",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "completion_observes_pending_delete_and_frees",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "cancel_completion_clears_state",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "cancel_completion_preserves_numeric_handle",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "cancel_completion_preserves_aux_byte",
+      "pass": true,
+      "actual": 167,
+      "expected": 167
+    },
+    {
+      "name": "state0_hides_retained_handle",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "cancel_completion_does_not_register",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "cancel_lifecycle_no_heap_leak",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_state_0_handle",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "delete_state_0_allocation",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "delete_state_0_final_state",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_state_1_handle",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_state_1_allocation",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_state_1_final_state",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_state_2_handle",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "delete_state_2_allocation",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "delete_state_2_final_state",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "owner_delete_reclaims_context",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "owner_delete_reclaims_external_payload",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "handle_matched_render_pair_is_cleared",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "context_cancel_clears_other_pair_via_second_sweep",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "entry_ticket_invalid_after_cancellation",
+      "pass": true,
+      "actual": 4294967295,
+      "expected": 4294967295
+    },
+    {
+      "name": "owner_delete_all_heap_usage_gone",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "raw_delete_does_not_match_tagged_entry",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "raw_delete_keeps_external_allocation",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "tagged_delete_matches_entry",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "entry_delete_alone_does_not_free_external_owner",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "equal_name_keeps_one_entry",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "equal_name_keeps_first_owner_representation",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "equal_name_keeps_first_cached_source",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "second_owner_is_marked_state4",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "original_entry_still_reads_first_payload",
+      "pass": true,
+      "actual": 129,
+      "expected": 129
+    },
+    {
+      "name": "second_payload_has_different_value",
+      "pass": true,
+      "actual": 215,
+      "expected": 215
+    },
+    {
+      "name": "delete_second_owner_frees_only_second_source",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "delete_second_owner_keeps_first_source",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "delete_second_owner_keeps_existing_entry",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "delete_first_owner_removes_entry",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "both_owners_reclaimed",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "submission_sets_state3",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "submission_enqueues_real_request",
+      "pass": true,
+      "actual": 36450752,
+      "expected": 36450752
+    },
+    {
+      "name": "submission_queue_destination_is_resolved_payload",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "submission_callback_is_original_completion",
+      "pass": true,
+      "actual": 4053072,
+      "expected": 4053072
+    },
+    {
+      "name": "submission_callback_argument_is_record_address",
+      "pass": true,
+      "actual": 45450164,
+      "expected": 45450164
+    },
+    {
+      "name": "submission_has_no_cancel_callback",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "submission_does_not_unpin_payload",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "submission_uses_requested_count",
+      "pass": true,
+      "actual": 384,
+      "expected": 384
+    },
+    {
+      "name": "submission_uses_aligned_offset",
+      "pass": true,
+      "actual": 4096,
+      "expected": 4096
+    },
+    {
+      "name": "owner_delete_does_not_cancel_queued_request",
+      "pass": true,
+      "actual": 36450752,
+      "expected": 36450752
+    },
+    {
+      "name": "owner_delete_keeps_original_completion_callback",
+      "pass": true,
+      "actual": 4053072,
+      "expected": 4053072
+    },
+    {
+      "name": "real_completion_helper_delivers_pending_delete",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "real_completion_helper_reclaims_payload",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "completion_helper_itself_does_not_recycle_queue",
+      "pass": true,
+      "actual": 36450752,
+      "expected": 36450752
+    },
+    {
+      "name": "positive_count_error_helper_omits_owner_callback",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "positive_count_error_helper_leaves_source_pinned",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "positive_count_error_helper_leaves_source_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rejected_index_enqueues_nothing",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "rejected_index_still_sets_owner_state3",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "failed_submit_delete_waits_in_state5",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "failed_submit_has_no_completion_queued",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "bulk_frees_allocated_state1",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "bulk_defers_submitted_state3",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "bulk_preserves_inflight_allocation",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "bulk_clears_last_ready_slot",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "bulk_reclaims_last_ready_allocation",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "bulk_removes_registered_entry",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "bulk_clears_aux_only_on_free_paths",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "bulk_preserves_unassigned_record_bytes",
+      "pass": true,
+      "actual": 2882400018,
+      "expected": 2882400018
+    },
+    {
+      "name": "bulk_does_not_touch_other_group",
+      "pass": true,
+      "actual": 805306803,
+      "expected": 805306803
+    },
+    {
+      "name": "bulk_preserves_other_group_allocation",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "bulk_fixture_all_allocations_reclaimed",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    }
+  ],
+  "checks": 116,
+  "failures": 0
+}

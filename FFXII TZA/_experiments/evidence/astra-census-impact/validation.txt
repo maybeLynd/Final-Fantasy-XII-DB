@@ -1,0 +1,6 @@
+Status: INSTRUMENT_DEFECT_REPRODUCED, not scanner accepted
+Command: C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Scripts\python.exe Database\FFXII TZA\_experiments\evidence\astra-census-impact\check.py
+Exit: 0
+PASS: 10 bounded instrument cases executed; original scanner source unchanged.
+3 partial-register controls expose false target attribution; 2 register-add controls expose missed known writes.
+Call-clobber, nonvolatile preservation, EAX kill, direct and immediate-add controls behaved as expected.

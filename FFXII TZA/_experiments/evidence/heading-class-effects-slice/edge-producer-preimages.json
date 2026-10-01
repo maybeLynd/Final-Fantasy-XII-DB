@@ -1,0 +1,30 @@
+{
+  "reason": "external_jumps previously meant unconditional JMP only; conditional tail JS/Jcc can be omitted. Raw instruction bytes/rows complete; no class-preservation conclusion accepted.",
+  "files": [
+    {
+      "path": "capture.py",
+      "archive": "original-producers/capture.py",
+      "sha256": "e6eef80f103e4063d8687929397b2a121f013496c1bce85d6df48a4ff57fdeb9"
+    },
+    {
+      "path": "capture-nested.py",
+      "archive": "original-producers/capture-nested.py",
+      "sha256": "b106542b72131f2e8a0ac39d8fe58ff505eabecc2da7a60e01233b6319d258b2"
+    },
+    {
+      "path": "capture-closure-r3.py",
+      "archive": "original-producers/capture-closure-r3.py",
+      "sha256": "cfa9d6e34780c0927390cb1cb917142db5ab467c0fb499692343466171a9e747"
+    },
+    {
+      "path": "check-source.py",
+      "archive": "original-producers/check-source.py",
+      "sha256": "00d5c3d363747b6652e641f66ad2a355aa46950ae43221eb099436bcd859e3e2"
+    },
+    {
+      "path": "source-checks-terminal.json",
+      "archive": "original-producers/source-checks-terminal.json",
+      "sha256": "8b5c4a60a2a1e413cde1f96aa6ee8b6460b278383ae03677c409bc889fb7861f"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\category-prerequisite-controls-01\changed_table_bytes\checker-input-adapted.py", line 77, in <module>
+    rel='action-selectors-01/tables/action_data_'+lang+'.st2e';tb=frozen(rel)
+                                                                  ~~~~~~^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\category-prerequisite-controls-01\changed_table_bytes\checker-input-adapted.py", line 70, in frozen
+    if p.stat().st_size!=m['bytes'] or sha(p)!=m['sha256']:raise ValueError('immutable table prerequisite')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: immutable table prerequisite

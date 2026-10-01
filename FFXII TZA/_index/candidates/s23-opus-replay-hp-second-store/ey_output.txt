@@ -1,0 +1,9 @@
+EY4_alive_variant_is_entryFlags_bit8                         PASS
+EY4_dead_variant_inverted_2008_2007                          PASS
+EY4_no_entry_is_variant_0                                    PASS
+flag_bit8_death_posts_200E                                   PASS
+EY1_bubble_doubles_the_cap                                   PASS
+presentation_calls_run_as_shipped                            PASS
+no_fault                                                     PASS
+{'alive_kb0': (['2005'], 70), 'alive_kb1': (['2006'], 70), 'dead_kb0': (['2008'], 0), 'dead_kb1': (['2007'], 0), 'alive_no_entry': (['2005'], 70), 'dead_no_entry': (['2008'], 0), 'dead_flag_bit8': (['200E'], 0), 'heal_no_bubble': ([], 500), 'heal_bubble': ([], 880), 'heal_bubble_over': ([], 1000)} ['003283D0', 'display 0028F1F0']
+ALL PASS

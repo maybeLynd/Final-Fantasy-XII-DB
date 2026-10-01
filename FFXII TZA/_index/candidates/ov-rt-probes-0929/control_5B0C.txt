@@ -1,0 +1,4 @@
+00233C83  mov           word ptr [rax + 0x5b0c], bx                  00233C10 FUN_00233c10
+002FA219  mov           word ptr [rax + 0x5b0c], cx                  002FA210 FUN_002fa210
+0038D9F2  mov           word ptr [r8 + 0x5b0c], dx                   0038D970 FUN_0038d970
+0038DA61  mov           word ptr [rcx + 0x5b0c], ax                  0038DA00 FUN_0038da00

@@ -1,0 +1,4 @@
+PASS: original0032F14B clears mark022C6D20+m; getter confirms base/byte-width/stride.
+All5valid index addresses;2wrong-table controls rejected; clear dominates explicit normal return under stated ABI/call-return limits.
+Same1001-byte reset body already retained in spawn-pending-latch; no B/C run.
+

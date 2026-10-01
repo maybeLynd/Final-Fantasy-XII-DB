@@ -1,0 +1,10 @@
+{
+ "view": "executable",
+ "title": "executable",
+ "status": "FAILED",
+ "source": {
+  "limits": "adapter raised ModuleNotFoundError: No module named 'pefile'",
+  "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py\", line 413, in _build\n    v = fn(snap, t)\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py\", line 207, in v_executable\n    iv = text_intervals(inp[\"functions\"], (inp[\"uc1_1_64\"], inp[\"uc1_65_256\"]), inp[\"exe\"])\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py\", line 230, in text_intervals\n    import pefile, uc1_band\nModuleNotFoundError: No module named 'pefile'\n"
+ },
+ "measures": []
+}

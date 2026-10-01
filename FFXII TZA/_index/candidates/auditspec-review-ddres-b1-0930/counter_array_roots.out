@@ -1,0 +1,7 @@
+001CD26E root 001CD0E0  mov ebx, dword ptr [rsi + rax*4 + 0x1e632b0]
+001CD375 root 001CD0E0  mov eax, dword ptr [rsi + r8*4 + 0x1e632b0]
+001CD3AC root 001CD0E0  mov ebx, dword ptr [rsi + r8*4 + 0x1e632b0]
+001CD865 root 001CD0E0  mov edi, dword ptr [rsi + rax*4 + 0x1e632b0]
+001D01EE root 001D0190  cmp dword ptr [rdx + rax*4 + 0x1e632b0], 0
+0020ACD8 root 0020AC30  cmp dword ptr [r15 + rsi*4 + 0x1e632b0], 0
+0020AFB4 root 0020AF10  inc dword ptr [rbp + rax*4 + 0x1e632b0]

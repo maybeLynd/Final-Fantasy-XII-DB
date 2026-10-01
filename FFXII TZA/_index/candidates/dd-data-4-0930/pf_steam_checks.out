@@ -1,0 +1,9 @@
+PASS S1 0020C940: count, entry-0 +0x190, +0x18, SetAchievement +0x38, StoreStats +0x50
+PASS S2 0020C8C0: count, entry-0 +0x190, award helper 0020CE10
+PASS S3 updater kind-0 mode-0 arm compares the passed amount against the override / threshold
+PASS S4 00316760 returns -1 for a kind-0 id other than 5 and 8
+   descriptor 18 (kind, mode, threshold) = (0, 0, 0); descriptor 11 = (4, 0, 0)
+PASS S5 id 18 kind 0 mode 0; id 11 kind 4 mode 0 threshold 0
+PASS C  control: kind-4 clamp and kind-2 saturation arms
+RESULT entry 0 is awarded by the two receipt handlers; a kind-0 counter (id 18, the chain) is compared as the value passed to the updater, since the stored-counter reader returns -1 for it; kind-4 sums never go below 0
+FAILS 0

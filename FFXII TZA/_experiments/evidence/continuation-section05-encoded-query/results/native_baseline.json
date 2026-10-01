@@ -1,0 +1,1240 @@
+{
+  "cases": [
+    {
+      "name": "fill_class_01",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_01_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_02",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_02_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_03",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_03_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_04",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_04_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_05",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_05_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_06",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_06_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_07",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_07_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_08",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_08_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_09",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_09_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_10",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_10_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_11",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_11_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_12",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "fill_class_12_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_13",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_13_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_14",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_14_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_15",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_15_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_16",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_16_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_17",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_17_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_18",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_18_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_19",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "fill_class_19_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_20",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_20_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_21",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_21_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_22",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_22_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_23",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_23_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_24",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_24_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_25",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_25_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_26",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_26_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_27",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_27_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_28",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_28_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_29",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_29_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_30",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_30_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_31",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_31_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "fill_class_32",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fill_class_32_extent",
+      "pass": true,
+      "actual": -77129853367331790,
+      "expected": -77129853367331790
+    },
+    {
+      "name": "rebase_all_45_pointer_lanes",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_all_15_prefix_sums",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_total_shipped_ids",
+      "pass": true,
+      "actual": 6892,
+      "expected": 6892
+    },
+    {
+      "name": "rebase_keeps_source_offsets",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_zeroes_exact_512_bytes",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_preceding_byte_preserved",
+      "pass": true,
+      "actual": 165,
+      "expected": 165
+    },
+    {
+      "name": "rebase_masks_128_bytes",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_following_byte_preserved",
+      "pass": true,
+      "actual": 165,
+      "expected": 165
+    },
+    {
+      "name": "rebase_pointer_uses_low32_base",
+      "pass": true,
+      "actual": 1073891144,
+      "expected": 1073891144
+    },
+    {
+      "name": "rebase_cleanup_uses_full64_base",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_high_does_not_clear_low_alias",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "rebase_zero_offset_preserves_old_pointer",
+      "pass": true,
+      "actual": 4886718345,
+      "expected": 4886718345
+    },
+    {
+      "name": "rebase_highhalf_only_offset_still_writes",
+      "pass": true,
+      "actual": 1073872896,
+      "expected": 1073872896
+    },
+    {
+      "name": "rebase_addition_wraps32",
+      "pass": true,
+      "actual": 1073872880,
+      "expected": 1073872880
+    },
+    {
+      "name": "prefix_sum_uses_wrapping32",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "repeat_rebase_resets_derived_state",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "repeat_rebase_not_add_to_old_pointer",
+      "pass": true,
+      "actual": 1073872880,
+      "expected": 1073872880
+    },
+    {
+      "name": "class12_rejects_without_validator",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "direct_rejection_only_clears_name",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class19_valid_unimplemented_returns_minus1",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "class19_effF_rejected",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "class19_validator_last_valid",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class19_validator_first_invalid",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "class1_resolves_equipment",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "class1_rewrites_class_tag",
+      "pass": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "name": "class1_preserves_overlay_low_word",
+      "pass": true,
+      "actual": 42405,
+      "expected": 42405
+    },
+    {
+      "name": "class1_to19_does_not_convert_word_to_dword",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "class1_to19_mutates_tag_before_failure",
+      "pass": true,
+      "actual": 19,
+      "expected": 19
+    },
+    {
+      "name": "class1_bad_nibble_returns_minus2",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "bad_nibble_retains_original_class",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class4_name_only_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "class4_other_bytes_preserved",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class22_name_only_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "class22_other_bytes_preserved",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class23_name_only_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "class23_other_bytes_preserved",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class10_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "class10_strided_full98_layout",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "class10_tail_written_through_93",
+      "pass": true,
+      "actual": 4294967295,
+      "expected": 4294967295
+    },
+    {
+      "name": "class10_gap_54_preserved",
+      "pass": true,
+      "actual": 165,
+      "expected": 165
+    },
+    {
+      "name": "class10_end94_preserved",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "row_wrapper_returns_fixed_record",
+      "pass": true,
+      "actual": 36480288,
+      "expected": 36480288
+    },
+    {
+      "name": "row_wrapper_keeps_peer_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "successful_row_wrapper_keeps_tail",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "id_wrapper_returns_distinct_record",
+      "pass": true,
+      "actual": 36480128,
+      "expected": 36480128
+    },
+    {
+      "name": "id_wrapper_keeps_row_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "id_wrapper_writes_only_high_request_word",
+      "pass": true,
+      "actual": 23130,
+      "expected": 23130
+    },
+    {
+      "name": "id_failure_still_returns_pointer",
+      "pass": true,
+      "actual": 36480128,
+      "expected": 36480128
+    },
+    {
+      "name": "id_failure_zeroes_full_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "row_failure_still_returns_pointer",
+      "pass": true,
+      "actual": 36480288,
+      "expected": 36480288
+    },
+    {
+      "name": "row_failure_zeroes_full_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "wrong_wrapper_word_for_rowclass_fails",
+      "pass": true,
+      "actual": 36480128,
+      "expected": 36480128
+    },
+    {
+      "name": "wrong_wrapper_failure_is_zero_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "success_reuses_same_row_address",
+      "pass": true,
+      "actual": 36480288,
+      "expected": 36480288
+    },
+    {
+      "name": "later_success_keeps_unassigned_bytes",
+      "pass": true,
+      "actual": -8613303245920329199,
+      "expected": -8613303245920329199
+    },
+    {
+      "name": "later_success_changes_prior_view",
+      "pass": true,
+      "actual": 22,
+      "expected": 22
+    },
+    {
+      "name": "equipment_fill_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "equipment_bit54_sets_low_bit",
+      "pass": true,
+      "actual": 165,
+      "expected": 165
+    },
+    {
+      "name": "equipment_price_from_row12",
+      "pass": true,
+      "actual": 123,
+      "expected": 123
+    },
+    {
+      "name": "equipment_queries_available",
+      "pass": true,
+      "actual": 16,
+      "expected": 16
+    },
+    {
+      "name": "equipment_queries_total",
+      "pass": true,
+      "actual": 19,
+      "expected": 19
+    },
+    {
+      "name": "equipment_subrecord_byte",
+      "pass": true,
+      "actual": 11,
+      "expected": 11
+    },
+    {
+      "name": "equipment_subrecord_dword",
+      "pass": true,
+      "actual": 305419896,
+      "expected": 305419896
+    },
+    {
+      "name": "equipment_subtype0_keeps_tail",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "equipment_refill_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "equipment_bit54_clears_only_low_bit",
+      "pass": true,
+      "actual": 164,
+      "expected": 164
+    },
+    {
+      "name": "equipment_all_category_arms_write_flag_bit",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "equipment_id_record_low_flag_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "equipment_prior_flag_erased_on_failure",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "packed_query_mode0",
+      "pass": true,
+      "actual": 16,
+      "expected": 16
+    },
+    {
+      "name": "packed_query_mode1",
+      "pass": true,
+      "actual": 19,
+      "expected": 19
+    },
+    {
+      "name": "packed_available_can_be_negative",
+      "pass": true,
+      "actual": -4,
+      "expected": -4
+    },
+    {
+      "name": "packed_total_independent",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "bitset_mode0",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "bitset_mode1",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "query_absent_handler_returns_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "query_count_refusal_returns_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "query_FFFF_returns_minus1",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "query_bad_nibble_returns_minus1",
+      "pass": true,
+      "actual": -1,
+      "expected": -1
+    },
+    {
+      "name": "row_name_decode_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "row_name_decode_second_string",
+      "pass": true,
+      "actual": 1073954944,
+      "expected": 1073954944
+    },
+    {
+      "name": "row_name_repeat_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "row_name_changes_to_first_string",
+      "pass": true,
+      "actual": 1073954816,
+      "expected": 1073954816
+    },
+    {
+      "name": "old_name_bytes_not_owned_by_query",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "missing_text_bank_not_validation_failure",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "missing_text_bank_null_name",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "action_fill_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "action_secondary_string_at08",
+      "pass": true,
+      "actual": 1073954816,
+      "expected": 1073954816
+    },
+    {
+      "name": "action_description_at10",
+      "pass": true,
+      "actual": 1073954944,
+      "expected": 1073954944
+    },
+    {
+      "name": "action_two_bit_field_from_row0C",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "action_zero_parameter_preserves24",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "action_zero_parameter_preserves28",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "action_byte30_not_dword",
+      "pass": true,
+      "actual": 2779096329,
+      "expected": 2779096329
+    },
+    {
+      "name": "action_kind5_writes28",
+      "pass": true,
+      "actual": 7,
+      "expected": 7
+    },
+    {
+      "name": "action_kind5_keeps24",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "action_other_kind_writes24",
+      "pass": true,
+      "actual": 7,
+      "expected": 7
+    },
+    {
+      "name": "command_description_is_at08",
+      "pass": true,
+      "actual": 30324280,
+      "expected": 30324280
+    },
+    {
+      "name": "command_does_not_fill10",
+      "pass": true,
+      "actual": -6510615555426900571,
+      "expected": -6510615555426900571
+    },
+    {
+      "name": "school_has_secondary_string08",
+      "pass": true,
+      "actual": 30324280,
+      "expected": 30324280
+    },
+    {
+      "name": "status_mask_preserves_upper_three_bits",
+      "pass": true,
+      "actual": 251,
+      "expected": 251
+    },
+    {
+      "name": "status_mask_clears_only_low_five",
+      "pass": true,
+      "actual": 224,
+      "expected": 224
+    },
+    {
+      "name": "licence_query_28_from_row0A",
+      "pass": true,
+      "actual": 4660,
+      "expected": 4660
+    },
+    {
+      "name": "licence_query_2A_from_row0C",
+      "pass": true,
+      "actual": 22136,
+      "expected": 22136
+    },
+    {
+      "name": "licence_25_does_not_write36",
+      "pass": true,
+      "actual": 165,
+      "expected": 165
+    },
+    {
+      "name": "licence_32_writes36",
+      "pass": true,
+      "actual": 9,
+      "expected": 9
+    },
+    {
+      "name": "licence_32_keeps_description",
+      "pass": true,
+      "actual": -6510615555426900571,
+      "expected": -6510615555426900571
+    },
+    {
+      "name": "bundle15_uses_first_triple",
+      "pass": true,
+      "actual": 11,
+      "expected": 11
+    },
+    {
+      "name": "bundle30_alias_uses_first_triple",
+      "pass": true,
+      "actual": 11,
+      "expected": 11
+    },
+    {
+      "name": "bundle31_uses_second_triple",
+      "pass": true,
+      "actual": 21,
+      "expected": 21
+    },
+    {
+      "name": "bundle31_second_triple_end",
+      "pass": true,
+      "actual": 23,
+      "expected": 23
+    },
+    {
+      "name": "keyitem_8000_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "keyitem_8000_correct_subtable",
+      "pass": true,
+      "actual": 100,
+      "expected": 100
+    },
+    {
+      "name": "keyitem_803F_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "keyitem_803F_correct_subtable",
+      "pass": true,
+      "actual": 101,
+      "expected": 101
+    },
+    {
+      "name": "keyitem_8040_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "keyitem_8040_correct_subtable",
+      "pass": true,
+      "actual": 102,
+      "expected": 102
+    },
+    {
+      "name": "keyitem_805F_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "keyitem_805F_correct_subtable",
+      "pass": true,
+      "actual": 103,
+      "expected": 103
+    },
+    {
+      "name": "keyitem_8060_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "keyitem_8060_correct_subtable",
+      "pass": true,
+      "actual": 104,
+      "expected": 104
+    },
+    {
+      "name": "keyitem_81FF_rc",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "keyitem_81FF_correct_subtable",
+      "pass": true,
+      "actual": 105,
+      "expected": 105
+    },
+    {
+      "name": "fourth_key_descriptor_extends_validity",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "fourth_key_range_fill_returns_success",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fourth_key_range_leaves_table_outputs",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "fourth_key_range_still_writes_sentinel",
+      "pass": true,
+      "actual": 4294967295,
+      "expected": 4294967295
+    },
+    {
+      "name": "query_row_add_truncates_decoder_high_half",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "query_row_is_low32_alias",
+      "pass": true,
+      "actual": 543,
+      "expected": 543
+    },
+    {
+      "name": "name_only_class2_allows_zero_row_base",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "name_only_class2_zero_row_name",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_row_class5_fault_receipt",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "null_row_class5_fault_address",
+      "pass": true,
+      "actual": 10,
+      "expected": 10
+    },
+    {
+      "name": "null_row_class5_original_site",
+      "pass": true,
+      "actual": 3262490,
+      "expected": 3262490
+    },
+    {
+      "name": "null_row_class6_fault_receipt",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "null_row_class6_fault_address",
+      "pass": true,
+      "actual": 18,
+      "expected": 18
+    },
+    {
+      "name": "null_row_class6_original_site",
+      "pass": true,
+      "actual": 3262849,
+      "expected": 3262849
+    }
+  ],
+  "checks": 200,
+  "failures": 0,
+  "class_record_hex": {
+    "1": "05000000a5a50000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000a5a5a5a500000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "2": "0200000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "3": "0300000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "4": "0400000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "5": "05000000a5a50000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000a5a5a5a500000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "6": "06000000a5a5001038b6ce0100000000a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000a5a5a5a5000000000000000000a5a5a500000000000000000000000001000000a4a5a5a5000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "7": "07000000a5a50020a5a5a5a5a5a5a5a538b6ce010000000000000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "8": "08000000a5a50030a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "9": "09000000a5a50040a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000000000000000000000000000a5a5a5a500000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "10": "0a000000a5a5005038b6ce010000000038b6ce0100000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5ffffffffa5a5a5a5",
+    "11": "0b000000a5a50060a5a5a5a5a5a5a5a538b6ce0100000000000000000000000000000000000000000000000000000000a5a5a5a5a5a5a5a500000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "12": "0c000000a5a50070a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "13": "0d000000a5a50080a5a5a5a5a5a5a5a538b6ce010000000000000000000000000000000000000000ffffffff0000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "14": "0e000000a5a50090a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000ffffffffa5a5a5a5a5a5a5a5a5a5a5a5000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "15": "0f000000a5a500a0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000ffffffffa5a5a5a5a5a5a5a5a5a5a5a5000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "16": "10000000a5a500b0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "17": "11000000a5a500c0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000a5a5a5a5ffffffffa5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "18": "12000000a5a500d0a5a5a5a5a5a5a5a538b6ce01000000000000000000000000a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5000000000000000000000000a0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "19": "1300000000e00000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "20": "140000000000000038b6ce010000000038b6ce0100000000000000000000000000000000a5a5a5a5a5a5a5a50000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "21": "150000000000000038b6ce0100000000a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "22": "1600000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "23": "1700000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "24": "180000000000000038b6ce0100000000a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "25": "1900000000000000a5a5a5a5a5a5a5a538b6ce01000000000000000000000000000000ffa4a500000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "26": "1a00000000000000a5a5a5a5a5a5a5a538b6ce010000000000000000000000000000000000a0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "27": "1b00000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "28": "1c00000000000000a5a5a5a5a5a5a5a538b6ce01000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "29": "1d00000000000000a5a5a5a5a5a5a5a538b6ce01000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "30": "1e000000a5a500a0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000ffffffffa5a5a5a5a5a5a5a5a5a5a5a5000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "31": "1f000000a5a500a0a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a500000000000000000000000000000000ffffffffa5a5a5a5a5a5a5a5a5a5a5a5000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+    "32": "2000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a50000000000000000000000ffa4a50000000000000000000000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5"
+  }
+}

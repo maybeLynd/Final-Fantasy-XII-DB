@@ -1,0 +1,180 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "imagebase": "0x120000",
+ "capstone": "5.0.7",
+ "flow_48": {
+  "problems": [
+   "insn 7EE7EF len 7 ends past extent",
+   "reach outside 7EE7F6"
+  ],
+  "exits": [
+   "0x7ee7d0",
+   "0x7ee7df",
+   "ext 7EE7F6"
+  ],
+  "boundaries": {
+   "007EE7C0": 3,
+   "007EE7C3": 3,
+   "007EE7C6": 2,
+   "007EE7C8": 6,
+   "007EE7CE": 2,
+   "007EE7D0": 1,
+   "007EE7D1": 4,
+   "007EE7D5": 2,
+   "007EE7D7": 6,
+   "007EE7DD": 2,
+   "007EE7DF": 1,
+   "007EE7E0": 4,
+   "007EE7E4": 2,
+   "007EE7E6": 4,
+   "007EE7EA": 3,
+   "007EE7ED": 2,
+   "007EE7EF": 7
+  }
+ },
+ "flow_57": {
+  "problems": [],
+  "exits": [
+   "0x7ee7d0",
+   "0x7ee7df",
+   "0x7ee7f8"
+  ],
+  "boundaries": {
+   "007EE7C0": 3,
+   "007EE7C3": 3,
+   "007EE7C6": 2,
+   "007EE7C8": 6,
+   "007EE7CE": 2,
+   "007EE7D0": 1,
+   "007EE7D1": 4,
+   "007EE7D5": 2,
+   "007EE7D7": 6,
+   "007EE7DD": 2,
+   "007EE7DF": 1,
+   "007EE7E0": 4,
+   "007EE7E4": 2,
+   "007EE7E6": 4,
+   "007EE7EA": 3,
+   "007EE7ED": 2,
+   "007EE7EF": 7,
+   "007EE7F6": 2,
+   "007EE7F8": 1
+  }
+ },
+ "store_bytes": "41898938010000",
+ "decode_as_listed": [
+  "007EE7F0 mov dword ptr [rcx + 0x138], ecx",
+  "007EE7F6 xor eax, eax",
+  "007EE7F8 ret "
+ ],
+ "decode_as_reached": [
+  "007EE7EF mov dword ptr [r9 + 0x138], ecx",
+  "007EE7F6 xor eax, eax",
+  "007EE7F8 ret "
+ ],
+ "preceding_padding_before_C0": "cccc",
+ "producers": {
+  "007EE7C0": [
+   [
+    "riprel-modrm",
+    "007EC4F3"
+   ],
+   [
+    "rva-dword",
+    "00D8A838"
+   ]
+  ],
+  "007EE7F0": [],
+  "007EE730": [
+   [
+    "riprel-modrm",
+    "007EC4DB"
+   ],
+   [
+    "rva-dword",
+    "02FF51A4"
+   ],
+   [
+    "pdata-begin",
+    "007EE730"
+   ]
+  ],
+  "007EE800": [
+   [
+    "riprel-modrm",
+    "007EC959"
+   ],
+   [
+    "rva-dword",
+    "01DDC984"
+   ],
+   [
+    "rva-dword",
+    "01DDC994"
+   ],
+   [
+    "rva-dword",
+    "02FF51B0"
+   ],
+   [
+    "pdata-begin",
+    "007EE800"
+   ]
+  ],
+  "007EE7EF": []
+ },
+ "rdata_run_D8A800": [
+  "007EF8C0",
+  "0028D680",
+  "006E5230",
+  "0075F850",
+  "007EE740",
+  "007EF900",
+  "007EF920",
+  "007EE7C0",
+  "0074EFD0",
+  "0074F080",
+  "00777140",
+  "0073ECF0",
+  "007EF9E0",
+  "00780570",
+  "006E5230",
+  "0028D6A0"
+ ],
+ "mutant_planted_call_detected": true,
+ "tail_code": [
+  "007C2A29 e8fa6c0400 call 0x809728",
+  "007C2A2E cc int3 ",
+  "007C2A2F 90 nop "
+ ],
+ "tail_table": [
+  "007C27FE",
+  "007C2842",
+  "007C284C",
+  "007C2617",
+  "007C284C",
+  "007C2855",
+  "007C2617",
+  "007C2617",
+  "007C288B",
+  "007C288B"
+ ],
+ "table_user": "007C27F2 mov ecx, dword ptr [rdx + rax*4 + 0x6a2a30]",
+ "pdata_chain_7C23C0": [
+  "007C23C0-007C2453",
+  "007C2453-007C2548",
+  "007C2548-007C25BB",
+  "007C25BB-007C26A0",
+  "007C26A0-007C26B9",
+  "007C26B9-007C28EC",
+  "007C28EC-007C2A0B",
+  "007C2A0B-007C2A23",
+  "007C2A23-007C2A58"
+ ],
+ "tail_split": {
+  "code": "007C2A29-007C2A2F (6 B: call __report_rangecheckfailure; int3)",
+  "pad": "007C2A2F (1 B nop)",
+  "inline_data": "007C2A30-007C2A58 (40 B, 10 image-relative dwords)",
+  "native_extent_end": "007C2A58 (.pdata chain)"
+ }
+}

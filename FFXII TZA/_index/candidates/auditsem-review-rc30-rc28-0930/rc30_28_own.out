@@ -1,0 +1,114 @@
+M tza_extract\ps2data\image\ff12\myoshiok\ch\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\cn\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\de\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\es\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\fr\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\in\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\it\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\kr\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+M tza_extract\ps2data\image\ff12\myoshiok\us\worldmap\menumap_common.bin magic b'cmap' table +0xc entries 48 nonzero byte+1: [(40, 1), (46, 2)]
+R 003C26C0 instructions 41; reads at +6/+8/+0xC/+0xE/+0x10/+0x22/+0x23:
+   003C26EC movzx eax, byte ptr [rbx + 0x10]
+R any +0x22/+0x23 access in 003C26C0: False
+Q 0046E030
+   0046E030 sub rsp, 0x38
+   0046E034 mov dword ptr [rsp + 0x20], r8d
+   0046E039 mov r8, qword ptr [rsp + 0x60]
+   0046E03E call 0x2df780
+   0046E043 mov eax, 1
+   0046E048 add rsp, 0x38
+   0046E04C ret 
+Q 0032E330
+   0032E330 push rbx
+   0032E332 sub rsp, 0x20
+   0032E336 mov rax, qword ptr [rcx + 0x40]
+   0032E33A mov rbx, rcx
+   0032E33D test rax, rax
+   0032E340 je 0x32e351
+   0032E342 mov rdx, qword ptr [rcx + 0x70]
+   0032E346 mov r8d, 1
+   0032E34C mov ecx, dword ptr [rcx + 0x60]
+   0032E34F call rax
+   0032E351 cmp byte ptr [rbx + 0x21], 0xff
+   0032E355 jne 0x32e365
+   0032E357 movsxd rcx, dword ptr [rbx + 0x24]
+   0032E35B add rsp, 0x20
+   0032E35F pop rbx
+   0032E360 jmp 0x3697f0
+   0032E365 add rsp, 0x20
+   0032E369 pop rbx
+   0032E36A ret 
+Q 0032E370
+   0032E370 push rbx
+   0032E372 sub rsp, 0x20
+   0032E376 mov rax, qword ptr [rcx + 0x40]
+   0032E37A mov rbx, rcx
+   0032E37D test rax, rax
+   0032E380 je 0x32e394
+   0032E382 cmp dword ptr [rcx + 0x28], -1
+   0032E386 jne 0x32e394
+   0032E388 mov rdx, qword ptr [rcx + 0x70]
+   0032E38C xor r8d, r8d
+   0032E38F mov ecx, dword ptr [rcx + 0x60]
+   0032E392 call rax
+   0032E394 cmp byte ptr [rbx + 0x21], 0xff
+   0032E398 jne 0x32e3a8
+   0032E39A movsxd rcx, dword ptr [rbx + 0x24]
+   0032E39E add rsp, 0x20
+   0032E3A2 pop rbx
+   0032E3A3 jmp 0x3697f0
+   0032E3A8 add rsp, 0x20
+   0032E3AC pop rbx
+   0032E3AD ret 
+Q 00364380
+   00364380 mov rdx, qword ptr [rip + 0x1f67a79]
+   00364387 test rdx, rdx
+   0036438A je 0x364399
+   0036438C mov eax, 1
+   00364391 shl eax, cl
+   00364393 or dword ptr [rdx + 0x240], eax
+   00364399 ret 
+R2 003C2780..003C2830 (the palette arithmetic and the register call, past the first .pdata fragment)
+   003C2780 cmp qword ptr [r15], 0
+   003C2784 jne 0x3c282c
+   003C278A cmp dword ptr [r14], -1
+   003C278E je 0x3c282c
+   003C2794 mov rcx, qword ptr [r13 + 0x118]
+   003C279B test rcx, rcx
+   003C279E jne 0x3c27a7
+   003C27A0 mov rcx, qword ptr [r13 + 0x110]
+   003C27A7 xor edx, edx
+   003C27A9 call 0x24a9e0
+   003C27AE xor edx, edx
+   003C27B0 movzx ecx, word ptr [rax + 0xc]
+   003C27B4 mov edi, dword ptr [rax + 8]
+   003C27B7 movzx esi, word ptr [rax + 0xe]
+   003C27BB add rax, rcx
+   003C27BE mov ecx, dword ptr [r14]
+   003C27C1 add rdi, rax
+   003C27C4 add ecx, r12d
+   003C27C7 call 0x24a9e0
+   003C27CC mov rcx, qword ptr [rsp + 0x30]
+   003C27D1 lea rdx, [rip + 0x94ee58]
+   003C27D8 xor eax, eax
+   003C27DA mov byte ptr [rsp + 0x38], 0
+   003C27DF mov qword ptr [rsp + 0x39], rax
+   003C27E4 add rcx, r14
+   003C27E7 mov dword ptr [rsp + 0x41], eax
+   003C27EB mov word ptr [rsp + 0x45], ax
+   003C27F0 mov byte ptr [rsp + 0x47], al
+   003C27F4 mov rax, qword ptr [rbx + 8]
+   003C27F8 movzx r9d, byte ptr [rcx + rax + 2]
+   003C27FE movzx r8d, word ptr [rcx + rax]
+   003C2803 lea rcx, [rsp + 0x38]
+   003C2808 call 0x17d2e0
+   003C280D mov ecx, dword ptr [r14]
+   003C2810 lea rdx, [rsp + 0x38]
+   003C2815 movzx r8d, byte ptr [rbx + 0x12]
+   003C281A add ecx, r12d
+   003C281D mov r9, rdi
+   003C2820 mov dword ptr [rsp + 0x20], esi
+   003C2824 call 0x24a480
+   003C2829 mov qword ptr [r15], rax
+   003C282C movzx eax, byte ptr [rbx + 0x13]
+   003C2830 inc ebp

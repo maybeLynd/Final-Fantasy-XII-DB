@@ -1,0 +1,155 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 1843,
+      "sha256": "1b64524bd605b1c6a5bc92d3f545542c6b3ce3c2b8fd51a4269bdf635a316d86"
+    },
+    {
+      "path": "control-setup-failure.json",
+      "bytes": 484,
+      "sha256": "37f873bbb414751ab8963edbbf93031accb8ff63ed96d2000701a96599e5ddcc"
+    },
+    {
+      "path": "corrected-capture-default.stdout",
+      "bytes": 111,
+      "sha256": "fd93ba9e98dd553b987234dd707eba5d37caf0e98d0dd0261d0b33c29f24930e"
+    },
+    {
+      "path": "corrected-freeze-default.stdout",
+      "bytes": 186,
+      "sha256": "300d72627324bea2bcd91ae480c6bd58bc4233bae40f77367e598a8cc1a27245"
+    },
+    {
+      "path": "corrected-working-check.py",
+      "bytes": 8732,
+      "sha256": "7e00449becbd1928757fb1c9739e239f420fc7c0f4d45cb0055aed8889cddc29"
+    },
+    {
+      "path": "corrected-working-freeze.py",
+      "bytes": 3787,
+      "sha256": "38dc2ae80450b7b8d5f4c455dbfea4d9782e593d20756f49a7f1535ff011a349"
+    },
+    {
+      "path": "corrected-working-publisher.py",
+      "bytes": 4213,
+      "sha256": "456bdb0a8e130ae9ca866fd4a9327dbefd794ae67604ca9827608cb71c8360dc"
+    },
+    {
+      "path": "failure.json",
+      "bytes": 1003,
+      "sha256": "6a655d4ccecff2e4362910efc8cf339e425aad65fdc534de14cd49e248d2fb0e"
+    },
+    {
+      "path": "fault-accept-shifted-operand.stderr",
+      "bytes": 493,
+      "sha256": "489d1f93b0b8fcd858f6ce0bb5b574497b09ff93027639d4acc1c06bf4615c99"
+    },
+    {
+      "path": "fault-ignore-count-domain.stderr",
+      "bytes": 387,
+      "sha256": "95f19dd79fa1d0129fc2daa6d89723217ad8cad8da2c32efc40ea620e26c5b76"
+    },
+    {
+      "path": "fault-ignore-missing-member.stderr",
+      "bytes": 489,
+      "sha256": "bac5d7f63c9414efd1f79be1f4c8e7b9b3e8fd18e976a426699306bd23411dc8"
+    },
+    {
+      "path": "fault-ignore-name-directory.stderr",
+      "bytes": 481,
+      "sha256": "cf4485780f30b6b82f3001ef3a1c459f6b44c50632f51f7c10cabd399a790ee5"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3386,
+      "sha256": "a35d55a0c13dcbe0f3afbd01ee8acb21f9b651e9e0833890f0b838258e9719cc"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2539,
+      "sha256": "0cf5df65979b58b6923687d449a82d3ab1e13c8f58f2b2359778e6dc5cdeed72"
+    },
+    {
+      "path": "impacted-semantic-controls.json",
+      "bytes": 412,
+      "sha256": "fdae89a82fa5d4cf6b7c067348bd74cb10ebf305e37037c91472518d280a8859"
+    },
+    {
+      "path": "manifest_closure.py",
+      "bytes": 435,
+      "sha256": "4f331e7c46ab613d004c5fdf06aec6e0ce2466f712a34e5df6c068cabf76ea9d"
+    },
+    {
+      "path": "material-publication.json",
+      "bytes": 8241,
+      "sha256": "3b7f0afd53267740f215cff2212fa4ba5a3149f41846acd08d3aa9092f2ffadc"
+    },
+    {
+      "path": "old-publisher-default.stderr",
+      "bytes": 874,
+      "sha256": "db08ce727c5f1be4c0a07f1d35600f29041f27084bf874289fcd23a69d303a32"
+    },
+    {
+      "path": "old-publisher-default.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prepare-default-controls.py",
+      "bytes": 3846,
+      "sha256": "79b656fda9f7be045a65aa648c379156fbcaa0fbb114e3b15eede0e41cd9f959"
+    },
+    {
+      "path": "producer-default-controls.json",
+      "bytes": 478,
+      "sha256": "63fad12ee505835cc7e3ee9b5c568e9c6b9982c05625bcf5559eb2169c00a631"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2677,
+      "sha256": "7ad76d57e932fde2be12874fce183683222c8be68994fcb9f89165601bbe39db"
+    },
+    {
+      "path": "repair-control-setup.py",
+      "bytes": 1804,
+      "sha256": "a42de96711e27ca3a6582b83617e105345aa73f12238e5229fc22c524271e302"
+    },
+    {
+      "path": "retained/control-setup-before-location-fix.py",
+      "bytes": 3683,
+      "sha256": "40f060c16f4e6096e85dca58257f713861543a48a32f148c79afba80d11426e4"
+    },
+    {
+      "path": "retained/original-declared-cache.bin",
+      "bytes": 8931,
+      "sha256": "fb9f6e014187a3be7cf4028983c2a68ce145793dcb99f9be8af3421c10bfb035"
+    },
+    {
+      "path": "retained/original-publish-output.txt",
+      "bytes": 31599,
+      "sha256": "fe1f2d22aed34e93a17d491fc79850dcfaaa9fa46c6518641981c7313fd8fe35"
+    },
+    {
+      "path": "retained/publisher-before-manifest-closure.py",
+      "bytes": 4061,
+      "sha256": "72cd7a2e61ffd86d731c4add5c086ab9d5b0d81d894d69462144130c664e0dc6"
+    },
+    {
+      "path": "retained/working-check-before-publication-fix.py",
+      "bytes": 8696,
+      "sha256": "b6f1ce1c23852a42cc8e2146e7f2072a47b60c3aed69f1857c815602ee37b658"
+    },
+    {
+      "path": "retained/working-freeze-before-publication-fix.py",
+      "bytes": 3620,
+      "sha256": "5ec97fd6e7c6c77a8f1ef28b37d4846779274be519a9bd60bdc7470f9babdeee"
+    }
+  ],
+  "limits": "Original strict65 manifest remains invalid. Additive exact46 original committed members plus one inert relocated auxiliary artifact; scientific producer/default controls fixed. Independent acceptance separate."
+}

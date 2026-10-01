@@ -1,0 +1,5 @@
+{
+ "action": "claim",
+ "task": "FABLE-REQ-SWE2EC7-BQ23-RELABEL-AND-TWO-NOTES",
+ "note": "Claiming: extend EASTL relabel to the 7 subtree members (001FDA60/001FD9A0/001FDAC0/00200140 DoNukeSubtree, 001FC3A0 inlined clear, 001FC770/001FF990 DoCopySubtree), relabel 005A7BF0/0067F9D0 to Phyre packed-colour rbtree, and correct the two EC7 notes (cluster-header 0067F9D0 MSVC-shape claim; font-kerning 001FC770 no-direct-calls claim)."
+}

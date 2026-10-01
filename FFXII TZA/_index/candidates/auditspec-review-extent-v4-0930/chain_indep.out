@@ -1,0 +1,18 @@
+own parse: pdata entries 35713, chained entries 11353, chained triple != its pdata entry: 0
+own: chained roots 3828; non-contiguous 0; roots ending before chain 270; bytes 16361
+own: chained roots not a listed function start: 0
+own: chain depth histogram (fragment -> hops to root): {1: 8720, 2: 2024, 3: 489, 4: 101, 5: 17, 6: 2}
+own: short roots whose chain end overlaps the next listed entry: 0
+committed pdata-chain rows at d20226c17: 254; head: 254
+own vs pre-apply ledger: same-end skip 16, beside 49, ledger past chain 0, rows to emit 254
+own rows == committed 254 (start and end): True; diff own-com 0 com-own 0
+author rows() on d20226c17^ ledger: emit 254, beside 49, skipped 16, conflicts 0, refused 0
+author emitted rows identical to committed: True
+VARIANT one hop only: chained roots 5068, short 189, bytes 11987
+VARIANT no contiguity check: short 270 (same as contig: True)
+VARIANT non-chained: listed .pdata roots immediately followed by another non-chained entry (would grow if merged): 1503
+SPOT 002A8550 listed_end 002A866D chain_end 002A8698 frags 002A8550-002A85BC 002A85BC-002A8652 002A8652-002A8698
+SPOT 003A1E50 listed_end 003A1EE0 chain_end 003A1F1B frags 003A1E50-003A1E6E 003A1E6E-003A1E96 003A1E96-003A1F1B
+SPOT 00462540 listed_end 004630A9 chain_end 004630C4 frags 00462540-00462577 00462577-00463090 00463090-004630C4
+SPOT 007B2CB0 listed_end 007B2F64 chain_end 007B2F66 frags 007B2CB0-007B2E36 007B2E36-007B2F39 007B2F39-007B2F66
+SPOT 0082D410 listed_end 0082D466 chain_end 0082D467 frags 0082D410-0082D422 0082D422-0082D43E 0082D43E-0082D467

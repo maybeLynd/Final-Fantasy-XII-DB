@@ -1,0 +1,154 @@
+{
+  "stepping-qualified.json": {
+    "sha256": "4d6e5a4c1d12a17bd0dab3899e90ba01605adafe14ede9b69aded91e7280e472",
+    "status": "OBSERVED",
+    "samples": 60,
+    "states": 1,
+    "observed_seconds": 2.969410699999571,
+    "read_max_seconds": 0.0007771000018692575,
+    "sample_gap_max_seconds": 0.05093649999980698,
+    "sample_gap_median_seconds": 0.050314000000071246,
+    "frame_first": 1473,
+    "frame_last": 1652,
+    "cross_frame_reads": 5,
+    "group1_unique": [
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "slot3_unique": [
+      0
+    ],
+    "player_hp_range": [
+      103,
+      103
+    ],
+    "slot4_hp_range": [
+      134,
+      134
+    ],
+    "scale_unique": [
+      2.0
+    ],
+    "actor_gates": [
+      95
+    ],
+    "dispatch_gates": [
+      26
+    ],
+    "field_gates": [
+      0
+    ]
+  },
+  "combat-window-1.json": {
+    "sha256": "dd60b9190de1a385cb21263b01a6b93cd2cd1a0e3d126c0766e6cdb77e29d72b",
+    "status": "OBSERVED",
+    "samples": 17388,
+    "states": 160,
+    "observed_seconds": 179.99720389999857,
+    "read_max_seconds": 0.0057720000004337635,
+    "sample_gap_max_seconds": 0.029836199999408564,
+    "sample_gap_median_seconds": 0.010379800001828698,
+    "frame_first": 9773,
+    "frame_last": 20573,
+    "cross_frame_reads": 480,
+    "group1_unique": [
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "slot3_unique": [
+      0
+    ],
+    "player_hp_range": [
+      103,
+      103
+    ],
+    "slot4_hp_range": [
+      134,
+      134
+    ],
+    "scale_unique": [
+      2.0
+    ],
+    "actor_gates": [
+      95
+    ],
+    "dispatch_gates": [
+      24,
+      26
+    ],
+    "field_gates": [
+      0
+    ]
+  },
+  "combat-window-2.json": {
+    "sha256": "0bd920543659f18d4b87ec449d862784731004d68c5ab7d1175480a28bf0c2d2",
+    "status": "OBSERVED",
+    "samples": 17412,
+    "states": 82,
+    "observed_seconds": 179.99835900000107,
+    "read_max_seconds": 0.0021304000001691747,
+    "sample_gap_max_seconds": 0.023039799998514354,
+    "sample_gap_median_seconds": 0.010341299999709008,
+    "frame_first": 60565,
+    "frame_last": 0,
+    "cross_frame_reads": 82,
+    "group1_unique": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "slot3_unique": [
+      0
+    ],
+    "player_hp_range": [
+      0,
+      64
+    ],
+    "slot4_hp_range": [
+      134,
+      134
+    ],
+    "scale_unique": [
+      2.0
+    ],
+    "actor_gates": [
+      95,
+      351,
+      415,
+      479,
+      511,
+      2140,
+      65923,
+      65931,
+      65947,
+      16843138
+    ],
+    "dispatch_gates": [
+      26,
+      28,
+      284,
+      1050,
+      1292,
+      1560,
+      1562
+    ],
+    "field_gates": [
+      0,
+      131072,
+      4194304
+    ]
+  }
+}

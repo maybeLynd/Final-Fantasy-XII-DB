@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-exception-filter-tail\invocation-status-controls\missing-checker\capture.py", line 10, in <module>
+    assert (W/'check.py').is_file();compile((W/'check.py').read_bytes(),str(W/'check.py'),'exec')
+           ~~~~~~~~~~~~~~~~~~~~~~^^
+AssertionError

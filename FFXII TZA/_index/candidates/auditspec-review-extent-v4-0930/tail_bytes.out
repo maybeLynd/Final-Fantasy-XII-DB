@@ -1,0 +1,37 @@
+rows 254, tail bytes 16254, pad-only tails 45, tails holding ret/jmp 12, tails a branch target from the body 30
+listed body's last instruction: {'listed-last=ret/jmp': 156, 'pad-only': 45, 'listed-last=other': 98}
+SPOT 002A8550 listed_end 002A866D chain_end 002A8698 (002A8550 FUN_002a8550)
+     002A866B pop    rbx
+     002A866C ret    
+   > 002A866D nop    dword ptr [rax]
+   > 002A8670 xchg   esi, eax
+   > 002A8671 test   dword ptr [rax], ebx
+   > 002A8673 add    byte ptr [rbp - 0x73ffe77b], bl
+   > 002A8679 test   dword ptr [rax], ebx
+   > 002A867B add    byte ptr [rsi - 0x62ffe77b], dl
+   branches into tail from: none
+SPOT 003A1E50 listed_end 003A1EE0 chain_end 003A1F1B (003A1E50 FUN_003a1e50)
+     003A1EDB add    rsp, 8
+     003A1EDF ret    
+   > 003A1EE0 xchg   esi, eax
+   branches into tail from: none
+SPOT 00462540 listed_end 004630A9 chain_end 004630C4 (00462540 FUN_00462540)
+     004630A7 pop    rbp
+     004630A8 ret    
+   > 004630A9 nop    dword ptr [rax]
+   > 004630AC out    dx, al
+   > 004630AD xor    al, 0
+   > 004630B0 adc    byte ptr [rax], dh
+   > 004630B2 xor    al, 0
+   > 004630B4 cmp    esp, dword ptr [rdi]
+   branches into tail from: none
+SPOT 007B2CB0 listed_end 007B2F64 chain_end 007B2F66 (007B2CB0 FUN_007b2cb0)
+     007B2F5F int3   
+     007B2F60 call   0x809728
+   > 007B2F65 int3   
+   branches into tail from: none
+SPOT 0082D410 listed_end 0082D466 chain_end 0082D467 (0082D410 FUN_0082d410)
+     0082D45E mov    rcx, rdi
+     0082D461 call   0x824330
+   > 0082D466 int3   
+   branches into tail from: none

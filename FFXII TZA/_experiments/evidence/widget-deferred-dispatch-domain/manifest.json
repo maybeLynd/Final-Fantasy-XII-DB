@@ -1,0 +1,105 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7889,
+      "sha256": "620310247f90b4e4c88eb4a1cf5d556b14e36bc215b3c19aa3385aca19897422"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 14966,
+      "sha256": "5da6e50e92573107c3150005a280196514a61ce8e6eca55872e39974d33be689"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2278,
+      "sha256": "03ee05fb373a4ddc65e350f71dcf3426a49e99843c72ffdc6b0477bf19cbf5e0"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1522,
+      "sha256": "fed40f4a63c4768731882bdf8bd7ad5c4837ebd076bd9e3a8e3326a3c9f48304"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2026,
+      "sha256": "c31ee40681eda2ef9093d65366d9141f759a2a0c84226ad0cc83366f982e9b04"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5330,
+      "sha256": "39d05083981e19a0baba4a088cb4889a5f90b5a494313d24b27dfa36163458a3"
+    },
+    {
+      "path": "result.json",
+      "bytes": 33793,
+      "sha256": "0295b3d9795dac3c2ca3a1d491252ef0582777e6ec832bd356eb7fd6f0e648de"
+    },
+    {
+      "path": "retained/extent-proof.json",
+      "bytes": 1612,
+      "sha256": "51e810c4f042fdcb7b7f7dd1f5c4c13becee8a3d0b39c60e1b38e6d8693fd71d"
+    },
+    {
+      "path": "retained/field-preimage.json",
+      "bytes": 349,
+      "sha256": "fa2cdcb5c17cb71197275895e4ce7f2f91a30017cc15fef9eaa8649ec86ad8e2"
+    },
+    {
+      "path": "retained/initial-failed-derive.py",
+      "bytes": 13655,
+      "sha256": "27d63aa8782bfdedf1ed842b28abdce3e399b6cf370ef9c48fd2febadca4a367"
+    },
+    {
+      "path": "retained/initial-failure.json",
+      "bytes": 639,
+      "sha256": "8b73a60ffa08ea3797d3b48d20a33b6436ada4ce9abcea50406ef42c47b39f4b"
+    },
+    {
+      "path": "retained/layout-entry.md",
+      "bytes": 127238,
+      "sha256": "abd3f6af78a8725b528a90f59c14349c06a3083862f9011e05f7d8df37276850"
+    },
+    {
+      "path": "retained/notification-record.bin",
+      "bytes": 24,
+      "sha256": "7aedea93543bd2743bc5c17b369c458fade775de8b29af3c842791bec1f23222"
+    },
+    {
+      "path": "retained/prior-body.json",
+      "bytes": 12193,
+      "sha256": "66cbea5db8b90071f257a98c74b9511751bbd672ab36f99c9ff1c88e3d05b4c6"
+    },
+    {
+      "path": "retained/producer-field-projection.tsv",
+      "bytes": 136036,
+      "sha256": "350c4797e0a9dae138e43d143c85c1615c5a77be5ab4cd1d9620694c143867c3"
+    },
+    {
+      "path": "retained/producer.py",
+      "bytes": 8930,
+      "sha256": "0a1b08072945f26d2547d84315388a3d0a840c6968b8171be0513b4f70fadf2d"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.bin",
+      "bytes": 301,
+      "sha256": "24c646adcf49060e7fc09e19b0c2ae75077a9c7e0ea7d2c2a09daad9d139b454"
+    },
+    {
+      "path": "retained/widget-contract.md",
+      "bytes": 84922,
+      "sha256": "462ca9b3cb420f6e5c8e2ed560b260daf396c37ea993a1b0a57ca3bc73bbe9b6"
+    }
+  ],
+  "limits": "Retained301B source/domain, Python producer controls and extent correction only; no original/native/emulator/live/callback effects or caller occurrence"
+}

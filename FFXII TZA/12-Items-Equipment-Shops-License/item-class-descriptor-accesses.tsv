@@ -1,0 +1,40 @@
+function	name	site	disp	kind	instruction	route	note
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6C0	0x0	r	cmp qword ptr [r8], r11	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6C5	0x0	r	mov eax, dword ptr [r8]	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6CB	0x8	w	mov qword ptr [r8 + 8], rax	array 01EEBCC0 reg	
+0030FBE0	InventoryEquipment_SnapshotAndClearTemporaryState	0030FC47	0x10	r	cmp dword ptr [rip + 0x1bdc083], ebx	array 01EEBCC0 rip	
+0030FBE0	InventoryEquipment_SnapshotAndClearTemporaryState	0030FC86	0x10	r	cmp ebx, dword ptr [rip + 0x1bdc044]	array 01EEBCC0 rip	
+0030FBE0	InventoryEquipment_SnapshotAndClearTemporaryState	0030FC90	0x10	r	cmp dword ptr [rip + 0x1bdc092], ebx	array 01EEBCC0 rip	
+0030FBE0	InventoryEquipment_SnapshotAndClearTemporaryState	0030FCE9	0x10	r	cmp ebx, dword ptr [rip + 0x1bdc039]	array 01EEBCC0 rip	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6CF	0x18	r	cmp qword ptr [r8 + 0x18], r11	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6D5	0x18	r	mov eax, dword ptr [r8 + 0x18]	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6DC	0x20	w	mov qword ptr [r8 + 0x20], rax	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6E0	0x28	r	cmp qword ptr [r8 + 0x28], r11	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6E6	0x28	r	mov eax, dword ptr [r8 + 0x28]	array 01EEBCC0 reg	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6ED	0x30	w	mov qword ptr [r8 + 0x30], rax	array 01EEBCC0 reg	
+00308DE0	FUN_00308de0	00308DEA	0x3C	r	mov eax, dword ptr [rip + 0x1be2f64]	array 01EEBCC0 rip	
+00308DE0	FUN_00308de0	00308E19	0x3C	r	mov eax, dword ptr [rip + 0x1be2f35]	array 01EEBCC0 rip	
+00308DE0	FUN_00308de0	00308E2A	0x3C	r	mov eax, dword ptr [rip + 0x1be30dc]	array 01EEBCC0 rip	
+00308DE0	FUN_00308de0	00308E59	0x3C	r	mov eax, dword ptr [rip + 0x1be30ad]	array 01EEBCC0 rip	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6F5	0x3C	r	add r9d, dword ptr [r8 + 0x3c]	array 01EEBCC0 reg	
+0030DCB0	FUN_0030dcb0	0030DCB6	0x3C	r	mov eax, dword ptr [rip + 0x1bde098]	array 01EEBCC0 rip	
+0030DCB0	FUN_0030dcb0	0030DCE9	0x3C	r	mov eax, dword ptr [rip + 0x1bde065]	array 01EEBCC0 rip	
+0030DD10	FUN_0030dd10	0030DD16	0x3C	r	mov eax, dword ptr [rip + 0x1bde090]	array 01EEBCC0 rip	
+0030DD10	FUN_0030dd10	0030DD49	0x3C	r	mov eax, dword ptr [rip + 0x1bde05d]	array 01EEBCC0 rip	
+0030DD70	FUN_0030dd70	0030DD7E	0x3C	r	cmp dword ptr [rip + 0x1bddf78], ebx	array 01EEBCC0 rip	
+0030DD70	FUN_0030dd70	0030DDAB	0x3C	r	cmp ebx, dword ptr [rip + 0x1bddf4b]	array 01EEBCC0 rip	
+0030DDC0	FUN_0030ddc0	0030DDC6	0x3C	r	mov eax, dword ptr [rip + 0x1bde038]	array 01EEBCC0 rip	
+0030DDC0	FUN_0030ddc0	0030DDF9	0x3C	r	mov eax, dword ptr [rip + 0x1bde005]	array 01EEBCC0 rip	
+0030DE20	FUN_0030de20	0030DE26	0x3C	r	mov eax, dword ptr [rip + 0x1bde2f0]	array 01EEBCC0 rip	
+0030DE20	FUN_0030de20	0030DE59	0x3C	r	mov eax, dword ptr [rip + 0x1bde2bd]	array 01EEBCC0 rip	
+0030DE80	FUN_0030de80	0030DE86	0x3C	r	mov eax, dword ptr [rip + 0x1bde130]	array 01EEBCC0 rip	
+0030DE80	FUN_0030de80	0030DEB9	0x3C	r	mov eax, dword ptr [rip + 0x1bde0fd]	array 01EEBCC0 rip	
+0030DEE0	FUN_0030dee0	0030DEE6	0x3C	r	mov eax, dword ptr [rip + 0x1bddf70]	array 01EEBCC0 rip	
+0030DEE0	FUN_0030dee0	0030DF19	0x3C	r	mov eax, dword ptr [rip + 0x1bddf3d]	array 01EEBCC0 rip	
+0030DF40	FUN_0030df40	0030DF46	0x3C	r	mov eax, dword ptr [rip + 0x1bddfc0]	array 01EEBCC0 rip	
+0030DF40	FUN_0030df40	0030DF79	0x3C	r	mov eax, dword ptr [rip + 0x1bddf8d]	array 01EEBCC0 rip	
+0030FAA0	InventoryEquipment_RestoreTemporarySnapshotAndClearBackup	0030FAAD	0x3C	r	cmp dword ptr [rip + 0x1bdc249], ebx	array 01EEBCC0 rip	
+0030FAA0	InventoryEquipment_RestoreTemporarySnapshotAndClearBackup	0030FAFC	0x3C	r	cmp edi, dword ptr [rip + 0x1bdc1fa]	array 01EEBCC0 rip	
+0030FAA0	InventoryEquipment_RestoreTemporarySnapshotAndClearBackup	0030FB04	0x3C	r	cmp dword ptr [rip + 0x1bdc24a], ebx	array 01EEBCC0 rip	
+0030FAA0	InventoryEquipment_RestoreTemporarySnapshotAndClearBackup	0030FB4F	0x3C	r	cmp edi, dword ptr [rip + 0x1bdc1ff]	array 01EEBCC0 rip	
+0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0030B6F1	0x40	w	mov dword ptr [r8 + 0x40], r9d	array 01EEBCC0 reg	

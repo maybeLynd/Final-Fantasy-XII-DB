@@ -1,0 +1,67 @@
+{
+  "method": "HOST_BROWSER",
+  "url": "http://127.0.0.1:8765/",
+  "ownedTab": "3",
+  "background": true,
+  "actions": [
+    {
+      "action": "setup Agent Activity",
+      "selector": "button /^Agent Activity(?: |$)/",
+      "count": 1,
+      "visible": true,
+      "text": "Agent Activity live",
+      "started": "2026-09-29T15:47:40.429Z",
+      "toolDispatchReturned": true,
+      "observationAfter": "2026-09-29T15:47:40.779Z"
+    },
+    {
+      "action": "return My Progress",
+      "selector": "button /^My Progress(?: |$)/",
+      "started": "2026-09-29T15:48:06.767Z",
+      "inputMechanism": "Playwright locator click, no page-script invocation",
+      "toolDispatchReturned": true,
+      "observationAfter": "2026-09-29T15:48:07.130Z"
+    }
+  ],
+  "observations": [
+    {
+      "file": "00-progress-dom.txt",
+      "recordedAfter": "2026-09-29T15:47:11.490Z"
+    },
+    {
+      "file": "02-activity-dom.txt",
+      "recordedAfter": "2026-09-29T15:47:52.576Z"
+    },
+    {
+      "file": "04-return-dom.txt",
+      "recordedAfter": "2026-09-29T15:48:23.926Z"
+    },
+    {
+      "file": "05-return.jpg",
+      "recordedAfter": "2026-09-29T15:48:23.959Z",
+      "bytes": 122916,
+      "format": "jpg"
+    }
+  ],
+  "browserBuild": "UNEXPOSED",
+  "limits": [
+    "ordered observations, not atomic",
+    "source/HTTP is separate from browser state",
+    "no server loaded-module/PID claim",
+    "no FF12/native desktop inputs"
+  ],
+  "returnPrepared": {
+    "selector": "button /^My Progress(?: |$)/",
+    "count": 1,
+    "visible": true,
+    "text": "My Progress PARTIAL",
+    "observed": "2026-09-29T15:47:52.598Z"
+  },
+  "result": "RETURN_PROGRESS_PRESENTATION_OBSERVED",
+  "cleanup": {
+    "closeReturned": true,
+    "ownedTabListedAfter": false,
+    "inventory": [],
+    "recordedAfter": "2026-09-29T15:48:33.247Z"
+  }
+}

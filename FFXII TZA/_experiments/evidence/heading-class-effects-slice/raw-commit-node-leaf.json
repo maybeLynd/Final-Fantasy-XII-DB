@@ -1,0 +1,197 @@
+{
+  "selected_source_edges": [
+    {
+      "pc": "0x3a94e9",
+      "target": "0x43ee70",
+      "mnemonic": "call",
+      "kind": "direct_call"
+    }
+  ],
+  "unique_targets": [
+    4451952
+  ],
+  "callees": [
+    {
+      "entry": "0x43ee70",
+      "name": "FUN_0043ee70",
+      "catalogue_line": "0043EE70\tFUN_0043ee70\t49\t\ttrue\tfalse\tfalse\t1070\tGFZ.V120.FinalNoPrimaryOwner;GFZ.V120WIP.FinalNoPrimaryOwner;GFZ.V120WIP.X0.PresentationMacroAR.Boundary;GFZ.V120WIP.X0.ResidualClosureBL.Challenged;GFZ.V120WIP.X0.ResidualClosureBL.FinalNoOwner;V120AuditWIP761B",
+      "bytes": 49,
+      "code_file": "retained/commit-node-leaf/0043EE70.bin",
+      "code_sha256": "3bcffbcc853326c092c00ed510819ce47cf4dd1f9d51c014af87a28e500ce454",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 49,
+      "instructions": [
+        {
+          "pc": "0x43ee70",
+          "bytes": "440fb609",
+          "mnemonic": "movzx",
+          "args": "r9d, byte ptr [rcx]",
+          "written": [
+            "r9"
+          ],
+          "memory": [
+            {
+              "kind": "r",
+              "bytes": 1
+            }
+          ]
+        },
+        {
+          "pc": "0x43ee74",
+          "bytes": "4183e967",
+          "mnemonic": "sub",
+          "args": "r9d, 0x67",
+          "written": [
+            "r9",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee78",
+          "bytes": "7421",
+          "mnemonic": "je",
+          "args": "0x43ee9b",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee7a",
+          "bytes": "4183e904",
+          "mnemonic": "sub",
+          "args": "r9d, 4",
+          "written": [
+            "r9",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee7e",
+          "bytes": "7416",
+          "mnemonic": "je",
+          "args": "0x43ee96",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee80",
+          "bytes": "4183e906",
+          "mnemonic": "sub",
+          "args": "r9d, 6",
+          "written": [
+            "r9",
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee84",
+          "bytes": "740b",
+          "mnemonic": "je",
+          "args": "0x43ee91",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee86",
+          "bytes": "4183f901",
+          "mnemonic": "cmp",
+          "args": "r9d, 1",
+          "written": [
+            "rflags"
+          ],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee8a",
+          "bytes": "7514",
+          "mnemonic": "jne",
+          "args": "0x43eea0",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee8c",
+          "bytes": "e93fc70e00",
+          "mnemonic": "jmp",
+          "args": "0x52b5d0",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee91",
+          "bytes": "e90aba0e00",
+          "mnemonic": "jmp",
+          "args": "0x52a8a0",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee96",
+          "bytes": "e9a5ae0e00",
+          "mnemonic": "jmp",
+          "args": "0x529d40",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43ee9b",
+          "bytes": "e9600e0200",
+          "mnemonic": "jmp",
+          "args": "0x45fd00",
+          "written": [],
+          "memory": []
+        },
+        {
+          "pc": "0x43eea0",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [
+        {
+          "pc": "0x43ee8c",
+          "target": "0x52b5d0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x43ee91",
+          "target": "0x52a8a0",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x43ee96",
+          "target": "0x529d40",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        },
+        {
+          "pc": "0x43ee9b",
+          "target": "0x45fd00",
+          "mnemonic": "jmp",
+          "conditional": false,
+          "resolved_immediate": true
+        }
+      ],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    }
+  ],
+  "status": "SOURCE_ONLY_NOT_CLASS_PRESERVATION",
+  "selection": "Single commit-node49B leaf source; entry/state ownership remains conditional.",
+  "cleanup": "Original references unchanged, no game/native/browser/input/instrument/process control."
+}

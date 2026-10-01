@@ -1,0 +1,9 @@
+PASS  R 002EB0D0: blend >= 0.0 -> 004270A0, blend < 0.0 -> 004272E0; start 00427320
+PASS  N 004272E0 = mov eax, dword ptr [rcx + 0x294] | and eax, 0xfffdfa7f | or eax, 0x20 | mov dword ptr [rcx + 0x294], eax | ret
+PASS  Z 004270A0 zero arm: 00426FA0 then clear {7,8,10,17} set 5
+PASS  P 004270A0 positive arm: +0x308 = blend, clear {5,7,10,17} set 8
+PASS  D 00427DE0: bit 5 -> 0042A890, else bit 7 -> 0042B030, else bit 8 -> 00429F70
+PASS  C cut 00424C40 writes no rate; 00424A40 / 00424870 store 1.0 / blend at +0x354 and set entry bit 11
+PASS  T 00429F70 carries +0x308 in its context (+0x28 of rsp+0x20) to 0042DF10
+PASS  control dirty-bits.tsv: bit 5 set by 004270A0/004272E0, bit 8 set by 004270A0
+FAILS 0

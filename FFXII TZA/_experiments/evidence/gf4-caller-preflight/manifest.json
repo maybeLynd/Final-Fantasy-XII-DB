@@ -1,0 +1,102 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 5602,
+    "sha256": "dfc67b82247b35304b6f7174d0d0e733e5eb622f6706fd29637d9bec71b6c212"
+  },
+  "collect.py": {
+    "bytes": 3764,
+    "sha256": "972ac6a54a9a87f7719225211e9aac583b06254cc2c11c386b1f973968abe5aa"
+  },
+  "observation.json": {
+    "bytes": 871,
+    "sha256": "6a680ed7850257cbdcc1a615343f6d3bd32f07bce7d91026f0173590a0d7639a"
+  },
+  "PLAN.md": {
+    "bytes": 6775,
+    "sha256": "114d5d2825c6f72ab04d17fa4868e5e9105acfc60cdda7abacecaadc6bd62c07"
+  },
+  "README.md": {
+    "bytes": 3420,
+    "sha256": "9d7cd108c706ae5cbc01fc94d2cfe7ad4413cf0a3ad17a556cde0e90b59ceb21"
+  },
+  "retained/00-the-phyre-post-effect-class-family.md": {
+    "bytes": 53322,
+    "sha256": "1797accb746c7f921a8796812bd7934fc4b21e3c064f07f0748670a194066cfb"
+  },
+  "retained/01-EXP-039-stack-native-control.md": {
+    "bytes": 5759,
+    "sha256": "1de03c9dcfb8e97148c8aab0ca0603f51a1c64cdf0cac2599b59b61c07cb016b"
+  },
+  "retained/02-capture.py": {
+    "bytes": 6854,
+    "sha256": "1867e44348472f0cd5897daa713da262c5d547caae3e8ea6d74f8588c9cb4b4d"
+  },
+  "retained/03-stack_receipt.py": {
+    "bytes": 1096,
+    "sha256": "57cbf8874fe48b400e2a54eef856e6046d82a831ab35ad8381402d81d6d14441"
+  },
+  "retained/04-capture_candidate.py": {
+    "bytes": 4620,
+    "sha256": "a4824020766a4f795e91bbb7387e10e1c821f04faa41d64189ad6b9141b6fe19"
+  },
+  "retained/05-ownership.py": {
+    "bytes": 1052,
+    "sha256": "8f75d7f7fe1545a323acb58169c836a717f2b1ddad403231c3ebb1b710862c2b"
+  },
+  "retained/06-README.md": {
+    "bytes": 8290,
+    "sha256": "23ba3aa0afdcb5403b27296dcf9fc0121d848cdba331625142d1fffe1208ea0f"
+  },
+  "retained/07-README.md": {
+    "bytes": 11320,
+    "sha256": "9d323482ca1bb85ba21e28e960a631031b6829fb1f1184cf4c99a71536a80c61"
+  },
+  "retained/08-REVIEW-EXP127-INSTRUMENT-OWNERSHIP.md": {
+    "bytes": 3279,
+    "sha256": "fa53767fbe0e8c056213363e40eca4f639d114bb2d0e6f9bfeff91868588eceb"
+  },
+  "retained/cold-capture-api.json": {
+    "bytes": 27643,
+    "sha256": "76bd20a25dfaf1cf4cef3afccf492228bf4196e26bc7420a4cfac53e0a6f9084"
+  },
+  "retained/cold-capture-result.json": {
+    "bytes": 1443,
+    "sha256": "4833418cd0e270adfcf9aca73b279d6cadc8c5302e164ff960ad0456eee656e2"
+  },
+  "retained/cold-control.json": {
+    "bytes": 1627,
+    "sha256": "48998cdd801d1fc7363a45d59d79afa958d6fd9a53d9a422866707b20e24a0d5"
+  },
+  "retained/cold-target-ready.json": {
+    "bytes": 283,
+    "sha256": "c3d75a9b3556a50e4a376de16a6d470ad2e15e5a9ae61981ff0644e1126fa9e5"
+  },
+  "retained/positive-capture-api.json": {
+    "bytes": 134981,
+    "sha256": "ab5e4f89dba7f015d9652be9d88bf4ee2b5c34da09fcf847046b16b5a23816b0"
+  },
+  "retained/positive-capture-result.json": {
+    "bytes": 35671,
+    "sha256": "abfbd07a5d2ff78c8931ed233944f62e94a6032885f825e6d289b9e4b09c0dda"
+  },
+  "retained/positive-control.json": {
+    "bytes": 1634,
+    "sha256": "3bb96ed4b4dd087a2b65795c75c93525c72972e8ef5e171c5fd171e3200a4e23"
+  },
+  "retained/positive-target-ready.json": {
+    "bytes": 283,
+    "sha256": "79853079cb1256bd41d17c9b8d5f877c33e4c4652267051fd8e03f9f5a8c0a1c"
+  },
+  "source.json": {
+    "bytes": 24371,
+    "sha256": "ca7a512c5ce0274238cf2056127c48fd871a02746f483c425566961b4e130f14"
+  },
+  "validation.json": {
+    "bytes": 614,
+    "sha256": "76c6b47b88fb03e189e52763c692f0adc5ff7563aa85709cf92206517156d5ef"
+  }
+}

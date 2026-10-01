@@ -1,0 +1,352 @@
+Browser tab: 3, Title: "FF12 database dashboard", URL: "http://127.0.0.1:8765/".
+0 AXWebArea FF12 database dashboard, URL: 127.0.0.1:8765/
+	1 container
+		2 text FF12 database dashboard read-only; serves the verified CURRENT generation only
+		3 text Next full refresh: 28:58
+		4 text generation g20260929T154720Z-55ec16 committed 2026-09-29T15:47:24Z | since the snapshot: watchdog moved (live sources; next build picks it up) | earlier failure, resolved by the current generation: input team changed while being snapshotted
+	5 container tabs
+		6 button My Progress PARTIAL
+			7 text My Progress 
+			8 text PARTIAL
+		9 button Agent Activity live
+			10 text Agent Activity 
+			11 text live
+		12 button overview OK
+			13 text overview 
+			14 text OK
+		15 button systems OK
+			16 text systems 
+			17 text OK
+		18 button vbf PARTIAL
+			19 text vbf 
+			20 text PARTIAL
+		21 button executable PARTIAL
+			22 text executable 
+			23 text PARTIAL
+		24 button types OK
+			25 text types 
+			26 text OK
+		27 button evidence PARTIAL
+			28 text evidence 
+			29 text PARTIAL
+		30 button fleet PARTIAL
+			31 text fleet 
+			32 text PARTIAL
+	33 container main
+		34 heading My Progress PARTIAL, Value: 2
+			35 text My Progress  PARTIAL
+		36 container
+			37 text generation g20260929T154720Z-55ec16, last update 2026-09-29T15:47:24Z · freshness  PARTIAL  · metric MP-2
+		38 heading Governing requirements accepted (L1+L2), Value: 3
+			39 text Governing requirements accepted (L1+L2)
+		40 text UNMEASURED
+		41 container
+			42 text known requirements only: 25926 / 38731
+			43 text 0.0%
+		44 container the same count without the 35,064 function dispositions, so the other families' movement is visible
+			45 text excluding functions: 93.7% (3439 / 3667)
+			46 text 0.0%
+		47 container 25675 of 38480 requirements accepted; 12805 remaining. One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.
+			48 heading L1 (modding grade), Value: 3
+				49 text L1 (modding grade)
+			50 container
+				51 text 66.7%
+				52 text 0.0%
+			53 text 66.7% accepted · 33.3% remaining
+			54 text 25675 / 38480
+		55 container 1331 of 1415 requirements accepted; 84 remaining. One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.
+			56 heading L2 (reconstruction grade), Value: 3
+				57 text L2 (reconstruction grade)
+			58 container
+				59 text 94.0%
+				60 text 0.0%
+			61 text 94.0% accepted · 6.0% remaining
+			62 text 1331 / 1415
+		63 container Thirty consecutive clean passes of FINAL-AUDIT-PROTOCOL, counted from the governing gate. They run only after everything else is accepted.
+			64 heading Final certification, Value: 3
+				65 text Final certification
+			66 text 0 / 30
+			67 text accepted terminal passes / required
+		68 container the governing goal gate reads NOT_MET: questions outstanding: OPEN=14, PARTIAL=5
+			69 heading Reconstruction status, Value: 3
+				70 text Reconstruction status
+			71 text NOT READY
+			72 text the governing goal gate reads NOT_MET: questions outstanding: OPEN=14, PARTIAL=5
+		73 container
+			74 text Not yet fully enumerated  - the overall figure stays UNMEASURED until these are closed: X: member formats of the bucketed extension(s) .bin, .dat are not declared (Database/Tools/work/formats/bucket-members.tsv); until they are, those files are UNMEASURED at format granularity - repair: OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS (SWE2-DATA)
+		75 heading By requirement family, Value: 3
+			76 text By requirement family
+		77 table
+			78 row
+				79 cell
+					80 text family
+				81 cell
+					82 text accepted
+				83 cell
+					84 text remaining
+				85 cell
+					86 text accepted %
+			87 row
+				88 cell
+					89 text register questions (OPEN-QUESTIONS.md rows)
+					90 text answered 1415 · dispositioned (SUPERSEDED, NAS, OEB, landed transfers) 191 · excluded as not requirements 31
+				91 cell
+					92 text 1606 / 1625
+				93 cell
+					94 text 19
+				95 cell
+					96 text 98.8%
+					97 text 0.0%
+			98 row
+				99 cell
+					100 text page obligations (unticked page boxes with no live register row)
+				101 cell
+					102 text 0 / 1
+				103 cell
+					104 text 1
+				105 cell
+					106 text 0.0%
+					107 text 0.0%
+			108 row
+				109 cell
+					110 text function dispositions (every function explained A, class-explained B or dispositioned C)
+				111 cell
+					112 text 22487 / 35064
+				113 cell
+					114 text 12577
+				115 cell
+					116 text 64.1%
+					117 text 0.0%
+			118 row
+				119 cell
+					120 text documents documented (status DOCUMENTED/AUDITED, or readiness when no status)
+					121 text documented, all answered 361 · documented with a dispositioned residue 8
+				122 cell
+					123 text 369 / 488
+				124 cell
+					125 text 119
+				126 cell
+					127 text 75.6%
+					128 text 0.0%
+			129 row
+				130 cell
+					131 text documents with a named falsification pass
+				132 cell
+					133 text 430 / 488
+				134 cell
+					135 text 58
+				136 cell
+					137 text 88.1%
+					138 text 0.0%
+			139 row
+				140 cell
+					141 text documents verified against the certified parent (provenance)
+				142 cell
+					143 text 488 / 488
+				144 cell
+					145 text 0
+				146 cell
+					147 text 100.0%
+					148 text 0.0%
+			149 row
+				150 cell
+					151 text authored-data registry slots explained
+				152 cell
+					153 text 63 / 64
+				154 cell
+					155 text 1
+				156 cell
+					157 text 98.4%
+					158 text 0.0%
+			159 row
+				160 cell
+					161 text shipped file formats explained
+				162 cell
+					163 text 46 / 46
+				164 cell
+					165 text 0
+				166 cell
+					167 text 100.0%
+					168 text 0.0%
+			169 row
+				170 cell
+					171 text EBP container units explained
+				172 cell
+					173 text 14 / 14
+				174 cell
+					175 text 0
+				176 cell
+					177 text 100.0%
+					178 text 0.0%
+			179 row
+				180 cell
+					181 text contradictions carrying a resolved disposition
+				182 cell
+					183 text 172 / 172
+				184 cell
+					185 text 0
+				186 cell
+					187 text 100.0%
+					188 text 0.0%
+			189 row
+				190 cell
+					191 text L2 cells: registered system x required dimension
+				192 cell
+					193 text 251 / 251
+				194 cell
+					195 text 0
+				196 cell
+					197 text 100.0%
+					198 text 0.0%
+			199 row
+				200 cell
+					201 text terminal final-audit passes (30 consecutive)
+				202 cell
+					203 text 0 / 30
+				204 cell
+					205 text 30
+				206 cell
+					207 text 0.0%
+					208 text 0.0%
+		209 button (collapsed) How these numbers are counted, Secondary Actions: Expand
+			210 text How these numbers are counted
+		211 heading By category, Value: 3
+			212 text By category
+		213 table
+			214 row
+				215 cell
+					216 text Category
+				217 cell accepted / total requirements placed in this category
+					218 text Accepted %
+				219 cell
+					220 text Remaining %
+				221 cell percentage points against the prior coherent generation g20260929T154216Z-1827bc
+					222 text Change since prior generation
+			223 row 707 of 857 requirements; click for what remains
+				224 cell
+					225 text ▸ World & maps
+				226 cell
+					227 text 82.4%
+				228 cell
+					229 text 17.6%
+				230 cell accepted 0, scope 0
+					231 text 0.0%
+			232 row 919 of 934 requirements; click for what remains
+				233 cell
+					234 text ▸ Combat & damage
+				235 cell
+					236 text 98.3%
+				237 cell
+					238 text 1.7%
+				239 cell accepted 0, scope 0
+					240 text 0.0%
+			241 row 1089 of 1144 requirements; click for what remains
+				242 cell
+					243 text ▸ Enemies & AI
+				244 cell
+					245 text 95.1%
+				246 cell
+					247 text 4.9%
+				248 cell accepted 0, scope 0
+					249 text 0.0%
+			250 row 377 of 389 requirements; click for what remains
+				251 cell
+					252 text ▸ Spawning, death & respawn
+				253 cell
+					254 text 96.9%
+				255 cell
+					256 text 3.1%
+				257 cell accepted 0, scope 0
+					258 text 0.0%
+			259 row 1207 of 1280 requirements; click for what remains
+				260 cell
+					261 text ▸ Player & party
+				262 cell
+					263 text 94.2%
+				264 cell
+					265 text 5.8%
+				266 cell accepted 0, scope 0
+					267 text 0.0%
+			268 row 400 of 429 requirements; click for what remains
+				269 cell
+					270 text ▸ Items, equipment & progression
+				271 cell
+					272 text 93.2%
+				273 cell
+					274 text 6.8%
+				275 cell accepted 0, scope 0
+					276 text 0.0%
+			277 row 85 of 86 requirements; click for what remains
+				278 cell
+					279 text ▸ Story, quests & events
+				280 cell
+					281 text 98.8%
+				282 cell
+					283 text 1.2%
+				284 cell accepted 0, scope 0
+					285 text 0.0%
+			286 row 1812 of 2212 requirements; click for what remains
+				287 cell
+					288 text ▸ Menus & controls
+				289 cell
+					290 text 81.9%
+				291 cell
+					292 text 18.1%
+				293 cell accepted 0, scope 0
+					294 text 0.0%
+			295 row 2346 of 4311 requirements; click for what remains
+				296 cell
+					297 text ▸ Animation, graphics & audio
+				298 cell
+					299 text 54.4%
+				300 cell
+					301 text 45.6%
+				302 cell accepted 0, scope 0
+					303 text 0.0%
+			304 row 881 of 926 requirements; click for what remains
+				305 cell
+					306 text ▸ Save/load & persistence
+				307 cell
+					308 text 95.1%
+				309 cell
+					310 text 4.9%
+				311 cell accepted 0, scope 0
+					312 text 0.0%
+			313 row 1464 of 3400 requirements; click for what remains
+				314 cell
+					315 text ▸ Scripts & game data/VBF
+				316 cell
+					317 text 43.0%
+				318 cell
+					319 text 57.0%
+				320 cell accepted 0, scope 0
+					321 text 0.0%
+			322 row 16678 of 18324 requirements; click for what remains
+				323 cell
+					324 text ▸ Engine & supporting systems
+				325 cell
+					326 text 91.0%
+				327 cell
+					328 text 9.0%
+				329 cell accepted 0, scope 0
+					330 text 0.0%
+			331 row 40 of 82 requirements; click for what remains
+				332 cell
+					333 text ▸ Whole database (final certification, cross-cutting)
+				334 cell
+					335 text 48.7%
+				336 cell
+					337 text 51.3%
+				338 cell accepted 0, scope 0
+					339 text 0.0%
+			340 row 535 of 7021 requirements; click for what remains
+				341 cell
+					342 text ▸ Code not yet tied to a game system
+				343 cell
+					344 text 7.6%
+				345 cell
+					346 text 92.4%
+				347 cell accepted 0, scope 0
+					348 text 0.0%
+
+The focused UI element is 9 button Agent Activity live

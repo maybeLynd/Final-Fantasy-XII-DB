@@ -1,0 +1,138 @@
+{
+  "method": "A exact published original repository Python library/CLI; immutable archive reuse; no FF12/native/live",
+  "commit": "b6e6de3f0080cd311336c04d68cf17516c228dff",
+  "source_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+  "source_blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16",
+  "driver_sha256": "4c20f25b6dae5ccf0cce056b158e646dcf22c7ce5e2b08e8f17c6fb0364c07f2",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "base_executable": "C:\\Python314\\python.exe",
+  "base_executable_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+  "prior_commit": "7d9b5ec17091dcb16cb33c6c302d3f5e5012b16d",
+  "retained_manifest_sha256": "066c4f8d09f8c05a2906572c232a1305115dd9eb025daa3e1ac21c8e1f8242f9",
+  "retained_raw_sha256": "9a28c5d6f0d4102205f6e3039706449b1ca27364e26f105d13c3eb31645183c6",
+  "cases": [
+    {
+      "name": "positive",
+      "origin": "Byte-identical 7d9b5ec17 archive; changed-reader execution",
+      "sha256": "5e5b5bdca1f09d3ee27f878d8ba2742f018e0abd28d91d533e4e8b0e993e73b8",
+      "bytes": 782,
+      "label": "VERIFIED",
+      "info": {
+        "generation": "g20260929T071157Z-69ff7d",
+        "members": 3
+      },
+      "exception": null,
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\positive.zip"
+        ],
+        "returncode": 0,
+        "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "unknown-input-state",
+      "origin": "Byte-identical 7d9b5ec17 archive; changed-reader execution",
+      "sha256": "99a6848b4e981a9ea5fb6f74069734082670d0ea0136d87146525e656531bd10",
+      "bytes": 893,
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "input 'data' has unknown state 'ASTRA_LABELLED_UNKNOWN_STATE' (known: present, empty, missing, unsupported)",
+        "generation": "g20260929T071157Z-69ff7d"
+      },
+      "exception": null,
+      "entries": [
+        {
+          "name": "MANIFEST.json",
+          "sha256": "7aff17b77b3959b52d7a23ddfc6b143ffb448de1cb20f43ffe3a9c7859b05ca5"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\unknown-input-state.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"input 'data' has unknown state 'ASTRA_LABELLED_UNKNOWN_STATE' (known: present, empty, missing, unsupported)\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    },
+    {
+      "name": "duplicate-zip-member",
+      "origin": "Byte-identical 7d9b5ec17 archive; changed-reader execution",
+      "sha256": "136cc354a6399d7913344d2d34837e2bfbc9b4ead4b4cdf11b8ed624e62f2270",
+      "bytes": 1172,
+      "label": "UNVERIFIED",
+      "info": {
+        "reason": "duplicate member names: one name, several physical entries",
+        "duplicates": [
+          "outputs/view.json"
+        ],
+        "entries": 4
+      },
+      "exception": null,
+      "entries": [
+        {
+          "name": "outputs/view.json",
+          "sha256": "5cec957a0c5cf3e202e810583c423cc139d716af05dc4a49b7ff203ed6bb78f8"
+        },
+        {
+          "name": "MANIFEST.json",
+          "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+        },
+        {
+          "name": "inputs/data",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "outputs/view.json",
+          "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+        }
+      ],
+      "cli": {
+        "args": [
+          "C:\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\generation.py",
+          "verify-zip",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\duplicate-zip-member.zip"
+        ],
+        "returncode": 1,
+        "stdout": "UNVERIFIED {\"reason\": \"duplicate member names: one name, several physical entries\", \"duplicates\": [\"outputs/view.json\"], \"entries\": 4}\n",
+        "stderr": "",
+        "terminal": true
+      }
+    }
+  ],
+  "finished": false,
+  "limits": "No normal Store emission/deployed reader/whole-manifest authentication/completeM1 or fullL1L2; no original game instructions; old outcomes not fresh test credit",
+  "source_unchanged": true
+}

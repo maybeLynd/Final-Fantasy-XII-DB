@@ -1,0 +1,15 @@
+# Save snapshots after its own pointer record write
+
+**A / STATIC_CONDITIONAL.** No FF12/native/emulator execution and no game setup. Reuse the immutable original shipping Save89B SHA `ebabe24f…` and Restore66B SHA `5bb9d143…` retained in workbench-depth-target-alias (`7bff132111`). Parent manifest and exact raw bodies are retained. The original executable identity is `73461d08…21f8`, preferred base `0x120000`.
+
+Competing claims: Save captures target bytes at entry, or earlier bookkeeping can modify them before capture. Original `0036D969 MOV [r8],rax` writes the next pointer slot **before** `0036D974 MOVUPS xmm0,[rax]` loads the target; `0036D977` then stores the value snapshot. This resolves the ordering from original code, without another pair campaign or a reconstructed fixture claiming native proof.
+
+Count1, initial depth0, target `02EC0A00` (the first pointer slot), valid 16-byte ranges, no counter overlap and no outside interference: initial target bytes `10..1F`. Writing its own pointer changes the first eight to `00 0A EC 02 00 00 00 00` before the snapshot load. Save records those changed bytes; immediate Restore writes them back. The original first eight entry bytes do not return. The saved pointer stays valid through its read; no clobber between Save and Restore is needed. Final depth is zero.
+
+Controls narrow the claim: a disjoint target preserves entry bytes; the value-slot self-target `02EC0800` is a self-copy and also preserves entry bytes. A hypothetical load-before-record order would preserve entry bytes even for the pointer-slot case, so the observation discriminates the two orders. These are explicit source-level conditional calculations, not captured process states or original-code runs.
+
+The contract's existing no-outstanding-save and no-counter-overlap obligations alone do not establish an **entry-state** snapshot for every valid target. The exact guarantee is a snapshot at each original load, after earlier Save writes. A suitable bookkeeping noninterference precondition can preserve entry bytes; this package proves one pointer-slot overlap hazard, not a full alias partition or a universal prohibition on all metadata overlap. The value-self negative control refutes that overbroad prohibition. Consumers must distinguish this from the earlier counter-controlled Restore termination result.
+
+Named consumers: OPUS/SWE2-CONTRACT `00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md` and FABLE workbench explanation. Canonical preimage retained, peer-owned files untouched. ORACLE's ordinary S05 pair request remains its own work; no first-execution claim or duplicate campaign. Source assertions/checker and conditional byte results are producer evidence, independent review/adjudication pending.
+
+Live questions remain open: whether any normal caller supplies such a target, actual initialization, scheduling/reentrancy and lifetime. Count/capacity and the whole overlap domain are not established here. PC OFF; no process/input/instrument/reference/save/config changes. S19 spent allowance and unapproved extension remain unchanged. DATABASE L1+L2/final audit NOT_MET.

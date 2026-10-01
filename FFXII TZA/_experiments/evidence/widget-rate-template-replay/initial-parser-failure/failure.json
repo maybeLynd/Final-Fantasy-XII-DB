@@ -1,0 +1,8 @@
+{
+  "status": "INVALID_NORMALIZATION",
+  "error": "AssertionError at capture.py line53 requiring literal FAIL S, while actual producer emits FAIL  S (two spaces).",
+  "source_returncode_assertion": "[0,0,1] assertion line50 passed before parser failure; rawoutputs/privatefixtures retained, but result.json/finalidentity-readback not reached. No complete valid package inferred.",
+  "impact": "Normalization/receipts incomplete, no freshproducer claim accepted; original41 source semantics/canonical evidence unaffected.",
+  "repair": "Whitespace-token parser over nonempty required R1/R2/M/S tags; use initialrawcontrols to regress before correctedthreeboundedhostinvocations. No FF12/native/game rerun.",
+  "cleanup": "Only ownclaimedW files moved to verifiedchild path; no peer/control/save/config/reference/board changes or lock operations."
+}

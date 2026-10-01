@@ -1,0 +1,251 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-softedges-array-terminal-guard-slot-assumption-01.py",
+      "bytes": 3274,
+      "sha256": "e7f76391f0b049db1fa1ce8e2e13420914b9f130ff6dc3ac6869f383dd790a1c"
+    },
+    {
+      "path": "capture-softedges-array-terminal-guard.py",
+      "bytes": 3357,
+      "sha256": "520321bc7b03bf9b0579ae1688881949f268023923764ac44409f17a8c24203e"
+    },
+    {
+      "path": "capture-softedges-mapping-builders.py",
+      "bytes": 2441,
+      "sha256": "273887ed0c11d67da68c96b8c90c345957c4ffaea3465c9c2d5a241270f5f177"
+    },
+    {
+      "path": "control-softedges-pointer-key-binding.py",
+      "bytes": 2279,
+      "sha256": "28608bfb14c38a2609a5a460ca2bd37ee45a22963717becdf7f6b65d393c1433"
+    },
+    {
+      "path": "freeze-softedges-pointer-key-binding.py",
+      "bytes": 8469,
+      "sha256": "6fac6978906a8800eec97388959dff876d11fe995c52432cfa1bed7645269a96"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6035,
+      "sha256": "d204728739ce7f7aa9a226eee1f707fce5c73c3adef58b92b9d03cf63873cace"
+    },
+    {
+      "path": "reduce-softedges-pointer-key-binding-first-pass-01.py",
+      "bytes": 7934,
+      "sha256": "588c688ad92fbc5a1367e8b8a8c7c73582d29d8eab76239262d2953585db8e7e"
+    },
+    {
+      "path": "reduce-softedges-pointer-key-binding-register-assumption-01.py",
+      "bytes": 7719,
+      "sha256": "5d1f667943aaf2e8e909d4d22951b377ff887118e75431e3bce2bb827e20c193"
+    },
+    {
+      "path": "reduce-softedges-pointer-key-binding-source-option-02.py",
+      "bytes": 8074,
+      "sha256": "0429783182e04fe565ed532dbcc77ceb6449bea4725bfe6c69f797f3510fa93c"
+    },
+    {
+      "path": "reduce-softedges-pointer-key-binding.py",
+      "bytes": 8238,
+      "sha256": "cbe55b5177fc00a8970ea328c0fc0cd7913ab2bb6e95aa8e79918964e0b7e8f0"
+    },
+    {
+      "path": "softedges-array-terminal-guard-failure-01.json",
+      "bytes": 726,
+      "sha256": "ad6c2d652839fa02ff4cad10b6ba2d8709dfedfed4c1df17f7973c1bba6de813"
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01/facts.json",
+      "bytes": 1087,
+      "sha256": "064116faa8706e11ebf94ef8fb90e7fbaf7f40955d5b8bd55171680ec67adf6b"
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01/original-code.json",
+      "bytes": 9322,
+      "sha256": "f473de8c4be098d9709ea751a78795a69678289137a3e48b8d24125a6bf88aaa"
+    },
+    {
+      "path": "softedges-effectvariant-registration-code-01.json",
+      "bytes": 81964,
+      "sha256": "04fe0aa3d7fc6bd03107745d2557977e33636720f6a5bac0fb1d3106b2ffde03"
+    },
+    {
+      "path": "softedges-header-membership-code-01.json",
+      "bytes": 275363,
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-loader-parent-code-01.json",
+      "bytes": 53970,
+      "sha256": "a66a2e594af9382377042fd79ec0e12f44ff28d1088db4804bdb94ab60c6c3d9"
+    },
+    {
+      "path": "softedges-mapping-builders-code-01.json",
+      "bytes": 192224,
+      "sha256": "f4a2523fd16aa8016a1d1a558e51f50aed5324cec28b6b11e3af3a61c00b25f1"
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "bytes": 30399,
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7"
+    },
+    {
+      "path": "softedges-pointer-key-binding-failure-01.json",
+      "bytes": 512,
+      "sha256": "16461404049564eb1a33d5eaac4b1c6c829b703e533b8f9f58185326bb6c3b38"
+    },
+    {
+      "path": "softedges-pointer-key-binding-result-01.json",
+      "bytes": 4447,
+      "sha256": "efde5b54c503577d76392d27211db691041711aa872d24ea3e4efc6ca52c66c2"
+    },
+    {
+      "path": "softedges-pointer-key-binding-result-02.json",
+      "bytes": 4447,
+      "sha256": "78d380dc46cfeb36203f3abb4f594863cbefecad77f66374e79f9cda6800dab0"
+    },
+    {
+      "path": "softedges-pointer-key-binding-result-03.json",
+      "bytes": 4447,
+      "sha256": "043d1501fe65c7f572e4c1a7839b96c9d6b96e427bc727deb06d972cc800e72b"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/invocation.json",
+      "bytes": 768,
+      "sha256": "f42767c145cba6428be9640369cecea8ccbe5765980ab462ce2d59aa2a50b615"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-array-terminal-guard-source-01/facts.json",
+      "bytes": 1087,
+      "sha256": "064116faa8706e11ebf94ef8fb90e7fbaf7f40955d5b8bd55171680ec67adf6b"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-effectvariant-registration-code-01.json",
+      "bytes": 81964,
+      "sha256": "04fe0aa3d7fc6bd03107745d2557977e33636720f6a5bac0fb1d3106b2ffde03"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-header-membership-code-01.json",
+      "bytes": 275363,
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-mapping-builders-code-01.json",
+      "bytes": 192224,
+      "sha256": "f4a2523fd16aa8016a1d1a558e51f50aed5324cec28b6b11e3af3a61c00b25f1"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-member-resolution-continuation-code-01.json",
+      "bytes": 30399,
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/source/softedges-resource-source-01/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/stderr.txt",
+      "bytes": 1318,
+      "sha256": "3054a7711ad55caca29d7715b64b35203f426991bb3df68a64a981aeab8b7636"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/missing-guard-source/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/result.json",
+      "bytes": 1943,
+      "sha256": "595ef79a76ceb4ff9efa607d20248f1f2a72b5e6706be8df50b0f9e019135ccb"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/invocation.json",
+      "bytes": 756,
+      "sha256": "b1242bb53fe1720de9dbc79c40c54ede388b7c0edc1cb14b8ff1f8e4d4880165"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-array-terminal-guard-source-01/facts.json",
+      "bytes": 1087,
+      "sha256": "064116faa8706e11ebf94ef8fb90e7fbaf7f40955d5b8bd55171680ec67adf6b"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-array-terminal-guard-source-01/original-code.json",
+      "bytes": 9322,
+      "sha256": "f473de8c4be098d9709ea751a78795a69678289137a3e48b8d24125a6bf88aaa"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-effectvariant-registration-code-01.json",
+      "bytes": 81964,
+      "sha256": "04fe0aa3d7fc6bd03107745d2557977e33636720f6a5bac0fb1d3106b2ffde03"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-header-membership-code-01.json",
+      "bytes": 142764,
+      "sha256": "bea10d5caa35fa7a7be406ca31e8f04dfe352b7c6454ceec887cb064572a16bb"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-mapping-builders-code-01.json",
+      "bytes": 192224,
+      "sha256": "f4a2523fd16aa8016a1d1a558e51f50aed5324cec28b6b11e3af3a61c00b25f1"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-member-resolution-code-01.json",
+      "bytes": 53403,
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-member-resolution-continuation-code-01.json",
+      "bytes": 30399,
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/source/softedges-resource-source-01/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/stderr.txt",
+      "bytes": 814,
+      "sha256": "6a44c3d666bcad2b4e2294383f3bd990c00480b0e4c8e55b216bcc87aabded64"
+    },
+    {
+      "path": "softedges-pointer-key-controls-01/wrong-count-base/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-resource-source-01/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-resource-source-01/phyretext.fx.phyre",
+      "bytes": 44634,
+      "sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf"
+    }
+  ]
+}

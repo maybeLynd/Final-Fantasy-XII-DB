@@ -1,0 +1,254 @@
+{
+  "type": "IndexedExternalSourceRequest",
+  "types_before": [
+    {
+      "type": "IndexedExternalSourceRequest",
+      "size": "0x1C",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "02B581A0 + (group*16 + index)*0x1C; producer sweep groups0..4, entries0..15",
+      "allocation_site": "IMAGE static table of80 records; each handle names separately allocated source storage, not a heap-allocated record. 003DD4C0 allocates and pins backing; full producer static-only here.",
+      "ctor": "003DD4C0 prepares source/route/request fields; 003DDA70 submits and sets state3. Global one-time table initializer is not identified by this section.",
+      "dtor": "003DD420 single/003DD380 group deletion; state3 is deferred to003DD850 completion. Record memory remains static. State1/4 deletion clears handle/state/route; state5 completion clears state only.",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "HIGH",
+      "level": "L1",
+      "evidence": "Original003DD380/420/4C0/740/850/A70 and reached bank/queue paths; SECTION-08 116 bounded native assertions,120 selected body identities,9 rejected variants. 003DD4C0 and full consumer scheduling static-only. Explicit gaps and no whole-type semantic/peer acceptance claim. _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "documents": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "route": "ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds"
+    }
+  ],
+  "types_after": [
+    {
+      "type": "IndexedExternalSourceRequest",
+      "size": "0x1C",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "02B581A0 + (group*16 + index)*0x1C; producer sweep groups0..4, entries0..15",
+      "allocation_site": "IMAGE static table of80 records. Backing is separately allocated/pinned by full003DD4C0: prefer arena11 only for mode2+slot17mask40, fallback/default arena6; handle capacity and bytes are separate constraints.",
+      "ctor": "003DD7E0 resets all80,003DD790 resets16; clear handle/state/route and masks, initialize group/index, preserve annotation/request arguments. 003DDA20 arms state0->2. 003DD4C0 allocates, populates and holds1 or submits3. Reset is not destruction.",
+      "dtor": "003DD420/003DD380: state1/4 free or dispose/free, clear handle/state/route; state3->5 deferred. Completion003DD850 clears state only on5. Positive-length queue error/cancel does not complete this owner; outer recovery open.",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "HIGH",
+      "level": "L1",
+      "evidence": "SECTION-08 lifetime and SECTION-09 190 original-instruction assertions with synthetic providers, actual allocation failure and terminal pump status controls;138 pinned bodies,10 rejected variants. State1 dispatcher/real IO/reuse guarantee open. _experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "documents": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md;02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "route": "ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds"
+    }
+  ],
+  "fields_before": [
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x00",
+      "size": "4",
+      "name": "sourceHandle",
+      "ctype": "uint32",
+      "meaning": "Tagged backing source owned by this record. Deferred completion frees allocation but retains this numeric value; state-gated lookup is separate.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD420 reads+0 before00369800; 003DD850 state5 path preserves+0; 003DD740 returns it only for state4; original controls distinguish retained value from allocation liveness; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x04",
+      "size": "4",
+      "name": "state",
+      "ctype": "uint32",
+      "meaning": "Owner policy:1 prepared;2 selected by static producer;3 submitted;4 completion-published;5 deferred delete;0 inactive. State4 does not guarantee successful bank registration. Labels are this owner policy, not queue states.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DDA70 writes3; 003DD420 maps3->5 and clears1/4; 003DD850 clears5->0 else writes4 ignoring registration return; concrete controls plus static003DD4C0; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x08",
+      "size": "5",
+      "name": "unassigned08_0C",
+      "ctype": "uint8[5]",
+      "meaning": "Unassigned storage inside the stride. Sentinel preservation in selected delete paths is not a global no-access or padding proof.",
+      "readiness": "DISCOVERED",
+      "confidence": "UNKNOWN",
+      "evidence": "0x1C stride and bounded byte writes; no complete reader/writer census is claimed; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x0D",
+      "size": "1",
+      "name": "allocationRouteReceipt",
+      "ctype": "uint8",
+      "meaning": "Producer sets this byte on one source-allocation route and direct deletion clears it. Deferred completion leaves it unchanged. Full route-selection policy remains open.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "HIGH",
+      "evidence": "003DD4C0 branch stores;003DD420/380 clear +0D;003DD850 preserves it in cancelled completion; producer is static-only; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x0E",
+      "size": "2",
+      "name": "unassigned0E_0F",
+      "ctype": "uint8[2]",
+      "meaning": "Unassigned interval before request kind. Extent coverage is not semantic meaning.",
+      "readiness": "DISCOVERED",
+      "confidence": "UNKNOWN",
+      "evidence": "Stride and neighboring typed accesses only; no global absence assertion; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x10",
+      "size": "2",
+      "name": "requestKind",
+      "ctype": "int16",
+      "meaning": "Signed kind passed to0032E620; distinct from entry/source format tag.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DDA70 movsx from+10 and actual requester record fixture; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x12",
+      "size": "2",
+      "name": "requestIndex",
+      "ctype": "int16",
+      "meaning": "Signed request index passed to0032E620. A synthetic -1 rejection does not prevent owner state3 from being stored.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DDA70 movsx from+12; native submitted/rejected controls; ordinary reachability not established; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x14",
+      "size": "4",
+      "name": "requestedBytes",
+      "ctype": "int32",
+      "meaning": "Requested transfer count passed to queue; positive-length error helper does not deliver this completion callback.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DDA70 +14 argument;0032E370 positive-length no-callback control; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x18",
+      "size": "4",
+      "name": "fileOffset",
+      "ctype": "int32",
+      "meaning": "Offset put into request descriptor+0; queue records its normalized offset under existing request rules.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DDA70 +18 into stack descriptor; native request-slot observation; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    }
+  ],
+  "fields_after": [
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x00",
+      "size": "4",
+      "name": "sourceHandle",
+      "ctype": "uint32",
+      "meaning": "Tagged owned backing; numeric value can survive free and equal a later valid allocation. Neither handle equality nor owner-address callback identifies a unique request.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD4C0 store after pin;003DD850 deferred free preserves value; native completion/free/rearm reuses exact value; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x04",
+      "size": "4",
+      "name": "state",
+      "ctype": "uint32",
+      "meaning": "Owner state0 inactive,2 armed,1 allocated/held,3 submission-recorded,4 completion-published,5 deferred delete. Failed selection/allocation clears to0 but retains pending bit. Queue error/cancel can retire its slot while owner remains3.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD7E0/790;003DDA20;whole003DD4C0;terminal0032E070 and003DD850 composition; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x08",
+      "size": "4",
+      "name": "armAnnotation",
+      "ctype": "uint32",
+      "meaning": "Armer third-argument value. Initializers preserve it and successful arming writes it; its downstream purpose is unresolved. Producer request selection does not read this member.",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "003DDA42 storesR8D;003DD7E0/790 write footprints; complete003DD4C0 selected-body analysis and sentinel control. Physical writer proof is not complete meaning; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x0C",
+      "size": "1",
+      "name": "initializedGroup",
+      "ctype": "uint8",
+      "meaning": "Group identity0..4 set by table/group initialization. Producer derives group from its sweep, not this stored member. Other consumers remain outside this claim.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD82D and003DD7BD;all80 initialization and group-boundary controls; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x0D",
+      "size": "1",
+      "name": "allocationRouteReceipt",
+      "ctype": "uint8",
+      "meaning": "1 for successful preferred arena11 allocation;0 for default/fallback and pending failure/skip. Direct deletion clears it; deferred completion preserves it. Not permanent arena identity or pin count.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD590..5E8 and003DD665;arena preference/override/exhaustion controls;SECTION-08 historical cleanup; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x0E",
+      "size": "2",
+      "name": "initializedSlot",
+      "ctype": "uint16",
+      "meaning": "Slot identity0..15 written by initialization. Distinct from mapped file requestIndex+12; producer uses its loop slot to read metadata.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD820 and003DD7B0;all80/group-boundary controls; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x10",
+      "size": "2",
+      "name": "requestKind",
+      "ctype": "int16",
+      "meaning": "LowWORD from0032F170 group mapping:group0 kind5,groups1..3 kind8. Group4 mapskind1 but its length provider rejects before this store. Sign-extended on submission.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD606/609;0032F170;003DDA70;four-group and fifth-group controls; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x12",
+      "size": "2",
+      "name": "requestIndex",
+      "ctype": "int16",
+      "meaning": "LowWORD of group-mapped selector, incremented by1 with WORD wrap before storing; sign-extended by requester client. Large synthetic selector can reject queue creation while owner becomes3.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD610/618/61D;003DDA70;group mapping and signed-narrowing control; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x14",
+      "size": "4",
+      "name": "requestedBytes",
+      "ctype": "int32",
+      "meaning": "Positive length from0032F290(group,slot), metadata DWORD+0C+8*slot. Inactive/unsupported provider returns-1;nonpositive rejects preparation. Metadata pointer validity is caller precondition.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD56D/574/62C and0032F290;positive/zero/negative/inactive/fifth-group controls; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    },
+    {
+      "type": "IndexedExternalSourceRequest",
+      "offset": "0x18",
+      "size": "4",
+      "name": "fileOffset",
+      "ctype": "int32",
+      "meaning": "0032F260(group,slot) reads metadata DWORD+8+8*slot; stored and supplied in queue descriptor. Different from length even though both share the metadata row.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "003DD621/629;0032F260;argument controls and swapped-accessor mutation; _experiments/evidence/continuation-section09-owner-producer/REVIEW.md"
+    }
+  ],
+  "unrelated_sha256": {
+    "_types/types.tsv": "b99a404f2996de1aab7bb72e623cf5cbf04298ceae793ac8380c728764c50fb5",
+    "_types/fields.tsv": "4f009c66212e9ce5ffa809d447cde3059187adf2e9e4bb81a352343049de2a4d"
+  }
+}

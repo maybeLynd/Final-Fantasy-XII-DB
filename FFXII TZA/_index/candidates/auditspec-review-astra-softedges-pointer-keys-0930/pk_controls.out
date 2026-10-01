@@ -1,0 +1,11 @@
+reducer sha matches result03: True
+pins-only-baseline   exit=1 result=False            | ges-pointer-keys-0930\\controls\\pins-only-baseline\\source\\softedges-resource-source-01\\phyretext.fx.phyre'
+baseline             exit=0 result=True             | Checked conditional two-key/m_els bridge and exact guard polarity; actual load/lifetime remain OPEN
+missing-guard-source exit=1 result=False            | ys-0930\\controls\\missing-guard-source\\source\\softedges-array-terminal-guard-source-01\\original-code.json'
+wrong-count-base     exit=1 result=False            | ValueError: required operation changed 0x59cd07
+sete-to-setne        exit=0 result=True  mutated=1  | Checked conditional two-key/m_els bridge and exact guard polarity; actual load/lifetime remain OPEN
+   guard_correction still reads: Kind2 with bit6 clear stops recursion. With bit6 set and nonnull self getter, optional query result==1 ALLOWS recursion;
+cmp1-to-cmp0         exit=0 result=True  mutated=1  | Checked conditional two-key/m_els bridge and exact guard polarity; actual load/lifetime remain OPEN
+   guard_correction still reads: Kind2 with bit6 clear stops recursion. With bit6 set and nonnull self getter, optional query result==1 ALLOWS recursion;
+bit6-to-bit5         exit=0 result=True  mutated=1  | Checked conditional two-key/m_els bridge and exact guard polarity; actual load/lifetime remain OPEN
+   guard_correction still reads: Kind2 with bit6 clear stops recursion. With bit6 set and nonnull self getter, optional query result==1 ALLOWS recursion;

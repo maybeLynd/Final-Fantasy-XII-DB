@@ -1,0 +1,352 @@
+{
+  "method": "A original-source static proof; no new B/C run",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": "0x120000",
+    "reader_path": "Database/FFXII TZA/_experiments/evidence/license-check-exec/check.py",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_module_sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f",
+    "dll_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+    "dll_sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+  },
+  "driver_sha256": "466015b2158d37eca8c73785fd4d8b968e7664a40baa63b26a3541cf2b460bc3",
+  "head": "7772a5e4b2967346d02f93b6d91cbc2c73884bfe",
+  "bodies": [
+    {
+      "name": "save",
+      "entry": "0x36d930",
+      "size": 89,
+      "sha256": "ebabe24f505f83317a9b63e3ebc8556c5d1207cdf926f3bb1b2a1f754a7bddda",
+      "raw_hex": "894c24084889542410488d5424104c894424184c894c242085c974364883c2f8448bd14c8d0da62eb5024c8d059f30b502488b4208488d52084989004d8d49104d8d40080f1000410f1141f04983ea0175df890d80b5f601c3",
+      "instructions": [
+        {
+          "pc": "0x36d930",
+          "bytes": "894c2408",
+          "mnemonic": "mov",
+          "args": "dword ptr [rsp + 8], ecx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d934",
+          "bytes": "4889542410",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x10], rdx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d939",
+          "bytes": "488d542410",
+          "mnemonic": "lea",
+          "args": "rdx, [rsp + 0x10]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d93e",
+          "bytes": "4c89442418",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x18], r8",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d943",
+          "bytes": "4c894c2420",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x20], r9",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d948",
+          "bytes": "85c9",
+          "mnemonic": "test",
+          "args": "ecx, ecx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d94a",
+          "bytes": "7436",
+          "mnemonic": "je",
+          "args": "0x36d982",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d94c",
+          "bytes": "4883c2f8",
+          "mnemonic": "add",
+          "args": "rdx, -8",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d950",
+          "bytes": "448bd1",
+          "mnemonic": "mov",
+          "args": "r10d, ecx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d953",
+          "bytes": "4c8d0da62eb502",
+          "mnemonic": "lea",
+          "args": "r9, [rip + 0x2b52ea6]",
+          "rip_targets": [
+            "0x2ec0800"
+          ]
+        },
+        {
+          "pc": "0x36d95a",
+          "bytes": "4c8d059f30b502",
+          "mnemonic": "lea",
+          "args": "r8, [rip + 0x2b5309f]",
+          "rip_targets": [
+            "0x2ec0a00"
+          ]
+        },
+        {
+          "pc": "0x36d961",
+          "bytes": "488b4208",
+          "mnemonic": "mov",
+          "args": "rax, qword ptr [rdx + 8]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d965",
+          "bytes": "488d5208",
+          "mnemonic": "lea",
+          "args": "rdx, [rdx + 8]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d969",
+          "bytes": "498900",
+          "mnemonic": "mov",
+          "args": "qword ptr [r8], rax",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d96c",
+          "bytes": "4d8d4910",
+          "mnemonic": "lea",
+          "args": "r9, [r9 + 0x10]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d970",
+          "bytes": "4d8d4008",
+          "mnemonic": "lea",
+          "args": "r8, [r8 + 8]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d974",
+          "bytes": "0f1000",
+          "mnemonic": "movups",
+          "args": "xmm0, xmmword ptr [rax]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d977",
+          "bytes": "410f1141f0",
+          "mnemonic": "movups",
+          "args": "xmmword ptr [r9 - 0x10], xmm0",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d97c",
+          "bytes": "4983ea01",
+          "mnemonic": "sub",
+          "args": "r10, 1",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d980",
+          "bytes": "75df",
+          "mnemonic": "jne",
+          "args": "0x36d961",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d982",
+          "bytes": "890d80b5f601",
+          "mnemonic": "mov",
+          "args": "dword ptr [rip + 0x1f6b580], ecx",
+          "rip_targets": [
+            "0x22d8f08"
+          ]
+        },
+        {
+          "pc": "0x36d988",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "rip_targets": []
+        }
+      ]
+    },
+    {
+      "name": "restore",
+      "entry": "0x36d8e0",
+      "size": 66,
+      "sha256": "5bb9d143a12bf8959ae1c75d5f7245c4b1081d9ae3432095ebfd253953ec253b",
+      "raw_hex": "4533c0418bd039151cb6f601762c4c8d0d0b27dbff8bca8bc24803c9ffc2498b84c1000ada02410f1084c90008da020f11003b15f0b5f60172db448905e7b5f601c3",
+      "instructions": [
+        {
+          "pc": "0x36d8e0",
+          "bytes": "4533c0",
+          "mnemonic": "xor",
+          "args": "r8d, r8d",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8e3",
+          "bytes": "418bd0",
+          "mnemonic": "mov",
+          "args": "edx, r8d",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8e6",
+          "bytes": "39151cb6f601",
+          "mnemonic": "cmp",
+          "args": "dword ptr [rip + 0x1f6b61c], edx",
+          "rip_targets": [
+            "0x22d8f08"
+          ]
+        },
+        {
+          "pc": "0x36d8ec",
+          "bytes": "762c",
+          "mnemonic": "jbe",
+          "args": "0x36d91a",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8ee",
+          "bytes": "4c8d0d0b27dbff",
+          "mnemonic": "lea",
+          "args": "r9, [rip - 0x24d8f5]",
+          "rip_targets": [
+            "0x120000"
+          ]
+        },
+        {
+          "pc": "0x36d8f5",
+          "bytes": "8bca",
+          "mnemonic": "mov",
+          "args": "ecx, edx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8f7",
+          "bytes": "8bc2",
+          "mnemonic": "mov",
+          "args": "eax, edx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8f9",
+          "bytes": "4803c9",
+          "mnemonic": "add",
+          "args": "rcx, rcx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8fc",
+          "bytes": "ffc2",
+          "mnemonic": "inc",
+          "args": "edx",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d8fe",
+          "bytes": "498b84c1000ada02",
+          "mnemonic": "mov",
+          "args": "rax, qword ptr [r9 + rax*8 + 0x2da0a00]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d906",
+          "bytes": "410f1084c90008da02",
+          "mnemonic": "movups",
+          "args": "xmm0, xmmword ptr [r9 + rcx*8 + 0x2da0800]",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d90f",
+          "bytes": "0f1100",
+          "mnemonic": "movups",
+          "args": "xmmword ptr [rax], xmm0",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d912",
+          "bytes": "3b15f0b5f601",
+          "mnemonic": "cmp",
+          "args": "edx, dword ptr [rip + 0x1f6b5f0]",
+          "rip_targets": [
+            "0x22d8f08"
+          ]
+        },
+        {
+          "pc": "0x36d918",
+          "bytes": "72db",
+          "mnemonic": "jb",
+          "args": "0x36d8f5",
+          "rip_targets": []
+        },
+        {
+          "pc": "0x36d91a",
+          "bytes": "448905e7b5f601",
+          "mnemonic": "mov",
+          "args": "dword ptr [rip + 0x1f6b5e7], r8d",
+          "rip_targets": [
+            "0x22d8f08"
+          ]
+        },
+        {
+          "pc": "0x36d921",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "rip_targets": []
+        }
+      ]
+    }
+  ],
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/license-check-exec/check.py",
+      "retained": "shipping-reader.py",
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+      "head_sha256": "1f7ace7f7e88145588b48073a1eb220e4c1523aded0a8f5cd3b25528ad5ddb96",
+      "working_matches_head": true
+    },
+    {
+      "path": "Database/FFXII TZA/00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md",
+      "retained": "contract.md",
+      "sha256": "30e6fe129e8b95e2a4149ef94b05c85f7e57c0b5da8bc416463ddf3b415ee348",
+      "head_sha256": "30e6fe129e8b95e2a4149ef94b05c85f7e57c0b5da8bc416463ddf3b415ee348",
+      "working_matches_head": true
+    },
+    {
+      "path": "Reconstruction/Tests/Differential/diff_workbench_save.py",
+      "retained": "existing-differential.py",
+      "sha256": "576e313af7a6d2592b89526f35238880a23d56fed1eaf56003f8a69f037608c8",
+      "head_sha256": "576e313af7a6d2592b89526f35238880a23d56fed1eaf56003f8a69f037608c8",
+      "working_matches_head": true
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s05-runtime-what-has-run.md",
+      "retained": "prior-runtime-summary.md",
+      "sha256": "f62ee9f26c7baec38bfa8e44b99b1c3029831ae34ad053c8559c7d501527682a",
+      "head_sha256": "f62ee9f26c7baec38bfa8e44b99b1c3029831ae34ad053c8559c7d501527682a",
+      "working_matches_head": true
+    }
+  ],
+  "limits": "Complete original leaves read, no execution/caller census/live state or universal alias characterization. Existing differential source retained but not rerun. Source predictions are conditional, not captured original runtime outcomes.",
+  "cleanup": "No game/PC/attachment/save/config/reference writes; no live cleanup claimed."
+}

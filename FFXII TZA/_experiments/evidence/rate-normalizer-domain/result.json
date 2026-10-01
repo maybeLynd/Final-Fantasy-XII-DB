@@ -1,0 +1,251 @@
+{
+  "method": "A whole37B verified original source + primary COMISS ISA conditional predictions; zero original/native/emulator/live executions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "entry": "0x229e70",
+    "bytes": 37,
+    "body_sha256": "749953009c38a262b64c21f7bed7057d31ff25de5d32469b00ec0e55382bb5fa",
+    "global_rate": "0x1e02820",
+    "default_constant": "0x1cebba8",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "isa_sha256": "2ab0b3f0567a993abdb6e95cb32eb1e07f9ed94c61a3bb6312b55858a7481590"
+  },
+  "tools": {
+    "utc": "2026-09-28T09:00:33.735564+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "7fc4a0abc0f2469b84c19c175f14de166c87149f1d605f2d2a71dbac6cf48c72",
+  "instructions": [
+    {
+      "pc": "0x229e70",
+      "bytes": "f30f100da889bd01",
+      "op": "movss",
+      "args": "xmm1, dword ptr [rip + 0x1bd89a8]"
+    },
+    {
+      "pc": "0x229e78",
+      "bytes": "0f57c0",
+      "op": "xorps",
+      "args": "xmm0, xmm0"
+    },
+    {
+      "pc": "0x229e7b",
+      "bytes": "0f2fc1",
+      "op": "comiss",
+      "args": "xmm0, xmm1"
+    },
+    {
+      "pc": "0x229e7e",
+      "bytes": "7211",
+      "op": "jb",
+      "args": "0x229e91"
+    },
+    {
+      "pc": "0x229e80",
+      "bytes": "f30f1005201dac01",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rip + 0x1ac1d20]"
+    },
+    {
+      "pc": "0x229e88",
+      "bytes": "f30f11059089bd01",
+      "op": "movss",
+      "args": "dword ptr [rip + 0x1bd8990], xmm0"
+    },
+    {
+      "pc": "0x229e90",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x229e91",
+      "bytes": "0f28c1",
+      "op": "movaps",
+      "args": "xmm0, xmm1"
+    },
+    {
+      "pc": "0x229e94",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "cases": [
+    {
+      "input_bits": "3F000000",
+      "daz_assumed": false,
+      "completed_relation": "less",
+      "zf_pf_cf": "001",
+      "branch_taken": true,
+      "store_default": false,
+      "return_bits": "3F000000",
+      "global_after_bits": "3F000000",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    },
+    {
+      "input_bits": "40000000",
+      "daz_assumed": false,
+      "completed_relation": "less",
+      "zf_pf_cf": "001",
+      "branch_taken": true,
+      "store_default": false,
+      "return_bits": "40000000",
+      "global_after_bits": "40000000",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    },
+    {
+      "input_bits": "00000000",
+      "daz_assumed": false,
+      "completed_relation": "equal",
+      "zf_pf_cf": "100",
+      "branch_taken": false,
+      "store_default": true,
+      "return_bits": "3F800000",
+      "global_after_bits": "3F800000",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    },
+    {
+      "input_bits": "80000000",
+      "daz_assumed": false,
+      "completed_relation": "equal",
+      "zf_pf_cf": "100",
+      "branch_taken": false,
+      "store_default": true,
+      "return_bits": "3F800000",
+      "global_after_bits": "3F800000",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    },
+    {
+      "input_bits": "BF800000",
+      "daz_assumed": false,
+      "completed_relation": "greater",
+      "zf_pf_cf": "000",
+      "branch_taken": false,
+      "store_default": true,
+      "return_bits": "3F800000",
+      "global_after_bits": "3F800000",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    },
+    {
+      "input_bits": "7FC00001",
+      "daz_assumed": false,
+      "completed_relation": "unordered",
+      "zf_pf_cf": "111",
+      "branch_taken": true,
+      "store_default": false,
+      "return_bits": "7FC00001",
+      "global_after_bits": "7FC00001",
+      "limits": "Conditional completed source/ISA prediction, not original/native/emulator/live. NaN requires completed comparison; unmasked invalid continuation unknown."
+    }
+  ],
+  "daz_conditional": [
+    {
+      "input_bits": "00000001",
+      "daz_assumed": false,
+      "completed_relation": "less",
+      "zf_pf_cf": "001",
+      "branch_taken": true,
+      "store_default": false,
+      "return_bits": "00000001",
+      "global_after_bits": "00000001",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    },
+    {
+      "input_bits": "00000001",
+      "daz_assumed": true,
+      "completed_relation": "equal",
+      "zf_pf_cf": "100",
+      "branch_taken": false,
+      "store_default": true,
+      "return_bits": "3F800000",
+      "global_after_bits": "3F800000",
+      "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+    }
+  ],
+  "controls": [
+    {
+      "name": "zero-reset-JB-to-JBE",
+      "mutant_hex": "f30f100da889bd010f57c00f2fc17611f30f1005201dac01f30f11059089bd01c30f28c1c3",
+      "binding_rejected": true,
+      "baseline": {
+        "input_bits": "00000000",
+        "daz_assumed": false,
+        "completed_relation": "equal",
+        "zf_pf_cf": "100",
+        "branch_taken": false,
+        "store_default": true,
+        "return_bits": "3F800000",
+        "global_after_bits": "3F800000",
+        "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+      },
+      "private_source_model": {
+        "input_bits": "00000000",
+        "daz_assumed": false,
+        "completed_relation": "equal",
+        "zf_pf_cf": "100",
+        "branch_taken": true,
+        "store_default": false,
+        "return_bits": "00000000",
+        "global_after_bits": "00000000",
+        "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+      },
+      "method": "Source mutation and host/ISA interpretation only; changed instruction not executed"
+    },
+    {
+      "name": "fraction-comparison-operands-swapped",
+      "mutant_hex": "f30f100da889bd010f57c00f2fc87211f30f1005201dac01f30f11059089bd01c30f28c1c3",
+      "binding_rejected": true,
+      "baseline": {
+        "input_bits": "3F000000",
+        "daz_assumed": false,
+        "completed_relation": "less",
+        "zf_pf_cf": "001",
+        "branch_taken": true,
+        "store_default": false,
+        "return_bits": "3F000000",
+        "global_after_bits": "3F000000",
+        "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+      },
+      "private_source_model": {
+        "input_bits": "3F000000",
+        "daz_assumed": false,
+        "completed_relation": "greater",
+        "zf_pf_cf": "000",
+        "branch_taken": false,
+        "store_default": true,
+        "return_bits": "3F800000",
+        "global_after_bits": "3F800000",
+        "limits": "Conditional source/ISA prediction; no observed rate or game MXCSR"
+      },
+      "method": "Source mutation and host/ISA interpretation only; changed instruction not executed"
+    }
+  ],
+  "consumer_preimages": [
+    {
+      "path": "Database/FFXII TZA/00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md",
+      "sha256": "a1d28b4753c2ca850b5c3addcbdf1e0fb4f90cbd082118d031c9668121c0a58b",
+      "retained_name": "shared-neighbours.md"
+    },
+    {
+      "path": "Database/FFXII TZA/16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "sha256": "2e79681927a6a1460807bdcfc6b7c52ff09989e71357a345718d7edcc8fd5f03",
+      "retained_name": "widget-contract.md"
+    },
+    {
+      "path": "Database/FFXII TZA/16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md",
+      "sha256": "b2afcc370237494bbc3754d94f91fbb927d268e6a43ccf2839627390cb05b058",
+      "retained_name": "animation-mechanism.md"
+    }
+  ],
+  "interpretation": "Completed compare: JB bypasses default for ordered-positive and unordered. Positivefraction0.5 unchanged refutes floor1; negative1 resets refutes zero-only. Orderedzero/negative inputs load/store/return1; positive and completedunordered inputs return originalbits without defaultwrite. CompletedNaN therefore not universal positive guarantee. DAZ1 maydefault raw positive-subnormal as effectivezero. No actual normal-domain/MXCSR/exception continuation proof. Constructor default WidgetB8=1 not wholefield invariant: retained guarded reciprocal writers already recorded.",
+  "limits": "Stable readable global/constant and completed COMISS required. COMISS invalid forQNaN/SNaN, unmasked exception leavesflags unupdated; handler/continuation/native exceptions unknown. No observed game values, initialization, rate lifetime, scheduler cadence, widget speed/presentation, native FP payload arithmetic or universal finite-positive result. Exact static callers validated from prior retained bodies, not executed. No bulkEC7 disposition changes.",
+  "cleanup": "Read-only source/consumer preimages and host calculations; PC OFF/no game/process/input/save/config/reference/peerwrites; owner correction and independent acceptance pending"
+}

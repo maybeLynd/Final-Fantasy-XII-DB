@@ -1,0 +1,4 @@
+PASS  S beat -10 per run; reload = byte9 x [01DFE0B4] x 30 (and the same default at infliction)
+PASS  D Poison / Sap / Regen byte +9 = 120 / 1 / 15
+PASS  M Poison 12 s, Sap 0.1 s, Regen 1.5 s at 30 and 60 fps; the drain interval is 1/3 s - a different timer
+FAILS 0

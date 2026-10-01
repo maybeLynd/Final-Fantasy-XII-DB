@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-13T11:18:34.613Z",
+  "window": {
+    "app": "process:C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+    "id": 1640038,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "accessibility": {
+    "document_text": "FINAL FANTASY XII THE ZODIAC AGE General  Updates  Installed Files  Game Versions & Betas  Controller  Game Recording  Privacy  Customization    General Enable the Steam Overlay while in-game      Language English    Steam Cloud The Steam Cloud stores information so your product experience is consistent across computers. Keep game's saves in the Steam Cloud for FINAL FANTASY XII THE ZODIAC AGE      52.68 KB stored / 47.63 MB available  Launch Options Selected Launch Option Play FINAL FANTASY XII THE ZODIAC AGE    Advanced users may choose to enter modifications to their launch options.",
+    "focused_element": "3 document FINAL FANTASY XII THE ZODIAC AGE ID: 53740224",
+    "tree": "Window: \"FINAL FANTASY XII THE ZODIAC AGE\", App: steamwebhelper.exe.\n\t0 window FINAL FANTASY XII THE ZODIAC AGE Secondary Actions: Raise\n\t\t1 pane\n\t\t\t2 pane\n\t\t\t\t3 document FINAL FANTASY XII THE ZODIAC AGE ID: 53740224\n\t\t\t\t\t4 image ID: Layer_2\n\t\t\t\t\t5 image ID: base\n\t\t\t\t\t6 image ID: base\n\t\t\t\t\t7 text FINAL FANTASY XII THE ZODIAC AGE\n\t\t\t\t\t8 tab\n\t\t\t\t\t\t9 tab item (selectable) General ID: «r78i»/app/595520/properties/general\n\t\t\t\t\t\t\t10 tab item (selectable) General ID: «r78i»/app/595520/properties/general\n\t\t\t\t\t\t11 tab item (selectable) Updates ID: «r78i»/app/595520/properties/updates\n\t\t\t\t\t\t\t12 tab item (selectable) Updates ID: «r78i»/app/595520/properties/updates\n\t\t\t\t\t\t13 tab item (selectable) Installed Files ID: «r78i»/app/595520/properties/localfiles\n\t\t\t\t\t\t\t14 tab item (selectable) Installed Files ID: «r78i»/app/595520/properties/localfiles\n\t\t\t\t\t\t15 tab item (selectable) Game Versions & Betas ID: «r78i»/app/595520/properties/betas\n\t\t\t\t\t\t\t16 tab item (selectable) Game Versions & Betas ID: «r78i»/app/595520/properties/betas\n\t\t\t\t\t\t17 tab item (selectable) Controller ID: «r78i»/app/595520/properties/controller\n\t\t\t\t\t\t\t18 tab item (selectable) Controller ID: «r78i»/app/595520/properties/controller\n\t\t\t\t\t\t19 tab item (selectable) Game Recording ID: «r78i»/app/595520/properties/gamerecording\n\t\t\t\t\t\t\t20 tab item (selectable) Game Recording ID: «r78i»/app/595520/properties/gamerecording\n\t\t\t\t\t\t21 tab item (selectable) Privacy ID: «r78i»/app/595520/properties/privacy\n\t\t\t\t\t\t\t22 tab item (selectable) Privacy ID: «r78i»/app/595520/properties/privacy\n\t\t\t\t\t\t23 tab item (selectable) Customization ID: «r78i»/app/595520/properties/customization\n\t\t\t\t\t\t\t24 tab item (selectable) Customization ID: «r78i»/app/595520/properties/customization\n\t\t\t\t\t25 tab panel General ID: «r78i»/app/595520/properties/general_Content\n\t\t\t\t\t\t26 text Enable the Steam Overlay while in-game\n\t\t\t\t\t\t27 check box Enable the Steam Overlay while in-game\n\t\t\t\t\t\t28 text Language\n\t\t\t\t\t\t29 combo box Language\n\t\t\t\t\t\t\t30 text English\n\t\t\t\t\t\t31 region Steam Cloud\n\t\t\t\t\t\t\t32 text The Steam Cloud stores information so your product experience is consistent across computers.\n\t\t\t\t\t\t\t33 text Keep game's saves in the Steam Cloud for FINAL FANTASY XII THE ZODIAC AGE\n\t\t\t\t\t\t\t34 check box Keep game's saves in the Steam Cloud for FINAL FANTASY XII THE ZODIAC AGE\n\t\t\t\t\t\t\t35 text 52.68 KB stored\n\t\t\t\t\t\t\t36 text /\n\t\t\t\t\t\t\t37 text 47.63 MB available\n\t\t\t\t\t\t38 region Launch Options\n\t\t\t\t\t\t\t39 text Selected Launch Option\n\t\t\t\t\t\t\t40 combo box Selected Launch Option\n\t\t\t\t\t\t\t\t41 text Play FINAL FANTASY XII THE ZODIAC AGE\n\t\t\t\t\t\t\t42 text Advanced users may choose to enter modifications to their launch options.\n\t\t\t\t\t\t\t43 edit\n\t\t\t\t44 pane (disabled)\n\t\t\t\t45 pane\n\nDocument text: ```\nFINAL FANTASY XII THE ZODIAC AGE General  Updates  Installed Files  Game Versions & Betas  Controller  Game Recording  Privacy  Customization    General Enable the Steam Overlay while in-game      Language English    Steam Cloud The Steam Cloud stores information so your product experience is consistent across computers. Keep game's saves in the Steam Cloud for FINAL FANTASY XII THE ZODIAC AGE      52.68 KB stored / 47.63 MB available  Launch Options Selected Launch Option Play FINAL FANTASY XII THE ZODIAC AGE    Advanced users may choose to enter modifications to their launch options.\n```"
+  },
+  "screenshots": [
+    {
+      "height": 601,
+      "id": "screenshot-0",
+      "originX": 1121,
+      "originY": 425,
+      "width": 842,
+      "zIndex": 0,
+      "file": "steam-cloud-off.jpg"
+    }
+  ]
+}

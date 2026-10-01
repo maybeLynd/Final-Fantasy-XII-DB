@@ -1,0 +1,38 @@
+function	site	field	width	kind	instruction
+00358CB0	00358D5B	0x0	8	addr	lea rcx, [rip + 0x1f6f23e]
+003590E0	00359124	0x0	8	addr	lea rcx, [rip + 0x1f6ee75]
+00380800	0038080A	0x14	4	r	movss xmm1, dword ptr [rdx + 4]
+00380800	00380812	0x18	4	r	movss xmm2, dword ptr [rdx + 8]
+00380800	00380827	0x10	4	r	movss xmm6, dword ptr [rdx]
+00380800	00380864	0x10	4	w	movss dword ptr [rdi], xmm6
+00380800	00380868	0x14	4	r	mulss xmm0, dword ptr [rbx + 4]
+00380800	00380872	0x14	4	w	movss dword ptr [rdi + 4], xmm0
+00380800	00380877	0x18	4	r	mulss xmm1, dword ptr [rbx + 8]
+00380800	0038087C	0x18	4	w	movss dword ptr [rdi + 8], xmm1
+00380800	00380881	0x1C	4	r	mov eax, dword ptr [rbx + 0xc]
+00380800	00380889	0x1C	4	w	mov dword ptr [rdi + 0xc], eax
+004742A0	00474343	0x0	4	w	mov dword ptr [rdi], 1
+004742A0	0047435A	0x0	4	r	mov eax, dword ptr [rdi]
+004742A0	0047436B	0x8	4	r	subss xmm1, dword ptr [rdi + 8]
+004742A0	00474388	0x0	4	w	mov dword ptr [rdi], 1
+004742A0	004743A1	0x18	8	addr	lea rbx, [rdi + 0x18]
+004742A0	004743AD	0x10	8	addr	lea rsi, [rdi + 0x10]
+004742A0	004743DF	0x10	4	w	mov dword ptr [rbx - 8], eax
+004742A0	004743E5	0x14	4	w	mov dword ptr [rbx - 4], eax
+004742A0	004743EB	0x18	4	w	mov dword ptr [rbx], eax
+004742A0	004743F3	0x1C	4	w	mov dword ptr [rbx + 4], eax
+004742A0	004743F6	0x14	4	w	mov dword ptr [rbx - 4], ebp
+004742A0	00474406	0x28	8	addr	lea rbx, [rbx + 0x10]
+004742A0	00474430	0x8	4	w	movss dword ptr [rdi + 8], xmm6
+004742A0	00474435	0x0	4	w	mov dword ptr [rdi], ebp
+004742A0	00474437	0x10	4	r	movss xmm7, dword ptr [rdi + 0x10]
+004742A0	0047443F	0x20	4	r	movss xmm0, dword ptr [rdi + 0x20]
+004742A0	00474464	0x18	4	r	movss xmm8, dword ptr [rdi + 0x18]
+004742A0	0047446A	0x28	4	r	movss xmm0, dword ptr [rdi + 0x28]
+004742A0	004744FC	0xC	4	r	subss xmm1, dword ptr [rdi + 0xc]
+004742A0	00474563	0xC	4	r	addss xmm1, dword ptr [rdi + 0xc]
+004742A0	00474568	0xC	4	w	movss dword ptr [rdi + 0xc], xmm1
+004742A0	0047457D	0x0	4	w	mov dword ptr [rdi], 1
+004745B0	004745B0	0x0	4	w	mov dword ptr [rcx], 1
+004745B0	004745B6	0x4	4	w	mov dword ptr [rcx + 4], 0x12
+004745B0	004745BD	0xC	4	w	mov dword ptr [rcx + 0xc], 0

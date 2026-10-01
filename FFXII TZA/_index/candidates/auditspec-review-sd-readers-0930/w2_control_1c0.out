@@ -1,0 +1,16 @@
+functions scanned: 175 (closure of 0057F360 depth 3: 39, save module: 147)
+seed disp 0x1c0, all=True; 8-byte [reg+seed] loads followed: 6
+FIELD hits (+0x48/+0x4C/+0x58/+0x60 mod 0xA0) through a loaded [reg+0xD8]: 13
+  00580093 mov edx, dword ptr [rcx + rax + 0x50]  (disp 0x50, mod A0 0x50, w4) after load 00580088 in 0057FE80 FUN_0057fe80
+  00580163 cmp dword ptr [rcx + 0x50], eax  (disp 0x50, mod A0 0x50, w4) after load 00580156 in 0057FE80 FUN_0057fe80
+  00580176 mov ecx, dword ptr [rax + 0x50]  (disp 0x50, mod A0 0x50, w4) after load 0058016A in 0057FE80 FUN_0057fe80
+  00580DBE movups xmmword ptr [rdx], xmm0  (disp 0x0, mod A0 0x0, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DC6 movups xmmword ptr [rdx + 0x10], xmm1  (disp 0x10, mod A0 0x10, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DCF movups xmmword ptr [rdx + 0x20], xmm0  (disp 0x20, mod A0 0x20, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DD8 movups xmmword ptr [rdx + 0x30], xmm1  (disp 0x30, mod A0 0x30, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DE1 movups xmmword ptr [rdx + 0x40], xmm0  (disp 0x40, mod A0 0x40, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DEA movups xmmword ptr [rdx + 0x50], xmm1  (disp 0x50, mod A0 0x50, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DF3 movups xmmword ptr [rdx + 0x60], xmm0  (disp 0x60, mod A0 0x60, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580DFC movups xmmword ptr [rdx + 0x70], xmm0  (disp 0x70, mod A0 0x70, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580E08 movups xmmword ptr [rdx + 0x80], xmm1  (disp 0x80, mod A0 0x80, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0
+  00580E17 movups xmmword ptr [rdx + 0x90], xmm0  (disp 0x90, mod A0 0x90, w16) after load 00580DB0 in 00580CD0 FUN_00580cd0

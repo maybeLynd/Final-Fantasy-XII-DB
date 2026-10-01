@@ -1,0 +1,8 @@
+T1_four_handlers_slot_from_002640C0_three_pops_first_pop_is_arg5   PASS
+T1_7e_and_1a3_push_minus1_7d_and_1a2_do_not                        PASS
+T2_subframe_is_1_mainframe_is_0                                    PASS
+C1_corpus_last_args_are_the_two_natives_or_literal_110             PASS
+C2_max_index_110_stores_at_F4_inside_the_0x200_slot                PASS
+T3_both_resets_read_the_current_slot_context_02099D70              PASS
+{"counts": {"camerastart_7e": 3833, "camerastart_7d": 39, "camerashakestart_1a3": 328}, "last_args": {"getcamerasubframe()": 37, "getcameramainframe()": 1, "110": 1}, "max_index": 110}
+ALL PASS

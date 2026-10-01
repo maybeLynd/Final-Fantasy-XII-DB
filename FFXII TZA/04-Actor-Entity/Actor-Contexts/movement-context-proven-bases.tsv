@@ -1,0 +1,69 @@
+function	name	owner	registers	via
+0025BAD0	FUN_0025bad0	ActorEntity	rsi	actorarg:rdx+0xB8
+0025BE50	FUN_0025be50		rbx	actorarg:rdx+0xB8
+0025C230	FUN_0025c230	ActorEntity	rbp	actorarg:rdx+0xB8
+0025C830	FUN_0025c830	ActorEntity	rsi	actorarg:rdx+0xB8
+0025D4F0	FUN_0025d4f0		rax	actorarg:rcx+0xB8
+0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	Movement	rax	actorarg:rdx+0xB8
+002636F0	Movement_GetSteeringAcceleration	Movement	rax	actorarg:rcx+0xB8
+00263720	Movement_GetConfiguredSteeringMode	Movement	rax	actorarg:rcx+0xB8
+00263940	FUN_00263940	Movement	rax	actorarg:rcx+0xB8
+00263BC0	FUN_00263bc0	Movement	rax	actorarg:rcx+0xB8
+00263CC0	FUN_00263cc0	Movement	rax	actorarg:rcx+0xB8
+002640E0	FUN_002640e0	Movement	rax	actorarg:rcx+0xB8
+00264510	FUN_00264510		rcx	actorarg:rcx+0xB8
+002645D0	FUN_002645d0		rax	actorarg:rcx+0xB8
+002646C0	FUN_002646c0	Movement	rcx	actorarg:rcx+0xB8
+00264E10	FUN_00264e10		rax	actorarg:rcx+0xB8
+00265020	Actor_GetWorldPosition	ActorEntity	rcx	actorarg:rcx+0xB8
+002651C0	FUN_002651c0	Movement	rax	actorarg:rcx+0xB8
+00265200	FUN_00265200	Movement	rax	actorarg:rcx+0xB8
+002652A0	FUN_002652a0	Movement	rax	actorarg:rcx+0xB8
+00265470	FUN_00265470	Movement	rcx	actorarg:rcx+0xB8
+002654E0	FUN_002654e0	Movement	rcx	actorarg:rcx+0xB8
+00265510	FUN_00265510	Movement	rax	actorarg:rcx+0xB8
+00265530	FUN_00265530	Movement	rax	actorarg:rcx+0xB8
+00265550	FUN_00265550	Movement	rdx	actorarg:rcx+0xB8
+002655D0	FUN_002655d0	Movement	rax	actorarg:rcx+0xB8
+00265600	FUN_00265600	Movement	rax	actorarg:rcx+0xB8
+00265630	FUN_00265630	Movement	rax	actorarg:rcx+0xB8
+00265660	FUN_00265660	Movement	rax	actorarg:rcx+0xB8
+00265830	FUN_00265830	Movement	rax	actorarg:rcx+0xB8
+00265FF0	FUN_00265ff0	Movement	r14,rax,rcx,rsi	actorarg:rcx+0xB8
+00268380	FUN_00268380	Movement	rax	actorarg:rcx+0xB8
+0026A0D0	Actor_SetDesiredMovementHeading	Movement	rdx	actorarg:rcx+0xB8
+0026A1A0	FUN_0026a1a0	Movement	rax	actorarg:rcx+0xB8
+0026A640	FUN_0026a640	Movement	rax	actorarg:rcx+0xB8
+0026A870	FUN_0026a870	Movement	rax	actorarg:rcx+0xB8
+0026A8E0	FUN_0026a8e0	Movement	rax	actorarg:rcx+0xB8
+0026A950	FUN_0026a950	Movement	rax	actorarg:rcx+0xB8
+0026AA60	FUN_0026aa60	Movement	rax	actorarg:rcx+0xB8
+0026AE30	Movement_SetSteeringTargetPosition	Movement	rcx	actorarg:rcx+0xB8
+0026AE90	Movement_SetSteeringMode	Movement	rax,rcx	actorarg:rcx+0xB8
+0026AF10	Movement_SnapshotSteeringStartPosition	Movement	rax	actorarg:rcx+0xB8
+0026AFE0	FUN_0026afe0	Movement	rax	actorarg:rcx+0xB8
+0026B0C0	FUN_0026b0c0	Movement	rax	actorarg:rcx+0xB8
+0026B450	FUN_0026b450		rax	actorarg:rcx+0xB8
+0026B520	FUN_0026b520	Movement	rax	actorarg:rcx+0xB8
+0026B6A0	FUN_0026b6a0	Movement	rax	actorarg:rcx+0xB8
+0026C070	FUN_0026c070	Movement	rax	actorarg:rcx+0xB8
+0026C090	FUN_0026c090		rax	actorarg:rcx+0xB8
+0026C120	FUN_0026c120	Movement	rbx	actorarg:rcx+0xB8
+0026C300	FUN_0026c300	Movement	rax	actorarg:rcx+0xB8
+0026D6F0	Movement_SetRequestedSpeed	Movement	rdx	actorarg:rcx+0xB8
+0026D810	FUN_0026d810	Movement	rdx	actorarg:rcx+0xB8
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	Movement	rdi	actorarg:rcx+0xB8
+002E4A10	FUN_002e4a10	Movement	rcx	actorarg:rcx+0xB8
+002E5030	Movement_UpdateActorFrame	Movement	rdi	actorarg:rcx+0xB8
+002E5180	FUN_002e5180	Movement	rdi	actorarg:rcx+0xB8
+002E5C90	FUN_002e5c90	Movement	rbx	actorarg:rcx+0xB8
+002E5FB0	FUN_002e5fb0	Movement	rax	actorarg:rcx+0xB8
+002E6000	FUN_002e6000		rdi	actorarg:rcx+0xB8
+002E64E0	FUN_002e64e0	Movement	rax	actorarg:rcx+0xB8
+002E8EE0	FUN_002e8ee0		rsi	actorarg:rcx+0xB8
+002EAAA0	FUN_002eaaa0	Movement	rdi	actorarg:rcx+0xB8
+002EAB80	FUN_002eab80	Movement	rdi	actorarg:rcx+0xB8
+002EBE50	FUN_002ebe50	Movement	rbx	actorarg:rcx+0xB8
+002EBFA0	FUN_002ebfa0	Movement	rbx	actorarg:rcx+0xB8
+002EC2C0	FUN_002ec2c0	Movement	rcx	actorarg:rcx+0xB8
+002EC3F0	FUN_002ec3f0	Movement	rcx	actorarg:rcx+0xB8

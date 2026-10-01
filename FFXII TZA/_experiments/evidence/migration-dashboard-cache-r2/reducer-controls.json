@@ -1,0 +1,41 @@
+{
+  "baseline": {
+    "returncode": 0,
+    "stdout": "ACCEPT_SCOPED_CACHE_REPAIR\n"
+  },
+  "negative_controls": [
+    {
+      "name": "incomplete",
+      "input_sha256": "a421b7be873d92a510fae3d2baf3d1a8bc74f54897272a3cb59d5a1d42350f47",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\reverify-r2\\check.py\", line 8, in <module>\n    assert r['finished'] is True and not r.get('fatal')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "missing-required-case",
+      "input_sha256": "a2108de234246e1643163b7cf1dcb94737f680719fe6bbcec96437cfdd5d98e0",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\reverify-r2\\check.py\", line 38, in <module>\n    assert set(cases) == ids and len(r['cases']) == len(ids)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "mtime-not-preserved",
+      "input_sha256": "3ac7d56441ceff55126c51016a470c98e0a0ae583c2344b5acaafc2d25ee46e8",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\reverify-r2\\check.py\", line 54, in <module>\n    o = cases['same-stat-output-next-request']['observed']; edit_control(o)\n                                                            ~~~~~~~~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\reverify-r2\\check.py\", line 52, in edit_control\n    e = o['edit']; assert e['size_before'] == e['size_after'] and e['mtime_before'] == e['mtime_after']\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "hide-late-current",
+      "input_sha256": "95beffb5012e366bcf508a7ba993147e91812d70ccfab4cbfe70d019ccc5b003",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\reverify-r2\\check.py\", line 75, in <module>\n    assert detected == timer['first_detection']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    }
+  ],
+  "raw_unchanged": true
+}

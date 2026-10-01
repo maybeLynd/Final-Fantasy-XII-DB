@@ -1,0 +1,47 @@
+PASS  C1 4229 streams, 0 walks not ending at the declared size; chunk flag words seen: {256: 242875}
+PASS  C2 0xB00 records 40750, kinds within 0x50..0x59
+PASS  C3 0xA00 records 48868 (published 48,868)
+0xB00 records by kind: 0x50 5810, 0x51 5352, 0x52 16862, 0x53 374, 0x54 2733, 0x56 6746, 0x57 1843, 0x58 746, 0x59 284
+kind 0x59 records: 284 in 88 files
+kind 0x59 files by top directory: {'ps2data/effect_finish/jp': 44, 'ps2data/effect_finish/us': 44}
+kind 0x59 files by extension: {'.efx': 88}
+  ps2data/effect_finish/jp/event/e0195.efx  4
+  ps2data/effect_finish/jp/magic/m0120.efx  4
+  ps2data/effect_finish/jp/magic/m0121.efx  4
+  ps2data/effect_finish/jp/magic/m0122.efx  4
+  ps2data/effect_finish/jp/magic/m0123.efx  3
+  ps2data/effect_finish/jp/magic/m0124.efx  3
+  ps2data/effect_finish/jp/magic/m0125.efx  5
+  ps2data/effect_finish/jp/magic/m0126.efx  4
+  ps2data/effect_finish/jp/magic/m0127.efx  5
+  ps2data/effect_finish/jp/magic/m0128.efx  4
+  ps2data/effect_finish/jp/magic/m0129.efx  4
+  ps2data/effect_finish/jp/magic/m0130.efx  4
+  ps2data/effect_finish/jp/magic/m0131.efx  5
+  ps2data/effect_finish/jp/magic/m0132.efx  4
+  ps2data/effect_finish/jp/magic/m0133.efx  4
+  ps2data/effect_finish/jp/magic/m0134.efx  4
+  ps2data/effect_finish/jp/magic/m0135.efx  4
+  ps2data/effect_finish/jp/magic/m0136.efx  4
+  ps2data/effect_finish/jp/magic/m0137.efx  4
+  ps2data/effect_finish/jp/magic/m0208.efx  1
+  ps2data/effect_finish/jp/magic/m0209.efx  1
+  ps2data/effect_finish/jp/magic/m0210.efx  1
+  ps2data/effect_finish/jp/magic/m0211.efx  1
+  ps2data/effect_finish/jp/magic/m0212.efx  1
+  ps2data/effect_finish/jp/magic/m0213.efx  1
+  ps2data/effect_finish/jp/magic/m0214.efx  1
+  ps2data/effect_finish/jp/magic/m0215.efx  1
+  ps2data/effect_finish/jp/magic/m0226.efx  1
+  ps2data/effect_finish/jp/magic/m0365.efx  2
+  ps2data/effect_finish/jp/magic/m0366.efx  3
+  ps2data/effect_finish/jp/magic/m0367.efx  5
+  ps2data/effect_finish/jp/magic/m0372.efx  2
+  ps2data/effect_finish/jp/magic/m0373.efx  2
+  ps2data/effect_finish/jp/magic/m0378.efx  4
+  ps2data/effect_finish/jp/magic/m0380.efx  3
+  ps2data/effect_finish/jp/magic/m0381.efx  4
+  ps2data/effect_finish/jp/magic/m0386.efx  7
+  ps2data/effect_finish/jp/magic/m0387.efx  3
+  ps2data/effect_finish/jp/magic/m0390.efx  5
+  ps2data/effect_finish/jp/magic/m0391.efx  3

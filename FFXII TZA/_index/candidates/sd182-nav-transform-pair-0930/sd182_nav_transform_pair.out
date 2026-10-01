@@ -1,0 +1,16 @@
+PASS  S1   0026E500(n) returns q[0209A678] (n == 0) or q[0209A680] (n != 0); 00322220 stores 0026E500(2), else 0026E500(1/0), at 02EC1378 = the `tab` of the nav walks
+PASS  S2   0026E960 (after 002F6AB0 built the object) stores &obj[0x40 + 0x68 k] at 0209A678 + 8 k for k = 0, 1: tab is one of the object's two 0x68-byte nav tables
+PASS  S3   002F6AB0 walks the YM00 index (chunk = file + 0x10 + off * 16); tag 0x1F -> 00232380(obj + 0x40, chunk), tag 0x11 -> 00232380(obj + 0xA8, chunk)
+PASS  S4   00232380 walks the nav chunk's own index (sub-chunk = chunk + off * 16) and for sub-type 4 stores tab+0x18 = sub-chunk + 0x10 and tab+0x44 = its first dword (the count); its 18 stores all go to the table (r9) or the stack: the subrecords are the file's bytes, rebased by pointer, not copied
+PASS  S5   the walks index a subrecord as q[tab+0x18] + (si - 0x4000) * 144 (D4B0); EB0 and FA0 transform through +0x50 (to the unit frame) and FA0 maps back through +0x10
+PASS  S6   the 144-byte index is formed in exactly 0022CC50 (r10 at 0022CCEC), 0022D4B0 (r10 at 0022D54C), 0022D7E0 (rsi at 0022D90C), 0022DE60 (rsi at 0022DF1D), 0022F8B0 (r9 at 0022F924); none stores through its subrecord register
+PASS  S7   FA0 (the shape in r14) and EB0 (the shape in rcx/rbx) never store through the shape pointer: the pair is read only
+empty (zero-size, skipped by 002F6AB0) nav chunks: tag 1F 1, tag 11 29
+corpus: 461 YM00 sections; non-empty nav chunks tag 1F 460, tag 11 432; subrecords tag 1F 60145, tag 11 29185; overruns 0; chunks without one type-4 sub-chunk 0
+types: tag 11 type 0: 3356, tag 11 type 1: 3608, tag 11 type 2: 22221, tag 1F type 0: 2657, tag 1F type 1: 6034, tag 1F type 2: 51454
+identity pairs: tag 11 non-identity: 29130, tag 11 identity: 55, tag 1F non-identity: 60145
+PASS  D1   every shipped YM00 section (461) indexes both nav chunks; 1 / 29 are zero-size (skipped by the loader); every non-empty one has exactly one type-4 sub-chunk; 89330 subrecords in all
+PASS  D2   in the file bytes, +0x50 is the inverse of +0x10 for 89330 of 89330 subrecords: |M10 M50 - I| stays under 64 float32 roundings of the product (worst 0.9 for tag 1F, 0.9 for tag 11; absolute 1.05e-03 / 1.04e-03): the pair is authored
+PASS  D3   the type dword is 0 / 1 / 2 (sphere / cylinder / box) and both matrices are affine (last column 0, 0, 0, 1) in every subrecord
+PASS  D4   negative control: pairing each non-identity forward matrix with the inverse of the previous record whose forward matrix differs by more than 0.01 passes the same test (0 of 89174), so the test discriminates
+FAILS 0

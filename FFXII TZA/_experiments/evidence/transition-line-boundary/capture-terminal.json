@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-line-boundary\\capture.py"
+  ],
+  "returncode": 0,
+  "stdout": "CAPTURE_COMPLETE [('valid-full40', 'INCORPORATE'), ('commit-full40-lf', 'INCORPORATE'), ('commit-full40-crlf', 'MALFORMED'), ('verdict-lf', 'INCORPORATE')]\n",
+  "stderr": "",
+  "terminal": true
+}

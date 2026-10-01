@@ -1,0 +1,4 @@
+PASS  C 245 frozen sites on 16 types decode as recorded
+PASS  N PaneListWidget0B68: the Widget initialisation signature lands at base +0x180, and 0029698B hands this + 0x180 to 002475D0
+PASS  W no unobserved row covers a frozen hit; all 16 types tile
+FAILS 0

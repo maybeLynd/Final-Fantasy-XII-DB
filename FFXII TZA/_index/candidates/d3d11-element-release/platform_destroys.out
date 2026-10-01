@@ -1,0 +1,5 @@
+PASS  P1 five wrappers: flag-gated release pass, then the D3D11 destructor body
+PASS  P2 PRenderTarget: 00625ED0-gated 0062B890, then 005DDB00 frees +0x48 / +0x38 and tail-jumps to 006108C0
+PASS  P3 PIndirectArgsBuffer: Sleep(1) while +0x04 > 0, then 006164B0 releases +0x18 +0x10 +0x08
+PASS  S seven destroy cells reduced; PIndirectArgsBuffer base spans re-cut, tiling kept
+FAILS 0

@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBDETAIL-0922",
+ "note": "Published 39426d811: 005760A0 detail-resolver decode — monster hctg tail reader found (v0 = hchk slot count), Esper subtitle table 00D23790, rec+0x0A kill-count flag, obj+0xD2 family ordinal, descriptor layout.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"},
+  {"key": "file:database/ffxii tza/16-ui/handbook/the-handbook-screen.md"}
+ ]
+}

@@ -1,0 +1,1017 @@
+{
+  "method": "Offline synthetic event sequence; no native/game execution",
+  "sources": {
+    "capture_scoped.py": "872ae50ba7c0cd0b2351c2b522d03d59698eadd26271e45f2ce46d74e0c5e7ca",
+    "capture_scoped_v2.py": "74a56606e4144a89afa7b369a9918a59decce0781be0474e760eb45b80bda48a",
+    "timeout_completion_check.py": "0cd3a906837fbc180136ae7be6ca137f796f412d0d63c28065f3c076f9901f1c"
+  },
+  "historical_counterexample": {
+    "result": {
+      "status": "MATCHED_PENDING_HEALTH",
+      "hits": [
+        {
+          "unix": 0.0,
+          "tid": 11,
+          "rip": 512,
+          "rsp": 4096,
+          "rcx": 1,
+          "rdx": 2,
+          "r8": 3,
+          "r9": 4,
+          "rdi": 1250999896491,
+          "r10": 1250999896491,
+          "rbx": 1250999896491,
+          "rax": 1250999896491
+        }
+      ],
+      "observations": [
+        {
+          "decision": "CONTINUE",
+          "source": "supplied incomplete/complete sequence"
+        }
+      ],
+      "arming": [
+        [
+          11,
+          true
+        ],
+        [
+          12,
+          true
+        ]
+      ],
+      "errors": [],
+      "cleanup": {
+        "status": "PASS",
+        "reason": "stopped-event clear and readback",
+        "clears": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "verified": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "breakpoint_tid": 12
+      },
+      "detach": true,
+      "abort": null,
+      "handle_closed": true
+    },
+    "callbacks": [
+      "CONTINUE"
+    ],
+    "resumes": [
+      "owned"
+    ],
+    "calls": [
+      [
+        "event",
+        "attach"
+      ],
+      [
+        "slots",
+        11,
+        [
+          512
+        ]
+      ],
+      [
+        "slots",
+        12,
+        [
+          512
+        ]
+      ],
+      [
+        "continue",
+        null,
+        65538
+      ],
+      [
+        "event",
+        "owned"
+      ],
+      [
+        "resume",
+        "owned"
+      ],
+      [
+        "continue",
+        "owned",
+        65538
+      ],
+      [
+        "event",
+        "create"
+      ],
+      [
+        "continue",
+        null,
+        65538
+      ],
+      [
+        "event",
+        "cleanup"
+      ],
+      [
+        "slots",
+        11,
+        []
+      ],
+      [
+        "slots",
+        12,
+        []
+      ],
+      [
+        "continue",
+        null,
+        65538
+      ]
+    ]
+  },
+  "arms": {
+    "no_event": {
+      "result": {
+        "status": "INCOMPLETE",
+        "hits": [],
+        "observations": [],
+        "arming": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "errors": [],
+        "cleanup": {
+          "status": "PASS",
+          "reason": "stopped-event clear and readback",
+          "clears": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "verified": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "breakpoint_tid": 12
+        },
+        "detach": true,
+        "abort": null,
+        "handle_closed": true,
+        "matched": false
+      },
+      "callbacks": [],
+      "resumes": [],
+      "calls": [
+        [
+          "event",
+          "attach"
+        ],
+        [
+          "slots",
+          11,
+          [
+            512
+          ]
+        ],
+        [
+          "slots",
+          12,
+          [
+            512
+          ]
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "create"
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "cleanup"
+        ],
+        [
+          "slots",
+          11,
+          []
+        ],
+        [
+          "slots",
+          12,
+          []
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ]
+      ]
+    },
+    "partial_then_timeout": {
+      "result": {
+        "status": "INCOMPLETE",
+        "hits": [
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          }
+        ],
+        "observations": [
+          {
+            "decision": "CONTINUE",
+            "source": "supplied incomplete/complete sequence"
+          }
+        ],
+        "arming": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "errors": [],
+        "cleanup": {
+          "status": "PASS",
+          "reason": "stopped-event clear and readback",
+          "clears": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "verified": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "breakpoint_tid": 12
+        },
+        "detach": true,
+        "abort": null,
+        "handle_closed": true,
+        "matched": false
+      },
+      "callbacks": [
+        "CONTINUE"
+      ],
+      "resumes": [
+        "owned"
+      ],
+      "calls": [
+        [
+          "event",
+          "attach"
+        ],
+        [
+          "slots",
+          11,
+          [
+            512
+          ]
+        ],
+        [
+          "slots",
+          12,
+          [
+            512
+          ]
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "create"
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "cleanup"
+        ],
+        [
+          "slots",
+          11,
+          []
+        ],
+        [
+          "slots",
+          12,
+          []
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ]
+      ]
+    },
+    "more_partial_then_timeout": {
+      "result": {
+        "status": "INCOMPLETE",
+        "hits": [
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          },
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          }
+        ],
+        "observations": [
+          {
+            "decision": "CONTINUE",
+            "source": "supplied incomplete/complete sequence"
+          },
+          {
+            "decision": "CONTINUE",
+            "source": "supplied incomplete/complete sequence"
+          }
+        ],
+        "arming": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "errors": [],
+        "cleanup": {
+          "status": "PASS",
+          "reason": "stopped-event clear and readback",
+          "clears": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "verified": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "breakpoint_tid": 12
+        },
+        "detach": true,
+        "abort": null,
+        "handle_closed": true,
+        "matched": false
+      },
+      "callbacks": [
+        "CONTINUE",
+        "CONTINUE"
+      ],
+      "resumes": [
+        "owned",
+        "owned"
+      ],
+      "calls": [
+        [
+          "event",
+          "attach"
+        ],
+        [
+          "slots",
+          11,
+          [
+            512
+          ]
+        ],
+        [
+          "slots",
+          12,
+          [
+            512
+          ]
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "create"
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "cleanup"
+        ],
+        [
+          "slots",
+          11,
+          []
+        ],
+        [
+          "slots",
+          12,
+          []
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ]
+      ]
+    },
+    "first_complete": {
+      "result": {
+        "status": "MATCHED_PENDING_HEALTH",
+        "hits": [
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          }
+        ],
+        "observations": [
+          {
+            "decision": "STOP_MATCHED_PENDING_HEALTH",
+            "source": "supplied incomplete/complete sequence"
+          }
+        ],
+        "arming": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "errors": [],
+        "cleanup": {
+          "status": "PASS",
+          "reason": "stopped-event clear and readback",
+          "clears": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "verified": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "breakpoint_tid": 12
+        },
+        "detach": true,
+        "abort": null,
+        "handle_closed": true,
+        "matched": true
+      },
+      "callbacks": [
+        "STOP_MATCHED_PENDING_HEALTH"
+      ],
+      "resumes": [
+        "owned"
+      ],
+      "calls": [
+        [
+          "event",
+          "attach"
+        ],
+        [
+          "slots",
+          11,
+          [
+            512
+          ]
+        ],
+        [
+          "slots",
+          12,
+          [
+            512
+          ]
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "create"
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "cleanup"
+        ],
+        [
+          "slots",
+          11,
+          []
+        ],
+        [
+          "slots",
+          12,
+          []
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ]
+      ]
+    },
+    "partial_then_complete": {
+      "result": {
+        "status": "MATCHED_PENDING_HEALTH",
+        "hits": [
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          },
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          }
+        ],
+        "observations": [
+          {
+            "decision": "CONTINUE",
+            "source": "supplied incomplete/complete sequence"
+          },
+          {
+            "decision": "STOP_MATCHED_PENDING_HEALTH",
+            "source": "supplied incomplete/complete sequence"
+          }
+        ],
+        "arming": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "errors": [],
+        "cleanup": {
+          "status": "PASS",
+          "reason": "stopped-event clear and readback",
+          "clears": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "verified": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "breakpoint_tid": 12
+        },
+        "detach": true,
+        "abort": null,
+        "handle_closed": true,
+        "matched": true
+      },
+      "callbacks": [
+        "CONTINUE",
+        "STOP_MATCHED_PENDING_HEALTH"
+      ],
+      "resumes": [
+        "owned",
+        "owned"
+      ],
+      "calls": [
+        [
+          "event",
+          "attach"
+        ],
+        [
+          "slots",
+          11,
+          [
+            512
+          ]
+        ],
+        [
+          "slots",
+          12,
+          [
+            512
+          ]
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "create"
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "cleanup"
+        ],
+        [
+          "slots",
+          11,
+          []
+        ],
+        [
+          "slots",
+          12,
+          []
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ]
+      ]
+    },
+    "complete_but_cleanup_failed": {
+      "result": {
+        "status": "INVALID",
+        "hits": [
+          {
+            "unix": 0.0,
+            "tid": 11,
+            "rip": 512,
+            "rsp": 4096,
+            "rcx": 1,
+            "rdx": 2,
+            "r8": 3,
+            "r9": 4,
+            "rdi": 1250999896491,
+            "r10": 1250999896491,
+            "rbx": 1250999896491,
+            "rax": 1250999896491
+          }
+        ],
+        "observations": [
+          {
+            "decision": "STOP_MATCHED_PENDING_HEALTH",
+            "source": "supplied incomplete/complete sequence"
+          }
+        ],
+        "arming": [
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        "errors": [],
+        "cleanup": {
+          "status": "INVALID",
+          "reason": "supplied cleanup failure",
+          "clears": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "verified": [
+            [
+              11,
+              true
+            ],
+            [
+              12,
+              true
+            ]
+          ],
+          "breakpoint_tid": 12
+        },
+        "detach": true,
+        "abort": null,
+        "handle_closed": true,
+        "matched": true
+      },
+      "callbacks": [
+        "STOP_MATCHED_PENDING_HEALTH"
+      ],
+      "resumes": [
+        "owned"
+      ],
+      "calls": [
+        [
+          "event",
+          "attach"
+        ],
+        [
+          "slots",
+          11,
+          [
+            512
+          ]
+        ],
+        [
+          "slots",
+          12,
+          [
+            512
+          ]
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "owned"
+        ],
+        [
+          "resume",
+          "owned"
+        ],
+        [
+          "continue",
+          "owned",
+          65538
+        ],
+        [
+          "event",
+          "create"
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ],
+        [
+          "event",
+          "cleanup"
+        ],
+        [
+          "slots",
+          11,
+          []
+        ],
+        [
+          "slots",
+          12,
+          []
+        ],
+        [
+          "continue",
+          null,
+          65538
+        ]
+      ]
+    }
+  },
+  "affected": "v1 status alone is not proof of complete observation; original raw controls retained.",
+  "limits": [
+    "No actual FF12 three-site or game-health result.",
+    "The old native controls used explicit stop/abort decisions, not timeout CONTINUE.",
+    "EO3 Recorder.finish remains required; instrument status never closes the game claim."
+  ]
+}

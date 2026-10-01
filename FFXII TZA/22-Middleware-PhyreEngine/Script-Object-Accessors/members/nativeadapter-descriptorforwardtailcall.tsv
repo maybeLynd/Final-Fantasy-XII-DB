@@ -1,0 +1,9 @@
+# NativeAdapter.DescriptorForwardTailCall - EC-7 family C
+# # shuffle (this=arg1->rcx, arg3->rdx), load a member rip descriptor
+# # into r8, tail-call the cloned forwarder 00684080/00684090.
+address	targets
+00584850	00684080
+00584AB0	00684080
+00584D30	00684080
+00584FC0	00684080
+00674DD0	00684080

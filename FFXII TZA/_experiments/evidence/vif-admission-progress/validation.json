@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "class": "Static byte/flow qualification with five corrupted-analysis controls; no native test count",
+  "controls": [
+    {
+      "name": "counter-update-now-progresses",
+      "rejected": true
+    },
+    {
+      "name": "before-header-admission-inserted",
+      "rejected": true
+    },
+    {
+      "name": "remaining-budget-now-passed",
+      "rejected": true
+    },
+    {
+      "name": "zero-cycle-branch-now-exits",
+      "rejected": true
+    },
+    {
+      "name": "zero-body-qualification",
+      "rejected": true
+    }
+  ]
+}

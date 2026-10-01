@@ -1,0 +1,75 @@
+{
+  "method": "A original producer Python/labelled catalogue reader; no native/game execution",
+  "driver_sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee",
+  "producer_commit": "2366027d98e5c9016150e36437ee398d9472248b",
+  "producer_sha256": "cc2b5100f5de06ef9f5a32bda921688bc1d4ecedd47d82630bb85235760a7dd0",
+  "commit_source_sha256": "0dd3a7de47df90f86de87373420424ee248aa8de5fde27b20e6207796f371e44",
+  "text_comparison": "Only CRLF->LF for equivalence, raw bothversions preserved",
+  "head": "4cd8407c615771cb71439dd6c06f00e895d562f2",
+  "dependencies": [
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\h8-input-intervention.py",
+      "sha256": "277ccb8951be1d57fe39178101ffec53dbdadcb9b738da7aaa50eb2de509c368",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "h8-input-intervention.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\retained\\functions.tsv",
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "retained/functions.tsv"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "python-deps/pefile.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\ordlookup\\oleaut32.py",
+      "sha256": "d3199a7ea2f1ef42a93cb8b20acc752de67789671cb4248584e2b43f441e5aaf",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "python-deps/ordlookup/oleaut32.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\ordlookup\\ws2_32.py",
+      "sha256": "0879ce2fee63d738838f61332e69a149d463c177649c78935295d7f335604810",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "python-deps/ordlookup/ws2_32.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\ordlookup\\wsock32.py",
+      "sha256": "f029bc58669eae582a7087c630fd8be8f9f5aa2df6f7cecaa13f8f1e1199ed17",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "python-deps/ordlookup/wsock32.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\ordlookup\\__init__.py",
+      "sha256": "fe7e3869702abb571846d74bc34ea4966e8f75a6603530fe3f9e03c982d736a7",
+      "published_at": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+      "member": "python-deps/ordlookup/__init__.py"
+    }
+  ],
+  "providers": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+      "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    }
+  ],
+  "catalogue_sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "loaded_pefile": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\pefile.py"
+}

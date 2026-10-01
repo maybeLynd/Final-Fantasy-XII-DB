@@ -1,0 +1,24 @@
+diff --git a/Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md b/Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md
+--- a/Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md
++++ b/Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md
+@@ -136,5 +136,5 @@
+ - [x] ~~**OV-15.** Trace the relevant control-byte producers and their actual native meaning.~~ *ANSWERED 2026-09-29 (FABLE): the byte is the target manager's skip mask (manager record `+0x201`); [`_index/candidates/ov15-skip-mask-fable/`](../../_index/candidates/ov15-skip-mask-fable/README.md), `skip_mask.py` A C R W I FAILS 0. Register OV-15.*
+ - [ ] **OV-16.** Establish live scheduling, synchronization, reentrancy and allocation-identity requirements where needed.
+-- [ ] **OV-17.** Establish bytecode/label/constant resource lifetime and authored input constraints.
++- [x] ~~**OV-17.** Establish bytecode/label/constant resource lifetime and authored input constraints.~~ *ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5): the tables live exactly as long as the bound payload; every shipped constant (10.3M), variable (16.9M) and jump (9.35M) operand is in range, although only jumps are bounded natively; `_index/candidates/ov17-constant-bounds-fable/`.*
+ - [x] ~~Obtain independent acceptance and propagate accepted claim-specific L2 consequences without self-promotion.~~ *NOT A QUESTION 2026-09-29 (SWE2-FRONTIER) under the class-2 ruling: an independent-acceptance/process item, carried by board task FABLE-CARRIER-SECTION-OVERLAY-ACCEPTANCE-0929. Register OV-18.*
+ 
+diff --git a/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md b/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md
+--- a/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md
++++ b/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md
+@@ -193,7 +193,7 @@
+ 
+ - [ ] **OV-33.** Actual service issuance/status production, loading state and outer error-recovery policy.
+-- [ ] **OV-34.** The eventual dispatcher/transition for a prepared state1 owner, if used by shipped callers.
+-- [ ] **OV-35.** Authored selector/metadata creation and lifetime, permitted caller indices and mode meanings.
+-- [ ] **OV-36.** Complete callback single-delivery/reuse and relevant scheduling/reentrancy obligations.
++- [x] ~~**OV-34.** The eventual dispatcher/transition for a prepared state1 owner, if used by shipped callers.~~ *ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5): there is none; a state1 owner (produced while its manager is skipped) leaves state1 only by deletion, and only the completion callback, reached through the mask-zero submit branch, makes an owner ready; `_index/candidates/ov34-state1-owner-fable/`.*
++- [x] ~~**OV-35.** Authored selector/metadata creation and lifetime, permitted caller indices and mode meanings.~~ *ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5): the metadata is the manager's `.mot` PKFL directory (boot-allocated at `022C6E70`, rewritten by each resource-set load); the selector is the recorded resource-set index; the mode maps group to package namespace; indices g 0-3, i 0-15; `_index/candidates/ov35-source-metadata-fable/`.*
++- [x] ~~**OV-36.** Complete callback single-delivery/reuse and relevant scheduling/reentrancy obligations.~~ *ANSWERED 2026-09-29 (FABLE, Claude Opus 5.5): a queue slot delivers at most once (every delivery site resets and recycles the slot before the next dispatch) and an owner has one live request; the reentrancy universality is superseded under OV-2's limit; `_index/candidates/ov36-callback-delivery-fable/`.*
+ - [x] ~~Nonempty authored PRF/@FEF registration and specialized consumer ownership/refresh.~~ *ANSWERED 2026-09-29 (SWE2-FRONTIER): answered by the-nonempty-prf-registration-and-specialized-relocation.md, published in the same commit. Register OV-37.*
+ - [x] ~~Formal independent acceptance; no L2 or terminal score is awarded by local fixture success.~~ *NOT A QUESTION 2026-09-29 (SWE2-FRONTIER) under the class-2 ruling: an independent-acceptance/process item, carried by board task FABLE-CARRIER-SECTION-OVERLAY-ACCEPTANCE-0929. Register OV-38.*

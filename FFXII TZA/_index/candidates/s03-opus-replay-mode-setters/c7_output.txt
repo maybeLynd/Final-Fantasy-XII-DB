@@ -1,0 +1,16 @@
+L_ladder_is_a_priority_over_the_low_nibble                             PASS
+P_bit3_setter_one_write_none_when_equal                                PASS
+P_bit2_setter_one_write_none_when_equal                                PASS
+Z_setter_one_write_none_when_equal                                     PASS
+C_chocobo_enable_sets_bit_ride_time_and_sequence_bits                  PASS
+C_chocobo_disable_clears_bit_calls_roster_slot3_and_zeroes_5AEC        PASS
+R_reset_zeroes_5B04_and_5B08                                           PASS
+G_bit_getters_and_mode_getters                                         PASS
+S_capture_layout_5AE0_at_rec8_5AD0_at_rec18_flags_at_rec28             PASS
+S_restore_puts_back_5AE0_and_flags_and_5AD0_only_with_rec18_bit1       PASS
+ALL PASS
+A_bit1_set_actor3_posts_2001_and_clears_bit1             PASS
+B_bit1_set_no_actor3_no_post_bit1_still_cleared          PASS
+C_bit1_clear_no_post_5AE0_unchanged                      PASS
+D_test_uses_the_value_read_before_the_roster_calls       PASS
+ALL PASS [{"returned": true, "stopped_at": [], "calls": [["002E73C0", "76800000", "3"], ["00329A10", "76800000", "2001"], ["002EB030", "76800000", "2001"]], "flags": 0, "5AE0": "C", "5AEC": 0}, {"returned": true, "stopped_at": [], "calls": [["002E73C0", "0", "3"]], "flags": 0, "5AE0": "C", "5AEC": 0}, {"returned": true, "stopped_at": [], "calls": [["002E73C0", "76800000", "3"]], "flags": 0, "5AE0": "C", "5AEC": 0}, {"returned": true, "stopped_at": [], "calls": [["002E73C0", "76800000", "3"], ["00329A10", "76800000", "2001"], ["002EB030", "76800000", "2001"]], "flags": 0, "5AE0": "E", "5AEC": 0}]

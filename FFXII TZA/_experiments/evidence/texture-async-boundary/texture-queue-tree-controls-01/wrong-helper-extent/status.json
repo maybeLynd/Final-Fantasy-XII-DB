@@ -1,0 +1,7 @@
+{
+  "case": "wrong-helper-extent",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "wrong helper leaf boundaries",
+  "expected_error_seen": true
+}

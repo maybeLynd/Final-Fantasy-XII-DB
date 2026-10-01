@@ -1,0 +1,10 @@
+P1_w_is_the_live_vf00_load_not_the_point                   PASS
+P2_no_perspective_divide                                   PASS
+P3_four_deposits                                           PASS
+C1_out_is_b_times_a                                        PASS
+C2_aliasing_is_safe                                        PASS
+C3_writes_exactly_the_64_bytes_of_out                      PASS
+S1_save_is_variadic_and_assigns_depth                      PASS
+S2_not_a_stack_inner_save_overwrites_the_outer_frame       PASS
+S3_restore_writes_back_zeroes_depth_and_is_idempotent      PASS
+ALL PASS (allowed 9 functions)

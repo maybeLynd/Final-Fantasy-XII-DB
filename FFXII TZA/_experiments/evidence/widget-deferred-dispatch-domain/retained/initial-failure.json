@@ -1,0 +1,13 @@
+{
+  "stage": "metadata extent preflight, before retained creation/producer controls/result",
+  "failed_assertion": "prow[1]-prow[0]==301",
+  "observed_first_pdata_row": [
+    "0x244dd0",
+    "0x244e4b",
+    "0x1d69fc8"
+  ],
+  "observed_first_length": 123,
+  "driver_sha256": "27d63aa8782bfdedf1ed842b28abdce3e399b6cf370ef9c48fd2febadca4a367",
+  "diagnosis": "Original retained body remains exact301B; initial driver assumed one .pdata row equals whole logical body. Inspect conditional-save chained unwind ranges before accepting extent.",
+  "result": "INVALID_PREFLIGHT, no semantic result published, no native/game tests"
+}

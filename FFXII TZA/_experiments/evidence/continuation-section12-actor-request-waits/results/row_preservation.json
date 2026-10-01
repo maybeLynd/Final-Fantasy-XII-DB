@@ -1,0 +1,14 @@
+[
+  {
+    "table": "types.tsv",
+    "changed_lines": 2,
+    "row_count_unchanged": true,
+    "unrelated_lines_byte_identical": true
+  },
+  {
+    "table": "fields.tsv",
+    "changed_lines": 9,
+    "row_count_unchanged": true,
+    "unrelated_lines_byte_identical": true
+  }
+]

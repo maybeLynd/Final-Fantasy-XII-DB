@@ -1,0 +1,31 @@
+control PClusterHeaderBase::m_size -> PASS
+control PLight::m_color -> PASS
+
+-- the classes with no row in phyre-field-schema.tsv, in full --
+D3D11_DEPTH_STENCILOP_DESC                       StencilFailOp                files  2184  S 00632BE0 @006144AE in 006143B0
+D3D11_DEPTH_STENCILOP_DESC                       StencilDepthFailOp           files  2184  S 00632BE0 @0061451C in 006143B0
+D3D11_DEPTH_STENCILOP_DESC                       StencilPassOp                files  2184  S 00632BE0 @0061458A in 006143B0
+D3D11_DEPTH_STENCILOP_DESC                       StencilFunc                  files  2184  S 00632BE0 @006145F8 in 006143B0
+Matrix4                                          m_elements                   files   247  S 00632A70 @006B0994 in 006B08A0
+PAnimationSet                                    m_animationClips             files     2  D array @005B19A9 in 005B1900
+PAnimationSet                                    m_targets                    files     2  D array @005B1A42 in 005B1900
+PAnimationSet                                    m_slotArrayIndices           files     2  D array @005B1ADB in 005B1900
+PMaterialSet                                     m_materials                  files  2091  D array @006665F9 in 00666550
+PMatrix4                                         m_elements                   files  2097  S 00632A70 @006B0AD4 in 006B09E0
+PMatrix4x3                                       m_elements                   files  2097  S 00632A70 @006B34F3 in 006B33F0
+PMeshInstanceSegmentContext                      m_streamBindings             files  2091  D array @005E6860 in 005E67C0
+PModifierNetworkDynamicMesh                      m_modifierNetworkInputs      files     3  D array @006BC7F8 in 006BC750
+PModifierNetworkDynamicMesh                      m_modifierNetworkInputRenderStreams files     3  D array @006BC891 in 006BC750
+PModifierNetworkDynamicMesh                      m_modifierNetworkOutputs     files     3  D array @006BC92F in 006BC750
+PModifierNetworkDynamicMesh                      m_segmentInputs              files     3  D array @006BC9C8 in 006BC750
+PModifierNetworkDynamicMeshInstance              m_modifierNetworkInstances   files     3  D array @005E6BE0 in 005E6B40
+PNodeContext                                     m_packedSwitches             files  2184  D array @005E6CCB in 005E6C30
+PShaderPassParameterLocationTypesConstantBuffer  m_parameterLocations         files  2184  D array @005EA2C0 in 005EA220
+PStreamInputLayoutD3D11                          m_streams                    files  2184  D array @006186B6 in 00618620
+PString                                          m_buffer                     files 35984  D array @006A734E in 006A72B0
+Vector3                                          m_elements                   files  2091  S 00632A70 @006B1707 in 006B1600
+
+(the classes with schema rows print only unresolved pairs)
+no-row classes: 22 pairs, 22 registered
+all file-declared (class, member) pairs over 154 classes: 527; registered statically (form D, S or T): 527; not: 0
+FAILS 0

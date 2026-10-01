@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "FABLE-CONTRA-SWE2EC7-00600A60-PRECONDITION-IS-INVERTED",
+ "result_refs": [
+  "commit:6ba49dfdc",
+  "file:Database/FFXII TZA/17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md"
+ ],
+ "note": "VERIFIED FABLE correct - direct disassembly: 005FEFD0 requires bit0 clear then SETS it (or eax,1 at 005FEFF8) = begin; 00600A60 requires bit0 SET (je proceeds when ~flags&1==0), returns 0x16 when clear, clears the bit at 00600A8A (and ecx,0xfffffffe) = end. Page corrected 6ba49dfdc: begin stamps kind 0x16, end stamps kind 0x18; terminology fixed to profile-slot end."
+}

@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-SLOT-CENSUS-ATTRIBUTED-BY-STORE-PROVENANCE",
+ "agent": "OPUS",
+ "note": "Committed 6e86ee864. All eight carved under CS - every non-null store into the publication cell lies inside a body the type's own store row names, the only other write being a null clear - after the boundary-agreement control was tried and REFUSED ITSELF against a decoy slot, and after CS was put through four deliberately wrong type-slot pairings and refused all four. 52 displacements; 7,042 -> 7,103 fields; engine_explained 43.54%. The C2 control is NOT lowered anywhere else: it is replaced only for types whose sole named rows are the shared widget header, where no correct census could satisfy it, and CS refuses a shared cell outright where C2 would pass one. NOT CLAIMED: exhaustiveness. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

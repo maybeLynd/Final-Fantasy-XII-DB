@@ -1,0 +1,12 @@
+First local reducer qualification FAILED before any PASS receipt: an assertion
+copied the historical mutation description (6334F1 supposedly a store), and the
+contract's helper-call anchor (633557). Exact original disassembly instead shows
+6334F1 = 488b0a, mov rcx,[rdx], three bytes; 6334F4 begins488b4208.
+The historical NOP4 patch therefore spans that load and the first REX byte of
+the next instruction. It is not the advertised isolated selflink-store test.
+633557 = lea rcx,[r15+60]; actual call is63355B. Earlier raw B observations
+were retained, not rerun; no semantic result was accepted from the failed check.
+Small repair: assert actual instruction roles and reject the false anchor and
+mutation role. The local mutation control is a complete4-byte selflink store at
+6B6740, verified byte-exact before the labeled patch. Historical sources/results
+stay unchanged; reported kill remains a raw observation, not intended coverage.

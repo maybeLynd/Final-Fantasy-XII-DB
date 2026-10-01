@@ -1,0 +1,17 @@
+Initial execution of failed-initial-check.py: exit 1, no result.json produced.
+Unicorn raised Invalid memory write (UC_ERR_WRITE_UNMAPPED) during the
+one-seven-steps case at u.emu_start. No PASS claim was made.
+Cause: the fixture mapped only the bounded helper's scratch/copy page and
+incorrectly predicted that the one-step helper copied to 022D91A0 too.
+Original 00400634 MOVUPS uses RIP-relative displacement 01ED8955 with next
+instruction 0040063B: destination 022D8F90, on the preceding page.
+Correction: map/snapshot that page and predict the copy at 022D8F90.
+No reference bytes, prior experimental conclusions or production code changed.
+
+Second execution of failed-second-check.py: exit 1 at all-cases assertion.
+All helpers reached their return boundaries, but bounded-helper write/page
+oracles failed. Example first seeded draw: native event at 003A6FA1 writes
+0d00e43f to 022D92F0; predicted event put it at 022D92E8. The result and state
+already matched (44 and 3FE4000D). RIP-relative next instruction 003A6FA9 plus
+01F32347 is 022D92F0. Corrected the oracle to SCRATCH+16, outside the converted
+16-byte scratch vector. No PASS was recorded for this run either.

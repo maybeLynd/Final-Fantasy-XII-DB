@@ -1,0 +1,8 @@
+PASS E1  read ['0023FFF6'] in the message-12 arm (0023FEE2) under sub-code 0x8002
+PASS E2  seven 0x8002 sends: originators ['00557B90@00557CF0 ((10,),)', '00557B90@00557D85 ((10,),)', '0055C740@0055C968 ((10,),)', '0057C480@0057CA60 (10,)']; forwarders (message-12 arm, guarded by an incoming 0x8002) ['002C59D0@002C5DCA', '0056F810@0056F953', '005742D0@005746E7']
+PASS E3  15 other 00247510 calls resolved away from 0x8002 (literals ['0x6', '0xe', '0xf', '0x10', '0x12', '0x13', '0x1b', '0x1c', '0x1d', '0x8000', '0x8001', '0x8003', '0x8004', '0x8005', '0x8102', '0x8103', '0x8104']); 0057C320 feeds ['0x8100', '0x8101', '0x8104', '0x8105', '0x8106']; 00915270 = 0x8101
+PASS E3b  the stack-built {12} builders are exactly ['00241A70', '00241B40', '00247510', '002BF8C0', '005519E0']
+PASS E4  00247510 calls [window + 0] synchronously
+PASS C1  control: 0023FBE0 decodes message 1 -> 0023FC23, 12 -> 0023FEE2
+PASS C2  control: the literal at 002C5DBE is found
+FAILS 0

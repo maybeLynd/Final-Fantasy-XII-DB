@@ -1,0 +1,5 @@
+PASS  O calls after the dump in address order ['CloseHandle', 'SysFreeString', '0x19a510', 'SysAllocStringLen', 'ShowCursor', 'MessageBoxW', 'SysFreeString']; arguments/branches True; gate cell 01F40128; ShowCursor-before-text reading rejected
+PASS  I OLEAUT32 slots: SysFreeString / SysAllocStringLen / SysFreeString
+PASS  S caption 008F3DC0 'error'; id 0x7837 in 9 language copies; 0x409 = (24, 'Fatal error encountered.')
+PASS  P selector anchors True; end comparisons in the walk ['0019A610', '0019A625'] (both on the current pointer); model 18-byte / 16-byte resource, entry 7 count 1 -> 14 / 14; rejected full-span model -> None; count 0 -> None
+FAILS 0

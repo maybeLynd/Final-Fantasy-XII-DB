@@ -1,0 +1,54 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\"status\": \"STATIC_ONLY_CONDITIONAL_SOURCE\", \"type_67_reader\": \"0x460aca\", \"type_72_clears\": \"0x52bbf7\", \"type_72_installer_loop\": \"0x52bf21..0x52bf4c\", \"live_observation\": false, \"class_stability\": \"OPEN\"}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "fda64843acd437a0fd13e32bf72b0b9bc0ca018b0a324012aa96d78492947a8c"
+  },
+  {
+    "case": "failed-upstream",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\preflight-cases\\failed-upstream\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\preflight-cases\\failed-upstream\\check.py\", line 28, in <module>\n    assert item['terminal'] is True and item['returncode']==0 and not item['stderr']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "fda64843acd437a0fd13e32bf72b0b9bc0ca018b0a324012aa96d78492947a8c"
+  },
+  {
+    "case": "changed-original-bytes",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\preflight-cases\\changed-original-bytes\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\preflight-cases\\changed-original-bytes\\check.py\", line 40, in <module>\n    assert sha(W/f\"node-67-{int(r['entry'],16):08X}.bin\")==r['code_sha256']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "fda64843acd437a0fd13e32bf72b0b9bc0ca018b0a324012aa96d78492947a8c"
+  },
+  {
+    "case": "fictional-live-claim",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\preflight-cases\\fictional-live-claim\\check.py"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-node-followup\\preflight-cases\\fictional-live-claim\\check.py\", line 66, in <module>\n    assert claim['status']=='STATIC_ONLY_CONDITIONAL_SOURCE' and claim['live_observation'] is False\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "fda64843acd437a0fd13e32bf72b0b9bc0ca018b0a324012aa96d78492947a8c"
+  }
+]

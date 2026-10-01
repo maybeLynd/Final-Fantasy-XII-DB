@@ -1,0 +1,11 @@
+# Phyre.ObjectLifecycleLookupAdapters - EC-7 family C
+# # if rdx non-null, call shared ObjectLifecycleDispatch 0063BC00 on a
+# # member rip record; on a non-null result call a member op on
+# # (this, result); return 1.
+address	targets
+005D35B0	00616000,0063BC00
+005D3850	00615C90,0063BC00
+005D4850	00615D80,0063BC00
+005D51C0	001B6CE0,0063BC00
+005D6010	00615D80,0063BC00
+005D7110	00615CF0,0063BC00

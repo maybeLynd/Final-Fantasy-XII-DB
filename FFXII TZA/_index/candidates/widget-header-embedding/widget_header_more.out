@@ -1,0 +1,3 @@
+PASS  S 002BF60B builds HelpMessageWidget0500 whole (0x500, in place); 0039457D builds WidgetConsumer02AEE4C8 whole (0x1D0, heap)
+PASS  W both types: one row below +0xC0 (widgetBase0000 Widget), the site named in the ctor cell, tiling kept
+FAILS 0

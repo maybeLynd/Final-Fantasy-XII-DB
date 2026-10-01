@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "wrong-gate-mask",
+      "rejected": true
+    },
+    {
+      "name": "actor-pointer-substituted-for-fixed-global",
+      "rejected": true
+    },
+    {
+      "name": "wrong-manager-object-size",
+      "rejected": true
+    },
+    {
+      "name": "gate-off-no-longer-yields-zero",
+      "rejected": true
+    }
+  ],
+  "class": "Original static identity/flow and retained finite fixture; no new execution/death test"
+}

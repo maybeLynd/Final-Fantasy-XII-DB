@@ -1,0 +1,63 @@
+D1 constructor
+   001CCB42 mov rdi, rcx size 3
+   001CCC06 mov qword ptr [rdi + 0xadc], 0x2710 size 11
+   store width 8 disp 0xadc base rdi imm 0x2710
+   bytes covered +0xADC..+0xAE3; imm high dword = 0
+   rdi redefinitions between: none
+   later +0xAD5..+0xAE3 accesses in 001CCB20..001CCFDA: none
+D2 control arm interpreter (bl!=0 = decrement branch)
+   001D2DD3 mov eax, dword ptr [rdi + 0xae0]
+   001D2DD9 test bl, bl
+   001D2DDB je 0x1d2de5
+   001D2DDD test eax, eax
+   001D2DDF jle 0x1d2df2
+   001D2DE1 dec eax
+   001D2DE3 jmp 0x1d2dec
+   001D2DE5 cmp eax, 8
+   001D2DE8 jge 0x1d2df2
+   001D2DEA inc eax
+   001D2DEC mov dword ptr [rdi + 0xae0], eax
+   001D2DF2 mov ecx, dword ptr [rdi + 0xae0]
+   001D2DF8 dec ecx
+   001D2DFA call 0x2f7a00
+   state -1: inc-branch -> field  0 index -1 | dec-branch -> field -1 index -2
+   state  0: inc-branch -> field  1 index  0 | dec-branch -> field  0 index -1
+   state  1: inc-branch -> field  2 index  1 | dec-branch -> field  0 index -1
+   state  2: inc-branch -> field  3 index  2 | dec-branch -> field  1 index  0
+   state  3: inc-branch -> field  4 index  3 | dec-branch -> field  2 index  1
+   state  4: inc-branch -> field  5 index  4 | dec-branch -> field  3 index  2
+   state  5: inc-branch -> field  6 index  5 | dec-branch -> field  4 index  3
+   state  6: inc-branch -> field  7 index  6 | dec-branch -> field  5 index  4
+   state  7: inc-branch -> field  8 index  7 | dec-branch -> field  6 index  5
+   state  8: inc-branch -> field  8 index  7 | dec-branch -> field  7 index  6
+   state  9: inc-branch -> field  9 index  8 | dec-branch -> field  8 index  7
+   closed on 0..8 with index -1..7: True
+D3 setter / initializer / constants
+   002F7A00 mov dword ptr [rip + 0x1bf40ea], ecx  -> 01EEBAF0 size 4
+   002F7A06 ret  
+   002F79E0 movdqa xmm0, xmmword ptr [rip + 0xa17ff8]  -> 00D0F9E0 size 16
+   002F79E8 movdqu xmmword ptr [rip + 0x1fc6f40], xmm0  -> 022BE930 size 16
+   002F79F0 ret  
+   00D0F9E0 section .rdata bytes f100e700ea00ed00e500e400e300e200 words [241, 231, 234, 237, 229, 228, 227, 226] any in 511..534: False
+   01EEBAF0 section .data file offset 31236336 value 4294967295
+   022BE930 section .data file offset None
+D4 callers
+   002F7A00 rel-branch sites (verified): ['call 001D2DFA in 001D1660 FUN_001d1660']
+   002F7A00 rawcalls.json: ['1D2DFA'] | rip address-taken: [] | raw-only: 1 | DIR64 relocs: 0
+   002F79E0 rel-branch sites (verified): ['call 001D03DC in 001D0390 FUN_001d0390']
+   002F79E0 rawcalls.json: ['1D03DC'] | rip address-taken: [] | raw-only: 1 | DIR64 relocs: 0
+D5 index cell and word array references
+   index 01EEBAF0: rip 2, image-base-relative 0, relocs 0, raw-only 2/1
+      002F7A00 mov dword ptr [rip + 0x1bf40ea], ecx  [W size 4]  in 002F7A00 FUN_002f7a00
+      002F8D66 movsxd rax, dword ptr [rip + 0x1bf2d83]  [R size 4]  in 002F8D60 BattleSpecialSequence_SelectActionByAuthoredThreshold
+   words 022BE930: rip 2, image-base-relative 0, relocs 0, raw-only 0/0
+      002F79E8 movdqu xmmword ptr [rip + 0x1fc6f40], xmm0  [W size 16]  in 002F79E0 FUN_002f79e0
+      002F8D74 lea rcx, [rip + 0x1fc5bb5]  [R size 8]  in 002F8D60 BattleSpecialSequence_SelectActionByAuthoredThreshold
+D6 image-wide stores overlapping +0xAE0..+0xAE3 (disp32, any base)
+   9 stores in 6 functions
+     00184F20 FUN_00184f20: 00184FBA mov dword ptr [rdi + 0xae0], esi
+     00187950 FUN_00187950: 001881BF mov dword ptr [r14 + 0xae0], r12d
+     001CCB20 FUN_001ccb20: 001CCC06 mov qword ptr [rdi + 0xadc], 0x2710
+     001D1660 FUN_001d1660: 001D2DEC mov dword ptr [rdi + 0xae0], eax
+     006FF900 FUN_006ff900: 007049B8 movsd qword ptr [rsi + 0xadc], xmm1
+     unlisted: 0012C403 movaps xmmword ptr [rsp + 0xae0], xmm7; 0012E2E3 movaps xmmword ptr [rsp + 0xae0], xmm7; 001306A3 movaps xmmword ptr [rsp + 0xae0], xmm7; 006DD2D0 movsd qword ptr [rcx + 0xadc], xmm1

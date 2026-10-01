@@ -1,0 +1,11 @@
+SURVIVES  Q0  [212, 493, 70, 172, 435]
+SURVIVES  Q1  arg2 in rbx (movzx ebx, dx), movzx ecx, byte ptr [rcx + 9] / cmp byte ptr [rbx + 0x11], cl; call sites ['002FA013', '002FA069']; inline movzx eax, byte ptr [rcx + 0x11] / cmp byte ptr [rdi + 9], al from movzx r8d, word ptr [r15]
+SURVIVES  Q2  shield skip je 0x317a84; empty main cmp word ptr [r15], r12w / cmp bx, ax; empty candidate cmp cx, ax; slot-1 re-test call 0x2f7ec0; out[1] movzx eax, word ptr [r13 + 0x52]
+SURVIVES  Q3  slot bits shr eax, 5; exemption test byte ptr [rcx + 7], 0x10 -> mov eax, 1
+SURVIVES  Q4  lo ['0x1000', '0x10c8', '0x10dc', '0x1118'] hi ['0x10c8', '0x11a4', '0x1118', '0x1154']; slot 1 contains slots 2 and 3
+SURVIVES  Q5  bt eax, ecx / jb 0x317ae7 -> xor eax, eax
+SURVIVES  Q6  chain jne 0x317b06 -> mov eax, 1; gate jne 0x323cfc / ja 0x323cfc
+SURVIVES  Q7  classes 6 and 1 to 00322C50; failed class-1 test returns at 00323C89; every other early exit targets ['00323CFC']; the board lookup is the tail jmp 0x323bb0
+SURVIVES  Q8  epilogue test esi, esi; forced mov word ptr [rdi], cx; dropped mov word ptr [rdi + 2], ax; five copies; bound cmp esi, 4
+SURVIVES  Q9  slot bound ja 0x317b0d; short-circuit table ['0x1000', '0xffff', '0xffff', '0xffff', '0xffff']; 0xFFFF reject cmp bx, r12w
+FAILS 0

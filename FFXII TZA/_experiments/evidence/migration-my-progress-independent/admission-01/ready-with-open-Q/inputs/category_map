@@ -1,0 +1,260 @@
+# My Progress category map, version MP-1 (OPUS, 2026-09-29). Meanings: FABLE reviews (FABLE-REQ / OPUS-REQ-FABLE-MY-PROGRESS-MEANINGS).
+# One row per mapped key. `groups` lists one or more of the twelve user-facing groups (codes below), separated by `,`.
+# A requirement placed in two groups appears under both, and counts ONCE in every global denominator.
+# MP-2 (FABLE review C3, _index/candidates/mp1-meanings-review/): folder 99 -> untied ("Code not yet tied to a game system");
+# _experiments stays N as infrastructure, and its requirements are labelled "evidence record" in the tab.
+# Group codes may also be the two extra rows: untied, whole.
+# Resolution order for a requirement: its owning page's folder, then (register rows without a page link) the register
+# section, then (functions) the declaring page, the `owner` column, the first CodeDomain token, the Boundary suffix.
+# A key missing here is a mapping gap: the requirement is shown as unplaced and the category table says so.
+#
+# group codes
+# W	World & maps
+# C	Combat & damage
+# E	Enemies & AI
+# S	Spawning, death & respawn
+# P	Player & party
+# I	Items, equipment & progression
+# T	Story, quests & events
+# M	Menus & controls
+# G	Animation, graphics & audio
+# V	Save/load & persistence
+# D	Scripts & game data/VBF
+# N	Engine & supporting systems
+kind	key	groups	note
+folder	00	N	Engine-Core-Runtime
+folder	01	D	Script-VM-Native-Bridge
+folder	02	D	Resource-And-Asset-Pipeline
+folder	03	W	World-Area-Field
+folder	04	E,P	Actor-Entity: the actor record is shared by foes and party members
+folder	05	S	Spawn-Encounter-Lifecycle
+folder	06	W	Movement-And-Navigation
+folder	07	C	Combat-Action
+folder	08	C	Combat-Formula
+folder	09	E	Combat-AI-And-Gambits
+folder	10	C,S	Status-Periodic-Terminal: statuses (combat) and the lethal/terminal transition (death)
+folder	11	P	Party
+folder	12	I	Items-Equipment-Shops-License
+folder	13	I	Rewards-Progression-Economy
+folder	14	T	Story-Event-Quest-Hunt
+folder	15	M	Input
+folder	16	M	UI
+folder	17	G	Presentation-Rendering
+folder	18	G	Audio
+folder	19	V	Save-Load-Settings
+folder	20	N	Platform-Online-Achievements
+folder	21	N	RNG-And-Determinism
+folder	22	N	Middleware-PhyreEngine
+folder	23	N	Third-Party-Libraries
+folder	24	N	Compiler-And-CRT-Runtime
+folder	25	D	EBP-Script-Container
+folder	26	D	PKFL-Package-Container
+folder	99	untied	Unresolved-Residual: residual code has no known system (FABLE C3)
+folder	_experiments	N	experiment records (evidence infrastructure; labelled evidence records, not a game system)
+folder	_types	D	the record/type store
+owner	Audio	G
+owner	Script_VM_Native_Bridge	D
+owner	Presentation	G
+owner	Input	M
+owner	Resource	D
+owner	UI	M
+owner	Movement	W
+owner	ActorEntity	E,P
+owner	CombatFormula	C
+owner	CombatAction	C
+owner	WorldAreaField	W
+owner	Save_Load_Settings	V
+owner	Party	P
+owner	CoreRuntimeScheduling	N
+owner	Items_Equipment_Shops_License	I
+owner	PlatformOnlineAchievements	N
+owner	Spawn_Encounter_Lifecycle	S
+owner	CombatAI	E
+owner	Rewards_Progression_Economy	I
+owner	Status_Periodic_Terminal	C,S
+owner	RNG_Random_Selection	N
+owner	Story_Event_Quest_Hunt	T
+domain	Phyre	N	PhyreEngine middleware
+domain	CompilerGeneratedEH	N	compiler output
+domain	CompilerGeneratedCFG	N	compiler output
+domain	CompilerGeneratedCpp	N	compiler output
+domain	CxxObjectLifecycle	N	C++ runtime shapes
+domain	CxxStandardLibrary	N	C++ runtime
+domain	Thunk	N	import/forwarder thunks
+domain	Runtime	N	runtime infrastructure
+domain	ThirdParty	N	vendor libraries
+domain	Microsoft	N	MSVC CRT
+domain	EASTL	N	EA STL
+domain	Platform	N	Windows platform layer
+domain	Media	G	video playback
+domain	Presentation	G	rendering
+boundary	Input	M
+boundary	Audio	G
+boundary	SaveLoad	V
+boundary	Presentation	G
+boundary	ItemsEquipment	I
+boundary	StoryEvent	T
+section	A	N	Unclassified functions
+section	B	N	Classified but not understood
+section	C	M	UI / Input
+section	D	W	World / Weather
+section	E	C	Combat
+section	F	N	Verification debt
+section	G	G	Audio
+section	H	D	Cross-subsystem naming from authored strings
+section	I	D	Script VM
+section	J	D	Resource pipeline
+section	K	W	Movement
+section	L	S	Spawn / Encounter lifecycle
+section	M	E,P	Actor / Entity
+section	N	I	Rewards / Progression
+section	O	P	Party
+section	P	I	Items / Equipment
+section	Q	N	Phyre reflection
+section	R	N	Embedded Lua
+section	S	N	Image hardening
+section	T	N	Static initialization
+section	U	N	Cross-subsystem hubs
+section	V	V	Save image
+section	W	G	Render parameters
+section	X	N	Third-party middleware
+section	Y	M	UI layout parameters
+section	Z	E	Combat AI and gambits
+section	AA	V,T	Persistent flag banks: saved, and they carry story progress
+section	AB	N	Platform / Steam / achievements
+section	AC	N	Unresolved residual
+section	AD	N	RNG streams
+section	AE	E,I	Loot and enemy chain
+section	AF	W	Authored field actions
+section	AG	D	Authored-data table registry
+section	AH	N	Provenance debt
+section	AI	C	Battle command availability
+section	AJ	C	Attack-vs-defence preparation
+section	AK	C	CombatFormula step table
+section	AL	C	Battle record kind byte
+section	AM	C	Battle locomotion
+section	AN	C	Force fight mode
+section	AO	C	Native command lifecycle
+section	AP	M	Input stack
+section	AQ	N	PhyreEngine subsystem map
+section	BJ	N	Lazy statics and the one-time init lock
+section	BK	N	Exception funclets and lazy statics
+section	BL	N	Phyre member registration
+section	BM	G	Animation channel binding and transform composition
+section	BN	N	Bullet physics integration
+section	BO	N	Third-party census scope
+section	BP	M	Input binding profiles
+section	BQ	D	ScriptVM verb dispatch
+section	BR	G	The audio boundary
+section	BS	N	EASTL
+section	BT	G	The character render record array
+section	BU	N	The thunk layer
+section	BV	W	Movement mode selection
+section	BW	D	EBP container and section_000
+section	BX	D	section_002 / section_003 text
+section	BY	D	section_008 / section_009 camera
+section	BZ	D	section_006 / section_019
+section	CA	D	section_010 / section_011 shake
+section	CB	E	The enemy definition record, the .ard join, and the stat rebuild
+section	CC	W	Field position tables and .ard container residue
+section	CD	D	EBP dispatch and arena residue
+section	CE	D	ScriptVM command-table residue
+section	CF	N	Third-party inventory residue
+section	CG	G	The shared graphics command-state word
+section	CH	N	Funclet-parent evidence traps and the shipped debug menu
+section	CJ	N	Boot prologue and injection timing
+section	CK	C	The two stat paths
+section	CL	N	Phyre reflection recovery gaps
+section	CM	I,W	World loot pickups
+section	CN	W	Facing versus motion
+section	CO	G	The spatial audio object model
+section	CP	N	Corrections from the 2026-09-07 cold audits
+section	CQ	N	RNG draw sites and the audit-stamp cohort
+section	CR	D	Inert script verbs
+section	CS	I	The MP economy
+section	CT	N	The stale-project provenance defect
+section	CU	D	The Phyre cluster container (a shipped file format)
+section	CV	N	The runtime service surface
+section	CW	N	The packed namespace
+section	CX	N	The namespace table
+section	CY	D	The verb reach map
+section	CZ	N	After the shape/slot join
+section	DA	N	The embedded Lua, after R-7
+section	DB	N	The subsystem registry
+section	DC	M	The binding translator
+section	DD	M	The two binding structures
+section	DE	E	The order-goal opcode space
+section	DF	N	The generated adapter families
+section	DG	G	The field to track music table
+section	DH	N	After the frame-rate scalar
+section	EA	G	The post-process pass family
+section	EB	N	The Lua loader
+section	EC	N	Instrument defect and the regex consumer
+section	ED	N	The research import backlog
+section	EE	S	Group completion and respawn timing
+section	EF	D	The script-to-native calling convention
+section	EH	E,P	The actor storage record
+section	EX	N	The world tick and the field frame
+section	EY	C,S	The HP write and the lethal transition
+section	EZ	C	The result applier
+section	FA	C	The status write
+section	FB	C,E	How a battle unit is built from its definition
+section	FC	C	The recompute 0030FED0
+section	FD	S	The spawn-keep entry field map
+section	FE	C	The battle stats record field map
+section	FF	C	The battle unit field map
+section	FG	V	The save payload
+section	FH	E,P	The ActorManager record field map
+section	FI	E,P	The actor storage record field map
+section	FJ	P	The party member status view
+section	FK	I	The steal roll
+section	FL	C	The post-result events and the battle message table
+section	FM	M	The R2 toggle's output timing and label
+section	FN	D	Actor names (authored text)
+section	FO	C	The battle-state block
+section	FP	C	The result record
+section	FQ	C	The evaluation context
+section	FR	D	The shipped standard formats
+section	FS	E,P	The two actor contexts
+section	FT	C	The formula scratch block
+section	FU	D	The count, walk and bank recipes
+section	GA	C	The thirty-two statuses
+section	GB	W	The weather subsystem contract
+section	GC	G	The render-command-list and graphics-handshake contract
+section	GD	G	The context-switch axes and the shader-variant key
+section	GE	C	The status +0x0A pool key and its record pointer
+section	GF	G	The Phyre post-effect class family
+section	GG	M	The input subsystem contract
+section	GH	M	The UI request router contract
+section	GJ	M	The glyph-run drawing context and the text-element dispatch table
+section	HM	G	The add-motion skeleton mapping and high-model replacement tables
+section	KE	G	Font kerning and expansion lists
+section	MA	G	The add-motion tables
+section	MH	G	The PS2 movie seek index
+section	MP	W	The map_ctrl pack
+section	MT	N	The MSVC ordered-container runtime
+section	NS	N	The Phyre packed namespace contract
+section	OC	N	The ordered-container runtime
+section	PC	V	The PS2 option block and the development network list
+section	PCD	N	The Phyre class descriptor contract
+section	PH	D	The Phyre cluster header contract
+section	RMD	C	The battle runtime mode contract
+section	FRP	W	The field runtime pass contract
+section	RS	D	The resource entry has a formula and no type
+section	SB	G	The SE block index
+section	SG	I	The shop stock ladder's all-gated-row fallback
+section	SM	C	The time-stop registry
+section	SN	D	The ATEL control modules' companions
+section	SQ	G	The map sound list
+section	SR	G	The sound request contract
+section	SV	V	The development save images
+section	TA	G	The map texture animation lists
+section	UB	D	The .bin families nothing names
+section	UC	N	The code outside every denominator
+section	UD	N	Referenced code the function list never had
+section	UE	G	The aspect fit's middle branch
+section	UF	I,M	The License Board view
+section	UG	D	The authored-command ramp channels
+section	UQ	N	Page questions registered 2026-09-14 (every row links its page; the page wins)
+section	VA	D	The verb dispatch ABI contract
+section	WC	G	The sound engine configuration

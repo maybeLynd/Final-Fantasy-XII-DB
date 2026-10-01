@@ -1,0 +1,86 @@
+{
+ "real": [
+  {
+   "va": "0x3e5b30",
+   "lo": "0x3e5b30",
+   "hi": "0x3e5c82",
+   "span": 338,
+   "insns": 102,
+   "cov": 1.0,
+   "sha256": "44e7e5b52464f587f104a51caa3b0ccf5b56d40dfa0a3ac33da8224cb382399e",
+   "indirect": [],
+   "name": "getv"
+  },
+  {
+   "va": "0x422d50",
+   "lo": "0x422d50",
+   "hi": "0x422d89",
+   "span": 57,
+   "insns": 16,
+   "cov": 1.0,
+   "sha256": "2fc84017f26cddaf49f2aebb6f5e35c7bc63c42a2f9cb619db380a8f9af545fe",
+   "indirect": [],
+   "name": "g42"
+  },
+  {
+   "va": "0x41c970",
+   "lo": "0x41c970",
+   "hi": "0x41c99a",
+   "span": 42,
+   "insns": 13,
+   "cov": 1.0,
+   "sha256": "c2cc37fd1faf40c77bbf40ab68737023605159fa0ae4ece5275abf39cac7b113",
+   "indirect": [],
+   "name": "g41"
+  },
+  {
+   "va": "0x3e6da0",
+   "lo": "0x3e6da0",
+   "hi": "0x3e6de3",
+   "span": 67,
+   "insns": 22,
+   "cov": 1.0,
+   "sha256": "68a0f2280853babf1930c0aa4f0f94f315c364da6417ccfe2006d8d1128a97f2",
+   "indirect": [],
+   "name": "d6a"
+  },
+  {
+   "va": "0x2ed570",
+   "lo": "0x2ed570",
+   "hi": "0x2ed602",
+   "span": 146,
+   "insns": 44,
+   "cov": 1.0,
+   "sha256": "f5fc014060f8216a6f6107a015e9c108505d1f6897ef4277da190ad2000e9603",
+   "indirect": [],
+   "name": "mids"
+  },
+  {
+   "va": "0x3ab7f0",
+   "lo": "0x3ab7f0",
+   "hi": "0x3ab853",
+   "span": 99,
+   "insns": 32,
+   "cov": 1.0,
+   "sha256": "a65931ceb42bff28b95656b5797b4ec07ab5f3526b5e5c98d7a330d5f18e28f0",
+   "indirect": [],
+   "name": "res"
+  },
+  {
+   "va": "0x20e600",
+   "lo": "0x20e600",
+   "hi": "0x20e60a",
+   "span": 10,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+   "indirect": [],
+   "name": "base"
+  }
+ ],
+ "scripted": [
+  "0x51b9e0",
+  "0x36b130",
+  "0x370e20"
+ ]
+}

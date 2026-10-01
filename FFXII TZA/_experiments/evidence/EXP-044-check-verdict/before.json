@@ -1,0 +1,296 @@
+{
+  "mode": "before",
+  "source_sha256": "1ff612753c3768166fc9ab25670c36f3fefdf11939a9f2545392db3a2cc18cde",
+  "method": "actual main; process enumeration/open/read/close replaced; no native process calls",
+  "cases": {
+    "exact": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 81 (0x00000051)    PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "substring": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 181 (0x000000B5)   PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "unreadable": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 <unreadable>       ERROR\n\n0 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "empty": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\n\n0 pass, 0 fail, 0 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "hex": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      0x51               81 (0x00000051)    FAIL\n\n0 pass, 1 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "u8": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u8       255                255 (0xFF)         PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          1
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "u16": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u16      65535              65535 (0xFFFF)     PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          2
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "signed": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     i32      -81                -81 (0xFFFFFFAF)   PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "sign-mismatch": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     i32      81                 -81 (0xFFFFFFAF)   PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "pointer": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     ptr      0xFEDCBA9876543210 0xFEDCBA9876543210 PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          8
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "float": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     f32      0.1                0.10000000149011612 PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "float-prefix": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     f32      1                  1.5                PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "wildcard": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      *                  81 (0x00000051)    PASS\n\n1 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "wildcard-unreadable": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      *                  <unreadable>       ERROR\n\n0 pass, 0 fail, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    }
+  }
+}

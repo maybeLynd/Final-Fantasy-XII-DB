@@ -1,0 +1,269 @@
+{
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "driver_sha256": "2a32a84e15882fe52454974501155cd08c1d93ed41ac2dde41c5d7d8e76201cc",
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "provider_files": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "bytes": 43853,
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "bytes": 7576576,
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "bodies": [
+    {
+      "name": "teardown",
+      "entry": "0x392710",
+      "bytes": 45,
+      "sha256": "f3a0a92cfba2b82b13b0796b611a1c3e7959ab5d88afaab9df38a8afa89ec794",
+      "instructions": [
+        {
+          "pc": "0x392710",
+          "bytes": "4883ec28",
+          "op": "sub",
+          "args": "rsp, 0x28",
+          "memory": [],
+          "written": [
+            "rflags",
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x392714",
+          "bytes": "488b0d85b97502",
+          "op": "mov",
+          "args": "rcx, qword ptr [rip + 0x275b985]",
+          "memory": [
+            {
+              "operand_index": 1,
+              "size": 8,
+              "base": "rip",
+              "index": null,
+              "disp": 41269637,
+              "kind": "r"
+            }
+          ],
+          "written": [
+            "rcx"
+          ]
+        },
+        {
+          "pc": "0x39271b",
+          "bytes": "4885c9",
+          "op": "test",
+          "args": "rcx, rcx",
+          "memory": [],
+          "written": [
+            "rflags"
+          ]
+        },
+        {
+          "pc": "0x39271e",
+          "bytes": "7405",
+          "op": "je",
+          "args": "0x392725",
+          "memory": [],
+          "written": []
+        },
+        {
+          "pc": "0x392720",
+          "bytes": "e8cb1dffff",
+          "op": "call",
+          "args": "0x3844f0",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x392725",
+          "bytes": "33d2",
+          "op": "xor",
+          "args": "edx, edx",
+          "memory": [],
+          "written": [
+            "rdx",
+            "rflags"
+          ]
+        },
+        {
+          "pc": "0x392727",
+          "bytes": "488d0d32b97502",
+          "op": "lea",
+          "args": "rcx, [rip + 0x275b932]",
+          "memory": [
+            {
+              "operand_index": 1,
+              "size": 8,
+              "base": "rip",
+              "index": null,
+              "disp": 41269554,
+              "kind": "addr"
+            }
+          ],
+          "written": [
+            "rcx"
+          ]
+        },
+        {
+          "pc": "0x39272e",
+          "bytes": "41b860040000",
+          "op": "mov",
+          "args": "r8d, 0x460",
+          "memory": [],
+          "written": [
+            "r8"
+          ]
+        },
+        {
+          "pc": "0x392734",
+          "bytes": "4883c428",
+          "op": "add",
+          "args": "rsp, 0x28",
+          "memory": [],
+          "written": [
+            "rflags",
+            "rsp"
+          ]
+        },
+        {
+          "pc": "0x392738",
+          "bytes": "e983f74c00",
+          "op": "jmp",
+          "args": "0x861ec0",
+          "memory": [],
+          "written": []
+        }
+      ]
+    },
+    {
+      "name": "release-thunk",
+      "entry": "0x3844f0",
+      "bytes": 5,
+      "sha256": "511abd7a7683969836503f8931d665887756c082b56463e49cb0eeea2a90752c",
+      "instructions": [
+        {
+          "pc": "0x3844f0",
+          "bytes": "e9fb52feff",
+          "op": "jmp",
+          "args": "0x3697f0",
+          "memory": [],
+          "written": []
+        }
+      ]
+    },
+    {
+      "name": "raw-release-entry",
+      "entry": "0x3697f0",
+      "bytes": 13,
+      "sha256": "efed31070c81261c142e309cfde282b4b566c4b36e4e28e53f1f817025d4cfca",
+      "instructions": [
+        {
+          "pc": "0x3697f0",
+          "bytes": "4885c9",
+          "op": "test",
+          "args": "rcx, rcx",
+          "memory": [],
+          "written": [
+            "rflags"
+          ]
+        },
+        {
+          "pc": "0x3697f3",
+          "bytes": "7407",
+          "op": "je",
+          "args": "0x3697fc",
+          "memory": [],
+          "written": []
+        },
+        {
+          "pc": "0x3697f5",
+          "bytes": "33d2",
+          "op": "xor",
+          "args": "edx, edx",
+          "memory": [],
+          "written": [
+            "rdx",
+            "rflags"
+          ]
+        },
+        {
+          "pc": "0x3697f7",
+          "bytes": "e964000000",
+          "op": "jmp",
+          "args": "0x369860",
+          "memory": [],
+          "written": []
+        },
+        {
+          "pc": "0x3697fc",
+          "bytes": "c3",
+          "op": "ret",
+          "args": "",
+          "memory": [],
+          "written": [
+            "rsp"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "memset-thunk",
+      "entry": "0x861ec0",
+      "bytes": 6,
+      "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+      "instructions": [
+        {
+          "pc": "0x861ec0",
+          "bytes": "ff259a0b0600",
+          "op": "jmp",
+          "args": "qword ptr [rip + 0x60b9a]",
+          "memory": [
+            {
+              "operand_index": 0,
+              "size": 8,
+              "base": "rip",
+              "index": null,
+              "disp": 396186,
+              "kind": "r"
+            }
+          ],
+          "written": []
+        }
+      ]
+    }
+  ],
+  "extent": {
+    "directory_rva": "0x2e78000",
+    "record_offset": 159048,
+    "record_hex": "102727003d272700c82bc301",
+    "entry": "0x392710",
+    "end": "0x39273d"
+  },
+  "memset_import": {
+    "iat": "0x8c2a60",
+    "descriptor_va": "0x1deac68",
+    "descriptor_hex": "48b7cc01000000000000000062eccc01d8297a00",
+    "lookup_va": "0x1deb7d0",
+    "lookup_hex": "4cebcc0100000000",
+    "name_va": "0x1deeb4c",
+    "name_hex": "3e006d656d73657400",
+    "dll_va": "0x1deec62",
+    "dll_hex": "564352554e54494d453134302e646c6c00",
+    "dll": "VCRUNTIME140.dll",
+    "name": "memset"
+  }
+}

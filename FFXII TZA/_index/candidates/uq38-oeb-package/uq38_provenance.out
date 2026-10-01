@@ -1,0 +1,4 @@
+PASS P1  267 members, 0 reference a source-path string; image-wide 949 functions do (control 00267930 -> ..\..\katano\ateldecode.c)
+PASS P2  members bracketed by a source file: 0; control 00267990 bracketed by ['..\\..\\katano\\ateldecode.c']
+PASS P3  COFF symbols: pointer 0, count 0; debug records [2, 12, 13, 14]; CodeView names E:\Jenkins\workspace\C11019P16003\Code\source\FF12_PS2_IN\FF12\x64_Retail\FF12X64.pdb
+FAILS 0

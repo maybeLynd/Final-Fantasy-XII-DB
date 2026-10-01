@@ -1,0 +1,111 @@
+{
+ "cases": {
+  "A1_each_initialiser_writes_three_records_codes_and_axis_tables": true,
+  "A2_stride_0x420_and_the_stated_end_is_record_2s_table": true,
+  "A3_next_global_is_block3_plus_0x420": true
+ },
+ "evidence_class": "STATIC",
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "blocks": {
+   "01F80130": {
+    "axis_leas": [
+     "+040",
+     "+19C",
+     "+2F8"
+    ],
+    "init": "0015BD30",
+    "loop": [
+     "lea rax, [rax + 0x80]",
+     "sub r8, 1",
+     "lea rax, [rax + 0x80]",
+     "sub r8, 1",
+     "lea rax, [rax + 0x80]"
+    ],
+    "stores": [
+     "+000 xmmword",
+     "+010 xmmword",
+     "+020 xmmword",
+     "+030 xmmword",
+     "+15C xmmword",
+     "+16C xmmword",
+     "+17C xmmword",
+     "+18C xmmword",
+     "+2B8 xmmword",
+     "+2C8 xmmword",
+     "+2D8 xmmword",
+     "+2E8 xmmword"
+    ]
+   },
+   "01F80550": {
+    "axis_leas": [
+     "+040",
+     "+19C",
+     "+2F8"
+    ],
+    "init": "0015C0D0",
+    "loop": [
+     "mov r8d, 2",
+     "lea rax, [rax + 0x80]",
+     "lea rax, [rax + 0x80]",
+     "lea rax, [rax + 0x80]",
+     "sub r8, 1"
+    ],
+    "stores": [
+     "+000 xmmword",
+     "+010 xmmword",
+     "+020 xmmword",
+     "+030 xmmword",
+     "+15C xmmword",
+     "+16C xmmword",
+     "+17C xmmword",
+     "+18C xmmword",
+     "+2B8 xmmword",
+     "+2C8 xmmword",
+     "+2D8 xmmword",
+     "+2E8 xmmword"
+    ]
+   },
+   "01F80970": {
+    "axis_leas": [
+     "+040",
+     "+19C",
+     "+2F8"
+    ],
+    "init": "0015BF20",
+    "loop": [
+     "mov r8d, 2",
+     "lea rax, [rax + 0x80]",
+     "lea rax, [rax + 0x80]",
+     "lea rax, [rax + 0x80]",
+     "sub r8, 1"
+    ],
+    "stores": [
+     "+000 xmmword",
+     "+010 xmmword",
+     "+020 xmmword",
+     "+030 xmmword",
+     "+15C xmmword",
+     "+16C xmmword",
+     "+17C xmmword",
+     "+18C xmmword",
+     "+2B8 xmmword",
+     "+2C8 xmmword",
+     "+2D8 xmmword",
+     "+2E8 xmmword"
+    ]
+   }
+  },
+  "refs_1F80C68_1F80DA0": {
+   "01F80C68": [
+    "0015BF20 FUN_0015bf20"
+   ],
+   "01F80D90": [
+    "00197EE0 InputManager_BuildKeymapPath",
+    "00198000 InputManager_LoadKeymapIni",
+    "001993B0 FUN_001993b0"
+   ]
+  }
+ }
+}

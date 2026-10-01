@@ -1,0 +1,31 @@
+PASS K3 control: FileSizeTable_US sizes the six .btm - [42240, 42240, 29184, 29184, 32256, 32256]
+PASS F  FileSizeTable_KR and _CN hold -1 for the six .btm
+PASS A1 00365810 sizes with 0032E400(7, id) and allocates through 00249810 / 002497E0 with that size
+PASS A2 0032E400 returns a non-positive size unrounded (jle)
+PASS A3 0036BC60 clamps a negative size to 0, then rounds up to 64 (so -1 allocates 0 bytes)
+PASS D1 00365810's descriptor: +0x10 = 00364380 (rsp+0x40), +0x08 = row n-1 (rsp+0x38), handed as arg 5 (rsp+0x20)
+PASS D2 0032E620 copies the descriptor (arg 5) and passes it to 0032E870
+PASS D3 0032E870: +0x40 = desc+0x10, +0x60 = desc+8, +0x28 = byte count, +0x22 = 0, +0x20 = 1, +0x70 = destination
+   pump states 1..6 -> 0032E0BD 0032E149 0032E163 0032E163 0032E1AB 0032E1AB
+PASS K2 control: the pump's jump table decodes to six addresses inside 0032E070
+PASS P1 state 1 issues through 0046E030 when +0x28 != 0, then state 2 unconditionally
+PASS P2 0046E030 calls 002DF780 and returns 1 whatever it returned
+PASS P3 state 2 -> 3 (0032E15A); state 3 waits on 0046DFE0, then state = 5 + (status < 0)
+PASS P4 0046DFE0 reports busy only while the status word 0215EFF4 is -1
+PASS P5 mode 0 (+0x22 == 0) runs 0032E330 for state 5 and 0032E370 for state 6
+PASS C1 0032E330 calls +0x40 with rcx = +0x60, rdx = +0x70, r8 = 1
+PASS C2 0032E370 calls +0x40 (r8 = 0) exactly when +0x28 == -1, the refused .btm's byte count
+PASS S1 002DF780 refuses an FST entry of -1 (002DF7B0 / 002DF7B9) and returns 0 from 002DF85D
+   0215EFF4 ref 002DF719 lea  rax, [rip + 0x1e7f8d4]                       in 002DF6C0
+   0215EFF4 ref 002DF75F lea  rax, [rip + 0x1e7f88e]                       in 002DF6C0
+   0215EFF4 ref 002DF808 lea  rax, [rip + 0x1e7f7e5]                       in 002DF780
+   0215EFF4 ref 002DF838 lea  rax, [rip + 0x1e7f7b5]                       in 002DF780
+   0215EFF4 ref 0046DFE7 cmp  dword ptr [rip + 0x1cf1006], -1              in 0046DFE0
+   0215EFF4 ref 0046E0E0 mov  eax, dword ptr [rip + 0x1cf0f0e]             in 0046E0E0
+PASS K1 control: the sweep finds the two readers 0046DFE0 and 0046E0E0
+PASS S2 every other reference only passes the address (lea), and 002DF780's two are after its refusal branch
+PASS S3 the archive job writes -1 through the pointer at issue (001D6DD4) and its completion 001D6D70 writes the result
+PASS B1 00364380 sets bit cl of [022CBE00] + 0x240 and reads no r8
+PASS B2 003657E0(n) tests bit n - 1 of the same word
+RESULT a refused .btm request completes: state 5 (stale status >= 0) calls 00364380 with r8 = 1, state 6 (stale status < 0) calls it with r8 = 0 because the byte count is -1; either way the ready bit is set
+FAILS 0

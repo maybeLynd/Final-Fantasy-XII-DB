@@ -1,0 +1,25 @@
+{
+  "section": "SECTION-01",
+  "baseline_archive": "FFXII TZA(20260922-211246).zip",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "native_source_sha256": "d1b7e81540db5c14af1840ea7482bbc9e19a2605b2aab426657339240197c316",
+  "runner_sha256": "fb07df0eb9a03861eda75f2e4d6eeed724cff6750ec5d6707fa7158764c7b217",
+  "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "original_bodies_verified": 17,
+  "native_unique_cases": 42,
+  "native_failures": 0,
+  "baseline_repeat_identical": true,
+  "sensitivity_mutants_detected": 4,
+  "retained_assertions_replayed": 79,
+  "corrupted_retained_records_rejected": 4,
+  "EXP150_record_integrity_only": 39,
+  "original_inputs_unchanged": true,
+  "not_claimed": [
+    "full EXP-148/149/150 Unicorn rerun",
+    "live FF12",
+    "complete transitive native runtime",
+    "T2 peer acceptance",
+    "L2 completion"
+  ]
+}

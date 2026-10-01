@@ -1,0 +1,30 @@
+# WITHDRAWN as a declared family 2026-09-30 (OPUS): all six members are measured A (each read whole on the-ordered-container-runtime.md, now DOCUMENTED); kept as the enumeration.
+# The ordered-container (red-black tree) runtime - six members
+#
+# Read whole from the shipping EXE, authority hash
+# 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x00120000.
+# Every body's extent was checked to its last instruction: all six end in `ret` exactly at the
+# size functions.tsv records.
+#
+# PROVED BY LAYOUT CLOSURE, which is this family's control: across all six bodies and 621
+# instructions, the ONLY structure offsets touched are +0x00, +0x08, +0x10 and +0x18. Not one
+# of them reads a key, a value, an allocator or anything at +0x20 or beyond. They operate on a
+# 0x20-byte node header and know nothing about what the container stores - which is why 99
+# distinct callers across every subsystem share them.
+#
+# COHERENCE CONTROL: 170 call edges from 99 distinct callers, and 71 of the 99 call two or more
+# members. The only family-internal edges in the whole image are 0016DA60 -> 0016D780 and
+# 0016DA60 -> 0016D7E0: an erase is the one red-black operation that needs both rotation
+# directions, each rotation has exactly ONE caller, and it is the erase.
+#
+# NOT dispositioned: the std/EASTL container wrappers above these six, and whatever allocator
+# each container passes in. No member of this family allocates or frees - none of them calls
+# anything except the two rotations.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0016D6D0
+0016D720
+0016D780
+0016D7E0
+0016D840
+0016DA60

@@ -1,0 +1,69 @@
+{
+  "experiment": "EXP-066-consume-native-composition",
+  "files": {
+    "0016D6A0.bin": {
+      "bytes": 3,
+      "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b"
+    },
+    "0020E600.bin": {
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    "002F95D0.bin": {
+      "bytes": 589,
+      "sha256": "4d062ae38568cd9677abbb47219ab289b2fd9395d9caf453d8686d0e78163038"
+    },
+    "002F9820.bin": {
+      "bytes": 51,
+      "sha256": "ee5c28612770512de34552c17f02567e80a68bd1b7a79a4f4d5fc4187eccbed5"
+    },
+    "00300BC0.bin": {
+      "bytes": 207,
+      "sha256": "76bea105b70c571316aff3ee168dd57f663fbff5dffccb5fcaad9114940aaebe"
+    },
+    "00300CE0.bin": {
+      "bytes": 351,
+      "sha256": "b92e67b864da3f619da6167f8d33320cda920482851bdc1886ba5bf90d8f5ae9"
+    },
+    "00305640.bin": {
+      "bytes": 393,
+      "sha256": "f02e6580d9f33613934d2f8339b5d5c9cef2a2d4847ff235cb33dfc30bd004f3"
+    },
+    "00308FF0.bin": {
+      "bytes": 110,
+      "sha256": "1d0e23ffd9e13345c1edb53ce4bcdb122c3e3ef279c723e01cde78580845ecbf"
+    },
+    "00309110.bin": {
+      "bytes": 165,
+      "sha256": "d36bcb009eacc12f02e78c37bb0373aa8d6d4790ad77fa8ab79a14522fd3c473"
+    },
+    "0030E060.bin": {
+      "bytes": 200,
+      "sha256": "79cd5f64f478458e2a5fd3b8e853f86b9990f9f45404117fa251d6db710a6ff2"
+    },
+    "008F3130.bin": {
+      "bytes": 4,
+      "sha256": "0c05e73c2748cbfd2e38c0afaf9cb594f78e14fefa3c24190ebc121d45dbee4f"
+    },
+    "008F3134.bin": {
+      "bytes": 4,
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01"
+    },
+    "00916318.bin": {
+      "bytes": 4,
+      "sha256": "8568e5a1fe347c4aa003af9f44d1f42d104b5e40ea0502e869357877af7fb537"
+    },
+    "check.py": {
+      "bytes": 9447,
+      "sha256": "af7ce07f468dca55ff5ca349f5a51dbd31cfc00923dc151b95ea5623490e2f0d"
+    },
+    "disassembly.txt": {
+      "bytes": 32308,
+      "sha256": "6160fcea04a0d0c5bee1c870726c801a55797b0acd3c427db4b3fa0d3e8d35da"
+    },
+    "result.json": {
+      "bytes": 247377,
+      "sha256": "e2658e13d6575d2320306c16a9b73582ec0fac01a0025027edbcbdc2c2ae7b7b"
+    }
+  }
+}

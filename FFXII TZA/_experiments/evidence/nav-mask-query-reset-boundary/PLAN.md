@@ -1,0 +1,7 @@
+# Shared navigation query scratch reset
+
+Question: is the mask only cleared at construction and accumulated across queries, cleared on each query using a global-owned scratch pointer, or supplied by the caller? Consumers OPUS NavGridParams+50/corridor contract, FABLE navigation query semantics. Exact source contradicts current once-only/caller-supplied language; actual clear bytes/initialized pointer/CRT/runtime/concurrency remain separate.
+
+Method A: original292B3912E0 bounded by PEunwind end391404, exact6Bmemset thunk and originalPEimport binding; entry-to-call argument flow and dominance before query loops, ORdestination identity. Source identity/driver before assertion/rawinstruction roles from shared reviewedadapter. Existing33clamp/static/body and originalquery fixtures notrerun. Caller-source sourcebinding and omitted-clear-call controls discriminate; changedbytesdataonly, zero FF12/native/emulator/live execution. Successfulnativeclear is conditional on valid writablestorage/length and conformingCRT, not assumed from a call or stub.
+
+Bound3exactlocalpoints and onebody/thunk; no wholecaller/loop/scene replay/generalobserver. Fail on identity/extent/argument/dominance ambiguities. Originalpreimage/additiveownercorrection, exactsource/controls/limits/raw/normalized/checker/freeze/commit and independentreview. Cleanup peer/reference/save/config read-only, PC OFF, S19spentunapproved, L1+L2NOT_MET.

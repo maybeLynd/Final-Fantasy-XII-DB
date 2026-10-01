@@ -1,0 +1,7 @@
+PASS L1 detour recovery adds 5.0 (0033C956, 009146E4) - 1 addss from memory
+PASS L2 pair clearance: mulss 0.5 (0033D747, 01CEBB70), divss 3.0 (0033D751, 008F311C)
+   dispatcher arms: 1 -> 0033CEF0, 2 -> 0033D200, 3 -> 0033CE60, 4 -> 0033CEF0, 5 -> 0033CDE0, 6 -> 0033BAA0
+PASS L3 modes 1/4 -> 0033CEF0, 2 -> 0033D200, 3 -> 0033CE60, 5 -> 0033CDE0, 6 -> 0033BAA0
+PASS L4 DecodeOrderGoal 00312730 is 965 bytes - 965
+PASS C1 control: the constant reader gives 0.0 at 01EF93F0
+FAILS 0

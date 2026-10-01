@@ -1,0 +1,47 @@
+sites 43  resolved 43  unresolved 0
+resolved channel values: {'0..2': 2, '1': 21, '2': 17, '3': 3}
+any site passing 4: NONE
+FAILS 0
+0017EA1E in 0017E8E0  ch=1  mov ecx, r15d | r15: writes 0017E9DF mov r15d, 1; 0017EB71 cmovne r15d, eax; 0017EB7D div r15d | r15 = const at 0017E9DF, no clobbering call or jump target before the sit
+0017F46D in 0017F3B0  ch=1  mov ecx, esi | rsi: writes 0017F3D4 movzx esi, r8w; 0017F43B mov esi, 1; 0017F563 cmovne esi, eax; 0017F56E div esi | rsi = const at 0017F43B, no clobbering call or jump 
+00194796 in 001946E0  ch=1  mov ecx, esi | rsi: writes 0019472D mov esi, 1; 00194947 cmovne esi, eax; 00194952 div esi | rsi last write 0019472D mov esi, 1; blockers ['00194750'] | MANUAL: esi = 1 a
+001B79D5 in 001B7850  ch=1  lea ecx, [r13 + 1] | r13: all 1 writes in 001B7850 set 001B7974
+001D4636 in 001D1660  ch=2  mov ecx, ebp | rbp: writes 001D16FE mov ebp, 2; 001D1743 mov ebp, 1; 001D174A cmovne ebp, ecx; 001D1781 mov ebp, 1; 001D17AE mov ebp, 1; 001D17B5 cmovne ebp, ecx | rbp la
+00596D4C in 00596890  ch=3  lea ecx, [r8 + 2] |  | r8 = const at 00596D3B, no clobbering call or jump target before the site
+0059B77F in 0059B430  ch=1  lea ecx, [rbx + 1] | rbx: writes 0059B454 mov ebx, dword ptr [rcx + 0x18]; 0059B490 and ebx, 0x7fffffff; 0059B4AA mov rbx, r8; 0059B4F7 lea rbx, [rax - 8]; 0059B501 cmove
+0059B980 in 0059B430  ch=2  lea ecx, [rax + 2] |  | rax last write 0059B956 mov rax, r10; blockers ['0059B959'] | path: 0059B95D test rax, rax; 0059B960 jne -> rax is 0 on the fall-through
+0059BB43 in 0059BA40  ch=1  lea ecx, [rbx + 1] | rbx: writes 0059BA6B mov ebx, dword ptr [rax + 0xc]; 0059BB21 mov rbx, qword ptr [rdi - 8]; 0059BC46 mov ebx, dword ptr [r13 + 0x14]; 0059BC5B mov eb
+0059BBCB in 0059BA40  ch=1  lea ecx, [rax + 1] |  | rax last write 0059BBAD mov rax, qword ptr [rax + 0x18]; blockers [] | path: 0059BBB1 test rax, rax; 0059BBB4 jne -> rax is 0 on the fall-through
+0059C587 in 0059C250  ch=1  lea ecx, [rbx + 1] | rbx: writes 0059C2D4 mov ebx, eax; 0059C2D6 shl ebx, 4; 0059C2D9 add ebx, esi; 0059C3A0 mov ebx, dword ptr [rdi + 0x14]; 0059C4C1 mov ebx, dword ptr 
+0059CAEA in 0059C700  ch=1  lea ecx, [r14 + 1] | r14: writes 0059C735 mov r14, rcx; 0059C873 mov r14d, eax; 0059C8A0 sub r14, 1; 0059C8A6 mov r14, qword ptr [rbp + 0xb0]; 0059CAC2 mov r14, r13; 0059
+0059D187 in 0059CE30  ch=1  lea ecx, [r10 + 1] |  | r10 last write 0059D16B mov r10, qword ptr [rbx + 0x10]; blockers [] | path: 0059D16F test r10, r10; 0059D172 jne -> r10 is 0 on the fall-through
+0059D74C in 0059D6A0  ch=2  lea ecx, [r9 + 2] |  | r9 last write 0059D734 mov r9, qword ptr [r8 + 0x10]; blockers [] | path: 0059D738 test r9, r9; 0059D73B jne -> r9 is 0 on the fall-through
+0059DD79 in 0059D940  ch=1  lea ecx, [rdi + 1] | rdi: writes 0059D973 mov edi, dword ptr [rax + 0x3c]; 0059DBE6 seta dil; 0059DC9B or dil, sil; 0059DD11 mov edi, r14d; 0059DD40 lea rdi, [rax + rcx*8
+005CCF6C in 005CCD00  ch=2  no ecx write before the site after the previous call | MANUAL: ecx = 2 at 005CCF2C; path 005CCF37 je -> 005CCF5E -> site, no call between
+005CCF8B in 005CCD00  ch=2  no ecx write before the site after the previous call | MANUAL: ecx = 2 at 005CCF2C; path 005CCF33 je -> 005CCF73 -> site, no call between
+005CCF99 in 005CCD00  ch=2  no ecx write before the site after the previous call | MANUAL: ecx = 2 at 005CCF2C; path 005CCF33 je -> 005CCF73 -> 005CCF75 je -> 005CCF92 -> site, no call between
+005F064F in 005F05F0  ch=1  lea ecx, [rbx + 1] | rbx: writes 005F0602 mov rbx, qword ptr [rip + 0x26cf38f]; 005F0620 mov rbx, qword ptr [rbx + 8]; 005F0629 xor ebx, ebx; 005F0654 mov rbx, qword ptr 
+00601E24 in 00600F30  ch=1  lea ecx, [r8 + 1] |  | r8 = const at 00601DDF, no clobbering call or jump target before the site
+0062A22A in 0062A0A0  ch=1  lea ecx, [rbp + 1] | rbp: writes 0062A0FE lea rbp, [rax + 0x968]; 0062A1DA xor ebp, ebp; 0062A1EB mov rbp, rax; 0062A270 xor ebp, ebp; 0062A281 mov rbp, rax; 0062A306 xor
+0062A2C0 in 0062A0A0  ch=1  lea ecx, [rbp + 1] | rbp: writes 0062A0FE lea rbp, [rax + 0x968]; 0062A1DA xor ebp, ebp; 0062A1EB mov rbp, rax; 0062A270 xor ebp, ebp; 0062A281 mov rbp, rax; 0062A306 xor
+0062A362 in 0062A0A0  ch=1  lea ecx, [rbp + 1] | rbp: writes 0062A0FE lea rbp, [rax + 0x968]; 0062A1DA xor ebp, ebp; 0062A1EB mov rbp, rax; 0062A270 xor ebp, ebp; 0062A281 mov rbp, rax; 0062A306 xor
+006391F2 in 00639160  ch=1  lea ecx, [rax - 1] |  | rax last write 006391D4 mov eax, dword ptr [rbx + 0x20]; blockers [] | MANUAL: eax = [rbx+0x20] at 006391D4; cmp eax,1 / je 0x6391f7 (006391DB/DE)
+0066F99A in 0066F970  ch=1  lea ecx, [rdi + 1] | rdi: writes 0066F986 mov edi, dword ptr [rcx + 0x78]; 0066F9DC mov edi, r15d; 0066FA6F inc edi | rdi last write 0066F986 mov edi, dword ptr [rcx + 0x
+0066FADA in 0066FAB0  ch=1  lea ecx, [rdi + 1] | rdi: writes 0066FAC6 mov edi, dword ptr [rcx + 0x70]; 0066FB1C mov edi, r15d; 0066FBAF inc edi | rdi last write 0066FAC6 mov edi, dword ptr [rcx + 0x
+00677D3E in 00677CE0  ch=2  lea ecx, [rbp + 2] | rbp: writes 00677D1A mov rbp, rax | rbp last write 00677D1A mov rbp, rax; blockers [] | MANUAL: rbp = rax at 00677D1A; test rax,rax 00677D1D; jne 0x6
+0068503F in 00684F60  ch=3  lea ecx, [rsi + 3] | rsi: writes 00684FB7 mov esi, 9; 00684FE9 xor esi, esi | rsi = const at 00684FE9, no clobbering call or jump target before the site
+006865DB in 00686280  ch=0..2  mov ecx, ebp | rbp: writes 00686308 mov ebp, r13d; 00686366 inc ebp; 006863FF mov ebp, 1; 006867CE mov ebp, r13d | rbp last write 006863FF mov ebp, 1; blockers ['00686437
+006867C7 in 00686280  ch=0..2  mov ecx, ebp | rbp: writes 00686308 mov ebp, r13d; 00686366 inc ebp; 006863FF mov ebp, 1; 006867CE mov ebp, r13d | rbp last write 006863FF mov ebp, 1; blockers ['00686437
+006B8A20 in 006B89C0  ch=1  lea ecx, [rbx + 1] | rbx: writes 006B89D2 mov rbx, qword ptr [rip + 0x27998f7]; 006B89F1 mov rbx, qword ptr [rbx + 0x10]; 006B89FA xor ebx, ebx; 006B8A25 mov rbx, qword p
+006CBE1D in 006CBD20  ch=2  lea ecx, [rdi + 2] | rdi: writes 006CBD46 mov rdi, rdx; 006CBDD0 xor edi, edi | rdi = const at 006CBDD0, no clobbering call or jump target before the site
+006CD3EF in 006CD390  ch=1  lea ecx, [rbx + 1] | rbx: writes 006CD3A2 mov rbx, qword ptr [rip + 0x278ee67]; 006CD3C0 mov rbx, qword ptr [rbx + 8]; 006CD3C9 xor ebx, ebx; 006CD3F4 mov rbx, qword ptr 
+00795ED4 in 00795DC0  ch=2  lea ecx, [r8 + 1] |  | r8 = const at 00795EBB, no clobbering call or jump target before the site
+0079B73E in 0079B300  ch=3  lea ecx, [rax + 3] |  | rax last write 0079B702 xor eax, eax; blockers ['0079B729'] | path: 0079B72F test rax, rax; 0079B732 jne -> rax is 0 on the fall-through
+0079C42B in 0079C140  ch=2  no ecx write before the site after the previous call | MANUAL: ecx = 2 at 0079C3E2, then je 0x79c424 at 0079C3EE, no call between
+0079D482 in 0079D430  ch=2  lea ecx, [rsi + 2] | rsi: writes 0079D45E xor esi, esi; 0079D548 mov rsi, qword ptr [r11 + 0x20] | rsi = const at 0079D45E, no clobbering call or jump target before the s
+0079F1F0 in 0079F150  ch=2  lea ecx, [r14 + 2] | r14: writes 0079F193 xor r14d, r14d; 0079F2EB mov r14, qword ptr [rip + 0x2705f3e]; 0079F389 mov r14d, esi; 0079F38C btr r14d, 0x1f; 0079F3D9 xor r14
+0079F874 in 0079F750  ch=2  mov ecx, r8d |  | r8 = const at 0079F85C, no clobbering call or jump target before the site
+0079F8BB in 0079F750  ch=2  lea ecx, [r8 + 1] |  | r8 = const at 0079F8AA, no clobbering call or jump target before the site
+0079F966 in 0079F750  ch=2  lea ecx, [r8 + 2] |  | r8 = const at 0079F948, no clobbering call or jump target before the site
+007A068A in 007A05D0  ch=2  lea ecx, [rax + 2] |  | rax last write 007A0635 mov eax, dword ptr [rsp + 0x90]; blockers ['007A0648', '007A0656', '007A0663'] | path: 007A066A test eax, eax; 007A066C jn
+007A2280 in 007A2140  ch=2  lea ecx, [rdi + 2] | rdi: writes 007A21D1 mov edi, eax | rdi last write 007A21D1 mov edi, eax; blockers [] | path: 007A2253 test edi, edi; 007A2255 jne -> rdi is 0 on the

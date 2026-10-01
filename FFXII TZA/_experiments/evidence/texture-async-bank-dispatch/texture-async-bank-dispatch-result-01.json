@@ -1,0 +1,550 @@
+{
+  "status": "PRODUCER_CHECKED_BANK_SUBMISSION_AND_CONSUMER_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-async-bank-dispatch-source-01.json",
+      "sha256": "75fb672a306b7a228e14131ad242fa228f49f98b3be9e33cd9e707ad81348b9a"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 120,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfgs": [
+    {
+      "entry": "0x185a50",
+      "end_exclusive": "0x185a7d",
+      "instructions": 10,
+      "returns": [
+        "0x185a7c"
+      ],
+      "calls": [
+        {
+          "pc": "0x185a62",
+          "target": "0x5fea50"
+        }
+      ]
+    },
+    {
+      "entry": "0x5fea50",
+      "end_exclusive": "0x5feb21",
+      "instructions": 58,
+      "returns": [
+        "0x5fea7f",
+        "0x5feb0b",
+        "0x5feb20"
+      ],
+      "calls": [
+        {
+          "pc": "0x5fea86",
+          "target": "0x600b30"
+        },
+        {
+          "pc": "0x5fea95",
+          "target": "qword ptr [rax + 0x10]"
+        }
+      ]
+    },
+    {
+      "entry": "0x62ebc0",
+      "end_exclusive": "0x62ec67",
+      "instructions": 49,
+      "returns": [
+        "0x62ec66"
+      ],
+      "calls": [
+        {
+          "pc": "0x62ebec",
+          "target": "qword ptr [rax]"
+        },
+        {
+          "pc": "0x62ebf1",
+          "target": "0x16d6d0"
+        },
+        {
+          "pc": "0x62ec16",
+          "target": "0x220390"
+        },
+        {
+          "pc": "0x62ec30",
+          "target": "qword ptr [rax + 0x18]"
+        }
+      ]
+    }
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "texture-async-bank-dispatch-capture-01.status.json",
+      "sha256": "39a68310f3300880f85211d74e8dc8aac006d7fae7038987b1d64fee42697fc5"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.stdout",
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-texture-async-bank-dispatch.py",
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    }
+  ],
+  "instruction_pins": [
+    {
+      "pc": "0x185a54",
+      "mnemonic": "mov",
+      "args": "r8d, dword ptr [rip + 0x1df9b35]"
+    },
+    {
+      "pc": "0x185a5b",
+      "mnemonic": "lea",
+      "args": "rdx, [rip + 0xbae]"
+    },
+    {
+      "pc": "0x185a67",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rip + 0x1df9b23]"
+    },
+    {
+      "pc": "0x185a6d",
+      "mnemonic": "inc",
+      "args": "eax"
+    },
+    {
+      "pc": "0x185a6f",
+      "mnemonic": "and",
+      "args": "eax, 3"
+    },
+    {
+      "pc": "0x185a72",
+      "mnemonic": "mov",
+      "args": "dword ptr [rip + 0x1df9b18], eax"
+    },
+    {
+      "pc": "0x5fea5f",
+      "mnemonic": "mov",
+      "args": "rsi, r8"
+    },
+    {
+      "pc": "0x5fea62",
+      "mnemonic": "mov",
+      "args": "rdi, rdx"
+    },
+    {
+      "pc": "0x5fea65",
+      "mnemonic": "mov",
+      "args": "rbx, rcx"
+    },
+    {
+      "pc": "0x5fea68",
+      "mnemonic": "test",
+      "args": "rdx, rdx"
+    },
+    {
+      "pc": "0x5fea6b",
+      "mnemonic": "jne",
+      "args": "0x5fea80"
+    },
+    {
+      "pc": "0x5fea6d",
+      "mnemonic": "lea",
+      "args": "eax, [rdx + 1]"
+    },
+    {
+      "pc": "0x5fea80",
+      "mnemonic": "xor",
+      "args": "edx, edx"
+    },
+    {
+      "pc": "0x5fea82",
+      "mnemonic": "lea",
+      "args": "r8d, [rdx + 1]"
+    },
+    {
+      "pc": "0x5fea8b",
+      "mnemonic": "test",
+      "args": "al, al"
+    },
+    {
+      "pc": "0x5fea8d",
+      "mnemonic": "jne",
+      "args": "0x5fea98"
+    },
+    {
+      "pc": "0x5fea98",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rbx + 0x60]"
+    },
+    {
+      "pc": "0x5fea9c",
+      "mnemonic": "mov",
+      "args": "r8, qword ptr [rbx + 0x58]"
+    },
+    {
+      "pc": "0x5feaa0",
+      "mnemonic": "lea",
+      "args": "rdx, [rax + 0x80]"
+    },
+    {
+      "pc": "0x5feaaa",
+      "mnemonic": "jbe",
+      "args": "0x5feab7"
+    },
+    {
+      "pc": "0x5feaac",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rbx + 0x50]"
+    },
+    {
+      "pc": "0x5feab0",
+      "mnemonic": "lea",
+      "args": "rdx, [rax + 0x80]"
+    },
+    {
+      "pc": "0x5feab7",
+      "mnemonic": "xor",
+      "args": "ecx, ecx"
+    },
+    {
+      "pc": "0x5feab9",
+      "mnemonic": "cmp",
+      "args": "rdx, r8"
+    },
+    {
+      "pc": "0x5feabc",
+      "mnemonic": "ja",
+      "args": "0x5feac4"
+    },
+    {
+      "pc": "0x5feabe",
+      "mnemonic": "mov",
+      "args": "rcx, rax"
+    },
+    {
+      "pc": "0x5feac1",
+      "mnemonic": "mov",
+      "args": "rax, rdx"
+    },
+    {
+      "pc": "0x5feac4",
+      "mnemonic": "mov",
+      "args": "qword ptr [rbx + 0x60], rax"
+    },
+    {
+      "pc": "0x5feac8",
+      "mnemonic": "test",
+      "args": "rcx, rcx"
+    },
+    {
+      "pc": "0x5feacb",
+      "mnemonic": "je",
+      "args": "0x5feb0c"
+    },
+    {
+      "pc": "0x5feacd",
+      "mnemonic": "cmp",
+      "args": "qword ptr [rbx + 0x88], 0"
+    },
+    {
+      "pc": "0x5fead5",
+      "mnemonic": "jne",
+      "args": "0x5feade"
+    },
+    {
+      "pc": "0x5fead7",
+      "mnemonic": "mov",
+      "args": "qword ptr [rbx + 0x88], rcx"
+    },
+    {
+      "pc": "0x5feade",
+      "mnemonic": "lea",
+      "args": "rax, [rcx + 0x80]"
+    },
+    {
+      "pc": "0x5feae5",
+      "mnemonic": "mov",
+      "args": "qword ptr [rbx + 0x90], rax"
+    },
+    {
+      "pc": "0x5feaec",
+      "mnemonic": "xor",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x5feaee",
+      "mnemonic": "mov",
+      "args": "dword ptr [rcx], 0x2f"
+    },
+    {
+      "pc": "0x5feaf4",
+      "mnemonic": "mov",
+      "args": "qword ptr [rcx + 8], rdi"
+    },
+    {
+      "pc": "0x5feaf8",
+      "mnemonic": "mov",
+      "args": "qword ptr [rcx + 0x10], rsi"
+    },
+    {
+      "pc": "0x5feb11",
+      "mnemonic": "mov",
+      "args": "eax, 0xd"
+    },
+    {
+      "pc": "0x186610",
+      "mnemonic": "mov",
+      "args": "edx, dword ptr [rcx + 0x10]"
+    },
+    {
+      "pc": "0x186613",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rip + 0x1df8f9e]"
+    },
+    {
+      "pc": "0x18661a",
+      "mnemonic": "jmp",
+      "args": "0x62ebc0"
+    },
+    {
+      "pc": "0x62ebcf",
+      "mnemonic": "mov",
+      "args": "eax, edx"
+    },
+    {
+      "pc": "0x62ebd1",
+      "mnemonic": "imul",
+      "args": "rsi, rax, 0x38"
+    },
+    {
+      "pc": "0x62ebd5",
+      "mnemonic": "add",
+      "args": "rsi, rcx"
+    },
+    {
+      "pc": "0x62ebd8",
+      "mnemonic": "mov",
+      "args": "rbx, qword ptr [rsi + 0x10]"
+    },
+    {
+      "pc": "0x62ebdc",
+      "mnemonic": "lea",
+      "args": "rdi, [rsi + 8]"
+    },
+    {
+      "pc": "0x62ebe0",
+      "mnemonic": "cmp",
+      "args": "rbx, rdi"
+    },
+    {
+      "pc": "0x62ebe3",
+      "mnemonic": "je",
+      "args": "0x62ebfe"
+    },
+    {
+      "pc": "0x62ebe5",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rbx + 0x20]"
+    },
+    {
+      "pc": "0x62ebe9",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rcx]"
+    },
+    {
+      "pc": "0x62ebee",
+      "mnemonic": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x62ebf6",
+      "mnemonic": "mov",
+      "args": "rbx, rax"
+    },
+    {
+      "pc": "0x62ebf9",
+      "mnemonic": "cmp",
+      "args": "rax, rdi"
+    },
+    {
+      "pc": "0x62ebfc",
+      "mnemonic": "jne",
+      "args": "0x62ebe5"
+    },
+    {
+      "pc": "0x62ebfe",
+      "mnemonic": "mov",
+      "args": "rdi, qword ptr [rsi + 0x18]"
+    },
+    {
+      "pc": "0x62ec10",
+      "mnemonic": "mov",
+      "args": "rdx, qword ptr [rdi]"
+    },
+    {
+      "pc": "0x62ec13",
+      "mnemonic": "mov",
+      "args": "rcx, rsi"
+    },
+    {
+      "pc": "0x62ec1b",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rsi + 0x30]"
+    },
+    {
+      "pc": "0x62ec1f",
+      "mnemonic": "lea",
+      "args": "rcx, [rsi + 0x30]"
+    },
+    {
+      "pc": "0x62ec23",
+      "mnemonic": "mov",
+      "args": "rbx, qword ptr [rdi + 8]"
+    },
+    {
+      "pc": "0x62ec27",
+      "mnemonic": "mov",
+      "args": "r8d, 0x28"
+    },
+    {
+      "pc": "0x62ec2d",
+      "mnemonic": "mov",
+      "args": "rdx, rdi"
+    },
+    {
+      "pc": "0x62ec33",
+      "mnemonic": "mov",
+      "args": "rdi, rbx"
+    },
+    {
+      "pc": "0x62ec39",
+      "mnemonic": "jne",
+      "args": "0x62ec10"
+    },
+    {
+      "pc": "0x62ec45",
+      "mnemonic": "lea",
+      "args": "rax, [rsi + 8]"
+    },
+    {
+      "pc": "0x62ec49",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsi + 0x10], rax"
+    },
+    {
+      "pc": "0x62ec4d",
+      "mnemonic": "mov",
+      "args": "qword ptr [rax], rax"
+    },
+    {
+      "pc": "0x62ec52",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsi + 0x18], rax"
+    },
+    {
+      "pc": "0x62ec56",
+      "mnemonic": "mov",
+      "args": "byte ptr [rsi + 0x20], al"
+    },
+    {
+      "pc": "0x62ec59",
+      "mnemonic": "mov",
+      "args": "dword ptr [rsi + 0x28], eax"
+    }
+  ],
+  "low_bit_invariant": [
+    {
+      "initial": 0,
+      "normal_unchanged_call_banks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_after4": 0
+    },
+    {
+      "initial": 1,
+      "normal_unchanged_call_banks": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "next_after4": 1
+    },
+    {
+      "initial": 2,
+      "normal_unchanged_call_banks": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "next_after4": 2
+    },
+    {
+      "initial": 3,
+      "normal_unchanged_call_banks": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "next_after4": 3
+    }
+  ],
+  "record": {
+    "bytes": 128,
+    "opcode_dword": "0x2f",
+    "callback_qword_offset": 8,
+    "userdata_qword_offset": 16
+  },
+  "established": [
+    "185A50 passes the pre-call DWORD bank in zero-extendedR8D and callback186610 to5FEA50. After normal return it rereads global bank, overwrites the callee result, INC32/AND3/stores and returns that new low-two-bit value inEAX. It never tests submission success. Four unchanged/no-interference invocations rotate all4 residues; invocations are not frames.",
+    "NonNULL callback submission saves incoming callback/data, calls600B30(EDX0,R8D1) and conditionally context vslot10 if AL0. After those opaque boundaries it attempts one128B reservation, optionally wraps from cursor to begin under unsigned bounds, then updates cursor. Valid nonNULL reservation publishes first-batch begin if unset/end and writes opcode2F, callback+8 and userdata+10 before returning0. No direct call of the submitted pointer appears in this body.",
+    "NULL callback returns1 before those calls/record writes. Failed/nonNULL reservation returns0D without writing the command payload. A bank advance after normal submission return therefore does not establish a successful command record, much less callback execution. Post-opaque empty-buffer error case is conditional, not natural allocation-failure evidence.",
+    "186610 parses DWORD[its input+10], loads the CURRENT global1F7F5B8 context and tails62EBC0. If an opcode2F interpreter invokes it with the recorded command address, it receives the stored bank value; the interpreter ABI/reachability is not established here. The context pointer is not saved by185A50 in that command.",
+    "62EBC0 selects context+56*zeroextend32(EDX), begins at bank+10 and compares to sentinel bank+8. Each key at node+20 is called through its virtual slot0 before16D6D0 computes the next node. Unlike the distinct186230 pair queue, this uses a post-callback live tree successor, not a captured write-cursor snapshot.",
+    "After the key loop returns normally, it rereads root bank+18. Nonempty cleanup calls220390 for one subtree and allocator slot18 on the current28B node while following its+8 link. At normal exit it resets begin/sentinel links/root/color/count28. Opaque subtree/allocator effects and callback mutation remain limits. Resetting container count is not proof of GPU completion or element38 counter/drain state."
+  ],
+  "conditional_failure": {
+    "boundary": "post600B30/optional vslot10 returns",
+    "begin": 0,
+    "cursor": 0,
+    "capacity_end": 0,
+    "source_result": 13,
+    "command_payload_written": false,
+    "wrapper_bank_advance": true,
+    "limits": "Conditional post-boundary state, no stub/native failure or natural reachability assertion"
+  },
+  "assumptions": [
+    "Valid nonwrapping128B command-buffer bounds/storage and ABI-preserving normally returning opaque calls",
+    "Stable finite ordered tree/iterator/sentinel/node/key storage and normally returning callbacks for ordinary traversal; no callback mutation/reentry safety implied",
+    "Bank/context stability through relevant reads for the ordinary4-cycle formula; other statements distinguish pre/post reads explicitly"
+  ],
+  "limitations": [
+    "Actual opcode2F interpreter target and record-address ABI/normal reachability remain unproved; compatible stored shape is not an executed dispatch",
+    "600B30/context vslot10/220390/allocator/native callback effects and scheduling are not executed or certified; no absolute transitive callback absence",
+    "No actual initialized context/tree/bank or buffer success, thread/order/timing, natural wrong-bank pending update, writer closure, counter38 meaning or lifetime/race/presentation guarantee",
+    "No all global/caller census from the candidate retool view; distinct1F7F598/186230 title queue is not substituted for keyed1F7F5B8"
+  ],
+  "affected_claims": [
+    "OPUS exact128B opcode2F record and callback/bank return ABI, container versus element counters",
+    "FABLE bank rotation submission versus execution and live-tree traversal/lifetime preconditions"
+  ],
+  "next_discriminator": "Primary opcode2F interpreter branch/actual callback argument, then capacity/native state and bank/element-counter writers if still required/unowned. No interactive setup justified by the local source.",
+  "checker_sha256": "6e47a0aadf0ca41b2f4e4c041df1ae680e04da43530edecfe845ca5597ec7b44",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only retained shipping source plus finite reducer; no PC/game/input/native/instrument/save/config/reference or peer-process mutation"
+}

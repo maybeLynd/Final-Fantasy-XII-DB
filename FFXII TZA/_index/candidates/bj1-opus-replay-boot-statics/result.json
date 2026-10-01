@@ -1,0 +1,120 @@
+{
+ "cases": {
+  "P1_static_population_reproduces_1732_sites_1681_guards": true,
+  "P2_every_constructed_guard_is_in_the_population": true,
+  "P3_every_header_seen_completes": true
+ },
+ "evidence": [
+  "NATIVE-REPLAY",
+  "STATIC"
+ ],
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "by_step": [
+   [
+    "CRT initialiser tables",
+    2
+   ],
+   [
+    "main 007980A0 (prefix)",
+    1
+   ],
+   [
+    "app slot 2 0017CEB0(app, argv, 1)",
+    1
+   ],
+   [
+    "001BE3E0",
+    2
+   ],
+   [
+    "001B1580(001B1C00())",
+    13
+   ]
+  ],
+  "constructed": 19,
+  "constructed_in_static_set": 19,
+  "guards": {
+   "02CB6148": [
+    "001BE3E0",
+    "005CDA9E"
+   ],
+   "02CB6158": [
+    "001BE3E0",
+    "005CDB8D"
+   ],
+   "02CC0400": [
+    "app slot 2 0017CEB0(app, argv, 1)",
+    "00615C34"
+   ],
+   "02CE2610": [
+    "CRT initialiser tables",
+    "005FD0BF"
+   ],
+   "02CE9978": [
+    "001B1580(001B1C00())",
+    "005EAFF1"
+   ],
+   "02CE99D8": [
+    "001B1580(001B1C00())",
+    "005EB064"
+   ],
+   "02CE9A38": [
+    "001B1580(001B1C00())",
+    "005EB0D7"
+   ],
+   "02CE9A98": [
+    "001B1580(001B1C00())",
+    "005EB14A"
+   ],
+   "02CE9AF8": [
+    "001B1580(001B1C00())",
+    "005EB1BD"
+   ],
+   "02CE9B50": [
+    "001B1580(001B1C00())",
+    "005EB25D"
+   ],
+   "02CE9BB8": [
+    "001B1580(001B1C00())",
+    "005EAD00"
+   ],
+   "02CE9C18": [
+    "001B1580(001B1C00())",
+    "005EAD73"
+   ],
+   "02CF7AD0": [
+    "001B1580(001B1C00())",
+    "0062CD26"
+   ],
+   "02CF94EC": [
+    "CRT initialiser tables",
+    "00637430"
+   ],
+   "02CF94FC": [
+    "001B1580(001B1C00())",
+    "00630020"
+   ],
+   "02CF9508": [
+    "001B1580(001B1C00())",
+    "00630170"
+   ],
+   "02CF950C": [
+    "001B1580(001B1C00())",
+    "006301E0"
+   ],
+   "02CF9524": [
+    "001B1580(001B1C00())",
+    "006374A0"
+   ],
+   "02EACD20": [
+    "main 007980A0 (prefix)",
+    "007A087F"
+   ]
+  },
+  "headers_seen": 19,
+  "static_guards_resolved": 1681,
+  "static_header_sites": 1732
+ }
+}

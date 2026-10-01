@@ -1,0 +1,12 @@
+{
+  "case": "missing-guard-source",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-pointer-key-binding.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\missing-guard-source\\result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\missing-guard-source\\source"
+  ],
+  "exit": 1,
+  "result_exists": false,
+  "status": "PASS_REFUSED"
+}

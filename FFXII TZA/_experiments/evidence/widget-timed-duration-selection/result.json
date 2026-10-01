@@ -1,0 +1,306 @@
+{
+  "method": "A original67B selection/conversion source+bounded rational domain proof, zero original/native/emulator/live runs",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "entry": "0x244e9c",
+    "end_exclusive": "0x244edf",
+    "body_sha256": "cae46c89191dd9dd79b895163bfb13907c70a9159cfe9a271bcd43e826f2eacc",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "instructions": [
+    {
+      "pc": "0x244e9c",
+      "bytes": "0fb77902",
+      "op": "movzx",
+      "args": "edi, word ptr [rcx + 2]"
+    },
+    {
+      "pc": "0x244ea0",
+      "bytes": "e8ebcdf3ff",
+      "op": "call",
+      "args": "0x181c90"
+    },
+    {
+      "pc": "0x244ea5",
+      "bytes": "33c9",
+      "op": "xor",
+      "args": "ecx, ecx"
+    },
+    {
+      "pc": "0x244ea7",
+      "bytes": "83f801",
+      "op": "cmp",
+      "args": "eax, 1"
+    },
+    {
+      "pc": "0x244eaa",
+      "bytes": "8b437c",
+      "op": "mov",
+      "args": "eax, dword ptr [rbx + 0x7c]"
+    },
+    {
+      "pc": "0x244ead",
+      "bytes": "0f44f9",
+      "op": "cmove",
+      "args": "edi, ecx"
+    },
+    {
+      "pc": "0x244eb0",
+      "bytes": "0fbae00b",
+      "op": "bt",
+      "args": "eax, 0xb"
+    },
+    {
+      "pc": "0x244eb4",
+      "bytes": "730c",
+      "op": "jae",
+      "args": "0x244ec2"
+    },
+    {
+      "pc": "0x244eb6",
+      "bytes": "8bf8",
+      "op": "mov",
+      "args": "edi, eax"
+    },
+    {
+      "pc": "0x244eb8",
+      "bytes": "0fbaf70b",
+      "op": "btr",
+      "args": "edi, 0xb"
+    },
+    {
+      "pc": "0x244ebc",
+      "bytes": "897b7c",
+      "op": "mov",
+      "args": "dword ptr [rbx + 0x7c], edi"
+    },
+    {
+      "pc": "0x244ebf",
+      "bytes": "c1ef16",
+      "op": "shr",
+      "args": "edi, 0x16"
+    },
+    {
+      "pc": "0x244ec2",
+      "bytes": "6bcf3c",
+      "op": "imul",
+      "args": "ecx, edi, 0x3c"
+    },
+    {
+      "pc": "0x244ec5",
+      "bytes": "b8d34d6210",
+      "op": "mov",
+      "args": "eax, 0x10624dd3"
+    },
+    {
+      "pc": "0x244eca",
+      "bytes": "488b7c2430",
+      "op": "mov",
+      "args": "rdi, qword ptr [rsp + 0x30]"
+    },
+    {
+      "pc": "0x244ecf",
+      "bytes": "f7e1",
+      "op": "mul",
+      "args": "ecx"
+    },
+    {
+      "pc": "0x244ed1",
+      "bytes": "c1ea06",
+      "op": "shr",
+      "args": "edx, 6"
+    },
+    {
+      "pc": "0x244ed4",
+      "bytes": "895370",
+      "op": "mov",
+      "args": "dword ptr [rbx + 0x70], edx"
+    },
+    {
+      "pc": "0x244ed7",
+      "bytes": "83637cf4",
+      "op": "and",
+      "args": "dword ptr [rbx + 0x7c], 0xfffffff4"
+    },
+    {
+      "pc": "0x244edb",
+      "bytes": "834b7c04",
+      "op": "or",
+      "args": "dword ptr [rbx + 0x7c], 4"
+    }
+  ],
+  "cases": [
+    {
+      "name": "ordinary-record-control",
+      "record_ms": 1000,
+      "callee_return": 0,
+      "flags_before": "00000000",
+      "selected_ms": 1000,
+      "override": false,
+      "flags_after_override": "00000000",
+      "flags_after_local_state": "00000004",
+      "product": 60000,
+      "frames": 60,
+      "ordinary_division": 60,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "below-one-frame",
+      "record_ms": 16,
+      "callee_return": 0,
+      "flags_before": "00000000",
+      "selected_ms": 16,
+      "override": false,
+      "flags_after_override": "00000000",
+      "flags_after_local_state": "00000004",
+      "product": 960,
+      "frames": 0,
+      "ordinary_division": 0,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "first-one-frame",
+      "record_ms": 17,
+      "callee_return": 0,
+      "flags_before": "00000000",
+      "selected_ms": 17,
+      "override": false,
+      "flags_after_override": "00000000",
+      "flags_after_local_state": "00000004",
+      "product": 1020,
+      "frames": 1,
+      "ordinary_division": 1,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "max-u16-record",
+      "record_ms": 65535,
+      "callee_return": 0,
+      "flags_before": "00000000",
+      "selected_ms": 65535,
+      "override": false,
+      "flags_after_override": "00000000",
+      "flags_after_local_state": "00000004",
+      "product": 3932100,
+      "frames": 3932,
+      "ordinary_division": 3932,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "return-one-record-zero",
+      "record_ms": 1000,
+      "callee_return": 1,
+      "flags_before": "00000000",
+      "selected_ms": 0,
+      "override": false,
+      "flags_after_override": "00000000",
+      "flags_after_local_state": "00000004",
+      "product": 0,
+      "frames": 0,
+      "ordinary_division": 0,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "return-one-override-wins",
+      "record_ms": 1000,
+      "callee_return": 1,
+      "flags_before": "04400800",
+      "selected_ms": 17,
+      "override": true,
+      "flags_after_override": "04400000",
+      "flags_after_local_state": "04400004",
+      "product": 1020,
+      "frames": 1,
+      "ordinary_division": 1,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "return-one-highbits-no-flag-control",
+      "record_ms": 1000,
+      "callee_return": 1,
+      "flags_before": "04400000",
+      "selected_ms": 0,
+      "override": false,
+      "flags_after_override": "04400000",
+      "flags_after_local_state": "04400004",
+      "product": 0,
+      "frames": 0,
+      "ordinary_division": 0,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "max-high10-override",
+      "record_ms": 65535,
+      "callee_return": 0,
+      "flags_before": "FFFFFFFF",
+      "selected_ms": 1023,
+      "override": true,
+      "flags_after_override": "FFFFF7FF",
+      "flags_after_local_state": "FFFFF7F4",
+      "product": 61380,
+      "frames": 61,
+      "ordinary_division": 61,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    },
+    {
+      "name": "zero-payload-override-consumed",
+      "record_ms": 1000,
+      "callee_return": 0,
+      "flags_before": "00000800",
+      "selected_ms": 0,
+      "override": true,
+      "flags_after_override": "00000000",
+      "flags_after_local_state": "00000004",
+      "product": 0,
+      "frames": 0,
+      "ordinary_division": 0,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    }
+  ],
+  "domain_proof": {
+    "max_record_ms": 65535,
+    "max_override_ms": 1023,
+    "max_product": 3932100,
+    "magic": 274877907,
+    "shift": 38,
+    "magic_excess_times1000": 56,
+    "max_error_numerator": 275247,
+    "max_error_denominator": 343597383680,
+    "minimum_nonzero_remainder_gap": "20/1000 = 1/50 because product is a multiple of60",
+    "scope": "ceil reciprocal cannot decrease quotient and maxpositiveerror<gap; exact floor for selected bounded product, no allu32 claim"
+  },
+  "detector": {
+    "source_changed": "Private SHR EDI22->21; source/host calculations only",
+    "raw_hex": "0fb77902e8ebcdf3ff33c983f8018b437c0f44f90fbae00b730c8bf80fbaf70b897b7cc1ef156bcf3cb8d34d6210488b7c2430f7e1c1ea0689537083637cf4834b7c04",
+    "original_binding_rejected": "('0x244ebf', 'selected original source binding')",
+    "calculation": {
+      "name": "labelled-shift21-source-model-detector",
+      "record_ms": 65535,
+      "callee_return": 0,
+      "flags_before": "FFFFFFFF",
+      "selected_ms": 2047,
+      "override": true,
+      "flags_after_override": "FFFFF7FF",
+      "flags_after_local_state": "FFFFF7F4",
+      "product": 122820,
+      "frames": 122,
+      "ordinary_division": 122,
+      "scope": "Static source calculation, not original/native/emulator/live call"
+    }
+  },
+  "tools": {
+    "recorded_utc": "2026-09-28T07:57:23.143872+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "bytes": 7576576,
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "16b12f5faefc1fdbdb6104fd1dfe5ee04db774ebc20b30edc9bc8c2b6e4ab48d",
+  "limits": "Completed181C90 return/ABIpreserved EDI/stable record+widget assumed. Gettercontext calls1EBA40 thenreads+280: not executed, no actual mode meaning/state/binding. Start-arm selected delay only, not fieldwide range (otherwriters reset/subtract), wholewidget/caller/scheduling/cadence/presentation/flag lifetime guarantee.",
+  "cleanup": "Read-only image/peer consumer preimages and disposable host calculations; PC/game/save/config untouched"
+}

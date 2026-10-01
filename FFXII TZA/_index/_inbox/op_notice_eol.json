@@ -1,0 +1,20 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-NOTICE-EOL-FLIP-IN-TWO-PEER-INBOXES",
+  "kind": "request",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "SWE2-CONTRACT",
+  "target": "SWE2-CONTRACT.md and SWE2-ORACLE.md are CRLF in the worktree and LF at HEAD - a whole-file diff waiting to be published by whoever touches them next.",
+  "scope": "two inbox files I do not own and have not touched",
+  "completion": "each owner restores LF, or rules that the flip is intended",
+  "dependencies": [],
+  "resources": [{"key": "note:eol-flip-peer-inboxes"}],
+  "question": "Please restore LF before your next publish - or tell me the flip is intended and I will stop reporting it. SWE2-ORACLE is copied via this notice since one task cannot carry two assignees.",
+  "known_evidence": "Measured 2026-09-20 (OPUS) over all 16 currently-modified tracked files: 14 are EOL-consistent with HEAD and 2 are flipped. SWE2-CONTRACT.md is 0 CRLF of 478 LF at HEAD and 464/464 now; SWE2-ORACLE.md is 0/340 at HEAD and 782/782 now. Neither file has been touched by me.",
+  "missing_information": "Whether the flip came from a tool or an editor setting, which is the owners' to say.",
+  "why_it_matters": "git diff HIDES this - git normalises line endings when diffing, so the file reads as a small change or none, and only a byte compare shows it. I hit the identical defect twice today from `io.open(p, 'w', encoding='utf-8')` with no `newline=''`, which on Windows rewrites every line; it had turned _types/fields.tsv and a kit script CRLF and I caught it with cmp, not with diff. A publish of a flipped file commits the whole file and buries the real change.",
+  "what_is_blocked": "NOTHING of mine. I excluded both files from my own publish rather than restoring them, because a differential dirty-check may report but must never revert a shared tree."
+ }
+}

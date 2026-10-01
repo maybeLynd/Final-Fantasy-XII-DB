@@ -1,0 +1,40 @@
+[
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-storage-completion-existing.txt",
+    "sha256": "3d965b6c516d1b517653e338c5316bbee7cb49a19a2d9b62a1aa0a5ad9d13c0f",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (5):\r\n      05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md          00582540, 00583CB0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-header-accesses.tsv  00583CB0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md  00583CB0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md  00583CB0\r\n      _index/ADDRESS-INDEX.md                                                 00582540, 00583CB0\r\n\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-storage-completion-dispatch-existing.txt",
+    "sha256": "7adf27e71ba780cfda10d2586c416a944de9d94236476bd6fdd062a16a491ea8",
+    "text": "no existing coverage found - the block is new\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-storage-completion-worker-existing.txt",
+    "sha256": "3c65cb5387286f3844241c0a7d9b5c0c0dc2f8befc2962deacb7b9768884b0b8",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (5):\r\n      15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md     005823B0\r\n      16-UI/Widget-Object-Model/widget-message-handlers.tsv                   005823B0\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md  003BB420\r\n      _index/ADDRESS-INDEX.md                                                 003BB420, 005823B0\r\n      _index/_inbox/repos-2d.md                                               005823B0\r\n\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-storage-completion-io-existing.txt",
+    "sha256": "7cf5e3d4a43a9836db8d67564a02bc6104c490266f001726b1c24000c8f76af1",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (9):\r\n      00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md  001D50D0\r\n      02-Resource-And-Asset-Pipeline/the-resource-request-queue.md            003BA7B0, 003BB790\r\n      08-Combat-Formula/Steal/the-steal-roll.md                               001D50D0\r\n      18-Audio/the-music-control-file-and-the-bgm-stream.md                   003BB790\r\n      19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md  003BB430\r\n      _index/ADDRESS-INDEX.md                                                 001D50D0, 003BA7B0, 003BB430, 003BB790\r\n      _index/AUDIT-LOG.md                                                     003BB790\r\n      _index/_inbox/FABLE.md                                                  001D50D0, 003BB790\r\n      _index/_inbox/repos-d2.md                                               003BA7B0\r\n\r\n  OPEN-QUESTIONS.md rows (4, of which 4 already read as ANSWERED):\r\n      line 2108  ANSWERED  | FD-4 | ~~**What `00329220` (1,933 B) builds** from the unit (its record's `+0x88` takes the spawn counter at\r\n      line 2185  ANSWERED  | FK-3 | **What `001D50D0` returns** \u2014 the object whose `+0xE5C` is console arm 243's value (`0017D454`\u2013`0017D\r\n      line 2308  ANSWERED  | FZ-14 | ~~**The read layer under the request queue**~~ **ANSWERED 2026-09-11 (FABLE):** `003EADE0` is the sc\r\n      line 2312  ANSWERED  | FZ-18 | **What `003BB790` services** \u2014 the ten-substate machine over `02B40E10` / `02B40E14`, gated by the b\r\n\r\n  ** At least one register row already answers this. Read it before assigning. **\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-storage-completion-adapter-existing.txt",
+    "sha256": "7a35d2dbfc6e9fb9276bf07d7a9262d31c1b26db5141501083616f97e96fbd0d",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\r\n\r\n  documents (4):\r\n      02-Resource-And-Asset-Pipeline/the-resource-request-queue.md            008625D0, 00862600\r\n      17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md  008624D0\r\n      _index/ADDRESS-INDEX.md                                                 008624D0, 008625D0\r\n      _index/_inbox/FABLE.md                                                  00862600\r\n\r\n  OPEN-QUESTIONS.md rows (2, of which 2 already read as ANSWERED):\r\n      line 2308  ANSWERED  | FZ-14 | ~~**The read layer under the request queue**~~ **ANSWERED 2026-09-11 (FABLE):** `003EADE0` is the sc\r\n      line 2312  ANSWERED  | FZ-18 | **What `003BB790` services** \u2014 the ten-substate machine over `02B40E10` / `02B40E14`, gated by the b\r\n\r\n  ** At least one register row already answers this. Read it before assigning. **\r\n"
+  },
+  {
+    "path": "Database/Tools/work/ASTRA/spawn-storage-completion-file-existing.txt",
+    "sha256": "7adf27e71ba780cfda10d2586c416a944de9d94236476bd6fdd062a16a491ea8",
+    "text": "no existing coverage found - the block is new\r\n"
+  },
+  {
+    "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/the-resource-request-queue.md",
+    "sha256": "38538bce50d751d86acdeefc273cf505aebbdf448a0fa8f9487bffcf812b91e3",
+    "primary_claims_for_peer_review": [
+      "135 \u2013 803 B) that carry no strings. What it services is `FZ-18` \u2014 *answered 2026-09-13:* `003BB790` is the **save-storage command machine**. Its seven handlers call a small PC storage layer at `00862xxx` that keeps a result word at `02EAF8E0` and a file handle at `02EAF8E8` and is built on the CRT file calls (`008621E0` formats a wide path and opens, seeks, tells and closes through the `008C2Exx` imports; `008625D0` closes the handle; `00862490` reports a fixed card type `0x2000000` and a formatted flag 1) \u2014 a re-implementation of a PS2 memory-card-style interface over files. `003BAEB0` also consults `SaveWrite_GetBusyFlag` (`00583920`). The machine runs only while the byte **`02AD9E00`** is non-zero (getter `0036FD50`; this page and the ledger had cited `02ADA000`, which nothing references). The byte is set to 1 by `0036FD80` from `SaveWrite_PrepareAndSubmitFullImage` (`0057E479`), `SaveStorageQueue_ControllerStateHandler` (`0058242C`), `00393EA0` and `00252030`, set to 0 by the same setter at `0057E591`, and cleared by `0036FD70` (boot `0022A3E3`, `00252030`, `00393EA0`, `005823ED`, the thunk `0050C980`) and `0036FD60` (via `00379D40`). What each of the ten substates does is not decoded."
+    ],
+    "note": "FZ18 service identity already answered; storage substates and partial-copy composition extend that work. Seek/close wording needs correction."
+  }
+]

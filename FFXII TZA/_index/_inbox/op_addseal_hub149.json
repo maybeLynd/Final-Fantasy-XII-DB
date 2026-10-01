@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-149",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "batch-149 seal stage",
+  "scope": "batch-149 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-149"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

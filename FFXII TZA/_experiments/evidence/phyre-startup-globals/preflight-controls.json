@@ -1,0 +1,11 @@
+{
+  "method": "Offline input/decoder controls only; no process access",
+  "targets": 177,
+  "default_spans": 173,
+  "checks": [
+    "short-header-rejected",
+    "short-header-rejected",
+    "pointer-width-and-flags-preserved"
+  ],
+  "observer_sha256": "ccfe3ba74d1cbf80c4f0dbffcd2bf7625234c1f8652dc4d2bbf9e0e6d8618403"
+}

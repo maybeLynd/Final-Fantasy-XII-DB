@@ -1,0 +1,26 @@
+{
+  "status": "PASS_PRODUCER_CONTROLS",
+  "checks": [
+    {
+      "case": "missing-queue-source",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-tracker-callback-boundary.py\", line 20, in <module>\r\n    raw,tracker=load('title-tracker-cleanup-source-01.json');queue_raw,queue=load('title-cleanup-callback-queue-source-01.json')\r\n                                                                             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-tracker-callback-boundary.py\", line 13, in load\r\n    p=source/name;v=json.loads(p.read_text());pins.append(dict(path=name,sha256=sha(p)))\r\n                               ~~~~~~~~~~~^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 787, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\title-tracker-boundary-controls-01\\\\missing-queue-source\\\\source\\\\title-cleanup-callback-queue-source-01.json'\r\n",
+      "labelled_synthetic": true
+    },
+    {
+      "case": "wrong-global-getter",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-tracker-callback-boundary.py\", line 43, in <module>\r\n    if queue[0x189120]['bytes']!='488b057164df01' or rip(queue,0x189120)!=0x1f7f598:raise ValueError('global getter identity changed')\r\n                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: global getter identity changed\r\n",
+      "labelled_synthetic": true
+    },
+    {
+      "case": "old-store-role",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-tracker-callback-boundary.py\", line 57, in <module>\r\n    if queue[0x185acf]['memory'][0]['role']!='w' or queue[0x185abd]['memory'][0]['role']!='addr':raise ValueError('actual shared memory/address roles changed')\r\n                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: actual shared memory/address roles changed\r\n",
+      "labelled_synthetic": true
+    }
+  ],
+  "driver_sha256": "43087aae78f87cf254fd786779bd976dfd3e73955fb3e5c8b76bd2100ae0b04e",
+  "positive_sha256": "08ed73b3633bc841572e0e7ba4194c69e2f7678859f88a1f705c4097bb921863",
+  "limits": "Three actual failed-prerequisite CLI invocations; completed positive reused, no original-code executions or independent acceptance."
+}

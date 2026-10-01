@@ -1,0 +1,18 @@
+== Part 1: 00529D50
+  [original] 187 insns, 32 blocks; entry reaches compare True store True; without the XOR block (00529FE8): compare False store False
+  PASS the XOR dominates both uses
+  r13 writes in the body: ['00529FEC xor r13d, r13d', '0052A0AA mov r13, qword ptr [rsp + 0x40]']
+  PASS no r13 write between 00529FEC and the store (found: [])
+  calls crossing the zero-to-compare region: ['0052A03A call 0x533b20', '0052A05E call 0x533b20']
+  [control: 00529E48 retargeted to 0052A063] 187 insns, 31 blocks; entry reaches compare True store True; without the XOR block (00529FE8): compare True store True
+  PASS control: the retargeted branch bypasses the XOR (compare reachable without it: True)
+  PASS control: removing an unrelated later block 0052A080 leaves both uses reachable
+== Part 2: 00533B20
+  1653 instructions decoded to 00536056
+  prologue pushes ['rbx', 'rsi', 'r13', 'r14', 'r15']; sub rsp, 0x3A0
+  ret sites: 1
+   ret 00536055: ...movaps xmm8, xmmword ptr [rsp + 0x360]; add rsp, 0x3a0; pop r15; pop r14; pop r13; pop rsi; pop rbx; ret 
+  PASS every ret pops ['r15', 'r14', 'r13', 'rsi', 'rbx'] in order
+  rsp adjustments: ['00533B29 sub rsp, 0x3a0', '00536046 add rsp, 0x3a0']
+  PASS direct stores into the pushed-register area [rsp+0x3A0, rsp+0x3C8): []
+FAILS 0

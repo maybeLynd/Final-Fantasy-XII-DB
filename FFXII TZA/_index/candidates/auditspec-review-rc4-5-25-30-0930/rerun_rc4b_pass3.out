@@ -1,0 +1,6 @@
+functions loading [reg + 0xA8] in the module: 00602EA0 00609D80 0060B980 0060F830 00610350
+self fields at the fixpoint: 14 (after 2 iteration(s))
+PASS  E2 target: vtable 00D498F0 slot 2 = 00600D20
+PASS  control: the flow reached 0060CE50 under rdx = view + 8
+stores covering A+0xDAC before E1: 71; after seeding the readers: 71; NEW: 0
+unresolved indirect calls receiving the object inside the E1 readers: 0

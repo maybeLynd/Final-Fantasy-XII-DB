@@ -1,0 +1,15 @@
+PASS E1 tail jmp 002E3D40 at 0026DAAD, four argument registers zeroed first
+PASS E2 slot = ecx unless 0017D490 > 0; 0017D490 = [001D50D0() + 0xAAC]
+PASS E3 clamp slot-1 into 0..2
+   stores 02099DA8 02099DAC 02099DB0 02099DBC; loads 02099D88 02099D90
+PASS E4 rip stores = the four published globals
+PASS E4 control: rip loads = map_ref root 02099D88 and its guard 02099D90
+PASS E5 0026D976 calls 00180620 with ecx = payload byte +0x1060
+PASS E6 map_ref.bin: magic MRF 02, header +4 = 0x30 - 12288 bytes
+PASS E8 getters load 02099DA8 / 02099DAC / 02099DBC - DA8 readers ['00263E10']
+PASS E8 02099DB0's only reference is the store at 0026DA5B
+PASS E8 control: the sweep finds 02099DB4's cmp readers
+   pages citing 0026D910 outside _index/ and _experiments/: 20
+PASS E7 control: the environment-variant page is among them
+RESULT 0026D910 is the weather-slot apply: slot = requested (or the debug override), clamped to 0..2; it publishes four globals and the environment bank, then tail-calls the presentation refresh
+FAILS 0

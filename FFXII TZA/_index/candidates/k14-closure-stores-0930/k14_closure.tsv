@@ -1,0 +1,54 @@
+kind	function	address	instruction	note
+store	003E33E0	003E33F2	mov dword ptr [rcx], eax	width 4 at +0
+store	003E3440	003E3450	mov dword ptr [rcx], edx	width 4 at +0
+store	003E36C0	003E36D7	mov dword ptr [rcx], eax	width 4 at +0
+store	003E36C0	003E36EB	mov dword ptr [rcx], eax	width 4 at +0
+store	003E33C0	003E33D0	mov dword ptr [rcx], eax	width 4 at +0
+store	003E33A0	003E33A0	and dword ptr [rcx], 0xfff07fff	width 4 at +0
+store	003E33A0	003E33A6	or dword ptr [rcx], 0x100000	width 4 at +0
+store	003E31E0	003E31F5	mov dword ptr [rcx], eax	width 4 at +0
+store	003E3120	003E3135	mov dword ptr [rcx], eax	width 4 at +0
+store	003A2B20	003A2B51	movups xmmword ptr [rcx], xmm1	width 16 at +0
+store	003A9490	003A94DC	nop dword ptr [rax]	width 4 at +0
+store	0026AFE0	0026B04C	movss dword ptr [rax], xmm8	width 4 at +0
+store	002E5C90	002E5CE4	movss dword ptr [rbx], xmm1	width 4 at +0
+store	002E5C90	002E5D9E	movss dword ptr [rbx], xmm2	width 4 at +0
+store	00380D30	00380DA6	mov dword ptr [rbx], eax	width 4 at +0
+store	0022F250	0022F3BB	movss dword ptr [rbx], xmm0	width 4 at +0
+store	00202B90	00202C1C	movss dword ptr [rcx], xmm6	width 4 at +0
+store	00202B70	00202B86	movups xmmword ptr [rbx], xmm0	width 16 at +0
+store	00217060	002170CE	movss dword ptr [rcx], xmm2	width 4 at +0
+store	0022F9B0	0022FA87	mov dword ptr [rdi], eax	width 4 at +0
+store	0022F9B0	0022FAB7	mov qword ptr [rax], rbx	width 8 at +0
+store	0022F9B0	0022FB09	nop dword ptr [rax]	width 4 at +0
+store	0022F9B0	0022FDD1	movss dword ptr [rax], xmm0	width 4 at +0
+store	00217150	0021758F	movups xmmword ptr [rcx], xmm0	width 16 at +0
+store	00203170	00203177	movups xmmword ptr [rcx], xmm0	width 16 at +0
+store	00217610	00217728	movss dword ptr [rcx], xmm13	width 4 at +0
+store	00380A70	00380AA5	movss dword ptr [rdx], xmm0	width 4 at +0
+store	00202E10	00202E7B	movups xmmword ptr [rcx], xmm0	width 16 at +0
+store	002324F0	00232599	nop dword ptr [rax]	width 4 at +0
+store	0022F050	0022F179	movss dword ptr [rbp + 3], xmm0	width 4 at +3
+store	0022F050	0022F1DE	movss dword ptr [rdi], xmm0	width 4 at +0
+store	0022F050	0022F206	movss dword ptr [r14], xmm0	width 4 at +0
+store	003DAE00	003DAE08	mov dword ptr [rdx], eax	width 4 at +0
+store	003A19C0	003A1AB4	movss dword ptr [rdi], xmm0	width 4 at +0
+store	003A19C0	003A1AB8	movss dword ptr [rbx], xmm6	width 4 at +0
+store	00265020	00265043	mov dword ptr [rdx], eax	width 4 at +0
+store	00265020	00265048	mov dword ptr [r8], eax	width 4 at +0
+store	00265020	0026504E	mov dword ptr [r9], eax	width 4 at +0
+store	00265020	00265054	mov dword ptr [rdx], eax	width 4 at +0
+store	00265020	00265056	mov dword ptr [r8], eax	width 4 at +0
+store	00265020	00265059	mov dword ptr [r9], eax	width 4 at +0
+indirect	00809620	0080962B	call qword ptr [rip + 0xb8c1f]	
+indirect	00809620	00809634	call qword ptr [rip + 0xb8d86]	
+indirect	00809620	0080963A	call qword ptr [rip + 0xb8b78]	
+indirect	00809620	0080964D	jmp qword ptr [rip + 0xb8d64]	
+indirect	00809848	00809853	call qword ptr [rip + 0xb8917]	
+indirect	00809848	0080986D	call qword ptr [rip + 0xb8b5d]	
+indirect	00809848	008098A4	call qword ptr [rip + 0xb8b1e]	
+indirect	0087AF34	0087AF34	jmp qword ptr [rip + 0x47476]	
+indirect	00861F0E	00861F0E	jmp qword ptr [rip + 0x60c9c]	
+indirect	00861F08	00861F08	jmp qword ptr [rip + 0x60c9a]	
+indirect	00861F14	00861F14	jmp qword ptr [rip + 0x60c9e]	
+indirect	00861F02	00861F02	jmp qword ptr [rip + 0x60cc8]	

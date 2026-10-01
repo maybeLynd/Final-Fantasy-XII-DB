@@ -1,0 +1,38 @@
+{
+  "from": "/mnt/data/gm_recovery_work/out/pre_recovery_snapshot.fas2",
+  "to": "/mnt/data/gm_recovery_work/out/post_recovery_snapshot.fas2",
+  "from_functions": 38161,
+  "to_functions": 38161,
+  "added_functions": [],
+  "removed_functions": [],
+  "changed_common_functions": 20,
+  "field_counts": {
+    "comment": 20,
+    "tags": 20
+  },
+  "tag_additions": {
+    "GFZ.V121.CodeDomain.Phyre.PRendering.PTexture2D.FormatCodeBlockRepackChannelScaleAndUpdate": 1,
+    "GFZ.V121.CodeDomain.Presentation.Rendering.PairedCameraInputStateInitializeAndDerivedMatrixRebuild": 1,
+    "GFZ.V121.CodeDomain.CxxStandardLibrary.Vector.MapOrderedObject24ByteFillInsertReallocation": 1,
+    "GFZ.V121.CodeDomain.Presentation.CharacterRender.FourChannelContributionNormalizeAndParameterBind": 1,
+    "GFZ.V121.CodeDomain.Runtime.Callback.GenerationBoundRecordInitializeAndInitialNotify": 1,
+    "GFZ.V121.CodeDomain.Runtime.Callback.HierarchyGenerationBitTraversalAndCallbackReconciliation": 1,
+    "GFZ.V121.CodeDomain.Runtime.Callback.LinkedFlagGatedNotificationDispatch": 1,
+    "GFZ.V121.CodeDomain.Presentation.Text.EncodedMessageControlUsageScanAndSlotClassification": 1,
+    "GFZ.V121.CodeDomain.Runtime.Resource.AsyncAssetSlotPollFinalizeNotifyOrRetry": 1,
+    "GFZ.V121.CodeDomain.Runtime.RecordCollection.Kind2OrKind5ModeValuePropagation": 1,
+    "GFZ.V121.CodeDomain.Runtime.Record.Kind2FourSlotOrKind5ModeValueMaterialization": 1,
+    "GFZ.V121.CodeDomain.Presentation.LegacyPS2Effect.GlobalEndpointInterpolationAndParameterDerivation": 1,
+    "GFZ.V121.CodeDomain.Presentation.LegacyPS2Effect.VIFProgramStateBlockInitializer": 2,
+    "GFZ.V121.CodeDomain.Presentation.LegacyPS2Effect.SixFloat4ParameterRecordAppend": 1,
+    "GFZ.V121.CodeDomain.Phyre.PRendering.ShaderParameterCaptureBufferLayoutDescriptorBuild": 1,
+    "GFZ.V121.CodeDomain.Phyre.PRendering.PTexture2DD3D11.BufferSlotMipChainMapForCPUWrite": 1,
+    "GFZ.V121.CodeDomain.Phyre.Reflection.ClassDescriptorRecursiveObjectFieldCopyTraversal": 1,
+    "GFZ.V121.CodeDomain.Phyre.Reflection.MemberDescriptorValueCopyDispatch": 1,
+    "GFZ.V121.CodeDomain.Phyre.PPhysics.PPhysicsWorld.DeepCopyAssignment": 1
+  },
+  "tag_removals": {},
+  "immutable_changed_count": 0,
+  "immutable_changed": [],
+  "changed_entries_fields_sha256": "ed6435f73b7ab35d0a6a31b19663c356afad21e0137562e1a6993ba672d1386f"
+}

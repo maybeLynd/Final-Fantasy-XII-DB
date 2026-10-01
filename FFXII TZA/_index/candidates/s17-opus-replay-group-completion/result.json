@@ -1,0 +1,202 @@
+{
+ "cases": {
+  "G1_registration_sets_member_bits": true,
+  "G2_death_recorded_no_completion_while_a_member_lives": true,
+  "G3_death_is_idempotent": true,
+  "G4_last_death_completes_with_real_locks_and_dispatch": true,
+  "G5_outsider_death_cannot_complete": true,
+  "G6_reregistration_clears_dead_bit_no_one_shot": true,
+  "G7_group_zero_registers_nothing": true,
+  "G8_reset_zeroes_masks_clears_flag_bit0_only": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "G1": {
+   "e98": [
+    1,
+    1
+   ],
+   "ledger": {
+    "dead": 0,
+    "flags": 0,
+    "member": 3
+   },
+   "ok": true
+  },
+  "G2": {
+   "events": [],
+   "halt": [],
+   "ledger": {
+    "dead": 1,
+    "flags": 0,
+    "member": 3
+   },
+   "ok": true,
+   "ret": 0,
+   "state_340": "0"
+  },
+  "G3": {
+   "events": [],
+   "halt": [],
+   "ledger": {
+    "dead": 1,
+    "flags": 0,
+    "member": 3
+   },
+   "ok": true,
+   "ret": 0,
+   "state_340": "0"
+  },
+  "G4": {
+   "events": [
+    [
+     "lock_00307140",
+     "1",
+     "2EC13C0"
+    ],
+    [
+     "lock_00238B70",
+     "1",
+     "0"
+    ],
+    [
+     "lock_00238AE0",
+     "1",
+     "20"
+    ],
+    [
+     "dispatch_003299B0",
+     "76280F50",
+     "2005"
+    ]
+   ],
+   "halt": [],
+   "ledger": {
+    "dead": 3,
+    "flags": 1,
+    "member": 3
+   },
+   "ok": true,
+   "ret": 1,
+   "state_340": "A0"
+  },
+  "G5": {
+   "after_unregister": {
+    "dead": 0,
+    "flags": 0,
+    "member": 1
+   },
+   "member_death": {
+    "events": [
+     [
+      "lock_00307140",
+      "1",
+      "2EC13C0"
+     ],
+     [
+      "lock_00238B70",
+      "1",
+      "0"
+     ],
+     [
+      "lock_00238AE0",
+      "1",
+      "20"
+     ],
+     [
+      "dispatch_003299B0",
+      "76280000",
+      "2005"
+     ]
+    ],
+    "halt": [],
+    "ledger": {
+     "dead": 3,
+     "flags": 1,
+     "member": 1
+    },
+    "ok": true,
+    "ret": 1,
+    "state_340": "A0"
+   },
+   "outsider_death": {
+    "events": [],
+    "halt": [],
+    "ledger": {
+     "dead": 2,
+     "flags": 0,
+     "member": 1
+    },
+    "ok": true,
+    "ret": 0,
+    "state_340": "0"
+   }
+  },
+  "G6": {
+   "after_reregister": {
+    "dead": 2,
+    "flags": 1,
+    "member": 3
+   },
+   "first_completion": 1,
+   "second_completion": {
+    "events": [
+     [
+      "lock_00307140",
+      "1",
+      "2EC13C0"
+     ],
+     [
+      "lock_00238B70",
+      "1",
+      "0"
+     ],
+     [
+      "lock_00238AE0",
+      "1",
+      "A0"
+     ],
+     [
+      "dispatch_003299B0",
+      "76280000",
+      "2005"
+     ]
+    ],
+    "halt": [],
+    "ledger": {
+     "dead": 3,
+     "flags": 1,
+     "member": 3
+    },
+    "ok": true,
+    "ret": 1,
+    "state_340": "A0"
+   }
+  },
+  "G7": {
+   "death": {
+    "events": [],
+    "halt": [],
+    "ledger": {
+     "dead": 0,
+     "flags": 0,
+     "member": 0
+    },
+    "ok": true,
+    "ret": 0,
+    "state_340": "0"
+   },
+   "e98": 0,
+   "ledgers_unchanged": true,
+   "setgroup0_ok": true
+  },
+  "G8": {
+   "all_masks_zero": true,
+   "flags": [
+    254
+   ],
+   "ok": true
+  }
+ }
+}

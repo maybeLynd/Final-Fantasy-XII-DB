@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-ACTLRES-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish ACTL residue closures: +0x04/+0x06/+0x0A/+0x0C dead-authored, +0x15 owner-byte provenance, obj+0x13 taxonomy verified, tag-11 +0x00 confirmed closed.",
+  "scope": "the-map-ctrl-pack.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

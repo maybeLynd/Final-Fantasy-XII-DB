@@ -1,0 +1,42 @@
+-- S1 push installs map[10]
+PASS  0036C1DF  jmp 0x36c1f0                                
+PASS  0036C25A  lea eax, [r8 + 1]                           
+PASS  0036C25E  mov dword ptr [r11 + rbx], eax              
+PASS  0036C262  movsxd rax, ecx                             
+PASS  0036C272  movzx eax, byte ptr [rax + rbx + 0x21b89a8] 
+PASS  0036C27F stores the active arena 022D89BC
+-- S2 wrappers
+PASS  0036A113  mov ecx, dword ptr [rip + 0x1f6e8a3]        
+PASS  0036A119  xor r9d, r9d                                
+PASS  0036A11C  xor r8d, r8d                                
+PASS  0036A11F  call 0x36bc60                               
+PASS  0036A190  mov edx, 1                                  
+PASS  0036A195  jmp 0x36a1a0                                
+PASS  0036A1C0  mov ecx, dword ptr [rip + 0x1f6e7f6]        
+PASS  0036A1C6  xor r8d, r8d                                
+PASS  0036A1C9  call 0x36bc60                               
+-- S3 0036BC60 on arena 10
+PASS  0036BC65  mov dword ptr [rsp + 8], ecx                
+PASS  0036BC79  test r8, r8                                 
+PASS  0036BC7E  cmp dword ptr [rip + 0x1f6cd3b], r8d        
+PASS  0036BC87  jmp 0x36bc87                                
+PASS  0036BCA1  cmp ecx, 0xe                                
+PASS  0036BCB0  imul rbx, rcx, 0xa8                         
+PASS  0036BCB7  mov ecx, dword ptr [rsp + 0x80]             
+PASS  0036BCC5  mov byte ptr [rbx + 2], 1                   
+PASS  0036BCD2  mov eax, dword ptr [rip + 0x1f6cce0]        
+PASS  0036BCD8  bt eax, ecx                                 
+PASS  0036BCDB  jb 0x36bcea                                 
+PASS  0036BCDD  xor eax, eax                                
+PASS  0036BCE9  ret                                         
+PASS  descriptors 022D7FD0, mask 022D89B8, depth 022D89C0; arena 10's descriptor 022D8660, mark byte 022D8662
+-- S4 retry 0036BFE0 spins
+PASS  0036A149  call 0x36bfe0                               
+PASS  0036A1F0  call 0x36bfe0                               
+PASS  0036BFF0  mov eax, dword ptr [rip + 0x1f6c9c2]        
+PASS  0036BFF8  bt eax, ecx                                 
+PASS  0036BFFB  jb 0x36c002                                 
+PASS  0036C000  jmp 0x36c000                                
+-- S5 the mask's only store
+PASS  00369DE7  mov dword ptr [rip + 0x1f6ebca], r9d        
+RESULT PASS

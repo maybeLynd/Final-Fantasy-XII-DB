@@ -1,0 +1,7 @@
+{
+  "case": "consistent-count-byte",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "wrong/incomplete tree body",
+  "expected_error_seen": true
+}

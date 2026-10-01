@@ -1,0 +1,5 @@
+Retained artifact check; not a new capture
+Command: C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Scripts\python.exe Database\FFXII TZA\_experiments\evidence\keymap-existing-artifact\check.py
+Exit: 0
+PASS: existing account directory matches bracketed Steam host identity; two699-byte keymaps agree with prior receipt.
+PASS: profile controls and three malformed-observation controls; no FF12 execution or formatter/lifetime conclusion.

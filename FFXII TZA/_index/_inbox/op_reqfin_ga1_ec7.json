@@ -1,0 +1,11 @@
+{
+ "action": "finish",
+ "task": "FRONTIER-REQ-SWE2-EC7-GA1-DESCRIPTION-CORRECTIONS-0927",
+ "agent": "SWE2-EC7",
+ "note": "Both corrections already landed at fe8b5486c (owner-correction pass against FABLE's GA-1 byte-checks): the-record-00329220-builds.md now describes 00273160 as the overhead status-order read of the cached L1 table (+0x1700, key +0x23) and 00273BA0 as the 32 class-26 status records + four order-table builder (+0x1500..+0x18FF); the-widget-message-protocol.md now reads 00297FE0's 0x1E as the 00272F60 cycler's period argument, not a posted message id. Both carry 'corrected 2026-09-27, GA-1' markers.",
+ "result_refs": [
+  "fe8b5486c",
+  "Database/FFXII TZA/04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md",
+  "Database/FFXII TZA/16-UI/Widget-Object-Model/the-widget-message-protocol.md"
+ ]
+}

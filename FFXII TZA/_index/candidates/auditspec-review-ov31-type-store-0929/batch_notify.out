@@ -1,0 +1,49 @@
+00249440  call   qword ptr [rcx + 0x10]
+00249443  mov    rcx, qword ptr [rsp + 0x38]
+00249448  xor    rcx, rsp
+0024944B  call   0x808c40
+00249450  add    rsp, 0x40
+00249454  pop    rbx
+00249455  ret    
+00249456  mov    rcx, qword ptr [rcx + 8]
+0024945A  xorps  xmm0, xmm0
+0024945D  mov    dword ptr [rsp + 0x20], 0x10
+00249465  movdqu xmmword ptr [rsp + 0x28], xmm0
+0024946B  test   rcx, rcx
+0024946E  je     0x24947f
+00249470  mov    rax, qword ptr [rcx]
+---
+00249525  call   qword ptr [rcx + 0x10]
+00249528  mov    rcx, qword ptr [rsp + 0x38]
+0024952D  xor    rcx, rsp
+00249530  call   0x808c40
+00249535  add    rsp, 0x40
+00249539  pop    rbx
+0024953A  ret    
+0024953B  mov    rcx, qword ptr [rcx + 8]
+0024953F  xorps  xmm0, xmm0
+00249542  mov    dword ptr [rsp + 0x20], 0x10
+0024954A  movdqu xmmword ptr [rsp + 0x28], xmm0
+00249550  test   rcx, rcx
+00249553  je     0x249564
+00249555  mov    rax, qword ptr [rcx]
+00249558  test   rax, rax
+0024955B  je     0x249564
+---
+002495F8  je     0x249637
+002495FA  cmp    ax, word ptr [rdi + 0x18]
+002495FE  jne    0x249637
+00249600  cmp    dword ptr [rdi + 4], 0
+00249604  je     0x24960b
+00249606  call   qword ptr [rdi + 0x10]
+00249609  jmp    0x249637
+0024960B  mov    rcx, qword ptr [rdi + 8]
+0024960F  xorps  xmm0, xmm0
+00249612  mov    dword ptr [rsp + 0x20], 0x10
+0024961A  movdqu xmmword ptr [rsp + 0x28], xmm0
+00249620  test   rcx, rcx
+00249623  je     0x249634
+00249625  mov    rax, qword ptr [rcx]
+00249628  test   rax, rax
+0024962B  je     0x249634
+---

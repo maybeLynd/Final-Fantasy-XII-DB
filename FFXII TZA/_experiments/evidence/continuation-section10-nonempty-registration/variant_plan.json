@@ -1,0 +1,58 @@
+[
+  {
+    "variant": "prf1_wrong_table_base",
+    "address": "00409895",
+    "before": "83c140",
+    "after": "83c130",
+    "required_failure": "prf1_effect_section_offset"
+  },
+  {
+    "variant": "skip_v0_child_normalization",
+    "address": "00409B80",
+    "before": "e83b834500",
+    "after": "9090909090",
+    "required_failure": "prf0_normalizes_child_padding"
+  },
+  {
+    "variant": "use_section_offset_instead_of_metadata",
+    "address": "0040A16F",
+    "before": "428b5430fc",
+    "after": "ba00010000",
+    "required_failure": "registration0_ticket_uses_metadata_not_section_offset"
+  },
+  {
+    "variant": "skip_specialized_first_pair",
+    "address": "0050047F",
+    "before": "e86c00f3ff",
+    "after": "9090909090",
+    "required_failure": "registration0_specialized_nonzero_relocations"
+  },
+  {
+    "variant": "skip_context_destruction",
+    "address": "003B3820",
+    "before": "e8ebbbe9ff",
+    "after": "9090909090",
+    "required_failure": "registration0_context_reclaimed"
+  },
+  {
+    "variant": "ignore_existing_bank_match",
+    "address": "0040A024",
+    "before": "0f85a7010000",
+    "after": "909090909090",
+    "required_failure": "registration0_same_key_returns_existing_index"
+  },
+  {
+    "variant": "skip_nested_refresh",
+    "address": "003A9BD9",
+    "before": "e8e2681500",
+    "after": "9090909090",
+    "required_failure": "refresh_relocates_specialized_first_word"
+  },
+  {
+    "variant": "skip_registration_ticket_store",
+    "address": "0040A17C",
+    "before": "894744",
+    "after": "909090",
+    "required_failure": "registration0_ticket_generation"
+  }
+]

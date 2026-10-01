@@ -1,0 +1,39 @@
+00358BC0 4883ec28                 sub rsp, 0x28
+00358BC4 803d2df4f60100           cmp byte ptr [rip + 0x1f6f42d], 0
+00358BCB 0f8486000000             je 0x358c57
+00358BD1 8b0d0df4f601             mov ecx, dword ptr [rip + 0x1f6f40d]
+00358BD7 48895c2430               mov qword ptr [rsp + 0x30], rbx
+00358BDC 8b1dfef3f601             mov ebx, dword ptr [rip + 0x1f6f3fe]
+00358BE2 3bd9                     cmp ebx, ecx
+00358BE4 7449                     je 0x358c2f
+00358BE6 8bcb                     mov ecx, ebx
+00358BE8 48897c2420               mov qword ptr [rsp + 0x20], rdi
+00358BED e8befcffff               call 0x3588b0
+00358BF2 488bf8                   mov rdi, rax
+00358BF5 e846ffffff               call 0x358b40
+00358BFA 33c9                     xor ecx, ecx
+00358BFC e8ff0bf0ff               call 0x259800
+00358C01 85db                     test ebx, ebx
+00358C03 7415                     je 0x358c1a
+00358C05 803decf3f60102           cmp byte ptr [rip + 0x1f6f3ec], 2
+00358C0C 740c                     je 0x358c1a
+00358C0E 33d2                     xor edx, edx
+00358C10 488bcf                   mov rcx, rdi
+00358C13 e8681af0ff               call 0x25a680
+00358C18 eb0a                     jmp 0x358c24
+00358C1A 33d2                     xor edx, edx
+00358C1C 488bcf                   mov rcx, rdi
+00358C1F e86c1af0ff               call 0x25a690
+00358C24 8b0dbaf3f601             mov ecx, dword ptr [rip + 0x1f6f3ba]
+00358C2A 488b7c2420               mov rdi, qword ptr [rsp + 0x20]
+00358C2F 890dabf3f601             mov dword ptr [rip + 0x1f6f3ab], ecx
+00358C35 c605bcf3f60100           mov byte ptr [rip + 0x1f6f3bc], 0
+00358C3C e86ffcffff               call 0x3588b0
+00358C41 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+00358C46 4885c0                   test rax, rax
+00358C49 740c                     je 0x358c57
+00358C4B 488bc8                   mov rcx, rax
+00358C4E 4883c428                 add rsp, 0x28
+00358C52 e979f5f0ff               jmp 0x2681d0
+00358C57 4883c428                 add rsp, 0x28
+00358C5B c3                       ret

@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 425,
+      "sha256": "08782be7b6cd5019ba107715d5ac07c28b02fe4ac77fba03d643a8654b8d3af5"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 3952,
+      "sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3804,
+      "sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 6781,
+      "sha256": "8650e23c5c88dddb15c5da37f53e99ccc59f79f594dbc6ee7f282153ae6edb31"
+    },
+    {
+      "path": "gate-controls/empty-checks/capture-terminal.json",
+      "bytes": 425,
+      "sha256": "08782be7b6cd5019ba107715d5ac07c28b02fe4ac77fba03d643a8654b8d3af5"
+    },
+    {
+      "path": "gate-controls/empty-checks/capture.py",
+      "bytes": 3952,
+      "sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+    },
+    {
+      "path": "gate-controls/empty-checks/check.py",
+      "bytes": 3804,
+      "sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+    },
+    {
+      "path": "gate-controls/empty-checks/checks-terminal.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "gate-controls/empty-checks/result.json",
+      "bytes": 844,
+      "sha256": "7ba7779a3aec4250d2dd795d68809de02720f0061a72e2a468ae8f9c7d7a6754"
+    },
+    {
+      "path": "gate-controls/failed-upstream/capture-terminal.json",
+      "bytes": 382,
+      "sha256": "2ec26b5d16395a895b71c060bf576676099b9c3ee2cb156299078745fa2960fc"
+    },
+    {
+      "path": "gate-controls/failed-upstream/capture.py",
+      "bytes": 3952,
+      "sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+    },
+    {
+      "path": "gate-controls/failed-upstream/check.py",
+      "bytes": 3804,
+      "sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+    },
+    {
+      "path": "gate-controls/failed-upstream/checks-terminal.json",
+      "bytes": 6781,
+      "sha256": "8650e23c5c88dddb15c5da37f53e99ccc59f79f594dbc6ee7f282153ae6edb31"
+    },
+    {
+      "path": "gate-controls/failed-upstream/result.json",
+      "bytes": 844,
+      "sha256": "7ba7779a3aec4250d2dd795d68809de02720f0061a72e2a468ae8f9c7d7a6754"
+    },
+    {
+      "path": "gate-controls/missing-checks/capture-terminal.json",
+      "bytes": 425,
+      "sha256": "08782be7b6cd5019ba107715d5ac07c28b02fe4ac77fba03d643a8654b8d3af5"
+    },
+    {
+      "path": "gate-controls/missing-checks/capture.py",
+      "bytes": 3952,
+      "sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+    },
+    {
+      "path": "gate-controls/missing-checks/check.py",
+      "bytes": 3804,
+      "sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+    },
+    {
+      "path": "gate-controls/missing-checks/result.json",
+      "bytes": 844,
+      "sha256": "7ba7779a3aec4250d2dd795d68809de02720f0061a72e2a468ae8f9c7d7a6754"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/capture-terminal.json",
+      "bytes": 425,
+      "sha256": "08782be7b6cd5019ba107715d5ac07c28b02fe4ac77fba03d643a8654b8d3af5"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/capture.py",
+      "bytes": 3952,
+      "sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/check.py",
+      "bytes": 3804,
+      "sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/checks-terminal.json",
+      "bytes": 6393,
+      "sha256": "59fbd6b0a43f016589d11c514eb83583856034f9d435994a081a9ec6950f38f1"
+    },
+    {
+      "path": "gate-controls/nonzero-positive/result.json",
+      "bytes": 844,
+      "sha256": "7ba7779a3aec4250d2dd795d68809de02720f0061a72e2a468ae8f9c7d7a6754"
+    },
+    {
+      "path": "gate-controls/positive/capture-terminal.json",
+      "bytes": 425,
+      "sha256": "08782be7b6cd5019ba107715d5ac07c28b02fe4ac77fba03d643a8654b8d3af5"
+    },
+    {
+      "path": "gate-controls/positive/capture.py",
+      "bytes": 3952,
+      "sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+    },
+    {
+      "path": "gate-controls/positive/check.py",
+      "bytes": 3804,
+      "sha256": "26657946ac19cdc9ace3ab2955e11ace00f3ff9e928c0004f1832667023bd687"
+    },
+    {
+      "path": "gate-controls/positive/checks-terminal.json",
+      "bytes": 6781,
+      "sha256": "8650e23c5c88dddb15c5da37f53e99ccc59f79f594dbc6ee7f282153ae6edb31"
+    },
+    {
+      "path": "gate-controls/positive/result.json",
+      "bytes": 844,
+      "sha256": "7ba7779a3aec4250d2dd795d68809de02720f0061a72e2a468ae8f9c7d7a6754"
+    },
+    {
+      "path": "identity-before.json",
+      "bytes": 4414,
+      "sha256": "7a8510c7d8be11bc34f7ab31603021bfbaa3c8ec51c637a0bc0feb2acd3ef861"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 4414,
+      "sha256": "7a8510c7d8be11bc34f7ab31603021bfbaa3c8ec51c637a0bc0feb2acd3ef861"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1479,
+      "sha256": "a722efc7de8312b893f11b9a9c94c79de6745cdd2891b3647f263085792c0e9e"
+    },
+    {
+      "path": "preparation-controls-terminal.json",
+      "bytes": 6323,
+      "sha256": "0497052e9f4d9bfe8bd61a38c590a825f303f753be61b4e823f0e323b0ed646a"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 8409,
+      "sha256": "44de431b92fb0b8c7b74f651f58179a87ce66dac31cd2e94644a63f84f9966e3"
+    },
+    {
+      "path": "producer-terminal.json",
+      "bytes": 3713,
+      "sha256": "0b8be8741ac39498a9bafdf16fd32e81e120476aa9b3a3561c14d16513d6a4cb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3572,
+      "sha256": "f1ada7dce4880d47a4ac43a4c5768fe5e097d0fbf8a156ab4a073e1671dbb47b"
+    },
+    {
+      "path": "result.json",
+      "bytes": 844,
+      "sha256": "7ba7779a3aec4250d2dd795d68809de02720f0061a72e2a468ae8f9c7d7a6754"
+    },
+    {
+      "path": "retained/producer-2366027d9.py",
+      "bytes": 11072,
+      "sha256": "0dd3a7de47df90f86de87373420424ee248aa8de5fde27b20e6207796f371e44"
+    },
+    {
+      "path": "retained/producer-current.py",
+      "bytes": 11254,
+      "sha256": "cc2b5100f5de06ef9f5a32bda921688bc1d4ecedd47d82630bb85235760a7dd0"
+    }
+  ],
+  "limits": "Integrity is not whole acceptance. Scoped2366027d9 H8 CLI/gated-count repair with actual producer Python and retained labelled input; no47-script dynamic campaign/native/live/class/fullmigration/L1L2 award."
+}

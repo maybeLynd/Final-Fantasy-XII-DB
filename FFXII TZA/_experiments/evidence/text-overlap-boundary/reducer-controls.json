@@ -1,0 +1,14 @@
+[
+  {
+    "case": "missing-triple",
+    "refused": true
+  },
+  {
+    "case": "nonzero-capture",
+    "refused": true
+  },
+  {
+    "case": "overwritten-observation",
+    "refused": true
+  }
+]

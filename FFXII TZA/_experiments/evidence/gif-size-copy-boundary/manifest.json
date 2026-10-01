@@ -1,0 +1,55 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7775,
+      "sha256": "988ba0a056b147329ae4d9ad1dba36cd62a4bad2167069c77624208e8d50559e"
+    },
+    {
+      "path": "extract.py",
+      "bytes": 2389,
+      "sha256": "cab10723a4950859e38bcfe510ccbe766d0b96449f66d362360880dd9b0d3e0b"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 4198,
+      "sha256": "1f0c3e03fc892124f4833cdbae9c5efb37fa6d8c203a41bae9890f0ec87e073d"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1851,
+      "sha256": "e15f025af00eccd8e909d408f0b96202041a339f1265f678022e05b05c3e009b"
+    },
+    {
+      "path": "primary.json",
+      "bytes": 22841,
+      "sha256": "3baed4e0a3eb2db29bc24b26e3671dcb0155541705cb21ed5bc100df3d8ad4df"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3521,
+      "sha256": "ccb9a3e3cdf545a8768180338754c0ea9842f9d101d53267025a834f2a7f0994"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/the-vif1-vu1-layer.md",
+      "bytes": 61595,
+      "sha256": "c198dd9766682df36f630e83814111e505bb2a5477a1be5bfa4d1512359c1fa3"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 432,
+      "sha256": "3c773af5790a7e8de93fd6d1ba2ce198557be096fab4c24497f7b38c65118f00"
+    }
+  ],
+  "limits": "Static original helper/collector arguments only; no execution. Independent/owner acceptance pending."
+}

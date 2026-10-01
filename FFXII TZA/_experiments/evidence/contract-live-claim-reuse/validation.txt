@@ -1,0 +1,11 @@
+COMMAND reduce.py
+EXIT 0
+8accepted live samples: all128 goods flags and512 sold-counter bytes contained in the captured live image.
+Old samples exactly match old-file decoded fields; nonzero counts: {'goods_flags': 18, 'loot_sold_counters': 44}
+Payload extent56490; invalid transitional sample excluded; live cleanup receipt retained; save-write persistence OPEN.
+
+COMMAND check.py
+EXIT 0
+PASS: nonempty original-code execution/write/change controls and retained live byte/coordinate checks.
+Rejected controls: empty execution, no execution detection, no write detection, empty capture reduction, header omitted from image coordinate
+

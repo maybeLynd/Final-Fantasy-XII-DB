@@ -1,0 +1,75 @@
+{
+  "mode": "baseline",
+  "pid": 13964,
+  "start_unix": 1789105651.8779056,
+  "status": "COMPLETED",
+  "commands": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\observe.py",
+        "--pid",
+        "13964",
+        "--seconds",
+        "65",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\baseline-window.json"
+      ],
+      "label": "observer",
+      "pid": 1856,
+      "start_unix": 1789105652.5568328,
+      "exit_code": 0,
+      "observed_end_unix": 1789105717.706809
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\input_receipt.py",
+        "--keys",
+        "Enter",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\baseline-Enter.json"
+      ],
+      "label": "Enter",
+      "pid": 38996,
+      "start_unix": 1789105657.559079,
+      "exit_code": 0,
+      "observed_end_unix": 1789105717.7068186
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\input_receipt.py",
+        "--keys",
+        "C",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\baseline-C.json"
+      ],
+      "label": "C",
+      "pid": 15280,
+      "start_unix": 1789105702.5615935,
+      "exit_code": 0,
+      "observed_end_unix": 1789105717.7068202
+    }
+  ],
+  "sources": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\window_run.py": "5760c952c42dbcdbcd5c0fd28a7ac3e7b942e166fccf429571dabe711bb999d1",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\observe.py": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\process_liveness.py": "b6d6ef01c3fc4803115743cad610e70344a4935e48f4bd7807b6217ef7264ec4"
+  },
+  "state_before": {
+    "stdout": "pid 13964\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "end_unix": 1789105717.706821,
+  "live_children": []
+}

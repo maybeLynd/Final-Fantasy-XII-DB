@@ -1,0 +1,511 @@
+{
+  "method": "A original-image identity + retained instrument evidence; no fresh native or FF12 execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "preferred_image_base": "0x120000",
+  "reader_path": "Database/FFXII TZA/_experiments/evidence/license-check-exec/check.py",
+  "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "python_binary_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "capstone_version": "5.0.7",
+  "tables": [
+    {
+      "address": "0xd61e50",
+      "raw_hex": "a07d640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000f0b8d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd61ea0",
+      "raw_hex": "c072640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000080b9d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd61ef0",
+      "raw_hex": "2073640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000018bad10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd61f40",
+      "raw_hex": "6072640000000000c05a650000000000c0726500000000009076650000000000c071650000000000407165000000000000b4650000000000d03c650000000000203b650000000000b8bad10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657140",
+      "slot6": "0x65b400"
+    },
+    {
+      "address": "0xd61f90",
+      "raw_hex": "e073640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000048bbd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd61fe0",
+      "raw_hex": "d074640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000e0bbd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62030",
+      "raw_hex": "7074640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000080bcd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62080",
+      "raw_hex": "8073640000000000805b6500000000003073650000000000d076650000000000c0716500000000005071650000000000c0b4650000000000d03c650000000000203b65000000000028bdd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b4c0"
+    },
+    {
+      "address": "0xd620d0",
+      "raw_hex": "b07c640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000b8bdd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62120",
+      "raw_hex": "407d640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000050bed10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62170",
+      "raw_hex": "507c640000000000305d6500000000007075650000000000f077650000000000c071650000000000507165000000000020b8650000000000d03c650000000000203b650000000000f0bed10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b820"
+    },
+    {
+      "address": "0xd621c0",
+      "raw_hex": "c07e640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000080bfd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62210",
+      "raw_hex": "507f640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000018c0d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62260",
+      "raw_hex": "307e640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000b8c0d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd622b0",
+      "raw_hex": "f079640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000048c1d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62300",
+      "raw_hex": "907a640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000e0c1d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62350",
+      "raw_hex": "5079640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000080c2d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd623a0",
+      "raw_hex": "c07b640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000010c3d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd623f0",
+      "raw_hex": "f076640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000a0c3d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62440",
+      "raw_hex": "2078640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000038c4d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62490",
+      "raw_hex": "8077640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000d8c4d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd624e0",
+      "raw_hex": "5076640000000000a05c650000000000a074650000000000b077650000000000c071650000000000507165000000000050b6650000000000d03c650000000000203b65000000000080c5d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b650"
+    },
+    {
+      "address": "0xd62530",
+      "raw_hex": "9075640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000010c6d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62580",
+      "raw_hex": "f075640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000a8c6d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd625d0",
+      "raw_hex": "3075640000000000105c65000000000030746500000000001077650000000000c071650000000000507165000000000090b5650000000000d03c650000000000203b65000000000048c7d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b590"
+    },
+    {
+      "address": "0xd62620",
+      "raw_hex": "4080640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000d8c7d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62670",
+      "raw_hex": "a080640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000070c8d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd626c0",
+      "raw_hex": "e07f640000000000305e65000000000010766500000000003078650000000000c071650000000000a07165000000000020b9650000000000d03c650000000000203b65000000000010c9d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x6571a0",
+      "slot6": "0x65b920"
+    },
+    {
+      "address": "0xd62710",
+      "raw_hex": "4071640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b650000000000a0c9d10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62760",
+      "raw_hex": "d071640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000038cad10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd627b0",
+      "raw_hex": "b070640000000000105a65000000000050726500000000008076650000000000c071650000000000507165000000000040b3650000000000d03c650000000000203b650000000000d8cad10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b340"
+    },
+    {
+      "address": "0xd62800",
+      "raw_hex": "f06f640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000068cbd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62850",
+      "raw_hex": "5070640000000000c05d650000000000e0756500000000008076650000000000c0716500000000005071650000000000f0b8650000000000d03c650000000000203b65000000000000ccd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd628a0",
+      "raw_hex": "906f6400000000002059650000000000e0716500000000008076650000000000c071650000000000507165000000000070b2650000000000d03c650000000000203b650000000000a0ccd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b270"
+    },
+    {
+      "address": "0xd628f0",
+      "raw_hex": "c078640000000000c05d650000000000e0756500000000008076650000000000c0716500000000004071650000000000f0b8650000000000d03c650000000000203b65000000000030cdd10100000000",
+      "slot4": "0x6571c0",
+      "slot5": "0x657140",
+      "slot6": "0x65b8f0"
+    },
+    {
+      "address": "0xd62940",
+      "raw_hex": "307b640000000000c05d65000000000010756500000000008076650000000000c071650000000000507165000000000050b7650000000000d03c650000000000203b6500000000006d5f656666656374",
+      "slot4": "0x6571c0",
+      "slot5": "0x657150",
+      "slot6": "0x65b750"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x65b270",
+      "PE_end": "0x65b331",
+      "unwind": "0x1d5df10",
+      "bytes": 193,
+      "sha256": "a8afd17fdb2ee7a1ccb90a6d5dd9f0e0e82401701f5fd47a4033a77da0d6f1c0",
+      "raw_hex": "48895c240848896c24104889742418574883ec3080794000498bf9498bf0488bea488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075674885ff75058d4705eb5d488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0742348833800741d488b4424604c8bcf4c8bc64889442420488bd5488bcbe85bd1ffffeb05b815000000488b5c2440488b6c2448488b7424504883c4305fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b340",
+      "PE_end": "0x65b3f7",
+      "unwind": "0x1d7945c",
+      "bytes": 183,
+      "sha256": "30c13d8afb063f7ad42339b24fadc84e5d40f0fdd7f6bc8293e567e20b40e239",
+      "raw_hex": "48895c240848896c24104889742418574883ec2080794000498bf9498bf0488bea488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c0755d4885ff75058d4705eb53488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c074194883380074134c8bcf4c8bc6488bd5488bcbe815d4ffffeb05b815000000488b5c2430488b6c2438488b7424404883c4205fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b400",
+      "PE_end": "0x65b4bb",
+      "unwind": "0x1d7945c",
+      "bytes": 187,
+      "sha256": "2e160ea821f778270b3e736096310dce728d07a1faa3ced6d7e0ea622bac7ef0",
+      "raw_hex": "48895c240848896c24104889742418574883ec2080794000498bf9498be8488bf2488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075614885ff75058d4705eb57488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0741d4883380074174c8b86a80000004c8bcd488bd6488bcbe821eaffffeb05b815000000488b5c2430488b6c2438488b7424404883c4205fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b4c0",
+      "PE_end": "0x65b58a",
+      "unwind": "0x1d5df10",
+      "bytes": 202,
+      "sha256": "6f3993138144ce4db704a9ef4d5fa93fb90250f43c33a217bd44503b72022f8f",
+      "raw_hex": "48895c240848896c24104889742418574883ec3080794000498bf9498be8488bf2488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075704885ff75058d4705eb66488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0742c488338007426488b4424604c8bcf4c8b86a8000000488bd648896c2428488bcb4889442420e832d6ffffeb05b815000000488b5c2440488b6c2448488b7424504883c4305fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b590",
+      "PE_end": "0x65b64c",
+      "unwind": "0x1d5df10",
+      "bytes": 188,
+      "sha256": "bd22d83e6cb2c9d2553ea2c2978af943aecb69bf8a2d9e7efc2cfd18515ff8aa",
+      "raw_hex": "48895c240848896c24104889742418574883ec3080794000498bf9498bf0488bea488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075624885ff75058d4705eb58488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0741e4883380074184c8bcfc6442420014c8bc6488bd5488bcbe810f0ffffeb05b815000000488b5c2440488b6c2448488b7424504883c4305fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b650",
+      "PE_end": "0x65b74a",
+      "unwind": "0x1d8c1c0",
+      "bytes": 250,
+      "sha256": "dc372fc2c0d1116d6f3fccf5c255ab19f78459a53482a2c5df2d5ca723251d55",
+      "raw_hex": "48895c240848896c2410488974241848897c242041564883ec3033f6498bf94d8bf0488bea488bd94038714075224d85c9740a458b412c418b5128eb05448bc68bd6488b01ff500885c00f858f0000004885ff75088d4705e982000000488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0744848393074434c8bc7488bd5488bcbe84b72ffff85c07536488b83d0000000403870087503488b30c6442428014c8bcf4d8bc64889742420488bd5488bcbe85cd9ffff85c07507eb05b815000000488b5c2440488b6c2448488b742450488b7c24584883c430415ec3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b750",
+      "PE_end": "0x65b811",
+      "unwind": "0x1d5df10",
+      "bytes": 193,
+      "sha256": "0d8ea43b6714d69dec5d914c7ce171b96a88cf93654d9a3df0588d9620835d1a",
+      "raw_hex": "48895c240848896c24104889742418574883ec3080794000498bf9498bf0488bea488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075674885ff75058d4705eb5d488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0742348833800741d488b4424604c8bcf4c8bc64889442420488bd5488bcbe89be2ffffeb05b815000000488b5c2440488b6c2448488b7424504883c4305fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b820",
+      "PE_end": "0x65b8ea",
+      "unwind": "0x1d5df10",
+      "bytes": 202,
+      "sha256": "ab6252ffda9e95131d53a6f0d902dfb4c3fc8fd427ebaf2a3d23898a7db822c1",
+      "raw_hex": "48895c240848896c24104889742418574883ec3080794000498bf9498be8488bf2488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075704885ff75058d4705eb66488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0742c488338007426488b4424604c8bc54c8b8ea8000000488bd64889442428488bcb48897c2420e852e3ffffeb05b815000000488b5c2440488b6c2448488b7424504883c4305fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    },
+    {
+      "entry": "0x65b8f0",
+      "PE_end": "0x65b920",
+      "unwind": "0x1d52bc8",
+      "bytes": 48,
+      "sha256": "b411b0e5ac52473799f0694f20aead8ddc3e74304efd9e107d25dab9e49c1a37",
+      "raw_hex": "4883ec2880794000751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c0750233c04883c428c3",
+      "entry_instruction": {
+        "size": 4,
+        "bytes": "4883ec28",
+        "op": "sub",
+        "args": "rsp, 0x28"
+      }
+    },
+    {
+      "entry": "0x65b920",
+      "PE_end": "0x65b9f2",
+      "unwind": "0x1d5df10",
+      "bytes": 210,
+      "sha256": "186c57bb592c56a5c355034427d3204a72914d4bb1634134aeb40856c3d70d87",
+      "raw_hex": "48895c240848896c24104889742418574883ec3080794000498bf9498bf0488bea488bd9751f4d85c9740a458b412c418b5128eb064533c0418bd0488b01ff500885c075784885ff7507b805000000eb6c488b4310483b431875194885c0741d488b4808483b4b20750a488b4328483941187409488b03488bcbff5010488b43104885c0743248833800742c488b4424684885c074b448894424284c8bcf488b4424604c8bc6488bd54889442420488bcbe82a000000eb05b815000000488b5c2440488b6c2448488b7424504883c4305fc3",
+      "entry_instruction": {
+        "size": 5,
+        "bytes": "48895c2408",
+        "op": "mov",
+        "args": "qword ptr [rsp + 8], rbx"
+      }
+    }
+  ],
+  "refs": [
+    {
+      "path": "Database/FFXII TZA/22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md",
+      "retained": "retained/00-the-phyre-post-effect-class-family.md",
+      "bytes": 53322,
+      "sha256": "1797accb746c7f921a8796812bd7934fc4b21e3c064f07f0748670a194066cfb"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/EXP-039-stack-native-control.md",
+      "retained": "retained/01-EXP-039-stack-native-control.md",
+      "bytes": 5759,
+      "sha256": "1de03c9dcfb8e97148c8aab0ca0603f51a1c64cdf0cac2599b59b61c07cb016b"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-038-handler-stack/capture.py",
+      "retained": "retained/02-capture.py",
+      "bytes": 6854,
+      "sha256": "1867e44348472f0cd5897daa713da262c5d547caae3e8ea6d74f8588c9cb4b4d"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-038-handler-stack/stack_receipt.py",
+      "retained": "retained/03-stack_receipt.py",
+      "bytes": 1096,
+      "sha256": "57cbf8874fe48b400e2a54eef856e6046d82a831ab35ad8381402d81d6d14441"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/capture_candidate.py",
+      "retained": "retained/04-capture_candidate.py",
+      "bytes": 4620,
+      "sha256": "a4824020766a4f795e91bbb7387e10e1c821f04faa41d64189ad6b9141b6fe19"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/ownership.py",
+      "retained": "retained/05-ownership.py",
+      "bytes": 1052,
+      "sha256": "8f75d7f7fe1545a323acb58169c836a717f2b1ddad403231c3ebb1b710862c2b"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/exp127-native-dispatch-control/README.md",
+      "retained": "retained/06-README.md",
+      "bytes": 8290,
+      "sha256": "23ba3aa0afdcb5403b27296dcf9fc0121d848cdba331625142d1fffe1208ea0f"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/native-fp-context-control/README.md",
+      "retained": "retained/07-README.md",
+      "bytes": 11320,
+      "sha256": "9d323482ca1bb85ba21e28e960a631031b6829fb1f1184cf4c99a71536a80c61"
+    },
+    {
+      "path": "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-EXP127-INSTRUMENT-OWNERSHIP.md",
+      "retained": "retained/08-REVIEW-EXP127-INSTRUMENT-OWNERSHIP.md",
+      "bytes": 3279,
+      "sha256": "fa53767fbe0e8c056213363e40eca4f639d114bb2d0e6f9bfeff91868588eceb"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/positive/control.json",
+      "retained": "retained/positive-control.json",
+      "bytes": 1634,
+      "sha256": "3bb96ed4b4dd087a2b65795c75c93525c72972e8ef5e171c5fd171e3200a4e23"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/positive/target-ready.json",
+      "retained": "retained/positive-target-ready.json",
+      "bytes": 283,
+      "sha256": "79853079cb1256bd41d17c9b8d5f877c33e4c4652267051fd8e03f9f5a8c0a1c"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/positive/capture/result.json",
+      "retained": "retained/positive-capture-result.json",
+      "bytes": 35671,
+      "sha256": "abfbd07a5d2ff78c8931ed233944f62e94a6032885f825e6d289b9e4b09c0dda"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/positive/capture/api.json",
+      "retained": "retained/positive-capture-api.json",
+      "bytes": 134981,
+      "sha256": "ab5e4f89dba7f015d9652be9d88bf4ee2b5c34da09fcf847046b16b5a23816b0"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/cold/control.json",
+      "retained": "retained/cold-control.json",
+      "bytes": 1627,
+      "sha256": "48998cdd801d1fc7363a45d59d79afa958d6fd9a53d9a422866707b20e24a0d5"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/cold/target-ready.json",
+      "retained": "retained/cold-target-ready.json",
+      "bytes": 283,
+      "sha256": "c3d75a9b3556a50e4a376de16a6d470ad2e15e5a9ae61981ff0644e1126fa9e5"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/cold/capture/result.json",
+      "retained": "retained/cold-capture-result.json",
+      "bytes": 1443,
+      "sha256": "4833418cd0e270adfcf9aca73b279d6cadc8c5302e164ff960ad0456eee656e2"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/EXP-039-stack-native-control/cold/capture/api.json",
+      "retained": "retained/cold-capture-api.json",
+      "bytes": 27643,
+      "sha256": "76bd20a25dfaf1cf4cef3afccf492228bf4196e26bc7420a4cfac53e0a6f9084"
+    }
+  ],
+  "limits": "Static address identity is not live object initialization/reachability. Existing evidence keeps historical limits; no rel32/pass-site sweep repeated."
+}

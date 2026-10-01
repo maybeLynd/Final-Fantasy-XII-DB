@@ -1,0 +1,9 @@
+# NativeAdapter.CountedAlignedFreeLoopSelf - EC-7 family C
+# if this null return; counted loop over edx elements at [this+8] stride
+# # 0x10: free each ref-flagged pointer via shared aligned-free 00584730;
+# # then free this itself via 00584730.
+address	targets
+005B7E10	00584730
+005B8050	00584730
+005F03A0	00584730
+005F0520	00584730

@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-GRAPHICS-MT-ADDRESS-AND-CONSUMER-CENSUS",
+ "agent": "OPUS",
+ "note": "Committed fbf9170b3. The open item in section 14 is closed from static evidence: the graphics MT's state is at 01F7F600, established from the four call sites that pass it rather than from the callee that never names it, and the consumer census is exhaustive - zero bodies touch the 624-dword array directly and exactly two take its address, the seeder 0015BCF0 and the single drawing body 001946E0, so 'presentation noise only' is now a complete count. I5 is rewritten with the corrected inference and the reason the old one failed; the section 2 generator table carries the address and the one-drawing-body count; last_reviewed moved to 2026-09-22. CON-155 filed and resolved in the same act: the cells above the graphics array are the consumer's 8-byte cursor and 4-byte refill count, not this type's uint32 index, on the same principle the row already used to keep the gameplay lazy-init byte out of the type; nothing re-extended, the index row now names the instance it describes, and the two cells are declared as GraphicsNoiseDrawCursor and GraphicsNoiseRefillCount as the types-MET criterion requires. 589 types / 7,109 fields / 0 errors / 0 gaps; 155 contradictions, all with a correction and an instrument. STILL OPEN IN THAT CONTRACT AND NOT MINE TO CLOSE: whether DAT_02089300 is ever false in play, and how often the AI draw paths run in a fight - both live, and static site counts are not invocation rates. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md",
+  "Database/FFXII TZA/_index/CONTRADICTIONS.tsv"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

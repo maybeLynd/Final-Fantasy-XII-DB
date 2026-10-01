@@ -1,0 +1,65 @@
+[
+  {
+    "variant": "copy_without_acquire",
+    "site": "00409BA7",
+    "original": "e8d41cfaff",
+    "replacement": "e8441cfaff",
+    "required_failure": "copy_source_was_pinned_at_actual_copy_import"
+  },
+  {
+    "variant": "view_without_acquire",
+    "site": "004099CC",
+    "original": "e8af1efaff",
+    "replacement": "e81f1efaff",
+    "required_failure": "valid_view_pins_source"
+  },
+  {
+    "variant": "skip_cache_publication",
+    "site": "004097F9",
+    "original": "48894338",
+    "replacement": "90909090",
+    "required_failure": "cache_now_matches_tag_resolution"
+  },
+  {
+    "variant": "match_cache_instead_of_reference",
+    "site": "004095D5",
+    "original": "49395930",
+    "replacement": "49395938",
+    "required_failure": "published_owner_delete_removes_bank_row"
+  },
+  {
+    "variant": "keep_completion_pinned",
+    "site": "003DD85E",
+    "original": "e80df9f8ff",
+    "replacement": "9090909090",
+    "required_failure": "completion_unpins_source"
+  },
+  {
+    "variant": "discard_pending_delete",
+    "site": "003DD490",
+    "original": "c7470405000000",
+    "replacement": "c7470400000000",
+    "required_failure": "inflight_delete_selects_state5"
+  },
+  {
+    "variant": "erase_cancelled_handle",
+    "site": "003DD88E",
+    "original": "c7470400000000",
+    "replacement": "48c70700000000",
+    "required_failure": "cancel_completion_preserves_numeric_handle"
+  },
+  {
+    "variant": "submission_claims_ready",
+    "site": "003DDABE",
+    "original": "c7430403000000",
+    "replacement": "c7430404000000",
+    "required_failure": "submission_sets_state3"
+  },
+  {
+    "variant": "bulk_skips_last_slot",
+    "site": "003DD392",
+    "original": "be10000000",
+    "replacement": "be0f000000",
+    "required_failure": "bulk_clears_last_ready_slot"
+  }
+]

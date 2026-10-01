@@ -1,0 +1,82 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\gate-controls\\positive"
+    ],
+    "returncode": 0,
+    "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "gate_sha256": "dca32ca13e6ff8501c949ddfc404c3a46ebd6511852982c3f9136a43f6091d31"
+  },
+  {
+    "case": "missing-checks",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\gate-controls\\missing-checks"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 7, in controls_preflight\n    root=Path(root);rs=json.loads((root/'checks-terminal.json').read_bytes())\n                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'Database\\\\Tools\\\\work\\\\ASTRA\\\\heading-extent-repair-review\\\\gate-controls\\\\missing-checks\\\\checks-terminal.json'\n",
+    "terminal": true,
+    "gate_sha256": "dca32ca13e6ff8501c949ddfc404c3a46ebd6511852982c3f9136a43f6091d31"
+  },
+  {
+    "case": "nonzero-positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\gate-controls\\nonzero-positive"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 10, in controls_preflight\n    assert rs[0]['returncode']==0 and not rs[0]['stderr']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "dca32ca13e6ff8501c949ddfc404c3a46ebd6511852982c3f9136a43f6091d31"
+  },
+  {
+    "case": "empty-checks",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\gate-controls\\empty-checks"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 8, in controls_preflight\n    assert len(rs)==5 and [r['case'] for r in rs]==['positive','upstream-failed','cli-refused','first-fragment-accepted','refusal-closed']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "dca32ca13e6ff8501c949ddfc404c3a46ebd6511852982c3f9136a43f6091d31"
+  },
+  {
+    "case": "failed-upstream",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\gate-controls\\failed-upstream"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-extent-repair-review\\prepare-publication.py\", line 15, in controls_preflight\n    assert capture['terminal'] is True and capture['returncode']==0 and not capture['stderr'] and capture['driver_sha256']==sha(root/'capture.py')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "dca32ca13e6ff8501c949ddfc404c3a46ebd6511852982c3f9136a43f6091d31"
+  }
+]

@@ -1,0 +1,54 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS K1 kind 7 id 111 (0x6F) - PS2Data\image\FF12\myoshiok\in\Mrp_Menu\save_load.mrp
+PASS K2 kind 7 id 127 (0x7F) - PS2Data\image\FF12\myoshiok\in\Tm2_Menu\DataFace_c.tm2
+PASS K3 control kind 7 id 0xBF = Loca.mrp (cl2 page) - PS2Data\image\FF12\myoshiok\in\Mrp_Menu\Loca.mrp
+PASS B1 mask base: bits 5,6,7 - 0024A733  mov ebx, 0xe0
+PASS B1 mask adds the caller's bit k - 0024A73B  bts ebx, ecx
+PASS B2 walk starts at slot 0 +0x38 (0208F5B8) - 0024A762 lea r14, [rip + 0x1e44e4f]
+PASS B2 63 iterations - 0024A778  mov r12d, 0x3f
+PASS B2 stride 0x48 - 0024A9B1  add r14, 0x48
+PASS B2 loop count down - 0024A9B5  sub r12d, 1
+PASS B3 flags & mask - 0024A793  and rcx, rax
+PASS B3 == mask - 0024A796  cmp rcx, rax
+PASS B3 else skip the slot - 0024A799  jne 0x24a9b1
+PASS B4 image header read (H = slot +0x20) - 0024A7A8  mov rdi, qword ptr [r14 - 0x18]
+PASS B4 width u16 H+0x14 - 0024A7BF  movzx r15d, word ptr [rdi + 0x14]
+PASS B4 height u16 H+0x16 - 0024A7CA  movzx ebx, word ptr [rdi + 0x16]
+PASS B4 transfer builder - 0024A84A  call 0x24af50
+PASS B4 base starts at 0x3520 - 0024A728  mov dword ptr [rsp + 0xc8], 0x3520
+PASS B5 packed descriptor stored at slot +0x30 - 0024A99C  mov qword ptr [r14 - 8], rcx
+PASS B6 0024A710 has 8 direct call sites - ['00252877', '002528CC', '0025290D', '00252932', '00252965', '002529B6', '00252A46', '00252ABD']
+PASS B6 every site passes k in {0,1,2} - {'00252877': '1', '002528CC': '1', '0025290D': '0', '00252932': '1', '00252965': '2', '002529B6': '1', '00252A46': '1', '00252ABD': '1'}
+PASS B7 writers found (control: the request router's 0027F7DA) - 29 sites
+PASS B7 each writer follows a 0024A5A0 call - []
+PASS B8 0024A5A0 skips free slots (bit 5) - 0024A5B0  test byte ptr [r9 + 0x38], 0x20
+PASS B8 miss returns 0 (a null slot) - 0024A5E4  xor eax, eax
+PASS B8 hit returns the slot pointer - 0024A5E7  mov rax, r9
+PASS E1 type-2 drawer passes node +0x18 (the atlas slot) in r8 - 002437B9  mov r8, qword ptr [rdi + 0x18]
+PASS E1 into 002D9380 - 002437C2  call 0x2d9380
+PASS E2 emitter keeps r8 in rsi - 002D93CF  mov rsi, r8
+PASS E3 emitter reads slot +0x30 (descriptor) - 002D944A  mov rax, qword ptr [rsi + 0x30]
+PASS E3 emitter reads slot +0x38 format bits - 002D946D  mov ecx, dword ptr [rsi + 0x38]
+PASS E3 emitter reads slot +0x30 again (format 0x14 arm) - 002D948D  mov rax, qword ptr [rsi + 0x30]
+PASS S1 types 2/9: T = atlas[+0x20] + 0x30 - 0029F4F1  add r8, 0x30
+PASS S1 types 2/9: records at T + u16[T+0x10] - 0029F500  movzx eax, word ptr [r8 + 0x10]
+PASS S1 types 2/9: + entry*8 -> node +0x20 - 0029F50F  lea r8, [rcx + rdx*8]
+PASS S2 type 7: T = atlas[+0x20] + 0x30 - 0029F176  add r9, 0x30
+PASS S2 type 7: records at T + u16[T+0x10] - 0029F18D  movzx eax, word ptr [r9 + 0x10]
+PASS S2 type 7: + entry*8 - 0029F1B1  lea r9, [rcx + rdx*8]
+PASS S3 u16 +0 -> +0x4C - 0029F206  movzx eax, word ptr [r9 + rcx*8]
+PASS S3 u16 +2 -> +0x4E - 0029F20F  movzx eax, word ptr [r9 + rcx*8 + 2]
+PASS S3 u16 +4 ... - 0029F219  movzx eax, word ptr [r9 + rcx*8 + 4]
+PASS S3 ... & 0xFFF -> +0x50 - 0029F21F  and ax, r14w
+PASS S3 dword +4 ... - 0029F227  mov eax, dword ptr [r9 + rcx*8 + 4]
+PASS S3 ... >> 12 (& 0xFFF) -> +0x52 - 0029F22C  shr eax, 0xc
+PASS S3 r14w = 0xFFF - 0029F1EE  mov r14d, 0xfff
+PASS S4 byte 7 default opacity, types 2/9 - 0029F531  movzx ecx, byte ptr [r8 + rax*8 + 7]
+PASS S4 byte 7 default opacity, type 7 - 0029F1E0  movzx ecx, byte ptr [r9 + rax*8 + 7]
+PASS R1 002A0060 callers - ['001D7150', '0029F130', '0029F4C0']
+PASS R1 no drawer re-resolves - []
+PASS R1 control: 0029F130 calls 0024A610
+PASS C1 002432B0 direct call sites / functions - 113 sites, 108 functions
+PASS L1 buttonicon code 0 record decodes - (122, 100, 28, 28, 11)
+FAILS 0

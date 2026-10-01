@@ -1,0 +1,214 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": "0x120000",
+  "method": "Selected historical Ghidra contiguous extents checked against original bytes; historical names are not semantic acceptance. No fresh import.",
+  "bodies": [
+    {
+      "address": "0x16d6a0",
+      "length": 3,
+      "file_offset": 314528,
+      "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b",
+      "historical_name": "_guard_check_icall"
+    },
+    {
+      "address": "0x20e600",
+      "length": 10,
+      "file_offset": 973824,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+      "historical_name": "ImageAddress_ResolveRuntimePointer"
+    },
+    {
+      "address": "0x2f9860",
+      "length": 180,
+      "file_offset": 1936992,
+      "sha256": "dcaf8275a44ce35ca4710b7855823323204a9d003541abeb493009d4c592a480",
+      "historical_name": "FUN_002f9860"
+    },
+    {
+      "address": "0x2fd8d0",
+      "length": 149,
+      "file_offset": 1953488,
+      "sha256": "18f9e511ce022c0a531f119c270bed8f42d290360deb65296aa3b8342e599eb2",
+      "historical_name": "InventoryPackedCountClass_QueryChannel"
+    },
+    {
+      "address": "0x2fd970",
+      "length": 237,
+      "file_offset": 1953648,
+      "sha256": "035f67c81516a6d3293b17e073b461afacdbbebc3d9a1b2941d91b2478a60fbe",
+      "historical_name": "InventoryBitsetClass_QueryState"
+    },
+    {
+      "address": "0x309440",
+      "length": 30,
+      "file_offset": 2001472,
+      "sha256": "c842df2ad47a7a3fc7ddc292f81a9e8f0a4d6e80c1121e5f9d3ef50424550f2b",
+      "historical_name": "FUN_00309440"
+    },
+    {
+      "address": "0x309ec0",
+      "length": 102,
+      "file_offset": 2004160,
+      "sha256": "0c4d16ba4f1fe6b7a871a7381ee193cb9fc8bfc34c1097e7b613c79a71693c8b",
+      "historical_name": "BattleEncodedId_DispatchQueryMode0Value"
+    },
+    {
+      "address": "0x30ae30",
+      "length": 105,
+      "file_offset": 2008112,
+      "sha256": "6c94ab40e6a13fe623e84048f0d868a7d48dafc83a35e53f6f34d12281c42ee5",
+      "historical_name": "BattleEncodedId_DispatchQueryMode1"
+    },
+    {
+      "address": "0x30b0e0",
+      "length": 146,
+      "file_offset": 2008800,
+      "sha256": "02e230aa4ea37bd16117e13da2094a2882fa1884a1790c4584ba75e61bbd8ae6",
+      "historical_name": "BattleEncodedId_QueryMode0Positive"
+    },
+    {
+      "address": "0x30b6a0",
+      "length": 195,
+      "file_offset": 2010272,
+      "sha256": "f08dde010e2d60f01732fc03345721c726ea20f5901ef0768c1afd126dbd0344",
+      "historical_name": "InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState"
+    },
+    {
+      "address": "0x31c5d0",
+      "length": 8136,
+      "file_offset": 2079696,
+      "sha256": "2fdba6e9e4659adc6fce2e0a1db0ddaf958ffbcb5a308d7fb16532aa0ea2c1ab",
+      "historical_name": "FUN_0031c5d0"
+    },
+    {
+      "address": "0x31e9a0",
+      "length": 68,
+      "file_offset": 2088864,
+      "sha256": "c2864813f1ee2cd145df65e09dea4dabe93c2de1bf2af6141daa7740c78dd03e",
+      "historical_name": "FUN_0031e9a0"
+    },
+    {
+      "address": "0x31e9f0",
+      "length": 93,
+      "file_offset": 2088944,
+      "sha256": "e23130f0be576114641d708b9de841c9f3adec5c51eab8f7bad8f013b726b4fd",
+      "historical_name": "BattleDefinition_MapByte9ToRuntimeCategory"
+    },
+    {
+      "address": "0x322c50",
+      "length": 1025,
+      "file_offset": 2105936,
+      "sha256": "8a944ad6185050d17911f914a56145320f9f604d3f95eec59e86ef5a2777786d",
+      "historical_name": "BattleEncodedId_IsValidForClass"
+    },
+    {
+      "address": "0x323890",
+      "length": 83,
+      "file_offset": 2109072,
+      "sha256": "55d9fa6351240c8ebd197748bc3b3a8b3f75ba2d2fc2068ef0ee08fe90beddfb",
+      "historical_name": "FUN_00323890"
+    },
+    {
+      "address": "0x3241d0",
+      "length": 100,
+      "file_offset": 2111440,
+      "sha256": "4fa168d5c2cec635fca8d4368476bdb784a08ed378db6da1a35c8ffa02bf6bd0",
+      "historical_name": "FUN_003241d0"
+    },
+    {
+      "address": "0x35d330",
+      "length": 72,
+      "file_offset": 2345264,
+      "sha256": "8bf9158c558d4a875c746694a185f731eaefe08a3aa1a7ab9a0c117cbf594914",
+      "historical_name": "FUN_0035d330"
+    },
+    {
+      "address": "0x35d380",
+      "length": 73,
+      "file_offset": 2345344,
+      "sha256": "c53d6842aa770fe082853fe7c6814520c0a0cac83dc77bd3b1113683879bb38f",
+      "historical_name": "FUN_0035d380"
+    },
+    {
+      "address": "0x861ec0",
+      "length": 6,
+      "file_offset": 7607488,
+      "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+      "historical_name": "memset"
+    }
+  ],
+  "data": [
+    {
+      "address": "0x1eebcc0",
+      "length": 1320,
+      "file_offset": 31236800,
+      "sha256": "d7c1891017bcf9bbb4d07541a961885d18d7de06c264f5d2c1f2fa227d79a63a",
+      "label": "fifteen shipped descriptors"
+    },
+    {
+      "address": "0x31e598",
+      "length": 128,
+      "file_offset": 2087832,
+      "sha256": "11c7d9f52c1db5249b7ac4f60d66f0b1834a413c2d941d3168a5aa4def92f4c3",
+      "label": "query class arms"
+    },
+    {
+      "address": "0x323054",
+      "length": 128,
+      "file_offset": 2106964,
+      "sha256": "62f0b260e85afd945e2a33d4e3bb99127007cfde85f2d71a43ee3dd27e9e9cf9",
+      "label": "validator class arms"
+    },
+    {
+      "address": "0x31ea50",
+      "length": 36,
+      "file_offset": 2089040,
+      "sha256": "48e9fc6b8fe382abc244a2aff6098c6700a8697e45ef19b75ca648afaa970f9e",
+      "label": "equipment subgroup table"
+    },
+    {
+      "address": "0x31ea74",
+      "length": 27,
+      "file_offset": 2089076,
+      "sha256": "512a9f97c069453659277a310752da10a219f75a8dfe39842a72eeff5207e306",
+      "label": "equipment category byte map"
+    },
+    {
+      "address": "0x324234",
+      "length": 44,
+      "file_offset": 2111540,
+      "sha256": "9a1a60f9f3a677bde9568fdb16509182fcbb73df2debb833c6c51293dac665e4",
+      "label": "licence kind table"
+    },
+    {
+      "address": "0x324260",
+      "length": 27,
+      "file_offset": 2111584,
+      "sha256": "dfcd2619d4c52177c903e5ffefd25a4eb892e3f67e76dff07200dc6cf509ea2d",
+      "label": "licence kind byte map"
+    },
+    {
+      "address": "0x1eed270",
+      "length": 20,
+      "file_offset": 31242352,
+      "sha256": "cbc8238e029e7e2c901952fb4630a7bb38988b0d156d2fd96a64419cb497622f",
+      "label": "five-value gambit selector lookup"
+    },
+    {
+      "address": "0x1ceb638",
+      "length": 1,
+      "file_offset": 29140024,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "label": "empty string terminator"
+    }
+  ],
+  "substitutions": [
+    {
+      "kind": "import_target_bridge",
+      "iat": "0x008c2a60",
+      "original_thunk": "0x00861ec0",
+      "behavior": "host memset through Microsoft x64 ABI adapter; original thunk retained"
+    }
+  ],
+  "application_callee_substitutions": 0
+}

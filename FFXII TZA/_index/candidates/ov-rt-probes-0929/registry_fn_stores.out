@@ -1,0 +1,62 @@
+== 002FD150 InventoryPackedCountClass_MutateChannels (7 stores)
+    002FD1E9 mov byte ptr [r10], r8b
+    002FD20F mov byte ptr [r10], r8b
+    002FD22B mov byte ptr [r10], r8b
+    002FD298 mov word ptr [r10], r8w
+    002FD31A mov word ptr [r11], cx
+    002FD34B mov byte ptr [r9], cl
+    002FD3F1 mov word ptr [r10], r8w
+== 002FD420 InventoryBitsetClass_MutateState (1 stores)
+    002FD4E9 mov word ptr [r8], dx
+== 002FD8D0 InventoryPackedCountClass_QueryChannel (0 stores)
+== 002FD970 InventoryBitsetClass_QueryState (0 stores)
+== 003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState (5 stores)
+    003009C1 or dword ptr [rax + 4], 0x100
+    003009D4 or dword ptr [rax + 4], 0x80
+    003009E7 or dword ptr [rax + 4], 0x40
+    003009F7 or dword ptr [rax + 4], 1
+    00300B5A or dword ptr [rcx + 4], eax
+== 003047F0 FUN_003047f0 (1 stores)
+    0030482A mov word ptr [r8 + rcx - 2], r9w
+== 00308DE0 FUN_00308de0 (0 stores)
+== 00309440 FUN_00309440 (0 stores)
+== 003096F0 Equipment_CheckMatchingSecondaryPartnerSelectedOrOwned (0 stores)
+== 00309B60 Inventory_QueryEncodedItemDiscoveryBit (0 stores)
+== 00309EC0 BattleEncodedId_DispatchQueryMode0Value (0 stores)
+== 00309F30 Inventory_QueryEncodedItemStateByClass (0 stores)
+== 00309FB0 Inventory_QueryOwnedCountIncludingReservedActionItems (1 stores)
+    0030A089 mov qword ptr [r13 + rdi*8], rbp
+== 0030ADC0 BattleEncodedId_DispatchQueryMode3 (0 stores)
+== 0030AE30 BattleEncodedId_DispatchQueryMode1 (0 stores)
+== 0030B0E0 BattleEncodedId_QueryMode0Positive (0 stores)
+== 0030B270 BattleIdClassD_RefreshPrerequisiteRuntimeFlags (1 stores)
+    0030B461 or byte ptr [rdi + 0x59c8], 3
+== 0030B6A0 InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState (13 stores)
+    0030B6CB mov qword ptr [r8 + 8], rax
+    0030B6DC mov qword ptr [r8 + 0x20], rax
+    0030B6ED mov qword ptr [r8 + 0x30], rax
+    0030B6F1 mov dword ptr [r8 + 0x40], r9d
+    0030B710 mov qword ptr [rax], r11
+    0030B713 mov qword ptr [rax + 8], r11
+    0030B717 mov qword ptr [rax + 0x10], r11
+    0030B71F mov qword ptr [rax - 0x28], r11
+    0030B723 mov qword ptr [rax - 0x20], r11
+    0030B727 mov qword ptr [rax - 0x18], r11
+    0030B72B mov qword ptr [rax - 0x10], r11
+    0030B72F mov qword ptr [rax - 8], r11
+    0030B750 and byte ptr [rax], 0xf8
+== 0030DCB0 FUN_0030dcb0 (0 stores)
+== 0030DD10 FUN_0030dd10 (0 stores)
+== 0030DD70 FUN_0030dd70 (0 stores)
+== 0030DDC0 FUN_0030ddc0 (0 stores)
+== 0030DE20 FUN_0030de20 (0 stores)
+== 0030DE80 FUN_0030de80 (0 stores)
+== 0030DEE0 FUN_0030dee0 (0 stores)
+== 0030DF40 FUN_0030df40 (0 stores)
+== 0030FAA0 InventoryEquipment_RestoreTemporarySnapshotAndClearBackup (0 stores)
+== 0030FBE0 InventoryEquipment_SnapshotAndClearTemporaryState (4 stores)
+    0030FC24 movsd qword ptr [rax + 0x5a], xmm0
+    0030FC29 mov word ptr [rax + 0x62], cx
+    0030FC6F mov word ptr [rcx + rdx*2 + 0x4f84], ax
+    0030FCCF mov word ptr [rcx + rdx*2 + 0x5004], ax
+CONTROL 0030B6F1 listed: True

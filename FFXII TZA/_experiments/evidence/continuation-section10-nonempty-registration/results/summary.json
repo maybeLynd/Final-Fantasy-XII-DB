@@ -1,0 +1,35 @@
+{
+  "section": "SECTION-10",
+  "status": "locally validated; formal independent acceptance pending",
+  "native_assertions": 159,
+  "native_passed": 159,
+  "repeat_identical": true,
+  "mutants_rejected": 8,
+  "selected_body_records": 114,
+  "data_spans_verified": 3,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "original_exe_unchanged": true,
+  "source_sha256": "6df0406dd323c3b64dd2332e3c7901fc640d379ba24ad97df12f3654f6f7ffc3",
+  "application_substitutions": [
+    "0017D2E0 diagnostic formatter: empty output and counter"
+  ],
+  "import_bridges": [
+    "008C2A60 memset",
+    "008C2A68 memcpy: nonoverlapping only",
+    "008C2F70 bounded strncpy"
+  ],
+  "scope": "Original PRF0/1 normalization and lookup, full nonempty registration, A00 subtype0 nonzero embedded-pointer relocation, original compactor/refresh and teardown with synthetic data.",
+  "limitations": [
+    "No live FF12, OS IO, fresh Ghidra, Windows overlap-copy result or graphics output.",
+    "Only A00 subtype0 payload fixups are newly exercised; no promise for every PRF asset/subtype or real authored-data reachability.",
+    "Synthetic metadata/config selects a no-config-string branch. Optional .cm lookup, strstr/scanf, and priority override are not executed.",
+    "Known selected original function hashes are not whole-function or branch coverage counts.",
+    "Bad signatures, missing names, no free ticket, repeated mutated source and wrap cases establish scoped preconditions, not observed game failures.",
+    "No TEAM/L2/global score/history or reconstruction changes. New semantic production needs independent review."
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0"
+  }
+}

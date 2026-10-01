@@ -1,0 +1,31 @@
+PASS K1 commit 59ec09a95 publishes the sd7-sd107-closure-0930 record (README, checker, .out) - 59ec09a95
+PASS K2 the record's checker output ends FAILS 0
+PASS K3 the record states both answers (SD-7 CLOSED: slot 15 called nowhere; SD-107: kind 1 has no traced writer)
+PASS A1 no direct call/jmp targets 0017D1A0 - []
+PASS A2 no rip-relative reference names 0017D1A0
+PASS A3 the only image qword equal to 0017D1A0 is 008C57D8 = GameApplication vtable 008C5760 slot 15 (+0x78) - ['008C57D8'] vt=008C5760 GameApplication
+PASS A3c control: qword_sites finds PrimitiveRendererD3D11 (00D86960) slot 15 006CAB80 at 00D869D8 - ['00D869D8']
+PASS A4 001989D0 is `mov byte ptr [rcx + 0x39], dl / ret` (the +0x39 poll-gate setter)
+PASS A5 001989D0's direct callers are exactly 0017D1A0 (0017D1C5) and 001E0FB0 (001E0FD7) - [('0017D1A0', '0017D1C5'), ('001E0FB0', '001E0FD7')]
+PASS A6 001E0FB0 is called only at 002292AD (00228C70) and 00393D33 (003939B0), each with ecx = 0 (xor ecx, ecx) - [('00228C70', '002292AD'), ('003939B0', '00393D33'), '002292A4 xor ecx, ecx', '00393D31 xor ecx, ecx']
+PASS A6b 001E0FB0 forwards (ecx != 0) as dl and has no qword or rip reference
+PASS A7 slot 15 0017D1A0 forwards its own argument: movzx ebx, dl (0017D1AA) and calls 001989D0 at 0017D1C5 - call 0x1989d0
+PASS B1 image-wide immediate byte stores at [reg+0xA3] are exactly five (the four text builders 0/0/2/3 + 007E7401 = 1) - {'002A49CA': ('002A4830', 3), '002B3470': ('002B3400', 2), '002B3C40': ('002B3C30', 0), '002B3D78': ('002B3D50', 0), '007E7401': ('007E73F0', 1)}
+PASS B2 the only immediate 1 is in 007E73F0, which is none of the text-element builders (002B3C30/002B3D50/002A4830/002B3400)
+PASS B3 no rip reference names 009164D0 (column 2); control: 009164C0 has 1 lea, 009164C8 has 2 - (1, 2, 0)
+PASS B4 002AF960 indexes column 2 through the image base: 002AFB6C lea rdi -> 00120000; 002AFCB1 call [rdi+r9*8+0x7f64d0]
+PASS P1 the register rows the pointers cite are ANSWERED: SD-5, SD-6, SD-8, SD-9, SD-106, AU-1, AU-5, AV-6, AP-8, AP-9, GJ-7, GJ-8, GJ-11, BG-11 - []
+INFO register state now (SWE2-DATA restates; not a check): {'SD-7': 'PARTIAL', 'SD-107': 'OPEN'}
+PASS P2 the cited answer records exist (SD-5 census control P passes; SD-106 output ends FAILS 0) - {'sd5-display-requests-0930': True, 'sd106-measure-sites-0930': True, 'sd6-recorded-input-0930': True, 'sd8-dispatcher-mode-0930': True, 'sd9-input-deadline-0930': True}
+PASS P3a AU-1: 001DFA70 is `cmp dword ptr [rcx + 0x64], 0 / sete al / ret`
+PASS P3b AP-8: the repeat filter stores its word at frame + 8 + 2*set - 0035FC87  mov word ptr [r15 + r14*2 + 8], r10w
+PASS P3c 00607DA8 takes the thread start 005FE1F0 (lea rdx), and 005FE1F0 is `jmp 006106A0`
+PASS Z1 input-stack-device-channel-and-bindings.md: all 10 batch-19 pointer / boundary notes present - []
+PASS Z1 the-text-element-dispatch-table.md: all 8 batch-19 pointer / boundary notes present - []
+PASS Z2 the SD-7 answer note sits inside the SD-7 box item (input page section 5), citing the record and 59ec09a95
+PASS Z2 the SD-107 answer note sits inside the SD-107 box item (dispatch page section 7), citing the record and 59ec09a95
+PASS Z3 no batch-19 note strikes anything (pointers and answer notes only; no consumer-check needed) - []
+PASS Z4 both pages are LF on every line (as at HEAD before the edit) - {'input-stack-device-channel-and-bindings.md': 0, 'the-text-element-dispatch-table.md': 0}
+INFO batch-19 note lines: input-stack-device-channel-and-bindings.md:36, input-stack-device-channel-and-bindings.md:210, input-stack-device-channel-and-bindings.md:264, input-stack-device-channel-and-bindings.md:274, input-stack-device-channel-and-bindings.md:511, input-stack-device-channel-and-bindings.md:554, input-stack-device-channel-and-bindings.md:678, input-stack-device-channel-and-bindings.md:817, input-stack-device-channel-and-bindings.md:988, input-stack-device-channel-and-bindings.md:999, input-stack-device-channel-and-bindings.md:1015, the-text-element-dispatch-table.md:64, the-text-element-dispatch-table.md:484, the-text-element-dispatch-table.md:503, the-text-element-dispatch-table.md:529, the-text-element-dispatch-table.md:585, the-text-element-dispatch-table.md:644, the-text-element-dispatch-table.md:672, the-text-element-dispatch-table.md:732, the-text-element-dispatch-table.md:739
+PASSES 27
+FAILS 0

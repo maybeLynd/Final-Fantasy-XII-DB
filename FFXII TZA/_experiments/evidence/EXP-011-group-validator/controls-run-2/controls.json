@@ -1,0 +1,76 @@
+{
+  "start_unix": 1789087891.0369275,
+  "scope": "targeted callback controls, not a complete mutation campaign",
+  "cases": [
+    {
+      "name": "baseline",
+      "status": "MATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "b7ca2492d53e68e8158a4b8958c7f5379daccdd7e509aea847b33b899304d5a6",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\baseline-gqrhap1f\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\baseline\\run"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "wrong-event-id",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "17f4ed509e009e8b60f2584713dae7087d367b81e541046ddb0d0ed370e44749",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "5f4e1a7c65324252ce3966ec22ecc50ec26b8f5e1047f44076b18b29ad4256a3",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\wrong-event-id-u1oh2ag2\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\wrong-event-id\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "early-arm-b-flag",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "e8b67af06ca69bc32bbb386cf94d852f97e3f2783156178e6a32d482f5506195",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "3ed90da50d000d9dc46da2d90583edcb28d2acb32c0a47164c84b2870196cc67",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\early-arm-b-flag-kbc3jtb7\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\early-arm-b-flag\\run"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "status": "TARGETED_CONTROLS_PASSED",
+  "instrument_sha256": "4668effcd41a472727451de59f8ccfa20f2a22fc0c47064789b5fc100c5b0b98",
+  "end_unix": 1789087903.7908711,
+  "production_sources_unchanged": true
+}

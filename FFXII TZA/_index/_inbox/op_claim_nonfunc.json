@@ -1,0 +1,1 @@
+{"action": "claim", "task": "FRONTIER-REQ-SWE2-DATA-NONFUNCTION-ANNOTATION-EXPORT", "agent": "SWE2-DATA", "resources": [{"key": "note:astra-offline/nonfunction-annotation-export"}], "note": "new Ghidra script for non-function annotation state (symbols/DTM/comments/equates/ref-overrides); runs against GN160/161/162 certify projects"}

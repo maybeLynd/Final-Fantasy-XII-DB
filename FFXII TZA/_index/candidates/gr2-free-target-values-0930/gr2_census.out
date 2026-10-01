@@ -1,0 +1,14 @@
+CALL-family sites decoded: 16666842 | rows: 63432
+type 1 <- btlAtelSetUnitType    59814 calls
+type 1 <- setfreetargettype        18 calls
+type 3 <- btlAtelSetUnitType      297 calls
+type 3 <- setfreetargettype       315 calls
+type 4 <- btlAtelSetUnitType      369 calls
+type 4 <- setfreetargettype      2340 calls
+type 5 <- btlAtelSetUnitType      234 calls
+type 6 <- setfreetargettype        45 calls
+type 1: 360 distinct scripts in 492 language-folded files; top: monster_00 x8028, monster_01 x7569, monster_02 x6912, monster_03 x6183, monster_04 x5355, monster_05 x4230, monster_06 x1746, unique_monster_00 x1134, monster_07 x1125, trial_00 x918, monster_08 x864, monster_09 x738, lot_00 x720, monster_10 x639
+type 3: 23 distinct scripts in 29 language-folded files; top: disp_tama02 x63, disp_tama03 x63, disp_tama04 x63, disp_tama05 x63, disp_tama01 x63, npc_battle_00 x54, BASH x27, DAL_SOLDIER_A x27, DAL_SOLDIER_B x27, DAL_SOLDIER_C x27, THIRD_モーニ x18, ex_trial_03 x18, THIRD_ラーサー x9, THIRD_ガブラス x9
+type 4: 22 distinct scripts in 97 language-folded files; top: system_crystal_actor x2187, system_anchor_actor x117, monster_05 x72, monster_07 x45, monster_00 x45, unique_monster_00 x27, monster_06 x27, monster_01 x27, monster_03 x27, monster_02 x18, monster_04 x18, monster_16 x9, たからばこ x9, ダルマスカ兵士死体 x9
+type 5: 20 distinct scripts in 5 language-folded files; top: TWN_BANGA_A x18, TWN_CEEK_A x18, SND_MAN_A x18, SND_WOMAN_A x18, TWN_CEEK_B x18, SND_MAN_B x18, BASH x9, DAL_SOLDIER_A x9, PRISON_HUME_A x9, PRISON_HUME_B x9, PRISON_HUME_C x9, PRISON_BANGA_A x9, PRISON_BANGA_B x9, TWN_BANGA_B x9
+type 6: 3 distinct scripts in 3 language-folded files; top: BOSS_Dウォール x27, STAY_ボス武器 x9, STAY_ダイダロス x9

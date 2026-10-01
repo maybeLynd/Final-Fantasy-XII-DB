@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBREC-0922",
+ "note": "Published 5739a439a: hctg record +0x04 = {u16 group; u16 hdatFile} — hi histogram corpus-exact vs per-file record counts.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

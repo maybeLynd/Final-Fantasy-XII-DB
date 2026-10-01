@@ -1,0 +1,490 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "subjects": {
+  "pass": "0x25D9E0",
+  "wres": "0x25DF00"
+ },
+ "cases": [
+  {
+   "name": "gate-busy",
+   "ok": true,
+   "trace": "busy=1",
+   "exp": "busy=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "gate-idle-refuse",
+   "ok": true,
+   "trace": "busy=0",
+   "exp": "busy=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "gate-pslt",
+   "ok": true,
+   "trace": "busy=0 pslt=1 ~a5f=0",
+   "exp": "busy=0 pslt=1 ~a5f=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "gate-b10clear",
+   "ok": true,
+   "trace": "busy=0 pslt=0",
+   "exp": "busy=0 pslt=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "gate-b11bit8",
+   "ok": true,
+   "trace": "busy=0 gt3=1",
+   "exp": "busy=0 gt3=1",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "gate-b11bit8-b10",
+   "ok": true,
+   "trace": "busy=0",
+   "exp": "busy=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "gate-b13-taken",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~dreq1,d4=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~dreq1,d4=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "head-e400",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 ~e4000,1=0",
+   "exp": "busy=0 pslt=0 gt3=0 ~e4000,1=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "head-b11bit2",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0",
+   "exp": "busy=0 pslt=0 gt3=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fold2-idle",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fold2-focus",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=2162688 gres=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=2162688 gres=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fold2-rec",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 grec0=1074790400 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l740=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 grec0=40100000 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l740=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fold2-rec2",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 grec0=1074790400 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l740=0 grec1=1075314688 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l740=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 grec0=40100000 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l740=0 grec1=40180000 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l740=0 ~l170=0 ~l250=0 ~l820=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "fold2-slot1",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 grec0=1074790400 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l170=0 ~l250=0 ~l820=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 grec0=40100000 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~l170=0 ~l250=0 ~l820=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "deferred-dfr0",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "deferred-dreq",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~dreq1,d4=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~dreq1,d4=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "deferred-pck",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=2",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=2",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "deferred-dfa",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "deferred-dfb",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "deferred-latch",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=0 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 pck=0 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "drive-exit-a",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 grec0=1074790400 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 grec0=40100000 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "drive-exit-b",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 grec0=1074790400 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 grec0=40100000 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "drive-fault",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 grec5=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 grec5=0",
+   "diffs": [],
+   "faults": [
+    [
+     "MEM",
+     "0x18",
+     "access=19",
+     "rip=25df21"
+    ],
+    [
+     "EMU",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     "rip=25df21"
+    ]
+   ]
+  },
+  {
+   "name": "audio-base",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "audio-b28",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "audio-fold1",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 grec0=1074790400 x98640100000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 grec0=40100000 x98640100000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "roster-settle",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 x98640280000=0 ~a3aa=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 x98640280000=0 ~a3aa=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "roster-active",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 x98640280000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 x98640280000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "roster-busy",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 x98640280000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 x98640300000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 x98640280000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 x98640300000=0 ~xd1=0 gdda=1 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "b17-mode",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 g48f=0 gefb=35013760 gf64=35013248 gefb=35013760 gf64=35013248 ~xaa70=0 g6100=0 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 gd60=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 g48f=0 gefb=35013760 gf64=35013248 gefb=35013760 gf64=35013248 ~xaa70=0 g6100=0 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 gd60=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "b17-clear",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 g48f=0 gefb=35013760 gf64=35013248 gefb=35013760 gf64=35013248 ~xaa70=0 g6100=0 g8f0=0 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 g860=0 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 gd60=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 g48f=0 gefb=35013760 gf64=35013248 gefb=35013760 gf64=35013248 ~xaa70=0 g6100=0 g8f0=0 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 g860=0 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 gd60=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "b17-t610",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 g48f=0 gefb=35013760 gf64=35013248 gefb=35013760 gf64=35013248 ~xaa70=1 g6101=1 gd60=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 g48f=0 gefb=35013760 gf64=35013248 gefb=35013760 gf64=35013248 ~xaa70=1 g6101=1 gd60=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "b10-20",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 gb40=1 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 gb40=1 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "b10-20-keep",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 gb40=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 gb40=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "chain-fd2",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=1 xe406 xe50ff ~x830=0 ~xa702,8,1=0 ~x77b=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=1 xe406 xe50ff ~x830=0 ~xa702,8,1=0 ~x77b=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "chain-77b",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=1 xe406 xe50ff ~x830=0 ~xa702,8,1=0 ~x77b=1 ~x8699=0 gd0=31 gefb=35013760 gf64=35013248 gda07=35013760 gefb=35013760 gf64=35013248 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=1 xe406 xe50ff ~x830=0 ~xa702,8,1=0 ~x77b=1 ~x8699=0 gd0=31 gefb=35013760 gf64=35013248 gda07=35013760 gefb=35013760 gf64=35013248 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x366=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "chain-clf",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x0960,0=0 ~x366=0 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=0 ~xe7d=0 xa801 g8f0=1 g7c2=0 g48f=0 gefb=35013760 gf64=35013248 ~xb710,1=0 ~xfd22=0 ~x1c41,2=0 ~x4a9=0 ~x9fb=0 ~x341=0 ~x0960,0=0 ~x366=0 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "chain-x1a3",
+   "ok": true,
+   "trace": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=1 ~lc=0",
+   "exp": "busy=0 pslt=0 gt3=0 fh=0 dfr=1 ~audio=0 ~icb=0 ~icc0=0 ~icd=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf0,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icf1f,1,0=0 ~ice=0 gefb=35013760 gf64=35013248 ~icg1=0 ~ich=0 ~ici0,1,0=0 ~icj=0 ~ickb=0 ~ickc=0 ~x1a31=1 ~lc=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind0",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind1",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind1-interp1",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 g760 ~interp40100000,40380000=1 g770=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 g760 ~interp40100000,40380000=1 g770=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind3",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 rc=0 ~xbf61=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 rc=0 ~xbf61=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind3-miss",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 rc=0 ~xbf61=255 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 rc=0 ~xbf61=255 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind4",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 gc050=0 ~xb2a=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 gc050=0 ~xb2a=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind4-miss",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 gc050=255 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 gc050=255 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind5",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 ~x74b=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 ~x74b=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind5-stop",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 ~x74b=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 ~x74b=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind6",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 rc=1077936128 gb642=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 rc=1077936128 gb642=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind6-proceed",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 rc=1077936128 gb642=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 rc=1077936128 gb642=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind7",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 ~x742=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 ~x742=0 ~xd1=0 gdda=1 g760 ~interp40100000,40380000=0 ~xd3=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-kind8",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-preamble",
+   "ok": true,
+   "trace": "g4a1 ~x6f0=0 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "g4a1 ~x6f0=0 ~xd1=0 gdda=1 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-xd1-exit",
+   "ok": true,
+   "trace": "~xd1=1 ~xde8=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "~xd1=1 ~xde8=0 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-settle-cb",
+   "ok": true,
+   "trace": "g4a1 ~xd1=0 gdda=1 g9b8=0 cb3=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "g4a1 ~xd1=0 gdda=1 g9b8=0 cb3=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-settle-row",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 g9b8=0 g97b=1079508992 ~xef0=0 ~x8b0=1 ~xa70=3 ~x81e=0 ~x5031=0 ~x5751=0",
+   "exp": "~xd1=0 gdda=1 g9b8=0 g97b=1079508992 ~xef0=0 ~x8b0=1 ~xa70=3 ~x81e=0 ~x5031=0 ~x5751=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-settle-x310",
+   "ok": true,
+   "trace": "~xd1=0 gdda=1 g9b8=0 ~x310=0",
+   "exp": "~xd1=0 gdda=1 g9b8=0 ~x310=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-settle-800",
+   "ok": true,
+   "trace": "g4a1 ~xd1=0 gdda=1 g550=1077936128 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "g4a1 ~xd1=0 gdda=1 g550=1077936128 g9b8=0 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  },
+  {
+   "name": "wres-settle-800miss",
+   "ok": true,
+   "trace": "g4a1 ~xd1=0 gdda=1 g550=1077936128 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "exp": "g4a1 ~xd1=0 gdda=1 g550=1077936128 g97b=0 ~x81e=0 ~x5030=0 ~x5750=0",
+   "diffs": [],
+   "faults": []
+  }
+ ],
+ "mutants": {
+  "killed": 46,
+  "total": 46
+ },
+ "pass": true
+}

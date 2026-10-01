@@ -1,0 +1,15 @@
+# flag-selected reflection traversal adapters - EC-7 family C
+# # lea member descriptor; call 0063E2E0 with r8b=1 or 0 selected by the
+# # caller's flag; return 1.
+address	targets
+00584750	0063E2E0
+005849B0	0063E2E0
+00584C20	0063E2E0
+00584EC0	0063E2E0
+005A1140	0063E2E0
+005A1650	0063E2E0
+005A17F0	0063E2E0
+005A1C60	0063E2E0
+005A22A0	0063E2E0
+005A27C0	0063E2E0
+00674CD0	0063E2E0

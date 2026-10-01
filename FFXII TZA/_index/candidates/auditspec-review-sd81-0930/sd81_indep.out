@@ -1,0 +1,32 @@
+raw rel sites to the six: 213; verified on an owner instruction boundary: 213
+unverified raw hits by kind: {}
+verified by kind: {'call': 213}
+owners: 99; owners via .pdata only: 0; sites: 213
+(owner, body) pairs: 170
+TSV rows: 99; owners not in TSV: []; TSV rows not an owner: []
+non-call control transfers into the six: []
+smallest owners (listed size): ['001AEF70=134', '001F5B80=134', '001A44F0=155']
+rawcalls.json sites to the six: 213; = verified call sites: True; only in rawcalls: 0; only here: 0
+refs to 0016D6D0 inc: rip 0 (raw-only 65), DIR64 relocs 0
+refs to 0016D720 dec: rip 0 (raw-only 24), DIR64 relocs 0
+refs to 0016D780 rotL: rip 0 (raw-only 2), DIR64 relocs 0
+refs to 0016D7E0 rotR: rip 0 (raw-only 2), DIR64 relocs 0
+refs to 0016D840 ins: rip 0 (raw-only 90), DIR64 relocs 0
+refs to 0016DA60 era: rip 0 (raw-only 30), DIR64 relocs 0
+tags: 008F4120='EASTL map' 008F3CB0='EASTL set'
+K1: 001FDC10 head and the call to 001FC420
+   001FDC10  mov qword ptr [rsp + 0x10], rbx
+   001FDC15  mov dword ptr [rsp + 0x18], r8d
+   001FDC1A  push rdi
+   001FDC2D  call 0x1fc420
+   001FDCA0  call 0x1fc9f0
+K1/K2: 001FC420 sites
+   001FC487  lea rdx, [rip + 0x6f7c92]
+   001FC4E8  call 0x1fbef0
+   001FC55C  lea rax, [rbx + 0x28]
+   001FC487 lea target 008F4120 = 'EASTL map'
+B5 spot-check: node-size immediates and [reg+8] byte stores in insert-unique bodies I01 00199DB0 / I20 001FCB40
+  00199DB0 size 341: imm=[]
+     byte [+8] stores=['00199E99 byte ptr [rsi + 8], 1', '00199ED6 byte ptr [rsi + 8], 1', '00199EDC byte ptr [rsi + 8], 0']
+  001FCB40 size 404: imm=[]
+     byte [+8] stores=['001FCC35 byte ptr [rsi + 8], 1', '001FCCAA byte ptr [rsi + 8], 1', '001FCCB3 byte ptr [rsi + 8], 0']

@@ -1,0 +1,91 @@
+1 rip-relative operands into the pool / list record / gap:
+   0032E090 mov rbx, qword ptr [rip + 0x1f97129]         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032E460 lea rax, [rip + 0x1f94d71]                   -> 022C31D8  slot 0 +0x18
+   0032E4A3 lea rax, [rip + 0x1f94d16]                   -> 022C31C0  slot 0 +0x0
+   0032E4AA mov qword ptr [rip + 0x1f94d27], r8          -> 022C31D8  slot 0 +0x18
+   0032E4B1 mov qword ptr [rip + 0x1f96d18], rax         -> 022C51D0  list/gap +0x10 from 022C51C0
+   0032E4B8 mov qword ptr [rip + 0x1f96c91], r8          -> 022C5150  slot 63 +0x10
+   0032E4BF mov qword ptr [rip + 0x1f96cfa], r8          -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032E4C6 mov qword ptr [rip + 0x1f96cfb], r8          -> 022C51C8  list/gap +0x8 from 022C51C0
+   0032E4DF lea rdx, [rip + 0x1f94cda]                   -> 022C31C0  slot 0 +0x0
+   0032E536 cmp qword ptr [rip + 0x1f96c83], rbx         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032E568 cmp qword ptr [rip + 0x1f96c50], 0           -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032E5A1 lea rax, [rip + 0x1f94c18]                   -> 022C31C0  slot 0 +0x0
+   0032E634 mov dword ptr [rip + 0x1f96b9e], ecx         -> 022C51D8  list/gap +0x18 from 022C51C0
+   0032E63D mov dword ptr [rip + 0x1f96b99], edx         -> 022C51DC  list/gap +0x1C from 022C51C0
+   0032E6EB lea rax, [rip + 0x1f94ace]                   -> 022C31C0  slot 0 +0x0
+   0032E88D cmp qword ptr [rip + 0x1f9693c], rbx         -> 022C51D0  list/gap +0x10 from 022C51C0
+   0032E8BB cmp qword ptr [rip + 0x1f9690d], 0           -> 022C51D0  list/gap +0x10 from 022C51C0
+   0032E990 mov rdx, qword ptr [rip + 0x1f96839]         -> 022C51D0  list/gap +0x10 from 022C51C0
+   0032E9AE mov rcx, qword ptr [rip + 0x1f9680b]         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032E9B5 mov qword ptr [rip + 0x1f96814], rax         -> 022C51D0  list/gap +0x10 from 022C51C0
+   0032E9CC mov qword ptr [rip + 0x1f967ed], rdx         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032E9DA mov qword ptr [rip + 0x1f967e7], rdx         -> 022C51C8  list/gap +0x8 from 022C51C0
+   0032E9EB mov qword ptr [rip + 0x1f967ce], rdx         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032EA1A mov rax, qword ptr [rip + 0x1f967a7]         -> 022C51C8  list/gap +0x8 from 022C51C0
+   0032EA21 mov qword ptr [rip + 0x1f967a0], rdx         -> 022C51C8  list/gap +0x8 from 022C51C0
+   0032EAA7 mov qword ptr [rip + 0x1f96732], rdx         -> 022C51E0  list/gap +0x20 from 022C51C0
+   0032EAE0 mov qword ptr [rip + 0x1f966f5], 0           -> 022C51E0  list/gap +0x20 from 022C51C0
+   0032EC4B mov rax, qword ptr [rip + 0x1f9656e]         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032EC59 mov qword ptr [rip + 0x1f96560], rax         -> 022C51C0  list/gap +0x0 from 022C51C0
+   0032EC60 mov rax, qword ptr [rip + 0x1f96561]         -> 022C51C8  list/gap +0x8 from 022C51C0
+   0032EC6B mov qword ptr [rip + 0x1f96556], rax         -> 022C51C8  list/gap +0x8 from 022C51C0
+   0032ECA2 mov rax, qword ptr [rip + 0x1f96527]         -> 022C51D0  list/gap +0x10 from 022C51C0
+   0032ECBE mov qword ptr [rip + 0x1f9650b], rcx         -> 022C51D0  list/gap +0x10 from 022C51C0
+2 rip-relative stores in the module:
+   32E453 mov dword ptr [rip + 0x1bbf03b], 1           -> 01EED498 OUTSIDE
+   32E4AA mov qword ptr [rip + 0x1f94d27], r8          -> 022C31D8 inside pool/list/gap
+   32E4B1 mov qword ptr [rip + 0x1f96d18], rax         -> 022C51D0 inside pool/list/gap
+   32E4B8 mov qword ptr [rip + 0x1f96c91], r8          -> 022C5150 inside pool/list/gap
+   32E4BF mov qword ptr [rip + 0x1f96cfa], r8          -> 022C51C0 inside pool/list/gap
+   32E4C6 mov qword ptr [rip + 0x1f96cfb], r8          -> 022C51C8 inside pool/list/gap
+   32E634 mov dword ptr [rip + 0x1f96b9e], ecx         -> 022C51D8 inside pool/list/gap
+   32E63D mov dword ptr [rip + 0x1f96b99], edx         -> 022C51DC inside pool/list/gap
+   32E947 mov dword ptr [rip + 0x1bbeb4b], edx         -> 01EED498 OUTSIDE
+   32E9B5 mov qword ptr [rip + 0x1f96814], rax         -> 022C51D0 inside pool/list/gap
+   32E9CC mov qword ptr [rip + 0x1f967ed], rdx         -> 022C51C0 inside pool/list/gap
+   32E9DA mov qword ptr [rip + 0x1f967e7], rdx         -> 022C51C8 inside pool/list/gap
+   32E9EB mov qword ptr [rip + 0x1f967ce], rdx         -> 022C51C0 inside pool/list/gap
+   32EA21 mov qword ptr [rip + 0x1f967a0], rdx         -> 022C51C8 inside pool/list/gap
+   32EAA7 mov qword ptr [rip + 0x1f96732], rdx         -> 022C51E0 inside pool/list/gap
+   32EAE0 mov qword ptr [rip + 0x1f966f5], 0           -> 022C51E0 inside pool/list/gap
+   32EC59 mov qword ptr [rip + 0x1f96560], rax         -> 022C51C0 inside pool/list/gap
+   32EC6B mov qword ptr [rip + 0x1f96556], rax         -> 022C51C8 inside pool/list/gap
+   32ECBE mov qword ptr [rip + 0x1f9650b], rcx         -> 022C51D0 inside pool/list/gap
+3 external callers of module entries:
+   0032E000  sites 2, outside the module 2 ['001CD5B2 E8', '001D4731 E8']; relocated pointers []
+   0032E020  sites 3, outside the module 3 ['001D4749 E8', '001D475C E8', '00240937 E8']; relocated pointers []
+   0032E030  sites 3, outside the module 3 ['001D477E E8', '001D4791 E8', '00240948 E8']; relocated pointers []
+   0032E040  sites 11, outside the module 11 ['0022A460 E8', '0022AE79 E8', '0022AFB5 E8', '0022B055 E8', '0022B7A9 E8', '0022B870 E8', '0022BB03 E8', '0022BD53 E8']; relocated pointers []
+   0032E070  sites 3, outside the module 0 []; relocated pointers []
+   0032E2F0  sites 1, outside the module 0 []; relocated pointers []
+   0032E330  sites 3, outside the module 0 []; relocated pointers []
+   0032E370  sites 2, outside the module 0 []; relocated pointers []
+   0032E3B0  sites 2, outside the module 0 []; relocated pointers []
+   0032E3F0  sites 2, outside the module 2 ['00330744 E8', '00331A2B E8']; relocated pointers []
+   0032E400  sites 71, outside the module 71 ['00249296 E8', '0024AB93 E9', '0024AC4C E8', '00259DFE E8', '00268762 E8', '00268814 E8', '002E61A8 E8', '002E6776 E8']; relocated pointers []
+   0032E450  sites 1, outside the module 0 []; relocated pointers []
+   0032E4D0  sites 15, outside the module 15 ['00280359 E8', '00291E4A E8', '002CEC32 E8', '002E6290 E8', '002FC3FC E8', '002FCF4F E8', '003B1386 E8', '003B13C3 E8']; relocated pointers []
+   0032E520  sites 27, outside the module 27 ['0022B73C E8', '0022B83C E8', '0024ACAA E8', '00262AF2 E8', '00262B0D E8', '00262B1E E8', '002FC408 E8', '0031460E E8']; relocated pointers []
+   0032E590  sites 4, outside the module 4 ['002FC426 E8', '003B13AF E8', '003B17BD E8', '003B199D E8']; relocated pointers []
+   0032E620  sites 51, outside the module 50 ['002492F3 E8', '0024AC9F E8', '00259E6E E8', '00268809 E8', '0026883E E8', '00291D04 E8', '002C900B E8', '002E6277 E8']; relocated pointers []
+   0032E780  sites 2, outside the module 2 ['003EAE4C E8', '003EAF9A E8']; relocated pointers []
+   0032E7B0  sites 16, outside the module 16 ['00330FE5 E8', '003310BA E8', '00331140 E8', '003311CC E8', '00331280 E8', '0033133F E8', '003313D9 E8', '00331499 E8']; relocated pointers []
+   0032E7C0  sites 1, outside the module 0 []; relocated pointers []
+   0032E870  sites 4, outside the module 0 []; relocated pointers []
+   0032E990  sites 1, outside the module 0 []; relocated pointers []
+   0032EA50  sites 1, outside the module 1 ['00342DE3 E8']; relocated pointers []
+   0032EA90  sites 1, outside the module 1 ['0036944C E8']; relocated pointers []
+   0032EAE0  sites 1, outside the module 1 ['0022A3D5 E8']; relocated pointers []
+   0032EAF0  sites 1, outside the module 1 ['003694D6 E8']; relocated pointers []
+   0032EB10  sites 1, outside the module 1 ['003694DD E8']; relocated pointers []
+   0032EB40  sites 2, outside the module 2 ['0033048B E8', '003EA85B E8']; relocated pointers []
+   0032EC20  sites 0, outside the module 0 []; relocated pointers []
+   0032EC40  sites 6, outside the module 0 []; relocated pointers []
+   0032ECE0  sites 1, outside the module 1 ['0034298D E9']; relocated pointers []
+   0032ED20  sites 1, outside the module 1 ['003420DD E9']; relocated pointers []
+   0032ED70  sites 5, outside the module 5 ['00306C5D E8', '0035230B E8', '003530D6 E8', '003535AD E8', '003CA086 E8']; relocated pointers []
+4 stale-rcx callees:
+   0046DD50 (.pdata root 0046DD50): 61 instructions; first rcx use: 0046DD59 mov ecx, dword ptr [rip + 0x2838309]
+   003EADD0 (.pdata root None): 151 instructions; first rcx use: 003EADD0 lea rcx, [rip + 0x2773309]
+   003EB050 (.pdata root None): 167 instructions; first rcx use: 003EB0D0 xor ecx, ecx

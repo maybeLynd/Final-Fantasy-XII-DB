@@ -1,0 +1,40 @@
+# sites 212 immediate 162 computed 50 callers 103
+# se000.seb filled slots 123 max 126
+index	sites	in_se000	owners
+0x01	9	yes	 6, UI 3
+0x02	21	yes	 12, UI 8, Script_VM_Native_Bridge 1
+0x03	34	yes	 21, UI 13
+0x04	10	yes	 6, UI 4
+0x05	21	yes	 13, UI 8
+0x08	1	yes	UI 1
+0x0A	7	yes	UI 4,  3
+0x15	1	yes	UI 1
+0x17	2	yes	 2
+0x18	1	yes	 1
+0x1A	1	yes	 1
+0x25	11	yes	 8, UI 3
+0x27	2	yes	 1, Save_Load_Settings 1
+0x28	1	yes	 1
+0x29	4	yes	 4
+0x2A	1	yes	 1
+0x2B	1	yes	 1
+0x2C	1	yes	 1
+0x30	1	yes	 1
+0x37	1	yes	 1
+0x38	2	yes	UI 2
+0x42	4	yes	Save_Load_Settings 4
+0x43	1	yes	Save_Load_Settings 1
+0x48	1	yes	UI 1
+0x4A	1	yes	UI 1
+0x4C	2	yes	 1, UI 1
+0x4D	4	yes	 4
+0x4E	1	yes	 1
+0x50	1	yes	 1
+0x51	7	yes	 7
+0x53	1	yes	 1
+0x55	1	yes	UI 1
+0x56	1	yes	UI 1
+0x59	1	yes	 1
+0x5B	1	yes	 1
+0x5C	1	yes	 1
+0x6C	1	yes	 1

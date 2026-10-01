@@ -1,0 +1,16 @@
+[
+  {
+    "argument": "--fault-zero-based-mapping",
+    "returncode": 1,
+    "expected": "Source literal/operation mapping discriminator",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "51822bcc26520527ca6d67132eb02563f541f7b7e952eca58f38d2f87653588b"
+  },
+  {
+    "argument": "--fault-ignore-shared-tail",
+    "returncode": 1,
+    "expected": "Directory-bound bytecode binding",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "c900689fa45110524687333bdd4354e0c88094ffab6031d51b8617fecc98a256"
+  }
+]

@@ -1,0 +1,14 @@
+PASS  R 00409FE0 <- only the thunk 0041E580; 0041E580 <- 002E4DB4 002E4EFA 003DC371 003DD8AB; no jcc, pointer or rip reference to either
+PASS  R2 each registering completion is taken by a lea before a requester site: 003DD850 at 003DDA83 -> call 003DDAB9; 003DC340 at 003DC650 -> call 003DC683; 002E4D20 at 002EADA2 -> call 002EAE08; 002E4E50 at 002E6FB3 -> call 002E700C
+PASS  M1 motion-cache submit: state 1 only; handle stored; slot address as the argument; state 2 after the call
+PASS  M2 completion: state 3, unpin, register
+PASS  M3 release by id: refcount -1; at 0 the sweep flag 02B58170 is raised
+PASS  M4 in the twelve functions that address the table, state 4 is written only from state 3 (003DC478 003DC6DA 003DC752)
+PASS  M5 drain: state-4 slots released, freed, cleared
+PASS  S name-binding completion: unpin; register unless +0x18 bit 4 (then bit 8); 002EA6E0(record, 3); bit 2
+PASS  L1 per-lane completion: loaded bit set, pending bit cleared, register only on a matching node generation, else 002EAFA0
+PASS  L2 release request: requested bit; linked onto 0215FD90 only when loaded
+PASS  L3 sweep: a lane is released only when requested AND loaded
+PASS  U 0041E490 <- 002E6635 002E698C 002E6DDD 002E6E6F 003DC522 003DD3DB 003DD471 003DD882
+PASS  K sensitivity: each scanner finds a known positive - the call scan 003DDAB9, the rip scan 003DDA83 (lea of 003DD850), the pointer scan .rdata 008C31C0 -> 0016D6A0
+FAILS 0

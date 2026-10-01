@@ -1,0 +1,8 @@
+PASS  G 0069E6F0 returns the static 02E4AFF0 (00691240 under guard 02E4B090); its +0x08 / +0x18 / +0x20 / +0x28 feed 006A0310
+PASS  C 006A0310: +0x68 btAxisSweep3, +0x70 btGhostPairCallback, +0x60 btDiscreteDynamicsWorld, +0xB8 the array size
+PASS  T 006A5B10: destroy+free +0x60, delete +0x68 / +0x70, free the +0xA0 / +0xB0 arrays
+PASS  D 00691DF0: 006A5B10, then the four counted arrays
+PASS  Q the --patch generator equals the store (name, ctype, meaning) for every re-cut row - an amendment made to the rows and not here fails
+PASS  W no row calls the 02E4AFF0 static a world description
+PASS  S +0x60..+0xE7 re-cut; the type still tiles 0xE8
+FAILS 0

@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-120",
+ "result_refs": [
+  "commit:5587676f7"
+ ],
+ "note": "batch-120 tail: seal commit + sealed resume landed (5587676f7); package sealed end-to-end"
+}

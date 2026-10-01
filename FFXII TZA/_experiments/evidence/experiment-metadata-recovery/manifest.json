@@ -1,0 +1,45 @@
+{
+  "method": "Historical metadata recovery only; no experiment rerun.",
+  "files": {
+    "check.py": {
+      "bytes": 3627,
+      "sha256": "69768c80e65d83f2a602f3196ce7231480a22b8a09ccf15e449b4cbf6be23f76"
+    },
+    "consumer-checks.json": {
+      "bytes": 10657,
+      "sha256": "b308b4bd3801e81e6c300a5d4f851497eaa2ba0afadeb9d87791807744b89d00"
+    },
+    "consumer_controls.py": {
+      "bytes": 3486,
+      "sha256": "bff0f8113480cf36b84aab06203e7c022ef9e86b4792984f0ec8cae362ee8b62"
+    },
+    "metadata-check.json": {
+      "bytes": 18277,
+      "sha256": "1a920124815e8ae602dbd69180d6e3c6732b91b290d0217dbee964890fab3ecc"
+    },
+    "newline-controls.json": {
+      "bytes": 24326,
+      "sha256": "e76c662155d600691fe087cee3a977a2cc8631f57feca1448b833c7ae892e0fd"
+    },
+    "newline_controls.py": {
+      "bytes": 1675,
+      "sha256": "6b76f30a01dcff4cf7e95c2d239b0bd9f9b3b748ddaa9276888eb40057bc929c"
+    },
+    "publication-normalization.json": {
+      "bytes": 15067,
+      "sha256": "dfca5addc3591fae36730891b275b4a93524e79f3eb142a74834af5890633164"
+    },
+    "README.md": {
+      "bytes": 6444,
+      "sha256": "f1ee23f5555a207d70b66c1b048a3a5e07046b0e19c3700eba6fd6ffe3a97c76"
+    },
+    "recover.py": {
+      "bytes": 15036,
+      "sha256": "9f6e80cea0192ca3b5a64c8fa821dc64f81edbdb3ad053acc0f6aa2c050be583"
+    },
+    "recovery.json": {
+      "bytes": 59148,
+      "sha256": "845536173e8043a632c17c60c33e09e318e38ba76928519d8bbbc25436831ca2"
+    }
+  }
+}

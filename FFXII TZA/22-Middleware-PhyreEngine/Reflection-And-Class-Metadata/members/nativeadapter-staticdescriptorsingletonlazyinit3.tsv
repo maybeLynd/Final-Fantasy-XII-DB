@@ -1,0 +1,10 @@
+# NativeAdapter.StaticDescriptorSingletonLazyInit3 - EC-7 family C
+# TLS-indexed init guard via _Init_thread_header 008092FC; on first pass
+# # tag two member rip slots with |1 and register teardown via
+# # _Init_thread_footer-shaped 0080929C; return the member descriptor
+# # address. Third lazy-init spelling: no 0062FF50/006301F0 helper call.
+address	targets
+0063B5E0	0080929C,008092FC
+0063B780	0080929C,008092FC
+0067F0C0	0080929C,008092FC
+006B5A20	0080929C,008092FC

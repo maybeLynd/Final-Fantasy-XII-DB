@@ -1,0 +1,7 @@
+SURVIVES  D0  2859 B, 735 instructions
+SURVIVES  D2  {'002FF7BD': 'mov r8d, 0x270f', '002FF7C3': 'mov eax, 0x3b9aca00', '002FF7F5': 'mov r9d, 0x7fff', '002FF817': 'mov r9d, 0x3e7', '002FF829': 'mov r15d, 0x63', '002FF8D6': 'mov r11d, 0xff'}
+SURVIVES  D3  one cmove picks the cap; store at 002FF7E2
+SURVIVES  D4  conditional recomputation overwrites [rsi] at 002FF805
+SURVIVES  D5  displacement pairs [(('0x68',), ('0x78',)), (('0x68',), ('0x78',)), (('0x68',), ('0x78',))]
+SURVIVES  D7  cancel called; guards ['test edi, edi', 'jne 0x2ffa45', 'cmp dword ptr [rsp + 0x64], ebp', 'je 0x2ffa45', 'mov eax, dword ptr [rsi + 0x18]', 'xor eax, dword ptr [rsp + 0x68]']; tail or dword ptr [r14 + 4], 0x200000 / call 0x307d10
+FAILS 0

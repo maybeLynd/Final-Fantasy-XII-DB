@@ -1,0 +1,52 @@
+how-a-character-turns.md
+  line backticks=5, paragraph backticks=40, paragraph lines=10
+  checker blanks span: '`](../../_index/ADDRESS-INDEX.md); `'
+  CommonMark pairing puts the link inside a code span: False  -> REAL LINK blanked
+world-loot-pickups-the-ten-slot-pool-and-the-despawn.md
+  line backticks=80, paragraph backticks=104, paragraph lines=8
+  checker blanks span: '` agreeing that four entries is its whole width — so every shipped byte gives the same answer as the passthrough this ro'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+the-shared-command-state-word.md
+  line backticks=15, paragraph backticks=196, paragraph lines=55
+  checker blanks span: '`](../../_index/ADDRESS-INDEX.md), `'
+  CommonMark pairing puts the link inside a code span: False  -> REAL LINK blanked
+EXP-156-broadcast-wrappers-exec.md
+  line backticks=2, paragraph backticks=56, paragraph lines=16
+  checker blanks span: '`call q[row+0x50](id)`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+EXP-173-occupancy-22F830-exec.md
+  line backticks=2, paragraph backticks=18, paragraph lines=12
+  checker blanks span: '`|local.y| < f[0x1CEBBA8](=1.0)`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+EXP-198-unlink-carrier-family-exec.md
+  line backticks=2, paragraph backticks=92, paragraph lines=22
+  checker blanks span: '`d[obj+0xDD0] = 0032A150() − int(f[01DFE0B8](=1.0) × f[01CEBCAC](=-30.0)) × 5`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+EXP-198-unlink-carrier-family-exec.md
+  line backticks=2, paragraph backticks=92, paragraph lines=22
+  checker blanks span: '`d[obj+0xDD0] = 0032A150() − int(f[01DFE0B8](=1.0) × f[01CEBCAC](=-30.0)) × 5`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+EXP-216-display-list-append-exec.md
+  line backticks=14, paragraph backticks=76, paragraph lines=5
+  checker blanks span: '`q[02EBEFE0](slot1 cursor cell) = q[02EBEFD8]`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+contract-edits.md
+  line backticks=2, paragraph backticks=30, paragraph lines=18
+  checker blanks span: '`outf = xmm6 + f[0x1CEBBA7] - f[0x8C5F6C](=0.1f)`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+AUDIT-LOG.md
+  line backticks=14, paragraph backticks=96, paragraph lines=5
+  checker blanks span: '`skinObj->vtbl[0xD0](rdx = [r12+0x6C0] palette, r8d = movsx word[part+0x8A])`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+OPEN-QUESTIONS.md
+  line backticks=1136, paragraph backticks=21766, paragraph lines=421
+  checker blanks span: '`skinObj->vtbl[0xD0](+0x6C0, word[part+0x8A])`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+REVIEW.md
+  line backticks=8, paragraph backticks=28, paragraph lines=5
+  checker blanks span: '`[slot+0x40](row, dest, r8 = 1)`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)
+README.md
+  line backticks=4, paragraph backticks=630, paragraph lines=146
+  checker blanks span: '`skinObj->vtbl[0xD0](+0x6C0, word[part+0x8A])`'
+  CommonMark pairing puts the link inside a code span: True  -> not a link (exemption right)

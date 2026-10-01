@@ -1,0 +1,6 @@
+PASS  V1 vp8_destroy 0016E210 releases pbi (00171790 when +0x4380, 00172160, 00172750(+0x12C0), free [pbi-8]) then frees [ctx-8]
+PASS  V2 vpx_codec_destroy 0016DDD0 calls iface+0x18 on priv (+0x30) and nulls the context
+PASS  V3 direct callers of 0016DDD0: ['0016DFB0', '0067AAAB'] (init-failure arm; channel teardown 0067A9B0 on +0x2A8)
+PASS  V4 qwords equal to 0016E210: ['01CDB2A8'] (interface 01CDB290 +0x18, after init at +0x10)
+PASS  S both release cells are read (no longer 'not read here')
+FAILS 0

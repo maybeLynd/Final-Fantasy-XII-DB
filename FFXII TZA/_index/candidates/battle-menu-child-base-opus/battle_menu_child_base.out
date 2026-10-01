@@ -1,0 +1,9 @@
+PASS  J 0027AD70 tail-jumps to 003EE420 with rcx = this
+PASS  R 003EE420: two 0x1E0 records from +0xC0 (create / update / draw loops of 2)
+PASS  T 002B3400 initialises TextDrawState (0xD0), placed at record + 0xA0 and ending at + 0x170
+PASS  G 003EEA80: sheet +0, one or two entries from +8 (by +0x1C), float scale +0x18
+PASS  U 003EEBD0: +0x1D0 / +0x88 / +0x188 / +0x1B8 stepped and clamped to [0, 1.0]
+PASS  W 003EE420 on this: sheet +0x480, layer +0x488, fades +0x48C / +0x4A8 / +0x4AC by +0x4B8 / +0x4B4 bits, offsets +0x490 / +0x492
+PASS  X singleton + 0xAB30 hosts a 0x720 widget (00296940, bit 0x2000) or the 0x61F0 battle menu (00276650); +0x710 is the 0x720 widget's
+PASS  P records[2] at +0xC0 and the +0x480..+0x4BF fields; no +0x340 dword on the widget; Widget0720At0209BE80_AB30 carries +0x710; the four types tile
+FAILS 0

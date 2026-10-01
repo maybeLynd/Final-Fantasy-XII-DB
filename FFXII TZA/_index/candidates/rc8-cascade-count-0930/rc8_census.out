@@ -1,0 +1,5 @@
+writes covering +0x13C through a non-stack base: 184 (dword stores at exactly +0x13C: 60); stack-based: 98
+classes: {'UNREACHED': 183, 'OBJECT': 1}
+  001EF389 001EF2D0 mov dword ptr [rbx + 0x13c], 3                   w4 OBJECT
+dword stores at exactly +0x13C with a non-3 value source: 59 of 60 (all but the OBJECT one are on other objects by the flow)
+FAILS 0

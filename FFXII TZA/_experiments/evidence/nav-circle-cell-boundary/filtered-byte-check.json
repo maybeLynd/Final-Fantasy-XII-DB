@@ -1,0 +1,81 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "33231ea2dae425e9c505b1b4bdd8fc6ef0d76a0a"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "b08e4d260da813852ed45e7d929878e1691513af"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "83c444a27f6497ea9f80630d442e4aae87f1d9f0"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "git_blob": "c57ccda87b437c9a08db4c3ff6c1aab51eb94ce0"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "97f37b14b826a7a07f93a534f59683f621868d10"
+    },
+    {
+      "path": "prepare.py",
+      "git_blob": "f666df30bf129957b897a9f31a5d24c66a6b86ca"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "24d2c6e68c6c8feee26a55d1332efd92aedc48f4"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "a0fb5ff3b6438f53243b985a759e608f8c1a7e31"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "118e4e3b6af80746af0ffbfe327d428e65bdba5b"
+    },
+    {
+      "path": "retained/caller679.bin",
+      "git_blob": "96dda9bcd62fa2b53096d3d0715fe6036264c548"
+    },
+    {
+      "path": "retained/capture-before-run.py",
+      "git_blob": "33231ea2dae425e9c505b1b4bdd8fc6ef0d76a0a"
+    },
+    {
+      "path": "retained/carrier.md",
+      "git_blob": "f30eb59efcc853274ba0fc575686560dc1b1dfa6"
+    },
+    {
+      "path": "retained/flow.py",
+      "git_blob": "2ce96231286033d15550554259c9178bb1ca4fb7"
+    },
+    {
+      "path": "retained/navigation.md",
+      "git_blob": "bebc37c7c8ac77e327c57e5b9905a288fdee40dd"
+    },
+    {
+      "path": "retained/original237.bin",
+      "git_blob": "ba39b220a0d5ef07222805b3667859ad9b8c7521"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "source.json",
+      "git_blob": "f07c757e8536a0ed20cf47ce37f8f7221f8eeb29"
+    }
+  ]
+}

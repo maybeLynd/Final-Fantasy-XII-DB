@@ -1,0 +1,8 @@
+# NativeLeaf.ListWalkVcallSlot3 - EC-7 family C
+# walk the intrusive list at [this+0x18]; per node call a member op with
+# # (this,[node]) then vcall [this+0x30] slot 3 with r8=0x58.
+address	targets
+001A2A90	001A48C0
+001A2B10	001A48C0
+001B9750	001BA760
+001FC3A0	001FDA60

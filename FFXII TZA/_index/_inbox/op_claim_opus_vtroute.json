@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-VTABLE-ROUTE-ON-THE-UNREFLECTED-PHYRE-DEBT",
+ "agent": "OPUS",
+ "note": "These classes are created by the engine and memcpy'd from the descriptor's default instance, so there is no pointer cell to track and their route cells are empty - but every function in a class's vtable is entered with `this` in rcx by definition, which is the anchor the store established on 2026-09-21 and which 757 field rows across 196 types already rest on. It had never been pointed at the classes carrying the debt. Results, each with its own displacement count as the control: PMeshParticleSystemBase 12,640 bytes, 9 slot bodies, 9 displacements, 14 accesses, 0 in gaps; PMotionBlurBase 3,220, 9 bodies, 10 displacements, 16 accesses, 0 in gaps; PScheduler 666, 5 bodies, 1 displacement, 3 accesses, 0 in gaps; PDeferredLightingD3D11 344, 9 bodies, 9 displacements, 14 accesses, 0 in gaps; PApplication 141, 19 bodies, 20 displacements, 25 accesses, 0 in gaps. 17,011 bytes now carry a second measured route beside the default-setter that was all PMeshParticleSystemBase's 12,352-byte span had. ONE OF THE FIVE IS NOT LIKE THE OTHERS AND THE CELL SAYS SO: PScheduler's single displacement is thin evidence that the census reached the class, and its note records the control as WEAK in those words rather than being written to match its neighbours - a batch that grades all its members alike has stopped measuring. FOUR CLASSES REFUSED OUTRIGHT because the tool finds no direct MSVC descriptor for them - PTextureCubeMapD3D11, PTexture2DD3D11, PPhysicsWorldBullet, PInputMapper - which is a limit of the anchor and not evidence about the type, and nothing was written to their rows. Both standing limits travel in every cell written: only virtual methods are covered, and a compiler-folded body attributes its accesses to every class listing it. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

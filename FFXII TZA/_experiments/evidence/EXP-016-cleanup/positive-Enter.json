@@ -1,0 +1,23 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\probe_extension.py",
+    "--keys",
+    "Enter",
+    "--hold",
+    "0.35"
+  ],
+  "start_unix": 1789093191.6628208,
+  "status": "COMPLETED",
+  "source_sha256": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_input_probe.py": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_poke.py": "0985437f4e383cce97f445525ffb41c32d8201a3f3b64704ce59f3402016130b",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\window_focus.py": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d"
+  },
+  "exit_code": 0,
+  "stdout": "pid 35004   held-array at 0x000000000E4FC800, 256 bytes\nbaseline: all 256 bytes zero\nforeground: the game (hwnd 0x8f0ce0), verified\n\nCONTROL, no key held for 0.35 s : clean\n\nSENDINPUT vk=0xd up=False accepted=2 requested=2\nSENDINPUT vk=0xd up=True accepted=2 requested=2\n  Enter     vk 0x0d  ->  indices while held: [49]                    still set after release: none\n\nkeys tried            : 1\nkeys that moved a byte: 1\npolls that lost focus : 0\n\nMEASURED MAPPING  (index -> the game's own code, index + 28)\n  Enter     index  49  code  77  (no GameSetting.ini name)\nSENDINPUT vk=0xd up=True accepted=2 requested=2\n",
+  "stderr": "",
+  "end_unix": 1789093192.7535315
+}

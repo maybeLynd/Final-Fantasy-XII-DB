@@ -1,0 +1,22 @@
+{
+  "section": "SECTION-10",
+  "status": "PASS",
+  "input_chain_verified": 10,
+  "baseline_file_hashes_checked": 10834,
+  "pre_apply_compatible": true,
+  "pre_apply_states": {
+    "expected_preimage": 6,
+    "new_file": 25
+  },
+  "zip_crc_pass": true,
+  "extracted_payload_matches_manifest": true,
+  "extracted_reproduction_assertions": 159,
+  "extracted_mutants_rejected": 8,
+  "extracted_repeat_identical": true,
+  "baseline_and_mutation_records_equal": true,
+  "post_apply_already_applied": true,
+  "unchanged_baseline_files_checked": 10828,
+  "database_local_links": 114,
+  "external_missing_tools": 1,
+  "limits": "Fresh extraction and merge of the exact input chain, followed by reproduction from the extracted sources. This verifies delivery in the tested Linux/GCC environment, not formal semantic acceptance or live Windows compatibility. This receipt and updated manifest are packaging metadata; final ZIP is rebuilt and separately reverified after their inclusion."
+}

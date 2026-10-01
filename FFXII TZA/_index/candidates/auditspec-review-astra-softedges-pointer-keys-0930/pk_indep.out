@@ -1,0 +1,198 @@
+EXE sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+16D680 bytes 488bc1c3
+== 632A10 member-descriptor builder  window 00632A10..00632B40  owner 00632A10 FUN_00632a10
+  00632A10 mov    qword ptr [rsp + 8], rbx
+  00632A15 push   rdi
+  00632A16 sub    rsp, 0x40
+  00632A1A mov    eax, dword ptr [rsp + 0x78]
+  00632A1E mov    rdi, rcx
+  00632A21 mov    ebx, dword ptr [rsp + 0x80]
+  00632A28 mov    qword ptr [rsp + 0x38], 0
+  00632A31 mov    dword ptr [rsp + 0x30], ebx
+  00632A35 mov    dword ptr [rsp + 0x28], eax
+  00632A39 mov    eax, dword ptr [rsp + 0x70]
+  00632A3D mov    dword ptr [rsp + 0x20], eax
+  00632A41 call   0x632960
+  00632A46 lea    rax, [rip + 0x7256b3]
+  00632A4D mov    dword ptr [rdi + 0x5c], ebx
+  00632A50 mov    rbx, qword ptr [rsp + 0x50]
+  00632A55 mov    qword ptr [rdi], rax
+  00632A58 mov    eax, dword ptr [rsp + 0x88]
+  00632A5F mov    dword ptr [rdi + 0x58], eax
+  00632A62 mov    rax, rdi
+  00632A65 add    rsp, 0x40
+  00632A69 pop    rdi
+  00632A6A ret    
+== registration site 005E48C6  window 005E4886..005E48CB  owner 005E45B0 FUN_005e45b0
+  005E488C call   0x5eeb20
+  005E4891 lea    rsi, [rip + 0x765608]
+  005E4898 mov    eax, dword ptr [rbx]
+  005E489A cmp    dword ptr [rip + 0x26fe580], eax
+  005E48A0 jle    0x5e4917
+  005E48A2 lea    rcx, [rip + 0x26fe577]
+  005E48A9 call   0x8092fc
+  005E48AE cmp    dword ptr [rip + 0x26fe56b], -1
+  005E48B5 jne    0x5e4917
+  005E48B7 xor    ecx, ecx
+  005E48B9 call   0x5eeb20
+  005E48BE mov    dword ptr [rsp + 0x38], 8
+  005E48C6 mov    dword ptr [rsp + 0x30], 3
+== registration site 005E4951  window 005E4911..005E4956  owner 005E45B0 FUN_005e45b0
+  005E4912 call   0x80929c
+  005E4917 mov    rcx, qword ptr [rip + 0x19494ca]
+  005E491E call   0x5eeb20
+  005E4923 mov    eax, dword ptr [rbx]
+  005E4925 cmp    dword ptr [rip + 0x26fe565], eax
+  005E492B jle    0x5e49a2
+  005E492D lea    rcx, [rip + 0x26fe55c]
+  005E4934 call   0x8092fc
+  005E4939 cmp    dword ptr [rip + 0x26fe550], -1
+  005E4940 jne    0x5e49a2
+  005E4942 xor    ecx, ecx
+  005E4944 call   0x5eeb20
+  005E4949 mov    dword ptr [rsp + 0x38], 8
+  005E4951 mov    dword ptr [rsp + 0x30], 3
+== registration site 005EED9A  window 005EED5A..005EED9F  owner 005EEB20 FUN_005eeb20
+  005EED5E lea    rcx, [rip + 0x26fb843]
+  005EED65 call   0x6b67d0
+  005EED6A mov    eax, dword ptr [r14]
+  005EED6D cmp    dword ptr [rip + 0x26fb915], eax
+  005EED73 jle    0x5eee16
+  005EED79 lea    rcx, [rip + 0x26fb908]
+  005EED80 call   0x8092fc
+  005EED85 cmp    dword ptr [rip + 0x26fb8fc], -1
+  005EED8C jne    0x5eee16
+  005EED92 mov    dword ptr [rsp + 0x38], 8
+  005EED9A mov    dword ptr [rsp + 0x30], 2
+== 59B430 child link  window 0059B900..0059B945  owner 0059B430 FUN_0059b430
+  0059B903 add    rdx, qword ptr [r9 + 0x30]
+  0059B907 je     0x59b92f
+  0059B909 mov    rax, qword ptr [rdx + 8]
+  0059B90D movzx  ecx, byte ptr [rax + 0x1c]
+  0059B911 and    cl, 1
+  0059B914 jmp    0x59b931
+  0059B916 mov    r9, qword ptr [rsp + 0x80]
+  0059B91E xor    r10d, r10d
+  0059B921 jmp    0x59b8e5
+  0059B923 mov    rax, qword ptr [r9 + 0x20]
+  0059B927 lea    rcx, [rsi + rsi*2]
+  0059B92B lea    r8, [rax + rcx*8]
+  0059B92F xor    cl, cl
+  0059B931 mov    qword ptr [rdi], r14
+  0059B934 mov    qword ptr [rdi + 8], rbp
+  0059B938 mov    qword ptr [rdi + 0x18], r11
+  0059B93C mov    qword ptr [rdi + 0x28], rdx
+  0059B940 test   rdx, rdx
+  0059B943 je     0x59b94b
+  0059B945 mov    rax, qword ptr [rdx + 0x10]
+== 59EC40 guard  window 0059EC40..0059ED20  owner 0059EC40 FUN_0059ec40
+  0059EC40 push   rbx
+  0059EC42 push   rdi
+  0059EC43 push   r12
+  0059EC45 push   r13
+  0059EC47 push   r14
+  0059EC49 sub    rsp, 0x40
+  0059EC4D mov    r9, qword ptr [rcx]
+  0059EC50 mov    rdi, rcx
+  0059EC53 mov    qword ptr [rsp + 0x78], rbp
+  0059EC58 mov    r12, r8
+  0059EC5B mov    qword ptr [rsp + 0x38], rsi
+  0059EC60 mov    r13, rdx
+  0059EC63 mov    rsi, qword ptr [rcx + 0x10]
+  0059EC67 mov    rax, qword ptr [r9 + 0x10]
+  0059EC6B mov    qword ptr [rsp + 0x20], rax
+  0059EC70 mov    rax, qword ptr [rcx + 8]
+  0059EC74 mov    rcx, rsi
+  0059EC77 mov    qword ptr [rsp + 0x30], r15
+  0059EC7C mov    r15d, dword ptr [rax + 0x10]
+  0059EC80 mov    eax, dword ptr [rax + 8]
+  0059EC83 mov    dword ptr [rsp + 0x88], eax
+  0059EC8A mov    rax, qword ptr [r9 + 8]
+  0059EC8E mov    r14d, dword ptr [rax + 0x14]
+  0059EC92 mov    rax, qword ptr [rsi]
+  0059EC95 call   qword ptr [rax + 8]
+  0059EC98 xor    ebx, ebx
+  0059EC9A mov    rcx, rax
+  0059EC9D test   rax, rax
+  0059ECA0 je     0x59eca7
+  0059ECA2 mov    ebp, dword ptr [rax + 0x5c]
+  0059ECA5 jmp    0x59eca9
+  0059ECA7 mov    ebp, ebx
+  0059ECA9 mov    edx, dword ptr [rsi + 0x48]
+  0059ECAC mov    esi, r15d
+  0059ECAF mov    rdi, qword ptr [rdi + 0x28]
+  0059ECB3 shr    esi, 1
+  0059ECB5 shr    r15d, 6
+  0059ECB9 and    sil, 1
+  0059ECBD test   r15b, 1
+  0059ECC1 mov    dword ptr [rsp + 0x70], edx
+  0059ECC5 mov    r15, qword ptr [rsp + 0x30]
+  0059ECCA je     0x59ece6
+  0059ECCC test   rcx, rcx
+  0059ECCF je     0x59ece6
+  0059ECD1 mov    rax, qword ptr [rax]
+  0059ECD4 mov    rdx, r13
+  0059ECD7 call   qword ptr [rax + 0x20]
+  0059ECDA mov    edx, dword ptr [rsp + 0x70]
+  0059ECDE cmp    eax, 1
+  0059ECE1 sete   al
+  0059ECE4 jmp    0x59ece8
+  0059ECE6 xor    al, al
+  0059ECE8 test   sil, sil
+  0059ECEB mov    rsi, qword ptr [rsp + 0x38]
+  0059ECF0 jne    0x59ecff
+  0059ECF2 cmp    ebp, 2
+  0059ECF5 jne    0x59ecfb
+  0059ECF7 test   al, al
+  0059ECF9 je     0x59ecff
+  0059ECFB xor    al, al
+  0059ECFD jmp    0x59ed01
+  0059ECFF mov    al, 1
+  0059ED01 mov    rbp, qword ptr [rsp + 0x78]
+  0059ED06 test   rdi, rdi
+  0059ED09 je     0x59ed52
+  0059ED0B test   al, al
+  0059ED0D jne    0x59ed52
+  0059ED0F mov    rax, qword ptr [rdi + 0x10]
+  0059ED13 mov    rcx, qword ptr [rdi + 8]
+  0059ED17 test   rax, rax
+  0059ED1A je     0x59ed22
+  0059ED1C mov    ebx, dword ptr [rax + 0xf4]
+== 59BED0 return  window 0059C0B0..0059C0E8  owner 0059BED0 FUN_0059bed0
+  0059C0B5 mov    eax, esi
+  0059C0B7 add    qword ptr [rbp], rax
+  0059C0BB sub    edi, dword ptr [rsp + 0x30]
+  0059C0BF cmp    ecx, dword ptr [rsp + 0x38]
+  0059C0C3 mov    rcx, qword ptr [rsp + 0xe0]
+  0059C0CB mov    rdx, qword ptr [rsp + 0x40]
+  0059C0D0 jb     0x59c084
+  0059C0D2 mov    rax, qword ptr [rsp + 0x48]
+  0059C0D7 mov    qword ptr [rbp], rax
+  0059C0DB mov    rax, rbx
+  0059C0DE jmp    0x59c16c
+  0059C0E3 test   byte ptr [rdi + 0x1c], 4
+  0059C0E7 je     0x59c16a
+== 59CD07 count / 59CD14 prewrite / 59CD25 call  window 0059CCE0..0059CD30  owner 0059C700 FUN_0059c700
+  0059CCE1 mov    rcx, qword ptr [r12]
+  0059CCE5 call   0x63dc30
+  0059CCEA jmp    0x59cd62
+  0059CCEC mov    r12, qword ptr [rsp + 0x30]
+  0059CCF1 mov    eax, dword ptr [r12 + 0x14]
+  0059CCF6 mov    qword ptr [r8 + rax*8], r15
+  0059CCFA jmp    0x59cd67
+  0059CCFC shr    ebx, 6
+  0059CCFF and    bl, 1
+  0059CD02 mov    r12, qword ptr [rsp + 0x30]
+  0059CD07 mov    r9d, dword ptr [r12 + 0x14]
+  0059CD0C je     0x59cd14
+  0059CD0E cmp    r9d, 1
+  0059CD12 je     0x59cd17
+  0059CD14 mov    qword ptr [rdx], r13
+  0059CD17 mov    rax, qword ptr [r14]
+  0059CD1A mov    r8, r15
+  0059CD1D mov    rdx, qword ptr [rsp + 0x38]
+  0059CD22 mov    rcx, r14
+  0059CD25 call   qword ptr [rax + 0x40]
+  0059CD28 jmp    0x59cd67
+  0059CD2A mov    rax, qword ptr [rsp + 0x30]
+  0059CD2F mov    eax, dword ptr [rax + 0x14]

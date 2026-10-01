@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\capture.py"
+  ],
+  "driver_sha256": "c663e871afc276db0dcd2c45910ea05b726c46b6c9c65b85337a0df5b700936d",
+  "returncode": 0,
+  "stdout": "{\n  \"question\": \"Does exact generation bind the UC1 helper code used by the executable adapter?\",\n  \"original_declarations_bind_helper\": [],\n  \"manifest_input_keys\": [\n    \"_tree\",\n    \"build_views.py\",\n    \"category_map\",\n    \"check_questions\",\n    \"coverage_dims\",\n    \"exe\",\n    \"fields\",\n    \"functions\",\n    \"goal_gate\",\n    \"l2\",\n    \"pkg:PKG-GP-HP-LETHAL.md\",\n    \"pkg:PKG-GP-SPAWN-RESPAWN.md\",\n    \"pkg:PKG-GP-STATUS-POISON.md\",\n    \"pkg:PKG-TECH-SCRIPTVM-VALUE.md\",\n    \"progress_check\",\n    \"progress_snapshot\",\n    \"requirement_facts\",\n    \"requirements.py\",\n    \"subsystems\",\n    \"team\",\n    \"types\",\n    \"uc1_1_64\",\n    \"uc1_65_256\",\n    \"vbf_list\",\n    \"watchdog\"\n  ],\n  \"declared_input_keys\": [\n    \"_tree\",\n    \"build_views.py\",\n    \"category_map\",\n    \"check_questions\",\n    \"coverage_dims\",\n    \"exe\",\n    \"fields\",\n    \"functions\",\n    \"goal_gate\",\n    \"l2\",\n    \"pkg:PKG-GP-HP-LETHAL.md\",\n    \"pkg:PKG-GP-SPAWN-RESPAWN.md\",\n    \"pkg:PKG-GP-STATUS-POISON.md\",\n    \"pkg:PKG-TECH-SCRIPTVM-VALUE.md\",\n    \"progress_check\",\n    \"progress_snapshot\",\n    \"requirement_facts\",\n    \"requirements.py\",\n    \"subsystems\",\n    \"team\",\n    \"types\",\n    \"uc1_1_64\",\n    \"uc1_65_256\",\n    \"vbf_list\",\n    \"watchdog\"\n  ],\n  \"generator_binds_builder\": true,\n  \"verifier_binds_generation_module\": true,\n  \"table_snapshots_bound\": true,\n  \"view_names_uc1_apply\": true,\n  \"helper_hash_or_path_in_manifest_or_view\": false,\n  \"helper_current_sha256\": \"746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b\",\n  \"interpretation\": \"Explicit transitive helper-code binding is absent here, although builder and band-table bytes are bound. No inference of a specific source-change drift/skip or actual-loaded-helper version.\"\n}\n",
+  "stderr": "",
+  "terminal": true
+}

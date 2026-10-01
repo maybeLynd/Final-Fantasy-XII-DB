@@ -1,0 +1,2 @@
+slot10 [(('A', True), 30), (('declared', True), 201)]
+selector admits (frontier only) 60 {'ScriptVM.VerbAdapter': 2, 'Phyre PhyreCore module': 4, 'guarded class-registration stubs': 1, 'Trivial global accessors': 1, 'NativeLeaf.DocumentedGlobalAccessor': 12, 'NativeAdapter.ExplainedCalleeForwarder': 40}

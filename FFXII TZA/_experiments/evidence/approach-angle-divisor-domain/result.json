@@ -1,0 +1,2290 @@
+{
+  "question": "Variable/near-zero register divisor versus literal180 conversion in approach-angle caller",
+  "method": "A exact1061B bounded caller source/directgraph + originalconstants + explicit nonvolatileABI assumption; zero original/native/emulator/live executions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "entry": "0x339630",
+    "bytes": 1061,
+    "body_sha256": "8a75e847cb7520bb1e19c64607ac094482fb0ad6ba8c825c7a8f8c363478d1f6",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "tools": {
+    "utc": "2026-09-28T09:32:42.864104+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "7c2f0beeab25be01f894bfe15bebf1e731041aa0f746e2377ca4fd34a051e8d0",
+  "abi": {
+    "source": "https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170",
+    "section": "Caller/callee saved registers",
+    "assumption": "Returning calls preserve low128 XMM6-XMM15 including XMM9/10. Standard ABI requirement read from primary Microsoft source, not proof every actual callee/session conforms. No YMM upper-lane preservation inferred."
+  },
+  "instructions": [
+    {
+      "pc": "0x339630",
+      "bytes": "488bc4",
+      "op": "mov",
+      "args": "rax, rsp"
+    },
+    {
+      "pc": "0x339633",
+      "bytes": "55",
+      "op": "push",
+      "args": "rbp"
+    },
+    {
+      "pc": "0x339634",
+      "bytes": "53",
+      "op": "push",
+      "args": "rbx"
+    },
+    {
+      "pc": "0x339635",
+      "bytes": "56",
+      "op": "push",
+      "args": "rsi"
+    },
+    {
+      "pc": "0x339636",
+      "bytes": "4156",
+      "op": "push",
+      "args": "r14"
+    },
+    {
+      "pc": "0x339638",
+      "bytes": "4157",
+      "op": "push",
+      "args": "r15"
+    },
+    {
+      "pc": "0x33963a",
+      "bytes": "488d6c24a0",
+      "op": "lea",
+      "args": "rbp, [rsp - 0x60]"
+    },
+    {
+      "pc": "0x33963f",
+      "bytes": "4881ec60010000",
+      "op": "sub",
+      "args": "rsp, 0x160"
+    },
+    {
+      "pc": "0x339646",
+      "bytes": "0f2978b8",
+      "op": "movaps",
+      "args": "xmmword ptr [rax - 0x48], xmm7"
+    },
+    {
+      "pc": "0x33964a",
+      "bytes": "440f2940a8",
+      "op": "movaps",
+      "args": "xmmword ptr [rax - 0x58], xmm8"
+    },
+    {
+      "pc": "0x33964f",
+      "bytes": "488b05dab1c001",
+      "op": "mov",
+      "args": "rax, qword ptr [rip + 0x1c0b1da]"
+    },
+    {
+      "pc": "0x339656",
+      "bytes": "4833c4",
+      "op": "xor",
+      "args": "rax, rsp"
+    },
+    {
+      "pc": "0x339659",
+      "bytes": "488945c0",
+      "op": "mov",
+      "args": "qword ptr [rbp - 0x40], rax"
+    },
+    {
+      "pc": "0x33965d",
+      "bytes": "488b4108",
+      "op": "mov",
+      "args": "rax, qword ptr [rcx + 8]"
+    },
+    {
+      "pc": "0x339661",
+      "bytes": "4c8bf1",
+      "op": "mov",
+      "args": "r14, rcx"
+    },
+    {
+      "pc": "0x339664",
+      "bytes": "4c8b39",
+      "op": "mov",
+      "args": "r15, qword ptr [rcx]"
+    },
+    {
+      "pc": "0x339667",
+      "bytes": "488bf2",
+      "op": "mov",
+      "args": "rsi, rdx"
+    },
+    {
+      "pc": "0x33966a",
+      "bytes": "8b8810070000",
+      "op": "mov",
+      "args": "ecx, dword ptr [rax + 0x710]"
+    },
+    {
+      "pc": "0x339670",
+      "bytes": "e86b21feff",
+      "op": "call",
+      "args": "0x31b7e0"
+    },
+    {
+      "pc": "0x339675",
+      "bytes": "4c3bf8",
+      "op": "cmp",
+      "args": "r15, rax"
+    },
+    {
+      "pc": "0x339678",
+      "bytes": "751a",
+      "op": "jne",
+      "args": "0x339694"
+    },
+    {
+      "pc": "0x33967a",
+      "bytes": "498b4608",
+      "op": "mov",
+      "args": "rax, qword ptr [r14 + 8]"
+    },
+    {
+      "pc": "0x33967e",
+      "bytes": "f3410f1087a4010000",
+      "op": "movss",
+      "args": "xmm0, dword ptr [r15 + 0x1a4]"
+    },
+    {
+      "pc": "0x339687",
+      "bytes": "f30f10b8a4010000",
+      "op": "movss",
+      "args": "xmm7, dword ptr [rax + 0x1a4]"
+    },
+    {
+      "pc": "0x33968f",
+      "bytes": "0f2fc7",
+      "op": "comiss",
+      "args": "xmm0, xmm7"
+    },
+    {
+      "pc": "0x339692",
+      "bytes": "7709",
+      "op": "ja",
+      "args": "0x33969d"
+    },
+    {
+      "pc": "0x339694",
+      "bytes": "f3410f10bfa4010000",
+      "op": "movss",
+      "args": "xmm7, dword ptr [r15 + 0x1a4]"
+    },
+    {
+      "pc": "0x33969d",
+      "bytes": "f3450f1087a8010000",
+      "op": "movss",
+      "args": "xmm8, dword ptr [r15 + 0x1a8]"
+    },
+    {
+      "pc": "0x3396a6",
+      "bytes": "4c8d4c2458",
+      "op": "lea",
+      "args": "r9, [rsp + 0x58]"
+    },
+    {
+      "pc": "0x3396ab",
+      "bytes": "498b4f10",
+      "op": "mov",
+      "args": "rcx, qword ptr [r15 + 0x10]"
+    },
+    {
+      "pc": "0x3396af",
+      "bytes": "4c8d442454",
+      "op": "lea",
+      "args": "r8, [rsp + 0x54]"
+    },
+    {
+      "pc": "0x3396b4",
+      "bytes": "f3440f5c05afc85800",
+      "op": "subss",
+      "args": "xmm8, dword ptr [rip + 0x58c8af]"
+    },
+    {
+      "pc": "0x3396bd",
+      "bytes": "488d542450",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x50]"
+    },
+    {
+      "pc": "0x3396c2",
+      "bytes": "e859b9f2ff",
+      "op": "call",
+      "args": "0x265020"
+    },
+    {
+      "pc": "0x3396c7",
+      "bytes": "498b4e08",
+      "op": "mov",
+      "args": "rcx, qword ptr [r14 + 8]"
+    },
+    {
+      "pc": "0x3396cb",
+      "bytes": "4c8d4c2438",
+      "op": "lea",
+      "args": "r9, [rsp + 0x38]"
+    },
+    {
+      "pc": "0x3396d0",
+      "bytes": "4c8d442434",
+      "op": "lea",
+      "args": "r8, [rsp + 0x34]"
+    },
+    {
+      "pc": "0x3396d5",
+      "bytes": "488d542430",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x30]"
+    },
+    {
+      "pc": "0x3396da",
+      "bytes": "488b4910",
+      "op": "mov",
+      "args": "rcx, qword ptr [rcx + 0x10]"
+    },
+    {
+      "pc": "0x3396de",
+      "bytes": "e83db9f2ff",
+      "op": "call",
+      "args": "0x265020"
+    },
+    {
+      "pc": "0x3396e3",
+      "bytes": "498b4608",
+      "op": "mov",
+      "args": "rax, qword ptr [r14 + 8]"
+    },
+    {
+      "pc": "0x3396e7",
+      "bytes": "80b8f401000003",
+      "op": "cmp",
+      "args": "byte ptr [rax + 0x1f4], 3"
+    },
+    {
+      "pc": "0x3396ee",
+      "bytes": "7418",
+      "op": "je",
+      "args": "0x339708"
+    },
+    {
+      "pc": "0x3396f0",
+      "bytes": "0f28442430",
+      "op": "movaps",
+      "args": "xmm0, xmmword ptr [rsp + 0x30]"
+    },
+    {
+      "pc": "0x3396f5",
+      "bytes": "660f7f06",
+      "op": "movdqa",
+      "args": "xmmword ptr [rsi], xmm0"
+    },
+    {
+      "pc": "0x3396f9",
+      "bytes": "660f7f4610",
+      "op": "movdqa",
+      "args": "xmmword ptr [rsi + 0x10], xmm0"
+    },
+    {
+      "pc": "0x3396fe",
+      "bytes": "f30f117e20",
+      "op": "movss",
+      "args": "dword ptr [rsi + 0x20], xmm7"
+    },
+    {
+      "pc": "0x339703",
+      "bytes": "e91c030000",
+      "op": "jmp",
+      "args": "0x339a24"
+    },
+    {
+      "pc": "0x339708",
+      "bytes": "4889bc24a0010000",
+      "op": "mov",
+      "args": "qword ptr [rsp + 0x1a0], rdi"
+    },
+    {
+      "pc": "0x339710",
+      "bytes": "33ff",
+      "op": "xor",
+      "args": "edi, edi"
+    },
+    {
+      "pc": "0x339712",
+      "bytes": "0f29b42450010000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0x150], xmm6"
+    },
+    {
+      "pc": "0x33971a",
+      "bytes": "440f298c2420010000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0x120], xmm9"
+    },
+    {
+      "pc": "0x339723",
+      "bytes": "f3440f100d0c9a5b00",
+      "op": "movss",
+      "args": "xmm9, dword ptr [rip + 0x5b9a0c]"
+    },
+    {
+      "pc": "0x33972c",
+      "bytes": "440f29942410010000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0x110], xmm10"
+    },
+    {
+      "pc": "0x339735",
+      "bytes": "f3440f101512259b01",
+      "op": "movss",
+      "args": "xmm10, dword ptr [rip + 0x19b2512]"
+    },
+    {
+      "pc": "0x33973e",
+      "bytes": "440f299c2400010000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0x100], xmm11"
+    },
+    {
+      "pc": "0x339747",
+      "bytes": "f3440f101d4c259b01",
+      "op": "movss",
+      "args": "xmm11, dword ptr [rip + 0x19b254c]"
+    },
+    {
+      "pc": "0x339750",
+      "bytes": "440f29a424f0000000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0xf0], xmm12"
+    },
+    {
+      "pc": "0x339759",
+      "bytes": "f3440f102516259b01",
+      "op": "movss",
+      "args": "xmm12, dword ptr [rip + 0x19b2516]"
+    },
+    {
+      "pc": "0x339762",
+      "bytes": "440f29ac24e0000000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0xe0], xmm13"
+    },
+    {
+      "pc": "0x33976b",
+      "bytes": "450f57ed",
+      "op": "xorps",
+      "args": "xmm13, xmm13"
+    },
+    {
+      "pc": "0x33976f",
+      "bytes": "440f29b424d0000000",
+      "op": "movaps",
+      "args": "xmmword ptr [rsp + 0xd0], xmm14"
+    },
+    {
+      "pc": "0x339778",
+      "bytes": "f3440f103527249b01",
+      "op": "movss",
+      "args": "xmm14, dword ptr [rip + 0x19b2427]"
+    },
+    {
+      "pc": "0x339781",
+      "bytes": "4c8d442430",
+      "op": "lea",
+      "args": "r8, [rsp + 0x30]"
+    },
+    {
+      "pc": "0x339786",
+      "bytes": "488d542450",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x50]"
+    },
+    {
+      "pc": "0x33978b",
+      "bytes": "488d4c2420",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x339790",
+      "bytes": "e8eb98ecff",
+      "op": "call",
+      "args": "0x203080"
+    },
+    {
+      "pc": "0x339795",
+      "bytes": "83ff02",
+      "op": "cmp",
+      "args": "edi, 2"
+    },
+    {
+      "pc": "0x339798",
+      "bytes": "7d0d",
+      "op": "jge",
+      "args": "0x3397a7"
+    },
+    {
+      "pc": "0x33979a",
+      "bytes": "c744242400000000",
+      "op": "mov",
+      "args": "dword ptr [rsp + 0x24], 0"
+    },
+    {
+      "pc": "0x3397a2",
+      "bytes": "e908010000",
+      "op": "jmp",
+      "args": "0x3398af"
+    },
+    {
+      "pc": "0x3397a7",
+      "bytes": "488d0df26cbc01",
+      "op": "lea",
+      "args": "rcx, [rip + 0x1bc6cf2]"
+    },
+    {
+      "pc": "0x3397ae",
+      "bytes": "e82dfb1200",
+      "op": "call",
+      "args": "0x4692e0"
+    },
+    {
+      "pc": "0x3397b3",
+      "bytes": "488d4c2420",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x3397b8",
+      "bytes": "e823fb1200",
+      "op": "call",
+      "args": "0x4692e0"
+    },
+    {
+      "pc": "0x3397bd",
+      "bytes": "488d542420",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x3397c2",
+      "bytes": "488d0dd76cbc01",
+      "op": "lea",
+      "args": "rcx, [rip + 0x1bc6cd7]"
+    },
+    {
+      "pc": "0x3397c9",
+      "bytes": "e85295ecff",
+      "op": "call",
+      "args": "0x202d20"
+    },
+    {
+      "pc": "0x3397ce",
+      "bytes": "410f2fc6",
+      "op": "comiss",
+      "args": "xmm0, xmm14"
+    },
+    {
+      "pc": "0x3397d2",
+      "bytes": "7605",
+      "op": "jbe",
+      "args": "0x3397d9"
+    },
+    {
+      "pc": "0x3397d4",
+      "bytes": "f3410f58c3",
+      "op": "addss",
+      "args": "xmm0, xmm11"
+    },
+    {
+      "pc": "0x3397d9",
+      "bytes": "e8825c1300",
+      "op": "call",
+      "args": "0x46f460"
+    },
+    {
+      "pc": "0x3397de",
+      "bytes": "4c8d442420",
+      "op": "lea",
+      "args": "r8, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x3397e3",
+      "bytes": "0f28f0",
+      "op": "movaps",
+      "args": "xmm6, xmm0"
+    },
+    {
+      "pc": "0x3397e6",
+      "bytes": "488d15b36cbc01",
+      "op": "lea",
+      "args": "rdx, [rip + 0x1bc6cb3]"
+    },
+    {
+      "pc": "0x3397ed",
+      "bytes": "488d4c2460",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x60]"
+    },
+    {
+      "pc": "0x3397f2",
+      "bytes": "e81996ecff",
+      "op": "call",
+      "args": "0x202e10"
+    },
+    {
+      "pc": "0x3397f7",
+      "bytes": "440f2f6c2464",
+      "op": "comiss",
+      "args": "xmm13, dword ptr [rsp + 0x64]"
+    },
+    {
+      "pc": "0x3397fd",
+      "bytes": "760b",
+      "op": "jbe",
+      "args": "0x33980a"
+    },
+    {
+      "pc": "0x3397ff",
+      "bytes": "410f28cc",
+      "op": "movaps",
+      "args": "xmm1, xmm12"
+    },
+    {
+      "pc": "0x339803",
+      "bytes": "f30f5cce",
+      "op": "subss",
+      "args": "xmm1, xmm6"
+    },
+    {
+      "pc": "0x339807",
+      "bytes": "0f28f1",
+      "op": "movaps",
+      "args": "xmm6, xmm1"
+    },
+    {
+      "pc": "0x33980a",
+      "bytes": "f3410f59f1",
+      "op": "mulss",
+      "args": "xmm6, xmm9"
+    },
+    {
+      "pc": "0x33980f",
+      "bytes": "b8b7600bb6",
+      "op": "mov",
+      "args": "eax, 0xb60b60b7"
+    },
+    {
+      "pc": "0x339814",
+      "bytes": "f3410f5ef2",
+      "op": "divss",
+      "args": "xmm6, xmm10"
+    },
+    {
+      "pc": "0x339819",
+      "bytes": "f3440f2cc6",
+      "op": "cvttss2si",
+      "args": "r8d, xmm6"
+    },
+    {
+      "pc": "0x33981e",
+      "bytes": "41f7e8",
+      "op": "imul",
+      "args": "r8d"
+    },
+    {
+      "pc": "0x339821",
+      "bytes": "418bc8",
+      "op": "mov",
+      "args": "ecx, r8d"
+    },
+    {
+      "pc": "0x339824",
+      "bytes": "418d1c10",
+      "op": "lea",
+      "args": "ebx, [r8 + rdx]"
+    },
+    {
+      "pc": "0x339828",
+      "bytes": "c1fb06",
+      "op": "sar",
+      "args": "ebx, 6"
+    },
+    {
+      "pc": "0x33982b",
+      "bytes": "8bc3",
+      "op": "mov",
+      "args": "eax, ebx"
+    },
+    {
+      "pc": "0x33982d",
+      "bytes": "c1e81f",
+      "op": "shr",
+      "args": "eax, 0x1f"
+    },
+    {
+      "pc": "0x339830",
+      "bytes": "03d8",
+      "op": "add",
+      "args": "ebx, eax"
+    },
+    {
+      "pc": "0x339832",
+      "bytes": "6bc35a",
+      "op": "imul",
+      "args": "eax, ebx, 0x5a"
+    },
+    {
+      "pc": "0x339835",
+      "bytes": "2bc8",
+      "op": "sub",
+      "args": "ecx, eax"
+    },
+    {
+      "pc": "0x339837",
+      "bytes": "33c0",
+      "op": "xor",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x339839",
+      "bytes": "83ff04",
+      "op": "cmp",
+      "args": "edi, 4"
+    },
+    {
+      "pc": "0x33983c",
+      "bytes": "7d08",
+      "op": "jge",
+      "args": "0x339846"
+    },
+    {
+      "pc": "0x33983e",
+      "bytes": "83f92d",
+      "op": "cmp",
+      "args": "ecx, 0x2d"
+    },
+    {
+      "pc": "0x339841",
+      "bytes": "0f9cc0",
+      "op": "setl",
+      "args": "al"
+    },
+    {
+      "pc": "0x339844",
+      "bytes": "eb06",
+      "op": "jmp",
+      "args": "0x33984c"
+    },
+    {
+      "pc": "0x339846",
+      "bytes": "83f92d",
+      "op": "cmp",
+      "args": "ecx, 0x2d"
+    },
+    {
+      "pc": "0x339849",
+      "bytes": "0f9fc0",
+      "op": "setg",
+      "args": "al"
+    },
+    {
+      "pc": "0x33984c",
+      "bytes": "85c0",
+      "op": "test",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x33984e",
+      "bytes": "7518",
+      "op": "jne",
+      "args": "0x339868"
+    },
+    {
+      "pc": "0x339850",
+      "bytes": "418d4859",
+      "op": "lea",
+      "args": "ecx, [r8 + 0x59]"
+    },
+    {
+      "pc": "0x339854",
+      "bytes": "b8b7600bb6",
+      "op": "mov",
+      "args": "eax, 0xb60b60b7"
+    },
+    {
+      "pc": "0x339859",
+      "bytes": "f7e9",
+      "op": "imul",
+      "args": "ecx"
+    },
+    {
+      "pc": "0x33985b",
+      "bytes": "8d1c11",
+      "op": "lea",
+      "args": "ebx, [rcx + rdx]"
+    },
+    {
+      "pc": "0x33985e",
+      "bytes": "c1fb06",
+      "op": "sar",
+      "args": "ebx, 6"
+    },
+    {
+      "pc": "0x339861",
+      "bytes": "8bc3",
+      "op": "mov",
+      "args": "eax, ebx"
+    },
+    {
+      "pc": "0x339863",
+      "bytes": "c1e81f",
+      "op": "shr",
+      "args": "eax, 0x1f"
+    },
+    {
+      "pc": "0x339866",
+      "bytes": "03d8",
+      "op": "add",
+      "args": "ebx, eax"
+    },
+    {
+      "pc": "0x339868",
+      "bytes": "488d4d80",
+      "op": "lea",
+      "args": "rcx, [rbp - 0x80]"
+    },
+    {
+      "pc": "0x33986c",
+      "bytes": "e8ff98ecff",
+      "op": "call",
+      "args": "0x203170"
+    },
+    {
+      "pc": "0x339871",
+      "bytes": "6bc35a",
+      "op": "imul",
+      "args": "eax, ebx, 0x5a"
+    },
+    {
+      "pc": "0x339874",
+      "bytes": "660f6ec0",
+      "op": "movd",
+      "args": "xmm0, eax"
+    },
+    {
+      "pc": "0x339878",
+      "bytes": "0f5bc0",
+      "op": "cvtdq2ps",
+      "args": "xmm0, xmm0"
+    },
+    {
+      "pc": "0x33987b",
+      "bytes": "f3410f59c2",
+      "op": "mulss",
+      "args": "xmm0, xmm10"
+    },
+    {
+      "pc": "0x339880",
+      "bytes": "f3410f5ec1",
+      "op": "divss",
+      "args": "xmm0, xmm9"
+    },
+    {
+      "pc": "0x339885",
+      "bytes": "e8e6320000",
+      "op": "call",
+      "args": "0x33cb70"
+    },
+    {
+      "pc": "0x33988a",
+      "bytes": "0f28d0",
+      "op": "movaps",
+      "args": "xmm2, xmm0"
+    },
+    {
+      "pc": "0x33988d",
+      "bytes": "488d5580",
+      "op": "lea",
+      "args": "rdx, [rbp - 0x80]"
+    },
+    {
+      "pc": "0x339891",
+      "bytes": "488d4d80",
+      "op": "lea",
+      "args": "rcx, [rbp - 0x80]"
+    },
+    {
+      "pc": "0x339895",
+      "bytes": "e86696ecff",
+      "op": "call",
+      "args": "0x202f00"
+    },
+    {
+      "pc": "0x33989a",
+      "bytes": "4c8d05ff6bbc01",
+      "op": "lea",
+      "args": "r8, [rip + 0x1bc6bff]"
+    },
+    {
+      "pc": "0x3398a1",
+      "bytes": "488d5580",
+      "op": "lea",
+      "args": "rdx, [rbp - 0x80]"
+    },
+    {
+      "pc": "0x3398a5",
+      "bytes": "488d4c2420",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x3398aa",
+      "bytes": "e8c192ecff",
+      "op": "call",
+      "args": "0x202b70"
+    },
+    {
+      "pc": "0x3398af",
+      "bytes": "40f6c701",
+      "op": "test",
+      "args": "dil, 1"
+    },
+    {
+      "pc": "0x3398b3",
+      "bytes": "7505",
+      "op": "jne",
+      "args": "0x3398ba"
+    },
+    {
+      "pc": "0x3398b5",
+      "bytes": "0f28f7",
+      "op": "movaps",
+      "args": "xmm6, xmm7"
+    },
+    {
+      "pc": "0x3398b8",
+      "bytes": "eb04",
+      "op": "jmp",
+      "args": "0x3398be"
+    },
+    {
+      "pc": "0x3398ba",
+      "bytes": "410f28f0",
+      "op": "movaps",
+      "args": "xmm6, xmm8"
+    },
+    {
+      "pc": "0x3398be",
+      "bytes": "0f28ce",
+      "op": "movaps",
+      "args": "xmm1, xmm6"
+    },
+    {
+      "pc": "0x3398c1",
+      "bytes": "488d4c2420",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x3398c6",
+      "bytes": "e825fa1200",
+      "op": "call",
+      "args": "0x4692f0"
+    },
+    {
+      "pc": "0x3398cb",
+      "bytes": "4c8d442420",
+      "op": "lea",
+      "args": "r8, [rsp + 0x20]"
+    },
+    {
+      "pc": "0x3398d0",
+      "bytes": "488d542430",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x30]"
+    },
+    {
+      "pc": "0x3398d5",
+      "bytes": "488d4c2440",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x40]"
+    },
+    {
+      "pc": "0x3398da",
+      "bytes": "e83192ecff",
+      "op": "call",
+      "args": "0x202b10"
+    },
+    {
+      "pc": "0x3398df",
+      "bytes": "f30f10442440",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rsp + 0x40]"
+    },
+    {
+      "pc": "0x3398e5",
+      "bytes": "488d4c2470",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x70]"
+    },
+    {
+      "pc": "0x3398ea",
+      "bytes": "f30f104c2448",
+      "op": "movss",
+      "args": "xmm1, dword ptr [rsp + 0x48]"
+    },
+    {
+      "pc": "0x3398f0",
+      "bytes": "f30f11442470",
+      "op": "movss",
+      "args": "dword ptr [rsp + 0x70], xmm0"
+    },
+    {
+      "pc": "0x3398f6",
+      "bytes": "f30f114c2478",
+      "op": "movss",
+      "args": "dword ptr [rsp + 0x78], xmm1"
+    },
+    {
+      "pc": "0x3398fc",
+      "bytes": "c744247c0000803f",
+      "op": "mov",
+      "args": "dword ptr [rsp + 0x7c], 0x3f800000"
+    },
+    {
+      "pc": "0x339904",
+      "bytes": "c74424740000803f",
+      "op": "mov",
+      "args": "dword ptr [rsp + 0x74], 0x3f800000"
+    },
+    {
+      "pc": "0x33990c",
+      "bytes": "e87f0effff",
+      "op": "call",
+      "args": "0x32a790"
+    },
+    {
+      "pc": "0x339911",
+      "bytes": "f30f10442474",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rsp + 0x74]"
+    },
+    {
+      "pc": "0x339917",
+      "bytes": "488d542440",
+      "op": "lea",
+      "args": "rdx, [rsp + 0x40]"
+    },
+    {
+      "pc": "0x33991c",
+      "bytes": "498b0e",
+      "op": "mov",
+      "args": "rcx, qword ptr [r14]"
+    },
+    {
+      "pc": "0x33991f",
+      "bytes": "f30f11442444",
+      "op": "movss",
+      "args": "dword ptr [rsp + 0x44], xmm0"
+    },
+    {
+      "pc": "0x339925",
+      "bytes": "c744243c0000803f",
+      "op": "mov",
+      "args": "dword ptr [rsp + 0x3c], 0x3f800000"
+    },
+    {
+      "pc": "0x33992d",
+      "bytes": "c744244c0000803f",
+      "op": "mov",
+      "args": "dword ptr [rsp + 0x4c], 0x3f800000"
+    },
+    {
+      "pc": "0x339935",
+      "bytes": "e886deffff",
+      "op": "call",
+      "args": "0x3377c0"
+    },
+    {
+      "pc": "0x33993a",
+      "bytes": "85c0",
+      "op": "test",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x33993c",
+      "bytes": "7415",
+      "op": "je",
+      "args": "0x339953"
+    },
+    {
+      "pc": "0x33993e",
+      "bytes": "4d8b4608",
+      "op": "mov",
+      "args": "r8, qword ptr [r14 + 8]"
+    },
+    {
+      "pc": "0x339942",
+      "bytes": "488d4c2440",
+      "op": "lea",
+      "args": "rcx, [rsp + 0x40]"
+    },
+    {
+      "pc": "0x339947",
+      "bytes": "498b16",
+      "op": "mov",
+      "args": "rdx, qword ptr [r14]"
+    },
+    {
+      "pc": "0x33994a",
+      "bytes": "e8113d0000",
+      "op": "call",
+      "args": "0x33d660"
+    },
+    {
+      "pc": "0x33994f",
+      "bytes": "85c0",
+      "op": "test",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x339951",
+      "bytes": "7545",
+      "op": "jne",
+      "args": "0x339998"
+    },
+    {
+      "pc": "0x339953",
+      "bytes": "ffc7",
+      "op": "inc",
+      "args": "edi"
+    },
+    {
+      "pc": "0x339955",
+      "bytes": "83ff06",
+      "op": "cmp",
+      "args": "edi, 6"
+    },
+    {
+      "pc": "0x339958",
+      "bytes": "0f8c23feffff",
+      "op": "jl",
+      "args": "0x339781"
+    },
+    {
+      "pc": "0x33995e",
+      "bytes": "410fb687b4000000",
+      "op": "movzx",
+      "args": "eax, byte ptr [r15 + 0xb4]"
+    },
+    {
+      "pc": "0x339966",
+      "bytes": "84c0",
+      "op": "test",
+      "args": "al, al"
+    },
+    {
+      "pc": "0x339968",
+      "bytes": "745c",
+      "op": "je",
+      "args": "0x3399c6"
+    },
+    {
+      "pc": "0x33996a",
+      "bytes": "fec8",
+      "op": "dec",
+      "args": "al"
+    },
+    {
+      "pc": "0x33996c",
+      "bytes": "418887b4000000",
+      "op": "mov",
+      "args": "byte ptr [r15 + 0xb4], al"
+    },
+    {
+      "pc": "0x339973",
+      "bytes": "498b06",
+      "op": "mov",
+      "args": "rax, qword ptr [r14]"
+    },
+    {
+      "pc": "0x339976",
+      "bytes": "8b8800010000",
+      "op": "mov",
+      "args": "ecx, dword ptr [rax + 0x100]"
+    },
+    {
+      "pc": "0x33997c",
+      "bytes": "890e",
+      "op": "mov",
+      "args": "dword ptr [rsi], ecx"
+    },
+    {
+      "pc": "0x33997e",
+      "bytes": "498b06",
+      "op": "mov",
+      "args": "rax, qword ptr [r14]"
+    },
+    {
+      "pc": "0x339981",
+      "bytes": "8b8804010000",
+      "op": "mov",
+      "args": "ecx, dword ptr [rax + 0x104]"
+    },
+    {
+      "pc": "0x339987",
+      "bytes": "894e04",
+      "op": "mov",
+      "args": "dword ptr [rsi + 4], ecx"
+    },
+    {
+      "pc": "0x33998a",
+      "bytes": "498b06",
+      "op": "mov",
+      "args": "rax, qword ptr [r14]"
+    },
+    {
+      "pc": "0x33998d",
+      "bytes": "8b8808010000",
+      "op": "mov",
+      "args": "ecx, dword ptr [rax + 0x108]"
+    },
+    {
+      "pc": "0x339993",
+      "bytes": "894e08",
+      "op": "mov",
+      "args": "dword ptr [rsi + 8], ecx"
+    },
+    {
+      "pc": "0x339996",
+      "bytes": "eb37",
+      "op": "jmp",
+      "args": "0x3399cf"
+    },
+    {
+      "pc": "0x339998",
+      "bytes": "0f28442440",
+      "op": "movaps",
+      "args": "xmm0, xmmword ptr [rsp + 0x40]"
+    },
+    {
+      "pc": "0x33999d",
+      "bytes": "0f284c2430",
+      "op": "movaps",
+      "args": "xmm1, xmmword ptr [rsp + 0x30]"
+    },
+    {
+      "pc": "0x3399a2",
+      "bytes": "660f7f06",
+      "op": "movdqa",
+      "args": "xmmword ptr [rsi], xmm0"
+    },
+    {
+      "pc": "0x3399a6",
+      "bytes": "660f7f4e10",
+      "op": "movdqa",
+      "args": "xmmword ptr [rsi + 0x10], xmm1"
+    },
+    {
+      "pc": "0x3399ab",
+      "bytes": "f30f117620",
+      "op": "movss",
+      "args": "dword ptr [rsi + 0x20], xmm6"
+    },
+    {
+      "pc": "0x3399b0",
+      "bytes": "0fb605fd46ac01",
+      "op": "movzx",
+      "args": "eax, byte ptr [rip + 0x1ac46fd]"
+    },
+    {
+      "pc": "0x3399b7",
+      "bytes": "69c896000000",
+      "op": "imul",
+      "args": "ecx, eax, 0x96"
+    },
+    {
+      "pc": "0x3399bd",
+      "bytes": "41888fb4000000",
+      "op": "mov",
+      "args": "byte ptr [r15 + 0xb4], cl"
+    },
+    {
+      "pc": "0x3399c4",
+      "bytes": "eb18",
+      "op": "jmp",
+      "args": "0x3399de"
+    },
+    {
+      "pc": "0x3399c6",
+      "bytes": "0f28442450",
+      "op": "movaps",
+      "args": "xmm0, xmmword ptr [rsp + 0x50]"
+    },
+    {
+      "pc": "0x3399cb",
+      "bytes": "660f7f06",
+      "op": "movdqa",
+      "args": "xmmword ptr [rsi], xmm0"
+    },
+    {
+      "pc": "0x3399cf",
+      "bytes": "0f2806",
+      "op": "movaps",
+      "args": "xmm0, xmmword ptr [rsi]"
+    },
+    {
+      "pc": "0x3399d2",
+      "bytes": "660f7f4610",
+      "op": "movdqa",
+      "args": "xmmword ptr [rsi + 0x10], xmm0"
+    },
+    {
+      "pc": "0x3399d7",
+      "bytes": "c74620cdcccc3d",
+      "op": "mov",
+      "args": "dword ptr [rsi + 0x20], 0x3dcccccd"
+    },
+    {
+      "pc": "0x3399de",
+      "bytes": "440f28ac24e0000000",
+      "op": "movaps",
+      "args": "xmm13, xmmword ptr [rsp + 0xe0]"
+    },
+    {
+      "pc": "0x3399e7",
+      "bytes": "440f28a424f0000000",
+      "op": "movaps",
+      "args": "xmm12, xmmword ptr [rsp + 0xf0]"
+    },
+    {
+      "pc": "0x3399f0",
+      "bytes": "440f289c2400010000",
+      "op": "movaps",
+      "args": "xmm11, xmmword ptr [rsp + 0x100]"
+    },
+    {
+      "pc": "0x3399f9",
+      "bytes": "440f28942410010000",
+      "op": "movaps",
+      "args": "xmm10, xmmword ptr [rsp + 0x110]"
+    },
+    {
+      "pc": "0x339a02",
+      "bytes": "440f288c2420010000",
+      "op": "movaps",
+      "args": "xmm9, xmmword ptr [rsp + 0x120]"
+    },
+    {
+      "pc": "0x339a0b",
+      "bytes": "0f28b42450010000",
+      "op": "movaps",
+      "args": "xmm6, xmmword ptr [rsp + 0x150]"
+    },
+    {
+      "pc": "0x339a13",
+      "bytes": "488bbc24a0010000",
+      "op": "mov",
+      "args": "rdi, qword ptr [rsp + 0x1a0]"
+    },
+    {
+      "pc": "0x339a1b",
+      "bytes": "440f28b424d0000000",
+      "op": "movaps",
+      "args": "xmm14, xmmword ptr [rsp + 0xd0]"
+    },
+    {
+      "pc": "0x339a24",
+      "bytes": "b801000000",
+      "op": "mov",
+      "args": "eax, 1"
+    },
+    {
+      "pc": "0x339a29",
+      "bytes": "488b4dc0",
+      "op": "mov",
+      "args": "rcx, qword ptr [rbp - 0x40]"
+    },
+    {
+      "pc": "0x339a2d",
+      "bytes": "4833cc",
+      "op": "xor",
+      "args": "rcx, rsp"
+    },
+    {
+      "pc": "0x339a30",
+      "bytes": "e80bf24c00",
+      "op": "call",
+      "args": "0x808c40"
+    },
+    {
+      "pc": "0x339a35",
+      "bytes": "0f28bc2440010000",
+      "op": "movaps",
+      "args": "xmm7, xmmword ptr [rsp + 0x140]"
+    },
+    {
+      "pc": "0x339a3d",
+      "bytes": "440f28842430010000",
+      "op": "movaps",
+      "args": "xmm8, xmmword ptr [rsp + 0x130]"
+    },
+    {
+      "pc": "0x339a46",
+      "bytes": "4881c460010000",
+      "op": "add",
+      "args": "rsp, 0x160"
+    },
+    {
+      "pc": "0x339a4d",
+      "bytes": "415f",
+      "op": "pop",
+      "args": "r15"
+    },
+    {
+      "pc": "0x339a4f",
+      "bytes": "415e",
+      "op": "pop",
+      "args": "r14"
+    },
+    {
+      "pc": "0x339a51",
+      "bytes": "5e",
+      "op": "pop",
+      "args": "rsi"
+    },
+    {
+      "pc": "0x339a52",
+      "bytes": "5b",
+      "op": "pop",
+      "args": "rbx"
+    },
+    {
+      "pc": "0x339a53",
+      "bytes": "5d",
+      "op": "pop",
+      "args": "rbp"
+    },
+    {
+      "pc": "0x339a54",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "edges": {
+    "0x339630": [
+      "0x339633"
+    ],
+    "0x339633": [
+      "0x339634"
+    ],
+    "0x339634": [
+      "0x339635"
+    ],
+    "0x339635": [
+      "0x339636"
+    ],
+    "0x339636": [
+      "0x339638"
+    ],
+    "0x339638": [
+      "0x33963a"
+    ],
+    "0x33963a": [
+      "0x33963f"
+    ],
+    "0x33963f": [
+      "0x339646"
+    ],
+    "0x339646": [
+      "0x33964a"
+    ],
+    "0x33964a": [
+      "0x33964f"
+    ],
+    "0x33964f": [
+      "0x339656"
+    ],
+    "0x339656": [
+      "0x339659"
+    ],
+    "0x339659": [
+      "0x33965d"
+    ],
+    "0x33965d": [
+      "0x339661"
+    ],
+    "0x339661": [
+      "0x339664"
+    ],
+    "0x339664": [
+      "0x339667"
+    ],
+    "0x339667": [
+      "0x33966a"
+    ],
+    "0x33966a": [
+      "0x339670"
+    ],
+    "0x339670": [
+      "0x339675"
+    ],
+    "0x339675": [
+      "0x339678"
+    ],
+    "0x339678": [
+      "0x33967a",
+      "0x339694"
+    ],
+    "0x33967a": [
+      "0x33967e"
+    ],
+    "0x33967e": [
+      "0x339687"
+    ],
+    "0x339687": [
+      "0x33968f"
+    ],
+    "0x33968f": [
+      "0x339692"
+    ],
+    "0x339692": [
+      "0x339694",
+      "0x33969d"
+    ],
+    "0x339694": [
+      "0x33969d"
+    ],
+    "0x33969d": [
+      "0x3396a6"
+    ],
+    "0x3396a6": [
+      "0x3396ab"
+    ],
+    "0x3396ab": [
+      "0x3396af"
+    ],
+    "0x3396af": [
+      "0x3396b4"
+    ],
+    "0x3396b4": [
+      "0x3396bd"
+    ],
+    "0x3396bd": [
+      "0x3396c2"
+    ],
+    "0x3396c2": [
+      "0x3396c7"
+    ],
+    "0x3396c7": [
+      "0x3396cb"
+    ],
+    "0x3396cb": [
+      "0x3396d0"
+    ],
+    "0x3396d0": [
+      "0x3396d5"
+    ],
+    "0x3396d5": [
+      "0x3396da"
+    ],
+    "0x3396da": [
+      "0x3396de"
+    ],
+    "0x3396de": [
+      "0x3396e3"
+    ],
+    "0x3396e3": [
+      "0x3396e7"
+    ],
+    "0x3396e7": [
+      "0x3396ee"
+    ],
+    "0x3396ee": [
+      "0x3396f0",
+      "0x339708"
+    ],
+    "0x3396f0": [
+      "0x3396f5"
+    ],
+    "0x3396f5": [
+      "0x3396f9"
+    ],
+    "0x3396f9": [
+      "0x3396fe"
+    ],
+    "0x3396fe": [
+      "0x339703"
+    ],
+    "0x339703": [
+      "0x339a24"
+    ],
+    "0x339708": [
+      "0x339710"
+    ],
+    "0x339710": [
+      "0x339712"
+    ],
+    "0x339712": [
+      "0x33971a"
+    ],
+    "0x33971a": [
+      "0x339723"
+    ],
+    "0x339723": [
+      "0x33972c"
+    ],
+    "0x33972c": [
+      "0x339735"
+    ],
+    "0x339735": [
+      "0x33973e"
+    ],
+    "0x33973e": [
+      "0x339747"
+    ],
+    "0x339747": [
+      "0x339750"
+    ],
+    "0x339750": [
+      "0x339759"
+    ],
+    "0x339759": [
+      "0x339762"
+    ],
+    "0x339762": [
+      "0x33976b"
+    ],
+    "0x33976b": [
+      "0x33976f"
+    ],
+    "0x33976f": [
+      "0x339778"
+    ],
+    "0x339778": [
+      "0x339781"
+    ],
+    "0x339781": [
+      "0x339786"
+    ],
+    "0x339786": [
+      "0x33978b"
+    ],
+    "0x33978b": [
+      "0x339790"
+    ],
+    "0x339790": [
+      "0x339795"
+    ],
+    "0x339795": [
+      "0x339798"
+    ],
+    "0x339798": [
+      "0x33979a",
+      "0x3397a7"
+    ],
+    "0x33979a": [
+      "0x3397a2"
+    ],
+    "0x3397a2": [
+      "0x3398af"
+    ],
+    "0x3397a7": [
+      "0x3397ae"
+    ],
+    "0x3397ae": [
+      "0x3397b3"
+    ],
+    "0x3397b3": [
+      "0x3397b8"
+    ],
+    "0x3397b8": [
+      "0x3397bd"
+    ],
+    "0x3397bd": [
+      "0x3397c2"
+    ],
+    "0x3397c2": [
+      "0x3397c9"
+    ],
+    "0x3397c9": [
+      "0x3397ce"
+    ],
+    "0x3397ce": [
+      "0x3397d2"
+    ],
+    "0x3397d2": [
+      "0x3397d4",
+      "0x3397d9"
+    ],
+    "0x3397d4": [
+      "0x3397d9"
+    ],
+    "0x3397d9": [
+      "0x3397de"
+    ],
+    "0x3397de": [
+      "0x3397e3"
+    ],
+    "0x3397e3": [
+      "0x3397e6"
+    ],
+    "0x3397e6": [
+      "0x3397ed"
+    ],
+    "0x3397ed": [
+      "0x3397f2"
+    ],
+    "0x3397f2": [
+      "0x3397f7"
+    ],
+    "0x3397f7": [
+      "0x3397fd"
+    ],
+    "0x3397fd": [
+      "0x3397ff",
+      "0x33980a"
+    ],
+    "0x3397ff": [
+      "0x339803"
+    ],
+    "0x339803": [
+      "0x339807"
+    ],
+    "0x339807": [
+      "0x33980a"
+    ],
+    "0x33980a": [
+      "0x33980f"
+    ],
+    "0x33980f": [
+      "0x339814"
+    ],
+    "0x339814": [
+      "0x339819"
+    ],
+    "0x339819": [
+      "0x33981e"
+    ],
+    "0x33981e": [
+      "0x339821"
+    ],
+    "0x339821": [
+      "0x339824"
+    ],
+    "0x339824": [
+      "0x339828"
+    ],
+    "0x339828": [
+      "0x33982b"
+    ],
+    "0x33982b": [
+      "0x33982d"
+    ],
+    "0x33982d": [
+      "0x339830"
+    ],
+    "0x339830": [
+      "0x339832"
+    ],
+    "0x339832": [
+      "0x339835"
+    ],
+    "0x339835": [
+      "0x339837"
+    ],
+    "0x339837": [
+      "0x339839"
+    ],
+    "0x339839": [
+      "0x33983c"
+    ],
+    "0x33983c": [
+      "0x33983e",
+      "0x339846"
+    ],
+    "0x33983e": [
+      "0x339841"
+    ],
+    "0x339841": [
+      "0x339844"
+    ],
+    "0x339844": [
+      "0x33984c"
+    ],
+    "0x339846": [
+      "0x339849"
+    ],
+    "0x339849": [
+      "0x33984c"
+    ],
+    "0x33984c": [
+      "0x33984e"
+    ],
+    "0x33984e": [
+      "0x339850",
+      "0x339868"
+    ],
+    "0x339850": [
+      "0x339854"
+    ],
+    "0x339854": [
+      "0x339859"
+    ],
+    "0x339859": [
+      "0x33985b"
+    ],
+    "0x33985b": [
+      "0x33985e"
+    ],
+    "0x33985e": [
+      "0x339861"
+    ],
+    "0x339861": [
+      "0x339863"
+    ],
+    "0x339863": [
+      "0x339866"
+    ],
+    "0x339866": [
+      "0x339868"
+    ],
+    "0x339868": [
+      "0x33986c"
+    ],
+    "0x33986c": [
+      "0x339871"
+    ],
+    "0x339871": [
+      "0x339874"
+    ],
+    "0x339874": [
+      "0x339878"
+    ],
+    "0x339878": [
+      "0x33987b"
+    ],
+    "0x33987b": [
+      "0x339880"
+    ],
+    "0x339880": [
+      "0x339885"
+    ],
+    "0x339885": [
+      "0x33988a"
+    ],
+    "0x33988a": [
+      "0x33988d"
+    ],
+    "0x33988d": [
+      "0x339891"
+    ],
+    "0x339891": [
+      "0x339895"
+    ],
+    "0x339895": [
+      "0x33989a"
+    ],
+    "0x33989a": [
+      "0x3398a1"
+    ],
+    "0x3398a1": [
+      "0x3398a5"
+    ],
+    "0x3398a5": [
+      "0x3398aa"
+    ],
+    "0x3398aa": [
+      "0x3398af"
+    ],
+    "0x3398af": [
+      "0x3398b3"
+    ],
+    "0x3398b3": [
+      "0x3398b5",
+      "0x3398ba"
+    ],
+    "0x3398b5": [
+      "0x3398b8"
+    ],
+    "0x3398b8": [
+      "0x3398be"
+    ],
+    "0x3398ba": [
+      "0x3398be"
+    ],
+    "0x3398be": [
+      "0x3398c1"
+    ],
+    "0x3398c1": [
+      "0x3398c6"
+    ],
+    "0x3398c6": [
+      "0x3398cb"
+    ],
+    "0x3398cb": [
+      "0x3398d0"
+    ],
+    "0x3398d0": [
+      "0x3398d5"
+    ],
+    "0x3398d5": [
+      "0x3398da"
+    ],
+    "0x3398da": [
+      "0x3398df"
+    ],
+    "0x3398df": [
+      "0x3398e5"
+    ],
+    "0x3398e5": [
+      "0x3398ea"
+    ],
+    "0x3398ea": [
+      "0x3398f0"
+    ],
+    "0x3398f0": [
+      "0x3398f6"
+    ],
+    "0x3398f6": [
+      "0x3398fc"
+    ],
+    "0x3398fc": [
+      "0x339904"
+    ],
+    "0x339904": [
+      "0x33990c"
+    ],
+    "0x33990c": [
+      "0x339911"
+    ],
+    "0x339911": [
+      "0x339917"
+    ],
+    "0x339917": [
+      "0x33991c"
+    ],
+    "0x33991c": [
+      "0x33991f"
+    ],
+    "0x33991f": [
+      "0x339925"
+    ],
+    "0x339925": [
+      "0x33992d"
+    ],
+    "0x33992d": [
+      "0x339935"
+    ],
+    "0x339935": [
+      "0x33993a"
+    ],
+    "0x33993a": [
+      "0x33993c"
+    ],
+    "0x33993c": [
+      "0x33993e",
+      "0x339953"
+    ],
+    "0x33993e": [
+      "0x339942"
+    ],
+    "0x339942": [
+      "0x339947"
+    ],
+    "0x339947": [
+      "0x33994a"
+    ],
+    "0x33994a": [
+      "0x33994f"
+    ],
+    "0x33994f": [
+      "0x339951"
+    ],
+    "0x339951": [
+      "0x339953",
+      "0x339998"
+    ],
+    "0x339953": [
+      "0x339955"
+    ],
+    "0x339955": [
+      "0x339958"
+    ],
+    "0x339958": [
+      "0x33995e",
+      "0x339781"
+    ],
+    "0x33995e": [
+      "0x339966"
+    ],
+    "0x339966": [
+      "0x339968"
+    ],
+    "0x339968": [
+      "0x33996a",
+      "0x3399c6"
+    ],
+    "0x33996a": [
+      "0x33996c"
+    ],
+    "0x33996c": [
+      "0x339973"
+    ],
+    "0x339973": [
+      "0x339976"
+    ],
+    "0x339976": [
+      "0x33997c"
+    ],
+    "0x33997c": [
+      "0x33997e"
+    ],
+    "0x33997e": [
+      "0x339981"
+    ],
+    "0x339981": [
+      "0x339987"
+    ],
+    "0x339987": [
+      "0x33998a"
+    ],
+    "0x33998a": [
+      "0x33998d"
+    ],
+    "0x33998d": [
+      "0x339993"
+    ],
+    "0x339993": [
+      "0x339996"
+    ],
+    "0x339996": [
+      "0x3399cf"
+    ],
+    "0x339998": [
+      "0x33999d"
+    ],
+    "0x33999d": [
+      "0x3399a2"
+    ],
+    "0x3399a2": [
+      "0x3399a6"
+    ],
+    "0x3399a6": [
+      "0x3399ab"
+    ],
+    "0x3399ab": [
+      "0x3399b0"
+    ],
+    "0x3399b0": [
+      "0x3399b7"
+    ],
+    "0x3399b7": [
+      "0x3399bd"
+    ],
+    "0x3399bd": [
+      "0x3399c4"
+    ],
+    "0x3399c4": [
+      "0x3399de"
+    ],
+    "0x3399c6": [
+      "0x3399cb"
+    ],
+    "0x3399cb": [
+      "0x3399cf"
+    ],
+    "0x3399cf": [
+      "0x3399d2"
+    ],
+    "0x3399d2": [
+      "0x3399d7"
+    ],
+    "0x3399d7": [
+      "0x3399de"
+    ],
+    "0x3399de": [
+      "0x3399e7"
+    ],
+    "0x3399e7": [
+      "0x3399f0"
+    ],
+    "0x3399f0": [
+      "0x3399f9"
+    ],
+    "0x3399f9": [
+      "0x339a02"
+    ],
+    "0x339a02": [
+      "0x339a0b"
+    ],
+    "0x339a0b": [
+      "0x339a13"
+    ],
+    "0x339a13": [
+      "0x339a1b"
+    ],
+    "0x339a1b": [
+      "0x339a24"
+    ],
+    "0x339a24": [
+      "0x339a29"
+    ],
+    "0x339a29": [
+      "0x339a2d"
+    ],
+    "0x339a2d": [
+      "0x339a30"
+    ],
+    "0x339a30": [
+      "0x339a35"
+    ],
+    "0x339a35": [
+      "0x339a3d"
+    ],
+    "0x339a3d": [
+      "0x339a46"
+    ],
+    "0x339a46": [
+      "0x339a4d"
+    ],
+    "0x339a4d": [
+      "0x339a4f"
+    ],
+    "0x339a4f": [
+      "0x339a51"
+    ],
+    "0x339a51": [
+      "0x339a52"
+    ],
+    "0x339a52": [
+      "0x339a53"
+    ],
+    "0x339a53": [
+      "0x339a54"
+    ],
+    "0x339a54": []
+  },
+  "calls": [
+    {
+      "pc": "0x339670",
+      "target": "0x31b7e0",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3396c2",
+      "target": "0x265020",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3396de",
+      "target": "0x265020",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x339790",
+      "target": "0x203080",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3397ae",
+      "target": "0x4692e0",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3397b8",
+      "target": "0x4692e0",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3397c9",
+      "target": "0x202d20",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3397d9",
+      "target": "0x46f460",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3397f2",
+      "target": "0x202e10",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x33986c",
+      "target": "0x203170",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x339885",
+      "target": "0x33cb70",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x339895",
+      "target": "0x202f00",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3398aa",
+      "target": "0x202b70",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3398c6",
+      "target": "0x4692f0",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x3398da",
+      "target": "0x202b10",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x33990c",
+      "target": "0x32a790",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x339935",
+      "target": "0x3377c0",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x33994a",
+      "target": "0x33d660",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    },
+    {
+      "pc": "0x339a30",
+      "target": "0x808c40",
+      "limits": "Opaque conformingly returning call; XMM9/10 preserved by assumed ABI, not tested native effects"
+    }
+  ],
+  "local_flow": {
+    "target": "0x339880",
+    "definition": "0x339723",
+    "target_reachable": true,
+    "target_reachable_without_definition": false,
+    "target_reachable_without_epilogue_restore": true,
+    "xmm9_writes": [
+      "0x339723",
+      "0x339a02"
+    ],
+    "xmm10_writes": [
+      "0x339735",
+      "0x3399f9"
+    ],
+    "loopback": "0x339958->0x339781",
+    "limits": "All direct conditional outcomes in bounded source; normalentry assumed, opaque calls return conformingly. Not actual game trigger/caller trace/completecallee proof"
+  },
+  "focused_memory_roles": [
+    {
+      "pc": "0x33971a",
+      "operand": 0,
+      "kind": "w",
+      "width": 16,
+      "base": "rsp",
+      "disp": 288
+    },
+    {
+      "pc": "0x339723",
+      "operand": 1,
+      "kind": "r",
+      "width": 4,
+      "base": "rip",
+      "disp": 6003212
+    },
+    {
+      "pc": "0x339735",
+      "operand": 1,
+      "kind": "r",
+      "width": 4,
+      "base": "rip",
+      "disp": 26944786
+    },
+    {
+      "pc": "0x339a02",
+      "operand": 1,
+      "kind": "r",
+      "width": 16,
+      "base": "rsp",
+      "disp": 288
+    }
+  ],
+  "constants": [
+    {
+      "load": "0x339723",
+      "address": "0x8f3138",
+      "bytes_hex": "00003443",
+      "f32": 180.0,
+      "section": {
+        "name": ".rdata",
+        "rva": "0x7a2000",
+        "virtual_bytes": 22206460,
+        "raw_bytes": 22206464,
+        "characteristics": "40000040",
+        "write_flag": false
+      },
+      "limits": "Shipping image bytes, unchanged-reference-memory precondition. Not live value/lifetime proof"
+    },
+    {
+      "load": "0x339735",
+      "address": "0x1cebc50",
+      "bytes_hex": "db0f4940",
+      "f32": 3.1415927410125732,
+      "section": {
+        "name": ".rdata",
+        "rva": "0x7a2000",
+        "virtual_bytes": 22206460,
+        "raw_bytes": 22206464,
+        "characteristics": "40000040",
+        "write_flag": false
+      },
+      "limits": "Shipping image bytes, unchanged-reference-memory precondition. Not live value/lifetime proof"
+    }
+  ],
+  "mutation_control": {
+    "name": "Private source constant-load destination XMM9-to-XMM8",
+    "offset": 247,
+    "original_byte": 13,
+    "mutant_byte": 5,
+    "mutant_body_sha256": "fd381402643e4cdd6bc54d395237f2708b2cf455bd277a99befb4eee6da6c32c",
+    "xmm9_writes": [
+      "0x339a02"
+    ],
+    "constant_reaching_definition_missing": true,
+    "original_body_binding_rejected": true,
+    "limits": "Decode/role/source mutation only; no altered machine instructions executed or originalhashguard bypass"
+  },
+  "interpretation": "XMM9 is literal180 from shippingreference not unknownregister divisor, under unchangedconstants/conforming-returningcallees. Preserve sourceorder: IMULEAX,EBX,90 low32; MOVDXMM0,EAX; CVTDQ2PS signed32; MULSSXMM0,XMM10(pi); DIVSSXMM0,XMM9(180); CALL33CB70. Variable-denominator/nearzero/unbounded-growth rationale refuted for thissite, not allfastpathreachability.",
+  "coarse_bound": "Under completed standardISA operations/conformingcallee/unchangedfinitepi<4 and180>1, degree originates signed32 so absCVTDQ2PS<=2^31; multiply has finite coarsebound2^33 and division cannot exceed that coarsebound. No realnumber rewrite or bitexact quotient claimed. This weak finitebound does not establish angle<=4pi or exclude fastpath.",
+  "consumer": {
+    "path": "Database/FFXII TZA/24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md",
+    "sha256": "02234ee4a3d29ffc4f286fcadd40342659a0072f177789d8df4b35e72b692907",
+    "retained_name": "maths-preimage.md",
+    "change": "Correct specific00339880 registerdivisor/unbounded-growth residue rationale; retain40 unresolvedoperand producers and actualCRT/FP/input/normalreachability questions, do not close53-site question"
+  },
+  "limits": "No original/native/emulator/live, acosf/callee semantics, nativeMXCSR/rounding/exceptions, bitexactconversion, actualinputrange or observedfastpath, wholelogicalfunction .pdata extent, all53callers, scheduler, ownership or combatconsequence proved. ABIassumption does not certifycallees; intervention/exceptional/nonconforming execution outofsourceproof. Source/model/manifestchecks are not independentacceptance.",
+  "cleanup": "PC OFF/no game/input/instruments/process/save/config/reference/peerwrites. Onlyreadonlysource/consumerpreimage and Python boundedgraph/control calculations; owner/reviewer incorporation pending."
+}

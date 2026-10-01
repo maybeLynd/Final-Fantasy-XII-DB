@@ -1,0 +1,7 @@
+SURVIVES  V0  111 instructions; tail jmp with (0, 0, 0, 0)
+SURVIVES  V1  clamp(count - 1, 0, 2)
+SURVIVES  V2  first writer wins; released at 0026DA92
+SURVIVES  V3  0, or (result >= 4) + 1
+SURVIVES  V4  pre-zero before the lookups
+SURVIVES  V5  rip writes ['02099DA8', '02099DAC', '02099DB0', '02099DBC']; ctx = 002EF2B0() = 02164480; register writes at +['0x1060', '0x1061'] -> ['021654E0', '021654E1']
+FAILS 0

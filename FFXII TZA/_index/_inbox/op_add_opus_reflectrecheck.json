@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PHYRE-REFLECTION-REDERIVED-AND-THE-DEBT-MEASURED",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the Phyre member-registration pipeline that 613 of this store's field rows rest on, and what it can and cannot say about the route-less Phyre debt",
+  "scope": "decode every call site of the member registrar 00632960 from the image independently of the existing schema file; compare counts; then measure the unobserved debt of the P* types against whether they register members at all",
+  "completion": "the independent decode either reproduces the schema file's counts or names the difference; the debt is split by reflection coverage with the numbers stated; the structural half of the routed FABLE question is answered with measurements and the ruling is left to FABLE",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

@@ -1,0 +1,22 @@
+top byte by (dir, prefix):
+   ('bg_obj', 'b', '0x62', 'b') 74
+   ('chara', 'c', '0x63', 'c') 76
+   ('gadget', 'g', '0x67', 'g') 113
+   ('high', 'hc', '0x63', 'c') 36
+   ('high', 'hc', '0x66', 'f') 108
+   ('high', 'hn', '0x66', 'f') 146
+   ('high', 'hn', '0x6e', 'n') 60
+   ('high', 'hs', '0x73', 's') 9
+   ('monster', 'm', '0x6d', 'm') 421
+   ('npc', 'n', '0x6e', 'n') 656
+   ('summon', 's', '0x73', 's') 88
+   ('treasure', 't', '0x74', 't') 22
+   ('weapon', 'w', '0x77', 'w') 316
+   ('weapon', 'w', '0x82', '') 2
+low nibble == record index: {True: 2126, False: 1}
+mid 20 bits == file number, by dir: [(('bg_obj', True), 74), (('chara', False), 13), (('chara', True), 63), (('gadget', True), 113), (('high', False), 359), (('monster', False), 5), (('monster', True), 416), (('npc', False), 56), (('npc', True), 600), (('summon', True), 88), (('treasure', True), 22), (('weapon', False), 2), (('weapon', True), 316)]
+  ex chara [('c1004', 3, '0x6300bbc3', 3004), ('c1005', 3, '0x6300bbd3', 3005), ('c1006', 4, '0x6300bbe4', 3006), ('c1019', 2, '0x6300bcb2', 3019)]
+  ex high [('hc1004_01', 0, '0x660000b0', 11), ('hc1004_01', 1, '0x660000b1', 11), ('hc1004_02', 0, '0x660000b0', 11), ('hc1004_02', 1, '0x660000b1', 11)]
+  ex monster [('m1027', 3, '0x6d007eb3', 2027), ('m1027', 4, '0x6d00bd34', 3027), ('m1086', 3, '0x6d008263', 2086), ('m1086', 4, '0x6d00c0e4', 3086)]
+  ex npc [('n1018', 4, '0x6e00bca4', 3018), ('n1018', 5, '0x6e00bca5', 3018), ('n1018', 6, '0x6e00bca6', 3018), ('n1018', 7, '0x6e00bca7', 3018)]
+  ex weapon [('w0020', 0, '0x82000000', 0), ('w2133', 0, '0x82000000', 0)]

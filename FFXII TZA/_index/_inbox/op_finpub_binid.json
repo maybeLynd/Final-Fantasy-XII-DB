@@ -1,0 +1,7 @@
+{
+ "action": "finish",
+ "task": "SWE2DATA-PUB-BIN-SECTION000-0922",
+ "agent": "SWE2-DATA",
+ "result_refs": ["commit:3ed96741f"],
+ "note": "published .bin==EBP2 section-000 identity + binmap fin tail; @publication released"
+}

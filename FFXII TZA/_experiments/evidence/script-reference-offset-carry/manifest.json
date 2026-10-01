@@ -1,0 +1,145 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 5693,
+      "sha256": "c1e778214c431b14537c10aaaf07a6d48547b4b40563919373f17f450d7ee931"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5962,
+      "sha256": "1d597a9c3c75feca9ee61b1cafeb52ac1cbad785344899c63f6d2c3fcd7747b2"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 405,
+      "sha256": "863ced5bccb8ee7dcbfc2ca662078b5cc9822fb6219cd4d2df288e8ad54f9f6b"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 74,
+      "sha256": "06fb80ce8029e53d3afd175c4a986a9862a61a9bfaadaf7b55aa11e1e51c75cc"
+    },
+    {
+      "path": "fault-class-always-preserved.stderr",
+      "bytes": 507,
+      "sha256": "9e179db550f4329c9e94241d58b42c51dd08fc5ce6bc3359a050ae4331854615"
+    },
+    {
+      "path": "fault-class-always-preserved.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-final-offset-mask.stderr",
+      "bytes": 515,
+      "sha256": "f792f574546314ba295784c948e5217d7f60786247b04a77ed346949158c00e6"
+    },
+    {
+      "path": "fault-final-offset-mask.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-width-always-seven.stderr",
+      "bytes": 515,
+      "sha256": "cc484ec7270cd9d80a445d6b6d4c64106b6a6b3c77297f6f712830e4e69946e0"
+    },
+    {
+      "path": "fault-width-always-seven.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3037,
+      "sha256": "7868ad39d5deafb4203255c83e128dd3233c0a88aea2cad4ed02bc9a692b8afe"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3013,
+      "sha256": "4ac18dc2624e0e98f6dd07b6f8dc3cb6dec7e7d9051237e3f3086cc77bf82b1c"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2186,
+      "sha256": "e3c2a5e521761b8331e4456fd62b1945d26d2bf2a521c1607dd16b5ba23f6a27"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 13231,
+      "sha256": "300507b5d1c79ed129bcc825389705d758354e96a440c1bacc0f96d3f046ebe1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3699,
+      "sha256": "0a44999a888e5f7542a7b515024664bce7490891c7dbffe4ae0e79dc42754cb9"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 465,
+      "sha256": "d3fea769b2f771af0c4760b9461a4d68540289fdd282433ff83163c6d2dc281d"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2932,
+      "sha256": "9167f0d3b2ed33a18a2fd0c2127a5a75920ef78b6dbfada89eeb10f76844be25"
+    },
+    {
+      "path": "retained/capture-before-consumer-preimage-failure.py",
+      "bytes": 4874,
+      "sha256": "b99ec605cac41e2b55ed299505a47a58f4154db84f8bff0e195bc0343d271e50"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 44627,
+      "sha256": "1ede4326eba822b87019f485fdfd80fa79ce951c80f2b2ad435c5b236e71e40e"
+    },
+    {
+      "path": "retained/consumer-preimage-failure.json",
+      "bytes": 417,
+      "sha256": "51be52bdb544d2291866e2ef746272748ef8a545facf3879365e0db5880fa25a"
+    },
+    {
+      "path": "retained/failed-inspect-source.bin",
+      "bytes": 756,
+      "sha256": "b0bea9d531602e1e8db9360201e0a282749fd5e396336730a5fd6fd681b93f7e"
+    },
+    {
+      "path": "retained/preparation-failure.json",
+      "bytes": 480,
+      "sha256": "35f9790a4daa1c518d917e39be3e317ace53cfdb0a28c4f16d454993676be074"
+    },
+    {
+      "path": "retained/pushp164.bin",
+      "bytes": 164,
+      "sha256": "35d76235a5aa3d50f04e2d1be7a0f42aa80f9d00fcd2291dc21585e3b2fe5674"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/scale-table24.bin",
+      "bytes": 24,
+      "sha256": "941d9644b3dd4d580befd9a9938103f473b94aa6255cebe5b350734a46f6c9e7"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "A source/conditional arithmetic, NOT original execution/actual references/normal caller/native safety/live/independent acceptance."
+}

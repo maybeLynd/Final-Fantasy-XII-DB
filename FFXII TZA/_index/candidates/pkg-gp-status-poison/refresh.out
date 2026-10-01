@@ -1,0 +1,7 @@
+PASS  G a present status goes on only with row +6 bit 5; else 'no effect'
+PASS  A the add writes default timers and tests no presence word (+0x64 / +0x3C reads: 0)
+PASS  I the record's 32 + 32 timer slots start at -1
+PASS  C step 9 copies non-negative slots into the target's +0xBC / +0x13C
+PASS  D refreshable (row +6 bit 5): ['Stop', 'Sleep', 'Confuse', 'Lure', 'Protect', 'Shell', 'Haste', 'Bravery', 'Faith', 'Reflect', 'Vanish', 'Regen', 'Float', 'Bubble']; Poison +6 = A400
+PASS  M Poison re-cast keeps (900, 30); Haste re-cast refreshes to (3000, 120)
+FAILS 0

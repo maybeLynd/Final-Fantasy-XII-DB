@@ -1,0 +1,408 @@
+pointer 020927C0: 32 rip references (29 loads)
+round 1: 88 new root functions, 3 new escape globals (73 s)
+round 2: 306 new root functions, 2 new escape globals (164 s)
+round 3: 715 new root functions, 0 new escape globals (690 s)
+round 4: 4 new root functions, 0 new escape globals (693 s)
+pass 1: escape globals 00120000, 02092758, 0215E6E0, 022C1740[table], 02EBF190
+round 1: 950 new root functions, 0 new escape globals (1297 s)
+round 2: 147 new root functions, 0 new escape globals (1301 s)
+round 3: 18 new root functions, 0 new escape globals (1302 s)
+pass 2: escape globals 00120000, 02092758, 0215E6E0, 022C1740[table], 02EBF190
+root functions 1115; bodies reached 11184 (contexts 100610); object stores by class: {'INDEXED-ABOVE': 2107, 'INDEXED-BELOW': 202, 'INDEXED-UNKNOWN': 163, 'REGION': 4, 'STATE-OTHER': 7380} (1302 s)
+stores that can reach [0x385c, 0x3860): 369 in 41 functions
+  INDEXED-BELOW   00252610 0025265B mov dword ptr [r9 + rax*4 + 0x90], r8d           size 4  base A lo=0x90
+  INDEXED-BELOW   00252610 0025266E mov dword ptr [r9 + rax*4 + 0x90], r8d           size 4  base A lo=0x90
+  INDEXED-BELOW   00252610 00252681 mov byte ptr [rax + r9 + 0x70], r8b              size 1  base index A+0x0 lo=0x70
+  INDEXED-BELOW   00252610 00252691 mov byte ptr [rax + r9 + 0x70], r8b              size 1  base index A+0x0 lo=0x70
+  INDEXED-BELOW   00252610 002526AA mov word ptr [r9 + rax*2 + 0x30], r8w            size 2  base A lo=0x30
+  INDEXED-BELOW   002527B0 002527CF mov dword ptr [r9 + rax*4 + 0x90], r8d           size 4  base A lo=0x90
+  INDEXED-BELOW   002527B0 002527E5 mov dword ptr [r9 + rax*4 + 0x90], r8d           size 4  base A lo=0x90
+  INDEXED-BELOW   002527B0 002527F7 mov byte ptr [rax + r9 + 0x70], r8b              size 1  base index A+0x0 lo=0x70
+  INDEXED-BELOW   002527B0 0025280A mov byte ptr [rax + r9 + 0x70], r8b              size 1  base index A+0x0 lo=0x70
+  INDEXED-BELOW   002527B0 00252819 mov word ptr [r9 + rax*2 + 0x30], r8w            size 2  base A lo=0x30
+  INDEXED-BELOW   002527B0 0025282D mov word ptr [r9 + rax*2 + 0x30], r8w            size 2  base A lo=0x30
+  INDEXED-BELOW   00315820 0031588E mov byte ptr [rax + rsi + 0x3404], bl            size 1  base A lo=0x3404
+  INDEXED-BELOW   00315910 00315975 mov byte ptr [rax + rdi + 0x32cc], bl            size 1  base A lo=0x32cc
+  INDEXED-BELOW   00315910 003159A4 mov byte ptr [rax + rdi + 0x32cc], bl            size 1  base A lo=0x32cc
+  INDEXED-BELOW   00315910 003159FE mov byte ptr [rax + rdi + 0x3844], bl            size 1  base A lo=0x3844
+  INDEXED-BELOW   00315A20 00315A70 mov byte ptr [rax + rdi + 0x334c], bl            size 1  base A lo=0x334c
+  INDEXED-BELOW   00315A90 00315AB7 mov byte ptr [rax + rbx + 0x3404], 1             size 1  base A lo=0x3404
+  INDEXED-BELOW   00315AD0 00315B2D mov byte ptr [rax + rsi + 0x3604], bl            size 1  base A lo=0x3604
+  INDEXED-BELOW   00315B50 00315BB8 mov byte ptr [rax + rdi + 0x330c], bl            size 1  base A lo=0x330c
+  INDEXED-BELOW   00315B50 00315BCC mov byte ptr [rax + rdi + 0x330c], bl            size 1  base A lo=0x330c
+  INDEXED-BELOW   00315B50 00315C06 mov byte ptr [rax + rdi + 0x33f4], bl            size 1  base A lo=0x33f4
+  INDEXED-BELOW   00315B50 00315C1A mov byte ptr [rax + rdi + 0x33f4], bl            size 1  base A lo=0x33f4
+  INDEXED-BELOW   00315B50 00315C65 mov byte ptr [rax + rsi + 0x3604], bl            size 1  base A lo=0x3604
+  INDEXED-BELOW   00315B50 00315CA7 mov byte ptr [rax + rdi + 0x3848], bl            size 1  base A lo=0x3848
+  INDEXED-BELOW   00315CD0 00315D29 mov byte ptr [rax + rbp + 0x336c], bl            size 1  base A lo=0x336c
+  INDEXED-BELOW   00315E90 00316069 mov byte ptr [rax + rdi + 0x3844], bl            size 1  base A lo=0x3844
+  INDEXED-BELOW   00316930 00316A0C mov byte ptr [rax + rsi + 0x3404], 2             size 1  base A lo=0x3404
+  INDEXED-BELOW   00316A50 00316ADB mov byte ptr [rax + rdi + 0x3844], bl            size 1  base A lo=0x3844
+  INDEXED-BELOW   00316A50 00316B38 mov byte ptr [rax + rdi + 0x3844], bl            size 1  base A lo=0x3844
+  INDEXED-BELOW   0032AB60 0032ABA8 or byte ptr [rax + rcx + 0x14f4], bl             size 1  base A lo=-0x6b0c
+  INDEXED-BELOW   0032AB60 0032ABC8 and byte ptr [rax + rcx + 0x14f4], bl            size 1  base A lo=-0x6b0c
+  INDEXED-BELOW   0032ABF0 0032AC36 or byte ptr [rax + rcx + 0x13b4], bl             size 1  base A lo=-0x6c4c
+  INDEXED-BELOW   0032ABF0 0032AC56 and byte ptr [rax + rcx + 0x13b4], bl            size 1  base A lo=-0x6c4c
+  INDEXED-BELOW   0032AC70 0032ACB3 or byte ptr [rax + rcx + 0x1384], bl             size 1  base A lo=-0x6c7c
+  INDEXED-BELOW   0032AC70 0032ACD3 and byte ptr [rax + rcx + 0x1384], bl            size 1  base A lo=-0x6c7c
+  INDEXED-BELOW   0032ACF0 0032AD33 or byte ptr [rax + rcx + 0x138c], bl             size 1  base A lo=-0x6c74
+  INDEXED-BELOW   0032ACF0 0032AD53 and byte ptr [rax + rcx + 0x138c], bl            size 1  base A lo=-0x6c74
+  INDEXED-BELOW   0032AD70 0032ADB6 or byte ptr [rax + rcx + 0x14b4], bl             size 1  base A lo=-0x6b4c
+  INDEXED-BELOW   0032AD70 0032ADD6 and byte ptr [rax + rcx + 0x14b4], bl            size 1  base A lo=-0x6b4c
+  INDEXED-BELOW   0032ADF0 0032AE3A or byte ptr [rax + rcx + 0x14b4], bl             size 1  base A lo=-0x6b4c
+  INDEXED-BELOW   0032ADF0 0032AE5A and byte ptr [rax + rcx + 0x14b4], bl            size 1  base A lo=-0x6b4c
+  INDEXED-BELOW   003C5E50 003C5E8D movups xmmword ptr [rax], xmm0                   size 8  base 0x0,A@224+0x0 lo=0x224
+  INDEXED-BELOW   003C5E50 003C5E8D movups xmmword ptr [rax], xmm0                   size 8  base 0x8,A@224+0x8 lo=0x22c
+  INDEXED-BELOW   003C5E50 003C5E97 movups xmmword ptr [rax + 0x10], xmm1            size 8  base 0x10,A@224+0x10 lo=0x234
+  INDEXED-BELOW   003C5E50 003C5E97 movups xmmword ptr [rax + 0x10], xmm1            size 8  base 0x18,A@224+0x18 lo=0x23c
+  INDEXED-BELOW   003C60F0 003C611D movups xmmword ptr [rax], xmm0                   size 8  base 0x0,A@224+0x0 lo=0x224
+  INDEXED-BELOW   003C60F0 003C611D movups xmmword ptr [rax], xmm0                   size 8  base 0x8,A@224+0x8 lo=0x22c
+  INDEXED-BELOW   003C60F0 003C6127 movups xmmword ptr [rax + 0x10], xmm1            size 8  base 0x10,A@224+0x10 lo=0x234
+  INDEXED-BELOW   003C60F0 003C6127 movups xmmword ptr [rax + 0x10], xmm1            size 8  base 0x18,A@224+0x18 lo=0x23c
+  INDEXED-BELOW   003C8670 003C869C movups xmmword ptr [rax], xmm0                   size 8  base 0x0,A@224+0x0 lo=0x224
+  INDEXED-BELOW   003C8670 003C869C movups xmmword ptr [rax], xmm0                   size 8  base 0x8,A@224+0x8 lo=0x22c
+  INDEXED-BELOW   003C8670 003C86A6 movups xmmword ptr [rax + 0x10], xmm1            size 8  base 0x10,A@224+0x10 lo=0x234
+  INDEXED-BELOW   003C8670 003C86A6 movups xmmword ptr [rax + 0x10], xmm1            size 8  base 0x18,A@224+0x18 lo=0x23c
+  INDEXED-BELOW   0046B290 0046B2E8 or byte ptr [rax + rcx + 0x1020], bl             size 1  base A lo=-0x6fe0
+  INDEXED-BELOW   0046B290 0046B316 mov byte ptr [rdx + rax + 0x1000], cl            size 1  base index A-0x8000 lo=-0x7000
+  INDEXED-BELOW   0046B290 0046B33C and byte ptr [rax + rcx + 0x1020], bl            size 1  base A lo=-0x6fe0
+  INDEXED-BELOW   0046B350 0046B364 mov word ptr [rax + rbx*2 + 0x1164], di          size 2  base A lo=-0x6e9c
+  INDEXED-BELOW   0046B380 0046B3B5 or byte ptr [rax + rcx + 0x1364], bl             size 1  base A lo=-0x6c9c
+  INDEXED-BELOW   0046B380 0046B3D1 and byte ptr [rax + rcx + 0x1364], bl            size 1  base A lo=-0x6c9c
+  INDEXED-BELOW   0046B3F0 0046B43B or byte ptr [rax + rdi + 0x1000], bl             size 1  base A lo=-0x7000
+  INDEXED-BELOW   0046B3F0 0046B44E mov word ptr [rax + rsi*2 + 0x1164], bx          size 2  base A lo=-0x6e9c
+  INDEXED-BELOW   0046B3F0 0046B470 and byte ptr [rax + rcx + 0x1000], bl            size 1  base A lo=-0x7000
+  INDEXED-BELOW   0046B490 0046B4A4 mov byte ptr [rax + rbx + 0x1064], dil           size 1  base A lo=-0x6f9c
+  INDEXED-BELOW   00583D60 00583E49 mov byte ptr [rdi + r8*4 + 0x23], 0              size 1  base A lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583E49 mov byte ptr [rdi + r8*4 + 0x23], 0              size 1  base A,G021BA940 lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583E6B mov byte ptr [rdi + r8*4 + 0x23], cl             size 1  base A lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583E6B mov byte ptr [rdi + r8*4 + 0x23], cl             size 1  base A,G021BA940 lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583E7F or byte ptr [rdi + r8*4 + 0x23], 2               size 1  base A lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583E7F or byte ptr [rdi + r8*4 + 0x23], 2               size 1  base A,G021BA940 lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583E8A mov byte ptr [rdi + r8*4 + 0x20], al             size 1  base A lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583E8A mov byte ptr [rdi + r8*4 + 0x20], al             size 1  base A,G021BA940 lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583E97 mov byte ptr [rdi + r8*4 + 0x21], al             size 1  base A lo=-0x81df
+  INDEXED-BELOW   00583D60 00583E97 mov byte ptr [rdi + r8*4 + 0x21], al             size 1  base A,G021BA940 lo=-0x81df
+  INDEXED-BELOW   00583D60 00583EAE or byte ptr [rdi + r8*4 + 0x23], 4               size 1  base A lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583EAE or byte ptr [rdi + r8*4 + 0x23], 4               size 1  base A,G021BA940 lo=-0x81dd
+  INDEXED-BELOW   00583D60 00583EB6 mov byte ptr [rdi + r8*4 + 0x22], al             size 1  base A lo=-0x81de
+  INDEXED-BELOW   00583D60 00583EB6 mov byte ptr [rdi + r8*4 + 0x22], al             size 1  base A,G021BA940 lo=-0x81de
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,G021BA940 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,G021BA940 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,G021BA940 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81d4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81d8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81dc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x2c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81d8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81dc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x28,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81dc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x24,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81e8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81ec
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f0
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8 lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8 lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8 lo=-0x8200
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f4
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81f8
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x81fc
+  INDEXED-BELOW   00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc lo=-0x8200
+  INDEXED-UNKNOWN 00229B40 00229BA2 movups xmmword ptr [rax - 0x80], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BAA movups xmmword ptr [rax - 0x70], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BB2 movups xmmword ptr [rax - 0x60], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BBA movups xmmword ptr [rax - 0x50], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BC2 movups xmmword ptr [rax - 0x40], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BCA movups xmmword ptr [rax - 0x30], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BD2 movups xmmword ptr [rax - 0x20], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00229B40 00229BDA movups xmmword ptr [rax - 0x10], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00252D40 00252D67 and byte ptr [r9 + 0x3244], al                   size 1  base A
+  INDEXED-UNKNOWN 00252D40 00252D7D mov byte ptr [r9 + 0x3244], al                   size 1  base A
+  INDEXED-UNKNOWN 00254E00 00254E27 and byte ptr [r9 + 0x32c4], al                   size 1  base A
+  INDEXED-UNKNOWN 00254E00 00254E3D mov byte ptr [r9 + 0x32c4], al                   size 1  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4C4 movups xmmword ptr [rcx - 0x80], xmm0            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4CC movups xmmword ptr [rcx - 0x70], xmm1            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4D4 movups xmmword ptr [rcx - 0x60], xmm0            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4DC movups xmmword ptr [rcx - 0x50], xmm1            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4E4 movups xmmword ptr [rcx - 0x40], xmm0            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4EC movups xmmword ptr [rcx - 0x30], xmm1            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4F4 movups xmmword ptr [rcx - 0x20], xmm0            size 8  base A
+  INDEXED-UNKNOWN 002EF4A0 002EF4FC movups xmmword ptr [rcx - 0x10], xmm1            size 8  base A
+  INDEXED-UNKNOWN 0030B180 0030B203 and byte ptr [rsi + 0x59c8], 0xfd                size 1  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B710 mov qword ptr [rax], r11                         size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B713 mov qword ptr [rax + 8], r11                     size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B717 mov qword ptr [rax + 0x10], r11                  size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B71F mov qword ptr [rax - 0x28], r11                  size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B723 mov qword ptr [rax - 0x20], r11                  size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B727 mov qword ptr [rax - 0x18], r11                  size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B72B mov qword ptr [rax - 0x10], r11                  size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B72F mov qword ptr [rax - 8], r11                     size 8  base A
+  INDEXED-UNKNOWN 0030B6A0 0030B750 and byte ptr [rax], 0xf8                         size 1  base A
+  INDEXED-UNKNOWN 003112F0 003115D6 mov dword ptr [r9 + rcx + 0x60], eax             size 4  base A
+  INDEXED-UNKNOWN 003112F0 003115F8 mov word ptr [rax + r9 + 0x60], cx               size 2  base index A
+  INDEXED-UNKNOWN 003266C0 00326818 mov word ptr [r14 - 0x12], r8w                   size 2  base A
+  INDEXED-UNKNOWN 003266C0 00326829 mov word ptr [r14], r8w                          size 2  base A
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6,A+0x4bef8
+  INDEXED-UNKNOWN 003266C0 003268BD mov word ptr [r14 - 0x12], r8w                   size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6,A+0x4bef8,A+0x4befa
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08,A+0x4bf0a
+  INDEXED-UNKNOWN 003266C0 003268CD mov word ptr [r14], r8w                          size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08,A+0x4bf0a,A+0x4bf0c
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26,A+0x4bf28
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26,A+0x4bf28,A+0x4bf2a
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26,A+0x4bf28,A+0x4bf2a,A+0x4bf2c
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26,A+0x4bf28,A+0x4bf2a,A+0x4bf2c,A+0x4bf2e
+  INDEXED-UNKNOWN 003266C0 003268DC mov word ptr [r14 + 0x24], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26,A+0x4bf28,A+0x4bf2a,A+0x4bf2c,A+0x4bf2e,A+0x4bf30
+  INDEXED-UNKNOWN 003266C0 00326950 mov word ptr [rcx], r8w                          size 2  base A
+  INDEXED-UNKNOWN 003266C0 00326950 mov word ptr [rcx], r8w                          size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6,A+0x4bef8,A+0x4befa
+  INDEXED-UNKNOWN 003266C0 0032695F mov word ptr [rcx + 0x12], r8w                   size 2  base A
+  INDEXED-UNKNOWN 003266C0 0032695F mov word ptr [rcx + 0x12], r8w                   size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08,A+0x4bf0a,A+0x4bf0c
+  INDEXED-UNKNOWN 003266C0 0032696F mov word ptr [rcx + 0x36], r8w                   size 2  base A
+  INDEXED-UNKNOWN 003266C0 0032696F mov word ptr [rcx + 0x36], r8w                   size 2  base A,A+0x4bf1c,A+0x4bf1e,A+0x4bf20,A+0x4bf22,A+0x4bf24,A+0x4bf26,A+0x4bf28,A+0x4bf2a,A+0x4bf2c,A+0x4bf2e,A+0x4bf30
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6,A+0x4bef8
+  INDEXED-UNKNOWN 003266C0 00326976 mov word ptr [rcx], r13w                         size 2  base A,A+0x4bee6,A+0x4bee8,A+0x4beea,A+0x4beec,A+0x4beee,A+0x4bef0,A+0x4bef2,A+0x4bef4,A+0x4bef6,A+0x4bef8,A+0x4befa
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08,A+0x4bf0a
+  INDEXED-UNKNOWN 003266C0 0032697A mov word ptr [rcx + 0x12], r13w                  size 2  base A,A+0x4bef8,A+0x4befa,A+0x4befc,A+0x4befe,A+0x4bf00,A+0x4bf02,A+0x4bf04,A+0x4bf06,A+0x4bf08,A+0x4bf0a,A+0x4bf0c
+  INDEXED-UNKNOWN 003279B0 00327A01 mov byte ptr [rdx + 0x5b42], al                  size 1  base A
+  INDEXED-UNKNOWN 00583C00 00583C41 movups xmmword ptr [rax - 0x80], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C49 movups xmmword ptr [rax - 0x70], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C51 movups xmmword ptr [rax - 0x60], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C59 movups xmmword ptr [rax - 0x50], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C61 movups xmmword ptr [rax - 0x40], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C69 movups xmmword ptr [rax - 0x30], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C71 movups xmmword ptr [rax - 0x20], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C79 movups xmmword ptr [rax - 0x10], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C86 movups xmmword ptr [rax], xmm0                   size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C8D movups xmmword ptr [rax + 0x10], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C95 movups xmmword ptr [rax + 0x20], xmm0            size 8  base A
+  INDEXED-UNKNOWN 00583C00 00583C9D movups xmmword ptr [rax + 0x30], xmm1            size 8  base A
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A,A-0x81d0,A-0x81d4,A-0x81d8,A-0x81dc,A-0x81e0,G021BA940+0x20,G021BA940+0x24,G021BA940+0x28,G021BA940+0x2c,G021BA940+0x30
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A,A-0x81d0,A-0x81d4,A-0x81d8,A-0x81dc,A-0x81e0,G021BA940,G021BA940+0x20,G021BA940+0x24,G021BA940+0x28,G021BA940+0x2c,G021BA940+0x30
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A,A-0x81d4,A-0x81d8,A-0x81dc,A-0x81e0,G021BA940+0x20,G021BA940+0x24,G021BA940+0x28,G021BA940+0x2c
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A,A-0x81d8,A-0x81dc,A-0x81e0,G021BA940+0x20,G021BA940+0x24,G021BA940+0x28
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A,A-0x81dc,A-0x81e0,G021BA940+0x20,G021BA940+0x24
+  INDEXED-UNKNOWN 00583D60 00583DE4 mov byte ptr [rbx - 3], al                       size 1  base A,A-0x81e0,G021BA940+0x20
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A,A-0x81cf,A-0x81d3,A-0x81d7,A-0x81db,A-0x81df,G021BA940+0x21,G021BA940+0x25,G021BA940+0x29,G021BA940+0x2d,G021BA940+0x31
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A,A-0x81cf,A-0x81d3,A-0x81d7,A-0x81db,A-0x81df,G021BA940,G021BA940+0x21,G021BA940+0x25,G021BA940+0x29,G021BA940+0x2d,G021BA940+0x31
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A,A-0x81d3,A-0x81d7,A-0x81db,A-0x81df,G021BA940+0x21,G021BA940+0x25,G021BA940+0x29,G021BA940+0x2d
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A,A-0x81d7,A-0x81db,A-0x81df,G021BA940+0x21,G021BA940+0x25,G021BA940+0x29
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A,A-0x81db,A-0x81df,G021BA940+0x21,G021BA940+0x25
+  INDEXED-UNKNOWN 00583D60 00583DEE mov byte ptr [rbx - 2], al                       size 1  base A,A-0x81df,G021BA940+0x21
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A,A-0x81ce,A-0x81d2,A-0x81d6,A-0x81da,A-0x81de,G021BA940+0x22,G021BA940+0x26,G021BA940+0x2a,G021BA940+0x2e,G021BA940+0x32
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A,A-0x81ce,A-0x81d2,A-0x81d6,A-0x81da,A-0x81de,G021BA940,G021BA940+0x22,G021BA940+0x26,G021BA940+0x2a,G021BA940+0x2e,G021BA940+0x32
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A,A-0x81d2,A-0x81d6,A-0x81da,A-0x81de,G021BA940+0x22,G021BA940+0x26,G021BA940+0x2a,G021BA940+0x2e
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A,A-0x81d6,A-0x81da,A-0x81de,G021BA940+0x22,G021BA940+0x26,G021BA940+0x2a
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A,A-0x81da,A-0x81de,G021BA940+0x22,G021BA940+0x26
+  INDEXED-UNKNOWN 00583D60 00583E01 mov byte ptr [rbx - 1], al                       size 1  base A,A-0x81de,G021BA940+0x22
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A,A-0x81cd,A-0x81d1,A-0x81d5,A-0x81d9,A-0x81dd,G021BA940+0x23,G021BA940+0x27,G021BA940+0x2b,G021BA940+0x2f,G021BA940+0x33
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A,A-0x81cd,A-0x81d1,A-0x81d5,A-0x81d9,A-0x81dd,G021BA940,G021BA940+0x23,G021BA940+0x27,G021BA940+0x2b,G021BA940+0x2f,G021BA940+0x33
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A,A-0x81d1,A-0x81d5,A-0x81d9,A-0x81dd,G021BA940+0x23,G021BA940+0x27,G021BA940+0x2b,G021BA940+0x2f
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A,A-0x81d5,A-0x81d9,A-0x81dd,G021BA940+0x23,G021BA940+0x27,G021BA940+0x2b
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A,A-0x81d9,A-0x81dd,G021BA940+0x23,G021BA940+0x27
+  INDEXED-UNKNOWN 00583D60 00583E04 mov byte ptr [rbx], 0                            size 1  base A,A-0x81dd,G021BA940+0x23
+  INDEXED-UNKNOWN 00583D60 00583E1B mov byte ptr [rbx], cl                           size 1  base A
+  INDEXED-UNKNOWN 00583D60 00583E1B mov byte ptr [rbx], cl                           size 1  base A,A-0x81cd,A-0x81d1,A-0x81d5,A-0x81d9,A-0x81dd,G021BA940,G021BA940+0x23,G021BA940+0x27,G021BA940+0x2b,G021BA940+0x2f,G021BA940+0x33
+  INDEXED-UNKNOWN 00583D60 00583E2C or byte ptr [rbx], 2                             size 1  base A
+  INDEXED-UNKNOWN 00583D60 00583E2C or byte ptr [rbx], 2                             size 1  base A,A-0x81cd,A-0x81d1,A-0x81d5,A-0x81d9,A-0x81dd,G021BA940,G021BA940+0x23,G021BA940+0x27,G021BA940+0x2b,G021BA940+0x2f,G021BA940+0x33
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x20,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x1c,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x18,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x14,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x10,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,A@-8200+0xc,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,A@-8200+0x8,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,A@-8200+0x4,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,A@-8200+0x0,G021BA940
+  INDEXED-UNKNOWN 00583D60 00583EE0 mov byte ptr [rax], 0xff                         size 1  base A,A@-8200,G021BA940
+  INDEXED-UNKNOWN 005844A0 00584532 movups xmmword ptr [rax - 0x80], xmm0            size 8  base A
+  INDEXED-UNKNOWN 005844A0 0058453A movups xmmword ptr [rax - 0x70], xmm1            size 8  base A
+  INDEXED-UNKNOWN 005844A0 00584542 movups xmmword ptr [rax - 0x60], xmm0            size 8  base A
+  INDEXED-UNKNOWN 005844A0 0058454A movups xmmword ptr [rax - 0x50], xmm1            size 8  base A
+  INDEXED-UNKNOWN 005844A0 00584552 movups xmmword ptr [rax - 0x40], xmm0            size 8  base A
+  INDEXED-UNKNOWN 005844A0 0058455A movups xmmword ptr [rax - 0x30], xmm1            size 8  base A
+  INDEXED-UNKNOWN 005844A0 00584562 movups xmmword ptr [rax - 0x20], xmm0            size 8  base A
+  INDEXED-UNKNOWN 005844A0 0058456A movups xmmword ptr [rax - 0x10], xmm1            size 8  base A
+  REGION          00253A80 00253A93 call 0x861ec0                                    size 1048576  base A-0x8200 lo=-0x8200
+  REGION          00253A80 00253AA7 call 0x861ec0                                    size 18456  base A+0x0 lo=0x0
+  REGION          002EF5F0 002EF603 call 0x861ec0                                    size 353936  base A-0x8200 lo=-0x8200
+  REGION          002EF650 002EF663 call 0x861ec0                                    size 353936  base A-0x8200 lo=-0x8200
+blind spots: escapes 26, indirect calls carrying the object 15, recursion/depth cuts 342
+  escape 00233C10 00233C33 mov qword ptr [rip + 0x2c8b556], rax -> G02EBF190+0x0
+  escape 00238A80 00238A92 mov qword ptr [rip + 0x2c866f7], rax -> G02EBF190+0x0
+  escape 0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15 -> 0x698,R00263E30+0x698
+  escape 0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15 -> R00263E30+0x698
+  escape 0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15 -> UNKNOWN
+  escape 00253970 0025397E mov qword ptr [rip + 0x1e3edd3], rax -> G02092758+0x0
+  escape 00253970 00253990 mov qword ptr [rip + 0x1e3ee29], rax -> G020927C0+0x0
+  escape 0026C8C0 0026CAFD mov qword ptr [rdi + 0x48], rax -> G00120000
+  escape 002DDE60 002DDE81 mov qword ptr [rip + 0x1e80858], rax -> G0215E6E0+0x0
+  escape 00304180 0030424D mov qword ptr [r12 + rdi*8], rbx -> G022C1740
+  escape 003058C0 00305907 mov qword ptr [r14 + rdi*8], rax -> G022C1740
+  escape 00305960 003059A7 mov qword ptr [r14 + rbx*8], rax -> G022C1740
+  escape 00305A00 00305A57 mov qword ptr [r14 + rdi*8], rax -> G022C1740
+  escape 0030A7C0 0030A848 mov qword ptr [r14 + rdi*8], rbx -> G022C1740
+  escape 0030A7C0 0030A848 mov qword ptr [r14 + rdi*8], rbx -> UNKNOWN
+  escape 0030C300 0030C360 mov qword ptr [r15 + rdi*8], rbp -> G022C1740
+  escape 0030FD10 0030FD7A mov qword ptr [rsi + rdi*8], rbx -> G022C1740
+  escape 00310DB0 003111A4 mov qword ptr [r13 + rdi*8 + 0x21a1740], rbx -> G00120000
+  escape 00312280 00312391 mov qword ptr [r13 + rdi*8], rbx -> G022C1740
+  escape 00317480 0031755F mov qword ptr [rsp + r9*8 + 0x20], rax -> SP
+  escape 0032E870 0032E94D mov qword ptr [r10 + 0x38], rdi -> L(G022C51D0+0x0)+0x38
+  escape 0032E870 0032E970 mov qword ptr [r10 + 0x70], rdi -> L(G022C51D0+0x0)+0x70
+  escape 00403F90 00403FD4 mov qword ptr [rbx], rax -> CSP-0x270
+  escape 00403F90 00403FD4 mov qword ptr [rbx], rax -> UNKNOWN
+  escape 0046AB10 0046AC1B mov qword ptr [rax + r15 + 8], rsi -> UNKNOWN
+  escape 00582540 005825A0 movups xmmword ptr [rcx + rbx + 0x118], xmm0 -> UNKNOWN

@@ -1,0 +1,1 @@
+Attempted AX click index12 after a fresh full AX observation captured without emission; backend refused: Accessibility element12 is stale or missing. No accepted navigation is claimed.

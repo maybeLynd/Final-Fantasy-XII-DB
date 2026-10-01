@@ -1,0 +1,6 @@
+PASS H1  none address-taken ([]); each reached only through message-10 arms: {'00240DE0': [('0023BD40', (10,)), ('0023CE10', (10,))], '002A5CC0': [('002A6190', (10,))], '002A5F40': [('002A6190', (10,))], '0023F240': [('0023FBE0', (10,))], '00284EC0': [('00285290', (10,))], '0029B870': [('0029BE50', (10,))], '0055C740': [('0055CD40', (10,))]}
+PASS H2  002287D0's only caller is the arbiter at 00253CCC; the arbiter's clears of 02F9736A: ['00253F70', '00253FE9', '002540C5', '0025415F', '002541BC']
+PASS H3  the arbiter reads 02F9736A itself
+PASS N  002D3900 is mixed: [('00241D40', (10,)), ('002778C0', (10, 11)), ('00280DE0', (10,)), ('002A6190', (10,)), ('002BD680', (9,)), ('003939B0', (10,)), ('005542D0', (10,)), ('0056F810', (10,)), ('005742D0', (10,)), ('00579420', (10,)), ('0057FE80', (10,))]
+PASS C  control: the message-10 proc 002778C0 has no direct callers, so it is not a helper
+FAILS 0

@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-166",
+ "agent": "SWE2-EC7",
+ "note": "Claiming @publication for batch-166 publish: 16 host docs + ops. AUDIT-LOG already spliced at 275201c83 (peer UQ-218 tail left uncommitted).",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

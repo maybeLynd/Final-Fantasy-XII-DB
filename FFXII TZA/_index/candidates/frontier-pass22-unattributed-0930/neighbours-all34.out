@@ -1,0 +1,156 @@
+wrote C:\t\pass22-guard-1nwb9o5d\head.json.md
+wrote C:\t\pass22-guard-1nwb9o5d\head.json
+wrote C:\t\pass22-guard-1nwb9o5d\head\Database\FFXII TZA\_index\candidates\pass22-tripwires.tsv (1248 tripwire row(s))
+dispositioned by the registry, reported not failed: 377 pair(s) - CROSSING-ACCOUNTED 222, FALSE-SUBJECT 31, GENUINELY-IRRELEVANT 124
+audit: 572 finding(s) across 519 document(s)
+wrote C:\t\pass22-guard-1nwb9o5d\publish.json.md
+wrote C:\t\pass22-guard-1nwb9o5d\publish.json
+wrote C:\t\pass22-guard-1nwb9o5d\publish\Database\FFXII TZA\_index\candidates\pass22-tripwires.tsv (1305 tripwire row(s))
+dispositioned by the registry, reported not failed: 376 pair(s) - CROSSING-ACCOUNTED 222, FALSE-SUBJECT 31, GENUINELY-IRRELEVANT 123
+audit: 431 finding(s) across 519 document(s)
+UNACCOUNTED NEIGHBOUR   HEAD 572   HEAD+publish 431   (34 path(s) in the batch)
+
+  accounted for by this publish: 141
+     16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md :: CoreRuntimeScheduling
+     16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md :: Presentation
+     16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md :: CombatAI
+     16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md :: Developer
+     16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md :: Party
+     16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md :: RNG_Random_Selection
+     16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md :: Script_VM_Native_Bridge
+     16-UI/Message-Windows/the-message-window-layout-readers.md :: Script_VM_Native_Bridge
+     16-UI/README.md :: Presentation
+     16-UI/Request-Router/ui-request-router.md :: ActorEntity
+     16-UI/Request-Router/ui-request-router.md :: CombatAI
+     16-UI/Request-Router/ui-request-router.md :: Gameplay
+     16-UI/Request-Router/ui-request-router.md :: Input
+     16-UI/Request-Router/ui-request-router.md :: InputGameplay
+     16-UI/Request-Router/ui-request-router.md :: Party
+     16-UI/Request-Router/ui-request-router.md :: Presentation
+     16-UI/Request-Router/ui-request-router.md :: Script_VM_Native_Bridge
+     16-UI/Request-Router/ui-request-router.md :: Spawn_Encounter_Lifecycle
+     16-UI/Request-Router/ui-request-router.md :: World
+     16-UI/Request-Router/ui-request-router.md :: WorldAreaField
+     16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md :: ActorEntity
+     16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md :: Audio
+     16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md :: Input
+     16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md :: Resource
+     16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md :: Script_VM_Native_Bridge
+     16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md :: Story_Event_Quest_Hunt
+     16-UI/Text-And-Number-Rendering/the-text-control-code-language.md :: ActorEntity
+     16-UI/Text-And-Number-Rendering/the-text-control-code-language.md :: Party
+     16-UI/Text-And-Number-Rendering/the-text-control-code-language.md :: Script_VM_Native_Bridge
+     16-UI/Text-And-Number-Rendering/the-text-control-code-language.md :: Story_Event_Quest_Hunt
+     16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md :: Items_Equipment_Shops_License
+     16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md :: Save_Load_Settings
+     16-UI/Widget-Object-Model/the-widget-message-protocol.md :: Items_Equipment_Shops_License
+     17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md :: CombatAction
+     17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md :: Gameplay
+     17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md :: Resource
+     17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md :: Spawn_Encounter_Lifecycle
+     17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md :: Movement
+     17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md :: Resource
+     17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md :: World
+     17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md :: Resource
+     17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md :: Script_VM_Native_Bridge
+     17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md :: UI
+     17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md :: Application
+     17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md :: CoreRuntimeScheduling
+     17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md :: UI
+     17-Presentation-Rendering/Model-And-Motion-Formats/README.md :: Resource
+     17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md :: Application
+     17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md :: PlatformOnlineAchievements
+     17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md :: Resource
+     17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md :: SaveLoad
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: ActorEntity
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: Audio
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: CombatFormula
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: CoreRuntimeScheduling
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: Input
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: Movement
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: Party
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: RNG_Random_Selection
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: SaveLoad
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: Save_Load_Settings
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: Script_VM_Native_Bridge
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: World
+     17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md :: WorldAreaField
+     17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md :: CoreRuntimeScheduling
+     17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md :: Resource
+     17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md :: Resource
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: CombatAction
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: Gameplay
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: Input
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: InputGameplay
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: Movement
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: Party
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: Resource
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: Save_Load_Settings
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: UI
+     17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md :: WorldAreaField
+     17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md :: ActorEntity
+     17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md :: UI
+     17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md :: CoreRuntimeScheduling
+     17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md :: Platform
+     17-Presentation-Rendering/README.md :: ActorEntity
+     17-Presentation-Rendering/README.md :: Script_VM_Native_Bridge
+     17-Presentation-Rendering/README.md :: WorldAreaField
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: ActorEntity
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: Party
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: SaveLoad
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: Save_Load_Settings
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: Script_VM_Native_Bridge
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: World
+     17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md :: WorldAreaField
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: ActorEntity
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CombatAI
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CombatAction
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CombatFormula
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CoreRuntimeScheduling
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Gameplay
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Movement
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Party
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Presentation
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Rewards_Progression_Economy
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Save_Load_Settings
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Script_VM_Native_Bridge
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Spawn_Encounter_Lifecycle
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Status_Periodic_Terminal
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: World
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: WorldAreaField
+     22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md :: CoreRuntimeScheduling
+     22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md :: Input
+     22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md :: Resource
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Platform
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Presentation
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: SaveLoad
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Save_Load_Settings
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Script_VM_Native_Bridge
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: WorldAreaField
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: Developer
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: Input
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: Resource
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: UI
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: Actor
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: ActorEntity
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: CoreRuntimeScheduling
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: Movement
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: Script_VM_Native_Bridge
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: UI
+     22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md :: Presentation
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: CoreRuntimeScheduling
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Input
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Movement
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Party
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Presentation
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Resource
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: WorldAreaField
+     22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Input
+     22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Presentation
+     23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md :: Resource
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: Audio
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: CoreRuntimeScheduling
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: Presentation
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: Resource
+
+  ADDS NOTHING. A finding already standing at HEAD is not this publish's to answer.

@@ -1,0 +1,5 @@
+PASS O1  calls in order ['0030FE60', '00383A20', '00306570', '00392710', '002FAEC0', '0031BD60', '00325080', '00319B10']; branch before 002341D5: False
+PASS O2  00383A20 = qword [02AEDFB0] = 0; ret
+PASS O3  callers of 00383A20: ['002341C9 in 002341C0', '0023699E in 002368D0']
+PASS C  swapped targets read as teardown-first: True
+FAILS 0

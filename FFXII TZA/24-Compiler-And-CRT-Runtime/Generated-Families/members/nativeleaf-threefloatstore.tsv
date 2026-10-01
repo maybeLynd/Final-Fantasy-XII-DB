@@ -1,0 +1,7 @@
+# NativeLeaf.ThreeFloatStore - EC-7 family C
+# store xmm1->[+0x1C4], xmm2->[+0x1C8], xmm3->[+0x1CC] (member offsets);# return. Sibling of TwoFloatStore.
+address	targets
+00194330	
+00194350	
+001949C0	
+001949E0	

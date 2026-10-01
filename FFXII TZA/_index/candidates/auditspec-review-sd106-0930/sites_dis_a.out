@@ -1,0 +1,71 @@
+002B3280  sub       rsp, 0x58
+002B3284  xor       eax, eax
+002B3286  mov       qword ptr [rsp + 0x40], rax
+002B328B  mov       dword ptr [rsp + 0x38], eax
+002B328F  mov       rax, qword ptr [rsp + 0x90]
+002B3297  mov       qword ptr [rsp + 0x30], rax
+002B329C  mov       rax, qword ptr [rsp + 0x88]
+002B32A4  mov       qword ptr [rsp + 0x28], rax
+002B32A9  mov       rax, qword ptr [rsp + 0x80]
+002B32B1  mov       qword ptr [rsp + 0x20], rax
+002B32B6  call      0x2b32d0
+002B32BB  add       rsp, 0x58
+002B32BF  ret       
+002B32C0  jmp       0x2b32d0
+002B32C5  int3      
+002B32C6  int3      
+002B32C7  int3      
+002B32C8  int3      
+002B32C9  int3      
+002B32CA  int3      
+002B32CB  int3      
+002B32CC  int3      
+002B32CD  int3      
+002B32CE  int3      
+002B32CF  int3      
+---
+00227F90  add       esp, 0x40
+00227F93  pop       rdi
+00227F94  ret       
+00227F95  lea       rcx, [rsi + 0xc0]
+00227F9C  call      0x2abec0
+00227FA1  xor       eax, eax
+00227FA3  mov       rbx, qword ptr [rsp + 0x60]
+00227FA8  mov       rsi, qword ptr [rsp + 0x68]
+00227FAD  add       rsp, 0x40
+00227FB1  pop       rdi
+00227FB2  ret       
+00227FB3  mov       r8, qword ptr [rdx + 8]
+00227FB7  lea       rax, [rsp + 0x58]
+00227FBC  mov       qword ptr [rsp + 0x30], 0
+00227FC5  lea       rcx, [rsi + 0xc0]
+00227FCC  mov       qword ptr [rsp + 0x28], rax
+00227FD1  mov       r9d, 1
+00227FD7  lea       rax, [rsp + 0x50]
+00227FDC  xor       edx, edx
+00227FDE  mov       qword ptr [rsp + 0x20], rax
+00227FE3  call      0x2b3280
+00227FE8  xor       edx, edx
+00227FEA  lea       rcx, [rsi + 0xc0]
+00227FF1  call      0x2b1e20
+00227FF6  mov       eax, dword ptr [rip + 0x1be41dc]   ; -> 01E0C1D8 u32=00000200 f32=7.17465e-43
+00227FFC  mov       rcx, rsi
+00227FFF  sub       eax, dword ptr [rsp + 0x50]
+00228003  cdq       
+00228004  sub       eax, edx
+00228006  sar       eax, 1
+00228008  mov       ebx, eax
+0022800A  mov       eax, dword ptr [rip + 0x1be41cc]   ; -> 01E0C1DC u32=000001C0 f32=6.27782e-43
+00228010  sub       eax, dword ptr [rsp + 0x58]
+00228014  cdq       
+00228015  sub       eax, edx
+00228017  lea       rdx, [rip + 0x6e0ad2]   ; -> 00908AF0 u32=00640001 f32=9.18355e-39
+0022801E  sar       eax, 1
+00228020  mov       edi, eax
+00228022  call      0x247570
+00228027  test      rsi, rsi
+0022802A  je        0x228068
+0022802C  movzx     eax, word ptr [rsp + 0x50]
+00228031  mov       rcx, rsi
+00228034  and       dword ptr [rsi + 0x44], 0xfffcffff
+---

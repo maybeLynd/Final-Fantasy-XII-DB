@@ -1,0 +1,79 @@
+{
+  "status": "INCOMPLETE_NORMAL_ROOT_NOT_A_PASS",
+  "error": "unclosed normal CFG 0x1b7c93",
+  "prior_method": "Three existing bodies closed normally; the three constant4 sites are in a chained root whose containing fragment end is not whole-function end",
+  "source_pins": [
+    {
+      "path": "texture-resize-input-callers-source-01.json",
+      "sha256": "2578aeabba32317f96c38da4a26e7d3d833ad8c442e1cdd347e2dd65fbb0a19d"
+    },
+    {
+      "path": "texture-resize-input-root-prefix-source-01.json",
+      "sha256": "3c2682383fec3a5adf63b532ea0fec0062b455c239660ca9b7cfc8794e4abd7b"
+    }
+  ],
+  "checker": {
+    "path": "prove-title-queue-consumption.py",
+    "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+  },
+  "next": "Use actual continuation pdata/root membership and branch closure; retain prefix/suffix immutable, add only missing original tail; no repeated captures or semantic PASS from fragment counts",
+  "tail_metadata": [
+    {
+      "entry": [
+        "0x1b7c93",
+        "0x1b7c9d",
+        "0x1d5a918"
+      ],
+      "header": "21000000",
+      "flags": 4,
+      "chain": [
+        "0x1b7850",
+        "0x1b78d6",
+        "0x1d5a8d0"
+      ],
+      "raw_unwind": "2100000050780900d6780900d0a8c301"
+    },
+    {
+      "entry": [
+        "0x1b7c9d",
+        "0x1b7ccf",
+        "0x1d5a928"
+      ],
+      "header": "21000c00",
+      "flags": 4,
+      "chain": [
+        "0x1b7850",
+        "0x1b78d6",
+        "0x1d5a8d0"
+      ],
+      "raw_unwind": "21000c0000f4100000e4110000d4120000c41800005417000034160050780900d6780900d0a8c301"
+    },
+    {
+      "entry": [
+        "0x1b7ccf",
+        "0x1b7cde",
+        "0x1d5a918"
+      ],
+      "header": "21000000",
+      "flags": 4,
+      "chain": [
+        "0x1b7850",
+        "0x1b78d6",
+        "0x1d5a8d0"
+      ],
+      "raw_unwind": "2100000050780900d6780900d0a8c301"
+    },
+    {
+      "entry": [
+        "0x1b7d50",
+        "0x1b7ed9",
+        "0x1d5a988"
+      ],
+      "header": "013a0b00",
+      "flags": 0,
+      "chain": null,
+      "raw_unwind": "013a0b003af4040035e40a0030740900286408000742035002300000"
+    }
+  ],
+  "live_runs": 0
+}

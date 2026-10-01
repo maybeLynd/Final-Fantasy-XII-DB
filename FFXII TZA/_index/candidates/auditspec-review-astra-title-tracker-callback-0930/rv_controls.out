@@ -1,0 +1,6 @@
+positive             exit=0 result=True  Global getter/callback queue correction and conditional tracker boundary proved; scheduling/cancellation remainsOPEN
+missing-queue-source exit=1 result=False  FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\rv_tt\\ctl\\missing-queue-source\\source\\title-cleanup-callback-queue-source-01.json'
+wrong-global-getter  exit=1 result=False  ValueError: global getter identity changed
+old-store-role       exit=1 result=False  ValueError: actual shared memory/address roles changed
+consistent-index-op  exit=1 result=False  ValueError: required source operation changed 0x185a94
+fast-path-call       exit=0 result=True  Global getter/callback queue correction and conditional tracker boundary proved; scheduling/cancellation remainsOPEN

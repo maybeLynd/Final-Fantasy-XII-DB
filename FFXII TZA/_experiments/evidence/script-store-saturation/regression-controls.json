@@ -1,0 +1,22 @@
+[
+  {
+    "argument": "--fault-narrowing-wrap",
+    "returncode": 1,
+    "expected": "Wrapping cast disagrees"
+  },
+  {
+    "argument": "--fault-standard-s16-bounds",
+    "returncode": 1,
+    "expected": "Conventional signed16 clamp contradicts"
+  },
+  {
+    "argument": "--fault-no-write-as-undetected",
+    "returncode": 1,
+    "expected": "No-write claim must retain positive"
+  },
+  {
+    "argument": "--fault-accept-clamp-mutation",
+    "returncode": 1,
+    "expected": "Original clamp opcode matters"
+  }
+]

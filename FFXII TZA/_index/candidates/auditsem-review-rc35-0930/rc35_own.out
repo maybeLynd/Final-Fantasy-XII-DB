@@ -1,0 +1,203 @@
+R 003BE680
+   003BE680 mov rax, qword ptr [rip + 0x2787159]
+   003BE687 mov r10, rdx
+   003BE68A mov r9, qword ptr [rax + 0xe0]
+   003BE691 test r9, r9
+   003BE694 je 0x3be6f7
+   003BE696 movzx eax, byte ptr [r9 + 9]
+   003BE69B cmp ecx, eax
+   003BE69D jae 0x3be6f7
+   003BE69F mov eax, ecx
+   003BE6A1 movzx ecx, word ptr [r9 + rax*2 + 0xa]
+   003BE6A7 add ecx, r9d
+   003BE6AA mov edx, ecx
+   003BE6AC je 0x3be6f7
+   003BE6AE movzx eax, byte ptr [rdx]
+   003BE6B1 movzx ecx, byte ptr [rcx + 1]
+   003BE6B5 add ecx, eax
+   003BE6B7 lea eax, [rcx + rcx*2]
+   003BE6BA lea ecx, [rdx + 4]
+   003BE6BD lea ecx, [rcx + rax*8]
+   003BE6C0 movzx eax, byte ptr [rdx + 2]
+   003BE6C4 mov edx, ecx
+   003BE6C6 test ecx, ecx
+   003BE6C8 je 0x3be6f7
+   003BE6CA lea rcx, [rax + rax*4]
+   003BE6CE mov eax, edx
+   003BE6D0 lea rdx, [rdx + rcx*4]
+   003BE6D4 test rdx, rdx
+   003BE6D7 je 0x3be6f7
+   003BE6D9 test r10, r10
+   003BE6DC je 0x3be6e6
+   003BE6DE movzx ecx, word ptr [rdx + 2]
+   003BE6E2 mov word ptr [r10], cx
+   003BE6E6 test r8, r8
+   003BE6E9 je 0x3be6f3
+   003BE6EB movzx ecx, word ptr [rdx + 4]
+   003BE6EF mov word ptr [r8], cx
+   003BE6F3 movzx eax, word ptr [rdx]
+   003BE6F6 ret 
+   003BE6F7 xor eax, eax
+   003BE6F9 ret 
+X rel32 sites: ['002B7FFA', '002BB45E', '002BBA8D']
+X qwords naming it: 0
+X site 002B7FFA in 002B7B80
+     002B7FCA mov dword ptr [rsi + 0xbbc8], eax
+     002B7FD0 test rax, rax
+     002B7FD3 jne 0x2b7fe8
+     002B7FD5 mov rcx, qword ptr [r14 + 0xbbc0]
+     002B7FDC call 0x402230
+     002B7FE1 mov qword ptr [r14 + 0xbbc8], rax
+     002B7FE8 movsx ecx, word ptr [r14 + 0x138]
+     002B7FF0 lea r8, [rsp + 0x78]
+     002B7FF5 lea rdx, [rsp + 0x70]
+     002B7FFA call 0x3be680
+     002B7FFF movzx edx, ax
+     002B8002 test ax, ax
+     002B8005 je 0x2b8097
+     002B800B cmp word ptr [r14 + 0xbbe0], 6
+     002B8014 jne 0x2b801d
+     002B8016 movzx edx, word ptr [rsp + 0x70]
+     002B801B jmp 0x2b804f
+     002B801D movsx r8d, word ptr [rip + 0x1de6593]
+     002B8025 movzx eax, dx
+     002B8028 cmp eax, r8d
+     002B802B je 0x2b8048
+     002B802D movzx ecx, word ptr [rsp + 0x70]
+     002B8032 cmp ecx, r8d
+X site 002BB45E in 002BAF80
+     002BB42E mov dword ptr [rsi + 0xbbc8], eax
+     002BB434 test rax, rax
+     002BB437 jne 0x2bb44c
+     002BB439 mov rcx, qword ptr [r14 + 0xbbc0]
+     002BB440 call 0x402230
+     002BB445 mov qword ptr [r14 + 0xbbc8], rax
+     002BB44C movsx ecx, word ptr [r14 + 0x138]
+     002BB454 lea r8, [rsp + 0x68]
+     002BB459 lea rdx, [rsp + 0x60]
+     002BB45E call 0x3be680
+     002BB463 movzx edx, ax
+     002BB466 test ax, ax
+     002BB469 je 0x2bb4f4
+     002BB46F cmp word ptr [r14 + 0xbbe0], 6
+     002BB478 jne 0x2bb481
+     002BB47A movzx edx, word ptr [rsp + 0x60]
+     002BB47F jmp 0x2bb4b3
+     002BB481 movsx r8d, word ptr [rip + 0x1de315f]
+     002BB489 movzx eax, dx
+     002BB48C cmp eax, r8d
+     002BB48F je 0x2bb4ac
+     002BB491 movzx ecx, word ptr [rsp + 0x60]
+     002BB496 cmp ecx, r8d
+X site 002BBA8D in 002BAF80
+     002BBA5E dec dword ptr [rdi]
+     002BBA60 mov bh, 0xd
+     002BBA62 sub al, 0xb9
+     002BBA64 int 2
+     002BBA66 test ecx, eax
+     002BBA68 je 0x2bbafc
+     002BBA6E test byte ptr [r14 + 0xe0], r15b
+     002BBA75 jne 0x2bbafc
+     002BBA7B movsx ecx, word ptr [r14 + 0x138]
+     002BBA83 lea r8, [rsp + 0x68]
+     002BBA88 lea rdx, [rsp + 0x60]
+     002BBA8D call 0x3be680
+     002BBA92 test ax, ax
+     002BBA95 je 0x2bbafc
+     002BBA97 movzx edx, word ptr [rsp + 0x68]
+     002BBA9C mov rcx, r14
+     002BBA9F cmp dword ptr [r14 + 0xd4], edx
+     002BBAA6 jne 0x2bbab9
+     002BBAA8 movzx edx, word ptr [rsp + 0x60]
+     002BBAAD call 0x2b7210
+     002BBAB2 movzx ecx, word ptr [rsp + 0x60]
+     002BBAB7 jmp 0x2bbac3
+     002BBAB9 call 0x2b7210
+     002BBABE movzx ecx, word ptr [rsp + 0x68]
+     002BBAC3 movzx eax, word ptr [rip + 0x1de2b1e]
+G rip references to 02B457E0: 157 in 84 functions
+G  (no pdata) ['003BC2C2', '003BD860', '003BD890', '003BE680', '003BF8E0', '003C0250', '003C0340', '003C0890', '003C0CC0', '003C0CF0', '003C20D0', '003C2199', '003C21B0', '003C21C5', '003C2202']
+G  003BBFB0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BBFC6 sites=4 e0=1 byte+2=0 x20=0 
+G  003BC10A sites=3 e0=0 byte+2=0 x20=0 
+G  003BC160 sites=1 e0=0 byte+2=0 x20=0 
+G  003BC1B3 sites=1 e0=0 byte+2=0 x20=0 
+G  003BC450 sites=1 e0=0 byte+2=0 x20=0 
+G  003BC4E0 sites=2 e0=1 byte+2=0 x20=0 
+G  003BC9F0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BCA24 sites=1 e0=0 byte+2=0 x20=0 
+G  003BCA70 sites=1 e0=0 byte+2=0 x20=0 
+G  003BCAF0 sites=1 e0=0 byte+2=1 x20=1 
+G  003BCBA0 sites=2 e0=0 byte+2=0 x20=0 
+G  003BCCA0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BCD51 sites=1 e0=0 byte+2=0 x20=0 
+G  003BCE1D sites=1 e0=0 byte+2=0 x20=0 
+G  003BD040 sites=1 e0=0 byte+2=0 x20=0 
+G  003BD072 sites=2 e0=0 byte+2=0 x20=0 
+G  003BD1B0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BD200 sites=4 e0=0 byte+2=0 x20=1 
+G  003BD418 sites=1 e0=0 byte+2=0 x20=0 
+G  003BD480 sites=4 e0=0 byte+2=0 x20=0 
+G  003BD9F0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BDA42 sites=2 e0=0 byte+2=0 x20=0 
+G  003BDB30 sites=1 e0=0 byte+2=0 x20=0 
+G  003BDB6F sites=2 e0=0 byte+2=0 x20=0 
+G  003BDCD0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BDD3A sites=2 e0=0 byte+2=0 x20=0 
+G  003BDDE0 sites=1 e0=1 byte+2=0 x20=0 
+G  003BDEA4 sites=1 e0=1 byte+2=0 x20=0 
+G  003BE01D sites=3 e0=1 byte+2=0 x20=0 
+G  003BE1E0 sites=1 e0=1 byte+2=0 x20=0 
+G  003BE2D0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BE3A0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BE3E1 sites=3 e0=0 byte+2=0 x20=0 
+G  003BE50C sites=2 e0=0 byte+2=0 x20=0 
+G  003BE63C sites=1 e0=0 byte+2=0 x20=0 
+G  003BE700 sites=1 e0=1 byte+2=0 x20=0 
+G  003BEA55 sites=1 e0=0 byte+2=0 x20=0 
+G  003BEC50 sites=1 e0=0 byte+2=0 x20=0 
+G  003BECA0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BED70 sites=10 e0=0 byte+2=0 x20=0 
+G  003BF430 sites=1 e0=1 byte+2=0 x20=0 
+G  003BF520 sites=1 e0=0 byte+2=1 x20=1 
+G  003BF6E3 sites=1 e0=0 byte+2=0 x20=0 
+G  003BF7C0 sites=2 e0=0 byte+2=0 x20=0 
+G  003BF9BE sites=1 e0=0 byte+2=0 x20=0 
+G  003BFA15 sites=4 e0=0 byte+2=0 x20=0 
+G  003BFE10 sites=1 e0=0 byte+2=0 x20=0 
+G  003BFEA0 sites=1 e0=0 byte+2=0 x20=0 
+G  003BFF20 sites=1 e0=1 byte+2=1 x20=1 CAND
+G  003BFFF0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C00C0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0180 sites=1 e0=0 byte+2=0 x20=0 
+G  003C02B0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0380 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0450 sites=3 e0=0 byte+2=0 x20=0 
+G  003C05F0 sites=2 e0=0 byte+2=0 x20=0 
+G  003C0740 sites=1 e0=0 byte+2=0 x20=0 
+G  003C08B0 sites=2 e0=0 byte+2=0 x20=0 
+G  003C0A00 sites=6 e0=0 byte+2=0 x20=0 
+G  003C0B70 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0BE0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0C50 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0D70 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0E30 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0E75 sites=2 e0=0 byte+2=0 x20=0 
+G  003C0F00 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0F70 sites=1 e0=0 byte+2=0 x20=0 
+G  003C0FC0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C1070 sites=1 e0=1 byte+2=1 x20=1 CAND
+G  003C12B0 sites=2 e0=0 byte+2=0 x20=0 
+G  003C138F sites=2 e0=0 byte+2=0 x20=0 
+G  003C15B0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C15F5 sites=2 e0=0 byte+2=0 x20=0 
+G  003C1680 sites=2 e0=1 byte+2=0 x20=0 
+G  003C17E0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C18A0 sites=1 e0=0 byte+2=0 x20=0 
+G  003C1AB6 sites=2 e0=0 byte+2=0 x20=0 
+G  003C1D70 sites=1 e0=0 byte+2=0 x20=0 
+G  003C1DF0 sites=5 e0=0 byte+2=0 x20=0 
+G  003C1F00 sites=4 e0=0 byte+2=0 x20=0 
+G  003C2100 sites=1 e0=0 byte+2=0 x20=0 
+G  003C234C sites=3 e0=0 byte+2=0 x20=0 
+G candidates (e0 & byte+2 & x20): ['003BFF20', '003C1070']

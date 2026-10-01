@@ -1,0 +1,61 @@
+{
+  "method": "A retained method/source comparison, no fresh game qualification",
+  "historical_title_receipt": "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/reuse/title-enter.json",
+  "historical_receipt_sha256": "3c5ad2507a7fb4692d8b398518a74ddd8465ec2c4aa61889e3d62867a0f4a02b",
+  "historical_title_image_sha256": "556b86ad04c8e31d518e03b3d011851eb730c5e89a70d52f45b284a737d0cede",
+  "historical_registration": "EXPECTED_HELD_STATE_OBSERVED_AND_RELEASED",
+  "hold_seconds": 0.3533389000003808,
+  "sources": {
+    "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/reuse/pulse.py": {
+      "captured_sha256": "0efb04880d0847f1ad7f4276cffd9e8af81f03387f000abe2b97b12d5a1dba98",
+      "current_sha256": "0efb04880d0847f1ad7f4276cffd9e8af81f03387f000abe2b97b12d5a1dba98",
+      "identical": true
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/runtime_input_probe.py": {
+      "captured_sha256": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+      "current_sha256": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+      "identical": true
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/runtime_probe.py": {
+      "captured_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+      "current_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+      "identical": true
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/ffxii_runtime.py": {
+      "captured_sha256": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+      "current_sha256": "5629e6368f838fda31084486578ec9c7479d3f5bf99100516acf9651b466bb6a",
+      "identical": false
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/window_focus.py": {
+      "captured_sha256": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+      "current_sha256": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+      "identical": true
+    },
+    "Database/FFXII TZA/_experiments/evidence/EXP-024-group-approach/step.py": {
+      "captured_sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+      "current_sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+      "identical": true
+    },
+    "Database/FFXII TZA/_experiments/evidence/EXP-037-command-observer/observe.py": {
+      "captured_sha256": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3",
+      "current_sha256": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3",
+      "identical": true
+    },
+    "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/resumed/input_sample.py": {
+      "captured_sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf",
+      "current_sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf",
+      "identical": true
+    }
+  },
+  "source_changes": [
+    "Database/Tools/analysis-kit/gfz-scripts/ffxii_runtime.py"
+  ],
+  "interpreter_current_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "interpreter_captured_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "candidate_sha256": "1a509267dbc6ecdda08d9c9623af696b1337fad23198ddb8d1c778baaa8026bd",
+  "pulse_function_ast_identical": true,
+  "original_pulse_function_source": "def pulse(snapshot, send, guard, record, expected, clock=time.perf_counter, sleep=time.sleep):\n    \"\"\"Keep raw baseline/held/release reads. Cleanup also runs on failed delivery.\"\"\"\n    record['samples'] = []\n    address = None\n\n    def sample(phase):\n        nonlocal address\n        guard()\n        row = snapshot()\n        row.update(phase=phase, at_unix=time.time())\n        record['samples'].append(row)\n        assert row['status'] == 'STABLE_CHAIN'\n        if address is None:\n            address = row['array_address']\n        assert row['array_address'] == address\n        return set(row['nonzero_indices'])\n\n    for _ in range(35):\n        assert not sample('baseline'), 'Nonzero baseline'\n        sleep(.01)\n    guard()\n    record['down_at_unix'] = time.time()\n    try:\n        record['down_accepted'] = send(False)\n        assert record['down_accepted'] == 2, 'Incomplete dual-form input delivery'\n        start = clock()\n        seen = set()\n        while clock() - start < .35:\n            current = sample('held')\n            assert current <= {expected}, 'Unexpected key state; stop'\n            seen.update(current)\n            sleep(.01)\n        record['held_elapsed'] = clock() - start\n        record['seen_indices'] = sorted(seen)\n    finally:\n        record['up_accepted'] = send(True)\n        record['up_at_unix'] = time.time()\n    assert record['up_accepted'] == 2, 'Incomplete key release delivery'\n    sleep(.06)\n    assert not sample('release'), 'Key state remained set'\n    assert seen == {expected}, 'Registration positive not established'\n    record['registration'] = 'EXPECTED_HELD_STATE_OBSERVED_AND_RELEASED'",
+  "stopped_budget_sha256": "6e781ecf640ab05941c8c1f2bd11c6272674947e52bb51abf950b55b384a6dbb",
+  "s19_comparison": "Sky calls had no held/released raw registration receipt. Their failure neither refutes the separately qualified dual-form method nor establishes duration/packet/API/focus causality.",
+  "limits": "Existing historical positives not rerun or re-awarded; current support changed requires fresh qualification. Candidate cannot run without explicit consumed extra authorization in existing budget. No budget file/TEAM/library changes made by preparation."
+}

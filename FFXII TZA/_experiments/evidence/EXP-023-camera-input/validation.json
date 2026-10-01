@@ -1,0 +1,90 @@
+{
+  "status": "BOUNDED_POSITIVE_CONTROL_VALIDATED",
+  "publication_revision": 505,
+  "live_controls": [
+    {
+      "file": "original-right.json",
+      "index": 78,
+      "code": 106,
+      "hold_seconds": 1.0,
+      "baseline_clean": true,
+      "release_clean": true,
+      "focus_lost": 0
+    },
+    {
+      "file": "candidate-right.json",
+      "index": 64,
+      "code": 92,
+      "hold_seconds": 1.0,
+      "baseline_clean": true,
+      "release_clean": true,
+      "focus_lost": 0
+    },
+    {
+      "file": "candidate-left.json",
+      "index": 63,
+      "code": 91,
+      "hold_seconds": 1.0,
+      "baseline_clean": true,
+      "release_clean": true,
+      "focus_lost": 0
+    }
+  ],
+  "identity_windows": [
+    {
+      "file": "identity-before-elevated.json",
+      "samples": 20,
+      "first_frame": 2362,
+      "last_frame": 2419,
+      "cross_frame_reads": 0
+    },
+    {
+      "file": "identity-after.json",
+      "samples": 20,
+      "first_frame": 7004,
+      "last_frame": 7062,
+      "cross_frame_reads": 2
+    }
+  ],
+  "runs": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\check_source_hygiene.py",
+        "--paths",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input"
+      ],
+      "exit_code": 0,
+      "stdout": "no stray control bytes in 27 file(s)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\check_links.py",
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA"
+      ],
+      "exit_code": 0,
+      "stdout": "scanned 373 markdown files, 14710 relative links\nall relative links resolve\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: exactly three identities; claims, dependencies, handoffs and summaries valid\n",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "No enemy kill or group completion",
+    "No exact camera angles",
+    "No live vertical-arrow test",
+    "Two packet differences: one event and E0 flag",
+    "General shared probe negative verdicts not certified"
+  ]
+}

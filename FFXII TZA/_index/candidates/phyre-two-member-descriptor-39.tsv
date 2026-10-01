@@ -1,0 +1,54 @@
+# CANDIDATE MEMBERS - NOT A DECLARED FAMILY. OPUS 2026-09-13.
+# 39 bodies of exactly 815 bytes sharing one DERIVED form image: 545 of the 815 byte
+# positions identical across every member (67%), the other 270 operands. Derived from
+# the members, not hand-masked.
+# PROVENANCE 1 - STRING LITERALS: every one of the 39 references BOTH "m_count" and
+#   "m_els". They register a two-member reflected type; the member names are in the code.
+# PROVENANCE 2 - THE SHARED TARGETS ARE ALREADY AN ACCEPTED FAMILY'S CONTROL:
+#   006372A0, 006373D0 and 00632D80 are called by ALL 39, and the accepted C family
+#   `AbstractClassDescriptor base-aware constructors` names those same three in its own
+#   note - "six shared targets including 006372A0, 006373D0 and 00632D80, each x133".
+#   These 39 call the same PhyreEngine class-descriptor constructors.
+# Also shared by all 39: 008092FC (_Init_thread_header, x4 each), 0080929C, 00808B90
+#   (atexit), 00630180 (x2 each), 0063DC80, 0063DF90, 0063DFA0.
+# Disposition: 1 A-measured, 0 declared, 0 cited, 38 UNTOUCHED frontier. 31,785 bytes.
+entry	size	state
+005B5AE0	815	untouched
+005B5E10	815	untouched
+005B6140	815	untouched
+005B6470	815	untouched
+005B67A0	815	untouched
+005B6AD0	815	untouched
+005B6E00	815	untouched
+005B7130	815	untouched
+005B7460	815	untouched
+005ECB40	815	untouched
+005ECE70	815	untouched
+005ED4D0	815	untouched
+005ED800	815	untouched
+005EDB30	815	untouched
+005EDE60	815	untouched
+005EE190	815	untouched
+005EE4C0	815	untouched
+005EE7F0	815	untouched
+005EEB20	815	untouched
+005EEE50	815	untouched
+005EF180	815	untouched
+005EF4B0	815	untouched
+005EF7E0	815	untouched
+00618CA0	815	untouched
+00669140	815	untouched
+00669470	815	untouched
+006697A0	815	untouched
+00669AD0	815	untouched
+00669E00	815	untouched
+0066A130	815	untouched
+0067D810	815	untouched
+006AE780	815	untouched
+006BCF80	815	untouched
+006BD2B0	815	untouched
+006C1920	815	untouched
+006C6230	815	A
+006D2390	815	untouched
+006D26C0	815	untouched
+006D29F0	815	untouched

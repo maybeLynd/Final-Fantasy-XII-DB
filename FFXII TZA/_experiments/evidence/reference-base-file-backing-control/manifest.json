@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7889,
+      "sha256": "481891f10c14c1c8594d61557a50fd914c1aa077ad589b0ed47932313c87f7fc"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3615,
+      "sha256": "cf990a30204d8649d0e75cd29ce9a10184d1f904a6e6ab0bcea60bc501fd1c91"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1823,
+      "sha256": "aa89b1332b645d283eb1eec6a700a224e68588e650f7860e9a8619b97f4e193a"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1490,
+      "sha256": "139f9e1a8181c3cded8c518e4ca5570c8cd381bb0c967577fa15705c8e0c59a5"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1978,
+      "sha256": "4d00fee39861b2df0724952a129a41dfafa8db4c2c9850307172b414109c5c9c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3866,
+      "sha256": "5269935bbee67a3877e72b416c79eaffb654ad996262e7adfde977a93b032a56"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8154,
+      "sha256": "a04a8ac97edde2469fa4322bc360834ed262ada479a77eeb2a3990a15082f99a"
+    },
+    {
+      "path": "retained/codec-encode.bin",
+      "bytes": 9,
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "retained/image-header-identity.json",
+      "bytes": 279,
+      "sha256": "07a785a104f28228a91aeb6691d330890726130a10bb825e9c90a4fd438ebcd6"
+    },
+    {
+      "path": "retained/known-base-contract.md",
+      "bytes": 28420,
+      "sha256": "df246c2e2adb04e191b002cca5913bc0be8c4a889d09f0bd152d5335f2c23e8d"
+    },
+    {
+      "path": "retained/review-preimage.md",
+      "bytes": 16685,
+      "sha256": "8bc8ef3dffcd6d66ef573c0e223622fe8ce9ff926d25da5ed330de77e862819d"
+    },
+    {
+      "path": "retained/section-table.bin",
+      "bytes": 400,
+      "sha256": "a5451f22b0fa60bac5bc61eee8f826198ea92a659eb8a2b5a9320dd6fafbcf63"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/unchecked-candidate.bin",
+      "bytes": 8,
+      "sha256": "2c3458d29c5cc5f431b338bf269823c3c3d78a000bd968d664f559ef201a9997"
+    }
+  ],
+  "limits": "A certifiedPE/existingrawreader/filealias controls; no actualSPECproducer/cause/native/live/processbase or lifetime proof"
+}

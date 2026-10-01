@@ -1,0 +1,5 @@
+PASS  N _0460 handler: message 14 builds a 0xD0 widget (handler 003CA530) at this + 0xC0 and attaches it
+PASS  F _05F0 and singleton handlers pass this + 0xC0 to the widget routines
+PASS  W the routines read the handler slot +0 and write the header's +0x40 / +0x7C / +0xB8
+PASS  P nested widgets at +0xC0 of the singleton, _0460 (0xD0 child) and _05F0; the old absence spans are gone; the four types tile
+FAILS 0

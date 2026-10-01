@@ -1,0 +1,262 @@
+{
+  "files": {
+    "approach-1.json": {
+      "bytes": 2101,
+      "sha256": "fc9f8683d8627cd8bea3bb1c77a3d27f79112816850032cec28d9e4d1d4d0c9e"
+    },
+    "approach-back-10.json": {
+      "bytes": 2102,
+      "sha256": "fe73e27ddcf506148591e1e4f5f4757017b3796e623e4fe5b576c3cce7252177"
+    },
+    "approach-failed-ko-time.json": {
+      "bytes": 23,
+      "sha256": "97f8ba492298040ecfbf51fdd01fe424db4ee70ec2640ee82dea369a433d4f6e"
+    },
+    "approach-failed-ko.jpg": {
+      "bytes": 158331,
+      "sha256": "27039b766abba19c87539823ab71bf4c0074d4155bef2d3ad079fbe457c29386"
+    },
+    "approach-forward-12.json": {
+      "bytes": 2101,
+      "sha256": "d51cc35a6537c2d9f2d6df0964e42134a3b4009f6ab75bdcab76ef58fd8ee3f3"
+    },
+    "approach-forward-2.json": {
+      "bytes": 2102,
+      "sha256": "7e0c60e9247c83d8d2b2a7ae625ed45fbde65d3c4596fd9828f13a283c8be0fd"
+    },
+    "approach-forward-3.json": {
+      "bytes": 2102,
+      "sha256": "a75478e4de533dab5e60de6dcdbdf57509f3abe0ec48b4b400bb9a4edcbae8b9"
+    },
+    "approach-forward-9.json": {
+      "bytes": 2102,
+      "sha256": "d7514df74ffdd4bb7558345b53a9112011534a1a54c17781988c90b2afd646e8"
+    },
+    "approach-left-4.json": {
+      "bytes": 2102,
+      "sha256": "90a786d58902f9073c3e4f955c0ed96822218018722da3cd50cfa1788d5f6562"
+    },
+    "approach-right-11.json": {
+      "bytes": 2102,
+      "sha256": "f5faaf180b57512d256f57690269cace005e41ff3a33aa177f8dd68470ceb857"
+    },
+    "approach-right-13.json": {
+      "bytes": 2100,
+      "sha256": "baeb535f983d3032672a905f19bfd54188e36ebf0c5bafed53b943f8977f1f60"
+    },
+    "approach-right-5.json": {
+      "bytes": 2101,
+      "sha256": "96e94e1148aa59956a2f48fd17f0f4a3ed30fd0fedfc8fe1393c160c0427f45b"
+    },
+    "approach-right-6.json": {
+      "bytes": 2102,
+      "sha256": "becdd95dc3e1e241a199c83399870d0327e1f818f7f70ef79ae55d3704b2bb7a"
+    },
+    "approach-right-7.json": {
+      "bytes": 2101,
+      "sha256": "e030415a039f944ad02669fe99c72e6be8012e1b8cc56e452f8a5f095048626a"
+    },
+    "approach-right.json": {
+      "bytes": 2101,
+      "sha256": "49439397d82e72795d4f9006ba5c2b286bfad462a692ce09af72da9d0e5d0cc4"
+    },
+    "approach-south-8.json": {
+      "bytes": 2102,
+      "sha256": "e28aa88fc7a60c0ff5f85b4b42864e8420165ef80617991babe151276ca098ea"
+    },
+    "back-cactite.json": {
+      "bytes": 2083,
+      "sha256": "9a183ffdce32a66f3588f1ec3c7ca8e065b3fd1a82cfcea3be7ff16c1e9f269a"
+    },
+    "back-no-target.json": {
+      "bytes": 2083,
+      "sha256": "c172bb599a86d1dadb2650880e298b24803c70b796c05eba3256434963fdba3b"
+    },
+    "camera-right-1.json": {
+      "bytes": 2106,
+      "sha256": "2f8b4af0ddd8694c715dd56bfaee021c5961fd5c9b49005e237fc65886631ce0"
+    },
+    "cleanup.py": {
+      "bytes": 1698,
+      "sha256": "aed1cd3df549febb0fa6f9d489dbe1f1cc5d10edec6e15631045cd6682c2650c"
+    },
+    "close-approach-menu.json": {
+      "bytes": 2082,
+      "sha256": "202cad32f3a549da931ba8863386c559407eba92f77d366818e9e39439f4c1bc"
+    },
+    "close-cactite-menu.json": {
+      "bytes": 2082,
+      "sha256": "c5a2617165385a4f293f20aca808f671cde04d726f70135564d8e278159a4d14"
+    },
+    "close-click-menu.json": {
+      "bytes": 2083,
+      "sha256": "0a6756a74e445949e3efa5f10e8e16b6d08ce17cf9751e8451b6b2ce500ceb44"
+    },
+    "close-receipt.json": {
+      "bytes": 274,
+      "sha256": "894813f86e0b8297b2a09a171be6156244b09c79e683b7ecde5c850fc623cc22"
+    },
+    "combat-window-1.json": {
+      "bytes": 4747624,
+      "sha256": "dd60b9190de1a385cb21263b01a6b93cd2cd1a0e3d126c0766e6cdb77e29d72b"
+    },
+    "combat-window-2.json": {
+      "bytes": 3845946,
+      "sha256": "0bd920543659f18d4b87ec449d862784731004d68c5ab7d1175480a28bf0c2d2"
+    },
+    "decoder-control.json": {
+      "bytes": 201,
+      "sha256": "acfcafd7d2fdd506581653b9c47a4000d8102bbc57c7821204f63734b5239b09"
+    },
+    "dismiss-stepping-input.json": {
+      "bytes": 2112,
+      "sha256": "3d98d049074ca94ca7fe7ce2c96140619991b9a905d4f87f27828f9288dc723d"
+    },
+    "input_receipt.py": {
+      "bytes": 1310,
+      "sha256": "9bc04f568a9a6b4afeb07995931340e5c6129a1d78262593f0c0ce9a2e95bfad"
+    },
+    "load-menu-input.json": {
+      "bytes": 2112,
+      "sha256": "cdb81da8a2a5c092f5fb7d62a85137318b73e59b4ca8ffbc2eb3c47c73001544"
+    },
+    "load-stepping-input.json": {
+      "bytes": 2112,
+      "sha256": "c94781e38216f84a37852ba733d9436292ded442dc137246aeacd83f5269eac8"
+    },
+    "normalized-observations.json": {
+      "bytes": 2903,
+      "sha256": "2ff6557bdc35f0de3f1742dd82d771260fbdec4317800240d99ecdb2da7c0a7e"
+    },
+    "observe_ledger.py": {
+      "bytes": 6680,
+      "sha256": "85dc4f959e76df6db7274c25bb34d0caa19e2548388f20dfbfd1f938e75ae91b"
+    },
+    "open-attack-menu.json": {
+      "bytes": 2103,
+      "sha256": "c192d8a95a47c9d6927d211cad5a075fe0b773ee3d7959ad394d8a94b00fd299"
+    },
+    "open-target-menu-2.json": {
+      "bytes": 2104,
+      "sha256": "f97e47c83998c3fba89986c9ba06585d6860d193adebb3901d530bcf84313205"
+    },
+    "positions-1.json": {
+      "bytes": 3944,
+      "sha256": "ba96c4c7830d65f533ccec5ed22b4fdd2714feb635b9c78778458201f2d1e8f5"
+    },
+    "positions-2.json": {
+      "bytes": 3949,
+      "sha256": "897ae037c08b74d9972685ae811a389e2b8c7e2afd96f3a251e902e546ca2de9"
+    },
+    "positions-3.json": {
+      "bytes": 3946,
+      "sha256": "5607a6503c0532a68e3fd731fe757feefaa17f4d4b7b9192792a985d34ff3822"
+    },
+    "positions-4.json": {
+      "bytes": 3950,
+      "sha256": "fb1e3f099a1c907d60a8bded5dfe45f960bf7fd684b35e6ec683c8600cab03ee"
+    },
+    "positions-5.json": {
+      "bytes": 3950,
+      "sha256": "b1e6fbec7f1ee52e5923cb2e8f831eea87b8c745abb645653c31855388150087"
+    },
+    "positions-6.json": {
+      "bytes": 3946,
+      "sha256": "c7d3a471d042d79377a8d2646b769c0444d5e806792832444200dfabab227ac7"
+    },
+    "positions-7.json": {
+      "bytes": 3952,
+      "sha256": "5e67cc957e7ffe26d54c49ec6b62f8f49ba70baf16c2942d9c7efe23bba22d59"
+    },
+    "positions.py": {
+      "bytes": 1453,
+      "sha256": "8b5b5e901efbbe81e820b7b60e43803facc6862c0b15797acd84880baf80f499"
+    },
+    "probe_extension.py": {
+      "bytes": 1024,
+      "sha256": "809837dd288a974d608154f9a197ee3746abdde7f077484e62297aadb41bbf16"
+    },
+    "save-before.json": {
+      "bytes": 2915,
+      "sha256": "a1b3a8e34373ac72f86fa287dc1e3341de1d4e6e8e02e3da62e06c727d84ae3a"
+    },
+    "save-restored.json": {
+      "bytes": 5824,
+      "sha256": "03386124ca6e257fbb3fde4d216870c2b5b0c099372c90c2caf4211f91cfe71f"
+    },
+    "seal.py": {
+      "bytes": 2941,
+      "sha256": "c130616dc5b4d3e8967520852fb7c59f1d3d230959c9a164e50a78dcc6723c93"
+    },
+    "select-attack.json": {
+      "bytes": 2088,
+      "sha256": "bfc04a52219d3f007bb6e8e3da9d8125f65e455c83a2ed715a2d942d80052690"
+    },
+    "select-target-menu-2.json": {
+      "bytes": 2087,
+      "sha256": "1c57d40c8cc9186915f56e6015d8e953f7ac65f00c87a0cccffc33429faeff34"
+    },
+    "stepping-field-time.json": {
+      "bytes": 23,
+      "sha256": "33c655c92a0615744774e204dae47109416f7f6f37fe39302530a2b3aefa1b13"
+    },
+    "stepping-field.jpg": {
+      "bytes": 160645,
+      "sha256": "8c2b246b69bb4d320fb2c055749510042cf722112c4a9e777aff4c8c3c5c072c"
+    },
+    "stepping-qualified.json": {
+      "bytes": 27313,
+      "sha256": "4d6e5a4c1d12a17bd0dab3899e90ba01605adafe14ede9b69aded91e7280e472"
+    },
+    "stepping-save.jpg": {
+      "bytes": 92917,
+      "sha256": "2f7e5c5b383d32f4d591659134303032cb68d6440ff338011fe9577e76671d24"
+    },
+    "summarize.py": {
+      "bytes": 1849,
+      "sha256": "a2f75474911953067257f809be5b28d25aea8487180e8bd9170089fc70267b09"
+    },
+    "target-selection-time.json": {
+      "bytes": 23,
+      "sha256": "febe9ea900efb878b9ef5ded6d10b8cd72f13f2cbc05027cb101ee18fada1160"
+    },
+    "target-selection.jpg": {
+      "bytes": 146444,
+      "sha256": "0b78f25541186e9d8efa0e29b2a1d742c6725737ff61b2953e2199e403318de6"
+    },
+    "wolf-open-menu.json": {
+      "bytes": 2104,
+      "sha256": "422ba84bb760c850895986e829b4f3f3d75a942b05396f2aed96720af0caa27b"
+    }
+  },
+  "validated_input_receipts": [
+    "approach-1.json",
+    "approach-back-10.json",
+    "approach-forward-12.json",
+    "approach-forward-2.json",
+    "approach-forward-3.json",
+    "approach-forward-9.json",
+    "approach-left-4.json",
+    "approach-right-11.json",
+    "approach-right-13.json",
+    "approach-right-5.json",
+    "approach-right-6.json",
+    "approach-right-7.json",
+    "approach-right.json",
+    "approach-south-8.json",
+    "back-cactite.json",
+    "back-no-target.json",
+    "camera-right-1.json",
+    "close-approach-menu.json",
+    "close-cactite-menu.json",
+    "close-click-menu.json",
+    "dismiss-stepping-input.json",
+    "load-menu-input.json",
+    "load-stepping-input.json",
+    "open-attack-menu.json",
+    "open-target-menu-2.json",
+    "select-attack.json",
+    "select-target-menu-2.json",
+    "wolf-open-menu.json"
+  ]
+}

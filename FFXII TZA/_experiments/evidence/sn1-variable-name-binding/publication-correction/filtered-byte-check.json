@@ -1,0 +1,118 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "5fa7a0ca2c61b5c025e9fa7012f6d33084752523"
+  },
+  {
+    "path": "control-setup-failure.json",
+    "git_blob": "38b8865235a0e2638fd5c34aa7c4041ce127b46a"
+  },
+  {
+    "path": "corrected-capture-default.stdout",
+    "git_blob": "715e77653bbf1adb9a8c89dec9763cdc840f5c26"
+  },
+  {
+    "path": "corrected-freeze-default.stdout",
+    "git_blob": "7a17c7b9fd9ed9fc0a51a57619b5b24f8442c747"
+  },
+  {
+    "path": "corrected-working-check.py",
+    "git_blob": "ddf3e5a8e145afd7f1c3a9d463cd25c386bf7805"
+  },
+  {
+    "path": "corrected-working-freeze.py",
+    "git_blob": "b4624ba30e3043dbaba5f3d07a691c4e7aa3029f"
+  },
+  {
+    "path": "corrected-working-publisher.py",
+    "git_blob": "c4e46956d2ab41b1e9bfe4e9c22181462d9b499a"
+  },
+  {
+    "path": "failure.json",
+    "git_blob": "b13b817f6cd334fc4e52c9ba805b135ae3a8f5e8"
+  },
+  {
+    "path": "fault-accept-shifted-operand.stderr",
+    "git_blob": "abb8b1055cafad5553d44937e35b945fd70099fb"
+  },
+  {
+    "path": "fault-ignore-count-domain.stderr",
+    "git_blob": "fdd78b71ac3a7bb9113259aca1804bb61f7f1d9c"
+  },
+  {
+    "path": "fault-ignore-missing-member.stderr",
+    "git_blob": "d0fab8eef7df7bd38dbda4b5a04931e81787feef"
+  },
+  {
+    "path": "fault-ignore-name-directory.stderr",
+    "git_blob": "5dc4018e71e826e5587451b8c645af5df807f134"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "6993043173783d725fc85f3081231f312f97f4e3"
+  },
+  {
+    "path": "impacted-semantic-controls.json",
+    "git_blob": "a46886ec2c4bc6dcbd192e186aab2b25a84fbf6c"
+  },
+  {
+    "path": "manifest_closure.py",
+    "git_blob": "c9ce5805ac26e21ec5fe3938cf68125d2a0ba95d"
+  },
+  {
+    "path": "material-publication.json",
+    "git_blob": "b0d5a59379a21ed40927291385b2cb5948bffbcb"
+  },
+  {
+    "path": "old-publisher-default.stderr",
+    "git_blob": "c55ceb6a9ff0a4bc03cda5c4363913b3f0321a14"
+  },
+  {
+    "path": "old-publisher-default.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "prepare-default-controls.py",
+    "git_blob": "3adee2f5126dde211f988c0f90095ad9351dd011"
+  },
+  {
+    "path": "producer-default-controls.json",
+    "git_blob": "afd219913c729fd71751e91b9c4f6225aa7a424f"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "5ceef2347f2cd6ba4f56dd21508a603dd5120e7a"
+  },
+  {
+    "path": "repair-control-setup.py",
+    "git_blob": "d25f732a1425873a28b643c82e6a8f3ec41d80aa"
+  },
+  {
+    "path": "retained/control-setup-before-location-fix.py",
+    "git_blob": "efd742d3e596d5faa13762e17c06f269d232948e"
+  },
+  {
+    "path": "retained/original-declared-cache.bin",
+    "git_blob": "dab73629be9427fd9970e8185c7b83c76cbae603"
+  },
+  {
+    "path": "retained/original-publish-output.txt",
+    "git_blob": "23f3cbd74e56a057a23acbf67cce3d94b941d601"
+  },
+  {
+    "path": "retained/publisher-before-manifest-closure.py",
+    "git_blob": "571a48933764c26db03686f614c180cb7a8f40d8"
+  },
+  {
+    "path": "retained/working-check-before-publication-fix.py",
+    "git_blob": "89c59ab3e0e2ee19aaf0fef100721b3778966ffc"
+  },
+  {
+    "path": "retained/working-freeze-before-publication-fix.py",
+    "git_blob": "709058e14deaaa353c2df818b8b2402aaf5fdb78"
+  }
+]

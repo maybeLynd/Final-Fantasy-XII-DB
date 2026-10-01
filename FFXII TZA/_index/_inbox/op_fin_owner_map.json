@@ -1,0 +1,1 @@
+{"action": "finish", "task": "FRONTIER-REQ-EC7-LABEL-TO-OWNER-MAPPING", "note": "_index/CODEDOMAIN-OWNER-MAP.tsv published: every chains-column owner label mapped to the 22 canonical owners.tsv tokens; the four unmatched strings are prose fragments, not labels", "result_refs": ["file:_index/CODEDOMAIN-OWNER-MAP.tsv"]}

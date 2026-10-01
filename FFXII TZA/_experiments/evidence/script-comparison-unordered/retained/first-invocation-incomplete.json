@@ -1,0 +1,10 @@
+{
+  "status": "INCOMPLETE_MISSING_FINAL_CHECKER",
+  "capture_invocation_returncode": 1,
+  "checker_subprocess_returncode": 2,
+  "stdout": "CAPTURE77 original comparator ordered/unordered effects",
+  "failure": "check.py did not exist; subsequent subprocess CalledProcessError",
+  "retained_guest_cases": 7,
+  "semantic_acceptance": "None from initial incomplete pipeline; subsequent reduction/controls required",
+  "correction": "Actual producer requires present compilable checker before image/guest preparation; later default reduces unchanged raw without guest replay"
+}

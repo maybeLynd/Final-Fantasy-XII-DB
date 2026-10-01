@@ -1,0 +1,5 @@
+PASS  A1 00427DE0 runs 0042A580 on +0x294 bit 20 and keeps its return in edi
+PASS  A2 per-node calls go to the empty 0016D6A0 (`ret 0`); calls ['0x16d6a0', '0x16d6a0', '0x42ef90', '0x42ef90', '0x808c40']; stores [('r11', 16), ('r11', 24), ('rdi', 660), ('rsp', 120), ('rsp', 176)]
+PASS  A3 flag [rsp+0x78]: first read ['0042A5EA'] before any store (stores ['0042A5F8', '0042A639']); 0 only when a node's +6 is -1
+PASS  A4 edi is the rebuild flag: 00429E50's argument and the 00427100 gate; later handlers set it to 1
+FAILS 0

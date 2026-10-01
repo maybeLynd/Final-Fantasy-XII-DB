@@ -1,0 +1,65 @@
+wrote C:\t\pass22-guard-zdv05lb0\head.json.md
+wrote C:\t\pass22-guard-zdv05lb0\head.json
+wrote C:\t\pass22-guard-zdv05lb0\head\Database\FFXII TZA\_index\candidates\pass22-tripwires.tsv (1285 tripwire row(s))
+dispositioned by the registry, reported not failed: 376 pair(s) - CROSSING-ACCOUNTED 222, FALSE-SUBJECT 31, GENUINELY-IRRELEVANT 123
+audit: 481 finding(s) across 519 document(s)
+wrote C:\t\pass22-guard-zdv05lb0\publish.json.md
+wrote C:\t\pass22-guard-zdv05lb0\publish.json
+wrote C:\t\pass22-guard-zdv05lb0\publish\Database\FFXII TZA\_index\candidates\pass22-tripwires.tsv (1305 tripwire row(s))
+dispositioned by the registry, reported not failed: 376 pair(s) - CROSSING-ACCOUNTED 222, FALSE-SUBJECT 31, GENUINELY-IRRELEVANT 123
+audit: 431 finding(s) across 519 document(s)
+UNACCOUNTED NEIGHBOUR   HEAD 481   HEAD+publish 431   (11 path(s) in the batch)
+
+  accounted for by this publish: 50
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: ActorEntity
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CombatAI
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CombatAction
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CombatFormula
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: CoreRuntimeScheduling
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Gameplay
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Movement
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Party
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Presentation
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Rewards_Progression_Economy
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Save_Load_Settings
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Script_VM_Native_Bridge
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Spawn_Encounter_Lifecycle
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: Status_Periodic_Terminal
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: World
+     21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md :: WorldAreaField
+     22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md :: CoreRuntimeScheduling
+     22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md :: Input
+     22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md :: Resource
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Platform
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Presentation
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: SaveLoad
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Save_Load_Settings
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: Script_VM_Native_Bridge
+     22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md :: WorldAreaField
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: Developer
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: Input
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: Resource
+     22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md :: UI
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: Actor
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: ActorEntity
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: CoreRuntimeScheduling
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: Movement
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: Script_VM_Native_Bridge
+     22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md :: UI
+     22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md :: Presentation
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: CoreRuntimeScheduling
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Input
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Movement
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Party
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Presentation
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: Resource
+     22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md :: WorldAreaField
+     22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Input
+     22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Presentation
+     23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md :: Resource
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: Audio
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: CoreRuntimeScheduling
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: Presentation
+     23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: Resource
+
+  ADDS NOTHING. A finding already standing at HEAD is not this publish's to answer.

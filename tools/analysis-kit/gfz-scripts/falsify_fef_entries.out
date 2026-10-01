@@ -1,0 +1,7 @@
+SURVIVES  F0  binder -> 0016D6A0 (ret 0) at 005049BD; called from 00505026
+SURVIVES  F1  thunk and its four callers
+SURVIVES  F2  @FEF gate, the fold, the table, the null trap
+SURVIVES  F3  CON-195: the populator is called at 00409F84; chain up to 0017D000 {'0040A230': True, '00409F80': True, '0041E3A0': True, '003325D0': True, '003325C0': True, '0022A0B0': True, '0017D4C0': True}
+SURVIVES  F4  144 stores of obj_finish .cm paths; 144 of 144 are entries of the installed archive
+SURVIVES  F5  CON-196: every stored value is an .rdata string (sections ['.rdata'])
+FAILS 0

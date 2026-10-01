@@ -1,0 +1,43 @@
+{
+ "cases": {
+  "I1_exit1_invalid_id_returns_0_no_board_read": true,
+  "I1_exit2_null_record_returns_1": true,
+  "I1_exit3_kind_nonzero_returns_1_no_board_read": true,
+  "I1_exit4_slot_above_6_unsigned_returns_1_no_board_read": true,
+  "I2_kind_nonzero_or_slot_above_6_licensed_for_every_ability": true,
+  "control_kind0_slot6_reads_the_board_and_is_refused": true
+ },
+ "control_slot6": [
+  0,
+  1176
+ ],
+ "i2_kind1_not_licensed": [],
+ "i2_slot7_not_licensed": [],
+ "invalid_id": [
+  0,
+  0
+ ],
+ "invalid_id_null_rec": [
+  0,
+  0
+ ],
+ "kind1": [
+  1,
+  0
+ ],
+ "null_rec": [
+  1,
+  0
+ ],
+ "ok": true,
+ "probe_action": 0,
+ "slot255": [
+  1,
+  0
+ ],
+ "slot7": [
+  1,
+  0
+ ],
+ "unlicensed_with_empty_board": 445
+}

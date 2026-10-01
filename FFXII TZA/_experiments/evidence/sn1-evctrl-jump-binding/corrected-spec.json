@@ -1,0 +1,39 @@
+{
+  "original_raw_sha256": "985a51edd1508645f03edaf224e5366b48807a4cfe97bccb5b1f6f824d0cc17f",
+  "cases": [
+    {
+      "pc": 22,
+      "logical_line": 417,
+      "physical_one_based_line": 961,
+      "call_id": 19,
+      "verb": "askpos",
+      "label": "MENU_TOP"
+    },
+    {
+      "pc": 34,
+      "logical_line": 418,
+      "physical_one_based_line": 962,
+      "call_id": 26,
+      "verb": "mesopenspeed",
+      "label": "MENU_TOP"
+    },
+    {
+      "pc": 3230,
+      "logical_line": 708,
+      "physical_one_based_line": 1252,
+      "call_id": 19,
+      "verb": "askpos",
+      "label": "summon"
+    },
+    {
+      "pc": 3242,
+      "logical_line": 709,
+      "physical_one_based_line": 1253,
+      "call_id": 26,
+      "verb": "mesopenspeed",
+      "label": "summon"
+    }
+  ],
+  "original_error": "Named MENU_TOP target16 begins PUSHII0/POPV0x61, then askpos argument sequence starts22. mesopenspeed starts34, not28. Actual variant CALLPOPA0x5D, not assumed CALL0x58.",
+  "correction": "Read actual bytes/flags before choosing call entry; retained raw old guessed spec remains unchanged. Code body target16 sequence assignment0 precedes call22 and shares q0line417, whereas physical source assignment is logical416, useful attribution granularity limit. No recapture/VM/native execution."
+}

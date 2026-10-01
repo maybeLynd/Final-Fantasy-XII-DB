@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-BCSCALAR-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the behindcamera scalar-semantics correction + mover-chain deepening: baseScalar = follow-target height offset (corrects the published 'phase increment' reading), 003D99B0 bakes record-0's exact curve as the compiled-in default, transition flag/countdown decode, ctx+0x850 pose-blend; polyline per-frame sample remains unlocated after ten inspected mover routines.",
+  "scope": "loader-bound-bin-families.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

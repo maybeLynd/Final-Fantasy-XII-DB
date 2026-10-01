@@ -1,0 +1,565 @@
+family	path	value_types	files	occurrences	min	max	readers(17-set)	any_image_ref
+init	/EnableAO	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/EnableAutoExposure	int:1	1	1	1	1	none	
+init	/EnableDof	int:1	1	1	1	1	001C3D50,001CC800,001CC920	001C3D50,001CC800,001CC920
+init	/EnableIBL	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/EnableMapNormalMap	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/EnableShadow	int:1	1	1	1	1	001C3D50	001C3D50
+init	/EnableUSM	int:1	1	1	0	0	001C3D50	001C3D50
+init	/EnableYebis	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/ModelsToPreload	array<string>:1	1	1			001C3760	001C3760
+init	/ShadowBias	float:1	1	1	0.0002	0.0002	001C3D50,001C7940	001C3D50,001C7940
+init	/ShadowValueB	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/ShadowValueG	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/ShadowValueR	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/TrackingMapScreenRateX	float:1	1	1	0.5999998450279236	0.5999998450279236	001C3760,001C7360	001C3760,001C7360
+init	/TrackingMapScreenRateY	float:1	1	1	0.5719998478889465	0.5719998478889465	001C3760,001C7360	001C3760,001C7360
+init	/TrackingMapScreenSuperWideMul	int:1	1	1	1	1	001C3760,001C7520	001C3760,001C7520
+init	/TrackingMapScreenSuperWidePlus	int:1	1	1	16	16	001C3760,001C7520	001C3760,001C7520
+init	/chrCameraLightEnabled	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/chrFresnelSpecularClampValue	float:1	1	1	-0.8	-0.8	001C3D50,001C7940	001C3D50,001C7940
+init	/chrFresnelSpecularIntensity	float:1	1	1	3.9	3.9	001C3D50,001C7940	001C3D50,001C7940
+init	/chrFresnelSpecularPower	float:1	1	1	2.7	2.7	001C3D50,001C7940	001C3D50,001C7940
+init	/chrFresnelSpecularSkinIntensity	int:1	1	1	2	2	001C3D50,001C7940	001C3D50,001C7940
+init	/lightHeight	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/lightOrientation	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/lightShaftAngleAttenuation	int:1	1	1	5	5	001C7940	001C7940
+init	/lightShaftColorA	string:1	1	1			001C7940	001C7940
+init	/lightShaftColorB	int:1	1	1	3	3	001C7940	001C7940
+init	/lightShaftColorG	int:1	1	1	5	5	001C7940	001C7940
+init	/lightShaftColorR	int:1	1	1	5	5	001C7940	001C7940
+init	/lightShaftDiffractionRing	float:1	1	1	1.2	1.2	001C7940	001C7940
+init	/lightShaftDiffractionRingAttenuation	float:1	1	1	0.5	0.5	001C7940	001C7940
+init	/lightShaftDiffractionRingOuterColorA	string:1	1	1			001C7940	001C7940
+init	/lightShaftDiffractionRingOuterColorB	int:1	1	1	1	1	001C7940	001C7940
+init	/lightShaftDiffractionRingOuterColorG	int:1	1	1	1	1	001C7940	001C7940
+init	/lightShaftDiffractionRingOuterColorR	int:1	1	1	1	1	001C7940	001C7940
+init	/lightShaftDiffractionRingRadius	float:1	1	1	12.5	12.5	001C7940	001C7940
+init	/lightShaftDiffractionRingSpectrumOrder	int:1	1	1	1	1	001C7940	001C7940
+init	/lightShaftEnable	int:1	1	1	1	1	001C7940	001C7940
+init	/lightShaftGlareRatio	float:1	1	1	0.5	0.5	001C7940	001C7940
+init	/lightShaftLength	float:1	1	1	1.4	1.4	001C7940	001C7940
+init	/lightShaftMaskDepthThereshold	float:1	1	1	0.999	0.999	001C7940	001C7940
+init	/lightShaftNoiseFrequency	float:1	1	1	0.6	0.6	001C7940	001C7940
+init	/lightShaftNoiseMask	float:1	1	1	0.6	0.6	001C7940	001C7940
+init	/mBlurFactor	float:1	1	1	0.25	0.25	001C3D50,001C7940	001C3D50,001C7940
+init	/mCascadeNumber	int:1	1	1	3	3	none	
+init	/mCascadePartition0_1	float:1	1	1	0.008	0.008	001C3D50	001C3D50
+init	/mCascadePartition1_1	float:1	1	1	0.016	0.016	001C3D50	001C3D50
+init	/mCascadePartition2_1	float:1	1	1	0.035	0.035	001C3D50	001C3D50
+init	/mColorB	float:1	1	1	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mColorG	float:1	1	1	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mColorR	float:1	1	1	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mContrastR	float:1	1	1	0.4	0.4	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugRefractionFactor	int:1	1	1	2	2	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterCubemapFactor	float:1	1	1	0.88	0.88	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterExtraFactor	int:1	1	1	1	1	none	
+init	/mDebugWaterExtraFactorTwo	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterFresnelFactor	float:1	1	1	3.81	3.81	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterMinZ	float:1	1	1	0.7	0.7	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterParallaxFactor	float:1	1	1	0.04	0.04	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterRefBldFactor	float:1	1	1	0.4	0.4	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterRefFactor	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterRoughnessFactor	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterSpecFactor	float:1	1	1	3.59	3.59	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterStepInrSpeed	float:1	1	1	0.4	0.4	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterStepSize	float:1	1	1	3.5	3.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterTexBlendFactor	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterTotalNumPix	int:1	1	1	64	64	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterUFactor	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mDebugWaterVFactor	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mWaterBias	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/mWaterParallax	int:1	1	1	1	1	none	
+init	/mDecayDistance	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mDofApertureFnumber	float:1	1	1	100.0	100.0	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+init	/mDofSpecialApertureFnumber	float:1	1	1	9.5	9.5	001C7940	001C7940
+init	/mDofFocusDistance	int:1	1	1	4	4	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+init	/mEnableDecay	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mEnableMapHeightRange	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mFarRatio	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mGammaValue	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mGlareLuminance	float:1	1	1	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mGlareThreshold	float:1	1	1	0.1	0.1	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAOBiasChr	float:1	1	1	0.01	0.01	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAOBiasSce	int:1	1	1	30	30	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAOFadeoutScale	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAOIntensityChr	float:1	1	1	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAOIntensitySce	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAORadiusChr	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mHBAORadiusSce	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapAmbientColorA	int:1	1	1	1	1	none	
+init	/mMapAmbientColorB	int:1	1	1	1	1	001C7940	001C7940
+init	/mMapAmbientColorCutPercent	float:1	1	1	0.3	0.3	001C7940	001C7940
+init	/mMapAmbientColorG	int:1	1	1	1	1	001C7940	001C7940
+init	/mMapAmbientColorR	int:1	1	1	1	1	001C7940	001C7940
+init	/mMapHeightMax	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapHeightMin	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapLightColorB	int:1	1	1	1	1	001C7940	001C7940
+init	/mMapLightColorG	int:1	1	1	1	1	001C7940	001C7940
+init	/mMapLightColorR	int:1	1	1	1	1	001C7940	001C7940
+init	/mMotionBlurEnabled	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mNearRatio	float:1	1	1	0.25	0.25	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAOBiasChr	int:1	1	1	6	6	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAOBiasSce	int:1	1	1	6	6	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAOFadeoutScale	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAOIntensityChr	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAOIntensitySce	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAORadiusChr	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mSAORadiusSce	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mShadowValueLerpMinForChr	float:1	1	1	0.9	0.9	001C3D50,001C7940	001C3D50,001C7940
+init	/mShadowValueLerpMinForMap	float:1	1	1	0.65	0.65	001C3D50,001C7940	001C3D50,001C7940
+init	/mUSMBlur	float:1	1	1	1.2	1.2	001C3D50,001C7940	001C3D50,001C7940
+init	/mUSMIntensity	float:1	1	1	0.45	0.45	001C3D50,001C7940	001C3D50,001C7940
+init	/mUSMThreshold	float:1	1	1	0.04	0.04	001C3D50,001C7940	001C3D50,001C7940
+init	/m_fBlurBetweenCascadesAmount	float:1	1	1	0.005	0.005	001C3D50,001C7940	001C3D50,001C7940
+init	/m_iBlurBetweenCascades	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/m_iPCFBlurSize	int:1	1	1	7	7	001C3D50,001C7940	001C3D50,001C7940
+init	/m_iPCFBlurSizeForMap	int:1	1	1	8	8	001C3D50,001C7940	001C3D50,001C7940
+init	/lightHeight2	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/lightHeight3	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/lightOrientation2	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/lightOrientation3	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/mShadowValueLerpMinForMap2	float:1	1	1	0.65	0.65	001C7940	001C7940
+init	/mShadowValueLerpMinForMap3	float:1	1	1	0.65	0.65	001C7940	001C7940
+init	/mShadowValueLerpMinForChr2	float:1	1	1	0.9	0.9	001C7940	001C7940
+init	/mShadowValueLerpMinForChr3	float:1	1	1	0.9	0.9	001C7940	001C7940
+init	/mCascadePartition0_2	float:1	1	1	0.008	0.008	none	
+init	/mCascadePartition0_3	float:1	1	1	0.008	0.008	none	
+init	/mCascadePartition1_2	float:1	1	1	0.016	0.016	none	
+init	/mCascadePartition1_3	float:1	1	1	0.016	0.016	none	
+init	/mCascadePartition2_2	float:1	1	1	0.035	0.035	none	
+init	/mCascadePartition2_3	float:1	1	1	0.035	0.035	none	
+init	/mMapFarPlane	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/mMapChrAmbientIntensityR	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrAmbientIntensityG	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrAmbientIntensityB	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrAmbientOffsetR	float:1	1	1	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrAmbientOffsetG	float:1	1	1	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrAmbientOffsetB	float:1	1	1	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrDirLightColorIntensityR	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrDirLightColorIntensityG	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrDirLightColorIntensityB	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapShadowDepthBias	int:1	1	1	100	100	001C7940	001C7940
+init	/mMapShadowSlopeOffset	float:1	1	1	1.0	1.0	001C7940	001C7940
+init	/mMapEnableShadowFade	int:1	1	1	0	0	001C7940	001C7940
+init	/mMapShadowFadeSpeed	float:1	1	1	1.0	1.0	001C7940	001C7940
+init	/mMapShadowFadeRange	float:1	1	1	1.0	1.0	001C7940	001C7940
+init	/mMapShadowFlyingFadeSpeed	float:1	1	1	1.0	1.0	001C7940	001C7940
+init	/mMapShadowFlyingFadeRange	float:1	1	1	1.0	1.0	001C7940	001C7940
+init	/mChrShadowDepthBias	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mChrShadowSlopeOffset	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mShadowVertexBlendLowerLimit	float:1	1	1	0.2	0.2	001C7940	001C7940
+init	/mShadowVertexBlendUpperLimit	float:1	1	1	0.25	0.25	001C7940	001C7940
+init	/mShadowAngleLowerLimit	float:1	1	1	-1.0	-1.0	001C7940	001C7940
+init	/mShadowAngleUpperLimit	float:1	1	1	-0.9	-0.9	001C7940	001C7940
+init	/m2dBgNpcAnimRotationSpeed	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/m2dBgNpcAnimRotationSpeedMargin	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/m2dBgNpcAnimRotationLimit	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/mUseLinearTonemap	int:1	1	1	0	0	001C7940	001C7940
+init	/mEyeABCubeMapBlendFactor	float:1	1	1	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+init	/mEyeABSpecularBlendModifier	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+init	/mEyeABSpecularShadowModifier	float:1	1	1	1.15	1.15	001C3D50,001C7940	001C3D50,001C7940
+init	/earlyAO	int:1	1	1	1	1	001C7940	001C7940
+init	/mCubemapIntensity	float:1	1	1	0.6	0.6	001C3D50,001C7940	001C3D50,001C7940
+init	/mDisableCutFov	int:1	1	1	0	0	001C3D50	001C3D50
+init	/mEyeASpecularIntensityAfterClampModifier	float:1	1	1	0.66	0.66	001C3D50,001C7940	001C3D50,001C7940
+init	/mEyeBSpecularIntensityAfterClampModifier	float:1	1	1	0.55	0.55	001C3D50,001C7940	001C3D50,001C7940
+init	/mEyeMapSpecularIntensityAfterClampModifier	float:1	1	1	1.1	1.1	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapObjectShadowFadeEnabled	int:1	1	1	0	0	001C7940	001C7940
+init	/mMapObjectShadowFadeRange	float:1	1	1	0.4999	0.4999	001C7940	001C7940
+init	/AODepthFullRes	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapChrUpwardDirLightAngleThres	float:1	1	1	15.0	15.0	001C7940	001C7940
+init	/mMapChrUpwardDirLightColorIntensity	float:1	1	1	1.0	1.0	001C7940	001C7940
+init	/mEarlyWaterDraw	int:1	1	1	0	0	001C7940	001C7940
+init	/mUseSubCameraForShadow	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+init	/mMapIrrCubemapFactor	float:1	1	1	0.5	0.5	001C7940	001C7940
+init	/mMapIrrCubemapLimit	float:1	1	1	0.0	0.0	001C7940	001C7940
+init	/mMapIrrCubemapIntensity	float:1	1	1	2.0	2.0	001C7940	001C7940
+monstergallery	/Common	object:1	1	1			001C3D50,001C51D0,001C52C0,001C5570,001C5750,001C6320	001C3D50,001C51D0,001C52C0,001C5570
+monstergallery	/Common/monsterModelId	int:1	1	1	7143424	7143424	001C6320	001C6320
+monstergallery	/Common/motionIndex	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/yOffset	float:1	1	1	0.0	0.0	001C6320	001C6320
+monstergallery	/Common/modelScale	float:1	1	1	1.0	1.0	001C6320	001C6320
+monstergallery	/Common/cameraPitch	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/cameraYaw	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/cameraFov	float:1	1	1	0.785	0.785	001C6320	001C6320
+monstergallery	/Common/lightAmbientR	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/lightAmbientG	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/lightAmbientB	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/lightAmbientA	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/lightAmbientIntensity	float:1	1	1	1.0	1.0	001C6320	001C6320
+monstergallery	/Common/light1DirX	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light1DirY	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light1DirZ	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light1ColorR	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light1ColorG	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light1ColorB	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light1ColorIntensity	float:1	1	1	1.0	1.0	001C6320	001C6320
+monstergallery	/Common/light2DirX	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light2DirY	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light2DirZ	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light2ColorR	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light2ColorG	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light2ColorB	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/light2ColorIntensity	float:1	1	1	1.0	1.0	001C6320	001C6320
+monstergallery	/Common/monsterWeaponIndex	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/motionRepeatFrame	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/variation	int:1	1	1	1	1	001C6320	001C6320
+monstergallery	/Common/clut	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/xOffset	float:1	1	1	0.0	0.0	001C6320	001C6320
+monstergallery	/Common/motionRate	float:1	1	1	1.0	1.0	001C6320	001C6320
+monstergallery	/Common/bgColorR	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/bgColorG	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/bgColorB	int:1	1	1	255	255	001C6320	001C6320
+monstergallery	/Common/drawBgColor	int:1	1	1	0	0	001C6320	001C6320
+monstergallery	/Common/eyeVfxZBias	int:1	1	1	-7000	-7000	001C6320	001C6320
+monstergallery	/<MonsterIdN>	object:384	1	384			composed	
+monstergallery	/<MonsterIdN>/monsterModelId	int:384	1	384	7143424	7536665	001C6320	001C6320
+monstergallery	/<MonsterIdN>/motionIndex	int:384	1	384	0	80	001C6320	001C6320
+monstergallery	/<MonsterIdN>/yOffset	float:384	1	384	-2.4	0.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/modelScale	float:384	1	384	0.3	1.5	001C6320	001C6320
+monstergallery	/<MonsterIdN>/cameraPitch	float:352|int:32	1	384	-15.0	30.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/cameraYaw	float:353|int:31	1	384	0	358.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/cameraFov	float:384	1	384	0.785	0.785	001C6320	001C6320
+monstergallery	/<MonsterIdN>/lightAmbientR	int:384	1	384	245	255	001C6320	001C6320
+monstergallery	/<MonsterIdN>/lightAmbientG	int:384	1	384	235	255	001C6320	001C6320
+monstergallery	/<MonsterIdN>/lightAmbientB	int:384	1	384	225	255	001C6320	001C6320
+monstergallery	/<MonsterIdN>/lightAmbientIntensity	float:384	1	384	1.0	2.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1DirX	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1DirY	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1DirZ	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1ColorR	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1ColorG	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1ColorB	int:383|float:1	1	384	0	0.749	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light1ColorIntensity	float:384	1	384	1.0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2DirX	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2DirY	int:384	1	384	0	0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2DirZ	int:383|float:1	1	384	0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2ColorR	int:384	1	384	0	0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2ColorG	int:384	1	384	0	0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2ColorB	int:383|float:1	1	384	0	0.003	001C6320	001C6320
+monstergallery	/<MonsterIdN>/light2ColorIntensity	float:384	1	384	1.0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/monsterWeaponIndex	int:384	1	384	4096	4634	001C6320	001C6320
+monstergallery	/<MonsterIdN>/motionRepeatFrame	int:384	1	384	0	0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/motionRate	float:384	1	384	1.0	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/xOffset	float:384	1	384	-0.3	1.0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/bgColorR	int:384	1	384	255	255	001C6320	001C6320
+monstergallery	/<MonsterIdN>/bgColorG	int:384	1	384	255	255	001C6320	001C6320
+monstergallery	/<MonsterIdN>/bgColorB	int:384	1	384	0	255	001C6320	001C6320
+monstergallery	/<MonsterIdN>/drawBgColor	int:384	1	384	0	0	001C6320	001C6320
+monstergallery	/<MonsterIdN>/eyeVfxZBias	int:243	1	243	-7000	-7000	001C6320	001C6320
+monstergallery	/<MonsterIdN>/monsterWeaponIndex2	int:7	1	7	4567	7799094	001C6320	001C6320
+monstergallery	/<MonsterIdN>/lightAmbientA	int:1	1	1	163	163	001C6320	001C6320
+monstergallery	/<MonsterIdN>/variation	int:3	1	3	2	6	001C6320	001C6320
+monstergallery	/<MonsterIdN>/clut	int:2	1	2	0	2	001C6320	001C6320
+monstertoweapon	/<N>	object:349	1	349			composed	
+monstertoweapon	/<N>/ModelName	string:345|null:4	1	349			none	
+monstertoweapon	/<N>/<N>	object:411	1	411			composed	
+monstertoweapon	/<N>/<N>/ModelName	string:411	1	411			none	
+monstertoweapon	/<N>/<N>/WeaponIndex	int:411	1	411	4096	4634	none	
+cutscenes	/Common	object:282	282	282			001C3D50,001C51D0,001C52C0,001C5570,001C5750,001C6320	001C3D50,001C51D0,001C52C0,001C5570
+cutscenes	/Common/mGammaValue	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mUSMBlur	float:282	282	282	1.2	2.075	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mUSMIntensity	float:282	282	282	0.45	1.358	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mUSMThreshold	float:282	282	282	0.04	5.396	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/lightOrientation	float:282	282	282	0.0	180.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/lightHeight	float:282	282	282	0.0	45.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mDofFocusDistance	float:282	282	282	0.35	4.0	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+cutscenes	/Common/mDofApertureFnumber	float:282	282	282	1.0	9.5	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+cutscenes	/Common/mShadowValueLerpMinForMap	float:282	282	282	0.6	0.6	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mShadowValueLerpMinForChr	float:282	282	282	0.7	0.7	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mCascadeNumber	int:282	282	282	3	3	none	
+cutscenes	/Common/mCascadePartition0	float:281	281	281	0.008	0.012	001C3D50	001C3D50
+cutscenes	/Common/mCascadePartition1	float:281	281	281	0.016	0.024	001C3D50	001C3D50
+cutscenes	/Common/mCascadePartition2	float:281	281	281	0.035	0.04	001C3D50	001C3D50
+cutscenes	/Common/mGlareLuminance	float:282	282	282	0.8	0.8	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mGlareThreshold	float:282	282	282	0.1	0.1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/EnableYebis	int:282	282	282	0	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/m_fBlurBetweenCascadesAmount	float:282	282	282	0.005	0.005	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mColorR	float:282	282	282	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mColorG	float:282	282	282	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mColorB	float:282	282	282	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mContrastR	float:282	282	282	0.4	0.55	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/m_iPCFBlurSizeForMap	int:282	282	282	3	3	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/ShadowValueR	float:282	282	282	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/ShadowValueG	float:282	282	282	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/ShadowValueB	float:282	282	282	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/m_iPCFBlurSize	int:282	282	282	8	8	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/m_iBlurBetweenCascades	int:282	282	282	1	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/EnableShadow	int:282	282	282	0	1	001C3D50	001C3D50
+cutscenes	/Common/EnableUSM	int:282	282	282	0	1	001C3D50	001C3D50
+cutscenes	/Common/EnableDof	int:282	282	282	0	1	001C3D50,001CC800,001CC920	001C3D50,001CC800,001CC920
+cutscenes	/Common/mSAOBiasChr	float:282	282	282	0.01	0.01	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mSAORadiusChr	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mSAOIntensityChr	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mSAOBiasSce	float:282	282	282	6.0	6.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mSAORadiusSce	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mSAOIntensitySce	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAOBiasChr	float:282	282	282	0.01	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAORadiusChr	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAOIntensityChr	float:282	282	282	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAOBiasSce	float:282	282	282	30.0	30.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAORadiusSce	float:282	282	282	1.25	1.25	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAOIntensitySce	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mSAOFadeoutScale	float:282	282	282	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mHBAOFadeoutScale	float:282	282	282	5.0	8.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/<PresetDof N>	object:9024	282	9024			composed	
+cutscenes	/Common/<PresetDof N>/mDofFocusDistance	float:9024	282	9024	4.0	4.0	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+cutscenes	/Common/<PresetDof N>/mDofApertureFnumber	float:9024	282	9024	9.5	9.5	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+cutscenes	/Common/EnableIBL	int:282	282	282	1	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMotionBlurEnabled	int:282	282	282	0	0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/chrCameraLightEnabled	int:282	282	282	1	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>	object:3498	281	3498			composed	
+cutscenes	/<Cut N>/mShadowValueLerpMinForChr	float:3498	281	3498	-0.9	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mShadowValueLerpMinForMap	float:3498	281	3498	0.65	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mContrastR	float:3498	281	3498	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/m_iPCFBlurSize	int:3498	281	3498	8	8	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/EnableDof	int:2791	258	2791	0	1	001C3D50,001CC800,001CC920	001C3D50,001CC800,001CC920
+cutscenes	/<Cut N>/mDofFocusDistanceLock	int:2755	258	2755	0	1	none	
+cutscenes	/<Cut N>/mDofApertureFnumberLock	int:2754	258	2754	0	1	none	
+cutscenes	/<Cut N>/mDofApertureFnumber	float:2795	259	2795	0.2	255.0	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+cutscenes	/<Cut N>/mDofFocusDistance	float:2779	260	2779	0.1	90.0	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+cutscenes	/<Cut N>/mCascadePartition0	float:21	4	21	0.01	0.032	001C3D50	001C3D50
+cutscenes	/<Cut N>/mCascadePartition2	float:22	5	22	0.03	0.138	001C3D50	001C3D50
+cutscenes	/<Cut N>/mCascadePartition1	float:1	1	1	0.081	0.081	001C3D50	001C3D50
+cutscenes	/Common/mCascadePartition2_1	float:2	2	2	0.1	0.12	001C3D50	001C3D50
+cutscenes	/Common/mCascadePartition1_1	float:2	2	2	0.08	0.08	001C3D50	001C3D50
+cutscenes	/Common/mCascadePartition0_1	float:2	2	2	0.045	0.05	001C3D50	001C3D50
+cutscenes	/Common/mCascadePartition0_2	float:2	2	2	0.045	0.05	none	
+cutscenes	/Common/mCascadePartition1_2	float:2	2	2	0.08	0.08	none	
+cutscenes	/Common/mCascadePartition2_2	float:2	2	2	0.1	0.12	none	
+cutscenes	/Common/mCascadePartition0_3	float:2	2	2	0.045	0.05	none	
+cutscenes	/Common/mCascadePartition1_3	float:2	2	2	0.08	0.08	none	
+cutscenes	/Common/mCascadePartition2_3	float:2	2	2	0.1	0.12	none	
+cutscenes	/<Cut N>/mCascadePartition0_1	float:5	4	5	0.008	0.045	001C3D50	001C3D50
+cutscenes	/<Cut N>/mCascadePartition1_1	float:6	5	6	0.024	0.113	001C3D50	001C3D50
+cutscenes	/<Cut N>/mCascadePartition2_1	float:7	6	7	0.042	0.182	001C3D50	001C3D50
+cutscenes	/<Cut N>/mCascadePartition0_2	float:1	1	1	0.045	0.045	none	
+cutscenes	/<Cut N>/mCascadePartition1_2	float:1	1	1	0.08	0.08	none	
+cutscenes	/<Cut N>/mCascadePartition2_2	float:1	1	1	0.12	0.12	none	
+cutscenes	/<Cut N>/mCascadePartition0_3	float:3	3	3	0.008	0.045	none	
+cutscenes	/<Cut N>/mCascadePartition1_3	float:3	3	3	0.024	0.08	none	
+cutscenes	/<Cut N>/mCascadePartition2_3	float:3	3	3	0.042	0.12	none	
+cutscenes	/<Cut N>/mMapShadowDepthBias	float:4	4	4	0.0	1000.0	001C7940	001C7940
+cutscenes	/<Cut N>/AODepthFullRes	int:36	13	36	0	0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrAmbientOffsetG	float:1	1	1	0.7	0.7	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrAmbientOffsetR	float:2	2	2	0.0	0.6	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrAmbientOffsetB	float:1	1	1	0.8	0.8	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrAmbientIntensityR	float:4	4	4	0.8	1.1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrAmbientIntensityB	float:4	4	4	0.8	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrAmbientIntensityG	float:4	4	4	0.8	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrDirLightColorIntensityG	float:4	4	4	0.3	1.25	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrDirLightColorIntensityR	float:4	4	4	0.3	1.25	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapChrDirLightColorIntensityB	float:4	4	4	0.3	1.25	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/EnableAO	int:6	4	6	0	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mGammaValueLock	int:6	6	6	0	1	none	
+cutscenes	/<Cut N>/mGlareLuminanceLock	int:4	4	4	0	0	none	
+cutscenes	/Common/mMapShadowDepthBias	float:1	1	1	100.0	100.0	001C7940	001C7940
+cutscenes	/<Cut N>/mMapShadowSlopeOffset	float:3	3	3	-100.0	10000.0	001C7940	001C7940
+cutscenes	/<Cut N>/mEnableDecay	int:2	1	2	1	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/EnableYebis	int:51	9	51	1	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mGammaValue	float:7	5	7	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/chrFresnelSpecularIntensity	float:4	1	4	0.8	1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/lightOrientation	float:2	2	2	-67.77	70.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/lightHeight	float:2	2	2	77.25	123.16	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mCubemapIntensity	float:1	1	1	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mEyeASpecularIntensityAfterClampModifier	float:3	3	3	0.48	0.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mEyeASpecularIntensityAfterClampModifier	float:11	4	11	0.0	0.7	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mSAORadiusSce	float:6	2	6	0.01	0.01	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mHBAORadiusSce	float:6	2	6	0.01	0.01	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/EnableDofLock	int:2	2	2	0	0	none	
+cutscenes	/Common/EnableAO	int:4	4	4	0	0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/EnableYebisLock	int:1	1	1	0	0	none	
+cutscenes	/<Cut N>/mGlareThresholdLock	int:1	1	1	0	0	none	
+cutscenes	/<Cut N>/mUseSubCameraForShadow	int:3	1	3	1	1	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/chrFresnelSpecularClampValue	float:1	1	1	-1.0	-1.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/<Cut N>/mHBAOIntensityChr	float:1	1	1	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/enableLightInfo	int:1	1	1	1	1	001C3D50	001C3D50
+cutscenes	/<Cut N>/mGlareLuminance	float:21	4	21	0.5	1.5	001C3D50,001C7940	001C3D50,001C7940
+cutscenes	/Common/mMapShadowSlopeOffset	float:1	1	1	10000.0	10000.0	001C7940	001C7940
+cutscenes	/<Cut N>/mGlareThreshold	float:1	1	1	0.2	0.2	001C3D50,001C7940	001C3D50,001C7940
+fontcluts	/mClutIndex	int:28	28	28	0	27	001C76E0	001C76E0
+fontcluts	/mClutComment	string:28	28	28			none	
+fontcluts	/mShadowRed	float:28	28	28	0.0	255.0	001C76E0	001C76E0
+fontcluts	/mShadowGreen	float:28	28	28	0.0	255.0	001C76E0	001C76E0
+fontcluts	/mShadowBlue	float:28	28	28	0.0	255.0	001C76E0	001C76E0
+fontcluts	/mShadowAlpha	int:16|float:12	28	28	29.0	128.0	001C76E0	001C76E0
+fontcluts	/mFontRed	float:28	28	28	0.0	255.0	001C76E0	001C76E0
+fontcluts	/mFontGreen	float:28	28	28	0.0	255.0	001C76E0	001C76E0
+fontcluts	/mFontBlue	float:28	28	28	0.0	255.0	001C76E0	001C76E0
+fontcluts	/mFontAlpha	float:28	28	28	125.0	128.0	001C76E0	001C76E0
+maps	/mDofFocusDistance	float:451|int:6	457	457	2.356	6	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+maps	/mDofSpecialApertureFnumber	float:456	456	456	10.21	12.5	001C7940	001C7940
+maps	/mGlareLuminance	int:413|float:45	458	458	0.1	4.48	001C3D50,001C7940	001C3D50,001C7940
+maps	/mShadowValueLerpMinForMap	float:458	458	458	0.4	0.81	001C3D50,001C7940	001C3D50,001C7940
+maps	/mContrastR	float:458	458	458	0.45	0.67	001C3D50,001C7940	001C3D50,001C7940
+maps	/m_fBlurBetweenCascadesAmount	float:457	457	457	0.1	0.74	001C3D50,001C7940	001C3D50,001C7940
+maps	/m_iPCFBlurSizeForMap	int:458	458	458	7	7	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapAmbientColorCutPercent	float:454	454	454	0.6	1.0	001C7940	001C7940
+maps	/mCascadePartition0_1	float:198	198	198	0.002	0.15	001C3D50	001C3D50
+maps	/mGlareThreshold	float:391|int:12	403	403	0.0	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/lightHeight	int:241|float:199	440	440	14.0	151.58	001C3D50,001C7940	001C3D50,001C7940
+maps	/lightOrientation	float:266|int:172	438	438	-180	180	001C3D50,001C7940	001C3D50,001C7940
+maps	/mSAOBiasSce	int:458	458	458	10	10	001C3D50,001C7940	001C3D50,001C7940
+maps	/mSAORadiusSce	int:457|float:1	458	458	1	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAOBiasSce	int:455|float:3	458	458	10	30	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAORadiusSce	float:457|int:1	458	458	0.3	1.25	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAOFadeoutScale	int:457|float:1	458	458	5	8.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mSAOFadeoutScale	int:458	458	458	3	5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAOBiasChr	int:456|float:2	458	458	1	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mGammaValue	float:78|int:1	79	79	1	1.2	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapLightColorR	float:365|int:1	366	366	0.6	1.1	001C7940	001C7940
+maps	/mMapLightColorG	float:366|int:1	367	367	0.6	1.1	001C7940	001C7940
+maps	/mMapLightColorB	float:366|int:8	374	374	0.6	1.1	001C7940	001C7940
+maps	/mShadowValueLerpMinForChr	float:458	458	458	-0.9	1.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/lightHeight2	int:244|float:196	440	440	14.0	154.4	001C7940	001C7940
+maps	/lightHeight3	int:249|float:191	440	440	14.0	158.14	001C7940	001C7940
+maps	/lightOrientation2	float:257|int:181	438	438	-180	180	001C7940	001C7940
+maps	/lightOrientation3	float:257|int:181	438	438	-180	180	001C7940	001C7940
+maps	/mShadowValueLerpMinForMap2	float:458	458	458	0.45	0.81	001C7940	001C7940
+maps	/mShadowValueLerpMinForMap3	float:458	458	458	0.45	0.9	001C7940	001C7940
+maps	/mShadowValueLerpMinForChr2	float:458	458	458	-0.9	0.9	001C7940	001C7940
+maps	/mShadowValueLerpMinForChr3	float:458	458	458	-0.9	0.95	001C7940	001C7940
+maps	/mCascadePartition0_2	float:244	244	244	0.002	0.2	none	
+maps	/mCascadePartition0_3	float:244	244	244	0.002	0.22	none	
+maps	/mMapAmbientColorA	float:17|int:1	18	18	0.65	1.0	none	
+maps	/mMapAmbientColorR	float:57|int:13	70	70	0.85	1.0	001C7940	001C7940
+maps	/mMapAmbientColorG	float:52	52	52	0.85	1.0	001C7940	001C7940
+maps	/mMapAmbientColorB	float:46	46	46	0.85	1.0	001C7940	001C7940
+maps	/mDofApertureFnumber	float:458	458	458	10.3	100.0	001C3D50,001C5750,001C7940,001CC800	001C3D50,001C5750,001C7940,001CC800
+maps	/chrCameraLightEnabled	int:457	457	457	1	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mShadowAngleLowerLimit	float:221	221	221	-1.0	0.7	001C7940	001C7940
+maps	/mShadowAngleUpperLimit	float:223	223	223	-1.0	1.0	001C7940	001C7940
+maps	/mShadowVertexBlendLowerLimit	float:158	158	158	0.0	0.9	001C7940	001C7940
+maps	/mShadowVertexBlendUpperLimit	float:174	174	174	0.0	1.21	001C7940	001C7940
+maps	/mMapEnableShadowFade	int:193	193	193	0	1	001C7940	001C7940
+maps	/mCascadePartition1_1	float:60	60	60	0.008	0.202	001C3D50	001C3D50
+maps	/mCascadePartition2_1	float:63	63	63	0.03	0.487	001C3D50	001C3D50
+maps	/mMapChrAmbientIntensityR	float:130	130	130	0.6	1.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrAmbientIntensityB	float:129	129	129	0.6	1.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrAmbientIntensityG	float:135	135	135	0.6	1.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/m2dBgNpcAnimRotationSpeed	float:6	6	6	0.0	18.0	001C7940	001C7940
+maps	/m2dBgNpcAnimRotationLimit	float:6	6	6	0.0	18.0	001C7940	001C7940
+maps	/m2dBgNpcAnimRotationSpeedMargin	float:5	5	5	3.0	3.0	001C7940	001C7940
+maps	/earlyAO	int:125	125	125	0	0	001C7940	001C7940
+maps	/mEnableDecay	int:44	44	44	0	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapShadowFadeRange	float:100	100	100	0.5	2.15	001C7940	001C7940
+maps	/mDecayDistance	float:42|int:2	44	44	0.0	234.82	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapShadowFadeSpeed	float:67	67	67	0.0	10.0	001C7940	001C7940
+maps	/mDebugWaterFresnelFactor	float:11|int:1	12	12	0.16	4	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterParallaxFactor	float:62|int:1	63	63	0.0	0.8	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugRefractionFactor	float:78|int:3	81	81	0.07	6.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapObjectShadowFadeEnabled	int:12	12	12	1	1	001C7940	001C7940
+maps	/mMapObjectShadowFadeRange	float:2	2	2	0.499	0.499	001C7940	001C7940
+maps	/mDebugWaterUFactor	float:8	8	8	0.6	3.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterVFactor	float:8|int:4	12	12	0.57	1.13	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterStepSize	float:32|int:1	33	33	0.2	6.23	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterTotalNumPix	int:33	33	33	20	64	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterSpecFactor	float:94|int:2	96	96	0.0	5.34	001C3D50,001C7940	001C3D50,001C7940
+maps	/lightShaftColorR	float:4|int:2	6	6	3.0	5.0	001C7940	001C7940
+maps	/mDebugWaterCubemapFactor	float:16|int:1	17	17	0.1	2.51	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterRoughnessFactor	float:51|int:1	52	52	0.2	7.04	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterExtraFactorTwo	float:5|int:2	7	7	0.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapShadowFlyingFadeSpeed	float:21	21	21	0.0	4.0	001C7940	001C7940
+maps	/mMapShadowFlyingFadeRange	float:34	34	34	0.5	10.0	001C7940	001C7940
+maps	/ShadowValueR	float:4|int:1	5	5	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/ShadowValueG	float:46	46	46	0.0	0.15	001C3D50,001C7940	001C3D50,001C7940
+maps	/mColorR	float:13	13	13	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mCascadePartition1_2	float:136	136	136	0.01	0.25	none	
+maps	/mCascadePartition1_3	float:162	162	162	0.01	0.3	none	
+maps	/mCascadePartition2_2	float:132	132	132	0.03	0.487	none	
+maps	/mCascadePartition2_3	float:150	150	150	0.03	0.487	none	
+maps	/mColorB	float:10	10	10	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mSAOBiasChr	float:3|int:1	4	4	5.94	7.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapFarPlane	float:8	8	8	0.0	150.0	001C7940	001C7940
+maps	/m_iBlurBetweenCascades	int:6	6	6	0	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mWaterBias	float:12	12	12	-0.11	0.18	001C7940	001C7940
+maps	/chrFresnelSpecularPower	float:5	5	5	2.7	2.7	001C3D50,001C7940	001C3D50,001C7940
+maps	/mWaterParallax	int:2	2	2	1	1	none	
+maps	/mDebugWaterMinZ	float:6	6	6	0.27	0.7	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterTexBlendFactor	int:1|float:1	2	2	0.6	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterRefBldFactor	float:24|int:1	25	25	0.4	3.6	001C3D50,001C7940	001C3D50,001C7940
+maps	/mChrShadowDepthBias	float:7	7	7	0.0	9.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapShadowSlopeOffset	float:6	6	6	0.0	10485.0	001C7940	001C7940
+maps	/lightShaftEnable	int:6	6	6	1	1	001C7940	001C7940
+maps	/lightShaftLength	float:4	4	4	1.0	1.5	001C7940	001C7940
+maps	/lightShaftGlareRatio	float:2	2	2	0.5	0.5	001C7940	001C7940
+maps	/lightShaftColorG	int:2|float:2	4	4	3.0	5.0	001C7940	001C7940
+maps	/lightShaftColorB	float:4	4	4	2.5	5.0	001C7940	001C7940
+maps	/lightShaftAngleAttenuation	int:2	2	2	5	5	001C7940	001C7940
+maps	/lightShaftDiffractionRingRadius	float:2	2	2	12.5	13.58	001C7940	001C7940
+maps	/chrFresnelSpecularClampValue	float:18	18	18	-0.8	-0.8	001C3D50,001C7940	001C3D50,001C7940
+maps	/lightShaftNoiseMask	float:2	2	2	0.6	0.6	001C7940	001C7940
+maps	/lightShaftNoiseFrequency	float:2	2	2	0.6	0.6	001C7940	001C7940
+maps	/mDebugWaterRefFactor	float:22|int:3	25	25	0	3	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterStepInrSpeed	float:23	23	23	0.2	3.89	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAOIntensityChr	float:13	13	13	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/ShadowBias	float:3	3	3	0.0002	0.0008	001C3D50,001C7940	001C3D50,001C7940
+maps	/lightShaftDiffractionRingSpectrumOrder	float:1	1	1	1.0	1.0	001C7940	001C7940
+maps	/ShadowValueB	float:46	46	46	0.0	0.4	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapShadowDepthBias	float:9	9	9	0.0	10000.0	001C7940	001C7940
+maps	/lightShaftMaskDepthThereshold	float:1	1	1	0.997	0.997	001C7940	001C7940
+maps	/lightShaftDiffractionRing	float:1	1	1	1.2	1.2	001C7940	001C7940
+maps	/lightShaftDiffractionRingOuterColorR	int:1	1	1	1	1	001C7940	001C7940
+maps	/mMapChrDirLightColorIntensityG	float:36	36	36	0.5	1.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrDirLightColorIntensityB	float:37	37	37	0.45	1.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrDirLightColorIntensityR	float:35	35	35	0.5	1.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrAmbientOffsetG	float:30	30	30	-0.2	0.2	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrAmbientOffsetR	float:10	10	10	-0.2	0.2	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrAmbientOffsetB	float:11	11	11	-0.2	0.2	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAORadiusChr	float:5|int:1	6	6	0.4	2	001C3D50,001C7940	001C3D50,001C7940
+maps	/mColorG	float:5	5	5	0.5	0.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/chrFresnelSpecularSkinIntensity	float:7|int:1	8	8	0.49	2.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mSAOBias	float:21	21	21	0.1	0.1	none	
+maps	/mSAORadius	float:20	20	20	0.5	0.5	none	
+maps	/mSAORadiusChr	float:3	3	3	1.25	1.25	001C3D50,001C7940	001C3D50,001C7940
+maps	/mDebugWaterExtraFactor	int:2	2	2	1	1	none	
+maps	/chrFresnelSpecularIntensity	float:7	7	7	1.0	3.9	001C3D50,001C7940	001C3D50,001C7940
+maps	/EnableIBL	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/EnableAutoExposure	int:3	3	3	1	1	none	
+maps	/EnableYebis	int:2	2	2	0	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mEarlyWaterDraw	int:2	2	2	1	1	001C7940	001C7940
+maps	/AODepthFullRes	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapChrUpwardDirLightColorIntensity	float:11	11	11	0.4	0.5	001C7940	001C7940
+maps	/mEnableMapHeightRange	int:4	4	4	0	0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapHeightMin	int:2|float:1	3	3	-130.0	140	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapHeightMax	int:2|float:2	4	4	-90	150	001C3D50,001C7940	001C3D50,001C7940
+maps	/mEyeASpecularIntensityAfterClampModifier	float:2	2	2	0.4	0.5	001C3D50,001C7940	001C3D50,001C7940
+maps	/mMapIrrCubemapFactor	float:4	4	4	0.0	0.0	001C7940	001C7940
+maps	/mUSMBlur	float:2	2	2	1.049	1.19	001C3D50,001C7940	001C3D50,001C7940
+maps	/mUSMIntensity	int:1	1	1	0	0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mSAOIntensity	int:1	1	1	2	2	none	
+maps	/mEyeABSpecularBlendModifier	float:1	1	1	1.0	1.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mChrShadowSlopeOffset	float:3	3	3	0.0	0.0	001C3D50,001C7940	001C3D50,001C7940
+maps	/mCascadeNumber	int:1	1	1	3	3	none	
+maps	/mMotionBlurEnabled	int:1	1	1	1	1	001C3D50,001C7940	001C3D50,001C7940
+maps	/mEyeBSpecularIntensityAfterClampModifier	float:1	1	1	0.55	0.55	001C3D50,001C7940	001C3D50,001C7940
+maps	/mHBAOIntensitySce	float:4	4	4	0.32	0.8	001C3D50,001C7940	001C3D50,001C7940
+maps	/DofImageSensorHeight	int:1	1	1	10	10	none	
+maps	/mDofFocusDistanceCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofSpecialApertureFnumberCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofImageSensorHeightCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mShadowValueLerpMinForMapCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mShadowValueLerpMinForChrCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadeNumberCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition0CheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition1CheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition2CheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofFocusDistanceLockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofSpecialApertureFnumberLockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofImageSensorHeightLockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mShadowValueLerpMinForMapLockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mShadowValueLerpMinForChrLockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadeNumberLockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition0LockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition1LockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition2LockCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofFocusDistanceUseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofSpecialApertureFnumberUseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mDofImageSensorHeightUseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mShadowValueLerpMinForMapUseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mShadowValueLerpMinForChrUseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadeNumberUseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition0UseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition1UseStateCheckBoxCheckState	int:1	1	1	0	0	none	
+maps	/mCascadePartition2UseStateCheckBoxCheckState	int:1	1	1	0	0	none	

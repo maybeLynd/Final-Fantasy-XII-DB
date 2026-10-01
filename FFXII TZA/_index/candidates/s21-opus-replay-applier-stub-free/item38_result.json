@@ -1,0 +1,98 @@
+{
+ "cases": {
+  "absent_leaves_the_index_empty": true,
+  "category_flag_bit4_set_by_list0": true,
+  "derived_index_appends_on_0_to_1": true,
+  "dword_minus_1_is_absent_no_grant": true,
+  "item_scalar_grants_one_of_the_item": true,
+  "low_word_FFFF_with_zero_high_word_is_not_absent": true,
+  "only_the_low_word_is_dispatched": true,
+  "storage_bound_by_the_shipped_rebase": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "absent": {
+   "grant_calls": [],
+   "halt": [],
+   "index": {
+    "flags_3244": "00",
+    "list0_count": 0,
+    "list0_head": "FFFF"
+   },
+   "ok": true,
+   "owned_after": {
+    "1": 0,
+    "2": 0
+   },
+   "owned_before": {
+    "1": 0,
+    "2": 0
+   },
+   "rebase": true
+  },
+  "item_1": {
+   "grant_calls": [
+    "(1, 1, 0, 1)"
+   ],
+   "halt": [],
+   "index": {
+    "flags_3244": "10",
+    "list0_count": 1,
+    "list0_head": "0001"
+   },
+   "ok": true,
+   "owned_after": {
+    "1": 1,
+    "2": 0
+   },
+   "owned_before": {
+    "1": 0,
+    "2": 0
+   },
+   "rebase": true
+  },
+  "item_2_high_word_junk": {
+   "grant_calls": [
+    "(2, 1, 0, 1)"
+   ],
+   "halt": [],
+   "index": {
+    "flags_3244": "10",
+    "list0_count": 1,
+    "list0_head": "0002"
+   },
+   "ok": true,
+   "owned_after": {
+    "1": 0,
+    "2": 1
+   },
+   "owned_before": {
+    "1": 0,
+    "2": 0
+   },
+   "rebase": true
+  },
+  "low_word_FFFF": {
+   "grant_calls": [
+    "(FFFF, 1, 0, 1)"
+   ],
+   "halt": [],
+   "index": {
+    "flags_3244": "00",
+    "list0_count": 0,
+    "list0_head": "FFFF"
+   },
+   "ok": true,
+   "owned_after": {
+    "1": 0,
+    "2": 0
+   },
+   "owned_before": {
+    "1": 0,
+    "2": 0
+   },
+   "rebase": true
+  }
+ }
+}

@@ -1,0 +1,2539 @@
+{
+  "method": "A original Python activity.compute on byte-identical retained synthetic boards/feed/clock, no teamwrites or live observation",
+  "source_commit": "0bec2215d3fbe0ca3f0ee9bcc3b277d756d397cd",
+  "prior_commit": "00fd54fdaa52dd65191d0cbdd4419f8ce4f1f6af",
+  "prior_manifest_sha256": "4049e01d60fbc21dabad1abcf68b024590b1032c376f1a9cb43a445a6af5ac22",
+  "driver_sha256": "f6dc979fc8fa3d1ad838c59d44c2f300554a6d4702df82edd165f9e9525df874",
+  "probe_sha256": "2a393067947242e464d800b2ebed3827667ebd88ba821c04c09e806d9e5365e4",
+  "sources": {
+    "activity.py": {
+      "path": "Database/Tools/dashboard/activity.py",
+      "sha256": "b35e613077265b0974f71e831a82af22d058368685043f90b0b8fb7b791e9989",
+      "blob": "6cb49e712b4e972f57a623c360784c1f188123b5"
+    },
+    "requirements.py": {
+      "path": "Database/Tools/dashboard/requirements.py",
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "blob": "e705dddd5670fb0a44f7eb043aecf7bff92afdb0"
+    }
+  },
+  "cases": [
+    {
+      "name": "old-claim-no-feed",
+      "expected_liveness": "UNKNOWN",
+      "expected_kind": "claimed",
+      "input_sha256": "a12818bff0771881fd86a1d55f2ef8cb2cb53e03f7ac09bf384557a2951e6fff",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\probe.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\run-01\\old-claim-no-feed\\input.json"
+      ],
+      "returncode": 1,
+      "stdout": "{\"result\": {\"lanes\": [\"OPUS\", \"FABLE\", \"ASTRA\", \"SWE2-FRONTIER\", \"SWE2-DATA\", \"SWE2-ORACLE\", \"SWE2-STRUCT\", \"SWE2-EC7\", \"SWE2-CONTRACT\", \"SWE2-AUDIT-SPEC\", \"SWE2-AUDIT-SEM\"], \"colors\": {\"OPUS\": [\"#1f5fa8\", \"#6ea8fe\"], \"SWE2-FRONTIER\": [\"#1e7b34\", \"#6fdd8b\"], \"SWE2-CONTRACT\": [\"#6d6a00\", \"#dcd75c\"], \"ASTRA\": [\"#b3261e\", \"#ff8a80\"], \"SWE2-ORACLE\": [\"#6b4a2f\", \"#d9b38c\"], \"SWE2-AUDIT-SEM\": [\"#8a2c2c\", \"#f2a5a5\"], \"FABLE\": [\"#7b3fb3\", \"#c29ffa\"], \"SWE2-DATA\": [\"#a8530a\", \"#ffb366\"], \"SWE2-EC7\": [\"#0e7c86\", \"#5fdbe6\"], \"SWE2-AUDIT-SPEC\": [\"#3b3f99\", \"#a4a8ff\"], \"SWE2-STRUCT\": [\"#b0306e\", \"#ff8cc6\"]}, \"liveness\": {\"OPUS\": [\"UNKNOWN\", \"no session feed for this lane; last board write 120 min ago\"], \"FABLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"ASTRA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-FRONTIER\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-DATA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-ORACLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-STRUCT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-EC7\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-CONTRACT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SPEC\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SEM\": [\"UNKNOWN\", \"no session feed for this lane\"]}, \"categories\": [{\"code\": \"W\", \"label\": \"World & maps\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"C\", \"label\": \"Combat & damage\", \"working\": [], \"muted\": [\"OPUS\"], \"items\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}]}, {\"code\": \"E\", \"label\": \"Enemies & AI\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"S\", \"label\": \"Spawning, death & respawn\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"P\", \"label\": \"Player & party\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"I\", \"label\": \"Items, equipment & progression\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"T\", \"label\": \"Story, quests & events\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"M\", \"label\": \"Menus & controls\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"G\", \"label\": \"Animation, graphics & audio\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"V\", \"label\": \"Save/load & persistence\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"D\", \"label\": \"Scripts & game data/VBF\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"N\", \"label\": \"Engine & supporting systems\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"whole\", \"label\": \"Whole database / cross-cutting\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"untied\", \"label\": \"Code not yet tied to a game system\", \"working\": [], \"muted\": [], \"items\": []}], \"by_agent\": [{\"lane\": \"OPUS\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane; last board write 120 min ago\", \"color\": [\"#1f5fa8\", \"#6ea8fe\"], \"working\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"FABLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#7b3fb3\", \"#c29ffa\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"ASTRA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b3261e\", \"#ff8a80\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-FRONTIER\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#1e7b34\", \"#6fdd8b\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-DATA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#a8530a\", \"#ffb366\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-ORACLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6b4a2f\", \"#d9b38c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-STRUCT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b0306e\", \"#ff8cc6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-EC7\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#0e7c86\", \"#5fdbe6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-CONTRACT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6d6a00\", \"#dcd75c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SPEC\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#3b3f99\", \"#a4a8ff\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SEM\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#8a2c2c\", \"#f2a5a5\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}], \"feed\": {\"poll_ts\": null, \"board_revision\": 2}}, \"exception\": null, \"module_paths\": {\"activity\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\activity-attribution-r2\\\\source\\\\activity.py\"}}\n",
+      "stderr": "",
+      "terminal": true,
+      "result": {
+        "result": {
+          "lanes": [
+            "OPUS",
+            "FABLE",
+            "ASTRA",
+            "SWE2-FRONTIER",
+            "SWE2-DATA",
+            "SWE2-ORACLE",
+            "SWE2-STRUCT",
+            "SWE2-EC7",
+            "SWE2-CONTRACT",
+            "SWE2-AUDIT-SPEC",
+            "SWE2-AUDIT-SEM"
+          ],
+          "colors": {
+            "OPUS": [
+              "#1f5fa8",
+              "#6ea8fe"
+            ],
+            "SWE2-FRONTIER": [
+              "#1e7b34",
+              "#6fdd8b"
+            ],
+            "SWE2-CONTRACT": [
+              "#6d6a00",
+              "#dcd75c"
+            ],
+            "ASTRA": [
+              "#b3261e",
+              "#ff8a80"
+            ],
+            "SWE2-ORACLE": [
+              "#6b4a2f",
+              "#d9b38c"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "#8a2c2c",
+              "#f2a5a5"
+            ],
+            "FABLE": [
+              "#7b3fb3",
+              "#c29ffa"
+            ],
+            "SWE2-DATA": [
+              "#a8530a",
+              "#ffb366"
+            ],
+            "SWE2-EC7": [
+              "#0e7c86",
+              "#5fdbe6"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "#3b3f99",
+              "#a4a8ff"
+            ],
+            "SWE2-STRUCT": [
+              "#b0306e",
+              "#ff8cc6"
+            ]
+          },
+          "liveness": {
+            "OPUS": [
+              "UNKNOWN",
+              "no session feed for this lane; last board write 120 min ago"
+            ],
+            "FABLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "ASTRA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-FRONTIER": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-DATA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-ORACLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-STRUCT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-EC7": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-CONTRACT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ]
+          },
+          "categories": [
+            {
+              "code": "W",
+              "label": "World & maps",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "C",
+              "label": "Combat & damage",
+              "working": [],
+              "muted": [
+                "OPUS"
+              ],
+              "items": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ]
+            },
+            {
+              "code": "E",
+              "label": "Enemies & AI",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "S",
+              "label": "Spawning, death & respawn",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "P",
+              "label": "Player & party",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "I",
+              "label": "Items, equipment & progression",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "T",
+              "label": "Story, quests & events",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "M",
+              "label": "Menus & controls",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "G",
+              "label": "Animation, graphics & audio",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "V",
+              "label": "Save/load & persistence",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "D",
+              "label": "Scripts & game data/VBF",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "N",
+              "label": "Engine & supporting systems",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "whole",
+              "label": "Whole database / cross-cutting",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "untied",
+              "label": "Code not yet tied to a game system",
+              "working": [],
+              "muted": [],
+              "items": []
+            }
+          ],
+          "by_agent": [
+            {
+              "lane": "OPUS",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane; last board write 120 min ago",
+              "color": [
+                "#1f5fa8",
+                "#6ea8fe"
+              ],
+              "working": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "FABLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#7b3fb3",
+                "#c29ffa"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "ASTRA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b3261e",
+                "#ff8a80"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-FRONTIER",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#1e7b34",
+                "#6fdd8b"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-DATA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#a8530a",
+                "#ffb366"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-ORACLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6b4a2f",
+                "#d9b38c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-STRUCT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b0306e",
+                "#ff8cc6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-EC7",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#0e7c86",
+                "#5fdbe6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-CONTRACT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6d6a00",
+                "#dcd75c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SPEC",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#3b3f99",
+                "#a4a8ff"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SEM",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#8a2c2c",
+                "#f2a5a5"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            }
+          ],
+          "feed": {
+            "poll_ts": null,
+            "board_revision": 2
+          }
+        },
+        "exception": null,
+        "module_paths": {
+          "activity": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\source\\activity.py"
+        }
+      },
+      "observed_liveness": "UNKNOWN",
+      "observed_kind": "claimed",
+      "combat_colored": [],
+      "input_unchanged": true
+    },
+    {
+      "name": "foreign-review-no-feed",
+      "expected_liveness": "UNKNOWN",
+      "expected_kind": "claimed",
+      "input_sha256": "fcb1875d4884215d587b59787ac0de897a3abd31b4415f02459837587b011be3",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\probe.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\run-01\\foreign-review-no-feed\\input.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"result\": {\"lanes\": [\"OPUS\", \"FABLE\", \"ASTRA\", \"SWE2-FRONTIER\", \"SWE2-DATA\", \"SWE2-ORACLE\", \"SWE2-STRUCT\", \"SWE2-EC7\", \"SWE2-CONTRACT\", \"SWE2-AUDIT-SPEC\", \"SWE2-AUDIT-SEM\"], \"colors\": {\"SWE2-DATA\": [\"#a8530a\", \"#ffb366\"], \"SWE2-CONTRACT\": [\"#6d6a00\", \"#dcd75c\"], \"OPUS\": [\"#1f5fa8\", \"#6ea8fe\"], \"FABLE\": [\"#7b3fb3\", \"#c29ffa\"], \"SWE2-STRUCT\": [\"#b0306e\", \"#ff8cc6\"], \"SWE2-FRONTIER\": [\"#1e7b34\", \"#6fdd8b\"], \"SWE2-AUDIT-SEM\": [\"#8a2c2c\", \"#f2a5a5\"], \"SWE2-EC7\": [\"#0e7c86\", \"#5fdbe6\"], \"SWE2-ORACLE\": [\"#6b4a2f\", \"#d9b38c\"], \"ASTRA\": [\"#b3261e\", \"#ff8a80\"], \"SWE2-AUDIT-SPEC\": [\"#3b3f99\", \"#a4a8ff\"]}, \"liveness\": {\"OPUS\": [\"UNKNOWN\", \"no session feed for this lane; last board write 120 min ago\"], \"FABLE\": [\"recent\", \"no session feed; wrote the board 0 min ago\"], \"ASTRA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-FRONTIER\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-DATA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-ORACLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-STRUCT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-EC7\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-CONTRACT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SPEC\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SEM\": [\"UNKNOWN\", \"no session feed for this lane\"]}, \"categories\": [{\"code\": \"W\", \"label\": \"World & maps\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"C\", \"label\": \"Combat & damage\", \"working\": [], \"muted\": [\"OPUS\"], \"items\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}, {\"lane\": \"OPUS\", \"kind\": \"waiting\", \"task\": \"LABELLED-VERIFY-QUEUED\", \"status\": \"READY\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Queued by FABLE\", \"updated_at\": \"2027-01-15T07:59:30+00:00\", \"blocker\": \"queued for review\", \"next\": \"fixture only\"}]}, {\"code\": \"E\", \"label\": \"Enemies & AI\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"S\", \"label\": \"Spawning, death & respawn\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"P\", \"label\": \"Player & party\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"I\", \"label\": \"Items, equipment & progression\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"T\", \"label\": \"Story, quests & events\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"M\", \"label\": \"Menus & controls\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"G\", \"label\": \"Animation, graphics & audio\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"V\", \"label\": \"Save/load & persistence\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"D\", \"label\": \"Scripts & game data/VBF\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"N\", \"label\": \"Engine & supporting systems\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"whole\", \"label\": \"Whole database / cross-cutting\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"untied\", \"label\": \"Code not yet tied to a game system\", \"working\": [], \"muted\": [], \"items\": []}], \"by_agent\": [{\"lane\": \"OPUS\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane; last board write 120 min ago\", \"color\": [\"#1f5fa8\", \"#6ea8fe\"], \"working\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}], \"waiting\": [{\"lane\": \"OPUS\", \"kind\": \"waiting\", \"task\": \"LABELLED-VERIFY-QUEUED\", \"status\": \"READY\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Queued by FABLE\", \"updated_at\": \"2027-01-15T07:59:30+00:00\", \"blocker\": \"queued for review\", \"next\": \"fixture only\"}], \"waiting_count\": 1}, {\"lane\": \"FABLE\", \"liveness\": \"recent\", \"basis\": \"no session feed; wrote the board 0 min ago\", \"color\": [\"#7b3fb3\", \"#c29ffa\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"ASTRA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b3261e\", \"#ff8a80\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-FRONTIER\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#1e7b34\", \"#6fdd8b\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-DATA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#a8530a\", \"#ffb366\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-ORACLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6b4a2f\", \"#d9b38c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-STRUCT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b0306e\", \"#ff8cc6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-EC7\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#0e7c86\", \"#5fdbe6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-CONTRACT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6d6a00\", \"#dcd75c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SPEC\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#3b3f99\", \"#a4a8ff\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SEM\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#8a2c2c\", \"#f2a5a5\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}], \"feed\": {\"poll_ts\": null, \"board_revision\": 3}}, \"exception\": null, \"module_paths\": {\"activity\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\activity-attribution-r2\\\\source\\\\activity.py\"}}\n",
+      "stderr": "",
+      "terminal": true,
+      "result": {
+        "result": {
+          "lanes": [
+            "OPUS",
+            "FABLE",
+            "ASTRA",
+            "SWE2-FRONTIER",
+            "SWE2-DATA",
+            "SWE2-ORACLE",
+            "SWE2-STRUCT",
+            "SWE2-EC7",
+            "SWE2-CONTRACT",
+            "SWE2-AUDIT-SPEC",
+            "SWE2-AUDIT-SEM"
+          ],
+          "colors": {
+            "SWE2-DATA": [
+              "#a8530a",
+              "#ffb366"
+            ],
+            "SWE2-CONTRACT": [
+              "#6d6a00",
+              "#dcd75c"
+            ],
+            "OPUS": [
+              "#1f5fa8",
+              "#6ea8fe"
+            ],
+            "FABLE": [
+              "#7b3fb3",
+              "#c29ffa"
+            ],
+            "SWE2-STRUCT": [
+              "#b0306e",
+              "#ff8cc6"
+            ],
+            "SWE2-FRONTIER": [
+              "#1e7b34",
+              "#6fdd8b"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "#8a2c2c",
+              "#f2a5a5"
+            ],
+            "SWE2-EC7": [
+              "#0e7c86",
+              "#5fdbe6"
+            ],
+            "SWE2-ORACLE": [
+              "#6b4a2f",
+              "#d9b38c"
+            ],
+            "ASTRA": [
+              "#b3261e",
+              "#ff8a80"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "#3b3f99",
+              "#a4a8ff"
+            ]
+          },
+          "liveness": {
+            "OPUS": [
+              "UNKNOWN",
+              "no session feed for this lane; last board write 120 min ago"
+            ],
+            "FABLE": [
+              "recent",
+              "no session feed; wrote the board 0 min ago"
+            ],
+            "ASTRA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-FRONTIER": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-DATA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-ORACLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-STRUCT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-EC7": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-CONTRACT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ]
+          },
+          "categories": [
+            {
+              "code": "W",
+              "label": "World & maps",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "C",
+              "label": "Combat & damage",
+              "working": [],
+              "muted": [
+                "OPUS"
+              ],
+              "items": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                },
+                {
+                  "lane": "OPUS",
+                  "kind": "waiting",
+                  "task": "LABELLED-VERIFY-QUEUED",
+                  "status": "READY",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Queued by FABLE",
+                  "updated_at": "2027-01-15T07:59:30+00:00",
+                  "blocker": "queued for review",
+                  "next": "fixture only"
+                }
+              ]
+            },
+            {
+              "code": "E",
+              "label": "Enemies & AI",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "S",
+              "label": "Spawning, death & respawn",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "P",
+              "label": "Player & party",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "I",
+              "label": "Items, equipment & progression",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "T",
+              "label": "Story, quests & events",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "M",
+              "label": "Menus & controls",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "G",
+              "label": "Animation, graphics & audio",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "V",
+              "label": "Save/load & persistence",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "D",
+              "label": "Scripts & game data/VBF",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "N",
+              "label": "Engine & supporting systems",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "whole",
+              "label": "Whole database / cross-cutting",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "untied",
+              "label": "Code not yet tied to a game system",
+              "working": [],
+              "muted": [],
+              "items": []
+            }
+          ],
+          "by_agent": [
+            {
+              "lane": "OPUS",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane; last board write 120 min ago",
+              "color": [
+                "#1f5fa8",
+                "#6ea8fe"
+              ],
+              "working": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting": [
+                {
+                  "lane": "OPUS",
+                  "kind": "waiting",
+                  "task": "LABELLED-VERIFY-QUEUED",
+                  "status": "READY",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Queued by FABLE",
+                  "updated_at": "2027-01-15T07:59:30+00:00",
+                  "blocker": "queued for review",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting_count": 1
+            },
+            {
+              "lane": "FABLE",
+              "liveness": "recent",
+              "basis": "no session feed; wrote the board 0 min ago",
+              "color": [
+                "#7b3fb3",
+                "#c29ffa"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "ASTRA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b3261e",
+                "#ff8a80"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-FRONTIER",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#1e7b34",
+                "#6fdd8b"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-DATA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#a8530a",
+                "#ffb366"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-ORACLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6b4a2f",
+                "#d9b38c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-STRUCT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b0306e",
+                "#ff8cc6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-EC7",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#0e7c86",
+                "#5fdbe6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-CONTRACT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6d6a00",
+                "#dcd75c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SPEC",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#3b3f99",
+                "#a4a8ff"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SEM",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#8a2c2c",
+                "#f2a5a5"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            }
+          ],
+          "feed": {
+            "poll_ts": null,
+            "board_revision": 3
+          }
+        },
+        "exception": null,
+        "module_paths": {
+          "activity": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\source\\activity.py"
+        }
+      },
+      "observed_liveness": "UNKNOWN",
+      "observed_kind": "claimed",
+      "combat_colored": [],
+      "input_unchanged": true
+    },
+    {
+      "name": "foreign-review-explicit-unknown",
+      "expected_liveness": "UNKNOWN",
+      "expected_kind": "claimed",
+      "input_sha256": "e5ca4cd0b3f9c3b663a7327bdc2b95bc091277c346a65ffad01073e89a2ae389",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\probe.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\run-01\\foreign-review-explicit-unknown\\input.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"result\": {\"lanes\": [\"OPUS\", \"FABLE\", \"ASTRA\", \"SWE2-FRONTIER\", \"SWE2-DATA\", \"SWE2-ORACLE\", \"SWE2-STRUCT\", \"SWE2-EC7\", \"SWE2-CONTRACT\", \"SWE2-AUDIT-SPEC\", \"SWE2-AUDIT-SEM\"], \"colors\": {\"ASTRA\": [\"#b3261e\", \"#ff8a80\"], \"SWE2-DATA\": [\"#a8530a\", \"#ffb366\"], \"SWE2-STRUCT\": [\"#b0306e\", \"#ff8cc6\"], \"FABLE\": [\"#7b3fb3\", \"#c29ffa\"], \"OPUS\": [\"#1f5fa8\", \"#6ea8fe\"], \"SWE2-FRONTIER\": [\"#1e7b34\", \"#6fdd8b\"], \"SWE2-ORACLE\": [\"#6b4a2f\", \"#d9b38c\"], \"SWE2-AUDIT-SPEC\": [\"#3b3f99\", \"#a4a8ff\"], \"SWE2-EC7\": [\"#0e7c86\", \"#5fdbe6\"], \"SWE2-AUDIT-SEM\": [\"#8a2c2c\", \"#f2a5a5\"], \"SWE2-CONTRACT\": [\"#6d6a00\", \"#dcd75c\"]}, \"liveness\": {\"OPUS\": [\"UNKNOWN\", \"no session feed for this lane; last board write 120 min ago\"], \"FABLE\": [\"recent\", \"no session feed; wrote the board 0 min ago\"], \"ASTRA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-FRONTIER\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-DATA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-ORACLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-STRUCT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-EC7\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-CONTRACT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SPEC\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SEM\": [\"UNKNOWN\", \"no session feed for this lane\"]}, \"categories\": [{\"code\": \"W\", \"label\": \"World & maps\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"C\", \"label\": \"Combat & damage\", \"working\": [], \"muted\": [\"OPUS\"], \"items\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}, {\"lane\": \"OPUS\", \"kind\": \"waiting\", \"task\": \"LABELLED-VERIFY-QUEUED\", \"status\": \"READY\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Queued by FABLE\", \"updated_at\": \"2027-01-15T07:59:30+00:00\", \"blocker\": \"queued for review\", \"next\": \"fixture only\"}]}, {\"code\": \"E\", \"label\": \"Enemies & AI\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"S\", \"label\": \"Spawning, death & respawn\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"P\", \"label\": \"Player & party\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"I\", \"label\": \"Items, equipment & progression\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"T\", \"label\": \"Story, quests & events\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"M\", \"label\": \"Menus & controls\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"G\", \"label\": \"Animation, graphics & audio\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"V\", \"label\": \"Save/load & persistence\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"D\", \"label\": \"Scripts & game data/VBF\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"N\", \"label\": \"Engine & supporting systems\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"whole\", \"label\": \"Whole database / cross-cutting\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"untied\", \"label\": \"Code not yet tied to a game system\", \"working\": [], \"muted\": [], \"items\": []}], \"by_agent\": [{\"lane\": \"OPUS\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane; last board write 120 min ago\", \"color\": [\"#1f5fa8\", \"#6ea8fe\"], \"working\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}], \"waiting\": [{\"lane\": \"OPUS\", \"kind\": \"waiting\", \"task\": \"LABELLED-VERIFY-QUEUED\", \"status\": \"READY\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Queued by FABLE\", \"updated_at\": \"2027-01-15T07:59:30+00:00\", \"blocker\": \"queued for review\", \"next\": \"fixture only\"}], \"waiting_count\": 1}, {\"lane\": \"FABLE\", \"liveness\": \"recent\", \"basis\": \"no session feed; wrote the board 0 min ago\", \"color\": [\"#7b3fb3\", \"#c29ffa\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"ASTRA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b3261e\", \"#ff8a80\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-FRONTIER\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#1e7b34\", \"#6fdd8b\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-DATA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#a8530a\", \"#ffb366\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-ORACLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6b4a2f\", \"#d9b38c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-STRUCT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b0306e\", \"#ff8cc6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-EC7\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#0e7c86\", \"#5fdbe6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-CONTRACT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6d6a00\", \"#dcd75c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SPEC\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#3b3f99\", \"#a4a8ff\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SEM\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#8a2c2c\", \"#f2a5a5\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}], \"feed\": {\"poll_ts\": null, \"board_revision\": 3}}, \"exception\": null, \"module_paths\": {\"activity\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\activity-attribution-r2\\\\source\\\\activity.py\"}}\n",
+      "stderr": "",
+      "terminal": true,
+      "result": {
+        "result": {
+          "lanes": [
+            "OPUS",
+            "FABLE",
+            "ASTRA",
+            "SWE2-FRONTIER",
+            "SWE2-DATA",
+            "SWE2-ORACLE",
+            "SWE2-STRUCT",
+            "SWE2-EC7",
+            "SWE2-CONTRACT",
+            "SWE2-AUDIT-SPEC",
+            "SWE2-AUDIT-SEM"
+          ],
+          "colors": {
+            "ASTRA": [
+              "#b3261e",
+              "#ff8a80"
+            ],
+            "SWE2-DATA": [
+              "#a8530a",
+              "#ffb366"
+            ],
+            "SWE2-STRUCT": [
+              "#b0306e",
+              "#ff8cc6"
+            ],
+            "FABLE": [
+              "#7b3fb3",
+              "#c29ffa"
+            ],
+            "OPUS": [
+              "#1f5fa8",
+              "#6ea8fe"
+            ],
+            "SWE2-FRONTIER": [
+              "#1e7b34",
+              "#6fdd8b"
+            ],
+            "SWE2-ORACLE": [
+              "#6b4a2f",
+              "#d9b38c"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "#3b3f99",
+              "#a4a8ff"
+            ],
+            "SWE2-EC7": [
+              "#0e7c86",
+              "#5fdbe6"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "#8a2c2c",
+              "#f2a5a5"
+            ],
+            "SWE2-CONTRACT": [
+              "#6d6a00",
+              "#dcd75c"
+            ]
+          },
+          "liveness": {
+            "OPUS": [
+              "UNKNOWN",
+              "no session feed for this lane; last board write 120 min ago"
+            ],
+            "FABLE": [
+              "recent",
+              "no session feed; wrote the board 0 min ago"
+            ],
+            "ASTRA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-FRONTIER": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-DATA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-ORACLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-STRUCT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-EC7": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-CONTRACT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ]
+          },
+          "categories": [
+            {
+              "code": "W",
+              "label": "World & maps",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "C",
+              "label": "Combat & damage",
+              "working": [],
+              "muted": [
+                "OPUS"
+              ],
+              "items": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                },
+                {
+                  "lane": "OPUS",
+                  "kind": "waiting",
+                  "task": "LABELLED-VERIFY-QUEUED",
+                  "status": "READY",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Queued by FABLE",
+                  "updated_at": "2027-01-15T07:59:30+00:00",
+                  "blocker": "queued for review",
+                  "next": "fixture only"
+                }
+              ]
+            },
+            {
+              "code": "E",
+              "label": "Enemies & AI",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "S",
+              "label": "Spawning, death & respawn",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "P",
+              "label": "Player & party",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "I",
+              "label": "Items, equipment & progression",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "T",
+              "label": "Story, quests & events",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "M",
+              "label": "Menus & controls",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "G",
+              "label": "Animation, graphics & audio",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "V",
+              "label": "Save/load & persistence",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "D",
+              "label": "Scripts & game data/VBF",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "N",
+              "label": "Engine & supporting systems",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "whole",
+              "label": "Whole database / cross-cutting",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "untied",
+              "label": "Code not yet tied to a game system",
+              "working": [],
+              "muted": [],
+              "items": []
+            }
+          ],
+          "by_agent": [
+            {
+              "lane": "OPUS",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane; last board write 120 min ago",
+              "color": [
+                "#1f5fa8",
+                "#6ea8fe"
+              ],
+              "working": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting": [
+                {
+                  "lane": "OPUS",
+                  "kind": "waiting",
+                  "task": "LABELLED-VERIFY-QUEUED",
+                  "status": "READY",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Queued by FABLE",
+                  "updated_at": "2027-01-15T07:59:30+00:00",
+                  "blocker": "queued for review",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting_count": 1
+            },
+            {
+              "lane": "FABLE",
+              "liveness": "recent",
+              "basis": "no session feed; wrote the board 0 min ago",
+              "color": [
+                "#7b3fb3",
+                "#c29ffa"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "ASTRA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b3261e",
+                "#ff8a80"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-FRONTIER",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#1e7b34",
+                "#6fdd8b"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-DATA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#a8530a",
+                "#ffb366"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-ORACLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6b4a2f",
+                "#d9b38c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-STRUCT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b0306e",
+                "#ff8cc6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-EC7",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#0e7c86",
+                "#5fdbe6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-CONTRACT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6d6a00",
+                "#dcd75c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SPEC",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#3b3f99",
+                "#a4a8ff"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SEM",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#8a2c2c",
+                "#f2a5a5"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            }
+          ],
+          "feed": {
+            "poll_ts": null,
+            "board_revision": 3
+          }
+        },
+        "exception": null,
+        "module_paths": {
+          "activity": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\source\\activity.py"
+        }
+      },
+      "observed_liveness": "UNKNOWN",
+      "observed_kind": "claimed",
+      "combat_colored": [],
+      "input_unchanged": true
+    },
+    {
+      "name": "own-note-no-feed",
+      "expected_liveness": "recent",
+      "expected_kind": "working",
+      "input_sha256": "1fc1020a8029cf266241b65877e8825e430a033c8409e06c4ab35a4b0132a940",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\probe.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\run-01\\own-note-no-feed\\input.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"result\": {\"lanes\": [\"OPUS\", \"FABLE\", \"ASTRA\", \"SWE2-FRONTIER\", \"SWE2-DATA\", \"SWE2-ORACLE\", \"SWE2-STRUCT\", \"SWE2-EC7\", \"SWE2-CONTRACT\", \"SWE2-AUDIT-SPEC\", \"SWE2-AUDIT-SEM\"], \"colors\": {\"SWE2-DATA\": [\"#a8530a\", \"#ffb366\"], \"SWE2-EC7\": [\"#0e7c86\", \"#5fdbe6\"], \"SWE2-STRUCT\": [\"#b0306e\", \"#ff8cc6\"], \"FABLE\": [\"#7b3fb3\", \"#c29ffa\"], \"SWE2-AUDIT-SEM\": [\"#8a2c2c\", \"#f2a5a5\"], \"ASTRA\": [\"#b3261e\", \"#ff8a80\"], \"OPUS\": [\"#1f5fa8\", \"#6ea8fe\"], \"SWE2-ORACLE\": [\"#6b4a2f\", \"#d9b38c\"], \"SWE2-AUDIT-SPEC\": [\"#3b3f99\", \"#a4a8ff\"], \"SWE2-CONTRACT\": [\"#6d6a00\", \"#dcd75c\"], \"SWE2-FRONTIER\": [\"#1e7b34\", \"#6fdd8b\"]}, \"liveness\": {\"OPUS\": [\"recent\", \"no session feed; wrote the board 0 min ago\"], \"FABLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"ASTRA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-FRONTIER\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-DATA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-ORACLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-STRUCT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-EC7\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-CONTRACT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SPEC\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SEM\": [\"UNKNOWN\", \"no session feed for this lane\"]}, \"categories\": [{\"code\": \"W\", \"label\": \"World & maps\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"C\", \"label\": \"Combat & damage\", \"working\": [\"OPUS\"], \"muted\": [], \"items\": [{\"lane\": \"OPUS\", \"kind\": \"working\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}]}, {\"code\": \"E\", \"label\": \"Enemies & AI\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"S\", \"label\": \"Spawning, death & respawn\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"P\", \"label\": \"Player & party\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"I\", \"label\": \"Items, equipment & progression\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"T\", \"label\": \"Story, quests & events\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"M\", \"label\": \"Menus & controls\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"G\", \"label\": \"Animation, graphics & audio\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"V\", \"label\": \"Save/load & persistence\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"D\", \"label\": \"Scripts & game data/VBF\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"N\", \"label\": \"Engine & supporting systems\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"whole\", \"label\": \"Whole database / cross-cutting\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"untied\", \"label\": \"Code not yet tied to a game system\", \"working\": [], \"muted\": [], \"items\": []}], \"by_agent\": [{\"lane\": \"OPUS\", \"liveness\": \"recent\", \"basis\": \"no session feed; wrote the board 0 min ago\", \"color\": [\"#1f5fa8\", \"#6ea8fe\"], \"working\": [{\"lane\": \"OPUS\", \"kind\": \"working\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"FABLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#7b3fb3\", \"#c29ffa\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"ASTRA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b3261e\", \"#ff8a80\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-FRONTIER\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#1e7b34\", \"#6fdd8b\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-DATA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#a8530a\", \"#ffb366\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-ORACLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6b4a2f\", \"#d9b38c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-STRUCT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b0306e\", \"#ff8cc6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-EC7\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#0e7c86\", \"#5fdbe6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-CONTRACT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6d6a00\", \"#dcd75c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SPEC\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#3b3f99\", \"#a4a8ff\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SEM\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#8a2c2c\", \"#f2a5a5\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}], \"feed\": {\"poll_ts\": null, \"board_revision\": 3}}, \"exception\": null, \"module_paths\": {\"activity\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\activity-attribution-r2\\\\source\\\\activity.py\"}}\n",
+      "stderr": "",
+      "terminal": true,
+      "result": {
+        "result": {
+          "lanes": [
+            "OPUS",
+            "FABLE",
+            "ASTRA",
+            "SWE2-FRONTIER",
+            "SWE2-DATA",
+            "SWE2-ORACLE",
+            "SWE2-STRUCT",
+            "SWE2-EC7",
+            "SWE2-CONTRACT",
+            "SWE2-AUDIT-SPEC",
+            "SWE2-AUDIT-SEM"
+          ],
+          "colors": {
+            "SWE2-DATA": [
+              "#a8530a",
+              "#ffb366"
+            ],
+            "SWE2-EC7": [
+              "#0e7c86",
+              "#5fdbe6"
+            ],
+            "SWE2-STRUCT": [
+              "#b0306e",
+              "#ff8cc6"
+            ],
+            "FABLE": [
+              "#7b3fb3",
+              "#c29ffa"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "#8a2c2c",
+              "#f2a5a5"
+            ],
+            "ASTRA": [
+              "#b3261e",
+              "#ff8a80"
+            ],
+            "OPUS": [
+              "#1f5fa8",
+              "#6ea8fe"
+            ],
+            "SWE2-ORACLE": [
+              "#6b4a2f",
+              "#d9b38c"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "#3b3f99",
+              "#a4a8ff"
+            ],
+            "SWE2-CONTRACT": [
+              "#6d6a00",
+              "#dcd75c"
+            ],
+            "SWE2-FRONTIER": [
+              "#1e7b34",
+              "#6fdd8b"
+            ]
+          },
+          "liveness": {
+            "OPUS": [
+              "recent",
+              "no session feed; wrote the board 0 min ago"
+            ],
+            "FABLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "ASTRA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-FRONTIER": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-DATA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-ORACLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-STRUCT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-EC7": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-CONTRACT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ]
+          },
+          "categories": [
+            {
+              "code": "W",
+              "label": "World & maps",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "C",
+              "label": "Combat & damage",
+              "working": [
+                "OPUS"
+              ],
+              "muted": [],
+              "items": [
+                {
+                  "lane": "OPUS",
+                  "kind": "working",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ]
+            },
+            {
+              "code": "E",
+              "label": "Enemies & AI",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "S",
+              "label": "Spawning, death & respawn",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "P",
+              "label": "Player & party",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "I",
+              "label": "Items, equipment & progression",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "T",
+              "label": "Story, quests & events",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "M",
+              "label": "Menus & controls",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "G",
+              "label": "Animation, graphics & audio",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "V",
+              "label": "Save/load & persistence",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "D",
+              "label": "Scripts & game data/VBF",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "N",
+              "label": "Engine & supporting systems",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "whole",
+              "label": "Whole database / cross-cutting",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "untied",
+              "label": "Code not yet tied to a game system",
+              "working": [],
+              "muted": [],
+              "items": []
+            }
+          ],
+          "by_agent": [
+            {
+              "lane": "OPUS",
+              "liveness": "recent",
+              "basis": "no session feed; wrote the board 0 min ago",
+              "color": [
+                "#1f5fa8",
+                "#6ea8fe"
+              ],
+              "working": [
+                {
+                  "lane": "OPUS",
+                  "kind": "working",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "FABLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#7b3fb3",
+                "#c29ffa"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "ASTRA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b3261e",
+                "#ff8a80"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-FRONTIER",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#1e7b34",
+                "#6fdd8b"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-DATA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#a8530a",
+                "#ffb366"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-ORACLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6b4a2f",
+                "#d9b38c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-STRUCT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b0306e",
+                "#ff8cc6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-EC7",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#0e7c86",
+                "#5fdbe6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-CONTRACT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6d6a00",
+                "#dcd75c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SPEC",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#3b3f99",
+                "#a4a8ff"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SEM",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#8a2c2c",
+                "#f2a5a5"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            }
+          ],
+          "feed": {
+            "poll_ts": null,
+            "board_revision": 3
+          }
+        },
+        "exception": null,
+        "module_paths": {
+          "activity": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\source\\activity.py"
+        }
+      },
+      "observed_liveness": "recent",
+      "observed_kind": "working",
+      "combat_colored": [
+        "OPUS"
+      ],
+      "input_unchanged": true
+    },
+    {
+      "name": "busy-control",
+      "expected_liveness": "active",
+      "expected_kind": "working",
+      "input_sha256": "66cc06eaeb13362b1f0124291e60d577df41b0742a01265add603522ecf5060d",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\probe.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\run-01\\busy-control\\input.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"result\": {\"lanes\": [\"OPUS\", \"FABLE\", \"ASTRA\", \"SWE2-FRONTIER\", \"SWE2-DATA\", \"SWE2-ORACLE\", \"SWE2-STRUCT\", \"SWE2-EC7\", \"SWE2-CONTRACT\", \"SWE2-AUDIT-SPEC\", \"SWE2-AUDIT-SEM\"], \"colors\": {\"OPUS\": [\"#1f5fa8\", \"#6ea8fe\"], \"SWE2-ORACLE\": [\"#6b4a2f\", \"#d9b38c\"], \"SWE2-AUDIT-SPEC\": [\"#3b3f99\", \"#a4a8ff\"], \"SWE2-FRONTIER\": [\"#1e7b34\", \"#6fdd8b\"], \"FABLE\": [\"#7b3fb3\", \"#c29ffa\"], \"SWE2-DATA\": [\"#a8530a\", \"#ffb366\"], \"SWE2-CONTRACT\": [\"#6d6a00\", \"#dcd75c\"], \"SWE2-STRUCT\": [\"#b0306e\", \"#ff8cc6\"], \"SWE2-AUDIT-SEM\": [\"#8a2c2c\", \"#f2a5a5\"], \"SWE2-EC7\": [\"#0e7c86\", \"#5fdbe6\"], \"ASTRA\": [\"#b3261e\", \"#ff8a80\"]}, \"liveness\": {\"OPUS\": [\"active\", \"controller: busy-test (poll 0 s ago)\"], \"FABLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"ASTRA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-FRONTIER\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-DATA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-ORACLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-STRUCT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-EC7\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-CONTRACT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SPEC\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SEM\": [\"UNKNOWN\", \"no session feed for this lane\"]}, \"categories\": [{\"code\": \"W\", \"label\": \"World & maps\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"C\", \"label\": \"Combat & damage\", \"working\": [\"OPUS\"], \"muted\": [], \"items\": [{\"lane\": \"OPUS\", \"kind\": \"working\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}]}, {\"code\": \"E\", \"label\": \"Enemies & AI\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"S\", \"label\": \"Spawning, death & respawn\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"P\", \"label\": \"Player & party\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"I\", \"label\": \"Items, equipment & progression\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"T\", \"label\": \"Story, quests & events\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"M\", \"label\": \"Menus & controls\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"G\", \"label\": \"Animation, graphics & audio\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"V\", \"label\": \"Save/load & persistence\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"D\", \"label\": \"Scripts & game data/VBF\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"N\", \"label\": \"Engine & supporting systems\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"whole\", \"label\": \"Whole database / cross-cutting\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"untied\", \"label\": \"Code not yet tied to a game system\", \"working\": [], \"muted\": [], \"items\": []}], \"by_agent\": [{\"lane\": \"OPUS\", \"liveness\": \"active\", \"basis\": \"controller: busy-test (poll 0 s ago)\", \"color\": [\"#1f5fa8\", \"#6ea8fe\"], \"working\": [{\"lane\": \"OPUS\", \"kind\": \"working\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"FABLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#7b3fb3\", \"#c29ffa\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"ASTRA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b3261e\", \"#ff8a80\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-FRONTIER\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#1e7b34\", \"#6fdd8b\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-DATA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#a8530a\", \"#ffb366\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-ORACLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6b4a2f\", \"#d9b38c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-STRUCT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b0306e\", \"#ff8cc6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-EC7\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#0e7c86\", \"#5fdbe6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-CONTRACT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6d6a00\", \"#dcd75c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SPEC\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#3b3f99\", \"#a4a8ff\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SEM\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#8a2c2c\", \"#f2a5a5\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}], \"feed\": {\"poll_ts\": \"2027-01-15T08:00:00+00:00\", \"board_revision\": 2}}, \"exception\": null, \"module_paths\": {\"activity\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\activity-attribution-r2\\\\source\\\\activity.py\"}}\n",
+      "stderr": "",
+      "terminal": true,
+      "result": {
+        "result": {
+          "lanes": [
+            "OPUS",
+            "FABLE",
+            "ASTRA",
+            "SWE2-FRONTIER",
+            "SWE2-DATA",
+            "SWE2-ORACLE",
+            "SWE2-STRUCT",
+            "SWE2-EC7",
+            "SWE2-CONTRACT",
+            "SWE2-AUDIT-SPEC",
+            "SWE2-AUDIT-SEM"
+          ],
+          "colors": {
+            "OPUS": [
+              "#1f5fa8",
+              "#6ea8fe"
+            ],
+            "SWE2-ORACLE": [
+              "#6b4a2f",
+              "#d9b38c"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "#3b3f99",
+              "#a4a8ff"
+            ],
+            "SWE2-FRONTIER": [
+              "#1e7b34",
+              "#6fdd8b"
+            ],
+            "FABLE": [
+              "#7b3fb3",
+              "#c29ffa"
+            ],
+            "SWE2-DATA": [
+              "#a8530a",
+              "#ffb366"
+            ],
+            "SWE2-CONTRACT": [
+              "#6d6a00",
+              "#dcd75c"
+            ],
+            "SWE2-STRUCT": [
+              "#b0306e",
+              "#ff8cc6"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "#8a2c2c",
+              "#f2a5a5"
+            ],
+            "SWE2-EC7": [
+              "#0e7c86",
+              "#5fdbe6"
+            ],
+            "ASTRA": [
+              "#b3261e",
+              "#ff8a80"
+            ]
+          },
+          "liveness": {
+            "OPUS": [
+              "active",
+              "controller: busy-test (poll 0 s ago)"
+            ],
+            "FABLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "ASTRA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-FRONTIER": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-DATA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-ORACLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-STRUCT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-EC7": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-CONTRACT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ]
+          },
+          "categories": [
+            {
+              "code": "W",
+              "label": "World & maps",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "C",
+              "label": "Combat & damage",
+              "working": [
+                "OPUS"
+              ],
+              "muted": [],
+              "items": [
+                {
+                  "lane": "OPUS",
+                  "kind": "working",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ]
+            },
+            {
+              "code": "E",
+              "label": "Enemies & AI",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "S",
+              "label": "Spawning, death & respawn",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "P",
+              "label": "Player & party",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "I",
+              "label": "Items, equipment & progression",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "T",
+              "label": "Story, quests & events",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "M",
+              "label": "Menus & controls",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "G",
+              "label": "Animation, graphics & audio",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "V",
+              "label": "Save/load & persistence",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "D",
+              "label": "Scripts & game data/VBF",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "N",
+              "label": "Engine & supporting systems",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "whole",
+              "label": "Whole database / cross-cutting",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "untied",
+              "label": "Code not yet tied to a game system",
+              "working": [],
+              "muted": [],
+              "items": []
+            }
+          ],
+          "by_agent": [
+            {
+              "lane": "OPUS",
+              "liveness": "active",
+              "basis": "controller: busy-test (poll 0 s ago)",
+              "color": [
+                "#1f5fa8",
+                "#6ea8fe"
+              ],
+              "working": [
+                {
+                  "lane": "OPUS",
+                  "kind": "working",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "FABLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#7b3fb3",
+                "#c29ffa"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "ASTRA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b3261e",
+                "#ff8a80"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-FRONTIER",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#1e7b34",
+                "#6fdd8b"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-DATA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#a8530a",
+                "#ffb366"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-ORACLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6b4a2f",
+                "#d9b38c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-STRUCT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b0306e",
+                "#ff8cc6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-EC7",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#0e7c86",
+                "#5fdbe6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-CONTRACT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6d6a00",
+                "#dcd75c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SPEC",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#3b3f99",
+                "#a4a8ff"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SEM",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#8a2c2c",
+                "#f2a5a5"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            }
+          ],
+          "feed": {
+            "poll_ts": "2027-01-15T08:00:00+00:00",
+            "board_revision": 2
+          }
+        },
+        "exception": null,
+        "module_paths": {
+          "activity": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\source\\activity.py"
+        }
+      },
+      "observed_liveness": "active",
+      "observed_kind": "working",
+      "combat_colored": [
+        "OPUS"
+      ],
+      "input_unchanged": true
+    },
+    {
+      "name": "idle-control",
+      "expected_liveness": "idle",
+      "expected_kind": "claimed",
+      "input_sha256": "46840cdabc5c388a6f2c2ceafa303d6eab34b98a664da6f3951135fde4965c57",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\probe.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\run-01\\idle-control\\input.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"result\": {\"lanes\": [\"OPUS\", \"FABLE\", \"ASTRA\", \"SWE2-FRONTIER\", \"SWE2-DATA\", \"SWE2-ORACLE\", \"SWE2-STRUCT\", \"SWE2-EC7\", \"SWE2-CONTRACT\", \"SWE2-AUDIT-SPEC\", \"SWE2-AUDIT-SEM\"], \"colors\": {\"OPUS\": [\"#1f5fa8\", \"#6ea8fe\"], \"SWE2-STRUCT\": [\"#b0306e\", \"#ff8cc6\"], \"SWE2-AUDIT-SPEC\": [\"#3b3f99\", \"#a4a8ff\"], \"SWE2-CONTRACT\": [\"#6d6a00\", \"#dcd75c\"], \"SWE2-AUDIT-SEM\": [\"#8a2c2c\", \"#f2a5a5\"], \"FABLE\": [\"#7b3fb3\", \"#c29ffa\"], \"SWE2-DATA\": [\"#a8530a\", \"#ffb366\"], \"SWE2-ORACLE\": [\"#6b4a2f\", \"#d9b38c\"], \"ASTRA\": [\"#b3261e\", \"#ff8a80\"], \"SWE2-EC7\": [\"#0e7c86\", \"#5fdbe6\"], \"SWE2-FRONTIER\": [\"#1e7b34\", \"#6fdd8b\"]}, \"liveness\": {\"OPUS\": [\"idle\", \"controller: free (poll 0 s ago)\"], \"FABLE\": [\"recent\", \"no session feed; wrote the board 0 min ago\"], \"ASTRA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-FRONTIER\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-DATA\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-ORACLE\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-STRUCT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-EC7\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-CONTRACT\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SPEC\": [\"UNKNOWN\", \"no session feed for this lane\"], \"SWE2-AUDIT-SEM\": [\"UNKNOWN\", \"no session feed for this lane\"]}, \"categories\": [{\"code\": \"W\", \"label\": \"World & maps\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"C\", \"label\": \"Combat & damage\", \"working\": [], \"muted\": [\"OPUS\"], \"items\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}, {\"lane\": \"OPUS\", \"kind\": \"waiting\", \"task\": \"LABELLED-VERIFY-QUEUED\", \"status\": \"READY\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Queued by FABLE\", \"updated_at\": \"2027-01-15T07:59:30+00:00\", \"blocker\": \"queued for review\", \"next\": \"fixture only\"}]}, {\"code\": \"E\", \"label\": \"Enemies & AI\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"S\", \"label\": \"Spawning, death & respawn\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"P\", \"label\": \"Player & party\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"I\", \"label\": \"Items, equipment & progression\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"T\", \"label\": \"Story, quests & events\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"M\", \"label\": \"Menus & controls\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"G\", \"label\": \"Animation, graphics & audio\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"V\", \"label\": \"Save/load & persistence\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"D\", \"label\": \"Scripts & game data/VBF\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"N\", \"label\": \"Engine & supporting systems\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"whole\", \"label\": \"Whole database / cross-cutting\", \"working\": [], \"muted\": [], \"items\": []}, {\"code\": \"untied\", \"label\": \"Code not yet tied to a game system\", \"working\": [], \"muted\": [], \"items\": []}], \"by_agent\": [{\"lane\": \"OPUS\", \"liveness\": \"idle\", \"basis\": \"controller: free (poll 0 s ago)\", \"color\": [\"#1f5fa8\", \"#6ea8fe\"], \"working\": [{\"lane\": \"OPUS\", \"kind\": \"claimed\", \"task\": \"LABELLED-OPUS-OLD-CLAIM\", \"status\": \"ACTIVE\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Labelled old claim; required original API precondition\", \"updated_at\": \"2027-01-15T06:00:00+00:00\", \"blocker\": \"\", \"next\": \"fixture only\"}], \"waiting\": [{\"lane\": \"OPUS\", \"kind\": \"waiting\", \"task\": \"LABELLED-VERIFY-QUEUED\", \"status\": \"READY\", \"priority\": \"P1\", \"groups\": [\"C\"], \"stage\": \"Queued by FABLE\", \"updated_at\": \"2027-01-15T07:59:30+00:00\", \"blocker\": \"queued for review\", \"next\": \"fixture only\"}], \"waiting_count\": 1}, {\"lane\": \"FABLE\", \"liveness\": \"recent\", \"basis\": \"no session feed; wrote the board 0 min ago\", \"color\": [\"#7b3fb3\", \"#c29ffa\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"ASTRA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b3261e\", \"#ff8a80\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-FRONTIER\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#1e7b34\", \"#6fdd8b\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-DATA\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#a8530a\", \"#ffb366\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-ORACLE\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6b4a2f\", \"#d9b38c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-STRUCT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#b0306e\", \"#ff8cc6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-EC7\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#0e7c86\", \"#5fdbe6\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-CONTRACT\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#6d6a00\", \"#dcd75c\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SPEC\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#3b3f99\", \"#a4a8ff\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}, {\"lane\": \"SWE2-AUDIT-SEM\", \"liveness\": \"UNKNOWN\", \"basis\": \"no session feed for this lane\", \"color\": [\"#8a2c2c\", \"#f2a5a5\"], \"working\": [], \"waiting\": [], \"waiting_count\": 0}], \"feed\": {\"poll_ts\": \"2027-01-15T08:00:00+00:00\", \"board_revision\": 3}}, \"exception\": null, \"module_paths\": {\"activity\": \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\activity-attribution-r2\\\\source\\\\activity.py\"}}\n",
+      "stderr": "",
+      "terminal": true,
+      "result": {
+        "result": {
+          "lanes": [
+            "OPUS",
+            "FABLE",
+            "ASTRA",
+            "SWE2-FRONTIER",
+            "SWE2-DATA",
+            "SWE2-ORACLE",
+            "SWE2-STRUCT",
+            "SWE2-EC7",
+            "SWE2-CONTRACT",
+            "SWE2-AUDIT-SPEC",
+            "SWE2-AUDIT-SEM"
+          ],
+          "colors": {
+            "OPUS": [
+              "#1f5fa8",
+              "#6ea8fe"
+            ],
+            "SWE2-STRUCT": [
+              "#b0306e",
+              "#ff8cc6"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "#3b3f99",
+              "#a4a8ff"
+            ],
+            "SWE2-CONTRACT": [
+              "#6d6a00",
+              "#dcd75c"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "#8a2c2c",
+              "#f2a5a5"
+            ],
+            "FABLE": [
+              "#7b3fb3",
+              "#c29ffa"
+            ],
+            "SWE2-DATA": [
+              "#a8530a",
+              "#ffb366"
+            ],
+            "SWE2-ORACLE": [
+              "#6b4a2f",
+              "#d9b38c"
+            ],
+            "ASTRA": [
+              "#b3261e",
+              "#ff8a80"
+            ],
+            "SWE2-EC7": [
+              "#0e7c86",
+              "#5fdbe6"
+            ],
+            "SWE2-FRONTIER": [
+              "#1e7b34",
+              "#6fdd8b"
+            ]
+          },
+          "liveness": {
+            "OPUS": [
+              "idle",
+              "controller: free (poll 0 s ago)"
+            ],
+            "FABLE": [
+              "recent",
+              "no session feed; wrote the board 0 min ago"
+            ],
+            "ASTRA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-FRONTIER": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-DATA": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-ORACLE": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-STRUCT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-EC7": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-CONTRACT": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SPEC": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ],
+            "SWE2-AUDIT-SEM": [
+              "UNKNOWN",
+              "no session feed for this lane"
+            ]
+          },
+          "categories": [
+            {
+              "code": "W",
+              "label": "World & maps",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "C",
+              "label": "Combat & damage",
+              "working": [],
+              "muted": [
+                "OPUS"
+              ],
+              "items": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                },
+                {
+                  "lane": "OPUS",
+                  "kind": "waiting",
+                  "task": "LABELLED-VERIFY-QUEUED",
+                  "status": "READY",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Queued by FABLE",
+                  "updated_at": "2027-01-15T07:59:30+00:00",
+                  "blocker": "queued for review",
+                  "next": "fixture only"
+                }
+              ]
+            },
+            {
+              "code": "E",
+              "label": "Enemies & AI",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "S",
+              "label": "Spawning, death & respawn",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "P",
+              "label": "Player & party",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "I",
+              "label": "Items, equipment & progression",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "T",
+              "label": "Story, quests & events",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "M",
+              "label": "Menus & controls",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "G",
+              "label": "Animation, graphics & audio",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "V",
+              "label": "Save/load & persistence",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "D",
+              "label": "Scripts & game data/VBF",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "N",
+              "label": "Engine & supporting systems",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "whole",
+              "label": "Whole database / cross-cutting",
+              "working": [],
+              "muted": [],
+              "items": []
+            },
+            {
+              "code": "untied",
+              "label": "Code not yet tied to a game system",
+              "working": [],
+              "muted": [],
+              "items": []
+            }
+          ],
+          "by_agent": [
+            {
+              "lane": "OPUS",
+              "liveness": "idle",
+              "basis": "controller: free (poll 0 s ago)",
+              "color": [
+                "#1f5fa8",
+                "#6ea8fe"
+              ],
+              "working": [
+                {
+                  "lane": "OPUS",
+                  "kind": "claimed",
+                  "task": "LABELLED-OPUS-OLD-CLAIM",
+                  "status": "ACTIVE",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Labelled old claim; required original API precondition",
+                  "updated_at": "2027-01-15T06:00:00+00:00",
+                  "blocker": "",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting": [
+                {
+                  "lane": "OPUS",
+                  "kind": "waiting",
+                  "task": "LABELLED-VERIFY-QUEUED",
+                  "status": "READY",
+                  "priority": "P1",
+                  "groups": [
+                    "C"
+                  ],
+                  "stage": "Queued by FABLE",
+                  "updated_at": "2027-01-15T07:59:30+00:00",
+                  "blocker": "queued for review",
+                  "next": "fixture only"
+                }
+              ],
+              "waiting_count": 1
+            },
+            {
+              "lane": "FABLE",
+              "liveness": "recent",
+              "basis": "no session feed; wrote the board 0 min ago",
+              "color": [
+                "#7b3fb3",
+                "#c29ffa"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "ASTRA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b3261e",
+                "#ff8a80"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-FRONTIER",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#1e7b34",
+                "#6fdd8b"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-DATA",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#a8530a",
+                "#ffb366"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-ORACLE",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6b4a2f",
+                "#d9b38c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-STRUCT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#b0306e",
+                "#ff8cc6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-EC7",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#0e7c86",
+                "#5fdbe6"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-CONTRACT",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#6d6a00",
+                "#dcd75c"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SPEC",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#3b3f99",
+                "#a4a8ff"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            },
+            {
+              "lane": "SWE2-AUDIT-SEM",
+              "liveness": "UNKNOWN",
+              "basis": "no session feed for this lane",
+              "color": [
+                "#8a2c2c",
+                "#f2a5a5"
+              ],
+              "working": [],
+              "waiting": [],
+              "waiting_count": 0
+            }
+          ],
+          "feed": {
+            "poll_ts": "2027-01-15T08:00:00+00:00",
+            "board_revision": 3
+          }
+        },
+        "exception": null,
+        "module_paths": {
+          "activity": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\source\\activity.py"
+        }
+      },
+      "observed_liveness": "idle",
+      "observed_kind": "claimed",
+      "combat_colored": [],
+      "input_unchanged": true
+    }
+  ],
+  "terminal": true,
+  "exception": null,
+  "python": {
+    "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "base": "C:\\Python314\\python.exe",
+    "base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+  },
+  "verdict": "ACCEPT_SCOPED_WRITER_ATTRIBUTION_REPAIR"
+}

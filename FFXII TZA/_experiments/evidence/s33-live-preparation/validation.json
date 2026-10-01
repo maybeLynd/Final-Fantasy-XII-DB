@@ -1,0 +1,19 @@
+{
+  "result": "PASS_PREPARATION_ONLY",
+  "cases": 3,
+  "controls": [
+    {
+      "name": "wrong binary identity",
+      "rejected": true
+    },
+    {
+      "name": "wrong handle source register",
+      "rejected": true
+    },
+    {
+      "name": "decode not backed by bytes",
+      "rejected": true
+    }
+  ],
+  "live_semantic_closure": []
+}

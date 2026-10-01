@@ -1,0 +1,23 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-YM00-CONTAINER-0920",
+  "kind": "research",
+  "priority": "P2",
+  "target": "publish the YM00 tagged-chunk container decode (MP-2 slot 8): fixed 17-tag schema, index/base/sentinel proven against 002F6AB0, 461/461 packs zero-remainder",
+  "scope": "the-map-ctrl-pack.md section 2.2 + MP-2 row, members/ym00-census.tsv + gen_ym00_census.py, OPEN-QUESTIONS MP-2 row, AUDIT-LOG entry, SWE2-DATA resume",
+  "completion": "pending",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   },
+   {
+    "key": "file:database/ffxii tza/03-world-area-field/map-pack/the-map-ctrl-pack.md"
+   },
+   {
+    "key": "file:database/ffxii tza/_index/open-questions.md"
+   }
+  ]
+ }
+}

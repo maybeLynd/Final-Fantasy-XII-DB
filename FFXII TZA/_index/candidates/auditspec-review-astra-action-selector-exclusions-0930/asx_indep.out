@@ -1,0 +1,45 @@
+== A rows 511..534
+   ch: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   cn: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   de: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   es: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   fr: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   in: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   it: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   kr: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+   us: categories [7] words ['FFFF'] ; rows with category 7 in the whole table: 235
+== B references
+   003060E0 rel32 2 ['003064A6 call', '0030651F call'] jcc [] abs64 []
+   00306480 rel32 5 ['002FFE9D call', '00317BEC call', '00317D1D call', '0031F941 call', '0031FA2B call'] jcc [] abs64 []
+   002FFCF0 rel32 7 ['002FFC7C call', '003015FF call', '00305B09 call', '00307398 call', '0030DBBE call', '00317C45 call', '0031F28A call'] jcc [] abs64 []
+   0030DB70 rel32 2 ['002D630D call', '002D6543 call'] jcc [] abs64 []
+   002F8D60 rel32 1 ['0030DC55 call'] jcc [] abs64 []
+   rip address-taken of 002F8D60: []
+== C 00306760 dispatch
+   003067AA mov     eax, dword ptr [rip + 0x1fbb9ac]
+   003067B0 dec     eax
+   003067B2 mov     qword ptr [rsp + 0x30], rsi
+   003067B7 cmp     eax, 5
+   003067BA ja      0x306a9a
+   003067C0 cdqe    
+   003067C2 mov     qword ptr [rsp + 0x40], r14
+   003067C7 lea     r14, [rip - 0x1e67ce]
+   dwords at 00306AF0: ['001E6931', '001E6A3D', '001E67DB', '001E6848', '001E69F8', '001E6A8E', 'CCCCCCCC', 'CCCCCCCC', '83485340', '3B4820EC']
+   first six + image base: ['00306931', '00306A3D', '003067DB', '00306848', '003069F8', '00306A8E']
+   bytes after the six entries: cccccccccccccccc40534883ec20483b -> [('0x306b08', 'int3', ''), ('0x306b09', 'int3', ''), ('0x306b0a', 'int3', ''), ('0x306b0b', 'int3', ''), ('0x306b0c', 'int3', '')]
+== D1 003060E0(id 511..534, raw, 0); INJECTED: descriptor, arena base, raw object bytes +4/+5
+   raw+5 == 0 -> results [5] ; raw+5 != 0 -> results [0]
+   null raw -> result 0
+   control id 543 (class20 reject) -> result 4
+   control id 0 (category 1) raw+5=0 -> result 15
+== D2 00306480(id, raw) for id 511..534; stop at the licence leg 00323EC0
+   raw+5 == 0: ['returned F'] ; raw+5 != 0: ['reached 00323EC0']
+   null raw -> returned 2C
+== D3 002F8D60, 01EEBAF0 = file value ffffffff; INJECTED: threshold descriptor 02EBF0A0 (random rows), input bytes
+   returns: 1142 matches, 858 misses; max match value 255; any value in 256..0xFFFFFFFE: False
+== D4 0030DB70(rcx=0) null-record arm -> dword 022C2178; INJECTED: word 022C2190, override index/array
+   negative override (-1), random fallback tables: 163 distinct stored values, span -208..47; any in 303..326 (=511..534-0xD0): False
+   control E2 in 022C2190 -> stored -1 ; F2 -> 43
+   SENSITIVITY: override index 0, word 511 -> stored 303 (511-0xD0 = 303)
+   SENSITIVITY: override index 0, word 543 -> stored -1 (class20 must reject)
+   unmapped accesses: []

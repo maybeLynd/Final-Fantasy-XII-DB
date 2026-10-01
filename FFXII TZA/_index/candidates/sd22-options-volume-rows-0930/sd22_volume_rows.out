@@ -1,0 +1,7 @@
+PASS  F1 node table 01E0BF60 (45 entries), child id byte, child type -> arm table
+PASS  F2 type 6 -> arm 0023EEA2 -> handler 0023EBE0
+PASS  F3 types {'0x13': 6, '0x14': 6, '0x15': 6}; parents {'0x13': [0, 1, 2], '0x14': [0, 1, 2], '0x15': [0, 1, 2]}
+      child entry bytes after the id (label / help fields): {19: ['00fc04000d'], 20: ['00fd04010d'], 21: ['00fe04020d']}
+PASS  F4 payload +8 = child id -> row byte +0xC0
+PASS  F5 00240750(row byte +0xC0, &value) when the value differs (0023EC66 / 0023EC68)
+FAILS 0

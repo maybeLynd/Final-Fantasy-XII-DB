@@ -1,0 +1,21 @@
+# zeroinit-record-initialisers -- EC-7 family C, XC-array cluster.
+# 16 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+00169720	57		00808B90
+00169790	57		00808B90
+00169930	57		00808B90
+001699A0	57		00808B90
+00169B10	57		00808B90
+00169B50	57		00808B90
+00169C10	57		00808B90
+00169C90	57		00808B90
+00169D10	57		00808B90
+00169D50	57		00808B90
+00169E50	57		00808B90
+00169FF0	57		00808B90
+0016A0A0	57		00808B90
+0016A110	57		00808B90
+0016A180	57		00808B90
+0016A230	57		00808B90

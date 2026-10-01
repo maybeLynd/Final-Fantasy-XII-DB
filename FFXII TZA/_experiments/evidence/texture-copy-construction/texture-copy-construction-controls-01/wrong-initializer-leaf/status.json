@@ -1,0 +1,7 @@
+{
+  "case": "wrong-initializer-leaf",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "wrong construction root/leaf",
+  "expected_error_seen": true
+}

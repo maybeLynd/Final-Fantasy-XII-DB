@@ -1,0 +1,33 @@
+{
+  "method": "Post-run file/tool identity; not a full in-process module census or pre/post binary equality proof",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "observed_unix": 1789984912.4421105,
+  "files": [
+    {
+      "path": "C:\\Python314\\python.exe",
+      "bytes": 106208,
+      "sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+    },
+    {
+      "path": "C:\\Python314\\python314.dll",
+      "bytes": 6778592,
+      "sha256": "fde89cdb5c2d08ae65de7ef4abca1876c93ba3796002f5ac0bf7e4d4f5a94da0"
+    },
+    {
+      "path": "C:\\Windows\\System32\\kernel32.dll",
+      "bytes": 844496,
+      "sha256": "8f8629741558b5df71def4e1dd8ef9645d4f806b949762c47757c50fea1a9e6d"
+    },
+    {
+      "path": "C:\\Windows\\System32\\KernelBase.dll",
+      "bytes": 4212112,
+      "sha256": "becad014fb8efa8cb5e314931cca92778ad42c649b12a6909632cacd68af4f40"
+    },
+    {
+      "path": "C:\\Windows\\System32\\ntdll.dll",
+      "bytes": 2522080,
+      "sha256": "a74f7482085eab125ccc09152ab7e0b5994bcb13e1a7b29880bdbb24179ecb8b"
+    }
+  ]
+}

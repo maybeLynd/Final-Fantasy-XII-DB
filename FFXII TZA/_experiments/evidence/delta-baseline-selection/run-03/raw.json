@@ -1,0 +1,407 @@
+{
+  "method": "A original repository Python on labelled private verified Store histories; synthetic function composition, not full builder/deployment/game",
+  "source_commit": "4a2bd8eebc0376f838bf1dac0bb6bb19b01eab39",
+  "driver_sha256": "ce9324add04d129c6dc14c5ff93ceccfae9d94a2bbecafb43720b37ec0358cc9",
+  "sources": {
+    "Database/Tools/dashboard/build_views.py": {
+      "sha256": "a1542cb9b27e0fd1c54c258455a3b92f22c0c2c640f48a649c3c8c84728ca4ad",
+      "blob": "d89e31b02dcb58c16637fdcccdee2288a6422076",
+      "current_sha256": "a1542cb9b27e0fd1c54c258455a3b92f22c0c2c640f48a649c3c8c84728ca4ad",
+      "current_equal": true
+    },
+    "Database/Tools/dashboard/requirements.py": {
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "blob": "e705dddd5670fb0a44f7eb043aecf7bff92afdb0",
+      "current_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "current_equal": true
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/generation.py": {
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16",
+      "current_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "current_equal": true
+    },
+    "Database/Tools/dashboard/VIEW-SCHEMA.md": {
+      "sha256": "b0bcc372251c36a41a9f14a52930e8c892b542d1266891ac5f28e4b1fef82858",
+      "blob": "67b7cbf96ded3d9ea0966328ec8f9ea61ddb3033",
+      "current_sha256": "b0bcc372251c36a41a9f14a52930e8c892b542d1266891ac5f28e4b1fef82858",
+      "current_equal": true
+    },
+    "Database/FFXII TZA/_index/workflow/MY-PROGRESS-METRICS.md": {
+      "sha256": "94e9c3b2582aa95f61358d6d5d291e4b6c83504519e894a5a90af343f9847ada",
+      "blob": "4c11acdbc57c3856f6f5774d7baa0864796a02ab",
+      "current_sha256": "94e9c3b2582aa95f61358d6d5d291e4b6c83504519e894a5a90af343f9847ada",
+      "current_equal": true
+    }
+  },
+  "cases": [
+    {
+      "name": "empty-history",
+      "generations": [],
+      "progress_prior": null,
+      "general_prior": null,
+      "general_prior_dir": null,
+      "annotated": {
+        "view": "progress",
+        "definition": "MP-2",
+        "measures": [
+          {
+            "id": "union",
+            "numerator": 40,
+            "denominator": 100,
+            "scope": "labelled synthetic requirement population",
+            "delta": {
+              "na": "no prior",
+              "why": "no comparable measure in the prior generation",
+              "new": {
+                "numerator": 40,
+                "denominator": 100
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": null,
+          "committed_at": null
+        }
+      },
+      "composed_change": null,
+      "store_unchanged": true,
+      "store_hashes": {},
+      "retained_from_run01": true,
+      "store_relative": "../run-01/empty-history/store"
+    },
+    {
+      "name": "aligned-latest",
+      "store_relative": "../run-01/aligned-latest/store",
+      "generations": [
+        {
+          "generation": "g20260929T112302Z-8bf56b",
+          "manifest_sha256": "74c3d5fcf99ae3c876f1d87fc0b01053f98cce28c3c4fa0cf12d0191803a95cf",
+          "required_outputs": [
+            "view-overview.json",
+            "view-progress.json"
+          ],
+          "verify": {
+            "argv": [
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+              "verify",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\aligned-latest\\store"
+            ],
+            "returncode": 0,
+            "stdout": "CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\n",
+            "stderr": "",
+            "terminal": true
+          },
+          "created_in_run01": true
+        }
+      ],
+      "progress_prior": {
+        "version": "MP-2",
+        "generation": "g20260929T112302Z-8bf56b",
+        "committed_at": "2026-09-29T11:23:02Z",
+        "scopes": {
+          "union": {
+            "accepted": 30,
+            "total": 100
+          }
+        },
+        "categories": {}
+      },
+      "general_prior": {
+        "committed_at": "2026-09-29T11:23:02Z",
+        "format": "ff12-generation-2",
+        "generation": "g20260929T112302Z-8bf56b",
+        "generator": {
+          "name": "ASTRA-labelled-selector-fixture",
+          "sha256": "150379e1df5c694dc219c9f55b5ff54100545b2c0ffa20b087bf8abcb44914f6"
+        },
+        "inputs": {
+          "fixture": {
+            "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\labelled-input.json",
+            "sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+            "size": 74,
+            "state": "present"
+          }
+        },
+        "outputs": {
+          "view-overview.json": {
+            "sha256": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b",
+            "size": 74
+          },
+          "view-progress.json": {
+            "sha256": "50e41d7dcb57fb3230cb5b79576ef703ccbc44ccff074ef9f13260a5f343ea91",
+            "size": 286
+          }
+        },
+        "parent": null,
+        "verifier": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+      },
+      "general_prior_dir": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\aligned-latest\\store\\g20260929T112302Z-8bf56b",
+      "annotated": {
+        "view": "progress",
+        "definition": "MP-2",
+        "measures": [
+          {
+            "id": "union",
+            "numerator": 40,
+            "denominator": 100,
+            "scope": "labelled synthetic requirement population",
+            "delta": {
+              "pp": 10.0,
+              "old": {
+                "numerator": 30,
+                "denominator": 100
+              },
+              "new": {
+                "numerator": 40,
+                "denominator": 100
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "g20260929T112302Z-8bf56b",
+          "committed_at": "2026-09-29T11:23:02Z"
+        }
+      },
+      "composed_change": {
+        "comparable": true,
+        "generation": "g20260929T112302Z-8bf56b",
+        "committed_at": "2026-09-29T11:23:02Z",
+        "scopes": {
+          "union": {
+            "accepted": 10,
+            "scope": 0,
+            "pct": 10.0
+          }
+        },
+        "categories": {}
+      },
+      "store_unchanged": true,
+      "store_hashes": {
+        "CURRENT": "29d15e23fcaccac4ffd178fd6c4c90b2188237035f07be82afb846bd2bc4cd28",
+        "history.jsonl": "0eade38d5e70bb7a1c83d00a11522dfa988dfe0ed5c8dfc99d97aa525ce220e2",
+        "g20260929T112302Z-8bf56b/MANIFEST.json": "74c3d5fcf99ae3c876f1d87fc0b01053f98cce28c3c4fa0cf12d0191803a95cf",
+        "g20260929T112302Z-8bf56b/inputs/fixture": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+        "g20260929T112302Z-8bf56b/outputs/view-overview.json": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b",
+        "g20260929T112302Z-8bf56b/outputs/view-progress.json": "50e41d7dcb57fb3230cb5b79576ef703ccbc44ccff074ef9f13260a5f343ea91"
+      }
+    },
+    {
+      "name": "latest-missing-progress",
+      "store_relative": "latest-missing-progress/store",
+      "generations": [
+        {
+          "generation": "g20260929T112552Z-b00dd9",
+          "manifest_sha256": "62e48e8780301f7fbb71d41b9b1e55fb0b4b8cc43987e5acaa6b535d853d940a",
+          "required_outputs": [
+            "view-overview.json",
+            "view-progress.json"
+          ],
+          "verify": {
+            "argv": [
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+              "verify",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\latest-missing-progress\\store"
+            ],
+            "returncode": 0,
+            "stdout": "CURRENT g20260929T112552Z-b00dd9 committed 2026-09-29T11:25:52Z; 2 outputs; sources unchanged\n",
+            "stderr": "",
+            "terminal": true
+          }
+        },
+        {
+          "generation": "g20260929T112552Z-f0716b",
+          "manifest_sha256": "71329bd22e8c4de88e145d96a6f06a56c980dafdb402eda1036a8109c2cd5cc2",
+          "required_outputs": [
+            "view-overview.json"
+          ],
+          "verify": {
+            "argv": [
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+              "verify",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\latest-missing-progress\\store"
+            ],
+            "returncode": 0,
+            "stdout": "CURRENT g20260929T112552Z-f0716b committed 2026-09-29T11:25:52Z; 1 outputs; sources unchanged\n",
+            "stderr": "",
+            "terminal": true
+          }
+        }
+      ],
+      "progress_prior": {
+        "version": "MP-2",
+        "generation": "g20260929T112552Z-b00dd9",
+        "committed_at": "2026-09-29T11:25:52Z",
+        "scopes": {
+          "union": {
+            "accepted": 20,
+            "total": 100
+          }
+        },
+        "categories": {}
+      },
+      "general_prior": {
+        "committed_at": "2026-09-29T11:25:52Z",
+        "format": "ff12-generation-2",
+        "generation": "g20260929T112552Z-f0716b",
+        "generator": {
+          "name": "ASTRA-labelled-selector-fixture",
+          "sha256": "ce9324add04d129c6dc14c5ff93ceccfae9d94a2bbecafb43720b37ec0358cc9"
+        },
+        "inputs": {
+          "fixture": {
+            "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\labelled-input.json",
+            "sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+            "size": 74,
+            "state": "present"
+          }
+        },
+        "outputs": {
+          "view-overview.json": {
+            "sha256": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b",
+            "size": 74
+          }
+        },
+        "parent": "g20260929T112552Z-b00dd9",
+        "verifier": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+      },
+      "general_prior_dir": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\latest-missing-progress\\store\\g20260929T112552Z-f0716b",
+      "annotated": {
+        "view": "progress",
+        "definition": "MP-2",
+        "measures": [
+          {
+            "id": "union",
+            "numerator": 40,
+            "denominator": 100,
+            "scope": "labelled synthetic requirement population",
+            "delta": {
+              "na": "no prior",
+              "why": "no comparable measure in the prior generation",
+              "new": {
+                "numerator": 40,
+                "denominator": 100
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": "g20260929T112552Z-f0716b",
+          "committed_at": "2026-09-29T11:25:52Z"
+        }
+      },
+      "composed_change": {
+        "comparable": true,
+        "generation": "g20260929T112552Z-b00dd9",
+        "committed_at": "2026-09-29T11:25:52Z",
+        "scopes": {
+          "union": {
+            "accepted": 20,
+            "scope": 0,
+            "pct": 20.0
+          }
+        },
+        "categories": {}
+      },
+      "store_unchanged": true,
+      "store_hashes": {
+        "CURRENT": "efc1c172649135390caabb5b108d97a3298a547e9709cf3ede94133fcce7ed04",
+        "history.jsonl": "ba9c2b7053602241af29a2726632ece8d122702511798747d1b8fa8a240f361c",
+        "g20260929T112552Z-b00dd9/MANIFEST.json": "62e48e8780301f7fbb71d41b9b1e55fb0b4b8cc43987e5acaa6b535d853d940a",
+        "g20260929T112552Z-f0716b/MANIFEST.json": "71329bd22e8c4de88e145d96a6f06a56c980dafdb402eda1036a8109c2cd5cc2",
+        "g20260929T112552Z-f0716b/inputs/fixture": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+        "g20260929T112552Z-f0716b/outputs/view-overview.json": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b",
+        "g20260929T112552Z-b00dd9/inputs/fixture": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+        "g20260929T112552Z-b00dd9/outputs/view-overview.json": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b",
+        "g20260929T112552Z-b00dd9/outputs/view-progress.json": "5102923192eedb3099b7f5de71051d26064e55ca0748d7886476424fb84e800f"
+      }
+    }
+  ],
+  "terminal": true,
+  "exception": null,
+  "python": {
+    "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "base": "C:\\Python314\\python.exe",
+    "base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+  },
+  "loaded_paths": {
+    "build_views": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\dashboard\\build_views.py",
+    "requirements": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\dashboard\\requirements.py",
+    "generation": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py"
+  },
+  "static_build_calls": [
+    {
+      "name": "prior_progress",
+      "line": 622
+    },
+    {
+      "name": "prior_generation",
+      "line": 637
+    },
+    {
+      "name": "annotate_deltas",
+      "line": 638
+    }
+  ],
+  "fixture_input_sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+  "second_preparation_failure": {
+    "raw_sha256": "e2f3da8af928f554007c36269347c92c6234bea271b8b5c63b1b8a112d1dda8e",
+    "terminal_sha256": "2530fcd6f85ecf8020a8890683f74818a9e3e13146a13ab83590390331b2773d",
+    "limit": "INVALID guessed unchanged-source wording; now exact original CLI format read and receipt recorded before assertion"
+  },
+  "preparation_failure": {
+    "raw_sha256": "6df4bf8fb2c3fb36fbf8173ccce957b94473e888b581a5e4fc46350259b0c976",
+    "terminal_sha256": "7092395ab5ed0718b94c9de55cf029593fc035e02412ff584229d371afd70c40",
+    "limit": "INVALID failed verifier-output precondition; empty control retained, aligned generation reused"
+  },
+  "prerequisite_verifications": [
+    {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+        "verify",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\aligned-latest\\store"
+      ],
+      "returncode": 0,
+      "stdout": "CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+        "verify",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\latest-missing-progress\\store"
+      ],
+      "returncode": 0,
+      "stdout": "CURRENT g20260929T112552Z-b00dd9 committed 2026-09-29T11:25:52Z; 2 outputs; sources unchanged\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+        "verify",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\latest-missing-progress\\store"
+      ],
+      "returncode": 0,
+      "stdout": "CURRENT g20260929T112552Z-f0716b committed 2026-09-29T11:25:52Z; 1 outputs; sources unchanged\n",
+      "stderr": "",
+      "terminal": true
+    }
+  ],
+  "verdict": "REJECT_UNIVERSAL_SAME_PRIOR_FOR_VERIFIED_MISSING_PROGRESS_VIEW"
+}

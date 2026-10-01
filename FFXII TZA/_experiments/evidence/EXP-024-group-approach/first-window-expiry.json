@@ -1,0 +1,9 @@
+{
+  "source": "Recorded read-only elapsed-time tool output after step-03; no further approach input before the prospective amendment",
+  "first_command_start_unix": 1789100850.0662274,
+  "elapsed_check_unix": 1789100922.2680423,
+  "elapsed_seconds": 72.20181584358215,
+  "intended_held_seconds": 2.25,
+  "steps": ["step-01.json", "step-02-camera.json", "step-03.json"],
+  "outcome": "Approach window expired; no group actor reached or kill established"
+}

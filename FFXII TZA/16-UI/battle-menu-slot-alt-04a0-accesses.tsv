@@ -1,0 +1,25 @@
+# the 0x4A0 at BattleMenuPanelWidget3010's slot base - emitted by Database/Tools/work/OPUS/emit_slot_alt_census.py
+# SEED 0027AA70 - the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392
+# REACH 0027AA70 - 165 of 165 instructions; the emitter refuses below 100%
+# NO TYPE IS DECLARED ON THIS. The bytes are already covered by ManagerSub0209BE80_AB30's panelSlots00C0 region row; a second type on them re-creates the double description rule 0 removed. The occupancy is recorded on the rows instead.
+# kind: r read, w write, a ADDRESS TAKEN (a lea, which touches no memory)
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+function	name	site	disp	kind	instruction	route	note
+0027AA70	FUN_0027aa70	0027AD0D	0x40	wr	and dword ptr [rdi + 0x40], 0xffffff7f	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027ACA2	0x98	w	mov dword ptr [rdi + 0x98], esi	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027ACA8	0x9C	w	mov word ptr [rdi + 0x9c], cx	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027ACAF	0x9E	w	mov word ptr [rdi + 0x9e], ax	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AB9C	0xC0	a	lea rcx, [rdi + 0xc0]	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027ABAD	0xC0	a	lea rcx, [rdi + 0xc0]	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AC7E	0xC0	a	lea rcx, [rdi + 0xc0]	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AD1F	0xC0	a	lea rcx, [rdi + 0xc0]	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AD2B	0xC0	a	lea rdx, [rdi + 0xc0]	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AAE3	0x490	r	test byte ptr [rdi + 0x490], 1	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AB55	0x490	wr	or dword ptr [rdi + 0x490], 1	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AB78	0x490	wr	and dword ptr [rdi + 0x490], 0xfffffffe	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AB95	0x490	wr	or dword ptr [rdi + 0x490], 2	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027ABCA	0x490	r	test byte ptr [rdi + 0x490], 2	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AC4E	0x490	wr	and dword ptr [rdi + 0x490], 0xfffffffe	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AC58	0x490	wr	or dword ptr [rdi + 0x490], 2	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027AAF0	0x494	r	mov ecx, dword ptr [rdi + 0x494]	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	
+0027AA70	FUN_0027aa70	0027ACB9	0x494	w	mov dword ptr [rdi + 0x494], eax	the REGISTERED HANDLER of the 0x4A0 built at the panel slot's own base: r8 at 0027A369, beside `mov edx, 0x4a0`, at the in-place construction 0027A392	

@@ -1,0 +1,15 @@
+{
+  "method": "Primary ISA specification, no FF12 observation",
+  "source": "https://cdrdv2-public.intel.com/819712/253666-sdm-vol-2a.pdf",
+  "section": "COMISS Description/Operation, PDF322, printed3-216",
+  "completed_flags_zf_pf_cf": {
+    "unordered": "111",
+    "greater": "000",
+    "less": "001",
+    "equal": "100"
+  },
+  "exception_limit": "COMISS signals invalid for both QNaN and SNaN. An unmasked SIMD floating-point exception leaves EFLAGS unupdated; no branch continuation inferred for a fault.",
+  "daz_source": "https://cdrdv2-public.intel.com/671436/253665-sdm-vol-1.pdf",
+  "daz_limit": "DAZ treats supported denormal inputs as signed zero; actual FF12 MXCSR/exception state unobserved.",
+  "primary_fetch_note": "Combined789581Vol2 fetch exceeded web size limit; successfully read individual819712Vol2A COMISS operation instead. No community source used."
+}

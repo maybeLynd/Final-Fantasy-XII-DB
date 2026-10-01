@@ -1,0 +1,37 @@
+# Phyre.Reflection.ReflectionStaticTeardown - EC-7 family C, declared on generated-function-families.md
+#
+# 28 members. Body size(s): 12 B x28.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 4 external target(s): 0 shared across all 28 members, and 4 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 4 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+008A9420
+008A9430
+008A9440
+008A9450
+008A9460
+008A9470
+008A9480
+008A9490
+008A94A0
+008A94B0
+008A94C0
+008A94D0
+008A94E0
+008A94F0
+008A9500
+008A97B0
+008A9F40
+008A9F50
+008A9F60
+008A9F70
+008A9F80
+008A9F90
+008A9FA0
+008A9FB0
+008A9FC0
+008A9FD0
+008A9FE0
+008A9FF0

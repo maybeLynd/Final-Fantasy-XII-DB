@@ -1,0 +1,39 @@
+payload base 02164480   contested span 02165176..02165480 (778 bytes)
+memory operands resolved to an absolute address anywhere: 128486
+memory operands whose base register was NOT known: 488689
+  -> this tracker resolves 20.8% of register-based memory operands
+
+ACCESSES INSIDE THE CONTESTED SPAN: 0  (0 code-formed, 0 tracker-composed)
+
+CONTROL - accesses elsewhere in the same 0x1538 record: 12 at 6 distinct offsets
+  002EF37D in 002EF370  ->  payload+0x1535  [w]
+  0058427B in 00584210  ->  payload+0x1044  [r]
+  00584287 in 00584210  ->  payload+0x1048  [r]
+  00584293 in 00584210  ->  payload+0x104C  [r]
+  0058429F in 00584210  ->  payload+0x1050  [r]
+  005842AB in 00584210  ->  payload+0x1054  [r]
+  005842B7 in 00584210  ->  payload+0x1048  [w]
+  00584332 in 00584210  ->  payload+0x1044  [w]
+  0058433E in 00584210  ->  payload+0x1048  [w]
+  0058434A in 00584210  ->  payload+0x104C  [w]
+  00584356 in 00584210  ->  payload+0x1050  [w]
+  00584362 in 00584210  ->  payload+0x1054  [w]
+
+LIMIT - calls handed a pointer into this record as an argument: 1 site(s), 1 distinct callees
+  callee 00861EC0  1 site(s)
+
+BLIND SPOT - INDEXED accesses whose known base lands in or before this record,
+             so the exact address is not fixed and the span cannot be excluded
+             for them: 12
+  002EF3A0 in 002EF390  base -> payload+0x0A00  [r]  cmp byte ptr [rax + rbx + 0xc00], 1
+  002EF587 in 002EF570  base -> payload+0x-200  [r]  nop word ptr [rax + rax]
+  00583C2A in 00583C00  base -> payload+0x-200  [r]  nop word ptr [rax + rax]
+  00583CDA in 00583CB0  base -> payload+0x-200  [r]  nop word ptr [rax + rax]
+  00583E49 in 00583D60  base -> payload+0x-1DD  [w]  mov byte ptr [rdi + r8*4 + 0x23], 0
+  00583E59 in 00583D60  base -> payload+0x-1DD  [r]  movzx ecx, byte ptr [rdi + r8*4 + 0x23]
+  00583E6B in 00583D60  base -> payload+0x-1DD  [w]  mov byte ptr [rdi + r8*4 + 0x23], cl
+  00583E7F in 00583D60  base -> payload+0x-1DD  [wr]  or byte ptr [rdi + r8*4 + 0x23], 2
+  00583E8A in 00583D60  base -> payload+0x-1E0  [w]  mov byte ptr [rdi + r8*4 + 0x20], al
+  00583E97 in 00583D60  base -> payload+0x-1DF  [w]  mov byte ptr [rdi + r8*4 + 0x21], al
+  00583EAE in 00583D60  base -> payload+0x-1DD  [wr]  or byte ptr [rdi + r8*4 + 0x23], 4
+  00583EB6 in 00583D60  base -> payload+0x-1DE  [w]  mov byte ptr [rdi + r8*4 + 0x22], al

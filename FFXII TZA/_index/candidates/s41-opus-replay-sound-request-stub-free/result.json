@@ -1,0 +1,189 @@
+{
+ "audio_init": {
+  "object": "7306CF80",
+  "ok": true
+ },
+ "cases": {
+  "I1_receipt_returned_with_no_bank_loaded": true,
+  "I2_0024A1A0_gate1_refusal_returns_no_defined_value_eax_passes_through": true,
+  "I2_0024A1A0_real_readiness_refuses_before_the_reshape": true,
+  "I2_readiness_refuser_002DEE80_runs_real_both_arms": true,
+  "I2_refusers_report_only_failure_and_disagree_on_its_value": true,
+  "I3_wrappers_dispatch_pan_0x40_vol_0x7F_with_the_dispatcher_real": true,
+  "I4_bank_owns_a_512_id_block_id_is_lo_shl_9_plus_index": true,
+  "I5_gate1_refuses_three_wrappers_not_00271500": true,
+  "audio_object_built_by_its_own_initialiser": true,
+  "no_fence_no_fault_in_any_run": true
+ },
+ "live_game": false,
+ "ok": true,
+ "receipts": {
+  "w_1500_gate1_set": "3",
+  "w_c60_ok": "1",
+  "w_ca0_ok": "2"
+ },
+ "refusal_values": {
+  "ready_ecx0": "0",
+  "w_a1a0_ready_path": "0",
+  "w_c60_gate1_set": "FFFFFFFF",
+  "w_c60_gate2_set": "0",
+  "w_c60_liveness_refuses": "FFFFFFFF",
+  "w_c60_resolver_refuses": "FFFFFFFF"
+ },
+ "runs": {
+  "ready_ecx0": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 1,
+   "ok": true,
+   "ready": [
+    "0"
+   ],
+   "ret": 0
+  },
+  "ready_ecx5": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 6,
+   "ok": true,
+   "ready": [
+    "5"
+   ],
+   "ret": 0
+  },
+  "w_1500_gate1_set": {
+   "bad": [],
+   "disp": [
+    "(0, 605, 40, 7F)"
+   ],
+   "dispb": [],
+   "faults": [],
+   "functions": 11,
+   "ok": true,
+   "ready": [],
+   "ret": 3
+  },
+  "w_a1a0_gate1_set": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 1,
+   "ok": true,
+   "ready": [],
+   "ret": 195948557
+  },
+  "w_a1a0_gate1_set_sentinel2": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 1,
+   "ok": true,
+   "ready": [],
+   "ret": 1515870810
+  },
+  "w_a1a0_ready_path": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 7,
+   "ok": true,
+   "ready": [
+    "5"
+   ],
+   "ret": 0
+  },
+  "w_c60_gate1_set": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 1,
+   "ok": true,
+   "ready": [],
+   "ret": 4294967295
+  },
+  "w_c60_gate2_set": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 5,
+   "ok": true,
+   "ready": [],
+   "ret": 0
+  },
+  "w_c60_liveness_refuses": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 3,
+   "ok": true,
+   "ready": [],
+   "ret": 4294967295
+  },
+  "w_c60_ok": {
+   "bad": [],
+   "disp": [
+    "(0, 605, 40, 7F)"
+   ],
+   "dispb": [],
+   "faults": [],
+   "functions": 11,
+   "ok": true,
+   "ready": [],
+   "ret": 1
+  },
+  "w_c60_other_index": {
+   "bad": [],
+   "disp": [
+    "(0, 7FF, 40, 7F)"
+   ],
+   "dispb": [],
+   "faults": [],
+   "functions": 11,
+   "ok": true,
+   "ready": [],
+   "ret": 4
+  },
+  "w_c60_resolver_refuses": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 3,
+   "ok": true,
+   "ready": [],
+   "ret": 4294967295
+  },
+  "w_ca0_gate1_set": {
+   "bad": [],
+   "disp": [],
+   "dispb": [],
+   "faults": [],
+   "functions": 1,
+   "ok": true,
+   "ready": [],
+   "ret": 4294967295
+  },
+  "w_ca0_ok": {
+   "bad": [],
+   "disp": [
+    "(0, 605, 40, 7F)"
+   ],
+   "dispb": [],
+   "faults": [],
+   "functions": 10,
+   "ok": true,
+   "ready": [],
+   "ret": 2
+  }
+ }
+}

@@ -1,0 +1,43 @@
+# action-row-0x2C-bit-readers - every provenance-verified read of the action row's +0x2C byte / word (the 40 sites of members/action-row-reader-hops.tsv at offset 0x2C), with the literal mask or compare the site applies, or the register form it uses instead (UQ-107, FABLE, 2026-09-18).
+# A literal `mask` names the bit(s) tested; `(no immediate)` sites test the word against a register mask (`test word [row+0x2C], ax`, built by the status-mask family) or use the byte as a value. No site tests 0x20 (bit 5) literally.
+function	name	width	site	classification
+002376F0	FUN_002376f0	1	002377FF	mask 0x7 @002377FF
+002376F0	FUN_002376f0	1	00237881	(no immediate) movzx ecx, byte ptr [rcx + 0x2c]
+002376F0	FUN_002376f0	1	0023790E	(no immediate) movzx ecx, byte ptr [rcx + 0x2c]
+002376F0	FUN_002376f0	1	00237996	(no immediate) movzx ecx, byte ptr [rcx + 0x2c]
+002376F0	FUN_002376f0	1	00237A1E	(no immediate) movzx ecx, byte ptr [rcx + 0x2c]
+002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	1	002F9323	mask 0x8 @002F9323
+002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	1	002F9377	mask 0x10 @002F9377
+002FFA60	BattleAction_IsTargetEligibleForCurrentAction	1	002FFAF5	mask 0x40 @002FFAF5
+002FFA60	BattleAction_IsTargetEligibleForCurrentAction	1	002FFB30	mask 0x80 @002FFB30
+003008A0	Inventory_ModifyEncodedItemAndUpdateDiscoveryState	2	00300B3B	mask 0x7 @00300B3F; cmp 0x4 @00300B42
+00301310	FUN_00301310	1	00301410	mask 0x40 @00301410
+00301310	FUN_00301310	1	0030146E	mask 0x80 @0030146E
+00301AD0	AiOrder_EvaluateTargetSelector	2	00303434	(no immediate) cmp word ptr [rax + 0x2c], cx
+00301AD0	AiOrder_EvaluateTargetSelector	2	00303492	mask 0x1000 @00303499
+00305110	FUN_00305110	1	0030517E	mask 0x40 @0030517E
+00305110	FUN_00305110	1	003051B9	mask 0x80 @003051B9
+00305230	FUN_00305230	1	0030529E	mask 0x40 @0030529E
+00305230	FUN_00305230	1	003052E6	mask 0x80 @003052E6
+00305230	FUN_00305230	1	003053E9	mask 0x40 @003053E9
+00305430	FUN_00305430	1	0030549E	mask 0x40 @0030549E
+00305430	FUN_00305430	1	003054E6	mask 0x80 @003054E6
+00305430	FUN_00305430	1	003055C2	mask 0x40 @003055C2
+00307300	Battle_ProcessActionTarget	1	003074BE	mask 0x40 @003074BE
+00307300	Battle_ProcessActionTarget	1	003074FD	mask 0x80 @003074FD
+00307300	Battle_ProcessActionTarget	1	003077FE	mask 0x40 @003077FE
+00307300	Battle_ProcessActionTarget	1	00307846	mask 0x80 @00307846
+00307300	Battle_ProcessActionTarget	1	003078EE	mask 0x40 @003078EE
+00308C20	AiOrder_ComputeBoundedSelectorScalar	2	00308CF2	(no immediate) movzx eax, word ptr [rcx + 0x2c]
+0030BB30	BattleUnit_HasCurrentFocusEngagementEvidence	2	0030BC0C	mask 0x4000 @0030BC13
+00317C80	FUN_00317c80	2	00317CFB	mask 0x7 @00317CFF
+0031C5D0	FUN_0031c5d0	2	0031CDBE	mask 0x7 @0031CDC2
+00322A80	FUN_00322a80	2	00322B62	(no immediate) movzx ecx, word ptr [r15 + 0x2c]
+00323EC0	BattleStats_HasRequiredLicenseForAction	2	00323F52	(no immediate) test word ptr [rcx + 0x2c], ax
+0032A3E0	FUN_0032a3e0	2	0032A46B	mask 0x7 @0032A46F
+003851F0	BattleFormula_BuildCandidateStatusMask	2	003852AB	(no immediate) test word ptr [rcx + 0x2c], ax
+00387130	FUN_00387130	1	003871CE	(no immediate) movzx eax, byte ptr [rcx + 0x2c]
+003872D0	BattleAction_ComputeAuthoredStatusMask	2	00387382	(no immediate) test word ptr [rcx + 0x2c], ax
+003875D0	FUN_003875d0	2	0038767A	(no immediate) test word ptr [rcx + 0x2c], ax
+00390F20	BattleFormula_ApplyTargetStatusActionPostModifiers	2	00391112	(no immediate) test word ptr [rcx + 0x2c], ax
+00390F20	BattleFormula_ApplyTargetStatusActionPostModifiers	2	00391192	(no immediate) test word ptr [rbx + 0x2c], ax

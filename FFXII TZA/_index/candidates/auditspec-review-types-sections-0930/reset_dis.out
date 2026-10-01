@@ -1,0 +1,93 @@
+0026C8C0  mov       qword ptr [rsp + 8], rbx
+0026C8C5  mov       qword ptr [rsp + 0x10], rbp
+0026C8CA  mov       qword ptr [rsp + 0x18], rsi
+0026C8CF  push      rdi
+0026C8D0  push      r12
+0026C8D2  push      r13
+0026C8D4  push      r14
+0026C8D6  push      r15
+0026C8D8  sub       rsp, 0x20
+0026C8DC  mov       r13, qword ptr [rip + 0x1e2d48d]   ; -> 02099D70 (virtual tail / unmapped)
+0026C8E3  lea       r12, [rip - 0x4fba]   ; -> 00267930 u32=245C8948 f32=4.78212e-17
+0026C8EA  test      r8, r8
+0026C8ED  movsxd    rbp, ecx
+0026C8F0  lea       r14, [rip - 0x14c8f7]   ; -> 00120000 (virtual tail / unmapped)
+0026C8F7  mov       r15, rdx
+0026C8FA  cmovne    r12, r8
+0026C8FE  lea       rdi, [r14 + 0x1f78e10]
+0026C905  xor       ebx, ebx
+0026C907  imul      r8, rbp, 0x288
+0026C90E  add       rdi, r8
+0026C911  mov       qword ptr [rip + 0x1e2d458], rdi   ; -> 02099D70 (virtual tail / unmapped)
+0026C918  mov       qword ptr [rdi + 0x244], rbx
+0026C91F  mov       qword ptr [rdi + 0x24c], rbx
+0026C926  mov       qword ptr [rdi + 0x254], rbx
+0026C92D  mov       qword ptr [rdi + 0x25c], rbx
+0026C934  mov       qword ptr [rdi + 0x264], rbx
+0026C93B  mov       qword ptr [rdi + 0x26c], rbx
+0026C942  mov       qword ptr [rdi + 0x274], rbx
+0026C949  mov       qword ptr [rdi + 0x27c], rbx
+0026C950  and       byte ptr [rdi + 0x200], 0xfb
+0026C957  mov       dword ptr [rdi + 0x28], ebp
+0026C95A  mov       qword ptr [rdi], rdx
+0026C95D  test      ecx, ecx
+---
+0026CC10  mov       qword ptr [rdi + 0xf8], rbx
+0026CC17  mov       qword ptr [rdi + 0xf0], rbx
+0026CC1E  mov       dword ptr [rdi + 0x1e8], ebx
+0026CC24  mov       dword ptr [rdi + 0x1fc], ebx
+0026CC2A  mov       qword ptr [rdi + 0xe8], rbx
+0026CC31  mov       qword ptr [rdi + 0x100], rbx
+0026CC38  mov       byte ptr [rdi + 0x201], bl
+0026CC3E  mov       qword ptr [rdi + 0x30], rbx
+0026CC42  mov       dword ptr [rdi + 0x38], ebx
+0026CC45  mov       byte ptr [rdi + 0x10], r9b
+0026CC49  mov       qword ptr [rdi + 0xa0], rbx
+0026CC50  mov       qword ptr [rdi + 0xa8], rbx
+---
+0026B870  mov       qword ptr [rsp + 8], rdi
+0026B875  movsxd    rax, ecx
+0026B878  mov       ecx, 0x10
+0026B87D  imul      rdi, rax, 0x288
+0026B884  lea       rax, [rip + 0x1e2d585]   ; -> 02098E10 (virtual tail / unmapped)
+0026B88B  add       rax, 0x204
+0026B891  add       rdi, rax
+0026B894  neg       edx
+0026B896  sbb       eax, eax
+0026B898  rep stosd dword ptr [rdi], eax
+0026B89A  mov       rdi, qword ptr [rsp + 8]
+0026B89F  ret       
+---
+00266EE0  lea       rbx, [rip + 0x1e31f39]   ; -> 02098E20 (virtual tail / unmapped)
+00266EE7  nop       word ptr [rax + rax]
+00266EF0  lea       rcx, [rbx - 0x10]
+00266EF4  xor       edx, edx
+00266EF6  mov       r8d, 0x288
+00266EFC  call      0x861ec0
+---
+00267160  fdiv      qword ptr [rax]
+---
+00266EE0 lea rbx, [rip + 0x1e31f39]
+00266EE7 nop word ptr [rax + rax]
+00266EF0 lea rcx, [rbx - 0x10]
+00266EF4 xor edx, edx
+00266EF6 mov r8d, 0x288
+00266EFC call 0x861ec0
+00266F01 and byte ptr [rbx], 0xfe
+00266F04 and byte ptr [rbx + 1], 0xf7
+00266F08 and byte ptr [rbx + 7], 0xa7
+00266F0C and byte ptr [rbx + 0x1f0], 0xfb
+00267150 call 0x3eb750
+00267155 call 0x2e1450
+0026715A call 0x259e90
+0026715F call 0x35a240
+00267164 xor edx, edx
+00267166 mov byte ptr [rip + 0x1e32c35], sil
+0026716D mov r8d, 0x200
+00267173 lea rcx, [rip + 0x1e32c76]
+0026717A call 0x861ec0
+0026717F xor edx, edx
+00267181 lea rcx, [rip + 0x1e32e68]
+00267188 mov r8d, 0x200
+0026718E call 0x861ec0
+00267193 call 0x3604d0

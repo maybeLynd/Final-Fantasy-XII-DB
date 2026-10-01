@@ -1,0 +1,20 @@
+# NativeAdapter.RelativeMemberAddressTailCall32 - EC-7 family C, declared on generated-function-families.md
+#
+# 8 members. Body size(s): 29 B x8.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 8 external target(s): 0 shared across all 8 members, and 8 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 46 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+005C9720
+005C9740
+005C9840
+005C9860
+0060D770
+00628470
+00672E60
+006C7B70
+# A-drift 2026-09-17: 27 member(s) removed, since measured as A: 005C9800 005C9820 005C9880 0060D790 0060D7B0 0060D7D0 0060D930 0060D950 0060D970 0060D9B0 0060D9D0 0060D9F0 0060DA10 0060DA30 00628490 0063DC60 00672DE0 00672E00 00672E20 00672E40 0067E2E0 006AF740 006BE6E0 006BE700 006D5610 006D5630 006D5650
+# A-drift 2026-09-17 (second sweep): 0060D810 removed, since measured as A.

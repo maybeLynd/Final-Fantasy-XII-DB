@@ -1,0 +1,9 @@
+# NativeAdapter.SecondArgumentConstTailCall - EC-7 family C
+# # mov edx, member const; jmp member op.
+address	targets
+0024ACE0	0024AC30
+0026C3B0	0026C3E0
+0035C7A0	0035C7B0
+0036A190	0036A1A0
+003F1520	00275550
+0069ECC0	0017D260

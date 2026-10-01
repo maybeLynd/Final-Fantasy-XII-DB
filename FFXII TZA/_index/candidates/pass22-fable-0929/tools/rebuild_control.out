@@ -1,0 +1,26 @@
+page	layer	finding_edges	rebuilt_edges	detail_match
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md	ActorEntity	1	1	yes
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md	Audio	2	2	yes
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md	WorldAreaField	1	1	yes
+04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	CombatFormula	152	152	yes
+04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	Items_Equipment_Shops_License	64	64	yes
+04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	RNG_Random_Selection	7	7	yes
+04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	Save_Load_Settings	4	4	yes
+06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md	CoreRuntimeScheduling	4	4	yes
+07-Combat-Action/how-close-a-unit-must-stand-to-act.md	Rewards_Progression_Economy	1	1	yes
+13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md	CoreRuntimeScheduling	2	2	yes
+13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md	RNG_Random_Selection	2	2	yes
+13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md	Script_VM_Native_Bridge	2	2	yes
+13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md	WorldAreaField	2	2	yes
+15-Input/how-a-gamepad-becomes-a-controller-object.md	Script_VM_Native_Bridge	1	1	yes
+17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md	UI	8	8	yes
+17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md	WorldAreaField	1	1	yes
+17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md	Input	1	1	yes
+17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md	Movement	1	1	yes
+17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md	Script_VM_Native_Bridge	57	57	yes
+17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md	Movement	1	1	yes
+17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md	UI	1	1	yes
+22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md	Audio	1	1	yes
+22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md	CoreRuntimeScheduling	1	1	yes
+22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md	Platform	4	4	yes
+CONTROL: ALL 24 MATCH (count and 4-edge sample)

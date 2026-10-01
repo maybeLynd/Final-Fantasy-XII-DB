@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-145",
+ "result_refs": [
+  "seal commit dded02200"
+ ],
+ "note": "batch-145 seal: publish d93d86b87 + seal dded02200 committed (private index, no stale-index sweep)"
+}

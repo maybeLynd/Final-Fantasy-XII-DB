@@ -1,0 +1,430 @@
+{
+  "method": "A actual collect/measure with independent private corpus/board fixtures; no production writer or FF12/native/live claim",
+  "source_tree_commit": "73d721948a0340f5646fe20aea39bcc6c57c36ec",
+  "sources": {
+    "Database/Tools/dashboard/test_requirements.py": {
+      "sha256": "b17f68a087363f9a7c9818317a2360a79ee74bff8b6af66d88bb631afda831a1",
+      "blob": "8772b1e9135491fcb04c065fb4c3eaaea0ed2abc"
+    },
+    "Database/Tools/dashboard/requirements.py": {
+      "sha256": "4cca40cd29d78b7bb2db1418d3ca802f3ecc45ab0669e9433a101b2879349fdf",
+      "blob": "252965e2686d638e3eeafbe8d1bc7a502accab23"
+    },
+    "Database/Tools/dashboard/build_views.py": {
+      "sha256": "a1542cb9b27e0fd1c54c258455a3b92f22c0c2c640f48a649c3c8c84728ca4ad",
+      "blob": "d89e31b02dcb58c16637fdcccdee2288a6422076"
+    },
+    "Database/Tools/dashboard/server.py": {
+      "sha256": "71e2ffb5d606efe40f7d1ff995d7d2416c0c4a2b30073baae3aa02d30bd9442a",
+      "blob": "25c18b0e851d4743b87350791828a73ac02edc2f"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/generation.py": {
+      "sha256": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1",
+      "blob": "3993deaf0f2812f00e1e7a181e2ce8cd15b29cb3"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_questions.py": {
+      "sha256": "14ccdaf57f6b8222ff59caaed613cb034c81fccc879de8fd3048a0413ba05f7d",
+      "blob": "e8466e3f984f3fcd2de9f147be5f7ec033e278d2"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/transfer_audit.py": {
+      "sha256": "9094ad48a1f2b1ecb260d8c17a3456963923a5d4c2fd0ecdd919e75c663772ef",
+      "blob": "f88ba5b260bf637ad73cd2dab5c35614782f4bf9"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_dispositions.py": {
+      "sha256": "f2baa8454d4b18a028e9f9b20aa2b3719d285f3f043e6fa709022685d8a94dc3",
+      "blob": "c5a61dc994c856134af71e0235acc9502de3a0be"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py": {
+      "sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+      "blob": "9f4563f24ff39871e464e6d8d120d93a4e7399ab"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/progress.py": {
+      "sha256": "0643c4542eea9d0de1c8f203106d4817aecf6ecc06665166db88e80291571370",
+      "blob": "08fc949dc3fff8769c8ec1765c5d2cb07bcd1088"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_provenance.py": {
+      "sha256": "7837e5f2855b180faef1686e3eac7b71301da194c0fe73f46ddeb0ea1ea6ab4b",
+      "blob": "33fc02379434fe5a9b2fa714fb0f04fb1da0be65"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_formats.py": {
+      "sha256": "39de4a487fce75f891561ab9f99f02b37084a4998c6fd27a2341af88dd7e7a62",
+      "blob": "4e45b3bb13d3cb5ac097b0302d5c550e075f7b6a"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_assets.py": {
+      "sha256": "df550170c413ffb2819896c993b16f245ffd56efbb0c14edb91e2a69dec70ca5",
+      "blob": "00ec67bec3c2765dd0d0675ec32d7c5aa3599780"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_ebp.py": {
+      "sha256": "499f4c7c3401ceeaa08e210c1731de43fed97a567dd37f1b92ce89ba576e22ef",
+      "blob": "af54bcf04ba313f2623fa134ce3f7d84a189aeb1"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/goal_gate.py": {
+      "sha256": "843847dea1b7bce84388872914ac072d2943e142cc225cdda3ce47e46e9d2588",
+      "blob": "96c152217cd22b279e5bc35c1c889599d31bff14"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/open_claim_drift.py": {
+      "sha256": "792efdb41bc88042dbd31fa5c888f2925244341e60c1abc44e2025df5b7f4859",
+      "blob": "19a01da7742a46d4c95c5cac077d69da0e3e5443"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/premise_drift.py": {
+      "sha256": "b1b916f20211adeb5121fbc782bc2cf43bd1cb833f5559b4a34536e2f5e2d1b2",
+      "blob": "0a2cec70f9ab8efa2583c233d55027a6bd149b80"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/kit_paths.py": {
+      "sha256": "6373c2968ffa7e635bee7c67151eabd9c5ffa5d9888e9886ea0f8c0ef0337ff0",
+      "blob": "02e7cc17356ac46d49f493a0eb4aa504aa41aa0e"
+    },
+    "Database/FFXII TZA/_index/workflow/my-progress/category-map.tsv": {
+      "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+      "blob": "7433e54ad36b77524495ed33b0f847e8096a8c50"
+    },
+    "Database/FFXII TZA/_index/workflow/DASHBOARD-MEANINGS.md": {
+      "sha256": "4d2cfade40bade85978cc3285bfd525b99c57e468f191f30c2a1dd9d25d15eee",
+      "blob": "1c59e3268ed5a6fd30ccaa210d6ecdfea17682fd"
+    },
+    "Database/FFXII TZA/_index/completion-packages/README.md": {
+      "sha256": "b49468944891454e4ce2268e610e914f59fb8bf78c83f51db2007e3fd3690457",
+      "blob": "10e096d573695cde82be3dd08652ac7f782f46f8"
+    }
+  },
+  "driver_sha256": "30dfaecb153b090a6039dd9bdf790320f26a346b2462d45ccbacda5385bb78f9",
+  "cases": [
+    {
+      "name": "collect-carrier-READY",
+      "carrier": {
+        "k": "Q:W-901",
+        "f": "Q",
+        "ok": false,
+        "st": "transferred to ASTRA-FIX-CARRIER-0001 - carrier open, obligation not closed",
+        "doc": null,
+        "h": [
+          [
+            "section",
+            "W"
+          ]
+        ],
+        "o": "",
+        "e": "_index/OPEN-QUESTIONS.md row W-901",
+        "n": "answer the row, or record an accepted disposition under the register rules"
+      },
+      "documents": {
+        "DD:04-Actor-Entity/answered.md": {
+          "k": "DD:04-Actor-Entity/answered.md",
+          "f": "DD",
+          "ok": true,
+          "st": "documented, all answered",
+          "doc": "04-Actor-Entity/answered.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/answered.md front matter status/readiness",
+          "n": ""
+        },
+        "DD:04-Actor-Entity/dispositioned.md": {
+          "k": "DD:04-Actor-Entity/dispositioned.md",
+          "f": "DD",
+          "ok": true,
+          "st": "documented with a dispositioned residue",
+          "doc": "04-Actor-Entity/dispositioned.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/dispositioned.md front matter status/readiness",
+          "n": ""
+        },
+        "DD:04-Actor-Entity/partial.md": {
+          "k": "DD:04-Actor-Entity/partial.md",
+          "f": "DD",
+          "ok": false,
+          "st": "not documented",
+          "doc": "04-Actor-Entity/partial.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/partial.md front matter status/readiness",
+          "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)"
+        }
+      },
+      "page_residue": [
+        {
+          "k": "P:04-Actor-Entity/answered.md#184c9a37",
+          "f": "P",
+          "ok": false,
+          "st": "unticked box naming closed row(s) W-902",
+          "doc": "04-Actor-Entity/answered.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/answered.md line 6: - [ ] **W-902.** open page against answered row, retain residue",
+          "n": "tick the box to match the closed row, or reopen the row"
+        },
+        {
+          "k": "P:04-Actor-Entity/answered.md#4e62eb74",
+          "f": "P",
+          "ok": false,
+          "st": "unticked box with no register id",
+          "doc": "04-Actor-Entity/answered.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/answered.md line 7: - [ ] independent idless obligation",
+          "n": "give the box a register id and row, or close it with evidence (register header rule; audit pass 29)"
+        }
+      ],
+      "failed_families": {
+        "F": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\..\\\\..\\\\..\\\\FFXII TZA\\\\99-Unresolved-Residual\\\\Unlisted-Code\\\\uc1-applied-population-1-64.tsv'",
+        "R": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\fixture-db\\\\02-Resource-And-Asset-Pipeline\\\\authored-data-table-registry.md'",
+        "X": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\..\\\\..\\\\work\\\\formats\\\\archive-extension-census.tsv'",
+        "K": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\fixture-db\\\\_index\\\\CONTRADICTIONS.tsv'"
+      },
+      "excluded": [
+        [
+          "Q:W-904",
+          "WITHDRAWN - not a requirement (withdrawn)"
+        ],
+        [
+          "Q:W-905",
+          "struck row id (removed from the register; not read by the gate)"
+        ]
+      ]
+    },
+    {
+      "name": "collect-carrier-DONE",
+      "carrier": {
+        "k": "Q:W-901",
+        "f": "Q",
+        "ok": true,
+        "st": "transferred to ASTRA-FIX-CARRIER-0001 (carrier DONE)",
+        "doc": null,
+        "h": [
+          [
+            "section",
+            "W"
+          ]
+        ],
+        "o": "",
+        "e": "_index/OPEN-QUESTIONS.md row W-901",
+        "n": ""
+      },
+      "documents": {
+        "DD:04-Actor-Entity/answered.md": {
+          "k": "DD:04-Actor-Entity/answered.md",
+          "f": "DD",
+          "ok": true,
+          "st": "documented, all answered",
+          "doc": "04-Actor-Entity/answered.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/answered.md front matter status/readiness",
+          "n": ""
+        },
+        "DD:04-Actor-Entity/dispositioned.md": {
+          "k": "DD:04-Actor-Entity/dispositioned.md",
+          "f": "DD",
+          "ok": true,
+          "st": "documented with a dispositioned residue",
+          "doc": "04-Actor-Entity/dispositioned.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/dispositioned.md front matter status/readiness",
+          "n": ""
+        },
+        "DD:04-Actor-Entity/partial.md": {
+          "k": "DD:04-Actor-Entity/partial.md",
+          "f": "DD",
+          "ok": false,
+          "st": "not documented",
+          "doc": "04-Actor-Entity/partial.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/partial.md front matter status/readiness",
+          "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)"
+        }
+      },
+      "page_residue": [
+        {
+          "k": "P:04-Actor-Entity/answered.md#184c9a37",
+          "f": "P",
+          "ok": false,
+          "st": "unticked box naming closed row(s) W-902",
+          "doc": "04-Actor-Entity/answered.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/answered.md line 6: - [ ] **W-902.** open page against answered row, retain residue",
+          "n": "tick the box to match the closed row, or reopen the row"
+        },
+        {
+          "k": "P:04-Actor-Entity/answered.md#4e62eb74",
+          "f": "P",
+          "ok": false,
+          "st": "unticked box with no register id",
+          "doc": "04-Actor-Entity/answered.md",
+          "h": [
+            [
+              "folder",
+              "04"
+            ]
+          ],
+          "o": "",
+          "e": "04-Actor-Entity/answered.md line 7: - [ ] independent idless obligation",
+          "n": "give the box a register id and row, or close it with evidence (register header rule; audit pass 29)"
+        }
+      ],
+      "failed_families": {
+        "F": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\..\\\\..\\\\..\\\\FFXII TZA\\\\99-Unresolved-Residual\\\\Unlisted-Code\\\\uc1-applied-population-1-64.tsv'",
+        "R": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\fixture-db\\\\02-Resource-And-Asset-Pipeline\\\\authored-data-table-registry.md'",
+        "X": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\..\\\\..\\\\work\\\\formats\\\\archive-extension-census.tsv'",
+        "K": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-02\\\\fixture-db\\\\_index\\\\CONTRADICTIONS.tsv'"
+      },
+      "excluded": [
+        [
+          "Q:W-904",
+          "WITHDRAWN - not a requirement (withdrawn)"
+        ],
+        [
+          "Q:W-905",
+          "struck row id (removed from the register; not read by the gate)"
+        ]
+      ]
+    },
+    {
+      "name": "conflicting-duplicate-key",
+      "ready": false,
+      "measured": true,
+      "scopes": {
+        "union": {
+          "accepted": 44,
+          "total": 45
+        },
+        "L1": {
+          "accepted": 39,
+          "total": 40
+        },
+        "L2": {
+          "accepted": 40,
+          "total": 41
+        },
+        "union_exF": {
+          "accepted": 43,
+          "total": 44
+        }
+      },
+      "q_split": {
+        "answered": 0,
+        "dispositioned": 0,
+        "remaining": 1,
+        "excluded": 0,
+        "dd_answered": 1,
+        "dd_dispositioned": 0
+      },
+      "duplicates_merged": 1
+    },
+    {
+      "name": "reopen-required-row",
+      "ready": false,
+      "measured": true,
+      "scopes": {
+        "union": {
+          "accepted": 44,
+          "total": 45
+        },
+        "L1": {
+          "accepted": 39,
+          "total": 40
+        },
+        "L2": {
+          "accepted": 40,
+          "total": 41
+        },
+        "union_exF": {
+          "accepted": 43,
+          "total": 44
+        }
+      },
+      "q_split": {
+        "answered": 0,
+        "dispositioned": 0,
+        "remaining": 1,
+        "excluded": 0,
+        "dd_answered": 1,
+        "dd_dispositioned": 0
+      },
+      "duplicates_merged": 0
+    },
+    {
+      "name": "DD-split-current",
+      "ready": false,
+      "measured": false,
+      "scopes": {
+        "union": {
+          "accepted": 39,
+          "total": 63
+        },
+        "L1": {
+          "accepted": 34,
+          "total": 58
+        },
+        "L2": {
+          "accepted": 35,
+          "total": 35
+        },
+        "union_exF": {
+          "accepted": 39,
+          "total": 63
+        }
+      },
+      "q_split": {
+        "answered": 1,
+        "dispositioned": 1,
+        "remaining": 1,
+        "excluded": 2,
+        "dd_answered": 1,
+        "dd_dispositioned": 1
+      },
+      "duplicates_merged": 0
+    }
+  ],
+  "finished": true,
+  "sources_unchanged": true,
+  "limits": "Corpus intentionally lacks registry/format/contradiction/function populations: failed families preserved, never a complete healthy database or native semantic proof. A DOCUMENTED page may still carry P residue; separate axes remain visible."
+}

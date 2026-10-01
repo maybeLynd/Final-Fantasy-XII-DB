@@ -1,0 +1,92 @@
+{
+  "status": "PRODUCER_CHECKED_CONDITIONAL_BRIDGE_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "question": "Under unchanged matching native mappings, which terminal member and pointer/count association do these two packed keys request?",
+  "result": "Both keys conditionally resolve outer kind3 array then terminal kind2 m_els; no null child/getter assumption. The source association is first11 definition objects and singleton object11. Existing pointer/count setter proof supplies only normal continuation behavior.",
+  "source_pins": [
+    {
+      "path": "softedges-effectvariant-registration-code-01.json",
+      "sha256": "04fe0aa3d7fc6bd03107745d2557977e33636720f6a5bac0fb1d3106b2ffde03"
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01/original-code.json",
+      "sha256": "f473de8c4be098d9709ea751a78795a69678289137a3e48b8d24125a6bf88aaa"
+    },
+    {
+      "path": "softedges-mapping-builders-code-01.json",
+      "sha256": "f4a2523fd16aa8016a1d1a558e51f50aed5324cec28b6b11e3af3a61c00b25f1"
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7"
+    },
+    {
+      "path": "softedges-resource-source-01/member-bridge-code-01.json",
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-header-membership-code-01.json",
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-array-terminal-guard-source-01\\facts.json",
+      "sha256": "064116faa8706e11ebf94ef8fb90e7fbaf7f40955d5b8bd55171680ec67adf6b"
+    }
+  ],
+  "table_dependency": {
+    "path": "Database\\FFXII TZA\\_experiments\\evidence\\phyretext-softedges-field-extent\\m_untweakableShaderParameterDefinitions",
+    "sha256": "612667edde39dced5a481872366ca48c7be0758ff2c4476b2a97aabc3e240114",
+    "commit": "5bbbe5528076e0d2c82a9b05e0dfc4c3232bfaa1",
+    "acceptance": "Producer valid, independent review pending"
+  },
+  "routes": [
+    {
+      "key": 22,
+      "outer_member": "m_tweakableShaderParameterDefinitions",
+      "outer_kind": 3,
+      "inner_member": "m_els",
+      "inner_kind": 2,
+      "residual": 4,
+      "file_child_class_id": 43,
+      "native_array_address": "object+zext32(0x40+arrayF4-effectVariantF4)",
+      "source_list": 12,
+      "source_object_index": 0,
+      "count": 11
+    },
+    {
+      "key": 27,
+      "outer_member": "m_untweakableShaderParameterDefinitions",
+      "outer_kind": 3,
+      "inner_member": "m_els",
+      "inner_kind": 2,
+      "residual": 4,
+      "file_child_class_id": 43,
+      "native_array_address": "object+zext32(0x50+arrayF4-effectVariantF4)",
+      "source_list": 12,
+      "source_object_index": 11,
+      "count": 1
+    }
+  ],
+  "guard_correction": "Kind2 with bit6 clear stops recursion. With bit6 set and nonnull self getter, optional query result==1 ALLOWS recursion; other results stop. Current canonical prose result==1 fails has reversed polarity. Bit1 always stops. No claim about opaque query effects or natural values.",
+  "assumptions": [
+    "Class/member name/type mapping matches these native registered objects;59BFaf type equality holds",
+    "Registrations returned normally and metadata/kinds/getters remain unchanged",
+    "The pointer-fixup assignment site is reached with correctly bound list12 native objects",
+    "Normal source-association continuation after any unproved owned-storage cleanup"
+  ],
+  "limitations": [
+    "Actual successful live/resource initialization is unobserved",
+    "F4 values retained symbolically; no universal zero or destination-address assumption",
+    "Pointer patcher can write a destination slot at59CD14 before the callback; this is not a complete effects inventory or a claim of unchanged pre-call array storage",
+    "Native source pointer/lifetime/aliases and opaque cleanup not proved",
+    "Not whole constructor/OV42 closure, gameplay or natural reachability"
+  ],
+  "checker_sha256": "588c688ad92fbc5a1367e8b8a8c7c73582d29d8eab76239262d2953585db8e7e",
+  "producer_complete": true,
+  "live_runs": 0,
+  "isolated_native_runs": 0
+}

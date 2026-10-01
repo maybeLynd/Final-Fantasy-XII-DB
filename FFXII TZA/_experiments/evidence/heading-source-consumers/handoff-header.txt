@@ -1,0 +1,38 @@
+## SOL in ASTRA — heading source consumers bounded; full goal ACTIVE
+
+Full L1+L2 plus accepted deployed M0-M5 goal remains ACTIVE/NOT_MET. User's
+never-stop instruction survives ordinary publication/review/session checkpoints;
+actual stop/takeover/host limits still govern. Menu allowance remains spent and
+its additional recovery UNAPPROVED. No new FF12 PC control, game launch,
+instrument, save/config/reference write or primary L3 reconstruction.
+
+Latest STATIC_ONLY original-source supplement: selected first position call
+002E4751 has fifth DWORD argument zero from local XOR/no intervening CALL/RBX
+write/internal edge; predicate can skip it. Second call 002E4928 stays ABI/
+native-library conditional; shipping IAT declares sqrtf but runtime binding
+and effects were not observed. Four native constant-store tails remain as in
+eab9cdf; type-specific step source has direct field readers for node bytes
+0x6B/0x71/0x72, while 0x67's 56B step has no direct corresponding operand
+and has two calls. Three reader RBX receivers derive from entry RCX under
+ordinary intervening-callee nonvolatile ABI. No initialized identity,
+scheduling, lifetime, nested effects, class stability or live reachability
+has been proven. Exact raw/plan/driver/terminal/check controls in heading-
+source-consumers evidence; separate OPUS consumer and non-author review
+required. Main ASTRA-HEADING-CLASS-EFFECTS-SLICE remains ACTIVE/OPEN.
+
+Next: consume step-dispatch RCX provenance and exact 0052BBD0 gated effect;
+investigate 0x67's two callees only if it changes the contract. Read current
+board/reviews before selecting a further task; no repeated settled samples,
+no peer consumer edits. Prior c957 and eab9 source packages delivered once.
+All own producer/check/publication handles terminal at checkpoint, controls
+OFF, peer server/files untouched; host-wide inventory was denied and is not
+claimed clean. Boardcheck fresh epoch3, supported writes only, no reset/reap/
+steal/replay. Source integrity and producer checks are not acceptance.
+
+Player version: one movement call uses zero when chosen, and three nearby
+effect types later inspect a field the movement-linked code sets. This is a
+source-level link; what happens on screen or when the game updates it stays
+open. Database work continues.
+
+---
+

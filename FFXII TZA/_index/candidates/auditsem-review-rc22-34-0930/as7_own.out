@@ -1,0 +1,20 @@
+/ps2data/image/ff12/myoshiok\ch\bin_menu\char_silhouette.as7 pages 3096 decoded 3096 exact-span 3096 mode 0 k 5 tail  1028 outlen [1024] distinct-bytes 256
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra00.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   900 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra01.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   937 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra02.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   990 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra03.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   987 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra04.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail  1028 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra05.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail  1009 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra06.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail  1028 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\ch\bin_menu\item_gra07.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail    38 outlen [1536] distinct-bytes 1
+/ps2data/image/ff12/myoshiok\in\bin_menu\char_silhouette.as7 pages 3096 decoded 3096 exact-span 3096 mode 0 k 5 tail  1028 outlen [1024] distinct-bytes 256
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra00.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   900 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra01.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   937 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra02.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   990 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra03.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail   987 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra04.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail  1028 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra05.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail  1009 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra06.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail  1028 outlen [6144] distinct-bytes 255
+tract/ps2data/image/ff12/myoshiok\in\bin_menu\item_gra07.as7 pages   64 decoded   64 exact-span   64 mode 0 k 5 tail    38 outlen [1536] distinct-bytes 1
+TOTAL pages 7216, decoded to exact outLen 7216, consuming exactly their span 7216, copies inside the file 7216
+controls (pages still decoding exactly to their span): {'k-1 exact': 6}

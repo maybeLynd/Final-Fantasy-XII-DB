@@ -1,0 +1,42 @@
+function	name	site	disp	kind	instruction	route	note
+00369D30	FUN_00369d30	00369E33	0x0	w	mov byte ptr [rbx], r8b	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E48	0x1	w	mov byte ptr [rbx + 1], sil	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F7D	0x2	w	mov byte ptr [rbx + 2], 1	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E44	0x8	w	mov qword ptr [rbx + 8], r14	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F5D	0x8	r	mov eax, dword ptr [rbx + 8]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369760	FUN_00369760	00369798	0x10	r	cmp qword ptr [rcx + 0x10], rax	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F74	0x10	w	mov qword ptr [rbx + 0x10], r10	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FA7	0x18	w	mov qword ptr [rbx + 0x18], rcx	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E7E	0x20	w	mov qword ptr [rbx + 0x20], rcx	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F52	0x20	r	mov rdi, qword ptr [rbx + 0x20]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E95	0x28	w	mov qword ptr [rbx + 0x28], rdx	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F3C	0x28	r	mov rdi, qword ptr [rbx + 0x28]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369EAC	0x30	w	mov qword ptr [rbx + 0x30], r10	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369ECC	0x30	w	mov qword ptr [rbx + 0x30], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369EBE	0x38	w	mov qword ptr [rbx + 0x38], r10	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369ED0	0x38	w	mov qword ptr [rbx + 0x38], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369EB3	0x40	w	mov qword ptr [rbx + 0x40], r10	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369ED4	0x40	w	mov qword ptr [rbx + 0x40], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369ED8	0x40	r	mov rax, qword ptr [rbx + 0x40]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E82	0x48	w	mov qword ptr [rbx + 0x48], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F68	0x50	w	mov qword ptr [rbx + 0x50], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E40	0x58	w	mov dword ptr [rbx + 0x58], r15d	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F88	0x5C	w	mov dword ptr [rbx + 0x5c], eax	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FC7	0x5C	r	mov r8d, dword ptr [rbx + 0x5c]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F60	0x60	w	mov word ptr [rbx + 0x60], r8w	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FCB	0x60	r	movzx r9d, word ptr [rbx + 0x60]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+003697C0	FUN_003697c0	003697E4	0x62	w	mov byte ptr [rcx + 0x62], 0	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369CF0	FUN_00369cf0	00369D17	0x62	r	movzx eax, byte ptr [rcx + 0x62]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F81	0x62	w	mov byte ptr [rbx + 0x62], 0	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F70	0x64	w	mov dword ptr [rbx + 0x64], r8d	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FAD	0x68	w	mov qword ptr [rbx + 0x68], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FB1	0x70	w	mov qword ptr [rbx + 0x70], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FB5	0x78	w	mov qword ptr [rbx + 0x78], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FB9	0x80	w	mov qword ptr [rbx + 0x80], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369FC0	0x88	w	mov dword ptr [rbx + 0x88], r8d	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369760	FUN_00369760	00369791	0x90	r	mov rax, qword ptr [rcx + 0x90]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F8C	0x90	w	mov qword ptr [rbx + 0x90], r10	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369760	FUN_00369760	0036979E	0x98	r	cmp rax, qword ptr [rcx + 0x98]	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369F95	0x98	w	mov qword ptr [rbx + 0x98], r10	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+00369D30	FUN_00369d30	00369E36	0xA0	w	mov qword ptr [rbx + 0xa0], r8	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	
+0036C5A0	FUN_0036c5a0	0036C5B6	0xA0	w	mov qword ptr [rcx + rax + 0xa0], rdx	route-seeded ARRAY 0x022D7FD0 stride=0xA8 count=15 index=id base+0x0	

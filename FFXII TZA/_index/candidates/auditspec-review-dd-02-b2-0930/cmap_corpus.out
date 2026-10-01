@@ -1,0 +1,12 @@
+files 9
+distinct contents 1 {'e83074728f': ['image', 'image', 'image', 'image', 'image', 'image', 'image', 'image', 'image']}
+size 0x6E0 (1760) magic b'cmap' fileId 0x000000CB
+offDir 0xC offSec2 0x190
+dir count 48 ends 0x190
+entry +1 nonzero: [(40, 1), (46, 2)]
+entry +2 not -1: [(8, 81), (10, 82), (47, 265)]
+nameId range 60138 60187
+distinct groups 47 doubled [14]
+sec2 count 369 histogram {-1: 10, -2: 358, 0: 1}
+sec3 start 0x474 count 77 end 0x6E0 EOF 0x6E0
+sec3 pad all 0: True  seq 0..76 sequential: True

@@ -1,0 +1,10 @@
+{
+  "action": "finish",
+  "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-152",
+  "note": "Batch 152 (22 bodies -> 17 hosts): 4 multi-caller + top-18 1-A by size; the frontier closed mostly on helpers batch-151 cites promoted to 2-A (003F12D0/003F1220 UI record stores, 00271720 tag fixup, 001DF990 CRT aligned-alloc sibling of 001DF7D0). Notable: 00206960 lexer token loop under audio voice parsing, 003EE2D0 four-way owner-record dispatch on [rcx]-0x100, 00282FC0 two-pass widget flag sweep over the 0209AC30 nine-slot table, 0037C2E0 authored-table deferred init pump (02EBF3DC state machine), 001D6D90 kind-2 FST queued-read constructor, 00429F70/00429500 recursive 022C6F28-record walks. Gates: anchors 4752 (+22 all counted), 0 MID/0 outside-body; address checker 0 UNSUPPORTED in new entries; hash clean (26 standing unreproduced); crossref 2864 findings / 401 dispositioned; neighbour guard refused 4 extended-tuple pairs - accounted via a new crossing section on resource-owner (Presentation+UI), a Save/load paragraph on widget-protocol and a UI paragraph on glyph-quads -> ADDS NOTHING (2853->2849, 4 accounted).",
+  "result_refs": [
+    "Database/FFXII TZA/_index/AUDIT-LOG.md",
+    "Database/Tools/analysis-kit/gfz-scripts/hub152_dumps.txt",
+    "Database/Tools/work/hub152_callers.txt"
+  ]
+}

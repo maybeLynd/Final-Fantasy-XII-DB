@@ -1,0 +1,45 @@
+{
+  "section": "SECTION-09",
+  "tests": 9,
+  "passed": 9,
+  "checks": [
+    {
+      "name": "expected_preimage",
+      "pass": true
+    },
+    {
+      "name": "new_absent",
+      "pass": true
+    },
+    {
+      "name": "already_applied",
+      "pass": true
+    },
+    {
+      "name": "edited_conflict",
+      "pass": true
+    },
+    {
+      "name": "missing_replacement",
+      "pass": true
+    },
+    {
+      "name": "nonfile_conflict",
+      "pass": true
+    },
+    {
+      "name": "parent_escape",
+      "pass": true
+    },
+    {
+      "name": "symlink_escape",
+      "pass": true
+    },
+    {
+      "name": "duplicate_manifest_rejected",
+      "pass": true
+    }
+  ],
+  "target_unchanged": true,
+  "temporary_fixtures_removed": true
+}

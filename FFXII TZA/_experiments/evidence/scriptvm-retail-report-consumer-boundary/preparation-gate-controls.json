@@ -1,0 +1,66 @@
+[
+  {
+    "case": "valid",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-retail-gate-3x71u42p"
+    ],
+    "returncode": 0,
+    "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "gate_sha256": "c28a8163b94967e961e601de5b5bdc6bc879b3152492095cc22f93b284aad9b8"
+  },
+  {
+    "case": "missing-runner",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-retail-gate-671sz5xr"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py\", line 18, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py\", line 7, in controls_preflight\n    root=Path(root);rs=json.loads((root/'checks-terminal.json').read_bytes())\n                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\AppData\\\\Local\\\\Temp\\\\astra-retail-gate-671sz5xr\\\\checks-terminal.json'\n",
+    "terminal": true,
+    "gate_sha256": "c28a8163b94967e961e601de5b5bdc6bc879b3152492095cc22f93b284aad9b8"
+  },
+  {
+    "case": "nonzero-positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-retail-gate-csfbsqw3"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py\", line 18, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py\", line 10, in controls_preflight\n    assert rs[0]['returncode']==0 and not rs[0]['stderr']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "c28a8163b94967e961e601de5b5bdc6bc879b3152492095cc22f93b284aad9b8"
+  },
+  {
+    "case": "empty-results",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-retail-gate-a7jzm4zv"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py\", line 18, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\prepare-publication.py\", line 8, in controls_preflight\n    assert len(rs)==4 and [r['case'] for r in rs]==['positive','tag3','both-underflows','terminates']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "c28a8163b94967e961e601de5b5bdc6bc879b3152492095cc22f93b284aad9b8"
+  }
+]

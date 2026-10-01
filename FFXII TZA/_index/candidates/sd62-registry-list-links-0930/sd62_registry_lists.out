@@ -1,0 +1,11 @@
+PASS  L1 00639160 splices descriptor+0x50 into owner+0x10 (after the base class's node when the base has the same owner)
+      00639160 call sites: 12  006344A0@006344E3 00634540@006347C6 00634830@00634945 006349B0@0063523E 006352A0@00635415 00635470@0063577F 006357E0@0063592A 00635980@00635B22 00635B80@00635C67 00635DC0@00636155 00636280@006363DB 00639450@00639460
+PASS  L2 008AF490 / 00637A70 / 00638C90 walk [01F2E340] (root+0x10) as node-0x50 = descriptor (+0x70 owner, +0x78 base, vt+0x38)
+PASS  L3 a non-root owner whose descriptor list was empty is linked by its +0x00 node into root+0x28; 00638C90 unlinks it again
+PASS  L4 30 rip stores to 01F2E330/01F2E338, all of the root's own address (bad: [])
+PASS  L5 00638F00 initialises exactly 01F2E780..01F2E7A8, all = 01F2E780 (image bytes agree)
+PASS  L6 01F2E7B0 = {link, link, PWorld descriptor 02CF8A80, "getInstanceCount", flags}; 00635B80 links it into the PWorld descriptor's +0x90 list and registers 008AF430, which unlinks it and frees +0x18 - not part of 01F2E780
+PASS  L7 006388C0 inserts descriptor+0x08 keyed by (+0x20 hash, +0x28 name = +0x30 copy); 00638F00 removes +0x08; 006311D0 compares hash then name
+PASS  L8 name hash h0 = 0x7B5, h = h*33 + (c & 0x1F), shared by 006388C0 (insert) and 00636280 (replace)
+PASS  C1 reflection-range (00630000-0063FFFF) +0x50 link writers: 00639160
+FAILS 0

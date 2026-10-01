@@ -1,0 +1,94 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "73f55175d23ea90869d2cc485ca906cc0160875a"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "ab0cb26302068d30c3c6867abbc6a31bd05ac6e5"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "4d8a72239d6d3ff1bc9c020681d49b137a3e65d9"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "588c0dbfbcefac4775d1a5a13cb1da275ed2eab2"
+  },
+  {
+    "path": "fault-fullspan-guard.stderr",
+    "git_blob": "3ac43e20351e473c0e64f72220a81300e4828325"
+  },
+  {
+    "path": "fault-fullspan-guard.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-short-prefix-null.stderr",
+    "git_blob": "d2004ebaa4c1bfca6d51e4cace78068153868580"
+  },
+  {
+    "path": "fault-short-prefix-null.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-text-pointer.stderr",
+    "git_blob": "ef839f8fe06e146bd521ebe04efc39b634991e4f"
+  },
+  {
+    "path": "fault-text-pointer.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "bfa859b9163f2b1f28e2565136c83bf2bdf111e5"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "89833664f69ff6a25d9990ac64f3ee0af840824a"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "f8583c72515be31defa41cc10d7e4122049e1054"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "66ba61fffc5ce788ded740d4140695230362c90f"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "d813fa58b7345b2a63c339b9e948f03d846c29ba"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "11ec76ecaf96857049e1a5b0ad7f26a96097035c"
+  },
+  {
+    "path": "retained/parent82-manifest.json",
+    "git_blob": "e6a403c3581722f06738291d15f3b2dceecfab22"
+  },
+  {
+    "path": "retained/parent82-raw.json",
+    "git_blob": "0cff28b33ec6e68a7a8151966c2320dec1736df9"
+  },
+  {
+    "path": "retained/parent82-reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/parent82-selector.bin",
+    "git_blob": "463dddfd10b963fdec01852164a45095730589b3"
+  },
+  {
+    "path": "retained/parent82-shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  }
+]

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-ov33-e2-six-cache-keys.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-ov33-e2-six-cache-keys.py", line 23, in main
+    if receipt.get('status')!='RETAINED_NONEMPTY_INDEX_AND_SELECTED_PEER_INPUTS' or receipt.get('archive',{}).get('file_count')!=89414:raise ValueError('required index input missing/zero/incomplete')
+                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required index input missing/zero/incomplete

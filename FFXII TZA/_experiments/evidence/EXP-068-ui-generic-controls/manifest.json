@@ -1,0 +1,21 @@
+{
+  "experiment": "EXP-068-ui-generic-controls",
+  "files": {
+    "00280A00.bin": {
+      "bytes": 193,
+      "sha256": "02c2b4d20035ce1f8a9459ee04cbe2e66e6ae564132fe3e8a3b60680bf02d228"
+    },
+    "check.py": {
+      "bytes": 7013,
+      "sha256": "027d2e7e4c8e0ab1508cb4da1345d4a1a76787e96fdc334fda65f765f7f3b4a5"
+    },
+    "disassembly.txt": {
+      "bytes": 2325,
+      "sha256": "a1dcf70961858c9010b128e5eb9e8e3173b408e89b316819f2bf3da484fed2db"
+    },
+    "result.json": {
+      "bytes": 48404,
+      "sha256": "c57d3a6a8bcd49a74a75e1f9809a880f4006ac5b5fc24b2659ff69d95100c9b7"
+    }
+  }
+}

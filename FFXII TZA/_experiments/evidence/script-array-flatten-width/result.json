@@ -1,0 +1,185 @@
+{
+  "status": "FLATTEN_PRODUCTS_SUM_LOW32_THEN_SIGNED_HANDLER_INDEX",
+  "method": "A exact original integer-width/control/state source and conditionalflatten calculations; no original/guest/native/live execution",
+  "raw_sha256": "e3795aee2a47be07e2c3ca4d239bb40d5cde66f2c90d0cbd3528534d899388f3",
+  "conditional_cases": [
+    {
+      "dimensions_in_header_order": [
+        2,
+        3
+      ],
+      "indices_in_corresponding_axis_order": [
+        1,
+        0
+      ],
+      "pop_order": [
+        0,
+        1
+      ],
+      "steps": [
+        {
+          "dimension": 3,
+          "injected_popped_index": 0,
+          "contribution_bits": "00000000",
+          "sum_bits": "00000000",
+          "next_product_bits": "00000003"
+        },
+        {
+          "dimension": 2,
+          "injected_popped_index": 1,
+          "contribution_bits": "00000003",
+          "sum_bits": "00000003",
+          "next_product_bits": "00000006"
+        }
+      ],
+      "predicted_record1C_bits": "00000003",
+      "predicted_signed_handler_index": 3,
+      "unbounded_rowmajor": 3,
+      "predicted_product_bits": "00000006",
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "dimensions_in_header_order": [
+        2,
+        3
+      ],
+      "indices_in_corresponding_axis_order": [
+        1,
+        2
+      ],
+      "pop_order": [
+        2,
+        1
+      ],
+      "steps": [
+        {
+          "dimension": 3,
+          "injected_popped_index": 2,
+          "contribution_bits": "00000002",
+          "sum_bits": "00000002",
+          "next_product_bits": "00000003"
+        },
+        {
+          "dimension": 2,
+          "injected_popped_index": 1,
+          "contribution_bits": "00000003",
+          "sum_bits": "00000005",
+          "next_product_bits": "00000006"
+        }
+      ],
+      "predicted_record1C_bits": "00000005",
+      "predicted_signed_handler_index": 5,
+      "unbounded_rowmajor": 5,
+      "predicted_product_bits": "00000006",
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "dimensions_in_header_order": [
+        65536,
+        65536
+      ],
+      "indices_in_corresponding_axis_order": [
+        0,
+        0
+      ],
+      "pop_order": [
+        0,
+        0
+      ],
+      "steps": [
+        {
+          "dimension": 65536,
+          "injected_popped_index": 0,
+          "contribution_bits": "00000000",
+          "sum_bits": "00000000",
+          "next_product_bits": "00010000"
+        },
+        {
+          "dimension": 65536,
+          "injected_popped_index": 0,
+          "contribution_bits": "00000000",
+          "sum_bits": "00000000",
+          "next_product_bits": "00000000"
+        }
+      ],
+      "predicted_record1C_bits": "00000000",
+      "predicted_signed_handler_index": 0,
+      "unbounded_rowmajor": 0,
+      "predicted_product_bits": "00000000",
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "dimensions_in_header_order": [
+        65536,
+        65536
+      ],
+      "indices_in_corresponding_axis_order": [
+        32768,
+        0
+      ],
+      "pop_order": [
+        0,
+        32768
+      ],
+      "steps": [
+        {
+          "dimension": 65536,
+          "injected_popped_index": 0,
+          "contribution_bits": "00000000",
+          "sum_bits": "00000000",
+          "next_product_bits": "00010000"
+        },
+        {
+          "dimension": 65536,
+          "injected_popped_index": 32768,
+          "contribution_bits": "80000000",
+          "sum_bits": "80000000",
+          "next_product_bits": "00000000"
+        }
+      ],
+      "predicted_record1C_bits": "80000000",
+      "predicted_signed_handler_index": -2147483648,
+      "unbounded_rowmajor": 2147483648,
+      "predicted_product_bits": "00000000",
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "dimensions_in_header_order": [
+        65536,
+        65536
+      ],
+      "indices_in_corresponding_axis_order": [
+        65535,
+        65535
+      ],
+      "pop_order": [
+        65535,
+        65535
+      ],
+      "steps": [
+        {
+          "dimension": 65536,
+          "injected_popped_index": 65535,
+          "contribution_bits": "0000ffff",
+          "sum_bits": "0000ffff",
+          "next_product_bits": "00010000"
+        },
+        {
+          "dimension": 65536,
+          "injected_popped_index": 65535,
+          "contribution_bits": "ffff0000",
+          "sum_bits": "ffffffff",
+          "next_product_bits": "00000000"
+        }
+      ],
+      "predicted_record1C_bits": "ffffffff",
+      "predicted_signed_handler_index": -1,
+      "unbounded_rowmajor": 4294967295,
+      "predicted_product_bits": "00000000",
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    }
+  ],
+  "interpretation": "Originalseeds product1/sum0, consumes dimensions lastfirst; IMUL/ADD low32 anddwordindex store followedbyMOVSXD, no multiplyoverflow branchinselectedloop. Rowmajorformula requires mod2^32 products/sum then signed32 handler scaling. Positiveper-axisclamp alone doesnotprove nonnegative flatindex or storage safety; conditional65536\u00b2 produces80000000/signMIN orFFFFFFFF/sign-1. Not actualoccurrence.",
+  "consumer_change": "Preserve wordwidth/reversepoporder/modulo32/indexsignextension informula/contract/spec, withsmallordercontrol andconditionalpositive-large examples. No overflowrejection/saturation invented, no shippedlargearray/fault claim.",
+  "limits": "Conditional shapes/stackindices only; no actualshippedlargearray/validstorage/upstreamacceptance/nativefault/bankinit/lifetime/reachability/live evidence. No guestexecution needed for integerwidthclaim. PC OFF/S19/fullL1+L2 NOT_MET Consumer incorporation/independentacceptance pending; originalpublishedinputs/resultsimmutable."
+}

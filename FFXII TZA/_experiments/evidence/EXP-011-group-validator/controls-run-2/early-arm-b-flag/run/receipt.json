@@ -1,0 +1,43 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+    "--exe",
+    "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "--driver",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\early-arm-b-flag-kbc3jtb7\\group-driver.exe",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\early-arm-b-flag\\run"
+  ],
+  "status": "MISMATCH",
+  "scope": "isolated original code with four ret stubs; no native callback effects or timing",
+  "source_note": "Adjacent source hashes are not driver build attestation; pair driver hash with the build receipt.",
+  "identities": {
+    "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\early-arm-b-flag-kbc3jtb7\\group-driver.exe": "3ed90da50d000d9dc46da2d90583edcb28d2acb32c0a47164c84b2870196cc67",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py": "2af24a72cfaff075dc8526f5be071a19ac3cd33074fb6a2be74224cdf2a917d4",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Game\\Spawn\\group_completion.c": "b7ca2492d53e68e8158a4b8958c7f5379daccdd7e509aea847b33b899304d5a6",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Game\\Spawn\\group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9"
+  },
+  "unicorn_version": "2.1.4",
+  "original_code": {
+    "0x306f00": "6cfd09b67fb4e461e33784f1adda65d4b71d7dd9c514976c3bc97fe92412b088",
+    "0x263d30": "f3f232f5663beb7f7dae9ba090a8663485d407dbf4061342789d0cd37e4b91ea",
+    "0x2360d0": "4b77adb370aee01653014df554d81232865baeefeb47031bdf079dd6c3aa0e6d"
+  },
+  "driver_command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\early-arm-b-flag-kbc3jtb7\\group-driver.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\early-arm-b-flag\\run\\regions.bin",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\early-arm-b-flag\\run\\cases.txt",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-2\\early-arm-b-flag\\run\\driver-post.bin"
+  ],
+  "driver_exit": 0,
+  "cases": 100,
+  "completions": 19,
+  "mismatched_cases": [
+    2,
+    80
+  ],
+  "final_bytes_equal": true,
+  "final_digest_equal": true
+}

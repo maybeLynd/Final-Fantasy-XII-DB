@@ -1,0 +1,49 @@
+{
+  "method": "A: corrected actual legacy composer; identical retained tab inputs",
+  "driver_sha256": "b157101ccb7f38d6c2acfd636c30fd3c93437da13f3955e6ef47adb184f4b12a",
+  "composer_sha256": "e5f78697dcdacac0945a33299dc60c2a8d0c4b8da051ba5b44c4afa7f7c26506",
+  "original_failed_raw_sha256": "dcd4840a44878d6f646a93276667c56fa25ac406ddd00cb41756258c9d827ed2",
+  "source_sha256": "41b1b0135dd822c8c9159b16717da271d4fbf0e08cf8a0bccf64d3ce40cc601d",
+  "source_commit": "1f11830e92aa71d7aea000fcd8b68cdfa9c46d6a",
+  "composer_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\legacy-corrected\\composer.py",
+  "cases": [
+    {
+      "name": "custom-tab-fail",
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\legacy-corrected\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\legacy-prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\legacy--custom-tab-fail\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\legacy--custom-tab-fail\\declaration.json"
+      ],
+      "returncode": 1,
+      "stdout": "COMPOSER_FAIL upstream.py exited 0 but printed FAIL lines: FAIL\tA\trequired failure\n",
+      "stderr": "",
+      "timed_out": false,
+      "child_reaped": true,
+      "upstream_sha256": "c3a7a80663d4fd398c07ca2d0f643b5610a5f5d4762612d695478fc5be6549c8",
+      "declaration_sha256": "4df6b6dc3d5fe097c8d74d02fb4ab563bd20578d4ffbd62f9ada2e891372b888"
+    },
+    {
+      "name": "custom-tab-pass",
+      "invocation": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\legacy-corrected\\composer.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\legacy-prereq.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\legacy--custom-tab-pass\\upstream.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\legacy--custom-tab-pass\\declaration.json"
+      ],
+      "returncode": 0,
+      "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+      "stderr": "",
+      "timed_out": false,
+      "child_reaped": true,
+      "upstream_sha256": "042858c42f0505338f8beed1982e9686b20d08030f0176ff96ac26973e4ea06d",
+      "declaration_sha256": "4df6b6dc3d5fe097c8d74d02fb4ab563bd20578d4ffbd62f9ada2e891372b888"
+    }
+  ],
+  "finished": true,
+  "correction": "Original two legacy attempts failed before reaching helper: generic-only exits keyword caused TypeError. No legacy semantics were accepted; original attempts retained. Correct composer checks exact legacy signature before using supported tags/names/line. Generic sixteen controls are not repeated."
+}

@@ -1,0 +1,14 @@
+{
+  "case": "incomplete_wrapper",
+  "exit": 1,
+  "result_exists": false,
+  "expected_accepted": false,
+  "control_pass": true,
+  "invocation": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "incomplete_wrapper/prove-title-member-notification.py",
+    "incomplete_wrapper/result.json"
+  ],
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "989bcd60d8901136e99e043fa1cc715a5c5fb06347089b862cde154358b3c224"
+}

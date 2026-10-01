@@ -1,0 +1,3 @@
+entries 4387 missing in extract 0 size diff 0 lead diff 0
+[] [] []
+full-hash compared 80 differ 0 []

@@ -1,0 +1,49 @@
+== LEA 002FD18B: lea rax, [rip + 0x1beeb2e]
+    W    002FD1E9 mov byte ptr [r10], r8b
+== LEA 002FD457: lea rax, [rip + 0x1bee862]
+== LEA 002FD8DF: lea rax, [rip + 0x1bee3da]
+== LEA 002FD97F: lea rax, [rip + 0x1bee33a]
+== LEA 0030090C: lea rax, [rip + 0x1beb3ad]
+      3C 00300920 mov ecx, dword ptr [rsi + 0x3c]
+== LEA 003047F0: lea rax, [rip + 0x1be74d9]
+    W    0030482A mov word ptr [r8 + rcx - 2], r9w
+== LEA 0030944F: lea rax, [rip + 0x1be28a2]
+== LEA 003097FA: lea r15, [rip + 0x1be24bf]
+== LEA 00309B86: lea r9, [rip + 0x1be2133]
+      3C 00309B9E mov eax, dword ptr [r8 + r9 + 0x3c]
+== LEA 00309EF4: lea rax, [rip + 0x1be1dc5]
+      3C 00309F08 mov eax, dword ptr [rdx + 0x3c]
+== LEA 00309F67: lea rax, [rip + 0x1be1d52]
+      3C 00309F7B mov eax, dword ptr [rdx + 0x3c]
+== LEA 0030A00D: lea rax, [rip + 0x1be1cac]
+      3C 0030A021 mov eax, dword ptr [rdx + 0x3c]
+== LEA 0030ADF4: lea rax, [rip + 0x1be0ec5]
+      3C 0030AE08 mov eax, dword ptr [rdx + 0x3c]
+== LEA 0030AE64: lea rax, [rip + 0x1be0e55]
+      3C 0030AE78 mov eax, dword ptr [rdx + 0x3c]
+== LEA 0030B128: lea rax, [rip + 0x1be0b91]
+      3C 0030B13C mov eax, dword ptr [rdx + 0x3c]
+== LEA 0030B2A0: lea rcx, [rip + 0x1be0a19]
+    W    0030B2A7 mov qword ptr [rsp + 0x58], rdi
+    W    0030B2AC mov qword ptr [rsp + 0x60], r12
+    W    0030B2B7 mov qword ptr [rsp + 0x28], r13
+    W    0030B2C2 mov qword ptr [rsp + 0x20], r15
+== LEA 0030B31B: lea rcx, [rip + 0x1be099e]
+== LEA 0030B32C: lea rcx, [rip + 0x1be098d]
+== LEA 0030B40F: lea rax, [rip + 0x1be08aa]
+      3C 0030B423 mov eax, dword ptr [rdx + 0x3c]
+== LEA 0030B46A: lea rcx, [rip + 0x1be084f]
+== LEA 0030B6A8: lea r8, [rip + 0x1be0611]
+    W    0030B6CB mov qword ptr [r8 + 8], rax
+    W    0030B6DC mov qword ptr [r8 + 0x20], rax
+    W    0030B6ED mov qword ptr [r8 + 0x30], rax
+    W    0030B6F1 mov dword ptr [r8 + 0x40], r9d
+      3C 0030B6F5 add r9d, dword ptr [r8 + 0x3c]
+    W    0030B710 mov qword ptr [rax], r11
+    W    0030B713 mov qword ptr [rax + 8], r11
+    W    0030B717 mov qword ptr [rax + 0x10], r11
+    W    0030B71F mov qword ptr [rax - 0x28], r11
+    W    0030B723 mov qword ptr [rax - 0x20], r11
+    W    0030B727 mov qword ptr [rax - 0x18], r11
+    W    0030B72B mov qword ptr [rax - 0x10], r11
+    W    0030B72F mov qword ptr [rax - 8], r11

@@ -1,0 +1,73 @@
+{
+ "cases": {
+  "I2_every_slot_on_exactly_one_list_through_enqueues_and_recycles": true,
+  "I3_65th_request_stalls_through_the_pump_and_returns_a_slot": true
+ },
+ "i2_steps": {
+  "constructed": {
+   "disjoint_cover": true,
+   "free": 64,
+   "pending": []
+  },
+  "one_tail_enqueue": {
+   "disjoint_cover": true,
+   "free": 60,
+   "pending": [
+    2,
+    1,
+    0,
+    3
+   ]
+  },
+  "recycle_head": {
+   "disjoint_cover": true,
+   "free": 62,
+   "pending": [
+    0,
+    3
+   ]
+  },
+  "recycle_last": {
+   "disjoint_cover": true,
+   "free": 63,
+   "pending": [
+    0
+   ]
+  },
+  "recycle_middle": {
+   "disjoint_cover": true,
+   "free": 61,
+   "pending": [
+    2,
+    0,
+    3
+   ]
+  },
+  "three_head_enqueues": {
+   "disjoint_cover": true,
+   "free": 61,
+   "pending": [
+    2,
+    1,
+    0
+   ]
+  }
+ },
+ "i3": {
+  "after": {
+   "disjoint_cover": true,
+   "free": 63,
+   "pending": 1
+  },
+  "full_before": {
+   "free": 0,
+   "pending": 64
+  },
+  "id": "1040",
+  "pacer_polls": 1,
+  "pump_entered": 1,
+  "returned": true,
+  "stopped_at": []
+ },
+ "ok": true
+}

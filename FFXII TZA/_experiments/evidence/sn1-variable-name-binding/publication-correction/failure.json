@@ -1,0 +1,16 @@
+{
+  "status": "INVALID_POSTCOMMIT_MANIFEST_VERIFICATION",
+  "original_commit": "ec5e54a990122f7a071cc1d2c811dfd2271e96b3",
+  "original_manifest_sha256": "9d188e909afb357a44436b8bd37e0dee00a73e620d253cd15379eba693e33ce0",
+  "declared": 47,
+  "published_at_original_paths": 46,
+  "missing": [
+    {
+      "path": "retained/__pycache__/reg_tracking.cpython-314.pyc",
+      "bytes": 8931,
+      "sha256": "fb9f6e014187a3be7cf4028983c2a68ce145793dcb99f9be8af3421c10bfb035"
+    }
+  ],
+  "known_cause": "Frozen tree copied generated __pycache__, manifest included it, delivery pins excluded __pycache__. Strict postcommit verifier correctly failed; publication released. No logged verification.json/commit.txt success.",
+  "limits": "Original manifest remains historical invalid at exact commit; no silent rewrite/waiver. All original scientific source/raw/result/input identities verified present, no behavior retraction from cache packaging alone. Independent acceptance remains separate."
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "8347572a343d6dd015fdf18fd264357126346b11"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "e9500f7adf26a65c1be20c01f80b3917e49ed329"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "ed2babfb81d485d8b1348bf85a1e30c7b33aea9b"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "2331e4761b009faa3d364e4de82e98f245efe985"
+  },
+  {
+    "path": "fault-always-float.stderr",
+    "git_blob": "20320edf424f957a4dac43303a1f5695f9ed2358"
+  },
+  {
+    "path": "fault-always-float.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-always-nearest.stderr",
+    "git_blob": "c11612d103a7b55d422dd6085f32b5bd08bf41fe"
+  },
+  {
+    "path": "fault-always-nearest.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-reversed-order.stderr",
+    "git_blob": "8636a78ea428c29f865b6f26966f51bbf05709f1"
+  },
+  {
+    "path": "fault-reversed-order.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "5647593270a4be4895dbcb8d469d78e0ef030e5b"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "c16be09d3668fb3ed56ccf3417429db421066f01"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "2b8c2d778016073aca78701a948cc2610523ceb0"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "50aaf1a8b176348b9b23bbecf4af71978b089796"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "7848fa98ae7a120b43fabe4cf01d2363f3eb3847"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "42e81721eddc5ff8e9e64b87972eecc9e48bbea1"
+  },
+  {
+    "path": "retained/compare413.bin",
+    "git_blob": "4e589a891e96bef6cc053c1a3c44432fa017b198"
+  },
+  {
+    "path": "retained/prior72-feasibility-raw.json",
+    "git_blob": "03194896b2c639d15047b69473f6093ed34241ef"
+  },
+  {
+    "path": "retained/prior72-manifest.json",
+    "git_blob": "9bf84a27df9348852339fb41157a7bdef4542877"
+  },
+  {
+    "path": "retained/prior72-result.json",
+    "git_blob": "ea7fbb1f7c57495075c0729c10f3e412ce9cf0aa"
+  },
+  {
+    "path": "retained/prior72-runner-adapted.py",
+    "git_blob": "a64418a38d6c05fd219e873e109cbb0882107532"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  }
+]

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_index\candidates\auditspec-review-astra-special-override-labels-0930\rerun_prereq_controls\wrong_table_extent\prove-special-override-label-binding.py", line 69, in <module>
+    raise ValueError('guard-derived switch data prerequisite')
+ValueError: guard-derived switch data prerequisite

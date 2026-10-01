@@ -1,0 +1,66 @@
+E  002D9380 body, rsi uses:
+   002D93CF mov rsi, r8
+   002D944A mov rax, qword ptr [rsi + 0x30]
+   002D946D mov ecx, dword ptr [rsi + 0x38]
+   002D948D mov rax, qword ptr [rsi + 0x30]
+   002D94D0 or rax, qword ptr [rsi + 0x30]
+   002D950E add rax, qword ptr [rsi + 0x30]
+   002D952C add rcx, qword ptr [rsi + 0x30]
+   002D9540 mov rax, qword ptr [rsi + 0x30]
+   002D99D0 mov eax, dword ptr [rsi + 0x38]
+   002D9A6D mov rcx, qword ptr [rsi + 0x20]
+   002D9A90 mov rax, qword ptr [rsi + 0x20]
+E  drawer site: 002437B9 mov r8, qword ptr [rdi + 0x18] | 002437C2 call 0x2d9380
+S  pins:
+   0029F4F1 add r8, 0x30
+   0029F500 movzx eax, word ptr [r8 + 0x10]
+   0029F50F lea r8, [rcx + rdx*8]
+   0029F531 movzx ecx, byte ptr [r8 + rax*8 + 7]
+   0029F176 add r9, 0x30
+   0029F18D movzx eax, word ptr [r9 + 0x10]
+   0029F1B1 lea r9, [rcx + rdx*8]
+   0029F1E0 movzx ecx, byte ptr [r9 + rax*8 + 7]
+   0029F1EE mov r14d, 0xfff
+   0029F206 movzx eax, word ptr [r9 + rcx*8]
+   0029F20F movzx eax, word ptr [r9 + rcx*8 + 2]
+   0029F219 movzx eax, word ptr [r9 + rcx*8 + 4]
+   0029F21F and ax, r14w
+   0029F227 mov eax, dword ptr [r9 + rcx*8 + 4]
+   0029F22C shr eax, 0xc
+S  0029F200..0029F240 in order (where the fields land):
+   0029F1E0 movzx ecx, byte ptr [r9 + rax*8 + 7]
+   0029F1E6 jmp 0x29f1eb
+   0029F1E8 movzx ecx, ax
+   0029F1EB mov byte ptr [rbx + 0x44], cl
+   0029F1EE mov r14d, 0xfff
+   0029F1F4 movzx eax, word ptr [rdi + 0x20]
+   0029F1F8 mov word ptr [rbx + 0x48], ax
+   0029F1FC mov eax, dword ptr [rdi + 0x24]
+   0029F1FF mov dword ptr [rbx + 0x64], eax
+   0029F202 movzx ecx, word ptr [rdi + 0x18]
+   0029F206 movzx eax, word ptr [r9 + rcx*8]
+   0029F20B mov word ptr [rbx + 0x4c], ax
+   0029F20F movzx eax, word ptr [r9 + rcx*8 + 2]
+   0029F215 mov word ptr [rbx + 0x4e], ax
+   0029F219 movzx eax, word ptr [r9 + rcx*8 + 4]
+   0029F21F and ax, r14w
+   0029F223 mov word ptr [rbx + 0x50], ax
+   0029F227 mov eax, dword ptr [r9 + rcx*8 + 4]
+   0029F22C shr eax, 0xc
+   0029F22F and ax, r14w
+   0029F233 mov word ptr [rbx + 0x52], ax
+   0029F237 movzx ecx, word ptr [rdi + 0x1a]
+   0029F23B movzx eax, word ptr [r9 + rcx*8]
+R  callers of 002A0060: 5 sites; owners ['001D7150', '0029F130', '0029F4C0']; relocated pointers []
+     001D7191 E8 owner 001D7150
+     001D71CB E8 owner 001D7150
+     001D7208 E8 owner 001D7150
+     0029F161 E8 owner 0029F130
+     0029F4DA E8 owner 0029F4C0
+R  callers of 0024A610: 2 sites; owners ['0029F130', '002A0060']; relocated pointers []
+     0029F3CE E8 owner 0029F130
+     002A00D1 E8 owner 002A0060
+R  drawer owners among them: []
+C  002432B0: 113 raw sites (['E8']), 108 distinct owners; relocated pointers 0
+C  owners None (no .pdata): []
+L  x=122 y=100 w=28 h=28 byte7=0x0B

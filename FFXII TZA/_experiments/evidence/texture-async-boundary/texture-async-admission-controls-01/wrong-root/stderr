@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 26, in main
+    if raw.get('pdata_entries')!=entries or raw.get('leaf',{}).get('padding')!='cc'*4:raise ValueError('root/leaf prerequisite changed')
+                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: root/leaf prerequisite changed

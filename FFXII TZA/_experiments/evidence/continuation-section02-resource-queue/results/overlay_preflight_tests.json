@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "matching_baseline_plus_update01",
+      "pass": true,
+      "exit": 0,
+      "read_only_verified": true
+    },
+    {
+      "case": "newer_local_edit_rejected_without_write",
+      "pass": true,
+      "exit": 1,
+      "read_only_verified": true
+    },
+    {
+      "case": "missing_replaced_file_rejected",
+      "pass": true,
+      "exit": 1,
+      "read_only_verified": true
+    },
+    {
+      "case": "directory_at_file_path_rejected",
+      "pass": true,
+      "exit": 1,
+      "read_only_verified": true
+    },
+    {
+      "case": "traversal_manifest_rejected",
+      "pass": true,
+      "exit": 2,
+      "read_only_verified": true
+    },
+    {
+      "case": "already_applied_files_accepted",
+      "pass": true,
+      "exit": 0
+    }
+  ],
+  "note": "Read-only overlay checker; no installation or game work performed."
+}

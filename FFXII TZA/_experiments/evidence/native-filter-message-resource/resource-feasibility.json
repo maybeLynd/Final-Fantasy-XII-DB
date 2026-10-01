@@ -1,0 +1,302 @@
+{
+  "status": "PREPARATION_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "resource_rva": "0x2ef0000",
+  "directory_bytes": 309296,
+  "id": "0x7837",
+  "predicted_block": "0x784",
+  "predicted_entry": 7,
+  "type_found": true,
+  "limits": "Original embedded resource feasibility only; no initialized module/normal runtime lookup/display/cause evidence",
+  "block_found": true,
+  "languages": [
+    {
+      "language": "0x407",
+      "data_rva": "0x2f398c0",
+      "data_size": 810,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 436,
+        "u16_length": 27,
+        "text": "Fataler Fehler aufgetreten."
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        76,
+        87,
+        7,
+        41,
+        27,
+        6,
+        32,
+        113,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 810,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x409",
+      "data_rva": "0x2f39bec",
+      "data_size": 682,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 346,
+        "u16_length": 24,
+        "text": "Fatal error encountered."
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        71,
+        52,
+        11,
+        32,
+        24,
+        5,
+        32,
+        98,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 682,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x40a",
+      "data_rva": "0x2f39e98",
+      "data_size": 738,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 376,
+        "u16_length": 31,
+        "text": "Se ha producido un error grave."
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        81,
+        59,
+        5,
+        36,
+        31,
+        5,
+        32,
+        104,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 738,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x40c",
+      "data_rva": "0x2f3a17c",
+      "data_size": 858,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 446,
+        "u16_length": 33,
+        "text": "Une erreur fatale s'est produite."
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        84,
+        75,
+        17,
+        40,
+        33,
+        6,
+        32,
+        126,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 858,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x410",
+      "data_rva": "0x2f3a4d8",
+      "data_size": 726,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 360,
+        "u16_length": 32,
+        "text": "Si \u00e8 verificato un errore grave."
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        75,
+        49,
+        19,
+        30,
+        32,
+        6,
+        32,
+        104,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 726,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x411",
+      "data_rva": "0x2f3a7b0",
+      "data_size": 540,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 274,
+        "u16_length": 14,
+        "text": "\u81f4\u547d\u7684\u306a\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        52,
+        27,
+        5,
+        46,
+        14,
+        3,
+        32,
+        75,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 540,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x412",
+      "data_rva": "0x2f3a9cc",
+      "data_size": 464,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 246,
+        "u16_length": 16,
+        "text": "\uce58\uba85\uc801\uc778 \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4."
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        55,
+        37,
+        8,
+        16,
+        16,
+        2,
+        32,
+        50,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 464,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x804",
+      "data_rva": "0x2f3ab9c",
+      "data_size": 316,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 154,
+        "u16_length": 7,
+        "text": "\u9047\u5230\u81f4\u547d\u9519\u8bef\u3002"
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        43,
+        14,
+        4,
+        9,
+        7,
+        2,
+        32,
+        31,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 316,
+      "trailing_bytes": 0
+    },
+    {
+      "language": "0x7c04",
+      "data_rva": "0x2f3acd8",
+      "data_size": 328,
+      "codepage": 1252,
+      "selected": {
+        "index": 7,
+        "offset": 162,
+        "u16_length": 7,
+        "text": "\u9047\u5230\u81f4\u547d\u932f\u8aa4\u3002"
+      },
+      "neighbor_lengths": [
+        0,
+        0,
+        0,
+        43,
+        16,
+        6,
+        9,
+        7,
+        2,
+        32,
+        33,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 328,
+      "trailing_bytes": 0
+    }
+  ]
+}

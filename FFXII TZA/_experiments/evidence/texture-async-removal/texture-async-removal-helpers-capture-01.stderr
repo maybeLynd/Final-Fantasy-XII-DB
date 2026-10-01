@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-texture-async-removal-helpers.py", line 28, in <module>
+    if containing:raise ValueError('helper is not the expected no-unwind leaf; use actual root/chain evidence')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: helper is not the expected no-unwind leaf; use actual root/chain evidence

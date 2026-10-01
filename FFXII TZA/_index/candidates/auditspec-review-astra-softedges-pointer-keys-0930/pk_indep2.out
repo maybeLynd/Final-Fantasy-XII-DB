@@ -1,0 +1,139 @@
+== 5E48C6 continuation
+  005E48C6 mov    dword ptr [rsp + 0x30], 3
+  005E48CE mov    dword ptr [rsp + 0x28], edi
+  005E48D2 mov    dword ptr [rsp + 0x20], 0x40
+  005E48DA lea    r9, [rip + 0x765687]
+  005E48E1 mov    r8, rax
+  005E48E4 lea    rdx, [rip + 0x26d1e95]
+  005E48EB lea    rcx, [rip + 0x26fe4ce]
+  005E48F2 call   0x632a10
+  005E48F7 mov    qword ptr [rip + 0x26fe4c2], rsi
+  005E48FE lea    rcx, [rip + 0x2c938b]
+  005E4905 call   0x808b90
+  005E490A nop    
+  005E490B lea    rcx, [rip + 0x26fe50e]
+  005E4912 call   0x80929c
+== 5E4951 continuation
+  005E4951 mov    dword ptr [rsp + 0x30], 3
+  005E4959 mov    dword ptr [rsp + 0x28], edi
+  005E495D mov    dword ptr [rsp + 0x20], 0x50
+  005E4965 lea    r9, [rip + 0x765624]
+  005E496C mov    r8, rax
+  005E496F lea    rdx, [rip + 0x26d1e0a]
+  005E4976 lea    rcx, [rip + 0x26fe4b3]
+  005E497D call   0x632a10
+  005E4982 mov    qword ptr [rip + 0x26fe4a7], rsi
+  005E4989 lea    rcx, [rip + 0x2c9370]
+  005E4990 call   0x808b90
+  005E4995 nop    
+  005E4996 lea    rcx, [rip + 0x26fe4f3]
+  005E499D call   0x80929c
+  005E49A2 mov    eax, dword ptr [rbx]
+== 5EED9A continuation
+  005EED9A mov    dword ptr [rsp + 0x30], 2
+  005EEDA2 mov    dword ptr [rsp + 0x28], r15d
+  005EEDA7 mov    dword ptr [rsp + 0x20], 8
+  005EEDAF lea    r9, [rip + 0x74400a]
+  005EEDB6 lea    r8, [rip + 0x26ca743]
+  005EEDBD mov    rdx, rsi
+  005EEDC0 lea    rcx, [rip + 0x26fb849]
+  005EEDC7 call   0x632a10
+  005EEDCC lea    rax, [rip + 0x75cf5d]
+  005EEDD3 mov    qword ptr [rip + 0x26fb836], rax
+  005EEDDA lea    rax, [rip - 0x2a121]
+== 59EC40 recursion arm and exits
+  0059ED0F mov    rax, qword ptr [rdi + 0x10]
+  0059ED13 mov    rcx, qword ptr [rdi + 8]
+  0059ED17 test   rax, rax
+  0059ED1A je     0x59ed22
+  0059ED1C mov    ebx, dword ptr [rax + 0xf4]
+  0059ED22 sub    r14d, dword ptr [rcx + 0x14]
+  0059ED26 mov    rax, qword ptr [rsp + 0x20]
+  0059ED2B sub    r14d, dword ptr [rsp + 0x88]
+  0059ED33 mov    eax, dword ptr [rax + 0xf4]
+  0059ED39 sub    ebx, eax
+  0059ED3B add    dword ptr [r12], r14d
+  0059ED3F lea    eax, [rdx + rbx]
+  0059ED42 add    rax, r13
+  0059ED45 add    rsp, 0x40
+  0059ED49 pop    r14
+  0059ED4B pop    r13
+  0059ED4D pop    r12
+  0059ED4F pop    rdi
+  0059ED50 pop    rbx
+  0059ED51 ret    
+  0059ED52 xor    eax, eax
+  0059ED54 add    rsp, 0x40
+  0059ED58 pop    r14
+  0059ED5A pop    r13
+  0059ED5C pop    r12
+  0059ED5E pop    rdi
+  0059ED5F pop    rbx
+  0059ED60 ret    
+== 59BED0 entry
+  0059BED0 mov    rax, rsp
+  0059BED3 mov    dword ptr [rax + 0x20], r9d
+  0059BED7 mov    qword ptr [rax + 8], rcx
+  0059BEDB push   rbp
+  0059BEDC push   rsi
+  0059BEDD push   rdi
+  0059BEDE sub    rsp, 0xa0
+  0059BEE5 mov    qword ptr [rax - 0x28], 0xfffffffffffffffe
+  0059BEED mov    qword ptr [rax + 0x18], rbx
+  0059BEF1 mov    rbp, r8
+  0059BEF4 mov    r10, rdx
+  0059BEF7 test   rdx, rdx
+  0059BEFA je     0x59c16a
+  0059BF00 xor    edx, edx
+  0059BF02 mov    dword ptr [rsp + 0xc8], edx
+  0059BF09 nop    dword ptr [rax]
+  0059BF10 mov    rsi, qword ptr [r10 + 0x10]
+  0059BF14 mov    rdi, qword ptr [r10 + 8]
+  0059BF18 test   rsi, rsi
+  0059BF1B je     0x59bf8d
+  0059BF1D test   rdi, rdi
+  0059BF20 je     0x59bf8d
+  0059BF22 mov    ecx, dword ptr [rdi + 0x18]
+  0059BF25 add    ecx, r9d
+  0059BF28 mov    eax, dword ptr [rdi + 4]
+  0059BF2B and    eax, 0xfffffff
+  0059BF30 cmp    ecx, eax
+  0059BF32 jae    0x59c0e3
+  0059BF38 mov    esi, dword ptr [rdi + 0xc]
+  0059BF3B mov    rbx, qword ptr [r10 + 0x20]
+  0059BF3F mov    r11d, dword ptr [rdi + 0x14]
+== 59BED0 loop before 59C0DB
+  0059C040 cmp    r9d, edi
+  0059C043 je     0x59c0db
+  0059C049 mov    esi, dword ptr [r8 + 0x38]
+  0059C04D jmp    0x59c051
+  0059C04F xor    esi, esi
+  0059C051 mov    eax, dword ptr [r10 + 4]
+  0059C055 and    eax, 0xfffffff
+  0059C05A mov    dword ptr [rsp + 0x30], eax
+  0059C05E mov    rax, qword ptr [rsp + 0x38]
+  0059C063 mov    eax, dword ptr [rax + 0x14]
+  0059C066 cmp    eax, 1
+  0059C069 mov    r8d, 1
+  0059C06F cmova  r8d, eax
+  0059C073 mov    dword ptr [rsp + 0x38], r8d
+  0059C078 test   r8d, r8d
+  0059C07B je     0x59c0d2
+  0059C07D mov    edi, dword ptr [rsp + 0xd8]
+  0059C084 mov    qword ptr [rsp + 0x20], rcx
+  0059C089 mov    r9d, edi
+  0059C08C mov    r8, rbp
+  0059C08F mov    rcx, qword ptr [rsp + 0xc0]
+  0059C097 call   0x59bed0
+  0059C09C test   rax, rax
+  0059C09F jne    0x59c16c
+  0059C0A5 mov    ecx, dword ptr [rsp + 0xc8]
+  0059C0AC inc    ecx
+  0059C0AE mov    dword ptr [rsp + 0xc8], ecx
+  0059C0B5 mov    eax, esi
+rawcalls 0059EC40: ['59BFE5']
+rawcalls 00632A10: ['5ADA18', '5AEF65', '5AF050', '5AF1BA', '5AFB08', '5B0448', '5B04E1', '5B1496', '5B1583', '5B161C', '5B179F', '5B18AB', '5B19A9', '5B1A42', '5B1ADB', '5B1E38', '5B1F43', '5B2515', '5B50A8', '5B53D8', '5B570A', '5B5A4A', '5B5D87', '5B60B7', '5B63E7', '5B6717', '5B6A47', '5B6D77', '5B70A7', '5B73D7', '5B7707', '5B7A38', '5B7C6D', '5E4237', '5E42CE', '5E4365', '5E43FC', '5E448E', '5E46C6', '5E4758', '5E47EA', '5E48F2', '5E497D', '5E5592', '5E5865', '5E6860', '5E6BE0', '5E6CCB', '5E6E2E', '5E7F72', '5E8004', '5E8096', '5E8128', '5E8283', '5E8315', '5E83A7', '5E9BD7', '5EA090', '5EA2C0', '5EA474', '5EA515', '5EA6E3', '5EBA6A', '5EBDAA', '5EC0EA', '5EC42B', '5EC76B', '5ECAAB', '5ECDE7', '5ED117', '5ED448', '5ED777', '5EDAA7', '5EDDD7', '5EE107', '5EE437', '5EE767', '5EEA97', '5EEDC7', '5EF0F7', '5EF427', '5EF757', '5EFA87', '5EFCBB', '5F000D', '618128', '6186B6', '618C18', '618F47', '64925B', '64ACCA', '665818', '665913', '665BC5', '665C63', '665D53', '665DEC', '666423', '6665F9', '66695E', '666A03', '666A95', '666B33', '666BC5', '666C6A', '666E3D', '667015', '6672D4', '667454', '6675CD', '668D88', '6690B8', '6693E7', '669717', '669A47', '669D77', '66A0A7', '66A3D7', '66A60D', '66A95A', '66ACAA', '67D24B', '67D2E9', '67DAB7', '682390', '682427', '6824B9', '696A0B', '698ADD', '6A734E', '6A80DC', '6A866D', '6AE725', '6AEA27', '6BC7F8', '6BC891', '6BC92F', '6BC9C8', '6BCEEB', '6BD227', '6BD557', '6C1673', '6C1BC7', '6C3496', '6C3534', '6C3AAB', '6C5AFD', '6C6101', '6C64D7', '6C670D', '6D0F48', '6D1048', '6D115B', '6D11ED', '6D1530', '6D2637', '6D2967', '6D2C97', '6D8F8B', '86D789', '86DA26', '86E71A', '86EA5A', '879E71', '87A16A']
+rawcalls 0059BED0: ['59C097', '59C531', '59CA48', '59CBDB', '59D122', '5A0212']
+raw E8/E9 -> 0059EC40: 1 0059BFE5c
+raw E8/E9 -> 00632A10: 165 005ADA18c 005AEF65c 005AF050c 005AF1BAc 005AFB08c 005B0448c 005B04E1c 005B1496c 005B1583c 005B161Cc 005B179Fc 005B18ABc 005B19A9c 005B1A42c 005B1ADBc 005B1E38c 005B1F43c 005B2515c 005B50A8c 005B53D8c 005B570Ac 005B5A4Ac 005B5D87c 005B60B7c 005B63E7c 005B6717c 005B6A47c 005B6D77c 005B70A7c 005B73D7c 005B7707c 005B7A38c 005B7C6Dc 005E4237c 005E42CEc 005E4365c 005E43FCc 005E448Ec 005E46C6c 005E4758c
+raw E8/E9 -> 0059BED0: 6 0059C097c 0059C531c 0059CA48c 0059CBDBc 0059D122c 005A0212c

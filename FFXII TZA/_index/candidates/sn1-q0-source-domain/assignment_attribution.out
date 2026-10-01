@@ -1,0 +1,4 @@
+PASS A1  sc 1 pc 5394 push 1 popv test_load_flg -> tag 1103 = physical 1647 b'test_event_count = 0', preceding b'test_load_flg = 1'; sc 1 pc 5598 push 0 popv test_load_flg -> tag 1130 = physical 1674 b'test_event_count = 0', preceding b'test_load_flg = 0'; sc 5 pc 1278 push 99 popv test_load_flg -> tag 1397 = physical 1941 b'}', preceding b'test_load_flg = 99'; sc 9 pc 582 push 99 popv test_load_flg -> tag 1758 = physical 2302 b'}', preceding b'test_load_flg = 99'
+PASS A2  btlctrl pc 531 carries its own statement b'loop_flg\t= 0;'; evctrl pc 22 carries its own b'askpos( 6 , basesel ' at line 417
+PASS C  operand 0x60 or literal + 1 matches none of the preceding lines; only the exact variable and literal do
+FAILS 0

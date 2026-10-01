@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-FOUR-REFUSED-CLASSES-AND-AN-UNCLAIMED-STATIC",
+ "agent": "OPUS",
+ "note": "Committed e22a1a81f. PInputMapper's rows now state all three routes with each one's own control, and grade two of them weak rather than writing them up as though they matched a twenty-displacement census. The control run then found what the target did not: the boundary warning PApplication's static census had been printing for two blocks is a SEPARATE OBJECT, 131 bodies at 46 displacements against the parent's single direct access across 0x1130, now declared as AppBootStatic01F7F480 with 53 rows tiling 0x124 and an extent stated as a floor because nothing takes its base address. 590 types / 7,162 fields / 0 errors / 0 gaps. NOT CLAIMED: the 0xDC bytes to the next known object, and any semantics for the new type beyond widths and directions read off the instructions. THE OPEN LEAD THIS CREATES, and it is bigger than the type: the same method - clustering rip-relative targets that no declared type covers - is a population instrument, and it has only been pointed at one 0x40-byte window that happened to be printed as a warning. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/types.tsv",
+  "Database/FFXII TZA/_types/fields.tsv"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

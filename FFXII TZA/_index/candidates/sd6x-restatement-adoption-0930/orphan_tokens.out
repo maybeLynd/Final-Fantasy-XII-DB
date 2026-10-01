@@ -1,0 +1,10 @@
+PASS SD-60 tokens=11 missing=[]
+PASS SD-61 tokens=11 missing=[]
+PASS SD-62 tokens=7 missing=[]
+PASS SD-63 tokens=31 missing=[]
+PASS SD-64 tokens=26 missing=[]
+PASS SD-65 tokens=4 missing=[]
+PASS SD-66 tokens=3 missing=[]
+PASS SD-67 tokens=5 missing=[]
+PASS C1 control: an invented token is not found
+FAILS 0

@@ -1,0 +1,4 @@
+PASS  F1 00632A10(member, class, elementType = 005EFE60(), "m_streamBindings", offset 0x38, 0, kind 4, element size 8)
+PASS  F2 kind -> +0x5C, element size -> +0x58; kind 4 = PSharray (UQ-281)
+PASS  F3 raw RTTI .?AV?$PClassDescriptorAbstract@V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@@Phyre@@; descriptor size 0x10, alignment 8
+FAILS 0

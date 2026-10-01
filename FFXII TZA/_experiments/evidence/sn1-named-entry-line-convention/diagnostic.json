@@ -1,0 +1,61 @@
+[
+  {
+    "module": "evctrl",
+    "scope": 1,
+    "first_mismatch": 6130,
+    "q0_bytes": 6276,
+    "inferred_length": 6274,
+    "start": 8471,
+    "directory_instruction_count": 2084,
+    "q0_instruction_count": 2132,
+    "preceding_code": "00529500519d002d2d2d4f01004e12004ffa004f",
+    "preceding_records": "bd040000bd040001bd040000bd040000bd040001bd040000bd040000bd040001bd040000bd040000bd040001bd040000bd040000bd040001bd040000bd040000bd040001bd040000bd040000bd040001",
+    "preceding_ops": [
+      [
+        6123,
+        82,
+        3
+      ],
+      [
+        6126,
+        81,
+        3
+      ],
+      [
+        6129,
+        45,
+        1
+      ],
+      [
+        6130,
+        45,
+        1
+      ],
+      [
+        6131,
+        45,
+        1
+      ],
+      [
+        6132,
+        79,
+        3
+      ],
+      [
+        6135,
+        78,
+        3
+      ],
+      [
+        6138,
+        79,
+        3
+      ],
+      [
+        6141,
+        79,
+        3
+      ]
+    ]
+  }
+]

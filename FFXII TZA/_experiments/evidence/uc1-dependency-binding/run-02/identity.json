@@ -1,0 +1,51 @@
+{
+  "driver_sha256": "c663e871afc276db0dcd2c45910ea05b726c46b6c9c65b85337a0df5b700936d",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "head": "c7f2f592fbf4824f954ad156a2c8c8fb600ad246",
+  "generation": "g20260929T135626Z-00f775",
+  "manifest_sha256": "a53cf5955380b47267028b8b2221bbdb1eb0b622686cf6579354c6efd7443df8",
+  "selection": "Earlier direct CURRENT-pointer read tool8c8207, now exact hash-bound retained generation; not a new current/latest claim",
+  "source": [
+    {
+      "path": "Database/Tools/dashboard/build_views.py",
+      "copy": "source/build_views.py",
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4",
+      "commit": "17d6cdc2915b22b1743cdd2e2c6acc2fcdf6f5e2",
+      "blob": "0423ae36376707f0e74d621bd360c0237cb39721"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+      "copy": "source/uc1_band.py",
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+      "commit": "b26125d2d0111845ec6e702e5a51410c1745e581",
+      "blob": "07c842e86b2c8ff4d4603db72c5748610edd4c3a"
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "copy": "source/generation.py",
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "commit": "b6e6de3f0080cd311336c04d68cf17516c228dff",
+      "blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16"
+    }
+  ],
+  "snapshot_controls": [
+    {
+      "key": "uc1_1_64",
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa",
+      "copy": "bound-positive-inputs/uc1_1_64"
+    },
+    {
+      "key": "uc1_65_256",
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97",
+      "copy": "bound-positive-inputs/uc1_65_256"
+    },
+    {
+      "key": "build_views.py",
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4",
+      "copy": "bound-positive-inputs/build_views.py"
+    }
+  ],
+  "limits": "Selected manifest/output binding and static original source/declaration only; no full builder, semantic source mutation, drift outcome, export CLI, loaded process or guest execution.",
+  "retry_limits": "Initial original declaration failed at missing __file__ supplied global; no declared result/positive snapshots or semantic closure. Original driver/terminal/raw retained; exact retained sources/manifest/view reused. Corrected namespace supplies actual original path value."
+}

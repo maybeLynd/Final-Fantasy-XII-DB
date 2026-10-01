@@ -1,0 +1,231 @@
+PASS  control: d = 0xDAC finds the five known stores (9 stores with that displacement)
+K 0x028 d 0xd84: 1 store(s)
+    001CCEFE mov    dword ptr [rdi + 0xd84], ebp                 size 4 in 001CCB20
+K 0x0f8 d 0xcb4: 0 store(s)
+K 0x1b8 d 0xbf4: 8 store(s)
+    004B9686 mov    qword ptr [rbx + 0xbf4], r9                  size 8 in 004B8F20
+    004B9687 mov    dword ptr [rbx + 0xbf4], ecx                 size 4 in 004B8F20
+    004C212C mov    dword ptr [rbx + 0xbf4], 0x10000000          size 4 in 004C2040
+    006F64B0 adc    byte ptr [rbx + 0xbf4], cl                   size 1 in 006F61F0
+    007046B0 mov    dword ptr [rsi + 0xbf4], 0x3f800000          size 4 in 006FF900
+    0070AB1F movss  dword ptr [rcx + 0xbf4], xmm3                size 4 in no .pdata
+    0070AB20 movups xmmword ptr [rcx + 0xbf4], xmm3              size 16 in no .pdata
+    0070AB21 adc    dword ptr [rcx + 0xbf4], ebx                 size 4 in no .pdata
+K 0x288 d 0xb24: 4 store(s)
+    001D041E movsd  qword ptr [rdi + 0xb24], xmm0                size 8 in 001D0390
+    001D041F movups xmmword ptr [rdi + 0xb24], xmm0              size 16 in 001D0390
+    001D0420 adc    dword ptr [rdi + 0xb24], eax                 size 4 in 001D0390
+    004B95BF mov    dword ptr [rbx + 0xb24], 2                   size 4 in 004B8F20
+K 0x358 d 0xa54: 8 store(s)
+    00525B77 adc    byte ptr [rax + 0xa54], al                   size 1 in 005259E0
+    006F5957 adc    byte ptr [rbx + 0xa54], bl                   size 1 in 006F5740
+    006F7B39 adc    byte ptr [rbx + 0xa54], ah                   size 1 in 006F7660
+    0070A577 movss  dword ptr [rcx + 0xa54], xmm1                size 4 in no .pdata
+    0070A578 movups xmmword ptr [rcx + 0xa54], xmm1              size 16 in no .pdata
+    0070A579 adc    dword ptr [rcx + 0xa54], ecx                 size 4 in no .pdata
+    0072530F mov    qword ptr [rcx + 0xa54], 0xffffffffffffffff  size 8 in no .pdata
+    00725310 mov    dword ptr [rcx + 0xa54], 0xffffffff          size 4 in no .pdata
+K 0x360 d 0xa4c: 4 store(s)
+    0070A57F mov    dword ptr [rcx + 0xa4c], r9d                 size 4 in no .pdata
+    0070A580 mov    dword ptr [rcx + 0xa4c], ecx                 size 4 in no .pdata
+    00725304 mov    qword ptr [rcx + 0xa4c], 0xffffffffffffffff  size 8 in no .pdata
+    00725305 mov    dword ptr [rcx + 0xa4c], 0xffffffff          size 4 in no .pdata
+K 0x430 d 0x97c: 11 store(s)
+    003F2020 adc    byte ptr [rdi + 0x97c], bl                   size 1 in 003F1E90
+    003F22F0 adc    byte ptr [rdi + 0x97c], bl                   size 1 in 003F1E90
+    003F26DB movss  dword ptr [rdi + 0x97c], xmm1                size 4 in 003F2600
+    003F26DC movss  dword ptr [rdi + 0x97c], xmm1                size 4 in 003F2600
+    003F26DD movups xmmword ptr [rdi + 0x97c], xmm1              size 16 in 003F2600
+    003F26DE adc    dword ptr [rdi + 0x97c], ecx                 size 4 in 003F2600
+    006F71D4 adc    byte ptr [rbx + 0x97c], bh                   size 1 in 006F6D80
+    00704BC2 mov    dword ptr [rsi + 0x97c], 0xff7fffff          size 4 in 006FF900
+    0070B010 movss  dword ptr [rcx + 0x97c], xmm2                size 4 in no .pdata
+    0070B011 movups xmmword ptr [rcx + 0x97c], xmm2              size 16 in no .pdata
+    0070B012 adc    dword ptr [rcx + 0x97c], edx                 size 4 in no .pdata
+K 0x468 d 0x944: 4 store(s)
+    0052D58D adc    byte ptr [rdi + 0x944], al                   size 1 in 0052D3B0
+    0070AF02 movss  dword ptr [rcx + 0x944], xmm1                size 4 in no .pdata
+    0070AF03 movups xmmword ptr [rcx + 0x944], xmm1              size 16 in no .pdata
+    0070AF04 adc    dword ptr [rcx + 0x944], ecx                 size 4 in no .pdata
+K 0x4f0 d 0x8bc: 1 store(s)
+    0045EAC5 adc    byte ptr [rsi + 0x8bc], al                   size 1 in 0045E930
+K 0x5c0 d 0x7ec: 10 store(s)
+    0048AEBB mov    qword ptr [rcx + 0x7ec], 0x6c140087          size 8 in no .pdata
+    0048AEBC mov    dword ptr [rcx + 0x7ec], 0x6c140087          size 4 in no .pdata
+    007C0FE0 mov    dword ptr [rdi + 0x7ec], 0x3f800000          size 4 in 007C05C0
+    007C744B movss  dword ptr [rbx + 0x7ec], xmm0                size 4 in 007C72A0
+    007C744C movups xmmword ptr [rbx + 0x7ec], xmm0              size 16 in 007C72A0
+    007C744D adc    dword ptr [rbx + 0x7ec], eax                 size 4 in 007C72A0
+    007CC759 movss  dword ptr [rsi + 0x7ec], xmm0                size 4 in 007CC4A0
+    007CC75A movups xmmword ptr [rsi + 0x7ec], xmm0              size 16 in 007CC4A0
+    007CC75B adc    dword ptr [rsi + 0x7ec], eax                 size 4 in 007CC4A0
+    007D78BA mov    dword ptr [rbx + 0x7ec], eax                 size 4 in 007D76E0
+K 0x5f8 d 0x7b4: 20 store(s)
+    006FBB69 adc    byte ptr [rdi + 0x7b4], al                   size 1 in 006FB810
+    006FBDFA movups xmmword ptr [rdi + 0x7b4], xmm1              size 16 in 006FB810
+    006FBDFB adc    dword ptr [rdi + 0x7b4], ecx                 size 4 in 006FB810
+    0070F760 movups xmmword ptr [rcx + 0x7b4], xmm1              size 16 in no .pdata
+    0070F761 adc    dword ptr [rcx + 0x7b4], ecx                 size 4 in no .pdata
+    0070F79D adc    byte ptr [rcx + 0x7b4], cl                   size 1 in no .pdata
+    0071001B movups xmmword ptr [rax + rcx + 0x7b4], xmm1        size 16 in no .pdata
+    0071001C adc    dword ptr [rax + rcx + 0x7b4], ecx           size 4 in no .pdata
+    00710064 adc    byte ptr [rax + rcx + 0x7b4], cl             size 1 in no .pdata
+    007100B0 adc    byte ptr [rax + rcx + 0x7b4], cl             size 1 in no .pdata
+    007C0F41 mov    dword ptr [rdi + 0x7b4], 0x3f800000          size 4 in 007C05C0
+    007C7521 adc    byte ptr [rbx + 0x7b4], dl                   size 1 in 007C72A0
+    007C75D6 movss  dword ptr [rbx + 0x7b4], xmm7                size 4 in 007C72A0
+    007C75D7 movups xmmword ptr [rbx + 0x7b4], xmm7              size 16 in 007C72A0
+    007C75D8 adc    dword ptr [rbx + 0x7b4], edi                 size 4 in 007C72A0
+    007C8047 adc    byte ptr [rcx + 0x7b4], al                   size 1 in 007C8010
+    007CC1EF adc    byte ptr [rbx + 0x7b4], dl                   size 1 in 007CC110
+    007CC690 adc    byte ptr [rsi + 0x7b4], dl                   size 1 in 007CC4A0
+    007D29A0 mov    dword ptr [rcx + 0x7b4], r14d                size 4 in 007D2150
+    007D29A1 mov    dword ptr [rcx + 0x7b4], esi                 size 4 in 007D2150
+K 0x690 d 0x71c: 32 store(s)
+    00704550 mov    word ptr [rsi + 0x71c], 0                    size 2 in 006FF900
+    00704551 mov    dword ptr [rsi + 0x71c], 0xd2330000          size 4 in 006FF900
+    007C5E94 adc    byte ptr [rcx + 0x71c], al                   size 1 in 007C5E60
+    007C5EB5 adc    byte ptr [rdi + 0x71c], cl                   size 1 in 007C5E60
+    007C6AAF adc    byte ptr [rcx + 0x71c], al                   size 1 in 007C6A80
+    007C6AD0 adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007C6A80
+    007C7C25 mov    qword ptr [rbx + 0x71c], 0x3f800000          size 8 in 007C7BE0
+    007C7C26 mov    dword ptr [rbx + 0x71c], 0x3f800000          size 4 in 007C7BE0
+    007C80A0 adc    byte ptr [rcx + 0x71c], bl                   size 1 in 007C8010
+    007C80C4 adc    byte ptr [rdi + 0x71c], al                   size 1 in 007C8010
+    007C81C7 adc    byte ptr [rdi + 0x71c], bl                   size 1 in 007C8010
+    007C81EB adc    byte ptr [rdi + 0x71c], al                   size 1 in 007C8010
+    007CC135 adc    byte ptr [rcx + 0x71c], al                   size 1 in 007CC110
+    007CC15E adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC1AA adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC1D3 adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC21F adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC248 adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC29D adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC2C6 adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC2E8 adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC311 adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC353 adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC37C adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC3D1 adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC3FA adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007CC421 adc    byte ptr [rbx + 0x71c], al                   size 1 in 007CC110
+    007CC44A adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007CC110
+    007D28FA mov    dword ptr [rcx + 0x71c], r14d                size 4 in 007D2150
+    007D28FB mov    dword ptr [rcx + 0x71c], esi                 size 4 in 007D2150
+    007D6BAE adc    byte ptr [rbx + 0x71c], dl                   size 1 in 007D6270
+    007D74AA adc    byte ptr [rbx + 0x71c], cl                   size 1 in 007D6CD0
+K 0x698 d 0x714: 24 store(s)
+    00236B55 mov    word ptr [rdi + 0x714], bx                   size 2 in 00236A60
+    00236B56 mov    dword ptr [rdi + 0x714], ebx                 size 4 in 00236A60
+    0030F806 mov    word ptr [rbx + 0x714], di                   size 2 in 0030F760
+    0030F807 mov    dword ptr [rbx + 0x714], edi                 size 4 in 0030F760
+    0031071B mov    word ptr [rbx + 0x714], ax                   size 2 in 003105D0
+    0031071C mov    dword ptr [rbx + 0x714], eax                 size 4 in 003105D0
+    0054323E movups xmmword ptr [rbx + 0x714], xmm7              size 16 in 00542740
+    0054323F adc    dword ptr [rbx + 0x714], edi                 size 4 in 00542740
+    006FCBCB adc    byte ptr [rbx + 0x714], al                   size 1 in 006FC760
+    006FEF28 movss  dword ptr [rcx + 0x714], xmm0                size 4 in no .pdata
+    006FEF29 movups xmmword ptr [rcx + 0x714], xmm0              size 16 in no .pdata
+    006FEF2A adc    dword ptr [rcx + 0x714], eax                 size 4 in no .pdata
+    007084B2 movss  dword ptr [rcx + 0x714], xmm1                size 4 in no .pdata
+    007084B3 movups xmmword ptr [rcx + 0x714], xmm1              size 16 in no .pdata
+    007084B4 adc    dword ptr [rcx + 0x714], ecx                 size 4 in no .pdata
+    00708527 mov    dword ptr [rcx + 0x714], 0x3f490fdb          size 4 in no .pdata
+    00708587 mov    dword ptr [rcx + 0x714], 0x3f490fdb          size 4 in no .pdata
+    007085EB mov    dword ptr [rcx + 0x714], 0x3f490fdb          size 4 in no .pdata
+    0070865F mov    dword ptr [rcx + 0x714], 0x3f490fdb          size 4 in no .pdata
+    007086B7 mov    dword ptr [rcx + 0x714], 0x3f490fdb          size 4 in no .pdata
+    007D28EF mov    qword ptr [rcx + 0x714], 0x3f800000          size 8 in 007D2150
+    007D28F0 mov    dword ptr [rcx + 0x714], 0x3f800000          size 4 in 007D2150
+    007D74B8 adc    byte ptr [rbx + 0x714], al                   size 1 in 007D6CD0
+    007D74E5 adc    byte ptr [rbx + 0x714], al                   size 1 in 007D6CD0
+K 0x768 d 0x644: 24 store(s)
+    001F9B12 movups xmmword ptr [rbx + 0x644], xmm0              size 16 in 001F9A80
+    001F9B13 adc    dword ptr [rbx + 0x644], eax                 size 4 in 001F9A80
+    001FAF83 adc    byte ptr [rdi + 0x644], al                   size 1 in 001FAD50
+    002EE0F3 mov    dword ptr [rcx + 0x644], 0                   size 4 in no .pdata
+    002EE161 mov    dword ptr [rcx + 0x644], edx                 size 4 in no .pdata
+    002EE17C movss  dword ptr [rcx + 0x644], xmm2                size 4 in no .pdata
+    002EE17D movups xmmword ptr [rcx + 0x644], xmm2              size 16 in no .pdata
+    002EE17E adc    dword ptr [rcx + 0x644], edx                 size 4 in no .pdata
+    0042EEFC adc    byte ptr [rbx + 0x644], al                   size 1 in 0042EE90
+    0042EF13 movss  dword ptr [rbx + 0x644], xmm0                size 4 in 0042EE90
+    0042EF14 movss  dword ptr [rbx + 0x644], xmm0                size 4 in 0042EE90
+    0042EF15 movups xmmword ptr [rbx + 0x644], xmm0              size 16 in 0042EE90
+    0042EF16 adc    dword ptr [rbx + 0x644], eax                 size 4 in 0042EE90
+    0042EF2B mov    dword ptr [rbx + 0x644], 0                   size 4 in 0042EE90
+    00706FE7 movups xmmword ptr [rbx + 0x644], xmm1              size 16 in 00706F60
+    00706FE8 adc    dword ptr [rbx + 0x644], ecx                 size 4 in 00706F60
+    00707157 movups xmmword ptr [rbx + 0x644], xmm1              size 16 in 007070B0
+    00707158 adc    dword ptr [rbx + 0x644], ecx                 size 4 in 007070B0
+    007C083B mov    dword ptr [rdi + 0x644], 0xffffffff          size 4 in 007C05C0
+    007C2F12 mov    dword ptr [rdi + 0x644], 0xffffffff          size 4 in 007C2A60
+    007C3C43 mov    dword ptr [rdi + 0x644], ebx                 size 4 in 007C36C0
+    007C4C4F mov    dword ptr [rsi + 0x644], eax                 size 4 in 007C4790
+    007C4E56 mov    dword ptr [rsi + 0x644], eax                 size 4 in 007C4790
+    007C4EF8 mov    dword ptr [rsi + 0x644], 0xffffffff          size 4 in 007C4790
+K 0x7a0 d 0x60c: 4 store(s)
+    0057C666 and    dword ptr [rsi + 0x60c], 0xfffffffe          size 4 in 0057C480
+    006F8581 adc    byte ptr [rcx + 0x60c], al                   size 1 in 006F8410
+    007D27D1 mov    dword ptr [rcx + 0x60c], r14d                size 4 in 007D2150
+    007D27D2 mov    dword ptr [rcx + 0x60c], esi                 size 4 in 007D2150
+K 0x828 d 0x584: 17 store(s)
+    001FADD2 adc    byte ptr [rdi + 0x584], al                   size 1 in 001FAD50
+    001FB1CD movups xmmword ptr [rbx + 0x584], xmm0              size 16 in 001FB120
+    001FB1CE adc    dword ptr [rbx + 0x584], eax                 size 4 in 001FB120
+    0029844F mov    word ptr [rsi + 0x584], ax                   size 2 in 00298250
+    00298450 mov    dword ptr [rsi + 0x584], eax                 size 4 in 00298250
+    003E2C43 adc    byte ptr [rax + 0x584], cl                   size 1 in 003E2C00
+    0056A447 mov    dword ptr [rax + 0x584], ecx                 size 4 in 0056A3D0
+    0056B6AB mov    dword ptr [rsi + 0x584], eax                 size 4 in 0056B4D0
+    005DF7D8 mov    dword ptr [rdi + 0x584], eax                 size 4 in 005DF3E0
+    006050E6 movss  dword ptr [r14 + 0x584], xmm1                size 4 in 00604750
+    006050E7 movups xmmword ptr [r14 + 0x584], xmm1              size 16 in 00604750
+    006050E8 movups xmmword ptr [rsi + 0x584], xmm1              size 16 in 00604750
+    006050E9 adc    dword ptr [rsi + 0x584], ecx                 size 4 in 00604750
+    006FC450 mov    dword ptr [r9 + 0x584], eax                  size 4 in 006FC370
+    006FC451 mov    dword ptr [rcx + 0x584], eax                 size 4 in 006FC370
+    007DBAFE adc    byte ptr [rbx + 0x584], bh                   size 1 in 007DB8D0
+    007DBB27 adc    byte ptr [rbx + 0x584], cl                   size 1 in 007DB8D0
+K 0x8f8 d 0x4b4: 27 store(s)
+    001F4EC9 mov    byte ptr [rdi + 0x4b4], sil                  size 1 in 001F4DA0
+    001F4ECA mov    byte ptr [rdi + 0x4b4], dh                   size 1 in 001F4DA0
+    001F7729 mov    byte ptr [r8 + 0x4b4], 1                     size 1 in 001F6E70
+    001F772A mov    byte ptr [rax + 0x4b4], 1                    size 1 in 001F6E70
+    00281B9C add    byte ptr [rcx + 0x4b4], bh                   size 1 in 00281AE0
+    003E432D mov    word ptr [r10 + 0x4b4], dx                   size 2 in no .pdata
+    003E432E mov    dword ptr [r10 + 0x4b4], edx                 size 4 in no .pdata
+    003E432F mov    dword ptr [rdx + 0x4b4], edx                 size 4 in no .pdata
+    003E4344 mov    word ptr [r10 + 0x4b4], ax                   size 2 in no .pdata
+    003E4345 mov    dword ptr [r10 + 0x4b4], eax                 size 4 in no .pdata
+    003E4346 mov    dword ptr [rdx + 0x4b4], eax                 size 4 in no .pdata
+    0041FAB5 mov    word ptr [rbx + 0x4b4], ax                   size 2 in 0041F730
+    0041FAB6 mov    dword ptr [rbx + 0x4b4], eax                 size 4 in 0041F730
+    0042C9E3 mov    word ptr [rbx + 0x4b4], ax                   size 2 in 0042C8F0
+    0042C9E4 mov    dword ptr [rbx + 0x4b4], eax                 size 4 in 0042C8F0
+    00543864 movss  dword ptr [rbx + 0x4b4], xmm7                size 4 in 00542740
+    00543865 movups xmmword ptr [rbx + 0x4b4], xmm7              size 16 in 00542740
+    00543866 adc    dword ptr [rbx + 0x4b4], edi                 size 4 in 00542740
+    00605C34 movss  dword ptr [r14 + 0x4b4], xmm1                size 4 in 00604750
+    00605C35 movups xmmword ptr [r14 + 0x4b4], xmm1              size 16 in 00604750
+    00605C36 movups xmmword ptr [rsi + 0x4b4], xmm1              size 16 in 00604750
+    00605C37 adc    dword ptr [rsi + 0x4b4], ecx                 size 4 in 00604750
+    007B8DDC mov    dword ptr [rbx + 0x4b4], ecx                 size 4 in 007B8D40
+    007D2650 mov    dword ptr [rcx + 0x4b4], r14d                size 4 in 007D2150
+    007D2651 mov    dword ptr [rcx + 0x4b4], esi                 size 4 in 007D2150
+    007DB051 mov    dword ptr [rcx + 0x4b4], r15d                size 4 in 007DAFF0
+    007DB052 mov    dword ptr [rcx + 0x4b4], edi                 size 4 in 007DAFF0
+K 0x930 d 0x47c: 12 store(s)
+    00540BE9 mov    dword ptr [rbx + 0x47c], 0x50000001          size 4 in 005409C0
+    00605B2E movss  dword ptr [r14 + 0x47c], xmm3                size 4 in 00604750
+    00605B2F movups xmmword ptr [r14 + 0x47c], xmm3              size 16 in 00604750
+    00605B30 movups xmmword ptr [rsi + 0x47c], xmm3              size 16 in 00604750
+    00605B31 adc    dword ptr [rsi + 0x47c], ebx                 size 4 in 00604750
+    007115C8 adc    byte ptr [rcx + 0x47c], al                   size 1 in 007114F0
+    007B9681 dec    dword ptr [rdi + 0x47c]                      size 4 in 007B9590
+    007D2613 mov    dword ptr [rcx + 0x47c], r14d                size 4 in 007D2150
+    007D2614 mov    dword ptr [rcx + 0x47c], r14d                size 4 in 007D2150
+    007D2615 mov    dword ptr [rcx + 0x47c], esi                 size 4 in 007D2150
+    007D682E adc    byte ptr [rbx + 0x47c], dl                   size 1 in 007D6270
+    007D7130 adc    byte ptr [rbx + 0x47c], cl                   size 1 in 007D6CD0
+total candidate stores: 211

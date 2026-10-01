@@ -1,0 +1,1526 @@
+{
+ "cases": {
+  "B1_startup_runs_as_shipped_and_stops_at_the_device": true,
+  "B2_both_binds_complete_plus12_from_the_definition": true,
+  "W_threads_and_guest_calls_served_without_failure": true,
+  "X1_interpreter_arm_runs_on_ttl_b01s_bound_record": true,
+  "X2_exit_A_on_byu_w01s_driven_actor": true,
+  "X3_the_script_drives_the_deferred_arm_to_its_regex": true
+ },
+ "evidence": [
+  "NATIVE-REPLAY",
+  "STATIC"
+ ],
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "adapter_writers_static": [
+   "006253D0",
+   "006253D0"
+  ],
+  "app_object": "1F7E350",
+  "battle_block_02EBF190": "21B290C",
+  "binds": {
+   "1": {
+    "completion_ok": true,
+    "def_minus_buffer": 128,
+    "def_word_50": -1,
+    "file_bytes": 1216,
+    "file_word_D0": -1,
+    "path": "PS2Data\\plan_master\\us\\plan_map\\ttl_b\\ttl_b01\\global\\ttl_b01.ebp",
+    "prefix_stop": "3303E3",
+    "records": 1,
+    "size_table": 1216,
+    "slot_10_17": "8301000001010123"
+   },
+   "2": {
+    "completion_ok": true,
+    "def_minus_buffer": 128,
+    "def_word_50": 0,
+    "file_bytes": 1856,
+    "file_word_D0": 0,
+    "path": "PS2Data\\plan_master\\us\\plan_map\\byu_w\\byu_w01\\global\\byu_w01.ebp",
+    "prefix_stop": "3303E3",
+    "records": 7,
+    "size_table": 1856,
+    "slot_10_17": "8301010001010123"
+   }
+  },
+  "boot_reads": [
+   "../FFXII_TZA.vbf",
+   "../FileSizeTables/FileSizeTable_US.fst"
+  ],
+  "crt": {
+   "cpp": 1172,
+   "failed": [],
+   "pre_c": 3
+  },
+  "frames": {
+   "1": [
+    {
+     "frame": "before",
+     "records": [
+      {
+       "addr": "479A5AE0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      }
+     ]
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "audio",
+       "rcx": "2099098",
+       "rdx": "0",
+       "ret": "0025DB93"
+      },
+      {
+       "ev": "init_core",
+       "rcx": "2099098",
+       "rdx": "0",
+       "ret": "0025DC2C"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "select_entry",
+       "rcx": "479A5AE0",
+       "rdx": "2",
+       "ret": "00261250"
+      }
+     ],
+     "frame": 0,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A5AE0",
+       "b10": 0,
+       "b11": 0,
+       "b14": 48,
+       "b63": 2,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "audio",
+       "rcx": "2099098",
+       "rdx": "0",
+       "ret": "0025DB93"
+      },
+      {
+       "ev": "init_core",
+       "rcx": "2099098",
+       "rdx": "0",
+       "ret": "0025DC2C"
+      }
+     ],
+     "frame": 1,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A5AE0",
+       "b10": 0,
+       "b11": 0,
+       "b14": 48,
+       "b63": 2,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "resolve",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "0025DE98"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      }
+     ],
+     "frame": 2,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A5AE0",
+       "b10": 0,
+       "b11": 0,
+       "b14": 48,
+       "b63": 2,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "resolve",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "0025DE98"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099098",
+       "rdx": "479A5AE0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "deferred",
+       "rcx": "1",
+       "rdx": "1AD",
+       "ret": "003530D4"
+      },
+      {
+       "ev": "begin_manager_resource",
+       "rcx": "1",
+       "rdx": "1AD",
+       "ret": "0032FC80"
+      }
+     ],
+     "frame": 3,
+     "ok": false,
+     "records": [],
+     "stop": {
+      "halt": [
+       "import ?_Init@locale@std@@CAPEAV_Locimp@12@_N@Z"
+      ],
+      "import": "?_Init@locale@std@@CAPEAV_Locimp@12@_N@Z",
+      "in": [
+       "0032FCA0 ActorResource_BeginManagerResou",
+       "0020AC30 FUN_0020ac30",
+       "0020A800 FUN_0020a800"
+      ],
+      "ok": false,
+      "rip": "74000338"
+     }
+    }
+   ],
+   "2": [
+    {
+     "frame": "before",
+     "records": [
+      {
+       "addr": "479A6680",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 1,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A69B0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 1,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A6CE0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 2,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7010",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 3,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7680",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 4,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7CF0",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 5,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A8360",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 6,
+       "wait_state": 1
+      }
+     ]
+    },
+    {
+     "b12_after": 1,
+     "events": [
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A6680",
+       "ret": "0025DB48"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A6680",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "select_entry",
+       "rcx": "479A6680",
+       "rdx": "3",
+       "ret": "00261250"
+      }
+     ],
+     "frame": 0,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A6680",
+       "b10": 0,
+       "b11": 7,
+       "b14": 48,
+       "b63": 3,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A69B0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 1,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A6CE0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 2,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7010",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 3,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7680",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 4,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7CF0",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 5,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A8360",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 6,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A6680",
+       "ret": "0025DB48"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A6680",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A6680",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "select_entry",
+       "rcx": "479A6680",
+       "rdx": "0",
+       "ret": "00261250"
+      },
+      {
+       "ev": "select_entry",
+       "rcx": "479A6680",
+       "rdx": "2",
+       "ret": "00261250"
+      },
+      {
+       "ev": "init_core",
+       "rcx": "2099320",
+       "rdx": "FFFFFFFF",
+       "ret": "0025DB82"
+      }
+     ],
+     "frame": 1,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A6680",
+       "b10": 0,
+       "b11": 0,
+       "b14": 112,
+       "b63": 3,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A69B0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 1,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A6CE0",
+       "b10": 1,
+       "b11": 7,
+       "b14": 48,
+       "b63": 0,
+       "b88": 8,
+       "rec": 2,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7010",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 3,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7680",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 4,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7CF0",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 5,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A8360",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 6,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "audio",
+       "rcx": "2099320",
+       "rdx": "0",
+       "ret": "0025DB93"
+      },
+      {
+       "ev": "init_core",
+       "rcx": "2099320",
+       "rdx": "0",
+       "ret": "0025DC2C"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A69B0",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A69B0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A69B0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A69B0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A69B0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A69B0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "select_entry",
+       "rcx": "479A69B0",
+       "rdx": "2",
+       "ret": "00261250"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A6CE0",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A6CE0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "select_entry",
+       "rcx": "479A6CE0",
+       "rdx": "1",
+       "ret": "00261250"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A7010",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A7010",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A7010",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A7680",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A7680",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A7680",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A7CF0",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A7CF0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A7CF0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A8360",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A8360",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A8360",
+       "ret": "00261AD9"
+      }
+     ],
+     "frame": 2,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A6680",
+       "b10": 0,
+       "b11": 0,
+       "b14": 112,
+       "b63": 3,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A69B0",
+       "b10": 0,
+       "b11": 0,
+       "b14": 48,
+       "b63": 2,
+       "b88": 8,
+       "rec": 1,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A6CE0",
+       "b10": 0,
+       "b11": 7,
+       "b14": 112,
+       "b63": 2,
+       "b88": 8,
+       "rec": 2,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7010",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 3,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7680",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 4,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7CF0",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 5,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A8360",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 6,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    },
+    {
+     "b12_after": 0,
+     "events": [
+      {
+       "ev": "audio",
+       "rcx": "2099320",
+       "rdx": "0",
+       "ret": "0025DB93"
+      },
+      {
+       "ev": "init_core",
+       "rcx": "2099320",
+       "rdx": "0",
+       "ret": "0025DC2C"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A7010",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A7010",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A7010",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A7680",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A7680",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A7680",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A7CF0",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A7CF0",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A7CF0",
+       "ret": "00261AD9"
+      },
+      {
+       "ev": "resolve",
+       "rcx": "2099320",
+       "rdx": "479A8360",
+       "ret": "0025DD56"
+      },
+      {
+       "ev": "INTERPRETER",
+       "rcx": "2099320",
+       "rdx": "479A8360",
+       "ret": "0025E0D8"
+      },
+      {
+       "ev": "vm_lifecycle_native",
+       "rcx": "2099320",
+       "rdx": "479A8360",
+       "ret": "00261AD9"
+      }
+     ],
+     "frame": 3,
+     "ok": true,
+     "records": [
+      {
+       "addr": "479A6680",
+       "b10": 0,
+       "b11": 0,
+       "b14": 112,
+       "b63": 3,
+       "b88": 8,
+       "rec": 0,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A69B0",
+       "b10": 0,
+       "b11": 0,
+       "b14": 48,
+       "b63": 2,
+       "b88": 8,
+       "rec": 1,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A6CE0",
+       "b10": 0,
+       "b11": 7,
+       "b14": 112,
+       "b63": 2,
+       "b88": 8,
+       "rec": 2,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7010",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 3,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7680",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 4,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A7CF0",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 5,
+       "wait_state": 1
+      },
+      {
+       "addr": "479A8360",
+       "b10": 1,
+       "b11": 5,
+       "b14": 176,
+       "b63": 0,
+       "b88": 6,
+       "rec": 6,
+       "wait_state": 1
+      }
+     ],
+     "stop": {
+      "halt": [],
+      "import": "",
+      "in": [
+       "0025D9E0 ActorManager_RunFieldRuntimePas"
+      ],
+      "ok": true,
+      "rip": "71000000"
+     }
+    }
+   ]
+  },
+  "guest_calls": {
+   "001DFA80": 22,
+   "001DFCF0": 0,
+   "001E0390": 18
+  },
+  "guest_failed": [],
+  "hud": {
+   "ctx": "209AC60",
+   "mrppack_blob": "4770E6C0",
+   "plus8_after": "4770F9C0",
+   "plus8_before": "0",
+   "system_widgets": 1
+  },
+  "prefixes": {
+   "failed": [],
+   "input_worker": 1,
+   "job_worker": 113
+  },
+  "pump_after_bind": 0,
+  "pump_after_boot": 1,
+  "settings_object": "401628D0",
+  "static": {
+   "0025DB2E": "mov r12d, edi",
+   "0025DB31": "movsx edx, word ptr [rax + 0x50]",
+   "0025DB79": "mov byte ptr [rbx + 0x12], r12b",
+   "0025DB7D": "call 0x2620e0",
+   "0026CD1A": "cmp word ptr [r15 + 0x50], bx",
+   "0026CD25": "setge al",
+   "0026CD28": "mov byte ptr [rdi + 0x12], al",
+   "006242C0+0x9D": "mov rcx, qword ptr [rcx + 0x1880]",
+   "006256F2": "mov qword ptr [rbx + 0x1880], rax",
+   "00625749": "mov qword ptr [rbx + 0x1880], rax"
+  },
+  "steps": [
+   {
+    "halt": [
+     "import ??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basi"
+    ],
+    "import": "??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$b",
+    "in": [
+     "001DED50 GameSettingConfig_LoadOrCreateF",
+     "001DFD40 GameSettingConfig_WriteFile",
+     "001DEE90 GameSettingConfig_SerializeText"
+    ],
+    "ok": false,
+    "rip": "74000400",
+    "step": "main 007980A0 (prefix)"
+   },
+   {
+    "halt": [
+     "00000000"
+    ],
+    "import": "",
+    "in": [
+     "001DC5C0 FUN_001dc5c0",
+     "001DD420 FUN_001dd420",
+     "006242C0 FUN_006242c0"
+    ],
+    "ok": false,
+    "rip": "624364",
+    "step": "app slot 2 0017CEB0(app, argv, 1)"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001DAD60 FUN_001dad60"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001D6BE0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001BE3E0 FUN_001be3e0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001BE3E0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "0019CDE0 FUN_0019cde0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "0019CDE0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001C2F00 FUN_001c2f00"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001C2F00"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00210760 FUN_00210760"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001DBA40"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00182F70 FUN_00182f70"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "00182F70"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001DB500 FUN_001db500"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001DB500"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00199790 FUN_00199790"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "00199790"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001A14E0 FUN_001a14e0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "new(20) 001A14E0 -> [01F7F4C0]"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001A16E0 FUN_001a16e0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "new(C0) 001A16E0 -> [01F7F4C8]"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001A17D0 FUN_001a17d0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "new(10) 001A17D0 -> [01F7F4D0]"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001B24D0 FUN_001b24d0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "new(A0) 001B24D0 -> [01F7F4D8]"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001A11B0 FUN_001a11b0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001A11B0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00198750 InputManager_CreateSingleton"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "00198750"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "0019EF40 FUN_0019ef40"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "0019EF40"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001B6BC0 FUN_001b6bc0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001B6BC0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001B29F0 FUN_001b29f0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001B29F0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001B7EE0 FUN_001b7ee0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001B7EE0"
+   },
+   {
+    "halt": [
+     "00000038"
+    ],
+    "import": "",
+    "in": [
+     "001B7850 FUN_001b7850",
+     "001B6C50 FUN_001b6c50"
+    ],
+    "ok": false,
+    "rip": "1B6C75",
+    "step": "001B7850(001B7F20()) render targets"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001C18A0 SaveloadManager_EnsureSingleton"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001C18A0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001C1940 FUN_001c1940"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001C1940"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001B5F10 FUN_001b5f10"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001B5F10"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D6990 FUN_001d6990"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001D6990"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D8150 FUN_001d8150"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001D8150"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D89D0 FUN_001d89d0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001D89D0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D8A90 FUN_001d8a90"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001831A0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001E0390 underflow"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "0022A0B0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001B1BA0 FUN_001b1ba0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001B1BA0"
+   },
+   {
+    "halt": [
+     "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+    ],
+    "import": "memset",
+    "in": [
+     "001B1580 FUN_001b1580",
+     "001B1630 FUN_001b1630",
+     "00861EC0 memset"
+    ],
+    "ok": false,
+    "rip": "74000590",
+    "step": "001B1580(001B1C00())"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "0016D6A0 _guard_check_icall"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "0022A4B0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D8CD0 FUN_001d8cd0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001D8CD0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D5600 FUN_001d5600"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "new(10) 001D5600 -> [01F7F4E0]"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001AD3E0 FUN_001ad3e0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001AD3E0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001C0D40 FUN_001c0d40"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001C0D40"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001D62D0 FUN_001d62d0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001D62D0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00194AB0 FUN_00194ab0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "00194AB0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00194AA0 FUN_00194aa0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "00194AA0(00194AF0())"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "001DB1E0 FUN_001db1e0"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "001DB1E0"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "00237DF0 BattleSystem_ResetRuntimeState"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "save-image reset 002EF650"
+   },
+   {
+    "halt": [
+     "import GetKeyboardLayout"
+    ],
+    "import": "GetKeyboardLayout",
+    "in": [
+     "002B3480 FUN_002b3480",
+     "002B5C90 FUN_002b5c90",
+     "001E0B90 FUN_001e0b90"
+    ],
+    "ok": false,
+    "rip": "740002C4",
+    "step": "message 16 to the UI system widget 00253780"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "003304A0 ActorResource_OnPrimaryPayloadL"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "completion 003304A0 (slot 1, ttl_b01.ebp)"
+   },
+   {
+    "halt": [],
+    "import": "",
+    "in": [
+     "003304A0 ActorResource_OnPrimaryPayloadL"
+    ],
+    "ok": true,
+    "rip": "71000000",
+    "step": "completion 003304A0 (slot 2, byu_w01.ebp)"
+   }
+  ]
+ }
+}

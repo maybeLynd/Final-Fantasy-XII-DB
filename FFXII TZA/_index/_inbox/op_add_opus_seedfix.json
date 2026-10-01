@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-CONSUMER-CENSUS-SEED-DEFECT",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the consumer census of publication slots: the walk cleared the pointer at the instruction that loaded it",
+  "scope": "fix carve_consumers.py / carve_table.py / handle_table.py; re-run the 37 never-censused PTR types, the 11 censused under the defect and the MessageWindowRecord slot table; amend every evidence cell that quotes a count the defective walker produced",
+  "completion": "all three tools re-arm the seed AFTER the clobber chain; every affected cell carries the corrected count and states that the old figures are floors and its zeros are not measurements; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

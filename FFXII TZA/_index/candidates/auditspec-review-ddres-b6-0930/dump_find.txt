@@ -1,0 +1,142 @@
+=== span 0024A5A0-0024A5F0
+0024A5A0  mov      r11, rcx
+0024A5A3  lea      r9, [rip + 0x1e44fd6]   ; -> 0208F580
+0024A5AA  xor      r10d, r10d
+0024A5AD  nop      dword ptr [rax]
+0024A5B0  test     byte ptr [r9 + 0x38], 0x20
+0024A5B5  je       0x24a5d7
+0024A5B7  mov      r8, r9
+0024A5BA  mov      rax, r11
+0024A5BD  sub      r8, r11
+0024A5C0  movzx    edx, byte ptr [rax]
+0024A5C3  movzx    ecx, byte ptr [rax + r8]
+0024A5C8  sub      edx, ecx
+0024A5CA  jne      0x24a5d3
+0024A5CC  inc      rax
+0024A5CF  test     ecx, ecx
+0024A5D1  jne      0x24a5c0
+0024A5D3  test     edx, edx
+0024A5D5  je       0x24a5e7
+0024A5D7  inc      r10d
+0024A5DA  add      r9, 0x48
+0024A5DE  cmp      r10d, 0x40
+0024A5E2  jl       0x24a5b0
+0024A5E4  xor      eax, eax
+0024A5E6  ret      
+0024A5E7  mov      rax, r9
+0024A5EA  ret      
+0024A5EB  int3     
+0024A5EC  int3     
+0024A5ED  int3     
+0024A5EE  int3     
+0024A5EF  int3     
+=== span 0024A5F0-0024A710
+0024A5F0  movsxd   rax, ecx
+0024A5F3  lea      rcx, [rax + rax*8]
+0024A5F7  lea      rax, [rip + 0x1e44f82]   ; -> 0208F580
+0024A5FE  lea      rax, [rax + rcx*8]
+0024A602  ret      
+0024A603  int3     
+0024A604  int3     
+0024A605  int3     
+0024A606  int3     
+0024A607  int3     
+0024A608  int3     
+0024A609  int3     
+0024A60A  int3     
+0024A60B  int3     
+0024A60C  int3     
+0024A60D  int3     
+0024A60E  int3     
+0024A60F  int3     
+0024A610  mov      r11, rcx
+0024A613  lea      r9, [rip + 0x1e44f66]   ; -> 0208F580
+0024A61A  xor      r10d, r10d
+0024A61D  nop      dword ptr [rax]
+0024A620  test     byte ptr [r9 + 0x38], 0x20
+0024A625  je       0x24a647
+0024A627  mov      r8, r9
+0024A62A  mov      rax, r11
+0024A62D  sub      r8, r11
+0024A630  movzx    edx, byte ptr [rax]
+0024A633  movzx    ecx, byte ptr [rax + r8]
+0024A638  sub      edx, ecx
+0024A63A  jne      0x24a643
+0024A63C  inc      rax
+0024A63F  test     ecx, ecx
+0024A641  jne      0x24a630
+0024A643  test     edx, edx
+0024A645  je       0x24a657
+0024A647  inc      r10d
+0024A64A  add      r9, 0x48
+0024A64E  cmp      r10d, 0x40
+0024A652  jl       0x24a620
+0024A654  xor      eax, eax
+0024A656  ret      
+0024A657  mov      eax, r10d
+0024A65A  ret      
+0024A65B  int3     
+0024A65C  int3     
+0024A65D  int3     
+0024A65E  int3     
+0024A65F  int3     
+0024A660  xor      edx, edx
+0024A662  lea      rcx, [rip + 0x1e44f17]   ; -> 0208F580
+0024A669  mov      r8d, 0x1208
+0024A66F  jmp      0x861ec0
+0024A674  int3     
+0024A675  int3     
+0024A676  int3     
+0024A677  int3     
+0024A678  int3     
+0024A679  int3     
+0024A67A  int3     
+0024A67B  int3     
+0024A67C  int3     
+0024A67D  int3     
+0024A67E  int3     
+0024A67F  int3     
+0024A680  test     rcx, rcx
+0024A683  je       0x24a70c
+0024A689  mov      qword ptr [rsp + 8], rbx
+0024A68E  push     rdi
+0024A68F  sub      rsp, 0x20
+0024A693  mov      edi, edx
+0024A695  lea      rax, [rip + 0x1e44ee4]   ; -> 0208F580
+0024A69C  mov      rbx, rcx
+0024A69F  xor      r8d, r8d
+0024A6A2  cmp      rax, rbx
+0024A6A5  je       0x24a6c3
+0024A6A7  add      rax, 0x48
+0024A6AB  cmp      rax, rbx
+0024A6AE  je       0x24a6c0
+0024A6B0  add      rax, 0x48
+0024A6B4  add      r8d, 2
+0024A6B8  cmp      r8d, 0x40
+0024A6BC  jl       0x24a6a2
+0024A6BE  jmp      0x24a6c3
+0024A6C0  inc      r8d
+0024A6C3  cmp      r8d, 0x40
+0024A6C7  je       0x24a702
+0024A6C9  call     0x181610
+0024A6CE  mov      eax, dword ptr [rbx + 0x38]
+0024A6D1  and      eax, 0x3f00
+0024A6D6  cmp      eax, 0x1400
+0024A6DB  jne      0x24a6eb
+0024A6DD  mov      rcx, qword ptr [rbx + 0x10]
+0024A6E1  test     rcx, rcx
+0024A6E4  je       0x24a6eb
+0024A6E6  call     0x3697f0
+0024A6EB  test     edi, edi
+0024A6ED  je       0x24a6f8
+0024A6EF  mov      rcx, qword ptr [rbx + 0x18]
+0024A6F3  call     0x3697f0
+0024A6F8  and      dword ptr [rbx + 0x38], 0xffffffdf
+0024A6FC  dec      dword ptr [rip + 0x1e4607e]   ; -> 02090780
+0024A702  mov      rbx, qword ptr [rsp + 0x30]
+0024A707  add      rsp, 0x20
+0024A70B  pop      rdi
+0024A70C  ret      
+0024A70D  int3     
+0024A70E  int3     
+0024A70F  int3     

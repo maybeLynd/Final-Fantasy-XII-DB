@@ -1,0 +1,1 @@
+{"action": "finish", "task": "FABLE-NOTICE-DATA-UQ218-SELECTOR-CRITERIA", "result_refs": ["commit:d22ad1b95"], "note": "Verified: selector_kinds.py FAILS 0. 0x0B row corrected to the ten authored kinds {0,1,2,0xA,0xB,0x10,0x20,0x21,0x24,0x25}; closing residue narrowed to 004256E0 bands, yaw-left sign, kind-1/2 resets. Commit d22ad1b95."}

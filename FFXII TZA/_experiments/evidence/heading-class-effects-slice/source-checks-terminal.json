@@ -1,0 +1,57 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"SOURCE_CAPTURE_AND_ZERO_MODE_DISCRIMINATOR_VALID\",\n  \"normal_mode0_nested_targets\": [\n    \"0x2ebe50\",\n    \"0x2e8ee0\",\n    \"0x2e6300\"\n  ],\n  \"scope\": \"Original static call argument/branch only. No class-preservation, initialized alias, nested effects or live reachability acceptance. Leaf extents remain separately unproved.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "46d5ff65416085bb79c55720a600ddccce3ababc7dc83e95ac463d08c9fcc36c"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py",
+      "--fault-upstream-failed"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py\", line 7, in <module>\n    assert t['terminal'] is True and t['returncode']==0 and not t['stderr'] and t['driver_sha256']==sha(W/'original-producers/capture.py')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "46d5ff65416085bb79c55720a600ddccce3ababc7dc83e95ac463d08c9fcc36c"
+  },
+  {
+    "case": "cookie-omitted",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py",
+      "--fault-cookie-omitted"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py\", line 11, in <module>\n    assert {int(f['entry'],16) for f in r['callees']}==set(r['unique_targets']), 'Every observed direct target, including cookie/failure helper, must be captured'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Every observed direct target, including cookie/failure helper, must be captured\n",
+    "terminal": true,
+    "checker_sha256": "46d5ff65416085bb79c55720a600ddccce3ababc7dc83e95ac463d08c9fcc36c"
+  },
+  {
+    "case": "mode-four",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py",
+      "--fault-mode-four"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\check-source.py\", line 23, in <module>\n    if '--fault-mode-four' in sys.argv:assert m[0x2e4964]==('mov','edx, 4'),'Caller explicitly supplies mode0; do not test irrelevant mode4 to establish this call path'\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Caller explicitly supplies mode0; do not test irrelevant mode4 to establish this call path\n",
+    "terminal": true,
+    "checker_sha256": "46d5ff65416085bb79c55720a600ddccce3ababc7dc83e95ac463d08c9fcc36c"
+  }
+]

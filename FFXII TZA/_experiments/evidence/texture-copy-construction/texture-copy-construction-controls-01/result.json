@@ -1,0 +1,39 @@
+{
+  "status": "PASS_ACTUAL_COPY_CONSTRUCTION_REFUSALS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "positive_reused": true,
+  "positive_result_sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207",
+  "refusals": [
+    {
+      "case": "missing-wrapper",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "missing original/adapter prerequisite",
+      "expected_error_seen": true
+    },
+    {
+      "case": "false-copy-count",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "disagree",
+      "expected_error_seen": true
+    },
+    {
+      "case": "consistent-copy-count",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong/incomplete construction body",
+      "expected_error_seen": true
+    },
+    {
+      "case": "wrong-initializer-leaf",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong construction root/leaf",
+      "expected_error_seen": true
+    }
+  ],
+  "driver_sha256": "f22a1f6c15348d739699316693c10fc9c0b637aa1bed18f09f606912f61dda73",
+  "reader_sha256": "a07431ae147105e6c3dfef70d6f1b6a2233836b56f47624029da7e78b9166097",
+  "limits": "Synthetic source CLI controls only; no new positive/shipping execution/native/live/independent acceptance. All children terminal."
+}

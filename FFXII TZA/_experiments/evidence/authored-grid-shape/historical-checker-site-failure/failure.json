@@ -1,0 +1,9 @@
+{
+  "status": "REJECTED_BEFORE_ACCEPTANCE",
+  "tool": "check.py",
+  "checker_sha256": "b4699d4b6168f9b2936c347534531af21cb0605683dac9bbfa3c1f9bc368e69a",
+  "failed_assertion": "0x20E600 was expected add rcx,qword ptr [rip+0x1d74f29]",
+  "observed_original": "0x20E600 mov eax,ecx; 0x20E602 add rax,qword ptr [rip+0x1d74f27]",
+  "effect": "No validation.json produced or prior accepted finding changed; captured source/asset bytes not rewritten.",
+  "repair": "Bind both exact decoder sites and retain this rejected checker as minimal regression control."
+}

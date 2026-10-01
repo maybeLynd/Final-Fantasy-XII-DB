@@ -1,0 +1,23 @@
+PASS  K1a verb 0539 = 1337 = skipexec, result 0034ECF0
+PASS  K1b verb 051A = skipstart, begin 0034D3A0
+PASS  K1c verb 051C = skipcheck, result 0034F160
+PASS  K1d 0034ECF0 -> jmp 00360710, edx = owner +0x15
+PASS  K1e 0034D3A0 -> 00360980(n, +0x15, word +0)
+PASS  K1f skipcheck returns dword [022CB738 + (n+m*8)*16]
+PASS  K2a 00360710 returns 0 at once when m == 0 (test edx, edx / jne / xor eax, eax)
+PASS  K2b entry base 022CB730
+PASS  K2c or into 022CB9D8 + m*4 (begun), and-not into 022CB9C0 + m*4 (registered)
+PASS  K2d calls 0026A5B0(m, 1, n)
+PASS  K3a 0026A5B0 writes 02098E10 + m*0x288 + 0x201
+PASS  K3b 00267310 reads 02098E10 + 0x201 + m*0x288
+PASS  K3c 00360980 sets the registered bit (022CB9C0 + m*4)
+PASS  K4 00360880: m = 1..3 over 022CB9C4 + 4(m-1), first set bit < 8, one 00360710 call per m
+PASS  K5a only rel32 caller of 00360880 is 002281B7 (in 00228130)
+PASS  K5b 00228130: no rel32 caller; one rip reference, in 00228700
+PASS  K5c message-18 arm: bt 13 then 00360880, then clear bit 13 (002281C3)
+  writes at disp 0x400 (word or wider) that can set bit 13: 001D0390 001D0B1C mov qword ptr [rdi + 0x400], rax; 0026FEC0 0026FEFF mov qword ptr [rsp + 0x400], rbx; 00270150 00270190 mov qword ptr [rsp + 0x400], rbx; 00285EA0 00285EB6 xor dword ptr [rax + 0x400], ecx; 002A2AD0 002A2B0A mov qword ptr [rdi + 0x400], rax; 002EDBD0 002EDC49 mov qword ptr [rbx + 0x400], rax; 002EDBD0 002EDC59 mov qword ptr [rbx + 0x400], rax; 0041FCF0 0041FE03 mov qword ptr [rdi + 0x400], r13; 0041FCF0 0041FE1A mov qword ptr [rdi + 0x400], rcx; 00420480 004205D3 mov qword ptr [rsi + 0x400], rax; 00420480 004205E6 mov qword ptr [rsi + 0x400], rcx; 0042DA30 0042DA7D mov qword ptr [rbx + 0x400], rax; 0042DA30 0042DA8F mov qword ptr [rbx + 0x400], rax; 0042DA30 0042DB4B mov qword ptr [rcx + 0x400], rdi; 00476C80 00476E05 mov qword ptr [rbx + 0x400], 2; 005409C0 00540B42 mov qword ptr [rbx + 0x400], rax; 006155B0 006155C2 mov qword ptr [rcx + 0x400], rdx; 006272C0 006273DC mov dword ptr [rsi + 0x400], eax; 0062A0A0 0062A23E mov dword ptr [r14 + 0x400], eax; 0062A0A0 0062A2D4 mov dword ptr [r14 + 0x400], eax; 0062A0A0 0062A376 mov dword ptr [r14 + 0x400], eax; 0062A0A0 0062A417 mov dword ptr [r14 + 0x400], eax; 0062A0A0 0062A561 mov dword ptr [r14 + 0x400], ecx; 0062A0A0 0062A59C mov dword ptr [r14 + 0x400], eax; 0062A0A0 0062A62F mov dword ptr [r14 + 0x400], eax; 006FF900 007027AF mov dword ptr [rbp + 0x400], eax
+  of them in functions that reference 0209AC30: 00285EB6
+PASS  K6a among functions referencing 0209AC30, only 00285EA0 (00285EB6) can set bit 13 of +0x400
+PASS  K6b only rel32 caller of 00285EA0 is 0022917A (00228C70)
+PASS  K6c 0022917A lies in 00228C70 message-2 state 4 (table 002294EC entry 4 = 00229159)
+FAILS 0

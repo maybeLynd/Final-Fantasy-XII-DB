@@ -1,0 +1,6 @@
+PASS  B bit 0 of vertex +0x74 / index +0x6C: set by the four creators, tested and cleared by the unbind, tested by the destroy
+PASS  D destroys: drain, unbind when bound, external element array freed; vertex also frees the base's +0x10 array
+PASS  W drains Sleep(1) while element +0x20 > 0 (index*0x48 + 0x20)
+PASS  U unbind: free +0x40 after removing the queued update; release +0x08, +0x00, +0x18
+PASS  S element spans re-cut (+0x18 released object, +0x20 count), owner bound flag typed, cells reduced, tiling kept
+FAILS 0

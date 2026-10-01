@@ -1,0 +1,267 @@
+00797690  mov       rax, rsp
+00797693  push      rdi
+00797694  push      r14
+00797696  push      r15
+00797698  sub       rsp, 0xe0
+0079769F  mov       qword ptr [rsp + 0x40], 0xfffffffffffffffe
+007976A8  mov       qword ptr [rax + 0x10], rbx
+007976AC  mov       qword ptr [rax + 0x18], rbp
+007976B0  mov       qword ptr [rax + 0x20], rsi
+007976B4  mov       rax, qword ptr [rip + 0x17ad175]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+007976BB  xor       rax, rsp
+007976BE  mov       qword ptr [rsp + 0xd0], rax
+007976C6  mov       rbp, rcx
+007976C9  add       rcx, 0x14
+007976CD  call      0x797ad0
+007976D2  movzx     ecx, byte ptr [rip + 0x270dca0]   ; -> 02EA5379 (virtual tail / unmapped)
+007976D9  mov       edx, 1
+007976DE  test      al, al
+007976E0  cmovne    ecx, edx
+007976E3  mov       byte ptr [rip + 0x270dc90], cl   ; -> 02EA5379 (virtual tail / unmapped)
+007976E9  xor       esi, esi
+007976EB  lea       r15, [rip + 0x17a8af6]   ; -> 01F401E8 u32=01F401E8 f32=8.96342e-38
+007976F2  xor       edi, edi
+007976F4  mov       rbx, qword ptr [rip + 0x17a8aed]   ; -> 01F401E8 u32=01F401E8 f32=8.96342e-38
+007976FB  cmp       rbx, r15
+007976FE  je        0x797754
+00797700  test      rbx, rbx
+00797703  je        0x797754
+00797705  add       rbx, -8
+00797709  je        0x797754
+0079770B  mov       rax, qword ptr [rbx]
+0079770E  mov       rcx, rbx
+00797711  call      qword ptr [rax + 8]
+00797714  cmp       eax, 2
+00797717  jne       0x79771f
+00797719  cmp       edi, esi
+0079771B  je        0x797736
+0079771D  inc       edi
+0079771F  mov       rax, qword ptr [rbx + 8]
+00797723  cmp       rax, r15
+00797726  je        0x797754
+00797728  test      rax, rax
+0079772B  je        0x797754
+0079772D  lea       rbx, [rax - 8]
+00797731  test      rbx, rbx
+00797734  jmp       0x797709
+00797736  mov       rax, qword ptr [rbp + 4]
+0079773A  cmp       rax, qword ptr [rbx + 0x1d4]
+00797741  jne       0x797754
+00797743  mov       rax, qword ptr [rbp + 0xc]
+00797747  cmp       rax, qword ptr [rbx + 0x1dc]
+0079774E  je        0x7978e1
+00797754  inc       esi
+00797756  cmp       esi, 0x12
+00797759  jb        0x7976f2
+0079775B  xor       bl, bl
+0079775D  mov       rcx, qword ptr [rip + 0x2711da4]   ; -> 02EA9508 (virtual tail / unmapped)
+00797764  test      rcx, rcx
+00797767  je        0x7977b5
+00797769  mov       rax, qword ptr [rcx]
+0079776C  call      qword ptr [rax + 0x10]
+0079776F  mov       rcx, qword ptr [rip + 0x2711d92]   ; -> 02EA9508 (virtual tail / unmapped)
+00797776  mov       rax, qword ptr [rcx]
+00797779  lea       rdx, [rsp + 0x50]
+0079777E  call      qword ptr [rax + 0x18]
+00797781  test      eax, eax
+00797783  jle       0x7977b5
+00797785  lea       rdx, [rip + 0x151bfe4]   ; -> 01CB3770 u32=61657243 f32=2.64534e+20
+0079778C  mov       ecx, 2
+00797791  call      0x5cdaa0
+00797796  mov       ecx, 0x458
+0079779B  call      0x584740
+007977A0  mov       qword ptr [rsp + 0x30], rax
+007977A5  test      rax, rax
+007977A8  je        0x7977b3
+007977AA  mov       rcx, rax
+007977AD  call      0x792b70
+007977B2  nop       
+007977B3  mov       bl, 1
+007977B5  lea       rcx, [rbp + 0x14]
+007977B9  call      0x797ad0
+007977BE  test      al, al
+007977C0  je        0x797826
+007977C2  mov       eax, dword ptr [rip + 0x2711d38]   ; -> 02EA9500 (virtual tail / unmapped)
+007977C8  cmp       eax, 4
+007977CB  jae       0x797819
+007977CD  movups    xmm0, xmmword ptr [rbp + 4]
+007977D1  movaps    xmmword ptr [rsp + 0x30], xmm0
+007977D6  lea       r8, [rsp + 0x30]
+007977DB  lea       rdx, [rip + 0x151bfae]   ; -> 01CB3790 u32=61657243 f32=2.64534e+20
+007977E2  mov       ecx, 2
+007977E7  call      0x5cdaa0
+007977EC  mov       ecx, 0x470
+007977F1  call      0x584740
+007977F6  mov       qword ptr [rsp + 0x30], rax
+007977FB  test      rax, rax
+007977FE  je        0x797813
+00797800  mov       r8d, dword ptr [rip + 0x2711cf9]   ; -> 02EA9500 (virtual tail / unmapped)
+00797807  mov       rdx, rbp
+0079780A  mov       rcx, rax
+0079780D  call      0x792cb0
+00797812  nop       
+00797813  mov       eax, dword ptr [rip + 0x2711ce7]   ; -> 02EA9500 (virtual tail / unmapped)
+00797819  inc       eax
+0079781B  mov       dword ptr [rip + 0x2711cdf], eax   ; -> 02EA9500 (virtual tail / unmapped)
+00797821  jmp       0x7978e1
+00797826  test      bl, bl
+00797828  jne       0x7978e1
+0079782E  lea       rdx, [rip + 0x151bf7b]   ; -> 01CB37B0 u32=61657243 f32=2.64534e+20
+00797835  mov       ecx, 2
+0079783A  call      0x5cdaa0
+0079783F  mov       rcx, qword ptr [rip + 0x270db2a]   ; -> 02EA5370 (virtual tail / unmapped)
+00797846  mov       rax, qword ptr [rcx]
+00797849  lea       rdx, [rbp + 4]
+0079784D  xor       r9d, r9d
+00797850  lea       r8, [rsp + 0x20]
+00797855  call      qword ptr [rax + 0x18]
+00797858  test      eax, eax
+0079785A  js        0x7978e1
+00797860  mov       rcx, qword ptr [rsp + 0x20]
+00797865  mov       rax, qword ptr [rcx]
+00797868  lea       rdx, [rip + 0x152f901]   ; -> 01CC7170 u32=00000020 f32=4.48416e-44
+0079786F  call      qword ptr [rax + 0x58]
+00797872  test      eax, eax
+00797874  js        0x7978e1
+00797876  mov       rcx, qword ptr [rsp + 0x20]
+0079787B  mov       rax, qword ptr [rcx]
+0079787E  mov       r8d, 6
+00797884  mov       rdx, qword ptr [rip + 0x270d9bd]   ; -> 02EA5248 (virtual tail / unmapped)
+0079788B  call      qword ptr [rax + 0x68]
+0079788E  cmp       eax, 0x80004001
+00797893  je        0x7978e1
+00797895  mov       rcx, qword ptr [rsp + 0x20]
+0079789A  mov       rax, qword ptr [rcx]
+0079789D  xor       r9d, r9d
+007978A0  mov       r8, rcx
+007978A3  lea       rdx, [rip - 0x162a]   ; -> 00796280 u32=48EC8348 f32=484378
+007978AA  call      qword ptr [rax + 0x20]
+007978AD  test      eax, eax
+007978AF  js        0x7978e1
+007978B1  mov       rcx, qword ptr [rsp + 0x20]
+007978B6  mov       rax, qword ptr [rcx]
+007978B9  call      qword ptr [rax + 0x38]
+007978BC  mov       ecx, 0x458
+007978C1  call      0x584740
+007978C6  mov       qword ptr [rsp + 0x30], rax
+007978CB  test      rax, rax
+007978CE  je        0x7978e1
+007978D0  mov       r8, qword ptr [rsp + 0x20]
+007978D5  mov       rdx, rbp
+007978D8  mov       rcx, rax
+007978DB  call      0x792ab0
+007978E0  nop       
+007978E1  mov       rcx, qword ptr [rsp + 0xd0]
+007978E9  xor       rcx, rsp
+007978EC  call      0x808c40
+007978F1  lea       r11, [rsp + 0xe0]
+007978F9  mov       rbx, qword ptr [r11 + 0x28]
+007978FD  mov       rbp, qword ptr [r11 + 0x30]
+00797901  mov       rsi, qword ptr [r11 + 0x38]
+00797905  mov       rsp, r11
+00797908  pop       r15
+0079790A  pop       r14
+0079790C  pop       rdi
+0079790D  ret       
+0079790E  int3      
+0079790F  int3      
+00797910  push      rbx
+00797912  sub       rsp, 0x30
+00797916  lea       rcx, [rip + 0x16667b3]   ; -> 01DFE0D0 u32=001F3E10 f32=2.86916e-39
+0079791D  call      qword ptr [rip + 0x12b86d]   ; -> 008C3190 u32=01CCBFA6 f32=7.52128e-38
+00797923  mov       rcx, qword ptr [rax + 0x68]
+00797927  mov       qword ptr [rip + 0x2711bda], rcx   ; -> 02EA9508 (virtual tail / unmapped)
+0079792E  test      rcx, rcx
+00797931  je        0x797938
+00797933  mov       rax, qword ptr [rcx]
+00797936  call      qword ptr [rax]
+00797938  xor       ecx, ecx
+0079793A  call      qword ptr [rip + 0x12a950]   ; -> 008C2290 u32=01CCC51A f32=7.52206e-38
+00797940  xor       ebx, ebx
+00797942  lea       r9, [rip + 0x270da27]   ; -> 02EA5370 (virtual tail / unmapped)
+00797949  mov       rcx, rax
+0079794C  mov       qword ptr [rsp + 0x20], rbx
+00797951  lea       r8, [rip + 0x152f848]   ; -> 01CC71A0 u32=BF798030 f32=-0.974612
+00797958  mov       edx, 0x800
+0079795D  call      0x8088fa
+00797962  test      eax, eax
+00797964  jns       0x79796f
+00797966  lea       eax, [rbx + 9]
+00797969  add       rsp, 0x30
+0079796D  pop       rbx
+0079796E  ret       
+0079796F  mov       rcx, qword ptr [rip + 0x270d9fa]   ; -> 02EA5370 (virtual tail / unmapped)
+00797976  lea       r8, [rip - 0x174d]   ; -> 00796230 u32=28EC8348 f32=2.62582e-14
+0079797D  xor       r9d, r9d
+00797980  mov       dword ptr [rsp + 0x20], 1
+00797988  xor       edx, edx
+0079798A  mov       r10, qword ptr [rcx]
+0079798D  call      qword ptr [r10 + 0x20]
+00797991  test      eax, eax
+00797993  mov       ecx, 9
+00797998  cmovs     ebx, ecx
+0079799B  mov       eax, ebx
+0079799D  add       rsp, 0x30
+007979A1  pop       rbx
+007979A2  ret       
+007979A3  int3      
+007979A4  int3      
+007979A5  int3      
+007979A6  int3      
+007979A7  int3      
+007979A8  int3      
+007979A9  int3      
+007979AA  int3      
+007979AB  int3      
+007979AC  int3      
+007979AD  int3      
+007979AE  int3      
+007979AF  int3      
+007979B0  sub       rsp, 0x58
+007979B4  call      qword ptr [rip + 0x12a7fe]   ; -> 008C21B8 u32=01CCC31E f32=7.52177e-38
+007979BA  mov       rcx, rax
+007979BD  lea       r8, [rsp + 0x68]
+007979C2  lea       rdx, [rsp + 0x60]
+007979C7  call      qword ptr [rip + 0x12a863]   ; -> 008C2230 u32=01CCC432 f32=7.52193e-38
+007979CD  mov       rcx, qword ptr [rsp + 0x60]
+007979D2  xor       edx, edx
+007979D4  test      eax, eax
+007979D6  cmove     rcx, rdx
+007979DA  mov       qword ptr [rsp + 0x60], rcx
+007979DF  test      rcx, rcx
+007979E2  je        0x7979ef
+007979E4  lea       rax, [rcx - 1]
+007979E8  inc       edx
+007979EA  and       rcx, rax
+007979ED  jne       0x7979e4
+007979EF  test      edx, edx
+007979F1  jne       0x797a02
+007979F3  lea       rcx, [rsp + 0x20]
+007979F8  call      qword ptr [rip + 0x12a822]   ; -> 008C2220 u32=01CCC412 f32=7.52191e-38
+007979FE  mov       edx, dword ptr [rsp + 0x40]
+00797A02  cmp       edx, 1
+00797A05  jbe       0x797a0e
+00797A07  mov       ecx, edx
+00797A09  call      0x5a0ae0
+00797A0E  xor       eax, eax
+00797A10  add       rsp, 0x58
+00797A14  ret       
+00797A15  int3      
+00797A16  int3      
+00797A17  int3      
+00797A18  int3      
+00797A19  int3      
+00797A1A  int3      
+00797A1B  int3      
+00797A1C  int3      
+00797A1D  int3      
+00797A1E  int3      
+00797A1F  int3      
+00797A20  push      rbp
+00797A22  sub       rsp, 0x30
+00797A26  lea       rbp, [rsp + 0x20]
+00797A2B  mov       qword ptr [rbp + 0x20], rbx
+00797A2F  mov       qword ptr [rbp + 0x28], rdi
+00797A33  mov       rax, qword ptr [rip + 0x17acdf6]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+00797A3A  xor       rax, rbp
+---

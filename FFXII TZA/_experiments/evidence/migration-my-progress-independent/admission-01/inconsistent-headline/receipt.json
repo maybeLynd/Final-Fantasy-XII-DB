@@ -1,0 +1,56 @@
+{
+  "name": "inconsistent-headline",
+  "view_sha256": "d90ad9da789951d91ee98f7f43906d6892023163250aa6009ea701b0be0da491",
+  "original_producer_sha256": "6f10f1721247677c388088b9b2b482882507272eed2119f583d9456c5fc2ac75",
+  "intervention": "pre-resolved reporter/gate/facts fixture; extra post-producer view field mutation",
+  "check_view_reason": "progress scope union disagrees with its measure",
+  "generation": "g20260929T073828Z-3bc09e",
+  "status": {
+    "generation": "g20260929T073828Z-3bc09e",
+    "committed_at": "2026-09-29T07:38:28Z",
+    "historical": false,
+    "current": {
+      "generation": "g20260929T073828Z-3bc09e",
+      "committed_at": "2026-09-29T07:38:28Z",
+      "problems": []
+    },
+    "problems": [],
+    "no_verified_generation": false,
+    "drift": {},
+    "volatile_drift": {},
+    "failure": null,
+    "reader_stale": false,
+    "views": {
+      "progress": "MALFORMED",
+      "overview": "UNMEASURED",
+      "systems": "UNMEASURED",
+      "vbf": "UNMEASURED",
+      "executable": "UNMEASURED",
+      "types": "UNMEASURED",
+      "evidence": "UNMEASURED",
+      "fleet": "UNMEASURED"
+    },
+    "required": [
+      "progress",
+      "overview",
+      "systems",
+      "vbf",
+      "executable",
+      "types",
+      "evidence",
+      "fleet"
+    ],
+    "verified_at": "2026-09-29T07:38:28Z",
+    "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+  },
+  "served": {
+    "generation": "g20260929T073828Z-3bc09e",
+    "committed_at": "2026-09-29T07:38:28Z",
+    "drift": {},
+    "historical": false,
+    "current_problems": [],
+    "status": "MALFORMED",
+    "why": "progress scope union disagrees with its measure"
+  },
+  "admitted": false
+}

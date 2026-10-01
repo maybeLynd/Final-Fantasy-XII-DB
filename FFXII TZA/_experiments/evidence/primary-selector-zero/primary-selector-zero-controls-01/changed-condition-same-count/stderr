@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-primary-selector-zero.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-primary-selector-zero.py", line 17, in main
+    if (q['end_exclusive'],q['sha256'])!=('0x330048','1d796bf176912574660eedaa1919235222d3a34b66f6492014cae31b3884f9f7'):raise ValueError('retained caller identity changed')
+                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: retained caller identity changed

@@ -1,0 +1,6 @@
+SURVIVES  B0  0022A0B0 <- ['0017D4C0']; 0022BDF0 ends jmp 0x1eddc0; 00379CF0 5 B ['jmp 0x863d30']; 0017D8F0 11 B
+SURVIVES  B1  first use ['mov edx, 0x1571'] behind the latch True; boot reseed ecx=0x11b9
+SURVIVES  B2  seed callers [('0022A0B0', '0022A410'), ('00584210', '005843D3')]; before 005843D3: import ['call qword ptr [rip + 0x33ecbb]'], ['imul eax, dword ptr [rip + 0x1a506c2], 0x258'], sign ['btr ecx, 0x1f']
+SURVIVES  B3  writers [('00229F10', '00229F10'), ('0022A0B0', '0022A1A7')]; setter ['mov dword ptr [rip + 0x1e3abb6], ecx', 'ret']; setter callers ['002695A0', '0026DB10'] (002695A0 <- 002628B0, 0026DB10 <- 003464B0), each dividing by 01DFE0B4
+SURVIVES  B4  11 allocations 257.1 MiB; 9 registrations 255.6 MiB; every registration is size + its fourth argument: True; tails ['0x10', '0x100', '0x400']
+FAILS 0

@@ -1,0 +1,18 @@
+0060F3D0 mov rax, qword ptr [rcx + 0x70]
+0060F3D4 mov r10, r8
+0060F3D7 mov r11, rdx
+0060F3DA test rax, rax
+0060F3DD je 0x60f3eb
+0060F3DF mov r8d, r9d
+0060F3E2 mov rdx, r10
+0060F3E5 mov rcx, r11
+0060F3E8 jmp rax
+0060F3EB mov eax, 0x15
+0060F3F0 ret 
+0060F3F1 int3 
+0060F3F2 int3 
+0060F3F3 int3 
+0060F3F4 int3 
+0060F3F5 int3 
+0060F3F6 int3 
+0060F3F7 int3 

@@ -1,0 +1,8 @@
+# NativeLeaf.RefFlag40StrideAccessor - EC-7 family C
+# if arg2 >= [this+0x18]&~bit31 return 0; index heap [this+0x20] or inline
+# # this+0x20 at 40-byte stride; return [elem+8].
+address	targets
+00623F50	
+00623FF0	
+00624180	
+00624220	

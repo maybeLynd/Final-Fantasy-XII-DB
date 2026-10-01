@@ -1,0 +1,239 @@
+type	disp	base	kind_published	kind_correct	function	site	instruction
+ActiveLogWidget40C8	0x30	0x30	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ActiveLogWidget40C8	0x44	0x44	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ActiveLogWidget40C8	0x58	0x58	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ActorManagerSlot	0x10	0x0	w	r	002628B0	0026292C	test byte ptr [rbx + 0x10], sil
+ActorManagerSlot	0x10	0x0	w	r	00268D10	00268D4F	test byte ptr [rsi + 0x10], bl
+ActorStorageRecord	0xB	0x0	w	r	0025B7E0	0025B7FB	test byte ptr [rdi + 0xb], bl
+ActorStorageRecord	0xB	0x0	w	r	0025BAD0	0025BB74	test byte ptr [rdi + 0xb], bl
+ActorStorageRecord	0xB	0x0	w	r	0025BE50	0025BE8B	test byte ptr [rdi + 0xb], sil
+ActorStorageRecord	0xB	0x0	w	r	0025C230	0025C367	test byte ptr [rdi + 0xb], bl
+ActorStorageRecord	0xB	0x0	w	r	0025C830	0025C8D7	test byte ptr [rdi + 0xb], r15b
+ActorStorageRecord	0x1C	0x0	w	r	0025BAD0	0025BDBE	test dword ptr [rdi + 0x1c], r14d
+BattleSystemState	0x4	0x0	w	r	00318CD0	00318D21	test dword ptr [rax + 4], ecx
+BattleSystemState	0x5A5A	0x5A5A	r	w	003266C0	00326717	movups xmmword ptr [r15], xmm0
+BattleSystemState	0x5A5A	0x0	r	w	00329CC0	00329DF6	movups xmmword ptr [rcx + 0x5a5a], xmm0
+BattleSystemState	0x5A6C	0x5A6C	r	w	003266C0	0032673E	movups xmmword ptr [r14], xmm0
+BattleSystemState	0x5A6C	0x0	r	w	00329CC0	00329E04	movups xmmword ptr [rcx + 0x5a6c], xmm0
+BattleSystemState	0x5A7E	0x5A48	r	w	003266C0	00326720	movups xmmword ptr [rdi + 0x36], xmm0
+BattleSystemState	0x5A7E	0x0	r	w	00329CC0	00329E12	movups xmmword ptr [rcx + 0x5a7e], xmm0
+BattleSystemState	0x5A90	0x5A48	r	w	003266C0	00326747	movups xmmword ptr [rdi + 0x48], xmm0
+BattleSystemState	0x5A90	0x5A48	r	w	003266C0	003267F3	movups xmmword ptr [rdi + 0x48], xmm0
+BattleSystemState	0x5A90	0x5A48	r	w	003266C0	003267F3	movups xmmword ptr [rdi + 0x48], xmm0
+BattleSystemState	0x5A90	0x5A48	r	w	003266C0	003268FD	movups xmmword ptr [rdi + 0x48], xmm0
+BattleSystemState	0x5A90	0x0	r	w	00329CC0	00329E20	movups xmmword ptr [rcx + 0x5a90], xmm0
+BattleSystemState	0x5AD0	0x0	r	w	002EF410	002EF44C	movups xmmword ptr [rax + 0x5ad0], xmm0
+BattleSystemState	0x5AE0	0x0	r	w	002EF410	002EF424	movups xmmword ptr [rax + 0x5ae0], xmm0
+BattleUnit	0xD0	0x0	r	w	00310920	00310AD8	movups xmmword ptr [rdi + 0xd0], xmm10
+BattleUnit	0xD0	0x0	r	w	00310920	00310AD8	movups xmmword ptr [rdi + 0xd0], xmm10
+BattleUnit	0xE0	0x0	r	w	00310920	00310AE0	movups xmmword ptr [rdi + 0xe0], xmm10
+BattleUnit	0xE0	0x0	r	w	00310920	00310AE0	movups xmmword ptr [rdi + 0xe0], xmm10
+CharacterRenderRecord	0x1C	0x0	r	w	00420480	004204BE	movups xmmword ptr [rcx + 0x1c], xmm0
+CharacterRenderRecord	0x2C	0x0	r	w	00420480	004204C6	movups xmmword ptr [rcx + 0x2c], xmm1
+CharacterRenderRecord	0x3C	0x0	r	w	00420480	004204CE	movups xmmword ptr [rcx + 0x3c], xmm0
+CharacterRenderRecord	0x4C	0x0	r	w	00420480	004204D7	movups xmmword ptr [rcx + 0x4c], xmm1
+CharacterRenderRecord	0x180	0x180	r	w	00202C70	00202C73	movups xmmword ptr [rcx], xmm0
+CharacterRenderRecord	0x180	0x180	r	w	00217150	0021758F	movups xmmword ptr [rcx], xmm0
+CharacterRenderRecord	0x190	0x180	r	w	00202C70	00202C7A	movups xmmword ptr [rcx + 0x10], xmm0
+CharacterRenderRecord	0x190	0x180	r	w	00217150	002175A1	movups xmmword ptr [rcx + 0x10], xmm0
+CharacterRenderRecord	0x1A0	0x180	r	w	00202C70	00202C82	movups xmmword ptr [rcx + 0x20], xmm0
+CharacterRenderRecord	0x1A0	0x180	r	w	00217150	002175F3	movups xmmword ptr [rcx + 0x20], xmm0
+CharacterRenderRecord	0x1B0	0x180	r	w	00202C70	00202C8A	movups xmmword ptr [rcx + 0x30], xmm0
+CharacterRenderRecord	0x1B0	0x180	r	w	00217150	002175FB	movups xmmword ptr [rcx + 0x30], xmm0
+CharacterRenderRecord	0x1C0	0x1C0	r	w	00202C70	00202C73	movups xmmword ptr [rcx], xmm0
+CharacterRenderRecord	0x1D0	0x1C0	r	w	00202C70	00202C7A	movups xmmword ptr [rcx + 0x10], xmm0
+CharacterRenderRecord	0x1E0	0x1C0	r	w	00202C70	00202C82	movups xmmword ptr [rcx + 0x20], xmm0
+CharacterRenderRecord	0x1F0	0x1C0	r	w	00202C70	00202C8A	movups xmmword ptr [rcx + 0x30], xmm0
+CharacterRenderRecord	0x2D0	0x2D0	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+CharacterRenderRecord	0x670	0x670	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+InputBindingRecord	0x0	0x0	r	w	00196C40	00196C9B	movups xmmword ptr [rdi], xmm0
+InputBindingRecord	0x0	0x0	r	w	00196DF0	00196E32	movups xmmword ptr [rdi], xmm0
+InputBindingRecord	0x0	0x0	r	w	00196EE0	00196F2D	movups xmmword ptr [rdi], xmm0
+InputBindingRecord	0x10	0x0	r	w	00196C40	00196CAE	movups xmmword ptr [rdi + 0x10], xmm0
+InputBindingRecord	0x10	0x0	r	w	00196DF0	00196E4C	movups xmmword ptr [rdi + 0x10], xmm0
+InputBindingRecord	0x10	0x0	r	w	00196EE0	00196F43	movups xmmword ptr [rdi + 0x10], xmm0
+InputBindingRecord	0x20	0x0	r	w	00196C40	00196CBD	movups xmmword ptr [rdi + 0x20], xmm1
+InputBindingRecord	0x20	0x0	r	w	00196DF0	00196E50	movups xmmword ptr [rdi + 0x20], xmm1
+InputBindingRecord	0x20	0x0	r	w	00196EE0	00196F55	movups xmmword ptr [rdi + 0x20], xmm1
+InputBindingRecord	0x30	0x0	r	w	00196C40	00196CC1	movups xmmword ptr [rdi + 0x30], xmm2
+InputBindingRecord	0x30	0x0	r	w	00196DF0	00196E54	movups xmmword ptr [rdi + 0x30], xmm2
+InputBindingRecord	0x30	0x0	r	w	00196EE0	00196F59	movups xmmword ptr [rdi + 0x30], xmm2
+LegacyPs2GsReferenceDescriptor	0xC	0x1D	w	r	002F7380	002F74C9	test dword ptr [r9 - 0x11], esi
+Manager0209AC60	0x3E8	0x0	r	w	00285EE0	00285EEA	movups xmmword ptr [rax + 0x3e8], xmm0
+ManagerSingleton0209BE80	0xB0	0xB0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSingleton0209BE80	0x5A50	0x5A50	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSingleton0209BE80	0x5A60	0x5A60	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSingleton0209BE80	0x5A70	0x5A70	r	w	00202B10	00202B59	movups xmmword ptr [rcx], xmm0
+ManagerSingleton0209BE80	0x7EA0	0x7EA0	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+ManagerSingleton0209BE80	0x7EA0	0x7EA0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSingleton0209BE80	0x7EB0	0x7EB0	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+ManagerSingleton0209BE80	0x7EB0	0x7EB0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSingleton0209BE80	0xA028	0xA028	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ManagerSingleton0209BE80	0xA03C	0xA03C	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ManagerSingleton0209BE80	0xA050	0xA050	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ManagerSingleton0209BE80	0xA070	0x8FA0	r	w	002BE110	002BE162	movups xmmword ptr [rbx + 0x10d0], xmm0
+ManagerSingleton0209BE80	0xA080	0x8FA0	r	w	002BE110	002BE16F	movups xmmword ptr [rbx + 0x10e0], xmm1
+ManagerSub00A0Entry	0x0	0x0	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+ManagerSub00A0Entry	0x0	0x0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub00A0Entry	0x0	0x0	r	w	00202D80	00202DC9	movups xmmword ptr [rcx], xmm0
+ManagerSub00A0Entry	0x10	0x0	r	w	003F00F0	003F0162	movups xmmword ptr [rbx + 0x10], xmm1
+ManagerSub00A0Entry	0x30	0x30	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub00A0Entry	0x70	0x0	r	w	003F00F0	003F0147	movups xmmword ptr [rbx + 0x70], xmm0
+ManagerSub0209BE80_00A0	0x10	0x10	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_57E0	0x270	0x270	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_57E0	0x280	0x280	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_57E0	0x290	0x290	r	w	00202B10	00202B59	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_57E0ArrayRecord	0x0	0x0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_57E0ArrayRecord	0x10	0x10	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_57E0ArrayRecord	0x20	0x20	r	w	00202B10	00202B59	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_7EA0	0x0	0x0	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+ManagerSub0209BE80_7EA0	0x0	0x0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_7EA0	0x10	0x10	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+ManagerSub0209BE80_7EA0	0x10	0x10	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+ManagerSub0209BE80_7EA0	0x30	0x30	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+ManagerSub0209BE80_8FA0	0x1088	0x1088	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ManagerSub0209BE80_8FA0	0x109C	0x109C	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ManagerSub0209BE80_8FA0	0x10B0	0x10B0	r	w	002BF3D0	002BF459	movups xmmword ptr [rsi], xmm0
+ManagerSub0209BE80_8FA0	0x10D0	0x0	r	w	002BE110	002BE162	movups xmmword ptr [rbx + 0x10d0], xmm0
+ManagerSub0209BE80_8FA0	0x10E0	0x0	r	w	002BE110	002BE16F	movups xmmword ptr [rbx + 0x10e0], xmm1
+ManagerSub7EA0Entry	0x0	0x0	r	w	00202B70	00202B86	movups xmmword ptr [rbx], xmm0
+MapScreenContainer	0x190	0x0	r	w	002B6570	002B65A1	movups xmmword ptr [rcx + 0x190], xmm0
+MapScreenContainer	0x190	0x0	r	w	002BA040	002BA0A3	movups xmmword ptr [rcx + 0x190], xmm0
+MapScreenContainer	0x1A0	0x0	r	w	002B6570	002B65C5	movups xmmword ptr [rcx + 0x1a0], xmm1
+MapScreenContainer	0x1A0	0x0	r	w	002BA040	002BA0B1	movups xmmword ptr [rcx + 0x1a0], xmm1
+MapScreenContainer	0x179D2	0x0	w	r	002BA040	002BA06D	test word ptr [rcx + 0x179d2], di
+MapScreenContainer	0x179D2	0x0	w	r	002BA040	002BA08C	test word ptr [rcx + 0x179d2], di
+MovementContext	0x107	0x0	w	r	0025BAD0	0025BBD8	test byte ptr [rsi + 0x107], bl
+NavPortalRecord	0x6	0x0	w	r	00383850	003838C4	test byte ptr [rax + rdi*8 + 6], r8b
+OrderedCommandList	0x20	0x0	w	r	0018B100	0018B167	test dword ptr [rsi + 0x20], eax
+OrderedCommandList	0x20	0x0	w	r	0018B1B0	0018B25B	test dword ptr [rbx + 0x20], eax
+OrderedCommandList	0x20	0x0	w	r	0018B1B0	0018B2E7	test dword ptr [rbx + 0x20], eax
+RenderModelInstance	0x50	0x50	r	w	00202C70	00202C73	movups xmmword ptr [rcx], xmm0
+RenderModelInstance	0x60	0x50	r	w	00202C70	00202C7A	movups xmmword ptr [rcx + 0x10], xmm0
+RenderModelInstance	0x70	0x50	r	w	00202C70	00202C82	movups xmmword ptr [rcx + 0x20], xmm0
+RenderModelInstance	0x80	0x50	r	w	00202C70	00202C8A	movups xmmword ptr [rcx + 0x30], xmm0
+RenderModelInstance	0x90	0x0	r	w	0042CBF0	0042CDC6	movups xmmword ptr [rbp + 0x90], xmm0
+RenderModelInstance	0x90	0x0	r	w	0042CBF0	0042CDE9	movups xmmword ptr [rbp + 0x90], xmm0
+RenderModelInstance	0x90	0x0	r	w	0042D050	0042D0EC	movups xmmword ptr [rax + 0x90], xmm1
+RenderModelInstance	0xD0	0xD0	r	w	00202C90	00202C93	movups xmmword ptr [rcx], xmm0
+RenderResourceEntry	0xC	0x0	r	w	00504F00	00504F25	movups xmmword ptr [rcx + 0xc], xmm0
+RenderResourceEntry	0x1C	0x0	r	w	00504F00	00504F39	movups xmmword ptr [rcx + 0x1c], xmm1
+RenderResourceEntry	0x20	0x20	r	w	00372820	0037289D	movups xmmword ptr [r11], xmm0
+RenderResourceEntry	0x30	0x20	r	w	00372820	003728AF	movups xmmword ptr [r11 + 0x10], xmm1
+RenderResourceEntry	0x40	0x40	r	w	00202C70	00202C73	movups xmmword ptr [rcx], xmm0
+RenderResourceEntry	0x40	0x40	r	w	00217150	0021758F	movups xmmword ptr [rcx], xmm0
+RenderResourceEntryBuffer	0xC	0x-10	r	w	00504F00	00504F39	movups xmmword ptr [rcx + 0x1c], xmm1
+RenderResourceEntryBuffer	0x10	0x10	r	w	00372820	0037289D	movups xmmword ptr [r11], xmm0
+RenderStrideC0Element	0xC	0x0	r	w	00504F00	00504F25	movups xmmword ptr [rcx + 0xc], xmm0
+RenderStrideC0Element	0x1C	0x0	r	w	00504F00	00504F39	movups xmmword ptr [rcx + 0x1c], xmm1
+RenderStrideC0Element	0x20	0x20	r	w	00372820	0037289D	movups xmmword ptr [r11], xmm0
+RenderStrideC0Element	0x30	0x20	r	w	00372820	003728AF	movups xmmword ptr [r11 + 0x10], xmm1
+RenderStrideC0Element	0x40	0x40	r	w	00202C70	00202C73	movups xmmword ptr [rcx], xmm0
+RenderStrideC0Element	0x40	0x40	r	w	00217150	0021758F	movups xmmword ptr [rcx], xmm0
+RenderStrideC0Element	0x50	0x50	r	w	00202C70	00202C73	movups xmmword ptr [rcx], xmm0
+RenderStrideC0Element	0x50	0x40	r	w	00202C70	00202C7A	movups xmmword ptr [rcx + 0x10], xmm0
+RenderStrideC0Element	0x50	0x40	r	w	00217150	002175A1	movups xmmword ptr [rcx + 0x10], xmm0
+RenderStrideC0Element	0x60	0x50	r	w	00202C70	00202C7A	movups xmmword ptr [rcx + 0x10], xmm0
+RenderStrideC0Element	0x60	0x40	r	w	00202C70	00202C82	movups xmmword ptr [rcx + 0x20], xmm0
+RenderStrideC0Element	0x60	0x40	r	w	00217150	002175F3	movups xmmword ptr [rcx + 0x20], xmm0
+RenderStrideC0Element	0x70	0x50	r	w	00202C70	00202C82	movups xmmword ptr [rcx + 0x20], xmm0
+RenderStrideC0Element	0x70	0x40	r	w	00202C70	00202C8A	movups xmmword ptr [rcx + 0x30], xmm0
+RenderStrideC0Element	0x70	0x40	r	w	00217150	002175FB	movups xmmword ptr [rcx + 0x30], xmm0
+RenderStrideC0Element	0x80	0x50	r	w	00202C70	00202C8A	movups xmmword ptr [rcx + 0x30], xmm0
+SaveImageHeader	0x0	0x80	r	w	00583C00	00583C41	movups xmmword ptr [rax - 0x80], xmm0
+SaveImageHeader	0x10	0x80	r	w	00583C00	00583C49	movups xmmword ptr [rax - 0x70], xmm1
+SaveImageHeader	0x20	0x80	r	w	00583C00	00583C51	movups xmmword ptr [rax - 0x60], xmm0
+SaveImageHeader	0x30	0x80	r	w	00583C00	00583C59	movups xmmword ptr [rax - 0x50], xmm1
+SaveImageHeader	0x40	0x80	r	w	00583C00	00583C61	movups xmmword ptr [rax - 0x40], xmm0
+SaveImageHeader	0x50	0x80	r	w	00583C00	00583C69	movups xmmword ptr [rax - 0x30], xmm1
+SaveImageHeader	0x60	0x80	r	w	00583C00	00583C71	movups xmmword ptr [rax - 0x20], xmm0
+SaveImageHeader	0x70	0x80	r	w	00583C00	00583C79	movups xmmword ptr [rax - 0x10], xmm1
+SavePayload	0x2000	0x2080	r	w	00229B40	00229BA2	movups xmmword ptr [rax - 0x80], xmm0
+SavePayload	0x2000	0x2080	r	w	005844A0	00584532	movups xmmword ptr [rax - 0x80], xmm0
+SavePayload	0x2010	0x2080	r	w	00229B40	00229BAA	movups xmmword ptr [rax - 0x70], xmm1
+SavePayload	0x2010	0x2080	r	w	005844A0	0058453A	movups xmmword ptr [rax - 0x70], xmm1
+SavePayload	0x2020	0x2080	r	w	00229B40	00229BB2	movups xmmword ptr [rax - 0x60], xmm0
+SavePayload	0x2020	0x2080	r	w	005844A0	00584542	movups xmmword ptr [rax - 0x60], xmm0
+SavePayload	0x2030	0x2080	r	w	00229B40	00229BBA	movups xmmword ptr [rax - 0x50], xmm1
+SavePayload	0x2030	0x2080	r	w	005844A0	0058454A	movups xmmword ptr [rax - 0x50], xmm1
+SavePayload	0x2040	0x2080	r	w	00229B40	00229BC2	movups xmmword ptr [rax - 0x40], xmm0
+SavePayload	0x2040	0x2080	r	w	005844A0	00584552	movups xmmword ptr [rax - 0x40], xmm0
+SavePayload	0x2050	0x2080	r	w	00229B40	00229BCA	movups xmmword ptr [rax - 0x30], xmm1
+SavePayload	0x2050	0x2080	r	w	005844A0	0058455A	movups xmmword ptr [rax - 0x30], xmm1
+SavePayload	0x2060	0x2080	r	w	00229B40	00229BD2	movups xmmword ptr [rax - 0x20], xmm0
+SavePayload	0x2060	0x2080	r	w	005844A0	00584562	movups xmmword ptr [rax - 0x20], xmm0
+SavePayload	0x2070	0x2080	r	w	00229B40	00229BDA	movups xmmword ptr [rax - 0x10], xmm1
+SavePayload	0x2070	0x2080	r	w	005844A0	0058456A	movups xmmword ptr [rax - 0x10], xmm1
+SavePayload	0x4E478	0x4E460	r	w	002EF510	002EF51E	movups xmmword ptr [rcx + 0x18], xmm0
+SecondaryContext	0x14F	0x0	w	r	003B7770	003B7812	test byte ptr [rax + 0x14f], r12b
+SecondaryContext	0x14F	0x0	w	r	003B7770	003B7812	test byte ptr [rax + 0x14f], r12b
+SpawnRecord	0x0	0x80	r	w	00233550	00233577	movups xmmword ptr [rax - 0x80], xmm0
+SpawnRecord	0x0	0x80	r	w	00233780	00233891	movups xmmword ptr [rax - 0x80], xmm0
+SpawnRecord	0x0	0x80	r	w	00233780	002338F5	movups xmmword ptr [rcx - 0x80], xmm0
+SpawnRecord	0x0	0x80	r	w	00233780	00233966	movups xmmword ptr [rax - 0x80], xmm0
+SpawnRecord	0x0	0x80	r	w	00235360	00235476	movups xmmword ptr [rcx - 0x80], xmm0
+SpawnRecord	0x10	0x80	r	w	00233550	0023357F	movups xmmword ptr [rax - 0x70], xmm1
+SpawnRecord	0x10	0x80	r	w	00233780	00233899	movups xmmword ptr [rax - 0x70], xmm1
+SpawnRecord	0x10	0x80	r	w	00233780	002338FD	movups xmmword ptr [rcx - 0x70], xmm1
+SpawnRecord	0x10	0x80	r	w	00233780	0023396E	movups xmmword ptr [rax - 0x70], xmm1
+SpawnRecord	0x10	0x80	r	w	00235360	0023547E	movups xmmword ptr [rcx - 0x70], xmm1
+SpawnRecord	0x20	0x80	r	w	00233550	00233587	movups xmmword ptr [rax - 0x60], xmm0
+SpawnRecord	0x20	0x80	r	w	00233780	002338A1	movups xmmword ptr [rax - 0x60], xmm0
+SpawnRecord	0x20	0x80	r	w	00233780	00233905	movups xmmword ptr [rcx - 0x60], xmm0
+SpawnRecord	0x20	0x80	r	w	00233780	00233976	movups xmmword ptr [rax - 0x60], xmm0
+SpawnRecord	0x20	0x80	r	w	00235360	00235486	movups xmmword ptr [rcx - 0x60], xmm0
+SpawnRecord	0x30	0x80	r	w	00233550	0023358F	movups xmmword ptr [rax - 0x50], xmm1
+SpawnRecord	0x30	0x80	r	w	00233780	002338A9	movups xmmword ptr [rax - 0x50], xmm1
+SpawnRecord	0x30	0x80	r	w	00233780	0023390D	movups xmmword ptr [rcx - 0x50], xmm1
+SpawnRecord	0x30	0x80	r	w	00233780	0023397E	movups xmmword ptr [rax - 0x50], xmm1
+SpawnRecord	0x30	0x80	r	w	00235360	0023548E	movups xmmword ptr [rcx - 0x50], xmm1
+SpawnRecord	0x40	0x80	r	w	00233550	00233597	movups xmmword ptr [rax - 0x40], xmm0
+SpawnRecord	0x40	0x80	r	w	00233780	002338B1	movups xmmword ptr [rax - 0x40], xmm0
+SpawnRecord	0x40	0x80	r	w	00233780	00233915	movups xmmword ptr [rcx - 0x40], xmm0
+SpawnRecord	0x40	0x80	r	w	00233780	00233986	movups xmmword ptr [rax - 0x40], xmm0
+SpawnRecord	0x40	0x80	r	w	00235360	00235496	movups xmmword ptr [rcx - 0x40], xmm0
+SpawnRecord	0x50	0x80	r	w	00233550	0023359F	movups xmmword ptr [rax - 0x30], xmm1
+SpawnRecord	0x50	0x80	r	w	00233780	002338B9	movups xmmword ptr [rax - 0x30], xmm1
+SpawnRecord	0x50	0x80	r	w	00233780	0023391D	movups xmmword ptr [rcx - 0x30], xmm1
+SpawnRecord	0x50	0x80	r	w	00233780	0023398E	movups xmmword ptr [rax - 0x30], xmm1
+SpawnRecord	0x50	0x80	r	w	00235360	0023549E	movups xmmword ptr [rcx - 0x30], xmm1
+SpawnRecord	0x60	0x80	r	w	00233550	002335A7	movups xmmword ptr [rax - 0x20], xmm0
+SpawnRecord	0x60	0x80	r	w	00233780	002338C1	movups xmmword ptr [rax - 0x20], xmm0
+SpawnRecord	0x60	0x80	r	w	00233780	00233925	movups xmmword ptr [rcx - 0x20], xmm0
+SpawnRecord	0x60	0x80	r	w	00233780	00233996	movups xmmword ptr [rax - 0x20], xmm0
+SpawnRecord	0x60	0x80	r	w	00235360	002354A6	movups xmmword ptr [rcx - 0x20], xmm0
+SpawnRecord	0x70	0x80	r	w	00233550	002335AF	movups xmmword ptr [rax - 0x10], xmm1
+SpawnRecord	0x70	0x80	r	w	00233780	002338C9	movups xmmword ptr [rax - 0x10], xmm1
+SpawnRecord	0x70	0x80	r	w	00233780	00233929	movups xmmword ptr [rcx - 0x10], xmm1
+SpawnRecord	0x70	0x80	r	w	00233780	0023399E	movups xmmword ptr [rax - 0x10], xmm1
+SpawnRecord	0x70	0x80	r	w	00235360	002354AE	movups xmmword ptr [rcx - 0x10], xmm1
+StatusDefinitionRecord	0x6	0x0	w	r	00237CA0	00237D28	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	00237CA0	00237D28	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038540C	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038540C	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038540C	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038546C	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038546C	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038546C	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	003854CC	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	003854CC	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	003854CC	test word ptr [rcx + 6], r14w
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038552C	test word ptr [rcx + 6], bp
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038552C	test word ptr [rcx + 6], bp
+StatusDefinitionRecord	0x6	0x0	w	r	003851F0	0038552C	test word ptr [rcx + 6], bp
+StatusDefinitionRecord	0x6	0x0	w	r	00387CB0	00387D72	test word ptr [rcx + 6], ax
+StatusDefinitionRecord	0x6	0x0	w	r	00387CB0	00387D72	test word ptr [rcx + 6], ax
+StatusDefinitionRecord	0x6	0x0	w	r	00387CB0	00387E17	test word ptr [rcx + 6], ax
+StatusDefinitionRecord	0x6	0x0	w	r	00387CB0	00387E17	test word ptr [rcx + 6], ax
+StatusDefinitionRecord	0x6	0x0	w	r	0038FCE0	0038FDC6	test word ptr [rcx + 6], r12w
+StatusDefinitionRecord	0x6	0x0	w	r	0038FCE0	0038FDC6	test word ptr [rcx + 6], r12w
+StatusDefinitionRecord	0x6	0x0	w	r	0038FCE0	0038FDC6	test word ptr [rcx + 6], r12w
+WidgetSingleton02CA99C0	0xD8	0xD8	r	w	00582240	0058229A	movups xmmword ptr [rdx], xmm0
+WidgetSingleton02CA99C0	0xE8	0xD8	r	w	00582240	005822A1	movups xmmword ptr [rdx + 0x10], xmm1
+WidgetSingleton02CA99C0	0xF8	0xD8	r	w	00582240	005822AC	movups xmmword ptr [rdx + 0x20], xmm0
+WidgetSingleton02CA99C0	0x108	0xD8	r	w	00582240	005822B7	movups xmmword ptr [rdx + 0x30], xmm1
+WidgetSingleton02CA99C0	0x118	0xD8	r	w	00582240	005822C3	movups xmmword ptr [rdx + 0x40], xmm0
+WorldLootDropEntry	0x0	0x-20	r	w	00319CA0	00319D78	movups xmmword ptr [rbx + 0x20], xmm0
+WorldLootPickupNode	0x20	0x0	r	w	00319CA0	00319D78	movups xmmword ptr [rbx + 0x20], xmm0
+WorldLootPickupNode	0x30	0x0	r	w	00319CA0	00319D80	movups xmmword ptr [rbx + 0x30], xmm1
+WorldLootPickupNode	0x40	0x0	r	w	00319CA0	00319D88	movups xmmword ptr [rbx + 0x40], xmm0

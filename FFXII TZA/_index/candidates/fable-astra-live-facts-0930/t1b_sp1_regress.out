@@ -1,0 +1,9 @@
+PASS fixture two_nonmpk_entries.vbf  fe50bd5aed88d761
+PASS fixture corrupt_magic.vbf  0054cc9fa2a031e8
+PASS A1 no-.mpk corpus  exit 2, last line 'STATUS INCOMPLETE: no .mpk packs in the input; control mismatch (0, 0, 0) != (2326, 400, 2265)'
+PASS A2 corrupt magic  exit 1, ['AssertionError']
+PASS B1 offset array past the block  ['control mismatch (0, 0, 0) != (2326, 400, 2265)', '1 bad_index', 'records 0 shape2 0']
+PASS B2 referenced record past the block  ['control mismatch (0, 0, 0) != (2326, 400, 2265)', '1 bad_ref', 'records 0 shape2 0']
+PASS B3 truncated pack header  ['control mismatch (0, 0, 0) != (2326, 400, 2265)', '1 bad_pack', 'records 0 shape2 0']
+PASS B4 control: well-formed pack  ['control mismatch (1, 1, 0) != (2326, 400, 2265)', 'records 1 shape2 1']
+REGRESSION PASS

@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-146",
+ "note": "2-A remainder (5) + top-17 1-A closed: all 22 bodies dumped from the verified image (0 errors), decoded, routed to 17 bearing hosts and appended as interior-cited evidence paragraphs. Highlights: 00332750 is the per-slot scheduled-marker executor (0x30-stride marker compaction, 16-slot 0046E990 ticking, 02EC0F88 shadow eviction, 003331A0-fired deadline markers with 003A3E30-resolved follow-ons); 00415A80 the nested-section delta-rebase sibling of 003E1C50; 00676BD0 the once-init'd 02D3ECB0 string-tree id-map lookup registering idmaps.txt via 00677030; 003B3550 the presentation-slot registration publishing 02F97340/02EBEF* globals + 0x3B0 record init; 0042B270/0042A390 the @FMN bone-chain float setters; 00676000 the string-keyed map emplace; 00622BA0 the GI slot validate-and-issue; 0033D200 the scalar envelope channel; 002845E0 the license-board link fixup; 0042DA30 the @FCP deferred-field populate; 003C1F00 the two-slot accessor; 003A3E30 the 02F97348 marker-id resolver; plus shims 00421D20/003AB8B0/00333350/0028E840/0016D6B0. Gates: anchors 4437 (+22, 0 MID, 0 outside-body); paragraph-address gate 0 UNSUPPORTED in the 22 entries; hash clean (standing set); crossref 2898 findings / 400 dispositioned; publish-neighbour guard refused +7 then +1 pairs, resolved with 6 crossing-section sentences + relocation of the 003A3E30 entry above the crossing heading - final ADDS NOTHING, 10 pre-existing pairs accounted.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/analysis-kit/gfz-scripts/hub146_dumps.txt",
+  "Database/Tools/work/hub146_callers.txt"
+ ]
+}

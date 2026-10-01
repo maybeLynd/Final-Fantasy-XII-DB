@@ -1,0 +1,709 @@
+census write rows on the flag qword (unique sites): 123
+Q 00233AD0 00233AFB and qword ptr [rbx], 0xfffffffffbffffff      -> keeps
+Q 00233AD0 00233B4B or dword ptr [rbx], 8                        -> n/a (does not cover bit 46)
+Q 00233EA0 00233EC7 and dword ptr [rbx], 0xfffffcff              -> n/a (does not cover bit 46)
+Q 00233EA0 00233ECD and dword ptr [rbx + 4], 0xffffffbf          -> keeps
+Q 00233F70 0023412D or dword ptr [rbx], 0x10                     -> n/a (does not cover bit 46)
+Q 00234200 002342D3 and dword ptr [rbx], 0xfffffffe              -> n/a (does not cover bit 46)
+Q 00234480 002344D7 or dword ptr [rbx], 1                        -> n/a (does not cover bit 46)
+Q 00234480 00234503 and dword ptr [rbx], 0xffdfffff              -> n/a (does not cover bit 46)
+Q 002354F0 0023557E or qword ptr [r11], 0x4000000                -> keeps
+Q 002355A0 002356E2 or qword ptr [rbx], 0x4000000                -> keeps
+Q 00235720 00235A14 or qword ptr [rsi], 0x4000000                -> keeps
+Q 00236300 00236352 and qword ptr [rbx], 0xfffffffffffbffff      -> keeps
+Q 00236300 00236382 or qword ptr [rbx], 0x40000                  -> keeps
+Q 00236300 002363AA or qword ptr [rbx], 0x40000                  -> keeps
+Q 00236A60 00236A95 and dword ptr [rdi + 4], 0xffefffbb          -> keeps
+Q 00236A60 00236AA6 and dword ptr [rdi], 0xffffb0e3              -> n/a (does not cover bit 46)
+Q 00238B40 00238B52 and dword ptr [rax + 4], 0xffffffdf          -> keeps
+Q 00238FA0 00238FAE or qword ptr [rax], 0x4000000                -> keeps
+Q 00239170 00239190 or qword ptr [rax], 0x8000                   -> keeps
+Q 00239170 002391A2 and qword ptr [rax], 0xffffffffffff7fff      -> keeps
+Q 002393E0 002393F3 and qword ptr [rax], 0xfffffffffbffffff      -> keeps
+Q 00239410 0023946D or qword ptr [r8], 0x4000000                 -> keeps
+Q 00239840 002398D1 or dword ptr [r9], 0x200000                  -> n/a (does not cover bit 46)
+Q 0023A570 0023A633 and qword ptr [rdi], 0xfffffffffbffffff      -> keeps
+Q 0023A570 0023AC4B and qword ptr [rdi], 0xfffffffffbffffff      -> keeps
+Q 0023A570 0023AC52 or qword ptr [rdi], 2                        -> keeps
+Q 0023A570 0023AC56 or dword ptr [rdi], 4                        -> n/a (does not cover bit 46)
+Q 002FEF30 002FFA38 or dword ptr [r14 + 4], 0x200000             -> keeps
+Q 00300140 003001BA or dword ptr [rbx + 4], 0x200000             -> keeps
+Q 00300310 003003D2 or qword ptr [rdi], 0x4000000                -> keeps
+Q 00300E40 00300ECE or dword ptr [rdi + 4], 0x200000             -> keeps
+Q 00300E40 00300F0F and qword ptr [rdi], 0xfffffffffbffffff      -> keeps
+Q 00300E40 00300F16 and dword ptr [rdi + 4], 0xfffffffb          -> keeps
+Q 00300E40 00300F2A or qword ptr [rdi], 2                        -> keeps
+Q 00300E40 00300F7A and dword ptr [rdi], 0xffdfffff              -> n/a (does not cover bit 46)
+Q 00300FC0 0030101A and dword ptr [rbx + 4], 0xfffffffb          -> keeps
+Q 00301140 0030120B or dword ptr [rbx + 4], 0x200000             -> keeps
+Q 00301140 0030122B and dword ptr [rbx], 0xff7fffff              -> n/a (does not cover bit 46)
+Q 00301140 00301231 and dword ptr [rbx + 4], 0xfffef9ff          -> keeps
+Q 00301140 00301287 and dword ptr [rbx + 4], 0xfffffffb          -> keeps
+Q 00301140 00301295 and dword ptr [rbx], 0xfffff8ff              -> n/a (does not cover bit 46)
+Q 00301140 003012A1 or qword ptr [rbx], 0x1000000                -> keeps
+Q 00301140 003012AD or dword ptr [rbx], 0x40000000               -> n/a (does not cover bit 46)
+Q 00304850 0030497B and dword ptr [rdi + 4], 0xffdfff7f          -> keeps
+Q 00304850 00304DF1 and dword ptr [rdi + 4], 0xffdfff7f          -> keeps
+Q 00304850 00304E04 or dword ptr [rdi + 4], 0x80                 -> keeps
+Q 00304850 00304E74 or qword ptr [rdi], 0x1000                   -> keeps
+Q 00304850 00304FE9 and qword ptr [rdi], 0xffffffffffffdfff      -> keeps
+Q 003057D0 00305896 or qword ptr [rbx], 0x100000                 -> keeps
+Q 00306760 00306AC0 and dword ptr [rax], 0xfffffcff              -> n/a (does not cover bit 46)
+Q 00307D10 00307D9E and dword ptr [rdi + 4], 0xfffffbff          -> keeps
+Q 00307D10 00307DD1 and dword ptr [rdi + 4], 0xfffff9ff          -> keeps
+Q 00307D10 00307DD8 and dword ptr [rdi + 4], 0xfffeffff          -> keeps
+Q 003082F0 00308346 and dword ptr [rbx + 4], 0xffffffbf          -> keeps
+Q 003082F0 0030835A and dword ptr [rbx], 0xfffffdff              -> n/a (does not cover bit 46)
+Q 003083A0 003083A0 and dword ptr [rcx], 0xfdffffff              -> n/a (does not cover bit 46)
+Q 003083A0 003083A6 and qword ptr [rcx], 0xfffffffffeffffff      -> keeps
+Q 00308610 003086B7 or qword ptr [rbx], 0x20                     -> keeps
+Q 0030AF30 0030B02E or dword ptr [rbx + 4], 0x200000             -> keeps
+Q 0030EFF0 0030F0FD and qword ptr [rbx], 0xffffffffefffffdf      -> keeps
+Q 0030F2D0 0030F2F2 and dword ptr [rax], 0xff7fffff              -> n/a (does not cover bit 46)
+Q 0030F2D0 0030F2F8 and dword ptr [rax + 4], 0xfffef9ff          -> keeps
+Q 0030F690 0030F6FC and qword ptr [rdi], 0xfffffffffbffffff      -> keeps
+Q 003105D0 00310651 and dword ptr [rbx + 4], 0xffdfff7f          -> keeps
+Q 00310780 0031080B and qword ptr [rbx], 0xffffffffefffffdf      -> keeps
+Q 00310DB0 00310DFC and dword ptr [rsi], 0xbfffffff              -> n/a (does not cover bit 46)
+Q 00311F50 00311F5E or dword ptr [rax + 4], 0x600                -> keeps
+Q 00311F70 003120A0 or qword ptr [rdi], 0x4000000                -> keeps
+Q 00312FA0 003130D2 or qword ptr [rbx], 0x400000                 -> keeps
+Q 00313500 0031352D or dword ptr [rbx + 4], 0x40                 -> keeps
+Q 00313500 00313531 or dword ptr [rbx], 0x2000100                -> n/a (does not cover bit 46)
+Q 00313500 00313537 or qword ptr [rbx], 0x1000000                -> keeps
+Q 00313F70 00313F70 and dword ptr [rcx], 0xfffffeff              -> n/a (does not cover bit 46)
+Q 00319F50 0031A147 or dword ptr [rbx + 4], 4                    -> keeps
+Q 00319F50 0031A14E or dword ptr [rbx], 0x400                    -> n/a (does not cover bit 46)
+Q 00319F50 0031A198 or dword ptr [rbx + 4], 4                    -> keeps
+Q 00319F50 0031A1B1 or dword ptr [rbx], 0x200                    -> n/a (does not cover bit 46)
+Q 00324450 00324463 and dword ptr [rbx], 0xffffffbf              -> n/a (does not cover bit 46)
+Q 00324470 003244E1 or dword ptr [rbx], 0x40                     -> n/a (does not cover bit 46)
+Q 003250F0 0032517C and qword ptr [rbx], 0xfffffffffeffffff      -> keeps
+Q 00325260 003256FB or qword ptr [rbx], 0x80000                  -> keeps
+Q 00325BB0 00325BE6 and qword ptr [rdi], 0xfffffffffffbffff      -> keeps
+Q 003266C0 00326AFA or dword ptr [rbx], 0x40                     -> n/a (does not cover bit 46)
+Q 003266C0 00326AFD and qword ptr [rbx], 0xfffffffffbffffff      -> keeps
+R 00233AD0 00233B8C or qword ptr [rbx], rax   (BattleUnit_ActivateAppliedDefinitionRuntime)
+     00233B4B or dword ptr [rbx], 8
+     00233B4E mov rcx, rbx
+     00233B51 call 0x239e10
+     00233B56 mov edx, 1
+     00233B5B mov rcx, rbx
+     00233B5E call 0x308010
+     00233B63 test eax, eax  <
+     00233B65 lea rcx, [rip + 0xcb1f4]
+     00233B6C lea r8, [rip + 0xcb24d]
+     00233B73 mov edx, 1
+     00233B78 cmovne r8, rcx
+     00233B7C mov rcx, rbx
+     00233B7F call r8
+     00233B82 movabs rax, 0x2000000000000  <
+     00233B8C or qword ptr [rbx], rax
+R 00236A60 00236AB1 and qword ptr [rdi], rax   (BattleUnit_ResetStateForReuse)
+     00236A6A push rdi
+     00236A6B sub rsp, 0x20
+     00236A6F test byte ptr [rcx], 0x10
+     00236A72 mov rdi, rcx
+     00236A75 je 0x236a7c
+     00236A77 call 0x3105d0
+     00236A7C mov word ptr [rdi + 0x695], 0xffff
+     00236A85 lea rcx, [rdi + 0xbc0]
+     00236A8C mov byte ptr [rdi + 0x694], 0xff
+     00236A93 xor esi, esi
+     00236A95 and dword ptr [rdi + 4], 0xffefffbb
+     00236A9C movabs rax, 0xffff7ffdffe7fffd  <
+     00236AA6 and dword ptr [rdi], 0xffffb0e3
+     00236AAC mov ebx, 0xffff
+     00236AB1 and qword ptr [rdi], rax
+R 00238B40 00238B5D or dword ptr [rax + 4], ecx   (FUN_00238b40)
+     00238B3C ret 
+     00238B3D int3 
+     00238B3E int3 
+     00238B3F int3 
+     00238B40 push rbx
+     00238B42 sub rsp, 0x20
+     00238B46 mov ebx, edx
+     00238B48 call 0x31b760
+     00238B4D test rax, rax
+     00238B50 je 0x238b60
+     00238B52 and dword ptr [rax + 4], 0xffffffdf
+     00238B56 neg ebx
+     00238B58 sbb ecx, ecx  <
+     00238B5A and ecx, 0x20  <
+     00238B5D or dword ptr [rax + 4], ecx
+R 0023A200 0023A231 and qword ptr [rcx], rax   (SpawnEntry_ConfigureFreshLifecycleFloatMode)
+     0023A1FE int3 
+     0023A1FF int3 
+     0023A200 sub rsp, 0x38
+     0023A204 movaps xmmword ptr [rsp + 0x20], xmm6
+     0023A209 movaps xmm6, xmm1
+     0023A20C call 0x31b760
+     0023A211 mov rcx, rax
+     0023A214 test rax, rax  <
+     0023A217 je 0x23a2af
+     0023A21D xorps xmm0, xmm0
+     0023A220 ucomiss xmm6, xmm0
+     0023A223 jp 0x23a236
+     0023A225 jne 0x23a236
+     0023A227 movabs rax, 0xfffffeffffffffff  <
+     0023A231 and qword ptr [rcx], rax
+R 0023A200 0023A240 or qword ptr [rcx], rax   (SpawnEntry_ConfigureFreshLifecycleFloatMode)
+     0023A204 movaps xmmword ptr [rsp + 0x20], xmm6
+     0023A209 movaps xmm6, xmm1
+     0023A20C call 0x31b760
+     0023A211 mov rcx, rax
+     0023A214 test rax, rax  <
+     0023A217 je 0x23a2af
+     0023A21D xorps xmm0, xmm0
+     0023A220 ucomiss xmm6, xmm0
+     0023A223 jp 0x23a236
+     0023A225 jne 0x23a236
+     0023A227 movabs rax, 0xfffffeffffffffff  <
+     0023A231 and qword ptr [rcx], rax
+     0023A234 jmp 0x23a243
+     0023A236 movabs rax, 0x10000000000  <
+     0023A240 or qword ptr [rcx], rax
+R 0023A570 0023AA27 and qword ptr [rdi], rax   (BattleUnit_ApplyUnitDefinition)
+     0023A9E8 jmp 0x23a9ec
+     0023A9EA xor ecx, ecx
+     0023A9EC movzx r8d, byte ptr [rdi + 0xea9]
+     0023A9F4 mov qword ptr [rdi + 0xe78], rcx
+     0023A9FB xor ecx, ecx
+     0023A9FD movzx edx, byte ptr [rsi + 3]
+     0023AA01 and edx, 3
+     0023AA04 call 0x328ff0
+     0023AA09 test byte ptr [rsi + 3], 3
+     0023AA0D jne 0x23aa2f
+     0023AA0F test byte ptr [rsi + 0x15], 4
+     0023AA13 jne 0x23aa2f
+     0023AA15 mov r15, qword ptr [rsp + 0x90]
+     0023AA1D movabs rax, 0xfffff7ffffffffff  <
+     0023AA27 and qword ptr [rdi], rax
+R 0023A570 0023AA41 or qword ptr [rdi], rax   (BattleUnit_ApplyUnitDefinition)
+     0023A9FB xor ecx, ecx
+     0023A9FD movzx edx, byte ptr [rsi + 3]
+     0023AA01 and edx, 3
+     0023AA04 call 0x328ff0
+     0023AA09 test byte ptr [rsi + 3], 3
+     0023AA0D jne 0x23aa2f
+     0023AA0F test byte ptr [rsi + 0x15], 4
+     0023AA13 jne 0x23aa2f
+     0023AA15 mov r15, qword ptr [rsp + 0x90]
+     0023AA1D movabs rax, 0xfffff7ffffffffff  <
+     0023AA27 and qword ptr [rdi], rax
+     0023AA2A jmp 0x23abca
+     0023AA2F mov r15, qword ptr [rsp + 0x90]
+     0023AA37 movabs rax, 0x80000000000  <
+     0023AA41 or qword ptr [rdi], rax
+R 002FEF30 002FFA11 mov qword ptr [r14], rcx   (BattleStats_RebuildEffectiveStatsAndAffinityState)
+     002FF9D3 mov dword ptr [r14 + 0x748], ebp
+     002FF9DA mov dword ptr [r14 + 0x770], ebp
+     002FF9E1 mov rcx, qword ptr [r14]  <
+     002FF9E4 mov rdx, rcx
+     002FF9E7 and edx, 0x4000
+     002FF9ED je 0x2ff9fb
+     002FF9EF movzx eax, word ptr [r14 + 0xba0]
+     002FF9F7 cmp eax, ebx
+     002FF9F9 je 0x2ffa14
+     002FF9FB test rdx, rdx
+     002FF9FE je 0x2ffa0c
+     002FFA00 cmp word ptr [r14 + 0xba0], 0x95
+     002FFA0A je 0x2ffa14
+     002FFA0C btr rcx, 0xe  <
+     002FFA11 mov qword ptr [r14], rcx
+R 002FFB60 002FFB93 mov qword ptr [rbx], rax   (BattleAction_CheckCurrentActionInterruptReason)
+     002FFB5D int3 
+     002FFB5E int3 
+     002FFB5F int3 
+     002FFB60 mov qword ptr [rsp + 8], rbx
+     002FFB65 push rdi
+     002FFB66 sub rsp, 0x20
+     002FFB6A mov rax, qword ptr [rcx]  <
+     002FFB6D mov rbx, rcx
+     002FFB70 movzx edi, word ptr [rcx + 0x714]
+     002FFB77 movabs rcx, 0x100000000
+     002FFB81 test rcx, rax
+     002FFB84 je 0x2ffbb0
+     002FFB86 movabs rcx, 0xfffffffeffffffff
+     002FFB90 and rax, rcx  <
+     002FFB93 mov qword ptr [rbx], rax
+R 00300140 00300198 mov qword ptr [rbx], rcx   (BattleUnit_ResetActionControlForStatusTransition)
+     00300155 mov qword ptr [rbx + 0x6f8], r8
+     0030015C mov dword ptr [rbx + 0x748], r8d
+     00300163 mov dword ptr [rbx + 0x770], r8d
+     0030016A mov rcx, qword ptr [rbx]  <
+     0030016D mov rdx, rcx
+     00300170 and edx, 0x4000
+     00300176 je 0x300183
+     00300178 cmp word ptr [rbx + 0xba0], 0x113
+     00300181 je 0x30019b
+     00300183 test rdx, rdx
+     00300186 je 0x300193
+     00300188 cmp word ptr [rbx + 0xba0], 0x95
+     00300191 je 0x30019b
+     00300193 btr rcx, 0xe  <
+     00300198 mov qword ptr [rbx], rcx
+R 00300E40 00300EAA mov qword ptr [rdi], rcx   (BattleUnit_TeardownAndDespawn)
+     00300E68 mov qword ptr [rdi + 0x6f8], rsi
+     00300E6F mov dword ptr [rdi + 0x748], esi
+     00300E75 mov dword ptr [rdi + 0x770], esi
+     00300E7B mov rcx, qword ptr [rdi]  <
+     00300E7E mov r8, rcx
+     00300E81 and r8d, 0x4000
+     00300E88 je 0x300e95
+     00300E8A cmp word ptr [rdi + 0xba0], 0x113
+     00300E93 je 0x300ead
+     00300E95 test r8, r8
+     00300E98 je 0x300ea5
+     00300E9A cmp word ptr [rdi + 0xba0], 0x95
+     00300EA3 je 0x300ead
+     00300EA5 btr rcx, 0xe  <
+     00300EAA mov qword ptr [rdi], rcx
+R 00300E40 00300F24 and qword ptr [rdi], rax   (BattleUnit_TeardownAndDespawn)
+     00300EEA test eax, eax  <
+     00300EEC jne 0x300f5d
+     00300EEE cmp dword ptr [rdi + 0xea0], esi
+     00300EF4 jne 0x300f16
+     00300EF6 mov ebx, dword ptr [rdi + 8]
+     00300EF9 mov rcx, rdi
+     00300EFC call 0x322050
+     00300F01 mov r8d, dword ptr [rdi + 8]
+     00300F05 mov edx, ebx
+     00300F07 mov rcx, rdi
+     00300F0A call 0x301310
+     00300F0F and qword ptr [rdi], 0xfffffffffbffffff
+     00300F16 and dword ptr [rdi + 4], 0xfffffffb
+     00300F1A movabs rax, 0xfffffffdffe7ffff  <
+     00300F24 and qword ptr [rdi], rax
+R 00300FC0 00301034 and qword ptr [rbx], rax   (FUN_00300fc0)
+     00300FF4 call 0x3105d0
+     00300FF9 xor ecx, ecx
+     00300FFB mov rbx, qword ptr [rsp + 0x30]
+     00301000 add rsp, 0x20
+     00301004 pop rdi
+     00301005 jmp 0x3138d0
+     0030100A mov rcx, rbx
+     0030100D call 0x310780
+     00301012 mov ecx, dword ptr [rbx + 8]
+     00301015 call 0x2ed180
+     0030101A and dword ptr [rbx + 4], 0xfffffffb
+     0030101E movabs rax, 0xfffffffdffe7fffd  <
+     00301028 movss xmm1, dword ptr [rip + 0x19eac6c]
+     00301030 mov rcx, qword ptr [rbx + 0x10]
+     00301034 and qword ptr [rbx], rax
+R 00301140 003011DD mov qword ptr [rbx], rcx   (BattleUnit_RecoverFromTerminalStatusSetIfClear)
+     0030119C mov qword ptr [rbx + 0x6f8], rdi
+     003011A3 mov dword ptr [rbx + 0x748], edi
+     003011A9 mov dword ptr [rbx + 0x770], edi
+     003011AF mov rcx, qword ptr [rbx]  <
+     003011B2 mov rdx, rcx
+     003011B5 and edx, 0x4000
+     003011BB je 0x3011c8
+     003011BD cmp word ptr [rbx + 0xba0], 0x113
+     003011C6 je 0x3011e0
+     003011C8 test rdx, rdx
+     003011CB je 0x3011d8
+     003011CD cmp word ptr [rbx + 0xba0], 0x95
+     003011D6 je 0x3011e0
+     003011D8 btr rcx, 0xe  <
+     003011DD mov qword ptr [rbx], rcx
+R 00301140 0030129B and qword ptr [rbx], rax   (BattleUnit_RecoverFromTerminalStatusSetIfClear)
+     00301254 lea rdx, [rip + 0x1beb165]
+     0030125B lea rax, [rip + 0x1beb1ae]  <
+     00301262 cmove rax, rdx  <
+     00301266 xor r8d, r8d
+     00301269 xor edx, edx
+     0030126B mov qword ptr [rbx + 0x6e8], rax
+     00301272 call 0x2ecf10
+     00301277 xor r8d, r8d
+     0030127A mov edx, 0x200d
+     0030127F mov rcx, rbx
+     00301282 call 0x3299b0
+     00301287 and dword ptr [rbx + 4], 0xfffffffb
+     0030128B movabs rax, 0xfffffffdffe7fffd  <
+     00301295 and dword ptr [rbx], 0xfffff8ff
+     0030129B and qword ptr [rbx], rax
+R 00304850 00304975 and qword ptr [rdi], rax   (BattleUnit_AdvanceStandardActionState)
+     00304937 jmp 0x30493c
+     00304939 mov r15, r14
+     0030493C movzx eax, byte ptr [rsi + 4]  <
+     00304940 cmp eax, 0xc  <
+     00304943 ja 0x305006
+     00304949 lea rdx, [rip - 0x1e4950]
+     00304950 mov ecx, dword ptr [rdx + rax*4 + 0x1e5044]
+     00304957 add rcx, rdx
+     0030495A jmp rcx
+     0030495C mov rdx, r15
+     0030495F mov rcx, rdi
+     00304962 call 0x30ef20
+     00304967 movabs rax, 0xffffbff75fffcfff  <
+     00304971 mov dword ptr [r12], r14d
+     00304975 and qword ptr [rdi], rax
+R 00304850 00304D28 xor dword ptr [rdi + 4], eax   (BattleUnit_AdvanceStandardActionState)
+     00304CEB mov dword ptr [rbp - 0x59], r14d
+     00304CEF jmp 0x304d12
+     00304CF1 mov rcx, rdi
+     00304CF4 call 0x2f9c00
+     00304CF9 add dword ptr [rsi + 0xb8], eax
+     00304CFF mov eax, dword ptr [rsi + 0xb8]  <
+     00304D05 mov dword ptr [rsi + 0xc0], eax
+     00304D0B mov dword ptr [rbp - 0x59], 1
+     00304D12 mov rcx, rbx
+     00304D15 call 0x33a1e0
+     00304D1A shl eax, 7  <
+     00304D1D mov edx, r14d
+     00304D20 xor eax, dword ptr [rdi + 4]  <
+     00304D23 and eax, 0x80  <
+     00304D28 xor dword ptr [rdi + 4], eax
+R 00304850 00304DBA or qword ptr [rdi], rax   (BattleUnit_AdvanceStandardActionState)
+     00304D81 call 0x30a370
+     00304D86 mov edx, eax
+     00304D88 xor r8d, r8d
+     00304D8B mov rcx, rdi
+     00304D8E call 0x3299b0
+     00304D93 lea rdx, [rbx + 0x50]
+     00304D97 mov rcx, rbx
+     00304D9A mov r8, rdx
+     00304D9D call 0x3291b0
+     00304DA2 inc byte ptr [rsi + 4]
+     00304DA5 mov eax, 0x9f  <
+     00304DAA cmp r13w, ax
+     00304DAE jne 0x304dbd
+     00304DB0 movabs rax, 0x800000000  <
+     00304DBA or qword ptr [rdi], rax
+R 00304850 00304DEB and qword ptr [rdi], rax   (BattleUnit_AdvanceStandardActionState)
+     00304DAA cmp r13w, ax
+     00304DAE jne 0x304dbd
+     00304DB0 movabs rax, 0x800000000  <
+     00304DBA or qword ptr [rdi], rax
+     00304DBD movzx r8d, byte ptr [rdi + 0x6b4]
+     00304DC5 mov rdx, r15
+     00304DC8 mov rcx, rdi
+     00304DCB call 0x30a370
+     00304DD0 mov edx, eax
+     00304DD2 xor r8d, r8d
+     00304DD5 mov rcx, rdi
+     00304DD8 call 0x3299b0
+     00304DDD movabs rax, 0xffffbff75fffcfff  <
+     00304DE7 mov dword ptr [r12], r14d
+     00304DEB and qword ptr [rdi], rax
+R 00304850 00304EFD or qword ptr [rdi], rax   (BattleUnit_AdvanceStandardActionState)
+     00304EB6 call 0x319420
+     00304EBB inc byte ptr [rsi + 4]
+     00304EBE mov dword ptr [rsi + 0xc0], r14d
+     00304EC5 mov rcx, qword ptr [rdi + 0x698]
+     00304ECC call 0x387090
+     00304ED1 mov r8d, dword ptr [rsi + 0x60]
+     00304ED5 lea r9, [rsi + 0xc8]
+     00304EDC movzx edx, ax
+     00304EDF mov rcx, rdi
+     00304EE2 call 0x30d160
+     00304EE7 movzx edx, r13w
+     00304EEB mov rcx, rdi
+     00304EEE call 0x305430
+     00304EF3 movabs rax, 0x400000000000  <
+     00304EFD or qword ptr [rdi], rax
+R 00304850 00304FA9 and qword ptr [rdi], rax   (BattleUnit_AdvanceStandardActionState)
+     00304F6C mov eax, dword ptr [rip + 0x1fbd1ee]  <
+     00304F72 add eax, -5  <
+     00304F75 cmp eax, 1  <
+     00304F78 jbe 0x30500a
+     00304F7E inc byte ptr [rsi + 4]
+     00304F81 mov eax, r14d  <
+     00304F84 mov r15, qword ptr [rsp + 0x108]
+     00304F8C jmp 0x30501a
+     00304F91 mov eax, dword ptr [r12]  <
+     00304F95 and eax, 0xa  <
+     00304F98 cmp al, 0xa
+     00304F9A jne 0x304fc3
+     00304F9C mov ecx, dword ptr [rdi + 8]
+     00304F9F movabs rax, 0xffffbfffffffffff  <
+     00304FA9 and qword ptr [rdi], rax
+R 00305AB0 00305AF0 mov qword ptr [rbx], rax   (BattleUnit_SelectAndCommitNextAction)
+     00305ABA mov eax, dword ptr [rcx]  <
+     00305ABC mov edi, edx
+     00305ABE mov rbx, rcx
+     00305AC1 bt rax, 0x16  <
+     00305AC6 jae 0x305acd
+     00305AC8 call 0x308270
+     00305ACD mov rax, qword ptr [rbx]  <
+     00305AD0 mov ecx, 0x4000
+     00305AD5 mov qword ptr [rsp + 0x48], rsi
+     00305ADA mov qword ptr [rsp + 0x50], r14
+     00305ADF test rcx, rax
+     00305AE2 je 0x305b3c
+     00305AE4 movzx esi, word ptr [rbx + 0xba0]
+     00305AEB btr rax, 0xe  <
+     00305AF0 mov qword ptr [rbx], rax
+R 00306F00 00306FCE and qword ptr [rbx], rax   (SpawnGroup_RecordMemberDeathAndHandleCompletion)
+     00306F8F add rsp, 0x20
+     00306F93 pop rbx
+     00306F94 ret 
+     00306F95 mov ecx, 1
+     00306F9A call 0x307140
+     00306F9F mov ecx, 1
+     00306FA4 call 0x238b70
+     00306FA9 mov ecx, 1
+     00306FAE call 0x238ae0
+     00306FB3 xor r8d, r8d
+     00306FB6 test byte ptr [rbx + 0xe99], 1
+     00306FBD je 0x306ffd
+     00306FBF movabs rax, 0xffff7fffffffffff  <
+     00306FC9 mov edx, 0x2005
+     00306FCE and qword ptr [rbx], rax
+R 00306F00 0030700C or qword ptr [rbx], rcx   (SpawnGroup_RecordMemberDeathAndHandleCompletion)
+     00306FD1 movzx eax, byte ptr [rbx + 0xe98]
+     00306FD8 dec eax
+     00306FDA cdqe 
+     00306FDC lea rcx, [rax + rax*2]  <
+     00306FE0 or byte ptr [rdi + rcx*8 + 0x10], 1
+     00306FE5 mov rcx, rbx  <
+     00306FE8 call 0x3299b0
+     00306FED mov rdi, qword ptr [rsp + 0x30]
+     00306FF2 mov eax, 1
+     00306FF7 add rsp, 0x20
+     00306FFB pop rbx
+     00306FFC ret 
+     00306FFD movabs rcx, 0x800000000000  <
+     00307007 mov edx, 0x2008
+     0030700C or qword ptr [rbx], rcx
+R 00307110 0030711A and qword ptr [rcx], rax   (SpawnGroup_MarkCompletionPendingAfterReaction)
+     003070FE xor eax, eax  <
+     00307100 ret 
+     00307101 mov eax, 1  <
+     00307106 ret 
+     00307107 int3 
+     00307108 int3 
+     00307109 int3 
+     0030710A int3 
+     0030710B int3 
+     0030710C int3 
+     0030710D int3 
+     0030710E int3 
+     0030710F int3 
+     00307110 movabs rax, 0xffff7fffffffffff  <
+     0030711A and qword ptr [rcx], rax
+R 00307C70 00307CA2 and qword ptr [rbx], rax   (FUN_00307c70)
+     00307C6E int3 
+     00307C6F int3 
+     00307C70 push rbx
+     00307C72 sub rsp, 0x20
+     00307C76 mov rax, qword ptr [rcx]  <
+     00307C79 mov rbx, rcx
+     00307C7C movabs rcx, 0x4000000000000
+     00307C86 test rcx, rax
+     00307C89 je 0x307cab
+     00307C8B mov rcx, qword ptr [rbx + 0x10]
+     00307C8F call 0x2e7290
+     00307C94 test eax, eax  <
+     00307C96 jne 0x307cda
+     00307C98 movabs rax, 0xfffbfffffeffffff  <
+     00307CA2 and qword ptr [rbx], rax
+R 00307C70 00307CD7 and qword ptr [rbx], rax   (FUN_00307c70)
+     00307C98 movabs rax, 0xfffbfffffeffffff  <
+     00307CA2 and qword ptr [rbx], rax
+     00307CA5 add rsp, 0x20
+     00307CA9 pop rbx
+     00307CAA ret 
+     00307CAB movabs rcx, 0x8000000000000
+     00307CB5 test rcx, rax
+     00307CB8 je 0x307cda
+     00307CBA mov rcx, qword ptr [rbx + 0x10]
+     00307CBE call 0x2e72e0
+     00307CC3 test eax, eax  <
+     00307CC5 jne 0x307cda
+     00307CC7 mov dword ptr [rbx + 0xdcc], eax
+     00307CCD movabs rax, 0xfff7fffffeffffff  <
+     00307CD7 and qword ptr [rbx], rax
+R 00307D10 00307DE2 or dword ptr [rdi + 4], ebx   (BattleUnit_UpdateEngagementStateFlag)
+     00307DA7 test dword ptr [rdi + 4], 0x400
+     00307DAE jne 0x307dd8
+     00307DB0 jmp 0x307dcf
+     00307DB2 call 0x307ce0
+     00307DB7 test eax, eax
+     00307DB9 je 0x307dcf
+     00307DBB mov rcx, qword ptr [rdi + 0x708]
+     00307DC2 call 0x30bf20
+     00307DC7 test eax, eax
+     00307DC9 je 0x307d37
+     00307DCF xor ebx, ebx  <
+     00307DD1 and dword ptr [rdi + 4], 0xfffff9ff
+     00307DD8 and dword ptr [rdi + 4], 0xfffeffff
+     00307DDF shl ebx, 0x10  <
+     00307DE2 or dword ptr [rdi + 4], ebx
+R 00308270 003082DF and qword ptr [rbx], rax   (FUN_00308270)
+     00308289 movzx ecx, byte ptr [rcx + 0x695]
+     00308290 call 0x30c970
+     00308295 mov byte ptr [rbx + 0x695], 0xff
+     0030829C lea rcx, [rip + 0x1fb9b0d]
+     003082A3 movzx eax, byte ptr [rbx + 0xea9]  <
+     003082AA lea rdx, [rax + rax*2]
+     003082AE movzx eax, word ptr [rcx + rdx*4]  <
+     003082B2 mov word ptr [rbx + 0xdc8], ax
+     003082B9 mov eax, dword ptr [rcx + rdx*4 + 4]  <
+     003082BD mov rcx, rbx
+     003082C0 mov dword ptr [rbx + 0xe58], eax
+     003082C6 call 0x30eda0
+     003082CB movabs rax, 0xffffbfffffbfffff  <
+     003082D5 mov dword ptr [rbx + 0x690], 0
+     003082DF and qword ptr [rbx], rax
+R 0030AF30 0030AFF5 mov qword ptr [rbx], rcx   (BattleAction_CheckAndHandleExecutionTimeout)
+     0030AFB2 mov qword ptr [rbx + 0x6f8], r8
+     0030AFB9 mov dword ptr [rbx + 0x748], r8d
+     0030AFC0 mov dword ptr [rbx + 0x770], r8d
+     0030AFC7 mov rcx, qword ptr [rbx]  <
+     0030AFCA mov rdx, rcx
+     0030AFCD and edx, 0x4000
+     0030AFD3 je 0x30afe0
+     0030AFD5 cmp word ptr [rbx + 0xba0], 0x113
+     0030AFDE je 0x30aff8
+     0030AFE0 test rdx, rdx
+     0030AFE3 je 0x30aff0
+     0030AFE5 cmp word ptr [rbx + 0xba0], 0x95
+     0030AFEE je 0x30aff8
+     0030AFF0 btr rcx, 0xe  <
+     0030AFF5 mov qword ptr [rbx], rcx
+R 003105D0 0031064B and qword ptr [rbx], rax   (BattleUnit_CancelAndResetCurrentAction)
+     003105F9 lea rsi, [rcx + 0x80]
+     00310600 mov qword ptr [rsp + 0x40], rdi
+     00310605 call 0x310780
+     0031060A mov byte ptr [rbx + 0x6b6], 0
+     00310611 movzx ecx, byte ptr [rbx + 0x695]
+     00310618 call 0x30c970
+     0031061D mov byte ptr [rbx + 0x695], 0xff
+     00310624 movzx ecx, byte ptr [rbx + 0x696]
+     0031062B call 0x30c970
+     00310630 mov rcx, rbx
+     00310633 mov byte ptr [rbx + 0x696], 0xff
+     0031063A call 0x300280
+     0031063F movabs rax, 0xffffbff75fffcfff  <
+     00310649 xor ebp, ebp
+     0031064B and qword ptr [rbx], rax
+R 003105D0 0031066F and qword ptr [rbx], rax   (BattleUnit_CancelAndResetCurrentAction)
+     00310624 movzx ecx, byte ptr [rbx + 0x696]
+     0031062B call 0x30c970
+     00310630 mov rcx, rbx
+     00310633 mov byte ptr [rbx + 0x696], 0xff
+     0031063A call 0x300280
+     0031063F movabs rax, 0xffffbff75fffcfff  <
+     00310649 xor ebp, ebp
+     0031064B and qword ptr [rbx], rax
+     0031064E mov rcx, rbx
+     00310651 and dword ptr [rbx + 4], 0xffdfff7f
+     00310658 mov dword ptr [rbx + 0x690], ebp
+     0031065E call 0x16d6a0
+     00310663 movabs rax, 0xfff3fffffeffffff  <
+     0031066D mov edi, ebp
+     0031066F and qword ptr [rbx], rax
+R 00312130 00312150 or qword ptr [rax], rcx   (FUN_00312130)
+     00312121 movaps xmm7, xmmword ptr [r11 - 0x20]
+     00312126 movaps xmm8, xmmword ptr [r11 - 0x30]
+     0031212B mov rsp, r11
+     0031212E pop rdi
+     0031212F ret 
+     00312130 push rbx
+     00312132 sub rsp, 0x20
+     00312136 mov ebx, edx
+     00312138 call 0x31b760
+     0031213D test rax, rax
+     00312140 je 0x312166
+     00312142 test ebx, ebx
+     00312144 jne 0x312159
+     00312146 movabs rcx, 0x1000000000  <
+     00312150 or qword ptr [rax], rcx
+R 00312130 00312163 and qword ptr [rax], rcx   (FUN_00312130)
+     00312130 push rbx
+     00312132 sub rsp, 0x20
+     00312136 mov ebx, edx
+     00312138 call 0x31b760
+     0031213D test rax, rax
+     00312140 je 0x312166
+     00312142 test ebx, ebx
+     00312144 jne 0x312159
+     00312146 movabs rcx, 0x1000000000  <
+     00312150 or qword ptr [rax], rcx
+     00312153 add rsp, 0x20
+     00312157 pop rbx
+     00312158 ret 
+     00312159 movabs rcx, 0xffffffefffffffff  <
+     00312163 and qword ptr [rax], rcx
+R 00317E60 00317E9A or qword ptr [rax], rcx   (FUN_00317e60)
+     00317E64 call 0x3590d0
+     00317E69 test byte ptr [rip + 0x1d714d0], 0x10
+     00317E70 je 0x317ea9
+     00317E72 mov ecx, eax  <
+     00317E74 call 0x3588b0
+     00317E79 test rax, rax
+     00317E7C je 0x317ea9
+     00317E7E mov rcx, rax  <
+     00317E81 call 0x263e30
+     00317E86 test rax, rax
+     00317E89 je 0x317ea9
+     00317E8B test byte ptr [rax], 8
+     00317E8E je 0x317ea9
+     00317E90 movabs rcx, 0x100000000  <
+     00317E9A or qword ptr [rax], rcx
+R 00319090 003190FC or qword ptr [rbx], rax   (FUN_00319090)
+     003190C1 je 0x3190ff
+     003190C3 test byte ptr [rax], 8
+     003190C6 je 0x3190ff
+     003190C8 mov eax, 0x414e  <
+     003190CD cmp word ptr [rbx + 0x714], ax
+     003190D4 jne 0x3190ff
+     003190D6 mov ecx, dword ptr [rbx + 0x710]
+     003190DC call 0x25b4c0
+     003190E1 test eax, eax  <
+     003190E3 je 0x3190ff
+     003190E5 mov edx, dword ptr [rbx + 0x710]
+     003190EB xor ecx, ecx
+     003190ED call 0x25aad0
+     003190F2 movabs rax, 0x100000000  <
+     003190FC or qword ptr [rbx], rax
+R 00319F50 0031A0AA or qword ptr [rbx], rax   (BattleUnit_HandleActorTimelineEvent)
+     0031A064 test eax, eax  <
+     0031A066 je 0x31a1ce
+     0031A06C mov eax, 0xae  <
+     0031A071 cmp word ptr [rbx + 0x714], ax
+     0031A078 jne 0x31a089
+     0031A07A mov eax, dword ptr [rbx + 0x710]  <
+     0031A080 cmp dword ptr [rbx + 8], eax
+     0031A083 je 0x31a1ce
+     0031A089 mov rcx, qword ptr [rbx + 0x698]
+     0031A090 mov r9d, 0x14
+     0031A096 mov r8, rcx
+     0031A099 xor edx, edx
+     0031A09B call 0x300520
+     0031A0A0 movabs rax, 0x200000000  <
+     0031A0AA or qword ptr [rbx], rax
+R 003250F0 0032518F or qword ptr [rbx], rax   (BattleUnit_HandleReactionAnimationEvent)
+     00325159 add rcx, rdx
+     0032515C jmp rcx
+     0032515E mov rcx, rbx
+     00325161 call 0x312fa0
+     00325166 jmp 0x3251b3
+     00325168 mov rcx, rbx
+     0032516B call 0x3082f0
+     00325170 jmp 0x3251b3
+     00325172 mov rcx, rbx
+     00325175 call 0x3083a0
+     0032517A jmp 0x3251b3
+     0032517C and qword ptr [rbx], 0xfffffffffeffffff
+     00325183 jmp 0x3251b3
+     00325185 movabs rax, 0x200000000  <
+     0032518F or qword ptr [rbx], rax
+R 005102D0 005102EB or qword ptr [rax], rcx   (FUN_005102d0)
+     005102C8 int3 
+     005102C9 int3 
+     005102CA int3 
+     005102CB int3 
+     005102CC int3 
+     005102CD int3 
+     005102CE int3 
+     005102CF int3 
+     005102D0 sub rsp, 0x28
+     005102D4 mov rcx, rdx  <
+     005102D7 call 0x31b760
+     005102DC test rax, rax
+     005102DF je 0x5102ee
+     005102E1 movabs rcx, 0x200000000000  <
+     005102EB or qword ptr [rax], rcx

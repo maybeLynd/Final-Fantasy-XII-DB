@@ -1,0 +1,52 @@
+00246610  add       byte ptr [rax], al
+00246612  movsxd    r8, edx
+00246615  xorps     xmm0, xmm0
+00246618  xor       edx, edx
+0024661A  mov       rsi, r9
+0024661D  mov       rdi, rcx
+00246620  movdqu    xmmword ptr [rsp + 0x28], xmm0
+00246626  call      0x861ec0
+---
+00246730  mov       eax, dword ptr [rsi + 0x10]
+00246733  mov       qword ptr [rsp + 0x30], rax
+00246738  mov       rax, rbx
+0024673B  test      rbx, rbx
+0024673E  je        0x24674a
+00246740  lea       rdx, [rsp + 0x20]
+00246745  mov       rcx, rdi
+00246748  call      rax
+0024674A  call      0x1edda0
+0024674F  test      eax, eax
+00246751  jne       0x246766
+00246753  call      0x314960
+00246758  test      eax, eax
+0024675A  je        0x246766
+0024675C  mov       dword ptr [rdi + 0xb4], 1
+00246766  mov       rcx, qword ptr [rsp + 0x38]
+0024676B  xor       rcx, rsp
+0024676E  call      0x808c40
+00246773  add       rsp, 0x40
+00246777  pop       rdi
+00246778  pop       rsi
+00246779  pop       rbx
+0024677A  ret       
+---
+00808C40  cmp       rcx, qword ptr [rip + 0x173bbe9]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+00808C47  bnd jne   0x808c5c
+00808C4A  rol       rcx, 0x10
+00808C4E  test      cx, 0xffff
+00808C53  bnd jne   0x808c58
+00808C56  bnd ret   
+---
+0027A410  imul      rax, rcx, 0x3010
+0027A417  lea       rcx, [rbx + 0xc0]
+0027A41E  mov       dword ptr [rbp - 0x28], esi
+0027A421  add       rcx, rax
+0027A424  mov       qword ptr [rbp - 0x18], rsi
+0027A428  mov       edx, 0x3010
+0027A42D  call      0x245000
+---
+00244F50 raw rel32 247 (call 231, jmp 16) in 206 listed functions, 0 outside; jcc 0
+00276650 raw rel32 1 (call 1, jmp 0) in 1 listed functions, 0 outside; jcc 0  ['00290DC0 call']
+0028FD50 raw rel32 1 (call 1, jmp 0) in 1 listed functions, 0 outside; jcc 0  ['0035D69B call']
+002465F0 raw rel32 9 (call 9, jmp 0) in 5 listed functions, 0 outside; jcc 0

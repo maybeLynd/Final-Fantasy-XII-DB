@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-HBREC-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the hctg record +0x04 bind: {u16 group; u16 hdatFile} — hi histogram corpus-exact vs per-file record counts.",
+  "scope": "hchk-hctg-hdat-handbook-indexes.md, AUDIT-LOG.md, ADDRESS-INDEX.md, SWE2-DATA.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

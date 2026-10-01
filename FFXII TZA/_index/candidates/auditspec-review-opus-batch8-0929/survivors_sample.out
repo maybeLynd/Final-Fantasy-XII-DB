@@ -1,0 +1,23 @@
+== B1
+003601B0  mov       eax, 1
+003601B5  shl       eax, cl
+003601B7  or        dword ptr [rip + 0x1f6b563], eax   ; -> 022CB720 (virtual tail / unmapped)
+003601BD  ret       
+003601BE  int3      
+003601BF  int3      
+003601C0  mov       eax, 1
+003601C5  shl       eax, cl
+003601C7  not       eax
+003601C9  and       dword ptr [rip + 0x1f6b551], eax   ; -> 022CB720 (virtual tail / unmapped)
+003601CF  ret       
+== T0
+00304ED0  add       byte ptr [rbx + rcx*4 + 0x46], al
+gatherer 0030D160: rel32 ['00304EE2 call'] jcc [] data {'abs64': [], 'rva32': ['01D75B34(.rdata)', '01D75BC0(.rdata)', '02FB3990(.pdata)']} rip []
+== M3
+001EB9F0  mov       ecx, eax
+001EB9F2  mov       dword ptr [rsp + 0x28], edx
+001EB9F6  mov       edx, dword ptr [rbx + 0x138]
+001EB9FC  mov       dword ptr [rsp + 0x20], edx
+001EBA00  mov       edx, 1
+001EBA05  call      0x2ee9c0
+requester 002EE9C0: rel32 ['001EBA05 call'] jcc [] data {'abs64': [], 'rva32': ['02FB1B1C(.pdata)', '02FB1B24(.pdata)']} rip []

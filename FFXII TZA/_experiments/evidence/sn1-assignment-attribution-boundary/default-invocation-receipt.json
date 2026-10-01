@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "capture_sha256": "4010347eb186e2996d4a2ecf10ff1d17826f120ba54b04db36d25e36c548bcfa",
+  "check_sha256": "115539dd4493c46e305803a9491a66622fcac26a46fae68e9fbf9265d5244ef7",
+  "raw_before_sha256": "86ce29bc12f9cf3bc818d5d232e66131d4023b74d39bf950940d80c766ee2b10",
+  "raw_after_sha256": "86ce29bc12f9cf3bc818d5d232e66131d4023b74d39bf950940d80c766ee2b10",
+  "path": "Actual retained raw default; no bytecode/native/live execution or recapture"
+}

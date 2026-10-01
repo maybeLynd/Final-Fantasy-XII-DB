@@ -1,0 +1,32 @@
+[
+  {
+    "name": "missing-case",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\reducer-controls\\missing-case.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\check.py\", line 15, in <module>\n    cs={x['name']:x for x in r['cases']};assert len(cs)==len(r['cases'])==3 and set(cs)=={'empty-history','aligned-latest','latest-missing-progress'},'MISSING_CASE'\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_CASE\n",
+    "terminal": true,
+    "checker_sha256": "4350ddf3c945c3bd841631fa40e5b0bfb50da30bb3e9ca77dd009415670b95f7"
+  },
+  {
+    "name": "failed-verifier-good-observations",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\reducer-controls\\failed-verifier-good-observations.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\check.py\", line 27, in <module>\n    assert q['terminal'] and q['returncode']==0 and not q['stderr'] and q['stdout']==expected,'VERIFIER_PREREQUISITE'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: VERIFIER_PREREQUISITE\n",
+    "terminal": true,
+    "checker_sha256": "4350ddf3c945c3bd841631fa40e5b0bfb50da30bb3e9ca77dd009415670b95f7"
+  }
+]

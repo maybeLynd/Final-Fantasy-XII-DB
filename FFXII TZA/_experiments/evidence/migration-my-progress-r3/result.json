@@ -1,0 +1,12 @@
+{
+  "verdict": "ACCEPT_SCOPED_FIXED_TERMINAL_REQUIREMENT",
+  "source_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e",
+  "changed_source_observations": 4,
+  "zero_measure": "FAILED_T_UNMEASURED_NOT_READY_REQUIRED30",
+  "zero_ready_view": "REFUSED",
+  "thirty_controls": "PRESERVED",
+  "actual_terminal_audits": "NOT_RUN",
+  "normal_builder_deployment": "NOT_CERTIFIED",
+  "full_M0_M5_or_L1_L2": false,
+  "independent_acceptance_of_evidence": "PENDING"
+}

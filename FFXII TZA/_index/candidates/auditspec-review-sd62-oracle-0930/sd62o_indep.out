@@ -1,0 +1,116 @@
+== A  callers of 00639160
+rel32: 12  jcc: 0 []  abs64: []  rva32: 3
+  006344E3 call  root 006344A0  rcx<- [006344A4 mov rcx, qword ptr [rip + 0x26c3e35]]  rdx<- [006344B9 lea rdx, [rip + 0x26c3db0]]
+      owner cell 02CF82E0 = descriptor 02CF8270 + 0x70
+  006347C6 call  root 00634540  rcx<- [006347BF mov rcx, qword ptr [rip + 0x26c3c1a]]  rdx<- [006347BC mov rdx, rdi]
+      owner cell 02CF83E0 = descriptor 02CF8370 + 0x70
+  00634945 call  root 00634830  rcx<- [0063493E mov rcx, qword ptr [rip + 0x26c3b9b]]  rdx<- [00634937 lea rdx, [rip + 0x26c3b32]]
+      owner cell 02CF84E0 = descriptor 02CF8470 + 0x70
+  0063523E call  root 006349B0  rcx<- [00635237 mov rcx, qword ptr [rip + 0x26c33b2]]  rdx<- [00635234 mov rdx, rsi]
+      owner cell 02CF85F0 = descriptor 02CF8580 + 0x70
+  00635415 call  root 006352A0  rcx<- [0063540E mov rcx, qword ptr [rip + 0x26c32db]]  rdx<- [0063540B mov rdx, rdi]
+      owner cell 02CF86F0 = descriptor 02CF8680 + 0x70
+  0063577F call  root 00635470  rcx<- [00635778 mov rcx, qword ptr [rip + 0x26c3071]]  rdx<- [00635771 lea rdx, [rip + 0x26c3008]]
+      owner cell 02CF87F0 = descriptor 02CF8780 + 0x70
+  0063592A call  root 006357E0  rcx<- [00635923 mov rcx, qword ptr [rip + 0x26c2fc6]]  rdx<- [00635920 mov rdx, rbx]
+      owner cell 02CF88F0 = descriptor 02CF8880 + 0x70
+  00635B22 call  root 00635980  rcx<- [00635B1B mov rcx, qword ptr [rip + 0x26c2ece]]  rdx<- [00635B14 lea rdx, [rip + 0x26c2e65]]
+      owner cell 02CF89F0 = descriptor 02CF8980 + 0x70
+  00635C67 call  root 00635B80  rcx<- [00635C60 mov rcx, qword ptr [rip + 0x26c2e89]]  rdx<- [00635C59 lea rdx, [rip + 0x26c2e20]]
+      owner cell 02CF8AF0 = descriptor 02CF8A80 + 0x70
+  00636155 call  root 00635DC0  rcx<- [0063614E mov rcx, qword ptr [rip + 0x26c344b]]  rdx<- [0063614B mov rdx, rbx]
+      owner cell 02CF95A0 = descriptor 02CF9530 + 0x70
+  006363DB call  root 00636280  rcx<- [006363D8 mov rcx, rbp]  rdx<- [006363D1 mov rdx, rbx]
+      owner cell None, descriptor regs:[]
+  00639460 call  root 00639450  rcx<- [0063945C mov rcx, qword ptr [rcx + 0x70]]  rdx<- [00639459 mov rdx, rcx]
+      owner cell None, descriptor regs:[]
+00639450 rel32 callers: 471  jcc: 0
+== B  references into the root 01F2E330..01F2E367
+rip refs: 156 in 15 functions
+  006316C0: 10 refs
+  006318A0: 10 refs
+  00631A60: 10 refs
+  00631C40: 10 refs
+  00631E20: 10 refs
+  00632000: 10 refs
+  006321E0: 10 refs
+  006323C0: 10 refs
+  006325A0: 10 refs
+  00632780: 10 refs
+  006373D0: 1 refs
+  00637A70: 15 refs
+  00638C90: 27 refs
+  0063C730: 11 refs
+  008AF490: 2 refs
+rip stores to root+0x00/+0x08: 30
+  in 13 functions; stores whose source register is not lea'd only to 01F2E330 in its function: [('00637BF7', 'qword ptr [rip + 0x18f6732], rax', ['01F2E330', '01F2E340', '01F2E358']), ('00637C05', 'qword ptr [rip + 0x18f672c], rax', ['01F2E330', '01F2E340', '01F2E358']), ('0063C8B9', 'qword ptr [rip + 0x18f1a70], rax', ['01F2E330', '01F2E358']), ('0063C8C7', 'qword ptr [rip + 0x18f1a6a], rax', ['01F2E330', '01F2E358'])]
+image-base-relative refs: []
+  abs64 refs to 01F2E330: ['01F2E330(.data)', '01F2E338(.data)']
+  abs64 refs to 01F2E338: []
+  abs64 refs to 01F2E340: ['01F2E340(.data)', '01F2E348(.data)']
+  abs64 refs to 01F2E348: []
+  abs64 refs to 01F2E350: []
+  abs64 refs to 01F2E358: ['01F2E358(.data)', '01F2E360(.data)']
+  abs64 refs to 01F2E360: []
+root static qwords: 0000000001F2E330 0000000001F2E330 0000000001F2E340 0000000001F2E340 0000000000000000 0000000001F2E358 0000000001F2E358
+== C  references into 01F2E780..01F2E7F7
+  00635BF7 root 00635B80  W  +30 of 01F2E780  mov   qword ptr [rip + 0x18f8bb2], rcx
+  00635BFE root 00635B80  W  +38 of 01F2E780  mov   qword ptr [rip + 0x18f8bb3], rax
+  00635C05 root 00635B80  r  +30 of 01F2E780  lea   rcx, [rip + 0x18f8ba4]
+  00635C36 root 00635B80  W  +60 of 01F2E780  mov   qword ptr [rip + 0x18f8ba3], rax
+  00635C44 root 00635B80  W  +68 of 01F2E780  mov   qword ptr [rip + 0x18f8b9d], rax
+  00635C4B root 00635B80  r  +60 of 01F2E780  lea   rax, [rip + 0x18f8b8e]
+  00635C52 root 00635B80  W  +58 of 01F2E780  mov   qword ptr [rip + 0x18f8b7f], rax
+  006362D2 root 00636280  r  +00 of 01F2E780  lea   r12, [rip + 0x18f84a7]
+  00636468 root 00636280  W  +00 of 01F2E780  mov   qword ptr [rip + 0x18f8311], r12
+  0063646F root 00636280  W  +08 of 01F2E780  mov   qword ptr [rip + 0x18f8312], r12
+  00636476 root 00636280  W  +10 of 01F2E780  mov   qword ptr [rip + 0x18f8313], r12
+  0063647D root 00636280  W  +28 of 01F2E780  mov   qword ptr [rip + 0x18f8324], r12
+  00636484 root 00636280  W  +20 of 01F2E780  mov   qword ptr [rip + 0x18f8315], r12
+  0063648B root 00636280  W  +18 of 01F2E780  mov   qword ptr [rip + 0x18f8306], r12
+  00637467 root 00637440  r  +00 of 01F2E780  lea   rax, [rip + 0x18f7312]
+  00638F13 root 00638F00  r  +00 of 01F2E780  lea   rdi, [rip + 0x18f5866]
+  00638F73 root 00638F00  W  +00 of 01F2E780  mov   qword ptr [rip + 0x18f5806], rdi
+  00638F7A root 00638F00  W  +08 of 01F2E780  mov   qword ptr [rip + 0x18f5807], rdi
+  00638F81 root 00638F00  W  +10 of 01F2E780  mov   qword ptr [rip + 0x18f5808], rdi
+  00638F88 root 00638F00  W  +28 of 01F2E780  mov   qword ptr [rip + 0x18f5819], rdi
+  00638F8F root 00638F00  W  +20 of 01F2E780  mov   qword ptr [rip + 0x18f580a], rdi
+  00638F96 root 00638F00  W  +18 of 01F2E780  mov   qword ptr [rip + 0x18f57fb], rdi
+  008AF43D root 008AF430  r  +30 of 01F2E780  mov   rcx, qword ptr [rip + 0x167f36c]
+  008AF444 root 008AF430  r  +38 of 01F2E780  mov   rax, qword ptr [rip + 0x167f36d]
+  008AF452 root 008AF430  r  +30 of 01F2E780  lea   rax, [rip + 0x167f357]
+  008AF459 root 008AF430  W  +30 of 01F2E780  mov   qword ptr [rip + 0x167f350], rax
+  008AF460 root 008AF430  W  +38 of 01F2E780  mov   qword ptr [rip + 0x167f351], rax
+  008AF467 root 008AF430  r  +50 of 01F2E780  test  byte ptr [rip + 0x167f362], 1
+  008AF470 root 008AF430  r  +48 of 01F2E780  mov   rcx, qword ptr [rip + 0x167f351]
+  008AFDED root 008AFDE0  r  +00 of 01F2E780  lea   rcx, [rip + 0x167e98c]
+image-base-relative refs: []
+  abs64 refs to 01F2E780: ['01F2E780(.data)', '01F2E788(.data)', '01F2E790(.data)', '01F2E798(.data)', '01F2E7A0(.data)', '01F2E7A8(.data)']   static q=0000000001F2E780
+  abs64 refs to 01F2E788: []   static q=0000000001F2E780
+  abs64 refs to 01F2E790: []   static q=0000000001F2E780
+  abs64 refs to 01F2E798: []   static q=0000000001F2E780
+  abs64 refs to 01F2E7A0: []   static q=0000000001F2E780
+  abs64 refs to 01F2E7A8: []   static q=0000000001F2E780
+  abs64 refs to 01F2E7B0: ['01F2E7B0(.data)', '01F2E7B8(.data)']   static q=0000000001F2E7B0
+  abs64 refs to 01F2E7B8: []   static q=0000000001F2E7B0
+  abs64 refs to 01F2E7C0: []   static q=0000000002CF8A80
+  abs64 refs to 01F2E7C8: []   static q=0000000000D58D90
+  abs64 refs to 01F2E7D0: []   static q=0000000000000000
+  abs64 refs to 01F2E7D8: []   static q=0000000000000000
+  abs64 refs to 01F2E7E0: []   static q=0000000000000000
+  abs64 refs to 01F2E7E8: []   static q=0000000000000000
+  abs64 refs to 01F2E7F0: []   static q=0000000000000000
+guard 02CF94EC referenced by ['006316C0', '006318A0', '00631A60', '00631C40', '00631E20', '00632000', '006321E0', '006323C0', '006325A0', '00632780', '006373D0', '00637A70', '00638C90', '0063C730']
+guard 02CF9524 referenced by ['00636280', '00637440', '00638F00']
+guard 02CF9528 referenced by ['00000000', '00635B80']
+== D  00639160 splice ordering (no-base path 0063922E-00639244)
+  0063922E mov rcx, qword ptr [r14]
+  00639231 lea rdx, [rdi + 0x50]
+  00639235 mov rax, qword ptr [rdx + 8]
+  00639239 mov qword ptr [rcx + 8], rax
+  0063923D mov qword ptr [rax], rcx
+  00639240 mov qword ptr [rdx + 8], r14
+  00639244 mov qword ptr [r14], rdx
+  r14 = owner+0x10 (head), rdx = descriptor+0x50 (self-linked by 00632D80), rcx = [head+0] (old first)
+  => [head+0] = node, [node+0] = old first, [node+8] = head, [old first+8] = node: node becomes head's +0 neighbour
+  the walkers 008AF490/00637A70/00638C90 start from [01F2E340] (= head+0) and step by [node+0]

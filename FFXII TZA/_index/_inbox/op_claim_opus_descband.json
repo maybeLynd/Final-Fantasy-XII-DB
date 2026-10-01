@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-THE-FIFTY-SIX-HEADS-ARE-CLASS-DESCRIPTORS",
+ "agent": "OPUS",
+ "note": "02CB59C8 and 02CECFF8 sit fifty-eight entries apart in the sweep and have the same five-instruction head written by one body each: `mov dword [X], 8`, three qword stores at +8/+0x10/+0x18, a dword compared at +0x20. Two addresses with one layout is a type with two instances or a coincidence, so I asked how many more there are: FIFTY-SIX, each with its own initialiser, across 02CB4xxx and 02CExxxx. READING ONE INITIALISER ENDED IT: 005B7460 reaches its object as `lea rcx, [rip -> 02CB5970]`, hands it to 00632A10 - next door to the member registrar 00632960 - and then calls 006388C0, which CONTRACT-phyre-class-descriptor.md names as PType_FindOrRegisterByName. These are Phyre CLASS DESCRIPTORS, and my head at 02CB59C8 is +0x58 inside one rather than the base of anything. SO THE SWEEP WAS COUNTING WHAT THE STORE ALREADY KNOWS: 153 type rows name a descriptor address in prose, and the route column records where an INSTANCE lives, not where its DESCRIPTOR lives, so every one of them read as uncovered. Counting them at the contract's 0x140 - which that contract states as a floor, so this is a floor too - takes uncovered targets from 10,681 to 10,296 and clusters from 1,251 to 1,096. The two earlier drops were declarations; this one is not a discovery at all, it is the instrument learning what the store had already recorded. Six clusters read, five declined, one declared - and this decline removed 155 clusters from the list. Claiming @publication for the inbox block.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

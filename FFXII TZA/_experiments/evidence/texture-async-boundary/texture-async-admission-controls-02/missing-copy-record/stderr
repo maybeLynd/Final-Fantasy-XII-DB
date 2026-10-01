@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 17, in main
+    pins=[];raw,x=P.load(src,'texture-async-count-path-source-01.json',pins);agreement=S.validate(raw)
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-queue-consumption.py", line 17, in load
+    if len(z)!=int(q['end_exclusive'],16)-int(q['start'],16) or hashlib.sha256(z).hexdigest()!=q['sha256']:raise ValueError('mixed original bytes')
+                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: mixed original bytes

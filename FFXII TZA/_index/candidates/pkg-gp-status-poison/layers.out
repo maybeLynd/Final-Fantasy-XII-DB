@@ -1,0 +1,4 @@
+PASS  N status write fragments call 0030E130: False; 0030E970 is its own function: True
+PASS  C 0030E130 call sites ['002FDFAC', '002FE00B', '0030E97F', '00310378', '00310396', '003117CB', '00311807']
+PASS  A the applier's step 14 (00311781-00311819) reaches the layer mutator
+FAILS 0

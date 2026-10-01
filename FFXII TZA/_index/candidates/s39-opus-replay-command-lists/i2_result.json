@@ -1,0 +1,40 @@
+{
+ "cases": {
+  "at_flush_entry_ordered_list_empty_owner_still_full": true,
+  "both_lists_hold_the_three_enqueued_pointers": true,
+  "clear_entered_before_flush": true,
+  "every_freed_command_was_freed_after_the_ordered_list_emptied": true,
+  "run_ends_at_the_recorded_boundary_001A14D0": true
+ },
+ "commands": [
+  "73009D50",
+  "73009D70",
+  "73009D90"
+ ],
+ "events": [
+  [
+   "clear 0018B040",
+   3,
+   3
+  ],
+  [
+   "flush 0018C8F0",
+   0,
+   3
+  ],
+  [
+   "001DB620",
+   0,
+   0
+  ]
+ ],
+ "freed": [
+  "73009D50",
+  "73009D70",
+  "73009D90"
+ ],
+ "ok": true,
+ "stopped_at": [
+  "001A14D0"
+ ]
+}

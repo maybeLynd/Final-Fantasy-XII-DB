@@ -1,0 +1,211 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-texture-copy-capacity-caller.py",
+      "bytes": 2957,
+      "sha256": "1bc0356271c18ed151b28123769764e3b72b058f5f2de887e736ac7ca94e246c"
+    },
+    {
+      "path": "control-texture-copy-capacity-caller.py",
+      "bytes": 3077,
+      "sha256": "f9822e083c340abfb6a46cff4513eca61d33efa5d575d4c65260e221f816c23c"
+    },
+    {
+      "path": "freeze-texture-copy-capacity-caller.py",
+      "bytes": 7248,
+      "sha256": "7b9cb8c728faab7cfebbfffca96675baeb72e9f77decf862918182603e6a612c"
+    },
+    {
+      "path": "prove-texture-copy-capacity-caller-before-source-map-02.py",
+      "bytes": 8705,
+      "sha256": "c3d329fe6d9c9a5cf3228b6acf1868a271459e52e91a1d5218dbc85d0a5bc0a9"
+    },
+    {
+      "path": "prove-texture-copy-capacity-caller.py",
+      "bytes": 8750,
+      "sha256": "7c14ba3ac418073fba8d3d76ce9b1194661704846e93b2769de8b069d8d35efc"
+    },
+    {
+      "path": "prove-texture-copy-construction.py",
+      "bytes": 9199,
+      "sha256": "a07431ae147105e6c3dfef70d6f1b6a2233836b56f47624029da7e78b9166097"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4546,
+      "sha256": "732c03966c5c08e30f59656095b79c385efd70ae1d9ac6cd60d2d550751dfba5"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/consistent-wrong-min/status.json",
+      "bytes": 174,
+      "sha256": "58dc3582bc7b607e49f9328c7ca39220ec653895cfb0557f3b56739c895d5b6f"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/consistent-wrong-min/stderr",
+      "bytes": 1037,
+      "sha256": "8d0ef876a62ecac505df1262b24243637ab99cdd03a5da1cf131fbacfa64c3ed"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/consistent-wrong-min/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/consistent-wrong-min/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "841f7311b91414b72fcb8076408d6f95fd8eae618763611293568d0331fa63f9"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/consistent-wrong-min/texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/consistent-wrong-min/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/failed-helper-result/status.json",
+      "bytes": 171,
+      "sha256": "1bd8c05ca5e80cae9a1bf8acc126bdd59474782312713c40eef247e94eaef577"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/failed-helper-result/stderr",
+      "bytes": 1176,
+      "sha256": "8bc9306a65e61eece4dc870da73b3ce157946de9dd64e41f7087523e6caaa693"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/failed-helper-result/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/failed-helper-result/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/failed-helper-result/texture-copy-construction-result-01.json",
+      "bytes": 7364,
+      "sha256": "5ac7a58b66f96c7912df52f3ec13f05020315d39ab5574788297f43a1d7e8874"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/failed-helper-result/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-chained-fragment/status.json",
+      "bytes": 172,
+      "sha256": "4cb5a6f7e438e2088b4dde7600e1e25ac911f2b3b2e256f123a6e142b637d24e"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-chained-fragment/stderr",
+      "bytes": 795,
+      "sha256": "a48be94f2f3d7949c45bc14a51ef52f0870ea97d59fea6597fad68d4732e4b55"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-chained-fragment/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-chained-fragment/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16767,
+      "sha256": "c907c70ff89edc2dc9861941c3ada1805019459af891f340ffbbccd9d056ee09"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-chained-fragment/texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-chained-fragment/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-helper-result/status.json",
+      "bytes": 155,
+      "sha256": "37c14ed1aecc7fb6e0eec6a3f4e81df26de84f8580934dcce766616f6424bb13"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-helper-result/stderr",
+      "bytes": 1391,
+      "sha256": "fe221a9a74ee7b524145e26dc290ddef49fe6cb3becd48d51d7ab6b5a6c3f494"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-helper-result/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-helper-result/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/missing-helper-result/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-copy-capacity-caller-controls-01/result.json",
+      "bytes": 1373,
+      "sha256": "ddb023b33985a6eaec48f03a9c9cfa9cc8cbfa8f0fff95b25b80245d1f6d4337"
+    },
+    {
+      "path": "texture-copy-capacity-caller-preparation-03.json",
+      "bytes": 2383,
+      "sha256": "fd66b7fbbfa837a8db278d1752c2d75a3c07c266eea2317b1789de9b6cd96478"
+    },
+    {
+      "path": "texture-copy-capacity-caller-result-01.json",
+      "bytes": 4968,
+      "sha256": "e12c9d17b55b01251211705a04726b2ddea2050c7442585fddd813445e64a95c"
+    },
+    {
+      "path": "texture-copy-capacity-caller-result-02.json",
+      "bytes": 5001,
+      "sha256": "e00a04d0ab2a6af9f9409e903a78fd2f242449a83e745578f5a4e295445dd866"
+    },
+    {
+      "path": "texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

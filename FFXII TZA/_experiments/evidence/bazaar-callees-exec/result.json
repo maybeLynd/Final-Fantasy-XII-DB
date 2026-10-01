@@ -1,0 +1,4006 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "image_base": "0x120000",
+ "cases": 80,
+ "cases_total": 80,
+ "mutants_detected": 11,
+ "mutants_total": 11,
+ "results": [
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ],
+    [
+     "0x40470001",
+     "000000"
+    ]
+   ],
+   "name": "pur-gate-pass"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d001",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d001",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ],
+    [
+     "0x40470001",
+     "000000"
+    ]
+   ],
+   "name": "pur-gate-fail"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d003",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d003",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "pur-bound-hi"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d004",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d004",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "pur-bound-hi-fail"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "pur-flag0"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "pur-flag1"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "pur-flag2"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "pur-flag3"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "pur-nullreg"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=0",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [
+    [
+     "MEM",
+     "0x16",
+     "access=19",
+     "rip=30b20c"
+    ],
+    [
+     "EMU",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     3191308
+    ]
+   ],
+   "mem": [],
+   "name": "pur-nullrow"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1005",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1007",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1007",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1007",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1007",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1009",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1009",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1009",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1009",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x40470005",
+     "00"
+    ],
+    [
+     "0x40470006",
+     "03"
+    ],
+    [
+     "0x40470007",
+     "00"
+    ],
+    [
+     "0x40470009",
+     "00"
+    ]
+   ],
+   "name": "pur-tally-zero"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=d005",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=d005",
+     "rdx=3"
+    ],
+    [
+     "w48d",
+     "rcx=d005",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=d006",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=d006",
+     "rdx=3"
+    ],
+    [
+     "w48d",
+     "rcx=d006",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=d007",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=d007",
+     "rdx=3"
+    ],
+    [
+     "w48d",
+     "rcx=d007",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x40470005",
+     "00"
+    ]
+   ],
+   "name": "pur-famd-loot"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "ref-accept"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "ref-tally0"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "ref-allzero"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=d002",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "ref-one-t"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "ref-repeat"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "ref-repeat-fail"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "02"
+    ]
+   ],
+   "name": "ref-avail"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "ref-sentinel"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "ref-oob"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "ref-eq"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=40470000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=40470000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=30"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=30"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=30"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=30"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ],
+    [
+     "0x404259c9",
+     "02"
+    ],
+    [
+     "0x404259ca",
+     "01"
+    ],
+    [
+     "0x404259cb",
+     "03"
+    ]
+   ],
+   "name": "ref-multi"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "ref-noreg"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "ref-order"
+  },
+  {
+   "rets": [
+    "0x40420000"
+   ],
+   "rets64": [
+    "0x40420000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "02"
+    ]
+   ],
+   "name": "set-avail"
+  },
+  {
+   "rets": [
+    "0x40420000"
+   ],
+   "rets64": [
+    "0x40420000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "set-clear"
+  },
+  {
+   "rets": [
+    "0x40410000"
+   ],
+   "rets64": [
+    "0x40410000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "set-rowgate"
+  },
+  {
+   "rets": [
+    "0xe000"
+   ],
+   "rets64": [
+    "0xe000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=e000",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "set-wrongfam"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d001",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d001",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d001"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c9",
+     "00"
+    ]
+   ],
+   "name": "set-oob"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "set-nullreg"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=0",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [
+    [
+     "MEM",
+     "0x14",
+     "access=19",
+     "rip=30b5f6"
+    ],
+    [
+     "EMU",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     3192310
+    ]
+   ],
+   "mem": [],
+   "name": "set-nullrow"
+  },
+  {
+   "rets": [
+    "0x40420000"
+   ],
+   "rets64": [
+    "0x40420000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "set-bit0free"
+  },
+  {
+   "rets": [
+    "0x2a"
+   ],
+   "rets64": [
+    "0x2a"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=1007",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1007",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-read"
+  },
+  {
+   "rets": [
+    "0xff"
+   ],
+   "rets64": [
+    "0xff"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=1007",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1007",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-byte-full"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=ffff",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-sentinel"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=f001",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-highnib"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=e000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-e000"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=d001",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-nohandler"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=11a4",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-oob"
+  },
+  {
+   "rets": [
+    "0x11"
+   ],
+   "rets64": [
+    "0x11"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=11a3",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=11a3",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-edge"
+  },
+  {
+   "rets": [
+    "0x2a"
+   ],
+   "rets64": [
+    "0x2a"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=1007",
+     "rdx=dead"
+    ],
+    [
+     "r50a",
+     "rcx=1007",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-deadarg"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "tquery",
+     "rcx=d001",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "tq-nohandler-tab"
+  },
+  {
+   "rets": [
+    "0x14"
+   ],
+   "rets64": [
+    "0x14"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=5",
+     "r8=0",
+     "r9=1",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=5"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=1005",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=1005"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x4046000a",
+     "1450"
+    ]
+   ],
+   "name": "sg-add-under"
+  },
+  {
+   "rets": [
+    "0x1a"
+   ],
+   "rets64": [
+    "0x1a"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=a",
+     "r8=0",
+     "r9=1",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=a"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=1005",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=1005"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x4046000a",
+     "1a50"
+    ]
+   ],
+   "name": "sg-add-over"
+  },
+  {
+   "rets": [
+    "0x63"
+   ],
+   "rets64": [
+    "0x63"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=64",
+     "r8=0",
+     "r9=1",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=64"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=1005",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=1005"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x4046000a",
+     "6350"
+    ]
+   ],
+   "name": "sg-add-clamp99"
+  },
+  {
+   "rets": [
+    "0x30"
+   ],
+   "rets64": [
+    "0x30"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=30",
+     "r8=1",
+     "r9=1",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=30"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=1005",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=1005"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x4046000a",
+     "3050"
+    ]
+   ],
+   "name": "sg-abs"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x40470005",
+     "00"
+    ]
+   ],
+   "name": "sg-byte-zero"
+  },
+  {
+   "rets": [
+    "0xc"
+   ],
+   "rets64": [
+    "0xc"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=5",
+     "r8=0",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=5"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x40470005",
+     "0c"
+    ]
+   ],
+   "name": "sg-byte-add"
+  },
+  {
+   "rets": [
+    "0x63"
+   ],
+   "rets64": [
+    "0x63"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=5",
+     "r8=0",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=5"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x40470005",
+     "63"
+    ]
+   ],
+   "name": "sg-byte-clamp"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=d005",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=d005",
+     "rdx=3"
+    ],
+    [
+     "w48d",
+     "rcx=d005",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "sg-famd-gate"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=e000",
+     "edx=5",
+     "r8=0",
+     "r9=1",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=e000",
+     "rdx=1"
+    ],
+    [
+     "w48e",
+     "rcx=e000",
+     "rdx=5"
+    ],
+    [
+     "bankrd",
+     "rcx=e000",
+     "rdx=5"
+    ],
+    [
+     "bankwr",
+     "rcx=1234",
+     "rdx=5"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x40430008",
+     "34120000"
+    ]
+   ],
+   "name": "sg-fame-bank"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=ffff",
+     "edx=1",
+     "r8=0",
+     "r9=1",
+     "a5=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "sg-sentinel"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=11a4",
+     "edx=1",
+     "r8=0",
+     "r9=1",
+     "a5=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "sg-oob"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=0",
+     "r8=0",
+     "r9=4",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=4"
+    ],
+    [
+     "bres",
+     "rcx=1005",
+     "rdx=4"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "sg-r9-4"
+  },
+  {
+   "rets": [
+    "0xffffffef"
+   ],
+   "rets64": [
+    "0xffffffef"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-d0"
+  },
+  {
+   "rets": [
+    "0x3"
+   ],
+   "rets64": [
+    "0x3"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-d1"
+  },
+  {
+   "rets": [
+    "0x14"
+   ],
+   "rets64": [
+    "0x14"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=2"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=2"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-d2"
+  },
+  {
+   "rets": [
+    "0x2b"
+   ],
+   "rets64": [
+    "0x2b"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-d3"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=5"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=5"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-d5"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=11a4",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-oob"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=ffff",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-sentinel"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=f001",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "famd-highnib"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k12-in"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=12",
+     "val=d002",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k12-edge"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=12",
+     "val=d003",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k12-hi"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=12",
+     "val=cfff",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k12-lo"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k12-noreg"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k1-d000"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=1",
+     "val=e000",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=e000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k1-e000"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=1",
+     "val=efff",
+     "r8=0"
+    ],
+    [
+     "clsget",
+     "id=efff"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k1-efff"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=0",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k0"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "bound",
+     "kind=21",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "bnd-k21"
+  },
+  {
+   "rets": [
+    "0x12"
+   ],
+   "rets64": [
+    "0x12"
+   ],
+   "trace": [
+    [
+     "clsget",
+     "id=d000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "cls-d000"
+  },
+  {
+   "rets": [
+    "0x6"
+   ],
+   "rets64": [
+    "0x6"
+   ],
+   "trace": [
+    [
+     "clsget",
+     "id=1000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "cls-1000"
+  },
+  {
+   "rets": [
+    "0x13"
+   ],
+   "rets64": [
+    "0x13"
+   ],
+   "trace": [
+    [
+     "clsget",
+     "id=e000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "cls-e000"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "clsget",
+     "id=f000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "cls-f000"
+  },
+  {
+   "rets": [
+    "0x1",
+    "0x1",
+    "0x1"
+   ],
+   "rets64": [
+    "0x1",
+    "0x1",
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "seq-one-time"
+  },
+  {
+   "rets": [
+    "0x1",
+    "0x1",
+    "0x1"
+   ],
+   "rets64": [
+    "0x1",
+    "0x1",
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "seq-repeat"
+  },
+  {
+   "rets": [
+    "0x1",
+    "0x1",
+    "0x1"
+   ],
+   "rets64": [
+    "0x1",
+    "0x1",
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "seq-one-time-trace"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ],
+    [
+     "0x40470001",
+     "070904"
+    ]
+   ],
+   "name": "mut-bound-d000->d001",
+   "detected": true,
+   "probe": "pur-gate-pass"
+  },
+  {
+   "rets": [
+    "0x0"
+   ],
+   "rets64": [
+    "0x0"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=11",
+     "val=d000",
+     "r8=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ],
+    [
+     "0x40470001",
+     "070904"
+    ]
+   ],
+   "name": "mut-purkind-12->11",
+   "detected": true,
+   "probe": "pur-gate-pass"
+  },
+  {
+   "rets": [
+    "0xffffffff"
+   ],
+   "rets64": [
+    "0xffffffff"
+   ],
+   "trace": [
+    [
+     "clsget",
+     "id=e000"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "mut-clsget-e->d",
+   "detected": true,
+   "probe": "cls-e000"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "01"
+    ]
+   ],
+   "name": "mut-refresh-3->1",
+   "detected": true,
+   "probe": "ref-accept"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "purchase",
+     "rcx=d000",
+     "rdx=0"
+    ],
+    [
+     "bound",
+     "kind=12",
+     "val=d000",
+     "r8=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "idop",
+     "id=1001",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1001",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1002",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1002",
+     "rdx=0"
+    ],
+    [
+     "idop",
+     "id=1003",
+     "edx=0",
+     "r8=1",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1003",
+     "rdx=0"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "mut-purclear-fd->ff",
+   "detected": true,
+   "probe": "pur-flag3"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "mut-thresh-jl->jge",
+   "detected": true,
+   "probe": "ref-accept"
+  },
+  {
+   "rets": [
+    "0xd000"
+   ],
+   "rets64": [
+    "0xd000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "mut-setnib-d->e",
+   "detected": true,
+   "probe": "set-avail"
+  },
+  {
+   "rets": [
+    "0x40410000"
+   ],
+   "rets64": [
+    "0x40410000"
+   ],
+   "trace": [
+    [
+     "scriptset",
+     "rcx=d000",
+     "rdx=1"
+    ],
+    [
+     "bound",
+     "kind=1",
+     "val=d000",
+     "r8=1"
+    ],
+    [
+     "clsget",
+     "id=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=d000"
+    ]
+   ],
+   "faults": [
+    [
+     "MEM",
+     "0xc0c30000",
+     "access=19",
+     "rip=30b5fa"
+    ],
+    [
+     "EMU",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     3192314
+    ]
+   ],
+   "mem": [
+    [
+     "0x404259c8",
+     "00"
+    ]
+   ],
+   "name": "mut-setgate-2->1",
+   "detected": true,
+   "probe": "set-avail"
+  },
+  {
+   "rets": [
+    "0x2"
+   ],
+   "rets64": [
+    "0x2"
+   ],
+   "trace": [
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=1"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=1"
+    ]
+   ],
+   "faults": [],
+   "mem": [],
+   "name": "mut-tally-3ff->3fe",
+   "detected": true,
+   "probe": "famd-d1"
+  },
+  {
+   "rets": [
+    "0x65"
+   ],
+   "rets64": [
+    "0x65"
+   ],
+   "trace": [
+    [
+     "idop",
+     "id=1005",
+     "edx=5",
+     "r8=0",
+     "r9=3",
+     "a5=0"
+    ],
+    [
+     "famd",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1005",
+     "rdx=3"
+    ],
+    [
+     "w48a",
+     "rcx=1005",
+     "rdx=5"
+    ]
+   ],
+   "faults": [
+    [
+     "EMU",
+     "Invalid instruction (UC_ERR_INSN_INVALID)",
+     3133961
+    ]
+   ],
+   "mem": [
+    [
+     "0x40470005",
+     "60"
+    ]
+   ],
+   "name": "mut-bclamp-63->62",
+   "detected": true,
+   "probe": "sg-byte-clamp"
+  },
+  {
+   "rets": [
+    "0x1"
+   ],
+   "rets64": [
+    "0x1"
+   ],
+   "trace": [
+    [
+     "refresh",
+     "rcx=0",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "imgadd",
+     "rcx=410000",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1001",
+     "rdx=3"
+    ],
+    [
+     "r50a",
+     "rcx=1002",
+     "rdx=3"
+    ],
+    [
+     "tquery",
+     "rcx=1003",
+     "rdx=0"
+    ],
+    [
+     "r50a",
+     "rcx=1003",
+     "rdx=3"
+    ]
+   ],
+   "faults": [],
+   "mem": [
+    [
+     "0x404259c8",
+     "03"
+    ]
+   ],
+   "name": "mut-allzero-je->jne",
+   "detected": true,
+   "probe": "ref-allzero"
+  }
+ ]
+}

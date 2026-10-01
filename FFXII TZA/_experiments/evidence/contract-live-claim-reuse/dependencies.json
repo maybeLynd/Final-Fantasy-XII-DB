@@ -1,0 +1,101 @@
+[
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/current-field-memory.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 2901134,
+    "working_sha256": "e544738b374ab8d8dd55a0dda275e857f9be8b9677182af5f17ab6162d65cdac",
+    "committed_bytes": 2900553,
+    "committed_sha256": "42db2d85937f1b391a4490274a4c5c985afbd4568d5cac7a3a873a9ad984d973",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/returned-title-memory.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 2880049,
+    "working_sha256": "b2915bf54d0d17bba4bb47abe616fc3995f17cb5aeb1aff6878a8d0d21332f45",
+    "committed_bytes": 2879596,
+    "committed_sha256": "91fe7f1d9ab7a138143b120862592223f8351a5914d8a693cdab32d62b885fcf",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/old-after-current-complete-memory.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 2880064,
+    "working_sha256": "2e1b351576b7765956fdf141860370827463ed5da0f298f60d61c1ddc52b2053",
+    "committed_bytes": 2879611,
+    "committed_sha256": "1ee35c80d408a9f300cb5c8440976c9287a7d7475ba3c7857a1b9dfbf524e504",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/old-after-current-field-settled-memory.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 2891267,
+    "working_sha256": "c4de66c5695895badeeab6e0944c49b9b2dfaf7ec3dbdf3ca9f2536715d4d90c",
+    "committed_bytes": 2890728,
+    "committed_sha256": "327b05e6c982596562d4500659925ced571fca33b288b719f307b59f3bbd2eda",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/old-after-current-field-memory.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 1449086,
+    "working_sha256": "f8f5ae83bea1643aa728edf73f5ed20976bbe560774264cfbc40f1f2bca382a8",
+    "committed_bytes": 1448748,
+    "committed_sha256": "beec112147e01c2a3695ed832e396198fe75083d33c541c37b76e0df6a46da01",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/health.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 774,
+    "working_sha256": "926daa4770df766706be5753e638ca7709eceb2cb0174e12c76f74662bdb2efc",
+    "committed_bytes": 755,
+    "committed_sha256": "4d687555c2ebe5c1976308d409422c281be8857f19c669ba62ca4e7aa6413f58",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/cleanup.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 4732,
+    "working_sha256": "61b31dd4fe76ab75d981ca9ca2b53159b73ca08070cac66264677a180ca6344b",
+    "committed_bytes": 4611,
+    "committed_sha256": "1ee2e2d1ba1d60fb5f2fe7f626eda883b5700dae022686cd92f7e2a8de40b365",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/save-before.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 4409,
+    "working_sha256": "7c70b831cdf1424d5f31ba0f2b9252b272c28606a44c05aa271501399652cfe7",
+    "committed_bytes": 4298,
+    "committed_sha256": "56ccbba3114876f300e108276d11d3d83f27996f9bfc84abfb0e95b8f816a0d5",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/reference-after.json",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 369,
+    "working_sha256": "c2c1713b0175958bd4b90e4faf44af08478daf65643b609b1ef5e3bff23e9b8e",
+    "committed_bytes": 362,
+    "committed_sha256": "78a8476733b8e8e87195d6041a7af7cd90bf594ad85ee322b8eb44ef2af0296b",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/check.py",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 13053,
+    "working_sha256": "e87645dbb8c31a8f29ab38d9cf5ce109ba1c69abf3af18fbcd2a43754a195020",
+    "committed_bytes": 12867,
+    "committed_sha256": "388f793040a2e6703e678458e57a4b4f28eb2b2cec8877cf603979c9bbad8938",
+    "relation": "CRLF-to-LF-only"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/old-save-start-p/inputs/old-FFXII_004.bin",
+    "commit": "8e5c8d4520fa1602aa634a6d28c1e6bb57c6a9ac",
+    "working_bytes": 7066,
+    "working_sha256": "8fb99c6dc9956048af2f37b8ace57dd9e5b680967905ba5d72fdfa499acb63bc",
+    "committed_bytes": 7066,
+    "committed_sha256": "8fb99c6dc9956048af2f37b8ace57dd9e5b680967905ba5d72fdfa499acb63bc",
+    "relation": "byte-identical"
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "status": "INVALID_ZERO_SUFFIX_ASSUMPTION",
+  "phase": "First reducer before result creation; primary raw capture complete",
+  "old_checker_sha256": "063fff9d03e8c0fd5f9d4f9ac03b8d280b893674be327afd1c9b595bdfcf1621",
+  "assertion": "Every zero-line suffix has at most2 records",
+  "cause": "Copied canonical0..2 end-mark bound without testing the actual source domain. Five actual q0 scopes have3 all-zero suffix records, no start flags.",
+  "exceptions": [
+    {
+      "module": "ctrl",
+      "scope": 1,
+      "count": 3,
+      "indices": [
+        37,
+        38,
+        39
+      ],
+      "q0": 15072,
+      "q1": 15232,
+      "record_count": 40
+    },
+    {
+      "module": "btlctrl",
+      "scope": 22,
+      "count": 3,
+      "indices": [
+        773,
+        774,
+        775
+      ],
+      "q0": 112528,
+      "q1": 115632,
+      "record_count": 776
+    },
+    {
+      "module": "evctrl",
+      "scope": 3,
+      "count": 3,
+      "indices": [
+        77,
+        78,
+        79
+      ],
+      "q0": 45536,
+      "q1": 45856,
+      "record_count": 80
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "count": 3,
+      "indices": [
+        16025,
+        16026,
+        16027
+      ],
+      "q0": 48448,
+      "q1": 112560,
+      "record_count": 16028
+    },
+    {
+      "module": "mapctrl",
+      "scope": 3,
+      "count": 3,
+      "indices": [
+        1245,
+        1246,
+        1247
+      ],
+      "q0": 120800,
+      "q1": 125792,
+      "record_count": 1248
+    }
+  ],
+  "correction": "Actual default reducer now preserves and reports0..3 and fault-two-padding must fail. Raw/inputs/driver not recaptured; canonical producer/domain/prose correction routed to owners.",
+  "repair_preflight": "First repair incorrectly listed four exceptional scopes from truncated diagnostics, omitting evctrl3. It stopped after a partial checker edit, before default capture-path correction/result. Its source/partial checker retained. Current repair reads complete raw set and validates all preimages/exceptions before writes.",
+  "limits": "No original compiler padding cause or code byte length proven merely by zero source records."
+}

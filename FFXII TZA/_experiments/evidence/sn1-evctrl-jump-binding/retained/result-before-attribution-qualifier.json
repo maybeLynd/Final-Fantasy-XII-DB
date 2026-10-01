@@ -1,0 +1,590 @@
+{
+  "status": "BOUNDED_LOGICAL_SOURCE_SPLICE_CANDIDATE_SUPPORTED",
+  "call_variant": "Original0x5D CALLPOPA, admitted interpreter same-current-actor dispatcher premise; no native effects execution",
+  "raw_sha256": "985a51edd1508645f03edaf224e5366b48807a4cfe97bccb5b1f6f824d0cc17f",
+  "method": "A exact retained original evctrl triple and unchanged OPUS source parser/61 directory validation; admitted verb catalog is existing ID/name premise, no new shipping dispatcher census or code execution",
+  "observations": [
+    {
+      "pc": 22,
+      "record_hex": "a1010001",
+      "coordinate_line": 417,
+      "physical_lookup": false,
+      "source": {
+        "physical_index": 960,
+        "physical_line": 961,
+        "offset": 18559,
+        "bytes": "0961736b706f73282036202c206261736573656c202c203020293b",
+        "text": "\taskpos( 6 , basesel , 0 );",
+        "logical_line": 417,
+        "continues": false
+      },
+      "bytecode_hex": "4f0600486a004f00005d1300",
+      "ops": [
+        [
+          79,
+          6
+        ],
+        [
+          72,
+          106
+        ],
+        [
+          79,
+          0
+        ],
+        [
+          93,
+          19
+        ]
+      ],
+      "match": true,
+      "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+    },
+    {
+      "pc": 34,
+      "record_hex": "a2010001",
+      "coordinate_line": 418,
+      "physical_lookup": false,
+      "source": {
+        "physical_index": 961,
+        "physical_line": 962,
+        "offset": 18588,
+        "bytes": "096d65736f70656e7370656564282036202c203020293b",
+        "text": "\tmesopenspeed( 6 , 0 );",
+        "logical_line": 418,
+        "continues": false
+      },
+      "bytecode_hex": "4f06004f00005d1a00",
+      "ops": [
+        [
+          79,
+          6
+        ],
+        [
+          79,
+          0
+        ],
+        [
+          93,
+          26
+        ]
+      ],
+      "match": true,
+      "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+    },
+    {
+      "pc": 3230,
+      "record_hex": "c4020001",
+      "coordinate_line": 708,
+      "physical_lookup": false,
+      "source": {
+        "physical_index": 1251,
+        "physical_line": 1252,
+        "offset": 25634,
+        "bytes": "09090961736b706f73282036202c206c6f63616c726573756c74202c203020293b",
+        "text": "\t\t\taskpos( 6 , localresult , 0 );",
+        "logical_line": 708,
+        "continues": false
+      },
+      "bytecode_hex": "4f06004856004f00005d1300",
+      "ops": [
+        [
+          79,
+          6
+        ],
+        [
+          72,
+          86
+        ],
+        [
+          79,
+          0
+        ],
+        [
+          93,
+          19
+        ]
+      ],
+      "match": true,
+      "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+    },
+    {
+      "pc": 3242,
+      "record_hex": "c5020001",
+      "coordinate_line": 709,
+      "physical_lookup": false,
+      "source": {
+        "physical_index": 1252,
+        "physical_line": 1253,
+        "offset": 25669,
+        "bytes": "0909096d65736f70656e7370656564282036202c203020293b",
+        "text": "\t\t\tmesopenspeed( 6 , 0 );",
+        "logical_line": 709,
+        "continues": false
+      },
+      "bytecode_hex": "4f06004f00005d1a00",
+      "ops": [
+        [
+          79,
+          6
+        ],
+        [
+          79,
+          0
+        ],
+        [
+          93,
+          26
+        ]
+      ],
+      "match": true,
+      "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+    }
+  ],
+  "controls": [
+    {
+      "pc": 22,
+      "original_positive": true,
+      "physical_negative": {
+        "pc": 22,
+        "record_hex": "a1010001",
+        "coordinate_line": 417,
+        "physical_lookup": true,
+        "source": {
+          "physical_index": 416,
+          "physical_line": 417,
+          "offset": 10731,
+          "bytes": "0965765f67726d5f62303238302c5c",
+          "text": "\tev_grm_b0280,\\",
+          "logical_line": 87,
+          "continues": true
+        },
+        "bytecode_hex": "4f0600486a004f00005d1300",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            72,
+            106
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            19
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_private_one_backslash_removed": {
+        "pc": 22,
+        "record_hex": "a1010001",
+        "coordinate_line": 417,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 959,
+          "physical_line": 960,
+          "offset": 18539,
+          "bytes": "09746573745f6c6f61645f666c67203d2030",
+          "text": "\ttest_load_flg = 0",
+          "logical_line": 417,
+          "continues": false
+        },
+        "bytecode_hex": "4f0600486a004f00005d1300",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            72,
+            106
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            19
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "code_private_call_id_swapped": {
+        "pc": 22,
+        "record_hex": "a1010001",
+        "coordinate_line": 417,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 960,
+          "physical_line": 961,
+          "offset": 18559,
+          "bytes": "0961736b706f73282036202c206261736573656c202c203020293b",
+          "text": "\taskpos( 6 , basesel , 0 );",
+          "logical_line": 417,
+          "continues": false
+        },
+        "bytecode_hex": "4f0600486a004f00005d1a00",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            72,
+            106
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            26
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_mutation_offset": 5831,
+      "source_mutation_before": 92,
+      "source_mutation_after": 32,
+      "intervention": "Private static data interpretations only, no original VM/code/game execution"
+    },
+    {
+      "pc": 34,
+      "original_positive": true,
+      "physical_negative": {
+        "pc": 34,
+        "record_hex": "a2010001",
+        "coordinate_line": 418,
+        "physical_lookup": true,
+        "source": {
+          "physical_index": 417,
+          "physical_line": 418,
+          "offset": 10748,
+          "bytes": "09302c5c",
+          "text": "\t0,\\",
+          "logical_line": 87,
+          "continues": true
+        },
+        "bytecode_hex": "4f06004f00005d1a00",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            26
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_private_one_backslash_removed": {
+        "pc": 34,
+        "record_hex": "a2010001",
+        "coordinate_line": 418,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 960,
+          "physical_line": 961,
+          "offset": 18559,
+          "bytes": "0961736b706f73282036202c206261736573656c202c203020293b",
+          "text": "\taskpos( 6 , basesel , 0 );",
+          "logical_line": 418,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004f00005d1a00",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            26
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "code_private_call_id_swapped": {
+        "pc": 34,
+        "record_hex": "a2010001",
+        "coordinate_line": 418,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 961,
+          "physical_line": 962,
+          "offset": 18588,
+          "bytes": "096d65736f70656e7370656564282036202c203020293b",
+          "text": "\tmesopenspeed( 6 , 0 );",
+          "logical_line": 418,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004f00005d1300",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            19
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_mutation_offset": 5831,
+      "source_mutation_before": 92,
+      "source_mutation_after": 32,
+      "intervention": "Private static data interpretations only, no original VM/code/game execution"
+    },
+    {
+      "pc": 3230,
+      "original_positive": true,
+      "physical_negative": {
+        "pc": 3230,
+        "record_hex": "c4020001",
+        "coordinate_line": 708,
+        "physical_lookup": true,
+        "source": {
+          "physical_index": 707,
+          "physical_line": 708,
+          "offset": 13105,
+          "bytes": "09755f63686172206d656e755f666c67",
+          "text": "\tu_char menu_flg",
+          "logical_line": 164,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004856004f00005d1300",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            72,
+            86
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            19
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_private_one_backslash_removed": {
+        "pc": 3230,
+        "record_hex": "c4020001",
+        "coordinate_line": 708,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 1250,
+          "physical_line": 1251,
+          "offset": 25622,
+          "bytes": "09090973756d6d6f6e3a",
+          "text": "\t\t\tsummon:",
+          "logical_line": 708,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004856004f00005d1300",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            72,
+            86
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            19
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "code_private_call_id_swapped": {
+        "pc": 3230,
+        "record_hex": "c4020001",
+        "coordinate_line": 708,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 1251,
+          "physical_line": 1252,
+          "offset": 25634,
+          "bytes": "09090961736b706f73282036202c206c6f63616c726573756c74202c203020293b",
+          "text": "\t\t\taskpos( 6 , localresult , 0 );",
+          "logical_line": 708,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004856004f00005d1a00",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            72,
+            86
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            26
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_mutation_offset": 5831,
+      "source_mutation_before": 92,
+      "source_mutation_after": 32,
+      "intervention": "Private static data interpretations only, no original VM/code/game execution"
+    },
+    {
+      "pc": 3242,
+      "original_positive": true,
+      "physical_negative": {
+        "pc": 3242,
+        "record_hex": "c5020001",
+        "coordinate_line": 709,
+        "physical_lookup": true,
+        "source": {
+          "physical_index": 708,
+          "physical_line": 709,
+          "offset": 13123,
+          "bytes": "",
+          "text": "",
+          "logical_line": 165,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004f00005d1a00",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            26
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_private_one_backslash_removed": {
+        "pc": 3242,
+        "record_hex": "c5020001",
+        "coordinate_line": 709,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 1251,
+          "physical_line": 1252,
+          "offset": 25634,
+          "bytes": "09090961736b706f73282036202c206c6f63616c726573756c74202c203020293b",
+          "text": "\t\t\taskpos( 6 , localresult , 0 );",
+          "logical_line": 709,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004f00005d1a00",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            26
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "code_private_call_id_swapped": {
+        "pc": 3242,
+        "record_hex": "c5020001",
+        "coordinate_line": 709,
+        "physical_lookup": false,
+        "source": {
+          "physical_index": 1252,
+          "physical_line": 1253,
+          "offset": 25669,
+          "bytes": "0909096d65736f70656e7370656564282036202c203020293b",
+          "text": "\t\t\tmesopenspeed( 6 , 0 );",
+          "logical_line": 709,
+          "continues": false
+        },
+        "bytecode_hex": "4f06004f00005d1300",
+        "ops": [
+          [
+            79,
+            6
+          ],
+          [
+            79,
+            0
+          ],
+          [
+            93,
+            19
+          ]
+        ],
+        "match": false,
+        "limits": "Admitted call ID/name premise; literal order matched, physical PUSHV operand not newly equated to variable spelling. No opcode/native execution."
+      },
+      "source_mutation_offset": 5831,
+      "source_mutation_before": 92,
+      "source_mutation_after": 32,
+      "intervention": "Private static data interpretations only, no original VM/code/game execution"
+    }
+  ],
+  "continuations_before_targets": 544,
+  "interpretation": "Direct physical line lookup fails four actual original call statements. Backslash-folded one-based logical source coordinates match CALL0013 askpos(6,var,0) and CALL001A mesopenspeed(6,0) twice. Same-index MENU_TOP q1[0]/jt[0]=16 and summon q1[76]/jt[76]=3230 are coherent under that source carrier, despite table count mismatch. Initial negative proximity result cannot justify mismatched artifacts or a reordered table. Neither label declaration is necessarily the jumped-to emitted statement. Count mismatch and general binding remain unresolved.",
+  "limits": "Four static calls/two named same-index candidates only, not every160-name binding or cause of count mismatch; folding is a discriminating source interpretation, not execution of original compiler or universally proved writer convention. Physical source range and virtual logical addressability are distinct. Variables physical operands/source spellings separate; no new descriptor-name identity, scheduling/native effect/live loading/SN1 X claim. Do not decode144B debug shared tail as original body. PC OFF/S19 parked/full L1+L2 NOT_MET.",
+  "cleanup": "Retained inputs unchanged/hash checked. Private copies only; original source/code/parent evidence/peer catalog not modified. PC OFF."
+}

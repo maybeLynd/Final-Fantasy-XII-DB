@@ -1,0 +1,582 @@
+{
+  "method": "A STATIC_ONLY full shipping PUSHP source/scaling/packing/epilogue and conditional32bit arithmetic; no original-code/guest/native/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "imagebase": "0x120000",
+    "entry": "0x268100",
+    "bytes": 164,
+    "source_sha256": "35d76235a5aa3d50f04e2d1be7a0f42aa80f9d00fcd2291dc21585e3b2fe5674",
+    "table_sha256": "941d9644b3dd4d580befd9a9938103f473b94aa6255cebe5b350734a46f6c9e7",
+    "files": [
+      {
+        "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/shipping-reader.py",
+        "bytes": 39341,
+        "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+        "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+      },
+      {
+        "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/reg_tracking.py",
+        "bytes": 8120,
+        "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+        "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+      }
+    ],
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "instructions": [
+    {
+      "pc": "0x268100",
+      "hex": "4053",
+      "mnemonic": "push",
+      "args": "rbx",
+      "written": [
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268102",
+      "hex": "4883ec60",
+      "mnemonic": "sub",
+      "args": "rsp, 0x60",
+      "written": [
+        "rflags",
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268106",
+      "hex": "488d442430",
+      "mnemonic": "lea",
+      "args": "rax, [rsp + 0x30]",
+      "written": [
+        "rax"
+      ],
+      "memory": [
+        {
+          "kind": "addr",
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 48,
+          "size": 8
+        }
+      ]
+    },
+    {
+      "pc": "0x26810b",
+      "hex": "498bd8",
+      "mnemonic": "mov",
+      "args": "rbx, r8",
+      "written": [
+        "rbx"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26810e",
+      "hex": "4889442420",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x20], rax",
+      "written": [],
+      "memory": [
+        {
+          "kind": "w",
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 32,
+          "size": 8
+        }
+      ]
+    },
+    {
+      "pc": "0x268113",
+      "hex": "e828a3ffff",
+      "mnemonic": "call",
+      "args": "0x262440",
+      "written": [
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268118",
+      "hex": "448b4c2448",
+      "mnemonic": "mov",
+      "args": "r9d, dword ptr [rsp + 0x48]",
+      "written": [
+        "r9"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 72,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x26811d",
+      "hex": "458bc1",
+      "mnemonic": "mov",
+      "args": "r8d, r9d",
+      "written": [
+        "r8"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268120",
+      "hex": "8b54244c",
+      "mnemonic": "mov",
+      "args": "edx, dword ptr [rsp + 0x4c]",
+      "written": [
+        "rdx"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 76,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x268124",
+      "hex": "41c1e81c",
+      "mnemonic": "shr",
+      "args": "r8d, 0x1c",
+      "written": [
+        "r8",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268128",
+      "hex": "4183f805",
+      "mnemonic": "cmp",
+      "args": "r8d, 5",
+      "written": [
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26812c",
+      "hex": "771f",
+      "mnemonic": "ja",
+      "args": "0x26814d",
+      "written": [],
+      "memory": []
+    },
+    {
+      "pc": "0x26812e",
+      "hex": "4c8d15cb7eebff",
+      "mnemonic": "lea",
+      "args": "r10, [rip - 0x148135]",
+      "written": [
+        "r10"
+      ],
+      "memory": [
+        {
+          "kind": "addr",
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "disp": -1343797,
+          "size": 8
+        }
+      ]
+    },
+    {
+      "pc": "0x268135",
+      "hex": "438b8c82a4811400",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [r10 + r8*4 + 0x1481a4]",
+      "written": [
+        "rcx"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "base": "r10",
+          "index": "r8",
+          "scale": 4,
+          "disp": 1343908,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x26813d",
+      "hex": "4903ca",
+      "mnemonic": "add",
+      "args": "rcx, r10",
+      "written": [
+        "rcx",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268140",
+      "hex": "ffe1",
+      "mnemonic": "jmp",
+      "args": "rcx",
+      "written": [],
+      "memory": []
+    },
+    {
+      "pc": "0x268142",
+      "hex": "03d2",
+      "mnemonic": "add",
+      "args": "edx, edx",
+      "written": [
+        "rdx",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268144",
+      "hex": "eb07",
+      "mnemonic": "jmp",
+      "args": "0x26814d",
+      "written": [],
+      "memory": []
+    },
+    {
+      "pc": "0x268146",
+      "hex": "8d149500000000",
+      "mnemonic": "lea",
+      "args": "edx, [rdx*4]",
+      "written": [
+        "rdx"
+      ],
+      "memory": [
+        {
+          "kind": "addr",
+          "base": null,
+          "index": "rdx",
+          "scale": 4,
+          "disp": 0,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x26814d",
+      "hex": "486303",
+      "mnemonic": "movsxd",
+      "args": "rax, dword ptr [rbx]",
+      "written": [
+        "rax"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "disp": 0,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x268150",
+      "hex": "4489442430",
+      "mnemonic": "mov",
+      "args": "dword ptr [rsp + 0x30], r8d",
+      "written": [],
+      "memory": [
+        {
+          "kind": "w",
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 48,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x268155",
+      "hex": "458bc1",
+      "mnemonic": "mov",
+      "args": "r8d, r9d",
+      "written": [
+        "r8"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268158",
+      "hex": "4181e0ffffff00",
+      "mnemonic": "and",
+      "args": "r8d, 0xffffff",
+      "written": [
+        "r8",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26815f",
+      "hex": "4181e100000007",
+      "mnemonic": "and",
+      "args": "r9d, 0x7000000",
+      "written": [
+        "r9",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268166",
+      "hex": "4403c2",
+      "mnemonic": "add",
+      "args": "r8d, edx",
+      "written": [
+        "r8",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268169",
+      "hex": "450bc1",
+      "mnemonic": "or",
+      "args": "r8d, r9d",
+      "written": [
+        "r8",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26816c",
+      "hex": "4181c800000070",
+      "mnemonic": "or",
+      "args": "r8d, 0x70000000",
+      "written": [
+        "r8",
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268173",
+      "hex": "83f83f",
+      "mnemonic": "cmp",
+      "args": "eax, 0x3f",
+      "written": [
+        "rflags"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x268176",
+      "hex": "7d26",
+      "mnemonic": "jge",
+      "args": "0x26819e",
+      "written": [],
+      "memory": []
+    },
+    {
+      "pc": "0x268178",
+      "hex": "488bc8",
+      "mnemonic": "mov",
+      "args": "rcx, rax",
+      "written": [
+        "rcx"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x26817b",
+      "hex": "c644180401",
+      "mnemonic": "mov",
+      "args": "byte ptr [rax + rbx + 4], 1",
+      "written": [],
+      "memory": [
+        {
+          "kind": "w",
+          "base": "rax",
+          "index": "rbx",
+          "scale": 1,
+          "disp": 4,
+          "size": 1
+        }
+      ]
+    },
+    {
+      "pc": "0x268180",
+      "hex": "0fb6442430",
+      "mnemonic": "movzx",
+      "args": "eax, byte ptr [rsp + 0x30]",
+      "written": [
+        "rax"
+      ],
+      "memory": [
+        {
+          "kind": "r",
+          "base": "rsp",
+          "index": null,
+          "scale": 1,
+          "disp": 48,
+          "size": 1
+        }
+      ]
+    },
+    {
+      "pc": "0x268185",
+      "hex": "88441944",
+      "mnemonic": "mov",
+      "args": "byte ptr [rcx + rbx + 0x44], al",
+      "written": [],
+      "memory": [
+        {
+          "kind": "w",
+          "base": "rcx",
+          "index": "rbx",
+          "scale": 1,
+          "disp": 68,
+          "size": 1
+        }
+      ]
+    },
+    {
+      "pc": "0x268189",
+      "hex": "c7848b8400000000000000",
+      "mnemonic": "mov",
+      "args": "dword ptr [rbx + rcx*4 + 0x84], 0",
+      "written": [],
+      "memory": [
+        {
+          "kind": "w",
+          "base": "rbx",
+          "index": "rcx",
+          "scale": 4,
+          "disp": 132,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x268194",
+      "hex": "4489848b84010000",
+      "mnemonic": "mov",
+      "args": "dword ptr [rbx + rcx*4 + 0x184], r8d",
+      "written": [],
+      "memory": [
+        {
+          "kind": "w",
+          "base": "rbx",
+          "index": "rcx",
+          "scale": 4,
+          "disp": 388,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x26819c",
+      "hex": "ff03",
+      "mnemonic": "inc",
+      "args": "dword ptr [rbx]",
+      "written": [
+        "rflags"
+      ],
+      "memory": [
+        {
+          "kind": "rw",
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "disp": 0,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "pc": "0x26819e",
+      "hex": "4883c460",
+      "mnemonic": "add",
+      "args": "rsp, 0x60",
+      "written": [
+        "rflags",
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x2681a2",
+      "hex": "5b",
+      "mnemonic": "pop",
+      "args": "rbx",
+      "written": [
+        "rbx",
+        "rsp"
+      ],
+      "memory": []
+    },
+    {
+      "pc": "0x2681a3",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "args": "",
+      "written": [
+        "rsp"
+      ],
+      "memory": []
+    }
+  ],
+  "table_targets": [
+    "0x26814d",
+    "0x26814d",
+    "0x268142",
+    "0x268142",
+    "0x268146",
+    "0x268146"
+  ],
+  "consumer": {
+    "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md",
+    "commit": "9f070f4bc1f094eeaf1ed585e3904b23e08fa3da",
+    "sha256": "1ede4326eba822b87019f485fdfd80fa79ce951c80f2b2ad435c5b236e71e40e",
+    "view": "Immutable git-show committed primary, not dirty working file",
+    "working_sha256_at_read": "500b4d7b5615aa32bc08cc6a046d125ab572bbabacdd524678629e56875e67a9",
+    "working_matches": false
+  },
+  "import_control": {
+    "inspect_file": "C:\\Python314\\Lib\\inspect.py",
+    "getfile_callable": true,
+    "own_shadow_module_absent": true
+  },
+  "driver_sha256": "c1e778214c431b14537c10aaaf07a6d48547b4b40563919373f17f450d7ee931",
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "providers": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "limits": "Conditional injected descriptor/index values, not actual shipped references/validity/normal caller/frame/bank/init/lifetime/native fault/live or all malformed safety. Original resolver call not executed/stubbed. PC OFF/S19/fullL1+L2 NOT_MET"
+}

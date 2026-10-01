@@ -1,0 +1,69 @@
+{
+  "tool": "node_repl + @oai/sky",
+  "skill": "computer-use/26.908.40834",
+  "methods": [
+    "list_windows",
+    "get_window",
+    "get_window_state",
+    "activate_window",
+    "launch_app",
+    "click",
+    "drag",
+    "press_key"
+  ],
+  "game_pid": 30640,
+  "game_window": 3016750,
+  "initial_cloud_capture": "Rejected: occluded browser pixels, despite Steam window metadata. No input based on them; actual Steam properties observed after activation.",
+  "load_inputs": [
+    {
+      "action": "click",
+      "x": 600,
+      "y": 240,
+      "observed": "No load transition"
+    },
+    {
+      "action": "click",
+      "x": 600,
+      "y": 240,
+      "button": "left",
+      "observed": "No load transition"
+    },
+    {
+      "action": "drag",
+      "start": [
+        600,
+        240
+      ],
+      "end": [
+        602,
+        240
+      ],
+      "observed": "Loading then Load complete"
+    }
+  ],
+  "dismiss_input": {
+    "action": "drag",
+    "start": [
+      640,
+      378
+    ],
+    "end": [
+      642,
+      378
+    ],
+    "observed": "The Stepping visible"
+  },
+  "exit_inputs": [
+    "Alt_L+F4",
+    "Observed Exit Dialog with default OK",
+    "Return",
+    "Process absence verified"
+  ],
+  "no_user_takeover_reported": true,
+  "control_session_reset_after_exit": true,
+  "limits": [
+    "Tool API calls are reported; no independent OS event or FF12 input-registration trace.",
+    "A successful drag does not distinguish duration, event timing or other input-path differences.",
+    "UI runtime binary was not separately hashed; versioned skill/API identity recorded."
+  ]
+}

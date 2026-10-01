@@ -1,0 +1,37 @@
+0025DF00  call@0025E02E  slot reads []  compare constants []
+0025DF00  call@0025E05F  slot reads []  compare constants []
+0025DF00  call@0025E174  slot reads [('t=12', '0025E186')]  compare constants [11]
+0025AE00  call@0025AEEB  slot reads [('t=11', '0025AEF9')]  compare constants []
+0025B820  call@0025B963  slot reads [('t=11', '0025B977')]  compare constants [10]
+0025B820  call@0025B9B4  slot reads [('t=3', '0025B9C6')]  compare constants [2]
+0025B820  call@0025BA50  slot reads [('t=3', '0025BA62')]  compare constants [2]
+0025BAD0  call@0025BD05  slot reads [('t=17', '0025BD19')]  compare constants [16]
+0025C230  call@0025C4AC  slot reads [('t=4', '0025C4BE')]  compare constants [3]
+0025C230  call@0025C579  slot reads [('t=14', '0025C58B')]  compare constants [13]
+0025C230  call@0025C629  slot reads [('t=9', '0025C63B')]  compare constants [8]
+0025C230  call@0025C743  slot reads [('t=6', '0025C755')]  compare constants [5]
+0025C230  call@0025C7A8  slot reads [('t=5', '0025C7BC')]  compare constants []
+0025C830  call@0025CFC5  slot reads [('t=4', '0025CFD7')]  compare constants [3]
+0025C830  call@0025D075  slot reads [('t=14', '0025D087')]  compare constants [13]
+0025C830  call@0025D142  slot reads [('t=9', '0025D154')]  compare constants [8]
+0025C830  call@0025D295  slot reads [('t=6', '0025D2A7')]  compare constants [5]
+0025C830  call@0025D344  slot reads [('t=5', '0025D356')]  compare constants [4]
+00263050  call@002631D6  slot reads [('t=18', '002631E8')]  compare constants [17]
+00263D40  call@00263D72  slot reads []  compare constants []
+CONTROL wait resolver 0025DF00 reads special[12] (mapjump): PASS
+special types declared in the shipped scripts (type: name x count):
+   1: main x5231
+   2: talk x4771
+   3: touch x405
+   4: touchon x260
+   5: touchoff x230
+   6: across x18
+   7: spawn x6
+   8: fieldsign1 x71
+   9: initevent x90
+  11: parameter x21
+  12: mapjump x1525
+  13: fieldsign2 x101, touch2 x8
+  14: respawn x6
+  16: talkhold x669
+  17: talkterm x669

@@ -1,0 +1,10 @@
+PASS  P1 positive lookup 820648358a38 cdbf25a5d711654ccbb883f472309c3f42df290f
+PASS  P2 bind raw blob BOUND (raw blob)
+PASS  P3 bind checkout form BOUND (checkout form, eol-filtered)
+PASS  P4 mismatch MISMATCH
+PASS  F1 missing repo dir exits [128, 128, 128]; bind(EMPTY) -> INCOMPLETE
+PASS  F2 absent path git show exit 128: fatal: path 'Database/Tools/dashboard/no_such_file.py' does n
+PASS  F3 unknown revision git show exit 128: fatal: path 'Database/Tools/dashboard/build_views.py' exists 
+PASS  F4 missing recorded hash INCOMPLETE (no recorded hash)
+PASS  F5 no empty digest on failure 
+FAILS 0

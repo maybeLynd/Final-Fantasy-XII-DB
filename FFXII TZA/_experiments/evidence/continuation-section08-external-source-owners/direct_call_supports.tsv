@@ -1,0 +1,16 @@
+caller	site	target	instruction	bytes	verified	scope
+002E4D20	002E4DB4	0041E580	call 0x41e580	e8c7971300	True	historical direct-reference candidate verified; no indirect-call absence proof
+002E4E50	002E4EFA	0041E580	call 0x41e580	e881961300	True	historical direct-reference candidate verified; no indirect-call absence proof
+002E65A0	002E6635	0041E490	call 0x41e490	e8567e1300	True	historical direct-reference candidate verified; no indirect-call absence proof
+002E6900	002E698C	0041E490	call 0x41e490	e8ff7a1300	True	historical direct-reference candidate verified; no indirect-call absence proof
+002E6D60	002E6DDD	0041E490	call 0x41e490	e8ae761300	True	historical direct-reference candidate verified; no indirect-call absence proof
+002E6E30	002E6E6F	0041E490	call 0x41e490	e81c761300	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DC340	003DC371	0041E580	jmp 0x41e580	e90a220400	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DC4A0	003DC522	0041E490	call 0x41e490	e8691f0400	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DD380	003DD3DB	0041E490	call 0x41e490	e8b0100400	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DD420	003DD471	0041E490	call 0x41e490	e81a100400	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DD4C0	003DD644	003DDA70	call 0x3dda70	e827040000	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DD850	003DD882	0041E490	call 0x41e490	e8090c0400	True	historical direct-reference candidate verified; no indirect-call absence proof
+003DD850	003DD8AB	0041E580	call 0x41e580	e8d00c0400	True	historical direct-reference candidate verified; no indirect-call absence proof
+0041FCF0	0041FFA0	00409960	call 0x409960	e8bb99feff	True	historical direct-reference candidate verified; no indirect-call absence proof
+0041FCF0	0041FFF8	00409C00	call 0x409c00	e8039cfeff	True	historical direct-reference candidate verified; no indirect-call absence proof

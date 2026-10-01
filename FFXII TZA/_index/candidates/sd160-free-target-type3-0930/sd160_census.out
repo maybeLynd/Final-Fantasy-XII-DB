@@ -1,0 +1,37 @@
+CALL-family sites decoded: 16666842 | rows: 63432
+  59814  ('btlAtelSetUnitType', 'PUSHII:0')
+    234  ('btlAtelSetUnitType', 'PUSHII:1')
+    297  ('btlAtelSetUnitType', 'PUSHII:2')
+    369  ('btlAtelSetUnitType', 'PUSHII:3')
+     18  ('setfreetargettype', 'PUSHII:1')
+    315  ('setfreetargettype', 'PUSHII:3')
+   2340  ('setfreetargettype', 'PUSHII:4')
+     45  ('setfreetargettype', 'PUSHII:6')
+sites whose argument is not a pushed constant: 0
+type-3 sites: 612 in 261 files
+zone files: 29 (language copies carry the same (script, verb) sites in 29)
+distinct script names: 23; most common:
+    7  disp_tama01
+    7  disp_tama02
+    7  disp_tama03
+    7  disp_tama04
+    7  disp_tama05
+    6  npc_battle_00
+    3  BASH
+    3  DAL_SOLDIER_A
+    3  DAL_SOLDIER_B
+    3  DAL_SOLDIER_C
+    2  THIRD_モーニ
+    2  ex_trial_03
+    1  THIRD_ガブラス
+    1  THIRD_ラーサー
+    1  THIRD_カロリーヌ
+    1  THIRD_アルマ
+    1  event_garif_00
+    1  THIRD_シーク
+    1  THIRD_バンサト
+    1  THIRD_ヴィエラ
+    1  ex_trial_00
+    1  ex_trial_05
+    1  THIRD_ガリフ
+zone families: {'bhm': 1, 'dst': 1, 'enw': 1, 'fon': 1, 'frs': 1, 'grm': 1, 'naf': 3, 'ozm': 1, 'pbc': 1, 'rbl': 7, 'rui': 1, 'sav': 3, 'srb': 1, 'tri': 4, 'wdl': 1, 'ztc': 1}

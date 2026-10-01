@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 24, in main
+    if len(raw['ranges'])!=5 or any(q['start'] not in spans or (q['end_exclusive'],q['sha256'])!=spans[q['start']] for q in raw['ranges']):raise ValueError('wrong/incomplete original body')
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wrong/incomplete original body

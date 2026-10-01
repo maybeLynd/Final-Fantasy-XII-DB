@@ -1,0 +1,4 @@
+PASS: option bit14 ->02EBF3C4; distinct02EBF3C0 gate; override pointer02089350.
+PASS: evaluator called before conditional28-byte output copy; skip is not a local row clear.
+PASS: retained driver/sampler bytes match; no new execution or global scheduling claim.
+PASS: nonempty xref request, distinct positive control and all three positive sites retained.

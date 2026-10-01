@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-PARENT-SLOT-CENSUS-BY-DECLARED-OFFSET",
+ "agent": "OPUS",
+ "note": "The first pass had the wrong shape and its own output said so: it followed the parent pointer and waited for `lea reg, [parent + child_disp]`, reported bases formed once or twice and never read, and printed 266 parent-relative accesses on the same walk. A consumer has no reason to form a base - `mov ecx, [rax + 0x7FC4]` reaches the child at +0x7FB0 in one instruction, and that was being counted as a parent hit at +0x7FC4 and discarded. Since the child's position is DECLARED by the store's own route cell, a parent-relative displacement inside [base, base+size) IS an access to that child at (disp - base); no inference is added. Re-run: 295 slot loads, 104 bodies, 52 distinct parent-relative displacements; 21 of them land inside a child and EVERY ONE is a row that child already declares, NOTHING in any gap. _57E0 8/8, _8FA0 4/4, _7EA0 3/3, _A0D0 2/2, _AB30 2/2, _00A0 1/1, _7FB0 1/1; _5380's window was never entered and carries the weaker wording it earned, its control being global rather than local. 44 rows annotated across 5,447 bytes of direct-child debt. ALSO MEASURED: the S-02 verdict cell says the sub-object debt is 2,701 bytes over ten types; under the cell's OWN predicate the closure is 20 types and the debt is 5,447 direct, 12,458 through the closure, 12,600 with the root - the correction stays HELD because L2-VERDICTS.md is peer-dirty and is not mine to overwrite. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+PASS  C1 sites/functions = 135/109 (published 135/109)
+PASS  C2 0025A990 resolves to {5}
+PASS  C3 arena_select.py literals: 120 sites, 0 outside the dataflow's set []
+PASS  C4 00504398 resolves to {10}
+arena values over all 135 sites (a multi-valued site counts under each): 2: 11, 3: 10, 4: 5, 5: 24, 6: 33, 8: 44, 9: 2, 10: 1, 11: 1, 12: 1, 13: 4, 14: 4
+sites with no resolved value set: 5
+the 15 sites arena_select.py left unresolved:
+  00249210 002492B4 arena=UNRESOLVED     UNKNOWN in 003C1F00
+  002497E0 002497ED arena=2              
+  00249810 0024981D arena=2,3            
+  0026FAD0 0026FB22 arena=8              
+  00377DC0 00377FA3 arena=6              
+  00384420 00384466 arena=UNRESOLVED     call@002385FA result in 002385D0
+  003DD4C0 003DD5A1 arena=11             
+  003DF440 003DF4B4 arena=6              
+  003E9AA0 003E9AC2 arena=UNRESOLVED     call@0034D09A result in 0034D080
+  003E9F80 003EA031 arena=2,12           
+  003EC8D0 003EC8DD arena=6              
+  003EC910 003EC924 arena=6              
+  003EDAD0 003EDE9B arena=8              
+  0050D8F0 0050D93F arena=UNRESOLVED     call@0050D92A result in 0050D8F0
+  0050DAD0 0050DB1F arena=UNRESOLVED     call@0050DB0A result in 0050DAD0

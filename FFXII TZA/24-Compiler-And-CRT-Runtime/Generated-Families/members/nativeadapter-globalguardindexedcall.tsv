@@ -1,0 +1,8 @@
+# NativeAdapter.GlobalGuardIndexedCall - EC-7 family C
+# if a member rip dword is nonzero, call shared 00225CD0 with (or-ed arg2
+# # index); tail-dispatch to shared 00226280.
+address	targets
+00226180	00225CD0,00226280
+002261B0	00225CD0,00226280
+002261E0	00225CD0,00226280
+00226210	00225CD0,00226280

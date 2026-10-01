@@ -1,0 +1,22 @@
+{
+  "method": "A",
+  "status": "INVALID_PREPARATION_NO_RESULT",
+  "failed_driver": "capture-softedges-array-descriptor-offset-extent-assumption-02.py",
+  "sha256": "24de0a775e3558852ab87475c8f357f6e17771196352a78e2ab930f297768586",
+  "receipt_prefix": "softedges-array-descriptor-offset-repaired-invocation-01",
+  "hypothesis_refuted": "constructor extent632D80..632E77",
+  "derived_normal_extents": [
+    [
+      6499712,
+      6499953
+    ],
+    [
+      6546448,
+      6546567
+    ]
+  ],
+  "observation": "constructor has51 entry-reachable instructions, singleRET632E70; following632E71 startsINT3 padding. F4 recompute has31 reachable instructions/twoRET branches. Original-code static diagnosis only.",
+  "actual_checked_invocation": "checked_run raised on upstream exit1; dependent source read did not execute",
+  "affected": "this new private preparation only; no source output/result exists; three published packages unchanged",
+  "earlier_procedure_failure": "initial first failed capture was followed by an unchecked source read/FileNotFoundError; no semantic result. The real runner now gates exit, fresh output and metadata."
+}

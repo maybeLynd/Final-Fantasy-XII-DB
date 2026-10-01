@@ -1,0 +1,9 @@
+{
+  "status": "PASS_ISOLATED_COMPONENTS",
+  "groups": 8,
+  "native_or_live_cases": 0,
+  "no_effect_stubs": true,
+  "controlled_interior_entries": true,
+  "historical_wrong_primitive_binding_rejected": true,
+  "limits": "Original integer components/omitted geometry boundary only. No complete renderer parity, independent review or full mutation campaign acceptance."
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\check.py"
+  ],
+  "checker_sha256": "d02ad817743f1711ce2e2e4f4dec3ce0ae89060c8be5d55142a9b0803e349b6c",
+  "returncode": 0,
+  "stdout": "{\n  \"result\": {\n    \"scope\": \"Fresh/stale expected-revision arbitration in original private-fixture CLI\",\n    \"winner\": \"race-a\",\n    \"stale_write_landed\": false,\n    \"race_commits\": 1,\n    \"fresh_follow_on\": true,\n    \"full_A13\": \"NOT_ACCEPTED\",\n    \"limits\": \"Two processes launched before collection; first nonterminal before second launch. Simultaneous child execution/contention, fairness, fault/recovery, removed-lock, controller/deployment and FF12 behavior are not proved.\"\n  },\n  \"receipt_controls\": [\n    {\n      \"name\": \"missing-race\",\n      \"refused\": true\n    },\n    {\n      \"name\": \"hidden-exit\",\n      \"refused\": true\n    },\n    {\n      \"name\": \"extra-output\",\n      \"refused\": true\n    }\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "scope": "read-only reducer / actual default receipt controls; no original writer replay"
+}

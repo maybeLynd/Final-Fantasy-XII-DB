@@ -1,0 +1,12 @@
+{
+  "question": "Does the existing native Probe preserve full address width and reject inaccessible/partial reads?",
+  "hypotheses": [
+    "full pointer and exact requested bytes preserved",
+    "address truncated or failed/partial read becomes data"
+  ],
+  "method": "native instrument control with supplied child data; not method B shipping-code execution or live FF12",
+  "reader_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+  "runner_sha256": "eeb888c03b8c47e97e52a5afb14aa12298f497bd48d5387b4cfbec6ae22f5609",
+  "controls": "Known NUL-terminated path at readable page end; adjacent NOACCESS; positive repeated after failures",
+  "stop": "one bounded directly owned child,15s maximum; stop flag, normal exit and allocation/handle cleanup receipts"
+}

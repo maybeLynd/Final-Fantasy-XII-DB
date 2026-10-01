@@ -1,0 +1,12 @@
+# Tagged.OutRecordVcallAdapters - EC-7 family C
+# # member vcall on rdx; if the out pointer equals member rip tag|1,
+# # store the result record {1, rcx}; return 1/0. No direct calls.
+address	targets
+005CC300	
+00610B50	
+00610BB0	
+00610CA0	
+006A68F0	
+006A9360	
+006AB210	
+006AB270	

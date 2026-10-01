@@ -1,0 +1,95 @@
+direct rel32 sites into the API set: 197
+
+kind-7 (or non-constant kind) sites whose id is not a constant outside 0xE2..0xE4:
+  001BB397 -> 002DF980  OTHER?kind               001BB38F mov edx, dword ptr [rsp + 0x6c]
+  001DA31B -> 002DF980  OTHER?kind               001DA315 mov edx, dword ptr [rbp + 0x48]
+  001F5E64 -> 002DF980  OTHER?kind               001F5E5E mov edx, dword ptr [rbp + 0x10]
+  0024918C -> 00249210  CALL-CLOBBER?kind           00249123 call 0x24ad00
+  00249296 -> 0032E400  OTHER?kind               0024928A mov rdx, r14
+  002492F3 -> 0032E620  OTHER?kind               002492ED mov edx, r14d
+  00249332 -> 00249210  CALL-CLOBBER?kind           002492F3 call 0x32e620
+  0024935C -> 00249210  CALL-CLOBBER?kind           00249332 call 0x249210
+  0024939B -> 00249210  CALL-CLOBBER?kind           0024935C call 0x249210
+  002493DE -> 00249210  CALL-CLOBBER?kind           002493AA call 0x24a4e0
+  0024AB93 -> 0032E400  OTHER?kind               0024AB90 movsxd rdx, edx
+  00268809 -> 0032E620  BASE?kind      0x4       00268803 lea edx, [rdi + 4]
+  00268814 -> 0032E400  BASE?kind      0x2       0026880E lea edx, [rdi + 2]
+  0026883E -> 0032E620  BASE?kind      0x2       00268838 lea edx, [rdi + 2]
+  00291D04 -> 0032E620  BASE           0x98      00291CF3 lea edx, [rbx + 0x98]
+  0029CEF6 -> 00249210  OTHER                    0029CEF2 lea r8d, [rdx - 2]
+  002C900B -> 0032E620  BASE           0x74      002C9003 lea edx, [rdi + 0x74]
+  002CEB1A -> 00249180  BASE           0x10      002CEB01 add r8d, 0x10
+  002E6776 -> 0032E400  OTHER?kind               002E6773 movsxd rdx, eax
+  002E700C -> 0032E620  OTHER?kind               002E6FF6 lea edx, [rcx + rbp]
+  002E9988 -> 0032E400  OTHER?kind               002E997B movsxd rdx, eax
+  002E99A8 -> 0032E400  OTHER?kind               002E999B movsxd rdx, eax
+  002EADEA -> 0032E400  OTHER?kind               002EADE7 movsxd rdx, eax
+  002EAE08 -> 0032E620  OTHER?kind               002EAE06 mov edx, ebx
+  002EEF70 -> 002DF980  OTHER?kind               002EEF68 mov edx, dword ptr [rsp + 0x50]
+  002FC599 -> 002DF980  OTHER?kind               002FC594 movzx edx, word ptr [r15 + 0x20]
+  002FC8D8 -> 0032E400  OTHER?kind               002FC8D1 mov rdx, rdi
+  002FC920 -> 0032E400  OTHER?kind               002FC918 mov edx, edi
+  002FC96F -> 0032E620  OTHER?kind               002FC96D mov edx, edi
+  002FD027 -> 0032E400  OTHER?kind               002FD021 mov rdx, rbx
+  0032EC01 -> 0032E620  OTHER?kind               0032EBDE mov edx, ebp
+  0032FD4D -> 0032E400  OTHER?kind               0032FD48 movsxd rdx, ebp
+  0032FD5A -> 002DF980  OTHER?kind               0032FD56 mov edx, ebp
+  0032FD83 -> 0032E400  OTHER?kind               0032FD80 movsxd rdx, eax
+  0032FD99 -> 0032E400  OTHER?kind               0032FD94 movsxd rdx, ecx
+  0032FDCC -> 0032E400  OTHER?kind               0032FDC9 mov rdx, rbx
+  0032FE9E -> 0032E620  BASE?kind      0x2       0032FE71 lea edx, [rbp + 2]
+  0032FF0B -> 0032E620  BASE?kind      0x1       0032FEE8 lea edx, [rbp + 1]
+  0032FF76 -> 0032E620  BASE?kind      0x3       0032FF53 lea edx, [rbp + 3]
+  0032FFE2 -> 0032E620  BASE?kind      0x3       0032FFBE lea edx, [rbp + 3]
+  00330354 -> 0032E400  OTHER?kind               0033034F mov rdx, rsi
+  00330444 -> 0032E620  OTHER?kind               00330440 mov edx, esi
+  00332280 -> 0032E400  OTHER                    00332278 mov rdx, rbp
+  003322C8 -> 002DF980  OTHER?kind               003322C4 mov edx, ebp
+  00365882 -> 0032E400  OTHER                    00365875 mov rdx, rbp
+  003658C7 -> 0032E620  OTHER                    003658AE mov edx, ebp
+  0036EDF7 -> 0032E620  OTHER?kind               0036EDED mov edx, r15d
+  00377E09 -> 002DF880  OTHER?kind               00377DE7 mov edx, dword ptr [rbp + 0x1d0]
+  00378059 -> 0032E400  OTHER?kind               0037804B movsxd rdx, dword ptr [rsp + 0x90]
+  003780E3 -> 0032E620  OTHER?kind               003780AA mov edx, dword ptr [rsp + 0x90]
+  003785E6 -> 0032E620  BASE?kind      0x20      003785CA lea edx, [rsi + 0x20]
+  00379A37 -> 0032E400  OTHER?kind               00379A34 mov rdx, rdi
+  00379A5A -> 002DF980  OTHER?kind               00379A56 mov edx, edi
+  00380145 -> 00249210  OTHER                    00380137 mov r8d, ebx
+  0039342C -> 00249320  OTHER                    00393420 mov r8d, dword ptr [rsi + rbx*4]
+  003934B2 -> 002493D0  OTHER                    0039349A mov r8d, dword ptr [rbx - 0x10]
+  00393554 -> 002493D0  OTHER                    0039353B mov r8d, dword ptr [rdi - 0x10]
+  003A14B9 -> 0032E400  OTHER?kind               003A14B2 movsxd rdx, dword ptr [rbp + 0x18]
+  003A151A -> 0032E620  OTHER?kind               003A1505 mov edx, dword ptr [rbp + 0x18]
+  003A1538 -> 0032E400  OTHER?kind               003A1531 movsxd rdx, dword ptr [rbp + 0x18]
+  003A1599 -> 0032E620  OTHER?kind               003A1584 mov edx, dword ptr [rbp + 0x18]
+  003A15B7 -> 0032E400  OTHER?kind               003A15B0 movsxd rdx, dword ptr [rbp + 0x18]
+  003A1618 -> 0032E620  OTHER?kind               003A1603 mov edx, dword ptr [rbp + 0x18]
+  003C208D -> 00249210  BASE           0xe1      003C207A add r8d, 0xe1
+  003C999B -> 00249210  BASE           0xe       003C9988 add r8d, 0xe
+  003DC683 -> 0032E620  OTHER?kind               003DC649 mov edx, dword ptr [rsp + 0x80]
+  003DC977 -> 0032E400  OTHER?kind               003DC970 mov rdx, rcx
+  003DDAB9 -> 0032E620  OTHER?kind               003DDAA8 movsx edx, word ptr [rbx + 0x12]
+  003DF593 -> 0032E620  OTHER?kind               003DF55C movsx edx, word ptr [rcx + 0x2e]
+  003E9F59 -> 0032E620  OTHER?kind               003E9F0F movsx edx, word ptr [rdi + 0x10]
+  003EAE29 -> 0032E400  OTHER?kind               003EAE22 movsxd rdx, dword ptr [rbx + 0x20]
+  0050DF9D -> 0032E400  OTHER?kind               0050DF98 mov rdx, rbx
+  0050E039 -> 0032E620  OTHER?kind               0050E035 mov edx, edi
+  0051ED52 -> 0032E400  OTHER?kind               0051ED3E mov rdx, rsi
+  0051ED89 -> 0032E620  OTHER?kind               0051ED85 mov edx, esi
+  0055926E -> 002493D0  BASE?kind      0x77      00559267 lea r8d, [rbx + 0x77]
+  0056301F -> 002493D0  BASE           0xaa      00563000 lea r8d, [rbx + 0xaa]
+  00575CAD -> 00249210  OTHER                    00575C9F mov r8d, edi
+  00577027 -> 00249210  BASE           0x1       00577019 inc r8d
+  0057A2E8 -> 00249210  BASE           0x31      0057A2DF lea r8d, [rdx + 0x31]
+  00863144 -> 002DF980  OTHER?kind               0086313C mov edx, dword ptr [rsp + 0x20]
+count: 81
+
+BASE+X sites with base <= 0xE4 and kind 7 that are NOT in DATA's committed computed-id list:
+  00291D04 base 0x98  id-writer 00291CF3 lea edx, [rbx + 0x98]
+  002C900B base 0x74  id-writer 002C9003 lea edx, [rdi + 0x74]
+  003C208D base 0xe1  id-writer 003C207A add r8d, 0xe1
+  0056301F base 0xaa  id-writer 00563000 lea r8d, [rbx + 0xaa]
+PASS P1 Loca.mrp 00404107 id CONST 0xBF
+PASS P2 003C1FF6 0x142+byte found
+PASS N1 non-entry target 00249200 has no direct site
+FAILS 0

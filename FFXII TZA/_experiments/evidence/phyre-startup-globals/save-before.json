@@ -1,0 +1,113 @@
+{
+  "at": "2026-09-19T23:58:37.515534+00:00",
+  "source": "C:\\Users\\Kristian\\Documents\\My Games\\FINAL FANTASY XII THE ZODIAC AGE",
+  "backup": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\PHYRE-STARTUP-20260919-save-backup",
+  "files": {
+    "BigSave.zip": {
+      "bytes": 43106,
+      "sha256": "b51f2f85d9ed86e63d3879f4a02b54e91f91a5247df32f7c6dfb86a777dbcb51"
+    },
+    "GameSetting.ini": {
+      "bytes": 481,
+      "sha256": "ac398b94aa75198beadef4ed3065c5db1e480a1e23eb6291025b0f52bf7641f4"
+    },
+    "keymap.ini": {
+      "bytes": 699,
+      "sha256": "8d98f85e0b571d819dc155c8774aad553f6e6119d6ede1cdd62245cfb9f6cf6d"
+    },
+    "SmallSave.zip": {
+      "bytes": 41317,
+      "sha256": "a91f2c93bb62d6d657dee699131004aa796b97ade28dfc8bbe11769ed4dfe8b5"
+    },
+    "76561197960267366\\FFXII_000": {
+      "bytes": 5317,
+      "sha256": "2fcccd39e5b78a045e635a0612068eb67c414b32b9d2a34f6aff67c8e6f2b8df"
+    },
+    "76561197960267366\\FFXII_001": {
+      "bytes": 5304,
+      "sha256": "2e80d9976a82b3d6f4697728a3cd0294fa4f3bb2d7dab394026ebace793d8406"
+    },
+    "76561197960267366\\FFXII_002": {
+      "bytes": 9240,
+      "sha256": "709478a71134fabe3a843207a61230cf512ec06dec3b5a7c1d78774d34e322dc"
+    },
+    "76561197960267366\\FFXII_003": {
+      "bytes": 9052,
+      "sha256": "6bca07d4416f00399fd09c11bbe93945735317eca26cd8a1ec947922a17f9114"
+    },
+    "76561197960267366\\FFXII_004": {
+      "bytes": 7066,
+      "sha256": "8fb99c6dc9956048af2f37b8ace57dd9e5b680967905ba5d72fdfa499acb63bc"
+    },
+    "76561197960267366\\FFXII_005": {
+      "bytes": 5712,
+      "sha256": "0cff5294bf0911a9cdb3de2d3acf093ca05670b0ae406ae8f47063991cc1a5a2"
+    },
+    "76561197960267366\\FFXII_006": {
+      "bytes": 5579,
+      "sha256": "ab795146f64c6ac08e963cb76703562d3efcf1003e265f8c299bee9177a51225"
+    },
+    "76561197960267366\\FFXII_007": {
+      "bytes": 3660,
+      "sha256": "097503f55d948cf8ca2dc0ded180657f1983c38f5b6b8d7a2a7130961441811b"
+    },
+    "76561197960267366\\FFXII_008": {
+      "bytes": 2989,
+      "sha256": "17c0507436af6e3aa0cf9c634c97213d66cb859185539238394a68587eade360"
+    },
+    "76561197960267366\\GameSetting.ini": {
+      "bytes": 477,
+      "sha256": "b258cca70daa57bf6a0aace662eca34f8849e2517b50861cd57fe1d6de5b0333"
+    },
+    "76561198045890736\\FFXII_000": {
+      "bytes": 5331,
+      "sha256": "859a83073daa95b13db9b6461d336d5ccb2e4e94252a8d167194bae35d6cb825"
+    },
+    "76561198045890736\\FFXII_001": {
+      "bytes": 5319,
+      "sha256": "6bd0cfdc2dae860f26c0351a6e633ddc0e98d1c219a517c2e85a61992fae1655"
+    },
+    "76561198045890736\\FFXII_002": {
+      "bytes": 9240,
+      "sha256": "709478a71134fabe3a843207a61230cf512ec06dec3b5a7c1d78774d34e322dc"
+    },
+    "76561198045890736\\FFXII_003": {
+      "bytes": 9052,
+      "sha256": "6bca07d4416f00399fd09c11bbe93945735317eca26cd8a1ec947922a17f9114"
+    },
+    "76561198045890736\\FFXII_004": {
+      "bytes": 7066,
+      "sha256": "8fb99c6dc9956048af2f37b8ace57dd9e5b680967905ba5d72fdfa499acb63bc"
+    },
+    "76561198045890736\\FFXII_005": {
+      "bytes": 5712,
+      "sha256": "0cff5294bf0911a9cdb3de2d3acf093ca05670b0ae406ae8f47063991cc1a5a2"
+    },
+    "76561198045890736\\FFXII_006": {
+      "bytes": 5579,
+      "sha256": "ab795146f64c6ac08e963cb76703562d3efcf1003e265f8c299bee9177a51225"
+    },
+    "76561198045890736\\FFXII_007": {
+      "bytes": 3660,
+      "sha256": "097503f55d948cf8ca2dc0ded180657f1983c38f5b6b8d7a2a7130961441811b"
+    },
+    "76561198045890736\\FFXII_008": {
+      "bytes": 2989,
+      "sha256": "17c0507436af6e3aa0cf9c634c97213d66cb859185539238394a68587eade360"
+    },
+    "76561198045890736\\GameSetting.ini": {
+      "bytes": 486,
+      "sha256": "36a6be8dcd9ad2bbf4c85f9fde396dcda227b5e594f81a7a7a7f9df3d9910eeb"
+    },
+    "76561198045890736\\keymap.ini": {
+      "bytes": 699,
+      "sha256": "8d98f85e0b571d819dc155c8774aad553f6e6119d6ede1cdd62245cfb9f6cf6d"
+    },
+    "76561198045890736\\steam_autocloud.vdf": {
+      "bytes": 51,
+      "sha256": "752335941add367d95c0bdaf6eaac6289002841438ca2a75a95ca4fb709cd178"
+    }
+  },
+  "cloud": "OFF; fresh GUI receipt",
+  "protection": "No save load/write planned. Originals preserved in verified backup; live path disposable until cleanup."
+}

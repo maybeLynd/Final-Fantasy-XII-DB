@@ -1,0 +1,24 @@
+# NativeLeaf.StaticGlobalFloatSetter - EC-7 family C, declared on generated-function-families.md
+#
+# 15 members. Body size(s): 9 B x15.
+# 15 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 15 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+002B6670
+002B6680
+002B6690
+002B66A0
+002DF2A0
+003799D0
+003799F0
+00379A00
+003B6BA0
+003DA2F0
+003DD210
+003DE350
+003DE470
+003DF9B0
+003DF9E0

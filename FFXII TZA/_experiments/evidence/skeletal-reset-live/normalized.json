@@ -1,0 +1,157 @@
+{
+  "method": "offline normalization of original-process intervention receipts",
+  "arms": {
+    "control": {
+      "hits": {
+        "003A1C50": 202
+      },
+      "thread_ids": [
+        30100
+      ],
+      "first_hit_unix": 1789876839.341953,
+      "last_hit_unix": 1789876840.3418233,
+      "armed_threads": 101,
+      "cleared_and_readback_threads": 101,
+      "liveness_samples": 1149,
+      "post_samples": 930,
+      "post_cpu_seconds": 4.78125,
+      "post_observation_seconds": 9.703467399987858,
+      "trace_api_checks": "SATISFIED; not a session-health verdict"
+    },
+    "skeletal": {
+      "hits": {
+        "003A1C50": 205,
+        "003E3C30": 1022,
+        "003E3C7A": 2113,
+        "003E3C7F": 2113
+      },
+      "thread_ids": [
+        30100
+      ],
+      "first_hit_unix": 1789876880.991188,
+      "last_hit_unix": 1789876881.9869876,
+      "armed_threads": 102,
+      "cleared_and_readback_threads": 102,
+      "liveness_samples": 1147,
+      "post_samples": 924,
+      "post_cpu_seconds": 2.359375,
+      "post_observation_seconds": 9.652542499999981,
+      "trace_api_checks": "SATISFIED; not a session-health verdict"
+    }
+  },
+  "semantic_acceptance": "PENDING_INDEPENDENT_REVIEW",
+  "cause_of_runtime_error": "UNKNOWN; no causal experiment performed",
+  "skeletal_order": {
+    "same_thread_same_stack_pre_post_pairs": 2113,
+    "orphan_posts": [],
+    "overwritten_pres": [],
+    "open_pres_at_window_end": [],
+    "pres_with_matching_40_byte_entry_frame": 2113,
+    "distinct_entry_rcx": 16,
+    "entry_rcx_range_hex": [
+      "0x6dd2c830",
+      "0x6df42030"
+    ],
+    "precall_rcx_range_hex": [
+      "0x6dd26070",
+      "0x6df41fc0"
+    ],
+    "first_pair_raw_indices": [
+      6,
+      7
+    ],
+    "limits": "No dereference of captured RCX here; no lifetime, ownership, count, index-array, matrix-write or all-callers inference."
+  },
+  "session_status": "INVALID_POST_TRACE",
+  "base_samples": [
+    {
+      "source": "title-memory.json",
+      "purpose": "decoder-base-before",
+      "unix": 1789876338.633465,
+      "hex": "0000000000000000"
+    },
+    {
+      "source": "title-memory.json",
+      "purpose": "decoder-base-after",
+      "unix": 1789876338.6445403,
+      "hex": "0000000000000000"
+    },
+    {
+      "source": "loaded-before-memory.json",
+      "purpose": "decoder-base-before",
+      "unix": 1789876438.9052305,
+      "hex": "0000000000000000"
+    },
+    {
+      "source": "loaded-before-memory.json",
+      "purpose": "decoder-base-after",
+      "unix": 1789876438.9180732,
+      "hex": "0000000000000000"
+    },
+    {
+      "source": "loaded-after-memory.json",
+      "purpose": "decoder-base-before",
+      "unix": 1789876913.2530463,
+      "hex": "0000000000000000"
+    },
+    {
+      "source": "loaded-after-memory.json",
+      "purpose": "decoder-base-after",
+      "unix": 1789876913.2649958,
+      "hex": "0000000000000000"
+    }
+  ],
+  "input_hashes": {
+    ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+    ".gitignore": "6a6058f95d5ab4d75759769182324e435ec28198cd62da9cefb4f5e0facb97ba",
+    "assess.py": "7cc76a7f86e6d9ab4824345d0cb7b5a480d60aed5581caa8fa4d452fc217c612",
+    "cleanup-processes.json": "7d367e1dcd4770ef19d8d1fe5633af3e2952d0b26fc385d5fabb23ada97d5aa9",
+    "cleanup.json": "0920d8f93af4ef30c778cc57a73906fbe4513cff6587b5295317c191e10903de",
+    "cloud-before.jpg": "bda4306b366e46b93d305d142fdeb52ade4367d342618cb31e628c8a6556526d",
+    "cloud-before.json": "f25db5c1ca19ed533d2a9ff0ae7ef48a49b65db38cae49b3432b6bb0bc0a59b8",
+    "control-after.jpg": "6cee81f11a57dd4b7cabc2cc5785456e48c3e1f136762fc48914bfd45ec180d1",
+    "control-after.json": "dd18c918a0dcee0d51fdf20045912bbdf4e3f0e0ef2064e278cf9baa36c8217c",
+    "exit-ui.json": "603a3b62d966b3b2e0918a61559109ce4f1e34d3fb7dcb636567f839fe2b7c83",
+    "handoff-processes.json": "9b564ac2c10c904c022865bc36c6dd1b8c73bc5cf8d817be5a0ea011a12a53dd",
+    "handoff-verification.json": "ecd08412db17949590abcc725e9e08b65aafa41c6c5669b89a4bbf756082f3f1",
+    "load-dismiss-enter.json": "a838389cc2c3a7606b8883af04ae975a241af7d22354f852785ef327b8d150ee",
+    "load-menu-enter.json": "2801a962f0d37376042c00690966defd778e7764d9518eaa194664e20f052696",
+    "load-menu.jpg": "effa6e45758d5e9479e8e5eb5d1f77ee4dd90b5a9d44d7f2f92cdbb0fde93410",
+    "load-menu.json": "73b9761b1bb759287f7ba134b8a1f55cc0c0e091e808681330602752bce8cf31",
+    "load-result.jpg": "f7cefb9edc95ea16457eada43d6981cd945aaa816aff35a903ced8b3b66644ed",
+    "load-result.json": "379a7ee51fe70c12d4b0db7b982b490976b5a2d8647a201a3edef3dc4c3acde2",
+    "load-save-enter.json": "a10deebb81a21cb504ab27aeae7669fdea4a16c3a13aac0b8c85b22eb640d03b",
+    "loaded-after-memory.json": "34ec47635042371a28add42fd9e0a9aa8e8380fa9c55d144b4fc326577f35102",
+    "loaded-after.jpg": "d9feaca4fd2a732ca36d44b9e761f2ccd5295fec7f5a89503d80813dbdd030bc",
+    "loaded-after.json": "e04957708122a27837c37e6a7265823d16f5ca0826dd04875bade017406387e2",
+    "loaded-before-memory.json": "b90b0bc05c8aa210e3ea0105f800c8c54854195c9cdf484827163e22a5ebe12f",
+    "loaded-before.jpg": "3666121efe0d27ac52d75a313419602e8597626309618905575a5e4833b8f837",
+    "loaded-before.json": "cfc44b8ec961848ec932eda2d01ffe4f6dafdf7ee0685f484d346b16d8ea3054",
+    "preflight.json": "22c1c33e33ff8f964284229f09133d7bf488f37f8659b3bc5f2012355e4285ce",
+    "prelaunch-processes.json": "46b593948eade79a0ef6d64e8208a8988319bb683d4561f2ad337aaecdd7925b",
+    "process.json": "42e0e41ba54f260e4f5b7bdc9b2a48d54b90c30c698e684ee7832271400987fe",
+    "pulse.py": "1c0e4810d6c24002cc5bf083f90f92150f0fea9ccd07120d5f13be0c6fdce638",
+    "runtime-error.jpg": "d0e58d477cadb3506bdac4183abb18d6bc3fb959b690c2b741827a52fbc14130",
+    "runtime-error.json": "d2976365e5f05d11e0ba448bf5f973f498eee61c381ac349f7ec7ffe8f6151dd",
+    "run_window.py": "9ddf971c69ab315ae4f5a821c64f2a1150f793067a9fb8368fab8a47bb8298d4",
+    "save-after-exit.json": "ea568853e812db39b0178de7d7fc76542acf3be1b0dcefe8cc8543102d5a194d",
+    "save-before.json": "cea4690c66635e8e610924758a39c62404108ee51fb2d4c3619a03e310b02caa",
+    "session-health.json": "1988afbba49a4142952c81da5e616dac84cec8b8500d0f66fa287cb459b0f3c6",
+    "snapshot.py": "787089b343485586b856082a89de9aa48a1be2b7769bfe40f0773decf7c85d6f",
+    "title-before.jpg": "1c597b5da8e3cc9e09e599589a61f3cbef9f8e87d272aceae00e24f2da82e3f4",
+    "title-before.json": "5ec30d0276a60dee2858d2b117e300fb83a9ce1c7bb672a40577ab0180824646",
+    "title-memory.json": "0cf390439ad336f45c43a86e16b6af1a03ae497b5b221cb7c2475d4123cbbbc8",
+    "control/capture.log": "790c536d99a5da6c787b53142cbc24b4dc2cac9691c0a62c6eb233212c446f61",
+    "control/liveness.json": "9746a0664e4bf0f377258648b12c2285296cf77a9c3a9dcf1ad31127a6844bc9",
+    "control/observer.log": "98c49da04c3df86c7fcf68d0d4e3a7d5be66fe22d2a5a6d563fe9dacf2589bf8",
+    "control/run.json": "43f1a67abe7a80674b0b7fb5c16916548092ffd8bb6584f7668dfba00b4b259c",
+    "skeletal/capture.log": "d263c67c2bc5518a103f19b356af367b8cd23b9489670065fbbd809ca555dd5d",
+    "skeletal/liveness.json": "5dca876dcc48d73a7c23551bbebc3383fbc9f611d0921dc2a2ba45bfa0dd81b8",
+    "skeletal/observer.log": "619e64d52d5d507dcdc2ab7d39ccbfe8f0abf1d88d5d15d5b7b5faa83ac01c8d",
+    "skeletal/run.json": "18888d9268f46063704d7db9bdc51a6a717838becab25048be4bad69855e576f",
+    "skeletal/capture/api.json": "07ab172b5a1752bc3205569c26315de1cd7caffbc8631b45b49c450cecca1ee8",
+    "skeletal/capture/result.json": "f1b7c0ab53a13cd1df7546c170c598850f69f6a7948fc799dcd0a9fd3db16740",
+    "control/capture/api.json": "9d0cf8623f5862b58ead9b64a8cfcd12374312f4a7874f178c492e7932fadc5e",
+    "control/capture/result.json": "b7c6830c44cc0e262b3134367249669ee4b1e9760e746a5029dea68ed751fdaf"
+  }
+}

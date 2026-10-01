@@ -1,0 +1,55 @@
+{
+  "status": "FROZEN_STATIC_NORMAL_RETURN_CONDITIONAL_NOT_ACCEPTANCE",
+  "members": [
+    {
+      "path": "INPUT-BINDING-CORRECTION.md",
+      "bytes": 1200,
+      "sha256": "f9dbe200e24ce07ab1d456f117bc85f26acab9f700ac25d66f6c810cf319eeef"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1457,
+      "sha256": "5b1c7a5b03c8b2caed2a2ecbd1ac3972e194c7f61b2d684ee55cc9759a9fd069"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 3427,
+      "sha256": "0648e7143e2f820d6c0a175be7f734095b527de2033e76ebf12e56e414e36381"
+    },
+    {
+      "path": "callee-abi-feasibility-terminal.json",
+      "bytes": 210,
+      "sha256": "53ce55798490525275f1ee67af48d8d1771b2095acec650be78bd9d3e929f133"
+    },
+    {
+      "path": "callee-abi-feasibility.json",
+      "bytes": 10123,
+      "sha256": "fd6f18459d42082ee93d7166a43ba57c1e7b891279bdb7e51b1e5f6a9a7e0e72"
+    },
+    {
+      "path": "callee-abi-feasibility.py",
+      "bytes": 3093,
+      "sha256": "45142fe56fd584908f4da0ec1d6aad73cc8eee4d3e90ae07e22814247b78e4fb"
+    },
+    {
+      "path": "callee-saved-registers.py",
+      "bytes": 8571,
+      "sha256": "4e73ab18bc5422adfb69a55f7c158f15d257b825c8f4985015d29e05dea63fff"
+    },
+    {
+      "path": "result.json",
+      "bytes": 218105,
+      "sha256": "26716792cdcbeaf9a87eb727b3fb55860e4bbd3a01d6ca4410e4232198b46e46"
+    },
+    {
+      "path": "stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "terminal.json",
+      "bytes": 233,
+      "sha256": "e83eda29e048e087224524f30265f81d8e465253bfa8e5f323e771b1bb1f39da"
+    }
+  ]
+}

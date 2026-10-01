@@ -1,0 +1,3 @@
+rule holds: {True: 28}  pad sizes: {32: 9, 0: 6, 48: 7, 16: 6}
+bad: []
+record +0 dword values: [(0, 130), (1, 110)]

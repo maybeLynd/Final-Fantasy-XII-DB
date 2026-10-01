@@ -1,0 +1,20 @@
+[
+  {
+    "case": "missing-manifest",
+    "refused": true,
+    "exception": "FileNotFoundError",
+    "detail": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\AppData\\\\Local\\\\Temp\\\\astra-uc1-receipt-tby2t7br\\\\run-02\\\\MANIFEST.json'"
+  },
+  {
+    "case": "nonzero-capture",
+    "refused": true,
+    "exception": "AssertionError",
+    "detail": "Capture did not finish successfully"
+  },
+  {
+    "case": "changed-bound-table",
+    "refused": true,
+    "exception": "AssertionError",
+    "detail": ""
+  }
+]

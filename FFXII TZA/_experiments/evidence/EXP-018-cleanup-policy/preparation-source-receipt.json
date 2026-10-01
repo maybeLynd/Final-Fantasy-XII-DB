@@ -1,0 +1,11 @@
+{
+  "base_hwbp_sha256": "fb69cd13ee47c54745c9e5942aebbe6a5b2b574ebe145e3a8d8a6c800b10e091",
+  "copied_from_EXP016": {
+    "api_receipts.py": "e8c94b91440f4dafea23da82062c94bcf48f761765742c8176cb3649186679f9",
+    "test_variant.py": "5c250f0960d42ef5a40c447f9e8491650c7cf16f5b9cc275695c6335fb340f15",
+    "observe.py": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+    "input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "summarize.py": "d21339179b0c0747016b04a6f6c62011851a66a9a9596f9ec8df6258157224cd"
+  }
+}

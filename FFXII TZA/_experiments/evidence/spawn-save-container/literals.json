@@ -1,0 +1,38 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "constants": [
+    {
+      "address": "0x1ccfcf8",
+      "bytes": 33,
+      "raw_hex": "46494e414c2046414e544153592058494920544845205a4f444941432041474500",
+      "sha256": "9fd90df4075f223539402bd81b38fa592446ef1a899d0dde06565e7448e5699b",
+      "text": "FINAL FANTASY XII THE ZODIAC AGE",
+      "encoding": "ascii"
+    },
+    {
+      "address": "0x1ccfd20",
+      "bytes": 38,
+      "raw_hex": "5200530041005f0053005100450058005f00460046005800490049005f0054005a0041000000",
+      "sha256": "b3196f23b3ddaa72a4d13875af6d7faec793c796a8c09c4ff4a385524b74eec0",
+      "text": "RSA_SQEX_FFXII_TZA",
+      "encoding": "utf-16-le"
+    },
+    {
+      "address": "0x1ccfd90",
+      "bytes": 94,
+      "raw_hex": "4d006900630072006f0073006f0066007400200045006e00680061006e006300650064002000430072007900700074006f0067007200610070006800690063002000500072006f00760069006400650072002000760031002e0030000000",
+      "sha256": "f90ac0e6097c39a628bf470041a49a02f3685745f72640d070c7171a7ffa5deb",
+      "text": "Microsoft Enhanced Cryptographic Provider v1.0",
+      "encoding": "utf-16-le"
+    },
+    {
+      "address": "0x1cc73a4",
+      "bytes": 7,
+      "raw_hex": "312e322e313100",
+      "sha256": "296703a7d5d22ff5df6398fe1fc5c33e7a9bacb72dcce739825df678f16484e8",
+      "text": "1.2.11",
+      "encoding": "ascii"
+    }
+  ],
+  "method": "A original data only; prior broad spans retained separately, not string lengths"
+}

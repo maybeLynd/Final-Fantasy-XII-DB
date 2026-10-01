@@ -1,0 +1,57 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "08655d1c50794b5e8abefac0422387032475b6f2"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "62efd62a942971ca3db174d37c2fe9362a6df70d"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "9c01a4310470090e9540b0eb0065d3d0276a2f1f"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "dbea997be6cefbfb402d696c231312a1fd70e0dc"
+    },
+    {
+      "path": "preflight-failure.json",
+      "git_blob": "d4b2cdbf865130800f84ab54bf3c86be93128949"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "632ab31db79096c16100f42940ddd0614c1c15d0"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "5b8f637603c19583ea389b5520706fac58cea549"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "git_blob": "6b5f52a39f15b9c92efbee02c0a8dc722a3a0193"
+    },
+    {
+      "path": "retained/primitives.md",
+      "git_blob": "d4821e6e2ecdbf094f668d35e7433f18c99472e9"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.json",
+      "git_blob": "a10a3fcad6644180eb239ae4701edfb0ef5d5a6d"
+    },
+    {
+      "path": "retained/window.bin",
+      "git_blob": "6183868a811b6672804c7dd48dfaac7c7977f341"
+    }
+  ]
+}

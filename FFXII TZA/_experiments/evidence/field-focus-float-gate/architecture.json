@@ -1,0 +1,10 @@
+{
+  "method": "Published ISA specification, not an FF12 observation or an executed test",
+  "ucomiss_source": "https://cdrdv2-public.intel.com/789581/325383-sdm-vol-2abcd.pdf",
+  "ucomiss_section": "UCOMISS Operation / Description",
+  "completed_flags_zf_pf_cf": {"unordered": "111", "greater": "000", "less": "001", "equal": "100"},
+  "exception_limit": "UCOMISS signals invalid for SNaN; an unmasked SIMD exception leaves EFLAGS unupdated. The completed-comparison truth table cannot predict the continuation of such a fault.",
+  "daz_source": "https://cdrdv2-public.intel.com/671436/253665-sdm-vol-1.pdf",
+  "daz_identity": "Intel SDM Vol1, 253665-078US, December2022, section10.2.3.4, printed10-6/PDF252",
+  "daz_limit": "With supported MXCSR.DAZ bit6 set, a denormal input is treated as signed zero. This source-level conditional does not measure FF12's actual MXCSR or accumulator domain."
+}

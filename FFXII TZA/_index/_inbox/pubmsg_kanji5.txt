@@ -1,0 +1,9 @@
+sn1: kanji round-5 -- context-verified batch
+
+倒 (ザコ其倒し/ボス倒し), 死 (みんな死ねモード), 同 (技その他と同じか),
+上/下 (レベルは上げるだけで下げることはできません -- full sentence),
+強 (エリア強制読みこみ, ヒントマーカー強制ON/OFF), 後 (ロード完了後に /
+INDEX変更後 consistent), 受 (受ける -- btlctrl msg10 reaction list now
+reads ミス/ガードされる/受ける/パリィ/カウンター...), 指 (ID指定ジャンプ).
+Candidate list updated (完了/変更/用/操作/現在/今/連・発/全立・全消/...).
+~15 kanji + icon planes remain.

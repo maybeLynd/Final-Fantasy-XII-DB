@@ -1,0 +1,51 @@
+====================================================================================================
+_index/candidates/rc11-arena-ten-0930/README.md  REVIEW lines: 2  signature applies: True
+  L19:
+       17| 
+       18| - `img.py`: shared image helpers (copied from `rc5-event-slot-routes-0930`).
+    >  19| - `riprefs.py`: every rip-relative reference to an address range, over every `.pdata` fragment. Control: the push's
+       20|   store to `022D89BC`.
+  L49:
+       47| - `003A9EF0` → `00504350`, either directly on a miss (`003AA109`) or through `00500980` on a hit (`00500A20`).
+       48| 
+    >  49| None of these entries has another reference. The only other hits are `.pdata` records, plus three chained-unwind
+       50| parent records for `003A9EF0` in `.rdata`.
+====================================================================================================
+_index/candidates/rc12-footer-channels-runstate-0930/README.md  REVIEW lines: 2  signature applies: True
+  L10:
+        8| Scripts run from this folder with `python -B <script>.py` and exit 0 when their controls pass. They read:
+        9| - the shipping image `Database/Tools/work/exe/FFXII_TZA.exe` (sha256 `73461d0896204b1c…`), through `img.py`, a copy of
+    >  10|   `../rc8-cascade-count-0930/img.py` (.pdata chain-root extents, raw rel32 call index);
+       11| - the raw script images and the decompiled US corpus in `Database/Tools/work/FABLE/pub140-scratch/corpus/us` (1,114
+  L242:
+      240| 
+      241| [`rc14_sweep.py`](rc14_sweep.py), with [`rc14_sweep.out`](rc14_sweep.out), sweeps the whole image:
+    > 242| - all 24,360 `.pdata` chain roots;
+      243| - a linear sweep of every `.text` run no `.pdata` entry covers (leaf code): 42,487 streams in all.
+====================================================================================================
+_index/candidates/rc20-float-push-verbs-0930/README.md  REVIEW lines: 2  signature applies: True
+  L15:
+       13| 
+       14| 1. Every raw `E8`/`E9` rel32 hit on `00267F60` in `.text`, kept only when it decodes as that call or jmp inside its
+    >  15|    `.pdata` chain-root function. The owner column of `Tools/work/graph/functions.tsv` gives the Movement-filed set.
+       16| 2. Every route into each body: decoded callers and tail-jumps, 5-byte jmp thunks with or without a `.pdata` entry
+  L31:
+       29| | C3 | family 0 resolves to `01EED700` (the dispatch page) |
+       30| | C4 | call id `0x0001`'s result slot is `0034EBC0`, catalog name `setpos` (`scriptvm-dispatch.tsv`) |
+    >  31| | C5 | the `.pdata`-less thunk `0033F850` (jmp `00349680`) is found |
+       32| 
+====================================================================================================
+_index/candidates/rc22-as7-pages-0930/README.md  REVIEW lines: 1  signature applies: True
+  L79:
+       77|   immediates at `002CEFF7`/`002CEFFF`). It decodes pages `first..first+0x101` into buffer `+0xE0`, and
+       78|   `first+0x102..first+0x203` into `+0xE8`: 516 pages per character.
+    >  79| - **The id:** `ch` is the object's byte `+0x10D`. Its only writer is the `.pdata`-less setter `002CEE00(id, flags)`
+       80|   (`002CEE1A`), which clears the decode request for any id above 5 (unsigned, so -1 too). The setter has two callers:
+====================================================================================================
+_index/candidates/rc8-cascade-count-0930/README.md  REVIEW lines: 1  signature applies: True
+  L16:
+       14| ## Method
+       15| 
+    >  16| Two scripts. Both share `memsweep.py` (every function body: the `.pdata` chain roots, plus leaf bodies from
+       17| `functions.tsv`) and `img.py`.
+total REVIEW lines on the 15 subjects: 8

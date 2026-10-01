@@ -1,0 +1,149 @@
+# role notation: 'calls A,B,C +N' names the first three DISTINCT DIRECT callees
+# (function entries, first call-site order); +N is the count of the rest.
+# Addresses inside the body itself are never listed - they are branch/merge
+# sites, not callees. '-> A,B,C' lists the body's complete callee set.
+class	vtable	slot	body	size	role	cite
+DynGeo3DInstance	009043D8	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeo3DInstance	009043D8	1	00215440	845	calls 001EE7C0,001EE650,00861EBA +1	00215483
+DynGeo3DInstance	009043D8	2	001FBB70	62	scalar-deleting dtor via 00215380	001FBB89
+DynGeo3DInstance	009043D8	3	00216100	93	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	00216100
+DynGeo3DInstance	009043D8	4	002160A0	87	leaf movd      xmm0, dword ptr [rcx + 0x28]	002160A0
+DynGeo3DInstance	009043D8	6	001FBBB0	39	calls 001FBBF0	001FBBCD
+DynGeo3DInstance	009043D8	7	002158B0	234	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	002158B0
+DynGeo3DInstance	009043D8	8	002157C0	235	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	002157C0
+DynGeo3DInstance	009043D8	9	00213560	5	leaf mov       qword ptr [rcx + 8], rdx	00213560
+DynGeo3DInstance	009043D8	10	00215EF0	134	calls 001B1C00,001B0FB0,005C3A30	00215F1C
+DynGeo3DInstance	009043D8	11	00216020	121	calls 001B1C00,001B10D0,005C3A30	0021604C
+DynGeo3DInstance	009043D8	12	00215F80	148	calls 00861EC0,0019C5D0,001B1C00 +2	00215FB3
+DynGeo3DInstance	009043D8	13	00215E50	146	calls 001B1C00	00215EB3
+DynGeo3DInstance	009043D8	14	00213540	5	setter this[+0x10] = arg	00213540
+DynGeo3DInstance	009043D8	15	00215CB0	163	calls 0018A9E0,0018AA00,00215D60	00215CE9
+DynGeo3DInstance	009043D8	16	00216160	94	leaf mov       qword ptr [rsp + 8], rbx	00216160
+DynGeo3DInstance	009043D8	17	00215B10	407	calls 002153C0,0019C5D0	00215B20
+DynGeo3DInstance	009043D8	18	00215790	48	calls 001A1470	002157AC
+DynGeo3DInstance	009043D8	19	00215E20	36	leaf mov       eax, dword ptr [rdx]	00215E20
+DynGeo3DInstance	009043D8	20	002159A0	144	leaf mov       eax, dword ptr [rdx]	002159A0
+DynGeoFontTextInstance	00906DC8	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoFontTextInstance	00906DC8	1	00213140	644	calls 001EE7C0,001EE650,002133D0 +4	002131A8
+DynGeoFontTextInstance	00906DC8	2	00213110	43	dtor + free	0021312D
+DynGeoFontTextSpecialFinalInstance	00906EB8	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoFontTextSpecialFinalInstance	00906EB8	1	00213FE0	547	calls 001EE7C0,001EE650,00189120 +3	00214055
+DynGeoFontTextSpecialFinalInstance	00906EB8	2	00213AA0	43	dtor + free	00213ABD
+DynGeoFontTextSpecialFinalInstance	00906EB8	3	00214710	144	leaf mov       eax, dword ptr [rdx]	00214710
+DynGeoFontTextSpecialFinalInstance	00906EB8	4	00213B30	14	leaf cmp       edx, 0xa	00213B30
+DynGeoFontTextSpecialFinalInstance	00906EB8	5	00213F90	69	calls 001A1470	00213FBB
+DynGeoFontTextSpecialFinalInstance	00906EB8	6	00213B40	460	calls 001B1620	00213C1B
+DynGeoFontTextSpecialFinalInstance	00906EB8	7	002146F0	8	setter this[+0xf8] = arg	002146F0
+DynGeoFontTextSpecialFinalInstance	00906EB8	8	002148E0	8	setter this[+0x100] = arg	002148E0
+DynGeoFontTextSpecialFinalInstance	00906EB8	9	00214830	45	leaf mov       eax, dword ptr [rdx]	00214830
+DynGeoFontTextSpecialFinalInstance	00906EB8	10	00214210	139	calls 00182F50,00229DE0,002142A0	00214220
+DynGeoFontTextSpecialFinalInstance	00906EB8	11	00214860	36	leaf mov       r9, qword ptr [rdx]	00214860
+DynGeoFontTextSpecialInstance	00906DE8	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoFontTextSpecialInstance	00906DE8	1	00213FE0	547	calls 001EE7C0,001EE650,00189120 +3	00214055
+DynGeoFontTextSpecialInstance	00906DE8	2	00213AD0	43	dtor + free	00213AED
+DynGeoFontTextSpecialInstance	00906DE8	3	00214710	144	leaf mov       eax, dword ptr [rdx]	00214710
+DynGeoFontTextSpecialInstance	00906DE8	4	00213B30	14	leaf cmp       edx, 0xa	00213B30
+DynGeoFontTextSpecialInstance	00906DE8	5	00213F90	69	calls 001A1470	00213FBB
+DynGeoFontTextSpecialInstance	00906DE8	6	00213D10	273	calls 001B1620	00213D31
+DynGeoFontTextSpecialInstance	00906DE8	7	002146F0	8	setter this[+0xf8] = arg	002146F0
+DynGeoFontTextSpecialInstance	00906DE8	8	002148E0	8	setter this[+0x100] = arg	002148E0
+DynGeoFontTextSpecialInstance	00906DE8	9	00214830	45	leaf mov       eax, dword ptr [rdx]	00214830
+DynGeoFontTextSpecialInstance	00906DE8	10	002142A0	306	calls 00861EBA	0021436F
+DynGeoFontTextSpecialInstance	00906DE8	11	00214890	24	leaf mov       rax, qword ptr [rdx]	00214890
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	1	00213FE0	547	calls 001EE7C0,001EE650,00189120 +3	00214055
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	2	00213B00	43	dtor + free	00213B1D
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	3	00214710	144	leaf mov       eax, dword ptr [rdx]	00214710
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	4	00213B30	14	leaf cmp       edx, 0xa	00213B30
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	5	00213F90	69	calls 001A1470	00213FBB
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	6	00213D10	273	calls 001B1620	00213D31
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	7	002146F0	8	setter this[+0xf8] = arg	002146F0
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	8	002148E0	8	setter this[+0x100] = arg	002148E0
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	9	00214830	45	leaf mov       eax, dword ptr [rdx]	00214830
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	10	002143E0	352	calls 00182F50,00229DE0,00861EBA	002143F8
+DynGeoFontTextSpecialShadowFinalInstance	00906F20	11	00214860	36	leaf mov       r9, qword ptr [rdx]	00214860
+DynGeoFontTextSpecialShadowInstance	00906E50	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoFontTextSpecialShadowInstance	00906E50	1	00213FE0	547	calls 001EE7C0,001EE650,00189120 +3	00214055
+DynGeoFontTextSpecialShadowInstance	00906E50	2	00213B00	43	dtor + free	00213B1D
+DynGeoFontTextSpecialShadowInstance	00906E50	3	00214710	144	leaf mov       eax, dword ptr [rdx]	00214710
+DynGeoFontTextSpecialShadowInstance	00906E50	4	00213B30	14	leaf cmp       edx, 0xa	00213B30
+DynGeoFontTextSpecialShadowInstance	00906E50	5	00213F90	69	calls 001A1470	00213FBB
+DynGeoFontTextSpecialShadowInstance	00906E50	6	00213D10	273	calls 001B1620	00213D31
+DynGeoFontTextSpecialShadowInstance	00906E50	7	002146F0	8	setter this[+0xf8] = arg	002146F0
+DynGeoFontTextSpecialShadowInstance	00906E50	8	002148E0	8	setter this[+0x100] = arg	002148E0
+DynGeoFontTextSpecialShadowInstance	00906E50	9	00214830	45	leaf mov       eax, dword ptr [rdx]	00214830
+DynGeoFontTextSpecialShadowInstance	00906E50	10	00214540	82	calls 002142A0	0021458D
+DynGeoFontTextSpecialShadowInstance	00906E50	11	002148B0	33	leaf mov       r9, qword ptr [rdx]	002148B0
+DynGeoTextureInstance	00904328	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoTextureInstance	00904328	1	001FB8E0	161	calls 00215440,00189120,00186A90 +1	001FB930
+DynGeoTextureInstance	00904328	2	001FB8A0	62	scalar-deleting dtor via 00215380	001FB8B9
+DynGeoTextureInstance	00904328	3	00216100	93	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	00216100
+DynGeoTextureInstance	00904328	4	002160A0	87	leaf movd      xmm0, dword ptr [rcx + 0x28]	002160A0
+DynGeoTextureInstance	00904328	5	001FBA50	192	calls 001B1620,001B1C00,00215AA0	001FBA73
+DynGeoTextureInstance	00904328	6	001FB990	191	calls 001B1620,001B1C00,00215AA0	001FB9A5
+DynGeoTextureInstance	00904328	7	002158B0	234	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	002158B0
+DynGeoTextureInstance	00904328	8	002157C0	235	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	002157C0
+DynGeoTextureInstance	00904328	9	00213560	5	leaf mov       qword ptr [rcx + 8], rdx	00213560
+DynGeoTextureInstance	00904328	10	00215EF0	134	calls 001B1C00,001B0FB0,005C3A30	00215F1C
+DynGeoTextureInstance	00904328	11	00216020	121	calls 001B1C00,001B10D0,005C3A30	0021604C
+DynGeoTextureInstance	00904328	12	00215F80	148	calls 00861EC0,0019C5D0,001B1C00 +2	00215FB3
+DynGeoTextureInstance	00904328	13	00215E50	146	calls 001B1C00	00215EB3
+DynGeoTextureInstance	00904328	14	00213540	5	setter this[+0x10] = arg	00213540
+DynGeoTextureInstance	00904328	15	00215CB0	163	calls 0018A9E0,0018AA00,00215D60	00215CE9
+DynGeoTextureInstance	00904328	16	00216160	94	leaf mov       qword ptr [rsp + 8], rbx	00216160
+DynGeoTextureInstance	00904328	17	00215B10	407	calls 002153C0,0019C5D0	00215B20
+DynGeoTextureInstance	00904328	18	00215790	48	calls 001A1470	002157AC
+DynGeoTextureInstance	00904328	19	001FBB10	45	leaf mov       eax, dword ptr [rdx]	001FBB10
+DynGeoTextureInstance	00904328	20	002159A0	144	leaf mov       eax, dword ptr [rdx]	002159A0
+DynGeoUIInstance	00906FB0	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+DynGeoUIInstance	00906FB0	1	00215440	845	calls 001EE7C0,001EE650,00861EBA +1	00215483
+DynGeoUIInstance	00906FB0	2	00215390	43	dtor + free	002153AD
+DynGeoUIInstance	00906FB0	3	00216100	93	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	00216100
+DynGeoUIInstance	00906FB0	4	002160A0	87	leaf movd      xmm0, dword ptr [rcx + 0x28]	002160A0
+DynGeoUIInstance	00906FB0	5	00215AA0	105	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	00215AA0
+DynGeoUIInstance	00906FB0	6	00215A30	109	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	00215A30
+DynGeoUIInstance	00906FB0	7	002158B0	234	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	002158B0
+DynGeoUIInstance	00906FB0	8	002157C0	235	leaf movsxd    rax, dword ptr [rcx + 0x1c0]	002157C0
+DynGeoUIInstance	00906FB0	9	00213560	5	leaf mov       qword ptr [rcx + 8], rdx	00213560
+DynGeoUIInstance	00906FB0	10	00215EF0	134	calls 001B1C00,001B0FB0,005C3A30	00215F1C
+DynGeoUIInstance	00906FB0	11	00216020	121	calls 001B1C00,001B10D0,005C3A30	0021604C
+DynGeoUIInstance	00906FB0	12	00215F80	148	calls 00861EC0,0019C5D0,001B1C00 +2	00215FB3
+DynGeoUIInstance	00906FB0	13	00215E50	146	calls 001B1C00	00215EB3
+DynGeoUIInstance	00906FB0	14	00213540	5	setter this[+0x10] = arg	00213540
+DynGeoUIInstance	00906FB0	15	00215CB0	163	calls 0018A9E0,0018AA00,00215D60	00215CE9
+DynGeoUIInstance	00906FB0	16	00216160	94	leaf mov       qword ptr [rsp + 8], rbx	00216160
+DynGeoUIInstance	00906FB0	17	00215B10	407	calls 002153C0,0019C5D0	00215B20
+DynGeoUIInstance	00906FB0	18	00215790	48	calls 001A1470	002157AC
+DynGeoUIInstance	00906FB0	19	00215E20	36	leaf mov       eax, dword ptr [rdx]	00215E20
+DynGeoUIInstance	00906FB0	20	002159A0	144	leaf mov       eax, dword ptr [rdx]	002159A0
+GiBeginEff	01CCFB78	0	00864F30	512	calls 0039D1D0,00189120,00186670 +3	00864F57
+GiBeginEff	01CCFB78	1	00864E90	153	calls 0016D6A0,002105A0,00210520	00864EA8
+GiBeginScene	00904488	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiBeginScene	00904488	1	001FBD70	13	leaf mov       rax, qword ptr [rdx]	001FBD70
+GiColorRect	01CCFAB0	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiColorRect	01CCFAB0	1	00863850	738	calls 0016D6A0,001EE650,00808C40	00863882
+GiEndEff	01CCFBA8	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiEndEff	01CCFBA8	1	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiEndScene	009044A0	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiEndScene	009044A0	1	001FBE40	13	leaf mov       rax, qword ptr [rdx]	001FBE40
+GiNormal	01CCFB90	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiNormal	01CCFB90	1	008651A0	271	calls 0016D6A0,00210510,00210560 +2	008651C0
+GiPolyGT4T	01CCFB20	0	00864CA0	110	calls 002D7FA0,002D7EE0	00864CCE
+GiPolyGT4T	01CCFB20	1	00864860	1079	calls 0016D6A0,001EE650,0018AA30 +2	00864899
+GiPrim	01CCFAF0	0	008641B0	92	calls 002D7FA0,002D7EE0	008641DB
+GiScreenImage	009068B8	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiScreenImage	009068B8	1	0020E6C0	811	calls 0016D6A0,0018AA10,001EE650 +1	0020E6F6
+GiSetRtForRtSampling	00902F28	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiSetRtForRtSampling	00902F28	1	001F16A0	21	leaf mov       rax, qword ptr [rdx]	001F16A0
+GiSetTexture	01CCFA30	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiSetTexture	01CCFA30	1	00863040	17	calls 00210570	0086304C
+GiSprite	01CCFB08	0	00864750	110	calls 002D7FA0,002D7EE0	0086477E
+GiSprite	01CCFB08	1	00864330	1042	calls 0016D6A0,001EE650,0018AA30 +2	00864363
+GiTrans	01CCFA00	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiTrans	01CCFA00	1	00862D40	269	calls 0016D6A0,00210510,00210560 +2	00862D60
+GiTransNz	01CCFA18	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiTransNz	01CCFA18	1	00862EC0	267	calls 0016D6A0,00210510,00210560 +2	00862EE0
+GiVmax	009007E8	0	001DB550	172	calls 0022C930,0022C940	001DB580
+GiVmax	009007E8	1	001DB3D0	289	calls 0016D6A0,00210510,00210560 +4	001DB3FC
+GiZNormalOnOff	01CCFB38	0	0016D6A0	3	no-op ret stub (folded)	0016D6A0
+GiZNormalOnOff	01CCFB38	1	00864D70	130	calls 0016D6A0,00210560	00864D88

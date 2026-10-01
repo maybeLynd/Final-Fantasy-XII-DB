@@ -1,0 +1,200 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 9126,
+      "sha256": "adb461d27214128514c07a87530726cb420fec7a006d73d3cd1a292867d1fd69"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 572,
+      "sha256": "2bc0d16263f7cc5cd755fca9906869cd2b276dafd74b6d70a3671d153b2eef64"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 180,
+      "sha256": "61535f8cec5bf58767d334a0d60f0852b8980199e0dcc672218d35d579375421"
+    },
+    {
+      "path": "failure.json",
+      "bytes": 2432,
+      "sha256": "7b45c3adb1ffc933cca41a923f68cdb3799cc5db1d66f729320ff7fff99b2116"
+    },
+    {
+      "path": "fault-ignore-multiphysical-group.stderr",
+      "bytes": 411,
+      "sha256": "93e652e31f8638ce75bb6468fe57652524470f8312bb4d0681706aac59d63bb0"
+    },
+    {
+      "path": "fault-ignore-multiphysical-group.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-old-preparation-mode.stderr",
+      "bytes": 832,
+      "sha256": "dc7d732298e54996011682ddf30a26f7f11acca14c5341dde537a9c56796124b"
+    },
+    {
+      "path": "fault-old-preparation-mode.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-physical-guard.stderr",
+      "bytes": 573,
+      "sha256": "057698000dc5bd311b960bbfbb8144dcbd7b2ea3ddfbf14c659b4ff14965fb28"
+    },
+    {
+      "path": "fault-physical-guard.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-raw-byte-fold.stderr",
+      "bytes": 476,
+      "sha256": "d6530919b12a84495108c69bef75f22a9a9649af5f7de919158b1a2a41c8f1d1"
+    },
+    {
+      "path": "fault-raw-byte-fold.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 4675,
+      "sha256": "7b494cc0ae379271a4f30e38b249aa3097f442540194809a4d61d4ecb3622dcd"
+    },
+    {
+      "path": "fix-probe.py",
+      "bytes": 1883,
+      "sha256": "31475cbd24bac62e383a4ab1fcbe67dc3ca99057585e34493235abe63b9df51b"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 6391,
+      "sha256": "1ed7036664af270b263118a78103d50ba613a2fcfa3aac0a4dc7f902e4ad4490"
+    },
+    {
+      "path": "fresh-default-generated-preparation.json",
+      "bytes": 5749,
+      "sha256": "6635b94851a494c8870705e89fac94a607e3026c6fc9104f3b96c80cec83cc4f"
+    },
+    {
+      "path": "fresh-default-receipt.json",
+      "bytes": 985,
+      "sha256": "fc664a0f222c75bb00792e8ce833ff0bbf9f10a85873fdfafc02f7685bfaa259"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1358,
+      "sha256": "cc7bb47a1676e8205894854fc205aa4d342cacea9e4aebdcb9291899fa4472e5"
+    },
+    {
+      "path": "preparation.json",
+      "bytes": 5286,
+      "sha256": "2a16eee36ddce25800969987f8ef37b49a6225f033771d04cc829523e819e43f"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 3942,
+      "sha256": "e9f7697952c207cfcd6b6f8e6ad5c191e843da6d31f9b53b235741359902df81"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3698,
+      "sha256": "1534dd26fdf698fd94d795e361dcfbdb1f6d9bd4e47a1a04bc5edf0fac7db048"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 1244,
+      "sha256": "8e2f9775ea8aa208626862fba459e6d552da01e885c7d1fafd6a40d784de110e"
+    },
+    {
+      "path": "repair-encoding.py",
+      "bytes": 3375,
+      "sha256": "77ce15d1f41dca389ae90d17608ab4f36d473fd4d69d3fe3a4922d4238ba055a"
+    },
+    {
+      "path": "repair.py",
+      "bytes": 1210,
+      "sha256": "874a19d90e45872e6b389b7be9dbd6e290eb842d63b9798b2fdfc8b640b55f14"
+    },
+    {
+      "path": "result.json",
+      "bytes": 14268,
+      "sha256": "21e7a3e46d2e4ac72c7fa660d558147c6165caa4869c9801aa91ff6b5d512599"
+    },
+    {
+      "path": "retained/check-before-global-phase-fix.py",
+      "bytes": 6708,
+      "sha256": "9ea01c4dc9be6646f54b05ecb6bee333a97f827d441b751528ffba032fa993e5"
+    },
+    {
+      "path": "retained/check-before-terminal5c-fix.py",
+      "bytes": 6704,
+      "sha256": "9fc0b482263c0a5a2402efbef2b28c9400b26a346df3e313b6e72491ef266946"
+    },
+    {
+      "path": "retained/fable-logical-producer-before.py",
+      "bytes": 4960,
+      "sha256": "3ef010c683cb82b7cc7017b011f4628b8eda95b498307c8eb3b4d7fd1f2814f9"
+    },
+    {
+      "path": "retained/freeze-before-builtin-codec-fix.py",
+      "bytes": 5243,
+      "sha256": "c0d907c7e3c75688fa62441ec23b18a762aac9477b5ca756e2f76c4f09e42cc9"
+    },
+    {
+      "path": "retained/probe-before-decoded-default.py",
+      "bytes": 3679,
+      "sha256": "a4f2c396b2c7ea766bb9b9f3ca980f2a725467453776271ef5ad4063d5fd03d2"
+    },
+    {
+      "path": "retained/result-before-explicit-encoding-controls.json",
+      "bytes": 7349,
+      "sha256": "51a8f6fc290114ee08f6ab9badf21cf5d289723d014015979af06dd7a1eed991"
+    },
+    {
+      "path": "retained/result-before-group-detection-control.json",
+      "bytes": 8604,
+      "sha256": "142a4fdec2a044687de33920a83184647ec428b24a2f9332c9b3c644dbd8f9e2"
+    },
+    {
+      "path": "tool-identity.json",
+      "bytes": 733,
+      "sha256": "e40e17b8e28e0b245a77b7ccfbf1362fafee6e03e11d7a4c1ce0a7cddd22da64"
+    },
+    {
+      "path": "upstream-control.json",
+      "bytes": 2657,
+      "sha256": "342e27ad1476d13984693578a75bcfcebf88523c475a8602619e74b8b919a03a"
+    },
+    {
+      "path": "upstream-control.py",
+      "bytes": 3423,
+      "sha256": "0acae45b5c6f9636995edea28d9019429eea303a14bee74afdea85ecf9fd1134"
+    },
+    {
+      "path": "upstream-default.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "upstream-default.stdout",
+      "bytes": 887,
+      "sha256": "31c7163eebac86edfd82255bad65d6f7c237259d027088e32babc83c56d510f4"
+    }
+  ],
+  "limits": "Actual two CP932 source negatives expose raw5C producer misuse; decoded conditional original domain no additional six-known-missing records with positive/detection controls. No original compiler/native/live/global rule; peer consumer/independent review pending."
+}

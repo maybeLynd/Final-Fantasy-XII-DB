@@ -1,0 +1,286 @@
+{
+  "source_serialization": {
+    "search-correction.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-search-correction.json",
+      "bytes": 4720,
+      "sha256": "c3cd6425882a3328b4c6d0d0e9c4ba6d25ffd7b626b8e2fc8aa20079ad49116c",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_primary.py",
+      "bytes": 4739,
+      "sha256": "3e25957ed7c6f3e6076359f440c0ab8ca6159e73af244801443bbd367e9575e7",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-primary.json",
+      "bytes": 34273,
+      "sha256": "4618d0460e67f8e282c540f6658d3502692c0531ddc3c7608ca587fad3792974",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "helpers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_helpers.py",
+      "bytes": 4739,
+      "sha256": "be16941260f60cae78c46f91c43608556941fdba3068c097b5cefd9016a0047c",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "helpers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-helpers.json",
+      "bytes": 18969,
+      "sha256": "b51214815fdf545204a25649d280c801c067f3f150c348b5dc5c3baf7de6df2b",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "context.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_context.py",
+      "bytes": 4748,
+      "sha256": "9d3e187ed79c2e6de2f64bd067a25ad2e6243bc73ba5b9e50c8601dbf201987f",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "context.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-context.json",
+      "bytes": 26496,
+      "sha256": "89411ff0de3a3ebbcffcdce02042cde34da358feda524548e2dea090d8779a39",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "controller.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_controller.py",
+      "bytes": 4725,
+      "sha256": "2bc260bbd1dbf79207daaa1c36df33184e34b0f1dc3c39929cb67a76d6d0fbf3",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "controller.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-controller.json",
+      "bytes": 50069,
+      "sha256": "d1c45fd8ba1aed642cbf7c891d3f1dcbcde9706531442f32fba95ea27e90c737",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "request.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_request.py",
+      "bytes": 4722,
+      "sha256": "0f99242b189d576182129298b3c2cbb514b3f290dd386082869cb870d424e097",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "request.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-request.json",
+      "bytes": 11863,
+      "sha256": "f557ff8c6afddd966b39bfe4eac28e122eb22471088c6f6c6d26bbde89ed67bc",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "screen_close.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_screen_close.py",
+      "bytes": 4727,
+      "sha256": "8f308634684c29d42697684462116491fb0cae3bb4e2fcf1e57f69eeb3171e3f",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "screen-close.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-screen-close.json",
+      "bytes": 42100,
+      "sha256": "7fe546e7a2b10ddb7d889b788c422677b622a178d13d5a2dce5f945319a4c1a5",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "factory.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_factory.py",
+      "bytes": 4722,
+      "sha256": "b8bcee7e5f6b06058d3dd452be07cb5767a51bfcd9dbd19968925cd0b273ff2d",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "factory.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-factory.json",
+      "bytes": 8250,
+      "sha256": "3f52c66d806a3f930451c0dbec4d87788f7684ce4b58934dad39e30022bd56fe",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "admission.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_admission.py",
+      "bytes": 4741,
+      "sha256": "8604f625aaa9d934294274dcdd21f6b394d6b00977195b4b758e93e5cb1079af",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "admission.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-admission.json",
+      "bytes": 9476,
+      "sha256": "f2d82ab328e8042c5ed0155f0a2a27dbd264261efa08fea0ed3419392ce3192f",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "tables.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_tables.py",
+      "bytes": 1243,
+      "sha256": "b3f2e3c13b1166de9f5de1df8424121596746faaa5e5ea54c69ed5d84c58b112",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "tables.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-tables.json",
+      "bytes": 1817,
+      "sha256": "b8f55c495afae05120ddb6f3188030ba8345b4370766f2ce5f87745639eed345",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "leads.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_leads.py",
+      "bytes": 1931,
+      "sha256": "68e20a77a33e7eff8112b3f54a1c74ecb519c63bc62d38f94143c502b5582538",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "leads.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-leads.json",
+      "bytes": 20490,
+      "sha256": "28a6040c81ba3448511caa85d2858321fa79241505249dbe5634afd560a719ab",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_load_close_check.py",
+      "bytes": 10501,
+      "sha256": "59d2a5fb89f62774abe089b1b0c4bee192714c939e37fef80015998b79a1f864",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-load-close-check.json",
+      "bytes": 32388,
+      "sha256": "f084669352610c147d3964b305e24d25c3369538d694fd5a4db48b0d06e25370",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "admission.json": {
+      "bytes": 9100,
+      "sha256": "1ed4ca5fb652a8213065c8c377f1b8b8add6442f63bc5e8e9e390b6c437a9f00"
+    },
+    "admission.py": {
+      "bytes": 4741,
+      "sha256": "8604f625aaa9d934294274dcdd21f6b394d6b00977195b4b758e93e5cb1079af"
+    },
+    "check.json": {
+      "bytes": 32388,
+      "sha256": "f084669352610c147d3964b305e24d25c3369538d694fd5a4db48b0d06e25370"
+    },
+    "check.py": {
+      "bytes": 10501,
+      "sha256": "59d2a5fb89f62774abe089b1b0c4bee192714c939e37fef80015998b79a1f864"
+    },
+    "context.json": {
+      "bytes": 25486,
+      "sha256": "a90ddc3de23b91bede55e1c977c6eacb00edcf11265ebc4964eb6db5756c293b"
+    },
+    "context.py": {
+      "bytes": 4748,
+      "sha256": "9d3e187ed79c2e6de2f64bd067a25ad2e6243bc73ba5b9e50c8601dbf201987f"
+    },
+    "controller.json": {
+      "bytes": 48177,
+      "sha256": "bdf0c8dca259f32bec2283d1a1648409c55bc162ee791db58a4407b6e4adc3e0"
+    },
+    "controller.py": {
+      "bytes": 4725,
+      "sha256": "2bc260bbd1dbf79207daaa1c36df33184e34b0f1dc3c39929cb67a76d6d0fbf3"
+    },
+    "factory.json": {
+      "bytes": 7930,
+      "sha256": "8d29c8a98943ef5bbdc9444341b7927f708eb55918d6ad8f67f1e7fa6ae47810"
+    },
+    "factory.py": {
+      "bytes": 4722,
+      "sha256": "b8bcee7e5f6b06058d3dd452be07cb5767a51bfcd9dbd19968925cd0b273ff2d"
+    },
+    "helpers.json": {
+      "bytes": 18239,
+      "sha256": "d0140d12fb610c3e30da967f6825b12b4729999f41700ca91ed986933af76745"
+    },
+    "helpers.py": {
+      "bytes": 4739,
+      "sha256": "be16941260f60cae78c46f91c43608556941fdba3068c097b5cefd9016a0047c"
+    },
+    "leads.json": {
+      "bytes": 20490,
+      "sha256": "28a6040c81ba3448511caa85d2858321fa79241505249dbe5634afd560a719ab"
+    },
+    "leads.py": {
+      "bytes": 1931,
+      "sha256": "68e20a77a33e7eff8112b3f54a1c74ecb519c63bc62d38f94143c502b5582538"
+    },
+    "primary.json": {
+      "bytes": 32973,
+      "sha256": "9b9b85cb628811d4ec4cc0d21380c4bfe23a9c32aa245b878bc9d29209de2d67"
+    },
+    "primary.py": {
+      "bytes": 4739,
+      "sha256": "3e25957ed7c6f3e6076359f440c0ab8ca6159e73af244801443bbd367e9575e7"
+    },
+    "README.md": {
+      "bytes": 3840,
+      "sha256": "5171a6b9f3de870dec1f8426a096876ded99cda9c370010ba3074d836a059639"
+    },
+    "request.json": {
+      "bytes": 11405,
+      "sha256": "740e56b25b31fcac3a491e15487d805ff7ddbf25162deba34344a818b066b6eb"
+    },
+    "request.py": {
+      "bytes": 4722,
+      "sha256": "0f99242b189d576182129298b3c2cbb514b3f290dd386082869cb870d424e097"
+    },
+    "screen-close.json": {
+      "bytes": 40490,
+      "sha256": "513aa784e28e534a5380a11cf8a80a6e732e5a10b9f458357a25910dfe3a9102"
+    },
+    "screen_close.py": {
+      "bytes": 4727,
+      "sha256": "8f308634684c29d42697684462116491fb0cae3bb4e2fcf1e57f69eeb3171e3f"
+    },
+    "search-correction.json": {
+      "bytes": 4720,
+      "sha256": "c3cd6425882a3328b4c6d0d0e9c4ba6d25ffd7b626b8e2fc8aa20079ad49116c"
+    },
+    "tables.json": {
+      "bytes": 1817,
+      "sha256": "b8f55c495afae05120ddb6f3188030ba8345b4370766f2ce5f87745639eed345"
+    },
+    "tables.py": {
+      "bytes": 1243,
+      "sha256": "b3f2e3c13b1166de9f5de1df8424121596746faaa5e5ea54c69ed5d84c58b112"
+    }
+  }
+}

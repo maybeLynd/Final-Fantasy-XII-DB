@@ -1,0 +1,11 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-164",
+ "result_refs": [
+  "08d8c599754ef07236e1176e992a0269c08147fd",
+  "00a41e8c8286390663ccbcf46c6b41d321408448",
+  "b65119a8001c7eaf5132effc8842d45ff20e4116"
+ ],
+ "note": "Tail 08d8c5997 over seal 00a41e8c8 and publish b65119a80 (+ splices 822b90402/1b98b2d3d).",
+ "summary": ""
+}

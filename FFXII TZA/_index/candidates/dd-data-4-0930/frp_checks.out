@@ -1,0 +1,12 @@
+PASS N1 00408F30 compares 8 dwords (+0..+0x1C), 0 on full match, 1 on first mismatch
+PASS N2 FRP_FindEntry: rcx = blob+0x10; non-zero return -> hit exit 0040907D (both loops)
+   refs: FindEntry ['00408F93'] ; thunk ['00422DB6', '0042340D', '004234DC', '00423531'] ; qword 0 ; thunk-caller args [('xor r8d, r8d', 'edx, 0x4d524640'), ('xor r8d, r8d', 'edx, 0x4d524640'), ('xor r8d, r8d', 'edx, 0x4d524640'), ('xor r8d, r8d', 'edx, 0x4d524640')]
+PASS N3 only the zero-start thunk reaches FindEntry; its 4 callers pass no name and the tag @FRM
+   .ca variant 0: files 1969, size==contentLength 1969, zero tail 0, alignment {'16': 959, '32': 427, '64': 265, '128': 159, '256': 88, '512': 31, '1024': 20, '4096': 12, '2048': 5, '8192': 3}
+   .ca variant 1: files 1195, size==contentLength 0, zero tail 1195, alignment {'65536': 474, '4096': 378, '16384': 188, '8192': 99, '32768': 56}
+   .cm variant 0: files 1066, size==contentLength 0, zero tail 1066, alignment {'16384': 340, '32768': 200, '8192': 186, '65536': 121, '1024': 95, '2048': 64, '4096': 60}
+PASS C1 control: .ca variant 0 has contentLength == size in all its files
+PASS A1 every padded file (.ca variant 1, .cm variant 0) has an all-zero tail past contentLength
+PASS A2 bytes +0x20..+0x2F are zero in every file
+RESULT the name compare covers 32 bytes and hits on a DIFFERING name, but no caller passes a name; padding alignment per group is printed above
+FAILS 0

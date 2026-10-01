@@ -1,0 +1,34 @@
+PASS constructor_all_64_links_and_indices - freeHead 022C31C0 pending 0 counter 1
+PASS constructor_preserves_unwritten_bytes
+PASS take_moves_free_head_not_array_base - ret 0x22c31c0
+PASS tail_insert_preserves_head
+PASS head_insert_reorders_pending
+PASS retire_middle_updates_both_neighbors
+PASS retire_head_preserves_tail
+PASS retire_last_empties_pending
+PASS splice_does_not_zero_payload_or_state
+PASS sixty_fourth_take_exhausts_free_list
+PASS request_stamps_defined_fields - ret 0x40
+PASS request_ignores_descriptor_part_callback - slot+0x50 = 0
+PASS offset_truncation_0 - stored 0x00000000
+PASS offset_truncation_2047 - stored 0x00000000
+PASS offset_truncation_2048 - stored 0x00000800
+PASS offset_truncation_2049 - stored 0x00000800
+PASS offset_truncation_-1 - stored 0x00000000
+PASS offset_truncation_-2047 - stored 0x00000000
+PASS offset_truncation_-2048 - stored 0xFFFFF800
+PASS offset_truncation_-2049 - stored 0xFFFFF800
+PASS offset_truncation_-2147483648 - stored 0x80000000
+PASS offset_truncation_2147483647 - stored 0x7FFFF800
+PASS control: the round-up expectation is rejected on every offset where it differs
+PASS generation_and_slot_are_distinct - ids 64 129 ctr 3
+PASS slot_reuse_changes_request_generation
+PASS maximum_constructor_domain_counter_wraps_to_one
+PASS planted_zero_counter_still_consumes_slot
+PASS out_of_domain_counter_uses_signed_wrap_compare
+PASS cancel_rejects_stale_generation
+PASS cancel_rejects_sentinel_ids
+PASS cancel_without_callback_preserves_byte_count
+PASS null_part_callback_returns_1 - ret 1
+PASS control: an out-of-allow-list call is caught (0032E520(0) drains into the footer services) - ('escape', 4107728)
+CHECKS 33 FAILS 0

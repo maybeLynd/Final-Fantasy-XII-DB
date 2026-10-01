@@ -1,0 +1,283 @@
+{
+ "real": [
+  {
+   "name": "d10",
+   "va": "0x684d10",
+   "lo": "0x684d10",
+   "hi": "0x684f59",
+   "span": 585,
+   "insns": 169,
+   "cov": 0.289,
+   "sha256": "39d02f57f0a6e79ae0818081e3eff3fafbc792723d6aa21833bd4653f6c65306",
+   "indirect": []
+  },
+  {
+   "name": "f60",
+   "va": "0x684f60",
+   "lo": "0x684f60",
+   "hi": "0x685136",
+   "span": 470,
+   "insns": 126,
+   "cov": 0.268,
+   "sha256": "22162925581c88ae3b4031c4d850abe56d08fac9bdc147938b57832496900800",
+   "indirect": []
+  },
+  {
+   "name": "c280",
+   "va": "0x686280",
+   "lo": "0x686280",
+   "hi": "0x686827",
+   "span": 1447,
+   "insns": 404,
+   "cov": 0.279,
+   "sha256": "878091c48359d7d56c7dcc161ed24c65b46f2ad1352b533db273d3d617bf0a77",
+   "indirect": []
+  },
+  {
+   "name": "gettop",
+   "va": "0x80fd00",
+   "lo": "0x80fd00",
+   "hi": "0x80fd13",
+   "span": 19,
+   "insns": 6,
+   "cov": 0.316,
+   "sha256": "fc72380040b7cb766d2dcd03d039afad5f598f0f7245c7c0538e455f610cd7e5",
+   "indirect": []
+  },
+  {
+   "name": "settop",
+   "va": "0x811130",
+   "lo": "0x811130",
+   "hi": "0x811177",
+   "span": 71,
+   "insns": 23,
+   "cov": 0.324,
+   "sha256": "ced57d5e90a07dc88303a46bdd2c4f2461d09017b9569af26d49aac498c67829",
+   "indirect": []
+  },
+  {
+   "name": "pushb",
+   "va": "0x810450",
+   "lo": "0x810450",
+   "hi": "0x81046b",
+   "span": 27,
+   "insns": 8,
+   "cov": 0.296,
+   "sha256": "898506a4a98b1f2415f5ce75866dafee0f044919b627a29e4ab3ffb0006150b3",
+   "indirect": []
+  },
+  {
+   "name": "pushi",
+   "va": "0x810580",
+   "lo": "0x810580",
+   "hi": "0x81059c",
+   "span": 28,
+   "insns": 7,
+   "cov": 0.25,
+   "sha256": "9129d6fcc0ef7a8634c48cd5f590a73d0edf1f907ebfc549c1caa90c8a5ae7b7",
+   "indirect": []
+  },
+  {
+   "name": "pushn",
+   "va": "0x810640",
+   "lo": "0x810640",
+   "hi": "0x810654",
+   "span": 20,
+   "insns": 5,
+   "cov": 0.25,
+   "sha256": "28377da097a07c2e5e03741da6b57d32515dcb0b23adfa61057b35edd8e87a39",
+   "indirect": []
+  },
+  {
+   "name": "pushp",
+   "va": "0x8105a0",
+   "lo": "0x8105a0",
+   "hi": "0x8105b3",
+   "span": 19,
+   "insns": 5,
+   "cov": 0.263,
+   "sha256": "3d681cfa3ede14afd705b9826ac54990513425e2d2c2cd1e90fcb215bf4606e2",
+   "indirect": []
+  },
+  {
+   "name": "tobool",
+   "va": "0x8113d0",
+   "lo": "0x8113d0",
+   "hi": "0x811463",
+   "span": 147,
+   "insns": 48,
+   "cov": 0.327,
+   "sha256": "9ae991c193e1735b1c7e76fef977471873ca94de1fabe1f22fed8b8edc774c00",
+   "indirect": []
+  },
+  {
+   "name": "type",
+   "va": "0x8119f0",
+   "lo": "0x8119f0",
+   "hi": "0x811a69",
+   "span": 121,
+   "insns": 41,
+   "cov": 0.339,
+   "sha256": "b41ff631ba6d5bc4c62ad9b7ab3263e097db4c2f4d93c4bcd01cc3cdd1959b86",
+   "indirect": []
+  },
+  {
+   "name": "sing",
+   "va": "0x6372a0",
+   "lo": "0x6372a0",
+   "hi": "0x6372a7",
+   "span": 7,
+   "insns": 2,
+   "cov": 0.286,
+   "sha256": "99897fe3df41e397cbe2ca8d32b514beb1e3bb038c18f8693c1522b46a05e7a4",
+   "indirect": []
+  }
+ ],
+ "scripted": [
+  {
+   "name": "load",
+   "va": "0x683c30",
+   "note": "00683C30 chunk loader: entry-intercepted, (buf,name) captured, ret planted"
+  },
+  {
+   "name": "pcall",
+   "va": "0x810340",
+   "note": "00810340 protected call: pops nargs entries, pushes planted result(s), ret from case sequence"
+  },
+  {
+   "name": "errstr",
+   "va": "0x811530",
+   "note": "00811530 error-string getter: planted pointer"
+  },
+  {
+   "name": "log",
+   "va": "0x5cdaa0",
+   "note": "005CDAA0 logger: (fmt,ecx,edx,r8) captured"
+  },
+  {
+   "name": "pushls",
+   "va": "0x80fb20",
+   "note": "0080FB20 push-loaded-string: pushes planted TV {rdx, pushls_ty}"
+  },
+  {
+   "name": "idxop",
+   "va": "0x810730",
+   "note": "00810730 index op: pushes nil TV"
+  },
+  {
+   "name": "setfld",
+   "va": "0x810ed0",
+   "note": "00810ED0 setfield: pops one TV; popped slot type recorded in trace (real consumer of PUSHP's tag)"
+  },
+  {
+   "name": "copy",
+   "va": "0x682aa0",
+   "note": "00682AA0 deep copy (185 insns): boundary, args captured"
+  },
+  {
+   "name": "marsh",
+   "va": "0x682d20",
+   "note": "00682D20 marshal helper: args captured"
+  },
+  {
+   "name": "iter",
+   "va": "0x6811b0",
+   "note": "006811B0 iterator: writes cursor-holder pointer"
+  },
+  {
+   "name": "disp",
+   "va": "0x681010",
+   "note": "00681010 unknown-tag marshal dispatch: args + optional error log"
+  },
+  {
+   "name": "grow",
+   "va": "0x80f420",
+   "note": "0080F420 stack-grow check: no-op (fixture stacks are large)"
+  },
+  {
+   "name": "geta",
+   "va": "0x6810b0",
+   "note": "006810B0 fallback result getter A: planted {q,b} result"
+  },
+  {
+   "name": "getb",
+   "va": "0x681130",
+   "note": "00681130 fallback result getter B: planted {q,b} result"
+  },
+  {
+   "name": "tonum",
+   "va": "0x811470",
+   "note": "00811470 tonumber: planted return value feeds result store"
+  },
+  {
+   "name": "mshl",
+   "va": "0x636920",
+   "note": "00636920 singleton-result helper: planted return"
+  },
+  {
+   "name": "cpy86",
+   "va": "0x861eba",
+   "note": "00861EBA copy thunk: args captured"
+  },
+  {
+   "name": "sent0",
+   "va": "0x630490",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+0"
+  },
+  {
+   "name": "sent1",
+   "va": "0x62ff50",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+10"
+  },
+  {
+   "name": "sent2",
+   "va": "0x62ffc0",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+20"
+  },
+  {
+   "name": "sent3",
+   "va": "0x630030",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+30"
+  },
+  {
+   "name": "sent4",
+   "va": "0x6300a0",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+40"
+  },
+  {
+   "name": "sent5",
+   "va": "0x630110",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+50"
+  },
+  {
+   "name": "sent6",
+   "va": "0x630180",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+60"
+  },
+  {
+   "name": "sent7",
+   "va": "0x630420",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+70"
+  },
+  {
+   "name": "sent8",
+   "va": "0x6303b0",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+80"
+  },
+  {
+   "name": "sent9",
+   "va": "0x6301f0",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+90"
+  },
+  {
+   "name": "sent10",
+   "va": "0x630260",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+a0"
+  },
+  {
+   "name": "sent11",
+   "va": "0x6302d0",
+   "note": "TLS singleton getter (gs:[0x58] \u2014 cannot run under Unicorn): returns planted token SENTB+b0"
+  }
+ ]
+}

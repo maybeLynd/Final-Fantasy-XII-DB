@@ -1,0 +1,8 @@
+{
+  "original_file": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\candidates\\widget-rate-b8\\widget_b8_rate.py",
+  "producer_sha256": "f7ed873453dc0b19e41152a85215892c13b45cd7bcd8353a847948e0c037176c",
+  "transform": "One exact FI assignment substitution to a private fixture absolute path; original __file__ and EXE hash guard/read/source logic unchanged",
+  "needle": "FI = os.path.join(DB, \"_types\", \"fields.tsv\")",
+  "private_fixture_root": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\widget-rate-template-replay\\disposable",
+  "wrapper_sha256": "792182fd85fd490debbdd9b8756e751105a620f6f9f624bc437fef8f728c818f"
+}

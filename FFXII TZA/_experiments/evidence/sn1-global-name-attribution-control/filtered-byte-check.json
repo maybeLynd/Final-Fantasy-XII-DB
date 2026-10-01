@@ -1,0 +1,102 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "b27334e2bd8b8fd6fdc2104f19b5597ef64032e5"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "9c732c50399ac139ad2430ba93e05289eb3f4f17"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "52aa85f6952eb1a5265df57c04aa5dc8ce1c9543"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "7e478f9653184388fe589dbe4da641d2139767ac"
+  },
+  {
+    "path": "fault-attribution-implies-name-shift.stderr",
+    "git_blob": "fffca50a9ccf848278608c6d652c87556f14b0e8"
+  },
+  {
+    "path": "fault-attribution-implies-name-shift.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-current-group-is-variable-binding.stderr",
+    "git_blob": "9d1f639ab5eee49f3ed538de7e1e51bab81fd84b"
+  },
+  {
+    "path": "fault-current-group-is-variable-binding.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "a332ad2ec9c8f05c763cfec3daaa3c54216d2f68"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "1fbded105e14d18662bf5920090ea6619d44666c"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "07ab079dd43c329cabb2cf999161d1c5c6c940c5"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "8bc61b1707228f207438ae1be3ab5fa0977011ef"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "99bab38cdc681da5bf59ee83f1b3fcd1cdc53870"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "05d801727bc7f1ae93667febac9dfe1e60a89a17"
+  },
+  {
+    "path": "retained/evctrl.dbg",
+    "git_blob": "1ae02ad73660ea581294eccddf9d934ca130e8b8"
+  },
+  {
+    "path": "retained/evctrl.ebp",
+    "git_blob": "0bde06d52c8bfa06284f6fe64a7f67e5897de235"
+  },
+  {
+    "path": "retained/evctrl.sbn",
+    "git_blob": "3042fefd0ba4aa447cf2c860d46932bc2bc0be95"
+  },
+  {
+    "path": "retained/opus-variable-binding-primary.py",
+    "git_blob": "9e104ee9a0d39756695065b553e27223f1f6ae1f"
+  },
+  {
+    "path": "retained/parent61-raw.json",
+    "git_blob": "b38847372c5c21c06c7e875ec8ccf2eae83b5ad1"
+  },
+  {
+    "path": "retained/parent65-publication-correction.json",
+    "git_blob": "b0d5a59379a21ed40927291385b2cb5948bffbcb"
+  },
+  {
+    "path": "retained/resolver591.bin",
+    "git_blob": "d4c2d5c031bc0d63d66d12c4b4a895898e23e26f"
+  },
+  {
+    "path": "retained/selected-opus-on.py",
+    "git_blob": "decd393057d45b01da4e075b82cad463c55946df"
+  },
+  {
+    "path": "retained/selected-sbn-functions.py",
+    "git_blob": "a2808c68c3b0fc327600c643d2a0b999887e519f"
+  }
+]

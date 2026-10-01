@@ -1,0 +1,15 @@
+{
+  "name": "missing-null-result",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py",
+    "--raw",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\reducer-controls\\missing-null-result\\raw.json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 42, in <module>\n    result=reduce(w,a.raw or w/'run-01/raw.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 25, in reduce\n    p=c['parsed'];assert isinstance(p,dict) and 'result' in p and 'exception' in p and p['exception'] is None,'MISSING_RESULT'\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_RESULT\n",
+  "expected": "MISSING_RESULT",
+  "terminal": true
+}

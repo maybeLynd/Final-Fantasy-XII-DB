@@ -1,0 +1,26 @@
+[
+  {
+    "path": "Database/FFXII TZA/17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md",
+    "retained": "retained/the-element-types-60-74.md",
+    "sha256": "c8355a7d13acf7c38c2265399fd2c8f7f6084f807822323aeedfc8632bbfa510",
+    "limits": "Current source snapshot consumed; not independent semantic acceptance or observed initialization"
+  },
+  {
+    "path": "Database/FFXII TZA/17-Presentation-Rendering/Effect-File-Formats/members/effect-type-methods.tsv",
+    "retained": "retained/effect-type-methods.tsv",
+    "sha256": "3a9e02643e06a7f2add3ee8922b1b2139762cbc08ef0ac4146ef176241b16da8",
+    "limits": "Current source snapshot consumed; not independent semantic acceptance or observed initialization"
+  },
+  {
+    "path": "Database/FFXII TZA/24-Compiler-And-CRT-Runtime/Generated-Families/members/nativeleaf-fieldconststore.tsv",
+    "retained": "retained/nativeleaf-fieldconststore.tsv",
+    "sha256": "1056dfa74c1e8070e090273c25927ad88e1d43fc96daa72367d9cc2e5539c8e1",
+    "limits": "Current source snapshot consumed; not independent semantic acceptance or observed initialization"
+  },
+  {
+    "path": "Database/FFXII TZA/17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md",
+    "retained": "retained/an-effect-element-frame-by-frame.md",
+    "sha256": "961173a1ec75b2e5a1b1c2e7dbf5f86acfed1c436e0b4fe4c2b8c68cff643f6f",
+    "limits": "Current source snapshot consumed; not independent semantic acceptance or observed initialization"
+  }
+]

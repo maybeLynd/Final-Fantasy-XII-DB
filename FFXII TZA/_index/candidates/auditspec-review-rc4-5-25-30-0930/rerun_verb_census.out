@@ -1,0 +1,4 @@
+distinct .ebp files with a code section: 7562; actor scripts: 198302
+PASS  control: debug_mapjump 0x2026 calls = 1545
+verb 0x2006: 0 calls []
+verb 0x2007: 0 calls []

@@ -1,0 +1,11 @@
+{
+  "initial_probe": "STOPPED_BEFORE_IMPORT; byte guard noticed Git LF versus working-copy CRLF",
+  "current_bytes": 39341,
+  "current_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+  "accepted_git_bytes": 38411,
+  "accepted_git_sha256": "1f7ace7f7e88145588b48073a1eb220e4c1523aded0a8f5cd3b25528ad5ddb96",
+  "normalized_equal": true,
+  "AST_equal": true,
+  "prior_new_native_results": 0,
+  "limits": "Only CRLF/LF equivalence allowed. Other source changes fail; peer source untouched."
+}

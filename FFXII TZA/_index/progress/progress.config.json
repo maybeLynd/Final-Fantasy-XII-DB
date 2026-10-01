@@ -1,0 +1,51 @@
+{
+  "package": "progress",
+  "schema_version": 2,
+  "parser_version": 3,
+  "directive": "FRONTIER-REQ-SWE2-DATA-PROGRESS-ROUTE-REPORT (2026-09-27); repaired under FRONTIER-REQ-SWE2-DATA-PROGRESS-REPAIR-CKPT10",
+  "owner": "SWE2-DATA",
+  "cadence_seconds": 1800,
+  "controller_hook": "swe2_watchdog.py --loop calls progress_report.py auto every 1800s of controller time; the generator itself skips regeneration when the input fingerprint is unchanged AND the output set is coherent AND no .dirty mark is present; the watchdog consumes .dirty only on a zero exit code",
+  "inputs": [
+    "_index/OPEN-QUESTIONS.md",
+    "_index/UNIDENTIFIED-OPEN-QUESTIONS.md",
+    "_index/L2-VERDICTS.md",
+    "_index/CONTRADICTIONS.tsv",
+    "_index/candidates/register-triage/batch-K-scope-rulings.md",
+    "_index/COVERAGE.md",
+    "_index/COVERAGE-DIMENSIONS.md",
+    "_index/PROGRAM-STATE.md",
+    "_index/SYSTEM-MATRIX.md",
+    "_index/_inbox/TEAM.json",
+    "_index/progress/progress.config.json"
+  ],
+  "optional_inputs": [
+    "_index/PARITY-STATUS.md",
+    "_index/candidates/fable-route-links-0927/fable-register-transitions.tsv"
+  ],
+  "outputs": [
+    "PROGRESS.md",
+    "_index/progress/snapshot.json",
+    "_index/progress/snapshot.md",
+    "_index/progress/crosswalk.md",
+    "_index/progress/metrics.md",
+    "_index/progress/history.jsonl"
+  ],
+  "freshness": {
+    "fingerprint_over": ["parser_version", "progress_report.py sha256", "progress.config.json sha256", "per-input sha256", "document-tree consumed surface (path + frontmatter head)", "check_questions.py sha256", "transfer_audit.py sha256", "board revision+epoch"],
+    "coherent_capture": "inputs fingerprinted before AND after the build; a mid-build move aborts the generation",
+    "skip_when_unchanged": true,
+    "output_set": "all five files staged to temp, then committed as one generation with snapshot.json last; a commit failure leaves the prior generation's fingerprint on the authoritative member, and check() rejects any mixed set",
+    "dirty_mark": "_index/progress/.dirty - touched by publish_paths.sh on any committed document change; forces regeneration regardless of fingerprint; consumed by the watchdog ONLY on a successful run",
+    "stale_rule": "on missing/unreadable required inputs the run fails INCOMPLETE: snapshot.json names the missing inputs and the last good output set is kept - never empty CURRENT counts",
+    "history_rule": "history.jsonl records successful publications only, one row per fingerprint; failed candidates and duplicate triggers are not recorded",
+    "terminal_evidence": "final_audits is read from the PROGRAM-STATE receipted counter plus AUDIT-LOG complete-run entries; AUDIT-PASS* files are per-round artefacts and are never summed as passes",
+    "live_rule": "a LIVE cell satisfies only where its own text cites the governing L2 ruling; bare LIVE is reported LIVE-UNRULED and never folds into MET",
+    "parity_rule": "PARITY-STATUS.md 'N of M pilots certified'; absent or unparseable is UNMEASURED, never PASS"
+  },
+  "instruments_used_not_reimplemented": [
+    "check_questions.classify (vendored port kept as fallback; test asserts row-agreement)",
+    "transfer_audit.audit (problems, checked)"
+  ],
+  "notes": "no LLM call, no full audit, no Tools/ input content path (instrument versions are fingerprinted); staged atomic output set; deltas from history.jsonl"
+}

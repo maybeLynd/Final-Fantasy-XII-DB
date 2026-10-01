@@ -1,0 +1,65 @@
+# Triage of the 54 live-flavoured register rows with no route, OPUS 2026-09-15.
+# Read row by row against what each one ASKS, not by keyword. The keyword census that
+# produced this population (FINAL-AUDIT-PROTOCOL, 2026-09-15) is a sizing instrument and
+# says so; this is the reading it asked for.
+#
+# VERDICTS: LIVE - no static evidence can close it. STATIC - ordinary reading work, and the
+# word that caught it was incidental. NO-SOURCE - a candidate for the status ruled in
+# EVIDENCE-STANDARD 15bk; each still needs its four requirements and a reviewer.
+#
+# This is a ROUTING verdict, not a disposition. No row closes on it.
+id	verdict	why
+CI-1	LIVE	DEP/ASLR are header REQUESTS; confirming loader behaviour needs the loader
+G-23	LIVE	whether a decode path is exercised in this title is a fact about execution
+G-17	STATIC	is slotCount bounded anywhere - closes by reading every writer
+DN-1	STATIC	the 1,476-byte tail across 55 kind-decode sites is a static census
+EO-3	LIVE	a crash-address hypothesis; three observed reads are the only evidence there is
+DR-1	STATIC	a TOOLING DEFECT report, not a question: the metric counts denials as citations
+X-4	LIVE	can the ImGui menu be re-enabled AT RUNTIME - duplicate of UQ-314
+Z-2	STATIC	fields identified, offsets open; offsets come from the writers
+AA-8	STATIC	the field is assigned to a page; what writes it is readable
+AB-8	STATIC	whether a counter relates to Trial Mode - the callers are in the image
+AC-10	LIVE	whether digit columns are on screen is a visual observation
+AR-5	LIVE	never dispatched AT RUNTIME cannot be shown by a table that lists them
+EW-6	STATIC	the body is read; what remains is whether slot 0 is a real name
+AZ-2	STATIC	does a Set counterpart exist - a search over 747 accessors
+BF-5	STATIC	the six carry authored mnemonics in a SHIPPED table; that is the evidence
+BQ-27	STATIC	1,606 destructors with a fold-shared ret - a static census
+BL-7	LIVE	nothing in the schema is runtime-confirmed, by its own statement
+F-1	LIVE	the row says live-test, and names the context it needs
+CE-3	STATIC	17 arity disagreements reconcile against two shipped tables
+CG-6	LIVE	the consumer is not reachable from any static path, by its own statement
+CJ-2	LIVE	injection timing against the cookie is a property of a running process
+CB-12	STATIC	whether two paths mean different things by the same bytes - read both
+CL-1	STATIC	why a census misses 21 classes that are present - a census defect
+CU-5	NO-SOURCE	the enum NAME is known and the number-to-name mapping was never shipped - duplicate of UQ-286
+DA-1	LIVE	static evidence cannot settle it and the row says so
+DF-5	STATIC	reconciling 403 / 409 / 402 / 401 is arithmetic over four static counts
+EC-5	STATIC	a DOCUMENT DEFECT: a stated count differs from its own table
+FG-1	STATIC	what an entry table holds - the writers and the reader are named
+FH-3	STATIC	who else writes a global - a writer census
+FJ-4	STATIC	what two unread callers add - read the two callers
+FL-2	LIVE	the row says the LIVE check of the binding
+PE-1	STATIC	whether any SHIPPED message uses kind 4 is a scan of shipped data
+SM-2	LIVE	what a stop set stops IN PLAYER TERMS is an observation
+SC-1	STATIC	a DOCUMENT DEFECT: one column carrying two axes across 42 tables
+TA-1	STATIC	how a pass chooses a frame number - the call site is named
+TA-2	LIVE	what a scene SHOWS where its shade would be is visual
+IR-1	STATIC	what six registries hold - the five-function shape is already derived
+KE-1	STATIC	what a .fex key identifies - the readers and the map are named
+UC-2	LIVE	settled as far as static evidence goes, by its own statement
+PH-2	LIVE	the descriptor is in .bss and built at runtime; it cannot be read from the image
+SR-6	STATIC	whether an index above 63 ever reaches a resolver - read the callers
+UQ-44	LIVE	whether any path nests a save; none was observed
+UQ-45	LIVE	any runtime observation - none exists, by its own statement
+UQ-63	LIVE	any runtime observation of this path - none exists
+UQ-70	STATIC	what five undecoded families hold is a format read; the never-read half is live
+UQ-79	LIVE	any runtime observation - none exists
+UQ-137	LIVE	the row says live and records that automation is paused
+UQ-141	NO-SOURCE	whether cross-profile conflict is DELIBERATE POLICY - intent, not behaviour
+UQ-146	LIVE	whether returning a stack pointer is a LIVE defect
+UQ-152	LIVE	whether a one-instruction window is observable from another thread
+UQ-189	STATIC	what a field's bits mean across 54 census sites - a static census
+UQ-224	STATIC	object layout from qword-indexed handle writes - static
+UQ-286	NO-SOURCE	same as CU-5: the name-to-number mapping was never shipped
+UQ-314	LIVE	same as X-4

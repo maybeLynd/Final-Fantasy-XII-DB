@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-45",
+ "result_refs": [
+  "commit:e6d0bca00"
+ ],
+ "note": "publish: 26 paths exact (13 hosts + resume + 12 ops); AUDIT-LOG excluded - 8 uncommitted peer sections tripped the foreign-headers guard, batch entry rides a peer commit per precedent"
+}

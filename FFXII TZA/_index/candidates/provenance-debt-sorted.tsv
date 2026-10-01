@@ -1,0 +1,405 @@
+# Provenance debt sorted by what moved beneath each document.
+#
+# NO STAMP IS ADVANCED BY THIS FILE. check_provenance is right that a stamp
+# records a verification that happened; this only prices the debt, which
+# '306 documents owe re-verification' does not.
+#
+# SUPERSEDED 2026-09-14 BY FABLE'S RULING (OPUS-REQ-FABLE-PROVENANCE-TRANSFER-144,
+# commit 9bedb5e0). THE WITNESS BELOW IS THE WRONG ONE, and my own evidence was
+# mislabelled: `functions_0109_STALE.tsv` is timestamped 2026-09-02 01:09:37, twelve
+# minutes BEFORE the GN158 pack at 01:21:49 - so it is not a GN158 export, and the
+# "GN158 -> GN160" delta computed from it is not that delta. The census also records
+# comment LENGTH only, with no prototype, calling convention or namespace, so it
+# could not have witnessed what it was asked to.
+#
+# THE RIGHT WITNESS IS ALREADY IN THE STAMPS: the GFZFunctionAnnotationSnapshotV2
+# files named by `snapshot_sha256`, which carry full per-function records. Against
+# those the real deltas are 19 functions GN158->GN160 and 15 GN159->GN160, plate
+# comment and tags only, embedded EXE identical - and `002F7380` and `00313A00`, two
+# of "my 21", had already changed BEFORE GN158 was packed.
+#
+# NOT COVERED BY EITHER witness, and this is the part that matters: non-function
+# symbols, the DTM, instruction-address comments, equates and reference overrides -
+# which decompiler output depends on. The re-sort that supersedes the classes below
+# is `provenance-snapshot-resort.tsv`: 103 FUNCTION-IDENTICAL, 53 of those also
+# quoting decompiler state, 20 genuine SNAPSHOT-DELTA (my TOUCHES-DELTA 32 was 12 too
+# many). This file is kept because a superseded classification is evidence of how the
+# question was got wrong, and deleting it would hide that.
+#
+# Measured across the three census exports: 0 entries added or removed, 0 names and 0
+# body sizes differing in 38,161 rows; the whole moving surface is
+# comment_len/tags on 21 functions.
+#
+#   TOUCHES-DELTA     cites one of the 21; owes a targeted read of that annotation
+#   CENSUS-IDENTICAL  stale stamp, cites none of the 21; everything the FUNCTION
+#                     CENSUS covers is provably unchanged beneath it. The census
+#                     does not cover data labels, types, or comment TEXT - two
+#                     comments of equal length compare equal here.
+#   NO-STAMP          no prior verification to carry forward; owes a first one
+#
+# document	class	stamped_generation	cited_delta_addresses
+00-Engine-Core-Runtime/Application-Root/game-application.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-F-ids-172-203.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-G-ids-204-235.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-I-ids-268-293.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Object-Model/rtti-vtable-object-model.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Object-Model/vtable-method-index.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	CENSUS-IDENTICAL	GN158	
+00-Engine-Core-Runtime/duplicated-function-names-and-how-to-resolve-them.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/the-all-ones-empty-convention.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/the-basis-column-helpers.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/the-encoded-id-class-registry.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md	CENSUS-IDENTICAL	GN159	
+01-Script-VM-Native-Bridge/ATEL-Control-Modules/the-ctrl-module-debug-companions.md	CENSUS-IDENTICAL	GN159	
+01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md	CENSUS-IDENTICAL	GN158	
+01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	CENSUS-IDENTICAL	GN158	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/unnamed-bin-families.md	CENSUS-IDENTICAL	GN159	
+02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md	CENSUS-IDENTICAL	GN159	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md	CENSUS-IDENTICAL	GN159	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	CENSUS-IDENTICAL	GN158	
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	CENSUS-IDENTICAL	GN158	
+03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md	CENSUS-IDENTICAL	GN159	
+03-World-Area-Field/Weather/mweather-resource-format.md	CENSUS-IDENTICAL	GN158	
+03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md	CENSUS-IDENTICAL	GN158	
+03-World-Area-Field/Weather/weather-probability-and-transition-roll.md	CENSUS-IDENTICAL	GN158	
+03-World-Area-Field/Weather/weather-slot-state-model.md	CENSUS-IDENTICAL	GN158	
+03-World-Area-Field/choosing-the-field-environment-variant.md	CENSUS-IDENTICAL	GN159	
+03-World-Area-Field/walking-into-an-authored-trigger-point.md	CENSUS-IDENTICAL	GN159	
+04-Actor-Entity/Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md	CENSUS-IDENTICAL	GN159	
+04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	CENSUS-IDENTICAL	GN158	
+04-Actor-Entity/battleunit-slot-pool-and-actor-class.md	CENSUS-IDENTICAL	GN158	
+04-Actor-Entity/the-field-runtime-pass.md	CENSUS-IDENTICAL	GN159	
+05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md	CENSUS-IDENTICAL	GN158	
+05-Spawn-Encounter-Lifecycle/why-the-enemies-you-killed-come-back.md	CENSUS-IDENTICAL	GN159	
+06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md	CENSUS-IDENTICAL	GN158	
+06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md	CENSUS-IDENTICAL	GN158	
+06-Movement-And-Navigation/clamping-a-point-into-a-volume.md	CENSUS-IDENTICAL	GN159	
+07-Combat-Action/Action-Availability/battle-command-availability-and-reason-codes.md	CENSUS-IDENTICAL	GN158	
+07-Combat-Action/Action-Dispatch/battle-action-handler-table.md	CENSUS-IDENTICAL	GN158	
+07-Combat-Action/applying-a-result-to-a-target.md	CENSUS-IDENTICAL	GN159	
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md	CENSUS-IDENTICAL	GN159	
+07-Combat-Action/the-moment-an-action-is-committed.md	CENSUS-IDENTICAL	GN159	
+08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md	CENSUS-IDENTICAL	GN158	
+08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md	CENSUS-IDENTICAL	GN158	
+08-Combat-Formula/Step-Table/combat-formula-step-table.md	CENSUS-IDENTICAL	GN158	
+08-Combat-Formula/Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md	CENSUS-IDENTICAL	GN158	
+08-Combat-Formula/combos-and-the-guard-parry-flag.md	CENSUS-IDENTICAL	GN159	
+08-Combat-Formula/elemental-affinity-and-the-five-bytes.md	CENSUS-IDENTICAL	GN159	
+08-Combat-Formula/the-auto-status-rebuild.md	CENSUS-IDENTICAL	GN159	
+08-Combat-Formula/where-a-stat-number-comes-from.md	CENSUS-IDENTICAL	GN159	
+09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	CENSUS-IDENTICAL	GN158	
+09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md	CENSUS-IDENTICAL	GN159	
+10-Status-Periodic-Terminal/Periodic-Tick/what-the-periodic-tick-does.md	CENSUS-IDENTICAL	GN159	
+10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md	CENSUS-IDENTICAL	GN158	
+11-Party/active-party-reserve-and-the-moment-the-leader-changes.md	CENSUS-IDENTICAL	GN159	
+11-Party/the-five-parallel-slot-maps.md	CENSUS-IDENTICAL	GN159	
+12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md	CENSUS-IDENTICAL	GN159	
+12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	CENSUS-IDENTICAL	GN158	
+12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md	CENSUS-IDENTICAL	GN159	
+12-Items-Equipment-Shops-License/using-an-item-is-an-action-that-costs-an-item.md	CENSUS-IDENTICAL	GN159	
+13-Rewards-Progression-Economy/experience-and-license-point-award.md	CENSUS-IDENTICAL	GN158	
+13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md	CENSUS-IDENTICAL	GN159	
+13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md	CENSUS-IDENTICAL	GN159	
+13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md	CENSUS-IDENTICAL	GN158	
+13-Rewards-Progression-Economy/the-chain-and-its-sticky-coin.md	CENSUS-IDENTICAL	GN159	
+13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md	CENSUS-IDENTICAL	GN159	
+13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md	CENSUS-IDENTICAL	GN159	
+14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	CENSUS-IDENTICAL	GN159	
+14-Story-Event-Quest-Hunt/persistent-flag-banks.md	CENSUS-IDENTICAL	GN158	
+15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md	CENSUS-IDENTICAL	GN158	
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	CENSUS-IDENTICAL	GN158	
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	CENSUS-IDENTICAL	GN158	
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md	CENSUS-IDENTICAL	GN158	
+16-UI/Request-Router/ui-request-router.md	CENSUS-IDENTICAL	GN158	
+16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md	CENSUS-IDENTICAL	GN159	
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md	CENSUS-IDENTICAL	GN159	
+16-UI/the-selection-the-menu-publishes.md	CENSUS-IDENTICAL	GN159	
+17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md	CENSUS-IDENTICAL	GN158	
+17-Presentation-Rendering/Character-Rendering/character-render-object.md	CENSUS-IDENTICAL	GN158	
+17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md	CENSUS-IDENTICAL	GN158	
+17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md	CENSUS-IDENTICAL	GN159	
+17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md	CENSUS-IDENTICAL	GN159	
+17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	CENSUS-IDENTICAL	GN159	
+17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md	CENSUS-IDENTICAL	GN158	
+17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md	CENSUS-IDENTICAL	GN158	
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md	CENSUS-IDENTICAL	GN159	
+17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	CENSUS-IDENTICAL	GN158	
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md	CENSUS-IDENTICAL	GN158	
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	CENSUS-IDENTICAL	GN158	
+18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	CENSUS-IDENTICAL	GN158	
+18-Audio/Sound-Bank-And-Voice-Formats/sead-win-config.md	CENSUS-IDENTICAL	GN159	
+18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md	CENSUS-IDENTICAL	GN159	
+18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	CENSUS-IDENTICAL	GN159	
+18-Audio/Sound-Selection/sound-trigger.md	CENSUS-IDENTICAL	GN158	
+18-Audio/Sound-Selection/sound-variant-selection.md	CENSUS-IDENTICAL	GN158	
+18-Audio/how-the-music-changes-when-you-change-area.md	CENSUS-IDENTICAL	GN159	
+18-Audio/sead-engine-identity-and-diagnostics.md	CENSUS-IDENTICAL	GN158	
+18-Audio/sead-function-identification.md	CENSUS-IDENTICAL	GN158	
+18-Audio/sqex-sd-sound-driver-architecture.md	CENSUS-IDENTICAL	GN158	
+18-Audio/the-five-slot-array-the-console-reads.md	CENSUS-IDENTICAL	GN159	
+18-Audio/which-variation-of-a-sound-you-hear.md	CENSUS-IDENTICAL	GN159	
+19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md	CENSUS-IDENTICAL	GN159	
+19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	CENSUS-IDENTICAL	GN158	
+19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	CENSUS-IDENTICAL	GN158	
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	CENSUS-IDENTICAL	GN159	
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	CENSUS-IDENTICAL	GN158	
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	CENSUS-IDENTICAL	GN159	
+19-Save-Load-Settings/where-the-game-keeps-your-files.md	CENSUS-IDENTICAL	GN159	
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	CENSUS-IDENTICAL	GN158	
+21-RNG-And-Determinism/rng-streams.md	CENSUS-IDENTICAL	GN158	
+21-RNG-And-Determinism/which-roll-is-on-which-generator.md	CENSUS-IDENTICAL	GN159	
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md	CENSUS-IDENTICAL	GN159	
+22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md	CENSUS-IDENTICAL	GN158	
+22-Middleware-PhyreEngine/the-camera-state-snapshot.md	CENSUS-IDENTICAL	GN159	
+23-Third-Party-Libraries/Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md	CENSUS-IDENTICAL	GN158	
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md	CENSUS-IDENTICAL	GN158	
+23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md	CENSUS-IDENTICAL	GN158	
+23-Third-Party-Libraries/third-party-middleware-inventory.md	CENSUS-IDENTICAL	GN158	
+24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md	CENSUS-IDENTICAL	GN158	
+24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md	CENSUS-IDENTICAL	GN158	
+24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md	CENSUS-IDENTICAL	GN158	
+24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md	CENSUS-IDENTICAL	GN158	
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md	CENSUS-IDENTICAL	GN158	
+24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md	CENSUS-IDENTICAL	GN158	
+99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md	CENSUS-IDENTICAL	GN159	
+00-Engine-Core-Runtime/ABI-Recovery/derived-call-signatures.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md	IMAGE-DERIVED	-	00313A00
+00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Developer-Tuning-Console/ARM-CATALOGUE-WORK-DIVISION.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Diagnostics-Logging/the-formatted-log-call-and-its-level-gate.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-workbench-has-a-save-and-restore-and-nine-functions-use-it.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-standard-motion-verbs.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/Verb-Dispatch/the-shape-of-the-verb-population.md	IMAGE-DERIVED	-	
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/Standard-Formats/shipped-standard-formats.md	IMAGE-DERIVED	-	
+02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	IMAGE-DERIVED	-	
+03-World-Area-Field/CONTRACT-field-record-accessors.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Actor-Contexts/the-movement-and-secondary-context-censuses.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	IMAGE-DERIVED	-	
+04-Actor-Entity/CONTRACT-actor-record-pool-and-region-map.md	IMAGE-DERIVED	-	
+04-Actor-Entity/CONTRACT-field-runtime-pass.md	IMAGE-DERIVED	-	
+04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md	IMAGE-DERIVED	-	
+04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md	IMAGE-DERIVED	-	
+05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	IMAGE-DERIVED	-	
+05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md	IMAGE-DERIVED	-	
+05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md	IMAGE-DERIVED	-	
+06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	IMAGE-DERIVED	-	
+06-Movement-And-Navigation/CONTRACT-movement-body-pool.md	IMAGE-DERIVED	-	
+06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md	IMAGE-DERIVED	-	
+06-Movement-And-Navigation/Facing-And-Steering/the-two-steering-slots-and-what-a-character-resumes.md	IMAGE-DERIVED	-	
+06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md	IMAGE-DERIVED	-	
+07-Combat-Action/Action-Definition-Row/the-action-definition-row.md	IMAGE-DERIVED	-	
+07-Combat-Action/CONTRACT-battle-target-buffer.md	IMAGE-DERIVED	-	
+07-Combat-Action/CONTRACT-commit-action.md	IMAGE-DERIVED	-	
+07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md	IMAGE-DERIVED	-	
+07-Combat-Action/Result-Record/the-result-record-field-map.md	IMAGE-DERIVED	-	
+08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md	IMAGE-DERIVED	-	
+08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md	IMAGE-DERIVED	-	
+08-Combat-Formula/CONTRACT-preparation-step-family.md	IMAGE-DERIVED	-	
+08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md	IMAGE-DERIVED	-	
+08-Combat-Formula/Evaluation-Context/the-evaluation-context-field-map.md	IMAGE-DERIVED	-	
+08-Combat-Formula/Recipe-System/the-count-clock-and-bank-recipes.md	IMAGE-DERIVED	-	
+08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md	IMAGE-DERIVED	-	
+08-Combat-Formula/Steal/the-steal-roll.md	IMAGE-DERIVED	-	001E8580
+09-Combat-AI-And-Gambits/CONTRACT-gambit-walk.md	IMAGE-DERIVED	-	
+10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	IMAGE-DERIVED	-	
+10-Status-Periodic-Terminal/CONTRACT-status-write.md	IMAGE-DERIVED	-	
+10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md	IMAGE-DERIVED	-	
+11-Party/Battle-State-Block/the-battle-state-block-field-map.md	IMAGE-DERIVED	-	
+11-Party/CONTRACT-party-slot-assignment.md	IMAGE-DERIVED	-	
+12-Items-Equipment-Shops-License/CONTRACT-bazaar-unlock-and-purchase.md	IMAGE-DERIVED	-	
+12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	IMAGE-DERIVED	-	
+13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md	IMAGE-DERIVED	-	
+14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	IMAGE-DERIVED	-	
+15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	IMAGE-DERIVED	-	
+15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md	IMAGE-DERIVED	-	
+15-Input/Input-Name-Registry/the-input-name-registry-and-channel-aliases.md	IMAGE-DERIVED	-	
+16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md	IMAGE-DERIVED	-	
+16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md	IMAGE-DERIVED	-	
+16-UI/License-Board-View/the-license-board-screen-widgets.md	IMAGE-DERIVED	-	
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md	IMAGE-DERIVED	-	002B8EE0 002BCB00
+16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	IMAGE-DERIVED	-	
+16-UI/Widget-Object-Model/CONTRACT-widget-object.md	IMAGE-DERIVED	-	
+16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md	IMAGE-DERIVED	-	
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md	IMAGE-DERIVED	-	
+16-UI/Widget-Object-Model/the-widget-message-protocol.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/CONTRACT-character-transform-publish.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/CONTRACT-coast-down-latch.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Effect-File-Formats/the-menu-effect-registry.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md	IMAGE-DERIVED	-	
+17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md	IMAGE-DERIVED	-	
+18-Audio/Audio-Boundary/CONTRACT-sound-request.md	IMAGE-DERIVED	-	
+18-Audio/Audio-Boundary/how-a-sound-fades-the-ramp-and-its-six-curves.md	IMAGE-DERIVED	-	
+18-Audio/CONTRACT-field-music-selection.md	IMAGE-DERIVED	-	
+19-Save-Load-Settings/CONTRACT-save-container-transform.md	IMAGE-DERIVED	-	
+19-Save-Load-Settings/CONTRACT-save-image-buffers.md	IMAGE-DERIVED	-	
+19-Save-Load-Settings/CONTRACT-storage-read-completion.md	IMAGE-DERIVED	-	
+19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	IMAGE-DERIVED	-	
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md	IMAGE-DERIVED	-	
+20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	IMAGE-DERIVED	-	
+21-RNG-And-Determinism/CONTRACT-gameplay-generators.md	IMAGE-DERIVED	-	
+22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	IMAGE-DERIVED	-	
+22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-packed-namespace.md	IMAGE-DERIVED	-	
+22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md	IMAGE-DERIVED	-	
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	IMAGE-DERIVED	-	
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/how-a-class-registers-its-array-members-and-annotations.md	IMAGE-DERIVED	-	
+23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md	IMAGE-DERIVED	-	
+23-Third-Party-Libraries/Lua-Core/CONTRACT-lua-chunk-loader.md	IMAGE-DERIVED	-	
+23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md	IMAGE-DERIVED	-	
+24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md	IMAGE-DERIVED	-	
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md	IMAGE-DERIVED	-	
+99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md	IMAGE-DERIVED	-	
+99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	IMAGE-DERIVED	-	
+00-Engine-Core-Runtime/CONTRACT-transform-primitives.md	NO-BLOCK	-	
+02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md	NO-BLOCK	-	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md	NO-BLOCK	-	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md	NO-BLOCK	-	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md	NO-BLOCK	-	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md	NO-BLOCK	-	
+00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md	TOUCHES-DELTA	GN158	00313A00
+03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md	TOUCHES-DELTA	GN158	00313A00
+03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	TOUCHES-DELTA	GN158	00313A00
+03-World-Area-Field/Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md	TOUCHES-DELTA	GN158	002F7380
+05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	TOUCHES-DELTA	GN158	00313A00
+06-Movement-And-Navigation/heading-speed-to-position-delta.md	TOUCHES-DELTA	GN158	00313A00
+07-Combat-Action/Command-And-Action-Seam/native-command-seam.md	TOUCHES-DELTA	GN158	00313A00
+11-Party/party-roster-and-control-suppression.md	TOUCHES-DELTA	GN158	00313A00
+15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	TOUCHES-DELTA	GN158	00313A00
+15-Input/Modal-Toggles/r2-force-fight-toggle.md	TOUCHES-DELTA	GN158	00313A00
+16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md	TOUCHES-DELTA	GN158	002B8EE0 002BCB00
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	TOUCHES-DELTA	GN158	002AAE40
+16-UI/Text-And-Number-Rendering/the-text-control-code-language.md	TOUCHES-DELTA	GN159	002AAE40
+17-Presentation-Rendering/Legacy-PS2-GS/texture-mip-local-memory-budget.md	TOUCHES-DELTA	GN158	002F7380
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md	TOUCHES-DELTA	GN158	002DC290 00392A10 00392CE0
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md	TOUCHES-DELTA	GN158	002DA7C0 002DC290 002DC7F0 00392A10 00392CE0
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md	TOUCHES-DELTA	GN159	001E8070 001E8580
+99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md	TOUCHES-DELTA	GN159	002AAE40 002B8EE0
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	TOUCHES-DELTA	GN158	001E8070 002AAE40 00364530 003649A0 00366110 0053E0B0
+99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md	TOUCHES-DELTA	GN159	001E8070 001E8580 003649A0
+99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md	TOUCHES-DELTA	GN159	001E8070 001E8580
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	TOUCHES-DELTA	GN159	002AAE40
+99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	TOUCHES-DELTA	GN158	002F7380 00313A00
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	TOUCHES-DELTA	GN158	002AAE40
+99-Unresolved-Residual/drawing-one-coloured-rectangle.md	TOUCHES-DELTA	GN159	002B8EE0 002BCB00 002DBDD0
+99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md	TOUCHES-DELTA	GN159	002AAE40
+99-Unresolved-Residual/the-blinking-icon-and-its-atlas.md	TOUCHES-DELTA	GN159	002B8EE0 002BCB00 002DBDD0 0053E0B0
+99-Unresolved-Residual/the-nine-patch-window-frame.md	TOUCHES-DELTA	GN159	002DBDD0 002DC290 002DC7F0 00392A10 00392CE0
+99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md	TOUCHES-DELTA	GN159	002B8EE0 002BCB00 002DBDD0
+99-Unresolved-Residual/the-unresolved-158.md	TOUCHES-DELTA	GN158	001E8070 001E8580 00245170 002455A0 00245E60 002AAE40 002B8EE0 002BCB00 002DA2D0 002DA7C0 002DBDD0 002DC290 002DC7F0 002F7380 00313A00 00364530 003649A0 00366110 00392A10 00392CE0 0053E0B0
+99-Unresolved-Residual/the-widget-background-and-its-atlas-sets.md	TOUCHES-DELTA	GN159	00245170 002455A0 002DA2D0 002DA7C0
+99-Unresolved-Residual/the-widget-tree-draw-pass.md	TOUCHES-DELTA	GN159	00245170 002455A0 00245E60 002DA2D0 002DA7C0
+00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	current	GN160 (certified)	
+01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md	current	GN160 (certified)	
+01-Script-VM-Native-Bridge/Verb-Dispatch/what-each-script-verb-touches.md	current	GN160 (certified)	
+01-Script-VM-Native-Bridge/scriptvm-native-dispatch-table.md	current	GN160 (certified)	
+01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/tim2-images-and-the-seven-slot-registry.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ah-asset-header-manifests.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/how-the-prefetch-manifests-are-read.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/area-nmb-index.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/resource-section-addressing.md	current	GN160 (certified)	
+02-Resource-And-Asset-Pipeline/the-resource-request-queue.md	current	GN160 (certified)	
+04-Actor-Entity/the-definition-record-flag-pair.md	current	GN160 (certified)	
+06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md	current	GN160 (certified)	
+10-Status-Periodic-Terminal/the-thirty-two-statuses.md	current	GN160 (certified)	
+10-Status-Periodic-Terminal/where-mp-comes-from.md	current	GN160 (certified)	
+11-Party/the-setsavedata-presets-test-battle-scenarios.md	current	GN160 (certified)	
+12-Items-Equipment-Shops-License/license-board-grid-format.md	current	GN160 (certified)	
+12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	current	GN160 (certified)	
+12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	current	GN160 (certified)	
+13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md	current	GN160 (certified)	
+16-UI/Gambit-Screens/the-gambit-screens.md	current	GN160 (certified)	
+16-UI/Handbook/the-handbook-screen.md	current	GN160 (certified)	
+16-UI/Quest-List/the-quest-list-screen.md	current	GN160 (certified)	
+16-UI/Shared-Dialogs/the-shared-dialog-widgets.md	current	GN160 (certified)	
+16-UI/Shop-Screens/the-shop-screens.md	current	GN160 (certified)	
+16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	current	GN160 (certified)	
+17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md	current	GN160 (certified)	
+17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md	current	GN160 (certified)	
+17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	current	GN160 (certified)	
+17-Presentation-Rendering/Model-And-Motion-Formats/frp-object-container.md	current	GN160 (certified)	
+17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md	current	GN160 (certified)	
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md	current	GN160 (certified)	
+18-Audio/Sound-Bank-And-Voice-Formats/sab-sound-bank-container.md	current	GN160 (certified)	
+18-Audio/the-music-control-file-and-the-bgm-stream.md	current	GN160 (certified)	
+18-Audio/the-spatial-audio-object-model.md	current	GN160 (certified)	
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	current	GN160 (certified)	
+19-Save-Load-Settings/the-save-load-screen-widgets.md	current	GN160 (certified)	
+22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md	current	GN160 (certified)	
+22-Middleware-PhyreEngine/Phyre-Asset-Container/the-packed-namespace-and-the-file-side-schema.md	current	GN160 (certified)	
+22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md	current	GN160 (certified)	
+22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md	current	GN160 (certified)	
+24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md	current	GN160 (certified)	
+24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	current	GN160 (certified)	
+24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md	current	GN160 (certified)	
+24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	current	GN160 (certified)	
+25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	current	GN160 (certified)	
+25-EBP-Script-Container/Container/ebp2-container.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-002-text.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-003-text.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-004.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-006.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-008.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-009.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-010.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-011.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-012.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-014.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-016.md	current	GN160 (certified)	
+25-EBP-Script-Container/Sections/section-019.md	current	GN160 (certified)	
+26-PKFL-Package-Container/Container/pkfl-package-container.md	current	GN160 (certified)	

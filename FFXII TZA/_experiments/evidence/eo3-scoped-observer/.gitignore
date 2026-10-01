@@ -1,0 +1,7 @@
+!native-reader-1/child.log
+!native-stop-normal-1/*.log
+!native-stop-abort-1/*.log
+!native-stop-read-failure-1/*.log
+!native-instruction-normal-1/*.log
+!native-instruction-abort-1/*.log
+!native-instruction-read-failure-1/*.log

@@ -1,0 +1,2 @@
+Read-only original identity reproduction. Exit 0
+Verified bank vtable/RTTI identity, wrapper payload and OnMemoryBank source-file binding. The known frpan comparison can read file header +0A; live binding and broader meaning remain open.

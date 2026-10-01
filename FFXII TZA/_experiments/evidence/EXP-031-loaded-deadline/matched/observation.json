@@ -1,0 +1,213 @@
+{
+  "status": "LIVE_POSITIVE_FULL_POST_WINDOW_TIMING_DEVIATION",
+  "method": "C",
+  "pid": 11032,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "text_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+  "pulses": [
+    {
+      "receipt": "title-enter.json",
+      "sha256": "7889308581bd8bcf90514d5cc4ee01f0198eee8f7892d48f8316cdc6e67a5dd5",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.3555454000015743,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "load-enter.json",
+      "sha256": "d154f6d72e4b8e058ddbab0cd1c5a17259676c08442add35ecaff266d18687a8",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35624429999734275,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "dismiss-enter.json",
+      "sha256": "47ceaa52ee11853f8c4d730c10ccdd2f1469a3f4d8b634dab2dc2f7111e0c770",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35729940000601346,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 33,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "baseline-enter.json",
+      "sha256": "05fb2a46893712e7e47b71519e8801c760fc51225993e92ef1b4ec4bc43486e7",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35475559999758843,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "baseline-c.json",
+      "sha256": "26da9971423d4476a9afa68bd7791d0300c9ee274f9646e818583ce627da59db",
+      "expected_index": 2,
+      "code": 30,
+      "held_seconds": 0.3560520000028191,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 31,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "capture-enter.json",
+      "sha256": "a17fdc3167db43802c8e61cbdb1e805b4d90c4ff47695d4162fd23bae4f3492a",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.35414460000174586,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 31,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "capture-c.json",
+      "sha256": "578a0aaca9aab71f2252769577dab7bea3c81b28f3885206e6d7aab306f14271",
+      "expected_index": 2,
+      "code": 30,
+      "held_seconds": 0.3567641999979969,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 32,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "post-enter.json",
+      "sha256": "6eff15784dab7c2aafbd9e62c40b17b9dc26a35972e6a52c890686e3dfa721d6",
+      "expected_index": 49,
+      "code": 77,
+      "held_seconds": 0.3561952000018209,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 33,
+      "module_count_before": 101,
+      "module_count_after": 101
+    },
+    {
+      "receipt": "post-c.json",
+      "sha256": "a7078cfe37b4ca21ccc186298f0d14056aee8f0b654a0977d8d7e8fcaee298ca",
+      "expected_index": 2,
+      "code": 30,
+      "held_seconds": 0.3562748000040301,
+      "baseline_samples": 35,
+      "held_samples": 34,
+      "positive_samples": 33,
+      "module_count_before": 101,
+      "module_count_after": 101
+    }
+  ],
+  "capture": {
+    "hits": 197,
+    "entry": "003A1C50",
+    "hit_threads": [
+      13704
+    ],
+    "cleared_threads": 102,
+    "verified_threads": 102,
+    "api_records": 2625,
+    "detach_unix": 1789337889.382152,
+    "sources": {
+      "capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+      "timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+      "api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+      "hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6"
+    }
+  },
+  "windows": {
+    "baseline": {
+      "samples": 6234,
+      "end_seconds": 64.99628250000387,
+      "debugger_samples": 0,
+      "cpu_10s_deltas": [
+        4.265625,
+        4.328125,
+        4.546875,
+        4.734375,
+        4.53125,
+        4.4375
+      ],
+      "input_offsets": {
+        "enter": 36.408812284469604,
+        "c": 67.55748081207275
+      },
+      "enter_offset_spread": 21.846781969070435,
+      "c_offset_spread": 9.226510763168335
+    },
+    "capture": {
+      "samples": 6234,
+      "end_seconds": 64.99496120000549,
+      "debugger_samples": 105,
+      "cpu_10s_deltas": [
+        4.796875,
+        4.59375,
+        4.484375,
+        4.515625,
+        4.78125,
+        4.828125
+      ],
+      "input_offsets": {
+        "enter": 54.64863109588623,
+        "c": 68.24643063545227
+      },
+      "post_detach_seconds": 28.34894880000502,
+      "post_detach_samples": 2719,
+      "post_detach_5s_cpu_deltas": [
+        2.40625,
+        2.390625,
+        2.34375,
+        2.421875
+      ]
+    },
+    "post": {
+      "samples": 6235,
+      "end_seconds": 64.99830459999794,
+      "debugger_samples": 0,
+      "cpu_10s_deltas": [
+        4.734375,
+        4.578125,
+        4.90625,
+        4.875,
+        4.625,
+        4.875
+      ],
+      "input_offsets": {
+        "enter": 58.25559425354004,
+        "c": 76.78399157524109
+      }
+    }
+  },
+  "original_campaign_complete": false,
+  "outstanding_controls": [
+    "matched input timing across three windows"
+  ],
+  "cleanup_verified": true,
+  "prior_failed_brief_input_cause": "UNRESOLVED",
+  "combat_command_queued": false,
+  "combat_action_executed": false,
+  "presentation": "Screenshots inspected: named Stepping save, load complete, field; menu opens and closes before/after tracing; Vaan103/103.",
+  "limitations": [
+    "All three65s windows exist; input offsets were not matched. No timing-equivalent CPU/overhead comparison.",
+    "Debugging and simulated input are interventions; no memory writes or injected native gameplay calls.",
+    "Debugger presence and CPU are sampled sequentially, not atomic whole-process proof.",
+    "One loaded state and one 1-second site; no combat handler, stack extension or long-run qualification.",
+    "Clean modules means the recorded census and watched-module policy; no universal module-state guarantee."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "question": "Can the seven prepared original callers of 17E8E0/17F3B0, including the selected 1BABB2->183780 forwarder path, supply 80000000 to their two unsigned count floors?",
+  "hypotheses": ["These selected normal paths admit the encoded masked-zero count", "Dominating original definitions constrain these paths to 1, 4 or 32, excluding raw and masked zero"],
+  "major_system": "Renderer texture array construction/resize and pending-element wait",
+  "consumers": ["OPUS texture count-domain/ABI contract", "FABLE natural zero-count reachability and lifetime question"],
+  "known_evidence": "Six lower direct628100 sites and the conditional unsigned floor were already checked; their producer result and original source receipts must be qualified, not promoted by a label. Seven aligned upstream calls and one forwarder caller are retained. Two palette-root missing edges were captured without repeating the retained children.",
+  "method": "A STATIC_ONLY complete normal CFG, definition domination and register-write analysis on shipping instructions",
+  "why_sufficient": "The selected count arguments are constant register definitions and a checked forwarding leaf. A normal-path invariant distinguishes these hypotheses without samples or native/game execution.",
+  "limits": "Selected paths, normal entry/return and ordinary ABI/private-stack/no-interference premises. Not complete caller/indirect binding coverage, actual initialized objects, resource success, natural lifetime, exception handling or full downstream safety.",
+  "controls": "Reuse one full-source positive; actual CLI refusals for annotation-consistent changed32 constant, missing palette edge and failed required lower-floor result. Verify nonzero exit, expected reason and no final result.",
+  "acceptance": "Exact shipping ranges, complete palette parent triples, recomputed normal CFGs and dominating definitions; no intervening volatile clobber/call. 183780 must not modify R9 before its call. Required lower producer sources/result/tool identity must remain qualified. All selected emitted counts are1/4/32 and mask7FFFFFFF stays nonzero.",
+  "falsification": "An admitted path reaches a selected call without the checked definitions, overwrites the volatile count, admits a different source, or breaks the lower count prerequisite. Missing evidence is INCOMPLETE, not empty success.",
+  "stop": "Stop this exact count question after one qualified proof and focused controls. Investigate complete producer/caller binding separately only if required for a named broader consumer claim.",
+  "restoration": "File reads and finite analysis only; no game, PC input, instruments, saves, configuration, reference or peer-process writes. Foreground helpers exit when complete."
+}

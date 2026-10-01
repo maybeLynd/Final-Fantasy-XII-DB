@@ -1,0 +1,12 @@
+control: .adm entries: 39 (published 39)
+walk ends at the file size: 39 of 39
+tracks per file: [(1, 2), (2, 2), (4, 35)]
+track byte0: [(0, 111), (1, 35)] ; byte1: [(0, 35), (1, 74), (2, 37)]
+track word2 (top): [(0, 35), (22, 12), (25, 11), (16, 10), (13, 8), (26, 7), (12, 6), (28, 6), (29, 6), (9, 5), (24, 5), (14, 4)]
+track word2 non-zero: 111 tracks, range 9 .. 84 ; distinct values: 26
+groupCount: [(2, 90), (3, 22), (4, 34)] ; keyCount: [(4, 38), (6, 15), (8, 24), (12, 1), (13, 1), (15, 62), (17, 1), (18, 4)]
+group record +0x18 u32 (top): [(0, 291), (1, 31), (2, 31), (3, 29)] ; key record +0x00 u32 (top): [(6, 123), (7, 123), (28, 94), (27, 79), (9, 77), (29, 74)]
+group record as 7 f32, first three: [(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)]
+key record as 7 f32, first three: [(0.0, -179.719, 0.468, -15.674, 0.057, -0.055, -0.033), (0.0, -179.719, 0.468, -15.674, 0.057, -0.055, 0.033), (0.0, -180.0, 0.0, 21.265, 0.057, -0.055, -0.033)]
+add_motion_list.txt entries: 23 ['hc1004_02', 'hc1005_03', 'hc1006_03', 'hc1011_02', 'hc1019_03', 'hc1021_03', 'hc1021_13', 'hc1023_03']
+  listed with a shipped <name>.adm: 23 ; with <name>_town.adm: 15 ; shipped files not listed: ['hn1018_12']

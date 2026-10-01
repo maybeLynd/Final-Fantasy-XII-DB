@@ -1,0 +1,96 @@
+new GR rows at 797b72780: 19  GR-1 GR-2 GR-3 GR-4 GR-5 GR-6 GR-7 GR-8 GR-9 GR-10 GR-11 GR-12 GR-13 GR-14 GR-15 GR-16 GR-17 GR-18 GR-19
+
+GR-1   at-commit OPEN   HEAD OPEN     addrs 0025DF00 0025E04F 0025E07A 0025E08F 0025E4C0 0025F5CC 002621D0
+   register rows sharing an address: BQ-5[ANSWERED](002621D0), BQ-9[OPEN](002621D0), EC-2[ANSWERED](0025DF00), EF-2[ANSWERED](0025DF00,0025E4C0), EH-4[SUPERSEDED](0025DF00), EX-9[ANSWERED](002621D0), HM-1[SUPERSEDED](0025E4C0), OV-11[ANSWERED](0025DF00), U-4[SUPERSEDED](0025E4C0), UQ-246[ANSWERED](0025DF00), UQ-336[ANSWERED](0025DF00), UQ-55[ANSWERED](002621D0), VA-2[ANSWERED](002621D0)
+   candidate folders (at parent) sharing an address: access-direction(0025E4C0), auditsem-review-dd-owner-read-5-0930(0025DF00), auditsem-review-p22-fable-0930(0025DF00), auditspec-review-batch14-0930(0025DF00,0025E4C0,002621D0), bf1-opcode-semantics(0025E4C0), bq9-sync-arity(002621D0), bucket-members-0929(0025DF00,0025E4C0), crr-flow-census(0025DF00), dd-data-5-0930(0025DF00), dd-owner-read-0929(002621D0), eh4-bit-table(0025E4C0), fable-astra-live-facts-0930(0025DF00,0025E4C0), fable-crossings-prose-false-clears.tsv(0025DF00,0025E4C0,002621D0), fi1-offset-names(0025E4C0), frontier-apply-bundle-0929b(0025DF00), functions-cited-deep-by-two-documents.tsv(0025DF00,0025E4C0,002621D0), hm1-parent-writer(0025E4C0), interpreter-core-falsification-pass-1-0930(002621D0), neighbour-dispositions.tsv(0025DF00,0025E4C0,002621D0), ov-rt-probes-0929(0025DF00), ov11-wait-services-fable(0025DF00), overlay-drop-census-2026-09-25.tsv(0025DF00,0025E04F,0025E08F), overlay-drop-dispositions-11-12.md(0025DF00,0025E04F,0025E08F,0025E4C0), pass22-fable-0929(0025DF00), pass22-neighbour-worklist.tsv(0025DF00), pass22-tripwires.tsv(0025DF00,0025E4C0), rc12-footer-channels-runstate-0930(0025DF00), rc121314-fable-0930(0025DF00), rc15-regfile-skipmask-0930(0025DF00,0025E4C0,002621D0), rc151617-fable-0930(0025DF00,0025E4C0), rc4-capture-machine-0930(002621D0), register-triage(002621D0), s02-runtime-rejudged-against-exp191.md(0025E4C0), s03-s07-runtime-per-invariant-exposure.md(0025DF00,0025E4C0), s15-opus-replay-boot-world(0025DF00,0025E4C0,002621D0), s15-opus-replay-field-pass-stub-free(0025DF00,0025E4C0), s15-runtime-per-invariant-exposure.md(0025DF00,0025E4C0), script-divide-opus(0025DF00,0025E4C0), sd190-tween-turn-bit-0930(0025DF00), section11-12-fable-semantic-review.md(0025E07A,0025E4C0), section11-opus-type-review.md(0025DF00,0025E4C0), section12-opus-type-review.md(0025DF00,0025E4C0), text-gap-citations-250.tsv(0025DF00,0025E4C0), type-flow-census(0025DF00), undeclared-written-statics(0025DF00,0025E4C0), worktree-drift-2026-09-25(0025DF00,0025E04F,0025E07A)
+   named on: the-field-runtime-pass.md
+
+GR-2   at-commit OPEN   HEAD OPEN     addrs 00263C20 002F8E90
+   register rows sharing an address: AJ-10[ANSWERED](002F8E90), AL-3[ANSWERED](00263C20), AL-6[ANSWERED](002F8E90), EY-3[ANSWERED](002F8E90)
+   candidate folders (at parent) sharing an address: auditsem-review-dd-owner-read-4-0930(00263C20), auditsem-review-sd6x-adoption-0930(00263C20), fable-crossings-prose-false-clears.tsv(00263C20), neighbour-dispositions.tsv(00263C20,002F8E90), pass22-tripwires.tsv(00263C20), s20-opus-replay-commit(00263C20), s25-runtime-per-invariant-exposure.md(002F8E90), sd160-free-target-type3-0930(00263C20), type-flow-census(002F8E90), uq2-caller-route(00263C20)
+   named on: battle-record-kind-byte.md
+
+GR-3   at-commit OPEN   HEAD OPEN     addrs 00289A10 00289B54 00289B88 00289D70 00289DE7 00289E08 00289F24 0028AAA0 0028E920
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: auditsem-review-bit46-0930(0028AAA0), fable-crossings-prose-false-clears.tsv(0028AAA0), neighbour-dispositions.tsv(0028AAA0), pass22-tripwires.tsv(0028AAA0), provenance-transfer-gn161.tsv(0028AAA0), residual-139-explanation-depth.tsv(0028AAA0), residual-band-vs-outcome.tsv(0028AAA0), s02-statics-refs.tsv(0028AAA0), type-flow-census(00289A10,00289B54,00289D70), y1-layout-key-uses(0028AAA0)
+   named on: how-a-combo-continues-and-what-it-blocks.md
+
+GR-4   at-commit OPEN   HEAD OPEN     addrs 02EBF138
+   register rows sharing an address: AG-1[ANSWERED](02EBF138), AG-2[ANSWERED](02EBF138), AG-8[ANSWERED](02EBF138), AI-2[ANSWERED](02EBF138), AY-2[ANSWERED](02EBF138), AY-6[ANSWERED](02EBF138), UQ-106[SUPERSEDED](02EBF138), UQ-107[ANSWERED](02EBF138), UQ-33[ANSWERED](02EBF138), UQ-80[SUPERSEDED](02EBF138)
+   candidate folders (at parent) sharing an address: ag2-slot-identity(02EBF138), ay2-byte21(02EBF138), contract-named-state-census.tsv(02EBF138), dd-owner-read-0929(02EBF138), ga1-status-open-bytes(02EBF138), ge3-opus-replay-missing-slot(02EBF138), s03-opus-replay-mode-setters(02EBF138), s04-opus-replay-validator-shipped(02EBF138), s14-opus-replay-enemy-install(02EBF138), s14-opus-replay-installer-stub-free(02EBF138), s20-opus-replay-combo-roll(02EBF138), s20-opus-replay-command-seam(02EBF138), s20-opus-replay-handler-table(02EBF138), s21-opus-replay-385ba0(02EBF138), s21-opus-replay-applier-stub-free(02EBF138), s22-opus-replay-recipe-resolver(02EBF138), s22-opus-replay-steps-and-element-scaling(02EBF138), s23-opus-replay-hp-second-store(02EBF138), s24-opus-replay-d6-source-switch(02EBF138), s24-opus-replay-stat-derivation(02EBF138), s25-opus-commit-refusal-unreachable(02EBF138), s25-opus-replay-enmity(02EBF138), s26-opus-replay-effect-layers(02EBF138), s28-opus-replay-five-slot-maps(02EBF138), s28-opus-replay-slot-map-writers(02EBF138), s29-opus-replay-inventory-rebase(02EBF138), s29-runtime-per-invariant-exposure.md(02EBF138), s31-opus-replay-licence-check-shipped(02EBF138), s32-opus-replay-defeat-rewards(02EBF138), s32-opus-replay-gil-storage(02EBF138), s32-opus-replay-level-advance(02EBF138), s32-opus-replay-loot-rolls(02EBF138), s38-opus-replay-render-object(02EBF138), s43-opus-replay-save-image-pipeline(02EBF138), s46-opus-replay-area-seed(02EBF138), s49-opus-replay-lighting-slot-zeros(02EBF138), stranded-unknowns.tsv(02EBF138), uq107-action-flag-bits(02EBF138), uq80-table-field-coverage(02EBF138)
+   named on: the-action-definition-row.md
+
+GR-5   at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: the-action-definition-row.md
+
+GR-6   at-commit OPEN   HEAD OPEN     addrs 0030AC50 0031ADB0 0031B1AE 0031B254 0031B2A7 00325476 00325702 003257D0 00325968 003259E3
+   register rows sharing an address: E-7[ANSWERED](0031ADB0), FT-2[ANSWERED](0031ADB0), UQ-107[ANSWERED](0030AC50,0031ADB0,003257D0)
+   candidate folders (at parent) sharing an address: fable-crossings-prose-false-clears.tsv(0031ADB0), functions-cited-deep-by-two-documents.tsv(0031ADB0), neighbour-dispositions.tsv(0031ADB0,003257D0), pass22-r3-clauses12-pairs.tsv(0031ADB0), pass22-tripwires.tsv(0031ADB0,003257D0), rc1-static-census-0930(0030AC50), text-gap-citations-250.tsv(0031ADB0,003257D0), type-flow-census(0031ADB0), uq107-action-flag-bits(0030AC50,0031ADB0,003257D0), uq218-fmc-selector-kinds(0031ADB0), uq80-table-field-coverage(0030AC50,0031B1AE,0031B254,0031B2A7,00325476,00325968)
+   named on: the-action-definition-row.md
+
+GR-7   at-commit OPEN   HEAD OPEN     addrs 00312170 0031225E
+   register rows sharing an address: UQ-106[SUPERSEDED](00312170), UQ-107[ANSWERED](00312170)
+   candidate folders (at parent) sharing an address: uq107-action-flag-bits(00312170,0031225E), uq2-caller-route(00312170,0031225E)
+   named on: the-action-definition-row.md
+
+GR-8   at-commit OPEN   HEAD OPEN     addrs 00386C10 0208D480 0208DE80
+   register rows sharing an address: CS-6[ANSWERED](0208D480,0208DE80), FD-2[ANSWERED](00386C10,0208D480,0208DE80)
+   candidate folders (at parent) sharing an address: auditsem-review-p22-fable-0930(00386C10), contract-named-state-census.md(0208D480,0208DE80), contract-named-state-census.tsv(0208D480), fable-crossings-prose-false-clears.tsv(00386C10), neighbour-dispositions.tsv(00386C10), pass22-fable-0929(00386C10), pass22-tripwires.tsv(00386C10), s20-opus-replay-combo-roll(0208D480,0208DE80), s22-opus-replay-recipe-resolver(0208D480), type-flow-census(00386C10)
+   named on: combos-and-the-guard-parry-flag.md
+
+GR-9   at-commit OPEN   HEAD OPEN     addrs 002FE09F 002FE0BB
+   register rows sharing an address: UQ-121[ANSWERED](002FE09F)
+   candidate folders (at parent) sharing an address: -
+   named on: gambit-evaluation-and-enmity.md
+
+GR-10  at-commit OPEN   HEAD OPEN     addrs 00359410 00359424 00359499 02097300 02098DEC
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: access-direction(02098DEC), bucket-members-0929(00359410,00359499), do2-branching-readings(00359410), uq2-caller-route(00359410)
+   named on: active-party-reserve-and-the-moment-the-leader-changes.md
+
+GR-11  at-commit OPEN   HEAD OPEN     addrs 0025A6A0 0025A76A 0025A792 0025A7F9 02097D20
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: access-flag-producers(0025A7F9), auditsem-review-livefacts-0930(02097D20), contract-entries-never-in-experiments.txt(0025A6A0), dd-owner-read-0929(0025A6A0), s28-opus-replay-five-slot-maps(0025A6A0), s28-runtime-per-invariant-exposure.md(0025A6A0)
+   named on: active-party-reserve-and-the-moment-the-leader-changes.md
+
+GR-12  at-commit OPEN   HEAD OPEN     addrs 00273270 0027C625 0027C632 0027C637 0027C65A
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: nas-package-4-2026-09-27(00273270)
+   named on: equipment-slots-and-the-single-stat-rebuild.md
+
+GR-13  at-commit OPEN   HEAD OPEN     addrs 0056D370 0056D461 0056D468 0057CF20 0057D620 0057DAD0 0057DBCF 0057DBDC
+   register rows sharing an address: AB-8[SUPERSEDED](0056D370), FZ-4[ANSWERED](0056D370), GI-5[ANSWERED](0056D370), UQ-130[ANSWERED](0057DAD0), UQ-131[ANSWERED](0056D370)
+   candidate folders (at parent) sharing an address: ab8-counter17-fable-0930(0056D370), allocation-proven-extents.tsv(0056D370), auditsem-review-ab8-0930(0056D370), auditsem-review-gi-restatus-0930(0056D370), bucket-members-0929(0057CF20), ec7-frontier-plan-0929(0057D620), f-frontier-shapes-0930(0057D620), gi-0929-ui(0056D370), neighbour-dispositions.tsv(0056D370), phyre-array-header-plus4(0057DAD0), provenance-transfer-gn161.tsv(0057CF20,0057D620), rc1-static-census-0930(0057DAD0), residual-139-explanation-depth.tsv(0057CF20,0057D620), residual-band-vs-outcome.tsv(0057CF20,0057D620), stranded-unknowns.tsv(0056D370), text-gap-citations-250.tsv(0057CF20)
+   named on: the-shop-table-and-its-stock-gates.md
+
+GR-14  at-commit OPEN   HEAD OPEN     addrs 002D48C0 002F9860 005651E0 005654E1 00565537 005656AE 00565A00 0056D461 0056D46C 0056E55A 0056E561
+   register rows sharing an address: AY-10[ANSWERED](002F9860), DL-1[ANSWERED](005651E0), FX-2[ANSWERED](002F9860), GA-1[ANSWERED](002F9860), GE-1[ANSWERED](002F9860), RC-36[ANSWERED](002F9860), UQ-159[ANSWERED](002F9860), UQ-299[ANSWERED](002F9860), UQ-68[ANSWERED](002F9860)
+   candidate folders (at parent) sharing an address: auditspec-review-lmap-rc35-36-0930(002F9860), fable-crossings-prose-false-clears.tsv(002F9860), functions-cited-deep-by-two-documents.tsv(002F9860), ga1-row-band(002F9860), ga1-status-open-bytes(002F9860), gg1-dispatch-sim(005651E0), gi-0929-dialogs(002F9860), provenance-transfer-gn161.tsv(005651E0,00565A00), rc36-lmap-label-fable-0930(002F9860), rc4-capture-machine-0930(002F9860,005651E0), register-answered-elsewhere-candidates.tsv(002F9860), residual-139-explanation-depth.tsv(005651E0,00565A00), residual-band-vs-outcome.tsv(005651E0,00565A00), s04-runtime-per-invariant-exposure.md(002F9860), s04-runtime-stub-free-execution.md(002F9860), sd126-hud-proc-arms-0930(002D48C0), uq80-table-field-coverage(002F9860), y1-layout-key-uses(002D48C0,002F9860)
+   named on: the-shop-table-and-its-stock-gates.md
+
+GR-15  at-commit OPEN   HEAD OPEN     addrs 003FD360 003FD76A 003FD8DC 005640ED 00564780 0056DD8B
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: ec7-frontier-plan-0929(003FD360), f-frontier-shapes-0930(003FD360), gi-0929-ui(00564780), provenance-transfer-gn161.tsv(003FD360,00564780), rc4-capture-machine-0930(003FD360,00564780), residual-139-explanation-depth.tsv(003FD360,00564780), residual-band-vs-outcome.tsv(003FD360,00564780)
+   named on: the-shop-table-and-its-stock-gates.md
+
+GR-16  at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: experience-and-license-point-award.md, how-experience-is-computed-and-divided.md, what-happens-when-an-enemy-dies.md
+
+GR-17  at-commit OPEN   HEAD OPEN     addrs 0023A965 0023A9F4 02EBF140 02EBF148
+   register rows sharing an address: CB-5[ANSWERED](02EBF140,02EBF148)
+   candidate folders (at parent) sharing an address: ag2-slot-identity(02EBF140,02EBF148), auditsem-review-bit46-0930(0023A9F4), cc7-ard-base-growth(02EBF140,02EBF148), contract-named-state-census.tsv(02EBF140,02EBF148), defeat-rewards-falsification-pass-1-0930(0023A965,0023A9F4,02EBF140,02EBF148), s14-opus-replay-enemy-install(02EBF140,02EBF148), s24-opus-replay-stat-derivation(02EBF140,02EBF148), s32-opus-replay-defeat-rewards(02EBF140,02EBF148), type-flow-census(0023A9F4), unit-construction-falsification-pass-1-0930(0023A965,0023A9F4,02EBF140,02EBF148)
+   named on: experience-and-license-point-award.md
+
+GR-18  at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: experience-and-license-point-award.md, how-experience-is-computed-and-divided.md
+
+GR-19  at-commit OPEN   HEAD OPEN     addrs 002EA7F0 00312588 00312597 00313F80 00314EB0 00319490 00337700 003377C0 00391D10 003920F0
+   register rows sharing an address: DE-4[ANSWERED](00337700,003377C0), SD-192[ANSWERED](002EA7F0), U-4[SUPERSEDED](003377C0)
+   candidate folders (at parent) sharing an address: auditsem-review-dd-owner-read-5-0930(002EA7F0), dd-owner-read-0929(00319490), fable-crossings-prose-false-clears.tsv(00319490), neighbour-dispositions.tsv(002EA7F0,00313F80,00319490,003377C0), pass22-neighbour-worklist.tsv(00319490), pass22-tripwires.tsv(00319490), s32-opus-replay-defeat-rewards(00319490), sd192-attached-bit-readers-0930(002EA7F0), type-flow-census(00319490,00337700,003377C0), uq2-caller-route(00337700,003377C0)
+   named on: what-happens-when-an-enemy-dies.md

@@ -1,0 +1,40 @@
+  [PASS] EXE SHA256
+== static
+  [PASS] kind 2 idx 0 = WepJob_Matrix.bin -- PS2Data\image\FF12\test_battle\in\BinaryFile\WepJob_Matrix.bin
+  [PASS] kind 2 idx 39 = shop_data.bin -- PS2Data\image\FF12\test_battle\in\BinaryFile\shop_data.bin
+  [PASS] kind 2 idx 0x13 = battle_pack.bin -- PS2Data\image\FF12\test_battle\in\BinaryFile\battle_pack.bin
+  [PASS] 002369C2 decodes as 'mov ecx, 0x13' -- mov ecx, 0x13
+  [PASS] 002369CE decodes as 'call 0x3843f0' -- call 0x3843f0
+  [PASS] 00236C5B decodes as 'mov ecx, 0x13' -- mov ecx, 0x13
+  [PASS] 00236C6B decodes as 'jmp 0x3843f0' -- jmp 0x3843f0
+  [PASS] 00384443 decodes as 'mov ecx, 2' -- mov ecx, 2
+  [PASS] 0038444E decodes as 'call 0x32e400' -- call 0x32e400
+  [PASS] 00236C70 decodes as 'movsxd rax, dword ptr [rcx + 4]' -- movsxd rax, dword ptr [rcx + 4]
+  [PASS] 00236C74 stores directory +4 into 02EBF180
+  [PASS] 0023836A decodes as 'add ecx, 0x47' -- add ecx, 0x47
+  [PASS] message-loader id table 01E09F68 (28 entries) holds neither 0 nor 39 -- ff14151617012b2c2d2e2f30313233343536373818193e3f40414243
+  [PASS] board loader ids 0x47.. cannot be 0 or 39 for a non-negative board index
+  [PASS] no (2,0)/(2,0x27) constant pair at any call to 0032E400/0032E620/003843F0/00384420/0024AB90 -- []
+  [PASS] 00238678/00238686: the shop binder rebases 02EBF158
+  [PASS] 02EBF158 readers outside the binder: 002FA920 (listing) and 002FAE40 (name) only
+  [PASS] 0032042D reads WepJob 02EBF180; 00320434 u16 stride; 0032043C byte row [ptr + stride*cat + 4]
+== corpus
+  [PASS] wepjob_matrix: 4 standalone copies (ch, cn, in, kr)
+  [PASS] ch/wepjob_matrix: == battle_pack entry 0 (dir +0x4) bytes [0,27), tail 5 B zero
+  [PASS] cn/wepjob_matrix: == battle_pack entry 0 (dir +0x4) bytes [0,27), tail 5 B zero
+  [PASS] in/wepjob_matrix: == battle_pack entry 0 (dir +0x4) bytes [0,27), tail 5 B zero
+  [PASS] kr/wepjob_matrix: == battle_pack entry 0 (dir +0x4) bytes [0,27), tail 5 B zero
+  [PASS] wepjob_matrix: section byte-identical in all 9 battle_pack copies -- 1
+  [PASS] shop_data: 4 standalone copies (ch, cn, in, kr)
+  [PASS] ch/shop_data: == battle_pack entry 39 (dir +0xa0) bytes [0,11892), tail 4 B zero
+  [PASS] cn/shop_data: == battle_pack entry 39 (dir +0xa0) bytes [0,11892), tail 4 B zero
+  [PASS] in/shop_data: == battle_pack entry 39 (dir +0xa0) bytes [0,11892), tail 4 B zero
+  [PASS] kr/shop_data: == battle_pack entry 39 (dir +0xa0) bytes [0,11892), tail 4 B zero
+  [PASS] shop_data: section byte-identical in all 9 battle_pack copies -- 1
+  [PASS] wepjob_matrix: u16 stride 1, u16 count 23, 4 + stride*count == 27
+  wepjob rows: [0, 1, 4, 3, 12, 13, 6, 9, 8, 0, 8, 7, 7, 9, 10, 11, 0, 14, 15, 0, 15, 5, 2]
+  [PASS] shop_data header tag 0x64 stride 8 count 57 data 0xc (the shop page's ShopTableHeader)
+  gate kinds: {0: 45, 2: 210, 3: 12}
+  walked 57 rows, 267 lists, 2512 ids
+  [PASS] three-level walk: every section tag 0x164 stride 8, every list tag 0x264 stride 2 in bounds; 267 entries / 2,512 ids as the shop page counts
+CHECKS 34  FAILS 0

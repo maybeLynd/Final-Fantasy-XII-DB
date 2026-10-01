@@ -1,0 +1,26 @@
+== 1 table 01E09EE8: (1, 5, 3, 4)
+  002396D6  mov      byte ptr [rax + 0x58], dl
+  002396D9  mov      rdx, qword ptr [rax + 0x6a0]
+  002396E0  mov      ecx, dword ptr [rdx]
+  002396E2  test     cl, 5
+  002396E5  jne      0x2396fc
+  002396E7  and      ecx, 0xffffffdf
+  002396EA  mov      dword ptr [rdx], ecx
+  002396EC  cmp      byte ptr [rax + 0x58], 4
+  002396F0  jne      0x2396fc
+  002396F2  mov      rax, qword ptr [rax + 0x6a0]
+  002396F9  or       dword ptr [rax], 0x20
+  002396FC  add      rsp, 0x20
+  00239700  pop      rbx
+  00239701  ret      
+== 2 callers
+  00269FE0 rel32 2 ['00238E3E call', '003528D6 call'] | jcc [] | data {'abs64': [], 'rva32': ['02FAA8AC(.pdata)']}
+  002396B0 rel32 1 ['0051035B jmp'] | jcc [] | data {'abs64': [], 'rva32': ['02FA7C3C(.pdata)']}
+  003171C0 rel32 1 ['003122D5 call'] | jcc [] | data {'abs64': [], 'rva32': ['02FB49BC(.pdata)']}
+  003528C0 rel32 0 [] | jcc [] | data {'abs64': ['01EF23C0(.data)'], 'rva32': ['02FBA1EC(.pdata)', '02FBA1F4(.pdata)']}
+  00510340 rel32 0 [] | jcc [] | data {'abs64': ['01F28270(.data)'], 'rva32': ['02FCC230(.pdata)']}
+  00263C20 rel32 31 ['00273554 call', '0027375C call', '00273920 call', '00273A0C call', '0027D436 call', '002BF12A call', '002BF167 call', '002C76F3 call', '002C7718 call', '002F8EDD call', '0030AB7F call', '0030AB8B call', '00317202 call', '0031AAE6 call', '0031B9C4 call', '00322B8F call', '00328430 call', '003298F4 call', '0033577F call', '0033919D call', '003391BD call', '003C529E call', '003C52DA call', '003C8FDD call', '0046B756 call', '0046B77B call', '0046B936 call', '0046B95B call', '0046BBCE call', '0046BBF3 call', '0046BDCC call'] | jcc [] | data {'abs64': [], 'rva32': []}
+== 3 'and byte [r+0xe], 0xf0' sites image-wide
+  002666F8  and byte ptr [rbx + 0xe], 0xf0   next: movsxd rax, dword ptr [rsi + 0x14] ; movzx ecx, word ptr [rax + rsi + 2] ; cmp r10d, ecx
+  0026A033  and byte ptr [rbx + 0xe], 0xf0   next: and dil, 0xf ; or byte ptr [rbx + 0xe], dil ; mov rbx, qword ptr [rsp + 0x30]
+  total 2

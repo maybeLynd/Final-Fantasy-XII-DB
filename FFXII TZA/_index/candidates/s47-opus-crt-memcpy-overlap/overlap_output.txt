@@ -1,0 +1,11 @@
+gcc: gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0
+baseline rc 0 checks 123 failures 0 [] 
+overlap-boundary rc 0 checks None failures None [] 
+overlap-complete rc 0 checks 23 failures 0 [] 
+overlap-complete-backward rc 1 checks 23 failures 1 ['overlap_mover_preserves_full_payload'] 
+oracle_baseline_unchanged_on_patched_copy_123_checks           PASS
+oracle_overlap_boundary_unchanged                              PASS
+overlap_complete_every_assertion_passes                        PASS
+overlap_complete_repeat_identical                              PASS
+control_backward_copier_fails_exactly_the_payload_assertion    PASS
+ALL PASS

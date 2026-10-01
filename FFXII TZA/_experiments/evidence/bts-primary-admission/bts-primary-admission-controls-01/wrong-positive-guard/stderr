@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-bts-primary-admission.py", line 73, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-bts-primary-admission.py", line 33, in main
+    if bytes.fromhex(''.join(i['bytes'] for i in q['instructions']))!=read(int(q['start'],16),int(q['end_exclusive'],16)-int(q['start'],16)):raise ValueError('primary original bytes changed')
+                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: primary original bytes changed

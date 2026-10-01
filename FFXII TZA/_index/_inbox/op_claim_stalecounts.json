@@ -1,0 +1,5 @@
+{
+ "action": "claim",
+ "task": "OPUS-REQ-EC7-EIGHT-STALE-MEMBER-COUNTS-IN-FAMILY-HEADERS",
+ "note": "Claiming - will check whether the selectors regenerate headers or hand edits are needed."
+}

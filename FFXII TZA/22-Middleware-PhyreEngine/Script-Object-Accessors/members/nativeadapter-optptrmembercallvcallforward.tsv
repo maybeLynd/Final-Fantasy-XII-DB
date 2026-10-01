@@ -1,0 +1,9 @@
+# NativeAdapter.OptPtrMemberCallVcallForward - EC-7 family C
+# call a member lookup on arg1; vcall [this+8] slot on the result; if
+# # non-null forward via cloned forwarder 00684090 with a member rip
+# # descriptor; else shared 0080F420 + 00810620 fallback; return 1.
+address	targets
+006775A0	00676700,00684080,0080F420,00810620
+00677610	00683B50,00684080,0080F420,00810620
+006AC3D0	0067EDD0,00684080,0080F420,00810620
+006B00A0	00683B50,00684090,0080F420,00810620

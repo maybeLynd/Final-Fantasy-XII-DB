@@ -1,0 +1,248 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS W1 handler table: 267 rows = 264 exact + 3 unparsed, no upper-bound row - {'unparsed': 3, 'exact': 264}
+PASS W2 the unparsed rows are 0017CDE0, 002985C0, 005C5230 - ['0017CDE0', '002985C0', '005C5230']
+PASS W2 005C5230 is xor eax, eax / ret
+PASS W2 0017CDE0 jumps to 005C5230 - 0017CDE0  jmp 0x5c5230
+PASS W2 002985C0 jumps to 003EE420 - 002985C0  jmp 0x3ee420
+PASS W2 002985C0 is planted by lea in 00298250 - lea r8, [rip + 0x12e]
+PASS W3 control: the chain decoder reproduces 002D2DB0's table ids - 1,2,4,5,26
+PASS W3 control: the chain decoder reproduces 0027AD70's table ids - 1,4,12,18
+PASS W3 003EE420 answers 1, 2, 4 - [1, 2, 4]
+PASS W3 003EE420: every other id goes to the no-op - 003EE452  jmp 0x5c5230
+PASS W3 0027AD70 tail-jumps 003EE420 (it is also a base procedure) - [(2600304, 2600383), (2600304, 2600533), (2600304, 2600538), (2721216, 2721216)]
+PASS W3 003EE420 is not a row of the handler table
+PASS W4 002D2DB0: id 26 arm (after -1,-1,-2,-1: cmp 0x15) - 002D2DFF  cmp ecx, 0x15
+PASS W4 002D2DB0: the delegate +0xC8 - 002D2E11  mov rcx, qword ptr [rbx + 0xc8]
+PASS W4 002D2DB0: no delegate -> 0 - 002D38C9  xor eax, eax
+PASS W4 002D2DB0: calls the delegate's handler (rdx = the message) - 002D2E29  call rax
+PASS W4 002D2DB0: returns its answer - 002D2E2B  mov edi, eax
+PASS W4 005691E0's jump-table arm for 26 is 00569ED4
+PASS W4 005691E0 arm 26 calls 00568FE0 - 00569EDC  call 0x568fe0
+PASS W4 00568FE0 has two exits and no tail jump
+PASS W4 00568FE0 exit 0056903A returns 0
+PASS W4 00568FE0 exit 005691D4 returns 0
+PASS E1 population: 3,288 .efx, 410 .efb, 1,066 .cm - (3288, 410, 1066)
+PASS E1 every .efx: magic EFX0010 (3,284) or EFX0008 (4), +0x08 = 1.0f, +0x0C = file size - {(b'EFX0008\x00', 1.0, True): 4, (b'EFX0010\x00', 1.0, True): 3284}
+PASS E1 every .efx chunk walk ends exactly at +0x0C - 3288 of 3,288
+PASS E2 every chunk's +4 word is 0x100 - 157819 chunks
+PASS E3 size argument = dword [efx + 0xC] - 003B073F  mov edx, dword ptr [rbx + 0xc]
+PASS E3 size argument = dword [efx + 0xC] - 003B226A  mov edx, dword ptr [rcx + 0xc]
+PASS E3 size argument = dword [efx + 0xC] - 003B2A6F  mov edx, dword ptr [rbx + 0xc]
+PASS E3 size argument = dword [efx + 0xC] - 003B39B0  mov edx, dword ptr [rdi + 0xc]
+PASS E3 the EFB loader passes the blob header's size instead - 0026FCE2  movsxd rbp, dword ptr [r14]
+PASS E3 003EDAD0 has exactly six direct callers - [(2554768, 2555118), (3130528, 3130834), (3868256, 3868485), (3875360, 3875437), (3877296, 3877493), (3881136, 3881395)]
+PASS E3 003EDAD0 and 0026FB90 have no rip reference; 0026FB90's one caller is the thunk 0026FF90, called from 003788F0
+PASS E3 control: the rip-reference scan sees 003788F0's plant in 00377DC0
+PASS E4 every .efb: EFB0002 and u32 +0x0C = 0 - {(b'EFB0002\x00', 0): 410}
+PASS E4 every blob of every .efb carries an EFX magic
+PASS E4 each blob's size word equals its EFX's own +0x0C - {True: 410}
+PASS E5 004FF270 reads record +0xC2 - 004FF270  movzx r8d, byte ptr [rcx + 0xc2]
+PASS E5 dispatch - 004FF2A2  jmp 0x537c80
+PASS E5 dispatch - 004FF29D  jmp 0x537fa0
+PASS E5 dispatch - 004FF298  jmp 0x538350
+PASS E5 dispatch - 004FF293  jmp 0x5387b0
+PASS E5 dispatch - 004FF28F  mov rax, rcx
+PASS E5 003A7E80 stores the chunk's byte +2 at record +0xC2 - 003A7E9F  mov byte ptr [rcx + 0xc2], al
+PASS E5 and passes low32(record) + [02EBB738] - 003A7EC1  add edx, ecx
+PASS E6 00537C80 returns record + its fixed size - lea rax, [rdi + 0x160]
+PASS E6 00537C80 calls 004FF230 first
+PASS E6 00537FA0 returns record + its fixed size - lea rax, [rdi + 0x200]
+PASS E6 00537FA0 calls 004FF230 first
+PASS E6 00538350 returns record + its fixed size - lea rax, [rdi + 0x280]
+PASS E6 00538350 calls 004FF230 first
+PASS E6 005387B0 returns record + its fixed size - lea rax, [rdi + 0x300]
+PASS E6 005387B0 calls 004FF230 first
+PASS E6 004304F0 decodes the dword - 00430501  call 0x20e600
+PASS E6 adds the delta - 00430506  lea rcx, [rbx + rax]
+PASS E6 re-encodes it - 0043050A  call 0x20e620
+PASS E6 0020E600 = zero-extended + [01F83530] - 0020E602  add rax, qword ptr [rip + 0x1d74f27]
+PASS E6 0020E620 = low32 - [01F83530] - 0020E620  sub ecx, dword ptr [rip + 0x1d74f0a]
+PASS E6 02EBB738 = the chunk's +8 dword - 003EDF76  movsxd rax, dword ptr [rdi + 8]
+PASS E6 (stored) - 003EDF7C  mov qword ptr [rip + 0x2acd7b5], rax
+PASS E6 handler gets chunk + 0xC - 003EDF93  lea rcx, [rdi + 0xc]
+PASS E7 every 0x700 chunk: subtype 0..3, +8 = the fixed size, length covers it - {(True, True, True): 8625}
+PASS E7 0x700 chunks by subtype: 8,029 / 472 / 60 / 64 - {0: 8029, 1: 472, 3: 64, 2: 60}
+PASS E7 every relocated dword + bias lands inside its chunk - 212896 dwords, 0 outside
+PASS E8 00333C80 reads the EFX version global - 00333CA1  mov ecx, dword ptr [rip + 0x1bcb709]
+PASS E8 version 9 arm - 00333CA7  cmp ecx, 9
+PASS E8 version 8 arm - 00333DFE  cmp ecx, 8
+PASS E8 v9: lanes +0x0A..+0x11 from +6..+0xD - 00333D5A  mov qword ptr [r9 + 0xa], rcx
+PASS E8 v8: 11th lane cleared - 00333F0C  mov byte ptr [r9 + 0x14], al
+PASS E8 an old nibble of 0xF - 00333FA2  cmp cl, 0xf0
+PASS E8 clears +0x16 bit 1 - 00333FA7  and dl, 0xfd
+PASS E8 v9 and v8: +0x1C..+0x23 zeroed - 00333DDC  mov qword ptr [r9 + 0x1c], rax
+PASS E8 (+0x24) - 00333DE0  mov word ptr [r9 + 0x24], ax
+PASS E8 v8: lanes byte by byte from +6 (first) - 00333EAD  movzx ecx, byte ptr [rsp + 6]
+PASS E8 all versions: lane loop over +0x0A - 00333FB0  lea rdx, [r9 + 0xa]
+PASS E8 last non-zero lane - 00333FC7  cmovne eax, ecx
+PASS E8 eleven lanes - 00333FCC  cmp ecx, 0xb
+PASS E8 into +0x16's high nibble - 00333FD9  or byte ptr [r9 + 0x16], al
+PASS E8 returns record + 0xA0 - 00333FDD  lea rax, [r9 + 0xa0]
+PASS E8 003A79C0 resets 29 dwords - 003A79E0  mov edi, 0x1d
+PASS E8 from record + 0x2C - 003A79E8  lea rbx, [rsi + 0x2c]
+PASS E9 every 0x600 chunk's +8 dword is 0xA0 - {160: 5363}
+PASS E9 authored +0x16 high nibble equals the recomputed one in 3,209 of 5,359 EFX0010 records (the engine's is the loader's) - {False: 2150, True: 3209}
+PASS E10 00377DC0 allocates a fixed 0x43D170-byte block (mode 1) - 00377F41  mov ecx, 0x43d170
+PASS E10 (mode 0) - 00377FB2  mov ecx, 0x43d170
+PASS E10 0x43D170 = 4,444,528 = the largest shipped .efb - 4444528
+PASS E10 mode-1 completion 003788F0 - 00377F26  lea rax, [rip + 0x9c3]
+PASS E10 buffer at 02ADD050 - 00377F6F  mov qword ptr [rip + 0x27650da], rbx
+PASS E10 the read request - 00377F82  call 0x32e7b0
+PASS E10 mode-0 completion 003789A0 - 00377F97  lea rax, [rip + 0xa02]
+PASS E10 mode-0 buffer at 02ADD098 - 00377FE0  mov qword ptr [rip + 0x27650b1], rbx
+PASS E10 003788F0 parses through the EFB loader - 0037893E  call 0x26ff90
+PASS E10 0026FF90 is jmp 0026FB90 - 0026FF90  jmp 0x26fb90
+PASS E10 publishes it at 02ADD088 - 0037895B  mov qword ptr [rip + 0x2764726], rax
+PASS E10 failure: released - 00378975  call 0x3697f0
+PASS E10 and forgotten - 00378981  mov qword ptr [rip + 0x27646c4], 0
+PASS E10 mode 0 hands it to 0053DD10 - 003789EE  call 0x53dd10
+PASS E10 0053DD10 is mov eax, 1 / ret
+PASS E10 mode 0 publishes it at 02ADD088 too - 00378A0B  mov qword ptr [rip + 0x2764676], rax
+PASS E10 003697F0 is the null-safe release - 003697F7  jmp 0x369860
+PASS E11 00377D3A references 02ADD088 - mov qword ptr [rip + 0x2765347], rbx
+PASS E11 003783E0 references 02ADD088 - cmp qword ptr [rip + 0x2764ca1], rsi
+PASS E11 003783F3 references 02ADD088 - mov rcx, qword ptr [rip + 0x2764c8e]
+PASS E11 003783FF references 02ADD088 - mov qword ptr [rip + 0x2764c82], rsi
+PASS E11 0037895B references 02ADD088 - mov qword ptr [rip + 0x2764726], rax
+PASS E11 00378A0B references 02ADD088 - mov qword ptr [rip + 0x2764676], rax
+PASS E11 teardown: if a current EFB - 003783E0  cmp qword ptr [rip + 0x2764ca1], rsi
+PASS E11 dispose its contexts - 003783E9  call 0x26ff50
+PASS E11 then 0026F420 - 003783EE  call 0x26f420
+PASS E11 then release the buffer - 003783FA  call 0x3697f0
+PASS E11 00378230's callers - [(2500784, 2501829), (3639904, 3640015), (3639904, 3640053), (5297616, 5297621)]
+PASS E11 0026FF50: only when an EFB was parsed - 0026FF54  cmp byte ptr [rip + 0x2d1f2dd], 0
+PASS E11 0026FF50 disposes kind 2 - 0026FF5D  mov ecx, 2
+PASS E11 (0024C550) - 0026FF62  call 0x24c550
+PASS E11 0024C550's jump table sends kind 2 straight to the list walk
+PASS E11 walks the per-kind list 020910A0[kind] - 0024C599  lea rsi, [rbx + 0x1f710a0]
+PASS E11 each context through 0024F410 - 0024C5B4  call 0x24f410
+PASS E11 0024F410 runs the 0x800 run teardown - 0024F49B  call 0x3a9600
+PASS E11 and the 0xA00 run teardown - 0024F4AE  call 0x3a9950
+PASS E11 then frees the context - 0024F4BE  call 0x3697f0
+PASS E11 0026F420 frees kind 2's second list - 0026F429  call 0x24c460
+PASS E11 0026FB90 disposes the previous EFB first - 0026FBBB  call 0x24c550
+PASS E11 (when one was parsed) - 0026FBAE  cmp byte ptr [rip + 0x2d1f683], r15b
+PASS E11 the parsed flag is set on success - 0026FD56  mov byte ptr [rip + 0x2d1f4db], 1
+PASS E12 retention: the 0x600 table 02EBEFA8 is the context's +0x38 (EFB loader) - 0026FCAD  lea rcx, [rax + 0x38]
+PASS E12 the 0x700 table 02EBEFA0 is the context's +0x840 - 0026FCB8  lea rcx, [rax + 0x840]
+PASS E12 003A79C0 registers the 0x600 record there - 003A7A10  mov qword ptr [rax + rcx*8 + 8], rsi
+PASS E12 003A7E80 registers the 0x700 record there - 003A7EB7  mov qword ptr [r8 + r9*8], rcx
+PASS E12 0024F410 points the teardowns at +0x38 - 0024F46A  lea rax, [rbx + 0x38]
+PASS E12 (003A75B0) - 0024F475  call 0x3a75b0
+PASS E12 and at +0x840 - 0024F47A  lea rax, [rbx + 0x840]
+PASS E12 (003A7D30) - 0024F488  call 0x3a7d30
+PASS T1 bodies in 00500000..0053FFFF that read +0x218 / +0x21C beside +0x1F8 - 005044D0 00504D30 00504F00 0053AB50
+PASS T1 00504F00 is the writer (+0x218) - 00504FF4  mov dword ptr [rbx + 0x218], eax
+PASS T1 (+0x21C) - 0050500A  mov dword ptr [rbx + 0x21c], eax
+PASS T2 00504D30 reads record +0x02 (0x30 + 2) - 00504DA7  movzx r8d, word ptr [rcx + rax*8 + 0x32]
+PASS T2 005044D0 reads +0x02 - 005044F8  movzx edx, word ptr [rax + rcx*8 + 0x32]
+PASS T2 005044D0 reads +0x0C - 00504508  add eax, dword ptr [r9 + rcx*8 + 0x3c]
+PASS T2 0053AB50: the FCT entry kept at [rbp+0x50] - 0053B30A  mov qword ptr [rbp + 0x50], rax
+PASS T2 0053AB50 reads +0x00 ((idx+3) x 16) - 0053B62F  movzx eax, word ptr [rdi + rax*8]
+PASS T2 0053AB50: record = FCT + (idx + 3) x 16 - 0053BB59  add rbx, qword ptr [rbp + 0x50]
+PASS T2 0053AB50's reads through that record until rbx is reused (0053BDF7): +0, +2, +4, +5, +6 - ['', ' + 2', ' + 4', ' + 5', ' + 6']
+PASS T2 ... and rbx is not handed to a callee there
+PASS T3 0053AB50 reads the @FTE record at +0 and +0x1C only - ['', ' + 0x1c']
+PASS T3 record = FTE + (idx + 2) x 32 - 0053B6CB  add r14, r12
+PASS T3 handed to 00504520 - 0053B71C  call 0x504520
+PASS T3 00504520 reads every record field except +0x10 - ['', ' + 0x14', ' + 0x18', ' + 0x1c', ' + 0xa', ' + 0xc', ' + 0xe', ' + 4', ' + 6', ' + 8']
+PASS T3 @FTE record +0x10 is 0 in all 2,127 records - {0: 2127}
+PASS T4 005210F0: a live slot with the key - 00521136  cmp dword ptr [rax + 4], esi
+PASS T4 ... gains a reference - 00521193  inc word ptr [rax + 0x24]
+PASS T4 256 slots - 00521141  cmp ecx, 0x100
+PASS T4 00504520 acquires by the record's key - 0050454F  mov ecx, dword ptr [rbx + 0x1c]
+PASS T4 then writes this record's payload offset into the slot - 00504575  mov dword ptr [rax + 0x10], ecx
+PASS T4 and its VRAM size - 0050457A  mov dword ptr [rax + 8], ecx
+PASS T4 the builder skips the rebind when the slot already holds the key - 0053B70E  cmp dword ptr [rbx + 4], eax
+PASS T5 87 keys occur in more than one file - 87
+PASS T5 80 of them with identical pixels
+PASS T5 85 of them with an identical descriptor (all fields but the payload offset)
+PASS T5 15 of them with an identical descriptor and offset
+PASS T5 the seven with different pixels are the hc1024/1029/1030/1042 x2/1044 variant sets and w0020/w2133 - ['hc1024_01.cm', 'hc1029_01.cm', 'hc1030_01.cm', 'hc1042_01.cm', 'hc1042_01.cm', 'hc1044_01.cm', 'w0020.cm']
+PASS T6 00504D20 has three sites, all in 00428CD0 / 0042E4F0
+PASS T6 00428CD0 keeps its mode argument - 00428CF1  mov dword ptr [rsp + 0x40], edx
+PASS T6 site 1 passes it - 00428D35  mov edx, dword ptr [rsp + 0x40]
+PASS T6 site 2 passes it - 00428D7B  mov edx, dword ptr [rsp + 0x40]
+PASS T6 0042E4F0 passes its context's +0x20 (= 00428CD0's rsp+0x40) - 0042E51A  mov edx, dword ptr [rbx + 0x20]
+PASS T6 (the context is rsp+0x20) - 00428D91  lea r8, [rsp + 0x20]
+PASS T6 the 23 sites of 00428CD0 pass 0, 2, 3 or the effect byte +0x235 - {'0': 14, 'byte ptr [rdi + 0x235]': 1, '3': 6, '2': 2}
+PASS T6 the effect instance's +0x235 = definition +0x146 - 004650E5  movzx eax, byte ptr [r9 + 0x146]
+PASS T6 (store) - 004650ED  mov byte ptr [rbx + 0x235], al
+PASS T6 r9 is the instance's definition [+0x20] - 00464F38  mov r9, qword ptr [rbx + 0x20]
+PASS T6 the gate: definition +0x144 bit 2 -> instance +0x232 bit 10 - 004650D3  shl cx, 0xa
+PASS T6 00465CD0 tests the gate - 00465F11  test word ptr [rdi + 0x232], ax
+PASS T6 (bit 10) - 00465F0C  mov eax, 0x400
+PASS T6 0xA00 definition = chunk + 0x10: type written at +0x44 - 003A9A8F  mov byte ptr [rcx + 0x44], al
+PASS T7 control: the walk finds as many 0xD0 chunks as the published type census (1,437) - 1437
+PASS T7 0xD0 definitions: gate clear -> 0 (1,407); gate set -> 2 (24) or 3 (6); never 1 - {(0, 0): 1407, (1, 3): 6, (1, 2): 24}
+PASS T8 00427FF7's caller passes byte +0x3D3 - 00427FEE  movzx edx, byte ptr [rbx + 0x3d3]
+PASS T8 and word +0x3F8 - 00427FE6  movzx r8d, word ptr [rbx + 0x3f8]
+PASS T8 003E7210: 0xFFFF walks every sub - 003E722F  cmp ebx, 0xffff
+PASS T8 the list at [record+0x400] - 003E723B  mov r8, qword ptr [rsi + 0x400]
+PASS T8 one bind per sub - 003E7314  call 0x504d30
+PASS T8 an explicit sub binds one - 003E73A9  jmp 0x504d30
+PASS T8 0042B550 tail-jumps 003E7210 when +0x3D2 is set - 0042B566  jne 0x3e7210
+PASS T8 00520BD0 writes +0x3F8 from the command word +4 - 00520BF1  mov word ptr [rcx + 0x3f8], ax
+PASS T8 image-wide, the only body storing a word at +0x3F8 or a byte at +0x3D3 (any base) is 00520BD0 - {'3D3': ['00520BD0'], '3F8': ['00520BD0']}
+PASS T8 control: the same store census finds the +0xBA setter 00504D20 - 4 bodies store a byte at +0xBA
+PASS T8 (+0x3D3 = word +2 >> 1) - 00520BE7  mov byte ptr [rcx + 0x3d3], al
+PASS M1 005207C0 -> 003E29F0 kind 4 - 005207D6  mov edx, 4
+PASS M1 flag = byte[cmd+2] != 0 - 005207DB  cmp byte ptr [rbx + 2], r8b
+PASS M1 (setne) - 005207E2  setne r8b
+PASS M1 kind 4 = (after -1, -1) cmp 2 - 003E2A45  cmp esi, 2
+PASS M1 clears bit 7 of +0x1C - 003E2A4E  and byte ptr [rax + 0x1c], 0x7f
+PASS M1 and sets it from the flag - 003E2A56  or byte ptr [rax + 0x1c], bpl
+PASS M1 (flag << 7) - 003E2A52  shl bpl, 7
+PASS R1 bits tested by bt in the copiers: 21, 22, 26, 27, 28, 30 - [21, 22, 26, 27, 28, 30]
+PASS R1 flag test - 00409358  and eax, 0x200100
+PASS R1 flag test - 00409368  test edx, edx
+PASS R1 flag test - 00409392  test dword ptr [rbx + 4], 0x800000
+PASS R1 flag test - 004093A9  test dword ptr [rbx + 4], 0x1000000
+PASS R1 flag test - 004093C0  test dword ptr [rbx + 4], 0x2000000
+PASS R1 flag test - 004094F5  test edx, edx
+PASS R1 the binder tests the authored flag word only for 0x100
+PASS R1 ... and touches [r14 + 4] nowhere else (no copy into the runtime record) - ['0x372a8e', '0x372ba1']
+PASS R1 004094D0 bit 21: sixteen u16 -> sixteen dwords, loop from 6 - 00409509  mov edx, 6
+PASS R1 (step 0x10) - 0040957D  add rdx, 0x10
+PASS R1 (to 0x26: two passes of eight) - 00409589  cmp rdx, 0x26
+PASS R2 27,561 records - 27561
+PASS R2 2,151 distinct flag words - 2151
+PASS R2 every record's length = 8 + 2 x (b30 + b31 + 16 b21 + b22 + b23..b29), padded to 4 (the last one to the pool) - {'fits': 26495, 'last fits': 1066}
+PASS R2 bits never set: 3..7 and 20
+PASS R2 bits in every record: 0, 8, 21, 30 (control: the page's census has 0x100 in 27,561 / 27,561)
+PASS R2 bit 31 in 11,243 records, bit 22 in 23,694, bit 29 in 1,953 - (11243, 23694, 1953)
+PASS R3 0041C260 strides 0x290 - 0041C2E5  imul rbx, rax, 0x290
+PASS R3 ... row +0xC0 - 0041C2EF  lea rdx, [rbx + 0xc0]
+PASS R3 ... row +0x120 - 0041C2F6  lea rcx, [rbx + 0x120]
+PASS R3 ... +0xF0 copied down - 0041C302  mov eax, dword ptr [rbx + 0xf0]
+PASS R3 ... to +0x130 - 0041C30F  mov dword ptr [rbx + 0x130], eax
+PASS R3 00373860's second stride - 00373974  imul rbx, rax, 0x290
+PASS R3 00373860 strides 0x290 - 003738BE  imul rbx, rcx, 0x290
+PASS R3 00373860 calls 00372610 - 00373B85  call 0x372610
+PASS S1 00D11200: six planes +x -x +y -y +z -z, w = 1 - (1.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, -1.0, 1.0)
+PASS S1 the box primitive takes the table - 003814FF  lea rdi, [rip + 0x98fcfa]
+PASS S1 and its +4 column - 003814F0  lea rbx, [rip + 0x98fd0d]
+PASS S1 margin from 00D112A4 - 003814F7  movss xmm6, dword ptr [rip + 0x98fda5]
+PASS S1 00D112A4 = 1.001
+PASS S2 01CEBDA0 = four 0x80000000 dwords
+PASS S2 A1D30 takes |x| with the f64 abs mask 01CEBD80 - 003A1D37  andps xmm1, xmmword ptr [rip + 0x194a042]
+PASS S2 control: its neighbour 01CEBD80 = two 0x7FFFFFFFFFFFFFFF qwords, not a sign mask
+PASS S3 0022D7E0: 1659 B, callees (beside the cookie check and sqrtf) 0022E7D0,00230790,003810B0,00381D90 - 1659 ['0022E7D0', '00230790', '003810B0', '00381D90']
+PASS S3 0022DE60: 1240 B, callees (beside the cookie check and sqrtf) 0022EAC0,003810B0,00381D90 - 1240 ['0022EAC0', '003810B0', '00381D90']
+PASS S3 00230790: 688 B, callees (beside the cookie check and sqrtf) 00202C70,00202D50,00202D70,00203170 - 688 ['00202C70', '00202D50', '00202D70', '00203170']
+PASS S3 0022E7D0: 740 B, callees (beside the cookie check and sqrtf) 00202E10 - 740 ['00202E10']
+PASS S3 003810B0: 923 B, callees (beside the cookie check and sqrtf) 00202B70,00381450 - 923 ['00202B70', '00381450']
+PASS S3 00381D90: 288 B, callees (beside the cookie check and sqrtf) 00202B70,00380800,00380E00,00380EB0 - 288 ['00202B70', '00380800', '00380E00', '00380EB0']
+PASS S3 00382020: 94 B, callees (beside the cookie check and sqrtf) none - 94 []
+PASS S3 002316B7 plants 0022D7E0 by lea - lea rax, [rip - 0x3ede]
+PASS S3 00232B22 plants 0022D7E0 by lea - lea r11, [rip - 0x5349]
+PASS S3 00230EB1 plants 0022DE60 by lea - lea rax, [rip - 0x3058]
+PASS S3 0023126A plants 0022DE60 by lea - lea rax, [rip - 0x3411]
+PASS S3 00381D90's callers: the two callbacks and 00232160
+PASS S3 00382020's callers: the cylinder primitive twice and 0046DB50
+PASS X1 extract == archive: ps2data/effect_finish/jp/chara/h0026.efx
+PASS X1 extract == archive: ps2data/efb/alc0201.efb
+PASS X1 extract == archive: ps2data/obj_finish/in/monster/m11/m1132/m1132.cm
+PASSES 245
+FAILS 0

@@ -1,0 +1,29 @@
+{
+  "name": "custom-tab-fail",
+  "expected_accepted": false,
+  "actually_accepted": true,
+  "expectation_met": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\custom-tab-fail\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\custom-tab-fail\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "tagged",
+    "tags": [
+      "A"
+    ],
+    "exits": [
+      0
+    ],
+    "separator": "tab"
+  },
+  "upstream_sha256": "c3a7a80663d4fd398c07ca2d0f643b5610a5f5d4762612d695478fc5be6549c8",
+  "returncode": 0,
+  "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+  "stderr": "",
+  "timed_out": false
+}

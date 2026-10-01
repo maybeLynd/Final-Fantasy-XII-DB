@@ -1,0 +1,233 @@
+{
+  "status": "UNVALIDATED_PREPARATION_ONLY",
+  "rows": [
+    {
+      "module": "evctrl",
+      "index": 97,
+      "t0_count": 115,
+      "descriptor_count": 115,
+      "t0_at_operand": "test_load_flg",
+      "wanted": "test_load_flg",
+      "wanted_ordinals": [
+        97
+      ],
+      "descriptor_hex": "0509000100000000",
+      "descriptor": [
+        16779525,
+        0
+      ],
+      "nearby_names": [
+        {
+          "i": 94,
+          "n": "scenario_flag_no"
+        },
+        {
+          "i": 95,
+          "n": "test_event"
+        },
+        {
+          "i": 96,
+          "n": "test_event_count"
+        },
+        {
+          "i": 97,
+          "n": "test_load_flg"
+        },
+        {
+          "i": 98,
+          "n": "cameramode"
+        },
+        {
+          "i": 99,
+          "n": "camerafixmode"
+        },
+        {
+          "i": 100,
+          "n": "timectrlmode"
+        }
+      ]
+    },
+    {
+      "module": "btlctrl",
+      "index": 13,
+      "t0_count": 92,
+      "descriptor_count": 92,
+      "t0_at_operand": "loop_flg",
+      "wanted": "loop_flg",
+      "wanted_ordinals": [
+        13
+      ],
+      "descriptor_hex": "2800001100000000",
+      "descriptor": [
+        285212712,
+        0
+      ],
+      "nearby_names": [
+        {
+          "i": 10,
+          "n": "menu_flg"
+        },
+        {
+          "i": 11,
+          "n": "ms_page_max"
+        },
+        {
+          "i": 12,
+          "n": "mapjumpresult"
+        },
+        {
+          "i": 13,
+          "n": "loop_flg"
+        },
+        {
+          "i": 14,
+          "n": "mapjump_menu_flg"
+        },
+        {
+          "i": 15,
+          "n": "ms_basesel"
+        },
+        {
+          "i": 16,
+          "n": "localresult"
+        }
+      ]
+    },
+    {
+      "module": "btlctrl",
+      "index": 14,
+      "t0_count": 92,
+      "descriptor_count": 92,
+      "t0_at_operand": "mapjump_menu_flg",
+      "wanted": "mapjump_menu_flg",
+      "wanted_ordinals": [
+        14
+      ],
+      "descriptor_hex": "2900001100000000",
+      "descriptor": [
+        285212713,
+        0
+      ],
+      "nearby_names": [
+        {
+          "i": 11,
+          "n": "ms_page_max"
+        },
+        {
+          "i": 12,
+          "n": "mapjumpresult"
+        },
+        {
+          "i": 13,
+          "n": "loop_flg"
+        },
+        {
+          "i": 14,
+          "n": "mapjump_menu_flg"
+        },
+        {
+          "i": 15,
+          "n": "ms_basesel"
+        },
+        {
+          "i": 16,
+          "n": "localresult"
+        },
+        {
+          "i": 17,
+          "n": "ms_mjmenu_key_flg"
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "index": 82,
+      "t0_count": 127,
+      "descriptor_count": 127,
+      "t0_at_operand": "test",
+      "wanted": "test",
+      "wanted_ordinals": [
+        82
+      ],
+      "descriptor_hex": "3300001200000000",
+      "descriptor": [
+        301989939,
+        0
+      ],
+      "nearby_names": [
+        {
+          "i": 79,
+          "n": "last_scflg_pos_1stflg"
+        },
+        {
+          "i": 80,
+          "n": "mapjump_menu_flg"
+        },
+        {
+          "i": 81,
+          "n": "mapcache_flg"
+        },
+        {
+          "i": 82,
+          "n": "test"
+        },
+        {
+          "i": 83,
+          "n": "behind_order"
+        },
+        {
+          "i": 84,
+          "n": "last_scflg_pos"
+        },
+        {
+          "i": 85,
+          "n": "map_num_x"
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "index": 32,
+      "t0_count": 127,
+      "descriptor_count": 127,
+      "t0_at_operand": "mp_debugmenu_flg",
+      "wanted": "curmenu",
+      "wanted_ordinals": [],
+      "descriptor_hex": "1409001000000000",
+      "descriptor": [
+        268437780,
+        0
+      ],
+      "nearby_names": [
+        {
+          "i": 29,
+          "n": "g_com_mnp_\u5927\u706f\u53f0\u4e2d\u5c64\u30ed\u30b1\u30bf\u30a4"
+        },
+        {
+          "i": 30,
+          "n": "g_com_mnp_\u5927\u706f\u53f0\u4e0a\u5c64\u30ed\u30b1\u30bf\u30a4"
+        },
+        {
+          "i": 31,
+          "n": "g_com_mnp_\u5927\u706f\u53f0\u6700\u4e0b\u5c64\u30ed\u30b1\u30bf\u30a4"
+        },
+        {
+          "i": 32,
+          "n": "mp_debugmenu_flg"
+        },
+        {
+          "i": 33,
+          "n": "mp_debugmenu_mj"
+        },
+        {
+          "i": 34,
+          "n": "global_debug_flag"
+        },
+        {
+          "i": 35,
+          "n": "ms_map_num"
+        }
+      ]
+    }
+  ]
+}

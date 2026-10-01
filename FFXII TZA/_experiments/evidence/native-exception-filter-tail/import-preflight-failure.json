@@ -1,0 +1,7 @@
+{
+  "stage": "Preparation import before PE parse or semantic capture",
+  "cause": "pefile is not installed in the ASTRA Python3.14.6 venv; tool attempt failed ModuleNotFoundError",
+  "affected_conclusions": [],
+  "correction": "Reuse existing dependency-free bounded import-directory reader from evidence/printf-initializer/check.py; no library install or platform expansion",
+  "limits": "No import identities or semantic conclusions established by failed invocation"
+}

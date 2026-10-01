@@ -1,0 +1,9 @@
+{
+  "action": "finish",
+  "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-146",
+  "note": "seal 9f54093a7 / tail c054d1fc2 - resume updated to batch-146 sealed state; peer sweep 58a76d4a9's revert of the batch-145 fin line restored in tail",
+  "result_refs": [
+    "9f54093a7",
+    "c054d1fc2"
+  ]
+}

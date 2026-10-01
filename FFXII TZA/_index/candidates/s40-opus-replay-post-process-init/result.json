@@ -1,0 +1,163 @@
+{
+ "cases": {
+  "P1_teardown_without_object_runs_nothing_behind_the_gate": true,
+  "P2_Initialize_stores_0x20001_at_208_and_20C": true,
+  "P2_creation_route_once_per_link_with_constant_flags": true,
+  "P2_shipped_licence_validates": true,
+  "P3_continuation_faults_on_the_unbuilt_plus_108": true,
+  "P3_refused_init_is_logged_and_creation_continues": true,
+  "S1_plus_147_and_plus_108_written_only_past_the_device_check": true,
+  "static_initialiser_builds_the_library_allocator": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "P1": {
+   "adapter": "7306CF90",
+   "args": {},
+   "d3d": [],
+   "entries": [
+    "teardown_fwd",
+    "teardown"
+   ],
+   "halt": [],
+   "handle": "0",
+   "last_pc": "193F67",
+   "logs": [],
+   "ok": true,
+   "rets": {},
+   "wrapper": "7306CF80"
+  },
+  "P2": {
+   "args": {
+    "ctx_init": {
+     "arg5": "20001",
+     "r8": 3,
+     "r9": 5
+    }
+   },
+   "bridged": {
+    "??0?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z": 1,
+    "??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ": 1,
+    "??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ": 1,
+    "??_D?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAXXZ": 1,
+    "?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@PEAV32@@Z": 1,
+    "?read@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEAD_J@Z": 5,
+    "__stdio_common_vsscanf": 5664,
+    "atoi": 6,
+    "istream::read": 5,
+    "memcmp": 110,
+    "strcpy_s": 3,
+    "strncmp": 1,
+    "strtok_s": 28
+   },
+   "d3d": [
+    "GetType"
+   ],
+   "entries": [
+    "create_fwd",
+    "create",
+    "ctx_init",
+    "licence_check",
+    "CPostEffect_ctor",
+    "Initialize",
+    "lib_log",
+    "lib_log",
+    "lib_log",
+    "lib_log",
+    "game_log",
+    "set_6DB4C0",
+    "lib_708110"
+   ],
+   "flags_208": "20001",
+   "flags_20C": "20001",
+   "halt": [
+    "00000068",
+    "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+   ],
+   "handle": "73073000",
+   "last_pc": "708186",
+   "lib": "73191FA0",
+   "logs": [
+    [
+     "lib",
+     "..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: "
+    ],
+    [
+     "lib",
+     "CPostEffect::Initialize(): Device context must be immediate context.\n"
+    ],
+    [
+     "lib",
+     "..\\src\\ppfx.cpp(%d) : Feb 18 2016 PPFX ERROR: "
+    ],
+    [
+     "lib",
+     "IPfxBaseContext::Initialize(): s_pSinglePostEffect->Initialize() failed (0x%x: %s).\n"
+    ],
+    [
+     "game",
+     2,
+     "Failed to initialize PPFX context. \n"
+    ]
+   ],
+   "ok": false,
+   "plus_108": "0",
+   "plus_147": 0,
+   "rets": {
+    "ctx_init": "80070057",
+    "licence_check": "0"
+   }
+  },
+  "S1": {
+   "ctor_108": [
+    "006FF68E mov qword ptr [rdi + 0x108], rsi"
+   ],
+   "ctor_147": [],
+   "ctx_type_call": [
+    "mov rcx, qword ptr [rdi]",
+    "mov rax, qword ptr [rcx]",
+    "call qword ptr [rax + 0x380]",
+    "test eax, eax",
+    "je 0x6ffc99"
+   ],
+   "f708110": [
+    "cmp byte ptr [rcx + 0x147], 0",
+    "je 0x708173",
+    "mov r10, qword ptr [rcx + 0x108]",
+    "cmp qword ptr [r10 + 0x68], rax"
+   ],
+   "flag_test_0x800": "test dword ptr [rsi + 0x20c], 0x800",
+   "flags_store": [
+    "mov dword ptr [rsi + 0x208], eax",
+    "mov dword ptr [rsi + 0x20c], eax"
+   ],
+   "frame_gate": [
+    "call 0x65e5b0",
+    "test al, al",
+    "je 0x193f5d"
+   ],
+   "init_108": [
+    "007009BB mov qword ptr [rsi + 0x108], rax"
+   ],
+   "init_147": [
+    "00700083 mov byte ptr [rsi + 0x147], r12b"
+   ],
+   "set_147": "mov byte ptr [rsi + 0x147], r12b",
+   "zero_146_147": "mov word ptr [rsi + 0x146], r14w"
+  },
+  "static_init": {
+   "allocator_vtable": "D86BD8",
+   "fence_indirect": [
+    "006DA8C0",
+    "006CB810",
+    "006CB940",
+    "006CB7D0",
+    "006DAF50",
+    "006DA990",
+    "0019C590"
+   ],
+   "ok": true
+  }
+ }
+}

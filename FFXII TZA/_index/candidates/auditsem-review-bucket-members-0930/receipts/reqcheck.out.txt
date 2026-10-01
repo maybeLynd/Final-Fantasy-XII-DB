@@ -1,0 +1,3 @@
+problems []
+members bin 53 dat 5
+census C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_index\candidates\bucket-members-input-0929\format-magic-census-full.tsv

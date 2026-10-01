@@ -1,0 +1,120 @@
+{
+  "method": "Requested unmodified producer-authored MP1-MP12 rerun, separate from independently derived controls; not whole acceptance",
+  "commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+  "driver_sha256": "4493b33845e795f870aaece0f7f1575b676a1b45f69d75a83c4ff55ce36c10f3",
+  "sources": {
+    "Database/Tools/dashboard/test_requirements.py": {
+      "sha256": "b17f68a087363f9a7c9818317a2360a79ee74bff8b6af66d88bb631afda831a1",
+      "blob": "8772b1e9135491fcb04c065fb4c3eaaea0ed2abc"
+    },
+    "Database/Tools/dashboard/requirements.py": {
+      "sha256": "be30718c33e4cca6426fe065031495a59c928b7975854492ae174820119885d9",
+      "blob": "61a7270ff1f30a6044ca4bffcb5ec31835877bec"
+    },
+    "Database/Tools/dashboard/build_views.py": {
+      "sha256": "1adde9aab74a74459687e8a934ac15af309c711a7508c2c3776751c143a0ae45",
+      "blob": "6a889c3b7ecdb44ec2bc899d662837e7636a44c4"
+    },
+    "Database/Tools/dashboard/server.py": {
+      "sha256": "e3e14d2a14fb5cd844298619ad53e63d99d975d5ae8e3abaa601ddf755f5407c",
+      "blob": "939f3fd0343f7f9bc1ef80a708068897481bf53a"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/generation.py": {
+      "sha256": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1",
+      "blob": "3993deaf0f2812f00e1e7a181e2ce8cd15b29cb3"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_questions.py": {
+      "sha256": "14ccdaf57f6b8222ff59caaed613cb034c81fccc879de8fd3048a0413ba05f7d",
+      "blob": "e8466e3f984f3fcd2de9f147be5f7ec033e278d2"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/transfer_audit.py": {
+      "sha256": "9094ad48a1f2b1ecb260d8c17a3456963923a5d4c2fd0ecdd919e75c663772ef",
+      "blob": "f88ba5b260bf637ad73cd2dab5c35614782f4bf9"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_dispositions.py": {
+      "sha256": "f2baa8454d4b18a028e9f9b20aa2b3719d285f3f043e6fa709022685d8a94dc3",
+      "blob": "c5a61dc994c856134af71e0235acc9502de3a0be"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py": {
+      "sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+      "blob": "9f4563f24ff39871e464e6d8d120d93a4e7399ab"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/progress.py": {
+      "sha256": "0643c4542eea9d0de1c8f203106d4817aecf6ecc06665166db88e80291571370",
+      "blob": "08fc949dc3fff8769c8ec1765c5d2cb07bcd1088"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_provenance.py": {
+      "sha256": "7837e5f2855b180faef1686e3eac7b71301da194c0fe73f46ddeb0ea1ea6ab4b",
+      "blob": "33fc02379434fe5a9b2fa714fb0f04fb1da0be65"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_formats.py": {
+      "sha256": "39de4a487fce75f891561ab9f99f02b37084a4998c6fd27a2341af88dd7e7a62",
+      "blob": "4e45b3bb13d3cb5ac097b0302d5c550e075f7b6a"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_assets.py": {
+      "sha256": "df550170c413ffb2819896c993b16f245ffd56efbb0c14edb91e2a69dec70ca5",
+      "blob": "00ec67bec3c2765dd0d0675ec32d7c5aa3599780"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/check_ebp.py": {
+      "sha256": "499f4c7c3401ceeaa08e210c1731de43fed97a567dd37f1b92ce89ba576e22ef",
+      "blob": "af54bcf04ba313f2623fa134ce3f7d84a189aeb1"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/goal_gate.py": {
+      "sha256": "23a95a3e43d3eeb5bc60c0ad9f7e4f07ee927b8a6d8816c89fd939aaf5876f2f",
+      "blob": "655ab0a9c9ed399ee7ab72456fdc0faab8c9d97d"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/open_claim_drift.py": {
+      "sha256": "792efdb41bc88042dbd31fa5c888f2925244341e60c1abc44e2025df5b7f4859",
+      "blob": "19a01da7742a46d4c95c5cac077d69da0e3e5443"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/premise_drift.py": {
+      "sha256": "b1b916f20211adeb5121fbc782bc2cf43bd1cb833f5559b4a34536e2f5e2d1b2",
+      "blob": "0a2cec70f9ab8efa2583c233d55027a6bd149b80"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/kit_paths.py": {
+      "sha256": "6373c2968ffa7e635bee7c67151eabd9c5ffa5d9888e9886ea0f8c0ef0337ff0",
+      "blob": "02e7cc17356ac46d49f493a0eb4aa504aa41aa0e"
+    },
+    "Database/FFXII TZA/_index/workflow/my-progress/category-map.tsv": {
+      "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+      "blob": "7433e54ad36b77524495ed33b0f847e8096a8c50"
+    },
+    "Database/FFXII TZA/_index/workflow/DASHBOARD-MEANINGS.md": {
+      "sha256": "3ce41a9b90c366598d6aea392aef43a8fefe171ee306c8e1170f29698b5bc5c4",
+      "blob": "b6f3363d5ecb0fb33a8ff408b5f50e5fcf3fd5e4"
+    },
+    "Database/FFXII TZA/_index/completion-packages/README.md": {
+      "sha256": "dc534ffe888c531cf1fe34504a9047e00f7029737e97992f496ec8d5f8ea60d3",
+      "blob": "1f6c53ad0ba658cfc5a2e81adaab9ad84de4b6cd"
+    }
+  },
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\author-622-01\\source\\Database\\Tools\\dashboard\\test_requirements.py"
+  ],
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "stdout": "PASS  MP1 closure: accepted +1, scope +0\nPASS  MP2 reopen: accepted -1; listed with owner SWE2-DATA, next 'FIX-REQ-X-1 (READY): answer X-'\nPASS  MP3 open carrier: 'transferred to FIX-CARRIER-0001 - carrier open, obligation not closed'; DONE carrier: accepted\nPASS  MP4 box naming live X-1 not counted; page residue 1; duplicate key merged; shared 04 row in E and P, union +1\nPASS  MP5 failed families ['F', 'K', 'R', 'X']; NOT READY: requirements are not fully enumerated: F: reader failed; K: reader fai\nPASS  MP6 missing reporter -> adapter raises (FAILED view); no prior -> no change; served OK then STALE after a strict input moved\nPASS  MP7 L2 cells 4/4 MET, L2 scope 34/35, gate MET but NOT READY: requirements remain (1)\nPASS  MP8 disagreeing block and false READY -> MALFORMED; progress first and default; no rounding to 100%\nPASS  MP9 excluded ['Q:X-4', 'Q:X-5']; MP-0 prior -> definition changed (MP-0 -> MP-2); not comparable\nPASS  MP10 gate acceptance UNMET -> 0/30; OK -> 30/30\nPASS  MP11 gap -> UNMEASURED, NOT READY: requirements are not fully enumerated: X: member formats of .bin are not declared - repair\nPASS  MP12 q split {'answered': 1, 'dispositioned': 1, 'remaining': 1, 'excluded': 0}; union without F {'accepted': 6, 'total': 37}\nFAILS 0\n",
+  "stderr": "",
+  "returncode": 1,
+  "terminal": true,
+  "tags": {
+    "MP1": "PASS",
+    "MP2": "PASS",
+    "MP3": "PASS",
+    "MP4": "PASS",
+    "MP5": "PASS",
+    "MP6": "PASS",
+    "MP7": "PASS",
+    "MP8": "PASS",
+    "MP9": "PASS",
+    "MP10": "PASS",
+    "MP11": "PASS",
+    "MP12": "PASS"
+  },
+  "temp_root": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\author-622-01\\tmp",
+  "cleanup_limit": "Unmodified suite removes its own mkdtemp child under explicitly scoped TMP/TEMP root; no production fixture/board/game writes. Process terminal; no parent alive inference.",
+  "all_sources_unchanged": true,
+  "complete_case_set": true,
+  "scope": "Requested622c0866d only, published DD/delta additions untested by this authored suite"
+}

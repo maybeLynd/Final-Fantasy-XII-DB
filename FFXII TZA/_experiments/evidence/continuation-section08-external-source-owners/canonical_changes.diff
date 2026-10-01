@@ -1,0 +1,457 @@
+diff --git a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md
+index 2cf08f7..64590fa 100644
+--- a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md
++++ b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md
+@@ -22,10 +22,10 @@ audit:
+   crossref_clean: false
+   reopened_count: 0
+ external_production:
+-  section: SECTION-07
++  section: SECTION-08
+   date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
++  evidence: _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
+ ---
+ 
+ # Contract — the resource entry tree, and the bit that says an entry is in it
+@@ -438,3 +438,26 @@ successful compaction until its explicit clear, not completion of all pointer re
+ The tested copy paths are non-overlapping. A separate small-hole control reaches overlap and stops
+ at the original import without claiming its eventual copy result. All-game interleavings and the
+ external owner/reload policy remain open; no terminal verdict is changed.
++
++
++## Concrete client exclusion and external-source disposal — SECTION-08 (2026-09-23)
++
++The previously established membership pair now has an executed real client.00409960 finds a
++selected source view, pins a tagged mode1 entry through003AB880 and returns its resolved interior;
++00409C00 ends the view through003AB940. An original consumer0041FCF0 brackets its use at0041FFA0
++and0041FFF8 (static whole-body read, not full consumer execution). Failed selection returnsNULL
++without acquiring. Two successful acquisitions and ONE release restore eligibility, after which
++actual compaction moves the source. Copy-mode00409A60 similarly unpins even a pre-existing pin.
++This is not a nesting reference count, atomic lock, or proof of arbitrary callback safety.
++
++0041E490 calls acquire then release BEFORE passing the original source representation to the
++bank disposal at00409D60. A tagged representation and its resolved pointer are not interchangeable
++match keys. That wrapper alone does not free external backing. The indexed source owner at
++02B581A0 separately frees through00369800 after the original bank/context disposal chain.
++While an owner is in-flight, deletion changes state3 to5; the source remains allocated and the
++request callback remains pending until completion. The source-release policy is now concrete for
++this five-by-sixteen owner family, not inferred from a nonzero cache or tree node.
++
++See [the external-owner/view mechanism](the-external-source-owner-and-borrowed-view-lifetime.md)
++and [SECTION-08 proof boundaries](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md).
++No global L2 verdict or formal independent acceptance changes here.
+diff --git a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md
+index 31f904b..3d18d6c 100644
+--- a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md
++++ b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md
+@@ -1,5 +1,5 @@
+ ---
+-contract: Decide who owns a loaded resource's bytes — one bit chooses between copying the input and keeping a pointer into it
++contract: "Resource-entry ownership, borrowed payloads, and indexed external-source lifetime"
+ category: 02-Resource-And-Asset-Pipeline
+ scope: subsystem
+ level: L2
+@@ -25,10 +25,10 @@ audit:
+   crossref_clean: false
+   reopened_count: 0
+ external_production:
+-  section: SECTION-06
+-  date: 2026-09-22
++  section: SECTION-08
++  date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md
++  evidence: _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
+ ---
+ 
+ # Contract — resource input ownership, retention and release
+@@ -39,6 +39,12 @@ external_production:
+ > sections 13–19. This is local production, not new peer acceptance or a whole-system L2 verdict.
+ > [Review, exact substitutions and reproduction](../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md).
+ 
++> **SECTION-08, 2026-09-23:** a concrete five-by-sixteen external-owner table is now traced
++> through original queue submission, completion, deferred deletion, bank registration/disposal,
++> and consumer view pin/unpin. The preparation sweep and full consumer use are static-only;
++> no live IO or general safe-reload guarantee is asserted. [Current mechanism](the-external-source-owner-and-borrowed-view-lifetime.md) and
++> [review and exact fixture boundaries](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md). Prior section receipts remain history.
++
+ ## 1. Purpose
+ 
+ Specify which layer owns resource bytes and which layer only retains pointers into them.
+@@ -59,6 +65,12 @@ one object and do not share one lifetime. No universal reference-count policy is
+ | `0024F410(context)` | Unlinks context; releases owned payloads and lookup tables; destroys associated instances and the context allocation. |
+ | `00409D60(bank, candidate)` | Finds matching entries; clears selected render references, cancels the ticket, resets the entry and removes its bank slot. |
+ | `00409730(entry)` | Per-row resource teardown; clearing a reference is distinct from freeing the embedded buffer. |
++| `003DDA70(owner)` | Resolves source; submits the original resource request with owner-address callback; writes state3 even if requester returns failure. |
++| `003DD850(ownerAddress32)` | Completion first unpins the source. State5 takes disposal/free and state0; other states take registration and state4 regardless of registration's return. |
++| `003DD420(group,index)` / `003DD380(group)` | Single/all-sixteen owner deletion: state1 free, state3 deferred state5, state4 dispose/free; do not cancel queue submission. |
++| `003DD740(group,index)` | Exposes the stored handle only when owner state is4; does not prove bank membership or allocation liveness. |
++| `00409960(entry,tag,name)` / `00409C00(entry)` | Find/pin/resolve a selected view and release that entry's view. The tagged mode uses nonnested membership, not a reference count. |
++| `0041E490(manager,sourceRepresentation)` | Acquire then release representation, then tail-call disposal on manager+0xD90 with the ORIGINAL representation. No pin spans that disposal. |
+ 
+ ## 3. Types
+ 
+@@ -82,9 +94,17 @@ names the effect ticket. Its embedded `RenderResourceEntryBuffer` begins at +10
+ **0x20 transferred storage extent**: `0051EEB0` copies two 16-byte lanes, not only the formerly
+ claimed 0x1C span. Opaque copied bytes at buffer+4/+1C are not assigned invented meanings.
+ 
++`IndexedExternalSourceRequest` is a0x1C static owner/request record at
++`02B581A0 + (group*16+index)*0x1C`. The observed production sweep covers five groups of sixteen;
++the public lookup/deletion helpers do not themselves validate these indices. It stores source
++handle+0, state+4, allocation-route receipt+0D, signed request kind/index+10/+12, requested bytes+14,
++and file offset+18. Bytes not explained by this bounded caller set remain explicit gaps. The
++record is not heap allocated; its source handle names a separately owned allocation. Queue-slot
++memory, owner-record memory and the bank element remain different objects.
++
+ ## 4. Preconditions · postconditions · invariants
+ 
+-### The six cross-operation invariants
++### The cross-operation invariants
+ 
+ **RL-1 — ownership is layer-relative.** The parser tests mask4 at `003EE018`/`003EE117`.
+ Copy mode allocates run storage through arena8 and copies into it; borrow mode stores the input
+@@ -124,6 +144,27 @@ entry reset subsequently frees the owned buffer. Mode1 leaves the external backi
+ A stale ticket fails the exact ID comparison. Recycled ticket memory is not freed heap storage.
+ These are the reached API paths, not permission to free an arbitrary borrowed source early.
+ 
++**RL-7 — state-based source ownership is distinct from queue cancellation and registration.**
++Submission stores state3. Deletion of state3 writes5 but leaves the source allocated and the
++pending request/callback intact. Completion then disposes any matching entry, frees the source
++and clears only state+4: stale handle+0 and route+0D survive. State4 deletion, in contrast, clears
++handle+state and route+0D after disposal/free. Lookup exposes only state4. Completion's ordinary
++branch ignores registration failure, so state4 is not proof an entry exists. Positive-length
++queue-error dispatch does not call this completion; full failure recovery remains unproved.
++
++**RL-8 — the view pair is bounded exclusion, not nested retention.** A successful tagged-mode
++view pins through003AB880;00409C00 unpins through003AB940. Two acquisitions followed by one release
++restore movement eligibility. Mode0 setup likewise brackets its source copy with one acquire and
++one release, which also releases a pre-existing pin. Mode1 setup retains the representation
++without acquiring that pin. After actual movement, source-cache refresh is conditional on
++02B62E10; a nonzero stale cache is not permission for a consumer to dereference it.
++
++**RL-9 — reuse does not transfer the new owner's allocation.** A same-tag/name registration
++returns the existing entry without replacing its backing. Two distinct owner records can therefore
++reach state4 while the bank still holds only the first source. Deleting the second owner frees its
++own allocation without disposing the first source's entry. This is tested synthetic alias policy,
++not proof that every shipped reload path admits competing owners.
++
+ ## 5. State and ownership
+ 
+ | Owner | Owns / does not own |
+@@ -133,7 +174,7 @@ These are the reached API paths, not permission to free an arbitrary borrowed so
+ | EFX runtime context | Its 0x890 object and allocated lookup tables; copy-mode runs, not borrowed runs. |
+ | Effect ticket table | Fixed slot memory; valid generation references a context. Recycling clears selected fields, not the table allocation. |
+ | Arena membership pair | Adds/removes a tree member. Two acquires followed by one release reinsert it; this pair is not a nesting reference counter. |
+-| External source owner | Must satisfy remaining borrow/refresh lifetime obligations; not recovered merely from a nonzero pointer. |
++| `IndexedExternalSourceRequest` | Owns its separately allocated tagged source; retains it during deferred state5 until completion. State4 publication does not guarantee registration. Other owner families remain separate. |
+ 
+ ## 6. Relationships
+ 
+@@ -141,7 +182,8 @@ These are the reached API paths, not permission to free an arbitrary borrowed so
+ pool at `02EBCD80`/`02EBDB80..B0`. [Arena tree membership](CONTRACT-resource-entry-tree.md) is
+ not actual deallocation: `003AB880`/`003AB940` remove/add tagged membership, whereas `003AB7C0`
+ dispatches actual raw/tagged release. [Source rebase](CONTRACT-efx-source-rebase.md) repairs
+-selected pointers after a detected move; the original mover is not executed by this section.
++selected pointers after a detected move. SECTION-06 simulated relocation; SECTION-07 and the
++SECTION-08 view control execute actual original compaction. Neither establishes a live schedule.
+ [Widget lifecycle](../16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md)
+ remains a separate consumer path. The encoded query's borrowed text pointers are NOT automatically
+ proved to share this exact owner or refresh protocol.
+@@ -152,6 +194,23 @@ Entry setup -> source copy or external reference -> ticket/context creation -> c
+ copy/borrow -> lookup publication -> optional detected source move/refresh -> matching consumer
+ cleanup -> context/ticket recycling -> owned source release -> bank-slot retirement.
+ 
++The concrete indexed owner has the following bounded transitions:
++
++| Input state/event | Effect |
++|---|---|
++| Prepared owner, submit | Queue submit then state3, even on a negative-index rejection fixture. |
++| State1, delete | Tagged free; clear handle+state and route+0D. |
++| State3, delete | Set state5; do not free or cancel the queue request. |
++| State4, delete | Matched bank/context disposal first; tagged free; clear handle+state and route. |
++| State5, completion | Unpin; dispose/free; clear only state to0, retaining old numeric handle and route. |
++| Not state5, completion | Unpin; register plain source; state4 regardless of registration's return. |
++| Other deletion states | No action in the tested deletion footprint. |
++
++The static allocation producer003DD4C0 allocates and pins before submission; its full service and
++mask-policy path is not executed by SECTION-08. `IndexedExternalSourceRequest` callback identity is a low32 owner
++address, not a queue request ID or generation-fenced owner token. The valid record lifetime and
++index preconditions must be maintained by callers.
++
+ A new context does not itself invalidate an older context's borrowed source. Re-parsing the same
+ copy-mode context overwrites the run pointer without releasing the previous copy in the tested
+ path; that is a synthetic API-use boundary, not a demonstrated normal-game leak.
+@@ -162,7 +221,9 @@ path; that is a synthetic API-use boundary, not a demonstrated normal-game leak.
+ when mask4 is set. Type3 creation stores a source32 plus signed offset, resolves their source,
+ and later re-resolves through `003B3480`. In the fixture a simulated tagged-slot relocation lets
+ the ORIGINAL driver repair the lookup table while retaining the old run-origin field.
+-No authored asset corpus or scheduling frequency is newly certified.
++No authored asset corpus or scheduling frequency is newly certified. SECTION-08 additionally
++executes plain TEST-header new-entry registration and a real context attached for deletion; it
++does not execute the nonempty PRF/@FEF branch or certify specialized payload ownership.
+ 
+ ## 9. Determinism
+ 
+@@ -183,8 +244,16 @@ copied padding and stale caches must not be treated as deterministic semantic ou
+ - Direct buffer resize copies min(old capacity,new capacity), not only used bytes, releases old
+   source and preserves used. It does not update outside borrower pointers. A higher-level caller
+   must order refresh/disposal correctly; live reachability of unsafe interleavings is unproved.
+-- Full source relocation, concurrent/nested callbacks, arbitrary malformed lengths, out-of-range
+-  indices, allocation exhaustion and nonempty complex child walks remain outside these fixtures.
++- Original source movement is now tested in SECTION-07 and the SECTION-08 view control. Arbitrary
++  malformed inputs, whole live scheduling, thread safety and nonempty specialized children remain
++  outside the fixture. Selected synthetic nesting/rejection/exhaustion controls do not prove ordinary
++  initialized-game reachability.
++- The owner stores state3 after submission without inspecting the requester's return, and state4
++  after registration without inspecting its return. The negative-index and zero-bank-capacity
++  controls discriminate these facts; they are not claimed to be ordinary gameplay failures.
++- Calling0041E490 with a resolved raw pointer does not match a mode1 entry retaining a tagged
++  representation. Its pin/unpin pair has finished before disposal. Caller order, not that pair
++  alone, must protect a borrowed view.
+ 
+ ## 11. Observable behaviour
+ 
+@@ -200,7 +269,8 @@ bank, generation-bearing tickets, matching/unmatched instances and tagged slots.
+ pointers, sentinel bytes, lists, active/free state and actual allocator usage. Move a source only
+ through an explicitly simulated slot update, then run the ORIGINAL refresh driver. Inspect the
+ nine claim groups in the named native assertions rather than treating their count as
+-whole-game coverage. See the delivered [driver](../_experiments/evidence/continuation-section06-resource-lifetime/run_review.py).
++whole-game coverage. This describes the SECTION-06 fixture; SECTION-07 supplies actual movement,
++and SECTION-08 supplies original indexed-owner/view/queue-client controls. See the delivered [driver](../_experiments/evidence/continuation-section06-resource-lifetime/run_review.py).
+ 
+ ## 13. Runtime validation
+ 
+@@ -214,13 +284,21 @@ source data and relocation. No fresh live session or full historical Unicorn cam
+ The prior contract's “none executed” paragraph is superseded at this bounded scope. EXP-079 still
+ does not establish the missing flag from its capture, and this does not retroactively change it.
+ 
++**SECTION-08:**116/116 original-instruction assertions, identical repeat, nine rejected affected
++code variants.120 selected bodies are pinned; this is not instruction coverage. Original requester,
++completion/error helpers, owner deletion/completion, plain-header bank registration, views and
++allocator/context teardown execute with synthetic state. No queue pump/OS completion, live FF12,
++full allocation producer or full consumer body executes. [Reproduction and limits](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md).
++
+ ## 14. Unresolved
+ 
+ 1. Shipped asset alignment/size/index guarantees and complete format-specific pointer meanings.
+-2. Real owner policies and safe refresh scheduling under actual movement, reload, cancellation,
+-   nested calls, consumer execution and allocator pressure; no universal lifetime guarantee.
+-3. Full tag/name acquisition on a new bank entry, PRF-specific setup, and complex child ownership.
+-4. External mode1 source destruction policy and callbacks after ownership transfers.
++2. Whole-schedule and reentrancy safety, other external-owner families, and matching view lifetimes
++   across callbacks. A specific indexed-owner and view policy is now established, not a universal one.
++3. Nonempty PRF/@FEF registration, specialized selection/setup and complex child ownership. The
++   plain-header new-entry and same-key-reuse branches are executed in SECTION-08.
++4. The full003DD4C0 allocation/request-selection producer, queue service failure/recovery, reuse of
++   owner-address callbacks, and actual loaded-data reachability of synthetic failure/alias states.
+ 5. Whether a particular query/text or widget consumer uses this exact owner chain.
+ 6. Independent peer acceptance of these updated claims and any resulting L2 adjudication.
+ 
+@@ -232,6 +310,8 @@ does not establish the missing flag from its capture, and this does not retroact
+ [native controls](../_experiments/evidence/continuation-section06-resource-lifetime/native_controls.c),
+ [results](../_experiments/evidence/continuation-section06-resource-lifetime/results/summary.json).
+ Historical static sections and original producer scripts/captures remain unchanged.
++[SECTION-08 original caller analysis, controls and claim map](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md)
++extend this contract without retroactively accepting historical or local claims.
+ 
+ ## 16. Parity plan
+ 
+diff --git a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md
+index 7ba172f..8f321d9 100644
+--- a/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md
++++ b/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md
+@@ -20,6 +20,11 @@ production_review:
+   section: SECTION-02
+   status: "PRODUCTION COMPLETE; formal peer acceptance pending"
+   evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md
++external_production:
++  section: SECTION-08
++  date: 2026-09-23
++  status: "locally validated; formal independent acceptance pending"
++  evidence: _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
+ ---
+ 
+ # Contract — the resource request queue
+@@ -257,3 +262,28 @@ zero-byte completion, head-of-line waiting, same-call draining and the full-pool
+ immediate cancellation; part-result distinctions; and common-footer execution. Use separate
+ installed-game tests for timing, I/O, concurrency and actual callbacks when those claims require it.
+ L3 reconstruction parity remains later work, not an extra prerequisite for this database section.
++
++
++## A concrete source-owner client — SECTION-08 (2026-09-23)
++
++`003DDA70` submits `IndexedExternalSourceRequest` from the static table02B581A0, not the
++ResourceRequestSlot itself. It resolves owner.handle and passes signed16 owner.kind/index,
++owner.requestedBytes and owner.fileOffset. The descriptor holds completion003DD850, no cancel
++callback, and the LOW32 OWNER ADDRESS as callback argument. The owner discards the requester's
++return and writes state3 even in the controlled rejected-negative-index case.
++
++Deleting an owner in state3 does NOT cancel/unlink the pending queue record. It sets owner.state5
++and leaves the source pinned and callback intact. Original0032E330 completion dispatch invokes
++003DD850; that consumer first unpins, then disposes/frees on state5 and clears state only. The
++helper's successful callback invocation is not itself queue recycling: slot retirement belongs to
++its caller. The fixture explicitly resets the synthetic queue after inspecting this boundary.
++
++Original0032E370's error path calls completion only for requested length-1. The tested positive
++length0x180 therefore leaves this owner's state/source untouched. This does not prove how every
++service error is recovered or that the owner leaks in gameplay. The full queue pump, OS IO and
++producer failure/retry schedule are not run by SECTION-08. Existing generic queue rules from
++SECTION-02 remain; no client state is substituted for a queue state.
++
++[Connected owner/view contract](the-external-source-owner-and-borrowed-view-lifetime.md) and
++[116 bounded assertions, original inputs, limitations](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md).
++Formal independent acceptance and source-side callback lifetime/reentrancy remain separate.
+diff --git a/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md b/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
+index f0f0b79..aabaa2f 100644
+--- a/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
++++ b/02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md
+@@ -14,10 +14,10 @@ audit:
+   last_pass_state: "local production; formal independent review pending"
+   crossref_clean: true
+ external_production:
+-  section: SECTION-07
++  section: SECTION-08
+   date: 2026-09-23
+   status: "locally validated; formal independent acceptance pending"
+-  evidence: _experiments/evidence/continuation-section07-source-movement/REVIEW.md
++  evidence: _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
+ ---
+ 
+ # Who owns a resource, and what can invalidate its pointers?
+@@ -32,6 +32,10 @@ The [ownership contract](CONTRACT-resource-input-ownership.md) states the interf
+ connects them. [Evidence and reproduction](../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md)
+ are bounded original-code execution, not a live FF12 observation or accepted whole-system L2 pass.
+ 
++The [SECTION-08 owner/view specification](the-external-source-owner-and-borrowed-view-lifetime.md)
++now adds a concrete indexed external owner, queue-client completion/deletion and consumer pinning.
++Earlier section receipts below retain their original evidence scope.
++
+ ## 1. Entry-owned copy versus externally owned backing
+ 
+ `00409A60(entry, source, mode)` resolves a source and normalizes its name in the original input.
+@@ -48,7 +52,8 @@ runs from an entry-owned copy in mode0, or from external storage in mode1. The c
+ a new entry. On a matching existing entry, it returns that slot without replacing the old source
+ with the new request's contents. The original-path control uses equal names/tags but different
+ sizes and payload bytes. The old bytes remain. This is cache reuse, not evidence that reload
+-repairs every reference. The full new-entry/PRF discovery path is not newly executed here.
++repairs every reference. SECTION-06 did not execute the new-entry path. SECTION-08 now executes plain TEST-header
++new-entry registration; PRF/@FEF discovery and specialized children remain separate.
+ 
+ ## 2. The parser borrows mutable runs, not its lookup allocations
+ 
+@@ -140,11 +145,12 @@ layout does not imply all earlier field interpretations or unknown payloads are
+ 
+ ## 9. Exact remaining obligations
+ 
+-- [ ] Establish universal safe refresh/pin ordering under real consumers. The original mover policy
+-  and selected source-move-to-refresh paths are established by SECTION-07;
+-  including the optional instance branch and nonempty specialized child/subtype walks.
+-- [ ] Establish external mode1-owner destruction/reload policy, including tag/reference equality at each
+-  actual release caller; do not generalize the raw-source fixture to all tagged combinations.
++- [ ] Establish whole-schedule/reentrant safety for required consumers, including nonempty specialized
++  child/subtype walks. SECTION-07 establishes the original mover and selected refresh paths;
++  SECTION-08 adds bounded real view exclusion, not universal safe pinning.
++- [ ] Complete the indexed owner's producer/error-recovery and nonempty registration policy, and
++  identify OTHER external-owner families. SECTION-08 establishes this owner's deferred deletion,
++  tagged-reference matching and same-key reuse; those are no longer unspecified for this family.
+ - [ ] Establish authored format bounds, shipped alignment/index guarantees, and allocation-failure behavior.
+ - [ ] Connect other text/widget/audio consumers to this exact owner only where original calls/state prove it.
+ - [ ] Obtain formal independent acceptance and reconcile only the affected L1/L2 obligations afterward.
+@@ -156,3 +162,31 @@ now covers tagged-slot movement through `0036A2A0`, its exact/adjacent selectors
+ pressure, dirty child-request delivery and a bounded original combined-walk window. It replaces no
+ SECTION-06 raw evidence and does not identify unrelated borrowed text pointers as this owner.
+ The earlier simulated relocation is retained as that packet's explicit scope.
++
++
++## Concrete external ownership and borrowed views — SECTION-08 (2026-09-23)
++
++There is now a specific owner above mode1 entries: the0x1C table at02B581A0, indexed in five
++groups of sixteen. It stores its own source handle and submits an original queue request with
++its address as completion argument. Prepared deletion frees immediately; in-flight deletion sets
++state5 without cancelling the pending request; completion then cancels matching resource consumers
++and frees the external source. Direct state4 deletion clears handle and route; deferred completion
++clears only state and leaves the stale numeric handle.003DD740 exposes only state4, not stale state0.
++
++State4 is not proof of bank registration. Completion ignores a failed registration, and a same-name
++registration can reuse the FIRST source while a second owner becomes state4. Deleting that second
++owner releases only its own source and does not transfer or replace the first source's ownership.
++These are bounded native controls; ordinary authored reachability of duplicate/failure states is
++not established.
++
++Actual views are bracketed by00409960 and00409C00. This removes/restores tagged-tree membership,
++so the acquired view resists the tested move. It is not nested: one release after two acquisitions
++allows movement. The copy path likewise releases one acquired pin without preserving an outer
++pin. The cache can then become stale and is repaired on lookup only under its02B62E10 guard.
++Caller0041FCF0's bracket is read statically; arbitrary consumer callbacks or a whole frame are not
++validated. The source-deletion wrapper also releases its pin BEFORE disposal, not after it.
++
++[Full current owner state machine and reconstruction obligations](the-external-source-owner-and-borrowed-view-lifetime.md)
++replace the old unrestricted question of whether ANY external owner is known. Other owner families,
++real producer/retry schedules, nonempty specialized registration and whole concurrent/reentrant
++consumer lifetimes remain open. [SECTION-08 review](../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md).
+diff --git a/_index/_inbox/EXTERNAL-CONTINUATION.md b/_index/_inbox/EXTERNAL-CONTINUATION.md
+index 366f14e..ceb68b1 100644
+--- a/_index/_inbox/EXTERNAL-CONTINUATION.md
++++ b/_index/_inbox/EXTERNAL-CONTINUATION.md
+@@ -2,6 +2,31 @@
+ 
+ **DB_GOAL=NOT_MET.** The endpoint is accepted whole-game L1+L2 plus its required independent readiness/terminal process. L3 implementation is later. A completed local section is not database completion.
+ 
++## SECTION-08 — indexed external owners, completion/deletion and borrowed views
++
++Date:2026-09-23. Local production complete; formal independent acceptance pending. Apply Update08
++AFTER Updates01–07 to the September22 21:12:46 base. [Review](../../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md).
++
++116 original-instruction assertions pass, repeat identical,9 affected variants rejected;120 body
++identities pinned. Original owner submit/delete/completion and group deletion, queue requester and
++completion/error helpers, plain new-entry registration/disposal, view pin/unpin and real movement
++execute with synthetic state. One diagnostic substitute and3 memory/string bridges are explicit.
++No fresh live IO, whole queue pump, full003DD4C0 producer, full consumer body or PRF specialized
++registration executes. The original consumer brackets are statically verified.
++
++Established:5x16 owner records of0x1C; completion unpins first; state3 deletion is deferred state5,
++not queue cancellation; state5 completion frees but retains handle/route; state4 ignores failed or
++same-name-reused registration; deletion matches source representation, then frees the actual owner;
++view pins are not nested and one release permits movement; cache repair needs its global guard;
++actual bulk deletion covers16 only. Positive-length error does not notify this owner. A new type
++retains unresolved spans; no type-wide/L2/TEAM promotion is made.
++
++Next meaningful boundary: full allocation/request-selection and service-error recovery for this
++owner, then nonempty PRF/@FEF registration and its specialized consumer lifetime. Exact Windows
++copy-overlap behavior from Section07 remains a separate dependency question. Do not replay these
++completed cases or claim all source-owner families share this policy. Reviewers should consume
++these claim-level findings before adjusting broader L2 verdicts.
++
+ ## SECTION-07 — actual source movement and separate refresh; local production complete
+ 
+ Date:2026-09-23. Apply Update07 AFTER Updates01–06 to the September22 21:12:46 base.
+diff --git a/_types/fields.tsv b/_types/fields.tsv
+index 8d4fe40..12ee7ff 100644
+--- a/_types/fields.tsv
++++ b/_types/fields.tsv
+@@ -1,4 +1,13 @@
+ type	offset	size	name	ctype	meaning	readiness	confidence	evidence
++IndexedExternalSourceRequest	0x00	4	sourceHandle	uint32	Tagged backing source owned by this record. Deferred completion frees allocation but retains this numeric value; state-gated lookup is separate.	SEMANTICALLY IDENTIFIED	PROVEN	003DD420 reads+0 before00369800; 003DD850 state5 path preserves+0; 003DD740 returns it only for state4; original controls distinguish retained value from allocation liveness; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x04	4	state	uint32	Owner policy:1 prepared;2 selected by static producer;3 submitted;4 completion-published;5 deferred delete;0 inactive. State4 does not guarantee successful bank registration. Labels are this owner policy, not queue states.	SEMANTICALLY IDENTIFIED	PROVEN	003DDA70 writes3; 003DD420 maps3->5 and clears1/4; 003DD850 clears5->0 else writes4 ignoring registration return; concrete controls plus static003DD4C0; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x08	5	unassigned08_0C	uint8[5]	Unassigned storage inside the stride. Sentinel preservation in selected delete paths is not a global no-access or padding proof.	DISCOVERED	UNKNOWN	0x1C stride and bounded byte writes; no complete reader/writer census is claimed; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x0D	1	allocationRouteReceipt	uint8	Producer sets this byte on one source-allocation route and direct deletion clears it. Deferred completion leaves it unchanged. Full route-selection policy remains open.	SEMANTICALLY IDENTIFIED	HIGH	003DD4C0 branch stores;003DD420/380 clear +0D;003DD850 preserves it in cancelled completion; producer is static-only; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x0E	2	unassigned0E_0F	uint8[2]	Unassigned interval before request kind. Extent coverage is not semantic meaning.	DISCOVERED	UNKNOWN	Stride and neighboring typed accesses only; no global absence assertion; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x10	2	requestKind	int16	Signed kind passed to0032E620; distinct from entry/source format tag.	SEMANTICALLY IDENTIFIED	PROVEN	003DDA70 movsx from+10 and actual requester record fixture; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x12	2	requestIndex	int16	Signed request index passed to0032E620. A synthetic -1 rejection does not prevent owner state3 from being stored.	SEMANTICALLY IDENTIFIED	PROVEN	003DDA70 movsx from+12; native submitted/rejected controls; ordinary reachability not established; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x14	4	requestedBytes	int32	Requested transfer count passed to queue; positive-length error helper does not deliver this completion callback.	SEMANTICALLY IDENTIFIED	PROVEN	003DDA70 +14 argument;0032E370 positive-length no-callback control; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
++IndexedExternalSourceRequest	0x18	4	fileOffset	int32	Offset put into request descriptor+0; queue records its normalized offset under existing request rules.	SEMANTICALLY IDENTIFIED	PROVEN	003DDA70 +18 into stack descriptor; native request-slot observation; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md
+ AchievementDescriptor	0x00	1	kind	uint8	0 selects the trigger path, non-zero the accumulate path. Read as a BYTE, not the wider field the prose left open	TYPE RESOLVED	PROVEN	00316A81 cmp byte [r14 + rbp*8 + 0xBF0460], 0 in AchievementCounter_UpdateAndMaybeFire (00316A50), with r14 = 0x00120000 so the table base is 0x00D10460 and the stride rbp*8 AND ON THE ACCUMULATE PATH ITS NON-ZERO VALUES ARE THE COUNTER WIDTH IN BYTES, established 2026-09-11 two ways. The read at 003166F0 branches cmp al,4 (00316731) and cmp al,2 (0031672D) and performs a dword read on the first arm; the accumulate at 00316B7E-00316BB9 saturates at 0x7FFF for kind 2 (00316B8B) and 0x7FFFFFFF for kind 4 (00316BA9) - the signed maximum of exactly those widths - and adds without clamping for anything else. Read out of the image, the only values present across the 30 entries are 0 (19 entries), 2 (7) and 4 (4), and SEVEN PLUS FOUR IS THE ELEVEN counter achievements the catalogue names.
+ AchievementDescriptor	0x01	1	counterOffset	uint8	the byte offset of this achievement's counter within the achievement counter area at ImageBackedStateBlock + 0x384C (CORRECTED 2026-09-13: not SaveImage_GetActiveBuffer() + 0x384C - the reader calls 002536A0, which returns *(void**)0x020927C0 = the buffer + 0x8200, so the area is 0x8200 further in); zero and unused on the trigger path || THE STRIDE-8 INDEXING IS THIS TYPE'S OWN ELEMENT STRIDE - 2026-09-20 (OPUS), answering check_strided_fields.py. AchievementDescriptor is declared `ARRAY 0x00D10460 stride=0x8 count=30` and is 8 bytes, so a scalar inside it indexed at stride 8 is the array being walked, which is what the declaration says happens. Nothing here suggests this field is itself an array.	SEMANTICALLY IDENTIFIED	PROVEN	the byte offset of this achievement's counter inside the counter block at ImageBackedStateBlock + 0x384C. BASE CORRECTED 2026-09-13 (OPUS): this row said SaveImage_GetActiveBuffer() + 0x384C and the reader does not call that getter. 002536A0 is `mov rax, qword ptr [rip+0x1e3f119]` -> 0x020927C0, the block pointer, which 00253990 fills with getActiveBuffer() + 0x8200; SaveImage_GetActiveBuffer is 002EF640, `lea rax, [rip+0x1e74c39]` -> 02164280. The counters are at buffer + 0xBA4C, not buffer + 0x384C, and the census agrees independently - these accesses sit at 0xB84C in save-payload-accesses.tsv, which is keyed to buffer + 0x200. DERIVED 2026-09-11 from AchievementCounter_Read 003166F0: 00316700 call 002536A0 for the save buffer, 00316705 lea edx,[rax + 0x384C] for the block, 0031671B-00316722 rcx = 00D10460 + id*8 for the descriptor, 00316726 al = byte [rcx] for the kind, then on the kind-4 arm 00316735 movzx eax, byte ptr [rcx + 1] / 00316739 add eax, edx / 0031673B mov ebx, dword ptr [rax] - a FOUR-byte read at base plus this offset - and the same byte [rcx+1] on the kind-2 arm at 0031674A. READ OUT OF THE IMAGE, all 30 entries: non-zero on exactly the eleven accumulate-path entries, 0,2,4,6,8,10,12 for the seven kind-2 and 16,20,24,28 for the four kind-4, so the eleven counters tile bytes 0..32 of that block at their own widths. Zero on every kind-0 entry, which is why an earlier reading of this byte as padding was available and wrong.
+ AchievementDescriptor	0x02	1	mode	uint8	on the trigger path, selects the test: 0 fires unconditionally through 003165C0, 1 requires the amount to EQUAL the threshold, anything else returns without firing	SEMANTICALLY IDENTIFIED	PROVEN	00316A90 movzx ecx, byte [desc+2]; 00316A99 test/je to the mode-0 arm; 00316A9D cmp ecx,1
+diff --git a/_types/types.tsv b/_types/types.tsv
+index a8cfb07..b871c01 100644
+--- a/_types/types.tsv
++++ b/_types/types.tsv
+@@ -1,4 +1,5 @@
+ type	size	category	instance	allocation_site	ctor	dtor	readiness	confidence	level	evidence	documents	route
++IndexedExternalSourceRequest	0x1C	02-Resource-And-Asset-Pipeline	02B581A0 + (group*16 + index)*0x1C; producer sweep groups0..4, entries0..15	IMAGE static table of80 records; each handle names separately allocated source storage, not a heap-allocated record. 003DD4C0 allocates and pins backing; full producer static-only here.	003DD4C0 prepares source/route/request fields; 003DDA70 submits and sets state3. Global one-time table initializer is not identified by this section.	003DD420 single/003DD380 group deletion; state3 is deferred to003DD850 completion. Record memory remains static. State1/4 deletion clears handle/state/route; state5 completion clears state only.	SIGNATURE RESOLVED	HIGH	L1	Original003DD380/420/4C0/740/850/A70 and reached bank/queue paths; SECTION-08 116 bounded native assertions,120 selected body identities,9 rejected variants. 003DD4C0 and full consumer scheduling static-only. Explicit gaps and no whole-type semantic/peer acceptance claim. _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md	02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md	ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds
+ ItemClassDescriptor	0x58	12-Items-Equipment-Shops-License	01EEBCC0 + (itemId >> 12) * 0x58, exactly 15 rows	IMAGE 01EEBCC0 - a static authored table in .data, 15 rows of 0x58. No allocation call exists.	IMAGE values plus 0030B6A0 runtime rebase/prefix and derived-state reset; zero source offsets preserve pointer destinations.	none observed	TYPE RESOLVED	PROVEN	L1	SECTION-05: 15 shipped rows of stride0x58 and class word at+0x38; +0x40 computed exclusive prefix. Native high/low state mappings, all45 pointer lanes, all15 prefixes, exact reset region and repeated call tested. 0x58 extent/physical layout is not complete ownership or all mutation-handler semantics. Historical type readiness retained; changed claims await independent acceptance.	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md;00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md;12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	ARRAY 0x01EEBCC0 stride=0x58 count=15 index=(itemId>>12)
+ GameSettingConfig	0x65C	19-Save-Load-Settings	*(0x01F82D20) - a HEAP block, not a static. malloc(0x65C) at 00798239 and the pointer stored to 01F82D20 at 00798261	HEAP 00798239 - malloc(0x65C), the pointer stored to 01F82D20 at 00798261. Allocated once and never released.	001DE050	none - allocated once, never released	TYPE RESOLVED	PROVEN	L1	size from 'mov ecx,0x65C' at 00798239; singleton store at 00798261; field layout re-derived from the binary 2026-09-08 Allocation/initialization extent established 2026-09-10: 00798239 mov ecx,0x65C -> 00210EC0 -> 0085E730 -> IAT 008C2B40 = api-ms-win-crt-heap-l1-1-0!malloc, so the object is NOT zero-initialised; the constructor's only bulk clear is 001DE138 memset(obj+0x7C,0,0x3CC) via IAT 008C2A60 = VCRUNTIME140!memset, covering +0x07C..+0x447 only. +0x448 is therefore uninitialised heap until 001DF2A0 writes 0x51, and +0x450..+0x657 past the copied path NUL is uninitialised heap for the life of the object.. INSTANCE CORRECTED 2026-09-11 (OPUS-DRIFT1): the row said the object IS at 0x01F82D20. It is not. 00798239 mov ecx, 0x65C then 0079823E call 00210EC0 allocates it, 00798254 mov rcx, rax passes it to the constructor, and 00798261 mov qword ptr [rip+0x17EAAB8], rax stores the POINTER at 0x01F82D20 - the next instruction being 00798268, so the target resolves exactly there. THIS EXPLAINS THE +0x554 DRIFT: reading +0x554 from 0x01F82D20 as if it were the object lands in unrelated static data, and that data IS heavily referenced - a stride-4 scan of 01F83274..01F83378 finds 14 of 66 addresses referenced, one of them from 18 different functions. That looks exactly like records beginning at +0x554 and is the likely source of the competing 260-byte reading. The iniPath at +0x450 is 520 bytes and stands TEARDOWN SWEEP 2026-09-11, AND THE ANSWER IS THAT THIS OBJECT IS NEVER FREED. A one-pass sweep over every function body tracked each type's pointer global into any call of free (00210EB0, named in functions.tsv) - a register tainted by the global's load, taint dropped on any other write and across calls. CONTROL: the same pass saw 304 call sites to free, so the sweep works. NONE of the six tracked globals - GameSettingConfig 01F82D20, AchievementCounterBlock 020927C0, BattleSystemState 02EBF190, the BattleUnit pool 0208E688, the SpawnRecord pool 0208E690, and the 0x58 block at 02092758 - reaches free by that route. SO THE SECTION 27 DESTRUCTION QUESTION HAS AN ANSWER HERE, AND IT IS NOT 'unfound'. These are process-lifetime pools and singletons: the engine RELEASES a slot back for reuse rather than returning storage to the allocator, and the binary says so in its own function names - ActorSystem_ReleaseBattleUnitSlotForActor (00234200), ActorSystem_ReleaseManagerRecords (0025B070), ActorResource_UnlinkEntryAndMarkFree (003DC130), BattleUnit_ResetStateForReuse (00236A60). Nobody had lifted them into the dtor column; the research existed and the recording did not, which is the same shape as the constructor gap found in the same sweep. LIMIT: a miss is not proof of no release. This follows a direct global-load into free and would not see a release through a wrapper, nor storage reached by a pointer this sweep does not track. NO DESTRUCTOR: ALLOCATED ONCE AND NEVER RELEASED. This is the one genuinely heap-backed type among those answered this way, so the negative had to be measured rather than argued from the instance string. 00798239 mov ecx,0x65C then the allocator, with the block stored to 01F82D20 and passed to 001DE050 - a single allocation. The teardown sweep then tracked that global into every free call in the image with a 304-site positive control and found NO route. So the config block is a process-lifetime singleton: allocated at startup, never freed. A reconstruction should allocate once and never release; adding a teardown would free memory the engine still reads. LIMIT: the sweep follows a direct load of the global into free and would not see a release through a wrapper.	19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	PTR 0x01F82D20
+ ActorStorageRecord	0x6E0	04-Actor-Entity	NOT A UNIFORM ARRAY. Every record the manager slot owns lives in ONE block reached through ActorManagerSlot +0x08; the block holds the record count as a dword at +0, a pointer table of that many qwords at +8, a second region of the same size as the header (published to ActorManagerSlot +0x1F0), and then the records themselves. Record i is *(qword*)(block + 8 + i*8) - which is exactly what ActorManager_GetRecordByOrdinal (00358940) does after bounding i against the count. THE RECORDS ARE NOT EQUALLY SIZED: each occupies align16(ActorSequenceDescriptor[group].recordSize), and those eight sizes are 0x328, 0x3A8, 0x330, 0x348, 0x2D0, 0x6E0, 0x6E0 and 0x668, so an index-times-stride reader is wrong for every layout but one.	HEAP 002679F0 ActorStorage_AllocateAndInitializeRecords - ONE block for every record the manager slot owns, obtained by the indirect call through ActorManagerSlot +0x88 at 00267A79 and zeroed by 00861EC0 at 00267A8B. The single caller ActorSystem_InitializeManagerRuntime (0026CE60) stores the block into ActorManagerSlot +0x08 at 0026CEB8, with the slot at 02098E10 + managerIndex*0x288 (0026CE74-0026CE8A). MEASURED 2026-09-18 (OPUS); this row read UNRESOLVED while the store's own ActorSequenceDescriptor.recordSize row already cited 002679F0.	00266530	0025B070 || THE DTOR CELL NAMES THE CLEANUP, NOT THE RELEASE, 2026-09-21 (OPUS), consuming ASTRA-RETURN-OPUS-ACTOR-POOL-RELEASE-BOUNDARY and verified against the image rather than taken on report. 0025B070 is real and is correctly here, but it is the SEMANTIC CLEANUP phase - it does not release the allocation these records live in. THE TEARDOWN IS TWO SEPARABLE PHASES, in the unload 002628B0 with rbx the manager slot. Phase 1, semantic: 00262D34 `call 0x25b070` and the mode-dependent subsystem calls after it. Phase 2, owning-allocation release: 00262D96 `mov rcx,[rbx+8]` / test / je / 00262D9F `call 0x3697f0` / 00262DA4 `mov [rbx+8], rbp` with rbp zero, then the live bit cleared at 00262DA8 `and byte [rbx+0x10], 0xfe`. THEY ARE PROVABLY SEPARABLE, not two names for one step: 00262D2C `cmp edi, 4` / `je 0x262d96` sends one arm STRAIGHT PAST phase 1 into phase 2. 003697F0 is thirteen bytes and is not a CRT import - `test rcx,rcx / je ret / xor edx,edx / jmp 0x369860` - a null-guarded tail into the engine's own allocator release. SO THE LIFETIME BOUND ON EVERY INTERIOR OF THIS TYPE is the ALLOCATION's lifetime, which ends at 00262D9F, not the process's. The actor-record page's section 20 claimed the pool is never freed and that interior pointers are valid for the life of the process; that is retracted on the same evidence. NOT ESTABLISHED, so the correction is not over-read: when 002628B0 runs in an ordinary session, or whether any holder actually retains an interior across it.	TYPE RESOLVED	PROVEN	L1	layout from ActorStorage_InitializeRecord's own stores. SIZE IS PER KIND, from the table at 01E0C328: 808/936/816/840/720/1760/1760/1640 bytes for kinds 0/1/1/2/2/3/3/3. 0x6E0=1760 is the largest. The earlier 0x11C was a lower bound and an underestimate by 3-6x. CENSUS PROPAGATED 2026-09-11 (OPUS-AMS2): 62 rows to 79, 1666 to 1725 of 0x6E0. ONE displacement withheld as unresolved: +0x0F0 is written as a dword constant 0x1001 at 002EB44D and read as a QWORD POINTER and dereferenced three times in 002EC3F0 (002EC486, 002EC4C2, 002EC4DC). A 32-bit 0x1001 and an 8-byte pointer cannot both be the field on one object, and the two functions are different, so either the base is not this record at one of them or the span is a union. Left undeclared rather than guessed. HOLD DISSOLVED 2026-09-17 (SWE2-STRUCT): the qword reads are on the chain target, not this record - 002EC3F0 hops mov rcx,[rcx+0xb8] (this record's contextPtr, the embedded MovementContext) and reads +0xF0 there, which is MovementContext's steeringCursor; the subsequent derefs at +0x62/&7 and +0x6A/test-1 are SteeringRecord's flags and steerFlagBits6A. On this record +0xF0 is the dword pendingDispatchId (0x1001, the value forwarded as r8d to 002EB0D0). SPAN +0x60..+0xB8 RE-CHECKED 2026-09-11 (OPUS-REC60B), because ActorManagerSlot has fields at +0x68, +0x70, +0x78 and +0x80 too and that overlap is what produced the original misattribution. Three rows I had added there from the census are WITHDRAWN: +0x68, +0x70 and +0x80 all rest on r13 inside WorldActorScriptVM_InterpretBytecode (0025E4C0), a 14,646-byte function where r13 is set from rcx at 0025E4DF and then RELOADED at least eight times, from rax at 0025F590, 0025F8EF and 0025FCC6 and from a stack spill at 0025E61B, 0025F661, 0025F9C0 and 0025FD97. The accesses sit over 0x3300 bytes past the entry, so the base is not proven to be anything, and the three displacements are exactly ActorManagerSlot's payloadSectionC, D and F. The census route column calls them arg1 while the prologue assigns r13 from rcx, which is arg0 - the route and the disassembly disagree. The field map's own cell for these offsets reads 'not in the store', and leaving them out was the better call. +0x78 is KEPT: its base is rcx untouched from the entry of a 591-byte function. SIX SIZES, AND THIS ROW DECLARES ONE (OPUS-SHAPES, 2026-09-11). ActorSequenceDescriptor at 0x01E0C328 gives the allocation size per sequence: 0x328, 0x3A8, 0x330, 0x348, 0x2D0, 0x6E0, 0x6E0, 0x668 for sequences 0 through 7. The declared 0x6E0 is the sequences 5 and 6 shape - the largest - so it is the right denominator for coverage but it is NOT the size of every record. Of the 75 declared rows only FOUR are shape-dependent, and they are the four embedded regions: movementContext, secondaryContext, resourceEntryPool and waitSlotArray. Every header field below +0x120 fits every shape, because even the smallest record, sequence 4 at 0x2D0, is larger than the 0x120 header. THE TWO LARGE SHAPES TILE EXACTLY to their table sizes: sequences 5/6 put the pool at +0x4D8 with 10 entries of 0x14 ending at +0x5A0 and the wait array there with 8 of 0x28 ending at +0x6E0; sequence 7's selector byte is 1, so the pool has 8 entries ending at +0x578 and the wait array 6 ending at +0x668. Both land on the table's size to the byte, and the counts 10/8 and 8/6 are exactly what EXP-026 read live at +0x89 and +0x88 for sequences 5 and 7. IS THE HEADER COMMON TO ALL SIX SHAPES? (OPUS-HDRCOMMON, 2026-09-11) Two answers, and they differ. PRESENT: yes, in all six, and by arithmetic rather than assumption - the smallest record the descriptor table allocates is sequence 4 at 0x2D0, which far exceeds the 0x120 header, so every header field has room in every shape. INITIALISED: no. ActorStorage_InitializeRecord writes +0x14, +0xEC and +0xF5 before it branches on anything, and its only sequence-dependence is the two counts - the descriptor table's selector byte chooses r15 = 8 or 6 for the wait slots and ebp = 10 or 8 for the resource entries at 0026655C-002665A4, which are exactly the values EXP-026 read live at +0x88 and +0x89 for sequences 5 and 7. But TWO KIND GATES leave part of the header untouched on non-kind-3 records: 002666ED cmp al,0x60 and 00266A00 cmp al,0x60 guard every write to +0x1C's bits 2, 8 and 13, and the second gate also guards the whole block that reads +0xCC and +0x40 and may call 00268EA0. Because kind 3 occurs only at sequences 5, 6 and 7, the five small shapes never execute any of it. So the header is the same SHAPE everywhere and not the same STATE, and a reimplementation must reproduce the gate rather than initialise uniformly. THE CENSUS BESIDE THIS TYPE CANNOT SEE ITS CONSTRUCTORS, and that is structural rather than a defect (OPUS-FLAGS1C, 2026-09-11). The field map states its seeding: the two record-RETURNING accessors 00358940 and 003588B0, propagated through call arguments for three hops. A constructor never receives a record from a getter - it is upstream of one - so propagation from accessors reaches CONSUMERS, NOT PRODUCERS. Measured: of 272 functions and 946 rows, ActorStorage_InitializeRecord (00266530), ActorStorage_AllocateAndInitializeRecords (002679F0) and 00266BD0 are ABSENT ENTIRELY, while 59 functions contribute the 55 writes and 109 read-modify-writes that are there. This is why +0x03 shows 89 reads and NO writes though the carver stamps it at 00267B04 and 00267B13, and why none of the initialiser's three +0x1C writes appear. CONSEQUENCE: no 'no writer found' negative may rest on this census alone - a claim I made and had to correct twice this session, on ActorManagerSlot +0x48 and +0x60 and on the phantom +0x044. Reads are well covered; writes are not EH-3 SPANS +0x6C..+0x88 AND +0x8A..+0xA0 RESOLVED AS NOT-CLOSABLE-FROM-THIS-CENSUS, 2026-09-11, and that is a different answer from 'nobody looked'. The OPUS-EH3 checkpoint left those two spans undeclared. The census has exactly three undeclared displacements inside them - +0x70, +0x80 and +0x98 - and all three come from just two functions whose traced register DEMONSTRABLY IS NOT THIS RECORD. THE DISCRIMINATOR IS A BYTE FIELD CONTRADICTED THROUGH THE SAME REGISTER. In 0025E4C0 (WorldActorScriptVM_InterpretBytecode) the traced r13 is read as a QWORD at +0x0 - 00261B27 mov r13, qword ptr [r13], which RELOADS the register from its own +0x0, and 002617E5 add rdx, qword ptr [r13]. This record's +0x0 is a 2-BYTE selfIndex, and every legitimate reader of it in the same census does movzx eax, word ptr [reg] (0025AAD0, 0025AE00, 0025BAD0, 0025BE50, 00262F90). A pointer cannot be loaded out of a 2-byte index and walked. In 00262440 the traced rdi is the same shape: qword loads at +0x0, +0x40, +0x48, +0x58 and +0x60, and a CALL through +0x98 - while this record's +0x60 is the 1-byte entryFreeListHead. Those two functions traverse a linked structure of pointer slots with a dispatch pointer at +0x98; it is not an ActorStorageRecord. SO +0x70, +0x80 AND +0x98 ARE NOT DECLARED HERE. The temptation was specific and I record it because the next reader will feel it too: +0x98 is reached by `call qword ptr [rdi+0x98]` at two sites, which reads exactly like a function-pointer field and would have been an attractive thing to name. WHY THE STORE'S CHECKS DID NOT CATCH THE MIS-ATTRIBUTION: at +0x60 the census is {8: 2, 1: 7}, so the two qwords are OUTVOTED by the seven real byte accesses and check_census_widths reports agreement. A mis-attributed row does not announce itself as a disagreement - it is absorbed, and it inflates the evidence behind a field it was never about. Found by grouping qword accesses at declared byte fields BY FUNCTION: 14 such rows exist across all censuses, and the only two concentrations (4 rows each) are these two functions. LIMIT: this closes what the census can say, not what the record holds. +0x6C..+0x88 and +0x8A..+0xA0 remain genuinely unrecovered, and an accessor-seeded census cannot reach a constructor - check_census_writers already establishes that for this very census - so a writer-side recovery is the route that could still close them. WRITER-SIDE SWEEP OF THE EH-3 GAP, 2026-09-11, WITH A PASSING POSITIVE CONTROL. The accessor route was exhausted first (see the note above); this is the other one. Disassembling the initialiser family - ActorStorage_InitializeRecord 00266530, the interior pointer planter 00266AD0 and the slot array wiring 002667A0 - and tracking which register holds the record, NO STORE LANDS ANYWHERE IN +0x6C..+0x88 OR +0x8A..+0xA0. THE CONTROL IS THE REASON THAT SENTENCE IS WORTH ANYTHING. Seeded on an argument register the same sweep found 4 offsets, against the ~41 this constructor is known to write - a failing control, and any "none in the gap" from it would have been worthless. The record pointer is not passed: 0026656A does mov rbx, qword ptr [rdx + r10*8 + 8], loading it from a table. Re-seeded there the sweep finds 45 offsets across the record, including +0xA0, +0xA8, +0xB8 and +0xC0 on the far side of the gap, so it demonstrably reaches past the span it reports nothing in. THE GAP IS NOT ARRAY STORAGE, which was the obvious remaining explanation. 00266AD0 dispatches on the actor kind ([rec+3] & 0x1F, 0..7) through a jump table, and EVERY interior pointer it plants derives from lea rax,[rdx+0x120] - the per-kind arrays begin at +0x120 and run upward (+0x140, +0x1A0, +0x2A8 for the three kinds that offset from it). So the interior storage the +0xA0/+0xA8 and +0xB8/+0xC0 pointers address lies ABOVE +0x120, and the gap is not where those arrays live. WHAT IS AND IS NOT CLAIMED. Bounded: the initialiser family does not write the gap, and no validly attributed census access reads it. NOT claimed: that the span is padding. Absence of observed access is not absence of use, and this sweep covers three functions - the ActorResource family (003DB2A0 onward) writes +0x60..+0x63 and +0x88/+0x89 and is NOT covered here, which is visible in the sweep itself, since it finds no store at the list heads either although they are named fields with writers. A reader must not read "no store found" as "never written". ONE THING THIS RETROACTIVELY SETTLES: 00266B26 lea r8,[rax+0x80] with rax = rec+0x120 resolves to rec+0x1A0, which is exactly what the access census recorded for that site. An earlier attempt of mine to validate census rows by adding the route's base to the instruction's displacement flagged that row as inconsistent; it was not - the census had resolved the register correctly and my invariant could not see the intervening lea. That attempt was discarded, and this is the confirmation that discarding it was right. DESTRUCTION IS IN BULK AT A RESOURCE-SET SWAP, NOT PER RECORD, and that is the lifetime fact rather than a missing function. 0025B070 ActorSystem_ReleaseManagerRecords is the teardown path for these records: it walks them with ActorManager_GetRecordByOrdinal (0025B0AA, 0025B13B), follows each record's +0xB8 contextPtr - a qword read against this type's declared 8-byte pointer, so no width contradiction - clears fields in the context it addresses (0025B102 and 0025B111 write +0x220 and +0x74 of the target), and at 0025B225 calls ActorSystem_ReleaseBattleUnitSlotForActor to hand back each record's combat slot. DECIDED BY CALLERS, NOT BY READING IT, which is the rule the BattleUnit correction earlier today established: a clear looks identical at both ends of a lifetime. 0025B070 has ONE caller, 00262D34 in 002628B0, and that has two - 0025C036, and 0032FCF6 inside ActorResource_BeginManagerResourceSetLoad. So the records are released when a NEW manager resource set begins loading: this destroys the OUTGOING set, which is real destruction, and its trigger is a load rather than a despawn. THE DISTINCTION FROM THE TRAP IT RESEMBLES: BattleUnit_ResetStateForReuse is the acquire-side clear of the slot you are about to take, so it is NOT teardown. This releases the PREVIOUS records before new ones arrive, so it is. Both are reached from a load path, and only the object they act on - yours-to-be versus the outgoing one - separates them. A reconstruction needs that distinction or it will clear live records on load. CONSEQUENCE FOR SECTION 27: the destruction question is answered for this type, and the answer is that there is no per-record destructor to find. Individual records are not torn down on their own; the set is released together. Caller-census control: 121 callers on its control target, so the one-caller and two-caller results are measurements. EH-3 THIRD ROUTE CLOSED 2026-09-11: the ActorResource family, which was the recorded resume condition for these spans. It produced exactly one candidate and the candidate is false, so the gap is now a bounded negative on three independent routes. THE SWEEP FIRST FAILED ITS OWN CONTROL, and the cause is worth keeping. Selecting the family by the ActorResource_ name prefix found 3 of the 5 writes this family is known to make - it missed +0x88 and +0x89, because the function that writes them is FUN_003db580, UNNAMED. A name is a convention and not a contract, which is the third time that has bitten this store. Re-selected by ADDRESS RANGE (003DB000..003DC300, 40 functions instead of 18) the control passes: +0x60..+0x63, +0x88 and +0x89 all found. WITH THE CONTROL PASSING, ONE STORE LANDS IN THE GAP AND IT IS NOT THIS RECORD'S. 003DB1A6 mov word ptr [rdx + 0x82], ax in FUN_003db150, with a matching compare at 003DB1D2. But FUN_003db150 is a float vec3 add - it reads xmm floats at [rcx], [rcx+4], [rcx+8], accumulates into [r8]... and stores to [rdx + 0x30] as a DWORD from an xmm register. This record's +0x30 is battleUnit, a declared 8-BYTE POINTER. A 4-byte float written where an 8-byte pointer is declared means rdx is not an ActorStorageRecord, so +0x82 belongs to whatever transform-shaped structure that function does operate on. The same width-contradiction test that exposed the mis-attributed census rows at +0x0 and +0x60 rejected this one. SO: accessor census, initialiser family, and now the ActorResource family - three routes, three bounded negatives, each with its own positive control, and every candidate that surfaced in the gap traced to a different structure. The spans are not merely unrecovered: they are unwritten by every family that touches this record and unread by every validly attributed access. What remains unexcluded is a writer outside all three families, which nothing in the evidence currently points to. SIZE QUALIFIED 2026-09-11: 0x6E0 is the LARGEST per-sequence size, not a uniform stride. The descriptor table at 01E0C328 gives four bytes per sequence - u8 layout class, u8 sub flag, u16 SIZE - and the eight sizes are 0x328, 0x3A8, 0x330, 0x348, 0x2D0, 0x6E0, 0x6E0, 0x668, read out of .data. ActorStorage_AllocateAndInitializeRecords sums roundUp16(size) * count over the sequences (00267A41-00267A5C) and writes a POINTER TABLE at pool + 8 + index*8 (00267AF5), which ActorStorage_InitializeRecord reads back at 0026656A - so records are reached through pointers and NEVER by multiplying an index by a stride, which variable sizes require. The instance string's '(array element)' is therefore true only of the pointer array. See 04-Actor-Entity/CONTRACT-actor-record-pool-and-region-map.md.	04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md	DYNAMIC *(*(ActorManagerSlot +0x08) + 8 + i*8), i in [0, *(uint32*)*(ActorManagerSlot +0x08))

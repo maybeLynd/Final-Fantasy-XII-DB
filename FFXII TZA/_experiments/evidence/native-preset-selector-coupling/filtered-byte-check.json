@@ -1,0 +1,77 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "89e2df8058ff60ac0a72cd482fdfcab1a67dce58"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "ce5cfca08790ff19cff3bd6224589e379a49c12d"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "3517b0d6b5c7710d6831e29f28c8f4ce79656ee7"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "b3866027116f1a18a12383248111898e0e37c958"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "2ed918a74251d3a86a101ca8bbafbe1da42b2543"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "d42f33a55d3500a5c2b17b9ecd73a4de5a220773"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "e5fcbc1e3a2ca8e67fb33e6d35a00f16ad51b3c0"
+    },
+    {
+      "path": "retained/extent-manifest.json",
+      "git_blob": "e196f3d5f77ae76f1951c085f7be8e4d03d3881a"
+    },
+    {
+      "path": "retained/extent-raw.json",
+      "git_blob": "637acdedad2a11297ac19ac7f79238abffbceb4c"
+    },
+    {
+      "path": "retained/first.bin",
+      "git_blob": "8edbcc5bf57b1852e8523ad26e3b85c98878e775"
+    },
+    {
+      "path": "retained/mode-byte.bin",
+      "git_blob": "6b2aaa7640726588bcd3d57e1de4b1315b7f315e"
+    },
+    {
+      "path": "retained/original353.bin",
+      "git_blob": "00830460d7d6c815aea8029f1bca41e43e531ff6"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/second.bin",
+      "git_blob": "7feca2c8c6cc311d2a7325870776a8811aa5955d"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/third.bin",
+      "git_blob": "17f0eabf7a74d8e11335124129506d89015fc47f"
+    },
+    {
+      "path": "source.py",
+      "git_blob": "e5fcbc1e3a2ca8e67fb33e6d35a00f16ad51b3c0"
+    }
+  ]
+}

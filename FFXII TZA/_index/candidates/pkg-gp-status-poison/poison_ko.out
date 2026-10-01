@@ -1,0 +1,5 @@
+PASS  A Poison arm: flag A |= 0x140, share = trunc(base/16) or -1, flag C |= 0x4000
+PASS  S step 10 applies HP on +0x2C bit 8 with flags derived from +0x2C
+PASS  H HP write clamps to the floor and tests lethal against the same floor
+PASS  M shares -62/-125/-2/-1; flags 0x40; HP 40 -> (0, True) (lethal); HP 100 -> 38 (alive)
+FAILS 0

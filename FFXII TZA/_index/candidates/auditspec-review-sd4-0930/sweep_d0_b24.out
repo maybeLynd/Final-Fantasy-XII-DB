@@ -1,0 +1,151 @@
+ranges swept 38175; hits 150
+  001EA6C0 001EA72D S  mov qword ptr [r14], rax <- and eax, 1                       clear
+  001FA3D0 001FA5F5 S  mov dword ptr [rdi], eax <- and eax, 2                       clear
+  00227680 002276D1 M  or qword ptr [rdx], 0x1000000                                set
+  00227680 002276D8 M  or qword ptr [r8], 0x1000000                                 set
+  00227680 00227775 M  and qword ptr [rdx], 0xfffffffffeffffff                      clear
+  00227680 0022777C M  or qword ptr [rbx], 0x1000000                                set
+  00227680 0022788C M? or qword ptr [rbx], rax                                      register source unresolved
+  00227680 002279F7 M? and qword ptr [rdx], rax                                     register source unresolved
+  00227680 00227ABD M  or qword ptr [rbx], rax                                      set
+  00227680 00227BC8 S  mov qword ptr [rdx], r8 <- or r8, 0x9000000                  set
+  00227680 00227BD7 S  mov qword ptr [rbx], rax <- or rax, 0x9000000                set
+  00227680 00227C28 M  and qword ptr [rbx], 0xfffffffffeffffff                      clear
+  00227680 00227CA7 M  and qword ptr [rbx], 0xfffffffffeffffff                      clear
+  00237CA0 00237D36 M? or dword ptr [rcx], ebx                                      register source unresolved
+  00265B60 00265B85 S  mov dword ptr [rcx], r8d <- or r8d, 0xffffffff               set
+  00265F90 00265FA0 S  mov dword ptr [rcx], r8d <- or r8d, 0xffffffff               set
+  0026E850 0026E870 M  and dword ptr [r9], eax                                      clear
+  00279E20 0027A785 S  mov dword ptr [rax], ecx <- and ecx, 1                       clear
+  0029BE50 0029C3A1 M? and word ptr [rax + 2], r14w                                 register source unresolved
+  002AE610 002AE899 S  mov dword ptr [r14], ecx <- or rcx, 0xffffffffffffffff       set
+  002B2D90 002B2DCD S  mov dword ptr [rax], edx <- and edx, 0x7f                    clear
+  002B7460 002B74E0 M? or dword ptr [rcx], r8d                                      register source unresolved
+  002D8050 002D8088 M? or qword ptr [rcx], r11                                      register source unresolved
+  002D8050 002D80DF M  and qword ptr [rsi], 0xfffffffffc0fffff                      clear
+  002D8050 002D80F2 M? or qword ptr [rsi], rax                                      register source unresolved
+  002D81D0 002D82FB M? or qword ptr [rsi], rax                                      register source unresolved
+  002D81D0 002D8393 M? or qword ptr [rsi], rcx                                      register source unresolved
+  002DE060 002DE070 M? or dword ptr [rax], ecx                                      register source unresolved
+  002DE080 002DE093 M? or dword ptr [rax], ecx                                      register source unresolved
+  002DE0F0 002DE103 M? or dword ptr [rdx], eax                                      register source unresolved
+  002DE150 002DE15D M? or dword ptr [rax], ecx                                      register source unresolved
+  002DE1C0 002DE1D3 M? or dword ptr [rax], ecx                                      register source unresolved
+  002DE1E0 002DE1F3 M? or dword ptr [rax], ecx                                      register source unresolved
+  002DE200 002DE213 M? or dword ptr [rax], ecx                                      register source unresolved
+  002DE230 002DE24B M? or dword ptr [rdx], eax                                      register source unresolved
+  002DE360 002DE3E8 S  mov word ptr [rax + 2], di <- or edi, 0xffffffff             set
+  002E1CA0 002E1CBE M  and dword ptr [r8], eax                                      clear
+  002FBEF0 002FBF63 M  and dword ptr [rax], 0xf000003f                              clear
+  002FC010 002FC1BF M  and dword ptr [rdi], 0xf000003f                              clear
+  002FC350 002FC3A5 M  and dword ptr [rcx], 0xf000003f                              clear
+  002FCBF0 002FCC7A M? xor dword ptr [rbx], eax                                     register source unresolved
+  00301140 003012A1 M  or qword ptr [rbx], 0x1000000                                set
+  00306E60 00306ED7 M? or qword ptr [r8], rax                                       register source unresolved
+  00306E60 00306EE2 M? and qword ptr [r8], rax                                      register source unresolved
+  00307300 00307A97 M  or qword ptr [rbx], 0x1000000                                set
+  00307C70 00307CA2 M  and qword ptr [rbx], rax                                     clear
+  00307C70 00307CD7 M  and qword ptr [rbx], rax                                     clear
+  003083A0 003083A6 M  and qword ptr [rcx], 0xfffffffffeffffff                      clear
+  0030CBE0 0030CD43 M? or qword ptr [rdi], r14                                      register source unresolved
+  003105D0 0031066F M  and qword ptr [rbx], rax                                     clear
+  00313400 00313469 M  or qword ptr [rbx], rax                                      set
+  00313480 003134EB M  or qword ptr [rbx], rax                                      set
+  00313500 00313537 M  or qword ptr [rbx], 0x1000000                                set
+  003250F0 0032517C M  and qword ptr [rbx], 0xfffffffffeffffff                      clear
+  00329220 003296A1 M? xor dword ptr [rdi], eax                                     register source unresolved
+  003343D0 003345B9 M? or dword ptr [rdi], eax                                      register source unresolved
+  003343D0 0033469A M? xor dword ptr [rdi], eax                                     register source unresolved
+  0033CC80 0033CD7F M? xor dword ptr [rcx], eax                                     register source unresolved
+  00346C00 00346CE8 M  and byte ptr [rbx + 3], 0xc0                                 clear
+  00347310 00347374 M? or byte ptr [rdi + 3], bl                                    register source unresolved
+  00354D00 00354D51 S  mov dword ptr [rdi], ecx <- and ecx, 2                       clear
+  003649A0 00365084 S  mov qword ptr [rdx], r8 <- and r8d, 0x20                     clear
+  0036B2C0 0036B38C M  and dword ptr [rdx], eax                                     clear
+  0037CE80 0037CEB9 S  mov dword ptr [rbx], eax <- or eax, 0xffffffff               set
+  00393138 0039315D M? xor dword ptr [rdi], esp                                     register source unresolved
+  003A1750 003A17B9 S  mov word ptr [rdx + 2], ax <- or eax, 0xffffffff             set
+  003A2020 003A2070 M? or dword ptr [r8], eax                                       register source unresolved
+  003A2020 003A207B M? or dword ptr [r8], edx                                       register source unresolved
+  003A2090 003A20B0 M  and dword ptr [rax], 0x8000                                  clear
+  003B2F90 003B303A M  and dword ptr [rbx], 0xf000003f                              clear
+  003B3300 003B3387 M  and dword ptr [rbx], 0xf000003f                              clear
+  003B3400 003B3470 M? xor dword ptr [rdx], ecx                                     register source unresolved
+  003B37E0 003B3888 M  and dword ptr [rbx], 0xf000003f                              clear
+  003B38B0 003B3967 M? xor dword ptr [rbx], eax                                     register source unresolved
+  003B39E0 003B3A79 M  and dword ptr [rcx], 0xf000003f                              clear
+  003C4B20 003C4C75 S  mov dword ptr [rdx], ecx <- and ecx, 0xfff                   clear
+  003C4B20 003C4C9A S  mov dword ptr [rdx], ecx <- and ecx, 0xfff                   clear
+  003C5130 003C5333 M? or dword ptr [rdi], ebx                                      register source unresolved
+  003DAAB0 003DAB2F M? and qword ptr [rcx], rax                                     register source unresolved
+  003DB020 003DB0A8 M? or qword ptr [rcx], r8                                       register source unresolved
+  003DD4C0 003DD672 M? and dword ptr [r15], eax                                     register source unresolved
+  003DE710 003DE75A M  or byte ptr [rdi + 3], 1                                     set
+  003DEB30 003DEBCA M? and dword ptr [r15], eax                                     register source unresolved
+  003DEFC0 003DF028 M  and dword ptr [rdx], eax                                     clear
+  003EDAD0 003EDB87 M  and byte ptr [rax + 3], 0xfe                                 clear
+  003EDAD0 003EDBB3 M  or byte ptr [rcx + 3], 1                                     set
+  003F4C30 003F4D37 M? or dword ptr [rbx], r14d                                     register source unresolved
+  003FFC60 003FFC9C S  mov dword ptr [r9], eax <- and eax, 1                        clear
+  003FFC60 003FFCB4 S  mov dword ptr [rcx], eax <- and eax, 1                       clear
+  003FFC60 003FFCCB S  mov dword ptr [rcx], eax <- and eax, 1                       clear
+  003FFCE0 003FFD46 S  mov dword ptr [r9], eax <- and eax, 1                        clear
+  003FFCE0 003FFD5E S  mov dword ptr [rcx], eax <- and eax, 1                       clear
+  003FFDF0 003FFE30 S  mov dword ptr [rdx], eax <- and eax, 1                       clear
+  003FFDF0 003FFE45 S  mov dword ptr [rdx], eax <- and eax, 1                       clear
+  00400E80 00400F49 S  mov qword ptr [rcx], rax <- or rax, 0x1300000                set
+  00417110 004172F8 S  mov dword ptr [rbx], ecx <- or ecx, 0xffffffff               set
+  00417920 0041799E S  mov dword ptr [rbx], edx <- or edx, 0xffffffff               set
+  00417F40 004180EC S  mov dword ptr [rsi], ecx <- or ecx, 0xffffffff               set
+  0041BEE0 0041BF24 S  mov dword ptr [r8], ecx <- or ecx, 0xffffffff                set
+  0041C9A0 0041CA1B S  mov dword ptr [rbx], ecx <- or ecx, 0xffffffff               set
+  0041CB90 0041CBA4 S  mov dword ptr [rcx], edx <- or edx, 0xffffffff               set
+  0041CD30 0041CD84 S  mov dword ptr [rdx], ebx <- or ebx, 0xffffffff               set
+  0041F730 0041F771 S  mov word ptr [rbx + 2], bp <- or ebp, 0xffffffff             set
+  00420D80 00420E07 M? or dword ptr [rbx], edi                                      register source unresolved
+  00430B90 00430BBA S  mov dword ptr [rdi], eax <- and eax, 3                       clear
+  004453D0 004459F6 S  mov dword ptr [rcx], eax <- and al, 1                        clear
+  00447020 004476DC S  mov dword ptr [rcx], eax <- and al, 1                        clear
+  00447ED0 004486AE S  mov dword ptr [rcx], eax <- and al, 1                        clear
+  004781E0 00478205 S  mov word ptr [rcx + 2], ax <- or eax, 0xffffffff             set
+  005049E0 00504A13 S  mov word ptr [rcx + 2], bp <- or rbp, 0xffffffffffffffff     set
+  00517650 00517DD9 M  or byte ptr [rbx + 3], 1                                     set
+  00517650 00517F26 M  and byte ptr [rbx + 3], 0xf2                                 clear
+  00517650 00517F80 S  mov byte ptr [rbx + 3], cl <- or cl, 1                       set
+  0053AB50 0053B854 S  mov qword ptr [rcx], rdx <- shl rdx, 0x18                    set-var(shl)
+  0053AB50 0053C6BF S  mov dword ptr [rcx], edx <- and edx, 0x3ff                   clear
+  0053AB50 0053C764 S  mov dword ptr [rcx], edx <- and edx, 0x3ff                   clear
+  0053D140 0053D441 S  mov dword ptr [rcx], edx <- and edx, 1                       clear
+  0053D4B0 0053D539 S  mov dword ptr [rcx], edx <- and edx, 1                       clear
+  00565720 005657BA S  mov word ptr [rcx + 2], r8w <- or r8d, 0xffffffff            set
+  0056A1D0 0056A363 S  mov qword ptr [rdi], rax <- or eax, 0xffffffff               set
+  0056B100 0056B1B0 S  mov word ptr [rdi + 2], cx <- or ecx, 0xffffffff             set
+  0057DC30 0057DCBC S  mov word ptr [rbx + 2], ax <- or eax, 0xffffffff             set
+  0059F200 0059F3EC M  and dword ptr [r14], 0x80000000                              clear
+  0059F200 0059F3F8 M? or dword ptr [r14], ebp                                      register source unresolved
+  005CAA30 005CAA3B M  and dword ptr [rcx], 0x80000000                              clear
+  005CAA30 005CAA4A M? or dword ptr [rcx], edx                                      register source unresolved
+  00628520 0062852E M? or dword ptr [rcx], edx                                      register source unresolved
+  00637320 00637342 S  mov dword ptr [r8], eax <- or rax, 0xffffffffffffffff        set
+  0063DE10 0063DEAA S  mov qword ptr [rbx], rax <- and eax, 1                       clear
+  006BA4D0 006BA4FC M  and dword ptr [rsi], 0x80000000                              clear
+  006BA4D0 006BA507 M? or dword ptr [rsi], edx                                      register source unresolved
+  006BA590 006BA5B2 M  and dword ptr [rdi], 0x80000000                              clear
+  006BA590 006BA5BD M? or dword ptr [rdi], edx                                      register source unresolved
+  006CD4C0 006CD4DC S  mov dword ptr [r8], eax <- or rax, 0xffffffffffffffff        set
+  00760700 00761499 M  or dword ptr [rcx], 0x1000000                                set
+  00760700 007614A1 M? or dword ptr [rcx], r12d                                     register source unresolved
+  007C1830 007C1FEE S  mov dword ptr [rbx], esi <- or esi, 0xffffffff               set
+  0080926C 00809282 M  and dword ptr [rbx], 0                                       clear
+  008092FC 00809317 M  or dword ptr [rbx], 0xffffffff                               set
+  0080C750 0080CA31 S  mov dword ptr [rcx], eax <- and eax, 1                       clear
+  00813380 008133BF S  mov qword ptr [rdi], rax <- or rax, 0xffffffffffffffff       set
+  0082F500 0082F56D M  and dword ptr [rcx], 0x3fff                                  clear
+  0082F500 0082F57D M? or dword ptr [rcx], eax                                      register source unresolved
+  0082FB30 0082FBBA M  and dword ptr [r8], 0x3fff                                   clear
+  0082FB30 0082FBCA M? or dword ptr [r8], eax                                       register source unresolved
+  00830540 0083065B M  and dword ptr [r8], 0x3fff                                   clear
+  00830540 0083066B M? or dword ptr [r8], eax                                       register source unresolved
+  00876870 0087688C S  mov dword ptr [r8], eax <- or rax, 0xffffffffffffffff        set
+  00892610 008927E5 S  mov dword ptr [rdi], edx <- or edx, 0xffffffff               set
+  00894850 00894A4C M  and dword ptr [rdi], 0x7fff                                  clear

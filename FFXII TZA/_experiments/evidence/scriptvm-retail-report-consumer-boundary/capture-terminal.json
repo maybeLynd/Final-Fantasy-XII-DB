@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\capture.py"
+  ],
+  "driver_sha256": "88c37ad59f23dc4eb7ac9ae3f81247c53746e751477925c42c2a2acc4dc1f2c1",
+  "returncode": 0,
+  "stdout": "RETAINED_ORIGINAL_TYPED_POP_AND_RETURN_CHAIN\n",
+  "stderr": "",
+  "terminal": true
+}

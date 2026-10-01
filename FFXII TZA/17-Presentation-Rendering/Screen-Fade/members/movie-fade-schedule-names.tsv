@@ -1,0 +1,50 @@
+id	movie	path_kind_0x1C_entry	webm_ships	row_bytes	note
+0	OPN	PS2Data\movie_finish\us\OPN.md	yes	00 00 00 00 00 00 00 00	all-zero
+1	NAL	PS2Data\movie_finish\us\NAL.md	yes	01 1e 1e 3c 3c 00 00 00	
+2	DLS	PS2Data\movie_finish\us\DLS.md	yes	02 1e 1e 3c 1e 00 00 00	
+3	RLV	PS2Data\movie_finish\us\RLV.md	yes	03 00 00 3c 1e 00 00 00	
+4	LVB	PS2Data\movie_finish\us\LVB.md	yes	04 1e 1e 00 0f 00 00 00	
+5	ARC	PS2Data\movie_finish\us\ARC.md	yes	05 1e 1e 3c 3c 00 00 00	
+6	ENS	PS2Data\movie_finish\us\ENS.md	yes	06 00 1e 3c 3c 00 00 00	
+7	LHO	PS2Data\movie_finish\us\LHO.md	yes	07 1e 1e 3c 3c 00 00 00	
+8	CLS	PS2Data\movie_finish\us\CLS.md	yes	08 1e 1e 3c 1e 00 00 00	
+9	LWG	PS2Data\movie_finish\us\LWG.md	yes	09 1e 1e 3c 3c 00 00 00	
+10	ALX	PS2Data\movie_finish\us\ALX.md	yes	0a 00 1e 00 0f 00 00 00	
+11	VAF	PS2Data\movie_finish\us\VAF.md	yes	0b 1e 1e 3c 3c 00 00 00	
+12	LVA	PS2Data\movie_finish\us\LVA.md	yes	0c 1e 1e 3c 1e 00 00 00	
+13	WEN	PS2Data\movie_finish\us\WEN.md	yes	0d 00 00 3c 3c 00 00 00	
+14	DRC	PS2Data\movie_finish\us\DRC.md	yes	0e 1e 1e 3c 1e 00 00 00	
+15	END	PS2Data\movie_finish\us\END.md	yes	0f 1e 1e 3c 5a 00 00 00	
+16	STR_STA	PS2Data\movie_finish\us\STR_STA.md	yes	10 1e 1e 3c 3c 00 00 00	
+17	DIS	PS2Data\movie_finish\us\DIS.md	yes	11 00 1e 3c 3c 00 00 01	
+18	RAR	PS2Data\movie_finish\us\RAR.md	yes	12 1e 1e 3c 3c 00 00 00	
+19	STM	PS2Data\movie_finish\us\STM.md	yes	13 00 0a 3c 3c 00 00 01	
+20	LRF	PS2Data\movie_finish\us\LRF.md	yes	14 00 0f 3c 1e 00 00 00	
+21	EST	PS2Data\movie_finish\us\EST.md	yes	15 1e 1e 3c 3c 00 00 01	
+22	BAR	PS2Data\movie_finish\us\BAR.md	yes	16 1e 1e 3c 3c 00 00 00	
+23	ESC	PS2Data\movie_finish\us\ESC.md	yes	17 00 1e 3c 1e 00 00 00	
+24	BAH	PS2Data\movie_finish\us\BAH.md	yes	18 00 00 3c 3c 00 00 00	
+25	EPL	PS2Data\movie_finish\us\EPL.md	yes	19 1e 0f cd 96 00 00 00	
+26	MEM	PS2Data\movie_finish\us\MEM.md	yes	1a 00 3c 3c 3c 00 00 03	
+27	VAD	PS2Data\movie_finish\us\VAD.md	yes	1b 00 1e 3c 1e 00 00 00	
+28	CHV	PS2Data\movie_finish\us\CHV.md	yes	1c 00 00 3c 3c 00 00 00	
+29	DED	PS2Data\movie_finish\us\DED.md	yes	1d 00 00 3c 3c 00 00 00	
+30	VNP	PS2Data\movie_finish\us\VNP.md	yes	1e 1e 1e 3c 3c 00 00 00	
+31	SCB	PS2Data\movie_finish\us\SCB.md	yes	1f 00 00 3c 1e 00 00 00	
+32	WAR	PS2Data\movie_finish\us\WAR.md	yes	20 00 00 00 00 00 00 00	all-zero
+33	BLU	PS2Data\movie_finish\in\BLU.md	yes	21 1e 1e 3c 1e 00 00 00	
+34	BLB	PS2Data\movie_finish\in\BLB.md	yes	22 1e 1e 3c 3c 00 00 00	
+35	GRV	PS2Data\movie_finish\in\GRV.md	yes	23 1e 3c 3c 3c 00 00 03	
+36	RBS	PS2Data\movie_finish\in\RBS.md	yes	24 00 1e 00 00 00 00 00	
+37	DLB	PS2Data\movie_finish\us\DLB.md	no	25 00 00 00 00 00 00 00	all-zero
+38	-	NULL	no	26 00 00 00 00 00 00 00	all-zero
+39	-	NULL	no	27 00 00 00 00 00 00 00	all-zero
+40	-	NULL	no	28 00 00 00 00 00 00 00	all-zero
+41	OPD	PS2Data\movie_finish\jp\OPD.md	no	29 00 00 00 00 00 00 00	all-zero
+42	STF	PS2Data\movie_finish\us\STF.md	yes	2a 00 1e 00 0f 00 00 00	
+43	IVT	PS2Data\movie_finish\us\IVT.md	yes	2b 00 06 00 06 00 00 03	
+44	SE1	PS2Data\movie_finish\in\SE1.md	no	2c 00 00 00 00 00 00 00	all-zero
+45	SE2	PS2Data\movie_finish\in\SE2.md	no	2d 00 00 00 00 00 00 00	all-zero
+46	-	NULL	no	2e 00 00 00 00 00 00 00	all-zero
+47	BD2	PS2Data\movie_finish\in\BD2.md	no	2f 00 00 00 00 00 00 00	all-zero
+48	ANX	PS2Data\movie_finish\in\ANX.md	yes	30 00 1e 00 0f 00 00 00	

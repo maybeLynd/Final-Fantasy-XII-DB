@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-PUB-STRUCK-VERDICT-LEAD-READER",
+ "agent": "OPUS",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ],
+ "note": "claiming @publication for the strikethrough instrument survey"
+}

@@ -1,0 +1,51 @@
+{
+  "finished": true,
+  "controls": [
+    {
+      "name": "nonzero-with-good-json",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py",
+        "--run",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\reducer-controls\\nonzero-with-good-json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 52, in <module>\n    result=reduce(a.run or w/'run-01',w/'capture.py')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 27, in reduce\n    assert c['returncode']==0 and c['stderr']=='' and c['parse_error'] is None, 'UPSTREAM_FAILED'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: UPSTREAM_FAILED\n",
+      "expected_refusal": "UPSTREAM_FAILED",
+      "terminal": true
+    },
+    {
+      "name": "empty-cases",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py",
+        "--run",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\reducer-controls\\empty-cases"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 52, in <module>\n    result=reduce(a.run or w/'run-01',w/'capture.py')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 23, in reduce\n    cases=r['cases'];assert len(cases)==13 and {c['name'] for c in cases}==set(expected), 'MISSING_OR_DUPLICATE_CASE'\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_OR_DUPLICATE_CASE\n",
+      "expected_refusal": "MISSING_OR_DUPLICATE_CASE",
+      "terminal": true
+    },
+    {
+      "name": "wrong-route-owner",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py",
+        "--run",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\reducer-controls\\wrong-route-owner"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 52, in <module>\n    result=reduce(a.run or w/'run-01',w/'capture.py')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 43, in reduce\n    assert op['task']['assigned_to']==owner and op['task']['id']==row['detail'], 'WRONG_ROUTE_OWNER'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: WRONG_ROUTE_OWNER\n",
+      "expected_refusal": "WRONG_ROUTE_OWNER",
+      "terminal": true
+    }
+  ],
+  "purpose": "producer reducer checks, not independent acceptance or original writer fault controls"
+}

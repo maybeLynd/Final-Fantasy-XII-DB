@@ -1,0 +1,8 @@
+SURVIVES  X0  [101, 89, 41, 86]
+SURVIVES  X1  tag 0 and '@ALL' skip the tag test, a NULL name returns 1; immediate 0x4C4C4140 sites in .text ['00409C34']
+SURVIVES  X2  eight dword compares, +0x10..+0x2C against [r8+0..0x1C]
+SURVIVES  X3  32-bit add then sign-extend in both
+SURVIVES  X4  unsupported mode -> base 0; no test between the base and the add in either resolver
+SURVIVES  X5  refresh via +0x30 into +0x38 only while 02B62E10 != 0; mode 0 -> jmp 0x51ee00
+SURVIVES  X6  the offset output is -1 on no match; the pointer finder returns NULL for it
+FAILS 0

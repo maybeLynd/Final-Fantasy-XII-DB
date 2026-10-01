@@ -1,0 +1,9 @@
+{
+  "tool": "exec_command",
+  "chunk_id": "7fc1f3",
+  "cmd": ".\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe -B Database/Tools/work/ASTRA/poison-q6-independent/capture.py",
+  "exit_code": 0,
+  "output": "ACCEPT_SCOPED_ORIGINAL_BUILDER_Q6_AND_CRITICAL_SELECTION None",
+  "terminal": true,
+  "source": "actual terminal tool result, no recapture"
+}

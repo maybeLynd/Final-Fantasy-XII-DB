@@ -1,0 +1,8 @@
+SURVIVES  A0  sizes all seven as cited; the chain command -> builder -> take, door -> clamp -> consumer
+SURVIVES  A1  motion-section gate and word +2; the zeroed 64-byte view; the x / z sameness exit; +0x180 turn; +0x2AF; queued on +0x550
+SURVIVES  A2  128 x 0x60 once; serial and two switches cleared; the request copy, the sign pair, bytes +1 / +2, counter from -1
+SURVIVES  A3  '@FRM'; body = entry + 0x30; table = body + dword [entry + 0x38] = body + dword [body + 8]
+SURVIVES  A4  counter vs duration x [01DFE0B4] with unlink; move window vs moveFrames x the word; curve by counter / word; mode 0x16 from +0x10
+SURVIVES  A5  |move| (sqrt), the direction normalised, scaled by min(maxStep, |move|)
+SURVIVES  A6  (REFUTES 'either switch') the take tests 02B3F53C and the list's +0x28 / +0; 02B3F540 gates the consumer instead
+FAILS 0

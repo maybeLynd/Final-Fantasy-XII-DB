@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "phase": "DATABASE",
+  "revision": 3,
+  "agents": {
+    "SWE2-ORACLE": {
+      "agent_id": "SWE2-ORACLE",
+      "primary_specialty": "SWE2-ORACLE",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-AUDIT-SPEC": {
+      "agent_id": "SWE2-AUDIT-SPEC",
+      "primary_specialty": "SWE2-AUDIT-SPEC",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "OPUS": {
+      "agent_id": "OPUS",
+      "primary_specialty": "OPUS",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-CONTRACT": {
+      "agent_id": "SWE2-CONTRACT",
+      "primary_specialty": "SWE2-CONTRACT",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "ASTRA": {
+      "agent_id": "ASTRA",
+      "primary_specialty": "ASTRA",
+      "last_checkpoint": "2026-10-01T05:05:18+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-AUDIT-SEM": {
+      "agent_id": "SWE2-AUDIT-SEM",
+      "primary_specialty": "SWE2-AUDIT-SEM",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-DATA": {
+      "agent_id": "SWE2-DATA",
+      "primary_specialty": "SWE2-DATA",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-FRONTIER": {
+      "agent_id": "SWE2-FRONTIER",
+      "primary_specialty": "SWE2-FRONTIER",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-EC7": {
+      "agent_id": "SWE2-EC7",
+      "primary_specialty": "SWE2-EC7",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "FABLE": {
+      "agent_id": "FABLE",
+      "primary_specialty": "FABLE",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-STRUCT": {
+      "agent_id": "SWE2-STRUCT",
+      "primary_specialty": "SWE2-STRUCT",
+      "last_checkpoint": "2026-10-01T05:05:17+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    }
+  },
+  "tasks": [
+    {
+      "id": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+      "kind": "research",
+      "priority": "P1",
+      "target": "isolated requested finish gate",
+      "scope": "disposable original supported CLI",
+      "completion": "observed exact request outcome",
+      "dependencies": [],
+      "resources": [
+        {
+          "key": "fixture:a16/accept-with-narrowing"
+        }
+      ],
+      "reviews": {
+        "author": "OPUS",
+        "commit": "ed127d443",
+        "record": "fixture:assigned-repair",
+        "incorporation_owner": "FABLE"
+      },
+      "agent": "ASTRA",
+      "status": "DONE",
+      "started_at": "2026-10-01T05:05:17+00:00",
+      "updated_at": "2026-10-01T05:05:18+00:00",
+      "checkpoint": "private requirement control",
+      "result_refs": [
+        "receipt:fixture",
+        "verdict:ACCEPT-WITH-NARROWING"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-01T05:05:17+00:00",
+      "agent": "OPUS",
+      "operation": {
+        "action": "add",
+        "task": {
+          "id": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+          "kind": "research",
+          "priority": "P1",
+          "target": "isolated requested finish gate",
+          "scope": "disposable original supported CLI",
+          "completion": "observed exact request outcome",
+          "dependencies": [],
+          "resources": [
+            {
+              "key": "fixture:a16/accept-with-narrowing"
+            }
+          ],
+          "reviews": {
+            "author": "OPUS",
+            "commit": "ed127d443",
+            "record": "fixture:assigned-repair",
+            "incorporation_owner": "FABLE"
+          }
+        }
+      },
+      "session": "astra-a16-private"
+    },
+    {
+      "at": "2026-10-01T05:05:17+00:00",
+      "agent": "ASTRA",
+      "operation": {
+        "action": "claim",
+        "task": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+        "note": "private fixture"
+      },
+      "session": "astra-a16-private"
+    },
+    {
+      "at": "2026-10-01T05:05:18+00:00",
+      "agent": "ASTRA",
+      "operation": {
+        "action": "finish",
+        "task": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+        "note": "private requirement control",
+        "result_refs": [
+          "receipt:fixture",
+          "verdict:ACCEPT-WITH-NARROWING"
+        ]
+      },
+      "session": "astra-a16-private"
+    }
+  ]
+}

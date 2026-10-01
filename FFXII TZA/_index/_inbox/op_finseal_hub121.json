@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-121",
+ "result_refs": [
+  "commit:7305d71c3"
+ ],
+ "note": "batch-121 seal: board state + patched finpub op committed (7305d71c3)"
+}

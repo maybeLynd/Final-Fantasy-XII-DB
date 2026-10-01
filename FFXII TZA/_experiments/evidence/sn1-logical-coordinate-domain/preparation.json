@@ -1,0 +1,183 @@
+{
+  "status": "PREPARATION_ONLY_NOT_VALIDATED_NO_ACCEPTED_NEGATIVE",
+  "method": "A original immutable60 inputs/parser and conditional63 raw terminal-backslash fold, no compiler/VM/native/game",
+  "parent": "Database/FFXII TZA/_experiments/evidence/sn1-q0-source-coordinate-domain",
+  "parent_manifest_sha256": "bc4b00822d6828bc5cc9ce012951296111e99902c439bf3e556da2148ca04449",
+  "parent_raw_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "source_blocks": [
+    {
+      "module": "ctrl",
+      "block": 0,
+      "physical": 977,
+      "logical": 958,
+      "raw_terminal_backslash_count": 19,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "ctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "btlctrl",
+      "block": 0,
+      "physical": 2507,
+      "logical": 2507,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "btlctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "btlctrl",
+      "block": 2,
+      "physical": 558,
+      "logical": 558,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "evctrl",
+      "block": 0,
+      "physical": 2456,
+      "logical": 1912,
+      "raw_terminal_backslash_count": 544,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "evctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "mapctrl",
+      "block": 0,
+      "physical": 2768,
+      "logical": 2766,
+      "raw_terminal_backslash_count": 2,
+      "non_ascii_terminal5c": [
+        976,
+        1186
+      ],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "mapctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    },
+    {
+      "module": "mapctrl",
+      "block": 2,
+      "physical": 557,
+      "logical": 557,
+      "raw_terminal_backslash_count": 0,
+      "non_ascii_terminal5c": [],
+      "open_terminal_continuation": false
+    }
+  ],
+  "counts": {
+    "conditional_logical_in_range": 53719,
+    "pad_original_all_zero": 59
+  },
+  "new_logical_missing": [],
+  "known_physical_missing": [
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3978,
+      "offset": 63704,
+      "record_hex": "2f020201",
+      "line": 559,
+      "block": 2,
+      "flag": 1,
+      "logical_count": 558,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3979,
+      "offset": 63708,
+      "record_hex": "2f020200",
+      "line": 559,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 558,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3980,
+      "offset": 63712,
+      "record_hex": "2f020200",
+      "line": 559,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 558,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5201,
+      "offset": 69252,
+      "record_hex": "2e020201",
+      "line": 558,
+      "block": 2,
+      "flag": 1,
+      "logical_count": 557,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5202,
+      "offset": 69256,
+      "record_hex": "2e020200",
+      "line": 558,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 557,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5203,
+      "offset": 69260,
+      "record_hex": "2e020200",
+      "line": 558,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 557,
+      "old_physical_category": "outside-both-index-conventions"
+    }
+  ],
+  "next": "Build exact positive/negative actual record controls at logicalL/logicalL+1 with physicalL larger; verify alias spans/terminal continuation/encoding limits and actual default before treating absence as evidence. No repeated four call tests, no peer source lookup edit.",
+  "limits": "Conditional domain calculation only, not universal compiler rule or complete source attribution. Preparation has no detection control yet and cannot pass/close the claim. Actual original input hashes checked; PC OFF/S19 parked/full L1+L2 NOT_MET."
+}

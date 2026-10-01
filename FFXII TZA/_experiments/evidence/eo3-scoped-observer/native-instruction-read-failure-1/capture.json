@@ -1,0 +1,55 @@
+{
+  "status": "CONTROL_ABORTED",
+  "hits": [
+    {
+      "unix": 1790000501.0393212,
+      "tid": 38820,
+      "rip": 1675294671118,
+      "rsp": 462714430352,
+      "rcx": 1675294605312,
+      "rdx": 0,
+      "r8": 0,
+      "r9": 1152921504606846960,
+      "rdi": 1675294608128,
+      "r10": 1675294607872,
+      "rbx": 1675294605312,
+      "rax": 1234605616436508552
+    }
+  ],
+  "observations": [],
+  "arming": [
+    [
+      38820,
+      true
+    ],
+    [
+      56264,
+      true
+    ],
+    [
+      54964,
+      true
+    ],
+    [
+      2476,
+      true
+    ],
+    [
+      35080,
+      true
+    ]
+  ],
+  "errors": [
+    "observer failed: OSError: intentional NOACCESS read control; no resume permitted"
+  ],
+  "cleanup": null,
+  "detach": true,
+  "abort": {
+    "pending_event_serviced": true,
+    "terminal": true,
+    "exit_event": true,
+    "wait_result": 0,
+    "exit_code": 59907
+  },
+  "handle_closed": true
+}

@@ -1,0 +1,274 @@
+{
+  "method": "A exact retained original evctrl triple and unchanged OPUS source parser/61 directory validation; admitted verb catalog is existing ID/name premise, no new shipping dispatcher census or code execution",
+  "question": "Do two named jump candidates and nearby original CALLs map to source through a backslash-folded logical coordinate, rather than direct physical line?",
+  "hypotheses": [
+    "Same-index q1/jump named candidates have meaningful source coordinates after continuation folding",
+    "Names reordered/deleted or artifacts mismatched",
+    "Another compiler/source coordinate rule; constant shift/nearby source alone not proof"
+  ],
+  "parent": "Database/FFXII TZA/_experiments/evidence/sn1-named-entry-line-convention",
+  "parent_manifest_sha256": "37d01ed6d18dd9b00110537d43f0f546e0d064ae6d24a5a8351a385bfb9ea5b3",
+  "reference_files": [
+    {
+      "module": "evctrl",
+      "extension": "dbg",
+      "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.dbg",
+      "bytes": 126112,
+      "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06",
+      "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+    },
+    {
+      "module": "evctrl",
+      "extension": "sbn",
+      "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.sbn",
+      "bytes": 57816,
+      "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5",
+      "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+    },
+    {
+      "module": "evctrl",
+      "extension": "ebp",
+      "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.ebp",
+      "bytes": 38720,
+      "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02",
+      "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+    }
+  ],
+  "parser_sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48",
+  "catalog_path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv",
+  "catalog_sha256": "2ca1ea5dfd74b87cd5c37f60a2884b8da6b23bfaf9d13929ed14faaa8dcd7f7e",
+  "admitted_catalog_rows": [
+    {
+      "call_id": "0013",
+      "family": "0",
+      "command": "013",
+      "verb": "askpos",
+      "cat_args": "3",
+      "cat_ret": "False",
+      "cat_act": "False",
+      "cat_known": "True",
+      "param_types": "0x13,0x13,0x12",
+      "shape": "instantaneous",
+      "begin": "",
+      "poll": "",
+      "slot2": "",
+      "result": "0034DD20",
+      "arg_col": "result",
+      "arg_handler": "0034DD20",
+      "arg_handler_name": "FUN_0034dd20",
+      "owner": "Script_VM_Native_Bridge",
+      "pops_int": "3",
+      "pops_float": "0",
+      "pushes": "0",
+      "result_writes": "0",
+      "guard": "",
+      "net_or_sums": "3",
+      "arity_status": "CONFIRMED",
+      "arity": "3"
+    },
+    {
+      "call_id": "001A",
+      "family": "0",
+      "command": "01A",
+      "verb": "mesopenspeed",
+      "cat_args": "2",
+      "cat_ret": "False",
+      "cat_act": "False",
+      "cat_known": "True",
+      "param_types": "0x10,0x10",
+      "shape": "instantaneous",
+      "begin": "",
+      "poll": "",
+      "slot2": "",
+      "result": "00350B50",
+      "arg_col": "result",
+      "arg_handler": "00350B50",
+      "arg_handler_name": "FUN_00350b50",
+      "owner": "Script_VM_Native_Bridge",
+      "pops_int": "2",
+      "pops_float": "0",
+      "pushes": "0",
+      "result_writes": "0",
+      "guard": "",
+      "net_or_sums": "2",
+      "arity_status": "CONFIRMED",
+      "arity": "2"
+    }
+  ],
+  "bind": {
+    "module": "evctrl",
+    "scope": 1,
+    "entry_file_offset": 21156,
+    "entry_hex": "d80000000000ff009720000024080000300c0000440c0000c00e00002800000000000100000000000000000000000000",
+    "base": 128,
+    "section_end": 22320,
+    "directory": 21104,
+    "name_pool": 21920,
+    "jump_table": 3268,
+    "q0": 16464,
+    "q1": 41568,
+    "q2": 42212,
+    "q3": 42484,
+    "q1_count": 160,
+    "jt_count": 158,
+    "code_start": 8471,
+    "code_bytes": 6274,
+    "validated_code_bytes": 6130,
+    "shared_tail_exception": true
+  },
+  "named_candidates": [
+    {
+      "module": "evctrl",
+      "scope": 1,
+      "name": "MENU_TOP",
+      "jump_index": 0,
+      "jump_pc": 16,
+      "jump_field_offset": 3272,
+      "dbg_name_offset": 120014,
+      "q0_offset": 16528,
+      "record_hex": "a1010001",
+      "line": 417,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 416,
+          "source": {
+            "offset": 10731,
+            "hex": "0965765f67726d5f62303238302c5c",
+            "text": "\tev_grm_b0280,\\"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 417,
+          "source": {
+            "offset": 10748,
+            "hex": "09302c5c",
+            "text": "\t0,\\"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 958,
+          "source": {
+            "offset": 18527,
+            "hex": "094d454e555f544f503a",
+            "text": "\tMENU_TOP:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1104,
+          "source": {
+            "offset": 22050,
+            "hex": "2f2f0909676f746f204d454e555f544f50",
+            "text": "//\t\tgoto MENU_TOP"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1705,
+          "source": {
+            "offset": 41304,
+            "hex": "09676f746f204d454e555f544f50",
+            "text": "\tgoto MENU_TOP"
+          }
+        }
+      ]
+    },
+    {
+      "module": "evctrl",
+      "scope": 1,
+      "name": "summon",
+      "jump_index": 76,
+      "jump_pc": 3230,
+      "jump_field_offset": 3576,
+      "dbg_name_offset": 121022,
+      "q0_offset": 29384,
+      "record_hex": "c4020001",
+      "line": 708,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 707,
+          "source": {
+            "offset": 13105,
+            "hex": "09755f63686172206d656e755f666c67",
+            "text": "\tu_char menu_flg"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 708,
+          "source": {
+            "offset": 13123,
+            "hex": "",
+            "text": ""
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 1250,
+          "source": {
+            "offset": 25622,
+            "hex": "09090973756d6d6f6e3a",
+            "text": "\t\t\tsummon:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1267,
+          "source": {
+            "offset": 26073,
+            "hex": "0909090909676f746f2073756d6d6f6e3b",
+            "text": "\t\t\t\t\tgoto summon;"
+          }
+        }
+      ]
+    }
+  ],
+  "feasibility_sha256": "c4473fe1736c175f519397b59d2d1dfafb46eb6b71aa7e6404ac44ccfe8d9ccc",
+  "cases": [
+    {
+      "pc": 16,
+      "logical_line": 417,
+      "physical_one_based_line": 961,
+      "call_id": 19,
+      "verb": "askpos",
+      "label": "MENU_TOP"
+    },
+    {
+      "pc": 28,
+      "logical_line": 418,
+      "physical_one_based_line": 962,
+      "call_id": 26,
+      "verb": "mesopenspeed",
+      "label": "MENU_TOP"
+    },
+    {
+      "pc": 3230,
+      "logical_line": 708,
+      "physical_one_based_line": 1252,
+      "call_id": 19,
+      "verb": "askpos",
+      "label": "summon"
+    },
+    {
+      "pc": 3242,
+      "logical_line": 709,
+      "physical_one_based_line": 1253,
+      "call_id": 26,
+      "verb": "mesopenspeed",
+      "label": "summon"
+    }
+  ],
+  "limits": "Four static calls/two named same-index candidates only, not every160-name binding or cause of count mismatch; folding is a discriminating source interpretation, not execution of original compiler or universally proved writer convention. Physical source range and virtual logical addressability are distinct. Variables physical operands/source spellings separate; no new descriptor-name identity, scheduling/native effect/live loading/SN1 X claim. Do not decode144B debug shared tail as original body. PC OFF/S19 parked/full L1+L2 NOT_MET."
+}

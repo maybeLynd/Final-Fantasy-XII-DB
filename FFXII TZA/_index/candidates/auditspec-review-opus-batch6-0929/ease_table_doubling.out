@@ -1,0 +1,65 @@
+0046FBF0  48895c2408                     mov qword ptr [rsp + 8], rbx
+0046FBF5  4889742410                     mov qword ptr [rsp + 0x10], rsi
+0046FBFA  57                             push rdi
+0046FBFB  4883ec20                       sub rsp, 0x20
+0046FBFF  8b052b09ab01                   mov eax, dword ptr [rip + 0x1ab092b]  ; 01F20530  .data  qword=0000001500000032
+0046FC05  488d0d3409ab01                 lea rcx, [rip + 0x1ab0934]  ; 01F20540  .data  qword=3D70DD833D70DD83
+0046FC0C  41b803000000                   mov r8d, 3
+0046FC12  8d1400                         lea edx, [rax + rax]
+0046FC15  8b051909ab01                   mov eax, dword ptr [rip + 0x1ab0919]  ; 01F20534  .data  qword=0000003C00000015
+0046FC1B  03c0                           add eax, eax
+0046FC1D  89150d09ab01                   mov dword ptr [rip + 0x1ab090d], edx  ; 01F20530  .data  qword=0000001500000032
+0046FC23  89050b09ab01                   mov dword ptr [rip + 0x1ab090b], eax  ; 01F20534  .data  qword=0000003C00000015
+0046FC29  8b050909ab01                   mov eax, dword ptr [rip + 0x1ab0909]  ; 01F20538  .data  qword=0000003C0000003C
+0046FC2F  03c0                           add eax, eax
+0046FC31  89050109ab01                   mov dword ptr [rip + 0x1ab0901], eax  ; 01F20538  .data  qword=0000003C0000003C
+0046FC37  8b05ff08ab01                   mov eax, dword ptr [rip + 0x1ab08ff]  ; 01F2053C  .data  qword=3D70DD830000003C
+0046FC3D  03c0                           add eax, eax
+0046FC3F  8905f708ab01                   mov dword ptr [rip + 0x1ab08f7], eax  ; 01F2053C  .data  qword=3D70DD830000003C
+0046FC45  8b054d0eab01                   mov eax, dword ptr [rip + 0x1ab0e4d]  ; 01F20A98  .data  qword=000000000000003C
+0046FC4B  03c0                           add eax, eax
+0046FC4D  8905450eab01                   mov dword ptr [rip + 0x1ab0e45], eax  ; 01F20A98  .data  qword=000000000000003C
+0046FC53  e888e9ecff                     call 0x33e5e0  ; -> 0033E5E0
+0046FC58  8b15d608ab01                   mov edx, dword ptr [rip + 0x1ab08d6]  ; 01F20534  .data  qword=0000003C00000015
+0046FC5E  488d0d8b0dab01                 lea rcx, [rip + 0x1ab0d8b]  ; 01F209F0  .data  qword=3F0000003F400000
+0046FC65  41b801000000                   mov r8d, 1
+0046FC6B  e870e9ecff                     call 0x33e5e0  ; -> 0033E5E0
+0046FC70  8b15c208ab01                   mov edx, dword ptr [rip + 0x1ab08c2]  ; 01F20538  .data  qword=0000003C0000003C
+0046FC76  488d0d230eab01                 lea rcx, [rip + 0x1ab0e23]  ; 01F20AA0  .data  qword=3C3302F73B3380CB
+0046FC7D  41b801000000                   mov r8d, 1
+0046FC83  e858e9ecff                     call 0x33e5e0  ; -> 0033E5E0
+0046FC88  8b15ae08ab01                   mov edx, dword ptr [rip + 0x1ab08ae]  ; 01F2053C  .data  qword=3D70DD830000003C
+0046FC8E  488d0deb0fab01                 lea rcx, [rip + 0x1ab0feb]  ; 01F20C80  .data  qword=3CB8FC353C1F9C14
+0046FC95  41b801000000                   mov r8d, 1
+0046FC9B  e840e9ecff                     call 0x33e5e0  ; -> 0033E5E0
+0046FCA0  488d1db911ab01                 lea rbx, [rip + 0x1ab11b9]  ; 01F20E60  .data  qword=3B3F6E3F3A40F020
+0046FCA7  be03000000                     mov esi, 3
+0046FCAC  0f1f4000                       nop dword ptr [rax]
+
+## callers
+target 0046FBF0: 1 raw rel32 sites
+  0033F024  call 0x46fbf0
+  absolute 8-byte pointers in file: 0
+target 0033F020: 1 raw rel32 sites
+  001EDDFC  call 0x33f020
+  absolute 8-byte pointers in file: 0
+## cells
+target 01F2053C: 4 rip-relative sites
+  0046FAA0  mov r8d, dword ptr [rip + 0x1ab0a95]
+  0046FC37  mov eax, dword ptr [rip + 0x1ab08ff]
+  0046FC3F  mov dword ptr [rip + 0x1ab08f7], eax
+  0046FC88  mov edx, dword ptr [rip + 0x1ab08ae]
+  image-base-relative disp32 byte-pattern occurrences: 0
+target 01F20538: 4 rip-relative sites
+  0046FBB0  mov r8d, dword ptr [rip + 0x1ab0981]
+  0046FC29  mov eax, dword ptr [rip + 0x1ab0909]
+  0046FC31  mov dword ptr [rip + 0x1ab0901], eax
+  0046FC70  mov edx, dword ptr [rip + 0x1ab08c2]
+  image-base-relative disp32 byte-pattern occurrences: 0
+0033E603  488bf1                         mov rsi, rcx
+0033E62B  e88a385200                     call 0x861eba  ; -> 00861EBA
+0033E6EF  f30f110c8e                     movss dword ptr [rsi + rcx*4], xmm1
+0033E733  f30f110c8e                     movss dword ptr [rsi + rcx*4], xmm1
+0033E76C  f30f112c86                     movss dword ptr [rsi + rax*4], xmm5
+0033E79D  f30f111c8e                     movss dword ptr [rsi + rcx*4], xmm3
+0033E811  f30f110486                     movss dword ptr [rsi + rax*4], xmm0

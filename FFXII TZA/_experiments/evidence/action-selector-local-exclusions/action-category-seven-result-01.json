@@ -1,0 +1,2206 @@
+{
+  "question": "Does the original category availability guard exclude ordinary candidate action ids511..534, and under which raw actor premise?",
+  "hypotheses": [
+    "all actor kinds unconditionally exclude these candidates",
+    "raw+5==0 excludes category7, while nonzero raw+5 bypasses this local guard"
+  ],
+  "method": "A verified complete guard source and immutable archive-matched row data; finite byte-domain reasoning; no native execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "7e03a8a0c72ceee022e3d9bb8ad93daa25ce06b5e361d3cf850b517ac1e4988e",
+  "inputs": [
+    {
+      "path": "action-availability-gates-raw-01.json",
+      "sha256": "f716b46195813971da4b262c79ef20b13bc2c5a4683d4af7df55904c8c764f1d",
+      "driver": "capture-action-availability-gates.py",
+      "driver_sha256": "623010552ca539f1086dd8da7c314a2ed04eb2992b0979894dfd89ad3a4200b6"
+    },
+    {
+      "path": "spattack-leaves-and-guard-raw-01.json",
+      "sha256": "8c07f2f5c89d0b8b025da5b3d1690345b469899f84d343e3ef58bd19f8d77530",
+      "driver": "capture-spattack-leaves-and-guard.py",
+      "driver_sha256": "ad620f58068354192b1297fa388c83b09d51f88eefe6c2079baff7a5418cba5f"
+    }
+  ],
+  "table_manifest_sha256": "2b1f9a8014f83a524465b4fff974c7beeca7869717ec26366e17ee7f913e019b",
+  "table_receipt_sha256": "0c7cbbebc515e2a9be7db0d10657c468f944222dd01dd61e391f475c98063dd3",
+  "rows": [
+    {
+      "language": "ch",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "cn",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "in",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "kr",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    },
+    {
+      "language": "us",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "rows": [
+        {
+          "id": 511,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 512,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 513,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 514,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 515,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 516,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 517,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 518,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 519,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 520,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 521,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 522,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 523,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 524,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 525,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 526,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 527,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 528,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 529,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 530,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 531,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 532,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 533,
+          "category": 7,
+          "selector": 65535
+        },
+        {
+          "id": 534,
+          "category": 7,
+          "selector": 65535
+        }
+      ]
+    }
+  ],
+  "raw5_domain": [
+    {
+      "raw5": 0,
+      "category_result": 5
+    },
+    {
+      "raw5": 1,
+      "category_result": 0
+    },
+    {
+      "raw5": 2,
+      "category_result": 0
+    },
+    {
+      "raw5": 3,
+      "category_result": 0
+    },
+    {
+      "raw5": 4,
+      "category_result": 0
+    },
+    {
+      "raw5": 5,
+      "category_result": 0
+    },
+    {
+      "raw5": 6,
+      "category_result": 0
+    },
+    {
+      "raw5": 7,
+      "category_result": 0
+    },
+    {
+      "raw5": 8,
+      "category_result": 0
+    },
+    {
+      "raw5": 9,
+      "category_result": 0
+    },
+    {
+      "raw5": 10,
+      "category_result": 0
+    },
+    {
+      "raw5": 11,
+      "category_result": 0
+    },
+    {
+      "raw5": 12,
+      "category_result": 0
+    },
+    {
+      "raw5": 13,
+      "category_result": 0
+    },
+    {
+      "raw5": 14,
+      "category_result": 0
+    },
+    {
+      "raw5": 15,
+      "category_result": 0
+    },
+    {
+      "raw5": 16,
+      "category_result": 0
+    },
+    {
+      "raw5": 17,
+      "category_result": 0
+    },
+    {
+      "raw5": 18,
+      "category_result": 0
+    },
+    {
+      "raw5": 19,
+      "category_result": 0
+    },
+    {
+      "raw5": 20,
+      "category_result": 0
+    },
+    {
+      "raw5": 21,
+      "category_result": 0
+    },
+    {
+      "raw5": 22,
+      "category_result": 0
+    },
+    {
+      "raw5": 23,
+      "category_result": 0
+    },
+    {
+      "raw5": 24,
+      "category_result": 0
+    },
+    {
+      "raw5": 25,
+      "category_result": 0
+    },
+    {
+      "raw5": 26,
+      "category_result": 0
+    },
+    {
+      "raw5": 27,
+      "category_result": 0
+    },
+    {
+      "raw5": 28,
+      "category_result": 0
+    },
+    {
+      "raw5": 29,
+      "category_result": 0
+    },
+    {
+      "raw5": 30,
+      "category_result": 0
+    },
+    {
+      "raw5": 31,
+      "category_result": 0
+    },
+    {
+      "raw5": 32,
+      "category_result": 0
+    },
+    {
+      "raw5": 33,
+      "category_result": 0
+    },
+    {
+      "raw5": 34,
+      "category_result": 0
+    },
+    {
+      "raw5": 35,
+      "category_result": 0
+    },
+    {
+      "raw5": 36,
+      "category_result": 0
+    },
+    {
+      "raw5": 37,
+      "category_result": 0
+    },
+    {
+      "raw5": 38,
+      "category_result": 0
+    },
+    {
+      "raw5": 39,
+      "category_result": 0
+    },
+    {
+      "raw5": 40,
+      "category_result": 0
+    },
+    {
+      "raw5": 41,
+      "category_result": 0
+    },
+    {
+      "raw5": 42,
+      "category_result": 0
+    },
+    {
+      "raw5": 43,
+      "category_result": 0
+    },
+    {
+      "raw5": 44,
+      "category_result": 0
+    },
+    {
+      "raw5": 45,
+      "category_result": 0
+    },
+    {
+      "raw5": 46,
+      "category_result": 0
+    },
+    {
+      "raw5": 47,
+      "category_result": 0
+    },
+    {
+      "raw5": 48,
+      "category_result": 0
+    },
+    {
+      "raw5": 49,
+      "category_result": 0
+    },
+    {
+      "raw5": 50,
+      "category_result": 0
+    },
+    {
+      "raw5": 51,
+      "category_result": 0
+    },
+    {
+      "raw5": 52,
+      "category_result": 0
+    },
+    {
+      "raw5": 53,
+      "category_result": 0
+    },
+    {
+      "raw5": 54,
+      "category_result": 0
+    },
+    {
+      "raw5": 55,
+      "category_result": 0
+    },
+    {
+      "raw5": 56,
+      "category_result": 0
+    },
+    {
+      "raw5": 57,
+      "category_result": 0
+    },
+    {
+      "raw5": 58,
+      "category_result": 0
+    },
+    {
+      "raw5": 59,
+      "category_result": 0
+    },
+    {
+      "raw5": 60,
+      "category_result": 0
+    },
+    {
+      "raw5": 61,
+      "category_result": 0
+    },
+    {
+      "raw5": 62,
+      "category_result": 0
+    },
+    {
+      "raw5": 63,
+      "category_result": 0
+    },
+    {
+      "raw5": 64,
+      "category_result": 0
+    },
+    {
+      "raw5": 65,
+      "category_result": 0
+    },
+    {
+      "raw5": 66,
+      "category_result": 0
+    },
+    {
+      "raw5": 67,
+      "category_result": 0
+    },
+    {
+      "raw5": 68,
+      "category_result": 0
+    },
+    {
+      "raw5": 69,
+      "category_result": 0
+    },
+    {
+      "raw5": 70,
+      "category_result": 0
+    },
+    {
+      "raw5": 71,
+      "category_result": 0
+    },
+    {
+      "raw5": 72,
+      "category_result": 0
+    },
+    {
+      "raw5": 73,
+      "category_result": 0
+    },
+    {
+      "raw5": 74,
+      "category_result": 0
+    },
+    {
+      "raw5": 75,
+      "category_result": 0
+    },
+    {
+      "raw5": 76,
+      "category_result": 0
+    },
+    {
+      "raw5": 77,
+      "category_result": 0
+    },
+    {
+      "raw5": 78,
+      "category_result": 0
+    },
+    {
+      "raw5": 79,
+      "category_result": 0
+    },
+    {
+      "raw5": 80,
+      "category_result": 0
+    },
+    {
+      "raw5": 81,
+      "category_result": 0
+    },
+    {
+      "raw5": 82,
+      "category_result": 0
+    },
+    {
+      "raw5": 83,
+      "category_result": 0
+    },
+    {
+      "raw5": 84,
+      "category_result": 0
+    },
+    {
+      "raw5": 85,
+      "category_result": 0
+    },
+    {
+      "raw5": 86,
+      "category_result": 0
+    },
+    {
+      "raw5": 87,
+      "category_result": 0
+    },
+    {
+      "raw5": 88,
+      "category_result": 0
+    },
+    {
+      "raw5": 89,
+      "category_result": 0
+    },
+    {
+      "raw5": 90,
+      "category_result": 0
+    },
+    {
+      "raw5": 91,
+      "category_result": 0
+    },
+    {
+      "raw5": 92,
+      "category_result": 0
+    },
+    {
+      "raw5": 93,
+      "category_result": 0
+    },
+    {
+      "raw5": 94,
+      "category_result": 0
+    },
+    {
+      "raw5": 95,
+      "category_result": 0
+    },
+    {
+      "raw5": 96,
+      "category_result": 0
+    },
+    {
+      "raw5": 97,
+      "category_result": 0
+    },
+    {
+      "raw5": 98,
+      "category_result": 0
+    },
+    {
+      "raw5": 99,
+      "category_result": 0
+    },
+    {
+      "raw5": 100,
+      "category_result": 0
+    },
+    {
+      "raw5": 101,
+      "category_result": 0
+    },
+    {
+      "raw5": 102,
+      "category_result": 0
+    },
+    {
+      "raw5": 103,
+      "category_result": 0
+    },
+    {
+      "raw5": 104,
+      "category_result": 0
+    },
+    {
+      "raw5": 105,
+      "category_result": 0
+    },
+    {
+      "raw5": 106,
+      "category_result": 0
+    },
+    {
+      "raw5": 107,
+      "category_result": 0
+    },
+    {
+      "raw5": 108,
+      "category_result": 0
+    },
+    {
+      "raw5": 109,
+      "category_result": 0
+    },
+    {
+      "raw5": 110,
+      "category_result": 0
+    },
+    {
+      "raw5": 111,
+      "category_result": 0
+    },
+    {
+      "raw5": 112,
+      "category_result": 0
+    },
+    {
+      "raw5": 113,
+      "category_result": 0
+    },
+    {
+      "raw5": 114,
+      "category_result": 0
+    },
+    {
+      "raw5": 115,
+      "category_result": 0
+    },
+    {
+      "raw5": 116,
+      "category_result": 0
+    },
+    {
+      "raw5": 117,
+      "category_result": 0
+    },
+    {
+      "raw5": 118,
+      "category_result": 0
+    },
+    {
+      "raw5": 119,
+      "category_result": 0
+    },
+    {
+      "raw5": 120,
+      "category_result": 0
+    },
+    {
+      "raw5": 121,
+      "category_result": 0
+    },
+    {
+      "raw5": 122,
+      "category_result": 0
+    },
+    {
+      "raw5": 123,
+      "category_result": 0
+    },
+    {
+      "raw5": 124,
+      "category_result": 0
+    },
+    {
+      "raw5": 125,
+      "category_result": 0
+    },
+    {
+      "raw5": 126,
+      "category_result": 0
+    },
+    {
+      "raw5": 127,
+      "category_result": 0
+    },
+    {
+      "raw5": 128,
+      "category_result": 0
+    },
+    {
+      "raw5": 129,
+      "category_result": 0
+    },
+    {
+      "raw5": 130,
+      "category_result": 0
+    },
+    {
+      "raw5": 131,
+      "category_result": 0
+    },
+    {
+      "raw5": 132,
+      "category_result": 0
+    },
+    {
+      "raw5": 133,
+      "category_result": 0
+    },
+    {
+      "raw5": 134,
+      "category_result": 0
+    },
+    {
+      "raw5": 135,
+      "category_result": 0
+    },
+    {
+      "raw5": 136,
+      "category_result": 0
+    },
+    {
+      "raw5": 137,
+      "category_result": 0
+    },
+    {
+      "raw5": 138,
+      "category_result": 0
+    },
+    {
+      "raw5": 139,
+      "category_result": 0
+    },
+    {
+      "raw5": 140,
+      "category_result": 0
+    },
+    {
+      "raw5": 141,
+      "category_result": 0
+    },
+    {
+      "raw5": 142,
+      "category_result": 0
+    },
+    {
+      "raw5": 143,
+      "category_result": 0
+    },
+    {
+      "raw5": 144,
+      "category_result": 0
+    },
+    {
+      "raw5": 145,
+      "category_result": 0
+    },
+    {
+      "raw5": 146,
+      "category_result": 0
+    },
+    {
+      "raw5": 147,
+      "category_result": 0
+    },
+    {
+      "raw5": 148,
+      "category_result": 0
+    },
+    {
+      "raw5": 149,
+      "category_result": 0
+    },
+    {
+      "raw5": 150,
+      "category_result": 0
+    },
+    {
+      "raw5": 151,
+      "category_result": 0
+    },
+    {
+      "raw5": 152,
+      "category_result": 0
+    },
+    {
+      "raw5": 153,
+      "category_result": 0
+    },
+    {
+      "raw5": 154,
+      "category_result": 0
+    },
+    {
+      "raw5": 155,
+      "category_result": 0
+    },
+    {
+      "raw5": 156,
+      "category_result": 0
+    },
+    {
+      "raw5": 157,
+      "category_result": 0
+    },
+    {
+      "raw5": 158,
+      "category_result": 0
+    },
+    {
+      "raw5": 159,
+      "category_result": 0
+    },
+    {
+      "raw5": 160,
+      "category_result": 0
+    },
+    {
+      "raw5": 161,
+      "category_result": 0
+    },
+    {
+      "raw5": 162,
+      "category_result": 0
+    },
+    {
+      "raw5": 163,
+      "category_result": 0
+    },
+    {
+      "raw5": 164,
+      "category_result": 0
+    },
+    {
+      "raw5": 165,
+      "category_result": 0
+    },
+    {
+      "raw5": 166,
+      "category_result": 0
+    },
+    {
+      "raw5": 167,
+      "category_result": 0
+    },
+    {
+      "raw5": 168,
+      "category_result": 0
+    },
+    {
+      "raw5": 169,
+      "category_result": 0
+    },
+    {
+      "raw5": 170,
+      "category_result": 0
+    },
+    {
+      "raw5": 171,
+      "category_result": 0
+    },
+    {
+      "raw5": 172,
+      "category_result": 0
+    },
+    {
+      "raw5": 173,
+      "category_result": 0
+    },
+    {
+      "raw5": 174,
+      "category_result": 0
+    },
+    {
+      "raw5": 175,
+      "category_result": 0
+    },
+    {
+      "raw5": 176,
+      "category_result": 0
+    },
+    {
+      "raw5": 177,
+      "category_result": 0
+    },
+    {
+      "raw5": 178,
+      "category_result": 0
+    },
+    {
+      "raw5": 179,
+      "category_result": 0
+    },
+    {
+      "raw5": 180,
+      "category_result": 0
+    },
+    {
+      "raw5": 181,
+      "category_result": 0
+    },
+    {
+      "raw5": 182,
+      "category_result": 0
+    },
+    {
+      "raw5": 183,
+      "category_result": 0
+    },
+    {
+      "raw5": 184,
+      "category_result": 0
+    },
+    {
+      "raw5": 185,
+      "category_result": 0
+    },
+    {
+      "raw5": 186,
+      "category_result": 0
+    },
+    {
+      "raw5": 187,
+      "category_result": 0
+    },
+    {
+      "raw5": 188,
+      "category_result": 0
+    },
+    {
+      "raw5": 189,
+      "category_result": 0
+    },
+    {
+      "raw5": 190,
+      "category_result": 0
+    },
+    {
+      "raw5": 191,
+      "category_result": 0
+    },
+    {
+      "raw5": 192,
+      "category_result": 0
+    },
+    {
+      "raw5": 193,
+      "category_result": 0
+    },
+    {
+      "raw5": 194,
+      "category_result": 0
+    },
+    {
+      "raw5": 195,
+      "category_result": 0
+    },
+    {
+      "raw5": 196,
+      "category_result": 0
+    },
+    {
+      "raw5": 197,
+      "category_result": 0
+    },
+    {
+      "raw5": 198,
+      "category_result": 0
+    },
+    {
+      "raw5": 199,
+      "category_result": 0
+    },
+    {
+      "raw5": 200,
+      "category_result": 0
+    },
+    {
+      "raw5": 201,
+      "category_result": 0
+    },
+    {
+      "raw5": 202,
+      "category_result": 0
+    },
+    {
+      "raw5": 203,
+      "category_result": 0
+    },
+    {
+      "raw5": 204,
+      "category_result": 0
+    },
+    {
+      "raw5": 205,
+      "category_result": 0
+    },
+    {
+      "raw5": 206,
+      "category_result": 0
+    },
+    {
+      "raw5": 207,
+      "category_result": 0
+    },
+    {
+      "raw5": 208,
+      "category_result": 0
+    },
+    {
+      "raw5": 209,
+      "category_result": 0
+    },
+    {
+      "raw5": 210,
+      "category_result": 0
+    },
+    {
+      "raw5": 211,
+      "category_result": 0
+    },
+    {
+      "raw5": 212,
+      "category_result": 0
+    },
+    {
+      "raw5": 213,
+      "category_result": 0
+    },
+    {
+      "raw5": 214,
+      "category_result": 0
+    },
+    {
+      "raw5": 215,
+      "category_result": 0
+    },
+    {
+      "raw5": 216,
+      "category_result": 0
+    },
+    {
+      "raw5": 217,
+      "category_result": 0
+    },
+    {
+      "raw5": 218,
+      "category_result": 0
+    },
+    {
+      "raw5": 219,
+      "category_result": 0
+    },
+    {
+      "raw5": 220,
+      "category_result": 0
+    },
+    {
+      "raw5": 221,
+      "category_result": 0
+    },
+    {
+      "raw5": 222,
+      "category_result": 0
+    },
+    {
+      "raw5": 223,
+      "category_result": 0
+    },
+    {
+      "raw5": 224,
+      "category_result": 0
+    },
+    {
+      "raw5": 225,
+      "category_result": 0
+    },
+    {
+      "raw5": 226,
+      "category_result": 0
+    },
+    {
+      "raw5": 227,
+      "category_result": 0
+    },
+    {
+      "raw5": 228,
+      "category_result": 0
+    },
+    {
+      "raw5": 229,
+      "category_result": 0
+    },
+    {
+      "raw5": 230,
+      "category_result": 0
+    },
+    {
+      "raw5": 231,
+      "category_result": 0
+    },
+    {
+      "raw5": 232,
+      "category_result": 0
+    },
+    {
+      "raw5": 233,
+      "category_result": 0
+    },
+    {
+      "raw5": 234,
+      "category_result": 0
+    },
+    {
+      "raw5": 235,
+      "category_result": 0
+    },
+    {
+      "raw5": 236,
+      "category_result": 0
+    },
+    {
+      "raw5": 237,
+      "category_result": 0
+    },
+    {
+      "raw5": 238,
+      "category_result": 0
+    },
+    {
+      "raw5": 239,
+      "category_result": 0
+    },
+    {
+      "raw5": 240,
+      "category_result": 0
+    },
+    {
+      "raw5": 241,
+      "category_result": 0
+    },
+    {
+      "raw5": 242,
+      "category_result": 0
+    },
+    {
+      "raw5": 243,
+      "category_result": 0
+    },
+    {
+      "raw5": 244,
+      "category_result": 0
+    },
+    {
+      "raw5": 245,
+      "category_result": 0
+    },
+    {
+      "raw5": 246,
+      "category_result": 0
+    },
+    {
+      "raw5": 247,
+      "category_result": 0
+    },
+    {
+      "raw5": 248,
+      "category_result": 0
+    },
+    {
+      "raw5": 249,
+      "category_result": 0
+    },
+    {
+      "raw5": 250,
+      "category_result": 0
+    },
+    {
+      "raw5": 251,
+      "category_result": 0
+    },
+    {
+      "raw5": 252,
+      "category_result": 0
+    },
+    {
+      "raw5": 253,
+      "category_result": 0
+    },
+    {
+      "raw5": 254,
+      "category_result": 0
+    },
+    {
+      "raw5": 255,
+      "category_result": 0
+    }
+  ],
+  "controls": {
+    "raw5_zero_rejected": true,
+    "nonzero_raw5_bypasses": true,
+    "null_raw_category_bypasses": true,
+    "category_ff_uses_zero_arm": true,
+    "reversed_category_branch_refused": true
+  },
+  "established": [
+    "All nine retained archive-matched tables give rows511..534 category7 and selectorFFFF.",
+    "Under valid class20 id, initialized row identity and nonnull raw+5==0,3060E0 returns5 independent of raw+4 and the remaining row fields.",
+    "306480 translates this nonzero category result into0F without entering its licence leg.",
+    "If2FFCF0 reaches this leg with that raw state, its nonzero result returns to30DB70, whose ordinary branch rejects before its pending-action/actor stores.",
+    "Nonzero raw+5 bypasses the category check and returns0; no universal actor exclusion follows."
+  ],
+  "unresolved": [
+    "Stable raw+5/row codec through preceding calls; natural actor and action selection; other queue producers including null-record arm; successful loader/IO/owner reachability; OV42 as a whole."
+  ],
+  "limits": "Conditional source path, not full availability execution or complete caller/alias proof. Class20/initialized table binding is a premise already separately documented. Null raw bypasses this category helper but the outer helper has other null handling. No live state, timing, normal reachability or all-producer exclusion inferred."
+}

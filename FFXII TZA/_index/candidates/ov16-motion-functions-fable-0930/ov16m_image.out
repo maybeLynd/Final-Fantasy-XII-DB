@@ -1,0 +1,55 @@
+PART A: 00268EA0 (122 instructions, 1 fragments)
+  call 00268F0F  override O=+0xEA (read 00268EF8)  bound C=0x11  footer D=+0x24 -> k=17 (read 00268F21)
+  call 00268F56  override O=+0xE8 (read 00268F3F)  bound C=0x10  footer D=+0x22 -> k=16 (read 00268F68)
+  call 00268FF2  r8d(channel)=('mov r8d, 6', 2527185)  r9d(id)=('mov r9d, esi', 2527201)  arg5[rsp+0x20]=('1', 2527207)  arg6[rsp+0x28](kind)=('ebx', 2527197)
+  call 00269033  r8d(channel)=('mov r8d, ebx', 2527266)  r9d(id)=('mov r9d, ebp', 2527263)  arg5[rsp+0x20]=('2', 2527269)  arg6[rsp+0x28](kind)=('4', 2527255)
+
+PART B: every raw call/jmp to the 003DBBE0 thunk or 003DBBF0, with the kind stored at [rsp+0x28]
+  00268C83 call -> 003DBBE0  in 00268B10  kind(arg6)=r15d @00268C79
+  00268DD4 call -> 003DBBE0  in 00268D10  kind(arg6)=ebx @00268DBD
+  00268FF2 call -> 003DBBE0  in 00268EA0  kind(arg6)=ebx @00268FDD
+  00269033 call -> 003DBBE0  in 00268EA0  kind(arg6)=4 @00269017
+  003DBBE0 jmp -> 003DBBF0  in ?  kind(arg6)=?
+  kind operands: {'r15d': 1, 'ebx': 2, '4': 1, '?': 1}
+
+PART C: written memory operands meeting 0xC8..0xF8 (any base; rsp/rbp-frame and rip excluded)
+  streams 47110, instructions 2104075, rows in window 5365
+  CONTROL 0025AFA1 found: PASS
+  CONTROL 0025AD34 found: PASS
+  CONTROL 002668B0 found: PASS
+  rows meeting +0xE8..+0xEB (fixed or string store) or an indexed store with disp <= 0xEA: 620 in 375 streams (all rows: ov16m_image_candidates.tsv)
+  actor-record-proven functions (331 in the three census tables) among them:
+    0025AE00     0025AEC2  mov word ptr [rax + rdi*2 + 0xc8], r15w          disp=0xC8 size=2 INDEXED
+    00266530     002668B0  rep stosw (rdi = +0xC8, count 18 x 2)            disp=0xC8 size=36
+  script-VM / actor band 00250000-0026FFFF and 003D0000-003DFFFF (by-hand base verdicts in README):
+    002509D0     00250A7B  or dword ptr [rdi + 0xe8], 1                     disp=0xE8 size=4
+    002509D0     00250AB2  and dword ptr [rdi + 0xe8], 0xfffffff7           disp=0xE8 size=4
+    00258350     00258745  mov qword ptr [rbx + 0xe8], rax                  disp=0xE8 size=8
+    0025AF60     0025AFA1  mov word ptr [rax + rbx*2 + 0xc8], di            disp=0xC8 size=2 INDEXED
+    002628B0     0026295C  mov qword ptr [rbx + 0xe8], rbp                  disp=0xE8 size=8
+    002628B0     00262E55  mov qword ptr [rbx + 0xe8], rbp                  disp=0xE8 size=8
+    0026C8C0     0026CC2A  mov qword ptr [rdi + 0xe8], rbx                  disp=0xE8 size=8
+    003DA8A0     003DA9C6  mov qword ptr [rdi + 0xe8], rsi                  disp=0xE8 size=8
+    GAP00251E75  00251F0C  and dword ptr [rax + 0xe8], 0xfffffffb           disp=0xE8 size=4
+    GAP00251E75  00251F19  or dword ptr [rax + 0xe8], ecx                   disp=0xE8 size=4
+    GAP00251E75  00251F2C  and dword ptr [rax + 0xe8], 0xfffffff7           disp=0xE8 size=4
+    GAP00251E75  00251F39  or dword ptr [rax + 0xe8], ecx                   disp=0xE8 size=4
+    GAP003DA9E8  003DAA06  mov dword ptr [rcx + 0xe8], eax                  disp=0xE8 size=4
+  window rows by (indexed, bytes): {(False, 1): 515, (False, 2): 598, (False, 4): 2430, (False, 8): 1439, (False, 16): 242, (False, 36): 1, (False, 64): 1, (False, 128): 1, (True, 1): 23, (True, 2): 15, (True, 4): 66, (True, 8): 33, (True, 16): 1}
+
+PART D: raw callers of the override writer 0025AF60 (slot in edx, value in r9d)
+  0025AD7E call in 0025AD10:
+      0025AD5D  cmp edx, 2
+      0025AD62  lea edx, [rbp + 4]
+      0025AD67  mov edx, ebp
+      0025AD6B  mov edx, 7
+      0025AD72  xor edx, edx
+      0025AD74  movzx r8d, word ptr [rdi]
+      0025AD78  mov r9d, eax
+  002615EB call in 0025E4C0:
+      002615DE  mov r9d, edi
+      002615E1  mov r8d, r12d
+      002615E4  mov edx, eax
+      002615E9  mov ebx, eax
+
+CONTROLS: PASS

@@ -1,0 +1,26 @@
+=== 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md|CombatFormula: 152 edges, 56 distinct far ends
+  F1 stats->unit lookup 0031B860                    23 edges  (callee 21, caller 2)  far ends 1  page-side 23
+  F2 other stats<->unit lookups                     16 edges  (callee 13, caller 3)  far ends 4  page-side 13
+  F3 stats record writers and rebuild               35 edges  (callee 15, caller 20)  far ends 10  page-side 22
+  F4 result evaluation / resolution / application   42 edges  (callee 20, caller 22)  far ends 17  page-side 20
+  F5 runtime action-id / persistent state            8 edges  (callee 4, caller 4)  far ends 4  page-side 4
+  F6 table-dispatched roll and recipe bodies        20 edges  (caller 20)  far ends 19  page-side 3
+  F7 per-unit scan 00384F40                          8 edges  (caller 8)  far ends 1  page-side 8
+  sum 152 of 152; unassigned 0; double-assigned 0
+=== 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md|Items_Equipment_Shops_License: 64 edges, 32 distinct far ends
+  I1 equipment-slot writers                         15 edges  (callee 1, caller 14)  far ends 5  page-side 8
+  I2 license writer and checks                      10 edges  (callee 2, caller 8)  far ends 6  page-side 6
+  I3 gil movers                                     11 edges  (caller 11)  far ends 4  page-side 3
+  I4 inventory and equipment snapshot               14 edges  (callee 3, caller 11)  far ends 6  page-side 9
+  I5 loadout evaluation and compatibility            9 edges  (callee 1, caller 8)  far ends 6  page-side 5
+  I6 class-D (bazaar) id flags                       5 edges  (caller 5)  far ends 5  page-side 1
+  sum 64 of 64; unassigned 0; double-assigned 0
+=== 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md|Script_VM_Native_Bridge: 57 edges, 54 distinct far ends
+  00265020    23 edges, 23 far ends
+  0053DD10    17 edges, 17 far ends
+  003590D0    14 edges, 14 far ends
+  00203170     1 edges, 1 far ends
+  00264670     1 edges, 1 far ends
+  0036A100     1 edges, 1 far ends
+  sum 57
+GROUP CONTROL: PASS

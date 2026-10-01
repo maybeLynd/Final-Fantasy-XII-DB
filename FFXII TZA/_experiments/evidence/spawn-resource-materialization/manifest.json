@@ -1,0 +1,106 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_materialization_primary.py",
+      "bytes": 4735,
+      "sha256": "209fa71dfbbc264b1c332bc3d77f1ea0f0933de6c3def586b56129beeea5a484",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-materialization-primary.json",
+      "bytes": 35767,
+      "sha256": "28e2e0b5151ab06f3d8f54f4fe9358a635ce48a9ee600ce059c8895a240acc61",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "helpers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_materialization_helpers.py",
+      "bytes": 4789,
+      "sha256": "62f2bfe264035843f0d4d31820edee0dd16af42c52eea7803f3eb454b8c04199",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "helpers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-materialization-helpers.json",
+      "bytes": 69494,
+      "sha256": "21450eba1da56c14926d5cc84d908c5c8694c3f04befd203e47ea647a8a92784",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "inputs.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_materialization_inputs.py",
+      "bytes": 1427,
+      "sha256": "2abd0f531c326e6fd84fee746c3d10efbb8367f1604bd5a1d1c647a8d9a795a2",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "inputs.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-materialization-inputs.json",
+      "bytes": 962,
+      "sha256": "490fd97504be98751a6e953439512d9fdd86b492834ea375c6151ec146356ecd",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_materialization_check.py",
+      "bytes": 8249,
+      "sha256": "d97afc3fe27133b933e7e3bf3a8dcbd244235c7ec6837bada5b24343a95ba527",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-materialization-check.json",
+      "bytes": 23557,
+      "sha256": "8752a55f128ddd3de3cf6fd5e39eb3cca99f1dd6c41e8f8a1f813f590e58b1a7",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "check.json": {
+      "bytes": 23557,
+      "sha256": "8752a55f128ddd3de3cf6fd5e39eb3cca99f1dd6c41e8f8a1f813f590e58b1a7"
+    },
+    "check.py": {
+      "bytes": 8249,
+      "sha256": "d97afc3fe27133b933e7e3bf3a8dcbd244235c7ec6837bada5b24343a95ba527"
+    },
+    "helpers.json": {
+      "bytes": 66800,
+      "sha256": "3d26c2d765efaa9302b6626be5b60ae316d9cbd406600da015a8c432b62d2ff6"
+    },
+    "helpers.py": {
+      "bytes": 4789,
+      "sha256": "62f2bfe264035843f0d4d31820edee0dd16af42c52eea7803f3eb454b8c04199"
+    },
+    "inputs.json": {
+      "bytes": 962,
+      "sha256": "490fd97504be98751a6e953439512d9fdd86b492834ea375c6151ec146356ecd"
+    },
+    "inputs.py": {
+      "bytes": 1427,
+      "sha256": "2abd0f531c326e6fd84fee746c3d10efbb8367f1604bd5a1d1c647a8d9a795a2"
+    },
+    "primary.json": {
+      "bytes": 34417,
+      "sha256": "ddf7e51cda4a6a56137f66956e1064b5796b21e537d907541268273f1a805b4f"
+    },
+    "primary.py": {
+      "bytes": 4735,
+      "sha256": "209fa71dfbbc264b1c332bc3d77f1ea0f0933de6c3def586b56129beeea5a484"
+    },
+    "README.md": {
+      "bytes": 3283,
+      "sha256": "b1761e8a94ef72b82c259d6a5fddaffa2e2105aecbb5c09d6a417c153d00a6df"
+    }
+  }
+}

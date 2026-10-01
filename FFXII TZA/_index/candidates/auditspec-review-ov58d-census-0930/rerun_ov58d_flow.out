@@ -1,0 +1,203 @@
+PASS  C5: rip-relative references to qword [02EBF190]: 318 (T3's census: 318), of them `mov reg, [..]` loads 311; every referencing function is a root
+round 1: 233 new root functions, 4 new escape globals (140 s)
+round 2: 795 new root functions, 0 new escape globals (802 s)
+round 3: 66 new root functions, 0 new escape globals (809 s)
+round 4: 1 new root functions, 0 new escape globals (809 s)
+pass 1: escape globals 00120000:A, 02092758:A-0x4e68c, 020927C0:A-0x4648c, 022C1740[table]:REC+0x0 (moved: rerun)
+round 1: 918 new root functions, 1 new escape globals (1453 s)
+round 2: 198 new root functions, 0 new escape globals (1460 s)
+round 3: 21 new root functions, 0 new escape globals (1461 s)
+round 4: 1 new root functions, 0 new escape globals (1461 s)
+pass 2: escape globals 00120000:A, 02092758:A-0x4e68c, 020927C0:A-0x4648c, 0215E6E0:A-0x46484, 022C1740[table]:REC+0x0 (moved: rerun)
+round 1: 958 new root functions, 0 new escape globals (2140 s)
+round 2: 162 new root functions, 0 new escape globals (2146 s)
+round 3: 18 new root functions, 0 new escape globals (2147 s)
+pass 3: escape globals 00120000:A, 02092758:A-0x4e68c, 020927C0:A-0x4648c, 0215E6E0:A-0x46484, 022C1740[table]:REC+0x0
+root functions analysed: 1138; bodies reached 11197 (contexts 100820); stores on state-derived bases: {'INDEXED-ABOVE': 203, 'INDEXED-BELOW': 1884, 'INDEXED-UNKNOWN': 163, 'RECORD': 297, 'RECORD-INDEXED': 165, 'REGION': 4, 'REGISTRY-STORAGE': 8, 'STATE-OTHER': 7380}
+PASS  C1 the state memset 002370D3 is REGION
+PASS  C2 the packed handler 002FD150 writes region A
+PASS  C3 the zeroing loop's function 003047F0 writes region A
+PASS  C4 the enqueue's movups copy 005825A0 of the kind-9 packet (image at +0x48) is an escape
+PASS  C6 the mirror copy 002EF4A0 (lea 021B290C / lea 02166480) is a state writer
+PASS  C7 the escape global 020927C0 carries image+0x8200 (state-0x4648C) from 00253970
+PASS  C8 00305927 `mov [rax+0x18c]` through a 022C1740 entry (a 00320AB0 record) is RECORD
+functions that may write region A (REGION, INDEXED-*, REGISTRY-STORAGE, RECORD-INDEXED/OUTSIDE): 80
+  00229B40  8 stores: INDEXE 00229BA2 movups xmmword ptr [rax - 0x80], xmm0; INDEXE 00229BAA movups xmmword ptr [rax - 0x70], xmm1; INDEXE 00229BB2 movups xmmword ptr [rax - 0x60], xmm0; INDEXE 00229BBA movups xmmword ptr [rax - 0x50], xmm1
+  00234ED0  20 stores: INDEXE 00234F03 movups xmmword ptr [rax + r8 - 0x858], xmm0; INDEXE 00234F15 movups xmmword ptr [rax + r8 - 0x848], xmm1; INDEXE 00234F27 movups xmmword ptr [rax + r8 - 0x838], xmm0; INDEXE 00234F38 mov dword ptr [rax + r8 - 0x828], ecx
+  00235AF0  1 stores: INDEXE 00235BAF mov dword ptr [rdx + rax], 0
+  002370C0  2 stores: INDEXE 00237107 mov word ptr [rcx + rax], dx; REGION 002370D3 call 0x861ec0
+  00239960  12 stores: INDEXE 00239BF6 mov byte ptr [rbx + 0x20], cl; INDEXE 00239C05 mov dword ptr [rbx + 0x190], esi; INDEXE 00239C0D mov qword ptr [rbx + 0x194], rax; INDEXE 00239C17 mov qword ptr [rbx + 0x19c], rax
+  0023AC80  7 stores: INDEXE 0023ACBD call 0x861ec0; INDEXE 0023ACC2 mov qword ptr [rdi + 0x50], 0xffffffffffffffff; INDEXE 0023ACD0 mov word ptr [rdi + 0x58], r13w; INDEXE 0023ACD5 mov word ptr [rdi + 0x1c3], r13w
+  00252610  5 stores: INDEXE 0025265B mov dword ptr [r9 + rax*4 + 0x90], r8d; INDEXE 0025266E mov dword ptr [r9 + rax*4 + 0x90], r8d; INDEXE 00252681 mov byte ptr [rax + r9 + 0x70], r8b; INDEXE 00252691 mov byte ptr [rax + r9 + 0x70], r8b
+  002527B0  6 stores: INDEXE 002527CF mov dword ptr [r9 + rax*4 + 0x90], r8d; INDEXE 002527E5 mov dword ptr [r9 + rax*4 + 0x90], r8d; INDEXE 002527F7 mov byte ptr [rax + r9 + 0x70], r8b; INDEXE 0025280A mov byte ptr [rax + r9 + 0x70], r8b
+  00252D40  2 stores: INDEXE 00252D67 and byte ptr [r9 + 0x3244], al; INDEXE 00252D7D mov byte ptr [r9 + 0x3244], al
+  00252E60  1 stores: INDEXE 00252F12 inc dword ptr [rdi + 0x47b8]
+  00253240  1 stores: INDEXE 002533F6 mov dword ptr [r14 + 0x47b8], edi
+  002534C0  1 stores: INDEXE 0025359F mov dword ptr [r14 + 0x47b8], edi
+  00253A80  1 stores: REGION 00253A93 call 0x861ec0
+  00254E00  2 stores: INDEXE 00254E27 and byte ptr [r9 + 0x32c4], al; INDEXE 00254E3D mov byte ptr [r9 + 0x32c4], al
+  002EF4A0  8 stores: INDEXE 002EF4C4 movups xmmword ptr [rcx - 0x80], xmm0; INDEXE 002EF4CC movups xmmword ptr [rcx - 0x70], xmm1; INDEXE 002EF4D4 movups xmmword ptr [rcx - 0x60], xmm0; INDEXE 002EF4DC movups xmmword ptr [rcx - 0x50], xmm1
+  002EF5F0  1 stores: REGION 002EF603 call 0x861ec0
+  002EF650  1 stores: REGION 002EF663 call 0x861ec0
+  002FD150  7 stores: REGIST 002FD1E9 mov byte ptr [r10], r8b; REGIST 002FD20F mov byte ptr [r10], r8b; REGIST 002FD22B mov byte ptr [r10], r8b; REGIST 002FD298 mov word ptr [r10], r8w
+  002FEF30  72 stores: INDEXE 002FEFB9 mov qword ptr [rsi], rcx; INDEXE 002FEFB9 mov qword ptr [rsi], rcx; INDEXE 002FEFBC mov qword ptr [rsi + 8], rcx; INDEXE 002FEFBC mov qword ptr [rsi + 8], rcx
+  00300530  2 stores: INDEXE 00300749 mov dword ptr [rsi + 0x48], r14d; INDEXE 00300749 mov dword ptr [rsi + 0x48], r14d
+  00300BC0  2 stores: INDEXE 00300C6A mov word ptr [rdi + 6], cx; INDEXE 00300C6A mov word ptr [rdi + 6], cx
+  00300CE0  2 stores: INDEXE 00300E00 mov word ptr [rsi + 0x4c], di; INDEXE 00300E00 mov word ptr [rsi + 0x4c], di
+  003047F0  1 stores: REGIST 0030482A mov word ptr [r8 + rcx - 2], r9w
+  0030B180  1 stores: INDEXE 0030B203 and byte ptr [rsi + 0x59c8], 0xfd
+  0030B6A0  9 stores: INDEXE 0030B710 mov qword ptr [rax], r11; INDEXE 0030B713 mov qword ptr [rax + 8], r11; INDEXE 0030B717 mov qword ptr [rax + 0x10], r11; INDEXE 0030B71F mov qword ptr [rax - 0x28], r11
+  0030C470  39 stores: INDEXE 0030C496 mov byte ptr [rcx + 0x1c2], dil; INDEXE 0030C496 mov byte ptr [rcx + 0x1c2], dil; INDEXE 0030C496 mov byte ptr [rcx + 0x1c2], dil; INDEXE 0030C4B1 mov byte ptr [rcx + 0x88], r8b
+  0030C650  14 stores: INDEXE 0030C743 mov dword ptr [rdi + 8], eax; INDEXE 0030C743 mov dword ptr [rdi + 8], eax; INDEXE 0030C753 mov word ptr [rdi + 0xc], ax; INDEXE 0030C753 mov word ptr [rdi + 0xc], ax
+  0030E060  2 stores: INDEXE 0030E111 mov byte ptr [rdi + 0x4e], bl; INDEXE 0030E111 mov byte ptr [rdi + 0x4e], bl
+  0030E130  9 stores: INDEXE 0030E212 mov byte ptr [rbx + 0x78], al; INDEXE 0030E212 mov byte ptr [rbx + 0x78], al; INDEXE 0030E239 mov byte ptr [rbx + 0x78], al; INDEXE 0030E239 mov byte ptr [rbx + 0x78], al
+  0030E360  16 stores: INDEXE 0030E4F8 mov dword ptr [rsi + 0x64], eax; INDEXE 0030E4F8 mov dword ptr [rsi + 0x64], eax; INDEXE 0030E50E mov dword ptr [rsi + 0x3c], eax; INDEXE 0030E50E mov dword ptr [rsi + 0x3c], eax
+  0030EA40  2 stores: INDEXE 0030EAB9 mov word ptr [rsi + rax*2 + 0x17c], di; RECORD 0030EAB9 mov word ptr [rsi + rax*2 + 0x17c], di
+  0030FED0  376 stores: INDEXE 00310329 mov byte ptr [r11 + r9 - 0x79], al; INDEXE 00310329 mov byte ptr [r11 + r9 - 0x79], al; INDEXE 00310329 mov byte ptr [r11 + r9 - 0x79], al; INDEXE 00310329 mov byte ptr [r11 + r9 - 0x79], al
+  003112F0  26 stores: INDEXE 00311824 mov word ptr [rdi + 0x17c], ax; INDEXE 00311824 mov word ptr [rdi + 0x17c], ax; INDEXE 00311834 mov word ptr [rdi + 0x17e], ax; INDEXE 00311834 mov word ptr [rdi + 0x17e], ax
+  00311AF0  2 stores: INDEXE 00311B06 or dword ptr [rax], 4; INDEXE 00311B0F and dword ptr [rax], 0xfffffffb
+  00315820  1 stores: INDEXE 0031588E mov byte ptr [rax + rsi + 0x3404], bl
+  00315910  3 stores: INDEXE 00315975 mov byte ptr [rax + rdi + 0x32cc], bl; INDEXE 003159A4 mov byte ptr [rax + rdi + 0x32cc], bl; INDEXE 003159FE mov byte ptr [rax + rdi + 0x3844], bl
+  00315A20  1 stores: INDEXE 00315A70 mov byte ptr [rax + rdi + 0x334c], bl
+  00315A90  1 stores: INDEXE 00315AB7 mov byte ptr [rax + rbx + 0x3404], 1
+  00315AD0  1 stores: INDEXE 00315B2D mov byte ptr [rax + rsi + 0x3604], bl
+  00315B50  6 stores: INDEXE 00315BB8 mov byte ptr [rax + rdi + 0x330c], bl; INDEXE 00315BCC mov byte ptr [rax + rdi + 0x330c], bl; INDEXE 00315C06 mov byte ptr [rax + rdi + 0x33f4], bl; INDEXE 00315C1A mov byte ptr [rax + rdi + 0x33f4], bl
+  00315CD0  1 stores: INDEXE 00315D29 mov byte ptr [rax + rbp + 0x336c], bl
+  00315E90  1 stores: INDEXE 00316069 mov byte ptr [rax + rdi + 0x3844], bl
+  00316930  1 stores: INDEXE 00316A0C mov byte ptr [rax + rsi + 0x3404], 2
+  00316A50  2 stores: INDEXE 00316ADB mov byte ptr [rax + rdi + 0x3844], bl; INDEXE 00316B38 mov byte ptr [rax + rdi + 0x3844], bl
+  00316DF0  12 stores: INDEXE 0031705E or dword ptr [rdi], 0x18; INDEXE 0031705E or dword ptr [rdi], 0x18; INDEXE 0031705E or dword ptr [rdi], 0x18; INDEXE 00317066 mov dword ptr [rdi + 0x48], eax
+  00317480  6 stores: INDEXE 003175DF mov dword ptr [r14 + 0x190], edi; INDEXE 003175DF mov dword ptr [r14 + 0x190], edi; INDEXE 003175DF mov dword ptr [r14 + 0x190], edi; INDEXE 00317652 mov dword ptr [r14 + 0x190], edi
+  00318B40  6 stores: INDEXE 00318B8E mov word ptr [rbx], r15w; INDEXE 00318B8E mov word ptr [rbx], r15w; INDEXE 00318C5E mov word ptr [rbx], r15w; INDEXE 00318C5E mov word ptr [rbx], r15w
+  0031A410  1 stores: INDEXE 0031A4A0 mov word ptr [rdi + 0x50], bp
+  0031A510  1 stores: INDEXE 0031A5C8 mov word ptr [rdi + 0x50], bp
+  0031A630  3 stores: INDEXE 0031A6AC mov word ptr [r14 + 0x50], si; INDEXE 0031A6AC mov word ptr [r14 + 0x50], si; RECORD 0031A6AC mov word ptr [r14 + 0x50], si
+  00323540  2 stores: INDEXE 003235A3 and dword ptr [rdi], 0xffffffef; INDEXE 003235A3 and dword ptr [rdi], 0xffffffef
+  003236F0  2 stores: INDEXE 00323722 mov byte ptr [r8 + 0x1c4], dl; INDEXE 00323729 mov byte ptr [r8 + 0x1c5], dl
+  00323740  2 stores: INDEXE 00323772 mov byte ptr [r8 + 0x1c3], dl; INDEXE 00323779 mov byte ptr [r8 + 0x1c5], dl
+  00323790  4 stores: INDEXE 0032379C mov dword ptr [rcx + 0x190], 0; INDEXE 0032379C mov dword ptr [rcx + 0x190], 0; INDEXE 003237B3 mov dword ptr [rcx + 0x190], r8d; INDEXE 003237B3 mov dword ptr [rcx + 0x190], r8d
+  00323910  6 stores: INDEXE 003239E1 mov dword ptr [rdi + 0x190], edx; INDEXE 003239E1 mov dword ptr [rdi + 0x190], edx; INDEXE 00323A29 mov byte ptr [rdx + rdi + 0x194], cl; INDEXE 00323A29 mov byte ptr [rdx + rdi + 0x194], cl
+  003242F0  2 stores: INDEXE 00324341 mov byte ptr [rdx + 0x1c5], al; INDEXE 0032434B mov byte ptr [rdx + 0x1c5], al
+  003266C0  68 stores: INDEXE 00326818 mov word ptr [r14 - 0x12], r8w; INDEXE 00326829 mov word ptr [r14], r8w; INDEXE 003268BD mov word ptr [r14 - 0x12], r8w; INDEXE 003268BD mov word ptr [r14 - 0x12], r8w
+  003279B0  1 stores: INDEXE 00327A01 mov byte ptr [rdx + 0x5b42], al
+  00327CB0  156 stores: INDEXE 00327D57 mov word ptr [rdi + rdx*4 + 0x88], ax; INDEXE 00327D57 mov word ptr [rdi + rdx*4 + 0x88], ax; INDEXE 00327D64 mov word ptr [rdi + rdx*4 + 0x8a], ax; INDEXE 00327D64 mov word ptr [rdi + rdx*4 + 0x8a], ax
+  00328990  4 stores: INDEXE 00328A76 mov byte ptr [rdx + r14 + 0x194], al; INDEXE 00328A76 mov byte ptr [rdx + r14 + 0x194], al; INDEXE 00328AF2 mov dword ptr [r14 + 0x190], edx; INDEXE 00328AF2 mov dword ptr [r14 + 0x190], edx
+  00328BD0  229 stores: INDEXE 00328CF5 mov byte ptr [rdx + 0xba], al; INDEXE 00328D30 mov byte ptr [rax - 0x10], 0; INDEXE 00328D30 mov byte ptr [rax - 0x10], 0; INDEXE 00328D30 mov byte ptr [rax - 0x10], 0
+  00329220  804 stores: INDEXE 00329486 mov byte ptr [rdx + rcx - 0x1c], al; INDEXE 00329486 mov byte ptr [rdx + rcx - 0x1c], al; INDEXE 00329486 mov byte ptr [rdx + rcx - 0x1c], al; INDEXE 00329486 mov byte ptr [rdx + rcx - 0x1c], al
+  00329CC0  1 stores: INDEXE 00329D9E mov word ptr [rsi + rax], bp
+  0032AB60  2 stores: INDEXE 0032ABA8 or byte ptr [rax + rcx + 0x14f4], bl; INDEXE 0032ABC8 and byte ptr [rax + rcx + 0x14f4], bl
+  0032ABF0  2 stores: INDEXE 0032AC36 or byte ptr [rax + rcx + 0x13b4], bl; INDEXE 0032AC56 and byte ptr [rax + rcx + 0x13b4], bl
+  0032AC70  2 stores: INDEXE 0032ACB3 or byte ptr [rax + rcx + 0x1384], bl; INDEXE 0032ACD3 and byte ptr [rax + rcx + 0x1384], bl
+  0032ACF0  2 stores: INDEXE 0032AD33 or byte ptr [rax + rcx + 0x138c], bl; INDEXE 0032AD53 and byte ptr [rax + rcx + 0x138c], bl
+  0032AD70  2 stores: INDEXE 0032ADB6 or byte ptr [rax + rcx + 0x14b4], bl; INDEXE 0032ADD6 and byte ptr [rax + rcx + 0x14b4], bl
+  0032ADF0  2 stores: INDEXE 0032AE3A or byte ptr [rax + rcx + 0x14b4], bl; INDEXE 0032AE5A and byte ptr [rax + rcx + 0x14b4], bl
+  003C5E50  4 stores: INDEXE 003C5E8D movups xmmword ptr [rax], xmm0; INDEXE 003C5E8D movups xmmword ptr [rax], xmm0; INDEXE 003C5E97 movups xmmword ptr [rax + 0x10], xmm1; INDEXE 003C5E97 movups xmmword ptr [rax + 0x10], xmm1
+  003C60F0  4 stores: INDEXE 003C611D movups xmmword ptr [rax], xmm0; INDEXE 003C611D movups xmmword ptr [rax], xmm0; INDEXE 003C6127 movups xmmword ptr [rax + 0x10], xmm1; INDEXE 003C6127 movups xmmword ptr [rax + 0x10], xmm1
+  003C8670  4 stores: INDEXE 003C869C movups xmmword ptr [rax], xmm0; INDEXE 003C869C movups xmmword ptr [rax], xmm0; INDEXE 003C86A6 movups xmmword ptr [rax + 0x10], xmm1; INDEXE 003C86A6 movups xmmword ptr [rax + 0x10], xmm1
+  0046B290  3 stores: INDEXE 0046B2E8 or byte ptr [rax + rcx + 0x1020], bl; INDEXE 0046B316 mov byte ptr [rdx + rax + 0x1000], cl; INDEXE 0046B33C and byte ptr [rax + rcx + 0x1020], bl
+  0046B350  1 stores: INDEXE 0046B364 mov word ptr [rax + rbx*2 + 0x1164], di
+  0046B380  2 stores: INDEXE 0046B3B5 or byte ptr [rax + rcx + 0x1364], bl; INDEXE 0046B3D1 and byte ptr [rax + rcx + 0x1364], bl
+  0046B3F0  3 stores: INDEXE 0046B43B or byte ptr [rax + rdi + 0x1000], bl; INDEXE 0046B44E mov word ptr [rax + rsi*2 + 0x1164], bx; INDEXE 0046B470 and byte ptr [rax + rcx + 0x1000], bl
+  0046B490  1 stores: INDEXE 0046B4A4 mov byte ptr [rax + rbx + 0x1064], dil
+  00583C00  12 stores: INDEXE 00583C41 movups xmmword ptr [rax - 0x80], xmm0; INDEXE 00583C49 movups xmmword ptr [rax - 0x70], xmm1; INDEXE 00583C51 movups xmmword ptr [rax - 0x60], xmm0; INDEXE 00583C59 movups xmmword ptr [rax - 0x50], xmm1
+  00583D60  181 stores: INDEXE 00583E49 mov byte ptr [rdi + r8*4 + 0x23], 0; INDEXE 00583E49 mov byte ptr [rdi + r8*4 + 0x23], 0; INDEXE 00583E6B mov byte ptr [rdi + r8*4 + 0x23], cl; INDEXE 00583E6B mov byte ptr [rdi + r8*4 + 0x23], cl
+  005844A0  8 stores: INDEXE 00584532 movups xmmword ptr [rax - 0x80], xmm0; INDEXE 0058453A movups xmmword ptr [rax - 0x70], xmm1; INDEXE 00584542 movups xmmword ptr [rax - 0x60], xmm0; INDEXE 0058454A movups xmmword ptr [rax - 0x50], xmm1
+escapes (state-derived pointer stored to non-stack memory): 26
+  ESCAPE   00233C10 00233C33 mov qword ptr [rip + 0x2c8b556], rax           to G02EBF190+0x0
+  ESCAPE   00238A80 00238A92 mov qword ptr [rip + 0x2c866f7], rax           to G02EBF190+0x0
+  ESCAPE   0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15               to 0x698,R00263E30+0x698
+  ESCAPE   0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15               to R00263E30+0x698
+  ESCAPE   0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15               to UNKNOWN
+  ESCAPE   00253970 0025397E mov qword ptr [rip + 0x1e3edd3], rax           to G02092758+0x0
+  ESCAPE   00253970 00253990 mov qword ptr [rip + 0x1e3ee29], rax           to G020927C0+0x0
+  ESCAPE   0026C8C0 0026CAFD mov qword ptr [rdi + 0x48], rax                to G00120000
+  ESCAPE   002DDE60 002DDE81 mov qword ptr [rip + 0x1e80858], rax           to G0215E6E0+0x0
+  ESCAPE   00304180 0030424D mov qword ptr [r12 + rdi*8], rbx               to G022C1740
+  ESCAPE   003058C0 00305907 mov qword ptr [r14 + rdi*8], rax               to G022C1740
+  ESCAPE   00305960 003059A7 mov qword ptr [r14 + rbx*8], rax               to G022C1740
+  ESCAPE   00305A00 00305A57 mov qword ptr [r14 + rdi*8], rax               to G022C1740
+  ESCAPE   0030A7C0 0030A848 mov qword ptr [r14 + rdi*8], rbx               to G022C1740
+  ESCAPE   0030A7C0 0030A848 mov qword ptr [r14 + rdi*8], rbx               to UNKNOWN
+  ESCAPE   0030C300 0030C360 mov qword ptr [r15 + rdi*8], rbp               to G022C1740
+  ESCAPE   0030FD10 0030FD7A mov qword ptr [rsi + rdi*8], rbx               to G022C1740
+  ESCAPE   00310DB0 003111A4 mov qword ptr [r13 + rdi*8 + 0x21a1740], rbx   to G00120000
+  ESCAPE   00312280 00312391 mov qword ptr [r13 + rdi*8], rbx               to G022C1740
+  ESCAPE   00317480 0031755F mov qword ptr [rsp + r9*8 + 0x20], rax         to SP
+  ESCAPE   0032E870 0032E94D mov qword ptr [r10 + 0x38], rdi                to L(G022C51D0+0x0)+0x38
+  ESCAPE   0032E870 0032E970 mov qword ptr [r10 + 0x70], rdi                to L(G022C51D0+0x0)+0x70
+  ESCAPE   00403F90 00403FD4 mov qword ptr [rbx], rax                       to CSP-0x270
+  ESCAPE   00403F90 00403FD4 mov qword ptr [rbx], rax                       to UNKNOWN
+  ESCAPE   0046AB10 0046AC1B mov qword ptr [rax + r15 + 8], rsi             to UNKNOWN
+  ESCAPE   00582540 005825A0 movups xmmword ptr [rcx + rbx + 0x118], xmm0   to UNKNOWN
+indirect calls receiving a state-derived pointer: 15
+  INDIRECT 002473F0 0024744E call rax                                       args r9
+  INDIRECT 00247490 002474D0 call rax                                       args r9
+  INDIRECT 0030E130 0030E2BC call rax                                       args rcx
+  INDIRECT 0030E130 0030E301 call rax                                       args rcx
+  INDIRECT 0030E360 0030E60E call rax                                       args rcx
+  INDIRECT 0030E360 0030E727 call rax                                       args rcx
+  INDIRECT 003112F0 00311668 call rax                                       args rcx
+  INDIRECT 003112F0 003116A4 call rax                                       args rcx
+  INDIRECT 003112F0 003116A4 call rax                                       args rcx,r9
+  INDIRECT 00318A00 00318A70 call rax                                       args rcx
+  INDIRECT 00385680 003859FF call qword ptr [r12 + rax*8 + 0x1dda5c0]       args rdx
+  INDIRECT 00385F60 003863D0 call qword ptr [rbx + rax*8 + 0x1dda5c0]       args rdx
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args r8
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args r9
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args rdx
+depth/recursion cuts carrying a state-derived value: 437
+  CUT      0016D6A0 depth 11
+  CUT      0020E600 depth 11
+  CUT      0020E620 depth 11
+  CUT      00236850 depth 11
+  CUT      00263750 depth 11
+  CUT      00264150 depth 11
+  CUT      002F7A10 depth 8
+  CUT      002FA390 depth 11
+  CUT      002FEF30 depth 11
+  CUT      00300BC0 depth 11
+  CUT      003060E0 depth 11
+  CUT      0030C650 depth 11
+  CUT      0030D9A0 depth 11
+  CUT      0030E060 depth 11
+  CUT      0030E130 depth 8
+  CUT      0030E130 depth 11
+  CUT      0030E360 depth 9
+  CUT      0030E360 depth 11
+  CUT      0030EA40 depth 11
+  CUT      0030F340 depth 11
+  CUT      0030F5A0 depth 11
+  CUT      0030F690 depth 11
+  CUT      0030FED0 depth 7
+  CUT      0030FED0 depth 8
+  CUT      0030FED0 depth 9
+  CUT      0030FED0 depth 11
+  CUT      003112F0 depth 9
+  CUT      003112F0 depth 10
+  CUT      003112F0 depth 11
+  CUT      003135C0 depth 11
+  CUT      00313F60 depth 11
+  CUT      003148F0 depth 11
+  CUT      0031B860 depth 11
+  CUT      0031C500 depth 11
+  CUT      00320A40 depth 11
+  CUT      00320A70 depth 11
+  CUT      003230E0 depth 11
+  CUT      003237C0 depth 11
+  CUT      00323BB0 depth 11
+  CUT      00323EC0 depth 11
+  CUT      00324100 depth 11
+  CUT      003279B0 depth 11
+  CUT      00385BA0 depth 11
+  CUT      00387020 depth 11
+  CUT      00387730 depth 11
+  CUT      00469570 depth 11
+  CUT      00469BB0 depth 11
+  CUT      00469EC0 depth 11
+  CUT      0046A690 depth 11
+  CUT      0046A870 depth 11
+  CUT      0046AB10 depth 11
+  CUT      005369C0 depth 11
+  CUT      00861F14 depth 11
+capture-image stores at region A's offsets: 0
+elapsed 2148 s

@@ -1,0 +1,8 @@
+PASS  L1 package README link reported
+PASS  L2 capture link not judged
+PASS  L3 code-span link-like text ignored
+PASS  L4 code-span label link still judged
+PASS  L5 percent-encoded target resolves
+PASS  L6 plain broken link reported
+PASS  L7 exactly three broken: ['missing-label-target.md', 'missing-readme-target.md', 'plain-missing.md']
+FAILS 0

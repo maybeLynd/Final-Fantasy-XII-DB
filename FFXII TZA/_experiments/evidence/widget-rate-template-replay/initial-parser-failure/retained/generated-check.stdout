@@ -1,0 +1,5 @@
+PASS  R1 00229E70: keep the rate when 0 < rate or unordered; else store and return 1.0
+PASS  R2 002468A0 stores 1.0 / 00229E70() at +0xB8 on the guarded arm
+PASS  M host model, masked ordinary cases: rate 0.5 -> +0xB8 2.0; -1.0 -> 1.0; -0.0 -> 1.0; NaN -> NaN (completed COMISS only); floor-at-1 and zero-only readings rejected
+FAIL  S the +0xB8 row states the default, the rate rule and its FP limits
+FAILS 1

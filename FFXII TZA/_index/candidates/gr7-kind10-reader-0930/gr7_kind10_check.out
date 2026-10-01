@@ -1,0 +1,7 @@
+PASS  K1 kind 10 = battle unit dword +0xB90, index 0: writer arm 00329F1C, reader arm 0032126F
+PASS  K2 00312170: +0x3A bit, +0x13 byte, +0x0C bits 13/14 -> bits 8/9, OR current kind 10, publish kind 10
+PASS  K3 constant-10 sites ['002FE6E7', '00303088', '00312248', '0031225E']; others {'002FADDF': [3], '002FAE00': [3], '00301C52': ['00301C39 shr ecx, 0xc'], '002FE74E': ['no predecessor 002FE71A', 'no predecessor 002FE723']}
+PASS  K4 selector opcode 0x36/0x37 mode 3 -> candidate loop -> cases [54, 55] at 00303079: bt kind10(candidate), param
+PASS  K5 order 0x4122 = bts / 0x4123 = btr of the param bit in kind 10 of unit 0031B7E0([+0x710])
+PASS  K6 player gambit rows with 0x36/0x37: 0; .ard 1422 sets / 50050 records: mode-3 tests 6140, bits {0: 104, 1: 117, 2: 73, 3: 6, 4: 66, 5: 60, 6: 30, 7: 31, 8: 331, 9: 49, 10: 6, 11: 20, 12: 57, 13: 71, 14: 44, 15: 4, 16: 2, 25: 1273, 26: 342, 27: 32, 28: 19, 31: 3403}; dynamic kind 10: 0; 0x4122/0x4123 bits {0: 23, 1: 25, 2: 14, 4: 11, 5: 11, 6: 6, 7: 5, 8: 69, 9: 10, 11: 5, 12: 9, 13: 18, 14: 16, 15: 2, 25: 551, 26: 102, 27: 13, 28: 11, 31: 2305}
+FAILS 0

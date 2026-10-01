@@ -1,0 +1,11 @@
+PASS  S0 722 qword loads of 02EBF138 in 129 functions; other references ['00237FC0 00237FD5 lea']; header accessed at ['0x4', '0x8', '0xc']
+PASS  S1 194 functions walked, 225 row-pointer formations, 153 hand-offs into 75 callees, 15 stack-argument hand-offs; escapes 0, copies 0, tagged indirect calls ["00384BA6 {'r9': ['H']}"] (rand, IAT 008C3098)
+PASS  S2 hop-census sites re-found 232/232 at their offsets (misplaced 0); later readers 11/11
+PASS  S3 +0x0A byte reads 002F962B 00309054 00309178 00309D7E 0031DBD2; other covering accesses ['0030A209 0x28 w2 movzx eax, word ptr [rbx + 0x28]']; covering +0x0B: 0; unknown-offset ['00320DE9'] with r9 [('C', 0), ('C', 1)]
+PASS  S4 depth 5 walks 195 functions (depth 3: 194); covering accesses 6 = 6; escapes 0, copies 0
+PASS  S5 225 seeds (225 formations + returns of 00388FE0 0038A9D0 0038AA90 0038F970), 538 functions; 329 accesses/escapes: row reader 0030A209; excluded {'no row pointer in the base at the site': 66, 'no row pointer reaches the function': 187, 'regval C': 17, 'regval C/M': 2, 'regval C/R': 1, 'regval M': 21, 'regval R': 34}; residue 0; control disp 0x0A re-finds 5/5 MP reads
+PASS  S6 0030A190: row -> id by (row - base) / stride; 0xD0 <= id <= 0xF1 and [022C2160] - 5 <= 1 -> word +0x28; else +0x24 (not 0xFFFF, +0x0C bit 30 clear, bit 15 clear) or -1
+PASS  S7 callers ['0030C890@0030C8F1', '0030CBE0@0030CCC3'] (rcx a row at both); result -> 0031A230 -> 002FCAC0 effect budget (<= 0x18) and -> 00328360 -> 002FCBF0 effect request (id at node +0x20, 002FC860 resource kind 0xB), handle at record +0x24
+PASS  S8 +0x28 non-zero on 26 rows, all in 0xD0..0xF1, value 120 + (id - 0xD0); zero inside the span on ['0xe6', '0xe8', '0xe9', '0xeb', '0xec', '0xee', '0xef', '0xf0']; +0x29 zero on all; +0x0B non-zero on rows 182..207 (+0x0A 0 there), pairs = summon rows 0x106..0x112 +0x0A [1, 1, 1, 2, 2, 3, 1, 2, 3, 2, 2, 3, 3]
+PASS  N1 without following calls: covering accesses 002F962B 00309054 00309178 00309D7E 0031DBD2 - 0030A209 absent (the row arrives as an argument)
+FAILS 0

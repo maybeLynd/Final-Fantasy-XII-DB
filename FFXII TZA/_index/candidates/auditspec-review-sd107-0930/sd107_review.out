@@ -1,0 +1,73 @@
+total object stores covering +0xA3: 509
+  mov-reg          351
+  mov-imm-other    100
+  other:movss      39
+  other:movsd      11
+  and-imm          3
+  inc              1
+  or-imm           1
+  sub-imm          1
+  mov-imm-1        1
+  add-imm          1
+add-imm:
+   0087BB00 add dword ptr [rbx + 0xa0], -1  [0087B850 FUN_0087b850]
+inc:
+   00332A46 inc dword ptr [rdi + 0xa0]  [00332750 FUN_00332750]
+mov-imm-1:
+   007E7401 mov byte ptr [rcx + 0xa3], 1  [007E73F0 FUN_007e73f0]
+or-imm:
+   00500CC2 or byte ptr [rdi + 0xa3], 1  [00500C00 FUN_00500c00]
+other:movsd:
+   001E87A5 movsd qword ptr [rbp + 0xa0], xmm1  [001E8580 FUN_001e8580]
+   006E66AA movsd qword ptr [rbp + 0xa0], xmm14  [006E5A20 FUN_006e5a20]
+   006E6B6A movsd qword ptr [rbp + 0xa0], xmm4  [006E5A20 FUN_006e5a20]
+   006E6BAA movsd qword ptr [rbp + 0xa0], xmm4  [006E5A20 FUN_006e5a20]
+   0074696E movsd qword ptr [rbp + 0xa0], xmm0  [007467E0 FUN_007467e0]
+   00746EA0 movsd qword ptr [rbp + 0xa0], xmm0  [007467E0 FUN_007467e0]
+   0074747F movsd qword ptr [rbp + 0xa0], xmm0  [007472C0 FUN_007472c0]
+   00775F11 movsd qword ptr [rbp + 0xa0], xmm0  [007758A0 FUN_007758a0]
+   007E0E09 movsd qword ptr [rbx + 0xa0], xmm1  [007E0B60 FUN_007e0b60]
+   007E0E4C movsd qword ptr [rbx + 0xa0], xmm0  [007E0B60 FUN_007e0b60]
+   007E2699 movsd qword ptr [rcx + 0xa0], xmm0  [007E2680 FUN_007e2680]
+other:movss:
+   001EF772 movss dword ptr [rcx + 0xa0], xmm6  [001EF6D0 FUN_001ef6d0]
+   001F03C3 movss dword ptr [rbp + 0xa0], xmm0  [001EF6D0 FUN_001ef6d0]
+   00257B77 movss dword ptr [rdx + 0xa0], xmm1  [00257B50 FUN_00257b50]
+   00257DE2 movss dword ptr [rbx + 0xa0], xmm0  [00257D10 FUN_00257d10]
+   0026A0B8 movss dword ptr [rdx + 0xa0], xmm3  [0026A060 FUN_0026a060]
+   002DC1F6 movss dword ptr [rbp + 0xa0], xmm0  [002DBDD0 FUN_002dbdd0]
+   002E479F movss dword ptr [rdi + 0xa0], xmm1  [002E45E0 Movement_UpdateSteeringTowardTarget]
+   002F4650 movss dword ptr [rbp + 0xa0], xmm0  [002F4520 FUN_002f4520]
+   003367D9 movss dword ptr [rcx + 0xa0], xmm0  [00336710 BattleLocomotion_BuildSolverContext]
+   0037D2FB movss dword ptr [rsi + 0xa0], xmm0  [0037D1F0 FUN_0037d1f0]
+   0039FC2B movss dword ptr [rbx + 0xa0], xmm0  [0039F9F0 FUN_0039f9f0]
+   0039FF4C movss dword ptr [rbx + 0xa0], xmm0  [0039FD20 FUN_0039fd20]
+   003A0281 movss dword ptr [rbx + 0xa0], xmm0  [003A0040 FUN_003a0040]
+   003A6399 movss dword ptr [rbp + 0xa0], xmm2  [003A56F0 FUN_003a56f0]
+   003C6A63 movss dword ptr [rbp + 0xa0], xmm0  [003C6420 FUN_003c6420]
+   003DAFD1 movss dword ptr [rbp + 0xa0], xmm0  [003DAF20 FUN_003daf20]
+   003E5E8C movss dword ptr [rcx + rax*4 + 0xa0], xmm2  [003E5E70 CharacterRenderRecord_SetLocalLodThreshold]
+   00441F8F movss dword ptr [rcx + 0xa0], xmm0  [00441F10 FUN_00441f10]
+   00445A57 movss dword ptr [rcx + 0xa0], xmm0  [004453D0 FUN_004453d0]
+   00447738 movss dword ptr [rcx + 0xa0], xmm0  [00447020 FUN_00447020]
+   0044870A movss dword ptr [rcx + 0xa0], xmm0  [00447ED0 FUN_00447ed0]
+   0044A017 movss dword ptr [rcx + 0xa0], xmm0  [00449AB0 FUN_00449ab0]
+   00505BE6 movss dword ptr [rbp + 0xa0], xmm7  [00505570 caseD_1]
+   0050643A movss dword ptr [rbp + 0xa0], xmm6  [00505E00 caseD_0]
+   005175B0 movss dword ptr [rcx + 0xa0], xmm1  [005175B0 FUN_005175b0]
+   0051A22C movss dword ptr [rdi + 0xa0], xmm0  [00519B60 FUN_00519b60]
+   00541EED movss dword ptr [rdi + 0xa0], xmm1  [00541E00 FUN_00541e00]
+   00562694 movss dword ptr [rbp + 0xa0], xmm1  [005621A0 FUN_005621a0]
+   00601AF9 movss dword ptr [rcx + 0xa0], xmm1  [00600F30 FUN_00600f30]
+   006FF316 movss dword ptr [rbp + 0xa0], xmm7  [006FF050 FUN_006ff050]
+   00733BFF movss dword ptr [rbp + 0xa0], xmm0  [007338C0 FUN_007338c0]
+   007340D2 movss dword ptr [rbp + 0xa0], xmm0  [00733DE0 FUN_00733de0]
+   00775F25 movss dword ptr [rbp + 0xa0], xmm1  [007758A0 FUN_007758a0]
+   00776140 movss dword ptr [rbp + 0xa0], xmm0  [007758A0 FUN_007758a0]
+   007E8AF0 movss dword ptr [rcx + 0xa0], xmm1  [007E8AF0 FUN_007e8af0]
+   0084CC77 movss dword ptr [rbp + 0xa0], xmm6  [0084CB30 FUN_0084cb30]
+   0084F57F movss dword ptr [rdi + 0xa0], xmm0  [0084EB60 FUN_0084eb60]
+   0085E0D2 movss dword ptr [rdx + 0xa0], xmm1  [0085DDE0 FUN_0085dde0]
+   0085E222 movss dword ptr [rdx + 0xa0], xmm1  [0085DDE0 FUN_0085dde0]
+sub-imm:
+   00749A9F sub qword ptr [rbp + 0xa0], 1  [00748C00 FUN_00748c00]

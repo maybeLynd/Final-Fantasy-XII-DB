@@ -1,0 +1,95 @@
+K1 raw E8/E9/jcc sites=4
+   002E6152 call -> 002ED950 owner 002E60F0
+   002EA701 call -> 002ED950 owner 002EA6E0
+   002ED92F call -> 002ED950 owner 002ED910
+   0037B85B call -> 002ED910 owner 0037B4D0
+K1 control 0037B85B and 002E6152 present: True
+K1 002ED910 dir64=0 raw_q=0
+K1 002ED950 dir64=0 raw_q=0
+K2 002ED910 body:
+   002ED910 push rbx
+   002ED912 sub rsp, 0x20
+   002ED916 or r9d, 0xffffffff
+   002ED91A mov ebx, edx
+   002ED91C test rcx, rcx
+   002ED91F je 0x2ed92d
+   002ED921 call 0x3212e0
+   002ED926 mov r9d, eax
+   002ED929 test eax, eax
+   002ED92B jns 0x2ed946
+   002ED92D mov ecx, ebx
+   002ED92F call 0x2ed950
+   002ED934 test rax, rax
+   002ED937 je 0x2ed943
+   002ED939 movsx eax, word ptr [rax + 6]
+   002ED93D add rsp, 0x20
+   002ED941 pop rbx
+   002ED942 ret 
+   002ED943 mov eax, r9d
+   002ED946 add rsp, 0x20
+   002ED94A pop rbx
+   002ED94B ret 
+K2 0037B4D0 0037B850..0037B8A0:
+   0037B851 call 0x20e600
+   0037B856 mov rcx, rax
+   0037B859 mov edx, ebx
+   0037B85B call 0x2ed910
+   0037B860 mov edi, eax
+   0037B862 test eax, eax
+   0037B864 jns 0x37b873
+   0037B866 and byte ptr [rsi + 8], 0x87
+   0037B86A or byte ptr [rsi + 8], 7
+   0037B86E jmp 0x37bdb1
+   0037B873 mov ecx, dword ptr [rsi]
+   0037B875 call 0x20e600
+   0037B87A mov rcx, rax
+   0037B87D mov rbx, rax
+   0037B880 call 0x264ec0
+   0037B885 mov ecx, eax
+   0037B887 call 0x2647c0
+   0037B88C test eax, eax
+   0037B88E mov ecx, r12d
+   0037B891 mov edx, edi
+   0037B893 setne cl
+   0037B896 call 0x36f0f0
+   0037B89B mov byte ptr [rbx + 0x20], al
+   0037B89E and byte ptr [rsi + 8], 0x85
+K3 003C1680 003C1740..003C17C0:
+   003C1741 movzx ecx, byte ptr [rcx]
+   003C1744 add edx, ecx
+   003C1746 cmp ebx, edx
+   003C1748 jae 0x3c17da
+   003C174E movzx r10d, byte ptr [r9]
+   003C1752 movzx ecx, byte ptr [r9 + 1]
+   003C1757 add ecx, r10d
+   003C175A cmp ebx, ecx
+   003C175C jae 0x3c17da
+   003C175E cmp ebx, r10d
+   003C1761 jae 0x3c1779
+   003C1763 mov ecx, ebx
+   003C1765 xor r8d, r8d
+   003C1768 lea rdx, [rcx + rcx*2]
+   003C176C lea rcx, [rdx*8 + 4]
+   003C1774 add rcx, r9
+   003C1777 jmp 0x3c1798
+   003C1779 lea ecx, [r9 + 4]
+   003C177D lea r8, [r10 + r10*2]
+   003C1781 lea r9, [rcx + r8*8]
+   003C1785 mov ecx, ebx
+   003C1787 sub ecx, r10d
+   003C178A mov r8d, 1
+   003C1790 lea rdx, [rcx + rcx*2]
+   003C1794 lea rcx, [r9 + rdx*8]
+   003C1798 test rcx, rcx
+   003C179B je 0x3c17da
+   003C179D test r8d, r8d
+   003C17A0 jne 0x3c17b6
+   003C17A2 movzx ecx, word ptr [rcx + 0xc]
+   003C17A6 call 0x3c17e0
+   003C17AB test eax, eax
+   003C17AD je 0x3c17da
+   003C17AF mov rax, qword ptr [rip + 0x278402a]
+   003C17B6 inc ebx
+   003C17B8 cmp ebx, ebp
+   003C17BA jl 0x3c16f0
+K4 chse table pointers [021641A0,021641E8): rip=9 owners=['002EA530', '002ED950'] imagebase=0 dir64=0

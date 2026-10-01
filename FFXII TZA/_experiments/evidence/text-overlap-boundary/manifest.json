@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-initial.py",
+      "bytes": 6882,
+      "sha256": "0d057dda7d529b08012c638745f1978637bf0de94dc2f4897ea08e2fe7d21048"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 720,
+      "sha256": "9a6e097e3614c5694f7b1527533917bb2fa8ccb22f869cbac0b9fa937e3cf005"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8045,
+      "sha256": "7bb34d2fe8ac1b974265f16ca60106e4ed9f58e6367c1e2fc2256972ea8932cc"
+    },
+    {
+      "path": "check-terminal.json",
+      "bytes": 1402,
+      "sha256": "a42a6897388397d7b001bcef25d7dc18b54de92a1f83d087f358b65969ba6cce"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4063,
+      "sha256": "c501a5dc87f7743d37ef1098c3a6c51e74569ea2191cf5272fd6d21654cf6af0"
+    },
+    {
+      "path": "initial-terminal.json",
+      "bytes": 207,
+      "sha256": "c996dece6a155fc374c16f01816cbedde7521ae9b74359ce8fe8abe99a50b139"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4624,
+      "sha256": "d3e61264155444f9cd8905c20525a59417c44fe40edbe3dc13fb448df8709937"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 204,
+      "sha256": "7c15adf94ad6fe7bd1229f74988b683c90f2af9107f523c8d9a86c33b8ac5674"
+    },
+    {
+      "path": "result.json",
+      "bytes": 924,
+      "sha256": "26225f10b75fde7346e8b75b2678ad76d2410314e460d73762ec1781927628fd"
+    },
+    {
+      "path": "run-01/failure.txt",
+      "bytes": 400,
+      "sha256": "0e06931f92406dfc5f462da5423a3f8dd933e1aaba3dee83975ece9ee569fa75"
+    },
+    {
+      "path": "run-01/inputs/canonical-0.tsv",
+      "bytes": 7008993,
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "run-01/inputs/canonical-1.tsv",
+      "bytes": 37250,
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa"
+    },
+    {
+      "path": "run-01/inputs/canonical-2.tsv",
+      "bytes": 11254,
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97"
+    },
+    {
+      "path": "run-01/original/Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-01/original/Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+      "bytes": 6914,
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b"
+    },
+    {
+      "path": "run-01/original/Database/Tools/dashboard/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-02/canonical.json",
+      "bytes": 3324,
+      "sha256": "8d358c43a39ed0cf1898c4b0edca9b5a18a12befd50a732e2e3c570d43f7a48c"
+    },
+    {
+      "path": "run-02/disjoint.json",
+      "bytes": 3052,
+      "sha256": "381264a92ff3423e65c9b5546bdaa6d93c6ab0bd02ddfedf8dd5d4ab58deacdf"
+    },
+    {
+      "path": "run-02/double.json",
+      "bytes": 3063,
+      "sha256": "da27f9be452a27f85bd438f142c81ad0c1c7ef51d904086d27f8e51d7bad0c05"
+    },
+    {
+      "path": "run-02/fixtures/disjoint/band1.tsv",
+      "bytes": 15,
+      "sha256": "6633b731d309d75f582106ec041f6988d46acbc2b85841b4385c21905db30db2"
+    },
+    {
+      "path": "run-02/fixtures/disjoint/band2.tsv",
+      "bytes": 15,
+      "sha256": "6633b731d309d75f582106ec041f6988d46acbc2b85841b4385c21905db30db2"
+    },
+    {
+      "path": "run-02/fixtures/disjoint/functions.tsv",
+      "bytes": 77,
+      "sha256": "a99ca27cdede2139ba8baa5e3ea6ebcf67f63f4d91d3b1ac2af3427e458d263c"
+    },
+    {
+      "path": "run-02/fixtures/double/band1.tsv",
+      "bytes": 15,
+      "sha256": "6633b731d309d75f582106ec041f6988d46acbc2b85841b4385c21905db30db2"
+    },
+    {
+      "path": "run-02/fixtures/double/band2.tsv",
+      "bytes": 15,
+      "sha256": "6633b731d309d75f582106ec041f6988d46acbc2b85841b4385c21905db30db2"
+    },
+    {
+      "path": "run-02/fixtures/double/functions.tsv",
+      "bytes": 73,
+      "sha256": "b64feabb16179337d7b84fa06d844a6c8b50e0e72977352fdb9387b630863206"
+    },
+    {
+      "path": "run-02/fixtures/triple/band1.tsv",
+      "bytes": 15,
+      "sha256": "6633b731d309d75f582106ec041f6988d46acbc2b85841b4385c21905db30db2"
+    },
+    {
+      "path": "run-02/fixtures/triple/band2.tsv",
+      "bytes": 15,
+      "sha256": "6633b731d309d75f582106ec041f6988d46acbc2b85841b4385c21905db30db2"
+    },
+    {
+      "path": "run-02/fixtures/triple/functions.tsv",
+      "bytes": 101,
+      "sha256": "908866c57f2ee1b32ae5f4e0ee7d1fbc40e7a9bbcff79fa5eb006d798952f80e"
+    },
+    {
+      "path": "run-02/identity.json",
+      "bytes": 5021,
+      "sha256": "866e5540ec6c29a06e6d9c5670e53d70f96ac3ead6707ca013a29e550984a904"
+    },
+    {
+      "path": "run-02/inputs/canonical-0.tsv",
+      "bytes": 7008993,
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "run-02/inputs/canonical-1.tsv",
+      "bytes": 37250,
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa"
+    },
+    {
+      "path": "run-02/inputs/canonical-2.tsv",
+      "bytes": 11254,
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97"
+    },
+    {
+      "path": "run-02/original/Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-02/original/Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+      "bytes": 6914,
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b"
+    },
+    {
+      "path": "run-02/original/Database/Tools/dashboard/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-02/pre-import-identity.json",
+      "bytes": 4102,
+      "sha256": "0c61a887640cd7cb1e6f2206679b370b31deccb891e5109b029a3c1a0b8fa19c"
+    },
+    {
+      "path": "run-02/python-deps/ordlookup/__init__.py",
+      "bytes": 786,
+      "sha256": "fe7e3869702abb571846d74bc34ea4966e8f75a6603530fe3f9e03c982d736a7"
+    },
+    {
+      "path": "run-02/python-deps/ordlookup/oleaut32.py",
+      "bytes": 11759,
+      "sha256": "d3199a7ea2f1ef42a93cb8b20acc752de67789671cb4248584e2b43f441e5aaf"
+    },
+    {
+      "path": "run-02/python-deps/ordlookup/ws2_32.py",
+      "bytes": 6003,
+      "sha256": "0879ce2fee63d738838f61332e69a149d463c177649c78935295d7f335604810"
+    },
+    {
+      "path": "run-02/python-deps/ordlookup/wsock32.py",
+      "bytes": 2034,
+      "sha256": "f029bc58669eae582a7087c630fd8be8f9f5aa2df6f7cecaa13f8f1e1199ed17"
+    },
+    {
+      "path": "run-02/python-deps/pefile.py",
+      "bytes": 301767,
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    },
+    {
+      "path": "run-02/summary.json",
+      "bytes": 300,
+      "sha256": "74dc372ea962ca42627a52cee823d9bcea013d0ffa99e9a1ce359198db4a31e0"
+    },
+    {
+      "path": "run-02/triple.json",
+      "bytes": 3115,
+      "sha256": "58ce886e288c7e558d1c85e369e13db3dacda623c00131e74928273b4c10927a"
+    }
+  ],
+  "limits": "Integrity is not independent acceptance. Original repository adapter on labelled extents and copied census. Reference EXE remains external; unique-overlap scope, no native semantics or whole migration acceptance."
+}

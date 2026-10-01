@@ -1,0 +1,10 @@
+PASS  W1 0027E050 indexes by kind - 1 (lea eax, [rdx - 1]; 20 entries); kind 5 -> code 0xB, sub-selector 7 kind->(code,sub): 1:(0x6,-), 2:(0x8,-), 3:(0x9,-), 4:(0xb,0x3), 5:(0xb,0x7), 6:(0xb,0x5), 7:(0xb,0x6), 8:(0xb,0xd), 9:(0x18,-), 10:(0xb,0x1), 11:(0xb,0x1), 12:(0xb,0x1), 13:(0xb,0x1), 14:(0xb,0x1), 15:(0xb,0x2), 16:(-,-), 17:(-,-), 18:(-,-), 19:(-,-), 20:(0xb,0x14)
+PASS  W2 list code 0xB's builder arm validates [list+0x14] as a class 0x15 (21) encoded id 
+PASS  W3 in list codes 6 and 9 the row's command word picks the next kind; command 7 -> 0027C532 -> kind 5, only it command->kind: 0:16, 3:4, 4:16, 5:6, 6:7, 7:5, 18:2, 19:3, 20:20
+PASS  W4 commands 3, 5, 6, 7 (Items, Summon, Quickening, Foecraft) open the kind whose sub-selector is the same command {3: (11, 3), 5: (11, 5), 6: (11, 6), 7: (11, 7)}
+PASS  W5 dispatch: kind from 0027C3D0, stack push + depth, message 31 to itself; its arm 00279187 is the only +0xD8 store word stores to +0xD8 in 00274000..00280000: ['002791AC']
+PASS  W6 message 33's other sources: 0027AA70 sends {1, 0} (00915BB0); 0027C730 yields only 0x10..0x13 00915BB0=(1, 0, 0, 0) imm=[1, 2, 16, 17, 18, 19] lea=['lea r15d, [r13 + 0xd]', 'lea r15d, [rax + 0x10]'] (1 and 2 are loop seeds; r13d=3 so r13+0xd = 0x10, rax=2 so rax+0x10 = 0x12)
+PASS  W7 0027BDE0 maps kind 5 to entry 4, and the us file's entry 4 is (150, 8), the only non-default entry entries=[(10, 8), (10, 8), (10, 8), (10, 8), (150, 8), (10, 8), (10, 8), (10, 8), (10, 8), (10, 8), (10, 8), (10, 8), (10, 8), (10, 8), (10, 8)]
+PASS  W9 the command lists 0027C3D0 reads (codes 6, 9) are the static tables 00D10650/00D10660 (6 rows) and 00D1065C (2 rows); command 7 is in neither, and the arm's one row-id store is 0031ED35 (byte [table+1]) code 6=[0, 18, 19, 11, 13, 3] / [0, 18, 19, 11, 13, 3], code 9=[5, 6]; row-id writers image-wide=['0031ED35', '0031F204', '0031F218', '0031F864', '0031F955', '0031FA5D', '0031FB47']
+PASS  W8 sensitivity: read by kind (not kind - 1) the join fails for all four commands {3: (11, 7), 5: (11, 6), 6: (11, 13), 7: (11, 5)}
+FAILS 0

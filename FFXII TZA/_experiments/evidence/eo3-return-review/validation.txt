@@ -1,0 +1,1 @@
+PASS exact shipping identity, full84/60B ranges, no RDI writes after definition, bounded callee branches/no calls, and synthetic EDI-write detector control.

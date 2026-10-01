@@ -1,0 +1,39 @@
+{
+  "status": "SOURCE_ESTABLISHES_PASSTHROUGH_ALIAS_PRECONDITION",
+  "method": "A exact original ordering/caller source and conditional prefix-byte calculation; no executed scenarios",
+  "entry_zero_stores": [
+    "002E438E:qword[output]=0",
+    "002E4394:dword[output+8]=0"
+  ],
+  "first_source_reads": [
+    "002E43BC:input+4",
+    "002E43C2:input",
+    "002E43C7:input+8"
+  ],
+  "conditional_prefix": {
+    "original_xyz_bits": [
+      "40400000",
+      "40800000",
+      "41400000"
+    ],
+    "distinct_first_reads_yxz": [
+      "40800000",
+      "40400000",
+      "41400000"
+    ],
+    "same_buffer_first_reads_yxz": [
+      "00000000",
+      "00000000",
+      "00000000"
+    ],
+    "original_W_unchanged_by_prefix": true
+  },
+  "caller_argument_construction": {
+    "site": "002E50CB",
+    "output": "local [current RSP+0x30]",
+    "input": "entry R8 saved in R14, forwarded as R9",
+    "mode": "entry EDX saved in EBP, forwarded as R8D"
+  },
+  "consumer_change": "Qualify pass-through with relevant non-overlap/separate-storage assumptions; preserve entry zeroing and rereads, not staged-vector replacement. Normal caller construction is source-established; arbitrary live pointer separation is not.",
+  "limits": "Class3/r8d!=0/valid separate actor+movement state, sequential prefix analysis. Exact same-buffer hypothesis only, not general partial-overlap safety. No imported sqrtf execution or final F8 numeric/pointer effects proven here; wrapper/thunk/source identity only. Recorded sole caller not a new whole-image census. No actual caller execution, game initialization, timing/atomicity/reachability or live behavior."
+}

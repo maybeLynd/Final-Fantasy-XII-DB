@@ -1,0 +1,5 @@
+PASS  B1 strings naming .dbg / .sbn / .msb (ascii, utf-16): [(0, 0), (0, 0), (0, 0)]; .ebp paths: (10380, 0)
+PASS  B2 0032E400(0xFF, ...) returns -1 before any table lookup
+PASS  R1 50 scopes, 49 positional cuts; exceptions [('btlctrl', 19, ['0xb', '0x0'])]
+PASS  P 50 / 50 scopes: q3 = {X; map[E]} with map[j] = last instruction starting before byte 32j, map[0] = -1, zero pad after; scopes whose head word X exceeds the real entries (the padding cases): [('ctrl', 5, 1, 0), ('btlctrl', 2, 1, 0), ('btlctrl', 19, 2, 1)]
+FAILS 0

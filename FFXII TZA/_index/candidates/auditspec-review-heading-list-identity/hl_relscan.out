@@ -1,0 +1,19 @@
+target 003A9490: 1 raw rel32 sites
+  003B3CE7  call 0x3a9490
+  absolute 8-byte pointers in file: 0
+target 003A8390: 1 raw rel32 sites
+  003A71D3  call 0x3a8390
+  absolute 8-byte pointers in file: 0
+target 0043EE70: 1 raw rel32 sites
+  003A94E9  call 0x43ee70
+  absolute 8-byte pointers in file: 0
+target 0043EF40: 2 raw rel32 sites
+  003A83E7  call 0x43ef40
+  0043F638  call 0x43ef40
+  absolute 8-byte pointers in file: 0
+target 003B3CA0: 4 raw rel32 sites
+  003B847F  call 0x3b3ca0
+  003B856C  call 0x3b3ca0
+  003EC3BC  jmp 0x3b3ca0
+  003EC4FB  jmp 0x3b3ca0
+  absolute 8-byte pointers in file: 0

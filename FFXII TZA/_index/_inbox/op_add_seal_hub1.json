@@ -1,0 +1,1 @@
+{"action": "add", "task": {"id": "SWE2EC7-SEAL-SHARED-CALLEE-HUBS-1", "kind": "research", "priority": "P3", "requester": "SWE2-EC7", "assigned_to": "SWE2-EC7", "target": "seal board state after SWE2-EC7-SHARED-HUB-IDENTIFICATION-1 publish 52a3d974", "scope": "TEAM.json + SWE2-EC7.md tail", "completion": "committed", "dependencies": [], "resources": [{"key": "@publication"}]}}

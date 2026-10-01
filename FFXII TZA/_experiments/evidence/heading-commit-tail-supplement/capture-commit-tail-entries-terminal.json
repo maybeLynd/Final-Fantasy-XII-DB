@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-commit-tail-entries.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 4,\n  \"extent_status\": [\n    [\n      \"0x45fd00\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      11,\n      null\n    ],\n    [\n      \"0x529d40\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      11,\n      null\n    ],\n    [\n      \"0x52a8a0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      11,\n      null\n    ],\n    [\n      \"0x52b5d0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      11,\n      null\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "96454d94ddf1a31303775d33b56b914860e5493ed18c9615ff95942383f62ff0"
+}

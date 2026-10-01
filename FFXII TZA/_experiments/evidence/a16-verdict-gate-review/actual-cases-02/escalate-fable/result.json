@@ -1,0 +1,21 @@
+{
+  "case": "escalate-fable",
+  "is_review": true,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "be565e755b6a5457f883c4d5f043ddac8eb9478db19c91b85fc55d1c66126f32",
+  "after_sha256": "00461ac45a6cec0c9c944443d0032ab3f3ff0b4170d6d249f10631975c34cfc4",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:ESCALATE-FABLE"
+  ],
+  "plan": [
+    {
+      "kind": "VERDICT-MANUAL",
+      "review": "FIXTURE-A16-ESCALATE-FABLE",
+      "detail": "verdict:ESCALATE-FABLE needs its named REVIEW-POLICY handling; no automatic transition",
+      "has_operation": false
+    }
+  ]
+}

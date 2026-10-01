@@ -1,0 +1,44 @@
+# Adjudications of candidate displacements in recoverable-layout-gaps.tsv.
+#
+# WHY THIS FILE EXISTS. The registry is REGENERATED and must not be hand-edited, so it cannot
+# carry the verdicts. Without them a reader sees N candidate rows and cannot tell a displacement
+# nobody has looked at from one that was read carefully and REFUSED - and those are opposite
+# states. On 2026-09-14 the registry stood at 5 rows, every one of them already adjudicated, and
+# nothing in the registry or anywhere in _index said so: the rulings existed only in
+# _index/_inbox/OPUS.md, which is a working inbox and not a canonical index.
+#
+# KEYED ON DISPLACEMENT, NOT ON THE GAP. Gap boundaries MOVE - declaring a field inside a gap
+# splits it, and declaring one beside it shrinks it - so a verdict keyed on gap_start would
+# silently detach from its subject the next time a neighbour was declared. A ruling is about the
+# EVIDENCE at one displacement and stays true when the gap around it changes shape.
+# gen_recoverable_gaps.py marks a registry row DISPOSITIONED only when EVERY displacement inside
+# that gap appears below; one unruled displacement leaves the whole row OPEN.
+#
+# A DISPOSITION IS NOT A DECLARATION AND DOES NOT CLOSE THE LAYOUT. REFUSED means the evidence at
+# that displacement does not describe a field there - the bytes are still unaccounted for, and
+# they are still a question. Emptying the registry by dispositioning it would establish nothing.
+#
+# verdict     meaning                                                   requires
+# REFUSED     the evidence does not describe a field at this offset     a reason
+# ROUTED      adjudication needs work owned by another agent            a request id
+# DECLARED    a field row now covers it (kept for audit; such rows       the offset declared
+#             leave the registry on the next regeneration)
+type	displacement	verdict	ruling_ref	reason
+SpawnRecord	0x108	REFUSED	_index/_inbox/OPUS.md "Two refused, and this is the case the registry exists to catch"	An ARRAY WALK, not a field. The accesses reach 0x108 and 0x10A through an index register with stride, which makes them the two halves of one element of an array declared elsewhere; declaring either would describe an array's first element as a scalar. 0x108 also takes a direct byte write, so the offset is genuinely touched - which is what makes the indexed rows worth refusing rather than ignoring.
+SpawnRecord	0x10A	REFUSED	_index/_inbox/OPUS.md "Two refused, and this is the case the registry exists to catch"	The second half of the same array element as 0x108. Refused for the same reason and recorded separately so a later regeneration cannot pick one up without the other.
+BattleUnit	0x740	DECLARED	_types/fields.tsv BattleUnit +0x740	SETTLED 2026-09-16 by OPUS-REQ-SWE2-STRUCT-BATTLEUNIT-750-WIDTH: declared as a 4-byte field. The qword stores are PAIR STORES over this offset and its declared neighbour - xor-zeroed r8 / arg-passed rsi,rdi fills / a cvttss2si int32 - none carries a pointer; the dword field-to-field copy +0x754 -> +0x750 at 00305EF6->00305EFC is the coherence witness. Matches the adjudicated +0x1A4/+0x6D8 WIDTH DELIBERATE precedent.
+BattleUnit	0x750	DECLARED	_types/fields.tsv BattleUnit +0x750	SETTLED 2026-09-16 by OPUS-REQ-SWE2-STRUCT-BATTLEUNIT-750-WIDTH: declared as a 4-byte field. The qword stores are PAIR STORES over this offset and its declared neighbour - xor-zeroed r8 / arg-passed rsi,rdi fills / a cvttss2si int32 - none carries a pointer; the dword field-to-field copy +0x754 -> +0x750 at 00305EF6->00305EFC is the coherence witness. Matches the adjudicated +0x1A4/+0x6D8 WIDTH DELIBERATE precedent.
+BattleUnit	0x764	DECLARED	_types/fields.tsv BattleUnit +0x764	SETTLED 2026-09-16 by OPUS-REQ-SWE2-STRUCT-BATTLEUNIT-750-WIDTH: declared as a 4-byte field. The qword stores are PAIR STORES over this offset and its declared neighbour - xor-zeroed r8 / arg-passed rsi,rdi fills / a cvttss2si int32 - none carries a pointer; the dword field-to-field copy +0x754 -> +0x750 at 00305EF6->00305EFC is the coherence witness. Matches the adjudicated +0x1A4/+0x6D8 WIDTH DELIBERATE precedent.
+CharacterRenderRecord	0x43C	REFUSED	_index/_inbox/OPUS.md "+0x43C refused, and it is the reason that file says read it first"	The three census rows carry disp = 0x43C but the INSTRUCTIONS CARRY NO DISPLACEMENT AT ALL (mov ecx, dword ptr [rbx]) - the offset is the route's arithmetic, not the instruction's. Separately, the one 8-byte access in this neighbourhood is 0041FA86 mov qword ptr [rbx + 0x438], rax, which zeroes the declared 0x438 and 0x43C together: a two-field initialisation already recorded in the 0x438 row, and not evidence of a field at 0x43C.
+MovementContext	0x0C	DECLARED	_types/fields.tsv MovementContext +0x00C	SETTLED 2026-09-17: declared as the 4-byte union contextScalarOrFlags. Movement-owner paths use it as a 1.0f-init float scalar (00265FF0 movss dword init; 00189130 movss); Presentation-owner paths use +0xC as a word flag (or 2), +0xE as a movsx word, +0xF as a byte flag - same chain:0xB8 context, two owners.
+MovementContext	0x0E	DECLARED	_types/fields.tsv MovementContext +0x00C	Word lane of the +0x0C union - movsx reads on the Presentation-owner path. Covered by the +0x0C declaration.
+MovementContext	0x0F	DECLARED	_types/fields.tsv MovementContext +0x00C	Byte lane of the +0x0C union - byte flag on the Presentation-owner path. Covered by the +0x0C declaration.
+BattleStatsRecord	0x1C3	DECLARED	_types/fields.tsv BattleStatsRecord +0x1C3	SETTLED 2026-09-17: declared as tailSentinelWord u16. BattleStats_InitializeDefinitionRecord 0023AC80 writes r13w=0xFFFF at 0023ACD5 (same store hits +0x58); no runtime reader on any enumerated route.
+BattleStatsRecord	0x1C5	DECLARED	_types/fields.tsv BattleStatsRecord +0x1C5	Declared as tailSentinelByte u8 - 0023ACDD mov byte [rdi+0x1c5],0xff. The +0x1C6..+0x1C7 tail is declared UNRESOLVED (no access).
+BattleUnit	0xBA4	DECLARED	_types/fields.tsv BattleUnit +0xBA4	SETTLED 2026-09-17: declared as commandIssueFlags u16 - BattleUnit_IssueCommand OR-accumulates ax at 00311DBB. The +0xBA2 word and the +0xBA6..+0xBB7 tail are declared UNRESOLVED (no access). || QUALIFIED 2026-09-28 (OPUS, _index/candidates/battleunit-order-record-opus/order_record.py I R): +0xBA0..+0xBB7 is an embedded AiOrderRecord (BattleUnit issuedCommandOrder). The 'no access' for +0xBA2 and +0xBA6..+0xBB7 holds for direct displacements only: those bytes are read through BattleUnit +0x708 (record +2, +6) once 00305B19 commits unit + 0xBA0
+CharacterRenderRecord	0x730	DECLARED	_types/fields.tsv CharacterRenderRecord +0x730	SETTLED 2026-09-17: declared as fadeCullState u32 - UpdateDistanceFadeAndCull 0042E850 writes 1 twice then r14d. No reader in the census.
+MovementContext	0x1C	DECLARED	_types/fields.tsv MovementContext +0x01C	SETTLED 2026-09-17: declared as anchorW f32 - fourth lane of the anchor vec4 (+0x10/+0x14/+0x18 named anchorX/Y/Z); 1.0f init x2 by 00265FF0, movss store by 00189130.
+MovementContext	0x2C	DECLARED	_types/fields.tsv MovementContext +0x02C	SETTLED 2026-09-17: declared as scaleW f32 - fourth lane of the +0x20..+0x28 scale triple; movss xmm14 write 0018939F, movss xmm8 read 0018A6BA.
+MovementContext	0xB0	DECLARED	_types/fields.tsv MovementContext +0x0B0	SETTLED 2026-09-17: declared as moveScalarB0 f32 - low half of a 00265FF0 qword init (0x3e20d97c = ~0.157f); movss read 00264502. High half +0xB4 was already declared.
+MovementContext	0xC4	DECLARED	_types/fields.tsv MovementContext +0x0C4	SETTLED 2026-09-17: declared as moveScalarC4 f32 - 0.5f init by 00265FF0 (00266253); immediately before extentUpBaseline +0xC8. No reader in the census.
+MovementContext	0xE4	DECLARED	_types/fields.tsv MovementContext +0x0E4	SETTLED 2026-09-17: declared as moveScalarE4 f32 - 0x3e19999a (~0.15f) init by 00265FF0 (00266340); movss read 00263651.

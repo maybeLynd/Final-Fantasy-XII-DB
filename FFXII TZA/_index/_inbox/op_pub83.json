@@ -1,0 +1,23 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PUB-CORRECT-STATIC-SCAN-CLAIM",
+  "kind": "research",
+  "priority": "P1",
+  "target": "correct a false claim published in 374b8386f about the save payload census",
+  "scope": "the three SavePayload span rows, singleton_field_scan static mode and its control, OPUS audit/resume",
+  "completion": "pending",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   },
+   {
+    "key": "file:database/ffxii tza/_index/_inbox/opus.md"
+   },
+   {
+    "key": "file:database/ffxii tza/_types/fields.tsv"
+   }
+  ]
+ }
+}

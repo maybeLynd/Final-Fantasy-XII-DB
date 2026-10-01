@@ -1,0 +1,21 @@
+PASS  F1 007E57B0 returns false, 007E5800 returns true
+PASS  F2 slot 38 true only for VariationSound; slot 39 false only for CycleSound: {'Sound': ('false', 'true'), 'RandomSound': ('false', 'true'), 'VariationSound': ('true', 'true'), 'OrderSound': ('false', 'true'), 'CycleSound': ('false', 'false'), 'SwitchSound': ('false', 'true')}
+PASS  F3 boolean sites 12, float sites 4 (all in 007F0820)
+      bool  007B2CB0@007B2F08  test al, al jne 0x7b2f22 lea rdx, [rbx + 0x10]
+      bool  007B31A0@007B31C9  test al, al je 0x7b31da xor eax, eax
+      bool  007B31A0@007B3336  test al, al jne 0x7b3351 mov r8, rdi
+      bool  007B31A0@007B3435  test al, al jne 0x7b3450 mov r8, rdi
+      bool  007B4A70@007B4BB5  test al, al je 0x7b4cef mov rcx, r15
+      bool  007BD4E0@007BD53B  test al, al jne 0x7bd553 mov rcx, qword ptr [rbx + 0x38]
+      bool  007BD5E0@007BD618  test al, al jne 0x7bd609 mov rax, qword ptr [rbx + 0x20]
+      bool  007BD9D0@007BD9EF  xor ecx, ecx test al, al jne 0x7bda38
+      bool  007BDBB0@007BDBD6  xorps xmm8, xmm8 test al, al je 0x7bdbea
+      bool  007BE590@007BE5CC  test al, al jne 0x7be5e7 mov rax, qword ptr [rbx + 0x30]
+      bool  007BEAF0@007BEB41  test al, al jne 0x7beb82 mov rax, qword ptr [rbx + 0x30]
+      bool  007BED30@007BED8E  xorps xmm7, xmm7 test al, al jne 0x7bee26
+      float 007F0820@007F0DA8  comiss xmm12, xmm0 jbe 0x7f0e3a mov rax, qword ptr [rbx]
+      float 007F0820@007F0DCD  comiss xmm6, xmm0 jbe 0x7f0e3a mov rax, qword ptr [rbx]
+      float 007F0820@007F0DF5  mov rax, qword ptr [rbx] subss xmm6, xmm0 movaps xmm7, xmm10
+      float 007F0820@007F0E0D  movaps xmm9, xmm12 subss xmm9, xmm0 mulss xmm9, xmm7
+PASS  F4 slot 39 sites 007BF183 (true -> [obj+0x54] = 7), 007F0A23 (true -> slot 37)
+FAILS 0

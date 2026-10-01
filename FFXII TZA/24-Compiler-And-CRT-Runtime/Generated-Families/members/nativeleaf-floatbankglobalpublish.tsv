@@ -1,0 +1,9 @@
+# NativeLeaf.FloatBankGlobalPublish - EC-7 family C
+# publish a this+0x60 xmm vector into member rip float slots with shufps
+# # lane extraction and adds; store this into a member rip pointer; then run
+# # a longer pipeline using shared 0039AF70/00398F90/0036DD80/00861F14.
+address	targets
+004630D0	0036DD80,00398F90,0039AF70,00861F14
+00463D20	0036DD80,00398F90,0039AF70,00861F14
+00527DC0	0036DD80,00398F90,0039AF70,00861F14
+00528820	0036DD80,00398F90,0039AF70,00861F14

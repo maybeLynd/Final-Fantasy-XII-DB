@@ -1,0 +1,7 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	pass	price	u16: 0xc8 x5, 0x7d0 x3, 0x2bc x3, 0x1b58 x3, 0x1f4 x3 (52 distinct)	0031CD50* movzx eax, word ptr [rbp]	price in gil -> query +0x28	STATIC	PASS
+0x02	1	pass	actionRow	u8: 0 x1, 1 x1, 2 x1, 3 x1, 4 x1 (81 distinct)	00300ABD* movzx r8d, byte ptr [rdi + 2] | 00300B27* movzx ebx, byte ptr [rbx + 2] | 00306457* movzx edx, byte ptr [rcx + 2] | 0031CD65* movzx eax, byte ptr [rbp + 2] | 0031CDB5* movzx ecx, byte ptr [rbp + 2]	the magick's action row: action[+2].+0x22 == 0x3000+row, .+0x34 == name word, .+0x1E == 1 on 81/81; read by the discovery flags (003008A0), the usable test (00306340 -> 003064F0) and query +0x38	both	PASS
+0x03	1	page	icon	u8: 44 x25, 45 x25, 46 x20, 47 x6, 48 x5 (5 distinct)	0031CD57* movzx eax, byte ptr [rbp + 3]	icon frame -> query +0x2C (UQ-130)	STATIC	BAZ
+0x04	2	page	nameWord	u16: 0x0 x1, 0x1 x1, 0x2 x1, 0x3 x1, 0x4 x1 (81 distinct)	0031CCE3* movzx ecx, word ptr [rax + 4] | 0031CD2B* movzx edx, word ptr [rax + 4]	name word (bank 0)	STATIC	EID
+0x06	1	pass	sortKey	u8: 0 x1, 9 x1, 10 x1, 11 x1, 1 x1 (81 distinct)	0031CD5E* movzx eax, byte ptr [rbp + 6]	list sort key -> query +0x30 (81 distinct)	STATIC	PASS
+0x07	1	pad	pad07	u8: 0 x81 (1 distinct)	-	const=0x00	-	PASS

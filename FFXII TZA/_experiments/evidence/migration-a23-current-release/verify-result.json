@@ -1,0 +1,30 @@
+{
+  "status": "CURRENT_CAPTURE_VERIFIED_NOT_A23_ACCEPTED",
+  "generation": "g20260929T184345Z-92fe9f",
+  "manifest_sha256": "b494e8ea85ffe3a6e9799cc8d1d2c1d2788a54585a600827df7f8b87b9815e2f",
+  "manifest_format": "ff12-generation-2",
+  "open_generation_problems": [],
+  "captured_views": {
+    "progress": {
+      "status": "PARTIAL",
+      "output_sha256": "859d147d84f2d6fc3a5d02366a043d98971797970da251d44f235a659ae9b93e",
+      "http_sha256": "b47cfebcbb28059053c1ea4b39cca2917267c6a99cc701ce09484eed7ea79e22"
+    },
+    "overview": {
+      "status": "OK",
+      "output_sha256": "7e087e3d0016124357b861c6691960f662ad9d1ab8ea4ecebb70e7b6b83c4750",
+      "http_sha256": "d22735348c6769dc07427a1a995861afe88da9936b111125741dc4a94e18a9cb"
+    }
+  },
+  "builder_manifest_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+  "builder_current_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+  "builder_current_matches_manifest": true,
+  "verifier_manifest_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+  "verifier_current_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+  "verifier_current_matches_manifest": true,
+  "server_current_sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+  "http_reader_stale": false,
+  "matching_release_zips": [],
+  "loaded_pid_module_identity": "UNMEASURED; targeted Get-NetTCPConnection failed CimException Access denied",
+  "limits": "One captured stable HTTP generation; CURRENT can advance later. No launcher/restart, loaded module or official release-export acceptance. A23 remains unaccepted."
+}

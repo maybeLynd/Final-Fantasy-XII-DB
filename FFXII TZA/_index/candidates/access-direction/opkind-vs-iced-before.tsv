@@ -1,0 +1,19 @@
+mnemonic	operand	op_kind	iced	count	example
+movups	0	r	w	13816	0015BD95 movups xmmword ptr [rax - 0x80], xmm0
+nop	0	r	none	8663	00121069 nop dword ptr [rax]
+test	0	w	r	477	0018B167 test dword ptr [rsi + 0x20], eax
+movq	0	r	w	206	00125BAF movq qword ptr [rdi], xmm2
+lock cmpxchg	0	r	rw	30	0016E12C lock cmpxchg dword ptr [rip + 0x2d4c1b4], esi
+movhps	0	r	w	27	0012784B movhps qword ptr [rdi], xmm6
+movd	0	r	w	13	00126D9C movd dword ptr [rdi], mm2
+movhpd	0	r	w	6	006E635B movhpd qword ptr [rcx + r13], xmm1
+movlpd	0	r	w	6	006E6361 movlpd qword ptr [rax + r13], xmm1
+prefetcht2	0	r	addr	4	0012589B prefetcht2 byte ptr [rsi + rax - 2]
+vmovaps	0	r	w	3	00179A36 vmovaps xmmword ptr [rsp + 0x60], xmm6
+vmovd	0	r	w	2	00179B2D vmovd dword ptr [rax], xmm0
+setae	0	r	w	2	0077B4C9 setae byte ptr [rsp + 0x70]
+vmovdqu	0	r	w	1	00179A6A vmovdqu ymmword ptr [rbp], ymm6
+setns	0	r	w	1	00408CD6 setns byte ptr [rip + 0x275a0d0]
+prefetchw	0	r	addr	1	006102EA prefetchw byte ptr [rbx + 0x28a0]
+setbe	0	r	w	1	006E5B68 setbe byte ptr [rbp - 0x77]
+setg	0	r	w	1	00807ADA setg byte ptr [rbp + 8]

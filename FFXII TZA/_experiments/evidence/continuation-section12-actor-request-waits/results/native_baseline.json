@@ -1,0 +1,840 @@
+{
+  "cases": [
+    {
+      "name": "init_free_head_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "init_detached_head_ff",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "init_channel_bits_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "init_channels_empty",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "init_last_free_terminates",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "queue_state1_admitted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "queued_state1_retained",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "allocated_consumes_free_head",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "entry_sets_channel2",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "state1_is_not_selected",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "state1_only_sets_idle",
+      "pass": true,
+      "actual": 64,
+      "expected": 64
+    },
+    {
+      "name": "remove_queued_entry",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "remove_last_clears_channel",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "queue_state2_admitted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "channel2_selected",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "entry_state_promoted3",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "start_uses_function_offset",
+      "pass": true,
+      "actual": 1073873152,
+      "expected": 1073873152
+    },
+    {
+      "name": "start_resets_phase",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "start_preserves_scratch",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "start_preserves_other_slot",
+      "pass": true,
+      "actual": 2779096485,
+      "expected": 2779096485
+    },
+    {
+      "name": "issuer_embodied_defers",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "deferral_depends_on_issuer",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "target_not_started",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "issuer_control_starts",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "target_class_does_not_defer",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "target_selected_one",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "submit_records_origin",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "submit_records_resume_offset",
+      "pass": true,
+      "actual": 10,
+      "expected": 10
+    },
+    {
+      "name": "submit_pc_next_opcode",
+      "pass": true,
+      "actual": 1073807370,
+      "expected": 1073807370
+    },
+    {
+      "name": "reqsw_interpreter_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "reqsw_kind4",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "reqsw_continuation_pc",
+      "pass": true,
+      "actual": 1073807370,
+      "expected": 1073807370
+    },
+    {
+      "name": "reqsw_receipt_before_body",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "reqsw_target_not_yet_executed",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "reqsw_consumes_receipt",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "reqsw_resumes_kind1",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "reqsw_continues_script",
+      "pass": true,
+      "actual": 99,
+      "expected": 99
+    },
+    {
+      "name": "reqsw_target_still_not_run",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "reqew_submit_return",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "reqew_waits_kind4",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "reqew_no_receipt_at_start",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "reqew_stays_waiting",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "reqew_no_early_following_code",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "target_body_executes",
+      "pass": true,
+      "actual": 44,
+      "expected": 44
+    },
+    {
+      "name": "target_RET_releases_channel",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "target_RET_posts_receipt",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "reqew_continues_after_return",
+      "pass": true,
+      "actual": 99,
+      "expected": 99
+    },
+    {
+      "name": "reqew_receipt_retired",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "highest_channel_wins",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "fifo_first_on_high_channel",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "first_high_starts_func2",
+      "pass": true,
+      "actual": 1073873408,
+      "expected": 1073873408
+    },
+    {
+      "name": "fifo_successor_after_remove",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "second_high_starts_func3",
+      "pass": true,
+      "actual": 1073873664,
+      "expected": 1073873664
+    },
+    {
+      "name": "lower_channel_after_high_empty",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "unselectable_high_does_not_block_low",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "blocked_high_channel_still_active",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "kind0_empty_admits",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind0_occupied_refuses",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "rejected_candidate_back_on_free_list",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind2_same_id_admits",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind4_same_id_refuses",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "kind4_distinct_id_admits",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "bad_function_refuses_before_allocation",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "bad_function_preserves_free_head",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "entry_capacity_refusal2",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "high_channel_submit_admitted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "high_channel_entry_clamps_to2",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "clamped_active_bit_is2",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "submitted_mask_uses_unclamped7",
+      "pass": true,
+      "actual": 128,
+      "expected": 128
+    },
+    {
+      "name": "different_actor_submission_admitted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "promotion_existing_low_entry_to2",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "promotion_selects_high_entry_to3",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "new_lower_priority_entry_stays2",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "same_actor_request_admitted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "same_actor_not_immediately_started",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "same_actor_selection_not_forced",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "issuer_nonzero_counter_uses_start_path",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "nonzero_counter_target_started",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "startwait_success_without_receipt_capacity",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "startwait_target_started_without_receipt",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "startwait_no_receipt_allocated",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "startwait_missing_receipt_still_waits",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "startwait_missing_receipt_no_continuation",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "endwait_target_finishes_without_receipt_capacity",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "endwait_receipt_failure_ignored",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "endwait_missing_receipt_still_waits",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "mismatched_channel_notice_inserted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "wrong_channel_does_not_resume",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "wrong_resume_offset_does_not_resume",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "matching_pair_resumes",
+      "pass": true,
+      "actual": 71,
+      "expected": 71
+    },
+    {
+      "name": "matching_notice_recycled",
+      "pass": true,
+      "actual": 255,
+      "expected": 255
+    },
+    {
+      "name": "no_target_entry_capacity_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "refused_submit_does_not_arm_wait4",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "refused_submit_continues_bytecode",
+      "pass": true,
+      "actual": 99,
+      "expected": 99
+    },
+    {
+      "name": "kind3_sees_queued_state1_entry",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "kind3_no_script_while_entry_exists",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "kind3_absence_resumes_same_drive",
+      "pass": true,
+      "actual": 81,
+      "expected": 81
+    },
+    {
+      "name": "kind3_sets_completion_marker",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind3_becomes_runnable",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind6_waits_on_channel_bit",
+      "pass": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "name": "kind6_ignores_other_channel",
+      "pass": true,
+      "actual": 81,
+      "expected": 81
+    },
+    {
+      "name": "kind6_sets_marker",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind2_dispatches_interpreter",
+      "pass": true,
+      "actual": 81,
+      "expected": 81
+    },
+    {
+      "name": "kind2_not_automatically_retyped",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "kind0_no_execution",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "kind0_marks_serviced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind8_no_execution",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "kind8_marks_serviced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind7_cursor_stops_at_active_second_actor",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind7_stays_waiting",
+      "pass": true,
+      "actual": 7,
+      "expected": 7
+    },
+    {
+      "name": "kind7_does_not_recheck_passed_actor",
+      "pass": true,
+      "actual": 82,
+      "expected": 82
+    },
+    {
+      "name": "kind7_cursor_reaches_end",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "kind7_sets_marker",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind5_cursor_advances_past_absent",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "kind5_sees_queued_matching_entry",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "kind5_continues_same_invocation",
+      "pass": true,
+      "actual": 82,
+      "expected": 82
+    },
+    {
+      "name": "kind5_does_not_write_marker",
+      "pass": true,
+      "actual": 126,
+      "expected": 126
+    },
+    {
+      "name": "kind5_cursor_exhausted",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "null_list_is_complete",
+      "pass": true,
+      "actual": 82,
+      "expected": 82
+    },
+    {
+      "name": "serviced_gate_skips_once",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "serviced_gate_clears_marker",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "serviced_gate_later_invocation_executes",
+      "pass": true,
+      "actual": 82,
+      "expected": 82
+    },
+    {
+      "name": "opcode32_returns_after_arming",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "opcode32_kind3",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "opcode32_saves_encoded_target",
+      "pass": true,
+      "actual": 1073762304,
+      "expected": 1073762304
+    },
+    {
+      "name": "opcode32_saves_resource_id",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "opcode32_saves_next_pc",
+      "pass": true,
+      "actual": 1073807367,
+      "expected": 1073807367
+    },
+    {
+      "name": "opcode32_no_early_continuation",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "opcode32_still_waits_with_entry",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "opcode32_resumes_after_removal",
+      "pass": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "opcode32_absent_returns",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "opcode32_absent_does_not_arm",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "opcode32_absent_continues",
+      "pass": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "reserved_id_bit_rejects_before_lookup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "early_reject_leaves_target_counter",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "early_reject_leaves_issuer_counter",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "failed_submission_returns_capacity2",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "failed_submission_decrements_target_counter",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "failed_submission_still_updates_saved_pc",
+      "pass": true,
+      "actual": 1073807370,
+      "expected": 1073807370
+    }
+  ],
+  "checks": 139,
+  "failures": 0
+}

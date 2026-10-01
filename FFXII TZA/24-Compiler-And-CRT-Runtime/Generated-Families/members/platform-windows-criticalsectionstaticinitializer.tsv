@@ -1,0 +1,28 @@
+# Platform.Windows.CriticalSectionStaticInitializer - EC-7 family C, declared on generated-function-families.md
+#
+# 19 members. Body size(s): 33 B x19.
+# 19 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 1 external target(s): 1 shared across all 19 members.
+#
+# NOT dispositioned: the 1 shared implementation these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00169690
+00169760
+001697D0
+00169800
+00169870
+001698A0
+001698D0
+00169900
+00169970
+001699E0
+00169AE0
+00169BA0
+00169E20
+00169F20
+00169FC0
+0016A070
+0016A0E0
+0016A150
+0016A1C0

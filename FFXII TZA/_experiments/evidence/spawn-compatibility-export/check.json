@@ -1,0 +1,398 @@
+{
+  "status": "PASS",
+  "method": "A: complete shipping source; arithmetic address normalization is analysis, not an execution test",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "body_sha256": "46ce76ee451bd778e2ac3782e52c397a1556df03e5450ff760620256b68cf57b",
+  "body_bytes": 489,
+  "original_execution_cases": 0,
+  "copy_groups": 8,
+  "records": [
+    {
+      "index": 0,
+      "selector_offset": 29552,
+      "destination": [
+        144,
+        196
+      ],
+      "source_bank0": 23312
+    },
+    {
+      "index": 1,
+      "selector_offset": 29556,
+      "destination": [
+        600,
+        652
+      ],
+      "source_bank0": 23468
+    },
+    {
+      "index": 2,
+      "selector_offset": 29560,
+      "destination": [
+        1056,
+        1108
+      ],
+      "source_bank0": 23624
+    },
+    {
+      "index": 3,
+      "selector_offset": 29564,
+      "destination": [
+        1512,
+        1564
+      ],
+      "source_bank0": 23780
+    },
+    {
+      "index": 4,
+      "selector_offset": 29568,
+      "destination": [
+        1968,
+        2020
+      ],
+      "source_bank0": 23936
+    },
+    {
+      "index": 5,
+      "selector_offset": 29572,
+      "destination": [
+        2424,
+        2476
+      ],
+      "source_bank0": 24092
+    },
+    {
+      "index": 6,
+      "selector_offset": 29576,
+      "destination": [
+        2880,
+        2932
+      ],
+      "source_bank0": 24248
+    },
+    {
+      "index": 7,
+      "selector_offset": 29580,
+      "destination": [
+        3336,
+        3388
+      ],
+      "source_bank0": 24404
+    },
+    {
+      "index": 8,
+      "selector_offset": 29584,
+      "destination": [
+        3792,
+        3844
+      ],
+      "source_bank0": 24560
+    },
+    {
+      "index": 9,
+      "selector_offset": 29588,
+      "destination": [
+        4248,
+        4300
+      ],
+      "source_bank0": 24716
+    },
+    {
+      "index": 10,
+      "selector_offset": 29592,
+      "destination": [
+        4704,
+        4756
+      ],
+      "source_bank0": 24872
+    },
+    {
+      "index": 11,
+      "selector_offset": 29596,
+      "destination": [
+        5160,
+        5212
+      ],
+      "source_bank0": 25028
+    },
+    {
+      "index": 12,
+      "selector_offset": 29600,
+      "destination": [
+        5616,
+        5668
+      ],
+      "source_bank0": 25184
+    },
+    {
+      "index": 13,
+      "selector_offset": 29604,
+      "destination": [
+        6072,
+        6124
+      ],
+      "source_bank0": 25340
+    },
+    {
+      "index": 14,
+      "selector_offset": 29608,
+      "destination": [
+        6528,
+        6580
+      ],
+      "source_bank0": 25496
+    },
+    {
+      "index": 15,
+      "selector_offset": 29612,
+      "destination": [
+        6984,
+        7036
+      ],
+      "source_bank0": 25652
+    },
+    {
+      "index": 16,
+      "selector_offset": 29616,
+      "destination": [
+        7440,
+        7492
+      ],
+      "source_bank0": 25808
+    },
+    {
+      "index": 17,
+      "selector_offset": 29620,
+      "destination": [
+        7896,
+        7948
+      ],
+      "source_bank0": 25964
+    },
+    {
+      "index": 18,
+      "selector_offset": 29624,
+      "destination": [
+        8352,
+        8404
+      ],
+      "source_bank0": 26120
+    },
+    {
+      "index": 19,
+      "selector_offset": 29628,
+      "destination": [
+        8808,
+        8860
+      ],
+      "source_bank0": 26276
+    },
+    {
+      "index": 20,
+      "selector_offset": 29632,
+      "destination": [
+        9264,
+        9316
+      ],
+      "source_bank0": 26432
+    },
+    {
+      "index": 21,
+      "selector_offset": 29636,
+      "destination": [
+        9720,
+        9772
+      ],
+      "source_bank0": 26588
+    },
+    {
+      "index": 22,
+      "selector_offset": 29640,
+      "destination": [
+        10176,
+        10228
+      ],
+      "source_bank0": 26744
+    },
+    {
+      "index": 23,
+      "selector_offset": 29644,
+      "destination": [
+        10632,
+        10684
+      ],
+      "source_bank0": 26900
+    },
+    {
+      "index": 24,
+      "selector_offset": 29648,
+      "destination": [
+        11088,
+        11140
+      ],
+      "source_bank0": 27056
+    },
+    {
+      "index": 25,
+      "selector_offset": 29652,
+      "destination": [
+        11544,
+        11596
+      ],
+      "source_bank0": 27212
+    },
+    {
+      "index": 26,
+      "selector_offset": 29656,
+      "destination": [
+        12000,
+        12052
+      ],
+      "source_bank0": 27368
+    },
+    {
+      "index": 27,
+      "selector_offset": 29660,
+      "destination": [
+        12456,
+        12508
+      ],
+      "source_bank0": 27524
+    },
+    {
+      "index": 28,
+      "selector_offset": 29664,
+      "destination": [
+        12912,
+        12964
+      ],
+      "source_bank0": 27680
+    },
+    {
+      "index": 29,
+      "selector_offset": 29668,
+      "destination": [
+        13368,
+        13420
+      ],
+      "source_bank0": 27836
+    },
+    {
+      "index": 30,
+      "selector_offset": 29672,
+      "destination": [
+        13824,
+        13876
+      ],
+      "source_bank0": 27992
+    },
+    {
+      "index": 31,
+      "selector_offset": 29676,
+      "destination": [
+        14280,
+        14332
+      ],
+      "source_bank0": 28148
+    },
+    {
+      "index": 32,
+      "selector_offset": 29680,
+      "destination": [
+        14736,
+        14788
+      ],
+      "source_bank0": 28304
+    },
+    {
+      "index": 33,
+      "selector_offset": 29684,
+      "destination": [
+        15192,
+        15244
+      ],
+      "source_bank0": 28460
+    },
+    {
+      "index": 34,
+      "selector_offset": 29688,
+      "destination": [
+        15648,
+        15700
+      ],
+      "source_bank0": 28616
+    },
+    {
+      "index": 35,
+      "selector_offset": 29692,
+      "destination": [
+        16104,
+        16156
+      ],
+      "source_bank0": 28772
+    },
+    {
+      "index": 36,
+      "selector_offset": 29696,
+      "destination": [
+        16560,
+        16612
+      ],
+      "source_bank0": 28928
+    },
+    {
+      "index": 37,
+      "selector_offset": 29700,
+      "destination": [
+        17016,
+        17068
+      ],
+      "source_bank0": 29084
+    },
+    {
+      "index": 38,
+      "selector_offset": 29704,
+      "destination": [
+        17472,
+        17524
+      ],
+      "source_bank0": 29240
+    },
+    {
+      "index": 39,
+      "selector_offset": 29708,
+      "destination": [
+        17928,
+        17980
+      ],
+      "source_bank0": 29396
+    }
+  ],
+  "bytes_copied": 2080,
+  "reused_sources": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/spawn-old-save-boundary/helpers.json",
+      "sha256": "5a9854d0a38f87d108451ad052a0774633dbd42173d4824c42dd52c5a8c0aa4a",
+      "bodies": [
+        "0x235af0"
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/spawn-old-save-boundary/capture.json",
+      "sha256": "0617a8675db02ed1836c9cffe62733261baa1b99f673347156db74aff5097c55",
+      "bodies": [
+        "0x5844a0",
+        "0x229b40"
+      ]
+    }
+  ],
+  "selected_bank_semantic_source": {
+    "path": "Database/FFXII TZA/11-Party/Battle-State-Block/the-battle-state-block-field-map.md",
+    "sha256": "3d616d957c65e5dd50ab9f17187d312b2f27ba0b384f346e2e2f458f4ec55d4e"
+  },
+  "limits": [
+    "No calls or selector/null bounds guards in this complete body. Stable initialized binding and valid selectors are caller preconditions.",
+    "Signed 32-bit selection is neither clamped nor validated. Arbitrary indices can alias other records; formula is not a promise of snapshot copies under overlapping injected states.",
+    "No live game, original-code execution, save decode or native initialization observed. Historical old-save-boundary interval key counters denotes this selected-bank array; retain receipt history."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "case": "two-verdicts",
+  "is_review": true,
+  "expected_accept": false,
+  "exit": 1,
+  "status": "ACTIVE",
+  "before_sha256": "4cd281b7d85f27e5c1e5292395a2cfe04e7402859040de78a100b1c824515b88",
+  "after_sha256": "4cd281b7d85f27e5c1e5292395a2cfe04e7402859040de78a100b1c824515b88",
+  "result_refs": null,
+  "plan": []
+}

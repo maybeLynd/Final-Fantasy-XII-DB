@@ -1,0 +1,30 @@
+W walks recorded: 135 sites, 174 bodies, 1086 nodes
+J 002E60F0@002E614D rcx: table not decoded (n=None disp=1860316)
+      002E6120 mov qword ptr [rsp + 0x30], r14
+      002E6125 lea r14, [rsi + 0x30]
+      002E6129 movsxd rax, edi
+      002E612C mov qword ptr [rsp + 0x70], r12
+      002E6131 lea r13, [rax + rax]
+      002E6135 lea r14, [r14 + rax*4]
+      002E6139 lea rdx, [rip - 0x1c6140]
+      002E6140 movsxd rax, ebx
+      002E6143 mov ecx, dword ptr [rdx + rax*4 + 0x1c62dc]
+      002E614A add rcx, rdx
+      002E614D jmp rcx
+J 002F6AB0@002F6CD7: 34 cases from table 002F72F8; 34 targets in the decoded body; distinct 20
+J 003B1310@003B1381: 8 cases from table 003B14C4; 8 targets in the decoded body; distinct 6
+J 003B1710@003B178F: 8 cases from table 003B18B8; 8 targets in the decoded body; distinct 6
+J 003B18E0@003B1970: 8 cases from table 003B1A5C; 8 targets in the decoded body; distinct 6
+J 00558FB0@00558FEE: 20 cases from table 005594E4; 20 targets in the decoded body; distinct 7
+J 00572E10@00572E52: 19 cases from table 005733A0; 19 targets in the decoded body; distinct 10
+J 0057B890@0057B8BA: 20 cases from table 0057BCE4; 20 targets in the decoded body; distinct 12
+J 0057CF20@0057CFAC: 61 cases from table 0057D514; 16 targets in the decoded body; distinct 43
+J 0057CF20@0057D166: 69 cases from table 0057D568; 11 targets in the decoded body; distinct 58
+J 00582860@005828AA: 19 cases from table 00582F54; 19 targets in the decoded body; distinct 7
+J 00582860@00582B7A: 8 cases from table 00582FA0; 8 targets in the decoded body; distinct 7
+S rel32 call from 00465967 into 003EDD6B (body 003EDAD0): real instruction False
+S rel32 call from 003ED9B8 into 003EDEFD (body 003EDAD0): real instruction False
+S rel32 call from 00465B15 into 003EDF19 (body 003EDAD0): real instruction False
+S rel8 at 00238646 into 00238635 (body 002385D0): no .pdata range - UNVERIFIED
+S rel8 at 003DC6BC into 003DC63F (body 003DC5B0): no .pdata range - UNVERIFIED
+W push-site walks that reached a node with a missed predecessor: 0

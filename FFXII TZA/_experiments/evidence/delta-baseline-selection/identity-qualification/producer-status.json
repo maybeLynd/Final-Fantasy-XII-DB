@@ -1,0 +1,7 @@
+{
+  "status": "NOT_EXECUTED",
+  "scope": "raw-byte identity naming and write-once output changed; no predicate or selector recapture",
+  "after_sha256": "316efa2ae315512bbc1851c8e2bbe848ca531509d7f88c00225601629682f256",
+  "before_sha256": "50422235af8b99eb5018d2afe691dffc558c3fc3dd7a820cd878bbdf67388f41",
+  "adopted_default_path": "Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\precondition-controls.py"
+}

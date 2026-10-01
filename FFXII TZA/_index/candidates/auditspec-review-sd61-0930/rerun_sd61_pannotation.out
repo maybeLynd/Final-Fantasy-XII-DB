@@ -1,0 +1,7 @@
+PASS  F1 006B66C0: PAnnotation {vtbl, node +8/+0x10, +0x18 = rdx, +0x20 = r8, +0x28 = r9d}
+      69 x key 02CF8570, r8 r8, rax, r9 r9d, r9d, follows member 'm_count', derived .?AV?$PAnnotationWithValue@I@Phyre@@, value 0x7fffffff
+       1 x key arg, r8 r8, [rip + 0x18fcfa9], r9 r9d, r9d, follows member None, derived .?AV?$PAnnotationWithValue@I@Phyre@@, value None
+PASS  F2 69 of 70 sites: key 02CF8570, value type from 00630180, +0x28 = 0, on a member named m_count, derived PAnnotationWithValue<unsigned int>, value 0x7FFFFFFF
+PASS  F3 key = "WriteMask"; value type = PTypeDefault<unsigned int>
+PASS  F4 the annotation is linked into the annotated member's list at member + 0x38
+FAILS 0

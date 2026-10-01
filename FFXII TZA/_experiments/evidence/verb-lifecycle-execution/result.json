@@ -1,0 +1,1417 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "harness": "check.py",
+ "cases": [
+  {
+   "name": "p0-run",
+   "why": "phase 0, poll returns running: begin+poll, phase->1, return 1, no push",
+   "pass": true,
+   "order": [
+    "B",
+    "P"
+   ],
+   "eax": 1,
+   "phase": 1,
+   "depth": 0,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-done-int0",
+   "why": "poll returns 0: result runs, int-0 push, phase->0, return 0",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-result-p2",
+   "why": "result writes phase=2 and the return slot: the re-read pushes int slot_c",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-result-p3",
+   "why": "result writes phase=3: the re-read pushes a FLOAT from slot_c",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-result-p1",
+   "why": "result leaves phase<2: the pushed int is zero - slot_c is NOT pushed",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p1-run",
+   "why": "phase 1 skips begin entirely: poll only, phase stays 1, return 1",
+   "pass": true,
+   "order": [
+    "P"
+   ],
+   "eax": 1,
+   "phase": 1,
+   "depth": 0,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "2000",
+     "0",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p1-done",
+   "why": "phase 1, poll done: poll+result, no begin, phase->0",
+   "pass": true,
+   "order": [
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "2000",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p2-entry",
+   "why": "phase>=2 entry runs result ONLY; phase still 2 pushes int from slot_c - and slot_c was NOT cleared (the clear lives in the phase-0 arm)",
+   "pass": true,
+   "order": [
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p5-entry",
+   "why": "phase 5 entry: result only, float push",
+   "pass": true,
+   "order": [
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-nopoll",
+   "why": "poll slot NULL: a missing poll is not-running - begin then result",
+   "pass": true,
+   "order": [
+    "B",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-nobegin",
+   "why": "begin slot NULL: poll+result, no begin",
+   "pass": true,
+   "order": [
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "2001",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-noresult",
+   "why": "result slot NULL: begin+poll then the null arm pushes int 0 anyway",
+   "pass": true,
+   "order": [
+    "B",
+    "P"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "stack-63",
+   "why": "depth 63 is AT the 0x3F bound: result still runs but the push is refused",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 63,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "stack-62",
+   "why": "depth 62: the last writable index",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 63,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "stack-neg1",
+   "why": "depth -1 is movsxd'ed: the bound passes (signed -1 < 63) and the type byte lands INSIDE the depth dword at +3",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 33554432,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-poll-0x100",
+   "why": "poll returns 0x100: test al,1 looks at the low byte only - al=0 means done",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "p0-poll-3",
+   "why": "poll returns 3: bit 0 set means running regardless of bit 1",
+   "pass": true,
+   "order": [
+    "B",
+    "P"
+   ],
+   "eax": 1,
+   "phase": 1,
+   "depth": 0,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "rebind",
+   "why": "word[ctx] != cmdState+8: 00358940 runs, callbacks get rdx = resolved actor",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30001180",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30001180",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30001180",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "rebind-same",
+   "why": "keys equal: no rebind, rdx == rcx == the issuing context",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "rebind-nulltbl",
+   "why": "rebind table NULL: 00358940 returns 0 - callbacks get rdx = 0",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "rebind-oob",
+   "why": "rebind index >= count: rdx = 0",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "rebind-neg",
+   "why": "rebind index -1 is sign-checked: rdx = 0, not table[-1]",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "0",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "begin-eax-ignored",
+   "why": "begin returns 0x77: the executor discards it - the poll return decides",
+   "pass": true,
+   "order": [
+    "B",
+    "P"
+   ],
+   "eax": 1,
+   "phase": 1,
+   "depth": 0,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "poll-r9-residual",
+   "why": "begin clobbers r9 to a sentinel; poll logs what the executor left it - the three-argument claim",
+   "pass": true,
+   "order": [
+    "B",
+    "P"
+   ],
+   "eax": 1,
+   "phase": 1,
+   "depth": 0,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "dead5eed",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "id-high-family",
+   "why": "id FFFFFFFF: sar makes family -1 (not 0xFFFFF as shr would) -> TBL_N record 0xFFF runs",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "id-zero",
+   "why": "id 0: family 0, command 0 - family array[0] is zero in this fixture, so no callbacks resolve",
+   "pass": true,
+   "order": [],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-sar-shr",
+   "why": "MUTANT: logical shift makes family 0xFFFFF - the array read lands far outside the page",
+   "pass": true,
+   "order": [],
+   "eax": 1048575,
+   "phase": 0,
+   "depth": 0,
+   "fault": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-and-1fff",
+   "why": "MUTANT: id 0x1FFF keeps command bit 12 - reads record 0x1FFF (zeroed) instead of 0xFFF",
+   "pass": true,
+   "order": [],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-phase-off",
+   "why": "MUTANT: phase read one byte late - phase 1 entry runs begin",
+   "pass": true,
+   "order": [
+    "B",
+    "P"
+   ],
+   "eax": 1,
+   "phase": 1,
+   "depth": 0,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-p1-jne",
+   "why": "MUTANT: phase 1 falls to the result path instead of poll-only",
+   "pass": true,
+   "order": [
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-run-jne",
+   "why": "MUTANT: a running poll is treated as done - result runs, phase clears",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-push-jb",
+   "why": "MUTANT: phase<2 after result takes the ==2 arm's jne -> float push of slot_c",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-p2-je",
+   "why": "MUTANT: phase==2 after result takes the float arm instead of the int arm",
+   "pass": true,
+   "order": [
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "P": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "0",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-bound-40",
+   "why": "MUTANT: bound 0x40 admits index 63 - byte 63 of each array is written",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 64,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  },
+  {
+   "name": "mut-clear-off",
+   "why": "MUTANT: the phase-0 return-slot clear removed - begin logs the stale 0xCAFEBABE",
+   "pass": true,
+   "order": [
+    "B",
+    "P",
+    "R"
+   ],
+   "eax": 0,
+   "phase": 0,
+   "depth": 1,
+   "fault": null,
+   "failures": [],
+   "slots": {
+    "B": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "cafebabe"
+    ],
+    "P": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ],
+    "R": [
+     "30000000",
+     "30000000",
+     "30002018",
+     "30003000",
+     "30006000",
+     "0"
+    ]
+   }
+  }
+ ],
+ "summary": {
+  "cases": 35,
+  "passed": 35,
+  "failed": 0,
+  "mutants": 9,
+  "mutants_detected": 9
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-156",
+ "note": "batch 156 (EC7-191): 22 bodies decoded+anchored across 15 bearing hosts - multi-caller settings trio 0035E5C0/0035E5A0 (kind predicates) + 002E2010 (bounded 8-slot enable setter); efx mode-dispatched row writer 0041EDE0; audio string-assign twins 00203CB0/00203B00; app BST lower_bound+emplace 001B9EE0 + render-pass-list arms 00187860/00186010; battle-unit candidate builder 003347C0; npc-name resolvers 003BCCA0/003BFFF0; settings whitelist 001EDCD0 + vec4 normaliser 00476E70; widget kind-3 init 003EF680; vfx emit writer 001B2530; ext-source lazy init 0051D220; render-pool blend 003E47C0; transform handshake 00367820; quest-list x-placement 002D1750; unit-display lane counter 00275E40; boot display-record ctor 004E79C0. Gates: anchors 4855 0 MID; address 0 UNSUPPORTED in new content; hash clean (26 standing); crossref 2847/401; guard ADDS NOTHING.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub156_dumps.txt",
+  "Database/Tools/work/hub156_callers.txt"
+ ]
+}

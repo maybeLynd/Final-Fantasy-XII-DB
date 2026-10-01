@@ -1,0 +1,36 @@
+tree: D:/FFXII_TZA_extract/ps2data/obj_finish   files 3164   blocks 31942
+
+command 0x20  ->  record word +0x2F4, alias for bone id 0x107, default 0x303
+   authored: 148   with word == 0 (would be a no-op): 0
+   distinct word values: 0x1 x148
+   block names (148 distinct):
+      m1003_10_0603                1
+      m1007_10_0605                1
+      m1015_10_0603                1
+      m1018_10_0603                1
+      m1019_10_0603                1
+      m1023_10_0603                1
+      m1034_10_0605                1
+      m1036_10_0605                1
+      m1043_10_0603                1
+      m1044_10_0603                1
+      m1045_10_0605                1
+      m1046_10_0605                1
+      ... 136 more
+
+command 0x21  ->  record word +0x2F6, alias for bone id 0x108, default 0x305
+   authored: 613   with word == 0 (would be a no-op): 0
+   distinct word values: 0x1 x613
+   block names (4 distinct):
+      item                         206
+      field_item                   206
+      throw                        168
+      steal                        33
+
+CONTROL against figures the page already publishes:
+   0x24: this walk   1493   page says 1493
+   0x25: this walk    740   page says 740
+   0x15: this walk   1218   page says 1218
+   0x2F: this walk     30   page says 30
+   total 1712307 over 32 ids
+   walk integrity: clean

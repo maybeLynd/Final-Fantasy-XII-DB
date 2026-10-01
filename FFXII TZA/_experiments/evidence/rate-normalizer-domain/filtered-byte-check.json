@@ -1,0 +1,73 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "839879bca5424019fc3edb2af915a44fd7db093e"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "7791d534bdb0a321e4282be3e273c12633c32598"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "a386a7bf3a5b3d77a34524aa7afe2462186b3ef4"
+    },
+    {
+      "path": "isa.json",
+      "git_blob": "0df36901264ed661d0b3557b41d23eb62dc460bd"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "54530f853d12cb62f8817dd5be0e066666c07ef5"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "20f84c5969bff3a68c4a2eb6ad641934d043c900"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "46c66eb6dd30116d533e654d9538783a8cef08fe"
+    },
+    {
+      "path": "retained/animation-mechanism.md",
+      "git_blob": "0c2376dbe8c5ec64947a006952c0b6959eedc4ed"
+    },
+    {
+      "path": "retained/caller-identities.json",
+      "git_blob": "df6fc1e56018e345fd1b4ed71ba4b2bc373e71b4"
+    },
+    {
+      "path": "retained/catalog-identity.json",
+      "git_blob": "80c955810f52cd3d66b73b44e0c79b65242df2fb"
+    },
+    {
+      "path": "retained/field-preimage.json",
+      "git_blob": "e3d78b07e31ee7348ebe11cdae40a1ee18489957"
+    },
+    {
+      "path": "retained/one.bin",
+      "git_blob": "9c12e8adf98ba3c9bdad8481352f1dac07f3df52"
+    },
+    {
+      "path": "retained/shared-neighbours.md",
+      "git_blob": "0c1daf9d84a424c3356483081b9c441aa3177c50"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "93547bef9a979bd0dc3ed33619790c1b55118f21"
+    },
+    {
+      "path": "retained/widget-contract.md",
+      "git_blob": "ddf3fe9f78e6662ed8edebca99a8076224961aee"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "evidence": "stopped at original memcpy import before copying",
+  "destination": 805307328,
+  "source": 805307648,
+  "length": 1024,
+  "slot_published": 1,
+  "old_source_freed": 1,
+  "overlap": true
+}

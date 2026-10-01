@@ -1,0 +1,66 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 5326,
+    "sha256": "6b5f9f53209f06c73bcbde733ff4e8a4b93399e23dba1e50399511d8ee53ad43"
+  },
+  "extract.py": {
+    "bytes": 2740,
+    "sha256": "360d604320d68d831ad88b7ed9f3389d22cb1869dba255522930fc2df1aaba86"
+  },
+  "first-check.py": {
+    "bytes": 5263,
+    "sha256": "059707cf3f0f556309d3bc69be8a1d7b1eeb5af11f71abc39fc08730322ced55"
+  },
+  "observation.json": {
+    "bytes": 1380,
+    "sha256": "66c24a897cc104a0d8aa1dc88d6129513d3c30c4248d279efebf25b0e7b390ec"
+  },
+  "PLAN.md": {
+    "bytes": 1821,
+    "sha256": "d6c71ad5d4f21c624e6b11e5c6a7441d8a9c74952ddc14ac7647da572b53cc7f"
+  },
+  "primary.json": {
+    "bytes": 33417,
+    "sha256": "222dc19e530a042b724807137709bed0d36dd02f8334db516cfd722ac563e777"
+  },
+  "qualification-failure.txt": {
+    "bytes": 519,
+    "sha256": "5617a8cbc44e940d0beb45e0dc762254146681db6729818b948934aa4774217a"
+  },
+  "README.md": {
+    "bytes": 4109,
+    "sha256": "af18d143a790994a2a99d518b314d6541390bda86afe4c79b8367714f197a09a"
+  },
+  "validation.json": {
+    "bytes": 494,
+    "sha256": "903d6b9dd9c685cdd89f732beed3d0d8c50c830cccedbac2273d00a4cb4c9324"
+  },
+  "retained/00-CONTRACT-field-music-selection.md": {
+    "bytes": 32202,
+    "sha256": "716d5d45be273bfce0ca2af6ac901213e61ad8751ead1a0c5ea0da91a0642ff2"
+  },
+  "retained/01-EXP-099-field-music-selection-exec.md": {
+    "bytes": 5573,
+    "sha256": "b898dd02126b192d3bbb99b772c185607f95627432301304f81c20fce60a37a0"
+  },
+  "retained/02-check.py": {
+    "bytes": 13351,
+    "sha256": "73453bdd792e565730f3bbcdfcc88c2a3ba0a729a0cbda4e4a86b7580f1d5307"
+  },
+  "retained/03-result.json": {
+    "bytes": 5989,
+    "sha256": "acbecf2cf4b9b2ef66a7d7cb5c87858d21d3cb52eb9ed3840baead8806f7c43b"
+  },
+  "retained/image-reader.py": {
+    "bytes": 39341,
+    "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "retained/type-row.txt": {
+    "bytes": 9571,
+    "sha256": "6415912d2753b8a4691d08cd3f143312ec1aa012fbe0f85d64935bc9496d9056"
+  }
+}

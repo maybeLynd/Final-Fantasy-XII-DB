@@ -1,0 +1,132 @@
+{
+  "status": "RETAINED_NONEMPTY_INDEX_AND_SELECTED_PEER_INPUTS",
+  "archive": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FFXII_TZA.vbf",
+    "bytes": 31196932183,
+    "mtime_ns": 1788875311803686800,
+    "header_length": 11995716,
+    "file_count": 0,
+    "index_prefix_end": 10080610,
+    "index_prefix_sha256": "ca2ab25fd89324b64e9587154233670655108914aa85dbab7f32b51192bcbc30",
+    "compressed_path": "archive-name-index-prefix.bin.zlib",
+    "compressed_sha256": "ac44eb013093c2e0d6c7024754f8173f765d49b5846c06f469de0dea6d0d3ee9",
+    "compressed_bytes": 3007099,
+    "limits": "Exact retained index/name prefix, not a full VBF/payload hash or initialized cache"
+  },
+  "peer_inputs": [
+    {
+      "path": "fable-e2-census.py",
+      "original_path": "Database/FFXII TZA/_index/candidates/ov33-no-status-exits-fable-0929/e2_path_census.py",
+      "sha256": "32b42acb48282c651269cc6fb4ed136c1e6cc3e7bc2d02544a54434913516245"
+    },
+    {
+      "path": "fable-e2-census.out",
+      "original_path": "Database/FFXII TZA/_index/candidates/ov33-no-status-exits-fable-0929/e2_path_census.out",
+      "sha256": "ea93905b7e7aa055af39add2ed4cbf46abd8833bb752c598833eb90ea640f61e"
+    },
+    {
+      "path": "contract-b14-checks.py",
+      "original_path": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b14-0930/b14_checks.py",
+      "sha256": "4d60af6192fe7722a375d79678c92a7a3b0fbc95953467bbaee26109829b0ff9"
+    },
+    {
+      "path": "contract-b14-checks.out",
+      "original_path": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b14-0930/b14_checks.out",
+      "sha256": "82960637f2c955f10ceac0ed49919088ef81a1e233b64950eb7027649b912127"
+    }
+  ],
+  "selected_rows": [
+    {
+      "language": "US",
+      "edx_mode": 1,
+      "kind": 1,
+      "index": 129,
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0502.ca"
+    },
+    {
+      "language": "US",
+      "edx_mode": 1,
+      "kind": 1,
+      "index": 130,
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0711.ca"
+    },
+    {
+      "language": "US",
+      "edx_mode": 1,
+      "kind": 1,
+      "index": 131,
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0600.ca"
+    },
+    {
+      "language": "US",
+      "edx_mode": 0,
+      "kind": 1,
+      "index": 129,
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0502.ca"
+    },
+    {
+      "language": "US",
+      "edx_mode": 0,
+      "kind": 1,
+      "index": 130,
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0711.ca"
+    },
+    {
+      "language": "US",
+      "edx_mode": 0,
+      "kind": 1,
+      "index": 131,
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0600.ca"
+    },
+    {
+      "language": "UK",
+      "edx_mode": 1,
+      "kind": 1,
+      "index": 131,
+      "path": "PS2Data\\image\\FF12\\test_battle\\uk\\BinaryFile\\battle_pack.bin"
+    },
+    {
+      "language": "UK",
+      "edx_mode": 1,
+      "kind": 1,
+      "index": 132,
+      "path": "PS2Data\\image\\FF12\\test_battle\\uk\\BinaryFile\\menu_command.bin"
+    },
+    {
+      "language": "UK",
+      "edx_mode": 0,
+      "kind": 1,
+      "index": 131,
+      "path": "PS2Data\\image\\FF12\\test_battle\\uk\\BinaryFile\\battle_pack.bin"
+    },
+    {
+      "language": "UK",
+      "edx_mode": 0,
+      "kind": 1,
+      "index": 132,
+      "path": "PS2Data\\image\\FF12\\test_battle\\uk\\BinaryFile\\menu_command.bin"
+    },
+    {
+      "language": "CN",
+      "edx_mode": 1,
+      "kind": 1,
+      "index": 127,
+      "path": "PS2Data\\effect_finish\\jp\\event\\e0009.efx"
+    },
+    {
+      "language": "CN",
+      "edx_mode": 0,
+      "kind": 1,
+      "index": 127,
+      "path": "PS2Data\\effect_finish\\jp\\event\\e0009.efx"
+    }
+  ],
+  "controls": {
+    "nonempty_count": 89414,
+    "unique_names": 89414,
+    "ascii_names": 89414,
+    "known_present": "ps2data/cdi/in/system.cnf"
+  },
+  "collector_sha256": "476235b0821f963372d7fccbb23d6674175853fdcef2b90cf3020d8e8a5a1a26",
+  "limits": "External source/census inputs retained, not our executions or automatic independent acceptance. No archive payload or game state read."
+}

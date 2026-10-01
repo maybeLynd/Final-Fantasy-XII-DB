@@ -1,0 +1,77 @@
+{
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "cleanup.json": {
+      "bytes": 4281,
+      "sha256": "bc06dda07405daf668e17ed8afadacfec92f60564bdb9d58f9c0cb18ad1a7ad3"
+    },
+    "cloud-before.json": {
+      "bytes": 127,
+      "sha256": "e220da83e1e82f14191649799d7b51fe66a9693255a720bbdec5d4fbc5bd11ab"
+    },
+    "environment.json": {
+      "bytes": 3117,
+      "sha256": "618bd2593a88a57866f27438f64fe9772887b58d851cf22bbf04be074392caee"
+    },
+    "input_sample.py": {
+      "bytes": 1722,
+      "sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf"
+    },
+    "interruption.json": {
+      "bytes": 766,
+      "sha256": "45208f9b10b20c95dd3e2345499672ae997757f5f1a494e1c12d77cba87cf074"
+    },
+    "observe.py": {
+      "bytes": 6080,
+      "sha256": "a0f921f518fcbada08209159ba6db01c851ebd07ccd9f022b3464745b4813fee"
+    },
+    "origins.json": {
+      "bytes": 421,
+      "sha256": "236942117e661077ebbf18dc35a693885b54595d4e47478e36ff3233d92e37b4"
+    },
+    "README.md": {
+      "bytes": 2765,
+      "sha256": "26bf792f4242880cba4c41efed5ab975237b801a27585c6e2441a1343a910c48"
+    },
+    "renewed/input_sample.py": {
+      "bytes": 1722,
+      "sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf"
+    },
+    "renewed/interruption.json": {
+      "bytes": 5018,
+      "sha256": "1220f1ef5f89c34ca86fd6b6ab17cff3bf7195f49073908cd3095c92be3c02d0"
+    },
+    "renewed/observe.py": {
+      "bytes": 6080,
+      "sha256": "2ec3bc7d96b47faee458756cac16547d01093f10f7c632e56107b39e9b0c5dbb"
+    },
+    "renewed/README.md": {
+      "bytes": 627,
+      "sha256": "4dabc5b7f8718ac8bc77dc9aaaa37ad0402f9b150a8d8aced40f90864494c84f"
+    },
+    "renewed/setup.py": {
+      "bytes": 1819,
+      "sha256": "34b86f7b5ebbad325d1e554609c008d320acdc874294b26c8fb7b3042c677d21"
+    },
+    "save-before.json": {
+      "bytes": 4405,
+      "sha256": "5344e0ef26d3527d4d93cf8b05a167af6cc3581e39508601798dc37fb53d2038"
+    },
+    "setup.py": {
+      "bytes": 1811,
+      "sha256": "0fc4b22a42f3c68fe0704daac73dae3d3bafa1125290a463b3f19102af7bfbda"
+    },
+    "steam-cloud-off-ui.json": {
+      "bytes": 4843,
+      "sha256": "9b27b1a2545617974635ec6a586f62473c3b6a5a072f1dade1f6dd5db49f1d9d"
+    },
+    "steam-cloud-off.jpg": {
+      "bytes": 49528,
+      "sha256": "7c776fbea0fd33a145d8be4f68717da573f6bddf8a7086a8be5b2a343230aa5e"
+    }
+  },
+  "status": "BOTH_ATTEMPTS_INTERRUPTED_BEFORE_GAME_OBSERVATION"
+}

@@ -1,0 +1,10 @@
+id	claim	original_sites	fixture_groups	evidence_class	limitations
+O06-1	Parser ownership and writable borrow	003EDAD0;003A9730;003A9A70	copy_context;borrow_context;A00_copy;A00_borrow;unaligned_copy	native + static	Default subtype only; no shipped malformed-input proof
+O06-2	Lookup ownership versus bulk layout	0024F410;003A9600;003A9950	copy_context;borrow_context;nonbulk_borrowbit;two_context_borrows	native + static	No arbitrary nested concurrency; empty complex children
+O06-3	Entry owner to context disposal ordering	00409A60;00409D60;003B37E0;00409730	entry_owned;entry_borrowed	original call order + integrated native result	Bank/pages and input are fixtures; original mover not run
+O06-4	Ticket and instance selectivity	003B38B0;003B37E0;003B39E0;0024F4D0	ticket_chain;ticket_exhausted	native + static	Deferred queue not full; empty child blocks
+O06-5	Reference sides and stale cache	00409D60;00427B00;00409730	entry_owned;entry_borrowed;standalone_reference_clear;no_matching_resource_entry	native + static	Not all consumers; mode1 raw-source fixture
+O06-6	Membership versus actual free	003AB880;003AB940;003AB7C0;00369800	tagged_membership_and_free	native + static	Synthetic matching slot, no slot-reuse ABA certification
+O06-7	Existing-key reuse and resize	00409FE0;0051EEB0;003EDAD0	same_tag_name_reuses_existing_entry;buffer_resize;repeat_parse	native + static	Existing-entry branch only; repeated parser use is synthetic
+O06-8	Selective source refresh	003B3480;0024D970;003A9860	original_driver_after_simulated_source_move	native + static	External move simulated; optional instance branch unexecuted
+O06-9	Descriptor physical extent	0051EF5F;0051EF64;0051EF73;0051EF76	buffer_resize plus whole-body wide-store analysis	static producer bytes + executed resize	Opaque bytes have no stable value or semantic purpose claim

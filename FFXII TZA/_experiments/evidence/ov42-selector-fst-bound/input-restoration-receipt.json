@@ -1,0 +1,94 @@
+{
+  "game_started": false,
+  "game_inputs": false,
+  "memory_interventions": false,
+  "instruments_attached": false,
+  "saves_config_touched": false,
+  "install_tables": [
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_ASIA.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_ASIA.fst",
+      "bytes": 820000,
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_CH.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_CH.fst",
+      "bytes": 820000,
+      "sha256": "1f7e4ca1ea1a003d2ade2a6338be3513f659ab986efb3dc734db12c36498075b",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_CN.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_CN.fst",
+      "bytes": 820000,
+      "sha256": "e33cb21a6ae3ac84aaf7500d724e20aefdf6cbc6e7ff9e97ee2faa8448f41258",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_DE.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_DE.fst",
+      "bytes": 820000,
+      "sha256": "d80b86be6f53166701abf5c15356c449421fbb41f2e82e105044a406e90e350c",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_ES.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_ES.fst",
+      "bytes": 820000,
+      "sha256": "4aec6d0e32f56dbe95fd9c76aef4685c42e2eb043e1ffffa2059c2ba5c2af5a9",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_FR.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_FR.fst",
+      "bytes": 820000,
+      "sha256": "d8f6211d36a6207a2a20ecbfe0e8b53f12b6ba5c473f4693fec4730e30293213",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_IN.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_IN.fst",
+      "bytes": 820000,
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_IT.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_IT.fst",
+      "bytes": 820000,
+      "sha256": "948c7aee093a63b210972227e68172d79303f7a1e2a9a2d44b4012b589e7fdc1",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_JP.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_JP.fst",
+      "bytes": 820000,
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_KR.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_KR.fst",
+      "bytes": 820000,
+      "sha256": "83a4dda471c8b9744375227389730097ba8502984e66c88dc5de0738549976ca",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_UK.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_UK.fst",
+      "bytes": 820000,
+      "sha256": "2451762db99591c4b8417d1278d6120f20226f338f4da36aa2ff544d713bb40f",
+      "source_equals_copy_after_analysis": true
+    },
+    {
+      "source": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FileSizeTables\\FileSizeTable_US.fst",
+      "frozen": "fst-inputs-01\\FileSizeTable_US.fst",
+      "bytes": 820000,
+      "sha256": "3a03ea77c689d1f48428c440a272b7dbfd77b121758bfd2c5ac0697ceeeb2b3e",
+      "source_equals_copy_after_analysis": true
+    }
+  ],
+  "exe_sha256_after": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+}

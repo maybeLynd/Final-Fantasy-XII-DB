@@ -1,0 +1,64 @@
+{
+  "status": "PRODUCER_CHECKED_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "producer_complete": true,
+  "checker_sha256": "672a2358f6ec16839466cb45058fbf0051438e67470b7e4d3de44ea3f0cffd18",
+  "inputs": [
+    {
+      "path": "softedges-elements-callback-source-01/original-code.json",
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61",
+      "bytes": 4348
+    },
+    {
+      "path": "softedges-member-assignment-code-01.json",
+      "sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2",
+      "bytes": 12455
+    },
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a",
+      "bytes": 53403
+    },
+    {
+      "path": "softedges-member-resolution-continuation-code-01.json",
+      "sha256": "7ed54f7767345772a670abbcab0d6f148e4045ada654e3591e4d92a88a9000d7",
+      "bytes": 30399
+    },
+    {
+      "path": "softedges-elements-callback-source-01/facts.json",
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6",
+      "bytes": 5741
+    }
+  ],
+  "established": [
+    {
+      "claim": "named-m_els-dispatch-ABI",
+      "result": "60F3D0 uses metadata+70; supplies object/source/count directly to the callback, without a second member-offset or class-F4 address adjustment. Null callback returns21."
+    },
+    {
+      "claim": "callback-zero-not-count-acceptance",
+      "result": "Registered60F280 executes60EFE0 then overwrites EAX with0. Negative signed count gives inner5/no array write but normal outer return0. Nonnegative normal continuation associates source/count|80000000. Opaque5F03A0 effects excluded."
+    },
+    {
+      "claim": "packed-member-return-width",
+      "result": "59EC40 through-path address is (object + zext32(memberNativeOffset + childF4 - parentF4)) mod2^64. Residual offset update is mod2^32. It is not unrestricted signed pointer arithmetic; the original writes EAX before adding the64-bit object."
+    }
+  ],
+  "arithmetic_discriminator": {
+    "member_offset": 0,
+    "child_f4": 0,
+    "parent_f4": 8,
+    "original_delta": 4294967288,
+    "unrestricted_signed_delta": -8,
+    "label": "ISA-width counterexample calculation only; supplied values are not claimed naturally reachable and this is not a native execution"
+  },
+  "unresolved": [
+    "Actual file-member mapped-child construction and key22/27 terminal member",
+    "Successful loaded-resource binding and descriptor adjustments in that load",
+    "Pointer lifetime, cleanup effects, destination aliases and natural reachability"
+  ],
+  "limits": "Conditional original source behavior, no forced call or game observations. The retained mapping records are not supplied here as runtime state. Registered native m_els name must be checked against separate source facts; this checker does not prove the loader installs that member.",
+  "live_runs": 0,
+  "isolated_native_runs": 0
+}

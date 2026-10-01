@@ -1,0 +1,25 @@
+{
+  "pid": 35100,
+  "mode": "revised",
+  "setup": [
+    {
+      "unix": 1789094639.140617,
+      "operation": "DebugActiveProcess",
+      "args": [
+        35100
+      ],
+      "result": 1,
+      "error": null
+    },
+    {
+      "unix": 1789094639.1406353,
+      "operation": "DebugSetProcessKillOnExit",
+      "args": [
+        false
+      ],
+      "result": 1,
+      "error": null
+    }
+  ],
+  "unix": 1789094639.1407351
+}

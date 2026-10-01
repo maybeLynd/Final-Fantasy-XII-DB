@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "returncode": 0,
+    "stdout": "ACCEPT_REPAIRED_CONFIGURED_BOUNDARY\n"
+  },
+  "negative_controls": [
+    {
+      "name": "incomplete",
+      "input_sha256": "2a5fe40f95639f0c088287e8dfdde72f2370040357dd69e577f3e8b4a29094a6",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\check.py\", line 11, in <module>\n    assert r['finished'] is True and r['source_unchanged'] is True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "missing-required-case",
+      "input_sha256": "1ed6453c9222d38bdd14233202dfff347d2c626461df82e179fc3a730097d401",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\check.py\", line 29, in <module>\n    assert set(cases) == ids and len(r['cases']) == len(ids) == 18\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "failed-composer-masquerades-as-pass",
+      "input_sha256": "d4b971fd72e3073e974e7d7f5072e22290a5848771bc038791af1f8ec47514f5",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\check.py\", line 62, in <module>\n    assert c['timed_out'] is False and c['returncode'] == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    }
+  ],
+  "original_raw_unchanged": true
+}

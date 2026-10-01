@@ -1,0 +1,9 @@
+falsifier re-runs by SWE2-AUDIT-SPEC, 2026-09-29; compared with the committed .out ignoring CR (falsify_settings_commands.* checked equal to their HEAD blobs: a peer's index shows them staged-deleted)
+falsify_manual_save.py  IDENTICAL  FAILS 0
+falsify_settings_commands.py  IDENTICAL  FAILS 0
+falsify_nav_mesh.py  IDENTICAL  FAILS 0
+falsify_fef_entries.py  IDENTICAL  FAILS 0
+falsify_posteffect_family.py  IDENTICAL  FAILS 0
+falsify_title_asset.py  IDENTICAL  FAILS 0
+falsify_menumap_formats.py  IDENTICAL  FAILS 0
+falsify_nonempty_prf.py  IDENTICAL  FAILS 0

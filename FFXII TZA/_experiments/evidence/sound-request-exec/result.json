@@ -1,0 +1,756 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "verb-sel0",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 Y605 40 7f gate2 D0 h605 p40 v7f W5a",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 90
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-sel9",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 Y605 40 7f gate2 D0 h605 p40 v7f W5a",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 90
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-sel1",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 res1006 l0 m0 Y806 40 7f gate2 D0 h806 p40 v7f W5a",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 90
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-sel2",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 res705 l0 m0 Y405 40 7f gate2 D0 h405 p40 v7f W5a",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 90
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-mask",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 Y605 2ff 1ff gate2 D0 h605 pff v7f W5a",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 90
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-muted",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 W0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-resfail",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 Yffffffff 40 7f W0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-gate2",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 Y605 40 7f gate2 W0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "verb-held",
+   "ret": 1074987008,
+   "trace": "verb o4 o3 o2 o1 resA5 l0 m0 Yffffffff 40 7f W0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-c60-ok",
+   "ret": 90,
+   "trace": "w_c605 resA5 l0 Y605 40 7f gate2 D0 h605 p40 v7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-c60-gate1",
+   "ret": -1,
+   "trace": "w_c605",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-1500-gate1",
+   "ret": 90,
+   "trace": "w_15005 resA5 l0 Y605 40 7f gate2 D0 h605 p40 v7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-ca0-ok",
+   "ret": 90,
+   "trace": "w_ca05 resB5 Y605 40 7f gate2 D0 h605 p40 v7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-ca0-dead",
+   "ret": 90,
+   "trace": "w_ca05 resB5 Y605 40 7f gate2 D0 h605 p40 v7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-ca0-gate1",
+   "ret": -1,
+   "trace": "w_ca05",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-c60-resfail",
+   "ret": -1,
+   "trace": "w_c605 resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-a1a0-gate1",
+   "ret": 0,
+   "trace": "w_a1a05",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "w-a1a0-ok",
+   "ret": 91,
+   "trace": "w_a1a05 Rd5 resh5 DB1 h5 a0 b0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resA-ok",
+   "ret": 1541,
+   "trace": "resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resA-dead",
+   "ret": -1,
+   "trace": "resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resA-bit7",
+   "ret": -1,
+   "trace": "resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resA-hdlm1",
+   "ret": -1,
+   "trace": "resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resA-mismatch",
+   "ret": -1,
+   "trace": "resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resA-flag31",
+   "ret": 1541,
+   "trace": "resA5 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resB-dead-ok",
+   "ret": 1541,
+   "trace": "resB5",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "resB-hdlm1",
+   "ret": -1,
+   "trace": "resB5",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "res70-gatem1",
+   "ret": -1,
+   "trace": "res705",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "res70-ok",
+   "ret": 1029,
+   "trace": "res705 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "res100-gatem1",
+   "ret": -1,
+   "trace": "res1005",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "res100-ok",
+   "ret": 2053,
+   "trace": "res1005 l0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "play-idm1",
+   "ret": 0,
+   "trace": "Yffffffff 40 7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "play-gate2",
+   "ret": 0,
+   "trace": "Y605 40 7f gate2",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "play-ok",
+   "ret": 90,
+   "trace": "Y605 40 7f gate2 D0 h605 p40 v7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "play-mask",
+   "ret": 90,
+   "trace": "Y80000605 3ff 1ff gate2 D0 h605 pff v7f",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "vpop-int",
+   "ret": 287454020,
+   "trace": "o1",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "vpop-float",
+   "ret": 3,
+   "trace": "o1",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "vpop-empty",
+   "ret": 0,
+   "trace": "o0",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "vpop-type3",
+   "ret": 0,
+   "trace": "o1 Ve1",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 0,
+    "push_val": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "vpush-wr",
+   "ret": 1074987008,
+   "trace": "W11223344",
+   "ok": true,
+   "calls": [],
+   "extra": {
+    "push_type": 2,
+    "push_val": 287454020
+   },
+   "faults": []
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-volmask",
+   "va": "0x2DF258",
+   "killed": true,
+   "divergent": 2,
+   "why": "and edi,0x7F -> 0xFF: volume keeps bit7",
+   "sample": [
+    [
+     "verb-mask",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y605 2ff 1ff gate2 D0 h605 pff v1ff W5a"
+    ],
+    [
+     "play-mask",
+     "ret=90 tr=Y80000605 3ff 1ff gate2 D0 h605 pff v1ff"
+    ]
+   ]
+  },
+  {
+   "name": "m-pantrunc",
+   "va": "0x2DF259",
+   "killed": true,
+   "divergent": 2,
+   "why": "movzx r8d,sil -> si: pan keeps high byte",
+   "sample": [
+    [
+     "verb-mask",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y605 2ff 1ff gate2 D0 h605 p2ff v7f W5a"
+    ],
+    [
+     "play-mask",
+     "ret=90 tr=Y80000605 3ff 1ff gate2 D0 h605 p3ff v7f"
+    ]
+   ]
+  },
+  {
+   "name": "m-btr",
+   "va": "0x2DF25D",
+   "killed": true,
+   "divergent": 1,
+   "why": "btr ebx,0x1f removed: dispatch sees flagged handle",
+   "sample": [
+    [
+     "play-mask",
+     "ret=90 tr=Y80000605 3ff 1ff gate2 D0 h80000605 pff v7f"
+    ]
+   ]
+  },
+  {
+   "name": "m-playm1",
+   "va": "0x2DF238",
+   "killed": true,
+   "divergent": 3,
+   "why": "cmp ecx,-1 -> cmp ecx,0: id 0 refused, -1 dispatched",
+   "sample": [
+    [
+     "verb-resfail",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Yffffffff 40 7f gate2 D0 h7fffffff p40 v7f W5a"
+    ],
+    [
+     "verb-held",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Yffffffff 40 7f gate2 D0 h7fffffff p40 v7f W5a"
+    ],
+    [
+     "play-idm1",
+     "ret=90 tr=Yffffffff 40 7f gate2 D0 h7fffffff p40 v7f"
+    ]
+   ]
+  },
+  {
+   "name": "m-gate2",
+   "va": "0x3603C0",
+   "killed": true,
+   "divergent": 2,
+   "why": "gate2 always 0: transition gate disabled",
+   "sample": [
+    [
+     "verb-gate2",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y605 40 7f gate2 D0 h605 p40 v7f W5a"
+    ],
+    [
+     "play-gate2",
+     "ret=90 tr=Y605 40 7f gate2 D0 h605 p40 v7f"
+    ]
+   ]
+  },
+  {
+   "name": "m-wgate",
+   "va": "0x249C6B",
+   "killed": true,
+   "divergent": 3,
+   "why": "00249C60 gate1 jne->je: gate set now proceeds",
+   "sample": [
+    [
+     "w-c60-ok",
+     "ret=-1 tr=w_c605"
+    ],
+    [
+     "w-c60-gate1",
+     "ret=90 tr=w_c605 resA5 l0 Y605 40 7f gate2 D0 h605 p40 v7f"
+    ],
+    [
+     "w-c60-resfail",
+     "ret=-1 tr=w_c605"
+    ]
+   ]
+  },
+  {
+   "name": "m-wret",
+   "va": "0x249C8B",
+   "killed": true,
+   "divergent": 2,
+   "why": "or eax,-1 -> xor eax: refusal returns 0",
+   "sample": [
+    [
+     "w-c60-gate1",
+     "ret=0 tr=w_c605"
+    ],
+    [
+     "w-c60-resfail",
+     "ret=0 tr=w_c605 resA5 l0"
+    ]
+   ]
+  },
+  {
+   "name": "m-resbtr",
+   "va": "0x3A11AF",
+   "killed": true,
+   "divergent": 1,
+   "why": "btr r8d,0x1f removed: flag-31 handles fail compare",
+   "sample": [
+    [
+     "resA-flag31",
+     "ret=-1 tr=resA5 l0"
+    ]
+   ]
+  },
+  {
+   "name": "m-resshl",
+   "va": "0x3A11D9",
+   "killed": true,
+   "divergent": 8,
+   "why": "shl edx,9 -> 8: resolved id halves",
+   "sample": [
+    [
+     "verb-sel0",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y305 40 7f gate2 D0 h305 p40 v7f W5a"
+    ],
+    [
+     "verb-sel9",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y305 40 7f gate2 D0 h305 p40 v7f W5a"
+    ],
+    [
+     "verb-mask",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y305 2ff 1ff gate2 D0 h305 pff v7f W5a"
+    ]
+   ]
+  },
+  {
+   "name": "m-sel",
+   "va": "0x357095",
+   "killed": true,
+   "divergent": 2,
+   "why": "verb selector sub eax,1 -> 2: arm shift",
+   "sample": [
+    [
+     "verb-sel1",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA6 l0 m0 Yffffffff 40 7f W0"
+    ],
+    [
+     "verb-sel2",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 res1005 l0 m0 Y5 40 7f gate2 D0 h5 p40 v7f W5a"
+    ]
+   ]
+  },
+  {
+   "name": "m-mute",
+   "va": "0x3570BE",
+   "killed": true,
+   "divergent": 9,
+   "why": "verb mute jne->je: muted plays, live skipped",
+   "sample": [
+    [
+     "verb-sel0",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 W0"
+    ],
+    [
+     "verb-sel9",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 W0"
+    ],
+    [
+     "verb-sel1",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 res1006 l0 m0 W0"
+    ]
+   ]
+  },
+  {
+   "name": "m-live",
+   "va": "0x267347",
+   "killed": true,
+   "divergent": 12,
+   "why": "liveness test al,1 -> 2: wrong bit",
+   "sample": [
+    [
+     "verb-sel0",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Yffffffff 40 7f W0"
+    ],
+    [
+     "verb-sel9",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Yffffffff 40 7f W0"
+    ],
+    [
+     "verb-sel1",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 res1006 l0 m0 Yffffffff 40 7f W0"
+    ]
+   ]
+  },
+  {
+   "name": "m-popdec",
+   "va": "0x267E1A",
+   "killed": true,
+   "divergent": 11,
+   "why": "vmpop dec removed: reads the wrong stack slot",
+   "sample": [
+    [
+     "verb-sel0",
+     "ret=1074987008 tr=verb o4 Ve1 o4 Ve1 o4 Ve1 o4 Ve1 resA0 l0 m0 Y600 0 0 gate2 D0 h600 p0 v0 W5a"
+    ],
+    [
+     "verb-sel9",
+     "ret=1074987008 tr=verb o4 Ve1 o4 Ve1 o4 Ve1 o4 Ve1 resA0 l0 m0 Y600 0 0 gate2 D0 h600 p0 v0 W5a"
+    ],
+    [
+     "verb-sel1",
+     "ret=1074987008 tr=verb o4 Ve1 o4 Ve1 o4 Ve1 o4 Ve1 resA0 l0 m0 Yffffffff 0 0 W0"
+    ]
+   ]
+  },
+  {
+   "name": "m-pushoff",
+   "va": "0x26B4F4",
+   "killed": true,
+   "divergent": 10,
+   "why": "vmpush +0x15 -> +0x16: type written to wrong offset",
+   "sample": [
+    [
+     "verb-sel0",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y605 40 7f gate2 D0 h605 p40 v7f W5a"
+    ],
+    [
+     "verb-sel9",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 resA5 l0 m0 Y605 40 7f gate2 D0 h605 p40 v7f W5a"
+    ],
+    [
+     "verb-sel1",
+     "ret=1074987008 tr=verb o4 o3 o2 o1 res1006 l0 m0 Y806 40 7f gate2 D0 h806 p40 v7f W5a"
+    ]
+   ]
+  }
+ ],
+ "faults": [],
+ "bodies_fired": [
+  "0x1DBDB0",
+  "0x1DBE90",
+  "0x249C60",
+  "0x249CA0",
+  "0x24A1A0",
+  "0x267310",
+  "0x267330",
+  "0x267E10",
+  "0x26B4E0",
+  "0x271500",
+  "0x2DEE80",
+  "0x2DF0F0",
+  "0x2DF220",
+  "0x357040",
+  "0x3603C0",
+  "0x3A1070",
+  "0x3A1100",
+  "0x3A1180",
+  "0x3A11F0",
+  "0x8620C0"
+ ]
+}

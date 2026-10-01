@@ -1,0 +1,18 @@
+{
+  "status": "PRE_PUBLICATION_REGION_LABEL_CORRECTION",
+  "cause": "Reducer classified membership bitset record bytes with the misleading internal label pointer-record, conflating heap cell bitsets with the separate global pointer list.",
+  "affected_outputs": [
+    "Own53 result.json bitmap_write_region labels and check.py producer only; no peer/canonical consumer or original-code trace affected"
+  ],
+  "correction": "Actual default check.py address-region classifier now emits bitset-record0/1; original checker/result/manifest/filtered receipts archived before edit. Source/driver/raw/engine traces unchanged; no original-code rerun.",
+  "preparation_limit": "An initial editing preflight asserted two textual occurrences but there were four including check assertions; it stopped before editing. Exact archived preimages checked before applying replacement. This was not another original-code run.",
+  "raw_sha256": "991a8585ec873bb2bd90407f0b1fbf506d2e8d5ff3d2d878d52f1cc59039b5a5",
+  "affected_case_names": [
+    "positive-observer-id0",
+    "last-in-record-id287",
+    "next-record-id288",
+    "negative-one-no-low-byte-bit",
+    "occupancy255-wrap",
+    "observer-NOP-INC-control"
+  ]
+}

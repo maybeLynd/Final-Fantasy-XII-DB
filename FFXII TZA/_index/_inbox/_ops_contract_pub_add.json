@@ -1,0 +1,18 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-CONTRACT-PUB-FACING-SYNC",
+  "kind": "research",
+  "priority": "P1",
+  "assigned_to": "SWE2-CONTRACT",
+  "target": "publish four gate-clean batches: facing correction, globals PROSE_ONLY, findability gate, facing \u00a714 sync",
+  "scope": "CONTRACT-facing-and-steering.md + how-a-character-turns.md + OPEN-QUESTIONS.md + COVERAGE.md + PARITY-STATUS.md + ADDRESS-INDEX.md + diff_angle_wrap.py + check_contract_globals.py + parity_status.py + 3 op files + neighbour-dispositions.tsv + PROGRAM-STATE.md + SWE2-CONTRACT.md",
+  "completion": "commit hash recorded",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

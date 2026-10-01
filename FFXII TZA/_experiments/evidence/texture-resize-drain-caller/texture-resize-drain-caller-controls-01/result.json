@@ -1,0 +1,35 @@
+{
+  "status": "PASS_ACTUAL_HIGHER_RESIZE_REFUSALS_INDEPENDENT_PENDING",
+  "positive_reused": {
+    "path": "texture-resize-drain-caller-result-01.json",
+    "sha256": "9d0d349230631a52e319ca7304c12e9565aada000550aa2030adcebf586b1435"
+  },
+  "checker_sha256": "d6d80c78cd5e918c8907bd93144b462adea34c0a57242b9eac8208866d55112e",
+  "refusals": [
+    {
+      "case": "bypass-drain",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-tail-fragment",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-capacity-prerequisite",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-wait-source",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Four producer CLI controls, no FF12/native/game executions or independent acceptance"
+}

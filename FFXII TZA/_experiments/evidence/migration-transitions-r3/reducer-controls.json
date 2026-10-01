@@ -1,0 +1,32 @@
+[
+  {
+    "name": "missing-field",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\reducer-controls\\missing-field.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\check.py\", line 14, in <module>\n    fields={x['name']:x for x in r['fields']};expected={'valid-full40':'INCORPORATE','commit-full40-lf':'MALFORMED','commit-full40-crlf':'MALFORMED','verdict-lf':'VERDICT-MISSING'};assert len(fields)==len(r['fields'])==4 and set(fields)==set(expected),'MISSING_FIELD'\n                                                                                                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_FIELD\n",
+    "terminal": true,
+    "checker_sha256": "da62bbb9ac4414a5e2ddfc89511ac783bd845e652f2b7d775de7f0978c92334c"
+  },
+  {
+    "name": "failed-writer-exit-hidden",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\reducer-controls\\failed-writer-exit-hidden.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\check.py\", line 30, in <module>\n    assert x['terminal'] and x['returncode']==pc and x['report'][0]['status'].startswith(status),'WRITER_OUTCOME'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: WRITER_OUTCOME\n",
+    "terminal": true,
+    "checker_sha256": "da62bbb9ac4414a5e2ddfc89511ac783bd845e652f2b7d775de7f0978c92334c"
+  }
+]

@@ -1,0 +1,36 @@
+== 00577638 in .pdata [00577550, 005776CF)
+00577608  call      0x576860
+0057760D  movzx     edx, bpl
+00577611  sub       edx, 1
+00577614  je        0x577624
+00577616  cmp       edx, 1
+00577619  je        0x577624
+0057761B  cmp       eax, 0xff
+00577620  je        0x57762b
+00577622  jmp       0x577644
+00577624  cmp       eax, 0xffff
+00577629  jne       0x577644
+0057762B  mov       r9d, 1
+00577631  mov       r8d, ebx
+00577634  mov       edx, edi
+00577636  mov       cl, 6
+00577638  call      0x315ad0   <==
+0057763D  mov       r11, qword ptr [rip + 0x27320f4]   ; -> 02CA9738 (virtual tail)
+00577644  inc       ebx
+00577646  cmp       ebx, 8
+00577649  jl        0x5775f5
+0057764B  movzx     eax, word ptr [r14 + 8]
+00577650  inc       edi
+00577652  cmp       edi, eax
+00577654  jl        0x5775e0
+00577656  mov       eax, 1
+0057765B  jmp       0x5776b1
+0057765D  movsxd    rdi, ecx
+00577660  mov       rbx, qword ptr [r11 + rdi*8 + 0xc8]
+00577668  test      rbx, rbx
+0057766B  je        0x5776af
+0057766D  xor       esi, esi
+0057766F  cmp       si, word ptr [rbx + 8]
+00577673  jae       0x5776a8
+00577675  lea       rbp, [rip + 0x7ac0d4]   ; -> 00D23750 u32=03020100
+00577A2E: no .pdata entry

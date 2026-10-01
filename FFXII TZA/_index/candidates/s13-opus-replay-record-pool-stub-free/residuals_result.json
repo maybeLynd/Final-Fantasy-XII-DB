@@ -1,0 +1,149 @@
+{
+ "cases": {
+  "R1_all_groups_every_layout_class_carved_class2_pointers_inside": true,
+  "R2_fcount_0xA_takes_site1_on_every_ctor_call_default_never": true,
+  "R3_the_only_caller_supplies_the_default_allocator": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "R3": {
+   "bind_sites": [
+    "0026C8E3 lea r12, [rip - 0x4fba]",
+    "0026C8EA test r8, r8",
+    "0026C8ED movsxd rbp, ecx",
+    "0026C8F0 lea r14, [rip - 0x14c8f7]",
+    "0026C8F7 mov r15, rdx",
+    "0026C8FA cmovne r12, r8"
+   ],
+   "caller_site": [
+    "0032F95A lea r8, [rip - 0xc8031]",
+    "0032F961 mov rdx, rdi",
+    "0032F964 mov ecx, ebx",
+    "0032F966 call 0x26c8c0"
+   ],
+   "callers_of_0026C8C0": [
+    "0032F850"
+   ],
+   "r8_passed": "00267930"
+  },
+  "V0": {
+   "ok": true,
+   "rc": 0,
+   "site1_hits": 0
+  },
+  "V1": {
+   "ok": true,
+   "pointers": {
+    "0": {
+     "A0": "120",
+     "A8": "1E8",
+     "B8": "0",
+     "C0": "0",
+     "ok": true
+    },
+    "1": {
+     "A0": "1A0",
+     "A8": "268",
+     "B8": "120",
+     "C0": "0",
+     "ok": true
+    },
+    "2": {
+     "A0": "1A0",
+     "A8": "240",
+     "B8": "120",
+     "C0": "0",
+     "ok": true
+    },
+    "3": {
+     "A0": "140",
+     "A8": "208",
+     "B8": "120",
+     "C0": "0",
+     "ok": true
+    },
+    "4": {
+     "A0": "140",
+     "A8": "1E0",
+     "B8": "120",
+     "C0": "0",
+     "ok": true
+    },
+    "5": {
+     "A0": "4D8",
+     "A8": "5A0",
+     "B8": "120",
+     "C0": "350",
+     "ok": true
+    },
+    "6": {
+     "A0": "4D8",
+     "A8": "5A0",
+     "B8": "120",
+     "C0": "350",
+     "ok": true
+    },
+    "7": {
+     "A0": "4D8",
+     "A8": "578",
+     "B8": "120",
+     "C0": "350",
+     "ok": true
+    }
+   },
+   "rc": 0,
+   "variant": {
+    "fcount": 4,
+    "groups": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "layout_class_by_record": [
+     0,
+     1,
+     1,
+     2,
+     2,
+     3,
+     3,
+     3
+    ],
+    "linked": 5,
+    "site1_hits": 0
+   }
+  },
+  "V2": {
+   "ok": true,
+   "rc": 0,
+   "variant": {
+    "fcount": 10,
+    "groups": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "layout_class_by_record": [
+     0,
+     1,
+     1,
+     3,
+     3
+    ],
+    "linked": 3,
+    "site1_hits": 6
+   }
+  }
+ }
+}

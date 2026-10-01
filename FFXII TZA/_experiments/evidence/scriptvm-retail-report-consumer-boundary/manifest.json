@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 435,
+      "sha256": "194b36f4c0a9acf663a647d49fc61370bc4a6f45a93cb4f7fa114269ee2edf13"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4788,
+      "sha256": "88c37ad59f23dc4eb7ac9ae3f81247c53746e751477925c42c2a2acc4dc1f2c1"
+    },
+    {
+      "path": "check-initial.py",
+      "bytes": 740,
+      "sha256": "4cc958512a1667174ba822f08d1d3a3e45f15535ee23c14711201ef9a5529966"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5868,
+      "sha256": "f2aabba3d8b6e96fcdbe6dff4c624f00b66ace2eee8acdb68290e6752465b5dd"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 6704,
+      "sha256": "8b120f957ff8526fef294ee88f949efa1e95019b5dd4fcc898a68a96869610c8"
+    },
+    {
+      "path": "pre-capture-identity.json",
+      "bytes": 3056,
+      "sha256": "ac7e73c086f25452aeb839962fa8a68d99c88e24dada95eeebbb5a562a47b955"
+    },
+    {
+      "path": "preparation-gate-controls.json",
+      "bytes": 4849,
+      "sha256": "8826e51ac46e332a5de58f0efc67f7bf70ac70cd7065562b43647fe78079076e"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 7688,
+      "sha256": "c28a8163b94967e961e601de5b5bdc6bc879b3152492095cc22f93b284aad9b8"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 19120,
+      "sha256": "e64520a76f27acd7038a40be0dc09e984d908b4c606e83f659a4d0d30daa59a9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5370,
+      "sha256": "bf44ba9faf115403bcedaa6962331e6be818d2de7f8199a502fead65fc13a587"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1186,
+      "sha256": "efc74fd57740176a0df4e102d13bba74da679e7a9ba66f7d82140891200b1909"
+    },
+    {
+      "path": "retained/folded-return.bin",
+      "bytes": 3,
+      "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b"
+    },
+    {
+      "path": "retained/pages/script-variables-and-their-storage-classes.md",
+      "bytes": 47439,
+      "sha256": "f01d45859b4185395d59d45780483b58333218239c3cd05bc76bb38d642504f5"
+    },
+    {
+      "path": "retained/pages/scriptvm-verb-dispatch-and-parameter-encoding.md",
+      "bytes": 91348,
+      "sha256": "03a02cc886110da7a58ed8b2a98d6d71d0a85cba0b3f181e517e22a807827919"
+    },
+    {
+      "path": "retained/pages/worldactor-scriptvm-interpreter.md",
+      "bytes": 73721,
+      "sha256": "a03babbf7f443af3ad8883c4fc24bb7034bcc532a58b59fd71ee34ad692bf5b4"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/report-wrapper.bin",
+      "bytes": 14,
+      "sha256": "0d21a1f5d20ef0ba8d7d3e91c612aeb506cbd465779fd79134051c832e1ae95e"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/typed-pop.bin",
+      "bytes": 256,
+      "sha256": "545b50d980b78413b91c682306944d64c9cbf6d8009734fc6ee9ac46ebc8c844"
+    }
+  ],
+  "limits": "Integrity is not independent acceptance. Original typed-pop/reporting source and current consumer only; no original-code/native/live execution or full caller/callback effects."
+}

@@ -1,0 +1,13 @@
+R1  ok    old-name rows 0, new-name rows 1, accepted True, members 17
+R2  ok    17 members, 0 not RTTI-exclusive PClassDescriptorConcrete slot 10 []
+R3  ok    28 GFZ-tagged bodies: {'Concrete': 27, 'WithoutDefaultConstructor': 1}
+R4  ok    unannotated old-name lines outside history: 0 []
+R5  ok    unstruck destroy reading 0, page names slot 10 (+0x50): True
+FAILS 0
+== control: --root C:\w\h29 (clean extract of HEAD 9ca3df0ac, before the rename)
+R1  FAIL  old-name rows 1, new-name rows 0, accepted False, members 0
+R2  FAIL  0 members, 0 not RTTI-exclusive PClassDescriptorConcrete slot 10 []
+R3  ok    28 GFZ-tagged bodies: {'Concrete': 27, 'WithoutDefaultConstructor': 1}
+R4  FAIL  unannotated old-name lines outside history: 1 ['24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md:38']
+R5  FAIL  unstruck destroy reading 1, page names slot 10 (+0x50): False
+FAILS 4

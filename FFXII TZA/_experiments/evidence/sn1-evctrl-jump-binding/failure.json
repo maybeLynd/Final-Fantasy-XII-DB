@@ -1,0 +1,9 @@
+{
+  "status": "INVALID_CALL_PRECONDITION_BEFORE_RESULT",
+  "old_checker_sha256": "0d90fab17fb1f7384f919685f155581977a140f415f43c4071fd7cdae174a7ad",
+  "new_checker_sha256": "cdf2293df0660768b63890ea7df077681a2b07f25083196e81a9e166f5a2aeda",
+  "cause": "Producer chose call starts by length arithmetic from named jump and assumed0x58 instead of inspecting original instructions; actual target16 begins assignment0 before source call22, variant5D.",
+  "affected": "Original63 four-case guessed raw spec, not underlying identities/feasibility/parent61 or62 count correction",
+  "regression": "--fault-old-call-start must reject original guessed16/28 spec on actual opcode/immediate path",
+  "limits": "No semantic result accepted from first failed checker. Raw retains original guesses with additive corrected-spec; no fresh capture."
+}

@@ -1,0 +1,48 @@
+=== 16-UI/Gambit-Screens/the-gambit-screens.md
+  [200] ## Not yet established
+       - ~~the per-leaf roles of `00566B70`..`0056AD50`~~ — all eight read 2026-09-15 (member table): `00566B70` slot-state write, `00566FE0` record flag clear, `005678C0` kind 
+       - ~~which `0x8000`–`0x8004` sub-command the list posts~~ — the `0056BA10` arm is decoded above: `0x8000` slot text for the confirm prompt, `0x8001` picker open, `0x8002` 
+       - ~~whether `00566C10`'s icon set is condition- or action-type art~~ — **answered 2026-09-29 (FABLE, GI-1): neither; the premise was wrong** — §*GI-1 answered 2026-09-29*
+=== 16-UI/Handbook/the-handbook-screen.md
+  [366] ## Not yet established
+       - ~~the `menuhandbook_order.bin` record format beyond the `00572460` placement walk~~ — **resolved above**: 33 × 32 B permutation records, 2026-09-16
+       - ~~which `0xC8` page kinds map to which resource ids in `0xC036A4`~~ — ~~**resolved above** for kinds 0–7 (`0x0B`–`0x12`), 2026-09-16; the table continues but the caller
+       - ~~the `0056EF60` pane's own role (frame vs. list chrome)~~ — **read 2026-09-18 (FABLE): it is the content-pane host, neither frame nor list.** Its four arms: **id 1** (
+       - ~~the `hcom` u16 offset-web's node semantics (which nodes are topics vs. links), and the two `u16` fields in each `0xC036A4` record~~ — **answered 2026-09-29 (FABLE, GI
+       - ~~the `hodr` `+0x16`/`+0x17` link pair's exact traversal semantics (a pairing, not yet walked)~~ — **answered 2026-09-29 (FABLE, GI-2):** not links — a statue's normal 
+=== 16-UI/License-Board-View/the-license-board-screen-widgets.md
+  (no residue section)
+=== 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md
+  [207] ## Not yet established
+       - ~~`00556F90`'s id-2 arm (how the message text is fed)~~ — **answered 2026-09-29 (FABLE, GI-4):** pulled by the license board's index ([§ The title table](#the-title-tab
+       - ~~the `0xC0368C`/`0xC036A4` shared lookup tables' full contents~~ — **answered 2026-09-29 (FABLE, GI-4):** twelve `{u16 label, u16 help, u8 key, u8 flag}` records from 
+       - ~~the `+0x630` flag classes' full semantics beyond the classes `0057CB16` maps to `+0xFC` result bytes~~ — **read 2026-09-29 (FABLE, GI-4)**, mask `0x800` by the follow
+       - **answered 2026-09-29 (FABLE, GI-4 follow-up):** what `+0x630` mask `0x800` does for the player — it holds the hand pointer on the highlighted row during the window's c
+=== 16-UI/Shop-Screens/the-shop-screens.md
+  [250] ## Not yet established
+       - ~~which `0xF`/`0x12` sub-command ids correspond to which parent notifications~~ — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): both are decoded below, which an
+       - ~~the exact `+0xE4` mode-field values beyond `0x1C0`/`0x2C0`~~ — **answered 2026-09-29 (FABLE, GI-5)**: a bitfield; `0x1C0`/`0x2C0` are the loot and bazaar kinds — §*GI
+       - ~~`0057A4E0`'s contents beyond "descriptor row"~~ — *closed 2026-09-30 by the owner read (SWE2-FRONTIER): read 2026-09-18 (FABLE) in the `0057A4E0` section above, a sty
+=== 16-UI/Unlabelled-Panes/the-unlabelled-procedures.md
+  [142] ## Not yet established
+       - ~~the `arg+8` page-kind values inside `00571A50`/`005742D0` (2 vs 5 → which page type) — the pane-level kind byte is resolved (`0056EF60`/`+0xC8`: 0–5 `00570BF0` pages,
+       - ~~which concrete menu selection sets each `0056EF60` kind value~~ — **answered 2026-09-29 (FABLE, GI-6)**, same section
+       - ~~the `0xC0368C`/`0xC036A4` shared lookup tables' full contents~~ — **decoded 2026-09-18**: ~~both are 6-byte records `{paneKind, flag, u16, u16}`;~~ **Corrected 2026-0
+=== 17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md
+  (no residue section)
+=== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md
+  (no residue section)
+=== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md
+  (no residue section)
+=== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md
+  (no residue section)
+=== 17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md
+  [92] ## The remaining full-size walks
+  [120] ## Not read
+=== 17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md
+  (no residue section)
+=== 19-Save-Load-Settings/the-save-load-screen-widgets.md
+  [86] ## Not yet established
+       - ~~`0057FE80`'s id-10/12/14 arm interiors (slot pick semantics)~~ — **read at the dispatch level 2026-09-18 (FABLE).** The table at `005807B8` is indexed by `id − 1` (`0
+       - ~~which `0x1D`/`0xD` status codes `0057F360` branches into beyond the guard~~ — **narrowed 2026-09-18 (FABLE): `0x1D` is the sub-command and ~~3 / `0xD` / `0xF` are its
+       - ~~the `00583FD0` child's own identity (the "writing" indicator widget)~~ — **confirmed as a text notice 2026-09-18 (FABLE):** it builds its line from the low-pool rows 

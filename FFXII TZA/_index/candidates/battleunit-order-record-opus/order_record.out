@@ -1,0 +1,7 @@
+PASS  P 0030F760: rdx -> r12 (0030F782) -> unit +0x708 (0030F7F9); r12 has no other use up to the ret
+PASS  S five rel32 callers; rdx = unit+0xBA0, 01EEC298, 01EEC2B0, set+0x20+0x18k, [unit+0x708]
+PASS  I IssueCommand writes +0xBA0 and ORs 0x8000 into +0xBA4; flag 0x4000 makes SelectAndCommitNextAction commit unit+0xBA0 with r9d = +0xBB8
+PASS  R through +0x708: +2 signed word (002FDDBE, 002FE68D, 002FE8ED), +2 word (002FE929), +4 tests 0x2000 / 0x200 / 0x100 / 4 / sign (002FFCB1, 00325C83, 00325CAA, 00325DF4, 00308736, 00328604), +6 (002FE682); the walk's identity compare 00305DA4
+PASS  D 01EEC298 {0x4021,0,0x2000}, 01EEC2B0 {0x96,0,0x2000}, 01EEC2D0 count 1 + record {0x96,0,0,sel0 0xA}, installed at +0x6F8 by IssueCommand
+PASS  W +0x708 is AiOrderRecord*; +0xBA0 is one embedded AiOrderRecord row keeping the old names and texts; AiOrderRecord lists its new homes
+FAILS 0

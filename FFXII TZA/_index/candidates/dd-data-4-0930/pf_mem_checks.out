@@ -1,0 +1,10 @@
+   IAT slots: {'?_Xbad_alloc@std@@YAXXZ': '008C2608', 'malloc': '008C2B40', '_set_new_mode': '008C2B78'}
+   _Xbad_alloc: 23 call/jmp sites in 14 listed functions (0 sites outside a listed function)
+PASS M1 _Xbad_alloc sites counted - 23 sites, 14 functions
+PASS M1c control: malloc's slot is referenced - malloc 38
+PASS M1d _set_new_mode(0) is called once at startup: thunk 00862046 <- 00808D5C, first C++ initializer
+PASS M2 00244200: width +0x9C >> 6, +0x98 * +0xA4 * +0x9C >> 6, packed beside 0x333C, call 0039D0C0
+   rel32 callers of 00244200: ['002D37A4']
+PASS M3 00244200 has exactly one rel32 caller
+RESULT _Xbad_alloc: the sites and functions counted above; _set_new_mode(0) runs once at startup; 00244200 width arithmetic measured
+FAILS 0

@@ -1,0 +1,209 @@
+{
+ "pass": 6,
+ "total": 6,
+ "ok": true,
+ "files": {
+  "flagrom": {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapjumpgroupflagrom.bin",
+   "sha256": "28a6e9ae7e5c27c4a87729ca4a66e5c689af331d507d58823d718bf0bc60ba76",
+   "bytes": 856
+  },
+  "init": {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapjumpgroupinit.bin",
+   "sha256": "7d63c8017a5c3a693d3b25f3a00f28a48da04a5210185b59a655659a0d38cf72",
+   "bytes": 116
+  },
+  "evmem": {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\common\\eventmemorylist.bin",
+   "sha256": "5027c06321c9296a1fd4819223bed7e3d94a51f548887c17adf78fc57b675970",
+   "bytes": 26
+  }
+ },
+ "results": {
+  "payload_base_002EF2B0": {
+   "pass_": true,
+   "n": 1,
+   "got": "02164480",
+   "expect": "02164480"
+  },
+  "schedule_00377970": {
+   "pass_": true,
+   "n": 47740,
+   "mismatches": 0,
+   "detail": [],
+   "not_returned": [],
+   "progress_values": 308,
+   "distinct_thresholds": 104,
+   "zero_offset_indexes": [],
+   "ungated_mismatch": [],
+   "null_table_mismatch": [],
+   "note": "count=152; ungated ([02098E20] bit0 clear) reads progress 0"
+  },
+  "schedule_negative_index_observed": {
+   "observed": {
+    "-1": [
+     0,
+     true,
+     []
+    ],
+    "-2": [
+     0,
+     false,
+     [
+      "72010000",
+      "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+     ]
+    ],
+    "-5": [
+     0,
+     false,
+     [
+      "72010000",
+      "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+     ]
+    ]
+   },
+   "note": "00377970 bounds with cmp ecx,eax / jge (signed), then movsxd: a negative index reads the u16 at table+0x0A+2*idx, i.e. the header"
+  },
+  "gate_0032A8A0": {
+   "pass_": true,
+   "n": 262144,
+   "mismatches": 0,
+   "detail": [],
+   "not_returned": [],
+   "upper_half_ignored": true,
+   "call_site_ids_at_progress_7FFF": {
+    "4004": 1,
+    "4006": 1,
+    "4007": 1,
+    "4008": 1,
+    "4009": 1,
+    "400A": 1,
+    "400B": 1,
+    "400C": 1,
+    "400D": 1,
+    "4010": 1,
+    "4011": 1,
+    "4067": 0,
+    "FFFF": 0,
+    "0001": 0,
+    "0002": 1,
+    "0054": 1,
+    "005E": 1,
+    "006F": 1,
+    "0107": 1
+   },
+   "note": "gate(0xFFFF) = 0"
+  },
+  "newgame_list_00379160": {
+   "pass_": true,
+   "n": 53,
+   "mismatches": 0,
+   "list_count": 53,
+   "list_first_entry": "0000",
+   "primary_bits_set": 52,
+   "bits_set": [
+    "0056",
+    "0065",
+    "0066",
+    "0070",
+    "0079",
+    "007A",
+    "0080",
+    "00FC",
+    "0108",
+    "010B",
+    "010C",
+    "011C",
+    "012C",
+    "012D",
+    "012E",
+    "012F",
+    "0130",
+    "0131",
+    "0132",
+    "0133",
+    "0134",
+    "0136",
+    "0137",
+    "013A",
+    "013B",
+    "013C",
+    "013D",
+    "013E",
+    "013F",
+    "0140",
+    "0141",
+    "0142",
+    "0143",
+    "0144",
+    "0145",
+    "0146",
+    "0147",
+    "0148",
+    "0149",
+    "014A",
+    "014B",
+    "014C",
+    "014D",
+    "014E",
+    "014F",
+    "0150",
+    "0151",
+    "0152",
+    "0153",
+    "0154",
+    "0155",
+    "0158"
+   ],
+   "bytes_outside_primary_written": [],
+   "null_table_writes_nothing": true,
+   "note": "53 list entries, 52 Primary bits set"
+  },
+  "reset_002EF2D0": {
+   "pass_": true,
+   "n": 1,
+   "mismatches": 0,
+   "guard_bytes_untouched": true,
+   "body_equals_zero_plus_list": true,
+   "functions_entered": [
+    "002EF2B0",
+    "002EF2D0",
+    "002EF640",
+    "0032AB60",
+    "00379160",
+    "00861EC0"
+   ],
+   "memset_bridge_calls": [
+    [
+     "02164480",
+     0,
+     5432
+    ]
+   ],
+   "note": "memset size 0x1538 bounded by the guards; tail jump applies the list"
+  },
+  "evmem_absent_00377440": {
+   "pass_": true,
+   "n": 65541,
+   "mismatches": 0,
+   "detail": [],
+   "listed_ids": [
+    "0000",
+    "0031",
+    "029C",
+    "029E",
+    "030E",
+    "0367",
+    "0368",
+    "0390"
+   ],
+   "null_table_returns": [
+    1,
+    1,
+    1
+   ],
+   "note": "0 when listed (inverted), 1 otherwise; the 32-bit id is compared whole"
+  }
+ }
+}

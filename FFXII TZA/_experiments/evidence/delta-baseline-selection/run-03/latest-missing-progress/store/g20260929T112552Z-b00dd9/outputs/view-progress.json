@@ -1,0 +1,1 @@
+{"view": "progress", "status": "OK", "definition": "MP-2", "measures": [{"id": "union", "numerator": 20, "denominator": 100, "scope": "labelled synthetic requirement population"}], "progress": {"version": "MP-2", "scopes": {"union": {"accepted": 20, "total": 100}}, "categories": []}}

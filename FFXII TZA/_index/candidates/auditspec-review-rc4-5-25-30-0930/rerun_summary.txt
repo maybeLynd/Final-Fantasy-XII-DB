@@ -1,0 +1,13 @@
+rc25-party-definition-rows-0930/rc25_rows.py rc=0 2s IDENTICAL | dirty-before=[] dirty-after=[]
+rc30-cl2-request-bounds-0930/rc30_bounds.py rc=0 2s IDENTICAL | dirty-before=[] dirty-after=[]
+rc30-cl2-request-bounds-0930/rc30_census.py rc=0 3s IDENTICAL | dirty-before=[] dirty-after=[]
+rc30-cl2-request-bounds-0930/verb_census.py rc=0 122s DIFFERS | dirty-before=[] dirty-after=[]
+rc4b-capture-residue-0930/rc4b_bounds.py rc=0 4s IDENTICAL | dirty-before=[] dirty-after=[]
+rc4b-capture-residue-0930/rc4b_scan.py rc=0 8s IDENTICAL | dirty-before=[] dirty-after=[]
+rc4b-capture-residue-0930/rc4b_pass1.py rc=0 159s IDENTICAL | dirty-before=[] dirty-after=[]
+rc4b-capture-residue-0930/rc4b_pass2.py rc=0 259s IDENTICAL | dirty-before=[] dirty-after=[]
+rc4b-capture-residue-0930/rc4b_pass3.py rc=0 246s IDENTICAL | dirty-before=[] dirty-after=[]
+rc5b-event-slot-residue-0930/rc5b_actions.py rc=0 3s IDENTICAL | dirty-before=[] dirty-after=[]
+rc5b-event-slot-residue-0930/rc5b_evctrl.py rc=0 4s IDENTICAL | dirty-before=[] dirty-after=[]
+rc5b-event-slot-residue-0930/rc5b_operands.py rc=0 114s IDENTICAL | dirty-before=[] dirty-after=[]
+DONE

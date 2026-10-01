@@ -1,0 +1,58 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS A1 002FC3C0 in-flight test (0032E4D0) nonzero skips - 002FC403  jne 0x2fc423
+PASS A1 002FC3C0 so eax is 0 here: ecx = 1 - 002FC405  lea ecx, [rax + 1]
+PASS A1 002FC3C0 the ask - 002FC408  call 0x32e520
+PASS A2 003B1310 in-flight test (0032E4D0) nonzero skips - 003B138D  jne 0x3b13ac
+PASS A2 003B1310 so eax is 0 here: ecx = 1 - 003B138F  lea ecx, [rax + 1]
+PASS A2 003B1310 the ask - 003B1392  call 0x32e520
+PASS A3 003B1710 in-flight test (0032E4D0) nonzero skips - 003B179B  jne 0x3b17ba
+PASS A3 003B1710 so eax is 0 here: ecx = 1 - 003B179D  lea ecx, [rax + 1]
+PASS A3 003B1710 the ask - 003B17A0  call 0x32e520
+PASS A4 003B18E0 in-flight test (0032E4D0) nonzero skips - 003B197C  jne 0x3b199a
+PASS A4 003B18E0 so eax is 0 here: ecx = 1 - 003B197E  lea ecx, [rax + 1]
+PASS A4 003B18E0 the ask - 003B1981  call 0x32e520
+PASS A1 idle: clears 02EC3D7C - 002FC411  mov byte ptr [rip + 0x2bc7964], 0
+PASS A2-A4 idle: 003B21E0(obj) - 003B139E  call 0x3b21e0
+PASS A2-A4 idle: 003B21E0(obj) - 003B17AC  call 0x3b21e0
+PASS A2-A4 idle: 003B21E0(obj) - 003B198D  call 0x3b21e0
+PASS A5 0034DB30 edi = 1 - 0034DB49  mov edi, 1
+PASS A5 ecx = edi - 0034DBD7  mov ecx, edi
+PASS A5 the ask - 0034DBD9  call 0x32e520
+PASS A5 every other edi write lies on a path that returns before the ask - [('0034DB6E', 'pop rdi'), ('0034DB98', 'xor edi, edi'), ('0034DBAA', 'pop rdi')]
+PASS A5 ...and that path returns - 0034DBAB  ret 
+PASS A6 0050D0C0 ebx = 1 - 0050D0D2  mov ebx, 1
+PASS A6 ecx = ebx - 0050D12F  mov ecx, ebx
+PASS A6 the ask - 0050D131  call 0x32e520
+PASS A6 every other ebx write lies on a path that returns before the ask - [('0050D105', 'mov rbx, qword ptr [rsp + 0x30]'), ('0050D124', 'mov rbx, qword ptr [rsp + 0x30]')]
+PASS A6 busy: 00314D40(1) - 0050D13C  call 0x314d40
+PASS A0 the ask returns without pumping when ecx != 0 - 0032E526  je 0x32e561
+PASS M1 pool rip-referencers are module functions - ['0032E070', '0032E450', '0032E4D0', '0032E520', '0032E590', '0032E620', '0032E870', '0032E990', '0032EC40']
+PASS M2 control: the pump's jump-table RVA 0x20E2D0 is found - ['0032E0B4']
+   raw dword hits: [('00371733', None), ('006179FB', None)]
+PASS M2 no instruction displacement equals a pool RVA - [(3610419, None), (6388219, None)]
+PASS M2 control: the pump's jump-table RVA decodes as a displacement - ['mov ecx, dword ptr [rdi + rax*4 + 0x20e2d0]']
+PASS G1 the gap is referenced only by two stores of 0 - [('0032EAA7', '0032EA90', 'W'), ('0032EAE0', '0032EAE0', 'W')]
+PASS G1 0032EAA7 stores rdx = 0 - 0032EA9E  xor edx, edx
+PASS G1 0032EAE0 stores 0 - 0032EAE0  mov qword ptr [rip + 0x1f966f5], 0
+PASS Z1 the displacement-0 qword accesses are exactly the classified six - {'0032E153': 'add qword ptr [rbx], rax', '0032E229': 'mov qword ptr [rbx], 0', '0032E47A': 'mov qword ptr [rax], rcx', '0032E725': 'mov qword ptr [rcx], r14', '0032E97C': 'mov qword ptr [r10], 0', '0032EAB1': 'mov qword ptr [rax], rdx'}
+PASS Z1 slot +0 0032E153 - add qword ptr [rbx], rax
+PASS Z1 slot +0 0032E229 - mov qword ptr [rbx], 0
+PASS Z1 slot +0 0032E725 - mov qword ptr [rcx], r14
+PASS Z1 slot +0 0032E97C - mov qword ptr [r10], 0
+PASS Z1 the biased init cursor never touches slot +0 or +0x50 - []
+PASS Z1 0032E725's base is a slot: pool + (id & 0x3F) << 7 - 0032E6F5  shl rcx, 7
+PASS Z1 ...pool - 0032E6EB  lea rax, [rip + 0x1f94ace]
+PASS Z2 +0x50 accesses - {'0032E3B4': 'mov rax, qword ptr [rcx + 0x50]', '0032E6FF': 'mov qword ptr [rcx + 0x50], r14', '0032E959': 'mov qword ptr [r10 + 0x50], 0'}
+PASS Z2 r14 = 0 in 0032E620 - 0032E670  xor r14d, r14d
+PASS Z2 r14 not rewritten before the stores - []
+PASS Z2 0032E959 stores 0 - 0032E959  mov qword ptr [r10 + 0x50], 0
+   indirect 0032E189 call rax  args: ['mov ecx, dword ptr [rbx + 0x60]']
+   indirect 0032E30C call rax  args: ['mov ecx, dword ptr [rcx + 0x60]']
+   indirect 0032E34F call rax  args: ['mov rdx, qword ptr [rcx + 0x70]', 'mov ecx, dword ptr [rcx + 0x60]']
+   indirect 0032E392 call rax  args: ['mov rdx, qword ptr [rcx + 0x70]', 'mov ecx, dword ptr [rcx + 0x60]']
+   indirect 0032E3C2 call rax  args: []
+PASS Z3 indirect calls found (control: the part callback at 0032E3C4 region)
+PASS Z3 the five indirect calls: four pass +0x60 (and +0x70), one is the part callback - [('0032E189', 'call rax', ['mov ecx, dword ptr [rbx + 0x60]']), ('0032E30C', 'call rax', ['mov ecx, dword ptr [rcx + 0x60]']), ('0032E34F', 'call rax', ['mov rdx, qword ptr [rcx + 0x70]', 'mov ecx, dword ptr [rcx + 0x60]']), ('0032E392', 'call rax', ['mov rdx, qword ptr [rcx + 0x70]', 'mov ecx, dword ptr [rcx + 0x60]']), ('0032E3C2', 'call rax', [])]
+PASS Z3 0032E3C2 is reached with rcx = the slot: 0032E3B0 keeps it - 0032E3B4  mov rax, qword ptr [rcx + 0x50]
+FAILS 0

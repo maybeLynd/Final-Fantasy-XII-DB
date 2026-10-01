@@ -1,0 +1,14 @@
+{
+  "case": "positive",
+  "exit": 0,
+  "result_exists": true,
+  "expected_accepted": true,
+  "control_pass": true,
+  "invocation": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "positive/prove-title-member-notification.py",
+    "positive/result.json"
+  ],
+  "stdout_sha256": "b2dcf01b325f6a4de9fc3c58d3fbbdc4150c661f8defcdc1036327fcdc16a8be",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

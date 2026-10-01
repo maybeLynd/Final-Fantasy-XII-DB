@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "phase": "DATABASE",
+  "revision": 6,
+  "agents": {
+    "ASTRA": {
+      "agent_id": "ASTRA",
+      "primary_specialty": "ASTRA",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "FABLE": {
+      "agent_id": "FABLE",
+      "primary_specialty": "FABLE",
+      "last_checkpoint": "2026-09-29T13:45:46+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "OPUS": {
+      "agent_id": "OPUS",
+      "primary_specialty": "OPUS",
+      "last_checkpoint": "2026-09-29T13:45:46+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-AUDIT-SEM": {
+      "agent_id": "SWE2-AUDIT-SEM",
+      "primary_specialty": "SWE2-AUDIT-SEM",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-AUDIT-SPEC": {
+      "agent_id": "SWE2-AUDIT-SPEC",
+      "primary_specialty": "SWE2-AUDIT-SPEC",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-CONTRACT": {
+      "agent_id": "SWE2-CONTRACT",
+      "primary_specialty": "SWE2-CONTRACT",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-DATA": {
+      "agent_id": "SWE2-DATA",
+      "primary_specialty": "SWE2-DATA",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-EC7": {
+      "agent_id": "SWE2-EC7",
+      "primary_specialty": "SWE2-EC7",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-FRONTIER": {
+      "agent_id": "SWE2-FRONTIER",
+      "primary_specialty": "SWE2-FRONTIER",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-ORACLE": {
+      "agent_id": "SWE2-ORACLE",
+      "primary_specialty": "SWE2-ORACLE",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    },
+    "SWE2-STRUCT": {
+      "agent_id": "SWE2-STRUCT",
+      "primary_specialty": "SWE2-STRUCT",
+      "last_checkpoint": "2026-09-29T12:20:26+00:00",
+      "current_task": [],
+      "claimed_scope": [],
+      "dependencies": [],
+      "blockers": [],
+      "status": "READY"
+    }
+  },
+  "tasks": [
+    {
+      "id": "FIXTURE-REVIEW-ACCEPT",
+      "kind": "research",
+      "priority": "P2",
+      "target": "Labelled synthetic review ACCEPT",
+      "scope": "Synthetic declarative review; no project semantic acceptance",
+      "completion": "Seed fixture only",
+      "dependencies": [],
+      "resources": [
+        {
+          "key": "target:fixture/review-accept"
+        }
+      ],
+      "reviews": {
+        "author": "OPUS",
+        "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+        "record": "fixtures/SYNTHETIC-REVIEW.md",
+        "incorporation_owner": "SWE2-DATA"
+      },
+      "agent": "FABLE",
+      "status": "DONE",
+      "started_at": "2026-09-29T13:45:46+00:00",
+      "updated_at": "2026-09-29T13:45:46+00:00",
+      "checkpoint": "Synthetic ACCEPT declaration for writer integration only",
+      "result_refs": [
+        "verdict:ACCEPT",
+        "fixture:synthetic-receipt"
+      ]
+    },
+    {
+      "id": "FIXTURE-REVIEW-REJECT",
+      "kind": "research",
+      "priority": "P2",
+      "target": "Labelled synthetic review REJECT",
+      "scope": "Synthetic declarative review; no project semantic acceptance",
+      "completion": "Seed fixture only",
+      "dependencies": [],
+      "resources": [
+        {
+          "key": "target:fixture/review-reject"
+        }
+      ],
+      "reviews": {
+        "author": "OPUS",
+        "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+        "record": "fixtures/SYNTHETIC-REVIEW.md",
+        "incorporation_owner": "SWE2-DATA"
+      },
+      "agent": "FABLE",
+      "status": "DONE",
+      "started_at": "2026-09-29T13:45:46+00:00",
+      "updated_at": "2026-09-29T13:45:46+00:00",
+      "checkpoint": "Synthetic REJECT declaration for writer integration only",
+      "result_refs": [
+        "verdict:REJECT",
+        "fixture:synthetic-receipt"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-09-29T13:45:46+00:00",
+      "agent": "OPUS",
+      "operation": {
+        "action": "add",
+        "task": {
+          "id": "FIXTURE-REVIEW-ACCEPT",
+          "kind": "research",
+          "priority": "P2",
+          "target": "Labelled synthetic review ACCEPT",
+          "scope": "Synthetic declarative review; no project semantic acceptance",
+          "completion": "Seed fixture only",
+          "dependencies": [],
+          "resources": [
+            {
+              "key": "target:fixture/review-accept"
+            }
+          ],
+          "reviews": {
+            "author": "OPUS",
+            "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+            "record": "fixtures/SYNTHETIC-REVIEW.md",
+            "incorporation_owner": "SWE2-DATA"
+          }
+        }
+      },
+      "session": "FIXTURE-SEED-PURE-APPLY"
+    },
+    {
+      "at": "2026-09-29T13:45:46+00:00",
+      "agent": "FABLE",
+      "operation": {
+        "action": "claim",
+        "task": "FIXTURE-REVIEW-ACCEPT",
+        "note": "Synthetic reviewer identity in a disposable fixture"
+      },
+      "session": "FIXTURE-SEED-PURE-APPLY"
+    },
+    {
+      "at": "2026-09-29T13:45:46+00:00",
+      "agent": "FABLE",
+      "operation": {
+        "action": "finish",
+        "task": "FIXTURE-REVIEW-ACCEPT",
+        "note": "Synthetic ACCEPT declaration for writer integration only",
+        "result_refs": [
+          "verdict:ACCEPT",
+          "fixture:synthetic-receipt"
+        ]
+      },
+      "session": "FIXTURE-SEED-PURE-APPLY"
+    },
+    {
+      "at": "2026-09-29T13:45:46+00:00",
+      "agent": "OPUS",
+      "operation": {
+        "action": "add",
+        "task": {
+          "id": "FIXTURE-REVIEW-REJECT",
+          "kind": "research",
+          "priority": "P2",
+          "target": "Labelled synthetic review REJECT",
+          "scope": "Synthetic declarative review; no project semantic acceptance",
+          "completion": "Seed fixture only",
+          "dependencies": [],
+          "resources": [
+            {
+              "key": "target:fixture/review-reject"
+            }
+          ],
+          "reviews": {
+            "author": "OPUS",
+            "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+            "record": "fixtures/SYNTHETIC-REVIEW.md",
+            "incorporation_owner": "SWE2-DATA"
+          }
+        }
+      },
+      "session": "FIXTURE-SEED-PURE-APPLY"
+    },
+    {
+      "at": "2026-09-29T13:45:46+00:00",
+      "agent": "FABLE",
+      "operation": {
+        "action": "claim",
+        "task": "FIXTURE-REVIEW-REJECT",
+        "note": "Synthetic reviewer identity in a disposable fixture"
+      },
+      "session": "FIXTURE-SEED-PURE-APPLY"
+    },
+    {
+      "at": "2026-09-29T13:45:46+00:00",
+      "agent": "FABLE",
+      "operation": {
+        "action": "finish",
+        "task": "FIXTURE-REVIEW-REJECT",
+        "note": "Synthetic REJECT declaration for writer integration only",
+        "result_refs": [
+          "verdict:REJECT",
+          "fixture:synthetic-receipt"
+        ]
+      },
+      "session": "FIXTURE-SEED-PURE-APPLY"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+  steam-vanilla  CLEAN        D:\SteamLibrary\steamapps\common\FINAL FANTASY XII THE ZODIAC AGE\x64
+  mod-client-3   MISSING            D:\FFXII MP Mod\FFXII_TestClient3\x64
+  mod-client-1   rejected     unshipped file(s): dinput8.dll,ff12-trampoline.dll,hook.ini,simpleLog.dll; modules/ (11 file(s)); hook.ini
+  mod-client-2   rejected     unshipped file(s): dinput8.dll,ff12-trampoline.dll,hook.ini,simpleLog.dll; modules/ (10 file(s)); hook.ini
+
+reference: D:\SteamLibrary\steamapps\common\FINAL FANTASY XII THE ZODIAC AGE\x64\FFXII_TZA.exe
+build    : 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8  (authority match)

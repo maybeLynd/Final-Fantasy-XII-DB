@@ -1,0 +1,20 @@
+# CompilerGeneratedCpp.StaticZeroInitObjectInitializer - EC-7 family C, declared on generated-function-families.md
+#
+# 11 members. Body size(s): 50 B x11.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 3 external target(s): 3 shared across all 11 members.
+#
+# NOT dispositioned: the 3 shared implementations these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00169A10
+00169A50
+00169A90
+00169BD0
+00169C50
+00169CD0
+00169D90
+00169DD0
+00169F80
+0016A030
+0016A1F0

@@ -1,0 +1,40 @@
+== T1 0215EFF4
+  UNKNOWN-COUNT below target: 00247A11 00247A0A lea rax, [rip + 0x1e47357] stride 0x10
+  UNKNOWN-COUNT below target: 0024CA40 0024C9A7 lea rax, [rip + 0x1e447a2] stride 0x40
+  UNKNOWN-COUNT below target: 0024CF25 0024CF1B lea rbx, [rip + 0x1e45742] stride 0x4
+  UNKNOWN-COUNT below target: 0024EBD0 0024EBA9 lea rbx, [rip + 0x1e43af0] stride 0x4
+  UNKNOWN-COUNT below target: 00255720 0025570A lea rdi, [rip + 0x1e3d0ff] stride 0xbb0
+  UNKNOWN-COUNT below target: 00259670 0025963F lea rdi, [rip + 0x1e3ede2] stride 0x860
+  UNKNOWN-COUNT below target: 00259EF0 00259EAB lea rdi, [rip + 0x1e3d452] stride 0x110
+  UNKNOWN-COUNT below target: 0025A010 00259FF9 lea rbx, [rip + 0x1e3dd40] stride 0x860
+  UNKNOWN-COUNT below target: 00266EF0 00266EE0 lea rbx, [rip + 0x1e31f39] stride 0x288
+  UNKNOWN-COUNT below target: 0026C980 0026C96A lea rax, [rip + 0x1e2c6a3] stride 0x288
+  UNKNOWN-COUNT below target: 0026EA13 0026EA05 lea rsi, [rip + 0x1e2b9d4] stride 0x8
+  UNKNOWN-COUNT below target: 0026EA30 0026EA0C lea rdi, [rip + 0x1e2bacd] stride 0x8
+  UNKNOWN-COUNT below target: 0026EA47 0026EA23 lea rsi, [rip + 0x1e2bbb6] stride 0x8
+  UNKNOWN-COUNT below target: 00270F80 00270F67 lea rax, [rip + 0x1e29802] stride 0x40
+  UNKNOWN-COUNT below target: 00291CB0 00291C9A lea r14, [rip + 0x1e0a1ff] stride 0x10
+  UNKNOWN-COUNT below target: 002962F4 002962DF lea rbx, [rip + 0x1e05cd8] stride 0xc0
+  UNKNOWN-COUNT below target: 002A8520 002A8505 lea rbx, [rip + 0x1df470c] stride 0x8
+  UNKNOWN-COUNT below target: 002C8F10 002C8EFB lea rsi, [rip + 0x1dd573e] stride 0x10
+  UNKNOWN-COUNT below target: 002DE3E0 002DE3D2 lea rax, [rip + 0x1e80b79] stride 0x8
+  UNKNOWN-COUNT below target: 00255820 00255810 lea rax, [rip + 0x1e3d47d] stride 0xbb0
+== T2 01E02804
+  UNKNOWN-COUNT below target: 00196D50 00196D34 lea rdx, [rip + 0x1c5aa4d] stride 0x15c
+  UNKNOWN-COUNT below target: 0015C2D0 0015C287 lea rax, [rip + 0x1c9538e] stride 0x80
+  UNKNOWN-COUNT below target: 0015C370 0015C32A lea rax, [rip + 0x1c95447] stride 0x80
+  UNKNOWN-COUNT below target: 0015C410 0015C3CA lea rax, [rip + 0x1c95503] stride 0x80
+  UNKNOWN-COUNT below target: 0015C4B0 0015C46A lea rcx, [rip + 0x1c955bf] stride 0x80
+  UNKNOWN-COUNT below target: 001962B0 00196296 lea rcx, [rip + 0x1c5b49b] stride 0x80
+  UNKNOWN-COUNT below target: 00196350 0019633E lea rcx, [rip + 0x1c5b54f] stride 0x80
+  UNKNOWN-COUNT below target: 001963F0 001963D4 lea rdx, [rip + 0x1c5b615] stride 0x80
+== T2 01E02810
+  UNKNOWN-COUNT below target: 00196D50 00196D34 lea rdx, [rip + 0x1c5aa4d] stride 0x15c
+  UNKNOWN-COUNT below target: 0015C2D0 0015C287 lea rax, [rip + 0x1c9538e] stride 0x80
+  UNKNOWN-COUNT below target: 0015C370 0015C32A lea rax, [rip + 0x1c95447] stride 0x80
+  UNKNOWN-COUNT below target: 0015C410 0015C3CA lea rax, [rip + 0x1c95503] stride 0x80
+  UNKNOWN-COUNT below target: 0015C4B0 0015C46A lea rcx, [rip + 0x1c955bf] stride 0x80
+  UNKNOWN-COUNT below target: 001962B0 00196296 lea rcx, [rip + 0x1c5b49b] stride 0x80
+  UNKNOWN-COUNT below target: 00196350 0019633E lea rcx, [rip + 0x1c5b54f] stride 0x80
+  UNKNOWN-COUNT below target: 001963F0 001963D4 lea rdx, [rip + 0x1c5b615] stride 0x80
+loops with constant base / non-constant: 247 3648

@@ -1,0 +1,1 @@
+{"action": "add", "task": {"id": "EC7-SEAL-FRONTIER-FORM-CLUSTERS-3", "kind": "research", "priority": "P3", "requester": "SWE2-EC7", "assigned_to": "SWE2-EC7", "target": "seal board state after FFC3 publish 7b98d7d2 + PPFX date fix edb51401", "scope": "TEAM.json + SWE2-EC7.md", "completion": "commit landed", "dependencies": [], "resources": [{"key": "@publication"}]}}

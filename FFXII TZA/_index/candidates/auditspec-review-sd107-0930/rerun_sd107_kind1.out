@@ -1,0 +1,6 @@
+PASS  K1 the only constant-1 store covering +0xA3 in 38161 bodies (552 object stores cover +0xA3): 007E7401
+PASS  K2 007E73F0 <- 007BFD00 only, on a resolved sound handle (007B5070, table 02EAD610)
+PASS  K3 neighbourhood of 174 bodies: only the kind writes 3/2/0/0 and one frame slot
+PASS  K4 8 stack-element builder calls; no holder store covers its element's kind: ['00243AC4', '002A876B', '002A8891', '002A890C', '002BF266', '003F7F95', '0040450B', '00556B18']
+PASS  K5 002B41F0's frame element is zero-filled over +0xA3 (kind 0) and gets its +0x60 from 0039C4A0 like 002B3400's
+FAILS 0

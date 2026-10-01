@@ -1,0 +1,7 @@
+status	type	offset	size	name	ctype	shape	interior	widths	sites
+adjudicated	ActorStorageRecord	0x1C		flags1C		INTERIOR-OFFSET LEAD RULED FALSE			
+adjudicated	BattleSystemState	0x4		stateFlags		INTERIOR-OFFSET LEAD RULED FALSE			
+adjudicated	BattleUnit	0x0		unitFlags		INTERIOR-OFFSET LEAD RULED FALSE			
+adjudicated	TextDrawState	0x30		textColor		INTERIOR-OFFSET LEAD RULED FALSE			
+adjudicated	TextDrawState	0x34		drawScaleX		PER-PATH UNION			
+adjudicated	TextDrawState	0x60		target		PER-PATH UNION			

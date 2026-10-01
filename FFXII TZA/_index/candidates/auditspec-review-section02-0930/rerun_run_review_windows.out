@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\continuation-section02-resource-queue\run_review.py", line 142, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\continuation-section02-resource-queue\run_review.py", line 109, in main
+    require(platform.system() == 'Linux' and platform.machine().lower() in ('x86_64', 'amd64'), 'Native fixture requires Linux x86-64; Windows live execution is not substituted.')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\continuation-section02-resource-queue\run_review.py", line 26, in require
+    raise RuntimeError(message)
+RuntimeError: Native fixture requires Linux x86-64; Windows live execution is not substituted.

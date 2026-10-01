@@ -1,0 +1,187 @@
+{
+  "status": "PRODUCER_CHECKED_SIX_CACHE_KEY_INTERSECTION_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "question": "Can archive-name key collisions supply cache membership for any of the six retained missing FST-sized kind1 paths?",
+  "verdict": "NO_COLLISION_IN_COMPLETE_RETAINED_ARCHIVE_NAME_DOMAIN",
+  "source_pins": [
+    {
+      "path": "filecache-hash-loop-source-01.json",
+      "sha256": "963d7fee4733c9bb77a47175a4268d6ef3d1d56fbaf487cdad13e29742bcdc6f"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 14,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_hash_cfg": {
+    "entry": "0x674a00",
+    "end_exclusive": "0x674a28",
+    "instructions": 14,
+    "returns": [
+      "0x674a27"
+    ],
+    "calls": []
+  },
+  "required_input_pins": [
+    {
+      "path": "ov33-e2-key-inputs-01/inputs.json",
+      "sha256": "07896eecfbc18ca086eeeed3df7a7a2e9e32622f4fe66455929b7aaf41086c7b"
+    },
+    {
+      "path": "ov33-e2-key-inputs-01/archive-name-index-prefix.bin.zlib",
+      "sha256": "ac44eb013093c2e0d6c7024754f8173f765d49b5846c06f469de0dea6d0d3ee9"
+    },
+    {
+      "path": "ov33-e2-key-inputs-01/fable-e2-census.py",
+      "sha256": "32b42acb48282c651269cc6fb4ed136c1e6cc3e7bc2d02544a54434913516245"
+    },
+    {
+      "path": "ov33-e2-key-inputs-01/fable-e2-census.out",
+      "sha256": "ea93905b7e7aa055af39add2ed4cbf46abd8833bb752c598833eb90ea640f61e"
+    },
+    {
+      "path": "ov33-e2-key-inputs-01/contract-b14-checks.py",
+      "sha256": "4d60af6192fe7722a375d79678c92a7a3b0fbc95953467bbaee26109829b0ff9"
+    },
+    {
+      "path": "ov33-e2-key-inputs-01/contract-b14-checks.out",
+      "sha256": "82960637f2c955f10ceac0ed49919088ef81a1e233b64950eb7027649b912127"
+    }
+  ],
+  "archive": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FFXII_TZA.vbf",
+    "bytes": 31196932183,
+    "mtime_ns": 1788875311803686800,
+    "header_length": 11995716,
+    "file_count": 89414,
+    "index_prefix_end": 10080610,
+    "index_prefix_sha256": "ca2ab25fd89324b64e9587154233670655108914aa85dbab7f32b51192bcbc30",
+    "compressed_path": "archive-name-index-prefix.bin.zlib",
+    "compressed_sha256": "ac44eb013093c2e0d6c7024754f8173f765d49b5846c06f469de0dea6d0d3ee9",
+    "compressed_bytes": 3007099,
+    "limits": "Exact retained index/name prefix, not a full VBF/payload hash or initialized cache"
+  },
+  "archive_name_count": 89414,
+  "distinct_cache_keys": 89414,
+  "selected_paths": [
+    {
+      "language": "CN",
+      "kind": 1,
+      "index": 127,
+      "edx_modes": [
+        0,
+        1
+      ],
+      "path": "PS2Data\\effect_finish\\jp\\event\\e0009.efx",
+      "normalized_cache_path": "PS2DATA\\EFFECT_FINISH\\JP\\EVENT\\E0009.EFX",
+      "key_hex": "0x11bd9f4c",
+      "colliding_archive_names": []
+    },
+    {
+      "language": "UK",
+      "kind": 1,
+      "index": 131,
+      "edx_modes": [
+        0,
+        1
+      ],
+      "path": "PS2Data\\image\\FF12\\test_battle\\uk\\BinaryFile\\battle_pack.bin",
+      "normalized_cache_path": "PS2DATA\\IMAGE\\FF12\\TEST_BATTLE\\UK\\BINARYFILE\\BATTLE_PACK.BIN",
+      "key_hex": "0x4917b60f",
+      "colliding_archive_names": []
+    },
+    {
+      "language": "UK",
+      "kind": 1,
+      "index": 132,
+      "edx_modes": [
+        0,
+        1
+      ],
+      "path": "PS2Data\\image\\FF12\\test_battle\\uk\\BinaryFile\\menu_command.bin",
+      "normalized_cache_path": "PS2DATA\\IMAGE\\FF12\\TEST_BATTLE\\UK\\BINARYFILE\\MENU_COMMAND.BIN",
+      "key_hex": "0x662e9e48",
+      "colliding_archive_names": []
+    },
+    {
+      "language": "US",
+      "kind": 1,
+      "index": 129,
+      "edx_modes": [
+        0,
+        1
+      ],
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0502.ca",
+      "normalized_cache_path": "PS2DATA\\OBJ_FINISH\\IN\\NPC\\N10\\N1010\\N1010_10_0502.CA",
+      "key_hex": "0x7ddb82d6",
+      "colliding_archive_names": []
+    },
+    {
+      "language": "US",
+      "kind": 1,
+      "index": 130,
+      "edx_modes": [
+        0,
+        1
+      ],
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0711.ca",
+      "normalized_cache_path": "PS2DATA\\OBJ_FINISH\\IN\\NPC\\N10\\N1010\\N1010_10_0711.CA",
+      "key_hex": "0x2976038",
+      "colliding_archive_names": []
+    },
+    {
+      "language": "US",
+      "kind": 1,
+      "index": 131,
+      "edx_modes": [
+        0,
+        1
+      ],
+      "path": "PS2Data\\obj_finish\\in\\npc\\n10\\n1010\\n1010_10_0600.ca",
+      "normalized_cache_path": "PS2DATA\\OBJ_FINISH\\IN\\NPC\\N10\\N1010\\N1010_10_0600.CA",
+      "key_hex": "0x2f92b5",
+      "colliding_archive_names": []
+    }
+  ],
+  "detection_positive": {
+    "query": "ps2data/cdi/in/system.cnf",
+    "key_hex": "0xc431439",
+    "matching_archive_names": [
+      "ps2data/cdi/in/system.cnf"
+    ],
+    "limits": "Actual reducer detection control on retained data, not live cache contents"
+  },
+  "normalization_source_functions": {
+    "norm": "7e16216edd050f155e9356c1c01b982bd485de783bd50e333d9f88a49264fd90",
+    "djb2": "bf5fd2a35938b22829ad17616a7ceb5039128d5ab95a8290656b8c4cad5f24ee"
+  },
+  "hash_proof": "Complete674A00 reads bytes untilNUL: low32 h starts1505, h=low32(33*h+sign8(byte)); BTR31 once after loop. Python recurrence matches these instructions, not an execution of them.",
+  "interpretation": "Under unchanged ASCII/C-locale normalization and cache populated only from archive-name keys, these six paths cannot pass the cache membership gate, regardless of map-jump timing. This removes that scoped E2 discriminator without live gameplay.",
+  "assumptions": [
+    "ASCII/C-locale normalization as retained b14 norm/CRT boundary; original unmodified name-key algorithm",
+    "Cache population from these shipping archive-name keys only, no alternate inserts or injected/modded names; complete writer/indirect binding proof is separate",
+    "Retained FABLE six language/kind/id/path source census remains a pending/externally reviewed dependency, not a new ASTRA census"
+  ],
+  "limitations": [
+    "Not complete E2/OV33 closure: kindFF rewritten/uninitialized paths and all cache producer/binding paths remain separately open",
+    "No actual map-jump flag/cache initialization, scheduler, locale changes, lifetime/eviction or normal request observation",
+    "Archive identity is exact retained index/name prefix, not full VBF/payload integrity or successful file reads",
+    "External b14 three-string Unicorn controls and317 assertions are corroboration, not ASTRA executions or independent acceptance of this result"
+  ],
+  "affected_claims": [
+    "FABLE OV33 E2 six FST-sized absent-path cache-key possibility",
+    "OPUS resource issuance error/no-status contract scoped key-domain precondition"
+  ],
+  "next_discriminator": "If no collision: establish accepted archive-only cache key provenance/all alternate insert closure and separately resolve rawkindFF/00377DC0 paths; no need to observe these six key absences in FF12.",
+  "checker_sha256": "fdfa26146472581fa37dc06c2422760993cf235334c9642afb3ed69c977c3bed",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only archive-name prefix/EXE/retained peer inputs; finite scripts, no PC/game/input/instrument/save/config/reference/peer-process writes or kills"
+}

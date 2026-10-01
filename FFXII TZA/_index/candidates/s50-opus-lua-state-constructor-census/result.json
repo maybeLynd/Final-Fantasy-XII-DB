@@ -1,0 +1,57 @@
+{
+ "cases": {
+  "M1_no_MEMERRMSG_literal": true,
+  "M2_no_luaL_newstate_panic_message": true,
+  "M3_tag_method_names_never_interned": true,
+  "M4_reserved_words_read_only_by_token2str": true,
+  "P1_ldo_messages_referenced": true,
+  "P2_luaX_setinput_references_ENV": true,
+  "P3_image_base_form_detected_via_token2str": true,
+  "P4_lauxlib_linked": true
+ },
+ "census": {
+  "M1_not_enough_memory": [],
+  "M2_panic": [],
+  "M3_event_table": {
+   "at": "01CCBA90",
+   "code_refs": [],
+   "newindex_string_code_refs": [
+    []
+   ]
+  },
+  "M4_tokens_table": {
+   "at": "01CCBBE0",
+   "code_refs": [
+    "00824340"
+   ]
+  },
+  "P1": {
+   "C stack overflow": [
+    [
+     "0081D900",
+     "0081E5A0"
+    ]
+   ],
+   "error in error handling": [
+    [
+     "0081E760"
+    ]
+   ]
+  },
+  "P2_ENV": [
+   [
+    "0081CF80",
+    "008242A0"
+   ]
+  ],
+  "P4_LOADED": [
+   [
+    "008286D0",
+    "00828D30"
+   ]
+  ]
+ },
+ "domain": "the shipping image only (sha256 73461d0896204b1c)",
+ "ok": true,
+ "static": true
+}

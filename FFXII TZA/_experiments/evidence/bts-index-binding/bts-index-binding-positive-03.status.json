@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-result-03.json"
+  ],
+  "checker_sha256": "6a3ed4f842ab70cb1f0652cbc21412de988011a5aa3b84d0babbdc67962a86c9",
+  "change": "Strengthen complete independent primary identity set before freeze; older results/drivers retained"
+}

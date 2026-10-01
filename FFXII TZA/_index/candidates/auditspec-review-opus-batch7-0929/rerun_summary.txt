@@ -1,0 +1,8 @@
+effect_element         committed-sha256 5245d03ea38463ed rerun-identical-modulo-CR yes
+vfx_layers             committed-sha256 b7e4e2b6bcb6250c rerun-identical-modulo-CR yes
+fdm_for                committed-sha256 da4bdd8ede7ab611 rerun-identical-modulo-CR yes
+ftr_node_table         committed-sha256 e909cb018d76e113 rerun-identical-modulo-CR yes
+pose_sequencer         committed-sha256 6f6e9c7e0498990f rerun-identical-modulo-CR yes
+fte_fct                committed-sha256 5d698fab7097bac9 rerun-identical-modulo-CR yes
+cutin_blur_softfocus   committed-sha256 4affa4fd84e47973 rerun-identical-modulo-CR yes
+camera_renderer        committed-sha256 5d54e7a5ae71218d rerun-identical-modulo-CR yes

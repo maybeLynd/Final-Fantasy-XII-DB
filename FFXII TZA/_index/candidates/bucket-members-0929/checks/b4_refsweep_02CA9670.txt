@@ -1,0 +1,12 @@
+== refsweep [02CA9670,02CA9678)
+(a) rip-relative confirmed: 6
+  005565AA  -> 02CA9670  mov rax, qword ptr [rip + 0x27530bf]   [00556590 FUN_00556590]
+  005565C1  -> 02CA9670  mov rax, qword ptr [rip + 0x27530a8]   [00556590 FUN_00556590]
+  0055BC86  -> 02CA9670  add rdx, qword ptr [rip + 0x274d9e3]   [0055BAC0 FUN_0055bac0]
+  0055F0C6  -> 02CA9670  add rax, qword ptr [rip + 0x274a5a3]   [0055F010 FUN_0055f010]
+  0055F0D3  -> 02CA9670  mov rax, qword ptr [rip + 0x274a596]   [0055F010 FUN_0055f010]
+  0056168B  -> 02CA9670  mov qword ptr [rip + 0x2747fde], rcx   [00561390 FUN_00561390]
+  CONTROL 0056168B: PASS
+(b) dword hits: 0
+(c) qword pointer hits: 0
+FAILS 0

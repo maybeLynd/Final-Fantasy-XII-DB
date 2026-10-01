@@ -1,0 +1,159 @@
+{
+  "status": "PRODUCER_CHECKED_CONDITIONAL_PROOF_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "question": "When does reached59CD14 clear the same array+8 slot60EFE0 reads, and can its cleanup release old array storage?",
+  "hypotheses": [
+    "matching currentF4/slot: preclear makes observed old pointerNULL",
+    "different/rebound ownerF4 or supplied-object identity: no same-slot proof"
+  ],
+  "choice": "Original ABI, branch and DWORD address arithmetic settle this conditional claim without sampling/game; natural state and no-rebind history remain separate.",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "softedges-member-resolution-code-01.json",
+      "sha256": "6983bbb025376bd99c1b6c86663f1eac1f9b20f7a9713b4719d89355ca82489a"
+    },
+    {
+      "path": "softedges-array-descriptor-offset-code-01.json",
+      "sha256": "6708f7c608de7568af9e1ccbdee582a8d7d9bcad4b8d88ee020e4fdc1b785d80"
+    },
+    {
+      "path": "softedges-array-parent-getter-code-01.json",
+      "sha256": "c68c4d4e2549b4426937fa50aa17202f55deca3c0217e0dcf4dfce848c0caecb"
+    },
+    {
+      "path": "softedges-header-membership-code-01.json",
+      "sha256": "9c7c29570da24d6158712bde04c3d2a0279df9cedc99bf29d2886df371fa255a"
+    },
+    {
+      "path": "softedges-elements-callback-source-01/original-code.json",
+      "sha256": "a0bd6b5a8376962a6ae29ad68d4f18620664021b7fcf9c0b507540581151fc61"
+    },
+    {
+      "path": "softedges-member-assignment-code-01.json",
+      "sha256": "e84d27a8d78fcc25ed3004b346ef140868e7b99169bf018b7ed6b06a191ccec2"
+    },
+    {
+      "path": "softedges-preassignment-cleanup-code-01.json",
+      "sha256": "357636a59162adf892f8c86fd6d6ddd3ca425397638a33b8fa124fc18a5657b9"
+    },
+    {
+      "path": "softedges-elements-callback-source-01/facts.json",
+      "sha256": "cac19b583cab03bdc4f05c993f86b603cc446362ae45194d783b10eff68669a6"
+    }
+  ],
+  "observations": [
+    "6372A0 normal leaf returns02CF8270. Registrar5EEB90/95/AC sends it as arg6;632DD1/DA store it at descriptor+78.",
+    "6373D0 normal return is01F2E330, sent through RDX/arg2 to descriptor+70 at632DD6; its lazy-init effects are unproved. Old private capture/root-getter wording was wrong; original bytes/results retained unchanged.",
+    "Named descriptor02CEA460 constructor arg7=0 -> F0=0; constructor zerosF4/F8. Recompute63E410 for current ownF0=0,parent02CF8270 adds only own0, then excludes the root before reading itsF0. This provesF4=0 under those CURRENT metadata conditions, not arbitrary later invariance.",
+    "Reached kind2, bit1clear/bit6clear path writesNULL at suppliedObject+sext32((memberOffset-ownerF4)mod2^32) at59CD14 before passing suppliedObject directly to registered callback.",
+    "For memberOffset8, equality with suppliedObject+8 holds iff current ownerF4DWORD=0: signed result8 iff DWORD result8 iff8-F4=8 modulo2^32. No finite sample or general overlap-safety claim is needed.",
+    "Under same-slot/no-intervening-writer/readable-state premises, nonnegative setter readsNULL. NewsourceNULL skips cleanup; newsource nonnull with borrowed old count skips cleanup; owned old count calls5F03A0(NULL,maskedCount), which branches directly toRET and accesses no object memory/callee.",
+    "RET still consumes the stack return address. No RAX value assertion for cleanup. Nonnegative setter then writes new pointer and borrowed count; it cannot free the preclear-overwritten old pointer through this cleanup path.",
+    "Negative count still sees the prior preclear, but60EFE0 returns5 before array read/count store;60F280 suppresses status to0. Thus composed pointer patcher may clear the pointer despite callback0 and unchanged count. Standalone setter no-write proof remains valid."
+  ],
+  "address_identity_proof": "F4DWORD==0 iff sext32((8-F4)mod2^32)==8; pointer additions modulo64 do not change this equality.",
+  "exhaustive_path_partition": [
+    {
+      "negative_count": false,
+      "source_is_null": false,
+      "old_count_borrowed": false,
+      "cleanup_called": true,
+      "cleanup_argument": "NULL",
+      "pointer_after": "new source",
+      "count_after": "new count | 0x80000000",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": false,
+      "source_is_null": false,
+      "old_count_borrowed": true,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "new source",
+      "count_after": "new count | 0x80000000",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": false,
+      "source_is_null": true,
+      "old_count_borrowed": false,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "new source",
+      "count_after": "new count | 0x80000000",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": false,
+      "source_is_null": true,
+      "old_count_borrowed": true,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "new source",
+      "count_after": "new count | 0x80000000",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": true,
+      "source_is_null": false,
+      "old_count_borrowed": false,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "NULL (preclear retained)",
+      "count_after": "unchanged old count",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": true,
+      "source_is_null": false,
+      "old_count_borrowed": true,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "NULL (preclear retained)",
+      "count_after": "unchanged old count",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": true,
+      "source_is_null": true,
+      "old_count_borrowed": false,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "NULL (preclear retained)",
+      "count_after": "unchanged old count",
+      "callback_normal_return": 0
+    },
+    {
+      "negative_count": true,
+      "source_is_null": true,
+      "old_count_borrowed": true,
+      "cleanup_called": false,
+      "cleanup_argument": "not called",
+      "pointer_after": "NULL (preclear retained)",
+      "count_after": "unchanged old count",
+      "callback_normal_return": 0
+    }
+  ],
+  "assumptions": [
+    "Matching native m_els member currently has offset8,kind2,flags bit1/6clear,owner02CEA460; getter16D680/slot40 and registered callback identities unchanged",
+    "Normal reached branch includes59CC38; Windows x64 nonvolatile-register preservation; supplied object remains the same; no write/alias interferes between preclear and setter read",
+    "CURRENT ownerF4=0, justified by fresh normal constructor or ownF0=0,parent02CF8270 recomputation plus no later metadata change; not assumed universally",
+    "Valid readable/writable array and ABI/stack; callback/cleanup return normally"
+  ],
+  "affected_claims": [
+    "PhyreText pointer keys22/27 conditional assignment effects",
+    "Shader-array callback ownership/negative-count boundary",
+    "Original class-descriptor parent/sub-object andF4 prerequisite attribution"
+  ],
+  "limitations": [
+    "Not live state, shipping load success, initialized pointer identity/lifetime or natural reachability",
+    "Constructor/recompute are analyzed, not executed; external/lazy-init effects and all later F4 writers not closed",
+    "No full function effects inventory, alias safety, generalnonnull cleanup or universal allocation-leak assertion",
+    "Prior field/member/key independent reviews and canonical consumption remain separate"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "checker_sha256": "2fff45eaf3be11cd15d7fff6ebbff857cb3db976168304e2ee3f44fe5ad6a831"
+}

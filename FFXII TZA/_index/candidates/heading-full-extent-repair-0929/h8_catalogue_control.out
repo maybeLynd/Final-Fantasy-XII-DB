@@ -1,0 +1,3 @@
+BROKEN    H8  (REFUTES '002E45E0 is a 40-byte leaf with no calls') 8 chained fragments [40, 27, 397, 45, 93, 144, 47, 170], contiguous True, union 963 B = catalogue 40 B; first fragment 40 B with no ret; ret ['002E49A2']; extent valid False; calls None; direct +0x03 operands None; calls between the gate and the delta ['002E50B8'], same actor in rcx
+FAILS 1
+CONTROL exit code 1

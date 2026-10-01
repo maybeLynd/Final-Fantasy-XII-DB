@@ -1,0 +1,130 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "adapter-metadata-control.json",
+    "git_blob": "72a7e5ef300bd7dd6737ef5eef890bfbe6f98240"
+  },
+  {
+    "path": "adapter-metadata-control.py",
+    "git_blob": "64f4f9e420ec7c845e936e480c5e4a651a69fc34"
+  },
+  {
+    "path": "check-before-state-label-fix.py",
+    "git_blob": "b222e70b600053af4a3f95bb9989a86b9d39b563"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "4758c3cfc62a5f8c8fc624c5b13c1e95383b6f94"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "7caf09f29665df643ba65131ae53b0907ee3a956"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "417e2cf00f095d2da25c7e13fdbdfbc0ca623499"
+  },
+  {
+    "path": "fault-always-nearest.stderr",
+    "git_blob": "a713621557673e2a444e6a73138a601411518206"
+  },
+  {
+    "path": "fault-always-nearest.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-preserve-int-bits.stderr",
+    "git_blob": "865840f6c9ca2ece962886c211075c9557d3f2b4"
+  },
+  {
+    "path": "fault-preserve-int-bits.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-use-original-state-label.stderr",
+    "git_blob": "a2aa67453465a87f474cf0690c1618d325c34a45"
+  },
+  {
+    "path": "fault-use-original-state-label.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "feasibility-before-default.py",
+    "git_blob": "a34ebb699cee2c16b14df567b220b67932a0bacf"
+  },
+  {
+    "path": "feasibility-before-state-label-fix.py",
+    "git_blob": "76e39c5737d0713bb3804419890f67ef18afb93c"
+  },
+  {
+    "path": "feasibility-raw.json",
+    "git_blob": "03194896b2c639d15047b69473f6093ed34241ef"
+  },
+  {
+    "path": "feasibility.py",
+    "git_blob": "8e0b77bdbac93940e2a660ef68f25205980b660b"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "7ed86c5f74fe0ce30bf2e78356c89130dd88c779"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "3aaa9a393e08ccef05d07191006c0d5894dff58b"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "2360f2407a2b8be3cb9c5848686ff595dc830f78"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "9933a700a883b8799dd0b75ab8966452e2003c83"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "ea7fbb1f7c57495075c0729c10f3e412ce9cf0aa"
+  },
+  {
+    "path": "retained/original-popv256.bin",
+    "git_blob": "d08cf18942f70fce3c1f85bf3fb95cbddfa15a9c"
+  },
+  {
+    "path": "retained/original-table24.bin",
+    "git_blob": "0216b348ce678bd933c4c4cc29336a9c51fa91f5"
+  },
+  {
+    "path": "retained/original194.bin",
+    "git_blob": "e94530f7f310489d56806cff147571cb3808377e"
+  },
+  {
+    "path": "retained/original70-capture.py",
+    "git_blob": "c2428a8f4ad53c0a7a1b83c7e2b23ba9525e862c"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "runner-adapted-corrected.py",
+    "git_blob": "4fdc4454bedfee8fe31b3b226015f0b6c5b8b7e4"
+  },
+  {
+    "path": "runner-adapted.py",
+    "git_blob": "a64418a38d6c05fd219e873e109cbb0882107532"
+  },
+  {
+    "path": "runner-original70.py",
+    "git_blob": "b641706a6098105b6e7880d842071233cdae3e79"
+  },
+  {
+    "path": "state-metadata-correction.json",
+    "git_blob": "0c431b6aa651b0fd5afc84dc078e6af9ab370a67"
+  }
+]

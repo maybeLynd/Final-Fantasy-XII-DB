@@ -1,0 +1,81 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS V1 the archive holds exactly nine battle_pack.bin packs, the nine languages - ['ch', 'cn', 'de', 'es', 'fr', 'in', 'it', 'kr', 'us']
+PASS V2 us: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x22418: 57 rows 267 entries 2512 refs
+PASS V3 positive control (us): row 24's section at +0x1338 with 39 entries, name 0x1F9, all story gates - sec +0x1338 n 39
+PASS V3 positive control (us): the page states these counts
+PASS V2 de: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x22768: 57 rows 267 entries 2512 refs
+PASS V2 fr: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x22408: 57 rows 267 entries 2512 refs
+PASS V2 es: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x226C0: 57 rows 267 entries 2512 refs
+PASS V2 it: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x22488: 57 rows 267 entries 2512 refs
+PASS V2 in: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x21F58: 57 rows 267 entries 2512 refs
+PASS V2 kr: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x22428: 57 rows 267 entries 2512 refs
+PASS V2 ch: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x21F68: 57 rows 267 entries 2512 refs
+PASS V2 cn: the shop table decodes to 57 rows, 267 entries, 2,512 references - table at +0x21F70: 57 rows 267 entries 2512 refs
+PASS V4 the nine decoded tables are identical, row for row and id for id - 3eb86ba4351703f4
+PASS V5 discrimination control: the nine files are not the same file
+PASS V6 discrimination control: the table sits at different offsets - us:+0x22418 de:+0x22768 fr:+0x22408 es:+0x226C0 it:+0x22488 in:+0x21F58 kr:+0x22428 ch:+0x21F68 cn:+0x21F70
+PASS V7 discrimination control: one flipped id bit in one list changes the digest
+PASS M1 002BA310 has exactly one direct caller, 002BAF80 @ 002BB836 - [('002BAF80', '002BB836')]
+PASS M1 ... and no rip reference or .data slot
+PASS M2 002BB836 lies in the confirm-on-marker arm the map page gives (002BB7E1-002BB96B)
+PASS M3 002BAF80 is the location map's page procedure on the map page
+PASS M4 002BD8C0: no direct caller, one rip reference, the lea in 002BA310
+PASS M5 002BA530 is called only by 002BA310; 002B9C70 only by 002BD8C0
+PASS M6 002BA310 sizes its widget 0x3E0 - 002BA36C ecx, 0x3e0
+PASS M  control: the caller index returns several callers where they exist (00249CE0: 8 sites) - 8
+PASS G1 GR-13 reads ANSWERED in the register
+PASS G1 GR-14 reads ANSWERED in the register
+PASS G1 GR-15 reads ANSWERED in the register
+PASS G2 the page carries gr13-15-shop-list-widget-0930 statement 1
+PASS G2 the page carries gr13-15-shop-list-widget-0930 statement 2
+PASS G2 the page carries gr13-15-shop-list-widget-0930 statement 3
+PASS G2 the page carries gr13-15-shop-list-widget-0930 statement 4
+PASS G2 the page carries gr13-15-shop-list-widget-0930 statement 5
+PASS G2 the page carries gr13-15-shop-list-widget-0930 statement 6
+PASS G3 section 7 has no open box - 10 ticked
+PASS G4 the GR-14 and GR-15 boxes carry their answers
+PASS A1 00510710 is a jmp to 0023A520 - 00510710  jmp 0x23a520
+PASS A2 0023A520's only reference is that thunk
+PASS A3 the verb table row 0x3053 btlAtelSetupActorStart -> 00510710, and the thunk sits in .data
+PASS W1 00235720 has one direct caller, 0050F520 @ 0050F52C, and no rip reference
+PASS W2 0050F520 is reached only through .data 01F28510
+PASS W2 ... the verb table row 0x301A btlAtelDecideEntryPointAuto -> 0050F520
+PASS W3 the adapter: push rbx; sub rsp, 0x20; two register moves; call 0x235720 - push rbx / sub rsp, 0x20 / mov rbx, rcx / mov rcx, rdx / call 0x235720 / mov edx, eax / mov rcx, rbx / add rsp, 0x20 / pop rbx / jmp 0x26b4e0
+PASS W3 ... no memory store before the call
+PASS W4 00235720's prologue: push rbx; push rdi; sub rsp, 0xd8 - ['push rbx', 'push rdi', 'sub rsp, 0xd8']
+PASS W5 the slot is S - 0xBC, below the adapter's frame [S, S + 0x30)
+PASS W6 inside 00235720 only the lea (00235930) and the movss read (00235959) touch rsp+0x34 - [('00235930', 'lea'), ('00235959', 'movss')]
+PASS W7 control: the sweep sees writes to the neighbours +0x30 and +0x38 - +0x30 ['002357D5', '00235989']; +0x38 ['002357FE']
+PASS S1 records hold the sign-extended word +0x44 - 00247A11  movsx ecx, word ptr [rdx + 0x44]
+PASS S1 ... at record +0 - 00247A1C  mov dword ptr [rax - 8], ecx
+PASS S1 ... the index at record +4 - 00247A15  mov dword ptr [rax - 4], r8d
+PASS S1 ... counted from 0 - 00247A03  xor r8d, r8d
+PASS S1 ... the child at record +8 - 00247A1F  mov qword ptr [rax], rdx
+PASS S2 comparator 00244610: eax = b.prio - a.prio; if 0, a.idx - b.idx - mov eax, dword ptr [rdx] / sub eax, dword ptr [rcx] / jne 0x24461c / mov eax, dword ptr [rcx + 4] / sub eax, dword ptr [rdx + 4] / ret 
+PASS S3 the priorities are i16, so b - a lies in [-65535, 65535] and cannot overflow
+PASS S4 002479B0 passes 00244610 as the sort's comparator (lea, stack argument)
+PASS S5 00249CE0 is the shared sort: eight call sites
+PASS S6 00249CE0 takes the comparator from its fifth argument - 00249CFE  mov r13, qword ptr [rsp + 0xb0]
+PASS S6 ... compares element with pivot - 00249D8F  call r13
+PASS S6 ... stops advancing the left index on a non-negative result - 00249D94  jns 0x249db5
+PASS S6 ... and keeps advancing while negative - 00249DB3  js 0x249da0
+PASS S7 the sorted first record becomes the first child - 00247A58  mov qword ptr [rdi + 0x18], rax
+PASS E1 dispatch: 0x00EB eventplay -> 00354E80
+PASS E2 dispatch: 0x00EC eventplay_ec -> 00354B20
+PASS E3 both handlers sit in .data slots and have no direct caller
+PASS R1 L-12 reads SUPERSEDED 2026-09-26
+PASS R1 L-13 reads SUPERSEDED 2026-09-27
+PASS R2 FRONTIER-RT-RUNTIME-SURROGATE does not carry L-13 (its seven rows are others)
+PASS R3 FABLE-REQ-ASTRA-L13-BANKS was DONE before the 2026-09-27 ruling - 2026-09-13
+PASS R4 no open board item names the spawn page except this batch's task - 104 items name it; open: ['SWE2STRUCT-DD-B21-1001']
+PASS R5 the 30 review requests on sections 11-29 are DONE - []
+PASS C1 the gambit page still says the restore helper copies both banks back
+PASS N1 the-shop-table-and-its-stock-gates.md carries 5 batch-21 notes - 5
+PASS N1 the-shop-table-and-its-stock-gates.md stays pure CRLF
+PASS N1 the-shop-table-and-its-stock-gates.md has no open box
+PASS N1 spawn-placement-and-retirement.md carries 8 batch-21 notes - 8
+PASS N1 spawn-placement-and-retirement.md stays pure CRLF
+PASS N1 spawn-placement-and-retirement.md has no open box
+PASSES 78
+FAILS 0

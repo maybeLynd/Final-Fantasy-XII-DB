@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "targets": [
+    "17e8e0",
+    "17f3b0"
+  ],
+  "question": "Bound original incomingR9D before assuming naturalmaskedzero; rawrefs onlycandidates"
+}

@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-13T10:07:55.510Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 3016750,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "note": "First autosave click produced no observed transition; selected row still Stepping. No load-completion inference.",
+  "screenshot": "load-click-not-observed.jpg"
+}

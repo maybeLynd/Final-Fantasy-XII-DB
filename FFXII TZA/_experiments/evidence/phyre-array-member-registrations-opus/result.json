@@ -1,0 +1,478 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "capstone": "5.0.7",
+ "C1_member_constructors": {
+  "00632960": {
+   "installs": [
+    "PClassDataMember"
+   ],
+   "call_sites": 682,
+   "in_schema": 682
+  },
+  "00632A10": {
+   "installs": [
+    "PClassDataMemberArray"
+   ],
+   "call_sites": 165,
+   "in_schema": 0
+  },
+  "00632A70": {
+   "installs": [
+    "PClassDataMember",
+    "PClassDataMemberArrayFixedSize"
+   ],
+   "call_sites": 29,
+   "in_schema": 4
+  },
+  "00632B30": {
+   "installs": [
+    "PClassDataMemberDynamic"
+   ],
+   "call_sites": 1,
+   "in_schema": 0
+  },
+  "00632BE0": {
+   "installs": [
+    "PClassDataMember",
+    "PClassDataMemberEnum"
+   ],
+   "call_sites": 21,
+   "in_schema": 0
+  }
+ },
+ "C1_destructor_tailjumps": {
+  "00633240": 701,
+  "006332A0": 194
+ },
+ "C2": {
+  "rows": 315,
+  "covered": 176,
+  "old_zero": 139,
+  "register_arrays": 19,
+  "no_member": 120,
+  "member_nodes_column_agrees": true
+ },
+ "M1_without_00632A10_sentinel_count": 0,
+ "C3_methods_only": [
+  [
+   "PApplication",
+   [
+    ".?AV?$PFunctionCallerConcrete@VPTypedObject@Phyre@@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@AEAVPInputMapper@23@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@H@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@I@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@MPEBD@PCallerImplementation1@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@N@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@PEAVPApplicationViewport@23@I@PCallerImplementation1@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@PEAVPDebugUtils@23@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@PEBVPWorld@3@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplication@PFramework@Phyre@@XAEAVPCameraProjection@3@@PCallerImplementation1@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PApplicationViewport",
+   [
+    ".?AV?$PMethodCallerConcrete@VPApplicationViewport@PFramework@Phyre@@I@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPApplicationViewport@PFramework@Phyre@@M@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PAsyncProcessHeader",
+   [
+    ".?AV?$PMethodCallerConcrete@VPAsyncProcessHeader@PScripting@Phyre@@VPTypedObject@3@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PPhysicsRigidBody",
+   [
+    ".?AV?$PMethodCallerConcrete@VPPhysicsRigidBody@PPhysics@Phyre@@VVector3@Aos@Scalar@Vectormath@sce@@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsRigidBody@PPhysics@Phyre@@W4PResult@3@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsRigidBody@PPhysics@Phyre@@XAEBVVector3@Aos@Scalar@Vectormath@sce@@@PCallerImplementation1@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsRigidBodyBase@PPhysics@Phyre@@PEAVPWorldMatrix@3@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsRigidBodyBase@PPhysics@Phyre@@_N@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PPhysicsWorld",
+   [
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@HAEBVVector3@Aos@Scalar@Vectormath@sce@@AEBV45678@W4PCollisionGroup@PPhysicsRigidBodyBase@23@@PCallerImplementation3@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@HMAEBVVector3@Aos@Scalar@Vectormath@sce@@AEBV45678@W4PCollisionGroup@PPhysicsRigidBodyBase@23@@PCallerImplementation4@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@VPTypedObject@3@AEBVVector3@Aos@Scalar@Vectormath@sce@@AEBV56789@PEAVVector4@6789@PEAVVector4@6789@@PCallerImplementation4@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@VPTypedObject@3@AEBVVector3@Aos@Scalar@Vectormath@sce@@AEBV56789@PEAVVector4@6789@PEAVVector4@6789@W4PCollisionGroup@PPhysicsRigidBodyBase@23@@PCallerImplementation5@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@VPTypedObject@3@IAEAVVector4@Aos@Scalar@Vectormath@sce@@AEAV56789@@PCallerImplementation3@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@VPTypedObject@3@MAEBVVector3@Aos@Scalar@Vectormath@sce@@AEBV56789@PEAVVector4@6789@PEAVVector4@6789@@PCallerImplementation5@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPPhysicsWorld@PPhysics@Phyre@@VPTypedObject@3@MAEBVVector3@Aos@Scalar@Vectormath@sce@@AEBV56789@PEAVVector4@6789@PEAVVector4@6789@W4PCollisionGroup@PPhysicsRigidBodyBase@23@@PCallerImplementation6@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PRandomGenerator",
+   [
+    ".?AV?$PFunctionCallerConcrete@M@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PScheduler",
+   [
+    ".?AV?$PFunctionCallerConcrete@PEAVPScheduler@PScripting@Phyre@@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PFunctionCallerConcrete@PEBVPScript@PScripting@Phyre@@@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPScheduler@PScripting@Phyre@@W4PResult@3@AEBVPScript@23@AEAVPBase@3@PEBD@PCallerImplementation3@PCallerImplementation@PInternal@Phyre@@",
+    ".?AV?$PMethodCallerConcrete@VPScheduler@PScripting@Phyre@@W4PResult@3@AEBVPScript@23@VPTypedObject@3@PEBDI@PCallerImplementation4@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ],
+  [
+   "PTimeController",
+   [
+    ".?AV?$PFunctionCallerConcrete@M@PCallerImplementation0@PCallerImplementation@PInternal@Phyre@@"
+   ]
+  ]
+ ],
+ "C3_reach_within_two_calls": [],
+ "C4_registrations": [
+  {
+   "class": "PAnimationAdditiveBlenderController",
+   "registrar": "005AEEC0",
+   "site": "005AEF65",
+   "ctor": "00632A10",
+   "name": "m_sourceWeights",
+   "offset": 40,
+   "a6": 0,
+   "a7": 3,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@M@Phyre@@"
+  },
+  {
+   "class": "PAnimationBlenderController",
+   "registrar": "005AEFB0",
+   "site": "005AF050",
+   "ctor": "00632A10",
+   "name": "m_sources",
+   "offset": 24,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@PEAVPAnimationDataSource@PAnimation@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PAnimationEventList",
+   "registrar": "005B1400",
+   "site": "005B1496",
+   "ctor": "00632A10",
+   "name": "m_events",
+   "offset": 0,
+   "a6": 0,
+   "a7": 3,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPAnimationEvent@PAnimation@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PAnimationSet",
+   "registrar": "005B1900",
+   "site": "005B19A9",
+   "ctor": "00632A10",
+   "name": "m_animationClips",
+   "offset": 0,
+   "a6": 0,
+   "a7": 4,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreSharray@PEAVPAnimationClip@PAnimation@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PAnimationSet",
+   "registrar": "005B1900",
+   "site": "005B1A42",
+   "ctor": "00632A10",
+   "name": "m_targets",
+   "offset": 16,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPAnimationChannelTarget@PAnimation@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PAnimationSet",
+   "registrar": "005B1900",
+   "site": "005B1ADB",
+   "ctor": "00632A10",
+   "name": "m_slotArrayIndices",
+   "offset": 32,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPAnimationSlotListIndex@PAnimation@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PAnimationWeightedBlenderController",
+   "registrar": "005B2470",
+   "site": "005B2515",
+   "ctor": "00632A10",
+   "name": "m_sourceWeights",
+   "offset": 40,
+   "a6": 0,
+   "a7": 3,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@M@Phyre@@"
+  },
+  {
+   "class": "PInputMap",
+   "registrar": "0086D990",
+   "site": "0086DA26",
+   "ctor": "00632A10",
+   "name": "m_inputActions",
+   "offset": 0,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@PEAVPInputAction@PInputs@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PInstancesComponent",
+   "registrar": "006AE350",
+   "site": "006AE725",
+   "ctor": "00632A10",
+   "name": "m_instances",
+   "offset": 24,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPTypedObject@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PMaterialSet",
+   "registrar": "00666550",
+   "site": "006665F9",
+   "ctor": "00632A10",
+   "name": "m_materials",
+   "offset": 0,
+   "a6": 0,
+   "a7": 4,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreSharray@PEAVPMaterial@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PMeshInstanceSegmentContext",
+   "registrar": "005E67C0",
+   "site": "005E6860",
+   "ctor": "00632A10",
+   "name": "m_streamBindings",
+   "offset": 56,
+   "a6": 0,
+   "a7": 4,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreSharray@PEAVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PModifierNetworkDynamicMesh",
+   "registrar": "006BC750",
+   "site": "006BC7F8",
+   "ctor": "00632A10",
+   "name": "m_modifierNetworkInputs",
+   "offset": 56,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@PEAE@Phyre@@"
+  },
+  {
+   "class": "PModifierNetworkDynamicMesh",
+   "registrar": "006BC750",
+   "site": "006BC891",
+   "ctor": "00632A10",
+   "name": "m_modifierNetworkInputRenderStreams",
+   "offset": 72,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPRenderStream@PDynamicGeometry@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PModifierNetworkDynamicMesh",
+   "registrar": "006BC750",
+   "site": "006BC92F",
+   "ctor": "00632A10",
+   "name": "m_modifierNetworkOutputs",
+   "offset": 88,
+   "a6": 0,
+   "a7": 3,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@H@Phyre@@"
+  },
+  {
+   "class": "PModifierNetworkDynamicMesh",
+   "registrar": "006BC750",
+   "site": "006BC9C8",
+   "ctor": "00632A10",
+   "name": "m_segmentInputs",
+   "offset": 104,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPModifierNetworkDynamicMeshSegment@PDynamicGeometry@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PModifierNetworkDynamicMeshInstance",
+   "registrar": "005E6B40",
+   "site": "005E6BE0",
+   "ctor": "00632A10",
+   "name": "m_modifierNetworkInstances",
+   "offset": 24,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@PEAVPModifierNetworkInstance@PDynamicGeometry@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PMorphModifierWeightsUserDataObject",
+   "registrar": "006D8EF0",
+   "site": "006D8F8B",
+   "ctor": "00632A10",
+   "name": "m_weights",
+   "offset": 0,
+   "a6": 0,
+   "a7": 3,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@M@Phyre@@"
+  },
+  {
+   "class": "PNodeContext",
+   "registrar": "005E6C30",
+   "site": "005E6CCB",
+   "ctor": "00632A10",
+   "name": "m_packedSwitches",
+   "offset": 0,
+   "a6": 0,
+   "a7": 4,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreSharray@I@Phyre@@"
+  },
+  {
+   "class": "PPostEffectManager",
+   "registrar": "006491B0",
+   "site": "0064925B",
+   "ctor": "00632A10",
+   "name": "m_postEffects",
+   "offset": 0,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@PEAVPPostEffectBase@PPostProcessing@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PShaderPassParameterLocationTypes",
+   "registrar": "005E9FF0",
+   "site": "005EA090",
+   "ctor": "00632A10",
+   "name": "m_parameterLocations",
+   "offset": 16,
+   "a6": 0,
+   "a7": 3,
+   "a8": 2,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPShaderParameterCaptureBufferLocationType@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PShaderPassParameterLocationTypesConstantBuffer",
+   "registrar": "005EA220",
+   "site": "005EA2C0",
+   "ctor": "00632A10",
+   "name": "m_parameterLocations",
+   "offset": 16,
+   "a6": 0,
+   "a7": 3,
+   "a8": 4,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPShaderParameterCaptureBufferLocationTypeConstantBuffer@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PShaderProgramParamsAndStreams",
+   "registrar": "005EA3D0",
+   "site": "005EA474",
+   "ctor": "00632A10",
+   "name": "m_streamDefinitions",
+   "offset": 0,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPShaderStreamDefinition@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PShaderProgramParamsAndStreams",
+   "registrar": "005EA3D0",
+   "site": "005EA515",
+   "ctor": "00632A10",
+   "name": "m_parameterDefinitions",
+   "offset": 16,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPShaderParameterDefinition@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PStreamInputLayoutD3D11",
+   "registrar": "00618620",
+   "site": "006186B6",
+   "ctor": "00632A10",
+   "name": "m_streams",
+   "offset": 0,
+   "a6": 0,
+   "a7": 3,
+   "a8": 8,
+   "member_class": ".?AV?$PClassDataMemberPhyreArray@VPStreamInputDescD3D11@PRendering@Phyre@@@Phyre@@"
+  },
+  {
+   "class": "PString",
+   "registrar": "006A72B0",
+   "site": "006A734E",
+   "ctor": "00632A10",
+   "name": "m_buffer",
+   "offset": 0,
+   "a6": 0,
+   "a7": 2,
+   "a8": 1,
+   "member_class": ".?AV?$PClassDataMemberArrayDynamic@VPString@Phyre@@@Phyre@@"
+  }
+ ],
+ "C5_accessors": {
+  "PClassDataMemberArrayDynamic": {
+   "006065D0/00604580/00604580": 71
+  },
+  "PClassDataMemberPhyreArray": {
+   "006065E0/006045B0/006045B0": 59
+  },
+  "PClassDataMemberPhyreSharray": {
+   "006065E0/0063B9B0/0063B9B0": 10
+  }
+ },
+ "C5_bytes": {
+  "006065E0": "488b41188b49482b88f40000004863c18b04100fbaf01fc3",
+  "006045B0": "488b41188b49482b88f40000004863c1488b441008c3",
+  "0063B9B0": "488b41188b49482b88f40000004863c14803c28b080fbaf11f83f9017605488b4008c34883c00833d285c9480f44c2c3"
+ },
+ "C6_F4_terms": {
+  "PMeshInstanceSegmentContext": 0,
+  "PMeshSegmentContext": 0
+ },
+ "C7_store": {
+  "PAnimationAdditiveBlenderController.m_sourceWeights": "header rows",
+  "PAnimationBlenderController.m_sources": "header rows",
+  "PAnimationEventList.m_events": "whole",
+  "PAnimationSet.m_animationClips": "whole",
+  "PAnimationSet.m_targets": "whole",
+  "PAnimationSet.m_slotArrayIndices": "whole",
+  "PAnimationWeightedBlenderController.m_sourceWeights": "header rows",
+  "PInputMap.m_inputActions": "whole",
+  "PInstancesComponent.m_instances": "whole",
+  "PMaterialSet.m_materials": "header rows",
+  "PMeshInstanceSegmentContext.m_streamBindings": "whole",
+  "PModifierNetworkDynamicMesh.m_modifierNetworkInputs": "header rows",
+  "PModifierNetworkDynamicMesh.m_modifierNetworkInputRenderStreams": "header rows",
+  "PModifierNetworkDynamicMesh.m_modifierNetworkOutputs": "header rows",
+  "PModifierNetworkDynamicMesh.m_segmentInputs": "header rows",
+  "PModifierNetworkDynamicMeshInstance.m_modifierNetworkInstances": "header rows",
+  "PMorphModifierWeightsUserDataObject.m_weights": "whole",
+  "PNodeContext.m_packedSwitches": "whole",
+  "PPostEffectManager.m_postEffects": "whole",
+  "PShaderPassParameterLocationTypes.m_parameterLocations": "whole",
+  "PShaderPassParameterLocationTypesConstantBuffer.m_parameterLocations": "whole",
+  "PShaderProgramParamsAndStreams.m_streamDefinitions": "whole",
+  "PShaderProgramParamsAndStreams.m_parameterDefinitions": "whole",
+  "PStreamInputLayoutD3D11.m_streams": "whole"
+ }
+}

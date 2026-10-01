@@ -1,0 +1,152 @@
+{
+  "verdict": "PASS_STATIC_HOST_DEPENDENCY",
+  "source_sha256": "d0b8625777eeca0b68999195bc02279061758ed2a595753d8c44971a26051f29",
+  "body_bytes": 65,
+  "decoded_instructions": 21,
+  "return_sites": 5,
+  "partition": [
+    {
+      "exponent": "all ones",
+      "mantissa": "nonzero",
+      "signed_return": 2
+    },
+    {
+      "exponent": "all ones",
+      "mantissa": "zero",
+      "signed_return": 1
+    },
+    {
+      "exponent": "neither zero nor all ones",
+      "mantissa": "any",
+      "signed_return": -1
+    },
+    {
+      "exponent": "zero",
+      "mantissa": "nonzero",
+      "signed_return": -2
+    },
+    {
+      "exponent": "zero",
+      "mantissa": "zero",
+      "signed_return": 0
+    }
+  ],
+  "examples": [
+    {
+      "bits": "00000000",
+      "signed_return": 0,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "80000000",
+      "signed_return": 0,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "00000001",
+      "signed_return": -2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "80000001",
+      "signed_return": -2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "007fffff",
+      "signed_return": -2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "807fffff",
+      "signed_return": -2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "00800000",
+      "signed_return": -1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "80800000",
+      "signed_return": -1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "3f800000",
+      "signed_return": -1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "bf800000",
+      "signed_return": -1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "7f7fffff",
+      "signed_return": -1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "ff7fffff",
+      "signed_return": -1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "7f800000",
+      "signed_return": 1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "ff800000",
+      "signed_return": 1,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "7f800001",
+      "signed_return": 2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "ff800001",
+      "signed_return": 2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "7fc00000",
+      "signed_return": 2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "ffc00000",
+      "signed_return": 2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "7fffffff",
+      "signed_return": 2,
+      "method": "conditional source calculation; NOT executed"
+    },
+    {
+      "bits": "ffffffff",
+      "signed_return": 2,
+      "method": "conditional source calculation; NOT executed"
+    }
+  ],
+  "controls": [
+    {
+      "name": "wrong-mantissa-mask",
+      "verdict": "REJECTED_SOURCE_OBLIGATION"
+    },
+    {
+      "name": "wrong-NaN-return",
+      "verdict": "REJECTED_SOURCE_OBLIGATION"
+    },
+    {
+      "name": "branch-outside-body",
+      "verdict": "REJECTED_SOURCE_OBLIGATION"
+    }
+  ],
+  "established": "Identified installed CRT leaf copies raw binary32 low XMM0 bits with MOVD and classifies through integer masks. All signs share the partition; both quiet/signaling NaN payloads map to2. No FP arithmetic, memory operands or MXCSR read/write in this complete body. EAX immediates expose low AX signed-short codes used by original GGRID AX==2 gate.",
+  "limits": "STATIC_ONLY host DLL source proof. Not actual FF12 process binding, native execution/FP flag observation, universal CRT version semantics, live reachability or native effects elsewhere. Retained bridge already declares these class codes; no defect or wholesale native promotion."
+}

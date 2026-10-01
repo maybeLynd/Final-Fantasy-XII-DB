@@ -1,0 +1,9 @@
+# NativeAdapter.ContainerPopFront - EC-7 family C
+# if [this+0x48] nonzero: take head [this+0x30]->+0x20, dec the count, call
+# # shared 0016D6D0 + 0016DA60 on the node, vcall [this+0x50] slot 3 with
+# # r8=0x28, then shared 00199DB0 on this+0x58; optionally call a member op.
+address	targets
+002204A0	0016D6D0,0016DA60,00199DB0,00225490
+00220550	0016D6D0,0016DA60,00199DB0,002255C0
+00220600	0016D6D0,0016DA60,00199DB0,00225830
+002206B0	0016D6D0,0016DA60,00199DB0,00225880

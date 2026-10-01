@@ -1,0 +1,344 @@
+[
+  {
+    "handle": 552,
+    "address": 1689776820191,
+    "requested": 33,
+    "result": 1,
+    "transferred": 33,
+    "error": 0,
+    "raw_hex": "505332446174615c6566625c73796e7468657469635f7265616465722e65666200"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820223,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "00"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820223,
+    "requested": 2,
+    "result": 0,
+    "transferred": 0,
+    "error": 299,
+    "raw_hex": ""
+  },
+  {
+    "handle": 552,
+    "address": 1689776820224,
+    "requested": 1,
+    "result": 0,
+    "transferred": 0,
+    "error": 299,
+    "raw_hex": ""
+  },
+  {
+    "handle": 552,
+    "address": 1689776820191,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "50"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820192,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "53"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820193,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "32"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820194,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "44"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820195,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "61"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820196,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "74"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820197,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "61"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820198,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "5c"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820199,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "65"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820200,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "66"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820201,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "62"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820202,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "5c"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820203,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "73"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820204,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "79"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820205,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "6e"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820206,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "74"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820207,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "68"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820208,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "65"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820209,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "74"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820210,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "69"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820211,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "63"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820212,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "5f"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820213,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "72"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820214,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "65"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820215,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "61"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820216,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "64"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820217,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "65"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820218,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "72"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820219,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "2e"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820220,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "65"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820221,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "66"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820222,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "62"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820223,
+    "requested": 1,
+    "result": 1,
+    "transferred": 1,
+    "error": 0,
+    "raw_hex": "00"
+  },
+  {
+    "handle": 552,
+    "address": 1689776820191,
+    "requested": 33,
+    "result": 1,
+    "transferred": 33,
+    "error": 0,
+    "raw_hex": "505332446174615c6566625c73796e7468657469635f7265616465722e65666200"
+  }
+]

@@ -1,0 +1,15 @@
+diff --git "a/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md" "b/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md"
+--- "a/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md"
++++ "b/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md"
+@@ -1356,6 +1356,11 @@ next block `02CF93E0` (`m_flags`) plus the method members `create`/`deleteObject
+ **Platform — CLIENT (1 edges, one fan-in).** All 1 edges are Platform bodies reaching `005A08E0` on this page. `FUN_005cc930` is the worked example - it is a high-resolution counter read: it calls the import at `008C2188` and converts the unsigned 64-bit result to double with the `2^64` fixup at `00D27A68`. The crossing is **one shared subject with 1 callers on that layer**, not 1 separate relationships. Edge count from `edges.tsv`. Read from the shipping bytes 2026-09-14 (OPUS).
+ 
+ **Presentation — CLIENT.** `FUN_005c5c80`, owned by that layer, calls `005AD8F0` on this page. That caller is a 920-byte registration sweep - **fifteen calls in fixed order and no branches between them** - each registering one thing with the layer below; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
++- **ActorEntity - CLIENT (1 edge).** `002E3110` is called by bodies filed to ActorEntity: `0037B4D0` - shared machinery across the layer boundary, no shared ownership.
++- **Input - MECHANICAL (27 edges).** Fan-in on the shared accessor `0063A990`. All 27 edges run through it - one accessor’s spread, not a per-caller relationship.
++- **Movement - SERVICE (1 edge).** `002E3110` reaches bodies filed to Movement: `002EC3F0` - shared machinery across the layer boundary, no shared ownership.
++- **Resource - CLIENT and SERVICE (61 edges).** `001C26B0`, `001D9400`, `0059E070`, `005CC930` (+3 more) are called by bodies filed to Resource: `001D9F90`, `001DAD60`, `001DADC0`, `00585570` (+50 more); `001D9400`, `0059D6A0`, `0059E070`, `005A0840` (+1 more) reach bodies filed to Resource: `0020C700`, `00598040`, `0063DD30`, `00677450` (+1 more) - shared machinery across the layer boundary, no shared ownership.
++- **Script_VM_Native_Bridge - CLIENT (7 edges).** `002E3110` is called by bodies filed to Script_VM_Native_Bridge: `00342640`, `00344550`, `00345A60`, `003460F0` (+3 more) - shared machinery across the layer boundary, no shared ownership.
+ 
+ ## Interior citation — frontier hub `00632960` (2026-09-17, SWE2-EC7)
+ 

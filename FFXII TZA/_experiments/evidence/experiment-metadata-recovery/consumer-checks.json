@@ -1,0 +1,84 @@
+{
+  "scope": "Reader behavior and discoverability; existing disagreements retained, not a semantic or live validation campaign.",
+  "runs": [
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_experiments.py",
+      "sha256": "0a641ce4e6d3b3f6029915d8eb7ed54084af8464ddd58e6d8bbec42feec7013a",
+      "arguments": [
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\metadata-reader-control-1789270880116999700"
+      ],
+      "exit_code": 0,
+      "stdout": "experiments : 1\n\nNO OWNER    no `contract:` field at all              : 0\n\nNOT CITED   a RUN experiment its contract never names : 0\n\nDEAD LINK   `contract:` path does not resolve         : 0\n\nSTALE EMPTY a contract still calling its runtime section empty : 0\n\nThis compares frontmatter to citations. A contract can cite an experiment and still\ncontradict it; that is a human's job. What this removes is the case where nobody\ncould have noticed at all.\n",
+      "stderr": ""
+    },
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_contract_runtime.py",
+      "sha256": "5f9c67aaee9f5a08f491ac66ded8e04190ab33d6d8fec57417de16f2d85240b1",
+      "arguments": [
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\metadata-reader-control-1789270880116999700"
+      ],
+      "exit_code": 0,
+      "stdout": "CONTRACT SECTION 13 vs THE EXPERIMENT RECORDS THAT NAME IT\n\n  contracts 1   records naming one by path 1   naming one in prose 0\n\nUNDERSTATED - section 13 denies validation a RAN record reports (0):\n\nOVERSTATED - section 13 cites an EXP record that DOES NOT EXIST (0):\n\nUNLINKED - section 13 cites a real record that does not name this contract back (0):\n\nRECORDS NAMING A CONTRACT IN PROSE - not matched, listed for routing (0):\n\n  A prose key is deliberately not resolved here. Give the record a PATH in its\n  `contract:` frontmatter and it becomes checkable.\n",
+      "stderr": ""
+    },
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_experiments.py",
+      "sha256": "0a641ce4e6d3b3f6029915d8eb7ed54084af8464ddd58e6d8bbec42feec7013a",
+      "arguments": [
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\metadata-reader-control-1789270880116999700",
+        "--control"
+      ],
+      "exit_code": 0,
+      "stdout": "control planted: EXP-999, RUN, naming a contract that cannot mention it\n\nCONTROL: FOUND -- the check can see an uncited experiment.\n\nexperiments : 1\n\nNO OWNER    no `contract:` field at all              : 0\n\nNOT CITED   a RUN experiment its contract never names : 0\n\nDEAD LINK   `contract:` path does not resolve         : 0\n\nSTALE EMPTY a contract still calling its runtime section empty : 0\n\nThis compares frontmatter to citations. A contract can cite an experiment and still\ncontradict it; that is a human's job. What this removes is the case where nobody\ncould have noticed at all.\n",
+      "stderr": ""
+    },
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_experiments.py",
+      "sha256": "0a641ce4e6d3b3f6029915d8eb7ed54084af8464ddd58e6d8bbec42feec7013a",
+      "arguments": [
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\metadata-reader-control-1789270880116999700"
+      ],
+      "exit_code": 1,
+      "stdout": "experiments : 2\n\nNO OWNER    no `contract:` field at all              : 0\n\nNOT CITED   a RUN experiment its contract never names : 0\n\nDEAD LINK   `contract:` path does not resolve         : 1\n   _experiments/EXP-998-dead.md  ->  ../18-Audio/CONTRACT-absent.md\n\nSTALE EMPTY a contract still calling its runtime section empty : 0\n\nThis compares frontmatter to citations. A contract can cite an experiment and still\ncontradict it; that is a human's job. What this removes is the case where nobody\ncould have noticed at all.\n",
+      "stderr": ""
+    },
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_contract_runtime.py",
+      "sha256": "5f9c67aaee9f5a08f491ac66ded8e04190ab33d6d8fec57417de16f2d85240b1",
+      "arguments": [
+        "--db",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\metadata-reader-control-1789270880116999700"
+      ],
+      "exit_code": 1,
+      "stdout": "CONTRACT SECTION 13 vs THE EXPERIMENT RECORDS THAT NAME IT\n\n  contracts 1   records naming one by path 1   naming one in prose 0\n\nUNDERSTATED - section 13 denies validation a RAN record reports (1):\n  18-Audio/CONTRACT-field-music-selection.md\n      EXP-001-control.md                           COMPLETE - isolated original-code control\n  Resolve by naming the EVIDENCE CLASS in section 13 - isolated original-code is not\n  a live capture and neither is nothing. Do not simply delete the 'None'.\n\nOVERSTATED - section 13 cites an EXP record that DOES NOT EXIST (0):\n\nUNLINKED - section 13 cites a real record that does not name this contract back (0):\n\nRECORDS NAMING A CONTRACT IN PROSE - not matched, listed for routing (0):\n\n  A prose key is deliberately not resolved here. Give the record a PATH in its\n  `contract:` frontmatter and it becomes checkable.\n",
+      "stderr": ""
+    },
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_experiments.py",
+      "sha256": "0a641ce4e6d3b3f6029915d8eb7ed54084af8464ddd58e6d8bbec42feec7013a",
+      "arguments": [
+        "--db",
+        "Database\\FFXII TZA"
+      ],
+      "exit_code": 1,
+      "stdout": "experiments : 79\n\nNO OWNER    no `contract:` field at all              : 17\n   _experiments/EXP-020-contradiction-preservation.md\n   _experiments/EXP-021-publication-extractor-controls.md\n   _experiments/EXP-022-answered-advisory-boundaries.md\n   _experiments/EXP-023-camera-input-control.md\n   _experiments/EXP-024-group-approach.md\n   _experiments/EXP-025-r2-visual-toggle.md\n   _experiments/EXP-026-actor-region-live.md\n   _experiments/EXP-027-ordinary-kill-control.md\n   _experiments/EXP-028-r2-arming-control.md\n   _experiments/EXP-029-timeout-cleanup-control.md\n   _experiments/EXP-030-deadline-integration.md\n   _experiments/EXP-031-loaded-deadline-control.md\n   _experiments/EXP-032-command-snapshot.md\n   _experiments/EXP-033-commit-id-boundary.md\n   _experiments/EXP-034-focus-resolver.md\n   _experiments/EXP-035-command-target-binding.md\n   _experiments/EXP-036-census-coverage.md\n\nNOT CITED   a RUN experiment its contract never names : 14\n   _experiments/EXP-040-cancel-snapshot-control.md  ->  07-Combat-Action/CONTRACT-commit-action.md does not mention EXP-040\n   _experiments/EXP-041-config-pointer-closure.md  ->  19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md does not mention EXP-041\n   _experiments/EXP-043-target-buffer-boundary.md  ->  07-Combat-Action/CONTRACT-battle-target-buffer.md does not mention EXP-043\n   _experiments/EXP-046-target-buffer-reset.md  ->  07-Combat-Action/CONTRACT-battle-target-buffer.md does not mention EXP-046\n   _experiments/EXP-047-attacker-mask-reset.md  ->  07-Combat-Action/CONTRACT-commit-action.md does not mention EXP-047\n   _experiments/EXP-048-handle-discriminator-advance.md  ->  04-Actor-Entity/CONTRACT-field-runtime-pass.md does not mention EXP-048\n   _experiments/EXP-049-handle-renewal-focus.md  ->  04-Actor-Entity/CONTRACT-field-runtime-pass.md does not mention EXP-049\n   _experiments/EXP-056-save-normalize-roundtrip.md  ->  21-RNG-And-Determinism/CONTRACT-gameplay-generators.md does not mention EXP-056\n   _experiments/EXP-057-save-checksum-controls.md  ->  19-Save-Load-Settings/CONTRACT-save-image-buffers.md does not mention EXP-057\n   _experiments/EXP-060-result-numeric-dispatch.md  ->  08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md does not mention EXP-060\n   _experiments/EXP-064-resource-payer-controls.md  ->  12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md does not mention EXP-064\n   _experiments/EXP-068-ui-generic-controls.md  ->  16-UI/Widget-Object-Model/CONTRACT-widget-object.md does not mention EXP-068\n   _experiments/EXP-069-ui-native-feedback.md  ->  16-UI/Widget-Object-Model/CONTRACT-widget-object.md does not mention EXP-069\n   _experiments/EXP-079-arena-live-placement.md  ->  02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md does not mention EXP-079\n\nDEAD LINK   `contract:` path does not resolve         : 0\n\nSTALE EMPTY a contract still calling its runtime section empty : 0\n\nThis compares frontmatter to citations. A contract can cite an experiment and still\ncontradict it; that is a human's job. What this removes is the case where nobody\ncould have noticed at all.\n",
+      "stderr": ""
+    },
+    {
+      "script": "Database\\Tools\\analysis-kit\\gfz-scripts\\check_contract_runtime.py",
+      "sha256": "5f9c67aaee9f5a08f491ac66ded8e04190ab33d6d8fec57417de16f2d85240b1",
+      "arguments": [
+        "--db",
+        "Database\\FFXII TZA"
+      ],
+      "exit_code": 1,
+      "stdout": "CONTRACT SECTION 13 vs THE EXPERIMENT RECORDS THAT NAME IT\n\n  contracts 42   records naming one by path 25   naming one in prose 0\n\nUNDERSTATED - section 13 denies validation a RAN record reports (2):\n  07-Combat-Action/CONTRACT-battle-target-buffer.md\n      EXP-043-target-buffer-boundary.md            COMPLETE - bounded isolated original-code evidence\n      EXP-046-target-buffer-reset.md               COMPLETE - bounded isolated original-code evidence\n  21-RNG-And-Determinism/CONTRACT-gameplay-generators.md\n      EXP-056-save-normalize-roundtrip.md          COMPLETE - bounded isolated original-code evidence\n  Resolve by naming the EVIDENCE CLASS in section 13 - isolated original-code is not\n  a live capture and neither is nothing. Do not simply delete the 'None'.\n\nOVERSTATED - section 13 cites an EXP record that DOES NOT EXIST (0):\n\nUNLINKED - section 13 cites a real record that does not name this contract back (1):\n  15-Input/Binding-Profiles/CONTRACT-binding-profiles.md     EXP-005, EXP-006\n  Not a false claim: the contract is citing evidence that exists. The record's own\n  `contract:` key is the half that is stale. Fix it there and this line clears.\n\nRECORDS NAMING A CONTRACT IN PROSE - not matched, listed for routing (0):\n\n  A prose key is deliberately not resolved here. Give the record a PATH in its\n  `contract:` frontmatter and it becomes checkable.\n",
+      "stderr": ""
+    }
+  ],
+  "runner_sha256": "bff0f8113480cf36b84aab06203e7c022ef9e86b4792984f0ec8cae362ee8b62"
+}

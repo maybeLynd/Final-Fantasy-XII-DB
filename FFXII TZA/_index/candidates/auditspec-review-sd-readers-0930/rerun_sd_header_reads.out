@@ -1,0 +1,19 @@
+roots analysed 445, bodies reached 4219 (264 s)
+PASS  H1 00253A80 writes the active header's +0x58 at 00253AB8
+active   dword 0x12 (+0x48)   reads  4 in 00229B40@00229C7D 002EF570@002EF5B9 00580CD0@00580DDC 00583CB0@00583D0D | writes  6 in 00583C00 00583D60
+active   dword 0x13 (+0x4C)   reads  4 in 00229B40@00229C7D 002EF570@002EF5B9 00580CD0@00580DDC 00583CB0@00583D0D | writes  6 in 00583C00 00583D60
+active   stamp copy +0x58     reads  4 in 00229B40@00229C85 002EF570@002EF5C1 00580CD0@00580DE5 00583CB0@00583D15 | writes  2 in 00253A80 00583C00
+active   stamp copy +0x60     reads  4 in 00229B40@00229C8D 002EF570@002EF5C9 00580CD0@00580DEE 00583CB0@00583D1D | writes  2 in 00253A80 00583C00
+capture  dword 0x12 (+0x48)   reads  1 in 0057E310@0057E37D | writes  2 in 00229B40 00583D60
+capture  dword 0x13 (+0x4C)   reads  1 in 0057E310@0057E37D | writes  2 in 00229B40 00583D60
+capture  stamp copy +0x58     reads  1 in 0057E310@0057E385 | writes  1 in 00229B40
+capture  stamp copy +0x60     reads  1 in 0057E310@0057E38D | writes  1 in 00229B40
+third    dword 0x12 (+0x48)   reads  0 in - | writes  2 in 002EF690 0057E310
+third    dword 0x13 (+0x4C)   reads  0 in - | writes  2 in 002EF690 0057E310
+third    stamp copy +0x58     reads  0 in - | writes  2 in 002EF690 0057E310
+third    stamp copy +0x60     reads  0 in - | writes  2 in 002EF690 0057E310
+backup   dword 0x12 (+0x48)   reads  0 in - | writes  1 in 002EF570
+backup   dword 0x13 (+0x4C)   reads  0 in - | writes  1 in 002EF570
+backup   stamp copy +0x58     reads  0 in - | writes  1 in 002EF570
+backup   stamp copy +0x60     reads  0 in - | writes  1 in 002EF570
+elapsed 264 s

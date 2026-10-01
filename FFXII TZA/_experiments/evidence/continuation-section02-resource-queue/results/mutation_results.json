@@ -1,0 +1,38 @@
+[
+  {
+    "mutant": "omit_free_head_advance",
+    "detected": true,
+    "failed_assertion": "take_moves_free_head_not_array_base",
+    "exit": 1
+  },
+  {
+    "mutant": "remove_generation_increment",
+    "detected": true,
+    "failed_assertion": "generation_and_slot_are_distinct",
+    "exit": 1
+  },
+  {
+    "mutant": "constructor_clobber_unobserved",
+    "detected": true,
+    "failed_assertion": "constructor_all_64_links_and_indices",
+    "exit": 1
+  },
+  {
+    "mutant": "retire_clobber_payload",
+    "detected": true,
+    "failed_assertion": "splice_does_not_zero_payload_or_state",
+    "exit": 1
+  },
+  {
+    "mutant": "offset_round_up",
+    "detected": true,
+    "failed_assertion": "offset_truncation_2047",
+    "exit": 1
+  },
+  {
+    "mutant": "ignore_generation_on_cancel",
+    "detected": true,
+    "failed_assertion": "cancel_rejects_stale_generation",
+    "exit": 1
+  }
+]

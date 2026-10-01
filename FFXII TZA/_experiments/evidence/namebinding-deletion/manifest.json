@@ -1,0 +1,337 @@
+{
+  "status": "FROZEN_PRODUCER_VALID_INDEPENDENT_PENDING",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-namebinding-deletion.py",
+      "bytes": 1347,
+      "sha256": "66fcdf72c29c9489ca68bdfd8dd6162c7290f2c96b5b5febfa10339a55739ee8"
+    },
+    {
+      "path": "control-namebinding-deletion.py",
+      "bytes": 3698,
+      "sha256": "8a54e2678e3f30ff3e87e6df76327b90369cee922957cac0ebe14bdf3fec76e6"
+    },
+    {
+      "path": "freeze-namebinding-deletion.py",
+      "bytes": 6529,
+      "sha256": "ba4705db6816ad5fc294a5d2e5ef575e1562b6a80182d6c032bca03431a96d81"
+    },
+    {
+      "path": "namebinding-deletion-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "ee2f05f016cd117782523f888210982e0acebddf2638131ef2ceb437e927a744"
+    },
+    {
+      "path": "namebinding-deletion-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-capture-01.stdout",
+      "bytes": 174,
+      "sha256": "8c21a633f8cb224485ec3111e480a8ceee96a60da8282f28f3395e56521ab38a"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/capture-namebinding-deletion.py",
+      "bytes": 1347,
+      "sha256": "66fcdf72c29c9489ca68bdfd8dd6162c7290f2c96b5b5febfa10339a55739ee8"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/namebinding-deletion-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "ee2f05f016cd117782523f888210982e0acebddf2638131ef2ceb437e927a744"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/namebinding-deletion-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/namebinding-deletion-capture-01.stdout",
+      "bytes": 174,
+      "sha256": "8c21a633f8cb224485ec3111e480a8ceee96a60da8282f28f3395e56521ab38a"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/namebinding-deletion-source-01.json",
+      "bytes": 90961,
+      "sha256": "ec931db258b38856507b158ccf7eb37227f40eedfc008053e9fdb08671311fa5"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/status.json",
+      "bytes": 829,
+      "sha256": "d681f7d2786d67ff20ab3259e5fbb4e14281b96867f0122facedaef8fadbffb9"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/stderr",
+      "bytes": 741,
+      "sha256": "f0841e3c17dffe6c48749f2a3f7fd204206a414e435d047508ec219456bb4cac"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-generation-clear/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/capture-namebinding-deletion.py",
+      "bytes": 1347,
+      "sha256": "66fcdf72c29c9489ca68bdfd8dd6162c7290f2c96b5b5febfa10339a55739ee8"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/namebinding-deletion-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "ee2f05f016cd117782523f888210982e0acebddf2638131ef2ceb437e927a744"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/namebinding-deletion-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/namebinding-deletion-capture-01.stdout",
+      "bytes": 174,
+      "sha256": "8c21a633f8cb224485ec3111e480a8ceee96a60da8282f28f3395e56521ab38a"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/namebinding-deletion-source-01.json",
+      "bytes": 90961,
+      "sha256": "21ce7d274b48371a81fa052f90d97aaf6feaf48be563a79504f51bf77fe46eb5"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/status.json",
+      "bytes": 817,
+      "sha256": "087dcecd1b79548ca989b2200b3dc48c21cfb0094e53e01ffec2d734e2144181"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/stderr",
+      "bytes": 741,
+      "sha256": "f0841e3c17dffe6c48749f2a3f7fd204206a414e435d047508ec219456bb4cac"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/changed-removal-mask/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/capture-namebinding-deletion.py",
+      "bytes": 1347,
+      "sha256": "66fcdf72c29c9489ca68bdfd8dd6162c7290f2c96b5b5febfa10339a55739ee8"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/namebinding-deletion-capture-01.status.json",
+      "bytes": 542,
+      "sha256": "7310166763aeec7f6f01a9b5cd65d88cc9055eab49aa7d4c4ddbd71403230fc3"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/namebinding-deletion-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/namebinding-deletion-capture-01.stdout",
+      "bytes": 174,
+      "sha256": "8c21a633f8cb224485ec3111e480a8ceee96a60da8282f28f3395e56521ab38a"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/namebinding-deletion-source-01.json",
+      "bytes": 90961,
+      "sha256": "86666cf5e5c3029fb5b9f08c2307fa7ada9ee73ecd5fe9444fecde7da06db5fb"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/status.json",
+      "bytes": 788,
+      "sha256": "47188ab25b0d48d3bfbc9874f96909d7701bea7953de8221f2a51059682dc905"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/stderr",
+      "bytes": 668,
+      "sha256": "9cda518f17d6eb5a31824bf9b2685c26102b3d69769a5e446e8479f0198e5af4"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/failed-capture/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/capture-namebinding-deletion.py",
+      "bytes": 1347,
+      "sha256": "66fcdf72c29c9489ca68bdfd8dd6162c7290f2c96b5b5febfa10339a55739ee8"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/namebinding-deletion-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "ee2f05f016cd117782523f888210982e0acebddf2638131ef2ceb437e927a744"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/namebinding-deletion-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/namebinding-deletion-capture-01.stdout",
+      "bytes": 174,
+      "sha256": "8c21a633f8cb224485ec3111e480a8ceee96a60da8282f28f3395e56521ab38a"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/status.json",
+      "bytes": 785,
+      "sha256": "f7b336172b812b76befed29f4c131e6a19f7641d801c31a1820cdcf64e8fd092"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/stderr",
+      "bytes": 1582,
+      "sha256": "c6d3e2eb6c9892100e2014107e83d974e723b0a45cd71ea0397243d4fa7464de"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/missing-source/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "namebinding-deletion-controls-01/result.json",
+      "bytes": 4051,
+      "sha256": "3c27d722cbcc6f0cbd3ebc2a2876b3f88b1291c6d366f919b07ad9ba7bdcc2c3"
+    },
+    {
+      "path": "namebinding-deletion-controls-run-01.status.json",
+      "bytes": 379,
+      "sha256": "399253a5b759d9b0a7f82a5941d71ed79c228ac7a038acea1c254c435b81b63d"
+    },
+    {
+      "path": "namebinding-deletion-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-controls-run-01.stdout",
+      "bytes": 80,
+      "sha256": "143856a7c974f95b2994f5a4a904ce1a2d81c17bdf1fc6dc74a438d5a7009d6e"
+    },
+    {
+      "path": "namebinding-deletion-method-01.json",
+      "bytes": 2637,
+      "sha256": "861126c977c9b0a27789270799accd0acbf474671cba88f5cd45dd8637827fe4"
+    },
+    {
+      "path": "namebinding-deletion-positive-01.status.json",
+      "bytes": 539,
+      "sha256": "38eff7154f646207d56a1a2eb1d9607c8eab13826376c4b23f558c56a8eb7c0d"
+    },
+    {
+      "path": "namebinding-deletion-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "namebinding-deletion-positive-01.stdout",
+      "bytes": 117,
+      "sha256": "a7ed4d6df85446dabaf6dedadde9a8c18e9867e33198f1d4d9c0cee884cab616"
+    },
+    {
+      "path": "namebinding-deletion-result-01.json",
+      "bytes": 8953,
+      "sha256": "686500b75a1f33e586f12e0100a380e5f363ca78406e35d1beaa66cc52a7f79d"
+    },
+    {
+      "path": "namebinding-deletion-source-01.json",
+      "bytes": 90961,
+      "sha256": "86666cf5e5c3029fb5b9f08c2307fa7ada9ee73ecd5fe9444fecde7da06db5fb"
+    },
+    {
+      "path": "prove-namebinding-deletion.py",
+      "bytes": 10350,
+      "sha256": "1050a23115236e08698cbe204c335bf050f12bb187f0479447cc5b04e0b965e8"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3275,
+      "sha256": "00bb000cefeffc6138df4a636c13a60592963c8dad55684dccc5109c2df30085"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "member_count": 65,
+  "native_path_units": 8496,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A STATIC_ONLY",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0
+}

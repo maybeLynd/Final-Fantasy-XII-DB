@@ -1,0 +1,188 @@
+== A. decoded anchors (own decode of the image)
+PASS decode 0030DB70..0030DCA6 covers 310 B (82 instructions)
+PASS 0030DB84 je 0x30dc34
+PASS 0030DB97 je 0x30dc24
+PASS 0030DB9D movzx r8d, word ptr [rbx + 4]
+PASS 0030DBA5 sub edx, 0xf2
+PASS 0030DBAB je 0x30dc06
+PASS 0030DBB0 je 0x30dbff
+PASS 0030DBB5 je 0x30dbf8
+PASS 0030DBBE call 0x2ffcf0
+PASS 0030DBC5 jne 0x30dc24
+PASS 0030DBC7 movzx ecx, word ptr [rbx + 4]
+PASS 0030DBCB mov eax, 0xffff
+PASS 0030DBD2 cmp cx, ax
+PASS 0030DBD5 je 0x30dbea
+PASS 0030DBD7 movzx eax, cx
+PASS 0030DBDA sub eax, 0xd0
+PASS 0030DBE5 jmp 0x30dc8b
+PASS 0030DBEA or eax, 0xffffffff
+PASS 0030DC24 mov eax, 1
+PASS 0030DC34 movzx eax, word ptr [rip + 0x1fb4555]
+PASS 0030DC48 cmp ax, 0xf
+PASS 0030DC4C jbe 0x30dc83
+PASS 0030DC55 call 0x2f8d60
+PASS 0030DC5A movzx edi, ax
+PASS 0030DC62 mov ebx, edi
+PASS 0030DC6F je 0x30dc83
+PASS 0030DC76 cmp di, ax
+PASS 0030DC79 je 0x30dc83
+PASS 0030DC7B lea eax, [rbx - 0xd0]
+PASS 0030DC83 or eax, 0xffffffff
+PASS 0030DC98 mov dword ptr [rip + 0x1fb44da], eax
+PASS 30DC98 stores the dword cell 022C2178
+PASS 30DC34 reads the word at 022C2190 (NULL-record branch source)
+PASS 0030DC1F call 0x300bc0
+  30DB70 store paths: record branch (2FFCF0==0, word not F2/F3/F4) -> 30DBDA sub / 30DBEA -1; NULL-record branch -> 30DC7B lea / 30DC83 -1; both join 30DC8B and store at 30DC98
+PASS decode 003068BA..003068E5 covers 43 B (12 instructions)
+PASS 003068BD mov edx, 0xffff
+PASS 003068C2 cmp ax, dx
+PASS 003068C5 je 0x3068d1
+PASS 003068C7 movzx eax, ax
+PASS 003068CA sub eax, 0xd0
+PASS 003068D1 or eax, 0xffffffff
+PASS 003068D4 mov dword ptr [rip + 0x1fbb89e], eax
+PASS 3068D4 is a third encoder store to 022C2178 (same word - 0xD0 / FFFF -> -1)
+PASS decode 00309C00..00309C32 covers 50 B (15 instructions)
+PASS 00309C00 mov eax, dword ptr [rip + 0x1fb8572]
+PASS 00309C06 cmp eax, -1
+PASS 00309C09 jne 0x309c0e
+PASS 00309C0B xor eax, eax
+PASS 00309C0D ret 
+PASS 00309C13 mov dword ptr [rdx], eax
+PASS 00309C22 mov dword ptr [rip + 0x1fb854c], 0xffffffff
+PASS 00309C2C mov eax, 1
+PASS 00309C31 ret 
+PASS 309C00 reads and 309C22 re-arms (-1) the same cell 022C2178: the read consumes the value
+PASS decode 00348330..003483D5 covers 165 B (42 instructions)
+PASS 00348381 mov rdx, rsi
+PASS 0034838A call 0x309c00
+PASS 003483D0 jmp 0x26b4e0
+PASS decode 00348870..003488AC covers 60 B (17 instructions)
+PASS 00348880 call 0x267e10
+PASS 00348888 mov ebx, eax
+PASS 0034888A call 0x267e10
+PASS 0034888F mov edx, ebx
+PASS 00348891 mov ecx, eax
+PASS 00348893 call 0x30eea0
+  348870: FIRST popped integer -> EDX (the id), SECOND popped integer -> ECX (to 31B7E0)
+PASS decode 0030EEA0..0030EF17 covers 119 B (33 instructions)
+PASS 0030EEA6 mov ebx, edx
+PASS 0030EEA8 cmp edx, -1
+PASS 0030EEAB je 0x30eeb7
+PASS 0030EEAD mov eax, 0xd0
+PASS 0030EEB2 add bx, ax
+PASS 0030EEB7 mov ebx, 0xffff
+PASS 0030EEBC call 0x31b7e0
+PASS 0030EEC4 jne 0x30eecf
+PASS 0030EEC6 or eax, 0xffffffff
+PASS 0030EECF cmp dword ptr [rip + 0x1fb329a], 4
+PASS 0030EED6 je 0x30eee3
+PASS 0030EED8 mov eax, 0xfffffffe
+PASS 0030EEF5 movzx r8d, bx
+PASS 0030EEF9 mov word ptr [rax + 0x758], bx
+PASS 0030EF00 call 0x30cfb0
+PASS 30EECF gate reads 022C2170 == 4 before the 30CFB0 call (else returns -2)
+PASS decode 0030CFB0..0030D069 covers 185 B (51 instructions)
+PASS 0030CFBF cmp byte ptr [rcx + 4], 0xff
+PASS 0030CFC3 movzx ebx, r8w
+PASS 0030CFCC jne 0x30d059
+PASS 0030D011 test dword ptr [rcx + 0xc], 0x40000000
+PASS 0030D022 sub ax, cx
+PASS 0030D025 cmp ax, 0x21
+PASS 0030D029 ja 0x30d039
+PASS 0030D041 jne 0x30d059
+PASS 0030D04C movzx edx, bx
+PASS 0030D051 call 0x30d070
+  30CFB0 carries its own 0..0x21 (id-0xD0) test, but only under flag 0x40000000 and only to pick the once-bit 022C2158&2 path; the bit30 gate is the separate prior review, not this remap
+PASS decode 0030D070..0030D0C2 covers 82 B (23 instructions)
+PASS 0030D084 movzx r10d, dx
+PASS 0030D0AA cmp word ptr [r9 + 0x1c], cx
+PASS 0030D0B4 cmp r8b, 0x20
+PASS decode 0030D0FD..0030D155 covers 88 B (19 instructions)
+PASS 0030D14F mov word ptr [rcx + 0x1c], r10w
+PASS decode 00304D70..00304E29 covers 185 B (42 instructions)
+PASS 00304E12 call 0x387090
+PASS 00304E1A movzx r8d, ax
+PASS 00304E24 call 0x30cfb0
+  30CFB0 argument sources (callers counted in D): 304E24 via the 387090 result, 30EF00 via 30EEA0)
+PASS decode 00387090..00387125 covers 149 B (42 instructions)
+PASS 00387100 mov ecx, 0x9f
+PASS 00387105 cmp word ptr [rax + 0x714], cx
+PASS 0038710E movzx eax, word ptr [rbx + 0x10]
+PASS 00387118 movzx eax, word ptr [rax + 0x714]
+
+== B. exact-semantics arithmetic over all 65536 words (own model of the decoded instructions)
+  30DBDA: reader-unavailable words ['00CF', 'FFFF']; available-but-changed []; composed (ignoring reader) changed ['00CF']
+  30DBDA: 511..534 -> queued 303..326, all available and decode unchanged: True
+PASS 30DBDA: exactly CF and FFFF are unavailable, no available word changes, candidates survive
+  30DC7B: reader-unavailable words ['00CF', 'FFFF']; available-but-changed []; composed (ignoring reader) changed ['00CF']
+  30DC7B: 511..534 -> queued 303..326, all available and decode unchanged: True
+PASS 30DC7B: exactly CF and FFFF are unavailable, no available word changes, candidates survive
+  3068CA: reader-unavailable words ['00CF', 'FFFF']; available-but-changed []; composed (ignoring reader) changed ['00CF']
+  3068CA: 511..534 -> queued 303..326, all available and decode unchanged: True
+PASS 3068CA: exactly CF and FFFF are unavailable, no available word changes, candidates survive
+  note: in 30DB70's record branch words F2/F3/F4 and any 2FFCF0 != 0 leave before the store; the NULL branch stores -1 for (word-0xE2) u16 <= 0xF and when 322C50 returns 0. These narrow which words reach the cell, they add no alias.
+PASS word 0 queues -208 (negative but not -1): the reader passes it and 30EEA0 restores 0 by the 16-bit add
+
+== C. image-wide references that overlap the dword cell 022C2178 (all forms)
+  003068D4  mov    dword ptr [rip + 0x1fbb89e], eax              rip width 4 -> 022C2178
+  00309C00  mov    eax, dword ptr [rip + 0x1fb8572]              rip width 4 -> 022C2178
+  00309C22  mov    dword ptr [rip + 0x1fb854c], 0xffffffff       rip width 4 -> 022C2178
+  0030D722  mov    dword ptr [rip + 0x1fb4a4c], 0xffffffff       rip width 4 -> 022C2178
+  0030DC98  mov    dword ptr [rip + 0x1fb44da], eax              rip width 4 -> 022C2178
+  overlapping instructions: 5
+PASS known positive 00309C00 found by the overlap sweep
+PASS known positive 00309C22 found by the overlap sweep
+PASS known positive 0030D722 found by the overlap sweep
+PASS known positive 003068D4 found by the overlap sweep
+PASS known positive 0030DC98 found by the overlap sweep
+PASS adjacent-cell negative: 30D751 qword store at 022C217C does not overlap the cell
+PASS adjacent-cell negative: 30D745 dword store at 022C2174 does not overlap the cell
+PASS image-base-relative control: disp32 0x462F54 found inside 00582860 (the msg-18 table read) at ['005828A3']
+  stored 64-bit VA / 32-bit RVA of the cell in any section: []
+
+== D. callers (own E8/E9 scan, jcc 0F 8x scan, stored VA64 / RVA32)
+PASS E8 scan control: 0025DAED -> 0032FC30 found
+  00309C00: E8/E9 ['002D6175', '0034838A']; jcc []; stored ['rva32 .rdata@0152A2A9']
+  0030EEA0: E8/E9 ['00348893']; jcc []; stored ['rva32 .pdata@02FB3C60']
+  00348870: E8/E9 []; jcc []; stored ['va64 .data@01EF2A80', 'rva32 .pdata@02FB8958']
+  00348330: E8/E9 []; jcc []; stored ['va64 .data@01EF2A60', 'rva32 .pdata@02FB8880']
+  0030DB70: E8/E9 ['002D630D', '002D6543']; jcc []; stored ['rva32 .rdata@01D74978', 'rva32 .rdata@01D74988', 'rva32 .pdata@02FB3A5C']
+  0030D720: E8/E9 ['003066EB', '0030686D']; jcc []; stored []
+  0030CFB0: E8/E9 ['00304E24', '0030EF00']; jcc []; stored ['rva32 .pdata@02FB3978']
+PASS 309C00 has exactly two direct callers 002D6175 and 0034838A
+PASS 30CFB0 has exactly two E8/E9 callers 00304E24 and 0030EF00, no jcc
+PASS decode 002D616B..002D6184 covers 25 B (5 instructions)
+PASS 002D616B lea rdx, [rsp + 0x20]
+PASS 002D6175 call 0x309c00
+PASS 002D617A mov ecx, 5
+  002D6175 calls the reader with stack out-pointers and overwrites ecx next: it drains the cell (309C22 re-arms -1) outside the script path; whether its result is used later in that body is not read here
+
+== E. .pdata rows
+  00309C00: []
+  0030D720: []
+  0030D722: []
+  0030D758: []
+  0030EEA0: ['0030EEA0..0030EF17 unwind 01D529D0']
+  0030DB70: ['0030DB70..0030DC43 unwind 01D7E7C0']
+  0030DC98: ['0030DC8B..0030DCA6 unwind 01D74984']
+  003068D4: ['003067C2..00306A9A unwind 01D74FE4']
+  00348870: ['00348870..003488AC unwind 01D6B7C8']
+PASS 309C00 and 30D720 are leaves with no .pdata row (failed01 lesson)
+
+== F. base pointers formed at or below the cell (indirect-alias spot check, not a closure)
+PASS 0030D832 lea rbp -> 022C2170
+    0030D82D mov qword ptr [rsp + 0x38], rbp
+    0030D86B movzx r8d, byte ptr [rdx + rbp + 0x28]
+    0030D871 movzx edx, word ptr [rdx + rbp + 0x26]
+    0030D89B mov rbp, qword ptr [rsp + 0x38]
+PASS 00313267 lea r13 -> 022C2170
+    00313280 mov rdx, qword ptr [r13 + rbx*8 + 0x48]
+    00313320 cmp byte ptr [rbx + r13 + 0x28], 3
+    00313333 add byte ptr [rbx + r13 + 0x28], al
+    00313399 lea rcx, [rax + r13]
+    0031339D movzx eax, byte ptr [rax + r13 + 0x22]
+  every use indexes a table at +0x22..+0x48 from 022C2170 (022C2192 and up) with a register index, or restores the register; 313399 forms r13+edx (edx 0..3 from the loop above) for a byte store at +0x22. None reaches 022C2178 for a non-negative index; the index signs at 30D86B/313320 are not bounded here.
+
+FAILS 0

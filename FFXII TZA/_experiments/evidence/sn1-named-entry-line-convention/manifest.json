@@ -1,0 +1,205 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7571,
+      "sha256": "01b8cc7ada219784ecd5691c668e6e3c37deb439a75e308011a20869092b06cc"
+    },
+    {
+      "path": "check.py",
+      "bytes": 8620,
+      "sha256": "ee41f51983b281a98b56c61f76ad88134c439df45bd09828af76b6f57dcc6eec"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 601,
+      "sha256": "df09c14427c13a9bb0bd79ac3c000156081cce9b7d9fd81a0ebe57b7d04912a3"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 157,
+      "sha256": "2735f04203341373d488d916254cd28bf9f875c48312c1dbfda1f24df6cc0af5"
+    },
+    {
+      "path": "diagnose.py",
+      "bytes": 1332,
+      "sha256": "f743812487afca3b4bb2d4292cea4ca587c385bce65c20726854d3a79490daac"
+    },
+    {
+      "path": "diagnostic.json",
+      "bytes": 1046,
+      "sha256": "0c2896e848f166a5b86f52c3b64bb6c14d1035a008655b8c297833a45fd13794"
+    },
+    {
+      "path": "failure.json",
+      "bytes": 889,
+      "sha256": "a25e04f9bdee84dbc8de5b5efe4a9ecdae756eb85b6c6116839f72e7a7e793c7"
+    },
+    {
+      "path": "fault-ignore-shared-tail.stderr",
+      "bytes": 533,
+      "sha256": "6a4252e163441b258d76d5a891e63eea401283850f8dfecab00f958935559fc5"
+    },
+    {
+      "path": "fault-ignore-shared-tail.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-zero-based-mapping.stderr",
+      "bytes": 1612,
+      "sha256": "2562506526a953dcaf35c6e05c8bce3c8dce5539c14aa096543b1801ccdf367f"
+    },
+    {
+      "path": "fault-zero-based-mapping.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 4607,
+      "sha256": "6a7fd1d8e721ae83739895d5cf5f76ec483e7bf9c9599953520be0cbf923281f"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3511,
+      "sha256": "489ed8f5f1fc1ac4a9895f5e44cdb2e644aecf04ba3127ff7d8f584c1c76ef5a"
+    },
+    {
+      "path": "inspect-anchor.py",
+      "bytes": 1152,
+      "sha256": "7c49d9c532b4c577732b0366cf12b72250048b70c58f13900ebfbc3b6e5ca366"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1526,
+      "sha256": "2be8b71f178e0b4e2539e18e35391c2c3d23cffa87d16e09763fb8e2b063419d"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 68726,
+      "sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4027,
+      "sha256": "f884a358d66963008cd617c3f63446849e18c79854c649d3a5182e606a39da15"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 643,
+      "sha256": "9bda724873b4c0a0fd2bbc468438bc5dc8a21c2bbf31936201cbddb3d7fbb868"
+    },
+    {
+      "path": "repair-check.py",
+      "bytes": 1368,
+      "sha256": "1a25d94d94bb32864f8932791a3dd1978bb9b3e8a43af30aeff9525ebbf6b321"
+    },
+    {
+      "path": "result.json",
+      "bytes": 22847,
+      "sha256": "47580d2034320c4731f40f4fd1fb5aed5fd651819ee6a9f7aeae24bb01297932"
+    },
+    {
+      "path": "retained/btlctrl.dbg",
+      "bytes": 270160,
+      "sha256": "3d83baa3d728d70e310c92e7df3d7151f912fc3ee0992c64d21cd9a032e73058"
+    },
+    {
+      "path": "retained/btlctrl.ebp",
+      "bytes": 32448,
+      "sha256": "660a79970be651607311e07b4426db739eabb5b68e5784ad6ab5949a06e26b08"
+    },
+    {
+      "path": "retained/btlctrl.sbn",
+      "bytes": 98136,
+      "sha256": "7492061636eac4cd7b5cdd5f06ff50d67c80fe1dad686044e89414ba40f0608d"
+    },
+    {
+      "path": "retained/check-before-entry-extent-fix.py",
+      "bytes": 8418,
+      "sha256": "e93034a26d9fd54d50aa616b9ee522eca86d836f7acc2b406c705118484499fa"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 78979,
+      "sha256": "c88a5a200fe3325de897a7241162f55b6e6ea098b0bc0e4a6f6fec02d1b38ee4"
+    },
+    {
+      "path": "retained/ctrl.dbg",
+      "bytes": 83120,
+      "sha256": "73b8f70b155b76971945a028ffe5f89eeb8733620a970854c635463de7368aa4"
+    },
+    {
+      "path": "retained/ctrl.ebp",
+      "bytes": 11584,
+      "sha256": "a5e0d056927c26197b7af117f4ec709ee03ac4f63d9f1d267b1380cb885b3477"
+    },
+    {
+      "path": "retained/ctrl.sbn",
+      "bytes": 24976,
+      "sha256": "9cc2473f9c167eb203b6a3aff751df2b31d14e6282b70401bb1d794af3596662"
+    },
+    {
+      "path": "retained/driver-after-shared-tail-fix.py",
+      "bytes": 7571,
+      "sha256": "01b8cc7ada219784ecd5691c668e6e3c37deb439a75e308011a20869092b06cc"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 6901,
+      "sha256": "90bc292ef4da47a4b16ff776fc021f6697c22d395de821adc35865770132794c"
+    },
+    {
+      "path": "retained/ebp-layout-before.md",
+      "bytes": 47634,
+      "sha256": "843733b0f5e7440a3af58e557452f4e9dffc345d12074073803ffebf29887142"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "bytes": 126112,
+      "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06"
+    },
+    {
+      "path": "retained/evctrl.ebp",
+      "bytes": 38720,
+      "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "bytes": 57816,
+      "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5"
+    },
+    {
+      "path": "retained/mapctrl.dbg",
+      "bytes": 301776,
+      "sha256": "499b2394d9e8c38d2119f238730b6e6b79a3888dd2e7157fefe3ff26035de317"
+    },
+    {
+      "path": "retained/mapctrl.ebp",
+      "bytes": 40832,
+      "sha256": "2ad82ef851eb10eb2231a4e57c32fec6731430c3633f7660b7ee25fa7ddad091"
+    },
+    {
+      "path": "retained/mapctrl.sbn",
+      "bytes": 140128,
+      "sha256": "4d399c23df9fc1ae931753c6247084cca26fdfda4446e6bdbe66f85d71e9ec35"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "bytes": 602,
+      "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48"
+    }
+  ],
+  "limits": "A four original literal/operation anchors, one-based supported in samples; fourteen named entries not label declaration and two shared-tail candidates unaccepted. Invalid producer/reducer retained, actual default and faults tested; canonical propagation/independent acceptance pending."
+}

@@ -1,0 +1,81 @@
+{
+ "view": "types",
+ "title": "Types - the record store (representation axis)",
+ "status": "OK",
+ "source": {
+  "identity": "types.tsv 14ad8d298419; fields.tsv 755ebd74374b",
+  "as_of": "2026-09-29T02:32:06Z",
+  "instrument": "v_types",
+  "limits": "readiness is representation, not meaning (three axes); a row count is not byte coverage"
+ },
+ "measures": [
+  {
+   "id": "types",
+   "label": "types in the store",
+   "numerator": 827,
+   "denominator": null,
+   "scope": "_types/types.tsv",
+   "instrument": "v_types",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "includes interior/embedded types"
+  },
+  {
+   "id": "fields-resolved",
+   "label": "field rows TYPE RESOLVED",
+   "numerator": 4897,
+   "denominator": 9123,
+   "scope": "_types/fields.tsv",
+   "instrument": "v_types",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "representation readiness only; meaning is a separate column"
+  }
+ ],
+ "rows": {
+  "columns": [
+   "readiness",
+   "rows"
+  ],
+  "data": [
+   [
+    "TYPE RESOLVED",
+    4897
+   ],
+   [
+    "SEMANTICALLY IDENTIFIED",
+    2229
+   ],
+   [
+    "DISCOVERED",
+    1545
+   ],
+   [
+    "SIGNATURE RESOLVED",
+    288
+   ],
+   [
+    "CLASSIFIED",
+    159
+   ],
+   [
+    "BEHAVIORALLY UNDERSTOOD",
+    5
+   ],
+   [
+    "confidence: PROVEN",
+    6505
+   ],
+   [
+    "confidence: HIGH",
+    1005
+   ],
+   [
+    "confidence: UNKNOWN",
+    960
+   ],
+   [
+    "confidence: PROBABLE",
+    653
+   ]
+  ]
+ }
+}

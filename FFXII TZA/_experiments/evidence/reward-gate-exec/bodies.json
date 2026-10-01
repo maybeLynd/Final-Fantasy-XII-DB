@@ -1,0 +1,130 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "real_bodies_executed": [
+  {
+   "va": "0x2F8BB0",
+   "span": "0x2F8BB0-0x2F8D5E",
+   "sha256": "e260cc356e45f87038668abac16f75768c92c2c1bc96c777e24a0f61efe547b1",
+   "note": "002F8BB0 XP gate+formula: rcp kind==0 -> 0031B860(rcp) find -> kind0 id<0x1B|>0x27 -> mask (0x64|0x3C)&0x80000003 -> corpse nonnull, stats nonnull, stats+5==1 -> 003135C0 single? -> (desig path: rcp==00320AB0(00313800(),1)) / (divided: n=counted members via 0031B810(0..3), signed idiv) -> award (level-l88)*e78[+0x34]+e70[+0x34] -> +0x6B/+0x7B bit3 doubles, bit5 zeroes"
+  },
+  {
+   "va": "0x2F90C0",
+   "span": "0x2F90C0-0x2F9173",
+   "sha256": "478092723e539badc9b1cf565fa496dd13985fee4711d4709a37cb2a1fde3337",
+   "note": "002F90C0 LP gate+formula: 00264150()!=0 -> 0; rcp kind==0, id filter {<=6, 0x1A, >=0x28}, mask, corpse kind==1 -> (level-l88)*e78[+0x2F]byte+e70[+0x2F]byte -> bit0x10 doubles; NO zeroing modifier (asymmetric with XP)"
+  },
+  {
+   "va": "0x31B860",
+   "span": "0x31B860-0x31B8B3",
+   "sha256": "9a162077226a0c37d235edf972c43ef16187e594054b0d54eb7ddfd2cddcca8f",
+   "note": "0031B860: stats->unit resolution; loops i<00236850() over 00236820(i) comparing unit+0x698==arg; first match wins; arg0->0"
+  },
+  {
+   "va": "0x236850",
+   "span": "0x236850-0x236857",
+   "sha256": "78967330e777673e22aa8a475b61095e6cc0b7ce4b6641c5e641f713cca6ab33",
+   "note": "00236850: mov eax,[0208E6A0] - unit count leaf"
+  },
+  {
+   "va": "0x236820",
+   "span": "0x236820-0x236845",
+   "sha256": "f53995268db38c36b63da2cdd7f5979c5600294e05010a97c09aa149f9129578",
+   "note": "00236820: bounded unit getter; ecx<0 or ecx>[0208E6A0]-1 -> 0 else [0208E688]+ecx*0xF50"
+  },
+  {
+   "va": "0x3135C0",
+   "span": "0x3135C0-0x3135D8",
+   "sha256": "680512174286d75152895f584c4ee87f4425fb95df34db041070f2fd979487ac",
+   "note": "003135C0: (0030D9A0()==1) - single-flag gate"
+  },
+  {
+   "va": "0x30D9A0",
+   "span": "0x30D9A0-0x30DA09",
+   "sha256": "95f7f1b5c004c22f947956d3629d6e2cb39671677134d1dce69fdf8a5aadd0f2",
+   "note": "0030D9A0: mode enum from dword [[0x2EBF190]+0x5B04]: bit3->5, bit2->4, 00377C20()->3, bit1->2, bit0->1, else 0"
+  },
+  {
+   "va": "0x377C20",
+   "span": "0x377C20-0x377C6E",
+   "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea",
+   "note": "00377C20: idx=003148F0(); if idx>=[U16T+4] -> 0; else u16[U16T+8+idx*3]>>15 (THREE-byte stride)"
+  },
+  {
+   "va": "0x3148F0",
+   "span": "0x3148F0-0x31490B",
+   "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c",
+   "note": "003148F0: clamp>=0 of [002EF2B0()+0x1044] = [0x21654C4]"
+  },
+  {
+   "va": "0x2EF2B0",
+   "span": "0x2EF2B0-0x2EF2C4",
+   "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7",
+   "note": "002EF2B0: 002EF640()+0x200 = 0x2164480"
+  },
+  {
+   "va": "0x2EF640",
+   "span": "0x2EF640-0x2EF648",
+   "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802",
+   "note": "002EF640: lea rax,[0x2164280] - static object leaf"
+  },
+  {
+   "va": "0x313800",
+   "span": "0x313800-0x313813",
+   "sha256": "7571615656730b6901df4550591766337b338c2f823b844531b64f40055b2a01",
+   "note": "00313800: byte [[0x2EBF190]+0x5AD5] -> tail jmp 00320890"
+  },
+  {
+   "va": "0x320890",
+   "span": "0x320890-0x3208BF",
+   "sha256": "b6fc85b94d2d91cff2f0ec0b1f8b0794637e606d24f88f150538acba6072ac59",
+   "note": "00320890: arg 0xFF -> -1; else scan 9 u16 entries at FRAME+0x5A48 (low byte) for match -> index / -1"
+  },
+  {
+   "va": "0x320AB0",
+   "span": "0x320AB0-0x320AE1",
+   "sha256": "c1b8afb667544040bfb29074a1bee7d8921bdb36be2d67cfbdebc5777cbfb067",
+   "note": "00320AB0: 0031B9F0(ecx,edx) byte; >0x27 -> 0; else FRAME+8+byte*0x1C8 - a stats-record pointer"
+  },
+  {
+   "va": "0x31B9F0",
+   "span": "0x31B9F0-0x31BAB8",
+   "sha256": "297a7f0c4a1b35a88838b351cace894583243aa8a1eb25be2d1c188e8333a557",
+   "note": "0031B9F0: 00322C50(0x17,idx) gate (0..8) -> 0xFF; sel 0..4 -> byte [FRAME+idx*2 + {5A48,5A5A,5A6C,5A7E,5A90}]; else 0xFF"
+  },
+  {
+   "va": "0x31B810",
+   "span": "0x31B810-0x31B856",
+   "sha256": "8f0c52b100edada665ac738651561fa792437b803056cce904fb603ccd5369ad",
+   "note": "0031B810: 00322C50(0x17,i) -> on fail ecx=0xFF; else byte FRAME+i*2+0x5A5A; tail 002367A0"
+  },
+  {
+   "va": "0x2367A0",
+   "span": "0x2367A0-0x23681E",
+   "sha256": "19144260ef5589413deb10d0d3ec742fc2fd473b1d8d73c5d0133b192c1e1264",
+   "note": "002367A0: 00322C50(2,id) gate; scan [0x208E688]+i*0xF50 (i<[0x208E6A0]) for word[stats+4]==arg (arg 0xFF -> 0xFFFF); null-stats units skipped"
+  },
+  {
+   "va": "0x322C50",
+   "span": "0x322C50-0x323051",
+   "sha256": "8a944ad6185050d17911f914a56145320f9f604d3f95eec59e86ef5a2777786d",
+   "note": "00322C50: 32-arm bounds dispatcher, image-relative jump table at 0x323054; arm2 ecx=[OBJD+4] eax=0; arm 0x17 ecx=9 eax=0; common tail returns (edx0<=ebx<=ecx-1); arm1 re-dispatches via 00309440 family count (not reached here)"
+  },
+  {
+   "va": "0x264150",
+   "span": "0x264150-0x264158",
+   "sha256": "5cc27e73b6e6ff8edd0c2a7dcbfa9018b673368a7a22c0956b29ffa54dbe2a21",
+   "note": "00264150: movsx eax, byte [0x209A2A9] - licence gate leaf"
+  }
+ ],
+ "stubs": [],
+ "fixture_planted_globals": [
+  "[0x2EBF190]=FRAME shared struct (records +8 x0x1C8, u16 tables +0x5A48..+0x5A90, mode +0x5B04, desig +0x5AD5)",
+  "[0x208E688]=UNITS (stride 0xF50; +0x698 stats, +0xE70/+0xE78 rows)",
+  "[0x208E6A0]=unit count",
+  "[0x2ADD100]=U16T flag table",
+  "[0x2EBF130]=OBJD arm-2 bound",
+  "[0x21654C4]=index dword for 003148F0 (in-image)",
+  "[0x209A2A9]=licence gate byte (in-image)",
+  "ROWS {+0x34 dword xp, +0x2F byte lp}"
+ ]
+}

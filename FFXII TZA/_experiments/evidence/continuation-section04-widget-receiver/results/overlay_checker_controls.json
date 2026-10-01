@@ -1,0 +1,38 @@
+[
+  {
+    "name": "missing_required_preimage",
+    "pass": true
+  },
+  {
+    "name": "exact_preimage",
+    "pass": true
+  },
+  {
+    "name": "already_applied",
+    "pass": true
+  },
+  {
+    "name": "newer_local_edit",
+    "pass": true
+  },
+  {
+    "name": "new_path_absent",
+    "pass": true
+  },
+  {
+    "name": "directory_collision",
+    "pass": true
+  },
+  {
+    "name": "parent_traversal",
+    "pass": true
+  },
+  {
+    "name": "absolute_path",
+    "pass": true
+  },
+  {
+    "name": "windows_separator",
+    "pass": true
+  }
+]

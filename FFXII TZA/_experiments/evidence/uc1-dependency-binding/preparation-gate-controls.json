@@ -1,0 +1,78 @@
+{
+  "cases": [
+    {
+      "case": "valid",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-uc1-gate-5136_aqk"
+      ],
+      "returncode": 0,
+      "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+      "stderr": "",
+      "terminal": true,
+      "expected_outcome": true,
+      "gate_sha256": "4181c8f6fba12f432e0a0cd56e9123d1b1c48a2f6b5bcdf8ba4302ae3e0f16a4"
+    },
+    {
+      "case": "missing-runner",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-uc1-gate-4vb9c6hw"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py\", line 21, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py\", line 7, in controls_preflight\n    root=Path(root);q=json.loads((root/'controls-terminal.json').read_bytes())\n                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\AppData\\\\Local\\\\Temp\\\\astra-uc1-gate-4vb9c6hw\\\\controls-terminal.json'\n",
+      "terminal": true,
+      "expected_outcome": true,
+      "gate_sha256": "4181c8f6fba12f432e0a0cd56e9123d1b1c48a2f6b5bcdf8ba4302ae3e0f16a4"
+    },
+    {
+      "case": "nonzero-runner",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-uc1-gate-fx53ryqk"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py\", line 21, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py\", line 8, in controls_preflight\n    assert q['terminal'] is True and q['returncode']==0 and not q['stderr'], 'Required upstream control runner failed/missing'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required upstream control runner failed/missing\n",
+      "terminal": true,
+      "expected_outcome": true,
+      "gate_sha256": "4181c8f6fba12f432e0a0cd56e9123d1b1c48a2f6b5bcdf8ba4302ae3e0f16a4"
+    },
+    {
+      "case": "empty-results",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-uc1-gate-9epkymh4"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py\", line 21, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\prepare-publication.py\", line 12, in controls_preflight\n    assert len(controls)==3 and {x['case'] for x in controls}=={'missing-manifest','nonzero-capture','changed-bound-table'} and all(x['refused'] is True for x in controls), 'Required controls incomplete/empty'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required controls incomplete/empty\n",
+      "terminal": true,
+      "expected_outcome": true,
+      "gate_sha256": "4181c8f6fba12f432e0a0cd56e9123d1b1c48a2f6b5bcdf8ba4302ae3e0f16a4"
+    }
+  ],
+  "actual_default_preflight": {
+    "returncode": 0,
+    "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true
+  }
+}

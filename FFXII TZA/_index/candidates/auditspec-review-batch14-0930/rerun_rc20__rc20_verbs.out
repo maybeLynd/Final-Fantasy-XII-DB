@@ -1,0 +1,70 @@
+decoded call/jmp sites to 00267F60: 58 in 38 functions; edges.tsv callers: 38
+PASS  C2 decoded caller set equals edges.tsv caller set (38)
+Movement-filed callers: 00345430 (233 B), 003488B0 (101 B), 00349680 (117 B), 003548B0 (88 B)
+PASS  C1 four Movement-filed bodies, 88-233 B (the pass-22 crossing)
+PASS  C5 the pdata-less thunk 0033F850 -> 00349680 is found
+PASS  C3 family 0 table = 01EED700 (derived 01EED700)
+PASS  C4 call id 0x0001 result = 0034EBC0, catalog name setpos
+
+entry routes per body (name -> how reached):
+  00345430  00345430 body                   qword refs in .data/.rdata: 01EEEA48
+  003488B0  003488B0 body                   qword refs in .data/.rdata: 01EEDF48 01EEE2A8
+  00349680  0033F850 thunk (no .pdata) -> 00349680 qword refs in .data/.rdata: 01EF7148
+  00349680  00349680 body                   qword refs in .data/.rdata: 01EF70C8
+  003548B0  003548B0 body                   qword refs in .data/.rdata: 01EEDEC8 01EEE228
+
+verb table slots holding a body or its thunk:
+  body 00345430 via 00345430  table 01EED700 command 0x09A slot begin  ids 009A  catalog ucmove
+  body 003488B0 via 003488B0  table 01EED700 command 0x042 slot begin  ids 0042  catalog rmove
+  body 003488B0 via 003488B0  table 01EED700 command 0x05D slot begin  ids 005D  catalog move
+  body 00349680 via 0033F850  table 01EED700 command 0x4D2 slot begin  ids 04D2  catalog amove
+  body 00349680 via 00349680  table 01EED700 command 0x4CE slot begin  ids 04CE  catalog ramove
+  body 003548B0 via 003548B0  table 01EED700 command 0x03E slot begin  ids 003E  catalog rcmove
+  body 003548B0 via 003548B0  table 01EED700 command 0x059 slot begin  ids 0059  catalog cmove
+
+qword references outside the verb-table slots: 0 []
+code routes other than thunks: 0 []
+
+bodies (push site context):
+  --- 00345430 push at 00345488
+00345474  mov     ebx, eax
+00345476  call    0x30beb0
+0034547B  mov     edi, eax
+0034547D  call    0x3590b0
+00345482  movaps  xmm1, xmm0
+00345485  mov     rcx, rsi
+00345488  call    0x267f60
+0034548D  mov     r8d, 2
+00345493  mov     edx, ebx
+  --- 003488B0 push at 003488DE
+003488CA  mov     rcx, rdx
+003488CD  mov     rdi, r8
+003488D0  mov     rbp, rdx
+003488D3  call    0x2640e0
+003488D8  movaps  xmm1, xmm0
+003488DB  mov     rcx, rbx
+003488DE  call    0x267f60
+003488E3  mov     r9, rbx
+003488E6  mov     r8, rdi
+  --- 00349680 push at 003496AE
+0034969A  mov     rcx, rdx
+0034969D  mov     rdi, r8
+003496A0  mov     rbp, rdx
+003496A3  call    0x2640e0
+003496A8  movaps  xmm1, xmm0
+003496AB  mov     rcx, rbx
+003496AE  call    0x267f60
+003496B3  mov     r9, rbx
+003496B6  mov     r8, rdi
+  --- 003548B0 push at 003548DE
+003548CA  mov     rcx, rdx
+003548CD  mov     rdi, r8
+003548D0  mov     rsi, rdx
+003548D3  call    0x2640e0
+003548D8  movaps  xmm1, xmm0
+003548DB  mov     rcx, rbx
+003548DE  call    0x267f60
+003548E3  mov     r9, rbx
+003548E6  mov     r8, rdi
+
+FAILS 0

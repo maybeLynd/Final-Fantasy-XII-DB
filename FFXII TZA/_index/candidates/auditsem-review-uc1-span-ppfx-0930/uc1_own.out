@@ -1,0 +1,87 @@
+P unreferenced 617: {'17-64': 152, '5-16': 380, '65-256': 65, '<=4': 20}
+P referenced 116: {'17-64': 61, '5-16': 37, '65-256': 18}
+P small bodies (<=16 B) by instruction text, top 15:
+     14  mov eax, 1 ; ret 
+     11  xor eax, eax ; ret 
+      4  ret 0
+      3  mov rdx, qword ptr [rcx + 0x20] ; xor eax, eax ; cmp byte ptr [rdx + 0x8ea], al ; sete al ; ret 
+      2  movss xmm0, dword ptr [rcx + 0x5ac] ; ret 
+      2  mov eax, 0x80004001 ; ret 
+      2  mov al, 1 ; ret 
+      1  jmp 0x7120d0
+      1  jmp 0x7120e0
+      1  jmp 0x712120
+      1  jmp 0x712180
+      1  jmp 0x712300
+      1  mov rax, qword ptr [rip + 0x27c5869] ; movzx eax, byte ptr [rax + 0x440] ; ret 
+      1  mov rcx, qword ptr [rip + 0x27c5849] ; jmp 0x711230
+      1  mov rcx, qword ptr [rip + 0x27c5829] ; jmp 0x711250
+P sample 006DD2A0 (80 B, 15 insns): first 'mov rcx, qword ptr [rip + 0x27c38c9]'; refs out: data:02EA0B70
+P sample 006E20E0 (81 B, 15 insns): first 'xor eax, eax'; refs out: none
+P sample 006E2300 (87 B, 16 insns): first 'xor eax, eax'; refs out: none
+P sample 006E2540 (85 B, 15 insns): first 'xor eax, eax'; refs out: none
+P sample 006E2B10 (77 B, 15 insns): first 'xor eax, eax'; refs out: none
+P sample 006FD4B0 (72 B, 19 insns): first 'movzx eax, byte ptr [rcx + 0xbe8]'; refs out: none
+P sample 006FDFA0 (78 B, 23 insns): first 'cmp dword ptr [rcx + 0x470], 8'; refs out: none
+P sample 0070DF80 (73 B, 24 insns): first 'mov r8, qword ptr [rcx + 0xc8]'; refs out: none
+P sample 00728AB0 (73 B, 17 insns): first 'movsd xmm0, qword ptr [rcx + 0x10]'; refs out: none
+P sample 00760240 (70 B, 20 insns): first 'cmp qword ptr [rcx + 0x248], 0'; refs out: none
+P sample 0076BC30 (117 B, 34 insns): first 'movaps xmm3, xmm2'; refs out: data:01CEBB70 data:01CEBB70
+P sample 0078EAA0 (72 B, 22 insns): first 'test ecx, ecx'; refs out: data:00E202A8 data:00E20298 data:00E20288 data:00E20278 data:00E20268 data:00E20258
+X unreferenced PPFX bodies: 617; with a hit in the widened hunt: 25
+   006EF670 rva32@.rdata+476900 rva32@.rdata+476D50
+   006F1500 rva32@.rdata+4798E8 rva32@.rdata+479D18
+   006F1590 rva32@.rdata+479780 rva32@.rdata+479F50 rva32@.rdata+47A290
+   006F16A0 rva32@.rdata+479538
+   006F1730 rva32@.rdata+479620
+   006F1840 rva32@.rdata+479B20 rva32@.rdata+47A0E8 rva32@.rdata+47A408
+   006F19D0 rva32@.rdata+479B50 rva32@.rdata+47A118 rva32@.rdata+47A438
+   006F1D90 rva32@.rdata+47A148 rva32@.rdata+47A468
+   006F1DA0 rva32@.rdata+47A088 rva32@.rdata+47A4B8 rva32@.rdata+47A7D0
+   006F1DC0 rva32@.rdata+479C68
+   006F2A30 rva32@.rdata+47AD28 rva32@.rdata+47B050
+   006F2AC0 rva32@.rdata+47AD40
+   00712360 rva32@.rdata+131AD
+   0071FB90 rva32@.rdata+48C480
+   007202B0 rva32@.rdata+48B198 rva32@.rdata+48B220 rva32@.rdata+48B2A8
+   0075B6F0 rva32@.rdata+496F70
+   0075E1A0 rva32@.rdata+496C50
+   0075EF20 rva32@.rdata+497B18 rva32@.rdata+497EB8 rva32@.rdata+498168
+   0075F540 rva32@.rdata+4980B8 rva32@.rdata+4983B0
+   00760160 rva32@.rdata+498ED0 rva32@.rdata+4990E0
+   007602D0 rva32@.rdata+498F70
+   007603A0 rva32@.rdata+4991E8
+   0077A670 va64@.rdata+14D2530
+   0077FAC0 rva32@.rdata+4A3420
+   00780E90 rva32@.rdata+4A4378
+S 007EE7C0:
+   007EE7C0 mov r9, rcx
+   007EE7C3 test r8d, r8d
+   007EE7C6 jne 0x7ee7d1
+   007EE7C8 mov dword ptr [rcx + 0x138], edx
+   007EE7CE xor eax, eax
+   007EE7D0 ret 
+   007EE7D1 cmp r8d, 1
+   007EE7D5 jne 0x7ee7e0
+   007EE7D7 add dword ptr [rcx + 0x138], edx
+   007EE7DD xor eax, eax
+   007EE7DF ret 
+   007EE7E0 cmp r8d, 2
+   007EE7E4 jne 0x7ee7f6
+   007EE7E6 mov rax, qword ptr [rcx + 0x60]
+   007EE7EA mov ecx, dword ptr [rax + 0x18]
+   007EE7ED sub ecx, edx
+   007EE7EF mov dword ptr [r9 + 0x138], ecx
+   007EE7F6 xor eax, eax
+   007EE7F8 ret 
+S refs: ['rip@007EC4F1(lea rax, [rip + 0x22c8])', 'va64 x0, rva32-bytes x1']
+V control map 01CDB320:
+   01CDB320: 0000000000000001
+V 0016EE40 (48 B): mov rax, qword ptr [rdx] ; test rax, rax ; je 0x16ee6a ; mov dword ptr [rcx + 0xf8], 1 ; movsd xmm0, qword ptr [rax] ; movsd qword ptr [rcx + 0xfc], xmm0 ; mov eax, dword ptr [rax + 8] ; mov dword ptr [rcx + 0x104], eax
+   refs: ['va64 x1, rva32-bytes x0']
+V 0016EE80 (63 B): mov r9, qword ptr [rdx] ; test r9, r9 ; je 0x16eeb9 ; cmp dword ptr [rcx + 0x1a8], 0 ; jne 0x16eeb9 ; mov r8, qword ptr [rcx + 0x1b0] ; mov ecx, dword ptr [r8 + 0x2bf4] ; mov eax, dword ptr [r8 + 0x2bf0]
+   refs: ['va64 x1, rva32-bytes x0']
+V 0016EFF0 (56 B): mov r8, qword ptr [rdx] ; mov rax, qword ptr [rcx + 0x1b0] ; test r8, r8 ; je 0x16f022 ; test rax, rax ; je 0x16f022 ; mov rax, qword ptr [rax + 0x1a38] ; test rax, rax
+   refs: ['va64 x1, rva32-bytes x0']
+V 0016F030 (49 B): mov r8, qword ptr [rdx] ; test r8, r8 ; je 0x16f050 ; mov rax, qword ptr [r8] ; mov qword ptr [rcx + 0x108], rax ; mov rax, qword ptr [r8 + 8] ; mov qword ptr [rcx + 0x110], rax ; xor eax, eax
+   refs: ['va64 x1, rva32-bytes x0']

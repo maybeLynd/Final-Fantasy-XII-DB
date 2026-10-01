@@ -1,0 +1,43 @@
+function	site	field	width	kind	instruction
+0022D7E0	0022D8D3	0x1D8	8	r	mov rax, qword ptr [r13 + 0x1d8]
+0022D7E0	0022D8F1	0x1A0	8	r	add r8, qword ptr [r13 + 0x1a0]
+00230790	002307D8	0x188	8	r	add r9, qword ptr [rdx + 0x188]
+0026E260	0026E26C	0x120	4	r	cmp dword ptr [rcx + 0x120], 0
+0026E260	0026E275	0x138	8	r	mov rax, qword ptr [rcx + 0x138]
+0026E290	0026E2A8	0x120	4	r	cmp dword ptr [rbx + 0x120], 0
+0026E290	0026E2D3	0x130	8	r	mov rax, qword ptr [rbx + 0x130]
+0026EB30	0026ED54	0x120	4	w	mov dword ptr [rdx + 0x120], eax
+0026EB30	0026ED5A	0x114	4	w	mov dword ptr [rdx + 0x114], ecx
+002F7380	002F7399	0x218	8	addr	lea rcx, [rdi + 0x218]
+002F7380	002F73A9	0x150	8	r	mov rax, qword ptr [rdi + 0x150]
+002F7380	002F73B7	0x224	4	w	mov dword ptr [rdi + 0x224], eax
+002F7380	002F73BD	0x224	4	r	mov eax, dword ptr [rdi + 0x224]
+002F7380	002F7420	0x150	8	r	mov rcx, qword ptr [rdi + 0x150]
+002F7380	002F745C	0x224	4	r	cmp r12d, dword ptr [rdi + 0x224]
+002F7380	002F7493	0x178	8	r	mov r9, qword ptr [rdi + 0x178]
+002F7380	002F74A2	0x174	4	r	cmp dword ptr [rdi + 0x174], eax
+002F7380	002F74ED	0x150	8	r	mov rax, qword ptr [rdi + 0x150]
+002F7380	002F7504	0x224	4	r	cmp eax, dword ptr [rdi + 0x224]
+002F7380	002F7517	0x150	8	r	mov rcx, qword ptr [rdi + 0x150]
+002F7380	002F7537	0x224	4	r	cmp eax, dword ptr [rdi + 0x224]
+002F7380	002F7552	0x174	4	r	cmp r11d, dword ptr [rdi + 0x174]
+002F7380	002F7561	0x224	4	r	cmp dword ptr [rdi + 0x224], 0
+002F7380	002F7580	0x150	8	r	mov rcx, qword ptr [rdi + 0x150]
+002F7380	002F75BC	0x224	4	r	cmp ebx, dword ptr [rdi + 0x224]
+002F7380	002F75CD	0x228	4	w	mov dword ptr [rdi + 0x228], r15d
+002F7380	002F75E1	0x218	8	w	mov qword ptr [rdi + 0x218], rax
+002F7380	002F7600	0x218	8	r	mov rax, qword ptr [rdi + 0x218]
+0032A6B0	0032A6B7	0x22C	4	r	mov eax, dword ptr [rax + 0x22c]
+0032A6C0	0032A6CE	0x1D8	8	r	mov rax, qword ptr [rcx + 0x1d8]
+0032A6E0	0032A6F7	0x1A0	8	r	add r8, qword ptr [rax + 0x1a0]
+0032A6E0	0032A707	0x188	8	r	add rcx, qword ptr [rax + 0x188]
+00379BD0	00379BDD	0x22C	4	r	cmp dword ptr [rcx + 0x22c], esi
+00379BD0	00379BF0	0x1A0	8	r	mov rax, qword ptr [rcx + 0x1a0]
+00379BD0	00379C20	0x1D8	8	r	mov rax, qword ptr [rcx + 0x1d8]
+00379BD0	00379C36	0x22C	4	r	cmp r10d, dword ptr [rcx + 0x22c]
+003820C0	00382838	0x120	4	r	cmp dword ptr [rax + 0x120], edi
+003A6FC0	003A6FF8	0x178	8	r	mov rax, qword ptr [rdx + 0x178]
+003A6FC0	003A6FFF	0x1C0	8	r	add rbx, qword ptr [rdx + 0x1c0]
+003A6FC0	003A7017	0x188	8	r	add rax, qword ptr [rdx + 0x188]
+003EC8A0	003EC8A9	0x218	8	r	mov rcx, qword ptr [rcx]
+003EC8A0	003EC8B6	0x218	8	w	mov qword ptr [rbx], 0

@@ -1,0 +1,6 @@
+PASS S1  T0 / operand-table counts {'ctrl': (56, 56), 'btlctrl': (92, 92), 'evctrl': (115, 115), 'mapctrl': (127, 127)}
+PASS S2  T2-covered: single 71, two-name 35, shifted 0, other 0; ranges {'ctrl': '0', 'btlctrl': '0-4', 'evctrl': '0-43', 'mapctrl': '1-2,4-21'}
+PASS S3  no T2 record: 284 entries, by descriptor class {1: 54, 2: 205, 4: 1, 7: 24}
+PASS S4  V1 samples (T0 name matches, T2 status): {'evctrl 61': (True, 'none'), 'btlctrl D': (True, 'none'), 'btlctrl E': (True, 'none'), 'mapctrl 52': (True, 'none'), 'mapctrl 20': (True, 'single')}
+PASS C  single-name matches against T0 shifted by one: {'ctrl': 0, 'btlctrl': 0, 'evctrl': 0, 'mapctrl': 0}
+FAILS 0

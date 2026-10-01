@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-UQ218-MERGE",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish UQ-218 residue fold-in: FABLE residue record + FMC crosswalk + selector kinds",
+  "scope": "publication",
+  "completion": "commit hash recorded",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

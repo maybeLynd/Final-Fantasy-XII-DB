@@ -1,0 +1,57 @@
+{
+  "method": "A static original source/current canonical consumers; no guest/native/live execution",
+  "driver_sha256": "88c37ad59f23dc4eb7ac9ae3f81247c53746e751477925c42c2a2acc4dc1f2c1",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "capstone": "5.0.7",
+  "head": "342564b947bb01b4642775b3566bda1ac6044217",
+  "sources": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/shipping-reader.py",
+      "copy": "shipping-reader.py",
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+      "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/reg_tracking.py",
+      "copy": "reg_tracking.py",
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+    },
+    {
+      "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+      "copy": "pages/scriptvm-verb-dispatch-and-parameter-encoding.md",
+      "sha256": "03a02cc886110da7a58ed8b2a98d6d71d0a85cba0b3f181e517e22a807827919",
+      "commit": "a7898d7c19344a080ff1d4d007c3f16894a7d37d",
+      "blob": "46eeb50edc36ac86ad25c3121326fa05fd331258"
+    },
+    {
+      "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md",
+      "copy": "pages/worldactor-scriptvm-interpreter.md",
+      "sha256": "a03babbf7f443af3ad8883c4fc24bb7034bcc532a58b59fd71ee34ad692bf5b4",
+      "commit": "adf88cdb9ba8f6f632b632ba3549ca3db92b90ee",
+      "blob": "879e628261bb52310381cc4da6212138b2c6002c"
+    },
+    {
+      "path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/Interpreter-Core/script-variables-and-their-storage-classes.md",
+      "copy": "pages/script-variables-and-their-storage-classes.md",
+      "sha256": "f01d45859b4185395d59d45780483b58333218239c3cd05bc76bb38d642504f5",
+      "commit": "ae062e16633860898df0368a21a25554b11fe24d",
+      "blob": "1d7b102b64bb83dac014e0a7b3c2d9ce62e4e311"
+    }
+  ],
+  "provider_files": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+      "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  ]
+}

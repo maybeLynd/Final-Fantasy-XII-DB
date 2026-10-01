@@ -1,0 +1,49 @@
+{
+ "committed_at": "2026-09-29T06:21:49Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T062149Z-5ee8bd",
+ "generator": {
+  "name": "ASTRA retained same-stat recipe",
+  "sha256": "25e25771d9818dabc676b6bd878f2589fe606e9d32865aadd5f87c692bbd3af6"
+ },
+ "inputs": {
+  "controlled": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\reverify-r2\\run-01\\same-stat-input-timer\\source-input",
+   "sha256": "b7ad085da63812347b8a1b906b1a4f6ce1966e49b80d9134f542db07cc1be215",
+   "size": 26,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view-evidence.json": {
+   "sha256": "bf43f180e82f97e054e74d0ac280ea21adcae47ae9acc895bc95ff9f452cd3be",
+   "size": 103
+  },
+  "view-executable.json": {
+   "sha256": "af018207f7ecb8951994addc0fff790957656a89902166b9809524b775bcaa92",
+   "size": 107
+  },
+  "view-fleet.json": {
+   "sha256": "e2cb1dfbe5cb0c6407215f6e84cd744a6beebb6ff833108e69c98c112dc0bd22",
+   "size": 97
+  },
+  "view-overview.json": {
+   "sha256": "e6487aaa358e46435ba59cd1664dfb745d9a3f4ed04bf83b6a1da443e83a4f5c",
+   "size": 103
+  },
+  "view-systems.json": {
+   "sha256": "c0ab317445085f5655f52529ed938b05c4593553a5edc2af9f5306bb1f4902fb",
+   "size": 101
+  },
+  "view-types.json": {
+   "sha256": "8f23988b96480e106510c18e95ec3ccaebd9e8967664b203cdccc171bc3b6b13",
+   "size": 97
+  },
+  "view-vbf.json": {
+   "sha256": "5b73b68599257f3a98e99f30b230968175702b56413b97295d6c56a7cb9ccf38",
+   "size": 93
+  }
+ },
+ "parent": null,
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

@@ -1,0 +1,9 @@
+RTTI-exclusive PClassDescriptorConcrete<T> slot-10 bodies: 231
+  A         shape pass   30
+  declared  shape pass   78
+  frontier  shape pass  123
+positive control: 108 of 108 A/declared bodies pass the shape half
+shape-only census: 15 census bodies (<=256 B) outside the RTTI population also pass the shape half {'frontier': 10, 'A': 1, 'declared': 4} - the shape is not the discriminator, the RTTI slot is; none of them is admitted
+negative control: 00657140 (xor al,al ; ret) shape refused (no test rdx,rdx ; je)
+members (frontier, both halves): 123; sizes 12-124 B; with calls inside the constructor: 30
+wrote 123 -> pclassdescriptorconcrete-placement-default-ctors.tsv

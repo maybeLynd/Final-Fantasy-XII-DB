@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-copy-construction.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-copy-construction.py", line 17, in main
+    if len(raw['ranges'])!=3 or any(q['start'] not in spans or (q['end_exclusive'],q['sha256'])!=spans[q['start']] for q in raw['ranges']):raise ValueError('wrong/incomplete construction body')
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wrong/incomplete construction body

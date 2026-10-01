@@ -1,0 +1,63 @@
+== controls
+PASS  P1 the preview restores the saved word 003857E1  mov word ptr [rbx + 0x10], r15w
+PASS  P2 raw bank lea count = 34 0208D480 x16 0208D494 x1 0208DE80 x16 0208DE94 x1
+PASS  P3 a wrong expectation fails (value 2 at 0033D953) 0033D953  test byte ptr [rbx + 0x1c], 1
+== scratch block 2.5: +0x10 is not the previewed id
+PASS  S1 save the word 003857A3  movzx r15d, word ptr [rbx + 0x10]
+PASS  S2 clear +0x00..+0x07 (qword) 003857AB  mov qword ptr [rbx], rax
+PASS  S3 clear +0x08..+0x0F (qword) 003857AE  mov qword ptr [rbx + 8], rax
+PASS  S4 clear +0x10..+0x13 (dword) 003857B2  mov dword ptr [rbx + 0x10], eax
+PASS  S5 write the saved word back 003857E1  mov word ptr [rbx + 0x10], r15w
+PASS  S6 the previewed id goes to 02AEDFD4 003857EC  mov dword ptr [rip + 0x27687e1], r15d
+PASS  S6' target 
+PASS  S7 the 0x9F draw stores an id 00387ADE  mov word ptr [rbx + 0x10], ax
+PASS  S8 00385680 forms the record from the banks 0208D480 0208DE80
+== scratch block 2.5: the reader column
+PASS  R1 +0x00 dword read 00388E60  mov eax, dword ptr [rsi]
+PASS  R1' in 00388D50, which leas a bank 
+PASS  R1 +0x00 dword read 0038DA68  mov eax, dword ptr [rdx]
+PASS  R1' in 0038DA00, which leas a bank 
+PASS  R1 +0x00 dword read 0038ED17  mov eax, dword ptr [rbx]
+PASS  R1' in 0038EBE0, which leas a bank 
+PASS  R1 +0x00 dword read 0038EDD6  mov eax, dword ptr [rbx]
+PASS  R1' in 0038ED40, which leas a bank 
+PASS  R2 +0x00 dword write (not u64) 00388E51  mov dword ptr [rsi], edi
+PASS  R2 +0x00 dword write (not u64) 0038DA5D  mov dword ptr [rdx], eax
+PASS  R2 +0x00 dword write (not u64) 0038ECD5  mov dword ptr [rbx], eax
+PASS  R2 +0x00 dword write (not u64) 0038ECFF  mov dword ptr [rbx], edi
+PASS  R3 +0x04 load 0038633F  mov eax, dword ptr [rdi + 4]
+PASS  R3 bt 00386342  bt eax, ecx
+PASS  R3 kind 6 00386347  mov byte ptr [rbx + 4], 6
+PASS  R4 +0x08 load 003862FB  mov eax, dword ptr [rdi + 8]
+PASS  R4 bt 003862FE  bt eax, ecx
+PASS  R4 kind 0xA 00386303  mov byte ptr [rbx + 4], 0xa
+PASS  R5 00385F60 forms the record from the banks 
+== scratch block 2.5: the missing rows
+PASS  M1 +0x0C mark 00387B97  or dword ptr [rbx + 0xc], eax
+PASS  M1' 00387B00 has 15 direct call sites 15
+PASS  M2 +0x0C reader 002FA352  mov ecx, dword ptr [rbx + 0xc]
+PASS  M2 bt 002FA355  bt ecx, eax
+PASS  M3 +0x0C cleared at activation 00386C5E  mov qword ptr [rax + 8], rcx
+PASS  M4 00386860 uses the +0x14 anchors 0208D494 0208DE94
+PASS  M5 +0x14 tick counter 003869E0  mov word ptr [rbx], cx
+PASS  M5 +0x14 tick counter 00386A27  inc word ptr [rbx]
+PASS  M5 +0x14 tick counter 00386A2C  mov word ptr [rbx], r15w
+PASS  M5 +0x14 tick counter 003869A2  movzx eax, word ptr [rbx]
+PASS  M6 002F9400 forms the record from the banks 
+PASS  M6 +0x18 write 002F95A6  movss dword ptr [rsi + 0x18], xmm7
+PASS  M6 +0x18 read 002F9474  movss xmm0, dword ptr [rsi + 0x18]
+PASS  M7 activation clear 00386C5B  mov qword ptr [rax], rcx
+PASS  M7 activation clear 00386C5E  mov qword ptr [rax + 8], rcx
+PASS  M7 activation clear 00386C62  mov qword ptr [rax + 0x10], rcx
+PASS  M7 activation clear 00386C66  mov qword ptr [rax + 0x18], rcx
+PASS  M7' last clear covers +0x18..+0x1F 00386C66  mov qword ptr [rax + 0x18], rcx
+== field map: +0x1C bit 0 and bit 1
+PASS  F1 0033CB10 forms the record from the banks by +4 / +0xEA9 
+PASS  F1 slot byte 0033CB46  movzx eax, byte ptr [rax + 0xea9]
+PASS  F2 0033CB10 sets value 1 = bit 0 0033CB60  or dword ptr [rax + 0x1c], 1
+PASS  F3 0033D890 forms the record the same way 
+PASS  F3 slot byte 0033D935  movzx ebx, byte ptr [rax + 0xea9]
+PASS  F4 the solver tests value 1 0033D953  test byte ptr [rbx + 0x1c], 1
+PASS  F5 its own latch, value 2 0033DA73  or dword ptr [rbx + 0x1c], 2
+PASS  F6 tested at 0033DA77  test byte ptr [rbx + 0x1c], 2
+FAILS 0

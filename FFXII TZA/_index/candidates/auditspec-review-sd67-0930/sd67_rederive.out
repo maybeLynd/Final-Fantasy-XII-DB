@@ -1,0 +1,56 @@
+R1 rip refs to 00D4A1C0: ['005E6848 005E67C0 FUN_005e67c0'] raw-only 0; stored pointers 0
+   string b'm_streamBindings'
+R1 call setup 005E6818..005E6860 (on the owner's instruction boundaries):
+   005E6818 cmp dword ptr [rip + 0x26fcec1], -1
+   005E681F jne 0x5e688c
+   005E6821 xor ecx, ecx
+   005E6823 call 0x5efe60
+   005E6828 mov dword ptr [rsp + 0x38], 8
+   005E6830 mov dword ptr [rsp + 0x30], 4
+   005E6838 mov dword ptr [rsp + 0x28], 0
+   005E6840 mov dword ptr [rsp + 0x20], 0x38
+   005E6848 lea r9, [rip + 0x763971]
+   005E684F mov r8, rax
+   005E6852 lea rdx, [rip + 0x26d0527]
+   005E6859 lea rcx, [rip + 0x26fce20]
+   005E6860 call 0x632a10
+R2 00632A10 prologue and stack-argument loads:
+   00632A10 mov qword ptr [rsp + 8], rbx
+   00632A15 push rdi
+   00632A16 sub rsp, 0x40
+   00632A1A mov eax, dword ptr [rsp + 0x78]
+   00632A21 mov ebx, dword ptr [rsp + 0x80]
+   00632A28 mov qword ptr [rsp + 0x38], 0
+   00632A31 mov dword ptr [rsp + 0x30], ebx
+   00632A35 mov dword ptr [rsp + 0x28], eax
+   00632A39 mov eax, dword ptr [rsp + 0x70]
+   00632A3D mov dword ptr [rsp + 0x20], eax
+   00632A4D mov dword ptr [rdi + 0x5c], ebx
+   00632A50 mov rbx, qword ptr [rsp + 0x50]
+   00632A58 mov eax, dword ptr [rsp + 0x88]
+   00632A5F mov dword ptr [rdi + 0x58], eax
+R3 005EFE60 r15 writes and the 00632D80 call setup:
+   005EFE66 push r15
+   005EFE9E xor r15d, r15d
+   005EFEE4 mov rdx, rax
+   005EFEE7 mov dword ptr [rsp + 0x30], r15d
+   005EFEEC mov qword ptr [rsp + 0x28], rbx
+   005EFEF1 mov dword ptr [rsp + 0x20], 8
+   005EFEF9 lea r9d, [r15 + 0x10]
+   005EFEFD mov r8, rdi
+   005EFF00 mov rcx, rsi
+   005EFF03 call 0x632d80
+   005EFF08 nop 
+   005EFF09 lea rax, [rip + 0x75de88]
+   005EFF10 mov qword ptr [rip + 0x26fca79], rax
+   005EFF17 or dword ptr [rip + 0x26fcb6e], 2
+   005EFF1E lea rdx, [rip + 0x26fd82b]
+   005F01A1 pop r15
+R3 00632D80 prologue, r9 and stack-argument uses:
+   00632DA5 mov eax, dword ptr [rsp + 0x28]
+   00632DB4 mov dword ptr [rcx + 0x38], r9d
+   00632DD1 mov rax, qword ptr [rsp + 0x30]
+   00632E4B mov eax, dword ptr [rsp + 0x38]
+R4 00D4DD98 COL sig 1 name b'.?AV?$PClassDescriptorAbstract@V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@@Phyre@@'
+R4 00D58100 COL sig 1 name b'.?AVPClassDataMemberArray@Phyre@@'
+R5 file copies of the NUL-terminated name: 1 ['0xc28fc0']; substring streamBindings: 1

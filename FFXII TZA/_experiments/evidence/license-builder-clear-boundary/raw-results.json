@@ -1,0 +1,257 @@
+[
+  {
+    "descriptor_count_u32": "0x0",
+    "input_fixture": {
+      "nrows": 0,
+      "nrecs": [],
+      "steps": [
+        [
+          3116960,
+          1,
+          16,
+          1074004736
+        ]
+      ],
+      "watch": [
+        [
+          1074004720,
+          78
+        ]
+      ]
+    },
+    "initial_rsp": "0x61080008",
+    "before_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "after_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "events": [
+      {
+        "pc": "0x2f8fa0",
+        "sequence": 1,
+        "rsp": "0x61080008"
+      },
+      {
+        "pc": "0x2f8fe0",
+        "sequence": 20,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x630a0000",
+        "sequence": 22,
+        "rsp": "0x6107ffc8",
+        "dst": "0x40040300",
+        "value": 0,
+        "byte_count": 0
+      },
+      {
+        "pc": "0x2f8ffc",
+        "sequence": 29,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x2f8fff",
+        "sequence": 30,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x2f90a3",
+        "sequence": 31,
+        "rsp": "0x6107ffd0"
+      }
+    ],
+    "instruction_callbacks": 39,
+    "end": "0x62000000",
+    "rax": "0x0",
+    "planned_boundary_stop": false,
+    "faults": [],
+    "error": null,
+    "scripted_bridge_trace": [
+      "memset:40040300:0:0"
+    ]
+  },
+  {
+    "descriptor_count_u32": "0x8",
+    "input_fixture": {
+      "nrows": 8,
+      "nrecs": [],
+      "steps": [
+        [
+          3116960,
+          1,
+          16,
+          1074004736
+        ]
+      ],
+      "watch": [
+        [
+          1074004720,
+          78
+        ]
+      ]
+    },
+    "initial_rsp": "0x61080008",
+    "before_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "after_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c300a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "events": [
+      {
+        "pc": "0x2f8fa0",
+        "sequence": 1,
+        "rsp": "0x61080008"
+      },
+      {
+        "pc": "0x2f8fe0",
+        "sequence": 20,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x630a0000",
+        "sequence": 22,
+        "rsp": "0x6107ffc8",
+        "dst": "0x40040300",
+        "value": 0,
+        "byte_count": 1
+      },
+      {
+        "pc": "0x2f8ffc",
+        "sequence": 29,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x2f8fff",
+        "sequence": 30,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x2f90a3",
+        "sequence": 368,
+        "rsp": "0x6107ffd0"
+      }
+    ],
+    "instruction_callbacks": 376,
+    "end": "0x62000000",
+    "rax": "0x0",
+    "planned_boundary_stop": false,
+    "faults": [],
+    "error": null,
+    "scripted_bridge_trace": [
+      "memset:40040300:0:1"
+    ]
+  },
+  {
+    "descriptor_count_u32": "0xfffffff9",
+    "input_fixture": {
+      "nrows": 4294967289,
+      "nrecs": [],
+      "steps": [
+        [
+          3116960,
+          1,
+          16,
+          1074004736
+        ]
+      ],
+      "watch": [
+        [
+          1074004720,
+          78
+        ]
+      ]
+    },
+    "initial_rsp": "0x61080008",
+    "before_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "after_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "events": [
+      {
+        "pc": "0x2f8fa0",
+        "sequence": 1,
+        "rsp": "0x61080008"
+      },
+      {
+        "pc": "0x2f8fe0",
+        "sequence": 20,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x630a0000",
+        "sequence": 22,
+        "rsp": "0x6107ffc8",
+        "dst": "0x40040300",
+        "value": 0,
+        "byte_count": 0
+      },
+      {
+        "pc": "0x2f8ffc",
+        "sequence": 29,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x2f8fff",
+        "sequence": 30,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x2f90a3",
+        "sequence": 31,
+        "rsp": "0x6107ffd0"
+      }
+    ],
+    "instruction_callbacks": 39,
+    "end": "0x62000000",
+    "rax": "0x0",
+    "planned_boundary_stop": false,
+    "faults": [],
+    "error": null,
+    "scripted_bridge_trace": [
+      "memset:40040300:0:0"
+    ]
+  },
+  {
+    "descriptor_count_u32": "0xfffffff8",
+    "input_fixture": {
+      "nrows": 4294967288,
+      "nrecs": [],
+      "steps": [
+        [
+          3116960,
+          1,
+          16,
+          1074004736
+        ]
+      ],
+      "watch": [
+        [
+          1074004720,
+          78
+        ]
+      ]
+    },
+    "initial_rsp": "0x61080008",
+    "before_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "after_hex": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a53c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c",
+    "events": [
+      {
+        "pc": "0x2f8fa0",
+        "sequence": 1,
+        "rsp": "0x61080008"
+      },
+      {
+        "pc": "0x2f8fe0",
+        "sequence": 20,
+        "rsp": "0x6107ffd0"
+      },
+      {
+        "pc": "0x630a0000",
+        "sequence": 22,
+        "rsp": "0x6107ffc8",
+        "dst": "0x40040300",
+        "value": 0,
+        "byte_count": 536870911
+      }
+    ],
+    "instruction_callbacks": 22,
+    "end": "0x630a0000",
+    "rax": "0xfffffff8",
+    "planned_boundary_stop": true,
+    "faults": [],
+    "error": null,
+    "scripted_bridge_trace": []
+  }
+]

@@ -1,0 +1,54 @@
+== steam_api64.dll  versions=['SteamController005']
+  slot  0  disp 0x0 -> x64 0x00  SteamAPI_ISteamController_Init
+  slot  1  disp 0x8 -> x64 0x08  SteamAPI_ISteamController_Shutdown
+  slot  2  disp 0x10 -> x64 0x10  SteamAPI_ISteamController_RunFrame
+  slot  3  disp 0x18 -> x64 0x18  SteamAPI_ISteamController_GetConnectedControllers  <==
+  slot  4  disp 0x20 -> x64 0x20  SteamAPI_ISteamController_ShowBindingPanel
+  slot  5  disp 0x28 -> x64 0x28  SteamAPI_ISteamController_GetActionSetHandle
+  slot  6  disp 0x30 -> x64 0x30  SteamAPI_ISteamController_ActivateActionSet
+  slot  7  disp 0x38 -> x64 0x38  SteamAPI_ISteamController_GetCurrentActionSet
+  slot  8  disp 0x40 -> x64 0x40  SteamAPI_ISteamController_GetDigitalActionHandle
+  slot  9  disp 0x48 -> x64 0x48  SteamAPI_ISteamController_GetDigitalActionData  <==
+  slot 10  disp 0x50 -> x64 0x50  SteamAPI_ISteamController_GetDigitalActionOrigins
+  slot 11  disp 0x58 -> x64 0x58  SteamAPI_ISteamController_GetAnalogActionHandle
+  slot 12  disp 0x60 -> x64 0x60  SteamAPI_ISteamController_GetAnalogActionData  <==
+  slot 13  disp 0x68 -> x64 0x68  SteamAPI_ISteamController_GetAnalogActionOrigins
+  slot 14  disp 0x70 -> x64 0x70  SteamAPI_ISteamController_StopAnalogActionMomentum
+  slot 15  disp 0x78 -> x64 0x78  SteamAPI_ISteamController_TriggerHapticPulse
+  slot 16  disp 0x80 -> x64 0x80  SteamAPI_ISteamController_TriggerRepeatedHapticPulse
+  slot 17  disp 0x88 -> x64 0x88  SteamAPI_ISteamController_TriggerVibration  <==
+  slot 18  disp 0x90 -> x64 0x90  SteamAPI_ISteamController_SetLEDColor
+  slot 19  disp 0x98 -> x64 0x98  SteamAPI_ISteamController_GetGamepadIndexForController
+  slot 20  disp 0xa0 -> x64 0xA0  SteamAPI_ISteamController_GetControllerForGamepadIndex
+  slot 21  disp 0xa8 -> x64 0xA8  SteamAPI_ISteamController_GetMotionData
+  slot 22  disp 0xb0 -> x64 0xB0  SteamAPI_ISteamController_ShowDigitalActionOrigins
+  slot 23  disp 0xb8 -> x64 0xB8  SteamAPI_ISteamController_ShowAnalogActionOrigins
+  slot 24  disp 0xc0 -> x64 0xC0  SteamAPI_ISteamController_GetStringForActionOrigin
+  slot 25  disp 0xc8 -> x64 0xC8  SteamAPI_ISteamController_GetGlyphForActionOrigin
+== CSteamworks.dll  versions=['SteamController005']
+  ISteamController_ActivateActionSet                            (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetActionSetHandle                           (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetAnalogActionData                          (no vtable call found)  push ebx ; push edi ; push esi
+  ISteamController_GetAnalogActionHandle                        (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetAnalogActionOrigins                       (no vtable call found)  push edx ; call eax ; mov esp, ebp
+  ISteamController_GetConnectedControllers                      (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetControllerForGamepadIndex                 (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetCurrentActionSet                          (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetDigitalActionData                         (no vtable call found)  mov esp, ebp ; pop ebp ; ret 
+  ISteamController_GetDigitalActionHandle                       (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetDigitalActionOrigins                      (no vtable call found)  push edx ; call eax ; mov esp, ebp
+  ISteamController_GetGamepadIndexForController                 (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetGlyphForActionOrigin                      (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_GetMotionData                                (no vtable call found)  mov esi, eax ; mov eax, dword ptr [ebp + 8] ; mov ecx, 0xa
+  ISteamController_GetStringForActionOrigin                     (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_Init                                         (no vtable call found)  mov edx, dword ptr [eax] ; add esp, 4 ; jmp edx
+  ISteamController_RunFrame                                     (no vtable call found)  mov edx, dword ptr [eax + 8] ; add esp, 4 ; jmp edx
+  ISteamController_SetLEDColor                                  (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_ShowAnalogActionOrigins                      (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_ShowBindingPanel                             (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_ShowDigitalActionOrigins                     (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_Shutdown                                     (no vtable call found)  mov edx, dword ptr [eax + 4] ; add esp, 4 ; jmp edx
+  ISteamController_StopAnalogActionMomentum                     (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_TriggerHapticPulse                           (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_TriggerRepeatedHapticPulse                   (no vtable call found)  call eax ; pop ebp ; ret 
+  ISteamController_TriggerVibration                             (no vtable call found)  call eax ; pop ebp ; ret 

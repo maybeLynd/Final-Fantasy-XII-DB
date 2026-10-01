@@ -1,0 +1,109 @@
+{
+  "method": "A existing timestamp/field meaning/proof-boundary analysis; no trace replay or new execution",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "refs": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/skeletal-reset-live/skeletal/capture/result.json",
+      "bytes": 1101483,
+      "sha256": "f1b7c0ab53a13cd1df7546c170c598850f69f6a7948fc799dcd0a9fd3db16740",
+      "retained": null
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/skeletal-reset-live/runtime-error.json",
+      "bytes": 961,
+      "sha256": "d2976365e5f05d11e0ba448bf5f973f498eee61c381ac349f7ec7ffe8f6151dd",
+      "retained": "retained/01-runtime-error.json"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/skeletal-reset-live/session-health.json",
+      "bytes": 1048,
+      "sha256": "1988afbba49a4142952c81da5e616dac84cec8b8500d0f66fa287cb459b0f3c6",
+      "retained": "retained/02-session-health.json"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/skeletal-reset-live/preflight.json",
+      "bytes": 10815,
+      "sha256": "22c1c33e33ff8f964284229f09133d7bf488f37f8659b3bc5f2012355e4285ce",
+      "retained": "retained/03-preflight.json"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/EXP-127-skeletal-reset-live.md",
+      "bytes": 10787,
+      "sha256": "48d181fd67af5621ae2f3e1bb0f12f0731a1e68ccfe40077edca5b25f8b94c9f",
+      "retained": "retained/04-EXP-127-skeletal-reset-live.md"
+    },
+    {
+      "path": "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-EXP127-SKELETAL-FAILED-SESSION.md",
+      "bytes": 3070,
+      "sha256": "9ce99842659e607240b78eb1fe7d9f8d28a7f7ae835cfa609a1e9e650e7d9b2c",
+      "retained": "retained/05-REVIEW-EXP127-SKELETAL-FAILED-SESSION.md"
+    }
+  ],
+  "selected_raw_events": [
+    {
+      "raw_index": 0,
+      "event": {
+        "unix": 1789876880.991188,
+        "tid": 30100,
+        "rip": 3808336,
+        "rsp": 1707146088,
+        "rcx": 237,
+        "rdx": 0,
+        "r8": 34178240,
+        "r9": 34992640
+      }
+    },
+    {
+      "raw_index": 5452,
+      "event": {
+        "unix": 1789876881.9869876,
+        "tid": 30100,
+        "rip": 4078719,
+        "rsp": 1707145008,
+        "rcx": 1844655664,
+        "rdx": 128,
+        "r8": 0,
+        "r9": 128
+      }
+    }
+  ],
+  "event_unix_range": [
+    1789876880.991188,
+    1789876881.9869876
+  ],
+  "event_recorded_utc_range": [
+    "2026-09-20T04:01:20.991188+00:00",
+    "2026-09-20T04:01:21.986988+00:00"
+  ],
+  "dialog_observed_utc": "2026-09-20T04:02:09.657Z",
+  "reported_clock_gap_seconds": 47.67001247406006,
+  "health_fields": {
+    "runtime_error_observed": true,
+    "responsive_action_observed": false,
+    "observed_at": "2026-09-20T04:02:09.657Z",
+    "source": "runtime-error.json",
+    "screenshot": "runtime-error.jpg",
+    "source_sha256": "d2976365e5f05d11e0ba448bf5f973f498eee61c381ac349f7ec7ffe8f6151dd",
+    "game_process": {
+      "pid": 31940,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe"
+    },
+    "presentation": "FFXII_TZA.exe Microsoft Visual C++ Runtime Library: application requested Runtime terminate it in an unusual way",
+    "post_trace_action": "No normal gameplay responsiveness action was completed. Error OK acknowledged for cleanup, not evidence of healthy gameplay.",
+    "root_cause": "UNKNOWN; trace load, context handling, later read, and unrelated application failure are unseparated hypotheses. No causal attribution.",
+    "disposition": "INVALID_POST_TRACE; API success and CPU activity are insufficient for a validated live session; raw observations retained for independent review."
+  },
+  "board_review_recovery": {
+    "board_revision": 33543,
+    "epoch": 2,
+    "task": "ASTRA-REVIEW-EXP127-FAILED-SESSION",
+    "status": "DONE",
+    "recorded_refs": [
+      "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-EXP127-FAILED-SESSION.md"
+    ],
+    "actual_review_path": "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-EXP127-SKELETAL-FAILED-SESSION.md",
+    "note": "Recorded filename omitted SKELETAL; actual recoverable review inspected, no peer task overwritten."
+  },
+  "limits": "Historical recorded wall clocks, no continuous health/dialog observer, no fatal-condition/onset timestamp and no proved clock synchronization/monotonicity between event and UI writers. Apparent chronology is not causal independence."
+}

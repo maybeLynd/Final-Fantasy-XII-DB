@@ -1,0 +1,1961 @@
+call_id	verb	shape	reach_all	reach_filtered	top
+0000	wait	durative	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+0001	setpos	instantaneous	Movement:3	Movement:2	Movement
+0002	setvelr	instantaneous	Movement:2	Movement:2	Movement
+0003	setrotangzx	instantaneous	Movement:1	Movement:1	Movement
+0004	setangzx	instantaneous	Movement:1	Movement:1	Movement
+0005	waitv	durative			
+0006	pad	instantaneous	Input:1	Input:1	Input
+0007	padt	instantaneous	Input:1	Input:1	Input
+0008	padr	instantaneous	Input:1	Input:1	Input
+0009	sin	instantaneous			
+000A	cos	instantaneous			
+000B	getpos	instantaneous			
+000C	bindp	durative	Movement:1	Movement:1	Movement
+000D	ucon	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+000E	ucoff	instantaneous	Movement:1	Movement:1	Movement
+000F	ames	instantaneous			
+0010	aask	durative			
+0011	messync	durative			
+0012	mesclose	instantaneous			
+0013	askpos	instantaneous			
+0014	padtr	instantaneous	Input:1	Input:1	Input
+0015	keyscan	instantaneous	Input:1	Input:1	Input
+0016	keyscanr	instantaneous	Input:1	Input:1	Input
+0017	keyscant	instantaneous	Input:1	Input:1	Input
+0018	keyscantr	instantaneous	Input:1	Input:1	Input
+0019	setpos_19	instantaneous	Movement:4	Movement:3	Movement
+001A	mesopenspeed	instantaneous			
+001B	mesopenspeed_1b	instantaneous			
+001C	setline	instantaneous			
+001D	setrect	instantaneous	Movement:2	Movement:1	Movement
+001E	enable	instantaneous			
+001F	disable	instantaneous			
+0020	lineenable	instantaneous			
+0021	linedisable	instantaneous			
+0022	rectenable	instantaneous			
+0023	rectdisable	instantaneous			
+0024	dir	durative			
+0025	setrect_25	instantaneous	Movement:1	Movement:1	Movement
+0026	settouchwh	instantaneous	Movement:1	Movement:1	Movement
+0027	bindoff	instantaneous			
+0028	rand	instantaneous	RNG_Random_Selection:1		
+0029	rand_29	instantaneous	RNG_Random_Selection:1		
+002A	reqenable	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+002B	reqdisable	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+002C	talkang	instantaneous	Movement:1	Movement:1	Movement
+002D	talkradius	instantaneous			
+002E	keywait	durative	Input:1	Input:1	Input
+002F	keywaitr	durative	Input:1	Input:1	Input
+0030	keywaitt	durative	Input:1	Input:1	Input
+0031	keywaittr	durative	Input:1	Input:1	Input
+0032	show	instantaneous			
+0033	hide	instantaneous			
+0034	showw	instantaneous			
+0035	hidew	instantaneous			
+0036	shows	instantaneous			
+0037	hides	instantaneous			
+0038	show_38	instantaneous			
+0039	showw_39	instantaneous			
+003A	shows_3a	instantaneous			
+003B	motionloop	instantaneous			
+003C	setvelrotangzx	instantaneous			
+003D	movesync	empty			
+003E	rcmove	durative	Movement:2	Movement:2	Movement
+003F	rcmove_3f	durative	Movement:1	Movement:1	Movement
+0040	rcmovea	durative	Movement:2	Movement:2	Movement
+0041	rcmovea_41	durative	Movement:1	Movement:1	Movement
+0042	rmove	durative	Movement:3	Movement:2	Movement
+0043	rmove_43	durative	Movement:2	Movement:1	Movement
+0044	rmovea	durative	Movement:3	Movement:2	Movement
+0045	rmovea_45	durative	Movement:2	Movement:1	Movement
+0046	turnsync	empty	Movement:1	Movement:1	Movement
+0047	rturn	durative	Movement:1		
+0048	rturn_48	durative	Movement:2		
+0049	rturna	durative	Movement:2,ActorEntity:2		
+004A	rturnt	durative	Movement:3	Movement:1	Movement
+004B	rturnt_4b	durative	Movement:3	Movement:1	Movement
+004C	rturnat	durative	Movement:2	Movement:1	Movement
+004D	dira	durative	Movement:2	Movement:1	Movement
+004E	dir_4e	durative	Movement:3	Movement:1	Movement
+004F	rturn_4f	durative	Movement:2	Movement:1	Movement
+0050	rturn_50	durative	Movement:3	Movement:1	Movement
+0051	touchradius	instantaneous			
+0052	camerastart	instantaneous			
+0053	camerastop	instantaneous			
+0054	camerastop_54	instantaneous			
+0055	camerachange	instantaneous			
+0056	setupbattle	durative	Party:2,ActorEntity:1	Party:2,ActorEntity:1	Party
+0057	capturepc	instantaneous	Party:2,ActorEntity:2,WorldAreaField:1	ActorEntity:2,Party:1	ActorEntity
+0058	releasepc	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0059	cmove	durative	Movement:2	Movement:2	Movement
+005A	cmove_5a	durative	Movement:1	Movement:1	Movement
+005B	cmovea	durative	Movement:2	Movement:2	Movement
+005C	cmovea_5c	durative	Movement:1	Movement:1	Movement
+005D	move	durative	Movement:3	Movement:2	Movement
+005E	move_5e	durative	Movement:2	Movement:1	Movement
+005F	movea	durative	Movement:3	Movement:2	Movement
+0060	movea_60	durative	Movement:2	Movement:1	Movement
+0061	turn	durative	Movement:2	Movement:1	Movement
+0062	turn_62	durative	Movement:3	Movement:1	Movement
+0063	turna	durative	Movement:1	Movement:1	Movement
+0064	turnt	durative	Movement:4	Movement:2	Movement
+0065	turnt_65	durative	Movement:1	Movement:1	Movement
+0066	turnat	durative	Movement:3	Movement:2	Movement
+0067	turn_67	durative	Movement:3	Movement:2	Movement
+0068	turn_68	durative	Movement:1	Movement:1	Movement
+0069	suspendbattle	instantaneous			
+006A	resumebattle	instantaneous			
+006B	disposeentry	durative			
+006C	recoverentry	durative			
+006D	getx	instantaneous	ActorEntity:1		
+006E	gety	instantaneous	ActorEntity:1		
+006F	getz	instantaneous	ActorEntity:1		
+0070	getrotangzx	instantaneous	Movement:1		
+0071	getangzx	instantaneous	Movement:1	Movement:1	Movement
+0072	getmyid	instantaneous			
+0073	getentryid	instantaneous	ActorEntity:1		
+0074	sethomingangzx	instantaneous	Movement:1	Movement:1	Movement
+0075	sethomingrotangzx	instantaneous	Movement:1	Movement:1	Movement
+0076	setreachr	instantaneous			
+0077	snapstart	instantaneous			
+0078	snapend	instantaneous			
+0079	camerasync	durative			
+007A	frameinfo	instantaneous			
+007B	usemapid	instantaneous	ActorEntity:1,Movement:1	Movement:1	Movement
+007C	cameraclear	instantaneous			
+007D	camerastart_7d	instantaneous			
+007E	camerastart_7e	instantaneous			
+007F	camerasync_7f	durative			
+0080	movecancel	instantaneous			
+0081	turncancel	instantaneous			
+0082	amest	instantaneous			
+0083	usecharhit	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0084	setweight	instantaneous	Movement:1	Movement:1	Movement
+0085	voiceread	instantaneous			
+0086	voicereadsync	durative			
+0087	voiceplay	instantaneous			
+0088	voicestop	instantaneous			
+0089	voicesync	durative			
+008A	maskopen	instantaneous			
+008B	maskclose	instantaneous			
+008C	voicedispose	instantaneous			
+008D	mapjump	durative	Resource:1,WorldAreaField:1,CoreRuntimeScheduling:1	Resource:1,WorldAreaField:1	Resource
+008E	sethpmenu	instantaneous			
+008F	setmapjumppos	instantaneous	Movement:3,WorldAreaField:2	WorldAreaField:2,Movement:2	WorldAreaField
+0090	nowmap	instantaneous	WorldAreaField:1		
+0091	nowjumpindex	instantaneous	WorldAreaField:1,ActorEntity:1	WorldAreaField:1	WorldAreaField
+0092	lastmap	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0093	lastjumpindex	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0094	gethp	instantaneous			
+0095	getmaxhp	instantaneous			
+0096	gethpratio	instantaneous	ActorEntity:1		
+0097	getmp	instantaneous			
+0098	getmaxmp	instantaneous			
+0099	getmpratio	instantaneous	ActorEntity:1		
+009A	ucmove	durative	Party:3,Movement:2,ActorEntity:1	Party:2,Movement:1	Party
+009B	sysucoff	durative			
+009C	sysucon	instantaneous			
+009D	bganimeplay	instantaneous			
+009E	bganimeplay_9e	instantaneous			
+009F	bganimestop	instantaneous			
+00A0	bganimesync	durative			
+00A1	bganimeloop	instantaneous			
+00A2	motionread	instantaneous			
+00A3	motionreadsync	durative			
+00A4	motiondispose	instantaneous			
+00A5	motionplay	instantaneous			
+00A6	motionsync	durative			
+00A7	setheight	instantaneous	Movement:1	Movement:1	Movement
+00A8	setunderheight	instantaneous			
+00A9	playerstatus	instantaneous			
+00AA	sysreq	instantaneous			
+00AB	sysreqall	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+00AC	setentrygroup	instantaneous			
+00AD	getbganimeframe	instantaneous			
+00AE	getbganimelastframe	instantaneous			
+00AF	setscale	instantaneous	Movement:1	Movement:1	Movement
+00B0	bganimespeed	instantaneous			
+00B1	voicepan	durative	Audio:1	Audio:1	Audio
+00B2	voicevolume	durative	Audio:1	Audio:1	Audio
+00B3	voicechangevolume	durative			
+00B4	voicechangepan	durative			
+00B5	voiceplay_b5	instantaneous			
+00B6	fadeout	instantaneous			
+00B7	whiteout	instantaneous			
+00B8	fadein	instantaneous	Resource:1	Resource:1	Resource
+00B9	fadesync	durative			
+00BA	fadecolor	instantaneous			
+00BB	motionplay_bb	instantaneous			
+00BC	fadetrans	instantaneous			
+00BD	bindp2	durative			
+00BE	setentrygroupall	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+00BF	modelread	durative			
+00C0	modelreadsync	durative			
+00C1	modeldispose	instantaneous			
+00C2	bgeffectstop	instantaneous			
+00C3	bgeffectplay	instantaneous			
+00C4	bgeffectstatus	instantaneous			
+00C5	blurplay	instantaneous			
+00C6	blurstop	instantaneous			
+00C7	bluralpha	instantaneous			
+00C8	blurrotate	instantaneous			
+00C9	blurcolor	instantaneous			
+00CA	bluroffset	instantaneous			
+00CB	blurscale	instantaneous			
+00CC	blurprior	instantaneous			
+00CD	blurlayer	instantaneous			
+00CE	blurtrans	instantaneous			
+00CF	fadeprior	instantaneous			
+00D0	fadeout_d0	instantaneous			
+00D1	whiteout_d1	instantaneous			
+00D2	fadein_d2	instantaneous	Resource:1	Resource:1	Resource
+00D3	fadesync_d3	durative			
+00D4	bindp2_d4	durative	ActorEntity:1	ActorEntity:1	ActorEntity
+00D5	mapjumpstatus	instantaneous			
+00D6	bindp2_d6	durative			
+00D7	bindh	durative			
+00D8	bindhoff	instantaneous			
+00D9	attach	instantaneous	ActorEntity:1		
+00DA	attachoff	instantaneous			
+00DB	effectread	instantaneous			
+00DC	effectreadsync	durative			
+00DD	effectplay	instantaneous			
+00DE	effectsync	durative			
+00DF	effectcancel	instantaneous			
+00E0	effectread_e0	instantaneous			
+00E1	effectreadsync_e1	durative			
+00E2	effectplay_e2	instantaneous			
+00E3	effectsync_e3	durative			
+00E4	effectcancel_e4	instantaneous			
+00E5	effectcancelall	instantaneous			
+00E6	motionratio	instantaneous			
+00E7	eventread	durative	Resource:1,WorldAreaField:1,ActorEntity:1	Resource:1,WorldAreaField:1	Resource
+00E8	eventread_e8	durative	WorldAreaField:1,ActorEntity:1,Resource:1	Resource:1,WorldAreaField:1	Resource
+00E9	eventreadsync	durative			
+00EA	eventreadsync_ea	durative			
+00EB	eventplay	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+00EC	eventplay_ec	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+00ED	eventsync	durative			
+00EE	eventsync_ee	durative			
+00EF	offsetsoftimage	instantaneous	ActorEntity:1,Movement:1	Movement:1	Movement
+00F0	setpossoftimage	instantaneous	Movement:1	Movement:1	Movement
+00F1	eventdispose	durative			
+00F2	eventdispose_f2	durative			
+00F3	geteventspace	instantaneous			
+00F4	motionloopframe	instantaneous			
+00F5	motionstartframe	instantaneous			
+00F6	resetmapidfloorall	instantaneous			
+00F7	resetmapidfloor	instantaneous			
+00F8	resetmapidwallall	instantaneous			
+00F9	resetmapidwall	instantaneous			
+00FA	resetmapidmjall	instantaneous			
+00FB	resetmapidmj	instantaneous			
+00FC	setmapidfloorground	instantaneous			
+00FD	setmapidmjground	instantaneous			
+00FE	setmapidfloor	instantaneous			
+00FF	setmapidwall	instantaneous			
+0100	setmapidmj	instantaneous			
+0101	setmapidfloor_101	instantaneous			
+0102	setmapidwall_102	instantaneous			
+0103	setmapidmj_103	instantaneous			
+0104	setmapambient	instantaneous	Movement:1	Movement:1	Movement
+0105	setmapambient_105	instantaneous	Movement:1	Movement:1	Movement
+0106	resetmapambient	instantaneous			
+0107	resetmapidfloorground	instantaneous			
+0108	resetmapidmjground	instantaneous			
+0109	resetmapidfloor_109	instantaneous			
+010A	resetmapidwall_10a	instantaneous			
+010B	resetmapidmj_10b	instantaneous			
+010C	showmapmodel	instantaneous	Movement:1	Movement:1	Movement
+010D	hidemapmodel	instantaneous	Movement:1	Movement:1	Movement
+010E	showshadow	instantaneous			
+010F	hideshadow	instantaneous			
+0110	getbtlwork	instantaneous			
+0111	setbtlwork	instantaneous			
+0112	showshadow_112	instantaneous			
+0113	showmapmodel_113	instantaneous	Movement:1	Movement:1	Movement
+0114	cameraratio	instantaneous			
+0115	cameraratio_115	instantaneous			
+0116	setambient	instantaneous	Movement:1	Movement:1	Movement
+0117	resetambient	instantaneous	Movement:1	Movement:1	Movement
+0118	stdmotionread	durative			
+0119	stdmotionreadsync	empty	ActorEntity:1	ActorEntity:1	ActorEntity
+011A	stdmotiondispose	durative			
+011B	startscene	instantaneous	ActorEntity:1,PlatformOnlineAchievements:1	ActorEntity:1,PlatformOnlineAchievements:1	ActorEntity
+011C	lock_charmotion_once	instantaneous			
+011D	stdmotionplay	instantaneous			
+011E	setmapjumpgroup	instantaneous			
+011F	seteventfognearfar	instantaneous			
+0120	seteventfogcolor	instantaneous			
+0121	seteventfogstatus	instantaneous			
+0122	setaccr	instantaneous			
+0123	setaccr_123	instantaneous			
+0124	setwh	instantaneous	Movement:2	Movement:2	Movement
+0125	settalkwh	instantaneous	Movement:1	Movement:1	Movement
+0126	effectactor	instantaneous	ActorEntity:1		
+0127	locationeffectread	instantaneous			
+0128	locationeffectread_128	instantaneous			
+0129	messync2	durative			
+012A	getpos_12a	instantaneous	ActorEntity:1		
+012B	getx_12b	instantaneous	ActorEntity:2		
+012C	gety_12c	instantaneous	ActorEntity:2		
+012D	getz_12d	instantaneous	ActorEntity:2		
+012E	getrotangzx_12e	instantaneous	Movement:1,ActorEntity:1		
+012F	getangzx_12f	instantaneous	ActorEntity:1,Movement:1	Movement:1	Movement
+0130	setfocuslength	instantaneous			
+0131	setfocusrange	instantaneous			
+0132	setfocuslayer	instantaneous			
+0133	setfocusshift	instantaneous			
+0134	setfocusalpha	instantaneous			
+0135	setfocusstatus	instantaneous			
+0136	bindl	instantaneous			
+0137	seteventlightactor	instantaneous			
+0138	seteventlighttype	instantaneous			
+0139	seteventlightall	instantaneous			
+013A	seteventlightcolor	instantaneous			
+013B	seteventlightrange	instantaneous			
+013C	seteventlightdir	instantaneous			
+013D	normalang	instantaneous			
+013E	entrydeny	instantaneous	ActorEntity:1		
+013F	entrystart	durative	ActorEntity:3	ActorEntity:2	ActorEntity
+0140	system_setentryexecstatus	instantaneous			
+0141	system_seteventexecstatus	instantaneous			
+0142	system_getentryexecstatus	instantaneous			
+0143	system_geteventexecstatus	instantaneous			
+0144	seteventlightcorn	instantaneous			
+0145	amese	instantaneous			
+0146	charcachedispose	durative			
+0147	hideparty	instantaneous	Party:1		
+0148	showparty	instantaneous	Party:1		
+0149	motioncancel	instantaneous			
+014A	aaske	durative			
+014B	partystdmotiondispose	instantaneous			
+014C	partystdmotionrecover	durative			
+014D	getucstatus	instantaneous			
+014E	motiontrigger	instantaneous			
+014F	gameratio	instantaneous	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+0150	system_expandcharmotionmemory	instantaneous			
+0151	eventsoundread	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0152	eventsoundreadsync	durative			
+0153	eventsoundplay	instantaneous			
+0154	eventsounddispose	instantaneous			
+0155	eventsoundstop	instantaneous	Audio:1	Audio:1	Audio
+0156	setcharclipall	instantaneous			
+0157	setcharclipdistance	instantaneous			
+0158	fadelayer	instantaneous			
+0159	fadecancel	instantaneous			
+015A	fadecancel_15a	instantaneous			
+015B	setbattleexecstatus	instantaneous			
+015C	setpartypos	instantaneous	Movement:3,Party:1	Movement:3	Movement
+015D	entrysync	durative	ActorEntity:4	ActorEntity:2	ActorEntity
+015E	isdead	instantaneous			
+015F	isdead_15f	instantaneous	ActorEntity:1		
+0160	setlod	instantaneous			
+0161	eventsoundtrans	instantaneous	Audio:1	Audio:1	Audio
+0162	eventsoundfadeout	instantaneous	Audio:1	Audio:1	Audio
+0163	eventsoundcancel	instantaneous	Audio:1	Audio:1	Audio
+0164	setscale_164	instantaneous	Movement:1	Movement:1	Movement
+0165	eventstartsync	durative	ActorEntity:1		
+0166	eventstartsync_166	durative	ActorEntity:1		
+0167	eventstartsync_167	durative	ActorEntity:1		
+0168	ucsetpos	instantaneous	ActorEntity:1,Party:1,Movement:1	Movement:1	Movement
+0169	bonephysical	instantaneous			
+016A	eventsoundplay_16a	instantaneous			
+016B	motionclear	instantaneous			
+016C	eventsoundisplay	instantaneous	Audio:1	Audio:1	Audio
+016D	shownavimap	instantaneous	UI:1	UI:1	UI
+016E	hidenavimap	instantaneous	UI:1	UI:1	UI
+016F	crossfade	instantaneous			
+0170	crossfadesync	empty			
+0171	stopeventdecode	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0172	showfieldsign	instantaneous			
+0173	hidefieldsign	instantaneous			
+0174	setfieldsign	instantaneous	ActorEntity:1		
+0175	setfieldsignonce	instantaneous	ActorEntity:1		
+0176	fieldsign	instantaneous	Movement:6,ActorEntity:3	Movement:5,ActorEntity:3	Movement
+0177	fieldsignicon	instantaneous			
+0178	fieldsignmes	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0179	fieldsignmesbyid	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+017A	registshape	instantaneous			
+017B	shapemax	instantaneous			
+017C	shapewin	instantaneous			
+017D	setshapeanime	instantaneous			
+017E	setshape	instantaneous			
+017F	shapeanimesync	durative			
+0180	stopshapeanime	instantaneous			
+0181	setshapeshowstatus	instantaneous			
+0182	setshapepos	instantaneous			
+0183	setshapepos_183	instantaneous			
+0184	setshapeclut	instantaneous			
+0185	setshapesampling	instantaneous			
+0186	setshapescale	instantaneous			
+0187	setshapescale_187	instantaneous			
+0188	shapescalesync	durative			
+0189	setshapecolor	instantaneous			
+018A	setshapecolor_18a	instantaneous			
+018B	shapecolorsync	durative			
+018C	setshapeprior	instantaneous			
+018D	settalkheight	instantaneous	Movement:1	Movement:1	Movement
+018E	settalkunderheight	instantaneous			
+018F	mainloopallsyncv	instantaneous	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+0190	setmaplod	instantaneous	Movement:1	Movement:1	Movement
+0191	setpossummonspace	instantaneous			
+0192	registbattletarget	instantaneous			
+0193	setupsummonforevent	instantaneous	ActorEntity:3,Party:1	ActorEntity:1	ActorEntity
+0194	duplicatebattletarget	instantaneous			
+0195	resumeposbattletarget	instantaneous			
+0196	hidenobattletarget	instantaneous			
+0197	shownobattletarget	instantaneous			
+0198	summoneventread	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0199	setrotangzxsummonspace	instantaneous			
+019A	captureallforsummon	instantaneous	ActorEntity:1		
+019B	releaseallforsummon	instantaneous	ActorEntity:1		
+019C	camerashakestart	instantaneous			
+019D	camerashakestop	instantaneous			
+019E	camerashakestop_19e	instantaneous			
+019F	camerashakechange	instantaneous			
+01A0	camerashakesync	durative			
+01A1	camerashakeclear	instantaneous			
+01A2	camerashakestart_1a2	instantaneous			
+01A3	camerashakestart_1a3	instantaneous			
+01A4	camerashakesync_1a4	durative			
+01A5	camerashakeratio	instantaneous			
+01A6	camerashakeratio_1a6	instantaneous			
+01A7	setfightmode	instantaneous			
+01A8	setmesmacro	instantaneous			
+01A9	updatemesmacro	instantaneous			
+01AA	stdmotionvariation	instantaneous			
+01AB	initgauge	instantaneous			
+01AC	setgaugeshowstatus	instantaneous			
+01AD	gaugeshowsync	empty			
+01AE	setgaugecounter	instantaneous			
+01AF	setgaugetimer	instantaneous			
+01B0	setgaugechangeframe	instantaneous			
+01B1	setgaugechangeratio	instantaneous			
+01B2	changegaugecounterbyframe	instantaneous			
+01B3	changegaugecounterbyratio	instantaneous			
+01B4	setgaugecountermax	instantaneous			
+01B5	setgaugetimermax	instantaneous			
+01B6	setgaugecountercondition	instantaneous			
+01B7	setgaugetimercondition	instantaneous			
+01B8	resetgaugetimer	instantaneous			
+01B9	startgaugetimer	instantaneous			
+01BA	stopgaugetimer	instantaneous			
+01BB	gaugepadding0	instantaneous			
+01BC	setgaugecounterlabel	instantaneous			
+01BD	setgaugecounterunit	instantaneous			
+01BE	setgaugetimerlabel	instantaneous			
+01BF	getgaugetimer	instantaneous			
+01C0	getgaugecounter	instantaneous			
+01C1	setgaugecountertype	instantaneous			
+01C2	setgaugetimertype	instantaneous			
+01C3	objmblurplay	instantaneous			
+01C4	objmblurclear	instantaneous			
+01C5	objmblurlimitalpha	instantaneous			
+01C6	objmblurcolor	instantaneous			
+01C7	objmblurpower	instantaneous			
+01C8	attachinfo	instantaneous			
+01C9	requestreentry	instantaneous			
+01CA	lockbehindcamera	instantaneous			
+01CB	setbehindcameratype	instantaneous			
+01CC	setgaugecolor	instantaneous			
+01CD	setgaugeapply	instantaneous			
+01CE	unlockbehindcamera	instantaneous			
+01CF	isquestorder	instantaneous			
+01D0	isquestclear	instantaneous			
+01D1	setquestorder	instantaneous			
+01D2	setquestclear	instantaneous			
+01D3	getquestorder	instantaneous			
+01D4	getquestclear	instantaneous			
+01D5	getquestcleartotal	instantaneous			
+01D6	lockreverb	instantaneous			
+01D7	unlockreverb	instantaneous			
+01D8	showsummontarget	instantaneous			
+01D9	hidesummontarget	instantaneous			
+01DA	questeffectread	instantaneous			
+01DB	questeffectread_1db	instantaneous			
+01DC	effecttriggercancel	instantaneous			
+01DD	effecttriggercancel_1dd	instantaneous			
+01DE	getcamerasubframe	instantaneous			
+01DF	getcameramainframe	instantaneous			
+01E0	setflystatus	instantaneous	Movement:1	Movement:1	Movement
+01E1	setfloatstatus	instantaneous	Movement:1	Movement:1	Movement
+01E2	getgroundy	instantaneous	Movement:1	Movement:1	Movement
+01E3	bgeffecttrigger	instantaneous			
+01E4	resumebehindcamera	instantaneous			
+01E5	resumebehindcamerasync	empty			
+01E6	getlength2	instantaneous	ActorEntity:1		
+01E7	getlength3	instantaneous	ActorEntity:1		
+01E8	getangle	instantaneous	ActorEntity:1		
+01E9	getangle_1e9	instantaneous	ActorEntity:2		
+01EA	stopeventdecode_1ea	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+01EB	mesisselect	instantaneous			
+01EC	sethp	instantaneous			
+01ED	sethpratio	instantaneous			
+01EE	setmp	instantaneous			
+01EF	setmpratio	instantaneous			
+01F0	setcharbattlestatus	instantaneous			
+01F1	clearcharbattlestatus	instantaneous			
+01F2	gethp_1f2	instantaneous	ActorEntity:1		
+01F3	getmaxhp_1f3	instantaneous	ActorEntity:1		
+01F4	gethpratio_1f4	instantaneous	ActorEntity:2		
+01F5	getmp_1f5	instantaneous	ActorEntity:2		
+01F6	getmaxmp_1f6	instantaneous	ActorEntity:1		
+01F7	getmpratio_1f7	instantaneous	ActorEntity:1		
+01F8	sethp_1f8	instantaneous	ActorEntity:1		
+01F9	sethpratio_1f9	instantaneous			
+01FA	setmp_1fa	instantaneous	ActorEntity:1		
+01FB	setmpratio_1fb	instantaneous			
+01FC	setcharbattlestatus_1fc	instantaneous	ActorEntity:1		
+01FD	clearcharbattlestatus_1fd	instantaneous	ActorEntity:1		
+01FE	ames_1fe	instantaneous			
+01FF	aask_1ff	durative			
+0200	bindc	durative			
+0201	bindcoff	instantaneous			
+0202	disposepartywithoutcontrol	instantaneous			
+0203	summonread	instantaneous	UI:1	UI:1	UI
+0204	summonreadsync	empty			
+0205	changetosummonparty	durative			
+0206	disposesummon	stub(ret 0)			
+0207	summontopartyread	instantaneous	UI:1	UI:1	UI
+0208	summontopartyreadsync	empty			
+0209	changetonormalparty	stub(ret 0)			
+020A	voiceread_20a	instantaneous			
+020B	setlightcutstatus	instantaneous			
+020C	setpos2	instantaneous	Movement:3	Movement:2	Movement
+020D	setpos2_20d	instantaneous	Movement:4	Movement:3	Movement
+020E	setwalkspeed	instantaneous			
+020F	setnochecktouchheightflag	instantaneous			
+0210	sqrt	instantaneous			
+0211	getmapjumpposbyindex	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0212	ucsetpos_212	instantaneous	Movement:2,ActorEntity:1,Party:1	Movement:2	Movement
+0213	animeplay	instantaneous			
+0214	animesync	durative			
+0215	animestop	instantaneous			
+0216	hideanime	instantaneous			
+0217	showanime	instantaneous			
+0218	animepause	instantaneous			
+0219	animepauseclear	instantaneous			
+021A	setweatherslot	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+021B	setnavimapindex	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+021C	setlightcutstatus_21c	instantaneous			
+021D	setlightcutanimestatus	instantaneous			
+021E	setlightcutanimestatus_21e	instantaneous			
+021F	setalllightstatus	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0220	setradius	instantaneous	Movement:1	Movement:1	Movement
+0221	setradius_221	instantaneous	Movement:1	Movement:1	Movement
+0222	nowlocationmap	instantaneous	WorldAreaField:2	WorldAreaField:1	WorldAreaField
+0223	bonecalcforce	instantaneous			
+0224	setlightgroup	instantaneous			
+0225	clearlightgroup	instantaneous			
+0226	getdestrotangzx	instantaneous	Movement:1	Movement:1	Movement
+0227	getdestrotangzx_227	instantaneous			
+0228	sysreqf	instantaneous			
+0229	musicread	instantaneous	Audio:2	Audio:2	Audio
+022A	musicreadsync	durative			
+022B	musicplay	durative	Audio:6	Audio:7	Audio
+022C	musicstop	instantaneous	Audio:2	Audio:2	Audio
+022D	musicclear	instantaneous	Audio:3	Audio:3	Audio
+022E	musiccrossplay	durative			
+022F	musiccrossplay_22f	durative	Audio:1	Audio:1	Audio
+0230	musicfadeout	durative			
+0231	musicfadeout_231	durative	Audio:3	Audio:3	Audio
+0232	capturepartyforsummon	instantaneous	ActorEntity:1		
+0233	releasepartyforsummon	instantaneous	ActorEntity:1		
+0234	rootmoveenable	instantaneous			
+0235	rootmovedisable	instantaneous			
+0236	setnoupdatebehindcamera	instantaneous			
+0237	changeentryid	instantaneous			
+0238	getduplicateid	instantaneous			
+0239	recttocircle	instantaneous			
+023A	behindcamerafovyroll	instantaneous			
+023B	behindcamerafovyrollsync	empty			
+023C	resetbehindcamerafovyroll	instantaneous			
+023D	vibplay	instantaneous			
+023E	vibstop	instantaneous			
+023F	vibsync	empty			
+0240	musicclearall	instantaneous			
+0241	effectsignal	instantaneous			
+0242	setloopstatusbyevent	instantaneous			
+0243	turna_243	durative	Movement:2	Movement:2	Movement
+0244	rturna_244	durative	Movement:1	Movement:1	Movement
+0245	getdefaultwalkspeed	instantaneous			
+0246	getdefaultrunspeed	instantaneous			
+0247	setwalkthresholdspeed	instantaneous			
+0248	settalkradiusoffset	instantaneous	Movement:1	Movement:1	Movement
+0249	lookatoff	instantaneous			
+024A	lookaton	instantaneous			
+024B	lookatsrcboneid	instantaneous			
+024C	lookatsync	empty			
+024D	lookat	durative			
+024E	lookatt	durative	Movement:3	Movement:3	Movement
+024F	lookat_24f	durative	Movement:1		
+0250	lookatt_250	durative	Movement:1		
+0251	lookata	durative			
+0252	lookatat	durative			
+0253	lookatab	durative	Movement:1		
+0254	lookatabt	durative	Movement:1		
+0255	rlookat	durative			
+0256	rlookatt	durative	Movement:3	Movement:3	Movement
+0257	rlookat_257	durative	Movement:1		
+0258	rlookatt_258	durative	Movement:1		
+0259	rlookata	durative	Movement:1		
+025A	rlookatat	durative	Movement:1		
+025B	rlookatab	durative	Movement:1		
+025C	rlookatabt	durative	Movement:1		
+025D	raturn	durative	Movement:1		
+025E	raturn_25e	durative	Movement:5	Movement:3	Movement
+025F	raturna	durative	Movement:4	Movement:3	Movement
+0260	aturn	durative	Movement:2	Movement:1	Movement
+0261	aturn_261	durative	Movement:1	Movement:1	Movement
+0262	aturna	durative	Movement:1	Movement:1	Movement
+0263	setfocusmode	instantaneous			
+0264	setfreetargetw	instantaneous			
+0265	setfreetargettype	instantaneous	ActorEntity:2	ActorEntity:2	ActorEntity
+0266	setautorelax	instantaneous			
+0267	commoneffectplay	instantaneous			
+0268	efffadein	instantaneous			
+0269	efffadeout	instantaneous			
+026A	effectsignalsync	durative			
+026B	stdmotionplaywithoutsame	instantaneous			
+026C	setcharseplay	instantaneous			
+026D	istouchuc	instantaneous			
+026E	settouchuconly	instantaneous			
+026F	setcharclipone	instantaneous			
+0270	defaultmapmodel	instantaneous	Movement:1	Movement:1	Movement
+0271	setsummoncameratarget	instantaneous	ActorEntity:1		
+0272	getdefaultwalkthresholdspeed	instantaneous			
+0273	setcharseplayall	instantaneous			
+0274	effecttriggersync	durative			
+0275	effecttriggersync_275	durative			
+0276	setfloaty	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0277	lookat_277	durative			
+0278	lookat_278	durative	Movement:1		
+0279	lookata_279	durative			
+027A	lookatab_27a	durative	Movement:1		
+027B	rlookat_27b	durative	Movement:4	Movement:4	Movement
+027C	rlookat_27c	durative	Movement:1		
+027D	rlookata_27d	durative	Movement:1		
+027E	rlookatab_27e	durative	Movement:1		
+027F	setlightallcutstatus	instantaneous			
+0280	animeplaytiming	instantaneous			
+0281	setaturnlookatlockstatus	instantaneous			
+0282	motionsync_282	durative			
+0283	setzclipoverdraw	instantaneous			
+0284	setshadowalpha	instantaneous			
+0285	clearshadowalpha	instantaneous			
+0286	setshadowlod	instantaneous			
+0287	clearshadowlod	instantaneous			
+0288	resetbehindcamera	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0289	resumebehindcamera_289	instantaneous			
+028A	setshadowratio	instantaneous			
+028B	voiceplay_28b	instantaneous			
+028C	voiceplay_28c	instantaneous			
+028D	voicestandby	instantaneous			
+028E	distance3d	instantaneous	ActorEntity:1		
+028F	distance	instantaneous	ActorEntity:1		
+0290	distance_290	instantaneous	ActorEntity:1		
+0291	distance3d_291	instantaneous	ActorEntity:1		
+0292	distance_292	instantaneous			
+0293	distance3d_293	instantaneous			
+0294	atan2	instantaneous			
+0295	isrange	instantaneous	Movement:1,ActorEntity:1		
+0296	isrange_296	instantaneous	Movement:1		
+0297	usemoviememory	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0298	stopmoviememory	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0299	seteffbeforeframecapturemode	instantaneous			
+029A	getspattackskillinfo	instantaneous	CombatAction:1	CombatAction:1	CombatAction
+029B	spattackread	instantaneous	CombatAction:1	CombatAction:1	CombatAction
+029C	spattackreadsync	durative			
+029D	spattackplay	instantaneous	CombatAction:1	CombatAction:1	CombatAction
+029E	spattacksync	durative			
+029F	effecttotalsignalsync	durative			
+02A0	hidenobattletarget_spattack	instantaneous			
+02A1	isfusion_spattack	instantaneous			
+02A2	capturepcbyentryid	instantaneous	ActorEntity:2	ActorEntity:1	ActorEntity
+02A3	duplicatepartyinfo_spattack	instantaneous			
+02A4	resumepartyinfo_spattack	instantaneous			
+02A5	lockreverb_2a5	instantaneous			
+02A6	efffadecancel	instantaneous			
+02A7	setmenuhptargetshowstatus	instantaneous			
+02A8	openspattackwindow	instantaneous			
+02A9	spattackwindowsync	empty			
+02AA	setbattlethinkstatus	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+02AB	summonplaymotionall	instantaneous			
+02AC	summonfollowboneposall	instantaneous			
+02AD	summonfollowbonestatusall	instantaneous			
+02AE	setsoftfocusmode	instantaneous			
+02AF	openskillnamewindow_spattack	instantaneous			
+02B0	getdefaultheight	instantaneous			
+02B1	getdefaultradiusw	instantaneous			
+02B2	getdefaultradiusd	instantaneous			
+02B3	setquestscenarioflag	instantaneous			
+02B4	getquestscenarioflag	instantaneous			
+02B5	setquestcontract	instantaneous			
+02B6	getquestcontract	instantaneous			
+02B7	motiontotalsignalsync	durative			
+02B8	setkutipakustatus	instantaneous			
+02B9	setinterventioncamera	instantaneous	ActorEntity:2,Party:1	Party:1	Party
+02BA	mapsoundplay	instantaneous	Audio:1	Audio:1	Audio
+02BB	mapsoundplay_2bb	instantaneous	Audio:1	Audio:1	Audio
+02BC	setquestok	instantaneous			
+02BD	isquestok	instantaneous			
+02BE	setuptreasure	durative	Movement:4,ActorEntity:1	Movement:4,ActorEntity:2	Movement
+02BF	talktreasure	durative	ActorEntity:2,Movement:1,Party:1	ActorEntity:1,Movement:1	ActorEntity
+02C0	sebsoundplay	instantaneous			
+02C1	sebsoundplay_2c1	instantaneous	Audio:3	Audio:3	Audio
+02C2	stdmotionplay_2c2	instantaneous			
+02C3	stdmotionplaywithoutsame_2c3	instantaneous			
+02C4	fadesystemtime	instantaneous			
+02C5	effectkeepmapjump	instantaneous			
+02C6	effectkeepclear	instantaneous			
+02C7	musictrans	instantaneous	Audio:3	Audio:3	Audio
+02C8	lookaty	durative	Movement:1		
+02C9	lookatyt	durative	Movement:1		
+02CA	lookatya	durative			
+02CB	lookatyat	durative			
+02CC	lookatyab	durative	Movement:1		
+02CD	lookatyabt	durative	Movement:1		
+02CE	rlookaty	durative	Movement:1		
+02CF	rlookatyt	durative	Movement:1		
+02D0	rlookatya	durative	Movement:1		
+02D1	rlookatyat	durative	Movement:1		
+02D2	rlookatyab	durative	Movement:1		
+02D3	rlookatyabt	durative	Movement:1		
+02D4	raturny	durative	Movement:1		
+02D5	raturnya	durative	Movement:4	Movement:3	Movement
+02D6	aturny	durative	Movement:2	Movement:1	Movement
+02D7	aturnya	durative	Movement:1	Movement:1	Movement
+02D8	lookaty_2d8	durative	Movement:1		
+02D9	lookatya_2d9	durative			
+02DA	lookatyab_2da	durative	Movement:1		
+02DB	rlookaty_2db	durative	Movement:1		
+02DC	rlookatya_2dc	durative	Movement:1		
+02DD	rlookatyab_2dd	durative	Movement:1		
+02DE	rturnzx	durative	Movement:1		
+02DF	setcapturescreenmode	instantaneous			
+02E0	setforcerelax	durative			
+02E1	clearforcerelax	durative			
+02E2	getucactorid	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+02E3	getucslot	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+02E4	haveitem	instantaneous			
+02E5	additem	instantaneous			
+02E6	checkgill	instantaneous			
+02E7	addgill	instantaneous	Rewards_Progression_Economy:1	Rewards_Progression_Economy:1	Rewards_Progression_Economy
+02E8	subgill	instantaneous	Rewards_Progression_Economy:1	Rewards_Progression_Economy:1	Rewards_Progression_Economy
+02E9	havegill	instantaneous			
+02EA	getmapid	instantaneous			
+02EB	getmaptype	instantaneous			
+02EC	getplaytime	instantaneous			
+02ED	getplayhour	instantaneous			
+02EE	getplaysec	instantaneous			
+02EF	getplaymin	instantaneous			
+02F0	getprice	instantaneous			
+02F1	isdaijiitemid	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+02F2	subitem	instantaneous			
+02F3	setunazukistatus	instantaneous			
+02F4	setmallocalwritestatusbybattle	instantaneous			
+02F5	ishoridashi	instantaneous			
+02F6	clearhoridashi	instantaneous			
+02F7	sethoridashi	instantaneous			
+02F8	isshutoralappear	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+02F9	clearshutoralappear	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+02FA	setshutoralappear	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+02FB	isshutoralenable	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+02FC	clearshutoralenable	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+02FD	setshutoralenable	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+02FE	usecamerahit	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+02FF	getmapgroundtype	instantaneous			
+0300	isnaviicon	instantaneous	Story_Event_Quest_Hunt:1		
+0301	setnaviicon	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+0302	clearnaviicon	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+0303	setsaverambattlestatus	instantaneous			
+0304	setsaveramsummonstatus	instantaneous			
+0305	setsaveramtelepostatus	instantaneous			
+0306	setsaveramsavestatus	instantaneous			
+0307	setsaveramshutoralstatus	instantaneous			
+0308	getsaverambattlestatus	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0309	getsaveramsummonstatus	instantaneous			
+030A	getsaveramtelepostatus	instantaneous			
+030B	getsaveramsavestatus	instantaneous			
+030C	getsaveramshutoralstatus	instantaneous			
+030D	setposbynaviicon	instantaneous	Movement:1	Movement:1	Movement
+030E	getcrystalid	instantaneous			
+030F	getanchorid	instantaneous			
+0310	cutinplay	instantaneous			
+0311	cutinclear	instantaneous			
+0312	resetcutinparam	instantaneous			
+0313	cutintype	instantaneous			
+0314	cutinlinefade	instantaneous			
+0315	cutinpos	instantaneous			
+0316	cutinrotate	instantaneous			
+0317	cutinlinewidth	instantaneous			
+0318	cutinuv	instantaneous			
+0319	cutincolor	instantaneous			
+031A	cutinlinecolor	instantaneous			
+031B	moveblurplay	instantaneous			
+031C	moveblurclear	instantaneous			
+031D	resetmoveblurparam	instantaneous			
+031E	moveblurpresettype	instantaneous			
+031F	moveblurcluttype	instantaneous			
+0320	moveblurnoisetype	instantaneous			
+0321	moveblurscreentype	instantaneous			
+0322	movebluraplpha	instantaneous			
+0323	getmapjumpanglebyindex	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0324	clearcharclipone	instantaneous			
+0325	charefftrigger	instantaneous			
+0326	getangle_326	instantaneous	Movement:1		
+0327	setcharclipdistance_327	instantaneous	Presentation:1	Presentation:1	Presentation
+0328	setcharclipfaderange	instantaneous	Presentation:1	Presentation:1	Presentation
+0329	getcharclipdefaultdistance	instantaneous	Presentation:1	Presentation:1	Presentation
+032A	getcharclipdefaultfaderange	instantaneous	Presentation:1	Presentation:1	Presentation
+032B	setstatuserrordispdenystatus	instantaneous			
+032C	setstatuserrorctrldenystatus	instantaneous			
+032D	gettelepoindex	instantaneous	ActorEntity:1		
+032E	getsaveindex	instantaneous	ActorEntity:1		
+032F	getanchorindex	instantaneous	ActorEntity:1		
+0330	setnorecovertelepostatus	empty			
+0331	getmapjumpmode	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0332	setmapjumpmode	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0333	calltelepoeffect	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0334	setforcefightmode	instantaneous			
+0335	setsummonfilter	instantaneous			
+0336	setsummonfilter_336	instantaneous			
+0337	setmutekiparty	instantaneous	Movement:1	Movement:1	Movement
+0338	settalkfadeoutstatus	instantaneous			
+0339	talkfadeout	instantaneous			
+033A	talkfadein	instantaneous			
+033B	camerahitcheck	instantaneous			
+033C	camerahitcheck_33c	instantaneous			
+033D	eventsoundplaysync	durative	Audio:1	Audio:1	Audio
+033E	setcharclipdefaultdistance	instantaneous	Presentation:1	Presentation:1	Presentation
+033F	setcharclipdefaultfaderange	instantaneous	Presentation:2	Presentation:2	Presentation
+0340	setcharclipdefaultdistance_340	instantaneous	Presentation:3	Presentation:3	Presentation
+0341	actoriopvoiceread	instantaneous			
+0342	actoriopvoicereadsync	empty			
+0343	getbehindcameradir	instantaneous			
+0344	entryread	instantaneous			
+0345	entryreadsync	empty			
+0346	setcharfogstatus	instantaneous			
+0347	setgaugeracemax	instantaneous			
+0348	setgaugeracetype	instantaneous			
+0349	setgaugeracecondition	instantaneous			
+034A	setgaugeraceiconpos	instantaneous			
+034B	setgaugeraceiconpos_34b	instantaneous			
+034C	setgaugeraceicontype	instantaneous			
+034D	setgaugeraceiconshowstatus	instantaneous			
+034E	getgaugeraceiconpos	instantaneous			
+034F	behindtoeventcamera	instantaneous			
+0350	behindtoeventcamerasync	empty			
+0351	getequipitemid	instantaneous			
+0352	getpartymember	instantaneous	Party:1	Party:1	Party
+0353	addpartymember	durative	Party:2	Party:2	Party
+0354	removepartymember	durative	Party:2	Party:2	Party
+0355	setbattlemember	durative	Party:7	Party:6	Party
+0356	battlemembersync	empty			
+0357	getbattlemember	instantaneous	Party:1	Party:1	Party
+0358	removebattlemember	durative	Party:4	Party:4	Party
+0359	setbattlememberone	durative	Party:6	Party:5	Party
+035A	setbattlememberlock	durative	Party:2	Party:2	Party
+035B	addguestbattlemember	durative	Party:4	Party:3	Party
+035C	removeguestbattlemember	durative	Party:3	Party:3	Party
+035D	isbattlemember	instantaneous	Party:1	Party:1	Party
+035E	ispartymember	instantaneous	Party:3	Party:3	Party
+035F	isguestbattlemember	instantaneous	Party:1	Party:1	Party
+0360	checkbattlemember	instantaneous	Party:4	Party:4	Party
+0361	getpartymembermask	instantaneous	Party:1	Party:1	Party
+0362	getbattlemembermask	instantaneous	Party:1	Party:1	Party
+0363	getnowmusicno	instantaneous			
+0364	musicreplay	durative			
+0365	getmapdestposbyindex	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0366	captureactor	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0367	captureactor_367	instantaneous			
+0368	moviestandby	durative			
+0369	moviestandbysync	empty			
+036A	movieplay	instantaneous			
+036B	movieplaysync	empty			
+036C	getmovieframe	instantaneous			
+036D	movieend	instantaneous			
+036E	moviecancel	durative			
+036F	getmoviestatus	instantaneous			
+0370	summongethertarget	instantaneous	Movement:1	Movement:1	Movement
+0371	setgaugeraceiconparty	instantaneous			
+0372	hddinstall	stub(ret 0)			
+0373	networkhddinstall	stub(ret 0)			
+0374	hddmount	stub(ret 0)			
+0375	setusehdd	instantaneous			
+0376	getusehdd	instantaneous			
+0377	setreadfrompc	instantaneous			
+0378	getreadfrompc	instantaneous			
+0379	setreadfromhdd	instantaneous			
+037A	getreadfromhdd	instantaneous			
+037B	gethddinstallprogress	instantaneous			
+037C	questresultwindow	durative			
+037D	setnavimapjamming	instantaneous			
+037E	ridechocobo	durative			
+037F	getoffchocobo	durative			
+0380	eyemove	instantaneous			
+0381	eyemove_381	instantaneous			
+0382	eyemovediff	instantaneous			
+0383	eyemovediff_383	instantaneous			
+0384	eyemovereset	instantaneous			
+0385	eyemovestop	instantaneous			
+0386	queststartwindow	durative			
+0387	giveback_item_and_equip	durative			
+0388	takeaway_item_and_equip	durative			
+0389	settalkiconstatus	instantaneous			
+038A	setnpcname	instantaneous			
+038B	setnavimapdrawstatus	instantaneous			
+038C	sysreqwait	durative	ActorEntity:2	ActorEntity:1	ActorEntity
+038D	sethpmode	instantaneous			
+038E	sethpratiomode	instantaneous			
+038F	setmpmode	instantaneous			
+0390	setmpratiomode	instantaneous			
+0391	sethpmode_391	instantaneous	ActorEntity:1		
+0392	sethpratiomode_392	instantaneous	ActorEntity:1		
+0393	setmpmode_393	instantaneous	ActorEntity:1		
+0394	setmpratiomode_394	instantaneous	ActorEntity:1		
+0395	setexpandvoicememory	instantaneous			
+0396	removeexpandvoicememory	instantaneous			
+0397	setskyonly	instantaneous			
+0398	seteventtimestop	instantaneous			
+0399	settalknpcname	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+039A	releasetalknpcname	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+039B	istalknpcname	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+039C	tutorial_clear_eyemove	instantaneous			
+039D	tutorial_get_eyemove	instantaneous			
+039E	tutorial_clear_defaulteyecount	instantaneous			
+039F	tutorial_get_defaulteyecount	instantaneous			
+03A0	tutorial_get_behindcameraenable	instantaneous			
+03A1	tutorial_set_behindcameraenable	instantaneous			
+03A2	musicplaysync	durative	Audio:1	Audio:1	Audio
+03A3	tutorial_sync_targetinfolinearrive	durative			
+03A4	tutorial_sync_targetinfolinearrive_3a4	durative	ActorEntity:1		
+03A5	setmenudisablestatus	instantaneous			
+03A6	tutorial_sync_partymenu	durative			
+03A7	setdekustatus	instantaneous			
+03A8	zakokillall	instantaneous			
+03A9	setprojectionshadow	instantaneous			
+03AA	clearallprojectionshadow	instantaneous			
+03AB	setsunpos	instantaneous			
+03AC	moveblurcaptureonce	instantaneous			
+03AD	stopenvsoundall	instantaneous	Audio:1	Audio:1	Audio
+03AE	startenvsoundall	instantaneous	Audio:1	Audio:1	Audio
+03AF	healall	instantaneous			
+03B0	restartbattle	empty			
+03B1	setposparty	instantaneous	Movement:1	Movement:1	Movement
+03B2	rgbatrans	instantaneous			
+03B3	capturebattlemember	instantaneous			
+03B4	getbattlemembertotal	instantaneous			
+03B5	maskopenfast	instantaneous			
+03B6	maskclosefast	instantaneous			
+03B7	sethpmenufast	instantaneous			
+03B8	bosskillall	instantaneous			
+03B9	settutorial00timestop	instantaneous			
+03BA	actoriopvoiceclear	instantaneous			
+03BB	moveblurfade	instantaneous			
+03BC	moveblurclearfade	instantaneous			
+03BD	moveblurfadesync	stub(ret 0)			
+03BE	killallfast	instantaneous			
+03BF	setemergency	instantaneous	Party:1		
+03C0	setuclockstatus	instantaneous	Party:1	Party:1	Party
+03C1	hidetargettype	instantaneous			
+03C2	showtargettype	instantaneous			
+03C3	hidetargetgroup	instantaneous			
+03C4	showtargetgroup	instantaneous			
+03C5	shownavimapfast	instantaneous	UI:1	UI:1	UI
+03C6	hidenavimapfast	instantaneous	UI:1	UI:1	UI
+03C7	setsaveramnavimapstatus	instantaneous			
+03C8	charcachedisposeall	durative			
+03C9	bossgaugeinit	instantaneous			
+03CA	bossgaugeopen	instantaneous			
+03CB	bossgaugeclose	instantaneous			
+03CC	getbattlememberonlytotal	instantaneous			
+03CD	captureguestmember	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+03CE	getguestmemberonlytotal	instantaneous			
+03CF	bindhitobj	instantaneous	Movement:1	Movement:1	Movement
+03D0	setnowmap	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+03D1	setnowjumpindex	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+03D2	battlelastseplaysync	durative	Audio:1	Audio:1	Audio
+03D3	setmeswinhidestatus	instantaneous			
+03D4	setgaugehidestatus	instantaneous			
+03D5	denybonephysicalall	instantaneous			
+03D6	denybonephysical	instantaneous			
+03D7	stopspotsound	instantaneous			
+03D8	startspotsound	instantaneous			
+03D9	stopenvsound	instantaneous			
+03DA	startenvsound	instantaneous			
+03DB	setmotionprior	instantaneous			
+03DC	config_sethpgaugedisplay	instantaneous			
+03DD	changeenvsoundweather	instantaneous	Audio:1	Audio:1	Audio
+03DE	stopenvsound_3de	instantaneous			
+03DF	seteventwakerect	instantaneous			
+03E0	refreshparty	instantaneous	Party:1		
+03E1	setucpcmovelockstatus	instantaneous	Party:1	Party:1	Party
+03E2	softwarereset	durative			
+03E3	setcamerahitscale	instantaneous	Movement:1	Movement:1	Movement
+03E4	defaultcamerahitscale	instantaneous			
+03E5	incentryid	instantaneous			
+03E6	hidecomplete	instantaneous			
+03E7	clearhidecomplete	instantaneous			
+03E8	common2effectplay	instantaneous			
+03E9	capturebattleid	instantaneous	Party:2,ActorEntity:2	ActorEntity:2,Party:1	ActorEntity
+03EA	denybonephysicalall_3ea	instantaneous			
+03EB	partyallread	durative			
+03EC	setchocobomode	instantaneous			
+03ED	setmaphighmodeldepth	instantaneous	Movement:1	Movement:1	Movement
+03EE	setmapmodelstatus	instantaneous	Movement:1	Movement:1	Movement
+03EF	spotsoundtrans	instantaneous			
+03F0	capturebattlemembeructop	instantaneous			
+03F1	settreasureflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+03F2	releasetreasureflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+03F3	settreasurebattleflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+03F4	releasetreasurebattleflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+03F5	istreasureflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+03F6	istreasurebattleflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+03F7	mpad	instantaneous	Input:1	Input:1	Input
+03F8	mpadt	instantaneous	Input:1	Input:1	Input
+03F9	mpadr	instantaneous	Input:1	Input:1	Input
+03FA	mpadtr	instantaneous	Input:1	Input:1	Input
+03FB	mkeywait	durative	Input:1	Input:1	Input
+03FC	mkeywaitr	durative	Input:1	Input:1	Input
+03FD	mkeywaitt	durative	Input:1	Input:1	Input
+03FE	mkeywaittr	durative	Input:1	Input:1	Input
+03FF	mkeyscan	instantaneous	Input:1	Input:1	Input
+0400	mkeyscanr	instantaneous	Input:1	Input:1	Input
+0401	mkeyscant	instantaneous	Input:1	Input:1	Input
+0402	mkeyscantr	instantaneous	Input:1	Input:1	Input
+0403	set_talk_wituout_hide_status	instantaneous			
+0404	releasepc_404	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0405	setentrypos	instantaneous	WorldAreaField:1,Movement:1	WorldAreaField:1,Movement:1	WorldAreaField
+0406	setbgnpcstatus	instantaneous			
+0407	getchocobomode	instantaneous			
+0408	getsummonmode	instantaneous			
+0409	enable_by_summon	instantaneous			
+040A	enable_by_chocobo	instantaneous			
+040B	clearmapjumpstatus	instantaneous			
+040C	getweatherslot	instantaneous			
+040D	partyusemapid	instantaneous	ActorEntity:1,Movement:1	Movement:1	Movement
+040E	partyusecharhit	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+040F	partysetlod	instantaneous			
+0410	partyshowshadow	instantaneous			
+0411	partyshowshadow_411	instantaneous			
+0412	partyhideshadow	instantaneous			
+0413	setpartyprojectionshadow	instantaneous			
+0414	talktreasureafter	durative	Party:1,ActorEntity:1		
+0415	clearnavimapfootmark	instantaneous			
+0416	setnavimapfootmarkstatus	instantaneous			
+0417	puppetdir	instantaneous			
+0418	puppetdir_418	instantaneous	Presentation:1	Presentation:1	Presentation
+0419	puppetsetpos	instantaneous	Presentation:1	Presentation:1	Presentation
+041A	puppetbindoff	instantaneous	Presentation:1	Presentation:1	Presentation
+041B	puppetbind	durative	Presentation:1	Presentation:1	Presentation
+041C	puppetbind_41c	durative	Presentation:1	Presentation:1	Presentation
+041D	puppetbind_41d	durative	Presentation:1	Presentation:1	Presentation
+041E	puppetmotionplay	instantaneous			
+041F	puppetmotionplay_41f	instantaneous	Presentation:1		
+0420	puppetmotionsync	durative			
+0421	puppetmotionsync_421	durative	Presentation:1		
+0422	puppetmotionloopframe	instantaneous	Presentation:1		
+0423	puppetmotionstartframe	instantaneous	Presentation:1		
+0424	puppetmotionratio	instantaneous	Presentation:1		
+0425	puppetmotioncancel	instantaneous	Presentation:1		
+0426	puppetmotionclear	instantaneous	Presentation:1		
+0427	puppetshowshadow	instantaneous	Presentation:1		
+0428	puppethideshadow	instantaneous	Presentation:1		
+0429	puppetshowshadow_429	instantaneous	Presentation:1		
+042A	puppetsetlod	instantaneous	Presentation:1		
+042B	puppetsetprojectionshadow	instantaneous	Presentation:1		
+042C	puppetmotionloop	instantaneous	Presentation:1		
+042D	puppetshow	instantaneous	Presentation:1		
+042E	puppethide	instantaneous	Presentation:1		
+042F	puppetshow_42f	instantaneous	Presentation:1		
+0430	setmapjumpgroupflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+0431	releasemapjumpgroupflag	instantaneous	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt:1	Story_Event_Quest_Hunt
+0432	ismapjumpgroupflag	instantaneous	Story_Event_Quest_Hunt:1		
+0433	lookat_maxangle_limit_lock	instantaneous			
+0434	lookat_maxangle_limit_unlock	instantaneous			
+0435	lookat_maxvelr_limit_unlock	instantaneous			
+0436	sethpmenu_436	instantaneous			
+0437	sethpmenufast_437	instantaneous			
+0438	seteventtimer	instantaneous			
+0439	starteventtimer	instantaneous			
+043A	istermeventtimer	instantaneous			
+043B	geteventtimer	instantaneous			
+043C	pauseeventtimer	instantaneous			
+043D	effectteleposyncbyid	durative			
+043E	partycommoneffectplay	instantaneous			
+043F	effectsyncbyid	durative			
+0440	effecthitsyncbyid	durative			
+0441	amesv	instantaneous			
+0442	mesvfaceread	instantaneous			
+0443	mesvfacereadsync	durative			
+0444	mesvfacedispose	instantaneous			
+0445	mesvfacedisposeall	instantaneous			
+0446	mesvmaskopen	instantaneous			
+0447	mesvmaskopenfast	instantaneous			
+0448	bgmstreamread	instantaneous			
+0449	bgmstreamreadsync	empty			
+044A	bgmstreamplay	instantaneous			
+044B	bgmstreamplaysync	empty			
+044C	bgmstreamstop	instantaneous			
+044D	usebgmstream	instantaneous			
+044E	freebgmstream	instantaneous			
+044F	getbgmstreamstatus	instantaneous			
+0450	battlemotionplay	instantaneous			
+0451	setfieldsignlocationjumpinfo	instantaneous			
+0452	getmogxiindex	instantaneous	ActorEntity:1		
+0453	settalkholdtimer	instantaneous			
+0454	talkholdstop	instantaneous			
+0455	open_interventionmenu	instantaneous			
+0456	close_interventionmenu	instantaneous			
+0457	get_interventionmenu_status	instantaneous			
+0458	show_escapingwindow	instantaneous			
+0459	hide_escapingwindow	instantaneous			
+045A	get_interventionmenu_commandstatus	instantaneous			
+045B	isbattleaction	instantaneous			
+045C	set_interventionmenu_tutorialmode	instantaneous			
+045D	islookatcamera	instantaneous			
+045E	islookatcameratarget	instantaneous	ActorEntity:1		
+045F	setpartymenustatus	instantaneous			
+0460	isbattleaction_460	instantaneous			
+0461	mes	instantaneous			
+0462	gettalkholdtimer	instantaneous			
+0463	getdefaulttalkholdtimer	instantaneous			
+0464	bgeffectsync	durative			
+0465	charcommoneffectplay	instantaneous			
+0466	charcommoneffecttrigger	instantaneous			
+0467	charcommoneffectstop	instantaneous			
+0468	getequipitemid_468	instantaneous	Party:1		
+0469	get_interventionmenu_casterid	instantaneous			
+046A	setmist	instantaneous			
+046B	battlevoice_regist_ctrl_data	instantaneous			
+046C	battlevoice_clear_ctrl_data	instantaneous			
+046D	battlevoice_calc_member	instantaneous			
+046E	battlevoice_regist_message_and_voice	instantaneous			
+046F	partyallread2	durative			
+0470	getnowmapmusicno	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+0471	setnowmapmusicno	instantaneous			
+0472	openfullscreenmenu	durative	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+0473	stdmotioneventsync	durative			
+0474	setmeswinline	instantaneous			
+0475	setaskselectignore	instantaneous			
+0476	setmeswinactive	instantaneous			
+0477	setmeswincaptionid	instantaneous			
+0478	showenemy	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+0479	hideenemy	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+047A	getnowmapmusicno_47a	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+047B	isbossmusic	instantaneous			
+047C	puppetsetscale	instantaneous	Presentation:1	Presentation:1	Presentation
+047D	puppetsetscale_47d	instantaneous	Presentation:1	Presentation:1	Presentation
+047E	setmeswinmesid	instantaneous			
+047F	additem_47f	instantaneous			
+0480	additemmes	durative			
+0481	setmapwind	instantaneous			
+0482	defaultmapwind	instantaneous			
+0483	setforcefight	durative			
+0484	clearforcefight	durative			
+0485	setcharambientratio	instantaneous			
+0486	setallcharambientratio	instantaneous			
+0487	gillwinopen	instantaneous			
+0488	gillwinclose	instantaneous			
+0489	gillwinstart	instantaneous			
+048A	gillwinsync	empty			
+048B	getmapid_48b	instantaneous	Party:1	Party:1	Party
+048C	getmapgroundtype_48c	instantaneous	Party:1	Party:1	Party
+048D	openfullscreenmenu_48d	durative	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+048E	npc_to_gimmick	instantaneous			
+048F	gimmick_to_npc	instantaneous			
+0490	mesvgetvoiceid	instantaneous			
+0491	mesvgetmesid	instantaneous			
+0492	debug_initsaveram	instantaneous			
+0493	set_talk_without_hide_status	instantaneous			
+0494	setkubifuristatus	instantaneous			
+0495	setbodyshake	instantaneous			
+0496	setbodyshakeall	instantaneous			
+0497	set_force_ignore_timestop	instantaneous			
+0498	hideparty_without_uc	instantaneous	Party:2,ActorEntity:1		
+0499	getcharbattlestatus	instantaneous			
+049A	getcharbattlestatus_49a	instantaneous	ActorEntity:1		
+049B	ucmovesync	empty	ActorEntity:1,Party:1		
+049C	mesvgetfaceid	instantaneous			
+049D	mesclosesync	durative			
+049E	isdead2	instantaneous			
+049F	isdead2_49f	instantaneous	ActorEntity:1		
+04A0	deny_char_camerashake	instantaneous			
+04A1	deny_printf	instantaneous			
+04A2	setkutipakustatus_4a2	instantaneous			
+04A3	setunazukistatus_4a3	instantaneous			
+04A4	setkubifuristatus_4a4	instantaneous			
+04A5	ucon_4a5	instantaneous	ActorEntity:2	ActorEntity:1	ActorEntity
+04A6	ucoff_4a6	instantaneous	Movement:1,ActorEntity:1	Movement:1	Movement
+04A7	freqcancel	instantaneous	ActorEntity:2	ActorEntity:2	ActorEntity
+04A8	freqcancel_4a8	instantaneous	ActorEntity:3	ActorEntity:2	ActorEntity
+04A9	setshopname	instantaneous			
+04AA	atrac3standby	instantaneous			
+04AB	atrac3standbysync	empty			
+04AC	atrac3play	stub(ret 0)			
+04AD	atrac3playsync	empty			
+04AE	atrac3cancel	stub(ret 0)			
+04AF	isatrac3play	instantaneous			
+04B0	atrac3playcounter	instantaneous			
+04B1	atrac3standby_4b1	instantaneous			
+04B2	setreadsyncstatusbyevent	instantaneous			
+04B3	startscene_4b3	instantaneous			
+04B4	motionlooppreset	instantaneous			
+04B5	initsync	empty			
+04B6	deny_camerashake_without_event	instantaneous			
+04B7	setbattlethinkstatus_freetarget_group	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+04B8	hide_freetarget_group	instantaneous			
+04B9	show_freetarget_group	instantaneous			
+04BA	rlookatr	durative			
+04BB	rlookatr_4bb	durative	Movement:4	Movement:4	Movement
+04BC	rlookatr_4bc	durative	Movement:4	Movement:4	Movement
+04BD	lookatr	durative			
+04BE	lookatr_4be	durative			
+04BF	lookatr_4bf	durative			
+04C0	rlookatw	durative			
+04C1	rlookatw_4c1	durative			
+04C2	rlookatw_4c2	durative	Movement:4	Movement:4	Movement
+04C3	lookatw	durative			
+04C4	lookatw_4c4	durative			
+04C5	lookatw_4c5	durative			
+04C6	rlookatrt	durative	Movement:3	Movement:3	Movement
+04C7	rlookatrt_4c7	durative	Movement:3	Movement:3	Movement
+04C8	lookatrt	durative	Movement:3	Movement:3	Movement
+04C9	lookatrt_4c9	durative			
+04CA	rlookatwt	durative	Movement:3	Movement:3	Movement
+04CB	rlookatwt_4cb	durative	Movement:3	Movement:3	Movement
+04CC	lookatwt	durative	Movement:3	Movement:3	Movement
+04CD	lookatwt_4cd	durative			
+04CE	ramove	durative	Movement:3	Movement:2	Movement
+04CF	ramove_4cf	durative	Movement:2	Movement:1	Movement
+04D0	ramovea	durative	Movement:3	Movement:2	Movement
+04D1	ramovea_4d1	durative	Movement:2	Movement:1	Movement
+04D2	amove	durative	Movement:1	Movement:1	Movement
+04D3	amove_4d3	durative	Movement:2	Movement:1	Movement
+04D4	amovea	durative			
+04D5	amovea_4d5	durative	Movement:2	Movement:1	Movement
+04D6	istimestop	instantaneous			
+04D7	istimestop_4d7	instantaneous			
+04D8	callgameover	durative	UI:1	UI:1	UI
+04D9	setcharseplay_freetarget_group	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+04DA	getclanrank	instantaneous			
+04DB	getclanpoint	instantaneous			
+04DC	addclanpoint	instantaneous			
+04DD	ucmovecancel	instantaneous	ActorEntity:1,Party:1,Movement:1	Movement:1	Movement
+04DE	killgroup	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+04DF	uselightmap	instantaneous			
+04E0	fetchambient	instantaneous	Movement:1	Movement:1	Movement
+04E1	fetchambient_4e1	instantaneous	Movement:1	Movement:1	Movement
+04E2	setmapgroundtype	instantaneous			
+04E3	setmapgroundtype_4e3	instantaneous	Party:1	Party:1	Party
+04E4	puppetsetambient	instantaneous	Presentation:1	Presentation:1	Presentation
+04E5	puppetfetchambient	instantaneous	Presentation:1	Presentation:1	Presentation
+04E6	puppetmotionlooppreset	instantaneous	Presentation:1		
+04E7	ignorebattlemovectrl	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+04E8	setpartybattlestatus	instantaneous			
+04E9	clearpartybattlestatus	instantaneous			
+04EA	set_ignore_mapjump_func	instantaneous			
+04EB	is_ntsc	instantaneous			
+04EC	bgeffecttriggersync	durative			
+04ED	resetbonephysical	instantaneous			
+04EE	steppoint	instantaneous			
+04EF	setsteppointstatus	instantaneous			
+04F0	setsteppointstatusall	instantaneous			
+04F1	setdrawalphamode	instantaneous			
+04F2	get_systemfadeincanmoveblanktime	instantaneous			
+04F3	setsteppointmarkstatus	instantaneous			
+04F4	lookatoff_4f4	instantaneous	Movement:2	Movement:2	Movement
+04F5	set_field_effect	instantaneous			
+04F6	clear_field_effect	instantaneous			
+04F7	is_field_effect	instantaneous			
+04F8	showmapeffect	instantaneous	Movement:1	Movement:1	Movement
+04F9	hidemapeffect	instantaneous	Movement:1	Movement:1	Movement
+04FA	showmapeffect_4fa	instantaneous	Movement:1	Movement:1	Movement
+04FB	defaultmapeffect	instantaneous	Movement:1	Movement:1	Movement
+04FC	spattack_whiteout_menu_callback	instantaneous			
+04FD	handbook_getkillcount	instantaneous			
+04FE	handbook_getordernum	instantaneous			
+04FF	is_enable_run_event	instantaneous			
+0500	normalclipzx	instantaneous	ActorEntity:1		
+0501	ismove	instantaneous			
+0502	isturn	instantaneous	Movement:1	Movement:1	Movement
+0503	set_ignore_hitgroup	instantaneous			
+0504	setgambit_slotmax	instantaneous	CombatAI:1	CombatAI:1	CombatAI
+0505	setposoffset	instantaneous	Movement:2	Movement:2	Movement
+0506	setnoupdatebehindcamera_system	instantaneous			
+0507	sound_reverb_wet	instantaneous			
+0508	set_summon_effect_filter_status	instantaneous			
+0509	deny_summon_effect_filter	instantaneous			
+050A	setmapambient_maponly	instantaneous	Movement:1	Movement:1	Movement
+050B	setmapambient_maponly_50b	instantaneous	Movement:1	Movement:1	Movement
+050C	resetmapambient_maponly	instantaneous			
+050D	getsummonid	instantaneous			
+050E	musicphraseplay	durative			
+050F	seteventpartymode	instantaneous			
+0510	geteventpartymode	instantaneous			
+0511	getchocobomodebit	instantaneous			
+0512	getsummonmodebit	instantaneous			
+0513	geteventpartymodebit	instantaneous			
+0514	seteventparty2mode	instantaneous			
+0515	geteventparty2mode	instantaneous			
+0516	geteventparty2modebit	instantaneous			
+0517	btladjustsystem	instantaneous			
+0518	get_pad_ok	instantaneous	Input:1	Input:1	Input
+0519	get_pad_cancel	instantaneous	Input:1	Input:1	Input
+051A	skipstart	durative			
+051B	skipend	durative	Resource:1,Audio:1,CoreRuntimeScheduling:1,ActorEntity:1	Audio:1,CoreRuntimeScheduling:1,ActorEntity:1	Audio
+051C	skipcheck	instantaneous			
+051D	charseplay_move	instantaneous			
+051E	charseplay_move_51e	instantaneous	Audio:1	Audio:1	Audio
+051F	charseplay_voice	instantaneous			
+0520	charseplay_voice_520	instantaneous	Audio:1	Audio:1	Audio
+0521	charseplay_weapon	instantaneous			
+0522	charseplay_weapon_522	instantaneous	Audio:1	Audio:1	Audio
+0523	setoverheadicontype	instantaneous			
+0524	getoverheadicontype	instantaneous			
+0525	istouchucsync	durative			
+0526	termsummoncall	instantaneous			
+0527	settimestopmagic	instantaneous			
+0528	cleartimestopmagic	instantaneous			
+0529	istouchuc_529	instantaneous			
+052A	istouchucsync_52a	durative			
+052B	ucmove_52b	durative	Party:2,Movement:2,ActorEntity:1	Party:2,ActorEntity:1,Movement:1	Party
+052C	ucmovesync_52c	durative			
+052D	ucmovecancel_52d	instantaneous	Movement:1	Movement:1	Movement
+052E	setbattlethinkstatus_52e	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+052F	checkdistance3d	instantaneous	ActorEntity:3,Party:1		
+0530	checkdistance	instantaneous	ActorEntity:3,Party:1		
+0531	checkdistance3d_531	instantaneous	ActorEntity:1,Party:1		
+0532	checkdistance_532	instantaneous	ActorEntity:1,Party:1		
+0533	waitdistance3d	durative			
+0534	waitdistance	durative			
+0535	puppetrgbatrans	instantaneous	Presentation:1		
+0536	musicfadeoutsync	empty			
+0537	puppetefftrigger	instantaneous	Presentation:1		
+0538	lockcharresource	instantaneous			
+0539	skipexec	instantaneous			
+053A	settargetliststatus	instantaneous			
+053B	settrapresource	instantaneous			
+053C	istownmap	instantaneous	WorldAreaField:1		
+053D	clear_activelog	instantaneous			
+053E	partystdmotionplay	instantaneous	Party:1,ActorEntity:1	ActorEntity:1	ActorEntity
+053F	partystdmotionplaywithoutsame	instantaneous	Party:1,ActorEntity:1	ActorEntity:1	ActorEntity
+0540	partystdmotionplay_540	instantaneous	Party:1,ActorEntity:1	ActorEntity:1	ActorEntity
+0541	partystdmotionplaywithoutsame_541	instantaneous	Party:1,ActorEntity:1	ActorEntity:1	ActorEntity
+0542	pausesestop	instantaneous			
+0543	getbattlemembertotal_543	instantaneous			
+0544	getbattlememberonlytotal_544	instantaneous			
+0545	getguestmemberonlytotal_545	instantaneous			
+0546	setemergency_one	instantaneous			
+0547	settrapshowstatus	instantaneous			
+0548	blurplay_548	instantaneous			
+0549	blurstop_549	instantaneous			
+054A	bluralpha_54a	instantaneous			
+054B	blurrotate_54b	instantaneous			
+054C	blurcolor_54c	instantaneous			
+054D	bluroffset_54d	instantaneous			
+054E	blurscale_54e	instantaneous			
+054F	blurprior_54f	instantaneous			
+0550	blurlayer_550	instantaneous			
+0551	blurtrans_551	instantaneous			
+0552	set_force_char_nearfade	instantaneous			
+0553	clear_force_char_nearfade	instantaneous			
+0554	resetemergency	instantaneous	Party:1		
+0555	resetemergency_with_animetionmode	instantaneous	Party:1		
+0556	getplaylooptime	instantaneous			
+0557	getplayloophour	instantaneous			
+0558	getplayloopsec	instantaneous			
+0559	getplayloopmin	instantaneous			
+055A	init_playtime	instantaneous			
+055B	takeoff_equip	durative	Items_Equipment_Shops_License:1	Items_Equipment_Shops_License:1	Items_Equipment_Shops_License
+055C	setitemnum	instantaneous			
+055D	weight_upper_pc	instantaneous			
+055E	clear_weight_upper_pc	instantaneous			
+055F	setstatuserrordispdenystatus_by_menu	instantaneous			
+0560	setstatuserrorctrldenystatus_by_menu	instantaneous			
+0561	clear_callpartymenu_status	instantaneous			
+0562	is_callpartymenu_status	instantaneous			
+0563	setflickerfreemode	instantaneous			
+0564	summon_refresh_party_lastfadein	instantaneous			
+0565	refresh_fightmotion	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+0566	refresh_party_fightmotion	instantaneous	Party:1,ActorEntity:1	ActorEntity:1	ActorEntity
+0567	check_move_battlestatus	instantaneous			
+0568	getweight	instantaneous			
+0569	puppet_setcharclipone	instantaneous	Presentation:1	Presentation:1	Presentation
+056A	set_microphone_pos	instantaneous			
+056B	clear_microphone_pos	instantaneous			
+056C	set_microphone_camera	instantaneous			
+056D	setposparty_mapjump	instantaneous	Movement:1	Movement:1	Movement
+056E	straightpcmtrans	instantaneous			
+056F	clear_effectactor	instantaneous			
+0570	bgeffectactor	instantaneous	ActorEntity:1		
+0571	clear_bgeffectactor	instantaneous			
+0572	summongethertarget_one	instantaneous	Movement:1	Movement:1	Movement
+0573	party_motionsync_and_relax	durative	Party:1		
+0574	freqcancel2	instantaneous	ActorEntity:2	ActorEntity:2	ActorEntity
+0575	freqcancel2_575	instantaneous	ActorEntity:3	ActorEntity:2	ActorEntity
+0576	fadeout_check_nextmap	instantaneous	Audio:1	Audio:1	Audio
+0577	musicfadeoutall	durative	Audio:1	Audio:1	Audio
+0578	set_title_flag	instantaneous			
+0579	get_title_flag	instantaneous			
+057A	cancel_battle_think_only_crystal_talk	instantaneous	ActorEntity:3,Party:1,WorldAreaField:1	ActorEntity:3	ActorEntity
+057B	set_ignore_flickerfilter_mask	instantaneous			
+057C	get_talk_run_status	instantaneous			
+057D	releasepc_battlemember	instantaneous			
+057E	envsoundtrans	instantaneous	Audio:1	Audio:1	Audio
+057F	resetemergency_one	instantaneous			
+0580	voicestopall	instantaneous			
+0581	check_move_battlestatus_ignore_dead	instantaneous			
+0582	capturepc_not_cancelbattlecommand	instantaneous	Party:2,ActorEntity:1,WorldAreaField:1	Party:1,ActorEntity:1	Party
+0583	capturepcbyentryid_not_cancelbattlecommand	instantaneous	ActorEntity:1		
+0584	delete_afterglow	instantaneous			
+0585	delete_afterglow_all	instantaneous			
+0586	suspendbattle_resetmotion	instantaneous			
+0587	suspendbattle_no_resetmotion	instantaneous			
+0588	wait_frame	durative			
+0589	ucoff_resetmotion	instantaneous	Movement:1	Movement:1	Movement
+058A	getmovieframe_frame	instantaneous			
+058B	setff12screenmode	instantaneous			
+058C	setmoviescreensize	instantaneous			
+058D	getmoviescreensize	instantaneous			
+058E	getscreenaspect	instantaneous			
+058F	setmoviescreenratio	instantaneous			
+0590	getmoviescreenratio	instantaneous			
+0591	setmoviescreenoffsety	instantaneous			
+0592	getmoviescreenoffsety	instantaneous			
+0593	math_abs	instantaneous			
+0594	math_fabs	instantaneous			
+0595	setmoviescreenratio_4_3	instantaneous			
+0596	getmoviescreenratio_4_3	instantaneous			
+0597	setmoviescreenoffsety_4_3	instantaneous			
+0598	getmoviescreenoffsety_4_3	instantaneous			
+0599	lockmapjump	instantaneous			
+059A	unlockmapjump	instantaneous			
+059B	getff12lang	instantaneous			
+059C	unkCall_59c	instantaneous	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+059D	unkCall_59d	instantaneous			
+059E		instantaneous			
+059F		instantaneous			
+05A0	unkCall_5a0	instantaneous			
+05A1	unkCall_5a1	instantaneous			
+05A2	unkCall_5a2	instantaneous			
+05A3	unkCall_5a3	instantaneous			
+05A4	unkCall_5a4	instantaneous			
+05A5	unkCall_5a5	instantaneous			
+05A6	unkCall_5a6	empty			
+05A7	isFirstStartDone	instantaneous			
+05A8	unkCall_5a8	instantaneous			
+05A9	unkCall_5a9	instantaneous			
+05AA		instantaneous	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+05AB	unkCall_5ab	instantaneous			
+05AC	unkCall_5ac	instantaneous			
+05AD	unkCall_5ad	instantaneous	PlatformOnlineAchievements:1	PlatformOnlineAchievements:1	PlatformOnlineAchievements
+05AE		instantaneous			
+05AF		instantaneous			
+05B0	unkCall_5b0	instantaneous			
+05B1	unkCall_5b1	instantaneous			
+05B2		instantaneous			
+05B3		instantaneous			
+05B4	unkCall_5b4	instantaneous			
+05B5	loadPs2Save	instantaneous			
+05B6	unkCall_5b6	instantaneous			
+05B7	unkCall_5b7	instantaneous			
+05B8	unkCall_5b8	instantaneous	Audio:4	Audio:4	Audio
+05B9	unkCall_5b9	instantaneous			
+05BA	unkCall_5ba	instantaneous			
+05BB	unkCall_5bb	instantaneous			
+05BC	unkCall_5bc	instantaneous			
+05BD	unkCall_5bd	instantaneous			
+05BE	unkCall_5be	instantaneous			
+05BF	unkCall_5bf	instantaneous			
+05C0		instantaneous			
+05C1		instantaneous			
+05C2	unkCall_5c2	instantaneous			
+05C3	unkCall_5c3	instantaneous			
+05C4	unkCall_5c4	instantaneous			
+05C5	unkCall_5c5	instantaneous			
+05C6	unkCall_5c6	instantaneous	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+05C7	unkCall_5c7	stub(ret 0)			
+05C8	unkCall_5c8	instantaneous			
+05C9	unkCall_5c9	instantaneous			
+05CA	unkCall_5ca	instantaneous	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+05CB	unkCall_5cb	durative			
+05CC		instantaneous			
+05CD	unkCall_5cd	instantaneous	Input:1	Input:1	Input
+05CE	unkCall_5ce	instantaneous	Input:1	Input:1	Input
+05CF	unkCall_5cf	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+05D0	unkCall_5d0	instantaneous			
+05D1	unkCall_5d1	instantaneous			
+05D2	unkCall_5d2	instantaneous			
+05D3	unkCall_5d3	instantaneous			
+05D4	unkCall_5d4	instantaneous			
+05D5	unkCall_5d5	durative	CoreRuntimeScheduling:1	CoreRuntimeScheduling:1	CoreRuntimeScheduling
+05D6	resetJobs	instantaneous			
+05D7	hasJobAssigned	instantaneous			
+3000	btlAtelSetAbility	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3001	btlAtelSetUnit	durative	ActorEntity:1,Spawn_Encounter_Lifecycle:1	ActorEntity:2,Spawn_Encounter_Lifecycle:1	ActorEntity
+3002	btlAtelSetStatus	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3003	btlAtelSetUnique	stub(ret 0)			
+3004	btlAtelSetPoint2	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3005	btlAtelSetUnitType	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3006	btlAtelSetBelong	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3007	btlAtelSetEntryFlag	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3008	btlAtelSetEventData	instantaneous	Movement:1	Movement:1	Movement
+3009	btlAtelSetDirection	instantaneous	Movement:1	Movement:1	Movement
+300A	btlAtelSetActiveAreaRange	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+300B	btlAtelSetSpawnDistance	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+300C	btlAtelSetPoint	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+300D	btlGetMutekiMode	instantaneous			
+300E	btlSetMutekiMode	instantaneous			
+300F	btlGetDekuMode	instantaneous			
+3010	btlSetDekuMode	instantaneous			
+3011	btlGetFriendMode	instantaneous			
+3012	btlSetFriendMode	instantaneous			
+3013	btlGetViewCheckMode	instantaneous			
+3014	btlSetViewCheckMode	instantaneous			
+3015	btlAtelSetCallGroup	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3016	btlAtelSetTotalEntryNumber	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3017	btlAtelSetSpecialSpawnRange	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3018	btlAtelSetEntryStruct	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3019	btlAtelSetDeSpawnType	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+301A	btlAtelDecideEntryPointAuto	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+301B	btlAtelGetDebugActionType	instantaneous			
+301C	btlAtelSetDebugActionType	instantaneous			
+301D	btlAtelSetCtrlCharPosToOrigin	instantaneous	Movement:1		
+301E	btlAtelGetDebugReactionType	instantaneous			
+301F	btlAtelSetDebugReactionType	instantaneous			
+3020	btlAtelRemoveAllEquip	stub(ret 0)			
+3021	btlAtelGetDebugRotControlMode	instantaneous			
+3022	btlAtelSetDebugRotControlMode	instantaneous			
+3023	btlAtelGetRealBattleMode	instantaneous			
+3024	btlAtelSetRealBattleMode	instantaneous			
+3025	btlAtelChangeAllBtlCharaFlag_DontMoveDebug	stub(ret 0)			
+3026	btlAtelGetAllItemsOne	instantaneous			
+3027	btlAtelGetAllItemsMax	instantaneous			
+3028	btlAtelGetDeadCountMax	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3029	btlAtelGetDeadCountNow	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+302A	btlAtelMimicFunction	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+302B	btlAtelSetNextSetSaveData	instantaneous			
+302C	btlAtelGetNextSetSaveData	instantaneous			
+302D	btlAtelTreasureInit	instantaneous			
+302E	btlAtelTreasureInitWithRange	instantaneous	Movement:1	Movement:1	Movement
+302F	btlAtelSetChocoboTurboMode	instantaneous	Party:1	Party:1	Party
+3030	btlAtelSetEventFlagGroup	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3031	btlAtelSetLevel	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3032	btlAtelGetPositionDataX	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+3033	btlAtelGetPositionDataY	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+3034	btlAtelGetPositionDataZ	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+3035	btlAtelGetEntryPoint	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3036	btlAtelGetElapseTime	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3037	btlAtelOpenTreasureMessage	durative	Items_Equipment_Shops_License:1,Rewards_Progression_Economy:1	Items_Equipment_Shops_License:1,Rewards_Progression_Economy:1	Items_Equipment_Shops_License
+3038	btlAtelSetDecidingEntryPointTimes	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3039	btlAtelGetBattleLogicFlag	instantaneous			
+303A	btlAtelSetBattleLogicFlag	instantaneous			
+303B	btlAtelGetRespawnCause	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+303C	btlAtelSetEntryPositionForce	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+303D	btlAtelGetCharIdFromPartySlot	instantaneous	CombatFormula:1		
+303E	btlAtelGetHpMaxFromPartySlot	instantaneous	CombatFormula:1		
+303F	btlAtelGetHpNowFromPartySlot	instantaneous	CombatFormula:1		
+3040	btlAtelGetMpMaxFromPartySlot	instantaneous	CombatFormula:1		
+3041	btlAtelGetMpNowFromPartySlot	instantaneous	CombatFormula:1		
+3042	btlAtelGetNowStatusFromPartySlot	instantaneous	CombatFormula:1		
+3043	btlAtelGetCharacterKindFromPartySlot	instantaneous	CombatFormula:1		
+3044	btlAtelSetSummonMode	instantaneous	UI:1	UI:1	UI
+3045	btlAtelIsPcOnPoint	instantaneous			
+3046	btlAtelGetMyPosX	instantaneous	ActorEntity:1		
+3047	btlAtelGetMyPosY	instantaneous	ActorEntity:1		
+3048	btlAtelGetMyPosZ	instantaneous	ActorEntity:1		
+3049	btlAtelGetChainCount	instantaneous			
+304A	btlAtelGetRespawnTime	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+304B	btlAtelDecideEntryGroupByPreviousMap	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+304C	btlAtelSetUnitFinish	instantaneous			
+304D	btlAtelCanselInitialSpawnFlag	instantaneous	ActorEntity:1		
+304E	btlAtelSetActiveActorMax	instantaneous			
+304F	btlAtelGetActiveActorMax	instantaneous			
+3050	btlAtelGetActiveActorNow	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3051	btlAtelOpenTreasureStart	durative			
+3052	btlAtelOpenTreasureFinish	durative			
+3053	btlAtelSetupActorStart	instantaneous			
+3054	btlAtelSetupActorFinish	stub(ret 0)			
+3055	btlAtelInitTagStart	stub(ret 0)			
+3056	btlAtelInitTagFinish	stub(ret 0)			
+3057	btlAtelSpawnTagStart	stub(ret 0)			
+3058	btlAtelSpawnTagFinish	stub(ret 0)			
+3059	btlAtelRespawnTagStart	stub(ret 0)			
+305A	btlAtelRespawnTagFinish	stub(ret 0)			
+305B	btlAtelSetSpawnLimitDegree	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+305C	btlAtelSetKeepWorkGroup	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+305D	btlAtelGetKeepWorkRealGroup	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+305E	btlAtelIgnoreKeepWork	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+305F	btlAtelDecideEntryGroupByContinuous	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+3060	btlAtelSetDefaultLogic	instantaneous	CombatAI:1	CombatAI:1	CombatAI
+3061	btlAtelSetHpLowLimit	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3062	btlAtelIsMimicName	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+3063	btlAtelGetAngleDiff	instantaneous			
+3064	btlGetPcMutekiMode	instantaneous			
+3065	btlSetPcMutekiMode	instantaneous			
+3066	btlGetAllCommandMode	instantaneous			
+3067	btlSetAllCommandMode	instantaneous			
+3068	btlAtelSetTreasureRateMax	instantaneous			
+3069	btlAtelGetTreasureRateMax	instantaneous			
+306A	btlAtelSetForceLoadArea	instantaneous			
+306B	btlAtelGetForceLoadArea	instantaneous			
+306C	btlAtelSetMapJumoKeep	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+306D	btlAtelGetMapJumpKeep	instantaneous	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle:1	Spawn_Encounter_Lifecycle
+306E	btlAtelKillAllZako	instantaneous			
+306F	btlAtelKillAllBoss	instantaneous			
+3070	btlAtelGetAllItems	instantaneous			
+3071	btlAtelGetAllEquips	instantaneous			
+3072	btlAtelGetAllEvItems	instantaneous			
+3073	btlAtelGetAllMagics	instantaneous			
+3074	btlAtelGetAllTechs	instantaneous			
+3075	btlAtelGetAllTgtChips	instantaneous			
+3076	btlAtelGetAllPrecious	instantaneous			
+3077	btlAtelGetAllMistCarts	instantaneous			
+3078	btlAtelAddMaxLicensePoint	instantaneous			
+3079	btlAtelSetStealRateMaxNormal	instantaneous			
+307A	btlAtelGetStealRateMaxNormal	instantaneous			
+307B	btlAtelSetStealRateMaxRare	instantaneous			
+307C	btlAtelGetStealRateMaxRare	instantaneous			
+307D	btlAtelSetStealRateMaxExRare	instantaneous			
+307E	btlAtelGetStealRateMaxExRare	instantaneous			
+307F	btlAtelSetPcLevel	instantaneous			
+3080	btlAtelGetPcLevel	instantaneous			
+3081	btlAtelSetYuugouWazaId	instantaneous			
+3082	btlAtelGetYuugouWazaId	instantaneous			
+3083	unkCall_3083	instantaneous			
+3084	unkCall_3084	instantaneous			
+3085	unkCall_3085	instantaneous			
+3086		instantaneous			
+3087		instantaneous			
+3088		instantaneous			
+3089		instantaneous			
+308A	btlAtelResetNgPlus	instantaneous			
+308B	btlAtelResetNgMinus	instantaneous			
+308C	unkCall_308c	instantaneous			
+308D		instantaneous			
+308E		instantaneous			
+308F		instantaneous			
+3090	unkCall_3090	instantaneous			
+3091	unkCall_3091	instantaneous			
+3092	unkCall_3092	durative	Movement:7,ActorEntity:2	Movement:4	Movement
+5000		durative			
+7000	fsmenu_wait	durative			
+7001	fsmenu_setslot	instantaneous			
+7002	fsmenu_openmenu	durative			
+7003	fsmenu_closemenu	durative			
+7004	fsmenu_paddisable	instantaneous	Input:1	Input:1	Input
+7005	fsmenu_oneshot	instantaneous	Input:1	Input:1	Input
+7006	fsmenu_setrepeat	instantaneous	Input:1	Input:1	Input
+7007	fsmenu_showauto	durative			
+7008	fsmenu_hideauto	durative			
+7009	fsmenu_registrestore	instantaneous			
+700A	fsmenu_blinkanchor	instantaneous			
+700B	fsmenu_changechip	durative			
+700C	fsmenu_movechip	durative			
+700D	fsmenu_movelist	durative			
+700E	fsmenu_selectchar	durative			
+700F	fsmenu_showdetail	durative			
+7010	fsmenu_hidedetail	durative			
+7011	fsmenu_movepanel	durative			
+7012	fsmenu_changelicense	durative			
+7013	fsmenu_sedisable	instantaneous			
+7014	fsmenu_loadresource	durative			
+7015	fsmenu_showsignal	instantaneous			
+7016	fsmenu_hidesignal	instantaneous			
+7017	fsmenu_showcursor	instantaneous			
+7018	fsmenu_hidecursor	instantaneous			
+7019	fsmenu_registrect	instantaneous			
+701A	fsmenu_showrect	durative			
+701B	fsmenu_hiderect	durative			
+701C	fsmenu_getrectchip	instantaneous			
+701D	fsmenu_getrectlist	instantaneous			
+701E	fsmenu_islist	instantaneous			
+701F	fsmenu_isactionchip	instantaneous			
+7020	fsmenu_istargetchip	instantaneous			
+7021	fsmenu_getrectdetail	instantaneous			
+7022	fsmenu_getrectpanel	instantaneous			
+7023	fsmenu_getrectstatus	instantaneous			
+7024	fsmenu_ispanel	instantaneous			
+7025	fsmenu_isthumbnail	instantaneous			
+7026	fsmenu_showdetailfast	durative			
+7027	fsmenu_hidedetailfast	durative			
+7028	fsmenu_showautofast	durative			
+7029	fsmenu_hideautofast	durative			
+702A	fsmenu_islocamap	instantaneous			
+702B	fsmenu_isiconlist	instantaneous			
+702C	fsmenu_registiconrect	instantaneous			
+702D	fs_stonewinopen	instantaneous			
+702E	fs_stonewinclose	instantaneous			
+702F	fs_foodwinopen	instantaneous			
+7030	fs_foodwinclose	instantaneous			
+7031	fs_setclanrank	instantaneous			
+7032	fsmenu_getcharlp	instantaneous			
+7033	fsmenu_getneedlp	instantaneous			
+7034	fsmenu_getlicensestatus	instantaneous			
+7035	fsmenu_registopenchip	durative			
+7036	fsmenu_syncopenchip	empty			
+7037	fsmenu_getconfirmwinstatus	instantaneous			
+7038	fsmenu_confirmwinsync	durative			
+7039	fsmenu_getactiowinstatus	instantaneous			
+703A	fsmenu_actionwinsync	durative			
+703B	fsmenu_disposeescape	instantaneous			
+703C	fsroll_initialize	durative			
+703D	fsroll_finalize	durative			
+703E	fsroll_start	instantaneous			
+703F	fsroll_isend	instantaneous			
+7040	fsroll_getstatus	instantaneous			
+7041	fsroll_setparam	instantaneous			
+7042	fsroll_speed	instantaneous			
+7043	fsroll_linedisp	instantaneous			
+7044	fsroll_layout	instantaneous			
+7045	fsroll_blank	instantaneous			
+7046	fsroll_nameA	instantaneous			
+7047	fsroll_nameB	instantaneous			
+7048	fsroll_nameC	instantaneous			
+7049	fsroll_data	instantaneous			
+704A	fsroll_stop	instantaneous			
+704B	fsroll_fontA	instantaneous			
+704C	fsroll_fontB	instantaneous			
+704D	fsroll_fontC	instantaneous			
+704E	fsroll_refresh	instantaneous			
+704F	fsroll_pause	instantaneous			
+7050	fsroll_getcounternow	instantaneous			
+7051	fsroll_getcountermax	instantaneous			
+7052	fsroll_setcounternow	instantaneous			
+7053	fsroll_getdouble	instantaneous			
+7054	fsroll_setdouble	instantaneous			
+7055	fsttl_initialize	durative			
+7056	fsttl_opendatacheck	instantaneous			
+7057	fsttl_getdatacheckstatus	instantaneous			
+7058	fsttl_opencommand	instantaneous			
+7059	fsttl_closecommand	instantaneous			
+705A	fsttl_getcommandstatus	instantaneous			
+705B	fsttl_openconfig	instantaneous			
+705C	fsttl_getconfigstatus	instantaneous			
+705D	fsttl_newgamestart	instantaneous			
+705E	fsroll_setend	instantaneous			
+705F	fsttl_opencommandsync	empty			
+7060	fsttl_closecommandsync	empty			
+7061	fs_reloadmrp	durative			
+7062	fsroll_moviewait	instantaneous			
+7063	fsroll_fontscaleA	instantaneous			
+7064	fsroll_fontscaleB	instantaneous			
+7065	fsroll_fontscaleC	instantaneous			
+7066	fsroll_fade	instantaneous			
+7067	unkCall_7067	instantaneous			
+2000	debug_bindp	durative			
+2001	mapload	durative	WorldAreaField:2	WorldAreaField:2	WorldAreaField
+2002	mapdispose	instantaneous			
+2003	debug_tkmalloc	instantaneous			
+2004	debug_tkmalloc_4	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+2005	debug_tkfree	instantaneous			
+2006	debug_filesize	instantaneous	Resource:1		
+2007	debug_fileread	durative	Resource:2		
+2008	debug_tkmallochandle	instantaneous			
+2009	debug_tkmallochandle_9	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+200A	debug_tkfreehandle	instantaneous			
+200B	debug_tklockhandle	instantaneous			
+200C	debug_tkunlockhandle	instantaneous			
+200D	debug_setpos	instantaneous	Movement:1	Movement:1	Movement
+200E	debug_garbagecollection	instantaneous			
+200F	debug_temp_readmotion	stub(ret 0)			
+2010	debug_setmotion	instantaneous			
+2011	debug_registcamera	instantaneous	Presentation:1	Presentation:1	Presentation
+2012	debug_cameradst	instantaneous	Presentation:1	Presentation:1	Presentation
+2013	debug_camerasrc	instantaneous	Presentation:1	Presentation:1	Presentation
+2014	debug_cameralookat	instantaneous			
+2015	debug_setscale	instantaneous	Movement:1	Movement:1	Movement
+2016	debug_setscale_16	instantaneous	Movement:1	Movement:1	Movement
+2017	debug_setweight	instantaneous			
+2018	debug_setradius	instantaneous	Movement:1	Movement:1	Movement
+2019	debug_hddinfo	stub(ret 0)			
+201A	debug_hddformat	stub(ret 0)			
+201B	debug_hddcreatepartition	instantaneous			
+201C	debug_mountpfs	instantaneous			
+201D	debug_umountpfs	stub(ret 0)			
+201E	debug_bgmstream	instantaneous			
+201F	debug_mesask	durative			
+2020	debug_meswinrect	instantaneous			
+2021	debug_setpc	instantaneous	Party:4,ActorEntity:1,Movement:1	Party:4,Movement:1	Party
+2022	debug_setucpc	instantaneous			
+2023	debug_isucpc	instantaneous	ActorEntity:1,Party:1		
+2024	debug_setweather	instantaneous			
+2025	debug_memorylist	instantaneous			
+2026	debug_mapjump	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+2027	debug_getucpc	instantaneous	Party:1		
+2028	debug_nextucpc	stub(ret 0)			
+2029	debug_prevucpc	stub(ret 0)			
+202A	debug_setmapdefaultpos	instantaneous	Movement:1	Movement:1	Movement
+202B	debug_bindw	durative			
+202C	debug_binds	durative			
+202D	debug_eventload	durative	Resource:1,ActorEntity:1,WorldAreaField:1	WorldAreaField:1	WorldAreaField
+202E	debug_eventdispose	instantaneous			
+202F	debug_open_triangle_menu	instantaneous			
+2030	debug_isopen_triangle_menu	instantaneous			
+2031	debug_bindoff	instantaneous			
+2032	debug_setdebugpc	instantaneous	ActorEntity:1,Party:1	Party:1	Party
+2033	debug_cleardebugpc	instantaneous			
+2034	debug_setthunder	instantaneous			
+2035	debug_string	instantaneous			
+2036	debug_switchstatusdisplay	instantaneous			
+2037	debug_open_triangle_menu2	instantaneous			
+2038	debug_meswin	durative			
+2039	debug_mesclose	instantaneous			
+203A	debug_isbind	instantaneous	ActorEntity:1		
+203B	debug_setline	instantaneous			
+203C	debug_setrect	instantaneous			
+203D	debug_rectangzx	instantaneous	Movement:1	Movement:1	Movement
+203E	debug_meswin_3e	empty			
+203F	debug_settalkradius	instantaneous	Movement:1	Movement:1	Movement
+2040	debug_talkrequire	instantaneous			
+2041	debug_isopendebugger	instantaneous			
+2042	debug_getucpcpos	instantaneous	ActorEntity:2,Party:1		
+2043	debug_mesask_43	durative			
+2044	debug_padd	instantaneous			
+2045	debug_paddt	instantaneous			
+2046	debug_paddr	instantaneous			
+2047	debug_spawn	instantaneous			
+2048	debug_pushtimectrl	instantaneous			
+2049	debug_poptimectrl	stub(ret 0)			
+204A	debug_istimectrl	instantaneous			
+204B	debug_setcammode	instantaneous			
+204C	debug_setcamfixmode	instantaneous			
+204D	debug_getcammode	instantaneous			
+204E	debug_getcamfixmode	instantaneous			
+204F	debug_settimectrlstatus	instantaneous			
+2050	debug_gettimectrlstatus	instantaneous			
+2051	debug_seplay	instantaneous	Audio:1	Audio:1	Audio
+2052	debug_musicplay	instantaneous	Audio:1	Audio:1	Audio
+2053	debug_musicstop	instantaneous	Audio:1	Audio:1	Audio
+2054	debug_menudispstatus	instantaneous			
+2055	debug_voiceplay	instantaneous			
+2056	debug_voicesync	durative			
+2057	debug_bindh	durative			
+2058	debug_bindhoff	instantaneous			
+2059	debug_positioninfo	instantaneous	WorldAreaField:1	WorldAreaField:1	WorldAreaField
+205A	debug_setprojectionshadow	instantaneous			
+205B	debug_setwaitmode	instantaneous			
+205C	debug_projectionshadowlight	instantaneous			
+205D	debug_bindw2	durative			
+205E	debug_binds2	durative			
+205F	debug_isinit	instantaneous			
+2060	debug_tkrealloc	instantaneous			
+2061	debug_jumpfrommenu	instantaneous			
+2062	debug_efffilesizecache	instantaneous			
+2063	debug_modelfilesizecache	instantaneous			
+2064	debug_setcostbarstatus	instantaneous			
+2065	debug_getcostbarstatus	instantaneous			
+2066	debug_readfilesizecache	instantaneous			
+2067	patch_drawmode	instantaneous			
+2068	debug_testknockback	instantaneous			
+2069	debug_switchnavimap	instantaneous			
+206A	debug_switchmonsterhpgauge	instantaneous			
+206B	debug_setfightstatusbyevent	instantaneous			
+206C	debug_clearquestall	instantaneous			
+206D	debug_unloadmc	instantaneous			
+206E	debug_reloadmc	durative			
+206F	debug_registcharsep	instantaneous	Audio:1	Audio:1	Audio
+2070	debug_isnewcharsep	instantaneous			
+2071	debug_freecharsep	instantaneous	Audio:1	Audio:1	Audio
+2072	debug_dumpsignal	instantaneous			
+2073	debug_externlabel	instantaneous			
+2074	debug_setcallsummonid	instantaneous			
+2075	debug_btlissummonmode	instantaneous			
+2076	debug_setactuator	instantaneous	Input:1	Input:1	Input
+2077	debug_cameraescape	instantaneous			
+2078	debug_replacegmap	instantaneous	WorldAreaField:3	WorldAreaField:3	WorldAreaField
+2079	debug_registskillmotion	instantaneous			
+207A	debug_skillmotionstatus	instantaneous			
+207B	debug_disposeskillmotion	instantaneous			
+207C	debug_skillmotion	instantaneous			
+207D	debug_setpcidtype	instantaneous			
+207E	debug_gettargetlinedispstatus	instantaneous			
+207F	debug_settargetlinedispstatus	instantaneous			
+2080	debug_lodlevelforce	instantaneous			
+2081	debug_isopen_menu	instantaneous			
+2082	debug_eventsync	durative			
+2083	debug_eventsync_83	durative			
+2084	debug_TkRequireUCPCMoveLockStatus	instantaneous	Party:1	Party:1	Party
+2085	debug_isopen_total_menu	instantaneous			
+2086	debug_tty_string	instantaneous			
+2087	debug_tty_integer	instantaneous			
+2088	debug_tty_float	instantaneous			
+2089	debug_tty_actorname	instantaneous	ActorEntity:1	ActorEntity:1	ActorEntity
+208A	debug_tty_modelname	instantaneous	Resource:1,ActorEntity:1	Resource:1	Resource
+208B	debug_tty_modelclutno	instantaneous	ActorEntity:1		
+208C	debug_tty_modellocalno	instantaneous	ActorEntity:1		
+208D	debug_tty_crlf	instantaneous			
+208E	debug_charmovestopvelrratio	instantaneous	Movement:1	Movement:1	Movement
+208F	debug_lightdatamustinit	instantaneous			
+2090	debug_freetarget	instantaneous			
+2091	debug_navimaptarget	instantaneous			
+2092	debug_openfreetarget	instantaneous			
+2093	debug_closefreetarget	instantaneous			
+2094	debug_clearfreetargetinfo	instantaneous			
+2095	debug_getfreetargetstatus	instantaneous			
+2096	debug_setdrawfocusdepthmap	instantaneous			
+2097	debug_cancelapproach	instantaneous			
+2098	debug_foottype	instantaneous			
+2099	debug_setseplaystatus	instantaneous			
+209A	debug_setvoiceplaystatus	instantaneous			
+209B	debug_savejfdata	instantaneous			
+209C	debug_loadjfdata	instantaneous	Resource:1,Save_Load_Settings:1,ActorEntity:1	Save_Load_Settings:1,ActorEntity:1	Save_Load_Settings
+209D	debug_setsoundplaymode	instantaneous			
+209E	debug_getsoundplaymode	instantaneous	Audio:1	Audio:1	Audio
+209F	debug_setlockweatherslot	instantaneous			
+20A0	debug_setdraweffectstatus	instantaneous			
+20A1	debug_setdrawsystemeffectstatus	instantaneous			
+20A2	debug_setdrawmenustatus	instantaneous			
+20A3	debug_setgill	instantaneous	Rewards_Progression_Economy:1	Rewards_Progression_Economy:1	Rewards_Progression_Economy
+20A4	debug_clearskillmotioncache	instantaneous			
+20A5	debug_setbonecheckstatus	instantaneous			
+20A6	debug_getdebugstatus	instantaneous	Input:1	Input:1	Input
+20A7	debug_modelinfobind	durative	Presentation:1	Presentation:1	Presentation
+20A8	debug_modelinfobindoff	instantaneous	Presentation:1	Presentation:1	Presentation
+20A9	debug_modelinfosetpos	instantaneous			
+20AA	debug_modelinfosetrotate	instantaneous			
+20AB	debug_clipboard_float	instantaneous			
+20AC	debug_clipboard_float_ac	instantaneous			
+20AD	debug_clipboard_float_ad	instantaneous			
+20AE	debug_clipboard_float_ae	instantaneous			
+20AF	debug_clipboard_int	instantaneous			
+20B0	debug_clipboard_int_b0	instantaneous			
+20B1	debug_clipboard_int_b1	instantaneous			
+20B2	debug_clipboard_int_b2	instantaneous			
+20B3	debug_forceareaload	instantaneous			
+20B4	debug_uncache_model_motion_by_mapjump	instantaneous			
+20B5	debug_freeiopvoice	instantaneous			
+20B6	debug_recoveriopvoice	durative			
+20B7	debug_mc_set_port_slot	instantaneous			
+20B8	debug_mc_get_status	instantaneous			
+20B9	debug_mc_write_savedata	durative			
+20BA	debug_mc_read_savedata	durative			
+20BB	debug_mc_format	durative			
+20BC	debug_load_mapjump	durative	ActorEntity:1	ActorEntity:1	ActorEntity
+20BD	debug_mc_connect_check	durative			
+20BE	debug_mc_format_check	durative			
+20BF	debug_ignore_gramapcache	instantaneous			
+20C0	debug_get_sqex_party_wake_counter	instantaneous			
+20C1	debug_set_sqex_party_wake_counter	instantaneous			
+20C2	debug_get_dq8demo_status	instantaneous			
+20C3	debug_set_dq8demo_status	instantaneous			
+20C4	debug_set_syncv_mode	instantaneous			
+20C5	debug_halt	instantaneous			
+20C6	debug_set_playmusic	instantaneous			
+20C7	debug_setucontimer	instantaneous			
+20C8	debug_set_e3demo_status	instantaneous			
+20C9	debug_get_e3demo_status	instantaneous			
+20CA	debug_call_pause	instantaneous			
+20CB	debug_sound_info_regist	instantaneous	Input:1	Input:1	Input
+20CC	debug_sound_info_play	instantaneous	Input:1	Input:1	Input
+20CD	debug_push_controler	instantaneous			
+20CE	debug_set_program_debug_flag	instantaneous			
+20CF	debug_setfilereadwaitstatus	instantaneous			
+20D0	debug_getfilereadwaitstatus	instantaneous			
+20D1	debug_setscreenmode	instantaneous	Save_Load_Settings:1	Save_Load_Settings:1	Save_Load_Settings
+20D2	debug_getscreenmode	instantaneous			
+20D3		stub(ret 0)			

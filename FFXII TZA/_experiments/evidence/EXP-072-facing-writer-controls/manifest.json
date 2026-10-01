@@ -1,0 +1,45 @@
+{
+  "experiment": "EXP-072-facing-writer-controls",
+  "files": {
+    "002E5E10.bin": {
+      "bytes": 374,
+      "sha256": "3bc6c794415682b5fe241de06fbd093bc165bce93257a8f68d86cfb83ff2f8fd"
+    },
+    "00915620.bin": {
+      "bytes": 4,
+      "sha256": "85552af8a6135cf71f7059eae5fcace95c1ac333fb8d0d862b59ead80eeaa35a"
+    },
+    "01CEBC50.bin": {
+      "bytes": 4,
+      "sha256": "3a1d8964b4fe305b5d25d90b8ba168d95e559961da4a9b22df4558cc257e7e11"
+    },
+    "01CEBC78.bin": {
+      "bytes": 4,
+      "sha256": "12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76"
+    },
+    "check.py": {
+      "bytes": 8878,
+      "sha256": "47d90968a3d9f9d557588e0e50bbf431f7d6fca7ffb2cd43d4dec3e1be655fad"
+    },
+    "disassembly.txt": {
+      "bytes": 4931,
+      "sha256": "f22a2b9b172ae98baac4fb7b35360174042a216dd15775eee42c844021b34bbf"
+    },
+    "failed-first-check.py": {
+      "bytes": 8731,
+      "sha256": "b3f5e73a5f363bbd612af5e93e866241311396cf25a58b695e803d29965d658b"
+    },
+    "failed-first-result.json": {
+      "bytes": 158851,
+      "sha256": "58fd03e4d487c0824affb3a68af125bc7b39459a7a3cb363025f56dc058f00df"
+    },
+    "failed-setup.txt": {
+      "bytes": 595,
+      "sha256": "f469245b6f617030aac93a10603f70e14ff24883884dda655e00b2f701ce0717"
+    },
+    "result.json": {
+      "bytes": 158849,
+      "sha256": "2252365f0087d60933800a9c16c883211c5d78a840bd47d6ecd123443b475cd6"
+    }
+  }
+}

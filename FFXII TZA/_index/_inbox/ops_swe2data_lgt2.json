@@ -1,0 +1,19 @@
+{
+  "task": {
+    "id": "SWE2-DATA-PUB-LGT2-0921",
+    "kind": "research",
+    "priority": "P2",
+    "requester": "SWE2-DATA",
+    "assigned_to": "SWE2-DATA",
+    "target": "publish MP-2 LGT2 member-object decode \u2014 the-map-ctrl-pack.md \u00a72.1 + OPEN-QUESTIONS + AUDIT-LOG 0921-n + SWE2-DATA.md + ADDRESS-INDEX",
+    "scope": "the four database paths listed in target only",
+    "resources": [
+      {
+        "key": "@publication"
+      }
+    ],
+    "completion": "commit hash recorded in the resume block; @publication released",
+    "dependencies": []
+  },
+  "action": "add"
+}

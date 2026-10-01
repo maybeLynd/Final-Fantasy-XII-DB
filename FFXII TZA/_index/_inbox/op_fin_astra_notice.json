@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "ASTRA-NOTICE-EC7-NATIVE-EVIDENCE-PUBLICATION-WAIT",
+ "result_refs": [
+  "commit:c48541b96",
+  "commit:a1ff85eb4"
+ ],
+ "note": "batch-89 sealed end-to-end: publish c48541b96, seal 6600d99cb, tail 0392c27cd, board tail a1ff85eb4, resume fe4dd629e; all four tasks DONE; @publication released"
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-bts-primary-admission.py", line 73, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-bts-primary-admission.py", line 16, in main
+    if not manifest.is_file() or P.sha(manifest)!='c57c6b668c5b567014a01c5da45dcbf7899645e4547a6bc310edce0972891abb':raise ValueError('upstream canonical manifest missing/changed')
+                                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: upstream canonical manifest missing/changed

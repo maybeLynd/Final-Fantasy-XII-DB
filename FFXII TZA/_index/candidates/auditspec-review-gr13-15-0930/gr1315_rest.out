@@ -1,0 +1,105 @@
+== R2. rva32 occurrences of the reach targets, classified
+  005651E0 ['01D900B4 .rdata other', '01D900C4 .rdata other', '02FCF8B4 .pdata Begin']
+  005636F0 ['02FCF734 .pdata Begin']
+  00563930 ['02FCF764 .pdata Begin']
+  00563B10 ['02FCF794 .pdata Begin']
+  00563D20 ['02FCF7AC .pdata Begin']
+  0056E140 ['02FCFF8C .pdata Begin']
+  0056D370 ['02FCFF2C .pdata Begin']
+  002D2600 ['01D71D24 .rdata other', '01D71D34 .rdata other', '01DFC587 .data other', '02FAFF88 .pdata Begin']
+  002D28E0 ['01D71D68 .rdata other', '01D71D78 .rdata other', '01D71D8C .rdata other', '02FAFFAC .pdata Begin']
+  002D2DB0 ['01D71DD8 .rdata other', '01D71DE8 .rdata other', '02FAFFDC .pdata Begin']
+  002D1420 ['02FAFF40 .pdata Begin']
+== T2. tables at the checker's widths
+  00D23920 u32 x4: ['0x5af', '0x5a2', '0x5ae', '0x0']
+  00D0F990 i32 x8: [4, -1, 7, 6, 5, 8, 9, 10]
+  00D233A0 slots: 0x5AF->32 0x5A2->19 0x5AE->31 ; 0x405..0x40F -> [0, 1, 2, 3, 4, None, None, None, 5, 6, 7]
+== C2. tab loop and tab index
+  0057BE80 mov qword ptr [r14 + 0x18], rax
+  0057BE84 mov ecx, edi
+  0057BE86 call 0x2dd7e0
+  0057BE8B mov edx, eax
+  0057BE8D mov rcx, r14
+  0057BE90 call 0x2c9f20
+  0057BE95 mov rdi, qword ptr [rsp + 0x20]
+  0057BE9A inc esi
+  0057BE9C add rbx, 4
+  0057BEA0 cmp esi, 3
+  0057BEA3 jl 0x57be10
+  0057BEA9 mov rcx, qword ptr [rsp + 0x60]
+  0057BEAE xor rcx, rsp
+  0057BEB1 call 0x808c40
+  0057BEB6 lea r11, [rsp + 0x70]
+  0057BEBB mov rbx, qword ptr [r11 + 0x38]
+  --
+  0057C0E0 mov esp, 0x40ffd501
+  0057C0E5 movzx edx, bh
+  0057C0E8 mov rcx, rbx
+  0057C0EB call 0x57bee0
+  0057C0F0 movzx ecx, byte ptr [rbx + 0xc0]
+  0057C0F7 lea rax, [rip + 0x7a7822]
+  0057C0FE mov edx, dword ptr [rax + rsi*4]
+  0057C101 call 0x56dd50
+  0057C106 mov rcx, rbx
+  0057C109 mov qword ptr [rip + 0x272d688], rax
+== C3. 003FE30B..003FE324; references to 003FDA20 / 003FF040
+  003FE300 sub al, 0xc9
+  003FE302 leave 
+  003FE303 add esi, eax
+  003FE305 and dl, 0xd
+  003FE308 add byte ptr [rax], al
+  003FE30A add byte ptr [rax - 0x75], cl
+  003FE30D or byte ptr [rax - 0x7d], cl
+  003FE311 clc 
+  003FE312 add dword ptr [rcx + rcx - 0x75], esi
+  003FE316 shr al, 1
+  003FE318 xchg esp, eax
+  003FDA20 rel32 ['3FF0A2'] | jcc [] | rip [] | abs64 [] | rva32 ['02FC4B80 .pdata Begin']
+  003FF040 rel32 ['3FF765'] | jcc [] | rip [] | abs64 [] | rva32 ['02FC4CB8 .pdata Begin']
+  003FF040's call of 003FDA20, and the equip menu's call of 003FF040:
+    003FF07A mov eax, edx
+    003FF07C lea ecx, [rdx - 0x18]
+    003FF07F call 0x252610
+    003FF084 cmp dword ptr [rbx + 0x178], 0x400
+    003FF08E jne 0x3ff0b9
+    003FF090 mov rax, qword ptr [rbx + 0x170]
+    003FF097 mov edx, esi
+    003FF099 mov ecx, edi
+    003FF09B mov byte ptr [rax + 0xfc], 2
+    003FF0A2 call 0x3fda20
+    --
+    003FF73D add byte ptr [rcx + 0xe0a0], al
+    003FF743 add bh, bh
+    --
+== R2b. the '.rdata other' rva32 hits read as RUNTIME_FUNCTION triples (chained unwind entries?)
+  01D900B4 begin 005651E0 end 005653E8 unwind 01D8A090 -> RUNTIME_FUNCTION (unwind v1)
+  01D900C4 begin 005651E0 end 005653E8 unwind 01D8A090 -> RUNTIME_FUNCTION (unwind v1)
+  01D71D24 begin 002D2600 end 002D274C unwind 01D71CFC -> RUNTIME_FUNCTION (unwind v1)
+  01D71D34 begin 002D2600 end 002D274C unwind 01D71CFC -> RUNTIME_FUNCTION (unwind v1)
+  01D71D68 begin 002D28E0 end 002D29C9 unwind 01D71D40 -> RUNTIME_FUNCTION (unwind v1)
+  01D71D78 begin 002D28E0 end 002D29C9 unwind 01D71D40 -> RUNTIME_FUNCTION (unwind v1)
+  01D71D8C begin 002D28E0 end 002D29C9 unwind 01D71D40 -> RUNTIME_FUNCTION (unwind v1)
+  01D71DD8 begin 002D2DB0 end 002D2F04 unwind 01D71DAC -> RUNTIME_FUNCTION (unwind v1)
+  01D71DE8 begin 002D2DB0 end 002D2F04 unwind 01D71DAC -> RUNTIME_FUNCTION (unwind v1)
+== C3b. function-aligned decode: 003FDFE0 create arm, and 003FF360's call of 003FF040
+  003FE304 mov byte ptr [rax + 0xde2], 0
+  003FE30B mov rax, qword ptr [rdx + 8]
+  003FE30F cmp rax, 1
+  003FE313 je 0x3fe31e
+  003FE315 mov edx, eax
+  003FE317 call 0x3fd6b0
+  003FE31C jmp 0x3fe329
+  003FE31E mov r8d, dword ptr [rdx + 0x10]
+  003FE322 mov edx, eax
+  003FE324 call 0x3fd860
+  003FE329 mov rcx, qword ptr [rbx + 0xd8]
+  --
+  003FF748 call 0x2445c0
+  003FF74D call 0x2c22f0
+  003FF752 mov rcx, rbx
+  003FF755 call 0x2470c0
+  003FF75A jmp 0x3ff8ef
+  003FF75F mov edx, dword ptr [rdx + 0x10]
+  003FF762 mov rcx, rbx
+  003FF765 call 0x3ff040
+  --

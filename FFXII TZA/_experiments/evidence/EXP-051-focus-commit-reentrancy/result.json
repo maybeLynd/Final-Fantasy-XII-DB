@@ -1,0 +1,1097 @@
+{
+  "status": "PASS",
+  "method": "original full commit body; controlled dependencies/interventions; final actor tail callee omitted",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "d54747d920c2dbec18f5f8381ad3d6b6c6ce6fcdc085e291cd6ef80a2e753a2e",
+  "cases": [
+    {
+      "name": "no-request",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 0
+      },
+      "after": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 0
+      },
+      "calls": [],
+      "original_writes": [],
+      "controlled_interventions": [],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "same-handle",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 4369,
+        "kind": 1
+      },
+      "after": {
+        "current": 4369,
+        "pending": 4369,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 4369
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "ordinary",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 1
+      },
+      "after": {
+        "current": 8738,
+        "pending": 8738,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467456,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            8738
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 8738
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509253,
+        3509260,
+        3509262,
+        3509264,
+        3509267,
+        2467456,
+        3509272,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "alternate",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 2
+      },
+      "after": {
+        "current": 8738,
+        "pending": 8738,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467472,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            8738
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 8738
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509253,
+        3509260,
+        3509274,
+        3509276,
+        3509279,
+        2467472,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "zero-current",
+      "matches": true,
+      "before": {
+        "current": 0,
+        "pending": 8738,
+        "kind": 1
+      },
+      "after": {
+        "current": 8738,
+        "pending": 8738,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            0
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467472,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            8738
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 8738
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509274,
+        3509276,
+        3509279,
+        2467472,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "replacement",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 1
+      },
+      "after": {
+        "current": 13107,
+        "pending": 13107,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467456,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            13107
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 13107
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [
+        {
+          "at": 2467456,
+          "address": 36470756,
+          "value": 13107,
+          "bytes": 4
+        },
+        {
+          "at": 2467456,
+          "address": 36470776,
+          "value": 1,
+          "bytes": 1
+        }
+      ],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509253,
+        3509260,
+        3509262,
+        3509264,
+        3509267,
+        2467456,
+        3509272,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "replacement-zero",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 1
+      },
+      "after": {
+        "current": 0,
+        "pending": 0,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467456,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [
+        {
+          "at": 2467456,
+          "address": 36470756,
+          "value": 0,
+          "bytes": 4
+        },
+        {
+          "at": 2467456,
+          "address": 36470776,
+          "value": 1,
+          "bytes": 1
+        }
+      ],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509253,
+        3509260,
+        3509262,
+        3509264,
+        3509267,
+        2467456,
+        3509272,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "kind-updated-before-branch",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 1
+      },
+      "after": {
+        "current": 8738,
+        "pending": 8738,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467472,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            8738
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 8738
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [
+        {
+          "at": 2463744,
+          "address": 36470776,
+          "value": 2,
+          "bytes": 1
+        }
+      ],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509253,
+        3509260,
+        3509274,
+        3509276,
+        3509279,
+        2467472,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "kind-cleared-after-entry",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 8738,
+        "kind": 1
+      },
+      "after": {
+        "current": 8738,
+        "pending": 8738,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3509056,
+          "args": [],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2463744,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 2467456,
+          "args": [
+            1342177536,
+            0
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        },
+        {
+          "va": 3508400,
+          "args": [
+            8738
+          ],
+          "result": 0,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 8738
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [
+        {
+          "at": 2463744,
+          "address": 36470776,
+          "value": 0,
+          "bytes": 1
+        }
+      ],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509222,
+        3509224,
+        3509229,
+        3508400,
+        3509234,
+        3509237,
+        3509056,
+        3509242,
+        3509244,
+        2463744,
+        3509249,
+        3509251,
+        3509253,
+        3509260,
+        3509262,
+        3509264,
+        3509267,
+        2467456,
+        3509272,
+        3509284,
+        3509290,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509335,
+        3509339,
+        1610616832
+      ],
+      "stop": "returned",
+      "tail_actor": []
+    },
+    {
+      "name": "same-handle-new-actor",
+      "matches": true,
+      "before": {
+        "current": 4369,
+        "pending": 4369,
+        "kind": 1
+      },
+      "after": {
+        "current": 4369,
+        "pending": 4369,
+        "kind": 0
+      },
+      "calls": [
+        {
+          "va": 3508400,
+          "args": [
+            4369
+          ],
+          "result": 1342177536,
+          "method": "controlled dependency"
+        }
+      ],
+      "original_writes": [
+        {
+          "address": 36470752,
+          "bytes": 4,
+          "value": 4369
+        },
+        {
+          "address": 36470776,
+          "bytes": 1,
+          "value": 0
+        }
+      ],
+      "controlled_interventions": [],
+      "visited": [
+        3509184,
+        3509188,
+        3509195,
+        3509201,
+        3509207,
+        3509212,
+        3509218,
+        3509220,
+        3509295,
+        3509301,
+        3509308,
+        3508400,
+        3509313,
+        3509318,
+        3509321,
+        3509323,
+        3509326,
+        3509330,
+        2523600
+      ],
+      "stop": "before new-actor tail callee",
+      "tail_actor": [
+        1342177536
+      ]
+    }
+  ],
+  "omitted_reread_mutant": {
+    "name": "omitted-pending-reread",
+    "matches": false,
+    "before": {
+      "current": 4369,
+      "pending": 8738,
+      "kind": 1
+    },
+    "after": {
+      "current": 195948557,
+      "pending": 13107,
+      "kind": 0
+    },
+    "calls": [
+      {
+        "va": 3508400,
+        "args": [
+          4369
+        ],
+        "result": 1342177536,
+        "method": "controlled dependency"
+      },
+      {
+        "va": 3509056,
+        "args": [],
+        "result": 0,
+        "method": "controlled dependency"
+      },
+      {
+        "va": 2463744,
+        "args": [
+          0
+        ],
+        "result": 0,
+        "method": "controlled dependency"
+      },
+      {
+        "va": 2467456,
+        "args": [
+          1342177536,
+          0
+        ],
+        "result": 0,
+        "method": "controlled dependency"
+      },
+      {
+        "va": 3508400,
+        "args": [
+          195948557
+        ],
+        "result": 0,
+        "method": "controlled dependency"
+      }
+    ],
+    "original_writes": [
+      {
+        "address": 36470752,
+        "bytes": 4,
+        "value": 195948557
+      },
+      {
+        "address": 36470776,
+        "bytes": 1,
+        "value": 0
+      }
+    ],
+    "controlled_interventions": [
+      {
+        "at": 2467456,
+        "address": 36470756,
+        "value": 13107,
+        "bytes": 4
+      },
+      {
+        "at": 2467456,
+        "address": 36470776,
+        "value": 1,
+        "bytes": 1
+      }
+    ],
+    "visited": [
+      3509184,
+      3509188,
+      3509195,
+      3509201,
+      3509207,
+      3509212,
+      3509218,
+      3509220,
+      3509222,
+      3509224,
+      3509229,
+      3508400,
+      3509234,
+      3509237,
+      3509056,
+      3509242,
+      3509244,
+      2463744,
+      3509249,
+      3509251,
+      3509253,
+      3509260,
+      3509262,
+      3509264,
+      3509267,
+      2467456,
+      3509272,
+      3509284,
+      3509285,
+      3509286,
+      3509287,
+      3509288,
+      3509289,
+      3509290,
+      3509295,
+      3509301,
+      3509308,
+      3508400,
+      3509313,
+      3509318,
+      3509321,
+      3509335,
+      3509339,
+      1610616832
+    ],
+    "stop": "returned",
+    "tail_actor": []
+  }
+}

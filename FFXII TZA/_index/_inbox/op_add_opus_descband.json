@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-THE-FIFTY-SIX-HEADS-ARE-CLASS-DESCRIPTORS",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "02CB59C8 and 02CECFF8, two sweep clusters fifty-eight entries apart whose initialisers write the same five-instruction head",
+  "scope": "find every static with that head shape, read one of their initialisers to identify what the shape belongs to, and correct the sweep's coverage model if the answer is something the store already records",
+  "completion": "the shape is identified from a contract-named callee rather than from its own regularity; if these are already-known objects the sweep's coverage is widened to say so, with the widening stated as a floor where the contract states one",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "carrier": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+ "by": "OPUS",
+ "date": "2026-09-30",
+ "record": "_index/candidates/s08-bgm-machine-drain-0930/ (0ff5f1226)",
+ "independent_of_overlay": true,
+ "replace_line": {
+  "old": "if external completion never arrives. The unguarded `0032E990` alone faults at `0x10` on a null",
+  "new": "if external completion never arrives. **Proviso (script BGM stream):** the same-call drain holds while the stream `02B5E0E0` is inactive (every shipped run) or waiting in state 5, but not while the stream machine `003EADE0` is in a submitting state (1, or 7 with bytes left) with the pool full: it submits through `0032E780` -> `0032E870` before writing its next state (`003EAE4C` before `003EAE63`, `003EAF9A` before `003EAFAD`), so the nested requester re-enters the pump, which calls the machine again, and nothing drains (SWE2-ORACLE 2026-09-30, NATIVE-REPLAY to depth 8, `_index/candidates/s08-bgm-machine-drain-0930/`; the order is static, OPUS-verified; exhaustion inferred; review pending). No shipped script feeds the stream, so this is a modded-script domain, like I5's gate. The unguarded `0032E990` alone faults at `0x10` on a null"
+ },
+ "apply": "replace the one line equal to 'old' (it occurs exactly once at HEAD, in I3) with 'new'; touch nothing else"
+}

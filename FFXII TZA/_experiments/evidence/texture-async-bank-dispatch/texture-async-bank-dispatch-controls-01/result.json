@@ -1,0 +1,63 @@
+{
+  "status": "PASS_ACTUAL_BANK_DISPATCH_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "6e47a0aadf0ca41b2f4e4c041df1ae680e04da43530edecfe845ca5597ec7b44",
+  "positive_reused": {
+    "path": "texture-async-bank-dispatch-result-01.json",
+    "sha256": "6ffa4e4ceffbd9be6b30ed86d71195e596c21d7341a504210313e226f866f0d9"
+  },
+  "refusals": [
+    {
+      "case": "consistent-opcode",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-bank-dispatch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\consistent-opcode\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\consistent-opcode\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "consistent-userdata-offset",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-bank-dispatch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\consistent-userdata-offset\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\consistent-userdata-offset\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-normal-tail",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-bank-dispatch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\missing-normal-tail\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\missing-normal-tail\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-capture-invocation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-bank-dispatch.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\failed-capture-invocation\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\failed-capture-invocation\\source"
+      ],
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Four actual producer CLI refusals; original positive reused; no native/game/external review executions"
+}

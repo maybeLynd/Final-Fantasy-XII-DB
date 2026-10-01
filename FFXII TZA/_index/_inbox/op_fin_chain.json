@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-WIDGET-CHAIN",
+ "result_refs": ["commit:6d35eb6f4"],
+ "note": "published. A five-instance widget hierarchy under _AB30, every extent read from a `mov edx, <extent>` at its own construction site: _AB30 0x61F0 -> +0xC0 0x3010 -> +0x220 0x2DC0 (the battle menu) -> two 0x1620 children at +0xF0 and +0x1710 sharing one handler. 0x3010 matches the widget page's independently derived child stride. The 0x2DC0 widget is fully accounted, 23 offsets with a passing control (the parent's handler shares only 2 generic header offsets); the 0x1620 subtype is an extent without an interior, 2 offsets in 0x1620 bytes. A bug in my own census tracker - held-register set updated before reading memory operands - was found, fixed, and the already-recorded menu figure re-run rather than assumed: unchanged at 23. Nothing declared: dword0710 is the only evidenced row inside child0 and its ownership is undecided across three coordinate systems, so an EMBED child type is required and the census package is filed as OPUS-CENSUS-BATTLE-MENU-WIDGET-2DC0."
+}

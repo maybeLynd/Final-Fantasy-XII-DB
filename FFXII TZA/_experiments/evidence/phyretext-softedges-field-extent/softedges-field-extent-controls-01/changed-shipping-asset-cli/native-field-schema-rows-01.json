@@ -1,0 +1,16 @@
+{
+  "source": "Database\\FFXII TZA\\22-Middleware-PhyreEngine\\Reflection-And-Class-Metadata\\phyre-field-schema.tsv",
+  "source_sha256": "2efc2201dda65099a3f06f81d85f2461312b623a4e0c7a4f5da34f91cf638215",
+  "rows": [
+    "class_leaf\tclass\tmember\toffset\ttype\tattrs\tclass_obj\ttype_obj\tsite\tcaller",
+    "PShaderParameterCaptureBufferLocation\tPRendering::VPShaderParameterCaptureBufferLocation\tm_offset\t0x0\tunsigned short\t0x00\t02CB9100\t01F2E500\t005E8811\t005E8790",
+    "PShaderParameterCaptureBufferLocationSize\tPRendering::VPShaderParameterCaptureBufferLocationSize\tm_size\t0x2\tunsigned short\t0x00\t02CB9200\t01F2E500\t005E88C5\t005E8840",
+    "PShaderParameterDefinition\tPRendering::VPShaderParameterDefinition\tm_name\t0x8\tVPString\t0x00\t02CB9500\t02E4D630\t005E970D\t005E9680",
+    "PShaderParameterDefinition\tPRendering::VPShaderParameterDefinition\tm_parameterType\t0x2\tunsigned char\t0x00\t02CB9500\t01F2E460\t005E977C\t005E9680",
+    "PShaderParameterDefinition\tPRendering::VPShaderParameterDefinition\tm_dataType\t0x3\tunsigned char\t0x00\t02CB9500\t01F2E460\t005E97EB\t005E9680",
+    "PShaderParameterDefinition\tPRendering::VPShaderParameterDefinition\tm_arrayElementCount\t0x0\tunsigned short\t0x00\t02CB9500\t01F2E500\t005E9856\t005E9680",
+    "PShaderParameterDefinition\tPRendering::VPShaderParameterDefinition\tm_bufferLoc\t0x10\tPRendering::VPShaderParameterCaptureBufferLocationSize\t0x00\t02CB9500\t02CB9200\t005E98C4\t005E9680",
+    "PShaderParameterDefinition\tPRendering::VPShaderParameterDefinition\tm_constantBufferLocation\t0x14\tunsigned int\t0x00\t02CB9500\t01F2E5A0\t005E9933\t005E9680"
+  ],
+  "limits": "Canonical reflection-schema source, not a newly executed native registration."
+}

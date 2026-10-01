@@ -1,0 +1,93 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "0f80812a36ef24e68a08e87cd4593c547886aedc"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "26cb49f458c25be66cdc419a3ca00143190d9594"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "4a91cfb5f537b7cd9de100437bd2ff0517ec4295"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "git_blob": "ec75d7d128d7ce661cde8d876bb07254de31d187"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "d15ec67780525683365fc6e2f88036a2b5834664"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "210acafafd92ca69b7e58afca6069a0e7310cbf9"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "7c1d1e38975f41539533f996511bd23596eaec96"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "c1cb13e32d0c43fd2d182aa56da3aee375dc21d2"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "0f80812a36ef24e68a08e87cd4593c547886aedc"
+    },
+    {
+      "path": "retained/label-correction/check-before.py",
+      "git_blob": "05f4c388ac2868219920f6529274f0f14adef0ea"
+    },
+    {
+      "path": "retained/label-correction/diagnostic.json",
+      "git_blob": "675c4b1d6d83785a17268c873fc1e29016ee40c1"
+    },
+    {
+      "path": "retained/label-correction/filtered-byte-check-before.json",
+      "git_blob": "ae1e41cb5b4aa90611a3112d09f1b1ec40ee3e39"
+    },
+    {
+      "path": "retained/label-correction/freeze.py-before-correction",
+      "git_blob": "fa5c027fc5c85d8f7cac9179f7504e174784a1d5"
+    },
+    {
+      "path": "retained/label-correction/manifest-before.json",
+      "git_blob": "da333465ac6e4f2cf348374d2430336fdb1e4c2b"
+    },
+    {
+      "path": "retained/label-correction/README.md-before-correction",
+      "git_blob": "0606380cc217fa48d1a2318e48412f6ecac6d9c5"
+    },
+    {
+      "path": "retained/label-correction/result-before.json",
+      "git_blob": "f6220636c0fc002d778d12dc479ad4c39101d11b"
+    },
+    {
+      "path": "retained/parent679.bin",
+      "git_blob": "96dda9bcd62fa2b53096d3d0715fe6036264c548"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/write-window88.bin",
+      "git_blob": "13ff8a126193828b9f2d4e53c34e63cb71d4c16a"
+    },
+    {
+      "path": "source.json",
+      "git_blob": "f7cc7892baea384399af586ea668bfaf14d3b297"
+    }
+  ]
+}

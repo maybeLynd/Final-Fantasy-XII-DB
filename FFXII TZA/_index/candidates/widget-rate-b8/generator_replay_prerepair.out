@@ -1,0 +1,4 @@
+PASS  P current accepted row: check exits 0, row untouched
+FAIL  L legacy row -> --patch -> accepted row exactly (meaning and evidence), check exits 0
+FAIL  I d9c76486b row -> --patch -> accepted row exactly, check exits 0
+FAILS 2

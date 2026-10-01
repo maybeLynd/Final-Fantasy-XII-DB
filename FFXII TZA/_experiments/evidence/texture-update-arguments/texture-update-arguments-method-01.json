@@ -1,0 +1,18 @@
+{
+  "question": "Which exact values does the RTTI-bound 622010 updater pass to graphics-context slot180, and can the queued 200-byte tail be treated as its immutable upload snapshot?",
+  "major_system": "Phyre PTexture2DD3D11 deferred resource update",
+  "consumers": ["OPUS: element+28 representation and exact callback ABI/arithmetic", "FABLE: admission versus deferred read/lifetime premises"],
+  "hypotheses": ["The queued tail supplies a complete immutable upload descriptor and byte pitches use widened multiplication", "The callback selects element+28 and reads owner/format/resource fields, with instruction-width truncation and independently re-read cleanup selection"],
+  "known_evidence": "Committed texture-async-boundary 6e28c3f1a7fc30610745fb5266c9507a834242bb establishes 200-byte admission copy, RTTI-bound owner/index callback and at-most12 slot180 calls. Exact parameter dependencies/arithmetic remain unassigned. Reuse its retained original five ranges; no recapture or prior census rerun.",
+  "method": "A: retained original-code dataflow and instruction-width invariant, conditional arithmetic counterexamples",
+  "why_sufficient": "A complete normal CFG and shipping-byte identity distinguish local load sites, ABI arguments, modulo products, loop bound and post-loop re-selection. These propositions do not require initialized game objects. Native graphics effects, alias reachability and scheduling are separate.",
+  "cheaper_methods": "Existing summary gives only broad callback boundary; inspect the retained complete source rather than trust that summary. No new EXE capture is required.",
+  "tool": "Reuse prove-title-queue-consumption.py and mandatory validate-title-source-annotations.py with the reviewed adapter. Add one bounded reducer and focused actual CLI refusal controls.",
+  "required_identity": "EXE SHA256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; 622010..6221DC SHA256 c6c880f7e3a465dd2cc553bfc5dbf60240fe56e52261212eebf17b5ecacf9b95; 621FF0 tail and D54348 physical RTTI retained.",
+  "acceptance": "Nonempty complete normal CFG; exact original body/table identity; actual shared byte/role validation; original parameter/load/order pins; finite low-bit arithmetic derivation and distinguishing overflow examples. Checked positive exit/result and actual refusal controls are separate prerequisites.",
+  "failure": "Missing/incomplete/mutated source, inconsistent annotation, unclosed CFG, unqualified prerequisite or failed control produces no final semantic result. Do not repeat unchanged failure or call synthetic samples original execution.",
+  "controls": "Positive original retained source. Consistent payload-offset and arithmetic-shift source mutations must refuse; missing source and failed positive receipt must refuse before downstream success. Reuse the positive for control packaging.",
+  "limits": "Normally returning ABI-preserving opaque callees; valid stable count/storage/format/owner state for the ordinary formula. No native invocation, universal alias safety, actual initialized pointers, natural dispatch, GPU result, caller completeness or lifetime guarantee.",
+  "restoration": "Only retained file reads and disposable control copies. Finite foreground scripts with checked terminal exit; no game/PC/input/instrument/save/config/reference or peer-process mutation.",
+  "next_discriminator": "After local ABI acceptance, identify actual element+28 producers or consumer/removal/counter writers only if still unowned and needed; escalate to a real process only for unresolved natural binding/order."
+}

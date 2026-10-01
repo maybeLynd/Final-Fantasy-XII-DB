@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2DATA-PUB-KANJI-CENSUS-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "publish kanji-census glyphs (12d2/12d4/12d5/12d8/12cb/137b) + prior fin-op tail",
+  "scope": "SN-1 ATEL companions",
+  "completion": "commit hash recorded",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

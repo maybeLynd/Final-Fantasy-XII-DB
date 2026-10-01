@@ -1,0 +1,95 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6358,
+      "sha256": "4dbac804bd1f10c29a3c16dedb0f3113d4f15aa976baebd94d210580f166149b"
+    },
+    {
+      "path": "executed-driver.py",
+      "bytes": 5921,
+      "sha256": "fb4ca62126febc75c36757d969b7430a033831ecedab30360b4874d5936e7476"
+    },
+    {
+      "path": "historical-incomplete-precondition/check.py",
+      "bytes": 4031,
+      "sha256": "7dae6fb4dd0aed3c2e535bec596e9ba95c50182b61808cef78950d5085b8217e"
+    },
+    {
+      "path": "historical-incomplete-precondition/failure.json",
+      "bytes": 837,
+      "sha256": "964e6837f3cc379b2a0683a2a8ee96c8dc31e592ff7521b13a711954321b3374"
+    },
+    {
+      "path": "historical-incomplete-precondition/PLAN.md",
+      "bytes": 2462,
+      "sha256": "372974fb181e0c7b8374780827bba0f214e85eb5168cd7e9ce76c7b5405e0573"
+    },
+    {
+      "path": "historical-incomplete-precondition/README.md",
+      "bytes": 4891,
+      "sha256": "cb4b2bf0270c568bf2ac595608b3fa8e941586c18c2d2cb8a99979dc38040c15"
+    },
+    {
+      "path": "historical-incomplete-precondition/validation.json",
+      "bytes": 2750,
+      "sha256": "bcf877f208ffcbd4c6117116347d2e08857f916b972630ea1d5c70ad40525b5c"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 3190,
+      "sha256": "10f8a8f76c0d7b941d8f35340b5507ed0e5757bc07366849171df121894d515e"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 7891,
+      "sha256": "d31ec98df050b592fa2d1dac108bcc4085db1703029e66e4818ba32af00ea4f0"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 85957,
+      "sha256": "67d16a80dc06d26ce59f3bbc5a2cc3dc44d2f9b61217a2a8392549fccdd95043"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7088,
+      "sha256": "ac168aa5639e62c44b690c458b8476af03aca81837a19655efd649bf1bd72dd1"
+    },
+    {
+      "path": "retained/check.py",
+      "bytes": 47745,
+      "sha256": "7725ab8ccd08385c3d1768b706ab6fb13b17ea49cda00636ea0ebedf0892c89e"
+    },
+    {
+      "path": "source.json",
+      "bytes": 39367,
+      "sha256": "ad119fb4989851ddffae7f75c5f84f168616ea56566a303d98de80fea03d2bc6"
+    },
+    {
+      "path": "supplement-raw.json",
+      "bytes": 9571,
+      "sha256": "d8c0cb938652205c3467fa683f04d37d26508b33f477d119961929a7aec6c362"
+    },
+    {
+      "path": "supplement-source.json",
+      "bytes": 1100,
+      "sha256": "4d0b4fdb027354cc5b3fcc91e2097679a2ef0c82025040d6c4646edbb1d94185"
+    },
+    {
+      "path": "supplement_probe.py",
+      "bytes": 3704,
+      "sha256": "4071ab15a27a3b7e7971759cf72dab0472838e90a314910bb15952c840f60ce2"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 3707,
+      "sha256": "a9b857d8ba7e20b53d966ed14fe5a08eb99284cdb3324da70c875f32721ec34b"
+    }
+  ],
+  "limits": "B full shipping GGRID/BASE/TTEST; disclosed synthetic mesh and finite _fdclass stub. Retained14 equality controls not rerun;3 new negative-origin/MXCSR1F80 controls refute strict-world-bound sufficiency. Rejected interpretation/procedure preserved; computedindices require range. Fixture read/fault only, no native game normal reachability/heap placement/crash/authored occurrence. Initial driver hash recovered after capture, supplemental driver before cases; exact metadata-only enrichment disclosed. Independent/owner acceptance pending."
+}

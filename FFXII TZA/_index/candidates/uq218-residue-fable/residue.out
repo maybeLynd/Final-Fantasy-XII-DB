@@ -1,0 +1,5 @@
+PASS  E ticket +0x44: write 0040A17C, reset 00409757, readers 0040A1B3 / 00409CFD / 00409EB8 / 0041F6FB / 005049B3 -> [True, True, True, True, True, True, True]
+PASS  C call sites ['call 0x41e580', 'call 0x41e580', 'jmp 0x41e580', 'call 0x41e580']; callbacks taken by lea [True, True, True, True]
+PASS  S lea r9,[rbx+0x100] -> 00372610 [True, True, True, True]; 00373860 callers ['003705BA']; 00202FE0 calls in the compose 4
+PASS  W s16 high byte at p+2+2i, low at p+1+2i (little-endian), arm 0 and arm 1: ['movzx eax, byte ptr [rax + r8 + 2]', 'shl ax, 8', 'movzx eax, byte ptr [rcx + r8 + 1]', 'movzx eax, byte ptr [rax + r8 + 2]', 'shl ax, 8', 'movzx eax, byte ptr [rcx + r8 + 1]']
+FAILS 0

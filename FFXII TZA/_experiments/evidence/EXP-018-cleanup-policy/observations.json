@@ -1,0 +1,545 @@
+[
+  {
+    "file": "baseline-window.json",
+    "sha256": "b3bb1c291057c6fddc1ae2b0be45688a1fe0e788a7dacb8714b68085f0399fa5",
+    "status": "OBSERVED",
+    "pid": 38756,
+    "start_unix": 1789095168.6407838,
+    "seconds": 64.98999879999974,
+    "intervals": [
+      {
+        "start": 0,
+        "cpu_fraction": 0.44356001437480796
+      },
+      {
+        "start": 5,
+        "cpu_fraction": 0.499549905535034
+      },
+      {
+        "start": 10,
+        "cpu_fraction": 0.488108348959748
+      },
+      {
+        "start": 15,
+        "cpu_fraction": 0.570915519378154
+      },
+      {
+        "start": 20,
+        "cpu_fraction": 0.4905236480037295
+      },
+      {
+        "start": 25,
+        "cpu_fraction": 0.5070397854514618
+      },
+      {
+        "start": 30,
+        "cpu_fraction": 0.49643049613390194
+      },
+      {
+        "start": 35,
+        "cpu_fraction": 0.4661611319178589
+      },
+      {
+        "start": 40,
+        "cpu_fraction": 0.46510437146845407
+      },
+      {
+        "start": 45,
+        "cpu_fraction": 0.4755272646309891
+      },
+      {
+        "start": 50,
+        "cpu_fraction": 0.47805010867015285
+      },
+      {
+        "start": 55,
+        "cpu_fraction": 0.4742736972598335
+      }
+    ],
+    "focus_misses": 0,
+    "held": [
+      2,
+      49
+    ],
+    "final_held": [],
+    "debugger_sample_count": 0,
+    "first_debug_seconds": null,
+    "last_debug_seconds": null,
+    "final_debugger_present": false,
+    "code_identity": [
+      {
+        "rva": 4096,
+        "bytes": 7996981,
+        "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "matches": true
+      }
+    ],
+    "modules": [
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+      "c:\\windows\\system32\\ntdll.dll",
+      "c:\\windows\\system32\\kernel32.dll",
+      "c:\\windows\\system32\\kernelbase.dll",
+      "c:\\windows\\system32\\user32.dll",
+      "c:\\windows\\system32\\win32u.dll",
+      "c:\\windows\\system32\\iphlpapi.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+      "c:\\windows\\system32\\gdi32.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+      "c:\\windows\\system32\\ucrtbase.dll",
+      "c:\\windows\\system32\\advapi32.dll",
+      "c:\\windows\\system32\\gdi32full.dll",
+      "c:\\windows\\system32\\msvcrt.dll",
+      "c:\\windows\\system32\\sechost.dll",
+      "c:\\windows\\system32\\msvcp_win.dll",
+      "c:\\windows\\system32\\rpcrt4.dll",
+      "c:\\windows\\system32\\shell32.dll",
+      "c:\\windows\\system32\\ole32.dll",
+      "c:\\windows\\system32\\combase.dll",
+      "c:\\windows\\system32\\oleaut32.dll",
+      "c:\\windows\\system32\\imm32.dll",
+      "c:\\windows\\system32\\dinput8.dll",
+      "c:\\windows\\system32\\msvcp140.dll",
+      "c:\\windows\\system32\\winmm.dll",
+      "c:\\windows\\system32\\dbghelp.dll",
+      "c:\\windows\\system32\\d3d11.dll",
+      "c:\\windows\\system32\\dwmapi.dll",
+      "c:\\windows\\system32\\dxgi.dll",
+      "c:\\windows\\system32\\xinput9_1_0.dll",
+      "c:\\windows\\system32\\vcruntime140.dll",
+      "c:\\windows\\system32\\vcruntime140_1.dll",
+      "c:\\windows\\system32\\powrprof.dll",
+      "c:\\windows\\system32\\dbgcore.dll",
+      "c:\\windows\\system32\\umpdc.dll",
+      "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+      "c:\\windows\\system32\\psapi.dll",
+      "c:\\windows\\system32\\cfgmgr32.dll",
+      "c:\\windows\\system32\\inputhost.dll",
+      "c:\\windows\\system32\\coremessaging.dll",
+      "c:\\windows\\system32\\bcryptprimitives.dll",
+      "c:\\windows\\system32\\kernel.appcore.dll",
+      "c:\\windows\\system32\\cryptbase.dll",
+      "c:\\program files (x86)\\steam\\steamclient64.dll",
+      "c:\\windows\\system32\\ws2_32.dll",
+      "c:\\windows\\system32\\shlwapi.dll",
+      "c:\\windows\\system32\\crypt32.dll",
+      "c:\\windows\\system32\\imagehlp.dll",
+      "c:\\windows\\system32\\setupapi.dll",
+      "c:\\windows\\system32\\version.dll",
+      "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+      "c:\\windows\\system32\\mswsock.dll",
+      "c:\\program files (x86)\\steam\\tier0_s64.dll",
+      "c:\\windows\\system32\\bcrypt.dll",
+      "c:\\windows\\system32\\secur32.dll",
+      "c:\\windows\\system32\\sspicli.dll",
+      "c:\\windows\\system32\\shcore.dll",
+      "c:\\windows\\system32\\windows.storage.dll",
+      "c:\\windows\\system32\\uxtheme.dll",
+      "c:\\windows\\system32\\devobj.dll",
+      "c:\\windows\\system32\\wintrust.dll",
+      "c:\\windows\\system32\\msasn1.dll",
+      "c:\\windows\\system32\\nvapi64.dll",
+      "c:\\windows\\system32\\cryptnet.dll",
+      "c:\\windows\\system32\\wldp.dll",
+      "c:\\windows\\system32\\drvstore.dll",
+      "c:\\windows\\system32\\dxcore.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+      "c:\\windows\\system32\\directxdatabasehelper.dll",
+      "c:\\windows\\system32\\cryptsp.dll",
+      "c:\\windows\\system32\\rsaenh.dll",
+      "c:\\windows\\system32\\nvspcap64.dll",
+      "c:\\windows\\system32\\profapi.dll",
+      "c:\\windows\\system32\\ntmarta.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+      "c:\\windows\\system32\\dcomp.dll",
+      "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+      "c:\\windows\\system32\\hid.dll",
+      "c:\\windows\\system32\\msctf.dll",
+      "c:\\windows\\system32\\clbcatq.dll",
+      "c:\\windows\\system32\\wbem\\wbemprox.dll",
+      "c:\\windows\\system32\\wbemcomn.dll",
+      "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+      "c:\\windows\\system32\\wbem\\fastprox.dll",
+      "c:\\windows\\system32\\amsi.dll",
+      "c:\\windows\\system32\\userenv.dll",
+      "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.3-0\\mpoav.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+      "c:\\windows\\system32\\mmdevapi.dll",
+      "c:\\windows\\system32\\audioses.dll",
+      "c:\\windows\\system32\\resourcepolicyclient.dll",
+      "c:\\windows\\system32\\windows.ui.dll",
+      "c:\\windows\\system32\\xinput1_4.dll",
+      "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9257\\modules\\discord_hook-1\\discord_hook\\c2391bcbbf7df4\\discordhook64.dll",
+      "c:\\windows\\system32\\uiautomationcore.dll",
+      "c:\\windows\\system32\\oleacc.dll",
+      "c:\\windows\\system32\\threadpoolwinrt.dll"
+    ]
+  },
+  {
+    "file": "positive-window.json",
+    "sha256": "a0e45fdc657f3fc5b060f0bd41b9a0d2deb849f5c5966b6d92cd1e2764bb2bb5",
+    "status": "OBSERVED",
+    "pid": 38756,
+    "start_unix": 1789095258.7051563,
+    "seconds": 64.99193310000192,
+    "intervals": [
+      {
+        "start": 0,
+        "cpu_fraction": 0.44963903877235045
+      },
+      {
+        "start": 5,
+        "cpu_fraction": 0.4969287776325152
+      },
+      {
+        "start": 10,
+        "cpu_fraction": 0.5186941988781395
+      },
+      {
+        "start": 15,
+        "cpu_fraction": 0.518609716071856
+      },
+      {
+        "start": 20,
+        "cpu_fraction": 0.49343624362996286
+      },
+      {
+        "start": 25,
+        "cpu_fraction": 0.5256320830924488
+      },
+      {
+        "start": 30,
+        "cpu_fraction": 0.5690119389562222
+      },
+      {
+        "start": 35,
+        "cpu_fraction": 0.48659838185821336
+      },
+      {
+        "start": 40,
+        "cpu_fraction": 0.49156625105749563
+      },
+      {
+        "start": 45,
+        "cpu_fraction": 0.4933621482806877
+      },
+      {
+        "start": 50,
+        "cpu_fraction": 0.48766646982629175
+      },
+      {
+        "start": 55,
+        "cpu_fraction": 0.44361415647278607
+      }
+    ],
+    "focus_misses": 0,
+    "held": [
+      2,
+      49
+    ],
+    "final_held": [],
+    "debugger_sample_count": 9,
+    "first_debug_seconds": 1.973713300001691,
+    "last_debug_seconds": 2.057849200002238,
+    "final_debugger_present": false,
+    "code_identity": [
+      {
+        "rva": 4096,
+        "bytes": 7996981,
+        "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "matches": true
+      }
+    ],
+    "modules": [
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+      "c:\\windows\\system32\\ntdll.dll",
+      "c:\\windows\\system32\\kernel32.dll",
+      "c:\\windows\\system32\\kernelbase.dll",
+      "c:\\windows\\system32\\user32.dll",
+      "c:\\windows\\system32\\win32u.dll",
+      "c:\\windows\\system32\\iphlpapi.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+      "c:\\windows\\system32\\gdi32.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+      "c:\\windows\\system32\\ucrtbase.dll",
+      "c:\\windows\\system32\\advapi32.dll",
+      "c:\\windows\\system32\\gdi32full.dll",
+      "c:\\windows\\system32\\msvcrt.dll",
+      "c:\\windows\\system32\\sechost.dll",
+      "c:\\windows\\system32\\msvcp_win.dll",
+      "c:\\windows\\system32\\rpcrt4.dll",
+      "c:\\windows\\system32\\shell32.dll",
+      "c:\\windows\\system32\\ole32.dll",
+      "c:\\windows\\system32\\combase.dll",
+      "c:\\windows\\system32\\oleaut32.dll",
+      "c:\\windows\\system32\\imm32.dll",
+      "c:\\windows\\system32\\dinput8.dll",
+      "c:\\windows\\system32\\msvcp140.dll",
+      "c:\\windows\\system32\\winmm.dll",
+      "c:\\windows\\system32\\dbghelp.dll",
+      "c:\\windows\\system32\\d3d11.dll",
+      "c:\\windows\\system32\\dwmapi.dll",
+      "c:\\windows\\system32\\dxgi.dll",
+      "c:\\windows\\system32\\xinput9_1_0.dll",
+      "c:\\windows\\system32\\vcruntime140.dll",
+      "c:\\windows\\system32\\vcruntime140_1.dll",
+      "c:\\windows\\system32\\powrprof.dll",
+      "c:\\windows\\system32\\dbgcore.dll",
+      "c:\\windows\\system32\\umpdc.dll",
+      "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+      "c:\\windows\\system32\\psapi.dll",
+      "c:\\windows\\system32\\cfgmgr32.dll",
+      "c:\\windows\\system32\\inputhost.dll",
+      "c:\\windows\\system32\\coremessaging.dll",
+      "c:\\windows\\system32\\bcryptprimitives.dll",
+      "c:\\windows\\system32\\kernel.appcore.dll",
+      "c:\\windows\\system32\\cryptbase.dll",
+      "c:\\program files (x86)\\steam\\steamclient64.dll",
+      "c:\\windows\\system32\\ws2_32.dll",
+      "c:\\windows\\system32\\shlwapi.dll",
+      "c:\\windows\\system32\\crypt32.dll",
+      "c:\\windows\\system32\\imagehlp.dll",
+      "c:\\windows\\system32\\setupapi.dll",
+      "c:\\windows\\system32\\version.dll",
+      "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+      "c:\\windows\\system32\\mswsock.dll",
+      "c:\\program files (x86)\\steam\\tier0_s64.dll",
+      "c:\\windows\\system32\\bcrypt.dll",
+      "c:\\windows\\system32\\secur32.dll",
+      "c:\\windows\\system32\\sspicli.dll",
+      "c:\\windows\\system32\\shcore.dll",
+      "c:\\windows\\system32\\windows.storage.dll",
+      "c:\\windows\\system32\\uxtheme.dll",
+      "c:\\windows\\system32\\devobj.dll",
+      "c:\\windows\\system32\\wintrust.dll",
+      "c:\\windows\\system32\\msasn1.dll",
+      "c:\\windows\\system32\\nvapi64.dll",
+      "c:\\windows\\system32\\cryptnet.dll",
+      "c:\\windows\\system32\\wldp.dll",
+      "c:\\windows\\system32\\drvstore.dll",
+      "c:\\windows\\system32\\dxcore.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+      "c:\\windows\\system32\\directxdatabasehelper.dll",
+      "c:\\windows\\system32\\cryptsp.dll",
+      "c:\\windows\\system32\\rsaenh.dll",
+      "c:\\windows\\system32\\nvspcap64.dll",
+      "c:\\windows\\system32\\profapi.dll",
+      "c:\\windows\\system32\\ntmarta.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+      "c:\\windows\\system32\\dcomp.dll",
+      "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+      "c:\\windows\\system32\\hid.dll",
+      "c:\\windows\\system32\\msctf.dll",
+      "c:\\windows\\system32\\clbcatq.dll",
+      "c:\\windows\\system32\\wbem\\wbemprox.dll",
+      "c:\\windows\\system32\\wbemcomn.dll",
+      "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+      "c:\\windows\\system32\\wbem\\fastprox.dll",
+      "c:\\windows\\system32\\amsi.dll",
+      "c:\\windows\\system32\\userenv.dll",
+      "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.3-0\\mpoav.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+      "c:\\windows\\system32\\mmdevapi.dll",
+      "c:\\windows\\system32\\audioses.dll",
+      "c:\\windows\\system32\\resourcepolicyclient.dll",
+      "c:\\windows\\system32\\windows.ui.dll",
+      "c:\\windows\\system32\\xinput1_4.dll",
+      "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9257\\modules\\discord_hook-1\\discord_hook\\c2391bcbbf7df4\\discordhook64.dll",
+      "c:\\windows\\system32\\uiautomationcore.dll",
+      "c:\\windows\\system32\\oleacc.dll",
+      "c:\\windows\\system32\\threadpoolwinrt.dll"
+    ]
+  },
+  {
+    "file": "postpositive-window.json",
+    "sha256": "7299b10b180f213731282acae532c18541f635c8a1b5491e2595e58f9b7d0438",
+    "status": "OBSERVED",
+    "pid": 38756,
+    "start_unix": 1789095340.452722,
+    "seconds": 64.99846179999804,
+    "intervals": [
+      {
+        "start": 0,
+        "cpu_fraction": 0.4714169430132567
+      },
+      {
+        "start": 5,
+        "cpu_fraction": 0.5121068146298513
+      },
+      {
+        "start": 10,
+        "cpu_fraction": 0.48452886698712533
+      },
+      {
+        "start": 15,
+        "cpu_fraction": 0.5030115407166752
+      },
+      {
+        "start": 20,
+        "cpu_fraction": 0.48493316777503587
+      },
+      {
+        "start": 25,
+        "cpu_fraction": 0.4752215197589734
+      },
+      {
+        "start": 30,
+        "cpu_fraction": 0.5092271408075068
+      },
+      {
+        "start": 35,
+        "cpu_fraction": 0.4991593557458785
+      },
+      {
+        "start": 40,
+        "cpu_fraction": 0.5001365672909369
+      },
+      {
+        "start": 45,
+        "cpu_fraction": 0.5065802193817683
+      },
+      {
+        "start": 50,
+        "cpu_fraction": 0.4938175147305468
+      },
+      {
+        "start": 55,
+        "cpu_fraction": 0.4845930862728264
+      }
+    ],
+    "focus_misses": 0,
+    "held": [
+      2,
+      49
+    ],
+    "final_held": [],
+    "debugger_sample_count": 0,
+    "first_debug_seconds": null,
+    "last_debug_seconds": null,
+    "final_debugger_present": false,
+    "code_identity": [
+      {
+        "rva": 4096,
+        "bytes": 7996981,
+        "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "matches": true
+      }
+    ],
+    "modules": [
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+      "c:\\windows\\system32\\ntdll.dll",
+      "c:\\windows\\system32\\kernel32.dll",
+      "c:\\windows\\system32\\kernelbase.dll",
+      "c:\\windows\\system32\\user32.dll",
+      "c:\\windows\\system32\\win32u.dll",
+      "c:\\windows\\system32\\iphlpapi.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+      "c:\\windows\\system32\\gdi32.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+      "c:\\windows\\system32\\ucrtbase.dll",
+      "c:\\windows\\system32\\advapi32.dll",
+      "c:\\windows\\system32\\gdi32full.dll",
+      "c:\\windows\\system32\\msvcrt.dll",
+      "c:\\windows\\system32\\sechost.dll",
+      "c:\\windows\\system32\\msvcp_win.dll",
+      "c:\\windows\\system32\\rpcrt4.dll",
+      "c:\\windows\\system32\\shell32.dll",
+      "c:\\windows\\system32\\ole32.dll",
+      "c:\\windows\\system32\\combase.dll",
+      "c:\\windows\\system32\\oleaut32.dll",
+      "c:\\windows\\system32\\imm32.dll",
+      "c:\\windows\\system32\\dinput8.dll",
+      "c:\\windows\\system32\\msvcp140.dll",
+      "c:\\windows\\system32\\winmm.dll",
+      "c:\\windows\\system32\\dbghelp.dll",
+      "c:\\windows\\system32\\d3d11.dll",
+      "c:\\windows\\system32\\dwmapi.dll",
+      "c:\\windows\\system32\\dxgi.dll",
+      "c:\\windows\\system32\\xinput9_1_0.dll",
+      "c:\\windows\\system32\\vcruntime140.dll",
+      "c:\\windows\\system32\\vcruntime140_1.dll",
+      "c:\\windows\\system32\\powrprof.dll",
+      "c:\\windows\\system32\\dbgcore.dll",
+      "c:\\windows\\system32\\umpdc.dll",
+      "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+      "c:\\windows\\system32\\psapi.dll",
+      "c:\\windows\\system32\\cfgmgr32.dll",
+      "c:\\windows\\system32\\inputhost.dll",
+      "c:\\windows\\system32\\coremessaging.dll",
+      "c:\\windows\\system32\\bcryptprimitives.dll",
+      "c:\\windows\\system32\\kernel.appcore.dll",
+      "c:\\windows\\system32\\cryptbase.dll",
+      "c:\\program files (x86)\\steam\\steamclient64.dll",
+      "c:\\windows\\system32\\ws2_32.dll",
+      "c:\\windows\\system32\\shlwapi.dll",
+      "c:\\windows\\system32\\crypt32.dll",
+      "c:\\windows\\system32\\imagehlp.dll",
+      "c:\\windows\\system32\\setupapi.dll",
+      "c:\\windows\\system32\\version.dll",
+      "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+      "c:\\windows\\system32\\mswsock.dll",
+      "c:\\program files (x86)\\steam\\tier0_s64.dll",
+      "c:\\windows\\system32\\bcrypt.dll",
+      "c:\\windows\\system32\\secur32.dll",
+      "c:\\windows\\system32\\sspicli.dll",
+      "c:\\windows\\system32\\shcore.dll",
+      "c:\\windows\\system32\\windows.storage.dll",
+      "c:\\windows\\system32\\uxtheme.dll",
+      "c:\\windows\\system32\\devobj.dll",
+      "c:\\windows\\system32\\wintrust.dll",
+      "c:\\windows\\system32\\msasn1.dll",
+      "c:\\windows\\system32\\nvapi64.dll",
+      "c:\\windows\\system32\\cryptnet.dll",
+      "c:\\windows\\system32\\wldp.dll",
+      "c:\\windows\\system32\\drvstore.dll",
+      "c:\\windows\\system32\\dxcore.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+      "c:\\windows\\system32\\directxdatabasehelper.dll",
+      "c:\\windows\\system32\\cryptsp.dll",
+      "c:\\windows\\system32\\rsaenh.dll",
+      "c:\\windows\\system32\\nvspcap64.dll",
+      "c:\\windows\\system32\\profapi.dll",
+      "c:\\windows\\system32\\ntmarta.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+      "c:\\windows\\system32\\dcomp.dll",
+      "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+      "c:\\windows\\system32\\hid.dll",
+      "c:\\windows\\system32\\msctf.dll",
+      "c:\\windows\\system32\\clbcatq.dll",
+      "c:\\windows\\system32\\wbem\\wbemprox.dll",
+      "c:\\windows\\system32\\wbemcomn.dll",
+      "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+      "c:\\windows\\system32\\wbem\\fastprox.dll",
+      "c:\\windows\\system32\\amsi.dll",
+      "c:\\windows\\system32\\userenv.dll",
+      "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.3-0\\mpoav.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+      "c:\\windows\\system32\\mmdevapi.dll",
+      "c:\\windows\\system32\\audioses.dll",
+      "c:\\windows\\system32\\resourcepolicyclient.dll",
+      "c:\\windows\\system32\\windows.ui.dll",
+      "c:\\windows\\system32\\xinput1_4.dll",
+      "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9257\\modules\\discord_hook-1\\discord_hook\\c2391bcbbf7df4\\discordhook64.dll",
+      "c:\\windows\\system32\\uiautomationcore.dll",
+      "c:\\windows\\system32\\oleacc.dll",
+      "c:\\windows\\system32\\threadpoolwinrt.dll"
+    ]
+  }
+]

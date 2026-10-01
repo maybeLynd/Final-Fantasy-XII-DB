@@ -1,0 +1,95 @@
+== A. references to the cell 02AEE4C0..C7 (and control 02AEE4C8..CF)
+  cell 02AEE4C0: rip 9, image-base 0
+    00393A88  mov rdx, qword ptr [rip + 0x275aa31]  (8B)
+    003940D2  mov qword ptr [rip + 0x275a3e3], 0  (8B)
+    003940F5  mov qword ptr [rip + 0x275a3c4], rbx  (8B)
+    00394155  mov rcx, qword ptr [rip + 0x275a364]  (8B)
+    00394400  mov rcx, qword ptr [rip + 0x275a0b9]  (8B)
+    0039448B  cmp qword ptr [rip + 0x275a02d], 0  (8B)
+    00394500  mov rax, qword ptr [rip + 0x2759fb9]  (8B)
+    00394522  cmp qword ptr [rip + 0x2759f97], rax  (8B)
+    00394543  cmp qword ptr [rip + 0x2759f75], 0  (8B)
+   data: {'abs64': [], 'rva32': []}
+  control-sibling 02AEE4C8: rip 6, image-base 0
+    00393A11  mov qword ptr [rip + 0x275aab0], rsi  (8B)
+    00393E0E  mov qword ptr [rip + 0x275a6b3], rbx  (8B)
+    00394350  mov rax, qword ptr [rip + 0x275a171]  (8B)
+    003944C2  cmp qword ptr [rip + 0x2759fff], rax  (8B)
+    003944D9  mov rax, qword ptr [rip + 0x2759fe8]  (8B)
+    0039454D  mov rax, qword ptr [rip + 0x2759f74]  (8B)
+   data: {'abs64': [], 'rva32': []}
+== B. raw callers (E8/E9 rel32, 0F 8x jcc) and abs64/rva32 slots
+  00394070  rel32: []  jcc: []  data: {'abs64': [], 'rva32': ['02FBEF64(.pdata)']}
+  00394400  rel32: ['00582EB5 call']  jcc: []  data: {'abs64': [], 'rva32': ['0174D1D5(.rdata,unaligned)']}
+  00394520  rel32: ['00582EAC call']  jcc: []  data: {'abs64': [], 'rva32': []}
+  00394500  rel32: ['00511EC4 call']  jcc: []  data: {'abs64': [], 'rva32': []}
+  00394460  rel32: ['00511EAD jmp']  jcc: []  data: {'abs64': [], 'rva32': ['02FBEF88(.pdata)']}
+  00394530  rel32: ['00511FA3 jmp']  jcc: []  data: {'abs64': [], 'rva32': ['02FBEF94(.pdata)']}
+  003939B0  rel32: []  jcc: []  data: {'abs64': [], 'rva32': ['01D7D874(.rdata)', '01D7D884(.rdata)', '02FBEF10(.pdata)']}
+  00394130  rel32: []  jcc: []  data: {'abs64': [], 'rva32': ['02FBEF70(.pdata)']}
+  00511EA0  rel32: []  jcc: []  data: {'abs64': ['01F29EE8(.data)'], 'rva32': ['02FCC860(.pdata)']}
+  00511EC0  rel32: []  jcc: []  data: {'abs64': ['01F29EF0(.data)'], 'rva32': ['02FCC86C(.pdata)']}
+  00511F90  rel32: []  jcc: []  data: {'abs64': ['01F29F60(.data)'], 'rva32': ['02FCC8B4(.pdata)']}
+  control 00244F00 rel32 count: 268
+== C. linear decode: type-area (+0xB8..+0xE8) displacements on any base, all bases, widths
+  -- 00394070 .. 0039412E (49 insns)
+    00394097  mov    rcx, qword ptr [rbx + 0xc8]              8B
+    003940A8  mov    rcx, qword ptr [rbx + 0xd0]              8B
+    003940B9  mov    qword ptr [rbx + 0xd0], 0                8B
+    003940E3  or     dword ptr [rbx + 0xc0], 1                4B
+    003940FC  mov    dword ptr [rbx + 0xc0], 0                4B
+  -- 003939B0 .. 00393E4A (272 insns)
+    003939FD  mov    dword ptr [rsi + 0xc4], ebx              4B
+    00393A03  mov    qword ptr [rsi + 0xc8], rbx              8B
+    00393A18  mov    byte ptr [rsi + 0xc0], al                1B
+    00393A6C  or     dword ptr [rsi + 0xc4], 2                4B
+    00393A7A  mov    eax, dword ptr [rsi + 0xc4]              4B
+    00393A98  test   byte ptr [rdx + 0xc0], 1                 1B
+    00393AA5  mov    rdx, qword ptr [rdx + 0xd0]              8B
+    00393ACD  mov    qword ptr [rsi + 0xc8], rax              8B
+    00393B60  lea    rbx, [rsi + 0xd0]                        8B
+    00393BA0  mov    rcx, qword ptr [rsi + 0xc8]              8B
+    00393BAC  mov    rax, qword ptr [rsi + 0xc8]              8B
+    00393BBA  mov    rax, qword ptr [rsi + 0xc8]              8B
+    00393BC8  movzx  edx, byte ptr [rsi + 0xc0]               1B
+    00393BCF  mov    rcx, qword ptr [rsi + 0xc8]              8B
+    00393BDB  mov    rax, qword ptr [rsi + 0xc8]              8B
+    00393BF0  mov    qword ptr [rax + 0xd8], rsi              8B
+    00393BF7  mov    rax, qword ptr [rsi + 0xc8]              8B
+    00393C1C  or     dword ptr [rsi + 0xc4], 1                4B
+    00393C51  mov    rcx, qword ptr [rsi + 0xc8]              8B
+    00393D7B  mov    rax, qword ptr [rsi + 0xc8]              8B
+    00393DF1  test   byte ptr [rsi + 0xc4], 4                 1B
+  -- 00394400 .. 00394411 (4 insns)
+  -- 00394460 .. 003944B2 (16 insns)
+  -- 00394500 .. 00394517 (7 insns)
+    0039450D  mov    eax, dword ptr [rax + 0xc0]              4B
+  -- 00394520 .. 0039452D (4 insns)
+  -- 00394530 .. 003945D4 (39 insns)
+    003945BB  and    dword ptr [rax + 0xc4], 0xfffffffb       4B
+== D. anchors
+  0039449F  mov ecx, 0xd8
+  00244F77  cmp ecx, 0x120
+  00244F90  test dword ptr [rbx + 0x40], 0x4000
+  00244FB2  call 0x2497b0
+  00582899  lea rcx, [rip - 0x4628a0]
+  005828A0  mov eax, dword ptr [rcx + rax*4 + 0x462f54]
+  00582E81  test byte ptr [rbx + 0xc4], 0x10
+  00582EAC  call 0x394520
+  00582EB5  call 0x394400
+  0024505A  call rax
+  00394161  call 0x244f00
+  00511EC4  call 0x394500
+  00393A98  test byte ptr [rdx + 0xc0], 1
+  00393AA5  mov rdx, qword ptr [rdx + 0xd0]
+  0039450D  mov eax, dword ptr [rax + 0xc0]
+  003940E3  or dword ptr [rbx + 0xc0], 1
+  003940FC  mov dword ptr [rbx + 0xc0], 0
+  00394033  mov qword ptr [rdi + 0xc8], rax
+  00394097  mov rcx, qword ptr [rbx + 0xc8]
+  00394050  mov qword ptr [rdi + 0xd0], rax
+  003940A8  mov rcx, qword ptr [rbx + 0xd0]
+  003940B9  mov qword ptr [rbx + 0xd0], 0
+  0039435C  mov ecx, dword ptr [rax + 0xc4]
+  0039436A  mov dword ptr [rax + 0xc4], ecx
+  003944E0  test byte ptr [rax + 0xc4], 2

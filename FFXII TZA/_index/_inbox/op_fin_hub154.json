@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-154",
+ "note": "Batch 154 (22 bodies -> 14 hosts): 2 multi-caller + top-20 1-A by size; the frontier closed on callees batch-153 cites promoted (00250E50 020927F0 transition-arm, 00204F90 lexer node allocator; audio family continues with 002070A0 separator consumer + 00205030 charset append). Notable: 00504F00/005049E0/00409960 the external-source commit/construct/resolve triple, 00339F00/00336040/0033C870/0033C200 the four 0033BED0 dispatch arms decoded, 001D5520 paired label refresh, 001B9A10 BST try_emplace, 003CD6E0 authored-expression pool init, 003BBA60 the 002508AB-gated fade pump, 0035D1B0 settings enable-toggle, 003C15B0 quest-list match scan, 004233D0 @FRM section walker, 00270420 vec3 magnitude array, 0041E5B0 EFX tag-slot probe, 00420D80 the 022C6F28 record visitor. Gates: anchors 4796 (+22 counted), 0 MID/0 outside-body; address 0 UNSUPPORTED in new entries; hash clean (26 standing unreproduced); crossref 2862 findings / 401 dispositioned; neighbour guard refused then accounted 12 shared-callee pairs via crossing paragraphs on five docs -> ADDS NOTHING (2846->2834).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub154_dumps.txt",
+  "Database/Tools/work/hub154_callers.txt"
+ ]
+}

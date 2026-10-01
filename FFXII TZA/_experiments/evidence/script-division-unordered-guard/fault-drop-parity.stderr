@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-division-unordered-guard\check.py", line 25, in <module>
+    if '--fault-drop-parity' in sys.argv:assert [x['source_path'] for x in states]==['DIVSS' if not x['zf'] else 'replace-xmm0-with-xmm7' for x in states],'JP distinguishes unordered from zero/equal before JNE'
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: JP distinguishes unordered from zero/equal before JNE

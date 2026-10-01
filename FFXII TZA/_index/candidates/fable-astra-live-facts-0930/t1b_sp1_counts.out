@@ -1,0 +1,9 @@
+input D:/SteamLibrary/steamapps/common/FINAL FANTASY XII THE ZODIAC AGE/FFXII_TZA.vbf  size 31196932183  mtime 1788875311  packs-list sha256 ce1828eb871b182f
+producer sha256 42c3534b1b14f984933e160266d498b529292424d0c426f92363db560c6f0925
+packs 550  SP1 blocks 456 (no region C 0)  records 2326  shapes {0: 1364, 1: 108, 2: 400, 3: 454}  count==1 2265
+malformed: packs 0, record indexes 0, referenced records 0 []
+CONTROL page census: records 2326, shape-2 400, count==1 2265 -> PASS
+largest shape-2 counts: [(13, 'pla0103.mpk', '0x510'), (11, 'fon0107.mpk', '0x520'), (10, 'pla0107.mpk', '0x540'), (9, 'pla0109.mpk', '0x610'), (9, 'pla0101.mpk', '0x4a0'), (8, 'pla0106.mpk', '0x490'), (8, 'pla0105.mpk', '0x4b0'), (8, 'fon0103.mpk', '0x560')]
+shape-2 records with count >= 128: NONE
+FAILS 0
+STATUS COMPLETE

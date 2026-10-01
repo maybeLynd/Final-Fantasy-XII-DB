@@ -1,0 +1,4 @@
+VALID_SETUP_EVIDENCE_ONLY: seven registered/released pulses; two samples/52 spans; empty/no-detection rejected.
+Older-save comparison INCOMPLETE. All26 original hashes restored; PC control off.
+sample 0 levels [1, 1, 1, 1, 2, 1] keep nonzero [328, 0]
+sample 1 levels [1, 1, 1, 1, 2, 1] keep nonzero [328, 0]

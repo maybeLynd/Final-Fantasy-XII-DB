@@ -1,0 +1,5 @@
+PASS  G1 194 functions walked; +0x24 readers ['00309230', '0030A190', '0030AC50', '0030CA80', '00310DB0', '0031ADB0', '00325260', '003257D0'] (14 sites)
+PASS  G2 effect id at 0030A190 (True), 0030CA80 -> 002FCB40 effect-table bit 5 (True), 00310DB0 -> 002EACD0 -> 003B02A0 kind 5 (True); 00309230 -> 00306BD0 -> deferred mode request 3 (True)
+PASS  G3 0030AC50 bit-15 path only; 0031ADB0 bit 15 set -> 0031B300, else skip; 00325260 / 003257D0 return on any non-0xFFFF word
+PASS  G4 rows by (+0x24 class, +0x0C bit 30): {('FFFF', 0): 43, ('FFFF', 1): 25, ('b15', 0): 39, ('clear', 0): 374, ('clear', 1): 62}; bit-15-clear distinct words: 340 (bit 30 clear, max 396), 29 (bit 30 set)
+FAILS 0

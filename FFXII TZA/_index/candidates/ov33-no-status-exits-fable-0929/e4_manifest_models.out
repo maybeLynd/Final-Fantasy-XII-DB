@@ -1,0 +1,5 @@
+EBP files with a manifest: 7587 (unreadable/odd 0)
+letters seen (count): {'C': 3960, 'N': 1179, 'S': 72, 'b': 351, 'c': 7371, 'g': 11583, 'm': 3132, 'n': 27900, 's': 288, 't': 3690, 'w': 1413}
+CONTROL dgl_g0102 manifest holds C:22: PASS
+manifest model ids with an unknown letter and N in 76..81 (kind-1 ids 127..132): 0
+FAILS 0

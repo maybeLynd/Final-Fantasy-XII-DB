@@ -1,0 +1,9 @@
+L_lifo_decrement_then_read                         PASS
+K_pops_coerce_by_tag                               PASS
+W_push_writes_all_four_arrays                      PASS
+G_push_guard_63_usable_slots                       PASS
+U_underflow_int_silent_float_reports               PASS
+T_unknown_tag_int_reports_float_silent             PASS
+E_reporter_is_a_no_op_in_the_shipping_image        PASS
+R_result_writers_signed_index_and_phase_byte       PASS
+ALL PASS (allowed 8 functions)

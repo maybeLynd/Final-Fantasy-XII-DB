@@ -1,0 +1,5 @@
+rc9_channels: exit0 47 lines; last: 007A2280 in 007A2140  ch=2  lea ecx, [rdi + 2] | rdi: writes 007A21D1 mov edi, e; identical to committed .out (CRLF-insensitive)
+rc10_gates: exit0 20 lines; last: 007A1D38 in 007A1CD0  LOCAL: 007A1D23 cmp byte ptr [rbx + 0xa9], 0 | 007A1D2A jn; identical to committed .out (CRLF-insensitive)
+rc6_codes: exit0 10 lines; last: FAILS 0; identical to committed .out (CRLF-insensitive)
+t3b_regionA: exit0 70 lines; last: FAILS 0; identical to committed .out (CRLF-insensitive)
+t4_desc_inserters: exit0 557 lines; last: static descriptors loaded: 315; identical to committed .out (CRLF-insensitive)

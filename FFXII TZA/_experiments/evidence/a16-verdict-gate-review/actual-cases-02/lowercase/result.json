@@ -1,0 +1,11 @@
+{
+  "case": "lowercase",
+  "is_review": true,
+  "expected_accept": false,
+  "exit": 1,
+  "status": "ACTIVE",
+  "before_sha256": "d81ad6534f22f8ee55fc9f4b9885a1a7d7e6f386a68ee187ff23316e9e24fc10",
+  "after_sha256": "d81ad6534f22f8ee55fc9f4b9885a1a7d7e6f386a68ee187ff23316e9e24fc10",
+  "result_refs": null,
+  "plan": []
+}

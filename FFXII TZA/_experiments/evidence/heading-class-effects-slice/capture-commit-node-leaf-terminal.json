@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-commit-node-leaf.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 1,\n  \"extent_status\": [\n    [\n      \"0x43ee70\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      49,\n      null\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "a4828904acc15c2cacb0ea821e302ef497acc559d80a1a6030b49a3265bdb90a"
+}

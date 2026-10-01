@@ -1,0 +1,20 @@
+  [PASS] EXE SHA256
+  [PASS] kind 7 idx 0x90 path -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\menu_version.bin
+  [PASS] kind 7 idx 0x8F and 0x91 are empty (no family loop runs across 0x90)
+  [PASS] 2 copies (ch, in)
+  [PASS] identical, 16 bytes = ASCII 'MENUVER' + '200509150' (no terminator)
+  [PASS] literal b'MENUVER' absent from .text (no immediate compare)
+  [PASS] literal b'MENU' absent from .text (no immediate compare)
+  [PASS] literal b'UVER' absent from .text (no immediate compare)
+  [PASS] literal b'2005' absent from .text (no immediate compare)
+  [PASS] literal b'0915' absent from .text (no immediate compare)
+  [PASS] literal b'9150' absent from .text (no immediate compare)
+  [PASS] integer 200509150 absent as a dword in .text
+  [PASS] integer 20050915 absent as a dword in .text
+  [PASS] integer 2005091500 absent as a dword in .text
+  [PASS] 'MENUVER' / '200509' absent from the whole image
+  [PASS] callpairs: no (7,0x90) constant pair at any call; controls pass
+  [PASS] nearcall_imm: no request call preceded by an id computation with 0x90 -- []
+  [PASS] idtable: no {u32 0x90, u32, ptr->name} menu-resource record other than unrelated resource-name tables; control passes
+  idtable 0x90 line: ["0x90 [(13889976, 0, 'PrevBoneTransformConstantBuffer'), (31401136, 0, 'pla0105'), (31422304, 0, 'pla0105')] count 3"]
+CHECKS 18  FAILS 0

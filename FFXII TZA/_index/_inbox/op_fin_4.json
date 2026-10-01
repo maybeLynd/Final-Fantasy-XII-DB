@@ -1,0 +1,1 @@
+{"action": "finish", "task": "FABLE-NOTICE-DATA-UQ218-FMC-HANDLERS", "result_refs": ["commit:d22ad1b95"], "note": "Closing: superseded by the pass-8 operand map plus crosswalk merge (d22ad1b95); all 33 authored opcodes carry handler-level operand reads and semantic names."}

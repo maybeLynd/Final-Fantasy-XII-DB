@@ -1,0 +1,1679 @@
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000002f8bb0 <.text+0x1d7bb0>:
+  2f8bb0:	48 89 6c 24 10       	mov    QWORD PTR [rsp+0x10],rbp
+  2f8bb5:	48 89 74 24 18       	mov    QWORD PTR [rsp+0x18],rsi
+  2f8bba:	48 89 7c 24 20       	mov    QWORD PTR [rsp+0x20],rdi
+  2f8bbf:	41 56                	push   r14
+  2f8bc1:	48 83 ec 20          	sub    rsp,0x20
+  2f8bc5:	33 ed                	xor    ebp,ebp
+  2f8bc7:	33 f6                	xor    esi,esi
+  2f8bc9:	4c 8b f2             	mov    r14,rdx
+  2f8bcc:	48 8b f9             	mov    rdi,rcx
+  2f8bcf:	48 85 c9             	test   rcx,rcx
+  2f8bd2:	74 3d                	je     0x2f8c11
+  2f8bd4:	40 38 71 05          	cmp    BYTE PTR [rcx+0x5],sil
+  2f8bd8:	0f 85 68 01 00 00    	jne    0x2f8d46
+  2f8bde:	e8 7d 2c 02 00       	call   0x31b860
+  2f8be3:	48 85 c0             	test   rax,rax
+  2f8be6:	0f 84 5a 01 00 00    	je     0x2f8d46
+  2f8bec:	40 38 77 05          	cmp    BYTE PTR [rdi+0x5],sil
+  2f8bf0:	75 0e                	jne    0x2f8c00
+  2f8bf2:	0f b6 47 04          	movzx  eax,BYTE PTR [rdi+0x4]
+  2f8bf6:	2c 1b                	sub    al,0x1b
+  2f8bf8:	3c 0c                	cmp    al,0xc
+  2f8bfa:	0f 86 46 01 00 00    	jbe    0x2f8d46
+  2f8c00:	8b 47 64             	mov    eax,DWORD PTR [rdi+0x64]
+  2f8c03:	0b 47 3c             	or     eax,DWORD PTR [rdi+0x3c]
+  2f8c06:	a9 03 00 00 80       	test   eax,0x80000003
+  2f8c0b:	0f 85 35 01 00 00    	jne    0x2f8d46
+  2f8c11:	4d 85 f6             	test   r14,r14
+  2f8c14:	0f 84 2c 01 00 00    	je     0x2f8d46
+  2f8c1a:	49 8b 86 98 06 00 00 	mov    rax,QWORD PTR [r14+0x698]
+  2f8c21:	48 85 c0             	test   rax,rax
+  2f8c24:	0f 84 1c 01 00 00    	je     0x2f8d46
+  2f8c2a:	80 78 05 01          	cmp    BYTE PTR [rax+0x5],0x1
+  2f8c2e:	0f 85 12 01 00 00    	jne    0x2f8d46
+  2f8c34:	e8 87 a9 01 00       	call   0x3135c0
+  2f8c39:	85 c0                	test   eax,eax
+  2f8c3b:	74 50                	je     0x2f8c8d
+  2f8c3d:	e8 be ab 01 00       	call   0x313800
+  2f8c42:	48 85 ff             	test   rdi,rdi
+  2f8c45:	74 15                	je     0x2f8c5c
+  2f8c47:	ba 01 00 00 00       	mov    edx,0x1
+  2f8c4c:	8b c8                	mov    ecx,eax
+  2f8c4e:	e8 5d 7e 02 00       	call   0x320ab0
+  2f8c53:	48 3b f8             	cmp    rdi,rax
+  2f8c56:	0f 85 ea 00 00 00    	jne    0x2f8d46
+  2f8c5c:	49 8b 86 98 06 00 00 	mov    rax,QWORD PTR [r14+0x698]
+  2f8c63:	0f b6 b0 c2 01 00 00 	movzx  esi,BYTE PTR [rax+0x1c2]
+  2f8c6a:	0f b6 80 88 00 00 00 	movzx  eax,BYTE PTR [rax+0x88]
+  2f8c71:	2b f0                	sub    esi,eax
+  2f8c73:	49 8b 86 78 0e 00 00 	mov    rax,QWORD PTR [r14+0xe78]
+  2f8c7a:	0f af 70 34          	imul   esi,DWORD PTR [rax+0x34]
+  2f8c7e:	49 8b 86 70 0e 00 00 	mov    rax,QWORD PTR [r14+0xe70]
+  2f8c85:	03 70 34             	add    esi,DWORD PTR [rax+0x34]
+  2f8c88:	e9 94 00 00 00       	jmp    0x2f8d21
+  2f8c8d:	48 89 5c 24 30       	mov    QWORD PTR [rsp+0x30],rbx
+  2f8c92:	33 db                	xor    ebx,ebx
+  2f8c94:	8b cb                	mov    ecx,ebx
+  2f8c96:	e8 75 2b 02 00       	call   0x31b810
+  2f8c9b:	48 85 c0             	test   rax,rax
+  2f8c9e:	74 40                	je     0x2f8ce0
+  2f8ca0:	48 8b 88 98 06 00 00 	mov    rcx,QWORD PTR [rax+0x698]
+  2f8ca7:	8b 41 64             	mov    eax,DWORD PTR [rcx+0x64]
+  2f8caa:	0b 41 3c             	or     eax,DWORD PTR [rcx+0x3c]
+  2f8cad:	a9 03 00 00 80       	test   eax,0x80000003
+  2f8cb2:	75 2c                	jne    0x2f8ce0
+  2f8cb4:	48 85 c9             	test   rcx,rcx
+  2f8cb7:	74 25                	je     0x2f8cde
+  2f8cb9:	0f b6 41 05          	movzx  eax,BYTE PTR [rcx+0x5]
+  2f8cbd:	85 c0                	test   eax,eax
+  2f8cbf:	75 0a                	jne    0x2f8ccb
+  2f8cc1:	0f b6 41 04          	movzx  eax,BYTE PTR [rcx+0x4]
+  2f8cc5:	2c 1b                	sub    al,0x1b
+  2f8cc7:	3c 0c                	cmp    al,0xc
+  2f8cc9:	76 15                	jbe    0x2f8ce0
+  2f8ccb:	48 85 c9             	test   rcx,rcx
+  2f8cce:	74 0e                	je     0x2f8cde
+  2f8cd0:	0f b6 41 05          	movzx  eax,BYTE PTR [rcx+0x5]
+  2f8cd4:	85 c0                	test   eax,eax
+  2f8cd6:	75 06                	jne    0x2f8cde
+  2f8cd8:	80 79 04 1a          	cmp    BYTE PTR [rcx+0x4],0x1a
+  2f8cdc:	74 02                	je     0x2f8ce0
+  2f8cde:	ff c5                	inc    ebp
+  2f8ce0:	ff c3                	inc    ebx
+  2f8ce2:	83 fb 04             	cmp    ebx,0x4
+  2f8ce5:	7c ad                	jl     0x2f8c94
+  2f8ce7:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  2f8cec:	85 ed                	test   ebp,ebp
+  2f8cee:	74 31                	je     0x2f8d21
+  2f8cf0:	49 8b 8e 98 06 00 00 	mov    rcx,QWORD PTR [r14+0x698]
+  2f8cf7:	0f b6 81 c2 01 00 00 	movzx  eax,BYTE PTR [rcx+0x1c2]
+  2f8cfe:	0f b6 89 88 00 00 00 	movzx  ecx,BYTE PTR [rcx+0x88]
+  2f8d05:	2b c1                	sub    eax,ecx
+  2f8d07:	49 8b 8e 78 0e 00 00 	mov    rcx,QWORD PTR [r14+0xe78]
+  2f8d0e:	0f af 41 34          	imul   eax,DWORD PTR [rcx+0x34]
+  2f8d12:	49 8b 8e 70 0e 00 00 	mov    rcx,QWORD PTR [r14+0xe70]
+  2f8d19:	03 41 34             	add    eax,DWORD PTR [rcx+0x34]
+  2f8d1c:	99                   	cdq
+  2f8d1d:	f7 fd                	idiv   ebp
+  2f8d1f:	8b f0                	mov    esi,eax
+  2f8d21:	48 85 ff             	test   rdi,rdi
+  2f8d24:	74 1c                	je     0x2f8d42
+  2f8d26:	0f b6 47 6b          	movzx  eax,BYTE PTR [rdi+0x6b]
+  2f8d2a:	a8 08                	test   al,0x8
+  2f8d2c:	75 06                	jne    0x2f8d34
+  2f8d2e:	f6 47 7b 08          	test   BYTE PTR [rdi+0x7b],0x8
+  2f8d32:	74 02                	je     0x2f8d36
+  2f8d34:	03 f6                	add    esi,esi
+  2f8d36:	a8 20                	test   al,0x20
+  2f8d38:	75 06                	jne    0x2f8d40
+  2f8d3a:	f6 47 7b 20          	test   BYTE PTR [rdi+0x7b],0x20
+  2f8d3e:	74 02                	je     0x2f8d42
+  2f8d40:	33 f6                	xor    esi,esi
+  2f8d42:	8b c6                	mov    eax,esi
+  2f8d44:	eb 02                	jmp    0x2f8d48
+  2f8d46:	33 c0                	xor    eax,eax
+  2f8d48:	48 8b 6c 24 38       	mov    rbp,QWORD PTR [rsp+0x38]
+  2f8d4d:	48 8b 74 24 40       	mov    rsi,QWORD PTR [rsp+0x40]
+  2f8d52:	48 8b 7c 24 48       	mov    rdi,QWORD PTR [rsp+0x48]
+  2f8d57:	48 83 c4 20          	add    rsp,0x20
+  2f8d5b:	41 5e                	pop    r14
+  2f8d5d:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000002f90c0 <.text+0x1d80c0>:
+  2f90c0:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+  2f90c5:	57                   	push   rdi
+  2f90c6:	48 83 ec 20          	sub    rsp,0x20
+  2f90ca:	48 8b fa             	mov    rdi,rdx
+  2f90cd:	48 8b d9             	mov    rbx,rcx
+  2f90d0:	e8 7b b0 f6 ff       	call   0x264150
+  2f90d5:	85 c0                	test   eax,eax
+  2f90d7:	0f 85 89 00 00 00    	jne    0x2f9166
+  2f90dd:	48 85 db             	test   rbx,rbx
+  2f90e0:	74 22                	je     0x2f9104
+  2f90e2:	38 43 05             	cmp    BYTE PTR [rbx+0x5],al
+  2f90e5:	75 7f                	jne    0x2f9166
+  2f90e7:	0f b6 43 04          	movzx  eax,BYTE PTR [rbx+0x4]
+  2f90eb:	3c 1a                	cmp    al,0x1a
+  2f90ed:	74 08                	je     0x2f90f7
+  2f90ef:	3c 06                	cmp    al,0x6
+  2f90f1:	76 04                	jbe    0x2f90f7
+  2f90f3:	3c 28                	cmp    al,0x28
+  2f90f5:	72 6f                	jb     0x2f9166
+  2f90f7:	8b 43 64             	mov    eax,DWORD PTR [rbx+0x64]
+  2f90fa:	0b 43 3c             	or     eax,DWORD PTR [rbx+0x3c]
+  2f90fd:	a9 03 00 00 80       	test   eax,0x80000003
+  2f9102:	75 62                	jne    0x2f9166
+  2f9104:	48 85 ff             	test   rdi,rdi
+  2f9107:	74 5d                	je     0x2f9166
+  2f9109:	48 8b 87 98 06 00 00 	mov    rax,QWORD PTR [rdi+0x698]
+  2f9110:	48 85 c0             	test   rax,rax
+  2f9113:	74 51                	je     0x2f9166
+  2f9115:	80 78 05 01          	cmp    BYTE PTR [rax+0x5],0x1
+  2f9119:	75 4b                	jne    0x2f9166
+  2f911b:	0f b6 90 c2 01 00 00 	movzx  edx,BYTE PTR [rax+0x1c2]
+  2f9122:	0f b6 80 88 00 00 00 	movzx  eax,BYTE PTR [rax+0x88]
+  2f9129:	2b d0                	sub    edx,eax
+  2f912b:	48 8b 87 78 0e 00 00 	mov    rax,QWORD PTR [rdi+0xe78]
+  2f9132:	0f b6 48 2f          	movzx  ecx,BYTE PTR [rax+0x2f]
+  2f9136:	48 8b 87 70 0e 00 00 	mov    rax,QWORD PTR [rdi+0xe70]
+  2f913d:	0f af d1             	imul   edx,ecx
+  2f9140:	0f b6 48 2f          	movzx  ecx,BYTE PTR [rax+0x2f]
+  2f9144:	03 d1                	add    edx,ecx
+  2f9146:	48 85 db             	test   rbx,rbx
+  2f9149:	74 0e                	je     0x2f9159
+  2f914b:	f6 43 6b 10          	test   BYTE PTR [rbx+0x6b],0x10
+  2f914f:	75 06                	jne    0x2f9157
+  2f9151:	f6 43 7b 10          	test   BYTE PTR [rbx+0x7b],0x10
+  2f9155:	74 02                	je     0x2f9159
+  2f9157:	03 d2                	add    edx,edx
+  2f9159:	8b c2                	mov    eax,edx
+  2f915b:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  2f9160:	48 83 c4 20          	add    rsp,0x20
+  2f9164:	5f                   	pop    rdi
+  2f9165:	c3                   	ret
+  2f9166:	33 c0                	xor    eax,eax
+  2f9168:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  2f916d:	48 83 c4 20          	add    rsp,0x20
+  2f9171:	5f                   	pop    rdi
+  2f9172:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000000031b860 <.text+0x1fa860>:
+  31b860:	40 57                	rex push rdi
+  31b862:	48 83 ec 20          	sub    rsp,0x20
+  31b866:	48 8b f9             	mov    rdi,rcx
+  31b869:	48 85 c9             	test   rcx,rcx
+  31b86c:	75 08                	jne    0x31b876
+  31b86e:	33 c0                	xor    eax,eax
+  31b870:	48 83 c4 20          	add    rsp,0x20
+  31b874:	5f                   	pop    rdi
+  31b875:	c3                   	ret
+  31b876:	48 89 5c 24 30       	mov    QWORD PTR [rsp+0x30],rbx
+  31b87b:	33 db                	xor    ebx,ebx
+  31b87d:	e8 ce af f1 ff       	call   0x236850
+  31b882:	85 c0                	test   eax,eax
+  31b884:	7e 20                	jle    0x31b8a6
+  31b886:	8b cb                	mov    ecx,ebx
+  31b888:	e8 93 af f1 ff       	call   0x236820
+  31b88d:	48 85 c0             	test   rax,rax
+  31b890:	74 09                	je     0x31b89b
+  31b892:	48 39 b8 98 06 00 00 	cmp    QWORD PTR [rax+0x698],rdi
+  31b899:	74 0d                	je     0x31b8a8
+  31b89b:	ff c3                	inc    ebx
+  31b89d:	e8 ae af f1 ff       	call   0x236850
+  31b8a2:	3b d8                	cmp    ebx,eax
+  31b8a4:	7c e0                	jl     0x31b886
+  31b8a6:	33 c0                	xor    eax,eax
+  31b8a8:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31b8ad:	48 83 c4 20          	add    rsp,0x20
+  31b8b1:	5f                   	pop    rdi
+  31b8b2:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000236850 <.text+0x115850>:
+  236850:	8b 05 4a 7e e5 01    	mov    eax,DWORD PTR [rip+0x1e57e4a]        # 0x208e6a0
+  236856:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000236820 <.text+0x115820>:
+  236820:	85 c9                	test   ecx,ecx
+  236822:	78 1e                	js     0x236842
+  236824:	8b 05 76 7e e5 01    	mov    eax,DWORD PTR [rip+0x1e57e76]        # 0x208e6a0
+  23682a:	ff c8                	dec    eax
+  23682c:	3b c8                	cmp    ecx,eax
+  23682e:	7f 12                	jg     0x236842
+  236830:	48 63 c1             	movsxd rax,ecx
+  236833:	48 69 c0 50 0f 00 00 	imul   rax,rax,0xf50
+  23683a:	48 03 05 47 7e e5 01 	add    rax,QWORD PTR [rip+0x1e57e47]        # 0x208e688
+  236841:	c3                   	ret
+  236842:	33 c0                	xor    eax,eax
+  236844:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000003135c0 <.text+0x1f25c0>:
+  3135c0:	48 83 ec 28          	sub    rsp,0x28
+  3135c4:	e8 d7 a3 ff ff       	call   0x30d9a0
+  3135c9:	33 c9                	xor    ecx,ecx
+  3135cb:	83 f8 01             	cmp    eax,0x1
+  3135ce:	0f 94 c1             	sete   cl
+  3135d1:	8b c1                	mov    eax,ecx
+  3135d3:	48 83 c4 28          	add    rsp,0x28
+  3135d7:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000000030d9a0 <.text+0x1ec9a0>:
+  30d9a0:	48 83 ec 28          	sub    rsp,0x28
+  30d9a4:	48 8b 05 e5 17 bb 02 	mov    rax,QWORD PTR [rip+0x2bb17e5]        # 0x2ebf190
+  30d9ab:	8b 88 04 5b 00 00    	mov    ecx,DWORD PTR [rax+0x5b04]
+  30d9b1:	f6 c1 08             	test   cl,0x8
+  30d9b4:	74 0a                	je     0x30d9c0
+  30d9b6:	b8 05 00 00 00       	mov    eax,0x5
+  30d9bb:	48 83 c4 28          	add    rsp,0x28
+  30d9bf:	c3                   	ret
+  30d9c0:	f6 c1 04             	test   cl,0x4
+  30d9c3:	74 0a                	je     0x30d9cf
+  30d9c5:	b8 04 00 00 00       	mov    eax,0x4
+  30d9ca:	48 83 c4 28          	add    rsp,0x28
+  30d9ce:	c3                   	ret
+  30d9cf:	e8 4c a2 06 00       	call   0x377c20
+  30d9d4:	85 c0                	test   eax,eax
+  30d9d6:	74 0a                	je     0x30d9e2
+  30d9d8:	b8 03 00 00 00       	mov    eax,0x3
+  30d9dd:	48 83 c4 28          	add    rsp,0x28
+  30d9e1:	c3                   	ret
+  30d9e2:	48 8b 05 a7 17 bb 02 	mov    rax,QWORD PTR [rip+0x2bb17a7]        # 0x2ebf190
+  30d9e9:	8b 88 04 5b 00 00    	mov    ecx,DWORD PTR [rax+0x5b04]
+  30d9ef:	f6 c1 02             	test   cl,0x2
+  30d9f2:	74 0a                	je     0x30d9fe
+  30d9f4:	b8 02 00 00 00       	mov    eax,0x2
+  30d9f9:	48 83 c4 28          	add    rsp,0x28
+  30d9fd:	c3                   	ret
+  30d9fe:	0f b6 c1             	movzx  eax,cl
+  30da01:	83 e0 01             	and    eax,0x1
+  30da04:	48 83 c4 28          	add    rsp,0x28
+  30da08:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000377c20 <.text+0x256c20>:
+  377c20:	48 83 ec 28          	sub    rsp,0x28
+  377c24:	e8 c7 cc f9 ff       	call   0x3148f0
+  377c29:	4c 8b 05 d0 54 76 02 	mov    r8,QWORD PTR [rip+0x27654d0]        # 0x2add100
+  377c30:	4d 85 c0             	test   r8,r8
+  377c33:	74 2a                	je     0x377c5f
+  377c35:	41 3b 40 04          	cmp    eax,DWORD PTR [r8+0x4]
+  377c39:	73 24                	jae    0x377c5f
+  377c3b:	48 63 c8             	movsxd rcx,eax
+  377c3e:	49 8d 04 48          	lea    rax,[r8+rcx*2]
+  377c42:	0f b6 54 01 09       	movzx  edx,BYTE PTR [rcx+rax*1+0x9]
+  377c47:	49 8d 04 48          	lea    rax,[r8+rcx*2]
+  377c4b:	0f b6 4c 01 08       	movzx  ecx,BYTE PTR [rcx+rax*1+0x8]
+  377c50:	c1 e2 08             	shl    edx,0x8
+  377c53:	03 d1                	add    edx,ecx
+  377c55:	c1 ea 0f             	shr    edx,0xf
+  377c58:	8b c2                	mov    eax,edx
+  377c5a:	48 83 c4 28          	add    rsp,0x28
+  377c5e:	c3                   	ret
+  377c5f:	ba ff 0f 00 00       	mov    edx,0xfff
+  377c64:	c1 ea 0f             	shr    edx,0xf
+  377c67:	8b c2                	mov    eax,edx
+  377c69:	48 83 c4 28          	add    rsp,0x28
+  377c6d:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000003148f0 <.text+0x1f38f0>:
+  3148f0:	48 83 ec 28          	sub    rsp,0x28
+  3148f4:	e8 b7 a9 fd ff       	call   0x2ef2b0
+  3148f9:	33 c9                	xor    ecx,ecx
+  3148fb:	8b 80 44 10 00 00    	mov    eax,DWORD PTR [rax+0x1044]
+  314901:	85 c0                	test   eax,eax
+  314903:	0f 48 c1             	cmovs  eax,ecx
+  314906:	48 83 c4 28          	add    rsp,0x28
+  31490a:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000002ef2b0 <.text+0x1ce2b0>:
+  2ef2b0:	48 83 ec 28          	sub    rsp,0x28
+  2ef2b4:	e8 87 03 00 00       	call   0x2ef640
+  2ef2b9:	48 05 00 02 00 00    	add    rax,0x200
+  2ef2bf:	48 83 c4 28          	add    rsp,0x28
+  2ef2c3:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000002ef640 <.text+0x1ce640>:
+  2ef640:	48 8d 05 39 4c e7 01 	lea    rax,[rip+0x1e74c39]        # 0x2164280
+  2ef647:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000313800 <.text+0x1f2800>:
+  313800:	48 8b 05 89 b9 ba 02 	mov    rax,QWORD PTR [rip+0x2bab989]        # 0x2ebf190
+  313807:	0f b6 88 d5 5a 00 00 	movzx  ecx,BYTE PTR [rax+0x5ad5]
+  31380e:	e9 7d d0 00 00       	jmp    0x320890
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000320890 <.text+0x1ff890>:
+  320890:	0f b6 d1             	movzx  edx,cl
+  320893:	80 f9 ff             	cmp    cl,0xff
+  320896:	74 20                	je     0x3208b8
+  320898:	4c 8b 05 f1 e8 b9 02 	mov    r8,QWORD PTR [rip+0x2b9e8f1]        # 0x2ebf190
+  32089f:	33 c9                	xor    ecx,ecx
+  3208a1:	8b c1                	mov    eax,ecx
+  3208a3:	41 38 94 40 48 5a 00 	cmp    BYTE PTR [r8+rax*2+0x5a48],dl
+  3208aa:	00 
+  3208ab:	74 0f                	je     0x3208bc
+  3208ad:	ff c1                	inc    ecx
+  3208af:	48 ff c0             	inc    rax
+  3208b2:	48 83 f8 09          	cmp    rax,0x9
+  3208b6:	7c eb                	jl     0x3208a3
+  3208b8:	83 c8 ff             	or     eax,0xffffffff
+  3208bb:	c3                   	ret
+  3208bc:	8b c1                	mov    eax,ecx
+  3208be:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000320ab0 <.text+0x1ffab0>:
+  320ab0:	48 83 ec 28          	sub    rsp,0x28
+  320ab4:	e8 37 af ff ff       	call   0x31b9f0
+  320ab9:	3c 27                	cmp    al,0x27
+  320abb:	76 07                	jbe    0x320ac4
+  320abd:	33 c0                	xor    eax,eax
+  320abf:	48 83 c4 28          	add    rsp,0x28
+  320ac3:	c3                   	ret
+  320ac4:	0f b6 c0             	movzx  eax,al
+  320ac7:	48 69 c8 c8 01 00 00 	imul   rcx,rax,0x1c8
+  320ace:	48 8b 05 bb e6 b9 02 	mov    rax,QWORD PTR [rip+0x2b9e6bb]        # 0x2ebf190
+  320ad5:	48 83 c0 08          	add    rax,0x8
+  320ad9:	48 03 c1             	add    rax,rcx
+  320adc:	48 83 c4 28          	add    rsp,0x28
+  320ae0:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000000031b9f0 <.text+0x1fa9f0>:
+  31b9f0:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+  31b9f5:	57                   	push   rdi
+  31b9f6:	48 83 ec 20          	sub    rsp,0x20
+  31b9fa:	48 63 f9             	movsxd rdi,ecx
+  31b9fd:	45 33 c0             	xor    r8d,r8d
+  31ba00:	8b da                	mov    ebx,edx
+  31ba02:	8b d7                	mov    edx,edi
+  31ba04:	41 8d 48 17          	lea    ecx,[r8+0x17]
+  31ba08:	e8 43 72 00 00       	call   0x322c50
+  31ba0d:	85 c0                	test   eax,eax
+  31ba0f:	75 0d                	jne    0x31ba1e
+  31ba11:	b0 ff                	mov    al,0xff
+  31ba13:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31ba18:	48 83 c4 20          	add    rsp,0x20
+  31ba1c:	5f                   	pop    rdi
+  31ba1d:	c3                   	ret
+  31ba1e:	85 db                	test   ebx,ebx
+  31ba20:	74 7c                	je     0x31ba9e
+  31ba22:	83 eb 01             	sub    ebx,0x1
+  31ba25:	74 5d                	je     0x31ba84
+  31ba27:	83 eb 01             	sub    ebx,0x1
+  31ba2a:	74 3e                	je     0x31ba6a
+  31ba2c:	83 eb 01             	sub    ebx,0x1
+  31ba2f:	74 1f                	je     0x31ba50
+  31ba31:	83 fb 01             	cmp    ebx,0x1
+  31ba34:	75 db                	jne    0x31ba11
+  31ba36:	48 8b 05 53 37 ba 02 	mov    rax,QWORD PTR [rip+0x2ba3753]        # 0x2ebf190
+  31ba3d:	0f b6 84 78 90 5a 00 	movzx  eax,BYTE PTR [rax+rdi*2+0x5a90]
+  31ba44:	00 
+  31ba45:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31ba4a:	48 83 c4 20          	add    rsp,0x20
+  31ba4e:	5f                   	pop    rdi
+  31ba4f:	c3                   	ret
+  31ba50:	48 8b 05 39 37 ba 02 	mov    rax,QWORD PTR [rip+0x2ba3739]        # 0x2ebf190
+  31ba57:	0f b6 84 78 7e 5a 00 	movzx  eax,BYTE PTR [rax+rdi*2+0x5a7e]
+  31ba5e:	00 
+  31ba5f:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31ba64:	48 83 c4 20          	add    rsp,0x20
+  31ba68:	5f                   	pop    rdi
+  31ba69:	c3                   	ret
+  31ba6a:	48 8b 05 1f 37 ba 02 	mov    rax,QWORD PTR [rip+0x2ba371f]        # 0x2ebf190
+  31ba71:	0f b6 84 78 6c 5a 00 	movzx  eax,BYTE PTR [rax+rdi*2+0x5a6c]
+  31ba78:	00 
+  31ba79:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31ba7e:	48 83 c4 20          	add    rsp,0x20
+  31ba82:	5f                   	pop    rdi
+  31ba83:	c3                   	ret
+  31ba84:	48 8b 05 05 37 ba 02 	mov    rax,QWORD PTR [rip+0x2ba3705]        # 0x2ebf190
+  31ba8b:	0f b6 84 78 5a 5a 00 	movzx  eax,BYTE PTR [rax+rdi*2+0x5a5a]
+  31ba92:	00 
+  31ba93:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31ba98:	48 83 c4 20          	add    rsp,0x20
+  31ba9c:	5f                   	pop    rdi
+  31ba9d:	c3                   	ret
+  31ba9e:	48 8b 05 eb 36 ba 02 	mov    rax,QWORD PTR [rip+0x2ba36eb]        # 0x2ebf190
+  31baa5:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  31baaa:	0f b6 84 78 48 5a 00 	movzx  eax,BYTE PTR [rax+rdi*2+0x5a48]
+  31bab1:	00 
+  31bab2:	48 83 c4 20          	add    rsp,0x20
+  31bab6:	5f                   	pop    rdi
+  31bab7:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000000031b810 <.text+0x1fa810>:
+  31b810:	40 53                	rex push rbx
+  31b812:	48 83 ec 20          	sub    rsp,0x20
+  31b816:	48 63 d9             	movsxd rbx,ecx
+  31b819:	45 33 c0             	xor    r8d,r8d
+  31b81c:	8b d3                	mov    edx,ebx
+  31b81e:	41 8d 48 17          	lea    ecx,[r8+0x17]
+  31b822:	e8 29 74 00 00       	call   0x322c50
+  31b827:	85 c0                	test   eax,eax
+  31b829:	75 0f                	jne    0x31b83a
+  31b82b:	b0 ff                	mov    al,0xff
+  31b82d:	0f b6 c8             	movzx  ecx,al
+  31b830:	48 83 c4 20          	add    rsp,0x20
+  31b834:	5b                   	pop    rbx
+  31b835:	e9 66 af f1 ff       	jmp    0x2367a0
+  31b83a:	48 8b 05 4f 39 ba 02 	mov    rax,QWORD PTR [rip+0x2ba394f]        # 0x2ebf190
+  31b841:	0f b6 84 58 5a 5a 00 	movzx  eax,BYTE PTR [rax+rbx*2+0x5a5a]
+  31b848:	00 
+  31b849:	0f b6 c8             	movzx  ecx,al
+  31b84c:	48 83 c4 20          	add    rsp,0x20
+  31b850:	5b                   	pop    rbx
+  31b851:	e9 4a af f1 ff       	jmp    0x2367a0
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000000002367a0 <.text+0x1157a0>:
+  2367a0:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+  2367a5:	57                   	push   rdi
+  2367a6:	48 83 ec 20          	sub    rsp,0x20
+  2367aa:	48 8b 1d d7 7e e5 01 	mov    rbx,QWORD PTR [rip+0x1e57ed7]        # 0x208e688
+  2367b1:	45 33 c0             	xor    r8d,r8d
+  2367b4:	8b f9                	mov    edi,ecx
+  2367b6:	8b d1                	mov    edx,ecx
+  2367b8:	41 8d 48 02          	lea    ecx,[r8+0x2]
+  2367bc:	e8 8f c4 0e 00       	call   0x322c50
+  2367c1:	85 c0                	test   eax,eax
+  2367c3:	74 3e                	je     0x236803
+  2367c5:	44 8b 05 d4 7e e5 01 	mov    r8d,DWORD PTR [rip+0x1e57ed4]        # 0x208e6a0
+  2367cc:	33 d2                	xor    edx,edx
+  2367ce:	45 85 c0             	test   r8d,r8d
+  2367d1:	7e 30                	jle    0x236803
+  2367d3:	48 8b 83 98 06 00 00 	mov    rax,QWORD PTR [rbx+0x698]
+  2367da:	48 85 c0             	test   rax,rax
+  2367dd:	74 16                	je     0x2367f5
+  2367df:	0f b7 40 04          	movzx  eax,WORD PTR [rax+0x4]
+  2367e3:	81 ff ff 00 00 00    	cmp    edi,0xff
+  2367e9:	b9 ff ff 00 00       	mov    ecx,0xffff
+  2367ee:	0f 45 cf             	cmovne ecx,edi
+  2367f1:	3b c1                	cmp    eax,ecx
+  2367f3:	74 1b                	je     0x236810
+  2367f5:	ff c2                	inc    edx
+  2367f7:	48 81 c3 50 0f 00 00 	add    rbx,0xf50
+  2367fe:	41 3b d0             	cmp    edx,r8d
+  236801:	7c d0                	jl     0x2367d3
+  236803:	33 c0                	xor    eax,eax
+  236805:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  23680a:	48 83 c4 20          	add    rsp,0x20
+  23680e:	5f                   	pop    rdi
+  23680f:	c3                   	ret
+  236810:	48 8b c3             	mov    rax,rbx
+  236813:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  236818:	48 83 c4 20          	add    rsp,0x20
+  23681c:	5f                   	pop    rdi
+  23681d:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000322c50 <.text+0x201c50>:
+  322c50:	48 89 5c 24 08       	mov    QWORD PTR [rsp+0x8],rbx
+  322c55:	57                   	push   rdi
+  322c56:	48 83 ec 20          	sub    rsp,0x20
+  322c5a:	8d 41 ff             	lea    eax,[rcx-0x1]
+  322c5d:	8b da                	mov    ebx,edx
+  322c5f:	83 f8 1f             	cmp    eax,0x1f
+  322c62:	77 29                	ja     0x322c8d
+  322c64:	48 8d 3d 95 d3 df ff 	lea    rdi,[rip+0xffffffffffdfd395]        # 0x120000
+  322c6b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  322c70:	48 98                	cdqe
+  322c72:	8b 8c 87 54 30 20 00 	mov    ecx,DWORD PTR [rdi+rax*4+0x203054]
+  322c79:	48 03 cf             	add    rcx,rdi
+  322c7c:	ff e1                	jmp    rcx
+  322c7e:	0f b7 cb             	movzx  ecx,bx
+  322c81:	e8 ba 67 fe ff       	call   0x309440
+  322c86:	ff c8                	dec    eax
+  322c88:	83 f8 1f             	cmp    eax,0x1f
+  322c8b:	76 e3                	jbe    0x322c70
+  322c8d:	33 c0                	xor    eax,eax
+  322c8f:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  322c94:	48 83 c4 20          	add    rsp,0x20
+  322c98:	5f                   	pop    rdi
+  322c99:	c3                   	ret
+  322c9a:	48 8b 0d 8f c4 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c48f]        # 0x2ebf130
+  322ca1:	33 c0                	xor    eax,eax
+  322ca3:	48 85 c9             	test   rcx,rcx
+  322ca6:	0f 84 7e 03 00 00    	je     0x32302a
+  322cac:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322caf:	e9 78 03 00 00       	jmp    0x32302c
+  322cb4:	48 8b 0d 65 c4 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c465]        # 0x2ebf120
+  322cbb:	33 c0                	xor    eax,eax
+  322cbd:	48 85 c9             	test   rcx,rcx
+  322cc0:	0f 84 64 03 00 00    	je     0x32302a
+  322cc6:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322cc9:	e9 5e 03 00 00       	jmp    0x32302c
+  322cce:	48 8b 0d 7b c4 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c47b]        # 0x2ebf150
+  322cd5:	33 c0                	xor    eax,eax
+  322cd7:	48 85 c9             	test   rcx,rcx
+  322cda:	0f 84 4a 03 00 00    	je     0x32302a
+  322ce0:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322ce3:	e9 44 03 00 00       	jmp    0x32302c
+  322ce8:	48 8b 0d 11 c4 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c411]        # 0x2ebf100
+  322cef:	33 c0                	xor    eax,eax
+  322cf1:	48 85 c9             	test   rcx,rcx
+  322cf4:	0f 84 30 03 00 00    	je     0x32302a
+  322cfa:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322cfd:	e9 2a 03 00 00       	jmp    0x32302c
+  322d02:	48 8b 05 ef c3 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c3ef]        # 0x2ebf0f8
+  322d09:	ba 00 10 00 00       	mov    edx,0x1000
+  322d0e:	48 85 c0             	test   rax,rax
+  322d11:	74 0e                	je     0x322d21
+  322d13:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322d16:	8d 88 00 10 00 00    	lea    ecx,[rax+0x1000]
+  322d1c:	e9 0d 03 00 00       	jmp    0x32302e
+  322d21:	8d 88 00 10 00 00    	lea    ecx,[rax+0x1000]
+  322d27:	e9 02 03 00 00       	jmp    0x32302e
+  322d2c:	48 8b 05 65 c3 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c365]        # 0x2ebf098
+  322d33:	ba 00 20 00 00       	mov    edx,0x2000
+  322d38:	48 85 c0             	test   rax,rax
+  322d3b:	74 0e                	je     0x322d4b
+  322d3d:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322d40:	8d 88 00 20 00 00    	lea    ecx,[rax+0x2000]
+  322d46:	e9 e3 02 00 00       	jmp    0x32302e
+  322d4b:	8d 88 00 20 00 00    	lea    ecx,[rax+0x2000]
+  322d51:	e9 d8 02 00 00       	jmp    0x32302e
+  322d56:	48 8b 05 93 c3 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c393]        # 0x2ebf0f0
+  322d5d:	ba 00 30 00 00       	mov    edx,0x3000
+  322d62:	48 85 c0             	test   rax,rax
+  322d65:	74 0e                	je     0x322d75
+  322d67:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322d6a:	8d 88 00 30 00 00    	lea    ecx,[rax+0x3000]
+  322d70:	e9 b9 02 00 00       	jmp    0x32302e
+  322d75:	8d 88 00 30 00 00    	lea    ecx,[rax+0x3000]
+  322d7b:	e9 ae 02 00 00       	jmp    0x32302e
+  322d80:	48 8b 05 61 c3 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c361]        # 0x2ebf0e8
+  322d87:	ba 00 40 00 00       	mov    edx,0x4000
+  322d8c:	48 85 c0             	test   rax,rax
+  322d8f:	74 0e                	je     0x322d9f
+  322d91:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322d94:	8d 88 00 40 00 00    	lea    ecx,[rax+0x4000]
+  322d9a:	e9 8f 02 00 00       	jmp    0x32302e
+  322d9f:	8d 88 00 40 00 00    	lea    ecx,[rax+0x4000]
+  322da5:	e9 84 02 00 00       	jmp    0x32302e
+  322daa:	48 8b 05 2f c3 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c32f]        # 0x2ebf0e0
+  322db1:	ba 00 50 00 00       	mov    edx,0x5000
+  322db6:	48 85 c0             	test   rax,rax
+  322db9:	74 0e                	je     0x322dc9
+  322dbb:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322dbe:	8d 88 00 50 00 00    	lea    ecx,[rax+0x5000]
+  322dc4:	e9 65 02 00 00       	jmp    0x32302e
+  322dc9:	8d 88 00 50 00 00    	lea    ecx,[rax+0x5000]
+  322dcf:	e9 5a 02 00 00       	jmp    0x32302e
+  322dd4:	48 8b 05 fd c2 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c2fd]        # 0x2ebf0d8
+  322ddb:	ba 00 60 00 00       	mov    edx,0x6000
+  322de0:	48 85 c0             	test   rax,rax
+  322de3:	74 0e                	je     0x322df3
+  322de5:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322de8:	8d 88 00 60 00 00    	lea    ecx,[rax+0x6000]
+  322dee:	e9 3b 02 00 00       	jmp    0x32302e
+  322df3:	8d 88 00 60 00 00    	lea    ecx,[rax+0x6000]
+  322df9:	e9 30 02 00 00       	jmp    0x32302e
+  322dfe:	48 8b 05 cb c2 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c2cb]        # 0x2ebf0d0
+  322e05:	ba 00 70 00 00       	mov    edx,0x7000
+  322e0a:	48 85 c0             	test   rax,rax
+  322e0d:	74 0e                	je     0x322e1d
+  322e0f:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322e12:	8d 88 00 70 00 00    	lea    ecx,[rax+0x7000]
+  322e18:	e9 11 02 00 00       	jmp    0x32302e
+  322e1d:	8d 88 00 70 00 00    	lea    ecx,[rax+0x7000]
+  322e23:	e9 06 02 00 00       	jmp    0x32302e
+  322e28:	48 8b 0d 61 c2 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c261]        # 0x2ebf090
+  322e2f:	33 c0                	xor    eax,eax
+  322e31:	ba 00 80 00 00       	mov    edx,0x8000
+  322e36:	48 85 c9             	test   rcx,rcx
+  322e39:	74 06                	je     0x322e41
+  322e3b:	44 8b 49 04          	mov    r9d,DWORD PTR [rcx+0x4]
+  322e3f:	eb 03                	jmp    0x322e44
+  322e41:	44 8b c8             	mov    r9d,eax
+  322e44:	48 8b 0d 3d c2 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c23d]        # 0x2ebf088
+  322e4b:	48 85 c9             	test   rcx,rcx
+  322e4e:	74 06                	je     0x322e56
+  322e50:	44 8b 51 04          	mov    r10d,DWORD PTR [rcx+0x4]
+  322e54:	eb 03                	jmp    0x322e59
+  322e56:	44 8b d0             	mov    r10d,eax
+  322e59:	48 8b 0d 20 c2 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c220]        # 0x2ebf080
+  322e60:	48 85 c9             	test   rcx,rcx
+  322e63:	74 06                	je     0x322e6b
+  322e65:	44 8b 41 04          	mov    r8d,DWORD PTR [rcx+0x4]
+  322e69:	eb 03                	jmp    0x322e6e
+  322e6b:	44 8b c0             	mov    r8d,eax
+  322e6e:	48 8b 0d 03 c2 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c203]        # 0x2ebf078
+  322e75:	48 85 c9             	test   rcx,rcx
+  322e78:	74 03                	je     0x322e7d
+  322e7a:	8b 41 04             	mov    eax,DWORD PTR [rcx+0x4]
+  322e7d:	41 03 c0             	add    eax,r8d
+  322e80:	41 8d 89 00 80 00 00 	lea    ecx,[r9+0x8000]
+  322e87:	41 03 c2             	add    eax,r10d
+  322e8a:	03 c8                	add    ecx,eax
+  322e8c:	e9 9d 01 00 00       	jmp    0x32302e
+  322e91:	48 8b 05 d8 c1 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c1d8]        # 0x2ebf070
+  322e98:	ba 00 90 00 00       	mov    edx,0x9000
+  322e9d:	48 85 c0             	test   rax,rax
+  322ea0:	74 0e                	je     0x322eb0
+  322ea2:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322ea5:	8d 88 00 90 00 00    	lea    ecx,[rax+0x9000]
+  322eab:	e9 7e 01 00 00       	jmp    0x32302e
+  322eb0:	8d 88 00 90 00 00    	lea    ecx,[rax+0x9000]
+  322eb6:	e9 73 01 00 00       	jmp    0x32302e
+  322ebb:	48 8b 05 a6 c1 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c1a6]        # 0x2ebf068
+  322ec2:	ba 00 a0 00 00       	mov    edx,0xa000
+  322ec7:	48 85 c0             	test   rax,rax
+  322eca:	74 0e                	je     0x322eda
+  322ecc:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322ecf:	8d 88 00 a0 00 00    	lea    ecx,[rax+0xa000]
+  322ed5:	e9 54 01 00 00       	jmp    0x32302e
+  322eda:	8d 88 00 a0 00 00    	lea    ecx,[rax+0xa000]
+  322ee0:	e9 49 01 00 00       	jmp    0x32302e
+  322ee5:	48 8b 05 74 c1 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c174]        # 0x2ebf060
+  322eec:	ba 00 b0 00 00       	mov    edx,0xb000
+  322ef1:	48 85 c0             	test   rax,rax
+  322ef4:	74 0e                	je     0x322f04
+  322ef6:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322ef9:	8d 88 00 b0 00 00    	lea    ecx,[rax+0xb000]
+  322eff:	e9 2a 01 00 00       	jmp    0x32302e
+  322f04:	8d 88 00 b0 00 00    	lea    ecx,[rax+0xb000]
+  322f0a:	e9 1f 01 00 00       	jmp    0x32302e
+  322f0f:	48 8b 05 b2 c1 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c1b2]        # 0x2ebf0c8
+  322f16:	ba 00 c0 00 00       	mov    edx,0xc000
+  322f1b:	48 85 c0             	test   rax,rax
+  322f1e:	74 0e                	je     0x322f2e
+  322f20:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322f23:	8d 88 00 c0 00 00    	lea    ecx,[rax+0xc000]
+  322f29:	e9 00 01 00 00       	jmp    0x32302e
+  322f2e:	8d 88 00 c0 00 00    	lea    ecx,[rax+0xc000]
+  322f34:	e9 f5 00 00 00       	jmp    0x32302e
+  322f39:	48 8b 05 18 c1 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c118]        # 0x2ebf058
+  322f40:	ba 00 d0 00 00       	mov    edx,0xd000
+  322f45:	48 85 c0             	test   rax,rax
+  322f48:	74 0e                	je     0x322f58
+  322f4a:	8b 40 04             	mov    eax,DWORD PTR [rax+0x4]
+  322f4d:	8d 88 00 d0 00 00    	lea    ecx,[rax+0xd000]
+  322f53:	e9 d6 00 00 00       	jmp    0x32302e
+  322f58:	8d 88 00 d0 00 00    	lea    ecx,[rax+0xd000]
+  322f5e:	e9 cb 00 00 00       	jmp    0x32302e
+  322f63:	ba 00 e0 00 00       	mov    edx,0xe000
+  322f68:	b9 ff ef 00 00       	mov    ecx,0xefff
+  322f6d:	e9 bc 00 00 00       	jmp    0x32302e
+  322f72:	48 8b 0d bf c1 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c1bf]        # 0x2ebf138
+  322f79:	33 c0                	xor    eax,eax
+  322f7b:	48 85 c9             	test   rcx,rcx
+  322f7e:	0f 84 a6 00 00 00    	je     0x32302a
+  322f84:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322f87:	e9 a0 00 00 00       	jmp    0x32302c
+  322f8c:	48 8b 0d 95 c1 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c195]        # 0x2ebf128
+  322f93:	33 c0                	xor    eax,eax
+  322f95:	48 85 c9             	test   rcx,rcx
+  322f98:	0f 84 8c 00 00 00    	je     0x32302a
+  322f9e:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322fa1:	e9 86 00 00 00       	jmp    0x32302c
+  322fa6:	b9 04 00 00 00       	mov    ecx,0x4
+  322fab:	33 c0                	xor    eax,eax
+  322fad:	eb 7d                	jmp    0x32302c
+  322faf:	b9 09 00 00 00       	mov    ecx,0x9
+  322fb4:	33 c0                	xor    eax,eax
+  322fb6:	eb 74                	jmp    0x32302c
+  322fb8:	48 8b 0d 51 c1 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c151]        # 0x2ebf110
+  322fbf:	33 c0                	xor    eax,eax
+  322fc1:	48 85 c9             	test   rcx,rcx
+  322fc4:	74 64                	je     0x32302a
+  322fc6:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322fc9:	eb 61                	jmp    0x32302c
+  322fcb:	48 8b 0d 66 c0 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c066]        # 0x2ebf038
+  322fd2:	33 c0                	xor    eax,eax
+  322fd4:	48 85 c9             	test   rcx,rcx
+  322fd7:	74 51                	je     0x32302a
+  322fd9:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322fdc:	eb 4e                	jmp    0x32302c
+  322fde:	48 8b 0d 33 c1 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c133]        # 0x2ebf118
+  322fe5:	33 c0                	xor    eax,eax
+  322fe7:	48 85 c9             	test   rcx,rcx
+  322fea:	74 3e                	je     0x32302a
+  322fec:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  322fef:	eb 3b                	jmp    0x32302c
+  322ff1:	48 8b 0d 58 c0 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c058]        # 0x2ebf050
+  322ff8:	33 c0                	xor    eax,eax
+  322ffa:	48 85 c9             	test   rcx,rcx
+  322ffd:	74 2b                	je     0x32302a
+  322fff:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  323002:	eb 28                	jmp    0x32302c
+  323004:	48 8b 0d a5 c0 b9 02 	mov    rcx,QWORD PTR [rip+0x2b9c0a5]        # 0x2ebf0b0
+  32300b:	33 c0                	xor    eax,eax
+  32300d:	48 85 c9             	test   rcx,rcx
+  323010:	74 18                	je     0x32302a
+  323012:	8b 49 04             	mov    ecx,DWORD PTR [rcx+0x4]
+  323015:	eb 15                	jmp    0x32302c
+  323017:	48 8b 05 22 c0 b9 02 	mov    rax,QWORD PTR [rip+0x2b9c022]        # 0x2ebf040
+  32301e:	48 85 c0             	test   rax,rax
+  323021:	74 07                	je     0x32302a
+  323023:	8b 48 04             	mov    ecx,DWORD PTR [rax+0x4]
+  323026:	33 c0                	xor    eax,eax
+  323028:	eb 02                	jmp    0x32302c
+  32302a:	8b c8                	mov    ecx,eax
+  32302c:	8b d0                	mov    edx,eax
+  32302e:	3b da                	cmp    ebx,edx
+  323030:	0f 8c 57 fc ff ff    	jl     0x322c8d
+  323036:	8d 41 ff             	lea    eax,[rcx-0x1]
+  323039:	3b d8                	cmp    ebx,eax
+  32303b:	0f 8f 4c fc ff ff    	jg     0x322c8d
+  323041:	b8 01 00 00 00       	mov    eax,0x1
+  323046:	48 8b 5c 24 30       	mov    rbx,QWORD PTR [rsp+0x30]
+  32304b:	48 83 c4 20          	add    rsp,0x20
+  32304f:	5f                   	pop    rdi
+  323050:	c3                   	ret
+
+# original reward/gate closure; subset reached according to each native control
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000264150 <.text+0x143150>:
+  264150:	0f be 05 52 61 e3 01 	movsx  eax,BYTE PTR [rip+0x1e36152]        # 0x209a2a9
+  264157:	c3                   	ret
+
+# installer: static producer-store verification, not executed by SECTION-03
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000000023a570 <.text+0x119570>:
+  23a570:	89 54 24 10          	mov    DWORD PTR [rsp+0x10],edx
+  23a574:	53                   	push   rbx
+  23a575:	55                   	push   rbp
+  23a576:	56                   	push   rsi
+  23a577:	57                   	push   rdi
+  23a578:	41 54                	push   r12
+  23a57a:	41 56                	push   r14
+  23a57c:	48 83 ec 48          	sub    rsp,0x48
+  23a580:	8b c2                	mov    eax,edx
+  23a582:	44 8b f2             	mov    r14d,edx
+  23a585:	c1 f8 08             	sar    eax,0x8
+  23a588:	48 8b f9             	mov    rdi,rcx
+  23a58b:	44 0f b6 e2          	movzx  r12d,dl
+  23a58f:	bd ff ff 00 00       	mov    ebp,0xffff
+  23a594:	0f b6 f0             	movzx  esi,al
+  23a597:	48 85 c9             	test   rcx,rcx
+  23a59a:	74 12                	je     0x23a5ae
+  23a59c:	f6 01 04             	test   BYTE PTR [rcx],0x4
+  23a59f:	74 0d                	je     0x23a5ae
+  23a5a1:	48 8b 81 98 06 00 00 	mov    rax,QWORD PTR [rcx+0x698]
+  23a5a8:	0f b7 58 04          	movzx  ebx,WORD PTR [rax+0x4]
+  23a5ac:	eb 02                	jmp    0x23a5b0
+  23a5ae:	8b dd                	mov    ebx,ebp
+  23a5b0:	e8 ab c4 ff ff       	call   0x236a60
+  23a5b5:	83 3d 44 ed e4 01 00 	cmp    DWORD PTR [rip+0x1e4ed44],0x0        # 0x2089300
+  23a5bc:	75 0f                	jne    0x23a5cd
+  23a5be:	33 c0                	xor    eax,eax
+  23a5c0:	48 83 c4 48          	add    rsp,0x48
+  23a5c4:	41 5e                	pop    r14
+  23a5c6:	41 5c                	pop    r12
+  23a5c8:	5f                   	pop    rdi
+  23a5c9:	5e                   	pop    rsi
+  23a5ca:	5d                   	pop    rbp
+  23a5cb:	5b                   	pop    rbx
+  23a5cc:	c3                   	ret
+  23a5cd:	e8 ee 98 0c 00       	call   0x303ec0
+  23a5d2:	85 c0                	test   eax,eax
+  23a5d4:	74 1e                	je     0x23a5f4
+  23a5d6:	e8 55 a0 0c 00       	call   0x304630
+  23a5db:	3d ff 00 00 00       	cmp    eax,0xff
+  23a5e0:	74 07                	je     0x23a5e9
+  23a5e2:	e8 49 a0 0c 00       	call   0x304630
+  23a5e7:	eb 02                	jmp    0x23a5eb
+  23a5e9:	8b c5                	mov    eax,ebp
+  23a5eb:	3b c3                	cmp    eax,ebx
+  23a5ed:	75 05                	jne    0x23a5f4
+  23a5ef:	44 3b f5             	cmp    r14d,ebp
+  23a5f2:	74 1b                	je     0x23a60f
+  23a5f4:	80 bc 24 89 00 00 00 	cmp    BYTE PTR [rsp+0x89],0x0
+  23a5fb:	00 
+  23a5fc:	75 09                	jne    0x23a607
+  23a5fe:	41 3b de             	cmp    ebx,r14d
+  23a601:	74 0c                	je     0x23a60f
+  23a603:	3b dd                	cmp    ebx,ebp
+  23a605:	74 08                	je     0x23a60f
+  23a607:	48 8b cf             	mov    rcx,rdi
+  23a60a:	e8 41 7a 0e 00       	call   0x322050
+  23a60f:	4c 89 ac 24 98 00 00 	mov    QWORD PTR [rsp+0x98],r13
+  23a616:	00 
+  23a617:	4c 89 7c 24 40       	mov    QWORD PTR [rsp+0x40],r15
+  23a61c:	0f 29 74 24 30       	movaps XMMWORD PTR [rsp+0x30],xmm6
+  23a621:	0f 29 7c 24 20       	movaps XMMWORD PTR [rsp+0x20],xmm7
+  23a626:	85 f6                	test   esi,esi
+  23a628:	0f 84 1b 04 00 00    	je     0x23aa49
+  23a62e:	83 fe 01             	cmp    esi,0x1
+  23a631:	74 0e                	je     0x23a641
+  23a633:	48 81 27 ff ff ff fb 	and    QWORD PTR [rdi],0xfffffffffbffffff
+  23a63a:	33 c0                	xor    eax,eax
+  23a63c:	e9 1b 06 00 00       	jmp    0x23ac5c
+  23a641:	8b 07                	mov    eax,DWORD PTR [rdi]
+  23a643:	48 0f ba e0 1a       	bt     rax,0x1a
+  23a648:	73 f0                	jae    0x23a63a
+  23a64a:	48 8b 1d cf 4a c8 02 	mov    rbx,QWORD PTR [rip+0x2c84acf]        # 0x2ebf120
+  23a651:	48 85 db             	test   rbx,rbx
+  23a654:	74 05                	je     0x23a65b
+  23a656:	8b 43 04             	mov    eax,DWORD PTR [rbx+0x4]
+  23a659:	eb 02                	jmp    0x23a65d
+  23a65b:	33 c0                	xor    eax,eax
+  23a65d:	ff c8                	dec    eax
+  23a65f:	44 3b e0             	cmp    r12d,eax
+  23a662:	77 d6                	ja     0x23a63a
+  23a664:	48 85 db             	test   rbx,rbx
+  23a667:	74 36                	je     0x23a69f
+  23a669:	8b 4b 0c             	mov    ecx,DWORD PTR [rbx+0xc]
+  23a66c:	e8 8f 3f fd ff       	call   0x20e600
+  23a671:	48 85 c0             	test   rax,rax
+  23a674:	74 22                	je     0x23a698
+  23a676:	48 8b 05 a3 4a c8 02 	mov    rax,QWORD PTR [rip+0x2c84aa3]        # 0x2ebf120
+  23a67d:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a680:	e8 7b 3f fd ff       	call   0x20e600
+  23a685:	48 8b 1d 94 4a c8 02 	mov    rbx,QWORD PTR [rip+0x2c84a94]        # 0x2ebf120
+  23a68c:	0f b7 73 08          	movzx  esi,WORD PTR [rbx+0x8]
+  23a690:	41 0f af f4          	imul   esi,r12d
+  23a694:	03 f0                	add    esi,eax
+  23a696:	eb 09                	jmp    0x23a6a1
+  23a698:	48 8b 1d 81 4a c8 02 	mov    rbx,QWORD PTR [rip+0x2c84a81]        # 0x2ebf120
+  23a69f:	33 f6                	xor    esi,esi
+  23a6a1:	48 8b 15 a8 4a c8 02 	mov    rdx,QWORD PTR [rip+0x2c84aa8]        # 0x2ebf150
+  23a6a8:	48 85 d2             	test   rdx,rdx
+  23a6ab:	74 05                	je     0x23a6b2
+  23a6ad:	8b 4a 04             	mov    ecx,DWORD PTR [rdx+0x4]
+  23a6b0:	eb 02                	jmp    0x23a6b4
+  23a6b2:	33 c9                	xor    ecx,ecx
+  23a6b4:	0f b7 06             	movzx  eax,WORD PTR [rsi]
+  23a6b7:	ff c9                	dec    ecx
+  23a6b9:	3b c1                	cmp    eax,ecx
+  23a6bb:	0f 87 79 ff ff ff    	ja     0x23a63a
+  23a6c1:	48 85 d2             	test   rdx,rdx
+  23a6c4:	74 42                	je     0x23a708
+  23a6c6:	8b 4a 0c             	mov    ecx,DWORD PTR [rdx+0xc]
+  23a6c9:	e8 32 3f fd ff       	call   0x20e600
+  23a6ce:	48 85 c0             	test   rax,rax
+  23a6d1:	74 2e                	je     0x23a701
+  23a6d3:	48 8b 05 76 4a c8 02 	mov    rax,QWORD PTR [rip+0x2c84a76]        # 0x2ebf150
+  23a6da:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a6dd:	e8 1e 3f fd ff       	call   0x20e600
+  23a6e2:	48 8b 0d 67 4a c8 02 	mov    rcx,QWORD PTR [rip+0x2c84a67]        # 0x2ebf150
+  23a6e9:	48 8b 1d 30 4a c8 02 	mov    rbx,QWORD PTR [rip+0x2c84a30]        # 0x2ebf120
+  23a6f0:	44 0f b7 79 08       	movzx  r15d,WORD PTR [rcx+0x8]
+  23a6f5:	0f b7 0e             	movzx  ecx,WORD PTR [rsi]
+  23a6f8:	44 0f af f9          	imul   r15d,ecx
+  23a6fc:	44 03 f8             	add    r15d,eax
+  23a6ff:	eb 0a                	jmp    0x23a70b
+  23a701:	48 8b 1d 18 4a c8 02 	mov    rbx,QWORD PTR [rip+0x2c84a18]        # 0x2ebf120
+  23a708:	45 33 ff             	xor    r15d,r15d
+  23a70b:	48 8b 05 56 4a c8 02 	mov    rax,QWORD PTR [rip+0x2c84a56]        # 0x2ebf168
+  23a712:	48 85 c0             	test   rax,rax
+  23a715:	74 05                	je     0x23a71c
+  23a717:	0f b7 08             	movzx  ecx,WORD PTR [rax]
+  23a71a:	eb 02                	jmp    0x23a71e
+  23a71c:	33 c9                	xor    ecx,ecx
+  23a71e:	0f b7 46 50          	movzx  eax,WORD PTR [rsi+0x50]
+  23a722:	ff c9                	dec    ecx
+  23a724:	3b c1                	cmp    eax,ecx
+  23a726:	0f 8f 0e ff ff ff    	jg     0x23a63a
+  23a72c:	48 8b 05 15 4a c8 02 	mov    rax,QWORD PTR [rip+0x2c84a15]        # 0x2ebf148
+  23a733:	48 85 c0             	test   rax,rax
+  23a736:	74 05                	je     0x23a73d
+  23a738:	8b 48 04             	mov    ecx,DWORD PTR [rax+0x4]
+  23a73b:	eb 02                	jmp    0x23a73f
+  23a73d:	33 c9                	xor    ecx,ecx
+  23a73f:	0f b7 46 22          	movzx  eax,WORD PTR [rsi+0x22]
+  23a743:	ff c9                	dec    ecx
+  23a745:	3b c1                	cmp    eax,ecx
+  23a747:	0f 87 ed fe ff ff    	ja     0x23a63a
+  23a74d:	48 8b 05 ec 49 c8 02 	mov    rax,QWORD PTR [rip+0x2c849ec]        # 0x2ebf140
+  23a754:	48 85 c0             	test   rax,rax
+  23a757:	74 05                	je     0x23a75e
+  23a759:	8b 48 04             	mov    ecx,DWORD PTR [rax+0x4]
+  23a75c:	eb 02                	jmp    0x23a760
+  23a75e:	33 c9                	xor    ecx,ecx
+  23a760:	0f b7 46 24          	movzx  eax,WORD PTR [rsi+0x24]
+  23a764:	ff c9                	dec    ecx
+  23a766:	3b c1                	cmp    eax,ecx
+  23a768:	0f 87 cc fe ff ff    	ja     0x23a63a
+  23a76e:	0f be 57 57          	movsx  edx,BYTE PTR [rdi+0x57]
+  23a772:	48 8b 4f 40          	mov    rcx,QWORD PTR [rdi+0x40]
+  23a776:	e8 85 b9 ff ff       	call   0x236100
+  23a77b:	48 8b e8             	mov    rbp,rax
+  23a77e:	48 85 c0             	test   rax,rax
+  23a781:	0f 84 b3 fe ff ff    	je     0x23a63a
+  23a787:	48 83 e8 80          	sub    rax,0xffffffffffffff80
+  23a78b:	41 bd 01 00 00 00    	mov    r13d,0x1
+  23a791:	f6 45 00 05          	test   BYTE PTR [rbp+0x0],0x5
+  23a795:	48 89 84 24 90 00 00 	mov    QWORD PTR [rsp+0x90],rax
+  23a79c:	00 
+  23a79d:	0f 85 a7 00 00 00    	jne    0x23a84a
+  23a7a3:	41 8b d6             	mov    edx,r14d
+  23a7a6:	48 8b c8             	mov    rcx,rax
+  23a7a9:	e8 d2 04 00 00       	call   0x23ac80
+  23a7ae:	c6 45 14 00          	mov    BYTE PTR [rbp+0x14],0x0
+  23a7b2:	b9 ff ff 00 00       	mov    ecx,0xffff
+  23a7b7:	66 39 4e 32          	cmp    WORD PTR [rsi+0x32],cx
+  23a7bb:	0f b6 45 14          	movzx  eax,BYTE PTR [rbp+0x14]
+  23a7bf:	41 0f 45 c5          	cmovne eax,r13d
+  23a7c3:	88 45 14             	mov    BYTE PTR [rbp+0x14],al
+  23a7c6:	66 39 4e 34          	cmp    WORD PTR [rsi+0x34],cx
+  23a7ca:	74 0a                	je     0x23a7d6
+  23a7cc:	0f b6 c0             	movzx  eax,al
+  23a7cf:	0f ba e8 01          	bts    eax,0x1
+  23a7d3:	88 45 14             	mov    BYTE PTR [rbp+0x14],al
+  23a7d6:	66 39 4e 36          	cmp    WORD PTR [rsi+0x36],cx
+  23a7da:	74 0b                	je     0x23a7e7
+  23a7dc:	0f b6 45 14          	movzx  eax,BYTE PTR [rbp+0x14]
+  23a7e0:	0f ba e8 02          	bts    eax,0x2
+  23a7e4:	88 45 14             	mov    BYTE PTR [rbp+0x14],al
+  23a7e7:	0f b6 46 02          	movzx  eax,BYTE PTR [rsi+0x2]
+  23a7eb:	3c ff                	cmp    al,0xff
+  23a7ed:	75 04                	jne    0x23a7f3
+  23a7ef:	33 db                	xor    ebx,ebx
+  23a7f1:	eb 4d                	jmp    0x23a840
+  23a7f3:	44 0f b6 f0          	movzx  r14d,al
+  23a7f7:	48 8d 0d 42 eb e4 01 	lea    rcx,[rip+0x1e4eb42]        # 0x2089340
+  23a7fe:	0f b6 05 4f 2c e5 01 	movzx  eax,BYTE PTR [rip+0x1e52c4f]        # 0x208d454
+  23a805:	48 c1 e0 06          	shl    rax,0x6
+  23a809:	49 03 c6             	add    rax,r14
+  23a80c:	0f b7 9c 41 14 40 00 	movzx  ebx,WORD PTR [rcx+rax*2+0x4014]
+  23a813:	00 
+  23a814:	e8 27 a2 01 00       	call   0x254a40
+  23a819:	41 8b d5             	mov    edx,r13d
+  23a81c:	3b d8                	cmp    ebx,eax
+  23a81e:	73 03                	jae    0x23a823
+  23a820:	8d 53 01             	lea    edx,[rbx+0x1]
+  23a823:	0f b6 0d 2a 2c e5 01 	movzx  ecx,BYTE PTR [rip+0x1e52c2a]        # 0x208d454
+  23a82a:	48 8d 05 0f eb e4 01 	lea    rax,[rip+0x1e4eb0f]        # 0x2089340
+  23a831:	48 c1 e1 06          	shl    rcx,0x6
+  23a835:	49 03 ce             	add    rcx,r14
+  23a838:	66 89 94 48 14 40 00 	mov    WORD PTR [rax+rcx*2+0x4014],dx
+  23a83f:	00 
+  23a840:	88 5d 12             	mov    BYTE PTR [rbp+0x12],bl
+  23a843:	48 8b 1d d6 48 c8 02 	mov    rbx,QWORD PTR [rip+0x2c848d6]        # 0x2ebf120
+  23a84a:	48 85 db             	test   rbx,rbx
+  23a84d:	0f 84 87 00 00 00    	je     0x23a8da
+  23a853:	8b 4b 0c             	mov    ecx,DWORD PTR [rbx+0xc]
+  23a856:	e8 a5 3d fd ff       	call   0x20e600
+  23a85b:	48 85 c0             	test   rax,rax
+  23a85e:	74 7a                	je     0x23a8da
+  23a860:	48 83 3d 08 49 c8 02 	cmp    QWORD PTR [rip+0x2c84908],0x0        # 0x2ebf170
+  23a867:	00 
+  23a868:	74 70                	je     0x23a8da
+  23a86a:	48 8b 05 af 48 c8 02 	mov    rax,QWORD PTR [rip+0x2c848af]        # 0x2ebf120
+  23a871:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a874:	e8 87 3d fd ff       	call   0x20e600
+  23a879:	48 8b 0d a0 48 c8 02 	mov    rcx,QWORD PTR [rip+0x2c848a0]        # 0x2ebf120
+  23a880:	0f b7 51 08          	movzx  edx,WORD PTR [rcx+0x8]
+  23a884:	41 0f af d4          	imul   edx,r12d
+  23a888:	03 c2                	add    eax,edx
+  23a88a:	0f b7 48 08          	movzx  ecx,WORD PTR [rax+0x8]
+  23a88e:	48 8b 05 db 48 c8 02 	mov    rax,QWORD PTR [rip+0x2c848db]        # 0x2ebf170
+  23a895:	48 c1 e9 0b          	shr    rcx,0xb
+  23a899:	8b 4c 88 04          	mov    ecx,DWORD PTR [rax+rcx*4+0x4]
+  23a89d:	e8 5e 3d fd ff       	call   0x20e600
+  23a8a2:	48 8b 0d 77 48 c8 02 	mov    rcx,QWORD PTR [rip+0x2c84877]        # 0x2ebf120
+  23a8a9:	48 8b d8             	mov    rbx,rax
+  23a8ac:	8b 49 0c             	mov    ecx,DWORD PTR [rcx+0xc]
+  23a8af:	e8 4c 3d fd ff       	call   0x20e600
+  23a8b4:	48 8b 0d 65 48 c8 02 	mov    rcx,QWORD PTR [rip+0x2c84865]        # 0x2ebf120
+  23a8bb:	0f b7 51 08          	movzx  edx,WORD PTR [rcx+0x8]
+  23a8bf:	41 0f af d4          	imul   edx,r12d
+  23a8c3:	03 c2                	add    eax,edx
+  23a8c5:	0f b7 50 08          	movzx  edx,WORD PTR [rax+0x8]
+  23a8c9:	81 e2 ff 07 00 00    	and    edx,0x7ff
+  23a8cf:	8b 4c 93 04          	mov    ecx,DWORD PTR [rbx+rdx*4+0x4]
+  23a8d3:	e8 28 3d fd ff       	call   0x20e600
+  23a8d8:	eb 02                	jmp    0x23a8dc
+  23a8da:	33 c0                	xor    eax,eax
+  23a8dc:	33 d2                	xor    edx,edx
+  23a8de:	48 8b c8             	mov    rcx,rax
+  23a8e1:	e8 ca af 07 00       	call   0x2b58b0
+  23a8e6:	41 0f b6 4f 22       	movzx  ecx,BYTE PTR [r15+0x22]
+  23a8eb:	4c 8b f0             	mov    r14,rax
+  23a8ee:	41 0f b6 47 04       	movzx  eax,BYTE PTR [r15+0x4]
+  23a8f3:	45 0f b6 67 23       	movzx  r12d,BYTE PTR [r15+0x23]
+  23a8f8:	41 0f b6 5f 05       	movzx  ebx,BYTE PTR [r15+0x5]
+  23a8fd:	66 0f 6e f1          	movd   xmm6,ecx
+  23a901:	41 0f b6 4f 27       	movzx  ecx,BYTE PTR [r15+0x27]
+  23a906:	0f 5b f6             	cvtdq2ps xmm6,xmm6
+  23a909:	89 84 24 88 00 00 00 	mov    DWORD PTR [rsp+0x88],eax
+  23a910:	41 0f b7 47 06       	movzx  eax,WORD PTR [r15+0x6]
+  23a915:	48 89 b7 60 0e 00 00 	mov    QWORD PTR [rdi+0xe60],rsi
+  23a91c:	4c 89 bf 68 0e 00 00 	mov    QWORD PTR [rdi+0xe68],r15
+  23a923:	66 0f 6e f9          	movd   xmm7,ecx
+  23a927:	f3 0f 59 35 49 13 ab 	mulss  xmm6,DWORD PTR [rip+0x1ab1349]        # 0x1cebc78
+  23a92e:	01 
+  23a92f:	48 8b 0d 32 48 c8 02 	mov    rcx,QWORD PTR [rip+0x2c84832]        # 0x2ebf168
+  23a936:	89 84 24 80 00 00 00 	mov    DWORD PTR [rsp+0x80],eax
+  23a93d:	0f 5b ff             	cvtdq2ps xmm7,xmm7
+  23a940:	f3 0f 5e 35 f0 7a 6c 	divss  xmm6,DWORD PTR [rip+0x6c7af0]        # 0x902438
+  23a947:	00 
+  23a948:	48 85 c9             	test   rcx,rcx
+  23a94b:	74 0f                	je     0x23a95c
+  23a94d:	0f b7 46 50          	movzx  eax,WORD PTR [rsi+0x50]
+  23a951:	8b 4c 81 04          	mov    ecx,DWORD PTR [rcx+rax*4+0x4]
+  23a955:	e8 a6 3c fd ff       	call   0x20e600
+  23a95a:	eb 02                	jmp    0x23a95e
+  23a95c:	33 c0                	xor    eax,eax
+  23a95e:	48 89 87 e0 06 00 00 	mov    QWORD PTR [rdi+0x6e0],rax
+  23a965:	48 8b 05 dc 47 c8 02 	mov    rax,QWORD PTR [rip+0x2c847dc]        # 0x2ebf148
+  23a96c:	48 85 c0             	test   rax,rax
+  23a96f:	74 32                	je     0x23a9a3
+  23a971:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a974:	e8 87 3c fd ff       	call   0x20e600
+  23a979:	48 85 c0             	test   rax,rax
+  23a97c:	74 25                	je     0x23a9a3
+  23a97e:	48 8b 05 c3 47 c8 02 	mov    rax,QWORD PTR [rip+0x2c847c3]        # 0x2ebf148
+  23a985:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a988:	e8 73 3c fd ff       	call   0x20e600
+  23a98d:	48 8b 0d b4 47 c8 02 	mov    rcx,QWORD PTR [rip+0x2c847b4]        # 0x2ebf148
+  23a994:	0f b7 51 08          	movzx  edx,WORD PTR [rcx+0x8]
+  23a998:	0f b7 4e 22          	movzx  ecx,WORD PTR [rsi+0x22]
+  23a99c:	0f af ca             	imul   ecx,edx
+  23a99f:	03 c8                	add    ecx,eax
+  23a9a1:	eb 02                	jmp    0x23a9a5
+  23a9a3:	33 c9                	xor    ecx,ecx
+  23a9a5:	48 89 8f 70 0e 00 00 	mov    QWORD PTR [rdi+0xe70],rcx
+  23a9ac:	48 8b 05 8d 47 c8 02 	mov    rax,QWORD PTR [rip+0x2c8478d]        # 0x2ebf140
+  23a9b3:	48 85 c0             	test   rax,rax
+  23a9b6:	74 32                	je     0x23a9ea
+  23a9b8:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a9bb:	e8 40 3c fd ff       	call   0x20e600
+  23a9c0:	48 85 c0             	test   rax,rax
+  23a9c3:	74 25                	je     0x23a9ea
+  23a9c5:	48 8b 05 74 47 c8 02 	mov    rax,QWORD PTR [rip+0x2c84774]        # 0x2ebf140
+  23a9cc:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23a9cf:	e8 2c 3c fd ff       	call   0x20e600
+  23a9d4:	48 8b 0d 65 47 c8 02 	mov    rcx,QWORD PTR [rip+0x2c84765]        # 0x2ebf140
+  23a9db:	0f b7 51 08          	movzx  edx,WORD PTR [rcx+0x8]
+  23a9df:	0f b7 4e 24          	movzx  ecx,WORD PTR [rsi+0x24]
+  23a9e3:	0f af ca             	imul   ecx,edx
+  23a9e6:	03 c8                	add    ecx,eax
+  23a9e8:	eb 02                	jmp    0x23a9ec
+  23a9ea:	33 c9                	xor    ecx,ecx
+  23a9ec:	44 0f b6 87 a9 0e 00 	movzx  r8d,BYTE PTR [rdi+0xea9]
+  23a9f3:	00 
+  23a9f4:	48 89 8f 78 0e 00 00 	mov    QWORD PTR [rdi+0xe78],rcx
+  23a9fb:	33 c9                	xor    ecx,ecx
+  23a9fd:	0f b6 56 03          	movzx  edx,BYTE PTR [rsi+0x3]
+  23aa01:	83 e2 03             	and    edx,0x3
+  23aa04:	e8 e7 e5 0e 00       	call   0x328ff0
+  23aa09:	f6 46 03 03          	test   BYTE PTR [rsi+0x3],0x3
+  23aa0d:	75 20                	jne    0x23aa2f
+  23aa0f:	f6 46 15 04          	test   BYTE PTR [rsi+0x15],0x4
+  23aa13:	75 1a                	jne    0x23aa2f
+  23aa15:	4c 8b bc 24 90 00 00 	mov    r15,QWORD PTR [rsp+0x90]
+  23aa1c:	00 
+  23aa1d:	48 b8 ff ff ff ff ff 	movabs rax,0xfffff7ffffffffff
+  23aa24:	f7 ff ff 
+  23aa27:	48 21 07             	and    QWORD PTR [rdi],rax
+  23aa2a:	e9 9b 01 00 00       	jmp    0x23abca
+  23aa2f:	4c 8b bc 24 90 00 00 	mov    r15,QWORD PTR [rsp+0x90]
+  23aa36:	00 
+  23aa37:	48 b8 00 00 00 00 00 	movabs rax,0x80000000000
+  23aa3e:	08 00 00 
+  23aa41:	48 09 07             	or     QWORD PTR [rdi],rax
+  23aa44:	e9 81 01 00 00       	jmp    0x23abca
+  23aa49:	41 bd 01 00 00 00    	mov    r13d,0x1
+  23aa4f:	41 8b d4             	mov    edx,r12d
+  23aa52:	45 8b c5             	mov    r8d,r13d
+  23aa55:	41 8d 4d 01          	lea    ecx,[r13+0x1]
+  23aa59:	e8 f2 81 0e 00       	call   0x322c50
+  23aa5e:	85 c0                	test   eax,eax
+  23aa60:	0f 84 d4 fb ff ff    	je     0x23a63a
+  23aa66:	48 8b 15 c3 46 c8 02 	mov    rdx,QWORD PTR [rip+0x2c846c3]        # 0x2ebf130
+  23aa6d:	48 85 d2             	test   rdx,rdx
+  23aa70:	74 36                	je     0x23aaa8
+  23aa72:	8b 4a 0c             	mov    ecx,DWORD PTR [rdx+0xc]
+  23aa75:	e8 86 3b fd ff       	call   0x20e600
+  23aa7a:	48 85 c0             	test   rax,rax
+  23aa7d:	74 22                	je     0x23aaa1
+  23aa7f:	48 8b 05 aa 46 c8 02 	mov    rax,QWORD PTR [rip+0x2c846aa]        # 0x2ebf130
+  23aa86:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23aa89:	e8 72 3b fd ff       	call   0x20e600
+  23aa8e:	48 8b 15 9b 46 c8 02 	mov    rdx,QWORD PTR [rip+0x2c8469b]        # 0x2ebf130
+  23aa95:	0f b7 72 08          	movzx  esi,WORD PTR [rdx+0x8]
+  23aa99:	41 0f af f4          	imul   esi,r12d
+  23aa9d:	03 f0                	add    esi,eax
+  23aa9f:	eb 09                	jmp    0x23aaaa
+  23aaa1:	48 8b 15 88 46 c8 02 	mov    rdx,QWORD PTR [rip+0x2c84688]        # 0x2ebf130
+  23aaa8:	33 f6                	xor    esi,esi
+  23aaaa:	4c 8b 3d df 46 c8 02 	mov    r15,QWORD PTR [rip+0x2c846df]        # 0x2ebf190
+  23aab1:	33 ed                	xor    ebp,ebp
+  23aab3:	49 69 cc c8 01 00 00 	imul   rcx,r12,0x1c8
+  23aaba:	49 83 c7 08          	add    r15,0x8
+  23aabe:	4d 8b f4             	mov    r14,r12
+  23aac1:	4c 03 f9             	add    r15,rcx
+  23aac4:	48 85 d2             	test   rdx,rdx
+  23aac7:	0f 84 86 00 00 00    	je     0x23ab53
+  23aacd:	8b 4a 0c             	mov    ecx,DWORD PTR [rdx+0xc]
+  23aad0:	e8 2b 3b fd ff       	call   0x20e600
+  23aad5:	48 85 c0             	test   rax,rax
+  23aad8:	74 79                	je     0x23ab53
+  23aada:	48 39 2d 8f 46 c8 02 	cmp    QWORD PTR [rip+0x2c8468f],rbp        # 0x2ebf170
+  23aae1:	74 70                	je     0x23ab53
+  23aae3:	48 8b 05 46 46 c8 02 	mov    rax,QWORD PTR [rip+0x2c84646]        # 0x2ebf130
+  23aaea:	8b 48 0c             	mov    ecx,DWORD PTR [rax+0xc]
+  23aaed:	e8 0e 3b fd ff       	call   0x20e600
+  23aaf2:	48 8b 0d 37 46 c8 02 	mov    rcx,QWORD PTR [rip+0x2c84637]        # 0x2ebf130
+  23aaf9:	0f b7 51 08          	movzx  edx,WORD PTR [rcx+0x8]
+  23aafd:	41 0f af d4          	imul   edx,r12d
+  23ab01:	03 c2                	add    eax,edx
+  23ab03:	0f b7 48 30          	movzx  ecx,WORD PTR [rax+0x30]
+  23ab07:	48 8b 05 62 46 c8 02 	mov    rax,QWORD PTR [rip+0x2c84662]        # 0x2ebf170
+  23ab0e:	48 c1 e9 0b          	shr    rcx,0xb
+  23ab12:	8b 4c 88 04          	mov    ecx,DWORD PTR [rax+rcx*4+0x4]
+  23ab16:	e8 e5 3a fd ff       	call   0x20e600
+  23ab1b:	48 8b 0d 0e 46 c8 02 	mov    rcx,QWORD PTR [rip+0x2c8460e]        # 0x2ebf130
+  23ab22:	48 8b d8             	mov    rbx,rax
+  23ab25:	8b 49 0c             	mov    ecx,DWORD PTR [rcx+0xc]
+  23ab28:	e8 d3 3a fd ff       	call   0x20e600
+  23ab2d:	48 8b 0d fc 45 c8 02 	mov    rcx,QWORD PTR [rip+0x2c845fc]        # 0x2ebf130
+  23ab34:	0f b7 51 08          	movzx  edx,WORD PTR [rcx+0x8]
+  23ab38:	41 0f af d4          	imul   edx,r12d
+  23ab3c:	03 c2                	add    eax,edx
+  23ab3e:	0f b7 50 30          	movzx  edx,WORD PTR [rax+0x30]
+  23ab42:	81 e2 ff 07 00 00    	and    edx,0x7ff
+  23ab48:	8b 4c 93 04          	mov    ecx,DWORD PTR [rbx+rdx*4+0x4]
+  23ab4c:	e8 af 3a fd ff       	call   0x20e600
+  23ab51:	eb 02                	jmp    0x23ab55
+  23ab53:	33 c0                	xor    eax,eax
+  23ab55:	33 d2                	xor    edx,edx
+  23ab57:	48 8b c8             	mov    rcx,rax
+  23ab5a:	e8 51 ad 07 00       	call   0x2b58b0
+  23ab5f:	44 0f b6 66 2b       	movzx  r12d,BYTE PTR [rsi+0x2b]
+  23ab64:	48 8d 0d 0d e8 e4 01 	lea    rcx,[rip+0x1e4e80d]        # 0x2089378
+  23ab6b:	f3 0f 10 35 05 11 ab 	movss  xmm6,DWORD PTR [rip+0x1ab1105]        # 0x1cebc78
+  23ab72:	01 
+  23ab73:	83 cb ff             	or     ebx,0xffffffff
+  23ab76:	48 89 84 24 90 00 00 	mov    QWORD PTR [rsp+0x90],rax
+  23ab7d:	00 
+  23ab7e:	49 69 c6 70 01 00 00 	imul   rax,r14,0x170
+  23ab85:	66 41 0f 6e fc       	movd   xmm7,r12d
+  23ab8a:	0f 5b ff             	cvtdq2ps xmm7,xmm7
+  23ab8d:	4c 8b b4 24 90 00 00 	mov    r14,QWORD PTR [rsp+0x90]
+  23ab94:	00 
+  23ab95:	48 03 c1             	add    rax,rcx
+  23ab98:	89 9c 24 80 00 00 00 	mov    DWORD PTR [rsp+0x80],ebx
+  23ab9f:	48 89 87 e0 06 00 00 	mov    QWORD PTR [rdi+0x6e0],rax
+  23aba6:	48 8d 05 a3 e7 bc 01 	lea    rax,[rip+0x1bce7a3]        # 0x1e09350
+  23abad:	f3 0f 59 3d 87 6f 6c 	mulss  xmm7,DWORD PTR [rip+0x6c6f87]        # 0x901b3c
+  23abb4:	00 
+  23abb5:	48 89 87 f0 06 00 00 	mov    QWORD PTR [rdi+0x6f0],rax
+  23abbc:	89 9c 24 88 00 00 00 	mov    DWORD PTR [rsp+0x88],ebx
+  23abc3:	48 89 b7 60 0e 00 00 	mov    QWORD PTR [rdi+0xe60],rsi
+  23abca:	41 0f b6 c4          	movzx  eax,r12b
+  23abce:	48 8b cf             	mov    rcx,rdi
+  23abd1:	f3 0f 11 77 64       	movss  DWORD PTR [rdi+0x64],xmm6
+  23abd6:	f3 0f 11 7f 6c       	movss  DWORD PTR [rdi+0x6c],xmm7
+  23abdb:	c7 47 48 00 00 00 00 	mov    DWORD PTR [rdi+0x48],0x0
+  23abe2:	66 0f 6e c0          	movd   xmm0,eax
+  23abe6:	8b 84 24 88 00 00 00 	mov    eax,DWORD PTR [rsp+0x88]
+  23abed:	0f 5b c0             	cvtdq2ps xmm0,xmm0
+  23abf0:	88 47 55             	mov    BYTE PTR [rdi+0x55],al
+  23abf3:	8b 84 24 80 00 00 00 	mov    eax,DWORD PTR [rsp+0x80]
+  23abfa:	4c 89 bf 98 06 00 00 	mov    QWORD PTR [rdi+0x698],r15
+  23ac01:	48 89 af a0 06 00 00 	mov    QWORD PTR [rdi+0x6a0],rbp
+  23ac08:	4c 89 77 18          	mov    QWORD PTR [rdi+0x18],r14
+  23ac0c:	f3 0f 11 47 68       	movss  DWORD PTR [rdi+0x68],xmm0
+  23ac11:	88 5f 56             	mov    BYTE PTR [rdi+0x56],bl
+  23ac14:	66 89 47 52          	mov    WORD PTR [rdi+0x52],ax
+  23ac18:	c6 47 54 ff          	mov    BYTE PTR [rdi+0x54],0xff
+  23ac1c:	e8 1f c4 ff ff       	call   0x237040
+  23ac21:	48 8b cf             	mov    rcx,rdi
+  23ac24:	e8 87 3e 0c 00       	call   0x2feab0
+  23ac29:	48 8b 8f 98 06 00 00 	mov    rcx,QWORD PTR [rdi+0x698]
+  23ac30:	48 85 c9             	test   rcx,rcx
+  23ac33:	74 16                	je     0x23ac4b
+  23ac35:	8b 41 64             	mov    eax,DWORD PTR [rcx+0x64]
+  23ac38:	0b 41 3c             	or     eax,DWORD PTR [rcx+0x3c]
+  23ac3b:	a9 03 00 00 80       	test   eax,0x80000003
+  23ac40:	74 14                	je     0x23ac56
+  23ac42:	e8 19 93 0d 00       	call   0x313f60
+  23ac47:	85 c0                	test   eax,eax
+  23ac49:	75 0b                	jne    0x23ac56
+  23ac4b:	48 81 27 ff ff ff fb 	and    QWORD PTR [rdi],0xfffffffffbffffff
+  23ac52:	48 83 0f 02          	or     QWORD PTR [rdi],0x2
+  23ac56:	83 0f 04             	or     DWORD PTR [rdi],0x4
+  23ac59:	41 8b c5             	mov    eax,r13d
+  23ac5c:	0f 28 74 24 30       	movaps xmm6,XMMWORD PTR [rsp+0x30]
+  23ac61:	4c 8b 7c 24 40       	mov    r15,QWORD PTR [rsp+0x40]
+  23ac66:	4c 8b ac 24 98 00 00 	mov    r13,QWORD PTR [rsp+0x98]
+  23ac6d:	00 
+  23ac6e:	0f 28 7c 24 20       	movaps xmm7,XMMWORD PTR [rsp+0x20]
+  23ac73:	48 83 c4 48          	add    rsp,0x48
+  23ac77:	41 5e                	pop    r14
+  23ac79:	41 5c                	pop    r12
+  23ac7b:	5f                   	pop    rdi
+  23ac7c:	5e                   	pop    rsi
+  23ac7d:	5d                   	pop    rbp
+  23ac7e:	5b                   	pop    rbx
+  23ac7f:	c3                   	ret
+
+# address decoder: static verification, not executed by SECTION-03
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000000020e600 <.text+0xed600>:
+  20e600:	8b c1                	mov    eax,ecx
+  20e602:	48 03 05 27 4f d7 01 	add    rax,QWORD PTR [rip+0x1d74f27]        # 0x1f83530
+  20e609:	c3                   	ret
+
+# defeat orchestrator: static call/argument verification only, not full execution
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000312280 <.text+0x1f1280>:
+  312280:	48 85 d2             	test   rdx,rdx
+  312283:	0f 84 4f 03 00 00    	je     0x3125d8
+  312289:	53                   	push   rbx
+  31228a:	55                   	push   rbp
+  31228b:	41 54                	push   r12
+  31228d:	41 56                	push   r14
+  31228f:	48 83 ec 78          	sub    rsp,0x78
+  312293:	48 8b 05 96 25 c3 01 	mov    rax,QWORD PTR [rip+0x1c32596]        # 0x1f44830
+  31229a:	48 33 c4             	xor    rax,rsp
+  31229d:	48 89 44 24 68       	mov    QWORD PTR [rsp+0x68],rax
+  3122a2:	48 8b 82 98 06 00 00 	mov    rax,QWORD PTR [rdx+0x698]
+  3122a9:	33 ed                	xor    ebp,ebp
+  3122ab:	4c 8b f2             	mov    r14,rdx
+  3122ae:	48 8b d9             	mov    rbx,rcx
+  3122b1:	44 8b e5             	mov    r12d,ebp
+  3122b4:	48 85 c0             	test   rax,rax
+  3122b7:	74 19                	je     0x3122d2
+  3122b9:	80 78 05 01          	cmp    BYTE PTR [rax+0x5],0x1
+  3122bd:	75 13                	jne    0x3122d2
+  3122bf:	48 85 c9             	test   rcx,rcx
+  3122c2:	74 0e                	je     0x3122d2
+  3122c4:	40 38 69 05          	cmp    BYTE PTR [rcx+0x5],bpl
+  3122c8:	75 08                	jne    0x3122d2
+  3122ca:	48 8b ca             	mov    rcx,rdx
+  3122cd:	e8 fe 5b 00 00       	call   0x317ed0
+  3122d2:	49 8b ce             	mov    rcx,r14
+  3122d5:	e8 e6 4e 00 00       	call   0x3171c0
+  3122da:	49 8b 8e 98 06 00 00 	mov    rcx,QWORD PTR [r14+0x698]
+  3122e1:	48 85 c9             	test   rcx,rcx
+  3122e4:	0f 84 d7 02 00 00    	je     0x3125c1
+  3122ea:	80 79 05 01          	cmp    BYTE PTR [rcx+0x5],0x1
+  3122ee:	0f 85 cd 02 00 00    	jne    0x3125c1
+  3122f4:	41 0f b6 96 9a 0e 00 	movzx  edx,BYTE PTR [r14+0xe9a]
+  3122fb:	00 
+  3122fc:	f6 c2 08             	test   dl,0x8
+  3122ff:	0f 85 bc 02 00 00    	jne    0x3125c1
+  312305:	0f b6 c2             	movzx  eax,dl
+  312308:	24 05                	and    al,0x5
+  31230a:	3c 05                	cmp    al,0x5
+  31230c:	74 22                	je     0x312330
+  31230e:	8b 41 64             	mov    eax,DWORD PTR [rcx+0x64]
+  312311:	0b 41 3c             	or     eax,DWORD PTR [rcx+0x3c]
+  312314:	a8 02                	test   al,0x2
+  312316:	74 05                	je     0x31231d
+  312318:	f6 c2 02             	test   dl,0x2
+  31231b:	75 13                	jne    0x312330
+  31231d:	48 85 db             	test   rbx,rbx
+  312320:	0f 84 9b 02 00 00    	je     0x3125c1
+  312326:	40 38 6b 05          	cmp    BYTE PTR [rbx+0x5],bpl
+  31232a:	0f 85 91 02 00 00    	jne    0x3125c1
+  312330:	48 89 b4 24 a0 00 00 	mov    QWORD PTR [rsp+0xa0],rsi
+  312337:	00 
+  312338:	8b f5                	mov    esi,ebp
+  31233a:	48 89 bc 24 b0 00 00 	mov    QWORD PTR [rsp+0xb0],rdi
+  312341:	00 
+  312342:	48 8b fd             	mov    rdi,rbp
+  312345:	4c 89 ac 24 b8 00 00 	mov    QWORD PTR [rsp+0xb8],r13
+  31234c:	00 
+  31234d:	4c 8d 2d ec f3 fa 01 	lea    r13,[rip+0x1faf3ec]        # 0x22c1740
+  312354:	4c 89 7c 24 70       	mov    QWORD PTR [rsp+0x70],r15
+  312359:	44 8b fd             	mov    r15d,ebp
+  31235c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  312360:	ba 03 00 00 00       	mov    edx,0x3
+  312365:	8b ce                	mov    ecx,esi
+  312367:	e8 44 e7 00 00       	call   0x320ab0
+  31236c:	48 8b d8             	mov    rbx,rax
+  31236f:	48 85 c0             	test   rax,rax
+  312372:	74 28                	je     0x31239c
+  312374:	8b 48 64             	mov    ecx,DWORD PTR [rax+0x64]
+  312377:	0b 48 3c             	or     ecx,DWORD PTR [rax+0x3c]
+  31237a:	f7 c1 03 00 00 80    	test   ecx,0x80000003
+  312380:	74 09                	je     0x31238b
+  312382:	e8 99 58 06 00       	call   0x377c20
+  312387:	85 c0                	test   eax,eax
+  312389:	74 11                	je     0x31239c
+  31238b:	48 83 ff 09          	cmp    rdi,0x9
+  31238f:	7d 05                	jge    0x312396
+  312391:	49 89 5c fd 00       	mov    QWORD PTR [r13+rdi*8+0x0],rbx
+  312396:	41 ff c7             	inc    r15d
+  312399:	48 ff c7             	inc    rdi
+  31239c:	ff c6                	inc    esi
+  31239e:	83 fe 09             	cmp    esi,0x9
+  3123a1:	7c bd                	jl     0x312360
+  3123a3:	4d 63 ef             	movsxd r13,r15d
+  3123a6:	be 3f 42 0f 00       	mov    esi,0xf423f
+  3123ab:	4c 8b fd             	mov    r15,rbp
+  3123ae:	4d 85 ed             	test   r13,r13
+  3123b1:	0f 8e 02 01 00 00    	jle    0x3124b9
+  3123b7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  3123be:	00 00 
+  3123c0:	48 8d 05 79 f3 fa 01 	lea    rax,[rip+0x1faf379]        # 0x22c1740
+  3123c7:	49 8b d6             	mov    rdx,r14
+  3123ca:	4a 8b 3c f8          	mov    rdi,QWORD PTR [rax+r15*8]
+  3123ce:	48 8b cf             	mov    rcx,rdi
+  3123d1:	e8 da 67 fe ff       	call   0x2f8bb0
+  3123d6:	49 8b d6             	mov    rdx,r14
+  3123d9:	48 8b cf             	mov    rcx,rdi
+  3123dc:	8b d8                	mov    ebx,eax
+  3123de:	e8 dd 6c fe ff       	call   0x2f90c0
+  3123e3:	8b f0                	mov    esi,eax
+  3123e5:	85 db                	test   ebx,ebx
+  3123e7:	79 04                	jns    0x3123ed
+  3123e9:	8b dd                	mov    ebx,ebp
+  3123eb:	eb 0a                	jmp    0x3123f7
+  3123ed:	b8 3f 42 0f 00       	mov    eax,0xf423f
+  3123f2:	3b d8                	cmp    ebx,eax
+  3123f4:	0f 4f d8             	cmovg  ebx,eax
+  3123f7:	85 f6                	test   esi,esi
+  3123f9:	79 04                	jns    0x3123ff
+  3123fb:	8b f5                	mov    esi,ebp
+  3123fd:	eb 0a                	jmp    0x312409
+  3123ff:	b8 e7 03 00 00       	mov    eax,0x3e7
+  312404:	3b f0                	cmp    esi,eax
+  312406:	0f 4f f0             	cmovg  esi,eax
+  312409:	f6 47 69 10          	test   BYTE PTR [rdi+0x69],0x10
+  31240d:	75 06                	jne    0x312415
+  31240f:	f6 47 79 10          	test   BYTE PTR [rdi+0x79],0x10
+  312413:	74 14                	je     0x312429
+  312415:	0f b6 8f c2 01 00 00 	movzx  ecx,BYTE PTR [rdi+0x1c2]
+  31241c:	0f af ce             	imul   ecx,esi
+  31241f:	8b f5                	mov    esi,ebp
+  312421:	41 8d 04 0c          	lea    eax,[r12+rcx*1]
+  312425:	44 8d 24 88          	lea    r12d,[rax+rcx*4]
+  312429:	e8 52 43 f2 ff       	call   0x236780
+  31242e:	85 c0                	test   eax,eax
+  312430:	75 18                	jne    0x31244a
+  312432:	8b 8f 8c 01 00 00    	mov    ecx,DWORD PTR [rdi+0x18c]
+  312438:	b8 ff e0 f5 05       	mov    eax,0x5f5e0ff
+  31243d:	03 cb                	add    ecx,ebx
+  31243f:	3b c8                	cmp    ecx,eax
+  312441:	0f 47 c8             	cmova  ecx,eax
+  312444:	89 8f 8c 01 00 00    	mov    DWORD PTR [rdi+0x18c],ecx
+  31244a:	0f b6 9f c2 01 00 00 	movzx  ebx,BYTE PTR [rdi+0x1c2]
+  312451:	8b cb                	mov    ecx,ebx
+  312453:	e8 c8 6a fe ff       	call   0x2f8f20
+  312458:	85 c0                	test   eax,eax
+  31245a:	7e 19                	jle    0x312475
+  31245c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  312460:	3b 87 8c 01 00 00    	cmp    eax,DWORD PTR [rdi+0x18c]
+  312466:	77 0d                	ja     0x312475
+  312468:	ff c3                	inc    ebx
+  31246a:	8b cb                	mov    ecx,ebx
+  31246c:	e8 af 6a fe ff       	call   0x2f8f20
+  312471:	85 c0                	test   eax,eax
+  312473:	7f eb                	jg     0x312460
+  312475:	44 8b 87 90 01 00 00 	mov    r8d,DWORD PTR [rdi+0x190]
+  31247c:	b8 9f 86 01 00       	mov    eax,0x1869f
+  312481:	44 03 c6             	add    r8d,esi
+  312484:	8b d6                	mov    edx,esi
+  312486:	44 3b c0             	cmp    r8d,eax
+  312489:	b1 0b                	mov    cl,0xb
+  31248b:	44 0f 47 c0          	cmova  r8d,eax
+  31248f:	44 89 87 90 01 00 00 	mov    DWORD PTR [rdi+0x190],r8d
+  312496:	e8 b5 45 00 00       	call   0x316a50
+  31249b:	45 33 c0             	xor    r8d,r8d
+  31249e:	8b d3                	mov    edx,ebx
+  3124a0:	48 8b cf             	mov    rcx,rdi
+  3124a3:	e8 a8 a1 ff ff       	call   0x30c650
+  3124a8:	49 ff c7             	inc    r15
+  3124ab:	4d 3b fd             	cmp    r15,r13
+  3124ae:	0f 8c 0c ff ff ff    	jl     0x3123c0
+  3124b4:	be 3f 42 0f 00       	mov    esi,0xf423f
+  3124b9:	49 8b d6             	mov    rdx,r14
+  3124bc:	33 c9                	xor    ecx,ecx
+  3124be:	e8 ed 66 fe ff       	call   0x2f8bb0
+  3124c3:	49 8b d6             	mov    rdx,r14
+  3124c6:	33 c9                	xor    ecx,ecx
+  3124c8:	8b f8                	mov    edi,eax
+  3124ca:	e8 f1 6b fe ff       	call   0x2f90c0
+  3124cf:	4c 8b 7c 24 70       	mov    r15,QWORD PTR [rsp+0x70]
+  3124d4:	8b d8                	mov    ebx,eax
+  3124d6:	4c 8b ac 24 b8 00 00 	mov    r13,QWORD PTR [rsp+0xb8]
+  3124dd:	00 
+  3124de:	85 ff                	test   edi,edi
+  3124e0:	79 04                	jns    0x3124e6
+  3124e2:	8b fd                	mov    edi,ebp
+  3124e4:	eb 05                	jmp    0x3124eb
+  3124e6:	3b fe                	cmp    edi,esi
+  3124e8:	0f 4f fe             	cmovg  edi,esi
+  3124eb:	48 8b b4 24 a0 00 00 	mov    rsi,QWORD PTR [rsp+0xa0]
+  3124f2:	00 
+  3124f3:	85 db                	test   ebx,ebx
+  3124f5:	79 04                	jns    0x3124fb
+  3124f7:	8b dd                	mov    ebx,ebp
+  3124f9:	eb 0a                	jmp    0x312505
+  3124fb:	b8 e7 03 00 00       	mov    eax,0x3e7
+  312500:	3b d8                	cmp    ebx,eax
+  312502:	0f 4f d8             	cmovg  ebx,eax
+  312505:	e8 76 42 f2 ff       	call   0x236780
+  31250a:	41 8b 4e 08          	mov    ecx,DWORD PTR [r14+0x8]
+  31250e:	85 c0                	test   eax,eax
+  312510:	44 8b c3             	mov    r8d,ebx
+  312513:	0f 45 fd             	cmovne edi,ebp
+  312516:	8b d7                	mov    edx,edi
+  312518:	e8 63 d6 f7 ff       	call   0x28fb80
+  31251d:	49 8b 86 98 06 00 00 	mov    rax,QWORD PTR [r14+0x698]
+  312524:	0f b6 b8 c2 01 00 00 	movzx  edi,BYTE PTR [rax+0x1c2]
+  31252b:	0f b6 80 88 00 00 00 	movzx  eax,BYTE PTR [rax+0x88]
+  312532:	2b f8                	sub    edi,eax
+  312534:	49 8b 86 78 0e 00 00 	mov    rax,QWORD PTR [r14+0xe78]
+  31253b:	0f af 78 30          	imul   edi,DWORD PTR [rax+0x30]
+  31253f:	49 8b 86 70 0e 00 00 	mov    rax,QWORD PTR [r14+0xe70]
+  312546:	03 78 30             	add    edi,DWORD PTR [rax+0x30]
+  312549:	41 03 fc             	add    edi,r12d
+  31254c:	e8 3f 11 f4 ff       	call   0x253690
+  312551:	8b d8                	mov    ebx,eax
+  312553:	8d 14 38             	lea    edx,[rax+rdi*1]
+  312556:	85 d2                	test   edx,edx
+  312558:	0f 49 ea             	cmovns ebp,edx
+  31255b:	8b cd                	mov    ecx,ebp
+  31255d:	e8 7e 29 f4 ff       	call   0x254ee0
+  312562:	2b eb                	sub    ebp,ebx
+  312564:	8b cd                	mov    ecx,ebp
+  312566:	e8 15 79 15 00       	call   0x469e80
+  31256b:	49 8b 4e 10          	mov    rcx,QWORD PTR [r14+0x10]
+  31256f:	4c 8d 4c 24 28       	lea    r9,[rsp+0x28]
+  312574:	4c 8d 44 24 24       	lea    r8,[rsp+0x24]
+  312579:	48 8d 54 24 20       	lea    rdx,[rsp+0x20]
+  31257e:	e8 9d 2a f5 ff       	call   0x265020
+  312583:	48 8d 4c 24 20       	lea    rcx,[rsp+0x20]
+  312588:	e8 03 6f 00 00       	call   0x319490
+  31258d:	48 8b bc 24 b0 00 00 	mov    rdi,QWORD PTR [rsp+0xb0]
+  312594:	00 
+  312595:	85 c0                	test   eax,eax
+  312597:	74 20                	je     0x3125b9
+  312599:	48 8d 54 24 30       	lea    rdx,[rsp+0x30]
+  31259e:	49 8b ce             	mov    rcx,r14
+  3125a1:	e8 4a 5b 00 00       	call   0x3180f0
+  3125a6:	85 c0                	test   eax,eax
+  3125a8:	74 0f                	je     0x3125b9
+  3125aa:	48 8d 54 24 20       	lea    rdx,[rsp+0x20]
+  3125af:	48 8d 4c 24 30       	lea    rcx,[rsp+0x30]
+  3125b4:	e8 e7 76 00 00       	call   0x319ca0
+  3125b9:	49 8b ce             	mov    rcx,r14
+  3125bc:	e8 cf 4a 00 00       	call   0x317090
+  3125c1:	48 8b 4c 24 68       	mov    rcx,QWORD PTR [rsp+0x68]
+  3125c6:	48 33 cc             	xor    rcx,rsp
+  3125c9:	e8 72 66 4f 00       	call   0x808c40
+  3125ce:	48 83 c4 78          	add    rsp,0x78
+  3125d2:	41 5e                	pop    r14
+  3125d4:	41 5c                	pop    r12
+  3125d6:	5d                   	pop    rbp
+  3125d7:	5b                   	pop    rbx
+  3125d8:	c3                   	ret
+
+# gil setter: static comparison of caller input, meter delta and stored clamp only
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000254ee0 <.text+0x133ee0>:
+  254ee0:	40 53                	rex push rbx
+  254ee2:	48 83 ec 20          	sub    rsp,0x20
+  254ee6:	48 8b 05 6b d8 e3 01 	mov    rax,QWORD PTR [rip+0x1e3d86b]        # 0x2092758
+  254eed:	8b d1                	mov    edx,ecx
+  254eef:	8b d9                	mov    ebx,ecx
+  254ef1:	2b 50 08             	sub    edx,DWORD PTR [rax+0x8]
+  254ef4:	85 d2                	test   edx,edx
+  254ef6:	7e 04                	jle    0x254efc
+  254ef8:	b1 06                	mov    cl,0x6
+  254efa:	eb 06                	jmp    0x254f02
+  254efc:	79 09                	jns    0x254f07
+  254efe:	f7 da                	neg    edx
+  254f00:	b1 07                	mov    cl,0x7
+  254f02:	e8 49 1b 0c 00       	call   0x316a50
+  254f07:	33 c9                	xor    ecx,ecx
+  254f09:	b8 ff e0 f5 05       	mov    eax,0x5f5e0ff
+  254f0e:	85 db                	test   ebx,ebx
+  254f10:	0f 49 cb             	cmovns ecx,ebx
+  254f13:	3b c8                	cmp    ecx,eax
+  254f15:	0f 4f c8             	cmovg  ecx,eax
+  254f18:	48 8b 05 39 d8 e3 01 	mov    rax,QWORD PTR [rip+0x1e3d839]        # 0x2092758
+  254f1f:	89 48 08             	mov    DWORD PTR [rax+0x8],ecx
+  254f22:	48 83 c4 20          	add    rsp,0x20
+  254f26:	5b                   	pop    rbx
+  254f27:	c3                   	ret
+
+# gil notifier: static positive-delta event dispatch only
+
+/mnt/data/FFXII_TZA.exe:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000000469e80 <.text+0x348e80>:
+  469e80:	4c 8b dc             	mov    r11,rsp
+  469e83:	48 83 ec 58          	sub    rsp,0x58
+  469e87:	33 c0                	xor    eax,eax
+  469e89:	49 89 43 c8          	mov    QWORD PTR [r11-0x38],rax
+  469e8d:	49 89 43 d0          	mov    QWORD PTR [r11-0x30],rax
+  469e91:	49 89 43 d8          	mov    QWORD PTR [r11-0x28],rax
+  469e95:	49 89 43 e0          	mov    QWORD PTR [r11-0x20],rax
+  469e99:	49 89 43 e8          	mov    QWORD PTR [r11-0x18],rax
+  469e9d:	49 89 43 f0          	mov    QWORD PTR [r11-0x10],rax
+  469ea1:	89 4c 24 30          	mov    DWORD PTR [rsp+0x30],ecx
+  469ea5:	85 c9                	test   ecx,ecx
+  469ea7:	7e 0e                	jle    0x469eb7
+  469ea9:	4d 8d 43 c8          	lea    r8,[r11-0x38]
+  469ead:	33 c9                	xor    ecx,ecx
+  469eaf:	8d 50 26             	lea    edx,[rax+0x26]
+  469eb2:	e8 59 0c 00 00       	call   0x46ab10
+  469eb7:	48 83 c4 58          	add    rsp,0x58
+  469ebb:	c3                   	ret

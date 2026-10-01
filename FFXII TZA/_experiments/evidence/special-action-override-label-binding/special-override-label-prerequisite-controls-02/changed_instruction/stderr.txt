@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\special-override-label-prerequisite-controls-02\changed_instruction\prove-special-override-label-binding.py", line 37, in <module>
+    if pc!=cursor or not z or read(pc,len(z))!=z:raise ValueError('original instruction/coverage prerequisite')
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: original instruction/coverage prerequisite

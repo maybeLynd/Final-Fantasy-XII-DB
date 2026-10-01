@@ -1,0 +1,14 @@
+0017DB90: 0017DCA4 mov eax, 0x11d
+001EC760: 001ECBD5 cmp ebx, 0x11d
+002C2320: 002C2899 mov dword ptr [rsp + 0x30], 0x11d
+002CE056: 002CE103 mov dword ptr [rsp + 0x28], 0x11d
+002CE370: 002CE417 mov dword ptr [rsp + 0x20], 0x11d
+00558212: 00558598 cmp ecx, 0x11d
+0055CD40: 0055CD53 cmp eax, 0x11d
+007153CA: 007154D3 mov ecx, 0x11d
+0071841C: 0071843D mov ecx, 0x11d
+00823B44: 00823E95 mov eax, 0x11d | 00823EB4 mov eax, 0x11d
+0082B890: 0082B8CA cmp dword ptr [rbx + 0x10], 0x11d | 0082B908 cmp ecx, 0x11d | 0082B970 mov edx, 0x11d
+0082D8E6: 0082D9BE cmp eax, 0x11d
+functions: 12
+00566F4E: mov eax, dword ptr [rdi + 0x14] owner 00566EE0

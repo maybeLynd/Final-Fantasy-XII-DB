@@ -1,0 +1,262 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "body_count": 29,
+  "all_matched": true,
+  "bodies": [
+    {
+      "entry": "003939B0",
+      "end_exclusive": "00393E45",
+      "bytes": 1173,
+      "file_offset": 2568112,
+      "sha256": "8dc1a498ae5c201c98b27395cf3f3383f14d0b50650acae71fbc3f8f6a74bd23",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00394070",
+      "end_exclusive": "0039412E",
+      "bytes": 190,
+      "file_offset": 2569840,
+      "sha256": "be285e813507b5c096be97d71daab0768635038a08649a2aea0784b08ea54c17",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00394460",
+      "end_exclusive": "003944B2",
+      "bytes": 82,
+      "file_offset": 2570848,
+      "sha256": "aae293bf6c20bcdf44cba1fa6eab1da9794249aefd51ce75502f07fc885e4ae4",
+      "role": "static creator inspection only"
+    },
+    {
+      "entry": "00393FF0",
+      "end_exclusive": "00394066",
+      "bytes": 118,
+      "file_offset": 2569712,
+      "sha256": "13160c53f4147e459557a72edb8c231c0e84a83fc08541243caeaa6b5c92bcd0",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00394530",
+      "end_exclusive": "003945D4",
+      "bytes": 164,
+      "file_offset": 2571056,
+      "sha256": "99cf9d4cfef40f84efee6fb4688fc593d4d12bd82c16187024d840b4c5aec81f",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00244F50",
+      "end_exclusive": "00244FFF",
+      "bytes": 175,
+      "file_offset": 1197392,
+      "sha256": "58560924aea9d8396e78aca645ce0118f792af37efdc8b398dd45aed35000e00",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00245000",
+      "end_exclusive": "0024501F",
+      "bytes": 31,
+      "file_offset": 1197568,
+      "sha256": "736d41d9aaeaaa1fd51e52edb19d3cccf1bb1f8aac279c55f95b02a4dc5fe9e3",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "002465F0",
+      "end_exclusive": "0024677B",
+      "bytes": 395,
+      "file_offset": 1203184,
+      "sha256": "3e85011119fd63d34f7b469144fbba951792f0acb2dcf5c2354f9a991460d02a",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00244960",
+      "end_exclusive": "0024496C",
+      "bytes": 12,
+      "file_offset": 1195872,
+      "sha256": "2515db6dda867e2e6b811be73befe32196d05ccf07fc40c1af55c79ee499b41a",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00249580",
+      "end_exclusive": "002495BC",
+      "bytes": 60,
+      "file_offset": 1215360,
+      "sha256": "ef98aef6c8c8b60587d32e4f8bba52f7fee4799cf2c756dc346c53993ece091a",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00249410",
+      "end_exclusive": "00249495",
+      "bytes": 133,
+      "file_offset": 1214992,
+      "sha256": "94ae2a80caffaf1e50fe7ce760b26708ea6e5d8bcb84695415dde55056399411",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "0024A680",
+      "end_exclusive": "0024A70D",
+      "bytes": 141,
+      "file_offset": 1219712,
+      "sha256": "d9acb85e3fd2e73d0e88365cc0a39d604086e67b706516b442412a1a6432a78d",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "003697F0",
+      "end_exclusive": "003697FD",
+      "bytes": 13,
+      "file_offset": 2395632,
+      "sha256": "efed31070c81261c142e309cfde282b4b566c4b36e4e28e53f1f817025d4cfca",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "003678F0",
+      "end_exclusive": "0036793F",
+      "bytes": 79,
+      "file_offset": 2387696,
+      "sha256": "14b5aeef25a7080f000fc0ba657e5c7530c3a8092cb8c74c74ed6cfb1f2ac4e3",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00228480",
+      "end_exclusive": "0022848D",
+      "bytes": 13,
+      "file_offset": 1079936,
+      "sha256": "bb7650f9b055a1da991446fde05fce3020ba1dee9ddcd98f00aa201220cd472f",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "002E1C20",
+      "end_exclusive": "002E1C40",
+      "bytes": 32,
+      "file_offset": 1839648,
+      "sha256": "d8af96c3bd16486b1c5634b85e6024ff1cc9a8626d50f023e90024e8e0904a5c",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "002E1CA0",
+      "end_exclusive": "002E1CC2",
+      "bytes": 34,
+      "file_offset": 1839776,
+      "sha256": "43d4ab8304c4f4785e5b4b2f36112c69bf4bb4dd678ed20636029d4534091c25",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "005C5230",
+      "end_exclusive": "005C5233",
+      "bytes": 3,
+      "file_offset": 4868144,
+      "sha256": "4bc724f3b1d0caf4fe369c18cba3102e6c4ea057f63fe1587e3973134a7f755e",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00808C40",
+      "end_exclusive": "00808C61",
+      "bytes": 33,
+      "file_offset": 7242304,
+      "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "001EDDA0",
+      "end_exclusive": "001EDDBB",
+      "bytes": 27,
+      "file_offset": 840608,
+      "sha256": "a732b1d18fd5f604441cba1061a064a0c2029122eae0c414b41c53f64340d273",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00314960",
+      "end_exclusive": "00314967",
+      "bytes": 7,
+      "file_offset": 2047840,
+      "sha256": "7f09e3212750dd4a230847ac8741ec253bd550713fac5754cc62cbf8758702b9",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "00861EC0",
+      "end_exclusive": "00861EC6",
+      "bytes": 6,
+      "file_offset": 7607488,
+      "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+      "role": "original body reached at bounded paths"
+    },
+    {
+      "entry": "002493D0",
+      "end_exclusive": "00249409",
+      "bytes": 57,
+      "file_offset": 1214928,
+      "sha256": "4469cf4a15fe78c7399e82d640c06fa40f9a48b9a71c028074055468f405e405",
+      "role": "scripted resource record/arguments"
+    },
+    {
+      "entry": "00249320",
+      "end_exclusive": "0024934B",
+      "bytes": 43,
+      "file_offset": 1214752,
+      "sha256": "dfbade175d5ffaa5246997d6d48993470303ca08c84c9618131599986a8ca050",
+      "role": "scripted file result/arguments"
+    },
+    {
+      "entry": "00248220",
+      "end_exclusive": "002482DE",
+      "bytes": 190,
+      "file_offset": 1210400,
+      "sha256": "7c8d8fcdc2e91f6cb1e56b148139e630d4e8ee1507605ccd1b1b18fab3e58ee7",
+      "role": "scripted manager attachment boundary"
+    },
+    {
+      "entry": "00369860",
+      "end_exclusive": "00369C51",
+      "bytes": 1009,
+      "file_offset": 2395744,
+      "sha256": "5538203672b80cf5eac78f1f8461b082aaf5ffc3566f8f7eb5c912100d2b1872",
+      "role": "scripted release boundary"
+    },
+    {
+      "entry": "00181610",
+      "end_exclusive": "0018162E",
+      "bytes": 30,
+      "file_offset": 396304,
+      "sha256": "1526c71006d1527f452fe2fc6fa258fc88f3a0ac9013f9b61a98ce3e6f360b9f",
+      "role": "scripted resource cancellation boundary"
+    },
+    {
+      "entry": "002497B0",
+      "end_exclusive": "002497DD",
+      "bytes": 45,
+      "file_offset": 1215920,
+      "sha256": "7f6a762ee8cf3add83d1bd926250e9e9a9c5ffda79a09cf30459499253f0dc07",
+      "role": "scripted heap allocation boundary"
+    },
+    {
+      "entry": "003946B0",
+      "end_exclusive": "003946FE",
+      "bytes": 78,
+      "file_offset": 2571440,
+      "sha256": "244242b304b720275256c552f4e4fff459ba73be4a2baa6bccb318a720da4f1d",
+      "role": "controlled stop at layout call; remainder of consumer branch not executed"
+    }
+  ],
+  "additional_data": [
+    {
+      "address": "00393E48",
+      "bytes": 76,
+      "file_offset": 2569288,
+      "sha256": "d47551c1f259e63ef3695047f793ec21cbfd0107bebc6348388f461e8aa0111f",
+      "role": "consumer message jump table"
+    },
+    {
+      "address": "00D11390",
+      "bytes": 8,
+      "file_offset": 12517776,
+      "sha256": "038e11d3b1005c759ef0bc01329b2987e7fb332071911e44cbdfa285471a204a",
+      "role": "title asset request descriptor pointer"
+    },
+    {
+      "address": "00D113C8",
+      "bytes": 32,
+      "file_offset": 12517832,
+      "sha256": "ab728097fdcafb0d56ee9a5fa1bb2478731b2dcc21adff915c8d47bee3471e4c",
+      "role": "title descriptor bytes"
+    }
+  ]
+}

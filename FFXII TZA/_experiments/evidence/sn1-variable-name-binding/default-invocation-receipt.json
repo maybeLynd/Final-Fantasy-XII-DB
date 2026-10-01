@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "capture_sha256": "801240fca46b301abdec9f4839a850ecb924ff43b7fc67b44b7263710d5a296d",
+  "check_sha256": "b6f1ce1c23852a42cc8e2146e7f2072a47b60c3aed69f1857c815602ee37b658",
+  "raw_before_sha256": "36ad6ff860dbb165d927a8518a86e52c8f2366d55737239720f19dfed3dc2e87",
+  "raw_after_sha256": "36ad6ff860dbb165d927a8518a86e52c8f2366d55737239720f19dfed3dc2e87",
+  "path": "Actual capture default with retained raw invokes corrected checker, no recapture or original code execution"
+}

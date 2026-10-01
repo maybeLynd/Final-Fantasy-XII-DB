@@ -1,0 +1,6 @@
+PASS E0  0016D6A0 = c20000; the binder stores the entry at rec + 0x230 and calls the stub
+PASS E1  003B38B0 <- ['0040A174']; 003B3B10 <- ['0040A1C4']; raw pointers []
+PASS E2  '@FEF' immediates at ['0040A0A4', '00504F78', '00504FCE']
+PASS E3  qword reads of [R + 0x230] with the full render-record shape: 0; partial matches [('001CA627', '001CAF49', ['0x1f8']), ('0073BD30', '0073C22C', ['0x238'])]
+PASS C  the fingerprint over writes finds the binder: [('00504940', '005049A7', ['0x1f8', '0x228', '0x238'])]
+FAILS 0

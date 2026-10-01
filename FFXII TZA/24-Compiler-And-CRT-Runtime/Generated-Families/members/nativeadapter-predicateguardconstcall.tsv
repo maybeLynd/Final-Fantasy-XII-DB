@@ -1,0 +1,7 @@
+# NativeAdapter.PredicateGuardConstCall - EC-7 family C
+# call a member op; if zero return 0; else call shared 00314D40 with a
+# # member ecx constant and return a member constant.
+address	targets
+00347C60	00314D40,005C5230
+00354920	00314D40,003EB0A0
+003550F0	00314D40,003EB0D0

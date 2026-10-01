@@ -1,0 +1,12 @@
+{
+  "status": "CONTROLS_PASS",
+  "cases": {
+    "missing_MostRecent_supported": true,
+    "empty_population_rejected": true,
+    "wrong_active_id_rejected": true,
+    "wrong_account_name_rejected": true,
+    "ambiguous_duplicate_rejected": true
+  },
+  "capture_sha256": "b9c6c7431561025e696a15549f2e887f21c5c4702b539c4398f1be79fd7d157f",
+  "control_sha256": "d7425493398ec33f7364903d0881d2c290254369662aba005232cff8da81b7e2"
+}

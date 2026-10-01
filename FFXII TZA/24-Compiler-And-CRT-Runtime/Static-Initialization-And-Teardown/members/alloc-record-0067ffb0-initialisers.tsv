@@ -1,0 +1,13 @@
+# alloc-record-0067ffb0-initialisers -- EC-7 family C, XC-array cluster.
+# 8 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+00162330	59	0067FFB0	00808B90
+001623D0	59	0067FFB0	00808B90
+00167010	59	0067FFB0	00808B90
+001672D0	59	0067FFB0	00808B90
+00167BD0	59	0067FFB0	00808B90
+00167C10	59	0067FFB0	00808B90
+001693A0	68	0067FFB0	00808B90
+001693F0	68	0067FFB0	00808B90

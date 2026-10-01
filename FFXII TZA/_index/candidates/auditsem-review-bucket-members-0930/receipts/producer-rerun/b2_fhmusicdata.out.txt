@@ -1,0 +1,28 @@
+  [PASS] EXE SHA256
+== static: path directory
+  [PASS] kind 9 idx 0x1C path (first-language arm) -- PS2Data\image\ff12\common\fhmusicdata.bin
+  [PASS] 10 pointer slots to the path string, each at index 0x1C of an array whose index 1 is test_map_ref
+== corpus
+  [PASS] exactly one shipped copy (common/) -- ['D:/FFXII_TZA_extract/ps2data/image/ff12\\common\\fhmusicdata.bin']
+  [PASS] u32 count 27; offset[0] == 4+4*count == 0x70
+  [PASS] offsets strictly ascending with constant stride 22
+  [PASS] size arithmetic 4 + 4*27 + 22*27 == 706
+  [PASS] word +0 strictly ascending (a key) -- [0, 1, 3, 6, 8, 10, 15, 16, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 37, 41, 42, 43, 44, 45, 47]
+  word +0x02: values [1]
+  word +0x04: values [18, 20]
+  word +0x06: values [0, 1]
+  word +0x08: values [1]
+  word +0x0a: values [1, 18, 20]
+  word +0x0c: values [0]
+  word +0x0e: values [0]
+  word +0x10: values [1, 2, 3, 20]
+  word +0x12: values [0]
+  word +0x14: values [0]
+  [PASS] words +0x0C,+0x0E,+0x12,+0x14 are zero in every record
+== absence evidence (from the sweep outputs)
+  [PASS] callpairs: every call site scanned, no (9,0x1C) constant pair at any call to any target
+  [PASS] callpairs positive controls passed
+  [PASS] nearcall_imm: no request-API call is preceded by an id-register load of 0x1C -- []
+  [PASS] nearcall_imm controls passed (it finds the loop form lea edx,[rbx+0x98] at 00291CF3)
+  [PASS] immpair: no memory store pair (9,0x1C) in code; no aligned u16/u32 (9,0x1C) pair in .rdata/.data
+CHECKS 14  FAILS 0

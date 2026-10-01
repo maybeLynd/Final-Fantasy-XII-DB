@@ -1,0 +1,17 @@
+function	name	site	disp	kind	instruction	route	note
+003166F0	FUN_003166f0	00316726	0x0	r	movzx eax, byte ptr [rcx]	array 00D10460 reg	
+00316810	FUN_00316810	00316855	0x0	r	movzx edx, byte ptr [r14 + rcx*8]	array 00D10460 reg	
+00316810	FUN_00316810	00316888	0x0	r	movzx eax, byte ptr [r14 + rcx*8]	array 00D10460 reg	
+00316810	FUN_00316810	003168DB	0x0	r	movzx eax, byte ptr [r14 + rcx*8]	array 00D10460 reg	
+00316BF0	FUN_00316bf0	00316C1C	0x0	r	movzx eax, byte ptr [rdx + rcx*8]	array 00D10460 reg	
+00316C60	FUN_00316c60	00316C8E	0x0	r	movzx eax, byte ptr [r8 + rcx*8]	array 00D10460 reg	
+003166F0	FUN_003166f0	00316735	0x1	r	movzx eax, byte ptr [rcx + 1]	array 00D10460 reg	
+003166F0	FUN_003166f0	0031674A	0x1	r	movzx eax, byte ptr [rcx + 1]	array 00D10460 reg	
+00316810	FUN_00316810	00316895	0x1	r	movzx eax, byte ptr [r14 + rcx*8 + 1]	array 00D10460 reg	
+00316810	FUN_00316810	003168AB	0x1	r	movzx eax, byte ptr [r14 + rcx*8 + 1]	array 00D10460 reg	
+00316810	FUN_00316810	003168E8	0x1	r	movzx eax, byte ptr [r14 + rcx*8 + 1]	array 00D10460 reg	
+00316810	FUN_00316810	003168F4	0x1	r	movzx eax, byte ptr [r14 + rcx*8 + 1]	array 00D10460 reg	
+00316BF0	FUN_00316bf0	00316C28	0x1	r	movzx eax, byte ptr [rdx + rcx*8 + 1]	array 00D10460 reg	
+00316BF0	FUN_00316bf0	00316C3D	0x1	r	movzx eax, byte ptr [rdx + rcx*8 + 1]	array 00D10460 reg	
+00316C60	FUN_00316c60	00316C9B	0x1	r	movzx eax, byte ptr [r8 + rcx*8 + 1]	array 00D10460 reg	
+00316C60	FUN_00316c60	00316CAF	0x1	r	movzx ecx, byte ptr [r8 + rcx*8 + 1]	array 00D10460 reg	

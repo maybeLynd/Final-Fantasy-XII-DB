@@ -1,0 +1,5 @@
+PASS B1  267 members; ee_member_calls whole: 47
+PASS B2  C+fragments by both instruments: 31
+PASS B3  FRONTIER's C+fragments split under ee_member_calls: {'whole': 5, 'C+fragments': 31, 'mostly': 5} (total 41)
+PASS B4  FRONTIER translated / ee C+fragments: 95
+FAILS 0

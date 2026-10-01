@@ -1,0 +1,4 @@
+01E0C1D8 refs 158, stores-to [(2404644, 'mov', 'dword ptr [rip + 0x1bc10aa], 0x780', 4), (2404665, 'mov', 'dword ptr [rip + 0x1bc1095], 0x200', 4)]
+01E0C1DC refs 177, stores-to [(2404654, 'mov', 'dword ptr [rip + 0x1bc10a4], 0x438', 4), (2404675, 'mov', 'dword ptr [rip + 0x1bc108f], 0x1c0', 4)]
+01E0C0D4 refs 3, stores-to []
+01E0CDC0 refs 20, stores-to []

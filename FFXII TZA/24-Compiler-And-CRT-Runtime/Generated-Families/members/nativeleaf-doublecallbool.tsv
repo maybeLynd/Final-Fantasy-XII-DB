@@ -1,0 +1,7 @@
+# NativeLeaf.DoubleCallBool - EC-7 family C
+# call a member op; call a second member op on the result; return
+# # movzx(eax,al).
+address	targets
+0017E4E0	00199780,001997D0
+00182F50	001DD8C0,001DDAB0
+001E0EE0	00197A20,00198790

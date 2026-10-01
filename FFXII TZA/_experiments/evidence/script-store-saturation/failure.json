@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_STANDARD_S16_CLAMP_ASSUMPTION",
+  "stage": "REDUCER_BEFORE_RESULT",
+  "cause": "Original width3 MOV EAX,FFFF8001 and MOV R9D,8000 define signed-input clamp[-32767,+32768], not conventional[-32768,+32767]. Original guest lower/upper writes contradict initial checker prediction. Raw22 bounded executions retained, no accepted result.",
+  "old_check_sha256": "4b2818e509e477e79855d5422cd9e58834f410c06f87b027a7213a6de8e6bb79",
+  "repair": "Correct exact original word-store policy, preserve bit pattern versus signed interpretation, validate true boundaries with additive original cases. Cause/intent of unusual bound constants UNKNOWN."
+}

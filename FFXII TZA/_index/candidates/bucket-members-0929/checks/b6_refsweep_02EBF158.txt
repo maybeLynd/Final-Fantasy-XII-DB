@@ -1,0 +1,18 @@
+== refsweep [02EBF158,02EBF160)
+(a) rip-relative confirmed: 13
+  00238678  -> 02EBF158  mov edx, dword ptr [rip + 0x2c86ada]   [00238660 FUN_00238660]
+  00238686  -> 02EBF158  mov qword ptr [rip + 0x2c86acb], rax   [00238660 FUN_00238660]
+  0023869A  -> 02EBF158  mov rax, qword ptr [rip + 0x2c86ab7]   [00238660 FUN_00238660]
+  002386B2  -> 02EBF158  mov rcx, qword ptr [rip + 0x2c86a9f]   [00238660 FUN_00238660]
+  002386C0  -> 02EBF158  mov rax, qword ptr [rip + 0x2c86a91]   [00238660 FUN_00238660]
+  002386EF  -> 02EBF158  mov rax, qword ptr [rip + 0x2c86a62]   [00238660 FUN_00238660]
+  002386FE  -> 02EBF158  mov rcx, qword ptr [rip + 0x2c86a53]   [00238660 FUN_00238660]
+  002FA92E  -> 02EBF158  mov rax, qword ptr [rip + 0x2bc4823]   [002FA920 FUN_002fa920]
+  002FA977  -> 02EBF158  mov rax, qword ptr [rip + 0x2bc47da]   [002FA920 FUN_002fa920]
+  002FA986  -> 02EBF158  mov rcx, qword ptr [rip + 0x2bc47cb]   [002FA920 FUN_002fa920]
+  002FAE4A  -> 02EBF158  mov rax, qword ptr [rip + 0x2bc4307]   [002FAE40 FUN_002fae40]
+  002FAE85  -> 02EBF158  mov rax, qword ptr [rip + 0x2bc42cc]   [002FAE40 FUN_002fae40]
+  002FAE94  -> 02EBF158  mov rcx, qword ptr [rip + 0x2bc42bd]   [002FAE40 FUN_002fae40]
+(b) dword hits: 0
+(c) qword pointer hits: 0
+FAILS 0

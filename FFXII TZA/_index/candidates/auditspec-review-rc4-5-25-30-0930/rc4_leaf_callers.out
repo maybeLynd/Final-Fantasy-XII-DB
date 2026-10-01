@@ -1,0 +1,19 @@
+leaf entry candidates from 00707600:
+  00707600 mov dword ptr [rcx + 0xc74], edx
+  00707606 xor eax, eax
+  00707608 ret 
+  00707609 int3 
+  0070760A int3 
+  0070760B int3 
+  0070760C int3 
+  0070760D int3 
+  0070760E int3 
+  0070760F int3 
+  00707610 test rdx, rdx
+  00707613 jne 0x70761b
+  00707615 mov eax, 0x80070057
+  0070761A ret 
+  0070761B mov dword ptr [rcx + 0xc74], 0xffffffff
+  00707625 xor eax, eax
+raw calls/jmps to 00707600: 6DB9C7(in 00000000)
+raw calls/jmps to 00707610: 6DB9E7(in 00000000)

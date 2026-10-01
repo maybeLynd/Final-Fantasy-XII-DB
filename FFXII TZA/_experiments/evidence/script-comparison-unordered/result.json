@@ -1,0 +1,97 @@
+{
+  "status": "MASKED_QNAN_COMPARE_RETURNS_PLUS_ONE_WITH_SOURCE_BOOLEAN_CONSEQUENCES",
+  "method": "B full413B original comparator in disposable guest, valid depth2/tag2/maskedMXCSR; A original six24B consumers, privateJP-NOP labelled. No full interpreter/nativeCPU/live",
+  "raw_sha256": "249f0442edda6a05880cb4d50168e0f775e6f964226c9397afb936737bad09c5",
+  "observations": [
+    {
+      "name": "ordered-less",
+      "left_bits": "3F800000",
+      "right_bits": "40000000",
+      "result": -1,
+      "depth_after": 0
+    },
+    {
+      "name": "ordered-equal",
+      "left_bits": "3F800000",
+      "right_bits": "3F800000",
+      "result": 0,
+      "depth_after": 0
+    },
+    {
+      "name": "ordered-greater",
+      "left_bits": "40000000",
+      "right_bits": "3F800000",
+      "result": 1,
+      "depth_after": 0
+    },
+    {
+      "name": "nan-left",
+      "left_bits": "7FC12345",
+      "right_bits": "3F800000",
+      "result": 1,
+      "depth_after": 0
+    },
+    {
+      "name": "nan-right",
+      "left_bits": "3F800000",
+      "right_bits": "7FC12345",
+      "result": 1,
+      "depth_after": 0
+    },
+    {
+      "name": "nan-self",
+      "left_bits": "7FC12345",
+      "right_bits": "7FC12345",
+      "result": 1,
+      "depth_after": 0
+    },
+    {
+      "name": "private-jp-nop",
+      "left_bits": "7FC12345",
+      "right_bits": "3F800000",
+      "result": 0,
+      "depth_after": 0
+    }
+  ],
+  "source_consumer_decisions": [
+    {
+      "opcode": "0A",
+      "condition": "sete",
+      "cl_from_result_plus_one": 0,
+      "method": "A source TEST EAX/SETcc decision, not interpreter execution/shared push observation"
+    },
+    {
+      "opcode": "0B",
+      "condition": "setne",
+      "cl_from_result_plus_one": 1,
+      "method": "A source TEST EAX/SETcc decision, not interpreter execution/shared push observation"
+    },
+    {
+      "opcode": "0C",
+      "condition": "setg",
+      "cl_from_result_plus_one": 1,
+      "method": "A source TEST EAX/SETcc decision, not interpreter execution/shared push observation"
+    },
+    {
+      "opcode": "0D",
+      "condition": "sets",
+      "cl_from_result_plus_one": 0,
+      "method": "A source TEST EAX/SETcc decision, not interpreter execution/shared push observation"
+    },
+    {
+      "opcode": "0E",
+      "condition": "setns",
+      "cl_from_result_plus_one": 1,
+      "method": "A source TEST EAX/SETcc decision, not interpreter execution/shared push observation"
+    },
+    {
+      "opcode": "0F",
+      "condition": "setle",
+      "cl_from_result_plus_one": 0,
+      "method": "A source TEST EAX/SETcc decision, not interpreter execution/shared push observation"
+    }
+  ],
+  "interpretation": "Original complete comparator on tested depth2/tag2/masked guest states returns -1/0/+1 for ordered finite controls and +1 for qNaN left/right/self, popping both operands. JP keeps unordered away from equality; COMISS unordered does not select CMOVA, EDI stays1. Six source boolean decision bytes for +1 are EQ0/NE1/GT1/LS0/GTE1/LSE0; common push/interpreter execution not observed.",
+  "consumer_change": "Preserve ordered versus unordered behavior and masked/guest boundaries in comparator contract/spec; avoid substituting host IEEE relational operators whose NaN greater/ge results differ. Original same-qNaN comparison is not equality under these conditions; actual shipped NaNs/native flags/caller reachability remain open.",
+  "limits": "Guest masked comparison/return/pop and source boolean consumers only; not native exception/status/unmasked behavior/gameRC/actual authored NaN reachability/full caller/interpreter/live. Bad-tag/underflow/fault-call behavior not executed or stubbed. PC OFF/S19/fullL1+L2 NOT_MET"
+}

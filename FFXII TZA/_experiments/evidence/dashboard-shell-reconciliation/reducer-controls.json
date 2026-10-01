@@ -1,0 +1,30 @@
+[
+  {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\reducer-controls\\bad-generation-prerequisite.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\check.py\", line 13, in <module>\n    g=x['generation'];q=g['cli'];assert q['terminal'] and q['returncode']==0 and not q['stderr'] and 'verify' in q['argv'],'FAILED_PREREQUISITE'\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FAILED_PREREQUISITE\n",
+    "terminal": true,
+    "checker_sha256": "4fa0f41b9e4a3724109124e73e9b9723f4cee03226b022fd6409fa499c565c2c"
+  },
+  {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\reducer-controls\\missing-http-case.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\check.py\", line 10, in <module>\n    cs=r['cases'];assert len(cs)==4 and {x['name'] for x in cs}=={'valid-selected-view','hash-declared-nonjson','missing-selected-view','failed-selected-view'},'MISSING_CASE'\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_CASE\n",
+    "terminal": true,
+    "checker_sha256": "4fa0f41b9e4a3724109124e73e9b9723f4cee03226b022fd6409fa499c565c2c"
+  }
+]

@@ -1,0 +1,3577 @@
+{
+  "status": "REGISTERED_PULSE_ONLY",
+  "command": [
+    "Database/FFXII TZA/_experiments/evidence/old-save-start-p/pulse.py",
+    "--pid",
+    "34844",
+    "--hwnd",
+    "1902042",
+    "--key",
+    "Enter",
+    "--out",
+    "Database/FFXII TZA/_experiments/evidence/old-save-start-p/load-old-enter.json"
+  ],
+  "start_unix": 1789971228.1528592,
+  "pid": 34844,
+  "hwnd": 1902042,
+  "key": "Enter",
+  "method": "C: EXP031 dual-form OS input; no game writes or native calls",
+  "sources": {
+    "Database\\FFXII TZA\\_experiments\\evidence\\old-save-start-p\\pulse.py": "e832bc527567a8170f7ce6cbef4e233aa6d24f768de550ea3539810c1a35c41a",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_input_probe.py": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "5629e6368f838fda31084486578ec9c7479d3f5bf99100516acf9651b466bb6a",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\window_focus.py": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-037-command-observer\\observe.py": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3",
+    "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\resumed\\input_sample.py": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf"
+  },
+  "process": {
+    "pid": 34844,
+    "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe"
+  },
+  "before": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": 1179648,
+    "module_verdict": "clean",
+    "modules": [
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+      "c:\\windows\\system32\\ntdll.dll",
+      "c:\\windows\\system32\\kernel32.dll",
+      "c:\\windows\\system32\\kernelbase.dll",
+      "c:\\windows\\system32\\user32.dll",
+      "c:\\windows\\system32\\win32u.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+      "c:\\windows\\system32\\gdi32.dll",
+      "c:\\windows\\system32\\iphlpapi.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+      "c:\\windows\\system32\\advapi32.dll",
+      "c:\\windows\\system32\\gdi32full.dll",
+      "c:\\windows\\system32\\ucrtbase.dll",
+      "c:\\windows\\system32\\msvcrt.dll",
+      "c:\\windows\\system32\\msvcp_win.dll",
+      "c:\\windows\\system32\\sechost.dll",
+      "c:\\windows\\system32\\rpcrt4.dll",
+      "c:\\windows\\system32\\shell32.dll",
+      "c:\\windows\\system32\\ole32.dll",
+      "c:\\windows\\system32\\combase.dll",
+      "c:\\windows\\system32\\oleaut32.dll",
+      "c:\\windows\\system32\\imm32.dll",
+      "c:\\windows\\system32\\dinput8.dll",
+      "c:\\windows\\system32\\msvcp140.dll",
+      "c:\\windows\\system32\\winmm.dll",
+      "c:\\windows\\system32\\dbghelp.dll",
+      "c:\\windows\\system32\\d3d11.dll",
+      "c:\\windows\\system32\\dwmapi.dll",
+      "c:\\windows\\system32\\dxgi.dll",
+      "c:\\windows\\system32\\xinput9_1_0.dll",
+      "c:\\windows\\system32\\vcruntime140.dll",
+      "c:\\windows\\system32\\vcruntime140_1.dll",
+      "c:\\windows\\system32\\powrprof.dll",
+      "c:\\windows\\system32\\dbgcore.dll",
+      "c:\\windows\\system32\\umpdc.dll",
+      "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+      "c:\\windows\\system32\\psapi.dll",
+      "c:\\windows\\system32\\cfgmgr32.dll",
+      "c:\\windows\\system32\\inputhost.dll",
+      "c:\\windows\\system32\\coremessaging.dll",
+      "c:\\windows\\system32\\bcryptprimitives.dll",
+      "c:\\windows\\system32\\kernel.appcore.dll",
+      "c:\\program files (x86)\\steam\\steamclient64.dll",
+      "c:\\windows\\system32\\ws2_32.dll",
+      "c:\\windows\\system32\\shlwapi.dll",
+      "c:\\windows\\system32\\imagehlp.dll",
+      "c:\\windows\\system32\\setupapi.dll",
+      "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+      "c:\\program files (x86)\\steam\\tier0_s64.dll",
+      "c:\\windows\\system32\\mswsock.dll",
+      "c:\\windows\\system32\\version.dll",
+      "c:\\windows\\system32\\secur32.dll",
+      "c:\\windows\\system32\\bcrypt.dll",
+      "c:\\windows\\system32\\crypt32.dll",
+      "c:\\windows\\system32\\sspicli.dll",
+      "c:\\windows\\system32\\shcore.dll",
+      "c:\\windows\\system32\\cryptbase.dll",
+      "c:\\windows\\system32\\windows.storage.dll",
+      "c:\\windows\\system32\\uxtheme.dll",
+      "c:\\windows\\system32\\uiautomationcore.dll",
+      "c:\\windows\\system32\\clbcatq.dll",
+      "c:\\windows\\system32\\oleacc.dll",
+      "c:\\windows\\system32\\devobj.dll",
+      "c:\\windows\\system32\\wintrust.dll",
+      "c:\\windows\\system32\\msasn1.dll",
+      "c:\\windows\\system32\\nvapi64.dll",
+      "c:\\windows\\system32\\cryptnet.dll",
+      "c:\\windows\\system32\\wldp.dll",
+      "c:\\windows\\system32\\drvstore.dll",
+      "c:\\windows\\system32\\dxcore.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+      "c:\\windows\\system32\\directxdatabasehelper.dll",
+      "c:\\windows\\system32\\cryptsp.dll",
+      "c:\\windows\\system32\\rsaenh.dll",
+      "c:\\windows\\system32\\nvspcap64.dll",
+      "c:\\windows\\system32\\profapi.dll",
+      "c:\\windows\\system32\\ntmarta.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+      "c:\\windows\\system32\\dcomp.dll",
+      "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+      "c:\\windows\\system32\\hid.dll",
+      "c:\\windows\\system32\\msctf.dll",
+      "c:\\windows\\system32\\wbem\\wbemprox.dll",
+      "c:\\windows\\system32\\wbemcomn.dll",
+      "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+      "c:\\windows\\system32\\wbem\\fastprox.dll",
+      "c:\\windows\\system32\\amsi.dll",
+      "c:\\windows\\system32\\userenv.dll",
+      "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.4-0\\mpoav.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+      "c:\\windows\\system32\\mmdevapi.dll",
+      "c:\\windows\\system32\\audioses.dll",
+      "c:\\windows\\system32\\resourcepolicyclient.dll",
+      "c:\\windows\\system32\\windows.ui.dll",
+      "c:\\windows\\system32\\threadpoolwinrt.dll",
+      "c:\\windows\\system32\\xinput1_4.dll",
+      "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9258\\modules\\discord_hook-1\\discord_hook\\a2a74dcb3934c4\\discordhook64.dll"
+    ],
+    "code_identity": [
+      {
+        "rva": 4096,
+        "bytes": 7996981,
+        "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4"
+      }
+    ]
+  },
+  "null_read_rejected": true,
+  "initial_cursor": [
+    1920,
+    1083
+  ],
+  "samples": [
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.3484356
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.3587658
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.3690712
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.3796742
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.3902469
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.400669
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.410855
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4214363
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4316278
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4422226
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4526699
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4629674
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4735482
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.484084
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.4944842
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.5050485
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.515481
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.5262837
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.536491
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.546798
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.5573657
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.567668
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.5779576
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.588641
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.5992763
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.609642
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.6202738
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.6307576
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.641237
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.651717
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.6619968
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.6725338
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.6831622
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.694151
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "baseline",
+      "at_unix": 1789971228.704293
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.7158506
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.7267864
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.7371297
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.7472994
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.757814
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.7683496
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.778969
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.789234
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.799762
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8099835
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8202875
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.830582
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8411705
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8516629
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8620396
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8721926
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.88271
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.8929527
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9035506
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.913785
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9243903
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9348447
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9452617
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9559603
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.966414
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9769244
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9874682
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971228.9976022
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971229.0082004
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971229.0187452
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971229.0289059
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971229.0392332
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971229.0493834
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [
+        49
+      ],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "held",
+      "at_unix": 1789971229.059939
+    },
+    {
+      "status": "STABLE_CHAIN",
+      "array_address": 241955632,
+      "array_address_after": 241955632,
+      "chain_before": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "chain_after": [
+        {
+          "address": 48911208,
+          "raw": "50e3f70100000000",
+          "pointer": 33022800
+        },
+        {
+          "address": 33026376,
+          "raw": "50f1f70100000000",
+          "pointer": 33026384
+        },
+        {
+          "address": 33026664,
+          "raw": "00f36b0e00000000",
+          "pointer": 241955584
+        }
+      ],
+      "raw": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nonzero_indices": [],
+      "frame_before": 0,
+      "frame_after": 0,
+      "crossed_frame": false,
+      "phase": "release",
+      "at_unix": 1789971229.1317906
+    }
+  ],
+  "down_at_unix": 1789971228.7148407,
+  "down_accepted": 2,
+  "held_elapsed": 0.35464869998395443,
+  "seen_indices": [
+    49
+  ],
+  "up_accepted": 2,
+  "up_at_unix": 1789971229.0714672,
+  "registration": "EXPECTED_HELD_STATE_OBSERVED_AND_RELEASED",
+  "after": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": 1179648,
+    "module_verdict": "clean",
+    "modules": [
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+      "c:\\windows\\system32\\ntdll.dll",
+      "c:\\windows\\system32\\kernel32.dll",
+      "c:\\windows\\system32\\kernelbase.dll",
+      "c:\\windows\\system32\\user32.dll",
+      "c:\\windows\\system32\\win32u.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+      "c:\\windows\\system32\\gdi32.dll",
+      "c:\\windows\\system32\\iphlpapi.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+      "c:\\windows\\system32\\advapi32.dll",
+      "c:\\windows\\system32\\gdi32full.dll",
+      "c:\\windows\\system32\\ucrtbase.dll",
+      "c:\\windows\\system32\\msvcrt.dll",
+      "c:\\windows\\system32\\msvcp_win.dll",
+      "c:\\windows\\system32\\sechost.dll",
+      "c:\\windows\\system32\\rpcrt4.dll",
+      "c:\\windows\\system32\\shell32.dll",
+      "c:\\windows\\system32\\ole32.dll",
+      "c:\\windows\\system32\\combase.dll",
+      "c:\\windows\\system32\\oleaut32.dll",
+      "c:\\windows\\system32\\imm32.dll",
+      "c:\\windows\\system32\\dinput8.dll",
+      "c:\\windows\\system32\\msvcp140.dll",
+      "c:\\windows\\system32\\winmm.dll",
+      "c:\\windows\\system32\\dbghelp.dll",
+      "c:\\windows\\system32\\d3d11.dll",
+      "c:\\windows\\system32\\dwmapi.dll",
+      "c:\\windows\\system32\\dxgi.dll",
+      "c:\\windows\\system32\\xinput9_1_0.dll",
+      "c:\\windows\\system32\\vcruntime140.dll",
+      "c:\\windows\\system32\\vcruntime140_1.dll",
+      "c:\\windows\\system32\\powrprof.dll",
+      "c:\\windows\\system32\\dbgcore.dll",
+      "c:\\windows\\system32\\umpdc.dll",
+      "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+      "c:\\windows\\system32\\psapi.dll",
+      "c:\\windows\\system32\\cfgmgr32.dll",
+      "c:\\windows\\system32\\inputhost.dll",
+      "c:\\windows\\system32\\coremessaging.dll",
+      "c:\\windows\\system32\\bcryptprimitives.dll",
+      "c:\\windows\\system32\\kernel.appcore.dll",
+      "c:\\program files (x86)\\steam\\steamclient64.dll",
+      "c:\\windows\\system32\\ws2_32.dll",
+      "c:\\windows\\system32\\shlwapi.dll",
+      "c:\\windows\\system32\\imagehlp.dll",
+      "c:\\windows\\system32\\setupapi.dll",
+      "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+      "c:\\program files (x86)\\steam\\tier0_s64.dll",
+      "c:\\windows\\system32\\mswsock.dll",
+      "c:\\windows\\system32\\version.dll",
+      "c:\\windows\\system32\\secur32.dll",
+      "c:\\windows\\system32\\bcrypt.dll",
+      "c:\\windows\\system32\\crypt32.dll",
+      "c:\\windows\\system32\\sspicli.dll",
+      "c:\\windows\\system32\\shcore.dll",
+      "c:\\windows\\system32\\cryptbase.dll",
+      "c:\\windows\\system32\\windows.storage.dll",
+      "c:\\windows\\system32\\uxtheme.dll",
+      "c:\\windows\\system32\\uiautomationcore.dll",
+      "c:\\windows\\system32\\clbcatq.dll",
+      "c:\\windows\\system32\\oleacc.dll",
+      "c:\\windows\\system32\\devobj.dll",
+      "c:\\windows\\system32\\wintrust.dll",
+      "c:\\windows\\system32\\msasn1.dll",
+      "c:\\windows\\system32\\nvapi64.dll",
+      "c:\\windows\\system32\\cryptnet.dll",
+      "c:\\windows\\system32\\wldp.dll",
+      "c:\\windows\\system32\\drvstore.dll",
+      "c:\\windows\\system32\\dxcore.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+      "c:\\windows\\system32\\directxdatabasehelper.dll",
+      "c:\\windows\\system32\\cryptsp.dll",
+      "c:\\windows\\system32\\rsaenh.dll",
+      "c:\\windows\\system32\\nvspcap64.dll",
+      "c:\\windows\\system32\\profapi.dll",
+      "c:\\windows\\system32\\ntmarta.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+      "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+      "c:\\windows\\system32\\dcomp.dll",
+      "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+      "c:\\windows\\system32\\hid.dll",
+      "c:\\windows\\system32\\msctf.dll",
+      "c:\\windows\\system32\\wbem\\wbemprox.dll",
+      "c:\\windows\\system32\\wbemcomn.dll",
+      "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+      "c:\\windows\\system32\\wbem\\fastprox.dll",
+      "c:\\windows\\system32\\amsi.dll",
+      "c:\\windows\\system32\\userenv.dll",
+      "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.4-0\\mpoav.dll",
+      "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+      "c:\\windows\\system32\\mmdevapi.dll",
+      "c:\\windows\\system32\\audioses.dll",
+      "c:\\windows\\system32\\resourcepolicyclient.dll",
+      "c:\\windows\\system32\\windows.ui.dll",
+      "c:\\windows\\system32\\threadpoolwinrt.dll",
+      "c:\\windows\\system32\\xinput1_4.dll",
+      "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9258\\modules\\discord_hook-1\\discord_hook\\a2a74dcb3934c4\\discordhook64.dll"
+    ],
+    "code_identity": [
+      {
+        "rva": 4096,
+        "bytes": 7996981,
+        "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+        "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4"
+      }
+    ]
+  },
+  "limits": [
+    "Screenshots separately establish visible acceptance.",
+    "No command execution or gameplay consequence inferred.",
+    "No causality claim about hold duration versus packet form.",
+    "Sequential state samples are not atomic."
+  ],
+  "read_handle_closed": true,
+  "end_unix": 1789971229.1829262
+}

@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "known_preimage",
+      "status": "READY_TO_REPLACE",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "already_installed",
+      "status": "ALREADY_UPDATED",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "newer_peer_content",
+      "status": "CONFLICT_NEWER_OR_DIFFERENT",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "missing_required_base",
+      "status": "MISSING_BASE",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "new_file_absent",
+      "status": "NEW_FILE",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "new_path_collision",
+      "status": "CONFLICT_NEWER_OR_DIFFERENT",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "directory_collision",
+      "status": "CONFLICT_NOT_FILE",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "symlink_refused",
+      "status": "CONFLICT_SYMLINK",
+      "pass": true,
+      "target_unchanged": true
+    },
+    {
+      "name": "path_escape_refused",
+      "pass": true,
+      "target_unchanged": true
+    }
+  ],
+  "passed": 9
+}

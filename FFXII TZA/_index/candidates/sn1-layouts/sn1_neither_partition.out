@@ -1,0 +1,9 @@
+PASS  P prerequisite sn1_variable_binding.py: exit 0, PASS Q T S B A G D X, FAILS 0
+PASS  N the producer's neither-population: 272 {'btlctrl': 3, 'evctrl': 134, 'mapctrl': 135}
+PASS  A archived macro on the tagged line: evctrl 114, mapctrl 54
+PASS  E archived macro one line after a case label: evctrl 20
+PASS  L goto after an unarchived call: mapctrl 12
+PASS  U unarchived call on the tagged line: mapctrl 69, btlctrl 3; each callee occurs only as an invocation: [(('btlctrl', 'FF12_DEBUG_GLOBAL_FLAG_ALL_BITOFF'), 1), (('btlctrl', 'FF12_DEBUG_GLOBAL_FLAG_ALL_BITON'), 1), (('btlctrl', 'ISDEBUG'), 1), (('mapctrl', 'FF12_DEBUG_GLOBAL_FLAG_ALL_BITOFF'), 1), (('mapctrl', 'FF12_DEBUG_GLOBAL_FLAG_ALL_BITON'), 1), (('mapctrl', 'TK_セーブメニュー呼び出し'), 4), (('mapctrl', 'YM_テレポクリスタル全部ON'), 75)]
+PASS  Z nothing else: {('btlctrl', 'U'): 3, ('evctrl', 'A'): 114, ('evctrl', 'E'): 20, ('mapctrl', 'A'): 54, ('mapctrl', 'U'): 69, ('mapctrl', 'L'): 12}
+PASS  C control: T0[operand + 1] passes the same macro test in 52 records, against 188 for T0[operand]
+FAILS 0

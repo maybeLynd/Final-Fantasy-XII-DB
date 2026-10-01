@@ -1,0 +1,8 @@
+PASS M1 a7 -> +0x5C and to the base; a8 -> +0x58; base gets 0 for a8
+   165 call sites; a7 (+0x5C) values {'3': 86, '2': 70, '4': 9}
+   a8 (+0x58) values {'8': 113, '4': 36, '1': 7, '2': 6, '0x10': 3}
+PASS M2 the census covers the call sites - 165 sites
+PASS M3 no vtable slot of the class reads +0x58 / +0x5C
+PASS C1 control: most sites resolve a7 to an immediate - 165 of 165
+RESULT the value sets above are what +0x5C / +0x58 hold at registration; the class's own methods never read them
+FAILS 0

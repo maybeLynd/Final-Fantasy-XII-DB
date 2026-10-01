@@ -1,0 +1,4 @@
+C1  PASS 001A0BD9 test r8b / 001A0BDC je 001A0BE5 (queue path) / 001A0BDE call 001A07B0 (inline) / 001A0BE3 jmp
+C2  PASS 001D6FB0: r8 set by mov r8b, 1 at 001D7076 before call 001A0BB0 at 001D707C -> runs inline
+C3  PASS 001D6D90: r8 set by xor r8d, r8d at 001D6E4B before call 001A0BB0 at 001D6E51 -> queued
+FAILS 0

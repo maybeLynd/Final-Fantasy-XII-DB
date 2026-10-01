@@ -1,0 +1,9 @@
+{
+  "exit": 1,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-bts-index-binding.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-source-01.json"
+  ],
+  "driver_sha256": "75c0f680321ab63be634798ca1c479510f54f605abf8e01b435aabb45af7d5ee"
+}

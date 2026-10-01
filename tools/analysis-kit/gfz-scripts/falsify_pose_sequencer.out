@@ -1,0 +1,12 @@
+SURVIVES  Q0  sizes all 21 as cited; caller sets as stated (three raisers, one value caller, one setter caller, one patch-copy caller, one 0x1E door, one allocator call)
+SURVIVES  Q1  S = +0x400 + word +0x0E; handle +0x450; 32 x 0x40 entries at 02CA6CA0; serial << 8 | slot with the wrap to 1; n - 1 at +0xC
+SURVIVES  Q2  00477610: 0F B6 CA = movzx ecx, dl, compare with edx, store n - 1; siblings {'004776D0': 'movzx r9d, cl', '00477670': 'movzx r9d, cl', '00477370': 'movzx r10d, cl'}
+SURVIVES  Q3  record = base + 6 x variant; T = record + 2 + rel + 0x10; sequence = T + off + 2c; value = byte [seq + 5 + 4f]; -1 inactive
+SURVIVES  Q4  rel 0xFFFF and enabled gates; the two only-if-changed drops; choiceCount at T - 2 (T - 0x10 + 0xE); the random pick with re-pick
+SURVIVES  Q5  the step-count gate, the freeze words, tick against duration, the three end actions; 001EDE80 is 1 outside half-rate
+SURVIVES  Q6  kind 1; handle and S from +0x1E4 / +0x1E8; the id search over 0x28-stride groups
+SURVIVES  Q7  count x 128; the size lookup returns width << 16 | height via +0x100; the value-indexed source x / y at R + 0x0E / + 0x10
+SURVIVES  Q8  0xFD / 0xFE / 0xFF arms; the nibble event, byte +3 choice, the +0x413 + 1 filter, unconditional; 0x1E resets
+SURVIVES  Q9  activation: event 2, random, only-if-changed, record by +0x364; status: event 0, choice 0, only-if-changed on +0x33; set-up with +0x5C
+SURVIVES  Q10  003E7450 as noted; 00428B30 writes bit 3 on [+0] and its [+8] child, then walks that child's +8 / +0xA via 0042EF90(0042D810); 0040AA20 adds +0x24 x [01DFE0BC] (the note leaves out the time factor)
+FAILS 0

@@ -1,0 +1,10 @@
+C1/C2 rbl0102: 1 entries ['ps2data/efb'] | pack NONE | map json NONE
+C1/C2 rbl0121: 26 entries ['gamedata/d3d11', 'jsondata/maps', 'ps2data/efb', 'ps2data/plan_master'] | pack ['ps2data/plan_master/map_ctrl/rbl01/rbl0121/bin/rbl0121.mpk'] | map json ['jsondata/maps/rbl0121.json']
+C1/C2 gil0301: 50 entries ['gamedata/d3d11', 'jsondata/maps', 'ps2data/efb', 'ps2data/plan_master'] | pack ['ps2data/plan_master/map_ctrl/gil03/gil0301/bin/gil0301.mpk'] | map json ['jsondata/maps/gil0301.json']
+C1/C2 gil0303: 3 entries ['jsondata/maps', 'ps2data/efb', 'ps2data/plan_master'] | pack ['ps2data/plan_master/map_ctrl/gil03/gil0303/bin/gil0303.mpk'] | map json ['jsondata/maps/gil0303.json']
+C3 map codes inside gil0303.mpk: ['gil0101', 'gil0201', 'gil0301', 'ink0301', 'mrm0200']
+C4 fields owning rbl0121.mpk 5, gil0303.mpk 1, gil0301.mpk 100
+C4 fields 1000..1007: [(1000, 'gil0301.mpk'), (1001, 'gil0301.mpk'), (1002, 'gil0301.mpk'), (1003, 'gil0303.mpk'), (1004, 'gil0301.mpk'), (1005, 'gil0301.mpk'), (1006, 'gil0301.mpk'), (1007, 'gil0301.mpk')]
+C4 fields 668..672: [(668, 'rbl0202.mpk'), (669, 'rbl0202.mpk'), (670, 'rbl0121.mpk'), (671, 'rbl0121.mpk'), (672, '-')]
+CONTROL census rows 1003 -> gil0303.mpk and 670 -> rbl0121.mpk: PASS
+FAILS 0

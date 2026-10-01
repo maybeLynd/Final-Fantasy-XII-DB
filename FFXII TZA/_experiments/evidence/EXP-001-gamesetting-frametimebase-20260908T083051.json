@@ -1,0 +1,27 @@
+{
+  "experiment": "EXP-001-gamesetting-frametimebase",
+  "started": "2026-09-08T08:30:51",
+  "finished": "2026-09-08T08:30:51",
+  "harness": "ffxii_runtime.py",
+  "reference_exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "authority_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "environment": {
+    "loaders": [],
+    "modules_dir": false,
+    "hook_ini": false
+  },
+  "pid": 36568,
+  "state_establishment": "launched by this harness, no input automation, observed at the first frame where the controls pass",
+  "live_modules_matching_mod_stack": [],
+  "observation": {
+    "argv": [
+      "runtime_probe.py",
+      "--check",
+      "EXP-001-gamesetting-frametimebase.tsv"
+    ],
+    "returncode": 1,
+    "stdout": "attached  pid 36568  D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nC1     0x01CCD300 u32      0x0A0D9319         168661785 (0x0A0D9319) PASS\nE1     [0x01F82D2 u32      *                  1 (0x00000001)     PASS\nE2     0x01DFE0B4 u32      *                  1 (0x00000001)     PASS\nE3     0x01DFE0B8 f32      *                  1.0                PASS\nE4     0x01DFE0BC f32      *                  1.0                PASS\nE5     0x01F82E38 u32      *                  0 (0x00000000)     PASS\nE6     [0x01F82D2 u16      *                  0 (0x0000)         PASS\nE7     [0x01F82D2 u8       *                  0 (0x00)           PASS\nE8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL\nE9     [0x01F82D2 i32      *                  1 (0x00000001)     PASS\nE10    [0x01F82D2 i32      *                  3 (0x00000003)     PASS\nE11    [0x01F82D2 i32      *                  2 (0x00000002)     PASS\nE12    [0x01F82D2 i32      *                  1 (0x00000001)     PASS\n\n12 pass, 1 fail, 13 row(s)\nRecord the outcome in the experiment's .md companion, including failures. A failed expectation is evidence that the database is wrong, not noise.\n",
+    "stderr": ""
+  }
+}

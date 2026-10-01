@@ -1,0 +1,9 @@
+# NativeAdapter.DynamicOffsetRefFlagCall - EC-7 family C
+# # if r9d bit31 set return 5; else set it, compute rcx = [this+0x18] +
+# # ([this+0x48] - [[this]+0xF4]) + arg1, call a member op; return 0.
+address	targets
+005CA3E0	005C9910
+0060F510	0060E460
+0060F550	0060E500
+00673340	001B8100
+006C7F20	006C7C60

@@ -1,0 +1,89 @@
+{
+  "read_utc": "2026-09-21T11:43:48.786400+00:00",
+  "reports": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/exp127-instrument-control/README.md",
+      "sha256": "f44648ce11a90fd0af466978baaf24f41246d0bc96e7c55717060d9246806429",
+      "excerpts": [
+        {
+          "line": 80,
+          "text": "does not prove cleared registers, safe detach or recovery. The candidate does not"
+        },
+        {
+          "line": 81,
+          "text": "repair all recovery paths, qualify arbitrary concurrent thread churn, or reduce"
+        },
+        {
+          "line": 82,
+          "text": "the existing full-context write to a minimal-context write. No live reuse is"
+        },
+        {
+          "line": 83,
+          "text": "authorized by its fixture PASS labels alone."
+        },
+        {
+          "line": 84,
+          "text": ""
+        },
+        {
+          "line": 85,
+          "text": "## What EXP127's saved events actually show"
+        },
+        {
+          "line": 106,
+          "text": "instrument was harmless. FirstChance was not logged. The API context receipts"
+        },
+        {
+          "line": 107,
+          "text": "omit most integer registers and all floating/vector state, although the helper"
+        },
+        {
+          "line": 108,
+          "text": "requests and rewrites full context. They do not record later target-side effects"
+        },
+        {
+          "line": 109,
+          "text": "or exceptions after detach. None of those unknowns is silently supplied by the"
+        },
+        {
+          "line": 110,
+          "text": "successful API return values."
+        },
+        {
+          "line": 111,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/exp127-native-dispatch-control/README.md",
+      "sha256": "23ba3aa0afdcb5403b27296dcf9fc0121d848cdba331625142d1fffe1208ea0f",
+      "excerpts": [
+        {
+          "line": 100,
+          "text": "**Still unproved:** native foreign-event handling specifically during cleanup;"
+        },
+        {
+          "line": 101,
+          "text": "same-RIP TF/mixed-cause cases outside the synthetic controls; arbitrary failures,"
+        },
+        {
+          "line": 102,
+          "text": "thread churn or prior debug-register preservation; full-context write harmlessness;"
+        },
+        {
+          "line": 103,
+          "text": "hot/multi-slot behavior; real FF12 initialization, scheduling, health or semantics."
+        },
+        {
+          "line": 104,
+          "text": "The fixture provides one known handler. An unhandled exception in a target with"
+        },
+        {
+          "line": 105,
+          "text": "no handler may terminate it, so passing it through is not a survival guarantee."
+        }
+      ]
+    }
+  ]
+}

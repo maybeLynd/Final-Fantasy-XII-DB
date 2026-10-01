@@ -1,0 +1,10 @@
+# NativeAdapter.GuardedCallResultBoolInvert - EC-7 family C
+# # call shared predicate 00280120; if zero return 0; else call a member op
+# # and return sete(eax).
+address	targets
+005113A0	00280120,00568940
+005113D0	00280120,005688D0
+005115E0	00280120,002D7020
+00511C80	00280120,005688A0
+00512030	00280120,0055FF90
+00512100	00280120,002D77A0

@@ -1,0 +1,118 @@
+00234200 ActorSystem_ReleaseBattleUnitSlotForActor  00234291 movups xmmword ptr [rcx + 0x60], xmm0
+      base rcx: 0023427E mov rcx, qword ptr [rbx + 0x6a0]
+00234200 ActorSystem_ReleaseBattleUnitSlotForActor  0023429E mov dword ptr [rcx + 0x74], eax
+      base rcx: 0023427E mov rcx, qword ptr [rbx + 0x6a0]
+00259620 FUN_00259620  0025977D movups xmmword ptr [rdi + 0x58], xmm1
+      base rdi: (entry value of rdi)
+00259620 FUN_00259620  00259788 movups xmmword ptr [rdi + 0x68], xmm0
+      base rdi: (entry value of rdi)
+00259620 FUN_00259620  00259793 movups xmmword ptr [rdi + 0x78], xmm1
+      base rdi: (entry value of rdi)
+0025B070 ActorSystem_ReleaseManagerRecords  0025B111 mov dword ptr [rax + 0x74], edi
+      base rax: 0025B10A mov rax, qword ptr [rbx + 0xb8]
+0025B070 ActorSystem_ReleaseManagerRecords  0025B1A6 mov dword ptr [rax + 0x74], edi
+      base rax: 0025B19F mov rax, qword ptr [rbx + 0xb8]
+00265A20 ActorSystem_BindBattleUnitsForEligibleRecords  00265B0B mov byte ptr [rax + 0x65], r12b
+      base rax: 00265AED call 0x359b80  <- call result/clobber
+00265B60 FUN_00265b60  00265C4E mov byte ptr [rcx + 0x70], al
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C55 mov qword ptr [rcx + 0x68], rdi
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C64 mov byte ptr [rcx + 0x71], al
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C6E mov dword ptr [rcx + 0x80], edi
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C74 and byte ptr [rcx + 0x71], 0xf7
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C78 and byte ptr [rcx + 0x70], 0xfb
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C7C mov dword ptr [rcx + 0x74], 0xbf800000
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C83 mov dword ptr [rcx + 0x78], 0xbf800000
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C8A mov dword ptr [rcx + 0x7c], 0xbf800000
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265B60 FUN_00265b60  00265C99 mov word ptr [rcx + 0x72], 0xffff
+      base rcx: 00265C34 mov rcx, qword ptr [rbx + 0xc0]
+00265FF0 FUN_00265ff0  0026617B and byte ptr [rax + 0x6a], 0xfe
+      base rax: 00266174 mov rax, qword ptr [r14 + 0xf0]
+00265FF0 FUN_00265ff0  00266186 and byte ptr [rax + 0x6a], 0xfd
+      base rax: 0026617F mov rax, qword ptr [r14 + 0xf0]
+00265FF0 FUN_00265ff0  00266201 and byte ptr [rax + 0x6a], 0xfe
+      base rax: 002661FA mov rax, qword ptr [r14 + 0xf0]
+00265FF0 FUN_00265ff0  0026620C and byte ptr [rax + 0x6a], 0xfd
+      base rax: 00266205 mov rax, qword ptr [r14 + 0xf0]
+00265FF0 FUN_00265ff0  002663C6 mov dword ptr [rsi + 0x70], 0x3f800000
+      base rsi: 002663A7 mov rsi, qword ptr [rbp + 0xb8]
+00265FF0 FUN_00265ff0  0026646E mov dword ptr [rsi + 0x68], 0xbf800000
+      base rsi: 002663A7 mov rsi, qword ptr [rbp + 0xb8]
+00265FF0 FUN_00265ff0  00266475 mov dword ptr [rsi + 0x6c], 0x3f000000
+      base rsi: 002663A7 mov rsi, qword ptr [rbp + 0xb8]
+00265FF0 FUN_00265ff0  00266480 mov dword ptr [rsi + 0x74], r15d
+      base rsi: 002663A7 mov rsi, qword ptr [rbp + 0xb8]
+00265FF0 FUN_00265ff0  002664CD mov dword ptr [rax + 0x7c], r15d
+      base rax: 002664C6 mov rax, qword ptr [rcx + 0xf0]
+00265FF0 FUN_00265ff0  002664F2 mov dword ptr [rax + 0x7c], r15d
+      base rax: 002664EB mov rax, qword ptr [rcx + 0xf0]
+002681E0 FUN_002681e0  002682A7 mov word ptr [rcx + 0x80], bx
+      base rcx: 0026829B mov rcx, qword ptr [rax + 0x138]
+0026A870 FUN_0026a870  0026A8CF movss dword ptr [rcx + 0x74], xmm3
+      base rcx: 0026A8B8 mov rcx, qword ptr [rax + 0xf0]
+0026A8E0 FUN_0026a8e0  0026A93F movss dword ptr [rcx + 0x70], xmm3
+      base rcx: 0026A928 mov rcx, qword ptr [rax + 0xf0]
+0026AE90 Movement_SetSteeringMode  0026AF02 mov dword ptr [rcx + 0x7c], 0
+      base rcx: 0026AEFB mov rcx, qword ptr [rax + 0xf0]
+0026C8C0 ActorManager_BindLoadedDefinitionPayload  0026CB38 mov qword ptr [rdi + 0x60], rax
+      base rdi: (entry value of rdi)
+0026C8C0 ActorManager_BindLoadedDefinitionPayload  0026CB43 mov qword ptr [rdi + 0x68], rax
+      base rdi: (entry value of rdi)
+0026C8C0 ActorManager_BindLoadedDefinitionPayload  0026CB4E mov qword ptr [rdi + 0x70], rax
+      base rdi: (entry value of rdi)
+0026C8C0 ActorManager_BindLoadedDefinitionPayload  0026CB59 mov qword ptr [rdi + 0x80], rax
+      base rdi: (entry value of rdi)
+0026C8C0 ActorManager_BindLoadedDefinitionPayload  0026CB6B mov qword ptr [rdi + 0x78], rax
+      base rdi: (entry value of rdi)
+002EC3F0 FUN_002ec3f0  002EC433 and byte ptr [r9 + 0x6a], 0xfe
+      base r9: 002EC408 mov r9, qword ptr [rcx + 0xf0]
+00329A80 FUN_00329a80  00329AD0 movss dword ptr [rbx + 0x70], xmm6
+      base rbx: 00329A9B mov rbx, rax | 00329A96 call 0x263e30  <- call result/clobber
+0032B8B0 FUN_0032b8b0  0032B8DB movss dword ptr [rcx + 0x7c], xmm2
+      base rcx: (entry value of rcx)
+0032B8B0 FUN_0032b8b0  0032B8EC mov byte ptr [rcx + 0x80], 0
+      base rcx: (entry value of rcx)
+0035BB70 FUN_0035bb70  0035BBC2 mov dword ptr [rcx + 0x7c], eax
+      base rcx: 0035BB9E mov rcx, qword ptr [rip + 0x1f6e883]
+0035BB70 FUN_0035bb70  0035BC05 mov dword ptr [rbx + 0x7c], eax
+      base rbx: 0035BBD5 mov rbx, qword ptr [rip + 0x1f6e854]
+00369860 FUN_00369860  00369B18 sub dword ptr [rcx + 0x68], eax
+      base rcx: 00369B11 lea rcx, [rdi + rax*4]
+00369D30 FUN_00369d30  00369F70 mov dword ptr [rbx + 0x64], r8d
+      base rbx: (entry value of rbx)
+00369D30 FUN_00369d30  00369FAD mov qword ptr [rbx + 0x68], r8
+      base rbx: (entry value of rbx)
+00369D30 FUN_00369d30  00369FB1 mov qword ptr [rbx + 0x70], r8
+      base rbx: (entry value of rbx)
+00369D30 FUN_00369d30  00369FB5 mov qword ptr [rbx + 0x78], r8
+      base rbx: (entry value of rbx)
+00369D30 FUN_00369d30  00369FB9 mov qword ptr [rbx + 0x80], r8
+      base rbx: (entry value of rbx)
+00375900 FUN_00375900  003759BB mov dword ptr [rcx + 0x68], eax
+      base rcx: 003759A0 add rcx, rax
+00375900 FUN_00375900  003759C2 mov dword ptr [rcx + 0x6c], 0
+      base rcx: 003759A0 add rcx, rax
+00375900 FUN_00375900  00375A01 movsd qword ptr [rcx + 0x60], xmm0
+      base rcx: 003759A0 add rcx, rax
+003A4290 FUN_003a4290  003A42C4 mov qword ptr [rbp + 0x78], rax
+      base rbp: 003A429F lea rbp, [rax - 0xf8]
+003A4290 FUN_003a4290  003A501B movss dword ptr [rbp + 0x68], xmm6
+      base rbp: (entry value of rbp)
+003A4290 FUN_003a4290  003A5033 movss dword ptr [rbp + 0x70], xmm4
+      base rbp: (entry value of rbp)
+00472820 FUN_00472820  004728FC movups xmmword ptr [rcx + 0x60], xmm1
+      base rcx: (entry value of rcx)
+00472820 FUN_00472820  00472907 movups xmmword ptr [rcx + 0x70], xmm0
+      base rcx: (entry value of rcx)
+00472820 FUN_00472820  00472912 movups xmmword ptr [rcx + 0x80], xmm1
+      base rcx: (entry value of rcx)
+00518E60 FUN_00518e60  00518F48 movups xmmword ptr [rcx + 0x60], xmm1
+      base rcx: (entry value of rcx)

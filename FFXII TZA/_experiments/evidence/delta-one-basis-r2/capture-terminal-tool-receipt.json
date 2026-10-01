@@ -1,0 +1,14 @@
+{
+  "provenance": "Transcribed from completed exec tool output after capture, not a fresh rerun or pre-execution frozen receipt",
+  "chunk_id": "6221ff",
+  "argv": [
+    "Collaboration/Tools/analysis/venv/Scripts/python.exe",
+    "-B",
+    "Database/Tools/work/ASTRA/delta-one-basis-r2/capture.py"
+  ],
+  "exit_code": 0,
+  "output": "ACCEPT_SCOPED_ONE_PRIOR_BASIS_AT_RETAINED_HISTORY_BOUNDARY None\n",
+  "driver_sha256": "d75bcbeda5683f95614e4bad5b52b6613bc115dc7b412584309e796b0c98412a",
+  "raw_terminal": true,
+  "raw_exception": null
+}

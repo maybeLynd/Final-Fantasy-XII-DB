@@ -1,0 +1,490 @@
+{
+  "status": "CONDITIONAL_LOGICAL_DOMAIN_NO_ADDITIONAL_MISSING_ORIGINAL_RECORDS",
+  "method": "A original60 physical bytes and conditional63 terminal ASCII-backslash folding, no compiler/VM/native/game",
+  "parent_manifest_sha256": "bc4b00822d6828bc5cc9ce012951296111e99902c439bf3e556da2148ca04449",
+  "parent_raw_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "preparation_sha256": "2a16eee36ddce25800969987f8ef37b49a6225f033771d04cc829523e819e43f",
+  "source_blocks": [
+    {
+      "module": "ctrl",
+      "block": 0,
+      "physical": 977,
+      "logical": 958,
+      "continuations": 19
+    },
+    {
+      "module": "ctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "continuations": 0
+    },
+    {
+      "module": "btlctrl",
+      "block": 0,
+      "physical": 2507,
+      "logical": 2507,
+      "continuations": 0
+    },
+    {
+      "module": "btlctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "continuations": 0
+    },
+    {
+      "module": "btlctrl",
+      "block": 2,
+      "physical": 558,
+      "logical": 558,
+      "continuations": 0
+    },
+    {
+      "module": "evctrl",
+      "block": 0,
+      "physical": 2456,
+      "logical": 1912,
+      "continuations": 544
+    },
+    {
+      "module": "evctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "continuations": 0
+    },
+    {
+      "module": "mapctrl",
+      "block": 0,
+      "physical": 2768,
+      "logical": 2768,
+      "continuations": 0
+    },
+    {
+      "module": "mapctrl",
+      "block": 1,
+      "physical": 79,
+      "logical": 79,
+      "continuations": 0
+    },
+    {
+      "module": "mapctrl",
+      "block": 2,
+      "physical": 557,
+      "logical": 557,
+      "continuations": 0
+    }
+  ],
+  "counts": {
+    "CONDITIONAL_LOGICAL_IN_RANGE": 53719,
+    "OBSERVED_PAD_NOT_SOURCE": 59,
+    "UNRESOLVED_LOGICAL_COORDINATE": 6
+  },
+  "missing": [
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3978,
+      "offset": 63704,
+      "record_hex": "2f020201",
+      "line": 559,
+      "block": 2,
+      "flag": 1,
+      "logical_count": 558,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3979,
+      "offset": 63708,
+      "record_hex": "2f020200",
+      "line": 559,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 558,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3980,
+      "offset": 63712,
+      "record_hex": "2f020200",
+      "line": 559,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 558,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5201,
+      "offset": 69252,
+      "record_hex": "2e020201",
+      "line": 558,
+      "block": 2,
+      "flag": 1,
+      "logical_count": 557,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5202,
+      "offset": 69256,
+      "record_hex": "2e020200",
+      "line": 558,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 557,
+      "old_physical_category": "outside-both-index-conventions"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5203,
+      "offset": 69260,
+      "record_hex": "2e020200",
+      "line": 558,
+      "block": 2,
+      "flag": 0,
+      "logical_count": 557,
+      "old_physical_category": "outside-both-index-conventions"
+    }
+  ],
+  "new_logical_missing": [],
+  "controls": [
+    {
+      "module": "ctrl",
+      "block": 0,
+      "kind": "private-original-source-multiphysical-group",
+      "bytes": "28000001",
+      "line": 40,
+      "physical_span": [
+        {
+          "physical_index": 39,
+          "offset": 3005,
+          "bytes": "696e74206576656e746c6973745b31305d203d207b5c"
+        },
+        {
+          "physical_index": 40,
+          "offset": 3029,
+          "bytes": "0965765f6576745f74303030302c5c"
+        },
+        {
+          "physical_index": 41,
+          "offset": 3046,
+          "bytes": "0965765f6576745f74303032382c5c"
+        },
+        {
+          "physical_index": 42,
+          "offset": 3063,
+          "bytes": "0965765f6576745f74303031332c5c"
+        },
+        {
+          "physical_index": 43,
+          "offset": 3080,
+          "bytes": "0965765f6576745f74303031342c5c"
+        },
+        {
+          "physical_index": 44,
+          "offset": 3097,
+          "bytes": "0965765f6576745f74303032312c5c"
+        },
+        {
+          "physical_index": 45,
+          "offset": 3114,
+          "bytes": "0965765f6576745f74303039372c5c"
+        },
+        {
+          "physical_index": 46,
+          "offset": 3131,
+          "bytes": "0965765f6576745f74303039382c5c"
+        },
+        {
+          "physical_index": 47,
+          "offset": 3148,
+          "bytes": "0965765f6576745f74303030312c5c"
+        },
+        {
+          "physical_index": 48,
+          "offset": 3165,
+          "bytes": "0965765f6576745f74303030322c5c"
+        },
+        {
+          "physical_index": 49,
+          "offset": 3182,
+          "bytes": "0965765f6576745f74303032352c5c"
+        },
+        {
+          "physical_index": 50,
+          "offset": 3199,
+          "bytes": "207d"
+        }
+      ],
+      "detected": true,
+      "limits": "Private record addresses an actual multi-line source group; not an emitted original compiler coordinate"
+    },
+    {
+      "module": "ctrl",
+      "kind": "positive-original-start-record",
+      "scope": 0,
+      "record": {
+        "index": 0,
+        "file_offset": 14352,
+        "record_hex": "21000101",
+        "line": 33,
+        "block": 1,
+        "flag": 1,
+        "category": "inside-both-index-ranges"
+      },
+      "data": "21000101"
+    },
+    {
+      "module": "ctrl",
+      "block": 0,
+      "kind": "private-encoded-logical-boundary",
+      "positive_bytes": "be030001",
+      "negative_bytes": "bf030001",
+      "positive_line": 958,
+      "negative_line": 959,
+      "physicalL": 977,
+      "logicalL": 958,
+      "legacy_physical_false_accept": true,
+      "limits": "Actual4B interpreted private records, not emitted original compiler values or malformed native execution proof"
+    },
+    {
+      "module": "btlctrl",
+      "kind": "positive-original-start-record",
+      "scope": 0,
+      "record": {
+        "index": 0,
+        "file_offset": 47072,
+        "record_hex": "21000101",
+        "line": 33,
+        "block": 1,
+        "flag": 1,
+        "category": "inside-both-index-ranges"
+      },
+      "data": "21000101"
+    },
+    {
+      "module": "evctrl",
+      "block": 0,
+      "kind": "private-original-source-multiphysical-group",
+      "bytes": "0e000001",
+      "line": 14,
+      "physical_span": [
+        {
+          "physical_index": 13,
+          "offset": 5808,
+          "bytes": "2020696e74206576656e746c6973745b32355d203d207b5c"
+        },
+        {
+          "physical_index": 14,
+          "offset": 5834,
+          "bytes": "0965765f6576745f74303030332c5c"
+        },
+        {
+          "physical_index": 15,
+          "offset": 5851,
+          "bytes": "0965765f6576745f74303038382c5c"
+        },
+        {
+          "physical_index": 16,
+          "offset": 5868,
+          "bytes": "0965765f6576745f74303030352c5c"
+        },
+        {
+          "physical_index": 17,
+          "offset": 5885,
+          "bytes": "0965765f6576745f74303039352c5c"
+        },
+        {
+          "physical_index": 18,
+          "offset": 5902,
+          "bytes": "0965765f6576745f74303031372c5c"
+        },
+        {
+          "physical_index": 19,
+          "offset": 5919,
+          "bytes": "0965765f6576745f74303031382c5c"
+        },
+        {
+          "physical_index": 20,
+          "offset": 5936,
+          "bytes": "0965765f6576745f74303031352c5c"
+        },
+        {
+          "physical_index": 21,
+          "offset": 5953,
+          "bytes": "0965765f6576745f74303039302c5c"
+        },
+        {
+          "physical_index": 22,
+          "offset": 5970,
+          "bytes": "0965765f6576745f74303030362c5c"
+        },
+        {
+          "physical_index": 23,
+          "offset": 5987,
+          "bytes": "0965765f6576745f74303039312c5c"
+        },
+        {
+          "physical_index": 24,
+          "offset": 6004,
+          "bytes": "0965765f6576745f74303030372c5c"
+        },
+        {
+          "physical_index": 25,
+          "offset": 6021,
+          "bytes": "0965765f6576745f74303039322c5c"
+        },
+        {
+          "physical_index": 26,
+          "offset": 6038,
+          "bytes": "0965765f6576745f74303030382c5c"
+        },
+        {
+          "physical_index": 27,
+          "offset": 6055,
+          "bytes": "0965765f6576745f74303038392c5c"
+        },
+        {
+          "physical_index": 28,
+          "offset": 6072,
+          "bytes": "0965765f6576745f74303031312c5c"
+        },
+        {
+          "physical_index": 29,
+          "offset": 6089,
+          "bytes": "0965765f6576745f74303039332c5c"
+        },
+        {
+          "physical_index": 30,
+          "offset": 6106,
+          "bytes": "0965765f6576745f74303031322c5c"
+        },
+        {
+          "physical_index": 31,
+          "offset": 6123,
+          "bytes": "0965765f6576745f74303039342c5c"
+        },
+        {
+          "physical_index": 32,
+          "offset": 6140,
+          "bytes": "0965765f6576745f74303032342c5c"
+        },
+        {
+          "physical_index": 33,
+          "offset": 6157,
+          "bytes": "0965765f6576745f74303032352c5c"
+        },
+        {
+          "physical_index": 34,
+          "offset": 6174,
+          "bytes": "0965765f6576745f74303039362c5c"
+        },
+        {
+          "physical_index": 35,
+          "offset": 6191,
+          "bytes": "0965765f6576745f74303039382c5c"
+        },
+        {
+          "physical_index": 36,
+          "offset": 6208,
+          "bytes": "0965765f6576745f74303031302c5c"
+        },
+        {
+          "physical_index": 37,
+          "offset": 6225,
+          "bytes": "0965765f6576745f74303038372c5c"
+        },
+        {
+          "physical_index": 38,
+          "offset": 6242,
+          "bytes": "0965765f6576745f74303039357d"
+        }
+      ],
+      "detected": true,
+      "limits": "Private record addresses an actual multi-line source group; not an emitted original compiler coordinate"
+    },
+    {
+      "module": "evctrl",
+      "kind": "positive-original-start-record",
+      "scope": 0,
+      "record": {
+        "index": 0,
+        "file_offset": 15744,
+        "record_hex": "21000101",
+        "line": 33,
+        "block": 1,
+        "flag": 1,
+        "category": "inside-both-index-ranges"
+      },
+      "data": "21000101"
+    },
+    {
+      "module": "evctrl",
+      "block": 0,
+      "kind": "private-encoded-logical-boundary",
+      "positive_bytes": "78070001",
+      "negative_bytes": "79070001",
+      "positive_line": 1912,
+      "negative_line": 1913,
+      "physicalL": 2456,
+      "logicalL": 1912,
+      "legacy_physical_false_accept": true,
+      "limits": "Actual4B interpreted private records, not emitted original compiler values or malformed native execution proof"
+    },
+    {
+      "module": "mapctrl",
+      "kind": "positive-original-start-record",
+      "scope": 0,
+      "record": {
+        "index": 0,
+        "file_offset": 47728,
+        "record_hex": "21000101",
+        "line": 33,
+        "block": 1,
+        "flag": 1,
+        "category": "inside-both-index-ranges"
+      },
+      "data": "21000101"
+    }
+  ],
+  "source_encoding_controls": [
+    {
+      "module": "mapctrl",
+      "block": 0,
+      "physical_line": 977,
+      "offset": 39620,
+      "bytes": "0909090909096361736520393a092f2f836e834383828366838b8b40945c",
+      "decoded": "\t\t\t\t\t\tcase 9:\t//\u30cf\u30a4\u30e2\u30c7\u30eb\u6a5f\u80fd",
+      "terminal_character": "\u80fd",
+      "terminal_character_bytes": "945c",
+      "raw_byte_predicate": true,
+      "decoded_ascii_predicate": false,
+      "role": "Actual original negative control for byte5C versus ASCII continuation; both map source lines"
+    },
+    {
+      "module": "mapctrl",
+      "block": 0,
+      "physical_line": 1187,
+      "offset": 46645,
+      "bytes": "0909090909096361736520363a092f2f81408365838c837c91538cc28f8a89c2945c",
+      "decoded": "\t\t\t\t\t\tcase 6:\t//\u3000\u30c6\u30ec\u30dd\u5168\u500b\u6240\u53ef\u80fd",
+      "terminal_character": "\u80fd",
+      "terminal_character_bytes": "945c",
+      "raw_byte_predicate": true,
+      "decoded_ascii_predicate": false,
+      "role": "Actual original negative control for byte5C versus ASCII continuation; both map source lines"
+    }
+  ],
+  "stored_coordinates_in_multiphysical_groups": [],
+  "interpretation": "Decoded CP932 ASCII-backslash folding, not raw terminal5C folding: mapctrl block0 has two terminal\u80fd characters encoded945C and zero actual terminal ASCII backslashes. All actual non-pad original records remain within the conditional one-based logical domain except the six known block2 EOF+1 records, whose blocks have no continuation. Two encoded logicalL+1 controls prove physicalL guard would falsely accept in continued blocks. Negative original absence accepted only within this conditional carrier after positive/detection controls, not universal compiler/malformed safety. Logical groups may span several physical source records by construction; no original non-pad coordinate names a multi-physical group in these inputs. This is not a proof that native compiler never emits such a coordinate.",
+  "limits": "No universal original compiler/writer rule, single-statement attribution, native callback/live loading or SN1 X/cause closure. Raw terminal5C is not sufficient: two mapctrl source lines end in CP932 multibyte characters; corrected decoded-ASCII candidate used. evctrl544 and ctrl19 terminal ASCII backslashes remain; general lexical/compiler/comments/quotes behavior not proved. No terminal-open group in actual inputs. Counts are range observations, not experiments/semantic acceptance. Peer consumer implementation not edited; independent review/propagation pending. PC OFF/S19 unchanged/fullL1+L2 NOT_MET."
+}

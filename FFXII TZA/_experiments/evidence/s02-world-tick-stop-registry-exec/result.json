@@ -1,0 +1,191 @@
+{
+ "pass": 37,
+ "total": 37,
+ "cases": {
+  "ss-init": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-start": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-start-idx0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-start-idxd": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-stop": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-stop-idle": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-gated": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-bits0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-bitsff": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-watch": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-full": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-571": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latch-store": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latch-held": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-drain": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-drain-idle": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode1": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode2": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode0-gated": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-latched": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-deferred": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-drain-live": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-tail-branch": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-gate-on": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-gate-off": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234590-s0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234590-s3": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234520-s0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-234520-s3": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-25d9e0-s0": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-25d9e0-s3": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-3db1f0-s2": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt6-3db1f0-idle": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "wt-mode0-wt6": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  },
+  "ss-apply-bitset-invariance": {
+   "pass": true,
+   "notes": [],
+   "faults": []
+  }
+ }
+}

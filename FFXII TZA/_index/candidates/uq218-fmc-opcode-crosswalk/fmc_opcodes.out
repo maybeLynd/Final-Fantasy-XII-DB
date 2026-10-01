@@ -1,0 +1,8 @@
+PASS T  76 slots; null ['0x49', '0x4a', '0x4b']; 33 on the ret-0 stub
+PASS A  32151 blocks, 0 violations, 33 ids used, none on a stub or null slot
+PASS P1  word +2 = {mode:4, n:12}; modes 0/1/2 decoded, others exit; authored modes {0: 26026, 1: 36362, 2: 2492}
+PASS P2  0x0A stores +0x2DC..; 0x0B selects through 02CA4668 and plays word[+6 + 2i] via 00417920; 6726 0x0B, all after a 0x0A, all 6 + 2*count long
+PASS P3  dword +4 -> +0x304 bits 27..31, dirty bit 27 of +0x294; authored values {10: 3, 1: 112}
+PASS C  4 + 2*count matches 0 of 6726 0x0B; the adjacency test rejects one planted non-0x0A predecessor
+used ids: 00 01 03 04 05 06 09 0A 0B 0D 0E 0F 10 11 12 13 15 16 18 1A 1D 20 21 23 24 25 28 29 2A 2C 2F 34 3F
+FAILS 0

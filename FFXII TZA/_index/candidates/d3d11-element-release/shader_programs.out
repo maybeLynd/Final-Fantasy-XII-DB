@@ -1,0 +1,5 @@
+PASS  F 00616880 / 00616900: release +0x78 and +0x00, free +0x10 (count +0x08), then 00616B40
+PASS  B 00616B40 frees m_compiledCode's data (+0x20 / +0x18) and the +0x10 array (+0x08)
+PASS  V the vertex program's 0062BAB0 releases +0x00 and frees +0x10 (count +0x08)
+PASS  S fragment / geometry +0x78 and PShaderProgramD3D11 +0x01..+0x17 re-cut; tiling kept
+FAILS 0

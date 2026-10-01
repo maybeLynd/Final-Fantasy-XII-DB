@@ -1,0 +1,73 @@
+{
+  "verdict": "ACCEPT scoped overlap repair and helper declaration at exact cdbf25a5d",
+  "population_controls": 40,
+  "adapter_cases": 4,
+  "unique_triple": 8,
+  "extra_triple": 12,
+  "three_real_unique": 33,
+  "three_real_extra": 34,
+  "definition_change_delta": {
+    "na": "N/A - definition changed",
+    "why": "view definition v1 -> v2",
+    "old": {
+      "numerator": 12,
+      "denominator": 7996981
+    },
+    "new": {
+      "numerator": 8,
+      "denominator": 7996981
+    }
+  },
+  "same_definition_delta": {
+    "pp": 0.0,
+    "old": {
+      "numerator": 8,
+      "denominator": 7996981
+    },
+    "new": {
+      "numerator": 8,
+      "denominator": 7996981
+    }
+  },
+  "helper_declared_at_actual_imported_path": true,
+  "strict_helper_controls": [
+    {
+      "case": "same-size-mid-build-edit",
+      "exception": {
+        "type": "GenerationError",
+        "message": "inputs moved during the build: uc1_band.py"
+      },
+      "current_and_success_history_unchanged": true,
+      "helper_before_sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+      "helper_after_sha256": "812f354ca25c76f539f0e5a92234acfaf13611d448f35094baa252122a396eb7",
+      "failure": {
+        "generation": "g20260929T151954Z-f05bb4",
+        "failed_at": "2026-09-29T15:19:54Z",
+        "reason": "inputs moved during the build: uc1_band.py",
+        "current_unchanged": "g20260929T151952Z-221363",
+        "current_committed_at": "2026-09-29T15:19:52Z"
+      },
+      "terminal": true
+    },
+    {
+      "case": "missing-before-begin",
+      "exception": {
+        "type": "GenerationError",
+        "message": "required input not usable at begin: uc1_band.py=missing"
+      },
+      "current_and_success_history_unchanged": true,
+      "helper_before_sha256": "812f354ca25c76f539f0e5a92234acfaf13611d448f35094baa252122a396eb7",
+      "helper_after_sha256": "812f354ca25c76f539f0e5a92234acfaf13611d448f35094baa252122a396eb7",
+      "failure": {
+        "generation": "g20260929T151954Z-737231",
+        "failed_at": "2026-09-29T15:19:54Z",
+        "reason": "required input not usable at begin: uc1_band.py=missing",
+        "current_unchanged": "g20260929T151952Z-221363",
+        "current_committed_at": "2026-09-29T15:19:52Z"
+      },
+      "terminal": true
+    }
+  ],
+  "original_sources_unchanged": true,
+  "limits": "Original repository Python with labelled fixtures and only executable adapter enabled; no game code/live/full census/full build/deployment. Original helper path declared; drift control redirects only its input to disposable copy. Not every display/deployed module, source-before-import, third-party bindings, all views, whole A05/A23/M3 or L1L2."
+}

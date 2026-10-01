@@ -1,0 +1,25 @@
+{
+  "result": {
+    "scope": "Fresh/stale expected-revision arbitration in original private-fixture CLI",
+    "winner": "race-a",
+    "stale_write_landed": false,
+    "race_commits": 1,
+    "fresh_follow_on": true,
+    "full_A13": "NOT_ACCEPTED",
+    "limits": "Two processes launched before collection; first nonterminal before second launch. Simultaneous child execution/contention, fairness, fault/recovery, removed-lock, controller/deployment and FF12 behavior are not proved."
+  },
+  "receipt_controls": [
+    {
+      "name": "missing-race",
+      "refused": true
+    },
+    {
+      "name": "hidden-exit",
+      "refused": true
+    },
+    {
+      "name": "extra-output",
+      "refused": true
+    }
+  ]
+}

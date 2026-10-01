@@ -1,0 +1,11 @@
+{
+  "case": "trailing-lf",
+  "is_review": true,
+  "expected_accept": false,
+  "exit": 1,
+  "status": "ACTIVE",
+  "before_sha256": "2c0ca83aefca4eb4498b84b7674e90e1d2fc28347e7b7fa8e5f878d39c688ae2",
+  "after_sha256": "2c0ca83aefca4eb4498b84b7674e90e1d2fc28347e7b7fa8e5f878d39c688ae2",
+  "result_refs": null,
+  "plan": []
+}

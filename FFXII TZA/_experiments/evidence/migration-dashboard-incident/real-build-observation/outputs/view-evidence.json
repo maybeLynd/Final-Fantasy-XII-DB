@@ -1,0 +1,187 @@
+{
+ "view": "evidence",
+ "title": "Evidence and review health (board)",
+ "status": "PARTIAL",
+ "source": {
+  "identity": "TEAM.json rev 38749 epoch 3",
+  "as_of": "2026-09-29T02:32:06Z",
+  "instrument": "v_evidence",
+  "limits": "review tasks recognised by id/scope; ACCEPT/REJECT read from the checkpoint's leading word; pending-propagation records and receipt sealing are UNMEASURED here"
+ },
+ "measures": [
+  {
+   "id": "reviews-done",
+   "label": "review/sign/verify tasks DONE",
+   "numerator": 653,
+   "denominator": 691,
+   "scope": "board",
+   "instrument": "v_evidence",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "DONE is not acceptance"
+  },
+  {
+   "id": "reviews-accepted",
+   "label": "DONE reviews whose checkpoint begins ACCEPT/SIGNED",
+   "numerator": 293,
+   "denominator": 653,
+   "scope": "board",
+   "instrument": "v_evidence",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "2 begin REJECT/DECLINED/RETURN; the rest state no verdict word"
+  }
+ ],
+ "rows": {
+  "columns": [
+   "waiting review (oldest first)",
+   "assigned to",
+   "since"
+  ],
+  "data": [
+   [
+    "FRONTIER-REQ-AUDITSEM-REVIEW-EXP201-RECEIPT-SEALING",
+    "SWE2-AUDIT-SEM",
+    "2026-09-26T10:32"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSEM-REVIEW-EXP086-EXP189-DESCRIPTIONS",
+    "SWE2-AUDIT-SEM",
+    "2026-09-26T10:32"
+   ],
+   [
+    "ASTRA-NOTICE-ORACLE-RAW-BYTE-DELIVERY",
+    "SWE2-ORACLE",
+    "2026-09-28T05:16"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSPEC-REVIEW-UC1-257-EXTENT",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T14:24"
+   ],
+   [
+    "ASTRA-NOTICE-DATA-SN1-ZERO-TOTAL",
+    "SWE2-DATA",
+    "2026-09-28T15:09"
+   ],
+   [
+    "ASTRA-NOTICE-SWE2-DATA-SN1-VARIABLE-PUBLICATION-CORRECTION",
+    "SWE2-DATA",
+    "2026-09-28T16:37"
+   ],
+   [
+    "ASTRA-REQ-DATA-SN1-ASSIGNMENT-ATTRIBUTION",
+    "SWE2-DATA",
+    "2026-09-28T16:46"
+   ],
+   [
+    "OPUS-REQ-AUDITSPEC-REVIEW-DEVCONSOLE-RECUT",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T16:57"
+   ],
+   [
+    "OPUS-REQ-AUDITSPEC-REVIEW-ATEL-SIBLING-GATE",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T18:12"
+   ],
+   [
+    "ASTRA-REQ-DATA-SCRIPT-ARRAY-SIGNEDMIN",
+    "SWE2-DATA",
+    "2026-09-28T18:15"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSPEC-EXECUTED-REVIEW-PROGRESS-CKPT10R3",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T19:22"
+   ],
+   [
+    "OPUS-REQ-AUDITSPEC-REVIEW-UC1-HELD-ROWS",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T19:43"
+   ],
+   [
+    "OPUS-REQ-AUDITSPEC-REVIEW-ATL-FILTER",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T21:26"
+   ],
+   [
+    "OPUS-REQ-AUDITSPEC-REVIEW-UC1-HELD-ROWS-PART2",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-28T21:32"
+   ],
+   [
+    "FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY",
+    "ASTRA",
+    "2026-09-28T21:44"
+   ],
+   [
+    "OPUS-REQ-AUDITSEM-SIGN-SN1-X-OEB",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T00:06"
+   ],
+   [
+    "OPUS-REQ-ASTRA-VERIFY-A03-PREREQ",
+    "ASTRA",
+    "2026-09-29T00:12"
+   ],
+   [
+    "OPUS-REQ-ASTRA-VERIFY-A05-A09-GENERATION",
+    "ASTRA",
+    "2026-09-29T00:19"
+   ],
+   [
+    "OPUS-REQ-ASTRA-VERIFY-DASHBOARD-SHELL",
+    "ASTRA",
+    "2026-09-29T00:27"
+   ],
+   [
+    "FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T00:30"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSEM-EXECUTED-REVIEW-COMPOSER-PREREQ",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T00:51"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSEM-REVIEW-0928G",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T01:04"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSEM-REVIEW-0928N",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T01:05"
+   ],
+   [
+    "FRONTIER-REQ-AUDITSEM-REVIEW-SN1-62",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T01:06"
+   ],
+   [
+    "OPUS-REQ-ASTRA-VERIFY-TRANSITIONS",
+    "ASTRA",
+    "2026-09-29T01:09"
+   ],
+   [
+    "FABLE-REQ-AUDITSEM-REVIEW-UQ218-SELECTOR-CRITERIA",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T01:28"
+   ],
+   [
+    "FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-2",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T01:29"
+   ],
+   [
+    "OPUS-REQ-AUDITSPEC-REVIEW-A18-BYTES",
+    "SWE2-AUDIT-SPEC",
+    "2026-09-29T01:39"
+   ],
+   [
+    "OPUS-REQ-AUDITSEM-REVIEW-SEAL",
+    "SWE2-AUDIT-SEM",
+    "2026-09-29T01:49"
+   ]
+  ]
+ }
+}

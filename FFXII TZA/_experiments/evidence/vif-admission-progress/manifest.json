@@ -1,0 +1,42 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 5721,
+    "sha256": "e1cbe2644d7368b968dd1b870d5cba6f703ec7c738a25a63307a9d665e40d60e"
+  },
+  "extract.py": {
+    "bytes": 1766,
+    "sha256": "e6d477ebdb2a69c2d14d5d49af29a4f9983fb2afcdd692e462f602df672b3dc9"
+  },
+  "observation.json": {
+    "bytes": 1027,
+    "sha256": "9a622ba9446550e91d1274d1ea45a5be54ed23aeeaa89bad79de21a69f8aef5b"
+  },
+  "PLAN.md": {
+    "bytes": 1698,
+    "sha256": "40bcded886a3540a2b07c0134e0cfee82d96937a8adc6820332043889e6b6dfe"
+  },
+  "primary.json": {
+    "bytes": 122801,
+    "sha256": "4387b8d7a2a81f411a6fb284a5e7fd11cd56a5fa260465b95937f41131b0e75c"
+  },
+  "README.md": {
+    "bytes": 4510,
+    "sha256": "31147ca854bb3183725d3550bf2d816a303f3da080553704337d899afd54b210"
+  },
+  "validation.json": {
+    "bytes": 582,
+    "sha256": "9087bd3ddc2432147c4dcee1ad2d98ed2bf2e7866a8409368ae2aae97a94bf9d"
+  },
+  "retained/consumer-preimage.md": {
+    "bytes": 61595,
+    "sha256": "c198dd9766682df36f630e83814111e505bb2a5477a1be5bfa4d1512359c1fa3"
+  },
+  "retained/existing-reader.py": {
+    "bytes": 39341,
+    "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  }
+}

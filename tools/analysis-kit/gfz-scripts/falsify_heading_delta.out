@@ -1,0 +1,10 @@
+SURVIVES  H0  sizes 601 / 61; gates {'Movement_SetRequestedSpeed': 1, 'Actor_SetDesiredMovementHeading': 1, 'Movement_UpdateActorFrame': 2, 'Movement_ComputeDeltaFromHeadingSpeed': 1}
+SURVIVES  H1  null first; classes 1 and 3; refusal zeros x, y, z
+SURVIVES  H2  X/Y/Z zeroed before the gate; refusal writes W = 1.0 and returns
+SURVIVES  H3  writes to the movement block (actor+0xB8)+0xF8: [('002E43E6', 'movss dword ptr [rdi + 0xf8], xmm0'), ('002E445C', 'movss dword ptr [rdi + 0xf8], xmm3')]
+SURVIVES  H4  00424080(word [actor+0xC0], &yaw, &speed) runs after the wrap and before the speed-0 test
+SURVIVES  H5  flat branch when 00267260 != 0 and 00264460 == 0: Y stays 0, X/Z use speed unscaled
+SURVIVES  H6  two truncating wraps (yaw with xmm5, pitch with xmm4 = +-pi)
+SURVIVES  H7  closure 14 bodies; no generator entry, no gameplay-LCG reference
+SURVIVES  H8  (REFUTES '002E45E0 is a 40-byte leaf with no calls') 8 chained fragments [40, 27, 397, 45, 93, 144, 47, 170], contiguous True, union 963 B = catalogue 963 B; first fragment 40 B with no ret; ret ['002E49A2']; extent valid True; calls 21; direct +0x03 operands []; calls between the gate and the delta ['002E50B8'], same actor in rcx
+FAILS 0

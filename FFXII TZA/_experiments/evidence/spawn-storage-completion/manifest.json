@@ -1,0 +1,254 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_primary.py",
+      "bytes": 4738,
+      "sha256": "d1b2462932e2406a17acdf7ecc6d4e22445c18f128839c05b09fbc5e72ac1b84",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-primary.json",
+      "bytes": 23229,
+      "sha256": "829527b2c98ed32591f60bbec8dfd0d95083dae00cc79af0eebba2a55c3ef009",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "dispatch.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_dispatch.py",
+      "bytes": 4739,
+      "sha256": "c1341561acf167b128b0f8dc3891636a5d3ad6e2b67e8afcdc4f47f87f54087d",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "dispatch.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-dispatch.json",
+      "bytes": 33442,
+      "sha256": "f09c91ab738bf3da91bc51460552b4b78ef418bb1eb0ec54f456d455627c7fda",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "worker.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_worker.py",
+      "bytes": 4755,
+      "sha256": "91409fdf45d5b8210c0ea69c97faa5e30c311444b5e80e39985fcbfb07129bc7",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "worker.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-worker.json",
+      "bytes": 25652,
+      "sha256": "f945b8e1b91ff424c5a77eb048af3c9bc52489cc41a6a8e0553f3b3ae69de06a",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "io.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_io.py",
+      "bytes": 4751,
+      "sha256": "98ba2b35e4bbd1f182ce3165c584674b7ef03d65cb5b0ebbed10684eb3bc2c92",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "io.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-io.json",
+      "bytes": 43349,
+      "sha256": "a473e7cc9c4e85d3fbdb58425b0824eddf765905ec3fa141a16c7338b912fdf7",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "adapters.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_adapters.py",
+      "bytes": 4775,
+      "sha256": "bb4a2268e23d04b3980ceb298051053ab88cf5cff1d7fffada52aa5054b922ae",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "adapters.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-adapters.json",
+      "bytes": 22284,
+      "sha256": "be5b930c9c826a2b0cacb139ce28df7a41a8c69da2f1a9a53305d40dec845ea8",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "file.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_file.py",
+      "bytes": 4753,
+      "sha256": "02f5ae8f5af1b9c8a43e993dd5884505da895857656ec990651487125ac26763",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "file.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-file.json",
+      "bytes": 106149,
+      "sha256": "9ac173ed11236139d1107b29099ea8b52d93d3025676fd75594ed7a524760eb6",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_completion_check.py",
+      "bytes": 9323,
+      "sha256": "c054706922261fd368eb1cf0114908b2e059b8db0fae8a83df312aece8fc63eb",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-check.json",
+      "bytes": 24442,
+      "sha256": "d9d108e4f8982176663125ee36bfe1006125af13b8953b5eaeddec565e645693",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "tables.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-completion-tables.json",
+      "bytes": 2905,
+      "sha256": "fe9448cb907f3dcb07332934f74a2c4aef3a67b11c08c039c29396c2e6d26d8f",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "short-read-probe.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_storage_short_read_probe.py",
+      "bytes": 7137,
+      "sha256": "8c165f2ccaf5c1d0d17fc2a4eb4d16bd5cf77fd2534946b20cdd47de4893e10f",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "short-read-feasibility.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-short-read-feasibility.json",
+      "bytes": 19887,
+      "sha256": "366b568b0c717ac9f50ef48dae5e8a0f9d0c87ed0d43563bb1f8b2ac365f3f9e",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "short-read-execution.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-short-read-execution.json",
+      "bytes": 40242,
+      "sha256": "a95153d1cd0e4d5d5ea4410900a597c404b70baf9937f6c2073bab9b5097d61d",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "short-read-import-failure.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-short-read-import-failure.json",
+      "bytes": 553,
+      "sha256": "51027018e1be44677090f12813fde69a0a182aa99cd0ffa29b7d1f9bc4626935",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "short-read-tool-identity.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-storage-short-read-tool-identity.json",
+      "bytes": 1424,
+      "sha256": "41b35d0725f369549d977171c0037f3d4fe93249d5efdc9841d4b3a5608ebc8d",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "adapters.json": {
+      "bytes": 21422,
+      "sha256": "b2c2601c637be4b48285d7146a17c716fce65bad42f18b98215a085c3cb6870c"
+    },
+    "adapters.py": {
+      "bytes": 4775,
+      "sha256": "bb4a2268e23d04b3980ceb298051053ab88cf5cff1d7fffada52aa5054b922ae"
+    },
+    "check.json": {
+      "bytes": 24442,
+      "sha256": "d9d108e4f8982176663125ee36bfe1006125af13b8953b5eaeddec565e645693"
+    },
+    "check.py": {
+      "bytes": 9323,
+      "sha256": "c054706922261fd368eb1cf0114908b2e059b8db0fae8a83df312aece8fc63eb"
+    },
+    "dispatch.json": {
+      "bytes": 32188,
+      "sha256": "834b59efe326e825c86f9fc5dc884f1b6d6b0e4af9959ca4035987e0495b2793"
+    },
+    "dispatch.py": {
+      "bytes": 4739,
+      "sha256": "c1341561acf167b128b0f8dc3891636a5d3ad6e2b67e8afcdc4f47f87f54087d"
+    },
+    "existing-work.json": {
+      "bytes": 6777,
+      "sha256": "394f56cf30645d1c67543c7e4909b8b502976c4ec9c4d0d28c1f5bf87ab306cd"
+    },
+    "file.json": {
+      "bytes": 102139,
+      "sha256": "0031fcb3df32c801c4e0c0b46258d4f58326c8f62c7250205cfba50c5e331723"
+    },
+    "file.py": {
+      "bytes": 4753,
+      "sha256": "02f5ae8f5af1b9c8a43e993dd5884505da895857656ec990651487125ac26763"
+    },
+    "io.json": {
+      "bytes": 41685,
+      "sha256": "188645d6f966c1063e04cd5d383ae60229a084e8e8d0f13e5ff5c406997dea4b"
+    },
+    "io.py": {
+      "bytes": 4751,
+      "sha256": "98ba2b35e4bbd1f182ce3165c584674b7ef03d65cb5b0ebbed10684eb3bc2c92"
+    },
+    "primary.json": {
+      "bytes": 22383,
+      "sha256": "784ea96f2a66986ca2e573557d29f5da53010f108b309192a2a6968cfdbcd2ee"
+    },
+    "primary.py": {
+      "bytes": 4738,
+      "sha256": "d1b2462932e2406a17acdf7ecc6d4e22445c18f128839c05b09fbc5e72ac1b84"
+    },
+    "README.md": {
+      "bytes": 5387,
+      "sha256": "3e5fba0ff66f4224912b14d9e146738f4608e9470c46bf61272a96eaf84da3d9"
+    },
+    "short-read-execution.json": {
+      "bytes": 40242,
+      "sha256": "a95153d1cd0e4d5d5ea4410900a597c404b70baf9937f6c2073bab9b5097d61d"
+    },
+    "short-read-feasibility.json": {
+      "bytes": 19887,
+      "sha256": "366b568b0c717ac9f50ef48dae5e8a0f9d0c87ed0d43563bb1f8b2ac365f3f9e"
+    },
+    "short-read-import-failure.json": {
+      "bytes": 553,
+      "sha256": "51027018e1be44677090f12813fde69a0a182aa99cd0ffa29b7d1f9bc4626935"
+    },
+    "short-read-probe.py": {
+      "bytes": 7137,
+      "sha256": "8c165f2ccaf5c1d0d17fc2a4eb4d16bd5cf77fd2534946b20cdd47de4893e10f"
+    },
+    "short-read-tool-identity.json": {
+      "bytes": 1424,
+      "sha256": "41b35d0725f369549d977171c0037f3d4fe93249d5efdc9841d4b3a5608ebc8d"
+    },
+    "tables.json": {
+      "bytes": 2905,
+      "sha256": "fe9448cb907f3dcb07332934f74a2c4aef3a67b11c08c039c29396c2e6d26d8f"
+    },
+    "worker.json": {
+      "bytes": 24672,
+      "sha256": "ffccd4d7ac2040a125d3a2d8f4394c94884b075e9690fe42cb9f7983c3889686"
+    },
+    "worker.py": {
+      "bytes": 4755,
+      "sha256": "91409fdf45d5b8210c0ea69c97faa5e30c311444b5e80e39985fcbfb07129bc7"
+    }
+  }
+}

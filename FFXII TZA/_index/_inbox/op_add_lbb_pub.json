@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-LBB-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the loader-bound .bin residue package: fontpack_* interior tables named, subtype 0x75 tolerated-absent, behindcamera evaluator chain isolated; plus gate triage (check_assets hchk census row, check_layouts crash fix + MrpHeader clash reconcile, six stale MP-2 struct fences normalized, RULES.md regen).",
+  "scope": "loader-bound-bin-families.md, the-map-ctrl-pack.md, check_layouts.py, format-magic-census.tsv, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, RULES.md, UNIDENTIFIED-OPEN-QUESTIONS.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

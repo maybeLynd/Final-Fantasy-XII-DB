@@ -1,0 +1,12 @@
+PASS A1  flag 1 tail-jumps into the wrapper; both results tested; null jumps past the stamps at 0036A206/0036A20E/0036A214
+PASS A2  no access to [rsp+0x50]/[rsp+0x58] and no lea of rsp in 0036BFE0; the pattern sees the 4 accesses to +0x30/+0x38
+PASS A3  non-null returns; null returns only for edi = 0 and esi = 0; esi = callback eax or 0
+PASS A4  a disabled heap bit spins at 0036C000
+PASS G1  the initializer is skipped on null; the null is returned
+PASS G2  size = nx*ny*(n+1) + n; stored at 00392677 and memset at 0039267E with nothing tested between (4 instructions)
+PASS G3  A8 = A0 + cells*n, B0 = A8 + cells; budget 275 cells: 10211 bytes fit, 276 would need 10248
+PASS M1  memset(scratch, 0, n) is the first branch-or-call in the body
+PASS M2  one non-stack write, the OR into the shared scratch; returns the scratch pointer; the four arguments are integers
+PASS M3  each OR writer resets first: {'003912E0': (True, '0039130E', ['003913C4']), '00391710': (True, '00391780', ['003918B3']), '00391A30': (True, '00391AAB', ['00391BD3'])}; references to 02AEE0B0 found in the six bodies: 13 (the cache census counts 13)
+PASS C  JNE->JE at 0036C0B9 flips the diamond True; planted test seen True; planted branch seen True; an early jump into the OR loop past the reset fails M3 True
+FAILS 0

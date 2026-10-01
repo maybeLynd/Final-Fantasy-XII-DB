@@ -1,0 +1,100 @@
+[
+  {
+    "agent": "OPUS",
+    "op": {
+      "action": "add",
+      "task": {
+        "id": "FIXTURE-REVIEW-ACCEPT",
+        "kind": "research",
+        "priority": "P2",
+        "target": "Labelled synthetic review ACCEPT",
+        "scope": "Synthetic declarative review; no project semantic acceptance",
+        "completion": "Seed fixture only",
+        "dependencies": [],
+        "resources": [
+          {
+            "key": "target:fixture/review-accept"
+          }
+        ],
+        "reviews": {
+          "author": "OPUS",
+          "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+          "record": "fixtures/SYNTHETIC-REVIEW.md",
+          "incorporation_owner": "SWE2-DATA"
+        }
+      }
+    },
+    "method": "Original in-memory apply only; no journal write during fixture preparation"
+  },
+  {
+    "agent": "FABLE",
+    "op": {
+      "action": "claim",
+      "task": "FIXTURE-REVIEW-ACCEPT",
+      "note": "Synthetic reviewer identity in a disposable fixture"
+    },
+    "method": "Original in-memory apply only; no journal write during fixture preparation"
+  },
+  {
+    "agent": "FABLE",
+    "op": {
+      "action": "finish",
+      "task": "FIXTURE-REVIEW-ACCEPT",
+      "note": "Synthetic ACCEPT declaration for writer integration only",
+      "result_refs": [
+        "verdict:ACCEPT",
+        "fixture:synthetic-receipt"
+      ]
+    },
+    "method": "Original in-memory apply only; no journal write during fixture preparation"
+  },
+  {
+    "agent": "OPUS",
+    "op": {
+      "action": "add",
+      "task": {
+        "id": "FIXTURE-REVIEW-REJECT",
+        "kind": "research",
+        "priority": "P2",
+        "target": "Labelled synthetic review REJECT",
+        "scope": "Synthetic declarative review; no project semantic acceptance",
+        "completion": "Seed fixture only",
+        "dependencies": [],
+        "resources": [
+          {
+            "key": "target:fixture/review-reject"
+          }
+        ],
+        "reviews": {
+          "author": "OPUS",
+          "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+          "record": "fixtures/SYNTHETIC-REVIEW.md",
+          "incorporation_owner": "SWE2-DATA"
+        }
+      }
+    },
+    "method": "Original in-memory apply only; no journal write during fixture preparation"
+  },
+  {
+    "agent": "FABLE",
+    "op": {
+      "action": "claim",
+      "task": "FIXTURE-REVIEW-REJECT",
+      "note": "Synthetic reviewer identity in a disposable fixture"
+    },
+    "method": "Original in-memory apply only; no journal write during fixture preparation"
+  },
+  {
+    "agent": "FABLE",
+    "op": {
+      "action": "finish",
+      "task": "FIXTURE-REVIEW-REJECT",
+      "note": "Synthetic REJECT declaration for writer integration only",
+      "result_refs": [
+        "verdict:REJECT",
+        "fixture:synthetic-receipt"
+      ]
+    },
+    "method": "Original in-memory apply only; no journal write during fixture preparation"
+  }
+]

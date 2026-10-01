@@ -1,0 +1,66 @@
+ACCEPTED_BOUNDED_LIVE_OBSERVATIONS_PENDING_INDEPENDENT_REVIEW 13 registered pulses; 170 accepted spans; 597.052 seconds
+current-field 0 levels [1, 1, 1, 1, 2, 1] old prefix False bank0 22 keep nonzero [328, 0]
+current-field 1 levels [1, 1, 1, 1, 2, 1] old prefix False bank0 22 keep nonzero [328, 0]
+returned-title 0 levels [1, 1, 1, 1, 2, 1] old prefix False bank0 34 keep nonzero [0, 346]
+returned-title 1 levels [1, 1, 1, 1, 2, 1] old prefix False bank0 34 keep nonzero [0, 346]
+old-after-current-complete 0 levels [21, 21, 21, 21, 21, 21] old prefix True bank0 40 keep nonzero [0, 346]
+old-after-current-complete 1 levels [21, 21, 21, 21, 21, 21] old prefix True bank0 40 keep nonzero [0, 346]
+old-after-current-field-settled 0 levels [21, 21, 21, 21, 21, 21] old prefix True bank0 40 keep nonzero [0, 0]
+old-after-current-field-settled 1 levels [21, 21, 21, 21, 21, 21] old prefix True bank0 40 keep nonzero [0, 0]
+[
+  {
+    "before": "current-field",
+    "after": "returned-title",
+    "battle_changed_bytes": 220,
+    "first": "0xe",
+    "last": "0x6b82",
+    "keep_changes": [
+      {
+        "bank": 1,
+        "changed_bytes": 328
+      },
+      {
+        "bank": 2,
+        "changed_bytes": 346
+      }
+    ],
+    "old_keep1_equals_new_keep2": false
+  },
+  {
+    "before": "returned-title",
+    "after": "old-after-current-complete",
+    "battle_changed_bytes": 1572,
+    "first": "0x4",
+    "last": "0x5eb6",
+    "keep_changes": [
+      {
+        "bank": 1,
+        "changed_bytes": 0
+      },
+      {
+        "bank": 2,
+        "changed_bytes": 0
+      }
+    ],
+    "old_keep1_equals_new_keep2": false
+  },
+  {
+    "before": "old-after-current-complete",
+    "after": "old-after-current-field-settled",
+    "battle_changed_bytes": 0,
+    "first": null,
+    "last": null,
+    "keep_changes": [
+      {
+        "bank": 1,
+        "changed_bytes": 0
+      },
+      {
+        "bank": 2,
+        "changed_bytes": 346
+      }
+    ],
+    "old_keep1_equals_new_keep2": true
+  }
+]
+Rejected controls: empty-input, no-held-detection, actual-registry-change-even-with-forged-flag, empty-memory-run

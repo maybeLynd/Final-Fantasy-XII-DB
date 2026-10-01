@@ -1,0 +1,212 @@
+{
+  "status": "PRODUCER_CHECKED_COPY_COUNTER_AND_CAPACITY_PRECONDITIONS_INDEPENDENT_PENDING",
+  "producer_complete": false,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-copy-construction-source-01.json",
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 99,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfgs": [
+    {
+      "entry": "0x61d100",
+      "end_exclusive": "0x61d179",
+      "instructions": 37,
+      "returns": [
+        "0x61d178"
+      ],
+      "calls": [
+        {
+          "pc": "0x61d136",
+          "target": "0x17d260"
+        },
+        {
+          "pc": "0x61d14c",
+          "target": "0x613770"
+        },
+        {
+          "pc": "0x61d15c",
+          "target": "0x61c250"
+        }
+      ]
+    },
+    {
+      "entry": "0x613770",
+      "end_exclusive": "0x6137f5",
+      "instructions": 36,
+      "returns": [
+        "0x6137f4"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x61c250",
+      "end_exclusive": "0x61c2ad",
+      "instructions": 26,
+      "returns": [
+        "0x61c2ac"
+      ],
+      "calls": []
+    }
+  ],
+  "copy_dataflow": [
+    {
+      "load": "0x61379c",
+      "store": "0x6137a0",
+      "source_offset": 0,
+      "destination_offset": 0,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137a3",
+      "store": "0x6137a7",
+      "source_offset": 8,
+      "destination_offset": 8,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137ab",
+      "store": "0x6137af",
+      "source_offset": 16,
+      "destination_offset": 16,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137b3",
+      "store": "0x6137b7",
+      "source_offset": 24,
+      "destination_offset": 24,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137bb",
+      "store": "0x6137bf",
+      "source_offset": 32,
+      "destination_offset": 32,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137c3",
+      "store": "0x6137c7",
+      "source_offset": 40,
+      "destination_offset": 40,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137cb",
+      "store": "0x6137cf",
+      "source_offset": 48,
+      "destination_offset": 48,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137d3",
+      "store": "0x6137d6",
+      "source_offset": 56,
+      "destination_offset": 56,
+      "bytes": 4
+    },
+    {
+      "load": "0x6137dd",
+      "store": "0x6137e1",
+      "source_offset": 72,
+      "destination_offset": 72,
+      "bytes": 8
+    },
+    {
+      "load": "0x6137e5",
+      "store": "0x6137eb",
+      "source_offset": 80,
+      "destination_offset": 80,
+      "bytes": 4
+    }
+  ],
+  "initializer_zero_writes": [
+    {
+      "pc": "0x61c279",
+      "offset": 0,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c27c",
+      "offset": 8,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c280",
+      "offset": 16,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c283",
+      "offset": 24,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c287",
+      "offset": 32,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c28b",
+      "offset": 40,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c28f",
+      "offset": 48,
+      "bytes": 8
+    },
+    {
+      "pc": "0x61c293",
+      "offset": 56,
+      "bytes": 4
+    }
+  ],
+  "checker_sha256": "a07431ae147105e6c3dfef70d6f1b6a2233836b56f47624029da7e78b9166097",
+  "question": "Does61D100 clamp/reset old records or preserve copied counters and initialize only a bounded tail?",
+  "established": [
+    "61D100 treats EDX low32 as new countN, R9D low32 as copy countK, and R8 as input pointer. N=0 returnsNULL without copy/init; N=1 chooses helper-record+8; N>1 calls17D260 with88*N bytes and alignment8. A NULL chosen destination skips copy/init. No owner type, allocator success or destruction of old storage is inferred.",
+    "For a valid nonNULL destination, it calls613770 withK, not min(K,N), then61C250 at destination+88*K withu32(N-K). The checked normal branch closure contains no K<=N/clamp/drain call. Under the ordinary nonwrapping backed-storage premise, K<=N is needed for this helper to stay withinN records; K>N copies beyond that count and wraps the tail count. This is a required precondition, not proof a shipped caller violates it.",
+    "613770 preserves each source DWORD+38 counter exactly, alongside the accepted data fields; it installsD54348 at+40 and copies async texture+48/index+50 without rebinding them to a different owner or index. It does not locally drain/reset the copied counters or invoke callbacks. General source/destination overlap and lifetime safety remain unproved.",
+    "61C250 zeroes sevenQWORD fields0..30 and DWORD+38 in each valid tail record and installsD54348 at+40. It makes no local writes to+48/+50 or padding+3C/+54; those bytes are not certified zero/initialized by this helper. Successful parent allocation/base initialization may add effects outside this source.",
+    "For0<=K<=N with valid storage, normal leaf loops and unchanged arguments, the firstK records are copied and remainingN-K records initialized. This bounded source formula preserves rather than creates a nonzero counter on the copied prefix; the complete writer closure and natural scheduler relationship remain OPEN."
+  ],
+  "conditional_arithmetic_witness": {
+    "N": 2,
+    "K": 3,
+    "allocation_bytes": 176,
+    "copy_records": 3,
+    "tail_records": 4294967295,
+    "first_excess_copy_offset": 176,
+    "meaning": "Conditional arithmetic counterexample to an unconstrained shrink-safe helper; not a natural caller witness or native run"
+  },
+  "assumptions": [
+    "ABI-correct normally returning allocator and correctly backed nonwrapping input/output/helper/stack storage",
+    "Stable N/K/source/destination, valid element records and no interfering writes",
+    "No arbitrary overlap, alias-to-stack, allocator/lifetime/ownership or natural shrink assumptions"
+  ],
+  "limitations": [
+    "Accepted OPUS T2 stride/layout reused; external tests/census not rerun or recounted",
+    "No complete caller/allocator/writer closure; copied nonzero values are possible input-domain facts, not observed natural counters",
+    "No actual resize, old-storage disposal, queue rescheduling or native/live observation; no universal malformed-input safety"
+  ],
+  "affected_claims": [
+    "OPUS element-array construction ABI and K<=N capacity precondition, wait-counter copy and uninitialized-tail members",
+    "FABLE Phyre async lifetime/move and complete counter-writer search"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "File reads/bounded static analysis only; no game/control/instrument/save/config/reference/peer process writes"
+}

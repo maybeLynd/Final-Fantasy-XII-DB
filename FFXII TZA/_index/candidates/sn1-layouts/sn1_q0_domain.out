@@ -1,0 +1,7 @@
+PASS  I sbn_blocks / sbn_group_read equal sn1_layouts.py's
+PASS  A unresolved under either numbering: [('btlctrl', 1, 3978, 559, 2, 1), ('btlctrl', 1, 3979, 559, 2, 0), ('btlctrl', 1, 3980, 559, 2, 0), ('mapctrl', 1, 5201, 558, 2, 1), ('mapctrl', 1, 5202, 558, 2, 0), ('mapctrl', 1, 5203, 558, 2, 0)]; line == lineCount: 9; addressable only from 0: 0
+PASS  R resolver tallies both 53710, one-based-only 9, zero-based-only 0, unresolved 6, pad 59 (of 53784 records)
+PASS  Z q0 count = codeEnd rounded up to 4 in 50 / 50 (codeEnd from the .ebp opcode in 49; from q0's own extent in [('evctrl', 1, 143)], whose last instruction lies past its directory span); q0, q1 16-aligned in 50 / 50 (q2 and q3 both in 1); next script starts at codeEnd in 45 scopes (the other with a successor: [('evctrl', 1, 6130, 6274)], DATA's recorded evctrl scope 1 tail); pad 0..3, 3 at [('btlctrl', 22), ('ctrl', 1), ('evctrl', 3), ('mapctrl', 1), ('mapctrl', 3)]; 16 scopes with no pad
+PASS  E the page-map length E is the same over the padded count and over codeEnd in all 50 scopes
+PASS  C clamp mutant resolves the missing line (['LINE', 'LINE', 'LINE']); a planted record past codeEnd and codeEnd + 1 each break Z; a 0..2 bound misses 5 scopes
+FAILS 0

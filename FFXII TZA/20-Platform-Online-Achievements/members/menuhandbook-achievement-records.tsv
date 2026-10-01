@@ -1,0 +1,47 @@
+# menuhandbook-achievement-records — the two achievement records inside us/menuhandbook.bin
+# (kind 7, id 0xC8, 312 bytes, hcom). SWE2-DATA 2026-09-18, for
+# FABLE-REQ-SWE2-DATA-HANDBOOK-MONSTER-LIST-AND-COUNTER-MASK. Regenerate:
+#   python members/read_menuhandbook_hops.py <menuhandbook.bin>
+#
+# Hop chain (003165C0 / 00315FFA): pos = blob+8; pos += u16[pos], four hops.
+#   hop1 -> +0x3C   hop2 -> +0x7C   hop3 -> +0xDC   hop4 -> +0xF8
+#
+# section	slot	id_hex	id_dec	note
+# --- hop-3 record at +0xDC: u16 next-hop step +0, u16 count 11 at +2, u16 ids at +4 ---
+monster_list	0	0x00f8	248	ACH_SPECIAL_MONSTER01's check (descriptor 20, mode 7, threshold 0)
+monster_list	1	0x00fb	251	ACH_SPECIAL_MONSTER02 (descriptor 21, threshold 1)
+monster_list	2	0x00fd	253	ACH_SPECIAL_MONSTER03 (descriptor 22, threshold 2)
+monster_list	3	0x00f0	240	ACH_SPECIAL_MONSTER04 (descriptor 23, threshold 3)
+monster_list	4	0x00fa	250	ACH_SPECIAL_MONSTER05 (descriptor 24, threshold 4)
+monster_list	5	0x00e6	230	ACH_SPECIAL_MONSTER06 (descriptor 25, threshold 5)
+monster_list	6	0x0104	260	ACH_SPECIAL_MONSTER07 (descriptor 26, threshold 6)
+monster_list	7	0x0121	289	ACH_SPECIAL_MONSTER08 (descriptor 27, threshold 7)
+monster_list	8	0x010f	271	ACH_SPECIAL_MONSTER09 (descriptor 28, threshold 8)
+monster_list	9	0x0111	273	ACH_SPECIAL_MONSTER10 (descriptor 29, threshold 9)
+monster_list	10	0x0103	259	shipped but unreachable — no descriptor carries threshold 10
+#
+# --- hop-4 record at +0xF8: u16 0x0040, u16 0x000E, mask 0x800661FF at +4, 14 dwords at +8 ---
+# 003165C0: bit id of mask set -> rank = popcount(mask & ((1<<id)-1)) -> return dword[rank].
+# Record ends +0x138 = file size, so the dword list is exactly the set-bit count.
+override_id	mask_bit	descriptor_mode	achievement	threshold
+0	0	0	ACH_COUNT_FIGHT (Assault Striker)	300
+1	1	0	ACH_COUNT_MAGIC (Spellslinger)	200
+2	2	0	ACH_COUNT_TECH (Premier Prestidigitator)	100
+3	3	0	ACH_COUNT_STEAL (Master Thief)	50
+4	4	0	ACH_COUNT_KILL (Blood Dancer)	500
+5	5	0	ACH_COUNT_STEP (Wayfarer)	50000
+6	6	0	ACH_COUNT_GET_GIL (Plunderer)	100000
+7	7	0	ACH_COUNT_USE_GIL (Spendthrift)	1000000
+8	8	0	ACH_LEVEL_AVERAGE (Exemplar)	50
+13	13	3	ACH_COMPLETE_YUGOU (Mist Walker)	8
+14	14	0	ACH_COUNT_SELL_EVITEM (Privateer)	1000
+17	17	0	ACH_COUNT_SCORE (Record Breaker)	500000
+18	18	0	ACH_COUNT_CHAIN (The Unrelenting)	50
+31	31	-	ACH_EVENT_FINISH_REX (For the Homeland)	16
+#
+# mask bits NOT set for descriptor ids: 9, 10, 12 (mode 2), 15 (mode 5), 16 (mode 6),
+#   19 (mode 1), 20-29 (mode 7) — none of those arms consult 003165C0's override.
+# mode-0 descriptor ids are {0-8, 11, 14, 17, 18}; the mask covers all but 11
+#   (ACH_MASTER_LICENSE counter): 003165C0(11)=0 -> fallback threshold desc+4 = 0 ->
+#   signed counter >= 0 on save +0x384C+0x10 (kind 4 dword).
+# id 31 is out of range for every caller (checker id<0x1F, updater id<0x1E) — dead data.

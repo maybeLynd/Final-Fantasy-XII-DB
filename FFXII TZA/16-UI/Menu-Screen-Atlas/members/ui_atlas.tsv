@@ -1,0 +1,81 @@
+procedure	subtree	frontier	label	installed_by	message_ids	layout_key_families	constant_files	effect_registry
+00551E00	6	6	world map (child: installed by the procedure or its direct callee)	005528C0	1,24	-	-	-
+00551F00	15	15	world map (child: installed by the procedure or its direct callee)	005528C0	1,14,24	-	-	-
+00552250	64	61	world map + help message	00550400	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41	HelpMessage,WorldMap	-	-
+005528C0	98	96	world map	00552250	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42	WorldMap	-	-
+00553AE0	1	0	world map	005528C0	1,4	MapName,RegionText	-	-
+005542D0	27	27	world map (child: installed by the procedure or its direct callee)	005528C0	1,2,10,12,14,15	-	-	-
+00555330	1	1	world map + help message (child: installed by the procedure or its direct callee)	00552250	1,4,24	-	-	-
+005565E0	16	15	license board	005572B0	1,4,18,25	LicenseBoard	-	-
+005569F0	50	36	license board + message window	005571F0	1,2,4,18	LicenseBoard,MessageLine,NobuMessage	-	-
+00556DB0	1	1	license board (child: installed by the procedure or its direct callee)	00556D20	1,18	-	-	-
+00556F90	47	35	message window	00556EC0	1,2,18	MessageLine,NobuMessage	-	-
+00557760	9	8	license board (child: installed by the procedure or its direct callee)	00557370	1,4,18	-	-	-
+00557DB0	55	50	license board	00557AE0	10	LicenseBoard	-	fx-remove,fx-spawn
+00558BB0	3	3	-	00560910	1,2	-	-	-
+00558CE0	7	6	license board (child: installed by the procedure or its direct callee)	00558C40	1,2,18	-	-	-
+00558FB0	37	36	license board	00558F20	1,2,15,16,18,20	-	Maru_c.tm2,Maru_c_2.tm2,lic_B_4_c.tm2,lic_B_8_c.tm2	fx-reset
+005595E0	2	2	-	00561E90	1,18	-	-	-
+005599D0	15	12	-	00559860	1,2,4,18,19,20	General	-	-
+0055A340	17	16	license board	00557430	1,2,4,18,25	LicenseBoard	-	-
+0055A8A0	16	16	world map	0055A810	1,4,18	WorldMap	-	-
+0055CD40	141	127	license board + world map (child: installed by the procedure or its direct callee)	0055C690	1,2,4,8,9,10,12,15,18,19,20,23,285	General,Na	-	fx-remove,fx-spawn
+00560910	41	36	-	005601B0	1,2,8,9,10,12,14,16,18,19,20	-	-	-
+00561390	38	37	license board + world map	00561300	1,15,16,18,20	-	Lic_Bk.tm2,cm2_win_c.tm2,lic_8_c.tm2,lic_8_c2.tm2,lic_8_c3.tm2,license_chip.bin,meshdata.mg	fx-reset
+005618E0	6	5	-	00561830	1,2,18	-	-	-
+005636F0	37	33	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00563930	36	32	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00563B10	37	33	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00563D20	36	32	menu list (child: installed by the procedure or its direct callee)	00564B90	12	-	-	-
+00565E00	73	63	menu list	00565DD0	8	CommandMenu,MenuList	-	-
+00566680	27	25	item sort + confirm window	005665B0	1,2,12,15,18	ConfirmWindow,ItemSort	-	-
+00566A70	2	2	-	00567200	1,2	-	-	-
+00566C10	3	3	gambits	00567200 0056C170	1,2,3,4	GambitIcon	-	-
+00567200	1	1	-	00564010 00567190	1,18	-	-	-
+005677A0	2	2	-	00567770	1,2,14,18	-	-	-
+005691E0	120	111	gambits + action list	00568B30	1,2,5,8,9,10,12,16,17,18,19,20,22,26,289	ActionList,GambitAction,GambitTarget,GambitTutorial	-	-
+0056B4D0	56	53	gambits + message window	0056B350	1,2,8,9,10,12,15,18,19	GambitTutorial,General,MessageLine,NobuMessage	-	-
+0056C060	2	2	-	0056C170	1,2	-	-	-
+0056C170	1	1	gambits + message window (child: installed by the procedure or its direct callee)	0056ADA0	1,18	-	-	-
+0056D370	57	49	shop	0056C950	1,2,12,18	ShopItem	-	-
+0056E140	45	44	shop	0056DD50	1,8,9,10,12,14,15,18,19,20	ShopItem	-	-
+0056EA40	4	3	handbook (child: installed by the procedure or its direct callee)	00574E80	1,3,18,19	-	-	-
+0056EF60	15	14	handbook (child: installed by the procedure or its direct callee)	00574E80	1,12,16,18	-	-	-
+0056F410	8	6	handbook (child: installed by the procedure or its direct callee)	0056F3C0 00574E00	-	-	-	-
+0056F550	1	1	handbook (child: installed by the procedure or its direct callee)	00574D00	1,18	-	-	-
+0056F810	26	20	menu list	00574D00	1,10,12,14,15,18	CommandMenu,MenuList	-	-
+0056FCB0	2	2	-	005742D0	-	-	-	-
+0056FD30	1	1	-	0056FEF0	1,3	-	-	-
+005701B0	47	41	-	0056EC10	1,10,12,14,15,16,18,19	-	-	-
+00570460	1	1	-	0056FEF0	-	-	-	-
+00570530	3	3	-	0056EF60	-	-	-	-
+00570630	9	8	-	00570080	1,3	-	-	-
+00570890	1	1	handbook (child: installed by the procedure or its direct callee)	00574E80	1,18	-	-	-
+00571A50	47	41	-	00570BF0	1,2,10,12,14,15,18,20	-	-	-
+00572460	1	1	handbook (child: installed by the procedure or its direct callee)	00572E10	1,3,14,15,18	-	-	-
+00572600	4	3	handbook (child: installed by the procedure or its direct callee)	00572E10	1,10,14,15,18	General	-	-
+00572E10	75	72	handbook	0056EE10	1,2,10,12,14,15,16,18,19	-	menuhandbook_order.bin	fx-remove,fx-reset,fx-set,fx-spawn
+00573B40	1	1	-	00574BA0	-	-	-	-
+005742D0	35	29	-	00570080	1,3,10,12,14,15,18	-	-	-
+00574AD0	1	1	-	00574A00	-	-	-	-
+00574E80	47	38	handbook	00574CB0 00575580	1,2,12,14,16,18	-	HandBack2_c.tm2	-
+00575870	23	17	quest list (child: installed by the procedure or its direct callee)	00575810	1,2,16,18	-	-	-
+005771F0	10	9	quest list	00577100	1,2,12,14,16,18	-	menuquest.dat	-
+00577F90	2	2	-	00577F00	1,18,19	-	-	-
+00578450	5	4	-	005781A0	1,10,12,14	-	-	-
+005789D0	42	40	-	00578920	1,10,12,14,15,16,18	Na	-	-
+00579420	27	25	-	00579130	1,2,10,12,14,15,18,19,20	-	-	-
+00579AF0	33	33	-	00579990 00579A40	1,2,16,18	-	-	-
+0057A4E0	10	10	shop (child: installed by the procedure or its direct callee)	0057A480	1,2	-	-	-
+0057A620	26	26	shop (child: installed by the procedure or its direct callee)	0057A980	1,12,18	-	-	-
+0057AC10	75	67	shop	0057A620	1,2,3,10,12,14,15,18	ShopItem	-	-
+0057B890	84	78	shop + menu list	0057B800	1,2,8,10,12,14,15,16,18,19,20	CommandMenu,MenuList	Shop_8_c.tm2	-
+0057C480	38	29	confirm window + message window	0057C380	1,2,4,10,12,18,19	ConfirmCaption,ConfirmWindow,GeneralFrame,MessageLine,NobuMessage	-	-
+0057E4D0	19	15	save / load UI (installer name)	SaveWrite_OpenOperationController	1,2,4,12	-	-	-
+0057E610	1	1	save / load UI (installer name) (child: installed by the procedure or its direct callee)	0057EDB0	-	-	-	-
+0057E8D0	1	1	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,18	-	-	-
+0057EB30	1	1	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,18	-	-	-
+0057EDB0	2	2	save / load UI (installer name)	SaveLoad_HandleStorageStatusResultAndAdvanceController	1,15,18	-	-	-
+0057F360	16	16	save / load UI (installer name)	SaveLoad_ControllerLifecycleHandler	1,2,12,15,18	-	-	-
+0057F7D0	5	5	-	00583990	1,2,18	-	-	-
+0057FE80	32	31	save / load UI (installer name)	SaveLoad_HandleStorageStatusResultAndAdvanceController	1,2,10,12,14,15,18	-	-	-

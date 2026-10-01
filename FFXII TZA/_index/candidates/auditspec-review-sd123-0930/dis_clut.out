@@ -1,0 +1,45 @@
+00183760  sub       rsp, 0x38
+00183764  mov       word ptr [rsp + 0x28], r8w
+0018376A  mov       r9d, 4
+00183770  mov       word ptr [rsp + 0x20], dx
+00183775  call      0x17e8e0
+0018377A  add       rsp, 0x38
+0018377E  ret       
+0018377F  int3      
+00183780  sub       rsp, 0x38
+00183784  mov       word ptr [rsp + 0x28], r8w
+0018378A  mov       word ptr [rsp + 0x20], dx
+0018378F  call      0x17e8e0
+00183794  add       rsp, 0x38
+00183798  ret       
+00183799  int3      
+0018379A  int3      
+0018379B  int3      
+0018379C  int3      
+0018379D  int3      
+0018379E  int3      
+0018379F  int3      
+001837A0  sub       rsp, 0x38
+001837A4  mov       word ptr [rsp + 0x28], r8w
+001837AA  mov       r9d, 1
+001837B0  mov       word ptr [rsp + 0x20], dx
+001837B5  call      0x17e8e0
+001837BA  add       rsp, 0x38
+001837BE  ret       
+001837BF  int3      
+---
+0017FEA0  mov       eax, 0xffff
+0017FEA5  add       cx, ax
+0017FEA8  movzx     eax, cx
+0017FEAB  shr       ax, 1
+0017FEAE  or        cx, ax
+0017FEB1  movzx     eax, cx
+0017FEB4  shr       ax, 2
+0017FEB8  or        cx, ax
+0017FEBB  movzx     eax, cx
+0017FEBE  shr       ax, 4
+0017FEC2  or        cx, ax
+0017FEC5  movzx     eax, cx
+0017FEC8  shr       ax, 8
+0017FECC  or        ax, cx
+---

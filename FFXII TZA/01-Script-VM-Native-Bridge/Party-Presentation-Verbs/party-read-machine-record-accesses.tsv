@@ -1,0 +1,28 @@
+function	name	site	disp	kind	instruction	route	note
+0037C1A0	FUN_0037c1a0	0037C1A4	0x10	r	mov eax, dword ptr [rip + 0x2b43236]	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C1E8	0xE	r	cmp byte ptr [rip + 0x2b431ef], 0	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C20F	0x8	r	movzx ecx, byte ptr [rip + 0x2b431c2]	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C219	0x0	w	mov dword ptr [rip + 0x2b431b1], eax	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C222	0xA	w	mov byte ptr [rip + 0x2b431b1], 0	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C229	0x8	w	mov byte ptr [rip + 0x2b431a9], cl	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C22F	0x9	w	mov byte ptr [rip + 0x2b431a4], bl	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C23F	0xB	w	mov byte ptr [rip + 0x2b43196], al	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C258	0x0	r	mov ecx, dword ptr [rip + 0x2b43172]	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C268	0x0	r	mov ecx, dword ptr [rip + 0x2b43162]	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C27F	0xE	w	mov byte ptr [rip + 0x2b43158], 1	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C286	0x0	addr	lea rcx, [rip + 0x2b43143]	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C296	0xE	w	mov byte ptr [rip + 0x2b43141], 0	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C29D	0x10	r	mov eax, dword ptr [rip + 0x2b4313d]	static:0x02EBF3D0	-
+0037C1A0	FUN_0037c1a0	0037C2A9	0x10	w	mov dword ptr [rip + 0x2b43131], eax	static:0x02EBF3D0	-
+0037C2E0	FUN_0037c2e0	0037C2E6	0xC	r	movzx ebx, byte ptr [rip + 0x2b430ef]	static:0x02EBF3D0	-
+0037C2E0	FUN_0037c2e0	0037C319	0xD	r	movzx ebx, byte ptr [rip + 0x2b430bd]	static:0x02EBF3D0	-
+0037C2E0	FUN_0037c2e0	0037C337	0xD	rw	inc byte ptr [rip + 0x2b430a0]	static:0x02EBF3D0	-
+0037C2E0	FUN_0037c2e0	0037C39C	0xC	w	mov byte ptr [rip + 0x2b4303a], bl	static:0x02EBF3D0	-
+0037C2E0	FUN_0037c2e0	0037C3AF	0xC	w	mov byte ptr [rip + 0x2b43027], bl	static:0x02EBF3D0	-
+0037CB10	FUN_0037cb10	0037CB10	0x10	w	mov dword ptr [rip + 0x2b428c6], 0	static:0x02EBF3D0	-
+0037CB10	FUN_0037cb10	0037CB1A	0xE	w	mov byte ptr [rip + 0x2b428bd], 0	static:0x02EBF3D0	-
+0037CB30	FUN_0037cb30	0037CB30	0xD	w	mov byte ptr [rip + 0x2b428a6], 0	static:0x02EBF3D0	-
+0037CB30	FUN_0037cb30	0037CB37	0xC	w	mov byte ptr [rip + 0x2b4289e], 0	static:0x02EBF3D0	-
+0037CB80	FUN_0037cb80	0037CB82	0x10	r	cmp dword ptr [rip + 0x2b42858], eax	static:0x02EBF3D0	-
+0037CFD0	FUN_0037cfd0	0037CFD0	0x10	r	mov eax, dword ptr [rip + 0x2b4240a]	static:0x02EBF3D0	-
+0037CFD0	FUN_0037cfd0	0037CFE0	0x10	w	mov dword ptr [rip + 0x2b423fa], eax	static:0x02EBF3D0	-

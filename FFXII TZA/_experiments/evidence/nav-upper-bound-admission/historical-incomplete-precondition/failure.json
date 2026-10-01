@@ -1,0 +1,6 @@
+{
+  "defect": "Initial interpretation suggested strictly lower world-coordinate upper bounds suffice for positive-sized declared table. Not established by initial14cases and disproved by finite negative-origin original-code supplement.",
+  "scope": "Primary equality/read/fault observations remain valid and were NOT rerun. No canonical or independent acceptance claimed; correction before publication.",
+  "discriminator": "originX=-32768,cw=cols=255,x=32256.998046875<upper32257; original SUBSS rounds distance to65025, col255, lastrow index510/guardfault. Two-ULP-below and interior positives distinguish.",
+  "correction": "Require valid computed indices after original f32 subtraction/CVTT/IDIV; world-bounds alone not sufficient. Update producer plan/readme/check, existing OPUS/FABLE/SPEC returns via carrier checkpoint."
+}

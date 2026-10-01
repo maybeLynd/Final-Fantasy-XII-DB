@@ -1,0 +1,64 @@
+{
+  "status": "PASS_ACTUAL_BTS_BINDING_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "6a3ed4f842ab70cb1f0652cbc21412de988011a5aa3b84d0babbdc67962a86c9",
+  "positive_reused": {
+    "path": "bts-index-binding-result-03.json",
+    "sha256": "9d03a5c2b5f052234857843152c5e6a4b2aa298dc51bace83b038bf4370c7bc7"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "required capture failed or stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "wrong-mrf-word",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\wrong-mrf-word\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\wrong-mrf-word"
+      ],
+      "exit": 1,
+      "expected_error": "original instruction identity mismatch",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-focused-index",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\missing-focused-index\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\missing-focused-index"
+      ],
+      "exit": 1,
+      "expected_error": "required focused index missing",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-primary-coherent-pin",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\changed-primary-coherent-pin\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-controls-01\\changed-primary-coherent-pin"
+      ],
+      "exit": 1,
+      "expected_error": "required primary identity set changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "3bdd1cc038a4ad3d8486daf0a615ec2472950416d9f35a80893a1d9583014910",
+  "limits": "Producer prerequisite/identity tests, not original FF12 execution or independent semantic acceptance"
+}

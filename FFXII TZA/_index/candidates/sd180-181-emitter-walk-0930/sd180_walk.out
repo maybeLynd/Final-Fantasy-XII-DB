@@ -1,0 +1,6 @@
+PASS  W1 record +0x38 (all), +0x54/+0x58 (classes 0/1) -> 00361810 with the clamped point
+PASS  W2 the running value takes 003638B0's result only when 00361810 returned 0.0
+PASS  W3 003638B0 returns record +0x1A (if >= 0) else the value passed in
+PASS  W4 return -> 002DF410(1, 0xB4, value), stored at 022CBA80
+PASS  B1 writers of 022CBAF0: boot zero, unload zero, and 003635C0([02ADD060]) = the SP1 block
+FAILS 0

@@ -1,0 +1,74 @@
+P1 field +0x15 depth 3: walked 454; writes 27, reads 15; unknown 0, escapes 0, copies 0, indirect ['00262278', '002622DB', '002622F8']
+   W 0025D460 0025D46C off=14 w=2 mov word ptr [rcx + 0x14], ax
+   W 0025E4C0 0025F5D4 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 0025F7B2 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 0025F933 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 0025FBB4 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 0025FD0A off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 0025FF8B off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 002600E1 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 002602BF off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260441 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 002606AA off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260804 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 00260A6D off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260BC7 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 00260DAD off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260EFF off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 00261095 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 0026114F off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 002611FA off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00261B97 off=14 w=2 mov word ptr [rsi + 0x14], 0x107
+   W 0025E4C0 00261BDC off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00261CC0 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 002621D0 0026230B off=15 w=1 mov byte ptr [rdi + 0x15], 1
+   W 002621D0 00262382 off=15 w=1 mov byte ptr [rdi + 0x15], 0
+   W 002651A0 002651B0 off=15 w=1 mov byte ptr [rax + rdx*8 + 0x15], 2
+   W 0026B4C0 0026B4D6 off=15 w=1 mov byte ptr [rax + rdx*8 + 0x15], 3
+   W 0026B4E0 0026B4F0 off=15 w=1 mov byte ptr [rax + r8*8 + 0x15], 2
+P1 field +0x15 depth 5: walked 455; writes 27, reads 15; unknown 0, escapes 0, copies 0, indirect ['00262278', '002622DB', '002622F8']
+   W 0025D460 0025D46C off=14 w=2 mov word ptr [rcx + 0x14], ax
+   W 0025E4C0 0025F5D4 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 0025F7B2 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 0025F933 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 0025FBB4 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 0025FD0A off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 0025FF8B off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 002600E1 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 002602BF off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260441 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 002606AA off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260804 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 00260A6D off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260BC7 off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 00260DAD off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00260EFF off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 00261095 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 0026114F off=14 w=2 mov word ptr [rsi + 0x14], 0x106
+   W 0025E4C0 002611FA off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00261B97 off=14 w=2 mov word ptr [rsi + 0x14], 0x107
+   W 0025E4C0 00261BDC off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 0025E4C0 00261CC0 off=15 w=1 mov byte ptr [rsi + 0x15], 0
+   W 002621D0 0026230B off=15 w=1 mov byte ptr [rdi + 0x15], 1
+   W 002621D0 00262382 off=15 w=1 mov byte ptr [rdi + 0x15], 0
+   W 002651A0 002651B0 off=15 w=1 mov byte ptr [rax + rdx*8 + 0x15], 2
+   W 0026B4C0 0026B4D6 off=15 w=1 mov byte ptr [rax + rdx*8 + 0x15], 3
+   W 0026B4E0 0026B4F0 off=15 w=1 mov byte ptr [rax + r8*8 + 0x15], 2
+P1 field +0x27 depth 5: walked 455; writes 12, reads 0; unknown 0, escapes 0, copies 0, indirect ['00262278', '002622DB', '002622F8']
+   W 0025DF00 0025E04F off=27 w=1 mov byte ptr [rsi + 0x27], 1
+   W 0025DF00 0025E07A off=27 w=1 mov byte ptr [rsi + 0x27], 1
+   W 0025E4C0 0025F5CC off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 0025F92B off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 0025FD02 off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 002600D9 off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 00260439 off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 002607FC off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 00260BBF off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 00260EF7 off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 00261147 off=27 w=1 mov byte ptr [rsi + 0x27], 0
+   W 0025E4C0 00261592 off=27 w=1 mov byte ptr [rsi + 0x27], 0
+P2 field +0x15 depth 2 over 1886 handlers: write sites 1, read sites 0, unknown 0, escapes 0
+   W 00342910 0034293F mov byte ptr [rdi - 1], cl               from 1 handlers
+P2 field +0x15 depth 4 over 1886 handlers: write sites 1, read sites 0, unknown 0, escapes 0
+   W 00342910 0034293F mov byte ptr [rdi - 1], cl               from 1 handlers
+P2 field +0x27 depth 4 over 1886 handlers: write sites 17, read sites 22, unknown 0, escapes 0

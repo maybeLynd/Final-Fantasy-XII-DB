@@ -1,0 +1,71 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"verdict\": \"ACCEPT scoped overlap/helper repair\",\n  \"repair\": \"cdbf25a5d711654ccbb883f472309c3f42df290f\",\n  \"population_controls\": 40,\n  \"actual_adapter_cases\": 4,\n  \"definition_change\": \"N/A, both sides retained\",\n  \"strict_helper\": \"bound; same-size-mid-build and missing-begin refuse, CURRENT/history unchanged\",\n  \"limits\": \"Original repository Python with labelled fixtures and only executable adapter enabled; no game code/live/full census/full build/deployment. Original helper path declared; drift control redirects only its input to disposable copy. Not every display/deployed module, source-before-import, third-party bindings, all views, whole A05/A23/M3 or L1L2.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "bd00c550e0e497cdf9a84063404276c97bb5fbbc922e20a4849a3decf6a3679c"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py",
+      "--fault-upstream-failed"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 65, in <module>\n    print(json.dumps(check(root),indent=2))\n                     ~~~~~^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 11, in check\n    assert terminal['terminal'] is True and terminal['returncode'] == 0 and not terminal['stderr'], 'Required upstream run failed/incomplete'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required upstream run failed/incomplete\n",
+    "terminal": true,
+    "checker_sha256": "bd00c550e0e497cdf9a84063404276c97bb5fbbc922e20a4849a3decf6a3679c"
+  },
+  {
+    "case": "additional-as-unique",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py",
+      "--fault-additional-cover-is-unique"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 65, in <module>\n    print(json.dumps(check(root),indent=2))\n                     ~~~~~^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 37, in check\n    if '--fault-additional-cover-is-unique' in sys.argv: assert extra == unique, 'Triple cover != unique overlap'\n                                                                ^^^^^^^^^^^^^^^\nAssertionError: Triple cover != unique overlap\n",
+    "terminal": true,
+    "checker_sha256": "bd00c550e0e497cdf9a84063404276c97bb5fbbc922e20a4849a3decf6a3679c"
+  },
+  {
+    "case": "v1-comparable",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py",
+      "--fault-v1-comparable"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 65, in <module>\n    print(json.dumps(check(root),indent=2))\n                     ~~~~~^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 44, in check\n    if '--fault-v1-comparable' in sys.argv: assert 'pp' in delta, 'Definition change must not be numeric progress'\n                                                   ^^^^^^^^^^^^^\nAssertionError: Definition change must not be numeric progress\n",
+    "terminal": true,
+    "checker_sha256": "bd00c550e0e497cdf9a84063404276c97bb5fbbc922e20a4849a3decf6a3679c"
+  },
+  {
+    "case": "unbound-helper-valid",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py",
+      "--fault-unbound-helper-is-valid"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 65, in <module>\n    print(json.dumps(check(root),indent=2))\n                     ~~~~~^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\check.py\", line 50, in check\n    if '--fault-unbound-helper-is-valid' in sys.argv: assert 'uc1_band.py' not in man['inputs'], 'Actual committed helper binding required'\n                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Actual committed helper binding required\n",
+    "terminal": true,
+    "checker_sha256": "bd00c550e0e497cdf9a84063404276c97bb5fbbc922e20a4849a3decf6a3679c"
+  }
+]

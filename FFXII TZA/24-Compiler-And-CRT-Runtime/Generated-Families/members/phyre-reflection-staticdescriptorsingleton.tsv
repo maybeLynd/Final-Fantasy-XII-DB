@@ -1,0 +1,21 @@
+# Phyre.Reflection.StaticDescriptorSingleton - EC-7 family C, declared on generated-function-families.md
+#
+# 13 members. Body size(s): 98 B x13.
+# 13 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 3 external target(s): 3 shared across all 13 members.
+#
+# NOT dispositioned: the 3 shared implementations these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0062FF50
+00630030
+006300A0
+00630110
+00630180
+006301F0
+00630260
+006302D0
+006303B0
+00630420
+00630490
+006373D0

@@ -1,0 +1,15 @@
+# NativeLeaf.SlideTableRecordCopyInvoke - EC-7 family C
+# # two member index words (movsx word [rip], shl 4) select slots in a member
+# # rip record array; SIMD-copies a 16B record + 8B tail between slots,
+# # advances member counters, then calls the supplied callback r11=rcx.
+# # 10 byte images collapse to ONE instruction form; no direct externals.
+address	targets
+002EFE70	
+00479370	
+004C4C40	
+004C7F00	
+004CF3B0	
+004D7B10	
+004DB270	
+004DF360	
+004E78A0	

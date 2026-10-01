@@ -1,0 +1,3909 @@
+{
+  "method": "A retained data + direct archive byte comparison + bounded row invariant",
+  "driver_sha256": "f30f1abdd07639ba92386fa9e937b3ba52323c1769e3cfc36b0ee7fee250161b",
+  "extractor_sha256": "1841f666b28fb737bf02ab3bb0ea90a7515273f74533a772e7f7131c0e0de611",
+  "archive": "D:\\FFXII MP Mod\\FFXII_TestClient1\\FFXII_TZA.vbf",
+  "archive_bytes": 31196932183,
+  "archive_index_bytes": 11995716,
+  "archive_index_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+  "whole_archive_sha256": "not computed; exact selected entry hashes retained",
+  "results": [
+    {
+      "path": "ps2data/image/ff12/test_battle/ch/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        792075,
+        247384,
+        29414350095
+      ],
+      "pack_sha256": "f7d6112b462178007f30b60331c3af9bba9514cdb7ef6b34f4559f264c28d20e",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 77152,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/cn/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791965,
+        247208,
+        29414023925
+      ],
+      "pack_sha256": "21a391c2e0b052cd483ffa4a1430d81328f44bdab55ae45319282b4b7d23847b",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 77160,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/de/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791923,
+        284048,
+        29413794121
+      ],
+      "pack_sha256": "cfc4e96589e550b94b9a36a1b1473d6a06b0b44cbc89780e4407c35f02dae347",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 79200,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/es/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791889,
+        282528,
+        29413605240
+      ],
+      "pack_sha256": "e48a4f725f4c7de43e695581ae9ccbf5836bec97218734a1d7c19d2d77ebc3b2",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 79032,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/fr/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791855,
+        297280,
+        29413404789
+      ],
+      "pack_sha256": "6d2ab51a5f6831c3ef2724652358fc71649a7288f89526c5e88d351b8146c0fa",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 78336,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/in/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791773,
+        246920,
+        29413193313
+      ],
+      "pack_sha256": "f177039609b06101524e3c620cc88ade35c2d9889b54445d4f1e7c5c2315b402",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 77136,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/it/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791736,
+        285176,
+        29412995789
+      ],
+      "pack_sha256": "9065c251e22f3b4af40e515505126fbc43f4a19233b0c58da3bae1afd938bedd",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 78464,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/kr/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791629,
+        254944,
+        29412671499
+      ],
+      "pack_sha256": "86d8ab8f39dac0d528d69635a9f30cdb1731458335ad6d4f4eac209912f1fa97",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 78368,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    },
+    {
+      "path": "ps2data/image/ff12/test_battle/us/binaryfile/battle_pack.bin",
+      "entry_metadata": [
+        791587,
+        281128,
+        29412447668
+      ],
+      "pack_sha256": "d1bb89aac759cfcd4eb181715d9e88afb78d62a9a3fcffa6242f365f182cbc98",
+      "table_sha256": "50c1238733e96999999362d1d3f70019a4e50436068b82ea9da12bc674464baf",
+      "retained_equals_archive": true,
+      "table_start": 78352,
+      "record_offset": 32,
+      "count": 543,
+      "stride": 60,
+      "negatives": [
+        {
+          "row": 81,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 150,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 151,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 152,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 153,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 154,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 155,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 156,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 157,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 170,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 242,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 243,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 244,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 245,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 275,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 276,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 277,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 323,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 450,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 451,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 452,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 453,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 497,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 498,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 499,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 500,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 501,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 502,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 503,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 504,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 505,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 506,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 507,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 508,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 509,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 510,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 511,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 512,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 513,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 514,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 515,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 516,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 517,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 518,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 519,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 520,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 521,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 522,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 523,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 524,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 525,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 526,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 527,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 528,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 529,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 530,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 531,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 532,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 533,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 534,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 535,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 536,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 537,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 538,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 539,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 540,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 541,
+          "selector": 65535,
+          "narrowed": -3
+        },
+        {
+          "row": 542,
+          "selector": 65535,
+          "narrowed": -3
+        }
+      ],
+      "sentinel_rows": [
+        81,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        170,
+        242,
+        243,
+        244,
+        245,
+        275,
+        276,
+        277,
+        323,
+        450,
+        451,
+        452,
+        453,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542
+      ],
+      "non_sentinel_negative_rows": [],
+      "max_non_sentinel": 32907,
+      "has_flagged_values": true
+    }
+  ],
+  "controls": [
+    {
+      "case": "missing",
+      "rejected": true,
+      "reason": "missing pack directory"
+    },
+    {
+      "case": "truncated_directory",
+      "rejected": true,
+      "reason": "missing pack directory"
+    },
+    {
+      "case": "wrong_table_pointer",
+      "rejected": true,
+      "reason": "wrong action descriptor"
+    },
+    {
+      "case": "private_action_word_0x2000",
+      "rejected_invariant": true,
+      "observed": {
+        "row": 0,
+        "selector": 8192,
+        "narrowed": -32767
+      }
+    }
+  ],
+  "natural_special_loader_reachability": "OPEN; sentinel admission and row/actor identity need caller proof"
+}

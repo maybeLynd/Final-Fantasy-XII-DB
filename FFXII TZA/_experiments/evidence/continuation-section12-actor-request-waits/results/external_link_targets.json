@@ -1,0 +1,17 @@
+{
+  "archive": "Reconstruction(8).zip",
+  "archive_sha256": "346a25e1e692d19fa97146fbefe41d6d63765243478c7ba810c7c2e16680caa5",
+  "targets": [
+    {
+      "archive_member": "Reconstruction/Tests/Differential/diff_field_gate.py",
+      "sha256": "53adf06dacbbbd6ad682fd144f5a5b494dd66b8c7ac03a6ecb45b9cba467b0ad",
+      "present": true
+    },
+    {
+      "archive_member": "Reconstruction/MUTATION-CAMPAIGNS.md",
+      "sha256": "50b7d615f0e76c40b6460cd86cb05ba42b8437d50c7d3ec2af29cd6cc346fa6f",
+      "present": true
+    }
+  ],
+  "scope": "Archive target-presence only; external tree is not installed or shipped. Relative on-PC path resolution is not verified."
+}

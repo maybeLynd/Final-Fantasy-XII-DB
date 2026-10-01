@@ -1,0 +1,10 @@
+P1 0xD0 target mode values: [(0, 518), (1, 256), (2, 95), (4, 387), (5, 88), (6, 34), (9, 59)] PASS
+P2 0x40 light kind values: [(0, 2026), (1, 138), (2, 90)] PASS
+0xD0 definitions: 1437 too short: 0
+blend block (def +0x142 bit 4): {'off': 1392, 'on': 45}
+selector (def +0x143 & 7), all 0xD0: [(0, 273), (1, 15), (2, 1149)]
+selector where the blend block is on: [(0, 37), (1, 8)]
+  sel 0: 36 files, e.g. ['ps2data/effect_finish/jp/chara/h0002.efx', 'ps2data/effect_finish/jp/chara/h0006.efx', 'ps2data/effect_finish/jp/chara/h0032.efx', 'ps2data/effect_finish/jp/chara/h0048.efx', 'ps2data/effect_finish/jp/chara/h0050.efx', 'ps2data/effect_finish/jp/chara/h0054.efx']
+  sel 1: 8 files, e.g. ['ps2data/effect_finish/jp/event/e0052.efx', 'ps2data/effect_finish/jp/event/e0118.efx', 'ps2data/effect_finish/jp/event/e0126.efx', 'ps2data/effect_finish/jp/event/e0127.efx', 'ps2data/effect_finish/jp/event/e0129.efx', 'ps2data/effect_finish/jp/event/e0161.efx']
+R1 blend block on in 45 of 1,437, selectors only 0 (37) and 1 (8): PASS
+FAILS 0

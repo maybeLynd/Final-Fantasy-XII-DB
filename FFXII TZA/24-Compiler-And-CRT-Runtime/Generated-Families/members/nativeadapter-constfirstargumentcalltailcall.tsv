@@ -1,0 +1,7 @@
+# NativeAdapter.ConstFirstArgumentCallTailCall - EC-7 family C
+# # ecx=member const; call a member op; tail-call a member op.
+address	targets
+00295CA0	0029DF20,0029E6B0
+0034FB20	00314D40,003B6F60
+00352AD0	003C5DF0,003C5E00
+00352E20	003C58B0,003C5DE0

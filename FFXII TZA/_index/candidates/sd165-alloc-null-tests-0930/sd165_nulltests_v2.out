@@ -1,0 +1,15 @@
+      0036A100             110 {'DEREF': 30, 'PASSED': 36, 'RETURNED': 7, 'STORED': 32, 'TESTED': 5}
+      0036A190              81 {'DEREF': 2, 'PASSED': 25, 'RETURNED': 1, 'STORED': 9, 'TESTED': 42, 'UNCLEAR': 2}
+      0036A230              47 {'TESTED': 47}
+      0036B160 (handle)     13 {'PASSED': 2, 'RETURNED': 1, 'STORED': 6, 'TESTED': 4}
+      0036CAD0 (realloc)     2 {'PASSED': 1, 'STORED': 1}
+      all sites 253: {'DEREF': 32, 'PASSED': 64, 'RETURNED': 9, 'STORED': 48, 'TESTED': 98, 'UNCLEAR': 2}
+PASS  E1 entry sites 110 / 81 / 47 / 13 / 2 = 253 (the review's census): [110, 81, 47, 13, 2]
+PASS  C1 002E678F TESTED, 0024A2B9 DEREF, 0043F58E TESTED: TESTED DEREF TESTED
+PASS  dK 0025623B is not DEREF: STORED
+PASS  dL 005033B1 is not DEREF: STORED
+PASS  dJ 003EA03C TESTED through its in-body jmp: TESTED
+PASS  dS 00259E27 PASSED (spill, then the struct is passed): PASSED
+PASS  dN 002562FE DEREF (not through the nop): DEREF
+      agreement with the reviewer's classifier: 252 of 253 sites; differing: 0050EF2C mine PASSED / review RETURNED
+FAILS 0

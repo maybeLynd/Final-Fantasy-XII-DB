@@ -1,0 +1,6 @@
+SURVIVES  S0  1439 B; callers ['002679F0']
+SURVIVES  S1  memset before the first 00266530 call: True
+SURVIVES  S2  record register rbx; reads of +0x03 ['movzx eax, byte ptr [rbx + 3]', 'movzx eax, byte ptr [rbx + 3]', 'movzx eax, byte ptr [rbx + 3]']; writes none
+SURVIVES  S3  (REFUTES 'the first field written is +0x00') the index store mov word ptr [rbx], r10w is at 002665EB, after 6 record stores ['and byte ptr [rbx + 0x14], 0x7f', 'mov qword ptr [rbx + 0xec], r13', 'mov byte ptr [rbx + 0xf5], 0xff'] and the calls ['00266AD0', '00266BD0']
+SURVIVES  S4  extent 0x11C; own stores in the two spans: none; 003DB580 writes +['0x24', '0x60', '0x88', '0x89']
+FAILS 0

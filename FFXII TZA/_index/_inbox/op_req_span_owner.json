@@ -1,0 +1,20 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-REQ-SPAN-ACCESS-LEADS-ARE-MOSTLY-THIRD-PARTY",
+  "kind": "request",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "SWE2-AUDIT-SPEC",
+  "target": "Four of check_span_access's highest-ranked leads were walked to their base registers and ALL FOUR belong to third-party or middleware objects, not to the type whose span was ranked. The gate may want an attribution filter.",
+  "scope": "the ranking input of one gate; no span verdict is challenged and no row is in question",
+  "completion": "an owner filter is added, or a ruling that ranking should stay attribution-blind and why",
+  "dependencies": [],
+  "resources": [{"key": "note:span-access-owner-filter"}],
+  "question": "Should a displacement whose users are ALL functions this store attributes to a third-party library be excluded from a game-side type's span ranking - or at least reported separately? The gate's docstring already says a displacement is not a type; this is about whether known attribution can be used to act on that.",
+  "known_evidence": "Walked 2026-09-20 (OPUS), each to the base register as the tool instructs, each checked against the type's own census functions. ImageBackedStateBlock +0x386C (1.55x, 100% coherence, the best on the board): the four owning functions are attributed to bullet.tsv and the MSVC dynamic-initialiser stubs, while this type's census is 00250270..00255040. FrameMarkerSingleton01F82C80 +0x2C38 (100%, 3 fns): 24 of 27 sites are in 002778C0 alone, named BattleMenu_UpdateCommandSelectionAndDispatch, against a census of 001D5650..001D6250. SavePayload +0xC818 (100%, 6120 B): four operands, two of them 32-bit `lea ecx` arithmetic. BattleUnit +0x0EB4: 231 sites dominated by 0016E4A0, attributed to the LibVPX VP8 decoder, against a census of 00233xxx-00236xxx. Every dismissal is recorded on its row.",
+  "missing_information": "Whether an attribution filter would empty the board or sharpen it - I walked four spans, not eighteen, and cannot say what survives.",
+  "why_it_matters": "The collision problem the docstring names is real and the --min-offset floor only half addresses it: large third-party objects are exactly the ones with high displacements, and the store declares few of them, so they own most of the unexplained displacement space above 0x400. A reader who trusts the ranking without walking it will spend their time in Bullet and LibVPX. The gate is sound and its cautions are correct; this is about making the ranking cheaper to act on.",
+  "what_is_blocked": "Nothing. The four spans were dismissed on evidence and the rows now say so."
+ }
+}

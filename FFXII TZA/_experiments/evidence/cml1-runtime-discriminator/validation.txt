@@ -1,0 +1,3 @@
+PREPARED_CORRECTION_NOT_LIVE_CLOSURE: 3 complete bodies; two CML1 readers + one shake reader; effective stride16.
+byu_x0100 entry1 cut2_2: authored14 vs first8; column blob+24, wrong8-stride blob+1C gives0.
+CAM7 duplicate payloads equal: True full records equal: True

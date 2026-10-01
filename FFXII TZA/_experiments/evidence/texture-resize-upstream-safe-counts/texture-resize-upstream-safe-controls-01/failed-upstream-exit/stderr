@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-resize-upstream-safe-counts.py", line 143, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-resize-upstream-safe-counts.py", line 38, in main
+    if receipt.get('exit')!=0 or receipt.get('driver')!='prove-texture-resize-input-domain.py':raise ValueError('required lower-floor invocation failed or incomplete')
+                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required lower-floor invocation failed or incomplete

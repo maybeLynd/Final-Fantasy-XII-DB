@@ -1,0 +1,17 @@
+# ref-flag handle reset - EC-7 family C
+# # if the record's own-flag is clear, btr + member release on the stored
+# # ptr; either way zero the {size, ptr} fields.
+address	targets
+001B6FD0	001B70E0
+001C2020	001C2720
+005A96D0	005B7E80
+005A9720	005B7EF0
+005A9770	005B7E80
+005A97C0	005B7EF0
+005A9810	005B7EF0
+005A9860	005B7F60
+005DCC70	005F01B0
+005DCEC0	005F03A0
+005DCFA0	005F0470
+006162A0	00618FD0
+00681680	00682D90

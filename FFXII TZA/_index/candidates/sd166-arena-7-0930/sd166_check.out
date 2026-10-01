@@ -1,0 +1,10 @@
+self-test 4/4
+PASS  P0 regval.py self-test
+PASS  A1 0036BFE0's four callers (0036A100, 0036A1A0, 0036B160, 0036D050) pass [022D89BC] as the arena
+PASS  A2 the push's map 022D89A8 is the identity; its one indexed read is 0036C272
+      push-site constants (value: sites): {2: 12, 3: 12, 4: 6, 5: 24, 6: 34, 8: 44, 9: 2, 10: 1, 11: 1, 12: 1, 13: 4, 14: 4}
+PASS  A3 135 push sites: no constant 7; non-constant terms at 00249210, 00384420, 003E9AA0, 0050D8F0, 0050DAD0
+PASS  A4 the five: 3; 2 (table and structs); the script's value or 6; a script integer (two debug verbs)
+PASS  S1 no shipped call of the two debug verbs; setexpandvoicememory x18, arena PUSHII 0xFFFF = -1 -> 6
+PASS  W1 writers: first init (boot inits 2 first), push, pop, and four terminal error stores
+FAILS 0

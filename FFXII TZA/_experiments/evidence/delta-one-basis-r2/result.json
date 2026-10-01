@@ -1,0 +1,19 @@
+{
+  "result": {
+    "verdict": "ACCEPT scoped to exact17d6 selectors/change expression/annotator on retained history inputs",
+    "latest_missing_progress": "None/no prior, basis names newest verified generation; no older fallback",
+    "aligned_latest": "+10pp on same named generation",
+    "empty_history": "None/no prior",
+    "limits": "Synthetic counts and copied retained Store histories, static build argument flow, extracted change expression; no full measure/adapter/build, deployed/browser or real progress award."
+  },
+  "receipt_controls": [
+    {
+      "name": "missing-case",
+      "refused": true
+    },
+    {
+      "name": "failed-verifier",
+      "refused": true
+    }
+  ]
+}

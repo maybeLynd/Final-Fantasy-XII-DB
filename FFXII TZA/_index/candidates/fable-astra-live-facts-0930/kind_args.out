@@ -1,0 +1,23 @@
+0025B3C3 in 0025B2E0 | arg5 mov dword ptr [rsp + 0x20], 0 | rdx: ?; r8: test r8d, r8d; r9: xor r9d, r9d
+0025B72B in 0025B600 | arg5 mov dword ptr [rsp + 0x20], 0 | rdx: ?; r8: mov r8d, ebx; r9: xor r9d, r9d
+0025BD65 in 0025BAD0 | arg5 mov dword ptr [rsp + 0x20], 5 | rdx: ?; r8: test r8d, r8d; r9: mov r9d, 1
+0025C4F4 in 0025C230 | arg5 mov dword ptr [rsp + 0x20], eax | rdx: ?; r8: test r8d, r8d; r9: lea r9d, [rdx - 2]
+0025C5B9 in 0025C230 | arg5 mov dword ptr [rsp + 0x20], eax | rdx: ?; r8: test r8d, r8d; r9: lea r9d, [rdx - 5]
+0025C669 in 0025C230 | arg5 mov dword ptr [rsp + 0x20], eax | rdx: ?; r8: test r8d, r8d; r9: lea r9d, [rdx - 2]
+0025C7E7 in 0025C230 | arg5 mov dword ptr [rsp + 0x20], 0 | rdx: ?; r8: mov r8d, r15d; r9: xor r9d, r9d
+0025D005 in 0025C830 | arg5 mov dword ptr [rsp + 0x20], r14d | rdx: ?; r8: test r8d, r8d; r9: lea r9d, [rdx - 2]
+0025D0B5 in 0025C830 | arg5 mov dword ptr [rsp + 0x20], r14d | rdx: ?; r8: test r8d, r8d; r9: lea r9d, [rdx - 5]
+0025D182 in 0025C830 | arg5 mov dword ptr [rsp + 0x20], r14d | rdx: ?; r8: test r8d, r8d; r9: lea r9d, [rdx - 2]
+0025D2E0 in 0025C830 | arg5 mov dword ptr [rsp + 0x20], r15d | rdx: ?; r8: mov r8d, r14d; r9: xor r9d, r9d
+0025D39B in 0025C830 | arg5 mov dword ptr [rsp + 0x20], ebx | rdx: ?; r8: mov r8d, ecx; r9: xor r9d, r9d
+00266935 in 00266530 | arg5 mov dword ptr [rsp + 0x20], r13d | rdx: ?; r8: test r8d, r8d; r9: mov r9d, ebp
+00266957 in 00266530 | arg5 mov dword ptr [rsp + 0x20], r13d | rdx: ?; r8: xor r8d, r8d; r9: mov r9d, ebp
+002669A6 in 00266530 | arg5 mov dword ptr [rsp + 0x20], r13d | rdx: ?; r8: test r8d, r8d; r9: mov r9d, ebp
+002669F5 in 00266530 | arg5 mov dword ptr [rsp + 0x20], r13d | rdx: ?; r8: test r8d, r8d; r9: mov r9d, ebp
+00266CD2 in 00266C50 | arg5 mov dword ptr [rsp + 0x20], r14d | rdx: ?; r8: test r8d, r8d; r9: mov r9d, 2
+00268BDB in 00268B10 | arg5 mov dword ptr [rsp + 0x20], r15d | rdx: ?; r8: movzx r8d, word ptr [rdi + 2]; r9: xor r9d, r9d
+00269700 in 00269640 | arg5 mov dword ptr [rsp + 0x20], r15d | rdx: ?; r8: test r8d, r8d; r9: xor r9d, r9d
+00269766 in 00269640 | arg5 mov dword ptr [rsp + 0x20], r15d | rdx: ?; r8: mov r8d, esi; r9: xor r9d, r9d
+002699AB in 00269860 | arg5 mov dword ptr [rsp + 0x20], esi | rdx: ?; r8: test r8d, r8d; r9: xor r9d, r9d
+00269B71 in 00269AD0 | arg5 mov dword ptr [rsp + 0x20], ecx | rdx: mov rdx, rax; r8: movzx r8d, ax; r9: xor r9d, r9d
+00269C0D in 00269BA0 | arg5 mov dword ptr [rsp + 0x20], eax | rdx: mov rdx, rbx; r8: movzx r8d, cx; r9: xor r9d, r9d

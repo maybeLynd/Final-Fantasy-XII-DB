@@ -1,0 +1,45 @@
+00228130 00228288 add    rax, 0x3f8
+00279E20 0027A2FB mov    r12d, 0x2000
+00279E20 0027A4F7 and    ecx, 0x20000
+00279E20 0027A93A mov    r12d, 0x2000
+0027F2E0 0027F2F2 test   dword ptr [rax + 0x400], 0x800
+0027F2E0 0027F31E mov    eax, dword ptr [rcx + 0x400]
+0027F2E0 0027F333 mov    byte ptr [rcx + 0x400], al
+0027F2E0 0027F33B mov    byte ptr [rcx + 0x400], 2
+0027F2E0 0027F349 and    dword ptr [rax + 0x400], 0xfffff7ff
+00280140 00280446 add    rax, 0x3f8
+00280DE0 00281319 or     dword ptr [rax + 0xe0], 0x200000
+00281ED0 00282505 or     dword ptr [rax + 0xe0], 0x200000
+00283E40 0028427C test   dword ptr [r14], 0x20000
+00284C90 00284CF2 test   dword ptr [rsi], 0x20000
+00285CB0 00285E12 test   dword ptr [rbx], 0x20000
+00285E60 00285E6B or     dword ptr [rax + 0x400], 0x200
+00285E60 00285E7C or     dword ptr [rax + 0x400], 0x400
+00285EA0 00285EAA xor    ecx, dword ptr [rax + 0x400]
+00285EA0 00285EB0 and    ecx, 0x2000
+00285EA0 00285EB6 xor    dword ptr [rax + 0x400], ecx
+00285EC0 00285EC7 or     dword ptr [rax + 0x400], 0x100
+00293310 00293CBB mov    ecx, 0x20000
+00293FE0 002947C9 mov    ecx, 0x20000
+00294B50 0029536D mov    ecx, 0x20000
+00295390 0029567E mov    ecx, 0x20000
+00295900 00295BF8 mov    ecx, 0x20000
+002A70B0 002A768C test   dword ptr [rcx + 0x3e8], 0x2000
+002A70B0 002A76CD or     dword ptr [rbx + 0x3e8], 0x2000
+002C2320 002C270B or     dword ptr [rax + 0xe0], 0x200000
+002C2320 002C2B6D or     dword ptr [rax + 0xe0], 0x200000
+002CB850 002CB86D or     dword ptr [rcx + 0x168], 0x20000
+002D7710 002D773F mov    dword ptr [r9 + rax*8], 0x200020
+00366B80 00366F65 mov    dword ptr [rdi + 0xd8], 0x2000001
+00557DB0 0055807A or     dword ptr [rbp + 0x40], 0x2000000
+0055C740 0055CA3F or     dword ptr [rdi + 0x40], 0x200000
+0055CD40 0055D0D0 or     dword ptr [rdi + 0x40], 0x2000000
+0055CD40 0055D0E6 or     dword ptr [rdi + 0x40], 0x200000
+0055CD40 0055D627 and    edx, 0x2000
+00561BE0 00561C69 mov    dword ptr [rsp + 0x3c], 0x3f800000
+00564300 00564327 add    eax, 0x200000
+005691E0 00569801 or     dword ptr [rax + 0xe0], 0x200000
+0056B4D0 0056B83B test   dword ptr [rcx + 0xe0], 0x200000
+0057B890 0057BB7D or     dword ptr [rax + 0xe0], 0x200000
+functions referencing 0209AC30: 456
+image-wide or/bts of bit 13 at +0x400:

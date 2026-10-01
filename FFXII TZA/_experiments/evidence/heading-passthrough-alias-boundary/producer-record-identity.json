@@ -1,0 +1,8 @@
+{
+  "path": "Database/FFXII TZA/_index/candidates/heading-delta-falsification-pass-1-0929/README.md",
+  "copy": "retained/producer/README.md",
+  "sha256": "9d5e9e1f67a155df3c37958fd6538fe9a35eb12d5bffaff769f84f4169f6fcf9",
+  "commit": "82abaac960bda32fdc806212e67a07b0f73cb406",
+  "locator": "actual git show --name-only82abaac96, additive correction of initial guessed absentpath; no original record overwritten",
+  "limits": "Producer record/source read only; OPUS checks not repeated or credited to ASTRA"
+}

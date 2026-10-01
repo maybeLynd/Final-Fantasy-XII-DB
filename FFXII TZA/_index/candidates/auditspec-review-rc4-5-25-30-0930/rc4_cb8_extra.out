@@ -1,0 +1,33 @@
+00707655: listed owner None; nearest listed function before: 00707560 size 142; next: 00707670
+nearest .pdata range before: 00707560-007075EE
+bytes before 00707655 (decode from nearest listed end):
+   00707625 xor eax, eax
+   00707627 movups xmm0, xmmword ptr [rdx]
+   0070762A movups xmmword ptr [rcx + 0xc78], xmm0
+   00707631 movups xmm1, xmmword ptr [rdx + 0x10]
+   00707635 movups xmmword ptr [rcx + 0xc88], xmm1
+   0070763C movups xmm0, xmmword ptr [rdx + 0x20]
+   00707640 movups xmmword ptr [rcx + 0xc98], xmm0
+   00707647 movups xmm1, xmmword ptr [rdx + 0x30]
+   0070764B movups xmmword ptr [rcx + 0xca8], xmm1
+   00707652 movsd xmm0, qword ptr [rdx + 0x40]
+   00707657 movsd qword ptr [rcx + 0xcb8], xmm0
+   0070765F ret 
+   00707660 int3 
+   00707661 int3 
+   00707662 int3 
+   00707663 int3 
+   00707664 int3 
+0018715A context (r12d source):
+  00186CEE xor r12d, r12d
+0047E4E7 context:
+   0047E4C0 mov qword ptr [rax - 4], r9
+   0047E4C4 mov qword ptr [rax + 4], r9
+   0047E4C8 lea rax, [rax + 0x10]
+   0047E4CC sub rdx, 1
+   0047E4D0 jne 0x47e4c0
+   0047E4D2 mov dword ptr [rcx + 0xda0], 0x15000000
+   0047E4DC mov qword ptr [rcx + 0xda4], 0x13000000
+  *0047E4E7 mov dword ptr [rcx + 0xdac], r9d
+   0047E4EE ret 
+   0047E4EF int3 

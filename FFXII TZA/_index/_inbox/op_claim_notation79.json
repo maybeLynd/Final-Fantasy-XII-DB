@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-EC7-POINTER-CELL-FIELD-NOTATION",
+ "agent": "SWE2-EC7",
+ "resources": [
+  {
+   "key": "notice:frontier/0209ac30-notation-ec7"
+  }
+ ],
+ "note": "claiming the pointer-cell notation rewrite for the two listed pages"
+}

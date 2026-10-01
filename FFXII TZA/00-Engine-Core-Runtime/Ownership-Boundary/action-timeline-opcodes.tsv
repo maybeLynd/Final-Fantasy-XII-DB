@@ -1,0 +1,129 @@
+opcode	case_index	case_address	callees
+1	0	003B879D	003A8290 FUN_003a8290
+2	1	003B87D1	003A8510 FUN_003a8510
+3	2	003B87E7	002EB740 ActorTimeline_DispatchEventToBattleUnit; 0024ED80 FUN_0024ed80; 00322850 FUN_00322850
+4	61	003B88F4	(no-op: falls to the loop)
+5	3	003B8A30	003B99D0 FUN_003b99d0
+6	4	003B8A5C	003326F0 FUN_003326f0
+7	5	003B8A77	003335A0 FUN_003335a0
+8	6	003B8A99	00333430 FUN_00333430; 003A7F60 FUN_003a7f60
+9	7	003B8AF5	00333620 FUN_00333620
+10	8	003B96A5	00379940 FUN_00379940; 003ABCA0 FUN_003abca0; 003ACA90 FUN_003aca90; 003ACA90 FUN_003aca90; 003ACA90 FUN_003aca90; 003AFD30 FUN_003afd30; 003B6930 FUN_003b6930
+11	9	003B9726	00379940 FUN_00379940; 003B81A0 FUN_003b81a0; 003ACA80 FUN_003aca80; 003AFD30 FUN_003afd30; 003B6930 FUN_003b6930
+12	10	003B8B17	003339C0 FUN_003339c0
+13	11	003B894E	002EB740 ActorTimeline_DispatchEventToBattleUnit
+14	12	003B8B55	002FCBF0 FUN_002fcbf0
+15	13	003B8B7D	002FCA00 FUN_002fca00
+16	14	003B8BF1	002FCA00 FUN_002fca00; 002FCCC0 FUN_002fccc0
+17	15	003B8C77	002FCA00 FUN_002fca00; 002FD0C0 FUN_002fd0c0
+18	16	003B8CC6	002FCA00 FUN_002fca00
+19	17	003B8BB3	002FC340 thunk_FUN_002fcb60
+20	18	003B8D04	001EDDA0 FUN_001edda0
+21	19	003B8D80	003A3FD0 FUN_003a3fd0; 003326C0 FUN_003326c0; 004231E0 FUN_004231e0
+22	20	003B8DCB	003A3FD0 FUN_003a3fd0; 003326C0 FUN_003326c0; 004231E0 FUN_004231e0; 00423190 FUN_00423190; 00424040 FUN_00424040
+23	61	003B88F4	(no-op: falls to the loop)
+24	21	003B8E31	indirect r8
+25	22	003B8E69	003B3EA0 FUN_003b3ea0
+26	23	003B89A9	002EB740 ActorTimeline_DispatchEventToBattleUnit
+27	24	003B8B36	00333A40 FUN_00333a40
+28	25	003B8EBD	003588B0 ActorHandle_ResolveRegistryEntryByPackedId; 00265020 Actor_GetWorldPosition; 00265200 FUN_00265200; 00263F70 FUN_00263f70; 00263E70 FUN_00263e70; 003B7E10 FUN_003b7e10; 0026A430 FUN_0026a430; 0026AF80 FUN_0026af80
+29	26	003B8FB2	003588B0 ActorHandle_ResolveRegistryEntryByPackedId; 00265020 Actor_GetWorldPosition; 00265200 FUN_00265200; 00263F70 FUN_00263f70; 00263E70 FUN_00263e70; 003B7E10 FUN_003b7e10; 0026B5A0 Actor_SetFacingHeading_Variant0
+30	27	003B9095	0024C6B0 FUN_0024c6b0
+31	28	003B90A9	003A6E60 FUN_003a6e60; 003AA280 FUN_003aa280; indirect qword ptr [rip + 0x509ed2]; 002DF660 FUN_002df660; 003A3FD0 FUN_003a3fd0; 003326C0 FUN_003326c0; 0046CC20 FUN_0046cc20
+32	29	003B9172	003A3FD0 FUN_003a3fd0; 003326C0 FUN_003326c0; 0046CC20 FUN_0046cc20
+33	30	003B8AD5	0024C3C0 FUN_0024c3c0
+34	31	003B91AE	002EB740 ActorTimeline_DispatchEventToBattleUnit
+35	32	003B921C	(inline, no call)
+36	33	003B9228	(inline, no call)
+37	34	003B9234	003333B0 FUN_003333b0
+38	35	003B9286	003333B0 FUN_003333b0
+39	3	003B8A30	003B99D0 FUN_003b99d0
+40	36	003B936B	003A3FD0 FUN_003a3fd0; 003326C0 FUN_003326c0; 003B3C00 FUN_003b3c00
+41	37	003B93B3	00333520 FUN_00333520
+42	38	003B87B3	003A8660 FUN_003a8660; 003A7F60 FUN_003a7f60
+43	39	003B94D4	003BA020 FUN_003ba020
+44	40	003B94EB	003B9FE0 FUN_003b9fe0
+45	41	003B9502	(inline, no call)
+46	42	003B9516	(inline, no call)
+47	43	003B92BD	003333B0 FUN_003333b0
+48	44	003B952E	003BA150 FUN_003ba150
+49	45	003B9691	003BA1F0 FUN_003ba1f0
+50	46	003B9556	003B8260 FUN_003b8260
+51	47	003B956D	003B8260 FUN_003b8260
+52	48	003B9583	003B5310 FUN_003b5310; 0024ED80 FUN_0024ed80; 003AF330 FUN_003af330
+53	49	003B95FA	003B5310 FUN_003b5310; 0024ED80 FUN_0024ed80; 003AF330 FUN_003af330
+54	50	003B9673	(inline, no call)
+55	51	003B9684	(inline, no call)
+56	52	003B93D9	00333640 FUN_00333640
+57	53	003B93FF	0024B6F0 FUN_0024b6f0; 0024F9B0 FUN_0024f9b0
+58	54	003B9466	0024B6F0 FUN_0024b6f0; 0024F9B0 FUN_0024f9b0
+59	55	003B94C0	0024C870 FUN_0024c870
+60	56	003B9772	(inline, no call)
+61	57	003B977B	(inline, no call)
+62	58	003B9797	(inline, no call)
+63	59	003B97B2	(inline, no call)
+64	61	003B88F4	(no-op: falls to the loop)
+65	61	003B88F4	(no-op: falls to the loop)
+66	61	003B88F4	(no-op: falls to the loop)
+67	61	003B88F4	(no-op: falls to the loop)
+68	61	003B88F4	(no-op: falls to the loop)
+69	61	003B88F4	(no-op: falls to the loop)
+70	61	003B88F4	(no-op: falls to the loop)
+71	61	003B88F4	(no-op: falls to the loop)
+72	61	003B88F4	(no-op: falls to the loop)
+73	61	003B88F4	(no-op: falls to the loop)
+74	61	003B88F4	(no-op: falls to the loop)
+75	61	003B88F4	(no-op: falls to the loop)
+76	61	003B88F4	(no-op: falls to the loop)
+77	61	003B88F4	(no-op: falls to the loop)
+78	61	003B88F4	(no-op: falls to the loop)
+79	61	003B88F4	(no-op: falls to the loop)
+80	61	003B88F4	(no-op: falls to the loop)
+81	61	003B88F4	(no-op: falls to the loop)
+82	61	003B88F4	(no-op: falls to the loop)
+83	61	003B88F4	(no-op: falls to the loop)
+84	61	003B88F4	(no-op: falls to the loop)
+85	61	003B88F4	(no-op: falls to the loop)
+86	61	003B88F4	(no-op: falls to the loop)
+87	61	003B88F4	(no-op: falls to the loop)
+88	61	003B88F4	(no-op: falls to the loop)
+89	61	003B88F4	(no-op: falls to the loop)
+90	61	003B88F4	(no-op: falls to the loop)
+91	61	003B88F4	(no-op: falls to the loop)
+92	61	003B88F4	(no-op: falls to the loop)
+93	61	003B88F4	(no-op: falls to the loop)
+94	61	003B88F4	(no-op: falls to the loop)
+95	61	003B88F4	(no-op: falls to the loop)
+96	61	003B88F4	(no-op: falls to the loop)
+97	61	003B88F4	(no-op: falls to the loop)
+98	61	003B88F4	(no-op: falls to the loop)
+99	61	003B88F4	(no-op: falls to the loop)
+100	61	003B88F4	(no-op: falls to the loop)
+101	61	003B88F4	(no-op: falls to the loop)
+102	61	003B88F4	(no-op: falls to the loop)
+103	61	003B88F4	(no-op: falls to the loop)
+104	61	003B88F4	(no-op: falls to the loop)
+105	61	003B88F4	(no-op: falls to the loop)
+106	61	003B88F4	(no-op: falls to the loop)
+107	61	003B88F4	(no-op: falls to the loop)
+108	61	003B88F4	(no-op: falls to the loop)
+109	61	003B88F4	(no-op: falls to the loop)
+110	61	003B88F4	(no-op: falls to the loop)
+111	61	003B88F4	(no-op: falls to the loop)
+112	61	003B88F4	(no-op: falls to the loop)
+113	61	003B88F4	(no-op: falls to the loop)
+114	61	003B88F4	(no-op: falls to the loop)
+115	61	003B88F4	(no-op: falls to the loop)
+116	61	003B88F4	(no-op: falls to the loop)
+117	61	003B88F4	(no-op: falls to the loop)
+118	61	003B88F4	(no-op: falls to the loop)
+119	61	003B88F4	(no-op: falls to the loop)
+120	61	003B88F4	(no-op: falls to the loop)
+121	61	003B88F4	(no-op: falls to the loop)
+122	61	003B88F4	(no-op: falls to the loop)
+123	61	003B88F4	(no-op: falls to the loop)
+124	61	003B88F4	(no-op: falls to the loop)
+125	61	003B88F4	(no-op: falls to the loop)
+126	61	003B88F4	(no-op: falls to the loop)
+127	61	003B88F4	(no-op: falls to the loop)
+128	60	003B92F3	(inline, no call)

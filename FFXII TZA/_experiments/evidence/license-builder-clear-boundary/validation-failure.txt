@@ -1,0 +1,7 @@
+First offline reducer campaign INVALID_CONTROL: changing the last event sequence
+to0 was not refused. No successful validation receipt was produced. The original
+four raw B witnesses had positive increasing event sequences and remain retained;
+no dependent semantic result was accepted at this point. Minimal repair: require
+every selected event sequence positive/within instruction budget and strictly
+increasing. Rerun impacted reducer/control campaign only, not native cases or
+the historical57/35 campaign. The failure and original raw inputs stay visible.

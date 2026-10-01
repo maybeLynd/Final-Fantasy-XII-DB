@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-named-entry-line-convention\check.py", line 24, in <module>
+    assert pc==limit and flags==[b[bind['q0']+4*j+3] for j in range(limit)],'Directory-bound bytecode binding; shared tail cannot be decoded as contiguous original body'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Directory-bound bytecode binding; shared tail cannot be decoded as contiguous original body

@@ -1,0 +1,114 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "cc02c1fade82a054f82cc7576d2e8c15204fa3c7"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "70fcad38094bfcceb396bd2e5f5dffe0074cd1a0"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "ecf2f022353d8e779d64efa2e2cea659d5996b09"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "afdce9cc8c27d0935ce552a67b1d607890056d53"
+  },
+  {
+    "path": "fault-private-also-fails.stderr",
+    "git_blob": "15c409fa57b1bf907d61d0c37a937a7aaddfd5ce"
+  },
+  {
+    "path": "fault-private-also-fails.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-saturates.stderr",
+    "git_blob": "50f637bfea191298ef8298dcf3c74b5a0bce064b"
+  },
+  {
+    "path": "fault-saturates.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-wraps.stderr",
+    "git_blob": "78207b855d3bd10d4a9df3dd04e46108fdec1db6"
+  },
+  {
+    "path": "fault-wraps.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "1fff48a52074f53221eb33f98b1933f98179d85e"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "a20f48f279b491fa18ba1ffe091699bc63bc64c3"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "e250ff37c0dd02cf2de4d69b5c2229159fe96c0e"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "c9dff78a3e46957eb5bbdbd34863590f40845b5a"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "2c650634fb6549cbd44968c0a5347c637a4d7b20"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "76fe9d6903aaea830da697a86cd80f508b9e2eb2"
+  },
+  {
+    "path": "retained/guard8.bin",
+    "git_blob": "c48c3bc39c53f9a31bc5f46df7e69a5b48f65c28"
+  },
+  {
+    "path": "retained/original5.bin",
+    "git_blob": "80243b4bb57b281560e491a9779a34217c5ebebb"
+  },
+  {
+    "path": "retained/parent79-descriptor24.bin",
+    "git_blob": "c18bdcf40355112c62b40349526455ff5574b0ef"
+  },
+  {
+    "path": "retained/parent79-dispatch4.bin",
+    "git_blob": "404eb55f4bac8196f9e93948536c681e0827dfc6"
+  },
+  {
+    "path": "retained/parent79-manifest.json",
+    "git_blob": "1c2368140f41c7d7ae5202c872e53f42f58667dc"
+  },
+  {
+    "path": "retained/parent79-name32.bin",
+    "git_blob": "4ffaee2eaa75c0687cb75c58695bec2c6b8354de"
+  },
+  {
+    "path": "retained/parent79-opdiv298.bin",
+    "git_blob": "fd4adfe222464ec3d66a62332f0c5494d2112d02"
+  },
+  {
+    "path": "retained/parent79-raw.json",
+    "git_blob": "47e632f5121616cb1d1693e107aa92e0f3a7e482"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  }
+]

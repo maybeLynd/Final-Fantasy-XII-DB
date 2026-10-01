@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-logical-coordinate-domain\check.py", line 51, in <module>
+    assert domain(bad,blocks,physical='--fault-physical-guard' in sys.argv)=='UNRESOLVED_LOGICAL_COORDINATE','LogicalL+1 within physicalL must be rejected by actual conditional domain guard'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: LogicalL+1 within physicalL must be rejected by actual conditional domain guard

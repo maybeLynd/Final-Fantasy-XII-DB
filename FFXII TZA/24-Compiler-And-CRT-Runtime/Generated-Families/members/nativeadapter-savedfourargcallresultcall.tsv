@@ -1,0 +1,9 @@
+# NativeAdapter.SavedFourArgCallResultCall - EC-7 family C
+# # save all four args; call a member op; forward (result, arg1..arg4)
+# # to a second member op.
+address	targets
+001816F0	001B1C00,001B1F80
+001DBD60	00210B30,00210B70
+001DBDB0	00210B30,00210C00
+001DBF00	00210B30,00210D20
+001DBF50	00210B30,00210D90

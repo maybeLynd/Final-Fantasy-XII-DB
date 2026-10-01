@@ -1,0 +1,9 @@
+{
+  "returncode": 0,
+  "driver_sha256": "01b8cc7ada219784ecd5691c668e6e3c37deb439a75e308011a20869092b06cc",
+  "raw_before_sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3",
+  "raw_after_sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3",
+  "stdout_sha256": "d012ebbc59e5526507125c47ea55b2e495e5fd31d720764a6f5dfc871ea4f16c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "path": "Actual capture.py default invokes corrected check.py with raw present; no recapture/bytecode/native/game execution"
+}

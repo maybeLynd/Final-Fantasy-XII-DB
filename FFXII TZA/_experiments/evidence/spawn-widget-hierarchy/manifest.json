@@ -1,0 +1,142 @@
+{
+  "source_serialization": {
+    "control-correction.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-hierarchy-control-correction.json",
+      "bytes": 410,
+      "sha256": "8ea4ec7b13e8bbbebc86c960dcbe98bcfb6f54d8429440ca0c030d21e60bdb29",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_hierarchy_primary.py",
+      "bytes": 4763,
+      "sha256": "ee640f9287f496aec65dccddcceba3d291eae5de8fa70b34d803aa982d925cbc",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-hierarchy-primary.json",
+      "bytes": 78252,
+      "sha256": "b458d3c9bd9f5b56bb745b6a48414b366b218f22d6c020696ca5f46aa02ae6d5",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "helpers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_hierarchy_helpers.py",
+      "bytes": 4772,
+      "sha256": "6ca4336c4a416b043f04f5e2447dbea8e27e6b687dee8edef222a4d0c5b86e13",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "helpers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-hierarchy-helpers.json",
+      "bytes": 65766,
+      "sha256": "174dbc61e0eafdfd4a28fd3ccbef7ef440bb5c3198b2751591b6faafcc4f36f5",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "linkage.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_hierarchy_linkage.py",
+      "bytes": 4754,
+      "sha256": "f1ef8abe14d5be1abaebe93bdd92bef0bcc5e4904108181821b288ae4db2b383",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "linkage.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-hierarchy-linkage.json",
+      "bytes": 44134,
+      "sha256": "c2f57b2891da427c279793f4bbcff49248a4b70d28f7b688b744e1c25ca382a4",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "roots.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_hierarchy_roots.py",
+      "bytes": 4742,
+      "sha256": "14b2310ae5432d678a673121350185ef447eda5afc3934587fda932ef410aa9e",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "roots.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-hierarchy-roots.json",
+      "bytes": 69625,
+      "sha256": "4264fe88bd1740e922ea05da1cc837a96cee080b7ecc42897f203afca13fb278",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_hierarchy_check.py",
+      "bytes": 6514,
+      "sha256": "bb635cf55e0102184b04e4a292261ca5a4cc9540f5ad5fe98ee8115a7b8ce033",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-hierarchy-check.json",
+      "bytes": 16694,
+      "sha256": "12af938b6450d9cd2041e80c4cc6b8ac45d405c68b1439ffd9ababed659a54aa",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "check.json": {
+      "bytes": 16694,
+      "sha256": "12af938b6450d9cd2041e80c4cc6b8ac45d405c68b1439ffd9ababed659a54aa"
+    },
+    "check.py": {
+      "bytes": 6514,
+      "sha256": "bb635cf55e0102184b04e4a292261ca5a4cc9540f5ad5fe98ee8115a7b8ce033"
+    },
+    "control-correction.json": {
+      "bytes": 410,
+      "sha256": "8ea4ec7b13e8bbbebc86c960dcbe98bcfb6f54d8429440ca0c030d21e60bdb29"
+    },
+    "helpers.json": {
+      "bytes": 63284,
+      "sha256": "8f50b1fc5b72e8c68848cdcda560826fdfc12707c39081bd9a7f7069dd592260"
+    },
+    "helpers.py": {
+      "bytes": 4772,
+      "sha256": "6ca4336c4a416b043f04f5e2447dbea8e27e6b687dee8edef222a4d0c5b86e13"
+    },
+    "linkage.json": {
+      "bytes": 42458,
+      "sha256": "ae97935a340c03dd56212756a7566de7893159bbb5cd81c922626facffc11dfc"
+    },
+    "linkage.py": {
+      "bytes": 4754,
+      "sha256": "f1ef8abe14d5be1abaebe93bdd92bef0bcc5e4904108181821b288ae4db2b383"
+    },
+    "primary.json": {
+      "bytes": 75270,
+      "sha256": "c217a8f7d4ee480990cc74081783ec9a35e694e023c730a7cfd8c40c0f9e786a"
+    },
+    "primary.py": {
+      "bytes": 4763,
+      "sha256": "ee640f9287f496aec65dccddcceba3d291eae5de8fa70b34d803aa982d925cbc"
+    },
+    "README.md": {
+      "bytes": 3207,
+      "sha256": "68575bd3bf5fb97f5221105eb125de255955ee4452ea65a3ac51d0dc32d118b5"
+    },
+    "roots.json": {
+      "bytes": 67017,
+      "sha256": "ab33c1c04ff8094797f699b622e6d03a4f6f49284d0fd8ae966872783f139a5a"
+    },
+    "roots.py": {
+      "bytes": 4742,
+      "sha256": "14b2310ae5432d678a673121350185ef447eda5afc3934587fda932ef410aa9e"
+    }
+  }
+}

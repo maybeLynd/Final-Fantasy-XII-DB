@@ -1,0 +1,6 @@
+SURVIVES  W1  .data raw data ends 01F7E400
+SURVIVES  W2  46 distinct 16-byte addresses, all aligned; 3892 16-byte-wide access sites (the page says 3,892)
+SURVIVES  W3  44 B; loads ['022D91B0', '022D91C0', '022D91D0', '022D91E0']; stores [rcx + ['0x0', '0x10', '0x20', '0x30']]
+SURVIVES  W4  267 functions, 249 writers, 18 read-only (16 table-only); others [('003970A0', ['022D91B0', '022D91C0', '022D91D0', '022D91E0']), ('00501820', ['022D8F0C'])]
+SURVIVES  W5  no rip store to the table base; the cited sites are the indexed stores mov word ptr [r9 + rdx*8], r10w / mov word ptr [r9 + rdx*8], r10w / or byte ptr [rax + rdx + 0x10], dil; bases reached only by lea
+FAILS 0

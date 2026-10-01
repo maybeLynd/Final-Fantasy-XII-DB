@@ -1,0 +1,85 @@
+image-base control 00582F54: [(5777568, 'mov', 'eax, dword ptr [rcx + rax*4 + 0x462f54]', 4), (5777569, 'test', 'byte ptr [rcx + 0x462f54], al', 1)]
+00244F50  mov    qword ptr [rsp + 8], rbx
+00244F55  mov    qword ptr [rsp + 0x10], rbp
+00244F5A  mov    qword ptr [rsp + 0x18], rsi
+00244F5F  push   rdi
+00244F60  sub    rsp, 0x30
+00244F64  mov    rsi, r8
+00244F67  mov    rbp, rdx
+00244F6A  mov    edi, ecx
+00244F6C  test   ecx, ecx
+00244F6E  jne    0x244f77
+00244F70  mov    edi, 0xc0
+00244F75  jmp    0x244f7f
+00244F77  cmp    ecx, 0x120
+00244F7D  ja     0x244fb0
+00244F7F  mov    rbx, qword ptr [rip + 0x1e49ad2]   ; -> 0208EA58
+00244F86  xor    eax, eax
+00244F88  nop    dword ptr [rax + rax]
+00244F90  test   dword ptr [rbx + 0x40], 0x4000
+00244F97  jne    0x244fa2
+00244F99  cmp    byte ptr [rbx + 0xa2], 0
+00244FA0  je     0x244fea
+00244FA2  inc    eax
+00244FA4  add    rbx, 0x120
+00244FAB  cmp    eax, 0x70
+00244FAE  jl     0x244f90
+00244FB0  mov    ecx, edi
+00244FB2  call   0x2497b0
+00244FB7  mov    rbx, rax
+00244FBA  mov    dword ptr [rsp + 0x20], 0
+00244FC2  mov    rcx, rax
+00244FC5  mov    r9, rsi
+00244FC8  mov    r8, rbp
+00244FCB  mov    edx, edi
+00244FCD  call   0x2465f0
+00244FD2  mov    rbp, qword ptr [rsp + 0x48]
+00244FD7  mov    rax, rbx
+00244FDA  mov    rbx, qword ptr [rsp + 0x40]
+00244FDF  mov    rsi, qword ptr [rsp + 0x50]
+00244FE4  add    rsp, 0x30
+00244FE8  pop    rdi
+00244FE9  ret    
+00244FEA  inc    al
+00244FEC  mov    dword ptr [rsp + 0x20], 1
+00244FF4  mov    byte ptr [rbx + 0xa2], al
+00244FFA  mov    rcx, rbx
+00244FFD  jmp    0x244fc5
+00244FFF  int3   
+---
+00394400  mov    rcx, qword ptr [rip + 0x275a0b9]   ; -> 02AEE4C0
+00394407  test   rcx, rcx
+0039440A  jne    0x244f00
+00394410  ret    
+00394411  int3   
+---
+00394520  xor    eax, eax
+00394522  cmp    qword ptr [rip + 0x2759f97], rax   ; -> 02AEE4C0
+00394529  setne  al
+0039452C  ret    
+0039452D  int3   
+---
+00394130  mov    qword ptr [rsp + 8], rbx
+00394135  push   rdi
+00394136  sub    rsp, 0x20
+0039413A  mov    rbx, rcx
+0039413D  mov    rdi, rdx
+00394140  mov    ecx, dword ptr [rdx]
+00394142  sub    ecx, 1
+00394145  je     0x39429d
+0039414B  sub    ecx, 1
+0039414E  je     0x394184
+00394150  cmp    ecx, 0x10
+00394153  jne    0x39416f
+00394155  mov    rcx, qword ptr [rip + 0x275a364]   ; -> 02AEE4C0
+0039415C  test   rcx, rcx
+0039415F  je     0x394166
+00394161  call   0x244f00
+00394166  xor    ecx, ecx
+00394168  mov    qword ptr [rip + 0x275a361], rcx   ; -> 02AEE4D0
+0039416F  mov    rdx, rdi
+00394172  mov    rcx, rbx
+00394175  mov    rbx, qword ptr [rsp + 0x30]
+0039417A  add    rsp, 0x20
+0039417E  pop    rdi
+---

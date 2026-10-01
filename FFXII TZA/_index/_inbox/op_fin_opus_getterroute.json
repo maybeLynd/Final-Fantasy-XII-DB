@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-FN-GETTER-ROUTE-CENSUS",
+ "agent": "OPUS",
+ "note": "Committed f7ca0891d. SavePayload and SaveImageHeader carry a measured negative on their own declared route - 36 of 36 and 39 of 39 displacements on already-named rows, nothing in any gap, across 12,338 bytes of declared debt - with the named hits as the control that the bias is right, since attribution by absolute address would have scattered a wrong bias into the gaps. The static census is recorded beside it as a second and genuinely different instrument: 5 direct rip-relative operands into 353,424 bytes for the payload and 0 for the header, which is why the static route found almost nothing and the getter route found the code. A wording error was caught and fixed before the commit: the note carried '353 KB' onto a 512-byte type, and both notes were stripped and rewritten from each type's own declared size. The remaining three FN getters compute their addresses from arguments, so the constant-return instrument cannot read them and their 1, 56 and 22 bytes are left alone rather than given a number the instrument did not earn. NOT CLAIMED: exhaustiveness. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

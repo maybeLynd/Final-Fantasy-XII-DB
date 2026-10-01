@@ -1,0 +1,143 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4247,
+ "results": {
+  "I4_area_count_seeding": {
+   "pass_": true,
+   "counter_at_start": 0,
+   "runs": [
+    {
+     "master": 1,
+     "counter_before": 0,
+     "counter_after": 1,
+     "lcg_after_area_init": "0",
+     "stopped_at": "00239960",
+     "draws": [
+      1012484,
+      1716955679,
+      1792309082
+     ],
+     "model_draws": [
+      1012484,
+      1716955679,
+      1792309082
+     ]
+    },
+    {
+     "master": 1,
+     "counter_before": 1,
+     "counter_after": 2,
+     "lcg_after_area_init": "1",
+     "stopped_at": "00239960",
+     "draws": [
+      476707713,
+      1186278907,
+      505671508
+     ],
+     "model_draws": [
+      476707713,
+      1186278907,
+      505671508
+     ]
+    },
+    {
+     "master": 0,
+     "counter_before": 2,
+     "counter_after": 2,
+     "lcg_after_area_init": "DEADBEEF",
+     "stopped_at": null,
+     "draws": [
+      1075635910,
+      1410355045,
+      390111939
+     ],
+     "model_draws": [
+      1075635910,
+      1410355045,
+      390111939
+     ]
+    },
+    {
+     "master": 1,
+     "counter_before": 2,
+     "counter_after": 3,
+     "lcg_after_area_init": "2",
+     "stopped_at": "00239960",
+     "draws": [
+      952403967,
+      656651735,
+      1367566158
+     ],
+     "model_draws": [
+      952403967,
+      656651735,
+      1367566158
+     ]
+    },
+    {
+     "master": 1,
+     "counter_before": 3,
+     "counter_after": 4,
+     "lcg_after_area_init": "3",
+     "stopped_at": "00239960",
+     "draws": [
+      1430195325,
+      125974964,
+      80928584
+     ],
+     "model_draws": [
+      1430195325,
+      125974964,
+      80928584
+     ]
+    }
+   ],
+   "note": "from the image's counter 0, each area init with the master flag set seeds the LCG with the PRE-increment count (0, 1, 2, 3) and stores count+1; with the flag clear nothing is seeded or counted; the shipped draw 00328370 then yields exactly the contract's three-step XOR recurrence from that seed"
+  },
+  "I4_same_count_same_stream": {
+   "pass_": true,
+   "note": "the stream depends only on the count: seed 1 reproduces run 2's draws, seed 2 does not"
+  }
+ }
+}

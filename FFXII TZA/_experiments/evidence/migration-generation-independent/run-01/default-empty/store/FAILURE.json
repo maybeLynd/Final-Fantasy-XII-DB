@@ -1,0 +1,7 @@
+{
+ "generation": "g20260929T071157Z-201534",
+ "failed_at": "2026-09-29T07:11:57Z",
+ "reason": "required input not usable at begin: data=empty",
+ "current_unchanged": "g20260929T071156Z-f9a848",
+ "current_committed_at": "2026-09-29T07:11:56Z"
+}

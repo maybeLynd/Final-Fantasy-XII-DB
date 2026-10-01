@@ -1,0 +1,19 @@
+{
+  "method": "Human/model inspection of retained screenshots and action sequence, not automatic fatal-dialog classification",
+  "fatal_dialog_observed": false,
+  "responsive_menu_and_return": true,
+  "evidence": [
+    "current-field-before",
+    "pause-response",
+    "title-return-response",
+    "returned-title-before",
+    "old-load-complete",
+    "old-menu-response",
+    "old-inventory-open",
+    "old-menu-after-inventory",
+    "old-field-settled-before",
+    "post-capture-health",
+    "exit-dialog"
+  ],
+  "limits": "Screenshots are point samples; no claim of exhaustive dialog monitoring between them. Normal menu acceptance/return and ordinary exit observed. Initial memory snapshot invalid for changing registry, not a game-health failure."
+}

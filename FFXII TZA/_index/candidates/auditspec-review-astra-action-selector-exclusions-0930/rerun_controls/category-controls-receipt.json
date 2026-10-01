@@ -1,0 +1,64 @@
+{
+  "driver_sha256": "11740c2b24c54917053ef350c438d8c141b33c8abaa41eaa301ccd486b978a25",
+  "original_checker_sha256": "7e03a8a0c72ceee022e3d9bb8ad93daa25ce06b5e361d3cf850b517ac1e4988e",
+  "adaptation": "W/ROOT input literals only; no checker logic changes",
+  "cases": [
+    {
+      "case": "positive",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\positive\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\positive\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 0,
+      "result_exists": true,
+      "control_passed": true,
+      "adapted_checker_sha256": "291fcd4bc4b6214b19a68a21282bb09b2027f28103ef25d9a3ddc61cdfb428bf"
+    },
+    {
+      "case": "failed_capture_role",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\failed_capture_role\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\failed_capture_role\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "b3ec44e90ca68bb6c0351c00f2c5a031cd421d3c7e3e09579d66c210009515c1"
+    },
+    {
+      "case": "missing_required_raw",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\missing_required_raw\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\missing_required_raw\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "aaa4aa381fa973450fe9604aa514f92889b7379788f715ce9d50cba71df33961"
+    },
+    {
+      "case": "changed_table_bytes",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\changed_table_bytes\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\category-controls\\changed_table_bytes\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "3084c733bfd725f694aa755ece8f437e205aceb563fbb6b5891c18107c3e999c"
+    }
+  ],
+  "scope": "producer path controls, not original-code executions or independent acceptance"
+}

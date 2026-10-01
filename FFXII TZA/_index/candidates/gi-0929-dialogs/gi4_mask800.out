@@ -1,0 +1,46 @@
+== A. producer
+PASS flag words read from the producers (0xC812 at 002CE086, 0x8036 at 00566939)
+PASS only the Yes/No question's 0xC812 carries 0x800 :: {'002CDF20 Yes/No': '0xc812', '00566680 sort picker': '0x8036', '002CE370 notice 0x411a': '0x411a', '002CE370 notice 0x511a': '0x511a', '002CE370 notice 0x611a': '0x611a', '002CE370 notice 0x1411a': '0x1411a', '002CE370 notice 0x1511a': '0x1511a'}
+== B. the list bit
+PASS 0057C7C0 tests 0x800 and 0057C7CC sets list +0xE4 bit 0x80
+PASS every list is built with +0xE4 |= 0x2000050 (bit 0x40 on, 0x80 off) (002D1643)
+PASS 002D14E0 is the list constructor: 00244F50(0x150, 002D2DB0, 0)
+== C. the reconcile walk in 002D2DB0
+PASS id 2 -> 002D37AE (002D2DE8 / 002D2DEB)
+PASS 002D37C1: test dword ptr [rbx + 0xe0], 0x10000 :: test dword ptr [rbx + 0xe0], 0x10000
+PASS 002D37D1: test byte ptr [rbx + 0xe4], 0xc0 :: test byte ptr [rbx + 0xe4], 0xc0
+PASS 002D37DE: call 0x244820 :: call 0x244820
+PASS 002D37FD: and ecx, esi :: and ecx, esi
+PASS 002D3801: test r8b, 8 :: test r8b, 8
+PASS 002D3807: bt r8d, 9 :: bt r8d, 9
+PASS 002D380E: mov eax, dword ptr [rdx + 0x7c] :: mov eax, dword ptr [rdx + 0x7c]
+PASS 002D3811: shl eax, 0x1c :: shl eax, 0x1c
+PASS 002D3814: sar eax, 0x1c :: sar eax, 0x1c
+PASS 002D381B: cmp eax, esi :: cmp eax, esi
+PASS 002D381D: jle 0x2d3868 :: jle 0x2d3868
+PASS 002D381F: cmp eax, 2 :: cmp eax, 2
+PASS 002D3824: cmp eax, 4 :: cmp eax, 4
+PASS 002D3829: test byte ptr [rbx + 0xe4], 0x80 :: test byte ptr [rbx + 0xe4], 0x80
+PASS 002D3832: test byte ptr [rbx + 0xe4], 0x40 :: test byte ptr [rbx + 0xe4], 0x40
+PASS 002D383E: cmp rdx, r10 :: cmp rdx, r10
+PASS 002D3841: mov rdx, qword ptr [rdx + 0x10] :: mov rdx, qword ptr [rdx + 0x10]
+PASS 002D3845: cmove edi, esi :: cmove edi, esi
+PASS 002D3863: call 0x2d4330 :: call 0x2d4330
+PASS 00244820 returns the focus top 0208EBC0
+PASS 00248220 (attach) writes the parent into the child's +0x10 (00248267)
+== D. 002D4330 places the hand pointer
+PASS 002D4330 writes no field of the list (selection untouched) :: []
+PASS 002D4330 ends in 00368360(list, &rec) (002D4557)
+PASS 00368360 is the 022CBE30 pointer step (gate 0036836A)
+== E. +0x40 bit 3
+PASS constructor 002465F0 sets 0x80A (bits 1, 3, 11) at 00246653
+PASS positive control: the immediate-set census finds 005668AA :: ['005668AA']
+PASS immediate clears of +0x40 bit 3: 0024194E, 0056683A, 0057CAE9 only :: ['0024194E', '0056683A', '0057CAE9']
+PASS the confirm window reaches 0057CAE9 after the cancel post (0057CAE4) and after an unclaimed pick (0057CBF9 jne)
+PASS the Yes/No host answers every pick with 0 (002CE189 / 002CE193)
+PASS the host closes itself only from id 2 once +0xD8 == 1 (002CE197 ... 002CE1BA)
+== F. the outside closer
+PASS 002CE2D0 destroys the host registered at [0209AC30]+0x2E8 unless its +0x7C bit 0x20 is set
+PASS the Yes/No host registers itself in that slot (002CDF6C) and so does the notice host (002CE48A)
+PASS 002CE2D0 is called from the license screens only: 0055C7EF, 0055D557, 0055D667, 0055D7C2, 0055F4B1 :: ['0055C7EF', '0055D557', '0055D667', '0055D7C2', '0055F4B1']
+FAILS 0

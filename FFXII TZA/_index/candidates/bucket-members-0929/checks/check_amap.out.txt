@@ -1,0 +1,149 @@
+=== 1. corpus: every shipped copy
+copies found: 9 ['ch', 'cn', 'de', 'es', 'fr', 'in', 'it', 'kr', 'us'] (in_sdver has no worldmap folder)
+PASS 9 locale copies of menumap_area.bin
+distinct contents: {'ef68294c7245ecfc': 9}
+PASS ch: +4 file id == 0xC9 (got 0xc9)
+PASS ch: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS ch: P count == S count == 39 (area space)
+PASS ch: Q count == R count == 59 (persistence-group space)
+PASS ch: every Q value < 39 (Q maps group -> area index); max 38
+PASS ch: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS ch: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS ch: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS cn: +4 file id == 0xC9 (got 0xc9)
+PASS cn: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS cn: P count == S count == 39 (area space)
+PASS cn: Q count == R count == 59 (persistence-group space)
+PASS cn: every Q value < 39 (Q maps group -> area index); max 38
+PASS cn: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS cn: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS cn: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS de: +4 file id == 0xC9 (got 0xc9)
+PASS de: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS de: P count == S count == 39 (area space)
+PASS de: Q count == R count == 59 (persistence-group space)
+PASS de: every Q value < 39 (Q maps group -> area index); max 38
+PASS de: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS de: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS de: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS es: +4 file id == 0xC9 (got 0xc9)
+PASS es: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS es: P count == S count == 39 (area space)
+PASS es: Q count == R count == 59 (persistence-group space)
+PASS es: every Q value < 39 (Q maps group -> area index); max 38
+PASS es: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS es: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS es: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS fr: +4 file id == 0xC9 (got 0xc9)
+PASS fr: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS fr: P count == S count == 39 (area space)
+PASS fr: Q count == R count == 59 (persistence-group space)
+PASS fr: every Q value < 39 (Q maps group -> area index); max 38
+PASS fr: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS fr: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS fr: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS in: +4 file id == 0xC9 (got 0xc9)
+PASS in: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS in: P count == S count == 39 (area space)
+PASS in: Q count == R count == 59 (persistence-group space)
+PASS in: every Q value < 39 (Q maps group -> area index); max 38
+PASS in: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS in: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS in: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS it: +4 file id == 0xC9 (got 0xc9)
+PASS it: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS it: P count == S count == 39 (area space)
+PASS it: Q count == R count == 59 (persistence-group space)
+PASS it: every Q value < 39 (Q maps group -> area index); max 38
+PASS it: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS it: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS it: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS kr: +4 file id == 0xC9 (got 0xc9)
+PASS kr: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS kr: P count == S count == 39 (area space)
+PASS kr: Q count == R count == 59 (persistence-group space)
+PASS kr: every Q value < 39 (Q maps group -> area index); max 38
+PASS kr: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS kr: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS kr: S[0] = -1, S[i] = 60099+i for i=1..38
+PASS us: +4 file id == 0xC9 (got 0xc9)
+PASS us: size arithmetic 0x10 +1+39 | +1+59 | +2+2*59 | +4+4*39 = 396 == file size 396; sections abut (offs 0x10,0x38,0x74,0xec)
+PASS us: P count == S count == 39 (area space)
+PASS us: Q count == R count == 59 (persistence-group space)
+PASS us: every Q value < 39 (Q maps group -> area index); max 38
+PASS us: P values < 0x80, so 0x80|P stays a distinct payload byte; distribution {0: 6, 1: 3, 2: 12, 3: 16, 4: 1, 5: 1}
+PASS us: R values are 0xFFFF or 0x8000..0x803F (class-13 sub-table 1, the 64 area-map key items); 46 set, 13 none
+PASS us: S[0] = -1, S[i] = 60099+i for i=1..38
+
+=== 2. joins against sibling files
+PASS ch: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS ch: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS cn: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS cn: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS de: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS de: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS es: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS es: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS fr: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS fr: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS in: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS in: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS it: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS it: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS kr: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS kr: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+PASS us: S[1..38] in menu_mapname.bin id table 38/38 (control S+1000: 0/38)
+PASS us: wmap area record i +16 nameId == amap S[i] for 39/39 (control, i+1: 0/39)
+map_ref.bin (in): 1530 rows, persistence groups used 56, max 256
+PASS map_ref.bin groups are 0..58 (= 59 = Q/R count) except 1 row(s) [(1526, 256)]; a group >= 59 fails the accessor bounds test (00254390 cmp ecx,eax / jb) and reads as area 0 / R none
+PASS menumap_common directory groups all < 59 (max 58)
+
+=== 3. .fst sizes and the kind-7 path slot
+PASS FileSizeTable_US.fst kind 7 id 0xA5 = 396 == us file size 396
+PASS FileSizeTable_DE.fst kind 7 id 0xA5 = 396 == de file size 396
+PASS FileSizeTable_ES.fst kind 7 id 0xA5 = 396 == es file size 396
+PASS FileSizeTable_FR.fst kind 7 id 0xA5 = 396 == fr file size 396
+PASS FileSizeTable_IT.fst kind 7 id 0xA5 = 396 == it file size 396
+PASS FileSizeTable_CH.fst kind 7 id 0xA5 = 396 == ch file size 396
+PASS FileSizeTable_CN.fst kind 7 id 0xA5 = 396 == cn file size 396
+PASS FileSizeTable_KR.fst kind 7 id 0xA5 = 396 == kr file size 396
+PASS FileSizeTable_IN.fst kind 7 id 0xA5 = 396 == in file size 396
+PASS kind-7 path slot 01E0E530[0xA5] -> PS2Data\image\FF12\myoshiok\kr\WorldMap\menumap_area.bin
+
+=== 4. static image: loader and accessors
+PASS 0025390D: expect `mov ..edx, 7..` got `mov edx, 7`
+PASS 00253917: expect `mov ..r8d, 0xa5..` got `mov r8d, 0xa5`
+PASS 00253924: expect `lea ..r9d, [rdx - 4]..` got `lea r9d, [rdx - 4]`
+PASS 00253928: expect `call ..0x249180..` got `call 0x249180`
+PASS 00253930: expect `mov ..qword ptr [rip + 0x1e3ee99], rax..` got `mov qword ptr [rip + 0x1e3ee99], rax`
+PASS 0024919A: expect `mov ..rax, qword ptr [rax + 8]..` got `mov rax, qword ptr [rax + 8]`
+PASS 002543D7: expect `movzx ..edx, word ptr [rax + 8]..` got `movzx edx, word ptr [rax + 8]`
+PASS 002543E9: expect `movzx ..eax, byte ptr [rax + rdx + 1]..` got `movzx eax, byte ptr [rax + rdx + 1]`
+PASS 00254387: expect `movzx ..edx, word ptr [rax + 0xa]..` got `movzx edx, word ptr [rax + 0xa]`
+PASS 00254399: expect `movzx ..eax, byte ptr [rax + rdx + 1]..` got `movzx eax, byte ptr [rax + rdx + 1]`
+PASS 002543FB: expect `movzx ..edx, word ptr [rax + 0xc]..` got `movzx edx, word ptr [rax + 0xc]`
+PASS 00254413: expect `movzx ..ecx, word ptr [rdx + rax*2 + 2]..` got `movzx ecx, word ptr [rdx + rax*2 + 2]`
+PASS 00254424: expect `call ..0x309ec0..` got `call 0x309ec0`
+PASS 002543A7: expect `movzx ..edx, word ptr [rax + 0xe]..` got `movzx edx, word ptr [rax + 0xe]`
+PASS 002543BF: expect `mov ..ecx, dword ptr [rdx + rax*4 + 4]..` got `mov ecx, dword ptr [rdx + rax*4 + 4]`
+PASS 002543C3: expect `jmp ..0x2f9920..` got `jmp 0x2f9920`
+PASS 00583F3F: expect `call ..0x264f90..` got `call 0x264f90`
+PASS 00583F46: expect `call ..0x254380..` got `call 0x254380`
+PASS 00583F4B: expect `mov ..dword ptr [rdi + 0x48], eax..` got `mov dword ptr [rdi + 0x48], eax`
+PASS 003F92EC: expect `call ..0x254380..` got `call 0x254380`
+PASS 003F92F3: expect `call ..0x2543d0..` got `call 0x2543d0`
+PASS 003F92FA: expect `call ..0x2ac2c0..` got `call 0x2ac2c0`
+PASS 01E0CDFC escape template bytes 0f 3f 81 80 00 = 0F '?' 81 80|P 00 (002AC2C0 ORs P|0x80 into byte 3)
+
+=== 5. raw rip sweep of the blob slot 020927D0 (function-list independent)
+   002538F3 mov rcx, qword ptr [rip + 0x1e3eed6]   fn 00253780
+   00253906 mov qword ptr [rip + 0x1e3eec3], rbx   fn 00253780
+   00253930 mov qword ptr [rip + 0x1e3ee99], rax   fn 00253780
+   00254380 mov rax, qword ptr [rip + 0x1e3e449]   fn 00254380
+   002543A0 mov rax, qword ptr [rip + 0x1e3e429]   fn 002543A0
+   002543D0 mov rax, qword ptr [rip + 0x1e3e3f9]   fn 002543D0
+   002543F4 mov rax, qword ptr [rip + 0x1e3e3d5]   fn 002543F0
+PASS 7 references: loader 00253780 (1 read, 2 writes) + the four accessors; no other code touches the slot
+PASS positive control: the same sweep finds 158 refs to the world-map widget singleton 02B457E0 (FABLE ripscan lists 158 lines incl. the ones this build's functions list covers)
+
+FAILS 0

@@ -1,0 +1,13 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS C1 002ED570 calling functions / sites - 87 functions, 115 sites
+PASS F1 32-bit sum - 004096DF  add eax, ebx
+PASS F1 sign-extended - 004096E1  cdqe 
+PASS T1 RenderResourceEntry declared at 0x50 - 0x50
+PASS T1 RenderResourceEntryBank declared at 0x60 - 0x60
+PASS T1 RenderStrideC0Element declared at 0xC0 - 0xC0
+PASS T1 RenderResourceEntry has field rows - 10 rows
+PASS A1 the acceptance copy is tracked
+PASS A1 OV-28 the-resource-owner-from-copy-or-borrow-to-disposal SECTION-10
+PASS A1 OV-44 the-nonempty-prf-registration-and-specialized-relocation SECTION-10
+FAILS 0

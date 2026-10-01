@@ -1,0 +1,116 @@
+[registration 005EEDA0..005EEE00, owner 005EEB20 FUN_005eeb20]
+  005EEDA2 mov     dword ptr [rsp + 0x28], r15d
+  005EEDA7 mov     dword ptr [rsp + 0x20], 8
+  005EEDAF lea     r9, [rip + 0x74400a]
+  005EEDB6 lea     r8, [rip + 0x26ca743]
+  005EEDBD mov     rdx, rsi
+  005EEDC0 lea     rcx, [rip + 0x26fb849]
+  005EEDC7 call    0x632a10
+  005EEDCC lea     rax, [rip + 0x75cf5d]
+  005EEDD3 mov     qword ptr [rip + 0x26fb836], rax
+  005EEDDA lea     rax, [rip - 0x2a121]
+  005EEDE1 mov     qword ptr [rip + 0x26fb888], rax
+  005EEDE8 mov     qword ptr [rip + 0x26fb889], r15
+  005EEDEF lea     rax, [rip + 0x2048a]
+  005EEDF6 mov     qword ptr [rip + 0x26fb883], rax
+  005EEDFD lea     rcx, [rip + 0x2be72c]
+   lea 005EEDAF -> 00D32DC0 'm_els'
+   lea 005EEDB6 -> 02CB9500 '(zero-init .data tail, .data)'
+   lea 005EEDC0 -> 02CEA610 '(zero-init .data tail, .data)'
+   lea 005EEDCC -> 00D4BD30 ' \x05^'
+   store 005EEDD3 -> [02CEA610] (.data)
+   lea 005EEDDA -> 005C4CC0 '(code)'
+   store 005EEDE1 -> [02CEA670] (.data)
+   store 005EEDE8 -> [02CEA678] (.data)
+   lea 005EEDEF -> 0060F280 '(code)'
+   store 005EEDF6 -> [02CEA680] (.data)
+   lea 005EEDFD -> 008AD530 '(code)'
+qword D4BD30+0x40 = 60F3D0  sec .rdata
+D4BD30 qwords 0..0x48: ['5E0520', '16D680', '63C4D0', '63D330', '6065D0', '60D760', '604580', '604580', '60F3D0', '263E30']
+[dispatcher 0060F3D0..0060F3F1] listed size 33
+  0060F3D0 mov     rax, qword ptr [rcx + 0x70]
+  0060F3D4 mov     r10, r8
+  0060F3D7 mov     r11, rdx
+  0060F3DA test    rax, rax
+  0060F3DD je      0x60f3eb
+  0060F3DF mov     r8d, r9d
+  0060F3E2 mov     rdx, r10
+  0060F3E5 mov     rcx, r11
+  0060F3E8 jmp     rax
+  0060F3EB mov     eax, 0x15
+  0060F3F0 ret     
+  0060F3F1 int3    
+[callback 0060F280..0060F290] listed size 16
+  0060F280 sub     rsp, 0x28
+  0060F284 call    0x60efe0
+  0060F289 xor     eax, eax
+  0060F28B add     rsp, 0x28
+  0060F28F ret     
+[0060EFE0 head] listed size 109
+  0060EFE0 mov     qword ptr [rsp + 8], rbx
+  0060EFE5 mov     qword ptr [rsp + 0x10], rsi
+  0060EFEA push    rdi
+  0060EFEB sub     rsp, 0x20
+  0060EFEF mov     ebx, r8d
+  0060EFF2 mov     rsi, rdx
+  0060EFF5 mov     rdi, rcx
+  0060EFF8 test    r8d, r8d
+  0060EFFB jns     0x60f012
+  0060EFFD mov     eax, 5
+  0060F002 mov     rbx, qword ptr [rsp + 0x30]
+  0060F007 mov     rsi, qword ptr [rsp + 0x38]
+  0060F00C add     rsp, 0x20
+  0060F010 pop     rdi
+  0060F011 ret     
+  0060F012 mov     rcx, qword ptr [rcx + 8]
+  0060F016 cmp     rcx, rsi
+  0060F019 je      0x60f031
+  0060F01B mov     edx, dword ptr [rdi]
+  0060F01D mov     eax, edx
+  0060F01F shr     eax, 0x1f
+  0060F022 not     al
+  0060F024 test    al, 1
+  0060F026 je      0x60f031
+  0060F028 btr     edx, 0x1f
+  0060F02C call    0x5f03a0
+  0060F031 bts     ebx, 0x1f
+  0060F035 mov     qword ptr [rdi + 8], rsi
+  0060F039 mov     rsi, qword ptr [rsp + 0x38]
+  0060F03E xor     eax, eax
+  0060F040 mov     dword ptr [rdi], ebx
+  0060F042 mov     rbx, qword ptr [rsp + 0x30]
+  0060F047 add     rsp, 0x20
+  0060F04B pop     rdi
+  0060F04C ret     
+[resolver 0059EC40 continuation 0059ED20..0059ED61]
+  0059ED22 sub     r14d, dword ptr [rcx + 0x14]
+  0059ED26 mov     rax, qword ptr [rsp + 0x20]
+  0059ED2B sub     r14d, dword ptr [rsp + 0x88]
+  0059ED33 mov     eax, dword ptr [rax + 0xf4]
+  0059ED39 sub     ebx, eax
+  0059ED3B add     dword ptr [r12], r14d
+  0059ED3F lea     eax, [rdx + rbx]
+  0059ED42 add     rax, r13
+  0059ED45 add     rsp, 0x40
+  0059ED49 pop     r14
+  0059ED4B pop     r13
+  0059ED4D pop     r12
+  0059ED4F pop     rdi
+  0059ED50 pop     rbx
+  0059ED51 ret     
+  0059ED52 xor     eax, eax
+  0059ED54 add     rsp, 0x40
+  0059ED58 pop     r14
+  0059ED5A pop     r13
+  0059ED5C pop     r12
+  0059ED5E pop     rdi
+  0059ED5F pop     rbx
+  0059ED60 ret     
+  pdata 0059EC40..0059EC53 unwind 01D928BC flags=0 chained_to=-
+  pdata 0059EC53..0059EC5B unwind 01D928CC flags=4 chained_to=0059EC40..0059EC53
+  pdata 0059EC5B..0059EC77 unwind 01D928E0 flags=4 chained_to=0059EC53..0059EC5B
+  pdata 0059EC77..0059ECCC unwind 01D928F4 flags=4 chained_to=0059EC5B..0059EC77
+  pdata 0059ECCC..0059ECF2 unwind 01D92908 flags=4 chained_to=0059EC5B..0059EC77
+  pdata 0059ECF2..0059ED0B unwind 01D92918 flags=4 chained_to=0059EC53..0059EC5B
+  pdata 0059ED0B..0059ED61 unwind 01D92928 flags=4 chained_to=0059EC40..0059EC53
+  pdata 0059ED70..0059EE0C unwind 01D52D78 flags=0 chained_to=-

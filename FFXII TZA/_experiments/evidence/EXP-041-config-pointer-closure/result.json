@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "scope": "documentation-only correction and bounded retained-evidence assessment",
+  "before_sha256": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+  "after_sha256": "1ff612753c3768166fc9ab25670c36f3fefdf11939a9f2545392db3a2cc18cde",
+  "implementation_ast_unchanged": true,
+  "tsv_sha256": "bb39680bf7cce45c8a1863e3771f18cecc370a07d3546ff28fcb3722497b6686",
+  "original_tsv_sha256": "bb39680bf7cce45c8a1863e3771f18cecc370a07d3546ff28fcb3722497b6686",
+  "indirect_rows": {
+    "E1": "[0x01F82D20]+0x48",
+    "E6": "[0x01F82D20]+0x658",
+    "E7": "[0x01F82D20]+0x65A",
+    "E8": "[0x01F82D20]+0x448",
+    "E9": "[0x01F82D20]+0x00",
+    "E10": "[0x01F82D20]+0x0C",
+    "E11": "[0x01F82D20]+0x1C",
+    "E12": "[0x01F82D20]+0x64"
+  },
+  "historical": [
+    {
+      "path": "EXP-001-gamesetting-frametimebase-20260908T083051.json",
+      "sha256": "c5612b0697e77d3caa3df22e816ffc5e24492e91891c3c741641435e37398644",
+      "observations": [
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 1,
+          "indirect_rows": [
+            "E1     [0x01F82D2 u32      *                  1 (0x00000001)     PASS",
+            "E6     [0x01F82D2 u16      *                  0 (0x0000)         PASS",
+            "E7     [0x01F82D2 u8       *                  0 (0x00)           PASS",
+            "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL",
+            "E9     [0x01F82D2 i32      *                  1 (0x00000001)     PASS",
+            "E10    [0x01F82D2 i32      *                  3 (0x00000003)     PASS",
+            "E11    [0x01F82D2 i32      *                  2 (0x00000002)     PASS",
+            "E12    [0x01F82D2 i32      *                  1 (0x00000001)     PASS"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "path": "EXP-001-gamesetting-frametimebase-20260908T083341.json",
+      "sha256": "ae290252ecd3cd6f2385c95e2c0004660031437eeaf73030873b2759cef68534",
+      "observations": [
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 1,
+          "indirect_rows": [
+            "E1     [0x01F82D2 u32      *                  1 (0x00000001)     PASS",
+            "E6     [0x01F82D2 u16      *                  0 (0x0000)         PASS",
+            "E7     [0x01F82D2 u8       *                  0 (0x00)           PASS",
+            "E8     [0x01F82D2 u32      81                 1768972144 (0x69705F70) FAIL",
+            "E9     [0x01F82D2 i32      *                  1 (0x00000001)     PASS",
+            "E10    [0x01F82D2 i32      *                  3 (0x00000003)     PASS",
+            "E11    [0x01F82D2 i32      *                  2 (0x00000002)     PASS",
+            "E12    [0x01F82D2 i32      *                  1 (0x00000001)     PASS"
+          ],
+          "error": ""
+        },
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 3,
+          "indirect_rows": [],
+          "error": "runtime_probe: no process matching 'FFXII_TZA' is running.\n  This tool validates against the LIVE game; it cannot fabricate a runtime observation.\n  Launch FFXII_TZA.exe, then re-run.\n"
+        },
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 3,
+          "indirect_rows": [],
+          "error": "runtime_probe: no process matching 'FFXII_TZA' is running.\n  This tool validates against the LIVE game; it cannot fabricate a runtime observation.\n  Launch FFXII_TZA.exe, then re-run.\n"
+        }
+      ]
+    },
+    {
+      "path": "EXP-001-gamesetting-frametimebase-20260908T084110.json",
+      "sha256": "5c23a6ba64f216b3204058a4c3de4dd7a24d00a821d7a0aabe5809561c57d59d",
+      "observations": [
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 1,
+          "indirect_rows": [
+            "E1     [0x01F82D2 u32      *                  0 (0x00000000)     PASS",
+            "E6     [0x01F82D2 u16      *                  0 (0x0000)         PASS",
+            "E7     [0x01F82D2 u8       *                  0 (0x00)           PASS",
+            "E8     [0x01F82D2 u32      81                 1095786320 (0x41505F50) FAIL",
+            "E9     [0x01F82D2 i32      *                  1 (0x00000001)     PASS",
+            "E10    [0x01F82D2 i32      *                  3 (0x00000003)     PASS",
+            "E11    [0x01F82D2 i32      *                  2 (0x00000002)     PASS",
+            "E12    [0x01F82D2 i32      *                  1 (0x00000001)     PASS"
+          ],
+          "error": ""
+        }
+      ]
+    },
+    {
+      "path": "EXP-001-gamesetting-frametimebase-20260908T092218.json",
+      "sha256": "aa21d16edde936b2d1d7d188da6fbd1a577c8a6ac12048d26d6e9e5503102b7e",
+      "observations": [
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 1,
+          "indirect_rows": [
+            "E1     [0x01F82D2 u32      *                  1 (0x00000001)     PASS",
+            "E6     [0x01F82D2 u16      *                  0 (0x0000)         PASS",
+            "E7     [0x01F82D2 u8       *                  0 (0x00)           PASS",
+            "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL",
+            "E9     [0x01F82D2 i32      *                  1 (0x00000001)     PASS",
+            "E10    [0x01F82D2 i32      *                  3 (0x00000003)     PASS",
+            "E11    [0x01F82D2 i32      *                  2 (0x00000002)     PASS",
+            "E12    [0x01F82D2 i32      *                  1 (0x00000001)     PASS"
+          ],
+          "error": ""
+        },
+        {
+          "argv": [
+            "runtime_probe.py",
+            "--check",
+            "EXP-001-gamesetting-frametimebase.tsv"
+          ],
+          "returncode": 1,
+          "indirect_rows": [
+            "E1     [0x01F82D2 u32      *                  1 (0x00000001)     PASS",
+            "E6     [0x01F82D2 u16      *                  0 (0x0000)         PASS",
+            "E7     [0x01F82D2 u8       *                  0 (0x00)           PASS",
+            "E8     [0x01F82D2 u32      81                 0 (0x00000000)     FAIL",
+            "E9     [0x01F82D2 i32      *                  1 (0x00000001)     PASS",
+            "E10    [0x01F82D2 i32      *                  3 (0x00000003)     PASS",
+            "E11    [0x01F82D2 i32      *                  2 (0x00000002)     PASS",
+            "E12    [0x01F82D2 i32      *                  1 (0x00000001)     PASS"
+          ],
+          "error": ""
+        }
+      ]
+    }
+  ],
+  "exp037_pinned_sha256": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+  "exp037_requires_new_qualification": true
+}

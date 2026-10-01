@@ -1,0 +1,12 @@
+SURVIVES  W0  sizes [387, 394, 423, 215, 113, 26, 26]; call sites [2, 1, 1, 1, 1, 1, 1]
+SURVIVES  W1  create scan add rbx, 0x60 / cmp eax, 0xa; init writes +0x00 of nodes [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; head 02EC1360 = pool + 10 x 0x60
+SURVIVES  W2  rip-relative writers of +0x00: ['00319B10']; zero-displacement dword stores elsewhere: none
+SURVIVES  W3  image-wide rip hits: +0x0C 0, +0x5C 0, +0x58 10 (control); register-relative +0xC/+0x5C in the entries: none
+SURVIVES  W4  append mov qword ptr [rip + 0x2ba75fa], rbx -> tail; eviction mov rbx, qword ptr [rip + 0x2ba767d] <- head
+SURVIVES  W5  {'eviction': 5, 'create': 1, 'despawn': 4, 'blink': 2, 'collect': 3, 'remove': 3}; presentation calls from the pool 6
+SURVIVES  W6  table ['16F034', '16F050', '16F063', '16F076', '16F076', '16F088']; ops 4 and 5 -> 0028F076 (mov rcx, rbx / xor edx, edx); op 3 -> 0028F063
+SURVIVES  W7  stores to [rsp+0x20] before the eviction lea: none; tick stores [('00319720', 'mov dword ptr [rsp + 0x20], r8d'), ('0031976F', 'movdqa xmmword ptr [rsp + 0x20], xmm0')]; loop back-edge after them ['jne 0x319640']
+SURVIVES  W8  [('003183D0', '0031842A', 'imul eax, dword ptr [rip + 0x1faad43]'), ('003183D0', '003184EC', 'mov dword ptr [rip + 0x1faac7e], 0'), ('00319920', '00319974', 'inc dword ptr [rip + 0x1fa97fa]')]
+SURVIVES  W9  {('002341C0', '002341F0'): 'write', ('002342F0', '0023443C'): 'write', ('00312280', '003125B4'): 'write', ('00234590', '00234708'): 'write', ('00310DB0', '00311141'): 'write', ('00310DB0', '00311284'): 'write'}
+SURVIVES  W10  closure 215 bodies; generator entries none; gameplay LCG cell users none; presentation PRNG cell users none
+FAILS 0

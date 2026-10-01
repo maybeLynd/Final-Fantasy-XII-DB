@@ -1,0 +1,9 @@
+00252F12  inc           dword ptr [rdi + 0x47b8]                     00252E60 InventoryDerivedIndex_AddPresentItem
+002533F6  mov           dword ptr [r14 + 0x47b8], edi                00253240 SaveRuntime_InitializeImageBackedPointerDescriptor
+0025359F  mov           dword ptr [r14 + 0x47b8], edi                002534C0 InventoryDerivedIndex_CompactCategoryList
+00254D06  add           qword ptr [rbx + 0x47e8], rcx                00254CC0 FUN_00254cc0
+00254D1D  mov           qword ptr [rbx + 0x47e8], rax                00254CC0 FUN_00254cc0
+00255047  mov           qword ptr [rax + 0x47e8], 0                  00255040 FUN_00255040
+003BBB77  mov           qword ptr [rsp + 0x4c80], rax                003BBB60 FUN_003bbb60
+003BBBAA  mov           qword ptr [rsp + 0x4ca0], rbx                003BBB60 FUN_003bbb60
+003BBBB7  mov           qword ptr [rsp + 0x4c90], rdi                003BBB60 FUN_003bbb60

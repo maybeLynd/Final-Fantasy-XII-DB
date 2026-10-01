@@ -1,0 +1,30 @@
+## python consumer_sensitivity.py rfc
+pdata-chain rows at HEAD 254; row 00729920 listed end 007299DD chain end 00729A9C (+191); other ledger rows for it: 1
+RFC with row: extent 00729920..00729A9C -> ACCEPTED
+RFC without row: extent 00729920..00729A9C -> REFUSED: receiver_flow_census: 00729920 is a LISTED function whose body ends at 007299DD, but the extent given ends at 
+RFC control: an end one byte short of the chain (00729A9B) with the row -> REFUSED
+## python consumer_sensitivity.py views
+pdata-chain rows at HEAD 254; row 00729920 listed end 007299DD chain end 00729A9C (+191); other ledger rows for it: 1
+VIEWS v3         bytes {'unknown': 41558, 'listed': 7428490, 'frontier': 23062, 'funclet': 59737, 'held': 179528, 'fill': 264606} overlap 1758 extents None
+VIEWS v4         bytes {'unknown': 25060, 'listed': 7445815, 'frontier': 23062, 'funclet': 59737, 'held': 178958, 'fill': 264349} overlap 1758 extents {'errata_entries': 364, 'grown': 362, 'bytes_added': 17325}
+VIEWS v4-nochain bytes {'unknown': 40105, 'listed': 7429952, 'frontier': 23062, 'funclet': 59737, 'held': 179528, 'fill': 264597} overlap 1758 extents {'errata_entries': 159, 'grown': 159, 'bytes_added': 1462}
+VIEWS v4-no-one  bytes {'unknown': 25120, 'listed': 7445755, 'frontier': 23062, 'funclet': 59737, 'held': 178958, 'fill': 264349} overlap 1758 extents {'errata_entries': 364, 'grown': 362, 'bytes_added': 17265}
+VIEWS delta v3 -> v4: {'unknown': -16498, 'listed': 17325, 'frontier': 0, 'funclet': 0, 'held': -570, 'fill': -257}; overlap +0
+VIEWS delta v4-nochain -> v4: {'unknown': -15045, 'listed': 15863, 'frontier': 0, 'funclet': 0, 'held': -570, 'fill': -248}; overlap +0
+VIEWS delta v4-no-one -> v4: {'unknown': -60, 'listed': 60, 'frontier': 0, 'funclet': 0, 'held': 0, 'fill': 0}; overlap +0
+exit 0
+## python consumer_sensitivity.py fds
+pdata-chain rows at HEAD 254; row 00729920 listed end 007299DD chain end 00729A9C (+191); other ledger rows for it: 1
+FDS tail sites field_disp_scan would emit (non rip/rsp/rbp base, disp > 0), by tail kind: {'jtable': 137, 'other': 6}; rows with any: {'jtable': 56, 'other': 3}; with disp < 0x2000: {'jtable': 84, 'other': 5}
+FDS pair row 0023B530 (listed end 0023B6C2, chain end 0023B6EF, jump-table tail): tail site 0023B6D3 disp 0x11b6 'add byte ptr [rbx + 0x11b6], ah'; control 0023B56C disp 0x11b6d8 'movzx eax, byte ptr [r14 + rax + 0x11b6d8]'
+FDS with row: control ok: ('0023B530', '0023B56C', '0x11b6d8', 'r', 'movzx eax, byte ptr [r14 + rax + 0x11b6d8]', 'reg112', 'idx') / rows: 2 functions scanned: 38161 / extent rule of the chained-tails ruling (series break 2026-09-30): 364 entries grown by 17376 bytes from 364 adjudicated errata extents / disp 0x11b6: 1 sites in 1 functions; writers: ['0023B530'] / disp 0x11b6d8: 1 sites in 1 functions; writers: [] | tail site 0023B6D3 in output: [['0023B530', '0023B6D3', '0x11b6', 'rw', 'add byte ptr [rbx + 0x11b6], ah', 'reg37', '']]
+FDS without row: control ok: ('0023B530', '0023B56C', '0x11b6d8', 'r', 'movzx eax, byte ptr [r14 + rax + 0x11b6d8]', 'reg112', 'idx') / rows: 1 functions scanned: 38161 / extent rule of the chained-tails ruling (series break 2026-09-30): 363 entries grown by 17331 bytes from 363 adjudicated errata extents / disp 0x11b6: 0 sites in 0 functions; writers: [] / disp 0x11b6d8: 1 sites in 1 functions; writers: [] | tail site 0023B6D3 in output: []
+exit 0
+## python consumer_sensitivity.py pc
+pdata-chain rows at HEAD 254; row 00729920 listed end 007299DD chain end 00729A9C (+191); other ledger rows for it: 1
+PC with: program_coverage exit 0
+PC nochain: program_coverage exit 0
+PC report lines 115 / 115; differing lines 2:
+  -> **Extent series break 2026-09-30 (the chained-tails ruling's extent rule):** function extents are the listed range union the adjudicated `underrun` rows of `_index/FUNCTION-EXTENT-ERRATA.tsv`; this run grows 159 entries by 1462 bytes (159 errata extents). Byte figures before 2026-09-30 are a different series.
+  +> **Extent series break 2026-09-30 (the chained-tails ruling's extent rule):** function extents are the listed range union the adjudicated `underrun` rows of `_index/FUNCTION-EXTENT-ERRATA.tsv`; this run grows 362 entries by 17325 bytes (364 errata extents). Byte figures before 2026-09-30 are a different series.
+exit 0

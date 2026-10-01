@@ -1,0 +1,550 @@
+image sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS A0 the image is the certified authority image
+census: 99 callers, 170 (caller, body) pairs, 213 call sites; signatures {'inc+era': 30, 'dec+ins': 24, 'inc+ins': 16, 'ins': 16, 'inc': 12, 'rotL+rotR': 1}
+PASS A1 census = the published enumeration: 99 callers, 170 pairs, 213 sites
+PASS A2 every caller's member signature and site count equal the published TSV row
+PASS A3 no rip-relative reference (lea / pointer load) names any of the six bodies
+PASS A4 no thin thunk (<= 16 bytes) in front of the six: every one of the 99 is a full body - smallest caller 134 bytes
+insert sites whose node comes from an inline allocate, by size: {'0x28': 16, '0x30': 15, '0x38': 10, '0x40': 5, '0x48': 10, '0x50': 4, '0x58': 5, '0x60': 10, '0x88': 5}
+PASS B1 OC-2 reproduced per insert site: 80 of the 90 insert sites take their node from an inline allocate, nine sizes with the page's per-size counts
+PASS B1a one insert site is fed by two allocate sites on two branches (001FFB30: 001FFD0F from 001FFC30 and 001FFCE1), which is why the allocate SITES number 81
+PASS B1b the other 10 insert sites take their node from a node-construction helper that allocates on tree+0x30 - helpers 001A3190 001AB2C0 001AE7C0 001B9CF0 001BEA90 001BEB20
+PASS B2 every one of the 90 insert sites belongs to an insert-unique / insert-hint / insert-at body
+PASS B3 every insert-family body keeps exactly one tree, at this+0 (the header it passes is rcx+8)
+PASS B4 every insert-at body passes its own position argument (r8 at entry) as the parent at every insert site
+PASS B5 all 24 insert-unique bodies hold the reject path (byte [ret+8] = 0) beside the accept (byte [ret+8] = 1) - first reject stores 00199EDC 001A3348 001A34C0 001A3798 ...
+PASS B6 each of the 16 insert-hint bodies calls exactly one insert-unique (its fallback) and one insert-at
+PASS B7 no insert-equal body: every insert body without a reject path is a hint (falls back to a rejecting insert) or an insert-at reached only from inside the 99 - insert-at bodies called from outside the 99: none
+PASS G1 the 56 insert-family bodies fall into 24 instantiations, each with one insert-unique, one node size and one key compare
+PASS F1 no instantiation is reached by both allocator names, and every tagged instantiation's value layout agrees with its tag (EASTL set -> the node holds the key only; EASTL map -> the value runs past the key) - 15 tagged: I01=set I04=map I06=map I07=set I08=map I09=map I10=map I11=set I13=map I14=map I15=map I16=map I17=map I18=map I21=map
+
+== G: the 24 insert instantiations, their value layout and where their trees live (SWE2-ORACLE)
+I01  node 0x28  key qword unsigned  00199DB0(unique)
+     value at node: +0x20 qword store
+     erase / walk bodies on the same tree: 001B5B60(same tree) 001B67F0(INFERENCE) 001B6990(INFERENCE) 001BA860(same tree) 001E1670(same tree) 001F5B80(same tree) 001F8B30(same tree) 002124C0(same tree) 002187D0(same tree) 002199C0(same tree) 00219D80(same tree) 0021AF80(same tree) 0021C280(same tree) 0021D280(same tree) 002203F0(same tree) 002204A0(same tree) 00220550(same tree) 00220600(same tree) 002206B0(same tree) 0062EBC0(same tree) 0062EC70(same tree)
+     constructed with allocator name: EASTL set
+     reading: set<uint64>  [tag EASTL set]
+     entry bodies 00199DB0 -> 57 distinct tree(s):
+       *[01F7F4C8]+0x20                         the object 0017D4C0 builds at 0017D508 and stores to global 01F7F4C8
+       *[01F7F5B8]+0x0[i*0x38]+0x0              the object global 01F7F5B8 points to; element i of an array of 0x38-byte records
+       *[01F810F8]+0xb0                         the object 0019A0A0 builds at 0019A0BF and stores to global 01F810F8 (class AsyncJobManager)
+       *[01F810F8]+0xe8                         the object global 01F810F8 points to (class AsyncJobManager), returned by getter 0019A170
+       *[01F81100]+0xb0                         the object 0019A0A0 builds at 0019A0F3 and stores to global 01F81100 (class AsyncJobManager)
+       *[01F81100]+0xe8                         the object global 01F81100 points to (class AsyncJobManager), returned by getter 0019A180
+       *[01F81150]+0x80                         the object 0019CDE0 builds at 0019CDFC and stores to global 01F81150
+       *[01F81150]+0x80                         the object global 01F81150 points to, returned by getter 0019CE20
+       *[01F81150]+0xb8                         the object global 01F81150 points to, returned by getter 0019CE20
+       *[01F81158]+0x28                         the object 0019EF40 builds at 0019EF5C and stores to global 01F81158 (class AssetListManager)
+       *[01F81158]+0x28                         the object global 01F81158 points to (class AssetListManager), returned by getter 0019EF80
+       *[01F81158]+0x60                         the object global 01F81158 points to (class AssetListManager), returned by getter 0019EF80
+       *[01F81158]+0xe8                         the object 0019EF40 builds at 0019EF5C and stores to global 01F81158 (class AssetListManager)
+       *[01F81158]+0xe8                         the object global 01F81158 points to (class AssetListManager), returned by getter 0019EF80
+       *[01F81160]+0x110                        the object global 01F81160 points to (class AsyncLoadManager), returned by getter 001A1220
+       *[01F81160]+0xd8                         the object 001A11B0 builds at 001A11CC and stores to global 01F81160 (class AsyncLoadManager)
+       *[01F81160]+0xd8                         the object global 01F81160 points to (class AsyncLoadManager), returned by getter 001A1220
+       *[01F811E8]+0x2160                       the object 001B1BA0 builds at 001B1BD0 and stores to global 01F811E8
+       *[01F811E8]+0x2160                       the object global 01F811E8 points to, returned by getter 001B1C00
+       *[01F811E8]+0x2198                       the object global 01F811E8 points to, returned by getter 001B1C00
+       *[01F811F8]+0xe90                        the object 001B5F10 builds at 001B5F72 and stores to global 01F811F8
+       *[01F811F8]+0xe90                        the object global 01F811F8 points to
+       *[01F811F8]+0xe90                        the object global 01F811F8 points to, returned by getter 001B5FA0
+       *[01F811F8]+0xec8                        the object global 01F811F8 points to
+       *[01F811F8]+0xec8                        the object global 01F811F8 points to, returned by getter 001B5FA0
+       *[01F81200]+0x128                        the object global 01F81200 points to
+       *[01F81200]+0x1b0                        the object 001B5F10 builds at 001B5F40 and stores to global 01F81200
+       *[01F81200]+0x1b0                        the object global 01F81200 points to, returned by getter 001B5FB0
+       *[01F81200]+0x1e8                        the object global 01F81200 points to, returned by getter 001B5FB0
+       *[01F81200]+0xf0                         the object 001B5F10 builds at 001B5F40 and stores to global 01F81200
+       *[01F81200]+0xf0                         the object global 01F81200 points to
+       *[01F81240]+0x108                        the object 001BBFC0 builds at 001BBFDC and stores to global 01F81240
+       *[01F81240]+0x108                        the object global 01F81240 points to, returned by getter 001BC000
+       *[01F81240]+0x140                        the object global 01F81240 points to, returned by getter 001BC000
+       *[01F83438]+0xb8                         the object 0020C6B0 builds at 0020C6CC and stores to global 01F83438
+       *[01F83438]+0xb8                         the object global 01F83438 points to, returned by getter 0020C700
+       *[01F83438]+0xf0                         the object global 01F83438 points to, returned by getter 0020C700
+       *[01FD36A8]+0x90                         the object 002125A0 builds at 002125BC and stores to global 01FD36A8 (class AudioFileLoadManager)
+       *[01FD36A8]+0x90                         the object global 01FD36A8 points to (class AudioFileLoadManager), returned by getter 002125E0
+       *[01FD36A8]+0xc8                         the object global 01FD36A8 points to (class AudioFileLoadManager), returned by getter 002125E0
+       *[01FD4138]+0x158                        the object 002216B0 builds at 002216D7 and stores to global 01FD4138 (class AudioSeadObjectManager)
+       *[01FD4138]+0x158                        the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x190                        the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x1f0                        the object 002216B0 builds at 002216D7 and stores to global 01FD4138 (class AudioSeadObjectManager)
+       *[01FD4138]+0x1f0                        the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x228                        the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x28                         the object 002216B0 builds at 002216D7 and stores to global 01FD4138 (class AudioSeadObjectManager)
+       *[01FD4138]+0x28                         the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x288                        the object 002216B0 builds at 002216D7 and stores to global 01FD4138 (class AudioSeadObjectManager)
+       *[01FD4138]+0x288                        the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x2c0                        the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0x60                         the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0xc0                         the object 002216B0 builds at 002216D7 and stores to global 01FD4138 (class AudioSeadObjectManager)
+       *[01FD4138]+0xc0                         the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       *[01FD4138]+0xf8                         the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710
+       class MusicAudioController+0x40          an object of that class built at 00210610 in 002105E0
+       class MusicAudioController+0x40          this of 0021D570, virtual slot 3 of MusicAudioController
+       class MusicAudioController+0x78          this of 00218980, virtual slot 7 of MusicAudioController
+       class SebAudioController+0x40            an object of that class built at 00210630 in 002105E0
+       class SebAudioController+0x40            this of 0021B290, virtual slot 3 of SebAudioController
+       class SebAudioController+0x78            this of 0021B150, virtual slot 7 of SebAudioController
+       class SepAudioController+0x40            an object of that class built at 00210651 in 002105E0
+       class SepAudioController+0x40            this of 00219C40, virtual slot 3 of SepAudioController
+       class SepAudioController+0x78            this of 00219B10, virtual slot 7 of SepAudioController
+       class ShoutAudioController+0x40          an object of that class built at 00210672 in 002105E0
+       class ShoutAudioController+0x40          this of 0021D570, virtual slot 3 of ShoutAudioController
+       class ShoutAudioController+0x78          this of 0021C440, virtual slot 7 of ShoutAudioController
+       class StreamAudioController+0x40         an object of that class built at 00210693 in 002105E0
+       class StreamAudioController+0x40         this of 0021D570, virtual slot 3 of StreamAudioController
+       class StreamAudioController+0x78         this of 0021D3D0, virtual slot 6 of StreamAudioController
+       global 01F82D80                          a global object
+       global 01F82DB8                          a global object
+       global 01F82F30                          a global object
+       global 01F82F68                          a global object
+       this 0019A190+0xb0                       function pointer taken at 00199F84
+       this 0019E7B0+0x120                      no direct caller, no vtable slot, no lea
+       this 001A1230+0xd8                       function pointer taken at 001A0B46
+       this 001B67F0+0x38                       argument not tracked at 001B67DD in 001B66F0
+       this 001B6990+0x70                       argument not tracked at 001B6974 in 001B68D0
+       this 002125F0+0x90                       function pointer taken at 00212157
+I02  node 0x28  key dword signed  001A3220(unique)
+     value at node: +0x20 dword store
+     constructed with allocator name: not reached
+     reading: set<int32>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001A3220 -> 2 distinct tree(s):
+       this 001A3160+0xb0                       function pointer taken at 001A9F4B
+       this 001A3160+0xe8                       function pointer taken at 001A9F4B
+I03  node 0x38  key dword signed  001A3380(unique) 001A34F0(hint) 001A4390(at)
+     value at node: +0x20 xmm store; +0x30 dword store
+     erase / walk bodies on the same tree: 001A7770(same tree) 001A9ED0(INFERENCE)
+     constructed with allocator name: not reached
+     reading: map<int32, value to node+0x34 (>= 0x10 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001A34F0 -> 1 distinct tree(s):
+       this 001A3160+0x490                      function pointer taken at 001A9F4B
+I04  node 0x38  key dword signed  001A3650(unique) 001A37C0(hint) 001A4440(at)
+     value at node: +0x20 xmm store; +0x30 qword store
+     erase / walk bodies on the same tree: 001A5980(same tree)
+     constructed with allocator name: EASTL map
+     reading: map<int32, value to node+0x38 (>= 0x14 bytes past the key)>  [tag EASTL map]
+     entry bodies 001A37C0 -> 1 distinct tree(s):
+       *[01F81168]+0x268                        the object global 01F81168 points to, returned by getter 001A9930
+I05  node 0x28  key dword unsigned  001A3930(unique) 001A3A90(hint) 001A44F0(at)
+     value at node: +0x20 qword store
+     constructed with allocator name: not reached
+     reading: map<uint32, value to node+0x28 (>= 0x4 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001A3A90 -> 1 distinct tree(s):
+       *[01F81168]+0x3e0                        the object 001A98B0 builds at 001A9908 and stores to global 01F81168
+I06  node 0x88  key qword unsigned  001A3BE0(unique) 001A3D70(hint) 001A4590(at)
+     value at node: +0x20 qword store; +0x28 call 001A2750 (writes 0x60 bytes)
+     constructed with allocator name: EASTL map
+     reading: map<uint64, value to node+0x88 (>= 0x60 bytes past the key)>  [tag EASTL map]
+     entry bodies 001A3D70 -> 2 distinct tree(s):
+       *[01F81168]+0x448                        the object global 01F81168 points to, returned by getter 001A9930
+       this 001A3160+0x448                      function pointer taken at 001A9F4B
+I07  node 0x40  key compare call 001A3100+memcmp  001A3F10(unique)
+     value at node: +0x20 call 001A4BF0 (writes 0x18 bytes); +0x20 qword store; +0x28 qword store; +0x30 qword store; +0x38 call 001EDF00 (writes 0x8 bytes)
+     node-construction helper: 001A3190
+     constructed with allocator name: EASTL set
+     reading: set<eastl::string (compare 001A3100)>  [tag EASTL set]
+     entry bodies 001A3F10 -> 1 distinct tree(s):
+       *[01F81168]+0x3a0                        the object global 01F81168 points to
+I08  node 0x48  key compare call 001A3100+memcmp  001AB3D0(unique)
+     value at node: +0x20 call 001A4BF0 (writes 0x18 bytes); +0x20 qword store; +0x28 qword store; +0x30 qword store; +0x38 call 001EDF00 (writes 0x8 bytes); +0x40 qword store
+     node-construction helper: 001AB2C0
+     constructed with allocator name: EASTL map
+     reading: map<eastl::string (compare 001A3100), value to node+0x48 (>= 0x8 bytes past the key)>  [tag EASTL map]
+     entry bodies 001AB3D0 -> 1 distinct tree(s):
+       *[01F811C8]+0x8                          the object global 01F811C8 points to, returned by getter 001AD440
+I09  node 0x30  key dword unsigned  001AE850(unique) 001AE9B0(hint) 0020BA70(at)
+     value at node: +0x20 xmm store
+     erase / walk bodies on the same tree: 0019CC50(same tree) 001B1960(same tree) 0020B840(same tree) 0020BFA0(same tree)
+     constructed with allocator name: EASTL map
+     reading: map<uint32, value to node+0x30 (>= 0xc bytes past the key)>  [tag EASTL map]
+     entry bodies 001AE9B0 -> 7 distinct tree(s):
+       *[01F81150]+0x28                         the object global 01F81150 points to, returned by getter 0019CE20
+       *[01F811E8]+0x20                         the object global 01F811E8 points to
+       *[01F811E8]+0x2200                       the object global 01F811E8 points to, returned by getter 001B1C00
+       *[01F81200]+0x28                         the object global 01F81200 points to
+       *[01F81200]+0x60                         the object global 01F81200 points to
+       *[01F81200]+0x98                         the object global 01F81200 points to
+       *[01F83438]+0x20                         the object global 01F83438 points to, returned by getter 0020C700
+I10  node 0x48  key dword unsigned  001AEB00(unique) 001AEC30(hint) 001AEF70(at)
+     value at node: +0x20 dword store; +0x28 call 001A4BF0 (writes 0x18 bytes); +0x28 qword store; +0x30 qword store; +0x38 qword store; +0x40 call 001EDF00 (writes 0x8 bytes)
+     node-construction helper: 001AE7C0
+     constructed with allocator name: EASTL map
+     reading: map<uint32, value to node+0x48 (>= 0x24 bytes past the key)>  [tag EASTL map]
+     entry bodies 001AEC30 -> 1 distinct tree(s):
+       global 02EB37B8                          a global object
+I11  node 0x28  key dword unsigned  001B9D80(unique)
+     value at node: +0x20 dword store
+     constructed with allocator name: EASTL set
+     reading: set<uint32>  [tag EASTL set]
+     entry bodies 001B9D80 -> 1 distinct tree(s):
+       stack 001BAA30-0x70                      a local of 001BAA30
+I12  node 0x58  key dword unsigned  001B9EE0(unique) 001BA080(hint) 001BA3B0(at)
+     value at node: +0x20 xmm store; +0x30 xmm store; +0x40 xmm store; +0x50 qword store
+     constructed with allocator name: not reached
+     reading: map<uint32, value to node+0x58 (>= 0x34 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001BA080 -> 2 distinct tree(s):
+       *(this 001BC190+0x8)+0x10                the object a field of this in 001BC190 points to
+       rdx 001BB120+0x10                        argument not tracked at 001BB0F4 in 001BB040
+       rdx 001BB120+0x10                        argument not tracked at 001BB10E in 001BB040
+I13  node 0x48  key compare call 001A3100+memcmp  001BA210(unique)
+     value at node: +0x20 call 001A4BF0 (writes 0x18 bytes); +0x20 qword store; +0x28 qword store; +0x30 qword store; +0x38 call 001EDF00 (writes 0x8 bytes); +0x40 qword store
+     node-construction helper: 001B9CF0
+     constructed with allocator name: EASTL map
+     reading: map<eastl::string (compare 001A3100), value to node+0x48 (>= 0x8 bytes past the key)>  [tag EASTL map]
+     entry bodies 001BA210 -> 2 distinct tree(s):
+       *[01F81240]+0x1c0                        the object global 01F81240 points to, returned by getter 001BC000
+       *[01F81240]+0x1f8                        the object global 01F81240 points to, returned by getter 001BC000
+I14  node 0x40  key qword unsigned  001BD040(unique) 001BD1B0(hint) 001BD340(at)
+     value at node: +0x20 call 001BC950 (writes 0x20 bytes)
+     erase / walk bodies on the same tree: 001BD4A0(same tree) 001BDAC0(same tree)
+     constructed with allocator name: EASTL map
+     reading: map<uint64, value to node+0x40 (>= 0x18 bytes past the key)>  [tag EASTL map]
+     entry bodies 001BD1B0 -> 1 distinct tree(s):
+       *[01F81248]+0x20                         the object global 01F81248 points to, returned by getter 001BDAB0
+I15  node 0x48  key compare call 001A3100+memcmp  001BEBB0(unique)
+     value at node: +0x20 call 001A4BF0 (writes 0x18 bytes); +0x20 qword store; +0x28 qword store; +0x30 qword store; +0x38 call 001EDF00 (writes 0x8 bytes); +0x40 dword store
+     node-construction helper: 001BEA90
+     constructed with allocator name: EASTL map
+     reading: map<eastl::string (compare 001A3100), value to node+0x44 (>= 0x4 bytes past the key)>  [tag EASTL map]
+     entry bodies 001BEBB0 -> 1 distinct tree(s):
+       *[01F81258]+0x78                         the object global 01F81258 points to, returned by getter 001C0DA0
+I16  node 0x48  key compare call 001A3100+memcmp  001BED50(unique)
+     value at node: +0x20 call 001A4BF0 (writes 0x18 bytes); +0x20 qword store; +0x28 qword store; +0x30 qword store; +0x38 call 001EDF00 (writes 0x8 bytes); +0x40 qword store
+     node-construction helper: 001BEB20
+     erase / walk bodies on the same tree: 001BF230(same tree)
+     constructed with allocator name: EASTL map
+     reading: map<eastl::string (compare 001A3100), value to node+0x48 (>= 0x8 bytes past the key)>  [tag EASTL map]
+     entry bodies 001BED50 -> 1 distinct tree(s):
+       *[01F81258]+0x20                         the object global 01F81258 points to, returned by getter 001C0DA0
+I17  node 0x30  key qword unsigned  001E7770(unique) 001E78D0(hint) 001E7C90(at)
+     value at node: +0x20 xmm store
+     erase / walk bodies on the same tree: 001E9A30(same tree)
+     constructed with allocator name: EASTL map
+     reading: map<uint64, value to node+0x30 (>= 0x8 bytes past the key)>  [tag EASTL map]
+     entry bodies 001E78D0 -> 1 distinct tree(s):
+       *[01F811F8]+0xf30                        the object global 01F811F8 points to
+       *[01F811F8]+0xf30                        the object global 01F811F8 points to, returned by getter 001B5FA0
+I18  node 0x30  key dword signed  001FB470(hint) 001FB5C0(at) 00223790(unique)
+     value at node: +0x20 xmm store
+     erase / walk bodies on the same tree: 001A6CC0(same tree) 001BC190(same tree)
+     constructed with allocator name: EASTL map
+     reading: map<int32, value to node+0x30 (>= 0xc bytes past the key)>  [tag EASTL map]
+     entry bodies 001FB470 -> 4 distinct tree(s):
+       *[01F81168]+0x4e8                        the object global 01F81168 points to, returned by getter 001A9930
+       *[01F81240]+0xb0                         the object global 01F81240 points to, returned by getter 001BC000
+       ret indirect+0x58                        the value an indirect call returns (called at 0021B4D3 in 0021B430)
+       this 001FB770+0x8                        argument not tracked at 001B21C6 in 001B20B0
+I19  node 0x28  key dword signed  001FC890(unique) 001FC9F0(hint) 001FD4B0(at)
+     value at node: +0x20 qword store
+     constructed with allocator name: not reached
+     reading: map<int32, value to node+0x28 (>= 0x4 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001FC9F0 -> 1 distinct tree(s):
+       ret 001FC420+0x0                         the value 001FC420 returns (called at 001FDC2D in 001FDC10)
+I20  node 0x60  key dword signed  001FCB40(unique) 001FCCE0(hint) 001FD550(at)
+     value at node: +0x20 dword store; +0x28 call 001FBEF0 (writes 0x38 bytes)
+     constructed with allocator name: not reached
+     reading: map<int32, value to node+0x60 (>= 0x3c bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001FCCE0 -> 1 distinct tree(s):
+       this 001FDC10+0x70                       argument not tracked at 001B52C1 in 001B5230
+I21  node 0x48  key dword unsigned  001FCE80(unique) 001FD010(hint) 001FD610(at)
+     value at node: +0x20 xmm store; +0x30 xmm store; +0x40 qword store
+     constructed with allocator name: EASTL map
+     reading: map<uint32, value to node+0x48 (>= 0x24 bytes past the key)>  [tag EASTL map]
+     entry bodies 001FD010 -> 2 distinct tree(s):
+       null+0x38                                a constant 0x38 on a null-object path in 001B4D70
+       object built by 001FC060+0x38            an object 001B4D70 allocates at 001B4E78 and constructs with 001FC060, returned as this by 001FC060
+I22  node 0x48  key dword unsigned  001FD190(unique) 001FD310(hint) 001FD6C0(at)
+     value at node: +0x20 dword store; +0x28 call 001FBFC0 (writes 0x20 bytes)
+     constructed with allocator name: not reached
+     reading: map<uint32, value to node+0x48 (>= 0x24 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001FD310 -> 2 distinct tree(s):
+       this 001FDB50+0xa8                       argument not tracked at 001B4CE0 in 001B4C00
+       this 001FDB90+0xa8                       argument not tracked at 001B4CB3 in 001B4C00
+I23  node 0x50  key compare call 001A3100+memcmp  001FFB30(unique) 001FFD40(hint) 00200090(at)
+     value at node: +0x20 call 001FE570 (writes 0x30 bytes)
+     constructed with allocator name: not reached
+     reading: map<eastl::string (compare 001A3100), value to node+0x50 (>= 0x10 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 001FFD40 -> 2 distinct tree(s):
+       *(this 001FF6B0+0x8)+0x0                 the object a field of this in 001FF6B0 points to
+       *(this 00200E60+0x8)+0x0                 the object a field of this in 00200E60 points to
+I24  node 0x60  key compare call 001A1990+memcmp  00676000(unique) 006761F0(hint) 006763A0(at)
+     value at node: +0x20 call 00675300 (writes 0x40 bytes)
+     constructed with allocator name: not reached
+     reading: map<std::string (MSVC; compare 001A1990), value to node+0x60 (>= 0x20 bytes past the key)>  [INFERENCE (no allocator-name tag reaches its trees)]
+     entry bodies 006761F0 -> 2 distinct tree(s):
+       global 01F81188                          a global object
+       global 02D3ECA8                          a global object
+
+== E: erase and walk bodies (SWE2-ORACLE)
+0019CC50 erase tree rcx@e+0x28           node 0x30  key -                  group I09  (same tree)  -> *[01F81150]+0x28 [the object global 01F81150 points to, returned by getter 0019CE20]
+001A5980 walk  tree rcx@e+0x268          node 0x38  key -                  group I04  (same tree)  -> *[01F81168]+0x268 [the object global 01F81168 points to, returned by getter 001A9930]
+001A6CC0 walk  tree rcx@e+0x4e8          node 0x30  key -                  group I18  (same tree)  -> *[01F81168]+0x4e8 [the object global 01F81168 points to, returned by getter 001A9930]
+001A7770 walk  tree rcx@e+0x490          node -     key -                  group I03  (same tree)  -> *[01F81168]+0x490 [the object global 01F81168 points to, returned by getter 001A9930]; this 001A3160+0x490 [function pointer taken at 001A9F4B]
+001A7F10 walk  tree ?                    node -     key compare call memcmp group -    (-)  -> 
+001A9ED0 walk  tree rcx@e+0x490          node -     key -                  group I03  (INFERENCE: shares a tree key with 001A7770, which is tied by the same tree)  -> *[01F81168]+0x490 [the object global 01F81168 points to, returned by getter 001A9930]
+001ACF80 erase tree rcx@e+0x8            node 0x48  key -                  group -    (ambiguous by size: I08 I10 I13 I15 I16 I21 I22)  -> this 001ACF80+0x8 [no direct caller, no vtable slot, no lea]
+001B1960 erase tree rcx@e+0x2200         node 0x30  key dword unsigned     group I09  (same tree)  -> *[01F811E8]+0x2200 [the object global 01F811E8 points to, returned by getter 001B1C00]
+001B5B60 erase tree rcx@e+0x1e8          node 0x28  key qword unsigned     group I01  (same tree)  -> *[01F81200]+0x1e8 [the object global 01F81200 points to, returned by getter 001B5FB0]
+001B67F0 erase tree rcx@e+0x70           node 0x28  key -                  group I01  (INFERENCE: the body inserts into a I01 tree of the same node size on the same object)  -> this 001B67F0+0x70 [argument not tracked at 001B67DD in 001B66F0]
+001B6990 erase tree rcx@e+0x38           node 0x28  key qword unsigned     group I01  (INFERENCE: node size + key matches one instantiation only)  -> this 001B6990+0x38 [argument not tracked at 001B6974 in 001B68D0]
+001B6A70 walk  tree rcx@e+0x70           node 0x28  key -                  group -    (ambiguous by size: I01 I02 I05 I11 I19)  -> this 001B6A70+0x70 [argument not tracked at 001B6B73 in 001B6B50]
+001BA860 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> *[01F810F8]+0xb0 [the object global 01F810F8 points to (class AsyncJobManager), returned by getter 0019A170]; *[01F81100]+0xb0 [the object global 01F81100 points to (class AsyncJobManager), returned by getter 0019A180]; *[01F81150]+0x80 [the object global 01F81150 points to, returned by getter 0019CE20] (+11)
+001BC190 erase tree rcx@e+0xb0           node 0x30  key dword signed       group I18  (same tree)  -> *[01F81240]+0xb0 [the object global 01F81240 points to, returned by getter 001BC000]
+001BD4A0 erase tree rcx@e+0x20           node -     key qword unsigned     group I14  (same tree)  -> *[01F81248]+0x20 [the object global 01F81248 points to, returned by getter 001BDAB0]
+001BDAC0 erase tree rcx@e+0x20           node -     key -                  group I14  (same tree)  -> *[01F81248]+0x20 [the object global 01F81248 points to, returned by getter 001BDAB0]
+001BF230 walk  tree rcx@e+0x20           node -     key -                  group I16  (same tree)  -> *[01F81258]+0x20 [the object global 01F81258 points to, returned by getter 001C0DA0]
+001C0960 erase tree rcx@e+0x20           node 0x48  key -                  group -    (ambiguous by size: I08 I10 I13 I15 I16 I21 I22)  -> this 001C0960+0x20 [no direct caller, no vtable slot, no lea]
+001E1670 erase tree 01F82D80             node 0x28  key -                  group I01  (same tree)  -> global 01F82D80 [a global object]
+001E9A30 erase tree rcx@e+0xf30          node 0x30  key -                  group I17  (same tree)  -> *[01F811F8]+0xf30 [the object global 01F811F8 points to]; *[01F811F8]+0xf30 [the object global 01F811F8 points to, returned by getter 001B5FA0]
+001F5B80 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> global 01F82F30 [a global object]
+001F8B30 erase tree rcx@e+0x58           node 0x28  key qword unsigned     group I01  (same tree)  -> global 01F82DB8 [a global object]; global 01F82F68 [a global object]
+001FB660 walk  tree rcx@e+0x8            node 0x30  key -                  group -    (ambiguous by size: I09 I17 I18)  -> this 001FB660+0x8 [argument not tracked at 001B19BB in 001B1960]
+001FEE80 walk  tree rdx@e                node -     key -                  group -    (-)  -> *(rdx 001FF210+0x8)+0x0 [the object a field of rdx in 001FF210 points to]
+0020B840 erase tree rcx@e+0x20           node 0x30  key -                  group I09  (same tree)  -> *[01F83438]+0x20 [the object global 01F83438 points to, returned by getter 0020C700]
+0020BFA0 erase tree rcx@e+0x20           node 0x30  key -                  group I09  (same tree)  -> *[01F83438]+0x20 [the object global 01F83438 points to, returned by getter 0020C700]
+002124C0 erase tree rcx@e+0x58           node 0x28  key qword unsigned     group I01  (same tree)  -> *[01F81150]+0xb8 [the object global 01F81150 points to, returned by getter 0019CE20]; *[01F81158]+0x120 [the object global 01F81158 points to (class AssetListManager), returned by getter 0019EF80]; *[01F81158]+0x60 [the object global 01F81158 points to (class AssetListManager), returned by getter 0019EF80] (+12)
+002187D0 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> class MusicAudioController+0x40 [this of 00218980, virtual slot 7 of MusicAudioController]
+002199C0 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> class SepAudioController+0x40 [this of 00219B10, virtual slot 7 of SepAudioController]
+00219D80 erase tree rcx@e+0x58           node 0x28  key qword unsigned     group I01  (same tree)  -> *[01FD4138]+0x190 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]; *[01FD4138]+0x228 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]; *[01FD4138]+0x2c0 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710] (+7)
+0021AF80 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> class SebAudioController+0x40 [this of 0021B150, virtual slot 7 of SebAudioController]
+0021C280 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> class ShoutAudioController+0x40 [this of 0021C440, virtual slot 7 of ShoutAudioController]
+0021D280 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> class StreamAudioController+0x40 [this of 0021D3D0, virtual slot 6 of StreamAudioController]
+002203F0 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> *[01FD4138]+0x158 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]
+002204A0 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> *[01FD4138]+0x28 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]
+00220550 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> *[01FD4138]+0xc0 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]
+00220600 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> *[01FD4138]+0x1f0 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]
+002206B0 erase tree rcx@e+0x20           node 0x28  key -                  group I01  (same tree)  -> *[01FD4138]+0x288 [the object global 01FD4138 points to (class AudioSeadObjectManager), returned by getter 00221710]
+00220B80 walk  tree rcx@e+0x3a0          node 0x30  key -                  group -    (ambiguous by size: I09 I17 I18)  -> class AudioSeadObjectManager+0x3a0 [this of 0021F000, virtual slot 0 of AudioSeadObjectManager]
+00223A20 walk  tree rcx@e+0x58           node 0x30  key -                  group -    (ambiguous by size: I09 I17 I18)  -> class SebAudioBank+0x58 [this of 0021ABC0, virtual slot 7 of SebAudioBank]; class SebAudioBank+0x58 [this of 00223E60, virtual slot 2 of SebAudioBank]; rdx 00899F8C+0xb8 [no direct caller, no vtable slot, no lea] (+4)
+0062EBC0 walk  tree rcx@e[i*0x38]        node 0x28  key -                  group I01  (same tree)  -> *[01F7F5B8]+0x0[i*0x38]+0x0 [the object global 01F7F5B8 points to; element i of an array of 0x38-byte records]
+0062EC70 erase tree rcx@e[i*0x38]        node 0x28  key qword unsigned     group I01  (same tree)  -> *[01F7F5B8]+0x0[i*0x38]+0x0 [the object global 01F7F5B8 points to; element i of an array of 0x38-byte records]
+   narrowing 001ACF80: value destructor frees through an allocator at node+0x38: candidates I08 I13 I15 I16
+   narrowing 001C0960: value destructor frees through an allocator at node+0x38: candidates I08 I13 I15 I16
+
+== W: thin wrappers (<= 48 bytes) directly above the 99 (SWE2-ORACLE)
+  0017F0D0 (44 B) -> 001BD4A0  not a vtable slot  [2 direct callers: 003703A0 0053AB50]  push rbx ; sub rsp, 0x20 ; mov ebx, ecx ; call 0x1bdab0 ; test rax, rax ; je 0x17f0f6 ; call 0x1bdab0 ; mov rc
+  0017FA50 (30 B) -> 001B5B60  not a vtable slot  [2 direct callers: 0032ED80 00575640]  push rbx ; sub rsp, 0x20 ; mov rbx, rcx ; call 0x1b5fb0 ; mov rcx, rax ; mov rdx, rbx ; add rsp, 0x20 ; pop rb
+  0017FC70 (28 B) -> 001E9A30  not a vtable slot  [1 direct callers: 00365570]  push rbx ; sub rsp, 0x20 ; mov ebx, ecx ; call 0x1b5fa0 ; mov rcx, rax ; mov edx, ebx ; add rsp, 0x20 ; pop rb
+  00180280 (36 B) -> 001A5980  not a vtable slot  [1 direct callers: 004680D0]  sub rsp, 0x28 ; call 0x1a9930 ; test rax, rax ; je 0x18029f ; call 0x1a9930 ; mov rcx, rax ; add rsp, 0x28 ; j
+  001802B0 (36 B) -> 001A6CC0  not a vtable slot  [1 direct callers: 002F4520]  sub rsp, 0x28 ; call 0x1a9930 ; test rax, rax ; je 0x1802cf ; call 0x1a9930 ; mov rcx, rax ; add rsp, 0x28 ; j
+  00181610 (30 B) -> 001B1960  not a vtable slot  [3 direct callers: 0024A680 00292390 002CEFD0]  push rbx ; sub rsp, 0x20 ; mov rbx, rcx ; call 0x1b1c00 ; mov rcx, rax ; mov rdx, rbx ; add rsp, 0x20 ; pop rb
+  00186610 (15 B) -> 0062EBC0  not a vtable slot  [0 direct callers]  mov edx, dword ptr [rcx + 0x10] ; mov rcx, qword ptr [rip + 0x1df8f9e] ; jmp 0x62ebc0
+  001A9A70 (45 B) -> 001A7770  not a vtable slot  [1 direct callers: 001C7940]  divss xmm1, dword ptr [rip + 0x7496c0] ; movss xmm0, dword ptr [rcx + 0x484] ; mulss xmm1, dword ptr [rip + 0x
+  001A9AA0 (45 B) -> 001A7770  not a vtable slot  [1 direct callers: 001C7940]  divss xmm1, dword ptr [rip + 0x749690] ; movss xmm0, dword ptr [rcx + 0x480] ; mulss xmm1, dword ptr [rip + 0x
+  001A9AD0 (41 B) -> 001A7770  not a vtable slot  [1 direct callers: 001C7940]  divss xmm1, dword ptr [rip + 0x749660] ; mulss xmm1, dword ptr [rip + 0x1b42170] ; ucomiss xmm1, dword ptr [rc
+  001D6BB0 (44 B) -> 0020BFA0  not a vtable slot  [1 direct callers: 0059A9B0]  mov qword ptr [rsp + 8], rbx ; push rdi ; sub rsp, 0x20 ; movzx ebx, dl ; mov edi, ecx ; call 0x20c700 ; mov r
+  00218980 ( 9 B) -> 002187D0  MusicAudioController slot 7  [0 direct callers]  add rcx, 0x20 ; jmp 0x2187d0
+  00219B10 ( 9 B) -> 002199C0  SepAudioController slot 7  [0 direct callers]  add rcx, 0x20 ; jmp 0x2199c0
+  0021B150 ( 9 B) -> 0021AF80  SebAudioController slot 7  [0 direct callers]  add rcx, 0x20 ; jmp 0x21af80
+  0021C440 ( 9 B) -> 0021C280  ShoutAudioController slot 7  [0 direct callers]  add rcx, 0x20 ; jmp 0x21c280
+  0021D570 ( 9 B) -> 00219D80  MusicAudioController slot 3; ShoutAudioController slot 3; StreamAudioController slot 3  [0 direct callers]  add rcx, 0x20 ; jmp 0x219d80
+  00220CD0 (12 B) -> 002203F0  not a vtable slot  [1 direct callers: 00223AD0]  add rcx, 0x138 ; jmp 0x2203f0
+  00220D30 (12 B) -> 00220550  not a vtable slot  [1 direct callers: 00221D60]  add rcx, 0xa0 ; jmp 0x220550
+  002211A0 (12 B) -> 00219D80  not a vtable slot  [1 direct callers: 00223A20]  add rcx, 0x138 ; jmp 0x219d80
+  00221210 (12 B) -> 00219D80  not a vtable slot  [1 direct callers: 00222280]  add rcx, 0xa0 ; jmp 0x219d80
+  0062EB90 (45 B) -> 00199DB0  not a vtable slot  [5 direct callers: 0062C360 0062C820 0062CC10 00674610 ...]  mov qword ptr [rsp + 0x10], rdx ; sub rsp, 0x38 ; movzx r9d, byte ptr [rsp + 0x50] ; lea rdx, [rsp + 0x20] ; m
+  21 thin wrappers; 5 of them are vtable slots; 21 distinct functions call the 99 through them
+
+== F: 90 allocator-name sites (34 EASTL map, 56 EASTL set), 89 followed to a constructed tree (size dword at tree+0x28 and the anchor self-link stored by the same body) (SWE2-ORACLE)
+  EASTL map 0015D260 @0015D264 tree 01F83250       global 01F83250
+  EASTL map 0016A2C0 @0016A2C4 tree 02EB37B8       global 02EB37B8
+  EASTL map 0019C7C0 @0019C7DD tree rcx@e+0x28     *[01F81150]+0x28
+  EASTL map 001A2130 @001A2297 tree rcx@e+0x268    *[01F81168]+0x268
+  EASTL map 001A2130 @001A24C3 tree rcx@e+0x448    *[01F81168]+0x448
+  EASTL map 001A2130 @001A2516 tree rcx@e+0x490    *[01F81168]+0x490
+  EASTL map 001A2130 @001A2591 tree rcx@e+0x4e8    *[01F81168]+0x4e8
+  EASTL map 001AA9E0 @001AAA00 tree rcx@e+0x8      *[01F811C8]+0x8
+  EASTL map 001ADD30 @001ADD67 tree rcx@e+0x20     *[01F811E8]+0x20
+  EASTL map 001ADD30 @001ADE3D tree rcx@e+0x2200   *[01F811E8]+0x2200
+  EASTL map 001ADD30 @001ADEA0 tree rcx@e+0x2278   *[01F811E8]+0x2278
+  EASTL map 001ADD30 @001ADEFD tree rcx@e+0x22b8   *[01F811E8]+0x22b8
+  EASTL map 001ADD30 @001ADF56 tree rcx@e+0x22f0   *[01F811E8]+0x22f0
+  EASTL map 001B3940 @001B3982 tree rcx@e+0x28     *[01F81200]+0x28
+  EASTL map 001B3940 @001B39D2 tree rcx@e+0x60     *[01F81200]+0x60
+  EASTL map 001B3940 @001B3A22 tree rcx@e+0x98     *[01F81200]+0x98
+  EASTL map 001B9260 @001B928D tree rcx@e+0x10     stack 001BBE00-0x2b8
+  EASTL map 001B9370 @001B938B tree rcx@e+0xb0     *[01F81240]+0xb0
+  EASTL map 001B9370 @001B9421 tree rcx@e+0x1c0    *[01F81240]+0x1c0
+  EASTL map 001B9370 @001B9474 tree rcx@e+0x1f8    *[01F81240]+0x1f8
+  EASTL map 001BC9D0 @001BCA0F tree rcx@e+0x20     *[01F81248]+0x20
+  EASTL map 001BE730 @001BE77F tree rcx@e+0x20     *[01F81258]+0x20
+  EASTL map 001BE730 @001BE7F4 tree rcx@e+0x78     *[01F81258]+0x78
+  EASTL map 001E71B0 @001E721A tree rcx@e+0xf30    *[01F811F8]+0xf30
+  EASTL map 001FB360 @001FB374 tree rcx@e+0x8      *[01F811E8]+0x2240; stack 001B1B10-0x48
+  EASTL map 001FC060 @001FC0D3 tree rcx@e+0x38     object built by 001FC060+0x38
+  EASTL map 001FC060 @001FC123 tree rcx@e+0x70     object built by 001FC060+0x70
+  EASTL map 001FC060 @001FC173 tree rcx@e+0xa8     object built by 001FC060+0xa8
+  EASTL map 001FC420 @001FC487 tree rsp@e-0x98     stack 001FC420-0x98
+  EASTL map 001FF6B0 @001FF6F6 tree -              not followed
+  EASTL map 00200E60 @00201229 tree rsp@e-0x60     stack 00200E60-0x60
+  EASTL map 0020B2E0 @0020B309 tree rcx@e+0x20     *[01F83438]+0x20
+  EASTL map 0021E570 @0021E630 tree rcx@e+0x3a0    *[01FD4138]+0x3a0
+  EASTL map 002235F0 @00223630 tree rcx@e+0x58     [[rcx@e+0x30]+0x20]+0x58 in 0021AF80; stack 0021B350-0x60
+  EASTL set 001997F0 @0019983E tree rcx@e+0x20     *[01F810F8]+0xb0; *[01F81100]+0xb0
+  EASTL set 001997F0 @00199893 tree rcx@e+0x58     *[01F810F8]+0xe8; *[01F81100]+0xe8
+  EASTL set 0019C630 @0019C67D tree rcx@e+0x20     *[01F81150]+0x80
+  EASTL set 0019C630 @0019C6D2 tree rcx@e+0x58     *[01F81150]+0xb8
+  EASTL set 0019D5B0 @0019D5FD tree rcx@e+0x20     *[01F81158]+0x28
+  EASTL set 0019D5B0 @0019D652 tree rcx@e+0x58     *[01F81158]+0x60
+  EASTL set 0019D740 @0019D78D tree rcx@e+0x20     *[01F81158]+0xe8
+  EASTL set 0019D740 @0019D7E2 tree rcx@e+0x58     *[01F81158]+0x120
+  EASTL set 0019F490 @0019F4DD tree rcx@e+0x20     *[01F81160]+0xd8
+  EASTL set 0019F490 @0019F532 tree rcx@e+0x58     *[01F81160]+0x110
+  EASTL set 001A1500 @001A154E tree rcx@e+0x20     *[01F7F4C8]+0x20
+  EASTL set 001A1500 @001A15A3 tree rcx@e+0x58     *[01F7F4C8]+0x58
+  EASTL set 001A2130 @001A220C tree rcx@e+0xe8     *[01F81168]+0xe8
+  EASTL set 001A2130 @001A2412 tree rcx@e+0x3a0    *[01F81168]+0x3a0
+  EASTL set 001ADBA0 @001ADBED tree rcx@e+0x20     *[01F811E8]+0x2160
+  EASTL set 001ADBA0 @001ADC42 tree rcx@e+0x58     *[01F811E8]+0x2198
+  EASTL set 001B3540 @001B358D tree rcx@e+0x20     *[01F81200]+0x1b0
+  EASTL set 001B3540 @001B35E2 tree rcx@e+0x58     *[01F81200]+0x1e8
+  EASTL set 001B36D0 @001B371D tree rcx@e+0x20     *[01F81200]+0xf0
+  EASTL set 001B36D0 @001B3772 tree rcx@e+0x58     *[01F81200]+0x128
+  EASTL set 001B6560 @001B6586 tree rcx@e+0x38     object built by 001B6560+0x38
+  EASTL set 001B6560 @001B65DE tree rcx@e+0x70     object built by 001B6560+0x70
+  EASTL set 001B8E90 @001B8EDD tree rcx@e+0x20     *[01F81240]+0x108
+  EASTL set 001B8E90 @001B8F32 tree rcx@e+0x58     *[01F81240]+0x140
+  EASTL set 001BAA30 @001BABE3 tree rsp@e-0x70     stack 001BAA30-0x70
+  EASTL set 001E1520 @001E155E tree rcx@e+0x20     global 01F82D80
+  EASTL set 001E1520 @001E15B4 tree rcx@e+0x58     global 01F82DB8
+  EASTL set 001E6FD0 @001E701E tree rcx@e+0x20     *[01F811F8]+0xe90
+  EASTL set 001E6FD0 @001E7073 tree rcx@e+0x58     *[01F811F8]+0xec8
+  EASTL set 001F4C50 @001F4C8E tree rcx@e+0x20     global 01F82F30
+  EASTL set 001F4C50 @001F4CE4 tree rcx@e+0x58     global 01F82F68
+  EASTL set 0020B150 @0020B19D tree rcx@e+0x20     *[01F83438]+0xb8
+  EASTL set 0020B150 @0020B1F2 tree rcx@e+0x58     *[01F83438]+0xf0
+  EASTL set 002116B0 @002116FD tree rcx@e+0x20     *[01FD36A8]+0x90
+  EASTL set 002116B0 @00211752 tree rcx@e+0x58     *[01FD36A8]+0xc8
+  EASTL set 00217E10 @00217E4B tree rcx@e+0x20     class MusicAudioController+0x40
+  EASTL set 00217E10 @00217E9B tree rcx@e+0x58     class MusicAudioController+0x78
+  EASTL set 00219300 @0021933B tree rcx@e+0x20     class SepAudioController+0x40
+  EASTL set 00219300 @0021938B tree rcx@e+0x58     class SepAudioController+0x78
+  EASTL set 0021A820 @0021A85B tree rcx@e+0x20     class SebAudioController+0x40
+  EASTL set 0021A820 @0021A8AB tree rcx@e+0x58     class SebAudioController+0x78
+  EASTL set 0021BCB0 @0021BCEB tree rcx@e+0x20     class ShoutAudioController+0x40
+  EASTL set 0021BCB0 @0021BD3B tree rcx@e+0x58     class ShoutAudioController+0x78
+  EASTL set 0021CB10 @0021CB4B tree rcx@e+0x20     class StreamAudioController+0x40
+  EASTL set 0021CB10 @0021CB9B tree rcx@e+0x58     class StreamAudioController+0x78
+  EASTL set 0021E090 @0021E0CB tree rcx@e+0x20     *[01FD4138]+0x158
+  EASTL set 0021E090 @0021E11B tree rcx@e+0x58     *[01FD4138]+0x190
+  EASTL set 0021E190 @0021E1C7 tree rcx@e+0x20     *[01FD4138]+0x28
+  EASTL set 0021E190 @0021E217 tree rcx@e+0x58     *[01FD4138]+0x60
+  EASTL set 0021E280 @0021E2B7 tree rcx@e+0x20     *[01FD4138]+0xc0
+  EASTL set 0021E280 @0021E307 tree rcx@e+0x58     *[01FD4138]+0xf8
+  EASTL set 0021E370 @0021E3AB tree rcx@e+0x20     *[01FD4138]+0x1f0
+  EASTL set 0021E370 @0021E3FB tree rcx@e+0x58     *[01FD4138]+0x228
+  EASTL set 0021E470 @0021E4AB tree rcx@e+0x20     *[01FD4138]+0x288
+  EASTL set 0021E470 @0021E4FB tree rcx@e+0x58     *[01FD4138]+0x2c0
+  EASTL set 0062EB20 @0062EB2D tree rcx@e          this 0062EB20+0x0
+  tags reaching a caller's tree: 75 distinct trees
+
+== the 99, one line each (SWE2-ORACLE)
+0016DA60 member        -    -      -                          tree -              -
+00199DB0 insert-unique I01  0x28   qword unsigned             tree rcx@e          *[01F7F4C8]+0x20 (+79)
+0019CC50 erase         I09  0x30   -                          tree rcx@e+0x28     *[01F81150]+0x28
+001A3220 insert-unique I02  0x28   dword signed               tree rcx@e          this 001A3160+0xb0 (+1)
+001A3380 insert-unique I03  0x38   dword signed               tree rcx@e          this 001A3160+0x490
+001A34F0 insert-hint   I03  0x38   dword signed               tree rcx@e          this 001A3160+0x490
+001A3650 insert-unique I04  0x38   dword signed               tree rcx@e          *[01F81168]+0x268
+001A37C0 insert-hint   I04  0x38   dword signed               tree rcx@e          *[01F81168]+0x268
+001A3930 insert-unique I05  0x28   dword unsigned             tree rcx@e          *[01F81168]+0x3e0
+001A3A90 insert-hint   I05  0x28   dword unsigned             tree rcx@e          *[01F81168]+0x3e0
+001A3BE0 insert-unique I06  0x88   qword unsigned             tree rcx@e          *[01F81168]+0x448 (+1)
+001A3D70 insert-hint   I06  0x88   qword unsigned             tree rcx@e          *[01F81168]+0x448 (+1)
+001A3F10 insert-unique I07  0x40   compare call 001A3100+memcmp tree rcx@e          *[01F81168]+0x3a0
+001A4390 insert-at     I03  0x38   dword signed               tree rcx@e          this 001A3160+0x490
+001A4440 insert-at     I04  0x38   dword signed               tree rcx@e          *[01F81168]+0x268
+001A44F0 insert-at     I05  0x28   dword unsigned             tree rcx@e          *[01F81168]+0x3e0
+001A4590 insert-at     I06  0x88   qword unsigned             tree rcx@e          *[01F81168]+0x448 (+1)
+001A5980 walk          I04  0x38   -                          tree rcx@e+0x268    *[01F81168]+0x268
+001A6CC0 walk          I18  0x30   -                          tree rcx@e+0x4e8    *[01F81168]+0x4e8
+001A7770 walk          I03  -      -                          tree rcx@e+0x490    *[01F81168]+0x490 (+1)
+001A7F10 walk          -    -      compare call memcmp        tree -              -
+001A9ED0 walk          I03  -      -                          tree rcx@e+0x490    *[01F81168]+0x490
+001AB3D0 insert-unique I08  0x48   compare call 001A3100+memcmp tree rcx@e          *[01F811C8]+0x8
+001ACF80 erase         -    0x48   -                          tree rcx@e+0x8      this 001ACF80+0x8
+001AE850 insert-unique I09  0x30   dword unsigned             tree rcx@e          *[01F81150]+0x28 (+6)
+001AE9B0 insert-hint   I09  0x30   dword unsigned             tree rcx@e          *[01F81150]+0x28 (+6)
+001AEB00 insert-unique I10  0x48   dword unsigned             tree rcx@e          global 02EB37B8
+001AEC30 insert-hint   I10  0x48   dword unsigned             tree rcx@e          global 02EB37B8
+001AEF70 insert-at     I10  0x48   dword unsigned             tree rcx@e          global 02EB37B8
+001B1960 erase         I09  0x30   dword unsigned             tree rcx@e+0x2200   *[01F811E8]+0x2200
+001B5B60 erase         I01  0x28   qword unsigned             tree rcx@e+0x1e8    *[01F81200]+0x1e8
+001B67F0 erase         I01  0x28   -                          tree rcx@e+0x70     this 001B67F0+0x70
+001B6990 erase         I01  0x28   qword unsigned             tree rcx@e+0x38     this 001B6990+0x38
+001B6A70 walk          -    0x28   -                          tree rcx@e+0x70     this 001B6A70+0x70
+001B9D80 insert-unique I11  0x28   dword unsigned             tree rcx@e          stack 001BAA30-0x70
+001B9EE0 insert-unique I12  0x58   dword unsigned             tree rcx@e          *(this 001BC190+0x8)+0x10 (+2)
+001BA080 insert-hint   I12  0x58   dword unsigned             tree rcx@e          *(this 001BC190+0x8)+0x10 (+2)
+001BA210 insert-unique I13  0x48   compare call 001A3100+memcmp tree rcx@e          *[01F81240]+0x1c0 (+1)
+001BA3B0 insert-at     I12  0x58   dword unsigned             tree rcx@e          *(this 001BC190+0x8)+0x10 (+2)
+001BA860 erase         I01  0x28   -                          tree rcx@e+0x20     *[01F810F8]+0xb0 (+13)
+001BC190 erase         I18  0x30   dword signed               tree rcx@e+0xb0     *[01F81240]+0xb0
+001BD040 insert-unique I14  0x40   qword unsigned             tree rcx@e          *[01F81248]+0x20
+001BD1B0 insert-hint   I14  0x40   qword unsigned             tree rcx@e          *[01F81248]+0x20
+001BD340 insert-at     I14  0x40   qword unsigned             tree rcx@e          *[01F81248]+0x20
+001BD4A0 erase         I14  -      qword unsigned             tree rcx@e+0x20     *[01F81248]+0x20
+001BDAC0 erase         I14  -      -                          tree rcx@e+0x20     *[01F81248]+0x20
+001BEBB0 insert-unique I15  0x48   compare call 001A3100+memcmp tree rcx@e          *[01F81258]+0x78
+001BED50 insert-unique I16  0x48   compare call 001A3100+memcmp tree rcx@e          *[01F81258]+0x20
+001BF230 walk          I16  -      -                          tree rcx@e+0x20     *[01F81258]+0x20
+001C0960 erase         -    0x48   -                          tree rcx@e+0x20     this 001C0960+0x20
+001E1670 erase         I01  0x28   -                          tree 01F82D80       global 01F82D80
+001E7770 insert-unique I17  0x30   qword unsigned             tree rcx@e          *[01F811F8]+0xf30 (+1)
+001E78D0 insert-hint   I17  0x30   qword unsigned             tree rcx@e          *[01F811F8]+0xf30 (+1)
+001E7C90 insert-at     I17  0x30   qword unsigned             tree rcx@e          *[01F811F8]+0xf30 (+1)
+001E9A30 erase         I17  0x30   -                          tree rcx@e+0xf30    *[01F811F8]+0xf30 (+1)
+001F5B80 erase         I01  0x28   -                          tree rcx@e+0x20     global 01F82F30
+001F8B30 erase         I01  0x28   qword unsigned             tree rcx@e+0x58     global 01F82DB8 (+1)
+001FB470 insert-hint   I18  0x30   dword signed               tree rcx@e          *[01F81168]+0x4e8 (+3)
+001FB5C0 insert-at     I18  0x30   dword signed               tree rcx@e          *[01F81168]+0x4e8 (+3)
+001FB660 walk          -    0x30   -                          tree rcx@e+0x8      this 001FB660+0x8
+001FC890 insert-unique I19  0x28   dword signed               tree rcx@e          ret 001FC420+0x0
+001FC9F0 insert-hint   I19  0x28   dword signed               tree rcx@e          ret 001FC420+0x0
+001FCB40 insert-unique I20  0x60   dword signed               tree rcx@e          this 001FDC10+0x70
+001FCCE0 insert-hint   I20  0x60   dword signed               tree rcx@e          this 001FDC10+0x70
+001FCE80 insert-unique I21  0x48   dword unsigned             tree rcx@e          null+0x38 (+1)
+001FD010 insert-hint   I21  0x48   dword unsigned             tree rcx@e          null+0x38 (+1)
+001FD190 insert-unique I22  0x48   dword unsigned             tree rcx@e          this 001FDB50+0xa8 (+1)
+001FD310 insert-hint   I22  0x48   dword unsigned             tree rcx@e          this 001FDB50+0xa8 (+1)
+001FD4B0 insert-at     I19  0x28   dword signed               tree rcx@e          ret 001FC420+0x0
+001FD550 insert-at     I20  0x60   dword signed               tree rcx@e          this 001FDC10+0x70
+001FD610 insert-at     I21  0x48   dword unsigned             tree rcx@e          null+0x38 (+1)
+001FD6C0 insert-at     I22  0x48   dword unsigned             tree rcx@e          this 001FDB50+0xa8 (+1)
+001FEE80 walk          -    -      -                          tree rdx@e          *(rdx 001FF210+0x8)+0x0
+001FFB30 insert-unique I23  0x50   compare call 001A3100+memcmp tree rcx@e          *(this 001FF6B0+0x8)+0x0 (+1)
+001FFD40 insert-hint   I23  0x50   compare call 001A3100+memcmp tree rcx@e          *(this 001FF6B0+0x8)+0x0 (+1)
+00200090 insert-at     I23  0x50   compare call 001A3100+memcmp tree rcx@e          *(this 001FF6B0+0x8)+0x0 (+1)
+0020B840 erase         I09  0x30   -                          tree rcx@e+0x20     *[01F83438]+0x20
+0020BA70 insert-at     I09  0x30   dword unsigned             tree rcx@e          *[01F81150]+0x28 (+6)
+0020BFA0 erase         I09  0x30   -                          tree rcx@e+0x20     *[01F83438]+0x20
+002124C0 erase         I01  0x28   qword unsigned             tree rcx@e+0x58     *[01F81150]+0xb8 (+14)
+002187D0 erase         I01  0x28   -                          tree rcx@e+0x20     class MusicAudioController+0x40
+002199C0 erase         I01  0x28   -                          tree rcx@e+0x20     class SepAudioController+0x40
+00219D80 erase         I01  0x28   qword unsigned             tree rcx@e+0x58     *[01FD4138]+0x190 (+9)
+0021AF80 erase         I01  0x28   -                          tree rcx@e+0x20     class SebAudioController+0x40
+0021C280 erase         I01  0x28   -                          tree rcx@e+0x20     class ShoutAudioController+0x40
+0021D280 erase         I01  0x28   -                          tree rcx@e+0x20     class StreamAudioController+0x40
+002203F0 erase         I01  0x28   -                          tree rcx@e+0x20     *[01FD4138]+0x158
+002204A0 erase         I01  0x28   -                          tree rcx@e+0x20     *[01FD4138]+0x28
+00220550 erase         I01  0x28   -                          tree rcx@e+0x20     *[01FD4138]+0xc0
+00220600 erase         I01  0x28   -                          tree rcx@e+0x20     *[01FD4138]+0x1f0
+002206B0 erase         I01  0x28   -                          tree rcx@e+0x20     *[01FD4138]+0x288
+00220B80 walk          -    0x30   -                          tree rcx@e+0x3a0    class AudioSeadObjectManager+0x3a0
+00223790 insert-unique I18  0x30   dword signed               tree rcx@e          *[01F81168]+0x4e8 (+3)
+00223A20 walk          -    0x30   -                          tree rcx@e+0x58     class SebAudioBank+0x58 (+6)
+0062EBC0 walk          I01  0x28   -                          tree rcx@e[i*0x38]  *[01F7F5B8]+0x0[i*0x38]+0x0
+0062EC70 erase         I01  0x28   qword unsigned             tree rcx@e[i*0x38]  *[01F7F5B8]+0x0[i*0x38]+0x0
+00676000 insert-unique I24  0x60   compare call 001A1990+memcmp tree rcx@e          global 01F81188 (+1)
+006761F0 insert-hint   I24  0x60   compare call 001A1990+memcmp tree rcx@e          global 01F81188 (+1)
+006763A0 insert-at     I24  0x60   compare call 001A1990+memcmp tree rcx@e          global 01F81188 (+1)
+
+typed (node size + key + value tied to an instantiation): 90 of 98; not tied: 8 (001A7F10 001ACF80 001B6A70 001C0960 001FB660 001FEE80 00220B80 00223A20)
+tree located beyond the body's own this (global / singleton / class / stack / object): 81 of 98
+
+PASS P1 positive control (font page section 3): the .ker writer 001FDC10 -> 001FC9F0 keeps 0x28-byte nodes keyed by a signed dword at node+0x20 with an 8-byte value - read here without being told - instantiation I19
+PASS K1 CONTRADICTS font page section 3 ('flat map', 'r8d never read back'): 001FDC10 spills r8d (record +4) to its home slot, passes that slot's address as the key of 001FC420(font+0x70), which returns node+0x28 of a I20 map (0x60-byte nodes) - and 001FC9F0 inserts into THAT: the writer builds map<i32 rec+4, map<i32 rec+0, i32 rec+8>> - 001FC420 call 001FDC2D, spill 001FDC15, 001FC9F0 call 001FDCA0, ret lea 001FC55C
+PASS K2 the value 001FC420 inserts is an eastl::map: it names a stack tree 'EASTL map', and that tree is the source (rdx) 001FBEF0 copies into the pair's +8 - the same 001FBEF0 the I20 node runs at node+0x28 - tag site 001FC487, tree rsp@e-0x98, copy 001FC4E8
+
+FAILS 0

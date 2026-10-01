@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-commit-tail-entries-terminal.json",
+      "bytes": 903,
+      "sha256": "4340d02f040b28d6a398a0978582f89a967826df7637a3d62d4a38a9630c2fb8"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4552,
+      "sha256": "5dcefacd7f8a5b44cbf444ef3a4581866ac648eb934995db65e5ba2a06f255c2"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 5905,
+      "sha256": "c58945bacea29d96b879ea1cf3fa10e39ef86365505a62cfea5b7c1b1a8cb9ae"
+    },
+    {
+      "path": "consumed-canonical-inputs.json",
+      "bytes": 1530,
+      "sha256": "72279a452d68bddf62dfa5e840c844823d879020a967da94ffa56fc9f9e4290c"
+    },
+    {
+      "path": "FOLLOWUP-PLAN.md",
+      "bytes": 1155,
+      "sha256": "c67b58bf2463f39ad6bf146387391ffb4886491e642b85eb08f1f85bc1c89ced"
+    },
+    {
+      "path": "FOLLOWUP-RESULT.md",
+      "bytes": 1454,
+      "sha256": "38753d233eae72e3a9a11d15f6564ddc0c3b75fd575053b47b1ea97d61fb8175"
+    },
+    {
+      "path": "handoff-header.txt",
+      "bytes": 2305,
+      "sha256": "abc52218d8b809303de1f93fa7127376e936e4b3adead03a1e4b99d336fe81ca"
+    },
+    {
+      "path": "identity-commit-tail-entries.json",
+      "bytes": 3811,
+      "sha256": "00693fe35bd337aa65142e3c19afe1236b5b9601362c096eaf9f0de264a6e898"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 5033,
+      "sha256": "9f11c2a0f9fa194e396cdc7f2492f5a710d6bfe8ff80db806b467ae1601e1b04"
+    },
+    {
+      "path": "prepare-gate-controls-terminal.json",
+      "bytes": 7295,
+      "sha256": "c4691f419b2825e69eba9354193bfc1a8e6de6ebe44ed71201fb960c0ee8fa22"
+    },
+    {
+      "path": "raw-commit-tail-entries.json",
+      "bytes": 6730,
+      "sha256": "8790c5fc2be9a54dcd574bc14d2e476a9611e1eccf9213e1b99f01a2d7f392b5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4269,
+      "sha256": "8edce27b4315346be88a46ee7f7c38848926946c747c5f7cbb14a3a9b7d85f93"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1488,
+      "sha256": "d4d916c3f32d29eecb962c6203e13cf31d550422356c68485a40ea37cbd4698a"
+    },
+    {
+      "path": "retained/an-effect-element-frame-by-frame.md",
+      "bytes": 21727,
+      "sha256": "961173a1ec75b2e5a1b1c2e7dbf5f86acfed1c436e0b4fe4c2b8c68cff643f6f"
+    },
+    {
+      "path": "retained/commit-tail-entries/0045FD00.bin",
+      "bytes": 11,
+      "sha256": "dbcd03f921c0b94145c5f0c4b216855e5f17168f166199450c568860e6f221d9"
+    },
+    {
+      "path": "retained/commit-tail-entries/00529D40.bin",
+      "bytes": 11,
+      "sha256": "46026309844be3fb48c1f748ec9aea15726c306d687c3ace465222a4d16b42c0"
+    },
+    {
+      "path": "retained/commit-tail-entries/0052A8A0.bin",
+      "bytes": 11,
+      "sha256": "5eccb0f6a9c1fbf22c2c5a2105e7f14aff6da763a5db656971d18e1c963cacbd"
+    },
+    {
+      "path": "retained/commit-tail-entries/0052B5D0.bin",
+      "bytes": 11,
+      "sha256": "6ad255d0b59ae2b98b209cd0795b9120e6c3ac3c6f27fe8e5ebb03af0ac92468"
+    },
+    {
+      "path": "retained/commit-tail-entries/extent-parser-source.py",
+      "bytes": 10812,
+      "sha256": "4ff039139b2da694f63b9b7b49e85c805e9cfcd9b29d6c4e4b280d71ffb82ead"
+    },
+    {
+      "path": "retained/commit-tail-entries/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/driver/capture-commit-tail-entries.py",
+      "bytes": 8590,
+      "sha256": "96454d94ddf1a31303775d33b56b914860e5493ed18c9615ff95942383f62ff0"
+    },
+    {
+      "path": "retained/effect-type-methods.tsv",
+      "bytes": 14770,
+      "sha256": "3a9e02643e06a7f2add3ee8922b1b2139762cbc08ef0ac4146ef176241b16da8"
+    },
+    {
+      "path": "retained/nativeleaf-fieldconststore.tsv",
+      "bytes": 278,
+      "sha256": "1056dfa74c1e8070e090273c25927ad88e1d43fc96daa72367d9cc2e5539c8e1"
+    },
+    {
+      "path": "retained/the-element-types-60-74.md",
+      "bytes": 15432,
+      "sha256": "c8355a7d13acf7c38c2265399fd2c8f7f6084f807822323aeedfc8632bbfa510"
+    }
+  ],
+  "limits": "MethodA original entry stores only; existing family consumed, no new classification/execution/live/timing/flag-meaning/lifetime/class closure/L1L2 award. Prior parent remains immutable."
+}

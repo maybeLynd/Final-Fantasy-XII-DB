@@ -1,0 +1,270 @@
+# uq80_manifest.tsv - UQ-80 field manifest: one row per field (or pad span) of each battle_pack.bin table.
+# status: page  = meaning stated on an existing DB page (source = page path under Database/FFXII TZA/)
+#         pass  = meaning derived in the UQ-80 pass (source = PASS); evidence says what supports it
+#         pad   = constant on every shipped row and no reader found; the script re-verifies constancy (value in 'meaning' as const=0xNN)
+#         shape = values tallied, reader known or not, no meaning established -> counted in the residue
+# Bytes not covered by any row are also residue ("unlisted").
+# readers: instruction addresses whose memory operand is this field; ADDR = disp equals the field offset and size equals the
+#          field width; ADDR@D = disp D; ADDR:wN = operand size N; both may combine (ADDR@0:w2). The script decodes each one.
+# Page keys are expanded by the script (see PAGES in uq80_coverage.py).
+table	off	width	status	name	meaning	evidence	readers	source
+chr_data	0x00	4	page	forbiddenEquipClassMask	the character's equipment-class mask; a SET bit forbids the class (EQ-5); 0 on all 40 us rows	STATIC	00317AD1	EQC
+chr_data	0x04	3	pass	specialSequenceIds	three u8 ids BattleSpecialSequence_BuildRandomizedCandidateActions copies into its candidate list (row[+4+i]); on party rows 0-5 they are the character's three Quickening action rows 208-225 (action +0x22 = 0xC000+k); rows 27-39 carry two values in 160-185, whose id space is not established	both	002F89F8:w1,002F8B0C:w1,002F8B4F:w1	PASS
+chr_data	0x07	1	shape	kindByte	0 on rows 0-25, 1-13 on the esper rows 27-39, 14 on row 26; returned by 0031B8E0 (ASR 13c calls the function KIND), meaning not established	STATIC	0031B934	PASS
+chr_data	0x08	1	shape	b08	18 on 39 rows, 36 on one; no reader in the slot-loading functions	DATA		PASS
+chr_data	0x09	1	shape	b09	2 on all 40 rows (constant, not zero); no reader	DATA		PASS
+chr_data	0x0A	2	page	startEquip0	starting equipment word 1 of 5	STATIC	0023AE8C	UDEF
+chr_data	0x0C	2	page	startEquip1	starting equipment word 2 of 5	STATIC	0023AE9E	UDEF
+chr_data	0x0E	2	page	startEquip2	starting equipment word 3 of 5	STATIC	0023AEB2	UDEF
+chr_data	0x10	2	page	startEquip3	starting equipment word 4 of 5	STATIC	0023AEC6	UDEF
+chr_data	0x12	2	page	startEquip4	starting equipment word 5 of 5	STATIC	0023AEDA	UDEF
+chr_data	0x14	2	page	gambitPreset	the character's default gambit preset id (0x5000+row)	STATIC	0023AEEE,00235C4E,00235C91,00328CA3	UDEF
+chr_data	0x16	2	page	baseHp	base HP word -> stats +0x08	STATIC	0030C4F9	UDEF
+chr_data	0x18	1	pass	hpMultiplierMinus1	HP scale term: the rebuild computes stats+8 x (b18+1) x b19 / 100 through 002F8E50; 0 on 27 rows, 1-3 on the 13 esper rows	STATIC	002FF06F	PASS
+chr_data	0x19	1	pass	hpPercent	HP percent (132-160) in the same 002F8E50 product	STATIC	002FF074	PASS
+chr_data	0x1A	2	page	baseMp	base MP word -> stats +0x0C	STATIC	0030C503	UDEF
+chr_data	0x1C	1	pad	pad1C	const=0x00			PASS
+chr_data	0x1D	1	pass	mpPercent	MP percent: the rebuild computes stats+0x0C x b1D / 100 through 002F9180	STATIC	002FF080	PASS
+chr_data	0x1E	1	page	attr0Base	core attribute 1 base -> stats +0x10 (float)	STATIC	0030C50B	UDEF
+chr_data	0x1F	1	page	attr0Growth	core attribute 1 growth byte	STATIC	0030C757	UDEF
+chr_data	0x20	1	pad	pad20	const=0x00			PASS
+chr_data	0x21	1	page	attr1Base	core attribute 2 base -> stats +0x14	STATIC	0030C51B	UDEF
+chr_data	0x22	1	page	attr1Growth	core attribute 2 growth byte	STATIC	0030C768	UDEF
+chr_data	0x23	1	pad	pad23	const=0x00			PASS
+chr_data	0x24	1	page	attr2Base	core attribute 3 base -> stats +0x18	STATIC	0030C52B	UDEF
+chr_data	0x25	1	page	attr2Growth	core attribute 3 growth byte	STATIC	0030C77E	UDEF
+chr_data	0x26	1	pad	pad26	const=0x00			PASS
+chr_data	0x27	1	page	attr3Base	core attribute 4 base -> stats +0x1C	STATIC	0030C53B	UDEF
+chr_data	0x28	1	page	attr3Growth	core attribute 4 growth byte	STATIC	0030C794	UDEF
+chr_data	0x29	1	pad	pad29	const=0x00			PASS
+chr_data	0x2A	1	page	innateEvade	innate evade 0-100 -> stats +0x31 (0 on all 40 us rows)	STATIC	002FF095	BSR
+chr_data	0x2B	1	pass	perceptionRange	copied to unit +0x68 as a float (and x1.5 to +0x6C) at build (UDEF 2.3); the battle-unit field map names unit +0x68 perceptionRangeThreshold, compared against a distance by the perception rebuild (00324992); 13 x26, 20 x13, 30 x1	STATIC	0023AB5F	PASS
+chr_data	0x2C	1	page	flags2C	flag byte; bit 6 -> stats flag bit 2, which sends the unit to gambit set C (0023AF22; gambit-set page UQ-123); bits 3-4 are a 2-bit selector read by 00317480 (003174D9), not derived	STATIC	0023AF22,003174D9	UDEF
+chr_data	0x2D	1	shape	b2D	0xFF on all 40 rows (constant); no reader	DATA		PASS
+chr_data	0x2E	1	page	startLevel	starting level	STATIC	0023AD7B,00317600	UDEF
+chr_data	0x2F	1	pad	pad2F	const=0x00			PASS
+chr_data	0x30	2	page	nameWord	name word, bank = w>>11 (bank 8)	STATIC	0023AB03,0023AB3E,0031C6B1,0031C6EC,0032958E,003295CC,00536388	UDEF
+chr_data	0x32	1	shape	b32	250 on the 13 esper rows, 0 elsewhere; 002FA0E0 returns it to BattleAction_UpdateSpecialPresentationSequence (00306995), which stores it as a float at state +0x5AD8/+0x5ADC; what those hold is not read	STATIC	002FA120	PASS
+chr_data	0x33	1	pad	pad33	const=0x00			PASS
+chr_data	0x34	10	pass	grantCounts	ten u8 counts, paired with the ten item words at +0x58: DefinitionRuntime_ActivateAndApplyConfiguredSideEffects grants Inventory_GrantEncodedLootItem(item[i], count[i], 0) for each i with item != 0xFFFF and count != 0	STATIC	00316FF9@0x34:w1	PASS
+chr_data	0x3E	2	pass	grantGil	gil added on the same activation through GameState_AddGilClampedAndNotify (00317034) when non-zero	STATIC	0031701B	PASS
+chr_data	0x40	4	pad	pad40	const=0x00			PASS
+chr_data	0x44	2	page	startLp	starting LP	STATIC	0023AE04,00317619	UDEF
+chr_data	0x46	1	page	licenceRankFloor	floor of stats +0x20 = max(row.b46, licence rank)	STATIC	0030C54B,0030C557	UDEF
+chr_data	0x47	1	page	startMpPercent	starting MP percentage	STATIC	0030C5E1	UDEF
+chr_data	0x48	4	pass	innateStatusMask	ORed into stats +0x3C, status word 2 (presence = +0x3C or +0x64), by the stat rebuild (002FF0D6 / 002FF0D9)	STATIC	002FF0D6	PASS
+chr_data	0x4C	4	pass	refusedStatusMask	ORed into stats +0x38, status word 3 (a set bit refuses that status), by the stat rebuild (002FF0A3 / 002FF0D3); 0x8801FFFE on the 13 esper rows	STATIC	002FF0A3	PASS
+chr_data	0x50	4	page	autoStatusLo	auto-status desired bits 0-31	STATIC	0030FF6C	AUTO
+chr_data	0x54	4	page	autoStatusHi	auto-status desired bits 32-63	STATIC	0030FFD4	AUTO
+chr_data	0x58	20	pass	grantItems	ten u16 item ids (0xFFFF = none): granted with the counts at +0x34 on activation (00316FF0), and the only item ids an item action may use for this row (BattleAction_CheckDefinitionCategoryAvailability compares action +0x22 against the ten words, 003062C0-003062D2, else reason 0xF)	STATIC	00316FF0@0:w2,003062C0@0:w2	PASS
+chr_data	0x6C	4	pad	pad6C	const=0x00			PASS
+chr_data	0x70	4	pass	definitionKey	the definition (model) key 0031C2F0 returns for a party-class id (0031C450); the party read-in machine compares and loads it through 0031C250 -> 002EB7A0	STATIC	0031C450	PASS
+chr_data	0x74	1	shape	b74	6 x26, 12 x14; no reader	DATA		PASS
+chr_data	0x75	1	pad	pad75	const=0x00			PASS
+chr_data	0x76	1	shape	b76	6 on all 40 rows (constant, not zero); no reader	DATA		PASS
+chr_data	0x77	1	pad	pad77	const=0x00			PASS
+chr_data	0x78	1	shape	b78	18 x26, 30 x13, 24 x1; no reader	DATA		PASS
+chr_data	0x79	1	pad	pad79	const=0x00			PASS
+chr_data	0x7A	1	shape	b7A	88 x26, 48 x13, 136 x1; no reader	DATA		PASS
+chr_data	0x7B	1	shape	b7B	2 x26, 117 x13, 19 x1; no reader	DATA		PASS
+chr_data	0x7C	1	shape	b7C	0 x24, 10 x16; no reader	DATA		PASS
+chr_data	0x7D	3	pad	pad7D	const=0x00			PASS
+dougu_data	0x00	1	pass	sortKey	list sort key -> query +0x30; the item-list comparators (002D01A0, 002CFFE0) subtract query +0x30 of two ids and fall back to id order; 0xFF on the 13 unused rows	STATIC	0031C845	PASS
+dougu_data	0x01	3	pad	pad01	const=0x00			PASS
+dougu_data	0x04	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031C83E	BAZ
+dougu_data	0x05	2	pad	pad05	const=0x00			PASS
+dougu_data	0x07	1	pass	actionRow	the item's action row -> query +0x38: action[+7].+0x22 == item row and .+0x34 == this row's name word on 64/64 rows	both	0031C821	PASS
+dougu_data	0x08	2	page	nameWord	name word (bank 0)	STATIC	0031C7B7,0031C7F5	EID
+dougu_data	0x0A	2	pass	price	unit price in gil -> query +0x28, which the shop list filler takes as the buy price and halves for the sale price (0057DFD0 / 0057DFDB); Potion 60, Hi-Potion 180	both	0031C81A	PASS
+eventitem_data	0x00	2	pass	price	price in gil -> query +0x28 (the shop filler's price slot)	STATIC	0031CBE0	PASS
+eventitem_data	0x02	2	pass	descriptionId	description string id -> 002F9860 -> query +0x10	STATIC	0031CBE7	PASS
+eventitem_data	0x04	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031CBFA	BAZ
+eventitem_data	0x05	1	pad	pad05	const=0x00			PASS
+eventitem_data	0x06	2	page	nameWord	name word (bank 11)	STATIC	0031CB79,0031CBC1	EID
+eventitem_data	0x08	2	pass	sortKey	list sort key -> query +0x30 (512 distinct values in 512 rows)	STATIC	0031CC01	PASS
+maho_data	0x00	2	pass	price	price in gil -> query +0x28	STATIC	0031CD50	PASS
+maho_data	0x02	1	pass	actionRow	the magick's action row: action[+2].+0x22 == 0x3000+row, .+0x34 == name word, .+0x1E == 1 on 81/81; read by the discovery flags (003008A0), the usable test (00306340 -> 003064F0) and query +0x38	both	0031CD65,0031CDB5,00300ABD,00300B27,00306457	PASS
+maho_data	0x03	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031CD57	BAZ
+maho_data	0x04	2	page	nameWord	name word (bank 0)	STATIC	0031CCE3,0031CD2B	EID
+maho_data	0x06	1	pass	sortKey	list sort key -> query +0x30 (81 distinct)	STATIC	0031CD5E	PASS
+maho_data	0x07	1	pad	pad07	const=0x00			PASS
+waza_data	0x00	2	pass	price	price in gil -> query +0x28	STATIC	0031CEEF	PASS
+waza_data	0x02	1	pass	actionRow	the technick's action row: action[+2].+0x22 == 0x4000+row, .+0x34 == name word, .+0x1E == 2 on 24/24	both	0031CF04,00306457	PASS
+waza_data	0x03	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031CEF6	BAZ
+waza_data	0x04	2	page	nameWord	name word (bank 0)	STATIC	0031CE89,0031CECA	EID
+waza_data	0x06	1	pass	sortKey	list sort key -> query +0x30 (24 distinct)	STATIC	0031CEFD	PASS
+waza_data	0x07	1	pad	pad07	const=0x00			PASS
+gambit_data	0x00	24	page	conditions	u16 condition[12], gambit target-condition ids, 0xFFFF = empty	STATIC	00327D45@0:w2	GAMB
+gambit_data	0x18	8	pad	zero18	const=0x00			GAMB
+gambit_data	0x20	24	page	actions	u16 action[12], action rows, 0xFFFF = empty	STATIC	00327D4F@0x20:w2,00327D5F@0x20:w2	GAMB
+gambit_data	0x38	8	pad	zero38	const=0x00			GAMB
+m_daiji	0x00	2	shape	w00	0-47 (equal to the row index on 48 rows, 0 on 16); no reader in the slot-loading functions	DATA		PASS
+m_daiji	0x02	2	pass	sortKey	list sort key -> query +0x30 (64 distinct)	STATIC	0031D631	PASS
+m_daiji	0x04	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031D26B	BAZ
+m_daiji	0x05	1	pad	pad05	const=0x00			PASS
+m_daiji	0x06	2	pass	descriptionId	description string id -> 002F9860 -> query +0x10	STATIC	0031D218	PASS
+m_daiji	0x08	2	page	nameWord	name word (bank 12)	STATIC	0031D172,0031D1B6	EID
+g_daiji	0x00	2	shape	w00	64-91 (0 on 4 rows); no reader in the slot-loading functions	DATA		PASS
+g_daiji	0x02	2	pass	sortKey	list sort key -> query +0x30 (32 distinct)	STATIC	0031D631	PASS
+g_daiji	0x04	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031D425	BAZ
+g_daiji	0x05	1	pad	pad05	const=0x00			PASS
+g_daiji	0x06	2	pass	descriptionId	description string id -> 002F9860 -> query +0x10	STATIC	0031D3CE	PASS
+g_daiji	0x08	2	page	nameWord	name word (bank 12)	STATIC	0031D320,0031D368	EID
+q_daiji	0x00	2	shape	w00	96 and up (0 on 297 of 416 rows); no reader in the slot-loading functions	DATA		PASS
+q_daiji	0x02	2	pass	sortKey	list sort key -> query +0x30 (416 distinct)	STATIC	0031D631	PASS
+q_daiji	0x04	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031D5E8	BAZ
+q_daiji	0x05	1	pad	pad05	const=0x00			PASS
+q_daiji	0x06	2	pass	descriptionId	description string id -> 002F9860 -> query +0x10	STATIC	0031D591	PASS
+q_daiji	0x08	2	page	nameWord	name word (bank 12)	STATIC	0031D4E3,0031D52B	EID
+eis_data	0x00	4	page	gil	u32 gil	STATIC	002FD5A9,0031D6C5	EID
+eis_data	0x04	2	page	itemA	item A	STATIC	002FD5D8,0031D6CA	EID
+eis_data	0x06	2	page	countA	count A	STATIC	002FD5EB,0031D6D2	EID
+eis_data	0x08	2	page	itemB	item B	STATIC	002FD604,0031D6DA	EID
+eis_data	0x0A	2	page	countB	count B	STATIC	002FD612,0031D6E2	EID
+questreward_data	0x00	6	page	triple1	first triple of u16 ids (flags & 2 clear)	STATIC	002FD6C0@0:w2,0031D759@0:w2	EID
+questreward_data	0x06	6	page	triple2	second triple of u16 ids (flags & 2 set)	STATIC	002FD704@6:w2,0031D777@6:w2	EID
+price_data	0x00	4	pass	priceSlotValue	u32 copied to the class-16 query's +0x28, the slot the shop list filler reads as the unit price (0057DFD0); no other reader; whether a class-16 id reaches a shop list is not shown	STATIC	0031D7F2	PASS
+menkyo_data	0x00	2	page	nameWord	name word (bank 0, 0xD0 onward)	STATIC	0031D86B,0031D8AE	EID
+menkyo_data	0x02	2	pass	usableTestAction	action id 00306340 hands to 003064F0, the usable test (003060E0 and BattleStats_HasRequiredLicenseForAction 00323EC0); rows hold 265-296	STATIC	003063C1	PASS
+menkyo_data	0x04	1	shape	b04	a permutation of 0-31 (32 distinct), equal to the row index on 25 rows; no reader	DATA		PASS
+menkyo_data	0x05	3	pad	pad05	const=0x00			PASS
+horidashi	0x00	2	page	nameRef	name reference, bank 9	STATIC	0031D9BF,0031DA06	BAZ
+horidashi	0x02	2	page	descId	description string id (0x55F0 + row)	STATIC	0031DA25	BAZ
+horidashi	0x04	2	page	giveA	granted item 1	STATIC	002FD7FE,0031DA39	BAZ
+horidashi	0x06	1	page	giveACount	granted item 1 count	STATIC	002FD7F2,0031DA41	BAZ
+horidashi	0x07	1	pad	pad07	const=0x00			PASS
+horidashi	0x08	2	page	giveB	granted item 2	STATIC	002FD822,0031DA49	BAZ
+horidashi	0x0A	1	page	giveBCount	granted item 2 count	STATIC	002FD81A,0031DA51	BAZ
+horidashi	0x0B	1	pad	pad0B	const=0x00			PASS
+horidashi	0x0C	2	page	giveC	granted item 3	STATIC	002FD846,0031DA59	BAZ
+horidashi	0x0E	1	page	giveCCount	granted item 3 count	STATIC	002FD83E,0031DA61	BAZ
+horidashi	0x0F	1	pad	pad0F	const=0x00			PASS
+horidashi	0x10	4	page	priceGil	price in gil	STATIC	0031DA1F	BAZ
+horidashi	0x14	2	page	flags	bit 0 repeatable, bit 1 script-settable availability	STATIC	0030B33F:w1,0030B5F6:w1	BAZ
+horidashi	0x16	2	page	needA	required loot 1	STATIC	0030B20C,0030B375	BAZ
+horidashi	0x18	1	page	needASold	sold count loot 1 needs	STATIC	0030B35F,0030B3D4	BAZ
+horidashi	0x19	1	pad	pad19	const=0x00			PASS
+horidashi	0x1A	2	page	needB	required loot 2	STATIC	0030B225,0030B3E0	BAZ
+horidashi	0x1C	1	page	needBSold	sold count loot 2 needs	STATIC	0030B365,0030B446	BAZ
+horidashi	0x1D	1	pad	pad1D	const=0x00			PASS
+horidashi	0x1E	2	page	needC	required loot 3	STATIC	0030B240,0030B44E	BAZ
+horidashi	0x20	1	page	needCSold	sold count loot 3 needs	STATIC	0030B36B,0030B459	BAZ
+horidashi	0x21	1	pad	pad21	const=0x00			PASS
+horidashi	0x22	2	page	icon	icon frame, 120 on every row (UQ-130)	STATIC	0031DA32	BAZ
+comac_data	0x00	2	pass	textId	a text id -> 002F9860 -> query +0x08 (the command's second text pointer)	STATIC	0031DCE4	PASS
+comac_data	0x02	2	page	nameWord	name word (bank 4)	STATIC	0031DC54,0031DC8F	EID
+mgccategory_data	0x00	2	pass	textId	a text id -> 002F9860 -> query +0x08 (shared tail 0031DCE4)	STATIC	0031DCE4	PASS
+mgccategory_data	0x02	2	page	nameWord	name word (bank 4)	STATIC	0031DE15,0031DE50	EID
+license_data	0x00	2	page	nameWord	name word (bank 3)	STATIC	0031DF56,0031DF90	EID
+license_data	0x02	2	pass	descriptionId	description text id -> 002F9860 -> query +0x10 (0031DFAB); the licence-board view uses query +0x10 as the square's text (LBV 3b states it in query-record terms)	STATIC	0031DFAB	PASS
+license_data	0x04	1	pass	lpCost	LP cost: -> query +0x20, which LBV 3b names the LP cost; the purchase deducts it from stats +0x190 (003239C3) and the acquire check returns reason 2 when it exceeds +0x190 (00323E0F)	STATIC	0031DEFB,00323852,003239C3,00323E0F	PASS
+license_data	0x05	1	page	category	category byte -> requirement kind via 00323890	STATIC	0031DF02,002F9045,00310192,00323E88	LCHK
+license_data	0x06	1	pass	kind	square kind -> query +0x22, which LBV 3b decodes as 2 Quickening, 3 Esper, else ordinary; the acquire check switches on it (00323DF0: 0 / 1 / 2 / 3 arms); 0 x330, 2 x18, 3 x13	STATIC	0031DF09,0031DFB8,00323DF0	PASS
+license_data	0x07	1	page	startOwnedMask	one bit per character: owned from the start	STATIC	00239D41,0023AE68,0031E0E9	UDEF
+license_data	0x08	16	page	grants	u16 id[8], what the node grants; +0x10-+0x17 are 0xFFFF on all rows	STATIC	00323B57@8:w2,0031DFF9@8:w2,0031E031@0x16:w2	LCHK
+attribute_data	0x00	2	page	nameWord	name word (bank 4)	STATIC	0031E34F,0031E389	EID
+sobicategory_data	0x00	2	pass	descriptionId	description string id -> 002F9860 -> query +0x10 (shared tail 0031E56A); 0 on all 32 us rows	STATIC	0031E56A	PASS
+sobicategory_data	0x02	2	page	nameWord	name word (bank 4)	STATIC	0031E3EC,0031E427	EID
+ability_data	0x00	2	pass	descriptionId	description string id -> 002F9860 -> query +0x10 (0031E56A); 0 on the 92 NOT USED rows	STATIC	0031E56A	PASS
+ability_data	0x02	2	page	nameWord	name word (bank 10)	STATIC	0031E4DA,0031E515	TEXT
+ability_data	0x04	2	page	amount	the augment's amount word (summed per id by the MP-cost and attack paths); +0x05 is its high byte (1 on the 6 rows whose amount is 256 or more)	STATIC	002F96E5,002F973D,002F978F	MP
+ability_data	0x06	1	pass	timerSlot	index 0-7 of the stats record's timer array +0x17C (0xFF = none): 0030EA9D bounds it by 7 and stores the timer at +0x17C + 2*b06; 00385619 and 0039001D read the same slot; 3 rows carry 3/4/5	STATIC	0030EA9D,0030EAB5,00385619,0039001D	PASS
+ability_data	0x07	1	pad	pad07	const=0x00			PASS
+eitm_data	0x00	2	pad	pad00	const=0x00			PASS
+eitm_data	0x02	2	page	nameWord	name word (bank 1)	STATIC	0031C911,0031C959	EID
+eitm_data	0x04	1	page	icon	icon frame -> query +0x2C (UQ-130)	STATIC	0031C9C4	BAZ
+eitm_data	0x05	1	pad	pad05	const=0x00			PASS
+eitm_data	0x06	1	shape	b06	75 distinct 0-150; read by 002F7A10 (002F7C3C, 002F7C41), not derived	STATIC	002F7C3C,002F7C41	PASS
+eitm_data	0x07	1	page	flags	bit 4 needs no License; bit 1 -> query +0x54 bit 0; bits 5-7 -> query +0x4C, the slot group	STATIC	00317A18,0031CA3C,0031CA4A	LCHK
+eitm_data	0x08	1	pass	sortKey	list sort key -> query +0x30; the equipment comparator 002CFDA0 orders by query +0x38 (the class) and then +0x30	STATIC	0031C9CB	PASS
+eitm_data	0x09	1	page	equipClass	equipment class 0-26	STATIC	0031C9BD,00317A2C	IIE
+eitm_data	0x0A	4	pad	pad0A	const=0x00			PASS
+eitm_data	0x0E	2	pass	descriptionId	description string id -> 002F9860 -> query +0x08; 0 on all 557 us rows	STATIC	0031C9B0	PASS
+eitm_data	0x10	1	shape	b10	0/1/2/3/5; read by 002F9C00 five times, not derived	STATIC	002F9CDA	PASS
+eitm_data	0x11	1	page	offHandClass	class the off-hand item must carry; -1 none	STATIC	00317A7B,002F7F76	IIE
+eitm_data	0x12	2	pass	price	price in gil -> query +0x28 (0031C981)	STATIC	0031C981	PASS
+eitm_data	0x14	4	pad	pad14	const=0x00			PASS
+eitm_data	0x18	1	page	b18	weapon reach (with action +0x0C bit 26); subtype-dependent byte	STATIC	0030938B,0031CA6F	CLOSE
+eitm_data	0x19	1	page	b19	weapon damage recipe id; magick evade on a kind-2 (shield) row	STATIC	003861FD,002FF486	IIE
+eitm_data	0x1A	1	page	autoStatusId	status granted while equipped, kind 3 only; 0xFF none	STATIC	003100EF,0031CA7D	TYPES
+eitm_data	0x1B	1	shape	b1B	0 x346, 10 x209, 15 x2; read by 00388350, not derived	STATIC	00388409	PASS
+eitm_data	0x1C	1	shape	b1C	22 distinct 0-100; read by 00388550 / 00389140, not derived	STATIC	003885C2	PASS
+eitm_data	0x1D	1	shape	b1D	30 distinct 0-75; read by the stat rebuild (002FF4A0), not derived	STATIC	002FF4A0	PASS
+eitm_data	0x1E	1	shape	b1E	9 distinct flag-like values; kind-1 rows copy it to query +0x60 (0031CAA7); read by 13 formula sites, not derived	STATIC	0031CAA7	PASS
+eitm_data	0x1F	1	page	b1F	the weapon's percent-gate byte loaded at 0038FB44	STATIC	0038FB44	ATK
+eitm_data	0x20	4	shape	d20	sparse bit masks; kind-1 rows copy it to query +0x5C (0031CAAE); read by 00384C30 (00384DB2), not derived	STATIC	0031CAAE,00384DB2	PASS
+eitm_data	0x24	1	shape	b24	0 x448, 3/5/10/7/8; no reader	DATA		PASS
+eitm_data	0x25	1	shape	b25	0-5; 00320F47 compares it with 2, not derived	STATIC	00320F47	PASS
+eitm_data	0x26	1	page	weaponCategory	category byte -> the weapon-class map 02EBF180	STATIC	0032041E	REG
+eitm_data	0x27	1	shape	b27	21 distinct 0-99; read by BattleAction_ComputeChargeLimitTicks (002F851A), not derived	STATIC	002F851A	PASS
+eitm_data	0x28	4	page	subrecordHandle	handle of the per-item sub-record, rebased at load (00238225)	STATIC	00238225,0031C9D2	VBF
+eitm_data	0x2C	2	shape	w2C	48 distinct low bytes, high byte 0/0x80; read by 0030AC50 (0030AD56), not derived	STATIC	0030AD56	PASS
+eitm_data	0x2E	2	pad	pad2E	const=0x00			PASS
+eitm_data	0x30	4	shape	d30	241 distinct low bytes; read by 002EE430 and 0031BF60, not derived	STATIC	002EE69C,0031BFE0	PASS
+status_data	0x00	2	page	nameWord	name word 0x2800 + id (bank 5)	STATIC	0031E1D4,0031E20E	TYPES
+status_data	0x02	1	page	listOrderKey4	order key of status listing 4 (0xFF = excluded)	STATIC	0031E248	TYPES
+status_data	0x03	3	pad	reservedZero03	const=0x00			TYPES
+status_data	0x06	2	page	classWord	class word; bit 13 = harmful	STATIC	00237D28,0031E295	TYPES
+status_data	0x08	1	page	baseDuration	base duration, 0xFF never expires	STATIC	00386EE0,0038FE64	TYPES
+status_data	0x09	1	page	durationUnit	beat / duration unit	STATIC	00386E76,00387714	TYPES
+status_data	0x0A	2	page	effectPoolKey	0x2EE0 + id	STATIC	0031E288	TYPES
+status_data	0x0C	4	page	clearMask	statuses this one clears	STATIC	0030E68A	TYPES
+status_data	0x10	1	page	listOrderKey0	order key of status listing 0	STATIC	0031E22C	TYPES
+status_data	0x11	1	shape	b11	0xFF or 27-31 (list-key-shaped); no reader	DATA		PASS
+status_data	0x12	1	shape	b12	0xFF on 31 rows, 31 on one; no reader	DATA		PASS
+status_data	0x13	1	page	listOrderKey3	order key of status listing 3	STATIC	0031E241	TYPES
+status_data	0x14	1	shape	b14	0xFF or 28-31; no reader	DATA		PASS
+status_data	0x15	1	shape	b15	0xFF or 29-31; no reader	DATA		PASS
+status_data	0x16	1	shape	b16	0xFF or 28-31; no reader	DATA		PASS
+status_data	0x17	1	shape	b17	0xFF or 25-31; no reader	DATA		PASS
+status_data	0x18	1	shape	b18	0xFF or 29-31; no reader	DATA		PASS
+status_data	0x19	1	shape	b19	0xFF or 28-31; no reader	DATA		PASS
+status_data	0x1A	1	shape	b1A	0xFF or 27-31; no reader	DATA		PASS
+status_data	0x1B	1	shape	b1B	0xFF on 31 rows, 31 on one; no reader	DATA		PASS
+status_data	0x1C	1	shape	b1C	0xFF or 29-31; no reader	DATA		PASS
+status_data	0x1D	1	shape	b1D	0xFF or 30-31; no reader	DATA		PASS
+status_data	0x1E	1	shape	b1E	0xFF on all 32 rows; no reader	DATA		PASS
+status_data	0x1F	1	shape	b1F	0xFF on all 32 rows; no reader	DATA		PASS
+status_data	0x20	4	page	blockingMask	statuses that block this one	STATIC	00387E5D,0038FE0D,003909DC	TYPES
+status_data	0x24	1	page	specialHandlingFlags	four flag bits fanned into the applied record +0x25	STATIC	0031E2A5	TYPES
+status_data	0x25	1	pad	reservedZero25	const=0x00			TYPES
+status_data	0x26	1	page	listOrderKey1	order key of status listing 1	STATIC	0031E233	TYPES
+status_data	0x27	1	page	listOrderKey2	order key of status listing 2	STATIC	0031E23A	TYPES
+action_data	0x00	2	page	helpId	help-text string id (4000 = none), by the id scheme	DATA	0031DBB1	ACT
+action_data	0x02	2	page	rangeBands	near / middle range-band components (tenths)	STATIC		ACT
+action_data	0x04	1	shape	b04	percent-shaped byte; page: reader not found (hop census 00388BE6)	STATIC	00388BE6	ACT
+action_data	0x05	1	page	reach	reach in tenths	STATIC	0038503B	ACT
+action_data	0x06	1	page	areaRadius	area radius	STATIC	0030C1C6,0030D20E	ACT
+action_data	0x07	1	page	coneOrWidth	cone half-angle / line half-width	STATIC	0030D2EC	ACT
+action_data	0x08	1	page	recipe	recipe index	STATIC	0038617E	ACT
+action_data	0x09	1	page	chargeClass	charge-time class	STATIC	002F8586	ACT
+action_data	0x0A	2	shape	w0A	a small count the menus read; what it counts is not fixed (page)	STATIC	002F962B:w1	ACT
+action_data	0x0C	4	page	flags	the action flags word	STATIC	002F8494	ACT
+action_data	0x10	1	page	power	action power	STATIC	00389EAE	ACT
+action_data	0x11	1	page	power2	second power byte	STATIC	00388CAB	ACT
+action_data	0x12	1	page	hitThreshold	hit threshold	STATIC	00389089	ACT
+action_data	0x13	1	page	elementFlags	element / affinity flags	STATIC	0038B0CD	ACT
+action_data	0x14	1	page	statusChance	on-hit status chance	STATIC	0038F9B0	ACT
+action_data	0x15	3	pad	pad15	const=0x00			ACT
+action_data	0x18	4	page	statusMask	authored status mask	STATIC	00384E3B	ACT
+action_data	0x1C	1	pass	category	the action category 0..9: BattleAction_SelectPhasePresentationEvent 0030A370 reads it (0030A37F) and indexes its three-event table 01EEC1F0 with it (0 -> 0x203D attack, 1 -> 0x2009/0x200A magic, 2 -> 0x200B item, 3/6 -> 0x2031/0x2032 ability, 5 -> 0x2033 steal); also read by 0030BBCD (FABLE 2026-09-27, _index/candidates/bt4-event-motion-slots/)	STATIC	0030BBCD	PASS
+action_data	0x1D	1	shape	b1D	shape only (page)	DATA		ACT
+action_data	0x1E	1	page	category	category; selects what +0x22 holds	STATIC	00237770	ACT
+action_data	0x1F	3	shape	b1F	shape only (page)	DATA		ACT
+action_data	0x22	2	page	classId	an id whose space +0x1E names	STATIC	003062B8	ACT
+action_data	0x24	2	page	attachedEffect	attached-effect id	STATIC	0031105A	ACT
+action_data	0x26	1	page	esperRow	the Esper's party-table row	STATIC		ACT
+action_data	0x27	1	pad	pad27	const=0x00			PASS
+action_data	0x28	1	shape	b28	a per-attack index 120-153; page: reader not found	DATA		ACT
+action_data	0x29	3	pad	pad29	const=0x00			PASS
+action_data	0x2C	1	page	element	bits 0-2 the element	STATIC	002377FF	ACT
+action_data	0x2D	1	page	flags2D	flags; bit 5 = needs no License	STATIC		ACT
+action_data	0x2E	2	page	descriptionId	description string id	STATIC	0031DBBE	ACT
+action_data	0x30	2	pass	presentationEvent	the action's own presentation event in phases 9-11: 0030A370 reads [row+0x30] as a dword (0030A457, 0030A46A) and returns it when non-zero (and for ids 0xD0-0xE1 in world state 5/6); a kind-0 event above the priority table naming the per-character motion pack c<char>_<set>_<value>.ca (c1004 ships _3000.._3002) (FABLE 2026-09-27, _index/candidates/bt4-event-motion-slots/)	STATIC		PASS
+action_data	0x32	2	pad	pad32	const=0x00			PASS
+action_data	0x34	2	page	nameWord	name word	STATIC	00305F90,0031DB44	ACT
+action_data	0x36	1	page	targetSide	bit 3 area hits everyone, bit 2 opposite side	STATIC	0030D36C:w2	ACT
+action_data	0x37	1	pad	pad37	const=0x00			PASS
+action_data	0x38	2	page	menuPosition	the action's position in the player's command list: low byte = page 0..10, high byte = row 0..16, 0xFFFF = not listed (the page's 2026-09-18 narrowing, from the data); the action-table binder 00237FC0 reads both bytes (00238033/00238043, 00238103/0023810B), sizes a page x row grid by their maxima (0208D300/0208D301) and stores each listed action in it (0208D308)	both	00238033:w1,00238103:w1,00238043@0x39:w1,0023810B@0x39:w1	ACT
+action_data	0x3A	1	shape	b3A	a remedy category on 68 rows; page: reader not found (hop census 003121F5)	STATIC	003121F5	ACT
+action_data	0x3B	1	pad	pad3B	const=0x00			ACT

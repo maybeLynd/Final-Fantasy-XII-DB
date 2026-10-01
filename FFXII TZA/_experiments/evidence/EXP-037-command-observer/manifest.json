@@ -1,0 +1,24 @@
+{
+  "files": {
+    "component-tests.txt": {
+      "bytes": 110,
+      "sha256": "7a14a6b7a78ab0c73959601709b293818678a1cfb496728a9dcd17340f008027"
+    },
+    "dependencies.json": {
+      "bytes": 1259,
+      "sha256": "39a2bd4858d3c8179c657492add1a20e1da5935d81493d6415415f89250a4fce"
+    },
+    "observe.py": {
+      "bytes": 8779,
+      "sha256": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3"
+    },
+    "test_observe.py": {
+      "bytes": 6439,
+      "sha256": "3308ff0b589a9138a014db71e52e1258e2e7c60a2f8fa85aedf34af78413a45d"
+    },
+    "unit-tests.txt": {
+      "bytes": 1551,
+      "sha256": "2e4d5aad430fda7ccc38d689b357962b01c9d7a044b7af91492a7b111a718423"
+    }
+  }
+}

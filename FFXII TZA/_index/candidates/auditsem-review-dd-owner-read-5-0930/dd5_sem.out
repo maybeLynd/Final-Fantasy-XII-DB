@@ -1,0 +1,27 @@
+PASS K1 00363FD0 copies its arguments to 022D92A0 / 022D92B0 / 022D92C0
+PASS K2 00363FD0 loads its clamp bounds from 01EF93F0 and 01EF93FC
+PASS K3 the squared distance is stored to 022D92E4 (003641D4) and 022D92D4 (003641DC) | {'0x364025': '0x22d92d4', '0x364091': '0x22d92d4', '0x3640a5': '0x22d92e4', '0x3641d4': '0x22d92e4', '0x3641dc': '0x22d92d4'}
+PASS F1 the bounds cell is .data, the software vf00 image, not a constant (the struck 'they are .data addresses, not immediates' was true) | .data
+PASS F1 its file image holds [0,0,0,1]: lanes x = 0.0 and w = 1.0 are what the clamp reads | (0.0, 0.0, 0.0, 1.0)
+PASS F1 the three runtime writers of the cell (0036D9A8, 0036D9E8, 0036DD87; CONTRACT-transform-primitives §15b) still store to it
+PASS K4 the volume walk 003631B0 is 512 B and forms each record as u16 offset + [022CBAF0] (00363263)
+PASS K5 byte +9 & 0x7F: 0 -> 00361DE0 (ellipse), 1 -> 003623C0 (box), 2 -> 00362230 (chain), other -> point copied unchanged
+PASS K6 (SD-180) after the clamp the walk reads +0x58/+0x54/+0x38, calls 00361810 and 003638B0, and returns r9d or 003638B0's result
+PASS K7 the chain body 00362230 is 388 B, walks [r8+0x14] segments of 0x20 from +0x40, calls 00363FD0 and reads 022D92D4 after it
+PASS K8 00363FD0's only direct call site is 0036228A (edges and a raw rel32 sweep agree on one)
+PASS M1 00263CC0: class 1 -> [[+0xB8]+0x38]; (class-1)==2, i.e. class 3 -> [[+0xB8]+0xA4]; else 0.0 (EC7-105 kind correction holds)
+PASS M2 the mode-5 setter: 002692E8 mov byte [steer+0x28], 5 (steer = [[actor+0xB8]+0xF0])
+PASS M3 002E5750's call site 0025E3AA passes edx = ebp
+PASS F2 (SD-190) ebp is 1 only if 003E68B0(rec) != 0 (0025E31D, before the cited range) AND actor +0x0D bit 1 AND 003E6A70(rec) bit 0
+PASS F3 (SD-190) 003E6A70 = 003E6E60(rec) ? 003AEF50(rec+0x550) : 0; 003AEF50 walks the list at [obj+0x18] by +0x48 and sets bit 0 if a node's byte +1 != 0, bit 1 if byte +2 != 0
+PASS F3 003E68B0 is the same wrapper over 003AEF20: 1 when the tween object is armed and its list [obj+0x18] is non-empty
+PASS M4 modding: pi/20 = 0x3E20D97C is stored at 0026C224 | mov dword ptr [rax + 0x58], 0x3e20d97c
+PASS M4 modding: the 0.5-degree floor 0x3C0EFA35 is loaded at 002E5806 (from 00D0F8DC, .rdata - a constant, not an immediate) | movss xmm8, dword ptr [rip + 0xa2a0cd]
+PASS M4 the two immediates are pi/20 and 0.5 degree
+PASS L1 0033C956 addss of the float 5.0 at 009146E4
+PASS L2 0033D747 mulss 0.5 (01CEBB70), 0033D751 divss 3.0 (008F311C)
+PASS L3 00339F00 dispatches modes 1/4, 2, 6 to 0033CEF0, 0033D200, 0033BAA0 (0033A039-0033A0A6) | call 0x33cef0 ; call 0x33d200 ; call 0x33ce60 ; call 0x33cef0 ; call 0x33baa0 ; call 0x33cde0
+PASS L4 DecodeOrderGoal 00312730 is 965 B in the function list | 965
+PASS W1 02B40534: 8 store sites in 8 functions, 003B6ED0 included (the corrected count) | 003B6ED0, 003B6F30, 003B7080, 003B72F0, 003B7BB0, 003B7C60, 003B7E00, 003B7E20
+PASS F4 (SD-181) the base 022CBAF0 has three writers: 00362F70 zeroes it (called by 00266D10), 003635C0 stores rcx (called by 003775D0 with [02ADD060]), 00363730 zeroes it (called by 00378230) | 00362F70, 003635C0, 00363730
+FAILS 0

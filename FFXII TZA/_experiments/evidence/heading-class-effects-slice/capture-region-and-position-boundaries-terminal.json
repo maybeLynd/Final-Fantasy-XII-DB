@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-region-and-position-boundaries.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 5,\n  \"extent_status\": [\n    [\n      \"0x263910\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      40,\n      null\n    ],\n    [\n      \"0x3ec3d0\",\n      \"UNWIND_UNION_MATCH\",\n      314,\n      314\n    ],\n    [\n      \"0x380d30\",\n      \"UNWIND_UNION_MATCH\",\n      194,\n      194\n    ],\n    [\n      \"0x266ad0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      211,\n      null\n    ],\n    [\n      \"0x262f90\",\n      \"UNWIND_UNION_MATCH\",\n      179,\n      179\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "40b5abfc27ac245c038099e66084d8f22f2d3ab0f054d33415a6706ea0be5069"
+}

@@ -1,0 +1,165 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 1333,
+      "sha256": "a9877cb4fe5773a707275f4f85f1589abb7a416c1a6a44d2fbe7444fc627c29e"
+    },
+    {
+      "path": "corrected-result.json",
+      "bytes": 21450,
+      "sha256": "50077f436e7fc17fd7dba632d3df2991c984c7ae3538988ea9d061521d44f874"
+    },
+    {
+      "path": "corrected60-check.py",
+      "bytes": 9221,
+      "sha256": "c237d9bff3b80ae7ae9a22f48bd6b2fe4ba0dc9f6554803f6e8bdbfbdbfa221d"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 1011,
+      "sha256": "03e0e0e706e924a1a6a3405331ef95bc05fcb1f6ba19960d2c6f941713df4cbd"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 192,
+      "sha256": "9fef96f044efa2fc5bbbeeb7966a31c8bbf305eed4e642dd9539248068415f52"
+    },
+    {
+      "path": "fault-clamp-missing-line.stderr",
+      "bytes": 407,
+      "sha256": "ce0401584a7ecc3793f4c333a506213e568c6b6b0c6dae11131cdd3fc6c9c091"
+    },
+    {
+      "path": "fault-clamp-missing-line.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-stale-total.stderr",
+      "bytes": 491,
+      "sha256": "37dc8061f7f310af5c14b5991709b3d0510bea1149b3cb9f81cda3ba4b1dd1a3"
+    },
+    {
+      "path": "fault-stale-total.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-two-padding.stderr",
+      "bytes": 681,
+      "sha256": "9da388c17f57d5334a104d3ea20de7022c346d48b33957136a601c22817016ee"
+    },
+    {
+      "path": "fault-two-padding.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3771,
+      "sha256": "f34a29fb46a588ecfc7c2011e3192acfc095dd8713ac0fb15ddd2328c72a9eb7"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 4460,
+      "sha256": "3e68086d505d6267e871532e5a5f78a2123b551897188e1c1ad2c7c45d2718a8"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 910,
+      "sha256": "dd1b478ae2ec8dad7b5ffcbff3b099f010bfd4ec13b47025f9292e8bc5096955"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 5466,
+      "sha256": "a3b90bdf987fc6f970215193764387121ef8790ab9b346afe9c10d0ce249d2a7"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 1819,
+      "sha256": "b4fa0cd443584c12dd0a8fccbcae56f750e786133523b322bc3a455c0c723c12"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2576,
+      "sha256": "cafb4767e3bdeb39f32a17ebee993f4a45dd322d7df5065a34ff289f45ebd8b7"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 950,
+      "sha256": "bddeb7d0235a04ca0d872a6fd8fcdbd8ceab7601de51e7afd45464f54e8050bf"
+    },
+    {
+      "path": "retained/fable-q0_domain.out",
+      "bytes": 789,
+      "sha256": "38aa45a091f62f287a3f79031fc37a4e001030f414679130570c1c48f5a52aa0"
+    },
+    {
+      "path": "retained/fable-q0_domain.py",
+      "bytes": 4021,
+      "sha256": "eab628e5627dace5d5a6abea539d133a6d290236d8da890d6b457a4f1640154c"
+    },
+    {
+      "path": "retained/fable-README.md",
+      "bytes": 4400,
+      "sha256": "b5d3e8ae9ddfd2160bfb4a38346630c5afefb4ef13192901722835b5dd1b7f1d"
+    },
+    {
+      "path": "retained/original60-capture.py",
+      "bytes": 6741,
+      "sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec"
+    },
+    {
+      "path": "retained/original60-check.py",
+      "bytes": 8753,
+      "sha256": "4750afc8b9b3aae1f0d96af994d507c168e23cdd84c9e6e197e0e410a514228c"
+    },
+    {
+      "path": "retained/original60-default-invocation.stdout",
+      "bytes": 182,
+      "sha256": "5bdba7814aa1b6a83ad29d4372316ae950667bb863ac4a67f774316d9d068ad0"
+    },
+    {
+      "path": "retained/original60-manifest.json",
+      "bytes": 6218,
+      "sha256": "bc4b00822d6828bc5cc9ce012951296111e99902c439bf3e556da2148ca04449"
+    },
+    {
+      "path": "retained/original60-README.md",
+      "bytes": 5422,
+      "sha256": "2a767580eaaf84956b89dae650e4604a3f70b68187b67ca7792e138afdeeb8ae"
+    },
+    {
+      "path": "retained/original60-result.json",
+      "bytes": 21450,
+      "sha256": "d8a9202432e3575d965d1438c78380e085a0f78851de8b66da46185b0fb08379"
+    },
+    {
+      "path": "retained/work60-capture-preimage.py",
+      "bytes": 6741,
+      "sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec"
+    },
+    {
+      "path": "retained/work60-check-preimage.py",
+      "bytes": 8753,
+      "sha256": "4750afc8b9b3aae1f0d96af994d507c168e23cdd84c9e6e197e0e410a514228c"
+    },
+    {
+      "path": "work60-default-check.py",
+      "bytes": 360,
+      "sha256": "8499daf93fdb3682967fce68155d9c8364f885e99f62e7582d8e7187ffccbf48"
+    }
+  ],
+  "limits": "Additive correction of60 prose/output total61 to original actual59; physical/parser/missing-coordinate/suffix findings unaffected. No recapture/native/game; owner review/propagation separate."
+}

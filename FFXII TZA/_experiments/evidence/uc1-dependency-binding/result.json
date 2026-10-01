@@ -1,0 +1,19 @@
+{
+  "result": "SCOPED_DEPENDENCY_BINDING_GAP",
+  "generation": "g20260929T135626Z-00f775",
+  "declarations": 25,
+  "positive_bound_snapshots": 3,
+  "actual_dependency": [
+    "uc1_band.load",
+    "uc1_band.apply",
+    "uc1_band.describe"
+  ],
+  "unbound_helper": {
+    "path": "Database/Tools/analysis-kit/gfz-scripts/uc1_band.py",
+    "copy": "source/uc1_band.py",
+    "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+    "commit": "b26125d2d0111845ec6e702e5a51410c1745e581",
+    "blob": "07c842e86b2c8ff4d4603db72c5748610edd4c3a"
+  },
+  "limits": "Retained selected manifest/output and static dependency path only. Extracted original declaration function with supplied path globals, not a full build. Current helper bytes do not identify the helper loaded by the historical generation. No mutation/drift/skip/export or FF12 execution observed; no whole archive certification."
+}

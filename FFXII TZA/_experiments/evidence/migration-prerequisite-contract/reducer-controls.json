@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "returncode": 0,
+    "stdout": "REJECT_A03_CONFIGURED_FAIL_TAG_ACCEPTED\n"
+  },
+  "negative_controls": [
+    {
+      "name": "incomplete",
+      "input_sha256": "7a36e3958aa7a8272f7a2715bdc943ebc67f2a1adc5478cd6d2e7a29e5168568",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\check.py\", line 5, in <module>\n    assert r['finished'] and r['helper_unchanged'] and r['driver_sha256']==sha(W/'capture.py') and r['helper_sha256']==sha(R/'prereq.py')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "missing-case",
+      "input_sha256": "b222d2c6d2e3e1da84c4980f612827d20d23ca581762329edd0f678cfe3a3339",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\check.py\", line 6, in <module>\n    cases={x['name']:x for x in r['cases']};assert len(cases)==len(r['cases'])==16\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    },
+    {
+      "name": "hide-custom-failure",
+      "input_sha256": "a211d114b4debb8db0066b088d34d24ab62edd9926915a3b64fb07d7aef56908",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\check.py\", line 21, in <module>\n    assert accepted==(True if name=='custom-tab-fail' else want)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "result_exists": false
+    }
+  ],
+  "original_raw_unchanged": true
+}

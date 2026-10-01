@@ -1,0 +1,5 @@
+spec=0x4165  walk_ret=1627909960  trace=E0                 eval_matched=False final_rip=00265090 reached_RETQ=False faults=[('MEM', '0x3', 'access=19', 'rip=265090'), ('EMU', 'Invalid memory read (UC_ERR_READ_UNMAPPED)', 2510992)]
+spec=0x4166  walk_ret=1  trace=E0 C0 t4166 p0     eval_matched=True  final_rip=62000000 reached_RETQ=True faults=[]
+spec=0x4167  walk_ret=0  trace=E0                 eval_matched=False final_rip=62000000 reached_RETQ=True faults=[]
+spec=0x4168  walk_ret=0  trace=E0                 eval_matched=False final_rip=62000000 reached_RETQ=True faults=[]
+commit (P2, shipped bytes) returns 0 for target 0x4167 and 0x4168; 1 for 0x4000..0x4166.

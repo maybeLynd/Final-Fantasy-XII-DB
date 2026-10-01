@@ -1,0 +1,247 @@
+{
+  "section": "SECTION-10",
+  "date": "2026-09-23",
+  "base_snapshot": "FFXII TZA(20260922-211246).zip",
+  "required_updates": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "root_directory": "FFXII TZA",
+  "modified_existing": 6,
+  "new_files_including_this_manifest": 27,
+  "total_payload_files": 33,
+  "manifest_self_hash": "Excluded to avoid circular hashing; ZIP SHA-256 is provided separately.",
+  "files": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "operation": "replace",
+      "before_sha256": "f5380d60daef4bf424aec6c80ba807be611c81abd880da0345dbd4ff43313f62",
+      "after_sha256": "64d2b883a50a0a30d75fd169b7cff5168ab57b89d76b5b2a7bc4fecafe3a484f",
+      "bytes": 65755
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "operation": "replace",
+      "before_sha256": "214c6e33ae4dcbab7a77db68d67a912e1037f1ee75892648d094c5279c709ba0",
+      "after_sha256": "09bc94ce3ca6e451639b4c6b2cfec3e063f6bcc9bfccb9c47c9e9c7b17962a9e",
+      "bytes": 31346
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md",
+      "operation": "replace",
+      "before_sha256": "227409019532d9fdb5ad6bcca8e2d19f11cfd2d3c90cc363d70b82b899ff1670",
+      "after_sha256": "5f41de279396058e4bda8c7a6c75815e0efa231b5d3c115d588b575449cc304b",
+      "bytes": 12731
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+      "operation": "replace",
+      "before_sha256": "55bc22d53b0705a90c03bbe4cad1958350b3ba3e7774d32affdbab80e12cc964",
+      "after_sha256": "b860de8d598c62a1f8c851293cd65966a130e52e7d153fb6200684a706f28072",
+      "bytes": 55916
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-nonempty-prf-registration-and-specialized-relocation.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "5b9ad165623a632ef78719e1d0067ef06599190b9c951c2b36ab0c4541e6cf99",
+      "bytes": 6128
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "operation": "replace",
+      "before_sha256": "57eb674196502e1e3613fbb2a32307b8b85bddeb5e633b19ef768f34043ba688",
+      "after_sha256": "f4cd578cb33fa2c75e6ae0bcfd3bdfad360e12be670c03e5c407c9a1edcd9cbe",
+      "bytes": 14139
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/INSTALL.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "f31ac80b6d014451be285f5fd00980cbe4e13acde229816f6131459f944300d2",
+      "bytes": 1302
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/REVIEW.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "87bc954408f4d5a0c4305b0252f3204902e95015ffdfa625b4e8b5ec0ff1a76c",
+      "bytes": 11711
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/canonical_changes.diff",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "1198ebe15c505e9a119138e324fee44fce287945f9517dfd043501ae5dc377de",
+      "bytes": 27715
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/canonical_postimages.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "078a2e51291d49452edd9fb06938ee0ac8de0c3a4e842fc0e76f05e4ee2047aa",
+      "bytes": 991
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/canonical_preimages.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d7ff8e5f5a20a1bfb4f9e031b353b1d599eb811866242622d2c64526b0808aea",
+      "bytes": 827
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/claim_matrix.tsv",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "02b793f36199f40b3e9c5fd617012fb5f0bb324e60fe54e91a1b6022c1b1240c",
+      "bytes": 1994
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/direct_call_supports.tsv",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "073ff5cfe7203f33e564ab922bb2b1585f013af737be2aae112a1647b8e8fd14",
+      "bytes": 36253
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/native_controls.c",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "6df0406dd323c3b64dd2332e3c7901fc640d379ba24ad97df12f3654f6f7ffc3",
+      "bytes": 19400
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/original_body_manifest.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "a28536daf4c1dd011d5757af221f4b22a68ca120bffcc9382fae9a7f3fe41975",
+      "bytes": 47629
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/original_disassembly.txt",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "ec82f888c88fac8ac01c687b671e952f77d90152c5c8f5c6230c020ce6af10e7",
+      "bytes": 399813
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/body_verification.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "7d67b3d020082423e40b52f1762ec238162a5219a515ecd5840d87a91342b58a",
+      "bytes": 31425
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/code_mutations.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "ef453ed87288680dd406c4688d9f425936bd0d94e0507d001ea87806e56fdb1b",
+      "bytes": 57677
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/content_validation.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "2f85c9311b94cf9fe22a6b36cda5af5425c1c34563928afc390e386acbd15def",
+      "bytes": 22987
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/delivery_validation.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "4ab47591b35565342ad9253f21608b90cb8ccc2f7d9688722fe809781f615db5",
+      "bytes": 979
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/native_baseline.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d5cb7d3ec17b1997a91eb55f72f464afd4fda5aaf3e97cd03a63d43a0091faf9",
+      "bytes": 20638
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/native_repeat.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d5cb7d3ec17b1997a91eb55f72f464afd4fda5aaf3e97cd03a63d43a0091faf9",
+      "bytes": 20638
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/overlay_checker_controls.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "69a51a18a316939b9bcb95baa9e8ad400fd5ad0ae380cd410486689d591f5ce4",
+      "bytes": 739
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/summary.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "ebb2dd40228741526001c6607b69fd7d224a78d707217c05844ae44f22ddc887",
+      "bytes": 1839
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/results/unchanged_files.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "48199683099355f67be35f81e9e33ba7636350147f2a0131280b71f3b6c93f1c",
+      "bytes": 220
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/run_review.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "01da9f099ba7646a1bf3405a278caa8f2be1c3e75a533614eefc83295df3c02d",
+      "bytes": 8360
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/source_inputs.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "4c9396dff3c467c641b6c2852b6901b22b675d80d96d9cca57052786fb76d733",
+      "bytes": 2594
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/test_overlay.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "4ed4c66cc95e59bc1f26198c2aecddcdd92250d28a7bfb84a7a8bcdc69f434e1",
+      "bytes": 2873
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/validate_content.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "0c6d9bf9702afb55f1db45fdadb3d9a613b8d14f1f15410003ffa46bf51331c1",
+      "bytes": 3441
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/variant_plan.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "5aa6317382373f94a0dc64af2bc0f372cb721cbade1b1ed9126d2873c709d69e",
+      "bytes": 1599
+    },
+    {
+      "path": "_experiments/evidence/continuation-section10-nonempty-registration/verify_overlay.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "339967b9a6cd7885eefd49d83f299dc9b0931947ceca212a25bbbe383fe5a23f",
+      "bytes": 3143
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "operation": "replace",
+      "before_sha256": "7e6a11629f16a6387aa2c8723fc2d1bb94f8c0a97030523ee18bd49ee89f4dc3",
+      "after_sha256": "80c7203a8e6648da10f4429f88652db3117fd174acf05e2ed02f161d55c11d24",
+      "bytes": 20703
+    }
+  ]
+}

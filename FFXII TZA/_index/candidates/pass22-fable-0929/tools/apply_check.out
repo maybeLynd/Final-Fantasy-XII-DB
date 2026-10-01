@@ -1,0 +1,29 @@
+apply.py: root=C:\x\p22b  HEAD from C:\Users\Kristian\source\repos\XIIOnline at d5a70a776e3be9ceb3d04476448f6038781c8ad7  mode=CHECK
+  excluded: 06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md - OPUS-owned CONTRACT page (for-opus.md)
+  excluded: 13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md - OPUS-owned CONTRACT page (for-opus.md)
+  registry-only (page not edited): 01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md
+  registry-only (page not edited): 17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md
+  registry-only (page not edited): 17-Presentation-Rendering/Model-And-Motion-Formats/the-pose-sequencer.md
+
+All anchors unique, all files byte-identical to HEAD. Plan (9 file(s)):
+  07-Combat-Action/how-close-a-unit-must-stand-to-act.md  [LF, 14874 -> 15787 bytes]
+      insert 1 line(s) after line 165, in section '## Cross-subsystem neighbours' (heading line 144, next heading line 167)
+  15-Input/how-a-gamepad-becomes-a-controller-object.md  [LF, 13971 -> 14920 bytes]
+      replace 2 line(s) at line 141
+  17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md  [LF, 43331 -> 43842 bytes]
+      insert 1 line(s) after line 335, in section '## Cross-subsystem neighbours' (heading line 306, next heading line 337)
+  17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md  [LF, 28847 -> 30004 bytes]
+      insert 1 line(s) after line 270, in section '## Cross-subsystem neighbours' (heading line 262, next heading line 272)
+  17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md  [LF, 161765 -> 164210 bytes]
+      insert 9 line(s) after line 1020, in section '## Cross-subsystem neighbours — FINAL-AUDIT pass 22' (heading line 978, next heading line 1022)
+  22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md  [LF, 65850 -> 66666 bytes]
+      insert 1 line(s) after line 833, in section '## Cross-subsystem neighbours — pass 22 (FABLE, 2026-09-29)' (heading line 827, next heading line 835)
+  04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md  [LF, 216555 -> 226636 bytes]
+      insert 24 line(s) after line 832, in section '## Cross-subsystem neighbours — FINAL-AUDIT pass 22' (heading line 809, next heading line 834)
+      FLAG: attributed by folder (folder:04-Actor-Entity), not by lane prefix. Owner confirmed as FABLE: creating commit 14f43ebc8 ('FABLE.md return', co-authored by Claude Fable 5.1); routing.md assigns folder:04-Actor-Entity to FABLE. Crossing home: '## Cross-subsystem neighbours — FINAL-AUDIT pass 22'.
+  _index/candidates/neighbour-dispositions.tsv  [LF, 655060 -> 662162 bytes]
+      append 9 row(s) (how-a-script-changes-the-battle-party.md|ActorEntity, how-a-script-changes-the-battle-party.md|Audio, how-a-script-changes-the-battle-party.md|WorldAreaField, the-rig-of-seventeen-controllers.md|UI, the-staged-look-command.md|Input, the-pose-sequencer.md|Movement, the-pose-sequencer.md|UI, the-phyre-post-effect-class-family.md|CoreRuntimeScheduling, the-phyre-post-effect-class-family.md|Platform)
+  _index/candidates/pass22-fable-0929/consumer-check-0929-p22-crossings.md  [LF, 0 -> 5576 bytes]
+      create (LF, 53 lines)
+
+CHECK ONLY - nothing written.

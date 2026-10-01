@@ -1,0 +1,206 @@
+{
+ "pass": 7,
+ "total": 7,
+ "ok": true,
+ "allowed_functions": 50,
+ "results": {
+  "A_construction": {
+   "pass_": true,
+   "layout": {
+    "classMask": "0xffffffff",
+    "forwardSplit": 0,
+    "splitArmed": 0,
+    "reverseMark": "0xffffffff",
+    "reserve_entries": 5000,
+    "count": 0,
+    "allocator_vtable": "00902720",
+    "owner_allocator_vtable": "00902720",
+    "owner_count": 0
+   },
+   "ordered_mallocs": [
+    [
+     "0x30",
+     "0x73000000"
+    ],
+    [
+     "0x20",
+     "0x73000030"
+    ],
+    [
+     "0x9c40",
+     "0x73000050",
+     "aligned 16"
+    ]
+   ],
+   "owner_mallocs": [
+    [
+     "0x20",
+     "0x73009c90"
+    ]
+   ],
+   "note": "0x30 ordered list (mask -1, split 0, reverse mark -1, 5,000-entry reserve), 0x20 owner vector"
+  },
+  "B_enqueue_both_lists": {
+   "pass_": true,
+   "owner_list": [
+    "0x73009cb0",
+    "0x73009ce0",
+    "0x73009d10",
+    "0x0"
+   ],
+   "ordered_list": [
+    "0x73009cb0",
+    "0x73009ce0",
+    "0x73009d10",
+    "0x0"
+   ],
+   "objects": [
+    {
+     "vtable": "009031D0",
+     "+08": 0,
+     "+10": 1,
+     "+18": 1
+    },
+    {
+     "vtable": "009031D0",
+     "+08": 0,
+     "+10": 1,
+     "+18": 0
+    },
+    {
+     "vtable": "009031D0",
+     "+08": 0,
+     "+10": 1,
+     "+18": 5
+    }
+   ],
+   "counter_after_each": [
+    1,
+    0,
+    1
+   ],
+   "note": "every enqueue appends ONE pointer to BOTH lists; malloc(0x20); a failed malloc appends null to both"
+  },
+  "C_walks_I4_I5_I7": {
+   "pass_": true,
+   "list": [
+    "0x72002000",
+    "0x72002040",
+    "0x72002080",
+    "0x0",
+    "0x720020c0",
+    "0x72002100"
+   ],
+   "forward_split": 2,
+   "forward": {
+    "fwd_part1": {
+     "ok": true,
+     "slot2": [
+      "0x72002000",
+      "0x72002040"
+     ],
+     "slot1": [
+      "0x72002000",
+      "0x72002040"
+     ]
+    },
+    "fwd_part0": {
+     "ok": true,
+     "slot2": [
+      "0x72002080",
+      "0x720020c0",
+      "0x72002100"
+     ],
+     "slot1": [
+      "0x72002080",
+      "0x720020c0",
+      "0x72002100"
+     ]
+    }
+   },
+   "masked_out": {
+    "slot2": 3,
+    "slot1": 0
+   },
+   "abort_I7": {
+    "slot2": 1,
+    "slot1": 0
+   },
+   "reverse": {
+    "r9b_0": {
+     "ok": true,
+     "slot2_calls": 10,
+     "slot1_order": [
+      "0x72002000",
+      "0x72002040",
+      "0x72002080",
+      "0x720020c0",
+      "0x72002100"
+     ]
+    },
+    "r9b_1": {
+     "ok": true,
+     "slot2_calls": 10,
+     "slot1_order": [
+      "0x72002100",
+      "0x720020c0",
+      "0x72002080",
+      "0x72002040",
+      "0x72002000"
+     ]
+    }
+   },
+   "note": "forward: part 1 = [0, split), part 0 = [split, count), null skipped, key called once; masked-out: key called, nothing executed; I-7 exits at the first masked-in entry; reverse: key twice per entry"
+  },
+  "D_marks_and_clear_I8_I1": {
+   "pass_": true,
+   "split_armed": [
+    1,
+    0
+   ],
+   "split_unarmed": [
+    0,
+    6
+   ],
+   "reverse_mark": 6,
+   "mask_after_toggle_0": "0xfffffffd",
+   "mask_after_toggle_1": "0xffffffff",
+   "after_clear": {
+    "count": 0,
+    "split": 0,
+    "reverseMark": "0xffffffff",
+    "frees": 0,
+    "slot0_calls": 0,
+    "objects_unchanged": true
+   },
+   "note": "the clear resets both marks and frees nothing"
+  },
+  "E_owner_destroys_I1": {
+   "pass_": true,
+   "frees": [
+    "0x72002000",
+    "0x72002040",
+    "0x72002080"
+   ],
+   "owner_count_after": 0,
+   "note": "slot 0 (scalar-deleting) on each non-null entry frees it; the vector is emptied"
+  },
+  "F_flush_I6": {
+   "pass_": true,
+   "executed": [
+    "0x72002040"
+   ],
+   "frees": [
+    "0x72002000",
+    "0x72002040",
+    "0x72002080"
+   ],
+   "note": "executes only +0x10 == 0 (one of three), then destroys all three and empties the vector"
+  },
+  "G_handshake_I10": {
+   "pass_": true,
+   "word_after": "0xfef3",
+   "note": "returns at once and clears bits 2, 3 and 8"
+  }
+ }
+}

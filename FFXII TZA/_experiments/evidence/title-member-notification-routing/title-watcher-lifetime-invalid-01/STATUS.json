@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_SOURCE_EXTENT",
+  "exit": 1,
+  "error": "pdata record582860..582FC0 includes inline data; linear decoder stops582FB1",
+  "raw_output_created": false,
+  "semantic_conclusions": 0
+}

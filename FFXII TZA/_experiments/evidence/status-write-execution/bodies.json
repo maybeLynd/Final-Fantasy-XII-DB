@@ -1,0 +1,100 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "real_bodies_executed": [
+  {
+   "va": "0x30E360",
+   "span": "0x30E360-0x30E84F",
+   "sha256": "4a8fe1b8d49e0a417c1708f3f7cf9cb7005ed2730b038e3de1c3a7026a8fb039",
+   "note": "the operation; in-image mode jump table at 0x30E88C, case-target table 0x30E8A4, case-byte table 0x30E8C4 executed as data"
+  },
+  {
+   "va": "0x20E600",
+   "span": "0x20E600-0x20E63F",
+   "sha256": "c94c355f739f9397803f98a2c634387b4ad3d829b2729a6466ed2404499668c6"
+  },
+  {
+   "va": "0x3848E0",
+   "span": "0x3848E0-0x3849AC",
+   "sha256": "8dad3c9a01cba8f01cfe8593ce7dcc88ed426d571094207952a31f86c9a0e6ee",
+   "note": "BattleResultRecord initialiser; sets result+0x2C bit0 (or dword[+0x2C],1 at 0x38498D)"
+  },
+  {
+   "va": "0x386A50",
+   "span": "0x386A50-0x386A6F",
+   "sha256": "1158e58f6d46c8ce1bc36b83bb000c4cf394bb03ffdea76a7f5cbff5b75c344a",
+   "note": "adding transition builder; clears result+0x2C bit0 at 0x386A66"
+  },
+  {
+   "va": "0x386A70",
+   "span": "0x386A70-0x386AD6",
+   "sha256": "3850f8a9698e4f497a79c3366d41c205d10f1248fb1edefa6c3dbd1bab443849",
+   "note": "removing builder; status==0x1C arm sets +0x2C|=0x108 and +0x24=(hp+1)>>1; common tail at 0x386AC3 also clears bit0"
+  },
+  {
+   "va": "0x3876D0",
+   "span": "0x3876D0-0x387727",
+   "sha256": "464cede59c35f8ffbe78a9d11917057923045edb0586d8c5885e9fbfc5fd4e7d",
+   "note": "beat default: row[+9] x [01DFE0B4] x 30; null registry reads [0+9] -> fault VA 9"
+  },
+  {
+   "va": "0x387730",
+   "span": "0x387730-0x3879C0",
+   "sha256": "f7faaab50ee703eb340803cd332015352d4f81a974f7283f498944428fda7df3",
+   "note": "duration default: status 2/6 -> 0xB; dur!=0xFF vitality-scaled float path (divisor .rdata 0x8F3134); dur==0xFF second formula arm; null registry reads [0+8] -> fault VA 8"
+  },
+  {
+   "va": "0x16D6A0",
+   "span": "0x16D6A0",
+   "sha256": "c557e71380112b980eaf1145fa80621130dfbdfa1e375d87ae0018b7c60ac16b",
+   "note": "single-byte ret - the real extraEffect target for removing transitions"
+  },
+  {
+   "va": "0x808C40",
+   "span": "0x808C40-0x808C5C",
+   "sha256": "c6f3f5e7885eaa2fb0d54df905f6ea5c6a72556ee35189b89b08713afafadf05",
+   "note": "__security_check_cookie; also requires cookie top16==0 (rol/test gate) else fail"
+  },
+  {
+   "va": "0x861EC0",
+   "span": "0x861EC0-0x861EC5",
+   "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+   "note": "memset import thunk jmp [0x8C2A60]; slot planted to a fixture rep-stosb memset"
+  },
+  {
+   "va": "0x30E360(self)",
+   "note": "recursive cascade calls re-enter the real body, one level deep bounded by the clearMask fixpoint"
+  }
+ ],
+ "stubbed_callees": {
+  "0x31B860": "record->unit lookup (real body iterates deeper state; stub returns the planted unit or 0, per src/tgt arg)",
+  "0x30B9B0": "low16 eligibility gate - controlled return",
+  "0x30B8E0": "high16/terminal eligibility gate - controlled return",
+  "0x377C20": "active-field bit15 predicate - controlled return",
+  "0x3112F0": "transition-result applier - logged; never reached (see findings)",
+  "0x300FC0": "defeat cleanup - logged",
+  "0x312280": "post-defeat rewards - logged",
+  "0x301140": "recovery dispatch - logged",
+  "0x3299B0": "event dispatch - logged, edx=event id",
+  "0x300140": "case-4 predicate action - logged",
+  "0x307D10": "case-4 secondary - logged",
+  "0x3284D0": "status-applied reaction - logged",
+  "0x30FED0": "final recompute - logged",
+  "0x46A800": "add-direction extra effect - logged"
+ },
+ "globals_planted": {
+  "0x1F44830": "__security_cookie = 0x0000DEADBEEF (top16 zero required by the real check)",
+  "0x2EBF118": "status-definition registry slot -> fixture header",
+  "0x1F83530": "authored-offset codec base = 0 (EXP-083/084 zero-base convention)",
+  "0x1DFE0B4": "beat-duration scale = 4",
+  "0x8C2A60": "memset IAT slot -> fixture rep-stosb",
+  "0x8F3134": "real .rdata float divisor used by 0x387730 (extracted verbatim)"
+ },
+ "fixture_layout": {
+  "TGT 0x60001000": "BattleStatsRecord 0x1C8: +0x2C vit, +0x38/+0x3C/+0x64 masks, +0x48 hp, +0xBC[32] paramA, +0x13C[32] timers",
+  "SRC 0x60003000": "source record; +5 kind byte drives the case-2/5 or-mask",
+  "UNIT 0x60005000": "BattleUnit: +0x698->INNER, +0x6B4/+0x714/+0xE9A predicate fields, +0 flags dword bit24",
+  "INNER 0x60007000": "unit inner: +4 type (party band 0x1B..0x27), +5 kind",
+  "HDR 0x60009000": "registry header: +8 stride 0x28, +0xC table offset",
+  "TBL 0x6000A000": "shipped status_data.bin rows (32 x 0x28) planted verbatim"
+ }
+}

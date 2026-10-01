@@ -1,0 +1,30 @@
+{
+  "head": "0d9d9330cba9e9a1d880d488203ab1ca28916e9d",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "driver_sha256": "6c7c3b83390bee0503f7b6219de6093c0ecf1dc7e9c206052128e6141e3f1430",
+  "parent_seed_commit": "521f189be5d6bab445a7f7cccffa7a650c636afd",
+  "seed_sha256": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+  "source": [
+    {
+      "path": "Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+      "copy": "original/Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "sha256": "0b06ced7b711f3a64926cad6ccc467cd10adf7e8a23086fb24f118a4c4114f7e",
+      "commit": "d27e9aff8e43c7921a717476639fadb573eb55bb",
+      "blob": "bab7229f055d016398e094985faca7c788726291"
+    },
+    {
+      "path": "Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+      "copy": "original/Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480",
+      "commit": "bf000cdc96d3ca9ec7fb461d0e066572d6657041",
+      "blob": "c756aac9a3d7234cd82f23e0238c530d215a65d6"
+    }
+  ],
+  "method": "Actual original repository CLI integration on one disposable board. Synthetic review declarations; no project review acceptance or live host execution.",
+  "board_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\run-01\\private\\board.json",
+  "journal_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\run-01\\private\\board.json.journal.jsonl",
+  "loaded_team": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\run-01\\original\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+  "seed_revision": 6,
+  "seed_intervention": "Two synthetic DONE reviews made with six original in-memory apply ops, then serialized before first native writer sighting; not real FABLE/OPUS communications."
+}

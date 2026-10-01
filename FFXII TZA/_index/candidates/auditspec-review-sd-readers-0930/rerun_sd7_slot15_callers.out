@@ -1,0 +1,85 @@
+vtable 008C5760 slot 15 = 0017D1A0; base 01CB2508 slot 15 = 005C5230
+direct call/jmp to 0017D1A0: 0 
+qwords naming 0017D1A0 (image base 120000): 8C57D8
+references to the app-pointer global 02EA5368: 15 functions; non-load references 00792350@00792550
+GetWindowLongPtrA callers rooted: 00798FF0 007A03D0 007A04F0
+roots: 18 functions referencing 01F7E350 or 02EA5368, 30 vtable methods run with rcx = APP; bodies reached 5859 (385 s)
+PASS  W the window procedure's slot-14/17/20 calls are reached
+slot  1 (+0x08): 007980A0@00798542
+slot  2 (+0x10): 0079F150@0079F591
+slot  3 (+0x18): 0079F150@0079F69A
+slot  4 (+0x20): 0079C140@0079C2D6
+slot  5 (+0x28): 0079EDD0@0079EF47
+slot  6 (+0x30): 0079EDD0@0079EF75
+slot  7 (+0x38): 0079C140@0079C26B
+slot  8 (+0x40): 0079C140@0079C655
+slot  9 (+0x48): 0079C140@0079C1F1 0079C140@0079C526 007A08A0@007A08C3
+slot 14 (+0x70): 00798FF0@0079914C
+slot 17 (+0x88): 00798FF0@007995C2 00798FF0@00799611
+slot 20 (+0xA0): 00798FF0@007993ED
+slot 25 (+0xC8): 0079D010@0079D087 0079D010@0079D107 0079D010@0079D181
+slot 30 (+0xF0): 0079C140@0079C23A
+slot 15 callers found: 0
+escapes of the application pointer into memory (a holder the census does not follow): 26
+  ESCAPE   0017CF30 0017CF96 mov qword ptr [rbx + 8], rbp                   to 0x8,L(L(L(G01F810F8+0x0)+0xc0)+0x20)+0x8
+  ESCAPE   005DC1C0 005DC1CD mov qword ptr [rcx], rdx                       to APP+0x538
+  ESCAPE   005DC1C0 005DC1CD mov qword ptr [rcx], rdx                       to APP+0x710
+  ESCAPE   005DC1C0 005DC1CD mov qword ptr [rcx], rdx                       to APP+0x8e8
+  ESCAPE   005DC1C0 005DC1CD mov qword ptr [rcx], rdx                       to APP+0xac0
+  ESCAPE   005DC1C0 005DC1CD mov qword ptr [rcx], rdx                       to APP+0xc98
+  ESCAPE   005DC1C0 005DC1F3 mov qword ptr [rdx + 0x20], rcx                to APP+0x3d0
+  ESCAPE   005DC1C0 005DC1F3 mov qword ptr [rdx + 0x20], rcx                to APP+0x5a8
+  ESCAPE   005DC1C0 005DC1F3 mov qword ptr [rdx + 0x20], rcx                to APP+0x780
+  ESCAPE   005DC1C0 005DC1F3 mov qword ptr [rdx + 0x20], rcx                to APP+0x958
+  ESCAPE   005DC1C0 005DC1F3 mov qword ptr [rdx + 0x20], rcx                to APP+0xb30
+  ESCAPE   005DC2F0 005DC31D mov qword ptr [rcx + 0x20], rdx                to APP+0x108
+  ESCAPE   00607E20 00607EB1 mov qword ptr [rdi + 0x78], rbx                to APP+0x160
+  ESCAPE   0060E9C0 0060EAA4 mov qword ptr [rbx + 0x20], r12                to L(APP+0x78)
+  ESCAPE   0060E9C0 0060EAA4 mov qword ptr [rbx + 0x20], r12                to L(APP+0x78),L(APP+0x78)+0x158,L(APP+0x78)+0x20,L(APP+0x78)+0x290,L(APP+0x78)+0x3c8,L(APP+0x78)+0x500,L(APP+0x78)+0x638,L(APP+0x78)+0x770,L(APP+0x78)+0x8a8,L(APP+0x78)+0x9e0,L(APP+0x78)+0xb18,L(APP+0x78)+0xc50
+  ESCAPE   006331A0 006331A2 mov qword ptr [rcx], rcx                       to APP+0xdc8
+  ESCAPE   006331A0 006331A5 mov qword ptr [rcx + 8], rcx                   to APP+0xdd0
+  ESCAPE   00792350 00792550 mov qword ptr [rip + 0x2712e11], rsi           to G02EA5368+0x0
+  ESCAPE   00792350 00792557 mov qword ptr [rsi + 0xdf8], rbx               to APP+0xdf8
+  ESCAPE   00792350 00792673 mov qword ptr [rsi + 0x10d8], rbp              to APP+0x10d8
+  ESCAPE   00792760 00792790 mov qword ptr [rdi + 0x38], rbx                to R0085E730+0x38
+  ESCAPE   00792F10 00792F4A mov qword ptr [rcx + 8], rdx                   to CSP-0x1300
+  ESCAPE   00796E30 00796E47 mov qword ptr [rcx], rdx                       to UNKNOWN
+  ESCAPE   00796E30 00796E59 mov qword ptr [rcx], rdx                       to UNKNOWN
+  ESCAPE   0079F150 0079F3E4 mov qword ptr [rbx + 0x38], rdi                to R0085E730+0x38
+  ESCAPE   00874350 0087436B mov qword ptr [rcx], rdx                       to APP+0x380
+indirect calls with APP/APPVT not resolved to a slot: 34
+  INDIRECT 00584730 0019C570 jmp qword ptr [rip + 0x7265f9]                 args r8
+  INDIRECT 00584730 0019C570 jmp qword ptr [rip + 0x7265f9]                 args rcx
+  INDIRECT 00600C20 00600CA0 call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 0060F6B0 0060F6E4 call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 007980A0 00798542 call qword ptr [rax + 8]                       args rcx
+  INDIRECT 00798FF0 0079903D call qword ptr [rip + 0x129955]                args r9
+  INDIRECT 00798FF0 00799064 call qword ptr [rip + 0x129816]                args r9
+  INDIRECT 00798FF0 0079914C call qword ptr [rax + 0x70]                    args rcx
+  INDIRECT 00798FF0 007993ED call qword ptr [rax + 0xa0]                    args rcx
+  INDIRECT 00798FF0 007995C2 call qword ptr [rax + 0x88]                    args rcx
+  INDIRECT 00798FF0 00799611 call qword ptr [rax + 0x88]                    args rcx
+  INDIRECT 00798FF0 0079975C call qword ptr [rip + 0x1291ee]                args r9
+  INDIRECT 0079C140 0079C1F1 call qword ptr [rax + 0x48]                    args rcx
+  INDIRECT 0079C140 0079C23A call qword ptr [rax + 0xf0]                    args rcx
+  INDIRECT 0079C140 0079C26B call qword ptr [rax + 0x38]                    args rcx
+  INDIRECT 0079C140 0079C2D6 call qword ptr [rax + 0x20]                    args rcx
+  INDIRECT 0079C140 0079C515 call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 0079C140 0079C526 call qword ptr [rax + 0x48]                    args rcx
+  INDIRECT 0079C140 0079C58B call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 0079C140 0079C655 call qword ptr [rax + 0x40]                    args rcx
+  INDIRECT 0079C140 0079C695 call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 0079D010 0079D087 call qword ptr [r8 + 0xc8]                     args rcx,r8
+  INDIRECT 0079D010 0079D107 call qword ptr [r8 + 0xc8]                     args rcx,r8
+  INDIRECT 0079D010 0079D181 call qword ptr [r8 + 0xc8]                     args rcx,r8
+  INDIRECT 0079EDD0 0079EE28 call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 0079EDD0 0079EF47 call qword ptr [rax + 0x28]                    args rcx
+  INDIRECT 0079EDD0 0079EF75 call qword ptr [rax + 0x30]                    args rcx
+  INDIRECT 0079EDD0 0079EFC8 call qword ptr [rax + 8]                       args rcx
+  INDIRECT 0079F150 0079F591 call qword ptr [rax + 0x10]                    args rcx
+  INDIRECT 0079F150 0079F69A call qword ptr [rax + 0x18]                    args rcx
+  INDIRECT 007A0340 007A03C4 jmp qword ptr [rax + 0xd18]                    args rcx
+  INDIRECT 007A08A0 007A08C3 call qword ptr [rax + 0x48]                    args rcx
+  INDIRECT 00808FE4 00809025 call rsi                                       args rcx
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args r9
+elapsed 385 s

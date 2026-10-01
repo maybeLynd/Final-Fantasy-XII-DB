@@ -1,0 +1,17 @@
+00255260 4885c9                   test rcx, rcx
+00255263 7422                     je 0x255287
+00255265 8b01                     mov eax, dword ptr [rcx]
+00255267 85c0                     test eax, eax
+00255269 7505                     jne 0x255270
+0025526B 394104                   cmp dword ptr [rcx + 4], eax
+0025526E 7417                     je 0x255287
+00255270 3deaf33101               cmp eax, 0x131f3ea
+00255275 7403                     je 0x25527a
+00255277 33c0                     xor eax, eax
+00255279 c3                       ret
+0025527A 33c0                     xor eax, eax
+0025527C 81790418480000           cmp dword ptr [rcx + 4], 0x4818
+00255283 0f94c0                   sete al
+00255286 c3                       ret
+00255287 b801000000               mov eax, 1
+0025528C c3                       ret

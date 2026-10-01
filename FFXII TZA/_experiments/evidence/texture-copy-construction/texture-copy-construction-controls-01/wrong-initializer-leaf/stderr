@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-copy-construction.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-copy-construction.py", line 18, in main
+    if raw.get('pdata_entries')!=[[0x61D100,0x61D179,0x1D7945C]] or raw.get('leaves')!=[dict(start='0x613770',end_exclusive='0x6137f5',padding='cc'*11),dict(start='0x61c250',end_exclusive='0x61c2ad',padding='cc'*3)]:raise ValueError('wrong construction root/leaf')
+                                                                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wrong construction root/leaf

@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-REQ-DATA-ACTORDEFINITIONPAYLOAD-HEADER-GAPS",
+ "agent": "SWE2-DATA",
+ "resources": [
+  {
+   "key": "note:actordefinitionpayload-header-gaps"
+  }
+ ],
+ "note": "payload = EBP2 section-0 image at file +0x80; byte census over all shipped .ebp"
+}

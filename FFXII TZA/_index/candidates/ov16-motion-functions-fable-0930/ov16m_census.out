@@ -1,0 +1,59 @@
+files 7564, actors 198302, distinct function bodies 1230306
+
+C1 partition control (function partition / whole-actor decode / histogram):
+  REQSW     27898 /   27898 /   27898  PASS
+  REQEW    115766 /  115766 /  115766  PASS
+  RETN     135429 /  135429 /  135429  PASS
+  RETTN      6039 /    6039 /    6039  PASS
+  REQCHG    26604 /   26604 /   26604  PASS
+  all opcodes: function partition 114878319, whole-actor 114878319 instructions  PASS
+
+C2 positive control: functions NOT named by a footer slot 16/17 that contain a primary waited request: 32374; their opcodes {'REQEW': 115757, 'REQSW': 27898}  PASS
+
+FOOTER SLOTS 16 / 17 (the ids 00268EA0 reads at 00268F68 / 00268F21 when the override word is 0xFFFF)
+  k=16: 15934 actors in 1624 files set it; function names {'talkhold': 15934}
+        with a primary waited request (REQSW/REQEW/F*/T*): 0; with a secondary wait op: 0  {}
+        body sizes (bytes: actors): {1: 15781, 7: 153}
+  k=17: 15934 actors in 1624 files set it; function names {'talkterm': 15934}
+        with a primary waited request (REQSW/REQEW/F*/T*): 9; with a secondary wait op: 0  {}
+        body sizes (bytes: actors): {1: 558, 4: 9, 7: 45, 38: 54, 43: 18, 44: 6183, 50: 153, 54: 198, 56: 81, 61: 27, 62: 36, 68: 180}
+        WAIT ps2data/plan_master/ch/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/cn/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/de/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/es/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/fr/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/in/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/it/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/kr/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+        WAIT ps2data/plan_master/us/plan_map/asp_a/asp_a03/global/asp_a03.ebp actor 25 ラバナ_通常_NPC01 fn 7 talkterm: {'REQEW': 1}
+C3 every slot-16 word names talkhold*, every slot-17 word talkterm*: PASS (0 exceptions)
+
+REQCHG slot operand distribution (all shipped sites, resolve_args need=3): {16: 216, 17: 234, 2: 25884, 3: 126, 4: 72, 5: 72}
+REQCHG slot 16/17 sites: 450
+  distinct (zone file, slot, target function, bytes, primary waits, secondary waits): sites across languages
+    bul_b02.ebp    slot 16 -> talkhold_gardy                  1 B  primary=- secondary=-   x9
+    bul_b02.ebp    slot 17 -> talkterm_gardy                 43 B  primary=- secondary=-   x9
+    nac_a01.ebp    slot 16 -> talkhold_gardy                  1 B  primary=- secondary=-   x9
+    nac_a01.ebp    slot 17 -> talkterm_gardy                 43 B  primary=- secondary=-   x9
+    rbn_a01.ebp    slot 17 -> catrine_talk_term               7 B  primary=- secondary=-   x9
+    rbn_a01.ebp    slot 17 -> talkterm                       44 B  primary=- secondary=-   x9
+    rbn_a04.ebp    slot 16 -> talkhold_after_parade           1 B  primary=- secondary=-   x72
+    rbn_a04.ebp    slot 16 -> talkhold_soldier                1 B  primary=- secondary=-   x72
+    rbn_a04.ebp    slot 17 -> talkterm_after_parade          44 B  primary=- secondary=-   x72
+    rbn_a04.ebp    slot 17 -> talkterm_soldier               44 B  primary=- secondary=-   x72
+    rbn_a17.ebp    slot 16 -> talkhold_gardy                  1 B  primary=- secondary=-   x9
+    rbn_a17.ebp    slot 17 -> talkterm_gardy                 43 B  primary=- secondary=-   x9
+    rbn_a18.ebp    slot 16 -> talkhold_gardy                  1 B  primary=- secondary=-   x9
+    rbn_a18.ebp    slot 17 -> talkterm_gardy                 43 B  primary=- secondary=-   x9
+    rbn_a19.ebp    slot 16 -> talkhold_gardy                  1 B  primary=- secondary=-   x9
+    rbn_a19.ebp    slot 17 -> talkterm_gardy                 43 B  primary=- secondary=-   x9
+    slm_a01.ebp    slot 16 -> talkhold_medal2                 1 B  primary=- secondary=-   x18
+    slm_a01.ebp    slot 17 -> talkterm_medal2                44 B  primary=- secondary=-   x18
+    var_a01.ebp    slot 16 -> talkhold_gardy                  1 B  primary=- secondary=-   x9
+    var_a01.ebp    slot 17 -> talkterm_gardy                 43 B  primary=- secondary=-   x9
+C4 every slot-16/17 REQCHG value resolves to a target-actor function: PASS
+C4b name check of the ordinal = directory-index reading: 441 of 450 resolved targets are talkhold* (slot 16) / talkterm* (slot 17); the rest are printed above  PASS
+
+RESULT: footer slot-16/17 functions with a primary waited request: 9 of 31868; REQCHG slot-16/17 override functions with one: 0 of 450
+CONTROLS: PASS
+rc=0

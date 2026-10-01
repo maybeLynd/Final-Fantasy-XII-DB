@@ -1,0 +1,7 @@
+{
+ "bytes_stored": false,
+ "image": "FFXII_TZA.exe (FFXII TZA shipping x64)",
+ "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "size": 32864752,
+ "why": "the image is not redistributable; every sealed driver asserts this sha256 in load_image() before running"
+}

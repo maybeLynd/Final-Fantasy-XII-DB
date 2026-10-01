@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-regfile-spawn-record.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-source-01.json"
+  ],
+  "exit": 0,
+  "driver_sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+}

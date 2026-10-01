@@ -1,0 +1,23 @@
+# NativeLeaf.MemberAddressAccessor - EC-7 family C
+# # lea rax, [rcx+off]; ret. EXTENSION of the declared row: same form,
+# # more frontier members.
+address	targets
+001B0FA0	
+001EB910	
+004FF2B0	
+005C4D20	
+00624660	
+006A3950	
+006A3960	
+006A3970	
+006AF560	
+006B5C50	
+006DA6E0	
+006E0370	
+006E0380	
+0079CEB0	
+0079E3B0	
+007B6C40	
+00832CA0	
+00837860	
+00848340	

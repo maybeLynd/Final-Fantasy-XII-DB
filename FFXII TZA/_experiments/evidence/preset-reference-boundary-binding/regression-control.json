@@ -1,0 +1,12 @@
+{
+  "returncode": 1,
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\preset-reference-boundary-binding\\check.py",
+    "--fault-old-binding"
+  ],
+  "expected": "Old default source binding must fail actual refs(img) negative-control replay",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "7f3a89e88c4f69373c7c5f7ed2da5b03c326ba4162e1d011916f54b3b7350f75",
+  "limits": "Deliberate local host producer mutation, not an invalid FF12/native experiment"
+}

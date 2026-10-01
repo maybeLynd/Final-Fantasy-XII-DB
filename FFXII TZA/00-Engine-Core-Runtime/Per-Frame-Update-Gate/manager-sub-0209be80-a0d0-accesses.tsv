@@ -1,0 +1,10 @@
+function	name	site	disp	kind	instruction	route	note
+0028E290	FUN_0028e290	0028E43D	0x0	addr	lea rcx, [rbx + 0xa0d0]	embed ManagerSingleton0209BE80+0xA0D0	
+003F80E0	FUN_003f80e0	003F80EE	0x960	addr	lea r9, [rcx + 0x960]	embed ManagerSingleton0209BE80+0xA0D0	
+003F80E0	FUN_003f80e0	003F8103	0x960	w	mov dword ptr [rcx], eax	embed ManagerSingleton0209BE80+0xA0D0	
+003F80E0	FUN_003f80e0	003F8121	0x960	w	mov dword ptr [r9], ecx	embed ManagerSingleton0209BE80+0xA0D0	
+003F80E0	FUN_003f80e0	003F8105	0x964	addr	lea rcx, [rcx + 4]	embed ManagerSingleton0209BE80+0xA0D0	
+0028F8B0	FUN_0028f8b0	0028F911	0x974	w	mov dword ptr [rax + 0xaa44], 1	embed ManagerSingleton0209BE80+0xA0D0	
+00290410	FUN_00290410	0029041D	0x974	r	mov eax, dword ptr [rax + 0xaa44]	embed ManagerSingleton0209BE80+0xA0D0	
+00290430	FUN_00290430	0029043C	0x974	w	mov dword ptr [rax + 0xaa44], ecx	embed ManagerSingleton0209BE80+0xA0D0	
+003F80D0	FUN_003f80d0	003F80D0	0x984	r	test byte ptr [rcx + 0x984], 1	embed ManagerSingleton0209BE80+0xA0D0	

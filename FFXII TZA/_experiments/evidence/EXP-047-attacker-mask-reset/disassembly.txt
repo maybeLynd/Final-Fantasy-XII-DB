@@ -1,0 +1,37 @@
+00322050 4053                     push rbx
+00322052 4883ec20                 sub rsp, 0x20
+00322056 488bd9                   mov rbx, rcx
+00322059 c781a40e000000000000     mov dword ptr [rcx + 0xea4], 0
+00322063 c681a80e000000           mov byte ptr [rcx + 0xea8], 0
+0032206A 488b4910                 mov rcx, qword ptr [rcx + 0x10]
+0032206E e86d000000               call 0x3220e0
+00322073 894308                   mov dword ptr [rbx + 8], eax
+00322076 4883c420                 add rsp, 0x20
+0032207A 5b                       pop rbx
+0032207B c3                       ret
+00322080 48895c2408               mov qword ptr [rsp + 8], rbx
+00322085 57                       push rdi
+00322086 4883ec20                 sub rsp, 0x20
+0032208A 488bf9                   mov rdi, rcx
+0032208D 4885c9                   test rcx, rcx
+00322090 7435                     je 0x3220c7
+00322092 e8991df4ff               call 0x263e30
+00322097 488bd8                   mov rbx, rax
+0032209A 4885c0                   test rax, rax
+0032209D 7428                     je 0x3220c7
+0032209F 488b4810                 mov rcx, qword ptr [rax + 0x10]
+003220A3 c780a40e000000000000     mov dword ptr [rax + 0xea4], 0
+003220AD c680a80e000000           mov byte ptr [rax + 0xea8], 0
+003220B4 e827000000               call 0x3220e0
+003220B9 894308                   mov dword ptr [rbx + 8], eax
+003220BC 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+003220C1 4883c420                 add rsp, 0x20
+003220C5 5f                       pop rdi
+003220C6 c3                       ret
+003220C7 488bcf                   mov rcx, rdi
+003220CA 488b5c2430               mov rbx, qword ptr [rsp + 0x30]
+003220CF 4883c420                 add rsp, 0x20
+003220D3 5f                       pop rdi
+003220D4 e907000000               jmp 0x3220e0
+00263E30 488b4130                 mov rax, qword ptr [rcx + 0x30]
+00263E34 c3                       ret

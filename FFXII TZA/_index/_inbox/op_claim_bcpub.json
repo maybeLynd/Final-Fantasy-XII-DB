@@ -1,0 +1,9 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-BCSCALAR-0922",
+ "agent": "SWE2-DATA",
+ "resources": [
+  {"key": "@publication"}
+ ],
+ "note": "behindcamera scalar = target-height offset; record-0 curve baked as code default; mover chain deepened"
+}

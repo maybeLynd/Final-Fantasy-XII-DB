@@ -1,0 +1,8 @@
+{
+  "stage": "Before claim transaction / no new task write / no execution",
+  "observed": "First claim.py exited1 at bare assert team.board_status(team.BOARD)[0]; its detail was not recorded by that version.",
+  "subsequent_supported_check": "team.py boardcheck: board ok: ok, exit0",
+  "cause": "Unknown. Do not infer rollback, lock cause or recovery from a bare assertion.",
+  "procedure_change": "Record board_status detail in assertion; use a fresh supported transaction after current checked board. No bypass/board restore/lock reaping or old-operation replay.",
+  "limits": "The subsequent PASS establishes the subsequent checked state, not the cause of the earlier refusal. If an actual incident recurs, retain detail and notify FRONTIER once."
+}

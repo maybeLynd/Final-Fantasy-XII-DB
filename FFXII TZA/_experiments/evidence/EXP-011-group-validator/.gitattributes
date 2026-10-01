@@ -1,0 +1,5 @@
+# Preserve hash-addressed source snapshots, exact synthetic inputs and raw outputs.
+* -text whitespace=cr-at-eol
+*.txt -whitespace
+# Exact mutant source includes the blank line left by an omitted callback.
+**/mutated-source.c -whitespace

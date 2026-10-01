@@ -1,0 +1,13 @@
+T1   SURVIVES  00385DF0 extent 83 B; calls 00385E08:call:003848E0 00385E13:call:00386C70 00385E1E:call:00385570 00385E29:call:00385CA0 00385E3E:jmp:00386860; conditional branches 0
+T2   SURVIVES  mov r8d, 0x148; call 0x861ec0; call 0x385df0; call 0x3112f0
+T3   SURVIVES  00310DCB `cmp qword ptr [rcx + 0x698], 0`; 00310DD6 `je 0x3112d1`
+T4   SURVIVES  00310DEF call 0x32a150 | 00310DF4 cmp dword ptr [rsi + 0xdd0], eax | 00310DFA jae 0x310e02 | 00310DFC and dword ptr [rsi], 0xbfffffff
+T5   SURVIVES  00310DE4 `mov dword ptr [rsi + 0x24], eax`; 00310DEC `mov dword ptr [rsi + 0x60], eax`; calls before: 00310DDC call 0x305e70; 00310DE7 call 0x2e8100
+T6   SURVIVES  00310DB0 extent 1338 B
+T7   SURVIVES  003848E0 push rbx | 003848E2 sub rsp, 0x20 | 003848E6 mov rbx, rcx | 003848E9 xor edx, edx | 003848EB add rcx, 8 | 003848EF mov r8d, 0x140 | 003848F5 call 0x861ec0
+T8   SURVIVES  00385625 `movzx ecx, word ptr [r14 + rdx*2 + 0x17c]`; 00385645 `mov word ptr [rsi + rdx*2 + 0x42], cx`; increment ['mov byte ptr [rdi + rsi + 0x3e], bl', 'inc rdi'] (register rdi); bound compares on it: 0
+T9   SURVIVES  cmp edi, 0x19; call 0x379cd0; add dword ptr [rbx + 0x24], eax; generator calls in the five stages: 00386C70@00386D27
+T10  SURVIVES  01DFE0B4 read by {'stage 1': False, 'stage 2': True, 'stage 3': False, 'stage 4': True, 'stage 5': True}
+T11  SURVIVES  stage 5 references 0208D494 0208DE94; 00386A27 `inc word ptr [rbx]`; 00386A2C `mov word ptr [rbx], r15w`
+T12  SURVIVES  0031A900 tests [022C314C] with ecx; gate calls (site, mask) 00385CCE:1 00385D6A:2; HP arm (mask 1 expected) [1]: /-100 True; MP arm (mask 2 expected) [2]: /-50 True
+BROKEN 0: none

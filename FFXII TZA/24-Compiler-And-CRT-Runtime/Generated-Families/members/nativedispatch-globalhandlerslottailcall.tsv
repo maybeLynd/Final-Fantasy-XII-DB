@@ -1,0 +1,28 @@
+# NativeDispatch.GlobalHandlerSlotTailCall - EC-7 family C
+# # dispatch through a member-specific global handler slot: if set, jmp rax
+# # with rcx=[r8+0x2E0], rdx=r8. No direct external targets.
+address	targets
+004174F0	
+00417510	
+00417550	
+00417570	
+00417590	
+004175B0	
+004175D0	
+004175F0	
+00417610	
+00417630	
+00417650	
+00417670	
+00417690	
+004176B0	
+004176D0	
+004176F0	
+00417710	
+00417730	
+00417750	
+00417770	
+00417790	
+004177B0	
+004177D0	
+004177F0	

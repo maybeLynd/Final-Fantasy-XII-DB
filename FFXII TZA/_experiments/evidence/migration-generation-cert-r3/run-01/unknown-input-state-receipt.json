@@ -1,0 +1,35 @@
+{
+  "name": "unknown-input-state",
+  "origin": "Byte-identical 7d9b5ec17 archive; changed-reader execution",
+  "sha256": "99a6848b4e981a9ea5fb6f74069734082670d0ea0136d87146525e656531bd10",
+  "bytes": 893,
+  "label": "UNVERIFIED",
+  "info": {
+    "reason": "input 'data' has unknown state 'ASTRA_LABELLED_UNKNOWN_STATE' (known: present, empty, missing, unsupported)",
+    "generation": "g20260929T071157Z-69ff7d"
+  },
+  "exception": null,
+  "entries": [
+    {
+      "name": "MANIFEST.json",
+      "sha256": "7aff17b77b3959b52d7a23ddfc6b143ffb448de1cb20f43ffe3a9c7859b05ca5"
+    },
+    {
+      "name": "outputs/view.json",
+      "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+    }
+  ],
+  "cli": {
+    "args": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\generation.py",
+      "verify-zip",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\unknown-input-state.zip"
+    ],
+    "returncode": 1,
+    "stdout": "UNVERIFIED {\"reason\": \"input 'data' has unknown state 'ASTRA_LABELLED_UNKNOWN_STATE' (known: present, empty, missing, unsupported)\", \"generation\": \"g20260929T071157Z-69ff7d\"}\n",
+    "stderr": "",
+    "terminal": true
+  }
+}

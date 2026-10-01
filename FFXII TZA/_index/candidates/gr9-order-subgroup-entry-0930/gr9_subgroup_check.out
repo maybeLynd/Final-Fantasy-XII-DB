@@ -1,0 +1,6 @@
+PASS  K1 +0x6B5 byte writers ['00236BA3', '002FE09F', '002FE0BB']; reader 00305C34; wider accesses on other bases: ['001CC3AD', '001D0BA8', '002E03C4', '0052AE9D', '005431C5', '00543214', '00543900', '0061E454', '0061E4B0', '0070729C', '0070731C', '00707410', '00707490', '007C08DB', '007C0AA8', '007C46F7', '007C4F1A', '007CE494', '007D2885', '007D7557', '007D7580']
+PASS  K2 subgroup = low byte of the committed order id - 0x16 (order 0x4116 + k -> subgroup k)
+PASS  K3 battle-layer +0x714 writers ['00236B55', '0030F806', '0031071B'] (0xFFFF except CommitAction); outside the battle layer: ['001D0390', '0041F730', '004200A0', '00542740', '006FEF20', '00708470', '007084E0', '00708540', '007085A0', '00708600', '007C05C0', '007C1100', '007D1EE0', '007D2150']
+PASS  K4 CommitAction call sites ['00305B2F', '00305C9B', '00305DF4', '0030FA5C', '003130DC']; the static record 01EEC298 holds 0x4021
+PASS  K5 +0xBA0 written only at 00311D7A; issued ids: menu path ["('C', 156)", "('C', 157)", "('C', 275)", "('M', '0027868A word ptr [rax]')", "('M', '0027875A word ptr [rsi]')", "('M', '0027C591 word ptr [rdx + 0x50]')"]; 003138D0: 0x113
+FAILS 0

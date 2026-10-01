@@ -1,0 +1,10 @@
+A1   SURVIVES  extent 2040 B; call 0x31b860; call 0x31b860
+A2   SURVIVES  {'bit 8 @00311610': 'bt ecx, 8', 'bit 14 @0031166D': 'bt ecx, 0xe', '+0x1D @003116A6': 'movzx ecx, byte ptr [rbx + 0x1d]', 'source @003116FB': 'test rcx, rcx', 'bit 7 @00311703': 'test dl, dl', 'bit 13 @00311748': 'bt r9d, 0xd'}; source-MP flag build ['mov r8d, r9d', 'shr r8d, 7', 'mov eax, r9d', 'not r8d', 'shr eax, 0xa', 'and r8d, 0x10', 'and eax, 0x20', 'or r8d, eax']; 00300BC0 called at ['003116E0']
+A3   SURVIVES  0030E360 calls with mode ['0031153A:3', '0031159F:0']; flag build ['mov ecx, dword ptr [rbx + 0x140]', 'mov eax, ecx', 'and eax, 0x10', 'and ecx, 0x20', 'bts eax, 0xc', 'bts ecx, 0xd', 'shr ecx, 4', 'shr eax, 3', 'mov dword ptr [rsp + 0x40], ecx']
+A4   SURVIVES  dword copy: r9 = target - record, cursor record + 0x5C, store [r9 + rcx + 0x60] (= target + 0xBC), 0x20 entries, negatives skipped; word copy from record + 0xDC to target + 0x13C: True
+A5   SURVIVES  dirty sets ['mov r14d, 1', 'mov r14d, 1', 'mov r14d, 1', 'mov r14d, 1']; [rsp + 0x44] = ['mov eax, r10d', 'mov r14d, r13d', 'shr eax, 9', 'and eax, 1', 'mov dword ptr [rsp + 0x44], eax']; outer tail ['test rdi, rdi', 'je 0x311aca', 'cmp dword ptr [rsp + 0x44], 0', 'jne 0x311aca', 'test r14d, r14d', 'je 0x311aca', 'xor edx, edx', 'mov rcx, rdi', 'call 0x30fed0']
+A6   SURVIVES  0030E130 calls in the two loops ['003117CB'] / ['00311807']
+A7   SURVIVES  direct calls {'00300520': [], '00300530': [], '00300C90': [], '00300CE0': []}; addresses loaded by lea ['00300520', '00300530', '00300C90', '00300CE0']
+A8   SURVIVES  gate {3693591: 'and byte ptr [rax + 0x14], 0xfb', 3693633: 'and byte ptr [rax + 0x14], 0xfd', 3693675: 'and byte ptr [rax + 0x14], 0xfe'}; 0031137A `call 0x385ba0`; 0031146C `btr eax, ebp`
+A9   SURVIVES  immediate 0x400 in the target-HP flag build: []
+BROKEN 0: none

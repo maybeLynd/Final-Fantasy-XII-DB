@@ -1,0 +1,8 @@
+SURVIVES  H0  all twenty-six sizes as cited
+SURVIVES  H1  both workers scan bits 0..13 upward (bound 0xE) and store the first set index in +5, or 0xFF (cmove) when none is set
+SURVIVES  H2  writers of 02B59D70 ['003E7CC0 in 003E7CC0'] (linear ['003E7CC0']); 002EA8E0 reads 0215FD44 and reaches 003E7CC0
+SURVIVES  H3  0046FBB0 reads ['01F20538', '01F20AA0']; count 60
+SURVIVES  H4  ['movzx edx, cl', 'imul rax, rdx, 0x70', 'add rax, qword ptr [rip + 0x279381a]', 'cmp dword ptr [rax], ecx', 'jne 0x3abd17', 'add rax, 0x20', 'ret', 'xor eax, eax', 'ret']
+SURVIVES  H5  ['cmp r9d, 1', 'jle 0x3e5d00', 'test rcx, rcx', 'jne 0x3e5d60', 'ret']
+SURVIVES  H6  +0x5EC and 02B3F518; the six-light compare
+FAILS 0

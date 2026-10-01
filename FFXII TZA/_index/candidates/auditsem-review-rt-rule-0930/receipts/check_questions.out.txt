@@ -1,0 +1,8 @@
+CROSS-CHECK
+   unticked boxes whose question the table calls ANSWERED : 0
+   ticked boxes whose question the table still calls OPEN : 0
+   open-claim drift candidates (hand review, not a gate): 235
+   premise-drift candidates (EC-3; hand review): 4 retracted-only, 907 struck+live (704 rows checked)
+   rows whose cell count differs from their table header  : 0
+
+questions consistent: the table and the document checklists agree

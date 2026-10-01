@@ -1,0 +1,18 @@
+{
+  "result": "B_BOUNDED_CLEAR_ARGUMENT_AND_WARM_OUTPUT; PENDING_REVIEW",
+  "question": "Physical clearing versus logical empty mask / caller preclear / signed loop gate",
+  "established": {
+    "count0": "original call argument0; warm46 physical output remains unchanged under disclosed bridge; return0",
+    "count8_positive": "original argument1, bridge clears exactly first output byte; return0/canaries intact",
+    "countFFFFFFF9": "32-bit wrap gives clear argument0, signed loop skipped; warm bytes unchanged; return0",
+    "countFFFFFFF8": "original clear argument536870911 before loop gate; captured/stopped before bridge; no large clear attempted",
+    "caller_preclear": "original PREREQ writes46 zero bytes in its own temporary BEFORE builder call (A), a distinct initialization guarantee"
+  },
+  "interpretation": "Do not infer a physical46-byte output guarantee from a zero-sized logical mask. The PREREQ zero mask is supplied by caller. Signed loop rejection is after the clear-size call and cannot guarantee that call was skipped.",
+  "limits": "Supplied guest descriptors/rows/output, no real initialization/reachability; memset bridge scripted, no native CRT effect proof. Oversized case is argument/order only; no completed clear/corruption/fault claim. PREREQ preclear is static, not newly executed. No57/35 campaign replay.",
+  "affected": [
+    "OPUS licence contract section13 builder/caller initialization wording",
+    "malformed-count ABI precondition; underlying EXP140 original requested edge remains answered"
+  ],
+  "cleanup": "No live FF12/process/control/native OS input/instrument/save/config/reference writes. Guest sessions bounded and ended."
+}

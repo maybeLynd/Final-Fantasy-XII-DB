@@ -1,0 +1,43 @@
+{
+ "cases": {
+  "P1_fresh_arm_sets_the_bit_itself_and_notifies": true
+ },
+ "fresh": {
+  "b10_after": 4,
+  "events": [
+   [
+    "roll 0025ACA0",
+    0
+   ],
+   [
+    "apply 0026D910",
+    2
+   ],
+   [
+    "presentation 0040AAD0",
+    4
+   ],
+   [
+    "set bit 002621A4",
+    0
+   ],
+   [
+    "latched tail 002621A8",
+    0
+   ],
+   [
+    "notify 003601C0",
+    11
+   ],
+   [
+    "notify 003601C0",
+    12
+   ]
+  ],
+  "returned": true,
+  "rip": "71000000",
+  "stopped_at": []
+ },
+ "ok": true,
+ "pool_slot0_after": "00020000000000000000000000000000"
+}

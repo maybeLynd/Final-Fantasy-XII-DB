@@ -1,0 +1,23 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PUB-ACCESSOR-BLIND-SPOT",
+  "kind": "research",
+  "priority": "P2",
+  "target": "publish the accessor-aware singleton census and the three BootSingleton01F7F598 offsets it found",
+  "scope": "the type store's field rows for BootSingleton01F7F598, singleton_field_scan.py, and the OPUS audit/resume entries",
+  "completion": "pending",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   },
+   {
+    "key": "file:database/ffxii tza/_index/_inbox/opus.md"
+   },
+   {
+    "key": "file:database/ffxii tza/_types/fields.tsv"
+   }
+  ]
+ }
+}

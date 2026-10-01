@@ -1,0 +1,9 @@
+# NativeAdapter.OutRecordMemberCallTailCall - EC-7 family C
+# # rdx=[arg1+8]; call a member predicate on it; if zero tail-call a
+# # member op on this.
+address	targets
+0042DCA0	00424320,00426220
+0042E020	00422C20,00426220
+0042E0D0	00423920,00426220
+0042E100	00423980,00426220
+0042E480	00424040,00426220

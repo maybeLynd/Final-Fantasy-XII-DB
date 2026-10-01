@@ -1,0 +1,22 @@
+{
+  "method": "B - isolated original return/caller/formatter with native host CRT",
+  "live_game": false,
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\steam-id-stack-consumer\\run.py",
+    "--child",
+    "--name",
+    "control-wide-stable-shim",
+    "--options",
+    "4",
+    "--stable",
+    "--shim"
+  ],
+  "sources": {
+    "run.py": "c02cf208071cb9306197ed2e41001f522170f50d0c80440974816b6372c988ad",
+    "fixture.py": "b4e903a72584a99b4c55243d29b82880cb44962db3ba0669882d3c55642a67bc"
+  },
+  "timeout_seconds": 15,
+  "question": "Does native formatting preserve the supplied returned-stack ID in this exact state?",
+  "limit": "No actual Steam initialization, original startup reachability, filesystem creation or universal CRT claim."
+}

@@ -1,0 +1,6 @@
+PASS  A the producer takes arena 11 (2 + 9) only when 0037B330() == 2 and +0x17 bit 6; otherwise arena 6 (5 + 1)
+PASS  C arena 6 is named only by the boot init 0022A321; teardown/disable name only 11-14 (or a computed id); the backing release is called only in 0037B3D0. Census: {'00369760': [('0025A9A3', 13), ('0025AA43', 14), ('00262DDF', 'rdi+13'), ('00262E0D', 14), ('0026C9CC', 13), ('0026C9FC', 14), ('0037B403', 11)], '0036D160': [('0025A9AD', 13), ('0025AA4D', 14), ('00262DE7', 'rdi+13'), ('00262E17', 14), ('0026C9D6', 13), ('0026CA06', 14), ('0037B40D', 11), ('003EA26C', 12)], '00369D30': [('0022A2AE', 2), ('0022A2CB', 3), ('0022A2E7', 4), ('0022A304', 5), ('0022A321', 6), ('0022A33E', 7), ('0022A35B', 8), ('0022A377', 9), ('0022A394', 11), ('0025AA21', 13), ('0025AAC1', 14), ('0037B43D', 11), ('003E9AEF', 12)], '0036D250': [('0037B419', None)]}
+PASS  T on a state change arena 11 is reported, disabled, its backing freed (free), a new one allocated and re-initialised
+PASS  D the report worker 0036A570 and its helper call no release: ['call 0x20e600', 'call 0x36a850', 'call 0x808c40', 'call qword ptr [rip + 0x558869]']
+PASS  K the argument reader resolves known sites (0037B403 -> 11, 0022A321 -> 6)
+FAILS 0

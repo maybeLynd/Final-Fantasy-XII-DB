@@ -1,0 +1,8 @@
+      0036A100           {'DEREF': 15, 'PASSED': 50, 'RETURNED': 9, 'STORED': 31, 'TESTED': 5}
+      0036A190           {'DEREF': 2, 'PASSED': 21, 'RETURNED': 2, 'STORED': 12, 'TESTED': 41, 'UNCLEAR': 3}
+      0036A1A0           {'UNCLEAR': 2}
+      0036B160 (handle)  {'PASSED': 2, 'RETURNED': 1, 'STORED': 6, 'TESTED': 4}
+      all sites 206: {'DEREF': 17, 'PASSED': 73, 'RETURNED': 12, 'STORED': 49, 'TESTED': 50, 'UNCLEAR': 5}
+PASS  C1 controls: 002E678F stores then tests the handle (TESTED); 0024A2B9 keeps the pointer in rbp across a call and uses it (DEREF)
+PASS  C2 every site of the four entries classified (206)
+FAILS 0

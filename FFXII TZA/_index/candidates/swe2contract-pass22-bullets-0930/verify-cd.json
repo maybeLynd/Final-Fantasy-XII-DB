@@ -1,0 +1,56 @@
+{
+ "00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md": {
+  "extra": null,
+  "verdict": "PUBLISHABLE",
+  "issues": [],
+  "flags": [],
+  "pairs": 5,
+  "bullets": 5,
+  "residual": []
+ },
+ "00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md": {
+  "extra": null,
+  "verdict": "PUBLISHABLE",
+  "issues": [],
+  "flags": [],
+  "pairs": 17,
+  "bullets": 17,
+  "residual": []
+ },
+ "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md": {
+  "extra": null,
+  "verdict": "PUBLISHABLE",
+  "issues": [],
+  "flags": [],
+  "pairs": 6,
+  "bullets": 5,
+  "residual": []
+ },
+ "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/hchk-hctg-hdat-handbook-indexes.md": {
+  "extra": null,
+  "verdict": "PUBLISHABLE",
+  "issues": [],
+  "flags": [],
+  "pairs": 20,
+  "bullets": 20,
+  "residual": []
+ },
+ "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md": {
+  "extra": null,
+  "verdict": "PUBLISHABLE",
+  "issues": [],
+  "flags": [],
+  "pairs": 8,
+  "bullets": 8,
+  "residual": []
+ },
+ "25-EBP-Script-Container/Sections/section-008.md": {
+  "extra": "EXTRA verified bullets ['Presentation', 'Resource']; rows held back ['Presentation', 'Resource']",
+  "verdict": "PUBLISHABLE",
+  "issues": [],
+  "flags": [],
+  "pairs": 2,
+  "bullets": 4,
+  "residual": []
+ }
+}

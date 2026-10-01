@@ -1,0 +1,10501 @@
+[
+ {
+  "name": "m0-set",
+  "ok": true,
+  "why": "mode0 clears +0x64: presence flips, arrays written (initialising), removing builder -> applier fires",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 11,
+   "paramA_32": 0,
+   "timer_st": 12,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 11,
+     "pb": 12,
+     "flags": 0,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m0-absent",
+  "ok": true,
+  "why": "mode0 on a clear bit refuses: nothing is written, no side effects",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m1-set",
+  "ok": true,
+  "why": "mode1 clears +0x3C (initialising? no - only modes 0/3) -> arrays untouched",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 11,
+     "pb": 12,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m1-absent",
+  "ok": true,
+  "why": "mode1 on a clear bit refuses",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m2-set",
+  "ok": true,
+  "why": "mode2 clears +0x38: presence does not include +0x38 -> write lands, no side effects, no arrays",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 2
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m2-absent",
+  "ok": true,
+  "why": "mode2 on a clear bit refuses",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 2
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m3-set",
+  "ok": true,
+  "why": "mode3 sets +0x64, writes arrays, adding builder -> applier skipped, reaction + extra_add fire",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 11,
+   "paramA_32": 0,
+   "timer_st": 12,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 11,
+     "pb": 12,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m3-conflict",
+  "ok": true,
+  "why": "mode3 refuses when the bit is already set in +0x38",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 128,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m3-already",
+  "ok": true,
+  "why": "mode3 refuses when the bit is already set in +0x64",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m4-set",
+  "ok": true,
+  "why": "mode4 sets +0x3C: adding, but not initialising -> arrays untouched",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 128,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m4-already",
+  "ok": true,
+  "why": "mode4 on a set bit refuses",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 128,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m5-set",
+  "ok": true,
+  "why": "mode5 sets +0x38: presence unchanged -> early return, zero side effects",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 128,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 5
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m5-already",
+  "ok": true,
+  "why": "mode5 on a set bit refuses",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 128,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 5
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m6",
+  "ok": true,
+  "why": "mode>5 refuses before touching anything",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 6
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m-neg",
+  "ok": true,
+  "why": "mode -1: movsxd makes eax FFFFFFFF; unsigned ja refuses",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": -1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "g1-refuse",
+  "ok": true,
+  "why": "low16 gate nonzero with flags bit0 clear -> early return, mask untouched",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "g2-term",
+  "ok": true,
+  "why": "high16 gate nonzero on a TERMINAL status -> refuse",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "g2-nonterm",
+  "ok": true,
+  "why": "high16 gate nonzero on a non-terminal status -> the refusal is skipped",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 1,
+   "paramA_32": 0,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "flag0-bypass",
+  "ok": true,
+  "why": "flags bit0: both gates are skipped entirely - stubs never called",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 1,
+   "paramA_32": 0,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 1,
+     "pb": 2,
+     "flags": 1,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "party-term",
+  "ok": true,
+  "why": "adding Stone to a party-type unit (inner kind0, type 0x1B): defeat_cleanup only, masks untouched",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "party-otype",
+  "ok": true,
+  "why": "inner type 0x28 is out of the 0x1B..0x27 band: normal apply path",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 2,
+   "paramA_st": 1,
+   "paramA_32": 131072,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8204,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 3
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "party-kind1",
+  "ok": true,
+  "why": "inner kind nonzero: normal apply path",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 2,
+   "paramA_st": 1,
+   "paramA_32": 131072,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8204,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 3
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "term-second-blocked",
+  "ok": true,
+  "why": "adding Stone while KO already present and field-bit15 clear -> refuse",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 1,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "field_bit15",
+     "rcx": 1610641408,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "term-second-allowed",
+  "ok": true,
+  "why": "same but field-bit15 set -> the refusal is bypassed",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 3,
+   "paramA_st": 1,
+   "paramA_32": 131072,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "field_bit15",
+     "rcx": 1610641408,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8204,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 3
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "def-paramA",
+  "ok": true,
+  "why": "paramA<0: 00387730 computes the authored duration for status 8 (dur=50, flag 0x2000 set, vitality-scaled)",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 256,
+   "paramA_st": 90000,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 1,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 4294967295,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "def-paramB",
+  "ok": true,
+  "why": "paramB<0: 003876D0 computes beat 120 x scale 4 x 30 = 14400",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 256,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 14400,
+   "timer_32": 0,
+   "u_e9a": 1,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 0,
+     "pb": -1,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "expl-params",
+  "ok": true,
+  "why": "non-negative params stored verbatim",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 256,
+   "paramA_st": 287454020,
+   "paramA_32": 0,
+   "timer_st": 43707,
+   "timer_32": 0,
+   "u_e9a": 1,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 287454020,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 287454020,
+     "pb": 43707,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "m4-noarrays",
+  "ok": true,
+  "why": "mode4 is adding but NOT initialising: negative params are ignored, arrays untouched",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 256,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 1,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 4294967295,
+     "pb": -1,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "cascade-10",
+  "ok": true,
+  "why": "status10 clearMask has bit25: the real shipped row drives one recursive mode-0 clear of +0x64 bit25, inner call sees flags|0x200",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 1024,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 10,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 10,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "cascade-absent",
+  "ok": true,
+  "why": "clearMask fires regardless of target state: inner mode0 on absent bit25 refuses inside",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 1024,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 10,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 10,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "cascade-20",
+  "ok": true,
+  "why": "status20 clearMask bit15: second shipped-row witness",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 1048576,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 20,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 20,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 15,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t0-add",
+  "ok": true,
+  "why": "KO added: case0 adding arm -> defeat_cleanup(unit,0) then rewards(src,unit)",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 1,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 3,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 3,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 3,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 12,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 12,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 12,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 13,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 13,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 13,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 14,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 14,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 14,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 17,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 17,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 17,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 29,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 29,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 29,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 0,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 3,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 4,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 5,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 6,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 12,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 13,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 14,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 15,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 17,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 29,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 30,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t0-remove",
+  "ok": true,
+  "why": "KO removed: case0 non-adding -> recover(unit)",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recover",
+     "rcx": 1610633216,
+     "rdx": 1179648,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 0,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t1-add",
+  "ok": true,
+  "why": "Stone added: case1 -> event 0x200C then cleanup+rewards",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 2,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8204,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t1-remove",
+  "ok": true,
+  "why": "Stone removed: case1 -> recover only",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recover",
+     "rcx": 1610633216,
+     "rdx": 1179648,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t31-add",
+  "ok": true,
+  "why": "Vanished added: case6 -> event 0x200E then cleanup+rewards",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 2147483648,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 3,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 3,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 3,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 9,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 9,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 9,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 11,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 11,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 11,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 12,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 12,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 12,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 13,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 13,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 13,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 14,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 14,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 14,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 15,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 16,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 16,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 16,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 17,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 17,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 17,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 29,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 29,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 29,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 31,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 31,
+     "r8": 30,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8206,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 31,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 3,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 4,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 5,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 6,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 9,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 11,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 12,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 13,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 14,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 15,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 16,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 17,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 29,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 30,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t31-remove",
+  "ok": true,
+  "why": "Vanished removed: recover only",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 31,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recover",
+     "rcx": 1610633216,
+     "rdx": 1179648,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 31,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t4-add",
+  "ok": true,
+  "why": "Sleep added: case3 -> event 0x2001",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 16,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 4,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 4,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8193,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 4,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t4-remove",
+  "ok": true,
+  "why": "Sleep removed: case3 -> same event 0x2001",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8193,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 4,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t5-add-allow",
+  "ok": true,
+  "why": "Confuse added, predicate allows: case4 -> case4_action(unit,1)+case4_second(unit)",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 32,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 5,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 5,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_action",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_second",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 5,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t5-add-deny",
+  "ok": true,
+  "why": "Confuse added, word[+0x714]==0x113: case4 -> case4_action(unit,0)",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 32,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 5,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 5,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_action",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_second",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 5,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t5-remove",
+  "ok": true,
+  "why": "case4 runs its predicate on REMOVES too - no adding test in that arm",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 5,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_action",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_second",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 5,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 1
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t27-add",
+  "ok": true,
+  "why": "Berserk shares case4 with Confuse",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 134217728,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 27,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 27,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_action",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "case4_second",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t2-add-src",
+  "ok": true,
+  "why": "Petrify added with a kind-0 source: unit+0xE9A bit1 set",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 4,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 2,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 2,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 2,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t2-add-nosrc",
+  "ok": true,
+  "why": "Petrify added with NULL source: bit1 stays clear",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 4,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 2,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 2,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 0,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t8-add",
+  "ok": true,
+  "why": "Poison added with kind-0 source: unit+0xE9A bit0 set",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 256,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 1,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 8,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "t6-add",
+  "ok": true,
+  "why": "Doom has no terminal case (case7 shared tail): only the recompute stub fires",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 64,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 6,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 6,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 6,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 6,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "null-unit",
+  "ok": true,
+  "why": "unit lookup returns 0: terminal dispatch skipped, mask still written",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 2,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "st32-mode4",
+  "ok": true,
+  "why": "status 32: shl masks the count to 0 -> bit0 (KO's own bit) in +0x3C; terminal gates still see the terminal bit; dispatch table skipped (32>31)",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 1,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 32,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 32,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 32,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "st32-mode3",
+  "ok": true,
+  "why": "status 32 initialising: paramA[32] lands at +0x13C (timer[0]), timer[32] lands at +0x17C past the array",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 1,
+   "paramA_st": 77,
+   "paramA_32": 77,
+   "timer_st": 88,
+   "timer_32": 88,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 32,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 32,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 32,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 32,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 32,
+     "r8": 18446744073709551615,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 32,
+     "r8": 18446744073709551615,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 77,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 32,
+     "pa": 77,
+     "pb": 88,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "fault-def-a",
+  "ok": true,
+  "why": "registry null + paramA default: 00387730 derefs [rcx+8] with rcx=0 -> read fault at VA 8",
+  "failures": [],
+  "snap": {
+   "fault": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+   "faults": [
+    [
+     19,
+     8,
+     3700646
+    ]
+   ],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 256,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 4294967295,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 4294967295,
+     "pb": 0,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": false
+  }
+ },
+ {
+  "name": "fault-def-b",
+  "ok": true,
+  "why": "registry null + paramB default: 003876D0 derefs [rcx+9] -> read fault at VA 9",
+  "failures": [],
+  "snap": {
+   "fault": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+   "faults": [
+    [
+     19,
+     9,
+     3700500
+    ]
+   ],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 256,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 8,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 8,
+     "pa": 0,
+     "pb": -1,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": false
+  }
+ },
+ {
+  "name": "fault-casc",
+  "ok": true,
+  "why": "registry null + adding: the cascade's 'guarded' path still executes mov eax,[rcx+0xC] with rcx=0 -> read fault at VA 0xC (refutes the contract's no-deref claim)",
+  "failures": [],
+  "snap": {
+   "fault": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+   "faults": [
+    [
+     19,
+     12,
+     3204746
+    ]
+   ],
+   "w38": 0,
+   "w3C": 1024,
+   "w64": 33554432,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": false
+  }
+ },
+ {
+  "name": "fault-casc-nullbase",
+  "ok": true,
+  "why": "registry present, table offset 0 with codec base 0: resolver returns 0 -> same [0xC] fault",
+  "failures": [],
+  "snap": {
+   "fault": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+   "faults": [
+    [
+     19,
+     12,
+     3204746
+    ]
+   ],
+   "w38": 0,
+   "w3C": 1024,
+   "w64": 33554432,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": false
+  }
+ },
+ {
+  "name": "flag9-skip",
+  "ok": true,
+  "why": "flags bit9: the tail recompute is skipped",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 16,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 4,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 4,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 4,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8193,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 4,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "flag1-skip",
+  "ok": true,
+  "why": "flags bit1: extra effect skipped - no extra_add call",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 128,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 2,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 2,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "flag4-skip",
+  "ok": true,
+  "why": "flags bit4: the applied-reaction call is skipped",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 128,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 16,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 16,
+     "mode": 4
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "src-null",
+  "ok": true,
+  "why": "source NULL: gates get rdx=0, everything else proceeds",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 1,
+   "paramA_32": 0,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 0,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 0,
+     "st": 7,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-addmask",
+  "ok": true,
+  "why": "MUTANT: removing becomes adding - builder swapped, applier skipped, reaction fires",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 1,
+   "paramA_32": 0,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-init3",
+  "ok": true,
+  "why": "MUTANT: mode3 loses initialising - arrays stay zero",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 11,
+     "pb": 12,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-bound6",
+  "ok": true,
+  "why": "MUTANT: mode6 reads jump-table[6] = the case-target table's head -> lands in the case0 arm",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 6
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-termmask",
+  "ok": true,
+  "why": "MUTANT: Stone no longer 'terminal' for the gate2 refusal -> apply proceeds",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 2,
+   "paramA_st": 1,
+   "paramA_32": 131072,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 1,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 2,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 18,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 19,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 20,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 21,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 22,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 23,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 24,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 26,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 27,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 1,
+     "r8": 28,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "event",
+     "rcx": 1610633216,
+     "rdx": 8204,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "defeat_cleanup",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "rewards",
+     "rcx": 1610625024,
+     "rdx": 1610633216,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 0,
+     "r9": 0,
+     "a5": 0,
+     "a6": 512
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 1,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 3
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 2,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 18,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 19,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 20,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 21,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 22,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 23,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 24,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 26,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 27,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 28,
+     "pa": 0,
+     "pb": 0,
+     "flags": 512,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-mode0-not",
+  "ok": true,
+  "why": "MUTANT: mode0 writes the bit back unchanged -> presence-equal early return",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 128,
+   "paramA_st": 1,
+   "paramA_32": 0,
+   "timer_st": 2,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 1,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 1,
+     "pb": 2,
+     "flags": 0,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-shl",
+  "ok": true,
+  "why": "MUTANT: every status collapses to bit1",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 0,
+   "w64": 2,
+   "paramA_st": 11,
+   "paramA_32": 0,
+   "timer_st": 12,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 7,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 11,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 11,
+     "pb": 12,
+     "flags": 0,
+     "mode": 3
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-pres-src",
+  "ok": true,
+  "why": "MUTANT: the AFTER presence read includes +0x38 -> mode5 now 'changes presence' and fires side effects",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 128,
+   "w3C": 0,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 7,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 7,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 5
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-cascflag",
+  "ok": true,
+  "why": "MUTANT: cascade calls get flags|0x100 not |0x200 -> inner recompute fires",
+  "failures": [],
+  "snap": {
+   "fault": null,
+   "faults": [],
+   "w38": 0,
+   "w3C": 1024,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 10,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 25,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 256,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 10,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 256
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 10,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 256
+    },
+    {
+     "at": "recompute",
+     "rcx": 1610616832,
+     "rdx": 0,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 256
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 10,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    },
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 25,
+     "pa": 0,
+     "pb": 0,
+     "flags": 256,
+     "mode": 0
+    }
+   ],
+   "nv_ok": true
+  }
+ },
+ {
+  "name": "mut-termbound",
+  "ok": true,
+  "why": "MUTANT: status32 indexes case-byte[32] - one past the table",
+  "failures": [],
+  "snap": {
+   "fault": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+   "faults": [
+    [
+     21,
+     1179648,
+     1179648
+    ]
+   ],
+   "w38": 0,
+   "w3C": 1,
+   "w64": 0,
+   "paramA_st": 0,
+   "paramA_32": 0,
+   "timer_st": 0,
+   "timer_32": 0,
+   "u_e9a": 0,
+   "trace": [
+    {
+     "at": "unit_lookup",
+     "rcx": 1610625024,
+     "rdx": 1610625024,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "unit_lookup",
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_low16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "gate_high16",
+     "rcx": 1610633216,
+     "rdx": 0,
+     "r8": 32,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "reaction",
+     "rcx": 1610633216,
+     "rdx": 32,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    },
+    {
+     "at": "extra_add",
+     "rcx": 1610616832,
+     "rdx": 32,
+     "r8": 18446744073709551615,
+     "r9": 0,
+     "a5": 0,
+     "a6": 0
+    }
+   ],
+   "entries": [
+    {
+     "rcx": 1610616832,
+     "rdx": 1610625024,
+     "st": 32,
+     "pa": 0,
+     "pb": 0,
+     "flags": 0,
+     "mode": 4
+    }
+   ],
+   "nv_ok": false
+  }
+ }
+]

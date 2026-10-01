@@ -1,0 +1,31 @@
+Ra_latch_before_policy             PASS  latch 02092734 = 1: the router returns 0 and never enters the policy aggregate 002E0FA0
+Rb_policy_bit_table                PASS  every aggregate bit alone x ids [1, 2, 3, 5, 14, 21] + 7 (bit 15 set): the router refuses exactly when that bit's 01E0C2C0 entry holds the MASKED id's bit
+Rc_R3_busy_root_refuses_after_dispatch PASS  an occupied root slot: the router passes the request to 00280A00, which returns 0 before 00252B40 - the word stays 0
+R3_R6_accepted_request             PASS  request 0x8007: the scheduler receives the RAW dword (bit 15 kept); 00252B40 writes the MASKED id 7 to 02092730 and 020927D8 and the latch 1, BEFORE the first mount; the first mount is a 0xD8 widget with proc 0027FB70, whose create message runs (the run ends at the widget's first UI-internal call)
+R6_prelude_audio_split             PASS  the word is written for every accepted id; for 2, 6, 15, 17 the prelude's stop callbacks reach the audio layer before the first mount, for 7 and 8 the first widget mounts
+R1_single_slot_silent_replace      PASS  two posts before a drain both return 1; the slot holds only the second (id 9, parameter 0x22)
+R2_post_policy_narrower            PASS  the post refuses only id 2 under aggregate bit 0; id 7 posts under the same aggregate, and bit 1 does not stop id 2
+R1b_blocked_byte_refuses           PASS  0215F1A1 non-zero: the post returns 0 and writes nothing
+ok
+C4_latch_three_readers_three_writers                       PASS
+L4_release_and_hard_reset_clear_latch_and_word             PASS
+D0_drain_dispatches_the_pending_request_to_the_router      PASS
+DW_request_word_must_be_0_or_5                             PASS
+DP_no_pending_no_dispatch                                  PASS
+DS_slot_guard_is_38_or_3E_bit0                             PASS
+DT_transition_clause_never_blocks_here                     PASS
+DM_manager_slot0_not_ready_discards_the_request            PASS
+ALL PASS
+{"release_00252D90": {"returned": true, "stop": null, "faults": [], "latch_after": 0, "word_after": 0}, "hard_reset_00252DE0": {"returned": true, "stop": null, "faults": [], "latch_after": 0, "word_after": 0}}
+base {'returned': False, 'stop': '002909F0 widget internals', 'faults': [], 'router': [[7, '22']], 'pending_after': 1}
+word5 {'returned': False, 'stop': '002909F0 widget internals', 'faults': [], 'router': [[7, '22']], 'pending_after': 1}
+word3 {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 1}
+pending0 {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 0}
+slot_38 {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 1}
+slot_3E_01 {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 1}
+slot_3E_80 {'returned': False, 'stop': '002909F0 widget internals', 'faults': [], 'router': [[7, '22']], 'pending_after': 1}
+id7_transition_running {'returned': False, 'stop': '002909F0 widget internals', 'faults': [], 'router': [[7, '22']], 'pending_after': 1}
+id12_transition_running {'returned': False, 'stop': '0036C000 jmp-self (bit of [022D89B8] clear)', 'faults': [], 'router': [[12, '22']], 'pending_after': 1}
+mslot0_inactive {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 0, 'mailbox_after': [0, 0, 0, 0]}
+mslot0_busy_11 {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 0, 'mailbox_after': [0, 0, 0, 0]}
+mslot0_busy_10bit7 {'returned': True, 'stop': None, 'faults': [], 'router': [], 'pending_after': 0, 'mailbox_after': [0, 0, 0, 0]}

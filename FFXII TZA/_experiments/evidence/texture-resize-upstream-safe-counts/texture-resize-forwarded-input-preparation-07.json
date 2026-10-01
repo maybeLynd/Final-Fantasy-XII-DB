@@ -1,0 +1,61 @@
+{
+  "status": "PREPARATION_ONLY_CONTROLS_VALID",
+  "method": "A retained shipping reference candidates",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "targets": [
+    "0x623df0",
+    "0x621ff0",
+    "0x183780"
+  ],
+  "controls": {
+    "retained_direct_calls": [
+      "0x62b129",
+      "0x62b143"
+    ],
+    "known_virtual_slot": "0xd54348",
+    "source_pin": {
+      "path": "title-cleanup-count-selector-source-01.json",
+      "sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+    }
+  },
+  "references": [
+    {
+      "kind": "raw_rel32",
+      "target": "0x183780",
+      "pc": "0x1babb2",
+      "bytes": "e8c98bfcff",
+      "mnemonic": "call",
+      "args": "0x183780",
+      "section": ".text"
+    },
+    {
+      "kind": "raw_rel32",
+      "target": "0x623df0",
+      "pc": "0x62b129",
+      "bytes": "e8c28cffff",
+      "mnemonic": "call",
+      "args": "0x623df0",
+      "section": ".text"
+    },
+    {
+      "kind": "raw_rel32",
+      "target": "0x623df0",
+      "pc": "0x62b143",
+      "bytes": "e8a88cffff",
+      "mnemonic": "call",
+      "args": "0x623df0",
+      "section": ".text"
+    },
+    {
+      "kind": "raw_abs64",
+      "target": "0x621ff0",
+      "pc": "0xd54348",
+      "section": ".rdata",
+      "aligned8": true,
+      "nearby_address": "0xd54330",
+      "nearby_bytes": "4c454e445f44455343000000000000004824d10100000000f01f620000000000c824d1010000000000206200000000006d5f7374617465006d5f766572746578"
+    }
+  ],
+  "driver_sha256": "77b5969322d01b600d3b9e93340a416dd175b556fa4cc8fde0351339808c337b",
+  "limits": "Positive raw candidate detection, not complete references, code alignment, function/table identity, negative write closure or natural reachability. Indexed/computed/RVA/opaque external routes are unclosed. No process/native/game/input/save/config/reference writes."
+}

@@ -1,0 +1,203 @@
+{
+  "selected_source_edges": [
+    {
+      "pc": "0x43ee9b",
+      "target": "0x45fd00",
+      "mnemonic": "jmp",
+      "kind": "unconditional_tail"
+    },
+    {
+      "pc": "0x43ee96",
+      "target": "0x529d40",
+      "mnemonic": "jmp",
+      "kind": "unconditional_tail"
+    },
+    {
+      "pc": "0x43ee91",
+      "target": "0x52a8a0",
+      "mnemonic": "jmp",
+      "kind": "unconditional_tail"
+    },
+    {
+      "pc": "0x43ee8c",
+      "target": "0x52b5d0",
+      "mnemonic": "jmp",
+      "kind": "unconditional_tail"
+    }
+  ],
+  "unique_targets": [
+    4586752,
+    5414208,
+    5417120,
+    5420496
+  ],
+  "callees": [
+    {
+      "entry": "0x45fd00",
+      "name": "FUN_0045fd00",
+      "catalogue_line": "0045FD00\tFUN_0045fd00\t11\tPresentation\tfalse\tfalse\tfalse\t568\tFunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Presentation;GFZ.V120WIP.PrimaryOwner.Presentation;GFZ.V120WIP.X0.PresentationMacroAT.Owner;Presentation;V120AuditWIP761B",
+      "bytes": 11,
+      "code_file": "retained/commit-tail-entries/0045FD00.bin",
+      "code_sha256": "dbcd03f921c0b94145c5f0c4b216855e5f17168f166199450c568860e6f221d9",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 11,
+      "instructions": [
+        {
+          "pc": "0x45fd00",
+          "bytes": "c781d803000001000000",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx + 0x3d8], 1",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x45fd0a",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    },
+    {
+      "entry": "0x529d40",
+      "name": "FUN_00529d40",
+      "catalogue_line": "00529D40\tFUN_00529d40\t11\tPresentation\tfalse\tfalse\tfalse\t594\tFunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Presentation;GFZ.V120WIP.PrimaryOwner.Presentation;GFZ.V120WIP.X0.PresentationMacroAX.Owner;Presentation;V120AuditWIP761B",
+      "bytes": 11,
+      "code_file": "retained/commit-tail-entries/00529D40.bin",
+      "code_sha256": "46026309844be3fb48c1f748ec9aea15726c306d687c3ace465222a4d16b42c0",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 11,
+      "instructions": [
+        {
+          "pc": "0x529d40",
+          "bytes": "c781d403000001000000",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx + 0x3d4], 1",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x529d4a",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    },
+    {
+      "entry": "0x52a8a0",
+      "name": "FUN_0052a8a0",
+      "catalogue_line": "0052A8A0\tFUN_0052a8a0\t11\tPresentation\tfalse\tfalse\tfalse\t594\tFunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Presentation;GFZ.V120WIP.PrimaryOwner.Presentation;GFZ.V120WIP.X0.PresentationMacroAX.Owner;Presentation;V120AuditWIP761B",
+      "bytes": 11,
+      "code_file": "retained/commit-tail-entries/0052A8A0.bin",
+      "code_sha256": "5eccb0f6a9c1fbf22c2c5a2105e7f14aff6da763a5db656971d18e1c963cacbd",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 11,
+      "instructions": [
+        {
+          "pc": "0x52a8a0",
+          "bytes": "c7813404000001000000",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx + 0x434], 1",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x52a8aa",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    },
+    {
+      "entry": "0x52b5d0",
+      "name": "FUN_0052b5d0",
+      "catalogue_line": "0052B5D0\tFUN_0052b5d0\t11\tPresentation\tfalse\tfalse\tfalse\t594\tFunctionEvidenceV120AuditWIP;GFZ.V120.PrimaryOwner.Presentation;GFZ.V120WIP.PrimaryOwner.Presentation;GFZ.V120WIP.X0.PresentationMacroAX.Owner;Presentation;V120AuditWIP761B",
+      "bytes": 11,
+      "code_file": "retained/commit-tail-entries/0052B5D0.bin",
+      "code_sha256": "6ad255d0b59ae2b98b209cd0795b9120e6c3ac3c6f27fe8e5ebb03af0ac92468",
+      "extent_status": "UNPROVED_CATALOGUE_ONLY",
+      "unwind_union": null,
+      "unwind_contiguous": false,
+      "fragments": [],
+      "decoded_bytes": 11,
+      "instructions": [
+        {
+          "pc": "0x52b5d0",
+          "bytes": "c781f803000001000000",
+          "mnemonic": "mov",
+          "args": "dword ptr [rcx + 0x3f8], 1",
+          "written": [],
+          "memory": [
+            {
+              "kind": "w",
+              "bytes": 4
+            }
+          ]
+        },
+        {
+          "pc": "0x52b5da",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "written": [
+            "rsp"
+          ],
+          "memory": []
+        }
+      ],
+      "call_sites": [],
+      "external_jumps": [],
+      "limits": "SOURCE_ONLY; operand role is not actor alias proof. Nested native/import/callback/normal return effects not summarized yet."
+    }
+  ],
+  "status": "SOURCE_ONLY_NOT_CLASS_PRESERVATION",
+  "selection": "Four exact original dispatcher target entries only; no full effect/caller/lifetime proof.",
+  "cleanup": "Original references unchanged, no game/native/browser/input/instrument/process control."
+}

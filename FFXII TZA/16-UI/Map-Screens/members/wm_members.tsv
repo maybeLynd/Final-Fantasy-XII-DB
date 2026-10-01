@@ -1,0 +1,109 @@
+address	size	name	membership	frontier	screens	other_callers
+002543F0	71	FUN_002543f0	closure	yes	location,track,world	002B6310
+002550E0	63	FUN_002550e0	closure	yes	-	
+00255200	88	FUN_00255200	closure	yes	location,track	
+0035D520	15	FUN_0035d520	closure	no	child	
+0037EB90	220	FUN_0037eb90	closure	yes	location,track	
+0037ED70	5	thunk_FUN_0037eb90	closure	no	location,track,world	
+0037F050	13	FUN_0037f050	closure	yes	field,location,track,world	
+0037F140	26	FUN_0037f140	closure	yes	-	
+0037F160	26	FUN_0037f160	closure	yes	field,location,world	
+00380170	31	FUN_00380170	closure	yes	field,location,track,world	
+003BBFB0	425	FUN_003bbfb0	singleton	yes	field,location,world	
+003BC160	244	FUN_003bc160	singleton	yes	field,location,track	
+003BC260	81	FUN_003bc260	closure	yes	field,location,track,world	002B6310
+003BC2C0	13	FUN_003bc2c0	singleton	yes	field,location	
+003BC2D0	262	FUN_003bc2d0	closure	yes	-	
+003BC3E0	82	FUN_003bc3e0	closure	yes	field,location,track,world	
+003BC450	137	FUN_003bc450	singleton	yes	field,location	003BC440
+003BC4E0	1163	FUN_003bc4e0	singleton	no	-	
+003BC970	124	FUN_003bc970	closure	yes	field,location,track	
+003BC9F0	190	FUN_003bc9f0	singleton	yes	field,location,track,world	
+003BCAB0	57	FUN_003bcab0	closure	yes	-	
+003BCAF0	174	FUN_003bcaf0	singleton	yes	world	
+003BCBA0	255	FUN_003bcba0	singleton	yes	location,track,world	
+003BCCA0	308	FUN_003bcca0	singleton	yes	world	
+003BCDE0	598	FUN_003bcde0	singleton	yes	location,track	
+003BD040	364	FUN_003bd040	singleton	yes	world	
+003BD1B0	718	FUN_003bd1b0	singleton	yes	world	
+003BD480	618	FUN_003bd480	singleton	yes	world	
+003BD860	42	FUN_003bd860	singleton	yes	location	
+003BD890	91	FUN_003bd890	singleton	yes	field,location,track	
+003BD8F0	87	FUN_003bd8f0	closure	yes	-	
+003BD950	145	FUN_003bd950	closure	yes	field,location,track	
+003BD9F0	309	FUN_003bd9f0	singleton	yes	location,track	
+003BDB30	408	FUN_003bdb30	singleton	yes	location,track	
+003BDCD0	260	FUN_003bdcd0	singleton	yes	location,track	
+003BDDE0	524	FUN_003bdde0	singleton	yes	location,track,world	
+003BDFF0	493	FUN_003bdff0	singleton	yes	location,track,world	
+003BE1E0	228	FUN_003be1e0	singleton	yes	location,track,world	002B6310
+003BE2D0	202	FUN_003be2d0	singleton	yes	location,track	00402000
+003BE3A0	734	FUN_003be3a0	singleton	yes	location,track	
+003BE680	122	FUN_003be680	singleton	yes	location,track	
+003BE700	271	FUN_003be700	singleton	yes	location,track	
+003BE810	317	FUN_003be810	closure	yes	location,track	
+003BE950	759	FUN_003be950	singleton	yes	location,track	
+003BEC50	65	FUN_003bec50	singleton	yes	location,track	
+003BECA0	202	FUN_003beca0	singleton	yes	location,track	
+003BED70	1720	FUN_003bed70	singleton	yes	location,track	
+003BF430	237	FUN_003bf430	singleton	yes	field,location,track,world	002B6310 003BFDF0 00402000
+003BF520	191	FUN_003bf520	singleton	yes	location,track	
+003BF5E0	217	FUN_003bf5e0	closure	yes	location,track,world	002B6310
+003BF6C0	255	FUN_003bf6c0	singleton	yes	location,track,world	002B6310
+003BF7C0	274	FUN_003bf7c0	singleton	yes	world	
+003BF8E0	51	FUN_003bf8e0	singleton	yes	location	
+003BF920	114	FUN_003bf920	closure	yes	location,track	
+003BF9A0	438	FUN_003bf9a0	singleton	yes	location,track	
+003BFB60	262	FUN_003bfb60	closure	yes	world	
+003BFC70	370	FUN_003bfc70	closure	yes	world	
+003BFE10	129	FUN_003bfe10	singleton	yes	world	
+003BFEA0	122	FUN_003bfea0	singleton	yes	world	
+003BFF20	194	FUN_003bff20	singleton	yes	field,location,track,world	002B6310 003BFDF0 00402000
+003BFFF0	202	FUN_003bfff0	singleton	yes	world	
+003C00C0	183	FUN_003c00c0	singleton	yes	world	
+003C0180	207	FUN_003c0180	singleton	yes	world	
+003C0250	82	FUN_003c0250	singleton	yes	world	
+003C02B0	129	FUN_003c02b0	singleton	yes	location,track	002B6310
+003C0340	51	FUN_003c0340	singleton	yes	field,location,track,world	002B6310 003BFDF0 00402000
+003C0380	201	FUN_003c0380	singleton	yes	field,location,track,world	002B6310 003BFDF0 00402000
+003C0450	406	FUN_003c0450	singleton	yes	world	
+003C05F0	232	FUN_003c05f0	singleton	yes	location,track,world	002B6310
+003C06E0	96	FUN_003c06e0	closure	yes	location,track	
+003C0740	324	FUN_003c0740	singleton	yes	location,track	
+003C0890	19	FUN_003c0890	singleton	yes	location,track	
+003C08B0	333	FUN_003c08b0	singleton	yes	world	
+003C0A00	362	FUN_003c0a00	singleton	yes	world	
+003C0B70	108	FUN_003c0b70	singleton	yes	world	
+003C0BE0	107	FUN_003c0be0	singleton	yes	world	
+003C0C50	110	FUN_003c0c50	singleton	yes	world	
+003C0CC0	39	FUN_003c0cc0	singleton	yes	location,track	
+003C0CF0	64	FUN_003c0cf0	singleton	yes	field,location,track	
+003C0D30	61	FUN_003c0d30	closure	yes	location,track	
+003C0D70	187	FUN_003c0d70	singleton	yes	world	
+003C0E30	207	FUN_003c0e30	singleton	yes	world	
+003C0F00	112	FUN_003c0f00	singleton	yes	location,track,world	002B6310
+003C0F70	246	FUN_003c0f70	singleton	yes	location,track,world	002B6310
+003C1070	261	FUN_003c1070	singleton	yes	location,track	
+003C1180	302	FUN_003c1180	closure	yes	location,track	
+003C12B0	755	FUN_003c12b0	singleton	yes	location,track,world	002B6310
+003C15B0	207	FUN_003c15b0	singleton	yes	location,track,world	002B6310
+003C1680	350	FUN_003c1680	singleton	yes	location,track,world	002B6310
+003C17E0	183	FUN_003c17e0	singleton	yes	location,track,world	002B6310
+003C18A0	220	FUN_003c18a0	singleton	yes	location,track,world	002B6310
+003C1980	147	FUN_003c1980	closure	yes	location,track	
+003C1A20	848	FUN_003c1a20	singleton	yes	location,track	
+003C1D70	124	FUN_003c1d70	singleton	yes	world	
+003C1DF0	268	FUN_003c1df0	singleton	yes	field,location,track	
+003C1F00	450	FUN_003c1f00	singleton	yes	field,location,track	
+003C20D0	40	FUN_003c20d0	singleton	yes	field,location	
+003C2100	136	FUN_003c2100	singleton	yes	child	
+003C2190	21	FUN_003c2190	singleton	yes	field,location,track	
+003C21B0	12	FUN_003c21b0	singleton	no	field,location,track	
+003C21C0	58	FUN_003c21c0	singleton	yes	field,location,track	
+003C2200	14	FUN_003c2200	singleton	yes	field,location,track	
+003C2210	156	FUN_003c2210	closure	yes	field,location,track	
+003C22B0	110	FUN_003c22b0	closure	yes	field,location,track	
+003C2320	925	FUN_003c2320	singleton	yes	location,track	
+003C26C0	430	FUN_003c26c0	closure	yes	field,location,track	
+004022F0	214	FUN_004022f0	closure	yes	location,track	
+00473CC0	92	FUN_00473cc0	closure	yes	location,track,world	

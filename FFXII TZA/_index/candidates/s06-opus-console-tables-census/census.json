@@ -1,0 +1,104 @@
+{
+ "instruction": "001CDBF7 mov rax, qword ptr [rsi + rdx*8 + 0x1cd6e68]",
+ "displacement": "1CD6E68",
+ "table": "1DF6E68",
+ "table_section": ".data",
+ "literal_section": ".rdata",
+ "index_plus_1_all": true,
+ "populated": 111,
+ "form_3letters_4digits": true,
+ "prefix_bands": [
+  [
+   "ous",
+   0,
+   0
+  ],
+  [
+   "nal",
+   48,
+   49
+  ],
+  [
+   "rwr",
+   50,
+   50
+  ],
+  [
+   "nal",
+   51,
+   51
+  ],
+  [
+   "mic",
+   53,
+   71
+  ],
+  [
+   "asp",
+   124,
+   126
+  ],
+  [
+   "dst",
+   129,
+   133
+  ],
+  [
+   "pla",
+   137,
+   149
+  ],
+  [
+   "frs",
+   151,
+   163
+  ],
+  [
+   "bog",
+   167,
+   180
+  ],
+  [
+   "rui",
+   184,
+   202
+  ],
+  [
+   "mnt",
+   209,
+   223
+  ],
+  [
+   "dst",
+   227,
+   233
+  ],
+  [
+   "sav",
+   236,
+   270
+  ],
+  [
+   "naf",
+   274,
+   282
+  ],
+  [
+   "dor",
+   286,
+   286
+  ],
+  [
+   "rbn",
+   289,
+   292
+  ]
+ ],
+ "prefixes_contiguous": false,
+ "duplicates": {
+  "dst0104": [
+   230,
+   232
+  ]
+ }
+}

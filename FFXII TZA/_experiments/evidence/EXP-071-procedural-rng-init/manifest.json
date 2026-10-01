@@ -1,0 +1,45 @@
+{
+  "experiment": "EXP-071-procedural-rng-init",
+  "files": {
+    "00259180.bin": {
+      "bytes": 179,
+      "sha256": "bffefda25db0e6230b3e3eb77173e6eb8e1a7fbf36adb45de8736e9eaf530bbe"
+    },
+    "003A6E60.bin": {
+      "bytes": 345,
+      "sha256": "2453f4d5f7acb538e301d7031beaebd2f1f611e3eb9994b2eba9dd5fd0507cbf"
+    },
+    "004005E0.bin": {
+      "bytes": 108,
+      "sha256": "34184564ebd7a36bfe008b7a0b745340079bd80b671844a6284d4b0bb02f5bb0"
+    },
+    "008C5F6C.bin": {
+      "bytes": 4,
+      "sha256": "fb360f7241a770dc32cade9a1d1273c92b13bd4959b1c130931312b7fe95e63f"
+    },
+    "008C5F78.bin": {
+      "bytes": 4,
+      "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71"
+    },
+    "01CEBBA8.bin": {
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    "01EF93FC.bin": {
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    "check.py": {
+      "bytes": 10529,
+      "sha256": "450865a034f3fb650837b60f236e9be53d21a8e1eb9c28b484788cddad9741c8"
+    },
+    "disassembly.txt": {
+      "bytes": 7931,
+      "sha256": "6eae8073dc36df90543755ce98b6853ce922fd83156bc1ab1a71293d263f2049"
+    },
+    "result.json": {
+      "bytes": 143069,
+      "sha256": "858c593c14a5b3e24c1ed1e3a60e06d891db5b871359a28d146a7883392b8668"
+    }
+  }
+}

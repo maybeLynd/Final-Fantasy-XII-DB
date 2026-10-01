@@ -1,0 +1,236 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-title-member-routing.py",
+      "bytes": 908,
+      "sha256": "1f7d3348653fa8d868857c1fabde700cda3dbe780c22e00be21afd8fb605948f"
+    },
+    {
+      "path": "capture-title-watcher-attachment.py",
+      "bytes": 2268,
+      "sha256": "a31b4d85a7a5190bf3029b361f0bdf4187404948befb77b20a05969e04a05a97"
+    },
+    {
+      "path": "capture-title-watcher-lifetime.py",
+      "bytes": 1865,
+      "sha256": "6d161e5dcbb8b770ee0298a77baf8b0bebcc52767c494a9ecdce966574ec7186"
+    },
+    {
+      "path": "exercise-title-member-prerequisites.py",
+      "bytes": 3347,
+      "sha256": "4a7e9641d65eb82aa8c65f41cf11373d224f1ec6f36f987762608cfd045b851f"
+    },
+    {
+      "path": "prove-title-member-notification.py",
+      "bytes": 10738,
+      "sha256": "ac2f4e3c668d42cdddced6d083b4d9d7456c648e919fefcce79589e7672d7e2a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3996,
+      "sha256": "772aea3dbced7386304e7f291bc58ff44ed133c923b016dbc9164112a05146e6"
+    },
+    {
+      "path": "section04-title-member-source/original_body_manifest.json",
+      "bytes": 8577,
+      "sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef"
+    },
+    {
+      "path": "section04-title-member-source/original_disassembly.txt",
+      "bytes": 67911,
+      "sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57"
+    },
+    {
+      "path": "title-member-notification-invalid-01/driver.py",
+      "bytes": 10476,
+      "sha256": "5edb7a6536249fac6c7b2a3ed8d6f260c902617980629cf8d0349ae9f8a24966"
+    },
+    {
+      "path": "title-member-notification-invalid-01/STATUS.json",
+      "bytes": 242,
+      "sha256": "018814505c74fc3710d5a072ebaab7eef43171fe70c65b7b99b1e8d0165667c1"
+    },
+    {
+      "path": "title-member-notification-original-binding-02/driver.py",
+      "bytes": 10476,
+      "sha256": "f2b1cf9b2f180b30350c98149ec11e448be450f834f53d6d25a412e6da08c5ef"
+    },
+    {
+      "path": "title-member-notification-original-binding-02/result.json",
+      "bytes": 4801,
+      "sha256": "84de77acef9c77dbd7015b787139477a6e718604caa38dbd52ae1c33b583f04b"
+    },
+    {
+      "path": "title-member-notification-original-binding-02/STATUS.json",
+      "bytes": 220,
+      "sha256": "bff2dce35d6468bf06934566b27e25147788e34bf5ff406af115a413ac1ad7dc"
+    },
+    {
+      "path": "title-member-notification-result-03.json",
+      "bytes": 4693,
+      "sha256": "6c480875af07cb73f726a056180d635a1ce78cf2fcea86856d99aff8829403e0"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/changed_instruction_bytes/prove-title-member-notification.py",
+      "bytes": 10950,
+      "sha256": "d543ebbfb23906958cef68db6a5df566dfdd234ce02d68cad71c357fce84b2ef"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/changed_instruction_bytes/receipt.json",
+      "bytes": 570,
+      "sha256": "f7d57d52e3f0f4dec1cf77fb64a22203dbc771707173e6b949b4727895be737a"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/changed_instruction_bytes/stderr.txt",
+      "bytes": 505,
+      "sha256": "7b7017033dadd2b1a8c59f8920e975005d42d10bba3506e5e79d8644ccd3841d"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/changed_instruction_bytes/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/changed_instruction_bytes/title-member-routing-raw-01.json",
+      "bytes": 74663,
+      "sha256": "b6008b26f37e3135c6695c2e213d1c9fc38b25bbb4697be46da2851d8e9c4014"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/failed_role/prove-title-member-notification.py",
+      "bytes": 10950,
+      "sha256": "d543ebbfb23906958cef68db6a5df566dfdd234ce02d68cad71c357fce84b2ef"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/failed_role/receipt.json",
+      "bytes": 528,
+      "sha256": "715fd729d97002cfbd0102c3d0eba219bb6b75303a643511cd030543dffa55c4"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/failed_role/stderr.txt",
+      "bytes": 340,
+      "sha256": "f04c0869f16f5b49ee7806978ea46f0e768c92e088d78d5086dcf514b25e3e7d"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/failed_role/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/failed_role/title-member-routing-raw-01.json",
+      "bytes": 74665,
+      "sha256": "69a0ebc9e4f219fa0356e4ca8e3d77f6a5a6457461d1274fc95acaa315f3435b"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/incomplete_wrapper/prove-title-member-notification.py",
+      "bytes": 10950,
+      "sha256": "d543ebbfb23906958cef68db6a5df566dfdd234ce02d68cad71c357fce84b2ef"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/incomplete_wrapper/receipt.json",
+      "bytes": 549,
+      "sha256": "4ea9d8c25073c4b39b209d7bb133c820748c9b7e8f408aff07d6a71da0bb04b5"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/incomplete_wrapper/stderr.txt",
+      "bytes": 375,
+      "sha256": "482d4e0b8c51cd4f38d163ce7867e52f0f2b2476f627c1c79104aac0ee109331"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/incomplete_wrapper/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/incomplete_wrapper/title-member-routing-raw-01.json",
+      "bytes": 74666,
+      "sha256": "b42bbd51fa2b11fe8fa8f7565978a16b91ebcb7f13a5f57be3194193dd920cd3"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/missing_source/prove-title-member-notification.py",
+      "bytes": 10950,
+      "sha256": "d543ebbfb23906958cef68db6a5df566dfdd234ce02d68cad71c357fce84b2ef"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/missing_source/receipt.json",
+      "bytes": 537,
+      "sha256": "555ecfe0d5f3b359ae80f6d5bb1e73a9e1d5cef9b7ad055bc413dcebcc58cd69"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/missing_source/stderr.txt",
+      "bytes": 1042,
+      "sha256": "84507428dd48d93c3261afa01967322c33a95b211e9d449fa0f03aae893dd36d"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/missing_source/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/positive/prove-title-member-notification.py",
+      "bytes": 10950,
+      "sha256": "d543ebbfb23906958cef68db6a5df566dfdd234ce02d68cad71c357fce84b2ef"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/positive/receipt.json",
+      "bytes": 517,
+      "sha256": "e68242802861c024c2a7d9f95ec16ff3776efe167d0f60aba40c0516bc9689f0"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/positive/result.json",
+      "bytes": 4693,
+      "sha256": "b9fc41735c9ff0984bb6e840d7788cfb870c8b404095e62afa25240df4e54810"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/positive/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/positive/stdout.txt",
+      "bytes": 134,
+      "sha256": "3b43e51b0b7a08326e55a0c2e066d8f93eeba6a96f345327b71b1afb2bdeba50"
+    },
+    {
+      "path": "title-member-prerequisite-controls-02/result.json",
+      "bytes": 3306,
+      "sha256": "6ab4081f6f73df63fc03a690d623b7a872e100bd75dec253a04137527f464503"
+    },
+    {
+      "path": "title-member-routing-raw-01.json",
+      "bytes": 74665,
+      "sha256": "2b57a0cbe9b7f1c6752f9c901633fbc69f08f19c95af21111ad198de492bd200"
+    },
+    {
+      "path": "title-watcher-attachment-raw-01.json",
+      "bytes": 125685,
+      "sha256": "4ed56c3c88151b514623482411340366e1d0cebc81ed4e2041df92e244884aac"
+    },
+    {
+      "path": "title-watcher-lifetime-invalid-01/driver.py",
+      "bytes": 1424,
+      "sha256": "008e8f09b500a5a4ed8f4912330f6f7ce98d2e47d8b558558a0cb2cb2b679374"
+    },
+    {
+      "path": "title-watcher-lifetime-invalid-01/STATUS.json",
+      "bytes": 210,
+      "sha256": "b2af9283514137324d2205df623cd7beabdbc764905c3d104f38d9da7ff70ac6"
+    },
+    {
+      "path": "title-watcher-lifetime-raw-02.json",
+      "bytes": 205962,
+      "sha256": "6f1592b32f094155884bfd4a78f285a773ed1c1cdd4a97d29eb8168551504759"
+    }
+  ]
+}

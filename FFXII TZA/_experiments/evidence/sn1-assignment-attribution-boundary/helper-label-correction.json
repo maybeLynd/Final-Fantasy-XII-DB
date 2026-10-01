@@ -1,0 +1,9 @@
+{
+  "status": "ADDITIVE_PROVENANCE_LABEL_CORRECTION",
+  "misnamed_retained_file": "check-before-reused-call-control.py",
+  "actual_sha256": "115539dd4493c46e305803a9491a66622fcac26a46fae68e9fbf9265d5244ef7",
+  "withdrawn_claim": "Filename before-reused-call-control does not establish old checker preimage. Helper ran after checker edit, so it captured the already strengthened checker.",
+  "corrected_label": "checker-at-additive-control-preparation.py",
+  "actual_helper": "reuse-call-control.py now asserts strengthened source and saves with truthful at-preparation label",
+  "unaffected": "Four-assignment result retained before additive call control, original raw/inputs and later default/regressions unaffected. No original behavior conclusion depended on purported checker preimage."
+}

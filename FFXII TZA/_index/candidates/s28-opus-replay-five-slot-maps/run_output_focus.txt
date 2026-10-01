@@ -1,0 +1,7 @@
+leader_derived                     PASS  003272A0 resolves the focus handle through 003588B0 (generation, table, slot) and 00263E30 to the planted leader
+PF7_bit14_raises_0_and_2_only      PASS  status 0 suppresses nothing; a status whose only bit is 14 raises suppression bits 0 and 2 and leaves bit 1 clear (0x8800403B hits, 0x8800003B misses); bit 3, in both masks, raises all three
+PF8_null_stats_faults_mid_function PASS  a leader whose +0x698 is null passes the first check (0023B0AB sends it on), then 0023B15E dereferences the unguarded second load: the recompute faults reading address 0x64
+PF3_deferred_until_commit          PASS  the request writes pending and kind 1 and moves nothing: the leader getter still returns the old leader; the commit installs the new handle
+PF4_redundant_commit_still_pushes  PASS  pending = current: 00358BE4 jumps straight to the store - no release, no teardown, no re-read - but the store, the kind clear, the resolve and the push all run
+PF5_PF6_order_and_the_summon_call  PASS  a real change releases the outgoing leader (00358B40), calls 00259800, runs the teardown, and only then re-reads pending, stores it, clears the kind, resolves and pushes; kind 1 takes thunk 0025A680 (flag 1), kind 2 - set by the summon upgrade 003594C0 - takes 0025A690 (flag 0), and only that path calls 003D9B80. The pending handle is not cleared by the commit
+ok

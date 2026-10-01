@@ -1,0 +1,14 @@
+{
+  "verdict": "REJECT",
+  "status": "REJECT_INCIDENT_ACCEPTANCE_CACHE_MISMATCH",
+  "method": "A actual deployed HTTP plus labelled synthetic tooling stores/child servers",
+  "raw_sha256": "c086edb58c0914b2197993c88c28e5cceadbebeb981d3289abd424d166ab41ac",
+  "driver_sha256": "3788f262c39635f5510bb472eaa6050606420c720fa3b56ac4b572407e48f226",
+  "observations": 14,
+  "established": "Deployed seven views coherent/stale reported; external input accepted; ordinary output/snapshot tamper rejected; failed/strict build preserves current; volatile coherent commit and actual scratch build with board38747->38749; unknown format unsupported; stale reader reports private code change.",
+  "defect": "Warm server cache ignores same-size same-mtime output alteration: CLI verifies mismatch/exit1 while HTTP declares no problems and all views OK. Cached ORIGINAL returned, not corrupted TAMPERED bytes. Do not inflate into tampered-data exposure.",
+  "cause": "server.State._key uses path/size/mtime_ns and CURRENT/history metadata, not content fingerprint. Preserving stat key avoids open_current re-verification.",
+  "acceptance_discriminator": "Actual warm HTTP path must detect this retained same-stat mismatch or enforce a demonstrated immutable generation boundary with a correct limited claim. Matching verifier rejects it; no silent CURRENT/OK for unchecked changed disk evidence.",
+  "limits": "Synthetic fault stores/private actual server CLI, read-only deployed HTTP sample and real scratch producer build. Not deployment cutover/controller/host adapters/whole M0-M5 acceptance, game evidence or raw tampered bytes being served. Full L1+L2 NOT_MET.",
+  "cleanup": "Seven owned parent PIDs absent (OpenProcess error87), seven loopback ports not LISTENING; private source restored. Initial URL timeouts were not terminal proof; additive correction retained."
+}

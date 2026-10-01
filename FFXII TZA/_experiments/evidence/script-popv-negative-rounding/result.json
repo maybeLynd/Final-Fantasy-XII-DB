@@ -1,0 +1,30 @@
+{
+  "status": "NEGATIVE_RU_NUMERIC_UP_REQUIRES_REVERSED_BIT_DIRECTION",
+  "method": "B twoNEWnegative originalfloat-kindstage+explicitverifiedstoreleafABI; A actualunchangedconsumerhelper/default, no positive72case replay/nativeCPU/fullPOPV/live",
+  "raw_sha256": "63555a877a18bb1a42a228f497185f0b69b5f7aba0ec91cb4528d6d1a507d592",
+  "observations": [
+    {
+      "input_signed": -16777219,
+      "mxcsr": "0x1f80",
+      "mode": "RN",
+      "original_guest_converted_and_stored_bits": "CB800002",
+      "original_guest_value": -16777220.0,
+      "actual_existing_consumer_helper_bits": "CB800002",
+      "same": true,
+      "guest_mxcsr_after": "0x1f80"
+    },
+    {
+      "input_signed": -16777219,
+      "mxcsr": "0x5f80",
+      "mode": "RU",
+      "original_guest_converted_and_stored_bits": "CB800001",
+      "original_guest_value": -16777218.0,
+      "actual_existing_consumer_helper_bits": "CB800003",
+      "same": false,
+      "guest_mxcsr_after": "0x5f80"
+    }
+  ],
+  "interpretation": "For testednegative16777219 atfloat-kindstage, originalguest RNstoresCB800002(-16777220), RUstoresCB800001(-16777218). ExistingFABLEhelpercomment explicitlypositive-domainRU; callingitoutside thatdomain returnsCB800003(-16777222). ItsunchangeddefaultpositivefixturesPASS. Acceptedpositive72 remainsvalid; do not extrapolatehelpertoall signedinputs withoutdomainenforcement orsign-aware bitneighbor correction.",
+  "consumer_change": "Preserve newnegative originalobservations/limits. For broaderreconstructioncontract, correctRU bitneighbor by sign or enforce positivehelperdomain andkeepnegativeextensionopenuntilincorporated; addactualdefault/domaincontrols andaffectedprose/spec, not justresulttext. Not allnegativeinputs/directions/nativeflags proved.",
+  "limits": "FABLE RUhelper comment bounds positivevalues; do not retract acceptedpositive72 orclaimnegative previouslyproved. Newnegative originalguestresults establishonlytestedinput/states underinjectedentry/kind2/descriptor58000000. Nativeflags/unmasked/fullresolver/caller/bankinit/lifetime/validshippedinputs/live OPEN. PC OFF/S19/fullL1+L2 NOT_MET Consumer incorporation/independentacceptance pending; nopeeredit/publishedinput rewrite."
+}

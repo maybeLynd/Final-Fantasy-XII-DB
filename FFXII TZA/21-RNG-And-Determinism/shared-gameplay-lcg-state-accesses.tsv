@@ -1,0 +1,18 @@
+function	name	site	disp	kind	instruction	route	note
+00317ED0	EnemyChain_UpdateOnDefeat	00317FC1	0x0	r	imul eax, dword ptr [rip + 0x1faa5a1], 0x41c64e6d	static:0x022C256C	-
+00317ED0	EnemyChain_UpdateOnDefeat	0031800C	0x0	w	mov dword ptr [rip + 0x1faa55a], eax	static:0x022C256C	-
+003183D0	EnemyChain_TryAdvanceRank	0031844A	0x0	r	imul eax, dword ptr [rip + 0x1faa118], 0x41c64e6d	static:0x022C256C	-
+003183D0	EnemyChain_TryAdvanceRank	00318496	0x0	w	mov dword ptr [rip + 0x1faa0d0], eax	static:0x022C256C	-
+00318510	Loot_RollAdditionalItemChance	00318540	0x0	r	imul eax, dword ptr [rip + 0x1faa022], 0x41c64e6d	static:0x022C256C	-
+00318510	Loot_RollAdditionalItemChance	0031858B	0x0	w	mov dword ptr [rip + 0x1fa9fdb], eax	static:0x022C256C	-
+003185D0	Loot_RollNormalSlotChance	003185E4	0x0	r	imul eax, dword ptr [rip + 0x1fa9f7e], 0x41c64e6d	static:0x022C256C	-
+003185D0	Loot_RollNormalSlotChance	00318641	0x0	w	mov dword ptr [rip + 0x1fa9f25], eax	static:0x022C256C	-
+003186F0	Loot_RollNormalSlotQuantityBucket	00318704	0x0	r	imul eax, dword ptr [rip + 0x1fa9e5e], 0x41c64e6d	static:0x022C256C	-
+003186F0	Loot_RollNormalSlotQuantityBucket	00318761	0x0	w	mov dword ptr [rip + 0x1fa9e05], eax	static:0x022C256C	-
+00318820	Loot_SelectChanceProfileByWeight	00318834	0x0	r	imul eax, dword ptr [rip + 0x1fa9d2e], 0x41c64e6d	static:0x022C256C	-
+00318820	Loot_SelectChanceProfileByWeight	00318883	0x0	w	mov dword ptr [rip + 0x1fa9ce3], eax	static:0x022C256C	-
+00319530	FUN_00319530	00319530	0x0	r	imul eax, dword ptr [rip + 0x1fa9032], 0x41c64e6d	static:0x022C256C	-
+00319530	FUN_00319530	00319582	0x0	w	mov dword ptr [rip + 0x1fa8fe4], eax	static:0x022C256C	-
+00328370	RNG_SharedGameplayLCG_NextU32	00328370	0x0	r	imul eax, dword ptr [rip + 0x1f9a1f2], 0x41c64e6d	static:0x022C256C	-
+00328370	RNG_SharedGameplayLCG_NextU32	003283B9	0x0	w	mov dword ptr [rip + 0x1f9a1ad], eax	static:0x022C256C	-
+00328D80	RNG_SharedGameplayLCG_SetState	00328D80	0x0	w	mov dword ptr [rip + 0x1f997e6], ecx	static:0x022C256C	-

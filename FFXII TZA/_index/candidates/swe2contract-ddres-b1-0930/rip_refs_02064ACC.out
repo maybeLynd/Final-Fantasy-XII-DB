@@ -1,0 +1,4 @@
+PASS  control: store to 02064ACC at 0022A1A7 found
+00229F10  00229F10  w    mov    dword ptr [rip + 0x1e3abb6], ecx         -> 02064ACC
+0022A0B0  0022A1A7  w    mov    dword ptr [rip + 0x1e3a91f], eax         -> 02064ACC
+0022A770  0022AE8F  r    mov    ecx, dword ptr [rip + 0x1e39c37]         -> 02064ACC

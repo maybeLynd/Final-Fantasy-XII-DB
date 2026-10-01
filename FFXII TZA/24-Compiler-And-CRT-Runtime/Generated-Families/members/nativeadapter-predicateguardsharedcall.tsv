@@ -1,0 +1,6 @@
+# NativeAdapter.PredicateGuardSharedCall - EC-7 family C
+# call a member predicate on this; if zero return 0; else call shared
+# # 002F2D60 on this and return a member constant.
+address	targets
+0044A5F0	002F2D60,0044B3C0
+005222D0	002F2D60,00522810

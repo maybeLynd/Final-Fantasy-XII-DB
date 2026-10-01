@@ -1,0 +1,85 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4735,
+      "sha256": "d2c85af3bb29a49d774a61e6faac56a57adaaa06e002710cdf05dd43fc01c4b2"
+    },
+    {
+      "path": "current-refresh-failure.json",
+      "bytes": 569,
+      "sha256": "67530d4f12a4e113605dd1880d71ea1a332a96733bc5bdf4d554778f2586b2db"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 10492,
+      "sha256": "7c2f0beeab25be01f894bfe15bebf1e731041aa0f746e2377ca4fd34a051e8d0"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1901,
+      "sha256": "cdec0a29376d86a25806b1d094aacad96c6451e07cb69dcac0e4511ae445871a"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1551,
+      "sha256": "93c822671638905c852dde32d20107c543d27edde94ff596199018c3105cf647"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2343,
+      "sha256": "6fde3db0eb82fe42ae97ff8b47e17359343afe32cfcde54cdaaea48d6a70b09c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4841,
+      "sha256": "10d8cebe893dda196fa86bfad329262c2e8d89bfde9cb402467beb426fe29cf8"
+    },
+    {
+      "path": "result.json",
+      "bytes": 48781,
+      "sha256": "8c3eee2ec092c82fc280f3d436c751b7cb5cf007b02583d344722db368da2bf3"
+    },
+    {
+      "path": "retained/catalog-identity.json",
+      "bytes": 1357,
+      "sha256": "5c24982816e8651cc4a58cd6485c9bdb556367774702683e0aaafd3986a95d14"
+    },
+    {
+      "path": "retained/degrees.bin",
+      "bytes": 4,
+      "sha256": "21b9ff9cf99927e92d16d0fcc3190c14680a24c02dad89f9777d5107fdeb5db1"
+    },
+    {
+      "path": "retained/maths-preimage.md",
+      "bytes": 60876,
+      "sha256": "02234ee4a3d29ffc4f286fcadd40342659a0072f177789d8df4b35e72b692907"
+    },
+    {
+      "path": "retained/pi.bin",
+      "bytes": 4,
+      "sha256": "3a1d8964b4fe305b5d25d90b8ba168d95e559961da4a9b22df4558cc257e7e11"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.bin",
+      "bytes": 1061,
+      "sha256": "8a75e847cb7520bb1e19c64607ac094482fb0ad6ba8c825c7a8f8c363478d1f6"
+    }
+  ],
+  "limits": "Originalboundedsource/constant/localgraph/ABI preconditions only; no machine/native/live execution or all53angle-domain/fastpath proof"
+}

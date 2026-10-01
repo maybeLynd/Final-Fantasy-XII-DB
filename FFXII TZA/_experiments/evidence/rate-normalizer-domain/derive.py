@@ -1,0 +1,47 @@
+"""A source/primary-ISA conditional calculations; no original/native/live execution."""
+import csv,datetime,hashlib,importlib.util,json,sys
+from pathlib import Path
+import capstone
+W=Path(__file__).resolve().parent;sha=lambda b:hashlib.sha256(b).hexdigest();ENTRY=0x229E70
+sys.path.insert(0,'Database/Tools/analysis-kit/gfz-scripts');import team
+ok,detail=team.board_status(team.BOARD);assert ok,detail;b=json.loads(team.BOARD.read_text());t=next(t for t in b['tasks'] if t['id']=='ASTRA-RATE-NORMALIZER-DOMAIN');assert t['status']=='ACTIVE' and t['agent']=='ASTRA';assert not (W/'result.json').exists()
+rp=Path('Database/FFXII TZA/_experiments/evidence/license-check-exec/check.py');assert sha(rp.read_bytes())=='4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32';sp=importlib.util.spec_from_file_location('shipping_reader',rp);rd=importlib.util.module_from_spec(sp);sp.loader.exec_module(rd);image,ss=rd.load_image();assert sha(image)=='73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8'
+code=rd.img_rd(image,ss,ENTRY,37);cs=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_64);cs.detail=True
+def bind(raw):
+ ii={i.address:i for i in cs.disasm(raw,ENTRY)};assert sum(i.size for i in ii.values())==37
+ for a,h in {0x229E70:'f30f100da889bd01',0x229E78:'0f57c0',0x229E7B:'0f2fc1',0x229E7E:'7211',0x229E80:'f30f1005201dac01',0x229E88:'f30f11059089bd01',0x229E90:'c3',0x229E91:'0f28c1',0x229E94:'c3'}.items():assert ii[a].bytes.hex()==h,(hex(a),'shipping source predicate')
+ assert ii[0x229E7E].operands[0].imm==0x229E91 and ii[0x229E7B].op_str=='xmm0, xmm1'
+ def rip(a,n):i=ii[a];return i.address+i.size+i.operands[n].mem.disp
+ assert rip(0x229E70,1)==rip(0x229E88,0)==0x1E02820 and rip(0x229E80,1)==0x1CEBBA8
+ return ii
+ii=bind(code);constant=rd.img_rd(image,ss,0x1CEBBA8,4);assert constant.hex()=='0000803f'
+isa=dict(method='Primary ISA specification, no FF12 observation',source='https://cdrdv2-public.intel.com/819712/253666-sdm-vol-2a.pdf',section='COMISS Description/Operation, PDF322, printed3-216',completed_flags_zf_pf_cf=dict(unordered='111',greater='000',less='001',equal='100'),exception_limit='COMISS signals invalid for both QNaN and SNaN. An unmasked SIMD floating-point exception leaves EFLAGS unupdated; no branch continuation inferred for a fault.',daz_source='https://cdrdv2-public.intel.com/671436/253665-sdm-vol-1.pdf',daz_limit='DAZ treats supported denormal inputs as signed zero; actual FF12 MXCSR/exception state unobserved.',primary_fetch_note='Combined789581Vol2 fetch exceeded web size limit; successfully read individual819712Vol2A COMISS operation instead. No community source used.')
+def predict(bits,kind='jb',swap=False,daz=False):
+ nan=(bits&0x7F800000)==0x7F800000 and bool(bits&0x7FFFFF);zero=bits&0x7FFFFFFF==0;sub=(bits&0x7F800000)==0 and bool(bits&0x7FFFFF)
+ # Relation of source-zero (XMM0) to source-rate (XMM1), only after comparison completes.
+ relation='unordered' if nan else 'equal' if zero or (daz and sub) else 'greater' if bits>>31 else 'less'
+ if swap and relation in ('less','greater'):relation='greater' if relation=='less' else 'less'
+ flags=isa['completed_flags_zf_pf_cf'][relation];take=flags[2]=='1' or (kind=='jbe' and flags[0]=='1');out=bits if take else 0x3F800000
+ return dict(input_bits=f'{bits:08X}',daz_assumed=daz,completed_relation=relation,zf_pf_cf=flags,branch_taken=take,store_default=not take,return_bits=f'{out:08X}',global_after_bits=f'{out:08X}',limits='Conditional completed source/ISA prediction, not original/native/emulator/live. NaN requires completed comparison; unmasked invalid continuation unknown.' if nan else 'Conditional source/ISA prediction; no observed rate or game MXCSR')
+cases=[predict(x) for x in (0x3F000000,0x40000000,0,0x80000000,0xBF800000,0x7FC00001)]
+assert [x['return_bits'] for x in cases]==['3F000000','40000000','3F800000','3F800000','3F800000','7FC00001']
+daz=[predict(1,daz=False),predict(1,daz=True)];assert daz[0]['return_bits']=='00000001' and daz[1]['return_bits']=='3F800000'
+controls=[]
+for name,pc,value,bits,kind,swap in [('zero-reset-JB-to-JBE',0x229E7E,0x76,0,'jbe',False),('fraction-comparison-operands-swapped',0x229E7D,0xC8,0x3F000000,'jb',True)]:
+ mut=bytearray(code);mut[pc-ENTRY]=value;reject=False
+ try:bind(mut)
+ except AssertionError:reject=True
+ assert reject;before=predict(bits);after=predict(bits,kind,swap);assert before['return_bits']!=after['return_bits'];controls.append(dict(name=name,mutant_hex=mut.hex(),binding_rejected=reject,baseline=before,private_source_model=after,method='Source mutation and host/ISA interpretation only; changed instruction not executed'))
+R=W/'retained';R.mkdir(exist_ok=False);(R/'source.bin').write_bytes(code);(R/'one.bin').write_bytes(constant);(R/'shipping-reader.py').write_bytes(rp.read_bytes());(W/'isa.json').write_text(json.dumps(isa,indent=2)+'\n')
+consumers=[]
+for name,p in [('shared-neighbours.md','Database/FFXII TZA/00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md'),('widget-contract.md','Database/FFXII TZA/16-UI/Widget-Object-Model/CONTRACT-widget-object.md'),('animation-mechanism.md','Database/FFXII TZA/16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md')]:
+ data=Path(p).read_bytes();(R/name).write_bytes(data);consumers.append(dict(path=p,sha256=sha(data),retained_name=name))
+assert 'clamps it to a floor of 1.0' in (R/'shared-neighbours.md').read_text() and 'if it is still zero it writes' in (R/'widget-contract.md').read_text() and 'if it is not positive' in (R/'animation-mechanism.md').read_text()
+fp=Path('Database/FFXII TZA/_types/fields.tsv');fb=fp.read_bytes();row=next(l for l in fb.decode().splitlines() if l.split('\t')[:2]==['Widget','0x0B8']);(R/'field-preimage.json').write_text(json.dumps(dict(path=fp.as_posix(),source_sha256=sha(fb),row=row),indent=2)+'\n')
+fun=Path('Database/Tools/work/graph/functions.tsv');fbytes=fun.read_bytes();frow=next(x for x in csv.DictReader(fbytes.decode().splitlines(),delimiter='\t') if x['entry']=='00229E70');assert frow['body_bytes']=='37';(R/'catalog-identity.json').write_text(json.dumps(dict(path=fun.as_posix(),source_sha256=sha(fbytes),row=frow,scope='Corroborative catalog identity, complete37B/branches/RIP operands are checked independently'),indent=2)+'\n')
+callers=[]
+for p,entry,size,callpc in [('Database/FFXII TZA/_experiments/evidence/widget-deferred-dispatch-domain/retained/source.bin',0x244DD0,301,0x244DFE),('Database/FFXII TZA/_experiments/evidence/widget-transition-duration-domain/retained/source.bin',0x2468A0,364,0x2469C9)]:
+ data=Path(p).read_bytes();assert len(data)==size and data==rd.img_rd(image,ss,entry,size);i=next(i for i in cs.disasm(data,entry) if i.address==callpc);assert i.mnemonic=='call' and i.operands[0].imm==ENTRY;callers.append(dict(path=p,sha256=sha(data),site=hex(callpc),bytes=i.bytes.hex(),target=hex(ENTRY),scope='Retained static callee relation only, no call execution or normal reachability'))
+(R/'caller-identities.json').write_text(json.dumps(callers,indent=2)+'\n');dll=Path(capstone._cs._name)
+result=dict(method='A whole37B verified original source + primary COMISS ISA conditional predictions; zero original/native/emulator/live executions',reference=dict(exe_sha256=sha(image),entry=hex(ENTRY),bytes=37,body_sha256=sha(code),global_rate='0x1e02820',default_constant='0x1cebba8',reader_sha256=sha(rp.read_bytes()),isa_sha256=sha((W/'isa.json').read_bytes())),tools=dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),python=sys.version,interpreter=sys.executable,interpreter_sha256=sha(Path(sys.executable).read_bytes()),capstone=capstone.__version__,capstone_dll=dict(path=str(dll),sha256=sha(dll.read_bytes()))),driver_sha256=sha(Path(__file__).read_bytes()),instructions=[dict(pc=hex(i.address),bytes=i.bytes.hex(),op=i.mnemonic,args=i.op_str) for i in ii.values()],cases=cases,daz_conditional=daz,controls=controls,consumer_preimages=consumers,interpretation='Completed compare: JB bypasses default for ordered-positive and unordered. Positivefraction0.5 unchanged refutes floor1; negative1 resets refutes zero-only. Orderedzero/negative inputs load/store/return1; positive and completedunordered inputs return originalbits without defaultwrite. CompletedNaN therefore not universal positive guarantee. DAZ1 maydefault raw positive-subnormal as effectivezero. No actual normal-domain/MXCSR/exception continuation proof. Constructor default WidgetB8=1 not wholefield invariant: retained guarded reciprocal writers already recorded.',limits='Stable readable global/constant and completed COMISS required. COMISS invalid forQNaN/SNaN, unmasked exception leavesflags unupdated; handler/continuation/native exceptions unknown. No observed game values, initialization, rate lifetime, scheduler cadence, widget speed/presentation, native FP payload arithmetic or universal finite-positive result. Exact static callers validated from prior retained bodies, not executed. No bulkEC7 disposition changes.',cleanup='Read-only source/consumer preimages and host calculations; PC OFF/no game/process/input/save/config/reference/peerwrites; owner correction and independent acceptance pending')
+(W/'result.json').write_text(json.dumps(result,indent=2)+'\n');print('Derived shared rate: retain0.5, resetnegative1; zero-only/floor1 summaries refuted, completedNaN preservesbits conditionally. Source/ISA only; no game/native run.',flush=True)

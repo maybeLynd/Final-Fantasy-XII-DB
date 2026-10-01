@@ -1,0 +1,49 @@
+{
+ "real": [
+  {
+   "va": "0x36a100",
+   "lo": "0x36a100",
+   "hi": "0x36a181",
+   "span": 129,
+   "insns": 36,
+   "cov": 1.0,
+   "sha256": "12393ea217cd65d42ab4e9d89eb686c67114e45b3d918095a4f1f3be3de41ff4",
+   "indirect": [],
+   "name": "a100"
+  },
+  {
+   "va": "0x36bfe0",
+   "lo": "0x36bfe0",
+   "hi": "0x36c0e5",
+   "span": 261,
+   "insns": 77,
+   "cov": 1.0,
+   "sha256": "e37aa054ae53cc5be8a94ec0281a6941e0ef49190c57470ec9db26a4c51f4fe2",
+   "indirect": [
+    {
+     "site": "0x36c03b",
+     "form": "call rax",
+     "src": "q[desc+0xA0]",
+     "planted": "0x46dfe0"
+    }
+   ],
+   "name": "bfe0"
+  },
+  {
+   "va": "0x20e620",
+   "lo": "0x20e620",
+   "hi": "0x20e629",
+   "span": 9,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+   "indirect": [],
+   "name": "c620"
+  }
+ ],
+ "scripted": [
+  "0x36bc60",
+  "0x36aad0",
+  "0x36abe0"
+ ]
+}

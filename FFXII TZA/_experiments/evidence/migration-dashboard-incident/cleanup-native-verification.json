@@ -1,0 +1,70 @@
+{
+  "netstat_exit": 0,
+  "correction": "Earlier URL timeout/nonresponse does not establish closed port/process. Original cleanup-verification.json preserved; this additive native query is the acceptance control.",
+  "servers": [
+    {
+      "pid": 49520,
+      "base": "http://127.0.0.1:55258",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    },
+    {
+      "pid": 39592,
+      "base": "http://127.0.0.1:55262",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    },
+    {
+      "pid": 68764,
+      "base": "http://127.0.0.1:55267",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    },
+    {
+      "pid": 51752,
+      "base": "http://127.0.0.1:55271",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    },
+    {
+      "pid": 62904,
+      "base": "http://127.0.0.1:55278",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    },
+    {
+      "pid": 60812,
+      "base": "http://127.0.0.1:55282",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    },
+    {
+      "pid": 62440,
+      "base": "http://127.0.0.1:51601",
+      "parent_wait_returncode": 1,
+      "process_state": "ABSENT",
+      "open_error": 87,
+      "rows": [],
+      "listener_present": false
+    }
+  ],
+  "verified": true
+}

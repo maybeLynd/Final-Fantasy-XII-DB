@@ -1,0 +1,104 @@
+00244DD0 FUN_00244dd0  (argument register at entry: rcx)
+     002285B5 in 002284F0 FUN_002284f0: 002285A9 mov rcx, qword ptr [rip + 0x1dac390]
+     00241969 in 00241940 FUN_00241940: (window)
+     002419FF in 002419B0 FUN_002419b0: 002419FC mov rcx, rbx | (call 002419D4 before)
+     00244F20 in 00244F00 FUN_00244f00: (window)
+     00279A33 in 002778C0 BattleMenu_UpdateCommandSelectionAndDispatch: 00279A30 add rcx, rax
+     00280D07 in 00280CF0 FUN_00280cf0: 00280CFB mov rcx, qword ptr [rax + 0xd8]
+     002820FE in 00281ED0 FUN_00281ed0: 002820F2 mov rcx, qword ptr [rax + 0xf8]
+     00282163 in 00281ED0 FUN_00281ed0: 00282157 mov rcx, qword ptr [rax + 0xf8]
+     002821AE in 00281ED0 FUN_00281ed0: 002821A2 mov rcx, qword ptr [rax + 0xf8]
+     002821E8 in 00281ED0 FUN_00281ed0: 002821DC mov rcx, qword ptr [rax + 0xf8]
+     0028227C in 00281ED0 FUN_00281ed0: 00282270 mov rcx, qword ptr [rax + 0xf8]
+     002822C1 in 00281ED0 FUN_00281ed0: 002822B5 mov rcx, qword ptr [rax + 0xf8]
+002A27F0 FUN_002a27f0  (argument register at entry: rcx)
+     0035BBEE in 0035BB70 FUN_0035bb70: 0035BBE7 mov rcx, qword ptr [rbx + 0xc0]
+0032B880 FUN_0032b880  (argument register at entry: rcx)
+     0025A136 in 0025A0C0 FUN_0025a0c0: 0025A133 mov rcx, rbx | 0025A0F5 lea rbx, [rip + 0x1e3dee4]
+0032EC40 FUN_0032ec40  (argument register at entry: rcx)
+     0032E13F in 0032E070 FUN_0032e070: 0032E138 mov rcx, rbx | (call 0032E133 before)
+     0032E192 in 0032E070 FUN_0032e070: 0032E18B mov rcx, rbx | (call 0032E189 before)
+     0032E1E3 in 0032E070 FUN_0032e070: 0032E1D8 mov rcx, rbx | (call 0032E1D3 before)
+     0032E27B in 0032E070 FUN_0032e070: 0032E274 mov rcx, rbx | (call 0032E26F before)
+     0032E291 in 0032E070 FUN_0032e070: 0032E28A mov rcx, rbx | (call 0032E285 before)
+     0032E5F4 in 0032E590 FUN_0032e590: 0032E5E8 mov rcx, rbx | (call 0032E5E3 before)
+00380B80 FUN_00380b80  (argument register at entry: rcx)
+     00259B97 in 00259B30 FUN_00259b30: 00259B7D lea rcx, [rsp + 0x40]
+     00259C9D in 00259B30 FUN_00259b30: 00259C99 lea rcx, [r15 - 0x18]
+     00259CA9 in 00259B30 FUN_00259b30: 00259CA2 lea rcx, [r15 + 0x148]
+     00259CB5 in 00259B30 FUN_00259b30: 00259CAE lea rcx, [r15 + 0x98]
+     0026E577 in 0026E530 FUN_0026e530: 0026E565 lea rcx, [rsp + 0x20]
+     003DA975 in 003DA8A0 FUN_003da8a0: 003DA95C lea rcx, [rdi + 0x30]
+00380D30 FUN_00380d30  (argument register at entry: rcx)
+     00259BDC in 00259B30 FUN_00259b30: 00259BB3 lea rcx, [rsp + 0x40]
+     00259D50 in 00259B30 FUN_00259b30: 00259CEF lea rcx, [r15 - 0x18]
+     00259D61 in 00259B30 FUN_00259b30: 00259D5A lea rcx, [r15 + 0x98]
+     00259D72 in 00259B30 FUN_00259b30: 00259D6B lea rcx, [r15 + 0x148]
+     003DB1CB in 003DB1B0 FUN_003db1b0: 003DB1C7 add rcx, 0x30
+003AB960 FUN_003ab960  (argument register at entry: rdx)
+     00376448 in 00376350 FUN_00376350: (call 00376406 before)
+     00379712 in 00379630 FUN_00379630: (call 003796DB before)
+     00379824 in 00379760 FUN_00379760: (call 00379797 before)
+     003B821E in 003B81A0 FUN_003b81a0: (call 003B81F6 before)
+     003DE544 in 003DE4C0 FUN_003de4c0: (call 003DE522 before)
+     00464390 in 004640A0 FUN_004640a0: (call 0046434C before)
+     00464616 in 004643D0 FUN_004643d0: (call 004645F3 before)
+     0046496A in 00464650 FUN_00464650: (call 00464936 before)
+     0046FEED in 0046FD00 FUN_0046fd00: (call 0046FEE4 before)
+     0047048D in 004703F0 FUN_004703f0: (call 00470483 before)
+     0047055A in 004704C0 FUN_004704c0: (call 00470550 before)
+     00470631 in 00470590 FUN_00470590: (call 00470627 before)
+003D99B0 FUN_003d99b0  (argument register at entry: rcx)
+     00259C94 in 00259B30 FUN_00259b30: 00259C8D lea rcx, [r15 - 0x648]
+004FEAD0 FUN_004fead0  (argument register at entry: rcx)
+     00537BF3 in 00537BA0 FUN_00537ba0: 00537BF0 mov rcx, rbx | (call 00537BE2 before)
+     00537E68 in 00537CC0 FUN_00537cc0: 00537DF5 mov rcx, rbx | (call 00537DDA before)
+     00538221 in 00537FF0 FUN_00537ff0: 0053821E mov rcx, rbx | (call 00538215 before)
+     0053868F in 005383B0 FUN_005383b0: 0053868C mov rcx, rbx | (call 00538683 before)
+00519A30 FUN_00519a30  (argument register at entry: rcx)
+     003E0982 in 003E0910 FUN_003e0910: 003E097F mov rcx, rax | (call 003E097A before)
+     003E0ABC in 003E09B0 FUN_003e09b0: 003E0AB9 mov rcx, rax | (call 003E0AB4 before)
+     003E3FBF in 003E3D70 CharacterRender_RebindCombatLookAndSkeletonResources: 003E3FBC mov rcx, rax | (call 003E3FB7 before)
+0051A320 FUN_0051a320  (argument register at entry: rcx)
+     003E099F in 003E0910 FUN_003e0910: 003E099C mov rcx, rax | (call 003E0997 before)
+     003E0AD9 in 003E09B0 FUN_003e09b0: 003E0AD6 mov rcx, rax | (call 003E0AD1 before)
+     003E183B in 003E1610 FUN_003e1610: 003E1833 mov rcx, rax | (call 003E182E before)
+     003E40FC in 003E3D70 CharacterRender_RebindCombatLookAndSkeletonResources: 003E40F9 mov rcx, rax | (call 003E40F4 before)
+0036BC60 FUN_0036bc60  (argument register at entry: rcx)
+     0036A11F in 0036A100 FUN_0036a100: 0036A113 mov ecx, dword ptr [rip + 0x1f6e8a3]
+     0036A1C9 in 0036A1A0 FUN_0036a1a0: 0036A1C0 mov ecx, dword ptr [rip + 0x1f6e7f6]
+     0036A3BB in 0036A2A0 FUN_0036a2a0: 0036A3AC movzx ecx, byte ptr [r12 + 1]
+     0036B181 in 0036B160 FUN_0036b160: 0036B17C mov ecx, ebx | 0036B16F mov ebx, dword ptr [rip + 0x1f6d847]
+     0036C0A9 in 0036BFE0 FUN_0036bfe0: 0036C08B mov ecx, dword ptr [rip + 0x1f6c92b]
+     0036CF0C in 0036CB00 FUN_0036cb00: 0036CF09 mov ecx, r12d | (call 0036CEF5 before)
+0023A570 BattleUnit_ApplyUnitDefinition  (argument register at entry: rcx)
+     0023A3F1 in 0023A3B0 Spawn_ApplyScriptSelectedUnit: 0023A3EE mov rcx, rsi | (call 0023A3D4 before)
+     00300F75 in 00300E40 BattleUnit_TeardownAndDespawn: 00300F72 mov rcx, rdi | (call 00300F68 before)
+     00326B0A in 003266C0 BattleGroup_RefreshFourActorDefinitions: 00326B07 mov rcx, rbx | (call 00326AF5 before)
+00300E40 BattleUnit_TeardownAndDespawn  (argument register at entry: rcx)
+     00233F37 in 00233EA0 FUN_00233ea0: 00233F34 mov rcx, rbx | (call 00233EF0 before)
+     00234100 in 00233F70 BattleUnit_UpdateLifecycleAndCombatFrame: 002340FD mov rcx, rbx | (call 002340D0 before)
+     002348BC in 00234880 SpawnGroup_TeardownAllGroupedSpawnUnits: 002348B9 mov rcx, rax | (call 00234892 before)
+     00234919 in 002348E0 FUN_002348e0: 00234916 mov rcx, rax | (call 002348F8 before)
+     002349DC in 00234990 SpawnGroup_TeardownUnitsByGroupMask: 002349AD mov rcx, rax | (call 002349A8 before)
+     002352B1 in 002350C0 SpawnLifecycle_CheckAndRetireByNativeRange: 002352AE mov rcx, rsi | (call 00235278 before)
+     002376CC in 00237690 SpawnGroup_TeardownAllUngroupedSpawnUnits: 002376C9 mov rcx, rax | (call 002376A2 before)
+     0032442A in 003243F0 FUN_003243f0: 00324427 mov rcx, rbx | (call 00324417 before)
+     003244C1 in 00324470 FUN_00324470: 003244BE mov rcx, rbx | (call 003244AE before)
+     00326ADA in 003266C0 BattleGroup_RefreshFourActorDefinitions: 00326AD7 mov rcx, rbx | (call 00326AC7 before)
+0030E360 BattleStats_ChangeStatusAndProcessSideEffects  (argument register at entry: rcx)
+     002FDF40 in 002FDDA0 BattleUnit_ExecuteDirectStateCommandOrder: 002FDF18 mov rcx, qword ptr [rbx + 0x698]
+     002FDF79 in 002FDDA0 BattleUnit_ExecuteDirectStateCommandOrder: 002FDF5A mov rcx, qword ptr [rbx + 0x698]
+     0030077A in 00300530 BattleStats_ModifyHPAndProcessLethalState: 00300773 mov rcx, rsi | (call 00300740 before)
+     003007CF in 00300530 BattleStats_ModifyHPAndProcessLethalState: 003007CC mov rcx, rsi | (call 003007A8 before)
+     00304A76 in 00304850 BattleUnit_AdvanceStandardActionState: 00304A58 mov rcx, qword ptr [rdi + 0x698]
+     0030E6C7 in 0030E360 BattleStats_ChangeStatusAndProcessSideEffects: 0030E6C1 mov rcx, rsi | (call 0030E668 before)
+     0030E9A9 in 0030E990 BattleStats_RemoveStatusMode0: (window)
+     0030EAFC in 0030EAE0 BattleStats_AddStatusMode3: (window)
+     0030EB8D in 0030EB10 BattleSpecialSequence_CommitAccumulatedTargetHp: 0030EB82 mov rcx, qword ptr [rcx + 0x698]
+     0030EBB7 in 0030EB10 BattleSpecialSequence_CommitAccumulatedTargetHp: 0030EBAC mov rcx, qword ptr [rcx + 0x698]
+     0030F721 in 0030F690 BattleStats_RemoveStatusesFromMaskAndRecompute: 0030F71E mov rcx, rsi | (call 0030F6F3 before)
+     00310409 in 0030FED0 BattleStats_RecomputeDerivedStateAndAutoStatuses: 00310406 mov rcx, rbx | (call 003103C8 before)
+0042DA30 CharacterRenderRecord_RefreshLoadedResourceBindings  (argument register at entry: rcx)
+     0042697E in 00426950 FUN_00426950: 0042697A lea rcx, [rbx + rdx]
+     0042EDCE in 0042ED60 FUN_0042ed60: 0042EDCB add rcx, rbx

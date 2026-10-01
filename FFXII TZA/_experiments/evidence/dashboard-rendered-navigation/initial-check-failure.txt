@@ -1,0 +1,1 @@
+First reducer exited1 before passing: assumed .png capture suffix implied PNG signature. Cua screenshot bytes were not inspected before naming. No browser replay; original bytes unchanged.

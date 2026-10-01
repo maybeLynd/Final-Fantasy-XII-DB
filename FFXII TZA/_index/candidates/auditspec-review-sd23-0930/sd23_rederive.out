@@ -1,0 +1,51 @@
+Sound-family vtables found: 19
+  01CB58C8 .?AVISound@Driver@Sd@SQEX@@                   slot38 01D42C08 slot39 007BCF40
+  01CB5A30 .?AVSound@Driver@Sd@SQEX@@                    slot38 false slot39 true
+  01CB5B98 .?AVSound@Driver@Sd@SQEX@@                    slot38 7265766F2065676E slot39 66252021
+  01CB5BA8 .?AVSound@Driver@Sd@SQEX@@                    slot38 215B5D646165735B slot39 6F535D216E726177
+  01CB87A8 .?AVRandomSound@Driver@Sd@SQEX@@              slot38 false slot39 true
+  01CB8910 .?AVRandomSound@Driver@Sd@SQEX@@              slot38 007BD560 slot39 007BD580
+  01CB8920 .?AVRandomSound@Driver@Sd@SQEX@@              slot38 007BDD20 slot39 007BD970
+  01CB8940 .?AVVariationSound@Driver@Sd@SQEX@@           slot38 true slot39 true
+  01CB8AA8 .?AVVariationSound@Driver@Sd@SQEX@@           slot38 007BD560 slot39 007BD580
+  01CB8AB8 .?AVVariationSound@Driver@Sd@SQEX@@           slot38 007BDD20 slot39 007BD970
+  01CB8AD8 .?AVOrderSound@Driver@Sd@SQEX@@               slot38 false slot39 true
+  01CB8C40 .?AVOrderSound@Driver@Sd@SQEX@@               slot38 007BD560 slot39 007BD580
+  01CB8C50 .?AVOrderSound@Driver@Sd@SQEX@@               slot38 007BDD20 slot39 007BD970
+  01CB8C70 .?AVCycleSound@Driver@Sd@SQEX@@               slot38 false slot39 false
+  01CB8DD8 .?AVCycleSound@Driver@Sd@SQEX@@               slot38 007BD560 slot39 007BD580
+  01CB8DE8 .?AVCycleSound@Driver@Sd@SQEX@@               slot38 007BDD20 slot39 007BD970
+  01CB8E08 .?AVSwitchSound@Driver@Sd@SQEX@@              slot38 false slot39 true
+  01CB8F70 .?AVSwitchSound@Driver@Sd@SQEX@@              slot38 64206B636172745D slot39 61766E6920617461
+  01CB8F80 .?AVSwitchSound@Driver@Sd@SQEX@@              slot38 4479FFFF0064696C slot39 C47A0000
+stub bodies: 007E57B0: xor al, al; ret ; int3  | 007E5800: mov al, 1; ret ; int3 
+call [reg + 0x130]: 16 sites: 007B2F08/007B2CB0 007B31C9/007B31A0 007B3336/007B31A0 007B3435/007B31A0 007B4BB5/007B4A70 007BD53B/007BD4E0 007BD618/007BD5E0 007BD9EF/007BD9D0 007BDBD6/007BDBB0 007BE5CC/007BE590 007BEB41/007BEAF0 007BED8E/007BED30 007F0DA8/007F0820 007F0DCD/007F0820 007F0DF5/007F0820 007F0E0D/007F0820
+call [reg + 0x138]: 2 sites: 007BF183/007BF0A0 007F0A23/007F0820
+--- after 007BDBD6
+  007BDBCE and al, 0x30
+  007BDBD0 movaps xmmword ptr [rsp + 0x20], xmm9
+  007BDBD6 call qword ptr [rax + 0x130]
+  007BDBDC xorps xmm8, xmm8
+  007BDBE0 test al, al
+  007BDBE2 je 0x7bdbea
+  007BDBE4 movaps xmm7, xmm8
+  007BDBE8 jmp 0x7bdbf3
+  007BDBEA mov rax, qword ptr [rsi + 0x30]
+  007BDBEE movss xmm7, dword ptr [rax + 0xc]
+  007BDBF3 movss xmm9, dword ptr [rip + 0x152dfac]
+  007BDBFC lea rbx, [rsi + 0xb8]
+--- after 007BED8E
+raw FF-call disp 0x130 in 007A0000..00800000: 16: 007B2F08 007B31C9 007B3336 007B3435 007B4BB5 007BD53B 007BD618 007BD9EF 007BDBD6 007BE5CC 007BEB41 007BED8E 007F0DA8 007F0DCD 007F0DF5 007F0E0D
+raw FF-call disp 0x130: 36 byte hits, 36 decode as call, owners ['001B2A30', '00418880', '004804A0', '00485790', '004930A0', '004958A0', '004B9EA0', '004BC320', '006A29C0', '006A4A60', '006A65A0', '00723760', '007255B0', '00731DB0', '007B2CB0', '007B31A0', '007B4A70', '007BD4E0', '007BD5E0', '007BD9D0', '007BDBB0', '007BE590', '007BEAF0', '007BED30', '007F0820']
+raw FF-call disp 0x138 in 007A0000..00800000: 2: 007BF183 007F0A23
+raw FF-call disp 0x138: 24 byte hits, 24 decode as call, owners ['001B2A30', '0020E6C0', '0020ED30', '002133D0', '00215440', '006225D0', '00723760', '00731DB0', '00732D80', '007330B0', '00733470', '007338C0', '00733DE0', '00734860', '007349A0', '00774260', '007BF0A0', '007F0820', '008588A0', '00863850', '00863D80', '00864860']
+--- after 007BED8E
+  007BED8E call qword ptr [rax + 0x130]
+  007BED94 xorps xmm7, xmm7
+  007BED97 test al, al
+  007BED99 jne 0x7bee26
+  007BED9F mov rax, qword ptr [rdi + 0x30]
+  007BEDA3 cmp byte ptr [rax], 0xd
+  007BEDA6 jb 0x7bedff
+  007BEDA8 movzx eax, byte ptr [rax + 0x19]
+  007BEDAC shr eax, 7

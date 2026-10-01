@@ -1,0 +1,1 @@
+check.py --mutations: exit0; final coverage positives and four hash-consistent corrupted-evidence controls passed. Normalized result agrees with the earlier consumed version. No new live/native execution.

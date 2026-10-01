@@ -1,0 +1,6 @@
+rip_refs_02064ACC.out    02064ACC 02064AD0      exit=0 IDENTICAL
+rip_refs_02CB8084.out    02CB8084 02CB8088      exit=0 IDENTICAL
+rip_refs_01F832B0.out    01F832B0 01F832C8      exit=0 IDENTICAL
+rip_refs_00369D30.out    00369D30               exit=0 IDENTICAL
+rip_refs_block.out       02CB7FD0 02CB843C      exit=0 IDENTICAL
+counter_access.out       -                      exit=0 IDENTICAL

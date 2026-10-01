@@ -1,0 +1,14 @@
+{
+  "name": "changed-shipping-asset-cli",
+  "status": "PASS_EXPECTED_UPSTREAM_FAIL",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-field-extent.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\changed-shipping-asset-cli",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\changed-shipping-asset-cli\\MUST-NOT-EXIST.json"
+  ],
+  "exit": 1,
+  "result_exists": false,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "68cf194cdb9de4e84b4760c9dbfda4deb283e1f7f71607d79c92b470cbe3741d"
+}

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-softedges-member-boundaries.py", line 27, in <module>
+    tail=load('softedges-member-resolution-continuation-code-01.json')
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\check-softedges-member-boundaries.py", line 14, in load
+    if r.get('exe_sha256')!=SHA or r.get('wrapper_complete') is not True:raise ValueError('unchecked original capture prerequisite: '+name)
+                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: unchecked original capture prerequisite: softedges-member-resolution-continuation-code-01.json

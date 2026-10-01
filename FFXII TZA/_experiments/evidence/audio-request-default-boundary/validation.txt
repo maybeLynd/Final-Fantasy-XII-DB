@@ -1,0 +1,6 @@
+Method A only; original bodies checked, no machine execution.
+Command: C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Scripts\python.exe Database\FFXII TZA\_experiments\evidence\audio-request-default-boundary\check.py
+Exit: 0
+PASS: complete original bodies and argument/queue anchors match reference; no code executed.
+voiceplay request: pan64 to cue+0F; volume127 to cue+08 bits24..30; pump preserves order.
+Existing EXP096 pop body identity reused; audible/native voice results remain open.

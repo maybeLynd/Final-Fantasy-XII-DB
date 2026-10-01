@@ -1,0 +1,56 @@
+PASS  M1 001897C0's pair index is setne al: 0 or 1
+PASS  M2 00184F20 builds 2 view pairs of 0x338 at A+0x20 with 00184CE0 through 00808FE4
+PASS  M3 00184CE0 stores view vtable 008C5D68 (slot 1 = 00189C20)
+PASS  M4 allocator vtable 00902720 slots 2/3 = 001EDF80/001EDFE0; Phyre vtable 00D562A8 slot 10 = 0062E1C0
+self fields modelled: 10; vtable receivers: 18
+iteration 1: self fields 10, new or grown this pass 4
+iteration 2: self fields 14, new or grown this pass 0
+self fields at the fixpoint: A+0xd8<-0xf8 A+0x268<-0x288 A+0x410<-0x430/0x468 A+0x4d8<-0x430/0x468 A+0x4e0<-0x360 A+0x5a0<-0x5c0/0x5f8 A+0x668<-0x5c0/0x5f8 A+0x670<-0x4f0 A+0x748<-0x768/0x7a0 A+0x810<-0x768/0x7a0 A+0x818<-0x698 A+0x8d8<-0x8f8/0x930 A+0x9a0<-0x8f8/0x930 A+0x9a8<-0x828
+PASS  C the five known stores are found again
+seeds: 210 (class 00902F90 code slots 9); bodies analysed 7846; virtual calls resolved 21 at 21 sites
+stores that can cover A+0xDAC: 71 distinct; in pass 1's list: 71; NEW: 0
+indirect calls receiving the object that stay unresolved: 22
+  UNRESOLVED 001858A0 00185956 call qword ptr [rax + 0x10]              args rcx
+  UNRESOLVED 001858A0 001859DD call qword ptr [r9 + 0x18]               args rcx
+  UNRESOLVED 00188640 00188690 call qword ptr [rax + 0x10]              args rcx
+  UNRESOLVED 00188640 001886E4 call qword ptr [r9 + 0x18]               args rcx
+  UNRESOLVED 001897C0 00189A67 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189A78 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189A89 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189A9B call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189AAD call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189B75 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189B86 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189B97 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189BA9 call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001897C0 00189BBB call qword ptr [rax + 8]                 args rcx
+  UNRESOLVED 001F0AD0 001F0B0D call qword ptr [rax + 0x10]              args r8
+  UNRESOLVED 00584730 0019C570 jmp qword ptr [rip + 0x7265f9]           args rcx
+  UNRESOLVED 00808FE4 00809025 call rsi                                 args rcx
+  UNRESOLVED 00861EC6 00861EC6 jmp qword ptr [rip + 0x60b7c]            args rcx
+  UNRESOLVED 00861F0E 00861F0E jmp qword ptr [rip + 0x60c9c]            args rdx
+  UNRESOLVED 00861F14 00861F14 jmp qword ptr [rip + 0x60c9e]            args rcx
+  UNRESOLVED 00861F1A 00861F1A jmp qword ptr [rip + 0x60ca0]            args rcx
+  UNRESOLVED 00861F1A 00861F1A jmp qword ptr [rip + 0x60ca0]            args rcx,rdx
+escapes: 18
+  ESCAPE 00184AF0 00184B28 mov qword ptr [rcx + 0x78], rax          to A+0x4d8
+  ESCAPE 00184AF0 00184B28 mov qword ptr [rcx + 0x78], rax          to A+0x668
+  ESCAPE 00184AF0 00184B28 mov qword ptr [rcx + 0x78], rax          to A+0x810
+  ESCAPE 00184AF0 00184B28 mov qword ptr [rcx + 0x78], rax          to A+0x9a0
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x4e0
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x670
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x818
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x9a8
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x410
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x5a0
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x748
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x8d8
+  ESCAPE 001897C0 00189A55 mov qword ptr [rbx + 0xb8], rcx          to A
+  ESCAPE 001897C0 00189B63 mov qword ptr [rbx + 0xb8], rax          to A
+  ESCAPE 00189CE0 00189FC9 mov qword ptr [rbx + 0xb8], rcx          to A+0x748
+  ESCAPE 00189CE0 0018A061 mov qword ptr [rbx + 0xb8], rdi          to A+0x8d8
+  ESCAPE 001F1E80 001F1EAE mov qword ptr [rdi + 0x18], rbx          to UNKNOWN
+  ESCAPE 0060CE50 0060CE6C mov qword ptr [rcx + 0xa8], rdx          to UNKNOWN
+PASS  N the foreign +0xCB8 writer 006FF5D0 is never analysed with the object in any argument
+
+FAILS 0

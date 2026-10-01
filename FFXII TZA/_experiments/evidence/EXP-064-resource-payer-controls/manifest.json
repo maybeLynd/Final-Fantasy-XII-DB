@@ -1,0 +1,25 @@
+{
+  "experiment": "EXP-064-resource-payer-controls",
+  "files": {
+    "0020E600.bin": {
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    "0030EF20.bin": {
+      "bytes": 205,
+      "sha256": "4935c4d9e3eef36a095b1b03e1f96bce82f68da85f3ff8d11f7dc4369e50993a"
+    },
+    "check.py": {
+      "bytes": 7117,
+      "sha256": "0becb2a33a6ffa66e8558eb35131530bd3c5eb7f2590f0349918f3e5cb1b9edb"
+    },
+    "disassembly.txt": {
+      "bytes": 3328,
+      "sha256": "c19ef3505201fce28bbd03e4cebb606c14822241bbbe9f56f916be63d72db4dd"
+    },
+    "result.json": {
+      "bytes": 56270,
+      "sha256": "50698428bf0188b60fb9f8fb4007e2ca4abb65f9991baa1029ab026a139d7dd8"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-a23-current-release\\capture.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\"status\": \"BOUNDED_HTTP_CAPTURE\", \"generation\": \"g20260929T184345Z-92fe9f\", \"views\": [\"progress\", \"overview\", \"systems\", \"vbf\", \"executable\", \"types\", \"evidence\", \"fleet\"], \"reader_stale\": false, \"problems\": []}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "1ad592ad488b23693f8c95d081f45afa1836327f24f91c8ebfa8150554410286"
+}

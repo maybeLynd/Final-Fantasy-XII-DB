@@ -1,0 +1,3 @@
+{"action":"finish","task":"SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-28",
+ "result_refs":["commit:9c9cab786"],
+ "note":"batch-28 fully tailed: publish 061188d9d, seal 650db2dfc, tails c953b7744 + 9c9cab786"}

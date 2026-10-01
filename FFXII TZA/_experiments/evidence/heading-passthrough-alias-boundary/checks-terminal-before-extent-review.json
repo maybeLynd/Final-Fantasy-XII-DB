@@ -1,0 +1,57 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"SOURCE_ESTABLISHES_PASSTHROUGH_ALIAS_PRECONDITION\",\n  \"method\": \"A exact original ordering/caller source and conditional prefix-byte calculation; no executed scenarios\",\n  \"entry_zero_stores\": [\n    \"002E438E:qword[output]=0\",\n    \"002E4394:dword[output+8]=0\"\n  ],\n  \"first_source_reads\": [\n    \"002E43BC:input+4\",\n    \"002E43C2:input\",\n    \"002E43C7:input+8\"\n  ],\n  \"conditional_prefix\": {\n    \"original_xyz_bits\": [\n      \"40400000\",\n      \"40800000\",\n      \"41400000\"\n    ],\n    \"distinct_first_reads_yxz\": [\n      \"40800000\",\n      \"40400000\",\n      \"41400000\"\n    ],\n    \"same_buffer_first_reads_yxz\": [\n      \"00000000\",\n      \"00000000\",\n      \"00000000\"\n    ],\n    \"original_W_unchanged_by_prefix\": true\n  },\n  \"caller_argument_construction\": {\n    \"site\": \"002E50CB\",\n    \"output\": \"local [current RSP+0x30]\",\n    \"input\": \"entry R8 saved in R14, forwarded as R9\",\n    \"mode\": \"entry EDX saved in EBP, forwarded as R8D\"\n  },\n  \"consumer_change\": \"Qualify pass-through with relevant non-overlap/separate-storage assumptions; preserve entry zeroing and rereads, not staged-vector replacement. Normal caller construction is source-established; arbitrary live pointer separation is not.\",\n  \"limits\": \"Class3/r8d!=0/valid separate actor+movement state, sequential prefix analysis. Exact same-buffer hypothesis only, not general partial-overlap safety. No imported sqrtf execution or final F8 numeric/pointer effects proven here; wrapper/thunk/source identity only. Recorded sole caller not a new whole-image census. No actual caller execution, game initialization, timing/atomicity/reachability or live behavior.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "fd204f3c9faca7dac5c551c081980587951db2c9dd95b90d7496772a3d253a9f"
+  },
+  {
+    "case": "pointer-staging",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py",
+      "--fault-pointer-stages-values"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 54, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 44, in check\n    if '--fault-pointer-stages-values' in sys.argv:assert '[' in d[0x2e438b][1],'MOV R14,R9 preserves pointer, not the contents before zeroing'\n                                                          ^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MOV R14,R9 preserves pointer, not the contents before zeroing\n",
+    "terminal": true,
+    "checker_sha256": "fd204f3c9faca7dac5c551c081980587951db2c9dd95b90d7496772a3d253a9f"
+  },
+  {
+    "case": "same-buffer",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py",
+      "--fault-same-buffer-preserved"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 54, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 45, in check\n    if '--fault-same-buffer-preserved' in sys.argv:assert same_reads==distinct_reads,'Entry clearing precedes source reads; exact same-buffer first reads see zero'\n                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Entry clearing precedes source reads; exact same-buffer first reads see zero\n",
+    "terminal": true,
+    "checker_sha256": "fd204f3c9faca7dac5c551c081980587951db2c9dd95b90d7496772a3d253a9f"
+  },
+  {
+    "case": "caller-forces-alias",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py",
+      "--fault-caller-reuses-output"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 54, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 46, in check\n    if '--fault-caller-reuses-output' in sys.argv:assert c[0x2e50bd]==('lea','r9, [rsp + 0x30]'),'Caller forwards entry R8 via R14, while RDX is local rsp+30; no forced input=output construction'\n                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Caller forwards entry R8 via R14, while RDX is local rsp+30; no forced input=output construction\n",
+    "terminal": true,
+    "checker_sha256": "fd204f3c9faca7dac5c551c081980587951db2c9dd95b90d7496772a3d253a9f"
+  }
+]

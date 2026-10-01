@@ -1,0 +1,22 @@
+{
+  "method": "Synthetic EO3 connector control, no native calls",
+  "decisions": [
+    "CONTINUE",
+    "CONTINUE",
+    "STOP_MATCHED_PENDING_HEALTH"
+  ],
+  "selected_original_pointer": 6639661056,
+  "high_pointer_decision": "HOLD_FOR_OWNED_ABORT",
+  "rejected": [
+    "wrong event thread",
+    "stale context from previous event",
+    "different thread handle binding",
+    "modified context buffer",
+    "write proposal instead of observed context",
+    "second-chance event"
+  ],
+  "limits": [
+    "Not live FF12 or native execution of the semantic three-site recorder.",
+    "The separate native stopped-event/read/abort controls support the connector shape; reference/game health still required."
+  ]
+}

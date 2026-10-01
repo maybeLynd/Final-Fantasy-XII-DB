@@ -1,0 +1,89 @@
+{
+  "evidence_class": "A: shipping instructions; interpreted separately from EXP079 live snapshots",
+  "body_receipts": {
+    "0x2fc4a0": {
+      "bytes": 898,
+      "sha256": "436b81c9179f6f5e62e643d2d3526e39e016b4cbddfe25f7428403e3bc13fb07"
+    },
+    "0x2fc860": {
+      "bytes": 323,
+      "sha256": "8909fc1a0254eb95a1f6d7d2211c439538401204fd0f614afc77b650ae15072b"
+    },
+    "0x3b0660": {
+      "bytes": 260,
+      "sha256": "d4cd3ca89c31098c6f3cfcd66b3efa1b3f8a08ba3374f9cfec97e538a397b036"
+    },
+    "0x3b2310": {
+      "bytes": 337,
+      "sha256": "6e3feda78a2851942feebd92f612fdadcca00905c9e00374beafb3eab7d63749"
+    },
+    "0x32e620": {
+      "bytes": 340,
+      "sha256": "9b153fc5d31b571bf0ca740fe8089dd5ab5a3e894915db3ad7de342528eb9ae3"
+    },
+    "0x32e400": {
+      "bytes": 80,
+      "sha256": "7f077acb103b4304a5dde1a9ab5bd021cdfa902978626f58485208a8e00a503e"
+    },
+    "0x32e520": {
+      "bytes": 107,
+      "sha256": "d275a439a75e76b5319e390dc64da0a1b76d11121fe309d68065bf0db3057304"
+    },
+    "0x2fc830": {
+      "bytes": 41,
+      "sha256": "7a9d7a65df19e075607071d42ae97762684ff8bb830e1f95fe126f953e2bd9c9"
+    },
+    "0x3b22d0": {
+      "bytes": 57,
+      "sha256": "6a3203f8152dfb7387964140fd0e60333e3dd11fbaa2f96cc9b1282a19d15ba0"
+    },
+    "0x32e870": {
+      "bytes": 285,
+      "sha256": "51e0737576a43cea8bc082f284312a47bdc3babdc6cd1e8db93735493c67abf1"
+    },
+    "0x3edad0": {
+      "bytes": 1934,
+      "sha256": "aebd52bca250cae30c65f4dc67ff25e8639df9db190db2098d056a03789f290e"
+    }
+  },
+  "magic_bytes": {
+    "0xd11c70": "4546583030313000",
+    "0xd11c78": "4546583030303900",
+    "0xd11c80": "4546583030303800"
+  },
+  "scanner": {
+    "arguments": [
+      "01FD4A30",
+      "01FD4A38"
+    ],
+    "known_boot_store_found": true,
+    "known_init_read_found": true,
+    "source": "Database/FFXII TZA/_experiments/evidence/authored-reference-lifetime-review/reviewed-ripscan.py",
+    "sha256": "236e7cee6eebf73d8fb0885346876a6efba99c04caebb96c63bbb55029a1ab47",
+    "limits": "RIP operand start scan is not exhaustive alias, indexed or overlapping-write coverage; prior indexed-reader blind spot persists."
+  },
+  "upstream_hashes": {
+    "Database\\Tools\\work\\exe\\FFXII_TZA.exe": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "Database\\Tools\\work\\graph\\functions.tsv": "2699b933bdaed8562a1082f17e986c8abeb4c1fb0eabc81e6f532d49926a67b6",
+    "Database\\Tools\\work\\graph\\edges.tsv": "de21ba1bc62d92243ea66f47ec7a08355ac2f77d355ed8abc542c158fc709095",
+    "Database\\FFXII TZA\\_experiments\\evidence\\resource-arena-backing\\primary.json": "3d4ba47b0b10fcc81495304e454cfd3bffa0c3c4ec03906b6d1e6851ba18172d",
+    "Database\\FFXII TZA\\_experiments\\evidence\\arena-live-placement\\title-memory.json": "383096bad826c2ce49eec8a9a8c8d79d07ffae052952d544f80ae30fd35b4896",
+    "Database\\FFXII TZA\\_experiments\\evidence\\arena-live-placement\\loaded-memory.json": "f9e29523a09ede9630acd6d8cb1a5a58df923d800698f909dc369da9e1c00907"
+  },
+  "findings": [
+    "Boot stores arena7 backing at01FD4A30; explicit callers pass it as request R8, not an allocator payload offset.",
+    "Builder32E620 preserves fullR8 and both branches pass it to32E870; latter stores it at request+38/+70.",
+    "3B0660 requests namespace10 index0 into backing, drains through32E520(0), passes backing and dword+0C toEFX parser.",
+    "2FC860 and3B2310 queue other loads into same backing with local status callbacks; scheduling in EXP079 not traced.",
+    "EFX context+2bit4 branches at3EE018/3EE117 choose copy allocation versus retained input pointers atcontext+878/+870 forA00/800 families. Logical allocation source8 settings10 is selected when allocating copies.",
+    "EFX610 sizing path reads byte at chunk+13 (rax=chunk+4; read+0F), agreeing with copied read+13.",
+    "Observed EFX backing plus this original request/parse path explains how backing may be used directly; no exact live writer/file or current borrowed-branch assertion."
+  ],
+  "open": [
+    "Current arena7 lifecycle and which request produced EXP079 bytes.",
+    "Context flag ownership, retained input lifetime and protection before another request overwrites the shared buffer.",
+    "Native effect-consumer/callback effects and integration; no original code executed in this package.",
+    "Resource read success and exact filename not established by a queue-drain return or EFX magic.",
+    "Published input-pointer survival through unreviewed effect callees and parser return; direct stores alone do not prove it."
+  ]
+}

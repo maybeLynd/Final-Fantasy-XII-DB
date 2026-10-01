@@ -1,0 +1,585 @@
+{
+  "status": "TAGGED_GROUP_NOT_EXACT_ASSIGNMENT_SPAN",
+  "method": "A verified immutable65 original data; no bytecode/VM/native/guest/live execution",
+  "raw_sha256": "86ce29bc12f9cf3bc818d5d232e66131d4023b74d39bf950940d80c766ee2b10",
+  "observations": [
+    {
+      "case": {
+        "scope": 1,
+        "push_pc": 5391,
+        "pop_pc": 5394,
+        "code_offset": 13862,
+        "code_hex": "4f0100496100",
+        "q0_offset": 38028,
+        "q0_hex": "4f0400014f0400004f0400004f0400014f0400004f040000",
+        "tagged_line": 1103,
+        "block": 0,
+        "value": 1,
+        "operand": 97
+      },
+      "observation": {
+        "value": 1,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1103,
+        "preceding_group": [
+          {
+            "physical": 1646,
+            "offset": 40007,
+            "hex": "09746573745f6c6f61645f666c67203d2031",
+            "text": "\ttest_load_flg = 1"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1647,
+            "offset": 40027,
+            "hex": "09746573745f6576656e745f636f756e74203d2030",
+            "text": "\ttest_event_count = 0"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 1
+        },
+        "tagged_assignment": {
+          "name": "test_event_count",
+          "value": 0
+        },
+        "preceding_matches": true,
+        "tagged_matches": false
+      }
+    },
+    {
+      "case": {
+        "scope": 1,
+        "push_pc": 5595,
+        "pop_pc": 5598,
+        "code_offset": 14066,
+        "code_hex": "4f0000496100",
+        "q0_offset": 38844,
+        "q0_hex": "6a0400016a0400006a0400006a0400016a0400006a040000",
+        "tagged_line": 1130,
+        "block": 0,
+        "value": 0,
+        "operand": 97
+      },
+      "observation": {
+        "value": 0,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1130,
+        "preceding_group": [
+          {
+            "physical": 1673,
+            "offset": 40700,
+            "hex": "090909746573745f6c6f61645f666c67203d2030",
+            "text": "\t\t\ttest_load_flg = 0"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1674,
+            "offset": 40722,
+            "hex": "090909746573745f6576656e745f636f756e74203d2030",
+            "text": "\t\t\ttest_event_count = 0"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 0
+        },
+        "tagged_assignment": {
+          "name": "test_event_count",
+          "value": 0
+        },
+        "preceding_matches": true,
+        "tagged_matches": false
+      }
+    },
+    {
+      "case": {
+        "scope": 5,
+        "push_pc": 1275,
+        "pop_pc": 1278,
+        "code_offset": 16625,
+        "code_hex": "4f6300496100",
+        "q0_offset": 51676,
+        "q0_hex": "750500017505000075050000750500017505000075050000",
+        "tagged_line": 1397,
+        "block": 0,
+        "value": 99,
+        "operand": 97
+      },
+      "observation": {
+        "value": 99,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1397,
+        "preceding_group": [
+          {
+            "physical": 1940,
+            "offset": 46133,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1941,
+            "offset": 46156,
+            "hex": "09097d",
+            "text": "\t\t}"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "tagged_assignment": null,
+        "preceding_matches": true,
+        "tagged_matches": false
+      }
+    },
+    {
+      "case": {
+        "scope": 9,
+        "push_pc": 579,
+        "pop_pc": 582,
+        "code_offset": 20503,
+        "code_hex": "4f6300496100",
+        "q0_offset": 68636,
+        "q0_hex": "de060001de060000de060000de060001de060000de060000",
+        "tagged_line": 1758,
+        "block": 0,
+        "value": 99,
+        "operand": 97
+      },
+      "observation": {
+        "value": 99,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1758,
+        "preceding_group": [
+          {
+            "physical": 2301,
+            "offset": 53206,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 2302,
+            "offset": 53229,
+            "hex": "09097d",
+            "text": "\t\t}"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "tagged_assignment": null,
+        "preceding_matches": true,
+        "tagged_matches": false
+      }
+    }
+  ],
+  "controls": [
+    {
+      "scope": 1,
+      "pc": 5394,
+      "original_positive": true,
+      "private_operand": {
+        "value": 1,
+        "index": 96,
+        "name": "test_event_count",
+        "line": 1103,
+        "preceding_group": [
+          {
+            "physical": 1646,
+            "offset": 40007,
+            "hex": "09746573745f6c6f61645f666c67203d2031",
+            "text": "\ttest_load_flg = 1"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1647,
+            "offset": 40027,
+            "hex": "09746573745f6576656e745f636f756e74203d2030",
+            "text": "\ttest_event_count = 0"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 1
+        },
+        "tagged_assignment": {
+          "name": "test_event_count",
+          "value": 0
+        },
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_literal": {
+        "value": 2,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1103,
+        "preceding_group": [
+          {
+            "physical": 1646,
+            "offset": 40007,
+            "hex": "09746573745f6c6f61645f666c67203d2031",
+            "text": "\ttest_load_flg = 1"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1647,
+            "offset": 40027,
+            "hex": "09746573745f6576656e745f636f756e74203d2030",
+            "text": "\ttest_event_count = 0"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 1
+        },
+        "tagged_assignment": {
+          "name": "test_event_count",
+          "value": 0
+        },
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_coordinate": {
+        "value": 1,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1102,
+        "preceding_group": [
+          {
+            "physical": 1645,
+            "offset": 39984,
+            "hex": "636173652032363a092f2f93c78d9e836583588367",
+            "text": "case 26:\t//\u8aad\u8fbc\u30c6\u30b9\u30c8"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1646,
+            "offset": 40007,
+            "hex": "09746573745f6c6f61645f666c67203d2031",
+            "text": "\ttest_load_flg = 1"
+          }
+        ],
+        "preceding_assignment": null,
+        "tagged_assignment": {
+          "name": "test_load_flg",
+          "value": 1
+        },
+        "preceding_matches": false,
+        "tagged_matches": true
+      },
+      "limits": "Private copied data interpreted only; no original VM/compiler/live execution"
+    },
+    {
+      "scope": 1,
+      "pc": 5598,
+      "original_positive": true,
+      "private_operand": {
+        "value": 0,
+        "index": 96,
+        "name": "test_event_count",
+        "line": 1130,
+        "preceding_group": [
+          {
+            "physical": 1673,
+            "offset": 40700,
+            "hex": "090909746573745f6c6f61645f666c67203d2030",
+            "text": "\t\t\ttest_load_flg = 0"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1674,
+            "offset": 40722,
+            "hex": "090909746573745f6576656e745f636f756e74203d2030",
+            "text": "\t\t\ttest_event_count = 0"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 0
+        },
+        "tagged_assignment": {
+          "name": "test_event_count",
+          "value": 0
+        },
+        "preceding_matches": false,
+        "tagged_matches": true
+      },
+      "private_literal": {
+        "value": 1,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1130,
+        "preceding_group": [
+          {
+            "physical": 1673,
+            "offset": 40700,
+            "hex": "090909746573745f6c6f61645f666c67203d2030",
+            "text": "\t\t\ttest_load_flg = 0"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1674,
+            "offset": 40722,
+            "hex": "090909746573745f6576656e745f636f756e74203d2030",
+            "text": "\t\t\ttest_event_count = 0"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 0
+        },
+        "tagged_assignment": {
+          "name": "test_event_count",
+          "value": 0
+        },
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_coordinate": {
+        "value": 0,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1129,
+        "preceding_group": [
+          {
+            "physical": 1672,
+            "offset": 40680,
+            "hex": "090909746573745f6576656e745b315d3d30",
+            "text": "\t\t\ttest_event[1]=0"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1673,
+            "offset": 40700,
+            "hex": "090909746573745f6c6f61645f666c67203d2030",
+            "text": "\t\t\ttest_load_flg = 0"
+          }
+        ],
+        "preceding_assignment": null,
+        "tagged_assignment": {
+          "name": "test_load_flg",
+          "value": 0
+        },
+        "preceding_matches": false,
+        "tagged_matches": true
+      },
+      "limits": "Private copied data interpreted only; no original VM/compiler/live execution"
+    },
+    {
+      "scope": 5,
+      "pc": 1278,
+      "original_positive": true,
+      "private_operand": {
+        "value": 99,
+        "index": 96,
+        "name": "test_event_count",
+        "line": 1397,
+        "preceding_group": [
+          {
+            "physical": 1940,
+            "offset": 46133,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1941,
+            "offset": 46156,
+            "hex": "09097d",
+            "text": "\t\t}"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "tagged_assignment": null,
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_literal": {
+        "value": 100,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1397,
+        "preceding_group": [
+          {
+            "physical": 1940,
+            "offset": 46133,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1941,
+            "offset": 46156,
+            "hex": "09097d",
+            "text": "\t\t}"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "tagged_assignment": null,
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_coordinate": {
+        "value": 99,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1396,
+        "preceding_group": [
+          {
+            "physical": 1939,
+            "offset": 46108,
+            "hex": "0909696628746573745f6c6f61645f666c67213d30297b",
+            "text": "\t\tif(test_load_flg!=0){"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 1940,
+            "offset": 46133,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "preceding_assignment": null,
+        "tagged_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "preceding_matches": false,
+        "tagged_matches": true
+      },
+      "limits": "Private copied data interpreted only; no original VM/compiler/live execution"
+    },
+    {
+      "scope": 9,
+      "pc": 582,
+      "original_positive": true,
+      "private_operand": {
+        "value": 99,
+        "index": 96,
+        "name": "test_event_count",
+        "line": 1758,
+        "preceding_group": [
+          {
+            "physical": 2301,
+            "offset": 53206,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 2302,
+            "offset": 53229,
+            "hex": "09097d",
+            "text": "\t\t}"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "tagged_assignment": null,
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_literal": {
+        "value": 100,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1758,
+        "preceding_group": [
+          {
+            "physical": 2301,
+            "offset": 53206,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 2302,
+            "offset": 53229,
+            "hex": "09097d",
+            "text": "\t\t}"
+          }
+        ],
+        "preceding_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "tagged_assignment": null,
+        "preceding_matches": false,
+        "tagged_matches": false
+      },
+      "private_coordinate": {
+        "value": 99,
+        "index": 97,
+        "name": "test_load_flg",
+        "line": 1757,
+        "preceding_group": [
+          {
+            "physical": 2300,
+            "offset": 53181,
+            "hex": "0909696628746573745f6c6f61645f666c67213d30297b",
+            "text": "\t\tif(test_load_flg!=0){"
+          }
+        ],
+        "tagged_group": [
+          {
+            "physical": 2301,
+            "offset": 53206,
+            "hex": "090909746573745f6c6f61645f666c67203d203939",
+            "text": "\t\t\ttest_load_flg = 99"
+          }
+        ],
+        "preceding_assignment": null,
+        "tagged_assignment": {
+          "name": "test_load_flg",
+          "value": 99
+        },
+        "preceding_matches": false,
+        "tagged_matches": true
+      },
+      "limits": "Private copied data interpreted only; no original VM/compiler/live execution"
+    }
+  ],
+  "retained_call_control": {
+    "source": "Unchanged retained63 result/manifest/original bytes inspected; no new call/native/VM/live execution",
+    "pc": 22,
+    "coordinate": 417,
+    "current_group_matches": true,
+    "universal_minus_one_matches": false,
+    "parent63_result_sha256": "7e78371591db248e659275102d2dc58c2066fc59ab9ca0ec692525e01b279103"
+  },
+  "interpretation": "Four original immediate/store pairs to variable61 agree with the immediately preceding logical assignment, while their uniform q0 tags select another variable assignment or closing brace. Combined with65 destination identity this refutes representing the tagged group as necessarily containing the emitting statement. Correct logical-coordinate addressability and sampled preceding-statement compatibility are different facts. Do not globally subtract one: unchanged retained63 original call tag still selects its expected group.",
+  "limits": "No universal preceding-line rule, compiler parse/emission cause, complete source span or reconstruction of original debug UI. Possible lookahead/post-emission/grouping alternatives remain unresolved. No native stores/file-bank values, branch outcomes, normal gameplay reachability, synchronization, lifetime, ev shared tail or SN1X closure. Four new sampled cases, prior63pc16/call22 not new call tests. Original input bytes unchanged; private data controls not execution. PC OFF/S19 parked/fullL1+L2 NOT_MET"
+}

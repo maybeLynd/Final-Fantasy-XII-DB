@@ -1,0 +1,764 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": {
+  "da0-idle": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "da0-supp": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "da0-live": {
+   "trace": [],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "da0-supp-only": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "da0-flag2": {
+   "trace": [],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 2,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ec0-idle": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ec0-supp": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ec0-arg0": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ec0-arg1": {
+   "trace": [],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ec0-arg2": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ec0-arg3": {
+   "trace": [],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e70-off": {
+   "trace": [
+    "e70"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e70-on": {
+   "trace": [
+    "e70"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e70-verbatim": {
+   "trace": [
+    "e70"
+   ],
+   "faults": [],
+   "ret": 127,
+   "cells": {
+    "flag": 127,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e80-idle": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e80-supp": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e80-live": {
+   "trace": [
+    "a080",
+    "a030"
+   ],
+   "faults": [],
+   "ret": 12,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "e80-wrap": {
+   "trace": [
+    "a080",
+    "a030"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ef0-write7f": {
+   "trace": [
+    "ef0"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 0,
+    "supp": 127,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "ef0-write0": {
+   "trace": [
+    "ef0"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "g-flag0-m1": {
+   "trace": [
+    "ef0",
+    "e70",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 0,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-flag0-m0": {
+   "trace": [
+    "ef0",
+    "e70",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 0,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "g-mode2": {
+   "trace": [
+    "ef0",
+    "e70",
+    "ef0",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-m1-byte0": {
+   "trace": [
+    "ef0",
+    "e70",
+    "eba40",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-m1-byte1": {
+   "trace": [
+    "ef0",
+    "e70",
+    "eba40",
+    "ef0",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-m1-gatefail-byte0": {
+   "trace": [
+    "ef0",
+    "e70",
+    "a9ea0",
+    "ef0",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-m1-gatepass-byte0": {
+   "trace": [
+    "ef0",
+    "e70",
+    "a9ea0",
+    "eba40",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 1,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-m1-gatepass-byte1": {
+   "trace": [
+    "ef0",
+    "e70",
+    "a9ea0",
+    "eba40",
+    "ef0",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "g-m1-regobj": {
+   "trace": [
+    "ef0",
+    "e70",
+    "eba40",
+    "ef0",
+    "98e90",
+    "9120",
+    "xea50"
+   ],
+   "faults": [],
+   "ret": 1073766400,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ea50_rcx": 1073770496,
+   "ea50_rdx": 1567920,
+   "ea50_r8": 1,
+   "ok": true,
+   "fail": []
+  },
+  "single-present": {
+   "trace": [
+    "eba40"
+   ],
+   "faults": [],
+   "ret": 1073758208,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "single-lazy": {
+   "trace": [
+    "eba40",
+    "x10ec0",
+    "xb190"
+   ],
+   "faults": [],
+   "ret": 1073782784,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073782784
+   },
+   "alloc_sz": 736,
+   "b190_rcx": 1073782784,
+   "ok": true,
+   "fail": []
+  },
+  "sel-row0": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "sel-row1": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "sel-nologo": {
+   "trace": [
+    "8f0",
+    "4de0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 8,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 1,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "sel-nologo-suffix": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 8,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "sel-argc0": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 1,
+   "ok": true,
+   "fail": []
+  },
+  "sel-nologo-mid": {
+   "trace": [
+    "8f0",
+    "4de0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 1,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "sel-nologo-partial": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 6,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "mut-flag-neg": {
+   "trace": [],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 4294967295,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "mut-supp-neg": {
+   "trace": [],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 1,
+    "supp": 2147483648,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "mut-row18-2": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 1,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "mut-nologo-long": {
+   "trace": [
+    "8f0",
+    "ddc0"
+   ],
+   "faults": [],
+   "ret": 8,
+   "cells": {
+    "flag": 0,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ddc0_ecx": 0,
+   "ok": true,
+   "fail": []
+  },
+  "mut-e80-sign": {
+   "trace": [
+    "a080",
+    "a030"
+   ],
+   "faults": [],
+   "ret": 2147483648,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 0,
+    "single": 1073758208
+   },
+   "ok": true,
+   "fail": []
+  },
+  "mut-mode-neg": {
+   "trace": [
+    "ef0",
+    "e70",
+    "ef0",
+    "98e90",
+    "9120"
+   ],
+   "faults": [],
+   "ret": 0,
+   "cells": {
+    "flag": 1,
+    "supp": 0,
+    "nologo": 0,
+    "clamp": 1,
+    "single": 1073758208
+   },
+   "98e90_ecx": 1,
+   "ok": true,
+   "fail": []
+  }
+ }
+}

@@ -1,0 +1,171 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-texture-copy-construction.py",
+      "bytes": 2783,
+      "sha256": "3b5bf7dafa643f8797cfc24a10c9adad1bf07298701d40479775c7223961e392"
+    },
+    {
+      "path": "control-texture-copy-construction.py",
+      "bytes": 2636,
+      "sha256": "f22a1f6c15348d739699316693c10fc9c0b637aa1bed18f09f606912f61dda73"
+    },
+    {
+      "path": "freeze-texture-copy-construction.py",
+      "bytes": 6773,
+      "sha256": "517138e4e996d4ad92b563ae7a9eac1428905e7d021111c79abd879d6babbf5e"
+    },
+    {
+      "path": "prepare-texture-counter-references-before-copy-target-01.py",
+      "bytes": 4300,
+      "sha256": "73c1a2f6f881499b4789ac73cb66b50d6e391ebff2793cd25346b45f846294ef"
+    },
+    {
+      "path": "prepare-texture-counter-references.py",
+      "bytes": 4510,
+      "sha256": "77b5969322d01b600d3b9e93340a416dd175b556fa4cc8fde0351339808c337b"
+    },
+    {
+      "path": "prove-texture-copy-construction.py",
+      "bytes": 9199,
+      "sha256": "a07431ae147105e6c3dfef70d6f1b6a2233836b56f47624029da7e78b9166097"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4324,
+      "sha256": "21945368dd83b1ea22432a3592c54ff8e670dfc20138514787a38d85cc29111b"
+    },
+    {
+      "path": "texture-copy-caller-preparation-02.json",
+      "bytes": 1935,
+      "sha256": "f8d51bb889ec21fbe35be58c3cadd3507ca480fa8550dbd24d7792bbde1228c2"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/consistent-copy-count/status.json",
+      "bytes": 172,
+      "sha256": "1de1bae3df410e5592aa435835e70f08c740b814572c81e86ced95b0fedc36f2"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/consistent-copy-count/stderr",
+      "bytes": 874,
+      "sha256": "31206e8a1ea39da46ec42a23071eeb5f617a1e86ad298628e9af715530b69669"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/consistent-copy-count/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/consistent-copy-count/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "b5fb4da3b598b94f577e02d61caa328ffdbb8de2e8f95ff72e7026a0468cc08c"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/false-copy-count/status.json",
+      "bytes": 141,
+      "sha256": "ebbdf1c5cad33f58b507e88ba8ef999134bb8261d0d4feb1553fc185b8a0d29c"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/false-copy-count/stderr",
+      "bytes": 963,
+      "sha256": "44688528d7bec2c1b63266f31e3893810a52789e9b5131b442bd59b2dbc2194c"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/false-copy-count/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/false-copy-count/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "4fb22268534a4b4803acda16fdc4de7424a6d2ff78f94f8abfeb06ee44e65002"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/missing-wrapper/status.json",
+      "bytes": 169,
+      "sha256": "dad3827b27c850930ce006c0b7f05f0ded46f0ba5860551b52fd3c6b6598f34d"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/missing-wrapper/stderr",
+      "bytes": 1167,
+      "sha256": "64aea6378a73f769026fb492a639186806bcfb289f9ffe5e63fdfbef909c6e33"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/missing-wrapper/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/missing-wrapper/texture-copy-construction-source-01.json",
+      "bytes": 31211,
+      "sha256": "9e74cf959d300c0c17f2efe4005dceb2f199e2f91f79c46fe65229f13e842543"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/result.json",
+      "bytes": 1344,
+      "sha256": "b261a97ec2b96460e3bf75eee8e461a4d4aeff55a87530dafc5c65afdbb5579c"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/wrong-initializer-leaf/status.json",
+      "bytes": 167,
+      "sha256": "1ddac67d8c398307cb7fb666fc0fcc6bd7b6695e8e98b868d469e62876417441"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/wrong-initializer-leaf/stderr",
+      "bytes": 1010,
+      "sha256": "9f594a212374e21b9b6dbff3418a9bccf922e41870f048a99568c760a0f93c15"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/wrong-initializer-leaf/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-copy-construction-controls-01/wrong-initializer-leaf/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "24e7247fb46b61bb5938beba728cd5cd57107d12fa92ded6d7c0b6abadf20530"
+    },
+    {
+      "path": "texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-counter-reference-preparation-01.json",
+      "bytes": 1711,
+      "sha256": "87ca3db2551d91a396272a75676f2c5e68468fb557457783c1e2b04de9d28925"
+    },
+    {
+      "path": "title-cleanup-count-selector-source-01.json",
+      "bytes": 13897,
+      "sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-UQ218-MERGE",
+ "agent": "SWE2-DATA",
+ "note": "Claiming publication for the UQ-218 residue merge + crosswalk fold.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

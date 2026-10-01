@@ -1,0 +1,24 @@
+PASS  B1 002DF980 and 002DF880 index g_pathTables 0215F000 (the raw rip scan finds no other reader outside 002DF9A0)
+PASS  B1b ResourcePath_Copy's only caller 00377DC0 passes kind = its r9d = 4 (00378B1A): map packs, never kind 7
+PASS  B2 002ED6F0's kinds are ['0x1', '0x10', '0x12', '0x13', '0x14', '0x16', '0x17', '0x18', '0x19', '0x22', '0xd', '0xe', '0xf'] - never 7 (sites 001BB397, 001F5E64, 002EEF70, 00863144 via 002E98F0; 002E6776, 002EADEA, 002EAE08, 002E9988, 002E99A8, 002E700C)
+PASS  B3 0032F170 writes kind 1, 8 or 5 (sites 001DA31B, 003DDAB9 via 003DD4C0, 003DF593 via 003DF440, 003E9F59 via 003E9F80)
+PASS  B3b 0032FCA0 passes kind esi in {1, 8, 5} to 003306E0 / 00330310, whose kind reaches 00332250 (00332280)
+PASS  B4a 0032F617: kind = 0 + 8 after the loop (rdi counts down to 0)
+PASS  B4b 002ED8C0 writes kind 0x20 (003A13F0's six sites)
+PASS  B4c 003DCA30 writes kind 0x1E and nothing else through the kind pointer (003DC977, 003DC683 via 003DC5B0)
+PASS  B4d the BGM stream descriptor's kind (02B5E0FC) is written only as 0x24 at 003EB10C (003EAE29, and 003EADE0's request)
+PASS  B4e 002E60F0's two sites the dataflow did not reach pass kind 0x20
+PASS  B5 0050DF9D / 0050E039 take kind from the script stack; shipped bytecode calls 0x2006 / 0x2007 zero times (verb_census.out)
+PASS  B6a 00575C30's category byte: the only fresh source is 0056F2A0, which posts it only when <= 5 (0056F2BD); the other senders replay +0xD2 (written only at 00575CD2 from an accepted category) or the history at +0xD4
+PASS  B6b so 00575C30's id >= 00D23740[0..5] = [552, 660, 716, 756, 796, 852] >= 0x228 - never 0xE2..0xE4
+PASS  B7a 003C1F00 requests kind 7 id 0xE1 + entry.byte1 of [[02B457E0]+0xE8] when the byte is non-zero, into +0x118
+PASS  B7b +0xE8 is kind 7 id 0xA4 (003BC35D)
+    kind 7 rows (region 1): {'0xa4': 'menumap_common.bin', '0xe2': 'Loca_gil.cl2', '0xe3': 'Loca_bhm.cl2', '0xe4': 'Loca_rbl.cl2'}
+PASS  B7c 0xA4 = menumap_common.bin; 0xE2/0xE3/0xE4 = Loca_gil/Loca_bhm/Loca_rbl.cl2
+    entry byte +1 over all 9 menumap_common.bin copies: {0: 414, 1: 9, 2: 9}; non-zero entries {40: {(1, 60181)}, 46: {(2, 60187)}}
+PASS  B7d the only non-zero selectors: entry 40 -> 1 (0xE2 Loca_gil, gil01_s02), entry 46 -> 2 (0xE3 Loca_bhm, bhm01_s01); no entry selects 3 (Loca_rbl)
+PASS  B8a 003C26C0 reads the .cl2 at +0x118 (else +0x110) as a TIM2 picture header at +0x10: palette = +0x10 + u32[+0x18] + u16[+0x1C] = +0x40, colours = u16[+0x1E]; 0024A480 binds them to the page image
+PASS  B8b the palette override (+0x28, count << 18) is decoded by 00180E70 with the IMAGE's own clut and image type bytes ([picture header]+0x12/+0x13), never the .cl2's +0x22/+0x23
+PASS  B8c 00180E70 copies the palette in 16-entry rows, un-swizzling the 8-entry blocks for type pairs 0x105/0x205/0x305/0x4104/0x4204/0x4304, with no per-byte channel reordering
+
+FAILS 0

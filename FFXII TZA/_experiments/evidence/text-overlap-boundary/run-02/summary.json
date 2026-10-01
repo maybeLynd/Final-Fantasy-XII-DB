@@ -1,0 +1,14 @@
+{
+  "cases": [
+    "disjoint",
+    "double",
+    "triple"
+  ],
+  "triple_unique": 8,
+  "triple_reported": 12,
+  "canonical_unique": 1758,
+  "canonical_reported": 1759,
+  "unchanged_inputs_and_source": true,
+  "guest_code_or_live_game_executed": false,
+  "ended": "2026-09-29T13:33:58.322650+00:00"
+}

@@ -1,0 +1,80 @@
+{
+  "files": {
+    "baseline-census_bin_signatures.py.bin": {
+      "bytes": 15514,
+      "sha256": "0367488628957490499ae4ba39aa8124d6364d28bd067ec89aa0be467bb66019"
+    },
+    "baseline-gen_address_index.py.bin": {
+      "bytes": 9355,
+      "sha256": "41c98d7a781a1684ff348f0bdea71dcfb0ba32583a5687130c74b2f1d1ad6ec8"
+    },
+    "baseline-gen_rules_index.py.bin": {
+      "bytes": 8300,
+      "sha256": "40b3d5021fb5304be15f21cf9680a8188284c984be4503ae84f73c09a5bc76e4"
+    },
+    "baseline-knowledge_db.py.bin": {
+      "bytes": 37833,
+      "sha256": "b0ddb7130c219737dc6a19ea710a54dadfc768cc5d4540493a80bf4f89904308"
+    },
+    "baseline-program_coverage.py.bin": {
+      "bytes": 26522,
+      "sha256": "e97ffe576c55eeccfabda1ebcd5032ab7555dd6f5110a5a54a6394df42739cd5"
+    },
+    "baseline-sources.json": {
+      "bytes": 961,
+      "sha256": "92942f0843f5e9d16dc76cf1caeedf358214a4fbb0739bc3fdcbd667d061501a"
+    },
+    "compare_sources.py": {
+      "bytes": 4896,
+      "sha256": "13e1c6219985a6d25052466cc113c8c6bb2613f7c37bc8b56a5f0c4907a47389"
+    },
+    "comparison.json": {
+      "bytes": 62303,
+      "sha256": "e005871138bd1e81bb9052ce166e8938035c727853d912687057a4a363630328"
+    },
+    "new-address-index.md.bin": {
+      "bytes": 1531964,
+      "sha256": "ab744797f497d481a0d5dfc9b95cd95eb9870492c57fe3c75041d3fa4b065a07"
+    },
+    "old-address-index.md.bin": {
+      "bytes": 1531964,
+      "sha256": "ab744797f497d481a0d5dfc9b95cd95eb9870492c57fe3c75041d3fa4b065a07"
+    },
+    "publication-validation.json": {
+      "bytes": 20061,
+      "sha256": "8ee3d4da79ffd9fe0f7442bb4370da90c84d9a9e4a53833ee3aab172080aa6c5"
+    },
+    "rules-before.md.bin": {
+      "bytes": 98157,
+      "sha256": "a3f49fbe98401eb6ab9314ed560377516f38ceb825464c09b64098bc7c06ddfa"
+    },
+    "validate_publication.py": {
+      "bytes": 2509,
+      "sha256": "a1a4192813001967952f1747ee9aa539afcdb0927cdeb4a6fb423e262a1c9ca1"
+    },
+    "validated-census_bin_signatures.py.bin": {
+      "bytes": 15520,
+      "sha256": "2ce667d37880db5ff7a70da23dc6ba521dd39756bd4b335e730aa900f17bbef8"
+    },
+    "validated-gen_address_index.py.bin": {
+      "bytes": 9356,
+      "sha256": "98b837a8f3838b2df52bcb8c8915af438cf3074f25d91608ee4caeb2a66cdadf"
+    },
+    "validated-gen_rules_index.py.bin": {
+      "bytes": 8349,
+      "sha256": "4827c0842a6219db4695d11814ffae37c20ccb5c08d654090b3b9eeeaa6cbc1f"
+    },
+    "validated-knowledge_db.py.bin": {
+      "bytes": 37834,
+      "sha256": "3f0a15d0234a10fd282b8fc14d35a94f77cb42712fe118ba7a4bd06e8e37e603"
+    },
+    "validated-program_coverage.py.bin": {
+      "bytes": 26523,
+      "sha256": "e3221e8d68e87277434c81f0ae73e70249e2a8ea9be7bc7ae46597bdbb3a6125"
+    },
+    "validated-test_publication_extractors.py.bin": {
+      "bytes": 2869,
+      "sha256": "5199cdaa8d16aa2df5b7c3feb822b771fe66aeb0f6e0d281c129306909213118"
+    }
+  }
+}

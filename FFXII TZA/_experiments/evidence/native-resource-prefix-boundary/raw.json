@@ -1,0 +1,75 @@
+{
+  "method": "A verified retained original159B selector/source accesses and four supplied logical-span counterexamples; no execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "parent82_commit": null,
+    "parent82_view": "Own frozen43 manifest allmembers verified, publicationpending; original159B independently matched shipping image, not acceptance",
+    "files": [
+      {
+        "path": "raw.json",
+        "copy": "parent82-raw.json",
+        "sha256": "4c85ddca7e7931471f82e6aa788e0a85982aed331882ea43905d50629d5df9a9"
+      },
+      {
+        "path": "manifest.json",
+        "copy": "parent82-manifest.json",
+        "sha256": "b413a92f80f04cb0975449195e238ebf335d3f1acf9dd3b4d59cd41238f4e9a2"
+      },
+      {
+        "path": "retained/selector.bin",
+        "copy": "parent82-selector.bin",
+        "sha256": "8bfa87eee17307e540c4aebceff749b916c5ef53b9c00c0b3e5966870f068d1d"
+      },
+      {
+        "path": "retained/shipping-reader.py",
+        "copy": "parent82-shipping-reader.py",
+        "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+      },
+      {
+        "path": "retained/reg_tracking.py",
+        "copy": "parent82-reg_tracking.py",
+        "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+      }
+    ]
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "provider_files": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      }
+    ]
+  },
+  "id": "0x7837",
+  "cases": [
+    {
+      "name": "complete-one-unit",
+      "resource_hex": "000000000000000000000000000001004100",
+      "declared_size": 18
+    },
+    {
+      "name": "prefix-only-one-unit",
+      "resource_hex": "00000000000000000000000000000100",
+      "declared_size": 16
+    },
+    {
+      "name": "one-byte-selected-prefix",
+      "resource_hex": "000000000000000000000000000001",
+      "declared_size": 15
+    },
+    {
+      "name": "complete-empty-selected",
+      "resource_hex": "00000000000000000000000000000000",
+      "declared_size": 16
+    }
+  ],
+  "driver_sha256": "7b64b9217df45ac794c5339dea8d55828b619213548a79b4d347d77ae57e01ee",
+  "limits": "Conditional source result assuming preceding native LoadResource/LockResource/SizeofResource succeed with supplied state. Does not prove Windows accepts malformed blocks or actual native/game reachability/callback effects/physical read fault/language/module initialization/lifetime/visiblemessage. Incomplete selected word outcome unknown, only source read attempt established. Four cases are calculations, not guest/live tests. PC OFF/S19/fullL1+L2 NOT_MET"
+}

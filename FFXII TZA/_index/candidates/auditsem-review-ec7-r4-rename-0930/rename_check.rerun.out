@@ -1,0 +1,6 @@
+R1  ok    old-name rows 0, new-name rows 1, accepted True, members 17
+R2  ok    17 members, 0 not RTTI-exclusive PClassDescriptorConcrete slot 10 []
+R3  ok    28 GFZ-tagged bodies: {'Concrete': 27, 'WithoutDefaultConstructor': 1}
+R4  ok    unannotated old-name lines outside history: 0 []
+R5  ok    unstruck destroy reading 0, page names slot 10 (+0x50): True
+FAILS 0

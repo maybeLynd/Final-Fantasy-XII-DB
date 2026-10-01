@@ -1,0 +1,180 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 3815,
+      "sha256": "2ddef64dc6e173e7df5fe29ebed282bea4956a74271d9d3939377396bcca7727"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6853,
+      "sha256": "8bb3e048236023f7c8e2280931627d9bb521bc79b4b622eca42d5731b6795722"
+    },
+    {
+      "path": "corrected-spec.json",
+      "bytes": 1339,
+      "sha256": "45bd3de357520d00d25fe4c5dbc91963b13fe9d9b8cc1a6340f3dc6557dd8ee5"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 524,
+      "sha256": "9edce4456cfd388fd78db04aeba5e155f8627a0d867047161ac80a04e42aa871"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 170,
+      "sha256": "9171e2b608ad7267df0bbacdfdd9f1ff348c18ba5eef009ec5416fca80b799c5"
+    },
+    {
+      "path": "failure.json",
+      "bytes": 843,
+      "sha256": "a7f328f91df599a251b042ff7a5b62827a2602c1718982a29c21101ac77483f1"
+    },
+    {
+      "path": "fault-ignore-splice-control.stderr",
+      "bytes": 379,
+      "sha256": "249e6640b4d18d1914228a34e4e8aaf40f34f40ea31900debbf23eb130397b42"
+    },
+    {
+      "path": "fault-ignore-splice-control.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-old-call-start.stderr",
+      "bytes": 644,
+      "sha256": "07aba17a9555f1418a132709a6522fb71961e58eb26059554f336c4974850765"
+    },
+    {
+      "path": "fault-old-call-start.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-physical-map.stderr",
+      "bytes": 547,
+      "sha256": "70b9bf83a63cb542c2757824b15b186e2fb7169761ed34431c514dfbe68bf616"
+    },
+    {
+      "path": "fault-physical-map.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "feasibility.json",
+      "bytes": 66204,
+      "sha256": "c4473fe1736c175f519397b59d2d1dfafb46eb6b71aa7e6404ac44ccfe8d9ccc"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 4063,
+      "sha256": "50cc5a5a621b90272f612e18fd0559197f11bafb959daa546943caa5173ef94d"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3477,
+      "sha256": "9c5b6dbd2dff7cf4c21908e2379ed3fa4156f30a458159e16ee36f8d00fc90b6"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1287,
+      "sha256": "43a404718058a819ac297156966c500ec86a33fc548d069eb2ae78e8e7c9ad8d"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 4140,
+      "sha256": "187ba740ee106c27d62c8258bb2021b5c42f692d547f041e1ca65e70df0d3edc"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 8658,
+      "sha256": "985a51edd1508645f03edaf224e5366b48807a4cfe97bccb5b1f6f824d0cc17f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3801,
+      "sha256": "795445224569b641b08ceef04856125a9e4e4619bc6719b702646d40cacc81fc"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 966,
+      "sha256": "60ca4e0c5dd62ec2dedfa110bfe24210090764a3fb4a83ce608e0668cd353784"
+    },
+    {
+      "path": "repair.py",
+      "bytes": 2711,
+      "sha256": "6cf91610f7cff5eb67f0a4e46ac95753b905384e79edc737f63319fc133c3993"
+    },
+    {
+      "path": "result.json",
+      "bytes": 18096,
+      "sha256": "7e78371591db248e659275102d2dc58c2066fc59ab9ca0ec692525e01b279103"
+    },
+    {
+      "path": "retained/check-before-call-precondition-fix.py",
+      "bytes": 5581,
+      "sha256": "0d90fab17fb1f7384f919685f155581977a140f415f43c4071fd7cdae174a7ad"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 3815,
+      "sha256": "2ddef64dc6e173e7df5fe29ebed282bea4956a74271d9d3939377396bcca7727"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "bytes": 126112,
+      "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06"
+    },
+    {
+      "path": "retained/evctrl.ebp",
+      "bytes": 38720,
+      "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "bytes": 57816,
+      "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5"
+    },
+    {
+      "path": "retained/initial-feasibility.json",
+      "bytes": 66204,
+      "sha256": "c4473fe1736c175f519397b59d2d1dfafb46eb6b71aa7e6404ac44ccfe8d9ccc"
+    },
+    {
+      "path": "retained/initial-probe.py",
+      "bytes": 4140,
+      "sha256": "187ba740ee106c27d62c8258bb2021b5c42f692d547f041e1ca65e70df0d3edc"
+    },
+    {
+      "path": "retained/parent61-raw.json",
+      "bytes": 68726,
+      "sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3"
+    },
+    {
+      "path": "retained/result-before-attribution-qualifier.json",
+      "bytes": 17269,
+      "sha256": "bb4975cb97bc7679fe44e721c7dfc6a4a174d4bab02332e308547dc9002c338b"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "bytes": 602,
+      "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48"
+    },
+    {
+      "path": "retained/verb-table.tsv",
+      "bytes": 298258,
+      "sha256": "2ca1ea5dfd74b87cd5c37f60a2884b8da6b23bfaf9d13929ed14faaa8dcd7f7e"
+    }
+  ],
+  "limits": "A conditional logical source-splice carrier/four actual CALLPOPA controls/two coherent named candidates; assignment/call attribution qualifier. No actual compiler/global source rule/mismatch cause/live/native parity; independent acceptance pending."
+}

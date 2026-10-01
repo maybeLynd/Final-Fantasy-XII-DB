@@ -1,0 +1,9 @@
+# Navigation allocation-return boundary
+
+Question: does the grid builder guard a null allocation-wrapper return before publishing the base and clearing the block? Competing hypotheses: local null exit; conditional wrapper null return followed by unguarded caller clear; or native allocator/synchronizers prevent that return. Consumers: OPUS NavGridParams ownership/constructor contract, FABLE navigation rebuild semantics. No actual OOM/game-crash claim.
+
+Method A sufficient for local composable flow: verified original607B builder003924B0,104B wrapper00384580,6B memset thunk, PE import descriptor/name binding; existing exact parent reused. Opaque allocator/lock/init/unlock calls must return conformingly for local paths, low128/native effects unobserved. Address identity via full bytes/imports, not neighborhood. No actual allocator/CRT/library/original/emulator/live execution.
+
+Controls: branch-specific JE->JNE private source mutation must alter null-init path, MOV RCX,RAX->RBX must alter clear destination binding, original hash rejects both. Returning nonzero path initializes; returning zero skips initializer. Caller exact straightline return-to-memset slice establishes lack of local guard and base-write order. Byte operations/calculations are source controls, not native effects. No added stub outcomes promoted to original behavior.
+
+Budget: three exact bodies; focused instruction graph from wrapper entry through returning branches and caller after wrapper call to memset call. Stop on parent/image/reader/role/import drift or ambiguous coverage; no broad census. Preserve source/driver before assertions and focused raw/normalized evidence, method/ABI limits, consumer preimages. No patches to canonical peer files. Cleanup only read references; PC OFF, menu allowance remains spent/unapproved. Full L1+L2 remains NOT_MET.

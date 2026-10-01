@@ -1,0 +1,69 @@
+{
+  "status": "VALID_SOURCE_CAPTURE_NOT_SEMANTIC_CLOSURE",
+  "actual_invocation_stages": [
+    "check_fresh_output",
+    "invoke_checked_producer",
+    "verify_output_exists",
+    "read_output",
+    "source_available_for_reduction"
+  ],
+  "controls": [
+    {
+      "control": "failed-writes-readable-output",
+      "status": "REFUSED_BEFORE_READ",
+      "stages": [
+        "check_fresh_output",
+        "invoke_checked_producer"
+      ],
+      "error": "upstream exit 7: ",
+      "labelled_synthetic": true,
+      "output_exists": true
+    },
+    {
+      "control": "zero-exit-missing-output",
+      "status": "REFUSED_BEFORE_READ",
+      "stages": [
+        "check_fresh_output",
+        "invoke_checked_producer",
+        "verify_output_exists"
+      ],
+      "error": "successful exit without evidence output",
+      "labelled_synthetic": true,
+      "output_exists": false
+    },
+    {
+      "control": "preexisting-stale-output",
+      "status": "REFUSED_BEFORE_READ",
+      "stages": [
+        "check_fresh_output"
+      ],
+      "error": "existing output: immutable/stale, reconcile instead of reading",
+      "labelled_synthetic": true,
+      "output_exists": true
+    }
+  ],
+  "producer": "capture-softedges-array-descriptor-offset.py",
+  "producer_sha256": "b06b81ca66273d2b3e1140bd18026519ab6208eb70ba8669ced02d22c90706c3",
+  "source": "softedges-array-descriptor-offset-code-01.json",
+  "source_sha256": "6708f7c608de7568af9e1ccbdee582a8d7d9bcad4b8d88ee020e4fdc1b785d80",
+  "runner_sha256": "1869886f6e07a657b674badbcd419668dce9e6e2bac8482ee7320bc792b9a439",
+  "checked_run_helper_sha256": "5ed63b823a67f64c7f9dd272b0d5f70092ec9d87d905a2e2d6f628d005d22964",
+  "ranges": [
+    {
+      "start": "0x6373d0",
+      "end_exclusive": "0x637432",
+      "sha256": "586369d325473a08b6d762a379df15868b6af55774f886513ac6cc87495f6e5a"
+    },
+    {
+      "start": "0x632d80",
+      "end_exclusive": "0x632e71",
+      "sha256": "29fc1c6a9386b4efef2dd4a4ad0beab855701992e5b8ab0846997a628fe9a9ef"
+    },
+    {
+      "start": "0x63e410",
+      "end_exclusive": "0x63e487",
+      "sha256": "aa5641bc7b5c37244f68a13e192e4274633fdeaadff1b36d6ed55bcc7754f723"
+    }
+  ],
+  "limits": "Method A original bytes. Three actual procedural refusals and successful current producer; no native or game execution. Timeout raises/kills child before read; timeout receipt handling is not certified here."
+}

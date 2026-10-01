@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-divide-consumer-scope\check.py", line 27, in <module>
+    if '--fault-retract-baseline' in sys.argv:assert baseline['required_analysis_errors'],'Current independent declared-range baseline is complete and error-free; preserve its valid scoped facts'
+                                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Current independent declared-range baseline is complete and error-free; preserve its valid scoped facts

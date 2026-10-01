@@ -1,0 +1,17 @@
+R1   SURVIVES  first reference to 02099AC0 is 0025E4D8 `mov dword ptr [rip + 0x1e3b5e1], r11d`, source zeroed before it: True
+R2   SURVIVES  budget load: 0025E4FA ecx, 0x10000
+R3   SURVIVES  cmp eax, 0x63 at 0025E5D1, ja -> 0025E60A (default); table 00261DF8, 100 targets all inside the interpreter: True
+R4   SURVIVES  advance words at 01EFEA60 + op*24 (read at 0025E5FE): all as stated
+R5   SURVIVES  opcode 03 arm 0025E5EA: or byte ptr [r15 + 0x14], 0x40; mov r9d, dword ptr [rip + 0x1e3b4ca]; movzx eax, r12b; lea rcx, [rax + rax*2]; movsx rax, word ptr [r8 + rcx*8 + 0x1ddea60]; sub 
+R6   SURVIVES  0025E60A `mov dword ptr [rsp + 0xc0], ebp` (ebp = 1 before: True; also the out-of-range default: True); 0025E613 `movzx edx, byte ptr [rsp + 0xb8]`; opcode 19 -> 0025E60A reaches 0025E6
+R7   SURVIVES  002621D0: depth read `movsxd rax, dword [rbx]` at 00262280; bounds `cmp eax, 0x3f / jge` at 00262289 0026231B 0026233F; the interpreter's 3 call(s) pass lea 02099AC0: [True, True, True]
+R8   SURVIVES  sites loading sx(byte [r + 0x11]) with a 0x28 stride beside [r + 0xA8]: 12 in 7 functions (0025B400 0025DF00 0025E4C0 002651A0 0026B4C0 0026B4E0 003DBDC0)
+R9   SURVIVES  references to 02099011: 1 in 1 functions; functions pairing it with a 0x288 stride: 00264830 00267310
+R10  SURVIVES  pre-dispatch decode at 0025E5A9: jb 0x25e5c2; movzx ebx, byte ptr [r14 + 2]; movzx eax, byte ptr [r14 + 1]; shl bx, 8; advance of opcode 47 = 1; its table entry 0025E60A
+K1   SURVIVES  0025E4C0 extent 14646 B
+K2   SURVIVES  002621D0's indexed stack stores (displacement, width) [(4, 1), (68, 1), (132, 4), (388, 4)] -> 64 entries end at +0x284
+K3   SURVIVES  opcode 00 -> 0025E613 (the advance), opcode 01 -> 0025E60A (the stop entry, then the advance)
+K4   SURVIVES  the advance indexes the length rows by the saved opcode byte, unbounded: movzx edx, byte ptr [rsp + 0xb8] ; mov r13, qword ptr [rsp + 0xb0] ; movzx eax, dl ; lea rcx, [rax + rax*2] ; lea rax, [rip - 0x13e631] ; movsx rax, word ptr [rax + rcx*8 + 0x1ddea60]
+K5   SURVIVES  r15 (the actor record) is addressed at ['0x64', '0x68', '0x6c', '0x70', '0x74', '0x78', '0x7c', '0x80']
+K6   SURVIVES  kind-4 stores in the REQSW (0x24) / REQEW (0x27) arms: {'REQSW 0x24': '002602EE mov byte ptr [rsi + 0x14], 4', 'REQEW 0x27': '002602EE mov byte ptr [rsi + 0x14], 4'}
+BROKEN 0: none

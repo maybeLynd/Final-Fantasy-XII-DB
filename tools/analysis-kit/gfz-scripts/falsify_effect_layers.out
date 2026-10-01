@@ -1,0 +1,10 @@
+SURVIVES  V0  sizes [553, 1787, 273]; chain unions [553, 1787, 273]
+SURVIVES  V1  mode 0 clears +0x68, 1 clears +0x78, 2 sets +0x68, 3 sets +0x78
+SURVIVES  K1  (REFUTES 'never touches the mutable one' and '+0x68 at zero') record-based layer accesses: mutable ['0031050B', '00310541'], derived ['00310303', '00310513', '0031052E', '00310549', '00310572']; the id-39 gate zeroes the bound for +0x4C (mov word ptr [rbx + 0x4c], ax)
+SURVIVES  V2  direct stores into either layer []; loop stores ['mov byte ptr [r11 + r9 - 0x79], al', 'mov byte ptr [rsi + r9 - 0x79], dl'] (stack buffers); mutate calls ['00310378', '00310396'] with modes 3 and 1, flags | 0x202
+SURVIVES  V3  mutable 5, derived 6; either-layer recompute and compare
+SURVIVES  V4  cmp r10d, 0x80 | test byte ptr [r9 + r11 + 0x68], dl | test byte ptr [r9 + r11 + 0x78], dl | or byte ptr [r9 + rbx + 0x1a], r8b
+SURVIVES  V5  both revocation conditions as quoted
+SURVIVES  V6  mov qword ptr [rip + 0x2b3a911], rax
+SURVIVES  V7  diff = desired (rsp+0x40) ^ current; add = diff & desired -> rsp+0x50 (mode 3); remove = diff & current -> rsp+0x60 (mode 1); ids to 0x80
+FAILS 0

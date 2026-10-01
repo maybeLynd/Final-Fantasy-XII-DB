@@ -1,0 +1,95 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "image_base": "0x120000",
+ "real_bodies_executed": [
+  {
+   "va": "0x305CC0",
+   "name": "walk",
+   "span": "0x305CC0-0x305E67",
+   "sha256": "6888649f2812058da32a1fcc4e72cb8e67f3f624085c2a317172f902c3cba51a",
+   "note": "gambit walk - subject under test"
+  },
+  {
+   "va": "0x3014C0",
+   "name": "eval",
+   "span": "0x3014C0-0x30182C",
+   "sha256": "eabd0bb227c9e4993753b683dc38af66db7c8a2bcf7ef881f737e0ce91fc32fb",
+   "note": "evaluator: spec resolve, suspend gate, cond dispatch, slot loop"
+  },
+  {
+   "va": "0x308EC0",
+   "name": "tspec",
+   "span": "0x308EC0-0x308FEA",
+   "sha256": "7857d10506cefd53f7ce3fc7fd893baa8f6045bb162b229db595c1a6eca459e3",
+   "note": "target-spec resolver (identity <0x8000)"
+  },
+  {
+   "va": "0x301830",
+   "name": "cond",
+   "span": "0x301830-0x301ACE",
+   "sha256": "d055c92ad095026e7919c26da56f2584d6f10e0c6dc6b5650cfd457d428b3723",
+   "note": "condition dispatch: spec table, roll arm, chance gate"
+  },
+  {
+   "va": "0x328370",
+   "name": "lcg",
+   "span": "0x328370-0x3283CB",
+   "sha256": "3611125e97de1e8a14752a54616727050412073c74ec485cdc2a2eec5a43c95f",
+   "note": "deterministic 3-iterate LCG, state dword 0x22C256C"
+  },
+  {
+   "va": "0x2E9C00",
+   "name": "uarm0",
+   "span": "0x2E9C00-0x2E9C21",
+   "sha256": "405a6f032c457344779dd1c6f667ee7eb0ba3dd067e6a38b25bf5587a5ca9dda",
+   "note": "unit-arm first gate"
+  },
+  {
+   "va": "0x316CF0",
+   "name": "memsetw",
+   "span": "0x316CF0-0x316D29",
+   "sha256": "fa7c32848af43af78e102cce11713e37a3a20c10f42d3fa50457dc6b223638c1",
+   "note": "memset wrapper -> IAT thunk 00861EC0"
+  },
+  {
+   "va": "0x861EC0",
+   "name": "iat_memset",
+   "span": "0x861EC0-0x861EC6",
+   "sha256": "35767adb08aa3f1fba918b22ed5966ac8645368a51def18116878145beb472fe",
+   "note": "IAT jmp thunk (slot planted to fixture memset)"
+  },
+  {
+   "va": "0x808C40",
+   "name": "cookie",
+   "span": "0x808C40-0x808C62",
+   "sha256": "b16b73b465b1af6a5cf04cefaf24e461ba342f632b6bee96c87fb8b7458fd1e9",
+   "note": "__security_check_cookie"
+  },
+  {
+   "va": "0x4697C0",
+   "name": "notify",
+   "span": "0x4697C0-0x4698BB",
+   "sha256": "8f0da9f2c27c2a305747838f234fc2c13408421f36a8748de1c58ab5f8ce9c53",
+   "note": "third call on commit-success path"
+  },
+  {
+   "va": "0x2F8E90",
+   "name": "kkind",
+   "span": "0x2F8E90-0x2F8F13",
+   "sha256": "284a31f7fe782bac20d681b8dd57b018a92709cd4b2168a512b635920e015355",
+   "note": "kill/status kind classifier (EXP-093 chain)"
+  }
+ ],
+ "scripted_callees": [
+  {
+   "va": "0x30F760",
+   "name": "commit",
+   "note": "per-call scripted answer; real execution is EXP-091 evidence"
+  },
+  {
+   "va": "0x301AD0",
+   "name": "slotres",
+   "note": "per-slot scripted hit resolver; 804-body closure disclosed out of scope"
+  }
+ ]
+}

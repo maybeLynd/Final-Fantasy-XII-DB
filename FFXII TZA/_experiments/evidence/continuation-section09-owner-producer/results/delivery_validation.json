@@ -1,0 +1,17 @@
+{
+  "section": "SECTION-09",
+  "status": "PASS",
+  "basis": "Independent extraction of complete base+Updates01-08, then changed-only Update09. Final packaging incorporates this receipt and its manifest hashes are rechecked.",
+  "zip_integrity": true,
+  "expected_preimage_files": 6,
+  "new_paths_checked": 26,
+  "after_merge_all_manifest_files_match": true,
+  "unchanged_baseline_files": 10801,
+  "content_status": "PASS",
+  "native_assertions": 190,
+  "native_repeat_identical": true,
+  "mutants_rejected": 10,
+  "selected_bodies": 138,
+  "standalone_native_results_equal": true,
+  "no_compiled_binaries_delivered": true
+}

@@ -1,0 +1,5 @@
+PASS  V1 +0x90 = -(s8)+0x9E in 002B32D0, 002B3C30 and 002B3D50 (-8 with the default bound)
+PASS  V2 +0x50 = 1.0 / (s8)+0x9E in 002B32D0; 002A4830 copies it from the source record
+PASS  V3 002B32D0 sets +0x90 / +0x50 after either builder
+PASS  V4 [rbp+0x1C] = the nested element's +0x8C, scaled by the outer reveal's progress
+FAILS 0

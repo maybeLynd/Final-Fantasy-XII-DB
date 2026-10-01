@@ -1,0 +1,22 @@
+[scratch_sel3] UC1IN: selector UC-1 exclusion undone at 1 site(s)
+[scratch_sel2] redirected 1 write(s) to C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\SWE2-EC7\r1\t2head\ppfx.in
+evidence: 465 entries (465 by source path or PPFX diagnostic / PPFX:: vtable), 25 source files
+span 006DA880 up to 007911E0: entries 2499, members 2343
+  excluded A-measured                                                     42  006DAA70 006DF480 006E5A20 006E9C20 006F4390 006F6D80 006F7330 006F8740 ...
+  excluded RTTI outside PPFX:: (btBoxShape)                                1  00786F42
+  excluded declared: CxxObjectLifecycle.DerivedConstructorVtableInsta      2  006DE750 006DF010
+  excluded declared: CxxObjectLifecycle.VtableInstallStub                  4  006E03C0 007278F0 00786A00 00790970
+  excluded declared: MSVC ordered-container (std::_Tree) runtime          17  00712F60 00714980 00714B00 00714B60 00714BE0 00714C60 00714CE0 00714DC0 ...
+  excluded declared: NativeAdapter.MemberPointerTailCall                  15  0072F960 0075A3B0 0075A3C0 0075A3D0 0075A3E0 0075A3F0 0075A400 00781180 ...
+  excluded declared: NativeAdapter.StaticPointerTailCall                  16  006DB4C0 006DB660 006DB780 006DB7C0 006DB8C0 006DB900 006DB9A0 006DBC20 ...
+  excluded declared: NativeDispatch.MemberVirtualTailCall                 22  00726DB0 00789B50 00789B70 00789BC0 00789BE0 00789CB0 00789CD0 00789D10 ...
+  excluded declared: NativeLeaf.MemberAddressAccessor                      2  006E0370 006E0380
+  excluded declared: NativeLeaf.NoOpReturnStub                             4  006DA8C0 006DA980 00731E90 00786B80
+  excluded declared: NativeLeaf.StaticPointerNestedFieldGetter             2  006DF420 006DF440
+  excluded declared: external import stubs                                 4  0071EFF0 0078A960 0078A968 007911D0
+  excluded declared: internal tail-call forwarders                         8  006DEF20 006E0F00 007249E0 007249F0 00731E80 00768D20 0078AC40 00790150
+  excluded declared: scalar deleting destructors that call free           17  006DFEC0 006E10B0 0071F0A0 00723380 007270E0 0075ADF0 0075EDC0 0076AB60 ...
+control outbound: 44 targets: 0016D670(5) 0017D2E0(10) 0018A320(1) 00195200(2) 001A4C90(7) 001A5500(4) 001A5630(6) 001DF990(1) 001DFA10(14) 00204760(2) 00210EB0(42) 00210EC0(12) 006CBBC0(2) 00808B90(1) 00808C40(164) 00808F10(6) 0080929C(13) 008092FC(13) 00809728(2) 00809900(1) 00809920(1) 00809950(40) 00861EBA(53) 00861EC0(39) 00861ED2(11) 00861EFC(1) 00861F02(2) 00861F08(15) 00861F0E(16) 00861F14(51) 00861F1A(26) 00861F44(17) 00861F4A(15) 00861F56(2) 00861F5C(6) 00861F6E(43) 00861F80(9) 00861F86(7) 00861F98(31) 00861F9E(1) 00861FA4(1) 00861FAA(26) 00861FB0(4) 00861FB6(5)
+control inbound: callers by zone {'0016': 71, '006C': 23, '0079': 5, '008B': 2}
+control globals: shared, by outside zone set: {'0016,008B': 1, '0016': 7, '0018,001A,0058,0059,005A,005B,005C,005D,': 1, '008B': 1}
+wrote 2343

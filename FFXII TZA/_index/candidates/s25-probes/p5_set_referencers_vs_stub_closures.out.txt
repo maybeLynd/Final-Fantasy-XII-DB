@@ -1,0 +1,19 @@
+---- data_xref_scan 02089378 (control 022C7FE0) ----
+scanning 34270 function bodies for 2 address(es)
+CONTROL 022C7FE0: 18 reference(s)
+  control passes - absence below is meaningful
+
+addresses with at least one reference: 1 of 1
+
+  02089378  5 ref(s) in 4 function(s)
+      0023AB64  lea     rcx, [rip + 0x1e4e80d]                          [fn 0023A570]
+      00327DFB  lea     rcx, [rip + 0x1d61576]                          [fn 00327DE0]
+      00327F9B  lea     rcx, [rip + 0x1d613d6]                          [fn 00327F80]
+      003280FE  lea     rcx, [rip + 0x1d61273]                          [fn 00327F80]
+      00328167  lea     rax, [rip + 0x1d6120a]                          [fn 00328140]
+referencing functions: ['0023A570', '00327DE0', '00327F80', '00328140']
+---- closures ----
+commit (STUB)          0030F760 closure=992  set-referencers reached=[]
+slot resolver (STUB)   00301AD0 closure=761  set-referencers reached=[]
+evaluator (real)       003014C0 closure=878  set-referencers reached=[]
+notify (real)          004697C0 closure=474  set-referencers reached=[]

@@ -1,0 +1,77 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "9d8c3b6cdb96d48c83edb45c024b6afea50ac683"
+    },
+    {
+      "path": "context.py",
+      "git_blob": "b0a2a9c99b143de83bf8c3b2336a27bcd2eeccdf"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "b4d8ccdaa71674dbdc381b6a384c990e37e44d09"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "42c47bf7f1ddc266d2264d012a2dcd1ee8da5627"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "9b6d95b0f62390e66623be75ad88df2e950ec393"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "b0fe0ed25e2b6b39b27c1ac7ef56a1e158195bad"
+    },
+    {
+      "path": "retained/admission-membership.tsv",
+      "git_blob": "21af8e39ce46351954f6af1d4c0478d042171900"
+    },
+    {
+      "path": "retained/band.tsv",
+      "git_blob": "ecd7871c7a117d4b90ab1d18c8585350f0bc12cf"
+    },
+    {
+      "path": "retained/errata.tsv",
+      "git_blob": "3024340bff803659d049570fde8d9cd8aca060c0"
+    },
+    {
+      "path": "retained/external-target-context.json",
+      "git_blob": "e8ca7dddc5029bee6d84c953f05c95d31276570c"
+    },
+    {
+      "path": "retained/initial-failed-review.py",
+      "git_blob": "755ef13a8030151fa6ac65df3c61119d528d5d46"
+    },
+    {
+      "path": "retained/initial-failure.json",
+      "git_blob": "bda421f9508ac250e8f4c52b6c141e477d0be45d"
+    },
+    {
+      "path": "retained/listed-span-projection.tsv",
+      "git_blob": "f3f3836c0539395c9c3067dd8460980f10d55444"
+    },
+    {
+      "path": "retained/old-flow.py",
+      "git_blob": "2ce96231286033d15550554259c9178bb1ca4fb7"
+    },
+    {
+      "path": "retained/peer-producer.py",
+      "git_blob": "73f7432a9f5c2ece5970bf4fc186a0d0ed0f9d0b"
+    },
+    {
+      "path": "retained/peer-README.md",
+      "git_blob": "cc8592dc81d4f289fc16cae4fd972373318a6b73"
+    },
+    {
+      "path": "review.py",
+      "git_blob": "7cf04adbbf679ae03b800703ede88524a8708abf"
+    }
+  ]
+}

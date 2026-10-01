@@ -1,0 +1,33 @@
+{
+  "status": "STATIC_NORMAL_ENTRY_STORES_VALID",
+  "method": "A; retained certified original code, no native/game execution",
+  "class_stability": "OPEN",
+  "effects": [
+    {
+      "entry": "0x45fd00",
+      "store": "dword[node+0x3d8]=1",
+      "owner_RDX_and_value_R8D": "unused in these entry instructions",
+      "scope": "MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim"
+    },
+    {
+      "entry": "0x529d40",
+      "store": "dword[node+0x3d4]=1",
+      "owner_RDX_and_value_R8D": "unused in these entry instructions",
+      "scope": "MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim"
+    },
+    {
+      "entry": "0x52a8a0",
+      "store": "dword[node+0x434]=1",
+      "owner_RDX_and_value_R8D": "unused in these entry instructions",
+      "scope": "MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim"
+    },
+    {
+      "entry": "0x52b5d0",
+      "store": "dword[node+0x3f8]=1",
+      "owner_RDX_and_value_R8D": "unused in these entry instructions",
+      "scope": "MOV then RET under valid writable node/normal return; no type/reader/initialized lifetime or full caller claim"
+    }
+  ],
+  "existing_family_disposition": "PRESERVED/CONSUMED, not newly classified",
+  "timing_or_flag_meaning": "UNRESOLVED; no30-frame delay or dirty/reset semantic inference"
+}

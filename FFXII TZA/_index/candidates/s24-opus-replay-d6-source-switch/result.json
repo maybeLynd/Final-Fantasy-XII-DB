@@ -1,0 +1,144 @@
+{
+ "ard_sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992",
+ "cases": {
+  "C_base_columns_feed_the_outputs_only_with_the_bit_set": true,
+  "C_growth_column_is_scaled_by_the_level_span": true,
+  "S_bit1_clear_shield_adds_its_row_terms": true,
+  "S_bit1_set_shield_adds_nothing": true,
+  "W_bit0_clear_weapon_adds_its_row_terms": true,
+  "W_bit0_set_weapon_adds_nothing": true,
+  "X_each_bit_leaves_the_other_kind_alone": true
+ },
+ "definition": {
+  "base_row": "76409450",
+  "growth_row": "76409940",
+  "index": 0,
+  "row": "76408C20",
+  "shipped_plus15": 3
+ },
+ "item_rows": 557,
+ "kinds": {
+  "1": 311,
+  "2": 33,
+  "3": 168
+ },
+ "ok": true,
+ "runs": {
+  "bits0": {
+   "none": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   },
+   "shield_delta": {
+    "attack": 0,
+    "block": 25,
+    "mevade": 10,
+    "parry": 0
+   },
+   "weapon_delta": {
+    "attack": 14,
+    "block": 0,
+    "mevade": 0,
+    "parry": 5
+   }
+  },
+  "bits1": {
+   "none": {
+    "attack": 66,
+    "block": 0,
+    "mevade": 0,
+    "parry": 5
+   },
+   "shield_delta": {
+    "attack": 0,
+    "block": 25,
+    "mevade": 10,
+    "parry": 0
+   },
+   "weapon_delta": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   }
+  },
+  "bits2": {
+   "none": {
+    "attack": 0,
+    "block": 5,
+    "mevade": 5,
+    "parry": 0
+   },
+   "shield_delta": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   },
+   "weapon_delta": {
+    "attack": 14,
+    "block": 0,
+    "mevade": 0,
+    "parry": 5
+   }
+  },
+  "bits3": {
+   "none": {
+    "attack": 66,
+    "block": 5,
+    "mevade": 5,
+    "parry": 5
+   },
+   "shield_delta": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   },
+   "weapon_delta": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   }
+  },
+  "columns": {
+   "bits0_base_bump": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   },
+   "bits0_growth2E_bump_span2": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 0
+   },
+   "bits3_base_bump": {
+    "attack": 1,
+    "block": 1,
+    "mevade": 1,
+    "parry": 1
+   },
+   "bits3_growth2E_bump_span2": {
+    "attack": 0,
+    "block": 0,
+    "mevade": 0,
+    "parry": 2
+   }
+  }
+ },
+ "shield": {
+  "id": "10D4",
+  "row+18": 25,
+  "row+19": 10
+ },
+ "weapon": {
+  "id": "1001",
+  "row+1A": 14,
+  "row+1D": 5
+ }
+}

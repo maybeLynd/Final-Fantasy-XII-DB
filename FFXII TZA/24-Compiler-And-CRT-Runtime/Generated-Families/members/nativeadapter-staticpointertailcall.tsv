@@ -1,0 +1,29 @@
+# NativeAdapter.StaticPointerTailCall - EC-7 family C, declared on generated-function-families.md
+#
+# 21 members. Body size(s): 12 B x21.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 21 external target(s): 0 shared across all 21 members, and 21 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 21 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0017E520
+0017E530
+001F34E0
+0035E6F0
+006DB4C0
+006DB660
+006DB780
+006DB7C0
+006DB8C0
+006DB900
+006DB9A0
+006DBC20
+006DBC60
+006DC5C0
+006DC600
+006DC700
+006DC760
+006DC820
+006DD570
+006DD700

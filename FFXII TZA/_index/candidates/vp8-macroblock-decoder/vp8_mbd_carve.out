@@ -1,0 +1,6 @@
+PASS  T1 thread records at [inst+0x4410] + i*0x12A0 get a 0x90 copy at +0xE70 and 0016FB80; then 0016FB80(inst)
+PASS  T2 the copy's source is [inst + 0x12C0 + 0x780 + idx*0x90]
+PASS  T3 0016FB80: 24 block records of 0x38 from +0x880 (16 luma from [+0xE80], 8 chroma from [+0xE94])
+PASS  T4 00172750(inst + 0x12C0): 0x90 records at +0x780 ... free [[rec+0x58]-8] when [rec+0x60] > 0, then zero the record
+PASS  S Vp8DecoderInstance +0x0000 is an embedded Vp8MacroblockDecoder (0x12A0); the three new types tile; the four edge rows moved
+FAILS 0

@@ -1,0 +1,5 @@
+PASS  F1 static data with exit destructors 008AF490 / 008AFDE0; +0 is a self pointer, not a vtable, in both
+PASS  F2 01F2E330 = list heads +0x00/+0x10/+0x28; 384/385 descriptor constructions pass it as rdx (stored at descriptor +0x70)
+PASS  F3 01F2E780 = six self-linked qwords; 01F2E7B0 = its own links, +0x10 the PWorld descriptor, +0x18 "getInstanceCount"
+PASS  F4 00637440's callers ['0059B430', '0062FC90', '006388C0', '006389C0', '00638A50', '0063BEF0'] (0059B430 hashes a name against it)
+FAILS 0

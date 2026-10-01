@@ -1,0 +1,8 @@
+{
+  "action": "finish",
+  "task": "FIXTURE-A16-TRAILING-LF",
+  "note": "private requirement control",
+  "result_refs": [
+    "verdict:ACCEPT\n"
+  ]
+}

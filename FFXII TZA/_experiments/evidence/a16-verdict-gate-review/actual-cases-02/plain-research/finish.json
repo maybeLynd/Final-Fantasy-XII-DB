@@ -1,0 +1,8 @@
+{
+  "action": "finish",
+  "task": "FIXTURE-A16-PLAIN-RESEARCH",
+  "note": "private requirement control",
+  "result_refs": [
+    "receipt:plain"
+  ]
+}

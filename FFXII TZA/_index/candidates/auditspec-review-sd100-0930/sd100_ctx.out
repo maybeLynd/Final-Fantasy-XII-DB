@@ -1,0 +1,180 @@
+=== 002A781B (root 002A7720)
+  002A77F2  call 0x2abec0
+  002A77F7  cmp dword ptr [rip + 0x1b655ca], 0
+  002A77FE  je 0x2a793d
+  002A7804  mov eax, dword ptr [rdi + 0xb0]
+  002A780A  mov qword ptr [rsp + 0x48], rsi
+  002A780F  xor esi, esi
+  002A7811  bt eax, 0x1a
+  002A7815  jae 0x2a782e
+  002A7817  btr eax, 0x1a
+  002A781B  mov dword ptr [rdi + 0xb0], eax
+  002A7821  mov byte ptr [rbx + 0x3d6], sil
+=== 002A96CC (root 002A8C50)
+  002A96A2  cmp r14d, eax
+  002A96A5  jle 0x2a978d
+  002A96AB  movsx eax, cx
+  002A96AE  cmp r14d, eax
+  002A96B1  jg 0x2a978d
+  002A96B7  and dword ptr [rsi + 0xb0], 0xffefffff
+  002A96C1  movsx eax, byte ptr [rsp + 0x43]
+  002A96C6  and eax, 1
+  002A96C9  shl eax, 0x14
+  002A96CC  or dword ptr [rsi + 0xb0], eax
+  002A96D2  mov eax, dword ptr [rsi + 0xb0]
+=== 002A96E2 (root 002A8C50)
+  002A96B7  and dword ptr [rsi + 0xb0], 0xffefffff
+  002A96C1  movsx eax, byte ptr [rsp + 0x43]
+  002A96C6  and eax, 1
+  002A96C9  shl eax, 0x14
+  002A96CC  or dword ptr [rsi + 0xb0], eax
+  002A96D2  mov eax, dword ptr [rsi + 0xb0]
+  002A96D8  bt eax, 0x14
+  002A96DC  jae 0x2a9738
+  002A96DE  bts eax, 0x1a
+  002A96E2  mov dword ptr [rsi + 0xb0], eax
+  002A96E8  jmp 0x2a9738
+=== 002A97DD (root 002A8C50)
+  002A97B4  movss dword ptr [rsi + 0x38], xmm1
+  002A97B9  movss xmm1, dword ptr [rbp - 0x34]
+  002A97BE  movss dword ptr [rsi + 0x3c], xmm0
+  002A97C3  movss dword ptr [rsi + 0x4c], xmm1
+  002A97C8  jmp 0x2a992a
+  002A97CD  mov eax, dword ptr [rsi + 0xb0]
+  002A97D3  bt eax, 0x13
+  002A97D7  jb 0x2a97e3
+  002A97D9  bts eax, 0x1a
+  002A97DD  mov dword ptr [rsi + 0xb0], eax
+  002A97E3  movzx eax, byte ptr [rsi + 0x9e]
+=== 002A9877 (root 002A8C50)
+  002A9855  lea ecx, [rbx - 1]
+  002A9858  shl edi, 0x12
+  002A985B  xor edi, r14d
+  002A985E  mov byte ptr [rsi + 0xa5], cl
+  002A9864  and edi, 0x40000
+  002A986A  movsx ebx, r12b
+  002A986E  xor edi, r14d
+  002A9871  movzx r8d, al
+  002A9875  mov edx, ebx
+  002A9877  mov dword ptr [rsi + 0xb0], edi
+  002A987D  mov rcx, rsi
+=== 002A9A10 (root 002A9980)
+  002A99E3  test word ptr [rip + 0x2ced980], ax
+  002A99EA  jne 0x2a99f9
+  002A99EC  test word ptr [rip + 0x2ced96f], ax
+  002A99F3  je 0x2a9eed
+  002A99F9  movzx eax, word ptr [rcx + 0x8c]
+  002A9A00  xor edi, edi
+  002A9A02  mov word ptr [rcx + 0x8e], ax
+  002A9A09  btr edx, 0x13
+  002A9A0D  inc ax
+  002A9A10  mov dword ptr [rcx + 0xb0], edx
+  002A9A16  mov word ptr [rcx + 0x8c], ax
+=== 002A9A7D (root 002A9980)
+  002A9A5A  pop rdi
+  002A9A5B  pop rsi
+  002A9A5C  pop rbp
+  002A9A5D  ret 
+  002A9A5E  movzx eax, word ptr [rip + 0x2ced905]
+  002A9A65  and edx, 0x9fffffff
+  002A9A6B  movzx r9d, word ptr [rip + 0x2ced8f9]
+  002A9A73  mov ebp, dword ptr [rcx + 0x54]
+  002A9A76  movzx esi, byte ptr [rcx + 0x98]
+  002A9A7D  mov dword ptr [rcx + 0xb0], edx
+  002A9A83  test word ptr [rip + 0x1b62816], ax
+=== 002A9A9C (root 002A9980)
+  002A9A73  mov ebp, dword ptr [rcx + 0x54]
+  002A9A76  movzx esi, byte ptr [rcx + 0x98]
+  002A9A7D  mov dword ptr [rcx + 0xb0], edx
+  002A9A83  test word ptr [rip + 0x1b62816], ax
+  002A9A8A  je 0x2a9aae
+  002A9A8C  xor edi, edi
+  002A9A8E  btr edx, 0x13
+  002A9A92  or edx, 0x60000000
+  002A9A98  mov word ptr [rcx + 0x58], di
+  002A9A9C  mov dword ptr [rcx + 0xb0], edx
+  002A9AA2  mov byte ptr [rcx + 0xb0], 6
+=== 002A9C9A (root 002A9980)
+  002A9C81  mov dword ptr [rbx + 0x54], ecx
+  002A9C84  mov eax, dword ptr [rbx + 0x54]
+  002A9C87  cmp eax, edi
+  002A9C89  jne 0x2a9c91
+  002A9C8B  bts edx, 0x1e
+  002A9C8F  jmp 0x2a9c9a
+  002A9C91  cmp eax, r11d
+  002A9C94  jne 0x2a9ca0
+  002A9C96  bts edx, 0x1d
+  002A9C9A  mov dword ptr [rbx + 0xb0], edx
+  002A9CA0  cmp sil, byte ptr [rbx + 0x98]
+=== 002A9EE7 (root 002A9980)
+  002A9EC0  movsx edx, word ptr [rbx + 0x58]
+  002A9EC4  call 0x2b2ce0
+  002A9EC9  mov r12, qword ptr [rsp + 0x68]
+  002A9ECE  mov dword ptr [rbx + 0x54], eax
+  002A9ED1  jmp 0x2a9eed
+  002A9ED3  movzx eax, word ptr [rip + 0x2ced490]
+  002A9EDA  test word ptr [rip + 0x1b623bf], ax
+  002A9EE1  je 0x2a9eed
+  002A9EE3  bts edx, 0x1f
+  002A9EE7  mov dword ptr [rcx + 0xb0], edx
+  002A9EED  xor eax, eax
+=== 002B0838 (root 002B0280)
+  002B0804  movzx r12d, byte ptr [rsp + 0x31]
+  002B080A  movss dword ptr [rbp + 0x100], xmm0
+  002B0812  bt ecx, 0x15
+  002B0816  jae 0x2b0830
+  002B0818  movsx rax, byte ptr [r14 + 0xa7]
+  002B0820  lea r8, [rip - 0x190827]
+  002B0827  movzx r12d, byte ptr [rax + r8 + 0x7f6560]
+  002B0830  mov r8, qword ptr [r14 + 0x60]
+  002B0834  btr ecx, 0x15
+  002B0838  mov dword ptr [r14 + 0xb0], ecx
+  002B083F  test r8, r8
+=== 002B35E0 (root 002B35A0)
+  002B35BD  mov eax, dword ptr [r9 + 0xb0]
+  002B35C4  mov byte ptr [rcx + 0xa2], r8b
+  002B35CB  mov ecx, r10d
+  002B35CE  cmovne ecx, edx
+  002B35D1  btr eax, 0x1b
+  002B35D5  and ecx, 1
+  002B35D8  or ecx, 0xc
+  002B35DB  shl ecx, 0x1b
+  002B35DE  or ecx, eax
+  002B35E0  mov dword ptr [r9 + 0xb0], ecx
+  002B35E7  bt ecx, 0x1b
+=== 002B364C (root 002B35A0)
+  002B362A  jbe 0x2b363d
+  002B362C  shl edx, 0xc
+  002B362F  xor edx, dword ptr [r9 + 0x58]
+  002B3633  and edx, 0x3f000
+  002B3639  xor dword ptr [r9 + 0x58], edx
+  002B363D  mov eax, dword ptr [r9 + 0x58]
+  002B3641  bts ecx, 0x1c
+  002B3645  shr rax, 0xc
+  002B3649  and eax, 0x3f
+  002B364C  mov dword ptr [r9 + 0xb0], ecx
+  002B3653  add rax, rax
+=== 002B36DC (root 002B35A0)
+  002B36BB  add rsp, 8
+  002B36BF  ret 
+  002B36C0  mov eax, dword ptr [r11 + 0x1e8]
+  002B36C7  test eax, eax
+  002B36C9  jne 0x2b36e8
+  002B36CB  cmp dword ptr [r11 + 0x1f8], r8d
+  002B36D2  jne 0x2b36e8
+  002B36D4  mov rbx, qword ptr [rsp]
+  002B36D8  btr ecx, 0x1b
+  002B36DC  mov dword ptr [r9 + 0xb0], ecx
+  002B36E3  add rsp, 8
+=== 002B3D1B (root 002B3C30)
+  002B3CE9  movsx eax, byte ptr [rbx + 0x9e]
+  002B3CF0  neg ax
+  002B3CF3  movss dword ptr [rbx + 0x48], xmm1
+  002B3CF8  mov word ptr [rbx + 0x90], ax
+  002B3CFF  movzx eax, byte ptr [rsp + 0x80]
+  002B3D07  mov byte ptr [rbx + 0xaf], al
+  002B3D0D  movsx eax, byte ptr [rsp + 0x88]
+  002B3D15  and eax, 1
+  002B3D18  shl eax, 0x17
+  002B3D1B  or dword ptr [rbx + 0xb0], eax
+  002B3D21  call 0x2b2150

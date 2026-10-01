@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-82",
+ "result_refs": [
+  "audit:xref_hub82"
+ ],
+ "note": "22 frontier bodies (2-A refill 006CC7C0 + top 21 of 1-A, 006B8060..00683B10) measured and placed on 6 bearing hosts; 22/22 A-measured; anchors 2,993/0 MID/0 not-in-body (plural-form fix registers 007307FE); links/consistency/questions clean; byte/hash audit reproduces; crossref 88 findings = baseline, zero on batch hosts; ready to publish"
+}

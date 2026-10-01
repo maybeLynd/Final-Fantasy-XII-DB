@@ -1,0 +1,39 @@
+jsondata schema census (OPUS block 293) - 830 files parsed, 30 not strict JSON
+  NOT STRICT JSON: cutscenes\evt_t0005.json - Expecting ',' delimiter: line 227 column 3 (char 5592)
+  NOT STRICT JSON: cutscenes\sum_a0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_a0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_b0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_b0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_c0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_c0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_d0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_d0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_e0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_e0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_f0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_f0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_g0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_g0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_h0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_h0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_i0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_i0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_j0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_j0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_k0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_k0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_l0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_l0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_m0000.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: cutscenes\sum_m0002.json - Expecting value: line 1 column 1 (char 0)
+  NOT STRICT JSON: maps\bhm0201.json - Expecting ',' delimiter: line 44 column 3 (char 1276)
+  NOT STRICT JSON: uisize\uisize.json - Illegal trailing comma before end of object: line 232 column 35 (char 7243)
+  NOT STRICT JSON: uisize\uisize_sd.json - Illegal trailing comma before end of object: line 165 column 35 (char 4441)
+  maps                     files  459  paths  175  read-by-17  133  composed   0  unread   42  mixed-type paths 41
+  cutscenes                files  337  paths  121  read-by-17   99  composed   2  unread   20  mixed-type paths 0
+  fontcluts                files   28  paths   10  read-by-17    9  composed   0  unread    1  mixed-type paths 1
+  uisize                   files    2  paths    0  read-by-17    0  composed   0  unread    0  mixed-type paths 0
+  0                        files    1  paths    0  read-by-17    0  composed   0  unread    0  mixed-type paths 0
+  init                     files    1  paths  176  read-by-17  165  composed   0  unread   11  mixed-type paths 0
+  monstergallery           files    1  paths   77  read-by-17   76  composed   1  unread    0  mixed-type paths 11
+  monstertoweapon          files    1  paths    5  read-by-17    0  composed   2  unread    3  mixed-type paths 1

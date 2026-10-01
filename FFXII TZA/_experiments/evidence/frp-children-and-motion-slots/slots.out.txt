@@ -1,0 +1,4 @@
+version-1 containers: 1195
+0x2C rules with a from-word other than 0xFFFF: 362594
+  from-word below the container's slot count: 362594 ; largest from-word seen: 73
+  ... and that slot is occupied in the same file: 362594

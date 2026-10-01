@@ -1,0 +1,21 @@
+target 01F83450: 5 rip-relative sites
+  0020CD3D  cmp qword ptr [rip + 0x1d7670b], 0
+  0020CD71  mov qword ptr [rip + 0x1d766d8], rax
+  0020CD86  mov rbx, qword ptr [rip + 0x1d766c3]
+  0020CDED  mov qword ptr [rip + 0x1d76658], 0
+  0020CE00  mov rax, qword ptr [rip + 0x1d76649]
+  image-base-relative disp32 byte-pattern occurrences: 0
+target 0020CD80: 1 raw rel32 sites
+  007986AB  call 0x20cd80
+  absolute 8-byte pointers in file: 0
+target 0020CD30: 1 raw rel32 sites
+  0079812D  call 0x20cd30
+  absolute 8-byte pointers in file: 0
+target 008632B0: 6 raw rel32 sites
+  00316078  call 0x8632b0
+  00316403  call 0x8632b0
+  0031646D  jmp 0x8632b0
+  00316AEA  call 0x8632b0
+  00316B47  call 0x8632b0
+  00352262  jmp 0x8632b0
+  absolute 8-byte pointers in file: 0

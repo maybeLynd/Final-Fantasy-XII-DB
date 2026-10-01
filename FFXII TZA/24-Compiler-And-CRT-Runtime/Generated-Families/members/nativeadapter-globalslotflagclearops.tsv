@@ -1,0 +1,9 @@
+# NativeAdapter.GlobalSlotFlagClearOps - EC-7 family C
+# clear bit 13 of a member global slot-table entry indexed by arg1; if the
+# # entry empties call shared 00263FF0 and clear bit 3 of [rax+0x11]; if the
+# # entry was already empty call shared 0032F1B0.
+address	targets
+003302B0	00263FF0,0032F1B0
+00331760	00263FF0,0032F1B0
+003317C0	00263FF0,0032F1B0
+00331820	00263FF0,0032F1B0

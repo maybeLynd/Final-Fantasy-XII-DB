@@ -1,0 +1,11 @@
+PASS  S 0026D530: no call; width > 5 returns; 0 u8 [0,255], 1 s8 [-128,127], 2 u16 [0,0xFFFF], 3 s16 [-32767,+32768] then a word store, 4/5 raw dword
+PASS  R POPV / PUSHV pass a 0x30-byte local to 00262440 (5th argument); the resolver's writes, POPV's value at +0x20 and the store call
+PASS  C index1C: a u16 rank at header +4 (rank 0 skips the loop), s32 dimensions from header +8 last first; each popped subscript -> m = max(s, 0), then m if m < dim (signed) else the 32-bit dim - 1 (no dimension check: dim 0 gives -1), times the product of the later dimensions, summed into r10d -> +0x1C
+PASS  L sum 0, product 1, last dimension first; imul / imul / add in 32 bits with no overflow branch; +0x1C read back with movsxd: 2x3 (1,0) -> 3, 65536x65536 (32768,0) -> INT_MIN, (65535,65535) -> -1; unbounded, saturating and forward models rejected
+PASS  A the compare is against dim and the fallback is the 32-bit dim - 1: INT_MIN gives 0x7FFFFFFF for every subscript (unbounded formula: -2147483649); dims 5, 1, 0, -2, INT_MIN + 1 agree with min(max(s, 0), dim - 1)
+PASS  K POPV converts by +0x04 (1 integer: float tag cvttss2si, int raw; 2 float: int tag cvtdq2ps, float raw; empty stack 0) into +0x20, then calls 0026D530
+PASS  N 0032F240: two rets, no call, no store - a read of the byte flags at 022C6D18 and the dword ids at 022C6D28 (-1 when off); POPV calls it only when [rdi+0x28]-1 <= 2 and the resolver returned 0, and 0026D530 overwrites eax (0026D53B) before reading it: the returned id is discarded
+PASS  F kind 2, int operand: movd, cvtdq2ps, movss to +0x20 with no RC override in POPV; 16777217 -> 0x4B800000 (RN) / 0x4B800001 (RU); -16777219 -> 0xCB800002 (RN) / 0xCB800001 (RU); the sign-blind first rule would say 0xCB800003
+PASS  P PUSHP: descriptor18 + index1C, stride by width (table: widths 0-1 -> 0026814D x1, 2-3 -> 00268142 x2, 4-5 -> 00268146 x4), original width to +0x00 and pushed as the source kind, low32(offset + scaled) | class | 0x70000000 with no mask after the add: 02FFFFFF+1 -> 73000000, 02000000-1 -> FFFFFFFF; mask-24 (72000000) and exact-width-7 (7FFFFFFC) models rejected
+PASS  W ScriptVariableRef30 is in the store, tiles 0x30, index1C states the clamp's positive-dimension condition, value20 the RC dependence
+FAILS 0

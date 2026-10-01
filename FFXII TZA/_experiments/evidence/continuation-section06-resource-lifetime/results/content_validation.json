@@ -1,0 +1,726 @@
+{
+  "section": "SECTION-06",
+  "read_only": true,
+  "errors": [],
+  "frontmatter": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "valid": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "valid": true
+    }
+  ],
+  "markdown_file_links": [
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "CONTRACT-resource-request-queue.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/run_review.py",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/original_disassembly.txt",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/claim_matrix.tsv",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/native_controls.c",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/results/summary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/EXP-083-resource-entry-tree-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_index/PASS22-WHAT-ACCOUNTING-MEANS.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_types/types.tsv",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "authored-data-table-registry.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_experiments/EXP-084-efx-source-rebase-execution.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/PASS22-WHAT-ACCOUNTING-MEANS.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/EXP-076-reward-decoder-composition.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/authored-reference-lifetime-review/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/authored-reference-lifetime-review/collect.py",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/EXP-002-st2e-group-tables.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-arena-backing/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/EXP-077-arena-initializer-address-width.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/EXP-078-arena-allocation-link-width.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena-selector-static/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena-selector-static/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_index/_inbox/TEAM.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/EXP-079-arena-live-placement.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena-handle-static/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena-handle-static/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena7-backing-use/consumers.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena7-backing-use/queue.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena7-backing-use/destination.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena7-backing-use/rip-candidates.txt",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena7-backing-use/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-input-lifetime-flag/context.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-input-lifetime-flag/retention.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-input-lifetime-flag/init.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-input-lifetime-flag/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-input-lifetime-flag/rip-candidates.txt",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/repairs.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/probe.py",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/result.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/execution-review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-rebase-primary/first-attempt.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/constructors.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/edges.txt",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/scan.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/caller.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/owner.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/efx-source-initialization/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-source-ownership/source.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-source-ownership/allocation.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-source-ownership/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-release-lists/release.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-release-lists/tree.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-release-lists/teardown.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-release-lists/inner.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-entry-release-lists/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-native-reclamation/free.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-native-reclamation/order.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/arena-allocation-link-width/primary.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_experiments/evidence/resource-native-reclamation/review.json",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../04-Actor-Entity/the-field-runtime-pass.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_index/PASS22-WHAT-ACCOUNTING-MEANS.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "../_index/ADDRESS-INDEX.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "target": "the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section05-encoded-query/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section04-widget-receiver/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section02-resource-queue/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section01-result-install/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "source": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/README.md",
+      "target": "REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/README.md",
+      "target": "PATCH_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/README.md",
+      "target": "verify_overlay.py",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "original_disassembly.txt",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "native_controls.c",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "run_review.py",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "results/native_baseline.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "results/native_repeat.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "results/code_mutations.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "results/summary.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "claim_matrix.tsv",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "canonical_row_changes.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "canonical_preimages.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "results/content_validation.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "results/overlay_checker_controls.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "canonical_changes.diff",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "PATCH_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "source": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "target": "source_inputs.json",
+      "exists": true
+    }
+  ],
+  "external_file_references": [
+    {
+      "source": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "target": "../../Tools/analysis-kit/gfz-scripts/falsify_efx_rebase.py",
+      "available": false,
+      "scope": "inherited external reference; not shipped or validated"
+    }
+  ],
+  "target_layouts": [
+    {
+      "type": "EfxCallerTemplate",
+      "size": 2192,
+      "fields": 24,
+      "gap_bytes": 0,
+      "overlap_bytes": 0
+    },
+    {
+      "type": "RenderResourceEntry",
+      "size": 80,
+      "fields": 10,
+      "gap_bytes": 0,
+      "overlap_bytes": 0
+    },
+    {
+      "type": "RenderResourceEntryBuffer",
+      "size": 32,
+      "fields": 7,
+      "gap_bytes": 0,
+      "overlap_bytes": 0
+    }
+  ],
+  "ownership_contract_sections": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "python_parse": [
+    "test_overlay.py",
+    "validate_content.py",
+    "run_review.py",
+    "verify_overlay.py"
+  ],
+  "json_parse": [
+    "PATCH_MANIFEST.json",
+    "source_inputs.json",
+    "canonical_preimages.json",
+    "original_body_manifest.json",
+    "canonical_row_changes.json",
+    "results/content_validation.json",
+    "results/body_verification.json",
+    "results/overlay_checker_controls.json",
+    "results/native_repeat.json",
+    "results/native_baseline.json",
+    "results/code_mutations.json",
+    "results/summary.json"
+  ],
+  "unrelated_tsv_preservation": {
+    "types.tsv": {
+      "byte_identical_non_target_lines": 593
+    },
+    "fields.tsv": {
+      "byte_identical_non_target_lines": 7233
+    }
+  },
+  "baseline_files": 10733,
+  "unchanged_baseline_files": 10726,
+  "unexpected_baseline_changes": [],
+  "manifest_output_hashes_checked": 28,
+  "passed": true
+}

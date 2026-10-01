@@ -1,0 +1,79 @@
+{
+  "database_archive": {
+    "name": "FFXII TZA(20260923-205605).zip",
+    "sha256": "f52ffea6e6f2bdc27218b0499e8d0d7941669a8ba26dfed3d38cce6c0da57c1c"
+  },
+  "baseline_contains": "Updates01–10 plus subsequent peer edits. Source archive is not modified.",
+  "source_preimages": [
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-interpreter-core.md",
+      "before_sha256": "30c6293505e849072aa999c1a90376001aff5ff4d35828c79911bbcbc3aa8460",
+      "after_sha256": "44caa97b3c0f352c405801e3ca614ed33fe5f798777a7a839b7d413631a73258",
+      "before_bytes": 15457,
+      "after_bytes": 16076
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md",
+      "before_sha256": "cad1c514c7350322008b2c44c669a1cea58066e12667f630b0a90ed6327a0fd9",
+      "after_sha256": "7ba6d9a5aa0fdae0af27608c241749b2c00c682e78b093f01042464d5823b166",
+      "before_bytes": 11327,
+      "after_bytes": 14706
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md",
+      "before_sha256": "8cf1bcbc98256f5d0170c1722b54804f2bb9ce7316c77be93c4efaee3454c9d2",
+      "after_sha256": "b878ef345db542be0f1670fcb89dc60bc4ae7a07ff74f8f673e3069ce9b4a5f3",
+      "before_bytes": 30419,
+      "after_bytes": 29517
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md",
+      "before_sha256": "379b83bf3d28ca871e37d6b5ebaed0894650ad3ca6467f5c7b1731530ccfc80e",
+      "after_sha256": "006cecddee853a6b4382cd4276501c350fcb9a96d7ee2bb76b07d9a0502ab254",
+      "before_bytes": 68267,
+      "after_bytes": 69820
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md",
+      "before_sha256": "670b9269e9b0e5bb9b6555e6d3eddc36dfc415a11046f7a43414ca29cf8b5570",
+      "after_sha256": "0cc8658eca9712242c0faa9e82c81988929e4a614ed56658f5040d669cb35849",
+      "before_bytes": 42777,
+      "after_bytes": 43611
+    },
+    {
+      "path": "_experiments/EXP-085-verb-lifecycle-execution.md",
+      "before_sha256": "b228f99b0c12516d45479dfd81ea1194a4c92fec49fb5ee8d8bf93aa9fb76500",
+      "after_sha256": "a81248dd770b552d0c124fec32d18f51018d62da7825c0bbad9478b3e791f0ef",
+      "before_bytes": 7846,
+      "after_bytes": 8552
+    },
+    {
+      "path": "_experiments/EXP-106-field-runtime-pass-exec.md",
+      "before_sha256": "e8b811bfa7d6032c25a478f1e5163aa4777273b6636929ccb56dd420903bf657",
+      "after_sha256": "03fd6d968a5b8e9e9fa936d4879fbdfbbd3709a49c383498507cc7efb44480a3",
+      "before_bytes": 15233,
+      "after_bytes": 15693
+    },
+    {
+      "path": "_types/types.tsv",
+      "before_sha256": "0b270d8349c1618ef3011c4e0703d641e6c99649ce82499c30a6881e2d58e4fa",
+      "after_sha256": "f6b0a41f4f4b2dc17acb4027117e6a7f5ff11b947a269b78d92ef32804ded71e",
+      "before_bytes": 1662404,
+      "after_bytes": 1661692
+    },
+    {
+      "path": "_types/fields.tsv",
+      "before_sha256": "23368df6ac3f9b27477e7bd0d5dfec9a6108fa6f23ab5ea7573210b93db170c6",
+      "after_sha256": "473e89f806e0afdd5104752cb42983a5c1271f35f718a503ef74f9ebe0c10d66",
+      "before_bytes": 10689998,
+      "after_bytes": 10683663
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "before_sha256": "80c7203a8e6648da10f4429f88652db3117fd174acf05e2ed02f161d55c11d24",
+      "after_sha256": "b24ecde093fec8a5c6080572e8dbe31a406c431b52aa71b28782177585513322",
+      "before_bytes": 20703,
+      "after_bytes": 22878
+    }
+  ]
+}

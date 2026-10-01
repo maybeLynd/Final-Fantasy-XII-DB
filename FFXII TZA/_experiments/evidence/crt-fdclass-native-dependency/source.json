@@ -1,0 +1,274 @@
+{
+  "method": "A STATIC_ONLY identified host CRT body; no DLL execution or game binding",
+  "host": {
+    "path": "C:\\Windows\\System32\\ucrtbase.dll",
+    "bytes": 1377512,
+    "sha256": "5c52e3a303baaac0e0af8bd9b96134993da34bc9d834a31ef37e1d2cdc7fe192",
+    "export_directory_rva": 1215008,
+    "export_directory_size": 54544,
+    "export": {
+      "name": "_fdclass",
+      "name_rva": 1243538,
+      "ordinal_index": 248,
+      "ordinal": 249,
+      "function_table_rva": 1216040,
+      "function_table_hex": "10f40500",
+      "rva": 390160,
+      "forwarded": false
+    },
+    "body_rva": "0x5f410",
+    "body_size": 65,
+    "body_sha256": "21579bca4a4b115077a2855eb46b405cd63756dbef8a841ca1e8edcd1ce0cf1f",
+    "body_hex": "660f7ec18bc1250000807f3d0000807f750ef7c1ffff7f007510b801000000c385c0740cb8ffffffffc3b802000000c3f7c1ffffff7f750333c0c3b8feffffffc3",
+    "instructions": [
+      {
+        "pc": "0x5f410",
+        "bytes": "660f7ec1",
+        "op": "movd",
+        "args": "ecx, xmm0"
+      },
+      {
+        "pc": "0x5f414",
+        "bytes": "8bc1",
+        "op": "mov",
+        "args": "eax, ecx"
+      },
+      {
+        "pc": "0x5f416",
+        "bytes": "250000807f",
+        "op": "and",
+        "args": "eax, 0x7f800000"
+      },
+      {
+        "pc": "0x5f41b",
+        "bytes": "3d0000807f",
+        "op": "cmp",
+        "args": "eax, 0x7f800000"
+      },
+      {
+        "pc": "0x5f420",
+        "bytes": "750e",
+        "op": "jne",
+        "args": "0x5f430"
+      },
+      {
+        "pc": "0x5f422",
+        "bytes": "f7c1ffff7f00",
+        "op": "test",
+        "args": "ecx, 0x7fffff"
+      },
+      {
+        "pc": "0x5f428",
+        "bytes": "7510",
+        "op": "jne",
+        "args": "0x5f43a"
+      },
+      {
+        "pc": "0x5f42a",
+        "bytes": "b801000000",
+        "op": "mov",
+        "args": "eax, 1"
+      },
+      {
+        "pc": "0x5f42f",
+        "bytes": "c3",
+        "op": "ret",
+        "args": ""
+      },
+      {
+        "pc": "0x5f430",
+        "bytes": "85c0",
+        "op": "test",
+        "args": "eax, eax"
+      },
+      {
+        "pc": "0x5f432",
+        "bytes": "740c",
+        "op": "je",
+        "args": "0x5f440"
+      },
+      {
+        "pc": "0x5f434",
+        "bytes": "b8ffffffff",
+        "op": "mov",
+        "args": "eax, 0xffffffff"
+      },
+      {
+        "pc": "0x5f439",
+        "bytes": "c3",
+        "op": "ret",
+        "args": ""
+      },
+      {
+        "pc": "0x5f43a",
+        "bytes": "b802000000",
+        "op": "mov",
+        "args": "eax, 2"
+      },
+      {
+        "pc": "0x5f43f",
+        "bytes": "c3",
+        "op": "ret",
+        "args": ""
+      },
+      {
+        "pc": "0x5f440",
+        "bytes": "f7c1ffffff7f",
+        "op": "test",
+        "args": "ecx, 0x7fffffff"
+      },
+      {
+        "pc": "0x5f446",
+        "bytes": "7503",
+        "op": "jne",
+        "args": "0x5f44b"
+      },
+      {
+        "pc": "0x5f448",
+        "bytes": "33c0",
+        "op": "xor",
+        "args": "eax, eax"
+      },
+      {
+        "pc": "0x5f44a",
+        "bytes": "c3",
+        "op": "ret",
+        "args": ""
+      },
+      {
+        "pc": "0x5f44b",
+        "bytes": "b8feffffff",
+        "op": "mov",
+        "args": "eax, 0xfffffffe"
+      },
+      {
+        "pc": "0x5f450",
+        "bytes": "c3",
+        "op": "ret",
+        "args": ""
+      }
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "rva": 4096,
+        "virtual_size": 1007971,
+        "raw_size": 1011712,
+        "raw_offset": 4096,
+        "characteristics": 1610612768
+      },
+      {
+        "name": "fothk",
+        "rva": 1015808,
+        "virtual_size": 4096,
+        "raw_size": 4096,
+        "raw_offset": 1015808,
+        "characteristics": 1610612768
+      },
+      {
+        "name": ".rdata",
+        "rva": 1019904,
+        "virtual_size": 255392,
+        "raw_size": 258048,
+        "raw_offset": 1019904,
+        "characteristics": 1073741888
+      },
+      {
+        "name": ".data",
+        "rva": 1277952,
+        "virtual_size": 9764,
+        "raw_size": 8192,
+        "raw_offset": 1277952,
+        "characteristics": 3221225536
+      },
+      {
+        "name": ".pdata",
+        "rva": 1290240,
+        "virtual_size": 54108,
+        "raw_size": 57344,
+        "raw_offset": 1286144,
+        "characteristics": 1073741888
+      },
+      {
+        "name": ".fptable",
+        "rva": 1347584,
+        "virtual_size": 256,
+        "raw_size": 4096,
+        "raw_offset": 1343488,
+        "characteristics": 3221225536
+      },
+      {
+        "name": ".rsrc",
+        "rva": 1351680,
+        "virtual_size": 1040,
+        "raw_size": 4096,
+        "raw_offset": 1347584,
+        "characteristics": 1073741888
+      },
+      {
+        "name": ".reloc",
+        "rva": 1355776,
+        "virtual_size": 3776,
+        "raw_size": 4096,
+        "raw_offset": 1351680,
+        "characteristics": 1107296320
+      }
+    ]
+  },
+  "ff12": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": "0x120000",
+    "import_witness": {
+      "iat": "0x8c2c10",
+      "name": "_fdclass",
+      "dll": "api-ms-win-crt-math-l1-1-0.dll",
+      "descriptor_address": "0x1deac90",
+      "descriptor_hex": "18b9cc0100000000000000001af5cc01a82b7a00",
+      "lookup_address": "0x1deb980",
+      "lookup_hex": "34f0cc0100000000",
+      "hint_name_address": "0x1def034",
+      "hint_name_hex": "1d005f6664636c61737300",
+      "dll_name_address": "0x1def51a",
+      "dll_name_hex": "6170692d6d732d77696e2d6372742d6d6174682d6c312d312d302e646c6c00"
+    },
+    "ggrid_sha256": "03d069e5f80b0ca4064fe36f11683df4110a494a96d7f920e1d43c19e1bef773",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "dependencies": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/nav-conversion-domain/source.json",
+      "retained": "nav-source.json",
+      "sha256": "2a02386b98f61ede2a16972ee2ea1e9d52298a049468d2163b264384f08072e7",
+      "working_preimage_sha256": "2a02386b98f61ede2a16972ee2ea1e9d52298a049468d2163b264384f08072e7",
+      "working_bytes": 21494,
+      "canonical_bytes": 21494,
+      "line_ending_equivalent": true,
+      "git_commit": "4ca9b92d6e50d4177bfda8b12b035ed7ed744e27",
+      "git_blob": "ec067ee6efce86c0a5eeb5ed969b37de8bcf6b11"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/navgrid-query-exec/gen_bodies.py",
+      "retained": "exp131-gen_bodies.py",
+      "sha256": "1354d0710df35cbcb538755be74110a07505c12253e59b4f8a6c8eec3df71a5b",
+      "working_preimage_sha256": "29318251f793b32aa8efc172d9a938b6df522dea3a10a3df65d20ffe6b5e6edf",
+      "working_bytes": 8274,
+      "canonical_bytes": 8094,
+      "line_ending_equivalent": true,
+      "git_commit": "4ca9b92d6e50d4177bfda8b12b035ed7ed744e27",
+      "git_blob": "76047cb440407f02d6506e15c5b2c9e14197f70a"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/navgrid-query-exec/check.py",
+      "retained": "exp131-check.py",
+      "sha256": "db54c1e73c8ec44661a86517610fe70792a9690f0cd28682af95be22cf4c76f3",
+      "working_preimage_sha256": "7725ab8ccd08385c3d1768b706ab6fb13b17ea49cda00636ea0ebedf0892c89e",
+      "working_bytes": 47745,
+      "canonical_bytes": 46615,
+      "line_ending_equivalent": true,
+      "git_commit": "4ca9b92d6e50d4177bfda8b12b035ed7ed744e27",
+      "git_blob": "2acee9e875f6cbeb0eacbcfb928a4c9ab66d516f"
+    }
+  ],
+  "driver_sha256": "2b77607b2aab2fed02a0deac557f42693e1f33e92854ed81f64ae8663d36d333",
+  "limits": "Host DLL not shipped FF12 binary; actual running-game API-set/module binding unobserved. No native calls, live init, caller state, FP status observation or grid recapture."
+}

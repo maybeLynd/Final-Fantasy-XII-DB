@@ -1,0 +1,172 @@
+Y heading - facing, band tests
+   004258B0 add byte ptr [rcx - 0x75], al
+   004258B3 fcompi st(3)
+   004258B5 movups xmm0, xmmword ptr [rdi + 0x124]
+   004258BC mulss xmm1, xmm8
+   004258C1 mulss xmm0, xmm8
+   004258C6 subss xmm1, xmm0
+   004258CA comiss xmm1, dword ptr [rip + 0x4cd867]
+   004258D1 jbe 0x4258db
+   004258D3 addss xmm1, dword ptr [rip + 0x4dcb65]
+   004258DB comiss xmm10, xmm1
+   004258DF jbe 0x4258e9
+   004258E1 addss xmm1, dword ptr [rip + 0x4dcb4f]
+   004258E9 movss xmm2, dword ptr [rip + 0x8ecb4b]
+   004258F1 comiss xmm1, xmm2
+   004258F4 movss xmm0, dword ptr [rip + 0x4dd5f4]
+   004258FC jb 0x425907
+   004258FE comiss xmm0, xmm1
+   00425901 jae 0x4259f9
+   00425907 comiss xmm1, xmm0
+   0042590A jbe 0x425923
+   0042590C movss xmm0, dword ptr [rip + 0x8ecb24]
+   00425914 comiss xmm0, xmm1
+   00425917 jb 0x425923
+   00425919 mov ebx, 3
+   0042591E jmp 0x4259f9
+   00425923 comiss xmm2, xmm1
+   00425926 jbe 0x42593b
+   00425928 comiss xmm1, dword ptr [rip + 0x8ecb15]
+   0042592F jb 0x42593b
+Y turn sign
+   0042576B subss xmm6, xmm1
+   0042576F comiss xmm6, dword ptr [rip + 0x4cd9c2]
+   00425776 jbe 0x425780
+   00425789 comiss xmm10, xmm6
+   0042578D jbe 0x425797
+   004257FC mov esi, r15d
+   0042580C comiss xmm13, xmm1
+   00425810 jbe 0x425898
+   00425816 ucomiss xmm6, xmm7
+   0042581F mov esi, r15d
+   0042582F comiss xmm0, xmm6
+   00425832 jbe 0x42584b
+   0042583C comiss xmm6, xmm0
+   0042583F jbe 0x42584b
+   00425843 mov esi, r15d
+   00425884 comiss xmm2, xmm0
+   0042588A comiss xmm6, xmm7
+   0042588D mov esi, ebp
+   0042588F setae sil
+   004258A0 comiss xmm0, xmm1
+L list decoding
+   0053C160 adc dword ptr [rbp + 0x98], eax
+   0053C166 test r9d, r9d
+   0053C169 jne 0x53c173
+   0053C16B movzx eax, word ptr [rbx + r15*2 + 8]
+   0053C171 jmp 0x53c177
+   0053C173 movzx eax, word ptr [rbx + 0xe]
+   0053C177 movzx eax, ax
+   0053C17A add eax, dword ptr [rbp + 0xc8]
+   0053C180 mov edx, eax
+   0053C182 test r9d, r9d
+   0053C185 jne 0x53c18f
+   0053C187 movzx eax, word ptr [rbx + r15*2 + 0x10]
+   0053C18D jmp 0x53c193
+   0053C18F movzx eax, word ptr [rbx + 0x16]
+   0053C193 movzx r13d, ax
+   0053C197 mov eax, r13d
+   0053C19A mov qword ptr [rbp + 0x110], r13
+   0053C1A1 shl rax, 5
+   0053C1A5 lea rcx, [rax + 0xf]
+   0053C1A9 cmp rcx, rax
+   0053C1AC ja 0x53c1b8
+   0053C1AE movabs rcx, 0xffffffffffffff0
+   0053C1B8 and rcx, 0xfffffffffffffff0
+   0053C1BC mov rax, rcx
+   0053C1BF call 0x808f10
+   0053C1C4 sub rsp, rcx
+   0053C1C7 lea rax, [rip + 0x276bdf2]
+   0053C1CE lea r12, [rsp + 0x40]
+   0053C1D3 mov qword ptr [rbp + 0x118], r12
+   0053C1DA test r13, r13
+   0053C1DD je 0x53ce55
+   0053C1E3 mov eax, dword ptr [rbp + 0x124]
+   0053C1E9 lea r8, [rdx + 1]
+   0053C1ED mov edi, dword ptr [rbp + 0x120]
+   0053C1F3 add r12, 2
+   0053C1F7 movss xmm6, dword ptr [rip + 0x3b6ee5]
+   0053C1FF add rdx, 2
+   0053C203 mov qword ptr [rbp + 0x90], rdx
+   0053C20A mov r14, rdx
+   0053C20D mov qword ptr [rbp + 0xc8], rdx
+   0053C214 mov qword ptr [rbp + 0x68], r8
+   0053C218 mov qword ptr [rbp + 0x70], r13
+   0053C21C mov dword ptr [rbp + 0x24], eax
+   0053C21F mov dword ptr [rbp + 8], edi
+   0053C222 test r9d, r9d
+   0053C225 jne 0x53c22f
+   0053C227 movzx eax, byte ptr [r15 + rbx + 2]
+   0053C22D jmp 0x53c233
+   0053C22F movzx eax, byte ptr [rbx + 1]
+   0053C233 movzx ecx, al
+   0053C236 sub ecx, 1
+   0053C239 je 0x53c2b0
+   0053C23B sub ecx, 1
+   0053C23E je 0x53c27a
+   0053C240 cmp ecx, 1
+L cursor steps
+   0053CDE0 dec dword ptr [rbx + rcx*4 + 0x7d]
+   0053CDE4 js 0x53ce32
+   0053CDE6 mov esi, dword ptr [rbp + 0xc8]
+   0053CDEC mov rdx, qword ptr [rbp + 0x90]
+   0053CDF3 add r14, 4
+   0053CDF7 mov r8, qword ptr [rbp + 0x68]
+   0053CDFB add rdx, 3
+   0053CDFF mov edi, dword ptr [rbp + 8]
+   0053CE02 add r8, 2
+   0053CE06 mov rbx, qword ptr [rbp + 0x40]
+   0053CE0A add r12, 0x20
+   0053CE0E sub qword ptr [rbp + 0x70], 1
+F 0019FFD0 fragments 1 rip-lea'd PS2Data strings: 125 distinct 125 {'PS2Data\\effect_finish\\jp\\chara\\hNNNN.efx': 125}
+A 00409780 (lookup behind 00409930)
+   00409780 mov qword ptr [rsp + 8], rbx
+   00409785 mov qword ptr [rsp + 0x10], rbp
+   0040978A mov qword ptr [rsp + 0x18], rsi
+   0040978F mov qword ptr [rsp + 0x20], rdi
+   00409794 push r14
+   00409796 sub rsp, 0x20
+   0040979A mov rsi, qword ptr [rsp + 0x50]
+   0040979F mov r14, r9
+   004097A2 mov rdi, r8
+   004097A5 mov ebp, edx
+   004097A7 mov rbx, rcx
+   004097AA mov dword ptr [rsi], 0xffffffff
+   004097B0 mov dword ptr [r9], 0xffffffff
+   004097B7 test r8, r8
+   004097BA je 0x4097ce
+   004097BC lea rdi, [rip + 0x275965d]
+   004097C3 mov rdx, r8
+   004097C6 mov rcx, rdi
+   004097C9 call 0x409210
+   004097CE test rbx, rbx
+   004097D1 je 0x409912
+   004097D7 mov ecx, dword ptr [rbx + 4]
+   004097DA test ecx, ecx
+   004097DC je 0x409805
+   004097DE cmp ecx, 1
+   004097E1 jne 0x409912
+   004097E7 cmp byte ptr [rip + 0x2759622], 0
+   004097EE je 0x4097ff
+   004097F0 mov rcx, qword ptr [rbx + 0x30]
+   004097F4 call 0x3ab7f0
+   004097F9 mov qword ptr [rbx + 0x38], rax
+   004097FD jmp 0x40980e
+   004097FF mov r10, qword ptr [rbx + 0x38]
+   00409803 jmp 0x409811
+   00409805 lea rcx, [rbx + 0x10]
+   00409809 call 0x51ee00
+   0040980E mov r10, rax
+   00409811 test r10, r10
+   00409814 je 0x409912
+   0040981A cmp dword ptr [r10], 0x50524640
+   00409821 jne 0x4098f7
+   00409827 mov eax, dword ptr [r10 + 4]
+   0040982B test eax, eax
+   0040982D je 0x40989c
+   0040982F cmp eax, 1
+   00409832 jne 0x409912
+   00409838 mov r8, rdi
+   0040983B mov edx, ebp
+   0040983D mov rcx, r10
+   00409840 call 0x409c30

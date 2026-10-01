@@ -1,0 +1,5 @@
+PASS T1  002778C0 (jump table): 1 -> 0x277925, 10/11 -> 0x277a64/0x277a64
+PASS T2  0023B6F0 (sub/je chain): {1: '0x23ba11', 4: '0x23b8ea', 10: '0x23b818', 12: '0x23b7e7', 13: '0x23b73e'}
+PASS T3  003CAB00 (dec + byte/dword table): 31 -> 0x3cac6a, 1 -> 0x3cab54
+PASS T4  002284F0 (sub/cmp chain): {1: '0x228641', 2: '0x228599', 10: '0x22854c', 18: '0x228524', 3: '0x228517'}
+FAILS 0

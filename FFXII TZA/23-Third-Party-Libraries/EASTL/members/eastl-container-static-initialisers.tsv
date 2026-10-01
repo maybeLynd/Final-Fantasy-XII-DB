@@ -1,0 +1,9 @@
+# eastl-container-static-initialisers -- EC-7 family C, XC-array cluster.
+# 4 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+0015D230	39	001EDF00	00808B90
+0015D260	137	001EDF00	00808B90
+001601C0	76	001EDF00	00808B90
+0016A2C0	137	001EDF00	00808B90

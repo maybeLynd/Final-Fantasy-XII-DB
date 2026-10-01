@@ -1,0 +1,9 @@
+clean rows: 100
+  T tail: {'ok': 100}
+  P rows with an interior pointer: 22
+  X pdata at start: {'none': 100}; rows with a pdata entry beginning inside: 0
+control (listed 65-256 B, 13305): T {'ok': 13185, 'does-not-decode-to-end': 32, 'ends-with-repz ret': 9, 'ends-with-mov': 6, 'ends-with-call': 70, 'ends-with-sub': 1, 'ends-with-add': 1, 'ends-with-bnd ret': 1}; P 6231 (46.8%); X {'begins-here': 11535, 'none': 1770}; inside 1438
+  U clean rows (no .pdata at start): {('nonleaf', 'uncovered'): 1, ('leaf', 'uncovered'): 99}
+  U control, listed 65-256 B with no .pdata at start (1770): {('leaf', 'uncovered'): 1736, ('nonleaf', 'uncovered'): 34}
+PASS C  the package's 100 clean rows read
+FAILS 0

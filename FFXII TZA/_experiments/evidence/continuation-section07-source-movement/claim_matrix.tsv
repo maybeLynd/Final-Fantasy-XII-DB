@@ -1,0 +1,8 @@
+claim	established	evidence_class	controls	boundary
+M07-1	Exact/adjacent selection and membership inhibition	original selectors executed with synthetic arena layouts	mobility_gates; exact_move; two_moves_without_repeat	Not all possible fragmentation states; no nesting retain count
+M07-2	Real stable-slot movement and copy/free order	original producer plus import-entry observation	exact_move	Not atomic or concurrently observed publication
+M07-3	Ordinary allocation can move a prior source	original allocation-pressure path executed	allocation_pressure	No guarantee every allocation succeeds
+M07-4	Movement-since-clear latch	original read/clear/fronts executed; consumer callers static	exact_move; allocation_pressure	Not proof all borrowed pointers repaired
+M07-5	Single coalesced child request and asymmetric consumption	full original dirty driver with unrelated bits clear	dirty_delivery	No successful complex child construction
+M07-6	Separate combined refresh opportunity	isolated original instruction window; synthetic container list	combined_refresh_window	Five pre-window services and later rendering excluded
+M07-7	Smaller adjacent gap reaches overlapping import arguments	original selector/mover stopped before imported copy	overlap_import_boundary.json	No Windows CRT copy result or successful final relocation

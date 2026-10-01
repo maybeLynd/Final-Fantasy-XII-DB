@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-bts-index-binding.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-source-02.json"
+  ],
+  "driver_sha256": "bf3b0b2786eb70046fda7e448f8251b7faf1611632b18ba071c14e10af6de336",
+  "change": "Separate original RET-bound code from pdata-contained inline switch data; failed01 before output retained"
+}

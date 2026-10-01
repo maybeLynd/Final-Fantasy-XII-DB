@@ -1,0 +1,124 @@
+{
+  "files": {
+    "after-first-release.jpg": {
+      "bytes": 162551,
+      "sha256": "f1fa9268f44339168d40a4b9e8e472e411fa362d07555b78e0d374d0ae2b8493"
+    },
+    "after-second-release.jpg": {
+      "bytes": 164119,
+      "sha256": "a5a9f60572ea3533ae7cbf863029e7485271dd492cb2f703b25395a1c6016670"
+    },
+    "cleanup.py": {
+      "bytes": 2032,
+      "sha256": "262e06f019dd88a156c963cdee9b16b128f7db71b0ad5a56234f3bc2adee8bce"
+    },
+    "close-receipt.json": {
+      "bytes": 264,
+      "sha256": "f1c622d437c51d159df109c98c57db402e28bbaf837b5a26d0b41555897c46f0"
+    },
+    "dismiss-load.json": {
+      "bytes": 7361,
+      "sha256": "6d30d61e979b3359684137de981a77d3c246c418b864c413b08913a1ec85768e"
+    },
+    "environment.json": {
+      "bytes": 2408,
+      "sha256": "0a4c6931a374d763ab9ff53ef97bf9e5c3151ff0cf948243478a938abd79fa98"
+    },
+    "field-baseline.jpg": {
+      "bytes": 164482,
+      "sha256": "078129e290a48a97a09edbe661807e7191332400ce8f721ab169ab26ac14cb10"
+    },
+    "identity-after.json": {
+      "bytes": 20088,
+      "sha256": "24189d4169eec4e4b3461abd06b06761256f84755f9015c1559c2d032c84fae4"
+    },
+    "launch.json": {
+      "bytes": 253,
+      "sha256": "2791bf9c9aab35c4bb96c843f298872d7995e76ec019c89736c6220055156995"
+    },
+    "load-menu.json": {
+      "bytes": 7358,
+      "sha256": "115ddd180017e8465fc2a38d0a5cbee1089e7c826fca2f880a0f1faa48d33372"
+    },
+    "load-stepping.json": {
+      "bytes": 7363,
+      "sha256": "c662d011ca17b91e78db1cd8fe05ed36cd9aa5703cd1c25bf534f0a5d24389cb"
+    },
+    "named-save.jpg": {
+      "bytes": 89648,
+      "sha256": "3c93724623678f8f7cf411b90117bcb9d612ba04715aaa5998e375529339ac9f"
+    },
+    "observe_toggle.py": {
+      "bytes": 4265,
+      "sha256": "0cbcda775646d59f42735e62c3cc8324f5f1b133c27bd2fde6e9834e02612e98"
+    },
+    "press-1.json": {
+      "bytes": 306301,
+      "sha256": "afb85f6ca94fb8fb690b153085a190644ca55871429d0b91c823b47956266d11"
+    },
+    "press-2.json": {
+      "bytes": 306311,
+      "sha256": "600d1f30ad5996bb56695b95ab7d6701a24db5d209daae53db65ea9e0a586f74"
+    },
+    "qualified.json": {
+      "bytes": 20042,
+      "sha256": "6060e8ee7315e28f9ab21929817331aa068cd1f12b910931f11038b194b59d26"
+    },
+    "save-before.json": {
+      "bytes": 2915,
+      "sha256": "c10a655c580dbeadc8bd46155fd6023fb1d88b8350d7606401fcd63ceb90bf61"
+    },
+    "save-restored.json": {
+      "bytes": 3173,
+      "sha256": "cd3b9d65a228c7547262506035a0e4dcb4181a680b1358be9b37cccfde8d2cd2"
+    },
+    "seal.py": {
+      "bytes": 4951,
+      "sha256": "24f302c9015af693c6d13022dd742476c89e4011bd3cf6640bbb92447dd32c83"
+    },
+    "setup.py": {
+      "bytes": 1424,
+      "sha256": "69f45e6877dc467dbc978a7168302c8c464363d2eff32ce3a14812da880111a4"
+    },
+    "validated-ffxii_runtime.py.bin": {
+      "bytes": 44574,
+      "sha256": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928"
+    },
+    "validated-key_packet.py.bin": {
+      "bytes": 2059,
+      "sha256": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59"
+    },
+    "validated-observe_ledger.py.bin": {
+      "bytes": 6680,
+      "sha256": "85dc4f959e76df6db7274c25bb34d0caa19e2548388f20dfbfd1f938e75ae91b"
+    },
+    "validated-observe_toggle.py.bin": {
+      "bytes": 4265,
+      "sha256": "0cbcda775646d59f42735e62c3cc8324f5f1b133c27bd2fde6e9834e02612e98"
+    },
+    "validated-runtime_input_probe.py.bin": {
+      "bytes": 8189,
+      "sha256": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae"
+    },
+    "validated-runtime_poke.py.bin": {
+      "bytes": 7879,
+      "sha256": "0985437f4e383cce97f445525ffb41c32d8201a3f3b64704ce59f3402016130b"
+    },
+    "validated-runtime_probe.py.bin": {
+      "bytes": 14957,
+      "sha256": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f"
+    },
+    "validated-step.py.bin": {
+      "bytes": 6007,
+      "sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca"
+    },
+    "validated-window_focus.py.bin": {
+      "bytes": 5068,
+      "sha256": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d"
+    },
+    "validation.json": {
+      "bytes": 6039,
+      "sha256": "4957b7a2c3b4b9ad0b85d8f307dd6f41f83c1d4e80b572a8d08540886c4d7501"
+    }
+  }
+}

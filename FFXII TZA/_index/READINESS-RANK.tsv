@@ -1,0 +1,29 @@
+category	docs	contracts	cited_functions	owned_functions	owned_and_cited	coverage_pct	types	fields	runtime_docs	corrections
+00-Engine-Core-Runtime	39	3	5325				1	33	1	6
+01-Script-VM-Native-Bridge	16	2	271	1900	365	19.2	3	11	3	10
+02-Resource-And-Asset-Pipeline	25	3	520	572	130	22.7	4	37	4	3
+03-World-Area-Field	11	1	214	108	91	84.3	2	3	0	1
+04-Actor-Entity	16	3	698	235	183	77.9	10	331	1	8
+05-Spawn-Encounter-Lifecycle	6	1	534	52	51	98.1	3	25	4	3
+06-Movement-And-Navigation	10	2	354	485	240	49.5	3	98	0	2
+07-Combat-Action	11	2	324	134	119	88.8	4	42	0	1
+08-Combat-Formula	16	2	344	198	195	98.5	3	97	0	8
+09-Combat-AI-And-Gambits	3	1	91	43	38	88.4	3	11	0	0
+10-Status-Periodic-Terminal	7	2	132	24	23	95.8	1	4	1	0
+11-Party	6	1	211	79	48	60.8	1	1	0	2
+12-Items-Equipment-Shops-License	9	2	151	70	63	90.0	4	23	0	1
+13-Rewards-Progression-Economy	9	1	129	38	34	89.5	2	8	0	5
+14-Story-Event-Quest-Hunt	3	1	105	15	15	100.0	1	26	1	1
+15-Input	8	2	269	1047	233	22.3	3	9	3	2
+16-UI	14	1	364	544	97	17.8	2	19	2	1
+17-Presentation-Rendering	24	4	689	1564	299	19.1	6	298	0	3
+18-Audio	21	2	625	2064	760	36.8	1	6	1	3
+19-Save-Load-Settings	12	4	520	87	70	80.5	3	91	2	4
+20-Platform-Online-Achievements	2	1	25	59	30	50.8	3	36	0	1
+21-RNG-And-Determinism	3	1	52	18	15	83.3	2	3	0	1
+22-Middleware-PhyreEngine	18	3	1257				182	645	2	3
+23-Third-Party-Libraries	7	1	365				0	0	2	1
+24-Compiler-And-CRT-Runtime	12	0	310				0	0	5	1
+25-EBP-Script-Container	14	0	190				0	0	0	10
+26-PKFL-Package-Container	1	0	10				0	0	0	0
+99-Unresolved-Residual	21	0	465				0	0	0	7

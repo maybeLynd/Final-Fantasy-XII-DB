@@ -1,0 +1,14 @@
+# record-ctor-006d58d0-initialisers -- EC-7 family C, XC-array cluster.
+# 9 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+00167FE0	230	006D58D0	00808B90
+001680D0	230	006D58D0	00808B90
+001681C0	230	006D58D0	00808B90
+001682B0	230	006D58D0	00808B90
+001683A0	230	006D58D0	00808B90
+00168490	230	006D58D0	00808B90
+00168580	230	006D58D0	00808B90
+00168670	230	006D58D0	00808B90
+00168760	230	006D58D0	00808B90

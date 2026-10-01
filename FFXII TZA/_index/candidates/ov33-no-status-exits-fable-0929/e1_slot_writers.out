@@ -1,0 +1,286 @@
+# functions addressing the queue storage: 13  (raw-only unverified: rip 264 disp 2 abs 4)
+  raw-only rip disp at 0040B738 -> 022C3A84 in 0040B5D0 FUN_0040b5d0
+  raw-only rip disp at 0040B738 -> 022C3A85 in 0040B5D0 FUN_0040b5d0
+  raw-only rip disp at 0040B738 -> 022C3A86 in 0040B5D0 FUN_0040b5d0
+  raw-only rip disp at 0040B738 -> 022C3A88 in 0040B5D0 FUN_0040b5d0
+  raw-only rip disp at 0041CCD4 -> 022C5020 in 0041CCA0 FUN_0041cca0
+  raw-only rip disp at 0041CCD4 -> 022C5021 in 0041CCA0 FUN_0041cca0
+  raw-only rip disp at 0041CCD4 -> 022C5022 in 0041CCA0 FUN_0041cca0
+  raw-only rip disp at 0041CCD4 -> 022C5024 in 0041CCA0 FUN_0041cca0
+  raw-only rip disp at 004BCCF0 -> 022C5013 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCCF0 -> 022C5014 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCCF0 -> 022C5015 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCCF0 -> 022C5017 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD28 -> 022C504B in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD28 -> 022C504C in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD28 -> 022C504D in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD28 -> 022C504F in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD60 -> 022C5083 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD60 -> 022C5084 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD60 -> 022C5085 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCD60 -> 022C5087 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDA8 -> 022C50AC in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDA8 -> 022C50AD in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDA8 -> 022C50AE in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDA8 -> 022C50B0 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDE8 -> 022C51B5 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDE8 -> 022C51B6 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDE8 -> 022C51B7 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCDE8 -> 022C51B9 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE20 -> 022C51ED in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE20 -> 022C51EE in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE20 -> 022C51EF in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE20 -> 022C51F1 in 004BC320 FUN_004bc320
+  raw-only rip disp at 00735F08 -> 022C3D88 in 00735E40 FUN_00735e40
+  raw-only rip disp at 00735F08 -> 022C3D89 in 00735E40 FUN_00735e40
+  raw-only rip disp at 00735F08 -> 022C3D8A in 00735E40 FUN_00735e40
+  raw-only rip disp at 00735F08 -> 022C3D8C in 00735E40 FUN_00735e40
+  raw-only rip disp at 00742A6C -> 022C4EF4 in 007428B0 FUN_007428b0
+  raw-only rip disp at 00742A6C -> 022C4EF5 in 007428B0 FUN_007428b0
+  raw-only rip disp at 00742A6C -> 022C4EF6 in 007428B0 FUN_007428b0
+  raw-only rip disp at 00742A6C -> 022C4EF8 in 007428B0 FUN_007428b0
+  raw-only rip disp at 0077A474 -> 022C4D88 in 0077A3C0 FUN_0077a3c0
+  raw-only rip disp at 0077A474 -> 022C4D89 in 0077A3C0 FUN_0077a3c0
+  raw-only rip disp at 0077A474 -> 022C4D8A in 0077A3C0 FUN_0077a3c0
+  raw-only rip disp at 0077A474 -> 022C4D8C in 0077A3C0 FUN_0077a3c0
+  raw-only rip disp at 001F1FB9 -> 022C42A5 in 001F1FA0 FUN_001f1fa0
+  raw-only rip disp at 001F1FB9 -> 022C42A6 in 001F1FA0 FUN_001f1fa0
+  raw-only rip disp at 001F1FB9 -> 022C42A7 in 001F1FA0 FUN_001f1fa0
+  raw-only rip disp at 001F1FB9 -> 022C42A9 in 001F1FA0 FUN_001f1fa0
+  raw-only rip disp at 002C3529 -> 022C3545 in 002C34F0 FUN_002c34f0
+  raw-only rip disp at 002C3529 -> 022C3546 in 002C34F0 FUN_002c34f0
+  raw-only rip disp at 002C3529 -> 022C3547 in 002C34F0 FUN_002c34f0
+  raw-only rip disp at 002C3529 -> 022C3549 in 002C34F0 FUN_002c34f0
+  raw-only rip disp at 0030B295 -> 022C40A8 in 0030B270 BattleIdClassD_RefreshPrerequisiteRuntimeFlags
+  raw-only rip disp at 0030B295 -> 022C40A9 in 0030B270 BattleIdClassD_RefreshPrerequisiteRuntimeFlags
+  raw-only rip disp at 0030B295 -> 022C40AA in 0030B270 BattleIdClassD_RefreshPrerequisiteRuntimeFlags
+  raw-only rip disp at 0030B295 -> 022C40AC in 0030B270 BattleIdClassD_RefreshPrerequisiteRuntimeFlags
+  raw-only rip disp at 003DC545 -> 022C4892 in 003DC4A0 FUN_003dc4a0
+  raw-only rip disp at 003DC545 -> 022C4893 in 003DC4A0 FUN_003dc4a0
+  raw-only rip disp at 003DC545 -> 022C4894 in 003DC4A0 FUN_003dc4a0
+  raw-only rip disp at 003DC545 -> 022C4896 in 003DC4A0 FUN_003dc4a0
+  raw-only rip disp at 004396F9 -> 022C4F80 in 00438860 FUN_00438860
+  raw-only rip disp at 004396F9 -> 022C4F81 in 00438860 FUN_00438860
+  raw-only rip disp at 004396F9 -> 022C4F82 in 00438860 FUN_00438860
+  raw-only rip disp at 004396F9 -> 022C4F84 in 00438860 FUN_00438860
+  raw-only rip disp at 00643B99 -> 022C31DD in 00643B70 FUN_00643b70
+  raw-only rip disp at 00643B99 -> 022C31DE in 00643B70 FUN_00643b70
+  raw-only rip disp at 00643B99 -> 022C31DF in 00643B70 FUN_00643b70
+  raw-only rip disp at 00643B99 -> 022C31E1 in 00643B70 FUN_00643b70
+  raw-only rip disp at 00643D79 -> 022C33BD in 00643D50 FUN_00643d50
+  raw-only rip disp at 00643D79 -> 022C33BE in 00643D50 FUN_00643d50
+  raw-only rip disp at 00643D79 -> 022C33BF in 00643D50 FUN_00643d50
+  raw-only rip disp at 00643D79 -> 022C33C1 in 00643D50 FUN_00643d50
+  raw-only rip disp at 00643DD9 -> 022C341D in 00643DB0 FUN_00643db0
+  raw-only rip disp at 00643DD9 -> 022C341E in 00643DB0 FUN_00643db0
+  raw-only rip disp at 00643DD9 -> 022C341F in 00643DB0 FUN_00643db0
+  raw-only rip disp at 00643DD9 -> 022C3421 in 00643DB0 FUN_00643db0
+  raw-only rip disp at 00643E49 -> 022C348D in 00643E20 FUN_00643e20
+  raw-only rip disp at 00643E49 -> 022C348E in 00643E20 FUN_00643e20
+  raw-only rip disp at 00643E49 -> 022C348F in 00643E20 FUN_00643e20
+  raw-only rip disp at 00643E49 -> 022C3491 in 00643E20 FUN_00643e20
+  raw-only rip disp at 00717011 -> 022C32A0 in unlisted
+  raw-only rip disp at 00717011 -> 022C32A1 in unlisted
+  raw-only rip disp at 00717011 -> 022C32A2 in unlisted
+  raw-only rip disp at 00717011 -> 022C32A4 in unlisted
+  raw-only rip disp at 007239A1 -> 022C3C1C in 00723760 FUN_00723760
+  raw-only rip disp at 007239A1 -> 022C3C1D in 00723760 FUN_00723760
+  raw-only rip disp at 007239A1 -> 022C3C1E in 00723760 FUN_00723760
+  raw-only rip disp at 007239A1 -> 022C3C20 in 00723760 FUN_00723760
+  raw-only rip disp at 007309CD -> 022C4B19 in 007307A0 FUN_007307a0
+  raw-only rip disp at 007309CD -> 022C4B1A in 007307A0 FUN_007307a0
+  raw-only rip disp at 007309CD -> 022C4B1B in 007307A0 FUN_007307a0
+  raw-only rip disp at 007309CD -> 022C4B1D in 007307A0 FUN_007307a0
+  raw-only rip disp at 007A3D39 -> 022C3D3C in 007A3D30 FUN_007a3d30
+  raw-only rip disp at 007A3D39 -> 022C3D3D in 007A3D30 FUN_007a3d30
+  raw-only rip disp at 007A3D39 -> 022C3D3E in 007A3D30 FUN_007a3d30
+  raw-only rip disp at 007A3D39 -> 022C3D40 in 007A3D30 FUN_007a3d30
+  raw-only rip disp at 007A3F65 -> 022C42F4 in 007A3EE0 FUN_007a3ee0
+  raw-only rip disp at 007A3F65 -> 022C42F5 in 007A3EE0 FUN_007a3ee0
+  raw-only rip disp at 007A3F65 -> 022C42F6 in 007A3EE0 FUN_007a3ee0
+  raw-only rip disp at 007A3F65 -> 022C42F8 in 007A3EE0 FUN_007a3ee0
+  raw-only rip disp at 0019B5BE -> 022C39D1 in 0019B580 FUN_0019b580
+  raw-only rip disp at 0019B5BE -> 022C39D2 in 0019B580 FUN_0019b580
+  raw-only rip disp at 0019B5BE -> 022C39D3 in 0019B580 FUN_0019b580
+  raw-only rip disp at 0019B5BE -> 022C39D5 in 0019B580 FUN_0019b580
+  raw-only rip disp at 002C442E -> 022C444A in 002C4400 FUN_002c4400
+  raw-only rip disp at 002C442E -> 022C444B in 002C4400 FUN_002c4400
+  raw-only rip disp at 002C442E -> 022C444C in 002C4400 FUN_002c4400
+  raw-only rip disp at 002C442E -> 022C444E in 002C4400 FUN_002c4400
+  raw-only rip disp at 0033C286 -> 022C467A in 0033C200 BattleLocomotion_UpdateStallRecoveryState
+  raw-only rip disp at 0033C286 -> 022C467B in 0033C200 BattleLocomotion_UpdateStallRecoveryState
+  raw-only rip disp at 0033C286 -> 022C467C in 0033C200 BattleLocomotion_UpdateStallRecoveryState
+  raw-only rip disp at 0033C286 -> 022C467E in 0033C200 BattleLocomotion_UpdateStallRecoveryState
+  raw-only rip disp at 003ECDEE -> 022C513A in 003ECCA0 FUN_003ecca0
+  raw-only rip disp at 003ECDEE -> 022C513B in 003ECCA0 FUN_003ecca0
+  raw-only rip disp at 003ECDEE -> 022C513C in 003ECCA0 FUN_003ecca0
+  raw-only rip disp at 003ECDEE -> 022C513E in 003ECCA0 FUN_003ecca0
+  raw-only rip disp at 0042BF92 -> 022C4297 in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 0042BF92 -> 022C4298 in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 0042BF92 -> 022C4299 in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 0042BF92 -> 022C429B in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 00439476 -> 022C4FFD in 00438860 FUN_00438860
+  raw-only rip disp at 00439476 -> 022C4FFE in 00438860 FUN_00438860
+  raw-only rip disp at 00439476 -> 022C4FFF in 00438860 FUN_00438860
+  raw-only rip disp at 00439476 -> 022C5001 in 00438860 FUN_00438860
+  raw-only rip disp at 004BAE82 -> 022C324F in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAE82 -> 022C3250 in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAE82 -> 022C3251 in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAE82 -> 022C3253 in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAEBA -> 022C3287 in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAEBA -> 022C3288 in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAEBA -> 022C3289 in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 004BAEBA -> 022C328B in 004B9EA0 FUN_004b9ea0
+  raw-only rip disp at 0063B63A -> 022C3986 in 0063B5E0 FUN_0063b5e0
+  raw-only rip disp at 0063B63A -> 022C3987 in 0063B5E0 FUN_0063b5e0
+  raw-only rip disp at 0063B63A -> 022C3988 in 0063B5E0 FUN_0063b5e0
+  raw-only rip disp at 0063B63A -> 022C398A in 0063B5E0 FUN_0063b5e0
+  raw-only rip disp at 0063B6BA -> 022C3A06 in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B6BA -> 022C3A07 in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B6BA -> 022C3A08 in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B6BA -> 022C3A0A in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B74A -> 022C3A96 in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B74A -> 022C3A97 in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B74A -> 022C3A98 in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B74A -> 022C3A9A in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B7DA -> 022C3B26 in 0063B780 FUN_0063b780
+  raw-only rip disp at 0063B7DA -> 022C3B27 in 0063B780 FUN_0063b780
+  raw-only rip disp at 0063B7DA -> 022C3B28 in 0063B780 FUN_0063b780
+  raw-only rip disp at 0063B7DA -> 022C3B2A in 0063B780 FUN_0063b780
+  raw-only rip disp at 0063B85A -> 022C3BA6 in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B85A -> 022C3BA7 in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B85A -> 022C3BA8 in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B85A -> 022C3BAA in 0063B800 FUN_0063b800
+  raw-only rip disp at 00740F3A -> 022C33F2 in 00740BE0 FUN_00740be0
+  raw-only rip disp at 00740F3A -> 022C33F3 in 00740BE0 FUN_00740be0
+  raw-only rip disp at 00740F3A -> 022C33F4 in 00740BE0 FUN_00740be0
+  raw-only rip disp at 00740F3A -> 022C33F6 in 00740BE0 FUN_00740be0
+  raw-only rip disp at 007B3CCE -> 022C3FBD in 007B31A0 FUN_007b31a0
+  raw-only rip disp at 007B3CCE -> 022C3FBE in 007B31A0 FUN_007b31a0
+  raw-only rip disp at 007B3CCE -> 022C3FBF in 007B31A0 FUN_007b31a0
+  raw-only rip disp at 007B3CCE -> 022C3FC1 in 007B31A0 FUN_007b31a0
+  raw-only rip disp at 001BC5DB -> 022C4C6A in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC5DB -> 022C4C6B in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC5DB -> 022C4C6C in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC5DB -> 022C4C6E in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC65F -> 022C4CEE in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC65F -> 022C4CEF in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC65F -> 022C4CF0 in 001BC190 FUN_001bc190
+  raw-only rip disp at 001BC65F -> 022C4CF2 in 001BC190 FUN_001bc190
+  raw-only rip disp at 001EF567 -> 022C4E7A in 001EF560 FUN_001ef560
+  raw-only rip disp at 001EF567 -> 022C4E7B in 001EF560 FUN_001ef560
+  raw-only rip disp at 001EF567 -> 022C4E7C in 001EF560 FUN_001ef560
+  raw-only rip disp at 001EF567 -> 022C4E7E in 001EF560 FUN_001ef560
+  raw-only rip disp at 002B51F7 -> 022C51FB in 002B49F0 FUN_002b49f0 [pdata]
+  raw-only rip disp at 002B51F7 -> 022C51FC in 002B49F0 FUN_002b49f0 [pdata]
+  raw-only rip disp at 002B51F7 -> 022C51FD in 002B49F0 FUN_002b49f0 [pdata]
+  raw-only rip disp at 002B51F7 -> 022C51FF in 002B49F0 FUN_002b49f0 [pdata]
+  raw-only rip disp at 002CB05F -> 022C3363 in 002CAFE0 FUN_002cafe0
+  raw-only rip disp at 002CB05F -> 022C3364 in 002CAFE0 FUN_002cafe0
+  raw-only rip disp at 002CB05F -> 022C3365 in 002CAFE0 FUN_002cafe0
+  raw-only rip disp at 002CB05F -> 022C3367 in 002CAFE0 FUN_002cafe0
+  raw-only rip disp at 0033C783 -> 022C4A87 in 0033C310 FUN_0033c310
+  raw-only rip disp at 0033C783 -> 022C4A88 in 0033C310 FUN_0033c310
+  raw-only rip disp at 0033C783 -> 022C4A89 in 0033C310 FUN_0033c310
+  raw-only rip disp at 0033C783 -> 022C4A8B in 0033C310 FUN_0033c310
+  raw-only rip disp at 0042BF97 -> 022C4319 in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 0042BF97 -> 022C431A in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 0042BF97 -> 022C431B in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 0042BF97 -> 022C431D in 0042BED0 FUN_0042bed0
+  raw-only rip disp at 004390DF -> 022C4C66 in 00438860 FUN_00438860
+  raw-only rip disp at 004390DF -> 022C4C67 in 00438860 FUN_00438860
+  raw-only rip disp at 004390DF -> 022C4C68 in 00438860 FUN_00438860
+  raw-only rip disp at 004390DF -> 022C4C6A in 00438860 FUN_00438860
+  raw-only rip disp at 0044C24F -> 022C4594 in 0044BAC0 FUN_0044bac0
+  raw-only rip disp at 0044C24F -> 022C4595 in 0044BAC0 FUN_0044bac0
+  raw-only rip disp at 0044C24F -> 022C4596 in 0044BAC0 FUN_0044bac0
+  raw-only rip disp at 0044C24F -> 022C4598 in 0044BAC0 FUN_0044bac0
+  raw-only rip disp at 0049BDEF -> 022C41BC in 0049B9E0 FUN_0049b9e0
+  raw-only rip disp at 0049BDEF -> 022C41BD in 0049B9E0 FUN_0049b9e0
+  raw-only rip disp at 0049BDEF -> 022C41BE in 0049B9E0 FUN_0049b9e0
+  raw-only rip disp at 0049BDEF -> 022C41C0 in 0049B9E0 FUN_0049b9e0
+  raw-only rip disp at 004BCE83 -> 022C5187 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE83 -> 022C5188 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE83 -> 022C5189 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCE83 -> 022C518B in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCEBB -> 022C51BF in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCEBB -> 022C51C0 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCEBB -> 022C51C1 in 004BC320 FUN_004bc320
+  raw-only rip disp at 004BCEBB -> 022C51C3 in 004BC320 FUN_004bc320
+  raw-only rip disp at 0063B6D3 -> 022C3A1F in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B6D3 -> 022C3A20 in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B6D3 -> 022C3A21 in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B6D3 -> 022C3A23 in 0063B660 FUN_0063b660
+  raw-only rip disp at 0063B763 -> 022C3AAF in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B763 -> 022C3AB0 in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B763 -> 022C3AB1 in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B763 -> 022C3AB3 in 0063B6F0 FUN_0063b6f0
+  raw-only rip disp at 0063B873 -> 022C3BBF in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B873 -> 022C3BC0 in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B873 -> 022C3BC1 in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B873 -> 022C3BC3 in 0063B800 FUN_0063b800
+  raw-only rip disp at 0063B8DF -> 022C3C2B in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8DF -> 022C3C2C in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8DF -> 022C3C2D in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8DF -> 022C3C2F in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8EF -> 022C3C3B in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8EF -> 022C3C3C in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8EF -> 022C3C3D in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B8EF -> 022C3C3F in 0063B890 FUN_0063b890
+  raw-only rip disp at 0063B96F -> 022C3CBB in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B96F -> 022C3CBC in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B96F -> 022C3CBD in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B96F -> 022C3CBF in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B97F -> 022C3CCB in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B97F -> 022C3CCC in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B97F -> 022C3CCD in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063B97F -> 022C3CCF in 0063B920 FUN_0063b920
+  raw-only rip disp at 0063C097 -> 022C43E3 in 0063C090 FUN_0063c090
+  raw-only rip disp at 0063C097 -> 022C43E4 in 0063C090 FUN_0063c090
+  raw-only rip disp at 0063C097 -> 022C43E5 in 0063C090 FUN_0063c090
+  raw-only rip disp at 0063C097 -> 022C43E7 in 0063C090 FUN_0063c090
+  raw-only rip disp at 006F0857 -> 022C495C in 006F0800 FUN_006f0800
+  raw-only rip disp at 006F0857 -> 022C495D in 006F0800 FUN_006f0800
+  raw-only rip disp at 006F0857 -> 022C495E in 006F0800 FUN_006f0800
+  raw-only rip disp at 006F0857 -> 022C4960 in 006F0800 FUN_006f0800
+  raw-only rip disp at 006FFE23 -> 022C3F27 in 006FF900 FUN_006ff900
+  raw-only rip disp at 006FFE23 -> 022C3F28 in 006FF900 FUN_006ff900
+  raw-only rip disp at 006FFE23 -> 022C3F29 in 006FF900 FUN_006ff900
+  raw-only rip disp at 006FFE23 -> 022C3F2B in 006FF900 FUN_006ff900
+  raw-only rip disp at 007174EB -> 022C3DEE in 00717450 FUN_00717450
+  raw-only rip disp at 007174EB -> 022C3DEF in 00717450 FUN_00717450
+  raw-only rip disp at 007174EB -> 022C3DF0 in 00717450 FUN_00717450
+  raw-only rip disp at 007174EB -> 022C3DF2 in 00717450 FUN_00717450
+  raw-only rip disp at 0074FA4B -> 022C3A52 in 0074F740 FUN_0074f740
+  raw-only rip disp at 0074FA4B -> 022C3A53 in 0074F740 FUN_0074f740
+  raw-only rip disp at 0074FA4B -> 022C3A54 in 0074F740 FUN_0074f740
+  raw-only rip disp at 0074FA4B -> 022C3A56 in 0074F740 FUN_0074f740
+  raw-only rip disp at 0077A31F -> 022C3634 in 0077A1C0 FUN_0077a1c0
+  raw-only rip disp at 0077A31F -> 022C3635 in 0077A1C0 FUN_0077a1c0
+  raw-only rip disp at 0077A31F -> 022C3636 in 0077A1C0 FUN_0077a1c0
+  raw-only rip disp at 0077A31F -> 022C3638 in 0077A1C0 FUN_0077a1c0
+  raw-only rip disp at 0083DF53 -> 022C37A9 in 0083DE00 FUN_0083de00
+  raw-only rip disp at 0083DF53 -> 022C37AA in 0083DE00 FUN_0083de00
+  raw-only rip disp at 0083DF53 -> 022C37AB in 0083DE00 FUN_0083de00
+  raw-only rip disp at 0083DF53 -> 022C37AD in 0083DE00 FUN_0083de00
+0032E070 FUN_0032e070 : rip 0032E090->022C51C0
+0032E400 FUN_0032e400 : rip 0032E40F->022C51F0
+0032E450 FUN_0032e450 : rip 0032E460->022C31D8, rip 0032E4A3->022C31C0, rip 0032E4AA->022C31D8, rip 0032E4B1->022C51D0, rip 0032E4B8->022C5150, rip 0032E4BF->022C51C0 ...
+0032E4D0 FUN_0032e4d0 : rip 0032E4DF->022C31C0
+0032E520 FUN_0032e520 : rip 0032E536->022C51C0, rip 0032E568->022C51C0
+0032E590 FUN_0032e590 : rip 0032E5A1->022C31C0
+0032E620 FUN_0032e620 : rip 0032E634->022C51D8, rip 0032E63D->022C51DC, rip 0032E6EB->022C31C0
+0032E870 FUN_0032e870 : rip 0032E88D->022C51D0, rip 0032E8BB->022C51D0
+0032E990 FUN_0032e990 : rip 0032E990->022C51D0, rip 0032E9AE->022C51C0, rip 0032E9B5->022C51D0, rip 0032E9CC->022C51C0, rip 0032E9DA->022C51C8, rip 0032E9EB->022C51C0 ...
+0032EA90 FUN_0032ea90 : rip 0032EAA0->022C51F0, rip 0032EAA7->022C51E0
+0032EAE0 FUN_0032eae0 : rip 0032EAE0->022C51E0
+0032EB40 FUN_0032eb40 : rip 0032EB68->022C51F0
+0032EC40 FUN_0032ec40 : rip 0032EC4B->022C51C0, rip 0032EC59->022C51C0, rip 0032EC60->022C51C8, rip 0032EC6B->022C51C8, rip 0032ECA2->022C51D0, rip 0032ECBE->022C51D0
+
+# stores covering +0x21 or +0x24 (non-stack, non-rip) inside those functions:
+  0032E902 in 0032E870  mov dword ptr [r10 + 0x24], ebp
+  0032E943 in 0032E870  mov byte ptr [r10 + 0x21], r14b
+control 0032E943 listed: True
+control 0032E902 listed: True
+FAILS 0
+STATUS COMPLETE

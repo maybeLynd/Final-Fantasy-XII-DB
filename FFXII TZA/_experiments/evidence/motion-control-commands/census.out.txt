@@ -1,0 +1,9 @@
+blocks: 31942 (authored-command census, .ca only: 31,942)
+P1  0x00 per block (count -> blocks): [(1, 31942)] ; blocks whose first command is 0x00: 30003
+    0x00 length word: [('1-30', 622), ('endless', 31320)]
+    0x03 hold word (value -> commands): [(-1, 6432)]
+0x2C commands: 387757 ; with 'from' = 0xFFFF (any): 25163
+P2  0x2C 'from' words that are neither 0xFFFF nor 12-bit: 0
+P3  0x2C commands shorter than 8 + 2 x pairs: 0
+    0x2C blend byte +4 (value -> commands): [(15, 74968), (10, 58326), (20, 57150), (255, 32426), (12, 29514), (2, 18702), (8, 18136), (3, 13865), (25, 13675), (5, 12771)]
+    0x2C pair count byte +7 (value -> commands): [(1, 387757)]

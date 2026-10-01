@@ -1,0 +1,141 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "4af2d73c0fac2bf5ebe88bcddd25adde9e1b5f10"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "0e808954cf83a35127390dd211b3d34c6643d085"
+    },
+    {
+      "path": "corrected-spec.json",
+      "git_blob": "ab5535bd04f7d6c21e11da055a573bfd6cbd0b51"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "git_blob": "cc3858f48ae08b1291146a395a8252ce8297a818"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "git_blob": "971306f89e0afffe8e1cf5d9332d917b24d67115"
+    },
+    {
+      "path": "failure.json",
+      "git_blob": "e0fdb35c5649b1b967da00db490d368086224a1d"
+    },
+    {
+      "path": "fault-ignore-splice-control.stderr",
+      "git_blob": "11e5004b0b2441fa698cebb1201295023696de37"
+    },
+    {
+      "path": "fault-ignore-splice-control.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "fault-old-call-start.stderr",
+      "git_blob": "8d20f377df3911f8a54f4151274ca35e9baf0c1c"
+    },
+    {
+      "path": "fault-old-call-start.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "fault-physical-map.stderr",
+      "git_blob": "83eeacd41f7d37a8fa8c663ee795432a4caa8c6a"
+    },
+    {
+      "path": "fault-physical-map.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "feasibility.json",
+      "git_blob": "5d50c6c4382a0c40df58986150ad7c110a7233ea"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "068a64b4ee7d9210856c5489909047d2dfcff337"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "5f9153a3f8370dd8763e2651ede28f42b5c66cfc"
+    },
+    {
+      "path": "probe.py",
+      "git_blob": "4e1bfc9665d548c0ffac2fbf7330f7a81f2d981e"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "d2e4b74726418c9b62005e7581b300771a461595"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "e4cc5c2317971e73d739bbb53df13ff97f50a7fe"
+    },
+    {
+      "path": "regression-controls.json",
+      "git_blob": "687dee6722b4c171c7d74120039b7c23d2fcbc04"
+    },
+    {
+      "path": "repair.py",
+      "git_blob": "f933a7d2ccb75699ddfd1d01b927c7721eb83f40"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "0199c55a1a59d0f960d606ddabd161ef57bbfaad"
+    },
+    {
+      "path": "retained/check-before-call-precondition-fix.py",
+      "git_blob": "688058048ed12732b5933a22265f23737a4ef846"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "4af2d73c0fac2bf5ebe88bcddd25adde9e1b5f10"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "git_blob": "1ae02ad73660ea581294eccddf9d934ca130e8b8"
+    },
+    {
+      "path": "retained/evctrl.ebp",
+      "git_blob": "0bde06d52c8bfa06284f6fe64a7f67e5897de235"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "git_blob": "3042fefd0ba4aa447cf2c860d46932bc2bc0be95"
+    },
+    {
+      "path": "retained/initial-feasibility.json",
+      "git_blob": "5d50c6c4382a0c40df58986150ad7c110a7233ea"
+    },
+    {
+      "path": "retained/initial-probe.py",
+      "git_blob": "4e1bfc9665d548c0ffac2fbf7330f7a81f2d981e"
+    },
+    {
+      "path": "retained/parent61-raw.json",
+      "git_blob": "b38847372c5c21c06c7e875ec8ccf2eae83b5ad1"
+    },
+    {
+      "path": "retained/result-before-attribution-qualifier.json",
+      "git_blob": "fd256fb467d57e38869ab322aedd1854d72bd828"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "git_blob": "a2808c68c3b0fc327600c643d2a0b999887e519f"
+    },
+    {
+      "path": "retained/verb-table.tsv",
+      "git_blob": "4528b631fe2d07bf726df0b268a0bf74db017ab9"
+    }
+  ]
+}

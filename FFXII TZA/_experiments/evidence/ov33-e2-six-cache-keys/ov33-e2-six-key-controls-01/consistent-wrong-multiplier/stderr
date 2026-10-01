@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-ov33-e2-six-cache-keys.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-ov33-e2-six-cache-keys.py", line 18, in main
+    if len(raw['ranges'])!=1 or (raw['ranges'][0]['start'],raw['ranges'][0]['end_exclusive'],raw['ranges'][0]['sha256'])!=('0x674a00','0x674a28','1b604e013c04950e3c0b1c29b3d08e6776b4cf316eabec0bccfc1cd036672397'):raise ValueError('original complete hash-loop identity changed')
+                                                                                                                                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: original complete hash-loop identity changed

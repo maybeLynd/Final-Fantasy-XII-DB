@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "positive_control": "Actual application-entry allocation-null TEST/JE detected separately from ready-store; exact bodies disassembled again from preserved bytes.",
+  "controls": [
+    {
+      "name": "wrong-kind-index",
+      "rejected": true
+    },
+    {
+      "name": "ready-store-relabelled-as-test",
+      "rejected": true
+    },
+    {
+      "name": "request-result-relabelled-as-buffer",
+      "rejected": true
+    }
+  ],
+  "class": "Static artifact-corruption controls, not native mutations/normal invocation experiments"
+}

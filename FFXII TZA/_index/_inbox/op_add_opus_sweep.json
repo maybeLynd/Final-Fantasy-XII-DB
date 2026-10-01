@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-SWEEP-FOR-UNDECLARED-WRITABLE-STATICS",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "writable static state the types store does not cover, found by method rather than by reading a warning",
+  "scope": "every written rip-relative target in the image, minus every range a STATIC/PTR/SLOTPTR/ARRAY route cell declares, clustered by proximity and ranked by writing bodies; then read the top clusters instead of counting them",
+  "completion": "the sweep runs and its limit is stated; the clusters actually read are classified rather than assumed, with anything that turns out not to be an object recorded as such; whatever is an object and lacks a row gets one; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

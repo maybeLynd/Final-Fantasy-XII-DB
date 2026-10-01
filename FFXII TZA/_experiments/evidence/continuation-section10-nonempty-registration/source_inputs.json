@@ -1,0 +1,53 @@
+{
+  "chain": [
+    {
+      "file": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_05_Encoded_ID_Query_Mechanism.zip",
+      "sha256": "afe8391d31a28a6f1c6e15f4d92a1f2d231b380bf73e1658aba850eedc6d1a24"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_06_Resource_Ownership_Lifetime.zip",
+      "sha256": "70c70a2e2d6d5bb9ecf8247750b9af68fdf9ad32df5341080468855937a6518c"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_07_Source_Movement_Refresh.zip",
+      "sha256": "4de8b1fcef86baa6364df1220b3c74c6ba30b2b9f1a53a0dfb5793ac745ded5a"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_08_External_Source_Owners.zip",
+      "sha256": "3d00489b00bc867aecb30b8176eee672c5d86a23646f988affa6553881a8aeb4"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_09_Owner_Request_Production.zip",
+      "sha256": "54756bd05fd0e443f47a45c4ff52853ca81a917901c4b836d18c7e81ffce3741"
+    }
+  ],
+  "canonical_preimages": {
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md": "227409019532d9fdb5ad6bcca8e2d19f11cfd2d3c90cc363d70b82b899ff1670",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md": "214c6e33ae4dcbab7a77db68d67a912e1037f1ee75892648d094c5279c709ba0",
+    "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md": "f5380d60daef4bf424aec6c80ba807be611c81abd880da0345dbd4ff43313f62",
+    "02-Resource-And-Asset-Pipeline/resource-section-addressing.md": "55bc22d53b0705a90c03bbe4cad1958350b3ba3e7774d32affdbab80e12cc964",
+    "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md": "57eb674196502e1e3613fbb2a32307b8b85bddeb5e633b19ef768f34043ba688",
+    "_index/_inbox/EXTERNAL-CONTINUATION.md": "7e6a11629f16a6387aa2c8723fc2d1bb94f8c0a97030523ee18bd49ee89f4dc3"
+  },
+  "original_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+}

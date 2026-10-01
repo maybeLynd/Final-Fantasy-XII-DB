@@ -1,0 +1,60 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 8955,
+      "sha256": "9e7dff6aa024db5a6593ce7f4bb8aa3383ade262a562cc172286f82e3b70b7c2"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 7642,
+      "sha256": "5356d230d65d8800e83ca1645b68f1ed4c1fc6bddf84dd3e2695f70ec803c5db"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2625,
+      "sha256": "c2ebf87d1cd4b6ba92b82920b97b8db3cd3b94b945c452e78c63b782410a801c"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 9310,
+      "sha256": "3b7df47e0488093c6f536b9566479a1b335278ec416eeac6d3459aebe0753455"
+    },
+    {
+      "path": "raw-results.json",
+      "bytes": 412187,
+      "sha256": "904079d9a34e109a46f1df153ea67e439cea98c6af2bcefb30e1457746853e29"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3888,
+      "sha256": "93d834dc71f716d9bede2eb131f84367e6e4343411bbc97adeb80122d7743156"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/the-vif1-vu1-layer.md",
+      "bytes": 67563,
+      "sha256": "d01665ed488c2c8692b7ac793a08ac598a484840eb2c5b345ecc8cf899211451"
+    },
+    {
+      "path": "source.json",
+      "bytes": 33520,
+      "sha256": "467e3ea5e5a13015b103585831bfb22adc106aeaac9dcb6f86f453e22e367d9d"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 346,
+      "sha256": "4b6454f0c6eb80defac2d1067f5d68bceba71f139557cb93de9277e00b7ca142"
+    }
+  ],
+  "limits": "Complete isolated shipping composition under supplied finite state, no native effects/initialisation/presentation. Independent/owner acceptance pending."
+}

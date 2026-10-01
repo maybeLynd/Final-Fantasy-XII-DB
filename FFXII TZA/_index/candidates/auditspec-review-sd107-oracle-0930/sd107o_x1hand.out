@@ -1,0 +1,124 @@
+== X1. alignment of the 56 out-of-shape sites (sd107o_indep_G.out)
+  control misaligned 0020E76F -> on-boundary False
+  control misaligned 008638FE -> on-boundary False
+  control misaligned 008643DC -> on-boundary False
+  control misaligned 00864922 -> on-boundary False
+  control by-hand     007E785C -> on-boundary True
+  on-boundary 50 of 56; not: [('001BABB9', False), ('0036C5B6', None), ('005B2E51', False), ('005B31B1', False), ('007797C9', None), ('007797E8', None)]
+== X2. rsp-based register mov stores covering +0xA3 (raw disp32 scan, same shape as G, base rsp)
+  raw hits 221, on a .pdata linear-decode boundary 221
+    00121F98  qword ptr [rsp + 0xa0], rdi  on-boundary True
+    0016FF0D  dword ptr [rsp + 0xa0], edi  on-boundary True
+    001704CE  qword ptr [rsp + 0xa0], r15  on-boundary True
+    00178D41  dword ptr [rsp + 0xa0], ecx  on-boundary True
+    00178E03  qword ptr [rsp + 0xa0], rax  on-boundary True
+    00178E92  qword ptr [rsp + 0xa0], rax  on-boundary True
+    0017C393  qword ptr [rsp + 0xa0], r14  on-boundary True
+    0017C79E  qword ptr [rsp + 0xa0], r14  on-boundary True
+== X3. vtable written by 0019F930 before its call to 001A0960
+    0019F930  push   rdi
+    0019F932  sub    rsp, 0x30
+    0019F936  mov    qword ptr [rsp + 0x20], 0xfffffffffffffffe
+    0019F93F  mov    qword ptr [rsp + 0x40], rbx
+    0019F944  mov    qword ptr [rsp + 0x48], rsi
+    0019F949  mov    rdi, rcx
+    0019F94C  lea    rax, [rip + 0x754d9d]   ; -> 008F46F0  COL 01CECED8 sig 1 off 0x0 class .?AVAsyncLoadManager@@
+    0019F953  mov    qword ptr [rcx], rax
+    0019F956  call   0x1a0960
+
+
+######## X1 by-hand context
+== 001BABB9  chunk 001BAA30-001BAFE7
+  linear from chunk start:
+    001BAB8B  lea rdx, [rip + 0x73e68e]
+    001BAB92  lea rcx, [rdi + 1]
+    001BAB96  call qword ptr [rip + 0x707e6c]
+    001BAB9C  movsx ecx, byte ptr [rax + 3]
+    001BABA0  sub ecx, 0x30
+    001BABA3  mov r8d, r13d
+    001BABA6  mov edx, r13d
+    001BABA9  shl dx, cl
+    001BABAC  xor ecx, ecx
+    001BABAE  lea r9d, [rcx + 0x20]
+    001BABB2  call 0x183780
+    001BABB7  movsxd rcx, dword ptr [rbp + 0x48]
+    001BABBB  mov qword ptr [r14 + rcx*8 + 0xa0], rax
+    001BABC3  inc esi
+    001BABC5  mov rcx, qword ptr [r14 + 8]
+    001BABC9  add rcx, 0x100
+  no back-decode from -0x40/-0x30/-0x20 lands on the site
+== 0036C5B6  chunk none
+  back-decode from -0x40 lands:
+    0036C59E  int3 
+    0036C59F  int3 
+    0036C5A0  cmp ecx, 0xe
+    0036C5A3  ja 0x36c5bf
+    0036C5A5  movsxd rax, ecx
+    0036C5A8  imul rcx, rax, 0xa8
+    0036C5AF  lea rax, [rip + 0x1f6ba1a]
+    0036C5B6  mov qword ptr [rcx + rax + 0xa0], rdx
+    0036C5BE  ret 
+    0036C5BF  xor eax, eax
+== 005B2E51  chunk 005B2D60-005B3DDA
+  linear from chunk start:
+    005B2E23  mov r11d, edx
+    005B2E26  mov dword ptr [rbp + 4], edx
+    005B2E29  mov dword ptr [rbp + 0x80], edx
+    005B2E2F  mov qword ptr [rbp + 0x88], rdx
+    005B2E36  mov r14d, edx
+    005B2E39  mov dword ptr [rbp + 0x20], edx
+    005B2E3C  mov dword ptr [rbp + 0x60], edx
+    005B2E3F  mov qword ptr [rbp + 0x68], rdx
+    005B2E43  mov ecx, edx
+    005B2E45  mov dword ptr [rbp + 0xc], edx
+    005B2E48  mov dword ptr [rbp + 0x70], edx
+    005B2E4B  mov qword ptr [rbp + 0x78], rdx
+    005B2E4F  mov dword ptr [rbp + 0x40], edx
+    005B2E52  mov dword ptr [rbp + 0xa0], edx
+    005B2E58  mov qword ptr [rbp + 0xa8], 0
+  no back-decode from -0x40/-0x30/-0x20 lands on the site
+== 005B31B1  chunk 005B2D60-005B3DDA
+  linear from chunk start:
+    005B3183  je 0x5b3188
+    005B3185  mov qword ptr [rcx], r13
+    005B3188  cmp r14, rdi
+    005B318B  je 0x5b31a6
+    005B318D  shr esi, 0x1f
+    005B3190  not sil
+    005B3193  test sil, 1
+    005B3197  je 0x5b31a6
+    005B3199  test r14, r14
+    005B319C  je 0x5b31a6
+    005B319E  mov rcx, r14
+    005B31A1  call 0x584730
+    005B31A6  mov qword ptr [rbp + 0xa8], rdi
+    005B31AD  lea eax, [rbx + 1]
+    005B31B0  mov dword ptr [rbp + 0x40], eax
+    005B31B3  mov dword ptr [rbp + 0xa0], eax
+    005B31B9  lea r14, [rip + 0x77e660]
+    005B31C0  mov qword ptr [rbp + 0xe8], r14
+  no back-decode from -0x40/-0x30/-0x20 lands on the site
+== 007797C9  chunk none
+  back-decode from -0x40 lands:
+    007797A6  mov eax, r8d
+    007797A9  nop dword ptr [rax]
+    007797B0  mov rcx, qword ptr [r9 + 0x4b8]
+    007797B7  test r10b, r10b
+    007797BA  je 0x7797db
+    007797BC  mov rdx, qword ptr [rax + rcx + 0x88]
+    007797C4  test rdx, rdx
+    007797C7  je 0x7797d1
+    007797C9  mov qword ptr [rax + rcx + 0xa0], rdx
+    007797D1  mov rdx, qword ptr [rax + rcx + 0x98]
+== 007797E8  chunk none
+  back-decode from -0x40 lands:
+    007797C4  test rdx, rdx
+    007797C7  je 0x7797d1
+    007797C9  mov qword ptr [rax + rcx + 0xa0], rdx
+    007797D1  mov rdx, qword ptr [rax + rcx + 0x98]
+    007797D9  jmp 0x7797f8
+    007797DB  mov rdx, qword ptr [rax + rcx + 0x80]
+    007797E3  test rdx, rdx
+    007797E6  je 0x7797f0
+    007797E8  mov qword ptr [rax + rcx + 0xa0], rdx
+    007797F0  mov rdx, qword ptr [rax + rcx + 0x90]

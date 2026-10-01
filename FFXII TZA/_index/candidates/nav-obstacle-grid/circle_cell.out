@@ -1,0 +1,5 @@
+PASS K1  bands close on equality (jb fails / jae passes); corners compare r*r > d*d strictly (ja, seta); 67 instructions
+PASS K2  edge (-5, 5) -> 1; four corner tangencies -> 0; r 40A00001 -> r*r 41C80003 -> 1; r 409FFFFF -> 41C7FFFE -> 0
+PASS K3  NaN centre or radius -> 0
+PASS C  an inclusive first corner compare accepts the exact tangency
+FAILS 0

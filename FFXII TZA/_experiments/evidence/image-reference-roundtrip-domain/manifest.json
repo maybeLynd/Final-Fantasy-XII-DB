@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4069,
+      "sha256": "3beddc426953fd69ef42fb77936c94fb39523a7a93ed827d181134ce35057a38"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 9803,
+      "sha256": "d861eeadca26ee39f4f78a562e22062ce37d30f6110ce0a25eef5160668c5949"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1670,
+      "sha256": "b9a688f8281dc2d5084e32357f2ef3c5cf2d2dda6fb16bf4359de012cedf1204"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1599,
+      "sha256": "e0e2a030b499cfa8ad9d8f91363ddd5dd2efa40a930989f6fdd38ca4eb0ae340"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1806,
+      "sha256": "7c037cd8eb03e71a7fed285229beb3007608a938320da56d3820dbbe946c1078"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4368,
+      "sha256": "ff1ac27f774f0ad86854e2e88508ee0bfa3ab35dc51c02079adce5f95873208f"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8556,
+      "sha256": "65a69cb4bfe0b529375991aeeffd734cd89a511d74f1fe5737d8e703f2fec0cc"
+    },
+    {
+      "path": "retained/catalog-identity.json",
+      "bytes": 3075,
+      "sha256": "f2e1b5fc1d07918ac2b5bc3eaa088c4167cefddd070fb60e8adf7d36b866f0f5"
+    },
+    {
+      "path": "retained/decode.bin",
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    {
+      "path": "retained/encode.bin",
+      "bytes": 9,
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+    },
+    {
+      "path": "retained/encoded-id-contract.md",
+      "bytes": 28420,
+      "sha256": "df246c2e2adb04e191b002cca5913bc0be8c4a889d09f0bd152d5335f2c23e8d"
+    },
+    {
+      "path": "retained/image_address_base_writer_bounds.py",
+      "bytes": 14605,
+      "sha256": "d6eedb16a16adbe2122fcab7f2ccd2e62ecf45fc3ac3d5a03247ffa9354130b2"
+    },
+    {
+      "path": "retained/shared-neighbours.md",
+      "bytes": 36796,
+      "sha256": "a1d28b4753c2ca850b5c3addcbdf1e0fb4f90cbd082118d031c9668121c0a58b"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "Original10/9B source/modular proof and conditional calculations only. No original/native/emulator/live; stable-base translated u32 domain, no actual base/caller/lifetime/null convention."
+}

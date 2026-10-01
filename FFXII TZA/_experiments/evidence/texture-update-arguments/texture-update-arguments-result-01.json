@@ -1,0 +1,676 @@
+{
+  "status": "PRODUCER_CHECKED_TEXTURE_UPDATE_ARGUMENTS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-async-count-path-source-01.json",
+      "sha256": "9f06c5ce1f305b9ed4f162fd04a3c3895602582964c6ac39aeacbb8837dde079"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 328,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfg": {
+    "entry": "0x622010",
+    "end_exclusive": "0x6221dc",
+    "instructions": 147,
+    "returns": [
+      "0x6221db"
+    ],
+    "calls": [
+      {
+        "pc": "0x62207b",
+        "target": "0x5fd050"
+      },
+      {
+        "pc": "0x6220fd",
+        "target": "qword ptr [rax + 0x180]"
+      },
+      {
+        "pc": "0x622190",
+        "target": "0x584730"
+      }
+    ]
+  },
+  "question": "Exact deferred updater argument dependencies, instruction-width arithmetic and cleanup re-selection",
+  "argument_map": {
+    "RCX": "[5FD050 return+110] captured context",
+    "RDX": "qword element[index]+0 reselected each iteration",
+    "R8D": "mip index 0..last inclusive",
+    "R9D": "0",
+    "stack20": "entry element[index]+28 payload pointer plus prior advances",
+    "stack28": "DWORD row pitch",
+    "stack30": "DWORD 0"
+  },
+  "instruction_pins": [
+    {
+      "pc": "0x621ff0",
+      "mnemonic": "mov",
+      "args": "edx, dword ptr [rcx + 0x10]"
+    },
+    {
+      "pc": "0x621ff3",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rcx + 8]"
+    },
+    {
+      "pc": "0x621ff7",
+      "mnemonic": "jmp",
+      "args": "0x622010"
+    },
+    {
+      "pc": "0x62202c",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rcx + 0x30]"
+    },
+    {
+      "pc": "0x62202f",
+      "mnemonic": "mov",
+      "args": "rbx, rcx"
+    },
+    {
+      "pc": "0x622032",
+      "mnemonic": "btr",
+      "args": "eax, 0x1f"
+    },
+    {
+      "pc": "0x62204d",
+      "mnemonic": "mov",
+      "args": "edi, dword ptr [rbx + 0x28]"
+    },
+    {
+      "pc": "0x622050",
+      "mnemonic": "mov",
+      "args": "esi, dword ptr [rbx + 0x2c]"
+    },
+    {
+      "pc": "0x622053",
+      "mnemonic": "mov",
+      "args": "eax, edx"
+    },
+    {
+      "pc": "0x622055",
+      "mnemonic": "imul",
+      "args": "r14, rax, 0x58"
+    },
+    {
+      "pc": "0x622059",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rbx + 0x18]"
+    },
+    {
+      "pc": "0x62205e",
+      "mnemonic": "mov",
+      "args": "r15, qword ptr [r14 + rcx + 0x28]"
+    },
+    {
+      "pc": "0x622063",
+      "mnemonic": "test",
+      "args": "al, 1"
+    },
+    {
+      "pc": "0x622067",
+      "mnemonic": "xor",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x62206b",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rbx + 0x10]"
+    },
+    {
+      "pc": "0x62206e",
+      "mnemonic": "mov",
+      "args": "r13d, 0xb"
+    },
+    {
+      "pc": "0x622077",
+      "mnemonic": "cmovb",
+      "args": "r13d, eax"
+    },
+    {
+      "pc": "0x622080",
+      "mnemonic": "xor",
+      "args": "ebp, ebp"
+    },
+    {
+      "pc": "0x622082",
+      "mnemonic": "mov",
+      "args": "r12, qword ptr [rax + 0x110]"
+    },
+    {
+      "pc": "0x622090",
+      "mnemonic": "mov",
+      "args": "eax, edi"
+    },
+    {
+      "pc": "0x622096",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rbx + 0x28]"
+    },
+    {
+      "pc": "0x622099",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rbx]"
+    },
+    {
+      "pc": "0x62209c",
+      "mnemonic": "mov",
+      "args": "edx, 1"
+    },
+    {
+      "pc": "0x6220a1",
+      "mnemonic": "test",
+      "args": "byte ptr [rcx + 0x18], dl"
+    },
+    {
+      "pc": "0x6220a6",
+      "mnemonic": "add",
+      "args": "eax, 3"
+    },
+    {
+      "pc": "0x6220a9",
+      "mnemonic": "mov",
+      "args": "edx, 4"
+    },
+    {
+      "pc": "0x6220ae",
+      "mnemonic": "and",
+      "args": "eax, 0xfffffffc"
+    },
+    {
+      "pc": "0x6220b1",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [rcx + 0x14]"
+    },
+    {
+      "pc": "0x6220b4",
+      "mnemonic": "imul",
+      "args": "ecx, eax"
+    },
+    {
+      "pc": "0x6220be",
+      "mnemonic": "imul",
+      "args": "ecx, edx"
+    },
+    {
+      "pc": "0x6220c1",
+      "mnemonic": "shr",
+      "args": "ecx, 3"
+    },
+    {
+      "pc": "0x6220df",
+      "mnemonic": "xor",
+      "args": "r9d, r9d"
+    },
+    {
+      "pc": "0x6220e2",
+      "mnemonic": "mov",
+      "args": "rdx, qword ptr [r14 + rdx]"
+    },
+    {
+      "pc": "0x6220e6",
+      "mnemonic": "mov",
+      "args": "r8d, ebp"
+    },
+    {
+      "pc": "0x6220e9",
+      "mnemonic": "mov",
+      "args": "dword ptr [rsp + 0x30], 0"
+    },
+    {
+      "pc": "0x6220f1",
+      "mnemonic": "mov",
+      "args": "dword ptr [rsp + 0x28], ecx"
+    },
+    {
+      "pc": "0x6220f5",
+      "mnemonic": "mov",
+      "args": "rcx, r12"
+    },
+    {
+      "pc": "0x6220f8",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x20], r15"
+    },
+    {
+      "pc": "0x622103",
+      "mnemonic": "mov",
+      "args": "ecx, esi"
+    },
+    {
+      "pc": "0x622105",
+      "mnemonic": "mov",
+      "args": "edx, edi"
+    },
+    {
+      "pc": "0x62210b",
+      "mnemonic": "mov",
+      "args": "edx, dword ptr [rbx + 0x28]"
+    },
+    {
+      "pc": "0x622112",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [rbx + 0x2c]"
+    },
+    {
+      "pc": "0x622115",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rbx]"
+    },
+    {
+      "pc": "0x622118",
+      "mnemonic": "test",
+      "args": "byte ptr [rax + 0x18], 1"
+    },
+    {
+      "pc": "0x62211e",
+      "mnemonic": "add",
+      "args": "edx, 3"
+    },
+    {
+      "pc": "0x622121",
+      "mnemonic": "add",
+      "args": "ecx, 3"
+    },
+    {
+      "pc": "0x622124",
+      "mnemonic": "and",
+      "args": "edx, 0xfffffffc"
+    },
+    {
+      "pc": "0x622127",
+      "mnemonic": "and",
+      "args": "ecx, 0xfffffffc"
+    },
+    {
+      "pc": "0x62212a",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rax + 0x14]"
+    },
+    {
+      "pc": "0x62212d",
+      "mnemonic": "imul",
+      "args": "eax, edx"
+    },
+    {
+      "pc": "0x622132",
+      "mnemonic": "imul",
+      "args": "eax, ecx"
+    },
+    {
+      "pc": "0x622135",
+      "mnemonic": "shr",
+      "args": "rax, 3"
+    },
+    {
+      "pc": "0x622139",
+      "mnemonic": "add",
+      "args": "r15, rax"
+    },
+    {
+      "pc": "0x622130",
+      "mnemonic": "shr",
+      "args": "edi, 1"
+    },
+    {
+      "pc": "0x62213e",
+      "mnemonic": "mov",
+      "args": "edi, 1"
+    },
+    {
+      "pc": "0x622145",
+      "mnemonic": "cmova",
+      "args": "edi, eax"
+    },
+    {
+      "pc": "0x622148",
+      "mnemonic": "shr",
+      "args": "esi, 1"
+    },
+    {
+      "pc": "0x62214c",
+      "mnemonic": "mov",
+      "args": "esi, 1"
+    },
+    {
+      "pc": "0x622153",
+      "mnemonic": "cmova",
+      "args": "esi, eax"
+    },
+    {
+      "pc": "0x622156",
+      "mnemonic": "inc",
+      "args": "ebp"
+    },
+    {
+      "pc": "0x622158",
+      "mnemonic": "cmp",
+      "args": "ebp, r13d"
+    },
+    {
+      "pc": "0x62215b",
+      "mnemonic": "jbe",
+      "args": "0x622090"
+    },
+    {
+      "pc": "0x622161",
+      "mnemonic": "mov",
+      "args": "eax, dword ptr [rbx + 0x30]"
+    },
+    {
+      "pc": "0x622168",
+      "mnemonic": "cmp",
+      "args": "eax, 1"
+    },
+    {
+      "pc": "0x62216b",
+      "mnemonic": "jne",
+      "args": "0x6221bc"
+    },
+    {
+      "pc": "0x62218b",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [r14 + rcx + 0x28]"
+    },
+    {
+      "pc": "0x6221b3",
+      "mnemonic": "mov",
+      "args": "qword ptr [r14 + rbx + 0x28], 0"
+    }
+  ],
+  "formulas": {
+    "last_mip": "min_unsigned(11, (owner18 bit1) ? 0 : u32(owner10))",
+    "rounded_dimension": "blockflag ? (low32(d+3)&FFFFFFFC) : u32(d)",
+    "row_pitch": "zeroextend32(low32(low32(bits*roundedWidth)*(blockflag?4:1))) >> 3",
+    "payload_advance": "zeroextend32(low32(low32(bits*roundedWidth)*roundedHeight)) >> 3",
+    "pointer": "low64(previousPointer + payloadAdvance)",
+    "next_dimension": "max_unsigned(1, previousDimension>>1)"
+  },
+  "algebraic_controls": [
+    {
+      "name": "ordinary-uncompressed",
+      "bits": 32,
+      "width": 16,
+      "height": 8,
+      "block": false,
+      "derived": {
+        "rounded_width": 16,
+        "rounded_height": 8,
+        "row_pitch": 64,
+        "payload_advance": 512
+      }
+    },
+    {
+      "name": "ordinary-block-rounded",
+      "bits": 4,
+      "width": 5,
+      "height": 7,
+      "block": true,
+      "derived": {
+        "rounded_width": 8,
+        "rounded_height": 8,
+        "row_pitch": 16,
+        "payload_advance": 32
+      }
+    },
+    {
+      "name": "product-wraps32",
+      "bits": 32,
+      "width": 268435456,
+      "height": 1,
+      "block": false,
+      "derived": {
+        "rounded_width": 268435456,
+        "rounded_height": 1,
+        "row_pitch": 0,
+        "payload_advance": 0
+      }
+    },
+    {
+      "name": "rounding-wraps32",
+      "bits": 4,
+      "width": 4294967295,
+      "height": 4,
+      "block": true,
+      "derived": {
+        "rounded_width": 0,
+        "rounded_height": 4,
+        "row_pitch": 0,
+        "payload_advance": 0
+      }
+    },
+    {
+      "name": "height-product-wraps32",
+      "bits": 8,
+      "width": 65536,
+      "height": 65536,
+      "block": false,
+      "derived": {
+        "rounded_width": 65536,
+        "rounded_height": 65536,
+        "row_pitch": 65536,
+        "payload_advance": 0
+      }
+    },
+    {
+      "name": "zero-entry-dimensions",
+      "bits": 32,
+      "width": 0,
+      "height": 0,
+      "block": false,
+      "derived": {
+        "rounded_width": 0,
+        "rounded_height": 0,
+        "row_pitch": 0,
+        "payload_advance": 0
+      }
+    }
+  ],
+  "mip_bound_controls": [
+    {
+      "requested_u32": 0,
+      "flag18_bit1": false,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 0,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 1,
+      "flag18_bit1": false,
+      "last_mip": 1,
+      "call_indices": [
+        0,
+        1
+      ]
+    },
+    {
+      "requested_u32": 1,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 10,
+      "flag18_bit1": false,
+      "last_mip": 10,
+      "call_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "requested_u32": 10,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 11,
+      "flag18_bit1": false,
+      "last_mip": 11,
+      "call_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "requested_u32": 11,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 12,
+      "flag18_bit1": false,
+      "last_mip": 11,
+      "call_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "requested_u32": 12,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 2147483648,
+      "flag18_bit1": false,
+      "last_mip": 11,
+      "call_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "requested_u32": 2147483648,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    },
+    {
+      "requested_u32": 4294967295,
+      "flag18_bit1": false,
+      "last_mip": 11,
+      "call_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "requested_u32": 4294967295,
+      "flag18_bit1": true,
+      "last_mip": 0,
+      "call_indices": [
+        0
+      ]
+    }
+  ],
+  "established": [
+    "RTTI-bound leaf loads owner/index and tails622010. Index is zero-extended low32 and multiplied by88; this body has no local index<count validation. Admission validation is a different time/boundary.",
+    "Initial width/height and mip limit are loaded before the first opaque context getter. Initial source pointer is selected element+28, not an explicit owner+C0..187 descriptor read. Native slot180 may still use aliased memory; this is no global tail-unread claim.",
+    "Resource/count/format fields are re-read inside the loop. Format is read again AFTER each slot180 return for source-pointer advance. A whole immutable admission snapshot is not established by the earlier200B copy.",
+    "Under stable valid inputs and normal ABI-preserving returns, last is in0..11 and loop issues last+1 calls. Row-pitch and payload advances use truncated32-bit products. Widened real-number/64-bit multiplication is not bit-exact. ADD32 rounding can wrap before its mask.",
+    "Entry dimension0 triggers fallback to owner width/height in the first iteration. After each call EDI/ESI become max_unsigned(1,old>>1). No ordinary positive-dimension premise should silently erase zero-input behavior.",
+    "Post-loop maskedcount1 conditionally reselects element+28 as free argument, calls584730, reselects again and zeros+28. With mutable count/storage/payload these are distinct read times, not a guarantee it frees the initially captured pointer. Count!=1 skips this local release/null arm."
+  ],
+  "assumptions": [
+    "Valid nonwrapping object/format/context/selected storage and source pointer for the intended ordinary path",
+    "Stable owner count/storage/index/format/dimensions/payload for the simplified formulas and release of the original field",
+    "Normal ABI-preserving returns from5FD050, native slot180 and584730; their effects/success are not executed or certified"
+  ],
+  "limitations": [
+    "Not native/emulated execution, actual graphics effects, GPU presentation or portable200B descriptor semantics",
+    "No complete caller/writer/alias closure, natural initialized index/count/format/payload, scheduler order, cancellation, lifetime/reuse or counter38 ownership guarantee",
+    "Arithmetic examples are conditional input derivations, not evidence of shipping assets selecting overflow/zero values",
+    "An opaque callee or aliased argument can access the owner tail or mutate fields; local explicit reads cannot rule that out"
+  ],
+  "affected_claims": [
+    "OPUS Texture2DD3D11Element+28 physical role and deferred update ABI/pitch width",
+    "FABLE Phyre200B copy versus deferred argument reads and release/lifetime assumptions"
+  ],
+  "next_discriminator": "Existing primary evidence/peer ownership for element+28 producer and scheduler removal/counter writers; no repeat of settled parameter samples",
+  "checker_sha256": "77c3ab338e3491e6880de22557a4f797c77da7fa62182fc584fb66af3d09e90e",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Retained source reads and finite foreground reducer only; no PC/game/input/instrument/save/config/reference or peer-process mutation"
+}

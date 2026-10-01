@@ -1,0 +1,235 @@
+{
+ "ok": true,
+ "areas": {
+  "bds_a": {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\bds_a\\area\\bds_a.ard",
+   "sha256": "f52f5dd2b4c9b36f91aef652f03d986c992586709c21c2ef85bfbd4710ac9b5d"
+  },
+  "rsn_b": {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rsn_b\\area\\rsn_b.ard",
+   "sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992"
+  }
+ },
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4265,
+ "results": {
+  "DR1_order_to_the_return": {
+   "pass_": true,
+   "order": [
+    "317ED0",
+    "3171C0",
+    "320AB0 recipients",
+    "2F8BB0 EXP",
+    "2F90C0 LP",
+    "2F8F20 threshold",
+    "316A50",
+    "30C650 advance",
+    "2F8BB0 EXP(NULL)",
+    "2F90C0 LP(NULL)",
+    "28FB80 presentation",
+    "253690 gil read",
+    "254EE0 gil set",
+    "469E80 notify",
+    "265020",
+    "319490 item placement",
+    "317090 retire"
+   ],
+   "party": [
+    {
+     "level": 10,
+     "exp": 1253,
+     "lp": 1
+    },
+    {
+     "level": 10,
+     "exp": 1253,
+     "lp": 1
+    },
+    {
+     "level": 10,
+     "exp": 1253,
+     "lp": 1
+    }
+   ],
+   "gil": 0,
+   "faults": [],
+   "bad": [],
+   "note": "bds_a def 0 (gil terms 0): 00312280 runs to its return with no stub - recipients (9 slot lookups), per recipient EXP / LP / threshold walk / 00316A50 / advance, then the NULL-recipient EXP and LP, presentation 0028FB80, gil read / set / notify, item placement, retirement - in the order DR-1 states"
+  },
+  "DR2_null_recipient_calls": {
+   "pass_": true,
+   "gains": [
+    1253,
+    1253,
+    1253
+   ],
+   "exp_null": 1253,
+   "lp_null": 1,
+   "presentation_edx_r8": [
+    1253,
+    1
+   ],
+   "note": "after the loop the body calls 002F8BB0 and 002F90C0 with rcx = 0 (003124BC / 003124C6); each of the three recipients gains 1253 EXP and the NULL result 1253 goes to the presentation call 0028FB80 (edx = EXP, r8 = LP)"
+  },
+  "DR3_level_walk_is_a_search": {
+   "pass_": true,
+   "cases": {
+    "level 10, 250,000 EXP": {
+     "at_boundary": true,
+     "boundary": [
+      {
+       "at": "0046AB10",
+       "rcx": 1979711496,
+       "edx": "4"
+      }
+     ],
+     "advance_calls": [
+      32
+     ],
+     "threshold_calls": 23,
+     "level_after": 32,
+     "exp_after": 251253
+    },
+    "level 98, the EXP cap": {
+     "at_boundary": true,
+     "boundary": [
+      {
+       "at": "0046AB10",
+       "rcx": 1979711496,
+       "edx": "4"
+      }
+     ],
+     "advance_calls": [
+      99
+     ],
+     "threshold_calls": 2,
+     "level_after": 99,
+     "exp_after": 99999999
+    }
+   },
+   "note": "level 10 with 250,000 EXP: the walk calls the threshold 23 times and ONE advance call carries target 32 (a 22-level rise from one kill); level 98 at the EXP cap stops at 99. Each run ends at the poster boundary inside the advance"
+  },
+  "DR4_gil_reads_the_defeated_units_span": {
+   "pass_": true,
+   "cases": {
+    "foe span 0, party 10": {
+     "at_boundary": true,
+     "boundary": [
+      {
+       "at": "0046AB10",
+       "rcx": 0,
+       "edx": "26"
+      }
+     ],
+     "gil_after_set": 8,
+     "notify_arg": 8,
+     "faults": [],
+     "bad": []
+    },
+    "foe span 5, party 10": {
+     "at_boundary": true,
+     "boundary": [
+      {
+       "at": "0046AB10",
+       "rcx": 0,
+       "edx": "26"
+      }
+     ],
+     "gil_after_set": 23,
+     "notify_arg": 23,
+     "faults": [],
+     "bad": []
+    },
+    "foe span 5, party 50": {
+     "at_boundary": true,
+     "boundary": [
+      {
+       "at": "0046AB10",
+       "rcx": 0,
+       "edx": "26"
+      }
+     ],
+     "gil_after_set": 23,
+     "notify_arg": 23,
+     "faults": [],
+     "bad": []
+    }
+   },
+   "note": "gil = (foe +0x1C2 - foe +0x88) x [unit+0xE78]+0x30 + [unit+0xE70]+0x30 = 8 + 3 x span: 8 at span 0, 23 at span 5, and 23 again with the recipients at level 50 - the recipients' level does not enter the gil term. Each run ends at the boundary 0046AB10 with event 0x26"
+  },
+  "DR5_status12_converts_lp_to_gil": {
+   "pass_": true,
+   "cases": {
+    "id 12 in the mutable layer": {
+     "at_boundary": true,
+     "gil": 100,
+     "lp": [
+      0,
+      1,
+      1
+     ],
+     "faults": []
+    },
+    "id 12 in the derived layer": {
+     "at_boundary": true,
+     "gil": 100,
+     "lp": [
+      0,
+      1,
+      1
+     ],
+     "faults": []
+    }
+   },
+   "lp_without_status": 1,
+   "note": "a zero-gil foe; recipient 0 at level 20 with id 12 (either layer) receives NO LP and the gil accumulator gains 5 x 20 x LP (x + 4x), so the zero-gil kill now pays gil and ends at the poster boundary; without id 12 the same recipient gains the LP and the run returns"
+  },
+  "DR6_report_exceeds_stored_gain": {
+   "pass_": true,
+   "gil_after": 99999999,
+   "setter_arg": 100000003,
+   "notify_arg": 8,
+   "note": "old gil 99,999,995 and award 8: the setter 00254EE0 receives 100,000,003 and stores 99,999,999 (gain 4); the notifier receives requested - old = 8 and posts event 0x26 (the boundary)"
+  }
+ }
+}

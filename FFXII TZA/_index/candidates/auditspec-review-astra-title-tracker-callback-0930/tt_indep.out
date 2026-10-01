@@ -1,0 +1,140 @@
+== A. 00189120
+  bytes 488b057164df01c3
+PASS 00189120 is 8 bytes 48 8B 05 71 64 DF 01 C3
+PASS decode 00189120..00189128: 8 B, 2 instructions
+PASS 00189127 ret 
+PASS 00189120 mov rax, qword [rip+..] -> 01F7F598, then ret: no register input is read (RCX ignored)
+PASS 00189120 has no .pdata row (a leaf)
+PASS .data raw ends at 01F7E400: 01F7F598 is in the zero-initialised virtual tail (no file value; any non-NULL context is written at run time)
+
+== B. 00183720
+PASS .pdata 00183720..00183754 (52 B)
+PASS decode 00183720..00183754: 52 B, 16 instructions
+PASS 00183720 test rcx, rcx
+PASS 00183723 je 0x183753
+PASS 0018372A mov rbx, rcx
+PASS 0018372D call 0x189120
+PASS 00183732 test rax, rax
+PASS 00183735 je 0x18374e
+PASS 00183737 call 0x189120
+PASS 0018373C mov rcx, rax
+PASS 00183746 mov r8, rbx
+PASS 00183749 call 0x185a90
+PASS 0018374E add rsp, 0x20
+PASS 00183753 ret 
+PASS 0018373F lea rdx -> 0017ECC0
+PASS exactly two tests: the argument (183720) and the FIRST context (183732); the second getter result at 183737 goes to rcx untested
+PASS 183720 CFG covers all 16 instructions, single ret 183753
+
+== C. 00185A90
+PASS .pdata 00185A90..00185AE6 (86 B)
+PASS decode 00185A90..00185AE6: 86 B, 22 instructions
+PASS 00185A94 movsxd rax, dword ptr [rcx + 0xcb8]
+PASS 00185A9B add rcx, 0xc38
+PASS 00185AA2 shl rax, 5
+PASS 00185AA6 add rcx, rax
+PASS 00185AA9 mov qword ptr [rsp + 0x20], rdx
+PASS 00185AAE mov qword ptr [rsp + 0x28], r8
+PASS 00185AB3 mov rdx, qword ptr [rcx + 8]
+PASS 00185AB7 cmp rdx, qword ptr [rcx + 0x10]
+PASS 00185ABB jae 0x185ad7
+PASS 00185ABD lea rax, [rdx + 0x10]
+PASS 00185AC1 mov qword ptr [rcx + 8], rax
+PASS 00185AC5 test rdx, rdx
+PASS 00185AC8 je 0x185ae1
+PASS 00185ACA movups xmm0, xmmword ptr [rsp + 0x20]
+PASS 00185ACF movups xmmword ptr [rdx], xmm0
+PASS 00185AD2 add rsp, 0x38
+PASS 00185AD6 ret 
+PASS 00185AD7 lea r8, [rsp + 0x20]
+PASS 00185ADC call 0x1858a0
+PASS 00185AE5 ret 
+PASS 185A90 CFG: all 22 instructions reached, two rets, ONE call (185ADC -> 1858A0, on the jae arm only)
+PASS the only compares are cursor-vs-end and cursor NULL: nothing tests the index dword [ctx+0xCB8]
+PASS store order: cursor+16 to queue+8 (185AC1) precedes the 16-byte pair copy (185ACF)
+  slow arm: rcx = queue, rdx = old cursor (185AB3, unchanged on the jae path), r8 = &pair at rsp+0x20
+PASS cursor<end is an UNSIGNED compare (jae)
+
+== D. 0017ECC0
+PASS .pdata 0017ECC0..0017ECDB (27 B)
+PASS decode 0017ECC0..0017ECDB: 27 B, 8 instructions
+PASS 0017ECC6 mov rbx, rcx
+PASS 0017ECC9 call 0x5de250
+PASS 0017ECCE mov rcx, rbx
+PASS 0017ECD5 pop rbx
+PASS 0017ECD6 jmp 0x19c590
+PASS rcx reaches 005DE250 unchanged (only read at 17ECC6 before the call)
+
+== E. 001FB660 unwind fragments and entry CFG
+  .pdata 001FB660..001FB6B7 unwind 01DA8448
+  .pdata 001FB6B7..001FB6F1 unwind 01D60928
+  .pdata 001FB6F1..001FB71C unwind 01D6093C
+PASS three RUNTIME_FUNCTION rows 1FB660..1FB6B7 (87 B), ..1FB6F1 (58 B), ..1FB71C (43 B) = 188 B
+PASS no row straddles the entry
+  001FB660: pefile Version 1 Flags 0 prolog 20 codes ['.SAVEREG RSI, 0x48', '.SAVEREG RBP, 0x40', '.SAVEREG RBX, 0x38', '.ALLOCSTACK 0x20', '.PUSHREG RDI']; raw flags 0 count 8 chained None
+PASS root 1FB660 unwind is unchained, no handler
+  001FB6B7: pefile Version 1 Flags 4 prolog 5 codes ['.SAVEREG R14, 0x30']; raw flags 4 count 2 chained (001FB660,001FB6B7,01DA8448)
+PASS 001FB6B7 chains to the exact root row (1FB660,1FB6B7,01DA8448)
+  001FB6F1: pefile Version 1 Flags 4 prolog 0 codes []; raw flags 4 count 0 chained (001FB660,001FB6B7,01DA8448)
+PASS 001FB6F1 chains to the exact root row (1FB660,1FB6B7,01DA8448)
+PASS decode 001FB660..001FB71C: 188 B, 52 instructions
+PASS entry CFG reaches all 52 of 52 instructions (188 B), single ret 1FB71B, no tail, no exit
+  calls: 001FB67A->0x183720, 001FB695->0x183720, 001FB6A1->0x16d6d0, 001FB6C7->0x1af2b0, 001FB6E1->qword ptr [rax + 0x18]
+PASS five call sites: 183720 x2, 16D6D0, 1AF2B0, and one indirect [rax+0x18]
+PASS 001FB674 mov rdi, rcx
+PASS 001FB677 mov rcx, qword ptr [rcx]
+PASS 001FB67A call 0x183720
+PASS 001FB687 xor ebp, ebp
+PASS 001FB689 mov qword ptr [rdi], rbp
+PASS 001FB67F mov rbx, qword ptr [rdi + 0x18]
+PASS 001FB683 lea rsi, [rdi + 0x10]
+PASS 001FB68C cmp rbx, rsi
+PASS 001FB691 mov rcx, qword ptr [rbx + 0x28]
+PASS 001FB695 call 0x183720
+PASS 001FB69D mov qword ptr [rbx + 0x28], rbp
+PASS 001FB6A1 call 0x16d6d0
+PASS 001FB6A9 cmp rax, rsi
+PASS 001FB6AC jne 0x1fb691
+PASS 001FB6AE mov rsi, qword ptr [rdi + 0x20]
+PASS 001FB6C0 mov rdx, qword ptr [rsi]
+PASS 001FB6C3 lea rcx, [rdi + 8]
+PASS 001FB6C7 call 0x1af2b0
+PASS 001FB6CC mov rax, qword ptr [rdi + 0x38]
+PASS 001FB6D0 lea rcx, [rdi + 0x38]
+PASS 001FB6D4 mov rbx, qword ptr [rsi + 8]
+PASS 001FB6D8 mov r8d, 0x30
+PASS 001FB6DE mov rdx, rsi
+PASS 001FB6E1 call qword ptr [rax + 0x18]
+PASS 001FB6E4 mov rsi, rbx
+PASS 001FB6EA jne 0x1fb6c0
+PASS 001FB6F6 lea rax, [rdi + 0x10]
+PASS 001FB6FF mov qword ptr [rdi + 0x20], rbp
+PASS 001FB703 mov byte ptr [rdi + 0x28], bpl
+PASS 001FB707 mov dword ptr [rdi + 0x30], ebp
+PASS 001FB70F mov qword ptr [rax], rax
+PASS 001FB712 mov qword ptr [rdi + 0x18], rax
+  every store in the body:
+    001FB660 qword ptr [rsp + 0x10], rbx
+    001FB665 qword ptr [rsp + 0x18], rbp
+    001FB66A qword ptr [rsp + 0x20], rsi
+    001FB689 qword ptr [rdi], rbp
+    001FB69D qword ptr [rbx + 0x28], rbp
+    001FB6B7 qword ptr [rsp + 0x30], r14
+    001FB6FF qword ptr [rdi + 0x20], rbp
+    001FB703 byte ptr [rdi + 0x28], bpl
+    001FB707 dword ptr [rdi + 0x30], ebp
+    001FB70F qword ptr [rax], rax
+    001FB712 qword ptr [rdi + 0x18], rax
+PASS 7 non-stack stores: [rdi]=0, [node+0x28]=0, and the five normal-return resets
+PASS next link [rsi+8] is loaded after the 1AF2B0 call and before the indirect call
+
+== F. references overlapping the qword cell 01F7F598
+  dropped 6 decodes that start inside another hit (prefix-skipped duplicates): ['001862E1', '001883EA', '00188506', '0018902B', '00189068', '00189121']
+  dropped 1 hits that are not instruction boundaries when decoded from their .pdata row start: ['0017EEDA']
+  hits with no .pdata row (alignment unverified): ['00189120']
+  overlapping instructions 6, of which destination-memory (writes) 1:
+    00189067 mov qword ptr [rip + 0x1df652a], rax  (rip, width 8 at 01F7F598)
+PASS known positive: the getter 00189120 read is found
+  (writers listed only; which runs first, and whether the context is stable across 183720's two reads, is run-time state this list cannot settle)
+
+FAILS 0

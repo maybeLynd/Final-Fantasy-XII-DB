@@ -1,0 +1,17 @@
+PASS  C1 the image's twelve and its runtime builds [49, 48, 19, 10, 13, 16, 69, 113, 10, 98, 55, 11] builds=[0, 23013, 23026, 24123, 24210, 24215, 30729, 40219, 40629, 41118, 65501]
+PASS  C2 the installed v140 static runtime's build libcmt objects by build: {24237: 13}
+C3 per position (value: candidate static-runtime objects whose whole run matches here)
+  [ 0]  49: -
+  [ 1]  48: -
+  [ 2]  19: amd64\libcmt.lib std_type_info_static.obj [19] ['??_Etype_info@@UEAAPEAXI@Z']
+  [ 3]  10: amd64\libcpmt.lib winapisupp.obj [10] ['?initialize_pointers@@YAHXZ']
+  [ 4]  13: amd64\libvcruntime.lib jbcxrval.obj [13] ['_guard_check_icall_nop']
+  [ 5]  16: -
+  [ 6]  69: amd64\libcmt.lib exe_wwinmain.obj [69, 113] ['_matherr', '_RTC_Terminate']; amd64\libcmt.lib exe_winmain.obj [69, 113] ['_matherr', '_RTC_Terminate']
+  [ 7] 113: -
+  [ 8]  10: amd64\libcpmt.lib winapisupp.obj [10] ['?initialize_pointers@@YAHXZ']
+  [ 9]  98: amd64\libcmt.lib thread_safe_statics.obj [98] ['?__scrt_uninitialize_thread_safe_statics@@YAXXZ']; amd64\libcpmt.lib cthread.obj [98] ['run']
+  [10]  55: amd64\libcmt.lib utility_desktop.obj [55] ['__scrt_unhandled_exception_filter']
+  [11]  11: amd64\libcmt.lib lconv_unsigned_char.obj [11] ['__initialize_lconv_for_unsigned_char']; amd64\libcmt.lib guard_support.obj [11] ['_guard_check_icall_nop']
+C4 chance control: the real twelve match 8 positions (1 by a multi-value run); of 2,000 random twelves drawn from 10..113, 0.0 % match as many positions and 0.65 % match a multi-value run
+FAILS 0

@@ -1,0 +1,179 @@
+{
+ "R1": {
+  "02": {
+   "advance": 1,
+   "eax": 1,
+   "ok": true,
+   "sequence": [
+    [
+     "I",
+     "700FEFF8"
+    ],
+    [
+     "B",
+     "700FEDE8",
+     1
+    ],
+    [
+     "I",
+     "700FEC18"
+    ]
+   ],
+   "stopped_at": [],
+   "text": "020900"
+  },
+  "05": {
+   "advance": 1,
+   "eax": 1,
+   "ok": true,
+   "sequence": [
+    [
+     "I",
+     "700FEFF8"
+    ],
+    [
+     "B",
+     "700FEDE8",
+     1
+    ],
+    [
+     "I",
+     "700FEC18"
+    ]
+   ],
+   "stopped_at": [],
+   "text": "050900"
+  },
+  "0A": {
+   "advance": 1,
+   "eax": 1,
+   "ok": true,
+   "sequence": [
+    [
+     "I",
+     "700FEFF8"
+    ],
+    [
+     "B",
+     "700FEDE8",
+     1
+    ],
+    [
+     "I",
+     "700FEC18"
+    ]
+   ],
+   "stopped_at": [],
+   "text": "0a0900"
+  }
+ },
+ "R4": {
+  "advance": 1,
+  "eax": 1,
+  "ok": true,
+  "sequence": [
+   [
+    "I",
+    "700FEFF8"
+   ],
+   [
+    "B",
+    "700FEDE8",
+    1
+   ],
+   [
+    "I",
+    "700FEC18"
+   ],
+   [
+    "B",
+    "700FEA08",
+    2
+   ],
+   [
+    "I",
+    "700FE838"
+   ],
+   [
+    "B",
+    "700FE628",
+    3
+   ],
+   [
+    "I",
+    "700FE458"
+   ],
+   [
+    "I",
+    "700FE838"
+   ],
+   [
+    "I",
+    "700FEC18"
+   ],
+   [
+    "B",
+    "700FEA08",
+    3
+   ],
+   [
+    "I",
+    "700FE838"
+   ],
+   [
+    "I",
+    "700FEC18"
+   ]
+  ],
+  "stopped_at": [],
+  "text": "02050a0900"
+ },
+ "T": {
+  "advance": 1,
+  "eax": 1,
+  "ok": true,
+  "sequence": [
+   [
+    "I",
+    "700FEFF8"
+   ],
+   [
+    "B",
+    "700FEDE8",
+    1
+   ]
+  ],
+  "stopped_at": [],
+  "text": "02020900"
+ },
+ "cases": {
+  "R1_token_splices_cursor_plus_1_and_the_interpreter_reenters": true,
+  "R4_mutual_recursion_to_depth_four": true,
+  "S_static_mutual_calls": true,
+  "T_a_02_in_the_splice_ends_it_without_an_inner_call": true
+ },
+ "ok": true,
+ "static": {
+  "A_calls_interp": [
+   "002AA6A8"
+  ],
+  "B_calls_interp": [
+   "002B2393"
+  ],
+  "interp_calls_A": [
+   "002ACABD",
+   "002AD728",
+   "002ADABA",
+   "002ADFED"
+  ],
+  "interp_calls_B": [
+   "002AC6F3",
+   "002ACDF9",
+   "002ACF34",
+   "002AD2D3",
+   "002AD5D2",
+   "002AD62F",
+   "002ADFAE"
+  ]
+ }
+}

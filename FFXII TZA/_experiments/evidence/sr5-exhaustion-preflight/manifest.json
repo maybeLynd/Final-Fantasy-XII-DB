@@ -1,0 +1,34 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 5479,
+    "sha256": "14fc700097a71118315f954de9a4f4d8cbedf660d666cf3410a8c5176f24aec8"
+  },
+  "observation.json": {
+    "bytes": 2283,
+    "sha256": "01e6973d9aba03a7f9576130235b15ed84cb1e3bd68ef07c7edbca066bf1a5a7"
+  },
+  "PLAN.md": {
+    "bytes": 1451,
+    "sha256": "39c4bd9efbc665981fe9604f62e412cc25f22906dec0b55925fed65b57160fd1"
+  },
+  "README.md": {
+    "bytes": 4395,
+    "sha256": "e608207acc374c2f640ea7abb225dbb365d3f438b662a8a4b367176587bf2976"
+  },
+  "reference.json": {
+    "bytes": 5934,
+    "sha256": "6ea9eaf2c53e23cb2fb1e8d3e78b3cfc61fb26f4e0b252dff4f7441599b33c66"
+  },
+  "reference.py": {
+    "bytes": 1670,
+    "sha256": "37311d04c22777cf76f610f3498079c4239be7665e38f975f45d7139a71cc568"
+  },
+  "validation.json": {
+    "bytes": 630,
+    "sha256": "49c815a0b8569dee7f88327fdee0c353475347b60ace8ddcd451c066798994bb"
+  }
+}

@@ -1,0 +1,14 @@
+function	site	field	width	kind	instruction
+00358280	00358280	0x2	1	w	mov byte ptr [rip + 0x1f6fd13], 1
+00358320	00358320	0x0	1	r	movsx eax, byte ptr [rip + 0x1f6fc71]
+00358410	00358410	0x1	1	r	movsx eax, byte ptr [rip + 0x1f6fb82]
+00358420	0035843A	0x1	1	w	mov byte ptr [rip + 0x1f6fb58], 0
+00358510	0035852A	0x1	1	w	mov byte ptr [rip + 0x1f6fa68], 0
+00358510	00358531	0x0	1	w	mov byte ptr [rip + 0x1f6fa60], 0
+00358510	00358538	0x2	1	w	mov byte ptr [rip + 0x1f6fa5b], 1
+00358550	00358552	0x2	1	r	cmp byte ptr [rip + 0x1f6fa41], 0x1f
+00358640	00358640	0x0	1	w	mov byte ptr [rip + 0x1f6f952], cl
+003586A0	003586A0	0x2	1	r	movzx eax, byte ptr [rip + 0x1f6f8f3]
+003586A0	003586AE	0x2	1	w	mov byte ptr [rip + 0x1f6f8e6], al
+003586A0	003586B8	0x2	1	w	mov byte ptr [rip + 0x1f6f8dc], al
+003587B0	003587B0	0x1	1	w	mov byte ptr [rip + 0x1f6f7e3], cl

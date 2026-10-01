@@ -1,0 +1,10 @@
+full_tick_stub_free                  PASS  gates pass: the recompute, the deadline check, the builder and then the sink 003112F0(result, 0, stats, 0xFFFF, 0) run, and the tick returns
+I1_deadline_between_gate1_and_gate2  PASS  expired (deadline 5 < counter 100) clears bit 30; not expired keeps it; with no stats block (gate 1) the check never runs and the stale bit stays; with gate 2 refusing (mode 5) the check still ran and cleared it
+gates_refuse_the_builder             PASS  global mode 5 or 6, no ready party slot (00265680 = 0) and unit bit 0x1000000000 each end the tick before the builder
+sink_commits_the_beat                PASS  the stats beat 25 reads 15 after the whole tick, written ONCE, by the sink's copy 003115B6..00311606: the stages computed it into the record (block 310) and the sink committed it
+ok
+stats5_zero_the_tick_draws_once_from_00311146      PASS
+stats5_one_no_draw_stream_unchanged                PASS
+no_stats_block_no_draw_stream_unchanged            PASS
+no_overlapping_pickup_no_draw_stream_unchanged     PASS
+ALL PASS

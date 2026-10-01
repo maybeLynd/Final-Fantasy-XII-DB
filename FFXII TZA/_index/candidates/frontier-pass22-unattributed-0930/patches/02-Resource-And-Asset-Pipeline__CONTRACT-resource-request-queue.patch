@@ -1,0 +1,17 @@
+diff --git "a/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md" "b/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md"
+--- "a/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md"
++++ "b/Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md"
+@@ -362,7 +362,12 @@ Interior anchor `0037C320` (function `0037C2E0`).
+ `003696D0` (140 B) is the drain helper the `02AD9E00` flag-clear `0036FD70` tails into (the sibling the non-bearing queue page names as its shared callee): `0016D6A0` resolves twice, the `022D7FC8` slot pair is walked, `005C5230` runs the storage op, and a failure passes through `0035EA30`, resets the global slot to -1 and retries before tailing to `005C5230` - the bounded-drain the save-storage gate runs on clear.
+ 
+ Interior anchor `00369712` (function `003696D0`).
+-
++- **CombatAction — CLIENT (2 edges).** 2 inbound (CombatAction bodies `002FC3C0` call page-cited `0032E520`, `0032E590`). Substantive edges include `0032E520` is called by `002FC3C0`; `0032E590` is called by `002FC3C0`.
++- **Input — CLIENT and SERVICE (6 edges).** 1 inbound (Input bodies `00291C80` call page-cited `0032E620`); 5 outbound (page-cited `0022B6E0`, `0032E070`, `0022B7E0` call Input bodies `InputControl_SetOneShotFrameCallback` (0035E9A0), `00249C30`, `0035E810`). Substantive edges include `0022B6E0` calls `InputControl_SetOneShotFrameCallback` (0035E9A0); `0022B6E0` calls `00249C30`; `0022B7E0` calls `InputControl_SetOneShotFrameCallback` (0035E9A0); `0032E070` calls `0035E810`.
++- **Presentation — CLIENT and SERVICE (17 edges).** 7 inbound (Presentation bodies `003B53C0`, `003B2310`, `002E65A0` call page-cited `0032E400`, `0032E620`, `0032E520`); 10 outbound (page-cited `0022B6E0`, `0022B7E0`, `0032E070` call Presentation bodies `GraphicsSync_WaitBackendState100ClearAndResetSharedState` (0036F2F0), `0036D400`, `002E65A0`). Substantive edges include `0022B6E0` calls `GraphicsSync_WaitBackendState100ClearAndResetSharedState` (0036F2F0); `0022B6E0` calls `0036D400`; `0022B6E0` calls `00252A20`; `0022B6E0` calls `002E65A0`.
++- **RNG_Random_Selection — MECHANICAL (2 edges).** 2 calls from page-cited bodies into shared RNG_Random_Selection plumbing (`RNG_MT19937_NextU32_Thunk` (00379CD0)) - the helpers' general call surface, not a RNG_Random_Selection relationship of this page's subjects.
++- **World — CLIENT (2 edges).** 2 inbound (World bodies `00378540` call page-cited `0032E400`, `0032E620`). Substantive edges include `0032E400` is called by `00378540`; `0032E620` is called by `00378540`.
++- **WorldAreaField — CLIENT and SERVICE (10 edges).** 9 inbound (WorldAreaField bodies `MapRef_BeginLoadResources` (00268750), `00378030`, `AreaArd_LoadOrUnloadFieldResource` (003EA820) call page-cited `0032E400`, `0032E620`, `0032E520`); 1 outbound (page-cited `0022B6E0` call WorldAreaField bodies `003318C0`). Substantive edges include `0022B6E0` calls `003318C0`; `0032E400` is called by `MapRef_BeginLoadResources` (00268750); `0032E400` is called by `00378030`; `0032E400` is called by `AreaArd_LoadOrUnloadFieldResource` (003EA820).
+ ## Falsification pass 1 — 2026-09-30 (OPUS): every section tested survives
+ 
+ **Attack.** The contract's static clauses were turned into checks at their instructions: the interface, invariants I2,

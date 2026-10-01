@@ -1,0 +1,8 @@
+# NativeAdapter.IndexedRecordStoreCookie - EC-7 family C
+# stack-cookie frame; build a stack record holding arg1 (index), a member
+# # rip descriptor and scratch; call shared 00244F50; cookie-check via
+# # 00808C40.
+address	targets
+00227E20	00244F50,00808C40
+0037FF80	00244F50,00808C40
+00575580	00244F50,00808C40

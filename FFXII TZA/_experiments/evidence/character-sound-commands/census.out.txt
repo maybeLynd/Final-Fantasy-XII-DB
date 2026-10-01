@@ -1,0 +1,24 @@
+0x05 (mode, type) -> count ; commonest block names
+   (0, 10) 4330 ready, attack, turn, ev_walk, c_turbo
+   (0, 9) 3530 ready, attack, magic, ability, summon_attack
+   (0, 5) 3437 damage, knockback_s, field_damage, poach, dead
+   (0, 6) 2405 knockback_l, dead, poach, rlx_poach, rlx_knockback_l
+   (0, 2) 2092 attack, m1002_10_0608, m1002_10_0609, m1002_10_0905, m1003_10_0603
+   (0, 3) 1931 field_attack, attack, n1056_50_0600, n1057_50_0600, n1123_50_0600
+   (0, 8) 1914 knockback_l, dead, rlx_knockback_l, rlx_dead, attack
+   (0, 7) 1542 ready, c_turbo
+   (0, 11) 743 active
+   (0, 12) 699 deact
+   (0, 4) 608 attack
+   (4, 101) 339 m1006_10_0502, m1007_10_0502, m1008_10_0500, m1009_10_0500, m1015_10_0502
+   (4, 103) 111 m1016_10_0504, m1017_10_0504, m1114_10_0504, m1115_10_0504, m1193_10_0504
+   (4, 102) 86 m1014_10_0503, m1024_10_0503, m1200_10_0503, m1226_10_0503, m1227_10_0503
+   (4, 104) 16 m1012_10_0508, m1031_10_0508, m1084_10_0508, m1085_10_0508, m1126_10_0508
+0x29 word +2 -> count ; names
+   128 45968 ready, attack, turn, field_attack, c_turbo
+   64 748 attack, ready, field_attack, ev_talk_angry, active
+   255 386 attack, ready, dead, field_attack, c_turbo
+   32 370 attack, ev_talk_happy, ev_talk_sad, ev_talk_1, field_attack
+control: 0x05 total 23783 (census 23,783) ; 0x29 total 47472 (census 47,472)
+P1  mode-0 types outside 1..12: none
+P2  modes authored: [0, 4]

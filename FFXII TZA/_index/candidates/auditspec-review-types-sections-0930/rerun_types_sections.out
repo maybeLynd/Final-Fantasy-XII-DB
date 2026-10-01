@@ -1,0 +1,5 @@
+PASS  P1 003304A0: section base = payload + dword[payload + off], for +0x18 / +0x1C / +0x40
+PASS  P2 binders 00330190 / 00330220 / 0032FB70: base & ~0xF -> per-tag table, then the slot setter
+PASS  P3 0026C880 / 0026C8A0 / 0026CE40 write slot +0xA0 / +0xA8 / +0x100 (slot array 02098E10, stride 0x288)
+PASS  P4 writers: +0xA0 only 00330190, +0xA8 only 00330220, +0x100 the bind 0032FB70 and the teardown 0032ED80 (0)
+FAILS 0

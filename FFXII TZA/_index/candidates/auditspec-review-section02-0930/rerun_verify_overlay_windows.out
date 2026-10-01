@@ -1,0 +1,220 @@
+{
+  "section": "SECTION-02",
+  "read_only": true,
+  "target": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA",
+  "compatible": false,
+  "conflicts": 6,
+  "files": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "state": "conflict",
+      "expected_before": "4479e857501b12517afdfa1c129db4397b979cda25782b7919662f828ef91ed4",
+      "expected_after": "9cbae3a2dbf7fc8c43263818918bf5d7494e428526f49600775ceec0434189c4",
+      "actual_sha256": "88d73553f4e0d1da5a202b1fe4af196d301ab5994d0bc215f557d5a0093d1e4d"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-request-queue.md",
+      "state": "conflict",
+      "expected_before": "fb986de65210512ec48a83d83fe889ea615ac7ba22f69b792c38b5f12137e20c",
+      "expected_after": "7f2b4d80868d14e73b5fe092961b437f808760057224c861f58cc0b5f6c79c83",
+      "actual_sha256": "2ac09e854ba839774e32c9afbde8bc4ad78399cb05e5159f354b8f1cce0c36cd"
+    },
+    {
+      "path": "_experiments/EXP-128-exp109-poll-pump-exec.md",
+      "state": "already_applied",
+      "expected_before": "4238fca45b11553465a2508a2d36f645c5634133d38480d7d574506898a3c550",
+      "expected_after": "dfe8270ce60714ab1808dbd4d7302f7c7d0667422be884c078b4b49962fd5cfa",
+      "actual_sha256": "dfe8270ce60714ab1808dbd4d7302f7c7d0667422be884c078b4b49962fd5cfa"
+    },
+    {
+      "path": "_experiments/EXP-146-queue-remaining-exec.md",
+      "state": "conflict",
+      "expected_before": "c5b87e76574cd73f3249d72c9aa0cf81bdc3c219b1d97b3215777ce8296f8226",
+      "expected_after": "d4f044a590ed48a4b6ed3aa7a97e780b6b35a896b9f58cf4f3d604110406cd5c",
+      "actual_sha256": "7b911f2a4377a0a70c3979d1220d9e6cf7ca1a2508ad16a9ce706813a58fcb1a"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/README.md",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "0a1c7b74e92973a2ff91702b41d4ba3c937832e4c5487c3fe183c2f09459545d",
+      "actual_sha256": "0a1c7b74e92973a2ff91702b41d4ba3c937832e4c5487c3fe183c2f09459545d"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/REVIEW.md",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "96d5b9247decb512faa4d55c3abf5e1144fbd1033d1c547de67b02a8c6cacadf",
+      "actual_sha256": "96d5b9247decb512faa4d55c3abf5e1144fbd1033d1c547de67b02a8c6cacadf"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/canonical_row_changes.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "e64e93c6c7786f8a0ad49a5da29728922d2c94426c424aa95d55fdbe4ee487cc",
+      "actual_sha256": "e64e93c6c7786f8a0ad49a5da29728922d2c94426c424aa95d55fdbe4ee487cc"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/input_manifest.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "8a5e0b09c992378b2ae17ad10d61222ea68fa105167907b5f1110f087b81345d",
+      "actual_sha256": "8a5e0b09c992378b2ae17ad10d61222ea68fa105167907b5f1110f087b81345d"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/native_controls.c",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "72e4f617d678e5c1483168da9ff101aca739f0336c0a9c0ac6fcc2790c51103e",
+      "actual_sha256": "72e4f617d678e5c1483168da9ff101aca739f0336c0a9c0ac6fcc2790c51103e"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/original_body_manifest.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "dac1e42bebbe9a2182aeb9dbe4878497366cdffaa71ddfd8ba4471f249274ae3",
+      "actual_sha256": "dac1e42bebbe9a2182aeb9dbe4878497366cdffaa71ddfd8ba4471f249274ae3"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/original_disassembly.txt",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "107da060d997aca589b04059899cec23d64524bd8290dbe09b181b568cf02d45",
+      "actual_sha256": "107da060d997aca589b04059899cec23d64524bd8290dbe09b181b568cf02d45"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/baseline.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "b4fe399291ad636c09bbbacdf3ee5a8988f354b336744878e53d4a11a47a9d01",
+      "actual_sha256": "b4fe399291ad636c09bbbacdf3ee5a8988f354b336744878e53d4a11a47a9d01"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/body_verification.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "6355609fec567559d3a188ae5866a7a10177160d609396505921366ec4d7d617",
+      "actual_sha256": "6355609fec567559d3a188ae5866a7a10177160d609396505921366ec4d7d617"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutant_constructor_clobber_unobserved.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "e9f5505b64072be22bf3d193b2f4cf7e69d3449fbc3419d58248ce395e04b948",
+      "actual_sha256": "e9f5505b64072be22bf3d193b2f4cf7e69d3449fbc3419d58248ce395e04b948"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutant_ignore_generation_on_cancel.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "b0a1722b0e4054be70ef228719ce7da2083a930bc598b59e7eb18e0b1c65a220",
+      "actual_sha256": "b0a1722b0e4054be70ef228719ce7da2083a930bc598b59e7eb18e0b1c65a220"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutant_offset_round_up.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "82958626be58ecab124ac98473d1c97a5f8f15c384079e86e147a49807876369",
+      "actual_sha256": "82958626be58ecab124ac98473d1c97a5f8f15c384079e86e147a49807876369"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutant_omit_free_head_advance.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "a99d96c0336da635e71c93ec1f0cfd77136b42ea7cfe939f031985729c22ac62",
+      "actual_sha256": "a99d96c0336da635e71c93ec1f0cfd77136b42ea7cfe939f031985729c22ac62"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutant_remove_generation_increment.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "92c08781afc655b5b55effd1bcbf7f6b1adf9222b7e11fa33719324e21ed47cc",
+      "actual_sha256": "92c08781afc655b5b55effd1bcbf7f6b1adf9222b7e11fa33719324e21ed47cc"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutant_retire_clobber_payload.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "d8633d92049d7325156ffb95a911b58fa2dd33f4c97c863d785b6bee7092e1fd",
+      "actual_sha256": "d8633d92049d7325156ffb95a911b58fa2dd33f4c97c863d785b6bee7092e1fd"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/mutation_results.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "9e773127b3985aa0ad85c5e588128e064ae55598a68bc619331ab7f51417ab36",
+      "actual_sha256": "9e773127b3985aa0ad85c5e588128e064ae55598a68bc619331ab7f51417ab36"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/overlay_preflight_tests.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "f2ffaa0367c1e0db3f8ffb39144436fd34a87faa291d6ae264d7cd22a3e14186",
+      "actual_sha256": "f2ffaa0367c1e0db3f8ffb39144436fd34a87faa291d6ae264d7cd22a3e14186"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/repeat.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "b4fe399291ad636c09bbbacdf3ee5a8988f354b336744878e53d4a11a47a9d01",
+      "actual_sha256": "b4fe399291ad636c09bbbacdf3ee5a8988f354b336744878e53d4a11a47a9d01"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/retained_review.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "9235d36e970d0b61a3ed77a2c9b823db21f4ed6357a06a0bf98077f98272d3f2",
+      "actual_sha256": "9235d36e970d0b61a3ed77a2c9b823db21f4ed6357a06a0bf98077f98272d3f2"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/section_validation.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "6a1d70973f6d19ebe2a8ca23f903a52a6e0c52796016307e1ad958bc2aa2714d",
+      "actual_sha256": "6a1d70973f6d19ebe2a8ca23f903a52a6e0c52796016307e1ad958bc2aa2714d"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/results/summary.json",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "36cc6a9681b2830cbddaede00ff03b39140876d877e615fe78cec508a237faa1",
+      "actual_sha256": "36cc6a9681b2830cbddaede00ff03b39140876d877e615fe78cec508a237faa1"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/run_review.py",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "be25beb4a2c6b19b3e327b86da9e80704ce079e65c64929f5b4b588ec0c6be32",
+      "actual_sha256": "be25beb4a2c6b19b3e327b86da9e80704ce079e65c64929f5b4b588ec0c6be32"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section02-resource-queue/verify_overlay.py",
+      "state": "already_applied",
+      "expected_before": null,
+      "expected_after": "bcfcba0b7f05fd60bafdbffbf5d4f86332cfefd5cca92d9a28e03e8c5f5a10d8",
+      "actual_sha256": "bcfcba0b7f05fd60bafdbffbf5d4f86332cfefd5cca92d9a28e03e8c5f5a10d8"
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "state": "conflict",
+      "expected_before": "098e72fc00a6dc6ac0c7ff8e31a79f3d9b0bb9018419f6fb4c52666295e42abb",
+      "expected_after": "b4c834d1abd28fcbaa5ce7b9497f7a4eb5bb9aa1c7ed21feef5ea47a451ac5b4",
+      "actual_sha256": "bc60ed80dc6f024f5437dafb8885f393088047081b2fedcb1ac8ff745b3bc6e8"
+    },
+    {
+      "path": "_types/fields.tsv",
+      "state": "conflict",
+      "expected_before": "a4e7b6fde8d85d76b4ef54b6cdecb7717cd8650e57a47ac72e3634c4a014b7ee",
+      "expected_after": "66f763761bc9c76a546ccdb74ac1b6b0b2fe3532c967c1bf9ae2f0792d902f32",
+      "actual_sha256": "ca4816cdc1e59e02313b7a6ae43ba3b179d35eecb1de89a87cc3dd48ccf8af16"
+    },
+    {
+      "path": "_types/types.tsv",
+      "state": "conflict",
+      "expected_before": "333511ba8e11a06861ca2f2b9cfa5fe77007b8f157d1937d892b1e70dbbf0a08",
+      "expected_after": "484fc2d439c537473154f7b2cfd47af682a0294c6b6af554d4c7c38940384f63",
+      "actual_sha256": "2369ebedf01b888e9268c878e979db27fb441a114090b90bbc3f2054fc357e85"
+    }
+  ],
+  "note": "Merge newer local edits; do not blindly replace conflicts. The manifest itself has no self-hash."
+}

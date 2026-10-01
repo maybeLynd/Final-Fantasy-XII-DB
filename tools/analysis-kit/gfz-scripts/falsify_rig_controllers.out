@@ -1,0 +1,7 @@
+SURVIVES  R0  all twenty-one sizes as cited
+SURVIVES  R1  off index 4 -> 003E15BF (add rsp, 0x20 ...), on index 4 -> 003E187F (add rsp, 0x20 ...); the other sixteen distinct in both
+SURVIVES  R2  each timed service divides by [01DFE0BC] and tail-jumps to its setter (True); stores {'002EDF30': ['mov dword ptr [rcx + 0x640], edx', 'movss dword ptr [rcx + 0x640], xmm2'], '002EE130': ['mov dword ptr [rcx + 0x644], edx', 'movss dword ptr [rcx + 0x644], xmm2'], '002EDED0': ['mov dword ptr [rcx + 0x648], edx', 'movss dword ptr [rcx + 0x648], xmm2']}; the wrapper reads +0x94 and +0x304
+SURVIVES  R3  countdown gates +0x290 / +0x40B, subtracts 01DFE0BC; the phase walks +0x48800
+SURVIVES  R4  cmp dword ptr [rip + 0x27796e1], 0; rig bytes +0x63 and +0x5F read
+SURVIVES  R5  Float bob base-relative tables ['01F223B0', '01F22590', '01F22670'] and 01DFE0BC; controller-12 tables ['01F004E0', '01F22130', '01F22170'] and heading +0x124
+FAILS 0

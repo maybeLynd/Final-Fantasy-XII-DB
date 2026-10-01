@@ -1,0 +1,204 @@
+# classdesc+0xF4 per class - the value the four member accessors SUBTRACT from a recorded
+# member offset before adding it to the instance pointer (0063C4A0, 0063D300, 0063AD90,
+# 0063C910: r9d = [member+0x48]; r9d -= [classdesc+0xF4]).
+#
+# +0xF4 is NOT a constant. 0063E410 zeroes it and then accumulates it around the parent
+# chain - `add dword [rdx+0xF4], [rax+0xF0]`, following +0x78, stopping at the root
+# descriptor 02CF8270. +0xF0 is arg7 of the descriptor constructor; across all calls to
+# 00632D80/00632C90, 298 pass 0, 16 pass 8, one passes 1, one passes -2, 69 pass r15d.
+#
+# UNRESOLVED means a register argument somewhere in that chain, NOT zero. Assuming zero is
+# precisely the error this table exists to correct.
+#
+# RESOLVED 2026-09-19 (OPUS). +0xF4 == +0xF8 for all 153 classes where both resolve (0
+# differences), so the four accessors (which subtract +0xF4) and the per-instance initialiser
+# 0063C910 (which subtracts +0xF8) resolve a runtime object pointer to the SAME layout base.
+# The recorded offsets are measured from THAT base and need no adjustment: all 27 classes with
+# 0x8 have every offset inside [0, instanceSize), and PNode has a member at +0x0, which could
+# not be true if the offsets were object-pointer-relative and needed 8 subtracted.
+#
+# THE ONE CONSEQUENCE FOR A RECONSTRUCTION: for the 27 classes below with 0x8, a runtime object
+# pointer is layoutBase + 8, so a live pointer converts to a field address as
+# (pointer - 8) + offset. For the other 126 the two are the same.
+#
+# 2026-09-19 (OPUS). exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+class_leaf	f4
+CD3D11_BLEND_DESC	UNRESOLVED
+CD3D11_DEPTH_STENCIL_DESC	UNRESOLVED
+CD3D11_RASTERIZER_DESC	UNRESOLVED
+D3D11_RENDER_TARGET_BLEND_DESC	UNRESOLVED
+PAnimatableComponent	0x8
+PAnimationChannel	0x0
+PAnimationChannelBase	0x0
+PAnimationChannelTarget	0x0
+PAnimationChannelTimes	0x0
+PAnimationClip	0x0
+PAnimationClipBinding	0x0
+PAnimationClipBindingChannelMap	0x0
+PAnimationClipBindingDataBlockCache	0x0
+PAnimationController	UNRESOLVED
+PAnimationDataSource	UNRESOLVED
+PAnimationDataSourceListEntry	0x0
+PAnimationEvent	0x0
+PAnimationEventController	UNRESOLVED
+PAnimationNetworkInstance	0x8
+PAnimationSlotFilter	UNRESOLVED
+PAnimationSlotFilterDeferredLoad	0x0
+PAnimationSlotListIndex	0x0
+PAnimationSpuTargetBlenderController	UNRESOLVED
+PAnimationTargetBlenderController	UNRESOLVED
+PArray	UNRESOLVED
+PAssetReference	0x0
+PAssetReferenceImport	0x0
+PAtmosphericsBase	0x8
+PBitmapFont	0x0
+PBitmapFontCharInfo	0x0
+PBlendableAnimationSource	0x0
+PCamera	0x0
+PCameraOrthographic	0x8
+PCameraPerspective	0x8
+PCameraProjection	0x8
+PCelShadingBase	0x8
+PClassCallableMethodScript	UNRESOLVED
+PClusterHeaderBase	0x0
+PClusterHeaderD3D11	0x0
+PComponent	0x0
+PConstantBufferBase	0x0
+PContextVariantFoldingTable	0x0
+PDataBlockBase	0x0
+PDataBlockD3D11	0x0
+PDebugUtils	0x0
+PDeferredLightingBase	0x8
+PDepthOfFieldBase	0x8
+PDynamicDataBlock	0x0
+PDynamicMesh	0x8
+PDynamicMeshInstance	0x8
+PDynamicSegmentDesc	0x0
+PEffect	0x0
+PEffectVariant	0x0
+PEntity	0x0
+PGameConfig	0x0
+PGlowBase	0x8
+PIndexDataBlockBase	0x0
+PIndexDataBlockD3D11	0x0
+PInputAction	0x8
+PInputMapper	0x0
+PInputSource	0x8
+PInputSourceJoypadAxis	0x8
+PInputSourceJoypadButton	0x8
+PInputSourceKey	0x8
+PInputSourceMouseButton	0x8
+PInputSourceMouseDeltaX	0x8
+PInputSourceMouseDeltaY	0x8
+PInstanceListHeader	0x0
+PLODGroup	0x0
+PLODLevel	0x0
+PLight	0x0
+PMaterial	0x0
+PMaterialSwitch	0x0
+PMesh	0x0
+PMeshInstance	0x0
+PMeshInstanceAttachPoint	0x0
+PMeshInstanceBounds	0x0
+PMeshInstanceSegmentStreamBinding	0x0
+PMeshSegmentBase	0x0
+PMeshSegmentD3D11	0x0
+PModifierAndInputs	0x0
+PModifierNetwork	0x0
+PModifierNetworkBuffer	0x0
+PModifierNetworkDynamicMeshSegment	0x0
+PModifierNetworkInfoPacket	0x0
+PModifierNetworkInfoPacket_Buffer	0x0
+PModifierNetworkInfoPacket_ModifierCode	0x0
+PModifierNetworkInfoPacket_ModifierInstance	0x0
+PModifierNetworkInstance	0x0
+PModifierNetworkInstanceInput	0x0
+PModifierNetworkInstancePacketInput	0x0
+PMotionBlurBase	0x8
+PNameComponent	0x0
+PNode	0x8
+POccluderGeometryInstance	0x0
+POccluderGeometryObject	0x0
+POctree	0x0
+POctreeData	0x0
+POctreeWorld	0x0
+PParameterBuffer	0x0
+PParameterBufferBase	0x0
+PPhysicsBoxBase	UNRESOLVED
+PPhysicsCallbackData	0x0
+PPhysicsCapsuleBase	UNRESOLVED
+PPhysicsCharacterCamera	0x8
+PPhysicsCharacterControllerBase	0x0
+PPhysicsCylinderBase	UNRESOLVED
+PPhysicsMaterial	0x0
+PPhysicsMeshBase	UNRESOLVED
+PPhysicsModel	0x0
+PPhysicsPlaneBase	UNRESOLVED
+PPhysicsRigidBodyBase	0x0
+PPhysicsShapeBase	0x8
+PPhysicsSphereBase	UNRESOLVED
+PPhysicsTaperedCapsule	UNRESOLVED
+PPhysicsTaperedCylinder	UNRESOLVED
+PPhysicsWorldBase	0x0
+PPostEffectBase	0x8
+PQuarryComponent	0x0
+PRaycastResult	0x0
+PRenderStream	0x0
+PRenderStreamInput	0x0
+PRenderTargetBase	0x0
+PSamplerStateBase	0x0
+PSceneRenderPass	0x0
+PScreenSpaceReflectionBase	0x8
+PScript	0x0
+PScriptCallbackHandler	0x0
+PScriptableComponent	0x8
+PShader	0x0
+PShaderComputeProgramD3D11	UNRESOLVED
+PShaderParameterCaptureBufferByteAddressBuffer	0x0
+PShaderParameterCaptureBufferDataBlock	0x0
+PShaderParameterCaptureBufferIndexDataBlock	0x0
+PShaderParameterCaptureBufferLocation	0x0
+PShaderParameterCaptureBufferLocationSize	0x0
+PShaderParameterCaptureBufferLocationType	0x0
+PShaderParameterCaptureBufferLocationTypeConstantBuffer	0x0
+PShaderParameterCaptureBufferRWByteAddressBuffer	0x0
+PShaderParameterCaptureBufferRWStructuredBuffer	0x0
+PShaderParameterCaptureBufferRWTexture2D	0x0
+PShaderParameterCaptureBufferRWTexture3D	0x0
+PShaderParameterCaptureBufferSampler	0x0
+PShaderParameterCaptureBufferStructuredBuffer	0x0
+PShaderParameterCaptureBufferTexture2D	0x0
+PShaderParameterCaptureBufferTexture3D	0x0
+PShaderParameterCaptureBufferTextureBase	0x0
+PShaderParameterCaptureBufferTextureCubeMap	0x0
+PShaderParameterCaptureConstantBuffer	0x0
+PShaderParameterDefinition	0x0
+PShaderPassBase	0x0
+PShaderPassD3D11	0x0
+PShaderPassInfo	0x0
+PShaderPassStateBase	0x0
+PShaderPassStateD3D11	0x0
+PShaderProgramD3D11	UNRESOLVED
+PShaderSource	0x0
+PShaderStreamDefinition	0x0
+PShaderVertexProgramD3D11	UNRESOLVED
+PShadowCaster	0x0
+PShadowSplit	0x0
+PShape	0x0
+PSharray	UNRESOLVED
+PSkeletonJointBounds	0x0
+PSkinBoneRemap	0x0
+PStreamInputDescD3D11	0x0
+PStructuredBufferBase	0x0
+PTexture2DBase	0x0
+PTexture3DBase	0x0
+PTextureCommonBase	0x0
+PTextureCubeMapBase	0x0
+PTimeIntervalController	UNRESOLVED
+PTimeScaleOffsetController	UNRESOLVED
+PTrigger	0x0
+PTriggerReceiverComponent	0x0
+PTriggerReceiverTypeCallbackData	0x0
+PTypedObject	0x0
+PVertexStream	0x0
+PWorldMatrix	0x0

@@ -1,0 +1,13 @@
+{
+  "case": "wrong-root-input",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ard-callback-width.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\wrong-root-input\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\wrong-root-input"
+  ],
+  "exit": 1,
+  "expected_error": "required original ARD identity changed",
+  "expected_error_seen": true,
+  "result_absent": true
+}

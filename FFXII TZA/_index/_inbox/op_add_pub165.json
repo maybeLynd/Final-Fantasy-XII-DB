@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-165",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "batch-165 publish stage",
+  "scope": "batch-165 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2-EC7-SHARED-HUB-IDENTIFICATION-165"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

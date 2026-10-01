@@ -1,0 +1,290 @@
+[
+  {
+    "name": "exact-five",
+    "mutated": false,
+    "running_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed1f30f59d2660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+    "native": {
+      "input_bits": "40a00000",
+      "allocation": "Ownprocess4096B private RW then RX; no external/game memory",
+      "before_output_words": [
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5"
+      ],
+      "result_bits": "41c80000",
+      "after_output_words": [
+        "00001f80",
+        "00001fa0",
+        "00001fa0",
+        "a5a5a5a5"
+      ],
+      "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be",
+      "freed": true,
+      "after_free_state": "0x10000"
+    },
+    "guest": {
+      "input_bits": "40a00000",
+      "initial_mxcsr": "0x1fa0",
+      "before_output_words": [
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5"
+      ],
+      "result_bits": "41c80000",
+      "after_output_words": [
+        "00001f80",
+        "00001fa0",
+        "00001fa0",
+        "a5a5a5a5"
+      ],
+      "after_mxcsr": "0x1fa0",
+      "stop_pc": "0x10000",
+      "rsp": "0x60001810",
+      "visits": [
+        "0x1000",
+        "0x1004",
+        "0x1008",
+        "0x1010",
+        "0x1015",
+        "0x1019",
+        "0x101d",
+        "0x1021",
+        "0x1024",
+        "0x1028",
+        "0x102c",
+        "0x1030",
+        "0x1034",
+        "0x1038"
+      ],
+      "writes": [
+        {
+          "pc": "0x1004",
+          "address": "0x600017f0",
+          "size": 4,
+          "value": 8096
+        },
+        {
+          "pc": "0x1008",
+          "address": "0x600017f4",
+          "size": 4,
+          "value": 8064
+        },
+        {
+          "pc": "0x1021",
+          "address": "0x40000100",
+          "size": 4,
+          "value": 8064
+        },
+        {
+          "pc": "0x1028",
+          "address": "0x40000104",
+          "size": 4,
+          "value": 8096
+        },
+        {
+          "pc": "0x1030",
+          "address": "0x40000108",
+          "size": 4,
+          "value": 8096
+        }
+      ],
+      "failure": null,
+      "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be"
+    }
+  },
+  {
+    "name": "next-above-five",
+    "mutated": false,
+    "running_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed1f30f59d2660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+    "native": {
+      "input_bits": "40a00001",
+      "allocation": "Ownprocess4096B private RW then RX; no external/game memory",
+      "before_output_words": [
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5"
+      ],
+      "result_bits": "41c80003",
+      "after_output_words": [
+        "00001fa0",
+        "00001fa0",
+        "00001fa0",
+        "a5a5a5a5"
+      ],
+      "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be",
+      "freed": true,
+      "after_free_state": "0x10000"
+    },
+    "guest": {
+      "input_bits": "40a00001",
+      "initial_mxcsr": "0x1fa0",
+      "before_output_words": [
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5"
+      ],
+      "result_bits": "41c80003",
+      "after_output_words": [
+        "00001f80",
+        "00001fa0",
+        "00001fa0",
+        "a5a5a5a5"
+      ],
+      "after_mxcsr": "0x1fa0",
+      "stop_pc": "0x10000",
+      "rsp": "0x60001810",
+      "visits": [
+        "0x1000",
+        "0x1004",
+        "0x1008",
+        "0x1010",
+        "0x1015",
+        "0x1019",
+        "0x101d",
+        "0x1021",
+        "0x1024",
+        "0x1028",
+        "0x102c",
+        "0x1030",
+        "0x1034",
+        "0x1038"
+      ],
+      "writes": [
+        {
+          "pc": "0x1004",
+          "address": "0x600017f0",
+          "size": 4,
+          "value": 8096
+        },
+        {
+          "pc": "0x1008",
+          "address": "0x600017f4",
+          "size": 4,
+          "value": 8064
+        },
+        {
+          "pc": "0x1021",
+          "address": "0x40000100",
+          "size": 4,
+          "value": 8064
+        },
+        {
+          "pc": "0x1028",
+          "address": "0x40000104",
+          "size": 4,
+          "value": 8096
+        },
+        {
+          "pc": "0x1030",
+          "address": "0x40000108",
+          "size": 4,
+          "value": 8096
+        }
+      ],
+      "failure": null,
+      "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be"
+    }
+  },
+  {
+    "name": "private-omit-mul",
+    "mutated": true,
+    "running_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed190909090660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+    "native": {
+      "input_bits": "40a00001",
+      "allocation": "Ownprocess4096B private RW then RX; no external/game memory",
+      "before_output_words": [
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5"
+      ],
+      "result_bits": "40a00001",
+      "after_output_words": [
+        "00001f80",
+        "00001fa0",
+        "00001fa0",
+        "a5a5a5a5"
+      ],
+      "running_sha256": "e71815eafb7a927bc4367b43323a0ea48432a1fb305d6b879a0867e000c5d002",
+      "freed": true,
+      "after_free_state": "0x10000"
+    },
+    "guest": {
+      "input_bits": "40a00001",
+      "initial_mxcsr": "0x1fa0",
+      "before_output_words": [
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5",
+        "a5a5a5a5"
+      ],
+      "result_bits": "40a00001",
+      "after_output_words": [
+        "00001f80",
+        "00001fa0",
+        "00001fa0",
+        "a5a5a5a5"
+      ],
+      "after_mxcsr": "0x1fa0",
+      "stop_pc": "0x10000",
+      "rsp": "0x60001810",
+      "visits": [
+        "0x1000",
+        "0x1004",
+        "0x1008",
+        "0x1010",
+        "0x1015",
+        "0x1019",
+        "0x101a",
+        "0x101b",
+        "0x101c",
+        "0x101d",
+        "0x1021",
+        "0x1024",
+        "0x1028",
+        "0x102c",
+        "0x1030",
+        "0x1034",
+        "0x1038"
+      ],
+      "writes": [
+        {
+          "pc": "0x1004",
+          "address": "0x600017f0",
+          "size": 4,
+          "value": 8096
+        },
+        {
+          "pc": "0x1008",
+          "address": "0x600017f4",
+          "size": 4,
+          "value": 8064
+        },
+        {
+          "pc": "0x1021",
+          "address": "0x40000100",
+          "size": 4,
+          "value": 8064
+        },
+        {
+          "pc": "0x1028",
+          "address": "0x40000104",
+          "size": 4,
+          "value": 8096
+        },
+        {
+          "pc": "0x1030",
+          "address": "0x40000108",
+          "size": 4,
+          "value": 8096
+        }
+      ],
+      "failure": null,
+      "running_sha256": "e71815eafb7a927bc4367b43323a0ea48432a1fb305d6b879a0867e000c5d002"
+    }
+  }
+]

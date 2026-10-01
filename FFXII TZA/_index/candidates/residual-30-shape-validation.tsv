@@ -1,0 +1,88 @@
+# CAN THE 30 UNRESOLVED BODIES BE CLASSIFIED FROM THEIR SHAPE? NO. Measured, not argued.
+#
+# WHY THE QUESTION WAS WORTH ASKING. The CodeDomain vocabulary is 998 names in 53 families and
+# the five largest families read like descriptions of a body's call and control shape -
+# NativeRoutine.BoundedLoop.DirectCallOnly, NativeAdapter.BoundedDirectCall.Single.Linear,
+# NativeDispatch.BoundedComputedCall.Acyclic.Branching, NativeInline.NoCall.*. If a domain is
+# a mechanical description of a body, the 30 could be classified mechanically and L1's hard
+# `unresolved = 0` gate would be cheap.
+#
+# POSITIVE CONTROL 1 - THE NAMES DO DESCRIBE THE BODIES. Over 6,000 already-classified bodies,
+# each name token was scored against its plain reading of the body it is attached to:
+#   Conditional 100.0%  Linear 100.0%  Acyclic 100.0%  Branching 100.0%  (n = 1149/1078/358/350)
+#   BoundedLoop 99.9%   DirectCallOnly 99.9%  Single 99.9%              (n = 1381/1185/880)
+#   NoCall 99.7%  - meaning no CALL instruction; an outward jmp is a tail call, counted as a
+#                   TRANSFER but not as a call
+#   Pair 90.1%    - NOT established, and never asserted anywhere in this work
+# Single first scored 77.2% under every way of counting CALLS, which is how the tail-call rule
+# was found: counting an outward jmp as a transfer took it to 1066/1067. The token was right
+# and the reading was wrong.
+#
+# POSITIVE CONTROL 2 - THE DECODE IS SOUND. 1,066 of 1,067 sampled bodies decoded to 100% of
+# their declared extent, so a missing transfer is not a missing decode. Any body under 95%
+# coverage is excluded from the table below rather than guessed at.
+#
+# THE RESULT, AND IT IS NEGATIVE. The implication does not run backwards. A domain's name
+# describes its body, but a body's shape does not pick its domain: the family carries semantic
+# information - Phyre, ThirdParty, Boundary.Audio, EASTL - that control flow cannot supply.
+# 28,129 classified bodies collapse into just 33 distinct shape signatures, so a signature is
+# far too coarse to name one of 998 domains.
+#
+# For each of the 30: the signature its body actually has, how many classified bodies share
+# that signature, and how pure that set is. PURITY RANGE 7.8% TO 75.0%, MEDIAN 21.0%. One
+# member reaches 75% (002C3D70, NativeRoutine.BoundedLoop.DirectCallOnly) and 75% is not
+# evidence - a disposition is not forced on it, because a forced disposition on the one
+# member that scored best is exactly how a 30 -> 0 becomes dishonest.
+#
+# WHAT THIS LEAVES - CORRECTED 2026-09-16 (OPUS), SAME DAY, AND THE FIRST VERSION WAS WRONG.
+# It read: "the only method with a track record is the one SWE2-FRONTIER used for the other 109:
+# read the body ... that is what these 30 cost". THE READING IS ALREADY DONE. residual-30-GN161-
+# stage1.tsv (OPUS, 2026-09-15, fb75d534) carries evidence validation and a PROPOSED DOMAIN for
+# all 30: verdict `validated` on 30 of 30, 30 distinct domains, zero colliding with the 998
+# already in the graph, from passages that already exist in the corpus. check_residual_depth at
+# HEAD bands all 30 DESCRIBED, CONTESTED 0, NEEDS-THE-BODY-READ 0.
+#
+# WHAT ACTUALLY REMAINS is not documentation: batch application into the certified GN161 parent,
+# a pre/post FAS2 fence and fresh-import certification (SWE2-EC7), then INDEPENDENT re-certification
+# (SWE2-AUDIT-SEM). OPUS proposed these domains and must not certify them.
+#
+# THE MEASUREMENT BELOW IS UNAFFECTED and still worth having: shape does not determine domain,
+# so no mechanical shortcut exists. It simply does not follow that reading is what remains.
+# HOW THE ERROR HAPPENED: this table was built on residual-139-explanation-depth.tsv, the GN160-era
+# band file, whose successor residual-30-GN161.tsv says in its own header that the 139-keyed files
+# are one generation stale. Both files are OPUS's. A stale store is not less dangerous for being
+# your own.
+#
+# Image: embedded_exe.bin sha256 73461d08...21f8, image base 0x00120000 included in every VA.
+# Generated 2026-09-16 by OPUS; regenerable from work/OPUS/ shape scripts + functions.tsv.
+entry	body_bytes	decode_cover	shape_signature	classified_sharing_it	top_domain_for_that_shape	purity	shape_suffices
+0018EEE0	1581	100%	DirectCallOnly|Acyclic|Cond|n=9+	317	Phyre.Reflection.GeneratedMetadataRoutine	40.7%	NO
+001D72F0	937	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+001D7A20	932	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+0020AC30	572	100%	ComputedCall|Acyclic|Cond|n=9+	145	ThirdParty.Rendering.PPFX	23.4%	NO
+0020F3E0	1779	100%	ComputedCall|Loop|Cond|n=3-8	545	ThirdParty.Rendering.PPFX	13.0%	NO
+00226640	861	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+00246C20	1178	100%	ComputedCall|Acyclic|Cond|n=3-8	778	NativeDispatch.BoundedComputedCall.Acyclic.Branching	39.1%	NO
+00247AE0	1348	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+0024B580	324	100%	ComputedCall|Loop|Cond|n=9+	361	ThirdParty.Rendering.PPFX	23.5%	NO
+00256960	828	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+00258350	1942	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+0026F470	1361	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+00275570	1835	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+0028BB50	2387	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+002ABF70	577	100%	ComputedCall|Acyclic|Cond|n=3-8	778	NativeDispatch.BoundedComputedCall.Acyclic.Branching	39.1%	NO
+002AC5F0	7489	100%	ComputedCall|Loop|Cond|n=9+	361	ThirdParty.Rendering.PPFX	23.5%	NO
+002AE610	1281	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+002AF340	1563	100%	DirectCallOnly|Loop|Cond|n=9+	232	NativeRoutine.BoundedLoop.Extended.DirectCallOnly	7.8%	NO
+002B2150	861	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+002B6350	541	100%	ComputedCall|Loop|Cond|n=3-8	545	ThirdParty.Rendering.PPFX	13.0%	NO
+002BA310	543	100%	ComputedCall|Loop|Cond|n=9+	361	ThirdParty.Rendering.PPFX	23.5%	NO
+002C3D70	1151	100%	DirectCallOnly|Loop|Cond|n=1	599	NativeRoutine.BoundedLoop.DirectCallOnly	75.0%	NO
+0036A2A0	495	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+00402000	511	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+00565E00	1914	100%	ComputedCall|Loop|Cond|n=9+	361	ThirdParty.Rendering.PPFX	23.5%	NO
+00566680	997	100%	ComputedCall|Acyclic|Cond|n=9+	145	ThirdParty.Rendering.PPFX	23.4%	NO
+0056E140	632	100%	ComputedCall|Acyclic|Cond|n=9+	145	ThirdParty.Rendering.PPFX	23.4%	NO
+0056F810	621	100%	ComputedCall|Acyclic|Cond|n=9+	145	ThirdParty.Rendering.PPFX	23.4%	NO
+00572920	679	100%	DirectCallOnly|Loop|Cond|n=3-8	1692	NativeRoutine.BoundedLoop.DirectCallOnly	21.0%	NO
+005771F0	758	100%	ComputedCall|Acyclic|Cond|n=9+	145	ThirdParty.Rendering.PPFX	23.4%	NO

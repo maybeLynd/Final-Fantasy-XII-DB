@@ -1,0 +1,29 @@
+{
+  "status": "PASS_ACTUAL_SIX_KEY_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "fdfa26146472581fa37dc06c2422760993cf235334c9642afb3ed69c977c3bed",
+  "positive_reused": {
+    "path": "ov33-e2-six-cache-keys-result-01.json",
+    "sha256": "45dbb3de783afcca026ab7daba386ce8739088c111db20bdc5182d2b4b0a2ca7"
+  },
+  "refusals": [
+    {
+      "case": "consistent-wrong-multiplier",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "zero-input-population",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-index-prefix",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Three actual producer CLI controls; complete positive reused. No native/game run or external-test credit."
+}

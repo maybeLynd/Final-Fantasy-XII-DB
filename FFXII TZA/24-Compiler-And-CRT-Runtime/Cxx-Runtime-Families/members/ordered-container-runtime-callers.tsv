@@ -1,0 +1,125 @@
+# Callers of the ordered-container (red-black tree) runtime - the enumeration OC-4 asked for
+#
+# Derived from the shipping EXE, authority hash
+# 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x00120000 already
+# included, by disassembling every body in work/graph/functions.tsv and recording every direct
+# call or jmp whose target is one of the six members.
+#
+# 99 distinct callers. 170 distinct (caller, callee) PAIRS - the page's "170 call edges" - across
+# 213 CALL SITES, because a caller that inserts twice in two branches is one pair and two sites.
+# The two numbers are both right and they are not the same number; this file carries sites.
+#
+# 0016DA60 is in this list. It is a family MEMBER calling the two rotations, which is the family's
+# only internal edge, and it is one of the 99 the page counts.
+#
+# member_signature  which of the six this caller uses. Six signatures occur and NO CALLER USES MORE
+#                   THAN TWO MEMBERS: inc+era 30, dec+ins 24, inc+ins 16, ins 16, inc 12, and
+#                   rotL+rotR 1 (which is 0016DA60, the erase, i.e. the family's own internal edge).
+# node_size         the size passed to the allocator immediately before an insert, where the caller
+#                   allocates. Nine values, every one 0x20 + a multiple of 8; see OC-2.
+# name              EVERY ONE OF THE 99 IS FUN_xxxxxxxx. Not one caller of this family is named.
+#
+# NOT IN THIS FILE: what any caller means. The signature and the node size are structural facts
+# taken from the instructions; no caller was read for purpose, and the subsystem attribution in
+# section 5 of the page comes from audit_crossrefs rather than from here.
+#
+address	name	bytes	member_signature	call_sites	node_size
+0016DA60	FUN_0016da60	867	rotL+rotR	4	
+00199DB0	FUN_00199db0	341	dec+ins	3	0x28
+0019CC50	FUN_0019cc50	232	inc+era	3	
+001A3220	FUN_001a3220	337	dec+ins	3	0x28
+001A3380	FUN_001a3380	358	dec+ins	3	0x38
+001A34F0	FUN_001a34f0	350	inc+ins	3	0x38
+001A3650	FUN_001a3650	366	dec+ins	3	0x38
+001A37C0	FUN_001a37c0	358	inc+ins	3	0x38
+001A3930	FUN_001a3930	342	dec+ins	3	0x28
+001A3A90	FUN_001a3a90	330	inc+ins	3	0x28
+001A3BE0	FUN_001a3be0	387	dec+ins	3	0x88
+001A3D70	FUN_001a3d70	412	inc+ins	3	0x88
+001A3F10	FUN_001a3f10	404	dec+ins	2	
+001A4390	FUN_001a4390	161	ins	1	0x38
+001A4440	FUN_001a4440	165	ins	1	0x38
+001A44F0	FUN_001a44f0	155	ins	1	0x28
+001A4590	FUN_001a4590	179	ins	1	0x88
+001A5980	FUN_001a5980	239	inc	1	
+001A6CC0	FUN_001a6cc0	184	inc	1	
+001A7770	FUN_001a7770	213	inc	1	
+001A7F10	FUN_001a7f10	3194	inc	1	
+001A9ED0	FUN_001a9ed0	458	inc	1	
+001AB3D0	FUN_001ab3d0	404	dec+ins	2	
+001ACF80	FUN_001acf80	306	inc+era	3	
+001AE850	FUN_001ae850	344	dec+ins	3	0x30
+001AE9B0	FUN_001ae9b0	332	inc+ins	3	0x30
+001AEB00	FUN_001aeb00	304	dec+ins	3	
+001AEC30	FUN_001aec30	282	inc+ins	3	
+001AEF70	FUN_001aef70	134	ins	1	
+001B1960	FUN_001b1960	182	inc+era	2	
+001B5B60	FUN_001b5b60	346	inc+era	2	
+001B67F0	FUN_001b67f0	210	inc+era	2	
+001B6990	FUN_001b6990	213	inc+era	2	
+001B6A70	FUN_001b6a70	213	inc	1	
+001B9D80	FUN_001b9d80	337	dec+ins	3	0x28
+001B9EE0	FUN_001b9ee0	412	dec+ins	3	0x58
+001BA080	FUN_001ba080	391	inc+ins	3	0x58
+001BA210	FUN_001ba210	404	dec+ins	2	
+001BA3B0	FUN_001ba3b0	184	ins	1	0x58
+001BA860	FUN_001ba860	168	inc+era	2	
+001BC190	FUN_001bc190	1828	inc+era	2	
+001BD040	FUN_001bd040	359	dec+ins	3	0x40
+001BD1B0	FUN_001bd1b0	391	inc+ins	3	0x40
+001BD340	FUN_001bd340	167	ins	1	0x40
+001BD4A0	FUN_001bd4a0	381	inc+era	2	
+001BDAC0	FUN_001bdac0	382	inc+era	3	
+001BEBB0	FUN_001bebb0	404	dec+ins	2	
+001BED50	FUN_001bed50	404	dec+ins	2	
+001BF230	FUN_001bf230	167	inc	1	
+001C0960	FUN_001c0960	299	inc+era	3	
+001E1670	FUN_001e1670	987	inc+era	2	
+001E7770	FUN_001e7770	346	dec+ins	3	0x30
+001E78D0	FUN_001e78d0	335	inc+ins	3	0x30
+001E7C90	FUN_001e7c90	156	ins	1	0x30
+001E9A30	FUN_001e9a30	170	inc+era	3	
+001F5B80	FUN_001f5b80	134	inc+era	2	
+001F8B30	FUN_001f8b30	171	inc+era	2	
+001FB470	FUN_001fb470	332	inc+ins	3	0x30
+001FB5C0	FUN_001fb5c0	156	ins	1	0x30
+001FB660	FUN_001fb660	188	inc	1	
+001FC890	FUN_001fc890	342	dec+ins	3	0x28
+001FC9F0	FUN_001fc9f0	330	inc+ins	3	0x28
+001FCB40	FUN_001fcb40	404	dec+ins	3	0x60
+001FCCE0	FUN_001fcce0	412	inc+ins	3	0x60
+001FCE80	FUN_001fce80	390	dec+ins	3	0x48
+001FD010	FUN_001fd010	382	inc+ins	3	0x48
+001FD190	FUN_001fd190	383	dec+ins	3	0x48
+001FD310	FUN_001fd310	406	inc+ins	3	0x48
+001FD4B0	FUN_001fd4b0	155	ins	1	0x28
+001FD550	FUN_001fd550	178	ins	1	0x60
+001FD610	FUN_001fd610	176	ins	1	0x48
+001FD6C0	FUN_001fd6c0	177	ins	1	0x48
+001FEE80	FUN_001fee80	526	inc	1	
+001FFB30	FUN_001ffb30	528	dec+ins	2	0x50
+001FFD40	FUN_001ffd40	445	inc+ins	3	0x50
+00200090	FUN_00200090	174	ins	1	0x50
+0020B840	FUN_0020b840	347	inc+era	3	
+0020BA70	FUN_0020ba70	156	ins	1	0x30
+0020BFA0	FUN_0020bfa0	429	inc+era	3	
+002124C0	FUN_002124c0	219	inc+era	2	
+002187D0	FUN_002187d0	161	inc+era	2	
+002199C0	FUN_002199c0	161	inc+era	2	
+00219D80	FUN_00219d80	161	inc+era	2	
+0021AF80	FUN_0021af80	161	inc+era	2	
+0021C280	FUN_0021c280	161	inc+era	2	
+0021D280	FUN_0021d280	161	inc+era	2	
+002203F0	FUN_002203f0	165	inc+era	2	
+002204A0	FUN_002204a0	161	inc+era	2	
+00220550	FUN_00220550	161	inc+era	2	
+00220600	FUN_00220600	161	inc+era	2	
+002206B0	FUN_002206b0	161	inc+era	2	
+00220B80	FUN_00220b80	235	inc	1	
+00223790	FUN_00223790	344	dec+ins	3	0x30
+00223A20	FUN_00223a20	170	inc	1	
+0062EBC0	FUN_0062ebc0	167	inc	1	
+0062EC70	FUN_0062ec70	204	inc+era	2	
+00676000	FUN_00676000	486	dec+ins	3	0x60
+006761F0	FUN_006761f0	429	inc+ins	3	0x60
+006763A0	FUN_006763a0	174	ins	1	0x60

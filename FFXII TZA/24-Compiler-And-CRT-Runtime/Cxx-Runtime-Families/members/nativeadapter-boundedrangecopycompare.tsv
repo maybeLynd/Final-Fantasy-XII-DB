@@ -1,0 +1,7 @@
+# NativeAdapter.BoundedRangeCopyCompare - EC-7 family C
+# bounded copy/compare over the [r8] range into [rcx+8]-anchored storage:# per window call member ops and shared 0016D720/0016D840/001A3100 with# shared 00861ED2 (memcmp) verification; 404B five-call pipeline.
+address	targets
+001AB3D0	0016D720,0016D840,001A3100,001AB2C0,00861ED2
+001BA210	0016D720,0016D840,001A3100,001B9CF0,00861ED2
+001BEBB0	0016D720,0016D840,001A3100,001BEA90,00861ED2
+001BED50	0016D720,0016D840,001A3100,001BEB20,00861ED2

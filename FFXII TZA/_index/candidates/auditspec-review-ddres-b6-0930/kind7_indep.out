@@ -1,0 +1,5 @@
+002DF9A0 .pdata root 002DF9A0, 447 instructions
+stores to 0215F038 (kind 7): [('002DFF7F', 'rax', '01EDD7E0')]
+  store 002DFF7F array 01EDD7E0 id 0x6F cell 01EDDB58 reloc -> PS2Data\image\FF12\myoshiok\in\Mrp_Menu\save_load.mrp
+  store 002DFF7F array 01EDD7E0 id 0x7F cell 01EDDBD8 reloc -> PS2Data\image\FF12\myoshiok\in\Tm2_Menu\DataFace_c.tm2
+  store 002DFF7F array 01EDD7E0 id 0xBF cell 01EDDDD8 reloc -> PS2Data\image\FF12\myoshiok\in\Mrp_Menu\Loca.mrp

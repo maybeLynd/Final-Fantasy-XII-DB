@@ -1,0 +1,11 @@
+array 01E0CFA0 in .data
+  slot 643 other: 'PS2Data\\image\\ff12\\common\\test_map_ref.bin'
+  slot 644 other: 'PS2Data\\image\\ff12\\ch\\common\\test_area_ref.bin'
+  slot 645 other: 'PS2Data\\image\\ff12\\common\\behindcamera.bin'
+  first non-null 24 last non-null 695; .ard 215 .fpk 215 other 35 parity-crossovers 0
+array 01EDC280 in .data
+  slot 642 other: 'PS2Data\\image\\FF12\\isowaki\\ousi00.bin'
+  slot 643 other: 'PS2Data\\image\\FF12\\isowaki\\dummy.bin'
+  slot 644 other: 'PS2Data\\image\\FF12\\isowaki\\dummy.bin'
+  first non-null 24 last non-null 699; .ard 215 .fpk 215 other 46 parity-crossovers 0
+.ard strings in .rdata: 430; reached by the two arrays: 430; unreached: []

@@ -1,0 +1,5 @@
+chained roots: 3828 (control 3,828); non-contiguous: 0 (control 0)
+catalogue roots ending before their chain: 270 (control 270); bytes past listed ends: 16361 (control 16,361)
+rows to emit: 0 (of them 0 beside an instruction-scan row that stops short of the chain); already in the ledger with the same end: 270; conflicts (ledger past the chain): 0; refused (overlap next entry): 0
+PASS  controls
+exit 0

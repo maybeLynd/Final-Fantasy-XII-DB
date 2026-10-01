@@ -1,0 +1,72 @@
+{
+ "recovered_by": "OPUS",
+ "date": "2026-09-13",
+ "population": "EXP-075..EXP-081, the seven records written 2026-09-12/13 without method:/live_game:",
+ "source": "each record's own body; no author memory and no running game were used",
+ "owner_note": "ASTRA owns these records and may overrule any row on return.",
+ "records": [
+  {
+   "experiment": "EXP-075",
+   "file": "EXP-075-reward-index-prechecks.md",
+   "method": "B - isolated original-code execution",
+   "live_game": "false",
+   "read_from_line": 51,
+   "quote": "It checks the complete reference EXE SHA-256",
+   "note": ""
+  },
+  {
+   "experiment": "EXP-076",
+   "file": "EXP-076-reward-decoder-composition.md",
+   "method": "B - isolated original-code execution",
+   "live_game": "false",
+   "read_from_line": 16,
+   "quote": "Isolated original code with eight remaining callee stubs; no live game.",
+   "note": ""
+  },
+  {
+   "experiment": "EXP-077",
+   "file": "EXP-077-arena-initializer-address-width.md",
+   "method": "B - isolated original-code execution",
+   "live_game": "false",
+   "read_from_line": 45,
+   "quote": "Every run starts in a fresh Unicorn 2.1.4 instance.",
+   "note": ""
+  },
+  {
+   "experiment": "EXP-078",
+   "file": "EXP-078-arena-allocation-link-width.md",
+   "method": "B - isolated original-code execution",
+   "live_game": "false",
+   "read_from_line": 16,
+   "quote": "No live game, native CRT allocation or reconstruction",
+   "note": ""
+  },
+  {
+   "experiment": "EXP-079",
+   "file": "EXP-079-arena-live-placement.md",
+   "method": "C - ordinary UI input and read-only process observation",
+   "live_game": "true",
+   "read_from_line": 30,
+   "quote": "The designated process was PID `38032`",
+   "note": ""
+  },
+  {
+   "experiment": "EXP-080",
+   "file": "EXP-080-older-save-live-load.md",
+   "method": "C - ordinary UI input and read-only process observation",
+   "live_game": "true",
+   "read_from_line": 17,
+   "quote": "Method **C** was required for initialized binding and ordinary load.",
+   "note": ""
+  },
+  {
+   "experiment": "EXP-081",
+   "file": "EXP-081-live-battleunit-bindings.md",
+   "method": "C - ordinary UI input and read-only process observation",
+   "live_game": "true",
+   "read_from_line": 47,
+   "quote": "The existing EXP080 read-only observer was adapted only for the",
+   "note": "Method A preceded Method C in this record; the field carries the strongest method the conclusions rest on."
+  }
+ ]
+}

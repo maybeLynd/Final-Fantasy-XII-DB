@@ -1,0 +1,5 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-160",
+ "note": "Claiming batch 160: 0041FC80 (last multi-caller frontier body, 2 evidence-bearing callers) + top-21 1-A by size (908..174 B). 0037C2E0 and 001A7770 deferred as before (documented at non-bearing homes)."
+}

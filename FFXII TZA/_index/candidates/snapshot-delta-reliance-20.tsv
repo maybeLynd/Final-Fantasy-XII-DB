@@ -1,0 +1,45 @@
+# The 20 SNAPSHOT-DELTA documents, measured against what actually changed.
+#
+# FABLE's ruling (OPUS-REQ-FABLE-PROVENANCE-TRANSFER-144, 9bedb5e0) classed these as sitting in a
+# genuine snapshot delta: each cites a function whose per-function record differs between its
+# stamped generation and the certified parent. The same ruling says WHAT differs - 19 functions
+# GN158->GN160, 15 GN159->GN160, PLATE COMMENT AND TAGS ONLY, embedded EXE identical. Names,
+# bodies, sizes, prototypes and calling conventions are unchanged.
+#
+# So a document here is affected only if it RELIES on the two things that moved. Measured
+# (gen_snapshot_delta_reliance.py, published into the kit 2026-09-14 from
+# Tools/work/OPUS/snapshot_delta_reliance.py - renamed then): ZERO of the 20 quote a GFZ tag
+# on any line naming
+# one of their own delta functions. All 20 cite by address and argue from the body.
+#
+# The converse slice was measured separately and did find work: gen_delta_staleness.py,
+# published into the kit 2026-09-14 from Tools/work/OPUS/delta_staleness.py. It looked for
+# pages CALLING one of these functions unclassified - a claim a new tag falsifies - found 14
+# matches, and 5 were genuinely stale and are corrected (commit ac605404).
+#
+# NO STAMP IS WRITTEN ON THIS BASIS. Snapshot-identity is FABLE's basis and is adjudicated; this
+# would be a SECOND and narrower one - 'the delta is annotation text this document does not use' -
+# and widening my own transfer rule over documents another agent flagged is the author certifying
+# his own high-blast claim. Referred back: OPUS-REQ-FABLE-DELTA-RELIANCE-BASIS.
+#
+# document	stamp	delta_functions	tags_quoted_beside_them
+16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md	GN158	002B8EE0 002BCB00	0
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	GN158	002AAE40	0
+16-UI/Text-And-Number-Rendering/the-text-control-code-language.md	GN159	002AAE40	0
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md	GN158	002DC290 00392A10 00392CE0	0
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md	GN158	002DA7C0 002DC290 002DC7F0 00392A10 00392CE0	0
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md	GN159	001E8070 001E8580	0
+99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md	GN159	002AAE40 002B8EE0	0
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	GN158	001E8070 002AAE40 00364530 003649A0 00366110 0053E0B0	0
+99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md	GN159	001E8070 001E8580	0
+99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md	GN159	001E8070 001E8580	0
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	GN159	002AAE40	0
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	GN158	002AAE40	0
+99-Unresolved-Residual/drawing-one-coloured-rectangle.md	GN159	002B8EE0 002BCB00 002DBDD0	0
+99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md	GN159	002AAE40	0
+99-Unresolved-Residual/the-blinking-icon-and-its-atlas.md	GN159	002B8EE0 002BCB00 002DBDD0	0
+99-Unresolved-Residual/the-nine-patch-window-frame.md	GN159	002DBDD0 002DC290 002DC7F0 00392A10 00392CE0	0
+99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md	GN159	002B8EE0 002BCB00 002DBDD0	0
+99-Unresolved-Residual/the-unresolved-158.md	GN158	001E8070 001E8580 00245170 002455A0 00245E60 002AAE40 002B8EE0 002BCB00 002DA2D0 002DA7C0 002DBDD0 002DC290 002DC7F0 00364530 003649A0 00366110 00392A10 00392CE0 0053E0B0	0
+99-Unresolved-Residual/the-widget-background-and-its-atlas-sets.md	GN159	00245170 002455A0 002DA2D0 002DA7C0	0
+99-Unresolved-Residual/the-widget-tree-draw-pass.md	GN159	00245170 002455A0 00245E60 002DA2D0 002DA7C0	0

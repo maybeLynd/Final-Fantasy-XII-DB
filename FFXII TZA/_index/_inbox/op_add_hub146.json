@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-146",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "frontier-shared-callee-hubs batch 146: regenerated 2-A band (5 members: 00421D20/003AB8B0/00333350/0028E840/0016D6B0) + top-17 1-A by size (00332750/00415A80/00676BD0/003B3550/00384C30/0057AA00/00564430/0042B270/00676000/0042A390/00622BA0/0033D200/002845E0/0042DA30/003C1F00/00608F20/003A3E30)",
+  "scope": "all 22 ranked bodies: dump, route to bearing hosts, append evidence-backed sections",
+  "completion": "22/22 interior-cited + gates clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

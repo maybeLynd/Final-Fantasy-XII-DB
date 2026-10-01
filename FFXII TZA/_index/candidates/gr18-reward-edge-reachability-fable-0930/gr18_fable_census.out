@@ -1,0 +1,108 @@
+PASS  IMG sha256 73461d0896204b1c..., image base 120000
+
+== (a) zero-count or missing reward descriptor
+PASS  A-code loader slot5->02EBF148 / slot6->02EBF140 / slot2->02EBF120, NULL only for a zero header dword; guards and stores as read; mismatches []
+   copy ch  files 166, files with enemy rows 162, enemy rows 1146, max +0x22 21, max +0x24 8, row defects {}
+   copy ch  files with no enemy rows: [('asp_a', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1}), ('dor_f', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1}), ('mrm_a', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1}), ('slm_a', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1})]
+PASS  A-data-ch every enemy row selects inside a present, non-empty reward table with a nonzero data offset
+   copy in  files 166, files with enemy rows 162, enemy rows 1146, max +0x22 21, max +0x24 8, row defects {}
+   copy in  files with no enemy rows: [('asp_a', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1}), ('dor_f', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1}), ('mrm_a', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1}), ('slm_a', {'slot2 count0': 1, 'slot2 dataoff0': 1, 'slot5 count0': 1, 'slot5 dataoff0': 1, 'slot6 count0': 1, 'slot6 dataoff0': 1})]
+PASS  A-data-in every enemy row selects inside a present, non-empty reward table with a nonzero data offset
+   total .ard files 332, total enemy rows 2292
+PASS  A-prior row total 2292 vs the 2026-09-15 two-copy census (2,292)
+PASS  A-ctrl mutated asp_b.ard: oob / count0 / missing / dataoff0 flagged [{'row->oob': 1}, {'row->count0': 1}, {'row->missing': 1}, {'row->dataoff0': 1}]
+   script areas with no .ard of the same name: 31 (bts_1 ... bts_z), 517 btlAtelSetUnit calls, id range 0..27
+   of those, plan_map directories that exist (script-only zones): 31; examples ['bts_1', 'bts_2', 'bts_3', 'bts_4']
+   btlAtelSetUnit calls 6746 (tokens 6746, non-literal 0) in 193 areas; id range 0..27; id 255 used 0 times
+   areas with an empty enemy table: ['asp_a', 'dor_f', 'mrm_a', 'slm_a']; btlAtelSetUnit calls there: 0
+PASS  A-script every script-selected id in an area with its own .ard is below that area's enemy-table count in both copies; no install in the four empty-table areas; violations []
+PASS  A-script-ctrl control: an unknown area, an install into empty-table asp_a, and id == count in asp_b are all reported: [('in', 'asp_a', 0, 0), ('in', 'asp_b', 1, 1), ('in', 'zzz_z', None, 0)]
+
+== (b) high relocation base
+PASS  B-code resolver = zero-extended u32 + qword [01F83530]; the cell is past .data's raw end 01F7E400, so it is 0 at image load
+   PE: LARGE_ADDRESS_AWARE=1  DYNAMICBASE=0  HIGH_ENTROPY_VA=1
+PASS  B-refs rip operands naming 01F83530..37: ['0020E602 R', '0020E620 R'] (the two resolver reads; control: both known reads are found)
+
+== (c) level at or below the +0x88 baseline
+PASS  C-code D = u8 level - u8 baseline; grower resets level 0 then grows to min(target, 99) (signed cmovg); baseline = r8 (kind 1); callers ['00239934', '00239BED', '0023AD96', '003069EE', '00316E3D', '0031762C']: enemy init (1, 1), btlAtelSetLevel (base + rand % (n + 1), base), four with r8 = 0; mismatches []
+PASS  C-rand 00328370 returns at most 31 bits, so draw % (n + 1) is >= 0 for any n != -1
+PASS  C-eval-ctrl evaluator controls {(100, 0): (-1, -1), (300, 0): (55, 55), (99, 5): (0, 0), (1, 0): (0, 0), (-3, 1): (-253, -253)}
+   btlAtelSetLevel calls 6746 (tokens 6746, non-literal 0), 234 distinct pairs; script arg1 1..99, arg2 0..40
+   order base=arg1,n=arg2 : min D 0; calls that can give D < 0: 0; n = -1 faults: 0; calls pinned at D = 0: 1102; calls that can grow level 0: 0
+   order base=arg2,n=arg1 : min D 0; calls that can give D < 0: 0; n = -1 faults: 0; calls pinned at D = 0: 0; calls that can grow level 0: 1102
+   most frequent arg2 = 0 calls (D = 0 under base=arg1): ['btlAtelSetLevel(1, 0) x549', 'btlAtelSetLevel(46, 0) x99', 'btlAtelSetLevel(45, 0) x33']
+PASS  C-script no shipped btlAtelSetLevel call can give level < baseline under either argument order
+   store sweep: 38957 listed functions, 314036 instructions decoded only by the linear .text sweep
+PASS  C-sweep-ctrl width control: qword store 0023ACC2 [rdi+0x50] covers +0x54 (found); word store 0023ACD5 [rdi+0x1c3] does not cover +0x1C2 (not flagged); the grower's three stores found
+   writes covering +0x1C2: 115 in total (all in gr18_store_sweep.tsv); byte/word-width with no index register: 5
+      0030C496  in 0030C470  mov byte ptr [rcx + 0x1c2], dil
+      0030C7BB  in 0030C650  mov byte ptr [rdi + 0x1c2], al
+      003AF80F  in 003AF460  mov byte ptr [rax + 0x1c2], cl
+      003DCF9E  in 003DCF60  mov word ptr [rcx + 0x1c2], dx
+      003DD177  in 003DD120  mov word ptr [rcx + 0x1c2], ax
+   writes covering +0x242: 97 in total (all in gr18_store_sweep.tsv); byte/word-width with no index register: 0
+   writes covering +0x88: 626 in total (all in gr18_store_sweep.tsv); byte/word-width with no index register: 38
+   writes covering +0x108: 328 in total (all in gr18_store_sweep.tsv); byte/word-width with no index register: 20
+   003AF80F (003AF460, the render-block countdown +0x1C2 the OPUS census names), 003DCF9E / 003DD177 (word pairs +0x178..+0x1C2 at stride 0x18: not the stats layout): as read
+   writes covering +0x1C2 image-wide: 115 in 77 functions; in functions of the typed stats / spawn-record censuses (303 functions): 2
+      0030C496  in 0030C470  mov byte ptr [rcx + 0x1c2], dil
+      0030C7BB  in 0030C650  mov byte ptr [rdi + 0x1c2], al
+   writes covering +0x88 image-wide: 626 in 495 functions; in functions of the typed stats / spawn-record censuses (303 functions): 5
+      0030C4B1  in 0030C470  mov byte ptr [rcx + 0x88], r8b
+      00327D57  in 00327CB0  mov word ptr [rdi + rdx*4 + 0x88], ax
+      00329250  in 00329220  mov byte ptr [rdi + 0x88], 0
+      003298C6  in 00329220  mov byte ptr [rdi + 0x88], cl
+      00338AA3  in 00338490  movaps xmmword ptr [rax + 0x80], xmm4
+   writes covering +0x242 image-wide: 97 in 73 functions; in functions of the typed stats / spawn-record censuses (303 functions): 0
+   writes covering +0x108 image-wide: 328 in 243 functions; in functions of the typed stats / spawn-record censuses (303 functions): 2
+      00338B4C  in 00338490  movaps xmmword ptr [rax + 0x100], xmm6
+      0033D982  in 0033D890  mov dword ptr [rax + 0x108], 0x3fc00000
+   string / block store instructions (rep stos / rep movs) with an rdi destination: 4140 (not attributed here)
+   byte/word +0x88 writers image-wide (38): does the writing function touch a stats record?
+      001B8A15  in 001B8950  mov byte ptr [rdi + 0x88], al            -
+      001B8D66  in 001B8CC0  mov byte ptr [rbx + 0x88], al            -
+      001D947B  in 001D9400  mov byte ptr [rdi + 0x88], sil           -
+      001DA080  in 001DA080  mov byte ptr [rcx + 0x88], 0             -
+      001DA0A3  in 001DA090  mov byte ptr [rcx + 0x88], 1             -
+      00247190  in 00247130  mov word ptr [rbx + 0x88], dx            -
+      00265C67  in 00265B60  mov byte ptr [rcx + 0x88], 0xfe          -
+      002A355D  in 002A3250  mov word ptr [rdi + 0x88], r15w          -
+      002A8EED  in 002A8C50  mov word ptr [rsi + 0x88], r13w          -
+      002A9436  in 002A8C50  mov word ptr [rsi + 0x88], ax            -
+      002A9801  in 002A8C50  mov word ptr [rsi + 0x88], bx            -
+      002A98C6  in 002A8C50  mov word ptr [rsi + 0x88], bx            -
+      002A9A3F  in 002A9980  mov word ptr [rcx + 0x88], di            -
+      002ABFB3  in 002ABF70  mov word ptr [rbx + 0x88], ax            -
+      002AC19B  in 002ABF70  mov word ptr [rbx + 0x88], ax            -
+      002AD23D  in 002AC5F0  mov word ptr [r14 + 0x88], ax            -
+      002B395C  in 002B3950  mov word ptr [rcx + 0x88], ax            -
+      0030C4B1  in 0030C470  mov byte ptr [rcx + 0x88], r8b           typed-census 
+      00329250  in 00329220  mov byte ptr [rdi + 0x88], 0             typed-census loads +0x698 
+      003298C6  in 00329220  mov byte ptr [rdi + 0x88], cl            typed-census loads +0x698 
+      0037295B  in 00372820  mov word ptr [rsi + 0x88], cx            -
+      003DA96E  in 003DA8A0  mov word ptr [rdi + 0x88], si            -
+      003DB594  in 003DB580  mov byte ptr [rcx + 0x88], r11b          -
+      007604E6  in 007604A0  mov byte ptr [rcx + 0x88], dil           -
+      00768855  in 007687E0  mov byte ptr [rbx + 0x88], bpl           -
+      007D0B3F  in 007D0AC0  mov byte ptr [rcx + 0x88], dil           -
+      007D1A6C  in 007D1A10  mov byte ptr [rcx + 0x88], 0             -
+      007D1A75  in 007D1A10  mov byte ptr [rcx + 0x88], 1             -
+      007D1B41  in 007D1A10  mov byte ptr [rcx + 0x88], al            -
+      007D1BED  in 007D1A10  mov byte ptr [rdi + 0x88], al            -
+      0083A4F4  in 0083A480  mov byte ptr [rcx + 0x88], 1             -
+      008421FE  in 008421D0  mov byte ptr [rcx + 0x88], 1             -
+      0084237A  in 00842290  mov byte ptr [rbx + 0x88], 1             -
+      00842CEC  in 00842B40  mov byte ptr [rbx + 0x88], 1             -
+      008432FC  in 008431B0  mov byte ptr [rbx + 0x88], 1             -
+      00844589  in 00844090  mov byte ptr [rbx + 0x88], sil           -
+      00844845  in 00844090  mov byte ptr [rbx + 0x88], sil           -
+      008469AC  in 00846710  mov byte ptr [rbx + 0x88], 1             -
+   of those, in a function with any stats-record link: 3 (0030C4B1 00329250 003298C6)
+
+== (d) the 0xFF selector against a 0xFFFF stats identity
+PASS  D-code 0xFF only for an empty member byte; 002367A0(0xFF) matches 0xFFFF only if class 2 admits 0xFF, i.e. [02EBF130]+4 >= 256; 02EBF130 is bound once, from battle_pack +0x44 (00236DA0, its only lea/store; 83 rip references in all); mismatches []
+   chr_data (battle_pack +0x44) per language: {'ch': 40, 'cn': 40, 'de': 40, 'es': 40, 'fr': 40, 'in': 40, 'it': 40, 'kr': 40, 'us': 40}
+PASS  D-data all nine packs: st2e table with count [40]; 0xFF admitted by none
+PASS  D-ctrl bound control: count 256 admits 0xFF (SECTION-03's fixture), 255 and 40 do not
+
+FAILS 0

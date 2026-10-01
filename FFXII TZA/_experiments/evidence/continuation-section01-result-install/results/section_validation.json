@@ -1,0 +1,146 @@
+{
+  "method": "complete original-archive comparison of working files; strict touched-file parsing and link checks",
+  "modified_existing_files": [
+    "04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md",
+    "04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md",
+    "07-Combat-Action/CONTRACT-apply-result-to-target.md",
+    "07-Combat-Action/applying-a-result-to-a-target.md",
+    "_experiments/EXP-148-apply-result-callees-exec.md",
+    "_experiments/EXP-149-apply-result-whole-exec.md",
+    "_experiments/EXP-150-battle-unit-construct-exec.md"
+  ],
+  "modified_existing_count": 7,
+  "deletions": [],
+  "strict_checks": [
+    {
+      "file": "04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md",
+      "check": "16_contract_sections",
+      "pass": true
+    },
+    {
+      "file": "04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "07-Combat-Action/CONTRACT-apply-result-to-target.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "07-Combat-Action/CONTRACT-apply-result-to-target.md",
+      "check": "16_contract_sections",
+      "pass": true
+    },
+    {
+      "file": "07-Combat-Action/applying-a-result-to-a-target.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "_experiments/EXP-148-apply-result-callees-exec.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "_experiments/EXP-149-apply-result-whole-exec.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "_experiments/EXP-150-battle-unit-construct-exec.md",
+      "check": "strict_yaml",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/PATCH_MANIFEST.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/input_manifest.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/original_body_manifest.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/body_verification.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/mutant_omit_mode_failure_bit_clear.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/mutant_skip_direct_dword_copy.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/mutant_suppress_applier_dirty_flag.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/mutant_wrong_tracked_base.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/mutation_results.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/native_repeat_results.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/native_results.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/retained_review.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/section_validation.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/results/summary.json",
+      "check": "strict_json",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/run_review.py",
+      "check": "python_ast",
+      "pass": true
+    },
+    {
+      "file": "_experiments/evidence/continuation-section01-result-install/verify_overlay.py",
+      "check": "python_ast",
+      "pass": true
+    }
+  ],
+  "broken_links": [],
+  "new_files_restricted_to": "section evidence directory and external handoff",
+  "original_experiment_programs_and_results_unchanged": true,
+  "live_team_and_global_verdicts_unchanged": true,
+  "git_diff_whitespace_check": "PASS"
+}

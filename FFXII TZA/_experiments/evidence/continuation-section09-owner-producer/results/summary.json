@@ -1,0 +1,37 @@
+{
+  "section": "SECTION-09",
+  "status": "locally validated; formal peer acceptance pending",
+  "native_assertions": 190,
+  "native_passed": 190,
+  "repeat_identical": true,
+  "mutants_rejected": 10,
+  "selected_body_records": 138,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "original_exe_unchanged": true,
+  "source_sha256": "34b077f69a1431f7192fc10d9bd8aebf7d2e29cc010101bcaf18d52e0565f7aa",
+  "application_substitutions": [
+    "0017D2E0 diagnostic formatter: empty output and counter"
+  ],
+  "import_bridges": [
+    "008C2A60 memset",
+    "008C2A68 memcpy for non-overlap only",
+    "008C2F70 strncpy"
+  ],
+  "scope": "Original owner initializers/arm/whole producer/providers, actual arena allocation/exhaustion/free, queue submission and terminal-state pump/cancel/recycle, owner completion/deletion with synthetic state.",
+  "limitations": [
+    "No live FF12 process, actual IO issuance/completion, observer deployment, frame scheduling, or Windows CRT overlap result.",
+    "For pump tests, fixture places the real queued request in state3 and supplies 0215EFF4 as pending/success/error. Original status readers, pump, callbacks and recycling execute; the OS producer does not.",
+    "Post-pump services are original but take configured idle/empty branches; not whole service validation.",
+    "Owner providers read synthetic metadata and ActorManagerSlot globals, not captured loaded game data.",
+    "Plain TEST headers are used only for registration in successful pump controls. No specialized PRF/EFX payload or full consumer executes.",
+    "Negative narrowed index, missing metadata, capacity exhaustion, fifth-group requests and record reuse are bounded controls, not claimed normally reachable.",
+    "Fixture cleanup can reset its queue/free backing after observations; these operations do not establish an engine recovery policy.",
+    "No guarantee of automatic state1 submission, universal error recovery, request uniqueness, no duplicate callback, or reentrancy/thread safety.",
+    "Historical body identities are not coverage counts; only affected mutations run. Full historical campaigns are unchanged."
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0"
+  }
+}

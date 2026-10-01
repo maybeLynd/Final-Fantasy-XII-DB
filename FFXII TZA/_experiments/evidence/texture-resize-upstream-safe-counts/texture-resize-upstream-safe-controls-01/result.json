@@ -1,0 +1,35 @@
+{
+  "status": "PASS_ACTUAL_UPSTREAM_COUNT_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "46200b1fe181c36a2fb46c18c4b8e8de9614e4de37ea5bd82602ace50be63567",
+  "positive_reused": {
+    "path": "texture-resize-upstream-safe-counts-result-01.json",
+    "sha256": "82a7ffb0bf5e8a278bce39525b06f46088410396344a50089ef4cc05b1d49770"
+  },
+  "refusals": [
+    {
+      "case": "consistent-changed32",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-palette-edge",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-lower-result",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "failed-upstream-exit",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Four concrete producer CLI controls; no new sample, native/game execution or independent acceptance"
+}

@@ -1,0 +1,95 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 10559,
+      "sha256": "2ef32c0f0bd7d6714999032beb8f5f641699bae6fce67ef3ec60529d4696835c"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6523,
+      "sha256": "5377692c850ac266dd15cdb68f751f6e090471c011941e986f144aff09e35910"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1984,
+      "sha256": "a4295bb7dbe5f2aa9ba5117bf567ea4ef8b9a73751f2369f3c193ab78cc42779"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1679,
+      "sha256": "80243920fc694d3f82ff7f26cef1535c453de4c629d6eccd05501c46fd893057"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "bytes": 7095,
+      "sha256": "0c6a88ac3aa52172d6a94f9c67c179bd73a349c40d57263bcbdfa6c55ac7d973"
+    },
+    {
+      "path": "native-preflight.json",
+      "bytes": 5227,
+      "sha256": "ebd5d55ab312a10858449312baebe7d43c2946ea5d47f4db11b546ce8bcb7a32"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2344,
+      "sha256": "3bbc0fe782957fe4e52525a9426a69e7c1fc210a0d25001f3288141848a52136"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 13686,
+      "sha256": "6d2d9f90ec1e3d76f2f66b4c3679e5fbafa41e0fd10190748eaf2db995312e32"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5930,
+      "sha256": "dc0d9334defd413d6c568aad5f5e9c2e91ba3b342e53c999f05ac52006f59fc8"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3868,
+      "sha256": "bbd5f67eb82e12366c574cb2b3ad9333439490b374965808beb9199388f0ce46"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 10559,
+      "sha256": "2ef32c0f0bd7d6714999032beb8f5f641699bae6fce67ef3ec60529d4696835c"
+    },
+    {
+      "path": "retained/original4.bin",
+      "bytes": 4,
+      "sha256": "2b8fecff8f057e512a538a45cf4e846e72aafca8492674575f98bf30a42b0921"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "bytes": 3368,
+      "sha256": "db44d2b447a5e9e309a85f93bc85c1236129f1390cf484ffc85861d4b6de8f1c"
+    },
+    {
+      "path": "retained/parent-raw.json",
+      "bytes": 77789,
+      "sha256": "dff486236e3400b693a9e3a71d38584b6868d6bcfaa1be7e242be72075c4d178"
+    },
+    {
+      "path": "retained/parent237.bin",
+      "bytes": 237,
+      "sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/wrapper.bin",
+      "bytes": 57,
+      "sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be"
+    }
+  ],
+  "limits": "B only4BshippingMULSS inside disclosed native Win64/guest wrapper, finite exact/inexact controls; bounded precision-status discrepancy, not live/full FP parity; required independent review pending"
+}

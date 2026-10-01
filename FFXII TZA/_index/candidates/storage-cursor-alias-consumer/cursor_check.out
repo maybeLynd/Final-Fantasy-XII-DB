@@ -1,0 +1,4 @@
+PASS K1  store 00866A4D precedes the in-memory increment 00866A54; the cursor is reloaded at 00866A3D each pass
+PASS K2  count 1 disjoint (1, 1, b'\n'); count 1 aliased (1, 11, b'\x0b'); count 2 aliased (returns, cursor, copied) (0, 11, 1)
+PASS C  count 2 disjoint (1, 2, 2); count 0 aliased (1, 0, 0)
+FAILS 0

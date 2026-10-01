@@ -1,0 +1,135 @@
+0036E080  mov       r9d, ecx
+0036E083  xor       r10d, r10d
+0036E086  lea       rcx, [rip + 0x1f6b723]   ; -> 022D97B0 (virtual tail / unmapped)
+0036E08D  mov       edx, r10d
+0036E090  mov       r8, rcx
+0036E093  mov       r11d, 0x3f
+0036E099  nop       dword ptr [rax]
+0036E0A0  cmp       edx, r11d
+0036E0A3  ja        0x36e0c6
+0036E0A5  mov       eax, dword ptr [r8]
+0036E0A8  test      eax, eax
+0036E0AA  je        0x36e0c6
+0036E0AC  shr       eax, 0x10
+0036E0AF  and       eax, 0xf
+0036E0B2  cmp       r9d, eax
+0036E0B5  jne       0x36e0c6
+0036E0B7  mov       eax, edx
+0036E0B9  cmp       edx, r11d
+0036E0BC  cmovg     eax, r11d
+0036E0C0  cdqe      
+0036E0C2  mov       dword ptr [rcx + rax*4], r10d
+0036E0C6  inc       edx
+0036E0C8  add       r8, 4
+0036E0CC  cmp       edx, 0x40
+0036E0CF  jl        0x36e0a0
+0036E0D1  lea       r8, [rip + 0x1f6b7d8]   ; -> 022D98B0 (virtual tail / unmapped)
+0036E0D8  mov       ecx, r10d
+0036E0DB  mov       rdx, r8
+0036E0DE  nop       
+0036E0E0  cmp       ecx, r11d
+0036E0E3  ja        0x36e105
+0036E0E5  mov       eax, dword ptr [rdx]
+0036E0E7  test      eax, eax
+0036E0E9  je        0x36e105
+0036E0EB  shr       eax, 0x10
+0036E0EE  and       eax, 0xf
+0036E0F1  cmp       r9d, eax
+0036E0F4  jne       0x36e105
+0036E0F6  mov       eax, ecx
+0036E0F8  cmp       ecx, r11d
+0036E0FB  cmovg     eax, r11d
+0036E0FF  cdqe      
+0036E101  mov       dword ptr [r8 + rax*4], r10d
+0036E105  inc       ecx
+0036E107  add       rdx, 4
+0036E10B  cmp       ecx, 0x40
+0036E10E  jl        0x36e0e0
+0036E110  lea       r8, [rip + 0x1f6b899]   ; -> 022D99B0 (virtual tail / unmapped)
+0036E117  mov       ecx, r10d
+0036E11A  mov       rdx, r8
+0036E11D  nop       dword ptr [rax]
+0036E120  cmp       ecx, r11d
+0036E123  ja        0x36e145
+0036E125  mov       eax, dword ptr [rdx]
+0036E127  test      eax, eax
+0036E129  je        0x36e145
+0036E12B  shr       eax, 0x10
+0036E12E  and       eax, 0xf
+0036E131  cmp       r9d, eax
+0036E134  jne       0x36e145
+0036E136  mov       eax, ecx
+0036E138  cmp       ecx, r11d
+0036E13B  cmovg     eax, r11d
+0036E13F  cdqe      
+0036E141  mov       dword ptr [r8 + rax*4], r10d
+0036E145  inc       ecx
+0036E147  add       rdx, 4
+0036E14B  cmp       ecx, 0x40
+0036E14E  jl        0x36e120
+0036E150  ret       
+0036E151  int3      
+0036E152  int3      
+0036E153  int3      
+0036E154  int3      
+0036E155  int3      
+0036E156  int3      
+0036E157  int3      
+0036E158  int3      
+0036E159  int3      
+0036E15A  int3      
+0036E15B  int3      
+0036E15C  int3      
+0036E15D  int3      
+0036E15E  int3      
+0036E15F  int3      
+---
+00352270  mov       qword ptr [rsp + 8], rbx
+00352275  push      rdi
+00352276  sub       rsp, 0x20
+0035227A  mov       rcx, r9
+0035227D  mov       rbx, rdx
+00352280  call      0x267e10
+00352285  mov       rcx, rbx
+00352288  mov       edi, eax
+0035228A  call      0x263f10
+0035228F  mov       rcx, rax
+00352292  call      0x3589b0
+00352297  cmp       byte ptr [rbx + 0x15], 3
+0035229B  mov       edx, eax
+0035229D  mov       ecx, edi
+0035229F  jne       0x3522b0
+003522A1  mov       rbx, qword ptr [rsp + 0x30]
+003522A6  add       rsp, 0x20
+003522AA  pop       rdi
+003522AB  jmp       0x36e880
+003522B0  mov       rbx, qword ptr [rsp + 0x30]
+003522B5  add       rsp, 0x20
+003522B9  pop       rdi
+003522BA  jmp       0x36e7e0
+003522BF  int3      
+---
+00352940  mov       qword ptr [rsp + 8], rbx
+00352945  push      rdi
+00352946  sub       rsp, 0x20
+0035294A  mov       rcx, r9
+0035294D  mov       rbx, rdx
+00352950  call      0x267e10
+00352955  mov       rcx, rbx
+00352958  mov       edi, eax
+0035295A  call      0x263f10
+0035295F  mov       rcx, rax
+00352962  call      0x3589b0
+00352967  mov       edx, eax
+00352969  mov       ecx, edi
+0035296B  mov       rbx, qword ptr [rsp + 0x30]
+00352970  add       rsp, 0x20
+00352974  pop       rdi
+00352975  jmp       0x36e7b0
+0035297A  int3      
+0035297B  int3      
+0035297C  int3      
+0035297D  int3      
+0035297E  int3      
+0035297F  int3      
+---

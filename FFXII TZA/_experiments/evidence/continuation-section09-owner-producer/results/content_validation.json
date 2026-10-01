@@ -1,0 +1,457 @@
+{
+  "section": "SECTION-09",
+  "status": "PASS",
+  "read_only": true,
+  "scope": "Touched canonical files plus this section evidence only; no semantic/peer acceptance implied.",
+  "documents": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "strict_frontmatter": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "strict_frontmatter": true
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "strict_frontmatter": true
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "strict_frontmatter": false
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "strict_frontmatter": true
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "strict_frontmatter": false
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "strict_frontmatter": false
+    }
+  ],
+  "database_local_links_checked": 80,
+  "broken_database_local_links": [],
+  "external_links": [],
+  "type_checks": {
+    "_types/types.tsv": {
+      "target_rows": 1,
+      "unrelated_bytes_identical": true
+    },
+    "_types/fields.tsv": {
+      "target_rows": 10,
+      "unrelated_bytes_identical": true
+    }
+  },
+  "target_layout_bytes": 28,
+  "target_layout_gaps_or_overlaps": 0,
+  "native_assertions_verified": 190,
+  "claim_groups": 7,
+  "strict_json_files": 15,
+  "python_files_parsed": 4,
+  "links": [
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "authored-reference-lifetime-evidence.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "the-external-source-owner-and-borrowed-view-lifetime.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "CONTRACT-resource-request-queue.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "CONTRACT-resource-entry-tree.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "CONTRACT-efx-source-rebase.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/run_review.py",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/original_disassembly.txt",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/claim_matrix.tsv",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/native_controls.c",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section06-resource-lifetime/results/summary.json",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "target": "../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/evidence/continuation-section02-resource-queue/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/EXP-121-exp109-queue-tails-exec.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/EXP-128-exp109-poll-pump-exec.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/EXP-146-queue-remaining-exec.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "the-resource-request-queue.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/evidence/continuation-section02-resource-queue/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "the-resource-request-queue.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "the-external-source-owner-and-borrowed-view-lifetime.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "target": "../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "CONTRACT-resource-input-ownership.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "CONTRACT-resource-request-queue.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "the-source-block-mover-and-separate-consumer-refresh.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "target": "../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section05-encoded-query/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section04-widget-receiver/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section03-reward-bindings/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section02-resource-queue/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "target": "../../_experiments/evidence/continuation-section01-result-install/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "target": "the-external-source-owner-and-borrowed-view-lifetime.md",
+      "exists": true
+    },
+    {
+      "from": "02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "target": "../_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "target": "REVIEW.md",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "target": "PATCH_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "target": "canonical_changes.diff",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "target": "results/summary.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "target": "results/delivery_validation.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "original_disassembly.txt",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "direct_call_supports.tsv",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "original_body_manifest.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "original_disassembly.txt",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "direct_call_supports.tsv",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "native_controls.c",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "run_review.py",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "variant_plan.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/summary.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/body_verification.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/native_baseline.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/native_repeat.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/code_mutations.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "claim_matrix.tsv",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "canonical_row_changes.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "canonical_preimages.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "canonical_changes.diff",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "validate_content.py",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/content_validation.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/overlay_checker_controls.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/unchanged_files.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "results/delivery_validation.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "source_inputs.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "PATCH_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "from": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "target": "verify_overlay.py",
+      "exists": true
+    }
+  ]
+}

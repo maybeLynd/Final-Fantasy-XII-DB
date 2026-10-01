@@ -1,0 +1,10 @@
+001D01E2  movsxd    rax, dword ptr [rip + 0x1c2e223]   ; -> 01DFE40C u32=FFFFFFFF f32=nan
+001D01E9  cmp       eax, 4
+001D01EC  ja        0x1d01f8
+001D01EE  cmp       dword ptr [rdx + rax*4 + 0x1e632b0], 0
+001D01F6  jne       0x1d026f
+---
+0020AFB4  inc       dword ptr [rbp + rax*4 + 0x1e632b0]
+0020AFBB  call      0x189120
+---
+0020ACD8  cmp dword ptr [r15 + rsi*4 + 0x1e632b0], 0

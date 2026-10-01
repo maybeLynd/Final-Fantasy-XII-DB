@@ -1,0 +1,94 @@
+{
+  "result": "PASS_ADDRESS_PREPARATION_ONLY",
+  "method": "A static original code; no B rerun or C capture",
+  "relative_slot_map": [
+    {
+      "index": 0,
+      "record_from_subobject": 624,
+      "flag_from_subobject": 1250,
+      "phase_from_subobject": 1232
+    },
+    {
+      "index": 1,
+      "record_from_subobject": 1296,
+      "flag_from_subobject": 1922,
+      "phase_from_subobject": 1904
+    },
+    {
+      "index": 2,
+      "record_from_subobject": 1968,
+      "flag_from_subobject": 2594,
+      "phase_from_subobject": 2576
+    },
+    {
+      "index": 3,
+      "record_from_subobject": 2640,
+      "flag_from_subobject": 3266,
+      "phase_from_subobject": 3248
+    },
+    {
+      "index": 4,
+      "record_from_subobject": 3312,
+      "flag_from_subobject": 3938,
+      "phase_from_subobject": 3920
+    },
+    {
+      "index": 5,
+      "record_from_subobject": 3984,
+      "flag_from_subobject": 4610,
+      "phase_from_subobject": 4592
+    },
+    {
+      "index": 6,
+      "record_from_subobject": 4656,
+      "flag_from_subobject": 5282,
+      "phase_from_subobject": 5264
+    },
+    {
+      "index": 7,
+      "record_from_subobject": 5328,
+      "flag_from_subobject": 5954,
+      "phase_from_subobject": 5936
+    },
+    {
+      "index": 8,
+      "record_from_subobject": 6000,
+      "flag_from_subobject": 6626,
+      "phase_from_subobject": 6608
+    },
+    {
+      "index": 9,
+      "record_from_subobject": 6672,
+      "flag_from_subobject": 7298,
+      "phase_from_subobject": 7280
+    },
+    {
+      "index": 10,
+      "record_from_subobject": 7344,
+      "flag_from_subobject": 7970,
+      "phase_from_subobject": 7952
+    },
+    {
+      "index": 11,
+      "record_from_subobject": 8016,
+      "flag_from_subobject": 8642,
+      "phase_from_subobject": 8624
+    },
+    {
+      "index": 12,
+      "record_from_subobject": 8688,
+      "flag_from_subobject": 9314,
+      "phase_from_subobject": 9296
+    }
+  ],
+  "conclusion": "Requested flag formula is correct conditional on an actual validated manager/subobject. The two270/272 terms are record-base and member offsets, not accidental double counting.",
+  "handle": "CREATE stores low32 pointer bits; lookup reads bit0 at handle+272 before linked-list membership test and returns phase+260 when matched.",
+  "ordering": "This UPDATE body clears phase0 flags in its first traversal, before its second traversal calls3FC510. Effects of that callee and other writers not newly proven.",
+  "live_unknowns": [
+    "actual initialized manager/slot identities and placement",
+    "real update/frame cadence",
+    "normal drop/retirement interleaving",
+    "ordinary exhaustion or observed consequence"
+  ],
+  "limits": "Relative source/address qualification. No actual pointers, frames, timing, initialization, callbacks, native effects, input or crash observed."
+}

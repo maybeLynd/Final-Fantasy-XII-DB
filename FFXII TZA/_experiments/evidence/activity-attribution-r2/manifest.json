@@ -1,0 +1,150 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 389,
+      "sha256": "8421b17ebf2dcb301dfc1139401681b919ead181ee70390cb32e129e1bbe5d1f"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 3428,
+      "sha256": "f6dc979fc8fa3d1ad838c59d44c2f300554a6d4702df82edd165f9e9525df874"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3380,
+      "sha256": "f999d59a704e87329265f8451e783f5591aaac0c5510c6ae3335e088a13c968c"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1979,
+      "sha256": "b52c06c0852ab27f19bbbe8e140f8278c9681477b171c63b55c45108d4327def"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 573,
+      "sha256": "2a393067947242e464d800b2ebed3827667ebd88ba821c04c09e806d9e5365e4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3429,
+      "sha256": "e2ec63f6eb933eabfb368fe3a975cf53783c017a9baf2e916efdc2d4f2c6ff6d"
+    },
+    {
+      "path": "reducer-controls/missing-case.json",
+      "bytes": 94723,
+      "sha256": "decb217c025b4a467fda204625bc0a814cb9134a444c375440b10c3107d6c661"
+    },
+    {
+      "path": "reducer-controls/nonzero-good-json.json",
+      "bytes": 114317,
+      "sha256": "ed4541a7c0ab03daa6e0a334d6716e10d28ce65a83e05228a091fe5dbbebb0f1"
+    },
+    {
+      "path": "reducer-controls/unknown-is-not-missing.json",
+      "bytes": 103521,
+      "sha256": "3f124139f74ec3d17086b8e3453986fe3b9b321f85cf42da87ce6d838f1908e9"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 3281,
+      "sha256": "02e9416b3c0d034eedca8f819c01694dfa207abb35fb64d41614436b1aae1bb3"
+    },
+    {
+      "path": "reducer-controls.py",
+      "bytes": 1070,
+      "sha256": "301cd23a972bd888cb4048401bf37c8dd3c341e019bb090c1f32c150de1a7171"
+    },
+    {
+      "path": "run-01/busy-control/input.json",
+      "bytes": 5554,
+      "sha256": "66cc06eaeb13362b1f0124291e60d577df41b0742a01265add603522ecf5060d"
+    },
+    {
+      "path": "run-01/busy-control/receipt.json",
+      "bytes": 16344,
+      "sha256": "83700ca122a6d54c0793399a7a3c307fc1cdafb966e3b84b5fdfb21cc183aacb"
+    },
+    {
+      "path": "run-01/driver-before-run.py",
+      "bytes": 3428,
+      "sha256": "f6dc979fc8fa3d1ad838c59d44c2f300554a6d4702df82edd165f9e9525df874"
+    },
+    {
+      "path": "run-01/foreign-review-explicit-unknown/input.json",
+      "bytes": 7241,
+      "sha256": "e5ca4cd0b3f9c3b663a7327bdc2b95bc091277c346a65ffad01073e89a2ae389"
+    },
+    {
+      "path": "run-01/foreign-review-explicit-unknown/receipt.json",
+      "bytes": 17985,
+      "sha256": "0d277a280bf7116fd550c7c4100d954aacb438345ec82e7b52d9fac33becf9ac"
+    },
+    {
+      "path": "run-01/foreign-review-no-feed/input.json",
+      "bytes": 7182,
+      "sha256": "fcb1875d4884215d587b59787ac0de897a3abd31b4415f02459837587b011be3"
+    },
+    {
+      "path": "run-01/foreign-review-no-feed/receipt.json",
+      "bytes": 17967,
+      "sha256": "76aee6f106c971e36a5e7d072e874f8363b2ceda4eedacb48b0ae0f6d7ad2d28"
+    },
+    {
+      "path": "run-01/idle-control/input.json",
+      "bytes": 7274,
+      "sha256": "46840cdabc5c388a6f2c2ceafa303d6eab34b98a664da6f3951135fde4965c57"
+    },
+    {
+      "path": "run-01/idle-control/receipt.json",
+      "bytes": 17865,
+      "sha256": "38f6676d5378e7c1b68f41d7aafbe01e39b85906954045b73a8654165b0111fd"
+    },
+    {
+      "path": "run-01/old-claim-no-feed/input.json",
+      "bytes": 5457,
+      "sha256": "a12818bff0771881fd86a1d55f2ef8cb2cb53e03f7ac09bf384557a2951e6fff"
+    },
+    {
+      "path": "run-01/old-claim-no-feed/receipt.json",
+      "bytes": 16388,
+      "sha256": "e5fd35bfc0140720030f0497cedc05ed335d15132c433213dc39fac51249a192"
+    },
+    {
+      "path": "run-01/own-note-no-feed/input.json",
+      "bytes": 5818,
+      "sha256": "1fc1020a8029cf266241b65877e8825e430a033c8409e06c4ab35a4b0132a940"
+    },
+    {
+      "path": "run-01/own-note-no-feed/receipt.json",
+      "bytes": 16328,
+      "sha256": "e73a24de6c3fa8cff95dcc346e684248ae503cf3bfb2fe064f065b895f16a4ed"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 114317,
+      "sha256": "b482aa36b1213b6d194f925ba42aed74d51adfd18225dfdec819385873960d41"
+    },
+    {
+      "path": "run.py",
+      "bytes": 454,
+      "sha256": "364bd0fe3559bc6355c80b3d076d425d6dfe349a013cf230c46f9ebcf3bcad22"
+    },
+    {
+      "path": "source/activity.py",
+      "bytes": 10798,
+      "sha256": "b35e613077265b0974f71e831a82af22d058368685043f90b0b8fb7b791e9989"
+    },
+    {
+      "path": "source/requirements.py",
+      "bytes": 32680,
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "evidence_class": "STATIC ORIGINAL-CODE DERIVATION, not execution",
+  "packet_length": "signed byte count gates entry and continuation, not first four-byte header access or UNPACK payload admission",
+  "positive_short_length": "1,2,3 all reach first four-byte header read under the same positive-entry path",
+  "unpack_length": "decoder does not pass remaining byte budget to UNPACK; returned EAX advances index",
+  "zero_write_cycle": "For V4-32/NUM>0, WL=CL0 passes initial comparison, chooses inner count0, skips all source/destination traffic, increments counters/pointers by0 and returns to same loop; no normal return on that path.",
+  "progress_control": "WL=CL1 makes the admitted inner count1 and increments processed EBX by1; this is a static counterfactual against the zero-progress derivation, not a new execution.",
+  "limits": "Selected V4-32 zero-cycle proof only. Supplied state, no live/default initialization, authored reachability, crash, negative-length payload use or all-format universal."
+}

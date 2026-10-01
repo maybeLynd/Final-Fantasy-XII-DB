@@ -1,0 +1,357 @@
+002A9980  mov       qword ptr [rsp + 0x18], rbx
+002A9985  push      rbp
+002A9986  push      rsi
+002A9987  push      rdi
+002A9988  push      r14
+002A998A  push      r15
+002A998C  sub       rsp, 0x30
+002A9990  and       dword ptr [rcx + 0xb0], 0x7fffffff
+002A999A  mov       rbx, rcx
+002A999D  mov       edx, dword ptr [rcx + 0xb0]
+002A99A3  movzx     eax, dl
+002A99A6  sub       eax, 1
+002A99A9  je        0x2a9ed3
+002A99AF  sub       eax, 1
+002A99B2  je        0x2a9ccb
+002A99B8  sub       eax, 2
+002A99BB  je        0x2a9a5e
+002A99C1  cmp       eax, 1
+002A99C4  jne       0x2a9eed
+002A99CA  mov       eax, 0x2710
+002A99CF  cmp       word ptr [rcx + 0x88], ax
+002A99D6  jne       0x2a9eed
+002A99DC  movzx     eax, word ptr [rip + 0x1b628bd]   ; -> 01E0C2A0 u32=00002000 f32=1.14794e-41
+002A99E3  test      word ptr [rip + 0x2ced980], ax   ; -> 02F9736A (virtual tail / unmapped)
+002A99EA  jne       0x2a99f9
+002A99EC  test      word ptr [rip + 0x2ced96f], ax   ; -> 02F97362 (virtual tail / unmapped)
+002A99F3  je        0x2a9eed
+002A99F9  movzx     eax, word ptr [rcx + 0x8c]
+002A9A00  xor       edi, edi
+002A9A02  mov       word ptr [rcx + 0x8e], ax
+002A9A09  btr       edx, 0x13
+002A9A0D  inc       ax
+002A9A10  mov       dword ptr [rcx + 0xb0], edx
+002A9A16  mov       word ptr [rcx + 0x8c], ax
+002A9A1D  mov       word ptr [rcx + 0x90], ax
+002A9A24  lea       eax, [rdi + 1]
+002A9A27  mov       byte ptr [rcx + 0xb0], dil
+002A9A2E  or        dword ptr [rcx + 0xb0], 0x80000000
+002A9A38  mov       byte ptr [rcx + 0x9b], 1
+002A9A3F  mov       word ptr [rcx + 0x88], di
+002A9A46  mov       byte ptr [rcx + 0x9d], 1
+002A9A4D  mov       rbx, qword ptr [rsp + 0x70]
+002A9A52  add       rsp, 0x30
+002A9A56  pop       r15
+002A9A58  pop       r14
+002A9A5A  pop       rdi
+002A9A5B  pop       rsi
+002A9A5C  pop       rbp
+002A9A5D  ret       
+002A9A5E  movzx     eax, word ptr [rip + 0x2ced905]   ; -> 02F9736A (virtual tail / unmapped)
+002A9A65  and       edx, 0x9fffffff
+002A9A6B  movzx     r9d, word ptr [rip + 0x2ced8f9]   ; -> 02F9736C (virtual tail / unmapped)
+002A9A73  mov       ebp, dword ptr [rcx + 0x54]
+002A9A76  movzx     esi, byte ptr [rcx + 0x98]
+002A9A7D  mov       dword ptr [rcx + 0xb0], edx
+002A9A83  test      word ptr [rip + 0x1b62816], ax   ; -> 01E0C2A0 u32=00002000 f32=1.14794e-41
+002A9A8A  je        0x2a9aae
+002A9A8C  xor       edi, edi
+002A9A8E  btr       edx, 0x13
+002A9A92  or        edx, 0x60000000
+002A9A98  mov       word ptr [rcx + 0x58], di
+002A9A9C  mov       dword ptr [rcx + 0xb0], edx
+002A9AA2  mov       byte ptr [rcx + 0xb0], 6
+002A9AA9  jmp       0x2a9eed
+002A9AAE  bt        edx, 0x1c
+002A9AB2  jae       0x2a9b78
+002A9AB8  test      word ptr [rip + 0x1b627e5], ax   ; -> 01E0C2A4 u32=00004000 f32=2.29589e-41
+002A9ABF  mov       r10, qword ptr [rcx + 0x70]
+002A9AC3  mov       r11d, dword ptr [r10 + 0x1d8]
+002A9ACA  je        0x2a9ae3
+002A9ACC  mov       eax, dword ptr [r10 + 0x1c8]
+002A9AD3  shl       eax, 0xc
+002A9AD6  xor       eax, dword ptr [rcx + 0x58]
+002A9AD9  and       eax, 0x3f000
+002A9ADE  xor       dword ptr [rcx + 0x58], eax
+002A9AE1  jmp       0x2a9b3f
+002A9AE3  test      r9b, 0x10
+002A9AE7  je        0x2a9b18
+002A9AE9  mov       r8d, dword ptr [rcx + 0x58]
+002A9AED  lea       eax, [r11 - 1]
+002A9AF1  mov       ecx, r8d
+002A9AF4  shr       ecx, 0xc
+002A9AF7  and       ecx, 0x3f
+002A9AFA  cmp       ecx, eax
+002A9AFC  jae       0x2a9b3f
+002A9AFE  mov       eax, r8d
+002A9B01  and       eax, 0xfffff000
+002A9B06  add       eax, 0x1000
+002A9B0B  xor       eax, r8d
+002A9B0E  and       eax, 0x3f000
+002A9B13  xor       eax, r8d
+002A9B16  jmp       0x2a9b3c
+002A9B18  test      r9b, 0x40
+002A9B1C  je        0x2a9b3f
+002A9B1E  mov       ecx, dword ptr [rcx + 0x58]
+002A9B21  test      ecx, 0x3f000
+002A9B27  jbe       0x2a9b3f
+002A9B29  mov       eax, ecx
+002A9B2B  shr       eax, 0xc
+002A9B2E  dec       eax
+002A9B30  shl       eax, 0xc
+002A9B33  xor       eax, ecx
+002A9B35  and       eax, 0x3f000
+002A9B3A  xor       eax, ecx
+002A9B3C  mov       dword ptr [rbx + 0x58], eax
+002A9B3F  mov       ecx, dword ptr [rbx + 0x58]
+002A9B42  mov       eax, ecx
+002A9B44  shr       rax, 0xc
+002A9B48  and       eax, 0x3f
+002A9B4B  add       rax, rax
+002A9B4E  mov       eax, dword ptr [r10 + rax*8 + 8]
+002A9B53  mov       dword ptr [rbx + 0x54], eax
+002A9B56  test      ecx, 0x3f000
+002A9B5C  jne       0x2a9b67
+002A9B5E  bts       edx, 0x1e
+002A9B62  jmp       0x2a9c9a
+002A9B67  shr       ecx, 0xc
+002A9B6A  lea       eax, [r11 - 1]
+002A9B6E  and       ecx, 0x3f
+002A9B71  cmp       ecx, eax
+002A9B73  jmp       0x2a9c94
+002A9B78  movzx     eax, byte ptr [rcx + 0xa1]
+002A9B7F  movzx     ecx, byte ptr [rcx + 0xa2]
+002A9B86  movzx     r8d, al
+002A9B8A  cmp       al, cl
+002A9B8C  ja        0x2a9b92
+002A9B8E  movzx     r8d, cl
+002A9B92  mov       r10d, dword ptr [rbx + 0x58]
+002A9B96  lea       r14, [rip + 0x66c983]   ; -> 00916520 u32=00000001 f32=1.4013e-45
+002A9B9D  movsxd    rax, r8d
+002A9BA0  xor       edi, edi
+002A9BA2  mov       r11d, dword ptr [r14 + rax*4]
+002A9BA6  dec       r11d
+002A9BA9  test      r10b, 0x3f
+002A9BAD  je        0x2a9bc0
+002A9BAF  mov       rax, qword ptr [rbx + 0x70]
+002A9BB3  mov       ecx, r10d
+002A9BB6  and       ecx, 0x3f
+002A9BB9  add       rcx, rcx
+002A9BBC  mov       edi, dword ptr [rax + rcx*8 + 8]
+002A9BC0  test      r10d, 0xfc0
+002A9BC7  je        0x2a9bdd
+002A9BC9  mov       rax, qword ptr [rbx + 0x70]
+002A9BCD  shr       r10, 6
+002A9BD1  and       r10d, 0x3f
+002A9BD5  add       r10, r10
+002A9BD8  mov       r11d, dword ptr [rax + r10*8 + 8]
+002A9BDD  test      r9b, r9b
+002A9BE0  jns       0x2a9c1b
+002A9BE2  lea       eax, [rsi + 1]
+002A9BE5  mov       byte ptr [rbx + 0x98], al
+002A9BEB  test      r8d, r8d
+002A9BEE  jne       0x2a9c04
+002A9BF0  cmp       al, 7
+002A9BF2  jle       0x2a9c84
+002A9BF8  mov       byte ptr [rbx + 0x98], 7
+002A9BFF  jmp       0x2a9c84
+002A9C04  lea       ecx, [r8 - 1]
+002A9C08  movsx     eax, al
+002A9C0B  cmp       eax, ecx
+002A9C0D  jle       0x2a9c84
+002A9C0F  dec       r8b
+002A9C12  mov       byte ptr [rbx + 0x98], r8b
+002A9C19  jmp       0x2a9c84
+002A9C1B  test      r9b, 0x20
+002A9C1F  je        0x2a9c38
+002A9C21  movzx     eax, sil
+002A9C25  sub       al, 1
+002A9C27  mov       byte ptr [rbx + 0x98], al
+002A9C2D  jns       0x2a9c84
+002A9C2F  mov       byte ptr [rbx + 0x98], 0
+002A9C36  jmp       0x2a9c84
+002A9C38  test      r9b, 0x10
+002A9C3C  je        0x2a9c6c
+002A9C3E  movsx     rax, sil
+002A9C42  mov       ecx, dword ptr [r14 + rax*4]
+002A9C46  add       ecx, ebp
+002A9C48  mov       dword ptr [rbx + 0x54], ecx
+002A9C4B  test      r8d, r8d
+002A9C4E  jne       0x2a9c61
+002A9C50  cmp       ecx, 0x5f5e100
+002A9C56  jl        0x2a9c84
+002A9C58  mov       dword ptr [rbx + 0x54], 0x5f5e0ff
+002A9C5F  jmp       0x2a9c84
+002A9C61  cmp       ecx, r11d
+002A9C64  jl        0x2a9c84
+002A9C66  mov       dword ptr [rbx + 0x54], r11d
+002A9C6A  jmp       0x2a9c84
+002A9C6C  test      r9b, 0x40
+002A9C70  je        0x2a9c84
+002A9C72  movsx     rax, sil
+002A9C76  mov       ecx, ebp
+002A9C78  sub       ecx, dword ptr [r14 + rax*4]
+002A9C7C  cmp       ecx, edi
+002A9C7E  cmovle    ecx, edi
+002A9C81  mov       dword ptr [rbx + 0x54], ecx
+002A9C84  mov       eax, dword ptr [rbx + 0x54]
+002A9C87  cmp       eax, edi
+002A9C89  jne       0x2a9c91
+002A9C8B  bts       edx, 0x1e
+002A9C8F  jmp       0x2a9c9a
+002A9C91  cmp       eax, r11d
+002A9C94  jne       0x2a9ca0
+002A9C96  bts       edx, 0x1d
+002A9C9A  mov       dword ptr [rbx + 0xb0], edx
+002A9CA0  cmp       sil, byte ptr [rbx + 0x98]
+002A9CA7  je        0x2a9cb3
+002A9CA9  mov       ecx, 1
+002A9CAE  call      0x249c60
+002A9CB3  cmp       ebp, dword ptr [rbx + 0x54]
+002A9CB6  je        0x2a9eed
+002A9CBC  mov       ecx, 0x4d
+002A9CC1  call      0x249c60
+002A9CC6  jmp       0x2a9eed
+002A9CCB  bt        edx, 0x16
+002A9CCF  jb        0x2a9eed
+002A9CD5  cmp       word ptr [rcx + 0x5a], 0
+002A9CDA  jg        0x2a9eed
+002A9CE0  movzx     esi, word ptr [rip + 0x2ced683]   ; -> 02F9736A (virtual tail / unmapped)
+002A9CE7  xor       edi, edi
+002A9CE9  test      word ptr [rip + 0x1b625b0], si   ; -> 01E0C2A0 u32=00002000 f32=1.14794e-41
+002A9CF0  movzx     ebp, word ptr [rip + 0x2ced675]   ; -> 02F9736C (virtual tail / unmapped)
+002A9CF7  movzx     r15d, word ptr [rip + 0x2ced669]   ; -> 02F97368 (virtual tail / unmapped)
+002A9CFF  mov       dword ptr [rsp + 0x60], edi
+002A9D03  je        0x2a9d3a
+002A9D05  lea       ecx, [rdi + 2]
+002A9D08  call      0x249c60
+002A9D0D  movzx     r8d, byte ptr [rbx + 0xa2]
+002A9D15  mov       rcx, rbx
+002A9D18  movsx     edx, word ptr [rbx + 0x58]
+002A9D1C  mov       byte ptr [rbx + 0xb0], 6
+002A9D23  and       dword ptr [rbx + 0xb0], 0xfff7ffff
+002A9D2D  call      0x2b2ce0
+002A9D32  mov       dword ptr [rbx + 0x54], eax
+002A9D35  jmp       0x2a9eed
+002A9D3A  test      word ptr [rip + 0x1b62563], si   ; -> 01E0C2A4 u32=00004000 f32=2.29589e-41
+002A9D41  je        0x2a9da1
+002A9D43  bt        edx, 0x12
+002A9D47  jae       0x2a9da1
+002A9D49  cmp       byte ptr [rcx + 0xa5], dil
+002A9D50  jge       0x2a9d61
+002A9D52  mov       ecx, 5
+002A9D57  call      0x249c60
+002A9D5C  jmp       0x2a9eed
+002A9D61  mov       ecx, 3
+002A9D66  call      0x249c60
+002A9D6B  movzx     r8d, byte ptr [rbx + 0xa1]
+002A9D73  mov       rcx, rbx
+002A9D76  movsx     edx, byte ptr [rbx + 0xa5]
+002A9D7D  call      0x2b2ca0
+002A9D82  movzx     r8d, byte ptr [rbx + 0xa2]
+002A9D8A  mov       rcx, rbx
+002A9D8D  movsx     edx, ax
+002A9D90  mov       word ptr [rbx + 0x58], ax
+002A9D94  call      0x2b2ce0
+002A9D99  mov       dword ptr [rbx + 0x54], eax
+002A9D9C  jmp       0x2a9eed
+002A9DA1  mov       eax, dword ptr [rip + 0x1df48b5]   ; -> 0209E65C (virtual tail / unmapped)
+002A9DA7  inc       eax
+002A9DA9  mov       qword ptr [rsp + 0x68], r12
+002A9DAE  cmp       eax, dword ptr [rip + 0x1b631d4]   ; -> 01E0CF88 u32=00000002 f32=2.8026e-45
+002A9DB4  movzx     r12d, word ptr [rcx + 0x58]
+002A9DB9  mov       dword ptr [rip + 0x1df489d], eax   ; -> 0209E65C (virtual tail / unmapped)
+002A9DBF  jne       0x2a9e74
+002A9DC5  mov       dword ptr [rip + 0x1df4891], edi   ; -> 0209E65C (virtual tail / unmapped)
+002A9DCB  call      0x1e0a10
+002A9DD0  mov       ecx, eax
+002A9DD2  test      eax, eax
+002A9DD4  je        0x2a9e74
+002A9DDA  cdq       
+002A9DDB  mov       r8d, eax
+002A9DDE  xor       r8d, edx
+002A9DE1  sub       r8d, edx
+002A9DE4  cmp       r8d, dword ptr [rip + 0x1b63199]   ; -> 01E0CF84 u32=00000003 f32=4.2039e-45
+002A9DEB  jl        0x2a9dfe
+002A9DED  cmp       byte ptr [rbx + 0xa1], 0xc
+002A9DF4  ja        0x2a9dfe
+002A9DF6  mov       eax, ecx
+002A9DF8  cdq       
+002A9DF9  idiv      r8d
+002A9DFC  mov       ecx, eax
+002A9DFE  test      ecx, ecx
+002A9E00  jle       0x2a9e0c
+002A9E02  or        si, 0x10
+002A9E06  or        bp, 0x10
+002A9E0A  jmp       0x2a9e16
+002A9E0C  jns       0x2a9e16
+002A9E0E  or        si, 0x40
+002A9E12  or        bp, 0x40
+002A9E16  mov       eax, ecx
+002A9E18  cdq       
+002A9E19  mov       r14d, eax
+002A9E1C  xor       r14d, edx
+002A9E1F  sub       r14d, edx
+002A9E22  test      r14d, r14d
+002A9E25  jle       0x2a9eb5
+002A9E2B  nop       dword ptr [rax + rax]
+002A9E30  movzx     edx, word ptr [rbx + 0x58]
+002A9E34  test      dx, dx
+002A9E37  je        0x2a9e49
+002A9E39  movzx     ecx, byte ptr [rbx + 0xa1]
+002A9E40  dec       ecx
+002A9E42  movsx     eax, dx
+002A9E45  cmp       eax, ecx
+002A9E47  jne       0x2a9e4d
+002A9E49  test      edi, edi
+002A9E4B  jne       0x2a9e92
+002A9E4D  lea       rax, [rsp + 0x60]
+002A9E52  movzx     r9d, bp
+002A9E56  movzx     r8d, si
+002A9E5A  mov       qword ptr [rsp + 0x20], rax
+002A9E5F  movzx     edx, r15w
+002A9E63  mov       rcx, rbx
+002A9E66  call      0x2b3b20
+002A9E6B  inc       edi
+002A9E6D  cmp       edi, r14d
+002A9E70  jl        0x2a9e30
+002A9E72  jmp       0x2a9e92
+002A9E74  lea       rax, [rsp + 0x60]
+002A9E79  movzx     r9d, bp
+002A9E7D  movzx     r8d, si
+002A9E81  mov       qword ptr [rsp + 0x20], rax
+002A9E86  movzx     edx, r15w
+002A9E8A  mov       rcx, rbx
+002A9E8D  call      0x2b3b20
+002A9E92  mov       eax, dword ptr [rsp + 0x60]
+002A9E96  test      eax, eax
+002A9E98  je        0x2a9eb5
+002A9E9A  cmp       word ptr [rbx + 0x58], r12w
+002A9E9F  je        0x2a9eb5
+002A9EA1  mov       ecx, 1
+002A9EA6  cmp       eax, 1
+002A9EA9  je        0x2a9eb0
+002A9EAB  mov       ecx, 0x17
+002A9EB0  call      0x249c60
+002A9EB5  movzx     r8d, byte ptr [rbx + 0xa2]
+002A9EBD  mov       rcx, rbx
+002A9EC0  movsx     edx, word ptr [rbx + 0x58]
+002A9EC4  call      0x2b2ce0
+002A9EC9  mov       r12, qword ptr [rsp + 0x68]
+002A9ECE  mov       dword ptr [rbx + 0x54], eax
+002A9ED1  jmp       0x2a9eed
+002A9ED3  movzx     eax, word ptr [rip + 0x2ced490]   ; -> 02F9736A (virtual tail / unmapped)
+002A9EDA  test      word ptr [rip + 0x1b623bf], ax   ; -> 01E0C2A0 u32=00002000 f32=1.14794e-41
+002A9EE1  je        0x2a9eed
+002A9EE3  bts       edx, 0x1f
+002A9EE7  mov       dword ptr [rcx + 0xb0], edx
+002A9EED  xor       eax, eax
+002A9EEF  mov       rbx, qword ptr [rsp + 0x70]
+002A9EF4  add       rsp, 0x30
+002A9EF8  pop       r15
+002A9EFA  pop       r14
+002A9EFC  pop       rdi
+002A9EFD  pop       rsi
+002A9EFE  pop       rbp
+002A9EFF  ret       
+---

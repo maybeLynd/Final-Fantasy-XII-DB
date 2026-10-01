@@ -1,0 +1,162 @@
+{
+  "method": "A exact original instructions and retained artifact controls; witnesses symbolic only",
+  "historical_positive_controls": [
+    {
+      "case": "floor-under",
+      "retained_HP": 20,
+      "method": "Existing EXP093 isolated original-code with disclosed deep stubs; not rerun here."
+    },
+    {
+      "case": "floor-exact",
+      "retained_HP": 20,
+      "method": "Existing EXP093 isolated original-code with disclosed deep stubs; not rerun here."
+    },
+    {
+      "case": "floor-above",
+      "retained_HP": 21,
+      "method": "Existing EXP093 isolated original-code with disclosed deep stubs; not rerun here."
+    },
+    {
+      "case": "cap-clamp",
+      "retained_HP": 200,
+      "method": "Existing EXP093 isolated original-code with disclosed deep stubs; not rerun here."
+    },
+    {
+      "case": "cap-under",
+      "retained_HP": 199,
+      "method": "Existing EXP093 isolated original-code with disclosed deep stubs; not rerun here."
+    }
+  ],
+  "symbolic_witnesses": [
+    {
+      "case": "ordered-lower-control",
+      "old": 50,
+      "delta": -40,
+      "floor": 20,
+      "cap": 50,
+      "status_layers": 0,
+      "candidate": 10,
+      "local_clamp_result": 20,
+      "satisfies_two_sided_bound": true,
+      "symbolic_original_branch_pcs": [
+        "0x30063b",
+        "0x30063e",
+        "0x300641",
+        "0x30064c",
+        "0x30064f",
+        "0x300651",
+        "0x300654",
+        "0x3006a7"
+      ],
+      "execution_class": "A symbolic branch illustration; not an executed trace"
+    },
+    {
+      "case": "ordered-upper-control",
+      "old": 50,
+      "delta": 100,
+      "floor": 20,
+      "cap": 50,
+      "status_layers": 0,
+      "candidate": 150,
+      "local_clamp_result": 50,
+      "satisfies_two_sided_bound": true,
+      "symbolic_original_branch_pcs": [
+        "0x30063b",
+        "0x30063e",
+        "0x300641",
+        "0x30064c",
+        "0x30064f",
+        "0x300656",
+        "0x300659",
+        "0x30065f",
+        "0x300662",
+        "0x300665",
+        "0x30066c",
+        "0x300679",
+        "0x30067c",
+        "0x300680",
+        "0x300684",
+        "0x300687",
+        "0x300689",
+        "0x30068c",
+        "0x30069a",
+        "0x30069e",
+        "0x3006a2",
+        "0x3006a7"
+      ],
+      "execution_class": "A symbolic branch illustration; not an executed trace"
+    },
+    {
+      "case": "inconsistent-lower-path",
+      "old": 50,
+      "delta": 0,
+      "floor": 80,
+      "cap": 50,
+      "status_layers": 0,
+      "candidate": 50,
+      "local_clamp_result": 80,
+      "satisfies_two_sided_bound": false,
+      "symbolic_original_branch_pcs": [
+        "0x30063b",
+        "0x30063e",
+        "0x300641",
+        "0x30064c",
+        "0x30064f",
+        "0x300651",
+        "0x300654",
+        "0x3006a7"
+      ],
+      "execution_class": "A symbolic branch illustration; not an executed trace"
+    },
+    {
+      "case": "inconsistent-upper-path",
+      "old": 50,
+      "delta": 100,
+      "floor": 80,
+      "cap": 50,
+      "status_layers": 0,
+      "candidate": 150,
+      "local_clamp_result": 50,
+      "satisfies_two_sided_bound": false,
+      "symbolic_original_branch_pcs": [
+        "0x30063b",
+        "0x30063e",
+        "0x300641",
+        "0x30064c",
+        "0x30064f",
+        "0x300656",
+        "0x300659",
+        "0x30065f",
+        "0x300662",
+        "0x300665",
+        "0x30066c",
+        "0x300679",
+        "0x30067c",
+        "0x300680",
+        "0x300684",
+        "0x300687",
+        "0x300689",
+        "0x30068c",
+        "0x30069a",
+        "0x30069e",
+        "0x3006a2",
+        "0x3006a7"
+      ],
+      "execution_class": "A symbolic branch illustration; not an executed trace"
+    }
+  ],
+  "established": [
+    "Original lower branch selects floor and jumps over cap selection/test; the other branch may select cap without rechecking floor. For statuses0 and admitted local write, floor<=cap is necessary for universal two-sided bound.",
+    "Floor setter passes supplied EDX unchanged through EBX into returned unit+48 if lookup succeeds; this27B body has no cap comparison/clamp. Caller/authored restrictions and actual reachable inconsistent states are separate.",
+    "The contract and mechanism universally state both HP bounds. Neither that text nor numeric clamping provides a proof that floor and effective cap are ordered at every store."
+  ],
+  "formula": "candidate = signed32(delta + old); local result = (candidate < floor) ? floor : min(candidate, effectiveCap), with signed comparisons. Symbolic witnesses deliberately avoid wrap and use statuses0 so effectiveCap=maxHP.",
+  "semantic_implication": "Qualify the invariant and postconditions by ordered bounds and by the particular store/callee scope. Preserve original branch order; do not add a second floor/cap clamp to repair the original behavior.",
+  "limits": "No new original-code or live execution. Admitted local clamp/write path with finite nonoverflow values and statuses0. Native getter success supplied for setter statement; no normal script/runtime occurrence or downstream status/death/recompute effect. No ordinary bug/crash, KO/revive/death event, final post-recompute HP or exhaustive wrap/status domain conclusion. Existing EXP093 positive cases remain valid; this is a new boundary outside their listed coverage.",
+  "affected_claims": [
+    "OPUS CONTRACT-hp-write-and-lethal-transition.md \u00a74 universal floor<=HP<=cap, preconditions and corrected second-store-bound gloss",
+    "FABLE Current-HP/the-hp-write-and-the-lethal-transition.md player summary HP cannot violate bounds, and only-bottom-value gloss"
+  ],
+  "cleanup": "Read-only shipping image/artifacts; no game/PC/native/input/save/config/reference writes or fresh live cleanup receipt.",
+  "propagation": "PENDING owner qualification and independent review. Existing experiments and mutations unchanged."
+}

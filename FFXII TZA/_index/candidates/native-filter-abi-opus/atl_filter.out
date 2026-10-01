@@ -1,0 +1,11 @@
+PASS  M 02EAF320 is CAtlBaseModule: ctor 0080C440 (called 0016A2A0) stores cbSize 0x60, image base at +0x08/+0x10, 0xE00 at +0x18, 01CC7308 at +0x20, zeroes +0x28 (0x28 B) and +0x50..+0x5F; dtor 0080C4E8 (from 008B9088)
+PASS  G GetHInstanceAt: lock +0x28; i > count(+0x58) or i < 0 -> null; i == count -> +0x10; else (+0x50)[i]; the bounds raise is unreachable
+PASS  L 0019A510(id): per module from GetHInstanceAt(02EAF320, i): FindResourceW(h, (id >> 4) + 1, 6) then 0019A5B0(h, hrsrc, id)
+PASS  S 0019A5B0(h, hrsrc, id): load/lock/size; skip id & 15 counted strings; the counted string's address, or null (out of block or empty)
+PASS  F the filter: EXCEPTION_POINTERS* -> packed MINIDUMP_EXCEPTION_INFORMATION {tid, ptrs@+4, client=1}; gate 01F40128; MessageBoxW(0, text, L"error", 0x10); one ret, eax = 1
+PASS  R RT_STRING block 0x784 entry 7, language 0409: 'Fatal error encountered.' (24 units); 9 languages
+PASS  B 0019A5B0 bounds only the walking pointer (cmp rbx, rcx at 0019A610 / 0019A625) - no test of prefix + 2 + 2n; all 16 entries of all 9 shipped block-0x784 variants fit their block
+PASS  C entries 6 / 8 differ from 7 ('Do you really want to exit game?' / 'Error'); every import named is resolved from the import table
+PASS  N the object's address is formed only at ['0016A2A0', '0019A528', '0019A576', '008B9088']; GetHInstanceAt's only callers are 0019A531 / 0019A57D; no absolute pointer to the object or its three methods. So nothing but the constructor and destructor writes +0x50 / +0x58: the count stays 0, GetHInstanceAt(0) returns hInstResource (the image base) and GetHInstanceAt(1) null - the lookup searches the game image's own resources only (no static writer; a computed-pointer write is not excluded)
+PASS  W CAtlBaseModule (0x60) is in the store and its 11 rows tile to 0x60
+FAILS 0

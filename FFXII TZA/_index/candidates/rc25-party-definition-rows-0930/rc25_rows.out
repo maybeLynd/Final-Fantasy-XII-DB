@@ -1,0 +1,53 @@
+PASS  L1 0023AC80 stores the whole id word at +4 (row = low byte, table = high byte; table 0 reads 02EBF130)
+PASS  L2a three call sites ['00237E26 in 00237DF0', '00239AC4 in 00239960', '0023A7A9 in 0023A570']
+PASS  L2b 00237DF0: loop k = 0..0x27, rec = [02EBF190] + 8 + k*0x1C8, id = k
+PASS  L2b 00239960: loop k = 0..0x27, rec = [02EBF190] + 8 + k*0x1C8, id = k
+L3 census writes that can cover +0x04: [('0023AD8E', 'mov word ptr [rdi + 4], r15w')]
+PASS  L3 the stats-record census has exactly one writer of +0x04: 0023AD8E
+PASS  L4 member +0x60 = -1, then byte [stats + 4] of the party-slot-map-3 record (row <= 0x27)
+PASS  L5 ids > 5 show nothing; block = T[id], T = [0, 1, 3, 2, 4, 5]
+
+party record -> definitionRowIndex -> silhouette block (pages):
+  record  0  row  0  Vaan       block 0 (pages 0-515)
+  record  1  row  1  Ashe       block 1 (pages 516-1031)
+  record  2  row  2  Fran       block 3 (pages 1548-2063)
+  record  3  row  3  Balthier   block 2 (pages 1032-1547)
+  record  4  row  4  Basch      block 4 (pages 2064-2579)
+  record  5  row  5  Penelo     block 5 (pages 2580-3095)
+  record  6  row  6  guest row  none (id > 5)
+  record  7  row  7  guest row  none (id > 5)
+  record  8  row  8  guest row  none (id > 5)
+  record  9  row  9  guest row  none (id > 5)
+  record 10  row 10  guest row  none (id > 5)
+  record 11  row 11  guest row  none (id > 5)
+  record 12  row 12  guest row  none (id > 5)
+  record 13  row 13  guest row  none (id > 5)
+  record 14  row 14  guest row  none (id > 5)
+  record 15  row 15  guest row  none (id > 5)
+  record 16  row 16  guest row  none (id > 5)
+  record 17  row 17  'No name'  none (id > 5)
+  record 18  row 18  'No name'  none (id > 5)
+  record 19  row 19  'No name'  none (id > 5)
+  record 20  row 20  'No name'  none (id > 5)
+  record 21  row 21  'No name'  none (id > 5)
+  record 22  row 22  'No name'  none (id > 5)
+  record 23  row 23  'No name'  none (id > 5)
+  record 24  row 24  'No name'  none (id > 5)
+  record 25  row 25  'No name'  none (id > 5)
+  record 26  row 26  Chocobo    none (id > 5)
+  record 27  row 27  Esper      none (id > 5)
+  record 28  row 28  Esper      none (id > 5)
+  record 29  row 29  Esper      none (id > 5)
+  record 30  row 30  Esper      none (id > 5)
+  record 31  row 31  Esper      none (id > 5)
+  record 32  row 32  Esper      none (id > 5)
+  record 33  row 33  Esper      none (id > 5)
+  record 34  row 34  Esper      none (id > 5)
+  record 35  row 35  Esper      none (id > 5)
+  record 36  row 36  Esper      none (id > 5)
+  record 37  row 37  Esper      none (id > 5)
+  record 38  row 38  Esper      none (id > 5)
+  record 39  row 39  Esper      none (id > 5)
+PASS  L6 the six main-character records (rows 0-5) select all six blocks: every one of the 3,096 pages
+
+FAILS 0

@@ -1,0 +1,13 @@
+SURVIVES  W0  5 references: reads ['cmp dword ptr [rip + 0x1e55005], 0', 'cmp dword ptr [rip + 0x1e4ed44], 0', 'cmp dword ptr [rip + 0x1e4e616], ebp']; writes ['002368F8', '00236A44']
+SURVIVES  W1  [('002342F0', '00234301', 'mov eax, dword ptr [rip + 0x1e5a3a9]'), ('002342F0', '00234315', 'mov dword ptr [rip + 0x1e5a395], eax')]
+SURVIVES  W2  [('0022A59F', 'inc dword ptr [rip + 0x1daa4db]'), ('005843B4', 'imul eax, dword ptr [rip + 0x1a506c2], 0x258')]
+SURVIVES  W3  {('cmp', True, '0'): 3, ('mov', True, '1'): 3}
+SURVIVES  W4  functions ['00863BF0', '00863C80', '00866B90', '00866D60']
+SURVIVES  W5  multiplier at 24 sites in 8 functions; 00328370 reached from 23 sites in 15 functions
+SURVIVES  W6  inliners without 022C256C: none (of 8)
+SURVIVES  W7  SetState 00328D80; callers [('002342F0', '00234320')]
+SURVIVES  W8  lea sites [('0015BCF0', '0015BD13'), ('0015BCF0', '0015BD1F'), ('001946E0', '0019483B'), ('001946E0', '001948C9')]; refs inside the 0x9C0-byte array none; cells above it [('01F7FFC0', '001946E0'), ('01F7FFC8', '001946E0')]; walk ['mov rax, qword ptr [rip + 0x1deb764]', 'mov ecx, dword ptr [rax]', 'add rax, 4', 'mov qword ptr [rip + 0x1deb757], rax']; 0018EE20 disp>=0x9A0 ['mov dword ptr [r10 + 0x9c8], 0x270', 'mov qword ptr [r10 + 0x9c0], r10']; sentinel True
+SURVIVES  W9  boot seed ['mov ecx, 0x11b9']; gameplay MT consumer functions 66
+SURVIVES  W10  seed stores [('00259180', 'mov dword ptr [rip + 0x1ca01c8], 0x458dc800')]
+SURVIVES  W11  0018EE20 opens ['mov r10, rcx'] and ends ['mov dword ptr [r10 + 0x9c8], 0x270', 'mov qword ptr [r10 + 0x9c0], r10', 'ret']: the twist resets the count to 624 and the cursor to the state base
+FAILS 0

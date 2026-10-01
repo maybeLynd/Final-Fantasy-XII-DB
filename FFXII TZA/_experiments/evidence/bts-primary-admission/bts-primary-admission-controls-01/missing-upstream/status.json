@@ -1,0 +1,14 @@
+{
+  "case": "missing-upstream",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-primary-admission.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\missing-upstream\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\missing-upstream",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\missing-upstream\\absent-upstream"
+  ],
+  "exit": 1,
+  "expected_error": "upstream canonical manifest missing/changed",
+  "expected_error_seen": true,
+  "result_absent": true
+}

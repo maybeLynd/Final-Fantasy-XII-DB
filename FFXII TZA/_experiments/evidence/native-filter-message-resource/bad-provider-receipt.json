@@ -1,0 +1,10 @@
+{
+  "returncode": 1,
+  "capture_sha256": "e400e1e3aa1f194a3ff7a17b3112b48e865903e5bc8db58e3937f28da0fc6015",
+  "check_sha256": "273e767888c24023fca0bb6e871a00d5fbc81d061a1931b9978d47597ce1110f",
+  "private_raw_sha256": "444956ce1e3f47bdc32416ed529bfec2a2f4ccd3fd2fa99fd33e3972228b5e0e",
+  "intervention": "Private required provider SHA=>zero, copied byte-identical actual producer and original retained inputs",
+  "result_present": false,
+  "source_raw_unchanged_sha256": "4c85ddca7e7931471f82e6aa788e0a85982aed331882ea43905d50629d5df9a9",
+  "limits": "Concrete retained-only path; no native/live/execution. Does not retroactively measure81 provider."
+}

@@ -1,0 +1,23 @@
+depth-1 labels over PYTHONHASHSEED 0..11; alphabetical tie-break; tied verbs 36; total per seed [616]
+  Movement                         alpha  182   seeds  183..190  MOVES
+  ActorEntity                      alpha  162   seeds  138..150  MOVES
+  Presentation                     alpha   42   seeds   42..42   
+  Party                            alpha   37   seeds   40..51   MOVES
+  Audio                            alpha   36   seeds   36..37   MOVES
+  Input                            alpha   35   seeds   35..35   
+  Spawn_Encounter_Lifecycle        alpha   31   seeds   31..32   MOVES
+  WorldAreaField                   alpha   26   seeds   26..30   MOVES
+  Story_Event_Quest_Hunt           alpha   21   seeds   21..21   
+  CoreRuntimeScheduling            alpha   11   seeds   10..12   MOVES
+  UI                               alpha    8   seeds    8..8    
+  CombatFormula                    alpha    7   seeds    7..7    
+  Resource                         alpha    4   seeds    4..9    MOVES
+  CombatAction                     alpha    3   seeds    3..3    
+  Rewards_Progression_Economy      alpha    3   seeds    3..4    MOVES
+  Items_Equipment_Shops_License    alpha    2   seeds    1..2    MOVES
+  CombatAI                         alpha    2   seeds    2..2    
+  RNG_Random_Selection             alpha    2   seeds    2..2    
+  PlatformOnlineAchievements       alpha    1   seeds    1..2    MOVES
+  Save_Load_Settings               alpha    1   seeds    1..2    MOVES
+rows that move across seeds: 12; alphabetical total 616
+CONTROL same seed twice gives the same labels: PASS

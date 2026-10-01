@@ -1,0 +1,7 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "complete_original_bytes": 424,
+  "contiguous_chained_PE_fragments": 3,
+  "native_or_guest_or_live_cases": 0,
+  "controls": "Source NLOOP0/EOP0 continuation, PACKED payloadhandler and IMAGE branch distinguish positiveREGLIST early exit; gate0 entry control. No execution/mutation campaign acceptance."
+}

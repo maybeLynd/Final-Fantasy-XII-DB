@@ -1,0 +1,52 @@
+{
+  "producer_path": "Database/FFXII TZA/_index/candidates/sn1-q0-source-domain/logical_lines.py",
+  "producer_sha256": "3ef010c683cb82b7cc7017b011f4628b8eda95b498307c8eb3b4d7fd1f2814f9",
+  "producer_unchanged": true,
+  "selected_unchanged_cont_assignment_sha256": "c0e7c39de52762bab7edf709c32872b1b162904b57ac2e11fe877178a6a57b8e",
+  "controls": [
+    {
+      "module": "mapctrl",
+      "physical_line": 977,
+      "offset": 39620,
+      "bytes": "0909090909096361736520393a092f2f836e834383828366838b8b40945c",
+      "decoded": "\t\t\t\t\t\tcase 9:\t//\u30cf\u30a4\u30e2\u30c7\u30eb\u6a5f\u80fd",
+      "original_producer_result": true,
+      "decoded_terminal_ascii_result": false,
+      "kind": "negative-original-CP932-945C"
+    },
+    {
+      "module": "mapctrl",
+      "physical_line": 1187,
+      "offset": 46645,
+      "bytes": "0909090909096361736520363a092f2f81408365838c837c91538cc28f8a89c2945c",
+      "decoded": "\t\t\t\t\t\tcase 6:\t//\u3000\u30c6\u30ec\u30dd\u5168\u500b\u6240\u53ef\u80fd",
+      "original_producer_result": true,
+      "decoded_terminal_ascii_result": false,
+      "kind": "negative-original-CP932-945C"
+    },
+    {
+      "module": "evctrl",
+      "physical_line": 14,
+      "offset": 5808,
+      "bytes": "2020696e74206576656e746c6973745b32355d203d207b5c",
+      "decoded": "  int eventlist[25] = {\\",
+      "original_producer_result": true,
+      "decoded_terminal_ascii_result": true,
+      "kind": "positive-original-ASCII"
+    }
+  ],
+  "actual_default_invocation": {
+    "command": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "Database\\FFXII TZA\\_index\\candidates\\sn1-q0-source-domain\\logical_lines.py",
+      "Database\\FFXII TZA\\_experiments\\evidence\\sn1-q0-source-coordinate-domain\\retained"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "85ef401afec88c15db19359f08226208840a597d01bf76d717467f3038a8887b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "limits": "Green original producer default is not semantic acceptance; it checks its raw-byte continuation expectations, while original CP932 negative controls fail them."
+  },
+  "git_status": "",
+  "latest_publication_commit": "0324ca01acada46237eb15a73bc2e52923d170a7",
+  "limits": "Working producer preimage, not assumed canonical publication/independent acceptance. No original compiler/VM/native/game execution. Owner repairs cont() and affected counts/source lookup/prose; do not edit peer source or regress canonical index.63 ev544 original positives unaffected."
+}

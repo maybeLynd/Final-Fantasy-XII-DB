@@ -1,0 +1,21 @@
+{
+  "evidence_class": "static primary code and import review; no execution or new live observation",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect.py": {
+      "bytes": 4686,
+      "sha256": "a257046038665c2fa26cc613a1b08bb06da8df12118ce705a37e56fb71fdf898"
+    },
+    "primary.json": {
+      "bytes": 117988,
+      "sha256": "69ed04bbf858ede155194aece3b4f1211efd71aec43028b58203652ca7b6e6ce"
+    },
+    "reviewed-ripscan.py": {
+      "bytes": 2299,
+      "sha256": "236e7cee6eebf73d8fb0885346876a6efba99c04caebb96c63bbb55029a1ab47"
+    }
+  }
+}

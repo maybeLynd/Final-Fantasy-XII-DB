@@ -1,0 +1,24 @@
+{
+  "section": "SECTION-03",
+  "status": "PRODUCTION VALIDATED LOCALLY; formal peer acceptance pending",
+  "original_bodies_verified": 24,
+  "retained_spans_verified": 88,
+  "retained_samples": 4,
+  "new_corrupted_record_controls": 10,
+  "historical_checker_matches": true,
+  "historical_corrupted_record_controls": 4,
+  "native_controls": 71,
+  "native_failures": 0,
+  "repeat_identical": true,
+  "code_mutants_rejected": 6,
+  "inputs_unchanged": true,
+  "no_scripted_application_callees": true,
+  "not_performed": [
+    "new live FF12 session",
+    "read of actual reward descriptors or row contents",
+    "full EXP-090 Unicorn campaign rerun",
+    "execution of the entire defeat orchestrator",
+    "whole-game/current-GN Ghidra re-import",
+    "formal peer or terminal acceptance"
+  ]
+}

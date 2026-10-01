@@ -1,0 +1,9 @@
+# NativeAdapter.OptPtrAllocRecordInstall - EC-7 family C
+# push arg1 onto the optptr stack via shared 0080F420; allocate a 0x10
+# # record via shared 00810240; install member rip descriptor + arg3; call
+# # shared 0080FA50 with a member tag; tail shared 00810F60 with edx=-2.
+address	targets
+00680520	0080F420,0080FA50,00810240,00810F60
+00680720	0080F420,0080FA50,00810240,00810F60
+00680B30	0080F420,0080FA50,00810240,00810F60
+00680E10	0080F420,0080FA50,00810240,00810F60

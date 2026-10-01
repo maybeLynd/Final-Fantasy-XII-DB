@@ -1,0 +1,607 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-regfile-spawn-record.py",
+      "bytes": 4858,
+      "sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+    },
+    {
+      "path": "control-regfile-spawn-record.py",
+      "bytes": 3702,
+      "sha256": "2ddc910caecf0c884c3590036f301139027c3ac49f6d5a43c7e98a6298f2dada"
+    },
+    {
+      "path": "freeze-regfile-spawn-record-before-annotation-map-01.py",
+      "bytes": 7703,
+      "sha256": "ff271a482da9755bbcdc09149637053da21d929feacabd9ff1595055843d3610"
+    },
+    {
+      "path": "freeze-regfile-spawn-record.py",
+      "bytes": 8529,
+      "sha256": "c11a5527101e3acf639eb1b7ea93406b4035e23a1ac90bf8891e7f8dc1ce29f4"
+    },
+    {
+      "path": "prove-regfile-spawn-record-before-return-path-control-01.py",
+      "bytes": 13978,
+      "sha256": "1e95a56fb28eec204bac053df9932859166c7be27c6c8ae021b05d0083caba74"
+    },
+    {
+      "path": "prove-regfile-spawn-record.py",
+      "bytes": 15278,
+      "sha256": "8451d8e6ea353b9515cf423a7661bfbc1a6277fb13bdf5cde366c1f46bca0fb6"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4207,
+      "sha256": "1dd567dda64823bd543b92b2d787d9028be46886638e5293e9a3795e6e921879"
+    },
+    {
+      "path": "regfile-spawn-record-annotation-prerequisite-01.json",
+      "bytes": 2032,
+      "sha256": "ce3b491bc289a4de8fb1923348602379ece114bac104f855eab1878d09f09c13"
+    },
+    {
+      "path": "regfile-spawn-record-authored-01/gol_b01.s000",
+      "bytes": 86208,
+      "sha256": "c2617234e510735e6a1a794de000feac0a8fd956af9f2fd1afbb4e4bac6c8993"
+    },
+    {
+      "path": "regfile-spawn-record-authored-01/manifest.json",
+      "bytes": 318,
+      "sha256": "14c66c571a211f26d4e132e259c186007dad849887824847f96b81f3f8f23a3b"
+    },
+    {
+      "path": "regfile-spawn-record-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "926d182a9e56632f4c5c5309c6eee201a7743ebf81ee8eec0b011a444fe37897"
+    },
+    {
+      "path": "regfile-spawn-record-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-capture-01.stdout",
+      "bytes": 181,
+      "sha256": "e259c23450f9df43728c9b8be8aac7faad97b1de48674067bc158999b3aab150"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/capture-regfile-spawn-record.py",
+      "bytes": 4858,
+      "sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-authored-01/gol_b01.s000",
+      "bytes": 86208,
+      "sha256": "7c54c35cdf41d2b08cf0868679a2a843aaaee7e4216862749e04a8f205c0908b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "926d182a9e56632f4c5c5309c6eee201a7743ebf81ee8eec0b011a444fe37897"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-capture-01.stdout",
+      "bytes": 181,
+      "sha256": "e259c23450f9df43728c9b8be8aac7faad97b1de48674067bc158999b3aab150"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/manifest.json",
+      "bytes": 2023,
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "bytes": 7958,
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "bytes": 14615,
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "bytes": 17942,
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "bytes": 6830,
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/regfile-observation.json",
+      "bytes": 275047,
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/section12-original-body-manifest.json",
+      "bytes": 26992,
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "bytes": 405481,
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/regfile-spawn-record-source-01.json",
+      "bytes": 291302,
+      "sha256": "491d8922691668969f2392a8d2689cf92376bcddc9ab4bc6f60a85b75629e72e"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/status.json",
+      "bytes": 824,
+      "sha256": "d1008c9a048618a03fbfee9ae2f9a0029d41a62339ca62004cbc6b95ce091f78"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/stderr",
+      "bytes": 647,
+      "sha256": "553f9d5e656bcbc09d4f8d59eafee793b3d5a7cc3e42e8ac48de25f464639237"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/changed-authored-selector/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/capture-regfile-spawn-record.py",
+      "bytes": 4858,
+      "sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-authored-01/gol_b01.s000",
+      "bytes": 86208,
+      "sha256": "c2617234e510735e6a1a794de000feac0a8fd956af9f2fd1afbb4e4bac6c8993"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "926d182a9e56632f4c5c5309c6eee201a7743ebf81ee8eec0b011a444fe37897"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-capture-01.stdout",
+      "bytes": 181,
+      "sha256": "e259c23450f9df43728c9b8be8aac7faad97b1de48674067bc158999b3aab150"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/manifest.json",
+      "bytes": 2023,
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "bytes": 7958,
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "bytes": 14615,
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "bytes": 17942,
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "bytes": 6830,
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/regfile-observation.json",
+      "bytes": 275047,
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/section12-original-body-manifest.json",
+      "bytes": 26992,
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "bytes": 405481,
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/regfile-spawn-record-source-01.json",
+      "bytes": 291302,
+      "sha256": "50ec1e0e8265a4c7a8caf168908ae3e321c9e8645ac5d720d23b268a0d27a95b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/status.json",
+      "bytes": 829,
+      "sha256": "2496ddf407f3e711f06f0f9860f6f7b53891f8857fde9fbd85eed08cb0f8e4d3"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/stderr",
+      "bytes": 742,
+      "sha256": "372247f223964eda3792f75b8eacfd9f86b893dd0953cfa3a424bac29e1e38da"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/different-actor-argument/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/capture-regfile-spawn-record.py",
+      "bytes": 4858,
+      "sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-authored-01/gol_b01.s000",
+      "bytes": 86208,
+      "sha256": "c2617234e510735e6a1a794de000feac0a8fd956af9f2fd1afbb4e4bac6c8993"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-capture-01.status.json",
+      "bytes": 542,
+      "sha256": "ba81cc55518f9e142d2ba9bfde7f784620490090d2a1e0ac8ca50f5f9fa5cabd"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-capture-01.stdout",
+      "bytes": 181,
+      "sha256": "e259c23450f9df43728c9b8be8aac7faad97b1de48674067bc158999b3aab150"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/manifest.json",
+      "bytes": 2023,
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "bytes": 7958,
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "bytes": 14615,
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "bytes": 17942,
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "bytes": 6830,
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/regfile-observation.json",
+      "bytes": 275047,
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/section12-original-body-manifest.json",
+      "bytes": 26992,
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "bytes": 405481,
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/regfile-spawn-record-source-01.json",
+      "bytes": 291302,
+      "sha256": "491d8922691668969f2392a8d2689cf92376bcddc9ab4bc6f60a85b75629e72e"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/status.json",
+      "bytes": 788,
+      "sha256": "b559bb2f5d541ef14a737ebaa708171ce61975931cfc09ff7205c8ad72d56fcb"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/stderr",
+      "bytes": 679,
+      "sha256": "ecdbf14716bbc86d40b5d4c65f465b710a1e3d868d3602bea1c62e055d387767"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/failed-capture/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/capture-regfile-spawn-record.py",
+      "bytes": 4858,
+      "sha256": "57bdae06d9368b0ba44ec820d39049010dec43c16228c5f7d00f3f281dd62412"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-authored-01/gol_b01.s000",
+      "bytes": 86208,
+      "sha256": "c2617234e510735e6a1a794de000feac0a8fd956af9f2fd1afbb4e4bac6c8993"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-capture-01.status.json",
+      "bytes": 540,
+      "sha256": "926d182a9e56632f4c5c5309c6eee201a7743ebf81ee8eec0b011a444fe37897"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-capture-01.stdout",
+      "bytes": 181,
+      "sha256": "e259c23450f9df43728c9b8be8aac7faad97b1de48674067bc158999b3aab150"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/manifest.json",
+      "bytes": 2023,
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "bytes": 7958,
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "bytes": 14615,
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "bytes": 17942,
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "bytes": 6830,
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/regfile-observation.json",
+      "bytes": 275047,
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "bytes": 405481,
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/regfile-spawn-record-source-01.json",
+      "bytes": 291302,
+      "sha256": "491d8922691668969f2392a8d2689cf92376bcddc9ab4bc6f60a85b75629e72e"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/status.json",
+      "bytes": 809,
+      "sha256": "9ab9e073dc8169bee727ed946ad8bb3148d4440125ac35df571604d6e2b18e4b"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/stderr",
+      "bytes": 1049,
+      "sha256": "164e5da4cb153802b2495a4d5bcd3e3a2857261918f3eb8c8e4227c624d97e01"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/missing-retained-input/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "regfile-spawn-record-controls-01/result.json",
+      "bytes": 4244,
+      "sha256": "ea9eac4e7e9fd830460e6a865e59bb5bc0cca8408f425320362bb80008ebe3d2"
+    },
+    {
+      "path": "regfile-spawn-record-controls-run-01.status.json",
+      "bytes": 386,
+      "sha256": "430d278604e3a0fd33fe05256e365a2864931f589a53c6d65e93b1fbd86ac9fd"
+    },
+    {
+      "path": "regfile-spawn-record-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-controls-run-01.stdout",
+      "bytes": 81,
+      "sha256": "473ca361fb0c46655602be722e901c14f6199bc5690ecee78102c5d12979368b"
+    },
+    {
+      "path": "regfile-spawn-record-freeze-01.status.json",
+      "bytes": 385,
+      "sha256": "7f52caf1b3ddf767cef2a30dc7e7638f7fbf8ca4fe05992b7d538a0aad0dc5c4"
+    },
+    {
+      "path": "regfile-spawn-record-freeze-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-freeze-01.stdout",
+      "bytes": 114,
+      "sha256": "302fe2b9ac2154cf71bc27d56b819b6c20e992e818c834aa0525501c5ce78108"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/manifest.json",
+      "bytes": 2023,
+      "sha256": "2534bc9eea8804fb2335c742cfa85f5db27a99d868d7f945a013099c1836a334"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-consumer-adjudication.md",
+      "bytes": 7958,
+      "sha256": "cb5d7b7f69cfb9a66e67fa0de4f59ff47a8b3d4921645c9a5361544f906e248b"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-fable-corrected.md",
+      "bytes": 14615,
+      "sha256": "fde47c14624ede46260636e47ba7cb5fcec5c0bf80972eac63f78a78d5431945"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-oracle.md",
+      "bytes": 17942,
+      "sha256": "d70f88a8c53405768afbca5df8daec2d600c10d7d31796fe183b398c88d026a2"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/rc16-sem-review.md",
+      "bytes": 6830,
+      "sha256": "de0e7a12a48e5d9653a7bef615e5c848774b7643bd709db30a66a16d2e5489ea"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/regfile-observation.json",
+      "bytes": 275047,
+      "sha256": "1f79eb8187a598ab2e46483fcf05ee7d4808f75d5530a0c5e509b8298268677c"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/section12-original-body-manifest.json",
+      "bytes": 26992,
+      "sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c"
+    },
+    {
+      "path": "regfile-spawn-record-inputs-01/section12-original-disassembly.txt",
+      "bytes": 405481,
+      "sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb"
+    },
+    {
+      "path": "regfile-spawn-record-method-01.json",
+      "bytes": 2740,
+      "sha256": "2e378b43cfd415c91867ec2399cbab582543c791286fdc42e4104506b5cc32aa"
+    },
+    {
+      "path": "regfile-spawn-record-positive-01.status.json",
+      "bytes": 539,
+      "sha256": "df4e30aca5cf4c310d3b6a36e3e0f41224d67410ffe7350f492b1099e6ae18c3"
+    },
+    {
+      "path": "regfile-spawn-record-positive-01.stderr",
+      "bytes": 685,
+      "sha256": "5cbbbaf1927d690461b194d6f7a084e9520f0e840bc075ddeb91c420eebd2f70"
+    },
+    {
+      "path": "regfile-spawn-record-positive-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-positive-02.status.json",
+      "bytes": 539,
+      "sha256": "f20a7988d919e44649c97099b27bc703127dafd50bc5bb73f6cedf1817d0149b"
+    },
+    {
+      "path": "regfile-spawn-record-positive-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regfile-spawn-record-positive-02.stdout",
+      "bytes": 128,
+      "sha256": "ef11d6d2577c0977fa62b99a12479b6fd9609792b648b0edc9bb3c13fd5e700a"
+    },
+    {
+      "path": "regfile-spawn-record-result-01.json",
+      "bytes": 16386,
+      "sha256": "3f5230187c47084c6f55102e5f544917c3e62ff0f96a4531941dc9e8620ea4da"
+    },
+    {
+      "path": "regfile-spawn-record-source-01.json",
+      "bytes": 291302,
+      "sha256": "491d8922691668969f2392a8d2689cf92376bcddc9ab4bc6f60a85b75629e72e"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "native_path_budget_units": 17037
+}

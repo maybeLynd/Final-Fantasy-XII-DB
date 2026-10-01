@@ -1,0 +1,9 @@
+PASS  R unbounded descriptor read; callers ['002617A8', '00267E7F', '00267FD9', '00268113']
+PASS  H 10036 files; descriptor tables overrunning the next table: 0
+      PUSHV   operands   7573443, at or past the count 0
+      POPV    operands   9170968, at or past the count 0
+      PUSHDBG operands    125349, at or past the count 0
+      PUSHP   operands     60681, at or past the count 0
+PASS  C PUSHV / POPV / PUSHP operands all below the descriptor count (PUSHDBG reported, not asserted)
+PASS  M sensitivity: 140045 operands at the table's last slot
+FAILS 0

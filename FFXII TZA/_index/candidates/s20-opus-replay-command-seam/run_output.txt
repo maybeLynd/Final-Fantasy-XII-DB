@@ -1,0 +1,5 @@
+CS1_seam_records_pending_not_commit PASS  00311CF0(unit, target, r8b, command 0x4005) returns 0 and records the command as PENDING: +0xBA0 = 0x4005, +0xBB8 = the target (the unit's own id +8 when the target is 0), then calls 00317E60 - and writes NOTHING in +0x708..+0x71F
+CS1_seam_refusals                  PASS  three refusals, two return values: a status bit only in 0x8800203B returns 0 (indistinguishable from success) with nothing recorded; bit 0 (0x80000003 with 00377C20 false), command 0x113 over a current 0x113, or a null stats pointer return -2
+CS2_commit_writes_the_three_fields PASS  0030F760(unit, ctx, id 0x4005, focus 0x100001, reset) stores +0x708 = ctx, +0x710 = focus, +0x714 = id and phase +0x6B4 = 0 (from 7); its fifth argument runs the reset 003105D0 first
+CS5_dispatch_reads_the_committed_id PASS  after the seam alone (+0xBA0 = 0x4005, +0x714 = 0) the dispatcher 00305080 returns -1; after the commit it reaches table[5] = 002FDA60 (a recorded stop at the handler entry) - the dispatch reads +0x714, not the pending +0xBA0
+ok

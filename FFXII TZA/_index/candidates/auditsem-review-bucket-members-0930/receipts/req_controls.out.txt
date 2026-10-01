@@ -1,0 +1,7 @@
+full-census bin/dat rows: 80  my VBF signatures: 80  differences: {}
+MUTANT drop_summoneffect            problems=1 .bin: 1 census signature(s) in no member ('dP<d')
+MUTANT flag_split_8                 problems=1 .bin signature 'FLAG' is split flagdef:9+flagrom:8 = 17, the census has 18
+MUTANT phantom_sig                  problems=3 .bin member summoneffectdata names signature 'dP<e', which the census does not have
+MUTANT entries_mismatch             problems=1 .bin member MUS0 declares 3 entries; its signatures cover 2 in the census
+unmutated problems: []
+controls PASS

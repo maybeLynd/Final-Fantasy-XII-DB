@@ -1,0 +1,38 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "method": "A finite stable-domain proof from original source",
+  "new_original_code_executions": 0,
+  "live_cases": 0,
+  "origin_range": [
+    -32768,
+    32767
+  ],
+  "span_range": [
+    0,
+    65025
+  ],
+  "upper_range": [
+    -32768,
+    97792
+  ],
+  "converted_displacement_range": [
+    0,
+    65025
+  ],
+  "linear_index_upper_bound": 65280,
+  "original_guard_obligations": {
+    "0x383f77": "X>=originX",
+    "0x383f93": "Z>=originZ",
+    "0x383faf": "X<=originX+cw*cols",
+    "0x383fcd": "Z<=originZ+ch*rows"
+  },
+  "conversion_pcs": [
+    "0x383ff7",
+    "0x384020"
+  ],
+  "table_read_pc": "0x38402c",
+  "postconversion_index_range_guard": false,
+  "classifier": "Only original returnedAX==2 ->FF source branch; parent finite host-stub/import witness is NOT native classifier behavior.",
+  "rejected_consumer_inference": "Stable admitted finite point cannot produce negative/indefinite conversion here. Out-of-grid finite coordinates exit by earlier bounds, not downstream cell-index guard.",
+  "limits": "Stable finite point/header/bindings required; native classifier/MXCSR/initialization/atomicity unobserved. Nonzero divisor required to complete IDIV. Nonnegative/int32-safe index does NOT imply in-table; equality/rounding hazards retained in parent evidence."
+}

@@ -1,0 +1,73 @@
+{
+  "mode": "postpositive",
+  "pid": 35004,
+  "start_unix": 1789093297.9581716,
+  "status": "COMPLETED",
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\observe.py",
+        "--pid",
+        "35004",
+        "--seconds",
+        "65",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\postpositive-window.json"
+      ],
+      "label": "observer",
+      "pid": 35320,
+      "start_unix": 1789093298.638108,
+      "exit_code": 0,
+      "observed_end_unix": 1789093363.76544
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\input_receipt.py",
+        "--keys",
+        "Enter",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\postpositive-Enter.json"
+      ],
+      "label": "Enter",
+      "pid": 38768,
+      "start_unix": 1789093305.6442957,
+      "exit_code": 0,
+      "observed_end_unix": 1789093363.7654498
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\input_receipt.py",
+        "--keys",
+        "C",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\postpositive-C.json"
+      ],
+      "label": "C",
+      "pid": 19560,
+      "start_unix": 1789093350.644193,
+      "exit_code": 0,
+      "observed_end_unix": 1789093363.765451
+    }
+  ],
+  "sources": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\window_run.py": "6d8b9ab20b8ec26aaa49995ce96b6d427b6ba33c7898d5c494365747c05a99f8",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\observe.py": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\hwbp-variant.py": "f5635ca59efc201d193e80e612e88ec23d9e76040f95a86afc266aaf381ae0af",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-016-cleanup\\api_receipts.py": "e8c94b91440f4dafea23da82062c94bcf48f761765742c8176cb3649186679f9",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\process_liveness.py": "b6d6ef01c3fc4803115743cad610e70344a4935e48f4bd7807b6217ef7264ec4"
+  },
+  "state_before": {
+    "stdout": "pid 35004\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "end_unix": 1789093363.7654517,
+  "live_children": []
+}

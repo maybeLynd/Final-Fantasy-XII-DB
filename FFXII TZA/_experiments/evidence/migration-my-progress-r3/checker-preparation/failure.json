@@ -1,0 +1,10 @@
+{
+  "origin": "actual exec tool c07fab",
+  "returncode": 1,
+  "exception": "AssertionError",
+  "cause": "reducer counted actual eleven CLI arguments as twelve",
+  "capture_affected": false,
+  "capture_rerun": false,
+  "status": "INVALID_REDUCER_PREPARATION",
+  "correction": "Validate actual flag/value pairs and source/input binding instead of erroneous magic length."
+}

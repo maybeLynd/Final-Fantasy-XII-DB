@@ -1,0 +1,108 @@
+exe sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+owner 001D03C6: 001D0390 FUN_001d0390  owner 001EA609: 001EA3C0 FUN_001ea3c0
+[caller 001D03B0..001D03D0]
+  001D03B1 mov    rax, qword ptr [rip + 0x1d74478]
+  001D03B8 xor    rax, rsp
+  001D03BB mov    qword ptr [rsp + 0x130], rax
+  001D03C3 mov    rdi, rcx
+  001D03C6 add    rcx, 8
+  001D03CA call   0x1ea3c0
+  001D03CF mov    ebx, eax
+raw branches to 001EA3C0: ['001C1E04 E8 in 001C1D40 FUN_001c1d40', '001C2BFD E8 in 001C2980 FUN_001c2980', '001D03CA E8 in 001D0390 FUN_001d0390']
+rip refs to 001EA3C0: 0  relocs: 0
+001EA3C0 listed size 763 insns 214
+instructions writing rsi/esi in body: ['001EA3DC mov rsi, rcx']
+xchg/pop rsi: ['001EA6B9 pop rsi']
+calls between 001EA3DC and 001EA5C1 (rsi is callee-saved in the Win64 ABI): 12
+[001EA5A8..001EA612]
+  001EA5A9 mov    rbx, qword ptr [rax + 8]
+  001EA5AD lea    rdx, [rip + 0x717564]
+  001EA5B4 mov    rcx, r8
+  001EA5B7 call   0x18d240
+  001EA5BC test   rax, rax
+  001EA5BF je     0x1ea60e
+  001EA5C1 lea    r10, [rsi + 0x118]
+  001EA5C8 test   r10, r10
+  001EA5CB je     0x1ea5f4
+  001EA5CD movzx  r9d, word ptr [rax + 0x10]
+  001EA5D2 movzx  edx, word ptr [rax + 0x12]
+  001EA5D6 mov    eax, 0x1fff
+  001EA5DB and    dx, ax
+  001EA5DE movzx  ecx, dx
+  001EA5E1 add    ecx, r9d
+  001EA5E4 cmp    ecx, dword ptr [rbx]
+  001EA5E6 ja     0x1ea5ef
+  001EA5E8 cmp    r9w, 4
+  001EA5ED jae    0x1ea5fb
+  001EA5EF mov    ebp, 3
+  001EA5F4 mov    eax, ebp
+  001EA5F6 jmp    0x1ea6a8
+  001EA5FB movzx  r8d, dx
+  001EA5FF movzx  ecx, r9w
+  001EA603 add    rcx, rbx
+  001EA606 mov    rdx, r10
+  001EA609 call   0x861eba
+  001EA60E mov    ecx, 0x270
+lea at 001EA5AD -> 00901B18 'softEdges'
+[thunk 00861EBA]
+  00861EBA jmp qword ptr [rip + 0x60ba8]
+IAT 008C2A68 -> [('VCRUNTIME140.dll', 'memcpy')]  image base in header 0x120000
+slot 01DFDE00 qword 901990 -> 00901990 './GameData/D3D11/ArtData/shaders/PhyreText.fx.phyre'
+slot 01DFDE08 qword 9019C8 -> 009019C8 './GameData/D3D11/ArtData/font/tuffysdf.fgen.phyre'
+[lookup 0018D240]
+  0018D240 mov    qword ptr [rsp + 8], rbx
+  0018D245 mov    rbx, rdx
+  0018D248 mov    r11, rcx
+  0018D24B test   rdx, rdx
+  0018D24E je     0x18d300
+  0018D254 mov    r10d, dword ptr [rcx + 0x40]
+  0018D258 mov    r9, qword ptr [rcx + 0x48]
+  0018D25C and    r10d, 0x7fffffff
+  0018D263 je     0x18d2b0
+  0018D265 nop    word ptr [rax + rax]
+  0018D270 movzx  eax, byte ptr [r9 + 8]
+  0018D275 dec    r10d
+  0018D278 mov    r8, qword ptr [r9 + 8]
+  0018D27C and    eax, 1
+  0018D27F sub    r8, rax
+  0018D282 mov    rax, rbx
+  0018D285 sub    r8, rbx
+  0018D288 nop    dword ptr [rax + rax]
+  0018D290 movzx  edx, byte ptr [rax]
+  0018D293 movzx  ecx, byte ptr [rax + r8]
+  0018D298 sub    edx, ecx
+  0018D29A jne    0x18d2a3
+  0018D29C inc    rax
+  0018D29F test   ecx, ecx
+  0018D2A1 jne    0x18d290
+  0018D2A3 test   edx, edx
+  0018D2A5 je     0x18d308
+  0018D2A7 add    r9, 0x18
+  0018D2AB test   r10d, r10d
+  0018D2AE jne    0x18d270
+  0018D2B0 mov    r10d, dword ptr [r11 + 0x50]
+  0018D2B4 mov    r9, qword ptr [r11 + 0x58]
+  0018D2B8 and    r10d, 0x7fffffff
+  0018D2BF je     0x18d300
+[0059C4D0..0059C4E0, 0059C5A0..0059C5B0 in 0059C250]
+  0059C4D2 cmovne ecx, ebx
+  0059C4D5 test   al, al
+  0059C4D7 jne    0x59c4df
+  0059C4D9 btr    ebx, 0x1f
+  0059C4DD jmp    0x59c4e2
+  0059C4DF mov    ebx, r12d
+  0059C5A1 add    rsi, rdx
+  0059C5A4 mov    edi, dword ptr [r14 + 0xc]
+  0059C5A8 add    rdi, qword ptr [rsp + 0x130]
+[0059BF50..0059BF72 in 0059BED0]
+  0059BF50 mov    rdx, qword ptr [rbx + 8]
+  0059BF54 mov    r9d, dword ptr [rdx + 0x14]
+  0059BF58 mov    r8d, dword ptr [rdx + 8]
+  0059BF5C cmp    r8d, r11d
+  0059BF5F jg     0x59bf79
+  0059BF61 mov    eax, 1
+  0059BF66 cmp    r9d, eax
+  0059BF69 cmova  eax, r9d
+  0059BF6D imul   eax, dword ptr [rdx + 0xc]
+  0059BF71 add    eax, r8d
+arith: outer+8+0x118 = 0x120 ; first AE0 byte needs len > 0x9C0 (2496) ; whole AE0 needs len >= 0x9C4 (2500)

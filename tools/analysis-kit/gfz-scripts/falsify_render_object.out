@@ -1,0 +1,9 @@
+SURVIVES  O0  (catalogue, chain union) [(516, 516), (2328, 2328), (496, 496)]
+SURVIVES  O1  0x668 loaded (mov) at ['001BD527', '001F5309', '00897C19']; also used as an arithmetic operand at ['00210843 add', '0055C6D3 adc']
+SURVIVES  O2  functions referencing 00903B68 ['001F4DA0', '001F51E0']; linear windows 2
+SURVIVES  O3  13 stores at +0x4B4 image-wide (widths {1: 2, 2: 4, 4: 7}); byte-width ['001F4EC9', '001F7729']
+SURVIVES  O4  17 byte reads in 16 functions
+SURVIVES  O5  call 0x189120 / cmp byte ptr [rax + 0x1c], 0; accessor ['mov rax, qword ptr [rip + 0x1df6471]', 'ret']
+SURVIVES  O6  105 instructions, 48 movups, backward jumps []
+SURVIVES  O7  movzx eax, byte ptr [rcx + 0x4b4]; je 0x1fb305; first non-stack store 001FB194
+FAILS 0

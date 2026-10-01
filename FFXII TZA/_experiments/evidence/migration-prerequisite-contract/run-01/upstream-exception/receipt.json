@@ -1,0 +1,29 @@
+{
+  "name": "upstream-exception",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\upstream-exception\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\upstream-exception\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "tagged",
+    "tags": [
+      "A",
+      "B"
+    ],
+    "exits": [
+      0
+    ]
+  },
+  "upstream_sha256": "af30f394aceedde08d018f69510f231fa5f5906fe5728eea90d39ea17fbf015e",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py raised RuntimeError: deliberate required failure\n",
+  "stderr": "",
+  "timed_out": false
+}

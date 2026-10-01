@@ -1,0 +1,9 @@
+Ra_latch_before_policy             PASS  latch 02092734 = 1: the router returns 0 and never enters the policy aggregate 002E0FA0
+Rb_policy_bit_table                PASS  every aggregate bit alone x ids [1, 2, 3, 5, 14, 21] + 7 (bit 15 set): the router refuses exactly when that bit's 01E0C2C0 entry holds the MASKED id's bit
+Rc_R3_busy_root_refuses_after_dispatch PASS  an occupied root slot: the router passes the request to 00280A00, which returns 0 before 00252B40 - the word stays 0
+R3_R6_accepted_request             PASS  request 0x8007: the scheduler receives the RAW dword (bit 15 kept); 00252B40 writes the MASKED id 7 to 02092730 and 020927D8 and the latch 1, BEFORE the first mount; the first mount is a 0xD8 widget with proc 0027FB70, whose create message runs (the run ends at the widget's first UI-internal call)
+R6_prelude_audio_split             PASS  the word is written for every accepted id; for 2, 6, 15, 17 the prelude's stop callbacks reach the audio layer before the first mount, for 7 and 8 the first widget mounts
+R1_single_slot_silent_replace      PASS  two posts before a drain both return 1; the slot holds only the second (id 9, parameter 0x22)
+R2_post_policy_narrower            PASS  the post refuses only id 2 under aggregate bit 0; id 7 posts under the same aggregate, and bit 1 does not stop id 2
+R1b_blocked_byte_refuses           PASS  0215F1A1 non-zero: the post returns 0 and writes nothing
+ok

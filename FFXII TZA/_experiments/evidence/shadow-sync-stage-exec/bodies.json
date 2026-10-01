@@ -1,0 +1,85 @@
+{
+ "real": [
+  {
+   "va": "0x428e40",
+   "lo": "0x428e40",
+   "hi": "0x428e70",
+   "span": 48,
+   "insns": 11,
+   "cov": 1.0,
+   "sha256": "7ee0e8cee3ef7c1c2d532392f2ee9a266aa2f820af331cd6c4b15941a66113c6",
+   "indirect": [],
+   "name": "gate"
+  },
+  {
+   "va": "0x426420",
+   "lo": "0x426420",
+   "hi": "0x42647e",
+   "span": 94,
+   "insns": 22,
+   "cov": 1.0,
+   "sha256": "ba4b5876612f3bda7fe2e86d9043cd11270c03bad84f12c2adf4ae2800237093",
+   "indirect": [],
+   "name": "walk"
+  },
+  {
+   "va": "0x426340",
+   "lo": "0x426340",
+   "hi": "0x426413",
+   "span": 211,
+   "insns": 56,
+   "cov": 1.0,
+   "sha256": "f42ec780fdf69a3d580dd2d7b658a6f7a16b2a58425e03e5d6f24457d35ac3a9",
+   "indirect": [],
+   "name": "sync"
+  },
+  {
+   "va": "0x3b6900",
+   "lo": "0x3b6900",
+   "hi": "0x3b692b",
+   "span": 43,
+   "insns": 12,
+   "cov": 1.0,
+   "sha256": "55fed26b5e877b43135a3bf4c79bcd4285b4a5f17e81dd39f729d79bda5fbf31",
+   "indirect": [],
+   "name": "v1"
+  },
+  {
+   "va": "0x3afd00",
+   "lo": "0x3afd00",
+   "hi": "0x3afd2c",
+   "span": 44,
+   "insns": 13,
+   "cov": 1.0,
+   "sha256": "e206c493ca33da891ac7f48b91ba722b0c8a04161f07954d54db3027c84582ce",
+   "indirect": [],
+   "name": "v2"
+  },
+  {
+   "va": "0x3b6b80",
+   "lo": "0x3b6b80",
+   "hi": "0x3b6b9c",
+   "span": 28,
+   "insns": 7,
+   "cov": 1.0,
+   "sha256": "8350f6f1621e7f0a83ed8933e192b161c3f9bbc495056e2f06a28f4298fef8f9",
+   "indirect": [],
+   "name": "lods"
+  },
+  {
+   "va": "0x521440",
+   "lo": "0x521440",
+   "hi": "0x521445",
+   "span": 5,
+   "insns": 1,
+   "cov": 1.0,
+   "sha256": "b83b3b3505b57d364d7c1e38a4df6dc55fdf09512e26d8bd401f1920843e8760",
+   "indirect": [],
+   "name": "thunk"
+  }
+ ],
+ "scripted": [
+  "0x3b5980",
+  "0x3b6020"
+ ]
+}

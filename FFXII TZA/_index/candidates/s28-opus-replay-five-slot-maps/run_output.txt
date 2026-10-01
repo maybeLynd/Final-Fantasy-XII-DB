@@ -1,0 +1,4 @@
+SM4_SM8_born_identical             PASS  over zeroed maps 00329CC0 writes map 0 from the authored table 01EED260 (0xFF -> FFFF) and copies it into maps 1-4; +0x5AA4 holds the table's first byte. For a 0xFF table entry it writes FFFF only after releasing the member the OLD selector names, and skips the write when that old low byte is above 0x27 - a stale 5A5A survives, and is copied
+SM5_refresh_order                  PASS  map 0 = 0100..0108: afterwards map 3 = map 0 (copied before the clear), map 1 keeps [0..3] and has [4..8] = FFFF, and maps 2 and 4 equal the cleared map 1
+SM1_SM2_SM3_resolver               PASS  the resolver returns the LOW byte of the u16 selector (0x1234 -> 34, empty FFFF -> FF); an id past the class-23 gate (9) and class 5 both return FF through the same epilogue; class 3 reads map 3
+ok

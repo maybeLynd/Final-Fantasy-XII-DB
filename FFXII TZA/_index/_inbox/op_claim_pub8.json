@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2-DATA-PUB-UQ218-PASS8",
+ "agent": "SWE2-DATA",
+ "note": "Claiming publication for UQ-218 pass 8 (@FMC opcode operand map).",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

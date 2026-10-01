@@ -1,0 +1,19 @@
+{
+  "first_status": "two actual writer creations",
+  "second_status": "two DONE-ALREADY, no writes",
+  "revision_before": 6,
+  "revision_after": 8,
+  "journal_kinds": [
+    "genesis",
+    "intent",
+    "commit",
+    "intent",
+    "commit"
+  ],
+  "same_board_after_second": true,
+  "same_journal_after_second": true,
+  "private_lock_absent": true,
+  "unchanged_sources": true,
+  "parent_children_terminal": true,
+  "limits": "Not concurrent dispatch, fairness, cancellation, quota, controller/native host, malformed/timeout behavior or full A14/A16/pilot acceptance."
+}

@@ -1,0 +1,142 @@
+   00249296 -> 0032E400 in 00249210 FUN_00249210                 kind {0x7}
+   0024AB93 -> 0032E400 in 0024AB90 FUN_0024ab90                 kind {0x7}
+   0024AC4C -> 0032E400 in 0024AC30 FUN_0024ac30                 kind {0x23}
+   00259DFE -> 0032E400 in 00259DF0 FUN_00259df0                 kind {0x9}
+   00268762 -> 0032E400 in 00268750 MapRef_BeginLoadResources    kind {0x9}
+   00268814 -> 0032E400 in 00268750 MapRef_BeginLoadResources    kind {0x9}
+   002E61A8 -> 0032E400 in 002E60F0 FUN_002e60f0                 kind {0x20}
+   002E6776 -> 0032E400 in 002E6700 FUN_002e6700                 kind {0x1,0xD,0xE,0xF,0x10,0x12,0x13,0x14,0x16,0x17,0x18,0x19,0x22}
+   002E9988 -> 0032E400 in 002E9920 FUN_002e9920                 kind {0x1,0xD,0xE,0xF,0x10,0x12,0x13,0x14,0x16,0x17,0x18,0x19,0x22}
+   002E99A8 -> 0032E400 in 002E9920 FUN_002e9920                 kind {0x1,0xD,0xE,0xF,0x10,0x12,0x13,0x14,0x16,0x17,0x18,0x19,0x22}
+   002EA56B -> 0032E400 in 002EA530 FUN_002ea530                 kind {0x9}
+   002EADEA -> 0032E400 in 002EAD50 FUN_002ead50                 kind {0x1,0xD,0xE,0xF,0x10,0x12,0x13,0x14,0x16,0x17,0x18,0x19,0x22}
+   002FC8D8 -> 0032E400 in 002FC860 FUN_002fc860                 kind {0xB,0x26}
+   002FC920 -> 0032E400 in 002FC860 FUN_002fc860                 kind {0xB,0x26}
+   002FD027 -> 0032E400 in 002FCFF0 FUN_002fcff0                 kind {0xB,0x26}
+   0032F617 -> 0032E400 in 0032F430 FUN_0032f430                 kind {0x8}
+   0032FD4D -> 0032E400 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FD83 -> 0032E400 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FD99 -> 0032E400 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FDCC -> 0032E400 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FDDC -> 0032E400 in 0032FCA0 ActorResource_BeginManagerRe kind {0x25}
+   00330354 -> 0032E400 in 00330310 ActorResource_BeginPrimaryPa kind {0x5}
+   00330E47 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330E5B -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330E6C -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330E7D -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330E92 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330EA6 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330EBB -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330ECF -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330EE4 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330EF9 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330F0E -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330F23 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330F48 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00330F71 -> 0032E400 in 003306E0 FUN_003306e0                 kind {0xFF}
+   00331CAD -> 0032E400 in 003319D0 FUN_003319d0                 kind {0xFF}
+   00331CC0 -> 0032E400 in 003319D0 FUN_003319d0                 kind {0xFF}
+   00331CD3 -> 0032E400 in 003319D0 FUN_003319d0                 kind {0xFF}
+   00331CE4 -> 0032E400 in 003319D0 FUN_003319d0                 kind {0xFF}
+   00332280 -> 0032E400 in 00332250 FUN_00332250                 kind {0x5}
+   00360CA9 -> 0032E400 in 00360C70 FUN_00360c70                 kind {0x9}
+   00365882 -> 0032E400 in 00365810 FUN_00365810                 kind {0x7}
+   00365935 -> 0032E400 in 003658F0 FUN_003658f0                 kind {0x7}
+   0036ED7C -> 0032E400 in 0036ED50 FUN_0036ed50                 kind {0x21}
+   0036EE0D -> 0032E400 in 0036ED50 FUN_0036ed50                 kind {0x27}
+   00378059 -> 0032E400 in 00378030 FUN_00378030                 kind {0x4}
+   00378566 -> 0032E400 in 00378540 FUN_00378540                 kind {0x1}
+   003785FA -> 0032E400 in 00378540 FUN_00378540                 kind {0x9}
+   00378673 -> 0032E400 in 00378540 FUN_00378540                 kind {0x9}
+   0037870A -> 0032E400 in 00378540 FUN_00378540                 kind {0x9}
+   0037877C -> 0032E400 in 00378540 FUN_00378540                 kind {0x9}
+   003787EE -> 0032E400 in 00378540 FUN_00378540                 kind {0x9}
+   0037884D -> 0032E400 in 00378540 FUN_00378540                 kind {0x9}
+   00379A37 -> 0032E400 in 00379A10 FUN_00379a10                 kind {0x4}
+   00379E9E -> 0032E400 in 00379E90 FUN_00379e90                 kind {0x9}
+   0038444E -> 0032E400 in 00384420 FUN_00384420                 kind {0x2}
+   0039C432 -> 0032E400 in 0039C3F0 FUN_0039c3f0                 kind {0x7}
+   003A14B9 -> 0032E400 in 003A13F0 FUN_003a13f0                 kind {0x20}
+   003A1538 -> 0032E400 in 003A13F0 FUN_003a13f0                 kind {0x20}
+   003A15B7 -> 0032E400 in 003A13F0 FUN_003a13f0                 kind {0x20}
+   003B06E5 -> 0032E400 in 003B0660 FUN_003b0660                 kind {0xA}
+   003B23A1 -> 0032E400 in 003B2310 FUN_003b2310                 kind {0xC}
+   003B23D7 -> 0032E400 in 003B2310 FUN_003b2310                 kind {0xC}
+   003B5407 -> 0032E400 in 003B53C0 FUN_003b53c0                 kind {0x9}
+   003DC977 -> 0032E400 in 003DC8D0 FUN_003dc8d0                 kind {0x1E}
+   003DCC59 -> 0032E400 in 003DCBC0 FUN_003dcbc0                 kind {0x9}
+   003EA868 -> 0032E400 in 003EA820 AreaArd_LoadOrUnloadFieldRes kind {0x15}
+   003EAE29 -> 0032E400 in 003EADE0 FUN_003eade0                 kind {}  LEAVES DATA 003EAE26 in 003EADE0: mov ecx, dword ptr [rbx + 0x1c]
+   0050DF9D -> 0032E400 in 0050DF70 FUN_0050df70                 kind {}  LEAVES clobbered by call at 0050DF93
+   0051ED52 -> 0032E400 in 0051ED10 FUN_0051ed10                 kind {0x9}
+   002492F3 -> 0032E620 in 00249210 FUN_00249210                 kind {0x7}
+   0024AC9F -> 0032E620 in 0024AC30 FUN_0024ac30                 kind {0x23}
+   00259E6E -> 0032E620 in 00259DF0 FUN_00259df0                 kind {0x9}
+   00268809 -> 0032E620 in 00268750 MapRef_BeginLoadResources    kind {0x9}
+   0026883E -> 0032E620 in 00268750 MapRef_BeginLoadResources    kind {0x9}
+   00291D04 -> 0032E620 in 00291C80 FUN_00291c80                 kind {0x7}
+   002C900B -> 0032E620 in 002C8EE0 FUN_002c8ee0                 kind {0x7}
+   002E6277 -> 0032E620 in 002E60F0 FUN_002e60f0                 kind {0x20}
+   002E700C -> 0032E620 in 002E6EB0 FUN_002e6eb0                 kind {0x1,0xD,0xE,0xF,0x10,0x12,0x13,0x14,0x16,0x17,0x18,0x19,0x22}
+   002EA5A9 -> 0032E620 in 002EA530 FUN_002ea530                 kind {0x9}
+   002EAE08 -> 0032E620 in 002EAD50 FUN_002ead50                 kind {0x1,0xD,0xE,0xF,0x10,0x12,0x13,0x14,0x16,0x17,0x18,0x19,0x22}
+   002EF336 -> 0032E620 in 002EF300 FUN_002ef300                 kind {0x1}
+   002FC96F -> 0032E620 in 002FC860 FUN_002fc860                 kind {0xB,0x26}
+   00324637 -> 0032E620 in 00324510 FUN_00324510                 kind {0x1A}
+   0032EC01 -> 0032E620 in 0032EB40 FUN_0032eb40                 kind {0x5,0x15}
+   0032F670 -> 0032E620 in 0032F430 FUN_0032f430                 kind {0x8}
+   0032FE9E -> 0032E620 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FF0B -> 0032E620 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FF76 -> 0032E620 in 0032FCA0 ActorResource_BeginManagerRe kind {0x5}
+   0032FFE2 -> 0032E620 in 0032FCA0 ActorResource_BeginManagerRe kind {0x22}
+   00330444 -> 0032E620 in 00330310 ActorResource_BeginPrimaryPa kind {0x5}
+   00360D19 -> 0032E620 in 00360C70 FUN_00360c70                 kind {0x9}
+   003658C7 -> 0032E620 in 00365810 FUN_00365810                 kind {0x7}
+   00365967 -> 0032E620 in 003658F0 FUN_003658f0                 kind {0x7}
+   0036EDF7 -> 0032E620 in 0036ED50 FUN_0036ed50                 kind {0x21}
+   0036EE7E -> 0032E620 in 0036ED50 FUN_0036ed50                 kind {0x27}
+   003780E3 -> 0032E620 in 00378030 FUN_00378030                 kind {0x4}
+   003785E6 -> 0032E620 in 00378540 FUN_00378540                 kind {0x1}
+   0037865F -> 0032E620 in 00378540 FUN_00378540                 kind {0x9}
+   003786FD -> 0032E620 in 00378540 FUN_00378540                 kind {0x9}
+   0037876F -> 0032E620 in 00378540 FUN_00378540                 kind {0x9}
+   003787E1 -> 0032E620 in 00378540 FUN_00378540                 kind {0x9}
+   00378841 -> 0032E620 in 00378540 FUN_00378540                 kind {0x9}
+   003788D2 -> 0032E620 in 00378540 FUN_00378540                 kind {0x9}
+   00379EFE -> 0032E620 in 00379E90 FUN_00379e90                 kind {0x9}
+   003844C9 -> 0032E620 in 00384420 FUN_00384420                 kind {0x2}
+   0039C45D -> 0032E620 in 0039C3F0 FUN_0039c3f0                 kind {0x7}
+   003A151A -> 0032E620 in 003A13F0 FUN_003a13f0                 kind {0x20}
+   003A1599 -> 0032E620 in 003A13F0 FUN_003a13f0                 kind {0x20}
+   003A1618 -> 0032E620 in 003A13F0 FUN_003a13f0                 kind {0x20}
+   003B070D -> 0032E620 in 003B0660 FUN_003b0660                 kind {0xA}
+   003B2424 -> 0032E620 in 003B2310 FUN_003b2310                 kind {0xC}
+   003B5427 -> 0032E620 in 003B53C0 FUN_003b53c0                 kind {0x9}
+   003DC683 -> 0032E620 in 003DC5B0 FUN_003dc5b0                 kind {0x1E}
+   003DCCCD -> 0032E620 in 003DCBC0 FUN_003dcbc0                 kind {0x9}
+   003DDAB9 -> 0032E620 in 003DDA70 FUN_003dda70                 kind {}  LEAVES DATA 003DDA98 in 003DDA70: movsx ecx, word ptr [rbx + 0x10]
+   003DF593 -> 0032E620 in 003DF550 FUN_003df550                 kind {}  LEAVES DATA 003DF560 in 003DF550: movsx ecx, word ptr [rcx + 0x2c]
+   003E9F59 -> 0032E620 in 003E9EF0 FUN_003e9ef0                 kind {}  LEAVES DATA 003E9F3E in 003E9EF0: movsx ecx, word ptr [rdi + rbx*2 + 0xc]
+   003EA97F -> 0032E620 in 003EA820 AreaArd_LoadOrUnloadFieldRes kind {0x15}
+   0050E039 -> 0032E620 in 0050DFE0 FUN_0050dfe0                 kind {}  LEAVES clobbered by call at 0050E021
+   0051ED89 -> 0032E620 in 0051ED10 FUN_0051ed10                 kind {0x9}
+   00330744 -> 0032E3F0 in 003306E0 FUN_003306e0                 kind {0x5}
+   00331A2B -> 0032E3F0 in 003319D0 FUN_003319d0                 kind {0x5}
+sites 124; kind 7 reachable at 11; with an unresolved / data leaf 6
+id value sets at the kind-7 sites (a loca_*.cl2 request needs id 0xE2..0xE4):
+   00249296 in 00249210 id {0x5,0xD,0x24,0x25,0x2B,0x2C,0x2D,0x31,0x32,0x33,0x3A,0x3D,0x47,0x63,0x70,0x71,0x76,0x77,0x78,0x79,0x7A,0x7C,0x7D,0x7E ...} (46 values)  ID-LEAVES 12: DATA 00393420 in 003933F0: mov r8d, dword ptr [rsi + rbx*4] | DATA 0039349A in 00393460: mov r8d, dword ptr [rbx - 0x10] | DATA 0039353B in 003934F0: mov r8d, dword ptr [rdi - 0x10] | DATA 00577010 in 00576F50: movzx r8d, word ptr [rsi]
+   0024AB93 in 0024AB90 id {0x74,0x98} (2 values)
+   00365882 in 00365810 id {} (0 values)  ID-LEAVES 1: DATA 00365856 in 00365810: movsxd rbp, dword ptr [rax + rdi*4]
+   00365935 in 003658F0 id {0xD2} (1 values)
+   0039C432 in 0039C3F0 id {0xD5} (1 values)
+   002492F3 in 00249210 id {0x5,0xD,0x24,0x25,0x2B,0x2C,0x2D,0x31,0x32,0x33,0x3A,0x3D,0x47,0x63,0x70,0x71,0x76,0x77,0x78,0x79,0x7A,0x7C,0x7D,0x7E ...} (46 values)  ID-LEAVES 12: DATA 00393420 in 003933F0: mov r8d, dword ptr [rsi + rbx*4] | DATA 0039349A in 00393460: mov r8d, dword ptr [rbx - 0x10] | DATA 0039353B in 003934F0: mov r8d, dword ptr [rdi - 0x10] | DATA 00577010 in 00576F50: movzx r8d, word ptr [rsi]
+   00291D04 in 00291C80 id {0x98} (1 values)
+   002C900B in 002C8EE0 id {0x74} (1 values)
+   003658C7 in 00365810 id {} (0 values)  ID-LEAVES 1: DATA 00365856 in 00365810: movsxd rbp, dword ptr [rax + rdi*4]
+   00365967 in 003658F0 id {0xD2} (1 values)
+   0039C45D in 0039C3F0 id {0xD5} (1 values)
+PASS K1 no kind-7 site's resolved id set contains 0xE2..0xE4 - []
+PASS C1 the font request 00365882 resolves to {7}
+PASS C2 003A13F0's out-parameter kind resolves to {0x20} at 003A14B9 - ({32}, [])
+PASS C3 the MapRef site 00268814 resolves through rdi - ({9}, [])
+FAILS 0

@@ -1,0 +1,10 @@
+# NativeAdapter.ConditionalDoubleCallResultTailCall - EC-7 family C
+# # save ecx; call a member op; if non-null call it again; forward
+# # (result, saved-ecx) to a member tail target.
+address	targets
+0017F040	001BC000,001BC010
+0017F0D0	001BD4A0,001BDAB0
+00182970	0018C610,0018CA40
+00182DE0	001DC830,001DDAB0
+001DC100	00210B30,002111E0
+00863280	0020CCA0,0020CE00

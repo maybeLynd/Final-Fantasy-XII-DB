@@ -1,0 +1,331 @@
+{
+ "bridged_imports_reached": [
+  "iat:api-ms-win-crt-time-l1-1-0.dll!_time64",
+  "iat:api-ms-win-crt-time-l1-1-0.dll!clock"
+ ],
+ "bridges": {
+  "_time64": 464375821,
+  "clock": 12648430
+ },
+ "cases": 12,
+ "failures": [],
+ "gfx_write_span": [
+  "1F7F600",
+  "1F7FFC0"
+ ],
+ "i1": {
+  "gfxmt-draw": {
+   "gfx": true,
+   "mt": false
+  },
+  "gfxmt-seed": {
+   "gfx": true,
+   "mt": false
+  },
+  "lcg-loot-inliner": {
+   "gfx": false,
+   "mt": false
+  },
+  "lcg-yaw": {
+   "gfx": false,
+   "mt": false
+  },
+  "mt-roll-100": {
+   "gfx": false,
+   "mt": true
+  },
+  "mt-roll-20000": {
+   "gfx": false,
+   "mt": true
+  },
+  "mt-weather-1": {
+   "gfx": false,
+   "mt": false
+  },
+  "mt-weather-2": {
+   "gfx": false,
+   "mt": true
+  },
+  "prng-render": {
+   "gfx": false,
+   "mt": false
+  }
+ },
+ "i3": {
+  "after_loot": "0x15eab4e4",
+  "after_yaw": "0xd6217d13",
+  "expect_loot": "0x15eab4e4",
+  "expect_yaw": "0xd6217d13",
+  "faults": []
+ },
+ "ok": true,
+ "results": {
+  "gfxmt-draw": {
+   "calls": [
+    [
+     "enter18d740",
+     "0x1f7f600",
+     "0x5555aaaa"
+    ]
+   ],
+   "delta": {
+    "gfx_hash": [
+     "911e7ac585f8",
+     "a413ce22088a"
+    ],
+    "gfx_head": [
+     [
+      "0x33333333",
+      "0x33333334",
+      "0x33333335"
+     ],
+     [
+      "0x5555aaaa",
+      "0x51ced878",
+      "0xefc328bf"
+     ]
+    ]
+   },
+   "faults": []
+  },
+  "gfxmt-seed": {
+   "calls": [
+    [
+     "iat:api-ms-win-crt-time-l1-1-0.dll!_time64"
+    ],
+    [
+     "iat:api-ms-win-crt-time-l1-1-0.dll!clock"
+    ],
+    [
+     "enter18d680",
+     "0x1badd00d",
+     "0xc0ffee"
+    ],
+    [
+     "enter18d740",
+     "0x1f7f600",
+     "0xb8608308"
+    ],
+    [
+     "enter18ee20",
+     "0x1f7f600",
+     "0xa1dce50b"
+    ]
+   ],
+   "delta": {
+    "gfx_hash": [
+     "911e7ac585f8",
+     "b1ab92f0468d"
+    ],
+    "gfx_head": [
+     [
+      "0x33333333",
+      "0x33333334",
+      "0x33333335"
+     ],
+     [
+      "0x8cd56689",
+      "0xec89621b",
+      "0x8d8fa3b1"
+     ]
+    ]
+   },
+   "faults": []
+  },
+  "lcg-loot-inliner": {
+   "calls": [
+    [
+     "enter20e600",
+     "0x0",
+     "0x941d8a"
+    ],
+    [
+     "enter20e600",
+     "0x0",
+     "0x941d8a"
+    ]
+   ],
+   "delta": {
+    "lcg": [
+     "0x11111111",
+     "0x15eab4e4"
+    ]
+   },
+   "faults": []
+  },
+  "lcg-yaw": {
+   "calls": [
+    [
+     "enter31b760",
+     "0x40001a00",
+     "0xa09a880"
+    ],
+    [
+     "enter328370",
+     "0x40001a00",
+     "0xa09a880"
+    ],
+    [
+     "enter316da0",
+     "0x39db8970",
+     "0x2924a6"
+    ]
+   ],
+   "delta": {
+    "lcg": [
+     "0x11111111",
+     "0x15eab4e4"
+    ]
+   },
+   "faults": []
+  },
+  "mt-roll-100": {
+   "calls": [
+    [
+     "enter379cd0",
+     "0xbc7bfcef",
+     "0xa09a880"
+    ],
+    [
+     "enter863bf0",
+     "0xbc7bfcef",
+     "0xa09a880"
+    ]
+   ],
+   "delta": {
+    "mt_hash": [
+     "3b351c2463a7",
+     "f083b54a5247"
+    ],
+    "mt_head": [
+     [
+      "0xace1",
+      "0x2ef9dc6",
+      "0x3c623520"
+     ],
+     [
+      "0x788634d3",
+      "0x83f573",
+      "0x81a01b10"
+     ]
+    ],
+    "mt_idx": [
+     624,
+     1
+    ]
+   },
+   "faults": []
+  },
+  "mt-roll-20000": {
+   "calls": [
+    [
+     "enter379cd0",
+     "0xbc7bfcef",
+     "0xa09a880"
+    ],
+    [
+     "enter863bf0",
+     "0xbc7bfcef",
+     "0xa09a880"
+    ]
+   ],
+   "delta": {
+    "mt_hash": [
+     "3b351c2463a7",
+     "f083b54a5247"
+    ],
+    "mt_head": [
+     [
+      "0xace1",
+      "0x2ef9dc6",
+      "0x3c623520"
+     ],
+     [
+      "0x788634d3",
+      "0x83f573",
+      "0x81a01b10"
+     ]
+    ],
+    "mt_idx": [
+     624,
+     1
+    ]
+   },
+   "faults": []
+  },
+  "mt-weather-1": {
+   "calls": [
+    [
+     "enter2658b0",
+     "0x2",
+     "0xa09a880"
+    ]
+   ],
+   "delta": {},
+   "faults": []
+  },
+  "mt-weather-2": {
+   "calls": [
+    [
+     "enter379cd0",
+     "0x1",
+     "0xa09a880"
+    ],
+    [
+     "enter863bf0",
+     "0x1",
+     "0xa09a880"
+    ],
+    [
+     "enter2658b0",
+     "0x1",
+     "0x1"
+    ]
+   ],
+   "delta": {
+    "mt_hash": [
+     "3b351c2463a7",
+     "f083b54a5247"
+    ],
+    "mt_head": [
+     [
+      "0xace1",
+      "0x2ef9dc6",
+      "0x3c623520"
+     ],
+     [
+      "0x788634d3",
+      "0x83f573",
+      "0x81a01b10"
+     ]
+    ],
+    "mt_idx": [
+     624,
+     1
+    ]
+   },
+   "faults": []
+  },
+  "prng-render": {
+   "calls": [],
+   "delta": {
+    "prng": [
+     "0x22222222",
+     "0x3fc44444"
+    ]
+   },
+   "faults": []
+  }
+ },
+ "tails": [
+  "0018D680",
+  "0018D740",
+  "0018EE20",
+  "002658B0",
+  "00328370",
+  "00379CD0",
+  "00863BF0",
+  "00863D30",
+  "00866B90"
+ ]
+}

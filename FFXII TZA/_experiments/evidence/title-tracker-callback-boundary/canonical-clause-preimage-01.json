@@ -1,0 +1,6 @@
+{
+  "path": "Database/FFXII TZA/00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md",
+  "sha256": "7bea6a1f0814d20d3e325d64ec34420e95f12269633191977c3a328a06461281",
+  "clause": "`00183720` (52 B) is the register-on-resolve helper the transform\nand loader bodies share: a null `rcx` returns at once; otherwise\n`00189120(rcx)` resolves the object twice and `00185A90(result,\n&0017ECC0, rcx)` registers the `0017ECC0` leaf on it with the\noriginal argument as the callback's data. Interior anchor `00183749`\n(the `00185A90` call).\n\n",
+  "limits": "Owned canonical source snapshot only, not independent evidence; owner must use fresh preimage on incorporation."
+}

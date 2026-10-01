@@ -1,0 +1,8 @@
+# NativeAdapter.StackConstOneCall - EC-7 family C
+# # store dword 1 into the stack frame; call a member op; return void.
+address	targets
+00272F60	00272F80
+002E5C70	002E5C90
+002E5DF0	002E5C90
+003E9BF0	003E9C10
+003EA2A0	003E9C10

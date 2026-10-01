@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-141",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "publish batch-141 explicit path set (8 clean hosts whole-path; world-tick/encoded-id/authored-row-lookup + AUDIT-LOG via private-index hunks; peer work preserved)",
+  "scope": "batch-141 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2-EC7-SHARED-HUB-IDENTIFICATION-141"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

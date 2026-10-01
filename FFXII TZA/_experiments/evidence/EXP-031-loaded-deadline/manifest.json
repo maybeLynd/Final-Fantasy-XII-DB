@@ -1,0 +1,116 @@
+{
+  "files": {
+    "baseline-C.json": {
+      "bytes": 2030,
+      "sha256": "332ef6a39d58aa0b61faa3c8d401c4a1be626e39b9a3e072f3f29c016f8f4092"
+    },
+    "baseline-C.txt": {
+      "bytes": 622,
+      "sha256": "33396a2898c9c44158249818342dc1a0882bd3749b419b518f9cc68c6332c536"
+    },
+    "baseline-Enter.json": {
+      "bytes": 2052,
+      "sha256": "4c82f8668b47943b739e9bddc3ec6e8524973224b8064449e9bf6bc60d3bf440"
+    },
+    "baseline-Enter.txt": {
+      "bytes": 639,
+      "sha256": "c793275f379e749b413f96b770dbfc7acef72bd82c0cf0f09080fc0591c82d58"
+    },
+    "baseline-menu-open.jpg": {
+      "bytes": 165228,
+      "sha256": "96feabb030fc3893535525b5ee387061ecab6260fb8dc0fe7dd21e7676595da5"
+    },
+    "baseline-observer.txt": {
+      "bytes": 172,
+      "sha256": "f1a5444ef3ab260b0916a092f74e7c8cc2d6c5a6583daff0496304db711b5785"
+    },
+    "baseline-run.json": {
+      "bytes": 4716,
+      "sha256": "c4acafbbdaf090baca2b419add3e9896a9536cec6bb5c5ecadafea59f8388766"
+    },
+    "baseline-window.json": {
+      "bytes": 1041558,
+      "sha256": "407d823bc151a26941eb2bbe8663cc4b71727018fe2bf677ac4e2290fc7c5f03"
+    },
+    "cleanup.py": {
+      "bytes": 2097,
+      "sha256": "3321049532c55a91ede9a787ac381d3c7f6e4f702a79189d3e8b1b7beb24d95b"
+    },
+    "close-receipt.json": {
+      "bytes": 263,
+      "sha256": "a9fb1727e3ec03666f32fa8fe8325c33cb1bc017c072261038948bc4369bf721"
+    },
+    "dismiss-load.json": {
+      "bytes": 7370,
+      "sha256": "53073cfc8d39c92a125ba6b9306d5c3814b4b7f17fea016f9020f94d3f0b15ba"
+    },
+    "environment.json": {
+      "bytes": 2408,
+      "sha256": "0a4c6931a374d763ab9ff53ef97bf9e5c3151ff0cf948243478a938abd79fa98"
+    },
+    "field-before.jpg": {
+      "bytes": 161449,
+      "sha256": "65a71a32cd03f5deeed1386c5c7a72245e95aa5610614732f5e3ff4854f4bea1"
+    },
+    "input_receipt.py": {
+      "bytes": 1225,
+      "sha256": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e"
+    },
+    "launch.json": {
+      "bytes": 217,
+      "sha256": "9ff06c5b7e0f21a22a28dbd13f2034e73c59840b5dad23ef105fcbdd5dd8a163"
+    },
+    "load-menu.json": {
+      "bytes": 7368,
+      "sha256": "3fb28f77d0ae6832c9879529db157b682d1f1c41b960e6f60e2076c36d1f1279"
+    },
+    "load-stepping.json": {
+      "bytes": 7370,
+      "sha256": "9e6083c829e487977b841a403bbbd7374ccec0b9e87761040679e9eb6eac4257"
+    },
+    "named-save.jpg": {
+      "bytes": 88317,
+      "sha256": "5d05a39bc0c65a18101df1b88b97416f15eb1ee266e84abb6df362498f3841c0"
+    },
+    "observe.py": {
+      "bytes": 4654,
+      "sha256": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7"
+    },
+    "probe_extension.py": {
+      "bytes": 985,
+      "sha256": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb"
+    },
+    "qualified.json": {
+      "bytes": 20052,
+      "sha256": "5682e297fdb6f32b7b317d7e9b9506837a8e5d68c5b158a5908a61365520ee86"
+    },
+    "restore_after_stop.py": {
+      "bytes": 2299,
+      "sha256": "d6694f16c64f88125ed92681d59026f2a49eea184c8014ae4e05c79d58c226e5"
+    },
+    "save-before.json": {
+      "bytes": 2915,
+      "sha256": "c0f095655e870c555d421766457f8091163a2d94d63fc0ddd2783e86d3691498"
+    },
+    "save-restored.json": {
+      "bytes": 6380,
+      "sha256": "b36ff4033c250ee9d4b3f2b2696d233f553083adeee922b7b46999b2c8f954b1"
+    },
+    "seal.py": {
+      "bytes": 3101,
+      "sha256": "4a7e7a0debfea177db9c71e9ae7721fae1bca8e0518d445aec27ba57e52f8b34"
+    },
+    "setup.py": {
+      "bytes": 1435,
+      "sha256": "451141e3e5013a8ca9ab4be22e8ff44c4cf02a226b1daae95c98bd5752e09db0"
+    },
+    "validation.json": {
+      "bytes": 1408,
+      "sha256": "8cd1cbb4ed14e61c1206fc4a5c66c476aa00ea6130a24beeed873ca530c60b11"
+    },
+    "window_run.py": {
+      "bytes": 3149,
+      "sha256": "5760c952c42dbcdbcd5c0fd28a7ac3e7b942e166fccf429571dabe711bb999d1"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "verdict": "REJECT",
+  "scope": "generation.py library/CLI archive certification; positive publication/input/export boundaries retained separately",
+  "source_tree_commit": "12e20b066ff4cd5775ac73327c187b4ec1277581",
+  "source_last_commit": "225465c2e89187c43f2731eb25f725cb0012bbf2",
+  "source_sha256": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1",
+  "raw_sha256": "9935649e68b77c360e8d57d3a66dd699dc84876fd6c67a7c96347a4f8c9925a0",
+  "new_cases": 13,
+  "retained_cases": [
+    "missing-output-failed-build-preserves-current",
+    "snapshot-tamper-no-fallback",
+    "strict-input-mid-build-rejected",
+    "volatile-change-coherent-commit",
+    "warm-output-tamper-rejected"
+  ],
+  "retained_credit": "Five previously executed observations at51660c616, exact identical source; not fresh tests or whole historical package acceptance",
+  "defects": [
+    "Duplicate different-content ZIP entries for outputs/view.json collapse to one name and certify VERIFIED/members3 despite4 physical entries",
+    "Unknown manifest format is VERIFIED by ZIP path although folder reader limits readable formats",
+    "Malformed manifest raises JSONDecodeError/CLIexit1 without promised UNVERIFIED label; refusal works, certification does not"
+  ],
+  "cause": "verify_zip uses a set of names plus name-based last-entry reads, never validates readable format, and catches unreadable archive errors but not malformed manifest parse/shape",
+  "established": "Missing/defaultzero/schema-rejected input cannot replace old CURRENT; explicit allow_empty succeeds. Interrupted original pre-CURRENT boundaries before/after directory rename preserve old pointer/history and CLI-valid old generation. Labelled export refresh commits NEW while actual original main export produces coherent OLD ZIP. Mixed bytes and extra output membership refused.",
+  "cleanup": "Both owned single-process base-Python interruption workers terminated/reaped through retained handles; no descendants launched on inspected path. No production/game changes. Earlier unrelated transition descendant cleanup remains unverified.",
+  "limits": "MethodA Python tool fixtures, not original FF12 instructions/live/parity. Pause/writes are labelled interventions, not natural crash or arbitrary timing proof. Nonempty JSON schema checked by local parser and passed via validated; library does not independently infer schema. No real reporter/export adoption, host cancellation, completeM1/M0-M5/fullL1L2 award. Cryptographic hashes bind bytes, not unsupported manifest meaning.",
+  "next": "OPUS cause repair ZIP membership/format/structuredrefusal; preserve valid inputs/export/interruption behavior. Re-request review at finalsource, only changed discriminators repeat. DATA owns actual reporter integration. Existing request lacks reviews metadata: route one explicit repair after verified publication, no inferred automatic repair."
+}

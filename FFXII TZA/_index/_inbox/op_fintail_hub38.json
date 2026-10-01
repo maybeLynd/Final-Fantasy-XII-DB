@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-38",
+ "result_refs": [
+  "commit:a369e0320"
+ ],
+ "note": "tailed: seal/tail op files + sealed resume state"
+}

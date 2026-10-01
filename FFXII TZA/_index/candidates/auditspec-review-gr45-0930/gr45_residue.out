@@ -1,0 +1,158 @@
++0x0B covering accesses in S0..S3 by typing outcome: {'frame(rsp-derived)': 17, 'frame(rsp-derived) / not walked by rowflow': 22, 'typed non-row': 60, 'unfollowed': 99, 'unfollowed / not walked by rowflow': 57}
+residue (an unfollowed leaf other than the stack pointer): 156
+   00202B10 00202B2D exact w4  movss xmm0, dword ptr [rdx + 8]                ARG-NOCALLER:rcx,ARG-NOCALLER:rdx,ENTRY: rowflow - (not walked)
+   00202B10 00202B32 exact w4  addss xmm0, dword ptr [r8 + 8]                 ARG-NOCALLER:rcx,ARG-NOCALLER:rdx,DEEP,E rowflow - (not walked)
+   00202B10 00202B59 exact w16 movups xmmword ptr [rcx], xmm0                 ENTRY:rbp,ENTRY:rbx,ENTRY:rdi,ENTRY:rsp, rowflow - (not walked)
+   00202B70 00202B86 exact w16 movups xmmword ptr [rbx], xmm0                 ARG-TRUNC,ENTRY:r14,ENTRY:r15,ENTRY:rbp, rowflow - (not walked)
+   00202E10 00202E14 exact w4  movss xmm2, dword ptr [rdx + 8]                ARG-UNOWNED,ENTRY:rbp,ENTRY:rsi,ENTRY:rs rowflow - (not walked)
+   00202E10 00202E27 exact w4  mulss xmm1, dword ptr [r8 + 8]                 ARG-UNOWNED,ENTRY:rbp,ENTRY:rsi,ENTRY:rs rowflow - (not walked)
+   00202E10 00202E3D exact w4  mulss xmm0, dword ptr [r8 + 8]                 ARG-UNOWNED,ENTRY:rbp,ENTRY:rsi,ENTRY:rs rowflow - (not walked)
+   00202E10 00202E7B exact w16 movups xmmword ptr [rcx], xmm0                 ARG-UNOWNED,ENTRY:rbp,ENTRY:rsi,ENTRY:rs rowflow - (not walked)
+   00202F00 00202F06 exact w16 movups xmm0, xmmword ptr [rdx]                 ENTRY:rbp,ENTRY:rsp,LOAD,NOPRED          rowflow - (not walked)
+   00202F00 00202F11 exact w16 movups xmmword ptr [rcx], xmm0                 ENTRY:rbp,ENTRY:rsp,LOAD,NOPRED          rowflow - (not walked)
+   00203080 0020309D exact w4  movss xmm0, dword ptr [rdx + 8]                ARG-NOCALLER:rcx,ARG-NOCALLER:rdx,ARG-TR rowflow - (not walked)
+   00203080 002030A2 exact w4  subss xmm0, dword ptr [r8 + 8]                 ARG-NOCALLER:r8,ARG-NOCALLER:rcx,ARG-NOC rowflow - (not walked)
+   00203080 002030C9 exact w16 movups xmmword ptr [rcx], xmm0                 ARG-NOCALLER:rcx,ARG-TRUNC,ENTRY:rbp,ENT rowflow - (not walked)
+   0023A570 0023A772 mod60 w8  mov rcx, qword ptr [rdi + 0x40]                ENTRY:rsi                                rowflow - (not walked)
+   00254EE0 00254EF1 exact w4  sub edx, dword ptr [rax + 8]                   LOAD:rip                                 rowflow - (not walked)
+   00254EE0 00254F1F exact w4  mov dword ptr [rax + 8], ecx                   LOAD:rip                                 rowflow - (not walked)
+   0026B0C0 0026B115 mod60 w8  mov rax, qword ptr [rcx + 0xb8]                ARG-NOCALLER:rdx,ARG-UNOWNED,ENTRY:rdi,L rowflow - (not walked)
+   0026B0C0 0026B12A exact w4  movss dword ptr [rax + 8], xmm6                LOAD                                     rowflow - (not walked)
+   002F95D0 002F968E mod60 w1  test byte ptr [rcx + 0x83], 8                  LOAD                                     rowflow -
+   002F95D0 002F96F6 mod60 w1  test byte ptr [rax + 0x83], 0x10               LOAD                                     rowflow -
+   002F95D0 002F9750 mod60 w1  test byte ptr [rax + 0x83], 0x20               LOAD                                     rowflow -
+   002FEF30 002FEFBC exact w8  mov qword ptr [rsi + 8], rcx                   ARG-DEEP,ARG-NOCALLER:rcx,ENTRY:r14,ENTR rowflow - (not walked)
+   002FEF30 002FF078 exact w4  mov ecx, dword ptr [rdi + 8]                   ARG-DEEP,ARG-NOCALLER:rcx,ENTRY:r14,ENTR rowflow - (not walked)
+   002FEF30 002FF265 exact w2  movsx eax, word ptr [rdi + 0xa]                ARG-DEEP,ARG-NOCALLER:rcx,ENTRY:r14,ENTR rowflow - (not walked)
+   002FEF30 002FF90C exact w1  mov byte ptr [rsi + 0xb], r9b                  ARG-DEEP,ARG-NOCALLER:rcx,ENTRY:r14,ENTR rowflow - (not walked)
+   00300310 00300365 exact w4  ucomiss xmm0, dword ptr [rsi + 8]              ENTRY:rbx,ENTRY:rdi,LOAD                 rowflow - (not walked)
+   00300310 0030037B exact w4  movss xmm3, dword ptr [rsi + 8]                ENTRY:rbx,ENTRY:rdi,LOAD                 rowflow - (not walked)
+   00300310 00300391 exact w16 movaps xmm0, xmmword ptr [rsi]                 ENTRY:rbx,ENTRY:rdi,LOAD                 rowflow - (not walked)
+   00300310 0030039F exact w16 movaps xmm0, xmmword ptr [rsi]                 ENTRY:rbx,ENTRY:rdi,LOAD                 rowflow - (not walked)
+   00300310 003003CB exact w16 movaps xmm0, xmmword ptr [rsi]                 ENTRY:rbx,ENTRY:rdi,LOAD                 rowflow - (not walked)
+   00300E40 00300EF6 exact w4  mov ebx, dword ptr [rdi + 8]                   ENTRY:rsi                                rowflow -
+   00300E40 00300F01 exact w4  mov r8d, dword ptr [rdi + 8]                   ENTRY:rsi                                rowflow -
+   00300FC0 00301012 exact w4  mov ecx, dword ptr [rbx + 8]                   ENTRY:rsi                                rowflow - (not walked)
+   00300FC0 003010DD exact w4  cmp eax, dword ptr [rbx + 8]                   ENTRY:rsi                                rowflow - (not walked)
+   00301DD0 00301E1E exact w8  mov rcx, qword ptr [rbx + rax + 8]             ENTRY:rax,STACK?                         rowflow -
+   00301DD0 00301EDB exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00301EE8 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 003022D2 exact w16 movups xmm0, xmmword ptr [rdx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 003022DF exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 0030237F exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302388 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 003025AB exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 003026E1 exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302803 exact w16 movups xmm0, xmmword ptr [rdx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 0030280C exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 0030289A exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 003028A3 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 0030291D exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302926 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 0030299F exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 003029A8 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302A4E exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302A57 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302B98 exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302BA1 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302C0D exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302C16 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302CF7 exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302D00 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302D8C exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302D95 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302E5A exact w16 movups xmm0, xmmword ptr [rdx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302E63 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 00302EF1 exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00302EFA exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 0030301C exact w16 movups xmm0, xmmword ptr [rdx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 0030326C exact w16 movups xmm0, xmmword ptr [rbx + r8 + 8]        STACK?                                   rowflow -
+   00301DD0 00303275 exact w16 movups xmmword ptr [r14 + rax*8 + 8], xmm0     ENTRY:r14,STACK?                         rowflow -
+   00301DD0 003035B1 exact w16 movups xmm0, xmmword ptr [r8 + rcx*8 + 8]      STACK?                                   rowflow -
+   00301DD0 003035B7 exact w16 movups xmmword ptr [r14 + 8], xmm0             ENTRY:r14,STACK?                         rowflow -
+   00304A46 00304AB2 mod60 w4  and dword ptr [rbx + 0x170], 0xffffffdf        ENTRY:rbx                                rowflow -
+   00304A46 00304B0B mod60 w4  mov dword ptr [rsi + 0xbc], eax                ENTRY:rsi                                rowflow -
+   00304A46 00304C08 mod60 w4  or dword ptr [rbx + 0x170], 0x20               ENTRY:rbx                                rowflow -
+   00304A46 00304C7D exact w4  movss xmm0, dword ptr [rbp + 0xb]              ENTRY:rbp                                rowflow -
+   00304A46 00304CDD mod60 w4  mov eax, dword ptr [rsi + 0xbc]                ENTRY:rsi                                rowflow -
+   00304D70 00304E17 exact w4  mov edx, dword ptr [rdi + 8]                   ENTRY:rdi                                rowflow -
+   00304D70 00304E59 exact w4  mov eax, dword ptr [rdi + 8]                   ENTRY:rdi                                rowflow -
+   00304F91 00304F9C exact w4  mov ecx, dword ptr [rdi + 8]                   ENTRY:rdi                                rowflow -
+   003067C2 003067E9 exact w4  mov edx, dword ptr [rbx + 8]                   ENTRY:rbx                                rowflow -
+   003067C2 003068BA exact w4  mov ecx, dword ptr [rbx + 8]                   ENTRY:rbx                                rowflow -
+   003067C2 00306A65 exact w4  mov edx, dword ptr [rbx + 8]                   ENTRY:rbx                                rowflow -
+   00307300 003075CB exact w4  or dword ptr [r14 + 8], 0x100                  ENTRY:rbx                                rowflow -
+   00307300 003075E0 exact w4  or dword ptr [r14 + 8], 0x400                  ENTRY:rbx                                rowflow -
+   00307300 003075EC exact w4  or dword ptr [r14 + 8], 0x200                  ENTRY:rbx                                rowflow -
+   00307300 003075F9 exact w4  or dword ptr [r14 + 8], 0x800                  ENTRY:rbx                                rowflow -
+   00307300 0030763F exact w4  mov ecx, dword ptr [rdi + 8]                   ENTRY:rbx                                rowflow -
+   00307300 00307670 exact w4  mov ecx, dword ptr [rdi + 8]                   ENTRY:rbx                                rowflow -
+   00307300 0030773F exact w4  mov ecx, dword ptr [rdi + 8]                   ENTRY:rbx                                rowflow -
+   00307300 00307751 exact w4  test dword ptr [r14 + 8], 0x800                ENTRY:rbx                                rowflow -
+   00307300 0030776D exact w4  mov ecx, dword ptr [rdi + 8]                   ENTRY:rbx                                rowflow -
+   00307300 00307782 exact w4  test dword ptr [r14 + 8], 0x200                ENTRY:rbx                                rowflow -
+   00307300 00307795 exact w4  mov eax, dword ptr [rdi + 8]                   ENTRY:rbx                                rowflow -
+   00307A5C 00307AC2 exact w4  test dword ptr [r14 + 8], 0x100                ENTRY:rbx                                rowflow -
+   00309CC0 00309D04 exact w4  mov ecx, dword ptr [rax + 8]                   LOAD                                     rowflow -
+   0030C010 0030C095 exact w4  mov ecx, dword ptr [rbx + 8]                   ENTRY:rbx                                rowflow - (not walked)
+   0030C470 0030C500 exact w4  mov dword ptr [rbx + 8], eax                   ENTRY:r14,ENTRY:rdi,LOAD,LOAD:rip        rowflow - (not walked)
+   0030C970 0030C9DB exact w8  mov qword ptr [rdx + 8], rax                   LOAD                                     rowflow - (not walked)
+   0030E360 0030E594 mod60 w4  mov dword ptr [rsi + rdx*4 + 0xbc], ecx        ARG-DEEP                                 rowflow -
+   00310F55 00311064 exact w4  mov ecx, dword ptr [rax + 8]                   LOAD                                     rowflow -
+   00310F55 003110DC exact w4  mov ecx, dword ptr [rsi + 8]                   ENTRY:rsi                                rowflow -
+   00310F55 0031113C exact w4  mov edx, dword ptr [rsi + 8]                   ENTRY:rsi                                rowflow -
+   00310F55 003111EE exact w4  cmp eax, dword ptr [rsi + 8]                   ENTRY:rsi                                rowflow -
+   00310F55 0031127F exact w4  mov edx, dword ptr [rsi + 8]                   ENTRY:rsi                                rowflow -
+   003112F0 003118D9 exact w2  add word ptr [rdi + 0xa], cx                   ARG-DEEP,LOAD,NONE                       rowflow -
+   0031771C 003177C8 exact w4  mov r8d, dword ptr [rdi + 8]                   ENTRY:rsi                                rowflow -
+   0031B0C4 0031B36B exact w4  cmp dword ptr [rbx + 8], eax                   ENTRY:rbx                                rowflow -
+   0031EB20 0031EB46 mod60 w4  mov dword ptr [rcx + 0x44], esi                ENTRY:rbp,ENTRY:rbx,ENTRY:rsi,ENTRY:rsp, rowflow -
+   0031EB20 0031EBFB exact w4  mov ecx, dword ptr [rbx + 8]                   NOPRED                                   rowflow -
+   0031EB20 0031ED8D exact w4  mov ecx, dword ptr [rbx + 8]                   NOPRED                                   rowflow -
+   0031EB20 0031F23F exact w4  mov ecx, dword ptr [rbx + 8]                   NOPRED                                   rowflow -
+   0031EB20 0031F402 mod60 w4  mov dword ptr [rbx + 0x44], eax                NOPRED                                   rowflow -
+   0031EB20 0031F500 mod60 w4  mov dword ptr [rbx + 0x44], eax                NOPRED                                   rowflow -
+   0031EB20 0031F536 mod60 w4  mov dword ptr [rbx + 0x44], 0xfffffffe         NOPRED                                   rowflow -
+   0031EB20 0031F57B exact w4  mov ecx, dword ptr [rbx + 8]                   NOPRED                                   rowflow -
+   00322050 00322073 exact w4  mov dword ptr [rbx + 8], eax                   ENTRY:rsi                                rowflow - (not walked)
+   00325DFA 00325DFF exact w4  mov ebx, dword ptr [rdi + 8]                   ARG-NOCALLER:rcx,ENTRY:rdi               rowflow - (not walked)
+   003291B0 003291DD exact w16 movups xmm0, xmmword ptr [rsi]                 ARG-NOCALLER:rcx,ENTRY:rbx               rowflow - (not walked)
+   003291B0 003291E0 mod60 w16 movups xmmword ptr [rbx + 0x80], xmm0          ARG-NOCALLER:rcx,ENTRY:rbx               rowflow - (not walked)
+   003291B0 003291F0 exact w16 movups xmm0, xmmword ptr [rdi]                 ARG-NOCALLER:rcx,ENTRY:rbx               rowflow - (not walked)
+   00329F80 0032A034 exact w4  mov ecx, dword ptr [rbx + 8]                   ENTRY:rdi                                rowflow -
+   00336710 00336770 mod60 w4  mov eax, dword ptr [rdx + 0x80]                ARG-NOCALLER:rcx,ENTRY:rbx,ENTRY:rdi     rowflow - (not walked)
+   00336710 00336827 mod60 w4  mov eax, dword ptr [rsi + 0x170]               ARG-NOCALLER:rcx,ENTRY:rbx,ENTRY:rdi     rowflow - (not walked)
+   00336E40 00336E8F exact w8  mov rax, qword ptr [rcx + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00336E40 00336F0D exact w8  mov rcx, qword ptr [rdi + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00336E40 00336F50 exact w8  mov rax, qword ptr [rdi + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00339630 0033965D exact w8  mov rax, qword ptr [rcx + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00339630 0033967A exact w8  mov rax, qword ptr [r14 + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00339630 003396C7 exact w8  mov rcx, qword ptr [r14 + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00339630 003396E3 exact w8  mov rax, qword ptr [r14 + 8]                   ENTRY:rbp                                rowflow - (not walked)
+   00339630 003396F5 exact w16 movdqa xmmword ptr [rsi], xmm0                 ENTRY:rbp                                rowflow - (not walked)
+   00339708 0033993E exact w8  mov r8, qword ptr [r14 + 8]                    ENTRY:rbp                                rowflow - (not walked)
+   00339708 00339993 exact w4  mov dword ptr [rsi + 8], ecx                   ENTRY:rbp                                rowflow - (not walked)
+   00339708 003399A2 exact w16 movdqa xmmword ptr [rsi], xmm0                 ENTRY:rbp                                rowflow - (not walked)
+   00339708 003399CB exact w16 movdqa xmmword ptr [rsi], xmm0                 ENTRY:rbp                                rowflow - (not walked)
+   00339708 003399CF exact w16 movaps xmm0, xmmword ptr [rsi]                 ENTRY:rbp                                rowflow - (not walked)
+   0033D3E0 0033D405 exact w4  movss xmm1, dword ptr [rcx + 8]                ARG-NOCALLER:rcx,ENTRY:rbp,ENTRY:rbx,ENT rowflow - (not walked)
+   0033D3E0 0033D44B exact w4  movss xmm1, dword ptr [rbx + 8]                ARG-NOCALLER:rcx,ENTRY:r14,ENTRY:rbp,ENT rowflow - (not walked)
+   003587C0 003587DF exact w8  mov rax, qword ptr [rcx + rbx*8 + 8]           LOAD                                     rowflow - (not walked)
+   003588BF 00358909 exact w8  mov rax, qword ptr [rcx + rbx*8 + 8]           LOAD                                     rowflow -
+   003848E0 0038496F mod60 w2  mov word ptr [rbx + 0x46], r8w                 ARG-NOCALLER:r8,ENTRY:r13,ENTRY:rsp      rowflow - (not walked)
+   00386242 003862FB exact w4  mov eax, dword ptr [rdi + 8]                   NOPRED                                   rowflow -
+   00386242 0038682E mod60 w4  movss dword ptr [rbx + 0x134], xmm0            NOPRED,STACK?                            rowflow -
+   00388017 00388065 exact w4  test dword ptr [rsi + 8], 0x2018               ENTRY:rsi                                rowflow -
+   00388017 00388094 mod60 w1  test byte ptr [rdi + 0x83], 1                  ENTRY:rdi                                rowflow -
+   00388017 003880FC mod60 w1  test byte ptr [rdi + 0x83], 2                  ENTRY:rdi                                rowflow -
+   00388017 00388154 mod60 w1  test byte ptr [rdi + 0x83], 4                  ENTRY:rdi                                rowflow -
+   0038B010 0038B03F exact w4  mov eax, dword ptr [r8 + 8]                    ARG-NOCALLER:r8                          rowflow -
+   0038B010 0038B0E3 exact w4  test dword ptr [rdi + 8], 0x4000000            ARG-NOCALLER:r8                          rowflow -
+   0038C940 0038C9C4 exact w4  mov eax, dword ptr [r8 + 8]                    ARG-NOCALLER:r8                          rowflow -
+   0038C940 0038CA90 exact w4  test dword ptr [rdi + 8], 0x4000000            ARG-NOCALLER:r8                          rowflow -
+   0038CB00 0038CBAF exact w4  test dword ptr [rsi + 8], 0x1000               ARG-NOCALLER:r8                          rowflow -
+   0038E590 0038E596 exact w4  test dword ptr [r8 + 8], 0x20000000            ARG-NOCALLER:r8                          rowflow -
+   0038F6F0 0038F7E9 exact w4  mov dword ptr [rax + 8], ebx                   LOAD                                     rowflow -
+   0038FCE0 0038FE10 exact w4  test dword ptr [rsi + 8], eax                  ARG-NOCALLER:r8                          rowflow -
+   0038FCE0 0038FEB3 exact w4  test dword ptr [rsi + 8], ebx                  ARG-NOCALLER:r8                          rowflow -
+   004687F0 0046880A exact w4  movss xmm0, dword ptr [rcx + 8]                ENTRY:rbp,ENTRY:rsp                      rowflow - (not walked)

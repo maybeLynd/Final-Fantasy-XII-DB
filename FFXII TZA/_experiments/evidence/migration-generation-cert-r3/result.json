@@ -1,0 +1,13 @@
+{
+  "verdict": "ACCEPT_SCOPED_UNKNOWN_STATE_REPAIR",
+  "source_commit": "b6e6de3f0080cd311336c04d68cf17516c228dff",
+  "changed_reader_cases": 3,
+  "prior_unknown_archive": "VERIFIED_OLD_SOURCE_RETAINED",
+  "now_unknown_archive": "UNVERIFIED_EXIT1",
+  "valid_control": "VERIFIED_EXIT0",
+  "duplicate_control": "UNVERIFIED_EXIT1",
+  "normal_builder_or_deployed_reader": "NOT_CERTIFIED",
+  "whole_manifest_authentication": "OUTSIDE_MEMBER_CHECK_SIDE_CAR_REMAINS_REQUIRED",
+  "full_M1_or_L1_L2": false,
+  "independent_acceptance_of_this_evidence": "PENDING"
+}

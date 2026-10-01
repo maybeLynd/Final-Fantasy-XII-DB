@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-preassignment-cleanup.py", line 41, in <module>
+    need(ctor,0x632dda,'mov','qword ptr [rcx + 0x78], rax');need(ctor,0x632e4b,'mov','eax, dword ptr [rsp + 0x38]')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-preassignment-cleanup.py", line 21, in need
+    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,args):raise ValueError('required normalized operation changed '+hex(pc))
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required normalized operation changed 0x632dda

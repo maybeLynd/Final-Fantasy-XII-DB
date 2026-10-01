@@ -1,0 +1,390 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "m5-bit3",
+   "trace": "d",
+   "ok": true,
+   "obs": {
+    "mode": 5,
+    "flags_after": 8
+   },
+   "faults": []
+  },
+  {
+   "name": "m5-priority",
+   "trace": "d",
+   "ok": true,
+   "obs": {
+    "mode": 5,
+    "flags_after": 15
+   },
+   "faults": []
+  },
+  {
+   "name": "m4-bit2",
+   "trace": "d",
+   "ok": true,
+   "obs": {
+    "mode": 4,
+    "flags_after": 4
+   },
+   "faults": []
+  },
+  {
+   "name": "m4-over-low",
+   "trace": "d",
+   "ok": true,
+   "obs": {
+    "mode": 4,
+    "flags_after": 6
+   },
+   "faults": []
+  },
+  {
+   "name": "m3-pred",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 3,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "m3-over-low",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 3,
+    "flags_after": 3
+   },
+   "faults": []
+  },
+  {
+   "name": "m2-bit1",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 2,
+    "flags_after": 2
+   },
+   "faults": []
+  },
+  {
+   "name": "m1-bit0",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 1,
+    "flags_after": 1
+   },
+   "faults": []
+  },
+  {
+   "name": "m0-none",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "row-bit14",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "idx-neg-clamp",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 3,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "idx-neg-clear",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "idx-eq-count",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "idx-last",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 3,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "idx-over",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "tab-null",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 0
+   },
+   "faults": []
+  },
+  {
+   "name": "flags-high",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 0,
+    "flags_after": 256
+   },
+   "faults": []
+  },
+  {
+   "name": "flags-high-m5",
+   "trace": "d",
+   "ok": true,
+   "obs": {
+    "mode": 5,
+    "flags_after": 264
+   },
+   "faults": []
+  },
+  {
+   "name": "idx-select",
+   "trace": "d P I C G",
+   "ok": true,
+   "obs": {
+    "mode": 3,
+    "flags_after": 0
+   },
+   "faults": []
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-mode5",
+   "va": "0x30D9B7",
+   "killed": true,
+   "divergent": 3,
+   "why": "mode-5 arm mov eax,5 -> 6: wrong mode returned",
+   "sample": [
+    [
+     "m5-bit3",
+     "tr=d mode=6"
+    ],
+    [
+     "m5-priority",
+     "tr=d mode=6"
+    ],
+    [
+     "flags-high-m5",
+     "tr=d mode=6"
+    ]
+   ]
+  },
+  {
+   "name": "m-test4",
+   "va": "0x30D9C2",
+   "killed": true,
+   "divergent": 3,
+   "why": "test cl,4 -> test cl,2: bit4 falls through, bit2 answers 4",
+   "sample": [
+    [
+     "m4-bit2",
+     "tr=d P I C G mode=0"
+    ],
+    [
+     "m3-over-low",
+     "tr=d mode=4"
+    ],
+    [
+     "m2-bit1",
+     "tr=d mode=4"
+    ]
+   ]
+  },
+  {
+   "name": "m-predcall",
+   "va": "0x30D9CF",
+   "killed": true,
+   "divergent": 14,
+   "why": "call 00377C20 removed: stale eax -> mode 3 always taken",
+   "sample": [
+    [
+     "m3-pred",
+     "tr=d mode=3"
+    ],
+    [
+     "m3-over-low",
+     "tr=d mode=3"
+    ],
+    [
+     "m2-bit1",
+     "tr=d mode=3"
+    ]
+   ]
+  },
+  {
+   "name": "m-tabnull",
+   "va": "0x377C30",
+   "killed": true,
+   "divergent": 5,
+   "why": "test r8,r8 -> xor r8d,r8d: table always reads as null",
+   "sample": [
+    [
+     "m3-pred",
+     "tr=d P I C G mode=0"
+    ],
+    [
+     "m3-over-low",
+     "tr=d P I C G mode=2"
+    ],
+    [
+     "idx-neg-clamp",
+     "tr=d P I C G mode=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-jae",
+   "va": "0x377C39",
+   "killed": true,
+   "divergent": 5,
+   "why": "count bound jae -> jb: in-range refuses, out-of-range indexes",
+   "sample": [
+    [
+     "m3-pred",
+     "tr=d P I C G mode=0"
+    ],
+    [
+     "m3-over-low",
+     "tr=d P I C G mode=2"
+    ],
+    [
+     "idx-neg-clamp",
+     "tr=d P I C G mode=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-shr",
+   "va": "0x377C57",
+   "killed": true,
+   "divergent": 1,
+   "why": "packed>>15 -> >>14: bit14 answers instead of bit15",
+   "sample": [
+    [
+     "row-bit14",
+     "tr=d P I C G mode=3"
+    ]
+   ]
+  },
+  {
+   "name": "m-cmovs",
+   "va": "0x314903",
+   "killed": true,
+   "divergent": 1,
+   "why": "cmovs removed: negative index not clamped, refuses at bound",
+   "sample": [
+    [
+     "idx-neg-clamp",
+     "tr=d P I C G mode=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-add200",
+   "va": "0x2EF2BB",
+   "killed": true,
+   "divergent": 5,
+   "why": "ctx +0x200 -> +0x100: index read from the wrong cell",
+   "sample": [
+    [
+     "m3-pred",
+     "tr=d P I C G mode=0"
+    ],
+    [
+     "m3-over-low",
+     "tr=d P I C G mode=2"
+    ],
+    [
+     "idx-neg-clamp",
+     "tr=d P I C G mode=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-and1",
+   "va": "0x30DA03",
+   "killed": true,
+   "divergent": 1,
+   "why": "and eax,1 -> and eax,2: mode 0/1 answers from bit1",
+   "sample": [
+    [
+     "m1-bit0",
+     "tr=d P I C G mode=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-test8",
+   "va": "0x30D9B3",
+   "killed": true,
+   "divergent": 4,
+   "why": "test cl,8 -> test cl,4: bit8 flag falls to the bit4 arm",
+   "sample": [
+    [
+     "m5-bit3",
+     "tr=d P I C G mode=0"
+    ],
+    [
+     "m4-bit2",
+     "tr=d mode=5"
+    ],
+    [
+     "m4-over-low",
+     "tr=d mode=5"
+    ]
+   ]
+  }
+ ],
+ "bodies_fired": [
+  "0x2EF2B0",
+  "0x2EF640",
+  "0x30D9A0",
+  "0x3148F0",
+  "0x377C20"
+ ]
+}

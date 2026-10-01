@@ -1,0 +1,397 @@
+{
+  "method": "Original widget bodies, explicit service replacements, synthetic states; no live FF12",
+  "cases": [
+    {
+      "name": "raw_initializer_does_not_return_object",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "constructor_publishes_asset_receiver",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "constructor_handler_identity",
+      "pass": true,
+      "observed": 3752048,
+      "expected": 3752048
+    },
+    {
+      "name": "constructor_declared_extent_zeroed",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "constructor_does_not_zero_pool_tail",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "pending_resource_ready_remains_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "resource_slot_written_at_c8",
+      "pass": true,
+      "observed": 34141568,
+      "expected": 34141568
+    },
+    {
+      "name": "file_result_written_at_d0",
+      "pass": true,
+      "observed": 1073774592,
+      "expected": 1073774592
+    },
+    {
+      "name": "resource_pointee_offset40_is_reset",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "resource_call_argument_contract",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "request_owner_is_asset_not_message",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "request_counts_two_pending_boundaries",
+      "pass": true,
+      "observed": 2,
+      "expected": 2
+    },
+    {
+      "name": "manager_receives_asset",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "manager_is_selected_global",
+      "pass": true,
+      "observed": 1073778688,
+      "expected": 1073778688
+    },
+    {
+      "name": "asset_sets_channel0_bit21",
+      "pass": true,
+      "observed": 2097152,
+      "expected": 2097152
+    },
+    {
+      "name": "asset_does_not_set_channel1",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "ready_message_zero_return",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "ready_message_sets_bit0",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "ready_message_preserves_other_bits",
+      "pass": true,
+      "observed": 2147483653,
+      "expected": 2147483653
+    },
+    {
+      "name": "default_message_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "default_preserves_unrelated_header",
+      "pass": true,
+      "observed": 1234605616436508552,
+      "expected": 1234605616436508552
+    },
+    {
+      "name": "teardown_clears_file_pointer",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_preserves_released_c8_value",
+      "pass": true,
+      "observed": 34141568,
+      "expected": 34141568
+    },
+    {
+      "name": "teardown_clears_asset_global",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_preserves_consumer_global",
+      "pass": true,
+      "observed": 1073754112,
+      "expected": 1073754112
+    },
+    {
+      "name": "teardown_releases_resource_payload_first",
+      "pass": true,
+      "observed": 1073782784,
+      "expected": 1073782784
+    },
+    {
+      "name": "teardown_releases_file_pointer_second",
+      "pass": true,
+      "observed": 1073774592,
+      "expected": 1073774592
+    },
+    {
+      "name": "teardown_resource_slot_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_no_resource_active_bit",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_clears_channel0_bit21",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_service_contract",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "raw_initializer_half_rate_outside_tick_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "in_place_wrapper_returns_object",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "already_complete_request_notifies_during_initialization",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "completed_request_slot_released",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_handles_do_not_call_free",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_unconditionally_clears_even_other_publication",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "teardown_only_clears_selected_channel_bit",
+      "pass": true,
+      "observed": 4292870143,
+      "expected": 4292870143
+    },
+    {
+      "name": "consumer_initial_mode_comes_from_message",
+      "pass": true,
+      "observed": 90,
+      "expected": 90
+    },
+    {
+      "name": "consumer_xor_clears_state_not_message_address",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "consumer_initial_child_pointer_is_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "consumer_publishes_distinct_slot",
+      "pass": true,
+      "observed": 1073754112,
+      "expected": 1073754112
+    },
+    {
+      "name": "consumer_does_not_replace_asset_publication",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "consumer_lea_selects_channel1_bit21",
+      "pass": true,
+      "observed": 2097152,
+      "expected": 2097152
+    },
+    {
+      "name": "consumer_lea_does_not_read_header15",
+      "pass": true,
+      "observed": 165,
+      "expected": 165
+    },
+    {
+      "name": "consumer_message_payload_unchanged",
+      "pass": true,
+      "observed": -6510615555426900646,
+      "expected": -6510615555426900646
+    },
+    {
+      "name": "consumer_null_asset_does_not_rebuild",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "consumer_gate_uses_asset_not_own_status",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "consumer_requires_low_bit_not_any_nonzero_status",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "consumer_ready_asset_reaches_layout_boundary",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "layout_receives_consumer_not_asset",
+      "pass": true,
+      "observed": 1073754112,
+      "expected": 1073754112
+    },
+    {
+      "name": "layout_receives_asset_d0_value",
+      "pass": true,
+      "observed": 1073774592,
+      "expected": 1073774592
+    },
+    {
+      "name": "layout_selector_is_five",
+      "pass": true,
+      "observed": 5,
+      "expected": 5
+    },
+    {
+      "name": "already_built_consumer_skips_rebuild",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "small_asset_uses_native_pool_slot",
+      "pass": true,
+      "observed": 1073807360,
+      "expected": 1073807360
+    },
+    {
+      "name": "native_pool_does_not_call_heap",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "pool_backing_tail_preserved",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "native_pool_sets_header_pool_bit",
+      "pass": true,
+      "observed": 16384,
+      "expected": 16384
+    },
+    {
+      "name": "separate_consumer_allocation_extent",
+      "pass": true,
+      "observed": 464,
+      "expected": 464
+    },
+    {
+      "name": "separate_consumer_handler",
+      "pass": true,
+      "observed": 3750320,
+      "expected": 3750320
+    },
+    {
+      "name": "wrapper_passes_low_byte_message_argument",
+      "pass": true,
+      "observed": 122,
+      "expected": 122
+    },
+    {
+      "name": "consumer_creation_retains_asset_slot",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "consumer_creation_publishes_consumer_slot",
+      "pass": true,
+      "observed": 1073754112,
+      "expected": 1073754112
+    },
+    {
+      "name": "consumer_size_does_not_clear_beyond_extent",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "consumer_factory_requires_existing_asset",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    }
+  ],
+  "checks": 65,
+  "failures": 0
+}

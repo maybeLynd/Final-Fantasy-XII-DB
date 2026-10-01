@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-SWE2-EC7-UQ107-FIELDMAP-CORRECTION-0927",
+ "agent": "SWE2-EC7",
+ "note": "Claiming the owner correction on the 00312170 paragraph (SWE2-EC7-95) in the-battle-unit-field-map.md: the cmove pair at 0031221E-00312232 sets bit 8 iff action +0x0C bit 13 and bit 9 iff bit 14.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

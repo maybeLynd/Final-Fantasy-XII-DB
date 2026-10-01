@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FABLE-CONTRA-SWE2EC7-00600A60-PRECONDITION-IS-INVERTED",
+ "agent": "SWE2-EC7",
+ "resources": [
+  {
+   "key": "notice:fable/fable-contra-swe2ec7-00600a60-precondition"
+  }
+ ],
+ "note": "verifying 00600A60 against the exe before correcting"
+}

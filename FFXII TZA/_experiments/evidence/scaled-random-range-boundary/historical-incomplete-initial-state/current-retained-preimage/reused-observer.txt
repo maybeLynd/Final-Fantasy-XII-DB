@@ -1,0 +1,34 @@
+def run(name,a,mutant=False):
+ u=unicorn.Uc(unicorn.UC_ARCH_X86,unicorn.UC_MODE_64)
+ for p in (ENTRY&~4095,0x1EF9000,0x22D8000,0x22D9000,0x60001000):u.mem_map(p,4096)
+ running=bytearray(code)
+ if mutant:
+  off=0x3D8F6D-ENTRY;assert running[off:off+4]==bytes.fromhex('f30f5cc8');running[off+2]=0x58 # ADDSS control instead of SUBSS
+ u.mem_write(ENTRY,bytes(running));u.mem_write(0x1EF93FC,one)
+ rsp=0x60001800;u.mem_write(rsp+0x30,a.to_bytes(4,'little'))
+ for p,n in ((0x22D8F30,16),(0x22D91A0,16),(0x22D92E0,16)):u.mem_write(p,b'\xa5'*n)
+ u.reg_write(UC_X86_REG_RSP,rsp);u.reg_write(UC_X86_REG_XMM1,SAMPLE);u.reg_write(UC_X86_REG_MXCSR,0x1F80)
+ before={hex(p):bytes(u.mem_read(p,n)).hex() for p,n in ((0x22D8F30,16),(0x22D91A0,16),(0x22D92E0,16),(rsp+0x30,4),(0x1EF93FC,4))}
+ visited=[];pending=[];writes=[];raw_writes=[];reads=[]
+ def flush():
+  if not pending:return
+  pc=pending[0][0];assert all(p==pc for p,_,_ in pending)
+  lo=min(a for _,a,n in pending);hi=max(a+n for _,a,n in pending)
+  assert {j for _,a,n in pending for j in range(a,a+n)}==set(range(lo,hi))
+  writes.append(dict(pc=hex(pc),address=hex(lo),bytes=bytes(u.mem_read(lo,hi-lo)).hex()));pending.clear()
+ def oncode(uc,pc,n,_):flush();visited.append(pc)
+ def onwrite(uc,t,addr,n,v,_):
+  pc=uc.reg_read(UC_X86_REG_RIP);pending.append((pc,addr,n))
+  raw_writes.append(dict(pc=hex(pc),address=hex(addr),size=n,provider_value=v))
+ def onread(uc,t,addr,n,v,_):reads.append(dict(pc=hex(uc.reg_read(UC_X86_REG_RIP)),address=hex(addr),size=n))
+ u.hook_add(unicorn.UC_HOOK_CODE,oncode);u.hook_add(unicorn.UC_HOOK_MEM_WRITE,onwrite);u.hook_add(unicorn.UC_HOOK_MEM_READ,onread)
+ failure=None
+ try:u.emu_start(ENTRY,END,count=64);flush()
+ except Exception as e:failure=repr(e)
+ out=u.reg_read(UC_X86_REG_XMM1)&0xFFFFFFFF
+ return dict(name=name,intervention='Fixture branch patch SUBSS->ADDSS' if mutant else 'Injected arithmetic-window entry state; original instructions unchanged',
+  mutated=mutant,input=dict(amplitude_bits=hex(a),sample_bits=hex(SAMPLE),entry=hex(ENTRY),stop=hex(END),rsp=hex(rsp),mxcsr='0x1f80'),
+  running_code_sha256=sha(bytes(running)),before=before,visited=[hex(x) for x in visited],raw_writes=raw_writes,writes=writes,reads=reads,
+  after={hex(p):bytes(u.mem_read(p,n)).hex() for p,n in ((0x22D8F30,16),(0x22D91A0,16),(0x22D92E0,16),(rsp+0x30,4),(0x1EF93FC,4))},
+  output_bits=hex(out),model={k:hex(v) for k,v in model(a,SAMPLE).items()},
+  stop_pc=hex(u.reg_read(UC_X86_REG_RIP)),rsp_after=hex(u.reg_read(UC_X86_REG_RSP)),mxcsr_after=hex(u.reg_read(UC_X86_REG_MXCSR)),failure=failure)

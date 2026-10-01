@@ -1,0 +1,21 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "new_catalog_bodies": 10,
+  "reused_body": {
+    "path": "Database/FFXII TZA/_experiments/evidence/arena-selector-static/primary.json",
+    "sha256": "6c4fec6a3a55292629ebc299d072f1a6c9837984d733c6abc22e288fd95bf210",
+    "address": "0x2628b0",
+    "body_sha256": "a61dbd08cdf6feb56a7f364fa6ba8a0ddf223395e6ee2b32719a530e5326a5ff"
+  },
+  "execution_sha256": "3dbd917bb6edeb8c9a638a540f058a3e2c5a801f1f294d70344c73df82467a1e",
+  "cases": 12,
+  "feasibility_cases": 2,
+  "replay_reads": 53,
+  "replay_writes": 55,
+  "mutation_controls": {
+    "wrong_roster_publication_rejected": true,
+    "reversed_initialization_order_rejected": true
+  },
+  "limits": "Complete original-byte source checks and isolated queue wrapper only. Provider interventions do not establish native effects or normal load scheduling.",
+  "pass_all": true
+}

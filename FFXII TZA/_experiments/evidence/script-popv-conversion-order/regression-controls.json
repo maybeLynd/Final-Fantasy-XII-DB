@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-direct-float-clamp",
+    "returncode": 1,
+    "expected": "Direct real-float saturation contradicts original converted dword"
+  },
+  {
+    "argument": "--fault-round-not-truncate",
+    "returncode": 1,
+    "expected": "Original CVTT truncation differs rounding detector"
+  },
+  {
+    "argument": "--fault-accept-rounding-mutation",
+    "returncode": 1,
+    "expected": "Private rounding mutation changes original result"
+  }
+]

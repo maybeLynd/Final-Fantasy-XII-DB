@@ -1,0 +1,2 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+Captured only missing palette edges [('0x180e70', '0x180ec4', 'e9aaaf55537ace664f840a54326ba34002024df95fb5d2fae006831575b4456f'), ('0x180fd0', '0x180ff1', 'c75d5d8509e2f18ac683be23f97a5e1b992aa2550824bb20a8349fca09bd0608'), ('0x181000', '0x181054', '6e784df58590729e8ec49e3a2e1ac58be501eba5fae089751359e09e37ed089d'), ('0x181167', '0x181188', '3815c20dcc198a17e23d1a865a5e7e5f25fda70a9158344484cf7f4cfbae2edd')]

@@ -1,0 +1,84 @@
+{
+ "cases": {
+  "C_status_result_reaches_the_outer_recompute": true,
+  "S1_source_hp_numeric_runs_to_the_end_no_outer_recompute": true,
+  "S2_source_mp_numeric_runs_to_the_end_no_outer_recompute": true,
+  "S3_the_target_is_untouched": true
+ },
+ "ok": true,
+ "source_hp": {
+  "halt": [],
+  "ok": true,
+  "outer_recompute": [],
+  "setters": {
+   "source_hp": [
+    [
+     "300530",
+     "76290000"
+    ]
+   ],
+   "source_mp": [],
+   "target_hp": [],
+   "target_mp": []
+  },
+  "source": {
+   "hp": 540,
+   "mp": 100
+  },
+  "status_calls": 0,
+  "target": {
+   "hp": 500,
+   "mp": 100
+  }
+ },
+ "source_mp": {
+  "halt": [],
+  "ok": true,
+  "outer_recompute": [],
+  "setters": {
+   "source_hp": [],
+   "source_mp": [
+    [
+     "300CE0",
+     "76290000"
+    ]
+   ],
+   "target_hp": [],
+   "target_mp": []
+  },
+  "source": {
+   "hp": 500,
+   "mp": 130
+  },
+  "status_calls": 0,
+  "target": {
+   "hp": 500,
+   "mp": 100
+  }
+ },
+ "status_control": {
+  "halt": [],
+  "ok": true,
+  "outer_recompute": [
+   [
+    1982402560,
+    0
+   ]
+  ],
+  "setters": {
+   "source_hp": [],
+   "source_mp": [],
+   "target_hp": [],
+   "target_mp": []
+  },
+  "source": {
+   "hp": 500,
+   "mp": 100
+  },
+  "status_calls": 1,
+  "target": {
+   "hp": 1,
+   "mp": 0
+  }
+ }
+}

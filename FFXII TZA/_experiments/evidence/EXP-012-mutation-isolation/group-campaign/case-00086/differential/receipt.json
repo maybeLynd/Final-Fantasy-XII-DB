@@ -1,0 +1,58 @@
+{
+  "command": [
+    "diff_group_completion.py",
+    "--exe",
+    "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "--driver",
+    "./group_completion_mut.exe",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\case-00086\\differential"
+  ],
+  "status": "MISMATCH",
+  "scope": "isolated original code with four ret stubs; no native callback effects or timing",
+  "source_note": "Adjacent source hashes are not driver build attestation; pair driver hash with the build receipt.",
+  "identities": {
+    "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\scratch\\case-2x8dggl8\\Tests\\Differential\\group_completion_mut.exe": "183e6d78314bad129bdd20269786a044d7fdd74ee39124dacbac2ff6dce04bda",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\scratch\\case-2x8dggl8\\Tests\\Differential\\diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\scratch\\case-2x8dggl8\\Tests\\Differential\\group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\scratch\\case-2x8dggl8\\Game\\Spawn\\group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\scratch\\case-2x8dggl8\\Game\\Spawn\\group_completion.h": "e7b793a090945d0085f93f5a27055ef4092bf0561325e281142d011fdf3cfd58"
+  },
+  "unicorn_version": "2.1.4",
+  "original_code": {
+    "0x306f00": "6cfd09b67fb4e461e33784f1adda65d4b71d7dd9c514976c3bc97fe92412b088",
+    "0x263d30": "f3f232f5663beb7f7dae9ba090a8663485d407dbf4061342789d0cd37e4b91ea",
+    "0x2360d0": "4b77adb370aee01653014df554d81232865baeefeb47031bdf079dd6c3aa0e6d"
+  },
+  "driver_command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\scratch\\case-2x8dggl8\\Tests\\Differential\\group_completion_mut.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\case-00086\\differential\\regions.bin",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\case-00086\\differential\\cases.txt",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\case-00086\\differential\\driver-post.bin"
+  ],
+  "driver_exit": 0,
+  "cases": 100,
+  "completions": 19,
+  "mismatched_cases": [
+    2,
+    27,
+    32,
+    47,
+    59,
+    71,
+    78,
+    79,
+    80,
+    81,
+    85,
+    88,
+    91,
+    94,
+    95,
+    97,
+    99
+  ],
+  "final_bytes_equal": true,
+  "final_digest_equal": true
+}

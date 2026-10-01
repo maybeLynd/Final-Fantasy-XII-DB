@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-q0-source-coordinate-domain\check.py", line 62, in <module>
+    assert d['category']==expected, 'Missing-coordinate control must not clamp to a valid source line'
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Missing-coordinate control must not clamp to a valid source line

@@ -1,0 +1,13 @@
+# WidgetSingleton02B47758_0460 - emitted by Database/Tools/work/OPUS/emit_singleton_widget_census.py, which calls gfz-scripts/receiver_flow_census.py
+# SEED 003CAE00 - the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460
+# REACH 003CAE00 - 52 of 52 instructions; the emitter refuses below 100%
+# CONTROL: no shared widget helper is seeded here, so there is no conflation to exclude - stated rather than printed as an unearned `none`
+# kind: r read, w write, a ADDRESS TAKEN (a lea, which touches no memory)
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+function	name	site	disp	kind	instruction	route	note
+003CAE00	FUN_003cae00	003CAE6C	0x50	a	lea rcx, [rdi + 0x50]	the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460	
+003CAE00	FUN_003cae00	003CAE98	0x98	w	mov word ptr [rdi + 0x98], ax	the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460	
+003CAE00	FUN_003cae00	003CAE9F	0x9A	w	mov word ptr [rdi + 0x9a], r8w	the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460	
+003CAE00	FUN_003cae00	003CAEA7	0x9C	w	mov word ptr [rdi + 0x9c], dx	the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460	
+003CAE00	FUN_003cae00	003CAEAE	0x9E	w	mov word ptr [rdi + 0x9e], cx	the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460	
+003CAE00	FUN_003cae00	003CAE22	0xC0	a	lea rcx, [rdi + 0xc0]	the child's REGISTERED HANDLER: r8 at 003CAA66, beside `mov edx, 0x190`, at the in-place construction 003CAA79 into the parent's +0x460	

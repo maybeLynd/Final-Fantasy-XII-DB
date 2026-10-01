@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-THE-CLUSTER-VERDICT-COLUMN-IS-REMOVED",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the automatic classifier the writable-static sweep had grown, and the cluster it got wrong",
+  "scope": "read 01F2E0D0, the cluster the sharing measure ranked as the strongest single object; test whether any automatic verdict survives contact with it; keep or remove the column on the result",
+  "completion": "the cluster is identified from evidence outside the sweep; every automatic verdict tried is reported with what it got wrong; the tool ends the round printing only what a reader needs rather than a guess",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

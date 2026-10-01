@@ -1,0 +1,275 @@
+{
+  "section": 12,
+  "base": "September23 20:56:05 database plus Update11",
+  "root": "FFXII TZA",
+  "read_only_preflight": true,
+  "self_hash_exclusion": "_experiments/evidence/continuation-section12-actor-request-waits/PATCH_MANIFEST.json",
+  "files": [
+    {
+      "path": "01-Script-VM-Native-Bridge/CONTRACT-interpreter-core.md",
+      "operation": "REPLACE",
+      "before_sha256": "44caa97b3c0f352c405801e3ca614ed33fe5f798777a7a839b7d413631a73258",
+      "after_sha256": "0ff401590dc4b1214396a01125c048d5c63fd629edb7612f456a4246eab04f21",
+      "bytes": 17519
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md",
+      "operation": "REPLACE",
+      "before_sha256": "5ea5bf4078f3c1afc932980136e26d7484aae8f39441013bff84098137fd80ec",
+      "after_sha256": "9ffe9dbc94cf5e3d80ae2a0676453366871b4f37f07c4dd891dcb9f2cac62983",
+      "bytes": 34719
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "ceb9f06926c3871417805da1199db84eda757358403a6674a31da25c81a21150",
+      "bytes": 7451
+    },
+    {
+      "path": "01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md",
+      "operation": "REPLACE",
+      "before_sha256": "71e90c5e49a303e34f20a356503fa70b75144d59d6010fbe38532ca48a2f7f67",
+      "after_sha256": "8d14bcba3bc73170074ccbf489d99e641fa1fa46717c30dcd13d6e78a17f1b1d",
+      "bytes": 8893
+    },
+    {
+      "path": "04-Actor-Entity/CONTRACT-field-runtime-pass.md",
+      "operation": "REPLACE",
+      "before_sha256": "3e08ea0797f585c9950847fdaed72411bd9cbbab4253532ee1e1a315f2ab0e08",
+      "after_sha256": "65a4090e9138b3080c299857364e96789cd52755a6d2fdcd2f498ca0a2b2eee5",
+      "bytes": 62300
+    },
+    {
+      "path": "04-Actor-Entity/the-field-runtime-pass.md",
+      "operation": "REPLACE",
+      "before_sha256": "ed953984c05f3d1b08d47837842c5a86b30c64bae5a5e2c3d1a8508fd2d554e2",
+      "after_sha256": "368887b674840c9fb1a028fbf692fb7542cdb1912058f469cf59a6407f7ce756",
+      "bytes": 53335
+    },
+    {
+      "path": "_experiments/EXP-106-field-runtime-pass-exec.md",
+      "operation": "REPLACE",
+      "before_sha256": "03fd6d968a5b8e9e9fa936d4879fbdfbbd3709a49c383498507cc7efb44480a3",
+      "after_sha256": "e2f4743ab188f8c78ff8bea3dd2a8c5e6abfcb5d405eefd069200270bb4dda0a",
+      "bytes": 16414
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/README.md",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "35ca89379b71fdaa69459f0bc4517c99431ff7cdcd2f11ed5a963d893504cd3b",
+      "bytes": 1238
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/REVIEW.md",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "920938feb12cca841c592774dbd811acd8d9e683a0d7ffc467ddae404e416dec",
+      "bytes": 13344
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/canonical_changes.diff",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "6de2f075fc6fdcdae4f5a4a894dd608d9e0a87e8e212c83cc6a70b71eeabf630",
+      "bytes": 123912
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/canonical_preimages.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "683cb1b220ab026df32bc31add47de9289e0e374c1abeb883353fc779b8c97cc",
+      "bytes": 1132
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/canonical_row_changes.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "2df999c3523f6d97143214309317b3ff59f713c898e35d1fba94fea92992c33a",
+      "bytes": 40710
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/claim_matrix.tsv",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "1a3c6d87ee20b3adc642c4e4e17c8803582d4723bd520ca4538beb6cfa516280",
+      "bytes": 2284
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/modified_paths.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "0c9eb09f8452e315c94b8d542ab82f342bd04b158f5ed3df06f450816a29b78f",
+      "bytes": 520
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/native_controls.c",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "5e6e2254408208232376397291db6b24ca9ff10cd716f3cf5b3afa0972af95d9",
+      "bytes": 19446
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/new_mechanism_path.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "457bced8dd5011b8bdf59d28abf7a993cc68e112ed8974110d1ab527db41c847",
+      "bytes": 104
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/original_body_manifest.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "15c51e0f5c2ebb60a24b85daed549a306cdd88e9a7b491fd14878bac8734233c",
+      "bytes": 26992
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/original_disassembly.txt",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "b0746e6d57bc424d756543a33f74945954c5f7d6ec7ebf8bf19c56f1289d63fb",
+      "bytes": 405481
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/body_verification.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "0e067583821a46f35b92f80dcf4c9f4820f6517521da5591f7b5d7e4e1bfc8fc",
+      "bytes": 14362
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/code_mutations.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "b705cd2a45aa12a4accc10b674b5b3849a09ed4291a263e306894fb6e266f9be",
+      "bytes": 2234
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/content_validation.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "a440c748d63927a2837253db46c255eb44d3ef3b12739cd2dabff9f41a0a0275",
+      "bytes": 26557
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/delivery_validation.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "dff96d163fb351402257ef3c51c73ab2c1ecbfd4c5f794ed00c69475d3f369a9",
+      "bytes": 553
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/external_link_targets.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "2bc9f4f23116510395d9b72fad858bd3c3ca8ec4e33f4d823f9188c758c9bce6",
+      "bytes": 665
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/native_baseline.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "70a5d8cb5b68e58daeb1804c0fd994a125c01ab446c0de8f54c193f9ffbaed6f",
+      "bytes": 16549
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/native_repeat.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "70a5d8cb5b68e58daeb1804c0fd994a125c01ab446c0de8f54c193f9ffbaed6f",
+      "bytes": 16549
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/overlay_checker_controls.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "b97910259d23ba9552c12a9a5abba14a95498baf2ed6e621b81ec2edf0d3f82b",
+      "bytes": 1250
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/row_preservation.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "761fb31b4caed6af7c316cb939d02c730dcf24abf63d918faf665dddca8bfcc0",
+      "bytes": 274
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/summary.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "5a11dcb7b6f0b53b49da3bdaf068a22208d9315de4df0661942bf1d77c83b6d7",
+      "bytes": 917
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/results/unchanged_files.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "990c307b1e3081c55e56671e96a2ca49443050a23b89d489f818e16420a463d0",
+      "bytes": 170
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/run_review.py",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "9c34d6544014b90fd25dcf43a7ac6d237eb895873272a9918d438b6aaf3313ce",
+      "bytes": 5027
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/scope.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "0fe58222207cb248ff56fda5b44ce139602b1e1dbf65ac971a55e516a409638e",
+      "bytes": 788
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/source_inputs.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "094d64ef638dcb06359c4c677e426321c856a03344c612cbd097b771825e2e89",
+      "bytes": 758
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/validate_content.py",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "2d5c37d162f4c41b9e125ed6a66a2841a8681dd9800c9babaf9bbdcfb04c48f1",
+      "bytes": 4093
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/variant_plan.json",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "45f08f95445444573df946ebe4735ed3f47febd1aac11c22e3f3be970ea54ccf",
+      "bytes": 1490
+    },
+    {
+      "path": "_experiments/evidence/continuation-section12-actor-request-waits/verify_overlay.py",
+      "operation": "ADD",
+      "before_sha256": null,
+      "after_sha256": "037f13c481a3671d40277549c54b29101c59d82049a8e647b01bb1e2446c396e",
+      "bytes": 1911
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "operation": "REPLACE",
+      "before_sha256": "b24ecde093fec8a5c6080572e8dbe31a406c431b52aa71b28782177585513322",
+      "after_sha256": "bc60ed80dc6f024f5437dafb8885f393088047081b2fedcb1ac8ff745b3bc6e8",
+      "bytes": 24927
+    },
+    {
+      "path": "_types/fields.tsv",
+      "operation": "REPLACE",
+      "before_sha256": "473e89f806e0afdd5104752cb42983a5c1271f35f718a503ef74f9ebe0c10d66",
+      "after_sha256": "b0663de2b63e23de88a6650bcdaef815435a83e143a5312ceb8989e9ecd4e36d",
+      "bytes": 10685650
+    },
+    {
+      "path": "_types/types.tsv",
+      "operation": "REPLACE",
+      "before_sha256": "f6b0a41f4f4b2dc17acb4027117e6a7f5ff11b947a269b78d92ef32804ded71e",
+      "after_sha256": "0f799690a451d9c93d9fa0417c4a2c25db3579a313140eab56406c4f602f33ac",
+      "bytes": 1662720
+    }
+  ]
+}

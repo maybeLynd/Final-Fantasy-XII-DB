@@ -1,0 +1,189 @@
+{
+  "method": "A original Python plan/apply/schema with synthetic in-memory state",
+  "driver_sha256": "9daa23e0cb889942ae622626947a1ff6760e398bc38d1d5a58e6b595dc048a82",
+  "cases": [
+    {
+      "name": "valid-reject",
+      "plan_kind": "REPAIR",
+      "actual_inmemory_added": {
+        "id": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+        "kind": "request",
+        "priority": "P2",
+        "assigned_to": "OPUS",
+        "target": "REVIEW-VALID-REJECT -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+        "scope": "repair after rejected review",
+        "question": "Review REVIEW-VALID-REJECT REJECTED c545ed76060aae750c398422b371cea80b8119c3 (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: []. Review note: verdict:ACCEPT in prose is not a structured ref",
+        "known_evidence": "review REVIEW-VALID-REJECT (commit c545ed76060aae750c398422b371cea80b8119c3)",
+        "missing_information": "the next step's result",
+        "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+        "what_is_blocked": "the reviewed claim's completion",
+        "completion": "committed, with receipts",
+        "resources": [
+          {
+            "key": "request:auto-repair-review-valid-reject"
+          }
+        ],
+        "dependencies": [],
+        "transition_of": {
+          "review": "REVIEW-VALID-REJECT",
+          "commit": "c545ed76060aae750c398422b371cea80b8119c3"
+        },
+        "requester": "SWE2-FRONTIER",
+        "agent": null,
+        "status": "READY",
+        "started_at": null,
+        "updated_at": "2026-09-29T06:48:21+00:00",
+        "checkpoint": "Queued by SWE2-FRONTIER"
+      },
+      "schema_valid": true,
+      "original_fixture_unchanged": true
+    },
+    {
+      "name": "typed-commit",
+      "plan_kind": "REPAIR",
+      "actual_inmemory_added": {
+        "id": "AUTO-REPAIR-REVIEW-TYPED-COMMIT",
+        "kind": "request",
+        "priority": "P2",
+        "assigned_to": "OPUS",
+        "target": "REVIEW-TYPED-COMMIT -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+        "scope": "repair after rejected review",
+        "question": "Review REVIEW-TYPED-COMMIT REJECTED {'not': 'a SHA'} (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: []. Review note: verdict:ACCEPT in prose is not a structured ref",
+        "known_evidence": "review REVIEW-TYPED-COMMIT (commit {'not': 'a SHA'})",
+        "missing_information": "the next step's result",
+        "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+        "what_is_blocked": "the reviewed claim's completion",
+        "completion": "committed, with receipts",
+        "resources": [
+          {
+            "key": "request:auto-repair-review-typed-commit"
+          }
+        ],
+        "dependencies": [],
+        "transition_of": {
+          "review": "REVIEW-TYPED-COMMIT",
+          "commit": {
+            "not": "a SHA"
+          }
+        },
+        "requester": "SWE2-FRONTIER",
+        "agent": null,
+        "status": "READY",
+        "started_at": null,
+        "updated_at": "2026-09-29T06:48:21+00:00",
+        "checkpoint": "Queued by SWE2-FRONTIER"
+      },
+      "schema_valid": true,
+      "original_fixture_unchanged": true
+    },
+    {
+      "name": "non-sha-commit",
+      "plan_kind": "REPAIR",
+      "actual_inmemory_added": {
+        "id": "AUTO-REPAIR-REVIEW-NON-SHA-COMMIT",
+        "kind": "request",
+        "priority": "P2",
+        "assigned_to": "OPUS",
+        "target": "REVIEW-NON-SHA-COMMIT -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+        "scope": "repair after rejected review",
+        "question": "Review REVIEW-NON-SHA-COMMIT REJECTED not a SHA (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: []. Review note: verdict:ACCEPT in prose is not a structured ref",
+        "known_evidence": "review REVIEW-NON-SHA-COMMIT (commit not a SHA)",
+        "missing_information": "the next step's result",
+        "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+        "what_is_blocked": "the reviewed claim's completion",
+        "completion": "committed, with receipts",
+        "resources": [
+          {
+            "key": "request:auto-repair-review-non-sha-commit"
+          }
+        ],
+        "dependencies": [],
+        "transition_of": {
+          "review": "REVIEW-NON-SHA-COMMIT",
+          "commit": "not a SHA"
+        },
+        "requester": "SWE2-FRONTIER",
+        "agent": null,
+        "status": "READY",
+        "started_at": null,
+        "updated_at": "2026-09-29T06:48:21+00:00",
+        "checkpoint": "Queued by SWE2-FRONTIER"
+      },
+      "schema_valid": true,
+      "original_fixture_unchanged": true
+    },
+    {
+      "name": "typed-record",
+      "plan_kind": "REPAIR",
+      "actual_inmemory_added": {
+        "id": "AUTO-REPAIR-REVIEW-TYPED-RECORD",
+        "kind": "request",
+        "priority": "P2",
+        "assigned_to": "OPUS",
+        "target": "REVIEW-TYPED-RECORD -> {'not': 'a path'}",
+        "scope": "repair after rejected review",
+        "question": "Review REVIEW-TYPED-RECORD REJECTED c545ed76060aae750c398422b371cea80b8119c3 (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: []. Review note: verdict:ACCEPT in prose is not a structured ref",
+        "known_evidence": "review REVIEW-TYPED-RECORD (commit c545ed76060aae750c398422b371cea80b8119c3)",
+        "missing_information": "the next step's result",
+        "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+        "what_is_blocked": "the reviewed claim's completion",
+        "completion": "committed, with receipts",
+        "resources": [
+          {
+            "key": "request:auto-repair-review-typed-record"
+          }
+        ],
+        "dependencies": [],
+        "transition_of": {
+          "review": "REVIEW-TYPED-RECORD",
+          "commit": "c545ed76060aae750c398422b371cea80b8119c3"
+        },
+        "requester": "SWE2-FRONTIER",
+        "agent": null,
+        "status": "READY",
+        "started_at": null,
+        "updated_at": "2026-09-29T06:48:21+00:00",
+        "checkpoint": "Queued by SWE2-FRONTIER"
+      },
+      "schema_valid": true,
+      "original_fixture_unchanged": true
+    },
+    {
+      "name": "self-review",
+      "plan_kind": "INCORPORATE",
+      "actual_inmemory_added": {
+        "id": "AUTO-INCORP-REVIEW-SELF-REVIEW",
+        "kind": "request",
+        "priority": "P2",
+        "assigned_to": "FABLE",
+        "target": "REVIEW-SELF-REVIEW -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+        "scope": "incorporation after accepted review",
+        "question": "Review REVIEW-SELF-REVIEW ACCEPTED c545ed76060aae750c398422b371cea80b8119c3 (record Database/Tools/analysis-kit/gfz-scripts/transitions.py). Incorporate it into your canonical files and list the updated consumers. Reviewer's receipts: []",
+        "known_evidence": "review REVIEW-SELF-REVIEW (commit c545ed76060aae750c398422b371cea80b8119c3)",
+        "missing_information": "the next step's result",
+        "why_it_matters": "review-to-incorporation transition without a relayed message (M2, A16)",
+        "what_is_blocked": "the reviewed claim's completion",
+        "completion": "committed, with receipts",
+        "resources": [
+          {
+            "key": "request:auto-incorp-review-self-review"
+          }
+        ],
+        "dependencies": [],
+        "transition_of": {
+          "review": "REVIEW-SELF-REVIEW",
+          "commit": "c545ed76060aae750c398422b371cea80b8119c3"
+        },
+        "requester": "SWE2-FRONTIER",
+        "agent": null,
+        "status": "READY",
+        "started_at": null,
+        "updated_at": "2026-09-29T06:48:21+00:00",
+        "checkpoint": "Queued by SWE2-FRONTIER"
+      },
+      "schema_valid": true,
+      "original_fixture_unchanged": true
+    }
+  ],
+  "limits": "Actual original function effects in Python memory only. No transaction/journal/lock/disk write, no current production rows and no concurrency/host cancellation proof. Original full CLI write campaign remains INCOMPLETE."
+}

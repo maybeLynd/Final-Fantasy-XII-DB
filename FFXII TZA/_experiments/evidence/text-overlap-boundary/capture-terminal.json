@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\text-overlap-boundary\\capture.py"
+  ],
+  "driver_sha256": "7bb34d2fe8ac1b974265f16ca60106e4ed9f58e6367c1e2fc2256972ea8932cc",
+  "returncode": 0,
+  "stdout": "{\n  \"cases\": [\n    \"disjoint\",\n    \"double\",\n    \"triple\"\n  ],\n  \"triple_unique\": 8,\n  \"triple_reported\": 12,\n  \"canonical_unique\": 1758,\n  \"canonical_reported\": 1759,\n  \"unchanged_inputs_and_source\": true,\n  \"guest_code_or_live_game_executed\": false,\n  \"ended\": \"2026-09-29T13:33:58.322650+00:00\"\n}\n",
+  "stderr": "",
+  "terminal": true
+}

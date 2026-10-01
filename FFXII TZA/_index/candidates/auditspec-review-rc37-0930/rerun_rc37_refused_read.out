@@ -1,0 +1,43 @@
+PASS  F1 0046E03E call 0x2df780
+PASS  F1 0046E043 mov eax, 1
+PASS  F1 0046E048 add rsp, 0x38
+PASS  F2 002DF7B0 cmp dword ptr [r15 + rax*4 + 0x2da3ee0], -1
+PASS  F2 002DF7B9 je 0x2df85d
+PASS  F2 002DF862 xor eax, eax
+PASS  F2 002DF808 hands the reader the status slot 0215EFF4
+PASS  F2 002DF838 hands the reader the status slot 0215EFF4
+PASS  F3 0032E0F1 call 0x46e030
+PASS  F3 0032E0F6 call 0x35e810
+PASS  F3 0032E0FB mov qword ptr [rbx + 8], rax
+PASS  F3 0032E0FF mov byte ptr [rbx + 0x20], 2
+PASS  F3 0032E15A mov byte ptr [rbx + 0x20], 3
+PASS  F4 0046DFE7 cmp dword ptr [rip + 0x1cf1006], -1
+PASS  F4 0046E0E0 mov eax, dword ptr [rip + 0x1cf0f0e]
+PASS  F4 0032E163 call 0x46dfe0
+PASS  F4 0032E16A jne 0x32e2a0
+PASS  F4 0032E19C call 0x46e0e0
+PASS  F4 0032E1A3 sets al
+PASS  F4 0032E1A6 add al, 5
+PASS  F5 references to 0215EFF4 / 01F82CC0 lie only in 001D6D70 001D6D90 001D6FB0 002DF6C0 002DF780 0046DFE0 0046E0E0
+PASS  F5 001D6DD4 mov dword ptr [rax], 0xffffffff
+PASS  F5 001D6FF4 mov dword ptr [rax], 0xffffffff
+PASS  F5 001D6D7C mov dword ptr [rax], ecx
+PASS  F5 001D6D7E mov qword ptr [rip + 0x1dabf37], 0
+PASS  F6 0032E336 mov rax, qword ptr [rcx + 0x40]
+PASS  F6 0032E346 mov r8d, 1
+PASS  F6 0032E34F call rax
+PASS  F6 0032E382 cmp dword ptr [rcx + 0x28], -1
+PASS  F6 0032E38C xor r8d, r8d
+PASS  F6 0032E392 call rax
+PASS  F7 00365882 call 0x32e400
+PASS  F7 0032E43D jle 0x32e44b
+PASS  F7 003658A4 mov r9d, ebx
+PASS  F7 003658C7 call 0x32e620
+PASS  F7 00365837 passes the callback 00364380
+PASS  F8 00364391 shl eax, cl
+PASS  F8 00364393 or dword ptr [rdx + 0x240], eax
+PASS  F8 00364380 never reads its success argument (r8): mov rdx, qword ptr [rip + 0x1f67a79]; test rdx, rdx; je 0x364399; mov eax, 1; shl eax, cl; or dword ptr [rdx + 0x240], eax; ret 
+PASS  C1 0032E111 call 0x2df6c0
+PASS  C1 0032E116 test eax, eax
+PASS  C1 0032E118 jne 0x32e090
+FAILS 0

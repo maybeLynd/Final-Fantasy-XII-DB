@@ -1,0 +1,5 @@
+PASS  M mark: bts bit id%8 of byte id/8 in cell record (row*width+col)*0x24; then inc the cell's byte; no id range check
+PASS  K callers ['003921E3', '003928B4', '00392957', '003929D5']: the guarded single add 00392170 and the builder's three id phases (0.., 0x80.., 0xA0..)
+PASS  W the per-cell byte: written by the mark's inc and the two clears; three readers compare it with zero
+PASS  S NavGridParams +0x40 / +0x48 / +0x58 carry the mark rule
+FAILS 0

@@ -1,0 +1,20 @@
+distinct .ebp 7565, verb calls decoded 25794237
+PASS  C1 skipexec 0x0539 calls: 171 (US decompiled corpus: 19)
+PASS  C2 setexpandvoicememory 0x0395 calls: 10 (US decompiled corpus: 2)
+PASS  C3 call opcodes decoded 25794237 (histogram 25,794,237)
+0x0395 setexpandvoicememory: 10 calls in 10 distinct files
+    preceding instructions 4F:FFFF 4E:0000  x10
+    ps2data/plan_master/ch/event/byu_z/byu_z9900/byu_z9900.ebp
+    ps2data/plan_master/ch/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/cn/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/de/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/es/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/fr/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/in/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/it/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/kr/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+    ps2data/plan_master/us/event/rrp_z/rrp_z9900/rrp_z9900.ebp
+0x2003 debug_tkmalloc: 0 calls in 0 distinct files
+0x2004 debug_tkmalloc_4: 0 calls in 0 distinct files
+0x2008 debug_tkmallochandle: 0 calls in 0 distinct files
+0x2009 debug_tkmallochandle_9: 0 calls in 0 distinct files

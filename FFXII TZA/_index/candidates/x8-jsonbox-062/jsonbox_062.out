@@ -1,0 +1,6 @@
+PASS  U1 0.6 -> 0.6.1 changes only comments []
+PASS  U2 0.6.1 -> 0.6.2 turns String32 from basic_string<int32_t> into vector<int32_t> 
+PASS  U3 after 0.6.2 the only code change is inside getToString (lines 478-507) hunks=[(479, 10), (490, 5), (496, 2), (499, 2), (502, 2), (505, 1), (506, 0)] other=[]
+PASS  I1 the backslash-u append is a vector push with no terminator (inline path and the insert helper 001A4250) 
+PASS  I2 only the writer 001FF210 and the parser 00200E60 read more than one literal kind (getToString not linked) readers=['001FF210', '00200E60'] literal globals=12
+FAILS 0

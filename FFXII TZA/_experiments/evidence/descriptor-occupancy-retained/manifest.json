@@ -1,0 +1,25 @@
+{
+  "method": "A reduction of retained original-process C observations",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "check.py": {
+      "bytes": 6492,
+      "sha256": "2ba512c0c8ead60cbda81377148a3d9daf26c2c276df3d3035b406d0e6142f82"
+    },
+    "observation.json": {
+      "bytes": 145828,
+      "sha256": "068e7272692e332f2887eb9b24fc348ca5afee60c6f11737e68fe0eaa9a9573d"
+    },
+    "validation.txt": {
+      "bytes": 301,
+      "sha256": "60ef20a59dda6dc2879305df1d82d9a2513cc6c305c6b9a7c0d1a6a92de06e38"
+    },
+    "README.md": {
+      "bytes": 4130,
+      "sha256": "c3740443ef827d88bfdddb61303ff0f82706961091332684369744a4d7999d99"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+PASS  S1 stride-0x28 users of a +0xA8-loaded base: 0025B400 0025DF00 0025E4C0 002651A0 0026B4C0 0026B4E0 003DBDC0; other indexed uses: 00170370 00170982 lea rcx, [rax + rax*2]; 00226BE0 00227012 mov ecx, dword ptr [r13 + rdi*4]; 0025E4C0 0026128A lea rcx, [rax + rax*2]; 00264D90 00264DB5 movzx eax, word ptr [r8 + rdx*4]; 0053AB50 0053B4E7 movzx r10d, byte ptr [rsi + rax*2]; 005DD890 005DD8D9 mov rdi, qword ptr [rax + rdx*8]
+PASS  S2 indexed accesses through a +0xA8-loaded base covering +0x27: 0
+PASS  S3 454 functions walked; +0x27 covered only by 2 sets + 10 clears; unknown 0, escapes 0, copies 0; indirect ['00262278', '002622DB', '002622F8']
+PASS  S4 1960 commands / 1886 handlers; 46 touch the +0x20..+0x27 scratch; 22 read sites (38 command-reads) in 26 commands, uncovered none; unknown 0, escapes 0
+PASS  S5 indirect calls handed r8: ['0017D280@0017D2A8', '00244F00@00244F34'] (debug printf vararg; widget callback on rcx / rdx)
+FAILS 0

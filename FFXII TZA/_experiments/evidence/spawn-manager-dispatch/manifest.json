@@ -1,0 +1,100 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_manager_primary.py",
+      "bytes": 3837,
+      "sha256": "388fd15cab493049deab9601592ca53bf3f76c4ee67ae8812dd7371c79097cf1",
+      "transform": "CRLF to LF only"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-manager-primary.json",
+      "bytes": 59457,
+      "sha256": "ce4bd5151328162ee56a6e6604f9f543821a2cdd5b469e3ca1718ace2c76f65c",
+      "transform": "CRLF to LF only"
+    },
+    "callees.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_manager_callees.py",
+      "bytes": 3855,
+      "sha256": "23bc57c4a175fcfdfd6ac973a43410e86dfece3022bd6d7be6fb4a267b8fd0dd",
+      "transform": "CRLF to LF only"
+    },
+    "callees.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-manager-callees.json",
+      "bytes": 100850,
+      "sha256": "406bc4d9e93ee9ade5d0eb087ad24ba7b9d7eabe1939f90f1fb6e974e80caf75",
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_manager_check.py",
+      "bytes": 5511,
+      "sha256": "03012d8e45b0fc98221b7ab344aa9b357161051bbd1783a3f6e0285fbedd43e9",
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-manager-check.json",
+      "bytes": 916,
+      "sha256": "d110cb0b9fc77f90676bd118ae628320ad07d10d94a491e03e27f0fb5a2fa2d0",
+      "transform": "identity"
+    },
+    "probe.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_manager_probe.py",
+      "bytes": 6376,
+      "sha256": "ae9b842276006bfa82dfa5ee91ea2658c13e7ffcc75e1816c011294b06e065af",
+      "transform": "identity"
+    },
+    "execution.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-manager-execution.json",
+      "bytes": 46709,
+      "sha256": "3dbd917bb6edeb8c9a638a540f058a3e2c5a801f1f294d70344c73df82467a1e",
+      "transform": "identity"
+    },
+    "feasibility.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-manager-feasibility.json",
+      "bytes": 5603,
+      "sha256": "a2a93a566b8f037b95c87033e5ba2c4ba49d5a34a9aecf63c85c9cf58d836f37",
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "callees.json": {
+      "bytes": 96982,
+      "sha256": "d92d43bd5492cc48571409d7d1975905f33262109805d810c77a575d204329d9"
+    },
+    "callees.py": {
+      "bytes": 3775,
+      "sha256": "25f2b0cfa1ceb3f032d4f3e017a4d36181d8cf1a5c7d7e4f575265ab9fecbf5a"
+    },
+    "check.json": {
+      "bytes": 916,
+      "sha256": "d110cb0b9fc77f90676bd118ae628320ad07d10d94a491e03e27f0fb5a2fa2d0"
+    },
+    "check.py": {
+      "bytes": 5511,
+      "sha256": "03012d8e45b0fc98221b7ab344aa9b357161051bbd1783a3f6e0285fbedd43e9"
+    },
+    "execution.json": {
+      "bytes": 46709,
+      "sha256": "3dbd917bb6edeb8c9a638a540f058a3e2c5a801f1f294d70344c73df82467a1e"
+    },
+    "feasibility.json": {
+      "bytes": 5603,
+      "sha256": "a2a93a566b8f037b95c87033e5ba2c4ba49d5a34a9aecf63c85c9cf58d836f37"
+    },
+    "primary.json": {
+      "bytes": 57165,
+      "sha256": "670556f1d4134f8893190cccb8e0f923e877899463465d3432e0393e868cef2d"
+    },
+    "primary.py": {
+      "bytes": 3757,
+      "sha256": "bc5c3ab1a0cddc60912d7af1a4350f42fc9883b91ac5fb769838e95c722e4031"
+    },
+    "probe.py": {
+      "bytes": 6376,
+      "sha256": "ae9b842276006bfa82dfa5ee91ea2658c13e7ffcc75e1816c011294b06e065af"
+    },
+    "README.md": {
+      "bytes": 3183,
+      "sha256": "1cef2145325a6eeeab567262b22e0178afb8cbfea51b387566c14b61d7ae5a23"
+    }
+  }
+}

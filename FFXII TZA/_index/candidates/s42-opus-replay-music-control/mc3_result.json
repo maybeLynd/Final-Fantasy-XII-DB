@@ -1,0 +1,21 @@
+{
+ "arena5_block": "733ED180",
+ "block_head": "00000000000000000000000000000000",
+ "block_writes_during_call": 0,
+ "cases": {
+  "heap5_registered_by_boots_own_calls": true,
+  "loader_returns_and_publishes_the_block": true,
+  "no_byte_of_the_block_is_written_before_the_pointer_returns": true,
+  "the_read_is_queued_with_kind_9_id_0x20_the_block_and_the_file_size": true
+ },
+ "enqueue": {
+  "block": "735ACB00",
+  "id": 32,
+  "kind": 9,
+  "size": 1615
+ },
+ "file_head": "4d5553301f050000340000006a000000",
+ "file_size": 1615,
+ "ok": true,
+ "returned": "735ACB00"
+}

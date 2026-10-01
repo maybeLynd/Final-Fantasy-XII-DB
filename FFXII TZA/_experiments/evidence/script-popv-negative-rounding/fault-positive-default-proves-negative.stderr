@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-negative-rounding\check.py", line 27, in <module>
+    if '--fault-positive-default-proves-negative' in sys.argv and mode=='RU':assert raw['consumer_original_default']['returncode']!=0,'Green default covers positive-domain fixtures, not thisnegative extension'
+                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Green default covers positive-domain fixtures, not thisnegative extension

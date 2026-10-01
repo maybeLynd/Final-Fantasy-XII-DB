@@ -1,0 +1,3 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	pass	textId	u16: 0x0 x4, 0xbba x2, 0xbc1 x2, 0xbc5 x2, 0xbb8 x1 (15 distinct)	0031DCE4* movzx ecx, word ptr [rsi]	a text id -> 002F9860 -> query +0x08 (the command's second text pointer)	STATIC	PASS
+0x02	2	page	nameWord	u16: 0x0 x3, 0x2000 x1, 0x2001 x1, 0x2002 x1, 0x2003 x1 (19 distinct)	0031DC54* movzx ecx, word ptr [rax + 2] | 0031DC8F* movzx edx, word ptr [rax + 2]	name word (bank 4)	STATIC	EID

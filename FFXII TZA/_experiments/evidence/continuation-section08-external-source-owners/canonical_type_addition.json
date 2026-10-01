@@ -1,0 +1,120 @@
+{
+  "type": "IndexedExternalSourceRequest",
+  "type_row": [
+    "IndexedExternalSourceRequest",
+    "0x1C",
+    "02-Resource-And-Asset-Pipeline",
+    "02B581A0 + (group*16 + index)*0x1C; producer sweep groups0..4, entries0..15",
+    "IMAGE static table of80 records; each handle names separately allocated source storage, not a heap-allocated record. 003DD4C0 allocates and pins backing; full producer static-only here.",
+    "003DD4C0 prepares source/route/request fields; 003DDA70 submits and sets state3. Global one-time table initializer is not identified by this section.",
+    "003DD420 single/003DD380 group deletion; state3 is deferred to003DD850 completion. Record memory remains static. State1/4 deletion clears handle/state/route; state5 completion clears state only.",
+    "SIGNATURE RESOLVED",
+    "HIGH",
+    "L1",
+    "Original003DD380/420/4C0/740/850/A70 and reached bank/queue paths; SECTION-08 116 bounded native assertions,120 selected body identities,9 rejected variants. 003DD4C0 and full consumer scheduling static-only. Explicit gaps and no whole-type semantic/peer acceptance claim. _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md",
+    "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+    "ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds"
+  ],
+  "field_rows": [
+    [
+      "IndexedExternalSourceRequest",
+      "0x00",
+      "4",
+      "sourceHandle",
+      "uint32",
+      "Tagged backing source owned by this record. Deferred completion frees allocation but retains this numeric value; state-gated lookup is separate.",
+      "SEMANTICALLY IDENTIFIED",
+      "PROVEN",
+      "003DD420 reads+0 before00369800; 003DD850 state5 path preserves+0; 003DD740 returns it only for state4; original controls distinguish retained value from allocation liveness; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x04",
+      "4",
+      "state",
+      "uint32",
+      "Owner policy:1 prepared;2 selected by static producer;3 submitted;4 completion-published;5 deferred delete;0 inactive. State4 does not guarantee successful bank registration. Labels are this owner policy, not queue states.",
+      "SEMANTICALLY IDENTIFIED",
+      "PROVEN",
+      "003DDA70 writes3; 003DD420 maps3->5 and clears1/4; 003DD850 clears5->0 else writes4 ignoring registration return; concrete controls plus static003DD4C0; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x08",
+      "5",
+      "unassigned08_0C",
+      "uint8[5]",
+      "Unassigned storage inside the stride. Sentinel preservation in selected delete paths is not a global no-access or padding proof.",
+      "DISCOVERED",
+      "UNKNOWN",
+      "0x1C stride and bounded byte writes; no complete reader/writer census is claimed; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x0D",
+      "1",
+      "allocationRouteReceipt",
+      "uint8",
+      "Producer sets this byte on one source-allocation route and direct deletion clears it. Deferred completion leaves it unchanged. Full route-selection policy remains open.",
+      "SEMANTICALLY IDENTIFIED",
+      "HIGH",
+      "003DD4C0 branch stores;003DD420/380 clear +0D;003DD850 preserves it in cancelled completion; producer is static-only; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x0E",
+      "2",
+      "unassigned0E_0F",
+      "uint8[2]",
+      "Unassigned interval before request kind. Extent coverage is not semantic meaning.",
+      "DISCOVERED",
+      "UNKNOWN",
+      "Stride and neighboring typed accesses only; no global absence assertion; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x10",
+      "2",
+      "requestKind",
+      "int16",
+      "Signed kind passed to0032E620; distinct from entry/source format tag.",
+      "SEMANTICALLY IDENTIFIED",
+      "PROVEN",
+      "003DDA70 movsx from+10 and actual requester record fixture; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x12",
+      "2",
+      "requestIndex",
+      "int16",
+      "Signed request index passed to0032E620. A synthetic -1 rejection does not prevent owner state3 from being stored.",
+      "SEMANTICALLY IDENTIFIED",
+      "PROVEN",
+      "003DDA70 movsx from+12; native submitted/rejected controls; ordinary reachability not established; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x14",
+      "4",
+      "requestedBytes",
+      "int32",
+      "Requested transfer count passed to queue; positive-length error helper does not deliver this completion callback.",
+      "SEMANTICALLY IDENTIFIED",
+      "PROVEN",
+      "003DDA70 +14 argument;0032E370 positive-length no-callback control; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ],
+    [
+      "IndexedExternalSourceRequest",
+      "0x18",
+      "4",
+      "fileOffset",
+      "int32",
+      "Offset put into request descriptor+0; queue records its normalized offset under existing request rules.",
+      "SEMANTICALLY IDENTIFIED",
+      "PROVEN",
+      "003DDA70 +18 into stack descriptor; native request-slot observation; _experiments/evidence/continuation-section08-external-source-owners/REVIEW.md"
+    ]
+  ],
+  "existing_lines_unchanged": true
+}

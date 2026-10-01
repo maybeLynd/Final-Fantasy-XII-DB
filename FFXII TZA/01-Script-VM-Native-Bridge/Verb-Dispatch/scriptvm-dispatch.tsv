@@ -1,0 +1,1612 @@
+# scriptvm-dispatch.tsv - the script verb -> native handler mapping, 1,493 rows.
+#
+# PROVENANCE IS PER COLUMN. These four columns do not share a source and must not be quoted as
+# though they do:
+#
+#   call_id      the record index into the dispatch table, stride 0x20.
+#   handler      RE-DERIVED FROM THE BINARY 2026-09-08: read at 01EED720 + 0x20*call_id and
+#                compared against the prior extraction. 1,224 of 1,224 agree; 0 fall outside
+#                .text; 0 miss a function entry.
+#                COLUMN MISLABELLED, CORRECTED 2026-09-16 (FABLE), on OPUS-CONTRA-DISPATCH-TABLE-
+#                HEADER-LINES-STILL-OLD-FRAME. This header said the value is "table[+0x00]". It is
+#                not. The table base is 01EED700 (count at +0, record 0 at +8), so 01EED720 is
+#                tbl+0x20 and 01EED720 + 0x20*call_id is tbl+32+32*call_id - exactly what
+#                VMNativeCommandDispatch_GetResultCallback (003DC2A0) reads, which in the record's
+#                own frame is +0x18. EVERY VALUE IN THIS COLUMN STANDS; what was wrong is which
+#                callback it is. A reader who took "+0x00" literally would treat a RESULT callback
+#                as a BEGIN callback and would never get an async verb to work.
+#                THE COLUMN NAME IS STILL `handler` and renaming it to `result_callback` is a
+#                schema change with consumers (scriptvm_dispatch_verify.py at least), so it is
+#                filed rather than done here.
+#   verb, args   FROM THE AUTHORED ff12-script CATALOG, an external community source of 1,954
+#                verb names. NOT verifiable against the image. A name here is a lead.
+#                TRANSCRIPTION RE-VERIFIED 2026-09-14 against the bundled source itself
+#                (Collaboration/tools/ffxii/ff12-script-master/ff12-script/
+#                CScriptContainerInitializers.cpp, 1,954 entries, 0 duplicate ids):
+#                1,224 of 1,224 verb names identical by call id, 0 ids absent from the catalog.
+#                That settles TRANSCRIPTION, not semantics - the catalog is an authored artifact,
+#                so an agreeing name still means "the corpus copied the catalog faithfully" and
+#                not "this is what the engine calls that verb". FINAL-AUDIT pass 25.
+#   owner        the GFZ ledger's owner tag - a prior session's claim, not a mechanism.
+#
+# SUPERSEDED, kept because a reader who saw it needs to know it was withdrawn: this header used
+# to say the index is "APPROXIMATELY the call id", off by one at 0x048C/0x048D, with at least one
+# discontinuity whose location is unknown (question I-6).
+#
+# THE INDEX IS THE CALL ID, EXACTLY. I-6 was CLOSED 2026-09-07: `record N = verb N` holds across
+# all 1,496 family-0 records, on 645 independent anchors agreeing at 89.1% against a 55.7%
+# shifted baseline, and a second oppositely-biased metric giving 97.2% against 59.0%. The
+# 0x048C/0x048D "off by one" was a column confusion - 003462D0 is begin(0x048D) in that record's
+# +8. See scriptvm-native-dispatch-table.md §12, §15-§16.
+#
+# This correction reached the register on 2026-09-07 and this file on 2026-09-14, because no gate
+# reads side-file headers: every stale-prose instrument walks `.md` only. 1,355 authored `#`
+# header lines across 211 side files are outside their reach (OPUS, FINAL-AUDIT pass 25).
+#
+# Regenerate the handler column with Tools/analysis-kit/gfz-scripts/scriptvm_dispatch_verify.py.
+#
+# RE-FRAMED 2026-09-19 (OPUS) on FABLE-REQ-OPUS-DISPATCH-TSV-BEGIN-POLL-COLUMNS-ARE-ONE-CALL-ID-EARLY.
+# FABLE's warning was right and is now resolved. The two trailing columns had been extracted in the OLD
+# record frame (records at 01EED720) and therefore named call id n+1's pointers on every row that had
+# them. Reproduced before fixing: 147 rows carried a pair, 2 matched (begin, poll)(n), 146 matched
+# (begin, poll)(n + 1).
+#
+# Both columns are now read for each row's OWN call id, directly from the accessor frame:
+#     begin_handler = [01EED700 + 8 + 0x20*call_id + 0x00]   (VMNativeCommandDispatch begin,  003DC270)
+#     poll_handler  = [01EED700 + 8 + 0x20*call_id + 0x08]   (poll,   003DC240)
+#     handler       = [01EED700 + 8 + 0x20*call_id + 0x18]   (result, 003DC2A0) - unchanged, and the
+#                     control still holds: 1,224 of 1,224 rows agree.
+# The column formerly called `poll_handler` is now `begin_handler` and the one called
+# `result_handler` is now `poll_handler`; the OLD NAMES WERE BOTH WRONG, not merely shifted - the
+# record's fourth slot is the result and it is what `handler` has always held.
+#
+# Slot census over all 1,496 records, unchanged by this edit and stated so the frame is checkable:
+# begin 277 non-null, poll 230, UNUSED 0, result 1,234. An always-empty THIRD slot is what the
+# accessors predict - nothing reads tbl + 0x20n + 0x18 - and it is how the frame was settled.
+#
+# WHAT THIS FILE STILL DOES NOT LIST: it has a row per call id that HAS A RESULT CALLBACK, so 259 of
+# the 304 asynchronous call ids have no row at all - `wait`, `move` and `turn` among them. See
+# members/async-verbs-by-accessor.tsv (FABLE). Adding them is a separate change and is not made here.
+# EXTENDED 2026-09-08 with the record's other two handler slots. 261 further mappings were sitting
+# unread in a file this database had just adopted.
+#
+# ~~The dispatch record is 32 bytes and holds up to three code pointers - begin (+0x00),
+# poll (+0x08), result (+0x10).~~ SUPERSEDED 2026-09-19 (OPUS): that is the old record frame and
+# it is what put the two trailing columns one call id early. The record is begin +0x00, poll
+# +0x08, UNUSED +0x10, result +0x18, based at tbl+8 = 01EED708 - settled by the accessors and by
+# the slot census above, where the THIRD slot is empty in all 1,496 records.
+#
+# The two counts this block recorded - "poll (+0x08): 122 non-null of 1,224" and "result (+0x10):
+# 139 non-null of 1,224" - were counted over the 1,224 rows in the OLD frame and are left here
+# only as the record of what was imported. The frame-correct figures are the slot census above.
+#
+# The two that are neither are BOTH on call id 05D7, the last record in the extent, and both hold
+# FFFFFFFF. They are written as SENTINEL rather than dropped.
+# EXTENDED 2026-09-19 (OPUS) with the 259 asynchronous call ids that had no row.
+# THE FILE'S SCOPE CHANGED AND THIS IS THE STATEMENT OF IT. It previously held a row per call id that
+# has a RESULT callback, which is why a file calling itself the verb-to-handler mapping did not contain
+# `wait`, `move` or `turn`. It now also holds every call id that has a BEGIN or a POLL, from
+# members/async-verbs-by-accessor.tsv (FABLE). 1,224 rows -> 1,483.
+#
+# CONTROL BEFORE MERGING, on the 45 ids the two files already shared: the names agree on 45 of 45,
+# and after the re-frame above the begin/poll values agree with ZERO disagreements. That is the
+# cross-check that made the merge safe, and it validates the re-frame from a second direction.
+#
+# WHAT THE NEW ROWS DO NOT CARRY: `args` is blank on all 259 - the argument counts came from a source
+# that only covered the result-callback ids and nothing here establishes them - and `owner` is blank.
+# A blank `args` on a new row means UNKNOWN, not zero. ALL 259 have no result callback at all - that
+# is precisely why they were absent, since the old scope was "ids with a result" - so `handler` and
+# `handler_name` are empty on every one of them by construction rather than by omission.
+# (An earlier draft of this note said "224 of the 259". That number was written before it was
+# measured; the measurement is 259 of 259 and it is the one that belongs here.)
+#
+# PROVENANCE OF THE NAMES, stated because it is not this file's own: `verb` on the new rows is
+# `authored_name` from FABLE's census, which does not record where the names came from beyond calling
+# them the bundled community catalogue. They agree with this file's own `verb` column on all 45
+# shared ids, which is a strong check and is not a provenance.
+#
+# EXTENDED 2026-09-26 (SWE2-DATA) on FRONTIER-REQ-DATA-TEN-RESULT-ONLY-ENTRIES-AND-WRITER-GUIDANCE.
+# The ten family-0 ids the authored catalogue does not name at all (AO-5 / BQ-3) now have rows:
+# 059E, 059F, 05AA, 05AE, 05AF, 05B2, 05B3, 05C0, 05C1, 05CC. They had none because the
+# 1,224 result rows were joined through the catalogue and these ten have no catalogue entry.
+# Every slot re-read from the image (01EED700+8+0x20*call_id): begin = poll = +0x10 = 0 in all
+# ten, +0x18 non-null - they are RESULT-ONLY records. `verb` is deliberately blank on all ten:
+# the catalogue names nothing here and no semantic name is invented; `args` is blank = unknown,
+# not zero. 05B2 and 05B3 share result 0050C7F0 - the same alias shape the unnamed pairs carry.
+# For completeness: the only other ids with no row are 0330, 0356 and 03B0, whose records are
+# all-zero - no handler of any kind, so absence is correct.
+#
+call_id	verb	args	handler	handler_name	owner	begin_handler	poll_handler
+0000	wait					0034CF90	0034DCC0
+0001	setpos	3	0034EBC0	FUN_0034ebc0	Movement		
+0002	setvelr	1	00352040	FUN_00352040	Movement		
+0003	setrotangzx	0	00353050	FUN_00353050	Script_VM_Native_Bridge		
+0004	setangzx	0	003538C0	FUN_003538c0	Movement		
+0005	waitv					00353D10	00354230
+0006	pad	0	00354C30	FUN_00354c30	Script_VM_Native_Bridge		
+0007	padt	0	00355440	FUN_00355440	Script_VM_Native_Bridge		
+0008	padr	0	003550D0	FUN_003550d0	Script_VM_Native_Bridge		
+0009	sin	1	00356AC0	FUN_00356ac0	Script_VM_Native_Bridge		
+000A	cos	1	00356FA0	FUN_00356fa0	Script_VM_Native_Bridge		
+000B	getpos	3	003512A0	FUN_003512a0	Script_VM_Native_Bridge		
+000C	bindp	0	00342640	FUN_00342640	Script_VM_Native_Bridge	00340380	003409F0
+000D	ucon	0	00346860	FUN_00346860	Script_VM_Native_Bridge		
+000E	ucoff	0	00346D80	FUN_00346d80	Script_VM_Native_Bridge		
+000F	ames	5	00349BF0	FUN_00349bf0	Script_VM_Native_Bridge		
+0010	aask	5	0034D620	FUN_0034d620	Script_VM_Native_Bridge	0034B760	0034C7D0
+0011	messync					003479F0	00348920
+0012	mesclose	1	0034D920	FUN_0034d920	Script_VM_Native_Bridge		
+0013	askpos	3	0034DD20	FUN_0034dd20	Script_VM_Native_Bridge		
+0014	padtr	0	00355700	FUN_00355700	Script_VM_Native_Bridge		
+0015	keyscan	1	0034E260	FUN_0034e260	Script_VM_Native_Bridge		
+0016	keyscanr	0	0034E930	FUN_0034e930	Script_VM_Native_Bridge		
+0017	keyscant	1	0034EC40	FUN_0034ec40	Script_VM_Native_Bridge		
+0018	keyscantr	0	0034F100	FUN_0034f100	Script_VM_Native_Bridge		
+0019	setpos_19	4	00350510	FUN_00350510	Movement		
+001A	mesopenspeed	2	00350B50	FUN_00350b50	Script_VM_Native_Bridge		
+001B	mesopenspeed_1b	3	003510D0	FUN_003510d0	Script_VM_Native_Bridge		
+001C	setline	6	00351610	FUN_00351610	Script_VM_Native_Bridge		
+001D	setrect	5	00352C00	FUN_00352c00	Script_VM_Native_Bridge		
+001E	enable	0	00353630	FUN_00353630	Script_VM_Native_Bridge		
+001F	disable	0	00353A50	FUN_00353a50	Script_VM_Native_Bridge		
+0020	lineenable	0	00353D00	FUN_00353d00	Script_VM_Native_Bridge		
+0021	linedisable	0	00354910	FUN_00354910	Script_VM_Native_Bridge		
+0022	rectenable	0	00353D00	FUN_00353d00	Script_VM_Native_Bridge		
+0023	rectdisable	0	00354910	FUN_00354910	Script_VM_Native_Bridge		
+0024	dir					0034DDE0	
+0025	setrect_25	6	003531E0	FUN_003531e0	Script_VM_Native_Bridge		
+0026	settouchwh	2	00351E00	FUN_00351e00	Script_VM_Native_Bridge		
+0027	bindoff	0	00357480	FUN_00357480	Script_VM_Native_Bridge		
+0028	rand	0	00355140	FUN_00355140	Script_VM_Native_Bridge		
+0029	rand_29	1	00354BF0	FUN_00354bf0	Script_VM_Native_Bridge		
+002A	reqenable	1	00355540	FUN_00355540	Script_VM_Native_Bridge		
+002B	reqdisable	1	003558F0	FUN_003558f0	Script_VM_Native_Bridge		
+002C	talkang	1	00356390	FUN_00356390	Script_VM_Native_Bridge		
+002D	talkradius	1	00355DD0	FUN_00355dd0	Script_VM_Native_Bridge		
+002E	keywait					003567F0	00356C40
+002F	keywaitr					003567F0	00357530
+0030	keywaitt					003567F0	0033F8E0
+0031	keywaittr					003567F0	003401F0
+0032	show	0	00342A70	FUN_00342a70	Script_VM_Native_Bridge		
+0033	hide	0	00342EB0	FUN_00342eb0	Script_VM_Native_Bridge		
+0034	showw	0	00343E50	FUN_00343e50	Script_VM_Native_Bridge		
+0035	hidew	0	00344120	FUN_00344120	Script_VM_Native_Bridge		
+0036	shows	0	00344490	FUN_00344490	Script_VM_Native_Bridge		
+0037	hides	0	00344730	FUN_00344730	Script_VM_Native_Bridge		
+0038	show_38	1	00343220	FUN_00343220	Script_VM_Native_Bridge		
+0039	showw_39	1	00343550	FUN_00343550	Script_VM_Native_Bridge		
+003A	shows_3a	1	00343960	FUN_00343960	Script_VM_Native_Bridge		
+003B	motionloop	1	00344B90	FUN_00344b90	Script_VM_Native_Bridge		
+003C	setvelrotangzx	0	003535C0	FUN_003535c0	Script_VM_Native_Bridge		
+003D	movesync						00356A90
+003E	rcmove					003548B0	
+003F	rcmove_3f					00354E70	
+0040	rcmovea					00348240	
+0041	rcmovea_41					00355BF0	
+0042	rmove					003488B0	
+0043	rmove_43					003567D0	
+0044	rmovea					00349080	
+0045	rmovea_45					0033F190	
+0046	turnsync						00341D50
+0047	rturn					0034B670	
+0048	rturn_48					00341AB0	
+0049	rturna					0034BE50	
+004A	rturnt					003425D0	
+004B	rturnt_4b					0034D1B0	
+004C	rturnat					0034D9B0	
+004D	dira					0034E040	
+004E	dir_4e					0034E360	
+004F	rturn_4f					003439B0	
+0050	rturn_50					0034CD60	
+0051	touchradius	1	00356000	FUN_00356000	Script_VM_Native_Bridge		
+0052	camerastart	1	0034FE00	FUN_0034fe00	Script_VM_Native_Bridge		
+0053	camerastop	0	00350660	FUN_00350660	Script_VM_Native_Bridge		
+0054	camerastop_54	1	003502E0	FUN_003502e0	Script_VM_Native_Bridge		
+0055	camerachange	1	00351C00	FUN_00351c00	Script_VM_Native_Bridge		
+0056	setupbattle	1	0016D6A0	_guard_check_icall		00351F40	003523B0
+0057	capturepc	1	00352FA0	FUN_00352fa0	Script_VM_Native_Bridge		
+0058	releasepc	0	00354110	FUN_00354110	Script_VM_Native_Bridge		
+0059	cmove					003548B0	00356A90
+005A	cmove_5a					00354E70	00356A90
+005B	cmovea					00348240	00356A90
+005C	cmovea_5c					00355BF0	00356A90
+005D	move					003488B0	00356A90
+005E	move_5e					003567D0	00356A90
+005F	movea					00349080	00356A90
+0060	movea_60					0033F190	00356A90
+0061	turn					0034B670	00341D50
+0062	turn_62					00341AB0	00341D50
+0063	turna					003420A0	00341D50
+0064	turnt					003425D0	00341D50
+0065	turnt_65					00342E40	00341D50
+0066	turnat					0034D9B0	00341D50
+0067	turn_67					003439B0	00341D50
+0068	turn_68					00344720	00341D50
+0069	suspendbattle	0	00356970	FUN_00356970	Script_VM_Native_Bridge		
+006A	resumebattle	0	00356CA0	thunk_FUN_0035a6f0	Script_VM_Native_Bridge		
+006B	disposeentry					00344EA0	003453D0
+006C	recoverentry					00345A30	00346020
+006D	getx	0	00346710	FUN_00346710	Script_VM_Native_Bridge		
+006E	gety	0	00346D40	FUN_00346d40	Script_VM_Native_Bridge		
+006F	getz	0	00347170	FUN_00347170	Script_VM_Native_Bridge		
+0070	getrotangzx	0	00348510	FUN_00348510	Script_VM_Native_Bridge		
+0071	getangzx	0	00348840	FUN_00348840	Script_VM_Native_Bridge		
+0072	getmyid	0	00349910	FUN_00349910	Script_VM_Native_Bridge		
+0073	getentryid	0	00349C90	FUN_00349c90	Script_VM_Native_Bridge		
+0074	sethomingangzx	1	0034A180	FUN_0034a180	Script_VM_Native_Bridge		
+0075	sethomingrotangzx	1	0034A560	FUN_0034a560	Script_VM_Native_Bridge		
+0076	setreachr	1	0034A9F0	FUN_0034a9f0	Script_VM_Native_Bridge		
+0077	snapstart	0	0034AF10	thunk_FUN_00473480	Script_VM_Native_Bridge		
+0078	snapend	0	0034B280	thunk_FUN_00473470	Script_VM_Native_Bridge		
+0079	camerasync					0034C290	0034C570
+007A	frameinfo	0	0034C880	FUN_0034c880	Script_VM_Native_Bridge		
+007B	usemapid	1	0034CC00	FUN_0034cc00	Script_VM_Native_Bridge		
+007C	cameraclear	0	00351540	FUN_00351540	Script_VM_Native_Bridge		
+007D	camerastart_7d	3	0034F2F0	FUN_0034f2f0	Script_VM_Native_Bridge		
+007E	camerastart_7e	2	0034F930	FUN_0034f930	Script_VM_Native_Bridge		
+007F	camerasync_7f					003567F0	0034C570
+0080	movecancel	0	0034D8F0	FUN_0034d8f0	Script_VM_Native_Bridge		
+0081	turncancel	0	0034DC60	FUN_0034dc60	Script_VM_Native_Bridge		
+0082	amest	5	0034A090	FUN_0034a090	Script_VM_Native_Bridge		
+0083	usecharhit	1	0034D120	FUN_0034d120	Script_VM_Native_Bridge		
+0084	setweight	1	0034DEA0	FUN_0034dea0	Script_VM_Native_Bridge		
+0085	voiceread	1	0034EE40	FUN_0034ee40	Script_VM_Native_Bridge		
+0086	voicereadsync					003567F0	0034F770
+0087	voiceplay	1	003515B0	FUN_003515b0	Script_VM_Native_Bridge		
+0088	voicestop	1	00351EB0	FUN_00351eb0	Script_VM_Native_Bridge		
+0089	voicesync					00352320	003527F0
+008A	maskopen	1	00353D90	FUN_00353d90	Script_VM_Native_Bridge		
+008B	maskclose	1	00354800	FUN_00354800	Script_VM_Native_Bridge		
+008C	voicedispose	1	00352DB0	FUN_00352db0	Script_VM_Native_Bridge		
+008D	mapjump					00354D00	00355350
+008E	sethpmenu	1	00356990	FUN_00356990	Script_VM_Native_Bridge		
+008F	setmapjumppos	0	00356E10	FUN_00356e10	Script_VM_Native_Bridge		
+0090	nowmap	0	0033F310	FUN_0033f310	Script_VM_Native_Bridge		
+0091	nowjumpindex	0	0033F7F0	FUN_0033f7f0	Script_VM_Native_Bridge		
+0092	lastmap	0	0033FC40	FUN_0033fc40	Script_VM_Native_Bridge		
+0093	lastjumpindex	0	0033FFF0	FUN_0033fff0	Script_VM_Native_Bridge		
+0094	gethp	0	00340230	FUN_00340230	Script_VM_Native_Bridge		
+0095	getmaxhp	0	003429F0	FUN_003429f0	Script_VM_Native_Bridge		
+0096	gethpratio	0	00342D40	FUN_00342d40	Script_VM_Native_Bridge		
+0097	getmp	0	00343180	FUN_00343180	Script_VM_Native_Bridge		
+0098	getmaxmp	0	003434F0	FUN_003434f0	Script_VM_Native_Bridge		
+0099	getmpratio	0	003438F0	FUN_003438f0	Script_VM_Native_Bridge		
+009A	ucmove					00345430	
+009B	sysucoff	0	00347060	FUN_00347060	Script_VM_Native_Bridge	00346680	00346A60
+009C	sysucon	0	00347440	FUN_00347440	Script_VM_Native_Bridge		
+009D	bganimeplay	1	003477B0	FUN_003477b0	Script_VM_Native_Bridge		
+009E	bganimeplay_9e	3	00347CD0	FUN_00347cd0	Script_VM_Native_Bridge		
+009F	bganimestop	1	003480D0	FUN_003480d0	Script_VM_Native_Bridge		
+00A0	bganimesync					003567F0	003486A0
+00A1	bganimeloop	2	00348D30	FUN_00348d30	Script_VM_Native_Bridge		
+00A2	motionread	1	003492A0	FUN_003492a0	Script_VM_Native_Bridge		
+00A3	motionreadsync	1	0016D6A0	_guard_check_icall		00349560	003499C0
+00A4	motiondispose	1	0034A6A0	FUN_0034a6a0	Script_VM_Native_Bridge		
+00A5	motionplay	1	0034B2C0	FUN_0034b2c0	Script_VM_Native_Bridge		
+00A6	motionsync					0034C2F0	0034C700
+00A7	setheight	1	0034D260	FUN_0034d260	Script_VM_Native_Bridge		
+00A8	setunderheight	0	0034D6D0	FUN_0034d6d0	Script_VM_Native_Bridge		
+00A9	playerstatus	0	0034DA30	FUN_0034da30	Script_VM_Native_Bridge		
+00AA	sysreq	3	0034E5C0	FUN_0034e5c0	Script_VM_Native_Bridge		
+00AB	sysreqall	2	0034F380	FUN_0034f380	Script_VM_Native_Bridge		
+00AC	setentrygroup	1	0034FA70	FUN_0034fa70	Script_VM_Native_Bridge		
+00AD	getbganimeframe	0	0034FED0	FUN_0034fed0	Script_VM_Native_Bridge		
+00AE	getbganimelastframe	0	00350380	FUN_00350380	Script_VM_Native_Bridge		
+00AF	setscale	1	00350850	FUN_00350850	Script_VM_Native_Bridge		
+00B0	bganimespeed	0	00351E70	FUN_00351e70	Script_VM_Native_Bridge		
+00B1	voicepan	2	00352E80	FUN_00352e80	Script_VM_Native_Bridge	00352680	003537B0
+00B2	voicevolume	0	00353C20	FUN_00353c20	Script_VM_Native_Bridge	003533D0	003537B0
+00B3	voicechangevolume	3	003556B0	FUN_003556b0	Script_VM_Native_Bridge	00354DA0	003537B0
+00B4	voicechangepan	3	00354A20	FUN_00354a20	Script_VM_Native_Bridge	00354120	003537B0
+00B5	voiceplay_b5	3	00351020	FUN_00351020	Script_VM_Native_Bridge		
+00B6	fadeout	1	00356650	FUN_00356650	Script_VM_Native_Bridge		
+00B7	whiteout	1	00356FE0	FUN_00356fe0	Script_VM_Native_Bridge		
+00B8	fadein	1	00355EB0	FUN_00355eb0	Script_VM_Native_Bridge		
+00B9	fadesync					0033F4C0	0033FD40
+00BA	fadecolor	4	00340080	FUN_00340080	Script_VM_Native_Bridge		
+00BB	motionplay_bb	2	0034AB50	FUN_0034ab50	Script_VM_Native_Bridge		
+00BC	fadetrans	0	00340580	FUN_00340580	Script_VM_Native_Bridge		
+00BD	bindp2	1	00343760	thunk_FUN_00342640	Script_VM_Native_Bridge	00340380	00342330
+00BE	setentrygroupall	0	00340970	FUN_00340970	Script_VM_Native_Bridge		
+00BF	modelread					00340FA0	
+00C0	modelreadsync	1	0016D6A0	_guard_check_icall		003414A0	00341840
+00C1	modeldispose	1	00342340	FUN_00342340	Script_VM_Native_Bridge		
+00C2	bgeffectstop	1	00342CB0	FUN_00342cb0	Script_VM_Native_Bridge		
+00C3	bgeffectplay	1	00342880	FUN_00342880	Script_VM_Native_Bridge		
+00C4	bgeffectstatus	1	00343050	FUN_00343050	Script_VM_Native_Bridge		
+00C5	blurplay	0	00343F10	FUN_00343f10	Script_VM_Native_Bridge		
+00C6	blurstop	0	00344710	FUN_00344710	Script_VM_Native_Bridge		
+00C7	bluralpha	1	00345060	FUN_00345060	Script_VM_Native_Bridge		
+00C8	blurrotate	1	00345A10	FUN_00345a10	Script_VM_Native_Bridge		
+00C9	blurcolor	4	00346560	FUN_00346560	Script_VM_Native_Bridge		
+00CA	bluroffset	2	00347130	FUN_00347130	Script_VM_Native_Bridge		
+00CB	blurscale	2	00347860	FUN_00347860	Script_VM_Native_Bridge		
+00CC	blurprior	0	00348220	FUN_00348220	Script_VM_Native_Bridge		
+00CD	blurlayer	1	003489C0	FUN_003489c0	Script_VM_Native_Bridge		
+00CE	blurtrans	1	00349280	FUN_00349280	Script_VM_Native_Bridge		
+00CF	fadeprior	1	00349920	FUN_00349920	Script_VM_Native_Bridge		
+00D0	fadeout_d0	2	00356270	FUN_00356270	Script_VM_Native_Bridge		
+00D1	whiteout_d1	2	00356A50	FUN_00356a50	Script_VM_Native_Bridge		
+00D2	fadein_d2	2	003559B0	FUN_003559b0	Script_VM_Native_Bridge		
+00D3	fadesync_d3					003567F0	0033FD40
+00D4	bindp2_d4	3	00343760	thunk_FUN_00342640	Script_VM_Native_Bridge	0033F330	00342330
+00D5	mapjumpstatus	1	0034A250	FUN_0034a250	Script_VM_Native_Bridge		
+00D6	bindp2_d6	2	00343760	thunk_FUN_00342640	Script_VM_Native_Bridge	0033FC60	00342330
+00D7	bindh	1	00345A60	FUN_00345a60	Script_VM_Native_Bridge	00344F00	00342330
+00D8	bindhoff	0	003460F0	FUN_003460f0	Script_VM_Native_Bridge		
+00D9	attach	2	0034A640	FUN_0034a640	Script_VM_Native_Bridge		
+00DA	attachoff	0	0034AD60	FUN_0034ad60	Script_VM_Native_Bridge		
+00DB	effectread	1	0034BC90	FUN_0034bc90	Script_VM_Native_Bridge		
+00DC	effectreadsync					0034C290	0034D740
+00DD	effectplay	1	0034E2A0	FUN_0034e2a0	Script_VM_Native_Bridge		
+00DE	effectsync					0034C290	0034EF60
+00DF	effectcancel	0	003501D0	FUN_003501d0	Script_VM_Native_Bridge		
+00E0	effectread_e0	2	0034B880	FUN_0034b880	Script_VM_Native_Bridge		
+00E1	effectreadsync_e1					003567F0	0034D740
+00E2	effectplay_e2	2	0034DE50	FUN_0034de50	Script_VM_Native_Bridge		
+00E3	effectsync_e3					003567F0	0034EF60
+00E4	effectcancel_e4	1	0034FD80	FUN_0034fd80	Script_VM_Native_Bridge		
+00E5	effectcancelall	0	00350FA0	thunk_FUN_0036de20	Script_VM_Native_Bridge		
+00E6	motionratio	1	00351340	FUN_00351340	Script_VM_Native_Bridge		
+00E7	eventread	1	00353080	FUN_00353080	Script_VM_Native_Bridge	003529E0	00352D70
+00E8	eventread_e8	2	003522C0	FUN_003522c0	Script_VM_Native_Bridge	00351880	00351C90
+00E9	eventreadsync					00353E20	00354740
+00EA	eventreadsync_ea					00353A10	003541B0
+00EB	eventplay	0	00354E80	FUN_00354e80	Script_VM_Native_Bridge		
+00EC	eventplay_ec	1	00354B20	FUN_00354b20	Script_VM_Native_Bridge		
+00ED	eventsync					00353E20	00355F60
+00EE	eventsync_ee					00353A10	00355970
+00EF	offsetsoftimage	0	003562B0	FUN_003562b0	Script_VM_Native_Bridge		
+00F0	setpossoftimage	0	00356830	FUN_00356830	Script_VM_Native_Bridge		
+00F1	eventdispose					0033F710	0033F150
+00F2	eventdispose_f2					00356D40	0033F150
+00F3	geteventspace	0	0033FF40	FUN_0033ff40	Script_VM_Native_Bridge		
+00F4	motionloopframe	2	00340810	FUN_00340810	Script_VM_Native_Bridge		
+00F5	motionstartframe	1	00340E60	FUN_00340e60	Script_VM_Native_Bridge		
+00F6	resetmapidfloorall	0	003416E0	FUN_003416e0	Script_VM_Native_Bridge		
+00F7	resetmapidfloor	1	00341290	FUN_00341290	Script_VM_Native_Bridge		
+00F8	resetmapidwallall	0	00341E30	FUN_00341e30	Script_VM_Native_Bridge		
+00F9	resetmapidwall	1	00341A90	FUN_00341a90	Script_VM_Native_Bridge		
+00FA	resetmapidmjall	0	003424D0	FUN_003424d0	Script_VM_Native_Bridge		
+00FB	resetmapidmj	1	003421B0	FUN_003421b0	Script_VM_Native_Bridge		
+00FC	setmapidfloorground	2	003429B0	FUN_003429b0	Script_VM_Native_Bridge		
+00FD	setmapidmjground	0	00343140	FUN_00343140	Script_VM_Native_Bridge		
+00FE	setmapidfloor	3	00343E60	FUN_00343e60	Script_VM_Native_Bridge		
+00FF	setmapidwall	3	00344A20	FUN_00344a20	Script_VM_Native_Bridge		
+0100	setmapidmj	3	003458D0	FUN_003458d0	Script_VM_Native_Bridge		
+0101	setmapidfloor_101	0	00343810	FUN_00343810	Script_VM_Native_Bridge		
+0102	setmapidwall_102	0	003444F0	FUN_003444f0	Script_VM_Native_Bridge		
+0103	setmapidmj_103	0	00345370	FUN_00345370	Script_VM_Native_Bridge		
+0104	setmapambient	0	00346380	FUN_00346380	Script_VM_Native_Bridge		
+0105	setmapambient_105	3	00346880	FUN_00346880	Script_VM_Native_Bridge		
+0106	resetmapambient	0	00346D20	FUN_00346d20	Script_VM_Native_Bridge		
+0107	resetmapidfloorground	0	00342E00	FUN_00342e00	Script_VM_Native_Bridge		
+0108	resetmapidmjground	0	003434B0	FUN_003434b0	Script_VM_Native_Bridge		
+0109	resetmapidfloor_109	2	00344190	FUN_00344190	Script_VM_Native_Bridge		
+010A	resetmapidwall_10a	2	00344E30	FUN_00344e30	Script_VM_Native_Bridge		
+010B	resetmapidmj_10b	2	00345EF0	FUN_00345ef0	Script_VM_Native_Bridge		
+010C	showmapmodel	1	00347FD0	FUN_00347fd0	Script_VM_Native_Bridge		
+010D	hidemapmodel	1	003482F0	FUN_003482f0	Script_VM_Native_Bridge		
+010E	showshadow	0	00348DC0	FUN_00348dc0	Script_VM_Native_Bridge		
+010F	hideshadow	0	00349360	FUN_00349360	Script_VM_Native_Bridge		
+0110	getbtlwork	0	00349520	FUN_00349520	Script_VM_Native_Bridge		
+0111	setbtlwork	0	00349970	FUN_00349970	Script_VM_Native_Bridge		
+0112	showshadow_112	0	00348AE0	FUN_00348ae0	Script_VM_Native_Bridge		
+0113	showmapmodel_113	0	00347C90	FUN_00347c90	Script_VM_Native_Bridge		
+0114	cameraratio	1	00351190	FUN_00351190	Script_VM_Native_Bridge		
+0115	cameraratio_115	2	00350B00	FUN_00350b00	Script_VM_Native_Bridge		
+0116	setambient	3	00349E40	FUN_00349e40	Script_VM_Native_Bridge		
+0117	resetambient	0	0034ACE0	FUN_0034ace0	Script_VM_Native_Bridge		
+0118	stdmotionread					0034B120	
+0119	stdmotionreadsync						0034B8D0
+011A	stdmotiondispose					0034C2E0	
+011B	startscene	1	0034C9A0	FUN_0034c9a0	Script_VM_Native_Bridge		
+011C	lock_charmotion_once	0	0034D350	FUN_0034d350	Script_VM_Native_Bridge		
+011D	stdmotionplay	1	0034E110	FUN_0034e110	Script_VM_Native_Bridge		
+011E	setmapjumpgroup	1	00350FB0	FUN_00350fb0	Script_VM_Native_Bridge		
+011F	seteventfognearfar	2	003513B0	FUN_003513b0	Script_VM_Native_Bridge		
+0120	seteventfogcolor	4	00351AA0	FUN_00351aa0	Script_VM_Native_Bridge		
+0121	seteventfogstatus	1	00351F20	FUN_00351f20	Script_VM_Native_Bridge		
+0122	setaccr	1	00352D10	FUN_00352d10	Script_VM_Native_Bridge		
+0123	setaccr_123	2	003528F0	FUN_003528f0	Script_VM_Native_Bridge		
+0124	setwh	4	00352810	FUN_00352810	Script_VM_Native_Bridge		
+0125	settalkwh	0	00352200	FUN_00352200	Script_VM_Native_Bridge		
+0126	effectactor	1	00352270	FUN_00352270	Script_VM_Native_Bridge		
+0127	locationeffectread	0	0034C430	FUN_0034c430	Script_VM_Native_Bridge		
+0128	locationeffectread_128	2	0034C0F0	FUN_0034c0f0	Script_VM_Native_Bridge		
+0129	messync2					00347E80	00348920
+012A	getpos_12a	4	00351970	FUN_00351970	Script_VM_Native_Bridge		
+012B	getx_12b	1	00347580	FUN_00347580	Script_VM_Native_Bridge		
+012C	gety_12c	1	00347AB0	FUN_00347ab0	Script_VM_Native_Bridge		
+012D	getz_12d	1	00347FF0	FUN_00347ff0	Script_VM_Native_Bridge		
+012E	getrotangzx_12e	1	00349150	FUN_00349150	Script_VM_Native_Bridge		
+012F	getangzx_12f	1	00349490	FUN_00349490	Script_VM_Native_Bridge		
+0130	setfocuslength	1	00352DE0	FUN_00352de0	Script_VM_Native_Bridge		
+0131	setfocusrange	1	00353240	FUN_00353240	Script_VM_Native_Bridge		
+0132	setfocuslayer	1	00353640	FUN_00353640	Script_VM_Native_Bridge		
+0133	setfocusshift	1	00353AA0	FUN_00353aa0	Script_VM_Native_Bridge		
+0134	setfocusalpha	1	00353E00	FUN_00353e00	Script_VM_Native_Bridge		
+0135	setfocusstatus	1	003542E0	FUN_003542e0	Script_VM_Native_Bridge		
+0136	bindl	0	00354750	FUN_00354750	Script_VM_Native_Bridge		
+0137	seteventlightactor	0	00354B90	FUN_00354b90	Script_VM_Native_Bridge		
+0138	seteventlighttype	0	00355090	FUN_00355090	Script_VM_Native_Bridge		
+0139	seteventlightall	0	00355460	FUN_00355460	Script_VM_Native_Bridge		
+013A	seteventlightcolor	0	00355720	FUN_00355720	Script_VM_Native_Bridge		
+013B	seteventlightrange	0	00355E40	FUN_00355e40	Script_VM_Native_Bridge		
+013C	seteventlightdir	0	00356160	FUN_00356160	Script_VM_Native_Bridge		
+013D	normalang	1	00356C10	FUN_00356c10	Script_VM_Native_Bridge		
+013E	entrydeny	0	00357170	FUN_00357170	Script_VM_Native_Bridge		
+013F	entrystart					003574B0	
+0140	system_setentryexecstatus	1	0033F510	FUN_0033f510	Script_VM_Native_Bridge		
+0141	system_seteventexecstatus	1	0033F8C0	FUN_0033f8c0	Script_VM_Native_Bridge		
+0142	system_getentryexecstatus	0	0033FD20	FUN_0033fd20	Script_VM_Native_Bridge		
+0143	system_geteventexecstatus	0	00340060	FUN_00340060	Script_VM_Native_Bridge		
+0144	seteventlightcorn	0	003566F0	FUN_003566f0	Script_VM_Native_Bridge		
+0145	amese	2	0034A420	FUN_0034a420	Script_VM_Native_Bridge		
+0146	charcachedispose					00340450	00340800
+0147	hideparty	0	003415D0	FUN_003415d0	Script_VM_Native_Bridge		
+0148	showparty	0	00342250	FUN_00342250	Script_VM_Native_Bridge		
+0149	motioncancel	0	0034C730	FUN_0034c730	Script_VM_Native_Bridge		
+014A	aaske	2	0034D620	FUN_0034d620	Script_VM_Native_Bridge	0034BB10	0034C7D0
+014B	partystdmotiondispose	0	00342900	thunk_FUN_0037c3c0	Script_VM_Native_Bridge		
+014C	partystdmotionrecover	0	00343320	FUN_00343320	Script_VM_Native_Bridge	00342C90	00342F50
+014D	getucstatus	0	00343690	FUN_00343690	Script_VM_Native_Bridge		
+014E	motiontrigger	0	00343A20	FUN_00343a20	Script_VM_Native_Bridge		
+014F	gameratio	1	00343EE0	FUN_00343ee0	Script_VM_Native_Bridge		
+0150	system_expandcharmotionmemory	0	0017E7D0	_guard_check_icall			
+0151	eventsoundread	1	00344660	FUN_00344660	Script_VM_Native_Bridge		
+0152	eventsoundreadsync					00344C30	00345250
+0153	eventsoundplay	1	00345930	FUN_00345930	Script_VM_Native_Bridge		
+0154	eventsounddispose	1	00347470	FUN_00347470	Script_VM_Native_Bridge		
+0155	eventsoundstop	1	0034DE30	FUN_0034de30	Script_VM_Native_Bridge		
+0156	setcharclipall	1	00347830	FUN_00347830	Script_VM_Native_Bridge		
+0157	setcharclipdistance	1	00348310	RenderCommand_SetFadeStartDistance	Script_VM_Native_Bridge		
+0158	fadelayer	1	00349D70	FUN_00349d70	Script_VM_Native_Bridge		
+0159	fadecancel	0	0034A050	FUN_0034a050	Script_VM_Native_Bridge		
+015A	fadecancel_15a	1	00349B30	FUN_00349b30	Script_VM_Native_Bridge		
+015B	setbattleexecstatus	0	0034A3B0	FUN_0034a3b0	Script_VM_Native_Bridge		
+015C	setpartypos	5	0034A940	FUN_0034a940	Movement		
+015D	entrysync					0034AF50	0034B350
+015E	isdead	0	0034C0C0	FUN_0034c0c0	Script_VM_Native_Bridge		
+015F	isdead_15f	1	0034C500	FUN_0034c500	Script_VM_Native_Bridge		
+0160	setlod	1	0034D170	FUN_0034d170	Script_VM_Native_Bridge		
+0161	eventsoundtrans	3	0034D470	FUN_0034d470	Script_VM_Native_Bridge		
+0162	eventsoundfadeout	2	0034D970	FUN_0034d970	Script_VM_Native_Bridge		
+0163	eventsoundcancel	0	0034DE30	FUN_0034de30	Script_VM_Native_Bridge		
+0164	setscale_164	3	00350D70	FUN_00350d70	Script_VM_Native_Bridge		
+0165	eventstartsync					0034F3C0	0034F6F0
+0166	eventstartsync_166					0034E460	0034EAB0
+0167	eventstartsync_167					0034FC50	0034F6F0
+0168	ucsetpos	3	0034F800	FUN_0034f800	Script_VM_Native_Bridge		
+0169	bonephysical	0	00350350	FUN_00350350	Script_VM_Native_Bridge		
+016A	eventsoundplay_16a	0	00350700	FUN_00350700	Script_VM_Native_Bridge		
+016B	motionclear	0	00351000	FUN_00351000	Script_VM_Native_Bridge		
+016C	eventsoundisplay	1	00351470	FUN_00351470	Script_VM_Native_Bridge		
+016D	shownavimap	0	00352390	FUN_00352390	Script_VM_Native_Bridge		
+016E	hidenavimap	0	003527D0	FUN_003527d0	Script_VM_Native_Bridge		
+016F	crossfade	3	00353260	FUN_00353260	Script_VM_Native_Bridge		
+0170	crossfadesync						00353700
+0171	stopeventdecode	0	00353BF0	FUN_00353bf0	Script_VM_Native_Bridge		
+0172	showfieldsign	0	003546C0	FUN_003546c0	Script_VM_Native_Bridge		
+0173	hidefieldsign	0	00354B00	FUN_00354b00	Script_VM_Native_Bridge		
+0174	setfieldsign	0	00354F20	FUN_00354f20	Script_VM_Native_Bridge		
+0175	setfieldsignonce	0	003555F0	FUN_003555f0	Script_VM_Native_Bridge		
+0176	fieldsign	1	00355A00	FUN_00355a00	Script_VM_Native_Bridge		
+0177	fieldsignicon	1	003566D0	FUN_003566d0	Script_VM_Native_Bridge		
+0178	fieldsignmes	1	00356B70	FUN_00356b70	Script_VM_Native_Bridge		
+0179	fieldsignmesbyid	1	00357120	FUN_00357120	Script_VM_Native_Bridge		
+017A	registshape	1	0033F100	FUN_0033f100	Script_VM_Native_Bridge		
+017B	shapemax	0	0033F600	FUN_0033f600	Script_VM_Native_Bridge		
+017C	shapewin	6	0033F950	FUN_0033f950	Script_VM_Native_Bridge		
+017D	setshapeanime	0	003400E0	FUN_003400e0	Script_VM_Native_Bridge		
+017E	setshape	4	003405C0	FUN_003405c0	Script_VM_Native_Bridge		
+017F	shapeanimesync					00341C50	00341590
+0180	stopshapeanime	0	00342E70	FUN_00342e70	Script_VM_Native_Bridge		
+0181	setshapeshowstatus	3	00343240	FUN_00343240	Script_VM_Native_Bridge		
+0182	setshapepos	0	00343C00	FUN_00343c00	Script_VM_Native_Bridge		
+0183	setshapepos_183	5	00343610	FUN_00343610	Script_VM_Native_Bridge		
+0184	setshapeclut	0	00343F40	FUN_00343f40	Script_VM_Native_Bridge		
+0185	setshapesampling	0	00344440	FUN_00344440	Script_VM_Native_Bridge		
+0186	setshapescale	0	00344DD0	FUN_00344dd0	Script_VM_Native_Bridge		
+0187	setshapescale_187	0	00344840	FUN_00344840	Script_VM_Native_Bridge		
+0188	shapescalesync					00341C50	00341F50
+0189	setshapecolor	6	003457A0	FUN_003457a0	Script_VM_Native_Bridge		
+018A	setshapecolor_18a	8	003452D0	FUN_003452d0	Script_VM_Native_Bridge		
+018B	shapecolorsync					00341C50	003428C0
+018C	setshapeprior	0	00345E90	FUN_00345e90	Script_VM_Native_Bridge		
+018D	settalkheight	1	0034CAC0	FUN_0034cac0	Script_VM_Native_Bridge		
+018E	settalkunderheight	0	0034CE60	FUN_0034ce60	Script_VM_Native_Bridge		
+018F	mainloopallsyncv	0	003464B0	FUN_003464b0	Script_VM_Native_Bridge		
+0190	setmaplod	1	00346840	FUN_00346840	Script_VM_Native_Bridge		
+0191	setpossummonspace	0	003482E0	thunk_FUN_003b7e20	Script_VM_Native_Bridge		
+0192	registbattletarget	0	00346D10	FUN_00346d10	Script_VM_Native_Bridge		
+0193	setupsummonforevent	1	00346FA0	FUN_00346fa0	Script_VM_Native_Bridge		
+0194	duplicatebattletarget	0	003475D0	thunk_FUN_003b7440	Script_VM_Native_Bridge		
+0195	resumeposbattletarget	0	00347850	thunk_FUN_003b7bb0	Script_VM_Native_Bridge		
+0196	hidenobattletarget	0	00347D80	thunk_FUN_003b7770	Script_VM_Native_Bridge		
+0197	shownobattletarget	0	003480C0	thunk_FUN_003b8090	Script_VM_Native_Bridge		
+0198	summoneventread	1	00353590	FUN_00353590	Script_VM_Native_Bridge		
+0199	setrotangzxsummonspace	0	00348660	FUN_00348660	Script_VM_Native_Bridge		
+019A	captureallforsummon	0	00348A70	FUN_00348a70	Script_VM_Native_Bridge		
+019B	releaseallforsummon	0	00348DA0	FUN_00348da0	Script_VM_Native_Bridge		
+019C	camerashakestart	0	00349A60	FUN_00349a60	Script_VM_Native_Bridge		
+019D	camerashakestop	0	0034A370	FUN_0034a370	Script_VM_Native_Bridge		
+019E	camerashakestop_19e	1	00349ED0	FUN_00349ed0	Script_VM_Native_Bridge		
+019F	camerashakechange	1	0034B610	FUN_0034b610	Script_VM_Native_Bridge		
+01A0	camerashakesync					0034C290	0034BFE0
+01A1	camerashakeclear	0	0034B100	FUN_0034b100	Script_VM_Native_Bridge		
+01A2	camerashakestart_1a2	0	003492F0	FUN_003492f0	Script_VM_Native_Bridge		
+01A3	camerashakestart_1a3	2	00349730	FUN_00349730	Script_VM_Native_Bridge		
+01A4	camerashakesync_1a4					003567F0	0034BFE0
+01A5	camerashakeratio	0	0034AC70	FUN_0034ac70	Script_VM_Native_Bridge		
+01A6	camerashakeratio_1a6	0	0034A720	FUN_0034a720	Script_VM_Native_Bridge		
+01A7	setfightmode	0	0034CB60	FUN_0034cb60	Script_VM_Native_Bridge		
+01A8	setmesmacro	4	0034CF20	FUN_0034cf20	Script_VM_Native_Bridge		
+01A9	updatemesmacro	2	0034D3D0	FUN_0034d3d0	Script_VM_Native_Bridge		
+01AA	stdmotionvariation	1	0034D8D0	FUN_0034d8d0	Script_VM_Native_Bridge		
+01AB	initgauge	1	0034DC70	FUN_0034dc70	Script_VM_Native_Bridge		
+01AC	setgaugeshowstatus	1	0034DFC0	FUN_0034dfc0	Script_VM_Native_Bridge		
+01AD	gaugeshowsync						0050C9F0
+01AE	setgaugecounter	1	0034EA90	FUN_0034ea90	Script_VM_Native_Bridge		
+01AF	setgaugetimer	1	0034ED90	FUN_0034ed90	Script_VM_Native_Bridge		
+01B0	setgaugechangeframe	0	0034F360	FUN_0034f360	Script_VM_Native_Bridge		
+01B1	setgaugechangeratio	2	0034F7C0	FUN_0034f7c0	Script_VM_Native_Bridge		
+01B2	changegaugecounterbyframe	1	0034FDE0	FUN_0034fde0	Script_VM_Native_Bridge		
+01B3	changegaugecounterbyratio	1	003502C0	FUN_003502c0	Script_VM_Native_Bridge		
+01B4	setgaugecountermax	1	00347F20	FUN_00347f20	Script_VM_Native_Bridge		
+01B5	setgaugetimermax	1	00347F20	FUN_00347f20	Script_VM_Native_Bridge		
+01B6	setgaugecountercondition	3	003514F0	FUN_003514f0	Script_VM_Native_Bridge		
+01B7	setgaugetimercondition	3	003514F0	FUN_003514f0	Script_VM_Native_Bridge		
+01B8	resetgaugetimer	0	00351C80	thunk_FUN_004083e0	Script_VM_Native_Bridge		
+01B9	startgaugetimer	0	00351F10	thunk_FUN_00408ad0	Script_VM_Native_Bridge		
+01BA	stopgaugetimer	0	003521F0	thunk_FUN_004083b0	Script_VM_Native_Bridge		
+01BB	gaugepadding0	1	00352660	FUN_00352660	Script_VM_Native_Bridge		
+01BC	setgaugecounterlabel	0	00352A50	FUN_00352a50	Script_VM_Native_Bridge		
+01BD	setgaugecounterunit	1	00352EC0	FUN_00352ec0	Script_VM_Native_Bridge		
+01BE	setgaugetimerlabel	0	003534F0	FUN_003534f0	Script_VM_Native_Bridge		
+01BF	getgaugetimer	1	003539E0	FUN_003539e0	Script_VM_Native_Bridge		
+01C0	getgaugecounter	0	00353D70	FUN_00353d70	Script_VM_Native_Bridge		
+01C1	setgaugecountertype	1	00354190	FUN_00354190	Script_VM_Native_Bridge		
+01C2	setgaugetimertype	1	00354190	FUN_00354190	Script_VM_Native_Bridge		
+01C3	objmblurplay	0	00354970	FUN_00354970	Script_VM_Native_Bridge		
+01C4	objmblurclear	0	00354D70	_guard_check_icall	Script_VM_Native_Bridge		
+01C5	objmblurlimitalpha	0	003551F0	FUN_003551f0	Script_VM_Native_Bridge		
+01C6	objmblurcolor	0	00355500	FUN_00355500	Script_VM_Native_Bridge		
+01C7	objmblurpower	0	003558D0	FUN_003558d0	Script_VM_Native_Bridge		
+01C8	attachinfo	2	00355D20	FUN_00355d20	Script_VM_Native_Bridge		
+01C9	requestreentry	0	00356150	Actor_RequestResourceReentry_Thunk	ActorEntity		
+01CA	lockbehindcamera	3	00356470	FUN_00356470	Script_VM_Native_Bridge		
+01CB	setbehindcameratype	0	00356CB0	FUN_00356cb0	Script_VM_Native_Bridge		
+01CC	setgaugecolor	5	00357270	FUN_00357270	Script_VM_Native_Bridge		
+01CD	setgaugeapply	1	00510720	FUN_00510720	Script_VM_Native_Bridge		
+01CE	unlockbehindcamera	0	00356920	FUN_00356920	Script_VM_Native_Bridge		
+01CF	isquestorder	1	0033F6E0	FUN_0033f6e0	Script_VM_Native_Bridge		
+01D0	isquestclear	1	0033FAA0	FUN_0033faa0	Script_VM_Native_Bridge		
+01D1	setquestorder	2	0033FF80	FUN_0033ff80	Script_VM_Native_Bridge		
+01D2	setquestclear	2	00340300	FUN_00340300	Script_VM_Native_Bridge		
+01D3	getquestorder	0	00340690	FUN_00340690	Script_VM_Native_Bridge		
+01D4	getquestclear	0	00340C50	FUN_00340c50	Script_VM_Native_Bridge		
+01D5	getquestcleartotal	0	00341050	FUN_00341050	Script_VM_Native_Bridge		
+01D6	lockreverb	1	003417C0	FUN_003417c0	Script_VM_Native_Bridge		
+01D7	unlockreverb	0	00341D00	FUN_00341d00	Script_VM_Native_Bridge		
+01D8	showsummontarget	0	00342000	FUN_00342000	Script_VM_Native_Bridge		
+01D9	hidesummontarget	0	00342320	FUN_00342320	Script_VM_Native_Bridge		
+01DA	questeffectread	1	0034CB80	FUN_0034cb80	Script_VM_Native_Bridge		
+01DB	questeffectread_1db	2	0034C820	FUN_0034c820	Script_VM_Native_Bridge		
+01DC	effecttriggercancel	0	00350990	FUN_00350990	Script_VM_Native_Bridge		
+01DD	effecttriggercancel_1dd	2	003504D0	FUN_003504d0	Script_VM_Native_Bridge		
+01DE	getcamerasubframe	0	0050D1C0	FUN_0050d1c0	Script_VM_Native_Bridge		
+01DF	getcameramainframe	0	0050F100	FUN_0050f100	Script_VM_Native_Bridge		
+01E0	setflystatus	0	00342E50	FUN_00342e50	Script_VM_Native_Bridge		
+01E1	setfloatstatus	0	00343200	FUN_00343200	Script_VM_Native_Bridge		
+01E2	getgroundy	0	00343520	FUN_00343520	Script_VM_Native_Bridge		
+01E3	bgeffecttrigger	2	003438A0	FUN_003438a0	Script_VM_Native_Bridge		
+01E4	resumebehindcamera	3	003442D0	FUN_003442d0	Script_VM_Native_Bridge		
+01E5	resumebehindcamerasync						003445E0
+01E6	getlength2	2	00344AF0	FUN_00344af0	Script_VM_Native_Bridge		
+01E7	getlength3	3	00345180	FUN_00345180	Script_VM_Native_Bridge		
+01E8	getangle	2	00345830	FUN_00345830	Script_VM_Native_Bridge		
+01E9	getangle_1e9	1	003461B0	FUN_003461b0	Script_VM_Native_Bridge		
+01EA	stopeventdecode_1ea	0	003540B0	FUN_003540b0	Script_VM_Native_Bridge		
+01EB	mesisselect	1	00346960	FUN_00346960	Script_VM_Native_Bridge		
+01EC	sethp	0	00341B20	FUN_00341b20	Script_VM_Native_Bridge		
+01ED	sethpratio	0	003421D0	FUN_003421d0	Script_VM_Native_Bridge		
+01EE	setmp	0	00341EE0	FUN_00341ee0	Script_VM_Native_Bridge		
+01EF	setmpratio	0	00342500	FUN_00342500	Script_VM_Native_Bridge		
+01F0	setcharbattlestatus	0	00346E60	FUN_00346e60	Script_VM_Native_Bridge		
+01F1	clearcharbattlestatus	0	003472A0	FUN_003472a0	Script_VM_Native_Bridge		
+01F2	gethp_1f2	1	00348800	FUN_00348800	Script_VM_Native_Bridge		
+01F3	getmaxhp_1f3	1	0034B060	FUN_0034b060	Script_VM_Native_Bridge		
+01F4	gethpratio_1f4	0	0034B5D0	FUN_0034b5d0	Script_VM_Native_Bridge		
+01F5	getmp_1f5	0	0034BB80	FUN_0034bb80	Script_VM_Native_Bridge		
+01F6	getmaxmp_1f6	0	0034C1D0	FUN_0034c1d0	Script_VM_Native_Bridge		
+01F7	getmpratio_1f7	0	0034C6A0	FUN_0034c6a0	Script_VM_Native_Bridge		
+01F8	sethp_1f8	2	0034A110	FUN_0034a110	Script_VM_Native_Bridge		
+01F9	sethpratio_1f9	0	0034A920	FUN_0034a920	Script_VM_Native_Bridge		
+01FA	setmp_1fa	0	0034A4C0	FUN_0034a4c0	Script_VM_Native_Bridge		
+01FB	setmpratio_1fb	0	0034A920	FUN_0034a920	Script_VM_Native_Bridge		
+01FC	setcharbattlestatus_1fc	0	00347600	FUN_00347600	Script_VM_Native_Bridge		
+01FD	clearcharbattlestatus_1fd	0	00347BE0	FUN_00347be0	Script_VM_Native_Bridge		
+01FE	ames_1fe	6	00349800	FUN_00349800	Script_VM_Native_Bridge		
+01FF	aask_1ff	6	0034D620	FUN_0034d620	Script_VM_Native_Bridge	0034ADA0	0034BDC0
+0200	bindc	3	00344550	FUN_00344550	Script_VM_Native_Bridge	00343B00	00342330
+0201	bindcoff	1	00344A80	FUN_00344a80	Script_VM_Native_Bridge		
+0202	disposepartywithoutcontrol	0	0034C990	thunk_FUN_003b6f30	Script_VM_Native_Bridge		
+0203	summonread	0	0034E1F0	FUN_0034e1f0	Script_VM_Native_Bridge		
+0204	summonreadsync						0034E3E0
+0205	changetosummonparty	0	0034ED30	FUN_0034ed30	Script_VM_Native_Bridge	0034EA30	
+0206	disposesummon	0	0034FB20	FUN_0034fb20	Script_VM_Native_Bridge	0016D6A0	005C5230
+0207	summontopartyread	0	0034FE80	FUN_0034fe80	Script_VM_Native_Bridge		
+0208	summontopartyreadsync						0034E3E0
+0209	changetonormalparty	0	00350F30	FUN_00350f30	Script_VM_Native_Bridge	0016D6A0	005C5230
+020A	voiceread_20a	2	0034E8B0	FUN_0034e8b0	Script_VM_Native_Bridge		
+020B	setlightcutstatus	2	00351210	FUN_00351210	Script_VM_Native_Bridge		
+020C	setpos2	3	0034F210	FUN_0034f210	Movement		
+020D	setpos2_20d	0	00350C30	FUN_00350c30	Movement		
+020E	setwalkspeed	1	00352530	FUN_00352530	Script_VM_Native_Bridge		
+020F	setnochecktouchheightflag	0	00352BE0	FUN_00352be0	Script_VM_Native_Bridge		
+0210	sqrt	1	00352F70	FUN_00352f70	Script_VM_Native_Bridge		
+0211	getmapjumpposbyindex	5	003538F0	FUN_003538f0	Script_VM_Native_Bridge		
+0212	ucsetpos_212	4	0034FF00	FUN_0034ff00	Script_VM_Native_Bridge		
+0213	animeplay	1	00354710	FUN_00354710	Script_VM_Native_Bridge		
+0214	animesync					003567F0	00355300
+0215	animestop	1	003556E0	FUN_003556e0	Script_VM_Native_Bridge		
+0216	hideanime	0	0050C7F0	FUN_0050c7f0	Script_VM_Native_Bridge		
+0217	showanime	0	0050C7F0	FUN_0050c7f0	Script_VM_Native_Bridge		
+0218	animepause	1	00357100	FUN_00357100	Script_VM_Native_Bridge		
+0219	animepauseclear	0	00357490	FUN_00357490	Script_VM_Native_Bridge		
+021A	setweatherslot	1	003565C0	FUN_003565c0	Script_VM_Native_Bridge		
+021B	setnavimapindex	1	00356BF0	FUN_00356bf0	Script_VM_Native_Bridge		
+021C	setlightcutstatus_21c	0	00351D90	FUN_00351d90	Script_VM_Native_Bridge		
+021D	setlightcutanimestatus	0	00352130	FUN_00352130	Script_VM_Native_Bridge		
+021E	setlightcutanimestatus_21e	0	00352780	FUN_00352780	Script_VM_Native_Bridge		
+021F	setalllightstatus	2	0033F470	FUN_0033f470	Script_VM_Native_Bridge		
+0220	setradius	1	0033F890	FUN_0033f890	Script_VM_Native_Bridge		
+0221	setradius_221	2	0033FCD0	FUN_0033fcd0	Script_VM_Native_Bridge		
+0222	nowlocationmap	0	00357450	FUN_00357450	Script_VM_Native_Bridge		
+0223	bonecalcforce	1	003401B0	FUN_003401b0	Script_VM_Native_Bridge		
+0224	setlightgroup	1	003404F0	FUN_003404f0	Script_VM_Native_Bridge		
+0225	clearlightgroup	1	00340940	FUN_00340940	Script_VM_Native_Bridge		
+0226	getdestrotangzx	0	00340E90	FUN_00340e90	Script_VM_Native_Bridge		
+0227	getdestrotangzx_227	1	00341250	FUN_00341250	Script_VM_Native_Bridge		
+0228	sysreqf	3	0034EC80	FUN_0034ec80	Script_VM_Native_Bridge		
+0229	musicread	1	00341710	FUN_00341710	Script_VM_Native_Bridge		
+022A	musicreadsync					00341C80	00341F90
+022B	musicplay	1	00342F80	FUN_00342f80	Script_VM_Native_Bridge	00342770	00341F90
+022C	musicstop	1	00345010	FUN_00345010	Script_VM_Native_Bridge		
+022D	musicclear	1	00345600	FUN_00345600	Script_VM_Native_Bridge		
+022E	musiccrossplay					00347A50	00347E20
+022F	musiccrossplay_22f					00346C00	00347310
+0230	musicfadeout					00346460	
+0231	musicfadeout_231					00345B60	
+0232	capturepartyforsummon	0	00348130	FUN_00348130	Script_VM_Native_Bridge		
+0233	releasepartyforsummon	0	003484A0	FUN_003484a0	Script_VM_Native_Bridge		
+0234	rootmoveenable	0	003487D0	FUN_003487d0	Script_VM_Native_Bridge		
+0235	rootmovedisable	0	00348B80	FUN_00348b80	Script_VM_Native_Bridge		
+0236	setnoupdatebehindcamera	1	00348DD0	FUN_00348dd0	Script_VM_Native_Bridge		
+0237	changeentryid	0	003493A0	FUN_003493a0	Script_VM_Native_Bridge		
+0238	getduplicateid	0	00349600	FUN_00349600	Script_VM_Native_Bridge		
+0239	recttocircle	0	00349960	FUN_00349960	Script_VM_Native_Bridge		
+023A	behindcamerafovyroll	4	00349D00	FUN_00349d00	Script_VM_Native_Bridge		
+023B	behindcamerafovyrollsync						0034A600
+023C	resetbehindcamerafovyroll	0	0034A330	thunk_FUN_003da2c0	Script_VM_Native_Bridge		
+023D	vibplay	1	0034AC30	FUN_0034ac30	Script_VM_Native_Bridge		
+023E	vibstop	0	0034B0F0	thunk_FUN_0035b460	Script_VM_Native_Bridge		
+023F	vibsync						0034B3C0
+0240	musicclearall	0	0034BB00	thunk_FUN_00360d70	Script_VM_Native_Bridge		
+0241	effectsignal	0	0034D690	FUN_0034d690	Script_VM_Native_Bridge		
+0242	setloopstatusbyevent	1	0034BFC0	FUN_0034bfc0	Script_VM_Native_Bridge		
+0243	turna_243					00344050	00341D50
+0244	rturna_244					00344050	
+0245	getdefaultwalkspeed	0	0034C7A0	FUN_0034c7a0	Script_VM_Native_Bridge		
+0246	getdefaultrunspeed	0	0034CB30	FUN_0034cb30	Script_VM_Native_Bridge		
+0247	setwalkthresholdspeed	0	0034CEA0	FUN_0034cea0	Script_VM_Native_Bridge		
+0248	settalkradiusoffset	3	0034DA90	FUN_0034da90	Script_VM_Native_Bridge		
+0249	lookatoff	0	0034DE90	FUN_0034de90	Script_VM_Native_Bridge		
+024A	lookaton	0	0034E970	FUN_0034e970	Script_VM_Native_Bridge		
+024B	lookatsrcboneid	0	0034D720	FUN_0034d720	Script_VM_Native_Bridge		
+024C	lookatsync						003435C0
+024D	lookat					00342040	003435C0
+024E	lookatt					00343F90	003435C0
+024F	lookat_24f					00340480	003435C0
+0250	lookatt_250					003544A0	003435C0
+0251	lookata					00348650	003435C0
+0252	lookatat					0034BD20	003435C0
+0253	lookatab					00349F10	003435C0
+0254	lookatabt					003551A0	003435C0
+0255	rlookat					00342040	
+0256	rlookatt					00343F90	
+0257	rlookat_257					00340480	
+0258	rlookatt_258					003544A0	
+0259	rlookata					00356AF0	
+025A	rlookatat					003573C0	
+025B	rlookatab					00349F10	
+025C	rlookatabt					003551A0	
+025D	raturn					0034FB40	
+025E	raturn_25e					0034E710	
+025F	raturna					0034EFE0	
+0260	aturn					0034FB40	00341D50
+0261	aturn_261					00350950	00341D50
+0262	aturna					00351200	00341D50
+0263	setfocusmode	1	00352020	FUN_00352020	Script_VM_Native_Bridge		
+0264	setfreetargetw	0	00352500	FUN_00352500	Script_VM_Native_Bridge		
+0265	setfreetargettype	1	003528C0	FUN_003528c0	Script_VM_Native_Bridge		
+0266	setautorelax	1	00352CE0	FUN_00352ce0	Script_VM_Native_Bridge		
+0267	commoneffectplay	2	00353860	FUN_00353860	Script_VM_Native_Bridge		
+0268	efffadein	1	00354670	FUN_00354670	Script_VM_Native_Bridge		
+0269	efffadeout	1	00354090	FUN_00354090	Script_VM_Native_Bridge		
+026A	effectsignalsync					00354CB0	00355160
+026B	stdmotionplaywithoutsame	0	0034EA40	FUN_0034ea40	Script_VM_Native_Bridge		
+026C	setcharseplay	1	00357350	FUN_00357350	Script_VM_Native_Bridge		
+026D	istouchuc	0	0033FA40	FUN_0033fa40	Script_VM_Native_Bridge		
+026E	settouchuconly	1	00341000	FUN_00341000	Script_VM_Native_Bridge		
+026F	setcharclipone	1	00347D90	FUN_00347d90	Script_VM_Native_Bridge		
+0270	defaultmapmodel	1	00348680	FUN_00348680	Script_VM_Native_Bridge		
+0271	setsummoncameratarget	2	00341410	FUN_00341410	Script_VM_Native_Bridge		
+0272	getdefaultwalkthresholdspeed	0	0034D300	FUN_0034d300	Script_VM_Native_Bridge		
+0273	setcharseplayall	1	0033F210	FUN_0033f210	Script_VM_Native_Bridge		
+0274	effecttriggersync					00355CC0	00355F40
+0275	effecttriggersync_275					0050EA20	00355F40
+0276	setfloaty	0	003419A0	FUN_003419a0	Script_VM_Native_Bridge		
+0277	lookat_277					00350980	003435C0
+0278	lookat_278					00341390	003435C0
+0279	lookata_279					003492E0	003435C0
+027A	lookatab_27a					0034AEC0	003435C0
+027B	rlookat_27b					0034EB40	
+027C	rlookat_27c					00341390	
+027D	rlookata_27d					0033F770	
+027E	rlookatab_27e					0034AEC0	
+027F	setlightallcutstatus	1	00351850	FUN_00351850	Script_VM_Native_Bridge		
+0280	animeplaytiming	0	00354AD0	FUN_00354ad0	Script_VM_Native_Bridge		
+0281	setaturnlookatlockstatus	1	00341DF0	FUN_00341df0	Script_VM_Native_Bridge		
+0282	motionsync_282					0034B860	0034BBD0
+0283	setzclipoverdraw	1	00342120	FUN_00342120	Script_VM_Native_Bridge		
+0284	setshadowalpha	1	00342410	FUN_00342410	Script_VM_Native_Bridge		
+0285	clearshadowalpha	0	003429A0	FUN_003429a0	Script_VM_Native_Bridge		
+0286	setshadowlod	1	00342CF0	FUN_00342cf0	Script_VM_Native_Bridge		
+0287	clearshadowlod	0	00343130	FUN_00343130	Script_VM_Native_Bridge		
+0288	resetbehindcamera	2	00343340	FUN_00343340	Script_VM_Native_Bridge		
+0289	resumebehindcamera_289	0	00343DB0	FUN_00343db0	Script_VM_Native_Bridge		
+028A	setshadowratio	0	00343870	FUN_00343870	Script_VM_Native_Bridge		
+028B	voiceplay_28b	2	00350BC0	FUN_00350bc0	Script_VM_Native_Bridge		
+028C	voiceplay_28c	4	00350880	FUN_00350880	Script_VM_Native_Bridge		
+028D	voicestandby	1	00351B60	FUN_00351b60	Script_VM_Native_Bridge		
+028E	distance3d	0	00343D10	FUN_00343d10	Script_VM_Native_Bridge		
+028F	distance	2	00344390	FUN_00344390	Script_VM_Native_Bridge		
+0290	distance_290	3	003448F0	FUN_003448f0	Script_VM_Native_Bridge		
+0291	distance3d_291	4	00344F80	FUN_00344f80	Script_VM_Native_Bridge		
+0292	distance_292	4	00345630	FUN_00345630	Script_VM_Native_Bridge		
+0293	distance3d_293	0	00345C20	FUN_00345c20	Script_VM_Native_Bridge		
+0294	atan2	2	00346330	FUN_00346330	Script_VM_Native_Bridge		
+0295	isrange	2	00346780	FUN_00346780	Script_VM_Native_Bridge		
+0296	isrange_296	0	00346EF0	FUN_00346ef0	Script_VM_Native_Bridge		
+0297	usemoviememory	0	003477E0	FUN_003477e0	Script_VM_Native_Bridge		003473C0
+0298	stopmoviememory	0	00347D60	FUN_00347d60	Script_VM_Native_Bridge		
+0299	seteffbeforeframecapturemode	1	00347F60	FUN_00347f60	Script_VM_Native_Bridge		
+029A	getspattackskillinfo	2	00348330	FUN_00348330	Script_VM_Native_Bridge		
+029B	spattackread	2	00348870	FUN_00348870	Script_VM_Native_Bridge		
+029C	spattackreadsync					003567F0	003491B0
+029D	spattackplay	1	003495A0	FUN_003495a0	Script_VM_Native_Bridge		
+029E	spattacksync					003567F0	0034A030
+029F	effecttotalsignalsync					003567F0	0034AA70
+02A0	hidenobattletarget_spattack	1	0034BA30	FUN_0034ba30	Script_VM_Native_Bridge		
+02A1	isfusion_spattack	1	0034BF90	FUN_0034bf90	Script_VM_Native_Bridge		
+02A2	capturepcbyentryid	0	0034C3D0	FUN_0034c3d0	Script_VM_Native_Bridge		
+02A3	duplicatepartyinfo_spattack	0	0034CF80	thunk_FUN_003b7080	Script_VM_Native_Bridge		
+02A4	resumepartyinfo_spattack	0	0034D330	FUN_0034d330	Script_VM_Native_Bridge		
+02A5	lockreverb_2a5	0	00341460	FUN_00341460	Script_VM_Native_Bridge		
+02A6	efffadecancel	0	00354960	thunk_FUN_002efd50	Script_VM_Native_Bridge		
+02A7	setmenuhptargetshowstatus	1	0034D700	FUN_0034d700	Script_VM_Native_Bridge		
+02A8	openspattackwindow	0	0034DA80	thunk_FUN_002e1ae0	Script_VM_Native_Bridge		
+02A9	spattackwindowsync						0034DD00
+02AA	setbattlethinkstatus	1	0034E160	FUN_0034e160	Script_VM_Native_Bridge		
+02AB	summonplaymotionall	0	0034EB30	thunk_FUN_003b79d0	Script_VM_Native_Bridge		
+02AC	summonfollowboneposall	4	0034EEC0	FUN_0034eec0	Script_VM_Native_Bridge		
+02AD	summonfollowbonestatusall	0	0034F450	FUN_0034f450	Script_VM_Native_Bridge		
+02AE	setsoftfocusmode	4	0034FA00	FUN_0034fa00	Script_VM_Native_Bridge		
+02AF	openskillnamewindow_spattack	1	0034FFC0	FUN_0034ffc0	Script_VM_Native_Bridge		
+02B0	getdefaultheight	0	003503D0	FUN_003503d0	Script_VM_Native_Bridge		
+02B1	getdefaultradiusw	0	00350910	FUN_00350910	Script_VM_Native_Bridge		
+02B2	getdefaultradiusd	0	00350910	FUN_00350910	Script_VM_Native_Bridge		
+02B3	setquestscenarioflag	2	00351140	FUN_00351140	Script_VM_Native_Bridge		
+02B4	getquestscenarioflag	1	00351F90	FUN_00351f90	Script_VM_Native_Bridge		
+02B5	setquestcontract	0	00351560	FUN_00351560	Script_VM_Native_Bridge		
+02B6	getquestcontract	0	00351C40	FUN_00351c40	Script_VM_Native_Bridge		
+02B7	motiontotalsignalsync					003567F0	0034B310
+02B8	setkutipakustatus	1	00352370	FUN_00352370	Script_VM_Native_Bridge		
+02B9	setinterventioncamera	2	00353530	VMPartyCommand_SetSecondaryFocusActorFromActorIndex	Party		
+02BA	mapsoundplay	1	00346260	FUN_00346260	Script_VM_Native_Bridge		
+02BB	mapsoundplay_2bb	3	00346990	FUN_00346990	Script_VM_Native_Bridge		
+02BC	setquestok	2	00353B20	FUN_00353b20	Script_VM_Native_Bridge		
+02BD	isquestok	0	00353E80	FUN_00353e80	Script_VM_Native_Bridge		
+02BE	setuptreasure	1	00355210	FUN_00355210	Script_VM_Native_Bridge	00354400	00354A40
+02BF	talktreasure	1	0016D6A0	_guard_check_icall		00355830	00355E20
+02C0	sebsoundplay	2	0033F410	FUN_0033f410	Script_VM_Native_Bridge		
+02C1	sebsoundplay_2c1	0	00357040	FUN_00357040	Script_VM_Native_Bridge		
+02C2	stdmotionplay_2c2	2	0034E410	FUN_0034e410	Script_VM_Native_Bridge		
+02C3	stdmotionplaywithoutsame_2c3	2	0034ED40	FUN_0034ed40	Script_VM_Native_Bridge		
+02C4	fadesystemtime	0	0033F830	FUN_0033f830	Script_VM_Native_Bridge		
+02C5	effectkeepmapjump	0	0033FC20	FUN_0033fc20	Script_VM_Native_Bridge		
+02C6	effectkeepclear	0	00340010	FUN_00340010	Script_VM_Native_Bridge		
+02C7	musictrans	3	00340260	FUN_00340260	Script_VM_Native_Bridge		
+02C8	lookaty					00340BE0	003435C0
+02C9	lookatyt					003547A0	003435C0
+02CA	lookatya					00348B90	003435C0
+02CB	lookatyat					0034C420	003435C0
+02CC	lookatyab					00356740	003435C0
+02CD	lookatyabt					0034D0C0	003435C0
+02CE	rlookaty					00340BE0	
+02CF	rlookatyt					003547A0	
+02D0	rlookatya					00356F20	
+02D1	rlookatyat					0033F270	
+02D2	rlookatyab					00356740	
+02D3	rlookatyabt					0034D0C0	
+02D4	raturny					00350260	
+02D5	raturnya					0034F4F0	
+02D6	aturny					00350260	00341D50
+02D7	aturnya					00351A30	00341D50
+02D8	lookaty_2d8					00353330	003435C0
+02D9	lookatya_2d9					003498C0	003435C0
+02DA	lookatyab_2da					0034B450	003435C0
+02DB	rlookaty_2db					00353330	
+02DC	rlookatya_2dc					0033FBA0	
+02DD	rlookatyab_2dd					0034B450	
+02DE	rturnzx					0034BA50	
+02DF	setcapturescreenmode	0	00340B90	FUN_00340b90	Script_VM_Native_Bridge		
+02E0	setforcerelax					00341600	00342CE0
+02E1	clearforcerelax					00343290	
+02E2	getucactorid	0	00343BC0	FUN_00343bc0	Script_VM_Native_Bridge		
+02E3	getucslot	0	003440E0	FUN_003440e0	Script_VM_Native_Bridge		
+02E4	haveitem	1	00344630	FUN_00344630	Script_VM_Native_Bridge		
+02E5	additem	2	00345080	FUN_00345080	Script_VM_Native_Bridge		
+02E6	checkgill	1	00346510	FUN_00346510	Script_VM_Native_Bridge		
+02E7	addgill	1	00346930	FUN_00346930	Script_VM_Native_Bridge		
+02E8	subgill	1	00346E30	FUN_00346e30	Script_VM_Native_Bridge		
+02E9	havegill	0	00346000	FUN_00346000	Script_VM_Native_Bridge		
+02EA	getmapid	0	00348100	FUN_00348100	Script_VM_Native_Bridge		
+02EB	getmaptype	0	003484E0	FUN_003484e0	Script_VM_Native_Bridge		
+02EC	getplaytime	0	00348970	FUN_00348970	Script_VM_Native_Bridge		
+02ED	getplayhour	0	00348D70	FUN_00348d70	Script_VM_Native_Bridge		
+02EE	getplaysec	0	00349370	FUN_00349370	Script_VM_Native_Bridge		
+02EF	getplaymin	0	00349700	FUN_00349700	Script_VM_Native_Bridge		
+02F0	getprice	1	0034B000	FUN_0034b000	Script_VM_Native_Bridge		
+02F1	isdaijiitemid	0	0034B420	FUN_0034b420	Script_VM_Native_Bridge		
+02F2	subitem	2	003459C0	FUN_003459c0	Script_VM_Native_Bridge		
+02F3	setunazukistatus	1	003528A0	FUN_003528a0	Script_VM_Native_Bridge		
+02F4	setmallocalwritestatusbybattle	0	0034B9E0	FUN_0034b9e0	Script_VM_Native_Bridge		
+02F5	ishoridashi	0	0034BD90	FUN_0034bd90	Script_VM_Native_Bridge		
+02F6	clearhoridashi	0	0034C2C0	FUN_0034c2c0	Script_VM_Native_Bridge		
+02F7	sethoridashi	1	0034C710	FUN_0034c710	Script_VM_Native_Bridge		
+02F8	isshutoralappear	0	0034D940	FUN_0034d940	Script_VM_Native_Bridge		
+02F9	clearshutoralappear	0	0034D190	FUN_0034d190	Script_VM_Native_Bridge		
+02FA	setshutoralappear	0	0034CA20	FUN_0034ca20	Script_VM_Native_Bridge		
+02FB	isshutoralenable	0	0034DDB0	FUN_0034ddb0	Script_VM_Native_Bridge		
+02FC	clearshutoralenable	0	0034D600	FUN_0034d600	Script_VM_Native_Bridge		
+02FD	setshutoralenable	0	0034CD40	FUN_0034cd40	Script_VM_Native_Bridge		
+02FE	usecamerahit	1	0034D420	FUN_0034d420	Script_VM_Native_Bridge		
+02FF	getmapgroundtype	0	0034E0E0	FUN_0034e0e0	Script_VM_Native_Bridge		
+0300	isnaviicon	0	0034E0B0	FUN_0034e0b0	Script_VM_Native_Bridge		
+0301	setnaviicon	0	0034EE20	FUN_0034ee20	Script_VM_Native_Bridge		
+0302	clearnaviicon	0	0034DD90	FUN_0034dd90	Script_VM_Native_Bridge		
+0303	setsaverambattlestatus	0	0034F870	FUN_0034f870	Script_VM_Native_Bridge		
+0304	setsaveramsummonstatus	0	0034FDC0	FUN_0034fdc0	Script_VM_Native_Bridge		
+0305	setsaveramtelepostatus	1	00350240	FUN_00350240	Script_VM_Native_Bridge		
+0306	setsaveramsavestatus	0	00350600	FUN_00350600	Script_VM_Native_Bridge		
+0307	setsaveramshutoralstatus	0	00350AE0	FUN_00350ae0	Script_VM_Native_Bridge		
+0308	getsaverambattlestatus	0	00350FD0	FUN_00350fd0	Script_VM_Native_Bridge		
+0309	getsaveramsummonstatus	0	00351380	FUN_00351380	Script_VM_Native_Bridge		
+030A	getsaveramtelepostatus	0	00351940	FUN_00351940	Script_VM_Native_Bridge		
+030B	getsaveramsavestatus	0	00351CE0	FUN_00351ce0	Script_VM_Native_Bridge		
+030C	getsaveramshutoralstatus	0	00352080	FUN_00352080	Script_VM_Native_Bridge		
+030D	setposbynaviicon	2	00352430	FUN_00352430	Script_VM_Native_Bridge		
+030E	getcrystalid	2	00352C80	FUN_00352c80	Script_VM_Native_Bridge		
+030F	getanchorid	2	003532D0	FUN_003532d0	Script_VM_Native_Bridge		
+0310	cutinplay	0	00353850	thunk_FUN_003df8f0	Script_VM_Native_Bridge		
+0311	cutinclear	0	00353C40	thunk_FUN_0024ceb0	Script_VM_Native_Bridge		
+0312	resetcutinparam	0	00354080	thunk_FUN_003df900	Script_VM_Native_Bridge		
+0313	cutintype	0	00354570	FUN_00354570	Script_VM_Native_Bridge		
+0314	cutinlinefade	1	00354890	FUN_00354890	Script_VM_Native_Bridge		
+0315	cutinpos	2	00354C70	FUN_00354c70	Script_VM_Native_Bridge		
+0316	cutinrotate	1	00355120	FUN_00355120	Script_VM_Native_Bridge		
+0317	cutinlinewidth	1	003554D0	FUN_003554d0	Script_VM_Native_Bridge		
+0318	cutinuv	0	003557F0	FUN_003557f0	Script_VM_Native_Bridge		
+0319	cutincolor	0	00355C60	FUN_00355c60	Script_VM_Native_Bridge		
+031A	cutinlinecolor	0	003560F0	FUN_003560f0	Script_VM_Native_Bridge		
+031B	moveblurplay	0	003565B0	thunk_FUN_003de310	Script_VM_Native_Bridge		
+031C	moveblurclear	0	00356A00	thunk_FUN_0024eb20	Script_VM_Native_Bridge		
+031D	resetmoveblurparam	0	00356CF0	thunk_FUN_003de320	Script_VM_Native_Bridge		
+031E	moveblurpresettype	1	00357330	FUN_00357330	Script_VM_Native_Bridge		
+031F	moveblurcluttype	0	0033F170	FUN_0033f170	Script_VM_Native_Bridge		
+0320	moveblurnoisetype	0	0033F5E0	FUN_0033f5e0	Script_VM_Native_Bridge		
+0321	moveblurscreentype	0	0033F920	FUN_0033f920	Script_VM_Native_Bridge		
+0322	movebluraplpha	1	0033FEA0	FUN_0033fea0	Script_VM_Native_Bridge		
+0323	getmapjumpanglebyindex	1	00353490	FUN_00353490	Script_VM_Native_Bridge		
+0324	clearcharclipone	0	003480F0	FUN_003480f0	Script_VM_Native_Bridge		
+0325	charefftrigger	1	003401D0	FUN_003401d0	Script_VM_Native_Bridge		
+0326	getangle_326	0	00348510	FUN_00348510	Script_VM_Native_Bridge		
+0327	setcharclipdistance_327	2	00348B00	RenderCommand_SetFadeDistances	Script_VM_Native_Bridge		
+0328	setcharclipfaderange	0	003493F0	RenderCommand_SetFadeWidth	Script_VM_Native_Bridge		
+0329	getcharclipdefaultdistance	0	00340B50	FUN_00340b50	Script_VM_Native_Bridge		
+032A	getcharclipdefaultfaderange	0	00340F80	FUN_00340f80	Script_VM_Native_Bridge		
+032B	setstatuserrordispdenystatus	1	00341D20	FUN_00341d20	Script_VM_Native_Bridge		
+032C	setstatuserrorctrldenystatus	0	003420F0	FUN_003420f0	Script_VM_Native_Bridge		
+032D	gettelepoindex	0	00342490	FUN_00342490	Script_VM_Native_Bridge		
+032E	getsaveindex	0	00343010	FUN_00343010	Script_VM_Native_Bridge		
+032F	getanchorindex	0	00343470	FUN_00343470	Script_VM_Native_Bridge		
+0331	getmapjumpmode	0	00343930	FUN_00343930	Script_VM_Native_Bridge		
+0332	setmapjumpmode	1	00343D90	FUN_00343d90	Script_VM_Native_Bridge		
+0333	calltelepoeffect	0	00344170	FUN_00344170	Script_VM_Native_Bridge		
+0334	setforcefightmode	1	003444D0	FUN_003444d0	Script_VM_Native_Bridge		
+0335	setsummonfilter	1	00344D30	FUN_00344d30	Script_VM_Native_Bridge		
+0336	setsummonfilter_336	0	00344800	FUN_00344800	Script_VM_Native_Bridge		
+0337	setmutekiparty	0	003452B0	FUN_003452b0	Script_VM_Native_Bridge		
+0338	settalkfadeoutstatus	0	00345740	FUN_00345740	Script_VM_Native_Bridge		
+0339	talkfadeout	0	00345E50	FUN_00345e50	Script_VM_Native_Bridge		
+033A	talkfadein	0	00346240	FUN_00346240	Script_VM_Native_Bridge		
+033B	camerahitcheck	1	0034EDB0	FUN_0034edb0	Script_VM_Native_Bridge		
+033C	camerahitcheck_33c	0	0034E9B0	FUN_0034e9b0	Script_VM_Native_Bridge		
+033D	eventsoundplaysync					003567F0	00351DE0
+033E	setcharclipdefaultdistance	0	00348700	RenderCommand_SetDefaultFadeStartDistance	Script_VM_Native_Bridge		
+033F	setcharclipdefaultfaderange	0	003497D0	RenderCommand_SetDefaultFadeWidth	Script_VM_Native_Bridge		
+0340	setcharclipdefaultdistance_340	2	00348F20	RenderCommand_SetDefaultFadeDistances	Script_VM_Native_Bridge		
+0341	actoriopvoiceread	0	003466A0	FUN_003466a0	Script_VM_Native_Bridge		
+0342	actoriopvoicereadsync						00346AA0
+0343	getbehindcameradir	0	00347070	FUN_00347070	Script_VM_Native_Bridge		
+0344	entryread	0	003473A0	FUN_003473a0	Script_VM_Native_Bridge		
+0345	entryreadsync						00347660
+0346	setcharfogstatus	1	00347BC0	FUN_00347bc0	Script_VM_Native_Bridge		
+0347	setgaugeracemax	0	00347F20	FUN_00347f20	Script_VM_Native_Bridge		
+0348	setgaugeracetype	0	00354190	FUN_00354190	Script_VM_Native_Bridge		
+0349	setgaugeracecondition	0	003514F0	FUN_003514f0	Script_VM_Native_Bridge		
+034A	setgaugeraceiconpos	0	00348A00	FUN_00348a00	Script_VM_Native_Bridge		
+034B	setgaugeraceiconpos_34b	0	00349000	FUN_00349000	Script_VM_Native_Bridge		
+034C	setgaugeraceicontype	0	003493B0	FUN_003493b0	Script_VM_Native_Bridge		
+034D	setgaugeraceiconshowstatus	2	003493B0	FUN_003493b0	Script_VM_Native_Bridge		
+034E	getgaugeraceiconpos	0	00349B70	FUN_00349b70	Script_VM_Native_Bridge		
+034F	behindtoeventcamera	4	00349FA0	FUN_00349fa0	Script_VM_Native_Bridge		
+0350	behindtoeventcamerasync						0034A530
+0351	getequipitemid	1	0034AAD0	FUN_0034aad0	Script_VM_Native_Bridge		
+0352	getpartymember	0	0034B4B0	FUN_0034b4b0	Script_VM_Native_Bridge		
+0353	addpartymember					0034C030	0034C370
+0354	removepartymember					0034C030	0034CDF0
+0355	setbattlemember					0034D4E0	003506A0
+0357	getbattlemember	4	0034F5A0	FUN_0034f5a0	Script_VM_Native_Bridge		
+0358	removebattlemember					00350160	003506A0
+0359	setbattlememberone					00350CD0	003506A0
+035A	setbattlememberlock					00351A40	003506A0
+035B	addguestbattlemember					00352190	003506A0
+035C	removeguestbattlemember					00352AF0	003506A0
+035D	isbattlemember	1	00353780	FUN_00353780	Script_VM_Native_Bridge		
+035E	ispartymember	1	00353CB0	FUN_00353cb0	Script_VM_Native_Bridge		
+035F	isguestbattlemember	1	00353460	FUN_00353460	Script_VM_Native_Bridge		
+0360	checkbattlemember	0	0034E7D0	FUN_0034e7d0	Script_VM_Native_Bridge		
+0361	getpartymembermask	0	003542C0	FUN_003542c0	Script_VM_Native_Bridge		
+0362	getbattlemembermask	0	003546F0	FUN_003546f0	Script_VM_Native_Bridge		
+0363	getnowmusicno	0	003549D0	FUN_003549d0	Script_VM_Native_Bridge		
+0364	musicreplay	1	00344AE0	thunk_FUN_00342f80	Script_VM_Native_Bridge	00344410	00341F90
+0365	getmapdestposbyindex	5	00353ED0	FUN_00353ed0	Script_VM_Native_Bridge		
+0366	captureactor	0	00354E10	FUN_00354e10	Script_VM_Native_Bridge		
+0367	captureactor_367	1	00355570	FUN_00355570	Script_VM_Native_Bridge		
+0368	moviestandby	1	00356460	FUN_00356460	Script_VM_Native_Bridge	003567F0	00356050
+0369	moviestandbysync						00356810
+036A	movieplay	1	00356D20	FUN_00356d20	Script_VM_Native_Bridge		
+036B	movieplaysync						00357300
+036C	getmovieframe	0	0033F250	FUN_0033f250	Script_VM_Native_Bridge		
+036D	movieend	0	0033FA20	FUN_0033fa20	Script_VM_Native_Bridge		
+036E	moviecancel	0	0033FA20	FUN_0033fa20	Script_VM_Native_Bridge	0033FEC0	00357300
+036F	getmoviestatus	0	00340870	FUN_00340870	Script_VM_Native_Bridge		
+0370	summongethertarget	1	00340DA0	FUN_00340da0	Script_VM_Native_Bridge		
+0371	setgaugeraceiconparty	0	00341520	FUN_00341520	Script_VM_Native_Bridge		
+0372	hddinstall	0	003447F0	FUN_003447f0	Script_VM_Native_Bridge	0016D6A0	005C5230
+0373	networkhddinstall	0	003447F0	FUN_003447f0	Script_VM_Native_Bridge	0016D6A0	005C5230
+0374	hddmount					0016D6A0	005C5230
+0375	setusehdd	0	00341980	FUN_00341980	Script_VM_Native_Bridge		
+0376	getusehdd	0	00341DD0	FUN_00341dd0	Script_VM_Native_Bridge		
+0377	setreadfrompc	0	003420B0	FUN_003420b0	Script_VM_Native_Bridge		
+0378	getreadfrompc	0	0034BD90	FUN_0034bd90	Script_VM_Native_Bridge		
+0379	setreadfromhdd	0	00342960	FUN_00342960	Script_VM_Native_Bridge		
+037A	getreadfromhdd	0	00342DD0	FUN_00342dd0	Script_VM_Native_Bridge		
+037B	gethddinstallprogress	0	00355930	FUN_00355930	Script_VM_Native_Bridge		
+037C	questresultwindow					00344C60	00345140
+037D	setnavimapjamming	1	00346E10	FUN_00346e10	Script_VM_Native_Bridge		
+037E	ridechocobo					00347230	00347C60
+037F	getoffchocobo					00347820	00347C60
+0380	eyemove	0	00348430	FUN_00348430	Script_VM_Native_Bridge		
+0381	eyemove_381	0	00348040	FUN_00348040	Script_VM_Native_Bridge		
+0382	eyemovediff	0	00348BE0	FUN_00348be0	Script_VM_Native_Bridge		
+0383	eyemovediff_383	0	00348750	FUN_00348750	Script_VM_Native_Bridge		
+0384	eyemovereset	0	003491A0	FUN_003491a0	Script_VM_Native_Bridge		
+0385	eyemovestop	0	00349410	FUN_00349410	Script_VM_Native_Bridge		
+0386	queststartwindow	0	003464D0	FUN_003464d0	Script_VM_Native_Bridge	003456E0	00345E20
+0387	giveback_item_and_equip					0034A790	0034A300
+0388	takeaway_item_and_equip					00349F90	0034A300
+0389	settalkiconstatus	1	0034AFE0	FUN_0034afe0	Script_VM_Native_Bridge		
+038A	setnpcname	1	0034B9A0	FUN_0034b9a0	Script_VM_Native_Bridge		
+038B	setnavimapdrawstatus	0	0034B400	FUN_0034b400	Script_VM_Native_Bridge		
+038C	sysreqwait					0034C630	0034C9E0
+038D	sethpmode	0	00340640	FUN_00340640	Script_VM_Native_Bridge		
+038E	sethpratiomode	0	00340CB0	FUN_00340cb0	Script_VM_Native_Bridge		
+038F	setmpmode	0	00341140	FUN_00341140	Script_VM_Native_Bridge		
+0390	setmpratiomode	0	00341690	FUN_00341690	Script_VM_Native_Bridge		
+0391	sethpmode_391	0	00348C50	FUN_00348c50	Script_VM_Native_Bridge		
+0392	sethpratiomode_392	0	00349220	FUN_00349220	Script_VM_Native_Bridge		
+0393	setmpmode_393	0	00349620	FUN_00349620	Script_VM_Native_Bridge		
+0394	setmpratiomode_394	0	00349AD0	FUN_00349ad0	Script_VM_Native_Bridge		
+0395	setexpandvoicememory	2	0034D080	FUN_0034d080	Script_VM_Native_Bridge		
+0396	removeexpandvoicememory	0	0034D410	thunk_FUN_003ea200	Script_VM_Native_Bridge		
+0397	setskyonly	1	0034D890	FUN_0034d890	Script_VM_Native_Bridge		
+0398	seteventtimestop	1	0034DC30	FUN_0034dc30	Script_VM_Native_Bridge		
+0399	settalknpcname	1	0034DFA0	FUN_0034dfa0	Script_VM_Native_Bridge		
+039A	releasetalknpcname	1	0034E320	FUN_0034e320	Script_VM_Native_Bridge		
+039B	istalknpcname	1	0034E980	FUN_0034e980	Script_VM_Native_Bridge		
+039C	tutorial_clear_eyemove	0	0034ED20	thunk_FUN_0025a830	Script_VM_Native_Bridge		
+039D	tutorial_get_eyemove	0	0034EFC0	FUN_0034efc0	Script_VM_Native_Bridge		
+039E	tutorial_clear_defaulteyecount	0	0034F590	thunk_FUN_0025a840	Script_VM_Native_Bridge		
+039F	tutorial_get_defaulteyecount	0	0034FB90	FUN_0034fb90	Script_VM_Native_Bridge		
+03A0	tutorial_get_behindcameraenable	0	0034FFA0	FUN_0034ffa0	Script_VM_Native_Bridge		
+03A1	tutorial_set_behindcameraenable	1	003503B0	FUN_003503b0	Script_VM_Native_Bridge		
+03A2	musicplaysync					003508E0	00350EC0
+03A3	tutorial_sync_targetinfolinearrive					00351460	00352350
+03A4	tutorial_sync_targetinfolinearrive_3a4					00351EE0	00352350
+03A5	setmenudisablestatus	2	00352740	FUN_00352740	Script_VM_Native_Bridge		
+03A6	tutorial_sync_partymenu					00352B80	00352E00
+03A7	setdekustatus	0	003533B0	FUN_003533b0	Script_VM_Native_Bridge		
+03A8	zakokillall	0	00353770	thunk_FUN_00473b10	Script_VM_Native_Bridge		
+03A9	setprojectionshadow	1	00353BB0	FUN_00353bb0	Script_VM_Native_Bridge		
+03AA	clearallprojectionshadow	0	00353EC0	thunk_FUN_0042ee10	Script_VM_Native_Bridge		
+03AB	setsunpos	3	00354370	FUN_00354370	Script_VM_Native_Bridge		
+03AC	moveblurcaptureonce	0	00354950	FUN_00354950	Script_VM_Native_Bridge		
+03AD	stopenvsoundall	0	00354C50	FUN_00354c50	Script_VM_Native_Bridge		
+03AE	startenvsoundall	0	00355060	FUN_00355060	Script_VM_Native_Bridge		
+03AF	healall	1	00356500	FUN_00356500	Script_VM_Native_Bridge		
+03B1	setposparty	4	003571A0	FUN_003571a0	Script_VM_Native_Bridge		
+03B2	rgbatrans	5	0033F530	FUN_0033f530	Script_VM_Native_Bridge		
+03B3	capturebattlemember	0	003408E0	FUN_003408e0	Script_VM_Native_Bridge		
+03B4	getbattlemembertotal	0	00341E60	FUN_00341e60	Script_VM_Native_Bridge		
+03B5	maskopenfast	1	003531A0	FUN_003531a0	Script_VM_Native_Bridge		
+03B6	maskclosefast	1	00353A60	FUN_00353a60	Script_VM_Native_Bridge		
+03B7	sethpmenufast	1	00356080	FUN_00356080	Script_VM_Native_Bridge		
+03B8	bosskillall	0	00510840	SpawnGroup_TeardownAllGroupedSpawnUnits	Script_VM_Native_Bridge		
+03B9	settutorial00timestop	1	00343CE0	FUN_00343ce0	Script_VM_Native_Bridge		
+03BA	actoriopvoiceclear	0	00344140	FUN_00344140	Script_VM_Native_Bridge		
+03BB	moveblurfade	1	003445C0	FUN_003445c0	Script_VM_Native_Bridge		
+03BC	moveblurclearfade	1	003448D0	FUN_003448d0	Script_VM_Native_Bridge		
+03BD	moveblurfadesync	0	0016D6A0	_guard_check_icall		0016D6A0	00345100
+03BE	killallfast	0	00345B50	thunk_FUN_002348e0	Script_VM_Native_Bridge		
+03BF	setemergency	0	00346EB0	FUN_00346eb0	Script_VM_Native_Bridge		
+03C0	setuclockstatus	1	00347E00	VMPartyCommand_SetMovementSuppressionBit0	Party		
+03C1	hidetargettype	1	003481A0	FUN_003481a0	Script_VM_Native_Bridge		
+03C2	showtargettype	1	003484C0	FUN_003484c0	Script_VM_Native_Bridge		
+03C3	hidetargetgroup	0	003487E0	FUN_003487e0	Script_VM_Native_Bridge		
+03C4	showtargetgroup	0	00349180	FUN_00349180	Script_VM_Native_Bridge		
+03C5	shownavimapfast	0	00352AD0	FUN_00352ad0	Script_VM_Native_Bridge		
+03C6	hidenavimapfast	0	00352E20	FUN_00352e20	Script_VM_Native_Bridge		
+03C7	setsaveramnavimapstatus	1	00349420	FUN_00349420	Script_VM_Native_Bridge		
+03C8	charcachedisposeall					00340EC0	00340800
+03C9	bossgaugeinit	0	00349890	thunk_FUN_004051b0	Script_VM_Native_Bridge		
+03CA	bossgaugeopen	0	00349B60	thunk_FUN_00405270	Script_VM_Native_Bridge		
+03CB	bossgaugeclose	0	00349F80	thunk_FUN_00404e10	Script_VM_Native_Bridge		
+03CC	getbattlememberonlytotal	0	003426F0	FUN_003426f0	Script_VM_Native_Bridge		
+03CD	captureguestmember	1	003410C0	FUN_003410c0	Script_VM_Native_Bridge		
+03CE	getguestmemberonlytotal	0	003430C0	FUN_003430c0	Script_VM_Native_Bridge		
+03CF	bindhitobj	0	0034A340	FUN_0034a340	Script_VM_Native_Bridge		
+03D0	setnowmap	0	0034A770	FUN_0034a770	Script_VM_Native_Bridge		
+03D1	setnowjumpindex	1	0034AC10	FUN_0034ac10	Script_VM_Native_Bridge		
+03D2	battlelastseplaysync					0034B030	0034B5A0
+03D3	setmeswinhidestatus	2	0034BC50	FUN_0034bc50	Script_VM_Native_Bridge		
+03D4	setgaugehidestatus	1	0034C150	FUN_0034c150	Script_VM_Native_Bridge		
+03D5	denybonephysicalall	1	0034C550	FUN_0034c550	Script_VM_Native_Bridge		
+03D6	denybonephysical	1	0034CCB0	FUN_0034ccb0	Script_VM_Native_Bridge		
+03D7	stopspotsound	0	00355430	FUN_00355430	Script_VM_Native_Bridge		
+03D8	startspotsound	0	003556D0	FUN_003556d0	Script_VM_Native_Bridge		
+03D9	stopenvsound	0	00355960	FUN_00355960	Script_VM_Native_Bridge		
+03DA	startenvsound	0	00356240	FUN_00356240	Script_VM_Native_Bridge		
+03DB	setmotionprior	0	0034D140	FUN_0034d140	Script_VM_Native_Bridge		
+03DC	config_sethpgaugedisplay	1	0034D440	FUN_0034d440	Script_VM_Native_Bridge		
+03DD	changeenvsoundweather	1	0034D900	FUN_0034d900	Script_VM_Native_Bridge		
+03DE	stopenvsound_3de	1	00355E90	FUN_00355e90	Script_VM_Native_Bridge		
+03DF	seteventwakerect	1	0034DCA0	FUN_0034dca0	Script_VM_Native_Bridge		
+03E0	refreshparty	0	0034DF40	FUN_0034df40	Script_VM_Native_Bridge		
+03E1	setucpcmovelockstatus	2	0034E580	VMPartyCommand_SetPartyControlSuppressionMask0Bit	Party		
+03E2	softwarereset					0034EB20	0053DD10
+03E3	setcamerahitscale	0	0034F280	FUN_0034f280	Script_VM_Native_Bridge		
+03E4	defaultcamerahitscale	0	0034FB10	FUN_0034fb10	Script_VM_Native_Bridge		
+03E5	incentryid	0	0034FE70	FUN_0034fe70	Script_VM_Native_Bridge		
+03E6	hidecomplete	0	00350320	FUN_00350320	Script_VM_Native_Bridge		
+03E7	clearhidecomplete	0	003505F0	FUN_003505f0	Script_VM_Native_Bridge		
+03E8	common2effectplay	2	00353C50	FUN_00353c50	Script_VM_Native_Bridge		
+03E9	capturebattleid	1	003509E0	FUN_003509e0	Script_VM_Native_Bridge		
+03EA	denybonephysicalall_3ea	2	0034C890	FUN_0034c890	Script_VM_Native_Bridge		
+03EB	partyallread	0	0034D460	FUN_0034d460	Script_VM_Native_Bridge	0034CCD0	0034E3E0
+03EC	setchocobomode	1	003514D0	FUN_003514d0	Script_VM_Native_Bridge		
+03ED	setmaphighmodeldepth	1	00352170	FUN_00352170	Script_VM_Native_Bridge		
+03EE	setmapmodelstatus	1	003526D0	FUN_003526d0	Script_VM_Native_Bridge		
+03EF	spotsoundtrans	2	00352A90	FUN_00352a90	Script_VM_Native_Bridge		
+03F0	capturebattlemembeructop	1	00340E00	FUN_00340e00	Script_VM_Native_Bridge		
+03F1	settreasureflag	1	00352EA0	FUN_00352ea0	Script_VM_Native_Bridge		
+03F2	releasetreasureflag	1	00353390	FUN_00353390	Script_VM_Native_Bridge		
+03F3	settreasurebattleflag	0	00353750	FUN_00353750	Script_VM_Native_Bridge		
+03F4	releasetreasurebattleflag	0	00353BD0	FUN_00353bd0	Script_VM_Native_Bridge		
+03F5	istreasureflag	1	00354000	FUN_00354000	Script_VM_Native_Bridge		
+03F6	istreasurebattleflag	0	00354540	FUN_00354540	Script_VM_Native_Bridge		
+03F7	mpad	0	00355C00	ScriptVM_GetActorStateAwareInputMask04	Script_VM_Native_Bridge		
+03F8	mpadt	0	00356350	ScriptVM_GetActorStateAwareInputMask0C	Script_VM_Native_Bridge		
+03F9	mpadr	0	00355F20	ScriptVM_GetActorStateAwareInputMask08	Script_VM_Native_Bridge		
+03FA	mpadtr	0	003566B0	ScriptVM_GetActorStateAwareInputMask10	Script_VM_Native_Bridge		
+03FB	mkeywait					003567F0	00340C70
+03FC	mkeywaitr					003567F0	003414E0
+03FD	mkeywaitt					003567F0	00341D70
+03FE	mkeywaittr					003567F0	00342450
+03FF	mkeyscan	0	0034F680	ScriptVM_TestActorStateAwareInputMask04	Script_VM_Native_Bridge		
+0400	mkeyscanr	0	0034FCF0	ScriptVM_TestActorStateAwareInputMask08	Script_VM_Native_Bridge		
+0401	mkeyscant	0	00350200	ScriptVM_TestActorStateAwareInputMask0C	Script_VM_Native_Bridge		
+0402	mkeyscantr	0	003505B0	ScriptVM_TestActorStateAwareInputMask10	Script_VM_Native_Bridge		
+0403	set_talk_wituout_hide_status	1	00354870	FUN_00354870	Script_VM_Native_Bridge		
+0404	releasepc_404	1	00354590	FUN_00354590	Script_VM_Native_Bridge		
+0405	setentrypos	0	00354FB0	FUN_00354fb0	Script_VM_Native_Bridge		
+0406	setbgnpcstatus	3	00355480	FUN_00355480	Script_VM_Native_Bridge		
+0407	getchocobomode	0	00355910	FUN_00355910	Script_VM_Native_Bridge		
+0408	getsummonmode	0	00355C40	FUN_00355c40	Script_VM_Native_Bridge		
+0409	enable_by_summon	1	0033F1E0	FUN_0033f1e0	Script_VM_Native_Bridge		
+040A	enable_by_chocobo	1	0033F650	FUN_0033f650	Script_VM_Native_Bridge		
+040B	clearmapjumpstatus	0	0033F940	thunk_FUN_0025d580	Script_VM_Native_Bridge		
+040C	getweatherslot	0	00356250	FUN_00356250	Script_VM_Native_Bridge		
+040D	partyusemapid	1	0033FD60	FUN_0033fd60	Script_VM_Native_Bridge		
+040E	partyusecharhit	1	00340700	FUN_00340700	Script_VM_Native_Bridge		
+040F	partysetlod	1	00341190	FUN_00341190	Script_VM_Native_Bridge		
+0410	partyshowshadow	0	00341B90	FUN_00341b90	Script_VM_Native_Bridge		
+0411	partyshowshadow_411	0	00342360	FUN_00342360	Script_VM_Native_Bridge		
+0412	partyhideshadow	0	00342830	FUN_00342830	Script_VM_Native_Bridge		
+0413	setpartyprojectionshadow	0	00342B30	FUN_00342b30	Script_VM_Native_Bridge		
+0414	talktreasureafter					00356570	00356A10
+0415	clearnavimapfootmark	0	00343330	thunk_FUN_003c5030	Script_VM_Native_Bridge		
+0416	setnavimapfootmarkstatus	1	00343740	FUN_00343740	Script_VM_Native_Bridge		
+0417	puppetdir	2	00347710	FUN_00347710	Script_VM_Native_Bridge		
+0418	puppetdir_418	0	003471B0	FUN_003471b0	Script_VM_Native_Bridge		
+0419	puppetsetpos	4	00346B80	FUN_00346b80	Script_VM_Native_Bridge		
+041A	puppetbindoff	1	00346750	FUN_00346750	Script_VM_Native_Bridge		
+041B	puppetbind	4	003463F0	FUN_003463f0	Script_VM_Native_Bridge	00343A30	00344200
+041C	puppetbind_41c	0	003463F0	FUN_003463f0	Script_VM_Native_Bridge	00344D80	00345FB0
+041D	puppetbind_41d	2	003463F0	FUN_003463f0	Script_VM_Native_Bridge	00345AE0	00345FB0
+041E	puppetmotionplay	2	003481C0	FUN_003481c0	Script_VM_Native_Bridge		
+041F	puppetmotionplay_41f	3	00347B00	FUN_00347b00	Script_VM_Native_Bridge		
+0420	puppetmotionsync					0034AA20	0034AD90
+0421	puppetmotionsync_421					00349CB0	0034A1D0
+0422	puppetmotionloopframe	3	00348580	FUN_00348580	Script_VM_Native_Bridge		
+0423	puppetmotionstartframe	2	00348A90	FUN_00348a90	Script_VM_Native_Bridge		
+0424	puppetmotionratio	0	003490F0	FUN_003490f0	Script_VM_Native_Bridge		
+0425	puppetmotioncancel	0	00349460	FUN_00349460	Script_VM_Native_Bridge		
+0426	puppetmotionclear	0	003498D0	FUN_003498d0	Script_VM_Native_Bridge		
+0427	puppetshowshadow	1	0034B710	FUN_0034b710	Script_VM_Native_Bridge		
+0428	puppethideshadow	1	0034BAB0	FUN_0034bab0	Script_VM_Native_Bridge		
+0429	puppetshowshadow_429	0	0034B0A0	FUN_0034b0a0	Script_VM_Native_Bridge		
+042A	puppetsetlod	0	0034BF40	FUN_0034bf40	Script_VM_Native_Bridge		
+042B	puppetsetprojectionshadow	0	0034C4B0	FUN_0034c4b0	Script_VM_Native_Bridge		
+042C	puppetmotionloop	2	0034C900	FUN_0034c900	Script_VM_Native_Bridge		
+042D	puppetshow	1	0034D2B0	FUN_0034d2b0	Script_VM_Native_Bridge		
+042E	puppethide	1	0034D640	FUN_0034d640	Script_VM_Native_Bridge		
+042F	puppetshow_42f	0	0034CCF0	FUN_0034ccf0	Script_VM_Native_Bridge		
+0430	setmapjumpgroupflag	1	0034EE20	FUN_0034ee20	Script_VM_Native_Bridge		
+0431	releasemapjumpgroupflag	1	0034DD90	FUN_0034dd90	Script_VM_Native_Bridge		
+0432	ismapjumpgroupflag	1	0034E0B0	FUN_0034e0b0	Script_VM_Native_Bridge		
+0433	lookat_maxangle_limit_lock	0	0034EA80	FUN_0034ea80	Script_VM_Native_Bridge		
+0434	lookat_maxangle_limit_unlock	0	0034E450	FUN_0034e450	Script_VM_Native_Bridge		
+0435	lookat_maxvelr_limit_unlock	0	0034ED80	FUN_0034ed80	Script_VM_Native_Bridge		
+0436	sethpmenu_436	2	003563D0	FUN_003563d0	Script_VM_Native_Bridge		
+0437	sethpmenufast_437	0	00355D90	FUN_00355d90	Script_VM_Native_Bridge		
+0438	seteventtimer	0	0034F1A0	FUN_0034f1a0	Script_VM_Native_Bridge		
+0439	starteventtimer	0	00350620	FUN_00350620	Script_VM_Native_Bridge		
+043A	istermeventtimer	0	0034F730	FUN_0034f730	Script_VM_Native_Bridge		
+043B	geteventtimer	0	0034FD30	FUN_0034fd30	Script_VM_Native_Bridge		
+043C	pauseeventtimer	0	00350100	FUN_00350100	Script_VM_Native_Bridge		
+043D	effectteleposyncbyid					003567F0	003529B0
+043E	partycommoneffectplay	1	00350B90	FUN_00350b90	Script_VM_Native_Bridge		
+043F	effectsyncbyid					003567F0	003514A0
+0440	effecthitsyncbyid					003567F0	00351FD0
+0441	amesv	0	0034A7A0	FUN_0034a7a0	Script_VM_Native_Bridge		
+0442	mesvfaceread	0	00352E40	FUN_00352e40	Script_VM_Native_Bridge		
+0443	mesvfacereadsync					003567F0	00353720
+0444	mesvfacedispose	0	00353D50	FUN_00353d50	Script_VM_Native_Bridge		
+0445	mesvfacedisposeall	0	00354D70	_guard_check_icall	Script_VM_Native_Bridge		
+0446	mesvmaskopen	0	00354300	FUN_00354300	Script_VM_Native_Bridge		
+0447	mesvmaskopenfast	0	003535F0	FUN_003535f0	Script_VM_Native_Bridge		
+0448	bgmstreamread	1	00354690	FUN_00354690	Script_VM_Native_Bridge		
+0449	bgmstreamreadsync						00354920
+044A	bgmstreamplay	0	00354D60	thunk_FUN_003eb150	Script_VM_Native_Bridge		
+044B	bgmstreamplaysync						003550F0
+044C	bgmstreamstop	0	003554F0	thunk_FUN_003eadc0	Script_VM_Native_Bridge		
+044D	usebgmstream	1	003557C0	FUN_003557c0	Script_VM_Native_Bridge		
+044E	freebgmstream	0	00355C30	thunk_FUN_003eb010	Script_VM_Native_Bridge		
+044F	getbgmstreamstatus	0	00355FB0	FUN_00355fb0	Script_VM_Native_Bridge		
+0450	battlemotionplay	0	0050E980	FUN_0050e980	Script_VM_Native_Bridge		
+0451	setfieldsignlocationjumpinfo	0	003568D0	FUN_003568d0	Script_VM_Native_Bridge		
+0452	getmogxiindex	0	00342A30	FUN_00342a30	Script_VM_Native_Bridge		
+0453	settalkholdtimer	0	00356CD0	FUN_00356cd0	Script_VM_Native_Bridge		
+0454	talkholdstop	0	0033F500	FUN_0033f500	Script_VM_Native_Bridge		
+0455	open_interventionmenu	0	0033F860	thunk_FUN_0035d030	Script_VM_Native_Bridge		
+0456	close_interventionmenu	0	0033F860	thunk_FUN_0035d030	Script_VM_Native_Bridge		
+0457	get_interventionmenu_status	0	00340020	FUN_00340020	Script_VM_Native_Bridge		
+0458	show_escapingwindow	0	00340400	FUN_00340400	Script_VM_Native_Bridge		
+0459	hide_escapingwindow	0	003406E0	FUN_003406e0	Script_VM_Native_Bridge		
+045A	get_interventionmenu_commandstatus	0	00340D80	FUN_00340d80	Script_VM_Native_Bridge		
+045B	isbattleaction	0	00341070	FUN_00341070	Script_VM_Native_Bridge		
+045C	set_interventionmenu_tutorialmode	0	003419D0	FUN_003419d0	Script_VM_Native_Bridge		
+045D	islookatcamera	0	00341E10	FUN_00341e10	Script_VM_Native_Bridge		
+045E	islookatcameratarget	0	00342150	FUN_00342150	Script_VM_Native_Bridge		
+045F	setpartymenustatus	2	00342590	FUN_00342590	Script_VM_Native_Bridge		
+0460	isbattleaction_460	0	00341560	FUN_00341560	Script_VM_Native_Bridge		
+0461	mes	0	00348DF0	FUN_00348df0	Script_VM_Native_Bridge		
+0462	gettalkholdtimer	0	003572F0	FUN_003572f0	Script_VM_Native_Bridge		
+0463	getdefaulttalkholdtimer	0	0033F050	FUN_0033f050	Script_VM_Native_Bridge		
+0464	bgeffectsync					003567F0	003436B0
+0465	charcommoneffectplay	1	00342A80	FUN_00342a80	Script_VM_Native_Bridge		
+0466	charcommoneffecttrigger	1	00343080	FUN_00343080	Script_VM_Native_Bridge		
+0467	charcommoneffectstop	0	003433A0	FUN_003433a0	Script_VM_Native_Bridge		
+0468	getequipitemid_468	0	0034AF80	FUN_0034af80	Script_VM_Native_Bridge		
+0469	get_interventionmenu_casterid	0	00343780	FUN_00343780	Script_VM_Native_Bridge		
+046A	setmist	1	00343CC0	FUN_00343cc0	Script_VM_Native_Bridge		
+046B	battlevoice_regist_ctrl_data	0	00344000	FUN_00344000	Script_VM_Native_Bridge		
+046C	battlevoice_clear_ctrl_data	0	003444C0	thunk_FUN_003ebd70	Script_VM_Native_Bridge		
+046D	battlevoice_calc_member	0	003447E0	thunk_FUN_003ebd30	Script_VM_Native_Bridge		
+046E	battlevoice_regist_message_and_voice	0	00344BB0	FUN_00344bb0	Script_VM_Native_Bridge		
+046F	partyallread2	0	0034D460	FUN_0034d460	Script_VM_Native_Bridge	0034D8B0	0034E3E0
+0470	getnowmapmusicno	0	00345760	FUN_00345760	Script_VM_Native_Bridge		
+0471	setnowmapmusicno	1	00345E70	FUN_00345e70	Script_VM_Native_Bridge		
+0472	openfullscreenmenu	0	00346DA0	FUN_00346da0	Script_VM_Native_Bridge	003470D0	00347390
+0473	stdmotioneventsync					003479E0	00347DD0
+0474	setmeswinline	2	00348160	FUN_00348160	Script_VM_Native_Bridge		
+0475	setaskselectignore	2	00348540	FUN_00348540	Script_VM_Native_Bridge		
+0476	setmeswinactive	2	00348930	FUN_00348930	Script_VM_Native_Bridge		
+0477	setmeswincaptionid	2	00348CB0	FUN_00348cb0	Script_VM_Native_Bridge		
+0478	showenemy	1	00349200	VM_SpawnGroup_ClearUnitFlag800ByGroupMask	Script_VM_Native_Bridge		
+0479	hideenemy	1	00349940	VM_SpawnGroup_SetUnitFlag800ByGroupMask	Script_VM_Native_Bridge		
+047A	getnowmapmusicno_47a	1	00345400	FUN_00345400	Script_VM_Native_Bridge		
+047B	isbossmusic	1	00349E10	FUN_00349e10	Script_VM_Native_Bridge		
+047C	puppetsetscale	2	00351250	FUN_00351250	Script_VM_Native_Bridge		
+047D	puppetsetscale_47d	4	003518C0	FUN_003518c0	Script_VM_Native_Bridge		
+047E	setmeswinmesid	2	0034A2C0	FUN_0034a2c0	Script_VM_Native_Bridge		
+047F	additem_47f	3	003449A0	FUN_003449a0	Script_VM_Native_Bridge		
+0480	additemmes	2	0034B1E0	FUN_0034b1e0	Script_VM_Native_Bridge	0034A6D0	0034ABF0
+0481	setmapwind	3	0034B6C0	FUN_0034b6c0	Script_VM_Native_Bridge		
+0482	defaultmapwind	0	0034BD10	FUN_0034bd10	Script_VM_Native_Bridge		
+0483	setforcefight					003419F0	00342CE0
+0484	clearforcefight					00343770	
+0485	setcharambientratio	0	0034C060	FUN_0034c060	Script_VM_Native_Bridge		
+0486	setallcharambientratio	0	0034C5C0	FUN_0034c5c0	Script_VM_Native_Bridge		
+0487	gillwinopen	1	0034CB10	FUN_0034cb10	Script_VM_Native_Bridge		
+0488	gillwinclose	0	0034CE90	thunk_FUN_002a1d20	Script_VM_Native_Bridge		
+0489	gillwinstart	1	0034D240	FUN_0034d240	Script_VM_Native_Bridge		
+048A	gillwinsync						0034D4C0
+048B	getmapid_48b	1	00347240	FUN_00347240	Script_VM_Native_Bridge		
+048C	getmapgroundtype_48c	0	003476B0	FUN_003476b0	Script_VM_Native_Bridge		
+048D	openfullscreenmenu_48d	2	00346DA0	FUN_00346da0	Script_VM_Native_Bridge	003462D0	00352E00
+048E	npc_to_gimmick	0	0034DA20	FUN_0034da20	Script_VM_Native_Bridge		
+048F	gimmick_to_npc	0	0034DD80	FUN_0034dd80	Script_VM_Native_Bridge		
+0490	mesvgetvoiceid	0	0034DFF0	FUN_0034dff0	Script_VM_Native_Bridge		
+0491	mesvgetmesid	0	0034E4C0	FUN_0034e4c0	Script_VM_Native_Bridge		
+0492	debug_initsaveram	0	0034EF50	thunk_FUN_00266d00	Script_VM_Native_Bridge		
+0493	set_talk_without_hide_status	0	00354870	FUN_00354870	Script_VM_Native_Bridge		
+0494	setkubifuristatus	1	0034F430	FUN_0034f430	Script_VM_Native_Bridge		
+0495	setbodyshake	1	0034FEA0	FUN_0034fea0	Script_VM_Native_Bridge		
+0496	setbodyshakeall	1	00350330	FUN_00350330	Script_VM_Native_Bridge		
+0497	set_force_ignore_timestop	1	003506D0	FUN_003506d0	Script_VM_Native_Bridge		
+0498	hideparty_without_uc	0	00341CB0	FUN_00341cb0	Script_VM_Native_Bridge		
+0499	getcharbattlestatus	1	0034DA30	FUN_0034da30	Script_VM_Native_Bridge		
+049A	getcharbattlestatus_49a	0	0034E190	FUN_0034e190	Script_VM_Native_Bridge		
+049B	ucmovesync						00345800
+049C	mesvgetfaceid	0	0034EAF0	FUN_0034eaf0	Script_VM_Native_Bridge		
+049D	mesclosesync					003567F0	00351120
+049E	isdead2	0	0034C8D0	FUN_0034c8d0	Script_VM_Native_Bridge		
+049F	isdead2_49f	1	0034CC60	FUN_0034cc60	Script_VM_Native_Bridge		
+04A0	deny_char_camerashake	1	003517C0	FUN_003517c0	Script_VM_Native_Bridge		
+04A1	deny_printf	1	00510720	FUN_00510720	Script_VM_Native_Bridge		
+04A2	setkutipakustatus_4a2	2	00352B90	FUN_00352b90	Script_VM_Native_Bridge		
+04A3	setunazukistatus_4a3	2	00352F20	FUN_00352f20	Script_VM_Native_Bridge		
+04A4	setkubifuristatus_4a4	2	0034F9B0	FUN_0034f9b0	Script_VM_Native_Bridge		
+04A5	ucon_4a5	0	00352000	FUN_00352000	Script_VM_Native_Bridge		
+04A6	ucoff_4a6	0	00352560	FUN_00352560	Script_VM_Native_Bridge		
+04A7	freqcancel	1	00352980	FUN_00352980	Script_VM_Native_Bridge		
+04A8	freqcancel_4a8	2	00353660	FUN_00353660	Script_VM_Native_Bridge		
+04A9	setshopname	1	0034C170	FUN_0034c170	Script_VM_Native_Bridge		
+04AA	atrac3standby	0	00353FC0	FUN_00353fc0	Script_VM_Native_Bridge		
+04AB	atrac3standbysync						005C5230
+04AC	atrac3play	0	0016D6A0	_guard_check_icall			
+04AD	atrac3playsync						005C5230
+04AE	atrac3cancel					0016D6A0	005C5230
+04AF	isatrac3play	0	00355560	FUN_00355560	Script_VM_Native_Bridge		
+04B0	atrac3playcounter	0	00355930	FUN_00355930	Script_VM_Native_Bridge		
+04B1	atrac3standby_4b1	2	00353B70	FUN_00353b70	Script_VM_Native_Bridge		
+04B2	setreadsyncstatusbyevent	0	0034C320	FUN_0034c320	Script_VM_Native_Bridge		
+04B3	startscene_4b3	2	0034CED0	FUN_0034ced0	Script_VM_Native_Bridge		
+04B4	motionlooppreset	1	00340420	FUN_00340420	Script_VM_Native_Bridge		
+04B5	initsync						00355C20
+04B6	deny_camerashake_without_event	1	003560D0	FUN_003560d0	Script_VM_Native_Bridge		
+04B7	setbattlethinkstatus_freetarget_group	2	00356530	FUN_00356530	Script_VM_Native_Bridge		
+04B8	hide_freetarget_group	1	003569E0	FUN_003569e0	Script_VM_Native_Bridge		
+04B9	show_freetarget_group	1	00356D00	FUN_00356d00	Script_VM_Native_Bridge		
+04BA	rlookatr					0034FFF0	
+04BB	rlookatr_4bb					0034F470	
+04BC	rlookatr_4bc					0034FBB0	
+04BD	lookatr					0034FFF0	003435C0
+04BE	lookatr_4be					003455F0	003435C0
+04BF	lookatr_4bf					00345EE0	003435C0
+04C0	rlookatw					00342040	
+04C1	rlookatw_4c1					00350980	
+04C2	rlookatw_4c2					00350410	
+04C3	lookatw					00342040	003435C0
+04C4	lookatw_4c4					00350980	003435C0
+04C5	lookatw_4c5					00342D30	003435C0
+04C6	rlookatrt					003517E0	
+04C7	rlookatrt_4c7					00351D10	
+04C8	lookatrt					003517E0	003435C0
+04C9	lookatrt_4c9					00346DC0	003435C0
+04CA	rlookatwt					00343F90	
+04CB	rlookatwt_4cb					003520B0	
+04CC	lookatwt					00343F90	003435C0
+04CD	lookatwt_4cd					00343950	003435C0
+04CE	ramove					00349680	
+04CF	ramove_4cf					0033FFC0	
+04D0	ramovea					00349D90	
+04D1	ramovea_4d1					0034A290	
+04D2	amove					0033F850	00356A90
+04D3	amove_4d3					0033FFC0	00356A90
+04D4	amovea					00340520	00356A90
+04D5	amovea_4d5					0034A290	00356A90
+04D6	istimestop	0	00357380	FUN_00357380	Script_VM_Native_Bridge		
+04D7	istimestop_4d7	0	0033F1B0	FUN_0033f1b0	Script_VM_Native_Bridge		
+04D8	callgameover					0033F640	005C5230
+04D9	setcharseplay_freetarget_group	2	00348BA0	FUN_00348ba0	Script_VM_Native_Bridge		
+04DA	getclanrank	0	0033FCB0	FUN_0033fcb0	Script_VM_Native_Bridge		
+04DB	getclanpoint	0	00340040	FUN_00340040	Script_VM_Native_Bridge		
+04DC	addclanpoint	0	003403E0	FUN_003403e0	Script_VM_Native_Bridge		
+04DD	ucmovecancel	0	00343E20	FUN_00343e20	Movement		
+04DE	killgroup	1	00349500	VM_SpawnGroup_TeardownUnitsByGroupMask	Script_VM_Native_Bridge		
+04DF	uselightmap	0	003406B0	FUN_003406b0	Script_VM_Native_Bridge		
+04E0	fetchambient	0	0034A3F0	FUN_0034a3f0	Script_VM_Native_Bridge		
+04E1	fetchambient_4e1	3	0034A860	FUN_0034a860	Script_VM_Native_Bridge		
+04E2	setmapgroundtype	0	0034E510	FUN_0034e510	Script_VM_Native_Bridge		
+04E3	setmapgroundtype_4e3	0	00347D20	FUN_00347d20	Script_VM_Native_Bridge		
+04E4	puppetsetambient	4	00340D00	FUN_00340d00	Script_VM_Native_Bridge		
+04E5	puppetfetchambient	4	003412B0	FUN_003412b0	Script_VM_Native_Bridge		
+04E6	puppetmotionlooppreset	0	003417F0	FUN_003417f0	Script_VM_Native_Bridge		
+04E7	ignorebattlemovectrl	0	00341DB0	FUN_00341db0	Script_VM_Native_Bridge		
+04E8	setpartybattlestatus	3	00347F80	FUN_00347f80	Script_VM_Native_Bridge		
+04E9	clearpartybattlestatus	0	003483E0	FUN_003483e0	Script_VM_Native_Bridge		
+04EA	set_ignore_mapjump_func	1	00510720	FUN_00510720	Script_VM_Native_Bridge		
+04EB	is_ntsc	0	003423E0	FUN_003423e0	Script_VM_Native_Bridge		
+04EC	bgeffecttriggersync					0050EA20	00356BD0
+04ED	resetbonephysical	0	00342A20	thunk_FUN_003e0740	Script_VM_Native_Bridge		
+04EE	steppoint	1	00342D80	FUN_00342d80	Script_VM_Native_Bridge		
+04EF	setsteppointstatus	0	003431B0	FUN_003431b0	Script_VM_Native_Bridge		
+04F0	setsteppointstatusall	0	00343980	FUN_00343980	Script_VM_Native_Bridge		
+04F1	setdrawalphamode	1	00343EC0	FUN_00343ec0	Script_VM_Native_Bridge		
+04F2	get_systemfadeincanmoveblanktime	0	00344270	FUN_00344270	Script_VM_Native_Bridge		
+04F3	setsteppointmarkstatus	0	00343570	FUN_00343570	Script_VM_Native_Bridge		
+04F4	lookatoff_4f4	1	0034E220	FUN_0034e220	Script_VM_Native_Bridge		
+04F5	set_field_effect	1	00344610	FUN_00344610	Script_VM_Native_Bridge		
+04F6	clear_field_effect	1	00344980	FUN_00344980	Script_VM_Native_Bridge		
+04F7	is_field_effect	0	00344EC0	FUN_00344ec0	Script_VM_Native_Bridge		
+04F8	showmapeffect	0	00345AC0	FUN_00345ac0	Script_VM_Native_Bridge		
+04F9	hidemapeffect	1	003460A0	FUN_003460a0	Script_VM_Native_Bridge		
+04FA	showmapeffect_4fa	0	003455B0	FUN_003455b0	Script_VM_Native_Bridge		
+04FB	defaultmapeffect	0	00346600	FUN_00346600	Script_VM_Native_Bridge		
+04FC	spattack_whiteout_menu_callback	1	00346910	FUN_00346910	Script_VM_Native_Bridge		
+04FD	handbook_getkillcount	1	00346DE0	FUN_00346de0	Script_VM_Native_Bridge		
+04FE	handbook_getordernum	0	003472F0	FUN_003472f0	Script_VM_Native_Bridge		
+04FF	is_enable_run_event	0	003475E0	FUN_003475e0	Script_VM_Native_Bridge		
+0500	normalclipzx	4	003478A0	FUN_003478a0	Script_VM_Native_Bridge		
+0501	ismove	0	00347EF0	FUN_00347ef0	Script_VM_Native_Bridge		
+0502	isturn	0	003482A0	FUN_003482a0	Script_VM_Native_Bridge		
+0503	set_ignore_hitgroup	1	00348730	FUN_00348730	Script_VM_Native_Bridge		
+0504	setgambit_slotmax	2	00348B40	FUN_00348b40	Script_VM_Native_Bridge		
+0505	setposoffset	4	00348F80	FUN_00348f80	Script_VM_Native_Bridge		
+0506	setnoupdatebehindcamera_system	1	00349440	FUN_00349440	Script_VM_Native_Bridge		
+0507	sound_reverb_wet	0	0050C5F0	FUN_0050c5f0	Script_VM_Native_Bridge		
+0508	set_summon_effect_filter_status	2	00349C50	FUN_00349c50	Script_VM_Native_Bridge		
+0509	deny_summon_effect_filter	1	0034A1B0	FUN_0034a1b0	Script_VM_Native_Bridge		
+050A	setmapambient_maponly	0	00346FF0	FUN_00346ff0	Script_VM_Native_Bridge		
+050B	setmapambient_maponly_50b	3	003474B0	FUN_003474b0	Script_VM_Native_Bridge		
+050C	resetmapambient_maponly	0	00347800	FUN_00347800	Script_VM_Native_Bridge		
+050D	getsummonid	0	0034A590	FUN_0034a590	Script_VM_Native_Bridge		
+050E	musicphraseplay	2	00344AE0	thunk_FUN_00342f80	Script_VM_Native_Bridge	003437A0	00341F90
+050F	seteventpartymode	1	00351B40	FUN_00351b40	Script_VM_Native_Bridge		
+0510	geteventpartymode	0	00355FE0	FUN_00355fe0	Script_VM_Native_Bridge		
+0511	getchocobomodebit	0	00356630	FUN_00356630	Script_VM_Native_Bridge		
+0512	getsummonmodebit	0	00356A30	FUN_00356a30	Script_VM_Native_Bridge		
+0513	geteventpartymodebit	0	00356DF0	FUN_00356df0	Script_VM_Native_Bridge		
+0514	seteventparty2mode	1	00351E50	FUN_00351e50	Script_VM_Native_Bridge		
+0515	geteventparty2mode	0	00356370	FUN_00356370	Script_VM_Native_Bridge		
+0516	geteventparty2modebit	0	003573A0	FUN_003573a0	Script_VM_Native_Bridge		
+0517	btladjustsystem	1	0034AAB0	FUN_0034aab0	Script_VM_Native_Bridge		
+0518	get_pad_ok	0	0034AF20	FUN_0034af20	Script_VM_Native_Bridge		
+0519	get_pad_cancel	0	0034B290	FUN_0034b290	Script_VM_Native_Bridge		
+051A	skipstart					0034D3A0	
+051B	skipend	1	0034E6D0	FUN_0034e6d0	Script_VM_Native_Bridge	0034D820	0034DB30
+051C	skipcheck	1	0034F160	FUN_0034f160	Script_VM_Native_Bridge		
+051D	charseplay_move	0	0034BD30	FUN_0034bd30	Script_VM_Native_Bridge		
+051E	charseplay_move_51e	4	0034B7C0	FUN_0034b7c0	Script_VM_Native_Bridge		
+051F	charseplay_voice	0	0034C740	FUN_0034c740	Script_VM_Native_Bridge		
+0520	charseplay_voice_520	0	0034C210	FUN_0034c210	Script_VM_Native_Bridge		
+0521	charseplay_weapon	0	0034D020	FUN_0034d020	Script_VM_Native_Bridge		
+0522	charseplay_weapon_522	0	0034CA40	FUN_0034ca40	Script_VM_Native_Bridge		
+0523	setoverheadicontype	1	0034F6C0	FUN_0034f6c0	Script_VM_Native_Bridge		
+0524	getoverheadicontype	0	0034FCC0	FUN_0034fcc0	Script_VM_Native_Bridge		
+0525	istouchucsync					003407C0	00340BC0
+0526	termsummoncall	0	0034FFE0	thunk_FUN_00262870	Script_VM_Native_Bridge		
+0527	settimestopmagic	0	00350400	thunk_FUN_00227460	Script_VM_Native_Bridge		
+0528	cleartimestopmagic	0	00350940	thunk_FUN_00226120	Script_VM_Native_Bridge		
+0529	istouchuc_529	0	0033F680	FUN_0033f680	Script_VM_Native_Bridge		
+052A	istouchucsync_52a					003567F0	00340BC0
+052B	ucmove_52b					00345CD0	
+052C	ucmovesync_52c					00345F60	003465D0
+052D	ucmovecancel_52d	1	00344290	FUN_00344290	Movement		
+052E	setbattlethinkstatus_52e	0	0034E530	FUN_0034e530	Script_VM_Native_Bridge		
+052F	checkdistance3d	2	00350DD0	FUN_00350dd0	Script_VM_Native_Bridge		
+0530	checkdistance	2	003516E0	FUN_003516e0	Script_VM_Native_Bridge		
+0531	checkdistance3d_531	4	00352580	FUN_00352580	Script_VM_Native_Bridge		
+0532	checkdistance_532	0	003530F0	FUN_003530f0	Script_VM_Native_Bridge		
+0533	waitdistance3d					003536B0	00353AC0
+0534	waitdistance					00354030	003544F0
+0535	puppetrgbatrans	6	0033FAD0	FUN_0033fad0	Script_VM_Native_Bridge		
+0536	musicfadeoutsync						003466F0
+0537	puppetefftrigger	0	00340530	FUN_00340530	Script_VM_Native_Bridge		
+0538	lockcharresource	0	00354990	FUN_00354990	Script_VM_Native_Bridge		
+0539	skipexec	1	0034ECF0	FUN_0034ecf0	Script_VM_Native_Bridge		
+053A	settargetliststatus	1	00354D80	FUN_00354d80	Script_VM_Native_Bridge		
+053B	settrapresource	1	00355400	FUN_00355400	Script_VM_Native_Bridge		
+053C	istownmap	0	00355680	FUN_00355680	Script_VM_Native_Bridge		
+053D	clear_activelog	0	0035D020	thunk_FUN_0028e190			
+053E	partystdmotionplay	1	0034F060	FUN_0034f060	Script_VM_Native_Bridge		
+053F	partystdmotionplaywithoutsame	0	0034F890	FUN_0034f890	Script_VM_Native_Bridge		
+0540	partystdmotionplay_540	2	00350050	FUN_00350050	Script_VM_Native_Bridge		
+0541	partystdmotionplaywithoutsame_541	0	003507B0	FUN_003507b0	Script_VM_Native_Bridge		
+0542	pausesestop	0	0034E180	thunk_FUN_002dee70	Script_VM_Native_Bridge		
+0543	getbattlemembertotal_543	1	00342280	FUN_00342280	Script_VM_Native_Bridge		
+0544	getbattlememberonlytotal_544	1	00342BF0	FUN_00342bf0	Script_VM_Native_Bridge		
+0545	getguestmemberonlytotal_545	0	003433E0	FUN_003433e0	Script_VM_Native_Bridge		
+0546	setemergency_one	0	003460C0	FUN_003460c0	Script_VM_Native_Bridge		
+0547	settrapshowstatus	1	00355E00	FUN_00355e00	Script_VM_Native_Bridge		
+0548	blurplay_548	1	00344340	FUN_00344340	Script_VM_Native_Bridge		
+0549	blurstop_549	1	00344AC0	FUN_00344ac0	Script_VM_Native_Bridge		
+054A	bluralpha_54a	2	00345570	FUN_00345570	Script_VM_Native_Bridge		
+054B	blurrotate_54b	2	00345FC0	FUN_00345fc0	Script_VM_Native_Bridge		
+054C	blurcolor_54c	5	00346AF0	FUN_00346af0	Script_VM_Native_Bridge		
+054D	bluroffset_54d	3	00347530	FUN_00347530	Script_VM_Native_Bridge		
+054E	blurscale_54e	3	00347E30	FUN_00347e30	Script_VM_Native_Bridge		
+054F	blurprior_54f	0	00348610	FUN_00348610	Script_VM_Native_Bridge		
+0550	blurlayer_550	2	00348CF0	FUN_00348cf0	Script_VM_Native_Bridge		
+0551	blurtrans_551	2	003494C0	FUN_003494c0	Script_VM_Native_Bridge		
+0552	set_force_char_nearfade	1	00356030	FUN_00356030	Script_VM_Native_Bridge		
+0553	clear_force_char_nearfade	0	003563C0	FUN_003563c0	Script_VM_Native_Bridge		
+0554	resetemergency	0	00347970	FUN_00347970	Script_VM_Native_Bridge		
+0555	resetemergency_with_animetionmode	0	003473E0	FUN_003473e0	Script_VM_Native_Bridge		
+0556	getplaylooptime	0	00349BA0	FUN_00349ba0	Script_VM_Native_Bridge		
+0557	getplayloophour	0	0034A0E0	FUN_0034a0e0	Script_VM_Native_Bridge		
+0558	getplayloopsec	0	0034A5D0	FUN_0034a5d0	Script_VM_Native_Bridge		
+0559	getplayloopmin	0	0034AB20	FUN_0034ab20	Script_VM_Native_Bridge		
+055A	init_playtime	0	003567C0	thunk_FUN_00255040	Script_VM_Native_Bridge		
+055B	takeoff_equip					003497B0	00349A30
+055C	setitemnum	2	00345520	FUN_00345520	Script_VM_Native_Bridge		
+055D	weight_upper_pc	0	00356BC0	FUN_00356bc0	Script_VM_Native_Bridge		
+055E	clear_weight_upper_pc	0	00356FD0	FUN_00356fd0	Script_VM_Native_Bridge		
+055F	setstatuserrordispdenystatus_by_menu	0	00341360	FUN_00341360	Script_VM_Native_Bridge		
+0560	setstatuserrorctrldenystatus_by_menu	1	00341790	FUN_00341790	Script_VM_Native_Bridge		
+0561	clear_callpartymenu_status	0	00357440	thunk_FUN_002e0660	Script_VM_Native_Bridge		
+0562	is_callpartymenu_status	0	0033F230	FUN_0033f230	Script_VM_Native_Bridge		
+0563	setflickerfreemode	1	0033F6C0	FUN_0033f6c0	Script_VM_Native_Bridge		
+0564	summon_refresh_party_lastfadein	0	0033FA90	thunk_FUN_00313670	Script_VM_Native_Bridge		
+0565	refresh_fightmotion	0	00344CC0	FUN_00344cc0	Script_VM_Native_Bridge		
+0566	refresh_party_fightmotion	0	003446D0	FUN_003446d0	Script_VM_Native_Bridge		
+0567	check_move_battlestatus	1	0033FF00	FUN_0033ff00	Script_VM_Native_Bridge		
+0568	getweight	0	0034E2F0	FUN_0034e2f0	Script_VM_Native_Bridge		
+0569	puppet_setcharclipone	0	00340890	FUN_00340890	Script_VM_Native_Bridge		
+056A	set_microphone_pos	4	00340EF0	FUN_00340ef0	Script_VM_Native_Bridge		
+056B	clear_microphone_pos	0	00341400	FUN_00341400	Script_VM_Native_Bridge		
+056C	set_microphone_camera	0	00341780	FUN_00341780	Script_VM_Native_Bridge		
+056D	setposparty_mapjump	0	0033F070	FUN_0033f070	Script_VM_Native_Bridge		
+056E	straightpcmtrans	2	0050F200	FUN_0050f200	Script_VM_Native_Bridge		
+056F	clear_effectactor	1	00342010	FUN_00342010	Script_VM_Native_Bridge		
+0570	bgeffectactor	1	00352940	FUN_00352940	Script_VM_Native_Bridge		
+0571	clear_bgeffectactor	0	003423C0	FUN_003423c0	Script_VM_Native_Bridge		
+0572	summongethertarget_one	1	003410A0	FUN_003410a0	Script_VM_Native_Bridge		
+0573	party_motionsync_and_relax					00342910	00342EC0
+0574	freqcancel2	1	00352980	FUN_00352980	Script_VM_Native_Bridge		
+0575	freqcancel2_575	2	00353660	FUN_00353660	Script_VM_Native_Bridge		
+0576	fadeout_check_nextmap	0	00343710	FUN_00343710	Script_VM_Native_Bridge		
+0577	musicfadeoutall					00343C60	
+0578	set_title_flag	1	003440C0	FUN_003440c0	Script_VM_Native_Bridge		
+0579	get_title_flag	0	003444A0	FUN_003444a0	Script_VM_Native_Bridge		
+057A	cancel_battle_think_only_crystal_talk	0	00344740	FUN_00344740	Script_VM_Native_Bridge		
+057B	set_ignore_flickerfilter_mask	0	00345120	FUN_00345120	Script_VM_Native_Bridge		
+057C	get_talk_run_status	0	003456C0	FUN_003456c0	Script_VM_Native_Bridge		
+057D	releasepc_battlemember	0	00345B40	thunk_FUN_00269530	Script_VM_Native_Bridge		
+057E	envsoundtrans	2	00346060	FUN_00346060	Script_VM_Native_Bridge		
+057F	resetemergency_one	1	00346A10	FUN_00346a10	Script_VM_Native_Bridge		
+0580	voicestopall	0	00346670	FUN_00346670	Script_VM_Native_Bridge		
+0581	check_move_battlestatus_ignore_dead	1	00340340	FUN_00340340	Script_VM_Native_Bridge		
+0582	capturepc_not_cancelbattlecommand	0	003537D0	FUN_003537d0	Script_VM_Native_Bridge		
+0583	capturepcbyentryid_not_cancelbattlecommand	1	0034C950	FUN_0034c950	Script_VM_Native_Bridge		
+0584	delete_afterglow	0	00346900	FUN_00346900	Script_VM_Native_Bridge		
+0585	delete_afterglow_all	0	00346DD0	thunk_FUN_003e6890	Script_VM_Native_Bridge		
+0586	suspendbattle_resetmotion	0	00356970	FUN_00356970	Script_VM_Native_Bridge		
+0587	suspendbattle_no_resetmotion	0	00347460	thunk_FUN_0035ab20	Script_VM_Native_Bridge		
+0588	wait_frame					003567F0	0034E630
+0589	ucoff_resetmotion	1	00347090	FUN_00347090	Script_VM_Native_Bridge		
+058A	getmovieframe_frame	0	0033F250	FUN_0033f250	Script_VM_Native_Bridge		
+058B	setff12screenmode	1	00347790	FUN_00347790	Script_VM_Native_Bridge		
+058C	setmoviescreensize	1	00347C40	FUN_00347c40	Script_VM_Native_Bridge		
+058D	getmoviescreensize	0	00347F40	FUN_00347f40	Script_VM_Native_Bridge		
+058E	getscreenaspect	0	0050D1C0	FUN_0050d1c0	Script_VM_Native_Bridge		
+058F	setmoviescreenratio	0	00510720	FUN_00510720	Script_VM_Native_Bridge		
+0590	getmoviescreenratio	0	003489E0	FUN_003489e0	Script_VM_Native_Bridge		
+0591	setmoviescreenoffsety	0	00510720	FUN_00510720	Script_VM_Native_Bridge		
+0592	getmoviescreenoffsety	0	003491E0	FUN_003491e0	Script_VM_Native_Bridge		
+0593	math_abs	0	0034A490	FUN_0034a490	Script_VM_Native_Bridge		
+0594	math_fabs	0	0034A8F0	FUN_0034a8f0	Script_VM_Native_Bridge		
+0595	setmoviescreenratio_4_3	0	00510720	FUN_00510720	Script_VM_Native_Bridge		
+0596	getmoviescreenratio_4_3	0	003498A0	FUN_003498a0	Script_VM_Native_Bridge		
+0597	setmoviescreenoffsety_4_3	0	00510720	FUN_00510720	Script_VM_Native_Bridge		
+0598	getmoviescreenoffsety_4_3	0	0050F100	FUN_0050f100	Script_VM_Native_Bridge		
+0599	lockmapjump	0	0034AD70	FUN_0034ad70	Script_VM_Native_Bridge		
+059A	unlockmapjump	0	0034B1C0	FUN_0034b1c0	Script_VM_Native_Bridge		
+059B	getff12lang	0	0034B650	FUN_0034b650	Script_VM_Native_Bridge		
+059C	unkCall_59c	0	0034BA00	FUN_0034ba00	Script_VM_Native_Bridge		
+059D	unkCall_59d	1	00340DC0	FUN_00340dc0	Script_VM_Native_Bridge		
+059E			0034C340	FUN_0034c340	Script_VM_Native_Bridge		
+059F			0034C7E0	FUN_0034c7e0	Script_VM_Native_Bridge		
+05A0	unkCall_5a0	0	00355560	FUN_00355560	Script_VM_Native_Bridge		
+05A1	unkCall_5a1	0	00355560	FUN_00355560	Script_VM_Native_Bridge		
+05A2	unkCall_5a2	1	0034E340	FUN_0034e340	Script_VM_Native_Bridge		
+05A3	unkCall_5a3	1	0034EA10	FUN_0034ea10	Script_VM_Native_Bridge		
+05A4	unkCall_5a4	0	0034ED70	thunk_FUN_00182f30	Script_VM_Native_Bridge		
+05A5	unkCall_5a5	0	0034F140	FUN_0034f140	Script_VM_Native_Bridge		
+05A6	unkCall_5a6						0034F570
+05A7	isFirstStartDone	0	0034FDA0	FUN_0034fda0	Script_VM_Native_Bridge		
+05A8	unkCall_5a8	0	003500F0	FUN_003500f0	Script_VM_Native_Bridge		
+05A9	unkCall_5a9	0	003504B0	FUN_003504b0	Script_VM_Native_Bridge		
+05AA			0034C010	FUN_0034c010	Script_VM_Native_Bridge		
+05AB	unkCall_5ab	0	00350960	FUN_00350960	Script_VM_Native_Bridge		
+05AC	unkCall_5ac	3	00350F50	FUN_00350f50	Script_VM_Native_Bridge		
+05AD	unkCall_5ad	1	00352250	FUN_00352250	Script_VM_Native_Bridge		
+05AE			003526F0	FUN_003526f0	Script_VM_Native_Bridge		
+05AF			00352B30	FUN_00352b30	Script_VM_Native_Bridge		
+05B0	unkCall_5b0	2	00353420	FUN_00353420	Script_VM_Native_Bridge		
+05B1	unkCall_5b1	0	00355930	FUN_00355930	Script_VM_Native_Bridge		
+05B2			0050C7F0	FUN_0050c7f0	Script_VM_Native_Bridge		
+05B3			0050C7F0	FUN_0050c7f0	Script_VM_Native_Bridge		
+05B4	unkCall_5b4	0	00355930	FUN_00355930	Script_VM_Native_Bridge		
+05B5	loadPs2Save	1	00510720	FUN_00510720	Script_VM_Native_Bridge		
+05B6	unkCall_5b6	5	003545B0	FUN_003545b0	Script_VM_Native_Bridge		
+05B7	unkCall_5b7	0	00354BE0	thunk_FUN_00474040	Script_VM_Native_Bridge		
+05B8	unkCall_5b8	0	00354EF0	FUN_00354ef0	Script_VM_Native_Bridge		
+05B9	unkCall_5b9	2	0034D360	FUN_0034d360	Script_VM_Native_Bridge		
+05BA	unkCall_5ba	1	0034D870	FUN_0034d870	Script_VM_Native_Bridge		
+05BB	unkCall_5bb	0	00355420	FUN_00355420	Script_VM_Native_Bridge		
+05BC	unkCall_5bc	0	003556A0	FUN_003556a0	Script_VM_Native_Bridge		
+05BD	unkCall_5bd	3	0034DEE0	FUN_0034dee0	Script_VM_Native_Bridge		
+05BE	unkCall_5be	0	00355940	FUN_00355940	Script_VM_Native_Bridge		
+05BF	unkCall_5bf	0	00355E80	FUN_00355e80	Script_VM_Native_Bridge		
+05C0			0034DAF0	FUN_0034daf0	Script_VM_Native_Bridge		
+05C1			003513F0	FUN_003513f0	Script_VM_Native_Bridge		
+05C2	unkCall_5c2	1	003560B0	FUN_003560b0	Script_VM_Native_Bridge		
+05C3	unkCall_5c3	1	003568B0	FUN_003568b0	Script_VM_Native_Bridge		
+05C4	unkCall_5c4	1	00356440	FUN_00356440	Script_VM_Native_Bridge		
+05C5	unkCall_5c5	1	00356C80	FUN_00356c80	Script_VM_Native_Bridge		
+05C6	unkCall_5c6	0	0033FED0	FUN_0033fed0	Script_VM_Native_Bridge		
+05C7	unkCall_5c7	2	0016D6A0	_guard_check_icall			
+05C8	unkCall_5c8	1	003405A0	FUN_003405a0	Script_VM_Native_Bridge		
+05C9	unkCall_5c9	0	00352F00	FUN_00352f00	Script_VM_Native_Bridge		
+05CA	unkCall_5ca	1	00340B70	FUN_00340b70	Script_VM_Native_Bridge		
+05CB	unkCall_5cb	1	00343760	thunk_FUN_00342640	Script_VM_Native_Bridge	00340380	003418B0
+05CC			00346620	FUN_00346620	Script_VM_Native_Bridge		
+05CD	unkCall_5cd	0	00341030	FUN_00341030	Script_VM_Native_Bridge		
+05CE	unkCall_5ce	0	003413E0	FUN_003413e0	Script_VM_Native_Bridge		
+05CF	unkCall_5cf	1	00357230	FUN_00357230	Script_VM_Native_Bridge		
+05D0	unkCall_5d0	1	00341760	FUN_00341760	Script_VM_Native_Bridge		
+05D1	unkCall_5d1	1	0033F870	FUN_0033f870	Script_VM_Native_Bridge		
+05D2	unkCall_5d2	0	00341B80	FUN_00341b80	Script_VM_Native_Bridge		
+05D3	unkCall_5d3	0	00341F40	FUN_00341f40	Script_VM_Native_Bridge		
+05D4	unkCall_5d4	1	0033F2F0	FUN_0033f2f0	Script_VM_Native_Bridge		
+05D5	unkCall_5d5					0034D790	0034DCC0
+05D6	resetJobs	1	00342230	FUN_00342230	Script_VM_Native_Bridge		
+05D7	hasJobAssigned	1	00342560	FUN_00342560	Script_VM_Native_Bridge		

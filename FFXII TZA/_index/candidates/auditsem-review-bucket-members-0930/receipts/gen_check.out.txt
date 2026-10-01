@@ -1,0 +1,11 @@
+C1 PASS  4387 entries; unmatched 0, matched by two rules 0, signature absent from the full census 0 []
+C2 PASS  per-signature entries reproduce the full census: 59 bin + 21 dat rows
+C3 PASS  .bin members sum to 1439 entries, census 1439
+C3 PASS  .dat members sum to 2948 entries, census 2948
+C4 PASS  every named sheet exists; 0 member(s) with no sheet yet: none
+C5 PASS  each rule took exactly its expected signatures
+C6 PASS  control: an invented unit matches no rule (0 matched)
+C7 PASS  each member's sheet carries a signature-scoped explained/standard/external row naming it
+  .bin: 53 members, 1439 entries, 236 units
+  .dat: 5 members, 2948 entries, 350 units
+FAILS 0

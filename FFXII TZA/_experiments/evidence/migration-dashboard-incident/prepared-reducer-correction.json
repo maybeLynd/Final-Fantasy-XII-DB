@@ -1,0 +1,6 @@
+{
+  "reason": "Prepublication reducer default in-place receipt write corrected to compare-existing. No capture/raw/observations changed; no route or published acceptance yet.",
+  "original_manifest_sha256": "3e22fcc337853b9f0ccabf6b7c8c1d5c399bed9516853fa87995f27f781442f7",
+  "archive": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\archive-frozen-v1",
+  "original_members": 140
+}

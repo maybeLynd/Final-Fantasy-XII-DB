@@ -1,0 +1,5 @@
+PASS  R rsi = rdi + 0x24 by default; max HP at [rsi] (<= 0x7FFF), max MP at [rsi + 4] (<= 999)
+PASS  F the four f32 reads and their accumulators
+PASS  S stores [rsi + 6..9] clamp to 99; [rsi + 0xA..] to 255
+PASS  K party arm jumps to 002FF3D0; from there the accumulators see only adds before their stores: ['002FF4D3 add r12d, ecx', '002FF4E2 add r13d, ecx', '002FF4F1 add dword ptr [rsp + 0x2c], ecx', '002FF501 add dword ptr [rsp + 0x30], ecx', '002FF632 add r12d, eax', '002FF6D0 add r13d, eax', '002FF82F test r12d, r12d', '002FF834 mov r12d, ebp', '002FF839 cmp r12d, r15d', '002FF83C cmovg r12d, r15d', '002FF844 test r13d, r13d', '002FF849 mov r13d, ebp', '002FF84E cmp r13d, r15d', '002FF851 cmovg r13d, r15d']
+FAILS 0

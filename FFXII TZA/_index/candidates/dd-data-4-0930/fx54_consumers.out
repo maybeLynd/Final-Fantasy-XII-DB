@@ -1,0 +1,7 @@
+   00861EBA -> memcpy ; 00861F14 -> sqrtf
+PASS V1 00435050: +0x24 copied 16 B/entry, +0x2C 8 B/entry through memcpy; +0x28 to the byte kernel with element +0x40
+PASS V2 00434CD0: +0x28 blended then byte kernel; +0x2C blend unless +0x1F1 bit 5; +0x24 blend unless bit 6
+PASS V3 00432030: squares summed, sqrtf, 1/len (zero guarded), xyz scaled - a normalised lerp
+PASS C1 control: both consumers read the position array +0x20
+RESULT the consumers copy or blend +0x24 / +0x28 / +0x2C per entry; the +0x24 blend renormalises to unit length (normals), +0x28 goes through a per-byte kernel with the element's +0x40 block, +0x2C is copied or blended as float pairs
+FAILS 0

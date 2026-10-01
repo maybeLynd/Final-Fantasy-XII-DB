@@ -1,0 +1,11 @@
+control: .cm files with an @FCP block: 1066 (published 1,066); version byte 0x0A in 1066
+blocks with a section 3: 603
+P1  section 3 has >= 0x3C0 bytes before the next section: 603 pass, 0 fail
+    gap to the next section (bytes -> blocks): [(960, 603)]
+P2  largest bone id in a used slot: 41 ; used slots with a non-finite float or a scale <= 0: 0
+    scale of USED slots (value -> count): [(1.0, 1882), (1.3, 251), (1.2, 170), (2.5, 160), (1.5, 144), (1.1, 54), (0.8, 40), (0.82, 32)]
+P3  scale of UNUSED slots: [(1.0, 15046), (2.0, 352), (1.05, 334), (0.9, 164), (0.93, 128)] ; unused slots with a non-zero offset: 295
+slots used per block (count -> blocks): [(0, 428), (1, 8), (2, 4), (3, 10), (9, 2), (10, 4), (16, 36), (18, 69), (20, 25), (21, 8), (23, 7), (24, 2)]
+which slots are used (slot -> blocks): [(0, 56), (1, 9), (2, 153), (3, 160), (4, 154), (5, 147), (6, 153), (7, 147), (8, 153), (9, 17), (10, 153), (11, 153), (12, 153), (13, 147), (14, 147), (15, 147), (16, 9), (17, 111), (18, 147), (19, 42), (20, 147), (21, 153), (22, 139), (30, 2)]
+P4  section 8 present in 28 blocks; length == 0x10 + n x 0x1D0: {'exact': 28} ; n -> [(1, 3), (2, 25)]
+P5  section 4 present in 216 blocks; length == 0x10 + n x 0x50 and n <= 4: {'exact': 216} ; n -> [(1, 199), (2, 14), (3, 1), (4, 2)] ; by folder: [('weapon', 202), ('gadget', 9), ('summon', 4), ('monster', 1)]

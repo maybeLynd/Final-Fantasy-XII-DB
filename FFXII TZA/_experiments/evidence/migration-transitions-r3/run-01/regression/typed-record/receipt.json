@@ -1,0 +1,35 @@
+{
+  "name": "typed-record",
+  "input_sha256": "ac521e2f2560fc551d0ab1d93ac07b61d4e56dcd566d6f667a7764672310480a",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\regression\\typed-record\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-TYPED-RECORD\",\n  \"detail\": \"record {'not': 'a path'} is not a repository path\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "terminal": true,
+  "report": [
+    {
+      "transition": "MALFORMED",
+      "review": "REVIEW-TYPED-RECORD",
+      "detail": "record {'not': 'a path'} is not a repository path",
+      "status": "-"
+    }
+  ],
+  "original_plan": [
+    [
+      "MALFORMED",
+      "REVIEW-TYPED-RECORD",
+      "record {'not': 'a path'} is not a repository path",
+      null
+    ]
+  ],
+  "board_unchanged": true,
+  "writer_invoked": false,
+  "expected": "MALFORMED"
+}

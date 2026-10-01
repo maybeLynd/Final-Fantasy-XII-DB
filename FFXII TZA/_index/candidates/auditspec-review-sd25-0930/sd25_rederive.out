@@ -1,0 +1,18 @@
+rand-family imports: {'008C3098': ('api-ms-win-crt-utility-l1-1-0.dll', 'rand'), '008C30A0': ('api-ms-win-crt-utility-l1-1-0.dll', 'srand')}
+rand 008C3098: 49 rip refs, 1 raw-only, 31 functions
+srand 008C30A0: 2 rip refs, 3 raw-only, 2 functions
+closure of 007A5400: 569 functions; stepper 007BD120 in: True; 007BDFA0 in: True
+rand users inside closure: 007D0260 007E6DD0 007E7E00 007F3E30; outside: 27
+srand users inside closure: 007A5400; outside: 1
+outside-closure rand users: 00177850 001A7770 0029F130 002F8410 002F88B0 002FA1A0 003343D0 00334E00 00336E40 00337D90 00338490 0033DB60 0033E1F0 00384B10 003BBD00 003FBE90 004225A0 00530E40 0055B3F0 007E5160 007E5E80 007E65B0 007E6620 00819270 008193E0 00861F38 00866200
+closure call [reg + 0x150]: 1 sites 007B4B06
+closure call [reg + 0x68]: 2 sites 007ABA5F 007EB8E5
+007E5160: .?AVRandomSound@Driver@Sd@SQEX@@ slot 43 (closure call sites through 0x158: 1); direct callers []
+007E5E80: no reloc; direct callers ['7E6566', '7E669A']
+007E65B0: .?AVCycleSound@Driver@Sd@SQEX@@ slot 40 (closure call sites through 0x140: 1); direct callers []
+007E6620: .?AVCycleSound@Driver@Sd@SQEX@@ slot 42 (closure call sites through 0x150: 1); direct callers []
+closure call sites through 0x140: 007B3168/007B2F70
+closure call sites through 0x150: 007B4B06/007B4A70
+closure call sites through 0x158: 007BD205/007BD120
+rand refs: 
+srand refs: 007A540B/007A5400 call 008193F0/008193E0 call

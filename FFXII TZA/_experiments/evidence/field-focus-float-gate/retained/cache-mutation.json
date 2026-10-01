@@ -1,0 +1,9 @@
+{
+  "original_cache_path": "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\3c89ec72-2988-46c1-ba7b-44218ae1bb19\\scratchpad\\y1p_all.txt",
+  "original_cache_bytes": 73052546,
+  "original_cache_sha256": "72836705eaa499e66dccc34fb52cd38de9eb1912fb8e463d120cee2bc3259942",
+  "mutant_cache_sha256": "0188a0ad3cd3e3df9a4177b4da4ff38853c5da7d55d6bd6f070b5cca11b97c72",
+  "before": "0022AB7C 0022A770 jp 0x22ab90\r\n",
+  "after": "0022AB7C 0022A770 nop\r\n",
+  "limits": "Full cache identity retained, only exact edited line retained; reproduction requires original matching cache. It is a derived view, not the shipping source."
+}

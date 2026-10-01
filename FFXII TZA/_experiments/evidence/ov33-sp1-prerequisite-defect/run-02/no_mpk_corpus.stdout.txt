@@ -1,0 +1,5 @@
+packs 0  records 0  shapes {}  count==1 0
+CONTROL page census: records 2326, shape-2 400, count==1 2265 -> MISMATCH (0, 0, 0)
+largest shape-2 counts: []
+shape-2 records with count >= 128: NONE
+FAILS 0

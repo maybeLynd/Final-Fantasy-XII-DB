@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-WITHDRAW-THE-OVERREACHING-EXTENT",
+ "agent": "OPUS",
+ "note": "Committed d5dc7efa9. CoreRuntimeStatic02064AA0 is withdrawn from 0x280 and redeclared at 0x60: 172 field rows removed, 25 written, and the store is down 147 rows on the round, which is the point. The overlap with the VU1 working-register range the vif1-vu1 page records was measured at that page's own boundary - 296 accesses on my side against 23,578 on theirs, led by 004B1190 at 1,427 - so 98.8% of what I had declared belonged to another subsystem. Filed as CON-156 with the mechanism named: the sweep clusters by proximity and a gap is not a boundary between owners, and the check that catches it is asking which bodies touch which part. The same check was then run on AppBootStatic01F7F480, which PASSES - one body family runs through all four windows and there is no access cliff - so the correction is targeted rather than a blanket retreat. The VU1 bank is NOT declared: the page gives a range and examples, not a field map. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/CONTRADICTIONS.tsv",
+  "Database/FFXII TZA/_types/types.tsv"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

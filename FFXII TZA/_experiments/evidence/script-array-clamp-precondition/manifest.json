@@ -1,0 +1,130 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 3944,
+      "sha256": "11ab750c90dceda5bfe981570a6f78a26ab5bcf023766443114a7919e0330289"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6537,
+      "sha256": "12b9fdb960ddb711014eb42c36dda314787675eba42ef081f909d7f9e380ae49"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 423,
+      "sha256": "b6ec463821105916522721c1ef8916a043e4d593249c7c23a046111fe433526f"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 85,
+      "sha256": "a3d99e9ca5205be4bf0b1487321e91cfeca0b33fdb8cf79b442aef1f8d8bb851"
+    },
+    {
+      "path": "fault-rank-is-dimension.stderr",
+      "bytes": 385,
+      "sha256": "37c62ee15fe33a47800fbdd7b35435d308a069e8366f6e4052908fc55eb875b4"
+    },
+    {
+      "path": "fault-rank-is-dimension.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-upper-inclusive.stderr",
+      "bytes": 439,
+      "sha256": "81b980d763a8b9ec8ff2c875b95a116bd775664d847db0c18cab9c50698cb033"
+    },
+    {
+      "path": "fault-upper-inclusive.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-zero-dimension-is-edge.stderr",
+      "bytes": 509,
+      "sha256": "f76fe45f779d7c6d8c5f641da9a4afae783df30d3aec1feb4531bb61f6f34bc6"
+    },
+    {
+      "path": "fault-zero-dimension-is-edge.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2665,
+      "sha256": "7e2e77861ae599d7a1f82d70bdb6f9d08c172ef86d461e5176648dfbcbf60509"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3009,
+      "sha256": "6295923e1dd31c598419d900c043bc200d55cd1e2f1a2a66d4c09c20f7ee3412"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1769,
+      "sha256": "ce86438f25ad9218b218d7a23367b0f951851800ee3fb03b6be4c154b9ea271f"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 43022,
+      "sha256": "1cef65d489f1cc892f35d98f0aadd16e27d2236f62006160804ce0ec5648d57d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3643,
+      "sha256": "e93c89501161a842e87ca84dcbbd39bcc87f483ce7c78a8b4683238b98879ef6"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 407,
+      "sha256": "080d3720fb209865d0e9204ef6364b37402b9edb96f2df0c368c431855711a16"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3612,
+      "sha256": "d27c84b21528facb6a80a0025b42210daea2d0b2f7289203be65bb887b2e7225"
+    },
+    {
+      "path": "retained/65-correction-material-publication.json",
+      "bytes": 8241,
+      "sha256": "3b7f0afd53267740f215cff2212fa4ba5a3149f41846acd08d3aa9092f2ffadc"
+    },
+    {
+      "path": "retained/65-correction-README.md",
+      "bytes": 2677,
+      "sha256": "7ad76d57e932fde2be12874fce183683222c8be68994fcb9f89165601bbe39db"
+    },
+    {
+      "path": "retained/65-reference.json",
+      "bytes": 39662,
+      "sha256": "9daaedba5e2d3d12aeb05f2f34adb6598a7bda243cb8b04f1d58b4e771db4567"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 41702,
+      "sha256": "5963e00b8cc45ce29d6bb5ca17165671aec326b43bd08178eadeef9584febb7e"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/resolver591.bin",
+      "bytes": 591,
+      "sha256": "7909d30a3b1f82ee5e5c91a507d9313be45c5ccc5b71d210f1fac2ae3f595241"
+    }
+  ],
+  "limits": "Selected original array rank/dimension signed-clamp preconditions; conditional calculations are not execution; no asset validity/nativefault/live or independentacceptance proof."
+}

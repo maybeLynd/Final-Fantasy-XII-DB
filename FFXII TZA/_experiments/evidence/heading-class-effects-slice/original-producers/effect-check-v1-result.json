@@ -1,0 +1,12 @@
+{
+  "status": "STATIC_EFFECT_BOUNDARIES_VALID_NOT_CLASS_CLOSURE",
+  "method": "A; retained original code decoding, no machine-code/game execution",
+  "class_stability": "OPEN",
+  "commit_dispatch_targets": [
+    "0x52b5d0",
+    "0x52a8a0",
+    "0x529d40",
+    "0x45fd00"
+  ],
+  "limits": "Conditional source facts only; initialized alias/lifetime/callback/normal reachability not established. No-root catalogue bodies remain qualified. Original failed capture and additive edge corrections preserved."
+}

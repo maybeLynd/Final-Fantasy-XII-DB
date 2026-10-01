@@ -1,0 +1,238 @@
+{
+ "cases": {
+  "E1_esper_rows_defeat_cleanup_only_masks_untouched": true,
+  "E2_outside_the_band_the_full_KO_path_and_the_bit": true,
+  "E3_nonterminal_on_an_esper_row_is_written_no_defeat": true,
+  "E4_removing_KO_clears_the_bit_then_enters_the_recovery_boundary_00238BF0": true,
+  "no_fault_except_the_recorded_boundary": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "nonterminal_on_esper_row": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 32
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "events": [
+    [
+     "reaction",
+     "76281EA0",
+     "5"
+    ]
+   ],
+   "halt": [],
+   "last_function": "0030E360",
+   "mask_writes": [
+    [
+     "+64",
+     "0030E53E"
+    ]
+   ],
+   "ok": true,
+   "unit": "76281EA0"
+  },
+  "remove_ko_vaan": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 1
+   },
+   "events": [
+    [
+     "recover",
+     "76281EA0",
+     "120000"
+    ]
+   ],
+   "halt": [
+    "0000007A"
+   ],
+   "last_function": "00238BF0",
+   "mask_writes": [
+    [
+     "+64",
+     "0030E4F8"
+    ]
+   ],
+   "ok": false,
+   "unit": "76281EA0"
+  },
+  "type_00": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 1
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "events": [
+    [
+     "reaction",
+     "76281EA0",
+     "0"
+    ],
+    [
+     "defeat",
+     "76281EA0",
+     "0"
+    ],
+    [
+     "rewards",
+     "0",
+     "76281EA0"
+    ]
+   ],
+   "halt": [],
+   "last_function": "0030E360",
+   "mask_writes": [
+    [
+     "+64",
+     "0030E53E"
+    ]
+   ],
+   "ok": true,
+   "unit": "76281EA0"
+  },
+  "type_1A": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 1
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "events": [
+    [
+     "reaction",
+     "76281EA0",
+     "0"
+    ],
+    [
+     "defeat",
+     "76281EA0",
+     "0"
+    ],
+    [
+     "rewards",
+     "0",
+     "76281EA0"
+    ]
+   ],
+   "halt": [],
+   "last_function": "0030E360",
+   "mask_writes": [
+    [
+     "+64",
+     "0030E53E"
+    ]
+   ],
+   "ok": true,
+   "unit": "76281EA0"
+  },
+  "type_1B": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "events": [
+    [
+     "defeat",
+     "76281EA0",
+     "0"
+    ]
+   ],
+   "halt": [],
+   "last_function": "0030E360",
+   "mask_writes": [],
+   "ok": true,
+   "unit": "76281EA0"
+  },
+  "type_27": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "events": [
+    [
+     "defeat",
+     "76281EA0",
+     "0"
+    ]
+   ],
+   "halt": [],
+   "last_function": "0030E360",
+   "mask_writes": [],
+   "ok": true,
+   "unit": "76281EA0"
+  },
+  "type_28": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 1
+   },
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "events": [
+    [
+     "reaction",
+     "76281EA0",
+     "0"
+    ],
+    [
+     "defeat",
+     "76281EA0",
+     "0"
+    ],
+    [
+     "rewards",
+     "0",
+     "76281EA0"
+    ]
+   ],
+   "halt": [],
+   "last_function": "0030E360",
+   "mask_writes": [
+    [
+     "+64",
+     "0030E53E"
+    ]
+   ],
+   "ok": true,
+   "unit": "76281EA0"
+  }
+ }
+}

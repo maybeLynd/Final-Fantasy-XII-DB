@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_input_probe.py",
+    "--keys",
+    "Space",
+    "--hold",
+    "0.35"
+  ],
+  "start": 1789086169.7752936,
+  "end": 1789086170.8664975,
+  "exit_code": 0,
+  "stdout": "pid 23532   held-array at 0x000000000E4580F0, 256 bytes\nbaseline: all 256 bytes zero\nforeground: the game (hwnd 0xe30b54), verified\n\nCONTROL, no key held for 0.35 s : clean\n\n  Space     vk 0x20  ->  indices while held: [52]                    still set after release: none\n\nkeys tried            : 1\nkeys that moved a byte: 1\npolls that lost focus : 0\n\nMEASURED MAPPING  (index -> the game's own code, index + 28)\n  Space     index  52  code  80  Circle\n",
+  "stderr": ""
+}

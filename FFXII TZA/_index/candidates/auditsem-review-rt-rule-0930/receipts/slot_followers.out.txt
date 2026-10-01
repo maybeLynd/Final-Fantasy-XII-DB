@@ -1,0 +1,7 @@
+   (not a load) 00236E72 lea rcx, [rip + 0x2c8821f]
+   (not a load) 00236E8C lea rcx, [rip + 0x2c881fd]
+   (not a load) 00236EA6 lea rcx, [rip + 0x2c881db]
+   (not a load) 00236EC0 lea rcx, [rip + 0x2c881b9]
+   (not a load) 00236EDA lea rcx, [rip + 0x2c88197]
+   (not a load) 00236EF4 lea rcx, [rip + 0x2c88175]
+slot loads examined: 62  stores through the loaded pointer: 0

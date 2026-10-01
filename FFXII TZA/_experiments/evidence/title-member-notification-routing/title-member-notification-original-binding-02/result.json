@@ -1,0 +1,84 @@
+{
+  "question": "Does the original title asset request path require the resource-member owner notification site249632, beyond the old synchronous/watcher probe sites?",
+  "hypotheses": [
+    "old synchronous24947D/watcher24955D sites are complete for the title requests",
+    "the two title request factories use249210 and therefore prepare a2495C0 member-completion descriptor with a distinct owner-notify site249632"
+  ],
+  "method": "A retained original caller/handler bytes plus selected original descriptor/factory/completion code. This distinguishes routing without live FF12 or isolated execution.",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "f2b1cf9b2f180b30350c98149ec11e448be450f834f53d6d25a412e6da08c5ef",
+  "inputs": [
+    {
+      "path": "title-watcher-lifetime-raw-02.json",
+      "sha256": "6f1592b32f094155884bfd4a78f285a773ed1c1cdd4a97d29eb8168551504759",
+      "driver": "capture-title-watcher-lifetime.py",
+      "driver_sha256": "6d161e5dcbb8b770ee0298a77baf8b0bebcc52767c494a9ecdce966574ec7186"
+    },
+    {
+      "path": "title-member-routing-raw-01.json",
+      "sha256": "2b57a0cbe9b7f1c6752f9c901633fbc69f08f19c95af21111ad198de492bd200",
+      "driver": "capture-title-member-routing.py",
+      "driver_sha256": "1f7d3348653fa8d868857c1fabde700cda3dbe780c22e00be21afd8fb605948f"
+    },
+    {
+      "path": "title-watcher-attachment-raw-01.json",
+      "sha256": "4ed56c3c88151b514623482411340366e1d0cebc81ed4e2041df92e244884aac",
+      "driver": "capture-title-watcher-attachment.py",
+      "driver_sha256": "a31b4d85a7a5190bf3029b361f0bdf4187404948befb77b20a05969e04a05a97"
+    }
+  ],
+  "retained_inputs": [
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\continuation-section04-widget-receiver\\original_body_manifest.json",
+      "sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\continuation-section04-widget-receiver\\original_disassembly.txt",
+      "sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57"
+    }
+  ],
+  "controls": {
+    "member_callback_is_2495c0": true,
+    "watcher_factory_is_distinct_2491b0": true,
+    "requested_count_18_done_count_1a": true,
+    "controller_message18_bound": true,
+    "altered_completion_descriptor_refused": true,
+    "removed_owner_notification_refused": true
+  },
+  "normalized": {
+    "title_request_calls": [
+      "0x2493d0",
+      "0x249320"
+    ],
+    "common_factory": "0x249210",
+    "completion_descriptor": "0x2495c0",
+    "descriptor_user": "low32 member pointer",
+    "member_owner": "ticket+8",
+    "member_ticket": "member+0",
+    "expected_count": "ticket+18",
+    "completed_count": "ticket+1a",
+    "ordinary_owner_notify": "0x249632",
+    "message_id": 16,
+    "member_callback_before_count": true,
+    "separate_watcher_factory": "0x2491b0",
+    "separate_watcher_notify": "0x24955d"
+  },
+  "established": [
+    "393FF0 prepares its two requests through2493D0 and249320, both calling249210.",
+    "249210 prepares queue completion2495C0 and low32 member context before requesting32E620, then increments expected count18.",
+    "2495C0 executes the member-specific callback first, increments ticket done count1A, and on sealed/equal/custom-zero branch sends16 to ticket+8 through handler call249632.",
+    "The watcher route through248700/2494F0 exists separately; watching only24947D/24955D does not cover the member owner-notify site.",
+    "A future negative callback observation needs249632 or an independently demonstrated equivalent complete detector, plus owner/ticket identity and live health controls."
+  ],
+  "refuted": [
+    "The old list of synchronous24947D and watcher24955D recipient sites is a complete detector for the prepared title member-completion path."
+  ],
+  "unresolved": [
+    "Natural pending teardown/later delivery; callback cancellation/drain across full resource/parent lifetime; actual IO outcomes; pointer reuse/generation; any broader claim that no additional watcher is ever created through omitted services."
+  ],
+  "affected": [
+    "OV29 preparation successor-request.md and notes.md, downstream future collector/negative-result criteria; title page lifetime claim remains OPEN"
+  ],
+  "limits": "Source routing under valid ticket/member/service premises; no runtime hit, IO timing, original-machine execution or forced call. Member-specific callback may affect state; omitted helper effects are not silently assumed safe. No existing EXP is reclassified merely from this discovery.",
+  "cleanup": "Offline reads only; reference image unchanged, no game/process/save/config session."
+}

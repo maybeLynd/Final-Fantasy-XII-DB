@@ -1,0 +1,53 @@
+{
+  "experiment": "EXP-073-facing-reapply-comparison",
+  "files": {
+    "002E5E10.bin": {
+      "bytes": 374,
+      "sha256": "3bc6c794415682b5fe241de06fbd093bc165bce93257a8f68d86cfb83ff2f8fd"
+    },
+    "002E5F90.bin": {
+      "bytes": 26,
+      "sha256": "97a5f34f653d8ad77ef0c1b03c7878740ef211e8f1a79bfcf90e8e98728e98b0"
+    },
+    "0033CB70.bin": {
+      "bytes": 128,
+      "sha256": "6a0056641e101824630d9ed3a3ff851546b8c93a366eb75b559bab4ce7f66877"
+    },
+    "00915620.bin": {
+      "bytes": 4,
+      "sha256": "85552af8a6135cf71f7059eae5fcace95c1ac333fb8d0d862b59ead80eeaa35a"
+    },
+    "00915624.bin": {
+      "bytes": 4,
+      "sha256": "2d120d36e8fc265774695c947cdda2df39e8dbf29fb7d1ecabcc505944e83fc0"
+    },
+    "00D10B0C.bin": {
+      "bytes": 4,
+      "sha256": "ef43f41eb3b633de35195ca79fa4c62141fcdbe4f0defc9cbc943d432f3c859f"
+    },
+    "00D10B20.bin": {
+      "bytes": 4,
+      "sha256": "fc2fd2cf2bc6acd113f41ace0cbe61c1209d5c1f1e0a1fe8b1062e5ec2e89ac6"
+    },
+    "01CEBC50.bin": {
+      "bytes": 4,
+      "sha256": "3a1d8964b4fe305b5d25d90b8ba168d95e559961da4a9b22df4558cc257e7e11"
+    },
+    "01CEBC78.bin": {
+      "bytes": 4,
+      "sha256": "12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76"
+    },
+    "check.py": {
+      "bytes": 12919,
+      "sha256": "03c991bb541a970d23d80f2169b3aacd149fe8465ad43aad4de2a752d3026e55"
+    },
+    "disassembly.txt": {
+      "bytes": 6994,
+      "sha256": "bf909d25f222447c0d60014af0a3481cada6587b4a75797b0f67b85c5ea91d48"
+    },
+    "result.json": {
+      "bytes": 363518,
+      "sha256": "8165c6e9842158b1d44aa118f30d9fb09514882a02d01bee6ec560abdd95c7cb"
+    }
+  }
+}

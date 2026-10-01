@@ -1,0 +1,75 @@
+{
+  "phase": "initial pure-measure control only; whole request INCOMPLETE",
+  "method": "A actual original Python tooling with pre-resolved synthetic fixtures; not FF12/live",
+  "source_tree_commit": "763d466d6fb022acfb7df756d28eab28dcd0fbd0",
+  "source_last_commit": "7aaa2f8bdc83d276e3b8b5be292da6d2d4d9f947",
+  "source_sha256": "4cca40cd29d78b7bb2db1418d3ca802f3ecc45ab0669e9433a101b2879349fdf",
+  "source_blob": "252965e2686d638e3eeafbe8d1bc7a502accab23",
+  "driver_sha256": "17803be398160bea8a3534a37dd228424514cc95454d213ccd8dc5d476110bb2",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "cases": [
+    {
+      "name": "all-accepted-final30",
+      "input_sha256": "769d4cd579d3df3323d74856d5cc51ebe4342d7f922b806b390602b8c3056d03",
+      "output_sha256": "671149fd254e8275daa5b0c221a0ac47f64ac402fd6e342e272148a82dfd1a11",
+      "ready": true,
+      "measured": true,
+      "terminal": {
+        "accepted": 30,
+        "required": 30
+      },
+      "union": {
+        "accepted": 45,
+        "total": 45
+      }
+    },
+    {
+      "name": "open-Q-with-all-L2-MET",
+      "input_sha256": "433e996703cac1665d9c85c2baad64b8005403b0b91b5b7d36cec09ce3416026",
+      "output_sha256": "fefe86114a925d00a6ad437705c3dce74a5ede20c347eb3529420b05c4588f68",
+      "ready": false,
+      "measured": true,
+      "terminal": {
+        "accepted": 30,
+        "required": 30
+      },
+      "union": {
+        "accepted": 44,
+        "total": 45
+      }
+    },
+    {
+      "name": "missing-bucket-family",
+      "input_sha256": "0442a5d978c14b60bc74f403534ff12ff308e5ae8c710c9d08804e6a07c2e847",
+      "output_sha256": "49988898f25151449a517268e5bb53f8cf59789ea296ec2e06321995657aa463",
+      "ready": false,
+      "measured": false,
+      "terminal": {
+        "accepted": 30,
+        "required": 30
+      },
+      "union": {
+        "accepted": 45,
+        "total": 45
+      }
+    },
+    {
+      "name": "invalid-terminal-required0",
+      "input_sha256": "ba5989be3a292af73c14154d8899aa010e6b4eea0c34ca4f756965b48058d3e0",
+      "output_sha256": "33204df820be429014dd7213ad8bca6ba93ed3b9ffff048987bb0f0398f04fad",
+      "ready": true,
+      "measured": true,
+      "terminal": {
+        "accepted": 0,
+        "required": 0
+      },
+      "union": {
+        "accepted": 15,
+        "total": 15
+      }
+    }
+  ],
+  "phase_finished": true,
+  "observation": "With pre-resolved synthetic reporter required_consecutive0 and MET/acceptanceOK fixture gate, original measure returns readyTrue/terminal0of0. Initial admission boundary only; actual caller/schema/generation/server/deployed path unresolved.",
+  "next": "Trace original build_views validation/caller and server refusal paths; fixed30 governing contract must be retained. Finish other independently derived cases then exact authored suite/deployed drilldown; do not infer native/live/full task closure."
+}

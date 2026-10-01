@@ -1,0 +1,89 @@
+{
+  "records": [
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/check.py",
+      "copy": "check.py",
+      "commit": "ced7c61fd041bdac490daec48e24d913341704da",
+      "blob": "c37bdd61e59380756aeb6da8b8c1207728970582",
+      "sha256": "2cbc80696fe72fc38d8854d97b0f6ca5e5d68be34d4823a169f058c1c16fa9d7",
+      "current_preimage_sha256": "2cbc80696fe72fc38d8854d97b0f6ca5e5d68be34d4823a169f058c1c16fa9d7",
+      "current_matches": true
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/poison.py",
+      "copy": "poison.py",
+      "commit": "ced7c61fd041bdac490daec48e24d913341704da",
+      "blob": "e06cd949ffd92124edb11e8a18938b82ec42fba4",
+      "sha256": "56e361340d94d6b5f7b610163a2e4d56914b7f814e875423d0e01c0ae7b571d5",
+      "current_preimage_sha256": "56e361340d94d6b5f7b610163a2e4d56914b7f814e875423d0e01c0ae7b571d5",
+      "current_matches": true
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/poison_result.json",
+      "copy": "author-poison-result.json",
+      "commit": "ced7c61fd041bdac490daec48e24d913341704da",
+      "blob": "9b5881b8bbc9a22ac5e1deec18a847beab223f5a",
+      "sha256": "40d81950ee1fab54b7ed5980cfa007f97fac7983d0f87a3ddca12e9bea9affc0",
+      "current_preimage_sha256": "38643e333c2de709024b712b929a4102c8d775f8c94fd9b3db9397f29ac4d14f",
+      "current_matches": false
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/pkg-gp-status-poison/q6.md",
+      "copy": "fable-q6.md",
+      "commit": "f7a5ce0d6ab267d133b7874b8969c51d53dd9396",
+      "blob": "51133b8a05a4c73779b385df81391c1c5e667b91",
+      "sha256": "028053740c449c963236512f88e60f5fcd219a2c31b5cb26e7dcac6c90ed8b22",
+      "current_preimage_sha256": "028053740c449c963236512f88e60f5fcd219a2c31b5cb26e7dcac6c90ed8b22",
+      "current_matches": true
+    },
+    {
+      "path": "Database/FFXII TZA/10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md",
+      "copy": "status-page.md",
+      "commit": "f7a5ce0d6ab267d133b7874b8969c51d53dd9396",
+      "blob": "b73804b5adce660714e8673a924a98c64721242e",
+      "sha256": "899ec2f8c56c227977a0d776320f2ddd97f702451df926740c77af7ad2f2487d",
+      "current_preimage_sha256": "12d6c4a9b026a27aeeda1076d09b7650c40a8b8fd24309083fd9af9ea650c7c3",
+      "current_matches": false
+    }
+  ],
+  "image": {
+    "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "size": 32864752,
+    "base": "0x120000",
+    "stage2_bytes_sha256": "bcdbed8dd31813fa18fa3d34011f7e945413e6fc982e328af0f35c76d412cac5"
+  },
+  "graph": [
+    {
+      "path": "Database/Tools/work/graph/edges.tsv",
+      "sha256": "de21ba1bc62d92243ea66f47ec7a08355ac2f77d355ed8abc542c158fc709095",
+      "size": 3654138
+    },
+    {
+      "path": "Database/Tools/work/graph/functions.tsv",
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+      "size": 7008993
+    }
+  ],
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "base_python": "C:\\Python314\\python.exe",
+    "base_python_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+    "unicorn": "2.1.0",
+    "capstone": "5.0.7",
+    "native_modules": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+        "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75",
+        "size": 9343488
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3",
+        "size": 7576576
+      }
+    ]
+  },
+  "driver_sha256": "f064b92aa2e5e33ce5bc0294129491c69cef5461ef098e66617f7d034cc6e0f7"
+}

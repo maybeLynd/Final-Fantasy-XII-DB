@@ -1,0 +1,30 @@
+native submit sites: function, call, builder, channel, footer slot of the function filed (if read just before)
+  0025B2E0 0025B3C3 -> 003DBB60  channel=5                      function=k=6 across
+  0025B600 0025B72B -> 003DBB60  channel=6                      function=-
+  0025BAD0 0025BD65 -> 003DBB60  channel=6 JOIN                 function=k=16 talkhold
+  0025C230 0025C4F4 -> 003DBB60  channel=3                      function=k=3 touch
+  0025C230 0025C5B9 -> 003DBB60  channel=6                      function=k=13 fieldsign2
+  0025C230 0025C669 -> 003DBB60  channel=3                      function=k=8 fieldsign1
+  0025C230 0025C7E7 -> 003DBB60  channel=4 JOIN JOIN            function=k=4 touchon
+  0025C830 0025D005 -> 003DBB60  channel=3                      function=k=3 touch
+  0025C830 0025D0B5 -> 003DBB60  channel=6                      function=k=13 fieldsign2
+  0025C830 0025D182 -> 003DBB60  channel=3                      function=k=8 fieldsign1
+  0025C830 0025D2E0 -> 003DBB60  channel=2                      function=k=5 touchoff
+  0025C830 0025D39B -> 003DBB60  channel=4 JOIN                 function=k=4 touchon
+  00266530 00266935 -> 003DBB60  channel=(UNRESOLVED)-1         function=k=15 (never set)
+  00266530 00266957 -> 003DBB60  channel=TOP(count-1)           function=-
+  00266530 002669A6 -> 003DBB60  channel=TOP(count-1) JOIN      function=k=9 initevent
+  00266530 002669F5 -> 003DBB60  channel=0                      function=k=1 main
+  00266C50 00266CD2 -> 003DBB60  channel=TOP(count-1)           function=-
+  00268B10 00268BDB -> 003DBB60  channel=STACK(dword ptr [rsp + 0x80]) function=-
+  00269640 00269700 -> 003DBB60  channel=1 JOIN                 function=k=0 (entry list)
+  00269640 00269766 -> 003DBB60  channel=0                      function=k=11 parameter
+  00269860 002699AB -> 003DBB60  channel=2                      function=-
+  00269AD0 00269B71 -> 003DBB60  channel=UNRESOLVED JOIN        function=-
+  00269BA0 00269C0D -> 003DBB60  channel=UNRESOLVED JOIN        function=-
+  00268B10 00268C83 -> 003DBBE0  channel=STACK(dword ptr [rsp + 0x80]) function=-
+  00268D10 00268DD4 -> 003DBBE0  channel=7                      function=-
+  00268EA0 00268FF2 -> 003DBBE0  channel=6 JOIN                 function=-
+  00268EA0 00269033 -> 003DBBE0  channel=3 JOIN                 function=-
+CONTROL touch k=3 -> channel 3 at 0025C4F4: PASS
+CONTROL main k=1 -> channel 0 at 002669F5: PASS

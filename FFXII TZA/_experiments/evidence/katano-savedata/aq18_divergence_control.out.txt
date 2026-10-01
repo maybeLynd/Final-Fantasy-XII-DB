@@ -1,0 +1,9 @@
+MISPLACED 3   V2-ONLY 3   V1-ONLY 0
+
+  00100409  al-zero-moves-outside-span       v1 02165176 -> v2 02165100
+  0010050A  ax-zero-moves-outside-span       v1 02165176 -> v2 02160000
+  00100609  al-write-changes-exact-target    v1 02165176 -> v2 02165190
+
+CONTROL PASSES: the detector finds exactly the three misplacements Unicorn proves,
+and names them. So MISPLACED 0 over the shipping image is a measurement, not a
+detector that cannot see.

@@ -1,0 +1,27 @@
+# CxxObjectLifecycle.ConditionalTeardownReturnTrue - EC-7 family C, declared on generated-function-families.md
+#
+# 17 members. Body size(s): 44 B x17.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 17 external target(s): 0 shared across all 17 members, and 17 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 28 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+00611A10
+006123F0
+00612D00
+0063E9C0
+0063EA60
+0063F3F0
+0063F6E0
+0063F9A0
+0063FC80
+006414F0
+00641BB0
+006437E0
+0065F310
+00688570
+00688870
+0068EC20
+007919A0

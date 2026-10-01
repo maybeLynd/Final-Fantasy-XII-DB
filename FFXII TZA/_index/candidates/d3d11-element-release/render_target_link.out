@@ -1,0 +1,5 @@
+PASS  K1 006505A0 and 006108C0 switch on byte rt+8 (0 2D, 1 3D, 2 cube) over the target at rt+0; the unlink clears target+0x18 bit 8 and +0x20
+PASS  K2 005DC1C0 links a kind-0 render target and its texture (callers ['006158DD', '00615914', '00615C99'])
+PASS  K3 0062B890 releases the two counted object arrays (+0x30/+0x38, +0x40/+0x48) and +0x28 +0x20 +0x18 +0x10, then a created kind-0 target
+PASS  S three spans re-cut with tiling kept, m_textureFlags bit 8, PRenderTargetD3D11 release cell
+FAILS 0

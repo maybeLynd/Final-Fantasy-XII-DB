@@ -1,0 +1,61 @@
+{
+  "method": "Original reward bodies and original gate callees; synthetic data; zero scripted application callees; not a live FF12 session",
+  "cases": [
+    {
+      "name": "null_xp_roster_count_0",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_lp_roster_count_0",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_1",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_lp_roster_count_1",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_2",
+      "pass": true,
+      "observed": 9,
+      "expected": 9
+    },
+    {
+      "name": "null_lp_roster_count_2",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_3",
+      "pass": true,
+      "observed": 6,
+      "expected": 6
+    },
+    {
+      "name": "null_lp_roster_count_3",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_4",
+      "pass": false,
+      "observed": 6,
+      "expected": 4
+    }
+  ],
+  "checks": 9,
+  "failures": 1
+}

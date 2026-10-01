@@ -1,0 +1,111 @@
+{
+ "real": [
+  {
+   "name": "ctor",
+   "va": "0x266530",
+   "lo": "0x266530",
+   "hi": "0x266acf",
+   "span": 1439,
+   "insns": 381,
+   "cov": 1.0,
+   "sha256": "acf191640b69612627120864ef2e8b9a3c4bfbfb2746b1e04678373d168d6e68",
+   "indirect": []
+  },
+  {
+   "name": "rmap",
+   "va": "0x266ad0",
+   "lo": "0x266ad0",
+   "hi": "0x266ba3",
+   "span": 211,
+   "insns": 43,
+   "cov": 1.0,
+   "sha256": "4928f1a31f05e79c0b06e07ab9a53526d8c65f71ca170be311eb6ab2b68a4b2c",
+   "indirect": []
+  },
+  {
+   "name": "kinit",
+   "va": "0x266bd0",
+   "lo": "0x266bd0",
+   "hi": "0x266c2f",
+   "span": 95,
+   "insns": 24,
+   "cov": 1.0,
+   "sha256": "493b084e9d7f5dce62de60a8e502d3e2d7c5317b07a4c983d800d07bcbac7539",
+   "indirect": []
+  },
+  {
+   "name": "sinit",
+   "va": "0x3db580",
+   "lo": "0x3db580",
+   "hi": "0x3db637",
+   "span": 183,
+   "insns": 44,
+   "cov": 1.0,
+   "sha256": "349a6eb208e6da297195b84e377e79338db9a3848656d4f76e82cfc67df0167d",
+   "indirect": []
+  },
+  {
+   "name": "tail",
+   "va": "0x3db280",
+   "lo": "0x3db280",
+   "hi": "0x3db297",
+   "span": 23,
+   "insns": 8,
+   "cov": 1.0,
+   "sha256": "3591405f2b7d9a42592c4ac33c02fefba63f9ba26e236f7d79e08fb2abfcfe37",
+   "indirect": []
+  },
+  {
+   "name": "qwalk",
+   "va": "0x3db6e0",
+   "lo": "0x3db6e0",
+   "hi": "0x3db77e",
+   "span": 158,
+   "insns": 41,
+   "cov": 1.0,
+   "sha256": "de344811649b61662c2f5ed6ef23adec0cf2717a7d0b39157d1a0656235319f9",
+   "indirect": []
+  },
+  {
+   "name": "base",
+   "va": "0x20e600",
+   "lo": "0x20e600",
+   "hi": "0x20e60a",
+   "span": 10,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+   "indirect": []
+  }
+ ],
+ "scripted": [
+  {
+   "name": "cff0",
+   "va": "0x265ff0"
+  },
+  {
+   "name": "cb60",
+   "va": "0x265b60"
+  },
+  {
+   "name": "c380",
+   "va": "0x268380"
+  },
+  {
+   "name": "c1e0",
+   "va": "0x2681e0"
+  },
+  {
+   "name": "dbb60",
+   "va": "0x3dbb60"
+  },
+  {
+   "name": "c8ea0",
+   "va": "0x268ea0"
+  },
+  {
+   "name": "cdc0",
+   "va": "0x3dbdc0"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+PASS S1  0027AA70 ('chain', [(2,)]), 005519E0 ('chain', [(2,)])
+PASS S2  0027AA70: window under 00279E20's, which 00276650 attaches with 00246AC0 (0027671D); 005519E0: base of 00551E00/00551F00, windows under 005528C0's, attached to [0208EA28] at 005524E1
+PASS S3  00246AC0 = 00246AD0([0208EA28], w); a parentless window is linked (00246AF5)
+PASS S4  direct walks of [0208EA28]: {'002507C0': True, '00250730': True}; 00250540's loop walks 3 roots from 0208EA20 (esi = 3); other walks: {'002506D0': ['0208EA48'], '002508E0': ['0208EA38', '0208EA40', '0208EA48'], '00250540': ['0208EA48', 'mov rcx, qword ptr [rdi]', '0208EA40', '0208EA48'], '002284F0': ['0208EA40']}
+PASS S5  each pump function opens (002481A0) and closes (00248190) its own generation: {'002507C0': True, '00250730': True, '002506D0': True, '002508E0': True}; 00250540 opens two, one per path
+PASS S6  the other {2} builders: 002A6190 -> 00247570 (stores +0x48); 003CB4F0 -> 003C2190 ([02B457E0]); 00615790 / 0061DE20 -> object vtables
+PASS C1  control: 003CAB00's window linked under 003CA860's at 003CA93A
+PASS C2  control: frame call sites [('0022A770', '0022AB83'), ('0022A770', '0022AC17'), ('0022B7E0', '0022B832'), ('0022B8C0', '0022BA45'), ('0022BC20', '0022BD08')]
+FAILS 0

@@ -1,0 +1,128 @@
+{
+ "allowed_functions": 8,
+ "cases": {
+  "E_reporter_is_a_no_op_in_the_shipping_image": true,
+  "G_push_guard_63_usable_slots": true,
+  "K_pops_coerce_by_tag": true,
+  "L_lifo_decrement_then_read": true,
+  "R_result_writers_signed_index_and_phase_byte": true,
+  "T_unknown_tag_int_reports_float_silent": true,
+  "U_underflow_int_silent_float_reports": true,
+  "W_push_writes_all_four_arrays": true
+ },
+ "coerce": {
+  "float-2.9_as_int": -2,
+  "float2.9_as_int": 2,
+  "int7_as_float": 7.0
+ },
+ "guard": {
+  "depth_after_70_pushes": 63,
+  "tags_61_62_63": [
+   1,
+   1,
+   238
+  ],
+  "writes_at_3F": [
+   [],
+   []
+  ]
+ },
+ "lifo": [
+  [
+   true,
+   33,
+   2
+  ],
+  [
+   true,
+   22,
+   1
+  ],
+  [
+   true,
+   11,
+   0
+  ]
+ ],
+ "ok": true,
+ "push_arrays": {
+  "differing_offsets": [
+   4
+  ],
+  "float_tag": 2,
+  "int_tag": 1,
+  "kind": [
+   6,
+   6
+  ],
+  "reserved": [
+   "00000000",
+   "00000000"
+  ],
+  "value": [
+   "db0f4940",
+   "db0f4940"
+  ]
+ },
+ "reporter": {
+  "0016D6A0": "c20000",
+  "008620C0": "488d15d1d8460133c9e9d2b590ff",
+  "writes_outside_stack": []
+ },
+ "result_values": {
+  "float": [
+   3.5,
+   3
+  ],
+  "int": [
+   4660,
+   2
+  ]
+ },
+ "result_writers": {
+  "float_idx1_offsets": [
+   52,
+   61
+  ],
+  "int_idx2_offsets": [
+   92,
+   101
+  ],
+  "int_idx_minus1_offsets": [
+   -28,
+   -19
+  ]
+ },
+ "underflow": {
+  "float": [
+   true,
+   0.0,
+   [
+    1
+   ],
+   0
+  ],
+  "int": [
+   true,
+   0,
+   [],
+   0
+  ]
+ },
+ "unknown_tag": {
+  "float": [
+   true,
+   0.0,
+   [],
+   0
+  ],
+  "int": [
+   true,
+   0,
+   [
+    1
+   ],
+   0
+  ]
+ }
+}

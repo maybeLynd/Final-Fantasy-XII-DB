@@ -1,0 +1,155 @@
+{
+  "status": "REJECTED catalog-count equivalence assumption",
+  "script_sha256": "ea404de1a0e0277136c4f7cac85b22d6e099532e916c9f8288c9bc8a6985989c",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "catalog_body_bytes": 2105,
+  "decoded_code_span_bytes": 2360,
+  "conditional_cfg_bytes": 2360,
+  "tables": [
+    {
+      "address": "0x5807b8",
+      "raw_hex": "b1fe450056034600ac074600ac074600ac074600ac074600ac074600ac074600ac074600c7034600ac07460001044600ac0746000f03460084074600ac074600ac0746008b074600",
+      "sha256": "278dad632dddf0a66643467f10942b0a27eac32fabd5fc76a5144269fc058bb9",
+      "count": 18,
+      "input_bias": 1,
+      "jump_site": "0x57feaf",
+      "targets": [
+        {
+          "input": 1,
+          "address": "0x57feb1"
+        },
+        {
+          "input": 2,
+          "address": "0x580356"
+        },
+        {
+          "input": 3,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 4,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 5,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 6,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 7,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 8,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 9,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 10,
+          "address": "0x5803c7"
+        },
+        {
+          "input": 11,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 12,
+          "address": "0x580401"
+        },
+        {
+          "input": 13,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 14,
+          "address": "0x58030f"
+        },
+        {
+          "input": 15,
+          "address": "0x580784"
+        },
+        {
+          "input": 16,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 17,
+          "address": "0x5807ac"
+        },
+        {
+          "input": 18,
+          "address": "0x58078b"
+        }
+      ]
+    },
+    {
+      "address": "0x580800",
+      "raw_hex": "51064600510646005007460050074600a4064600a406460050074600cc064600e506460050074600110746002d0746004b074600",
+      "sha256": "a7c462a9a96a453e94fe739f1940a15721ea5699456e309b8f523e7502e7363a",
+      "count": 13,
+      "input_bias": 2,
+      "jump_site": "0x58064f",
+      "targets": [
+        {
+          "input": 2,
+          "address": "0x580651"
+        },
+        {
+          "input": 3,
+          "address": "0x580651"
+        },
+        {
+          "input": 4,
+          "address": "0x580750"
+        },
+        {
+          "input": 5,
+          "address": "0x580750"
+        },
+        {
+          "input": 6,
+          "address": "0x5806a4"
+        },
+        {
+          "input": 7,
+          "address": "0x5806a4"
+        },
+        {
+          "input": 8,
+          "address": "0x580750"
+        },
+        {
+          "input": 9,
+          "address": "0x5806cc"
+        },
+        {
+          "input": 10,
+          "address": "0x5806e5"
+        },
+        {
+          "input": 11,
+          "address": "0x580750"
+        },
+        {
+          "input": 12,
+          "address": "0x580711"
+        },
+        {
+          "input": 13,
+          "address": "0x58072d"
+        },
+        {
+          "input": 14,
+          "address": "0x58074b"
+        }
+      ]
+    }
+  ],
+  "limits": "Direct branches and original two tables resolve all2360 decoded bytes; catalog2105 does not match. Catalog is not accepted as complete coverage proof or contiguous bound. No selection JSON written in failed attempt, no execution."
+}

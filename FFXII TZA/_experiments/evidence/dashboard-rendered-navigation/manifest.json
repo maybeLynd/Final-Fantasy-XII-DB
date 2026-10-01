@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "activity-observed.jpg",
+      "bytes": 104906,
+      "sha256": "255b83146acdcdbdc34067a7cd52704b9c0f31f6fff0bc090229bcf9384570d5"
+    },
+    {
+      "path": "capture-01/00-progress-ax.txt",
+      "bytes": 10872,
+      "sha256": "600be09ecab5d19db491c49aa5988b4d8aea8bcc45d184fc0b3f8bbc4c366af4"
+    },
+    {
+      "path": "capture-01/00-progress.png",
+      "bytes": 124342,
+      "sha256": "326ab5f7a21a86a56987b33d0693d1df8984b5ab5013e2b603d91d26d528d22b"
+    },
+    {
+      "path": "capture-01/01-input-failure.txt",
+      "bytes": 185,
+      "sha256": "97a33cc8bd9253609e1777254be6a6965e4d5cc1f3b22d582249ccb892b1cdff"
+    },
+    {
+      "path": "capture-01/02-before-dom.txt",
+      "bytes": 10284,
+      "sha256": "8a6c68e02eb50f389f8078352fcbe48d47c3be3e324dc97e3ed6089acb16f33e"
+    },
+    {
+      "path": "capture-01/03-overview-ax.txt",
+      "bytes": 16861,
+      "sha256": "08a448777223737f654d1cf3308cb165fda8367cc0ecde2ff0f7d098febef97b"
+    },
+    {
+      "path": "capture-01/03-overview.png",
+      "bytes": 154402,
+      "sha256": "76b11ae97750f7d0596bd878319287a22ef2386d3ae1418cf47b8ce3cad41eaa"
+    },
+    {
+      "path": "capture-01/04-activity-ax.txt",
+      "bytes": 1305,
+      "sha256": "a7caa4c9c1cc362446184d47d8e92c01137907e3b5165a901b543bb92c619632"
+    },
+    {
+      "path": "capture-01/05-activity-dom.txt",
+      "bytes": 9154,
+      "sha256": "5c47df9cf08b96f3cb30db3a001547f3bd8fcd457574606e4cdb3ce1231a4361"
+    },
+    {
+      "path": "capture-01/05-activity.png",
+      "bytes": 104906,
+      "sha256": "255b83146acdcdbdc34067a7cd52704b9c0f31f6fff0bc090229bcf9384570d5"
+    },
+    {
+      "path": "capture-01/06-final-dom.txt",
+      "bytes": 9103,
+      "sha256": "cec0c8a90e1c7d1e216bd5f4a6113956223d264615f18fb617842f559e1020f2"
+    },
+    {
+      "path": "capture-01/06-final.png",
+      "bytes": 104370,
+      "sha256": "5323a8b80ec1445203db037e7789e4cbb2760ddd315bc4fe22a6c2ab0fe850f2"
+    },
+    {
+      "path": "capture-01/06-return-input-failure.txt",
+      "bytes": 234,
+      "sha256": "84d442521e7de6b68a590733c0e16805164d6cd0c4abd11c5c7c3fee3b518195"
+    },
+    {
+      "path": "capture-01/07-tabs-after-close.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "capture-01/control-log.json",
+      "bytes": 999,
+      "sha256": "5023f922a0b07f974c6170d0dc573459adf5d168aa29edc72f1863765b82f727"
+    },
+    {
+      "path": "check-initial.py",
+      "bytes": 2541,
+      "sha256": "ae70bb6576d72f3dff322482a603ec3e92823f9bff0942e62841e26ac102e212"
+    },
+    {
+      "path": "check-terminal.json",
+      "bytes": 812,
+      "sha256": "560ef22623a5507dc3134e9c8a15ca6378410cb31c0a2151cfc60b35375827ac"
+    },
+    {
+      "path": "check.py",
+      "bytes": 2643,
+      "sha256": "bcdcb359f69dcec51a81ad529d81e8eceef1d11e4fc6a0e8adf0e373d4049d9b"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 2426,
+      "sha256": "22a8e9fe74e11fda2113ebbd0e198d0a87fe80bb275d495074373dd77aefa397"
+    },
+    {
+      "path": "initial-check-failure.txt",
+      "bytes": 190,
+      "sha256": "f347849dfcdd9ff9f3ace7fba36beb2d4e6195d9e921d83ecc58987a9425a9e7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3948,
+      "sha256": "119e6878c11bf9112791a4d0828bfeb1dbc28973c272aa328bb51bfa14197208"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 182,
+      "sha256": "cf8d4e8639c41487209ada07cc41077fa055ec589f36cb6b4ac38fdbca31b6f5"
+    },
+    {
+      "path": "result.json",
+      "bytes": 393,
+      "sha256": "26ac861dc23d15956bb37ad38b2ae916ae0ac988eeff58a299cdd8e86fec2ab1"
+    },
+    {
+      "path": "root-after-browser.raw",
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+    },
+    {
+      "path": "seal-observation.py",
+      "bytes": 2310,
+      "sha256": "353e7fd559585a82bcdc330c7755d5043f877b507c0ad8a96f56c73f62123bdc"
+    },
+    {
+      "path": "server-source.py",
+      "bytes": 44677,
+      "sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb"
+    },
+    {
+      "path": "status-after-browser.raw",
+      "bytes": 1096,
+      "sha256": "5a16c41137e77f70f316d414d80111c1c008b9f4c3841bbbd4355ed73380cf93"
+    }
+  ],
+  "limits": "Integrity is not independent acceptance. Ordered host-browser presentation observations, dynamic labels, two refused inputs and an unproved return transition; no game or full migration acceptance."
+}

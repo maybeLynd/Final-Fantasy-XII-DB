@@ -1,0 +1,9 @@
+file	line	site	kind_before	kind_after	class	instruction
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	360	003880F0	w	rw	w->rw	add dword ptr [rip + 0x2765efa], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	361	00388148	w	rw	w->rw	add dword ptr [rip + 0x2765ea2], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	362	003881A0	w	rw	w->rw	add dword ptr [rip + 0x2765e4a], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	363	003881ED	w	rw	w->rw	add dword ptr [rip + 0x2765dfd], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	374	00389435	w	rw	w->rw	add dword ptr [rip + 0x2764bb5], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	375	0038948D	w	rw	w->rw	add dword ptr [rip + 0x2764b5d], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	376	003894E5	w	rw	w->rw	add dword ptr [rip + 0x2764b05], eax
+FFXII TZA/08-Combat-Formula/Scratch-Block/formula-scratch-block-accesses.tsv	377	00389532	w	rw	w->rw	add dword ptr [rip + 0x2764ab8], eax

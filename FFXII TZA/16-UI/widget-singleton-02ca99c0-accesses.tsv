@@ -1,0 +1,98 @@
+function	name	site	disp	kind	instruction	route	note
+00582040	SaveStorageQueue_StartFrontOperation	005820A5	0xC0	w	mov qword ptr [rbx + 0xc0], rax	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582373	0xC0	r	mov rax, qword ptr [rbx + 0xc0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005820B2	0xC8	w	mov dword ptr [rbx + 0xc8], eax	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058237F	0xC8	r	mov r8d, dword ptr [rbx + 0xc8]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EA40	FUN_0057ea40	0057EA9F	0xCC	w	mov byte ptr [rcx + 0xcc], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EC60	FUN_0057ec60	0057ECC0	0xCC	w	mov byte ptr [rcx + 0xcc], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+0057ED40	FUN_0057ed40	0057ED94	0xCC	w	mov byte ptr [rax + 0xcc], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582280	0xCC	w	mov byte ptr [rcx + 0xcc], bpl	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	00582698	0xCC	r	cmp byte ptr [rbx + 0xcc], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	005826BA	0xCC	w	mov byte ptr [rbx + 0xcc], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+00583990	FUN_00583990	005839C8	0xD0	r	mov eax, dword ptr [rax + 0xd0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582860	SaveLoad_ControllerLifecycleHandler	00582A6A	0xD4	r	mov eax, dword ptr [rcx + 0xd4]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	0058207F	0xD8	r	movsxd rax, dword ptr [rcx + 0xd8]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582256	0xD8	addr	lea rdx, [rcx + 0xd8]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582266	0xD8	r	movzx esi, byte ptr [rdx]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058229A	0xD8	w	movups xmmword ptr [rdx], xmm0	route-seeded PTR 0x02CA99C0 base+0xD8	
+0057EA40	FUN_0057ea40	0057EA7B	0xDC	r	mov edx, dword ptr [rcx + 0xdc]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EA40	FUN_0057ea40	0057EA89	0xDC	w	mov dword ptr [rcx + 0xdc], edx	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EC60	FUN_0057ec60	0057EC98	0xDC	r	mov r8d, dword ptr [rcx + 0xdc]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EC60	FUN_0057ec60	0057ECA9	0xDC	w	mov dword ptr [rcx + 0xdc], r8d	route-seeded PTR 0x02CA99C0 base+0x0	
+0057ED40	FUN_0057ed40	0057ED6A	0xDC	r	mov edx, dword ptr [rax + 0xdc]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057ED40	FUN_0057ed40	0057ED78	0xDC	w	mov dword ptr [rax + 0xdc], edx	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582076	0xDC	r	test byte ptr [rcx + 0xdc], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005820BD	0xDC	rw	or dword ptr [rbx + 0xdc], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058225D	0xDC	r	mov r8d, dword ptr [rcx + 0xdc]	route-seeded PTR 0x02CA99C0 base+0x0	
+003BB440	FUN_003bb440	003BB460	0xE0	r	movzx eax, byte ptr [rcx]	route-seeded PTR 0x02CA99C0 base+0xE0	
+003BB6A0	FUN_003bb6a0	003BB6D0	0xE0	r	movzx eax, byte ptr [r8]	route-seeded PTR 0x02CA99C0 base+0xE0	
+003BB740	FUN_003bb740	003BB750	0xE0	r	movzx eax, byte ptr [rcx]	route-seeded PTR 0x02CA99C0 base+0xE0	
+003BB920	FUN_003bb920	003BB950	0xE0	r	movzx eax, byte ptr [rcx]	route-seeded PTR 0x02CA99C0 base+0xE0	
+00582040	SaveStorageQueue_StartFrontOperation	0058209E	0xE0	r	mov rax, qword ptr [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005820E7	0xE0	r	movzx ecx, byte ptr [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005820F3	0xE0	r	movzx eax, byte ptr [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582110	0xE0	addr	lea rcx, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582124	0xE0	addr	lea r8, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582150	0xE0	addr	lea rcx, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582172	0xE0	addr	lea rcx, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582191	0xE0	addr	lea rcx, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005821AB	0xE0	addr	lea rax, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005821F1	0xE0	addr	lea rcx, [rbx + 0xe0]	route-seeded PTR 0x02CA99C0 base+0x0	
+003BB440	FUN_003bb440	003BB466	0xE1	addr	lea rcx, [rcx + 1]	route-seeded PTR 0x02CA99C0 base+0xE0	
+003BB6A0	FUN_003bb6a0	003BB6D8	0xE1	addr	lea r8, [r8 + 1]	route-seeded PTR 0x02CA99C0 base+0xE0	
+003BB740	FUN_003bb740	003BB756	0xE1	addr	lea rcx, [rcx + 1]	route-seeded PTR 0x02CA99C0 base+0xE0	
+003BB920	FUN_003bb920	003BB956	0xE1	addr	lea rcx, [rcx + 1]	route-seeded PTR 0x02CA99C0 base+0xE0	
+00582040	SaveStorageQueue_StartFrontOperation	005820AC	0xE8	r	mov eax, dword ptr [rbx + 0xe8]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822A1	0xE8	w	movups xmmword ptr [rdx + 0x10], xmm1	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822AC	0xF8	w	movups xmmword ptr [rdx + 0x20], xmm0	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822B7	0x108	w	movups xmmword ptr [rdx + 0x30], xmm1	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822C3	0x118	w	movups xmmword ptr [rdx + 0x40], xmm0	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582040	SaveStorageQueue_StartFrontOperation	0058212B	0x120	r	movzx ecx, byte ptr [rbx + 0x120]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582157	0x120	r	mov r8, qword ptr [rbx + 0x120]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582179	0x120	r	mov rdx, qword ptr [rbx + 0x120]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582198	0x120	r	mov r8, qword ptr [rbx + 0x120]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005821C3	0x120	r	mov rax, qword ptr [rbx + 0x120]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	0058211E	0x124	r	mov eax, dword ptr [rbx + 0x124]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	00582149	0x128	r	mov r9d, dword ptr [rbx + 0x128]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	0058216A	0x128	r	movzx r8d, byte ptr [rbx + 0x128]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	0058218A	0x128	r	mov r9d, dword ptr [rbx + 0x128]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005821CF	0x128	r	mov eax, dword ptr [rbx + 0x128]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822C7	0x128	w	movsd qword ptr [rdx + 0x50], xmm1	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582290	0x130	r	movups xmm0, xmmword ptr [rdx + 0x58]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822CC	0x130	addr	lea rdx, [rdx + 0x58]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582296	0x140	r	movups xmm1, xmmword ptr [rdx + 0x68]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058229D	0x150	r	movups xmm0, xmmword ptr [rdx + 0x78]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822A5	0x160	r	movups xmm1, xmmword ptr [rdx + 0x88]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822B0	0x170	r	movups xmm0, xmmword ptr [rdx + 0x98]	route-seeded PTR 0x02CA99C0 base+0xD8	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822BB	0x180	r	movsd xmm1, qword ptr [rdx + 0xa8]	route-seeded PTR 0x02CA99C0 base+0xD8	
+0057EA40	FUN_0057ea40	0057EA72	0x398	r	cmp byte ptr [rcx + 0x398], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EA40	FUN_0057ea40	0057EA8F	0x398	w	mov byte ptr [rcx + 0x398], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EA40	FUN_0057ea40	0057EA98	0x398	w	mov byte ptr [rcx + 0x398], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EC60	FUN_0057ec60	0057EC8F	0x398	r	cmp byte ptr [rcx + 0x398], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EC60	FUN_0057ec60	0057ECB0	0x398	w	mov byte ptr [rcx + 0x398], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EC60	FUN_0057ec60	0057ECB9	0x398	w	mov byte ptr [rcx + 0x398], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+0057ED40	FUN_0057ed40	0057ED61	0x398	r	cmp byte ptr [rax + 0x398], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+0057ED40	FUN_0057ed40	0057ED7E	0x398	w	mov byte ptr [rax + 0x398], 1	route-seeded PTR 0x02CA99C0 base+0x0	
+0057ED40	FUN_0057ed40	0057ED8D	0x398	w	mov byte ptr [rax + 0x398], 0	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	0058206D	0x398	r	cmp byte ptr [rcx + 0x398], dil	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	0058224F	0x398	r	movzx eax, byte ptr [rcx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	00582278	0x398	w	mov byte ptr [rcx + 0x398], al	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822D0	0x398	r	movzx eax, byte ptr [rbx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582240	SaveStorageQueue_CompleteFrontOperationAndNotify	005822DB	0x398	r	movzx eax, byte ptr [rbx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	0058254E	0x398	r	movzx eax, byte ptr [rcx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	005825B6	0x398	r	movzx eax, byte ptr [rbx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	00582671	0x398	r	movzx eax, byte ptr [rbx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	00582692	0x398	rw	inc byte ptr [rbx + 0x398]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057E950	FUN_0057e950	0057E9F0	0x39A	r	movzx eax, byte ptr [rax + 0x39a]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057EBB0	FUN_0057ebb0	0057EC0F	0x39A	r	movzx eax, byte ptr [rax + 0x39a]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057F630	FUN_0057f630	0057F654	0x39A	r	movzx eax, byte ptr [rax + 0x39a]	route-seeded PTR 0x02CA99C0 base+0x0	
+0057F6B0	FUN_0057f6b0	0057F78E	0x39A	r	movzx eax, byte ptr [rax + 0x39a]	route-seeded PTR 0x02CA99C0 base+0x0	
+00581B70	SaveSlotProbe_StorageCompletionCallback	00581D04	0x39A	r	movzx eax, byte ptr [rax + 0x39a]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582040	SaveStorageQueue_StartFrontOperation	005820FA	0x39A	w	mov byte ptr [rbx + 0x39a], al	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	005825D2	0x39B	r	movzx ecx, byte ptr [rbx + 0x39b]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	005825E4	0x39B	w	mov byte ptr [rbx + 0x39b], r9b	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	00582608	0x39B	r	movzx eax, byte ptr [rbx + 0x39b]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	0058265F	0x39B	r	movzx eax, byte ptr [rbx + 0x39b]	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	0058268C	0x39B	rw	add byte ptr [rbx + 0x39b], al	route-seeded PTR 0x02CA99C0 base+0x0	
+00582540	SaveStorageQueue_EnqueueOperation	00582666	0x3A0	addr	lea rdx, [rbx + 0x3a0]	route-seeded PTR 0x02CA99C0 base+0x0	
+00583990	FUN_00583990	005839CE	0x3FF	addr	lea ebx, [rax + 0x3ff]	route-seeded PTR 0x02CA99C0 base+0x0	

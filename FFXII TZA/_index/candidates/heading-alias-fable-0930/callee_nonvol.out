@@ -1,0 +1,15 @@
+00264460 | == 00264460 FUN_00264460 size 0x25 | no r14/rbp write
+00265020 | == 00265020 Actor_GetWorldPosition size 0x3d | no r14/rbp write
+00267310 | == 00267310 FUN_00267310 size 0x16 | no r14/rbp write
+0026AFE0 | == 0026AFE0 FUN_0026afe0 size 0xde | no r14/rbp write
+0026C120 | == 0026C120 FUN_0026c120 size 0x162 | no r14/rbp write
+003587C0 | == 003587C0 FUN_003587c0 size 0x32 | no r14/rbp write
+003588B0 | == 003588B0 ActorHandle_ResolveRegistryEntryByPackedId size 0x8f | no r14/rbp write
+003590D0 | == 003590D0 PartyFocus_GetCurrentPackedActorHandle size 0x7 | no r14/rbp write
+003A1920 | == 003A1920 FUN_003a1920 size 0x35 | no r14/rbp write
+003A19C0 | == 003A19C0 FUN_003a19c0 size 0x10c | no r14/rbp write
+003A1AD0 | == 003A1AD0 FUN_003a1ad0 size 0xd9 | no r14/rbp write
+003A1D30 | == 003A1D30 FUN_003a1d30 size 0x17 | no r14/rbp write
+003DA6A0 | == 003DA6A0 FUN_003da6a0 size 0x70 | rbp: 2 writes, saved=1, restores=1, rets=1
+004686D0 | == 004686D0 Vector3_ComputeXZDistance size 0x23 | no r14/rbp write
+00808C40 | == 00808C40 __security_check_cookie size 0x21 | no r14/rbp write

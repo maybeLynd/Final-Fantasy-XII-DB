@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "OPUS-FINDING-CONTRACT-GLOBALS-BUCKET-IS-MIXED",
+ "note": "bucket 49 rows -> 29 candidate + 20 prose via PROSE_ONLY table; lea-quote defect routed to EC7",
+ "result_refs": [
+  "commit:a07606cd3",
+  "Database/Tools/analysis-kit/gfz-scripts/check_contract_globals.py"
+ ]
+}

@@ -1,0 +1,10 @@
+baseline_copy                        exit=0  VALID source predicate: class20 admits0..542; candidate511..534 not excluded. Natural reachability OPEN.
+receipt_count_511_in_one_pack        exit=1  ValueError: missing/changed authored-count premise
+table_header_count_511               exit=1  ValueError: table input changed
+witness_323030_text_jl_to_jb         exit=1  ValueError: source predicate witness changed
+witness_32303B_bytes_only            exit=1  ValueError: original witness bytes changed
+caller_30CC25_width_byte             exit=1  ValueError: source predicate witness changed
+caller_raw_missing                   exit=1  FileNotFoundError: [Errno 2] No such file or directory: 'C:\\t\\c20_6b47d4bl\\nocaller\\Database\\FFXII TZA\\_experiments\\evidence\\ov42-cl
+upstream_role_control_failed         exit=1  ValueError: required capture control failed
+image_one_byte_changed               exit=1  ValueError: original-image prerequisite
+temp tree removed: True

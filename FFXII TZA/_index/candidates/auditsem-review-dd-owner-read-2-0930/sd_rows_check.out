@@ -1,0 +1,56 @@
+new SD rows at 959a77e13: 11  SD-60 SD-61 SD-62 SD-63 SD-64 SD-65 SD-66 SD-67 SD-80 SD-81 SD-82
+
+SD-60  at-commit OPEN   HEAD OPEN     addrs 00864F30 01CCFB78
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(00864F30)
+   named on: the-camera-state-snapshot.md
+
+SD-61  at-commit OPEN   HEAD OPEN     addrs 006B66C0
+   register rows sharing an address: EL-1[ANSWERED](006B66C0)
+   candidate folders (at parent) sharing an address: auditsem-review-gcr-ruling-0930(006B66C0)
+   named on: how-a-class-registers-its-array-members-and-annotations.md
+
+SD-62  at-commit OPEN   HEAD OPEN     addrs 006373D0 00637440 01F2E330 01F2E780
+   register rows sharing an address: T-4[SUPERSEDED](01F2E330)
+   candidate folders (at parent) sharing an address: auditsem-review-gcr-ruling-0930(006373D0), fable-gcr-split-ruling-0929(006373D0), phyre-two-member-descriptor-39.tsv(006373D0), s49-runtime-per-invariant-exposure.md(006373D0), t4-initializer-closure(01F2E330)
+   named on: how-a-class-registers-its-array-members-and-annotations.md
+
+SD-63  at-commit OPEN   HEAD OPEN     addrs 005FD320 005FD3A7 005FD700 00608DA2
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: auditsem-review-livefacts-0930(005FD320,005FD3A7)
+   named on: how-a-class-registers-its-array-members-and-annotations.md
+
+SD-64  at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: the-file-schema-against-the-runtime-schema.md
+
+SD-65  at-commit OPEN   HEAD OPEN     addrs 00632B30
+   register rows sharing an address: BL-3[ANSWERED](00632B30), CL-1[ANSWERED](00632B30), UQ-330[ANSWERED](00632B30)
+   candidate folders (at parent) sharing an address: bl1-opus-nas-review(00632B30), cl1-registrar-complete(00632B30)
+   named on: the-file-schema-against-the-runtime-schema.md
+
+SD-66  at-commit OPEN   HEAD OPEN     addrs 00632960 00632A10 00632A70 00632B30 00632BE0 006349B0 02CF8580
+   register rows sharing an address: BJ-4[ANSWERED](00632960), BL-1[OPEN](00632960), BL-3[ANSWERED](00632960,00632A10,00632B30), BL-5[ANSWERED](00632960), BL-8[NO ADMISSIBLE SOURCE](00632960), CL-1[ANSWERED](00632960,00632A10,00632A70,00632B30,00632BE0), CW-3[ANSWERED](00632960,00632A10,00632A70,00632BE0), EA-2[NO ADMISSIBLE SOURCE](00632960), EL-1[ANSWERED](00632A10), RM-1[ANSWERED](00632A10,00632A70,00632BE0), UQ-1[ANSWERED](00632960,00632A10), UQ-279[ANSWERED](00632960), UQ-281[ANSWERED](00632A10,00632A70), UQ-283[ANSWERED](00632960,00632A10), UQ-330[ANSWERED](00632960,00632A10,00632A70,00632B30,00632BE0)
+   candidate folders (at parent) sharing an address: atexit-anchor-tail-643.tsv(006349B0), auditsem-review-gcr-ruling-0930(00632960,00632A10), bl1-opus-nas-review(00632960,00632A10,00632B30), bn4-physics-seam-route(02CF8580), cl1-registrar-complete(00632960,00632A10,00632A70,00632B30,00632BE0), cw3-field-registrars(00632960,00632A10,00632A70,00632BE0), ec7-section-byte-audit.tsv(00632BE0), ph2-header-swap-members(00632960), phyre-array-member-registrations-consumer-check.md(00632960,00632A10,00632A70), phyre-regcalls-false-negative-tracking.md(00632960,00632A10), psharray-inline-extent(00632A10), rc11-arena-ten-0930(00632960), register-triage(00632A10), rm1-array-members(00632A10,00632A70,00632BE0), s49-header-i1-static-bound.md(00632960), stranded-unknowns.tsv(00632960), undeclared-written-statics(006349B0)
+   named on: the-file-schema-against-the-runtime-schema.md
+
+SD-67  at-commit OPEN   HEAD OPEN     addrs 00632A10
+   register rows sharing an address: BL-3[ANSWERED](00632A10), CL-1[ANSWERED](00632A10), CW-3[ANSWERED](00632A10), EL-1[ANSWERED](00632A10), RM-1[ANSWERED](00632A10), UQ-1[ANSWERED](00632A10), UQ-281[ANSWERED](00632A10), UQ-283[ANSWERED](00632A10), UQ-330[ANSWERED](00632A10)
+   candidate folders (at parent) sharing an address: auditsem-review-gcr-ruling-0930(00632A10), bl1-opus-nas-review(00632A10), cl1-registrar-complete(00632A10), cw3-field-registrars(00632A10), phyre-array-member-registrations-consumer-check.md(00632A10), phyre-regcalls-false-negative-tracking.md(00632A10), psharray-inline-extent(00632A10), register-triage(00632A10), rm1-array-members(00632A10)
+   named on: the-file-schema-against-the-runtime-schema.md
+
+SD-80  at-commit OPEN   HEAD OPEN     addrs 00714980 00714BE0 00714C60 00714CE0 00715110 007151F0 0071EE70 0071F1E0 0071F240 0071F4B0 0071F590 00799B80 0079B0D0 0079BA10
+   register rows sharing an address: BQ-23[ANSWERED](0079BA10), EC-7[OPEN](00714980), MT-1[ANSWERED](0071EE70,0071F4B0), MT-2[ANSWERED](00799B80,0079B0D0,0079BA10), MT-3[ANSWERED](0071EE70), OC-1[ANSWERED](0071F240)
+   candidate folders (at parent) sharing an address: bq23-tier6-b(0079BA10), ec7-uc1-span-rows-0929(00714980,00714BE0,00714C60,00714CE0), fable-astra-live-facts-0930(0071F240,0071F590,0079BA10), mt1-container-values(0071EE70), type-flow-census(00714BE0,00714C60,00714CE0,00715110,007151F0,0071F240)
+   named on: the-msvc-ordered-container-runtime.md
+
+SD-81  at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: the-ordered-container-runtime.md
+
+SD-82  at-commit OPEN   HEAD OPEN     addrs 0016D840 0016DA60 0067F700 0067F9D0
+   register rows sharing an address: BD-4[ANSWERED](0016DA60), BQ-23[ANSWERED](0016D840,0067F9D0), OC-2[ANSWERED](0016D840), OC-4[ANSWERED](0016DA60), UQ-293[ANSWERED](0067F700), UQ-357[ANSWERED](0016DA60)
+   candidate folders (at parent) sharing an address: bq23-tier6(0016D840), bq23-tier6-b(0067F9D0), ec7-uc1-span-rows-0929(0016DA60), fable-crossings-prose-false-clears.tsv(0016DA60,0067F700), magic-static-init-383.tsv(0067F700), neighbour-dispositions.tsv(0016DA60), s41-runtime-per-invariant-exposure.md(0016DA60), type-flow-census(0067F700)
+   named on: the-ordered-container-runtime.md

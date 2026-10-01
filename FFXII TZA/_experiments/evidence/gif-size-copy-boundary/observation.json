@@ -1,0 +1,98 @@
+{
+  "method": "A \u2014 static original instructions and mathematical boundary witnesses",
+  "established": [
+    "Gate zero returns16 before any packet header read. Enabled helper reads one8-byte header at each computed position.",
+    "NREG0 maps16, FLG is masked0..3; each individual step is positive, <=8388368 and fitsu32.",
+    "R10D accumulation is modulo2^32. Nonfinal pointer advance uses zeroextended individual EDX then ADD R9,RAX; it is not advanced by the wrapped total.",
+    "EOP includes final tag size in total then returns; no final pointer advance or final payload read occurs.",
+    "No caller-supplied length/end or total-overflow rejection exists in this complete helper.",
+    "Collector passes zeroextended return via EDX to001A1470 and savedEBX via R8D to00861EBA; no intervening size/overflow guard before these calls."
+  ],
+  "small_positive_arithmetic_witnesses": [
+    {
+      "flg": 0,
+      "nloop": 0,
+      "nreg": 0,
+      "step": 16
+    },
+    {
+      "flg": 0,
+      "nloop": 1,
+      "nreg": 0,
+      "step": 272
+    },
+    {
+      "flg": 1,
+      "nloop": 3,
+      "nreg": 1,
+      "step": 48
+    },
+    {
+      "flg": 2,
+      "nloop": 0,
+      "nreg": 0,
+      "step": 16
+    },
+    {
+      "flg": 3,
+      "nloop": 32767,
+      "nreg": 15,
+      "step": 524288
+    }
+  ],
+  "max_single_step": 8388368,
+  "accumulation_witnesses": [
+    {
+      "maximum_packed_tags": 256,
+      "declared_total": 2147422208,
+      "returned_u32": 2147422208,
+      "last_header_offset": 2139033840,
+      "final_tag_eop": 1,
+      "class": "symbolic declared layout only; not allocated, read or executed"
+    },
+    {
+      "maximum_packed_tags": 257,
+      "declared_total": 2155810576,
+      "returned_u32": 2155810576,
+      "last_header_offset": 2147422208,
+      "final_tag_eop": 1,
+      "class": "symbolic declared layout only; not allocated, read or executed"
+    },
+    {
+      "maximum_packed_tags": 512,
+      "declared_total": 4294844416,
+      "returned_u32": 4294844416,
+      "last_header_offset": 4286456048,
+      "final_tag_eop": 1,
+      "class": "symbolic declared layout only; not allocated, read or executed"
+    },
+    {
+      "maximum_packed_tags": 513,
+      "declared_total": 4303232784,
+      "returned_u32": 8265488,
+      "last_header_offset": 4294844416,
+      "final_tag_eop": 1,
+      "class": "symbolic declared layout only; not allocated, read or executed"
+    }
+  ],
+  "exact_zero_witness": {
+    "maximum_packed_nonfinal_tags": 512,
+    "final_image_nloop": 7679,
+    "final_image_step": 122880,
+    "declared_total": 4294967296,
+    "returned_u32": 0,
+    "last_header_offset": 4294844416,
+    "final_tag_eop": 1,
+    "class": "symbolic declared layout only; helper reads headers, not all payload bytes"
+  },
+  "semantic_implication": "To use the enabled return as the full declared copied extent, the reachable sequence must terminate at EOP, have readable computed headers and backing source extent, and a declared total <2^32 (plus valid pointer arithmetic). Otherwise the local result alone does not establish those properties.",
+  "consumer_changes_enabled": "Qualify helper return asu32 modulo total and no length guard; collector uses its zeroextended value. Existing documented GIF formulas remain correct. Route actual producer/caller constraints separately if claimed.",
+  "unresolved": [
+    "Actual authored packet bounds and proof that normal producers meet them.",
+    "Allocator/memcpy semantics, zero-size allocation result, subsequent replay and any actual failure.",
+    "Normal call reachability, initialization of01E027C0, lifetime and rendered consequences."
+  ],
+  "not_claimed": "No shipped oversized packet, infinite live loop, allocation/null fault, complete payload read, game crash, or universal unsafe caller.",
+  "propagation": "PENDING independent review and FABLE/OPUS canonical incorporation",
+  "limits": "Static helper/caller arguments only. No original/native/guest/live execution, actual oversized packet, native allocator/memcpy effects, producer bounds, initialization or presentation observation."
+}

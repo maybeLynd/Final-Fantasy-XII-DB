@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\overlap-helper-repair-review\capture.py", line 151, in <module>
+    try:main()
+        ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\overlap-helper-repair-review\capture.py", line 43, in main
+    assert source == p.read_bytes(), 'Selected repair source moved'
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Selected repair source moved

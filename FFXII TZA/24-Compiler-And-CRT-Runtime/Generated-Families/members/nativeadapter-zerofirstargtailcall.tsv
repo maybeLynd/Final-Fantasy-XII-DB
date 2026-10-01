@@ -1,0 +1,8 @@
+# NativeAdapter.ZeroFirstArgTailCall - EC-7 family C
+# ecx=0; tail-dispatch to a member op. Sibling of
+# # ConstantFirstArgumentTailCall (imm is always 0 here).
+address	targets
+002A2BF0	0035DF20
+0036F430	0026E290
+0037F130	0037EC70
+00473B10	00237690

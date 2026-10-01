@@ -1,0 +1,5 @@
+SURVIVES  N0  283 B; callers ['00311B20', '003138D0']
+SURVIVES  N1  stores mov word ptr [rbx + 0xba0], si / mov dword ptr [rbx + 0xbb8], eax; no commit-field write; 0x8800203B -> jne 0x311ded
+SURVIVES  N2  BattleUnit_* writers of +0x714: ['BattleUnit_CancelAndResetCurrentAction', 'BattleUnit_CommitAction', 'BattleUnit_ResetStateForReuse']; 00328640 writes +0x710 True, +0x714 False
+SURVIVES  N3  ring users {36433312: ['0030FE60', '00313DB0'], 36432256: ['0030FE60', '00313CD0']}
+FAILS 0

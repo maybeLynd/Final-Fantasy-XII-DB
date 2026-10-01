@@ -1,0 +1,7 @@
+PASS  D1 two setups fill eight pointers, each from two lea candidates (16 targets) 02F974F0<-00179320/00179360; 02F974F8<-00133B40/00179920; 02F97500<-00172DC0/00173180; 02F97508<-00173040/00173360; 02F97510<-001263AD/00127104; 02F97518<-00172F00/00173270; 02F97520<-00172CE0/00173450; 02F97528<-001260E7/00126E10
+PASS  D2 every target is a listed body and none lies in a head block in-window targets (listed): ['001260E7', '001263AD', '00126E10', '00127104', '00133B40']
+PASS  D3 the only stores to the eight pointer cells are the eight in the two setups ['0016F159', '0016F179', '0016F192', '0016F1AB', '0016F1C4', '0016F1D6', '0017265A', '00172673']
+PASS  D4 the ten listed libvpx kernels are reached by direct calls only (19 sites, no address-taking operand) calls=19 addr_refs=[]
+PASS  D5 MFQE's block filter has the USE_SSD shape: 3 calls through 02F974F0, 2 to 0017B8A0, the two filter_by_weight kernels direct; nothing calls vpx_sad16x16_sse2 (0012B200) direct={'00158B40': 1, '00158C09': 3, '0017B8A0': 2, '001488D0': 1, '001481D0': 3, '00861EBA': 2}
+PASS  D6 none of the 159 unreferenced routines is named by the decoder's preprocessed code (regenerated from C:\Users\Kristian\AppData\Local\Temp\libvpx-1.6.0) {'decoder-named, MMX sibling of an SSE2 variant (x86-64 baseline picks SSE2)': 8, 'named only by non-decoder C (encoder, VP9, vpx_dsp users)': 105, 'named by no C source': 43, "decoder-named only in mfqe.c's #else arm, compiled out by USE_SSD": 3}
+FAILS 0

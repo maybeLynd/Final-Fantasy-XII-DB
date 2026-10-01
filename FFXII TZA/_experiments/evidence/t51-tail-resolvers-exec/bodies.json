@@ -1,0 +1,62 @@
+{
+ "real": [
+  {
+   "va": "0x51b9e0",
+   "lo": "0x51b9e0",
+   "hi": "0x51b9e5",
+   "span": 5,
+   "insns": 1,
+   "cov": 1.0,
+   "sha256": "d20744131df48b53fdb606ee61e375cc956b247237a0e58ec91dcc71f8f86085",
+   "indirect": [],
+   "name": "t51t"
+  },
+  {
+   "va": "0x51f240",
+   "lo": "0x51f240",
+   "hi": "0x51f2ca",
+   "span": 138,
+   "insns": 43,
+   "cov": 1.0,
+   "sha256": "f04c950f914d82afd72ce2b74fa109e88f404393129503ff4d08e7c43a428844",
+   "indirect": [],
+   "name": "t51"
+  },
+  {
+   "va": "0x370e20",
+   "lo": "0x370e20",
+   "hi": "0x370e2b",
+   "span": 11,
+   "insns": 2,
+   "cov": 1.0,
+   "sha256": "b7342d0f8e4d0b0a6dab0959f6d530e8e9ed21fa7751b8c104a7657d12edca47",
+   "indirect": [],
+   "name": "e20"
+  },
+  {
+   "va": "0x3ab7f0",
+   "lo": "0x3ab7f0",
+   "hi": "0x3ab853",
+   "span": 99,
+   "insns": 32,
+   "cov": 1.0,
+   "sha256": "a65931ceb42bff28b95656b5797b4ec07ab5f3526b5e5c98d7a330d5f18e28f0",
+   "indirect": [],
+   "name": "res"
+  },
+  {
+   "va": "0x20e600",
+   "lo": "0x20e600",
+   "hi": "0x20e60a",
+   "span": 10,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+   "indirect": [],
+   "name": "base"
+  }
+ ],
+ "scripted": [
+  "0x36b130"
+ ]
+}

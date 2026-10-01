@@ -1,0 +1,252 @@
+{
+ "alloc": {
+  "bad": [],
+  "block": "750004C0",
+  "ctor_calls": 5,
+  "faults": [],
+  "formerly_scripted_entered": [
+   "00265B60",
+   "00265FF0",
+   "002681E0",
+   "00268380",
+   "003DBB60"
+  ],
+  "functions_entered": 45,
+  "memset_calls": [
+   [
+    "750004C0",
+    0,
+    "17C0"
+   ]
+  ],
+  "ok": true,
+  "strncpy_calls": 1
+ },
+ "arena_init": {
+  "bad": [],
+  "faults": [],
+  "ok": true
+ },
+ "cases": {
+  "AR1_every_record_zero_when_its_ctor_runs_except_+3": true,
+  "AR1_memset_of_the_whole_block_by_the_caller": true,
+  "AR2_masked_bytes_keep_poison_bits_in_the_control_so_zero_memory_is_what_makes_them_constants": true,
+  "AR3_+3_set_by_the_carve_and_never_written_by_the_ctor_tree": true,
+  "AR4_each_record_stores_its_slot_index_and_the_table_indexes_records": true,
+  "AR5_callees_not_the_ctor_body_write_+24_+60_+88_+89": true,
+  "AR5_gaps_+84_+8A_+9C_+B0_not_written": true,
+  "AR5_the_call_tree_writes_past_+11C_inside_the_allocation": true,
+  "POOL_region_map_pointers_point_inside_each_record": true,
+  "POOL_second_region_published_to_mgr_1F0_and_records_follow_the_header": true,
+  "all_five_formerly_scripted_callees_executed": true
+ },
+ "detail": {
+  "AR1_nonzero_bytes_at_ctor_entry_excluding_+3": {
+   "0": [],
+   "1": [],
+   "2": [],
+   "3": [],
+   "4": []
+  },
+  "AR2": {
+   "control_bad": [],
+   "control_faults": [],
+   "control_ok": true,
+   "poisoned_control": {
+    "13": 36,
+    "14": 48,
+    "8": 5,
+    "9": 1,
+    "B": 128,
+    "D": 2
+   },
+   "zeroed": {
+    "13": 0,
+    "14": 48,
+    "8": 1,
+    "9": 1,
+    "B": 0,
+    "D": 2
+   }
+  },
+  "AR3_ctor_tree_writes_covering_+3": [],
+  "AR5": {
+   "0": {
+    "first_past_11C": [
+     "120"
+    ],
+    "gap_written": [],
+    "span_written_sample": [
+     "60",
+     "61",
+     "63",
+     "88",
+     "89",
+     "8C",
+     "8D",
+     "8E",
+     "8F",
+     "90",
+     "91",
+     "92"
+    ]
+   },
+   "1": {
+    "first_past_11C": [
+     "120"
+    ],
+    "gap_written": [],
+    "span_written_sample": [
+     "60",
+     "61",
+     "63",
+     "88",
+     "89",
+     "8C",
+     "8D",
+     "8E",
+     "8F",
+     "90",
+     "91",
+     "92"
+    ]
+   },
+   "2": {
+    "first_past_11C": [
+     "120"
+    ],
+    "gap_written": [],
+    "span_written_sample": [
+     "60",
+     "61",
+     "63",
+     "88",
+     "89",
+     "8C",
+     "8D",
+     "8E",
+     "8F",
+     "90",
+     "91",
+     "94"
+    ]
+   },
+   "3": {
+    "first_past_11C": [
+     "120"
+    ],
+    "gap_written": [],
+    "span_written_sample": [
+     "60",
+     "61",
+     "63",
+     "88",
+     "89",
+     "8C",
+     "8D",
+     "8E",
+     "8F",
+     "90",
+     "91",
+     "92"
+    ]
+   },
+   "4": {
+    "first_past_11C": [
+     "120"
+    ],
+    "gap_written": [],
+    "span_written_sample": [
+     "60",
+     "61",
+     "63",
+     "88",
+     "89",
+     "8C",
+     "8D",
+     "8E",
+     "8F",
+     "90",
+     "91",
+     "94"
+    ]
+   }
+  },
+  "AR5_writer_functions": {
+   "24": [
+    "003DB580"
+   ],
+   "60": [
+    "003DB580"
+   ],
+   "88": [
+    "003DB580"
+   ],
+   "89": [
+    "003DB580"
+   ]
+  },
+  "POOL_interior_pointers_rel_record": {
+   "0": {
+    "A0": "120",
+    "A8": "1E8",
+    "B8": "0",
+    "C0": "0",
+    "ok": true
+   },
+   "1": {
+    "A0": "1A0",
+    "A8": "268",
+    "B8": "120",
+    "C0": "0",
+    "ok": true
+   },
+   "2": {
+    "A0": "1A0",
+    "A8": "240",
+    "B8": "120",
+    "C0": "0",
+    "ok": true
+   },
+   "3": {
+    "A0": "4D8",
+    "A8": "5A0",
+    "B8": "120",
+    "C0": "350",
+    "ok": true
+   },
+   "4": {
+    "A0": "4D8",
+    "A8": "578",
+    "B8": "120",
+    "C0": "350",
+    "ok": true
+   }
+  }
+ },
+ "live_game": false,
+ "ok": true,
+ "tails": [],
+ "variant": {
+  "fcount": 10,
+  "groups": [
+   1,
+   1,
+   1,
+   0,
+   0,
+   1,
+   0,
+   1
+  ],
+  "layout_class_by_record": [
+   0,
+   1,
+   1,
+   3,
+   3
+  ],
+  "linked": 3,
+  "site1_hits": 6
+ }
+}

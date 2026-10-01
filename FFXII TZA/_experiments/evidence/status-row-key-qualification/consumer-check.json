@@ -1,0 +1,41 @@
+{
+  "status": "PENDING PROPAGATION AND INDEPENDENT REVIEW",
+  "claim": "Status+0 is two-byte packed name key; +2 separate byte; old byte-only join is incomplete.",
+  "regressions": [
+    "Database/FFXII TZA/_experiments/evidence/status-row-key-qualification/qualify.py",
+    "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/check.py"
+  ],
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/_types/fields.tsv",
+      "bytes": 11512097,
+      "sha256": "3ae3ce8c56b1677cba4b3b88c60b4916be9a3a077be45b007f98dca66e84ec4d",
+      "status": "agrees-width-and-key; direct-native-citation-routed-to-ASTRA-RETURN-OPUS-STATUS-ROW-KEY"
+    },
+    {
+      "path": "Database/FFXII TZA/03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md",
+      "bytes": 82766,
+      "sha256": "f7b991064180c33919b7bae2c5e5ef0b771ec9cb0cd103fb5c09d8d77fdd2ee5",
+      "status": "routed-to-ASTRA-RETURN-FABLE-STATUS-ROW-KEY"
+    },
+    {
+      "path": "Database/FFXII TZA/10-Status-Periodic-Terminal/the-thirty-two-statuses.md",
+      "bytes": 42148,
+      "sha256": "eb9ac278c0223a8adaa0bb43b9206a2299164820dbc721b73bd52031a1e1bd62",
+      "status": "agrees-with-u16-key"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/README.md",
+      "bytes": 5232,
+      "sha256": "c83e332858a7171bd7b45381c539a864983d9ca70e9fe3cffe7c6fc1c3c34135",
+      "status": "revised-here"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/status-watch-preflight/check.py",
+      "bytes": 5914,
+      "sha256": "06b234f344e5cfb05e3905e2c3173b2c5e92f71fc224939b3e57ee100148b9ce",
+      "status": "revised-here"
+    }
+  ],
+  "limits": "Current canonical preimages read only. No peer file modified; owner commits/consumer agreement still required."
+}

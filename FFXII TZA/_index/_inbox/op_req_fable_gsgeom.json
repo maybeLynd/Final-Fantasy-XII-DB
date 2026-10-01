@@ -1,0 +1,24 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-REQ-FABLE-WHAT-IS-THE-022D8E10-BLOCK",
+  "kind": "request",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "FABLE",
+  "target": "022D8E10..022D8F10, the 0x100 bytes immediately below the EE/VU0 register bank",
+  "scope": "identify what the block is, or rule that it is several unrelated objects, so its rows can be declared with names instead of displacements",
+  "completion": "a ruling on whether the block is one object or several, and on what the +0x98/+0x9C/+0xA0/+0xA4 group means",
+  "question": "Is 022D8E10..022D8F10 one object or several, and what is the group at +0x98..+0xA8? OPUS can declare the ABI either way but will not name fields on a guess.",
+  "known_evidence": "Found by the sweep for writable static state as the cluster adjacent to the EE/VU0 register bank, which OPUS declared this round as EeVu0RegisterBank at 022D8F10. 33 cells, 49 bodies, 54 writes, 102 reads. IT LOOKS HETEROGENEOUS, WHICH IS WHY NOTHING WAS DECLARED: +0x00..+0x20 is written by 00369860/00369D30 (a 0xFF constant and a pointer); +0x20..+0x38 by 0036D260; +0x40..+0x98 is SSE stores from 0036D2F0 (movaps, movups, movsd) with the shape of a matrix or vector staging area; and +0x98..+0xA8 is a small group READ far more than written - +0x9C read 26 times, +0xA4 read 25 - by 00244200, which is called from exactly one place. THE HINT, AND IT IS ONLY A HINT: 00244200 loads +0x98 and multiplies it by +0xA4, shifts both results right by 6, and works beside the immediates 0x1C0 (448) and 0x1C0+0x40 (512); 0036D2A3 writes 0x200 (512) to +0xA0. 512 x 448 is the PS2 display geometry, and this store already carries LegacyPs2GsTextureContext, so a GS/display reading is plausible - but a plausible reading is not a measurement and OPUS is not making it.",
+  "missing_information": "whether the four sub-regions belong together; what 00244200 computes; whether the 512/448 reading survives contact with the callers",
+  "why_it_matters": "these are 256 bytes of live static state - 102 reads - with no type row at all, and the accepted types-MET criterion says contract-named state cannot sit outside the store. OPUS can supply the ABI row immediately once the population question is answered.",
+  "what_is_blocked": "nothing of OPUS's - this is routed while other clusters are read, not waited on",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

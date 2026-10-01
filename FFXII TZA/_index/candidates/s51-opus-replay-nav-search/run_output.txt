@@ -1,0 +1,11 @@
+R0_mesh_bound_by_00384160_and_regions_resolve                            PASS
+N1_same_region_returns_0_no_dijkstra                                     PASS
+N2_connected_pair_dijkstra_once_route_chains                             PASS
+N3_held_route_no_dijkstra_only_goal_waypoint_refreshed                   PASS
+N4_unreachable_dijkstra_minus1_dead_end_recorded                         PASS
+N5_dead_end_refused_without_dijkstra                                     PASS
+N6_NV1_locomotion_reset_wipes_route_keeps_dead_ends                      PASS
+N7_NV2_flagged_units_both_wiped_unflagged_untouched                      PASS
+N8_NV2_count_reread_each_iteration_perturbation_covers_the_extra_slot    PASS
+{"N2": {"ret": 0, "dijkstra": 1, "route": [0, 1, 2, 3, 4, 19, 20, 21]}, "N3": {"ret": 0, "dijkstra": 0, "waypoints_changed": [21]}, "N4": {"ret": "FFFFFFFF", "dijkstra": 1, "start": 255, "goal": 255, "dead": "000affff"}, "N5": {"ret": "FFFFFFFF", "dijkstra": 0}, "N6": {"reset_ok": true, "before": {"start": 255, "goal": 255, "dead": "000affff"}, "after": {"start": 255, "goal": 255, "dead": "000affff"}, "next_after_all_ff": true, "connected_dijkstra": 1, "unreachable": ["FFFFFFFF", 0]}, "N7": {"inval_ok": true, "wiped": {"0": true, "1": false, "2": true, "3": true, "4": true}, "unit1_untouched": true}, "N8": {"control_ok": true, "control_last_slot_wiped": false, "perturbed_ok": true, "bumped": true, "extra_slot_wiped": true}}
+ALL PASS

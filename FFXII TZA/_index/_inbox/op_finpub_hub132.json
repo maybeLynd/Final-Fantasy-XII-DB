@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-132",
+ "result_refs": [
+  "commit f6ffaa67a \u2014 batch-132 publish: 25 paths, 18 hosts + AUDIT-LOG + resume + ops"
+ ],
+ "note": "batch-132 publish: 25 paths, guard ADDS NOTHING after 10 same-edit crossing rows (2854->2842)"
+}

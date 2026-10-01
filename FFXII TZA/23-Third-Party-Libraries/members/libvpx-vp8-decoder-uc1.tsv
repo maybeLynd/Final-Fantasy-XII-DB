@@ -1,0 +1,6 @@
+# libvpx: UC-1 bodies (admitted to frontier 2026-09-28) inside the span 0016DDD0 up to 0017C890 that pass FABLE ruling R1 tests 1 and 3 - _index/candidates/ec7-uc1-span-rows-0929/uc1_span_tests.py --write
+address	bytes	member_below	member_above	refs
+0016EE40	48	0016ECE0	0016F070	1
+0016EE80	63	0016ECE0	0016F070	1
+0016EFF0	56	0016ECE0	0016F070	2
+0016F030	49	0016ECE0	0016F070	1

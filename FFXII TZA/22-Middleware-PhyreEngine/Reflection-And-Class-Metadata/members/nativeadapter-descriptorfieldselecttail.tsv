@@ -1,0 +1,8 @@
+# NativeAdapter.DescriptorFieldSelectTail - EC-7 family C
+# rax=[this+0x30]; select rax or a member rip descriptor via cmovne;
+# # tail-dispatch to shared 005CDAA0 with ecx=2 and a member rip arg.
+address	targets
+0062ED40	005CDAA0
+0062ED70	005CDAA0
+0063C060	005CDAA0
+0063D060	005CDAA0

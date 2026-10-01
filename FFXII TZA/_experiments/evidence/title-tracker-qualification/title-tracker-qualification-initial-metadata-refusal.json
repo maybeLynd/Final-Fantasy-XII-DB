@@ -1,0 +1,8 @@
+{
+  "status": "REFUSED_INITIAL_PRODUCER_METADATA_LITERAL_NO_PASS",
+  "checker_sha256": "67094dd883108135ed0014224ce2c9380a2d6ef6a8a38f9c3376e14f043b1a5a",
+  "exit": 1,
+  "error": "normal root/fragment metadata changed",
+  "result_absent": true,
+  "next": "Correct literal against original retained metadata; semantic input unchanged"
+}

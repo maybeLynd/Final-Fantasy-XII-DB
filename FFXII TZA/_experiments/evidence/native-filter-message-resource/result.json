@@ -1,0 +1,406 @@
+{
+  "status": "STATIC_EMBEDDED_ERROR_RESOURCE_AND_LOOKUP_PRECONDITIONS",
+  "method": "A shipping original helper/selector/module-getter source and selected embedded RT_STRING block; no execution",
+  "raw_sha256": "4c85ddca7e7931471f82e6aa788e0a85982aed331882ea43905d50629d5df9a9",
+  "strings": [
+    {
+      "language": "0x407",
+      "rva": "0x2f398c0",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 436,
+        "u16_length": 27,
+        "utf16_hex": "46006100740061006c006500720020004600650068006c0065007200200061007500660067006500740072006500740065006e002e00",
+        "text": "Fataler Fehler aufgetreten."
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 352,
+        "u16_length": 41,
+        "utf16_hex": "4d00f60063006800740065006e0020005300690065002000640061007300200053007000690065006c0020007700690072006b006c0069006300680020007600650072006c0061007300730065006e003f00",
+        "text": "M\u00f6chten Sie das Spiel wirklich verlassen?"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 492,
+        "u16_length": 6,
+        "utf16_hex": "4600650068006c0065007200",
+        "text": "Fehler"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        76,
+        87,
+        7,
+        41,
+        27,
+        6,
+        32,
+        113,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 810
+    },
+    {
+      "language": "0x409",
+      "rva": "0x2f39bec",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 346,
+        "u16_length": 24,
+        "utf16_hex": "46006100740061006c0020006500720072006f007200200065006e0063006f0075006e00740065007200650064002e00",
+        "text": "Fatal error encountered."
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 280,
+        "u16_length": 32,
+        "utf16_hex": "44006f00200079006f00750020007200650061006c006c0079002000770061006e007400200074006f00200065007800690074002000670061006d0065003f00",
+        "text": "Do you really want to exit game?"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 396,
+        "u16_length": 5,
+        "utf16_hex": "4500720072006f007200",
+        "text": "Error"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        71,
+        52,
+        11,
+        32,
+        24,
+        5,
+        32,
+        98,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 682
+    },
+    {
+      "language": "0x40a",
+      "rva": "0x2f39e98",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 376,
+        "u16_length": 31,
+        "utf16_hex": "530065002000680061002000700072006f00640075006300690064006f00200075006e0020006500720072006f0072002000670072006100760065002e00",
+        "text": "Se ha producido un error grave."
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 302,
+        "u16_length": 36,
+        "utf16_hex": "bf00530065006700750072006f002000710075006500200071007500690065007200650073002000730061006c00690072002000640065006c0020006a007500650067006f003f00",
+        "text": "\u00bfSeguro que quieres salir del juego?"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 440,
+        "u16_length": 5,
+        "utf16_hex": "4500720072006f007200",
+        "text": "Error"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        81,
+        59,
+        5,
+        36,
+        31,
+        5,
+        32,
+        104,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 738
+    },
+    {
+      "language": "0x40c",
+      "rva": "0x2f3a17c",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 446,
+        "u16_length": 33,
+        "utf16_hex": "55006e0065002000650072007200650075007200200066006100740061006c0065002000730027006500730074002000700072006f00640075006900740065002e00",
+        "text": "Une erreur fatale s'est produite."
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 364,
+        "u16_length": 40,
+        "utf16_hex": "56006f0075006c0065007a002d0076006f0075007300200076007200610069006d0065006e0074002000710075006900740074006500720020006c006100200070006100720074006900650020003f00",
+        "text": "Voulez-vous vraiment quitter la partie ?"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 514,
+        "u16_length": 6,
+        "utf16_hex": "450072007200650075007200",
+        "text": "Erreur"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        84,
+        75,
+        17,
+        40,
+        33,
+        6,
+        32,
+        126,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 858
+    },
+    {
+      "language": "0x410",
+      "rva": "0x2f3a4d8",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 360,
+        "u16_length": 32,
+        "utf16_hex": "530069002000e80020007600650072006900660069006300610074006f00200075006e0020006500720072006f00720065002000670072006100760065002e00",
+        "text": "Si \u00e8 verificato un errore grave."
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 298,
+        "u16_length": 30,
+        "utf16_hex": "560075006f00690020006400610076007600650072006f0020007500730063006900720065002000640061006c002000670069006f0063006f003f00",
+        "text": "Vuoi davvero uscire dal gioco?"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 426,
+        "u16_length": 6,
+        "utf16_hex": "4500720072006f0072006500",
+        "text": "Errore"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        75,
+        49,
+        19,
+        30,
+        32,
+        6,
+        32,
+        104,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 726
+    },
+    {
+      "language": "0x411",
+      "rva": "0x2f3a7b0",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 274,
+        "u16_length": 14,
+        "utf16_hex": "f4817d5484766a30a830e930fc304c307a761f7557307e3057305f30",
+        "text": "\u81f4\u547d\u7684\u306a\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 180,
+        "u16_length": 46,
+        "utf16_hex": "460049004e0041004c002000460041004e00540041005300590020006b21200054004800450020005a004f00440049004100430020004100470045009230427d864e57307e30593002300a0088308d3057304430673059304b301fff",
+        "text": "FINAL FANTASY \u216b THE ZODIAC AGE\u3092\u7d42\u4e86\u3057\u307e\u3059\u3002\n\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 304,
+        "u16_length": 3,
+        "utf16_hex": "a830e930fc30",
+        "text": "\u30a8\u30e9\u30fc"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        52,
+        27,
+        5,
+        46,
+        14,
+        3,
+        32,
+        75,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 540
+    },
+    {
+      "language": "0x412",
+      "rva": "0x2f3a9cc",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 246,
+        "u16_length": 16,
+        "utf16_hex": "58ce85ba01c878c7200024c658b900ac20001cbcddc088d5b5c2c8b2e4b22e00",
+        "text": "\uce58\uba85\uc801\uc778 \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4."
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 212,
+        "u16_length": 16,
+        "utf16_hex": "15c8d0b920008cac84c744c7200085c8ccb858d5dcc2a0acb5c2c8b24cae3f00",
+        "text": "\uc815\ub9d0 \uac8c\uc784\uc744 \uc885\ub8cc\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 280,
+        "u16_length": 2,
+        "utf16_hex": "24c658b9",
+        "text": "\uc624\ub958"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        55,
+        37,
+        8,
+        16,
+        16,
+        2,
+        32,
+        50,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 464
+    },
+    {
+      "language": "0x804",
+      "rva": "0x2f3ab9c",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 154,
+        "u16_length": 7,
+        "utf16_hex": "47903052f4817d541995ef8b0230",
+        "text": "\u9047\u5230\u81f4\u547d\u9519\u8bef\u3002"
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 134,
+        "u16_length": 9,
+        "utf16_hex": "2f6626546e789a5bbb79005f386e0f621fff",
+        "text": "\u662f\u5426\u786e\u5b9a\u79bb\u5f00\u6e38\u620f\uff1f"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 170,
+        "u16_length": 2,
+        "utf16_hex": "1995ef8b",
+        "text": "\u9519\u8bef"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        43,
+        14,
+        4,
+        9,
+        7,
+        2,
+        32,
+        31,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 316
+    },
+    {
+      "language": "0x7c04",
+      "rva": "0x2f3acd8",
+      "selected": {
+        "index": 7,
+        "prefix_offset": 162,
+        "u16_length": 7,
+        "utf16_hex": "47903052f4817d542f93a48a0230",
+        "text": "\u9047\u5230\u81f4\u547d\u932f\u8aa4\u3002"
+      },
+      "previous": {
+        "index": 6,
+        "prefix_offset": 142,
+        "u16_length": 9,
+        "utf16_hex": "a860ba789a5b8189e2968b954a9032621fff",
+        "text": "\u60a8\u78ba\u5b9a\u8981\u96e2\u958b\u904a\u6232\uff1f"
+      },
+      "following": {
+        "index": 8,
+        "prefix_offset": 178,
+        "u16_length": 2,
+        "utf16_hex": "2f93a48a",
+        "text": "\u932f\u8aa4"
+      },
+      "all16_lengths": [
+        0,
+        0,
+        0,
+        43,
+        16,
+        6,
+        9,
+        7,
+        2,
+        32,
+        33,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parsed_bytes": 328
+    }
+  ],
+  "interpretation": "Input7837 requests RT_STRING type6 block784, entry7. Selected embeddedEXE entry409 is Fatal error encountered. (24 UTF16 codeunits, counted prefix, no included nul). Nine original language variants individually retained. Lookup enumerates registry2EAF320 via80C51C, FindResourceW on nonnull module then LoadResource/LockResource/SizeofResource selector; returns pointer to nonempty selected length prefix, not text+2 and not owned allocation. Module initialization/order/language selection/load success/lifetime/visiblemessage unobserved. Getter source uses signed index bounds, +58 bound, +10 at equal bound, +50 indexed pointer otherwise; traps stop local graph. Current pointer-end checks are not complete malformed-resource safety.",
+  "consumer_change": "Add exact embedded CV3 body with module/language/borrowed-prefix qualifiers; do not call it captured displayed text or explain EXP127. Connect helper counted string to filter leadingu16/pointer+2, preserve API/callback/native ownership limits. Exclude trap fallthrough/adjacent-function source.",
+  "limits": "Embedded strings and exact source module-order/block/prefix rules only. No actual registry initialization/HMODULE binding/FindResource language selection/resource-load result/visiblemessage/pointerlifetime/nativecallbacks/exceptionreach/EXP127cause. Boundary checks do not prove malformed-resource safety. Local source paths assume calls return; traps do not fall into next function. PC OFF/S19/fullL1+L2 NOT_MET"
+}

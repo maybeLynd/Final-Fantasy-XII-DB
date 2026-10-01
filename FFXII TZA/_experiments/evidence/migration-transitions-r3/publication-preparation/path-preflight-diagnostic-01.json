@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database/Tools/work/ASTRA/migration-generation-independent/prepare-publication.py",
+    "--preflight-only",
+    "--preflight-pins",
+    "Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\publication\\reviewed.json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py\", line 15, in <module>\n    check_ignored_paths(json.loads(pinfile.read_text()))\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py\", line 11, in check_ignored_paths\n    assert q.returncode==1,'Ignored reviewed publication path; preserve bytes/use package-local exception before claiming'\n           ^^^^^^^^^^^^^^^\nAssertionError: Ignored reviewed publication path; preserve bytes/use package-local exception before claiming\n",
+  "terminal": true,
+  "scope": "Read-only diagnostic following unpublished preparation failure; no publication claim or commit"
+}

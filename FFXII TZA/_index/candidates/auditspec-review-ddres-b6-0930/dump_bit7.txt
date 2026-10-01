@@ -1,0 +1,199 @@
+=== 0024A710 root 0024A710 ranges [('0024A710', '0024A9D7')]
+0024A710  push     rbx
+0024A712  push     rbp
+0024A713  push     rsi
+0024A714  push     r12
+0024A716  push     r13
+0024A718  push     r14
+0024A71A  push     r15
+0024A71C  sub      rsp, 0x80
+0024A723  mov      edx, 0x10
+0024A728  mov      dword ptr [rsp + 0xc8], 0x3520
+0024A733  mov      ebx, 0xe0
+0024A738  xor      r8d, r8d
+0024A73B  bts      ebx, ecx
+0024A73E  mov      esi, 0x4000
+0024A743  mov      ecx, edx
+0024A745  call     0x3a1f20
+0024A74A  xor      edx, edx
+0024A74C  mov      r13d, eax
+0024A74F  lea      ecx, [rdx + 0x10]
+0024A752  call     0x3a1fe0
+0024A757  mov      dword ptr [rsp + 0x40], eax
+0024A75B  lea      ebp, [r13 + 0x3f]
+0024A75F  movsxd   rax, ebx
+0024A762  lea      r14, [rip + 0x1e44e4f]   ; -> 0208F5B8
+0024A769  mov      qword ptr [rsp + 0x50], rax
+0024A76E  lea      rdx, [rip + 0x2c7484b]   ; -> 02EBEFC0
+0024A775  sar      ebp, 6
+0024A778  mov      r12d, 0x3f
+0024A77E  mov      qword ptr [rsp + 0x78], rdi
+0024A783  nop      dword ptr [rax]
+0024A787  nop      word ptr [rax + rax]
+0024A790  mov      rcx, qword ptr [r14]
+0024A793  and      rcx, rax
+0024A796  cmp      rcx, rax
+0024A799  jne      0x24a9b1
+0024A79F  mov      eax, dword ptr [rip + 0x2c7484b]   ; -> 02EBEFF0
+0024A7A5  xorps    xmm0, xmm0
+0024A7A8  mov      rdi, qword ptr [r14 - 0x18]
+0024A7AC  movdqu   xmmword ptr [rsp + 0x58], xmm0
+0024A7B2  lea      rcx, [rax + rax*2]
+0024A7B6  lea      rax, [rdx + rcx*8]
+0024A7BA  mov      qword ptr [rsp + 0x68], rax
+0024A7BF  movzx    r15d, word ptr [rdi + 0x14]
+0024A7C4  mov      eax, dword ptr [r14]
+0024A7C7  mov      ecx, r15d
+0024A7CA  movzx    ebx, word ptr [rdi + 0x16]
+0024A7CE  shr      eax, 8
+0024A7D1  and      eax, 0x3f
+0024A7D4  mov      dword ptr [rsp + 0x44], r15d
+0024A7D9  mov      edx, eax
+0024A7DB  mov      dword ptr [rsp + 0xd0], ebx
+0024A7E2  mov      dword ptr [rsp + 0xc0], eax
+0024A7E9  call     0x3a1fe0
+0024A7EE  mov      r8d, dword ptr [rsp + 0xc0]
+0024A7F6  mov      edx, ebx
+0024A7F8  mov      ecx, r15d
+0024A7FB  mov      dword ptr [rsp + 0xd8], eax
+0024A802  call     0x3a1f20
+0024A807  movzx    ecx, word ptr [rdi + 0xc]
+0024A80B  mov      ebx, eax
+0024A80D  mov      eax, dword ptr [rsp + 0xd8]
+0024A814  add      rcx, rdi
+0024A817  mov      r8d, dword ptr [rsp + 0xc0]
+0024A81F  mov      r9d, r15d
+0024A822  mov      r15d, dword ptr [rsp + 0xc8]
+0024A82A  mov      edx, r15d
+0024A82D  mov      dword ptr [rsp + 0x38], eax
+0024A831  mov      dword ptr [rsp + 0x30], ebx
+0024A835  mov      qword ptr [rsp + 0x28], rcx
+0024A83A  mov      ecx, dword ptr [rsp + 0xd0]
+0024A841  mov      dword ptr [rsp + 0x20], ecx
+0024A845  lea      rcx, [rsp + 0x58]
+0024A84A  call     0x24af50
+0024A84F  lea      eax, [rbx + 0x3f]
+0024A852  mov      dword ptr [rsp + 0x48], r15d
+0024A857  movzx    ebx, word ptr [rdi + 0xe]
+0024A85B  sar      eax, 6
+0024A85E  add      ebx, 0xff
+0024A864  add      r15d, eax
+0024A867  mov      dword ptr [rsp + 0xc8], r15d
+0024A86F  mov      r15d, dword ptr [rsp + 0x40]
+0024A874  shr      ebx, 8
+0024A877  nop      word ptr [rax + rax]
+0024A880  mov      dword ptr [rsp + 0x38], r15d
+0024A885  lea      rcx, [rsp + 0x58]
+0024A88A  mov      dword ptr [rsp + 0x30], r13d
+0024A88F  dec      ebx
+0024A891  mov      eax, ebx
+0024A893  sub      esi, ebp
+0024A895  shl      eax, 0xa
+0024A898  mov      r9d, 0x10
+0024A89E  add      eax, dword ptr [r14 - 0x28]
+0024A8A2  xor      r8d, r8d
+0024A8A5  mov      qword ptr [rsp + 0x28], rax
+0024A8AA  mov      edx, esi
+0024A8AC  mov      dword ptr [rsp + 0x20], 0x10
+0024A8B4  call     0x24af50
+0024A8B9  test     ebx, ebx
+0024A8BB  jne      0x24a880
+0024A8BD  mov      r15d, dword ptr [rsp + 0x44]
+0024A8C2  lea      ecx, [rbx + 0x3f]
+0024A8C5  lea      edx, [r15 + r15]
+0024A8C9  dec      rdx
+0024A8CC  mov      rax, rdx
+0024A8CF  sar      rax, 0x3f
+0024A8D3  test     al, 1
+0024A8D5  jne      0x24a8e7
+0024A8D7  test     ecx, ecx
+0024A8D9  jle      0x24a8e7
+0024A8DB  dec      ecx
+0024A8DD  mov      rax, rdx
+0024A8E0  sar      rax, cl
+0024A8E3  test     al, 1
+0024A8E5  je       0x24a8d7
+0024A8E7  mov      rax, rdx
+0024A8EA  mov      r9d, ecx
+0024A8ED  sar      rax, cl
+0024A8F0  test     al, 1
+0024A8F2  je       0x24a904
+0024A8F4  test     ecx, ecx
+0024A8F6  jle      0x24a904
+0024A8F8  dec      ecx
+0024A8FA  mov      rax, rdx
+0024A8FD  sar      rax, cl
+0024A900  test     al, 1
+0024A902  jne      0x24a8f4
+0024A904  mov      eax, dword ptr [rsp + 0xd0]
+0024A90B  sub      r9d, ecx
+0024A90E  mov      ecx, 0x3f
+0024A913  lea      edx, [rax + rax]
+0024A916  dec      rdx
+0024A919  mov      rax, rdx
+0024A91C  sar      rax, 0x3f
+0024A920  test     al, 1
+0024A922  jne      0x24a934
+0024A924  test     ecx, ecx
+0024A926  jle      0x24a934
+0024A928  dec      ecx
+0024A92A  mov      rax, rdx
+0024A92D  sar      rax, cl
+0024A930  test     al, 1
+0024A932  je       0x24a924
+0024A934  mov      rax, rdx
+0024A937  mov      r8d, ecx
+0024A93A  sar      rax, cl
+0024A93D  test     al, 1
+0024A93F  je       0x24a951
+0024A941  test     ecx, ecx
+0024A943  jle      0x24a951
+0024A945  dec      ecx
+0024A947  mov      rax, rdx
+0024A94A  sar      rax, cl
+0024A94D  test     al, 1
+0024A94F  jne      0x24a941
+0024A951  sub      r8d, ecx
+0024A954  movsxd   rax, esi
+0024A957  shl      rax, 7
+0024A95B  movsxd   rcx, r8d
+0024A95E  or       rcx, rax
+0024A961  mov      eax, 0x80000010
+0024A966  or       rcx, rax
+0024A969  movsxd   rax, r9d
+0024A96C  shl      rcx, 4
+0024A970  or       rcx, rax
+0024A973  mov      eax, dword ptr [rsp + 0xc0]
+0024A97A  shl      rcx, 6
+0024A97E  or       rcx, rax
+0024A981  movsxd   rax, dword ptr [rsp + 0xd8]
+0024A989  shl      rcx, 6
+0024A98D  or       rcx, rax
+0024A990  movsxd   rax, dword ptr [rsp + 0x48]
+0024A995  shl      rcx, 0xe
+0024A999  or       rcx, rax
+0024A99C  mov      qword ptr [r14 - 8], rcx
+0024A9A0  call     0x3a1db0
+0024A9A5  mov      rax, qword ptr [rsp + 0x50]
+0024A9AA  lea      rdx, [rip + 0x2c7460f]   ; -> 02EBEFC0
+0024A9B1  add      r14, 0x48
+0024A9B5  sub      r12d, 1
+0024A9B9  jne      0x24a790
+0024A9BF  mov      rdi, qword ptr [rsp + 0x78]
+0024A9C4  add      rsp, 0x80
+0024A9CB  pop      r15
+0024A9CD  pop      r14
+0024A9CF  pop      r13
+0024A9D1  pop      r12
+0024A9D3  pop      rsi
+0024A9D4  pop      rbp
+0024A9D5  pop      rbx
+0024A9D6  ret      
+=== 0024A5A0 root None ranges []
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_index\candidates\auditspec-review-ddres-b6-0930\dump.py", line 16, in <module>
+    seq = I.body(r)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_index\candidates\auditspec-review-ddres-b6-0930\ind.py", line 125, in body
+    for a, b in sorted(RANGES[f]):
+                       ~~~~~~^^^
+KeyError: None

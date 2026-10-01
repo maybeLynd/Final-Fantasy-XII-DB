@@ -1,0 +1,71 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"result\": \"BOUNDED_RENDERED_RETURN_ESTABLISHED\",\n  \"method\": \"HOST_BROWSER\",\n  \"transition\": \"Observed Activity -> click stable uniquely visible My Progress -> immediate AX heading / later DOM Progress content / screenshot\",\n  \"initial_generation\": \"g20260929T154216Z-1827bc\",\n  \"return_generation\": \"g20260929T154720Z-55ec16\",\n  \"status_changed_during_setup\": \"STALE -> PARTIAL; return selector omitted status\",\n  \"inputs\": 2,\n  \"cleanup\": \"owned tab3 closed and absent from inventory; controls off\",\n  \"limits\": \"One return on one local session. No forced label change at exact dispatch, event-handler trace or atomic DOM/screenshot/HTTP snapshot; no loaded server/PID/browser build, full A17/M3/allviews/totals/migration/FF12/database acceptance. Prior refused returns remain valid history.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+  },
+  {
+    "case": "upstream-failed",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py",
+      "--fault-upstream-failed"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 49, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(__file__).resolve().parent),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 9, in check\n    assert t['terminal'] is True and t['returncode']==0 and not t['stderr'],'Required preflight failed'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required preflight failed\n",
+    "terminal": true,
+    "checker_sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+  },
+  {
+    "case": "ambiguous-target",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py",
+      "--fault-ambiguous-target"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 49, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(__file__).resolve().parent),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 26, in check\n    assert prepared['selector']==ret['selector']=='button /^My Progress(?: |$)/' and prepared['count']==1 and prepared['visible'] is True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+  },
+  {
+    "case": "missing-return",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py",
+      "--fault-missing-return"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 49, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(__file__).resolve().parent),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 33, in check\n    assert 'heading \"My Progress PARTIAL\" [level=2]' in after and 'heading \"Agent Activity\" [level=2]' not in after, 'Required return destination absent'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required return destination absent\n",
+    "terminal": true,
+    "checker_sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+  },
+  {
+    "case": "missing-cleanup",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py",
+      "--fault-missing-cleanup"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 49, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(__file__).resolve().parent),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-rendered-return\\check.py\", line 40, in check\n    assert cleanup.get('closeReturned') is True and cleanup.get('ownedTabListedAfter') is False\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "1645d57673d0e23912e1f2204561c31a87bcf82eb6c2dbba9e084c3cc0ae3a18"
+  }
+]

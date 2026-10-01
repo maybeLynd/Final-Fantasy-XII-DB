@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-global-name-attribution-control\check.py", line 31, in <module>
+    if '--fault-current-group-is-variable-binding' in sys.argv:assert cur1,'Actual current marker predicate cannot override independent metadata binding'
+                                                                      ^^^^
+AssertionError: Actual current marker predicate cannot override independent metadata binding

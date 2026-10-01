@@ -1,0 +1,22 @@
+008FCE00 dwords: 2 12 14 13 15 16 17 4 5 33 C6 CA CB CC C D 9 A B7 BC 125 126 2 E
+imagebase 001CD186 mov edx, dword ptr [rsi + rcx*4 + 0x7dce00] disp->008FCE00 owner (1888480, 'listed')
+--- 001D150F in 001D0390
+  001D150F lea r14, [rip + 0x72b8ea]
+  001D152D call 0x861ec0
+  001D1540 mov edx, dword ptr [r14 + rcx*4]
+  001D1550 call 0x1cd0e0
+--- 001D537D in 001D5260
+  001D5366 call 0x1ea990
+  001D537D lea r14, [rip + 0x727a7c]
+  001D539D call 0x861ec0
+  001D53B0 mov esi, dword ptr [r14 + rcx*4]
+  001D53C2 call 0x1d0190
+  001D53DC jmp 0x1d53ef
+  001D53FE call 0x1ea380
+--- 001D542A in 001D5260
+  001D541E jmp 0x1d54e4
+  001D5423 call 0x1ea990
+  001D542A lea r14, [rip + 0x7279cf]
+  001D544D call 0x861ec0
+  001D5460 mov edx, dword ptr [r14 + rcx*4]
+  001D5470 call 0x1cd0e0

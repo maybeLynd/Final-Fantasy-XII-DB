@@ -1,0 +1,4 @@
+{
+  "time_unix": 1789091974.6212952,
+  "reason": "Screenshot call latency of29.5s missed baseline2 open-menu interval. Preserve both runs. Extend all subsequent observation windows65s, cold attach60s, menu C at50s; positive remains2hits/10s. No armed experiment has occurred yet."
+}

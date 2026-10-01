@@ -1,0 +1,11 @@
+PASS M1 the three _Buynode bodies allocate 0x30 / 0x30 / 0x60 and feed the matching inserts
+PASS M2 max_size constants = (2^64-1)//size - 1 for 0x30 and 0x60 - rcx, 0x555555555555554 / rcx, 0x2aaaaaaaaaaaaa9
+PASS E1 0016D840 makes no call and holds inline RotateLeft and RotateRight copies - left-shaped 2, right-shaped 1
+PASS C1 control: the matcher finds RotateLeft in 0016D780 and RotateRight in 0016D7E0, and nothing in 006B52A0
+PASS E2 00199DB0 calls RBTreeDecrement and RBTreeInsert and is not a member
+PASS E3 006B52A0 is a child-list reparent, reached only as PNode's reflected addChild (lea 006B49FF) - rel32 0, qword 0, rva 0, rip candidates 1 (genuine 1)
+PASS C2 control: the reference sweep finds the genuine lea at 006B4AD4
+   bodies with both rotation shapes: 0016D840, 0016DA60, 0067F700, 0067F9D0
+PASS E4 image-wide, only four bodies hold both rotation shapes: the EASTL insert 0016D840 and erase 0016DA60, and Phyre's own red-black tree 0067F700 / 0067F9D0 (parent-and-colour word at +0x10) - 4 bodies
+RESULT MSVC node sizes 0x30 / 0x60 corroborated at the allocation; the EASTL insert inlines both rotations; 00199DB0 is a caller; 006B52A0 is PScene::PNode::addChild (a child-list reparent reached by reflection), not red-black code
+FAILS 0

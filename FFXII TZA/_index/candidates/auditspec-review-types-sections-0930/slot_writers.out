@@ -1,0 +1,10 @@
+base-forming references: 245 in 98 listed functions (unlisted: 1)
+candidate writes (disp overlapping +0xA0/+0xA8/+0x100, memset, rep) in those functions: 8
+  fn 0025C830  0025C930  movaps xmmword ptr [rsp + 0xa0], xmm10
+  fn 00266D10  00266EFC  memset call 0x861ec0
+  fn 00266D10  0026717A  memset call 0x861ec0
+  fn 00266D10  0026718E  memset call 0x861ec0
+  fn 0026B870  0026B898  rep stosd dword ptr [rdi], eax
+  fn 0026C8C0  0026CC31  mov qword ptr [rdi + 0x100], rbx
+  fn 0026C8C0  0026CC49  mov qword ptr [rdi + 0xa0], rbx
+  fn 0026C8C0  0026CC50  mov qword ptr [rdi + 0xa8], rbx

@@ -1,0 +1,38 @@
+{
+  "search": {
+    "path": "Database/Tools/work/ASTRA/spawn-save-container-existing.txt",
+    "sha256": "8b4f65b0ff40dcbab145b009b72fdd786c9da057d6fb2347fa5a77bdedf9243f",
+    "text": "THE DATABASE ALREADY TOUCHES THIS. A hit is not a veto; it is a decision to make.\n\n  documents (10):\n      02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md  00861EBA\n      05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md          00865D90\n      16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md              00861EBA\n      18-Audio/the-voice-pack-slots-and-the-voice-verbs.md                    00861EBA\n      22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md  00861EBA\n      22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md  00861EBA\n      23-Third-Party-Libraries/third-party-middleware-inventory.md            0080C5A0\n      _index/ADDRESS-INDEX.md                                                 0080C5A0, 00861EBA, 00865D90\n      _index/AUDIT-LOG.md                                                     00861EBA\n      _index/COVERAGE.md                                                      00861EBA\n\n"
+  },
+  "existing_sources": [
+    {
+      "path": "Database/FFXII TZA/19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md",
+      "sha256": "1b7471d3990e481f6c16e40b1d0df19a6a706d715a7f91844cbaf71658d85abf",
+      "relevant_lines": [
+        "      section 8b** \u2014 no: a `SAFH` container with a declared uncompressed size and a high-entropy body.",
+        "- [x] ~~Whether the `SAFH` body is a non-zlib codec, encrypted, or compressed-then-encrypted.~~",
+        "      **V-9 ANSWERED 2026-09-13 (FABLE):** zlib level 9, then RC4-128 with an MD5-derived key (\u00a78b, *The body decoded*),",
+        "- [x] ~~What the u32 at `SAFH +0x08` is (varies 0\u201326 across saves).~~ **V-10 ANSWERED 2026-09-13 (FABLE):** the rotation",
+        "\"SAFH\"       0x00056690   0x00000000   high-entropy body",
+        "| `+0x00` | 4 | magic `\"SAFH\"` \u2014 Save File Header |",
+        "| `+0x08` | u32 | ~~small value, varies 0-26 across saves~~ **key rotation 0\u201331** (`abs(rand()) mod 32` at write; must be \u2264 31 at read) \u2014 `V-10` |",
+        "### The body is not plain zlib - and what that does and does not prove",
+        "it actually is stays open as **V-9**.",
+        "### The body decoded \u2014 compressed, then encrypted (2026-09-13, FABLE; answers `V-9` and `V-10`)",
+        "**Reading** \u2014 `008666B0` (mode 1): after the `SAFH` magic, `+0x08` must be \u2264 31 (`00866805`) and is kept in `02EB3868`;",
+        "**Writing** \u2014 `00866200` (mode 0) builds `{ \"SAFH\", u32 length, u32 r }` with **`r = abs(rand()) mod 32`**",
+        "**So `V-9`: compressed with zlib, then encrypted with RC4-128; and `V-10`: `+0x08` is the passphrase rotation, a fresh"
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/23-Third-Party-Libraries/third-party-middleware-inventory.md",
+      "sha256": "f0d1e4b271b54891a9f985872763f0c1d3be141e0d042a6b96f8618286df65e5",
+      "relevant_lines": [
+        "save   -> zlib 1.2.11 (linked; not proven to encode the save container)",
+        "- **zlib 1.2.11 is linked**, which makes it the first candidate for the `SAFH` save body \u2014 but no",
+        "  DEFLATE stream was found in a save file, so linkage is *not* proof (see the save document, V-9). *(2026-09-13: it is",
+        "  the codec \u2014 the stream is RC4-encrypted after `compress2` level 9, `0087AF40`; decrypting first exposes it. V-9 answered.)*"
+      ]
+    }
+  ]
+}

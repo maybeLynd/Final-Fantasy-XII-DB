@@ -1,0 +1,1 @@
+{"action": "finish", "task": "AUDITSEM-CONTRA-DATA-SEQREC-EQCOUNT-7095", "note": "figure corrected to 7,086 at u16 width in the repair prose; nine-record +4=0x0100 delta named; generator at HEAD prints 7086 (auditor reproduced)", "result_refs": ["Database/FFXII TZA/18-Audio/Sound-Selection/sound-trigger.md"]}

@@ -1,0 +1,19 @@
+digital  02EA9510  name@01CB286C Up         -> device +0x448
+digital  02EA9518  name@01CB2870 Down       -> device +0x44A
+digital  02EA9520  name@01CB2878 Left       -> device +0x44B
+digital  02EA9528  name@01CB2880 Right      -> device +0x449
+digital  02EA9530  name@008C5A60 Circle     -> device +0x43E
+digital  02EA9538  name@008C5A68 Cross      -> device +0x43D
+digital  02EA9540  name@01CB2854 Square     -> device +0x43C
+digital  02EA9548  name@01CB2848 Triangle   -> device +0x43F
+digital  02EA9550  name@01CB38C8 L1         -> device +0x440
+digital  02EA9558  name@01CB38CC L2         -> device +0x442
+digital  02EA9560  name@01CB38D0 L3         -> device +0x446
+digital  02EA9568  name@01CB38D4 R1         -> device +0x441
+digital  02EA9570  name@01CB38D8 R2         -> device +0x443
+digital  02EA9578  name@01CB38DC R3         -> device +0x447
+digital  02EA9580  name@01CB285C Start      -> device +0x445
+digital  02EA9588  name@01CB2864 Select     -> device +0x444
+analog   02EA9590  name@01CB38E0 LeftAnalog
+analog   02EA9598  name@01CB38F0 RightAnalog
+device byte order +0x43C..+0x44B: Square Cross Circle Triangle L1 R1 L2 R2 Select Start L3 R3 Up Right Down Left

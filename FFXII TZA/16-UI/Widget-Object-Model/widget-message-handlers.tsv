@@ -1,0 +1,268 @@
+handler	name	body_bytes	sites	source	kind	ids	note
+0017CDE0	thunk_FUN_005c5230	5	2	direct	unparsed		no `mov r32, [rdx]` and no `cmp dword ptr [rdx], imm` in the first 5 bytes || RE-EXAMINED 2026-09-20 (OPUS) with resolve_switch_arms.py: it contains NO register-indirect jmp at all, so it is not a table dispatch - an if/else chain or a body that does not switch on the id. 5 bytes. It stays `unparsed` rather than being given an id list. || READ 2026-09-20 (OPUS). READ: five bytes, `e94b844400` = `jmp 005C5230`. A thunk to the base widget procedure, which is `xor eax, eax` / `ret`. It answers no ids of its own and forwards everything to a no-op. `kind` stays `unparsed` for the reason recorded on 005C5230.
+00227EE0	FUN_00227ee0	451	2	direct	exact	1,2,4	
+002280B0	FUN_002280b0	126	2	direct	exact	1,2	
+00228130	FUN_00228130	435	2	direct	exact	1,2,4,18	
+002284F0	FUN_002284f0	439	2	direct	exact	1,2,10,18	
+00228C70	FUN_00228c70	2097	2	direct	exact	1,2,4,10,12,18	
+00229590	FUN_00229590	1308	2	direct	exact	1,2,4,15,18	
+0023B330	FUN_0023b330	502	2	multi	exact	1,4,10,12,14	
+0023B6F0	FUN_0023b6f0	1031	2	multi	exact	1,4,10,12,13	
+0023BD40	FUN_0023bd40	2091	2	direct	exact	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18	
+0023C5C0	FUN_0023c5c0	1314	2	multi	exact	1,2,10,12,13	
+0023CE10	FUN_0023ce10	1681	2	direct	exact	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18	
+0023D6B0	FUN_0023d6b0	473	2	multi	exact	1,3,10	
+0023D890	FUN_0023d890	681	2	multi	exact	1,3	
+0023DB40	FUN_0023db40	455	2	multi	exact	1,3,10	
+0023DD10	FUN_0023dd10	681	2	multi	exact	1,3	
+0023E020	FUN_0023e020	990	2	direct	exact	1,2,12,15,18	
+0023E400	FUN_0023e400	339	2	multi	exact	1	
+0023E560	FUN_0023e560	425	2	direct	exact	1,2,12,15,18	
+0023E770	FUN_0023e770	672	4	multi	exact	1,10	
+0023EA10	FUN_0023ea10	456	2	direct	exact	1,3	
+0023EBE0	FUN_0023ebe0	301	2	multi	exact	1,2,10	
+0023FBE0	FUN_0023fbe0	1740	8	direct	exact	1,4,10,12,14,15,18	
+00240AD0	FUN_00240ad0	656	2	direct	exact	1,10,12,14,18	
+00241D40	FUN_00241d40	2160	2	direct	exact	1,2,4,10,12,15,18,19	
+002445D0	FUN_002445d0	61	1	direct	exact	1	
+00248700	FUN_00248700	159	2	direct	exact	1,2	
+002509D0	FUN_002509d0	626	2	direct	exact	1,18	
+00252030	FUN_00252030	1131	2	direct	exact	1,2,12,15,18	
+00253780	FUN_00253780	493	2	direct	exact	1,12,16	
+00275F10	FUN_00275f10	231	3	direct	exact	1,16,18	
+00276D30	FUN_00276d30	2849	2	direct	exact	1,2,4,6,15,18,21,39,46,53	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 53 ids became 10. MSVC two-level dispatch at 00276D83: the bound admits 53 ids, a byte table at 00277880 maps id-1 to an arm, an image-base-relative dword table at 00277854 gives 11 arm targets, and the DEFAULT arm 00277828 takes 43 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+002778C0	BattleMenu_UpdateCommandSelectionAndDispatch	9374	2	direct	exact	1,2,4,10,11,12,15,18,30,31,32,35,44,45	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 45 ids became 14. MSVC two-level dispatch at 00277923: the bound admits 45 ids, a byte table at 00279D98 maps id-1 to an arm, an image-base-relative dword table at 00279D60 gives 14 arm targets, and the DEFAULT arm 00279D2C takes 31 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one. 1 further dispatch(es) in this body index something other than the message id (002786D6 from qword ptr [rbp - 0x19]) and are NOT in this list. 2 indirect jmp(s) stay UNRESOLVED and are named rather than guessed: 00278D86 unmodelled cmove writing the index register at 00278D64; 00279569 unmodelled btr writing the index register at 00279538.
+00279E20	FUN_00279e20	3006	2	direct	exact	1,2,18,24,29,33,34,36,37,38,40,41,42,43,46,47,48,49,50,51,52	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 52 ids became 21. MSVC two-level dispatch at 00279E76: the bound admits 52 ids, a byte table at 0027AA38 maps id-1 to an arm, an image-base-relative dword table at 0027A9E0 gives 22 arm targets, and the DEFAULT arm 0027A9AC takes 31 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+0027AA70	FUN_0027aa70	765	2	direct	exact	1,2,12,24,53	
+0027AD70	FUN_0027ad70	389	2	direct	exact	1,4,12,18	
+0027C870	FUN_0027c870	1164	2	direct	exact	1,2	no `mov r32, [rdx]` and no `cmp dword ptr [rdx], imm` in the first 1024 bytes || RE-EXAMINED 2026-09-20 (OPUS) with resolve_switch_arms.py: it contains NO register-indirect jmp at all, so it is not a table dispatch - an if/else chain or a body that does not switch on the id. 1164 bytes. It stays `unparsed` rather than being given an id list. || READ 2026-09-20 (OPUS). WAS `unparsed` FOR ONE REASON: the id arrives through a COPY. 0027C895 `mov rdi, rdx`, then 0027C8A0 `mov ecx, dword ptr [rdi]` - and the decoder waited for a load from rdx itself. DISPATCH, read by hand and matching the decoder exactly: `sub ecx, 1` / `je 0027CC6B` gives 1, `cmp ecx, 1` / `je 0027C8C0` gives 2 (the compare tests the running total and does not advance it), and otherwise 0027C8B0 `mov rdx, rdi` / `mov rcx, rbx` / `call 005C5230` takes the default. NO `jg` SUBTREE AND NO JUMP TABLE, so this set is complete rather than a floor: the body's one `jg`, at 0027C958, tests `byte ptr [rbx+0xca]` against 0x1e - a counter in the WIDGET, inside an arm, not the message id. THE NEAR MISS WORTH RECORDING: 0027CA7D and 0027CBBD read `mov r14, qword ptr [rdi]`, EIGHT bytes through what was the message pointer, which would contradict the finding that the id is only ever read as four. It does not - rdi is overwritten at 0027CA79 and 0027CBB9 by `mov rdi, qword ptr [rax+rcx*8]`, an array element, immediately before each of those loads. Checked rather than assumed.
+0027EA70	FUN_0027ea70	328	2	direct	exact	1,10,14,18	
+0027F5D0	FUN_0027f5d0	1280	2	direct	exact	1,2,15,18,19,288	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id - the PIVOT of the binary-search root, the `cmp` immediately after `mov ecx, dword ptr [rdx]` whose `jg` opens the high half and whose `je` takes that id's own arm - and the body answers more. All ten of the table's under-reporting rows kept exactly that compare and nothing past it, which is one mechanism rather than ten coincidences. The flat chain decoder in check_widget_message_ids.py re-derives the LOW HALF of this dispatch and agrees with the hand read exactly; everything added here comes from the `jg` subtree or from a jump table behind a range test, the two shapes that decoder refuses to follow. The body decoded linearly from its listed start to its listed end with no instruction crossing the boundary. DISPATCH: `cmp ecx, 0x12` / `jg 0027F85B` / `je 0027F7C4` gives 18; then RUNNING SUBTRACTION - `sub ecx,1` / `je 0027F6E3` gives 1, `sub ecx,1` / `je 0027F646` gives 2, and `cmp ecx, 0xd` / `jne 0027F868` gives 15, because two subtractions have already been taken off the id and 0xD+2 is 15. HIGH HALF at 0027F85B: `cmp ecx, 0x13` / `je 0027F8B4` gives 19 and `cmp ecx, 0x120` / `je 0027F875` gives 288, otherwise `mov rcx, rbx` / `call 005C5230`, the base widget procedure. Six ids, no jump table.
+0027FB70	FUN_0027fb70	1237	2	direct	exact	1,2,18	
+00280140	FUN_00280140	924	2	direct	exact	1,2,4,18	
+00280DE0	FUN_00280de0	1566	2	direct	exact	1,2,10,12,13,14,15,16,18,19,287	
+00283A10	FUN_00283a10	273	2	direct	exact	1,2,18	
+00283BB0	FUN_00283bb0	647	4	direct	exact	1,2,3,4	
+00284450	FUN_00284450	400	4	direct	exact	1,2,3,17,18	
+00285290	FUN_00285290	964	2	tail	exact	1,2,10,12,14,18,20	
+002878E0	FUN_002878e0	824	2	direct	exact	1,2,10,14,18	no `mov r32, [rdx]` and no `cmp dword ptr [rdx], imm` in the first 824 bytes || RE-EXAMINED 2026-09-20 (OPUS) with resolve_switch_arms.py: it contains NO register-indirect jmp at all, so it is not a table dispatch - an if/else chain or a body that does not switch on the id. 824 bytes. It stays `unparsed` rather than being given an id list. || READ 2026-09-20 (OPUS). WAS `unparsed` FOR THE SAME REASON AND CARRIES THE TRAP THAT JUSTIFIED THE CAUTION. The id arrives through a copy - 002878F5 `mov r14, rdx`, loaded at 00287925 `mov edx, dword ptr [r14]`. BUT BETWEEN THE COPY AND THAT LOAD the body runs 00287900 `call 0x1e0b90` / `sub eax, 1` / `je 00287914` / `cmp eax, 1` / `jne 00287919`, which is a running chain in EXACTLY the dispatch's shape over a CALL RESULT, and a decoder that started collecting at the copy would have reported a confident `1, 2` for a function that answers five ids. DISPATCH, read by hand: `sub edx, 1` / `je` gives 1, `sub edx, 1` / `je` gives 2, `sub edx, 8` / `je` gives 10, `sub edx, 4` / `je` gives 14, and `cmp edx, 4` / `jne 00287C02` gives 18 - the compare adds its immediate to the running total without advancing it, so 14+4, and the arm is the FALL-THROUGH of a `jne` to the default. Note 00287928 `mov esi, eax` scheduled between the load and the first `sub`. NO `jg` AND NO JUMP TABLE ANYWHERE IN THE BODY, so the set is complete.
+0028B860	FUN_0028b860	666	2	direct	exact	1,2,4,6,14,15,18	
+00290FF0	FUN_00290ff0	18	2	direct	exact	4	
+00291D90	FUN_00291d90	625	2	tail	exact	1,2,18	
+00292390	FUN_00292390	1920	2	direct	exact	1,2,12,14,18	
+00293010	FUN_00293010	232	2	direct	exact	1,18	
+00298250	FUN_00298250	880	2	direct	exact	1,2,15	
+002985C0	thunk_FUN_003ee420	5	2	direct	unparsed		no `mov r32, [rdx]` and no `cmp dword ptr [rdx], imm` in the first 5 bytes || RE-EXAMINED 2026-09-20 (OPUS) with resolve_switch_arms.py: it contains NO register-indirect jmp at all, so it is not a table dispatch - an if/else chain or a body that does not switch on the id. 5 bytes. It stays `unparsed` rather than being given an id list. || READ 2026-09-20 (OPUS). READ: five bytes, `e95b5e1500` = `jmp 003EE420`. A thunk OUT OF THIS TABLE - 003EE420 is not a row here - so its id set is that function's and is not derivable from this row. That is a genuine open edge rather than a decoder limit, and it is the only one of the five. `kind` stays `unparsed`.
+002985D0	FUN_002985d0	266	2	tail	exact	1,2,18	
+00299090	FUN_00299090	1040	2	direct	exact	1,2,6,15,20,29	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 29 ids became 6. MSVC two-level dispatch at 002990D1: the bound admits 29 ids, a byte table at 002994BC maps id-1 to an arm, an image-base-relative dword table at 002994A0 gives 7 arm targets, and the DEFAULT arm 00299485 takes 23 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+00299AC0	FUN_00299ac0	196	2	direct	exact	1,17	
+00299D10	FUN_00299d10	688	2	direct	exact	1,2,3,15	
+0029A0A0	FUN_0029a0a0	2099	2	direct	exact	1,2,3,4,29	
+0029B700	FUN_0029b700	143	2	direct	exact	1	
+0029BC80	FUN_0029bc80	451	2	direct	exact	1,2,4	
+0029BE50	FUN_0029be50	1663	2	direct	exact	1,2,4,6,10,15,30	SWITCH ARMS RESOLVED 2026-09-20 (OPUS), replacing the thirty-id upper bound. MSVC two-level dispatch at 0029BE91: `dec eax` / `cmp eax, 0x1D` / `ja 0029C4B3` bounds the id at 1..30, a 30-entry BYTE table at 0x29C4F0 maps id-1 to an arm, and an 8-entry image-base-relative DWORD table at 0x29C4D0 gives the targets. Arm 7 is the DEFAULT and takes 23 of the 30 - it is 0029C4B3, `mov rcx, rbx` / `call 005C5230`, the base widget procedure, the same forwarding 003CA860 uses for its unhandled ids. CONTROL: receiver_flow_census reaches 352 of 376 instructions with only this table supplied and names the 24 it cannot, which sit behind a SECOND jump table at 0029BFF2 (7 entries at 0x29C510); with both supplied it reaches 376 of 376. An id list taken from the bound alone is an upper bound over a body the walk has not covered.
+0029C530	FUN_0029c530	569	2	direct	exact	1,2,3,14,15	
+0029CF90	FUN_0029cf90	636	2	direct	exact	1,4,18	
+0029D340	FUN_0029d340	392	6	direct	exact	1,4,18	
+0029D550	FUN_0029d550	1067	2	direct	exact	1,2,4,14,15,19,20	
+0029E110	FUN_0029e110	533	2	tail	exact	1,2,15,18	
+0029E7D0	FUN_0029e7d0	110	2	direct	exact	1	
+002A1FB0	FUN_002a1fb0	1640	8	direct	exact	1,2,12,16,18	
+002A3960	FUN_002a3960	1159	2	direct	exact	1,2,4,18	
+002A6190	FUN_002a6190	2043	2	direct	exact	1,2,3,4,10,12,15,18,21	
+002A86A0	FUN_002a86a0	1364	6	direct	exact	1,4,18,25	
+002B6CE0	FUN_002b6ce0	202	2	direct	exact	1,15	
+002B7590	FUN_002b7590	1417	2	direct	exact	1,2,16,18,24,30,31,32,34,35,41,43	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 43 ids became 12. MSVC two-level dispatch at 002B75D8: the bound admits 43 ids, a byte table at 002B7B50 maps id-1 to an arm, an image-base-relative dword table at 002B7B1C gives 13 arm targets, and the DEFAULT arm 002B7AF4 takes 31 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+002B7B80	FUN_002b7b80	4847	2	direct	exact	1,2,4,8,9,10,14,15,16,19,20,33,37,38,39,40,42	PARSED 2026-09-20 (OPUS) by resolve_switch_arms.py; this row read `unparsed` with the reason `id loaded into edx but no compare chain and no dense table followed`. It does dispatch on a table: MSVC two-level form at 002B7C0A, bound 42, byte table 002B8EB0, dword table 002B8E70 with 16 arms, default 002B8E21 taking 25 ids. The earlier parser looked for `mov r32,[rdx]` or `cmp dword ptr [rdx], imm` near the entry and for a `dense table`; what it did not model is the NORMALISATION - here the id reaches the bound through `lea r32, [reg - K]`, which is an add that also renames the register. The index is proven to come from `dword ptr [rdx]`.
+002BA240	FUN_002ba240	204	6	direct	exact	1,14,16,18	
+002BA700	FUN_002ba700	2077	2	direct	exact	1,2,16,18,24,30,31,32,34,35,41,43	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 43 ids became 12. MSVC two-level dispatch at 002BA749: the bound admits 43 ids, a byte table at 002BAF54 maps id-1 to an arm, an image-base-relative dword table at 002BAF20 gives 13 arm targets, and the DEFAULT arm 002BAEFE takes 31 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+002BAF80	FUN_002baf80	4810	2	direct	exact	1,2,4,8,9,10,14,15,16,19,20,33,37,38,39,40,42	PARSED 2026-09-20 (OPUS) by resolve_switch_arms.py; this row read `unparsed` with the reason `id loaded into edx but no compare chain and no dense table followed`. It does dispatch on a table: MSVC two-level form at 002BAFEE, bound 42, byte table 002BC28C, dword table 002BC24C with 16 arms, default 002BC20D taking 25 ids. The earlier parser looked for `mov r32,[rdx]` or `cmp dword ptr [rdx], imm` near the entry and for a `dense table`; what it did not model is the NORMALISATION - here the id reaches the bound through `lea r32, [reg - K]`, which is an add that also renames the register. The index is proven to come from `dword ptr [rdx]`.
+002BC310	FUN_002bc310	202	2	direct	exact	1,15	
+002BC9C0	FUN_002bc9c0	161	2	direct	exact	1,4,14	
+002BCA70	FUN_002bca70	144	2	direct	exact	1,4	
+002BD680	FUN_002bd680	502	2	direct	exact	1,2,8,9,10,12,14,15	PARSED 2026-09-20 (OPUS) by resolve_switch_arms.py; this row read `unparsed` with the reason `id loaded into ecx but no compare chain and no dense table followed`. It does dispatch on a table: MSVC two-level form at 002BD6BD, bound 15, no byte level, dword table 002BD878 with 15 arms, default 002BD858 taking 7 ids. The earlier parser looked for `mov r32,[rdx]` or `cmp dword ptr [rdx], imm` near the entry and for a `dense table`; what it did not model is the NORMALISATION - here the id reaches the bound through `lea r32, [reg - K]`, which is an add that also renames the register. The index is proven to come from `dword ptr [rdx]`.
+002BE490	FUN_002be490	88	2	direct	exact	2	
+002BE4F0	FUN_002be4f0	899	2	direct	exact	1,2,4,6,15,17,20,22	
+002BF690	FUN_002bf690	553	2	direct	exact	1,2,12,15	
+002BF8C0	FUN_002bf8c0	627	2	direct	exact	1,2,4	
+002C0870	FUN_002c0870	716	2	direct	exact	1,2,3,6,15	
+002C0B40	FUN_002c0b40	148	2	direct	exact	1,3	
+002C0BE0	FUN_002c0be0	752	2	direct	exact	1,2,3,4,17,21,22	
+002C1000	FUN_002c1000	687	2	direct	exact	1,2,18	
+002C13C0	FUN_002c13c0	998	2	tail	exact	1,2,4,14,15,18,19,20	
+002C1E20	FUN_002c1e20	451	2	direct	exact	1,18	
+002C2320	FUN_002c2320	2296	2	direct	exact	1,8,9,10,12,14,18,19,287	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id - the PIVOT of the binary-search root, the `cmp` immediately after `mov ecx, dword ptr [rdx]` whose `jg` opens the high half and whose `je` takes that id's own arm - and the body answers more. All ten of the table's under-reporting rows kept exactly that compare and nothing past it, which is one mechanism rather than ten coincidences. The flat chain decoder in check_widget_message_ids.py re-derives the LOW HALF of this dispatch and agrees with the hand read exactly; everything added here comes from the `jg` subtree or from a jump table behind a range test, the two shapes that decoder refuses to follow. The body decoded linearly from its listed start to its listed end with no instruction crossing the boundary. DISPATCH: `cmp ecx, 8` / `jg 002C2592` / `je 002C2517` gives 8, and `cmp ecx, 1` / `jne 002C2BEF` gives 1. HIGH HALF at 002C2592: `cmp ecx, 0x11f` / `jg default` / `je 002C2AA1` gives 287, then `sub ecx, 9` / `cmp ecx, 0xa` / `ja default` opens a window of ELEVEN ids, 9 through 19, into the two-level table at 002C2C18 - image-relative dwords added to the image base that `lea r8, [rip - 0x1a25ba]` at 002C25B3 proves r8 holds. THE WINDOW IS NOT THE ID SET: five of the eleven entries - 11, 13, 15, 16 and 17 - point AT THE DEFAULT ARM 002C2BEF, so the table answers 9, 10, 12, 14, 18 and 19 and the other five reach `call 005C5230` like any unhandled id. The table sits at the first byte PAST the listed body end, which is where MSVC puts it and is data rather than code harvested through the boundary. Nine ids.
+002C3560	FUN_002c3560	841	2	tail	exact	1,2,14,15,18	
+002C4460	FUN_002c4460	697	2	tail	exact	1,2,14,15,18	
+002C59D0	FUN_002c59d0	1187	2	direct	exact	1,8,9,10,12,18	
+002C9120	FUN_002c9120	725	2	direct	exact	1,2,4,18	
+002C9570	FUN_002c9570	796	2	direct	exact	1,2,4,18	
+002CA1F0	FUN_002ca1f0	229	2	direct	exact	1,18	
+002CA6C0	FUN_002ca6c0	255	2	direct	exact	1,2,4	
+002CABF0	FUN_002cabf0	999	2	direct	exact	1,2,3,4	
+002CB150	FUN_002cb150	156	2	direct	exact	1	
+002CB4B0	FUN_002cb4b0	733	2	direct	exact	1,2,4	
+002CBF80	FUN_002cbf80	797	6	direct	exact	1,18	
+002CCE70	FUN_002cce70	733	2	direct	exact	1,4,18,19	
+002CD170	FUN_002cd170	586	2	direct	exact	1,2,4,18	
+002CDF20	FUN_002cdf20	774	2	direct	exact	1,2,12,15,18,19	
+002CE370	FUN_002ce370	950	2	direct	exact	1,12,15,18	
+002CE7E0	FUN_002ce7e0	415	2	direct	exact	1,2,4,18	
+002CEB40	FUN_002ceb40	700	2	tail	exact	1,2,18	
+002CF440	FUN_002cf440	679	2	direct	exact	1,4,18	
+002CF740	FUN_002cf740	303	2	tail	exact	1,18	
+002CF940	FUN_002cf940	929	2	direct	exact	1,2,18	
+002D1420	FUN_002d1420	180	2	direct	exact	1,4,17	
+002D2DB0	FUN_002d2db0	2882	2	direct	exact	1,2,4,5,26	
+002D5590	FUN_002d5590	255	2	direct	exact	1,2	
+002D5690	FUN_002d5690	409	2	direct	exact	1,2,4,18	
+002D5830	FUN_002d5830	426	2	direct	exact	1,2,18	
+002D59E0	FUN_002d59e0	590	2	direct	exact	1,2	
+002D5C80	FUN_002d5c80	382	2	direct	exact	1,2,3	
+002D5E00	FUN_002d5e00	161	2	direct	exact	1	
+002D5EB0	FUN_002d5eb0	1821	2	direct	exact	1,2,4,10,14,15,18,20	
+002D66D0	FUN_002d66d0	616	2	direct	exact	1,2,4,18,19,20	
+002D6CA0	FUN_002d6ca0	305	2	tail	exact	1,2,4,18	
+002D6EE0	FUN_002d6ee0	175	2	direct	exact	1,16,18	
+002D70F0	FUN_002d70f0	1115	2	direct	exact	1,2,15,16,18,19,288	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id - the PIVOT of the binary-search root, the `cmp` immediately after `mov ecx, dword ptr [rdx]` whose `jg` opens the high half and whose `je` takes that id's own arm - and the body answers more. All ten of the table's under-reporting rows kept exactly that compare and nothing past it, which is one mechanism rather than ten coincidences. The flat chain decoder in check_widget_message_ids.py re-derives the LOW HALF of this dispatch and agrees with the hand read exactly; everything added here comes from the `jg` subtree or from a jump table behind a range test, the two shapes that decoder refuses to follow. The body decoded linearly from its listed start to its listed end with no instruction crossing the boundary. DISPATCH: `cmp ecx, 0x10` / `jg 002D7470` / `je 002D742E` gives 16; then `sub ecx,1` / `je 002D7342` gives 1, `sub ecx,1` / `je 002D7157` gives 2, and `cmp ecx, 0xd` / `jne 002D7486` gives 15 - 0xD plus the two subtractions already taken. HIGH HALF at 002D7470 IS ALSO A RUNNING SUBTRACTION, which is the shape that makes the last compare unreadable without the ones before it: `sub ecx, 0x12` / `je 002D7531` gives 18, `sub ecx, 1` / `je 002D74E5` gives 19, and `cmp ecx, 0x10d` / `je 002D749D` gives 288, because 0x10D plus the 0x13 already subtracted is 0x120. Otherwise the epilogue runs and TAIL JUMPS to 005C5230 rather than calling it - `add rsp, 0x20` / `pop rdi` / `jmp 005C5230` - so a reading that stopped at the stack teardown would have called the default arm a return. Seven ids.
+0035C160	FUN_0035c160	651	2	direct	exact	1,4,12,18	
+0035C960	FUN_0035c960	257	2	direct	exact	1,2,18	
+0035D6B0	FUN_0035d6b0	515	2	direct	exact	1,2,12,18	
+0035DAF0	FUN_0035daf0	357	2	direct	exact	1,2,18	
+0035E070	FUN_0035e070	1159	2	direct	exact	1,2,18	
+00366B80	FUN_00366b80	1420	2	direct	exact	1,2,4	
+0037E350	FUN_0037e350	414	2	direct	exact	1,16	
+0037F4D0	FUN_0037f4d0	747	4	direct	exact	1,16,18	
+003939B0	FUN_003939b0	1173	2	direct	exact	1,2,9,10,12,14,18,19	
+00393EA0	FUN_00393ea0	326	2	tail	exact	1,2	
+00394070	FUN_00394070	190	2	direct	exact	1,16,18	
+00394130	FUN_00394130	530	2	tail	exact	1,2,18	
+003BC4E0	FUN_003bc4e0	1163	2	direct	exact	1,16,18	
+003C5910	FUN_003c5910	1159	2	direct	exact	1,2,3,4,6,18	PARSED 2026-09-20 (OPUS) by resolve_switch_arms.py; this row read `unparsed` with the reason `id loaded into eax but no compare chain and no dense table followed`. It does dispatch on a table: MSVC two-level form at 003C5941, bound 18, no byte level, dword table 003C5D98 with 18 arms, default 003C5D83 taking 12 ids. The earlier parser looked for `mov r32,[rdx]` or `cmp dword ptr [rdx], imm` near the entry and for a `dense table`; what it did not model is the NORMALISATION - here the id reaches the bound through `lea r32, [reg - K]`, which is an add that also renames the register. The index is proven to come from `dword ptr [rdx]`.
+003C8B70	FUN_003c8b70	1756	2	direct	exact	1,2,8,10,18	
+003C95C0	FUN_003c95c0	630	2	direct	exact	1,2,3,14,15	
+003C9A30	FUN_003c9a30	966	4	direct	exact	1,2,14,15,16,18,19	
+003CA310	FUN_003ca310	536	2	direct	exact	1,2,12,18	
+003CA530	FUN_003ca530	810	2	direct	exact	1,2	
+003CA860	FUN_003ca860	663	2	direct	exact	1,2,18,29,30	
+003CAB00	FUN_003cab00	693	2	direct	exact	1,2,10,14,18,31	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 31 ids became 6. MSVC two-level dispatch at 003CAB52: the bound admits 31 ids, a byte table at 003CADD4 maps id-1 to an arm, an image-base-relative dword table at 003CADB8 gives 7 arm targets, and the DEFAULT arm 003CAD86 takes 25 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+003CAE00	FUN_003cae00	204	2	direct	exact	1,14	
+003CB150	FUN_003cb150	390	2	direct	exact	1,2,14,15,16,18	
+003CB4F0	FUN_003cb4f0	345	2	direct	exact	1,14,16,18	
+003CB650	FUN_003cb650	924	2	direct	exact	1,2,16,18,24,30,31,32,34,35,41,43,44	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 44 ids became 13. MSVC two-level dispatch at 003CB694: the bound admits 44 ids, a byte table at 003CBA24 maps id-1 to an arm, an image-base-relative dword table at 003CB9EC gives 14 arm targets, and the DEFAULT arm 003CB9CF takes 31 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+003EEEC0	FUN_003eeec0	388	2	direct	exact	1,2,15,18	
+003EF050	FUN_003ef050	488	2	direct	exact	1,2,10,12,14,15,18,19	
+003EF2E0	FUN_003ef2e0	446	2	direct	exact	1,2	
+003EF4A0	FUN_003ef4a0	389	2	direct	exact	1,2,14,15,18,19	
+003EF830	FUN_003ef830	610	2	tail	exact	1,2,12,16,18	
+003F4060	FUN_003f4060	337	2	direct	exact	1,2,18	
+003F4330	FUN_003f4330	819	2	direct	exact	1,10,14,18	
+003F4840	FUN_003f4840	531	4	direct	exact	1,12,14,15,16,18	
+003F4E70	FUN_003f4e70	448	2	direct	exact	1,2,16,18	
+003F8250	FUN_003f8250	562	2	direct	exact	1,2,4,14,15	
+003F8510	FUN_003f8510	289	2	direct	exact	1,4	
+003FACF0	FUN_003facf0	531	2	direct	exact	1,2,3,14,15	
+003FAF10	FUN_003faf10	1226	2	direct	exact	1,2,4,14,15	
+003FC3F0	FUN_003fc3f0	283	2	direct	exact	1,2,15	
+003FCD20	FUN_003fcd20	187	6	direct	exact	1,18	
+003FD1D0	FUN_003fd1d0	228	2	direct	exact	1,12,18	
+003FDFE0	FUN_003fdfe0	947	2	direct	exact	1,10,12,15,18	
+003FE5D0	FUN_003fe5d0	259	2	direct	exact	1,15,18	
+003FEE40	FUN_003fee40	469	2	direct	exact	1,18	
+003FF360	FUN_003ff360	1458	2	direct	exact	1,8,10,12,18,19,285	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id - the PIVOT of the binary-search root, the `cmp` immediately after `mov ecx, dword ptr [rdx]` whose `jg` opens the high half and whose `je` takes that id's own arm - and the body answers more. All ten of the table's under-reporting rows kept exactly that compare and nothing past it, which is one mechanism rather than ten coincidences. The flat chain decoder in check_widget_message_ids.py re-derives the LOW HALF of this dispatch and agrees with the hand read exactly; everything added here comes from the `jg` subtree or from a jump table behind a range test, the two shapes that decoder refuses to follow. The body decoded linearly from its listed start to its listed end with no instruction crossing the boundary. DISPATCH: `cmp ecx, 0xc` / `jg 003FF784` / `je 003FF6EA` gives 12; then `sub ecx,1` / `je 003FF59D` gives 1, `sub ecx, 7` / `je 003FF560` gives 8 - the subtraction is SEVEN here, not one - and `cmp ecx, 2` / `jne 003FF79E` gives 10, being 2 plus the 8 already subtracted. HIGH HALF at 003FF784: `sub ecx, 0x12` / `je 003FF8DD` gives 18, `sub ecx, 1` / `je 003FF892` gives 19, and `cmp ecx, 0x10a` / `je 003FF7AB` gives 285, being 0x10A plus the 0x13 already subtracted. Otherwise `mov rcx, rbx` / `call 005C5230`. Seven ids, no jump table.
+00403380	FUN_00403380	462	2	direct	exact	1,3,4,24	
+00405310	FUN_00405310	1043	2	direct	exact	1,2,4,14,18,19	
+004061F0	FUN_004061f0	1395	2	direct	exact	1,2,14,18	
+00406A60	FUN_00406a60	865	2	tail	exact	1,2,4,18	
+00406E80	FUN_00406e80	706	2	direct	exact	1,2,18	
+00407590	FUN_00407590	273	2	multi	exact	1,2,14,19,20	
+004079A0	FUN_004079a0	464	2	multi	exact	1,2,14,19,20	
+00474100	FUN_00474100	404	2	direct	exact	1,4,12,18	
+0053E380	FUN_0053e380	506	2	tail	exact	1,2,4,18	
+0053EB90	FUN_0053eb90	383	2	direct	exact	1,2,16	
+0053EEA0	FUN_0053eea0	273	2	direct	exact	1,2,16	
+00551E00	FUN_00551e00	245	2	direct	exact	1,24	
+00551F00	FUN_00551f00	321	2	direct	exact	1,14,24	
+00552250	FUN_00552250	1543	2	direct	exact	1,2,4,10,15,16,18,24,35,39,40,41	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 41 ids became 12. MSVC two-level dispatch at 00552294: the bound admits 41 ids, a byte table at 0055288C maps id-1 to an arm, an image-base-relative dword table at 00552858 gives 13 arm targets, and the DEFAULT arm 0055283A takes 29 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+005528C0	FUN_005528c0	4521	2	direct	exact	1,2,4,6,10,11,15,18,24,29,30,31,32,34,37,38,42	SWITCH ARMS RESOLVED 2026-09-20 (OPUS) by resolve_switch_arms.py, replacing an id list that was the BOUNDS CHECK rather than a measurement - 42 ids became 17. MSVC two-level dispatch at 00552918: the bound admits 42 ids, a byte table at 00553AB0 maps id-1 to an arm, an image-base-relative dword table at 00553A6C gives 17 arm targets, and the DEFAULT arm 00553A37 takes 25 of them - the default is the forward to the base widget procedure, so those ids are handled elsewhere rather than unhandled. The index is proven to come from `dword ptr [rdx]`, the message record's first dword, which is what distinguishes the message switch from an inner one.
+00553AE0	FUN_00553ae0	202	2	direct	exact	1,4	
+005542D0	FUN_005542d0	1861	2	direct	exact	1,2,10,12,14,15	
+00555330	FUN_00555330	201	2	direct	exact	1,4,24	
+005565E0	FUN_005565e0	1031	2	direct	exact	1,4,18,25	
+005569F0	FUN_005569f0	809	2	direct	exact	1,2,4,18	
+00556DB0	FUN_00556db0	272	2	direct	exact	1,18	
+00556F90	FUN_00556f90	556	2	direct	exact	1,2,18	
+00557760	FUN_00557760	725	2	direct	exact	1,4,18	
+00557DB0	FUN_00557db0	2475	2	direct	exact	1,2,10,12,15,18,19,20,285	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id - the PIVOT of the binary-search root, the `cmp` immediately after `mov ecx, dword ptr [rdx]` whose `jg` opens the high half and whose `je` takes that id's own arm - and the body answers more. All ten of the table's under-reporting rows kept exactly that compare and nothing past it, which is one mechanism rather than ten coincidences. The flat chain decoder in check_widget_message_ids.py re-derives the LOW HALF of this dispatch and agrees with the hand read exactly; everything added here comes from the `jg` subtree or from a jump table behind a range test, the two shapes that decoder refuses to follow. The body decoded linearly from its listed start to its listed end with no instruction crossing the boundary. DISPATCH IS THREE LEVELS DEEP, which is why this row was the furthest out. Root: `cmp ecx, 0xa` / `jg 0055829F` / `je 00558261` gives 10, then `sub ecx,1` / `je 00557FD3` gives 1 and `cmp ecx, 1` / `jne 005585A0` gives 2. HIGH HALF at 0055829F: `cmp ecx, 0x13` / `jg 0055858F` / `je 00558573` gives 19, `cmp ecx, 0xc` gives 12, `cmp ecx, 0xf` gives 15 and `cmp ecx, 0x12` / `jne default` gives 18 - note these are LITERAL compares, no running subtraction, unlike this table's other high halves. UPPER HALF at 0055858F: `cmp ecx, 0x14` / `je 00558720` gives 20 and `cmp ecx, 0x11d` / `je 005585B7` gives 285, otherwise the epilogue TAIL JUMPS to 005C5230. Nine ids. AND THIS BODY CONTAINS THE HAZARD THAT KEPT ALL SIX OF THESE OFF A MECHANICAL REWRITE: the id-1 arm at 00557DF0 loads `movzx ecx, byte ptr [rbp+0x37d]` and runs its OWN `sub ecx,1` / `je` chain over 0, 1, 2 and 4, in precisely the shape of the message dispatch, over a DIFFERENT value, reusing the same register. A decoder that kept following `je` targets would have harvested 0, 1, 2 and 4 as message ids from a byte of widget state.
+00558BB0	FUN_00558bb0	140	2	direct	exact	1,2	
+00558CE0	FUN_00558ce0	386	2	direct	exact	1,2,18	
+00558FB0	FUN_00558fb0	1332	2	direct	exact	1,2,15,16,18,20	
+005595E0	FUN_005595e0	370	2	direct	exact	1,18	
+005599D0	FUN_005599d0	1025	2	direct	exact	1,2,4,18,19,20	
+0055A340	FUN_0055a340	1220	2	direct	exact	1,2,4,18,25	
+0055A8A0	FUN_0055a8a0	341	2	direct	exact	1,4,18	
+0055CD40	FUN_0055cd40	3564	2	direct	exact	1,2,4,8,9,10,12,15,18,19,20,23,285	
+00560910	FUN_00560910	1401	2	direct	exact	1,2,8,9,10,12,14,16,18,19,20	
+00561390	FUN_00561390	1091	2	direct	exact	1,15,16,18,20	
+005618E0	FUN_005618e0	753	2	direct	exact	1,2,18	
+005636F0	FUN_005636f0	222	1	forwarded	exact	1,4,8,9,10,12,18,26,286	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id and the body answers NINE. Low half: `cmp eax, 0xc` / `jg <high>` / `je` gives 12, `cmp eax, 1` / `je` gives 1, `cmp eax, 4` / `je` gives 4, and `add eax, -8` / `cmp eax, 2` / `ja <default>` gives 8, 9 AND 10 - `ja` fires when eax-8 is above 2 UNSIGNED, so 7 wraps to 0xFFFFFFFF and takes the default while 8, 9 and 10 fall through. THREE IDS FROM ONE COMPARE, which is the shape a chain decoder cannot read and why check_widget_message_ids reported this row as a SUPERSET rather than rewriting it. High half: `cmp eax, 0x12`, `cmp eax, 0x1a` and `cmp eax, 0x11e` give 18, 26 and 286, then `jmp 005C5230`, the base widget procedure. AND THE ARM IS A TAIL JUMP: the shared target is `add rsp, 0x50` / `pop rbx` / `jmp 005651E0`, so eight of the nine forward to one handler and id 1 has its own arm - a reading that stopped at the epilogue would have called those ids unhandled. FOUR DISTINCT BODIES, ONE DISPATCH: 005636F0, 00563930, 00563B10 and 00563D20 are 222, 149, 225 and 149 bytes with four different sha256 prefixes and the identical id set, which is why one reading settles all four.
+00563930	FUN_00563930	149	1	forwarded	exact	1,4,8,9,10,12,18,26,286	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id and the body answers NINE. Low half: `cmp eax, 0xc` / `jg <high>` / `je` gives 12, `cmp eax, 1` / `je` gives 1, `cmp eax, 4` / `je` gives 4, and `add eax, -8` / `cmp eax, 2` / `ja <default>` gives 8, 9 AND 10 - `ja` fires when eax-8 is above 2 UNSIGNED, so 7 wraps to 0xFFFFFFFF and takes the default while 8, 9 and 10 fall through. THREE IDS FROM ONE COMPARE, which is the shape a chain decoder cannot read and why check_widget_message_ids reported this row as a SUPERSET rather than rewriting it. High half: `cmp eax, 0x12`, `cmp eax, 0x1a` and `cmp eax, 0x11e` give 18, 26 and 286, then `jmp 005C5230`, the base widget procedure. AND THE ARM IS A TAIL JUMP: the shared target is `add rsp, 0x50` / `pop rbx` / `jmp 005651E0`, so eight of the nine forward to one handler and id 1 has its own arm - a reading that stopped at the epilogue would have called those ids unhandled. FOUR DISTINCT BODIES, ONE DISPATCH: 005636F0, 00563930, 00563B10 and 00563D20 are 222, 149, 225 and 149 bytes with four different sha256 prefixes and the identical id set, which is why one reading settles all four.
+00563B10	FUN_00563b10	225	1	forwarded	exact	1,4,8,9,10,12,18,26,286	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id and the body answers NINE. Low half: `cmp eax, 0xc` / `jg <high>` / `je` gives 12, `cmp eax, 1` / `je` gives 1, `cmp eax, 4` / `je` gives 4, and `add eax, -8` / `cmp eax, 2` / `ja <default>` gives 8, 9 AND 10 - `ja` fires when eax-8 is above 2 UNSIGNED, so 7 wraps to 0xFFFFFFFF and takes the default while 8, 9 and 10 fall through. THREE IDS FROM ONE COMPARE, which is the shape a chain decoder cannot read and why check_widget_message_ids reported this row as a SUPERSET rather than rewriting it. High half: `cmp eax, 0x12`, `cmp eax, 0x1a` and `cmp eax, 0x11e` give 18, 26 and 286, then `jmp 005C5230`, the base widget procedure. AND THE ARM IS A TAIL JUMP: the shared target is `add rsp, 0x50` / `pop rbx` / `jmp 005651E0`, so eight of the nine forward to one handler and id 1 has its own arm - a reading that stopped at the epilogue would have called those ids unhandled. FOUR DISTINCT BODIES, ONE DISPATCH: 005636F0, 00563930, 00563B10 and 00563D20 are 222, 149, 225 and 149 bytes with four different sha256 prefixes and the identical id set, which is why one reading settles all four.
+00563D20	FUN_00563d20	149	1	forwarded	exact	1,4,8,9,10,12,18,26,286	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id and the body answers NINE. Low half: `cmp eax, 0xc` / `jg <high>` / `je` gives 12, `cmp eax, 1` / `je` gives 1, `cmp eax, 4` / `je` gives 4, and `add eax, -8` / `cmp eax, 2` / `ja <default>` gives 8, 9 AND 10 - `ja` fires when eax-8 is above 2 UNSIGNED, so 7 wraps to 0xFFFFFFFF and takes the default while 8, 9 and 10 fall through. THREE IDS FROM ONE COMPARE, which is the shape a chain decoder cannot read and why check_widget_message_ids reported this row as a SUPERSET rather than rewriting it. High half: `cmp eax, 0x12`, `cmp eax, 0x1a` and `cmp eax, 0x11e` give 18, 26 and 286, then `jmp 005C5230`, the base widget procedure. AND THE ARM IS A TAIL JUMP: the shared target is `add rsp, 0x50` / `pop rbx` / `jmp 005651E0`, so eight of the nine forward to one handler and id 1 has its own arm - a reading that stopped at the epilogue would have called those ids unhandled. FOUR DISTINCT BODIES, ONE DISPATCH: 005636F0, 00563930, 00563B10 and 00563D20 are 222, 149, 225 and 149 bytes with four different sha256 prefixes and the identical id set, which is why one reading settles all four.
+00565E00	FUN_00565e00	1914	2	tail	exact	1,8,9,10,12,13,14,16,18,287	 || CORRECTED 2026-09-20 (OPUS), read end to end. The row named ONE id - the PIVOT of the binary-search root, the `cmp` immediately after `mov ecx, dword ptr [rdx]` whose `jg` opens the high half and whose `je` takes that id's own arm - and the body answers more. All ten of the table's under-reporting rows kept exactly that compare and nothing past it, which is one mechanism rather than ten coincidences. The flat chain decoder in check_widget_message_ids.py re-derives the LOW HALF of this dispatch and agrees with the hand read exactly; everything added here comes from the `jg` subtree or from a jump table behind a range test, the two shapes that decoder refuses to follow. The body decoded linearly from its listed start to its listed end with no instruction crossing the boundary. DISPATCH: `cmp ecx, 8` / `jg 005661E3` / `je 005661A7` gives 8, and `cmp ecx, 1` / `jne 00566552` gives 1. HIGH HALF at 005661E3: `cmp ecx, 0x11f` / `jg default` / `je 00566476` gives 287, then `sub ecx, 9` / `cmp ecx, 9` / `ja default` opens a window of TEN ids, 9 through 18, into the two-level table at 0056657C - image-relative dwords added to the base that `lea rdx, [rip - 0x44620b]` at 00566204 proves rdx holds. THE WINDOW IS NOT THE ID SET: three entries - 11, 15 and 17 - point AT THE DEFAULT ARM 00566552, so the table answers 9, 10, 12, 13, 14, 16 and 18. Id 16's arm at 0056615D lies BEFORE the table dispatch at 0056620B, a backward target inside the same body. The table sits two bytes past the listed body end. Ten ids, the most in this table's `exact` column.
+00566680	FUN_00566680	997	2	direct	exact	1,2,12,15,18	
+00566A70	FUN_00566a70	251	2	direct	exact	1,2	
+00566C10	FUN_00566c10	976	4	direct	exact	1,2,3,4	
+00567200	FUN_00567200	681	4	direct	exact	1,18	
+005677A0	FUN_005677a0	255	2	direct	exact	1,2,14,18	
+005691E0	FUN_005691e0	3386	2	direct	exact	1,2,5,8,9,10,12,16,17,18,19,20,22,26,289	
+0056B4D0	FUN_0056b4d0	1710	2	direct	exact	1,2,8,9,10,12,15,18,19	
+0056C060	FUN_0056c060	267	2	direct	exact	1,2	
+0056C170	FUN_0056c170	522	2	direct	exact	1,18	
+0056D370	FUN_0056d370	1274	2	direct	exact	1,2,12,18	
+0056E140	FUN_0056e140	632	1	forwarded	exact	1,8,9,10,12,14,15,18,19,20	
+0056EA40	FUN_0056ea40	458	2	direct	exact	1,3,18,19	
+0056EF60	FUN_0056ef60	830	2	direct	exact	1,12,16,18	
+0056F410	FUN_0056f410	81	4	direct	exact	1	
+0056F550	FUN_0056f550	145	2	direct	exact	1,18	
+0056F810	FUN_0056f810	621	2	direct	exact	1,10,12,14,15,18	
+0056FCB0	FUN_0056fcb0	113	2	direct	exact	1	
+0056FD30	FUN_0056fd30	360	2	direct	exact	1,3	
+005701B0	FUN_005701b0	608	2	direct	exact	1,10,12,14,15,16,18,19	
+00570460	FUN_00570460	57	2	direct	exact	1	
+00570530	FUN_00570530	241	2	direct	exact	1	
+00570630	FUN_00570630	608	2	direct	exact	1,3	
+00570890	FUN_00570890	157	2	direct	exact	1,18	
+00571A50	FUN_00571a50	1211	2	direct	exact	1,2,10,12,14,15,18,20	
+00572460	FUN_00572460	412	2	direct	exact	1,3,14,15,18	
+00572600	FUN_00572600	654	2	direct	exact	1,10,14,15,18	
+00572E10	FUN_00572e10	1422	2	direct	exact	1,2,10,12,14,15,16,18,19	
+00573B40	FUN_00573b40	149	2	direct	exact	1	
+005742D0	FUN_005742d0	1097	2	direct	exact	1,3,10,12,14,15,18	
+00574AD0	FUN_00574ad0	195	2	direct	exact	1	
+00574E80	FUN_00574e80	1708	4	direct	exact	1,2,12,14,16,18	
+00575870	FUN_00575870	405	2	direct	exact	1,2,16,18	
+005771F0	FUN_005771f0	758	2	direct	exact	1,2,12,14,16,18	
+00577F90	FUN_00577f90	310	2	direct	exact	1,18,19	
+00578450	FUN_00578450	1038	2	direct	exact	1,10,12,14	
+005789D0	FUN_005789d0	1321	2	direct	exact	1,10,12,14,15,16,18	
+00579420	FUN_00579420	1307	2	direct	exact	1,2,10,12,14,15,18,19,20	
+00579AF0	FUN_00579af0	1196	4	direct	exact	1,2,16,18	
+0057A4E0	FUN_0057a4e0	313	2	direct	exact	1,2	
+0057A620	FUN_0057a620	827	2	direct	exact	1,12,18	
+0057AC10	FUN_0057ac10	1347	2	direct	exact	1,2,3,10,12,14,15,18	
+0057B890	FUN_0057b890	1107	2	direct	exact	1,2,8,10,12,14,15,16,18,19,20	
+0057C480	FUN_0057c480	2088	2	direct	exact	1,2,4,10,12,18,19	
+0057E4D0	SaveWrite_OperationStateCallback	319	2	direct	exact	1,2,4,12	
+0057E610	FUN_0057e610	184	2	direct	exact	1	
+0057E8D0	FUN_0057e8d0	117	2	direct	exact	1,18	
+0057EB30	FUN_0057eb30	117	2	direct	exact	1,18	
+0057EDB0	FUN_0057edb0	552	2	direct	exact	1,15,18	
+0057F360	FUN_0057f360	707	2	direct	exact	1,2,12,15,18	
+0057F7D0	FUN_0057f7d0	239	2	direct	exact	1,2,18	
+0057FE80	FUN_0057fe80	2105	2	direct	exact	1,2,10,12,14,15,18	
+00581490	FUN_00581490	824	2	direct	exact	1,2,15,18	
+005819F0	SaveSlotScan_ControllerCallback	372	2	direct	exact	1,15,18	
+005823B0	SaveStorageQueue_ControllerStateHandler	398	2	direct	exact	1,2,18	
+00582860	SaveLoad_ControllerLifecycleHandler	1777	2	direct	exact	1,2,12,16,18,19	
+005C5230	FUN_005c5230	3	10	direct	unparsed		no `mov r32, [rdx]` and no `cmp dword ptr [rdx], imm` in the first 3 bytes || RE-EXAMINED 2026-09-20 (OPUS) with resolve_switch_arms.py: it contains NO register-indirect jmp at all, so it is not a table dispatch - an if/else chain or a body that does not switch on the id. 3 bytes. It stays `unparsed` rather than being given an id list. || READ 2026-09-20 (OPUS). READ, AND IT ANSWERS NO IDS BECAUSE IT DOES NOTHING. The body is THREE BYTES - `33c0 c3`, `xor eax, eax` / `ret` - and the listed extent is exactly right: 005C5220..005C522C is the previous listed body, 005C5240 the next, and the bytes between are those three followed by `cc` padding. THAT IT IS A NO-OP IS NOT NEW AND IS NOT MINE: CONTRACT-widget-object.md and the-widget-constructor-and-object-sizes.md both already record `33 C0 C3`, three bytes, returning 0. WHAT WAS MISSING IS NARROWER AND BELONGS TO THIS FILE. This is the default arm of every other row in the table - 264 rows record which ids they keep - and the table's own row for where the rest GO sat `unparsed`, so the file that routes every unhandled id here never said what happened to them, and the row with the widest reach in it (10 sites) read as unexamined. The message is dropped and zero is returned. Its 10 sites are the widest of any row here. `kind` stays `unparsed` deliberately: `exact` with an empty id list is indistinguishable from a cell nobody filled in.

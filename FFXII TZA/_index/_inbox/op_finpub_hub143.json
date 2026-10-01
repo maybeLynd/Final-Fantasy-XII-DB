@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-143",
+ "result_refs": [
+  "publish commits 889468158 (amended: 10 clean hosts + 3 research ops; the first build d25ad2aa1 swept an untracked peer-authored title-asset doc, amended to drop it and re-route 00249320 to the-widget-message-protocol.md) + 24905a4c8 (4 private-index tail hunks: encoded-id +12 around peer SECTION-05 rewrite, world-tick +4 around peer 00181DD0 entry, AUDIT-LOG +75 around ~600 peer appends, resume +9/-3 around peer parked sections)."
+ ],
+ "note": "batch-143 publish: 23 bodies, 12 committed hosts (+1 peer-uncommitted doc deferred); anchors 4353 (+23) 0 MID; hash clean; crossref 2920/400; guard ADDS NOTHING"
+}

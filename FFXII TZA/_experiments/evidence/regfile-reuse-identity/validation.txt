@@ -1,0 +1,4 @@
+PASS: allocation result, table getter and unload all agree on manager+08 root.
+PASS: unload sends that root through003697F0->00369860 and then nulls it; +1F0 is not the root.
+PASS: interpreter record argument anchored; no actual register-reuse/lifetime observation claimed.
+PASS: owner base has only its setup writes; zero source dominates the null store under local returning-call analysis.

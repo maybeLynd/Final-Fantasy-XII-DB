@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-SLOT-CENSUS-ATTRIBUTED-BY-STORE-PROVENANCE",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the eight widget singletons whose consumer census the named-row control could never pass",
+  "scope": "establish an attribution control for a publication slot that does not depend on hitting the shared widget header; run it, and run a negative control on deliberately wrong type-slot pairings before carving anything",
+  "completion": "each of the eight either carved under a control that demonstrably refuses a wrong pairing, or refused with the reason recorded; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

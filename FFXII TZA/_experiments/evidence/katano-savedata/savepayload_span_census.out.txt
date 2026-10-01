@@ -1,0 +1,9 @@
+payload base 02164480   tracker resolved 128507 operands, 488673 unresolved (20.8%)
+
+unobservedSpan1538     payload+0x01538   2760 bytes   ACCESSES: 0
+unobservedSpanC818     payload+0x0C818   6120 bytes   ACCESSES: 0
+unobservedSpanE004     payload+0x0E004     60 bytes   ACCESSES: 0
+unobservedTail5589C    payload+0x5589C   3060 bytes   ACCESSES: 0
+
+TOTAL ACCESSES INTO THE FOUR SPANS: 0
+by addressing form: {}

@@ -1,0 +1,105 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "e6ff8dcf6cc280d4e7b2af6e23ce2ce579b98b82"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "2e13262f708d52eb48783d8ad85cadbc30451dd8"
+    },
+    {
+      "path": "fault-physical-row-hash.stderr",
+      "git_blob": "3dfcbe813d69e416c89758316d6738d91990541a"
+    },
+    {
+      "path": "fault-physical-row-hash.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "fault-universal-nan-reject.stderr",
+      "git_blob": "83a0f3a18ecddf7e3745f6ebb73a95979e587f11"
+    },
+    {
+      "path": "fault-universal-nan-reject.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "a20aa0c9efb7b8474c71506688c7fc978462e6bd"
+    },
+    {
+      "path": "in-progress-cases.json",
+      "git_blob": "e145b0695c0fe75bd0969ca765584ac31795c1d2"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "a4b0f22341a424c292c84150820069f25bbc0962"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "0c97d6ae234a3d3725eacf8a091c3bcee074729a"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "3b8af72b2a20962924d89f29c701e3e8b6b8f364"
+    },
+    {
+      "path": "regression-controls.json",
+      "git_blob": "60117ab2fede3121218baf9add39dd485295bbe6"
+    },
+    {
+      "path": "repair_row_hash.py",
+      "git_blob": "667759a01f636cce8b43bb5ff516d757209b4dbc"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "bcff439aff8b22ba47b3e3868cce95924b7e9731"
+    },
+    {
+      "path": "retained/affected-field-row.txt",
+      "git_blob": "426ffb764109dd826728e987fda3d64b967f286a"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "e6ff8dcf6cc280d4e7b2af6e23ce2ce579b98b82"
+    },
+    {
+      "path": "retained/invalid-row-hash-normalization/check-before.py",
+      "git_blob": "bdc449efcfc56a75158ddf5a44beeb37c65b6bff"
+    },
+    {
+      "path": "retained/invalid-row-hash-normalization/failure.json",
+      "git_blob": "5d8ec2e0709d3a7528464d59ecbc59b33d9535ad"
+    },
+    {
+      "path": "retained/opus-consumer.py",
+      "git_blob": "44f7dd99720a7ef0ddb85736568564917993fe0d"
+    },
+    {
+      "path": "retained/original237.bin",
+      "git_blob": "ba39b220a0d5ef07222805b3667859ad9b8c7521"
+    },
+    {
+      "path": "retained/parent-capture.py",
+      "git_blob": "33231ea2dae425e9c505b1b4bdd8fc6ef0d76a0a"
+    },
+    {
+      "path": "retained/parent-source.json",
+      "git_blob": "f07c757e8536a0ed20cf47ce37f8f7221f8eeb29"
+    },
+    {
+      "path": "retained/runner.py",
+      "git_blob": "6bdb2d75fa7daba8998cc5024e3492d3e004b774"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    }
+  ]
+}

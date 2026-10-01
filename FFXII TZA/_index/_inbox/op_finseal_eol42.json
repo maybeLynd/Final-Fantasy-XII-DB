@@ -1,0 +1,1 @@
+{"action":"finish","task":"SWE2EC7-SEAL-ENTRY-ONLY-LARGE-42","result_refs":["commit:5968e8de6","commit:514cf25a2"],"note":"sealed: TEAM.json + pub/seal op files; 00336390 section on world-tick carried into HEAD by FABLE 514cf25a2 (verbatim, gates re-verified)"}

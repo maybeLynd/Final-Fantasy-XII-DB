@@ -1,0 +1,21 @@
+# NativeAdapter.DualLookupIndirectCallback - EC-7 family C, declared on generated-function-families.md
+#
+# 13 members. Body size(s): 72 B x13.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 16 external target(s): 0 shared across all 13 members, and 16 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 16 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+005C2060
+005C20B0
+005FFB90
+005FFBE0
+0067EF50
+0067EFA0
+0067EFF0
+006A1170
+006A1360
+006AC6A0
+006C0010
+0079AAD0

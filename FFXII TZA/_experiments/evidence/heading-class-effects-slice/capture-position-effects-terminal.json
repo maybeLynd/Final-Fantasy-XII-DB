@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-position-effects.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 3,\n  \"extent_status\": [\n    [\n      \"0x2e6000\",\n      \"UNWIND_UNION_MATCH\",\n      129,\n      129\n    ],\n    [\n      \"0x3dae00\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      23,\n      null\n    ],\n    [\n      \"0x3db1b0\",\n      \"UNWIND_UNION_MATCH\",\n      57,\n      57\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "edf4c2acf4c291036ed831a62b64bf9e22abcec8f1c1e29f55f927d3e7cda7cf"
+}

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\capture.py"
+  ],
+  "driver_sha256": "37dd0f1789dd8eb22ae2fe4c76176c6a7368fc2adcbf3f8bf7a8b148c4bceda4",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\capture.py\", line 49, in <module>\n    try:run()\n        ~~~^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\uc1-dependency-binding\\capture.py\", line 29, in run\n    declarations=ns['declare_inputs'](str((root/'_capture').resolve()))\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py\", line 481, in declare_inputs\n    \"build_views.py\": {\"path\": os.path.abspath(__file__)}}\n                                               ^^^^^^^^\nNameError: name '__file__' is not defined. Did you mean: '__name__'?\n",
+  "terminal": true
+}

@@ -1,0 +1,2 @@
+control image-base-relative 00D10640: [(3232975, 'movzx', 'eax, word ptr [rcx + rdx + 0xbf0640]', 2), (3233540, 'movzx', 'eax, word ptr [rcx + rdx + 0xbf0640]', 2), (3234104, 'movzx', 'eax, word ptr [rcx + rdx + 0xbf0640]', 2), (3234684, 'movzx', 'eax, word ptr [rcx + rdx + 0xbf0640]', 2)]
+control image-base-relative 02EA9510: [(7941172, 'mov', 'qword ptr [rdi + rbp + 0x2d89510], rax', 8), (7941173, 'mov', 'qword ptr [rdi + rbp + 0x2d89510], rax', 8), (7941174, 'mov', 'dword ptr [rdi + rbp + 0x2d89510], eax', 4)]

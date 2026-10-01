@@ -1,0 +1,54 @@
+{
+ "committed_at": "2026-09-29T07:38:28Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T073828Z-623f91",
+ "generator": {
+  "name": "labelled ASTRA composition of original tooling"
+ },
+ "inputs": {
+  "category_map": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\invalid-terminal0\\inputs\\category_map",
+   "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+   "size": 10617,
+   "state": "present"
+  },
+  "goal_gate": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\invalid-terminal0\\inputs\\goal_gate",
+   "sha256": "987ab69ec8df2efd275c227d4863986fb29677636ceb06d7f314e0ab3afad8f0",
+   "size": 135,
+   "state": "present"
+  },
+  "progress_snapshot": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\invalid-terminal0\\inputs\\progress_snapshot",
+   "sha256": "1f2fd2d106a8ce3fed1713b055c238764191c1229a761943d7b73ff3050d344a",
+   "size": 410,
+   "state": "present"
+  },
+  "requirement_facts": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\invalid-terminal0\\inputs\\requirement_facts",
+   "sha256": "000810c2e8dc04c54e215e3d5c96782791881e7b2afaf06d62f631181120dbec",
+   "size": 4094,
+   "state": "present"
+  },
+  "subsystems": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\invalid-terminal0\\inputs\\subsystems",
+   "sha256": "07ece088b4d64635867d34cce2d2b4ba06c10b53f19a0ff98b3e336ff672c7ea",
+   "size": 90,
+   "state": "present"
+  },
+  "team": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\invalid-terminal0\\inputs\\team",
+   "sha256": "5b80dd381e102f830dc02c41ed916aca3f15eca917aef6ca16ea6f8efbd83da5",
+   "size": 21,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view-progress.json": {
+   "sha256": "5d72c318401287a3644af28f0a3bb315cf75a5375437979ecebde92ba4ba2309",
+   "size": 19064
+  }
+ },
+ "parent": null,
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

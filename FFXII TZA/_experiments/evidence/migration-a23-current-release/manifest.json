@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 681,
+      "sha256": "832334278f2388dce15a87a3018fcc1f8fc6923c6fa2271bc8a39357e206be19"
+    },
+    {
+      "path": "capture.json",
+      "bytes": 3592,
+      "sha256": "448b75328cded515399d763aec243a389392cdc8e8eb3a726fc397d1d09e2362"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 2662,
+      "sha256": "1ad592ad488b23693f8c95d081f45afa1836327f24f91c8ebfa8150554410286"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3927,
+      "sha256": "375904a489ed551bf43aefb615e94ecf86ccb215c4a6db61661fc39276c2018a"
+    },
+    {
+      "path": "checks-terminal.json",
+      "bytes": 3553,
+      "sha256": "3a2e55430550fdebb02e44f58c3dc5db82041b20e6b5e4e65adc0d7f1733fa2d"
+    },
+    {
+      "path": "handoff-header.txt",
+      "bytes": 2189,
+      "sha256": "6563f061fa00781117bc5b88bbc31c920a5325410ff07921fb84cabd32c04ab8"
+    },
+    {
+      "path": "historical-export-terminal.json",
+      "bytes": 884,
+      "sha256": "1d26cc26bf4a242a5483615ed87b7fb021a610ffcd0186eb28b66a278f0a70c1"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1978,
+      "sha256": "99b25cfab5ab9a1c1ab7616637bec1d91466997b06fcdffd8173a7dac601a673"
+    },
+    {
+      "path": "prepare-controls-gate.py",
+      "bytes": 5984,
+      "sha256": "69581693e1d68dcfe5f412f5597b82f8ff9314dbba0c43eeb730b6beccdbb5e8"
+    },
+    {
+      "path": "raw-http/overview.body",
+      "bytes": 16976,
+      "sha256": "d22735348c6769dc07427a1a995861afe88da9936b111125741dc4a94e18a9cb"
+    },
+    {
+      "path": "raw-http/progress.body",
+      "bytes": 207353,
+      "sha256": "b47cfebcbb28059053c1ea4b39cca2917267c6a99cc701ce09484eed7ea79e22"
+    },
+    {
+      "path": "raw-http/root.body",
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+    },
+    {
+      "path": "raw-http/status-after.body",
+      "bytes": 1096,
+      "sha256": "c9179a61f51c9239543e5069b4ef37d0a6cae1d16ccc49d292e4d5631d3b276b"
+    },
+    {
+      "path": "raw-http/status-before.body",
+      "bytes": 1096,
+      "sha256": "c9179a61f51c9239543e5069b4ef37d0a6cae1d16ccc49d292e4d5631d3b276b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2344,
+      "sha256": "c6f3d7396c3d11b99caff5c2b4212b15d878a1c6137c783c37533c67439afc5a"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 3076,
+      "sha256": "2c0d1aa3e9d18578e7c8e29f473c4e8130b9af8dab92ec8916defd793f00ffb9"
+    },
+    {
+      "path": "retained/ACCEPTANCE-MATRIX.md",
+      "bytes": 7660,
+      "sha256": "48eee76bc6c5dd603a124578c0a262275f993fc64e9ab6aab1a4d71fcaf0a214"
+    },
+    {
+      "path": "retained/history.jsonl",
+      "bytes": 26505,
+      "sha256": "1ce467688afe3df59fc248995ee76c374a61be8fc4a2be5ade8fa8bc6eee23d1"
+    },
+    {
+      "path": "retained/MANIFEST.json",
+      "bytes": 8672,
+      "sha256": "b494e8ea85ffe3a6e9799cc8d1d2c1d2788a54585a600827df7f8b87b9815e2f"
+    },
+    {
+      "path": "retained/RELEASE-DASHBOARD-2026-09-29.md",
+      "bytes": 8924,
+      "sha256": "3a668de69f61ea1ae77bfec54c720e431b3b72797190798fcba52d9b3c511bd1"
+    },
+    {
+      "path": "retained/view-overview.json",
+      "bytes": 21731,
+      "sha256": "7e087e3d0016124357b861c6691960f662ad9d1ab8ea4ecebb70e7b6b83c4750"
+    },
+    {
+      "path": "retained/view-progress.json",
+      "bytes": 229139,
+      "sha256": "859d147d84f2d6fc3a5d02366a043d98971797970da251d44f235a659ae9b93e"
+    },
+    {
+      "path": "run-capture.py",
+      "bytes": 766,
+      "sha256": "43bf5855f7542df01095f85b5b9c156648867e9501b15a09be9373891f12b7a7"
+    },
+    {
+      "path": "run-checks.py",
+      "bytes": 2378,
+      "sha256": "e2ae6ecbb7879b36812a3c475b6a9541eb5e0475a3d2c1f76b7c17694bef0961"
+    },
+    {
+      "path": "run-verify.py",
+      "bytes": 869,
+      "sha256": "02d7849294e6cb97778a18d141db5b3d05804a4c86a1501feb4a4a2b53cbc5fd"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 1716,
+      "sha256": "a4f5a0af5414ae0d2b134fad0aa2fc57002d28ca590d643bb6227e5297795e30"
+    },
+    {
+      "path": "source-identity.py",
+      "bytes": 1618,
+      "sha256": "603a01e363d52357dfa67570401b19c34f9865ef64aa0c4a896f31303a42f751"
+    },
+    {
+      "path": "verdict.json",
+      "bytes": 440,
+      "sha256": "da0327f7d154d46c5c6a8a9ec860f543561505d5de10d6c1f39b2be9092c2a5e"
+    },
+    {
+      "path": "verify-captured-generation.py",
+      "bytes": 3622,
+      "sha256": "0f29aab1d90bd7309f88765e9f00178c3fb5580e5ed83223e69a01051d12e1c1"
+    },
+    {
+      "path": "verify-historical-export.py",
+      "bytes": 1336,
+      "sha256": "d908492b4654f43e36e9d54998fbb18c1a1e220f1b66162aa0d136141a7999cd"
+    },
+    {
+      "path": "verify-result.json",
+      "bytes": 1703,
+      "sha256": "a37ac03624a4ca58b9e51401631e3342297c2812dc6cec91564d2921b690d044"
+    },
+    {
+      "path": "verify-terminal.json",
+      "bytes": 2266,
+      "sha256": "2dbe3390ba78eb94a22f23b272cd5f2930315b74151a16e184767f38583f6e99"
+    }
+  ],
+  "limits": "Independent read-only served generation A23 slice. Historical ZIP is different. Loaded PID/module, matching selected release export, restart/adoption and full migration/L1+L2 acceptance unmeasured."
+}

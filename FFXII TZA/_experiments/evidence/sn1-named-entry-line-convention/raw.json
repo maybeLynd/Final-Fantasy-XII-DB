@@ -1,0 +1,2295 @@
+{
+  "method": "A actual admitted original files and retained OPUS source parser; no compiled script/native/guest/live execution",
+  "question": "Do named original entry bindings distinguish source[lineNo-1] versus source[lineNo]?",
+  "reference": {
+    "parent": "Database/FFXII TZA/_experiments/evidence/sn1-q0-source-coordinate-domain",
+    "parent_manifest_sha256": "bc4b00822d6828bc5cc9ce012951296111e99902c439bf3e556da2148ca04449",
+    "parser_sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48",
+    "consumer_path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/ATEL-Control-Modules/the-ctrl-module-debug-companions.md",
+    "consumer_sha256": "c88a5a200fe3325de897a7241162f55b6e6ea098b0bc0e4a6f6fec02d1b38ee4",
+    "layout_path": "Database/FFXII TZA/25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md",
+    "layout_sha256": "843733b0f5e7440a3af58e557452f4e9dffc345d12074073803ffebf29887142",
+    "files": [
+      {
+        "module": "ctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\ctrl.dbg",
+        "bytes": 83120,
+        "sha256": "73b8f70b155b76971945a028ffe5f89eeb8733620a970854c635463de7368aa4",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "ctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\ctrl.sbn",
+        "bytes": 24976,
+        "sha256": "9cc2473f9c167eb203b6a3aff751df2b31d14e6282b70401bb1d794af3596662",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "ctrl",
+        "extension": "ebp",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\ctrl.ebp",
+        "bytes": 11584,
+        "sha256": "a5e0d056927c26197b7af117f4ec709ee03ac4f63d9f1d267b1380cb885b3477",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "btlctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\btlctrl.dbg",
+        "bytes": 270160,
+        "sha256": "3d83baa3d728d70e310c92e7df3d7151f912fc3ee0992c64d21cd9a032e73058",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "btlctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\btlctrl.sbn",
+        "bytes": 98136,
+        "sha256": "7492061636eac4cd7b5cdd5f06ff50d67c80fe1dad686044e89414ba40f0608d",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "btlctrl",
+        "extension": "ebp",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\btlctrl.ebp",
+        "bytes": 32448,
+        "sha256": "660a79970be651607311e07b4426db739eabb5b68e5784ad6ab5949a06e26b08",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "evctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.dbg",
+        "bytes": 126112,
+        "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "evctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.sbn",
+        "bytes": 57816,
+        "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "evctrl",
+        "extension": "ebp",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.ebp",
+        "bytes": 38720,
+        "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "mapctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapctrl.dbg",
+        "bytes": 301776,
+        "sha256": "499b2394d9e8c38d2119f238730b6e6b79a3888dd2e7157fefe3ff26035de317",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "mapctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapctrl.sbn",
+        "bytes": 140128,
+        "sha256": "4d399c23df9fc1ae931753c6247084cca26fdfda4446e6bdbe66f85d71e9ec35",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "mapctrl",
+        "extension": "ebp",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapctrl.ebp",
+        "bytes": 40832,
+        "sha256": "2ad82ef851eb10eb2231a4e57c32fec6731430c3633f7660b7ee25fa7ddad091",
+        "provenance": "Admitted extraction used by peers; DBG/SBN bytes also equal immutable60 input; no fresh whole-VBF provenance audit"
+      }
+    ]
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "utc": "2026-09-28T14:51:52.810448+00:00"
+  },
+  "driver_sha256": "01b8cc7ada219784ecd5691c668e6e3c37deb439a75e308011a20869092b06cc",
+  "bindings": [
+    {
+      "module": "ctrl",
+      "scope": 0,
+      "entry_file_offset": 7572,
+      "entry_hex": "ac0000000000ff00d00b0000370000001003000024030000700300000000000000000000000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 932,
+      "q0": 14352,
+      "q1": 14960,
+      "q2": 15032,
+      "q3": 15044,
+      "q1_count": 17,
+      "jt_count": 17,
+      "code_start": 3152,
+      "code_bytes": 151,
+      "validated_code_bytes": 151,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "ctrl",
+      "scope": 1,
+      "entry_file_offset": 7620,
+      "entry_hex": "b40000000000ff00670c00000d000000a0030000b4030000e00300002800000000000100000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 1076,
+      "q0": 15072,
+      "q1": 15232,
+      "q2": 15264,
+      "q3": 15272,
+      "q1_count": 7,
+      "jt_count": 7,
+      "code_start": 3303,
+      "code_bytes": 37,
+      "validated_code_bytes": 37,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "ctrl",
+      "scope": 2,
+      "entry_file_offset": 7668,
+      "entry_hex": "be0000000000ff008c0c000046000000100400003c040000900400002800000000000200000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 1212,
+      "q0": 15296,
+      "q1": 16080,
+      "q2": 16156,
+      "q3": 16172,
+      "q1_count": 18,
+      "jt_count": 18,
+      "code_start": 3340,
+      "code_bytes": 196,
+      "validated_code_bytes": 196,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "ctrl",
+      "scope": 3,
+      "entry_file_offset": 7716,
+      "entry_hex": "d00000000000ff00500d00006e040000c0040000dc040000800700002800000000000300000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 1372,
+      "q0": 16208,
+      "q1": 29440,
+      "q2": 30108,
+      "q3": 30256,
+      "q1_count": 166,
+      "jt_count": 166,
+      "code_start": 3536,
+      "code_bytes": 3308,
+      "validated_code_bytes": 3308,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "ctrl",
+      "scope": 4,
+      "entry_file_offset": 7764,
+      "entry_hex": "d90000000000ff003c1a00001b000000b0070000cc070000f0070000c800000000000400000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 2124,
+      "q0": 30688,
+      "q1": 30976,
+      "q2": 31008,
+      "q3": 31016,
+      "q1_count": 7,
+      "jt_count": 7,
+      "code_start": 6844,
+      "code_bytes": 71,
+      "validated_code_bytes": 71,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "ctrl",
+      "scope": 5,
+      "entry_file_offset": 7812,
+      "entry_hex": "e10000000000ff00831a00000c000000200800004408000050080000d000000000000500000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 2244,
+      "q0": 31040,
+      "q1": 31152,
+      "q2": 31156,
+      "q3": 31164,
+      "q1_count": 0,
+      "jt_count": 0,
+      "code_start": 6915,
+      "code_bytes": 28,
+      "validated_code_bytes": 28,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "ctrl",
+      "scope": 6,
+      "entry_file_offset": 7860,
+      "entry_hex": "f30000000000ff009f1a0000ef00000080080000ac08000050090000d000000000000600000000000000000000000000",
+      "base": 128,
+      "section_end": 8480,
+      "directory": 7568,
+      "name_pool": 8224,
+      "jump_table": 2348,
+      "q0": 31184,
+      "q1": 33632,
+      "q2": 33792,
+      "q3": 33828,
+      "q1_count": 39,
+      "jt_count": 39,
+      "code_start": 6943,
+      "code_bytes": 611,
+      "validated_code_bytes": 611,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 0,
+      "entry_file_offset": 22660,
+      "entry_hex": "860100000000ff00501b000037000000d0020000e4020000300300000000000000000000000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 868,
+      "q0": 47072,
+      "q1": 47680,
+      "q2": 47752,
+      "q3": 47764,
+      "q1_count": 17,
+      "jt_count": 17,
+      "code_start": 7120,
+      "code_bytes": 151,
+      "validated_code_bytes": 151,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "entry_file_offset": 22708,
+      "entry_hex": "8e0100000000ff00e71b00007c050000600300007c030000300600002800000000000100000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 1020,
+      "q0": 47792,
+      "q1": 64128,
+      "q2": 64820,
+      "q3": 65000,
+      "q1_count": 172,
+      "jt_count": 172,
+      "code_start": 7271,
+      "code_bytes": 4082,
+      "validated_code_bytes": 4082,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 2,
+      "entry_file_offset": 22756,
+      "entry_hex": "970100000000ff00d92b000003000000600600007c060000800600002c00000000000200000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 1788,
+      "q0": 65520,
+      "q1": 65536,
+      "q2": 65540,
+      "q3": 65548,
+      "q1_count": 0,
+      "jt_count": 0,
+      "code_start": 11353,
+      "code_bytes": 3,
+      "validated_code_bytes": 3,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 3,
+      "entry_file_offset": 22804,
+      "entry_hex": "9e0100000000ff00dc2b0000e2000000b0060000dc060000800700003000000000000300000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 1884,
+      "q0": 65568,
+      "q1": 68000,
+      "q2": 68160,
+      "q3": 68196,
+      "q1_count": 39,
+      "jt_count": 39,
+      "code_start": 11356,
+      "code_bytes": 606,
+      "validated_code_bytes": 606,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 4,
+      "entry_file_offset": 22852,
+      "entry_hex": "af0100000000ff003a2e0000e1030000b0070000f4070000600a00003400000000000400000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 2164,
+      "q0": 68288,
+      "q1": 79280,
+      "q2": 79888,
+      "q3": 80020,
+      "q1_count": 151,
+      "jt_count": 151,
+      "code_start": 11962,
+      "code_bytes": 2747,
+      "validated_code_bytes": 2747,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 5,
+      "entry_file_offset": 22900,
+      "entry_hex": "c20100000000ff00f538000090000000900a0000ac0a0000100b00003c00000000000500000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 2860,
+      "q0": 80368,
+      "q1": 81984,
+      "q2": 82080,
+      "q3": 82104,
+      "q1_count": 23,
+      "jt_count": 23,
+      "code_start": 14709,
+      "code_bytes": 404,
+      "validated_code_bytes": 404,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 6,
+      "entry_file_offset": 22948,
+      "entry_hex": "cf0100000000ff00893a0000b0000000400b0000640b0000f00b00004000000000000600000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 3044,
+      "q0": 82160,
+      "q1": 83984,
+      "q2": 84116,
+      "q3": 84144,
+      "q1_count": 32,
+      "jt_count": 32,
+      "code_start": 15113,
+      "code_bytes": 456,
+      "validated_code_bytes": 456,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 7,
+      "entry_file_offset": 22996,
+      "entry_hex": "e00100000000ff00513c000047000000200c00003c0c0000600c00004400000000000700000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 3260,
+      "q0": 84208,
+      "q1": 84976,
+      "q2": 85012,
+      "q3": 85028,
+      "q1_count": 8,
+      "jt_count": 8,
+      "code_start": 15569,
+      "code_bytes": 191,
+      "validated_code_bytes": 191,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 8,
+      "entry_file_offset": 23044,
+      "entry_hex": "f30100000000ff00103d00005a000000900c0000ac0c0000e00c00004800000000000800000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 3372,
+      "q0": 85056,
+      "q1": 86048,
+      "q2": 86096,
+      "q3": 86112,
+      "q1_count": 11,
+      "jt_count": 11,
+      "code_start": 15760,
+      "code_bytes": 248,
+      "validated_code_bytes": 248,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 9,
+      "entry_file_offset": 23092,
+      "entry_hex": "000200000000ff00083e00000e000000100d0000240d0000400d00004c00000000000900000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 3492,
+      "q0": 86160,
+      "q1": 86304,
+      "q2": 86328,
+      "q3": 86336,
+      "q1_count": 5,
+      "jt_count": 5,
+      "code_start": 16008,
+      "code_bytes": 36,
+      "validated_code_bytes": 36,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 10,
+      "entry_file_offset": 23140,
+      "entry_hex": "050200000000ff002c3e00006e000000700d0000940d0000f00d00004c00000000000a00000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 3604,
+      "q0": 86352,
+      "q1": 87584,
+      "q2": 87668,
+      "q3": 87688,
+      "q1_count": 20,
+      "jt_count": 20,
+      "code_start": 16044,
+      "code_bytes": 308,
+      "validated_code_bytes": 308,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 11,
+      "entry_file_offset": 23188,
+      "entry_hex": "130200000000ff00603f000034010000200e0000340e0000300f00005000000000000b00000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 3764,
+      "q0": 87744,
+      "q1": 91248,
+      "q2": 91496,
+      "q3": 91540,
+      "q1_count": 61,
+      "jt_count": 61,
+      "code_start": 16352,
+      "code_bytes": 874,
+      "validated_code_bytes": 874,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 12,
+      "entry_file_offset": 23236,
+      "entry_hex": "1f0200000000ff00ca42000084000000600f0000740f0000d00f00007400000000000c00000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 4084,
+      "q0": 91664,
+      "q1": 93216,
+      "q2": 93308,
+      "q3": 93332,
+      "q1_count": 22,
+      "jt_count": 22,
+      "code_start": 17226,
+      "code_bytes": 388,
+      "validated_code_bytes": 388,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 13,
+      "entry_file_offset": 23284,
+      "entry_hex": "340200000000ff004e4400002a0100000010000014100000101100007c00000000000d00000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 4244,
+      "q0": 93392,
+      "q1": 96768,
+      "q2": 97016,
+      "q3": 97060,
+      "q1_count": 61,
+      "jt_count": 61,
+      "code_start": 17614,
+      "code_bytes": 844,
+      "validated_code_bytes": 844,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 14,
+      "entry_file_offset": 23332,
+      "entry_hex": "450200000000ff009a470000080100004011000054110000501200009000000000000e00000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 4564,
+      "q0": 97184,
+      "q1": 100176,
+      "q2": 100416,
+      "q3": 100456,
+      "q1_count": 59,
+      "jt_count": 59,
+      "code_start": 18458,
+      "code_bytes": 746,
+      "validated_code_bytes": 746,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 15,
+      "entry_file_offset": 23380,
+      "entry_hex": "540200000000ff00844a0000220100008012000094120000a0130000a000000000000f00000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 4884,
+      "q0": 100560,
+      "q1": 103744,
+      "q2": 104008,
+      "q3": 104052,
+      "q1_count": 65,
+      "jt_count": 65,
+      "code_start": 19204,
+      "code_bytes": 796,
+      "validated_code_bytes": 796,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 16,
+      "entry_file_offset": 23428,
+      "entry_hex": "6b0200000000ff00a04d000084000000d0130000e413000040140000b000000000001000000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 5220,
+      "q0": 104160,
+      "q1": 105712,
+      "q2": 105804,
+      "q3": 105828,
+      "q1_count": 22,
+      "jt_count": 22,
+      "code_start": 20000,
+      "code_bytes": 388,
+      "validated_code_bytes": 388,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 17,
+      "entry_file_offset": 23476,
+      "entry_hex": "7c0200000000ff00244f000096010000701400008c140000b0150000b800000000001100000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 5388,
+      "q0": 105888,
+      "q1": 110496,
+      "q2": 110784,
+      "q3": 110840,
+      "q1_count": 71,
+      "jt_count": 71,
+      "code_start": 20388,
+      "code_bytes": 1150,
+      "validated_code_bytes": 1150,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 18,
+      "entry_file_offset": 23524,
+      "entry_hex": "890200000000ff00a253000012000000e0150000fc15000000160000b800000000001200000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 5756,
+      "q0": 110992,
+      "q1": 111184,
+      "q2": 111188,
+      "q3": 111196,
+      "q1_count": 0,
+      "jt_count": 0,
+      "code_start": 21538,
+      "code_bytes": 48,
+      "validated_code_bytes": 48,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 19,
+      "entry_file_offset": 23572,
+      "entry_hex": "940200000000ff00d253000012000000301600004c16000050160000b800000000001300000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 5836,
+      "q0": 111216,
+      "q1": 111408,
+      "q2": 111412,
+      "q3": 111420,
+      "q1_count": 0,
+      "jt_count": 0,
+      "code_start": 21586,
+      "code_bytes": 48,
+      "validated_code_bytes": 48,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 20,
+      "entry_file_offset": 23620,
+      "entry_hex": "a30200000000ff00025400003800000080160000a4160000b0160000b800000000001400000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 5924,
+      "q0": 111440,
+      "q1": 112080,
+      "q2": 112084,
+      "q3": 112096,
+      "q1_count": 0,
+      "jt_count": 0,
+      "code_start": 21634,
+      "code_bytes": 158,
+      "validated_code_bytes": 158,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 21,
+      "entry_file_offset": 23668,
+      "entry_hex": "ac0200000000ff00a05400001f000000e0160000f416000020170000b800000000001500000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 6004,
+      "q0": 112128,
+      "q1": 112464,
+      "q2": 112496,
+      "q3": 112504,
+      "q1_count": 7,
+      "jt_count": 7,
+      "code_start": 21792,
+      "code_bytes": 83,
+      "validated_code_bytes": 83,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "btlctrl",
+      "scope": 22,
+      "entry_file_offset": 23716,
+      "entry_hex": "b50200000000ff00f354000021010000501700007c17000020180000b800000000001600000000000000000000000000",
+      "base": 128,
+      "section_end": 24704,
+      "directory": 22656,
+      "name_pool": 24000,
+      "jump_table": 6140,
+      "q0": 112528,
+      "q1": 115632,
+      "q2": 115792,
+      "q3": 115836,
+      "q1_count": 39,
+      "jt_count": 39,
+      "code_start": 21875,
+      "code_bytes": 773,
+      "validated_code_bytes": 773,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 0,
+      "entry_file_offset": 21108,
+      "entry_hex": "d00000000000ff000020000037000000a00b0000b40b0000000c00000000000000000000000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 3124,
+      "q0": 15744,
+      "q1": 16352,
+      "q2": 16424,
+      "q3": 16436,
+      "q1_count": 17,
+      "jt_count": 17,
+      "code_start": 8320,
+      "code_bytes": 151,
+      "validated_code_bytes": 151,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 1,
+      "entry_file_offset": 21156,
+      "entry_hex": "d80000000000ff009720000024080000300c0000440c0000c00e00002800000000000100000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 3268,
+      "q0": 16464,
+      "q1": 41568,
+      "q2": 42212,
+      "q3": 42484,
+      "q1_count": 160,
+      "jt_count": 158,
+      "code_start": 8471,
+      "code_bytes": 6274,
+      "validated_code_bytes": 6130,
+      "shared_tail_exception": true
+    },
+    {
+      "module": "evctrl",
+      "scope": 2,
+      "entry_file_offset": 21204,
+      "entry_hex": "e10000000000ff0089380000b6000000f00e00002c0f0000600f00005000000000000200000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 4012,
+      "q0": 43280,
+      "q1": 45392,
+      "q2": 45436,
+      "q3": 45464,
+      "q1_count": 10,
+      "jt_count": 10,
+      "code_start": 14601,
+      "code_bytes": 526,
+      "validated_code_bytes": 526,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 3,
+      "entry_file_offset": 21252,
+      "entry_hex": "ea0000000000ff00973a00001d000000900f0000a40f0000d00f00005000000000000300000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 4132,
+      "q0": 45536,
+      "q1": 45856,
+      "q2": 45888,
+      "q3": 45896,
+      "q1_count": 7,
+      "jt_count": 7,
+      "code_start": 15127,
+      "code_bytes": 77,
+      "validated_code_bytes": 77,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 4,
+      "entry_file_offset": 21300,
+      "entry_hex": "f30000000000ff00e43a0000340000000010000024100000401000005000000000000400000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 4260,
+      "q0": 45920,
+      "q1": 46512,
+      "q2": 46536,
+      "q3": 46548,
+      "q1_count": 5,
+      "jt_count": 5,
+      "code_start": 15204,
+      "code_bytes": 146,
+      "validated_code_bytes": 146,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 5,
+      "entry_file_offset": 21348,
+      "entry_hex": "fc0000000000ff00763b0000c4010000701000008c100000301100005000000000000500000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 4364,
+      "q0": 46576,
+      "q1": 51792,
+      "q2": 51956,
+      "q3": 52020,
+      "q1_count": 40,
+      "jt_count": 40,
+      "code_start": 15350,
+      "code_bytes": 1302,
+      "validated_code_bytes": 1302,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 6,
+      "entry_file_offset": 21396,
+      "entry_hex": "0d0100000000ff008c4000001b010000601100007c110000101200005000000000000600000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 4604,
+      "q0": 52192,
+      "q1": 55216,
+      "q2": 55360,
+      "q3": 55400,
+      "q1_count": 35,
+      "jt_count": 35,
+      "code_start": 16652,
+      "code_bytes": 755,
+      "validated_code_bytes": 755,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 7,
+      "entry_file_offset": 21444,
+      "entry_hex": "220100000000ff007f4300005c020000401200005c120000f01200005000000000000700000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 4828,
+      "q0": 55504,
+      "q1": 62560,
+      "q2": 62700,
+      "q3": 62780,
+      "q1_count": 34,
+      "jt_count": 34,
+      "code_start": 17407,
+      "code_bytes": 1762,
+      "validated_code_bytes": 1762,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 8,
+      "entry_file_offset": 21492,
+      "entry_hex": "370100000000ff00614a00001b010000201300003c130000d01300005000000000000800000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 5052,
+      "q0": 63008,
+      "q1": 66032,
+      "q2": 66176,
+      "q3": 66216,
+      "q1_count": 35,
+      "jt_count": 35,
+      "code_start": 19169,
+      "code_bytes": 755,
+      "validated_code_bytes": 755,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 9,
+      "entry_file_offset": 21540,
+      "entry_hex": "500100000000ff00544d0000d4000000001400001c140000801400005000000000000900000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 5276,
+      "q0": 66320,
+      "q1": 68752,
+      "q2": 68844,
+      "q3": 68876,
+      "q1_count": 22,
+      "jt_count": 22,
+      "code_start": 19924,
+      "code_bytes": 606,
+      "validated_code_bytes": 606,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 10,
+      "entry_file_offset": 21588,
+      "entry_hex": "5d0100000000ff00b24f00007f000000b0140000cc140000301500005000000000000a00000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 5452,
+      "q0": 68960,
+      "q1": 70304,
+      "q2": 70400,
+      "q3": 70420,
+      "q1_count": 23,
+      "jt_count": 23,
+      "code_start": 20530,
+      "code_bytes": 335,
+      "validated_code_bytes": 335,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 11,
+      "entry_file_offset": 21636,
+      "entry_hex": "660100000000ff000151000022000000601500007c150000a01500005000000000000b00000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 5628,
+      "q0": 70480,
+      "q1": 70848,
+      "q2": 70880,
+      "q3": 70892,
+      "q1_count": 7,
+      "jt_count": 7,
+      "code_start": 20865,
+      "code_bytes": 90,
+      "validated_code_bytes": 90,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "evctrl",
+      "scope": 12,
+      "entry_file_offset": 21684,
+      "entry_hex": "700100000000ff005b51000032000000d0150000ec150000101600005800000000000c00000000000000000000000000",
+      "base": 128,
+      "section_end": 22320,
+      "directory": 21104,
+      "name_pool": 21920,
+      "jump_table": 5740,
+      "q0": 70912,
+      "q1": 71488,
+      "q2": 71520,
+      "q3": 71532,
+      "q1_count": 7,
+      "jt_count": 7,
+      "code_start": 20955,
+      "code_bytes": 142,
+      "validated_code_bytes": 142,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 0,
+      "entry_file_offset": 28628,
+      "entry_hex": "860000000000ff00c01d000037000000f003000004040000500400000000000000000000000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 1156,
+      "q0": 47728,
+      "q1": 48336,
+      "q2": 48408,
+      "q3": 48420,
+      "q1_count": 17,
+      "jt_count": 17,
+      "code_start": 7744,
+      "code_bytes": 151,
+      "validated_code_bytes": 151,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "entry_file_offset": 28676,
+      "entry_hex": "8e0000000000ff00571e0000a71600008004000094040000501300002800000000000100000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 1300,
+      "q0": 48448,
+      "q1": 112560,
+      "q2": 116332,
+      "q3": 117064,
+      "q1_count": 942,
+      "jt_count": 942,
+      "code_start": 7895,
+      "code_bytes": 16025,
+      "validated_code_bytes": 16025,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 2,
+      "entry_file_offset": 28724,
+      "entry_hex": "970000000000ff00f05c0000840000008013000094130000f01300006400000000000200000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 5140,
+      "q0": 119072,
+      "q1": 120624,
+      "q2": 120716,
+      "q3": 120740,
+      "q1_count": 22,
+      "jt_count": 22,
+      "code_start": 23920,
+      "code_bytes": 388,
+      "validated_code_bytes": 388,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 3,
+      "entry_file_offset": 28772,
+      "entry_hex": "a80000000000ff00745e0000b7010000201400003c140000801500006c00000000000300000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 5308,
+      "q0": 120800,
+      "q1": 125792,
+      "q2": 126116,
+      "q3": 126176,
+      "q1_count": 80,
+      "jt_count": 80,
+      "code_start": 24308,
+      "code_bytes": 1245,
+      "validated_code_bytes": 1245,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 4,
+      "entry_file_offset": 28820,
+      "entry_hex": "b50000000000ff005163000038030000b0150000e4150000e01700008800000000000400000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 5732,
+      "q0": 126336,
+      "q1": 135376,
+      "q2": 135876,
+      "q3": 135984,
+      "q1_count": 124,
+      "jt_count": 124,
+      "code_start": 25553,
+      "code_bytes": 2258,
+      "validated_code_bytes": 2258,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 5,
+      "entry_file_offset": 28868,
+      "entry_hex": "bc0000000000ff00236c0000b30000001018000024180000b0180000e400000000000500000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 6308,
+      "q0": 136272,
+      "q1": 138272,
+      "q2": 138404,
+      "q3": 138432,
+      "q1_count": 32,
+      "jt_count": 32,
+      "code_start": 27811,
+      "code_bytes": 499,
+      "validated_code_bytes": 499,
+      "shared_tail_exception": false
+    },
+    {
+      "module": "mapctrl",
+      "scope": 6,
+      "entry_file_offset": 28916,
+      "entry_hex": "ca0000000000ff00166e00006e000000e01800000419000060190000e800000000000600000000000000000000000000",
+      "base": 128,
+      "section_end": 29520,
+      "directory": 28624,
+      "name_pool": 29296,
+      "jump_table": 6532,
+      "q0": 138512,
+      "q1": 139744,
+      "q2": 139828,
+      "q3": 139848,
+      "q1_count": 20,
+      "jt_count": 20,
+      "code_start": 28310,
+      "code_bytes": 308,
+      "validated_code_bytes": 308,
+      "shared_tail_exception": false
+    }
+  ],
+  "rows": [
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "name": "DEBUG_MENU",
+      "jump_index": 41,
+      "jump_pc": 525,
+      "jump_field_offset": 1188,
+      "dbg_name_offset": 257679,
+      "q0_offset": 49892,
+      "record_hex": "f5000001",
+      "line": 245,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 244,
+          "source": {
+            "offset": 12556,
+            "hex": "0909096d735f706167655f6d6178093d204d4a504147455f4d41583b",
+            "text": "\t\t\tms_page_max\t= MJPAGE_MAX;"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 245,
+          "source": {
+            "offset": 12586,
+            "hex": "09090923696e636c75646520226d61706374726c5f6d6a2e73726322",
+            "text": "\t\t\t#include \"mapctrl_mj.src\""
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 243,
+          "source": {
+            "offset": 12540,
+            "hex": "09090944454255475f4d454e553a",
+            "text": "\t\t\tDEBUG_MENU:"
+          }
+        },
+        {
+          "block": 2,
+          "index": 180,
+          "source": {
+            "offset": 82653,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        },
+        {
+          "block": 2,
+          "index": 279,
+          "source": {
+            "offset": 87036,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        },
+        {
+          "block": 2,
+          "index": 383,
+          "source": {
+            "offset": 91746,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        },
+        {
+          "block": 2,
+          "index": 544,
+          "source": {
+            "offset": 97821,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "name": "MJMENU_PAGE_CHG",
+      "jump_index": 42,
+      "jump_pc": 630,
+      "jump_field_offset": 1192,
+      "dbg_name_offset": 257690,
+      "q0_offset": 50312,
+      "record_hex": "11000201",
+      "line": 17,
+      "block": 2,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 16,
+          "source": {
+            "offset": 76107,
+            "hex": "090909090969662028206c6f6f705f666c6720213d20302029207b092f2f8fe382a982e782ab82bd82c682ab82cd834e838a8341",
+            "text": "\t\t\t\t\tif ( loop_flg != 0 ) {\t//\u4e0a\u304b\u3089\u304d\u305f\u3068\u304d\u306f\u30af\u30ea\u30a2"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 17,
+          "source": {
+            "offset": 76161,
+            "hex": "0909090909096d735f6261736573656c093d206d61706a756d70726573756c743b",
+            "text": "\t\t\t\t\t\tms_basesel\t= mapjumpresult;"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 2,
+          "index": 14,
+          "source": {
+            "offset": 76087,
+            "hex": "4d4a4d454e555f504147455f4348473a",
+            "text": "MJMENU_PAGE_CHG:"
+          }
+        },
+        {
+          "block": 2,
+          "index": 48,
+          "source": {
+            "offset": 77311,
+            "hex": "090909090909676f746f204d4a4d454e555f504147455f4348473b",
+            "text": "\t\t\t\t\t\tgoto MJMENU_PAGE_CHG;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "evctrl",
+      "scope": 1,
+      "name": "MENU_TOP",
+      "jump_index": 0,
+      "jump_pc": 16,
+      "jump_field_offset": 3272,
+      "dbg_name_offset": 120014,
+      "q0_offset": 16528,
+      "record_hex": "a1010001",
+      "line": 417,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 416,
+          "source": {
+            "offset": 10731,
+            "hex": "0965765f67726d5f62303238302c5c",
+            "text": "\tev_grm_b0280,\\"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 417,
+          "source": {
+            "offset": 10748,
+            "hex": "09302c5c",
+            "text": "\t0,\\"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 958,
+          "source": {
+            "offset": 18527,
+            "hex": "094d454e555f544f503a",
+            "text": "\tMENU_TOP:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1104,
+          "source": {
+            "offset": 22050,
+            "hex": "2f2f0909676f746f204d454e555f544f50",
+            "text": "//\t\tgoto MENU_TOP"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1705,
+          "source": {
+            "offset": 41304,
+            "hex": "09676f746f204d454e555f544f50",
+            "text": "\tgoto MENU_TOP"
+          }
+        }
+      ]
+    },
+    {
+      "module": "evctrl",
+      "scope": 1,
+      "name": "summon",
+      "jump_index": 76,
+      "jump_pc": 3230,
+      "jump_field_offset": 3576,
+      "dbg_name_offset": 121022,
+      "q0_offset": 29384,
+      "record_hex": "c4020001",
+      "line": 708,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 707,
+          "source": {
+            "offset": 13105,
+            "hex": "09755f63686172206d656e755f666c67",
+            "text": "\tu_char menu_flg"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 708,
+          "source": {
+            "offset": 13123,
+            "hex": "",
+            "text": ""
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 1250,
+          "source": {
+            "offset": 25622,
+            "hex": "09090973756d6d6f6e3a",
+            "text": "\t\t\tsummon:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1267,
+          "source": {
+            "offset": 26073,
+            "hex": "0909090909676f746f2073756d6d6f6e3b",
+            "text": "\t\t\t\t\tgoto summon;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "DEBUG_MENU",
+      "jump_index": 26,
+      "jump_pc": 717,
+      "jump_field_offset": 1408,
+      "dbg_name_offset": 283739,
+      "q0_offset": 51316,
+      "record_hex": "81010001",
+      "line": 385,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 384,
+          "source": {
+            "offset": 21372,
+            "hex": "09090909096d705f64656275676d656e755f666c67093d204d41505f44454255474d454e555f464c47434845434b3b",
+            "text": "\t\t\t\t\tmp_debugmenu_flg\t= MAP_DEBUGMENU_FLGCHECK;"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 385,
+          "source": {
+            "offset": 21421,
+            "hex": "6368617209746573743b",
+            "text": "char\ttest;"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 383,
+          "source": {
+            "offset": 21359,
+            "hex": "44454255475f4d454e553a",
+            "text": "DEBUG_MENU:"
+          }
+        },
+        {
+          "block": 2,
+          "index": 180,
+          "source": {
+            "offset": 124657,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        },
+        {
+          "block": 2,
+          "index": 279,
+          "source": {
+            "offset": 129040,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        },
+        {
+          "block": 2,
+          "index": 383,
+          "source": {
+            "offset": 133750,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        },
+        {
+          "block": 2,
+          "index": 544,
+          "source": {
+            "offset": 139825,
+            "hex": "09090909090909090909676f746f0944454255475f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tDEBUG_MENU;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "JUST_OPEN_MJ_MENU",
+      "jump_index": 113,
+      "jump_pc": 1726,
+      "jump_field_offset": 1756,
+      "dbg_name_offset": 284888,
+      "q0_offset": 55352,
+      "record_hex": "3b020001",
+      "line": 571,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 570,
+          "source": {
+            "offset": 26559,
+            "hex": "09090909096261736573656c093d20353b",
+            "text": "\t\t\t\t\tbasesel\t= 5;"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 571,
+          "source": {
+            "offset": 26578,
+            "hex": "090909090969662028206d61706a756d705f6d656e755f666c67203d3d20302029207b",
+            "text": "\t\t\t\t\tif ( mapjump_menu_flg == 0 ) {"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 284,
+          "source": {
+            "offset": 17624,
+            "hex": "09090909676f746f204a5553545f4f50454e5f4d4a5f4d454e553b",
+            "text": "\t\t\t\tgoto JUST_OPEN_MJ_MENU;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 569,
+          "source": {
+            "offset": 26539,
+            "hex": "4a5553545f4f50454e5f4d4a5f4d454e553a",
+            "text": "JUST_OPEN_MJ_MENU:"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "JUST_OPEN_MJ_MENU2",
+      "jump_index": 116,
+      "jump_pc": 1751,
+      "jump_field_offset": 1768,
+      "dbg_name_offset": 284936,
+      "q0_offset": 55452,
+      "record_hex": "41020001",
+      "line": 577,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 576,
+          "source": {
+            "offset": 26700,
+            "hex": "09090909096d735f706167655f6d6178093d204d4a504147455f4d41583b",
+            "text": "\t\t\t\t\tms_page_max\t= MJPAGE_MAX;"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 577,
+          "source": {
+            "offset": 26732,
+            "hex": "090909090923696e636c75646520226d61706374726c5f6d6a2e73726322",
+            "text": "\t\t\t\t\t#include \"mapctrl_mj.src\""
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 564,
+          "source": {
+            "offset": 26357,
+            "hex": "090909090909676f746f204a5553545f4f50454e5f4d4a5f4d454e55323b",
+            "text": "\t\t\t\t\t\tgoto JUST_OPEN_MJ_MENU2;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 575,
+          "source": {
+            "offset": 26679,
+            "hex": "4a5553545f4f50454e5f4d4a5f4d454e55323a",
+            "text": "JUST_OPEN_MJ_MENU2:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1756,
+          "source": {
+            "offset": 87231,
+            "hex": "090909090909676f746f204a5553545f4f50454e5f4d4a5f4d454e55323b",
+            "text": "\t\t\t\t\t\tgoto JUST_OPEN_MJ_MENU2;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "MJMENU_PAGE_CHG",
+      "jump_index": 117,
+      "jump_pc": 1856,
+      "jump_field_offset": 1772,
+      "dbg_name_offset": 284955,
+      "q0_offset": 55872,
+      "record_hex": "11000201",
+      "line": 17,
+      "block": 2,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 16,
+          "source": {
+            "offset": 118111,
+            "hex": "090909090969662028206c6f6f705f666c6720213d20302029207b092f2f8fe382a982e782ab82bd82c682ab82cd834e838a8341",
+            "text": "\t\t\t\t\tif ( loop_flg != 0 ) {\t//\u4e0a\u304b\u3089\u304d\u305f\u3068\u304d\u306f\u30af\u30ea\u30a2"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 17,
+          "source": {
+            "offset": 118165,
+            "hex": "0909090909096d735f6261736573656c093d206d61706a756d70726573756c743b",
+            "text": "\t\t\t\t\t\tms_basesel\t= mapjumpresult;"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 2,
+          "index": 14,
+          "source": {
+            "offset": 118091,
+            "hex": "4d4a4d454e555f504147455f4348473a",
+            "text": "MJMENU_PAGE_CHG:"
+          }
+        },
+        {
+          "block": 2,
+          "index": 48,
+          "source": {
+            "offset": 119315,
+            "hex": "090909090909676f746f204d4a4d454e555f504147455f4348473b",
+            "text": "\t\t\t\t\t\tgoto MJMENU_PAGE_CHG;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "WEATHER_MENU",
+      "jump_index": 241,
+      "jump_pc": 5374,
+      "jump_field_offset": 2268,
+      "dbg_name_offset": 286622,
+      "q0_offset": 69944,
+      "record_hex": "64020001",
+      "line": 612,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 611,
+          "source": {
+            "offset": 28130,
+            "hex": "09090909096d65736e756d62657228204d41505f4d454e555f57494e2c20302c20776561746865725f7479706520293b",
+            "text": "\t\t\t\t\tmesnumber( MAP_MENU_WIN, 0, weather_type );"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 612,
+          "source": {
+            "offset": 28180,
+            "hex": "090909090961736b706f7328204d41505f4d454e555f57494e2c20776561746865725f747970652b312c203020293b",
+            "text": "\t\t\t\t\taskpos( MAP_MENU_WIN, weather_type+1, 0 );"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 610,
+          "source": {
+            "offset": 28115,
+            "hex": "574541544845525f4d454e553a",
+            "text": "WEATHER_MENU:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 622,
+          "source": {
+            "offset": 28757,
+            "hex": "090909090909676f746f20574541544845525f4d454e553b",
+            "text": "\t\t\t\t\t\tgoto WEATHER_MENU;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "INDEX_MOVE_FROM_MENU",
+      "jump_index": 302,
+      "jump_pc": 6559,
+      "jump_field_offset": 2512,
+      "dbg_name_offset": 287459,
+      "q0_offset": 74684,
+      "record_hex": "65030001",
+      "line": 869,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 868,
+          "source": {
+            "offset": 36703,
+            "hex": "0909090909676f746f5f666c67093d20303b",
+            "text": "\t\t\t\t\tgoto_flg\t= 0;"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 869,
+          "source": {
+            "offset": 36723,
+            "hex": "090909090969662028206d735f6d6a6d656e755f6b65795f666c67203d3d20284d41505f44454255475f48454c505f43414e43454c2b31292029207b",
+            "text": "\t\t\t\t\tif ( ms_mjmenu_key_flg == (MAP_DEBUG_HELP_CANCEL+1) ) {"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 867,
+          "source": {
+            "offset": 36680,
+            "hex": "494e4445585f4d4f56455f46524f4d5f4d454e553a",
+            "text": "INDEX_MOVE_FROM_MENU:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1093,
+          "source": {
+            "offset": 43919,
+            "hex": "09090909090909090909676f746f09494e4445585f4d4f56455f46524f4d5f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\t\t\tgoto\tINDEX_MOVE_FROM_MENU;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "BENRI",
+      "jump_index": 306,
+      "jump_pc": 6611,
+      "jump_field_offset": 2528,
+      "dbg_name_offset": 287523,
+      "q0_offset": 74892,
+      "record_hex": "7d030001",
+      "line": 893,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 892,
+          "source": {
+            "offset": 37445,
+            "hex": "090909090961736b706f7328204d41505f4d454e555f57494e2c206c6f63616c726573756c742c203020293b",
+            "text": "\t\t\t\t\taskpos( MAP_MENU_WIN, localresult, 0 );"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 893,
+          "source": {
+            "offset": 37491,
+            "hex": "09090909096d65736e756d62657228204d41505f4d454e555f57494e2c20302c20675f636f6d5f6d6f7669655f646562756720293b",
+            "text": "\t\t\t\t\tmesnumber( MAP_MENU_WIN, 0, g_com_movie_debug );"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 891,
+          "source": {
+            "offset": 37437,
+            "hex": "42454e52493a",
+            "text": "BENRI:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 919,
+          "source": {
+            "offset": 38286,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 924,
+          "source": {
+            "offset": 38384,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 934,
+          "source": {
+            "offset": 38591,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 944,
+          "source": {
+            "offset": 38804,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 954,
+          "source": {
+            "offset": 39023,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 967,
+          "source": {
+            "offset": 39390,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1036,
+          "source": {
+            "offset": 41505,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1100,
+          "source": {
+            "offset": 44107,
+            "hex": "0909090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1104,
+          "source": {
+            "offset": 44227,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1109,
+          "source": {
+            "offset": 44365,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1114,
+          "source": {
+            "offset": 44506,
+            "hex": "09090909090909676f746f0942454e52493b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "RE_HIGHMODELSETTING",
+      "jump_index": 327,
+      "jump_pc": 7837,
+      "jump_field_offset": 2612,
+      "dbg_name_offset": 287807,
+      "q0_offset": 79796,
+      "record_hex": "d3030001",
+      "line": 979,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 978,
+          "source": {
+            "offset": 39674,
+            "hex": "0909090909090961736b706f7328204d41505f4d454e555f57494e2c206c6f63616c726573756c74322c203020293b",
+            "text": "\t\t\t\t\t\t\taskpos( MAP_MENU_WIN, localresult2, 0 );"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 979,
+          "source": {
+            "offset": 39723,
+            "hex": "090909090909096d65736f70656e737065656428204d41505f4d454e555f57494e202c203020293b",
+            "text": "\t\t\t\t\t\t\tmesopenspeed( MAP_MENU_WIN , 0 );"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 977,
+          "source": {
+            "offset": 39652,
+            "hex": "52455f484947484d4f44454c53455454494e473a",
+            "text": "RE_HIGHMODELSETTING:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1000,
+          "source": {
+            "offset": 40384,
+            "hex": "090909090909090909676f746f2052455f484947484d4f44454c53455454494e473b",
+            "text": "\t\t\t\t\t\t\t\t\tgoto RE_HIGHMODELSETTING;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1018,
+          "source": {
+            "offset": 40961,
+            "hex": "090909090909090909676f746f2052455f484947484d4f44454c53455454494e473b",
+            "text": "\t\t\t\t\t\t\t\t\tgoto RE_HIGHMODELSETTING;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1033,
+          "source": {
+            "offset": 41442,
+            "hex": "090909090909090909676f746f2052455f484947484d4f44454c53455454494e473b",
+            "text": "\t\t\t\t\t\t\t\t\tgoto RE_HIGHMODELSETTING;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "BEHIND_CAMERA",
+      "jump_index": 355,
+      "jump_pc": 8184,
+      "jump_field_offset": 2724,
+      "dbg_name_offset": 288194,
+      "q0_offset": 81184,
+      "record_hex": "12040001",
+      "line": 1042,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 1041,
+          "source": {
+            "offset": 41600,
+            "hex": "0909090909090961736b706f7328204d41505f4d454e555f57494e2c206c6f63616c726573756c74322c203020293b",
+            "text": "\t\t\t\t\t\t\taskpos( MAP_MENU_WIN, localresult2, 0 );"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 1042,
+          "source": {
+            "offset": 41649,
+            "hex": "090909090909096d65736f70656e737065656428204d41505f4d454e555f57494e202c203020293b",
+            "text": "\t\t\t\t\t\t\tmesopenspeed( MAP_MENU_WIN , 0 );"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 1039,
+          "source": {
+            "offset": 41556,
+            "hex": "424548494e445f43414d4552413a",
+            "text": "BEHIND_CAMERA:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1098,
+          "source": {
+            "offset": 44066,
+            "hex": "090909090909090909676f746f09424548494e445f43414d4552413b",
+            "text": "\t\t\t\t\t\t\t\t\tgoto\tBEHIND_CAMERA;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "INDEX_MOVE",
+      "jump_index": 369,
+      "jump_pc": 8447,
+      "jump_field_offset": 2780,
+      "dbg_name_offset": 288383,
+      "q0_offset": 82236,
+      "record_hex": "3d040001",
+      "line": 1085,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 1084,
+          "source": {
+            "offset": 43378,
+            "hex": "0909090909090909096d735f6d6a6d656e755f6b65795f666c67093d204d41505f44454255475f48454c505f43414e43454c3b",
+            "text": "\t\t\t\t\t\t\t\t\tms_mjmenu_key_flg\t= MAP_DEBUG_HELP_CANCEL;"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 1085,
+          "source": {
+            "offset": 43431,
+            "hex": "0909090909090909096d65736f70656e737065656428204d41505f4d454e555f57494e202c203020293b",
+            "text": "\t\t\t\t\t\t\t\t\tmesopenspeed( MAP_MENU_WIN , 0 );"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 866,
+          "source": {
+            "offset": 36657,
+            "hex": "0909090909676f746f09494e4445585f4d4f56453b",
+            "text": "\t\t\t\t\tgoto\tINDEX_MOVE;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1083,
+          "source": {
+            "offset": 43365,
+            "hex": "494e4445585f4d4f56453a",
+            "text": "INDEX_MOVE:"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "BENRI_DEBUG",
+      "jump_index": 389,
+      "jump_pc": 8937,
+      "jump_field_offset": 2860,
+      "dbg_name_offset": 288657,
+      "q0_offset": 84196,
+      "record_hex": "85040001",
+      "line": 1157,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 1156,
+          "source": {
+            "offset": 45794,
+            "hex": "090909090961736b706f7328204d41505f4d454e555f57494e2c206c6f63616c726573756c742c203020293b",
+            "text": "\t\t\t\t\taskpos( MAP_MENU_WIN, localresult, 0 );"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 1157,
+          "source": {
+            "offset": 45840,
+            "hex": "09090909096d65736f70656e737065656428204d41505f4d454e555f57494e202c203020293b",
+            "text": "\t\t\t\t\tmesopenspeed( MAP_MENU_WIN , 0 );"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 1155,
+          "source": {
+            "offset": 45780,
+            "hex": "42454e52495f44454255473a",
+            "text": "BENRI_DEBUG:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1176,
+          "source": {
+            "offset": 46392,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1180,
+          "source": {
+            "offset": 46484,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1184,
+          "source": {
+            "offset": 46604,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1188,
+          "source": {
+            "offset": 46718,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1192,
+          "source": {
+            "offset": 46818,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1196,
+          "source": {
+            "offset": 46926,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1200,
+          "source": {
+            "offset": 47040,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1204,
+          "source": {
+            "offset": 47157,
+            "hex": "09090909090909676f746f0942454e52495f44454255473b",
+            "text": "\t\t\t\t\t\t\tgoto\tBENRI_DEBUG;"
+          }
+        }
+      ]
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "name": "SCENARIO_MENU",
+      "jump_index": 919,
+      "jump_pc": 15512,
+      "jump_field_offset": 4980,
+      "dbg_name_offset": 296570,
+      "q0_offset": 110496,
+      "record_hex": "c8040001",
+      "line": 1224,
+      "block": 0,
+      "flag": 1,
+      "candidates": [
+        {
+          "convention": "one-based",
+          "index": 1223,
+          "source": {
+            "offset": 47615,
+            "hex": "090909090969662028206c6173745f7363666c675f706f735f317374666c67203d3d20302029207b",
+            "text": "\t\t\t\t\tif ( last_scflg_pos_1stflg == 0 ) {"
+          }
+        },
+        {
+          "convention": "zero-based",
+          "index": 1224,
+          "source": {
+            "offset": 47657,
+            "hex": "09090909090961736b706f7328204d41505f4d454e555f57494e2c2032202c203020293b092f2f836683748348838b836782cd817582b382a282be82a2817682c9",
+            "text": "\t\t\t\t\t\taskpos( MAP_MENU_WIN, 2 , 0 );\t//\u30c7\u30d5\u30a9\u30eb\u30c8\u306f\u300c\u3055\u3044\u3060\u3044\u300d\u306b"
+          }
+        }
+      ],
+      "occurrences": [
+        {
+          "block": 0,
+          "index": 573,
+          "source": {
+            "offset": 26644,
+            "hex": "090909090909676f746f095343454e4152494f5f4d454e553b",
+            "text": "\t\t\t\t\t\tgoto\tSCENARIO_MENU;"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1221,
+          "source": {
+            "offset": 47577,
+            "hex": "5343454e4152494f5f4d454e553a",
+            "text": "SCENARIO_MENU:"
+          }
+        },
+        {
+          "block": 0,
+          "index": 1340,
+          "source": {
+            "offset": 52027,
+            "hex": "0909090909090909676f746f095343454e4152494f5f4d454e553b",
+            "text": "\t\t\t\t\t\t\t\tgoto\tSCENARIO_MENU;"
+          }
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "inputs_unchanged": true,
+    "peer_consumer_unchanged": true,
+    "peer_layout_unchanged": true,
+    "pc_off": true
+  },
+  "limits": "Named entries only. Lexical occurrence is not automatically declaration/attribution; preserve ambiguities. No universal coordinate safety, compiler writer identity/cause, normal game/source loading or SN1 X closure; evctrl shared tail is an explicit prerequisite exception."
+}

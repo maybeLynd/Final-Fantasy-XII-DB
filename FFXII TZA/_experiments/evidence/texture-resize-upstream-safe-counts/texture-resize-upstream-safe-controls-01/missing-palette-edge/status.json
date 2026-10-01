@@ -1,0 +1,6 @@
+{
+  "case": "missing-palette-edge",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error_seen": true
+}

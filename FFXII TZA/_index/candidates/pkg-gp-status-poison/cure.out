@@ -1,0 +1,7 @@
+PASS  R remove slot: candidates & present & not held in +0x3C -> +0x58 bit and +0x5C[i] = 0xFF
+PASS  B builder: random-one (row +0x2C bit 9), Remedy 0x62 from status +6 flags 0x400 / 0x4000 / 0x1000 / 0x800, else 00384C30
+PASS  O non-zero recipe -> row +0x18; zero recipe -> equipment row +0x20
+PASS  D Poisona/Antidote +0x18 = 0x100 (Poison); Remedy base ['Blind', 'Poison', 'Silence', 'Slow']; +bit4 ['Stop', 'Doom', 'Disease']; +bit5 ['Petrify', 'Confuse', 'Oil']; +bit6 ['Sleep', 'Sap', 'Disable', 'Immobilize']; 4 identical status_data copies
+PASS  W stage 2 also writes the remove mask (expired statuses; HP Critical bit 29)
+PASS  M model: Antidote cures Poison; not a held Poison; not on a KO'd target unless the cure also lifts KO
+FAILS 0

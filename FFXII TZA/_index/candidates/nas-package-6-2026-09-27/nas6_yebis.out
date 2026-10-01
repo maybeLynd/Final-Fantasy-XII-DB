@@ -1,0 +1,4 @@
+PASS  Y1 no YEBIS-related string carries a version (36 strings) [b'.................. YEBIS Expiration Problem ....', b'..\\src\\UT\\ppfxLicense.cpp', b'.?AVPfxShimD3D11@Yebis@@', b'.?AVYebisPfxMemoryAllocatorD3D11@Yebis@@', b'EnableYebis', b'FeatureId = YEBIS_D3D11, BeginYear = 0, BeginMon', b'The YEBIS library passed over the expiration dat', b'YEBIS DOF Info (2ndScreen): ', b'YEBIS DOF Info: ', b'YEBIS Expiration Problem', b'YEBIS_D3D11', b'Yebis enable: ', b'[YEBIS]Yebis Enable Failed!!!', b'd:\\bamboo\\build\\yeblic-ppfxlic-bl2015\\src\\gpu\\GP']
+PASS  Y2 sensitivity: the scanner finds the known banners {'zlib': True, 'lua': True, 'libvpx': True}
+PASS  Y3 the image carries the build line and the build date, not a version 
+FAILS 0

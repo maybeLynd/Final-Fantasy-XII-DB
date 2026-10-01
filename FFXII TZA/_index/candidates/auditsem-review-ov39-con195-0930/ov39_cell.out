@@ -1,0 +1,4 @@
+OV-39 cell length 1589
+clause context: ensus (every @FRP name NUL-terminated; OV-26's 320,736 entries in bounds); the @FEF-specific inputs have no shipped producer - the configuration table 02B64380 is never populated and @FEF appears only in 144 PS2-era obj_
+struck around it: False
+appended correction at offset 842 : Corrected 2026-09-29 (FABLE, on OPUS's CON-195, OPUS-NOTICE-FABLE-OV39-ROW-CON195-0929):* the configuration clause above is wrong. The table `02B64380` IS seeded at start-up: `0041E3A0` calls `00409F80` (`0041E40B`), which calls the populator `0040A230` (`0040

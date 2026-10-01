@@ -1,0 +1,61 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "3ea4f35cde0aaaf91e389cfcbf62271fe51c69b7"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "53b7e11321d188de104604f2fabed9b565333cfc"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "780ca027a6fb97dffbf5a8241b8bf6e4e8f92698"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "d2efd7abadbffe4eb590b2769778522daec5cf38"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "84f7043ddb44a075e300777d0efddeb15c21123c"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "c39fa10e5cb8c6bc9b7ec376fb36bab442988902"
+    },
+    {
+      "path": "retained/changed-shift-source.bin",
+      "git_blob": "d0978311fce4d8027d620ec2e0cd53e1dc7dd5b4"
+    },
+    {
+      "path": "retained/contract.md",
+      "git_blob": "4abd9e0ebfe8cf96017e953fddc0f22488cb6184"
+    },
+    {
+      "path": "retained/field-preimages.json",
+      "git_blob": "3c717049d518752b83321891305d8e8726b73efd"
+    },
+    {
+      "path": "retained/getter-context.bin",
+      "git_blob": "494ce17fd54384f0ff7bc2281ef176d26e946f57"
+    },
+    {
+      "path": "retained/producer.py",
+      "git_blob": "f1b39bde7a0aec8350db63ba09a063bd46e74ddb"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "071803684cdd071c20897724f26200f1befa9529"
+    }
+  ]
+}

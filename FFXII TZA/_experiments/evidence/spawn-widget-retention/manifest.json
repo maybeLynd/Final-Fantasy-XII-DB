@@ -1,0 +1,106 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_retention_primary.py",
+      "bytes": 4763,
+      "sha256": "af347f7eda92b7e42688365607d12e431cba43672b205fcea607c4b2c948ce4f",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-retention-primary.json",
+      "bytes": 23196,
+      "sha256": "a6fee62e78401698665953f6ff27e38287cc8170490e9b2adec53abd2a23c10c",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "helpers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_retention_helpers.py",
+      "bytes": 4763,
+      "sha256": "b6390d9a2516e3c0ab75d2d8a8d7f413c1ab63684824dc82e5ff05b5dff8dcf6",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "helpers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-retention-helpers.json",
+      "bytes": 35435,
+      "sha256": "3b53320c456ee98bfdc9fb64c7f1f0be4669907fa9b8c499ee9103684c8f4332",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "adapters.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_retention_adapters.py",
+      "bytes": 4746,
+      "sha256": "64c06844a84f030cbe1ed18b416c7de6f12c1a1a35c260a47b227cec8bdc7ec4",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "adapters.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-retention-adapters.json",
+      "bytes": 13980,
+      "sha256": "2be474c6a6de05b2b897d005532abdfe94c16f7f19e53df7e9d03935de655812",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_widget_retention_check.py",
+      "bytes": 5445,
+      "sha256": "d6a339b893ef6ef71f75f9796f2efbe8356a80b989902007e5745c70b1a63268",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-widget-retention-check.json",
+      "bytes": 12967,
+      "sha256": "392707405c54a14016bca028bba14cc311c6d110b3c94d37876b0390695c9ffd",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "adapters.json": {
+      "bytes": 13442,
+      "sha256": "6e69045f9c3f8fcfa44ac4e176f2a95508d55707006706289549ecb69a23f2b3"
+    },
+    "adapters.py": {
+      "bytes": 4746,
+      "sha256": "64c06844a84f030cbe1ed18b416c7de6f12c1a1a35c260a47b227cec8bdc7ec4"
+    },
+    "check.json": {
+      "bytes": 12967,
+      "sha256": "392707405c54a14016bca028bba14cc311c6d110b3c94d37876b0390695c9ffd"
+    },
+    "check.py": {
+      "bytes": 5445,
+      "sha256": "d6a339b893ef6ef71f75f9796f2efbe8356a80b989902007e5745c70b1a63268"
+    },
+    "helpers.json": {
+      "bytes": 34079,
+      "sha256": "ac40a70058fa436211a7c3dbbc8244eb45b8f036796b4381370c42fdc44a0981"
+    },
+    "helpers.py": {
+      "bytes": 4763,
+      "sha256": "b6390d9a2516e3c0ab75d2d8a8d7f413c1ab63684824dc82e5ff05b5dff8dcf6"
+    },
+    "primary.json": {
+      "bytes": 22302,
+      "sha256": "18a92d1555e56b48ddaa3d149ef8129ae827de96777130d6f177ee2870c3caed"
+    },
+    "primary.py": {
+      "bytes": 4763,
+      "sha256": "af347f7eda92b7e42688365607d12e431cba43672b205fcea607c4b2c948ce4f"
+    },
+    "README.md": {
+      "bytes": 2962,
+      "sha256": "1b4d806f0bd45549a6f9cd85188b6543370e48f8b41e4bfd812105cf5a9e96a2"
+    }
+  }
+}

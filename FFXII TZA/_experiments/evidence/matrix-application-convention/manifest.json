@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7649,
+      "sha256": "e743893b01c8469736cc0806ad6e216f6b73a9f0aef9b8678424aa05969ee05c"
+    },
+    {
+      "path": "historical-checker-format-failure/check.py",
+      "bytes": 6645,
+      "sha256": "637e514dba0d3f496b72c0a4f29908cc8628afbf3b7fd67d9bd2d212c2226c2e"
+    },
+    {
+      "path": "historical-checker-format-failure/failure.json",
+      "bytes": 670,
+      "sha256": "5a6ec20b301d9083f5a5f0bfeffd424a4e04342fc79facbb35456145c9f09c00"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 3385,
+      "sha256": "6a109e1510d73df4461ce009d93f2539849c505e8f70d1bc46f089fdca4fda2e"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1697,
+      "sha256": "4855e96c0167a5168c6efd99fc4c2bd2eb15f119973ba0a670eea5a85db2ea3a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3230,
+      "sha256": "41ae33a0263d54fab4c5512c7a6e1b3fd6dfb7dea5e16db0321c6e5c8dcb2a54"
+    },
+    {
+      "path": "retained/EXP-219-kind1C-catchall-emit-internals-exec.md",
+      "bytes": 7696,
+      "sha256": "db4f973706fe132018e822499620db4233ae959d3240941233782e2f50d3dba4"
+    },
+    {
+      "path": "retained/gs-manifest.json",
+      "bytes": 1894,
+      "sha256": "a2d1defc4397880abcf66833fa956e73c9ade98cda6b81fd4cc888ee3b07255e"
+    },
+    {
+      "path": "retained/gs-observation.json",
+      "bytes": 7642,
+      "sha256": "5356d230d65d8800e83ca1645b68f1ed4c1fc6bddf84dd3e2695f70ec803c5db"
+    },
+    {
+      "path": "retained/gs-raw-results.json",
+      "bytes": 412187,
+      "sha256": "904079d9a34e109a46f1df153ea67e439cea98c6af2bcefb30e1457746853e29"
+    },
+    {
+      "path": "retained/gs-source.json",
+      "bytes": 33520,
+      "sha256": "467e3ea5e5a13015b103585831bfb22adc106aeaac9dcb6f86f453e22e367d9d"
+    },
+    {
+      "path": "retained/gs-validation.json",
+      "bytes": 346,
+      "sha256": "4b6454f0c6eb80defac2d1067f5d68bceba71f139557cb93de9277e00b7ca142"
+    },
+    {
+      "path": "source.json",
+      "bytes": 2385,
+      "sha256": "dea06a59a7c07a0eb5f98652a5012577f62866b9601ad93d4a86d363241c955f"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 391,
+      "sha256": "4bb93d78e699f210fb16df5242c6bb29b3edc5d56973938e5f29735a9d15a141"
+    }
+  ],
+  "limits": "Exact application/storage pairing from existing immutable original-code control, no new execution/native effects/universal matrix convention. Owner/independent acceptance pending."
+}

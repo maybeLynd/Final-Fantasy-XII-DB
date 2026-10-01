@@ -1,0 +1,12 @@
+{
+  "question": "For the six prepared direct628100 caller candidates, which original EDXcount producers guaranteepositive ordinary count and which require further proof?",
+  "hypotheses": [
+    "All selected validated original callsites supplypositive counts",
+    "At least one selected original caller can supplyzero/unknown count"
+  ],
+  "existing": "Higher153B selected drain-before-resize proved; conditional zero-count nullread. Raw referenceprep05 detects six sites only, not all callers.",
+  "method": "A shipping bytes, exact PE metadata and selected instruction/dataflow; no live/native/harness",
+  "tool": "Reuse capture-index-path.py and actual shared byte/access-role validator. First align candidates in complete containing pdata fragments; validate roots/calls before semantic dataflow.",
+  "acceptance": "Only exact validated callsite/count producer or complete path invariant settles selected scope. Missing predecessor/count state stays open; raw absence and six samples do not prove universal domain.",
+  "stop": "If fragments/calls fail identity/annotation or dynamic producer lacks bounds, preserve limits and select explicit next discriminator; no unchanged recapture or automatic live escalation"
+}

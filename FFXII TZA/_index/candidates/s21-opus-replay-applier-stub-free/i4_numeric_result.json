@@ -1,0 +1,55 @@
+{
+ "cases": {
+  "C_status_result_reaches_the_outer_recompute": true,
+  "N1_target_hp_numeric_no_outer_recompute": true,
+  "N2_target_mp_numeric_no_outer_recompute": true
+ },
+ "ok": true,
+ "status_control": {
+  "halt": [],
+  "hp": 1,
+  "mp": 0,
+  "ok": true,
+  "outer_recompute": [
+   [
+    1982402560,
+    0
+   ]
+  ],
+  "setters": {
+   "source_hp": 0,
+   "source_mp": 0,
+   "target_hp": 0,
+   "target_mp": 0
+  },
+  "status_calls": 1
+ },
+ "target_hp": {
+  "halt": [],
+  "hp": 540,
+  "mp": 100,
+  "ok": true,
+  "outer_recompute": [],
+  "setters": {
+   "source_hp": 0,
+   "source_mp": 0,
+   "target_hp": 1,
+   "target_mp": 0
+  },
+  "status_calls": 0
+ },
+ "target_mp": {
+  "halt": [],
+  "hp": 500,
+  "mp": 100,
+  "ok": true,
+  "outer_recompute": [],
+  "setters": {
+   "source_hp": 0,
+   "source_mp": 0,
+   "target_hp": 0,
+   "target_mp": 1
+  },
+  "status_calls": 0
+ }
+}

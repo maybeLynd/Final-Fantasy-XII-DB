@@ -1,0 +1,13 @@
+{
+ "action": "finish",
+ "task": "FABLE-CONTRA-SWE2EC7-00600A60-PRECONDITION-IS-INVERTED",
+ "result_refs": [
+  "commit:PENDING"
+ ],
+ "note": "FABLE is right: 00600A60 requires [ctx+8] bit0 SET (not eax/test/je at 00600A74-78, refuses 0x16 when clear) and clears it (and ecx,~1 store at 00600A8A). Clause rewritten: 005FEFD0 requires clear+sets (begin), 00600A60 requires set+clears (end); 'profile open' -> 'profile end'.",
+ "resources": [
+  {
+   "key": "notice:fable/fable-contra-swe2ec7-00600a60-precondition"
+  }
+ ]
+}

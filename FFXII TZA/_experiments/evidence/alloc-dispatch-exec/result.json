@@ -1,0 +1,37 @@
+{
+ "cases": {
+  "a100-direct": "ok",
+  "a100-fallback": "ok",
+  "a100-null": "ok",
+  "a100-retry": "ok",
+  "bfe0-spin": "ok",
+  "bfe0-karg-bit3": "ok",
+  "bfe0-karg-bit3-ok": "ok",
+  "bfe0-desc-hi": "ok",
+  "bfe0-nocb": "ok",
+  "bfe0-retry": "ok",
+  "bfe0-fail": "ok",
+  "bfe0-poolflags": "ok",
+  "bfe0-q50-null": "ok",
+  "c620-basic": "ok",
+  "c620-neg": "ok",
+  "bfe0-kind-e": "ok"
+ },
+ "mutants": {
+  "m-a100-kind": "killed",
+  "m-a100-je": "killed",
+  "m-a100-karg": "killed",
+  "m-a100-stb2": "killed",
+  "m-a100-off10": "killed",
+  "m-a100-w2": "killed",
+  "m-bfe0-gate": "killed",
+  "m-bfe0-kind": "killed",
+  "m-bfe0-str": "killed",
+  "m-bfe0-q50": "killed",
+  "m-bfe0-flag2": "killed",
+  "m-bfe0-bt2": "killed",
+  "m-bfe0-rty": "killed",
+  "m-c620-sub": "killed"
+ },
+ "bad_sites": []
+}

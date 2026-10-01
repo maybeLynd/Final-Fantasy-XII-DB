@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBMAP-0922",
+ "note": "Published 6715ccbd5: hctg +0x0C = page->resource-slot map offset, +0x10 = pageCount, +0x16 = slot bound; resource id arithmetic via 00575C30; buffer graph closed (+0x108 hctg/+0x110 hdat/+0x118 himg); rec+0x04 hi/lo halves bound. Carried EC7-125 batch-90 audit section (complete parked content, documented handoff).",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

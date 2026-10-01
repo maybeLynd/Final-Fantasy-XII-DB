@@ -1,0 +1,11 @@
+baseline_fresh                     exit=0  VALID non-sentinel invariant; local bit30-only exclusion REFUTED; candidate rows [511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524
+table_row511_bit30_cleared         exit=1  ValueError: table changed
+table_kr_missing                   exit=1  FileNotFoundError: [Errno 2] No such file or directory: 'C:\\t\\ov42pre_ffnkqfjg\\tab_missing\\action_data_kr.st2e'
+witness_3092C5_byte_width          exit=1  ValueError: code witness mismatch
+witness_30CE9A_polarity            exit=1  ValueError: code witness mismatch
+upstream_role_control_failed       exit=1  ValueError: upstream roles invalid
+raw_claims_other_image             exit=1  ValueError: wrong image
+receipt_8_packs                    exit=1  ValueError: missing pack receipt
+witness_bytes_changed_text_kept    exit=0  VALID non-sentinel invariant; local bit30-only exclusion REFUTED; candidate rows [511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524
+existing_output_path               exit=1  ValueError: immutable result exists
+temp dir removed: True

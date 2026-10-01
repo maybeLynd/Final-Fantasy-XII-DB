@@ -1,0 +1,8 @@
+PASS  C1 63,432 calls of the two verbs, every one a pushed constant
+PASS  C2 values authored: [1, 3, 4, 5, 6] (2 and 7 never)
+PASS  C3 type 1: the default for enemies (btlAtelSetUnitType(0), 59,814 calls; monster_NN, unique monsters, trial, lot)
+PASS  C4 type 3: allied third parties and event combatants (SD-160)
+PASS  C5 type 4: system objects - save crystals, anchor actors, treasure chests, a corpse - plus a few monsters
+PASS  C6 type 5: town and prison NPCs (neither friend nor foe)
+PASS  C7 type 6: stationary boss parts (45 calls: the Demon Wall, a boss weapon, Daedalus)
+FAILS 0

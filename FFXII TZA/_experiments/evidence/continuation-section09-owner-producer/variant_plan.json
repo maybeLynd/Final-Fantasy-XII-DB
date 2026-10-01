@@ -1,0 +1,72 @@
+[
+  {
+    "variant": "init_only_four_groups",
+    "address": "003DD83B",
+    "original": "83fa05",
+    "replacement": "83fa04",
+    "required_failure": "initializes_all_80_identity_state_route_records"
+  },
+  {
+    "variant": "arm_prepared_instead_of_pending",
+    "address": "003DDA4E",
+    "original": "c744080402000000",
+    "replacement": "c744080401000000",
+    "required_failure": "arm_enters_state2"
+  },
+  {
+    "variant": "skip_pending_consumption",
+    "address": "003DD672",
+    "original": "412107",
+    "replacement": "909090",
+    "required_failure": "group0_pending_bit_consumed"
+  },
+  {
+    "variant": "skip_file_index_increment",
+    "address": "003DD618",
+    "original": "66ffc0",
+    "replacement": "909090",
+    "required_failure": "group0_mapped_index_plus_one"
+  },
+  {
+    "variant": "offset_uses_length_accessor",
+    "address": "003DD621",
+    "original": "e83a1cf5ff",
+    "replacement": "e86a1cf5ff",
+    "required_failure": "group0_offset_from_index_metadata"
+  },
+  {
+    "variant": "resolve_without_pinning",
+    "address": "003DD5EC",
+    "original": "e80fcaf8ff",
+    "replacement": "e83fdbf8ff",
+    "required_failure": "group0_source_is_pinned"
+  },
+  {
+    "variant": "preferred_arena_is_default",
+    "address": "003DD59E",
+    "original": "8d4809",
+    "replacement": "8d4804",
+    "required_failure": "arena_variant0_actual_arena"
+  },
+  {
+    "variant": "ignore_deferral_gate",
+    "address": "003DD636",
+    "original": "7409",
+    "replacement": "eb09",
+    "required_failure": "hold_enters_state1_without_queue"
+  },
+  {
+    "variant": "positive_errors_deliver_success_callback",
+    "address": "0032E386",
+    "original": "750c",
+    "replacement": "9090",
+    "required_failure": "outcome1_error_or_cancel_leaves_owner_state3"
+  },
+  {
+    "variant": "skip_sixteenth_pending_slot",
+    "address": "003DD68A",
+    "original": "4183fe10",
+    "replacement": "4183fe0f",
+    "required_failure": "group1_submitted_state3"
+  }
+]

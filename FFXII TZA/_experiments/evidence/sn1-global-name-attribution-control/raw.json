@@ -1,0 +1,2169 @@
+{
+  "method": "A exact original retained metadata/native-descriptor identity and unchanged published OPUS on() predicate selection; no original compiler/VM/native/guest/live execution",
+  "reference": {
+    "original_material_commit": "ec5e54a990122f7a071cc1d2c811dfd2271e96b3",
+    "publication_correction_commit": "b94b449ac08ffecde9c9045f984ab6f64c0b8db7",
+    "files": [
+      {
+        "path": "retained/evctrl.dbg",
+        "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06",
+        "bytes": 126112
+      },
+      {
+        "path": "retained/evctrl.ebp",
+        "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02",
+        "bytes": 38720
+      },
+      {
+        "path": "retained/evctrl.sbn",
+        "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5",
+        "bytes": 57816
+      },
+      {
+        "path": "retained/selected-sbn-functions.py",
+        "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48",
+        "bytes": 602
+      },
+      {
+        "path": "retained/parent61-raw.json",
+        "sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3",
+        "bytes": 68726
+      },
+      {
+        "path": "retained/resolver591.bin",
+        "sha256": "7909d30a3b1f82ee5e5c91a507d9313be45c5ccc5b71d210f1fac2ae3f595241",
+        "bytes": 591
+      }
+    ],
+    "original65_strict_manifest_valid": false,
+    "selected_original_files_committed_verified": true,
+    "primary_path": "Database/FFXII TZA/_index/candidates/sn1-layouts/sn1_variable_binding.py",
+    "primary_commit": "6414b46d40fac4a09af1d912f83804ef7a3e07df",
+    "primary_sha256": "98d0e1c6ebab3995b9e0440a2c4b98f30dc1399845e0f11adbb8f9e91426a5a5",
+    "predicate_ast_sha256": "d71f669b02c7e5ad367d527215cfe73f7f19671759a9d885274af890c0346230"
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+  },
+  "driver_sha256": "7382c45dc54e60079bd6a2caf710e2e449ebfe3c54510b1f6ffe3bec42b06b5a",
+  "rows": [
+    {
+      "index": 1,
+      "native_record_offset": 7404,
+      "native_record_hex": "030a000000000000",
+      "descriptor": "00000a03",
+      "t0_field_offset": 128,
+      "t0_field_hex": "46000000",
+      "t0_name": {
+        "pool_position": 70,
+        "offset": 72806,
+        "hex": "675f62746c5f8341815b83588368838983538393",
+        "text": "g_btl_\u30a2\u30fc\u30b9\u30c9\u30e9\u30b4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 91,
+        "offset": 72827,
+        "hex": "675f62746c5f837e837e8362834e834e8343815b8393",
+        "text": "g_btl_\u30df\u30df\u30c3\u30af\u30af\u30a4\u30fc\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 260,
+          "record_offset": 2676,
+          "record_hex": "030a000046000000",
+          "descriptor": "00000a03",
+          "name": {
+            "pool_position": 70,
+            "offset": 72806,
+            "hex": "675f62746c5f8341815b83588368838983538393",
+            "text": "g_btl_\u30a2\u30fc\u30b9\u30c9\u30e9\u30b4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "native_record_offset": 7412,
+      "native_record_hex": "040a000000000000",
+      "descriptor": "00000a04",
+      "t0_field_offset": 132,
+      "t0_field_hex": "5b000000",
+      "t0_name": {
+        "pool_position": 91,
+        "offset": 72827,
+        "hex": "675f62746c5f837e837e8362834e834e8343815b8393",
+        "text": "g_btl_\u30df\u30df\u30c3\u30af\u30af\u30a4\u30fc\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 114,
+        "offset": 72850,
+        "hex": "675f62746c5f8376838a8393",
+        "text": "g_btl_\u30d7\u30ea\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 261,
+          "record_offset": 2684,
+          "record_hex": "040a00005b000000",
+          "descriptor": "00000a04",
+          "name": {
+            "pool_position": 91,
+            "offset": 72827,
+            "hex": "675f62746c5f837e837e8362834e834e8343815b8393",
+            "text": "g_btl_\u30df\u30df\u30c3\u30af\u30af\u30a4\u30fc\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "native_record_offset": 7420,
+      "native_record_hex": "050a000000000000",
+      "descriptor": "00000a05",
+      "t0_field_offset": 136,
+      "t0_field_hex": "72000000",
+      "t0_name": {
+        "pool_position": 114,
+        "offset": 72850,
+        "hex": "675f62746c5f8376838a8393",
+        "text": "g_btl_\u30d7\u30ea\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 127,
+        "offset": 72863,
+        "hex": "675f62746c5f83758362835683858374834083438341",
+        "text": "g_btl_\u30d6\u30c3\u30b7\u30e5\u30d5\u30a1\u30a4\u30a2"
+      },
+      "t2_matches": [
+        {
+          "index": 262,
+          "record_offset": 2692,
+          "record_hex": "050a000072000000",
+          "descriptor": "00000a05",
+          "name": {
+            "pool_position": 114,
+            "offset": 72850,
+            "hex": "675f62746c5f8376838a8393",
+            "text": "g_btl_\u30d7\u30ea\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "native_record_offset": 7428,
+      "native_record_hex": "060a000000000000",
+      "descriptor": "00000a06",
+      "t0_field_offset": 140,
+      "t0_field_hex": "7f000000",
+      "t0_name": {
+        "pool_position": 127,
+        "offset": 72863,
+        "hex": "675f62746c5f83758362835683858374834083438341",
+        "text": "g_btl_\u30d6\u30c3\u30b7\u30e5\u30d5\u30a1\u30a4\u30a2"
+      },
+      "next_t0_name": {
+        "pool_position": 150,
+        "offset": 72886,
+        "hex": "675f62746c5f836e834383688389",
+        "text": "g_btl_\u30cf\u30a4\u30c9\u30e9"
+      },
+      "t2_matches": [
+        {
+          "index": 263,
+          "record_offset": 2700,
+          "record_hex": "060a00007f000000",
+          "descriptor": "00000a06",
+          "name": {
+            "pool_position": 127,
+            "offset": 72863,
+            "hex": "675f62746c5f83758362835683858374834083438341",
+            "text": "g_btl_\u30d6\u30c3\u30b7\u30e5\u30d5\u30a1\u30a4\u30a2"
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "native_record_offset": 7436,
+      "native_record_hex": "070a000000000000",
+      "descriptor": "00000a07",
+      "t0_field_offset": 144,
+      "t0_field_hex": "96000000",
+      "t0_name": {
+        "pool_position": 150,
+        "offset": 72886,
+        "hex": "675f62746c5f836e834383688389",
+        "text": "g_btl_\u30cf\u30a4\u30c9\u30e9"
+      },
+      "next_t0_name": {
+        "pool_position": 165,
+        "offset": 72901,
+        "hex": "675f62746c5f836583428341837d83628367",
+        "text": "g_btl_\u30c6\u30a3\u30a2\u30de\u30c3\u30c8"
+      },
+      "t2_matches": [
+        {
+          "index": 264,
+          "record_offset": 2708,
+          "record_hex": "070a000096000000",
+          "descriptor": "00000a07",
+          "name": {
+            "pool_position": 150,
+            "offset": 72886,
+            "hex": "675f62746c5f836e834383688389",
+            "text": "g_btl_\u30cf\u30a4\u30c9\u30e9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "native_record_offset": 7444,
+      "native_record_hex": "080a000000000000",
+      "descriptor": "00000a08",
+      "t0_field_offset": 148,
+      "t0_field_hex": "a5000000",
+      "t0_name": {
+        "pool_position": 165,
+        "offset": 72901,
+        "hex": "675f62746c5f836583428341837d83628367",
+        "text": "g_btl_\u30c6\u30a3\u30a2\u30de\u30c3\u30c8"
+      },
+      "next_t0_name": {
+        "pool_position": 184,
+        "offset": 72920,
+        "hex": "675f62746c5f835f8343835f838d8358",
+        "text": "g_btl_\u30c0\u30a4\u30c0\u30ed\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 265,
+          "record_offset": 2716,
+          "record_hex": "080a0000a5000000",
+          "descriptor": "00000a08",
+          "name": {
+            "pool_position": 165,
+            "offset": 72901,
+            "hex": "675f62746c5f836583428341837d83628367",
+            "text": "g_btl_\u30c6\u30a3\u30a2\u30de\u30c3\u30c8"
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "native_record_offset": 7452,
+      "native_record_hex": "090a000000000000",
+      "descriptor": "00000a09",
+      "t0_field_offset": 152,
+      "t0_field_hex": "b8000000",
+      "t0_name": {
+        "pool_position": 184,
+        "offset": 72920,
+        "hex": "675f62746c5f835f8343835f838d8358",
+        "text": "g_btl_\u30c0\u30a4\u30c0\u30ed\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 201,
+        "offset": 72937,
+        "hex": "675f62746c5f835e8343838983938367",
+        "text": "g_btl_\u30bf\u30a4\u30e9\u30f3\u30c8"
+      },
+      "t2_matches": [
+        {
+          "index": 266,
+          "record_offset": 2724,
+          "record_hex": "090a0000b8000000",
+          "descriptor": "00000a09",
+          "name": {
+            "pool_position": 184,
+            "offset": 72920,
+            "hex": "675f62746c5f835f8343835f838d8358",
+            "text": "g_btl_\u30c0\u30a4\u30c0\u30ed\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "native_record_offset": 7460,
+      "native_record_hex": "0a0a000000000000",
+      "descriptor": "00000a0a",
+      "t0_field_offset": 156,
+      "t0_field_hex": "c9000000",
+      "t0_name": {
+        "pool_position": 201,
+        "offset": 72937,
+        "hex": "675f62746c5f835e8343838983938367",
+        "text": "g_btl_\u30bf\u30a4\u30e9\u30f3\u30c8"
+      },
+      "next_t0_name": {
+        "pool_position": 218,
+        "offset": 72954,
+        "hex": "675f62746c5f8381835e838b8368838983538393",
+        "text": "g_btl_\u30e1\u30bf\u30eb\u30c9\u30e9\u30b4\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 267,
+          "record_offset": 2732,
+          "record_hex": "0a0a0000c9000000",
+          "descriptor": "00000a0a",
+          "name": {
+            "pool_position": 201,
+            "offset": 72937,
+            "hex": "675f62746c5f835e8343838983938367",
+            "text": "g_btl_\u30bf\u30a4\u30e9\u30f3\u30c8"
+          }
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "native_record_offset": 7468,
+      "native_record_hex": "0b0a000000000000",
+      "descriptor": "00000a0b",
+      "t0_field_offset": 160,
+      "t0_field_hex": "da000000",
+      "t0_name": {
+        "pool_position": 218,
+        "offset": 72954,
+        "hex": "675f62746c5f8381835e838b8368838983538393",
+        "text": "g_btl_\u30e1\u30bf\u30eb\u30c9\u30e9\u30b4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 239,
+        "offset": 72975,
+        "hex": "675f62746c5f8341815b838a837d8393",
+        "text": "g_btl_\u30a2\u30fc\u30ea\u30de\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 268,
+          "record_offset": 2740,
+          "record_hex": "0b0a0000da000000",
+          "descriptor": "00000a0b",
+          "name": {
+            "pool_position": 218,
+            "offset": 72954,
+            "hex": "675f62746c5f8381835e838b8368838983538393",
+            "text": "g_btl_\u30e1\u30bf\u30eb\u30c9\u30e9\u30b4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "native_record_offset": 7476,
+      "native_record_hex": "0c0a000000000000",
+      "descriptor": "00000a0c",
+      "t0_field_offset": 164,
+      "t0_field_hex": "ef000000",
+      "t0_name": {
+        "pool_position": 239,
+        "offset": 72975,
+        "hex": "675f62746c5f8341815b838a837d8393",
+        "text": "g_btl_\u30a2\u30fc\u30ea\u30de\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 256,
+        "offset": 72992,
+        "hex": "675f62746c5f83898374838c83568341",
+        "text": "g_btl_\u30e9\u30d5\u30ec\u30b7\u30a2"
+      },
+      "t2_matches": [
+        {
+          "index": 269,
+          "record_offset": 2748,
+          "record_hex": "0c0a0000ef000000",
+          "descriptor": "00000a0c",
+          "name": {
+            "pool_position": 239,
+            "offset": 72975,
+            "hex": "675f62746c5f8341815b838a837d8393",
+            "text": "g_btl_\u30a2\u30fc\u30ea\u30de\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "native_record_offset": 7484,
+      "native_record_hex": "0d0a000000000000",
+      "descriptor": "00000a0d",
+      "t0_field_offset": 168,
+      "t0_field_hex": "00010000",
+      "t0_name": {
+        "pool_position": 256,
+        "offset": 72992,
+        "hex": "675f62746c5f83898374838c83568341",
+        "text": "g_btl_\u30e9\u30d5\u30ec\u30b7\u30a2"
+      },
+      "next_t0_name": {
+        "pool_position": 273,
+        "offset": 73009,
+        "hex": "675f62746c5f837d83938368838983538389815b8359",
+        "text": "g_btl_\u30de\u30f3\u30c9\u30e9\u30b4\u30e9\u30fc\u30ba"
+      },
+      "t2_matches": [
+        {
+          "index": 270,
+          "record_offset": 2756,
+          "record_hex": "0d0a000000010000",
+          "descriptor": "00000a0d",
+          "name": {
+            "pool_position": 256,
+            "offset": 72992,
+            "hex": "675f62746c5f83898374838c83568341",
+            "text": "g_btl_\u30e9\u30d5\u30ec\u30b7\u30a2"
+          }
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "native_record_offset": 7492,
+      "native_record_hex": "0e0a000000000000",
+      "descriptor": "00000a0e",
+      "t0_field_offset": 172,
+      "t0_field_hex": "11010000",
+      "t0_name": {
+        "pool_position": 273,
+        "offset": 73009,
+        "hex": "675f62746c5f837d83938368838983538389815b8359",
+        "text": "g_btl_\u30de\u30f3\u30c9\u30e9\u30b4\u30e9\u30fc\u30ba"
+      },
+      "next_t0_name": {
+        "pool_position": 296,
+        "offset": 73032,
+        "hex": "675f62746c5f83748393836f836f",
+        "text": "g_btl_\u30d5\u30f3\u30d0\u30d0"
+      },
+      "t2_matches": [
+        {
+          "index": 271,
+          "record_offset": 2764,
+          "record_hex": "0e0a000011010000",
+          "descriptor": "00000a0e",
+          "name": {
+            "pool_position": 273,
+            "offset": 73009,
+            "hex": "675f62746c5f837d83938368838983538389815b8359",
+            "text": "g_btl_\u30de\u30f3\u30c9\u30e9\u30b4\u30e9\u30fc\u30ba"
+          }
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "native_record_offset": 7500,
+      "native_record_hex": "0f0a000000000000",
+      "descriptor": "00000a0f",
+      "t0_field_offset": 176,
+      "t0_field_hex": "28010000",
+      "t0_name": {
+        "pool_position": 296,
+        "offset": 73032,
+        "hex": "675f62746c5f83748393836f836f",
+        "text": "g_btl_\u30d5\u30f3\u30d0\u30d0"
+      },
+      "next_t0_name": {
+        "pool_position": 311,
+        "offset": 73047,
+        "hex": "675f62746c5f83748385815b838a815b",
+        "text": "g_btl_\u30d5\u30e5\u30fc\u30ea\u30fc"
+      },
+      "t2_matches": [
+        {
+          "index": 272,
+          "record_offset": 2772,
+          "record_hex": "0f0a000028010000",
+          "descriptor": "00000a0f",
+          "name": {
+            "pool_position": 296,
+            "offset": 73032,
+            "hex": "675f62746c5f83748393836f836f",
+            "text": "g_btl_\u30d5\u30f3\u30d0\u30d0"
+          }
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "native_record_offset": 7508,
+      "native_record_hex": "100a000000000000",
+      "descriptor": "00000a10",
+      "t0_field_offset": 180,
+      "t0_field_hex": "37010000",
+      "t0_name": {
+        "pool_position": 311,
+        "offset": 73047,
+        "hex": "675f62746c5f83748385815b838a815b",
+        "text": "g_btl_\u30d5\u30e5\u30fc\u30ea\u30fc"
+      },
+      "next_t0_name": {
+        "pool_position": 328,
+        "offset": 73064,
+        "hex": "675f62746c5f8347838b835f815b8368838983538393",
+        "text": "g_btl_\u30a8\u30eb\u30c0\u30fc\u30c9\u30e9\u30b4\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 273,
+          "record_offset": 2780,
+          "record_hex": "100a000037010000",
+          "descriptor": "00000a10",
+          "name": {
+            "pool_position": 311,
+            "offset": 73047,
+            "hex": "675f62746c5f83748385815b838a815b",
+            "text": "g_btl_\u30d5\u30e5\u30fc\u30ea\u30fc"
+          }
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "native_record_offset": 7516,
+      "native_record_hex": "110a000000000000",
+      "descriptor": "00000a11",
+      "t0_field_offset": 184,
+      "t0_field_hex": "48010000",
+      "t0_name": {
+        "pool_position": 328,
+        "offset": 73064,
+        "hex": "675f62746c5f8347838b835f815b8368838983538393",
+        "text": "g_btl_\u30a8\u30eb\u30c0\u30fc\u30c9\u30e9\u30b4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 351,
+        "offset": 73087,
+        "hex": "675f62746c5f834d838b834b838183628356838541",
+        "text": "g_btl_\u30ae\u30eb\u30ac\u30e1\u30c3\u30b7\u30e5A"
+      },
+      "t2_matches": [
+        {
+          "index": 274,
+          "record_offset": 2788,
+          "record_hex": "110a000048010000",
+          "descriptor": "00000a11",
+          "name": {
+            "pool_position": 328,
+            "offset": 73064,
+            "hex": "675f62746c5f8347838b835f815b8368838983538393",
+            "text": "g_btl_\u30a8\u30eb\u30c0\u30fc\u30c9\u30e9\u30b4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "native_record_offset": 7524,
+      "native_record_hex": "120a000000000000",
+      "descriptor": "00000a12",
+      "t0_field_offset": 188,
+      "t0_field_hex": "5f010000",
+      "t0_name": {
+        "pool_position": 351,
+        "offset": 73087,
+        "hex": "675f62746c5f834d838b834b838183628356838541",
+        "text": "g_btl_\u30ae\u30eb\u30ac\u30e1\u30c3\u30b7\u30e5A"
+      },
+      "next_t0_name": {
+        "pool_position": 373,
+        "offset": 73109,
+        "hex": "675f62746c5f834d838b834b838183628356838542",
+        "text": "g_btl_\u30ae\u30eb\u30ac\u30e1\u30c3\u30b7\u30e5B"
+      },
+      "t2_matches": [
+        {
+          "index": 275,
+          "record_offset": 2796,
+          "record_hex": "120a00005f010000",
+          "descriptor": "00000a12",
+          "name": {
+            "pool_position": 351,
+            "offset": 73087,
+            "hex": "675f62746c5f834d838b834b838183628356838541",
+            "text": "g_btl_\u30ae\u30eb\u30ac\u30e1\u30c3\u30b7\u30e5A"
+          }
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "native_record_offset": 7532,
+      "native_record_hex": "130a000000000000",
+      "descriptor": "00000a13",
+      "t0_field_offset": 192,
+      "t0_field_hex": "75010000",
+      "t0_name": {
+        "pool_position": 373,
+        "offset": 73109,
+        "hex": "675f62746c5f834d838b834b838183628356838542",
+        "text": "g_btl_\u30ae\u30eb\u30ac\u30e1\u30c3\u30b7\u30e5B"
+      },
+      "next_t0_name": {
+        "pool_position": 395,
+        "offset": 73131,
+        "hex": "675f62746c5f836683828393835983458348815b838b41",
+        "text": "g_btl_\u30c7\u30e2\u30f3\u30ba\u30a6\u30a9\u30fc\u30ebA"
+      },
+      "t2_matches": [
+        {
+          "index": 276,
+          "record_offset": 2804,
+          "record_hex": "130a000075010000",
+          "descriptor": "00000a13",
+          "name": {
+            "pool_position": 373,
+            "offset": 73109,
+            "hex": "675f62746c5f834d838b834b838183628356838542",
+            "text": "g_btl_\u30ae\u30eb\u30ac\u30e1\u30c3\u30b7\u30e5B"
+          }
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "native_record_offset": 7540,
+      "native_record_hex": "140a000000000000",
+      "descriptor": "00000a14",
+      "t0_field_offset": 196,
+      "t0_field_hex": "8b010000",
+      "t0_name": {
+        "pool_position": 395,
+        "offset": 73131,
+        "hex": "675f62746c5f836683828393835983458348815b838b41",
+        "text": "g_btl_\u30c7\u30e2\u30f3\u30ba\u30a6\u30a9\u30fc\u30ebA"
+      },
+      "next_t0_name": {
+        "pool_position": 419,
+        "offset": 73155,
+        "hex": "675f62746c5f836683828393835983458348815b838b42",
+        "text": "g_btl_\u30c7\u30e2\u30f3\u30ba\u30a6\u30a9\u30fc\u30ebB"
+      },
+      "t2_matches": [
+        {
+          "index": 277,
+          "record_offset": 2812,
+          "record_hex": "140a00008b010000",
+          "descriptor": "00000a14",
+          "name": {
+            "pool_position": 395,
+            "offset": 73131,
+            "hex": "675f62746c5f836683828393835983458348815b838b41",
+            "text": "g_btl_\u30c7\u30e2\u30f3\u30ba\u30a6\u30a9\u30fc\u30ebA"
+          }
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "native_record_offset": 7548,
+      "native_record_hex": "150a000000000000",
+      "descriptor": "00000a15",
+      "t0_field_offset": 200,
+      "t0_field_hex": "a3010000",
+      "t0_name": {
+        "pool_position": 419,
+        "offset": 73155,
+        "hex": "675f62746c5f836683828393835983458348815b838b42",
+        "text": "g_btl_\u30c7\u30e2\u30f3\u30ba\u30a6\u30a9\u30fc\u30ebB"
+      },
+      "next_t0_name": {
+        "pool_position": 443,
+        "offset": 73179,
+        "hex": "675f62746c5f837b8380834c8393834f",
+        "text": "g_btl_\u30dc\u30e0\u30ad\u30f3\u30b0"
+      },
+      "t2_matches": [
+        {
+          "index": 278,
+          "record_offset": 2820,
+          "record_hex": "150a0000a3010000",
+          "descriptor": "00000a15",
+          "name": {
+            "pool_position": 419,
+            "offset": 73155,
+            "hex": "675f62746c5f836683828393835983458348815b838b42",
+            "text": "g_btl_\u30c7\u30e2\u30f3\u30ba\u30a6\u30a9\u30fc\u30ebB"
+          }
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "native_record_offset": 7556,
+      "native_record_hex": "160a000000000000",
+      "descriptor": "00000a16",
+      "t0_field_offset": 204,
+      "t0_field_hex": "bb010000",
+      "t0_name": {
+        "pool_position": 443,
+        "offset": 73179,
+        "hex": "675f62746c5f837b8380834c8393834f",
+        "text": "g_btl_\u30dc\u30e0\u30ad\u30f3\u30b0"
+      },
+      "next_t0_name": {
+        "pool_position": 460,
+        "offset": 73196,
+        "hex": "675f62746c5f905f97b3",
+        "text": "g_btl_\u795e\u7adc"
+      },
+      "t2_matches": [
+        {
+          "index": 279,
+          "record_offset": 2828,
+          "record_hex": "160a0000bb010000",
+          "descriptor": "00000a16",
+          "name": {
+            "pool_position": 443,
+            "offset": 73179,
+            "hex": "675f62746c5f837b8380834c8393834f",
+            "text": "g_btl_\u30dc\u30e0\u30ad\u30f3\u30b0"
+          }
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "native_record_offset": 7564,
+      "native_record_hex": "170a000000000000",
+      "descriptor": "00000a17",
+      "t0_field_offset": 208,
+      "t0_field_hex": "cc010000",
+      "t0_name": {
+        "pool_position": 460,
+        "offset": 73196,
+        "hex": "675f62746c5f905f97b3",
+        "text": "g_btl_\u795e\u7adc"
+      },
+      "next_t0_name": {
+        "pool_position": 471,
+        "offset": 73207,
+        "hex": "675f62746c5f9682905f97b3",
+        "text": "g_btl_\u9b54\u795e\u7adc"
+      },
+      "t2_matches": [
+        {
+          "index": 280,
+          "record_offset": 2836,
+          "record_hex": "170a0000cc010000",
+          "descriptor": "00000a17",
+          "name": {
+            "pool_position": 460,
+            "offset": 73196,
+            "hex": "675f62746c5f905f97b3",
+            "text": "g_btl_\u795e\u7adc"
+          }
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "native_record_offset": 7572,
+      "native_record_hex": "180a000000000000",
+      "descriptor": "00000a18",
+      "t0_field_offset": 212,
+      "t0_field_hex": "d7010000",
+      "t0_name": {
+        "pool_position": 471,
+        "offset": 73207,
+        "hex": "675f62746c5f9682905f97b3",
+        "text": "g_btl_\u9b54\u795e\u7adc"
+      },
+      "next_t0_name": {
+        "pool_position": 484,
+        "offset": 73220,
+        "hex": "675f62746c5f8378838a83418358",
+        "text": "g_btl_\u30d9\u30ea\u30a2\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 281,
+          "record_offset": 2844,
+          "record_hex": "180a0000d7010000",
+          "descriptor": "00000a18",
+          "name": {
+            "pool_position": 471,
+            "offset": 73207,
+            "hex": "675f62746c5f9682905f97b3",
+            "text": "g_btl_\u9b54\u795e\u7adc"
+          }
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "native_record_offset": 7580,
+      "native_record_hex": "190a000000000000",
+      "descriptor": "00000a19",
+      "t0_field_offset": 216,
+      "t0_field_hex": "e4010000",
+      "t0_name": {
+        "pool_position": 484,
+        "offset": 73220,
+        "hex": "675f62746c5f8378838a83418358",
+        "text": "g_btl_\u30d9\u30ea\u30a2\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 499,
+        "offset": 73235,
+        "hex": "675f62746c5f834a83498358",
+        "text": "g_btl_\u30ab\u30aa\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 282,
+          "record_offset": 2852,
+          "record_hex": "190a0000e4010000",
+          "descriptor": "00000a19",
+          "name": {
+            "pool_position": 484,
+            "offset": 73220,
+            "hex": "675f62746c5f8378838a83418358",
+            "text": "g_btl_\u30d9\u30ea\u30a2\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "native_record_offset": 7588,
+      "native_record_hex": "1a0a000000000000",
+      "descriptor": "00000a1a",
+      "t0_field_offset": 220,
+      "t0_field_hex": "f3010000",
+      "t0_name": {
+        "pool_position": 499,
+        "offset": 73235,
+        "hex": "675f62746c5f834a83498358",
+        "text": "g_btl_\u30ab\u30aa\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 512,
+        "offset": 73248,
+        "hex": "675f62746c5f835d836683428341815b834e",
+        "text": "g_btl_\u30be\u30c7\u30a3\u30a2\u30fc\u30af"
+      },
+      "t2_matches": [
+        {
+          "index": 283,
+          "record_offset": 2860,
+          "record_hex": "1a0a0000f3010000",
+          "descriptor": "00000a1a",
+          "name": {
+            "pool_position": 499,
+            "offset": 73235,
+            "hex": "675f62746c5f834a83498358",
+            "text": "g_btl_\u30ab\u30aa\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "native_record_offset": 7596,
+      "native_record_hex": "1b0a000000000000",
+      "descriptor": "00000a1b",
+      "t0_field_offset": 224,
+      "t0_field_hex": "00020000",
+      "t0_name": {
+        "pool_position": 512,
+        "offset": 73248,
+        "hex": "675f62746c5f835d836683428341815b834e",
+        "text": "g_btl_\u30be\u30c7\u30a3\u30a2\u30fc\u30af"
+      },
+      "next_t0_name": {
+        "pool_position": 531,
+        "offset": 73267,
+        "hex": "675f62746c5f834c8385834e838c83438393",
+        "text": "g_btl_\u30ad\u30e5\u30af\u30ec\u30a4\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 284,
+          "record_offset": 2868,
+          "record_hex": "1b0a000000020000",
+          "descriptor": "00000a1b",
+          "name": {
+            "pool_position": 512,
+            "offset": 73248,
+            "hex": "675f62746c5f835d836683428341815b834e",
+            "text": "g_btl_\u30be\u30c7\u30a3\u30a2\u30fc\u30af"
+          }
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "native_record_offset": 7604,
+      "native_record_hex": "1c0a000000000000",
+      "descriptor": "00000a1c",
+      "t0_field_offset": 228,
+      "t0_field_hex": "13020000",
+      "t0_name": {
+        "pool_position": 531,
+        "offset": 73267,
+        "hex": "675f62746c5f834c8385834e838c83438393",
+        "text": "g_btl_\u30ad\u30e5\u30af\u30ec\u30a4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 550,
+        "offset": 73286,
+        "hex": "675f62746c5f8355838b83478389",
+        "text": "g_btl_\u30b6\u30eb\u30a8\u30e9"
+      },
+      "t2_matches": [
+        {
+          "index": 285,
+          "record_offset": 2876,
+          "record_hex": "1c0a000013020000",
+          "descriptor": "00000a1c",
+          "name": {
+            "pool_position": 531,
+            "offset": 73267,
+            "hex": "675f62746c5f834c8385834e838c83438393",
+            "text": "g_btl_\u30ad\u30e5\u30af\u30ec\u30a4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "native_record_offset": 7612,
+      "native_record_hex": "1d0a000000000000",
+      "descriptor": "00000a1d",
+      "t0_field_offset": 232,
+      "t0_field_hex": "26020000",
+      "t0_name": {
+        "pool_position": 550,
+        "offset": 73286,
+        "hex": "675f62746c5f8355838b83478389",
+        "text": "g_btl_\u30b6\u30eb\u30a8\u30e9"
+      },
+      "next_t0_name": {
+        "pool_position": 565,
+        "offset": 73301,
+        "hex": "675f62746c5f8374834083808374838a815b8367",
+        "text": "g_btl_\u30d5\u30a1\u30e0\u30d5\u30ea\u30fc\u30c8"
+      },
+      "t2_matches": [
+        {
+          "index": 286,
+          "record_offset": 2884,
+          "record_hex": "1d0a000026020000",
+          "descriptor": "00000a1d",
+          "name": {
+            "pool_position": 550,
+            "offset": 73286,
+            "hex": "675f62746c5f8355838b83478389",
+            "text": "g_btl_\u30b6\u30eb\u30a8\u30e9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "native_record_offset": 7620,
+      "native_record_hex": "1e0a000000000000",
+      "descriptor": "00000a1e",
+      "t0_field_offset": 236,
+      "t0_field_hex": "35020000",
+      "t0_name": {
+        "pool_position": 565,
+        "offset": 73301,
+        "hex": "675f62746c5f8374834083808374838a815b8367",
+        "text": "g_btl_\u30d5\u30a1\u30e0\u30d5\u30ea\u30fc\u30c8"
+      },
+      "next_t0_name": {
+        "pool_position": 586,
+        "offset": 73322,
+        "hex": "675f62746c5f836e83568385837d838a8380",
+        "text": "g_btl_\u30cf\u30b7\u30e5\u30de\u30ea\u30e0"
+      },
+      "t2_matches": [
+        {
+          "index": 287,
+          "record_offset": 2892,
+          "record_hex": "1e0a000035020000",
+          "descriptor": "00000a1e",
+          "name": {
+            "pool_position": 565,
+            "offset": 73301,
+            "hex": "675f62746c5f8374834083808374838a815b8367",
+            "text": "g_btl_\u30d5\u30a1\u30e0\u30d5\u30ea\u30fc\u30c8"
+          }
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "native_record_offset": 7628,
+      "native_record_hex": "1f0a000000000000",
+      "descriptor": "00000a1f",
+      "t0_field_offset": 240,
+      "t0_field_hex": "4a020000",
+      "t0_name": {
+        "pool_position": 586,
+        "offset": 73322,
+        "hex": "675f62746c5f836e83568385837d838a8380",
+        "text": "g_btl_\u30cf\u30b7\u30e5\u30de\u30ea\u30e0"
+      },
+      "next_t0_name": {
+        "pool_position": 605,
+        "offset": 73341,
+        "hex": "675f62746c5f83568385837e836e8355",
+        "text": "g_btl_\u30b7\u30e5\u30df\u30cf\u30b6"
+      },
+      "t2_matches": [
+        {
+          "index": 288,
+          "record_offset": 2900,
+          "record_hex": "1f0a00004a020000",
+          "descriptor": "00000a1f",
+          "name": {
+            "pool_position": 586,
+            "offset": 73322,
+            "hex": "675f62746c5f836e83568385837d838a8380",
+            "text": "g_btl_\u30cf\u30b7\u30e5\u30de\u30ea\u30e0"
+          }
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "native_record_offset": 7636,
+      "native_record_hex": "200a000000000000",
+      "descriptor": "00000a20",
+      "t0_field_offset": 244,
+      "t0_field_hex": "5d020000",
+      "t0_name": {
+        "pool_position": 605,
+        "offset": 73341,
+        "hex": "675f62746c5f83568385837e836e8355",
+        "text": "g_btl_\u30b7\u30e5\u30df\u30cf\u30b6"
+      },
+      "next_t0_name": {
+        "pool_position": 622,
+        "offset": 73358,
+        "hex": "675f62746c5f837d8365834283458358",
+        "text": "g_btl_\u30de\u30c6\u30a3\u30a6\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 289,
+          "record_offset": 2908,
+          "record_hex": "200a00005d020000",
+          "descriptor": "00000a20",
+          "name": {
+            "pool_position": 605,
+            "offset": 73341,
+            "hex": "675f62746c5f83568385837e836e8355",
+            "text": "g_btl_\u30b7\u30e5\u30df\u30cf\u30b6"
+          }
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "native_record_offset": 7644,
+      "native_record_hex": "210a000000000000",
+      "descriptor": "00000a21",
+      "t0_field_offset": 248,
+      "t0_field_hex": "6e020000",
+      "t0_name": {
+        "pool_position": 622,
+        "offset": 73358,
+        "hex": "675f62746c5f837d8365834283458358",
+        "text": "g_btl_\u30de\u30c6\u30a3\u30a6\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 639,
+        "offset": 73375,
+        "hex": "675f62746c5f835b838d83808358",
+        "text": "g_btl_\u30bc\u30ed\u30e0\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 290,
+          "record_offset": 2916,
+          "record_hex": "210a00006e020000",
+          "descriptor": "00000a21",
+          "name": {
+            "pool_position": 622,
+            "offset": 73358,
+            "hex": "675f62746c5f837d8365834283458358",
+            "text": "g_btl_\u30de\u30c6\u30a3\u30a6\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "native_record_offset": 7652,
+      "native_record_hex": "220a000000000000",
+      "descriptor": "00000a22",
+      "t0_field_offset": 252,
+      "t0_field_hex": "7f020000",
+      "t0_name": {
+        "pool_position": 639,
+        "offset": 73375,
+        "hex": "675f62746c5f835b838d83808358",
+        "text": "g_btl_\u30bc\u30ed\u30e0\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 654,
+        "offset": 73390,
+        "hex": "675f62746c5f8347834e835883668358",
+        "text": "g_btl_\u30a8\u30af\u30b9\u30c7\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 291,
+          "record_offset": 2924,
+          "record_hex": "220a00007f020000",
+          "descriptor": "00000a22",
+          "name": {
+            "pool_position": 639,
+            "offset": 73375,
+            "hex": "675f62746c5f835b838d83808358",
+            "text": "g_btl_\u30bc\u30ed\u30e0\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "native_record_offset": 7660,
+      "native_record_hex": "230a000000000000",
+      "descriptor": "00000a23",
+      "t0_field_offset": 256,
+      "t0_field_hex": "8e020000",
+      "t0_name": {
+        "pool_position": 654,
+        "offset": 73390,
+        "hex": "675f62746c5f8347834e835883668358",
+        "text": "g_btl_\u30a8\u30af\u30b9\u30c7\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 671,
+        "offset": 73407,
+        "hex": "675f62746c5f8341838b8365837d",
+        "text": "g_btl_\u30a2\u30eb\u30c6\u30de"
+      },
+      "t2_matches": [
+        {
+          "index": 292,
+          "record_offset": 2932,
+          "record_hex": "230a00008e020000",
+          "descriptor": "00000a23",
+          "name": {
+            "pool_position": 654,
+            "offset": 73390,
+            "hex": "675f62746c5f8347834e835883668358",
+            "text": "g_btl_\u30a8\u30af\u30b9\u30c7\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "native_record_offset": 7668,
+      "native_record_hex": "240a000000000000",
+      "descriptor": "00000a24",
+      "t0_field_offset": 260,
+      "t0_field_hex": "9f020000",
+      "t0_name": {
+        "pool_position": 671,
+        "offset": 73407,
+        "hex": "675f62746c5f8341838b8365837d",
+        "text": "g_btl_\u30a2\u30eb\u30c6\u30de"
+      },
+      "next_t0_name": {
+        "pool_position": 686,
+        "offset": 73422,
+        "hex": "675f62746c5f8341836883898381838c834e",
+        "text": "g_btl_\u30a2\u30c9\u30e9\u30e1\u30ec\u30af"
+      },
+      "t2_matches": [
+        {
+          "index": 293,
+          "record_offset": 2940,
+          "record_hex": "240a00009f020000",
+          "descriptor": "00000a24",
+          "name": {
+            "pool_position": 671,
+            "offset": 73407,
+            "hex": "675f62746c5f8341838b8365837d",
+            "text": "g_btl_\u30a2\u30eb\u30c6\u30de"
+          }
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "native_record_offset": 7676,
+      "native_record_hex": "250a000000000000",
+      "descriptor": "00000a25",
+      "t0_field_offset": 264,
+      "t0_field_hex": "ae020000",
+      "t0_name": {
+        "pool_position": 686,
+        "offset": 73422,
+        "hex": "675f62746c5f8341836883898381838c834e",
+        "text": "g_btl_\u30a2\u30c9\u30e9\u30e1\u30ec\u30af"
+      },
+      "next_t0_name": {
+        "pool_position": 705,
+        "offset": 73441,
+        "hex": "675f62746c5f836f8362834b838283698393",
+        "text": "g_btl_\u30d0\u30c3\u30ac\u30e2\u30ca\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 294,
+          "record_offset": 2948,
+          "record_hex": "250a0000ae020000",
+          "descriptor": "00000a25",
+          "name": {
+            "pool_position": 686,
+            "offset": 73422,
+            "hex": "675f62746c5f8341836883898381838c834e",
+            "text": "g_btl_\u30a2\u30c9\u30e9\u30e1\u30ec\u30af"
+          }
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "native_record_offset": 7684,
+      "native_record_hex": "260a000000000000",
+      "descriptor": "00000a26",
+      "t0_field_offset": 268,
+      "t0_field_hex": "c1020000",
+      "t0_name": {
+        "pool_position": 705,
+        "offset": 73441,
+        "hex": "675f62746c5f836f8362834b838283698393",
+        "text": "g_btl_\u30d0\u30c3\u30ac\u30e2\u30ca\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 724,
+        "offset": 73460,
+        "hex": "675f62746c5f835583528357838383628357",
+        "text": "g_btl_\u30b6\u30b3\u30b8\u30e3\u30c3\u30b8"
+      },
+      "t2_matches": [
+        {
+          "index": 295,
+          "record_offset": 2956,
+          "record_hex": "260a0000c1020000",
+          "descriptor": "00000a26",
+          "name": {
+            "pool_position": 705,
+            "offset": 73441,
+            "hex": "675f62746c5f836f8362834b838283698393",
+            "text": "g_btl_\u30d0\u30c3\u30ac\u30e2\u30ca\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "native_record_offset": 7692,
+      "native_record_hex": "270a000000000000",
+      "descriptor": "00000a27",
+      "t0_field_offset": 272,
+      "t0_field_hex": "d4020000",
+      "t0_name": {
+        "pool_position": 724,
+        "offset": 73460,
+        "hex": "675f62746c5f835583528357838383628357",
+        "text": "g_btl_\u30b6\u30b3\u30b8\u30e3\u30c3\u30b8"
+      },
+      "next_t0_name": {
+        "pool_position": 743,
+        "offset": 73479,
+        "hex": "675f62746c5f834d815b8358",
+        "text": "g_btl_\u30ae\u30fc\u30b9"
+      },
+      "t2_matches": [
+        {
+          "index": 296,
+          "record_offset": 2964,
+          "record_hex": "270a0000d4020000",
+          "descriptor": "00000a27",
+          "name": {
+            "pool_position": 724,
+            "offset": 73460,
+            "hex": "675f62746c5f835583528357838383628357",
+            "text": "g_btl_\u30b6\u30b3\u30b8\u30e3\u30c3\u30b8"
+          }
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "native_record_offset": 7700,
+      "native_record_hex": "280a000000000000",
+      "descriptor": "00000a28",
+      "t0_field_offset": 276,
+      "t0_field_hex": "e7020000",
+      "t0_name": {
+        "pool_position": 743,
+        "offset": 73479,
+        "hex": "675f62746c5f834d815b8358",
+        "text": "g_btl_\u30ae\u30fc\u30b9"
+      },
+      "next_t0_name": {
+        "pool_position": 756,
+        "offset": 73492,
+        "hex": "675f62746c5f8356836883688389834e838d8341",
+        "text": "g_btl_\u30b7\u30c9\u30c9\u30e9\u30af\u30ed\u30a2"
+      },
+      "t2_matches": [
+        {
+          "index": 297,
+          "record_offset": 2972,
+          "record_hex": "280a0000e7020000",
+          "descriptor": "00000a28",
+          "name": {
+            "pool_position": 743,
+            "offset": 73479,
+            "hex": "675f62746c5f834d815b8358",
+            "text": "g_btl_\u30ae\u30fc\u30b9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "native_record_offset": 7708,
+      "native_record_hex": "290a000000000000",
+      "descriptor": "00000a29",
+      "t0_field_offset": 280,
+      "t0_field_hex": "f4020000",
+      "t0_name": {
+        "pool_position": 756,
+        "offset": 73492,
+        "hex": "675f62746c5f8356836883688389834e838d8341",
+        "text": "g_btl_\u30b7\u30c9\u30c9\u30e9\u30af\u30ed\u30a2"
+      },
+      "next_t0_name": {
+        "pool_position": 777,
+        "offset": 73513,
+        "hex": "675f62746c5f8356836891e5939491e4",
+        "text": "g_btl_\u30b7\u30c9\u5927\u706f\u53f0"
+      },
+      "t2_matches": [
+        {
+          "index": 298,
+          "record_offset": 2980,
+          "record_hex": "290a0000f4020000",
+          "descriptor": "00000a29",
+          "name": {
+            "pool_position": 756,
+            "offset": 73492,
+            "hex": "675f62746c5f8356836883688389834e838d8341",
+            "text": "g_btl_\u30b7\u30c9\u30c9\u30e9\u30af\u30ed\u30a2"
+          }
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "native_record_offset": 7716,
+      "native_record_hex": "2a0a000000000000",
+      "descriptor": "00000a2a",
+      "t0_field_offset": 284,
+      "t0_field_hex": "09030000",
+      "t0_name": {
+        "pool_position": 777,
+        "offset": 73513,
+        "hex": "675f62746c5f8356836891e5939491e4",
+        "text": "g_btl_\u30b7\u30c9\u5927\u706f\u53f0"
+      },
+      "next_t0_name": {
+        "pool_position": 794,
+        "offset": 73530,
+        "hex": "675f62746c5f834b83758389835891e5939491e4",
+        "text": "g_btl_\u30ac\u30d6\u30e9\u30b9\u5927\u706f\u53f0"
+      },
+      "t2_matches": [
+        {
+          "index": 299,
+          "record_offset": 2988,
+          "record_hex": "2a0a000009030000",
+          "descriptor": "00000a2a",
+          "name": {
+            "pool_position": 777,
+            "offset": 73513,
+            "hex": "675f62746c5f8356836891e5939491e4",
+            "text": "g_btl_\u30b7\u30c9\u5927\u706f\u53f0"
+          }
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "native_record_offset": 7724,
+      "native_record_hex": "2b0a000000000000",
+      "descriptor": "00000a2b",
+      "t0_field_offset": 288,
+      "t0_field_hex": "1a030000",
+      "t0_name": {
+        "pool_position": 794,
+        "offset": 73530,
+        "hex": "675f62746c5f834b83758389835891e5939491e4",
+        "text": "g_btl_\u30ac\u30d6\u30e9\u30b9\u5927\u706f\u53f0"
+      },
+      "next_t0_name": {
+        "pool_position": 815,
+        "offset": 73551,
+        "hex": "675f62746c5f8394834683438393",
+        "text": "g_btl_\u30f4\u30a7\u30a4\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 300,
+          "record_offset": 2996,
+          "record_hex": "2b0a00001a030000",
+          "descriptor": "00000a2b",
+          "name": {
+            "pool_position": 794,
+            "offset": 73530,
+            "hex": "675f62746c5f834b83758389835891e5939491e4",
+            "text": "g_btl_\u30ac\u30d6\u30e9\u30b9\u5927\u706f\u53f0"
+          }
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "native_record_offset": 7732,
+      "native_record_hex": "2c0a000000000000",
+      "descriptor": "00000a2c",
+      "t0_field_offset": 292,
+      "t0_field_hex": "2f030000",
+      "t0_name": {
+        "pool_position": 815,
+        "offset": 73551,
+        "hex": "675f62746c5f8394834683438393",
+        "text": "g_btl_\u30f4\u30a7\u30a4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 830,
+        "offset": 73566,
+        "hex": "675f62746c5f836e83438370815b81458394834683438393",
+        "text": "g_btl_\u30cf\u30a4\u30d1\u30fc\u30fb\u30f4\u30a7\u30a4\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 301,
+          "record_offset": 3004,
+          "record_hex": "2c0a00002f030000",
+          "descriptor": "00000a2c",
+          "name": {
+            "pool_position": 815,
+            "offset": 73551,
+            "hex": "675f62746c5f8394834683438393",
+            "text": "g_btl_\u30f4\u30a7\u30a4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "native_record_offset": 7740,
+      "native_record_hex": "2d0a000000000000",
+      "descriptor": "00000a2d",
+      "t0_field_offset": 296,
+      "t0_field_hex": "3e030000",
+      "t0_name": {
+        "pool_position": 830,
+        "offset": 73566,
+        "hex": "675f62746c5f836e83438370815b81458394834683438393",
+        "text": "g_btl_\u30cf\u30a4\u30d1\u30fc\u30fb\u30f4\u30a7\u30a4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 855,
+        "offset": 73591,
+        "hex": "675f62746c5f83898358836781458394834683438393",
+        "text": "g_btl_\u30e9\u30b9\u30c8\u30fb\u30f4\u30a7\u30a4\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 302,
+          "record_offset": 3012,
+          "record_hex": "2d0a00003e030000",
+          "descriptor": "00000a2d",
+          "name": {
+            "pool_position": 830,
+            "offset": 73566,
+            "hex": "675f62746c5f836e83438370815b81458394834683438393",
+            "text": "g_btl_\u30cf\u30a4\u30d1\u30fc\u30fb\u30f4\u30a7\u30a4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "native_record_offset": 7748,
+      "native_record_hex": "2e0a000000000000",
+      "descriptor": "00000a2e",
+      "t0_field_offset": 300,
+      "t0_field_hex": "57030000",
+      "t0_name": {
+        "pool_position": 855,
+        "offset": 73591,
+        "hex": "675f62746c5f83898358836781458394834683438393",
+        "text": "g_btl_\u30e9\u30b9\u30c8\u30fb\u30f4\u30a7\u30a4\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 878,
+        "offset": 73614,
+        "hex": "675f62746c5f834183938367838a83498393",
+        "text": "g_btl_\u30a2\u30f3\u30c8\u30ea\u30aa\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 303,
+          "record_offset": 3020,
+          "record_hex": "2e0a000057030000",
+          "descriptor": "00000a2e",
+          "name": {
+            "pool_position": 855,
+            "offset": 73591,
+            "hex": "675f62746c5f83898358836781458394834683438393",
+            "text": "g_btl_\u30e9\u30b9\u30c8\u30fb\u30f4\u30a7\u30a4\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "native_record_offset": 7756,
+      "native_record_hex": "2f0a000000000000",
+      "descriptor": "00000a2f",
+      "t0_field_offset": 304,
+      "t0_field_hex": "6e030000",
+      "t0_name": {
+        "pool_position": 878,
+        "offset": 73614,
+        "hex": "675f62746c5f834183938367838a83498393",
+        "text": "g_btl_\u30a2\u30f3\u30c8\u30ea\u30aa\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 897,
+        "offset": 73633,
+        "hex": "675f62746c5f834b837583898358836f836e8380815b8367",
+        "text": "g_btl_\u30ac\u30d6\u30e9\u30b9\u30d0\u30cf\u30e0\u30fc\u30c8"
+      },
+      "t2_matches": [
+        {
+          "index": 304,
+          "record_offset": 3028,
+          "record_hex": "2f0a00006e030000",
+          "descriptor": "00000a2f",
+          "name": {
+            "pool_position": 878,
+            "offset": 73614,
+            "hex": "675f62746c5f834183938367838a83498393",
+            "text": "g_btl_\u30a2\u30f3\u30c8\u30ea\u30aa\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "native_record_offset": 7764,
+      "native_record_hex": "300a000000000000",
+      "descriptor": "00000a30",
+      "t0_field_offset": 308,
+      "t0_field_hex": "81030000",
+      "t0_name": {
+        "pool_position": 897,
+        "offset": 73633,
+        "hex": "675f62746c5f834b837583898358836f836e8380815b8367",
+        "text": "g_btl_\u30ac\u30d6\u30e9\u30b9\u30d0\u30cf\u30e0\u30fc\u30c8"
+      },
+      "next_t0_name": {
+        "pool_position": 922,
+        "offset": 73658,
+        "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e834f838a815b8393",
+        "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30b0\u30ea\u30fc\u30f3"
+      },
+      "t2_matches": [
+        {
+          "index": 305,
+          "record_offset": 3036,
+          "record_hex": "300a000081030000",
+          "descriptor": "00000a30",
+          "name": {
+            "pool_position": 897,
+            "offset": 73633,
+            "hex": "675f62746c5f834b837583898358836f836e8380815b8367",
+            "text": "g_btl_\u30ac\u30d6\u30e9\u30b9\u30d0\u30cf\u30e0\u30fc\u30c8"
+          }
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "native_record_offset": 7772,
+      "native_record_hex": "310a000000000000",
+      "descriptor": "00000a31",
+      "t0_field_offset": 312,
+      "t0_field_hex": "9a030000",
+      "t0_name": {
+        "pool_position": 922,
+        "offset": 73658,
+        "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e834f838a815b8393",
+        "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30b0\u30ea\u30fc\u30f3"
+      },
+      "next_t0_name": {
+        "pool_position": 955,
+        "offset": 73691,
+        "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e8375838b815b",
+        "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30d6\u30eb\u30fc"
+      },
+      "t2_matches": [
+        {
+          "index": 306,
+          "record_offset": 3044,
+          "record_hex": "310a00009a030000",
+          "descriptor": "00000a31",
+          "name": {
+            "pool_position": 922,
+            "offset": 73658,
+            "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e834f838a815b8393",
+            "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30b0\u30ea\u30fc\u30f3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 48,
+      "native_record_offset": 7780,
+      "native_record_hex": "320a000000000000",
+      "descriptor": "00000a32",
+      "t0_field_offset": 316,
+      "t0_field_hex": "bb030000",
+      "t0_name": {
+        "pool_position": 955,
+        "offset": 73691,
+        "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e8375838b815b",
+        "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30d6\u30eb\u30fc"
+      },
+      "next_t0_name": {
+        "pool_position": 986,
+        "offset": 73722,
+        "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e838c83628368",
+        "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30ec\u30c3\u30c9"
+      },
+      "t2_matches": [
+        {
+          "index": 307,
+          "record_offset": 3052,
+          "record_hex": "320a0000bb030000",
+          "descriptor": "00000a32",
+          "name": {
+            "pool_position": 955,
+            "offset": 73691,
+            "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e8375838b815b",
+            "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30d6\u30eb\u30fc"
+          }
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "native_record_offset": 7788,
+      "native_record_hex": "330a000000000000",
+      "descriptor": "00000a33",
+      "t0_field_offset": 320,
+      "t0_field_hex": "da030000",
+      "t0_name": {
+        "pool_position": 986,
+        "offset": 73722,
+        "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e838c83628368",
+        "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30ec\u30c3\u30c9"
+      },
+      "next_t0_name": {
+        "pool_position": 1017,
+        "offset": 73753,
+        "hex": "675f62746c5f835183938375",
+        "text": "g_btl_\u30b2\u30f3\u30d6"
+      },
+      "t2_matches": [
+        {
+          "index": 308,
+          "record_offset": 3060,
+          "record_hex": "330a0000da030000",
+          "descriptor": "00000a33",
+          "name": {
+            "pool_position": 986,
+            "offset": 73722,
+            "hex": "675f62746c5f834e838a8358835e838b837e837e8362834e838c83628368",
+            "text": "g_btl_\u30af\u30ea\u30b9\u30bf\u30eb\u30df\u30df\u30c3\u30af\u30ec\u30c3\u30c9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "native_record_offset": 7796,
+      "native_record_hex": "340a000000000000",
+      "descriptor": "00000a34",
+      "t0_field_offset": 324,
+      "t0_field_hex": "f9030000",
+      "t0_name": {
+        "pool_position": 1017,
+        "offset": 73753,
+        "hex": "675f62746c5f835183938375",
+        "text": "g_btl_\u30b2\u30f3\u30d6"
+      },
+      "next_t0_name": {
+        "pool_position": 1030,
+        "offset": 73766,
+        "hex": "675f62746c5f835a8343838a83858345",
+        "text": "g_btl_\u30bb\u30a4\u30ea\u30e5\u30a6"
+      },
+      "t2_matches": [
+        {
+          "index": 309,
+          "record_offset": 3068,
+          "record_hex": "340a0000f9030000",
+          "descriptor": "00000a34",
+          "name": {
+            "pool_position": 1017,
+            "offset": 73753,
+            "hex": "675f62746c5f835183938375",
+            "text": "g_btl_\u30b2\u30f3\u30d6"
+          }
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "native_record_offset": 7804,
+      "native_record_hex": "350a000000000000",
+      "descriptor": "00000a35",
+      "t0_field_offset": 328,
+      "t0_field_hex": "06040000",
+      "t0_name": {
+        "pool_position": 1030,
+        "offset": 73766,
+        "hex": "675f62746c5f835a8343838a83858345",
+        "text": "g_btl_\u30bb\u30a4\u30ea\u30e5\u30a6"
+      },
+      "next_t0_name": {
+        "pool_position": 1047,
+        "offset": 73783,
+        "hex": "675f62746c5f8372838383628352",
+        "text": "g_btl_\u30d3\u30e3\u30c3\u30b3"
+      },
+      "t2_matches": [
+        {
+          "index": 310,
+          "record_offset": 3076,
+          "record_hex": "350a000006040000",
+          "descriptor": "00000a35",
+          "name": {
+            "pool_position": 1030,
+            "offset": 73766,
+            "hex": "675f62746c5f835a8343838a83858345",
+            "text": "g_btl_\u30bb\u30a4\u30ea\u30e5\u30a6"
+          }
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "native_record_offset": 7812,
+      "native_record_hex": "360a000000000000",
+      "descriptor": "00000a36",
+      "t0_field_offset": 332,
+      "t0_field_hex": "17040000",
+      "t0_name": {
+        "pool_position": 1047,
+        "offset": 73783,
+        "hex": "675f62746c5f8372838383628352",
+        "text": "g_btl_\u30d3\u30e3\u30c3\u30b3"
+      },
+      "next_t0_name": {
+        "pool_position": 1062,
+        "offset": 73798,
+        "hex": "675f62746c5f83588355834e",
+        "text": "g_btl_\u30b9\u30b6\u30af"
+      },
+      "t2_matches": [
+        {
+          "index": 311,
+          "record_offset": 3084,
+          "record_hex": "360a000017040000",
+          "descriptor": "00000a36",
+          "name": {
+            "pool_position": 1047,
+            "offset": 73783,
+            "hex": "675f62746c5f8372838383628352",
+            "text": "g_btl_\u30d3\u30e3\u30c3\u30b3"
+          }
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "native_record_offset": 7820,
+      "native_record_hex": "370a000000000000",
+      "descriptor": "00000a37",
+      "t0_field_offset": 336,
+      "t0_field_hex": "26040000",
+      "t0_name": {
+        "pool_position": 1062,
+        "offset": 73798,
+        "hex": "675f62746c5f83588355834e",
+        "text": "g_btl_\u30b9\u30b6\u30af"
+      },
+      "next_t0_name": {
+        "pool_position": 1075,
+        "offset": 73811,
+        "hex": "675f62746c5f82a882f182dd82e582a482b5",
+        "text": "g_btl_\u304a\u3093\u307f\u3087\u3046\u3057"
+      },
+      "t2_matches": [
+        {
+          "index": 312,
+          "record_offset": 3092,
+          "record_hex": "370a000026040000",
+          "descriptor": "00000a37",
+          "name": {
+            "pool_position": 1062,
+            "offset": 73798,
+            "hex": "675f62746c5f83588355834e",
+            "text": "g_btl_\u30b9\u30b6\u30af"
+          }
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "native_record_offset": 7828,
+      "native_record_hex": "380a000000000000",
+      "descriptor": "00000a38",
+      "t0_field_offset": 340,
+      "t0_field_hex": "33040000",
+      "t0_name": {
+        "pool_position": 1075,
+        "offset": 73811,
+        "hex": "675f62746c5f82a882f182dd82e582a482b5",
+        "text": "g_btl_\u304a\u3093\u307f\u3087\u3046\u3057"
+      },
+      "next_t0_name": {
+        "pool_position": 1094,
+        "offset": 73830,
+        "hex": "675f62746c5f8efa906c8356815b834e",
+        "text": "g_btl_\u56da\u4eba\u30b7\u30fc\u30af"
+      },
+      "t2_matches": [
+        {
+          "index": 313,
+          "record_offset": 3100,
+          "record_hex": "380a000033040000",
+          "descriptor": "00000a38",
+          "name": {
+            "pool_position": 1075,
+            "offset": 73811,
+            "hex": "675f62746c5f82a882f182dd82e582a482b5",
+            "text": "g_btl_\u304a\u3093\u307f\u3087\u3046\u3057"
+          }
+        }
+      ]
+    },
+    {
+      "index": 55,
+      "native_record_offset": 7836,
+      "native_record_hex": "390a000000000000",
+      "descriptor": "00000a39",
+      "t0_field_offset": 344,
+      "t0_field_hex": "46040000",
+      "t0_name": {
+        "pool_position": 1094,
+        "offset": 73830,
+        "hex": "675f62746c5f8efa906c8356815b834e",
+        "text": "g_btl_\u56da\u4eba\u30b7\u30fc\u30af"
+      },
+      "next_t0_name": {
+        "pool_position": 1111,
+        "offset": 73847,
+        "hex": "675f62746c5f834b8389838083548343835992e98d9195ba",
+        "text": "g_btl_\u30ac\u30e9\u30e0\u30b5\u30a4\u30ba\u5e1d\u56fd\u5175"
+      },
+      "t2_matches": [
+        {
+          "index": 314,
+          "record_offset": 3108,
+          "record_hex": "390a000046040000",
+          "descriptor": "00000a39",
+          "name": {
+            "pool_position": 1094,
+            "offset": 73830,
+            "hex": "675f62746c5f8efa906c8356815b834e",
+            "text": "g_btl_\u56da\u4eba\u30b7\u30fc\u30af"
+          }
+        }
+      ]
+    },
+    {
+      "index": 56,
+      "native_record_offset": 7844,
+      "native_record_hex": "3a0a000000000000",
+      "descriptor": "00000a3a",
+      "t0_field_offset": 348,
+      "t0_field_hex": "57040000",
+      "t0_name": {
+        "pool_position": 1111,
+        "offset": 73847,
+        "hex": "675f62746c5f834b8389838083548343835992e98d9195ba",
+        "text": "g_btl_\u30ac\u30e9\u30e0\u30b5\u30a4\u30ba\u5e1d\u56fd\u5175"
+      },
+      "next_t0_name": {
+        "pool_position": 1136,
+        "offset": 73872,
+        "hex": "675f62746c5f83458348815b83588389",
+        "text": "g_btl_\u30a6\u30a9\u30fc\u30b9\u30e9"
+      },
+      "t2_matches": [
+        {
+          "index": 315,
+          "record_offset": 3116,
+          "record_hex": "3a0a000057040000",
+          "descriptor": "00000a3a",
+          "name": {
+            "pool_position": 1111,
+            "offset": 73847,
+            "hex": "675f62746c5f834b8389838083548343835992e98d9195ba",
+            "text": "g_btl_\u30ac\u30e9\u30e0\u30b5\u30a4\u30ba\u5e1d\u56fd\u5175"
+          }
+        }
+      ]
+    },
+    {
+      "index": 57,
+      "native_record_offset": 7852,
+      "native_record_hex": "3b0a000000000000",
+      "descriptor": "00000a3b",
+      "t0_field_offset": 352,
+      "t0_field_hex": "70040000",
+      "t0_name": {
+        "pool_position": 1136,
+        "offset": 73872,
+        "hex": "675f62746c5f83458348815b83588389",
+        "text": "g_btl_\u30a6\u30a9\u30fc\u30b9\u30e9"
+      },
+      "next_t0_name": {
+        "pool_position": 1153,
+        "offset": 73889,
+        "hex": "675f62746c5f835783838362835781458378838b834b",
+        "text": "g_btl_\u30b8\u30e3\u30c3\u30b8\u30fb\u30d9\u30eb\u30ac"
+      },
+      "t2_matches": [
+        {
+          "index": 316,
+          "record_offset": 3124,
+          "record_hex": "3b0a000070040000",
+          "descriptor": "00000a3b",
+          "name": {
+            "pool_position": 1136,
+            "offset": 73872,
+            "hex": "675f62746c5f83458348815b83588389",
+            "text": "g_btl_\u30a6\u30a9\u30fc\u30b9\u30e9"
+          }
+        }
+      ]
+    },
+    {
+      "index": 58,
+      "native_record_offset": 7860,
+      "native_record_hex": "3c0a000000000000",
+      "descriptor": "00000a3c",
+      "t0_field_offset": 356,
+      "t0_field_hex": "81040000",
+      "t0_name": {
+        "pool_position": 1153,
+        "offset": 73889,
+        "hex": "675f62746c5f835783838362835781458378838b834b",
+        "text": "g_btl_\u30b8\u30e3\u30c3\u30b8\u30fb\u30d9\u30eb\u30ac"
+      },
+      "next_t0_name": {
+        "pool_position": 1176,
+        "offset": 73912,
+        "hex": "675f62746c5f836d815b8367838a5f835f815b834e8374834083438341",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u30c0\u30fc\u30af\u30d5\u30a1\u30a4\u30a2"
+      },
+      "t2_matches": [
+        {
+          "index": 317,
+          "record_offset": 3132,
+          "record_hex": "3c0a000081040000",
+          "descriptor": "00000a3c",
+          "name": {
+            "pool_position": 1153,
+            "offset": 73889,
+            "hex": "675f62746c5f835783838362835781458378838b834b",
+            "text": "g_btl_\u30b8\u30e3\u30c3\u30b8\u30fb\u30d9\u30eb\u30ac"
+          }
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "native_record_offset": 7868,
+      "native_record_hex": "3d0a000000000000",
+      "descriptor": "00000a3d",
+      "t0_field_offset": 360,
+      "t0_field_hex": "98040000",
+      "t0_name": {
+        "pool_position": 1176,
+        "offset": 73912,
+        "hex": "675f62746c5f836d815b8367838a5f835f815b834e8374834083438341",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u30c0\u30fc\u30af\u30d5\u30a1\u30a4\u30a2"
+      },
+      "next_t0_name": {
+        "pool_position": 1206,
+        "offset": 73942,
+        "hex": "675f62746c5f836d815b8367838a5f88c582cc835c8345838b",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u95c7\u306e\u30bd\u30a6\u30eb"
+      },
+      "t2_matches": [
+        {
+          "index": 318,
+          "record_offset": 3140,
+          "record_hex": "3d0a000098040000",
+          "descriptor": "00000a3d",
+          "name": {
+            "pool_position": 1176,
+            "offset": 73912,
+            "hex": "675f62746c5f836d815b8367838a5f835f815b834e8374834083438341",
+            "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u30c0\u30fc\u30af\u30d5\u30a1\u30a4\u30a2"
+          }
+        }
+      ]
+    },
+    {
+      "index": 60,
+      "native_record_offset": 7876,
+      "native_record_hex": "3e0a000000000000",
+      "descriptor": "00000a3e",
+      "t0_field_offset": 364,
+      "t0_field_hex": "b6040000",
+      "t0_name": {
+        "pool_position": 1206,
+        "offset": 73942,
+        "hex": "675f62746c5f836d815b8367838a5f88c582cc835c8345838b",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u95c7\u306e\u30bd\u30a6\u30eb"
+      },
+      "next_t0_name": {
+        "pool_position": 1232,
+        "offset": 73968,
+        "hex": "675f62746c5f836d815b8367838a5f90b982cc835c8345838b",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u8056\u306e\u30bd\u30a6\u30eb"
+      },
+      "t2_matches": [
+        {
+          "index": 319,
+          "record_offset": 3148,
+          "record_hex": "3e0a0000b6040000",
+          "descriptor": "00000a3e",
+          "name": {
+            "pool_position": 1206,
+            "offset": 73942,
+            "hex": "675f62746c5f836d815b8367838a5f88c582cc835c8345838b",
+            "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u95c7\u306e\u30bd\u30a6\u30eb"
+          }
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "native_record_offset": 7884,
+      "native_record_hex": "3f0a000000000000",
+      "descriptor": "00000a3f",
+      "t0_field_offset": 368,
+      "t0_field_hex": "d0040000",
+      "t0_name": {
+        "pool_position": 1232,
+        "offset": 73968,
+        "hex": "675f62746c5f836d815b8367838a5f90b982cc835c8345838b",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u8056\u306e\u30bd\u30a6\u30eb"
+      },
+      "next_t0_name": {
+        "pool_position": 1258,
+        "offset": 73994,
+        "hex": "675f62746c5f836d815b8367838a5f83668358835183438359",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u30c7\u30b9\u30b2\u30a4\u30ba"
+      },
+      "t2_matches": [
+        {
+          "index": 320,
+          "record_offset": 3156,
+          "record_hex": "3f0a0000d0040000",
+          "descriptor": "00000a3f",
+          "name": {
+            "pool_position": 1232,
+            "offset": 73968,
+            "hex": "675f62746c5f836d815b8367838a5f90b982cc835c8345838b",
+            "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u8056\u306e\u30bd\u30a6\u30eb"
+          }
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "native_record_offset": 7892,
+      "native_record_hex": "400a000000000000",
+      "descriptor": "00000a40",
+      "t0_field_offset": 372,
+      "t0_field_hex": "ea040000",
+      "t0_name": {
+        "pool_position": 1258,
+        "offset": 73994,
+        "hex": "675f62746c5f836d815b8367838a5f83668358835183438359",
+        "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u30c7\u30b9\u30b2\u30a4\u30ba"
+      },
+      "next_t0_name": {
+        "pool_position": 1284,
+        "offset": 74020,
+        "hex": "675f62746c5f8369838b83728369838c83828389",
+        "text": "g_btl_\u30ca\u30eb\u30d3\u30ca\u30ec\u30e2\u30e9"
+      },
+      "t2_matches": [
+        {
+          "index": 321,
+          "record_offset": 3164,
+          "record_hex": "400a0000ea040000",
+          "descriptor": "00000a40",
+          "name": {
+            "pool_position": 1258,
+            "offset": 73994,
+            "hex": "675f62746c5f836d815b8367838a5f83668358835183438359",
+            "text": "g_btl_\u30ce\u30fc\u30c8\u30ea_\u30c7\u30b9\u30b2\u30a4\u30ba"
+          }
+        }
+      ]
+    }
+  ],
+  "first_store": {
+    "scope": 1,
+    "pc": 5013,
+    "code_offset": 13484,
+    "code_hex": "490100",
+    "q0_offset": 36516,
+    "q0_hex": "08040001"
+  },
+  "limits": "62 selected original global descriptor/name identities plus first source-attribution discriminator; no universal115 ordering/allscopes/type meanings/native values/lifetime/reachability. OPUS59/0 source counts are its corroboration, not tests rerun here. PC OFF/S19/fullL1+L2 NOT_MET"
+}

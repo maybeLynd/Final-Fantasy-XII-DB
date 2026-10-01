@@ -1,0 +1,320 @@
+{
+  "method": "A - type declarations and local SDK",
+  "native_api_called": false,
+  "context_size": 1232,
+  "offsets": {
+    "rax": 120,
+    "rcx": 128,
+    "rdx": 136,
+    "rbx": 144,
+    "rsp": 152,
+    "rdi": 176,
+    "r8": 184,
+    "r9": 192,
+    "r10": 200,
+    "rip": 248
+  },
+  "type_source": "Database\\FFXII TZA\\_experiments\\evidence\\exp127-instrument-control\\original\\hwbp-source.py",
+  "type_source_sha256": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+  "sdk_path": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winnt.h",
+  "sdk_sha256": "bc603675b330e624fd6f3de9ed3497ed6101e4c56e12cf819a9ef7c41f1c78d8",
+  "sdk_excerpt": [
+    {
+      "line": 4307,
+      "text": "    // Register parameter home addresses."
+    },
+    {
+      "line": 4308,
+      "text": "    //"
+    },
+    {
+      "line": 4309,
+      "text": "    // N.B. These fields are for convience - they could be used to extend the"
+    },
+    {
+      "line": 4310,
+      "text": "    //      context record in the future."
+    },
+    {
+      "line": 4311,
+      "text": "    //"
+    },
+    {
+      "line": 4312,
+      "text": ""
+    },
+    {
+      "line": 4313,
+      "text": "    DWORD64 P1Home;"
+    },
+    {
+      "line": 4314,
+      "text": "    DWORD64 P2Home;"
+    },
+    {
+      "line": 4315,
+      "text": "    DWORD64 P3Home;"
+    },
+    {
+      "line": 4316,
+      "text": "    DWORD64 P4Home;"
+    },
+    {
+      "line": 4317,
+      "text": "    DWORD64 P5Home;"
+    },
+    {
+      "line": 4318,
+      "text": "    DWORD64 P6Home;"
+    },
+    {
+      "line": 4319,
+      "text": ""
+    },
+    {
+      "line": 4320,
+      "text": "    //"
+    },
+    {
+      "line": 4321,
+      "text": "    // Control flags."
+    },
+    {
+      "line": 4322,
+      "text": "    //"
+    },
+    {
+      "line": 4323,
+      "text": ""
+    },
+    {
+      "line": 4324,
+      "text": "    DWORD ContextFlags;"
+    },
+    {
+      "line": 4325,
+      "text": "    DWORD MxCsr;"
+    },
+    {
+      "line": 4326,
+      "text": ""
+    },
+    {
+      "line": 4327,
+      "text": "    //"
+    },
+    {
+      "line": 4328,
+      "text": "    // Segment Registers and processor flags."
+    },
+    {
+      "line": 4329,
+      "text": "    //"
+    },
+    {
+      "line": 4330,
+      "text": ""
+    },
+    {
+      "line": 4331,
+      "text": "    WORD   SegCs;"
+    },
+    {
+      "line": 4332,
+      "text": "    WORD   SegDs;"
+    },
+    {
+      "line": 4333,
+      "text": "    WORD   SegEs;"
+    },
+    {
+      "line": 4334,
+      "text": "    WORD   SegFs;"
+    },
+    {
+      "line": 4335,
+      "text": "    WORD   SegGs;"
+    },
+    {
+      "line": 4336,
+      "text": "    WORD   SegSs;"
+    },
+    {
+      "line": 4337,
+      "text": "    DWORD EFlags;"
+    },
+    {
+      "line": 4338,
+      "text": ""
+    },
+    {
+      "line": 4339,
+      "text": "    //"
+    },
+    {
+      "line": 4340,
+      "text": "    // Debug registers"
+    },
+    {
+      "line": 4341,
+      "text": "    //"
+    },
+    {
+      "line": 4342,
+      "text": ""
+    },
+    {
+      "line": 4343,
+      "text": "    DWORD64 Dr0;"
+    },
+    {
+      "line": 4344,
+      "text": "    DWORD64 Dr1;"
+    },
+    {
+      "line": 4345,
+      "text": "    DWORD64 Dr2;"
+    },
+    {
+      "line": 4346,
+      "text": "    DWORD64 Dr3;"
+    },
+    {
+      "line": 4347,
+      "text": "    DWORD64 Dr6;"
+    },
+    {
+      "line": 4348,
+      "text": "    DWORD64 Dr7;"
+    },
+    {
+      "line": 4349,
+      "text": ""
+    },
+    {
+      "line": 4350,
+      "text": "    //"
+    },
+    {
+      "line": 4351,
+      "text": "    // Integer registers."
+    },
+    {
+      "line": 4352,
+      "text": "    //"
+    },
+    {
+      "line": 4353,
+      "text": ""
+    },
+    {
+      "line": 4354,
+      "text": "    DWORD64 Rax;"
+    },
+    {
+      "line": 4355,
+      "text": "    DWORD64 Rcx;"
+    },
+    {
+      "line": 4356,
+      "text": "    DWORD64 Rdx;"
+    },
+    {
+      "line": 4357,
+      "text": "    DWORD64 Rbx;"
+    },
+    {
+      "line": 4358,
+      "text": "    DWORD64 Rsp;"
+    },
+    {
+      "line": 4359,
+      "text": "    DWORD64 Rbp;"
+    },
+    {
+      "line": 4360,
+      "text": "    DWORD64 Rsi;"
+    },
+    {
+      "line": 4361,
+      "text": "    DWORD64 Rdi;"
+    },
+    {
+      "line": 4362,
+      "text": "    DWORD64 R8;"
+    },
+    {
+      "line": 4363,
+      "text": "    DWORD64 R9;"
+    },
+    {
+      "line": 4364,
+      "text": "    DWORD64 R10;"
+    },
+    {
+      "line": 4365,
+      "text": "    DWORD64 R11;"
+    },
+    {
+      "line": 4366,
+      "text": "    DWORD64 R12;"
+    },
+    {
+      "line": 4367,
+      "text": "    DWORD64 R13;"
+    },
+    {
+      "line": 4368,
+      "text": "    DWORD64 R14;"
+    },
+    {
+      "line": 4369,
+      "text": "    DWORD64 R15;"
+    },
+    {
+      "line": 4370,
+      "text": ""
+    },
+    {
+      "line": 4371,
+      "text": "    //"
+    },
+    {
+      "line": 4372,
+      "text": "    // Program counter."
+    },
+    {
+      "line": 4373,
+      "text": "    //"
+    },
+    {
+      "line": 4374,
+      "text": ""
+    },
+    {
+      "line": 4375,
+      "text": "    DWORD64 Rip;"
+    },
+    {
+      "line": 4376,
+      "text": ""
+    },
+    {
+      "line": 4377,
+      "text": "    //"
+    },
+    {
+      "line": 4378,
+      "text": "    // Floating point state."
+    },
+    {
+      "line": 4379,
+      "text": "    //"
+    },
+    {
+      "line": 4380,
+      "text": ""
+    }
+  ],
+  "limit": "Only class declarations executed to determine layout; no original helper imported or process API called."
+}

@@ -1,0 +1,183 @@
+{
+ "wakes": {
+  "SWE2-AUDIT-SEM": {
+   "2026-09-29": {
+    "count": 5,
+    "last": 1790672528.4812992
+   }
+  },
+  "SWE2-EC7": {
+   "2026-09-29": {
+    "count": 1,
+    "last": 1790671116.566204
+   }
+  },
+  "SWE2-AUDIT-SPEC": {
+   "2026-09-29": {
+    "count": 5,
+    "last": 1790655597.407997
+   }
+  },
+  "SWE2-ORACLE": {
+   "2026-09-29": {
+    "count": 16,
+    "last": 1790668650.4843152
+   }
+  },
+  "SWE2-FRONTIER": {
+   "2026-09-29": {
+    "count": 2,
+    "last": 1790670474.796245
+   }
+  },
+  "SWE2-DATA": {
+   "2026-09-29": {
+    "count": 6,
+    "last": 1790670812.7541928
+   }
+  },
+  "SWE2-CONTRACT": {
+   "2026-09-29": {
+    "count": 2,
+    "last": 1790641947.059926
+   }
+  },
+  "SWE2-STRUCT": {
+   "2026-09-29": {
+    "count": 1,
+    "last": 1790642072.9267402
+   }
+  }
+ },
+ "failures": {},
+ "inflight": {},
+ "breaker": {
+  "open_until": 1790676638.098706,
+  "opened_at": 1790673013.0987067,
+  "reason": "rate limit. Upgrade to Max for higher limits, or switch to a different model. Your limit will reset in 1 hour 36 minutes. (trace ID: 51b5132713c1890c67dcbffe8a9ff5af): {\n  \"cognition.ai/errorKind\": \"u",
+  "recovering": true
+ },
+ "last_wake_at": 1790672528.4812992,
+ "queued": {},
+ "replan": {
+  "planner_wake_sent_at": 1790670474.796245
+ },
+ "starvation": {
+  "SWE2-EC7": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790569283.0
+  },
+  "SWE2-CONTRACT": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790640668.0,
+   "eligible_since": 1790671592.0263565,
+   "defer": "behind:SWE2-AUDIT-SEM,SWE2-DATA,SWE2-EC7"
+  },
+  "SWE2-STRUCT": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790643177.0,
+   "eligible_since": 1790659478.6703374,
+   "defer": "behind:SWE2-AUDIT-SEM,SWE2-DATA,SWE2-EC7",
+   "warned": 1790670301.8923562
+  },
+  "SWE2-DATA": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790672488.0
+  },
+  "SWE2-ORACLE": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790670133.0,
+   "eligible_since": 1790670942.08184,
+   "defer": "behind:SWE2-AUDIT-SEM,SWE2-DATA,SWE2-EC7"
+  },
+  "SWE2-AUDIT-SEM": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790671867.0
+  },
+  "SWE2-AUDIT-SPEC": {
+   "first_seen": 1789432134.3912203,
+   "last_useful_at": 1790655747.0,
+   "eligible_since": 1790656587.5843081,
+   "defer": "behind:SWE2-AUDIT-SEM,SWE2-DATA,SWE2-EC7"
+  }
+ },
+ "wake_quality": {
+  "SWE2-AUDIT-SPEC": {
+   "productive": 77,
+   "nonproductive": 10,
+   "streak": 0
+  },
+  "SWE2-DATA": {
+   "productive": 82,
+   "nonproductive": 11,
+   "streak": 0
+  },
+  "SWE2-ORACLE": {
+   "productive": 120,
+   "nonproductive": 16,
+   "streak": 0
+  },
+  "SWE2-CONTRACT": {
+   "productive": 118,
+   "nonproductive": 0,
+   "streak": 0
+  },
+  "SWE2-FRONTIER": {
+   "productive": 53,
+   "nonproductive": 8,
+   "streak": 0
+  },
+  "SWE2-AUDIT-SEM": {
+   "productive": 60,
+   "nonproductive": 3,
+   "streak": 0
+  },
+  "SWE2-STRUCT": {
+   "productive": 49,
+   "nonproductive": 8,
+   "streak": 0
+  },
+  "SWE2-EC7": {
+   "productive": 35,
+   "nonproductive": 2,
+   "streak": 0
+  }
+ },
+ "parked_ineffective": {},
+ "progress_report": {
+  "last_run": 1790672840.8072014,
+  "last_rc": 0,
+  "last_out": " PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-09-29T09:07:23+00:00 head=69bbf8c81 board={'revision': 39401, 'epoch': 3, 'phase': 'DATABASE'} fp=99093ba056\r\n"
+ },
+ "dashboard": {
+  "last_run": 1790672844.7915287,
+  "board_mtime": 1790672832.3060825,
+  "last_rc": 0,
+  "last_out": "committed g20260929T090807Z-917468 -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\dashboard\r\n"
+ },
+ "transitions": {
+  "shadow_ok": 93,
+  "last_rc": 0,
+  "last_out": "TRA-VERIFY-MY-PROGRESS-R2\",\r\n  \"status\": \"-\"\r\n },\r\n {\r\n  \"transition\": \"ACCEPTED\",\r\n  \"review\": \"OPUS-REQ-ASTRA-VERIFY-TRANSITIONS-R2\",\r\n  \"detail\": \"no separate incorporation owner named\",\r\n  \"status\": \"-\"\r\n },\r\n {\r\n  \"transition\": \"DONE-ALREADY\",\r\n  \"review\": \"OPUS-REQ-ASTRA-VERIFY-GENERATION-CERT-R2\",\r\n  \"detail\": \"AUTO-REPAIR-OPUS-REQ-ASTRA-VERIFY-GENERATION-CERT-R2\",\r\n  \"status\": \"-\"\r\n }\r\n]\r\n",
+  "last_error": "Command '['C:\\\\Python314\\\\python.exe', 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\transitions.py', '--agent', 'SWE2-FRONTIER', '--json', '--apply']' timed out after 120 seconds"
+ },
+ "claude_lanes": {
+  "OPUS": {
+   "session": "96b9c437-785b-434d-8ab7-046701b2ae88",
+   "shadow_ok": 0,
+   "last_run": 1790672276.84634,
+   "last_rc": 2,
+   "classification": "ACTIVE:",
+   "last_out": "ACTIVE: session 96b9c437-785b-434d-8ab7-046701b2ae88 is running; never resume an active session\r\n"
+  },
+  "FABLE": {
+   "session": "a632bd57-8ef6-4919-ba38-655e8201c26c",
+   "shadow_ok": 0,
+   "last_run": 1790672276.84634,
+   "last_rc": 1,
+   "classification": "UNKNOWN:",
+   "last_out": "UNKNOWN: no goal_status records found\r\n"
+  }
+ },
+ "heartbeat": 1790673016.2614927
+}

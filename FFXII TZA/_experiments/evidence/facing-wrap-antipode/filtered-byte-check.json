@@ -1,0 +1,57 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "6f1993b76e1fd3143e710a785fd5dfe52bf29cc7"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "25327ed5c93535a7c81cc6762bcd9c77ab8ea4bc"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "342e28b4ee3eaeeb3e9495c23fafcc3df0ac9102"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "8522ad3e5d4ffe92d73e4aa99d281506d07f59d8"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "b81810700fd382ce173529bc670ffb82c892a747"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "2d1511f100987697769e646936674c30641606f2"
+    },
+    {
+      "path": "retained/changed-bias-source.bin",
+      "git_blob": "9cab9a0563c653f390153f988194684f1225a191"
+    },
+    {
+      "path": "retained/contract.md",
+      "git_blob": "e50ac13104d7141e1c1b479b4a613756a9c44760"
+    },
+    {
+      "path": "retained/differential.py",
+      "git_blob": "a96ac4e7e0b76ead40acf1016e92617dd664cd5d"
+    },
+    {
+      "path": "retained/question-ledger.md",
+      "git_blob": "4370965a7bc7c69b57a10e76be7715572d21e196"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "253e1dd1daf83b3337839db9c098d9265ddcc8ee"
+    }
+  ]
+}

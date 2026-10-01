@@ -1,0 +1,9 @@
+{
+  "status": "INVALID_CHECKER_EXPECTATION",
+  "original": "check-v1.py",
+  "invocation": "check.py --out result.json",
+  "returncode": 1,
+  "error": "AssertionError at reconstruction state expectation; no result produced",
+  "cause": "inconsistent-headline fixture changes only the headline count. Its original Ready string remains deliberately invalid and reader rejects the whole view; initial checker wrongly expected the string to be NotReady.",
+  "correction": "Expect unchanged Ready string for that fixture, retain the required reader MALFORMED/no served view assertion. No producer/reader check weakened or raw inputs altered."
+}

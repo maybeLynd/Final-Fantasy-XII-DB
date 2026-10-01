@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-147",
+ "note": "tail commit 97f03ed8c (private index via publish_paths.sh, TEAM.json + finseal/addtail/claimtail ops + resume; @publication poll-claim landed at rev 33334)",
+ "result_refs": [
+  "97f03ed8c"
+ ]
+}

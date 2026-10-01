@@ -1,0 +1,255 @@
+{
+  "package": "migration-transitions-independent",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 9025,
+      "sha256": "286fbc3b63e1f29cb15498a2ebb495d7d65998f8b899c0704fd3b2fa6d25f84a"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5097,
+      "sha256": "58ac2d1a29f061334b2fd5bab673aa9f56ccc5e87864efec2e95f6df110cb6c2"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2488,
+      "sha256": "a9240080a701f6b79ba610779882ed3b638719b862644e2f3a223d90d73cb0ab"
+    },
+    {
+      "path": "inmemory-control.py",
+      "bytes": 1818,
+      "sha256": "9daa23e0cb889942ae622626947a1ff6760e398bc38d1d5a58e6b595dc048a82"
+    },
+    {
+      "path": "inmemory-controls.json",
+      "bytes": 8672,
+      "sha256": "467ece3a6309234aeeb2f7f464419626ba1be6c0bcf97d84a4c34cca82aee983"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2645,
+      "sha256": "17f61040c77ffe5587d6831d42e3594447316f84adf2ae8b0952daf8db960d5c"
+    },
+    {
+      "path": "read-only-01/conflicting-verdict/receipt.json",
+      "bytes": 1137,
+      "sha256": "0b31c9c55a382a78259179d88ef86dc06c5c604dfeb13f7bf448428c2a364b02"
+    },
+    {
+      "path": "read-only-01/conflicting-verdict/TEAM.json",
+      "bytes": 4284,
+      "sha256": "f8fcfcaaa59a0d0b09ae782928690630b253e5dea0eb9ae29f970ef9190edfee"
+    },
+    {
+      "path": "read-only-01/malformed-string/receipt.json",
+      "bytes": 1140,
+      "sha256": "d7528e290fc65a397bd67b7e9a1f4547288cde54f15757aa4b413c8f76f69f91"
+    },
+    {
+      "path": "read-only-01/malformed-string/TEAM.json",
+      "bytes": 4087,
+      "sha256": "be4d3b7c77dfff2f7bbb0bbc1ffdcc9b361037212fb64ca2647e748d58c9f4c3"
+    },
+    {
+      "path": "read-only-01/missing-commit/receipt.json",
+      "bytes": 1132,
+      "sha256": "6d8b250b85df9e01851dbff8ac3d6afc0f19866933a307176c05ba596acd3258"
+    },
+    {
+      "path": "read-only-01/missing-commit/TEAM.json",
+      "bytes": 4209,
+      "sha256": "ae58bce5c16ff04c9ec03b1e3908cd74fe3d958006fb1fd85c3023f540eba5fa"
+    },
+    {
+      "path": "read-only-01/missing-verdict/receipt.json",
+      "bytes": 1100,
+      "sha256": "334b1cdb5d9ef470c75817e39f0267a0eb8dcfbc4b7c6c8d978b640ce8644273"
+    },
+    {
+      "path": "read-only-01/missing-verdict/TEAM.json",
+      "bytes": 4247,
+      "sha256": "9d4841081ea3d534310ea7ae6dbffa3003d15210a21bbb712ebb9e1e45c9fb53"
+    },
+    {
+      "path": "read-only-01/no-owner/receipt.json",
+      "bytes": 1067,
+      "sha256": "51ed28a854f2b7f3d48227a09ff85e8ead688ddaf3de57b07817cd3c29d94393"
+    },
+    {
+      "path": "read-only-01/no-owner/TEAM.json",
+      "bytes": 4235,
+      "sha256": "78ba99f9b20d3021fbff1509be565ee3748e2edda48dd61fc34eb306b3d38e01"
+    },
+    {
+      "path": "read-only-01/non-sha-commit/receipt.json",
+      "bytes": 1092,
+      "sha256": "ec3b6b669e3d44eef8f845c5a623f41bcc35f2d925f46897b252a658e40e5ee3"
+    },
+    {
+      "path": "read-only-01/non-sha-commit/TEAM.json",
+      "bytes": 4216,
+      "sha256": "6c1a7452dd4f2594f8bc24711904145b6059221715472a9de26463a8a0444076"
+    },
+    {
+      "path": "read-only-01/raw.json",
+      "bytes": 16655,
+      "sha256": "779e95eddb19cb6a6c851922242852c99a4be34105da7d9207fcf88a6b0484c5"
+    },
+    {
+      "path": "read-only-01/self-review/receipt.json",
+      "bytes": 1101,
+      "sha256": "56e8add0abaf4dd5bc76a3ddb30779c1ea09f5fb1860a3fa4f0bf3b5e16a8e9a"
+    },
+    {
+      "path": "read-only-01/self-review/TEAM.json",
+      "bytes": 4280,
+      "sha256": "522a5da746b054de9f3389926885622bf1661de75329fe3556e22e526a52309b"
+    },
+    {
+      "path": "read-only-01/typed-author/receipt.json",
+      "bytes": 1753,
+      "sha256": "1a61d66d44b26630695d9264630ac97a36ecbc5c83211f882c38a2bb208c796d"
+    },
+    {
+      "path": "read-only-01/typed-author/TEAM.json",
+      "bytes": 4267,
+      "sha256": "f220ec2025f48afdeb2bf9ca6a96be2b72a12cd5ed68b1367758f9808f01fc37"
+    },
+    {
+      "path": "read-only-01/typed-commit/receipt.json",
+      "bytes": 1080,
+      "sha256": "e9ebd800d3746416ba87641ec073dd39bd0efd4d3e85c8085110ab0b4f64b003"
+    },
+    {
+      "path": "read-only-01/typed-commit/TEAM.json",
+      "bytes": 4239,
+      "sha256": "046f16c33628b30c984282e219226f8bfc6c3e592d24160f7d5dfa6e23e5e237"
+    },
+    {
+      "path": "read-only-01/typed-record/receipt.json",
+      "bytes": 1080,
+      "sha256": "f6179946760101838caaff6c5f8af59057d4c79de4132ecc1d197cb1be4afc08"
+    },
+    {
+      "path": "read-only-01/typed-record/TEAM.json",
+      "bytes": 4226,
+      "sha256": "ac521e2f2560fc551d0ab1d93ac07b61d4e56dcd566d6f667a7764672310480a"
+    },
+    {
+      "path": "read-only-01/valid-accept/receipt.json",
+      "bytes": 1092,
+      "sha256": "3178bb508bba47fba6d8743c1cade19093475cfd8e1f966959093029a96a5b55"
+    },
+    {
+      "path": "read-only-01/valid-accept/TEAM.json",
+      "bytes": 4284,
+      "sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951"
+    },
+    {
+      "path": "read-only-01/valid-reject/receipt.json",
+      "bytes": 1077,
+      "sha256": "93e67c1057de2fdb9dd1680d4feb06c6dd38e62fb671b457e5afb144f6ab127a"
+    },
+    {
+      "path": "read-only-01/valid-reject/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    },
+    {
+      "path": "read-only-controls.py",
+      "bytes": 4743,
+      "sha256": "59241d5fc46b92bc9a38703f8af26716fec58aa9c7207979936bc7ac0b500709"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2656,
+      "sha256": "c80931b34e87d54a9f19515f41ae9c3318980e82548828f5a878a379bfb014b4"
+    },
+    {
+      "path": "reducer-controls/hide-admitted-typed-commit.json",
+      "bytes": 16658,
+      "sha256": "dff5561206363bae5884022c4980770434a19c2cc89f7c36a84def0026d1aca6"
+    },
+    {
+      "path": "reducer-controls/incomplete.json",
+      "bytes": 16656,
+      "sha256": "1b26bc8d2425ea1e2fa25524d226a6bba205feb0dda6f262f8d62f33c9e25269"
+    },
+    {
+      "path": "reducer-controls/missing-case.json",
+      "bytes": 14821,
+      "sha256": "b06eceb8d0b18a865f6b5e1031a754c87736b280b96f0e2d44a5fc3e460a904d"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 2033,
+      "sha256": "7c9e70d5f6f627c47c6a878c06f28fd881c84de36a628da723ee6e5d6bcea196"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2783,
+      "sha256": "552c3fd1ea3b3848fd919bc81c6eedefdca8bd48bd058acd02e0b8e7c8f77698"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 6302,
+      "sha256": "55a1bf10f587ea357367196c6f74d64e8694098b47586eaca4a7b470455cc84a"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "bytes": 53608,
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "bytes": 10071,
+      "sha256": "3f6c8ed51d067d6516cfebdfdeabee957df82b6a92acc0e51cca0cd601a2e9b8"
+    },
+    {
+      "path": "run-01/valid-accept/before.json",
+      "bytes": 4389,
+      "sha256": "e86ff7715185cb1d892559732bb9864cc1a7e4f70fa5d389833ad118e2d0a8d2"
+    },
+    {
+      "path": "run-01/valid-accept/TEAM.json",
+      "bytes": 7211,
+      "sha256": "cb47470d61e3cdaf1cd5ac878d968d5ee0a3d62dda22bcaafd832a53fbf6afe7"
+    },
+    {
+      "path": "run-01/valid-accept/TEAM.json.journal.jsonl",
+      "bytes": 787,
+      "sha256": "cdbc1377f019520fc0f5a338b151c2bc0e74c82a4b2814cb7b8f0bb64b3d8594"
+    },
+    {
+      "path": "run-01/valid-reject/after.json",
+      "bytes": 7400,
+      "sha256": "2a191b3950106bfc509afbbad65efdd4035b5f3037660a79065f0042368e219f"
+    },
+    {
+      "path": "run-01/valid-reject/before.json",
+      "bytes": 4348,
+      "sha256": "ab1c3d73e14ea6e58155af6a2def6ea573a3eb68a0ff0d8e7323161352d1404f"
+    },
+    {
+      "path": "run-01/valid-reject/receipt.json",
+      "bytes": 4269,
+      "sha256": "6aacb4a70dcc917c946d7e769bc6bb72cf2567577b8584cfa95869e9f1663625"
+    },
+    {
+      "path": "run-01/valid-reject/TEAM.json",
+      "bytes": 7185,
+      "sha256": "06da94d960bcdacb1600ebdb09a4d65c610ce4ab68cd25c9950db7e6bbf62e6b"
+    },
+    {
+      "path": "run-01/valid-reject/TEAM.json.journal.jsonl",
+      "bytes": 787,
+      "sha256": "136811a9fc5d80e1dcea900b1b3721a9cc9efeabf32110cdf4b312b18972d120"
+    }
+  ]
+}

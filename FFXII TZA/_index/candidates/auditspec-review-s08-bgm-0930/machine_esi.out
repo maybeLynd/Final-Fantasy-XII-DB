@@ -1,0 +1,102 @@
+003EADE0..003EB010: every write of esi/si/sil, every ret, every call to 0032E780
+  003EADEF xor esi, esi
+  003EAE4C call 0x32e780
+  003EAE54 mov esi, 1
+  003EAE71 mov rsi, qword ptr [rsp + 0x78]
+  003EAE7B ret 
+  003EAEAE mov rsi, qword ptr [rsp + 0x78]
+  003EAEB8 ret 
+  003EAED4 mov rsi, qword ptr [rsp + 0x78]
+  003EAEDE ret 
+  003EAF1B mov rsi, qword ptr [rsp + 0x78]
+  003EAF25 ret 
+  003EAF9A call 0x32e780
+  003EAFA2 mov esi, 1
+  003EAFBE mov rsi, qword ptr [rsp + 0x78]
+  003EAFC8 ret 
+  003EAFDF mov rsi, qword ptr [rsp + 0x78]
+  003EAFE9 ret 
+jump table 003EAFEC (8 x rva32):
+  state 1 -> 003EAE22
+  state 2 -> 003EAE7C
+  state 3 -> 003EAE8F
+  state 4 -> 003EAEB9
+  state 5 -> 003EAFD8
+  state 6 -> 003EAEDF
+  state 7 -> 003EAEF8
+  state 8 -> 003EAFC9
+the dispatch:
+  003EAE02 dec eax
+  003EAE04 cmp eax, 7
+  003EAE07 ja 0x3eafd8
+  003EAE0D lea rdx, [rip - 0x2cae14]
+  003EAE14 cdqe 
+  003EAE16 mov ecx, dword ptr [rdx + rax*4 + 0x2cafec]
+  003EAE1D add rcx, rdx
+  003EAE20 jmp rcx
+  003EAE22 movsxd rdx, dword ptr [rbx + 0x20]
+epilogues (6 instructions before each ret):
+  ---
+  003EAE67 mov eax, esi
+  003EAE69 mov dword ptr [rbx + 0x2c], edx
+  003EAE6C mov rbx, qword ptr [rsp + 0x70]
+  003EAE71 mov rsi, qword ptr [rsp + 0x78]
+  003EAE76 add rsp, 0x60
+  003EAE7A pop rdi
+  003EAE7B ret 
+  ---
+  003EAEA3 mov eax, esi
+  003EAEA5 mov byte ptr [rbx + 0x30], 4
+  003EAEA9 mov rbx, qword ptr [rsp + 0x70]
+  003EAEAE mov rsi, qword ptr [rsp + 0x78]
+  003EAEB3 add rsp, 0x60
+  003EAEB7 pop rdi
+  003EAEB8 ret 
+  ---
+  003EAEC9 mov byte ptr [rbx + 0x30], 5
+  003EAECD mov eax, esi
+  003EAECF mov rbx, qword ptr [rsp + 0x70]
+  003EAED4 mov rsi, qword ptr [rsp + 0x78]
+  003EAED9 add rsp, 0x60
+  003EAEDD pop rdi
+  003EAEDE ret 
+  ---
+  003EAF10 mov byte ptr [rbx + 0x31], sil
+  003EAF14 mov eax, esi
+  003EAF16 mov rbx, qword ptr [rsp + 0x70]
+  003EAF1B mov rsi, qword ptr [rsp + 0x78]
+  003EAF20 add rsp, 0x60
+  003EAF24 pop rdi
+  003EAF25 ret 
+  ---
+  003EAFB4 mov eax, esi
+  003EAFB6 mov dword ptr [rbx + 0x2c], edx
+  003EAFB9 mov rbx, qword ptr [rsp + 0x70]
+  003EAFBE mov rsi, qword ptr [rsp + 0x78]
+  003EAFC3 add rsp, 0x60
+  003EAFC7 pop rdi
+  003EAFC8 ret 
+  ---
+  003EAFD4 mov byte ptr [rbx + 0x30], 7
+  003EAFD8 mov rbx, qword ptr [rsp + 0x70]
+  003EAFDD mov eax, esi
+  003EAFDF mov rsi, qword ptr [rsp + 0x78]
+  003EAFE4 add rsp, 0x60
+  003EAFE8 pop rdi
+  003EAFE9 ret 
+all writes of eax/al/rax in the body:
+  003EADFE movzx eax, byte ptr [rcx + 0x30]
+  003EAE02 dec eax
+  003EAE5B mov eax, ecx
+  003EAE67 mov eax, esi
+  003EAEA3 mov eax, esi
+  003EAECD mov eax, esi
+  003EAEF8 mov eax, dword ptr [rbx + 0x24]
+  003EAF14 mov eax, esi
+  003EAF52 lea eax, [rcx + rdi]
+  003EAF65 xor eax, eax
+  003EAF83 lea rax, [rsp + 0x30]
+  003EAFA9 mov eax, dword ptr [rbx + 0x28]
+  003EAFB4 mov eax, esi
+  003EAFDD mov eax, esi
+  003EAFF2 sub al, 0

@@ -1,0 +1,14 @@
+images joined 940, actors aligned 17139, misaligned (actor/function count differs) 3348
+  main       footer byte offsets: +0x04 x3605                              printed numbers: {'1': 3605}
+  talk       footer byte offsets: +0x06 x3618                              printed numbers: {'2': 3618}
+  touch      footer byte offsets: +0x08 x94                                printed numbers: {'3': 94}
+  spawn      footer byte offsets: +0x10 x6                                 printed numbers: {'7': 6}
+  initevent  footer byte offsets: +0x14 x5                                 printed numbers: {'9': 5}
+  parameter  footer byte offsets: +0x18 x4                                 printed numbers: {'11': 4}
+  mapjump    footer byte offsets: +0x1A x1265                              printed numbers: {'12': 1265}
+  fieldsign2 footer byte offsets: +0x1C x44                                printed numbers: {'13': 44}
+  respawn    footer byte offsets: +0x1E x6                                 printed numbers: {'14': 6}
+  talkhold   footer byte offsets: +0x22 x238                               printed numbers: {'16': 238}
+  talkterm   footer byte offsets: +0x24 x238                               printed numbers: {'17': 238}
+__MJ_CTRL actors, their non-init footer word: {'+0x1A mapjump': 1265}
+RESULT: +0x18 holds only `parameter`, +0x1A only `mapjump`, +0x04 only `main`: YES

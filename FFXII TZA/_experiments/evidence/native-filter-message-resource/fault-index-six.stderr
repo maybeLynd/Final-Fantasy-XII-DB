@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-filter-message-resource\check.py", line 60, in <module>
+    if '--fault-index-six' in sys.argv:assert english['previous']['text']=='Fatal error encountered.','Original id7837 selects entry7, not neighboring entry6'
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original id7837 selects entry7, not neighboring entry6

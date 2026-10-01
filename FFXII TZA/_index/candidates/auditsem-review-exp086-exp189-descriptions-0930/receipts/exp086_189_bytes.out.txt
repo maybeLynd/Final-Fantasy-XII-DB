@@ -1,0 +1,85 @@
+0016D6A0 bytes: c2 00 00 cc cc cc cc cc cc cc cc cc cc cc cc cc 48 8b ca 48 ff 25 86 54
+  decodes: ret 0 size 3
+0030E700..0030E730:
+  0030E70C mov dh, 0x54
+  0030E70E and al, 0x40
+  0030E710 lea rcx, [rip + 0x15c0e9]
+  0030E717 test edi, edi
+  0030E719 lea rax, [rip - 0x1a1080]
+  0030E720 cmovne rax, rcx
+  0030E724 mov rcx, rsi
+  0030E727 call rax
+  0030E729 test rbx, rbx
+  0030E72C je 0x30e816
+  0030E732 movzx ecx, byte ptr [rsp + 0x40]
+  0030E737 cmp ecx, 0x1f
+0030B702..0030B75D:
+  0030B702 lea rax, [rcx + 0x57c8]
+  0030B709 mov ecx, 8
+  0030B70E nop 
+  0030B710 mov qword ptr [rax], r11
+  0030B713 mov qword ptr [rax + 8], r11
+  0030B717 mov qword ptr [rax + 0x10], r11
+  0030B71B lea rax, [rax + 0x40]
+  0030B71F mov qword ptr [rax - 0x28], r11
+  0030B723 mov qword ptr [rax - 0x20], r11
+  0030B727 mov qword ptr [rax - 0x18], r11
+  0030B72B mov qword ptr [rax - 0x10], r11
+  0030B72F mov qword ptr [rax - 8], r11
+  0030B733 sub rcx, 1
+  0030B737 jne 0x30b710
+  0030B739 lea rax, [r10 + 0x59c8]
+  0030B740 mov ecx, 0x80
+  0030B745 nop word ptr [rax + rax]
+  0030B750 and byte ptr [rax], 0xf8
+  0030B753 lea rax, [rax + 1]
+  0030B757 sub rcx, 1
+  0030B75B jne 0x30b750
+zeroed bytes: 512, span +0x57C8..+0x59C7, contiguous: True
+masked bytes: 0x80 from +0x59C8 -> +0x59C8..+0x5A47
+root of 0030E719: 0030E360
+  0030E391 movzx edi, r8b
+  0030E40E mov edi, ebp
+  0030E410 shl edi, cl
+  0030E412 test edi, eax
+  0030E454 test edi, 0x80000003
+  0030E48A test edi, 0x80000003
+  0030E4A1 test edi, 0x80000003
+  0030E4EA test ecx, edi
+  0030E4F2 mov eax, edi
+  0030E500 test ecx, edi
+  0030E508 mov eax, edi
+  0030E516 test edi, ecx
+  0030E51E mov eax, edi
+  0030E529 test ecx, edi
+  0030E531 test dword ptr [rsi + 0x38], edi
+  0030E53A mov eax, edi
+  0030E546 test ecx, edi
+  0030E54E mov eax, edi
+  0030E55A test edi, eax
+  0030E562 or eax, edi
+  0030E5BD test edi, eax
+  0030E5E6 mov edi, dword ptr [rsp + 0x44]
+  0030E5FD test edi, edi
+  0030E63D test edi, edi
+  0030E69A mov edi, edx
+  0030E6A3 bt eax, edi
+  0030E6D2 inc edi
+  0030E6D4 cmp edi, 0x20
+  0030E6E3 mov edi, dword ptr [rsp + 0x44]
+  0030E6EE test edi, edi
+  0030E6F0 je 0x30e704
+  0030E6F2 test rbx, rbx
+  0030E6F5 je 0x30e704
+  0030E6F7 movzx edx, byte ptr [rsp + 0x40]
+  0030E6FC mov rcx, rbx
+  0030E6FF call 0x3284d0
+  0030E704 cmp dword ptr [rsp + 0x60], 0
+  0030E709 je 0x30e729
+  0030E70B movzx edx, byte ptr [rsp + 0x40]
+  0030E710 lea rcx, [rip + 0x15c0e9]
+  0030E717 test edi, edi
+  0030E719 lea rax, [rip - 0x1a1080]
+  0030E720 cmovne rax, rcx
+  0030E724 mov rcx, rsi
+  0030E727 call rax

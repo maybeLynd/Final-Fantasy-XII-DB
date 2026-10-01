@@ -1,0 +1,31 @@
+# Sentences calling a function unclassified that the certified parent has since classified.
+#
+# The GN158 -> GN160 advance is PURELY ADDITIVE, measured: 21 rows of 38,161 differ, no
+# entry/name/body size differs anywhere, no tag was lost on any row, and all 21 had
+# comment_len 0 before - no prior annotation at all. A prior verification therefore
+# cannot have been falsified by it: nothing changed except annotations appearing where
+# there were none.
+#
+# The one exception is a document that ASSERTS one of the 21 is unclassified. That claim
+# was true against GN158 and is false against the certified parent.
+#
+#   STALE       the claim was true and is not any more
+#   SELF-AWARE  the page already records the change - the corpus caught some itself
+#   LINK-TEXT   the word is inside a markdown link title; a filename is not a claim
+#   HISTORY     AUDIT-LOG, append-only; correct AS history and not to be rewritten
+#
+# document	line	address	verdict	matched	new_tag	sentence
+05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	1201	00313A00	SCOPED-TO-OLD-STATE	untagged	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	callers plus 47 through the thunk, 110 distinct functions in all**; `00313A00` (289 B, ~~untagged~~ — **corrected 2026-09-14: the certified parent classifies it
+15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	364	00313A00	SCOPED-TO-OLD-STATE	unclassified	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	| `00313A00` itself - unclassified in the 01:09 dump, classified by 01:23 | **1** |
+15-Input/Modal-Toggles/r2-force-fight-toggle.md	467	00313A00	SELF-AWARE	unowned	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	BattleUnit_UpdateCombatFrame`), Presentation 1 (`BattleUnit_ComputePartyBattleStance`), ~~unowned 3~~ **unowned 2** (`BattleUnit_UpdateEngagementStateFlag`, `BattleRuntime_GetModeDependentDistanceThreshold`)
+99-Unresolved-Residual/the-unresolved-158.md	259	002F7380	SCOPED-TO-OLD-STATE	no owner	GFZ.V121.CodeDomain.Presentation.LegacyPS2GS.TextureMipLocalMemoryBudgetAndReferenceSlotTableRebuild	a strict superset containing `002F7380` and `00313A00`. Both genuinely have no owner, no finalNo
+99-Unresolved-Residual/the-unresolved-158.md	259	00313A00	SCOPED-TO-OLD-STATE	no owner	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	a strict superset containing `002F7380` and `00313A00`. Both genuinely have no owner, no finalNo
+99-Unresolved-Residual/the-unresolved-158.md	1003	00313A00	LINK-TEXT	unclassified	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	| `00313A00` | 289 | [the largest unclassified functions](Largest-Unclassified-Code/the-largest-unclassified-functions.md) |
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	213	003649A0	SELF-AWARE	unclassified	GFZ.V121.CodeDomain.Presentation.Text.GlyphRunTexturedQuadEmissionAndPenAdvance	**Four unclassified residual functions call `0017F850`**: `003649A0`, and also `002AC5F0`
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	214	002AAE40	SELF-AWARE	unclassified	GFZ.V121.CodeDomain.Presentation.Text.GlyphRunCharacterWalkAndScreenWidthBatchSplit	(7,489 B — the largest unclassified function in the game), `002AAE40` (2,440 B) and `002AF960`
+99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md	183	003649A0	SELF-AWARE	unclassified	GFZ.V121.CodeDomain.Presentation.Text.GlyphRunTexturedQuadEmissionAndPenAdvance	unclassified function in the game), `003649A0` (3,020 B) and `002AF960` (1,117 B), plus `002A9F00`,
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	1188	002AAE40	SELF-AWARE	unowned	GFZ.V121.CodeDomain.Presentation.Text.GlyphRunCharacterWalkAndScreenWidthBatchSplit	| `009164C0`–`009164E8` | 6 | unowned 6 — **already read**: the 12-entry sparse table holding ~~the residual function~~ `002AAE40` (*corrected 2026
+_index/ADDRESS-INDEX.md	2802	002AAE40	LINK-TEXT	unowned	GFZ.V121.CodeDomain.Presentation.Text.GlyphRunCharacterWalkAndScreenWidthBatchSplit	ext-element-dispatch-table.md) · [README](../99-Unresolved-Residual/README.md) · [why-the-unowned-code-has-no-owner](../99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md) · [mea
+_index/ADDRESS-INDEX.md	3378	002F7380	LINK-TEXT	unclassified	GFZ.V121.CodeDomain.Presentation.LegacyPS2GS.TextureMipLocalMemoryBudgetAndReferenceSlotTableRebuild	7-Presentation-Rendering/Legacy-PS2-GS/texture-mip-local-memory-budget.md) · [the-largest-unclassified-functions](../99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md) · [READ
+_index/ADDRESS-INDEX.md	3730	00313A00	LINK-TEXT	unclassified	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	r2-force-fight-toggle](../15-Input/Modal-Toggles/r2-force-fight-toggle.md) · [the-largest-unclassified-functions](../99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md) · [READ
+_index/AUDIT-LOG.md	1732	00313A00	HISTORY	final_no_owner	GFZ.V121.CodeDomain.InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation	CodeDomain, 2 are `final_no_owner = true` (an explicit classification), and the last is `00313A00`

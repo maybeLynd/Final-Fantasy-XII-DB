@@ -1,0 +1,22 @@
+{
+  "start_unix": 1789086738.308499,
+  "before": [
+    {
+      "pid": 23532,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe"
+    }
+  ],
+  "operation": "ffxii_runtime.close_all(timeout=5), gated to sole experiment PID 23532",
+  "closed": [
+    23532
+  ],
+  "remaining": [],
+  "after": [],
+  "save_changes": {
+    "76561198045890736\\GameSetting.ini": {
+      "before": "36a6be8dcd9ad2bbf4c85f9fde396dcda227b5e594f81a7a7a7f9df3d9910eeb",
+      "after": "9a0bf92af2dcb224a7b6a86894ad4104a460b7846d823418a1387d936dfd9d79"
+    }
+  },
+  "end_unix": 1789086744.589036
+}

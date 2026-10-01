@@ -1,0 +1,5 @@
+PASS A1  353 B to ret, leaf, no frame; nonvolatile first touches none
+PASS A2  references: 1 call/jmp ['006DAA30'], 0 rip lea [], 0 raw u64 []
+PASS H1  first instruction psubw xmm1, xmm10; nearest .pdata start before it 00125710; decode just before it: ['00131B30 psubw xmm7, xmm1', '00131B34 paddw xmm13, xmm1', '00131B39 movdqa xmm10, xmmword ptr [rsi + 0x670]', '00131B42 movdqa xmm15, xmmword ptr [rsi + 0x660]', '00131B4B movdqa xmm1, xmm12', '00131B50 psubw xmm1, xmm10']
+PASS C  planted read of xmm6 reads as read; planted write reads as write
+FAILS 0

@@ -1,0 +1,13 @@
+{
+  "case": "different-actor-argument",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-regfile-spawn-record.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\different-actor-argument\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\different-actor-argument"
+  ],
+  "exit": 1,
+  "expected_error": "reference byte identity changed",
+  "expected_error_seen": true,
+  "result_absent": true
+}

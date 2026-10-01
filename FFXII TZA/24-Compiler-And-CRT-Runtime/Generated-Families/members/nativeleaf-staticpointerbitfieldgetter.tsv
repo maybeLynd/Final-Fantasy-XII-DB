@@ -1,0 +1,21 @@
+# NativeLeaf.StaticPointerBitfieldGetter - EC-7 family C, declared on generated-function-families.md
+#
+# 12 members. Body size(s): 17 B x6, 19 B x3, 20 B x3.
+# 6 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 12 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00236780
+00290100
+002DDD00
+002DDD20
+002DDDA0
+002DDDC0
+002DDE00
+00303EE0
+003045F0
+00304610
+003072A0
+003072E0

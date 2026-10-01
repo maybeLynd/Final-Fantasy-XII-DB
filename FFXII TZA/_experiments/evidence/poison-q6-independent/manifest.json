@@ -1,0 +1,165 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 5683,
+      "sha256": "dd241883e63dbe27f7a23f1492539d9bb2da3d1774b2a4785ace590b039244d0"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3425,
+      "sha256": "aaae05486dc1c669a99034c0c6fea2094468524652e44bd1b7823d9d88cf1f1a"
+    },
+    {
+      "path": "cleanup.json",
+      "bytes": 1444,
+      "sha256": "645bc7f214bcbfd2071d9d78a661b4ef1558cbf0971223a4d1c232a1c150e981"
+    },
+    {
+      "path": "controls.py",
+      "bytes": 2095,
+      "sha256": "a87ca8a4feb25a586e7000eacac989119d60b661d329429392b861abd43542a6"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2429,
+      "sha256": "bbd7b7ef8b1d144c7d5eb1b3467903eedac9815d82972c16cd38df82fcb8d9da"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 3343,
+      "sha256": "f064b92aa2e5e33ce5bc0294129491c69cef5461ef098e66617f7d034cc6e0f7"
+    },
+    {
+      "path": "prerequisite-control.json",
+      "bytes": 1126,
+      "sha256": "8710d6b244d1c4c87f28ca2224da02de73ecba85afa3ea08213cf0724b35aae7"
+    },
+    {
+      "path": "private-source/author-poison-result.json",
+      "bytes": 6494,
+      "sha256": "40d81950ee1fab54b7ed5980cfa007f97fac7983d0f87a3ddca12e9bea9affc0"
+    },
+    {
+      "path": "private-source/check.py",
+      "bytes": 15340,
+      "sha256": "2cbc80696fe72fc38d8854d97b0f6ca5e5d68be34d4823a169f058c1c16fa9d7"
+    },
+    {
+      "path": "private-source/current-preimage-author-poison-result.json",
+      "bytes": 6875,
+      "sha256": "38643e333c2de709024b712b929a4102c8d775f8c94fd9b3db9397f29ac4d14f"
+    },
+    {
+      "path": "private-source/current-preimage-status-page.md",
+      "bytes": 68091,
+      "sha256": "12d6c4a9b026a27aeeda1076d09b7650c40a8b8fd24309083fd9af9ea650c7c3"
+    },
+    {
+      "path": "private-source/fable-q6.md",
+      "bytes": 1704,
+      "sha256": "028053740c449c963236512f88e60f5fcd219a2c31b5cb26e7dcac6c90ed8b22"
+    },
+    {
+      "path": "private-source/labelled-critical-skip-mutation.bin",
+      "bytes": 935,
+      "sha256": "da9e71faa08270f2095a0097574ac4d72e6929e4fdf80a1df328d1e2c2e0b9b4"
+    },
+    {
+      "path": "private-source/poison.py",
+      "bytes": 5887,
+      "sha256": "56e361340d94d6b5f7b610163a2e4d56914b7f814e875423d0e01c0ae7b571d5"
+    },
+    {
+      "path": "private-source/poison_result.json",
+      "bytes": 6875,
+      "sha256": "38643e333c2de709024b712b929a4102c8d775f8c94fd9b3db9397f29ac4d14f"
+    },
+    {
+      "path": "private-source/result.json",
+      "bytes": 6160,
+      "sha256": "5019c60e9f177cfa70d558a4d442949f5215b9f53669a4f929996f1132569387"
+    },
+    {
+      "path": "private-source/stage2-00386c70.bin",
+      "bytes": 935,
+      "sha256": "bcdbed8dd31813fa18fa3d34011f7e945413e6fc982e328af0f35c76d412cac5"
+    },
+    {
+      "path": "private-source/stage2-disassembly.json",
+      "bytes": 30373,
+      "sha256": "40b6fcf3ed3aa08ac5db6af13b5abe2e99e93aa3bd6e80af26cdf8df092d4b29"
+    },
+    {
+      "path": "private-source/status-page.md",
+      "bytes": 67324,
+      "sha256": "899ec2f8c56c227977a0d776320f2ddd97f702451df926740c77af7ad2f2487d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4954,
+      "sha256": "bb8b61b4bf19675d25784230895be4135f64810180e1fad961fa65a15932d0dc"
+    },
+    {
+      "path": "reducer-controls/exception-with-good-results.json",
+      "bytes": 32767,
+      "sha256": "6e791d53fd72e1f75a1dea889ed35b7e669e07a865b93c4ece003bd50543db16"
+    },
+    {
+      "path": "reducer-controls/missing-boundary.json",
+      "bytes": 31073,
+      "sha256": "67582f5727b311ec79af6bafd2949765d3091cc1b06e17edaa2262c63de8494f"
+    },
+    {
+      "path": "reducer-controls/upstream-fail.json",
+      "bytes": 32705,
+      "sha256": "2f18d00129f427d9a4350ce4b59108dfd7d1157dd92a78f42dd2d7985865d6bd"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 3479,
+      "sha256": "656f07ce75628445da28e5310e73181d21815d8d535a6c19722c0ba55ecb6eee"
+    },
+    {
+      "path": "reducer-controls.py",
+      "bytes": 1073,
+      "sha256": "8bbba7aa26a6e798264c37cc488ee8fe31c988f648d84a8a59a43e0098a3467c"
+    },
+    {
+      "path": "run-01/driver-before-run.py",
+      "bytes": 5683,
+      "sha256": "dd241883e63dbe27f7a23f1492539d9bb2da3d1774b2a4785ace590b039244d0"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 32704,
+      "sha256": "0f8fa6c89ad30084c1f1703e6f44712d84b0ff9f7ddf36f063f9e320af591acd"
+    },
+    {
+      "path": "run-01/tool-receipt.json",
+      "bytes": 369,
+      "sha256": "9d12523a0ef13f8c252770f98fa7fab8fb9925e6ed41ad61093367a8cfc0a9aa"
+    },
+    {
+      "path": "source.json",
+      "bytes": 4314,
+      "sha256": "7c3255cf932b0d5cfc0f32540a76d4afc24f4635321aa638114155f272b4850e"
+    },
+    {
+      "path": "static-control.json",
+      "bytes": 1908,
+      "sha256": "3bc866b198f9e7e0a79c73b319300c0f9bd0a50f41806033cb06c1db0bcf86df"
+    },
+    {
+      "path": "static-control.py",
+      "bytes": 2174,
+      "sha256": "c05d3c384a3f9dc9696d9cb96e3ac204582f065d06481e7a15e9c5285ffd8b03"
+    }
+  ]
+}

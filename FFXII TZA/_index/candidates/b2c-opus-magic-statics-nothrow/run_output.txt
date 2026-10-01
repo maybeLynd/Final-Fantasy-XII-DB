@@ -1,0 +1,10 @@
+header sites 1732, guards 1681; abort sites 1545, guards 1545; no-funclet guards 136
+no-funclet guards, worst site: {'NOCALL': 103, 'NOTHROW-CLOSED': 33}
+control, funclet guards, worst site: {'NOTHROW-CLOSED': 598, 'UNKNOWN': 947}
+guards whose calls reach _Init_thread_wait (nested magic statics): 6 ['02CB6158', '02CED098', '02CED0B8', '02CF9630', '02CF9808', '02CF9828']
+C1_population_1732_sites_1681_guards_1545_with_funclet_136_without       PASS
+C2_every_site_of_the_136_reaches_its_own_footer                          PASS
+C3_none_of_the_136_reaches_a_throw_or_an_unresolved_call                 PASS
+C4_control_most_funclet_guards_reach_an_unresolved_call_none_of_the_136_do PASS
+C5_the_one_named_indirect_call_is_SleepConditionVariableCS               PASS
+ALL PASS

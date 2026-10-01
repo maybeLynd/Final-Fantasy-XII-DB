@@ -1,0 +1,23 @@
+{
+  "name": "generic--malformed-output",
+  "source": "generic",
+  "original_case": "malformed-output",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--malformed-output\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--malformed-output\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "9d793eef5b00cf66de9d86bb01eb938b8dd1006a96f5576706cc345b97700f78",
+  "upstream_sha256": "779841a8a05fdf156637319b37a744608b71f81e12d906a706765dad9f14c3cb",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py output is malformed: ['unrecognized output']\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

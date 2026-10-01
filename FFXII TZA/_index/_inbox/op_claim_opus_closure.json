@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-CLOSURE-CENSUS-AND-INSTRUCTION-TYPING",
+ "agent": "OPUS",
+ "note": "The census now hands each root-relative displacement to the DEEPEST declared window containing it, so a record inside a sub-object is described by the record rather than lost. Windows come from route cells that already say EMBED <owner> +0xNN [stride count]; the hole between an element's size and its stride stays with the owner, because giving it to the element would invent a field the element does not declare. THE RESULT IS ITS OWN CONTROL: ManagerSingleton0209BE80, 129 windows over 20 types, 295 slot loads, 104 bodies, 52 root-relative displacements - 52 of 52 attributed, 0 outside every window, and 52 of 52 on rows the type already names, spread over 11 types including the nested ManagerSub7FB0Record, ManagerSubA0D0Record, _57E0PairRecord and BattleMenuChildWidget1620. Wrong offset arithmetic would scatter hits into gaps; it does not happen once. MapScreenContainer carved 3 of 11 (+0x1A0, +0x179DC, +0x179DE); RenderResourceRoot reached 1, already named. MY OWN ERROR INSIDE THE RUN: I first gave RenderResourceRoot the address 022C7020, which is RenderModelInstanceContainer's STATIC address and not the root's pointer cell 022C6F20; C1 came back 0 and nothing was written, so the instrument behaved and the wrong argument was mine. ALSO: three rows retyped uint32 -> float because every access to them is movss/addss/mulss/comiss, while three neighbours touched by both integer mov and SSE were left alone and reported MIXED - `mov dword ptr [rbx+0x134], 0x3F800000` is very probably 1.0f, and very probably is not what a ctype cell is for. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

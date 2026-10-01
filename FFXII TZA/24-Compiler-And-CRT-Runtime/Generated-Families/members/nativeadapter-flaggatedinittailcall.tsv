@@ -1,0 +1,9 @@
+# NativeAdapter.FlagGatedInitTailCall - EC-7 family C
+# # if a member global flag is clear, zero two stack slots and call shared
+# # init 00226BE0 (ecx=0x16); tail-call shared 00226280.
+address	targets
+00227460	00226280,00226BE0
+00227510	00226280,00226BE0
+00227550	00226280,00226BE0
+00227590	00226280,00226BE0
+002275D0	00226280,00226BE0

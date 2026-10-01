@@ -1,0 +1,87 @@
+{
+ "real": [
+  {
+   "name": "subject",
+   "va": "0x30fed0",
+   "end": "0x3105cb",
+   "size": 1787,
+   "sha256": "01a49b9744154d628b7fc654eddadf42efec96702992fe8fc14cfe8d2ff9e853"
+  },
+  {
+   "name": "resolver",
+   "va": "0x20e600",
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "name": "validity",
+   "va": "0x322c50",
+   "end": "0x323051",
+   "size": 1025,
+   "sha256": "8a944ad6185050d17911f914a56145320f9f604d3f95eec59e86ef5a2777786d"
+  },
+  {
+   "name": "eqgate",
+   "va": "0x31e9a0",
+   "end": "0x31e9e4",
+   "size": 68,
+   "sha256": "c2864813f1ee2cd145df65e09dea4dabe93c2de1bf2af6141daa7740c78dd03e"
+  },
+  {
+   "name": "eqclass",
+   "va": "0x31e9f0",
+   "end": "0x31ea4d",
+   "size": 93,
+   "sha256": "e23130f0be576114641d708b9de841c9f3adec5c51eab8f7bad8f013b726b4fd"
+  },
+  {
+   "name": "licgate",
+   "va": "0x323890",
+   "end": "0x3238e3",
+   "size": 83,
+   "sha256": "55d9fa6351240c8ebd197748bc3b3a8b3f75ba2d2fc2068ef0ee08fe90beddfb"
+  },
+  {
+   "name": "licclass",
+   "va": "0x3241d0",
+   "end": "0x324234",
+   "size": 100,
+   "sha256": "4fa168d5c2cec635fca8d4368476bdb784a08ed378db6da1a35c8ffa02bf6bd0"
+  },
+  {
+   "name": "cookie",
+   "va": "0x808c40",
+   "end": "0x808c62",
+   "size": 34,
+   "sha256": "b16b73b465b1af6a5cf04cefaf24e461ba342f632b6bee96c87fb8b7458fd1e9"
+  }
+ ],
+ "stubbed": [
+  {
+   "name": "find",
+   "va": "0x31b860",
+   "note": "record->unit resolver; entry-stubbed, returns planted unit or 0"
+  },
+  {
+   "name": "apply",
+   "va": "0x30e130",
+   "note": "status write; entry-stubbed, bit+mode args captured"
+  },
+  {
+   "name": "cascade",
+   "va": "0x30e360",
+   "note": "unit-mask status write; entry-stubbed (real body executed in EXP-086)"
+  },
+  {
+   "name": "notify",
+   "va": "0x2fef30",
+   "note": "once per run; entry-stubbed"
+  },
+  {
+   "name": "tail",
+   "va": "0x30e060",
+   "note": "final recompute; entry-stubbed, flags arg captured"
+  }
+ ]
+}

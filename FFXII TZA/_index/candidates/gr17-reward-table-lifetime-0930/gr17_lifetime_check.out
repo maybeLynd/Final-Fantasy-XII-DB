@@ -1,0 +1,13 @@
+PASS  S1 readers <- ['00312280']; 00312280 <- 0030E360@0030E884; rip refs none=True; qword slots none=True
+PASS  S2 base = entry rdx/rcx in every reader; 0030E360 rdx = rbx = 0031B860(holder); rbx writes ['0030E3B3', '0030E6D9', '0030E83D']; mismatches []
+PASS  S3 tests in 0031B860: ['test rcx, rcx', 'test eax, eax', 'test rax, rax', 'cmp qword ptr [rax + 0x698], rdi', 'cmp ebx, eax']
+PASS  S4 status arms reaching 0030E875 -> 00312280: [0, 1, 31]; gated on edi = (mode - 3 <= 1)
+PASS  S5 00234480 <- 00265A20 <- 0026CE60 only; memset 0xF50 + bit0; gate [mgr+0x28]==0 (= manager index, 0026C957) and actor+0x14>=0x80; 002134A0 other caller 001E8580 builds a 0x98-byte object
+PASS  S6 00234200 <- 0025B070 <- 002628B0 only; predicate = allocation predicate; memset 0xF50 at 002342CE for every pool unit; skipped only for manager 4 / not-loaded; 002628B0 <- 0025BFB0@0025C036 0032FCA0@0032FCF6
+PASS  S7 02B5E0C0 refs ['003EA65E', '003EA6C3', '003EA809', '003EA86D', '003EA88F', '003EA999']; frees 003EA888/003EA992 only; 003EA820 <- 003EA6E0 <- 0032FC30@0032FC4B; then 0032FCA0@0032FC7B -> 002628B0(0)@0032FCF6 on every path
+PASS  S8 bit-0 writers in init/unload/setup: ['0026D305 or byte ptr [rbx + 0x10], 1', '00262DA8 and byte ptr [rbx + 0x10], 0xfe', '0026CB0B and byte ptr [rdi + 0x10], 0xe7', '0026CB67 mov byte ptr [rdi + 0x10], r9b', '0026CC45 mov byte ptr [rdi + 0x10], r9b', '0026CD3F and byte ptr [rdi + 0x10], 0x9b']; setup 0026C8C0 reached only via 0032FCA0 @00330029/@00330030 (after 0032FCF6)
+PASS  S9 174 direct call/tail sites in the window; reaching 00312280: ['0025B225->00234200', '0023423F->00300140']; indirect []
+PASS  S10 00300140(unit,1) reaches 00312280=True; still reaches with node 0046EFD0 removed=False, with edge 0031082C removed=False; gates as read
+PASS  S11 +0xE70/+0xE78 stores in the install ['0023A9A5', '0023A9F4']; party arm 0023AA49..0023ABCA touches them 0 times
+PASS  C1 closure finds 0030E360 -> 00312280; 00319140 / 002EB780 (window callees) do not reach
+FAILS 0

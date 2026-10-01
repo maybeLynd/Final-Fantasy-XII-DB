@@ -1,0 +1,592 @@
+{
+  "method": "A original-code analysis + exhaustive bounded-state/FST analysis",
+  "domain": "nonnegative selectors 0..32767 only; caller domain still unproved",
+  "raw_sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12",
+  "driver_sha256": "465eeb72cb603575f6782d7573c04c77ce3657d820413b4f284e6b0515316beb",
+  "valid_controls": [
+    {
+      "case": "missing_ranges",
+      "rejected": true,
+      "reason": "missing evidence, not valid empty result"
+    },
+    {
+      "case": "observer_failed",
+      "rejected": true,
+      "reason": "upstream observer failure"
+    },
+    {
+      "case": "wrong_narrowing",
+      "rejected": true,
+      "reason": "original instruction witness mismatch at 3dd618"
+    },
+    {
+      "case": "missing_tables",
+      "rejected": true,
+      "reason": "incomplete language input: require 12"
+    }
+  ],
+  "boundary_controls": [
+    [
+      3,
+      10922,
+      32767
+    ],
+    [
+      3,
+      10923,
+      -32766
+    ],
+    [
+      4,
+      8191,
+      32765
+    ],
+    [
+      4,
+      8192,
+      -32767
+    ],
+    [
+      4,
+      16384,
+      1
+    ],
+    [
+      4,
+      24576,
+      -32767
+    ]
+  ],
+  "results": [
+    {
+      "name": "FileSizeTable_ASIA.fst",
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10536,
+          "positive_aliased_sizes": 386,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_CH.fst",
+      "sha256": "1f7e4ca1ea1a003d2ade2a6338be3513f659ab986efb3dc734db12c36498075b",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10536,
+          "positive_aliased_sizes": 386,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_CN.fst",
+      "sha256": "e33cb21a6ae3ac84aaf7500d724e20aefdf6cbc6e7ff9e97ee2faa8448f41258",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10536,
+          "positive_aliased_sizes": 386,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_DE.fst",
+      "sha256": "d80b86be6f53166701abf5c15356c449421fbb41f2e82e105044a406e90e350c",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10537,
+          "positive_aliased_sizes": 385,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_ES.fst",
+      "sha256": "4aec6d0e32f56dbe95fd9c76aef4685c42e2eb043e1ffffa2059c2ba5c2af5a9",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10537,
+          "positive_aliased_sizes": 385,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_FR.fst",
+      "sha256": "d8f6211d36a6207a2a20ecbfe0e8b53f12b6ba5c473f4693fec4730e30293213",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10537,
+          "positive_aliased_sizes": 385,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_IN.fst",
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10536,
+          "positive_aliased_sizes": 386,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_IT.fst",
+      "sha256": "948c7aee093a63b210972227e68172d79303f7a1e2a9a2d44b4012b589e7fdc1",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10537,
+          "positive_aliased_sizes": 385,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_JP.fst",
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10536,
+          "positive_aliased_sizes": 386,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_KR.fst",
+      "sha256": "83a4dda471c8b9744375227389730097ba8502984e66c88dc5de0738549976ca",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10536,
+          "positive_aliased_sizes": 386,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_UK.fst",
+      "sha256": "2451762db99591c4b8417d1278d6120f20226f338f4da36aa2ff544d713bb40f",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10537,
+          "positive_aliased_sizes": 385,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    },
+    {
+      "name": "FileSizeTable_US.fst",
+      "sha256": "3a03ea77c689d1f48428c440a272b7dbfd77b121758bfd2c5ac0697ceeeb2b3e",
+      "groups": [
+        {
+          "group": 0,
+          "namespace": 5,
+          "stride": 3,
+          "selectors_examined": 32768,
+          "negative_count": 10922,
+          "first_negative_selector": 10923,
+          "missing_size_count": 10537,
+          "positive_aliased_sizes": 385,
+          "first_positive_alias": {
+            "selector": 11667,
+            "full_index": 35002,
+            "narrowed": -30534,
+            "fst_flat_word": 60002,
+            "aliased_kind": 12,
+            "aliased_id": 2,
+            "size": 24832
+          }
+        },
+        {
+          "group": 1,
+          "namespace": 8,
+          "stride": 4,
+          "selectors_examined": 32768,
+          "negative_count": 16384,
+          "first_negative_selector": 8192,
+          "missing_size_count": 15423,
+          "positive_aliased_sizes": 961,
+          "first_positive_alias": {
+            "selector": 8751,
+            "full_index": 35005,
+            "narrowed": -30531,
+            "fst_flat_word": 75005,
+            "aliased_kind": 15,
+            "aliased_id": 5,
+            "size": 163840
+          }
+        }
+      ]
+    }
+  ],
+  "interpretation": "FST extent/population alone cannot prove negative narrowed indices unreachable",
+  "natural_shipped_reachability": "OPEN; need complete selector-producer/input bounds and load/owner scheduling"
+}

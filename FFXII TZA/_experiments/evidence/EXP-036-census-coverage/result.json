@@ -1,0 +1,44 @@
+{
+  "status": "REPRODUCED",
+  "scope": "synthetic checker input coverage",
+  "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\check_census_widths.py",
+  "source_sha256": "7bcd58a7a549ae8c22b50b5eb7eaa4c712c18bd6d2edc4037d7d2b308894c056",
+  "harness_sha256": "acd9ff54021df9588deeaeeafa9135c267df8b634238c61f30163d6e07d7de48",
+  "cases": [
+    {
+      "case": "matching",
+      "declared_fields": 1,
+      "exit_code": 0,
+      "stdout": "\ndeclared whole (array or span) - disagreement expected: 0\n\ndeclared deliberately against the census, with a reason in the row: 0\n\nROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 0\n",
+      "stderr": ""
+    },
+    {
+      "case": "mismatch",
+      "declared_fields": 1,
+      "exit_code": 1,
+      "stdout": "  MISMATCH BattleUnit           +0x0100 declared 1    name=testField                clean evidence {4: 1}\n\ndeclared whole (array or span) - disagreement expected: 0\n\ndeclared deliberately against the census, with a reason in the row: 0\n\nROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 1\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing_census",
+      "declared_fields": 1,
+      "exit_code": 0,
+      "stdout": "no census for BattleUnit\n\ndeclared whole (array or span) - disagreement expected: 0\n\ndeclared deliberately against the census, with a reason in the row: 0\n\nROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 0\n",
+      "stderr": ""
+    },
+    {
+      "case": "malformed_rows",
+      "declared_fields": 1,
+      "exit_code": 0,
+      "stdout": "\ndeclared whole (array or span) - disagreement expected: 0\n\ndeclared deliberately against the census, with a reason in the row: 0\n\nROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 0\n",
+      "stderr": ""
+    },
+    {
+      "case": "no_declared_fields",
+      "declared_fields": 0,
+      "exit_code": 0,
+      "stdout": "\ndeclared whole (array or span) - disagreement expected: 0\n\ndeclared deliberately against the census, with a reason in the row: 0\n\nROWS WHOSE DECLARED SIZE DISAGREES WITH THE CLEANED CENSUS: 0\n",
+      "stderr": ""
+    }
+  ]
+}

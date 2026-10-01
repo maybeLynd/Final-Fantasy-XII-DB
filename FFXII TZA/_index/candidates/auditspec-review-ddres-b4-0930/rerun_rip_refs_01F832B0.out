@@ -1,0 +1,23 @@
+PASS  control: store to 02064ACC at 0022A1A7 found
+001CC600  001CC648  lea  lea    rcx, [rip + 0x1db6c61]                   -> 01F832B0
+001CC800  001CC82D  lea  lea    rdx, [rip + 0x1db6a7c]                   -> 01F832B0
+001CC920  001CC934  lea  lea    rdx, [rip + 0x1db6975]                   -> 01F832B0
+001CD0E0  001CD404  r    mov    esi, dword ptr [rip + 0x1db5eba]         -> 01F832C4
+001CD0E0  001CD892  r    mov    eax, dword ptr [rip + 0x1db5a2c]         -> 01F832C4
+001EC500  001EC50C  lea  lea    rcx, [rip + 0x1d96d9d]                   -> 01F832B0
+001EC560  001EC574  lea  lea    rcx, [rip + 0x1d96d35]                   -> 01F832B0
+001EC600  001EC60C  lea  lea    rcx, [rip + 0x1d96c9d]                   -> 01F832B0
+001EC690  001EC690  r    inc    dword ptr [rip + 0x1d96c2e]              -> 01F832C4
+001EC760  001EC7A4  lea  lea    rcx, [rip + 0x1d96b05]                   -> 01F832B0
+001EC760  001EC7B2  r    mov    ebx, dword ptr [rip + 0x1d96b0c]         -> 01F832C4
+001ED020  001ED057  lea  lea    rcx, [rip + 0x1d96252]                   -> 01F832B0
+001ED130  001ED148  lea  lea    rcx, [rip + 0x1d96161]                   -> 01F832B0
+001ED1E0  001ED20A  lea  lea    rcx, [rip + 0x1d9609f]                   -> 01F832B0
+001ED240  001ED2A6  lea  lea    rax, [rip + 0x1d96003]                   -> 01F832B0
+001ED240  001ED2B4  r    mov    esi, dword ptr [rip + 0x1d9600a]         -> 01F832C4
+001EDAD0  001EDAF6  r    mov    ebx, dword ptr [rip + 0x1d957c8]         -> 01F832C4
+001EDAD0  001EDB15  lea  lea    rcx, [rip + 0x1d95794]                   -> 01F832B0
+001EDBB0  001EDBE6  r    mov    ebx, dword ptr [rip + 0x1d956d8]         -> 01F832C4
+0020A760  0020A7D9  lea  lea    rax, [rip + 0x1d78ad0]                   -> 01F832B0
+0020AE70  0020AE84  lea  lea    rsi, [rip + 0x1d78425]                   -> 01F832B0
+0020AF10  0020AFAA  w    mov    dword ptr [rip + 0x1d78310], 0           -> 01F832C4

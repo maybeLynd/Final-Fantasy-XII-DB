@@ -1,0 +1,75 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4964,
+      "sha256": "219e6fbe056f182f91e0d58fff01747419cd3208dc70fb94ad7e7aa4b0b21d8f"
+    },
+    {
+      "path": "documentation.json",
+      "bytes": 1175,
+      "sha256": "8d867442640c0e7cb1cf71a66b0685caddf36dea010bb9ecf13951e16d1b8647"
+    },
+    {
+      "path": "extract.py",
+      "bytes": 4245,
+      "sha256": "7776c478f0f3dad39994ba88570802e492a9944b14d4f36a5d83317028effe86"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 2745,
+      "sha256": "dc80a191d251db8a3d49396da57db31cb91818cf3bce863286fb9f58d83d3da9"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2181,
+      "sha256": "3dd00d6cb6f3ad6d72607a3a4ecfb0b808c0e63dabe7a93f72915752e5e9f052"
+    },
+    {
+      "path": "primary.json",
+      "bytes": 22001,
+      "sha256": "841f05a7252028684f22ed47da5774dffeb29eaaadae9f1d0c1a6f6473e86a61"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4724,
+      "sha256": "c2c5ae323c46c14f957929bb80206bb936cbbaa5d3ed9271761fb79deabca7f0"
+    },
+    {
+      "path": "retained/00-status-sparse-slot-watch-preparation.md",
+      "bytes": 3524,
+      "sha256": "556fa163c3a311eceb6b205613f51f40e04f0b066e815f15d59aaa23d00ba6d9"
+    },
+    {
+      "path": "retained/01-source.json",
+      "bytes": 2245,
+      "sha256": "9d2f81f48e9e0d26a408d796dba8bf04eb48f58597962d448226f33cc83abf5d"
+    },
+    {
+      "path": "retained/02-observer.json",
+      "bytes": 1171,
+      "sha256": "a2e8047a5946a120ed0fd085c4179bfde797eb7173acfdde1e6cb4e156f33d4d"
+    },
+    {
+      "path": "retained/03-status-table.bin",
+      "bytes": 1312,
+      "sha256": "c5ea6807f40789f68ee79e4648c6fc8da0d90ea3af0639b73256f8f14c9e8821"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 187,
+      "sha256": "5e9f6e783bcc35b169b331d4b277900b5f16acfe5889d858efd332742a5e8566"
+    }
+  ],
+  "limits": "Original/static criterion qualification only; no data detector/live run accepted."
+}

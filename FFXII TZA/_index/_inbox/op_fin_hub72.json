@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-72",
+ "result_refs": [
+  "audit:xref_hub72"
+ ],
+ "note": "22 frontier bodies (00229E00 3-A head + top 21 of the 2-A band, 003DBEA0..00234DA0) measured and placed on 17 bearing hosts; 22/22 A-measured; anchors 2,778/0 MID/0 not-in-body; links/consistency/questions clean; byte/hash audit reproduces; crossref 65 findings, zero on batch-72 hosts after the spawn-placement mechanical-fan-in note; ready to publish"
+}

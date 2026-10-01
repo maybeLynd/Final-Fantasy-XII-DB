@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-drop-parity",
+    "returncode": 1,
+    "expected": "JP distinguishes unordered from zero/equal before JNE"
+  },
+  {
+    "argument": "--fault-reverse-divide",
+    "returncode": 1,
+    "expected": "DIVSS uses lower/dividend XMM0 divided by top/divisor XMM6"
+  },
+  {
+    "argument": "--fault-integer-zero-flags",
+    "returncode": 1,
+    "expected": "Floating predicate is UCOMISS+JP/JNE, not integer TEST/JE"
+  }
+]

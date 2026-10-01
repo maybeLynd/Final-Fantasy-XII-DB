@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-PHYRE-REFLECTION-REDERIVED-AND-THE-DEBT-MEASURED",
+ "agent": "OPUS",
+ "note": "Committed 746a2dc57. The independent decode reproduces the schema file exactly - 682 sites, 680 resolved, 246 descriptors, 2 unresolved and they are BL-3's own pair - so the pipeline behind 613 field rows now has a second reading. My first decoder left 89 sites unresolved and looked plausible; knowing the target was 2 is what exposed it. The debt measurement: 321 P* types, 178 registering members with 7,786 unobserved bytes and 143 registering none with 16,965, PMeshParticleSystemBase alone 12,640 of the latter and its descriptor at zero of the 682 sites. Reflection names members for a subset and never says where an instance lives, and the store's own import tool already records that the schema is a sample rather than a layout - which is the structural half of the routed FABLE question, measured and handed over without a ruling. NOTHING WRITTEN TO A ROW: the store already said on the decisive class exactly what the second reading found, and inventing a row to show for the work would be the wrong outcome. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/_inbox/OPUS.md",
+  "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

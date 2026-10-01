@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "FRONTIER-REQ-SWE2-EC7-EASTL-RBTREE-RELABEL",
+ "result_refs": [
+  "Database/Tools/work/graph/functions.tsv",
+  "Database/FFXII TZA/_index/candidates/bq23-tier6/bq23_tier6.py"
+ ],
+ "note": "Relabeled the 18 EASTL-classified OrderedContainerRuntime members: CodeDomain head CxxStandardLibrary -> EASTL (GFZ.V121.CodeDomain.EASTL.OrderedContainerRuntime.*). The 3 MSVC _Tree members 00712F60/0071E500/0079BA10 keep CxxStandardLibrary; 9 unmatched untouched. Member set reproduced from bq23_tier6.py T4 partition logic (18 EASTL rbtree, 3 MSVC _Tree, 9 unmatched - matches the control's expected counts)."
+}

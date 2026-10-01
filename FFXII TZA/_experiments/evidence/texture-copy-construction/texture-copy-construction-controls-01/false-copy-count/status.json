@@ -1,0 +1,7 @@
+{
+  "case": "false-copy-count",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error": "disagree",
+  "expected_error_seen": true
+}

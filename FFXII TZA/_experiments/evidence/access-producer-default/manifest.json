@@ -1,0 +1,85 @@
+{
+  "members": [
+    {
+      "path": "capture.py",
+      "bytes": 3599,
+      "sha256": "040b1119d02d9a93f0fa0b7aba221cdb757ea86f78b62ed18ef78b1640693460"
+    },
+    {
+      "path": "check.py",
+      "bytes": 1970,
+      "sha256": "01d0c6809e549cf2715d71bd590416e00629919fa107744fd3b5b69634f1773a"
+    },
+    {
+      "path": "claim-before-lowercase-keys.py",
+      "bytes": 1611,
+      "sha256": "d98814ad72cad66d69b3a89638aae229abcbc8c01c0bbe644e05cfe4ce0543e6"
+    },
+    {
+      "path": "delivery.md",
+      "bytes": 3415,
+      "sha256": "3b9a5a6da5296cabf5a81a7c40fc0dfe340614d59eb825e1f4482a47bd3236a9"
+    },
+    {
+      "path": "inspection.json",
+      "bytes": 51598,
+      "sha256": "5485332f517dfec5c0944062a48868ecfb95d7133e60ed154971dec6620d662d"
+    },
+    {
+      "path": "inventory.py",
+      "bytes": 3187,
+      "sha256": "ca71bf6f7467d236895321456dc4f7fab4e79c4e9028f18e780e022b41a01a60"
+    },
+    {
+      "path": "original-capture.py",
+      "bytes": 2847,
+      "sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2242,
+      "sha256": "f6ef3247e5448a7900136a3ec5bd80feef0d49d00c6c44b53d799362b0d7fd1b"
+    },
+    {
+      "path": "private-capture-before.py",
+      "bytes": 2847,
+      "sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4858,
+      "sha256": "a78464fae13ded7dd5fe49295d0a9836a10f94b3fb1a1628de14b7259efb65e1"
+    },
+    {
+      "path": "result.json",
+      "bytes": 56069,
+      "sha256": "2694fdae35fc0128edf8a2669ce1714093b1c3c09700420449e246d0fb75684b"
+    },
+    {
+      "path": "retained/correction.json",
+      "bytes": 8531,
+      "sha256": "150a39ee9dc9246e7ed2584bc6c32ee74c4a27d2f0e5c3a768fdb490320b3b78"
+    },
+    {
+      "path": "retained/operand_direction.py",
+      "bytes": 1345,
+      "sha256": "9a25d0a958cae6506e994213b11898ac17c6edf7a8f3eb79d958f073df1cde36"
+    },
+    {
+      "path": "retained/original-source.json",
+      "bytes": 19514,
+      "sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "run.py",
+      "bytes": 5267,
+      "sha256": "05d695b8e54e482046c629bc982856260618ed84162e517f6ef4a2ec1294a13b"
+    }
+  ],
+  "limits": "Producer controls and dependency inventory only; independent acceptance and canonical ORACLE sealing not claimed. Original matrix/procedural packets unchanged."
+}

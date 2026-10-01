@@ -1,0 +1,75 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2827,
+      "sha256": "ce9adf8dc673804e577bd557ee597d66f05e0efcdae89948741c3da866216183"
+    },
+    {
+      "path": "freeze-before-byte-policy.py",
+      "bytes": 792,
+      "sha256": "7d2359e66f8d68f6b5435ee3a0d5750fe8d6d4405a1bc4a1b3f3f29f4d5ee1c9"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1130,
+      "sha256": "519a78502807c3b1d2fc4630810c13333ce67332524b3cb68445269c83cc18de"
+    },
+    {
+      "path": "raw/check.py",
+      "bytes": 2399,
+      "sha256": "ec36b9a7d29ddde499f8dd14f3e603df65b688d6cc35d30c9b72162c82a228a6"
+    },
+    {
+      "path": "raw/derive.py",
+      "bytes": 4636,
+      "sha256": "2c96078ec6f5389054200140d80f5d03d3baf319a506ab7ef9f68112fa3d54bf"
+    },
+    {
+      "path": "raw/manifest.json",
+      "bytes": 1406,
+      "sha256": "28437af3346905f09d066df4a9735ac87a110d5691b36d9d4d1d2f8646f5b7cc"
+    },
+    {
+      "path": "raw/PLAN.md",
+      "bytes": 1650,
+      "sha256": "1fdbeb1f1970b39b8b398d3af2bc8059c91e8d7b3fca1428bbd9389224b8976f"
+    },
+    {
+      "path": "raw/README.md",
+      "bytes": 3152,
+      "sha256": "5edfda53508d35df60858c6775aea3853d15717e2b746368099fb31b710f4d45"
+    },
+    {
+      "path": "raw/result.json",
+      "bytes": 3336,
+      "sha256": "588b41d1f84f2031115199810780235a0ebdbc4b7d703939cb5ca32b404fcd94"
+    },
+    {
+      "path": "raw/retained/contract.md",
+      "bytes": 29214,
+      "sha256": "20e67c73f7d361618e20851bf3f49941c21bddf78b3fe5829e75f368c07b538d"
+    },
+    {
+      "path": "raw/retained/parent-manifest.json",
+      "bytes": 1750,
+      "sha256": "8729cfb9b9d7a96280d26ae027049700cac749d26fa91df08b2454470a90c0fe"
+    },
+    {
+      "path": "raw/retained/source.json",
+      "bytes": 11052,
+      "sha256": "913ecddea7723b31dc82cece03234ece711c025e747b74cef3baa0aada584827"
+    },
+    {
+      "path": "README.md",
+      "bytes": 770,
+      "sha256": "1a707bfc37410664fd9ee468ee073ca970ad18d176bb78fa2a1fbd831333060b"
+    }
+  ],
+  "limits": "Additive raw-byte delivery; original scientific result unchanged, no new semantic/native/live test or independent acceptance"
+}

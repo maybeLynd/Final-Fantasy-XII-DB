@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-WITHDRAW-THE-OVERREACHING-EXTENT",
+ "agent": "OPUS",
+ "note": "Reading the next cluster down the sweep found the page that owns most of my last declaration. the-vif1-vu1-layer.md records 02064B00-02064E30 as the VU1 microprogram working registers, with 1,591 references in 004B1190 alone; CoreRuntimeStatic02064AA0 was declared at 0x280 running 02064AA0..02064D20, and those overlap by 0x220. THE SPLIT IS MEASURED, NOT JUDGED: at the page's own boundary, 02064AA0..02064B00 is 71 bodies and 296 accesses led by the core-runtime family 0022A770 and 0022B0B0, while 02064B00..02064D20 is 83 bodies and 23,578 accesses led by 004B1190 at 1,427, 004C8320 at 1,392, 004F7070, 004EF940 and 004E31E0 - the VIF1/VU1 layer throughout. 98.8% of the accesses inside the type I declared belong to something else. WITHDRAWN AND REDECLARED AT 0x60, the part that is its own and still the part holding the contract-named battleRuntimeMode byte at 02064AD3; 172 field rows removed and 25 written in their place; filed as CON-156. HOW IT HAPPENED, WHICH MATTERS MORE THAN THE BYTES: the sweep clusters by proximity and stops at a gap, and A GAP IS NOT A BOUNDARY BETWEEN OWNERS - two adjacent regions written densely enough to leave no 0x40 hole come back as one cluster, and I took the cluster's span as the object's extent. The check that would have caught it at declaration time is the one that caught it now and cost ten minutes: ask WHICH BODIES touch which part. I DID NOT DECLARE THE VU1 BANK EITHER - the page gives a range and examples rather than a field map, and declaring it from this measurement would repeat the same error pointing the other way. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

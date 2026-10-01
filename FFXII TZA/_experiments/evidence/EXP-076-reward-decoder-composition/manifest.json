@@ -1,0 +1,45 @@
+{
+  "experiment": "EXP-076-reward-decoder-composition",
+  "files": {
+    "0020E600.bin": {
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    "0023A570.bin": {
+      "bytes": 1808,
+      "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a"
+    },
+    "00901B3C.bin": {
+      "bytes": 4,
+      "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7"
+    },
+    "00902438.bin": {
+      "bytes": 4,
+      "sha256": "82a72eeef4f720c75f627f5ccf9f2963cceb6210f66318ec6362722e29a564f9"
+    },
+    "01CEBC78.bin": {
+      "bytes": 4,
+      "sha256": "12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76"
+    },
+    "check-pointer-zero.py": {
+      "bytes": 10662,
+      "sha256": "756d1ffe179bd8098f9ea4691470500f48b8e9afcf249d20dd757303652320e5"
+    },
+    "check.py": {
+      "bytes": 11512,
+      "sha256": "a84f3d7be038d72c64ecf4a8b62ddc3880c229de5df3bc5111f4f1df279ee512"
+    },
+    "disassembly.txt": {
+      "bytes": 25380,
+      "sha256": "af51ab97cdb9bcd750c2648cfd6767f4be73dc50adc840b9b3441b553c049ab9"
+    },
+    "result-pointer-zero.json": {
+      "bytes": 28132,
+      "sha256": "f337e58149021faea09cdc371dc797f6f7c2a69f2c237f5bca4c3b86e0e3a671"
+    },
+    "result.json": {
+      "bytes": 219085,
+      "sha256": "2005750b05a0abe747832fb170b6074fa071aa556b532b54b876595ccdd93b73"
+    }
+  }
+}

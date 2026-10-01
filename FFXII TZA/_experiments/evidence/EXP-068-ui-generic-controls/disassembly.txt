@@ -1,0 +1,42 @@
+00280A00 4883ec58                 sub rsp, 0x58
+00280A04 488b05253ecc01           mov rax, qword ptr [rip + 0x1cc3e25]
+00280A0B 4833c4                   xor rax, rsp
+00280A0E 4889442448               mov qword ptr [rsp + 0x48], rax
+00280A13 488b0516a2e101           mov rax, qword ptr [rip + 0x1e1a216]
+00280A1A 4883b8c000000000         cmp qword ptr [rax + 0xc0], 0
+00280A22 0f8585000000             jne 0x280aad
+00280A28 4883b8b800000000         cmp qword ptr [rax + 0xb8], 0
+00280A30 757b                     jne 0x280aad
+00280A32 33c0                     xor eax, eax
+00280A34 89542424                 mov dword ptr [rsp + 0x24], edx
+00280A38 8944242c                 mov dword ptr [rsp + 0x2c], eax
+00280A3C ba01000000               mov edx, 1
+00280A41 89442430                 mov dword ptr [rsp + 0x30], eax
+00280A45 488d442420               lea rax, [rsp + 0x20]
+00280A4A 4889442438               mov qword ptr [rsp + 0x38], rax
+00280A4F 4863c1                   movsxd rax, ecx
+00280A52 4889442440               mov qword ptr [rsp + 0x40], rax
+00280A57 894c2420                 mov dword ptr [rsp + 0x20], ecx
+00280A5B 4489442428               mov dword ptr [rsp + 0x28], r8d
+00280A60 e8db20fdff               call 0x252b40
+00280A65 4c8d442430               lea r8, [rsp + 0x30]
+00280A6A b9d8000000               mov ecx, 0xd8
+00280A6F 488d15faf0ffff           lea rdx, [rip - 0xf06]
+00280A76 e8d544fcff               call 0x244f50
+00280A7B 4c8d442430               lea r8, [rsp + 0x30]
+00280A80 b9d8000000               mov ecx, 0xd8
+00280A85 488d15b4f6ffff           lea rdx, [rip - 0x94c]
+00280A8C e8bf44fcff               call 0x244f50
+00280A91 e8cadd0000               call 0x28e860
+00280A96 b801000000               mov eax, 1
+00280A9B 488b4c2448               mov rcx, qword ptr [rsp + 0x48]
+00280AA0 4833cc                   xor rcx, rsp
+00280AA3 e898815800               call 0x808c40
+00280AA8 4883c458                 add rsp, 0x58
+00280AAC c3                       ret
+00280AAD 33c0                     xor eax, eax
+00280AAF 488b4c2448               mov rcx, qword ptr [rsp + 0x48]
+00280AB4 4833cc                   xor rcx, rsp
+00280AB7 e884815800               call 0x808c40
+00280ABC 4883c458                 add rsp, 0x58
+00280AC0 c3                       ret

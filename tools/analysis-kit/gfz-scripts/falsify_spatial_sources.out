@@ -1,0 +1,10 @@
+SURVIVES  P0  slot 34 / 39 {'Ambient': ('007F1D10', '007E57B0'), 'Direction': ('007F1F80', '007E57B0'), 'Point': ('007F1A50', '007E5800'), 'Dynamic': ('007F1340', '007E5800'), 'Polygon': ('007F25E0', '007E5800')}; sizes {'Ambient': 33, 'Direction': 35, 'Point': 497, 'Dynamic': 742, 'Polygon': 2115}; chain unions {'Ambient': None, 'Direction': None, 'Point': 497, 'Dynamic': 742, 'Polygon': 2115}
+SURVIVES  P1  position stores {'Ambient': 3, 'Direction': 2, 'Point': 3, 'Dynamic': 3, 'Polygon': 2}; +0xE0 stores {'Ambient': ['007F1D29'], 'Direction': ['007F1F9B'], 'Point': ['007F1A7A', '007F1C23'], 'Dynamic': ['007F13AC', '007F13CC', '007F1457', '007F15EE'], 'Polygon': ['007F2DEE', '007F2DF9']}
+SURVIVES  P2  mov dword ptr [rcx + 0xdc], 0x3f800000 | movdqa xmmword ptr [rcx + 0xd0], xmm0 | mov dword ptr [rcx + 0xdc], 0x3f800000
+SURVIVES  P3  unconditional mov byte ptr [rcx + 0xe0], 1 / mov byte ptr [rcx + 0xe0], 1; geometric classes read +0xE4 {'Point': True, 'Dynamic': True, 'Polygon': True}
+SURVIVES  P4  +0xE4 stores {'Dynamic': ['007F13EC']}
+SURVIVES  P5  SoundObject slot 34 = 0
+SURVIVES  P6  true stub ['mov al, 1', 'ret'], false stub ['xor al, al', 'ret']; slot 36 {'Ambient': '007E57B0', 'Direction': '007E57B0'}
+SURVIVES  P7  12 functions with sqrtps/rsqrtps, range 007EF1E0..007F74E0
+SURVIVES  P8  mov byte ptr [rcx + 0xe0], 0 | or eax, 0xffffffff | xor eax, eax
+FAILS 0

@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-TRIAGE-THE-TOP-UNCOVERED-CLUSTERS",
+ "agent": "OPUS",
+ "note": "Three clusters read, three declined. 01F44D40 - 334 bodies over a 0x2840 span, the biggest-looking entry in the list - is a RUN OF SEPARATE C++ GLOBALS: its cells are lea'd by one or two bodies each in construct/register/destroy triples across 0016ACxx, 0079Exxx and 00868xxx, and proximity is the only thing that made it one cluster. SO THE SWEEP NOW MEASURES SHARING RATHER THAN DENSITY ALONE: in one object the same bodies return to many of its cells, in a region of separate statics each cell has its own one or two, and cells-per-writing-body separates them - it places 02E41000 at 0.01 and 01F44D40 at 1.00 against 02CAAD10 at 4.88 and 01F2E0D0 at 3.69, which is where reading them put the first two. The sweep also now sees its own work: uncovered targets fell 11,150 to 10,846 when EeVu0RegisterBank was declared, which checks that the coverage side reads the store rather than a stale copy. THE BLOCK BESIDE THE REGISTER BANK IS HETEROGENEOUS AND IS ROUTED RATHER THAN GUESSED: 022D8E10..022D8F10, 33 cells, 49 bodies, 54 writes and 102 reads, is at least four things, and its +0x98..+0xA8 group is read 26 and 25 times by one body that multiplies two of them and shifts by 6 beside the immediates 448 and 512 while another writes 512 to +0xA0. 512x448 is the PS2 display geometry and this store already carries LegacyPs2GsTextureContext - and a plausible reading is not a measurement, so it is filed as OPUS-REQ-FABLE-WHAT-IS-THE-022D8E10-BLOCK with the hint labelled a hint and NOTHING DECLARED. A candidate list whose top entries mostly are not types is a list doing its job. Claiming @publication for the inbox block.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

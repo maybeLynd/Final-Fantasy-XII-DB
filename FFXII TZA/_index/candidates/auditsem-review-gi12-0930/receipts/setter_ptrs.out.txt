@@ -1,0 +1,4 @@
+setter 0x3dfe60 qword ptr hits [] rva dword hits []
+wrapper0 0x3320e0 qword ptr hits [] rva dword hits []
+wrapper1 0x332110 qword ptr hits [] rva dword hits []
+control 0040AAD0 0x40aad0 qword ptr hits [] rva dword hits ['.pdata']

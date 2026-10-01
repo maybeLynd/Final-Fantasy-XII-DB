@@ -1,0 +1,115 @@
+004005E0 833d518bed0100           cmp dword ptr [rip + 0x1ed8b51], 0
+004005E7 f30f100db9b58e01         movss xmm1, dword ptr [rip + 0x18eb5b9]
+004005EF 7505                     jne 0x4005f6
+004005F1 0f28c1                   movaps xmm0, xmm1
+004005F4 eb2f                     jmp 0x400625
+004005F6 8b05ec8daf01             mov eax, dword ptr [rip + 0x1af8dec]
+004005FC 8bc8                     mov ecx, eax
+004005FE c1e912                   shr ecx, 0x12
+00400601 33c8                     xor ecx, eax
+00400603 25ffff3f00               and eax, 0x3fffff
+00400608 0d0000c01f               or eax, 0x1fc00000
+0040060D c1e904                   shr ecx, 4
+00400610 03c0                     add eax, eax
+00400612 83e101                   and ecx, 1
+00400615 0bc8                     or ecx, eax
+00400617 890dcb8daf01             mov dword ptr [rip + 0x1af8dcb], ecx
+0040061D f30f1005c38daf01         movss xmm0, dword ptr [rip + 0x1af8dc3]
+00400625 f30f1105b38ced01         movss dword ptr [rip + 0x1ed8cb3], xmm0
+0040062D 0f1005ac8ced01           movups xmm0, xmmword ptr [rip + 0x1ed8cac]
+00400634 0f11055589ed01           movups xmmword ptr [rip + 0x1ed8955], xmm0
+0040063B 660f7e442408             movd dword ptr [rsp + 8], xmm0
+00400641 f30f10442408             movss xmm0, dword ptr [rsp + 8]
+00400647 f30f5cc1                 subss xmm0, xmm1
+0040064B c3                       ret
+003A6E60 448b05d122f301           mov r8d, dword ptr [rip + 0x1f322d1]
+003A6E67 448bc9                   mov r9d, ecx
+003A6E6A f30f1015364d9401         movss xmm2, dword ptr [rip + 0x1944d36]
+003A6E72 4585c0                   test r8d, r8d
+003A6E75 0f84a1000000             je 0x3a6f1c
+003A6E7B 8b056725b501             mov eax, dword ptr [rip + 0x1b52567]
+003A6E81 8bd0                     mov edx, eax
+003A6E83 c1ea12                   shr edx, 0x12
+003A6E86 33d0                     xor edx, eax
+003A6E88 25ffff3f00               and eax, 0x3fffff
+003A6E8D 0d0000c01f               or eax, 0x1fc00000
+003A6E92 c1ea04                   shr edx, 4
+003A6E95 03c0                     add eax, eax
+003A6E97 83e201                   and edx, 1
+003A6E9A 0bd0                     or edx, eax
+003A6E9C 8bc2                     mov eax, edx
+003A6E9E c1e812                   shr eax, 0x12
+003A6EA1 33c2                     xor eax, edx
+003A6EA3 81e2ffff3f00             and edx, 0x3fffff
+003A6EA9 c1e804                   shr eax, 4
+003A6EAC 81ca0000c01f             or edx, 0x1fc00000
+003A6EB2 83e001                   and eax, 1
+003A6EB5 03d2                     add edx, edx
+003A6EB7 0bc2                     or eax, edx
+003A6EB9 8bc8                     mov ecx, eax
+003A6EBB c1e912                   shr ecx, 0x12
+003A6EBE 33c8                     xor ecx, eax
+003A6EC0 25ffff3f00               and eax, 0x3fffff
+003A6EC5 0d0000c01f               or eax, 0x1fc00000
+003A6ECA c1e904                   shr ecx, 4
+003A6ECD 03c0                     add eax, eax
+003A6ECF 83e101                   and ecx, 1
+003A6ED2 0bc8                     or ecx, eax
+003A6ED4 8bc1                     mov eax, ecx
+003A6ED6 c1e812                   shr eax, 0x12
+003A6ED9 33c1                     xor eax, ecx
+003A6EDB 81e1ffff3f00             and ecx, 0x3fffff
+003A6EE1 c1e804                   shr eax, 4
+003A6EE4 81c90000c01f             or ecx, 0x1fc00000
+003A6EEA 83e001                   and eax, 1
+003A6EED 03c9                     add ecx, ecx
+003A6EEF 0bc1                     or eax, ecx
+003A6EF1 8bd0                     mov edx, eax
+003A6EF3 c1ea12                   shr edx, 0x12
+003A6EF6 33d0                     xor edx, eax
+003A6EF8 25ffff3f00               and eax, 0x3fffff
+003A6EFD 0d0000c01f               or eax, 0x1fc00000
+003A6F02 c1ea04                   shr edx, 4
+003A6F05 03c0                     add eax, eax
+003A6F07 83e201                   and edx, 1
+003A6F0A 0bd0                     or edx, eax
+003A6F0C 8915d624b501             mov dword ptr [rip + 0x1b524d6], edx
+003A6F12 f30f100dce24b501         movss xmm1, dword ptr [rip + 0x1b524ce]
+003A6F1A eb09                     jmp 0x3a6f25
+003A6F1C 8b15c624b501             mov edx, dword ptr [rip + 0x1b524c6]
+003A6F22 0f28ca                   movaps xmm1, xmm2
+003A6F25 66410f6ec1               movd xmm0, r9d
+003A6F2A 0f5bc0                   cvtdq2ps xmm0, xmm0
+003A6F2D f30f59c8                 mulss xmm1, xmm0
+003A6F31 f30f5905c324b501         mulss xmm0, dword ptr [rip + 0x1b524c3]
+003A6F39 f30f110d5f22f301         movss dword ptr [rip + 0x1f3225f], xmm1
+003A6F41 f30f5cc8                 subss xmm1, xmm0
+003A6F45 f30f110d9323f301         movss dword ptr [rip + 0x1f32393], xmm1
+003A6F4D 4585c0                   test r8d, r8d
+003A6F50 7448                     je 0x3a6f9a
+003A6F52 8bca                     mov ecx, edx
+003A6F54 c1e912                   shr ecx, 0x12
+003A6F57 33ca                     xor ecx, edx
+003A6F59 81e2ffff3f00             and edx, 0x3fffff
+003A6F5F c1e904                   shr ecx, 4
+003A6F62 81ca0000c01f             or edx, 0x1fc00000
+003A6F68 83e101                   and ecx, 1
+003A6F6B 03d2                     add edx, edx
+003A6F6D 0bca                     or ecx, edx
+003A6F6F 8bc1                     mov eax, ecx
+003A6F71 c1e812                   shr eax, 0x12
+003A6F74 33c1                     xor eax, ecx
+003A6F76 81e1ffff3f00             and ecx, 0x3fffff
+003A6F7C 81c90000c01f             or ecx, 0x1fc00000
+003A6F82 c1e804                   shr eax, 4
+003A6F85 03c9                     add ecx, ecx
+003A6F87 83e001                   and eax, 1
+003A6F8A 0bc1                     or eax, ecx
+003A6F8C 89055624b501             mov dword ptr [rip + 0x1b52456], eax
+003A6F92 f30f10154e24b501         movss xmm2, dword ptr [rip + 0x1b5244e]
+003A6F9A 0f10053f23f301           movups xmm0, xmmword ptr [rip + 0x1f3233f]
+003A6FA1 f30f11154723f301         movss dword ptr [rip + 0x1f32347], xmm2
+003A6FA9 f30f5bc8                 cvttps2dq xmm1, xmm0
+003A6FAD 0f110d2c23f301           movups xmmword ptr [rip + 0x1f3232c], xmm1
+003A6FB4 660f7ec8                 movd eax, xmm1
+003A6FB8 c3                       ret

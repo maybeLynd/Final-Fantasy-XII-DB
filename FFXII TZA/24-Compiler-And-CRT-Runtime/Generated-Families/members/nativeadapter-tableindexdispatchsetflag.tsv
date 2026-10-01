@@ -1,0 +1,9 @@
+# NativeAdapter.TableIndexDispatchSetFlag - EC-7 family C
+# # table-index resolve as in the 65B spelling; when +0x284 is set call a
+# # member op on the record and set bit 0x800 at +0x290.
+address	targets
+002E7450	003E6AC0
+002E74C0	003E6AD0
+002E7530	003E6AE0
+002E7A10	003E6BC0
+002ED040	003E6CD0

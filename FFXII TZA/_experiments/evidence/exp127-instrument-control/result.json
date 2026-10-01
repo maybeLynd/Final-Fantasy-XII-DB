@@ -1,0 +1,2365 @@
+{
+  "receipts": {
+    "method": "A: existing API-receipt analysis; no process access",
+    "arms": {
+      "control": {
+        "debug_events": 410,
+        "single_steps": 204,
+        "counts_by_phase_address": {
+          "capture/003A1C50": 202,
+          "cleanup/003A1C50": 2
+        },
+        "recorded_context_changed_fields": {
+          "EFlags": 204,
+          "Dr6": 204
+        },
+        "raw_hit_sequence_matches": true,
+        "ownership_or_recorded_write_anomalies": [],
+        "unknowns": [
+          "FirstChance was not logged",
+          "integer registers other than RIP/RSP not in context-write receipts",
+          "floating/vector state not in context-write receipts",
+          "target-side effects and post-detach events not captured"
+        ]
+      },
+      "skeletal": {
+        "debug_events": 5661,
+        "single_steps": 5454,
+        "counts_by_phase_address": {
+          "capture/003A1C50": 205,
+          "capture/003E3C30": 1022,
+          "capture/003E3C7A": 2113,
+          "capture/003E3C7F": 2113,
+          "cleanup/003E3C7A": 1
+        },
+        "recorded_context_changed_fields": {
+          "EFlags": 5454,
+          "Dr6": 5454
+        },
+        "raw_hit_sequence_matches": true,
+        "ownership_or_recorded_write_anomalies": [],
+        "unknowns": [
+          "FirstChance was not logged",
+          "integer registers other than RIP/RSP not in context-write receipts",
+          "floating/vector state not in context-write receipts",
+          "target-side effects and post-detach events not captured"
+        ]
+      }
+    },
+    "input_sha256": {
+      "skeletal-reset-live/control/capture/api.json": "9d0cf8623f5862b58ead9b64a8cfcd12374312f4a7874f178c492e7932fadc5e",
+      "skeletal-reset-live/control/capture/result.json": "b7c6830c44cc0e262b3134367249669ee4b1e9760e746a5029dea68ed751fdaf",
+      "skeletal-reset-live/skeletal/capture/api.json": "07ab172b5a1752bc3205569c26315de1cd7caffbc8631b45b49c450cecca1ee8",
+      "skeletal-reset-live/skeletal/capture/result.json": "f1b7c0ab53a13cd1df7546c170c598850f69f6a7948fc799dcd0a9fd3db16740"
+    },
+    "interpretation": "Saved events do not reproduce the foreign-step dispatch defect. Additional cleanup steps exist outside result.hits; they are not semantic samples. No cause of the FF12 error established; EXP127 stays INVALID_POST_TRACE."
+  },
+  "regression": {
+    "method": "Synthetic Python event fixtures only; no WinDLL load/native API/process/FF12 execution",
+    "cases": [
+      {
+        "phase": "capture",
+        "variant": "owned",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "owned"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "owned"
+            ],
+            [
+              "resume",
+              "owned"
+            ],
+            [
+              "continue",
+              "owned",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "owned"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "owned"
+            ],
+            [
+              "resume",
+              "owned"
+            ],
+            [
+              "continue",
+              "owned",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "foreign_rip",
+        "historical": {
+          "status": "INVALID",
+          "errors": [
+            "unrecognized or unreadable single step"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "foreign_rip"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "foreign_rip"
+            ],
+            [
+              "resume",
+              "foreign_rip"
+            ],
+            [
+              "continue",
+              "foreign_rip",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "foreign_rip"
+            ],
+            [
+              "continue",
+              "foreign_rip",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "tf_same_rip",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "tf_same_rip"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "tf_same_rip"
+            ],
+            [
+              "resume",
+              "tf_same_rip"
+            ],
+            [
+              "continue",
+              "tf_same_rip",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "tf_same_rip"
+            ],
+            [
+              "continue",
+              "tf_same_rip",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "mixed_cause",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "mixed_cause"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "mixed_cause"
+            ],
+            [
+              "resume",
+              "mixed_cause"
+            ],
+            [
+              "continue",
+              "mixed_cause",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "mixed_cause"
+            ],
+            [
+              "continue",
+              "mixed_cause",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "wrong_slot",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "wrong_slot"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "wrong_slot"
+            ],
+            [
+              "resume",
+              "wrong_slot"
+            ],
+            [
+              "continue",
+              "wrong_slot",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "wrong_slot"
+            ],
+            [
+              "continue",
+              "wrong_slot",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "disabled",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "disabled"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "disabled"
+            ],
+            [
+              "resume",
+              "disabled"
+            ],
+            [
+              "continue",
+              "disabled",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "disabled"
+            ],
+            [
+              "continue",
+              "disabled",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "data_break",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 1,
+          "cleanup": "PASS",
+          "resumes": [
+            "data_break"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "data_break"
+            ],
+            [
+              "resume",
+              "data_break"
+            ],
+            [
+              "continue",
+              "data_break",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "data_break"
+            ],
+            [
+              "continue",
+              "data_break",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "capture",
+        "variant": "read_failure",
+        "historical": {
+          "status": "INVALID",
+          "errors": [
+            "unrecognized or unreadable single step"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "read_failure"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "read_failure"
+            ],
+            [
+              "resume",
+              "read_failure"
+            ],
+            [
+              "continue",
+              "read_failure",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [
+            "unowned or unreadable single step; no resume write"
+          ],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "read_failure"
+            ],
+            [
+              "continue",
+              "read_failure",
+              2147549185
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "owned",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "owned"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "owned"
+            ],
+            [
+              "resume",
+              "owned"
+            ],
+            [
+              "continue",
+              "owned",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "owned"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "owned"
+            ],
+            [
+              "resume",
+              "owned"
+            ],
+            [
+              "continue",
+              "owned",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "foreign_rip",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "foreign_rip"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "foreign_rip"
+            ],
+            [
+              "resume",
+              "foreign_rip"
+            ],
+            [
+              "continue",
+              "foreign_rip",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "foreign_rip"
+            ],
+            [
+              "continue",
+              "foreign_rip",
+              2147549185
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "tf_same_rip",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "tf_same_rip"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "tf_same_rip"
+            ],
+            [
+              "resume",
+              "tf_same_rip"
+            ],
+            [
+              "continue",
+              "tf_same_rip",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "tf_same_rip"
+            ],
+            [
+              "continue",
+              "tf_same_rip",
+              2147549185
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "mixed_cause",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "mixed_cause"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "mixed_cause"
+            ],
+            [
+              "resume",
+              "mixed_cause"
+            ],
+            [
+              "continue",
+              "mixed_cause",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "mixed_cause"
+            ],
+            [
+              "continue",
+              "mixed_cause",
+              2147549185
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "wrong_slot",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "wrong_slot"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "wrong_slot"
+            ],
+            [
+              "resume",
+              "wrong_slot"
+            ],
+            [
+              "continue",
+              "wrong_slot",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "wrong_slot"
+            ],
+            [
+              "continue",
+              "wrong_slot",
+              2147549185
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "disabled",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "disabled"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "disabled"
+            ],
+            [
+              "resume",
+              "disabled"
+            ],
+            [
+              "continue",
+              "disabled",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "disabled"
+            ],
+            [
+              "continue",
+              "disabled",
+              2147549185
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "data_break",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "data_break"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "data_break"
+            ],
+            [
+              "resume",
+              "data_break"
+            ],
+            [
+              "continue",
+              "data_break",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "data_break"
+            ],
+            [
+              "continue",
+              "data_break",
+              2147549185
+            ]
+          ]
+        }
+      },
+      {
+        "phase": "cleanup",
+        "variant": "read_failure",
+        "historical": {
+          "status": "PASS",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "PASS",
+          "resumes": [
+            "read_failure"
+          ],
+          "step_continues": [
+            65538
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "read_failure"
+            ],
+            [
+              "resume",
+              "read_failure"
+            ],
+            [
+              "continue",
+              "read_failure",
+              65538
+            ],
+            [
+              "event",
+              "create"
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "cleanup"
+            ],
+            [
+              "slots",
+              11,
+              []
+            ],
+            [
+              "slots",
+              12,
+              []
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ]
+          ]
+        },
+        "candidate": {
+          "status": "INVALID",
+          "errors": [],
+          "hits": 0,
+          "cleanup": "INVALID",
+          "resumes": [],
+          "step_continues": [
+            2147549185
+          ],
+          "calls": [
+            [
+              "event",
+              "attach"
+            ],
+            [
+              "slots",
+              11,
+              [
+                512
+              ]
+            ],
+            [
+              "slots",
+              12,
+              [
+                512
+              ]
+            ],
+            [
+              "continue",
+              null,
+              65538
+            ],
+            [
+              "event",
+              "read_failure"
+            ],
+            [
+              "continue",
+              "read_failure",
+              2147549185
+            ]
+          ]
+        }
+      }
+    ],
+    "checks": 16,
+    "address_only_mutant_rejected_by_regression": true,
+    "limits": "Candidate fixes this demonstrated dispatch decision only. Native behavior/recovery/session health remain unqualified."
+  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "native_calls": 0
+}

@@ -1,0 +1,88 @@
+{
+  "goal_gate": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\capture\\goal_gate.json"
+  },
+  "check_questions": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\capture\\check_questions.txt"
+  },
+  "_tree": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\capture\\category_tree.json"
+  },
+  "progress_snapshot": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\progress\\snapshot.json",
+    "volatile": true
+  },
+  "progress_check": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\capture\\progress_check.txt"
+  },
+  "subsystems": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\important-subsystems.tsv"
+  },
+  "l2": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\L2-VERDICTS.md"
+  },
+  "vbf_list": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\repos-2d\\vbf_list.txt"
+  },
+  "coverage_dims": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\COVERAGE-DIMENSIONS.md"
+  },
+  "functions": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\graph\\functions.tsv"
+  },
+  "exe": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "snapshot": false
+  },
+  "uc1_1_64": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\99-Unresolved-Residual\\Unlisted-Code\\uc1-applied-population-1-64.tsv"
+  },
+  "uc1_65_256": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\99-Unresolved-Residual\\Unlisted-Code\\uc1-applied-population-65-256.tsv"
+  },
+  "types": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_types\\types.tsv"
+  },
+  "fields": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_types\\fields.tsv"
+  },
+  "team": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\_inbox\\TEAM.json",
+    "volatile": true
+  },
+  "watchdog": {
+    "path": "C:\\Users\\Kristian\\.swe2-fleet\\watchdog-state.json",
+    "required": false,
+    "volatile": true
+  },
+  "requirement_facts": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\overlap-helper-repair-review\\run-02\\capture\\requirement_facts.json"
+  },
+  "category_map": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\workflow\\my-progress\\category-map.tsv"
+  },
+  "requirements.py": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\requirements.py"
+  },
+  "build_views.py": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py"
+  },
+  "uc1_band.py": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\uc1_band.py"
+  },
+  "pkg:PKG-GP-EXP-LEVEL-UP.md": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-EXP-LEVEL-UP.md"
+  },
+  "pkg:PKG-GP-HP-LETHAL.md": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-HP-LETHAL.md"
+  },
+  "pkg:PKG-GP-SPAWN-RESPAWN.md": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-SPAWN-RESPAWN.md"
+  },
+  "pkg:PKG-GP-STATUS-POISON.md": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-GP-STATUS-POISON.md"
+  },
+  "pkg:PKG-TECH-SCRIPTVM-VALUE.md": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\completion-packages\\PKG-TECH-SCRIPTVM-VALUE.md"
+  }
+}

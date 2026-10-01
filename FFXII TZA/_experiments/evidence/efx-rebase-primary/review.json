@@ -1,0 +1,79 @@
+{
+  "evidence_classes": [
+    "A:11 newly reviewed complete shipping bodies, plus sealed section14 front and dispatch",
+    "B:15 isolated original-code runs; 10 original bodies loaded and reached across the cases; no stubs; injected state"
+  ],
+  "bodies": {
+    "0x3ab7f0": {
+      "bytes": 99,
+      "sha256": "a65931ceb42bff28b95656b5797b4ec07ab5f3526b5e5c98d7a330d5f18e28f0"
+    },
+    "0x24d970": {
+      "bytes": 73,
+      "sha256": "47186e560000fe3d61031e7b04cc12f8d16ad994d1dfff23f157f6fa101379d5"
+    },
+    "0x24d940": {
+      "bytes": 47,
+      "sha256": "b56e0b0d7cfd2ccff6f29945f2fa37a18021bf08ac80bca6e5edef8b286281f2"
+    },
+    "0x24ed80": {
+      "bytes": 132,
+      "sha256": "f6f4dd1b34e28c8239bf22df99349558292358f8489c39b94210942a74d73812"
+    },
+    "0x3b3550": {
+      "bytes": 642,
+      "sha256": "734f2856ff22dc6e4dba6469754dbe948566b0e03fb96284eff12a9ecdccfc98"
+    },
+    "0x36b130": {
+      "bytes": 41,
+      "sha256": "f9e962cb57663e827df2e541e2ce55d1ac499850f5809b2e6771a05a3fcdec00"
+    },
+    "0x3aa3d0": {
+      "bytes": 92,
+      "sha256": "e18c72d7082753ee2b2269f34c4955f35bc175a5f43e0b0e78ef17f9213e6c42"
+    },
+    "0x3a9ba0": {
+      "bytes": 105,
+      "sha256": "bc0c54c31f898cc6c01cc12b6c8ff40183d81a6969ab3a8f4a860e4dc1eb16c1"
+    },
+    "0x3a9860": {
+      "bytes": 105,
+      "sha256": "5c4c5f33ea696a7f35c608eeb8a25ad4435a6b14462d660050cf154d9bdf0e3b"
+    },
+    "0x3a8ff0": {
+      "bytes": 114,
+      "sha256": "84c5462ac2502a503343b4f0d825c6b80506ad544199c51398045f0d847c6e73"
+    },
+    "0x24fcf0": {
+      "bytes": 162,
+      "sha256": "db0a531583e1d324a7a9a8d499b7fd79df0a1343ce281ac012839e05f0beb55d"
+    }
+  },
+  "python_reader": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "execution_review_sha256": "3d7cc22f0341fcbcae6459a2a1fab2968b0b771a747acbd411c2cd53bfad0e3b",
+  "findings": [
+    "3AB7F0 returns untagged fullRCX unchanged; tagged path resolves masked low32 slot through36B130, then zeroes RAX if u64(signextend(low32(RAX)))<=40. High returned pointer with low32=40 is suppressed but low32=41 survives. Slot active flag and copied word not read.",
+    "3B3480 signextends context+860 before provider; untagged80002000 becomesFFFFFFFF80002000. An optional instance binds globals via instance+340; valid composition requires consistency with passedcontext. No optional-instance binding execution here.",
+    "24D970 computes delta32=newLow32-oldLow32 and calls list,A00,800 repairs in that order, finally publishes full newbase to context+858. Table repairs signextend delta32, visit entries1..767/319, dispatch movedpayload before incrementing live slotqword; slot0 skipped.",
+    "The controlled4GiB case stores140000000 at+858 but keeps tableentry40000100; +/-2000 controls repair correctly. No actual resource move or live failure observed.",
+    "24D940 passes delta32 to3A8FF0; linked outer+100/+108 and inner+18/+20 add signextendeddelta without null checks on those fields; listlinks unchanged; full instance+390 published last.",
+    "3B3550 also checks guarded context rebase before constructing/binding its instance, then copies context+858 into instance+390 when04set. Callee lifecycle/presentation effects are not established."
+  ],
+  "controls": [
+    "Exact shippingEXE SHA and originalbody hashes checked before execution; code unchanged afterward.",
+    "Every case returned at sentinel within bounded instruction limit with stack and nonvolatile state preserved; all nonstack reads/writes replayed against final buffers.",
+    "First nonempty tagged-slot control preceded subsequent cases. High/low40/41 and smalltag controls distinguish actual compare domain.",
+    "First/last800 table slots nonempty, slot0 nonempty but unchanged; exact table iteration addresses reviewed.",
+    "Private receipt missing a tablewrite is rejected by final-state reconciliation; original receipt preserved."
+  ],
+  "limits": [
+    "Injected slots, globals, contexts, tables and payload bytes; no live initialization.",
+    "Context linked-list head and A00 table entries null; their nonempty handler effects omitted.",
+    "800 subtype9 takes the original direct-return path; other subtype effects omitted.",
+    "No resource moved; changed provider/base values are controlled interventions.",
+    "Instance repair entered directly; caller binding and presentation effects omitted.",
+    "No exhaustive pointer repair, lifetime, resource ownership/reuse, or normal caller reachability proof.",
+    "Linked-list52/56 native handlers and populated A00 subtype dispatch remain unexecuted/unreviewed.",
+    "First sandbox attempt had zero original instructions due module-access setup failure. Scoped authorized offline executor access succeeded with the same script; zero-case attempt is not a pass."
+  ]
+}

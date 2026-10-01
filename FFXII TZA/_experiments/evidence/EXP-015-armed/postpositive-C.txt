@@ -1,0 +1,18 @@
+pid 31676   held-array at 0x000000000E5B89F0, 256 bytes
+baseline: all 256 bytes zero
+foreground: the game (hwnd 0x22c075a), verified
+
+CONTROL, no key held for 0.35 s : clean
+
+SENDINPUT vk=0x43 up=False accepted=2 requested=2
+SENDINPUT vk=0x43 up=True accepted=2 requested=2
+  C         vk 0x43  ->  indices while held: none                    still set after release: none
+
+keys tried            : 1
+keys that moved a byte: 0
+polls that lost focus : 0
+
+NO KEY MOVED ANY BYTE, with the game verifiably in the foreground.
+That is a real negative for this instrument: the control was clean and focus held.
+SENDINPUT vk=0x43 up=True accepted=2 requested=2
+ 

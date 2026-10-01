@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-108",
+ "result_refs": [
+  "commit:a05b52834"
+ ],
+ "note": "batch-108 tail: TEAM.json + finseal op + sealed-state resume"
+}

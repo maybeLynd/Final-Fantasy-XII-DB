@@ -1,0 +1,16 @@
+{
+  "pid": 21596,
+  "tid": 53908,
+  "address": 1581812940800,
+  "python": "C:\\Python314\\python.exe",
+  "source_sha256": "4e7659eea7b8aaa3026e9404b960fb45691b2a4fce08d88bfed20ae7221477ed",
+  "baseline_handler": [
+    {
+      "code": 2147483652,
+      "address": 140703670026698,
+      "tid": 53908,
+      "unix": 1789984855.990421
+    }
+  ],
+  "created_unix": 1789984855.990587
+}

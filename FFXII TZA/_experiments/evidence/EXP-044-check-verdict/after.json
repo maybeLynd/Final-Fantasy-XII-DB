@@ -1,0 +1,454 @@
+{
+  "mode": "after",
+  "source_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+  "method": "actual main; process enumeration/open/read/close replaced; no native process calls",
+  "cases": {
+    "exact": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 81                 PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "substring": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 181                FAIL\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "unreadable": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 -                  ERROR unreadable or short read\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "empty": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\n\n0 pass, 0 fail/error, 0 row(s)\nERROR no check rows; no validation performed\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "hex": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      0x51               81                 PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "u8": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u8       255                255                PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          1
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "u16": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u16      65535              65535              PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          2
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "signed": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     i32      -81                -81                PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "sign-mismatch": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     i32      81                 -81                FAIL\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "pointer": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     ptr      0xFEDCBA9876543210 0xFEDCBA9876543210 PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          8
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "float": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     f32      0.1                0.10000000149011612 PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "float-prefix": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     f32      1                  1.5                FAIL\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "wildcard": {
+      "exit": 0,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      *                  81                 PASS\n\n1 pass, 0 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 0
+    },
+    "wildcard-unreadable": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      *                  -                  ERROR unreadable or short read\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "short-read": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      81                 -                  ERROR unreadable or short read\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "unknown-kind": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     typo     81                 -                  ERROR unsupported check kind 'typo'\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "blank-expect": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32                         -                  ERROR empty expectation\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "out-of-range": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u8       256                -                  ERROR 'B' format requires 0 <= number <= 255\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          1
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "nan": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     f32      nan                -                  ERROR nonfinite expectation\n\n0 pass, 1 fail/error, 1 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    },
+    "malformed-row": {
+      "exit": 2,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nruntime_probe: check TSV row has 4 columns; expected 5\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 2
+    },
+    "extra-column": {
+      "exit": 2,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nruntime_probe: check TSV row has 6 columns; expected 5\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 2
+    },
+    "mixed-error": {
+      "exit": 1,
+      "stdout": "attached  pid 456  OFFLINE-FAKE.exe\nmodule base           0x0000000000120000\nPE ImageBase          0x0000000000120000\nCONTROL 1 base match  PASS - database VAs are runtime addresses\nCONTROL 2 read path   PASS  (LUAC_TAIL at 0x01CCD300)\n\nid     address    kind     expected           observed           result\nT1     0x1000     u32      *                  -                  ERROR unreadable or short read\nT2     0x1000     u32      81                 -                  ERROR unreadable or short read\n\n0 pass, 2 fail/error, 2 row(s)\nRecord the outcome in the experiment's .md companion, including failures. PASS with '*' establishes readability only; investigate failed expectations and errors.\n",
+      "events": [
+        [
+          "read",
+          30200576,
+          6
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "read",
+          4096,
+          4
+        ],
+        [
+          "close",
+          123
+        ]
+      ],
+      "required_exit": 1
+    }
+  }
+}

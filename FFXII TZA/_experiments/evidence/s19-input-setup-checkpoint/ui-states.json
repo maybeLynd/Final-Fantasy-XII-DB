@@ -1,0 +1,50 @@
+[
+  {
+    "label": "title",
+    "file": "title.jpg",
+    "at": "2026-09-26T23:06:48.559Z",
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 2758268,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "screenshotId": "screenshot-0",
+    "meaning": "Title Load Game selected; no fatal dialog visible"
+  },
+  {
+    "label": "title-post-read",
+    "file": "title-post-read.jpg",
+    "at": "2026-09-26T23:09:03.280Z",
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 2758268,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "screenshotId": "screenshot-0",
+    "meaning": "Title still responsive presentation, Load Game selected after read-only capture"
+  },
+  {
+    "label": "unaccepted-load-input",
+    "file": "unaccepted-load-input.jpg",
+    "at": "2026-09-26T23:11:00.649Z",
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 2758268,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "screenshotId": "screenshot-0",
+    "meaning": "No observed Load Game acceptance after documented confirm and explicit focus recovery; no field claim"
+  },
+  {
+    "label": "normal-exit-dialog",
+    "file": "normal-exit-dialog.jpg",
+    "at": "2026-09-26T23:11:25.853Z",
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 2758268,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "screenshotId": "screenshot-0",
+    "meaning": "Normal Exit Dialog visible; no fatal C++ runtime dialog. This is not a field health control."
+  }
+]

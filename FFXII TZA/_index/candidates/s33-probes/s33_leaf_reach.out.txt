@@ -1,0 +1,14 @@
+LEAF 003FA160 (op1): closure 189 functions; pool-global references 0; calls back into the pool: none; bodies without a size row: none
+LEAF 003FAA10 (op2): closure 6 functions; pool-global references 0; calls back into the pool: none; bodies without a size row: none
+LEAF 003FA820 (op3/4/5): closure 164 functions; pool-global references 0; calls back into the pool: none; bodies without a size row: none
+LEAF 003FA900 (op6): closure 2 functions; pool-global references 0; calls back into the pool: none; bodies without a size row: none
+LEAF 00300B80 (grant): closure 5 functions; pool-global references 0; calls back into the pool: none; bodies without a size row: none
+
+CALL SITES of 0028F000 / 00300B80 inside the pool bodies: the next instructions (is eax read before it is written?)
+  003196C9  call 0x28f000   args: mov qword ptr [rip + 0x2ba7cac], rax; mov ecx, dword ptr [rbx + 0x58]; lea r8, [rsp + 0x20]; mov edx, 4   | after: 003196CE mov ecx, dword ptr [rbx]; 003196D0 call 0x2fb2a0; 003196D5 mov qword ptr [rbx + 4], rdi; 003196D9 mov qword ptr [rbx + 0x18], rdi
+  00319732  call 0x28f000   args: mov dword ptr [rsp + 0x20], r8d; mov edx, 2; lea r8, [rsp + 0x20]; mov dword ptr [rbx + 4], eax   | after: 00319737 jmp 0x31977a; 00319739 mov ecx, dword ptr [rbx + 0x58]; 0031973C call 0x28efe0; 00319741 cmp eax, 2
+  00319965  call 0x300b80   args: je 0x31996a; mov edx, dword ptr [rbx]; mov r8d, 1; movzx ecx, ax   | after: 0031996A add rbx, 8; 0031996E sub rsi, 1; 00319972 jne 0x319950; 00319974 inc dword ptr [rip + 0x1fa97fa]
+  003199BF  call 0x28f000   args: mov ecx, dword ptr [rdi + 0x58]; lea r8, [rsp + 0x20]; mov edx, 3; mov dword ptr [rsp + 0x20], ebp   | after: 003199C4 mov ecx, dword ptr [rdi]; 003199C6 call 0x2fb2a0; 003199CB mov rbx, qword ptr [rsp + 0x50]; 003199D0 xor eax, eax
+  003197FE  call 0x28f000   args: mov ecx, dword ptr [rbx + 0x58]; lea r8, [rsp + 0x20]; mov dword ptr [rsp + 0x20], edx; mov edx, 3   | after: 00319803 mov ecx, dword ptr [rbx]; 00319805 call 0x2fb2a0; 0031980A xor eax, eax; 0031980C mov qword ptr [rbx + 4], rax
+  00319D24  call 0x28f000   args: mov qword ptr [rip + 0x2ba7651], rax; mov ecx, dword ptr [rbx + 0x58]; lea r8, [rsp + 0x20]; mov edx, 5   | after: 00319D29 mov ecx, dword ptr [rbx]; 00319D2B call 0x2fb2a0; 00319D30 mov qword ptr [rbx + 4], rbp; 00319D34 mov qword ptr [rbx + 0x18], rbp
+  00319E00  call 0x28f000   args: mov dword ptr [rsp + 0x34], ebp; lea r8, [rsp + 0x20]; mov edx, 1; xor ecx, ecx   | after: 00319E05 mov dword ptr [rbx + 0x58], eax; 00319E08 cmp dword ptr [rip + 0x1fa9356], ebp; 00319E0E jle 0x319e15; 00319E10 call 0x16d6a0

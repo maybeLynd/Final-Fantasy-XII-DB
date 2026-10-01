@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-17",
+ "note": "22 hubs decoded from the shipping image and cited interior on bearing hosts; all 22 A-measured, zero evidence-only. A 3622->3665; checker 334/0 after two selector re-runs (guarded stubs 76->75, sead span 1174->1170); all gates clean; xref_hub17.json 26 findings, all standing, none mine-owned.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/xref_hub17.json"
+ ]
+}

@@ -1,0 +1,429 @@
+{
+  "capstone": "5.0.7",
+  "fixtures": {
+    "preserve": {
+      "size": 267,
+      "gate": 231,
+      "sha256": "82486c57c1054d44549a1a04fe1d0e41a345ab5c6366fa023ab44f0877dae620",
+      "instructions": [
+        {
+          "offset": 0,
+          "bytes": "53",
+          "text": "push rbx"
+        },
+        {
+          "offset": 1,
+          "bytes": "4881ec00020000",
+          "text": "sub rsp, 0x200"
+        },
+        {
+          "offset": 8,
+          "bytes": "4889cb",
+          "text": "mov rbx, rcx"
+        },
+        {
+          "offset": 11,
+          "bytes": "480fae0424",
+          "text": "fxsave64 ptr [rsp]"
+        },
+        {
+          "offset": 16,
+          "bytes": "480fae8300060000",
+          "text": "fxsave64 ptr [rbx + 0x600]"
+        },
+        {
+          "offset": 24,
+          "bytes": "f30f6f8300000000",
+          "text": "movdqu xmm0, xmmword ptr [rbx]"
+        },
+        {
+          "offset": 32,
+          "bytes": "f30f6f8b10000000",
+          "text": "movdqu xmm1, xmmword ptr [rbx + 0x10]"
+        },
+        {
+          "offset": 40,
+          "bytes": "f30f6f9320000000",
+          "text": "movdqu xmm2, xmmword ptr [rbx + 0x20]"
+        },
+        {
+          "offset": 48,
+          "bytes": "f30f6f9b30000000",
+          "text": "movdqu xmm3, xmmword ptr [rbx + 0x30]"
+        },
+        {
+          "offset": 56,
+          "bytes": "f30f6fa340000000",
+          "text": "movdqu xmm4, xmmword ptr [rbx + 0x40]"
+        },
+        {
+          "offset": 64,
+          "bytes": "f30f6fab50000000",
+          "text": "movdqu xmm5, xmmword ptr [rbx + 0x50]"
+        },
+        {
+          "offset": 72,
+          "bytes": "f30f6fb360000000",
+          "text": "movdqu xmm6, xmmword ptr [rbx + 0x60]"
+        },
+        {
+          "offset": 80,
+          "bytes": "f30f6fbb70000000",
+          "text": "movdqu xmm7, xmmword ptr [rbx + 0x70]"
+        },
+        {
+          "offset": 88,
+          "bytes": "f3440f6f8380000000",
+          "text": "movdqu xmm8, xmmword ptr [rbx + 0x80]"
+        },
+        {
+          "offset": 97,
+          "bytes": "f3440f6f8b90000000",
+          "text": "movdqu xmm9, xmmword ptr [rbx + 0x90]"
+        },
+        {
+          "offset": 106,
+          "bytes": "f3440f6f93a0000000",
+          "text": "movdqu xmm10, xmmword ptr [rbx + 0xa0]"
+        },
+        {
+          "offset": 115,
+          "bytes": "f3440f6f9bb0000000",
+          "text": "movdqu xmm11, xmmword ptr [rbx + 0xb0]"
+        },
+        {
+          "offset": 124,
+          "bytes": "f3440f6fa3c0000000",
+          "text": "movdqu xmm12, xmmword ptr [rbx + 0xc0]"
+        },
+        {
+          "offset": 133,
+          "bytes": "f3440f6fabd0000000",
+          "text": "movdqu xmm13, xmmword ptr [rbx + 0xd0]"
+        },
+        {
+          "offset": 142,
+          "bytes": "f3440f6fb3e0000000",
+          "text": "movdqu xmm14, xmmword ptr [rbx + 0xe0]"
+        },
+        {
+          "offset": 151,
+          "bytes": "f3440f6fbbf0000000",
+          "text": "movdqu xmm15, xmmword ptr [rbx + 0xf0]"
+        },
+        {
+          "offset": 160,
+          "bytes": "dbe3",
+          "text": "fninit "
+        },
+        {
+          "offset": 162,
+          "bytes": "d9ab04010000",
+          "text": "fldcw word ptr [rbx + 0x104]"
+        },
+        {
+          "offset": 168,
+          "bytes": "dbab20010000",
+          "text": "fld xword ptr [rbx + 0x120]"
+        },
+        {
+          "offset": 174,
+          "bytes": "dbab30010000",
+          "text": "fld xword ptr [rbx + 0x130]"
+        },
+        {
+          "offset": 180,
+          "bytes": "dbab40010000",
+          "text": "fld xword ptr [rbx + 0x140]"
+        },
+        {
+          "offset": 186,
+          "bytes": "dbab50010000",
+          "text": "fld xword ptr [rbx + 0x150]"
+        },
+        {
+          "offset": 192,
+          "bytes": "dbab60010000",
+          "text": "fld xword ptr [rbx + 0x160]"
+        },
+        {
+          "offset": 198,
+          "bytes": "dbab70010000",
+          "text": "fld xword ptr [rbx + 0x170]"
+        },
+        {
+          "offset": 204,
+          "bytes": "dbab80010000",
+          "text": "fld xword ptr [rbx + 0x180]"
+        },
+        {
+          "offset": 210,
+          "bytes": "dbab90010000",
+          "text": "fld xword ptr [rbx + 0x190]"
+        },
+        {
+          "offset": 216,
+          "bytes": "0fae9300010000",
+          "text": "ldmxcsr dword ptr [rbx + 0x100]"
+        },
+        {
+          "offset": 223,
+          "bytes": "480fae8300020000",
+          "text": "fxsave64 ptr [rbx + 0x200]"
+        },
+        {
+          "offset": 231,
+          "bytes": "90",
+          "text": "nop "
+        },
+        {
+          "offset": 232,
+          "bytes": "480fae8300040000",
+          "text": "fxsave64 ptr [rbx + 0x400]"
+        },
+        {
+          "offset": 240,
+          "bytes": "480fae0c24",
+          "text": "fxrstor64 ptr [rsp]"
+        },
+        {
+          "offset": 245,
+          "bytes": "480fae8300080000",
+          "text": "fxsave64 ptr [rbx + 0x800]"
+        },
+        {
+          "offset": 253,
+          "bytes": "b8dec0175a",
+          "text": "mov eax, 0x5a17c0de"
+        },
+        {
+          "offset": 258,
+          "bytes": "4881c400020000",
+          "text": "add rsp, 0x200"
+        },
+        {
+          "offset": 265,
+          "bytes": "5b",
+          "text": "pop rbx"
+        },
+        {
+          "offset": 266,
+          "bytes": "c3",
+          "text": "ret "
+        }
+      ]
+    },
+    "change": {
+      "size": 270,
+      "gate": 231,
+      "sha256": "4bcdeb92fe7aa93f5fe1de487cfd4588fa74fdea02702bb8db7603b2d6ac56e3",
+      "instructions": [
+        {
+          "offset": 0,
+          "bytes": "53",
+          "text": "push rbx"
+        },
+        {
+          "offset": 1,
+          "bytes": "4881ec00020000",
+          "text": "sub rsp, 0x200"
+        },
+        {
+          "offset": 8,
+          "bytes": "4889cb",
+          "text": "mov rbx, rcx"
+        },
+        {
+          "offset": 11,
+          "bytes": "480fae0424",
+          "text": "fxsave64 ptr [rsp]"
+        },
+        {
+          "offset": 16,
+          "bytes": "480fae8300060000",
+          "text": "fxsave64 ptr [rbx + 0x600]"
+        },
+        {
+          "offset": 24,
+          "bytes": "f30f6f8300000000",
+          "text": "movdqu xmm0, xmmword ptr [rbx]"
+        },
+        {
+          "offset": 32,
+          "bytes": "f30f6f8b10000000",
+          "text": "movdqu xmm1, xmmword ptr [rbx + 0x10]"
+        },
+        {
+          "offset": 40,
+          "bytes": "f30f6f9320000000",
+          "text": "movdqu xmm2, xmmword ptr [rbx + 0x20]"
+        },
+        {
+          "offset": 48,
+          "bytes": "f30f6f9b30000000",
+          "text": "movdqu xmm3, xmmword ptr [rbx + 0x30]"
+        },
+        {
+          "offset": 56,
+          "bytes": "f30f6fa340000000",
+          "text": "movdqu xmm4, xmmword ptr [rbx + 0x40]"
+        },
+        {
+          "offset": 64,
+          "bytes": "f30f6fab50000000",
+          "text": "movdqu xmm5, xmmword ptr [rbx + 0x50]"
+        },
+        {
+          "offset": 72,
+          "bytes": "f30f6fb360000000",
+          "text": "movdqu xmm6, xmmword ptr [rbx + 0x60]"
+        },
+        {
+          "offset": 80,
+          "bytes": "f30f6fbb70000000",
+          "text": "movdqu xmm7, xmmword ptr [rbx + 0x70]"
+        },
+        {
+          "offset": 88,
+          "bytes": "f3440f6f8380000000",
+          "text": "movdqu xmm8, xmmword ptr [rbx + 0x80]"
+        },
+        {
+          "offset": 97,
+          "bytes": "f3440f6f8b90000000",
+          "text": "movdqu xmm9, xmmword ptr [rbx + 0x90]"
+        },
+        {
+          "offset": 106,
+          "bytes": "f3440f6f93a0000000",
+          "text": "movdqu xmm10, xmmword ptr [rbx + 0xa0]"
+        },
+        {
+          "offset": 115,
+          "bytes": "f3440f6f9bb0000000",
+          "text": "movdqu xmm11, xmmword ptr [rbx + 0xb0]"
+        },
+        {
+          "offset": 124,
+          "bytes": "f3440f6fa3c0000000",
+          "text": "movdqu xmm12, xmmword ptr [rbx + 0xc0]"
+        },
+        {
+          "offset": 133,
+          "bytes": "f3440f6fabd0000000",
+          "text": "movdqu xmm13, xmmword ptr [rbx + 0xd0]"
+        },
+        {
+          "offset": 142,
+          "bytes": "f3440f6fb3e0000000",
+          "text": "movdqu xmm14, xmmword ptr [rbx + 0xe0]"
+        },
+        {
+          "offset": 151,
+          "bytes": "f3440f6fbbf0000000",
+          "text": "movdqu xmm15, xmmword ptr [rbx + 0xf0]"
+        },
+        {
+          "offset": 160,
+          "bytes": "dbe3",
+          "text": "fninit "
+        },
+        {
+          "offset": 162,
+          "bytes": "d9ab04010000",
+          "text": "fldcw word ptr [rbx + 0x104]"
+        },
+        {
+          "offset": 168,
+          "bytes": "dbab20010000",
+          "text": "fld xword ptr [rbx + 0x120]"
+        },
+        {
+          "offset": 174,
+          "bytes": "dbab30010000",
+          "text": "fld xword ptr [rbx + 0x130]"
+        },
+        {
+          "offset": 180,
+          "bytes": "dbab40010000",
+          "text": "fld xword ptr [rbx + 0x140]"
+        },
+        {
+          "offset": 186,
+          "bytes": "dbab50010000",
+          "text": "fld xword ptr [rbx + 0x150]"
+        },
+        {
+          "offset": 192,
+          "bytes": "dbab60010000",
+          "text": "fld xword ptr [rbx + 0x160]"
+        },
+        {
+          "offset": 198,
+          "bytes": "dbab70010000",
+          "text": "fld xword ptr [rbx + 0x170]"
+        },
+        {
+          "offset": 204,
+          "bytes": "dbab80010000",
+          "text": "fld xword ptr [rbx + 0x180]"
+        },
+        {
+          "offset": 210,
+          "bytes": "dbab90010000",
+          "text": "fld xword ptr [rbx + 0x190]"
+        },
+        {
+          "offset": 216,
+          "bytes": "0fae9300010000",
+          "text": "ldmxcsr dword ptr [rbx + 0x100]"
+        },
+        {
+          "offset": 223,
+          "bytes": "480fae8300020000",
+          "text": "fxsave64 ptr [rbx + 0x200]"
+        },
+        {
+          "offset": 231,
+          "bytes": "660fefc0",
+          "text": "pxor xmm0, xmm0"
+        },
+        {
+          "offset": 235,
+          "bytes": "480fae8300040000",
+          "text": "fxsave64 ptr [rbx + 0x400]"
+        },
+        {
+          "offset": 243,
+          "bytes": "480fae0c24",
+          "text": "fxrstor64 ptr [rsp]"
+        },
+        {
+          "offset": 248,
+          "bytes": "480fae8300080000",
+          "text": "fxsave64 ptr [rbx + 0x800]"
+        },
+        {
+          "offset": 256,
+          "bytes": "b8dec0175a",
+          "text": "mov eax, 0x5a17c0de"
+        },
+        {
+          "offset": 261,
+          "bytes": "4881c400020000",
+          "text": "add rsp, 0x200"
+        },
+        {
+          "offset": 268,
+          "bytes": "5b",
+          "text": "pop rbx"
+        },
+        {
+          "offset": 269,
+          "bytes": "c3",
+          "text": "ret "
+        }
+      ]
+    }
+  }
+}

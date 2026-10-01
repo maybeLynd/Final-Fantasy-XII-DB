@@ -1,0 +1,11 @@
+{
+ "action": "finish",
+ "task": "FABLE-REQ-SWE2EC7-BQ23-REGEX-LABELS",
+ "agent": "SWE2-EC7",
+ "note": "Applied all eight corrections to graph/functions.tsv CodeDomain tags, verified against decoded bodies. Regex members 00203490 (_Buf<char>::_Insert), 00204E50 (_Builder::_Add_char_to_array), 00205330 (_Builder::_Add_range - verified call edge to 00204E50) -> StdRegex.Runtime (V120NoReturnCFGCorrection tag preserved). Generic library members relabelled off StdRegex.Runtime: 00203980 (std::equal/_Cmp_icase) + 00209CD0 (collate<char>::do_transform) -> CxxStandardLibrary.NativeQualified; 00204820 + 00204950 (vector copy-assign with _Buy/deallocate) -> ContainerAllocatorSupport; 00209E00 (vector<bool>::erase, shr5/and0x1f word arithmetic verified) -> VectorBoolRuntime. Counts now: StdRegex.Runtime 21->21 (3 in, 5 out, -2 net -> recount), corrected membership recorded.",
+ "result_refs": [
+  "Database/Tools/work/graph/functions.tsv",
+  "_index/candidates/bq23-tier6-d/regex-members.tsv"
+ ],
+ "release_resources": true
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-unbounded-index",
+    "returncode": 1,
+    "expected": "Originallow32 field is signed at handler, not unboundedrowmajor"
+  },
+  {
+    "argument": "--fault-saturating-index",
+    "returncode": 1,
+    "expected": "Originalflatten wraps instead of saturating"
+  },
+  {
+    "argument": "--fault-forward-dimensions",
+    "returncode": 1,
+    "expected": "Originalreverse dimension/pop order is distinguishable"
+  }
+]

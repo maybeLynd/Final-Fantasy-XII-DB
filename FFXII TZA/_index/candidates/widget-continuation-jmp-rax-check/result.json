@@ -1,0 +1,92 @@
+{
+ "cases": {
+  "J1_continuation_read_before_the_handler_is_nulled": true,
+  "J2_null_continuation_is_skipped_with_a_plain_ret": true,
+  "J3_non_null_is_entered_by_jmp_rax_after_the_frame_is_restored": true
+ },
+ "evidence_class": "STATIC",
+ "listing": [
+  [
+   "002483CA",
+   "mov rbx, qword ptr [rdi + 8]"
+  ],
+  [
+   "002483CE",
+   "mov qword ptr [rdi], 0"
+  ],
+  [
+   "002483D5",
+   "bt eax, 0xe"
+  ],
+  [
+   "002483D9",
+   "jb 0x2483e5"
+  ],
+  [
+   "002483DB",
+   "mov rcx, rdi"
+  ],
+  [
+   "002483DE",
+   "call 0x3697f0"
+  ],
+  [
+   "002483E3",
+   "jmp 0x2483f3"
+  ],
+  [
+   "002483E5",
+   "btr eax, 0xe"
+  ],
+  [
+   "002483E9",
+   "mov byte ptr [rdi + 0xa2], 0"
+  ],
+  [
+   "002483F0",
+   "mov dword ptr [rdi + 0x40], eax"
+  ],
+  [
+   "002483F3",
+   "mov rdi, qword ptr [rsp + 0x38]"
+  ],
+  [
+   "002483F8",
+   "test rbx, rbx"
+  ],
+  [
+   "002483FB",
+   "je 0x248408"
+  ],
+  [
+   "002483FD",
+   "mov rax, rbx"
+  ],
+  [
+   "00248400",
+   "add rsp, 0x20"
+  ],
+  [
+   "00248404",
+   "pop rbx"
+  ],
+  [
+   "00248405",
+   "jmp rax"
+  ],
+  [
+   "00248408",
+   "add rsp, 0x20"
+  ],
+  [
+   "0024840C",
+   "pop rbx"
+  ],
+  [
+   "0024840D",
+   "ret"
+  ]
+ ],
+ "live_game": false,
+ "ok": true
+}

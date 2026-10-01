@@ -1,0 +1,11 @@
+SURVIVES  B0  sizes all five as cited; outs reach +0x6DC / middle +0x6D8 / near +0x6D4; block at unit+0x80 (+0x120.. = unit +0x1A0..)
+SURVIVES  B1  weapon word stats +0x50; bound one-sided (id < count + 0x1000, else null row); 0xFFFF fails it for any table under 0xEFFF rows
+SURVIVES  B2  two radius pairs, max of each, summed
+SURVIVES  B3  a = 00320D70(.., 0), b = (.., 1); R = 00309300(row, weapon word)
+SURVIVES  B4  CON-187: authored only when a != 0 AND b != 0 (a == 0 skips b's test); NaN counts as non-zero
+SURVIVES  B5  authored a / a+b / a+b+R, else 0.6R / 0.8R / R; radii on all three; each out null-tested
+SURVIVES  B6  class-6 validity; bit 26 -> weapon +0x18 else action +0x05, / 10; no row -> 0; null action row -> 0
+SURVIVES  B7  bit 26 clear -> row +2+component / 10; set -> kind +0x25 (>5 or 2 -> 0); a NULL equipment row is kind 0; 01EED288[c + 2k]; failure -> 0
+SURVIVES  B8  too far min(middle + 2, reach); too close near + 0.05 with 003341A0; +0xD0 drops; clearance forces approach; mutual rule on the target unit's +0x1A4 / +0x1A0 (its own copies); two early exits; avoidance tried before standing
+SURVIVES  B9  gates 0x100 / predicate / speed; aim middle + 0.7 (reach - middle); speed B abandons and clears 0x100; stand window 30 x [01DFE0B4]; then speed A
+FAILS 0

@@ -1,0 +1,11 @@
+request-entry call sites (raw E8/E9/0F8x): 186
+   0x03A title.mrp       (title.mrp): 00394044->00394048 in 00393FF0
+   0x03B title_menu.mrp  (title_menu.mrp): none
+   0x089 E3_Logo.mrp     (E3_Logo.mrp): none
+   0x0BF Loca.mrp        (Loca.mrp): 004040FE->00404107 in 00404060
+   0x03D title_logo.tm2  (title_logo.tm2): 00394025->00394029 in 00393FF0 00394025->00394048 in 00393FF0
+PASS C1 title.mrp found at 00394044 and Loca.mrp at 004040FE
+PASS C2 title_logo.tm2 (0x3D) found through the lea idiom at 00394025
+PASS R1 no request site forms 0x3B (title_menu.mrp) or 0x89 (E3_Logo.mrp)
+PASS R2 nowload.mrp and title_fore3.mrp have no kind-7 path (first arm)
+FAILS 0

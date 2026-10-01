@@ -1,0 +1,16 @@
+diff --git "a/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md" "b/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md"
+--- "a/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md"
++++ "b/Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md"
+@@ -1710,7 +1710,11 @@ The caller set is from `edges.tsv`; both bodies below are read, not inferred.*
+ > rebasing thunk onto the `005CD450` acquire. That does not settle the other aux targets in that list, and it is
+ > not offered as a form family — it is one body read because pass 22 asked what the Audio edges
+ > were.
+-
++- **Input - CLIENT and SERVICE (4 edges).** `005CD4F0` is called by bodies filed to Input: `0079C140`, `007A0340`; `0016C6A0`, `0016D540` reach bodies filed to Input: `00879570` - shared machinery across the layer boundary, no shared ownership.
++- **PlatformOnlineAchievements - CLIENT (1 edge).** `008653B0` is called by bodies filed to PlatformOnlineAchievements: `007A0810` - shared machinery across the layer boundary, no shared ownership.
++- **Presentation - CLIENT and SERVICE (16 edges).** `005AD8F0`, `005B2860`, `005CD4F0`, `005F03A0` (+3 more) are called by bodies filed to Presentation: `001B2A30`, `001B5B60`, `005C5C80`, `005FD2A0` (+1 more); `00632E80`, `00636280`, `00639850`, `00639C80` (+4 more) reach bodies filed to Presentation: `00639A60` - shared machinery across the layer boundary, no shared ownership.
++- **Resource - CLIENT and SERVICE (30 edges).** `00212050`, `005CC900`, `005CD4F0`, `0067FF40` are called by bodies filed to Resource: `0019F620`, `001A0A90`, `001A0BB0`, `001A0C50` (+19 more); `00212050`, `005A08E0` reach bodies filed to Resource: `0017D940`, `0017D960`, `00212260`, `00677450` - shared machinery across the layer boundary, no shared ownership.
++- **Script_VM_Native_Bridge - CLIENT (1 edge).** `00660570` is called by bodies filed to Script_VM_Native_Bridge: `00510740` - shared machinery across the layer boundary, no shared ownership.
+ 
+ ### Interior citation — frontier hub `005A7A40` (2026-09-18, SWE2-EC7)
+ 

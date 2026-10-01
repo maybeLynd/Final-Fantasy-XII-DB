@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-120",
+ "result_refs": [
+  "commit:5d25c3d3c"
+ ],
+ "note": "batch-120 seal: publish+finpub ops committed (5d25c3d3c); all gates clean"
+}

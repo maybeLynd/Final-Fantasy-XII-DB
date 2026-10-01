@@ -1,0 +1,9 @@
+PASS  K1 0025A180: body +0x30..+0xDF -> C; interpolator(A, B, C); word +0x690 = 4 (callers 0025A6A0, 00358F90)
+PASS  K2 00259510 reads from ['0x0', '0x10', '0x18', '0x4', '0x8'] / to ['0x0', '0x10', '0x18', '0x4', '0x8'], writes out ['0x0', '0x10', '0x14', '0x18', '0x1c', '0x4', '0x8', '0xc']
+PASS  K3 00259620 (field tick 00259FB0 <- 0025D9E0): reads B/C +0x00..+0x1F only (+0 +4 +8 +10 +18 +b0 +b4 +b8 +c0 +c8), local written only at rsp+0x20..0x3F, copied whole over B
+PASS  K4 0025A6A0: local = interpolator out only, copied whole over B at 0025A792-0025A7F9
+PASS  K5 control: 198 in-window operands in slots 2-4; no rip-relative operand in +0x710..+0x79F of contexts 0/1 (19 functions reference the two contexts); base-forming functions 002593D0 00259470 00259990 0025A180 0025A620 0025A6A0 apply no in-window displacement
+PASS  K6 B handed to 0x259510(rdx), 0x380b80(rcx), 0x380d30(rcx), 0x861ec0(rcx) (00259B30), plus the interpolator 'from' in 0025A180 / 0025A6A0 (K1, K4); whole-context copies 002593D0 (0 -> 1) and 00259470 (1 -> 0) from 00359410
+PASS  K7 reset 00259B30 (contexts 0 and 1): memset B, 00380B80 writes 0 8 c 14 18 1c 20 24 28 2c 30 34 38 3c 50 52 56 58 5a 60 64 68 6c 70 74 78 80 90 98 a0, 00380D30 grounds +0x04 when +0x60 bit 0 is clear
+PASS  K8 first-level displacement bounds (named limit): 0032B880 b0<430, 0032B8B0 bc<430, 003D9930 3cc<6e0, 003D9950 90<6e0, 003D99B0 2b0<6e0, 003D9B80 2a8<6e0, 003D9C40 2a0<6e0
+FAILS 0

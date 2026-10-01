@@ -1,0 +1,15 @@
+scripts: 1114
+control: mapsoundplay( occurrences: 3838
+uses by call and arguments:
+   setuclockstatus(0): 1
+   setuclockstatus(1): 2
+   setucpcmovelockstatus(0, 0): 1
+   setucpcmovelockstatus(0, 1): 1
+   setucpcmovelockstatus(1, 0): 1
+   setucpcmovelockstatus(1, 1): 1
+   setucpcmovelockstatus(2, 0): 1
+   setucpcmovelockstatus(2, 1): 1
+files with a use: ['naf_a02.txt']
+  naf_a02.txt, actor キー制限(0), function キー解放(): setuclockstatus(0), setucpcmovelockstatus(0, 0), setucpcmovelockstatus(1, 0), setucpcmovelockstatus(2, 0)
+  naf_a02.txt, actor キー制限(0), function ターゲット直前キー制限(): setuclockstatus(1), setucpcmovelockstatus(0, 1), setucpcmovelockstatus(1, 1), setucpcmovelockstatus(2, 1)
+  naf_a02.txt, actor キー制限(0), function メニュー可能キー制限(): setuclockstatus(1)

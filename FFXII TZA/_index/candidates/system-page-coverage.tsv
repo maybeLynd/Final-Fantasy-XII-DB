@@ -1,0 +1,67 @@
+# Page coverage per registered system: registry primary_pages against every contract's
+# implements: key. OPUS 2026-09-21, answering the S-07 correction's statement that this had
+# been done only for S-07 and S-20, which is why every other page-count SCOPE-SHORT call is
+# carried there as an UPPER BOUND on the gap.
+#
+# THE DASH IN A YAML LIST MUST BE ANCHORED TO ITS LINE. A first run matched a dash anywhere
+# in the implements: block; every page name here is hyphenated, so it matched inside
+# `the-widget-constructor-and-object-sizes` and dropped the name's first word. That reported
+# S-34 and S-36 as uncovered, both of which had been verified covered BY HAND the same day,
+# and the disagreement with the hand check is what exposed it.
+#
+# implements: IS PROVENANCE, NOT COVERAGE - this measures the key, not the subject. A page
+# can be uncovered here and its mechanisms still be contract entries, which is exactly what
+# S-34 turned out to be: its second page has no contract implementing it, and both of that
+# page's mechanisms are entries of contracts.
+system	name	pages	covered	uncovered_pages	covering_contract_scopes
+S-01	00 Engine core and frame	2	1	game-application	subsystem=1
+S-02	00 Engine core and frame	3	1	the-world-tick-and-the-field-frame;the-time-stop-and-system-stop-registry	family=1
+S-03	00 Engine core and frame	1	1	-	subsystem=1
+S-04	00 Engine core and frame	2	1	the-encoded-id-class-registry	subsystem=1
+S-05	00 Engine core and frame	1	0	the-shared-transform-workbench	-
+S-06	00 Engine core and frame	1	1	-	subsystem=1
+S-07	01 Script VM	3	1	worldactor-scriptvm-interpreter;native-command-lifecycle	subsystem=1
+S-08	02 Resources	3	1	file-size-tables-fst;how-the-bigfile-index-loads-and-is-verified	subsystem=1
+S-09	02 Resources	3	1	how-the-ard-loader-binds-area-battle-data;resource-section-addressing	family=1
+S-10	02 Resources	1	1	-	subsystem=1
+S-11	03 World, area, field	3	2	walking-into-an-authored-trigger-point	family=1;subsystem=1
+S-12	03 World, area, field	3	3	-	subsystem=3
+S-13	04 Actors	3	2	the-record-behind-every-actor	family=2
+S-14	04 Actors	2	2	-	family=1;operation=1;subsystem=1
+S-15	04 Actors	1	1	-	subsystem=1
+S-16	05 Spawn and encounter lifecycle	3	1	spawn-placement-height-and-authored-tunables;the-spawn-keep-entry-field-map	subsystem=1
+S-17	05 Spawn and encounter lifecycle	2	1	why-the-enemies-you-killed-come-back	subsystem=1
+S-18	06 Movement	3	2	heading-speed-to-position-delta	family=1;subsystem=1
+S-19	06 Movement	1	1	-	family=1
+S-20	07 Combat action	4	0	the-moment-an-action-is-committed;native-command-seam;battle-action-handler-table;how-a-combo-continues-and-what-it-blocks	-
+S-21	07 Combat action	3	1	the-post-result-events-and-the-battle-message-table;the-result-record-field-map	subsystem=1
+S-22	08 Combat formula	4	1	combat-formula-step-table;ranged-weapon-recipes;weather-terrain-element-scaling	family=1
+S-23	08 Combat formula	1	1	-	transition=1
+S-24	08 Combat formula	3	1	where-a-stat-number-comes-from;the-auto-status-rebuild	family=1
+S-25	09 AI and gambits	2	1	which-gambit-set-fires-and-how-a-command-switches-it	operation=1
+S-26	10 Status and periodic	2	1	two-layer-effect-model	operation=1
+S-27	10 Status and periodic	2	1	where-mp-comes-from	operation=1
+S-28	11 Party	4	1	active-party-reserve-and-the-moment-the-leader-changes;the-five-parallel-slot-maps;the-battle-state-block-field-map	family=1
+S-29	12 Items, equipment, shops, licences	2	1	using-an-item-is-an-action-that-costs-an-item	family=1
+S-30	12 Items, equipment, shops, licences	2	1	the-shop-table-and-its-stock-gates	family=1
+S-31	12 Items, equipment, shops, licences	2	1	license-board-grid-format	subsystem=1
+S-32	13 Rewards and progression	5	1	what-happens-when-an-enemy-dies;loot-drops-and-enemy-chain;gil-storage-clamp-and-every-path-that-moves-it;what-happens-when-a-character-levels-up	family=1
+S-33	13 Rewards and progression	1	1	-	subsystem=1
+S-34	14 Story and events	2	1	event-memory-at-actor-bind	subsystem=1
+S-35	15 Input	3	3	-	subsystem=4
+S-36	16 UI	3	3	-	subsystem=3
+S-37	16 UI	2	2	-	subsystem=2
+S-38	17 Presentation	2	2	-	family=1;operation=1;transition=1
+S-39	17 Presentation	2	2	-	subsystem=2
+S-40	17 Presentation	1	1	-	operation=1
+S-41	18 Audio	3	1	audio-bank-and-controller-family;the-spatial-audio-object-model	subsystem=1
+S-42	18 Audio	2	1	the-music-control-file-and-the-bgm-stream	operation=1
+S-43	19 Save, load, settings	3	1	version-stamps-and-what-loading-normalises;the-save-payload-field-map	family=3
+S-44	19 Save, load, settings	2	1	language-selection-and-locale-ids	subsystem=1
+S-45	20 – 21 Platform and RNG	1	1	-	family=1
+S-46	20 – 21 Platform and RNG	2	2	-	family=1;subsystem=1
+S-47	02 Resources	1	1	-	family=2
+S-48	17 Presentation	1	1	-	state=1
+S-49	22 PhyreEngine middleware	3	3	-	subsystem=3
+S-50	23 Third-party libraries	1	1	-	subsystem=1
+S-51	06 Movement	1	0	how-a-unit-finds-its-way-across-the-navigation-mesh	-

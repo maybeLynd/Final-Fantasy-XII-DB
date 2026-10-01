@@ -1,0 +1,5 @@
+bind_every_shipped_slot            PASS  every binding call of 00236C30 re-made from its own instruction stream: 39 made, skipped: 238880 gambit table - heap 6; 237FC0 ability lookup - heap 6 after its first 003845F0
+arms_2_to_32_at_their_edges        PASS  for classes 2..32 the validator accepts exactly lo .. lo+count-1 of the table its arm reads (class 13: the sum of four counts; 19: E000..EFFE; 22 / 23: 0..3 / 0..8), probed at lo-1, lo, hi-1, hi over the shipped bindings
+class1_redispatch_every_family     PASS  class 1 on an id answers what the class named by 00309440 (the id's family code) answers, for every family 0..15 (15 has no family: 00309440 gives -1 and class 1 refuses)
+I2_validator_vs_inventory_count    PASS  the shipped equipment table has 557 rows, the inventory family counts 420: id 11A4 passes the validator (classes 6 and 1) although the inventory registry's range ends before it - two domains, two answers
+ok

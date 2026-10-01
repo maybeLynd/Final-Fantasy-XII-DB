@@ -1,0 +1,5 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-154",
+ "note": "batch-154 claim - 5 multi-caller + top-17 1-A frontier bodies (0037C2E0 excluded - its batch-152 entry landed on a PARTIAL page)"
+}

@@ -1,0 +1,15 @@
+PASS  P1 bit 24 of node +0x40 against 0208F564; pass 1 = 00252990 over roots [0208EA28], [0208EA40]
+PASS  P2 the constructor's +0x40 writes touch bits 17, 11/3/1 and 14 only
+PASS  P3 immediate setters ['005728E6', '00573AF5']; shifted setters ['00247754', '0057390E', '00573952']
+PASS  P4 00247730 = set the subtree's pass bit
+      (no page)                                            002D6D51:1
+      the-bazaar-recipe-unlock-and-purchase                002A8BC5:1
+      the-handbook-screen                                  00572847:1 00572F17:1 00573371:0 0057391F:var 00573969:var 00573AA3:1
+      the-license-board-grid-build-and-its-change-sweep    00558D38:0 00558E4B:1 00559B7B:var 00560D35:var 00560DD5:var 00561931:0 00561B9E:1 00561BC3:1
+      the-license-board-screen-widgets                     002C1A60:1 005571AA:1 00559722:1
+      the-menu-screen-atlas                                00561DE9:var 00561DFD:var 00561E17:var 00561E31:var 00561E50:var
+      the-world-tick-and-the-field-frame                   00287BFD:1
+      ui-layout-parameters-and-editor-schema               002A3034:1 002A3DCB:1 002CE292:1 002CE2A3:1 002CE2C0:1 00556CE4:1 0055A7DF:1
+PASS  P5 32 call sites: on = 1 at 19, 0 at 3, a variable at 10 ({'1': 19, '0': 3, 'var': 10})
+PASS  P6 handbook: 005738D0 moves its panes between passes as one set
+FAILS 0

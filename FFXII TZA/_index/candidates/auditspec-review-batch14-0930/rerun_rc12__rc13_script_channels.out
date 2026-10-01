@@ -1,0 +1,26 @@
+per form: calls parsed / plain count; first operand distribution
+  sysReq       19095 /  19095   0:2, 1:15637, 2:2054, 3:666, 4:517, 5:149, 6:5, 7:65
+  sysReqi       2775 /   2775   1:581, 2:1569, 3:8, 4:20, 5:593, 7:4
+  sysReqsw      3067 /   3067   1:2482, 2:39, 3:455, 4:1, 5:90
+  sysReqswi        1 /      1   1:1
+  sysReqew     10007 /  10007   1:7873, 2:1182, 3:173, 4:572, 5:48, 6:15, 7:144
+  sysReqewi     1227 /   1227   1:333, 3:520, 4:373, 5:1
+  sysReqall     5312 /   5312   0:2, 1:3446, 2:1183, 3:351, 4:161, 5:68, 6:21, 7:80
+  sysReqiall     411 /    411   1:371, 2:30, 3:2, 4:2, 5:6
+  sysReqchg     1884 /   1884   2:1804, 3:14, 4:8, 5:8, 16:24, 17:26
+
+channel operand, all channel-taking forms together:
+  0:4, 1:30724, 2:6057, 3:2175, 4:1646, 5:955, 6:41, 7:293
+
+special functions requested by name, by channel (the authored channel for an engine-named function):
+  channel 1: parameter 15
+  channel 5: talk 1
+
+REQCHG slot operand -> requested function-name prefixes:
+  slot 2: talk 1734, END 27, not 22, とおせん 12, バルフレ 3, catrine 2
+  slot 3: touch 12, 最速の飛 1, パンネロ 1
+  slot 4: touchon 8
+  slot 5: touchoff 8
+  slot 16: talkhold 24
+  slot 17: talkterm 25, catrine 1
+CONTROL parsed == plain for every form: PASS

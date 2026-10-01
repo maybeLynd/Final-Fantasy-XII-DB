@@ -1,0 +1,12 @@
+PASS V  view 242 lines (sha256 28819eaf66832a9a); changed view differs in 1 line
+PASS M  file offset 10947E: 72 -> 76; 1 byte differs; changed image sha256 9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040
+  P1 rc=0 tags={'B': 'PASS', 'R1': 'PASS', 'I1': 'PASS', 'A1': 'PASS', 'C': 'PASS'} stdout sha256 ac956e9423abc3a5 stderr 0 B
+PASS P1  original pair
+  P2 rc=2 tags={'B': 'REFUSE'} stdout sha256 a6e618edd5096055 stderr 0 B
+PASS P2  stale view with changed image is refused before any semantic check
+  P3 rc=1 tags={'B': 'PASS', 'R1': 'FAIL', 'I1': 'PASS', 'A1': 'PASS', 'C': 'PASS'} stdout sha256 d670f075ec95248e stderr 0 B
+PASS P3  matching changed pair: R1 fails, nothing else
+  P4 rc=2 tags={'B': 'REFUSE'} stdout sha256 66bd16cd14eb286b stderr 0 B
+PASS P4  changed view with original image is refused
+PASS K  private files removed; original image sha256 73461d0896204b1c unchanged
+FAILS 0

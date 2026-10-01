@@ -1,0 +1,39 @@
+# Phyre.Reflection.PClassDataMemberStaticTeardownAdapter - EC-7 family C, declared on generated-function-families.md
+#
+# 30 members. Body size(s): 12 B x30.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 1 external target(s): 1 shared across all 30 members.
+#
+# NOT dispositioned: the 1 shared implementation these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+008A8200
+008A8210
+008A8220
+008A8230
+008A8240
+008A8250
+008A8260
+008A8270
+008A8280
+008A8290
+008A82A0
+008A82B0
+008A82C0
+008A82D0
+008A82E0
+008A82F0
+008A8300
+008A8310
+008A8320
+008A8330
+008A8340
+008A8350
+008A8360
+008A8370
+008A8380
+008A8390
+008A83A0
+008A83B0
+008A83C0
+008A83D0

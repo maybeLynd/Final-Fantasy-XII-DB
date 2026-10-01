@@ -1,0 +1,5 @@
+PASS  I 14 of 14 .data module objects read {00D26BC0, 0, &name, 0xFF (dword, then 0)} with the expected name
+PASS  Z base vtable slot 0 = 005A0CB0: re-stamp, unlink from 02CACC90, sized free 0x20; 01F2EE80 and 01F47570 begin 0x20 after their neighbours
+PASS  C 14 of 14 registrars link, install and tail-jump atexit with their paired teardown, each teardown re-stamps 00D26BC0; PText: 00167B90 -> 006CCC10 on 02E5BE88 (key 0xFF at 006CCC17, name "Text"), atexit 008B6F00
+PASS  W PUtility (0x20) is in the store, tiles, and lists its fifteen static instances
+FAILS 0

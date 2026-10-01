@@ -1,0 +1,8 @@
+SURVIVES  S1  slot +8 = destination header, release old, copy old +0x40 -> new +0x40, claim destination, store the generation word
+SURVIVES  S2  exact: free head arena +0x90, extent +0x18, inhibit +0x15 bit 4; adjacent: (+0x15 & 6) == 2
+SURVIVES  S3  exact pass once, adjacent pass repeated only while it moves and repeat != 0; a nonzero count sets +2 and +0x62
+SURVIVES  S4  latch +0x62 read / cleared; request: bit 27 of +0x294, index in +0x304[31:27], low 27 bits kept
+SURVIVES  S5  delivery only with bit 27 and +0x288 != -1, bit cleared regardless; index <0 / >=0xB refused, 0 -> 1 unrefreshed, else refresh then start
+SURVIVES  S6  maintenance compacts arenas 6 and 10 with repeat 1 (twice each); the script adapter passes its two operands
+SURVIVES  S7  five service calls; window skipped for a nonzero argument; 02091108 -> +0x348 walk; context +0x858 and container +0x390 apart
+FAILS 0

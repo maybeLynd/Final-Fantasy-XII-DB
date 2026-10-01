@@ -1,0 +1,13 @@
+bodies reached 5859 (307 s)
+PASS  P the pass gate's five reads (0079C240-0079C254) are found
++0x1E  writes: 00792350@00792393 mov dword ptr [rcx + 0x1e], 0; 0079C140@0079C4B5 mov byte ptr [rdi + 0x1e], 1; 0079C140@0079C54E mov byte ptr [rdi + 0x1e], 0; 0079F150@0079F19E mov byte ptr [rcx + 0x1e], 1; 007A07C0@007A07EE mov dword ptr [rdi + 0x1c], ebp; 007A0B10@007A0B16 mov byte ptr [rcx + 0x1e], 1
+       reads : 0079C140@0079C240 0079C140@0079C4CE
++0x1F  writes: 00792350@00792393 mov dword ptr [rcx + 0x1e], 0; 0079C140@0079C55D mov byte ptr [rdi + 0x1f], 0; 007A07C0@007A07EE mov dword ptr [rdi + 0x1c], ebp
+       reads : 0079C140@0079C24A 0079C140@0079C552
++0x20  writes: 00792350@00792393 mov dword ptr [rcx + 0x1e], 0; 0079C140@0079C4AB mov byte ptr [rdi + 0x20], 0; 0079C140@0079C4B1 mov byte ptr [rdi + 0x20], 0; 007A0B10@007A0B10 mov byte ptr [rcx + 0x20], 1
+       reads : 0079C140@0079C167 0079C140@0079C245 0079C140@0079C333 0079C140@0079C3A6 007A07C0@007A07E8
++0x21  writes: 00792350@00792393 mov dword ptr [rcx + 0x1e], 0; 0079C140@0079C57B mov byte ptr [rdi + 0x21], 0; 0079F140@0079F140 mov byte ptr [rcx + 0x21], 1
+       reads : 0079C140@0079C254 0079C140@0079C56C 007A07C0@007A07E8
++0x29  writes: 00792350@007923A8 mov byte ptr [rcx + 0x29], 0; 0079C140@0079C5BF mov byte ptr [rdi + 0x29], 0; 007A1180@007A1180 mov byte ptr [rcx + 0x29], 1
+       reads : 005CD450@005CD47E 005CD570@005CD574 0079C140@0079C24F 0079C140@0079C57F
+escapes of the application pointer (holders not followed): 26; indirect calls with it: 34

@@ -1,0 +1,5 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	24	page	conditions	u16: 0xffff x349, 0x6001 x54, 0x60ff x13, 0x60a3 x12, 0x60b0 x12 (23 distinct)	00235CD0 movzx ecx, word ptr [rdx - 0x20] (walk from +0x0) | 00327D45* movzx eax, word ptr [rcx + rdx*2]	u16 condition[12], gambit target-condition ids, 0xFFFF = empty	STATIC	GAMB
+0x18	8	pad	zero18	u8: 0 x320 (1 distinct)	-	const=0x00	-	GAMB
+0x20	24	page	actions	u16: 0xffff x349, 0x96 x71, 0x4 x6, 0xb x4, 0xe x4 (44 distinct)	00235CDA cmp word ptr [rdx], r10w (walk from +0x20) | 00235CE5 movzx ecx, word ptr [rdx] (walk from +0x20) | 00327D4F* cmp word ptr [rcx + rdx*2 + 0x20], r9w | 00327D5F* movzx eax, word ptr [rcx + rdx*2 + 0x20]	u16 action[12], action rows, 0xFFFF = empty	STATIC	GAMB
+0x38	8	pad	zero38	u8: 0 x320 (1 distinct)	-	const=0x00	-	GAMB

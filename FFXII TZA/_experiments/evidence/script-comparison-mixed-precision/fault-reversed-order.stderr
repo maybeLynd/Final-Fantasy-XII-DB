@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-comparison-mixed-precision\check.py", line 36, in <module>
+    if '--fault-reversed-order' in sys.argv:assert pred[5]['predicted_return']==pred[6]['predicted_return'],'Compare order is first/lower operand versus popped/top operand'
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Compare order is first/lower operand versus popped/top operand

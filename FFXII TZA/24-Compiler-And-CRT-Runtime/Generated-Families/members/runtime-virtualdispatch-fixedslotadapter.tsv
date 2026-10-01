@@ -1,0 +1,29 @@
+# Runtime.VirtualDispatch.FixedSlotAdapter - EC-7 family C, declared on generated-function-families.md
+#
+# 20 members. Body size(s): 9 B x17, 6 B x3.
+# 20 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 20 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00616E0C
+00616E18
+00616E30
+00616E3C
+00616E48
+00616E60
+00616E6C
+00616E78
+00616E90
+00616E9C
+00616EA8
+00616EB0
+00616EC0
+00616ED0
+00616EE8
+00616F0C
+00616F18
+00616F24
+00793E8C
+00793E98

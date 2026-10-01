@@ -1,0 +1,6 @@
+PASS  I PUSHI / PUSHF unbounded natively; PUSHTAG bounded (default 0x8000)
+PASS  H 10036 .ebp files; pools whose count would overrun the next table: 0
+PASS  C 237662 scripts; PUSHI 4275239, PUSHF 6035106; operands at or past their pool count: 0 []
+PASS  M sensitivity: 46802 operands use their pool's last slot, so a pool one entry shorter would fail C
+      highest operand / count: PUSHI 1.000, PUSHF 1.000 (1.000 = the last slot)
+FAILS 0

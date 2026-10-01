@@ -1,0 +1,334 @@
+# scripts scanned 1114; literal-id calls 12900; calls with a computed id 2 in 1 scripts
+# distinct flag ids 328 (of which pre-set on a new game 46 of 52); distinct threshold-query ids 2
+# pre-set ids no script names literally: 0x56 0x65 0x66 0x10B 0x148 0x14B
+id	preset	set	release	is	scripts	areas
+0x2		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x3		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x4		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x5		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x6		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x7		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x8		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x9		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0xA		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0xB		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0xC		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0xD		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0xE		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0xF		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x10		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x11		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x12		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x13		13	13	0	13	sav 4, dst 2, ene 2, enw 2, fon 2, mnt 2
+0x1B		2	0	0	2	dst 1, rbn 1
+0x1C		4	0	0	3	sav 3, rbn 1
+0x1D		3	0	2	2	wdl 4, rbn 1
+0x1E		3	0	0	2	grm 2, slm 1
+0x1F		2	0	0	2	grm 2
+0x20		2	0	0	2	dst 1, nac 1
+0x21		4	0	2	3	sav 5, dst 1
+0x22		2	0	0	2	dst 1, mic 1
+0x23		2	0	2	3	wdl 3, dst 1
+0x24		3	0	2	2	mnt 4, dst 1
+0x25		3	0	2	2	mnt 4, nac 1
+0x26		3	0	2	2	frs 4, mnt 1
+0x27		4	0	1	2	mfr 4, gol 1
+0x28		5	0	3	2	mfr 4, pbc 4
+0x29		3	0	2	2	mfr 4, hne 1
+0x2A		2	0	0	2	gil 1, mfr 1
+0x2B		2	0	0	2	pla 1, rui 1
+0x2C		1	0	0	1	ald 1
+0x2D		3	0	2	2	srb 4, pla 1
+0x2E		3	0	5	2	srb 4, var 4
+0x2F		1	0	0	1	ttl 1
+0x30		6	0	5	3	wdl 6, sav 5
+0x31		4	0	2	3	ozm 4, sav 2
+0x32		1	0	1	1	lus 2
+0x33		3	0	0	2	fon 2, frs 1
+0x34		3	0	2	2	bog 4, frs 1
+0x35		2	0	0	2	bds 1, frs 1
+0x36		3	0	2	2	mrm 4, pbc 1
+0x37		2	0	0	2	bul 1, pbc 1
+0x38		3	0	2	2	pbc 4, gol 1
+0x39		5	0	5	2	wdl 6, ztc 4
+0x3A		3	0	0	2	ene 2, wdl 1
+0x3B		4	0	4	2	ozm 4, ztc 4
+0x3C		3	0	2	2	ztc 4, ene 1
+0x3D		3	0	2	2	ztc 4, enw 1
+0x3E		3	0	1	2	ztc 3, ene 1
+0x3F		4	0	1	3	ztc 3, enw 2
+0x40		2	0	0	2	grm 1, mic 1
+0x41		4	0	4	2	bds 4, bog 4
+0x42		2	0	3	2	glf 4, ozm 1
+0x43		3	0	2	2	gol 4, ozm 1
+0x44		2	0	0	2	gol 1, vic 1
+0x45		2	0	0	2	hne 1, ozm 1
+0x46		3	0	2	2	enw 4, ene 1
+0x47		3	0	2	2	enw 4, ene 1
+0x48		2	0	0	2	enw 1, rwg 1
+0x49		3	0	2	2	pla 4, fon 1
+0x4A		2	0	0	2	rbl 1, rwf 1
+0x4D		2	0	0	2	rbn 2
+0x4E		1	0	0	1	bds 1
+0x4F		1	0	0	1	bds 1
+0x50		1	0	0	1	bds 1
+0x51		2	0	0	2	nac 2
+0x52		2	0	0	2	nal 2
+0x53		1	0	0	1	rrp 1
+0x54		2	2	0	1	naf 4
+0x55		2	1	0	1	rbn 3
+0x58		1	1	0	2	slm 2
+0x59		1	1	0	2	grm 1, slm 1
+0x5A		106	166	0	8	sav 272
+0x5B		1	0	0	1	sav 1
+0x5E		21	4	0	7	alc 4, byu 4, nac 4, rbn 4, var 4, asp 3
+0x62		1	0	0	1	rsn 1
+0x67		2	0	0	1	rwg 2
+0x68		7	7	0	7	dor 14
+0x69		7	0	0	7	dor 7
+0x6A		7	7	0	7	dor 14
+0x6B		7	7	0	7	dor 14
+0x6C		7	7	0	7	dor 14
+0x6D		7	7	0	7	dor 14
+0x6E		7	7	0	7	dor 14
+0x6F		84	84	0	11	alc 142, sav 16, ttl 10
+0x70	yes	3	2	0	2	mrm 3, pbc 2
+0x71		1	1	0	1	rbl 2
+0x72		2	1	0	1	rbl 3
+0x73		45	190	0	131	rbn 19, fon 18, glf 15, mnt 12, ozm 11, bul 9
+0x74		1	1	0	1	rbn 2
+0x75		2	1	0	2	mnt 3
+0x76		2	1	0	1	ald 3
+0x78		1	1	0	1	rbn 2
+0x79	yes	5	3	0	2	enw 6, rwg 2
+0x7A	yes	2	2	0	2	bul 4
+0x7B		1	0	0	1	rbl 1
+0x7C		1	0	0	1	rbl 1
+0x7D		1	0	0	1	rbl 1
+0x7E		2	2	0	1	lus 4
+0x7F		162	243	243	81	grm 48, rbl 48, mic 40, gil 32, sav 32, fon 24
+0x80	yes	162	243	243	81	grm 48, rbl 48, mic 40, gil 32, sav 32, fon 24
+0x81		70	106	175	8	mic 350, dst 1
+0x82		60	91	150	7	mic 300, dst 1
+0x83		20	31	50	3	mic 100, dst 1
+0x84		10	16	25	2	mic 50, dst 1
+0x85		70	106	175	8	mic 350, dst 1
+0x86		60	91	150	7	mic 300, dst 1
+0x87		70	106	175	8	mic 350, dst 1
+0x88		60	91	150	7	mic 300, dst 1
+0x89		70	106	175	8	mic 350, dst 1
+0x8A		60	91	150	7	mic 300, dst 1
+0x8B		70	106	175	8	mic 350, dst 1
+0x8C		60	91	150	7	mic 300, dst 1
+0x8D		70	106	175	8	mic 350, dst 1
+0x8E		70	106	175	8	mic 350, dst 1
+0x8F		60	91	150	7	mic 300, dst 1
+0x90		20	31	50	3	mic 100, dst 1
+0x91		106	166	0	8	sav 272
+0x92		106	166	0	8	sav 272
+0x93		106	166	0	8	sav 272
+0x94		6	0	0	2	rsn 6
+0x95		6	0	0	2	rsn 6
+0x96		6	0	0	2	rsn 6
+0x97		1	0	0	1	rwg 1
+0x98		2	0	0	1	rwg 2
+0x99		1	0	0	1	rwg 1
+0x9A		3	0	0	1	rwg 3
+0x9D		1	0	0	1	rwg 1
+0x9E		1	0	0	1	rwg 1
+0x9F		2	0	0	1	rwg 2
+0xA0		2	4	0	2	rwg 6
+0xA1		2	4	0	2	rwg 6
+0xA2		2	4	4	2	gol 10
+0xA3		2	4	4	2	gol 10
+0xA4		2	4	4	2	gol 10
+0xA5		1	0	0	1	hne 1
+0xA6		1	0	0	1	hne 1
+0xA7		1	0	0	1	hne 1
+0xA8		1	0	0	1	hne 1
+0xA9		1	0	0	1	hne 1
+0xAA		2	0	0	1	mrm 2
+0xAB		1	0	0	1	mrm 1
+0xAC		1	0	0	1	mrm 1
+0xAD		12	12	0	3	mrm 24
+0xAE		21	6	0	3	mrm 27
+0xAF		12	12	0	3	mrm 24
+0xB0		12	9	0	3	mrm 21
+0xB1		21	6	0	3	mrm 27
+0xB2		12	12	0	3	mrm 24
+0xB3		12	9	0	3	mrm 21
+0xB4		12	12	0	3	mrm 24
+0xB5		12	12	0	3	mrm 24
+0xB6		12	9	0	3	mrm 21
+0xB7		12	12	0	3	mrm 24
+0xB8		21	6	0	3	mrm 27
+0xB9		2	2	0	1	mrm 4
+0xBA		1	2	0	1	mrm 3
+0xBB		20	20	0	20	frs 22, srb 16, mnt 2
+0xBC		20	20	0	20	frs 22, srb 16, mnt 2
+0xBD		20	20	0	20	frs 22, srb 16, mnt 2
+0xBE		20	20	0	20	frs 22, srb 16, mnt 2
+0xBF		1	3	0	2	pla 4
+0xC0		1	1	0	1	rui 2
+0xC1		2	0	0	2	rui 2
+0xC2		1	0	0	1	alc 1
+0xC3		3	0	0	1	alc 3
+0xC6		1	3	0	3	evt 2, gil 1, mfr 1
+0xC7		1	2	0	2	evt 2, mfr 1
+0xC8		1	2	0	2	evt 2, mfr 1
+0xC9		1	2	0	2	evt 2, mfr 1
+0xCA		1	2	0	2	evt 2, mfr 1
+0xCB		1	2	0	2	evt 2, mfr 1
+0xCC		1	1	0	2	evt 1, mfr 1
+0xCD		1	1	0	2	evt 1, mfr 1
+0xCE		1	1	0	2	evt 1, mfr 1
+0xCF		1	1	0	2	evt 1, mfr 1
+0xD0		1	0	0	1	gil 1
+0xD1		2	0	0	1	gil 2
+0xD2		1	0	0	1	gil 1
+0xD3		1	0	0	1	gil 1
+0xD4		1	0	0	1	gil 1
+0xD5		1	0	0	1	gil 1
+0xD6		1	0	0	1	gil 1
+0xD7		1	0	0	1	gil 1
+0xD8		1	0	0	1	gil 1
+0xD9		1	0	0	1	gil 1
+0xDA		2	0	0	1	gil 2
+0xDB		1	0	0	1	rbl 1
+0xDC		1	0	0	1	rbl 1
+0xDD		1	0	0	1	rbl 1
+0xDE		1	0	0	1	rbl 1
+0xDF		27	0	0	14	rbl 27
+0xE0		27	0	0	14	rbl 27
+0xE1		27	0	0	14	rbl 27
+0xE2		27	0	0	14	rbl 27
+0xE3		27	0	0	14	rbl 27
+0xE4		3	1	0	2	rbl 4
+0xE5		1	0	0	1	mnt 1
+0xE6		1	0	0	1	mnt 1
+0xE7		1	0	0	1	mnt 1
+0xE8		1	0	0	1	mnt 1
+0xE9		1	0	0	1	mnt 1
+0xEA		1	0	0	1	mnt 1
+0xEB		2	2	0	1	mnt 4
+0xEC		2	2	0	1	mnt 4
+0xED		2	2	0	1	mnt 4
+0xEE		2	2	0	1	mnt 4
+0xEF		2	2	0	1	mnt 4
+0xF0		2	2	0	1	mnt 4
+0xF1		11	5	0	1	lus 16
+0xF2		11	5	0	1	lus 16
+0xF3		5	0	0	1	lus 5
+0xF4		11	5	0	1	lus 16
+0xF5		4	0	0	1	lus 4
+0xF6		5	0	0	5	lus 5
+0xF7		5	0	0	5	lus 5
+0xF8		5	0	0	5	lus 5
+0xF9		5	0	0	5	lus 5
+0xFA		5	0	0	5	lus 5
+0xFB		1	3	0	2	pla 4
+0xFC	yes	2	2	0	1	naf 4
+0xFD		78	80	0	80	gil 148, tri 10
+0xFE		78	80	0	80	gil 148, tri 10
+0xFF		78	80	0	80	gil 148, tri 10
+0x100		78	80	0	80	gil 148, tri 10
+0x101		78	80	0	80	gil 148, tri 10
+0x102		78	80	0	80	gil 148, tri 10
+0x103		78	80	0	80	gil 148, tri 10
+0x104		7	7	0	7	bhm 14
+0x105		7	7	0	7	bhm 14
+0x106		7	7	0	7	bhm 14
+0x107		50	50	0	22	rbn 20, dst 8, ozm 8, sav 8, wdl 8, alc 4
+0x108	yes	50	50	0	22	rbn 20, dst 8, ozm 8, sav 8, wdl 8, alc 4
+0x109		9	0	0	9	sav 9
+0x10A		2	0	0	2	dor 2
+0x10C	yes	2	1	1	2	gol 2, vic 2
+0x10D		1	0	0	1	mfr 1
+0x10E		1	0	0	1	mrm 1
+0x10F		1	0	0	1	rbl 1
+0x110		1	0	0	1	rbl 1
+0x111		27	0	0	14	rbl 27
+0x112		27	0	0	14	rbl 27
+0x113		27	0	0	14	rbl 27
+0x114		27	0	0	14	rbl 27
+0x115		27	0	0	14	rbl 27
+0x116		27	0	0	14	rbl 27
+0x117		27	0	0	14	rbl 27
+0x118		27	0	0	14	rbl 27
+0x119		27	0	0	14	rbl 27
+0x11A		1	0	0	1	gil 1
+0x11B		2	0	0	2	rui 2
+0x11C	yes	2	1	0	1	rbl 3
+0x11D		12	0	12	12	dor 24
+0x11E		4	0	4	4	dor 8
+0x11F		6	0	6	6	dor 12
+0x120		9	0	9	9	dor 18
+0x121		14	0	14	7	dor 28
+0x122		7	0	7	7	dor 14
+0x123		9	0	9	9	dor 18
+0x124		11	0	11	11	dor 22
+0x125		9	0	9	9	dor 18
+0x126		12	0	12	12	dor 24
+0x127		14	0	14	7	dor 28
+0x128		14	0	14	7	dor 28
+0x129		7	0	7	7	dor 14
+0x12A		4	0	4	4	dor 8
+0x12B		6	0	6	6	dor 12
+0x12C	yes	1	1	0	1	dst 2
+0x12D	yes	1	1	0	1	mnt 2
+0x12E	yes	2	1	1	1	ozm 4
+0x12F	yes	45	45	0	45	gol 10, mnt 10, dst 8, enw 8, fon 8, frs 8
+0x130	yes	45	45	0	45	gol 10, mnt 10, dst 8, enw 8, fon 8, frs 8
+0x131	yes	45	45	0	45	gol 10, mnt 10, dst 8, enw 8, fon 8, frs 8
+0x132	yes	45	45	0	45	gol 10, mnt 10, dst 8, enw 8, fon 8, frs 8
+0x133	yes	45	45	0	45	gol 10, mnt 10, dst 8, enw 8, fon 8, frs 8
+0x134	yes	1	1	0	2	mnt 1, nac 1
+0x135		1	0	0	1	alc 1
+0x136	yes	2	2	0	2	dst 4
+0x137	yes	3	1	0	1	dst 4
+0x138		1	1	0	2	rbn 2
+0x139		1	1	1	2	rbn 3
+0x13A	yes	6	3	0	3	bds 9
+0x13B	yes	6	3	0	3	bds 9
+0x13C	yes	6	3	0	3	bds 9
+0x13D	yes	1	1	0	1	dst 2
+0x13E	yes	2	1	0	1	dst 3
+0x13F	yes	2	1	2	1	glf 5
+0x140	yes	2	1	2	1	glf 5
+0x141	yes	2	1	0	1	lus 3
+0x142	yes	2	1	0	1	mrm 3
+0x143	yes	2	1	0	1	mrm 3
+0x144	yes	3	1	2	2	nac 5, mnt 1
+0x145	yes	1	1	2	1	nac 4
+0x146	yes	9	9	0	2	rbl 18
+0x147	yes	11	10	0	2	rbl 21
+0x149	yes	1	1	0	1	rbl 2
+0x14A	yes	2	1	0	1	rbn 3
+0x14C	yes	2	1	0	1	rui 3
+0x14D	yes	2	1	0	1	rui 3
+0x14E	yes	2	1	0	1	rui 3
+0x14F	yes	1	1	0	1	slm 2
+0x150	yes	1	1	0	1	slm 2
+0x151	yes	4	12	0	2	rbl 16
+0x152	yes	4	12	0	2	rbl 16
+0x153	yes	4	12	0	2	rbl 16
+0x154	yes	4	12	0	2	rbl 16
+0x155	yes	6	6	0	2	rbl 12
+0x156		1	1	0	1	slm 2
+0x157		3	1	0	1	lus 4
+0x158	yes	2	2	0	2	byu 4
+0x159		1	0	0	1	ztc 1
+0x15A		2	1	0	1	mnt 3
+0x15B		31	28	59	10	hne 118
+0x15C		31	28	57	10	hne 116
+0x15D		1	0	0	1	mfr 1
+0x15E		1	2	0	1	ald 3
+0x15F		1	2	0	1	ald 3
+0x160		2	1	2	2	bog 3, bds 2
+0x161		2	1	1	2	bds 2, frs 2
+0x162		1	0	0	1	dst 1
+0x164		162	81	243	81	grm 36, rbl 36, mic 30, gil 24, sav 24, fon 18
+0x165		162	81	243	81	grm 36, rbl 36, mic 30, gil 24, sav 24, fon 18
+0x166		1	1	0	1	frs 2
+0x4022	threshold	0	0	13	13	sav 2, dst 1, ene 1, enw 1, fon 1, mnt 1
+0x402A	threshold	0	0	81	81	grm 6, rbl 6, mic 5, gil 4, sav 4, fon 3

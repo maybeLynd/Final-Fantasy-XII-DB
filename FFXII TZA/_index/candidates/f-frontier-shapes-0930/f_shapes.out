@@ -1,0 +1,8 @@
+frontier (no disposition): 6250
+  larger        3304
+  small         2016
+  tiny-leaf      653
+  forwarder      262
+  getter-leaf      8
+  setter-leaf      6
+  jmp-thunk        1

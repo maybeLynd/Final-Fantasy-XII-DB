@@ -1,0 +1,20 @@
+files 35984, class names 177
+w7 values over all class records: {0: 523918, 2: 38322, 8: 66379, 12: 2184, 20: 5, 32: 49068, 34: 2184, 40: 2184}
+records with w7 bit 0 set: 0
+w0 out of range: 0
+classes declaring members with no row in phyre-field-schema.tsv (14):
+   D3D11_DEPTH_STENCILOP_DESC                       members {4: 2184}  super {'(none)': 2184}
+   Matrix4                                          members {1: 247}  super {'(none)': 247}
+   PAnimationSet                                    members {3: 2}  super {'PBase': 2}
+   PMaterialSet                                     members {1: 2091}  super {'PBase': 2091}
+   PMatrix4                                         members {1: 2097}  super {'(none)': 2097}
+   PMatrix4x3                                       members {1: 2097}  super {'(none)': 2097}
+   PMeshInstanceSegmentContext                      members {1: 2091}  super {'PMeshSegmentContext': 2091}
+   PModifierNetworkDynamicMesh                      members {4: 3}  super {'PDynamicMesh': 3}
+   PModifierNetworkDynamicMeshInstance              members {1: 3}  super {'PDynamicMeshInstance': 3}
+   PNodeContext                                     members {1: 2184}  super {'PBase': 2184}
+   PShaderPassParameterLocationTypesConstantBuffer  members {1: 2184}  super {'PShaderPassParameterLocationTypesBase': 2184}
+   PStreamInputLayoutD3D11                          members {1: 2184}  super {'PBase': 2184}
+   PString                                          members {1: 35984}  super {'PBase': 35984}
+   Vector3                                          members {1: 2091}  super {'(none)': 2091}
+control: files == 35984 PASS; bit-0 records == 0 PASS

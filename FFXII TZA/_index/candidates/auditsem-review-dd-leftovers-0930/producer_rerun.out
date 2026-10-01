@@ -1,0 +1,3 @@
+sd24_record.py: exit 0, FAILS 0, identical to the committed .out (CRLF-insensitive)
+in_channel_base.py: exit 0, FAILS 0, identical to the committed .out
+Tools/work/SWE2-DATA/dd/unknown_rows.py (gitignored helper the record cites) at HEAD: OPEN-QUESTIONS {WITHDRAWN 181, ANSWERED 1513, OPEN 26, PARTIAL 6}, UNIDENTIFIED {} - no UNKNOWN

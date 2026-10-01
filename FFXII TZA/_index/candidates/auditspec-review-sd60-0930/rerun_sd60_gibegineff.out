@@ -1,0 +1,7 @@
+PASS  F1 block 1 = the 64-byte global 02AEEB20
+PASS  F2 block 2 = source +0x30..+0x6F, depth terms recomputed from source +0xB8 / +0xBC
+PASS  F3 perspective: m22 = f/(n-f), m32 = n*f/(n-f); orthographic: m22 = 1/(n-f), m32 = n/(n-f)
+PASS  F4 floats from 02AEEBA0 / 02AEEBA4, written only by 0024FF60 (4 stores)
+PASS  F5 block 1 = inverse of 02AEDD30; floats = the camera's two distances mapped through 02B40470, +3 / -3, midpoint if crossed
+PASS  F6 execute: block 1 + floats -> 01FD3620..01FD3664; block 2 -> PrimitiveRendererD3D11 +0x10..+0x4F, dirty byte +0x208F3
+FAILS 0

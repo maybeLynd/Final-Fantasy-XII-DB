@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-142",
+ "result_refs": [
+  "batch-142: 22 bodies A-measured on 14 bearing hosts (top 22 of 2-A band, 79 members); anchors 4330 (+22), 0 MID; hash clean (3 known unreproduced + 14 standing stamp-form); crossref 2919; guard: 18 pairs accounted, REFUSE on 4 peer-rewrite links absent from committed content. Repair 548f6a37b re-landed batch-141's 21 entries that seal a7859e541 had reverted via stale real-index versions."
+ ],
+ "note": "batch-142 research finish"
+}

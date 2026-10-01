@@ -1,0 +1,40 @@
+{
+ "real": [
+  {
+   "va": "0x398f90",
+   "lo": "0x398f90",
+   "hi": "0x399109",
+   "span": 377,
+   "insns": 68,
+   "cov": 1.0,
+   "sha256": "1965049e479872fa5d23d2688a53f733287f98bb0e63c9843e86f2f17be2eb26",
+   "indirect": [],
+   "name": "tpt"
+  },
+  {
+   "va": "0x397910",
+   "lo": "0x397910",
+   "hi": "0x397b47",
+   "span": 567,
+   "insns": 119,
+   "cov": 1.0,
+   "sha256": "401191d1f2e3c093e0fba3457f915a760adb95ac2875dc198aee59e7d36c2960",
+   "indirect": [],
+   "name": "ct"
+  },
+  {
+   "va": "0x808c40",
+   "lo": "0x808c40",
+   "hi": "0x808c8f",
+   "span": 79,
+   "insns": 24,
+   "cov": 1.0,
+   "sha256": "42102333a0ef3c65cc89ad5a9118143983f5630fa4d6e9f09319a1d30aa31ba0",
+   "indirect": [],
+   "name": "chkck"
+  }
+ ],
+ "scripted": [
+  "0x809654"
+ ]
+}

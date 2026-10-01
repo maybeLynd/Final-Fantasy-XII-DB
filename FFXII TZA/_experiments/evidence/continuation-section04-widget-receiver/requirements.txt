@@ -1,0 +1,2 @@
+# Needed only for the bounded receiver diagnostic; native fixture uses Python stdlib + GCC.
+capstone==5.0.9

@@ -1,0 +1,8 @@
+SURVIVES  K1  (REFUTES the EC7-83 addresses) 0046FAA0 reads ['01F2053C', '01F20C80'] (mov r8d, dword ptr [rip + 0x1ab0a95]), count 60, table 0.0097..1.0000; 01EFAB4C holds 0 and 01EFAC80 is not the ease table, and neither sampler reads them; 0046FBB0 reads ['01F20538', '01F20AA0']
+SURVIVES  F0  {'003E43D0': 814, '003E5ED0': 201, '003E5FA0': 201, '003E6070': 211, '0046FAA0': 60, '004234B0': 96, '00423510': 85, '003E5810': 160, '004288E0': 87}
+SURVIVES  F1  tag 0x4D524640 ('@FRM') at ['004234D4']; +0xF0, +0x30, +0x10 in 004234B0; +0xC in 00423510
+SURVIVES  F2  version test, the three bone ids, the bone-matrix call
+SURVIVES  F3  +0x670 through rdi (['003E43F1']), stores ['003E44C9', '003E459D']; +0x66C ['003E460F'], +0x6A8 ['003E4622']; multiplier 01DFE0B4 read at ['003E4484', '003E4505', '003E4558', '003E45D9']
+SURVIVES  F4  1 returns, each after xor eax, eax: [True]
+SURVIVES  F5  gate on +0x290 at ['0042890E'] precedes the call at ['00428917']
+FAILS 0

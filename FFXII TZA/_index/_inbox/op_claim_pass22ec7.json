@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-SWE2-EC7-PASS22-DEBT",
+ "agent": "SWE2-EC7",
+ "note": "Claiming pass-22 debt bundle: 551 pairs / 72 pages across folders 03,05,06,11,12,14,99 + EC-2/EXP-189's 2 pages.",
+ "resources": [
+  {
+   "key": "notice:pass22-debt/frontier-req-swe2-ec7-pass22-debt"
+  }
+ ]
+}

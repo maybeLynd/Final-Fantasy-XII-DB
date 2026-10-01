@@ -1,0 +1,7 @@
+PASS G1  0x24 -> 02AEE0B8 at 003924CB, getter at 003924E4, zero return -> 003926FA
+PASS G2  budget = (0x2800 - n)/(n + 1), n = [02AEE0B8]
+PASS G3  sqrtf -> maxss -> floorf -> +1.0 -> 02AEE090; size = cols*rows*(n+1) + n
+PASS G4  only caller 0023441E passes xmm0; builder reaches a call first (003924E4), then writes xmm0 first (00392575); RVA hits 3, all unwind records
+PASS C  detector control: 00229EE0 first xmm0 access is a read (00229EE0 movss dword ptr [rip + 0x1e3abe0], xmm0 ; =>02064AC8)
+PASS N  50x50: (275, 4.0, 13, 13, 6289); without the floor: (275, 4.125, 12, 12, 5364)
+FAILS 0

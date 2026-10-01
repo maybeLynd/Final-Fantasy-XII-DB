@@ -1,0 +1,6 @@
+SURVIVES  O0  template rsp+0x20: type 3, byte 2 |= 0x0C, +0x860 = source32, +0x864 = offset32
+SURVIVES  O1  003EDAD0 tests byte 2 mask 4 at 2 sites
+SURVIVES  O2  64 x 0x38 at 02EBCD80 .. 02EBDB80; links ['02EBDB80', '02EBDB88', '02EBDB90', '02EBDBB0']; whole-id compare before the first write
+SURVIVES  O3  find, render sweep, 003B37E0, 00409730, 0051FCF0, find next: ['0051FE30', '00409EB8', '002ED570', '003B37E0', '00409730', '0051FCF0', '0051FE30']
+SURVIVES  O4  00409730 stores at +['0x0', '0x4', '0x30', '0x40', '0x44']; +0x38 untouched
+FAILS 0

@@ -1,0 +1,5 @@
+PASS  C 005DC0E0 (one caller, 00615863): +0 word, +4, eight 0x18 records from +8 (element constructor 005DC1B0), zeroed +0xC8..+0xF3, UAV default sizes
+PASS  S byte +0 routes the requested sizes to the dynamic (+0xF4) or the UAV (+0xFC) pair; byte +1 = initialised, tested before the teardown
+PASS  V +0xE8 / +0xF0 = a copy of the +0x700 array pointer and its count
+PASS  W the +0x000..+0x0F3 rows are in the store and tile
+FAILS 0

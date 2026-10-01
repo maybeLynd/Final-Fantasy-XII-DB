@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-FN-GETTER-ROUTE-CENSUS",
+ "agent": "OPUS",
+ "note": "The static census ran first and its answer was the clue: SavePayload is 353,424 bytes at a fixed image address, and an image-wide rip-relative census finds FIVE displacements in the whole object, all already named. Five accesses cannot describe a save payload, and the route cell said why - 002EF640 is eight bytes, `lea rax, [rip -> 02164280]` / `ret`, and forty bodies call it rather than writing the address down. Seeding the return value and carrying it through register copies and lea biases, with the route cell's own +0x200: SavePayload 40 call sites, 11 bodies, 36 displacements, 36 of 36 on already-named rows, 0 in gaps; SaveImageHeader 40 call sites, 16 bodies, 39 displacements, 39 of 39 named, 0 in gaps. The named hits are the control that the bias is right, since attribution is by absolute address and a wrong bias would land in gaps and nowhere else. 12,338 bytes of declared gap across the two types are now measured on their own declared route, with the direct census beside it as a genuinely different instrument - 5 direct operands for the payload, 0 for the header. A FIGURE I CARRIED WHERE IT DID NOT BELONG: the note said 'finds N accesses in 353 KB', true of SavePayload's 0x56490 and FALSE of SaveImageHeader's 0x200; both notes were stripped and rewritten from each type's own declared size before the commit, because a number right for one type and copied onto another is a checkable falsehood. THE FAMILY IS CLOSED INCLUDING WHERE IT DOES NOT APPLY: 003E55B0 and 002ED570 compute their addresses from arguments, so a constant-return seed says nothing about them and their 1, 56 and 22 bytes are left alone rather than fed to an instrument that cannot read them. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

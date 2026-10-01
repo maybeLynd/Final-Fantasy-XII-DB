@@ -1,0 +1,8 @@
+PASS F1F2  int -> cvtdq2ps -> raw dword store (width 5)
+PASS F3  model defined on 410 signed values x 4 modes
+PASS F4  RN equals Python's double -> float32 rounding on all 410; mismatches []
+PASS F5  results representable, bracketing, adjacent; failures []
+PASS F6  -16777219: RN CB800002 RD CB800002 RU CB800001 RZ CB800001; INT_MAX RN 4F000000 RD 4EFFFFFF
+PASS C1  old cvt() agrees on the positive grid; at -16777219 RU it gives CB800003, the model CB800001
+PASS C2  ties-away-from-zero differs on 52 grid values (16777217 among them), so F4 tests the tie rule
+FAILS 0

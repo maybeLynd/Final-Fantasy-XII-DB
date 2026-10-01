@@ -1,0 +1,11 @@
+# NativeAdapter.TwoMemberCallIndexedVcall - EC-7 family C
+# # call member op on rdx; call member op on rdx again saving the result;
+# # if non-null vcall [this+8] with rcx=rax+[this+0x10].
+address	targets
+0063A300	005BADB0,005BE870
+0063A350	005BE870,006366C0
+006AD4A0	00683BF0,006AD370
+006B5590	006B5050,006B5170
+006B55E0	00683B10,006B5170
+006B5630	0067EDD0,006B5170
+006B5680	00683B50,006B5170

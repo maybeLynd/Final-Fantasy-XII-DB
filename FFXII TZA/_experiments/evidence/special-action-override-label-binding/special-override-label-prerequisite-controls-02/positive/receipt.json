@@ -1,0 +1,8 @@
+{
+  "case": "positive",
+  "exit_code": 0,
+  "result_created": true,
+  "passed": true,
+  "process": "terminal; synchronous bounded subprocess",
+  "adapted_driver_sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+}

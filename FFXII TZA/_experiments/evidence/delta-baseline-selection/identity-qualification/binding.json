@@ -1,0 +1,11 @@
+{
+  "affected": "precondition-controls.json source_sha256 only",
+  "field_meaning": "SHA256 of read_text-normalized UTF8 source, not physical file bytes",
+  "raw_driver_sha256": "ce9324add04d129c6dc14c5ff93ceccfae9d94a2bbecafb43720b37ec0358cc9",
+  "normalized_text_sha256": "6d09cca8e9c7d10d4390a5337e68650ae5ef0abac2715c1c08bc5bea37799e3d",
+  "predicate_ast_sha256": "c8f48ae231caf8697222502f5522fa7b9aa160e30440c83cd44d32cd8262398c",
+  "actual_capture_driver_binding": "ce9324add04d129c6dc14c5ff93ceccfae9d94a2bbecafb43720b37ec0358cc9",
+  "original_controls_unchanged": true,
+  "original_scientific_members_unchanged": true,
+  "limit": "No new predicate/Store/selector execution; actual capture/source/tool raw byte identity remains established separately"
+}

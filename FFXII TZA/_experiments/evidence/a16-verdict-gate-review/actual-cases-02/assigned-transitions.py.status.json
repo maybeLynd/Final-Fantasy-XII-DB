@@ -1,0 +1,8 @@
+{
+  "argv": [
+    "git",
+    "show",
+    "ed127d443:Database/Tools/analysis-kit/gfz-scripts/transitions.py"
+  ],
+  "exit": 0
+}

@@ -1,0 +1,4 @@
+0x15 (block, byte+2, byte+3): [(('active', 1, 0), 607), (('deact', 0, 0), 607), (('active', 1, 1), 2), (('deact', 0, 1), 2)]
+0x25 (byname, frames): [((False, 30), 701), ((False, 15), 29), ((False, 5), 10)] 740
+controls: 0x15 total 1218 ; 0x25 total 740
+prediction: active with A = 0: 0 ; deact with A != 0: 0

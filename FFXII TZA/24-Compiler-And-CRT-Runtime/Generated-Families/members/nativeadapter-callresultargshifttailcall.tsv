@@ -1,0 +1,11 @@
+# NativeAdapter.CallResultArgShiftTailCall - EC-7 family C
+# # call a member op; forward (result, old ecx, old edx) to a member tail
+# # target.
+address	targets
+0017FB90	001B5FB0,001B6470
+00183150	001D8D30,001D8D40
+001D6A70	0016D6A0,001DADA0
+001DBA90	00210B30,00210FF0
+001DBB50	00210970,00210B30
+001DBBA0	00210990,00210B30
+001DBC70	00210A40,00210B30

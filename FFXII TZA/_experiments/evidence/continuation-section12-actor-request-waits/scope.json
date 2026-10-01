@@ -1,0 +1,31 @@
+{
+  "section": 12,
+  "status": "LOCAL_PRODUCTION_VALIDATED_PEER_ACCEPTANCE_PENDING",
+  "date": "2026-09-24",
+  "native_assertions": 139,
+  "original_bodies": 85,
+  "data_spans": 8,
+  "mutations": 8,
+  "application_substitutions": [],
+  "import_bridges": [],
+  "planted_callbacks": [],
+  "synthetic_state": [
+    "managers",
+    "actors",
+    "entry and wait arrays",
+    "function tables and bytecode",
+    "list buffers",
+    "idle runtime globals"
+  ],
+  "not_claimed": [
+    "live FF12",
+    "full field frame",
+    "complete opcode/verb populations",
+    "authored input reachability",
+    "actor allocation identity",
+    "full list resource lifetime",
+    "notification recovery/unique delivery",
+    "current Ghidra annotation certification",
+    "independent L2 acceptance"
+  ]
+}

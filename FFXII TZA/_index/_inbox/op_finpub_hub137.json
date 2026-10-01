@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-137",
+ "result_refs": [
+  "publish commit 4db391af9 (23 paths); gi-render-command-family.md append swept into peer commit 492aa1ae9 before publish (content landed)"
+ ],
+ "note": "batch-137 publish: 24 paths intended, 23 via publish_paths.sh + 1 swept by peer 492aa1ae9; guard ADDS NOTHING after 2 same-edit crossing rows (2815->2813)"
+}

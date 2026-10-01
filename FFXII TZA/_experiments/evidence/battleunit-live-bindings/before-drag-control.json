@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-13T10:08:59.482Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 3016750,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "note": "Two brief confirmation clicks did not produce an observed load. One bounded 2-pixel drag at the selected row will test an alternate supported mouse gesture; no duration or mechanism claim.",
+  "screenshot": "before-drag-control.jpg"
+}

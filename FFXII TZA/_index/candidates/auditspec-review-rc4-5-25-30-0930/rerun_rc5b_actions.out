@@ -1,0 +1,39 @@
+PASS  K1 0030CE10 gates on row +0x0C bit 30; rows 0xD0..0xF1 carry the extra [022C2160] test
+PASS  K2 00309230 returns the row's u16 +0x24 (row 0x113: the Esper table); 00306BD0 loads manager 3 with it
+PASS  K3 the 543-row action table is identical in all 9 locale copies
+
+action rows with +0x0C bit 30 (the special-sequence gate): 87
+  set id 0                                            rows 148                            (no kind-8 path) 
+  set id 210                                          rows 208..241 (34 rows)             spc_z0000    sets flag B (01F832E9) (rows 0xD0..0xF1: skipped while [022C2160] is 5 or 6)
+  set id 355                                          rows 149                            chb_z0000    
+  set id 40                                           rows 262                            sum_a0000    
+  set id 41                                           rows 183                            sum_a0001    sets flag A (01F832E8)
+  set id 43                                           rows 263                            sum_j0000    
+  set id 44                                           rows 185                            sum_j0001    sets flag A (01F832E8)
+  set id 46                                           rows 264                            sum_h0000    
+  set id 47                                           rows 187                            sum_h0001    sets flag A (01F832E8)
+  set id 49                                           rows 265                            sum_e0000    
+  set id 50                                           rows 189                            sum_e0001    sets flag A (01F832E8)
+  set id 52                                           rows 266                            sum_f0000    
+  set id 53                                           rows 191                            sum_f0001    sets flag A (01F832E8)
+  set id 55                                           rows 267                            sum_i0000    
+  set id 56                                           rows 193                            sum_i0001    sets flag A (01F832E8)
+  set id 58                                           rows 268                            sum_g0000    
+  set id 59                                           rows 195                            sum_g0001    sets flag A (01F832E8)
+  set id 61                                           rows 269                            sum_k0000    
+  set id 62                                           rows 197                            sum_k0001    sets flag A (01F832E8)
+  set id 64                                           rows 270                            sum_d0000    
+  set id 65                                           rows 199                            sum_d0001    sets flag A (01F832E8)
+  set id 65535                                        rows 511..534 (24 rows)             (no kind-8 path) 
+  set id 67                                           rows 271                            sum_c0000    
+  set id 68                                           rows 201                            sum_c0001    sets flag A (01F832E8)
+  set id 70                                           rows 272                            sum_l0000    
+  set id 71                                           rows 203                            sum_l0001    sets flag A (01F832E8)
+  set id 73                                           rows 273                            sum_b0000    
+  set id 74                                           rows 205                            sum_b0001    sets flag A (01F832E8)
+  set id 76                                           rows 274                            sum_m0000    
+  set id 77                                           rows 207                            sum_m0001    sets flag A (01F832E8)
+  set id Esper table 42..78 (the sum_<x>0002 names)   rows 275                                         
+PASS  K4 the 13 sum_<x>0001 set ids 41, 44 .. 77 are exactly the +0x24 words of rows 183, 185 .. 207
+
+FAILS 0

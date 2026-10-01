@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "SWE2EC7-PUB-PASS22-DEBT-DISPOSITIONS",
+ "agent": "SWE2-EC7",
+ "note": "Claiming to retire: superseded by DISP-0929 publish.",
+ "resources": [{"key": "notice:pass22-debt/orphan-pub-task"}]
+}

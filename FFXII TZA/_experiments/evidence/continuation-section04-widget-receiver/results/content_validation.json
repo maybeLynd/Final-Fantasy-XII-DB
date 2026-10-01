@@ -1,0 +1,80 @@
+{
+  "modified_existing": 5,
+  "type_field_scope": [
+    {
+      "file": "_types/types.tsv",
+      "unrelated_lines_byte_identical": true,
+      "target_rows_now": 1
+    },
+    {
+      "file": "_types/fields.tsv",
+      "unrelated_lines_byte_identical": true,
+      "target_rows_now": 23,
+      "complete_nonoverlapping_extent": "0xD8"
+    }
+  ],
+  "strict_frontmatter_pass": [
+    "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+    "16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md",
+    "16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md"
+  ],
+  "python_parse_pass": [
+    "_experiments/evidence/continuation-section04-widget-receiver/receiver_audit.py",
+    "_experiments/evidence/continuation-section04-widget-receiver/run_review.py",
+    "_experiments/evidence/continuation-section04-widget-receiver/verify_overlay.py"
+  ],
+  "strict_json_pass_count": 21,
+  "markdown_file_links_checked": 65,
+  "broken_database_local_links": 0,
+  "inherited_external_links_verified_in_supplied_archive": [
+    {
+      "file": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "target": "../../../../Reconstruction/Tests/Differential/diff_widget_construct.py",
+      "inherited_link_unchanged": true,
+      "verified_archive": "Reconstruction(8).zip",
+      "archive_member": "Reconstruction/Tests/Differential/diff_widget_construct.py",
+      "member_sha256": "827471b17dc5e924d6051bcc2d462e1ff0d53cd12b1856e7e68f7867ccef1c62",
+      "filesystem_resolved_in_overlay": false
+    },
+    {
+      "file": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "target": "../../../../Reconstruction/Game/UI/widget_construct.c",
+      "inherited_link_unchanged": true,
+      "verified_archive": "Reconstruction(8).zip",
+      "archive_member": "Reconstruction/Game/UI/widget_construct.c",
+      "member_sha256": "757378d02aaa5de39a0408e4bfa856046264b4d1db02a57c3f6488ad9703ed48",
+      "filesystem_resolved_in_overlay": false
+    },
+    {
+      "file": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "target": "../../../../Reconstruction/MUTATION-CAMPAIGNS.md",
+      "inherited_link_unchanged": true,
+      "verified_archive": "Reconstruction(8).zip",
+      "archive_member": "Reconstruction/MUTATION-CAMPAIGNS.md",
+      "member_sha256": "50b7d615f0e76c40b6460cd86cb05ba42b8437d50c7d3ec2af29cd6cc346fa6f",
+      "filesystem_resolved_in_overlay": false
+    },
+    {
+      "file": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "target": "../../../../Reconstruction/Game/UI/widget_construct.c",
+      "inherited_link_unchanged": true,
+      "verified_archive": "Reconstruction(8).zip",
+      "archive_member": "Reconstruction/Game/UI/widget_construct.c",
+      "member_sha256": "757378d02aaa5de39a0408e4bfa856046264b4d1db02a57c3f6488ad9703ed48",
+      "filesystem_resolved_in_overlay": false
+    },
+    {
+      "file": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "target": "../../../../Reconstruction/Tests/Differential/diff_widget_construct.py",
+      "inherited_link_unchanged": true,
+      "verified_archive": "Reconstruction(8).zip",
+      "archive_member": "Reconstruction/Tests/Differential/diff_widget_construct.py",
+      "member_sha256": "827471b17dc5e924d6051bcc2d462e1ff0d53cd12b1856e7e68f7867ccef1c62",
+      "filesystem_resolved_in_overlay": false
+    }
+  ],
+  "contract_numbered_sections_1_through_16_present": true,
+  "baseline_files_verified_unchanged": 10665,
+  "baseline_files_removed": 0,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+}

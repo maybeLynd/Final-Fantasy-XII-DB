@@ -1,0 +1,4 @@
+PASS P1  system.cnf: 'BOOT2 = cdrom0:\\SLPM_667.50;1'
+PASS P2  89489 files walked (extract + install); SLPM names []; ELF files []
+PASS PC  planted: names 1, ELF machine [8] (8 = MIPS)
+FAILS 0

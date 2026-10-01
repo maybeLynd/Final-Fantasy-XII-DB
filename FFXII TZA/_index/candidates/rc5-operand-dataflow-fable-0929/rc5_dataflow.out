@@ -1,0 +1,10 @@
+ORACLE dyn:PUSHV event-id sites: 405  {'eventread_e8': 19, 'startscene': 381, 'startscene_4b3': 5}
+sites analysed: 405 (control: all ORACLE dyn:PUSHV rows found as calls with a PUSHV operand: PASS)
+  eventread_e8     array     DYNAMIC-STORE        2
+  eventread_e8     array     NEVER-STORED         13
+  eventread_e8     file      DYNAMIC-STORE        4
+  startscene       file      DYNAMIC-STORE        381
+  startscene_4b3   file      DYNAMIC-STORE        5
+distinct stored constants across the sites' variables (+0 initial not listed): 26
+  values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 20, 21, 24, 26, 31, 32, 40, 46, 49] 
+FAILS 0

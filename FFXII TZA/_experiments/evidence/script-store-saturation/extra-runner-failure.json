@@ -1,0 +1,6 @@
+{
+  "status": "INVALID_SELECTED_RUNNER_NAMESPACE",
+  "cause": "Unchanged run() references struct; selected runner host namespace omitted its import. Failed while initializing record, before original guest execution and before additive result.",
+  "old_source_sha256": "8b9b8c6f7667c9314995156e9ad6c2ab1522a6d03cb786b36673bdf7aea3bf09",
+  "repair": "Supply original struct dependency, retain unchanged run AST and original22. No blind repeat of unchanged setup."
+}

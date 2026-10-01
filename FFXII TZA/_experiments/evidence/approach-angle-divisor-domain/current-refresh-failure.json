@@ -1,0 +1,5 @@
+{
+  "operation": "team.py current --agent ASTRA --write --file Database/FFXII TZA/_index/_inbox/ASTRA.md",
+  "error": "[Errno 13] Permission denied: C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\_inbox\\TEAM.json",
+  "limits": "Failed supported header refresh. No board incident inferred or cause assigned. Subsequent supported boardcheck PASS epoch3 and supported current refresh at rev36716 succeeded; claim43 succeeded rev36711 before derive. No reap/reset/restore/bypass or replay. This setup error is not a failed FF12 experiment."
+}

@@ -1,0 +1,12 @@
+   00409F80 sub rsp, 0x28
+   00409F84 call 0x40a230
+   00409F89 add rsp, 0x28
+   00409F8D jmp 0x51fb70
+   00409F92 int3 
+0040A230: instructions 289, lea/mov-to-rip pairs 144, other mnemonics {'ret': 1}, last 0040AA10 ret
+store range 02C65BF0..02C83C78, distinct stores 144
+string directory prefixes: {'': 144}
+direct sites into 00409F80: [('0041E40B', 'call')]
+direct sites into 0041E3A0: [('0033263C', 'call')]
+strings containing 'obj_finish' and ending .cm: 144 of 144
+caller chain: 0041E3A0 RenderResourceRoot_InitializeSubcontainers is called from 0033263C in CharacterRenderSystem_AllocateAndInitialize (003325D0)

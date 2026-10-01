@@ -1,0 +1,218 @@
+{
+  "section": "SECTION-06",
+  "title": "Resource ownership, retention, refresh and disposal",
+  "date": "2026-09-22",
+  "apply_after": "UPDATE_05; preceding Updates01-04 also required",
+  "base_snapshot": "FFXII TZA(20260922-211246).zip",
+  "base_snapshot_sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+  "status": "local production complete; formal independent acceptance pending",
+  "files": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "operation": "replace",
+      "before_sha256": "d27fa71045adcfa357f6483dd2299d2d3060ce3e84629c387a97ac503e040d6a",
+      "after_sha256": "30cfb49ce19163659a4575dacb1ffcb13c31fbc9f116b79519fa7f916b7adbb3",
+      "bytes": 63186
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "operation": "replace",
+      "before_sha256": "305ccd86f6a62f9bf7cdd2912216c0456cba0a9dc236fc98c5b6190091946474",
+      "after_sha256": "b5e7dd0276f45575279825039bbaec5b235de8733f0425c29e60ad8027e5e4fb",
+      "bytes": 28984
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "operation": "replace",
+      "before_sha256": "99c3e6a4210a20faba1780054869e74e57ea4d832f00df0961e877d97c74dd9f",
+      "after_sha256": "7ba196edd799a6f2ae4360378875620ae9e754e8b8e90fdda853121c1098cb02",
+      "bytes": 16293
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md",
+      "operation": "replace",
+      "before_sha256": "fb556828bf60391d1f8616d4c1319f597f3b27311aef817ce130a307ce01c815",
+      "after_sha256": "04460444380fd370f27cab24668ebcd94e32ce3a7decc87ea060ca3d5d97faa3",
+      "bytes": 83169
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "0832fc9ccd3f8b7825ed3354467579fab49c02a3496194d599968e0aa968f046",
+      "bytes": 9380
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/README.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "9ed411f3b4b7d97f799ab94bd429e3d00180bd346c9b5eef31ccd309b75957da",
+      "bytes": 1193
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/REVIEW.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "67a91f4541b3ec5c450aec3822260a4181cababa1b5877f39ad3e53087dad314",
+      "bytes": 12304
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/canonical_changes.diff",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "ebc8443c04f20aaeec6b8e45c20b3220385759fb07294a9f629106d00e8394c9",
+      "bytes": 212673
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/canonical_preimages.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "526acdbeb68424c571da8afb46068ea3d96d92dc2431f60159a6d81783e941b9",
+      "bytes": 1074
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/canonical_row_changes.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "61e9c74986a553ff5ba446a2cca0a04a302a450fecd0fc2d62ffbc7050bf4622",
+      "bytes": 63825
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/claim_matrix.tsv",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "3621d0c34bbe1aec2609226087bb93d4a733278c9d418c8e898263e4ffbb6ed9",
+      "bytes": 1835
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/native_controls.c",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "a0bee3855a21da68530169abe2628442a6ab3c2a6f1f98f53394d568cf74a01a",
+      "bytes": 28337
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/original_body_manifest.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "b997b4716250577dd22986c63d46952ce2c6d578adac69ae917f6f99e6b94b91",
+      "bytes": 31829
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/original_disassembly.txt",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "0f9f7debb934ea42dc018078404298618fbd7189b86c2195c549e8f53729679b",
+      "bytes": 276638
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/body_verification.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "00b0a58a8d1ca683796bc5e595d929f5c5ea6470fb3287e9cd6ca19d459b06b1",
+      "bytes": 22432
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/code_mutations.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "17112e55e2b3d50cdd77eb682e5dd98e180c45a64b8f6ee02a756ce471ee7dbd",
+      "bytes": 109544
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/content_validation.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "fec537227d83f504da226f88c0f9988d73ff9adbc111c4ee0fbee0ef1c8aa9cc",
+      "bytes": 25994
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/native_baseline.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "b837ed8ce2ec61813bfca6c532bc66cbcfacffec0c8e1f72508c138ef684211a",
+      "bytes": 21394
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/native_repeat.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "b837ed8ce2ec61813bfca6c532bc66cbcfacffec0c8e1f72508c138ef684211a",
+      "bytes": 21394
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/overlay_checker_controls.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "5493a9ef55fae080b33ddb0cee1c9cbd554075030398c1d54133ef41be182ba7",
+      "bytes": 631
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/results/summary.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "de789ab706c450f67cdc2136f0ce32d4a0f9354a3e846c96cc90fbcf4504bfa4",
+      "bytes": 1570
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/run_review.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "49fc3df32233dc64abcf954056e7eb73ca609e0e675223fc46c9669b2928b61b",
+      "bytes": 8855
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/source_inputs.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "86be5ecd9892feec884fbef635277b032e9fcc88d290471e857fc875bcbc0801",
+      "bytes": 1301
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/test_overlay.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "129e01e86a199b6152d3f86f77f8459a9c62dcbc5d8b3427683aaa3c991a44f5",
+      "bytes": 1452
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/validate_content.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "9e775af80e390e807de2ab137ae0c222c23c9697a5fca73a8a0c6c2f3c3a21c0",
+      "bytes": 7257
+    },
+    {
+      "path": "_experiments/evidence/continuation-section06-resource-lifetime/verify_overlay.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "e01e3f86a6fe4fd9a57a5e8708f65b999c6cc02f33ac7c1d95a7317aae915fe1",
+      "bytes": 3143
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "operation": "replace",
+      "before_sha256": "02f6a31d793f5b883a9eb167d21c806c19b2a72f804738a0f72521f53c2264eb",
+      "after_sha256": "cacec05196b97517d71551da3fddc676baff8e289caea80dd4651e338bf3e073",
+      "bytes": 12520
+    },
+    {
+      "path": "_types/fields.tsv",
+      "operation": "replace",
+      "before_sha256": "fbb62749b0363634cd35d3c00539d57749bfe43da94df55f351b9ebce490aba2",
+      "after_sha256": "c2ed1645779936f62edf12632e3b4662f679352042df585c9fd10fa31967c369",
+      "bytes": 10410862
+    },
+    {
+      "path": "_types/types.tsv",
+      "operation": "replace",
+      "before_sha256": "acea2c216622c0a2b4f77f85c4765a57e9099a3fb32da6e8d6ecd98507edf827",
+      "after_sha256": "8f06d7382c041ae6a909431f13b6d5a34fe72effb8f4a55ab02f8e036a9c8791",
+      "bytes": 1660127
+    }
+  ],
+  "modified_existing_files": 7,
+  "new_files_including_manifest": 23,
+  "deletions": [],
+  "note": "Paths are relative to the FFXII TZA directory. Manifest is included but has no self-hash. Back up touched files and merge newer edits rather than overwriting a conflict."
+}

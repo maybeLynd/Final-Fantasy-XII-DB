@@ -1,0 +1,595 @@
+{
+  "method": "isolated original CPU instructions; synthetic state; disclosed private boundary bridges; not live FF12",
+  "cases": [
+    {
+      "name": "pulse_reset_clears_EAC_EB0_only",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 11936128518282651045,
+        "tracked_row0": 0
+      }
+    },
+    {
+      "name": "tracked_code_zero_positive_index_no_write",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 11936128518282651045,
+        "tracked_row0": 2779096485
+      }
+    },
+    {
+      "name": "tracked_real_base_EC1380_not_E81380",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 11936128518282651045,
+        "tracked_row0": 7
+      }
+    },
+    {
+      "name": "tracked_row1_stride_24",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 11936128518282651045,
+        "tracked_row0": 7
+      }
+    },
+    {
+      "name": "tracked_row2_rejected",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 11936128518282651045,
+        "tracked_row0": 7
+      }
+    },
+    {
+      "name": "tracked_negative_index_allows_zero_code",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 11936128518282651045,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "blob_null",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "blob_nonzero_header_returns_base",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 6357080,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "blob_zero_index_skips_prefix",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 7305964922354073600,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "blob_second_string",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 7305964922354073600,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "blob_negative_index_returns_first",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 7305964922354073600,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "reset_real_flag_conjunction",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 18442099435944521953,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "reset_real_identity_pointer_clears",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 18442099435944521953,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "reset_real_sentinels_and_arrays",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 18442099435944521953,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "reset_preserves_unrelated_storage_not_total_blank",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 18442099435944521953,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "install_disabled_resets_then_returns",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "install_mode2_clears_bit26_not42",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 4398046511104,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "install_mode2_rekeys_before_rejecting",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 4398046511104,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "applier_neutral_fixture_no_effect_dispatch",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "copy_without_any_status_mask",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 73,
+        "word7": 12,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "negative_copy_values_leave_destination",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "zero_copy_values_are_present",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "set_mask_mode3_stats_receiver_and_source",
+      "pass": true,
+      "observed": {
+        "status_calls": 1,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 73,
+        "word7": 12,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "no_effect_status_sink_still_sets_tail_refresh",
+      "pass": false,
+      "observed": {
+        "status_calls": 1,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 73,
+        "word7": 12,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "caller_bit9_suppresses_outer_tail_only",
+      "pass": true,
+      "observed": {
+        "status_calls": 1,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "remove_mask_mode0_zero_parameters",
+      "pass": true,
+      "observed": {
+        "status_calls": 1,
+        "tail_calls": 1,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "layer_set_mode2_minus1_argument",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 1,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "numeric_only_has_no_outer_tail_refresh",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "source_presence_bits7_and13",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 1,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "target_hp_default_flags_0x50_not_0x400",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "target_hp_input19_maps_output8",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "target_hp_input10_maps_output5",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "target_hp_inverted_inputs18_6",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "source_hp_default_flags_0x50",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "source_hp_inverted_inputs17_5",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "source_hp_input9_maps_output5",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 1,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "bit31_not_source_hp_presence",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "null_source_skips_source_dispatch",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "eligibility_gate_precedes_metadata",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "caller_bit0_bypasses_eligibility",
+      "pass": true,
+      "observed": {
+        "status_calls": 1,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "all_FF_is_NOT_a_neutral_record",
+      "pass": true,
+      "observed": {
+        "status_calls": 64,
+        "tail_calls": 1,
+        "hp_calls": 1,
+        "mp_calls": 1,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    },
+    {
+      "name": "transient_metadata_bit_alone_does_not_mark_tail",
+      "pass": true,
+      "observed": {
+        "status_calls": 0,
+        "tail_calls": 0,
+        "hp_calls": 0,
+        "mp_calls": 0,
+        "duration7": 0,
+        "word7": 0,
+        "installer_flags": 0,
+        "tracked_row0": 4294967295
+      }
+    }
+  ],
+  "total": 42,
+  "failures": 1
+}

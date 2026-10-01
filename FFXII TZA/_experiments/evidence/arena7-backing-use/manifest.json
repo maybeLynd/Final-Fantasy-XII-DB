@@ -1,0 +1,41 @@
+{
+  "evidence_class": "A: shipping instructions; interpreted separately from EXP079 live snapshots",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect-consumers.py": {
+      "bytes": 3843,
+      "sha256": "00cb060bd7c394a1330b277b6a17bb0c545355ef8b22df79472b75468fc69f43"
+    },
+    "collect-destination.py": {
+      "bytes": 3914,
+      "sha256": "f48d73184f713f358a756fcf25d741360953013ce3c07cfe04efbb51cda06a06"
+    },
+    "collect-queue.py": {
+      "bytes": 3854,
+      "sha256": "4e2ae7de192e9bbac87fda358e146f54ed0638aedf082ce50a6093f566ed3a01"
+    },
+    "consumers.json": {
+      "bytes": 78257,
+      "sha256": "abb0556b4409628de9337bde1cfcbe9f9f205e54e311619b1f7d1837ce192820"
+    },
+    "destination.json": {
+      "bytes": 95852,
+      "sha256": "d1fcd17e75f15d1b832fc6f410ef5c2db84919730ac035fccbf6f32040741cb8"
+    },
+    "queue.json": {
+      "bytes": 32077,
+      "sha256": "46def9601871c2d2b1af687efd20ed893d4d422bb20e3ed4f0f96ad1a6507547"
+    },
+    "review.json": {
+      "bytes": 4640,
+      "sha256": "ebeaeaa00321662d6c334a5f35503c6faf23e4800ab31b543d9f4b3f149cc1e8"
+    },
+    "rip-candidates.txt": {
+      "bytes": 800,
+      "sha256": "b696ac0002ce3d55fd5caa0705d5c871859cb3b27e81eab8c7638defbc13dbbb"
+    }
+  }
+}

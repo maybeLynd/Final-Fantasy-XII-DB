@@ -1,0 +1,8 @@
+{
+  "first_capture": "INVALID_BYTECODE_BINDING_PRECONDITION; known evctrl shared tail incorrectly decoded contiguously, raw/result absent. Old driver/source nine inputs retained, later three added without replacing preimages.",
+  "diagnostic": "diagnostic.json first mismatch6130 in evctrl1; corrected directory bound6130 and omitted144B/48marks; exceptional q1 names remain unaccepted",
+  "first_reducer": "INVALID_ENTRY_EXTENT_UNPACK; struct layout36B, retained physical directory entry48B. unpack exact rejected trailing12B padding before any result.",
+  "repair": "Read first36B using unpack_from and separately require remaining12B zero; old checker retained, no original input recapture.",
+  "old_checker_sha256": "e93034a26d9fd54d50aa616b9ee522eca86d836f7acc2b406c705118484499fa",
+  "new_checker_sha256": "95491ec70f9d76341049566367aadd757a69c401d4485624adf5dde9ffff4922"
+}

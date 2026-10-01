@@ -1,0 +1,129 @@
+{
+  "status": "INCONCLUSIVE_POSITIVE_NOT_ESTABLISHED",
+  "pid": 32960,
+  "raw": {
+    "noinput": {
+      "file": "noinput-memory.json.gz",
+      "raw_bytes": 6322226,
+      "raw_sha256": "df6e60ba12cb05cdff5504b341d76be1d59fb77bc2c363fd5153af6383690d99",
+      "gzip_bytes": 144819,
+      "gzip_sha256": "cac5899bee7cf155ddac7ce277bfdc7987ff636b8f6892642d9b6416a24a33db"
+    },
+    "positive": {
+      "file": "positive-memory.json.gz",
+      "raw_bytes": 6322224,
+      "raw_sha256": "b6938ce529b8be93868c2075bade7d5f23e529599185b999eb70fe88e5ac6503",
+      "gzip_bytes": 144692,
+      "gzip_sha256": "c04844b944c2201f0a2fb0540a2937ae3b2b100f5336ab95e8774aa13469dc93"
+    }
+  },
+  "windows": {
+    "noinput": {
+      "samples": 3647,
+      "nonzero_samples": 0,
+      "start_unix": 1789299193.5696418,
+      "end_unix": 1789299213.5676157,
+      "sample_gap_ms": {
+        "min": 5.076408386230469,
+        "median": 5.524039268493652,
+        "max": 10.048627853393555
+      },
+      "chain_addresses": [
+        380788176
+      ],
+      "stamp_values": [
+        0
+      ],
+      "all_raw_bytes_zero": true,
+      "known_read_control": "19930d0a1a0a",
+      "code_identity": [
+        {
+          "address": 1183744,
+          "bytes": 7996981,
+          "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+          "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+          "matches": true
+        }
+      ],
+      "module_count": 102,
+      "post_module_count": 102
+    },
+    "positive": {
+      "samples": 3647,
+      "nonzero_samples": 0,
+      "start_unix": 1789299252.2080626,
+      "end_unix": 1789299272.2060628,
+      "sample_gap_ms": {
+        "min": 5.0868988037109375,
+        "median": 5.520343780517578,
+        "max": 11.169910430908203
+      },
+      "chain_addresses": [
+        380788176
+      ],
+      "stamp_values": [
+        0
+      ],
+      "all_raw_bytes_zero": true,
+      "known_read_control": "19930d0a1a0a",
+      "code_identity": [
+        {
+          "address": 1183744,
+          "bytes": 7996981,
+          "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+          "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+          "matches": true
+        }
+      ],
+      "module_count": 102,
+      "post_module_count": 102
+    }
+  },
+  "input": {
+    "key": "Return",
+    "start": "2026-09-13T11:34:22.022Z",
+    "end": "2026-09-13T11:34:22.072Z",
+    "window": {
+      "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "id": 3675546,
+      "title": "FINAL FANTASY XII THE ZODIAC AGE"
+    },
+    "tool_returned": true,
+    "meaning": "Input tool accepted call; registration and menu acceptance require separate evidence.",
+    "choice": "Existing Enter confirmation control from EXP031; no held-duration parameter used.",
+    "start_unix": 1789299262.022,
+    "end_unix": 1789299262.072,
+    "tool_call_duration_ms": 49.99995231628418,
+    "samples_starting_during_call": 9,
+    "nearby_sample_indices": [
+      1786,
+      1787,
+      1788,
+      1789,
+      1790,
+      1791,
+      1792,
+      1793,
+      1794,
+      1795,
+      1796,
+      1797,
+      1798,
+      1799,
+      1800,
+      1801
+    ],
+    "held_duration": "Not measured; API call interval is not key-down duration."
+  },
+  "interpretation": "Sampled keyboard bytes remained zero and title selection visibly unchanged. No keyboard detection positive, registered input, menu acceptance or command execution established. No universal claim about registration absence.",
+  "limits": [
+    "Finite polling cannot exclude brief transitions between reads.",
+    "Known-byte/null-read and .text controls validate process access, not keyboard polling or input delivery.",
+    "Stable keyboard pointer chain does not prove title-state polling or atomicity/ABA.",
+    "The captured0208D45C stamp remains0 at title; it is not evidence the input poll ran or stopped.",
+    "Return was selected from the historical EXP031 confirmation control; this does not prove current title acceptance.",
+    "Exit Dialog responsiveness is an OS/modal cleanup observation, not a keyboard-array positive.",
+    "Initial module-unreadable0sample attempt is INVALID, never included in successful capture counts.",
+    "No save loaded, no pause, target, command, combat action, damage/death or native handler capture."
+  ]
+}

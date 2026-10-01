@@ -1,0 +1,6 @@
+OK   CM0 unmodified                     want True  got True  
+OK   CM1 cell set missing 00393A98      want False got False C FAIL cell seed True [(192, 1, '00393A98')]
+OK   CM2 own set with invented +C4      want False got False O FAIL own seed True [(196, 4, '003940E3')] []
+OK   CM3 control demands 00394999       want False got False K FAIL positive control +C4 on 02AEE4C8: ['0039435C', '0039436A', '003944E0', '003945BB']
+census mutants as expected: True
+exit 0

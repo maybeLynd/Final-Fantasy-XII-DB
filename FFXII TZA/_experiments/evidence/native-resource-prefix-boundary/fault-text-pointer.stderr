@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-resource-prefix-boundary\check.py", line 38, in <module>
+    if '--fault-text-pointer' in sys.argv:assert observations[0]['conditional_source_result']=='TEXT+16','Original selector returns length-prefix RBX, not text+2'
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original selector returns length-prefix RBX, not text+2

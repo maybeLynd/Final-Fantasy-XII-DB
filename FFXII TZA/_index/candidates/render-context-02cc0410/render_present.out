@@ -1,0 +1,8 @@
+PASS  S +0x1820: PSamplerStateD3D11 (constructor body 005DC400 + clear +0x20, descriptor 00D500E8 slots +0x50 / +0x58), its sampler created into +0x20
+PASS  M +0x1848 mode bytes (0 / 1 / 0x101) with +0x184C; +0x1850 = clock() as double
+PASS  M2 the import at 008C3068 is [b'clock']
+PASS  V +0x185C..+0x1870: the resize writes origin 0, width, height twice; 0061D3D0 flips the viewport against +0x1870 and calls RSSetViewports
+PASS  A +0x1878 factory (EnumAdapters), +0x1880 adapter (EnumOutputs), +0x1894 output index, +0x1898 HMONITOR, +0x18A0 mode count, +0x18AC / +0x18B0
+PASS  F +0x1890 full-screen flag from GetFullscreenState; +0x18A8 = 8 / 0017ECE0()
+PASS  W the +0x1820..+0x18BF rows are in the store and tile
+FAILS 0

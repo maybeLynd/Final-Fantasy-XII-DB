@@ -1,0 +1,25 @@
+{
+  "method": "A static original byte review",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "check.py": {
+      "bytes": 3178,
+      "sha256": "4a28092e108095f5ad4d0f86d1d27434bdcb1679af09847d76998181a4ca7326"
+    },
+    "README.md": {
+      "bytes": 2559,
+      "sha256": "484f2bb33f621cc888d0096fe4fed96e810ccdbd727e5e8588c0b1eb81599cf4"
+    },
+    "observation.json": {
+      "bytes": 6085,
+      "sha256": "02bf1608540ada27e4f090e4877144d1728e1a13e98e288f95bc82c9ce467b60"
+    },
+    "validation.txt": {
+      "bytes": 158,
+      "sha256": "7f8c10a0b25f5b6b9bd6155bb6da0531c3423968193d9eb2687f064e37b4f78a"
+    }
+  }
+}

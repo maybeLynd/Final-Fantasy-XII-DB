@@ -1,0 +1,6 @@
+  S FAIL 003940FC want 'mov byte ptr [rbx + 0xc0], 0' got 'mov dword ptr [rbx + 0xc0], 0'
+  P FAIL 00393AA5 want root 00393A88 got 003939B0
+  J FAIL arm18 00582E81
+  X FAIL refs ['00394400']
+self-test: {'S': True, 'P': True, 'J': True, 'X': True}
+exit 0

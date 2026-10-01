@@ -1,0 +1,8 @@
+# NativeAdapter.NullableFetchByteTail - EC-7 family C
+# save arg1 byte; call a member fetch; if non-null fetch again and
+# # tail-dispatch to a member op with (result,saved byte).
+address	targets
+0017F5B0	001AD440,001AD670
+001827B0	0018D640,00193D50
+001E0FF0	00198790,001989E0
+001E1020	00198790,001989F0

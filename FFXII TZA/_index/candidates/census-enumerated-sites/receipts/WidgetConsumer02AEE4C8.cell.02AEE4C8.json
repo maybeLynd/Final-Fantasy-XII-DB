@@ -1,0 +1,42 @@
+{
+"seed": "cell",
+"cell": "02AEE4C8",
+"embed": 0,
+"extent": 464,
+"enumerated_sites": [],
+"converged": true,
+"rounds": 0,
+"functions": 0,
+"pairs": 0,
+"vtinstall": [],
+"poly_asserted": null,
+"canary_widths": [],
+"sites": {
+"196:4": {
+"0039435C": [
+1,
+0
+],
+"0039436A": [
+0,
+1
+],
+"003945BB": [
+1,
+1
+]
+},
+"196:1": {
+"003944E0": [
+1,
+0
+]
+},
+"124:1": {
+"00394594": [
+1,
+0
+]
+}
+}
+}

@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-52",
+ "result_refs": [
+  "audit:xref_hub52"
+ ],
+ "note": "22 frontier hubs (1 refilled 3-A + top 21 of 2-A band, 003ACA80..003CBB30) measured and placed on 18 bearing hosts; 22/22 A-measured; anchors 2,362/0 MID/0 not-in-body; links/consistency/questions clean; crossref 12 neighbour = baseline; ready to publish"
+}

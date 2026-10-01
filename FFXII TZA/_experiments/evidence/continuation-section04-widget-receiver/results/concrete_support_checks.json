@@ -1,0 +1,153 @@
+{
+  "positive_supports": [
+    {
+      "expected": [
+        "003939F7",
+        "message",
+        8,
+        1,
+        "R"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "003939FD",
+        "consumer",
+        196,
+        4,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00393A03",
+        "consumer",
+        200,
+        8,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00393A18",
+        "consumer",
+        192,
+        1,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00393A98",
+        "asset",
+        192,
+        1,
+        "R"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00393AA5",
+        "asset",
+        208,
+        8,
+        "R"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00394033",
+        "asset",
+        200,
+        8,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00394050",
+        "asset",
+        208,
+        8,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "00394097",
+        "asset",
+        200,
+        8,
+        "R"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "003940A8",
+        "asset",
+        208,
+        8,
+        "R"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "003940B9",
+        "asset",
+        208,
+        8,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "003940E3",
+        "asset",
+        192,
+        4,
+        "RW"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "003940FC",
+        "asset",
+        192,
+        4,
+        "W"
+      ],
+      "pass": true
+    },
+    {
+      "expected": [
+        "003945BB",
+        "consumer",
+        196,
+        4,
+        "RW"
+      ],
+      "pass": true
+    }
+  ],
+  "false_asset_supports_absent": true,
+  "lea_value": {
+    "site": "00393A23",
+    "instruction": "lea edx, [rbx + 0x15]",
+    "value": [
+      "const",
+      21
+    ]
+  }
+}

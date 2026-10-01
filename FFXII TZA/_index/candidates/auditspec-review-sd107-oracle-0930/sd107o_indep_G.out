@@ -1,0 +1,61 @@
+== G. register-sourced mov stores covering +0xA3 (no index, base not rsp/rbp/rip), raw image-wide scan: 184
+  by width: {4: 77, 8: 103, 1: 4}
+  package's 93 (S7 lines + 0024768D): 93; found by this sweep: 93; missing: []
+  outside the package's shape (rbp base or an index register), same coverage test: 56
+    001A7011  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 001A6FF0)
+    001BABB9  qword ptr [r14 + rcx*8 + 0xa0], rax index
+    001DE934  qword ptr [rbp + 0xa0], r14      rbp not rsp-derived in prologue of 001DE5D0
+    001DEA9E  qword ptr [rbp + 0xa0], r14      rbp not rsp-derived in prologue of 001DE5D0
+    001F5F14  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 001F5D70)
+    001FA3F4  qword ptr [rbp + 0xa0], rdi      rbp = frame (rsp-derived in prologue of 001FA3D0)
+    00230596  dword ptr [rbp + 0xa0], esi      rbp = frame (rsp-derived in prologue of 0022FFE0)
+    00232820  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 002327D0
+    00294306  qword ptr [rbp + 0xa0], rcx      rbp not rsp-derived in prologue of 00293FE0
+    00294ECB  qword ptr [rbp + 0xa0], rcx      rbp not rsp-derived in prologue of 00294B50
+    002B42AA  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 002B41F0)
+    002D2624  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 002D2600)
+    002D9936  dword ptr [rbp + 0xa0], eax      rbp not rsp-derived in prologue of 002D9380
+    00307326  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 00307300)
+    0036C5B6  qword ptr [rcx + rax + 0xa0], rdx index
+    0037529F  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 00375280)
+    003764B7  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 00376470
+    003F374C  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 003F3710
+    005297C8  dword ptr [rbp + 0xa0], eax      rbp = frame (rsp-derived in prologue of 005294F0)
+    0052A471  dword ptr [rbp + 0xa0], eax      rbp not rsp-derived in prologue of 0052A360
+    0052B1AD  dword ptr [rbp + 0xa0], eax      rbp = frame (rsp-derived in prologue of 0052B080)
+    0053AC0B  dword ptr [rbp + 0xa0], ecx      rbp = frame (rsp-derived in prologue of 0053AB50)
+    0053B256  dword ptr [rbp + 0xa0], ecx      rbp = frame (rsp-derived in prologue of 0053AB50)
+    0054687B  dword ptr [rbp + 0xa0], eax      rbp not rsp-derived in prologue of 005466E0
+    005B2E51  dword ptr [rbp + 0xa0], edx      rbp = frame (rsp-derived in prologue of 005B2D60)
+    005B31B1  dword ptr [rbp + 0xa0], eax      rbp = frame (rsp-derived in prologue of 005B2D60)
+    005C0E2C  qword ptr [rbp + 0xa0], rdi      rbp = frame (rsp-derived in prologue of 005C0E00)
+    0060BC4D  dword ptr [rbp + 0xa0], esi      rbp = frame (rsp-derived in prologue of 0060B980)
+    0065237A  qword ptr [rbp + 0xa0], rcx      rbp not rsp-derived in prologue of 006515C0
+    006AA3CC  qword ptr [rbp + 0xa0], rdi      rbp = frame (rsp-derived in prologue of 006AA3A0)
+    006D2DB6  qword ptr [rbp + 0xa0], rbx      rbp = frame (rsp-derived in prologue of 006D2DA0)
+    006F3C3F  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 006F3BE0
+    006FFE62  dword ptr [rbp + 0xa0], r13d     rbp not rsp-derived in prologue of 006FF900
+    00738870  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 00738840
+    00749732  qword ptr [rbp + 0xa0], rbx      rbp = frame (rsp-derived in prologue of 00748C00)
+    007797C9  qword ptr [rax + rcx + 0xa0], rdx index
+    007797E8  qword ptr [rax + rcx + 0xa0], rdx index
+    0077E1BF  qword ptr [rbp + 0xa0], rsi      rbp not rsp-derived in prologue of 0077E0B0
+    0077E1CF  qword ptr [rbp + 0xa0], rsi      rbp not rsp-derived in prologue of 0077E0B0
+    00781EF5  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 00781EC0
+    00798ADA  qword ptr [rbp + 0xa0], rbx      rbp = frame (rsp-derived in prologue of 00798AC0)
+    007B03CD  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 007B0390
+    007C36E8  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 007C36C0)
+    007C7141  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 007C7120)
+    007CAF8F  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 007CAF70)
+    007E785C  byte ptr [rbp + 0xa3], r15b      rbp not rsp-derived in prologue of 007E7540
+    007FDC84  qword ptr [rbp + 0xa0], rdi      rbp = frame (rsp-derived in prologue of 007FDC60)
+    0083E892  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 0083E7E0
+    0083EDBE  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 0083E7E0
+    0083F1B7  qword ptr [rbp + 0xa0], rax      rbp not rsp-derived in prologue of 0083E7E0
+    0084596A  dword ptr [rbp + 0xa0], eax      rbp not rsp-derived in prologue of 00845800
+    0085D4A6  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 0085CED0)
+    00884A4F  qword ptr [rbp + 0xa0], rcx      rbp = frame (rsp-derived in prologue of 008845A0)
+    00884F91  qword ptr [rbp + 0xa0], rdx      rbp = frame (rsp-derived in prologue of 008845A0)
+    0088E2D8  dword ptr [rbp + 0xa0], r9d      rbp = frame (rsp-derived in prologue of 0088E280)
+    0088E9C6  qword ptr [rbp + 0xa0], rax      rbp = frame (rsp-derived in prologue of 0088E8C0)
+  by kind: {'rbp = frame': 29, 'index': 4, 'rbp not rsp-derived': 23}

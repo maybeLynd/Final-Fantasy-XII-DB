@@ -1,0 +1,8 @@
+PASS  P1 the .sbn sources of btlctrl, evctrl and mapctrl include through ${ATEL_HEADERPATH} (ctrl does not): {'ctrl': 0, 'btlctrl': 7, 'evctrl': 6, 'mapctrl': 5}
+PASS  P2a prerequisite sn1_residue_boundary.py (no companion reader in the image): exit 0, PASS B1 B2 R1 P, FAILS 0
+PASS  P2b 89414 files in the extract; PE executables []; ELF files []
+PASS  PC planted PE and ELF found: 1 / 1
+PASS  P3a prerequisite sn1-layouts/sn1_q3_x_content.py: exit 0, PASS Q X G P B N C, FAILS 0
+PASS  P3b prerequisite sn1-q3-page-map/x_negatives.py: exit 0, PASS N1 N2 N3 C, FAILS 0
+PASS  P3c prerequisite sn1-q3-page-map/sn1_q3_pagemap.py: exit 0, PASS M1 M2 X C, FAILS 0
+FAILS 0

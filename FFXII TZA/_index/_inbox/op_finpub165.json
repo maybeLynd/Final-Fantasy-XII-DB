@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-165",
+ "note": "Publish landed: 32f8e5aa2 (17 hosts + audit + ops) + carrier splice 65272bca4 (efx contract). All 22 entries verified at HEAD.",
+ "result_refs": ["32f8e5aa2", "65272bca4"]
+}

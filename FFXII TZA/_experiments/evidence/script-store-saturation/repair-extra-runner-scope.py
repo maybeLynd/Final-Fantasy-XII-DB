@@ -1,0 +1,4 @@
+import hashlib,json
+from pathlib import Path
+W=Path(__file__).resolve().parent;p=W/'extra-s16-boundary.py';old=p.read_bytes();assert not (W/'extra-s16-boundary.json').exists();(W/'retained/extra-runner-before-scope-fix.py').write_bytes(old)
+(W/'extra-runner-failure.json').write_text(json.dumps(dict(status='INVALID_SELECTED_RUNNER_NAMESPACE',cause='Unchanged run() references struct; selected runner host namespace omitted its import. Failed while initializing record, before original guest execution and before additive result.',old_source_sha256=hashlib.sha256(old).hexdigest(),repair='Supply original struct dependency, retain unchanged run AST and original22. No blind repeat of unchanged setup.'),indent=2)+'\n');s=old.decode();assert 'import ast,hashlib,json,sys' in s;p.write_text(s.replace('import ast,hashlib,json,sys','import ast,hashlib,json,struct,sys'))

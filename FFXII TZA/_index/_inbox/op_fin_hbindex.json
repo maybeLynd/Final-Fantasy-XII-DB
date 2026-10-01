@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBINDEX-0922",
+ "note": "Published 1f9f37678 with publish_paths.sh under @publication (foreign-header allowance for ADDRESS-INDEX's generated heading). New page hchk-hctg-hdat-handbook-indexes.md: 54 hchk + 101 hdat + 54 hctg corpus-validated (validator members/gen_hb_index_census.py -> hb-index-census.tsv, all checks pass). hctg +0x14 = hdat file count (resolves himg unbound note); hchk = unlock-predicate tables (8B 4-slot conjunctive gates via 00575E80; monster u16[8] via 00576E30/00576860); sync pass 00577550 persists results to save +0x32CC/+0x3604. himg/handbook-screen/OPEN-QUESTIONS FG-1 updated.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"},
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/members/hb-index-census.tsv"}
+ ]
+}

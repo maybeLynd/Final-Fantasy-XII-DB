@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_PREPARATION_BEFORE_CONTROL_ARMS",
+  "driver_sha256": "e4c95293daf2ed7d922c5a486da1265e2fe75738b9986bd7051669632a7547a3",
+  "returncode": 1,
+  "error": "AssertionError: chosen is not None; no cmp in first declared90B range",
+  "raw_present": false,
+  "dependent_conclusions": [],
+  "correction": "Select actual first non-XMM7/non-RBP writer instruction, not assumed mnemonic"
+}

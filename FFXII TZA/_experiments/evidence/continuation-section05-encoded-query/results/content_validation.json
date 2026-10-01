@@ -1,0 +1,66 @@
+{
+  "types.tsv": {
+    "columns": 13,
+    "unrelated_lines_byte_identical": true,
+    "nonblank_data_rows": 595
+  },
+  "fields.tsv": {
+    "columns": 9,
+    "unrelated_lines_byte_identical": true,
+    "nonblank_data_rows": 7272
+  },
+  "type_extents": {
+    "ItemClassDescriptor": {
+      "size": 88,
+      "rows": 14,
+      "gaps": 0,
+      "explicit_input_overlay_bytes": []
+    },
+    "EncodedIdQueryRecord": {
+      "size": 152,
+      "rows": 41,
+      "gaps": 0,
+      "explicit_input_overlay_bytes": [
+        6,
+        7
+      ]
+    }
+  },
+  "modified_existing_files": [
+    "_experiments/EXP-143-s04-validator-all-arms-exec.md",
+    "00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md",
+    "00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md",
+    "00-Engine-Core-Runtime/the-encoded-id-class-registry.md",
+    "_types/fields.tsv",
+    "_types/types.tsv",
+    "_index/_inbox/EXTERNAL-CONTINUATION.md"
+  ],
+  "unchanged_existing_files": 10697,
+  "canonical_frontmatter_strict_yaml_passed": [
+    "_experiments/EXP-143-s04-validator-all-arms-exec.md",
+    "00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md",
+    "00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md",
+    "00-Engine-Core-Runtime/the-encoded-id-class-registry.md",
+    "00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md"
+  ],
+  "contract_numbered_sections": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16"
+  ],
+  "markdown_file_links_checked": 89,
+  "broken_links": []
+}

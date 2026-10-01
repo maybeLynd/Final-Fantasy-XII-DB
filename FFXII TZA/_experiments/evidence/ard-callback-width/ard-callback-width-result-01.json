@@ -1,0 +1,361 @@
+{
+  "status": "PRODUCER_VALID_ARD_CALLBACK_WIDTH_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "ard-callback-width-source-01.json",
+      "sha256": "3e348bed99c03ac0fd9c11f14eb42233e461081cdf461d52fc2b4532f90beec4"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 214,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "required_invocation_receipts": [
+    {
+      "path": "ard-callback-width-capture-01.status.json",
+      "sha256": "9556f0dc2df5f8f155b5fc3a2cc1a901bb84b4b12d9850c2efb8bfa0326314a9"
+    },
+    {
+      "path": "ard-callback-width-capture-01.stdout",
+      "sha256": "96de6c961293559b69a704b6a7b691679e3c8246e498d3bf904b27bfc503dcc8"
+    },
+    {
+      "path": "ard-callback-width-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-ard-callback-width.py",
+      "sha256": "61947a5b37153ce1423cf2c258724f3667c3ff52f5d0e777d1daaa92076f6e08"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    }
+  ],
+  "normal_cfg": [
+    {
+      "entry": "0x3ea710",
+      "end_exclusive": "0x3ea81b",
+      "instructions": 73,
+      "returns": [
+        "0x3ea81a"
+      ],
+      "calls": [
+        {
+          "pc": "0x3ea736",
+          "target": "0x36c660"
+        },
+        {
+          "pc": "0x3ea73e",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea74c",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea75a",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea76a",
+          "target": "0x23a160"
+        },
+        {
+          "pc": "0x3ea777",
+          "target": "0x23a160"
+        },
+        {
+          "pc": "0x3ea784",
+          "target": "0x23a160"
+        },
+        {
+          "pc": "0x3ea78c",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea799",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea7a8",
+          "target": "0x3dcf00"
+        },
+        {
+          "pc": "0x3ea7b0",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea7bd",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea7d1",
+          "target": "0x23a160"
+        },
+        {
+          "pc": "0x3ea7d9",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea7e6",
+          "target": "0x20e600"
+        },
+        {
+          "pc": "0x3ea7fa",
+          "target": "0x23a160"
+        }
+      ]
+    },
+    {
+      "entry": "0x36c660",
+      "end_exclusive": "0x36c6b2",
+      "instructions": 24,
+      "returns": [
+        "0x36c6b1"
+      ],
+      "calls": [
+        {
+          "pc": "0x36c690",
+          "target": "qword ptr [rip + 0x5568da]"
+        }
+      ]
+    }
+  ],
+  "instruction_pins": [
+    {
+      "pc": "0x3ea923",
+      "mnemonic": "call",
+      "args": "0x36a100"
+    },
+    {
+      "pc": "0x3ea928",
+      "mnemonic": "mov",
+      "args": "rcx, rax"
+    },
+    {
+      "pc": "0x3ea934",
+      "mnemonic": "call",
+      "args": "0x36c660"
+    },
+    {
+      "pc": "0x36c66d",
+      "mnemonic": "mov",
+      "args": "rbx, rcx"
+    },
+    {
+      "pc": "0x36c6a4",
+      "mnemonic": "mov",
+      "args": "rax, rbx"
+    },
+    {
+      "pc": "0x3ea93e",
+      "mnemonic": "test",
+      "args": "rax, rax"
+    },
+    {
+      "pc": "0x3ea941",
+      "mnemonic": "je",
+      "args": "0x3ea9e4"
+    },
+    {
+      "pc": "0x3ea947",
+      "mnemonic": "lea",
+      "args": "rdx, [rip - 0x23e]"
+    },
+    {
+      "pc": "0x3ea956",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x40], rdx"
+    },
+    {
+      "pc": "0x3ea95e",
+      "mnemonic": "lea",
+      "args": "rdx, [rsp + 0x30]"
+    },
+    {
+      "pc": "0x3ea96c",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x20], rdx"
+    },
+    {
+      "pc": "0x3ea971",
+      "mnemonic": "mov",
+      "args": "r8, rax"
+    },
+    {
+      "pc": "0x3ea976",
+      "mnemonic": "mov",
+      "args": "dword ptr [rsp + 0x38], eax"
+    },
+    {
+      "pc": "0x3ea97f",
+      "mnemonic": "call",
+      "args": "0x32e620"
+    },
+    {
+      "pc": "0x3ea732",
+      "mnemonic": "mov",
+      "args": "ebp, ecx"
+    },
+    {
+      "pc": "0x3ea734",
+      "mnemonic": "mov",
+      "args": "ecx, ecx"
+    },
+    {
+      "pc": "0x3ea736",
+      "mnemonic": "call",
+      "args": "0x36c660"
+    },
+    {
+      "pc": "0x3ea73b",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [rbp + 0x10]"
+    },
+    {
+      "pc": "0x3ea746",
+      "mnemonic": "movsxd",
+      "args": "rsi, eax"
+    },
+    {
+      "pc": "0x3ea749",
+      "mnemonic": "add",
+      "args": "rsi, rbp"
+    },
+    {
+      "pc": "0x3ea754",
+      "mnemonic": "movsxd",
+      "args": "rdi, eax"
+    },
+    {
+      "pc": "0x3ea757",
+      "mnemonic": "add",
+      "args": "rdi, rbp"
+    },
+    {
+      "pc": "0x3ea75f",
+      "mnemonic": "movsxd",
+      "args": "rbx, eax"
+    },
+    {
+      "pc": "0x3ea767",
+      "mnemonic": "add",
+      "args": "rbx, rbp"
+    },
+    {
+      "pc": "0x3ea76a",
+      "mnemonic": "call",
+      "args": "0x23a160"
+    },
+    {
+      "pc": "0x3ea777",
+      "mnemonic": "call",
+      "args": "0x23a160"
+    },
+    {
+      "pc": "0x3ea784",
+      "mnemonic": "call",
+      "args": "0x23a160"
+    },
+    {
+      "pc": "0x3ea809",
+      "mnemonic": "mov",
+      "args": "qword ptr [rip + 0x27738b0], rbp"
+    },
+    {
+      "pc": "0x3ea810",
+      "mnemonic": "mov",
+      "args": "rbp, qword ptr [rsp + 0x38]"
+    }
+  ],
+  "binder_root_assignments": [
+    "0x3ea732",
+    "0x3ea810"
+  ],
+  "bounded_algebra": [
+    {
+      "full_destination": "0x7fffffff",
+      "descriptor_context": "0x7fffffff",
+      "binder_saved_root": "0x7fffffff",
+      "full_pointer_preserved": true
+    },
+    {
+      "full_destination": "0x80000000",
+      "descriptor_context": "0x80000000",
+      "binder_saved_root": "0x80000000",
+      "full_pointer_preserved": true
+    },
+    {
+      "full_destination": "0xffffffff",
+      "descriptor_context": "0xffffffff",
+      "binder_saved_root": "0xffffffff",
+      "full_pointer_preserved": true
+    },
+    {
+      "full_destination": "0x100010000",
+      "descriptor_context": "0x10000",
+      "binder_saved_root": "0x10000",
+      "full_pointer_preserved": false
+    },
+    {
+      "full_destination": "0xffffffff00000000",
+      "descriptor_context": "0x0",
+      "binder_saved_root": "0x0",
+      "full_pointer_preserved": false
+    }
+  ],
+  "conditional_section_crossing": {
+    "root": "0xffffff00",
+    "resolved_low32_offset": "0x1000",
+    "signed_offset": 4096,
+    "section_pointer": "0x100000f00",
+    "natural_reachability": false
+  },
+  "established": [
+    "After normally returning36A100 and pointer-tagging36C660, loader3EA820 tests fullRAX, sends it as fullR8 read destination, but stores onlyEAX into DWORD descriptor+8. Descriptor+10 points to original3EA710. That destination/context distinction is before queue acceptance; it is not a performed read or callback.",
+    "Pointer tag36C660 returns its incomingRCX through savedRBX without narrowing on every normal return. Its header accesses/import effects require valid backing/normalABI and are not native effects proved by this source. It cannot repair the later descriptor DWORD narrowing.",
+    "At binder entry3EA732, MOV EBP,ECX makes saved root zeroextended32 regardless of incoming highRCX.3EA734 alsozeroextends RCX before tag call. No later local assignment toRBP precedes3EA809 publication; its normalABI callees must preserveRBP. Thus this writer alwayspublishes a root in0..FFFFFFFF at qword02B5E0C0. EBP does not signextend bit31.",
+    "Sampling that published qword cannot recover or disprove a high original allocator result: it is alreadynarrowed, and unload zero is not evidence of a successful allocation. This writer invariant is not an allwriter/global-lifetime census.",
+    "Section binding instead adds saved root in64bits to a SIGNED extension of the resolver lowDWORD. A root below4GiB does not alone prove every section/row pointer below4GiB: conditional rootFFFFFF00+offset1000=100000F00. This algebraic counterexample is not a shipped ARD/state or native execution.",
+    "A high original destination and a low callback root are different storage identities unless additional alias/mapping facts establishotherwise. The original functions do not reconstruct highbits from read destination. Normal queued reachability, valid lowheader, allocator placement and actual consequences remainopen. Do not force a high call and present it as natural reachability."
+  ],
+  "assumptions": [
+    "Execution reaches the named original normal loader/tag/binder branches with valid requested memory/descriptors/header and ABI-correct normally returning callees",
+    "No unexpected concurrent/instrumented code modification or nonvolatileRBP/RBX violation",
+    "Only this callback entry and publication writer are certified; otherwriters/queuecallback dispatch and real initialization not newly censused"
+  ],
+  "limitations": [
+    "No native/emulated/live/CRT module execution or new placement sample; retained EXP077/078/079 are prior bounded evidence, not additional runs",
+    "No alltime lowheap, initialized arena/topology, healthy highallocation, queued acceptance, callback lifetime, natural highroot or rewardedge occurrence",
+    "Signedsection arithmetic and cached rewardrow truncation are different widths/locations; full allocatedrange and actualbound section identity need their own evidence",
+    "No full GR18/OV5/OV8/AQ-ARENA closure or new whole runtime-row count; independent review and canonical incorporation pending"
+  ],
+  "affected_claims": [
+    "OPUS GR18 allocation placement question: full destination and low callback/published root must be distinguished before reward truncation inference",
+    "FABLE ARD binder: callback root parameter and signed offset/64bitsection addition contract",
+    "Future ASTRA observer: fullRAX at3EA93E orR8 at3EA97F, not publishedroot alone"
+  ],
+  "next_discriminator": "Reuse retained arena placement and original allocator evidence; if actual placement stillrequired, observe the full allocator/tag-return destination at3EA93E or read-submit3EA97F with identity/state/queueacceptance controls. Publishedroot sample alone is insufficient. No menu setup authorized or automatic freshgame experiment here.",
+  "checker_sha256": "9228986e0b014bf40bcc9dcadafcd005567600089975ad2ed6ed085c16bef3b9",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Only shipping source reads/finite reduction/disposable controls; no game/PC/input/native/instrument/save/config/reference/peer process change"
+}

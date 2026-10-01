@@ -1,0 +1,25 @@
+[
+  {
+    "at": "2026-09-26T23:09:10.550Z",
+    "key": "Return",
+    "from": "title-post-read",
+    "intent": "open Load Game",
+    "result": "sent only until separately observed",
+    "observed": "No visible acceptance"
+  },
+  {
+    "at": "2026-09-26T23:10:02.905Z",
+    "key": "c",
+    "intent": "confirm Load Game",
+    "basis": "Current modern KeyMap Cross=30 (C); GameSetting DecideButton=Cross swaps confirm/cancel",
+    "prior": "Return sent without observed acceptance",
+    "observed": "No visible acceptance"
+  },
+  {
+    "at": "2026-09-26T23:10:37.564Z",
+    "key": "Return",
+    "intent": "confirm Load Game after explicit foreground activation",
+    "basis": "Second bounded recovery: focus; root/current config binding is not established by modern file alone",
+    "observed": "No visible acceptance"
+  }
+]

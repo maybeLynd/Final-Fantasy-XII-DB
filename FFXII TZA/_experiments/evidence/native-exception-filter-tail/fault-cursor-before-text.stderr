@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-exception-filter-tail\check.py", line 43, in <module>
+    if '--fault-cursor-before-text' in sys.argv:assert paths[2]['calls'].index('0x79ae0e')<paths[2]['calls'].index('0x79ade5'),'Original text request precedes cursor call'
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original text request precedes cursor call

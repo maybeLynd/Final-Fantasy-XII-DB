@@ -1,0 +1,14 @@
+PASS  V1 RTTI classes; CoreSourceVoice slot 3 = start 007E2710, slot 9 = enqueue 007E0A40
+PASS  V2 type ids 1 / 2 / 3
+PASS  V3 slot 0 of each frees through 007AD450
+PASS  V4 getters: Master +0x74 (s16), Submix +0xCC (s16) / +0x88 (send count), Source +0xB0 (queued buffers), +0x100 (float), +0xAC, +0x90, +0x268 (send count)
+PASS  V5 indexed 16-byte send entries: Submix +0x38 (count +0x88), Source +0x218 (count +0x268), bounds-checked
+PASS  V6 float setters: Master +0x5C (index 0 only), Submix send level, Source +0x100/+0x104 (slot 6) and +0x108 (slot 7, refused in states 0 and 4)
+PASS  V7 Source slot 4 sets state 2 under the lock (stop); slot 5 sets state 4 (flush)
+PASS  F1 007DF750 pops a free-list node under EnterCriticalSection / LeaveCriticalSection (imports 008C20B8 / 008C20C0)
+PASS  F2 flag 0: pooled voice (pool 02EAD250), listed by 007AF380 under lock 02EAD138; flag set: 0x2B8-byte aligned allocation through the SEAD hook (007AD460, header 0x5EAD5EAD), listed by 007AF490 under lock 02EAD160
+PASS  F3 start callers ['007B9050', '007B9AF0', '007DCE20', '007EDA60', '007EDAB0']; queue callers ['007B9590', '007DCE20', '007EAA60']
+PASS  K1 source-channel dispatch ['007E100E', '007E108D', '007E1378', '007E143A', '007E1796', '007E1882', '007E19CF']
+PASS  K2 sample x gain vector x ramped gain -> 8 output floats per frame; position += step
+PASS  K3 48 paired 16-byte output stores (24 frame kernels x 8 channels) and 16 addps (the general-channel accumulation)
+FAILS 0

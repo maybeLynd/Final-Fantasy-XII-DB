@@ -1,0 +1,15 @@
+control: both entries present: True True
+ps2data/add_motion/skeletonmapping.bin: 196 bytes, count 1
+  record 0: name 'hc1006_03', n 39, values [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 27, 28, 29, 27, 28, 29, 30, 27, 28, 29, -1, 33, 33, 33, 33, 33, 33, 33, 33]
+  walk ends at the file size: True
+ps2data/add_motion/highmodelreplace.bin: 540 bytes, 22 records, walk (through the final -1) ends at the file size: True
+  pairs per record: [(1, 21), (2, 1)] ; more than 4 (would overrun the 0x30 record): 0
+  a as (u16 low, u16 high): [(99, 14), (110, 6), (115, 2)] ; b values: [(-1, 18), (1, 4)] ; c values: [(-1, 18), (0, 4)]
+  x high words: [(67, 15), (78, 6), (83, 2)] ; y values: [(0, 22), (1570, 1)]
+  (a, b, c) keys distinct: True
+   a=00630000 b=-1 c=-1 ['x=00430002 y=0']
+   a=00630005 b=-1 c=-1 ['x=00430009 y=0']
+   a=00630003 b=-1 c=-1 ['x=00430016 y=0']
+   a=00630006 b=1 c=0 ['x=00430008 y=0']
+   a=0063000D b=-1 c=-1 ['x=00430018 y=0']
+   a=0063000B b=-1 c=-1 ['x=0043001A y=0', 'x=0043002B y=1570']

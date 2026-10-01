@@ -1,0 +1,9 @@
+# NativeAdapter.OptPtrMemberOffsetVcall - EC-7 family C
+# call member ops 005BCD20 + 005BC4D0-shape on arg1; if non-null vcall
+# # [this+8] at member offset +[this+0x10]; then shared 0080F420 + 00810580
+# # pop/store; return 1.
+address	targets
+005C18B0	005BC4D0,005BCD20,0080F420,00810580
+005C1930	005BC4D0,005BDDC0,0080F420,00810580
+005C19B0	005BC4D0,00683B50,0080F420,00810580
+0063A280	005BE870,00636920,0080F420,00810580

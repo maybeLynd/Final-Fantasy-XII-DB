@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "hits": [],
+  "arming": [
+    [
+      23244,
+      true
+    ],
+    [
+      38220,
+      true
+    ],
+    [
+      31488,
+      true
+    ],
+    [
+      39556,
+      true
+    ],
+    [
+      17628,
+      true
+    ]
+  ],
+  "errors": [],
+  "cleanup": {
+    "status": "PASS",
+    "reason": "stopped-event clear and readback",
+    "clears": [
+      [
+        23244,
+        true
+      ],
+      [
+        38220,
+        true
+      ],
+      [
+        31488,
+        true
+      ],
+      [
+        39556,
+        true
+      ],
+      [
+        36488,
+        true
+      ]
+    ],
+    "verified": [
+      [
+        23244,
+        true
+      ],
+      [
+        38220,
+        true
+      ],
+      [
+        31488,
+        true
+      ],
+      [
+        39556,
+        true
+      ],
+      [
+        36488,
+        true
+      ]
+    ],
+    "breakpoint_tid": 36488
+  },
+  "detach": true,
+  "sources": {
+    "capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+    "api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6"
+  }
+}

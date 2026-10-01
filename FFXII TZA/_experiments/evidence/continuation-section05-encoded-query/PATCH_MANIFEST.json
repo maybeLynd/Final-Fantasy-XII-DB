@@ -1,0 +1,293 @@
+{
+  "schema": 1,
+  "section": "SECTION-05",
+  "archive_root": "FFXII TZA",
+  "base_zip": "FFXII TZA(20260922-211246).zip",
+  "apply_after": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+  "predecessor_zip_sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d",
+  "requires_previous_updates": [
+    "01",
+    "02",
+    "03",
+    "04"
+  ],
+  "input_chain": [
+    {
+      "archive": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+      "files": 10597
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017",
+      "files": 27
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa",
+      "files": 31
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f",
+      "files": 37
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d",
+      "files": 39
+    }
+  ],
+  "modified_existing": 7,
+  "new_files_including_manifest": 29,
+  "files": [
+    {
+      "path": "00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md",
+      "operation": "replace",
+      "before_sha256": "47dc0e53b6788dfabcd9e8ed7cf080331955a63b67d8594d73c329d499b968bb",
+      "after_sha256": "a4327592722efed14d2571bb1afdd49cc71538fb6eaef7712eacf8671a41048c",
+      "bytes": 15745
+    },
+    {
+      "path": "00-Engine-Core-Runtime/the-encoded-id-class-registry.md",
+      "operation": "replace",
+      "before_sha256": "90088428d306aa4afd0a996e90c0ec3a7451e9844f9e1bf660db75f3b608eb90",
+      "after_sha256": "c74a8201096ddfb21e179cc57da2a435130da64c4f6ae0cee84b5ebb00b11fb3",
+      "bytes": 34943
+    },
+    {
+      "path": "00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md",
+      "operation": "replace",
+      "before_sha256": "5dc2c16208c391e62bcacbcf09990fc664a25ab225129f204673c5ee4ed5766b",
+      "after_sha256": "5d78cf97e45e1e6bd5709af84b91bc031f97e5aa4549bbd134b3cd619db71de1",
+      "bytes": 90263
+    },
+    {
+      "path": "00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "055224b749d66890322b244d4a3cc197e5994b5c3cf71f889be3c49cfc632489",
+      "bytes": 12578
+    },
+    {
+      "path": "_experiments/EXP-143-s04-validator-all-arms-exec.md",
+      "operation": "replace",
+      "before_sha256": "1f07071ab2cfb990f1678d4662b7c97e39a986e5416112d7b639e2ba7da2971d",
+      "after_sha256": "9cef0377265e0f39883df6eb84e724cf4d1135dd0426f9a3bdb7e614942768c6",
+      "bytes": 9614
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/README.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "8e2180f808cd4a5706af25760e4513d056c95bf250ab81a1996432b1d1f5d901",
+      "bytes": 3352
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/REVIEW.md",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "1daf38b45bdea12c5dd8c899444b8eeca96ad32be0ac1c16a93e430072c00b66",
+      "bytes": 13210
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/canonical_changes.diff",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "1e7b30342926175e248276547a0a902e42ff4c5c04217f9fbfa6718a19ba44e0",
+      "bytes": 218609
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/canonical_row_changes.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "f96cabc5567d342fe097c6d37ad2b1a7e318a3e3243ca1c5591dfbe42ef82784",
+      "bytes": 120511
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/claim_matrix.tsv",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d674ff79c334cabb6f81802d0c577c73c49c0776955b73ff57749752e479cf55",
+      "bytes": 2103
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/class_baseline_records.tsv",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d0af8edfe3f779d0e7745809e6d7a3a63e145bfa3be578d342ace86ffe60941b",
+      "bytes": 12503
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/input_manifest.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "307217d7f38d4fda0c052e4e4b0c6054d10de8e80e7b86fe7a553f5aa12b906a",
+      "bytes": 1343
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/native_controls.c",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "dd593dbd36386da74477534b28a7da1548aa03ae2786e15c5bd000bd1e650dad",
+      "bytes": 19422
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/original_body_manifest.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "268d5613877fd8cc17de779c563284221cf6dd02147e45c72928cbf0f92d02e3",
+      "bytes": 6888
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/original_disassembly.txt",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "a038baffbf30b7ff0e4ff9c6f40a0cf01df7beaa6a8ca699983abb9d03cb252a",
+      "bytes": 157549
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/body_verification.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "7422f6b2d800296f733d365039a4885341bfb9ddaa95dcb4fb740f1d7df8cf7b",
+      "bytes": 2424
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/build_receipt.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "9f7bd90622537d8bd5fbd1a2edceef44566bf988d82aca9151024649b366a22e",
+      "bytes": 419
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/code_mutations.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "728b3449f87c4aa6666389d7608953f25478987dc63c794a58ff84371fb3f173",
+      "bytes": 1414
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/content_validation.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "bb90f6e7f400f24393ac2c58ded78fc49189d3bbe61e899bcafc7602ade1b297",
+      "bytes": 1644
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/delivery_validation.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "7732ce9d96167d4b1e6bd3abe6c2825eddc5b4ebe78ca1d6d0c131056abefe50",
+      "bytes": 626
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/independent_retained_review.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "792492f9e2eb798745248b868b719984307aec1e6fff341ab53d232159b5b3de",
+      "bytes": 658
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/native_baseline.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "c7caa849a6bf6f16974b7354dae6c73fe1dc1e1ad7a4bf8aed6c9f341acf8c27",
+      "bytes": 34987
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/native_repeat.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "c7caa849a6bf6f16974b7354dae6c73fe1dc1e1ad7a4bf8aed6c9f341acf8c27",
+      "bytes": 34987
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/overlay_checker_controls.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "5493a9ef55fae080b33ddb0cee1c9cbd554075030398c1d54133ef41be182ba7",
+      "bytes": 631
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/retained_negative_controls.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d5420da194d4dd6d07caeab54660fa50659cb2dfcffa22896d9ce6d5d6934995",
+      "bytes": 827
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/results/summary.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "5ca4fa7f459398c7d998287306c1c95b1c6a585f578cb234ac4f68f8478d7f07",
+      "bytes": 533
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/review_retained.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "099c6f1cbaacde430564cb9da35f0f4b4823bc476d6cf92da3a57ff8c1402feb",
+      "bytes": 6285
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/run_review.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "305775dfc1b0ce6c2645755f716352b2cc1210d459c3add91572ef82c61418d0",
+      "bytes": 5431
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/shipped_registry.tsv",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "18e2897e064b58396e6bd0e92e10a45b4c70352b4d711d9f82e53e6332a7f2e6",
+      "bytes": 1077
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/source_inputs.json",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "89d99a2a387945d3003cbc6687aa87194f2cb62d50527ac0ce11c57ac3bff950",
+      "bytes": 2768
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/test_overlay.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "129e01e86a199b6152d3f86f77f8459a9c62dcbc5d8b3427683aaa3c991a44f5",
+      "bytes": 1452
+    },
+    {
+      "path": "_experiments/evidence/continuation-section05-encoded-query/verify_overlay.py",
+      "operation": "add",
+      "before_sha256": null,
+      "after_sha256": "d2f6ef0e600ee456682f788b51e045da0d71a38ab6e03038598fa96b453e128a",
+      "bytes": 3143
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "operation": "replace",
+      "before_sha256": "ccfe3683b3ffd54b93841139c2ec68198738dbdd887439e4fb398a79618b016e",
+      "after_sha256": "02f6a31d793f5b883a9eb167d21c806c19b2a72f804738a0f72521f53c2264eb",
+      "bytes": 10641
+    },
+    {
+      "path": "_types/fields.tsv",
+      "operation": "replace",
+      "before_sha256": "6a6a550c57bf18097459da01458b6a495b0e8f8bbaa18859092111dffb8ebed8",
+      "after_sha256": "fbb62749b0363634cd35d3c00539d57749bfe43da94df55f351b9ebce490aba2",
+      "bytes": 10412253
+    },
+    {
+      "path": "_types/types.tsv",
+      "operation": "replace",
+      "before_sha256": "3186c3a4fd5b668aa9042c5e7f3a69c7b49cf1871fc1b7a2324f707431e5a5f8",
+      "after_sha256": "acea2c216622c0a2b4f77f85c4765a57e9099a3fb32da6e8d6ecd98507edf827",
+      "bytes": 1661370
+    }
+  ],
+  "exclusion": "This manifest is not self-hashed. The distributed ZIP has an external SHA-256.",
+  "deletions": 0,
+  "acceptance": "LOCAL_PRODUCTION_ONLY; independent acceptance pending"
+}

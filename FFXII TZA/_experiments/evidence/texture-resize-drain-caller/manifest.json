@@ -1,0 +1,355 @@
+{
+  "status": "PRODUCER_VERIFIED_INDEPENDENT_PENDING",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-texture-resize-drain-caller.py",
+      "bytes": 2999,
+      "sha256": "0951a6f3a298db1ba155a277ea206c271ad172d74fed66392eca91dd5f1e6c3d"
+    },
+    {
+      "path": "control-texture-resize-drain-caller.py",
+      "bytes": 2790,
+      "sha256": "bd87266345695d60a2dc5ea5c730a1e69330725eab2f1a94a60d57a00d939cdb"
+    },
+    {
+      "path": "freeze-texture-resize-drain-caller.py",
+      "bytes": 6454,
+      "sha256": "86a1ffc243b86202df17dc65edea4b1aecdb96765545aa4febcd76ebf2cae943"
+    },
+    {
+      "path": "prove-texture-copy-capacity-caller.py",
+      "bytes": 8750,
+      "sha256": "7c14ba3ac418073fba8d3d76ce9b1194661704846e93b2769de8b069d8d35efc"
+    },
+    {
+      "path": "prove-texture-copy-construction.py",
+      "bytes": 9199,
+      "sha256": "a07431ae147105e6c3dfef70d6f1b6a2233836b56f47624029da7e78b9166097"
+    },
+    {
+      "path": "prove-texture-resize-drain-caller.py",
+      "bytes": 10341,
+      "sha256": "d6d80c78cd5e918c8907bd93144b462adea34c0a57242b9eac8208866d55112e"
+    },
+    {
+      "path": "prove-title-cleanup-count-selector.py",
+      "bytes": 8305,
+      "sha256": "bf11d2e0992f1c6b04013a006d26662498f1889da6981e8b21d697789c7702d7"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3551,
+      "sha256": "7fd844c06ec2c29193209773ba9f36a3a18ac137311b9f4bdddb79cb14bf0558"
+    },
+    {
+      "path": "texture-copy-capacity-caller-result-02.json",
+      "bytes": 5001,
+      "sha256": "e00a04d0ab2a6af9f9409e903a78fd2f242449a83e745578f5a4e295445dd866"
+    },
+    {
+      "path": "texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-resize-drain-caller-capture-01.status.json",
+      "bytes": 70,
+      "sha256": "517a0823294ef17676b850d89fc4d5d50d941e89cebc7c68779f1ceebc1581f8"
+    },
+    {
+      "path": "texture-resize-drain-caller-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-capture-01.stdout",
+      "bytes": 187,
+      "sha256": "01ca955cbfb3c9326d8f7725133a94e6b2ce54e8f9a0eaa4434da9b3074bcb5c"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/texture-copy-capacity-caller-result-02.json",
+      "bytes": 5001,
+      "sha256": "e00a04d0ab2a6af9f9409e903a78fd2f242449a83e745578f5a4e295445dd866"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/texture-resize-drain-caller-source-01.json",
+      "bytes": 13653,
+      "sha256": "acc6b96ec653af3e13d95906d08dc58a56cac52a39d2b9594053bd17eb70a5d6"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/title-cleanup-count-selector-result-01.json",
+      "bytes": 5008,
+      "sha256": "65c353fc508a3b745c09f4ea57dd6cb160ae31c5faf2f328b6bc7f7509d17d06"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/source/title-cleanup-count-selector-source-01.json",
+      "bytes": 13897,
+      "sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/status.json",
+      "bytes": 104,
+      "sha256": "27b542b93208975ba0e5161102f1124007fc0c14208e00003b7a6efd0281494f"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/stderr",
+      "bytes": 1044,
+      "sha256": "1d86f87319063428e508999c2f193af64a9be0a6c64a924dc27415ae7a0d8571"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/bypass-drain/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/texture-copy-capacity-caller-result-02.json",
+      "bytes": 5002,
+      "sha256": "ad8143dfa4b44b9cfb21c764c1b6845c31f77506c3a4dadc4a3f83128e2e471a"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/texture-resize-drain-caller-source-01.json",
+      "bytes": 13653,
+      "sha256": "fdb26a839b689efc0b1384140fc2a79c55206c6114bfd43bc369899d94b2c65a"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/title-cleanup-count-selector-result-01.json",
+      "bytes": 5008,
+      "sha256": "65c353fc508a3b745c09f4ea57dd6cb160ae31c5faf2f328b6bc7f7509d17d06"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/source/title-cleanup-count-selector-source-01.json",
+      "bytes": 13897,
+      "sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/status.json",
+      "bytes": 120,
+      "sha256": "0a44b79d8a4d3b3b9309ee29195d2032add5d2912346b63dbabca8466483c16d"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/stderr",
+      "bytes": 710,
+      "sha256": "f7ce72dcb130f3137c2a1bda4074e8de4b16fe852ae166214eec033f788f6065"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/failed-capacity-prerequisite/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/texture-copy-capacity-caller-result-02.json",
+      "bytes": 5001,
+      "sha256": "e00a04d0ab2a6af9f9409e903a78fd2f242449a83e745578f5a4e295445dd866"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/texture-resize-drain-caller-source-01.json",
+      "bytes": 13590,
+      "sha256": "32bbc96aa7d75383545137d0746f5ca89037b86b698d9fc589d7ce764a25a9fb"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/title-cleanup-count-selector-result-01.json",
+      "bytes": 5008,
+      "sha256": "65c353fc508a3b745c09f4ea57dd6cb160ae31c5faf2f328b6bc7f7509d17d06"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/source/title-cleanup-count-selector-source-01.json",
+      "bytes": 13897,
+      "sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/status.json",
+      "bytes": 113,
+      "sha256": "b158d347d8ebb528d7ab5939ed27668d26d59d1522684acc29ee1069a8d2265f"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/stderr",
+      "bytes": 814,
+      "sha256": "028a7ccd096cca431a1a596139859796a45beb699313c0c5227469a24e26d588"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-tail-fragment/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/source/texture-copy-capacity-caller-result-02.json",
+      "bytes": 5001,
+      "sha256": "e00a04d0ab2a6af9f9409e903a78fd2f242449a83e745578f5a4e295445dd866"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/source/texture-copy-capacity-caller-source-01.json",
+      "bytes": 16830,
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/source/texture-copy-construction-result-01.json",
+      "bytes": 7363,
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/source/texture-copy-construction-source-01.json",
+      "bytes": 31210,
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/source/texture-resize-drain-caller-source-01.json",
+      "bytes": 13653,
+      "sha256": "fdb26a839b689efc0b1384140fc2a79c55206c6114bfd43bc369899d94b2c65a"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/source/title-cleanup-count-selector-result-01.json",
+      "bytes": 5008,
+      "sha256": "65c353fc508a3b745c09f4ea57dd6cb160ae31c5faf2f328b6bc7f7509d17d06"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/status.json",
+      "bytes": 111,
+      "sha256": "43ffc74de576b872c910dc3edac0b09687191618594e9c25b656afe736fdd46f"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/stderr",
+      "bytes": 1512,
+      "sha256": "d07d076b5e7e3f79eda7cd977c2da49fd76e5169fe06bcfecc9a6710c8e2eb93"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/missing-wait-source/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-01/result.json",
+      "bytes": 1007,
+      "sha256": "fa1fc90234eacca31c7db63773961bbe957932dacc54897a4015fada48dc581f"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-invocation-01.status.json",
+      "bytes": 80,
+      "sha256": "c1265d2656b7cd4bba00bc86663eac01484715053c219d95d907194b91ab6a70"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-invocation-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-controls-invocation-01.stdout",
+      "bytes": 67,
+      "sha256": "5fcf16ffbcc8de3132ce2f74e6bca24c7711ba9871b0043761a2ecc77ad67b64"
+    },
+    {
+      "path": "texture-resize-drain-caller-positive-01.status.json",
+      "bytes": 191,
+      "sha256": "871f0911d00d67862236785e176df75e947750f2863a04a7e99d4c40c5145285"
+    },
+    {
+      "path": "texture-resize-drain-caller-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-resize-drain-caller-positive-01.stdout",
+      "bytes": 113,
+      "sha256": "3e3724eaeaa870416762b0d5cf749b0af0262916433e58519275c9a8f98c4e3a"
+    },
+    {
+      "path": "texture-resize-drain-caller-result-01.json",
+      "bytes": 8567,
+      "sha256": "9d0d349230631a52e319ca7304c12e9565aada000550aa2030adcebf586b1435"
+    },
+    {
+      "path": "texture-resize-drain-caller-source-01.json",
+      "bytes": 13653,
+      "sha256": "fdb26a839b689efc0b1384140fc2a79c55206c6114bfd43bc369899d94b2c65a"
+    },
+    {
+      "path": "texture-resize-higher-caller-preparation-04.json",
+      "bytes": 1935,
+      "sha256": "ac00002b427f6e21460a087d5edb979a809e4ffbe06682230efaa44a4d32582f"
+    },
+    {
+      "path": "title-cleanup-count-selector-result-01.json",
+      "bytes": 5008,
+      "sha256": "65c353fc508a3b745c09f4ea57dd6cb160ae31c5faf2f328b6bc7f7509d17d06"
+    },
+    {
+      "path": "title-cleanup-count-selector-source-01.json",
+      "bytes": 13897,
+      "sha256": "cfcdda5e5b79c454e84204e558907310b3a7af24b3b3f6bf435ff0fbccdaef6e"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ]
+}

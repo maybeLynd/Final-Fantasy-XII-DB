@@ -1,0 +1,8 @@
+002538F4  mov ecx, dword ptr [rip + 0x1e3eed6]    ; -> 020927D0
+00253907  mov dword ptr [rip + 0x1e3eec3], ebx    ; -> 020927D0
+00253931  mov dword ptr [rip + 0x1e3ee99], eax    ; -> 020927D0
+00254381  mov eax, dword ptr [rip + 0x1e3e449]    ; -> 020927D0
+002543A1  mov eax, dword ptr [rip + 0x1e3e429]    ; -> 020927D0
+002543D1  mov eax, dword ptr [rip + 0x1e3e3f9]    ; -> 020927D0
+002543F5  mov eax, dword ptr [rip + 0x1e3e3d5]    ; -> 020927D0
+refs: 7

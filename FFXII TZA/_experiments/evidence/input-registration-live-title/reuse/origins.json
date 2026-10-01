@@ -1,0 +1,31 @@
+{
+  "setup.py": {
+    "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\resumed\\setup.py",
+    "changes": [
+      "active task id",
+      "cloud receipt filename",
+      "unique backup path"
+    ],
+    "source_sha256": "d9b79eab07ddc67e7527f58fbfbc851a875ee2e5b571a1fe55124d65f214b0e6"
+  },
+  "cleanup.py": {
+    "source": "Database\\FFXII TZA\\_experiments\\evidence\\input-registration-live-title\\resumed\\cleanup.py",
+    "changes": [
+      "actual verified LUIDLow value84456"
+    ],
+    "source_sha256": "d550df4496c28ff02068e711686c346e680f32de2a72d65a16552aaddb8ba740"
+  },
+  "pulse.py": {
+    "basis": [
+      "EXP031 existing runtime_input_probe.send_key",
+      "EXP024 Reader",
+      "EXP037 qualify",
+      "current input_sample.snapshot"
+    ],
+    "changes": "Small bounded wrapper with stop/release and raw receipts; no shared tool changes"
+  },
+  "test_guard.py": {
+    "basis": "Exact previously executed offline control cases retained in guard-controls.json",
+    "changes": "Persisted reproduction entry point; fake controls do not establish live game behavior"
+  }
+}

@@ -1,0 +1,6 @@
+PASS  C1 the view = the highest active record (bits 7..0 of 02098DEC); kind 1 follows context +0xF4 through 00259990
+PASS  C2 mask writers: init 0; 0025A520 callers ['002556E2', '00258BBE', '00258BD3', '00258C15', '00258C2A', '00358C77', '00359073', '003D9285', '0050E497']
+PASS  C3 kind setter callers ['00255638', '0025568C', '002556B9', '0026DB62', '0035908F', '003D9291', '0050E675']; record 2 -> kind 1 only at 0035908F, on every path of 00358F90
+PASS  C4 00358EE0 (world tick tail) calls 00358F90 for the leader focus, the intervention handle 022C7FE8, or an event focus
+PASS  C5 record 2 context: 1 by setinterventioncamera (00359424), 0 on its clear (00359499) and the manager-0 unload (00262B5D)
+FAILS 0

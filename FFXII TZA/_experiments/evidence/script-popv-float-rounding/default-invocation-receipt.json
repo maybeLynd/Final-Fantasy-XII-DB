@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "producer_sha256": "fca3e175f7b0536cc8c35c195318eb3cd5ed0c92424a572393ff2ee6dc9c8dc5",
+  "check_sha256": "135c6d378d303d2e88c9c879bc3f62a709817138ebff25b47b8a2cfa155e363b",
+  "raw_unchanged_sha256": "fbbcf528c88c546a4f8da82b70dd7b740e2567d5634db07b5151547126b96439",
+  "path": "Actual corrected raw-default/adapter-metadata path, original two guestcases retained without replay; normalized inputlabels source-derived plus poststageRC"
+}

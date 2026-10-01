@@ -1,0 +1,41 @@
+{
+  "evidence_class": "A: static shipping bodies only; no live/game-code execution",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect-context.py": {
+      "bytes": 3834,
+      "sha256": "53e38b786a81be69c8c79b557b83703c7d8b70cae74f013147d1946181e4f549"
+    },
+    "collect-init.py": {
+      "bytes": 3865,
+      "sha256": "43ec7f6b6a08df404ec2d1fa5cd39f01faaea01a92468416b4ab15054ac6bb97"
+    },
+    "collect-retention.py": {
+      "bytes": 3862,
+      "sha256": "055fa51c26d600ac6375cdff390aa3cc58da70e72e3e7c0dfff6bc4da1300e04"
+    },
+    "context.json": {
+      "bytes": 24173,
+      "sha256": "fd0db8b5cd03cfa8085dce1a914cbe5f36145e7adbd1cc5f0ffa5e46667f4673"
+    },
+    "init.json": {
+      "bytes": 14387,
+      "sha256": "5f0b0326ab842c6a296ed4a8cf7ef25983cbc52d6355e292a40b067c6a429ae0"
+    },
+    "retention.json": {
+      "bytes": 68500,
+      "sha256": "74f3dff6a72895718fa79969beaeffb17dcf779f465df4c2eb67334e1af2d06e"
+    },
+    "review.json": {
+      "bytes": 4745,
+      "sha256": "4c17c8531bcb5e60f7623db9e0b2365646574b4f71b3b87f651e1f699cbf860f"
+    },
+    "rip-candidates.txt": {
+      "bytes": 6000,
+      "sha256": "ba1cf427507cda72bfc2e9d5184c56518e33d22b7f0afc6c4ea1a10e53481c61"
+    }
+  }
+}

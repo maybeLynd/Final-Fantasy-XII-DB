@@ -1,0 +1,565 @@
+Browser tab: 1, Title: "FF12 database dashboard", URL: "http://127.0.0.1:8765/".
+0 AXWebArea FF12 database dashboard, URL: 127.0.0.1:8765/
+	1 container
+		2 text FF12 database dashboard read-only; serves the verified CURRENT generation only
+		591 text Next full refresh: 25:26
+		592 text generation g20260929T074817Z-5dfce1 committed 2026-09-29T07:48:22Z | since the snapshot: progress_snapshot, team, watchdog moved (live sources; next build picks it up) | earlier failure, resolved by the current generation: inputs moved during the build: pkg:PKG-GP-SPAWN-RESPAWN.md
+	5 container tabs
+		593 button My Progress PARTIAL
+			594 text My Progress 
+			595 text PARTIAL
+		596 button Agent Activity live
+			597 text Agent Activity 
+			598 text live
+		599 button overview OK
+			600 text overview 
+			601 text OK
+		602 button systems OK
+			603 text systems 
+			604 text OK
+		605 button vbf PARTIAL
+			606 text vbf 
+			607 text PARTIAL
+		608 button executable PARTIAL
+			609 text executable 
+			610 text PARTIAL
+		611 button types OK
+			612 text types 
+			613 text OK
+		614 button evidence PARTIAL
+			615 text evidence 
+			616 text PARTIAL
+		617 button fleet PARTIAL
+			618 text fleet 
+			619 text PARTIAL
+	33 container main
+		63 heading My Progress PARTIAL, Value: 2
+			64 text My Progress  PARTIAL
+		65 container
+			66 text generation g20260929T074817Z-5dfce1, last update 2026-09-29T07:48:22Z · freshness  PARTIAL  · metric MP-2
+		67 heading Governing requirements accepted (L1+L2), Value: 3
+			68 text Governing requirements accepted (L1+L2)
+		69 text UNMEASURED
+		70 container
+			71 text known requirements only: 26330 / 38714
+			72 text 0.0%
+		73 container the same count without the 35,064 function dispositions, so the other families' movement is visible
+			74 text excluding functions: 92.4% (3373 / 3650)
+			75 text 0.0%
+		76 container 26079 of 38463 requirements accepted; 12384 remaining. One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.
+			77 heading L1 (modding grade), Value: 3
+				78 text L1 (modding grade)
+			79 container
+				80 text 67.8%
+				81 text 0.0%
+			82 text 67.8% accepted · 32.2% remaining
+			83 text 26079 / 38463
+		84 container 1283 of 1398 requirements accepted; 115 remaining. One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.
+			85 heading L2 (reconstruction grade), Value: 3
+				86 text L2 (reconstruction grade)
+			87 container
+				88 text 91.7%
+				89 text 0.0%
+			90 text 91.7% accepted · 8.3% remaining
+			91 text 1283 / 1398
+		92 container Thirty consecutive clean passes of FINAL-AUDIT-PROTOCOL, counted from the governing gate. They run only after everything else is accepted.
+			93 heading Final certification, Value: 3
+				94 text Final certification
+			95 text 0 / 30
+			96 text accepted terminal passes / required
+		97 container the governing goal gate reads NOT_MET: questions outstanding: OPEN=26, PARTIAL=2
+			98 heading Reconstruction status, Value: 3
+				99 text Reconstruction status
+			100 text NOT READY
+			101 text the governing goal gate reads NOT_MET: questions outstanding: OPEN=26, PARTIAL=2
+		102 container
+			103 text Not yet fully enumerated  - the overall figure stays UNMEASURED until these are closed: X: member formats of the bucketed extension(s) .bin, .dat are not declared (Database/Tools/work/formats/bucket-members.tsv); until they are, those files are UNMEASURED at format granularity - repair: OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS (SWE2-DATA)
+		104 heading By requirement family, Value: 3
+			105 text By requirement family
+		106 table
+			107 row
+				108 cell
+					109 text family
+				110 cell
+					111 text accepted
+				112 cell
+					113 text remaining
+				114 cell
+					115 text accepted %
+			116 row
+				117 cell
+					118 text register questions (OPEN-QUESTIONS.md rows)
+					119 text answered 1407 · dispositioned (SUPERSEDED, NAS, OEB, landed transfers) 190 · excluded as not requirements 31
+				120 cell
+					121 text 1597 / 1625
+				122 cell
+					123 text 28
+				124 cell
+					125 text 98.2%
+					126 text 0.0%
+			127 row
+				128 cell
+					129 text page obligations (unticked page boxes with no live register row)
+				130 cell
+					131 text 0 / 0
+				132 cell
+					133 text 0
+				134 cell
+					135 text -%
+			136 row
+				137 cell
+					138 text function dispositions (every function explained A, class-explained B or dispositioned C)
+				139 cell
+					140 text 22957 / 35064
+				141 cell
+					142 text 12107
+				143 cell
+					144 text 65.4%
+					145 text 0.0%
+			146 row
+				147 cell
+					148 text documents documented (status DOCUMENTED/AUDITED, or readiness when no status)
+					149 text documented, all answered 359 · documented with a dispositioned residue 8
+				150 cell
+					151 text 367 / 488
+				152 cell
+					153 text 121
+				154 cell
+					155 text 75.2%
+					156 text 0.0%
+			157 row
+				158 cell
+					159 text documents with a named falsification pass
+				160 cell
+					161 text 391 / 488
+				162 cell
+					163 text 97
+				164 cell
+					165 text 80.1%
+					166 text 0.0%
+			167 row
+				168 cell
+					169 text documents verified against the certified parent (provenance)
+				170 cell
+					171 text 488 / 488
+				172 cell
+					173 text 0
+				174 cell
+					175 text 100.0%
+					176 text 0.0%
+			177 row
+				178 cell
+					179 text authored-data registry slots explained
+				180 cell
+					181 text 63 / 64
+				182 cell
+					183 text 1
+				184 cell
+					185 text 98.4%
+					186 text 0.0%
+			187 row
+				188 cell
+					189 text shipped file formats explained
+				190 cell
+					191 text 46 / 46
+				192 cell
+					193 text 0
+				194 cell
+					195 text 100.0%
+					196 text 0.0%
+			197 row
+				198 cell
+					199 text EBP container units explained
+				200 cell
+					201 text 14 / 14
+				202 cell
+					203 text 0
+				204 cell
+					205 text 100.0%
+					206 text 0.0%
+			207 row
+				208 cell
+					209 text contradictions carrying a resolved disposition
+				210 cell
+					211 text 156 / 156
+				212 cell
+					213 text 0
+				214 cell
+					215 text 100.0%
+					216 text 0.0%
+			217 row
+				218 cell
+					219 text L2 cells: registered system x required dimension
+				220 cell
+					221 text 251 / 251
+				222 cell
+					223 text 0
+				224 cell
+					225 text 100.0%
+					226 text 0.0%
+			227 row
+				228 cell
+					229 text terminal final-audit passes (30 consecutive)
+				230 cell
+					231 text 0 / 30
+				232 cell
+					233 text 30
+				234 cell
+					235 text 0.0%
+					236 text 0.0%
+		237 button (collapsed) How these numbers are counted, Secondary Actions: Expand
+			238 text How these numbers are counted
+		239 heading By category, Value: 3
+			240 text By category
+		241 table
+			242 row
+				243 cell
+					244 text Category
+				245 cell accepted / total requirements placed in this category
+					246 text Accepted %
+				247 cell
+					248 text Remaining %
+				249 cell percentage points against the prior coherent generation g20260929T074315Z-b38fd2
+					250 text Change since prior generation
+			251 row 690 of 831 requirements; click for what remains
+				252 cell
+					253 text ▾ World & maps
+				254 cell
+					255 text 83.0%
+				256 cell
+					257 text 17.0%
+				258 cell accepted 0, scope 0
+					259 text 0.0%
+			260 row
+				261 cell
+					262 text remaining here: 125 function dispositions (every function explained A, class-explained B or dispositioned C); 10 documents with a named falsification pass; 6 documents documented (status DOCUMENTED/AUDITED, or readiness when no status)
+					263 container
+						264 button (expanded) documents with a named falsification pass - 10, Secondary Actions: Collapse
+							265 text documents with a named falsification pass
+							266 text  - 10
+						267 table
+							268 row
+								269 cell
+									270 text requirement
+								271 cell
+									272 text state
+								273 cell
+									274 text owner
+								275 cell
+									276 text next action
+								277 cell
+									278 text evidence
+							279 row
+								280 cell
+									281 text DA:03-World-Area-Field/CONTRACT-authored-trigger-points.md
+								282 cell
+									283 text no named falsification pass
+								284 cell
+									285 text unassigned
+								286 cell
+									287 text run one named falsification pass and stamp audit.last_pass_state
+								288 cell
+									289 text 03-World-Area-Field/CONTRACT-authored-trigger-points.md audit block
+							290 row
+								291 cell
+									292 text DA:03-World-Area-Field/CONTRACT-field-environment-variant.md
+								293 cell
+									294 text no named falsification pass
+								295 cell
+									296 text unassigned
+								297 cell
+									298 text run one named falsification pass and stamp audit.last_pass_state
+								299 cell
+									300 text 03-World-Area-Field/CONTRACT-field-environment-variant.md audit block
+							301 row
+								302 cell
+									303 text DA:06-Movement-And-Navigation/CONTRACT-battle-locomotion-turn-limiter.md
+								304 cell
+									305 text no named falsification pass
+								306 cell
+									307 text unassigned
+								308 cell
+									309 text run one named falsification pass and stamp audit.last_pass_state
+								310 cell
+									311 text 06-Movement-And-Navigation/CONTRACT-battle-locomotion-turn-limiter.md audit block
+							312 row
+								313 cell
+									314 text DA:06-Movement-And-Navigation/CONTRACT-corridor-query-family.md
+								315 cell
+									316 text no named falsification pass
+								317 cell
+									318 text unassigned
+								319 cell
+									320 text run one named falsification pass and stamp audit.last_pass_state
+								321 cell
+									322 text 06-Movement-And-Navigation/CONTRACT-corridor-query-family.md audit block
+							323 row
+								324 cell
+									325 text DA:06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md
+								326 cell
+									327 text no named falsification pass
+								328 cell
+									329 text unassigned
+								330 cell
+									331 text run one named falsification pass and stamp audit.last_pass_state
+								332 cell
+									333 text 06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md audit block
+							334 row
+								335 cell
+									336 text DA:06-Movement-And-Navigation/CONTRACT-navigation-search-and-follow.md
+								337 cell
+									338 text no named falsification pass
+								339 cell
+									340 text unassigned
+								341 cell
+									342 text run one named falsification pass and stamp audit.last_pass_state
+								343 cell
+									344 text 06-Movement-And-Navigation/CONTRACT-navigation-search-and-follow.md audit block
+							345 row
+								346 cell
+									347 text DA:06-Movement-And-Navigation/CONTRACT-separation-pass.md
+								348 cell
+									349 text no named falsification pass
+								350 cell
+									351 text unassigned
+								352 cell
+									353 text run one named falsification pass and stamp audit.last_pass_state
+								354 cell
+									355 text 06-Movement-And-Navigation/CONTRACT-separation-pass.md audit block
+							356 row
+								357 cell
+									358 text DA:06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md
+								359 cell
+									360 text no named falsification pass
+								361 cell
+									362 text unassigned
+								363 cell
+									364 text run one named falsification pass and stamp audit.last_pass_state
+								365 cell
+									366 text 06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md audit block
+							367 row
+								368 cell
+									369 text DA:06-Movement-And-Navigation/how-an-animation-moves-and-turns-a-character-toward-its-target.md
+								370 cell
+									371 text no named falsification pass
+								372 cell
+									373 text unassigned
+								374 cell
+									375 text run one named falsification pass and stamp audit.last_pass_state
+								376 cell
+									377 text 06-Movement-And-Navigation/how-an-animation-moves-and-turns-a-character-toward-its-target.md audit block
+							378 row
+								379 cell
+									380 text DA:06-Movement-And-Navigation/the-unit-shape-distance-primitives.md
+								381 cell
+									382 text no named falsification pass
+								383 cell
+									384 text unassigned
+								385 cell
+									386 text run one named falsification pass and stamp audit.last_pass_state
+								387 cell
+									388 text 06-Movement-And-Navigation/the-unit-shape-distance-primitives.md audit block
+					389 container
+						390 button (expanded) documents documented (status DOCUMENTED/AUDITED, or readiness when no status) - 6, Secondary Actions: Collapse
+							391 text documents documented (status DOCUMENTED/AUDITED, or readiness when no status)
+							392 text  - 6
+						393 table
+							394 row
+								395 cell
+									396 text requirement
+								397 cell
+									398 text state
+								399 cell
+									400 text owner
+								401 cell
+									402 text next action
+								403 cell
+									404 text evidence
+							405 row
+								406 cell
+									407 text DD:03-World-Area-Field/choosing-the-field-environment-variant.md
+								408 cell
+									409 text not documented
+								410 cell
+									411 text unassigned
+								412 cell
+									413 text bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)
+								414 cell
+									415 text 03-World-Area-Field/choosing-the-field-environment-variant.md front matter status/readiness
+							416 row
+								417 cell
+									418 text DD:06-Movement-And-Navigation/clamping-a-point-into-a-volume.md
+								419 cell
+									420 text not documented
+								421 cell
+									422 text unassigned
+								423 cell
+									424 text bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)
+								425 cell
+									426 text 06-Movement-And-Navigation/clamping-a-point-into-a-volume.md front matter status/readiness
+							427 row
+								428 cell
+									429 text DD:06-Movement-And-Navigation/the-unit-shape-distance-primitives.md
+								430 cell
+									431 text not documented
+								432 cell
+									433 text unassigned
+								434 cell
+									435 text bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)
+								436 cell
+									437 text 06-Movement-And-Navigation/the-unit-shape-distance-primitives.md front matter status/readiness
+							438 row
+								439 cell
+									440 text DD:06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md
+								441 cell
+									442 text not documented
+								443 cell
+									444 text unassigned
+								445 cell
+									446 text bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)
+								447 cell
+									448 text 06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md front matter status/readiness
+							449 row
+								450 cell
+									451 text DD:06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md
+								452 cell
+									453 text not documented
+								454 cell
+									455 text unassigned
+								456 cell
+									457 text bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)
+								458 cell
+									459 text 06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md front matter status/readiness
+							460 row
+								461 cell
+									462 text DD:06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md
+								463 cell
+									464 text not documented
+								465 cell
+									466 text unassigned
+								467 cell
+									468 text bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)
+								469 cell
+									470 text 06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md front matter status/readiness
+					471 button (collapsed) Secondary Actions: Expand, function dispositions (every function explained A, class-explained B or dispositioned C) - 125 functions, by state and owner/domain
+						472 text function dispositions (every function explained A, class-explained B or dispositioned C)
+						473 text  - 125 functions, by state and owner/domain
+			474 row 911 of 933 requirements; click for what remains
+				475 cell
+					476 text ▸ Combat & damage
+				477 cell
+					478 text 97.6%
+				479 cell
+					480 text 2.4%
+				481 cell accepted 0, scope 0
+					482 text 0.0%
+			483 row 1086 of 1142 requirements; click for what remains
+				484 cell
+					485 text ▸ Enemies & AI
+				486 cell
+					487 text 95.0%
+				488 cell
+					489 text 5.0%
+				490 cell accepted 0, scope 0
+					491 text 0.0%
+			492 row 376 of 388 requirements; click for what remains
+				493 cell
+					494 text ▸ Spawning, death & respawn
+				495 cell
+					496 text 96.9%
+				497 cell
+					498 text 3.1%
+				499 cell accepted 0, scope 0
+					500 text 0.0%
+			501 row 1199 of 1274 requirements; click for what remains
+				502 cell
+					503 text ▸ Player & party
+				504 cell
+					505 text 94.1%
+				506 cell
+					507 text 5.9%
+				508 cell accepted 0, scope 0
+					509 text 0.0%
+			510 row 394 of 427 requirements; click for what remains
+				511 cell
+					512 text ▸ Items, equipment & progression
+				513 cell
+					514 text 92.2%
+				515 cell
+					516 text 7.8%
+				517 cell accepted 0, scope 0
+					518 text 0.0%
+			519 row 85 of 90 requirements; click for what remains
+				520 cell
+					521 text ▸ Story, quests & events
+				522 cell
+					523 text 94.4%
+				524 cell
+					525 text 5.6%
+				526 cell accepted 0, scope 0
+					527 text 0.0%
+			528 row 1581 of 1976 requirements; click for what remains
+				529 cell
+					530 text ▸ Menus & controls
+				531 cell
+					532 text 80.0%
+				533 cell
+					534 text 20.0%
+				535 cell accepted 0, scope 0
+					536 text 0.0%
+			537 row 2342 of 4275 requirements; click for what remains
+				538 cell
+					539 text ▸ Animation, graphics & audio
+				540 cell
+					541 text 54.7%
+				542 cell
+					543 text 45.3%
+				544 cell accepted 0, scope 0
+					545 text 0.0%
+			546 row 880 of 921 requirements; click for what remains
+				547 cell
+					548 text ▸ Save/load & persistence
+				549 cell
+					550 text 95.5%
+				551 cell
+					552 text 4.5%
+				553 cell accepted 0, scope 0
+					554 text 0.0%
+			555 row 1445 of 3376 requirements; click for what remains
+				556 cell
+					557 text ▸ Scripts & game data/VBF
+				558 cell
+					559 text 42.8%
+				560 cell
+					561 text 57.2%
+				562 cell accepted 0, scope 0
+					563 text 0.0%
+			564 row 17235 of 18865 requirements; click for what remains
+				565 cell
+					566 text ▸ Engine & supporting systems
+				567 cell
+					568 text 91.3%
+				569 cell
+					570 text 8.7%
+				571 cell accepted 0, scope 0
+					572 text 0.0%
+			573 row 32 of 82 requirements; click for what remains
+				574 cell
+					575 text ▸ Whole database (final certification, cross-cutting)
+				576 cell
+					577 text 39.0%
+				578 cell
+					579 text 61.0%
+				580 cell accepted 0, scope 0
+					581 text 0.0%
+			582 row 530 of 6640 requirements; click for what remains
+				583 cell
+					584 text ▸ Code not yet tied to a game system
+				585 cell
+					586 text 7.9%
+				587 cell
+					588 text 92.1%
+				589 cell accepted 0, scope 0
+					590 text 0.0%
+
+The focused UI element is 0 AXWebArea FF12 database dashboard, URL: 127.0.0.1:8765/

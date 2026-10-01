@@ -1,0 +1,44 @@
+{
+ "cases": {
+  "no_overlapping_pickup_no_draw_stream_unchanged": true,
+  "no_stats_block_no_draw_stream_unchanged": true,
+  "stats5_one_no_draw_stream_unchanged": true,
+  "stats5_zero_the_tick_draws_once_from_00311146": true
+ },
+ "extra_allowed": [
+  "002FD8D0",
+  "002FD150"
+ ],
+ "no_pickup": {
+  "draw_call_sites": [],
+  "loot_after": "1234ABCD",
+  "ok": true,
+  "steps": 0,
+  "stopped_at": []
+ },
+ "no_stats": {
+  "draw_call_sites": [],
+  "loot_after": "1234ABCD",
+  "ok": true,
+  "steps": 0,
+  "stopped_at": []
+ },
+ "ok": true,
+ "seed": "1234ABCD",
+ "stats5_0": {
+  "draw_call_sites": [
+   "00311146"
+  ],
+  "loot_after": "97852BD0",
+  "ok": true,
+  "steps": 3,
+  "stopped_at": []
+ },
+ "stats5_1": {
+  "draw_call_sites": [],
+  "loot_after": "1234ABCD",
+  "ok": true,
+  "steps": 0,
+  "stopped_at": []
+ }
+}

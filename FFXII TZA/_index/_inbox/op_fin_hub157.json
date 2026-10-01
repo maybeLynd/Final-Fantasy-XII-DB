@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-157",
+ "note": "batch 157 (EC7-191): 22 bodies decoded+anchored across 15 bearing hosts - multi-caller audio vcall forwarder 0020AFE0 + linker pair 004211B0/003E5CD0 shared by 0041EDE0/0041F010; Capture-4K TGA writer 001876E0 + child-record drain 0019EF90; glyph-quad builder 00243030; vfx ensure-alloc 0039CFF0; console Disabled/NULL display materialiser 001C0330; gi-command run-collapse trio 0062CB40/0062CA70/0062C9A0; nth-flagged-row finder 00502F30; settings vec3-compose twins 003F6200/003F6130; fade-row field resolver 003E3CA0; locked freelist pop 002FCBF0; 8.8 vec4 lerp 00275320; audio lexer backslash arm 00206890; atlas nested-table lookup 003BFF20; gil-commit 002A1DC0 (0x5F5E0FF cap); ramp backpatch 00372F60; position-history ring push 003C5060. Gates: anchors 4877 0 MID; address 0 UNSUPPORTED in new content; hash clean (26 standing); crossref 2845/401; guard ADDS NOTHING (cleared 2 standing console-contract findings via a real crossing section).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub157_dumps.txt",
+  "Database/Tools/work/hub157_callers.txt"
+ ]
+}

@@ -1,0 +1,51 @@
+{
+  "status": "PASS_ACTUAL_TITLE_RETENTION_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "30eb014248ad9b77f57177bdb87e84d4ea005803f80c164b61498e5b22b469b4",
+  "positive_reused": {
+    "path": "title-root-retirement-result-01.json",
+    "sha256": "78a7fb7facd4eabb7165f5cb8af335af96565338986ed97501e78d57ccb0ac54"
+  },
+  "refusals": [
+    {
+      "case": "failed-producer",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-root-retirement.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-controls-01\\failed-producer\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-controls-01\\failed-producer"
+      ],
+      "exit": 1,
+      "expected_error": "required root capture invocation failed or stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-root-retention",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-root-retirement.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-controls-01\\changed-root-retention\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-controls-01\\changed-root-retention"
+      ],
+      "exit": 1,
+      "expected_error": "required original root identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-owner-body",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-title-root-retirement.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-controls-01\\missing-owner-body\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-controls-01\\missing-owner-body"
+      ],
+      "exit": 1,
+      "expected_error": "required retained source identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "5f0b4c8bfb5a05b0557ffea073a533095903ccd4e0cb818d3052642749d38886",
+  "limits": "Producer invocation/identity controls, not independent semantic acceptance or original-code execution"
+}

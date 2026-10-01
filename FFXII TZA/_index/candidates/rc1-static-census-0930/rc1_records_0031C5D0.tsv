@@ -1,0 +1,18 @@
+site	function	class	last_class_store	rcx_definition
+00274655	00273E30	DYNAMIC	lea rcx, [rsp + 0x50]	lea rcx, [rsp + 0x50]
+0027470E	00273E30	CONST 3	mov dword ptr [rsp + 0x50], 3	lea rcx, [rsp + 0x50]
+0027D68E	0027D5C0	CONST 2	mov dword ptr [rsp + 0x20], 2	lea rcx, [rsp + 0x20]
+00282807	002826F0	CONST 6	mov dword ptr [rsp + 0x30], 6	lea rcx, [rsp + 0x30]
+00282B47	00282A40	CONST 6	mov dword ptr [rsp + 0x30], 6	lea rcx, [rsp + 0x30]
+002BFD9A	002BFD20	CONST 2	mov dword ptr [rsp + 0x40], 2	lea rcx, [rsp + 0x40]
+00309E89	00309E70	CONST 1	mov dword ptr [rsp + 0x20], 1	lea rcx, [rsp + 0x20]
+00309E93	00309E70	CONST 1	mov dword ptr [rsp + 0x20], 1	lea rcx, [rsp + 0x20]
+0030A109	0030A0F0	CONST 1	mov dword ptr [rsp + 0x20], 1	lea rcx, [rsp + 0x20]
+0030AAF8	0030AAC0	DYNAMIC	mov dword ptr [rsp + 0x20], eax	lea rcx, [rsp + 0x20]
+0030AECD	0030AEA0	CONST 14	mov dword ptr [rsp + 0x20], 0xe	lea rcx, [rsp + 0x20]
+00328A35	00328990	CONST 32	mov dword ptr [rsp + 0x20], 0x20	lea rcx, [rsp + 0x20]
+0035D34C	0035D330	DYNAMIC	mov rcx, rbx	mov rcx, rbx
+0035D39D	0035D380	DYNAMIC	mov rcx, rbx	mov rcx, rbx
+0035E2C6	0035E070	DYNAMIC	lea rcx, [rip + 0x1f6c26d]	lea rcx, [rip + 0x1f6c26d]
+0053679B	00536410	CONST 1	mov dword ptr [rsp + 0x60], 1	lea rcx, [rsp + 0x60]
+005367A5	00536410	CONST 1	mov dword ptr [rsp + 0x60], 1	lea rcx, [rsp + 0x60]

@@ -1,0 +1,26 @@
+PASS  S1 image 73461D08..21F8
+PASS  A1 00435050: colour = 00432300([rec+0x28], param+0x40) -> base+32*c16+16*c14; UV copy 8*c18 right after; Q after that
+PASS  A2 00434CD0: bit4 set -> kernel(cur +0x28); clear -> 00433830(cur, next, t = 1 - w) then kernel in place
+PASS  A3 004355D0 / 00437130 / 00438860 address the prepared colour, a per-pass colour copy, UV, UV' and Q the same way
+PASS  A4 per pass: flat param+0x40 x pass colour, or prepared x pass colour (skipped at 0x80808080), then 00432CC0 alpha
+PASS  A5 mode 5: 0039E820 / 0039EC30 (02AEE900 = param+0x134+p != 0) or 0039E6B0 / 0039EA70 get 3 / 4 consecutive corner colours; 00437130 the same
+PASS  A6 mode 1 / other: ST = 0039B840/0039B860(corner UV, Q, pass offset); 0039F4B0/F9F0/F2B0/F780(ST, Q, texture = param+16*(prim byte+11) in mode 1, param+0x70+16p otherwise, colours); 00437130 the same
+PASS  A7 00438860: unclipped corners use the same builders; clipped polygons carry colour + UV through the clipper
+PASS  C1 census: c18 = c1A = 3*tri + 4*quad in 2252 / 2252 records - one +0x28 / +0x2C entry per primitive corner
+PASS  C2 census: c18 >= 1 everywhere, so the kernels' count-0 write (E2) is unreachable from the two consumers
+PASS  E1 00432300 native == min(255, (e*c) >> 7) per byte on 2912 bytes (no stubs); the same outputs reject e*c >> 8 (2850 misses) and e*c / 255 (2850 misses)
+PASS  E2 0x80808080 is the identity; only dword [rdx] is read; n+1 entries read (prefetch past the end); count 0 writes one
+PASS  E3 00433830 native == round-half-up lerp trunc(a*t + 0.5 + b*(1-t)) on 2396 bytes (no stubs; the unbiased trunc misses 842); with A2's operands that is cur*(1-w) + next*w
+PASS  E4 00432CC0 native: RGB unchanged, alpha = trunc(alpha * L[normal index].w) mod 256 (1412 bytes)
+PASS  E5 0039B840/0039B860 native: S,T = (u + ou) * Q, (v + ov) * Q per corner - the GS STQ form
+PASS  E6 12 builders native (stubs disclosed): colour lane c = float(byte c) unscaled, 16 B per vertex; textured: U,V = S/Q, T/Q
+PASS  E7 chain 0039B840 -> 0039F4B0: emitted UV = +0x2C pair + pass offset (max error 2.38e-07)
+PASS  E8 00431D30 / 003AFDD0 native: clip vertices carry colour as float(byte); packed back by truncation, low byte (no clamp)
+PASS  Q1 00432CC0 entry 0 uses table[list[0]] unreduced (alpha 200*0.25 = 50; reduced would give 100); later entries reduce mod m
+PASS  X1 00434CD0: bits 4/5/6 SET select the copy / no blend; the blend helpers run when the bit is clear (page inverted)
+PASS  X2 00432300 is the modulate kernel: >>7, clamp, one dword stored per entry at [r8] (not pure staging)
+PASS  X3 0043D8F0 / 0043E440 / 0043DB90 (and 0043DF80) are n-gon primitive builders for 00438860's clipped polygons
+PASS  X4 the +0x40 colour is param[+0x40] = 0026EE00(instance +0x240, ...), param = [01FD4A78] + 0x800 (a precision, not a code conflict)
+RESULT the +0x28 entries are per-corner RGBA8 vertex colours (0x80 = 1.0): 00432300 modulates each byte by the draw parameter block's +0x40 colour, min(255, e*c >> 7), after 00433830's rounded lerp when two meshes blend; per pass the paths modulate again by the pass colour (+ optional alpha x per-normal w) and every builder emits the four bytes as float lanes 0..255. The +0x2C pairs are per-corner texture coordinates: copied or lerped as floats, offset per pass, sent as GS STQ (S = (u+ou)*Q) and turned back into U = S/Q by the textured builders
+CHECKS 23
+FAILS 0

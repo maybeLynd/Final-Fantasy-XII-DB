@@ -1,0 +1,28 @@
+['0052ADF9 call 0x2f2d60', '0052AE3D call 0x3d8e50']
+['0052ADBD call 0x2f2530', '0052ADD6 call 0x52b5e0', '0052ADF9 call 0x2f2d60']
+0052ADF9 call 0x2f2d60
+0052AE07 ret 
+0052AE3D call 0x3d8e50
+0052AE66 call 0x3d8e50
+0052AE93 call 0x3d8e50
+0052AEA5 call 0x3d8e50
+0052AEB7 call 0x3d8e50
+0052AEC9 call 0x3d8e50
+0052AEDB call 0x3d8e50
+0052AEED call 0x3d8e50
+0052AFA0 call 0x3a6e60
+0052AFB6 jmp 0x52afc1
+0052AFD3 call 0x36a190
+0052AFE4 call 0x36c140
+0052AFF0 call 0x2f31c0
+0052B006 ret 
+0052B019 call 0x861eba
+0052B02F call 0x54a9c0
+0052B037 call 0x52b5e0
+0052B050 ret 
+   0051ED10 <- 003EAB73  rcx,rdx,r8,r9 = ['0x9', '0x20', '?', '?']
+   0051ED10 <- 003EAC53  rcx,rdx,r8,r9 = ['0x9', '0x1f', '?', '?']
+   0051ED10 <- 00473D33  rcx,rdx,r8,r9 = ['0x9', '0x21', '?', '?']
+0052BBD0 <- ['0052BB45(call) in 0052B5E0']
+0052B5E0 <- ['0052ADD6(call) in 0052ADB0', '0052B037(call) in 0052ADF0']
+002F2D60 <- ['002F3BFB(call) in 002F3BC0', '003D9058(call) in 003D9040', '00442529(call) in 00442520', '004427A9(call) in 004427A0', '00445319(call) in 00445310', '00446F69(call) in 00446F60', '00447E19(call) in 00447E10', '00448DF6(call) in 00448DE0']

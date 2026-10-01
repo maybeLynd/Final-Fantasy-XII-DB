@@ -1,0 +1,2 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+Retained two original call-free rotation leaves [('0x16d780', '0x16d7dc', 'a5d522d7a583a6012623d13a2d368b17bf19dcbec7dd60473fe16a89b3dd3928'), ('0x16d7e0', '0x16d838', '585b264dab378a6daaf29a6fd9114209dc91c8ca7023529aca04644b5e7ba9fd')]

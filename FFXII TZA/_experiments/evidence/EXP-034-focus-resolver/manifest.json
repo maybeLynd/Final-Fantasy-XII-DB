@@ -1,0 +1,44 @@
+{
+  "files": {
+    "00263E30.bin": {
+      "bytes": 5,
+      "sha256": "efbd103662ccda4c0f468ab461257f1b371879ef59acc4189da3ceb1394859cc"
+    },
+    "00263FF0.bin": {
+      "bytes": 21,
+      "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d"
+    },
+    "0031B7E0.bin": {
+      "bytes": 42,
+      "sha256": "42d9fb03d4e61a5eb54f3937e87c9068decc289b61409fdb1e55f3b7a5533585"
+    },
+    "003588B0.bin": {
+      "bytes": 143,
+      "sha256": "ee587d783b5790f447385952fff3663b09d20653e57327ed10dd1d06ad72b644"
+    },
+    "check.py": {
+      "bytes": 4922,
+      "sha256": "9e6ed9b0121dce9bd71c3ae30d19984302fc6d711dad33fd37994c6e44836b56"
+    },
+    "disassembly.txt": {
+      "bytes": 3380,
+      "sha256": "5387cc142e5be3fe9a61a3ad91d500f081d0d572893214ee0b51f8ce89ecafeb"
+    },
+    "reader_resolver.py": {
+      "bytes": 1756,
+      "sha256": "eba159b9d985880f02c9716fe6959b60b3cca02d045012894174a4264cfb1002"
+    },
+    "result.json": {
+      "bytes": 23510,
+      "sha256": "7d1212064dc25023443161d07732a79573083444943da5b557bbb9c9f6540e93"
+    },
+    "test_reader.py": {
+      "bytes": 1735,
+      "sha256": "05360cef2b429f8c6cff49bc3f35b9fb058bd45aab1a8e588f7b5cbc838be5b3"
+    },
+    "unit-tests.txt": {
+      "bytes": 106,
+      "sha256": "383a12fba9b5b327054a24ce7e5739569c4f0b6621facd981f2d6a4271063b3c"
+    }
+  }
+}

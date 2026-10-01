@@ -1,0 +1,36 @@
+R1 raw rip-relative references into 008FCE00..008FD2D0: 3
+   001D150F lea    r14, [rip + 0x72b8ea]                    -> 008FCE00  in 001D0390
+   001D537D lea    r14, [rip + 0x727a7c]                    -> 008FCE00  in 001D5260
+   001D542A lea    r14, [rip + 0x7279cf]                    -> 008FCE00  in 001D5260
+PASS R1 control: raw rip sweep re-finds 001D52BE -> 008FF960 '<Information Page>' - 1 hits
+R2 image-base-relative int32 in [7DCE00, 7DD2D0): 1
+   001CD186 mov    edx, dword ptr [rsi + rcx*4 + 0x7dce00]      in 001CD0E0 (listed)
+PASS R2 control: the RVA sweep re-finds the 001CD0E0 jump-table base use at 001CD1CB (disp 0xAFCEC) - 1 hits
+R3 qword pointers into the block: 0
+reader functions: 001CD0E0 001D0390 001D5260
+PASS R: the block has readers (the page's 'no reference reaches the block' is refuted)
+   001D53A9 imul rcx, rax, 0x16
+   001D53B0 mov esi, dword ptr [r14 + rcx*4]
+   001D540C cmp rdi, 0x16
+   001D536D mov dword ptr [rbx + 0xa88], 0xe
+PASS G1 row stride 0x16 u32 (imul ..,0x16) and column bound 0x16 in 001D5260
+PASS G2 the page count the reader hard-codes is 0xE (mov dword ptr [rbx + 0xa88], 0xe)
+PASS G3 block length = 14 rows x 0x58 bytes exactly - 14 rows
+PASS G4 the '<Page %%d/%%d>' header string sits beside the block's reader - '<Page %d/%d>'
+   page  1: 2 18 20 19 21 22 23 4 5 51 198 202 203 204 12 13 9 10 183 188 293 294
+   page  2: 2 14 182 185 184 197 199 200 201 224 261 15 16 205 206 207 217 220 187 186 292 0
+   page  3: 2 223 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 209 210
+   page  4: 2 17 243 244 245 246 259 247 248 249 250 251 252 253 254 255 256 257 258 209 210 0
+   page  5: 2 100 101 103 104 105 106 60 11 61 152 190 191 192 193 194 195 176 177 178 179 209
+   page  6: 2 26 27 28 29 30 31 32 62 34 35 36 37 38 39 175 40 24 25 209 210 0
+   page  7: 2 42 43 44 46 47 48 279 53 54 55 56 57 58 59 90 91 94 107 209 210 0
+   page  8: 2 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 209 210 0
+   page  9: 2 136 137 138 139 140 141 142 143 144 153 154 155 167 168 169 170 171 172 173 209 210
+   page 10: 2 174 95 96 97 98 99 108 109 110 111 112 113 114 115 116 117 118 119 209 210 0
+   page 11: 2 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 165 166 209 210 0
+   page 12: 2 63 64 65 66 67 68 69 70 71 156 157 158 159 160 161 162 163 164 209 210 0
+   page 13: 267 268 288 271 269 270 147 148 149 150 151 92 93 145 146 286 180 181 289 209 210 287
+   page 14: 2 266 264 265 263 272 273 284 283 274 134 275 276 277 278 279 280 281 166 285 282 291
+PASS D1 every non-zero entry is an item id inside the formatter's jump-table range 1..0x126 - max 294
+PASS D2 001CD0E0 switches on id-1 <= 0x125 (cmp eax, 0x125) and reads the row entry [rsi + rcx*4 + 0x7dce00]
+FAILS 0

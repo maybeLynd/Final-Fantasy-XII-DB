@@ -1,0 +1,9 @@
+# NativeAdapter.RefFlagSiblingAlignedFreeReleaseThis - EC-7 family C
+# # if this->+8 ref flag bit31 is set and [this+0x10] non-null,
+# # aligned-free it via 00584730 and clear both fields.
+address	targets
+001B7070	00584730
+005DDFC0	00584730
+005DE080	00584730
+00662F40	00584730
+00793710	00584730

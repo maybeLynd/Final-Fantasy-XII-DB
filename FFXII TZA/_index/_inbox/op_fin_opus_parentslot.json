@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-PARENT-SLOT-CENSUS-BY-DECLARED-OFFSET",
+ "agent": "OPUS",
+ "note": "Committed dc8a7f6f0. 295 slot loads, 104 bodies, 52 distinct parent-relative displacements; 21 land inside a declared child and every one is a row that child already names, nothing in any gap, so 5,447 bytes of direct-child debt carry a controlled negative on this route (44 rows). _5380's window was never entered and carries the weaker wording, its control being global rather than local. The lea-keyed predecessor is withdrawn as the wrong shape - it discarded the one-instruction `[parent + disp]` access that is how consumers actually reach these children, and its own 266 parent-relative accesses were the refutation. S-02 debt recomputed under the verdict cell's own predicate: 20 types in the closure, 5,447 direct / 12,458 closure / 12,600 with root, against the cell's 2,701 over ten types; HELD, not written, because L2-VERDICTS.md is peer-dirty. NOT CLAIMED: exhaustiveness. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

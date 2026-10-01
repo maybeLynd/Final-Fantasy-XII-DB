@@ -1,0 +1,23 @@
+[
+  {
+    "argument": "--fault-accept-shifted-operand",
+    "returncode": 1,
+    "expected": "Shifted operand falsely accepted",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "7a9265cc729ca1b9d606de0c2025f153f03e14206e863111f4477c6b74b8d485"
+  },
+  {
+    "argument": "--fault-ignore-name-directory",
+    "returncode": 1,
+    "expected": "Changed name directory falsely accepted",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "b4035c203c8a135851bab55bc71df1e0f970e3cf7a81e342f696a4e992c7721f"
+  },
+  {
+    "argument": "--fault-ignore-count-domain",
+    "returncode": 1,
+    "expected": "Count-domain defect accepted",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "3add2cdd2200084237f641d50599efad001266f22598a425539132fb34e7ffc2"
+  }
+]

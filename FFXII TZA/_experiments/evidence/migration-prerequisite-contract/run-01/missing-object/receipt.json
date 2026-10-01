@@ -1,0 +1,29 @@
+{
+  "name": "missing-object",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-object\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\missing-object\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "tagged",
+    "tags": [
+      "A",
+      "B"
+    ],
+    "exits": [
+      0
+    ]
+  },
+  "upstream_sha256": "9f98c5399bfdea478abe8c69f1c52c5135553a67199a1ab7df43b3313bd649b9",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py does not define ['obj']\n",
+  "stderr": "",
+  "timed_out": false
+}

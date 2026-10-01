@@ -1,0 +1,23 @@
+{
+  "matches_preserved_observation": true,
+  "samples": 4,
+  "old_corrupted_record_controls": [
+    {
+      "case": "reward-changed-after-old-stability-flag",
+      "rejected": true
+    },
+    {
+      "case": "wrong-registry-address",
+      "rejected": true
+    },
+    {
+      "case": "empty-field-population",
+      "rejected": true
+    },
+    {
+      "case": "restoration-mismatch",
+      "rejected": true
+    }
+  ],
+  "scope": "Replay only; not a fresh observation or independent acceptance of the original live session."
+}

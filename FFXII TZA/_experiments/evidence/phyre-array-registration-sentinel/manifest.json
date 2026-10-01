@@ -1,0 +1,66 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "extract.py": {
+    "bytes": 2724,
+    "sha256": "5af96c8b66a6045cfb45b950da88b25049f3b615c39da6afb8519eb5318ea9c5"
+  },
+  "header.bin": {
+    "bytes": 84,
+    "sha256": "13a8adcb28c990f01913eeba0efa7707b1b153e7306bb92605804cd1c9ba0bf3"
+  },
+  "listheaders.bin": {
+    "bytes": 3456,
+    "sha256": "578931127affd75ab0ca795c8d59a09df2d242083a463c942bee6394534f2ece"
+  },
+  "metadata.json": {
+    "bytes": 14711,
+    "sha256": "5cfd6ccbdb1027959653ffa29c457214207b6559781fa01522412b4058feadb9"
+  },
+  "namespace.bin": {
+    "bytes": 21593,
+    "sha256": "2b2d6f9d6ebc38107a99eac2a441ee023137c89f16c4ef69b9f05e79ddc05d8f"
+  },
+  "observation.json": {
+    "bytes": 2881,
+    "sha256": "29e2ce0ebdd4bbd46eaf52e8ef982d746e0189e9e3cf792fcc82a500668a0039"
+  },
+  "PLAN.md": {
+    "bytes": 2839,
+    "sha256": "3dcb6b2cf54050f20c96aa37f053e4ca68083b92d6ab38f7001cde717fe7ddb1"
+  },
+  "README.md": {
+    "bytes": 5620,
+    "sha256": "e37ce159dc540bef02c90a55baa55c9d683d00a313879830266e15f995eec2a0"
+  },
+  "reference-disassembly.txt": {
+    "bytes": 5539,
+    "sha256": "1bdec3b24d31f194d361666a3489bbce51e4de4be2d9e7554162719c0000c33c"
+  },
+  "reference.json": {
+    "bytes": 25390,
+    "sha256": "1656dda6771ea7c6e665a5e8383406b880ba2b5a0ceaf1c3392fe178c05d77d6"
+  },
+  "reference.py": {
+    "bytes": 2874,
+    "sha256": "3ce49e23af955611c973d9d5b76f4e4356d7431d2ecdfd65db97b466668a3757"
+  },
+  "review.py": {
+    "bytes": 10889,
+    "sha256": "ee8cd21157001796a2d5a40871cc87428ec539288d6016b0d14ea573e57a1877"
+  },
+  "selection-control.json": {
+    "bytes": 285,
+    "sha256": "d79736be8dc7e1059d79db6865148608780a4498bb52e3eaf3ab346c4a8e8920"
+  },
+  "source.json": {
+    "bytes": 3175,
+    "sha256": "d60fde44bb1488d475499b6965b32cced3afe54cf433868659d5b1ec4055453a"
+  },
+  "validation.json": {
+    "bytes": 872,
+    "sha256": "1a3c92513783b73d2974952014c293888e99a738029b703d305d290e20fe59ae"
+  }
+}

@@ -1,0 +1,44 @@
+file	line	site	kind_before	kind_after	class	instruction
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	2	00306ED7	w	rw	w->rw	or qword ptr [r8], rax
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	3	00306EE2	w	rw	w->rw	and qword ptr [r8], rax
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	6	00306EEA	w	rw	w->rw	and qword ptr [r8 + 8], rax
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	7	00306F78	w	rw	w->rw	or qword ptr [rdx + 8], rax
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	15	003070BF	w		MISMATCH	mov qword ptr [rax + 0x20], rcx
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	16	003070C7	w		MISMATCH	mov qword ptr [rax + 0x28], rcx
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	18	003070C3	w		MISMATCH	mov qword ptr [rax + 0x38], rcx
+FFXII TZA/05-Spawn-Encounter-Lifecycle/spawn-group-ledger-accesses.tsv	19	003070CB	w		MISMATCH	mov qword ptr [rax + 0x40], rcx
+FFXII TZA/16-UI/widget-accesses.tsv	2	0024194E	w	rw	w->rw	and dword ptr [rcx + 0x40], 0xfffffff7
+FFXII TZA/16-UI/widget-accesses.tsv	3	0024195B	w	rw	w->rw	or dword ptr [rcx + 0x40], 0x40
+FFXII TZA/16-UI/widget-accesses.tsv	6	002445D8	w	rw	w->rw	or dword ptr [rcx + 0x40], 0x23
+FFXII TZA/16-UI/widget-accesses.tsv	10	00244F0A	w	rw	w->rw	or dword ptr [rcx + 0x40], 0x40
+FFXII TZA/16-UI/widget-accesses.tsv	49	00246670	w	rw	w->rw	and dword ptr [rdi + 0x44], 0xfff8ffff
+FFXII TZA/16-UI/widget-accesses.tsv	56	002466D1	w	rw	w->rw	and dword ptr [rdi + 0x40], 0xffffbfff
+FFXII TZA/16-UI/widget-accesses.tsv	57	002466D8	w	rw	w->rw	and dword ptr [rdi + 0x7c], 0xfffffff0
+FFXII TZA/16-UI/widget-accesses.tsv	59	002466F2	w	rw	w->rw	or dword ptr [rdi + 0x40], eax
+FFXII TZA/16-UI/widget-accesses.tsv	72	00246943	w	rw	w->rw	or byte ptr [rbx + 0x80], 1
+FFXII TZA/16-UI/widget-accesses.tsv	73	0024694E	w	rw	w->rw	and dword ptr [rbx + 0x80], 0xffffc3ff
+FFXII TZA/16-UI/widget-accesses.tsv	77	0024697A	w	rw	w->rw	or dword ptr [rbx + 0x80], r9d
+FFXII TZA/16-UI/widget-accesses.tsv	103	00246D8C	w	rw	w->rw	and byte ptr [rbx + 0x80], 0xfe
+FFXII TZA/16-UI/widget-accesses.tsv	119	00246EA0	w	rw	w->rw	and byte ptr [rbx + 0x80], 0xfd
+FFXII TZA/16-UI/widget-accesses.tsv	135	00246F7E	w	rw	w->rw	and byte ptr [rbx + 0x80], 0xfb
+FFXII TZA/16-UI/widget-accesses.tsv	144	00247004	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xfffffdff
+FFXII TZA/16-UI/widget-accesses.tsv	147	0024703B	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xffff7fff
+FFXII TZA/16-UI/widget-accesses.tsv	148	00247047	w	rw	w->rw	and dword ptr [rbx + 0x7c], 0xffffffcf
+FFXII TZA/16-UI/widget-accesses.tsv	150	0024706D	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xfffeffff
+FFXII TZA/16-UI/widget-accesses.tsv	151	00247079	w	rw	w->rw	and dword ptr [rbx + 0x7c], 0xffffffcf
+FFXII TZA/16-UI/widget-accesses.tsv	157	0024793E	w	rw	w->rw	or dword ptr [rax + 0x40], 0x2000
+FFXII TZA/16-UI/widget-accesses.tsv	160	00248059	w	rw	w->rw	inc dword ptr [r14 + 0xb4]
+FFXII TZA/16-UI/widget-accesses.tsv	166	002480C8	w	rw	w->rw	inc dword ptr [rdi + 0xb4]
+FFXII TZA/16-UI/widget-accesses.tsv	169	00248101	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xfffdffff
+FFXII TZA/16-UI/widget-accesses.tsv	170	00248110	w	rw	w->rw	or dword ptr [rbx + 0x40], eax
+FFXII TZA/16-UI/widget-accesses.tsv	174	0024813A	w	rw	w->rw	inc dword ptr [rcx + 0xb4]
+FFXII TZA/16-UI/widget-accesses.tsv	186	00248331	w	rw	w->rw	dec dword ptr [rax + 0x30]
+FFXII TZA/16-UI/widget-accesses.tsv	195	002483B4	w	rw	w->rw	and dword ptr [rdi + 0x40], 0xfffffbff
+FFXII TZA/16-UI/widget-accesses.tsv	196	002483BE	w	rw	w->rw	and dword ptr [rdi + 0x7c], 0xfffffff0
+FFXII TZA/16-UI/widget-accesses.tsv	206	0027AD0D	w	rw	w->rw	and dword ptr [rdi + 0x40], 0xffffff7f
+FFXII TZA/16-UI/widget-accesses.tsv	238	00299F14	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xffffff7f
+FFXII TZA/16-UI/widget-accesses.tsv	280	002BF7D8	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xffffff7f
+FFXII TZA/16-UI/widget-accesses.tsv	284	002BF8A0	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xffffff7f
+FFXII TZA/16-UI/widget-accesses.tsv	286	002BFA5A	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xffffff7f
+FFXII TZA/16-UI/widget-accesses.tsv	291	002BFAFD	w	rw	w->rw	and dword ptr [rbx + 0x40], 0xffffff7f
+FFXII TZA/16-UI/widget-accesses.tsv	333	003F83E7	w	rw	w->rw	and dword ptr [rdi + 0x40], 0xffffff7f

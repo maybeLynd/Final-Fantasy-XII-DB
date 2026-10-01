@@ -1,0 +1,22 @@
+PASS  B1 003BE68A mov r9, qword ptr [rax + 0xe0]
+PASS  B1 003BE6A1 movzx ecx, word ptr [r9 + rax*2 + 0xa]
+PASS  B1 003BE6AE movzx eax, byte ptr [rdx]
+PASS  B1 003BE6B1 movzx ecx, byte ptr [rcx + 1]
+PASS  B1 003BE6B7 lea eax, [rcx + rcx*2]
+PASS  B1 003BE6BA lea ecx, [rdx + 4]
+PASS  B1 003BE6BD lea ecx, [rcx + rax*8]
+PASS  B1 003BE6C0 movzx eax, byte ptr [rdx + 2]
+PASS  B1 003BE6CA lea rcx, [rax + rax*4]
+PASS  B1 003BE6D0 lea rdx, [rdx + rcx*4]
+PASS  B1 003BE6DE movzx ecx, word ptr [rdx + 2]
+PASS  B1 003BE6EB movzx ecx, word ptr [rdx + 4]
+PASS  B1 003BE6F3 movzx eax, word ptr [rdx]
+PASS  B1 no read of block +6 in 003BE680
+PASS  B2 callers 002B7B80@002B7FFA 002BAF80@002BB45E 002BAF80@002BBA8D
+PASS  B2 002B8052 mov eax, 0xc80
+PASS  B2 002BB4BA mov eax, 0xc80
+PASS  B2 002BBAEA mov eax, 0xc80
+PASS  B2 002B8059 div ecx
+PASS  B3 x5 multiplies in map-object functions: 003BD1B0 003BE680 003BFF20 003C1070
+PASS  B3 003BD2B1 lea rsi, [r15 + rcx*8]
+FAILS 0

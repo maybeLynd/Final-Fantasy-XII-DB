@@ -1,0 +1,6 @@
+battle_pack.bin sha256 d1bb89aac759cfcd4eb181715d9e88afb78d62a9a3fcffa6242f365f182cbc98; listhelp_ability.bin sha256 d2fab9a36c4e25985c455996981bc6751a7c533ce602565a45bde161dad898af
+augment rows: 129; listhelp records: 64
+row 12: +0 descriptionId 13012  +2 nameWord 0x500C  +4 parameter 0  +6 0xFF  -> string 130012: 'Convert all license points earned to gil.'   raw 2248474f3e4b4d043a45450445423c3e474c3e0449484247
+row 27: +0 descriptionId 13027  +2 nameWord 0x501B  +4 parameter 0  +6 0xFF  -> string 130027: 'Doubles EXP earned.'   raw 23484e3b453e4c0424372f043e3a4b473e3da8
+row 28: +0 descriptionId 13028  +2 nameWord 0x501C  +4 parameter 0  +6 0xFF  -> string 130028: 'Doubles license points earned.'   raw 23484e3b453e4c0445423c3e474c3e04494842474d4c043e
+row 29: +0 descriptionId 13029  +2 nameWord 0x501D  +4 parameter 0  +6 0xFF  -> string 130029: ''   raw 

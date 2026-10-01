@@ -1,0 +1,39 @@
+== 00583C00 in .pdata [00583C00, 00583CA6)
+00583C00  sub       rsp, 0x28   <==
+00583C04  cmp       qword ptr [rip + 0x2725dac], 0   ; -> 02CA99B8 (virtual tail)
+00583C0C  je        0x583ca1
+00583C12  call      0x2ef640
+00583C17  mov       rcx, qword ptr [rip + 0x2725d9a]   ; -> 02CA99B8 (virtual tail)
+00583C1E  mov       edx, 0x1c4
+00583C23  mov       rcx, qword ptr [rcx + 0x588]
+00583C2A  nop       word ptr [rax + rax]
+00583C30  lea       rax, [rax + 0x80]
+00583C37  movups    xmm0, xmmword ptr [rcx]
+00583C3A  lea       rcx, [rcx + 0x80]
+00583C41  movups    xmmword ptr [rax - 0x80], xmm0
+00583C45  movups    xmm1, xmmword ptr [rcx - 0x70]
+00583C49  movups    xmmword ptr [rax - 0x70], xmm1
+00583C4D  movups    xmm0, xmmword ptr [rcx - 0x60]
+00583C51  movups    xmmword ptr [rax - 0x60], xmm0
+00583C55  movups    xmm1, xmmword ptr [rcx - 0x50]
+00583C59  movups    xmmword ptr [rax - 0x50], xmm1
+00583C5D  movups    xmm0, xmmword ptr [rcx - 0x40]
+00583C61  movups    xmmword ptr [rax - 0x40], xmm0
+00583C65  movups    xmm1, xmmword ptr [rcx - 0x30]
+00583C69  movups    xmmword ptr [rax - 0x30], xmm1
+00583C6D  movups    xmm0, xmmword ptr [rcx - 0x20]
+00583C71  movups    xmmword ptr [rax - 0x20], xmm0
+00583C75  movups    xmm1, xmmword ptr [rcx - 0x10]
+00583C79  movups    xmmword ptr [rax - 0x10], xmm1
+00583C7D  sub       rdx, 1
+00583C81  jne       0x583c30
+00583C83  movups    xmm0, xmmword ptr [rcx]
+00583C86  movups    xmmword ptr [rax], xmm0
+00583C89  movups    xmm1, xmmword ptr [rcx + 0x10]
+00583C8D  movups    xmmword ptr [rax + 0x10], xmm1
+00583C91  movups    xmm0, xmmword ptr [rcx + 0x20]
+00583C95  movups    xmmword ptr [rax + 0x20], xmm0
+00583C99  movups    xmm1, xmmword ptr [rcx + 0x30]
+00583C9D  movups    xmmword ptr [rax + 0x30], xmm1
+00583CA1  add       rsp, 0x28
+00583CA5  ret       

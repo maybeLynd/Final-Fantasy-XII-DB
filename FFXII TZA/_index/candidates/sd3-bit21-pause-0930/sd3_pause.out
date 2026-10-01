@@ -1,0 +1,8 @@
+PASS  P1 002282F0 builds the pause menu (handler 00229590)
+PASS  P2 flag 1 opens at once (request 3, state 1); flag 0 waits in state 0
+PASS  P3 state 0: wait for 01FD4954, then open
+PASS  P4 state 1 -> 2: the menu opens and audio groups 0-5 are held
+PASS  P5 bit 21: row 1 lacks it -> refused; row 1 has it -> deferred; absent -> immediate
+PASS  P6 01FD4954 <- 00229AE0: movie bring-up 1, 002CEB40 1, 001B82A0 0, 001B8400 its argument
+PASS  W1 bit-21 writers: Save/Load x2, movie x4, 0023FBE0, 002CEB40, 003939B0 (row 1); 00394070 (row 0); 00229510 restores rows 2/8
+FAILS 0

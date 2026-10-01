@@ -1,0 +1,15 @@
+{
+  "question": "Do any of the six retained archive-missing FST-sized kind1 paths have a FileCache key equal to any shipping archive-name key?",
+  "hypotheses": ["At least one candidate key collides, so archive-backed cache population can admit its gate", "None collides, excluding that source of cache membership for these paths under the stated normalization/population premises"],
+  "major_system": "OV33 E2 resource issuance and FileCache path gate",
+  "consumer": "FABLE OV33 no-status exits/E2 discriminator; OPUS resource contract",
+  "existing_evidence": "FABLE e2_path_census retained six language/kind/id/path rows, duplicated over edx0/1. SWE2-CONTRACT b14 Q10/Q12 binds cache key/call chain and tests 89 different mode0 EFB paths. Those external checks are not ASTRA tests; the six kind1 rows were not Q12's subject. b14 review is pending. Do not rerun its census or claim complete cache-writer closure from three direct-call lists.",
+  "method": "A finite shipping index key-domain analysis, with complete original674A00 loop bytes and reused bounded normalization from b14",
+  "why_cheaper_suffices": "Key-set intersection is deterministic; a missing key in the entire archive-name domain cannot be supplied by selecting a different live cache/timing sample from that domain. No original-code execution or game session is needed for this scoped intersection.",
+  "inputs": "Read-only shipping EXE and installed archive-name index, retained FABLE source/output and b14 normalization source/output. Preserve exact raw index/name prefix, compressed losslessly with raw/compressed hashes; no archive payload extraction.",
+  "controls": "Original complete hash loop and tool/role gate; nonempty89414-name domain, system.cnf membership, one candidate-control intentionally set to an existing name key to prove collision detection, and actual reducer CLI refusal for incomplete/changed prerequisites. Reuse b14 original-code controls as external corroboration only.",
+  "acceptance": "All six distinct retained rows present under both FABLE edx modes; deterministic hashes and exact archive-name collision sets, with checked prefix bounds/count and original recurrence. Preserve observed collision/absence as applicable.",
+  "limits": "ASCII/C-locale normalization as b14; key-domain result, not actual cache initialization. Population/writer/binding completeness, arbitrary raw kindFF or unchanged-stack paths, locale/interference/alias/lifetime remain separate. A conditional key-domain exclusion does not close all E2 or OV33.",
+  "stop": "Stop this exact six-key intersection after its qualified result/control. If collision exists, return exact colliding entries and next necessary producer/flag/request condition; do not collect adjacent live samples. Missing source or controls yields INCOMPLETE.",
+  "restoration": "Read-only bounded original files; finite foreground analysis; no game, PC inputs, runtime instrument, native call, save/config/reference or peer-process changes."
+}

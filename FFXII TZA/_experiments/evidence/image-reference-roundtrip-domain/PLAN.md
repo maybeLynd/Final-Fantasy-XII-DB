@@ -1,0 +1,9 @@
+# Exact inverses require a stored-reference domain
+
+Question: are 0020E600/0020E620 exact inverses for arbitrary64-bit pointers, including null, or only the translated unsigned32-bit reference window at a stable shared base? The shared-neighbours page says exact inverses; the encoded-query contract already distinguishes full-QWORD resolution from later32-bit consumers. Reuse its zero-at-image-load and undriven computed-writer evidence; do not redo the census or infer process-lifetime zero.
+
+Method A suffices: verify original10/9-byte leaves, MOV EAX,ECX zero-extension, QWORD ADD versus DWORD SUB and identical RIP target01F83530. Integer/modular source proof establishes the domain and a few selected calculations discriminate competing claims. No game, native/emulator execution, pointer writes, new observer or codec implementation.
+
+At fixed B: D(u)=(B+u32(u)) mod2^64, E(p)=u32(u32(p)-u32(B)). E(D(u))=u for everyu32 reference, while D(E(p))=p iff((p-B) mod2^64)<2^32. Native pointers separated by2^32 have the same encoding. D(0)=B and E(0)=u32(-B), so no intrinsic null-preserving rule follows. Both compositions require consistent base values across calls.
+
+Controls: B0/in-window round-trip, nonzero B/in-window round-trip, one pointer just outside the window, translated window's upper edge, null with nonzero B. Private original-SUB→ADD source/model change is not distinguished at B0 but is at nonzero B; source bindings reject it. This is a regression for an inadequate zero-base-only check, not an allegation that a particular existing checker promised more. Consumers FABLE shared-neighbours summary; OPUS exact representation/contract domain; SPEC independent review. Actual base/pointer values, setters, races, ownership/lifetime, allocation placement and normal callers stay open.

@@ -1,0 +1,4 @@
+PASS  J kind 0..7 -> 0025E127 0025E0BE 0025E0BE 0025E027 0025E091 0025E00A 0025E058 0025E083
+PASS  A the service arms call exactly 002674B0, 003DBF60, 003DB640, 00267420, 003DC050 + 003DB2A0 (besides the pointer resolver)
+PASS  K entry 8 (CCDECCCC) is not a code address: the table has eight entries
+FAILS 0

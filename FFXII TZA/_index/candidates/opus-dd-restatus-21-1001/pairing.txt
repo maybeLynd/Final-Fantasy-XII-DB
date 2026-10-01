@@ -1,0 +1,14 @@
+generated-function-families.md :: NativeLeaf.DocumentedGlobalAccessor | 230 -> 223 | removed 00285F00 002CC9B0 00314960 0035D520 0037F050 0037F160 003BC2C0
+generated-function-families.md :: NativeAdapter.ExplainedCalleeForwarder | 487 -> 483 | removed 00270550 002D8C00 00380170 003C21B0
+generated-function-families.md :: NativeAdapter.CallResultTailCall | 60 -> 58 | removed 001E0E30 001E0E50
+generated-function-families.md :: NativeAdapter.CallResultWithSavedIntTailCall | 31 -> 30 | removed 0017FA70
+generated-function-families.md :: NativeAdapter.FirstMemberPointerTailCall | 13 -> 12 | removed 00562F30
+generated-function-families.md :: NativeAdapter.FixedPipelineCallResult | 5 -> 4 | removed 002497B0
+generated-function-families.md :: NativeAdapter.GlobalOffsetTailCall | 4 -> 3 | removed 0028E8B0
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeLeaf.DocumentedGlobalAccessor 230 -> 223
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeAdapter.ExplainedCalleeForwarder 487 -> 483
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeAdapter.CallResultTailCall 60 -> 58
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeAdapter.CallResultWithSavedIntTailCall 31 -> 30
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeAdapter.FirstMemberPointerTailCall 13 -> 12
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeAdapter.FixedPipelineCallResult 5 -> 4
+noted 24-Compiler-And-CRT-Runtime\Generated-Families\generated-function-families.md :: NativeAdapter.GlobalOffsetTailCall 4 -> 3

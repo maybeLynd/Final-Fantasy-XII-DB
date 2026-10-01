@@ -1,0 +1,44 @@
+{
+ "root": "D:/FFXII_TZA_extract",
+ "stats": {
+  "PShaderParameterDefinition cbl sentinel 0xFFFFFFFF": 218033,
+  "PShaderParameterDefinition files": 2184,
+  "PShaderParameterDefinition layout [13, 5, 4, 2, 9, 4]": 2184,
+  "PShaderParameterDefinition lists": 2184,
+  "PShaderParameterDefinition objects pad 0": 1845,
+  "PShaderParameterDefinition objects pad 1": 339,
+  "PShaderParameterDefinition records": 648027,
+  "PShaderStreamDefinition files": 2184,
+  "PShaderStreamDefinition layout [10, 2, 4, 2, null, null]": 2184,
+  "PShaderStreamDefinition lists": 92,
+  "PShaderStreamDefinition objects pad 0": 92,
+  "PShaderStreamDefinition records": 13356,
+  "phyre files": 35984
+ },
+ "distinct_contents_with_class": 2184,
+ "input_digest_sha256": "652e5de74296943e0ea2ed9a4ba5cc2a8ae8428aa98b851d2330e9d245929fed",
+ "size_bits13_15_hist": {
+  "PShaderParameterDefinition": {
+   "0": 648027
+  },
+  "PShaderStreamDefinition": {
+   "0": 13356
+  }
+ },
+ "max_low13": {
+  "PShaderParameterDefinition": 7680,
+  "PShaderStreamDefinition": 24
+ },
+ "C2_cbl_high_bits13_15_hist": {
+  "PShaderParameterDefinition": {
+   "0": 429994,
+   "7": 218033
+  }
+ },
+ "C3_mutation": {
+  "seed": "gamedata/d3d11/artdata/chr/bg_obj/b00/b0001/mws/b0001.dae.phyre",
+  "flagged": 1
+ },
+ "examples_bits_set": [],
+ "controls_pass": true
+}

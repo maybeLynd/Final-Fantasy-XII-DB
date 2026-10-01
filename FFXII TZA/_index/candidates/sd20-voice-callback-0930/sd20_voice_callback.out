@@ -1,0 +1,6 @@
+PASS  F1 01CB5218 is ICoreSourceVoiceCallback
+PASS  F2 installers of the interface vtable and the sub-object offset each writes: {'007B8E50': '0x10', '007B8F70': '0x0', '007DC730': '0x8', '007EA050': '0x8'}
+PASS  F3 the classes those constructors build (primary vtable RTTI): {'007B8E50': 'SQEX::Sd::Driver::ExternalSourceVoice', '007DC730': 'SQEX::Sd::Driver::CRI::HCAMixerVoice', '007EA050': 'SQEX::Sd::Driver::Voice'}
+PASS  F4 factory callers 007B9050 (passes this+0x10), 007DCE20 (this+8), 007EBAD0 (lea rdi, [rbx + 8] at 007ED2EE; null when rbx is null) as the 5th argument
+PASS  F5 shared fields - ExternalSourceVoice/007B9050: +0x500 used, +0x508 constructed; HCAMixerVoice/007DCE20: ['0x38', '0x48', '0x50', '0x8', '0x90', '0xa4']; Voice/007EBAD0: ['0x10', '0x138', '0x140', '0x148', '0x150', '0x158', '0x190', '0x198']
+FAILS 0

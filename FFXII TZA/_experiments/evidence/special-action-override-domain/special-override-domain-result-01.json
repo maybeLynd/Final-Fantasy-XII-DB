@@ -1,0 +1,157 @@
+{
+  "question": "What initialized values and control-state invariant does the original special-action override provide, and do they exclude candidate511..534?",
+  "hypotheses": [
+    "override control can normally choose an arbitrary u16 action",
+    "under its initialized state and unchanged eight-word table it selects OFF or one of eight fixed safe ids"
+  ],
+  "method": "A original constructor width, initializer constant and finite transition induction; no code execution/live state",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "4ef20fd030311b879b0bcff89d15b69623b9bf8ef92a5da0f7ae37c279d873db",
+  "inputs": [
+    {
+      "path": "special-override-control-raw-01.json",
+      "sha256": "b34df909103976d7f4ccb454f70254bfd7865a554cfe7492d82d52a1463150eb",
+      "driver": "capture-special-override-control.py",
+      "driver_sha256": "c0ffe510ee31da4a611caceeeaec7cd709b6b3e62eb161ad12aa05632ae47957"
+    },
+    {
+      "path": "special-override-constructor-raw-01.json",
+      "sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656",
+      "driver": "capture-special-override-constructor.py",
+      "driver_sha256": "78751e825485c08bad91426b1e74b4e0849062f249407be60ed526c9585a9719"
+    }
+  ],
+  "controls": {
+    "constructor_high_dword_zero": true,
+    "zero_left_saturates": true,
+    "eight_right_saturates": true,
+    "off_maps_to_negative_index": true,
+    "initial_domain_required": true,
+    "narrowed_constructor_store_refused": true,
+    "widened_control_bound_refused": true
+  },
+  "constructor_initial_ae0": 0,
+  "initializer_words": [
+    241,
+    231,
+    234,
+    237,
+    229,
+    228,
+    227,
+    226
+  ],
+  "transitions": [
+    {
+      "before": 0,
+      "left": false,
+      "after": 1,
+      "written_index": 0
+    },
+    {
+      "before": 0,
+      "left": true,
+      "after": 0,
+      "written_index": -1
+    },
+    {
+      "before": 1,
+      "left": false,
+      "after": 2,
+      "written_index": 1
+    },
+    {
+      "before": 1,
+      "left": true,
+      "after": 0,
+      "written_index": -1
+    },
+    {
+      "before": 2,
+      "left": false,
+      "after": 3,
+      "written_index": 2
+    },
+    {
+      "before": 2,
+      "left": true,
+      "after": 1,
+      "written_index": 0
+    },
+    {
+      "before": 3,
+      "left": false,
+      "after": 4,
+      "written_index": 3
+    },
+    {
+      "before": 3,
+      "left": true,
+      "after": 2,
+      "written_index": 1
+    },
+    {
+      "before": 4,
+      "left": false,
+      "after": 5,
+      "written_index": 4
+    },
+    {
+      "before": 4,
+      "left": true,
+      "after": 3,
+      "written_index": 2
+    },
+    {
+      "before": 5,
+      "left": false,
+      "after": 6,
+      "written_index": 5
+    },
+    {
+      "before": 5,
+      "left": true,
+      "after": 4,
+      "written_index": 3
+    },
+    {
+      "before": 6,
+      "left": false,
+      "after": 7,
+      "written_index": 6
+    },
+    {
+      "before": 6,
+      "left": true,
+      "after": 5,
+      "written_index": 4
+    },
+    {
+      "before": 7,
+      "left": false,
+      "after": 8,
+      "written_index": 7
+    },
+    {
+      "before": 7,
+      "left": true,
+      "after": 6,
+      "written_index": 5
+    },
+    {
+      "before": 8,
+      "left": false,
+      "after": 8,
+      "written_index": 7
+    },
+    {
+      "before": 8,
+      "left": true,
+      "after": 7,
+      "written_index": 6
+    }
+  ],
+  "established": "Constructor original qword store at+ADC gives high dword+AE0 zero at that instruction. Under no intervening overwrite, control arm preserves0..8 and writes override index-1..7. Eight initializer words241,231,234,237,229,228,227,226 cannot produce511..534.",
+  "unresolved": "Complete no-overwrite/alias/lifetime proof for constructor completion and control field; global index indirect writers and eight-word array writes; non-debug caller/object provenance; other action-id producers. File-backed index-1 is separately only a file value.",
+  "limits": "Conditional induction and immediate original store effects. Known direct first-section caller discovery is bounded, not all indirect caller/write closure. Initial corruption9 stays9 and sends index8, so the control is not a sanitizer for arbitrary state. No universal/natural OV42 exclusion inferred. External EXP190 replay corroboration is not an execution by ASTRA or proof of unstubbed initialization."
+}

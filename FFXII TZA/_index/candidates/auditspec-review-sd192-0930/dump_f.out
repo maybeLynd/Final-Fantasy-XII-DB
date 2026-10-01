@@ -1,0 +1,113 @@
+== 002E6000 in .pdata [002E6000, 002E600A)
+002E6000  test      rcx, rcx   <==
+002E6003  je        0x2e6080
+002E6005  push      rsi
+002E6006  sub       rsp, 0x40
+== 002E6330 in .pdata [002E6330, 002E63A5)
+002E6330  push      rbx   <==
+002E6332  sub       rsp, 0x20
+002E6336  cmp       byte ptr [rcx + 0x18], 1
+002E633A  mov       rbx, rcx
+002E633D  je        0x2e639f
+002E633F  mov       rax, qword ptr [rcx + 0xc0]
+002E6346  test      rax, rax
+002E6349  je        0x2e639f
+002E634B  test      byte ptr [rax + 0x14f], 1
+002E6352  jne       0x2e639f
+002E6354  test      byte ptr [rcx + 9], 0x40
+002E6358  je        0x2e639f
+002E635A  call      0x2e9fe0
+002E635F  test      eax, eax
+002E6361  je        0x2e639f
+002E6363  call      0x263fb0
+002E6368  cmp       eax, 1
+002E636B  jne       0x2e6379
+002E636D  mov       rcx, rbx
+002E6370  call      0x264ea0
+002E6375  test      eax, eax
+002E6377  je        0x2e639f
+002E6379  mov       rax, qword ptr [rbx + 0xc0]
+002E6380  mov       rcx, qword ptr [rax + 0x138]
+002E6387  test      rcx, rcx
+002E638A  je        0x2e639f
+002E638C  cmp       byte ptr [rax + 0x14e], 0
+002E6393  je        0x2e639f
+002E6395  add       rsp, 0x20
+002E6399  pop       rbx
+002E639A  jmp       0x3db0d0
+002E639F  add       rsp, 0x20
+002E63A3  pop       rbx
+002E63A4  ret       
+== 002EA7F0 in .pdata [002EA7F0, 002EA865)
+002EA7F0  mov       qword ptr [rsp + 8], rbx   <==
+002EA7F5  push      rdi
+002EA7F6  sub       rsp, 0x20
+002EA7FA  xor       edi, edi
+002EA7FC  mov       rbx, rcx
+002EA7FF  test      rcx, rcx
+002EA802  je        0x2ea858
+002EA804  cmp       byte ptr [rcx + 0x18], 1
+002EA808  je        0x2ea858
+002EA80A  mov       rax, qword ptr [rcx + 0xc0]
+002EA811  test      rax, rax
+002EA814  je        0x2ea858
+002EA816  test      byte ptr [rax + 0x14f], 1
+002EA81D  jne       0x2ea858
+002EA81F  mov       rcx, qword ptr [rax + 0x138]
+002EA826  test      rcx, rcx
+002EA829  je        0x2ea858
+002EA82B  movss     xmm1, dword ptr [rcx + 0xf0]
+002EA833  xorps     xmm0, xmm0
+002EA836  comiss    xmm1, xmm0
+002EA839  jbe       0x2ea858
+002EA83B  test      byte ptr [rbx + 8], 8
+002EA83F  je        0x2ea858
+002EA841  mov       rcx, rbx
+002EA844  call      0x2e9fe0
+002EA849  test      eax, eax
+002EA84B  jne       0x2ea853
+002EA84D  cmp       byte ptr [rbx + 4], 3
+002EA851  jne       0x2ea858
+002EA853  mov       edi, 1
+002EA858  mov       eax, edi
+002EA85A  mov       rbx, qword ptr [rsp + 0x30]
+002EA85F  add       rsp, 0x20
+002EA863  pop       rdi
+002EA864  ret       
+== 0025B600 in .pdata [0025B600, 0025B6A8)
+0025B600  push      rbx   <==
+0025B602  sub       rsp, 0x30
+0025B606  call      0x3590d0
+0025B60B  mov       ecx, eax
+0025B60D  call      0x3588b0
+0025B612  mov       rbx, rax
+0025B615  test      rax, rax
+0025B618  je        0x25b735
+0025B61E  call      0x3b7730
+0025B623  test      eax, eax
+0025B625  je        0x25b735
+0025B62B  mov       rax, qword ptr [rbx + 0xc0]
+0025B632  test      rax, rax
+0025B635  je        0x25b652
+0025B637  test      byte ptr [rax + 0x14f], 1
+0025B63E  jne       0x25b735
+0025B644  cmp       qword ptr [rax + 0x138], 0
+0025B64C  je        0x25b735
+0025B652  test      byte ptr [rbx + 9], 1
+0025B656  je        0x25b735
+0025B65C  movzx     eax, byte ptr [rbx + 8]
+0025B660  shr       eax, 1
+0025B662  and       eax, 1
+0025B665  je        0x25b735
+0025B66B  call      0x265680
+0025B670  test      eax, eax
+0025B672  je        0x25b735
+0025B678  mov       rax, qword ptr [rbx + 0xc0]
+0025B67F  test      rax, rax
+0025B682  je        0x25b735
+0025B688  mov       rcx, qword ptr [rax + 0x138]
+0025B68F  test      rcx, rcx
+0025B692  je        0x25b735
+0025B698  movsx     rax, word ptr [rcx + 0x88]
+0025B6A0  test      eax, eax
+0025B6A2  je        0x25b735

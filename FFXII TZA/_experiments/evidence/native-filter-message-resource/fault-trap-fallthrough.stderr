@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-filter-message-resource\check.py", line 62, in <module>
+    if '--fault-trap-fallthrough' in sys.argv:assert 0x80c5a0 in allins,'INT3 is a terminal boundary; adjacent routine is not local CFG evidence'
+                                                     ^^^^^^^^^^^^^^^^^^
+AssertionError: INT3 is a terminal boundary; adjacent routine is not local CFG evidence

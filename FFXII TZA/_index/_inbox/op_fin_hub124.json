@@ -1,0 +1,8 @@
+{
+  "action": "finish",
+  "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-124",
+  "result_refs": [
+    "batch-124: 22 bodies A-measured on 14 bearing hosts (6x2-A + top 16 of 1-A); anchors 3915 (+22), 0 MID; hash clean; 7 crossing rows added; guard ADDS NOTHING (2863 -> 2853)"
+  ],
+  "note": "batch-124 research: 22 bodies dumped/decoded/routed/appended; all static gates clean"
+}

@@ -1,0 +1,65 @@
+{
+ "cases": {
+  "F1_callback_binds_the_slots_then_the_render_enqueue_gets_no_command_slot": true,
+  "F2_the_font_object_cache_stays_null": true,
+  "F3_measure_faults_on_the_null_font_object_with_or_without_the_pack": true,
+  "S_measure_calls_render_state_right_after_the_getter": true
+ },
+ "live_game": false,
+ "ok": true,
+ "static": {
+  "getter": [
+   "002AC330"
+  ],
+  "render_state": [
+   "002AC34E",
+   "002AC363"
+  ]
+ },
+ "with_font": {
+  "bind": {
+   "cache_02AEE800": "0",
+   "calls": [
+    "relocator 0039BF50",
+    "enqueue 0017FBC0",
+    "command slot 001BA860"
+   ],
+   "faults": [
+    "00000008"
+   ],
+   "last": "001B6530",
+   "ok": false,
+   "slots_rel": {
+    "02AEE810": "40",
+    "02AEE850": "16080",
+    "02AEE870": "168C0",
+    "02AEE888": "17400"
+   }
+  },
+  "calls": [
+   "interpreter",
+   "002B2150",
+   "measure 002AC2F0",
+   "getter 0039C4A0"
+  ],
+  "faults": [
+   "0000000C"
+  ],
+  "last": "002AC49C",
+  "ok": false
+ },
+ "without_font": {
+  "bind": null,
+  "calls": [
+   "interpreter",
+   "002B2150",
+   "measure 002AC2F0",
+   "getter 0039C4A0"
+  ],
+  "faults": [
+   "0000000C"
+  ],
+  "last": "002AC49C",
+  "ok": false
+ }
+}

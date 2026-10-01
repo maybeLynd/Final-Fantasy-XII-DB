@@ -1,0 +1,2296 @@
+{
+  "method": "A: shipping instructions; no execution or live occupancy claim",
+  "executable_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": 1179648,
+  "capstone_version": "5.0.7",
+  "bodies": {
+    "00263FF0": {
+      "bytes": 21,
+      "role": "slot getter",
+      "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d",
+      "raw_hex": "4863c1488d0d164ee3014869c0880200004803c1c3",
+      "direct_transfers": [],
+      "disassembly": [
+        "00263FF0 4863c1 movsxd rax, ecx",
+        "00263FF3 488d0d164ee301 lea rcx, [rip + 0x1e34e16]",
+        "00263FFA 4869c088020000 imul rax, rax, 0x288",
+        "00264001 4803c1 add rax, rcx",
+        "00264004 c3 ret "
+      ]
+    },
+    "00314370": {
+      "bytes": 85,
+      "role": "five-slot camera update and view publish",
+      "sha256": "3213b13bf8c8acae8fea9773e24cde1bea29a4b29c5f0d3a756f740a4c41252a",
+      "raw_hex": "48895c24084889742410574883ec208bf133db8bcbe866fcf4ff488bf8f64010017410488bc8e8b55c0c00488bcfe80d8c0c00ffc383fb057cd9e82112f4ff8bce488b5c2430488b7424384883c4205fe95b54f4ff",
+      "direct_transfers": [
+        {
+          "site": "00314385",
+          "target": "00263FF0"
+        },
+        {
+          "site": "00314396",
+          "target": "003DA050"
+        },
+        {
+          "site": "0031439E",
+          "target": "003DCFB0"
+        },
+        {
+          "site": "003143AA",
+          "target": "002555D0"
+        },
+        {
+          "site": "003143C0",
+          "target": "00259820"
+        }
+      ],
+      "disassembly": [
+        "00314370 48895c2408 mov qword ptr [rsp + 8], rbx",
+        "00314375 4889742410 mov qword ptr [rsp + 0x10], rsi",
+        "0031437A 57 push rdi",
+        "0031437B 4883ec20 sub rsp, 0x20",
+        "0031437F 8bf1 mov esi, ecx",
+        "00314381 33db xor ebx, ebx",
+        "00314383 8bcb mov ecx, ebx",
+        "00314385 e866fcf4ff call 0x263ff0",
+        "0031438A 488bf8 mov rdi, rax",
+        "0031438D f6401001 test byte ptr [rax + 0x10], 1",
+        "00314391 7410 je 0x3143a3",
+        "00314393 488bc8 mov rcx, rax",
+        "00314396 e8b55c0c00 call 0x3da050",
+        "0031439B 488bcf mov rcx, rdi",
+        "0031439E e80d8c0c00 call 0x3dcfb0",
+        "003143A3 ffc3 inc ebx",
+        "003143A5 83fb05 cmp ebx, 5",
+        "003143A8 7cd9 jl 0x314383",
+        "003143AA e82112f4ff call 0x2555d0",
+        "003143AF 8bce mov ecx, esi",
+        "003143B1 488b5c2430 mov rbx, qword ptr [rsp + 0x30]",
+        "003143B6 488b742438 mov rsi, qword ptr [rsp + 0x38]",
+        "003143BB 4883c420 add rsp, 0x20",
+        "003143BF 5f pop rdi",
+        "003143C0 e95b54f4ff jmp 0x259820"
+      ]
+    },
+    "003DCFB0": {
+      "bytes": 285,
+      "role": "four-driver eligibility and evaluation",
+      "sha256": "ebbf0a59f9eb2f9bdbe33ce1c5b1c5e61a9531d06d37c48d18c6229de2e7a79e",
+      "raw_hex": "40535641564883ec20488b99f0000000488bf1e838a3e8ff4c63f04885db0f84f000000048896c2440488d5e1c48897c24484c897c245041bf02000000418bff0fb70b6685c97833480fbfe9488d0c6d000000004803cd6683bcce780100000074198b8cce74010000e872d1ffff8b4e28448bc08bd5e8150bfaff4903df4883ef0175bc498bee488d9e7801000041befdff000066833b0074604885ed740e8b53f8448bc78b4e28e8f30cfafff30f105304448bcf8b53f88b4e28e88001faff8b4e288bd7e8460cfaff413bc775066644893beb2566448533741ff30f1005fdb07702f30f594308f30f59051c10a201f30f584304f30f114304ffc74883c31883ff047c8f4c8b7c2450488b7c2448488b6c24404883c420415e5e5bc3",
+      "direct_transfers": [
+        {
+          "site": "003DCFC3",
+          "target": "00267300"
+        },
+        {
+          "site": "003DD019",
+          "target": "003DA190"
+        },
+        {
+          "site": "003DD026",
+          "target": "0037DB40"
+        },
+        {
+          "site": "003DD058",
+          "target": "0037DD50"
+        },
+        {
+          "site": "003DD06B",
+          "target": "0037D1F0"
+        },
+        {
+          "site": "003DD075",
+          "target": "0037DCC0"
+        },
+        {
+          "site": "003DD083",
+          "target": "003DD0AA"
+        }
+      ],
+      "disassembly": [
+        "003DCFB0 4053 push rbx",
+        "003DCFB2 56 push rsi",
+        "003DCFB3 4156 push r14",
+        "003DCFB5 4883ec20 sub rsp, 0x20",
+        "003DCFB9 488b99f0000000 mov rbx, qword ptr [rcx + 0xf0]",
+        "003DCFC0 488bf1 mov rsi, rcx",
+        "003DCFC3 e838a3e8ff call 0x267300",
+        "003DCFC8 4c63f0 movsxd r14, eax",
+        "003DCFCB 4885db test rbx, rbx",
+        "003DCFCE 0f84f0000000 je 0x3dd0c4",
+        "003DCFD4 48896c2440 mov qword ptr [rsp + 0x40], rbp",
+        "003DCFD9 488d5e1c lea rbx, [rsi + 0x1c]",
+        "003DCFDD 48897c2448 mov qword ptr [rsp + 0x48], rdi",
+        "003DCFE2 4c897c2450 mov qword ptr [rsp + 0x50], r15",
+        "003DCFE7 41bf02000000 mov r15d, 2",
+        "003DCFED 418bff mov edi, r15d",
+        "003DCFF0 0fb70b movzx ecx, word ptr [rbx]",
+        "003DCFF3 6685c9 test cx, cx",
+        "003DCFF6 7833 js 0x3dd02b",
+        "003DCFF8 480fbfe9 movsx rbp, cx",
+        "003DCFFC 488d0c6d00000000 lea rcx, [rbp*2]",
+        "003DD004 4803cd add rcx, rbp",
+        "003DD007 6683bcce7801000000 cmp word ptr [rsi + rcx*8 + 0x178], 0",
+        "003DD010 7419 je 0x3dd02b",
+        "003DD012 8b8cce74010000 mov ecx, dword ptr [rsi + rcx*8 + 0x174]",
+        "003DD019 e872d1ffff call 0x3da190",
+        "003DD01E 8b4e28 mov ecx, dword ptr [rsi + 0x28]",
+        "003DD021 448bc0 mov r8d, eax",
+        "003DD024 8bd5 mov edx, ebp",
+        "003DD026 e8150bfaff call 0x37db40",
+        "003DD02B 4903df add rbx, r15",
+        "003DD02E 4883ef01 sub rdi, 1",
+        "003DD032 75bc jne 0x3dcff0",
+        "003DD034 498bee mov rbp, r14",
+        "003DD037 488d9e78010000 lea rbx, [rsi + 0x178]",
+        "003DD03E 41befdff0000 mov r14d, 0xfffd",
+        "003DD044 66833b00 cmp word ptr [rbx], 0",
+        "003DD048 7460 je 0x3dd0aa",
+        "003DD04A 4885ed test rbp, rbp",
+        "003DD04D 740e je 0x3dd05d",
+        "003DD04F 8b53f8 mov edx, dword ptr [rbx - 8]",
+        "003DD052 448bc7 mov r8d, edi",
+        "003DD055 8b4e28 mov ecx, dword ptr [rsi + 0x28]",
+        "003DD058 e8f30cfaff call 0x37dd50",
+        "003DD05D f30f105304 movss xmm2, dword ptr [rbx + 4]",
+        "003DD062 448bcf mov r9d, edi",
+        "003DD065 8b53f8 mov edx, dword ptr [rbx - 8]",
+        "003DD068 8b4e28 mov ecx, dword ptr [rsi + 0x28]",
+        "003DD06B e88001faff call 0x37d1f0",
+        "003DD070 8b4e28 mov ecx, dword ptr [rsi + 0x28]",
+        "003DD073 8bd7 mov edx, edi",
+        "003DD075 e8460cfaff call 0x37dcc0",
+        "003DD07A 413bc7 cmp eax, r15d",
+        "003DD07D 7506 jne 0x3dd085",
+        "003DD07F 6644893b mov word ptr [rbx], r15w",
+        "003DD083 eb25 jmp 0x3dd0aa",
+        "003DD085 66448533 test word ptr [rbx], r14w",
+        "003DD089 741f je 0x3dd0aa",
+        "003DD08B f30f1005fdb07702 movss xmm0, dword ptr [rip + 0x277b0fd]",
+        "003DD093 f30f594308 mulss xmm0, dword ptr [rbx + 8]",
+        "003DD098 f30f59051c10a201 mulss xmm0, dword ptr [rip + 0x1a2101c]",
+        "003DD0A0 f30f584304 addss xmm0, dword ptr [rbx + 4]",
+        "003DD0A5 f30f114304 movss dword ptr [rbx + 4], xmm0",
+        "003DD0AA ffc7 inc edi",
+        "003DD0AC 4883c318 add rbx, 0x18",
+        "003DD0B0 83ff04 cmp edi, 4",
+        "003DD0B3 7c8f jl 0x3dd044",
+        "003DD0B5 4c8b7c2450 mov r15, qword ptr [rsp + 0x50]",
+        "003DD0BA 488b7c2448 mov rdi, qword ptr [rsp + 0x48]",
+        "003DD0BF 488b6c2440 mov rbp, qword ptr [rsp + 0x40]",
+        "003DD0C4 4883c420 add rsp, 0x20",
+        "003DD0C8 415e pop r14",
+        "003DD0CA 5e pop rsi",
+        "003DD0CB 5b pop rbx",
+        "003DD0CC c3 ret "
+      ]
+    },
+    "0037D1F0": {
+      "bytes": 712,
+      "role": "sampler entry sentinel and existing float calls",
+      "sha256": "625a4e2cbc0719d2c31c7bebc0fee10229f85e56a06a4685d1ae36f0bc6f1f87",
+      "raw_hex": "40564883ec404863c14c69c0d00300000f297424200f28f24963c14869f0f0000000488d05770776024903f04803f083faff751ac786e800000002000000b8020000000f287424204883c4405ec348895c24504c8d0d360776024863c2488bd648896c245848897c24604c897424384f8b3408488d0c404f8b44080848c1e1054c03f14c897c2430498d4e10e8affeffff488d9ec8000000bd08000000488d7e14e84acafffff30f594704f30f58074883c710f30f5905110ea801f30f5803f30f11034883c3044883ed0175d4f30f1056080f28cef30f5ccaf30f115610f30f117608f30f114e0ce803caffff0f28f0f30f1086c8000000f30f597620e81c4c4e00f30f58761cf30f59c6f30f1186a0000000e8d8c9ffff0f28f0f30f1086cc000000f30f597630e8f14b4e00f30f58762cf30f59c6f30f1186a4000000e8adc9ffff0f28f0f30f1086d0000000f30f597640e8c64b4e00f30f58763cf30f59c6f30f1186a8000000e882c9ffff0f28f0f30f1086d4000000f30f597650e89b4b4e00f30f58764cf30f59c6f30f5886a0000000f30f1186b0000000e84fc9ffff0f28f0f30f1086d8000000f30f597660e8684b4e00f30f58765cf30f59c6f30f5886a4000000f30f1186b4000000e81cc9ffff0f28f0f30f1086dc000000f30f597670e8354b4e00f30f58766cf30f59c6f30f5886a8000000f30f1186b8000000e8e9c8ffff0f28f0f30f1086e0000000f30f59b680000000e8ff4a4e00f30f58767cf30f59c6f30f1186c0000000e8bbc8ffff0f28f0f30f1086e4000000f30f59b690000000e8d14a4e00f30f58b68c000000f30f59c6f30f1186c4000000e84a09e7ff4c8b7c2430488b7c2460488b6c2458488b5c245085c074050f57d2eb08f30f1015f5e69601410fb74628f30f1046084c8b742438f30f5cc2660f6ec80f5bc90f2fc10f8786fdffff0f28742420b801000000c786e8000000010000004883c4405ec3",
+      "direct_transfers": [
+        {
+          "site": "0037D27C",
+          "target": "0037D130"
+        },
+        {
+          "site": "0037D291",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D2D8",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D2ED",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D303",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D318",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D32E",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D343",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D359",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D36E",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D38C",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D3A1",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D3BF",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D3D4",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D3F2",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D40A",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D420",
+          "target": "00379CE0"
+        },
+        {
+          "site": "0037D438",
+          "target": "00861F0E"
+        },
+        {
+          "site": "0037D451",
+          "target": "001EDDA0"
+        },
+        {
+          "site": "0037D471",
+          "target": "0037D47B"
+        }
+      ],
+      "disassembly": [
+        "0037D1F0 4056 push rsi",
+        "0037D1F2 4883ec40 sub rsp, 0x40",
+        "0037D1F6 4863c1 movsxd rax, ecx",
+        "0037D1F9 4c69c0d0030000 imul r8, rax, 0x3d0",
+        "0037D200 0f29742420 movaps xmmword ptr [rsp + 0x20], xmm6",
+        "0037D205 0f28f2 movaps xmm6, xmm2",
+        "0037D208 4963c1 movsxd rax, r9d",
+        "0037D20B 4869f0f0000000 imul rsi, rax, 0xf0",
+        "0037D212 488d0577077602 lea rax, [rip + 0x2760777]",
+        "0037D219 4903f0 add rsi, r8",
+        "0037D21C 4803f0 add rsi, rax",
+        "0037D21F 83faff cmp edx, -1",
+        "0037D222 751a jne 0x37d23e",
+        "0037D224 c786e800000002000000 mov dword ptr [rsi + 0xe8], 2",
+        "0037D22E b802000000 mov eax, 2",
+        "0037D233 0f28742420 movaps xmm6, xmmword ptr [rsp + 0x20]",
+        "0037D238 4883c440 add rsp, 0x40",
+        "0037D23C 5e pop rsi",
+        "0037D23D c3 ret ",
+        "0037D23E 48895c2450 mov qword ptr [rsp + 0x50], rbx",
+        "0037D243 4c8d0d36077602 lea r9, [rip + 0x2760736]",
+        "0037D24A 4863c2 movsxd rax, edx",
+        "0037D24D 488bd6 mov rdx, rsi",
+        "0037D250 48896c2458 mov qword ptr [rsp + 0x58], rbp",
+        "0037D255 48897c2460 mov qword ptr [rsp + 0x60], rdi",
+        "0037D25A 4c89742438 mov qword ptr [rsp + 0x38], r14",
+        "0037D25F 4f8b3408 mov r14, qword ptr [r8 + r9]",
+        "0037D263 488d0c40 lea rcx, [rax + rax*2]",
+        "0037D267 4f8b440808 mov r8, qword ptr [r8 + r9 + 8]",
+        "0037D26C 48c1e105 shl rcx, 5",
+        "0037D270 4c03f1 add r14, rcx",
+        "0037D273 4c897c2430 mov qword ptr [rsp + 0x30], r15",
+        "0037D278 498d4e10 lea rcx, [r14 + 0x10]",
+        "0037D27C e8affeffff call 0x37d130",
+        "0037D281 488d9ec8000000 lea rbx, [rsi + 0xc8]",
+        "0037D288 bd08000000 mov ebp, 8",
+        "0037D28D 488d7e14 lea rdi, [rsi + 0x14]",
+        "0037D291 e84acaffff call 0x379ce0",
+        "0037D296 f30f594704 mulss xmm0, dword ptr [rdi + 4]",
+        "0037D29B f30f5807 addss xmm0, dword ptr [rdi]",
+        "0037D29F 4883c710 add rdi, 0x10",
+        "0037D2A3 f30f5905110ea801 mulss xmm0, dword ptr [rip + 0x1a80e11]",
+        "0037D2AB f30f5803 addss xmm0, dword ptr [rbx]",
+        "0037D2AF f30f1103 movss dword ptr [rbx], xmm0",
+        "0037D2B3 4883c304 add rbx, 4",
+        "0037D2B7 4883ed01 sub rbp, 1",
+        "0037D2BB 75d4 jne 0x37d291",
+        "0037D2BD f30f105608 movss xmm2, dword ptr [rsi + 8]",
+        "0037D2C2 0f28ce movaps xmm1, xmm6",
+        "0037D2C5 f30f5cca subss xmm1, xmm2",
+        "0037D2C9 f30f115610 movss dword ptr [rsi + 0x10], xmm2",
+        "0037D2CE f30f117608 movss dword ptr [rsi + 8], xmm6",
+        "0037D2D3 f30f114e0c movss dword ptr [rsi + 0xc], xmm1",
+        "0037D2D8 e803caffff call 0x379ce0",
+        "0037D2DD 0f28f0 movaps xmm6, xmm0",
+        "0037D2E0 f30f1086c8000000 movss xmm0, dword ptr [rsi + 0xc8]",
+        "0037D2E8 f30f597620 mulss xmm6, dword ptr [rsi + 0x20]",
+        "0037D2ED e81c4c4e00 call 0x861f0e",
+        "0037D2F2 f30f58761c addss xmm6, dword ptr [rsi + 0x1c]",
+        "0037D2F7 f30f59c6 mulss xmm0, xmm6",
+        "0037D2FB f30f1186a0000000 movss dword ptr [rsi + 0xa0], xmm0",
+        "0037D303 e8d8c9ffff call 0x379ce0",
+        "0037D308 0f28f0 movaps xmm6, xmm0",
+        "0037D30B f30f1086cc000000 movss xmm0, dword ptr [rsi + 0xcc]",
+        "0037D313 f30f597630 mulss xmm6, dword ptr [rsi + 0x30]",
+        "0037D318 e8f14b4e00 call 0x861f0e",
+        "0037D31D f30f58762c addss xmm6, dword ptr [rsi + 0x2c]",
+        "0037D322 f30f59c6 mulss xmm0, xmm6",
+        "0037D326 f30f1186a4000000 movss dword ptr [rsi + 0xa4], xmm0",
+        "0037D32E e8adc9ffff call 0x379ce0",
+        "0037D333 0f28f0 movaps xmm6, xmm0",
+        "0037D336 f30f1086d0000000 movss xmm0, dword ptr [rsi + 0xd0]",
+        "0037D33E f30f597640 mulss xmm6, dword ptr [rsi + 0x40]",
+        "0037D343 e8c64b4e00 call 0x861f0e",
+        "0037D348 f30f58763c addss xmm6, dword ptr [rsi + 0x3c]",
+        "0037D34D f30f59c6 mulss xmm0, xmm6",
+        "0037D351 f30f1186a8000000 movss dword ptr [rsi + 0xa8], xmm0",
+        "0037D359 e882c9ffff call 0x379ce0",
+        "0037D35E 0f28f0 movaps xmm6, xmm0",
+        "0037D361 f30f1086d4000000 movss xmm0, dword ptr [rsi + 0xd4]",
+        "0037D369 f30f597650 mulss xmm6, dword ptr [rsi + 0x50]",
+        "0037D36E e89b4b4e00 call 0x861f0e",
+        "0037D373 f30f58764c addss xmm6, dword ptr [rsi + 0x4c]",
+        "0037D378 f30f59c6 mulss xmm0, xmm6",
+        "0037D37C f30f5886a0000000 addss xmm0, dword ptr [rsi + 0xa0]",
+        "0037D384 f30f1186b0000000 movss dword ptr [rsi + 0xb0], xmm0",
+        "0037D38C e84fc9ffff call 0x379ce0",
+        "0037D391 0f28f0 movaps xmm6, xmm0",
+        "0037D394 f30f1086d8000000 movss xmm0, dword ptr [rsi + 0xd8]",
+        "0037D39C f30f597660 mulss xmm6, dword ptr [rsi + 0x60]",
+        "0037D3A1 e8684b4e00 call 0x861f0e",
+        "0037D3A6 f30f58765c addss xmm6, dword ptr [rsi + 0x5c]",
+        "0037D3AB f30f59c6 mulss xmm0, xmm6",
+        "0037D3AF f30f5886a4000000 addss xmm0, dword ptr [rsi + 0xa4]",
+        "0037D3B7 f30f1186b4000000 movss dword ptr [rsi + 0xb4], xmm0",
+        "0037D3BF e81cc9ffff call 0x379ce0",
+        "0037D3C4 0f28f0 movaps xmm6, xmm0",
+        "0037D3C7 f30f1086dc000000 movss xmm0, dword ptr [rsi + 0xdc]",
+        "0037D3CF f30f597670 mulss xmm6, dword ptr [rsi + 0x70]",
+        "0037D3D4 e8354b4e00 call 0x861f0e",
+        "0037D3D9 f30f58766c addss xmm6, dword ptr [rsi + 0x6c]",
+        "0037D3DE f30f59c6 mulss xmm0, xmm6",
+        "0037D3E2 f30f5886a8000000 addss xmm0, dword ptr [rsi + 0xa8]",
+        "0037D3EA f30f1186b8000000 movss dword ptr [rsi + 0xb8], xmm0",
+        "0037D3F2 e8e9c8ffff call 0x379ce0",
+        "0037D3F7 0f28f0 movaps xmm6, xmm0",
+        "0037D3FA f30f1086e0000000 movss xmm0, dword ptr [rsi + 0xe0]",
+        "0037D402 f30f59b680000000 mulss xmm6, dword ptr [rsi + 0x80]",
+        "0037D40A e8ff4a4e00 call 0x861f0e",
+        "0037D40F f30f58767c addss xmm6, dword ptr [rsi + 0x7c]",
+        "0037D414 f30f59c6 mulss xmm0, xmm6",
+        "0037D418 f30f1186c0000000 movss dword ptr [rsi + 0xc0], xmm0",
+        "0037D420 e8bbc8ffff call 0x379ce0",
+        "0037D425 0f28f0 movaps xmm6, xmm0",
+        "0037D428 f30f1086e4000000 movss xmm0, dword ptr [rsi + 0xe4]",
+        "0037D430 f30f59b690000000 mulss xmm6, dword ptr [rsi + 0x90]",
+        "0037D438 e8d14a4e00 call 0x861f0e",
+        "0037D43D f30f58b68c000000 addss xmm6, dword ptr [rsi + 0x8c]",
+        "0037D445 f30f59c6 mulss xmm0, xmm6",
+        "0037D449 f30f1186c4000000 movss dword ptr [rsi + 0xc4], xmm0",
+        "0037D451 e84a09e7ff call 0x1edda0",
+        "0037D456 4c8b7c2430 mov r15, qword ptr [rsp + 0x30]",
+        "0037D45B 488b7c2460 mov rdi, qword ptr [rsp + 0x60]",
+        "0037D460 488b6c2458 mov rbp, qword ptr [rsp + 0x58]",
+        "0037D465 488b5c2450 mov rbx, qword ptr [rsp + 0x50]",
+        "0037D46A 85c0 test eax, eax",
+        "0037D46C 7405 je 0x37d473",
+        "0037D46E 0f57d2 xorps xmm2, xmm2",
+        "0037D471 eb08 jmp 0x37d47b",
+        "0037D473 f30f1015f5e69601 movss xmm2, dword ptr [rip + 0x196e6f5]",
+        "0037D47B 410fb74628 movzx eax, word ptr [r14 + 0x28]",
+        "0037D480 f30f104608 movss xmm0, dword ptr [rsi + 8]",
+        "0037D485 4c8b742438 mov r14, qword ptr [rsp + 0x38]",
+        "0037D48A f30f5cc2 subss xmm0, xmm2",
+        "0037D48E 660f6ec8 movd xmm1, eax",
+        "0037D492 0f5bc9 cvtdq2ps xmm1, xmm1",
+        "0037D495 0f2fc1 comiss xmm0, xmm1",
+        "0037D498 0f8786fdffff ja 0x37d224",
+        "0037D49E 0f28742420 movaps xmm6, xmmword ptr [rsp + 0x20]",
+        "0037D4A3 b801000000 mov eax, 1",
+        "0037D4A8 c786e800000001000000 mov dword ptr [rsi + 0xe8], 1",
+        "0037D4B2 4883c440 add rsp, 0x40",
+        "0037D4B6 5e pop rsi",
+        "0037D4B7 c3 ret "
+      ]
+    },
+    "003DCF60": {
+      "bytes": 70,
+      "role": "clear drivers",
+      "sha256": "5b7450557bea15276b819744f3107cac561816be7105c3127938c36743b18211",
+      "raw_hex": "83caff33c06689511c6689511e668981780100006689917a0100006689819001000066899192010000668981a8010000668991aa010000668981c0010000668991c2010000c3",
+      "direct_transfers": [],
+      "disassembly": [
+        "003DCF60 83caff or edx, 0xffffffff",
+        "003DCF63 33c0 xor eax, eax",
+        "003DCF65 6689511c mov word ptr [rcx + 0x1c], dx",
+        "003DCF69 6689511e mov word ptr [rcx + 0x1e], dx",
+        "003DCF6D 66898178010000 mov word ptr [rcx + 0x178], ax",
+        "003DCF74 6689917a010000 mov word ptr [rcx + 0x17a], dx",
+        "003DCF7B 66898190010000 mov word ptr [rcx + 0x190], ax",
+        "003DCF82 66899192010000 mov word ptr [rcx + 0x192], dx",
+        "003DCF89 668981a8010000 mov word ptr [rcx + 0x1a8], ax",
+        "003DCF90 668991aa010000 mov word ptr [rcx + 0x1aa], dx",
+        "003DCF97 668981c0010000 mov word ptr [rcx + 0x1c0], ax",
+        "003DCF9E 668991c2010000 mov word ptr [rcx + 0x1c2], dx",
+        "003DCFA5 c3 ret "
+      ]
+    },
+    "003DD230": {
+      "bytes": 225,
+      "role": "start driver from authored bank",
+      "sha256": "5fa07c38432395817bcc504cec9edd366976f4245588bde89a0dc635b20ac4a4",
+      "raw_hex": "48895c241048896c241848897c242041564883ec304c8bb1f0000000488bd98b4c24600f297424200f28f24963f94863ea85c97907e8c67f1e008bc883ff030f87810000004d85f6747c85ed7878413b6e047372488bc54889742440488d347f4803c0f30f11b4f37c010000448bc7418b54c614b801000000668984f3780100008994f3700100006689acf37a010000898cf374010000c784f3800100000000803f8b4b28e8160afaff4883bbf000000000740d486384f37401000066897c431c488b742440488b5c2448488b6c2450488b7c24580f287424204883c430415ec3",
+      "direct_transfers": [
+        {
+          "site": "003DD265",
+          "target": "005C5230"
+        },
+        {
+          "site": "003DD2D5",
+          "target": "0037DCF0"
+        }
+      ],
+      "disassembly": [
+        "003DD230 48895c2410 mov qword ptr [rsp + 0x10], rbx",
+        "003DD235 48896c2418 mov qword ptr [rsp + 0x18], rbp",
+        "003DD23A 48897c2420 mov qword ptr [rsp + 0x20], rdi",
+        "003DD23F 4156 push r14",
+        "003DD241 4883ec30 sub rsp, 0x30",
+        "003DD245 4c8bb1f0000000 mov r14, qword ptr [rcx + 0xf0]",
+        "003DD24C 488bd9 mov rbx, rcx",
+        "003DD24F 8b4c2460 mov ecx, dword ptr [rsp + 0x60]",
+        "003DD253 0f29742420 movaps xmmword ptr [rsp + 0x20], xmm6",
+        "003DD258 0f28f2 movaps xmm6, xmm2",
+        "003DD25B 4963f9 movsxd rdi, r9d",
+        "003DD25E 4863ea movsxd rbp, edx",
+        "003DD261 85c9 test ecx, ecx",
+        "003DD263 7907 jns 0x3dd26c",
+        "003DD265 e8c67f1e00 call 0x5c5230",
+        "003DD26A 8bc8 mov ecx, eax",
+        "003DD26C 83ff03 cmp edi, 3",
+        "003DD26F 0f8781000000 ja 0x3dd2f6",
+        "003DD275 4d85f6 test r14, r14",
+        "003DD278 747c je 0x3dd2f6",
+        "003DD27A 85ed test ebp, ebp",
+        "003DD27C 7878 js 0x3dd2f6",
+        "003DD27E 413b6e04 cmp ebp, dword ptr [r14 + 4]",
+        "003DD282 7372 jae 0x3dd2f6",
+        "003DD284 488bc5 mov rax, rbp",
+        "003DD287 4889742440 mov qword ptr [rsp + 0x40], rsi",
+        "003DD28C 488d347f lea rsi, [rdi + rdi*2]",
+        "003DD290 4803c0 add rax, rax",
+        "003DD293 f30f11b4f37c010000 movss dword ptr [rbx + rsi*8 + 0x17c], xmm6",
+        "003DD29C 448bc7 mov r8d, edi",
+        "003DD29F 418b54c614 mov edx, dword ptr [r14 + rax*8 + 0x14]",
+        "003DD2A4 b801000000 mov eax, 1",
+        "003DD2A9 668984f378010000 mov word ptr [rbx + rsi*8 + 0x178], ax",
+        "003DD2B1 8994f370010000 mov dword ptr [rbx + rsi*8 + 0x170], edx",
+        "003DD2B8 6689acf37a010000 mov word ptr [rbx + rsi*8 + 0x17a], bp",
+        "003DD2C0 898cf374010000 mov dword ptr [rbx + rsi*8 + 0x174], ecx",
+        "003DD2C7 c784f3800100000000803f mov dword ptr [rbx + rsi*8 + 0x180], 0x3f800000",
+        "003DD2D2 8b4b28 mov ecx, dword ptr [rbx + 0x28]",
+        "003DD2D5 e8160afaff call 0x37dcf0",
+        "003DD2DA 4883bbf000000000 cmp qword ptr [rbx + 0xf0], 0",
+        "003DD2E2 740d je 0x3dd2f1",
+        "003DD2E4 486384f374010000 movsxd rax, dword ptr [rbx + rsi*8 + 0x174]",
+        "003DD2EC 66897c431c mov word ptr [rbx + rax*2 + 0x1c], di",
+        "003DD2F1 488b742440 mov rsi, qword ptr [rsp + 0x40]",
+        "003DD2F6 488b5c2448 mov rbx, qword ptr [rsp + 0x48]",
+        "003DD2FB 488b6c2450 mov rbp, qword ptr [rsp + 0x50]",
+        "003DD300 488b7c2458 mov rdi, qword ptr [rsp + 0x58]",
+        "003DD305 0f28742420 movaps xmm6, xmmword ptr [rsp + 0x20]",
+        "003DD30A 4883c430 add rsp, 0x30",
+        "003DD30E 415e pop r14",
+        "003DD310 c3 ret "
+      ]
+    },
+    "0022A770": {
+      "bytes": 2001,
+      "role": "field-frame scheduling",
+      "sha256": "5c9998d09de30ed571148ef089acbec5520855da2b0c39bffb0f2ed21f348326",
+      "raw_hex": "4056415441574883ec70ba0000ff80488d0dd2e46d00e8152ff4ff4533e44439258f80bd01418bf4742633c9e86f9e03004885c0741a8b055c80bd014489257180bd0183f8ff74080fb7c8e8700f0400b903000000e8d62ef4ffbaff00ff80488d0d9ae46d00e8c52ef4ff488d0da6e46d00e8b92ef4ffe8044b1400e89f571300e8fa551400e8b5f00100e8a02ef4ffe89bf7ffffbaff00ff80488d0d87e46d00e88a2ef4ff488d0d87e46d00e87e2ef4ff33d2448925b9a2e30133c9e87e08000041bf01000000418bcfe8f0da120085c07479e85732f5ff0f1f80000000008b0da2fbc8028b059cfbc8023bc875f0e85b4a140033c9e884db120085c0740fe8fbbb1400b907000000e881ac1400e86c4a1400418bcfe8b4dd1200e87fdb120085c0741ee8d6f00200e8212c1500e86c4c1400e8b7c60200e872cc1400e87d4c140033d2418bcfe8f307000048899c2490000000e826810200e8113cf5ff85c00f84c2000000e8f45d0200e8bf2df4ffe87a1cfcff85c00f84a1000000baff00ff80488d0db6e36d00e8a12df4ff488d0dbee36d00e8952df4ffe810da120033c98bd8e827dd1200e8e24a1400418bcfe86ae20200e8a59a0e0039356fa1e3017515418bcfe8359a0e0039355fa1e3017505e8782b1500e8d39e0e00e8be4b1400418bcfe8c60513008bcbe8dfdc1200e83a2df4ff488d0d5fe36d00e82e2df4ffe8b9041300e8a4571300e8efd9120085c0740ae896cb1400e8a14b1400e80c2df4ffe993050000e8a29df5ffe8bd1dfcff8bd885c07505e8e21cfcff85db0f8e760500004889ac2498000000498bec4889bc24a00000004c896c24684c8d2dd3e16d004c897424604c8bf30f29742450f30f1035be11ac010f297c24400f57ff440f29442430f3440f10059b12ac01440f294c2420f3440f100d3ce36d00418bffe8882cf4ffbaff00ff80488d0db4e26d00e8772cf4ff488d0db8e26d00e86b2cf4ffe826ad030085c07461e87dc1ffff85c07558e8d46f0c0085c0754fe84b4c060085c07546e84234f5ff85c07544e8095514000fbae00a7322e85e5514000fbae00a7317443925f59fda01751744893dec9fda01e873070100eb17443925de9fda01740ee863070100eb07448925ce9fda0144382525a0e3017418486305e29fda01f3410f10448500f30f1105ff9fe301eb0ac705f39fe3010000803fe8ea58130085c0740fc705e09fe3010000803fe8b7c50000443925b09fe301f30f1005c89fe301f30f1105207dbd017429393d849fda017513c705ac9fe3010000803f448925719fda01eb074489259c9fe301448925759fe30133c9e8debfffff8b08480fbae11b730df30f10057d9fe301e818491400e853cd050085c0750ee80a33f5ff85c07405e8813e0500e83ccd050085c07420e833d8120085c07417f30f1005479fe3010f2ec77a127510418bcfe8385c0200f30f1005309fe3010f2fc60f82de0100000f1f8000000000440f2fc8410f47f74885ed7505e8de1afcff8bcfe8c7550200e82255f5ff85c0751fe8f954f5ff85c07409e89019fcff85c0750d8bd733c9e843940e008bd8eb0e8bd733c9e8866b0c00bb02000000e85cf81400e8972c1400e802481400e88dd6120085c07405e8c4771000e88fd7120085c074078bcfe8a45b0200e81fd7120085c0740733c9e864df02008bcbe83d970e00e8e8d6120033c98bd8e8ffd91200e87a281500e8d59b0e00e8c0481400e80bc302008bcbe8e4d91200e8dfd6120085c0740ee806e1020085f67405e85d5cf5ffe8d8a1020033c9e8a1021300f30f1005399ee301f3410f58c00f2ff8f30f1105299ee3017607448925209ee301803d2c9ee30102418bfc0f85c1000000e8ebb4000085c0740b418bd7418bcfe8dcd91200e897aa030085c0740d418bd7b903000000e8c6d91200e8e1beffff85c0750b418bd78d4802e8b2d91200e82d6d0c0085c0750b418bd78d4804e89ed91200e849d812008805c59de30184c07411418bcfe8274af5ff40383db29de301751d33c9e8a7d6120085c0750c418bcfe89bd6120085c07406893d819de301e87c56130085c0740b893d729de301e84dc30000e828d51200f30f1005609de301ff05429de3010f2fc60f8331feffffeb06893d499de3014489252a9de301e81d29f4ffbaff00ff80488d0d21df6d00e80c29f4ff488d0d29df6d00e80029f4ff85ff7446e877d5120033c98bd8e88ed81200e849461400418bcfe8d1dd0200e80c960e00418bcfe8a4950e00e8ef261500e84a9a0e00e835471400418bcfe83d0113008bcbe856d81200e8b128f4ff488d0dd6de6d00e8a528f4ffe830001300e81b531300e866d5120085c0740ae80dc71400e818471400f30f100da09ce301f30f1005a09ce301f30f5905949ce301f30f58c8f30f110d849ce301e86fdd1200e8ca29140066660f1f8400000000008b0da2f5c8028b059cf5c8023bc875f0e83bb70b00e8f6771000e841751000e89c960f00e847441400e8c2311000488d0d4b110000e8163b1300e8a1a339008b0d379ce3018bd0e8e43d1300418bcfe8cc44f5ff418bcfe8d4ac1400488d0d41de6d00e8e827f4ffe863d412008bc8e82cd5120085c0740fe8a3b51400b907000000e829a61400e814060200e8efa01400e8ea2e1500e845ba0e00e8b027f4ff48ffc54d2bf70f8514fbffff440f284c2420440f284424300f287c24400f287424504c8b7424604c8b6c2468488bbc24a0000000488bac2498000000418bc7488b9c24900000004883c470415f415c5ec3",
+      "direct_transfers": [
+        {
+          "site": "0022A786",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A79C",
+          "target": "00264610"
+        },
+        {
+          "site": "0022A7BB",
+          "target": "0026B730"
+        },
+        {
+          "site": "0022A7C5",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A7D6",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A7E2",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A7E7",
+          "target": "0036F2F0"
+        },
+        {
+          "site": "0022A7EC",
+          "target": "0035FF90"
+        },
+        {
+          "site": "0022A7F1",
+          "target": "0036FDF0"
+        },
+        {
+          "site": "0022A7F6",
+          "target": "002498B0"
+        },
+        {
+          "site": "0022A7FB",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A800",
+          "target": "00229FA0"
+        },
+        {
+          "site": "0022A811",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A81D",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A82D",
+          "target": "0022B0B0"
+        },
+        {
+          "site": "0022A83B",
+          "target": "00358330"
+        },
+        {
+          "site": "0022A844",
+          "target": "0017DAA0"
+        },
+        {
+          "site": "0022A860",
+          "target": "0036F2C0"
+        },
+        {
+          "site": "0022A867",
+          "target": "003583F0"
+        },
+        {
+          "site": "0022A870",
+          "target": "00376470"
+        },
+        {
+          "site": "0022A87A",
+          "target": "00375500"
+        },
+        {
+          "site": "0022A87F",
+          "target": "0036F2F0"
+        },
+        {
+          "site": "0022A887",
+          "target": "00358640"
+        },
+        {
+          "site": "0022A88C",
+          "target": "00358410"
+        },
+        {
+          "site": "0022A895",
+          "target": "00259970"
+        },
+        {
+          "site": "0022A89A",
+          "target": "0037D4C0"
+        },
+        {
+          "site": "0022A89F",
+          "target": "0036F510"
+        },
+        {
+          "site": "0022A8A4",
+          "target": "00256F60"
+        },
+        {
+          "site": "0022A8A9",
+          "target": "00377520"
+        },
+        {
+          "site": "0022A8AE",
+          "target": "0036F530"
+        },
+        {
+          "site": "0022A8B8",
+          "target": "0022B0B0"
+        },
+        {
+          "site": "0022A8C5",
+          "target": "002529F0"
+        },
+        {
+          "site": "0022A8CA",
+          "target": "0017E4E0"
+        },
+        {
+          "site": "0022A8D7",
+          "target": "002506D0"
+        },
+        {
+          "site": "0022A8DC",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A8E1",
+          "target": "001EC560"
+        },
+        {
+          "site": "0022A8FA",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A906",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A90B",
+          "target": "00358320"
+        },
+        {
+          "site": "0022A914",
+          "target": "00358640"
+        },
+        {
+          "site": "0022A919",
+          "target": "0036F400"
+        },
+        {
+          "site": "0022A921",
+          "target": "00258B90"
+        },
+        {
+          "site": "0022A926",
+          "target": "003143D0"
+        },
+        {
+          "site": "0022A936",
+          "target": "00314370"
+        },
+        {
+          "site": "0022A943",
+          "target": "0037D4C0"
+        },
+        {
+          "site": "0022A948",
+          "target": "00314820"
+        },
+        {
+          "site": "0022A94D",
+          "target": "0036F510"
+        },
+        {
+          "site": "0022A955",
+          "target": "0035AF20"
+        },
+        {
+          "site": "0022A95C",
+          "target": "00358640"
+        },
+        {
+          "site": "0022A961",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A96D",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A972",
+          "target": "0035AE30"
+        },
+        {
+          "site": "0022A977",
+          "target": "00360120"
+        },
+        {
+          "site": "0022A97C",
+          "target": "00358370"
+        },
+        {
+          "site": "0022A985",
+          "target": "00377520"
+        },
+        {
+          "site": "0022A98A",
+          "target": "0036F530"
+        },
+        {
+          "site": "0022A98F",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022A994",
+          "target": "0022AF2C"
+        },
+        {
+          "site": "0022A999",
+          "target": "00184740"
+        },
+        {
+          "site": "0022A99E",
+          "target": "001EC760"
+        },
+        {
+          "site": "0022A9A9",
+          "target": "001EC690"
+        },
+        {
+          "site": "0022AA13",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022AA24",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022AA30",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022AA35",
+          "target": "00265760"
+        },
+        {
+          "site": "0022AA3E",
+          "target": "00226BC0"
+        },
+        {
+          "site": "0022AA47",
+          "target": "002F1A20"
+        },
+        {
+          "site": "0022AA50",
+          "target": "0028F6A0"
+        },
+        {
+          "site": "0022AA59",
+          "target": "0017DEA0"
+        },
+        {
+          "site": "0022AA62",
+          "target": "0036FF70"
+        },
+        {
+          "site": "0022AA6D",
+          "target": "0036FFD0"
+        },
+        {
+          "site": "0022AA88",
+          "target": "0023B200"
+        },
+        {
+          "site": "0022AA8D",
+          "target": "0022AAA6"
+        },
+        {
+          "site": "0022AA98",
+          "target": "0023B200"
+        },
+        {
+          "site": "0022AA9D",
+          "target": "0022AAA6"
+        },
+        {
+          "site": "0022AAC5",
+          "target": "0022AAD1"
+        },
+        {
+          "site": "0022AAD1",
+          "target": "003603C0"
+        },
+        {
+          "site": "0022AAE4",
+          "target": "002370A0"
+        },
+        {
+          "site": "0022AB1B",
+          "target": "0022AB24"
+        },
+        {
+          "site": "0022AB2D",
+          "target": "00226B10"
+        },
+        {
+          "site": "0022AB43",
+          "target": "0036F460"
+        },
+        {
+          "site": "0022AB48",
+          "target": "002878A0"
+        },
+        {
+          "site": "0022AB51",
+          "target": "0017DE60"
+        },
+        {
+          "site": "0022AB5A",
+          "target": "0027E9E0"
+        },
+        {
+          "site": "0022AB5F",
+          "target": "002878A0"
+        },
+        {
+          "site": "0022AB68",
+          "target": "003583A0"
+        },
+        {
+          "site": "0022AB83",
+          "target": "002507C0"
+        },
+        {
+          "site": "0022ABAD",
+          "target": "001EC690"
+        },
+        {
+          "site": "0022ABB4",
+          "target": "00250180"
+        },
+        {
+          "site": "0022ABB9",
+          "target": "001800E0"
+        },
+        {
+          "site": "0022ABC2",
+          "target": "001800C0"
+        },
+        {
+          "site": "0022ABCB",
+          "target": "001EC560"
+        },
+        {
+          "site": "0022ABD8",
+          "target": "00314020"
+        },
+        {
+          "site": "0022ABDF",
+          "target": "0022ABEF"
+        },
+        {
+          "site": "0022ABE5",
+          "target": "002F1770"
+        },
+        {
+          "site": "0022ABEF",
+          "target": "0037A450"
+        },
+        {
+          "site": "0022ABF4",
+          "target": "0036D890"
+        },
+        {
+          "site": "0022ABF9",
+          "target": "0036F400"
+        },
+        {
+          "site": "0022ABFE",
+          "target": "00358290"
+        },
+        {
+          "site": "0022AC07",
+          "target": "003323D0"
+        },
+        {
+          "site": "0022AC0C",
+          "target": "003583A0"
+        },
+        {
+          "site": "0022AC17",
+          "target": "002507C0"
+        },
+        {
+          "site": "0022AC1C",
+          "target": "00358340"
+        },
+        {
+          "site": "0022AC27",
+          "target": "00258B90"
+        },
+        {
+          "site": "0022AC2E",
+          "target": "00314370"
+        },
+        {
+          "site": "0022AC33",
+          "target": "00358320"
+        },
+        {
+          "site": "0022AC3C",
+          "target": "00358640"
+        },
+        {
+          "site": "0022AC41",
+          "target": "0037D4C0"
+        },
+        {
+          "site": "0022AC46",
+          "target": "00314820"
+        },
+        {
+          "site": "0022AC4B",
+          "target": "0036F510"
+        },
+        {
+          "site": "0022AC50",
+          "target": "00256F60"
+        },
+        {
+          "site": "0022AC57",
+          "target": "00358640"
+        },
+        {
+          "site": "0022AC5C",
+          "target": "00358340"
+        },
+        {
+          "site": "0022AC65",
+          "target": "00258D70"
+        },
+        {
+          "site": "0022AC6E",
+          "target": "001808D0"
+        },
+        {
+          "site": "0022AC73",
+          "target": "00254E50"
+        },
+        {
+          "site": "0022AC7A",
+          "target": "0035AF20"
+        },
+        {
+          "site": "0022ACB0",
+          "target": "002361A0"
+        },
+        {
+          "site": "0022ACBF",
+          "target": "003586A0"
+        },
+        {
+          "site": "0022ACC4",
+          "target": "00265760"
+        },
+        {
+          "site": "0022ACD5",
+          "target": "003586A0"
+        },
+        {
+          "site": "0022ACDA",
+          "target": "00226BC0"
+        },
+        {
+          "site": "0022ACE9",
+          "target": "003586A0"
+        },
+        {
+          "site": "0022ACEE",
+          "target": "002F1A20"
+        },
+        {
+          "site": "0022ACFD",
+          "target": "003586A0"
+        },
+        {
+          "site": "0022AD02",
+          "target": "00358550"
+        },
+        {
+          "site": "0022AD14",
+          "target": "0017F740"
+        },
+        {
+          "site": "0022AD24",
+          "target": "003583D0"
+        },
+        {
+          "site": "0022AD30",
+          "target": "003583D0"
+        },
+        {
+          "site": "0022AD3F",
+          "target": "003603C0"
+        },
+        {
+          "site": "0022AD4E",
+          "target": "002370A0"
+        },
+        {
+          "site": "0022AD53",
+          "target": "00358280"
+        },
+        {
+          "site": "0022AD6F",
+          "target": "0022AD77"
+        },
+        {
+          "site": "0022AD7E",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022AD8F",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022AD9B",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022ADA4",
+          "target": "00358320"
+        },
+        {
+          "site": "0022ADAD",
+          "target": "00358640"
+        },
+        {
+          "site": "0022ADB2",
+          "target": "0036F400"
+        },
+        {
+          "site": "0022ADBA",
+          "target": "00258B90"
+        },
+        {
+          "site": "0022ADBF",
+          "target": "003143D0"
+        },
+        {
+          "site": "0022ADC7",
+          "target": "00314370"
+        },
+        {
+          "site": "0022ADCC",
+          "target": "0037D4C0"
+        },
+        {
+          "site": "0022ADD1",
+          "target": "00314820"
+        },
+        {
+          "site": "0022ADD6",
+          "target": "0036F510"
+        },
+        {
+          "site": "0022ADDE",
+          "target": "0035AF20"
+        },
+        {
+          "site": "0022ADE5",
+          "target": "00358640"
+        },
+        {
+          "site": "0022ADEA",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022ADF6",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022ADFB",
+          "target": "0035AE30"
+        },
+        {
+          "site": "0022AE00",
+          "target": "00360120"
+        },
+        {
+          "site": "0022AE05",
+          "target": "00358370"
+        },
+        {
+          "site": "0022AE0E",
+          "target": "00377520"
+        },
+        {
+          "site": "0022AE13",
+          "target": "0036F530"
+        },
+        {
+          "site": "0022AE3C",
+          "target": "00358BB0"
+        },
+        {
+          "site": "0022AE41",
+          "target": "0036D810"
+        },
+        {
+          "site": "0022AE60",
+          "target": "002E65A0"
+        },
+        {
+          "site": "0022AE65",
+          "target": "00332660"
+        },
+        {
+          "site": "0022AE6A",
+          "target": "003323B0"
+        },
+        {
+          "site": "0022AE6F",
+          "target": "00324510"
+        },
+        {
+          "site": "0022AE74",
+          "target": "0036F2C0"
+        },
+        {
+          "site": "0022AE79",
+          "target": "0032E040"
+        },
+        {
+          "site": "0022AE85",
+          "target": "0035E9A0"
+        },
+        {
+          "site": "0022AE8A",
+          "target": "005C5230"
+        },
+        {
+          "site": "0022AE97",
+          "target": "0035EC80"
+        },
+        {
+          "site": "0022AE9F",
+          "target": "0017F370"
+        },
+        {
+          "site": "0022AEA7",
+          "target": "00375B80"
+        },
+        {
+          "site": "0022AEB3",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022AEB8",
+          "target": "00358320"
+        },
+        {
+          "site": "0022AEBF",
+          "target": "003583F0"
+        },
+        {
+          "site": "0022AEC8",
+          "target": "00376470"
+        },
+        {
+          "site": "0022AED2",
+          "target": "00375500"
+        },
+        {
+          "site": "0022AED7",
+          "target": "0024B4F0"
+        },
+        {
+          "site": "0022AEDC",
+          "target": "00374FD0"
+        },
+        {
+          "site": "0022AEE1",
+          "target": "0037DDD0"
+        },
+        {
+          "site": "0022AEE6",
+          "target": "00316930"
+        },
+        {
+          "site": "0022AEEB",
+          "target": "0016D6A0"
+        }
+      ],
+      "disassembly": [
+        "0022A770 4056 push rsi",
+        "0022A772 4154 push r12",
+        "0022A774 4157 push r15",
+        "0022A776 4883ec70 sub rsp, 0x70",
+        "0022A77A ba0000ff80 mov edx, 0x80ff0000",
+        "0022A77F 488d0dd2e46d00 lea rcx, [rip + 0x6de4d2]",
+        "0022A786 e8152ff4ff call 0x16d6a0",
+        "0022A78B 4533e4 xor r12d, r12d",
+        "0022A78E 4439258f80bd01 cmp dword ptr [rip + 0x1bd808f], r12d",
+        "0022A795 418bf4 mov esi, r12d",
+        "0022A798 7426 je 0x22a7c0",
+        "0022A79A 33c9 xor ecx, ecx",
+        "0022A79C e86f9e0300 call 0x264610",
+        "0022A7A1 4885c0 test rax, rax",
+        "0022A7A4 741a je 0x22a7c0",
+        "0022A7A6 8b055c80bd01 mov eax, dword ptr [rip + 0x1bd805c]",
+        "0022A7AC 4489257180bd01 mov dword ptr [rip + 0x1bd8071], r12d",
+        "0022A7B3 83f8ff cmp eax, -1",
+        "0022A7B6 7408 je 0x22a7c0",
+        "0022A7B8 0fb7c8 movzx ecx, ax",
+        "0022A7BB e8700f0400 call 0x26b730",
+        "0022A7C0 b903000000 mov ecx, 3",
+        "0022A7C5 e8d62ef4ff call 0x16d6a0",
+        "0022A7CA baff00ff80 mov edx, 0x80ff00ff",
+        "0022A7CF 488d0d9ae46d00 lea rcx, [rip + 0x6de49a]",
+        "0022A7D6 e8c52ef4ff call 0x16d6a0",
+        "0022A7DB 488d0da6e46d00 lea rcx, [rip + 0x6de4a6]",
+        "0022A7E2 e8b92ef4ff call 0x16d6a0",
+        "0022A7E7 e8044b1400 call 0x36f2f0",
+        "0022A7EC e89f571300 call 0x35ff90",
+        "0022A7F1 e8fa551400 call 0x36fdf0",
+        "0022A7F6 e8b5f00100 call 0x2498b0",
+        "0022A7FB e8a02ef4ff call 0x16d6a0",
+        "0022A800 e89bf7ffff call 0x229fa0",
+        "0022A805 baff00ff80 mov edx, 0x80ff00ff",
+        "0022A80A 488d0d87e46d00 lea rcx, [rip + 0x6de487]",
+        "0022A811 e88a2ef4ff call 0x16d6a0",
+        "0022A816 488d0d87e46d00 lea rcx, [rip + 0x6de487]",
+        "0022A81D e87e2ef4ff call 0x16d6a0",
+        "0022A822 33d2 xor edx, edx",
+        "0022A824 448925b9a2e301 mov dword ptr [rip + 0x1e3a2b9], r12d",
+        "0022A82B 33c9 xor ecx, ecx",
+        "0022A82D e87e080000 call 0x22b0b0",
+        "0022A832 41bf01000000 mov r15d, 1",
+        "0022A838 418bcf mov ecx, r15d",
+        "0022A83B e8f0da1200 call 0x358330",
+        "0022A840 85c0 test eax, eax",
+        "0022A842 7479 je 0x22a8bd",
+        "0022A844 e85732f5ff call 0x17daa0",
+        "0022A849 0f1f8000000000 nop dword ptr [rax]",
+        "0022A850 8b0da2fbc802 mov ecx, dword ptr [rip + 0x2c8fba2]",
+        "0022A856 8b059cfbc802 mov eax, dword ptr [rip + 0x2c8fb9c]",
+        "0022A85C 3bc8 cmp ecx, eax",
+        "0022A85E 75f0 jne 0x22a850",
+        "0022A860 e85b4a1400 call 0x36f2c0",
+        "0022A865 33c9 xor ecx, ecx",
+        "0022A867 e884db1200 call 0x3583f0",
+        "0022A86C 85c0 test eax, eax",
+        "0022A86E 740f je 0x22a87f",
+        "0022A870 e8fbbb1400 call 0x376470",
+        "0022A875 b907000000 mov ecx, 7",
+        "0022A87A e881ac1400 call 0x375500",
+        "0022A87F e86c4a1400 call 0x36f2f0",
+        "0022A884 418bcf mov ecx, r15d",
+        "0022A887 e8b4dd1200 call 0x358640",
+        "0022A88C e87fdb1200 call 0x358410",
+        "0022A891 85c0 test eax, eax",
+        "0022A893 741e je 0x22a8b3",
+        "0022A895 e8d6f00200 call 0x259970",
+        "0022A89A e8212c1500 call 0x37d4c0",
+        "0022A89F e86c4c1400 call 0x36f510",
+        "0022A8A4 e8b7c60200 call 0x256f60",
+        "0022A8A9 e872cc1400 call 0x377520",
+        "0022A8AE e87d4c1400 call 0x36f530",
+        "0022A8B3 33d2 xor edx, edx",
+        "0022A8B5 418bcf mov ecx, r15d",
+        "0022A8B8 e8f3070000 call 0x22b0b0",
+        "0022A8BD 48899c2490000000 mov qword ptr [rsp + 0x90], rbx",
+        "0022A8C5 e826810200 call 0x2529f0",
+        "0022A8CA e8113cf5ff call 0x17e4e0",
+        "0022A8CF 85c0 test eax, eax",
+        "0022A8D1 0f84c2000000 je 0x22a999",
+        "0022A8D7 e8f45d0200 call 0x2506d0",
+        "0022A8DC e8bf2df4ff call 0x16d6a0",
+        "0022A8E1 e87a1cfcff call 0x1ec560",
+        "0022A8E6 85c0 test eax, eax",
+        "0022A8E8 0f84a1000000 je 0x22a98f",
+        "0022A8EE baff00ff80 mov edx, 0x80ff00ff",
+        "0022A8F3 488d0db6e36d00 lea rcx, [rip + 0x6de3b6]",
+        "0022A8FA e8a12df4ff call 0x16d6a0",
+        "0022A8FF 488d0dbee36d00 lea rcx, [rip + 0x6de3be]",
+        "0022A906 e8952df4ff call 0x16d6a0",
+        "0022A90B e810da1200 call 0x358320",
+        "0022A910 33c9 xor ecx, ecx",
+        "0022A912 8bd8 mov ebx, eax",
+        "0022A914 e827dd1200 call 0x358640",
+        "0022A919 e8e24a1400 call 0x36f400",
+        "0022A91E 418bcf mov ecx, r15d",
+        "0022A921 e86ae20200 call 0x258b90",
+        "0022A926 e8a59a0e00 call 0x3143d0",
+        "0022A92B 39356fa1e301 cmp dword ptr [rip + 0x1e3a16f], esi",
+        "0022A931 7515 jne 0x22a948",
+        "0022A933 418bcf mov ecx, r15d",
+        "0022A936 e8359a0e00 call 0x314370",
+        "0022A93B 39355fa1e301 cmp dword ptr [rip + 0x1e3a15f], esi",
+        "0022A941 7505 jne 0x22a948",
+        "0022A943 e8782b1500 call 0x37d4c0",
+        "0022A948 e8d39e0e00 call 0x314820",
+        "0022A94D e8be4b1400 call 0x36f510",
+        "0022A952 418bcf mov ecx, r15d",
+        "0022A955 e8c6051300 call 0x35af20",
+        "0022A95A 8bcb mov ecx, ebx",
+        "0022A95C e8dfdc1200 call 0x358640",
+        "0022A961 e83a2df4ff call 0x16d6a0",
+        "0022A966 488d0d5fe36d00 lea rcx, [rip + 0x6de35f]",
+        "0022A96D e82e2df4ff call 0x16d6a0",
+        "0022A972 e8b9041300 call 0x35ae30",
+        "0022A977 e8a4571300 call 0x360120",
+        "0022A97C e8efd91200 call 0x358370",
+        "0022A981 85c0 test eax, eax",
+        "0022A983 740a je 0x22a98f",
+        "0022A985 e896cb1400 call 0x377520",
+        "0022A98A e8a14b1400 call 0x36f530",
+        "0022A98F e80c2df4ff call 0x16d6a0",
+        "0022A994 e993050000 jmp 0x22af2c",
+        "0022A999 e8a29df5ff call 0x184740",
+        "0022A99E e8bd1dfcff call 0x1ec760",
+        "0022A9A3 8bd8 mov ebx, eax",
+        "0022A9A5 85c0 test eax, eax",
+        "0022A9A7 7505 jne 0x22a9ae",
+        "0022A9A9 e8e21cfcff call 0x1ec690",
+        "0022A9AE 85db test ebx, ebx",
+        "0022A9B0 0f8e76050000 jle 0x22af2c",
+        "0022A9B6 4889ac2498000000 mov qword ptr [rsp + 0x98], rbp",
+        "0022A9BE 498bec mov rbp, r12",
+        "0022A9C1 4889bc24a0000000 mov qword ptr [rsp + 0xa0], rdi",
+        "0022A9C9 4c896c2468 mov qword ptr [rsp + 0x68], r13",
+        "0022A9CE 4c8d2dd3e16d00 lea r13, [rip + 0x6de1d3]",
+        "0022A9D5 4c89742460 mov qword ptr [rsp + 0x60], r14",
+        "0022A9DA 4c8bf3 mov r14, rbx",
+        "0022A9DD 0f29742450 movaps xmmword ptr [rsp + 0x50], xmm6",
+        "0022A9E2 f30f1035be11ac01 movss xmm6, dword ptr [rip + 0x1ac11be]",
+        "0022A9EA 0f297c2440 movaps xmmword ptr [rsp + 0x40], xmm7",
+        "0022A9EF 0f57ff xorps xmm7, xmm7",
+        "0022A9F2 440f29442430 movaps xmmword ptr [rsp + 0x30], xmm8",
+        "0022A9F8 f3440f10059b12ac01 movss xmm8, dword ptr [rip + 0x1ac129b]",
+        "0022AA01 440f294c2420 movaps xmmword ptr [rsp + 0x20], xmm9",
+        "0022AA07 f3440f100d3ce36d00 movss xmm9, dword ptr [rip + 0x6de33c]",
+        "0022AA10 418bff mov edi, r15d",
+        "0022AA13 e8882cf4ff call 0x16d6a0",
+        "0022AA18 baff00ff80 mov edx, 0x80ff00ff",
+        "0022AA1D 488d0db4e26d00 lea rcx, [rip + 0x6de2b4]",
+        "0022AA24 e8772cf4ff call 0x16d6a0",
+        "0022AA29 488d0db8e26d00 lea rcx, [rip + 0x6de2b8]",
+        "0022AA30 e86b2cf4ff call 0x16d6a0",
+        "0022AA35 e826ad0300 call 0x265760",
+        "0022AA3A 85c0 test eax, eax",
+        "0022AA3C 7461 je 0x22aa9f",
+        "0022AA3E e87dc1ffff call 0x226bc0",
+        "0022AA43 85c0 test eax, eax",
+        "0022AA45 7558 jne 0x22aa9f",
+        "0022AA47 e8d46f0c00 call 0x2f1a20",
+        "0022AA4C 85c0 test eax, eax",
+        "0022AA4E 754f jne 0x22aa9f",
+        "0022AA50 e84b4c0600 call 0x28f6a0",
+        "0022AA55 85c0 test eax, eax",
+        "0022AA57 7546 jne 0x22aa9f",
+        "0022AA59 e84234f5ff call 0x17dea0",
+        "0022AA5E 85c0 test eax, eax",
+        "0022AA60 7544 jne 0x22aaa6",
+        "0022AA62 e809551400 call 0x36ff70",
+        "0022AA67 0fbae00a bt eax, 0xa",
+        "0022AA6B 7322 jae 0x22aa8f",
+        "0022AA6D e85e551400 call 0x36ffd0",
+        "0022AA72 0fbae00a bt eax, 0xa",
+        "0022AA76 7317 jae 0x22aa8f",
+        "0022AA78 443925f59fda01 cmp dword ptr [rip + 0x1da9ff5], r12d",
+        "0022AA7F 7517 jne 0x22aa98",
+        "0022AA81 44893dec9fda01 mov dword ptr [rip + 0x1da9fec], r15d",
+        "0022AA88 e873070100 call 0x23b200",
+        "0022AA8D eb17 jmp 0x22aaa6",
+        "0022AA8F 443925de9fda01 cmp dword ptr [rip + 0x1da9fde], r12d",
+        "0022AA96 740e je 0x22aaa6",
+        "0022AA98 e863070100 call 0x23b200",
+        "0022AA9D eb07 jmp 0x22aaa6",
+        "0022AA9F 448925ce9fda01 mov dword ptr [rip + 0x1da9fce], r12d",
+        "0022AAA6 44382525a0e301 cmp byte ptr [rip + 0x1e3a025], r12b",
+        "0022AAAD 7418 je 0x22aac7",
+        "0022AAAF 486305e29fda01 movsxd rax, dword ptr [rip + 0x1da9fe2]",
+        "0022AAB6 f3410f10448500 movss xmm0, dword ptr [r13 + rax*4]",
+        "0022AABD f30f1105ff9fe301 movss dword ptr [rip + 0x1e39fff], xmm0",
+        "0022AAC5 eb0a jmp 0x22aad1",
+        "0022AAC7 c705f39fe3010000803f mov dword ptr [rip + 0x1e39ff3], 0x3f800000",
+        "0022AAD1 e8ea581300 call 0x3603c0",
+        "0022AAD6 85c0 test eax, eax",
+        "0022AAD8 740f je 0x22aae9",
+        "0022AADA c705e09fe3010000803f mov dword ptr [rip + 0x1e39fe0], 0x3f800000",
+        "0022AAE4 e8b7c50000 call 0x2370a0",
+        "0022AAE9 443925b09fe301 cmp dword ptr [rip + 0x1e39fb0], r12d",
+        "0022AAF0 f30f1005c89fe301 movss xmm0, dword ptr [rip + 0x1e39fc8]",
+        "0022AAF8 f30f1105207dbd01 movss dword ptr [rip + 0x1bd7d20], xmm0",
+        "0022AB00 7429 je 0x22ab2b",
+        "0022AB02 393d849fda01 cmp dword ptr [rip + 0x1da9f84], edi",
+        "0022AB08 7513 jne 0x22ab1d",
+        "0022AB0A c705ac9fe3010000803f mov dword ptr [rip + 0x1e39fac], 0x3f800000",
+        "0022AB14 448925719fda01 mov dword ptr [rip + 0x1da9f71], r12d",
+        "0022AB1B eb07 jmp 0x22ab24",
+        "0022AB1D 4489259c9fe301 mov dword ptr [rip + 0x1e39f9c], r12d",
+        "0022AB24 448925759fe301 mov dword ptr [rip + 0x1e39f75], r12d",
+        "0022AB2B 33c9 xor ecx, ecx",
+        "0022AB2D e8debfffff call 0x226b10",
+        "0022AB32 8b08 mov ecx, dword ptr [rax]",
+        "0022AB34 480fbae11b bt rcx, 0x1b",
+        "0022AB39 730d jae 0x22ab48",
+        "0022AB3B f30f10057d9fe301 movss xmm0, dword ptr [rip + 0x1e39f7d]",
+        "0022AB43 e818491400 call 0x36f460",
+        "0022AB48 e853cd0500 call 0x2878a0",
+        "0022AB4D 85c0 test eax, eax",
+        "0022AB4F 750e jne 0x22ab5f",
+        "0022AB51 e80a33f5ff call 0x17de60",
+        "0022AB56 85c0 test eax, eax",
+        "0022AB58 7405 je 0x22ab5f",
+        "0022AB5A e8813e0500 call 0x27e9e0",
+        "0022AB5F e83ccd0500 call 0x2878a0",
+        "0022AB64 85c0 test eax, eax",
+        "0022AB66 7420 je 0x22ab88",
+        "0022AB68 e833d81200 call 0x3583a0",
+        "0022AB6D 85c0 test eax, eax",
+        "0022AB6F 7417 je 0x22ab88",
+        "0022AB71 f30f1005479fe301 movss xmm0, dword ptr [rip + 0x1e39f47]",
+        "0022AB79 0f2ec7 ucomiss xmm0, xmm7",
+        "0022AB7C 7a12 jp 0x22ab90",
+        "0022AB7E 7510 jne 0x22ab90",
+        "0022AB80 418bcf mov ecx, r15d",
+        "0022AB83 e8385c0200 call 0x2507c0",
+        "0022AB88 f30f1005309fe301 movss xmm0, dword ptr [rip + 0x1e39f30]",
+        "0022AB90 0f2fc6 comiss xmm0, xmm6",
+        "0022AB93 0f82de010000 jb 0x22ad77",
+        "0022AB99 0f1f8000000000 nop dword ptr [rax]",
+        "0022ABA0 440f2fc8 comiss xmm9, xmm0",
+        "0022ABA4 410f47f7 cmova esi, r15d",
+        "0022ABA8 4885ed test rbp, rbp",
+        "0022ABAB 7505 jne 0x22abb2",
+        "0022ABAD e8de1afcff call 0x1ec690",
+        "0022ABB2 8bcf mov ecx, edi",
+        "0022ABB4 e8c7550200 call 0x250180",
+        "0022ABB9 e82255f5ff call 0x1800e0",
+        "0022ABBE 85c0 test eax, eax",
+        "0022ABC0 751f jne 0x22abe1",
+        "0022ABC2 e8f954f5ff call 0x1800c0",
+        "0022ABC7 85c0 test eax, eax",
+        "0022ABC9 7409 je 0x22abd4",
+        "0022ABCB e89019fcff call 0x1ec560",
+        "0022ABD0 85c0 test eax, eax",
+        "0022ABD2 750d jne 0x22abe1",
+        "0022ABD4 8bd7 mov edx, edi",
+        "0022ABD6 33c9 xor ecx, ecx",
+        "0022ABD8 e843940e00 call 0x314020",
+        "0022ABDD 8bd8 mov ebx, eax",
+        "0022ABDF eb0e jmp 0x22abef",
+        "0022ABE1 8bd7 mov edx, edi",
+        "0022ABE3 33c9 xor ecx, ecx",
+        "0022ABE5 e8866b0c00 call 0x2f1770",
+        "0022ABEA bb02000000 mov ebx, 2",
+        "0022ABEF e85cf81400 call 0x37a450",
+        "0022ABF4 e8972c1400 call 0x36d890",
+        "0022ABF9 e802481400 call 0x36f400",
+        "0022ABFE e88dd61200 call 0x358290",
+        "0022AC03 85c0 test eax, eax",
+        "0022AC05 7405 je 0x22ac0c",
+        "0022AC07 e8c4771000 call 0x3323d0",
+        "0022AC0C e88fd71200 call 0x3583a0",
+        "0022AC11 85c0 test eax, eax",
+        "0022AC13 7407 je 0x22ac1c",
+        "0022AC15 8bcf mov ecx, edi",
+        "0022AC17 e8a45b0200 call 0x2507c0",
+        "0022AC1C e81fd71200 call 0x358340",
+        "0022AC21 85c0 test eax, eax",
+        "0022AC23 7407 je 0x22ac2c",
+        "0022AC25 33c9 xor ecx, ecx",
+        "0022AC27 e864df0200 call 0x258b90",
+        "0022AC2C 8bcb mov ecx, ebx",
+        "0022AC2E e83d970e00 call 0x314370",
+        "0022AC33 e8e8d61200 call 0x358320",
+        "0022AC38 33c9 xor ecx, ecx",
+        "0022AC3A 8bd8 mov ebx, eax",
+        "0022AC3C e8ffd91200 call 0x358640",
+        "0022AC41 e87a281500 call 0x37d4c0",
+        "0022AC46 e8d59b0e00 call 0x314820",
+        "0022AC4B e8c0481400 call 0x36f510",
+        "0022AC50 e80bc30200 call 0x256f60",
+        "0022AC55 8bcb mov ecx, ebx",
+        "0022AC57 e8e4d91200 call 0x358640",
+        "0022AC5C e8dfd61200 call 0x358340",
+        "0022AC61 85c0 test eax, eax",
+        "0022AC63 740e je 0x22ac73",
+        "0022AC65 e806e10200 call 0x258d70",
+        "0022AC6A 85f6 test esi, esi",
+        "0022AC6C 7405 je 0x22ac73",
+        "0022AC6E e85d5cf5ff call 0x1808d0",
+        "0022AC73 e8d8a10200 call 0x254e50",
+        "0022AC78 33c9 xor ecx, ecx",
+        "0022AC7A e8a1021300 call 0x35af20",
+        "0022AC7F f30f1005399ee301 movss xmm0, dword ptr [rip + 0x1e39e39]",
+        "0022AC87 f3410f58c0 addss xmm0, xmm8",
+        "0022AC8C 0f2ff8 comiss xmm7, xmm0",
+        "0022AC8F f30f1105299ee301 movss dword ptr [rip + 0x1e39e29], xmm0",
+        "0022AC97 7607 jbe 0x22aca0",
+        "0022AC99 448925209ee301 mov dword ptr [rip + 0x1e39e20], r12d",
+        "0022ACA0 803d2c9ee30102 cmp byte ptr [rip + 0x1e39e2c], 2",
+        "0022ACA7 418bfc mov edi, r12d",
+        "0022ACAA 0f85c1000000 jne 0x22ad71",
+        "0022ACB0 e8ebb40000 call 0x2361a0",
+        "0022ACB5 85c0 test eax, eax",
+        "0022ACB7 740b je 0x22acc4",
+        "0022ACB9 418bd7 mov edx, r15d",
+        "0022ACBC 418bcf mov ecx, r15d",
+        "0022ACBF e8dcd91200 call 0x3586a0",
+        "0022ACC4 e897aa0300 call 0x265760",
+        "0022ACC9 85c0 test eax, eax",
+        "0022ACCB 740d je 0x22acda",
+        "0022ACCD 418bd7 mov edx, r15d",
+        "0022ACD0 b903000000 mov ecx, 3",
+        "0022ACD5 e8c6d91200 call 0x3586a0",
+        "0022ACDA e8e1beffff call 0x226bc0",
+        "0022ACDF 85c0 test eax, eax",
+        "0022ACE1 750b jne 0x22acee",
+        "0022ACE3 418bd7 mov edx, r15d",
+        "0022ACE6 8d4802 lea ecx, [rax + 2]",
+        "0022ACE9 e8b2d91200 call 0x3586a0",
+        "0022ACEE e82d6d0c00 call 0x2f1a20",
+        "0022ACF3 85c0 test eax, eax",
+        "0022ACF5 750b jne 0x22ad02",
+        "0022ACF7 418bd7 mov edx, r15d",
+        "0022ACFA 8d4804 lea ecx, [rax + 4]",
+        "0022ACFD e89ed91200 call 0x3586a0",
+        "0022AD02 e849d81200 call 0x358550",
+        "0022AD07 8805c59de301 mov byte ptr [rip + 0x1e39dc5], al",
+        "0022AD0D 84c0 test al, al",
+        "0022AD0F 7411 je 0x22ad22",
+        "0022AD11 418bcf mov ecx, r15d",
+        "0022AD14 e8274af5ff call 0x17f740",
+        "0022AD19 40383db29de301 cmp byte ptr [rip + 0x1e39db2], dil",
+        "0022AD20 751d jne 0x22ad3f",
+        "0022AD22 33c9 xor ecx, ecx",
+        "0022AD24 e8a7d61200 call 0x3583d0",
+        "0022AD29 85c0 test eax, eax",
+        "0022AD2B 750c jne 0x22ad39",
+        "0022AD2D 418bcf mov ecx, r15d",
+        "0022AD30 e89bd61200 call 0x3583d0",
+        "0022AD35 85c0 test eax, eax",
+        "0022AD37 7406 je 0x22ad3f",
+        "0022AD39 893d819de301 mov dword ptr [rip + 0x1e39d81], edi",
+        "0022AD3F e87c561300 call 0x3603c0",
+        "0022AD44 85c0 test eax, eax",
+        "0022AD46 740b je 0x22ad53",
+        "0022AD48 893d729de301 mov dword ptr [rip + 0x1e39d72], edi",
+        "0022AD4E e84dc30000 call 0x2370a0",
+        "0022AD53 e828d51200 call 0x358280",
+        "0022AD58 f30f1005609de301 movss xmm0, dword ptr [rip + 0x1e39d60]",
+        "0022AD60 ff05429de301 inc dword ptr [rip + 0x1e39d42]",
+        "0022AD66 0f2fc6 comiss xmm0, xmm6",
+        "0022AD69 0f8331feffff jae 0x22aba0",
+        "0022AD6F eb06 jmp 0x22ad77",
+        "0022AD71 893d499de301 mov dword ptr [rip + 0x1e39d49], edi",
+        "0022AD77 4489252a9de301 mov dword ptr [rip + 0x1e39d2a], r12d",
+        "0022AD7E e81d29f4ff call 0x16d6a0",
+        "0022AD83 baff00ff80 mov edx, 0x80ff00ff",
+        "0022AD88 488d0d21df6d00 lea rcx, [rip + 0x6ddf21]",
+        "0022AD8F e80c29f4ff call 0x16d6a0",
+        "0022AD94 488d0d29df6d00 lea rcx, [rip + 0x6ddf29]",
+        "0022AD9B e80029f4ff call 0x16d6a0",
+        "0022ADA0 85ff test edi, edi",
+        "0022ADA2 7446 je 0x22adea",
+        "0022ADA4 e877d51200 call 0x358320",
+        "0022ADA9 33c9 xor ecx, ecx",
+        "0022ADAB 8bd8 mov ebx, eax",
+        "0022ADAD e88ed81200 call 0x358640",
+        "0022ADB2 e849461400 call 0x36f400",
+        "0022ADB7 418bcf mov ecx, r15d",
+        "0022ADBA e8d1dd0200 call 0x258b90",
+        "0022ADBF e80c960e00 call 0x3143d0",
+        "0022ADC4 418bcf mov ecx, r15d",
+        "0022ADC7 e8a4950e00 call 0x314370",
+        "0022ADCC e8ef261500 call 0x37d4c0",
+        "0022ADD1 e84a9a0e00 call 0x314820",
+        "0022ADD6 e835471400 call 0x36f510",
+        "0022ADDB 418bcf mov ecx, r15d",
+        "0022ADDE e83d011300 call 0x35af20",
+        "0022ADE3 8bcb mov ecx, ebx",
+        "0022ADE5 e856d81200 call 0x358640",
+        "0022ADEA e8b128f4ff call 0x16d6a0",
+        "0022ADEF 488d0dd6de6d00 lea rcx, [rip + 0x6dded6]",
+        "0022ADF6 e8a528f4ff call 0x16d6a0",
+        "0022ADFB e830001300 call 0x35ae30",
+        "0022AE00 e81b531300 call 0x360120",
+        "0022AE05 e866d51200 call 0x358370",
+        "0022AE0A 85c0 test eax, eax",
+        "0022AE0C 740a je 0x22ae18",
+        "0022AE0E e80dc71400 call 0x377520",
+        "0022AE13 e818471400 call 0x36f530",
+        "0022AE18 f30f100da09ce301 movss xmm1, dword ptr [rip + 0x1e39ca0]",
+        "0022AE20 f30f1005a09ce301 movss xmm0, dword ptr [rip + 0x1e39ca0]",
+        "0022AE28 f30f5905949ce301 mulss xmm0, dword ptr [rip + 0x1e39c94]",
+        "0022AE30 f30f58c8 addss xmm1, xmm0",
+        "0022AE34 f30f110d849ce301 movss dword ptr [rip + 0x1e39c84], xmm1",
+        "0022AE3C e86fdd1200 call 0x358bb0",
+        "0022AE41 e8ca291400 call 0x36d810",
+        "0022AE46 66660f1f840000000000 nop word ptr [rax + rax]",
+        "0022AE50 8b0da2f5c802 mov ecx, dword ptr [rip + 0x2c8f5a2]",
+        "0022AE56 8b059cf5c802 mov eax, dword ptr [rip + 0x2c8f59c]",
+        "0022AE5C 3bc8 cmp ecx, eax",
+        "0022AE5E 75f0 jne 0x22ae50",
+        "0022AE60 e83bb70b00 call 0x2e65a0",
+        "0022AE65 e8f6771000 call 0x332660",
+        "0022AE6A e841751000 call 0x3323b0",
+        "0022AE6F e89c960f00 call 0x324510",
+        "0022AE74 e847441400 call 0x36f2c0",
+        "0022AE79 e8c2311000 call 0x32e040",
+        "0022AE7E 488d0d4b110000 lea rcx, [rip + 0x114b]",
+        "0022AE85 e8163b1300 call 0x35e9a0",
+        "0022AE8A e8a1a33900 call 0x5c5230",
+        "0022AE8F 8b0d379ce301 mov ecx, dword ptr [rip + 0x1e39c37]",
+        "0022AE95 8bd0 mov edx, eax",
+        "0022AE97 e8e43d1300 call 0x35ec80",
+        "0022AE9C 418bcf mov ecx, r15d",
+        "0022AE9F e8cc44f5ff call 0x17f370",
+        "0022AEA4 418bcf mov ecx, r15d",
+        "0022AEA7 e8d4ac1400 call 0x375b80",
+        "0022AEAC 488d0d41de6d00 lea rcx, [rip + 0x6dde41]",
+        "0022AEB3 e8e827f4ff call 0x16d6a0",
+        "0022AEB8 e863d41200 call 0x358320",
+        "0022AEBD 8bc8 mov ecx, eax",
+        "0022AEBF e82cd51200 call 0x3583f0",
+        "0022AEC4 85c0 test eax, eax",
+        "0022AEC6 740f je 0x22aed7",
+        "0022AEC8 e8a3b51400 call 0x376470",
+        "0022AECD b907000000 mov ecx, 7",
+        "0022AED2 e829a61400 call 0x375500",
+        "0022AED7 e814060200 call 0x24b4f0",
+        "0022AEDC e8efa01400 call 0x374fd0",
+        "0022AEE1 e8ea2e1500 call 0x37ddd0",
+        "0022AEE6 e845ba0e00 call 0x316930",
+        "0022AEEB e8b027f4ff call 0x16d6a0",
+        "0022AEF0 48ffc5 inc rbp",
+        "0022AEF3 4d2bf7 sub r14, r15",
+        "0022AEF6 0f8514fbffff jne 0x22aa10",
+        "0022AEFC 440f284c2420 movaps xmm9, xmmword ptr [rsp + 0x20]",
+        "0022AF02 440f28442430 movaps xmm8, xmmword ptr [rsp + 0x30]",
+        "0022AF08 0f287c2440 movaps xmm7, xmmword ptr [rsp + 0x40]",
+        "0022AF0D 0f28742450 movaps xmm6, xmmword ptr [rsp + 0x50]",
+        "0022AF12 4c8b742460 mov r14, qword ptr [rsp + 0x60]",
+        "0022AF17 4c8b6c2468 mov r13, qword ptr [rsp + 0x68]",
+        "0022AF1C 488bbc24a0000000 mov rdi, qword ptr [rsp + 0xa0]",
+        "0022AF24 488bac2498000000 mov rbp, qword ptr [rsp + 0x98]",
+        "0022AF2C 418bc7 mov eax, r15d",
+        "0022AF2F 488b9c2490000000 mov rbx, qword ptr [rsp + 0x90]",
+        "0022AF37 4883c470 add rsp, 0x70",
+        "0022AF3B 415f pop r15",
+        "0022AF3D 415c pop r12",
+        "0022AF3F 5e pop rsi",
+        "0022AF40 c3 ret "
+      ]
+    },
+    "0022B8C0": {
+      "bytes": 856,
+      "role": "update-and-render scheduling",
+      "sha256": "0752642c6f7d204a969f5bf1e8e82e4d33494b35d137df62773f93849d418455",
+      "raw_hex": "40534883ec30b903000000e8d01df4ffe8fb64f5ff85c07505e8926af5ff33c9e85b3ef5ff33db891d8791da01e8fe391400488d0d8fd36d00e8a21df4ffe88d461300e8e8441400e8a3df0100488d0d0cd46d00e8871df4ffba010000008bcae8db1a140033c9e8141c020033c9e81dca120085c0740ee89464f5ff85c07405e8ebb81400391d5591e301750ae85ed50200e8f98f1400448b0d7e08be0133d2448b057108be0133c9c744242001000000e8ea8af5ffe835590200e820bf050085c0750ee8d724f5ff85c07405e84e30050033c9e857ca120085c0740ab905000000e8599b1400488d0d02050000e8bd4b0a00e8e86e020033c9e831ca120085c07414b906000000e823d70200b906000000e8299b1400e8b46f0200e80f700200448b0df407be0133d2448b05e707be0133c9895c2420e8648af5ffb901000000e87a03fdffe84504fdffe800f51200488d0df1d26d00e8841cf4ffba010000008bcae8f8850e00488d0de9d26d00e86c1cf4ffe8571e1400488d0d8cd26d00e85b1cf4ffe8f64a0200e88163f5ff85c07405e8c860f5ffe8f363f5ffe86e63f5ff85c07434c7057890e30101000000e85b69100033c9e8f4880e00e88f3a1400e82a63f5ff85c0752de8b1c8120085c07424e8a8d30200eb1d391d4890e3017415b901000000891d3b90e301e8be880e00e8593a140033c9e862f41200891ddc8fe3010f1f40000f1f8400000000008b0d22e9c8028b051ce9c8023bc875f0e8bbaa0b00e8766b1000e8c1681000e81c8a0f00e837f31200e8b2d01200e8bd371400e838251000488d0dc1040000e88c2e1300b901000000e8122f1300b901000000e84838f5ffb901000000e84ea01400488d0dbbd16d00e8621bf4ff33c9e8abc8120085c0740fe822a91400b907000000e8a8991400e893f90100e86e941400e8594a0b0085c0757d488d0db6d16d00e8291bf4ffe8241bf4ffe8df790300c6054b8fe30102e8b371f5ffe80e600b0033c9e8e73d0200ba010000008d4a06e8fa600b0033d28d4a07e8f0600b00ba090000008d4afee8e3600b00ba140000008d4af3e8d6600b00e831131500e8fc671000e8876a1000e8d2671000e8fdaf1400e898a6ffffe8e3211500e82e66f5ffb901000000e8b474f5ffe8af3af5ff33c9e8a874f5ffe8a367f5ffb8010000004883c4305bc3",
+      "direct_transfers": [
+        {
+          "site": "0022B8CB",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022B8D0",
+          "target": "00181DD0"
+        },
+        {
+          "site": "0022B8D9",
+          "target": "00182370"
+        },
+        {
+          "site": "0022B8E0",
+          "target": "0017F740"
+        },
+        {
+          "site": "0022B8ED",
+          "target": "0036F2F0"
+        },
+        {
+          "site": "0022B8F9",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022B8FE",
+          "target": "0035FF90"
+        },
+        {
+          "site": "0022B903",
+          "target": "0036FDF0"
+        },
+        {
+          "site": "0022B908",
+          "target": "002498B0"
+        },
+        {
+          "site": "0022B914",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022B920",
+          "target": "0036D400"
+        },
+        {
+          "site": "0022B927",
+          "target": "0024D540"
+        },
+        {
+          "site": "0022B92E",
+          "target": "00358350"
+        },
+        {
+          "site": "0022B937",
+          "target": "00181DD0"
+        },
+        {
+          "site": "0022B940",
+          "target": "00377230"
+        },
+        {
+          "site": "0022B94D",
+          "target": "00258EB0"
+        },
+        {
+          "site": "0022B952",
+          "target": "00374950"
+        },
+        {
+          "site": "0022B971",
+          "target": "00184460"
+        },
+        {
+          "site": "0022B976",
+          "target": "002512B0"
+        },
+        {
+          "site": "0022B97B",
+          "target": "002878A0"
+        },
+        {
+          "site": "0022B984",
+          "target": "0017DE60"
+        },
+        {
+          "site": "0022B98D",
+          "target": "0027E9E0"
+        },
+        {
+          "site": "0022B994",
+          "target": "003583F0"
+        },
+        {
+          "site": "0022B9A2",
+          "target": "00375500"
+        },
+        {
+          "site": "0022B9AE",
+          "target": "002D0570"
+        },
+        {
+          "site": "0022B9B3",
+          "target": "002528A0"
+        },
+        {
+          "site": "0022B9BA",
+          "target": "003583F0"
+        },
+        {
+          "site": "0022B9C8",
+          "target": "002590F0"
+        },
+        {
+          "site": "0022B9D2",
+          "target": "00375500"
+        },
+        {
+          "site": "0022B9D7",
+          "target": "00252990"
+        },
+        {
+          "site": "0022B9DC",
+          "target": "002529F0"
+        },
+        {
+          "site": "0022B9F7",
+          "target": "00184460"
+        },
+        {
+          "site": "0022BA01",
+          "target": "001FBD80"
+        },
+        {
+          "site": "0022BA06",
+          "target": "001FBE50"
+        },
+        {
+          "site": "0022BA0B",
+          "target": "0035AF10"
+        },
+        {
+          "site": "0022BA17",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022BA23",
+          "target": "00314020"
+        },
+        {
+          "site": "0022BA2F",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022BA34",
+          "target": "0036D890"
+        },
+        {
+          "site": "0022BA40",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022BA45",
+          "target": "00250540"
+        },
+        {
+          "site": "0022BA4A",
+          "target": "00181DD0"
+        },
+        {
+          "site": "0022BA53",
+          "target": "00181B20"
+        },
+        {
+          "site": "0022BA58",
+          "target": "00181E50"
+        },
+        {
+          "site": "0022BA5D",
+          "target": "00181DD0"
+        },
+        {
+          "site": "0022BA70",
+          "target": "003323D0"
+        },
+        {
+          "site": "0022BA77",
+          "target": "00314370"
+        },
+        {
+          "site": "0022BA7C",
+          "target": "0036F510"
+        },
+        {
+          "site": "0022BA81",
+          "target": "00181DB0"
+        },
+        {
+          "site": "0022BA8A",
+          "target": "00358340"
+        },
+        {
+          "site": "0022BA93",
+          "target": "00258E40"
+        },
+        {
+          "site": "0022BA98",
+          "target": "0022BAB7"
+        },
+        {
+          "site": "0022BAAD",
+          "target": "00314370"
+        },
+        {
+          "site": "0022BAB2",
+          "target": "0036F510"
+        },
+        {
+          "site": "0022BAB9",
+          "target": "0035AF20"
+        },
+        {
+          "site": "0022BAE0",
+          "target": "002E65A0"
+        },
+        {
+          "site": "0022BAE5",
+          "target": "00332660"
+        },
+        {
+          "site": "0022BAEA",
+          "target": "003323B0"
+        },
+        {
+          "site": "0022BAEF",
+          "target": "00324510"
+        },
+        {
+          "site": "0022BAF4",
+          "target": "0035AE30"
+        },
+        {
+          "site": "0022BAF9",
+          "target": "00358BB0"
+        },
+        {
+          "site": "0022BAFE",
+          "target": "0036F2C0"
+        },
+        {
+          "site": "0022BB03",
+          "target": "0032E040"
+        },
+        {
+          "site": "0022BB0F",
+          "target": "0035E9A0"
+        },
+        {
+          "site": "0022BB19",
+          "target": "0035EA30"
+        },
+        {
+          "site": "0022BB23",
+          "target": "0017F370"
+        },
+        {
+          "site": "0022BB2D",
+          "target": "00375B80"
+        },
+        {
+          "site": "0022BB39",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022BB40",
+          "target": "003583F0"
+        },
+        {
+          "site": "0022BB49",
+          "target": "00376470"
+        },
+        {
+          "site": "0022BB53",
+          "target": "00375500"
+        },
+        {
+          "site": "0022BB58",
+          "target": "0024B4F0"
+        },
+        {
+          "site": "0022BB5D",
+          "target": "00374FD0"
+        },
+        {
+          "site": "0022BB62",
+          "target": "002E05C0"
+        },
+        {
+          "site": "0022BB72",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022BB77",
+          "target": "0016D6A0"
+        },
+        {
+          "site": "0022BB7C",
+          "target": "00263560"
+        },
+        {
+          "site": "0022BB88",
+          "target": "00182D40"
+        },
+        {
+          "site": "0022BB8D",
+          "target": "002E1BA0"
+        },
+        {
+          "site": "0022BB94",
+          "target": "0024F980"
+        },
+        {
+          "site": "0022BBA1",
+          "target": "002E1CA0"
+        },
+        {
+          "site": "0022BBAB",
+          "target": "002E1CA0"
+        },
+        {
+          "site": "0022BBB8",
+          "target": "002E1CA0"
+        },
+        {
+          "site": "0022BBC5",
+          "target": "002E1CA0"
+        },
+        {
+          "site": "0022BBCA",
+          "target": "0037CF00"
+        },
+        {
+          "site": "0022BBCF",
+          "target": "003323D0"
+        },
+        {
+          "site": "0022BBD4",
+          "target": "00332660"
+        },
+        {
+          "site": "0022BBD9",
+          "target": "003323B0"
+        },
+        {
+          "site": "0022BBDE",
+          "target": "00376BE0"
+        },
+        {
+          "site": "0022BBE3",
+          "target": "00226280"
+        },
+        {
+          "site": "0022BBE8",
+          "target": "0037DDD0"
+        },
+        {
+          "site": "0022BBED",
+          "target": "00182220"
+        },
+        {
+          "site": "0022BBF7",
+          "target": "001830B0"
+        },
+        {
+          "site": "0022BBFC",
+          "target": "0017F6B0"
+        },
+        {
+          "site": "0022BC03",
+          "target": "001830B0"
+        },
+        {
+          "site": "0022BC08",
+          "target": "001823B0"
+        }
+      ],
+      "disassembly": [
+        "0022B8C0 4053 push rbx",
+        "0022B8C2 4883ec30 sub rsp, 0x30",
+        "0022B8C6 b903000000 mov ecx, 3",
+        "0022B8CB e8d01df4ff call 0x16d6a0",
+        "0022B8D0 e8fb64f5ff call 0x181dd0",
+        "0022B8D5 85c0 test eax, eax",
+        "0022B8D7 7505 jne 0x22b8de",
+        "0022B8D9 e8926af5ff call 0x182370",
+        "0022B8DE 33c9 xor ecx, ecx",
+        "0022B8E0 e85b3ef5ff call 0x17f740",
+        "0022B8E5 33db xor ebx, ebx",
+        "0022B8E7 891d8791da01 mov dword ptr [rip + 0x1da9187], ebx",
+        "0022B8ED e8fe391400 call 0x36f2f0",
+        "0022B8F2 488d0d8fd36d00 lea rcx, [rip + 0x6dd38f]",
+        "0022B8F9 e8a21df4ff call 0x16d6a0",
+        "0022B8FE e88d461300 call 0x35ff90",
+        "0022B903 e8e8441400 call 0x36fdf0",
+        "0022B908 e8a3df0100 call 0x2498b0",
+        "0022B90D 488d0d0cd46d00 lea rcx, [rip + 0x6dd40c]",
+        "0022B914 e8871df4ff call 0x16d6a0",
+        "0022B919 ba01000000 mov edx, 1",
+        "0022B91E 8bca mov ecx, edx",
+        "0022B920 e8db1a1400 call 0x36d400",
+        "0022B925 33c9 xor ecx, ecx",
+        "0022B927 e8141c0200 call 0x24d540",
+        "0022B92C 33c9 xor ecx, ecx",
+        "0022B92E e81dca1200 call 0x358350",
+        "0022B933 85c0 test eax, eax",
+        "0022B935 740e je 0x22b945",
+        "0022B937 e89464f5ff call 0x181dd0",
+        "0022B93C 85c0 test eax, eax",
+        "0022B93E 7405 je 0x22b945",
+        "0022B940 e8ebb81400 call 0x377230",
+        "0022B945 391d5591e301 cmp dword ptr [rip + 0x1e39155], ebx",
+        "0022B94B 750a jne 0x22b957",
+        "0022B94D e85ed50200 call 0x258eb0",
+        "0022B952 e8f98f1400 call 0x374950",
+        "0022B957 448b0d7e08be01 mov r9d, dword ptr [rip + 0x1be087e]",
+        "0022B95E 33d2 xor edx, edx",
+        "0022B960 448b057108be01 mov r8d, dword ptr [rip + 0x1be0871]",
+        "0022B967 33c9 xor ecx, ecx",
+        "0022B969 c744242001000000 mov dword ptr [rsp + 0x20], 1",
+        "0022B971 e8ea8af5ff call 0x184460",
+        "0022B976 e835590200 call 0x2512b0",
+        "0022B97B e820bf0500 call 0x2878a0",
+        "0022B980 85c0 test eax, eax",
+        "0022B982 750e jne 0x22b992",
+        "0022B984 e8d724f5ff call 0x17de60",
+        "0022B989 85c0 test eax, eax",
+        "0022B98B 7405 je 0x22b992",
+        "0022B98D e84e300500 call 0x27e9e0",
+        "0022B992 33c9 xor ecx, ecx",
+        "0022B994 e857ca1200 call 0x3583f0",
+        "0022B999 85c0 test eax, eax",
+        "0022B99B 740a je 0x22b9a7",
+        "0022B99D b905000000 mov ecx, 5",
+        "0022B9A2 e8599b1400 call 0x375500",
+        "0022B9A7 488d0d02050000 lea rcx, [rip + 0x502]",
+        "0022B9AE e8bd4b0a00 call 0x2d0570",
+        "0022B9B3 e8e86e0200 call 0x2528a0",
+        "0022B9B8 33c9 xor ecx, ecx",
+        "0022B9BA e831ca1200 call 0x3583f0",
+        "0022B9BF 85c0 test eax, eax",
+        "0022B9C1 7414 je 0x22b9d7",
+        "0022B9C3 b906000000 mov ecx, 6",
+        "0022B9C8 e823d70200 call 0x2590f0",
+        "0022B9CD b906000000 mov ecx, 6",
+        "0022B9D2 e8299b1400 call 0x375500",
+        "0022B9D7 e8b46f0200 call 0x252990",
+        "0022B9DC e80f700200 call 0x2529f0",
+        "0022B9E1 448b0df407be01 mov r9d, dword ptr [rip + 0x1be07f4]",
+        "0022B9E8 33d2 xor edx, edx",
+        "0022B9EA 448b05e707be01 mov r8d, dword ptr [rip + 0x1be07e7]",
+        "0022B9F1 33c9 xor ecx, ecx",
+        "0022B9F3 895c2420 mov dword ptr [rsp + 0x20], ebx",
+        "0022B9F7 e8648af5ff call 0x184460",
+        "0022B9FC b901000000 mov ecx, 1",
+        "0022BA01 e87a03fdff call 0x1fbd80",
+        "0022BA06 e84504fdff call 0x1fbe50",
+        "0022BA0B e800f51200 call 0x35af10",
+        "0022BA10 488d0df1d26d00 lea rcx, [rip + 0x6dd2f1]",
+        "0022BA17 e8841cf4ff call 0x16d6a0",
+        "0022BA1C ba01000000 mov edx, 1",
+        "0022BA21 8bca mov ecx, edx",
+        "0022BA23 e8f8850e00 call 0x314020",
+        "0022BA28 488d0de9d26d00 lea rcx, [rip + 0x6dd2e9]",
+        "0022BA2F e86c1cf4ff call 0x16d6a0",
+        "0022BA34 e8571e1400 call 0x36d890",
+        "0022BA39 488d0d8cd26d00 lea rcx, [rip + 0x6dd28c]",
+        "0022BA40 e85b1cf4ff call 0x16d6a0",
+        "0022BA45 e8f64a0200 call 0x250540",
+        "0022BA4A e88163f5ff call 0x181dd0",
+        "0022BA4F 85c0 test eax, eax",
+        "0022BA51 7405 je 0x22ba58",
+        "0022BA53 e8c860f5ff call 0x181b20",
+        "0022BA58 e8f363f5ff call 0x181e50",
+        "0022BA5D e86e63f5ff call 0x181dd0",
+        "0022BA62 85c0 test eax, eax",
+        "0022BA64 7434 je 0x22ba9a",
+        "0022BA66 c7057890e30101000000 mov dword ptr [rip + 0x1e39078], 1",
+        "0022BA70 e85b691000 call 0x3323d0",
+        "0022BA75 33c9 xor ecx, ecx",
+        "0022BA77 e8f4880e00 call 0x314370",
+        "0022BA7C e88f3a1400 call 0x36f510",
+        "0022BA81 e82a63f5ff call 0x181db0",
+        "0022BA86 85c0 test eax, eax",
+        "0022BA88 752d jne 0x22bab7",
+        "0022BA8A e8b1c81200 call 0x358340",
+        "0022BA8F 85c0 test eax, eax",
+        "0022BA91 7424 je 0x22bab7",
+        "0022BA93 e8a8d30200 call 0x258e40",
+        "0022BA98 eb1d jmp 0x22bab7",
+        "0022BA9A 391d4890e301 cmp dword ptr [rip + 0x1e39048], ebx",
+        "0022BAA0 7415 je 0x22bab7",
+        "0022BAA2 b901000000 mov ecx, 1",
+        "0022BAA7 891d3b90e301 mov dword ptr [rip + 0x1e3903b], ebx",
+        "0022BAAD e8be880e00 call 0x314370",
+        "0022BAB2 e8593a1400 call 0x36f510",
+        "0022BAB7 33c9 xor ecx, ecx",
+        "0022BAB9 e862f41200 call 0x35af20",
+        "0022BABE 891ddc8fe301 mov dword ptr [rip + 0x1e38fdc], ebx",
+        "0022BAC4 0f1f4000 nop dword ptr [rax]",
+        "0022BAC8 0f1f840000000000 nop dword ptr [rax + rax]",
+        "0022BAD0 8b0d22e9c802 mov ecx, dword ptr [rip + 0x2c8e922]",
+        "0022BAD6 8b051ce9c802 mov eax, dword ptr [rip + 0x2c8e91c]",
+        "0022BADC 3bc8 cmp ecx, eax",
+        "0022BADE 75f0 jne 0x22bad0",
+        "0022BAE0 e8bbaa0b00 call 0x2e65a0",
+        "0022BAE5 e8766b1000 call 0x332660",
+        "0022BAEA e8c1681000 call 0x3323b0",
+        "0022BAEF e81c8a0f00 call 0x324510",
+        "0022BAF4 e837f31200 call 0x35ae30",
+        "0022BAF9 e8b2d01200 call 0x358bb0",
+        "0022BAFE e8bd371400 call 0x36f2c0",
+        "0022BB03 e838251000 call 0x32e040",
+        "0022BB08 488d0dc1040000 lea rcx, [rip + 0x4c1]",
+        "0022BB0F e88c2e1300 call 0x35e9a0",
+        "0022BB14 b901000000 mov ecx, 1",
+        "0022BB19 e8122f1300 call 0x35ea30",
+        "0022BB1E b901000000 mov ecx, 1",
+        "0022BB23 e84838f5ff call 0x17f370",
+        "0022BB28 b901000000 mov ecx, 1",
+        "0022BB2D e84ea01400 call 0x375b80",
+        "0022BB32 488d0dbbd16d00 lea rcx, [rip + 0x6dd1bb]",
+        "0022BB39 e8621bf4ff call 0x16d6a0",
+        "0022BB3E 33c9 xor ecx, ecx",
+        "0022BB40 e8abc81200 call 0x3583f0",
+        "0022BB45 85c0 test eax, eax",
+        "0022BB47 740f je 0x22bb58",
+        "0022BB49 e822a91400 call 0x376470",
+        "0022BB4E b907000000 mov ecx, 7",
+        "0022BB53 e8a8991400 call 0x375500",
+        "0022BB58 e893f90100 call 0x24b4f0",
+        "0022BB5D e86e941400 call 0x374fd0",
+        "0022BB62 e8594a0b00 call 0x2e05c0",
+        "0022BB67 85c0 test eax, eax",
+        "0022BB69 757d jne 0x22bbe8",
+        "0022BB6B 488d0db6d16d00 lea rcx, [rip + 0x6dd1b6]",
+        "0022BB72 e8291bf4ff call 0x16d6a0",
+        "0022BB77 e8241bf4ff call 0x16d6a0",
+        "0022BB7C e8df790300 call 0x263560",
+        "0022BB81 c6054b8fe30102 mov byte ptr [rip + 0x1e38f4b], 2",
+        "0022BB88 e8b371f5ff call 0x182d40",
+        "0022BB8D e80e600b00 call 0x2e1ba0",
+        "0022BB92 33c9 xor ecx, ecx",
+        "0022BB94 e8e73d0200 call 0x24f980",
+        "0022BB99 ba01000000 mov edx, 1",
+        "0022BB9E 8d4a06 lea ecx, [rdx + 6]",
+        "0022BBA1 e8fa600b00 call 0x2e1ca0",
+        "0022BBA6 33d2 xor edx, edx",
+        "0022BBA8 8d4a07 lea ecx, [rdx + 7]",
+        "0022BBAB e8f0600b00 call 0x2e1ca0",
+        "0022BBB0 ba09000000 mov edx, 9",
+        "0022BBB5 8d4afe lea ecx, [rdx - 2]",
+        "0022BBB8 e8e3600b00 call 0x2e1ca0",
+        "0022BBBD ba14000000 mov edx, 0x14",
+        "0022BBC2 8d4af3 lea ecx, [rdx - 0xd]",
+        "0022BBC5 e8d6600b00 call 0x2e1ca0",
+        "0022BBCA e831131500 call 0x37cf00",
+        "0022BBCF e8fc671000 call 0x3323d0",
+        "0022BBD4 e8876a1000 call 0x332660",
+        "0022BBD9 e8d2671000 call 0x3323b0",
+        "0022BBDE e8fdaf1400 call 0x376be0",
+        "0022BBE3 e898a6ffff call 0x226280",
+        "0022BBE8 e8e3211500 call 0x37ddd0",
+        "0022BBED e82e66f5ff call 0x182220",
+        "0022BBF2 b901000000 mov ecx, 1",
+        "0022BBF7 e8b474f5ff call 0x1830b0",
+        "0022BBFC e8af3af5ff call 0x17f6b0",
+        "0022BC01 33c9 xor ecx, ecx",
+        "0022BC03 e8a874f5ff call 0x1830b0",
+        "0022BC08 e8a367f5ff call 0x1823b0",
+        "0022BC0D b801000000 mov eax, 1",
+        "0022BC12 4883c430 add rsp, 0x30",
+        "0022BC16 5b pop rbx",
+        "0022BC17 c3 ret "
+      ]
+    }
+  },
+  "camera_update_static_call_sites": {
+    "0022A770": [
+      "0022A936",
+      "0022AC2E",
+      "0022ADC7"
+    ],
+    "0022B8C0": [
+      "0022BA77",
+      "0022BAAD"
+    ]
+  }
+}

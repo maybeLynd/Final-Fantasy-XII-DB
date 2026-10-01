@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "FABLE-AMEND-0059EE90-CONTRA-CALLER-COUNT",
+ "result_refs": [
+  "file:Database/FFXII TZA/19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md"
+ ],
+ "note": "READ - the amendment's six-caller evidence (rawcalls index) is what the rename sentence cites; the 'only two callers' sentence was not relied on."
+}

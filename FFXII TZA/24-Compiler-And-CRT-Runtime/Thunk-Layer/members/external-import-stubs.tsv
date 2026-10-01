@@ -1,0 +1,134 @@
+# External import stubs - EC-7 family C, declared on
+# the-thunk-layer-and-why-call-counts-disagree.md
+#
+# Selector: every function in functions.tsv (non-funclet) of body_bytes 6 or 7 whose
+# complete body is FF 25 rel32 (or 48 FF 25 rel32) and whose target lands inside the
+# PE IMPORT ADDRESS TABLE (data directory 12, VA 008C2000..008C31C0). Each member is
+# resolved to its DLL and symbol through the import directory (data directory 1) and
+# the pairs are listed in external-import-stubs-map.tsv beside this file.
+#
+# Control: the count 117 was derived from the PE import tables and matches the
+# checkpoint tag Thunk.ExternalImport exactly - two unrelated instruments, same line.
+#
+# EXCLUDED, deliberately: 00809958 jumps through 008C31C0, which is ONE SLOT PAST the
+# end of the IAT and is GuardCFCheckFunctionPointer in the load config directory. It
+# is the Control Flow Guard check dispatcher, not an import stub. See section 12.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0019A650
+0019C570
+0019C590
+005CC920
+005CCB80
+0071EFF0
+0078A960
+0078A968
+007911D0
+00808888
+0080888E
+00808894
+0080889A
+008088A0
+008088A6
+008088AC
+008088B2
+008088B8
+008088BE
+008088C4
+008088CA
+008088D0
+008088D6
+008088DC
+008088E2
+008088E8
+008088EE
+008088F4
+008088FA
+0080F2BC
+0080F2C2
+0080F2C8
+0080F2CE
+0085E730
+00861E90
+00861E96
+00861E9C
+00861EA2
+00861EA8
+00861EB4
+00861EBA
+00861EC0
+00861EC6
+00861ECC
+00861ED2
+00861ED8
+00861EDE
+00861EE4
+00861EEA
+00861EF0
+00861EF6
+00861EFC
+00861F02
+00861F08
+00861F0E
+00861F14
+00861F1A
+00861F20
+00861F26
+00861F2C
+00861F32
+00861F38
+00861F3E
+00861F44
+00861F4A
+00861F50
+00861F56
+00861F5C
+00861F62
+00861F68
+00861F6E
+00861F74
+00861F7A
+00861F80
+00861F86
+00861F8C
+00861F92
+00861F98
+00861F9E
+00861FA4
+00861FAA
+00861FB0
+00861FB6
+00861FBC
+00861FC2
+00861FC8
+00861FCE
+00861FD4
+00861FDA
+00861FE0
+00861FE6
+00861FEC
+00861FF2
+00861FF8
+00861FFE
+00862004
+0086200A
+00862010
+00862016
+0086201C
+00862022
+0086202E
+0086203A
+00862040
+00862046
+0086204C
+00862052
+00862058
+0086205E
+00862064
+0086206A
+00862070
+00862076
+0086207C
+00862082
+00862090
+0087AF34

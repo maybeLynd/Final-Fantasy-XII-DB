@@ -1,0 +1,7 @@
+# call sites scanned: 122250; wanted pairs: [('0x7', '0x7e'), ('0x7', '0x90'), ('0x7', '0x99'), ('0x7', '0xa8')]
+0056163B	00561390 FUN_00561390	(rdx=0x7, next=0xa8)	call 0x249210
+00561663	00561390 FUN_00561390	(rdx=0x7, next=0x7e)	call 0x249210
+00562FC6	00562F90 FUN_00562f90	(rdx=0x7, next=0xa8)	call 0x249210
+CONTROL 00561663: PASS
+CONTROL 0056163B: PASS
+FAILS 0

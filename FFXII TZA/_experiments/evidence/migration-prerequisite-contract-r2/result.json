@@ -1,0 +1,13 @@
+{
+  "verdict": "ACCEPT",
+  "scope": "A03 recognized configured FAIL repair at exact final source and two legacy tab controls",
+  "source_commit": "1f11830e92aa71d7aea000fcd8b68cdfa9c46d6a",
+  "raw_sha256": "dcd4840a44878d6f646a93276667c56fa25ac406ddd00cb41756258c9d827ed2",
+  "legacy_corrected_raw_sha256": "9b4e1eff6a82128e25a192905bfa152fc44a15347bdafaab3b03377c36f6eb3f",
+  "original_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "original_manifest_sha256": "5d3c3cad4bec0c64746c1574641a0d66a9a037b6b609d991ada3fb9c8ce74ccb",
+  "result": "Both configured FAIL composers exit1/refuse/no PASS; configured PASS controls succeed. All16 generic retained cases meet required exit/output/timeout expectations. Two legacy custom controls establish its repaired boundary directly.",
+  "controls": "Unchanged retained upstream/declarations; original64 byte members verified; fixed generic+legacy sources match cited commit. Generic composer unchanged. First two legacy attempts INVALID_API_CALL, retained; corrected composer checks exact signature and reaches supported API. Only legacy pair re-executed; generic sixteen not repeated.",
+  "limits": "Method A synthetic software verification. No FF12 shipping-code/live behavior, no new SN1 semantics or full M0-M5/L1+L2 completion. Timeout external to composer, not helper in-process enforcement. Legacy coverage only tab pair; names-only presence requires explicit caller completeness validator. Old rejection remains historical evidence.",
+  "consumer": "OPUS via structured OPUS-REQ-ASTRA-REVERIFY-A03-PREREQ-R2; existing incorporation transition must be verified separately."
+}

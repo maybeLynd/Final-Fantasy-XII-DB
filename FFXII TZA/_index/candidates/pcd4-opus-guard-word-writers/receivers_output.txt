@@ -1,0 +1,7 @@
+00266530 site 0026668B base rbx | last setters: ['0026656A mov rbx, qword ptr [rdx + r10*8 + 8]'] | rip refs: []
+003AAA50 site 003AAB9D base rbp | last setters: ['003AAA57 lea rbp, [rsp - 0x198]'] | rip refs: ['01F44830', '01FD4A70', '02092698']
+0041B550 site 0041B585 base rcx | last setters: [] | rip refs: []
+00552250 site 005526B9 base rax | last setters: ['005522F4 movsxd rax, ebx', '0055259E mov rax, qword ptr [rbx + 0x160]', '005526B2 mov rax, qword ptr [rbx + 0x160]'] | rip refs: ['005528C0', '00555330', '00D22F70', '01E0C1D8', '01E0C1DC', '01F2CAA8', '01F44830', '0208EA20']
+005528C0 site 00552BB8 base rdi | last setters: ['005528F1 mov rdi, rcx'] | rip refs: ['00D22F20', '01E0C1D8', '01E0C1DC', '01F2CAA4', '01F2CAA8', '01F44830']
+00269F40 site 00269F48 base rcx | last setters: [] | rip refs: []
+00639290 site 006392F0 base rbx | last setters: ['006392AC mov rbx, rcx', '006392B7 mov rbx, qword ptr [rsp + 0x30]'] | rip refs: ['01F2DF28']

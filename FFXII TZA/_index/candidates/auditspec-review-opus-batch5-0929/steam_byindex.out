@@ -1,0 +1,8 @@
+target 008632B0: 6 raw rel32 sites
+  00316078  call 0x8632b0
+  00316403  call 0x8632b0
+  0031646D  jmp 0x8632b0
+  00316AEA  call 0x8632b0
+  00316B47  call 0x8632b0
+  00352262  jmp 0x8632b0
+  absolute 8-byte pointers in file: 0

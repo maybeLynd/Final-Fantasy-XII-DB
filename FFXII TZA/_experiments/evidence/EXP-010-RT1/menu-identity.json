@@ -1,0 +1,714 @@
+{
+  "command": [
+    "Database/FFXII TZA/_experiments/evidence/EXP-010-RT1/observe.py",
+    "--pid",
+    "23532",
+    "--seconds",
+    "1",
+    "--out",
+    "Database/FFXII TZA/_experiments/evidence/EXP-010-RT1/menu-identity.json"
+  ],
+  "start_unix": 1789085716.7829337,
+  "pid": 23532,
+  "observer_sha256": "f15e16b2d8afc2532be16a936b4fdf0f38f090b43cc7811c331fd263f77fdbe1",
+  "samples": [
+    {
+      "seconds": 5.6400000175926834e-05,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.010668200000509387,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.021169300000110525,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.031348299999081064,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.041894500000125845,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.05232810000052268,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.06264779999946768,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.07281589999911375,
+      "cpu_seconds": 0.03125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.0831438999994134,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.09374550000029558,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.10424289999900793,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.11471290000008594,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.12524870000015653,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.13551650000044901,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.14561719999983325,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.1561827000004996,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.16651880000063102,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.17663360000005923,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.18716250000034051,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.1973180000004504,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.20744449999983772,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.21794170000066515,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.22900209999897925,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.23936379999940982,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.2498894999989716,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.26000439999916125,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.270554999999149,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.28111119999994116,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.2915811000002577,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.3019951999995101,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.31221890000051644,
+      "cpu_seconds": 0.046875,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.3225908000003983,
+      "cpu_seconds": 0.0625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.33313230000021576,
+      "cpu_seconds": 0.078125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.34335339999961434,
+      "cpu_seconds": 0.078125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.3535917999997764,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.3642718999999488,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.37516859999959706,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.38538399999924877,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.395791900000404,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.4059261999991577,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.416499400000248,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.4273410999994667,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.4378581999990274,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.44863470000018424,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.4592197000001761,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.46976960000029067,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.4803410000004078,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.49091609999959473,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5015000000003056,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5116433000002871,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5222422999995615,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5324249999994208,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5429764000000432,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5534520999990491,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5640500999998039,
+      "cpu_seconds": 0.09375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5747384000005695,
+      "cpu_seconds": 0.109375,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.585353500000565,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.5956504000005225,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.606203600000299,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6165844999995898,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6268708999996306,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6374082999991515,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6475769999997283,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6581205999991653,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6690115999990667,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6791911999989679,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.6897623999993812,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.700601700000334,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7111497000005329,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7216656000000512,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7318326999993587,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7419823000000179,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7525208000006387,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7631309000007604,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7739789999995992,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.784533800000645,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.7950939000002109,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8056261000001541,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8162021999996796,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8263826000002155,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8368491000001086,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8470933999997214,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8576181999997061,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8681732000004558,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8788261999998213,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8896370000002207,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.8999134999994567,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9105431000007229,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.920951199999763,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.931188900000052,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9416863000005833,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9522581000001082,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9627199999995355,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9735302999997657,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9843101000005845,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    },
+    {
+      "seconds": 0.9944648000000598,
+      "cpu_seconds": 0.15625,
+      "foreground_pid": 3308,
+      "held": []
+    }
+  ],
+  "status": "OBSERVED",
+  "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "module_verdict": "clean",
+  "watched_modules": [],
+  "modules": [
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+    "c:\\windows\\system32\\ntdll.dll",
+    "c:\\windows\\system32\\kernel32.dll",
+    "c:\\windows\\system32\\kernelbase.dll",
+    "c:\\windows\\system32\\user32.dll",
+    "c:\\windows\\system32\\win32u.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+    "c:\\windows\\system32\\iphlpapi.dll",
+    "c:\\windows\\system32\\advapi32.dll",
+    "c:\\windows\\system32\\gdi32.dll",
+    "c:\\windows\\system32\\msvcrt.dll",
+    "c:\\windows\\system32\\ucrtbase.dll",
+    "c:\\windows\\system32\\gdi32full.dll",
+    "c:\\windows\\system32\\sechost.dll",
+    "c:\\windows\\system32\\rpcrt4.dll",
+    "c:\\windows\\system32\\msvcp_win.dll",
+    "c:\\windows\\system32\\shell32.dll",
+    "c:\\windows\\system32\\ole32.dll",
+    "c:\\windows\\system32\\combase.dll",
+    "c:\\windows\\system32\\oleaut32.dll",
+    "c:\\windows\\system32\\imm32.dll",
+    "c:\\windows\\system32\\msvcp140.dll",
+    "c:\\windows\\system32\\dinput8.dll",
+    "c:\\windows\\system32\\d3d11.dll",
+    "c:\\windows\\system32\\dwmapi.dll",
+    "c:\\windows\\system32\\winmm.dll",
+    "c:\\windows\\system32\\dbghelp.dll",
+    "c:\\windows\\system32\\dxgi.dll",
+    "c:\\windows\\system32\\vcruntime140_1.dll",
+    "c:\\windows\\system32\\xinput9_1_0.dll",
+    "c:\\windows\\system32\\vcruntime140.dll",
+    "c:\\windows\\system32\\powrprof.dll",
+    "c:\\windows\\system32\\dbgcore.dll",
+    "c:\\windows\\system32\\umpdc.dll",
+    "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+    "c:\\windows\\system32\\psapi.dll",
+    "c:\\windows\\system32\\cfgmgr32.dll",
+    "c:\\windows\\system32\\inputhost.dll",
+    "c:\\windows\\system32\\coremessaging.dll",
+    "c:\\windows\\system32\\bcryptprimitives.dll",
+    "c:\\windows\\system32\\kernel.appcore.dll",
+    "c:\\program files (x86)\\steam\\steamclient64.dll",
+    "c:\\windows\\system32\\ws2_32.dll",
+    "c:\\windows\\system32\\shlwapi.dll",
+    "c:\\windows\\system32\\crypt32.dll",
+    "c:\\windows\\system32\\imagehlp.dll",
+    "c:\\windows\\system32\\setupapi.dll",
+    "c:\\windows\\system32\\version.dll",
+    "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+    "c:\\windows\\system32\\mswsock.dll",
+    "c:\\windows\\system32\\bcrypt.dll",
+    "c:\\program files (x86)\\steam\\tier0_s64.dll",
+    "c:\\windows\\system32\\secur32.dll",
+    "c:\\windows\\system32\\sspicli.dll",
+    "c:\\windows\\system32\\shcore.dll",
+    "c:\\windows\\system32\\cryptbase.dll",
+    "c:\\windows\\system32\\windows.storage.dll",
+    "c:\\windows\\system32\\uxtheme.dll",
+    "c:\\windows\\system32\\uiautomationcore.dll",
+    "c:\\windows\\system32\\clbcatq.dll",
+    "c:\\windows\\system32\\oleacc.dll",
+    "c:\\windows\\system32\\devobj.dll",
+    "c:\\windows\\system32\\wintrust.dll",
+    "c:\\windows\\system32\\msasn1.dll",
+    "c:\\windows\\system32\\nvapi64.dll",
+    "c:\\windows\\system32\\cryptnet.dll",
+    "c:\\windows\\system32\\wldp.dll",
+    "c:\\windows\\system32\\drvstore.dll",
+    "c:\\windows\\system32\\dxcore.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+    "c:\\windows\\system32\\directxdatabasehelper.dll",
+    "c:\\windows\\system32\\cryptsp.dll",
+    "c:\\windows\\system32\\rsaenh.dll",
+    "c:\\windows\\system32\\nvspcap64.dll",
+    "c:\\windows\\system32\\profapi.dll",
+    "c:\\windows\\system32\\ntmarta.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+    "c:\\windows\\system32\\dcomp.dll",
+    "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+    "c:\\windows\\system32\\hid.dll",
+    "c:\\windows\\system32\\msctf.dll",
+    "c:\\windows\\system32\\wbem\\wbemprox.dll",
+    "c:\\windows\\system32\\wbemcomn.dll",
+    "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+    "c:\\windows\\system32\\wbem\\fastprox.dll",
+    "c:\\windows\\system32\\amsi.dll",
+    "c:\\windows\\system32\\userenv.dll",
+    "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.3-0\\mpoav.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+    "c:\\windows\\system32\\mmdevapi.dll",
+    "c:\\windows\\system32\\audioses.dll",
+    "c:\\windows\\system32\\resourcepolicyclient.dll",
+    "c:\\windows\\system32\\windows.ui.dll",
+    "c:\\windows\\system32\\threadpoolwinrt.dll",
+    "c:\\windows\\system32\\xinput1_4.dll",
+    "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9257\\modules\\discord_hook-1\\discord_hook\\c2391bcbbf7df4\\discordhook64.dll"
+  ],
+  "image_base": 1179648,
+  "code_identity": [
+    {
+      "rva": 4096,
+      "bytes": 7996981,
+      "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+      "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+      "matches": true
+    }
+  ],
+  "input_array": 239436016,
+  "window_start_unix": 1789085716.826011,
+  "end_unix": 1789085717.831052
+}

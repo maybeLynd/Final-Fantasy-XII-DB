@@ -1,0 +1,11 @@
+{
+  "case": "partial",
+  "is_review": true,
+  "expected_accept": false,
+  "exit": 1,
+  "status": "ACTIVE",
+  "before_sha256": "272657ee82f6c778b683d7dbfccc7966498c5dc41e267046f5a31c7687030161",
+  "after_sha256": "272657ee82f6c778b683d7dbfccc7966498c5dc41e267046f5a31c7687030161",
+  "result_refs": null,
+  "plan": []
+}

@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-96",
+ "result_refs": [
+  "commit:9c1a525b1"
+ ],
+ "note": "published 21 paths +341/-0; guard ADDS NOTHING (105=104 HEAD->publish, hchk Presentation row accounted by prose); anchors 3303 (+22, 0 MID); hash clean; crossref 108 zero batch-owned. CORRECTS the op applied at rev 26160, which carried batch-95's cloned result_refs (df4bd0d90/4b77d755d) - the real publish commit is 9c1a525b1"
+}

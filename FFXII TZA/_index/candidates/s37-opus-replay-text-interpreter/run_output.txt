@@ -1,0 +1,7 @@
+A_ordinary_bytes_I1_I7               PASS  243 lead bytes: return 0, cursor not advanced, *out2 = 0 and [0209CC60]/[0209CC68] zeroed on entry
+B_end_of_run                         PASS  a zero byte and a match of the painter's +0x10C8 terminator word both stop with 0
+C_lead_tokens_observed               PASS  observed per token; asserted: every completed call returns 0 or 1 (I-1), 0x08 skips 3, 0x09 skips 1
+D_escape_selectors_I3_I6             PASS  outside 0x20..0x70 (and '0', '_'): return 1 having consumed ONLY the 0x0F byte; the next call returns 0 at the selector byte - an unrecognised selector is left in the stream as an ordinary character
+E_parsers_I2                         PASS  five return 3 on every payload, two return 4, 003FFD70 returns (byte 2 & 0x7F) + 3; the others are reported
+F_dyngeo_draw_layout                 PASS  layers with a source bind once; 1000 -> 480+480+40; 481 -> 480+1; the copy is count x 48 bytes from base + done x 48; draw(2, n); a layer with a null source is skipped even with a count; a zero count binds and draws nothing
+6/6 pass (allowed 403 functions)

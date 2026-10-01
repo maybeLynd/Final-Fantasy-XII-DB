@@ -1,0 +1,55 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4031,
+      "sha256": "7dae6fb4dd0aed3c2e535bec596e9ba95c50182b61808cef78950d5085b8217e"
+    },
+    {
+      "path": "executed-driver.py",
+      "bytes": 5921,
+      "sha256": "fb4ca62126febc75c36757d969b7430a033831ecedab30360b4874d5936e7476"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2462,
+      "sha256": "372974fb181e0c7b8374780827bba0f214e85eb5168cd7e9ce76c7b5405e0573"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 7891,
+      "sha256": "d31ec98df050b592fa2d1dac108bcc4085db1703029e66e4818ba32af00ea4f0"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 85957,
+      "sha256": "67d16a80dc06d26ce59f3bbc5a2cc3dc44d2f9b61217a2a8392549fccdd95043"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4891,
+      "sha256": "cb4b2bf0270c568bf2ac595608b3fa8e941586c18c2d2cb8a99979dc38040c15"
+    },
+    {
+      "path": "retained/check.py",
+      "bytes": 47745,
+      "sha256": "7725ab8ccd08385c3d1768b706ab6fb13b17ea49cda00636ea0ebedf0892c89e"
+    },
+    {
+      "path": "source.json",
+      "bytes": 39367,
+      "sha256": "ad119fb4989851ddffae7f75c5f84f168616ea56566a303d98de80fea03d2bc6"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 2750,
+      "sha256": "bcf877f208ffcbd4c6117116347d2e08857f916b972630ea1d5c70ad40525b5c"
+    }
+  ],
+  "limits": "B full shipping GGRID/BASE/TTEST; disclosed synthetic mesh and finite _fdclass stub. Upper equality/read/fault under fixture only, no native game normal reachability/heap placement or crash. Initial driver hash recovered after capture; exact metadata-only enrichment disclosed. Independent/owner acceptance pending."
+}

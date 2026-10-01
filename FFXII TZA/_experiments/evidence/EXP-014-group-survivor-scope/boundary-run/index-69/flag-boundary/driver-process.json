@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\AppData\\Local\\Temp\\ffxii-mutation-cases\\case-y_2ad0p6\\Tests\\Differential\\boundary.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-014-group-survivor-scope\\boundary-run\\index-69\\flag-boundary\\regions.bin",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-014-group-survivor-scope\\boundary-run\\index-69\\flag-boundary\\cases.txt",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-014-group-survivor-scope\\boundary-run\\index-69\\flag-boundary\\driver-post.bin"
+  ],
+  "exit_code": 0,
+  "stdout": "SCHEMA GROUP_COMPLETION_V2\n{\"case\":0,\"unit\":268435456,\"return\":1,\"calls\":[{\"target\":3174720,\"args\":[1],\"memory\":\"213A6367AB2186AE\"},{\"target\":2329456,\"args\":[1],\"memory\":\"213A6367AB2186AE\"},{\"target\":2329312,\"args\":[1],\"memory\":\"213A6367AB2186AE\"},{\"target\":3316144,\"args\":[268435456,8197,0],\"memory\":\"3BEDF96A6E03532E\"}],\"memory\":\"3BEDF96A6E03532E\"}\nDIGEST 3BEDF96A6E03532E\n",
+  "stderr": "",
+  "timed_out": false
+}

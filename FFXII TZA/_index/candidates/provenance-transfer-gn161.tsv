@@ -1,0 +1,246 @@
+# diff_fas2.py A.fas2 B.fas2 : per-function diff of two GFZFunctionAnnotationSnapshotV2 files (magic GFZANN2).
+# (Named `fas2_diff.py` here until 2026-09-14; the kit's copy has always been diff_fas2.py, and
+# the staging copy at Tools/work/FABLE/regprose/fas2_diff.py, renamed 2026-09-14, is that file.)
+document	stamp	snapshot	witness_class	decompiler_tokens	token_kinds	cited_delta_functions	review_flags	ruling
+00-Engine-Core-Runtime/Application-Root/game-application.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md	GN159	a9cead87	IDENTITY	yes	cast			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-F-ids-172-203.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-G-ids-204-235.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-I-ids-268-293.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,local_,param_,xVar			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Object-Model/rtti-vtable-object-model.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Object-Model/vtable-method-index.md	GN158	46f02e26	ADDITIVE	no		005DF890		TRANSFER additive-annotation delta
+00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md	GN158	46f02e26	ADDITIVE	no		00188B10	census 	CENSUS-REVIEW: states '158 unresolved residual functions ... not yet classified' (lines 115, 247); GN161 resolves the residual to 30
+00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast	003BED70 00402F00 004044D0		WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md	GN158	46f02e26	ADDITIVE	yes	auto-name	00248A90		WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/duplicated-function-names-and-how-to-resolve-them.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/the-all-ones-empty-convention.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/the-basis-column-helpers.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+00-Engine-Core-Runtime/the-encoded-id-class-registry.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	GN160	b57264ba	ADDITIVE	yes	auto-name,cast	00273BA0 00292B70 003FD360 003FDFE0 00564430 0056C490		WAIT-NONFUNCTION-EXPORT
+00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md	GN159	a9cead87	ADDITIVE	yes	auto-name	002F0280		WAIT-NONFUNCTION-EXPORT
+01-Script-VM-Native-Bridge/ATEL-Control-Modules/the-ctrl-module-debug-companions.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast,xVar			WAIT-NONFUNCTION-EXPORT
+01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+01-Script-VM-Native-Bridge/Verb-Dispatch/what-each-script-verb-touches.md	GN160	b57264ba	IDENTITY	no				CENSUS-REVIEW: states 93 verbs whose every depth-1 callee is untagged; 111 of the delta functions gained their first tag
+01-Script-VM-Native-Bridge/scriptvm-native-dispatch-table.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast,xVar			WAIT-NONFUNCTION-EXPORT
+01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md	GN160	b57264ba	IDENTITY	yes	param_			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md	GN160	b57264ba	ADDITIVE-ABSENCE-REVIEW	yes	auto-name	003BDDE0 003BDFF0 003C1A20	003BDDE0 003BDFF0 003C1A20	WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/sloc-menumap-container.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/tim2-images-and-the-seven-slot-registry.md	GN160	b57264ba	IDENTITY	yes	auto-name,in_/unaff_/extraout_			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/unnamed-bin-families.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ah-asset-header-manifests.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/how-the-prefetch-manifests-are-read.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/area-nmb-index.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md	GN160	b57264ba	ADDITIVE	yes	auto-name	0023F8B0 002875D0		WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast,param_,undefined	002EE430		WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/resource-section-addressing.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+02-Resource-And-Asset-Pipeline/the-resource-request-queue.md	GN160	b57264ba	ADDITIVE	no		003BA7B0 003BA990 003BAC90		TRANSFER additive-annotation delta
+03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+03-World-Area-Field/Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md	GN158	46f02e26	IDENTITY	yes	cast			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/Weather/mweather-resource-format.md	GN158	46f02e26	IDENTITY	yes	auto-name,param_			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/Weather/weather-probability-and-transition-roll.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,xVar			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/Weather/weather-slot-state-model.md	GN158	46f02e26	IDENTITY	yes	cast,undefined			WAIT-NONFUNCTION-EXPORT
+03-World-Area-Field/choosing-the-field-environment-variant.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+03-World-Area-Field/walking-into-an-authored-trigger-point.md	GN159	a9cead87	IDENTITY	yes	cast,xVar			WAIT-NONFUNCTION-EXPORT
+04-Actor-Entity/Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+04-Actor-Entity/battleunit-slot-pool-and-actor-class.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+04-Actor-Entity/the-definition-record-flag-pair.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+04-Actor-Entity/the-field-runtime-pass.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast	003BA7B0 004058E0	census 	WAIT-NONFUNCTION-EXPORT
+05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast		census 	WAIT-NONFUNCTION-EXPORT
+05-Spawn-Encounter-Lifecycle/why-the-enemies-you-killed-come-back.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+06-Movement-And-Navigation/clamping-a-point-into-a-volume.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+06-Movement-And-Navigation/heading-speed-to-position-delta.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,undefined,xVar		census 	WAIT-NONFUNCTION-EXPORT
+06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+07-Combat-Action/Action-Availability/battle-command-availability-and-reason-codes.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+07-Combat-Action/Action-Dispatch/battle-action-handler-table.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+07-Combat-Action/Command-And-Action-Seam/native-command-seam.md	GN158	46f02e26	IDENTITY	yes	auto-name,xVar			WAIT-NONFUNCTION-EXPORT
+07-Combat-Action/applying-a-result-to-a-target.md	GN159	a9cead87	IDENTITY	yes	auto-name,param_			WAIT-NONFUNCTION-EXPORT
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+07-Combat-Action/the-moment-an-action-is-committed.md	GN159	a9cead87	IDENTITY	yes	cast,param_			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md	GN158	46f02e26	IDENTITY	yes	cast,xVar			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/Step-Table/combat-formula-step-table.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/combos-and-the-guard-parry-flag.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+08-Combat-Formula/elemental-affinity-and-the-five-bytes.md	GN159	a9cead87	IDENTITY	yes	cast,param_			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/the-auto-status-rebuild.md	GN159	a9cead87	IDENTITY	yes	auto-name,param_			WAIT-NONFUNCTION-EXPORT
+08-Combat-Formula/where-a-stat-number-comes-from.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,local_,param_,undefined,xVar			WAIT-NONFUNCTION-EXPORT
+09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+10-Status-Periodic-Terminal/Periodic-Tick/what-the-periodic-tick-does.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+10-Status-Periodic-Terminal/the-thirty-two-statuses.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+10-Status-Periodic-Terminal/where-mp-comes-from.md	GN160	b57264ba	IDENTITY	yes	auto-name,xVar		census 	WAIT-NONFUNCTION-EXPORT
+11-Party/active-party-reserve-and-the-moment-the-leader-changes.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast,undefined			WAIT-NONFUNCTION-EXPORT
+11-Party/party-roster-and-control-suppression.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,undefined			WAIT-NONFUNCTION-EXPORT
+11-Party/the-five-parallel-slot-maps.md	GN159	a9cead87	IDENTITY	yes	auto-name,xVar			WAIT-NONFUNCTION-EXPORT
+11-Party/the-setsavedata-presets-test-battle-scenarios.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,param_,xVar			WAIT-NONFUNCTION-EXPORT
+12-Items-Equipment-Shops-License/license-board-grid-format.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	GN160	b57264ba	IDENTITY	yes	cast			WAIT-NONFUNCTION-EXPORT
+12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	GN160	b57264ba	ADDITIVE	no		005651E0 00565720 0057CF20 0057D620		TRANSFER additive-annotation delta
+12-Items-Equipment-Shops-License/using-an-item-is-an-action-that-costs-an-item.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+13-Rewards-Progression-Economy/experience-and-license-point-award.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md	GN159	a9cead87	IDENTITY	yes	param_			WAIT-NONFUNCTION-EXPORT
+13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+13-Rewards-Progression-Economy/the-chain-and-its-sticky-coin.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md	GN160	b57264ba	ADDITIVE	yes	auto-name,cast,xVar	003FBE90		WAIT-NONFUNCTION-EXPORT
+14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	GN159	a9cead87	ADDITIVE	yes	auto-name,cast	00576300		WAIT-NONFUNCTION-EXPORT
+14-Story-Event-Quest-Hunt/persistent-flag-banks.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md	GN158	46f02e26	IDENTITY	yes	auto-name,param_			WAIT-NONFUNCTION-EXPORT
+15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,xVar			WAIT-NONFUNCTION-EXPORT
+15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	GN158	46f02e26	IDENTITY	yes	auto-name,xVar		census 	WAIT-NONFUNCTION-EXPORT
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast	0032C650		WAIT-NONFUNCTION-EXPORT
+15-Input/Modal-Toggles/r2-force-fight-toggle.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+16-UI/Gambit-Screens/the-gambit-screens.md	GN160	b57264ba	ADDITIVE	yes	cast	005680E0		WAIT-NONFUNCTION-EXPORT
+16-UI/Handbook/the-handbook-screen.md	GN160	b57264ba	ADDITIVE	no		005734C0 00573690		TRANSFER additive-annotation delta
+16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md	GN158	46f02e26	ADDITIVE	no		0028AAA0 0028B140 002A4430 002A86A0 002AF960 002B2DF0 002B8EE0 002BCB00 002C84E0 002D66D0 003F3E40 0056C490		TRANSFER additive-annotation delta
+16-UI/Quest-List/the-quest-list-screen.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+16-UI/Request-Router/ui-request-router.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast,xVar	002ABB20 003BA7B0	census 	WAIT-NONFUNCTION-EXPORT
+16-UI/Shared-Dialogs/the-shared-dialog-widgets.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+16-UI/Shop-Screens/the-shop-screens.md	GN160	b57264ba	ADDITIVE	no		00292B70 00564780 00565A00 0056C490 0056E880 0057CF20 0057D620		TRANSFER additive-annotation delta
+16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	GN158	46f02e26	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,local_,param_,undefined,xVar	002A4430 002A4830 002AAE40 002AF960 002AFDC0 002B2DF0	census 002A4430 002A4830	WAIT-NONFUNCTION-EXPORT
+16-UI/Text-And-Number-Rendering/the-text-control-code-language.md	GN159	a9cead87	ADDITIVE	no		002AAE40 002AF960		TRANSFER additive-annotation delta
+16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	GN160	b57264ba	ADDITIVE	no		00564780 00576300		TRANSFER additive-annotation delta
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md	GN159	a9cead87	ADDITIVE	no		002B6DB0		TRANSFER additive-annotation delta
+16-UI/the-selection-the-menu-publishes.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md	GN158	46f02e26	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_	001D7DD0	001D7DD0	WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Character-Rendering/character-render-object.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md	GN160	b57264ba	IDENTITY	yes	auto-name,param_			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md	GN158	46f02e26	ADDITIVE	yes	auto-name	001D76A0		WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Legacy-PS2-GS/texture-mip-local-memory-budget.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Model-And-Motion-Formats/frp-object-container.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md	GN159	a9cead87	ADDITIVE	no		00256CA0		TRANSFER additive-annotation delta
+17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,param_,undefined			WAIT-NONFUNCTION-EXPORT
+18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast,param_	0028DC00 002C7660 002C7B10		WAIT-NONFUNCTION-EXPORT
+18-Audio/Sound-Bank-And-Voice-Formats/sab-sound-bank-container.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/Sound-Bank-And-Voice-Formats/sead-win-config.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/Sound-Selection/sound-trigger.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+18-Audio/Sound-Selection/sound-variant-selection.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,xVar			WAIT-NONFUNCTION-EXPORT
+18-Audio/how-the-music-changes-when-you-change-area.md	GN159	a9cead87	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+18-Audio/sead-engine-identity-and-diagnostics.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/sead-function-identification.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+18-Audio/sqex-sd-sound-driver-architecture.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/the-five-slot-array-the-console-reads.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/the-music-control-file-and-the-bgm-stream.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+18-Audio/the-spatial-audio-object-model.md	GN160	b57264ba	ADDITIVE	yes	auto-name,param_,undefined	002F0280 002F67C0		WAIT-NONFUNCTION-EXPORT
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	GN160	b57264ba	ADDITIVE	no		001E59B0		TRANSFER additive-annotation delta
+18-Audio/which-variation-of-a-sound-you-hear.md	GN159	a9cead87	IDENTITY	yes	param_			WAIT-NONFUNCTION-EXPORT
+19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	GN158	46f02e26	IDENTITY	yes	cast			WAIT-NONFUNCTION-EXPORT
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,local_,param_,undefined,xVar			WAIT-NONFUNCTION-EXPORT
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+19-Save-Load-Settings/the-save-load-screen-widgets.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+19-Save-Load-Settings/where-the-game-keeps-your-files.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+21-RNG-And-Determinism/rng-streams.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+21-RNG-And-Determinism/which-roll-is-on-which-generator.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,undefined			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Phyre-Asset-Container/the-packed-namespace-and-the-file-side-schema.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,param_,undefined,xVar		census 	WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,param_,undefined			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md	GN158	46f02e26	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast,xVar			WAIT-NONFUNCTION-EXPORT
+22-Middleware-PhyreEngine/the-camera-state-snapshot.md	GN159	a9cead87	IDENTITY	no				TRANSFER snapshot-identity
+23-Third-Party-Libraries/Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md	GN158	46f02e26	IDENTITY	yes	auto-name,param_			WAIT-NONFUNCTION-EXPORT
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,local_,param_,xVar			WAIT-NONFUNCTION-EXPORT
+23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+23-Third-Party-Libraries/third-party-middleware-inventory.md	GN158	46f02e26	ADDITIVE	yes	auto-name	001E5C40 0029E3B0 002A5020 002A86A0 00573BE0		WAIT-NONFUNCTION-EXPORT
+24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md	GN158	46f02e26	IDENTITY	yes	auto-name,cast,undefined			WAIT-NONFUNCTION-EXPORT
+24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md	GN158	46f02e26	IDENTITY	no				TRANSFER snapshot-identity
+25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Container/ebp2-container.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-002-text.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-003-text.md	GN160	b57264ba	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-004.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-006.md	GN160	b57264ba	IDENTITY	yes	auto-name,xVar			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-008.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-009.md	GN160	b57264ba	IDENTITY	yes	auto-name,xVar			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-010.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-011.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-012.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-014.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-016.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+25-EBP-Script-Container/Sections/section-019.md	GN160	b57264ba	IDENTITY	yes	auto-name			WAIT-NONFUNCTION-EXPORT
+26-PKFL-Package-Container/Container/pkfl-package-container.md	GN160	b57264ba	IDENTITY	no				TRANSFER snapshot-identity
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md	GN158	46f02e26	ADDITIVE	yes	auto-name,cast,param_	002DC290 00392A10 00392CE0	census 	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md	GN158	46f02e26	ADDITIVE-ABSENCE-REVIEW	yes	auto-name	002DA7C0 002DC290 002DC7F0 00392A10 00392CE0	census 002DC7F0 00392A10 00392CE0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md	GN159	a9cead87	ADDITIVE	no		001E8070 001E8580 001E9D20		TRANSFER additive-annotation delta
+99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_,xVar	001C2980 002AAE40 002AF960 002B8EE0 002F0280 004EDB50 004F5360	002AAE40	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	GN158	46f02e26	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,undefined	001C2980 001E8070 002AAE40 002AF960 00364530 003649A0 00366110 0036A570 0053E0B0	census 002AAE40 002AF960 00364530 003649A0 00366110 0036A570 0053E0B0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_,undefined	001E8070 001E8580 001E9D20 002AF960	census 001E8070 001E8580 002AF960	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md	GN159	a9cead87	ADDITIVE	yes	auto-name,cast,local_,param_,undefined,xVar	001E8070 001E8580 001E9D20		WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md	GN159	a9cead87	IDENTITY	yes	auto-name,cast			WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	GN159	a9cead87	ADDITIVE	yes	cast	002AAE40		WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	GN158	46f02e26	IDENTITY	yes	auto-name		census 	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	GN158	46f02e26	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast	002AAE40	census 002AAE40	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/drawing-one-coloured-rectangle.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,local_,param_,xVar	002B8EE0 002BCB00 002DBDD0	census 002B8EE0 002BCB00 002DBDD0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md	GN159	a9cead87	ADDITIVE	yes	auto-name	002A4430 002A4830 002AAE40 002ABB20 002AF960 002B2DF0 002B5390 00573BE0		WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/the-blinking-icon-and-its-atlas.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_,undefined,xVar	002B8EE0 002BCB00 002DBDD0	census 002B8EE0 002BCB00 002DBDD0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/the-nine-patch-window-frame.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_,xVar	002DBDD0 002DC290 002DC7F0 00392A10 00392CE0	census 002DC290 002DC7F0 00392A10 00392CE0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,param_	002B8EE0 002BCB00 002DBDD0 004EDB50 004F5360	census 002B8EE0 002BCB00 002DBDD0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/the-unresolved-158.md	GN158	46f02e26	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_,undefined,xVar	001C2980 001E8070 001E8580 0020ED30 0023EFC0 00245170 002455A0 00245E60 0024B9B0 00256CA0 0028AAA0 002A0440 002A4430 002A4830 002AAE40 002ABB20 002AF960 002B2DF0 002B5390 002B8EE0 002BCB00 002DA2D0 002DA7C0 002DBDD0 002DC290 002DC7F0 002F0280 00364530 003649A0 00366110 00392A10 00392CE0 003BDDE0 003BDFF0 003BED70 003C1A20 004EDB50 004F5360 0053E0B0 005734C0 00573690 00573BE0	census 001E8070 00245E60 00256CA0 00392A10 004EDB50 004F5360	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/the-widget-background-and-its-atlas-sets.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name	00245170 002455A0 002DA2D0 002DA7C0	002DA7C0	WAIT-NONFUNCTION-EXPORT
+99-Unresolved-Residual/the-widget-tree-draw-pass.md	GN159	a9cead87	ADDITIVE-ABSENCE-REVIEW	yes	auto-name,cast,param_	00245170 002455A0 00245E60 002DA2D0 002DA7C0	00245E60	WAIT-NONFUNCTION-EXPORT

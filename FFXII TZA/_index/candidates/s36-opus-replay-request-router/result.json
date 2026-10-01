@@ -1,0 +1,192 @@
+{
+ "ok": true,
+ "allowed_functions": 4354,
+ "results": {
+  "Ra_latch_before_policy": {
+   "pass_": true,
+   "returned": 0,
+   "entered": [
+    "router"
+   ],
+   "note": "latch 02092734 = 1: the router returns 0 and never enters the policy aggregate 002E0FA0"
+  },
+  "Rb_policy_bit_table": {
+   "pass_": true,
+   "gated_ids": [
+    1,
+    2,
+    3,
+    5,
+    14,
+    21
+   ],
+   "table": [
+    "4",
+    "2A",
+    "8",
+    "4",
+    "0",
+    "20",
+    "4000",
+    "0",
+    "200002",
+    "4020",
+    "8",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "refusals_expected": 13,
+   "mismatches": [],
+   "note": "every aggregate bit alone x ids [1, 2, 3, 5, 14, 21] + 7 (bit 15 set): the router refuses exactly when that bit's 01E0C2C0 entry holds the MASKED id's bit"
+  },
+  "Rc_R3_busy_root_refuses_after_dispatch": {
+   "pass_": true,
+   "cases": {
+    "+0xB8 occupied": {
+     "returned": 0,
+     "scheduler_entered": true,
+     "set_word_entered": false,
+     "word": [
+      0,
+      0,
+      0
+     ]
+    },
+    "+0xC0 occupied": {
+     "returned": 0,
+     "scheduler_entered": true,
+     "set_word_entered": false,
+     "word": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "note": "an occupied root slot: the router passes the request to 00280A00, which returns 0 before 00252B40 - the word stays 0"
+  },
+  "R3_R6_accepted_request": {
+   "pass_": true,
+   "word": [
+    "7",
+    "1",
+    "7"
+   ],
+   "scheduler_request": "8007",
+   "order": [
+    "router",
+    "aggregate",
+    "scheduler",
+    "set_word",
+    "mount",
+    "proc_0027FB70"
+   ],
+   "first_mount": [
+    [
+     "D8",
+     "27FB70"
+    ]
+   ],
+   "stopped_at": "002909F0 widget internals",
+   "note": "request 0x8007: the scheduler receives the RAW dword (bit 15 kept); 00252B40 writes the MASKED id 7 to 02092730 and 020927D8 and the latch 1, BEFORE the first mount; the first mount is a 0xD8 widget with proc 0027FB70, whose create message runs (the run ends at the widget's first UI-internal call)"
+  },
+  "R6_prelude_audio_split": {
+   "pass_": true,
+   "per_request": {
+    "2": {
+     "word": [
+      "2",
+      "1",
+      "2"
+     ],
+     "stopped_at": "001DBA90 audio",
+     "mounted": false
+    },
+    "6": {
+     "word": [
+      "6",
+      "1",
+      "6"
+     ],
+     "stopped_at": "001DBA90 audio",
+     "mounted": false
+    },
+    "7": {
+     "word": [
+      "7",
+      "1",
+      "7"
+     ],
+     "stopped_at": "002909F0 widget internals",
+     "mounted": true
+    },
+    "8": {
+     "word": [
+      "8",
+      "1",
+      "8"
+     ],
+     "stopped_at": "002909F0 widget internals",
+     "mounted": true
+    },
+    "15": {
+     "word": [
+      "F",
+      "1",
+      "F"
+     ],
+     "stopped_at": "001DBA90 audio",
+     "mounted": false
+    },
+    "17": {
+     "word": [
+      "11",
+      "1",
+      "11"
+     ],
+     "stopped_at": "001DBA90 audio",
+     "mounted": false
+    }
+   },
+   "note": "the word is written for every accepted id; for 2, 6, 15, 17 the prelude's stop callbacks reach the audio layer before the first mount, for 7 and 8 the first widget mounts"
+  },
+  "R1_single_slot_silent_replace": {
+   "pass_": true,
+   "posts": [
+    1,
+    1
+   ],
+   "mailbox": {
+    "pending": 1,
+    "blocked": 0,
+    "id": 9,
+    "parameter": 34
+   },
+   "note": "two posts before a drain both return 1; the slot holds only the second (id 9, parameter 0x22)"
+  },
+  "R2_post_policy_narrower": {
+   "pass_": true,
+   "results": {
+    "id 2, bit 0": 0,
+    "id 7, bit 0": 1,
+    "id 2, bit 1": 1,
+    "router id 7, bit 0": 2620272
+   },
+   "note": "the post refuses only id 2 under aggregate bit 0; id 7 posts under the same aggregate, and bit 1 does not stop id 2"
+  },
+  "R1b_blocked_byte_refuses": {
+   "pass_": true,
+   "returned": 0,
+   "note": "0215F1A1 non-zero: the post returns 0 and writes nothing"
+  }
+ }
+}

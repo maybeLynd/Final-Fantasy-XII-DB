@@ -1,0 +1,22 @@
+{
+  "status": "STATIC_SHARED_REGISTRY_AND_CHAIN",
+  "roots": [
+    "02EBEF88",
+    "02EBEF88",
+    "02EBEF88"
+  ],
+  "element_heads": [
+    280,
+    280
+  ],
+  "element_next": [
+    48,
+    48
+  ],
+  "controls": {
+    "known_registry_root": true,
+    "same_count_wrong_root_rejected": true,
+    "same_count_wrong_link_rejected": true
+  },
+  "selected_instructions": 29
+}

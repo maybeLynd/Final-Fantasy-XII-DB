@@ -1,0 +1,54 @@
+{
+ "committed_at": "2026-09-29T07:38:28Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T073828Z-82eebb",
+ "generator": {
+  "name": "labelled ASTRA composition of original tooling"
+ },
+ "inputs": {
+  "category_map": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\ready-with-open-Q\\inputs\\category_map",
+   "sha256": "437ad9f4d4a6b9fcf96d5dc1e6ae2154ce1e97a6e4be72b784e0335985cbe40f",
+   "size": 10617,
+   "state": "present"
+  },
+  "goal_gate": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\ready-with-open-Q\\inputs\\goal_gate",
+   "sha256": "987ab69ec8df2efd275c227d4863986fb29677636ceb06d7f314e0ab3afad8f0",
+   "size": 135,
+   "state": "present"
+  },
+  "progress_snapshot": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\ready-with-open-Q\\inputs\\progress_snapshot",
+   "sha256": "cd7af1e33d06d75bc72b5cb13cfc42f8dd60a896ad88bbdf029e723d9406b81f",
+   "size": 412,
+   "state": "present"
+  },
+  "requirement_facts": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\ready-with-open-Q\\inputs\\requirement_facts",
+   "sha256": "034a3828380927ddf9d277929b64c7f744b31bcb408992d637b6e077cfa29cf0",
+   "size": 4091,
+   "state": "present"
+  },
+  "subsystems": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\ready-with-open-Q\\inputs\\subsystems",
+   "sha256": "07ece088b4d64635867d34cce2d2b4ba06c10b53f19a0ff98b3e336ff672c7ea",
+   "size": 90,
+   "state": "present"
+  },
+  "team": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\admission-01\\ready-with-open-Q\\inputs\\team",
+   "sha256": "5b80dd381e102f830dc02c41ed916aca3f15eca917aef6ca16ea6f8efbd83da5",
+   "size": 21,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view-progress.json": {
+   "sha256": "f3184120a809ed9038420cc1201cc92e11519c329524f6e4d484c47dd058a06a",
+   "size": 19669
+  }
+ },
+ "parent": null,
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

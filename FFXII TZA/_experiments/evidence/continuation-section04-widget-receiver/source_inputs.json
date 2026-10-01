@@ -1,0 +1,58 @@
+{
+  "archive_chain": [
+    {
+      "file": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa"
+    },
+    {
+      "file": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "_types/types.tsv",
+      "sha256": "484fc2d439c537473154f7b2cfd47af682a0294c6b6af554d4c7c38940384f63",
+      "bytes": 1662442,
+      "use": "pre-update source only; intentionally edited sources are not re-required after overlay"
+    },
+    {
+      "path": "_types/fields.tsv",
+      "sha256": "66f763761bc9c76a546ccdb74ac1b6b0b2fe3532c967c1bf9ae2f0792d902f32",
+      "bytes": 10453654,
+      "use": "pre-update source only; intentionally edited sources are not re-required after overlay"
+    },
+    {
+      "path": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+      "sha256": "79067cbff4873359b34c39f557c68de542345086886bc28b86367506c532593d",
+      "bytes": 79563,
+      "use": "pre-update source only; intentionally edited sources are not re-required after overlay"
+    },
+    {
+      "path": "16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md",
+      "sha256": "5d902e9da684009a3f9260079365a3bee4540a1749c0fb1d9e2956eb636099a0",
+      "bytes": 49324,
+      "use": "pre-update source only; intentionally edited sources are not re-required after overlay"
+    },
+    {
+      "path": "16-UI/Widget-Object-Model/widget-message-handlers.tsv",
+      "sha256": "bd8e42716a0fa23d769309c056bbfd69b0e7dc81e98252c94f341ea77c9c7910",
+      "bytes": 44271,
+      "use": "pre-update source only; intentionally edited sources are not re-required after overlay"
+    },
+    {
+      "path": "16-UI/Menu-Screen-Atlas/members/ui_atlas_all.tsv",
+      "sha256": "4b2b7fa908903cb6b2b76412efaa0d825c69b878f750d39428e4157cf8f77824",
+      "bytes": 19785,
+      "use": "pre-update source only; intentionally edited sources are not re-required after overlay"
+    }
+  ]
+}

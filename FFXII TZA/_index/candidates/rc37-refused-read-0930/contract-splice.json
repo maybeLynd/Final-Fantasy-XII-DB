@@ -1,0 +1,12 @@
+{
+ "carrier": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+ "by": "OPUS",
+ "date": "2026-09-30",
+ "record": "_index/candidates/rc37-refused-read-0930/ (b2320ed29)",
+ "independent_of_overlay": true,
+ "replace_line": {
+  "old": "| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. |",
+  "new": "| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. **Every other kind is taken as issued:** the wrapper `0046E030` returns 1 whatever the read issuer `002DF780` returned (`0046E043`). So a refused read (a −1 file-size entry, `002DF7B9`) also moves to state 2, and in state 3 it completes on the status slot `0215EFF4` the previous read left (OPUS 2026-09-30, RC-37, `_index/candidates/rc37-refused-read-0930/`, static; pending SWE2-AUDIT-SPEC review). |"
+ },
+ "apply": "replace the one line equal to 'old' (it occurs exactly once at HEAD) with 'new'; touch nothing else"
+}

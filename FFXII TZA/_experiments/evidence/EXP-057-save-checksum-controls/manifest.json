@@ -1,0 +1,28 @@
+{
+  "files": {
+    "002EF640.bin": {
+      "bytes": 8,
+      "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802"
+    },
+    "003BB220.bin": {
+      "bytes": 160,
+      "sha256": "1f2d112954f282163b7e306a2a32a5018b93fc6d497475247628c3efa4a3d2d2"
+    },
+    "00583D60.bin": {
+      "bytes": 622,
+      "sha256": "99ff46b8e3405b83be928d035cf54b3ea6e14bbe4f27c576c1bf20924faa8713"
+    },
+    "check.py": {
+      "bytes": 7145,
+      "sha256": "f4dd307b8f6192d48c9ebf30ba27865714e7dc3e7e73c225fedf53560359f24e"
+    },
+    "disassembly.txt": {
+      "bytes": 12259,
+      "sha256": "f9d3c8adae9d70417b5ef6c3c716df28ff5a0da45a5fcf638f4e39fb68cdf28a"
+    },
+    "result.json": {
+      "bytes": 27875,
+      "sha256": "248ab8786e815f90ce079a5567d7d187d2b22e46418f3f24b0e831731f086768"
+    }
+  }
+}

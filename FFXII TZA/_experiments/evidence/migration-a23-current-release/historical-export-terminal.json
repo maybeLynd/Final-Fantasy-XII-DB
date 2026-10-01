@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+    "verify-zip",
+    "Database\\Tools\\work\\dashboard-exports\\g20260929T075521Z-fbf2f8.zip"
+  ],
+  "returncode": 0,
+  "stdout": "VERIFIED {\"generation\": \"g20260929T075521Z-fbf2f8\", \"members\": 33}\n",
+  "stderr": "",
+  "terminal": true,
+  "checker_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+  "zip_sha256": "595f86d6e856333a648d4707af66450b3cd695abe7f4acefc20cb1a0d17049b3",
+  "sidecar_sha256": "595f86d6e856333a648d4707af66450b3cd695abe7f4acefc20cb1a0d17049b3",
+  "zip_bytes": 15403854,
+  "historical_only": true,
+  "limits": "The named 07:55 ZIP cannot prove a matching export for the 18:43 HTTP-captured generation."
+}

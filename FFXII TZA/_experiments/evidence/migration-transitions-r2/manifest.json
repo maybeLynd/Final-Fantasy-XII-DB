@@ -1,0 +1,240 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 5006,
+      "sha256": "8cc5579e294bd02a51c6f90aab9eb4e18da44476d59c83944a05fd7f9653b074"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4007,
+      "sha256": "10c0dab39ffcd2c96a24a4533f9d0dc57e84a82ea98ebf058afe50836b94d9af"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2108,
+      "sha256": "5d23ac8b99646adb07ea0c464d0b5cc51c422b06a039e131ca720c25be21005d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3776,
+      "sha256": "16dbd7822d6c4325c026c5c9fe14c141bc7855ea841a971e51df905a2923b6f8"
+    },
+    {
+      "path": "reducer-controls/empty-cases/raw.json",
+      "bytes": 1603,
+      "sha256": "73023a7c87d34424017317c7133663d6c034571f28978f77776c1feb4339d3ba"
+    },
+    {
+      "path": "reducer-controls/empty-cases-receipt.json",
+      "bytes": 1208,
+      "sha256": "ab6cff35175ed0e16f4347d1d36c9fcb660aa14a7873a77cc1d04623f7af64c6"
+    },
+    {
+      "path": "reducer-controls/nonzero-with-good-json/raw.json",
+      "bytes": 24052,
+      "sha256": "2adb39a1a71327051f8f6355b66b056a4c7456f656b03856a17400f34b650f4d"
+    },
+    {
+      "path": "reducer-controls/nonzero-with-good-json/valid-reject/receipt.json",
+      "bytes": 2686,
+      "sha256": "b872b1bf7ecfae702d1865a378576b3c9a7780fd38fd092d392cf5f7a343638e"
+    },
+    {
+      "path": "reducer-controls/nonzero-with-good-json-receipt.json",
+      "bytes": 1180,
+      "sha256": "36005d409e7f44e6c67b1c98f8ff3c43b497708bc8426c5b085e23fdf2ee0396"
+    },
+    {
+      "path": "reducer-controls/wrong-route-owner/raw.json",
+      "bytes": 24053,
+      "sha256": "4e0c6e33e114a8d79fe0825e0c4572ec3bf4820b55f9933ac0b282dd59af81e8"
+    },
+    {
+      "path": "reducer-controls/wrong-route-owner/valid-reject/receipt.json",
+      "bytes": 2687,
+      "sha256": "14a83940e385ce79638e84c3fa0da80506ce8b643748852c47556490bc538163"
+    },
+    {
+      "path": "reducer-controls/wrong-route-owner-receipt.json",
+      "bytes": 1178,
+      "sha256": "0ac9d345e4b98dc89f53edb46e2b789aac0cafb692004b5f0ce6cf6224315088"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 3900,
+      "sha256": "49ea9e2fb33cb75b353f44a152be3fe46355a931d5b21d000affbdafe43753f8"
+    },
+    {
+      "path": "reducer-controls.py",
+      "bytes": 1640,
+      "sha256": "ad4b0b77d0b7f1a3e88df7f5b5c84709ad0829fa20c72eb16075af9b2e722e39"
+    },
+    {
+      "path": "result.json",
+      "bytes": 337,
+      "sha256": "dd532d7cbbdb85e647cb1b2033ba84b57c8b22ef99d4035914a125800b41ec92"
+    },
+    {
+      "path": "run-01/conflicting-verdict/receipt.json",
+      "bytes": 1388,
+      "sha256": "73ce15566de76e6d27c0fd30a1198fa1fcb28e18ef0c1c698394d2d27be4c62b"
+    },
+    {
+      "path": "run-01/conflicting-verdict/TEAM.json",
+      "bytes": 4284,
+      "sha256": "f8fcfcaaa59a0d0b09ae782928690630b253e5dea0eb9ae29f970ef9190edfee"
+    },
+    {
+      "path": "run-01/malformed-string/receipt.json",
+      "bytes": 1318,
+      "sha256": "286ef18fba336b4e63181b3e608aa09a6de5222a4601825af0a79464fe1fdc60"
+    },
+    {
+      "path": "run-01/malformed-string/TEAM.json",
+      "bytes": 4087,
+      "sha256": "be4d3b7c77dfff2f7bbb0bbc1ffdcc9b361037212fb64ca2647e748d58c9f4c3"
+    },
+    {
+      "path": "run-01/missing-commit/receipt.json",
+      "bytes": 1338,
+      "sha256": "8b57dcd3e07660c066f2829ea5bcb0db191b0012687201c0f336f9e74c8175a7"
+    },
+    {
+      "path": "run-01/missing-commit/TEAM.json",
+      "bytes": 4209,
+      "sha256": "ae58bce5c16ff04c9ec03b1e3908cd74fe3d958006fb1fd85c3023f540eba5fa"
+    },
+    {
+      "path": "run-01/missing-verdict/receipt.json",
+      "bytes": 1337,
+      "sha256": "a777f9ff20ff29e2f5d090e1eece510562847ba8e4ebcb3a8887f0fbde8066ed"
+    },
+    {
+      "path": "run-01/missing-verdict/TEAM.json",
+      "bytes": 4247,
+      "sha256": "9d4841081ea3d534310ea7ae6dbffa3003d15210a21bbb712ebb9e1e45c9fb53"
+    },
+    {
+      "path": "run-01/no-owner/receipt.json",
+      "bytes": 1298,
+      "sha256": "916d32d20995f721665c9322b5358cc2d28984f74a15cd6a1932a83a19d84239"
+    },
+    {
+      "path": "run-01/no-owner/TEAM.json",
+      "bytes": 4235,
+      "sha256": "78ba99f9b20d3021fbff1509be565ee3748e2edda48dd61fc34eb306b3d38e01"
+    },
+    {
+      "path": "run-01/non-sha-commit/receipt.json",
+      "bytes": 1359,
+      "sha256": "e7f8b1d19d996cb2edf1e0be36e855605091f99c013a2d88de7e939581f826a0"
+    },
+    {
+      "path": "run-01/non-sha-commit/TEAM.json",
+      "bytes": 4216,
+      "sha256": "6c1a7452dd4f2594f8bc24711904145b6059221715472a9de26463a8a0444076"
+    },
+    {
+      "path": "run-01/prior-limitations.md",
+      "bytes": 2656,
+      "sha256": "c80931b34e87d54a9f19515f41ae9c3318980e82548828f5a878a379bfb014b4"
+    },
+    {
+      "path": "run-01/prior-read-only-raw.json",
+      "bytes": 16655,
+      "sha256": "779e95eddb19cb6a6c851922242852c99a4be34105da7d9207fcf88a6b0484c5"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 24052,
+      "sha256": "6ac38415d63f06968592cf3d96bbf1ce6ffdf0485f39bde5f097466e1d16a315"
+    },
+    {
+      "path": "run-01/self-review/receipt.json",
+      "bytes": 1376,
+      "sha256": "6ce74e0ad697b1a5a5f4ac905cd17bef859f4e95d69f67719ea89aa40c14f2fb"
+    },
+    {
+      "path": "run-01/self-review/TEAM.json",
+      "bytes": 4280,
+      "sha256": "522a5da746b054de9f3389926885622bf1661de75329fe3556e22e526a52309b"
+    },
+    {
+      "path": "run-01/self-review-reject/receipt.json",
+      "bytes": 1431,
+      "sha256": "003ab1e196b770c13c0b58f99be3acd4280913109723cd48dfd2e7ca95c6153b"
+    },
+    {
+      "path": "run-01/self-review-reject/TEAM.json",
+      "bytes": 4129,
+      "sha256": "ce5c14caf1e8d7ae00b69f0a79e9b80af6bb266a5fd025c3bfd6f0ba0c3b11c2"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "bytes": 53608,
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "bytes": 11980,
+      "sha256": "265dcd8b33b600060ff1482820816b23e13252c5395aa2fd4937aae14642e9e7"
+    },
+    {
+      "path": "run-01/typed-author/receipt.json",
+      "bytes": 1328,
+      "sha256": "c3585634bf6dc5978050571fe4e57e23843fa7aa55235843f2a9a95d027167e8"
+    },
+    {
+      "path": "run-01/typed-author/TEAM.json",
+      "bytes": 4267,
+      "sha256": "f220ec2025f48afdeb2bf9ca6a96be2b72a12cd5ed68b1367758f9808f01fc37"
+    },
+    {
+      "path": "run-01/typed-commit/receipt.json",
+      "bytes": 1364,
+      "sha256": "ce6584e07ed582ec99058199ec9777e2490668c68884e886955e4dc9ed11177d"
+    },
+    {
+      "path": "run-01/typed-commit/TEAM.json",
+      "bytes": 4239,
+      "sha256": "046f16c33628b30c984282e219226f8bfc6c3e592d24160f7d5dfa6e23e5e237"
+    },
+    {
+      "path": "run-01/typed-record/receipt.json",
+      "bytes": 1358,
+      "sha256": "d96295252d9b05cc83a1a2c16cf415c83402d7f9a24d5220db0f8dab60451863"
+    },
+    {
+      "path": "run-01/typed-record/TEAM.json",
+      "bytes": 4226,
+      "sha256": "ac521e2f2560fc551d0ab1d93ac07b61d4e56dcd566d6f667a7764672310480a"
+    },
+    {
+      "path": "run-01/valid-accept/receipt.json",
+      "bytes": 2668,
+      "sha256": "7bfd93a88c406f3875794fc09003299a6b3c1f1ebcf76a324837337d407b3052"
+    },
+    {
+      "path": "run-01/valid-accept/TEAM.json",
+      "bytes": 4284,
+      "sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951"
+    },
+    {
+      "path": "run-01/valid-reject/receipt.json",
+      "bytes": 2686,
+      "sha256": "3ed6c90ba4ef848235d01298138c7d2fb1deb04703de375d1e90c4624cd7169a"
+    },
+    {
+      "path": "run-01/valid-reject/TEAM.json",
+      "bytes": 4243,
+      "sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+    }
+  ]
+}

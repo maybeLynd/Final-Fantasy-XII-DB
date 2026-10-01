@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\transition-actual-write\\capture.py"
+  ],
+  "driver_sha256": "6c7c3b83390bee0503f7b6219de6093c0ecf1dc7e9c206052128e6141e3f1430",
+  "returncode": 0,
+  "stdout": "{\n  \"first_status\": \"two actual writer creations\",\n  \"second_status\": \"two DONE-ALREADY, no writes\",\n  \"revision_before\": 6,\n  \"revision_after\": 8,\n  \"journal_kinds\": [\n    \"genesis\",\n    \"intent\",\n    \"commit\",\n    \"intent\",\n    \"commit\"\n  ],\n  \"same_board_after_second\": true,\n  \"same_journal_after_second\": true,\n  \"private_lock_absent\": true,\n  \"unchanged_sources\": true,\n  \"parent_children_terminal\": true,\n  \"limits\": \"Not concurrent dispatch, fairness, cancellation, quota, controller/native host, malformed/timeout behavior or full A14/A16/pilot acceptance.\"\n}\n",
+  "stderr": "",
+  "terminal": true
+}

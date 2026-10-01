@@ -1,0 +1,2321 @@
+{
+ "view": "systems",
+ "title": "Game systems - repository categories and the 52 registered systems",
+ "status": "OK",
+ "source": {
+  "identity": "important-subsystems.tsv ba2d3747565a; L2-VERDICTS.md e72b85baf9ea",
+  "as_of": "2026-09-29T02:32:06Z",
+  "instrument": "build_views.v_systems",
+  "limits": "document counts are inventory, not understanding; scoped L2 MET is not whole-database completion"
+ },
+ "measures": [
+  {
+   "id": "l2-met",
+   "label": "registered systems with verdict MET",
+   "numerator": 52,
+   "denominator": 52,
+   "scope": "important-subsystems.tsv x L2-VERDICTS.md",
+   "instrument": "v_systems",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "scoped L2 only; residual register rows and terminal audit are separate (overview)"
+  },
+  {
+   "id": "categories",
+   "label": "repository categories",
+   "numerator": 28,
+   "denominator": null,
+   "scope": "top-level folders of FFXII TZA",
+   "instrument": "v_systems",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "includes residual and library categories"
+  }
+ ],
+ "tree": [
+  {
+   "id": "00-Engine-Core-Runtime",
+   "label": "00-Engine-Core-Runtime",
+   "counts": {
+    "documents": 51,
+    "subcategories": 14
+   },
+   "children": [
+    {
+     "id": "S-01",
+     "label": "S-01 Application root and boot \u2014 the VBF mount, the startup latch, what boot fixes and loads",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/Application-Root/game-application.md"
+      },
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md"
+      }
+     ]
+    },
+    {
+     "id": "S-02",
+     "label": "S-02 The world tick and the field frame \u2014 the per-frame order on the battle layer and the one-w",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md"
+      },
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md"
+      }
+     ]
+    },
+    {
+     "id": "S-03",
+     "label": "S-03 Battle runtime mode ladder \u2014 who owns the party (script, area, combat, UI)",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md"
+      }
+     ]
+    },
+    {
+     "id": "S-04",
+     "label": "S-04 Encoded-id space and class registry \u2014 the fifteen inventory classes behind `id >> 12`, the",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md"
+      },
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/the-encoded-id-class-registry.md"
+      }
+     ]
+    },
+    {
+     "id": "S-05",
+     "label": "S-05 Shared transform workbench \u2014 the matrix area four subsystems pass arguments through",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md"
+      }
+     ]
+    },
+    {
+     "id": "S-06",
+     "label": "S-06 Developer tuning console \u2014 282 commands over the render-settings block",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md"
+      }
+     ]
+    },
+    {
+     "id": "ABI-Recovery",
+     "label": "ABI-Recovery",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Application-Root",
+     "label": "Application-Root",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Battle-Frame",
+     "label": "Battle-Frame",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Battle-Runtime-Mode",
+     "label": "Battle-Runtime-Mode",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Developer-Tuning-Console",
+     "label": "Developer-Tuning-Console",
+     "counts": {
+      "documents": 16
+     }
+    },
+    {
+     "id": "Diagnostics-Logging",
+     "label": "Diagnostics-Logging",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Force-Fight-Mode",
+     "label": "Force-Fight-Mode",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Object-Model",
+     "label": "Object-Model",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Ownership-Boundary",
+     "label": "Ownership-Boundary",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Per-Frame-Update-Gate",
+     "label": "Per-Frame-Update-Gate",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Shared-State-Accessors",
+     "label": "Shared-State-Accessors",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Shared-Transform-Workbench",
+     "label": "Shared-Transform-Workbench",
+     "counts": {
+      "documents": 4
+     }
+    },
+    {
+     "id": "Startup-Data-Construction",
+     "label": "Startup-Data-Construction",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "System-Stop-Registry",
+     "label": "System-Stop-Registry",
+     "counts": {
+      "documents": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "01-Script-VM-Native-Bridge",
+   "label": "01-Script-VM-Native-Bridge",
+   "counts": {
+    "documents": 23,
+    "subcategories": 6
+   },
+   "children": [
+    {
+     "id": "S-07",
+     "label": "S-07 The zone-script VM \u2014 the 100-opcode interpreter, verb dispatch and parameter encoding, the",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md"
+      },
+      {
+       "label": "page",
+       "href": "../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md"
+      }
+     ]
+    },
+    {
+     "id": "ATEL-Control-Modules",
+     "label": "ATEL-Control-Modules",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Interpreter-Core",
+     "label": "Interpreter-Core",
+     "counts": {
+      "documents": 5
+     }
+    },
+    {
+     "id": "Native-Command-Lifecycle",
+     "label": "Native-Command-Lifecycle",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Party-Presentation-Verbs",
+     "label": "Party-Presentation-Verbs",
+     "counts": {
+      "documents": 4
+     }
+    },
+    {
+     "id": "Spawn-Verbs",
+     "label": "Spawn-Verbs",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Verb-Dispatch",
+     "label": "Verb-Dispatch",
+     "counts": {
+      "documents": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "02-Resource-And-Asset-Pipeline",
+   "label": "02-Resource-And-Asset-Pipeline",
+   "counts": {
+    "documents": 54,
+    "subcategories": 7
+   },
+   "children": [
+    {
+     "id": "S-08",
+     "label": "S-08 The resource request queue and file layer \u2014 64 slots, the file-size table, loose files the",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../02-Resource-And-Asset-Pipeline/the-resource-request-queue.md"
+      },
+      {
+       "label": "page",
+       "href": "../02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md"
+      }
+     ]
+    },
+    {
+     "id": "S-09",
+     "label": "S-09 The authored-data table registry \u2014 the 64 slots, the `.ard` binder, section addressing, ro",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../02-Resource-And-Asset-Pipeline/authored-data-table-registry.md"
+      },
+      {
+       "label": "page",
+       "href": "../02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md"
+      }
+     ]
+    },
+    {
+     "id": "S-10",
+     "label": "S-10 The authored expression evaluator \u2014 how an authored number gets its randomness",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md"
+      }
+     ]
+    },
+    {
+     "id": "S-47",
+     "label": "S-47 The resource entry tree and arena reference lifetime \u2014 ordered-tree membership, the EFX so",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md"
+      }
+     ]
+    },
+    {
+     "id": "Authored-Expressions",
+     "label": "Authored-Expressions",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Loose-Files-And-Size-Tables",
+     "label": "Loose-Files-And-Size-Tables",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "PS2-Image-Data-Formats",
+     "label": "PS2-Image-Data-Formats",
+     "counts": {
+      "documents": 19
+     }
+    },
+    {
+     "id": "Prefetch-And-Json-Data",
+     "label": "Prefetch-And-Json-Data",
+     "counts": {
+      "documents": 4
+     }
+    },
+    {
+     "id": "Standard-Formats",
+     "label": "Standard-Formats",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "VBF-Archive-And-Authored-Tables",
+     "label": "VBF-Archive-And-Authored-Tables",
+     "counts": {
+      "documents": 8
+     }
+    },
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "03-World-Area-Field",
+   "label": "03-World-Area-Field",
+   "counts": {
+    "documents": 15,
+    "subcategories": 3
+   },
+   "children": [
+    {
+     "id": "S-11",
+     "label": "S-11 Field records and area transition \u2014 `navimapdata.bin`, trigger points, the environment var",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md"
+      },
+      {
+       "label": "page",
+       "href": "../03-World-Area-Field/walking-into-an-authored-trigger-point.md"
+      }
+     ]
+    },
+    {
+     "id": "S-12",
+     "label": "S-12 Weather \u2014 the slot state model, the probability roll, the apply",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../03-World-Area-Field/Weather/weather-slot-state-model.md"
+      },
+      {
+       "label": "page",
+       "href": "../03-World-Area-Field/Weather/weather-probability-and-transition-roll.md"
+      }
+     ]
+    },
+    {
+     "id": "Field-Record-Table",
+     "label": "Field-Record-Table",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Map-Pack",
+     "label": "Map-Pack",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Weather",
+     "label": "Weather",
+     "counts": {
+      "documents": 5
+     }
+    }
+   ]
+  },
+  {
+   "id": "04-Actor-Entity",
+   "label": "04-Actor-Entity",
+   "counts": {
+    "documents": 19,
+    "subcategories": 8
+   },
+   "children": [
+    {
+     "id": "S-13",
+     "label": "S-13 Actor storage, manager slots and the unit pool \u2014 the record behind every actor, the five m",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md"
+      },
+      {
+       "label": "page",
+       "href": "../04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md"
+      }
+     ]
+    },
+    {
+     "id": "S-14",
+     "label": "S-14 Battle-unit construction from its definition \u2014 the two tables, the two paths, every field ",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md"
+      },
+      {
+       "label": "page",
+       "href": "../04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md"
+      }
+     ]
+    },
+    {
+     "id": "S-15",
+     "label": "S-15 The field runtime pass \u2014 how one frame drives every actor's script",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../04-Actor-Entity/the-field-runtime-pass.md"
+      }
+     ]
+    },
+    {
+     "id": "S-52",
+     "label": "S-52 Manager slot entry tables \u2014 the four-entry tables an actor manager slot binds, clears and ",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md"
+      }
+     ]
+    },
+    {
+     "id": "Actor-Contexts",
+     "label": "Actor-Contexts",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Actor-Manager-Record",
+     "label": "Actor-Manager-Record",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Actor-Names",
+     "label": "Actor-Names",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Actor-Storage-Record",
+     "label": "Actor-Storage-Record",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Battle-Record-Kind",
+     "label": "Battle-Record-Kind",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Battle-Unit",
+     "label": "Battle-Unit",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Unit-Definition",
+     "label": "Unit-Definition",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Unit-Display-Record",
+     "label": "Unit-Display-Record",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "05-Spawn-Encounter-Lifecycle",
+   "label": "05-Spawn-Encounter-Lifecycle",
+   "counts": {
+    "documents": 8,
+    "subcategories": 2
+   },
+   "children": [
+    {
+     "id": "S-16",
+     "label": "S-16 Spawn placement, the keep window and retirement",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md"
+      },
+      {
+       "label": "page",
+       "href": "../05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md"
+      }
+     ]
+    },
+    {
+     "id": "S-17",
+     "label": "S-17 Group completion and respawn \u2014 the dead-member ledger and the cooldown clock",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md"
+      },
+      {
+       "label": "page",
+       "href": "../05-Spawn-Encounter-Lifecycle/why-the-enemies-you-killed-come-back.md"
+      }
+     ]
+    },
+    {
+     "id": "Group-Completion-And-Respawn",
+     "label": "Group-Completion-And-Respawn",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Spawn-Record",
+     "label": "Spawn-Record",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "06-Movement-And-Navigation",
+   "label": "06-Movement-And-Navigation",
+   "counts": {
+    "documents": 19,
+    "subcategories": 4
+   },
+   "children": [
+    {
+     "id": "S-18",
+     "label": "S-18 Locomotion and steering \u2014 heading and speed to position, facing, movement mode, battle loc",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../06-Movement-And-Navigation/heading-speed-to-position-delta.md"
+      },
+      {
+       "label": "page",
+       "href": "../06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md"
+      }
+     ]
+    },
+    {
+     "id": "S-19",
+     "label": "S-19 The movement body pool and the separation pass",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md"
+      }
+     ]
+    },
+    {
+     "id": "S-51",
+     "label": "S-51 The navigation mesh and the corridor-query layer - the authored mesh dataset, region query",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md"
+      }
+     ]
+    },
+    {
+     "id": "Battle-Locomotion",
+     "label": "Battle-Locomotion",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Facing-And-Steering",
+     "label": "Facing-And-Steering",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Movement-Mode-Selection",
+     "label": "Movement-Mode-Selection",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Steering-Record",
+     "label": "Steering-Record",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "07-Combat-Action",
+   "label": "07-Combat-Action",
+   "counts": {
+    "documents": 19,
+    "subcategories": 6
+   },
+   "children": [
+    {
+     "id": "S-20",
+     "label": "S-20 Command commit and action dispatch \u2014 the moment an action is committed, the native command",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../07-Combat-Action/the-moment-an-action-is-committed.md"
+      },
+      {
+       "label": "page",
+       "href": "../07-Combat-Action/Command-And-Action-Seam/native-command-seam.md"
+      }
+     ]
+    },
+    {
+     "id": "S-21",
+     "label": "S-21 Result application and post-result events \u2014 the result record, the applier, the battle mes",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../07-Combat-Action/applying-a-result-to-a-target.md"
+      },
+      {
+       "label": "page",
+       "href": "../07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md"
+      }
+     ]
+    },
+    {
+     "id": "Action-Availability",
+     "label": "Action-Availability",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Action-Definition-Row",
+     "label": "Action-Definition-Row",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Action-Dispatch",
+     "label": "Action-Dispatch",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Command-And-Action-Seam",
+     "label": "Command-And-Action-Seam",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Post-Result-Events",
+     "label": "Post-Result-Events",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Result-Record",
+     "label": "Result-Record",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "08-Combat-Formula",
+   "label": "08-Combat-Formula",
+   "counts": {
+    "documents": 22,
+    "subcategories": 11
+   },
+   "children": [
+    {
+     "id": "S-22",
+     "label": "S-22 The formula step table and calculator slots \u2014 recipes, the preparation family, the evaluat",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../08-Combat-Formula/Step-Table/combat-formula-step-table.md"
+      },
+      {
+       "label": "page",
+       "href": "../08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md"
+      }
+     ]
+    },
+    {
+     "id": "S-23",
+     "label": "S-23 The HP write and the lethal transition",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md"
+      }
+     ]
+    },
+    {
+     "id": "S-24",
+     "label": "S-24 Stat derivation and the auto-status rebuild \u2014 where a stat number comes from, equipment's ",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../08-Combat-Formula/where-a-stat-number-comes-from.md"
+      },
+      {
+       "label": "page",
+       "href": "../08-Combat-Formula/the-auto-status-rebuild.md"
+      }
+     ]
+    },
+    {
+     "id": "Attack-Vs-Defense",
+     "label": "Attack-Vs-Defense",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Battle-Formula-Scratch",
+     "label": "Battle-Formula-Scratch",
+     "counts": {
+      "documents": 0
+     }
+    },
+    {
+     "id": "Battle-Stats-Record",
+     "label": "Battle-Stats-Record",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Current-HP",
+     "label": "Current-HP",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Evaluation-Context",
+     "label": "Evaluation-Context",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Recipe-System",
+     "label": "Recipe-System",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Scratch-Block",
+     "label": "Scratch-Block",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Status-And-Augment-Namespaces",
+     "label": "Status-And-Augment-Namespaces",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Steal",
+     "label": "Steal",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Step-Table",
+     "label": "Step-Table",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Weather-Terrain-Element-Scaling",
+     "label": "Weather-Terrain-Element-Scaling",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "09-Combat-AI-And-Gambits",
+   "label": "09-Combat-AI-And-Gambits",
+   "counts": {
+    "documents": 5,
+    "subcategories": 0
+   },
+   "children": [
+    {
+     "id": "S-25",
+     "label": "S-25 Gambit evaluation, set selection and enmity",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md"
+      },
+      {
+       "label": "page",
+       "href": "../09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "10-Status-Periodic-Terminal",
+   "label": "10-Status-Periodic-Terminal",
+   "counts": {
+    "documents": 10,
+    "subcategories": 3
+   },
+   "children": [
+    {
+     "id": "S-26",
+     "label": "S-26 The status write and the two-layer effect model",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md"
+      },
+      {
+       "label": "page",
+       "href": "../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md"
+      }
+     ]
+    },
+    {
+     "id": "S-27",
+     "label": "S-27 The periodic tick \u2014 regen, drain, MP, what ends a status",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../10-Status-Periodic-Terminal/Periodic-Tick/what-the-periodic-tick-does.md"
+      },
+      {
+       "label": "page",
+       "href": "../10-Status-Periodic-Terminal/where-mp-comes-from.md"
+      }
+     ]
+    },
+    {
+     "id": "Periodic-Tick",
+     "label": "Periodic-Tick",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Status-And-Augment-Layers",
+     "label": "Status-And-Augment-Layers",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Status-Write",
+     "label": "Status-Write",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "11-Party",
+   "label": "11-Party",
+   "counts": {
+    "documents": 10,
+    "subcategories": 1
+   },
+   "children": [
+    {
+     "id": "S-28",
+     "label": "S-28 Party roster, control suppression and the leader change \u2014 the five slot maps, the reserve",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../11-Party/party-roster-and-control-suppression.md"
+      },
+      {
+       "label": "page",
+       "href": "../11-Party/active-party-reserve-and-the-moment-the-leader-changes.md"
+      }
+     ]
+    },
+    {
+     "id": "Battle-State-Block",
+     "label": "Battle-State-Block",
+     "counts": {
+      "documents": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "12-Items-Equipment-Shops-License",
+   "label": "12-Items-Equipment-Shops-License",
+   "counts": {
+    "documents": 13,
+    "subcategories": 0
+   },
+   "children": [
+    {
+     "id": "S-29",
+     "label": "S-29 Inventory, item use and equipment compatibility",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../12-Items-Equipment-Shops-License/using-an-item-is-an-action-that-costs-an-item.md"
+      },
+      {
+       "label": "page",
+       "href": "../12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md"
+      }
+     ]
+    },
+    {
+     "id": "S-30",
+     "label": "S-30 Shops and the bazaar \u2014 stock ladders, the loot-sold tally, purchase",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md"
+      },
+      {
+       "label": "page",
+       "href": "../12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md"
+      }
+     ]
+    },
+    {
+     "id": "S-31",
+     "label": "S-31 The licence board and the licence check",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md"
+      },
+      {
+       "label": "page",
+       "href": "../12-Items-Equipment-Shops-License/license-board-grid-format.md"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "13-Rewards-Progression-Economy",
+   "label": "13-Rewards-Progression-Economy",
+   "counts": {
+    "documents": 15,
+    "subcategories": 0
+   },
+   "children": [
+    {
+     "id": "S-32",
+     "label": "S-32 Enemy death and its rewards \u2014 experience and LP division, loot drops, the chain, gil, leve",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md"
+      },
+      {
+       "label": "page",
+       "href": "../13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md"
+      }
+     ]
+    },
+    {
+     "id": "S-33",
+     "label": "S-33 World loot pickups \u2014 the ten-slot pool, the blink, the despawn",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "14-Story-Event-Quest-Hunt",
+   "label": "14-Story-Event-Quest-Hunt",
+   "counts": {
+    "documents": 4,
+    "subcategories": 1
+   },
+   "children": [
+    {
+     "id": "S-34",
+     "label": "S-34 Persistent flag banks and event memory",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../14-Story-Event-Quest-Hunt/persistent-flag-banks.md"
+      },
+      {
+       "label": "page",
+       "href": "../14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md"
+      }
+     ]
+    },
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "15-Input",
+   "label": "15-Input",
+   "counts": {
+    "documents": 11,
+    "subcategories": 5
+   },
+   "children": [
+    {
+     "id": "S-35",
+     "label": "S-35 The input stack, binding profiles and the capability policy \u2014 devices, channels, the name ",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../15-Input/Input-Stack/input-stack-device-channel-and-bindings.md"
+      },
+      {
+       "label": "page",
+       "href": "../15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md"
+      }
+     ]
+    },
+    {
+     "id": "Binding-Profiles",
+     "label": "Binding-Profiles",
+     "counts": {
+      "documents": 3
+     }
+    },
+    {
+     "id": "Gameplay-Capability-Policy",
+     "label": "Gameplay-Capability-Policy",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Input-Name-Registry",
+     "label": "Input-Name-Registry",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Input-Stack",
+     "label": "Input-Stack",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Modal-Toggles",
+     "label": "Modal-Toggles",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "16-UI",
+   "label": "16-UI",
+   "counts": {
+    "documents": 30,
+    "subcategories": 17
+   },
+   "children": [
+    {
+     "id": "S-36",
+     "label": "S-36 The widget object model, its message protocol and the request router",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md"
+      },
+      {
+       "label": "page",
+       "href": "../16-UI/Widget-Object-Model/the-widget-message-protocol.md"
+      }
+     ]
+    },
+    {
+     "id": "S-37",
+     "label": "S-37 Text rendering and the control-code language, DynGeo drawing",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../16-UI/Text-And-Number-Rendering/the-text-control-code-language.md"
+      },
+      {
+       "label": "page",
+       "href": "../16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md"
+      }
+     ]
+    },
+    {
+     "id": "Battle-Hud",
+     "label": "Battle-Hud",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Config-Screen",
+     "label": "Config-Screen",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Dynamic-Geometry-Instances",
+     "label": "Dynamic-Geometry-Instances",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Gambit-Screens",
+     "label": "Gambit-Screens",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Handbook",
+     "label": "Handbook",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Layout-Parameter-System",
+     "label": "Layout-Parameter-System",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "License-Board-View",
+     "label": "License-Board-View",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Map-Screens",
+     "label": "Map-Screens",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Menu-Screen-Atlas",
+     "label": "Menu-Screen-Atlas",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Message-Windows",
+     "label": "Message-Windows",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Quest-List",
+     "label": "Quest-List",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Request-Router",
+     "label": "Request-Router",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Shared-Dialogs",
+     "label": "Shared-Dialogs",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Shop-Screens",
+     "label": "Shop-Screens",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Text-And-Number-Rendering",
+     "label": "Text-And-Number-Rendering",
+     "counts": {
+      "documents": 3
+     }
+    },
+    {
+     "id": "Unlabelled-Panes",
+     "label": "Unlabelled-Panes",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Widget-Object-Model",
+     "label": "Widget-Object-Model",
+     "counts": {
+      "documents": 6
+     }
+    }
+   ]
+  },
+  {
+   "id": "17-Presentation-Rendering",
+   "label": "17-Presentation-Rendering",
+   "counts": {
+    "documents": 60,
+    "subcategories": 17
+   },
+   "children": [
+    {
+     "id": "S-38",
+     "label": "S-38 Character rendering \u2014 the render object, the render record array, transform publish, the c",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../17-Presentation-Rendering/Character-Rendering/character-render-object.md"
+      },
+      {
+       "label": "page",
+       "href": "../17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md"
+      }
+     ]
+    },
+    {
+     "id": "S-39",
+     "label": "S-39 The render command list and the graphics-thread handshake",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md"
+      },
+      {
+       "label": "page",
+       "href": "../17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md"
+      }
+     ]
+    },
+    {
+     "id": "S-40",
+     "label": "S-40 Post-processing \u2014 the Yebis effect catalogue",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md"
+      }
+     ]
+    },
+    {
+     "id": "S-48",
+     "label": "S-48 Authored command ramp channels \u2014 the channel state machine the presentation layer replays",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../17-Presentation-Rendering/README.md"
+      }
+     ]
+    },
+    {
+     "id": "Authored-Commands",
+     "label": "Authored-Commands",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Character-Render-Records",
+     "label": "Character-Render-Records",
+     "counts": {
+      "documents": 9
+     }
+    },
+    {
+     "id": "Character-Rendering",
+     "label": "Character-Rendering",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Effect-File-Formats",
+     "label": "Effect-File-Formats",
+     "counts": {
+      "documents": 11
+     }
+    },
+    {
+     "id": "Gi-Render-Commands",
+     "label": "Gi-Render-Commands",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Graphics-Thread-Handshake",
+     "label": "Graphics-Thread-Handshake",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Legacy-PS2-GS",
+     "label": "Legacy-PS2-GS",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Model-And-Motion-Formats",
+     "label": "Model-And-Motion-Formats",
+     "counts": {
+      "documents": 11
+     }
+    },
+    {
+     "id": "Movie-Containers",
+     "label": "Movie-Containers",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Position-To-Scalar",
+     "label": "Position-To-Scalar",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Post-Processing",
+     "label": "Post-Processing",
+     "counts": {
+      "documents": 4
+     }
+    },
+    {
+     "id": "Render-Command-List",
+     "label": "Render-Command-List",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Screen-Fade",
+     "label": "Screen-Fade",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Screen-Mode-And-Aspect-Fit",
+     "label": "Screen-Mode-And-Aspect-Fit",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Script-Screen-Effects",
+     "label": "Script-Screen-Effects",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Scripted-Camera",
+     "label": "Scripted-Camera",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Visual-Tuning-Parameters",
+     "label": "Visual-Tuning-Parameters",
+     "counts": {
+      "documents": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "18-Audio",
+   "label": "18-Audio",
+   "counts": {
+    "documents": 27,
+    "subcategories": 5
+   },
+   "children": [
+    {
+     "id": "S-41",
+     "label": "S-41 Sound request to voice \u2014 the audio boundary, the bank and controller family, fades, the sp",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md"
+      },
+      {
+       "label": "page",
+       "href": "../18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md"
+      }
+     ]
+    },
+    {
+     "id": "S-42",
+     "label": "S-42 Field music selection \u2014 the area's ladder, the mode overrides, the bank file",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../18-Audio/how-the-music-changes-when-you-change-area.md"
+      },
+      {
+       "label": "page",
+       "href": "../18-Audio/the-music-control-file-and-the-bgm-stream.md"
+      }
+     ]
+    },
+    {
+     "id": "Audio-Bank-And-Controller-Family",
+     "label": "Audio-Bank-And-Controller-Family",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Audio-Boundary",
+     "label": "Audio-Boundary",
+     "counts": {
+      "documents": 4
+     }
+    },
+    {
+     "id": "Sound-Bank-And-Voice-Formats",
+     "label": "Sound-Bank-And-Voice-Formats",
+     "counts": {
+      "documents": 5
+     }
+    },
+    {
+     "id": "Sound-Selection",
+     "label": "Sound-Selection",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "19-Save-Load-Settings",
+   "label": "19-Save-Load-Settings",
+   "counts": {
+    "documents": 17,
+    "subcategories": 3
+   },
+   "children": [
+    {
+     "id": "S-43",
+     "label": "S-43 The save image \u2014 buffers, header and payload, capture, what loading normalises",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md"
+      },
+      {
+       "label": "page",
+       "href": "../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md"
+      }
+     ]
+    },
+    {
+     "id": "S-44",
+     "label": "S-44 Game settings and locale",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md"
+      },
+      {
+       "label": "page",
+       "href": "../19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md"
+      }
+     ]
+    },
+    {
+     "id": "Game-Settings-Config",
+     "label": "Game-Settings-Config",
+     "counts": {
+      "documents": 4
+     }
+    },
+    {
+     "id": "Language-And-Locale",
+     "label": "Language-And-Locale",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Save-Image-Layout-And-Pipeline",
+     "label": "Save-Image-Layout-And-Pipeline",
+     "counts": {
+      "documents": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "20-Platform-Online-Achievements",
+   "label": "20-Platform-Online-Achievements",
+   "counts": {
+    "documents": 4,
+    "subcategories": 1
+   },
+   "children": [
+    {
+     "id": "S-45",
+     "label": "S-45 Steam integration and achievements",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md"
+      }
+     ]
+    },
+    {
+     "id": "S-46",
+     "label": "S-46 RNG streams and which roll is on which generator",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../21-RNG-And-Determinism/rng-streams.md"
+      },
+      {
+       "label": "page",
+       "href": "../21-RNG-And-Determinism/which-roll-is-on-which-generator.md"
+      }
+     ]
+    },
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "21-RNG-And-Determinism",
+   "label": "21-RNG-And-Determinism",
+   "counts": {
+    "documents": 5,
+    "subcategories": 1
+   },
+   "children": [
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "22-Middleware-PhyreEngine",
+   "label": "22-Middleware-PhyreEngine",
+   "counts": {
+    "documents": 23,
+    "subcategories": 11
+   },
+   "children": [
+    {
+     "id": "S-49",
+     "label": "S-49 Phyre asset container and class-descriptor surface \u2014 cluster header, packed namespace, ref",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md"
+      },
+      {
+       "label": "page",
+       "href": "../22-Middleware-PhyreEngine/Phyre-Asset-Container/the-packed-namespace-and-the-file-side-schema.md"
+      }
+     ]
+    },
+    {
+     "id": "Animation-Channel-Binding",
+     "label": "Animation-Channel-Binding",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Application-Framework-Boundary",
+     "label": "Application-Framework-Boundary",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Embedded-Lua-And-Object-Bindings",
+     "label": "Embedded-Lua-And-Object-Bindings",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Phyre-Asset-Container",
+     "label": "Phyre-Asset-Container",
+     "counts": {
+      "documents": 5
+     }
+    },
+    {
+     "id": "Post-Process-Chain",
+     "label": "Post-Process-Chain",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "Reflection-And-Class-Metadata",
+     "label": "Reflection-And-Class-Metadata",
+     "counts": {
+      "documents": 6
+     }
+    },
+    {
+     "id": "Script-Object-Accessors",
+     "label": "Script-Object-Accessors",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Shader-Variant-Selection",
+     "label": "Shader-Variant-Selection",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Subsystem-Map",
+     "label": "Subsystem-Map",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "The-Frame",
+     "label": "The-Frame",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "23-Third-Party-Libraries",
+   "label": "23-Third-Party-Libraries",
+   "counts": {
+    "documents": 8,
+    "subcategories": 6
+   },
+   "children": [
+    {
+     "id": "S-50",
+     "label": "S-50 Lua core loader surface \u2014 the chunk loader and what it accepts",
+     "state": "UNMEASURED",
+     "counts": {
+      "scoped L2 verdict": "MET",
+      "open obligations under this system": "UNMEASURED (no system-to-obligation link yet)"
+     },
+     "links": [
+      {
+       "label": "page",
+       "href": "../23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md"
+      }
+     ]
+    },
+    {
+     "id": "Bullet-Physics-Integration",
+     "label": "Bullet-Physics-Integration",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "EASTL",
+     "label": "EASTL",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "LibVPX-VP8-Decoder",
+     "label": "LibVPX-VP8-Decoder",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Lua-Core",
+     "label": "Lua-Core",
+     "counts": {
+      "documents": 2
+     }
+    },
+    {
+     "id": "PostEffects-Yebis-PPFX",
+     "label": "PostEffects-Yebis-PPFX",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "members",
+     "label": "members",
+     "counts": {
+      "documents": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "24-Compiler-And-CRT-Runtime",
+   "label": "24-Compiler-And-CRT-Runtime",
+   "counts": {
+    "documents": 15,
+    "subcategories": 12
+   },
+   "children": [
+    {
+     "id": "Binary-Hardening-And-Hooking",
+     "label": "Binary-Hardening-And-Hooking",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Cxx-Runtime-Families",
+     "label": "Cxx-Runtime-Families",
+     "counts": {
+      "documents": 3
+     }
+    },
+    {
+     "id": "Exception-Handling-And-Unwind",
+     "label": "Exception-Handling-And-Unwind",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Generated-Adapters",
+     "label": "Generated-Adapters",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Generated-Families",
+     "label": "Generated-Families",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Lazy-Static-Initialization",
+     "label": "Lazy-Static-Initialization",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Maths-Library",
+     "label": "Maths-Library",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Memory-And-Allocation",
+     "label": "Memory-And-Allocation",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Runtime-Service-Surface",
+     "label": "Runtime-Service-Surface",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Static-Initialization-And-Lifetime",
+     "label": "Static-Initialization-And-Lifetime",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Static-Initialization-And-Teardown",
+     "label": "Static-Initialization-And-Teardown",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Thunk-Layer",
+     "label": "Thunk-Layer",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "25-EBP-Script-Container",
+   "label": "25-EBP-Script-Container",
+   "counts": {
+    "documents": 15,
+    "subcategories": 3
+   },
+   "children": [
+    {
+     "id": "Bytecode-And-Opcodes",
+     "label": "Bytecode-And-Opcodes",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Container",
+     "label": "Container",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Sections",
+     "label": "Sections",
+     "counts": {
+      "documents": 12
+     }
+    }
+   ]
+  },
+  {
+   "id": "26-PKFL-Package-Container",
+   "label": "26-PKFL-Package-Container",
+   "counts": {
+    "documents": 2,
+    "subcategories": 1
+   },
+   "children": [
+    {
+     "id": "Container",
+     "label": "Container",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "99-Unresolved-Residual",
+   "label": "99-Unresolved-Residual",
+   "counts": {
+    "documents": 23,
+    "subcategories": 6
+   },
+   "children": [
+    {
+     "id": "Cutscene-Asset-Slots",
+     "label": "Cutscene-Asset-Slots",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Dead-Nine-Patch-Renderer",
+     "label": "Dead-Nine-Patch-Renderer",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Glyph-Run-Rendering",
+     "label": "Glyph-Run-Rendering",
+     "counts": {
+      "documents": 7
+     }
+    },
+    {
+     "id": "Largest-Unclassified-Code",
+     "label": "Largest-Unclassified-Code",
+     "counts": {
+      "documents": 1
+     }
+    },
+    {
+     "id": "Unlisted-Code",
+     "label": "Unlisted-Code",
+     "counts": {
+      "documents": 3
+     }
+    },
+    {
+     "id": "Unowned-Code-Census",
+     "label": "Unowned-Code-Census",
+     "counts": {
+      "documents": 1
+     }
+    }
+   ]
+  }
+ ]
+}

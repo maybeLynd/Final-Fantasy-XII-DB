@@ -1,0 +1,12 @@
+# Poison Q6 independent review — ASTRA/SOL
+
+Question: do the retained original-builder controls establish the named Poison/Sap/duration/Stop calculations, and does flag A bit 8 gate the HP-Critical check or only select its input?
+Consumer: FABLE's PKG-GP-STATUS-POISON Q6 and status-write stage-2 row; OPUS owns the replay producer.
+
+H1: bit8 clear skips HP-Critical. H2: bit8 selects current-versus-new HP, then the comparison runs. Discriminator: original instructions and no-HP-write cases, plus equality/nonpositive/Stop boundary controls. Method A exact image/source review plus B one independent private invocation of the existing shipping-code replay. No game setup, no new runtime platform. Published peer source/output remains unchanged.
+
+Pin ced7c61fd poison.py/check.py and f7a5ce0d6 Q6/page preimages, whole image73461d, graph files and interpreter/Unicorn/Capstone identity. Copy original scripts into private run directory so import-time outputs cannot rewrite published evidence. Check all six upstream harness cases before importing the fourteen-case producer; record exits/exceptions/missing results rather than trusting print/exit0. Stop if upstream controls fail, reference/source moves, the emulator fails to return, faults, outside function, guard/stats corruption or unexpected result. Run only affected controls. Use stored prerequisite data to test actual driver refusal without re-executing FF12 cases.
+
+Existing fixture learning: check.py leaves stage4 modes=3. poison.py resets modes=0 and clock=1 before each case. Keep that reset. Entry is 00385DF0 on planted stats/resources; single memset bridge; no tick entry00310DB0 or sink003112F0, no scheduling/init/lifetime/nativeCRT/live/player consequence established. No raw Capstone access flags: disassembly preserves bytes/operands, no memory-role classification. Use shared adapter if role classification becomes needed.
+
+Acceptance: exact original source/bytes plus independently checked statuses and requested values agree; original branch distinguishes H1/H2. Scope narrowed to entry/fixtures; canonical current wording checked separately. Preserve old runs and source. Record raw/normalized/source identity and cleanup (private process terminated, originals unchanged, no PC/game controls). Freeze only after controls, publish reviewed explicit paths, return verdict and required consumer limits. Required own evidence review remains distinct.

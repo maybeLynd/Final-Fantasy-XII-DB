@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBAUX-0922",
+ "note": "Published the hctg aux-region decode (conditional-caption table, 00576A50) plus the HBINDEX resume update + finish op. Monster tail aux record partially bound: v0 = the record's hdat strCount byte (384/384 join, locale-invariant), v3 = a 15-value category id; v1/v2 constant 1.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

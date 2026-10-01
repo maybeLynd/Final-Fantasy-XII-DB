@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 2368,
+      "sha256": "a0dba873dad134a93c301d8d45e8b0c6c512be0d7939e6cbfeac3b2c6efc0a75"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7121,
+      "sha256": "8bf6457a186859535c327f6087705d2b56ad2acb336e297fa9bea3a753e202c8"
+    },
+    {
+      "path": "consumer-check.md",
+      "bytes": 1115,
+      "sha256": "24a41a8a51e16119d850c6f3f81c7172827f7e7f5f93c2c6befc7500c07e74a6"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 6049,
+      "sha256": "2f0f94a822c2e1a1f4f699dd234d89c91a8b36d9e531a90bff45690418448d17"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1999,
+      "sha256": "7bfad4c4fd037f792a86b62bb15da418283ebde8a38956a3c05998d20eacf867"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4052,
+      "sha256": "384eaeb62e6c997e6d07a009fd98df8629abe49602a0ee2b73b104252af731cf"
+    },
+    {
+      "path": "retained/bodies.json",
+      "bytes": 13981,
+      "sha256": "1c933105550dad627dcb4819f014cfaa43d60a67f6d870b6f33f36d46fedeb61"
+    },
+    {
+      "path": "retained/check.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/CONTRACT-hp-write-and-lethal-transition.md",
+      "bytes": 46481,
+      "sha256": "7a4bad42313a9c2e40bff59dab2328e2788b4a7e6ddb8a52efc4eb2393f5c715"
+    },
+    {
+      "path": "retained/EXP-093-hp-write-execution.md",
+      "bytes": 7781,
+      "sha256": "e1b931ca6ba94e258f45f65143782fdb1709928d4776a937e10e29f6892ae05c"
+    },
+    {
+      "path": "retained/result.json",
+      "bytes": 2254142,
+      "sha256": "97d61b0ee1e4f7454c7031a6a0976ed1739cdd53dc341789b8fef6228b73c2d1"
+    },
+    {
+      "path": "retained/the-hp-write-and-the-lethal-transition.md",
+      "bytes": 51109,
+      "sha256": "80632220225024f978d17f59a151a1653d818932d8941bde29391b9322f27837"
+    },
+    {
+      "path": "source.json",
+      "bytes": 42133,
+      "sha256": "94d21f6c7ed476e82df2b3e94f6a082f5cec71c8b581947564b331253b9eb830"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 301,
+      "sha256": "e9f038da602c74d9d61c2137d935397c7bd264b7460c51e4eb04255e6d74da7e"
+    }
+  ],
+  "limits": "Static source-bound local clamp, historical controls and symbolic witnesses. No new native/isolated/live execution or ordinary occurrence/downstream consequence claim. Owner/independent acceptance pending."
+}

@@ -1,0 +1,13 @@
+audio_object_built_by_its_own_initialiser                                PASS
+no_fence_no_fault_in_any_run                                             PASS
+I3_wrappers_dispatch_pan_0x40_vol_0x7F_with_the_dispatcher_real          PASS
+I4_bank_owns_a_512_id_block_id_is_lo_shl_9_plus_index                    PASS
+I5_gate1_refuses_three_wrappers_not_00271500                             PASS
+I2_0024A1A0_gate1_refusal_returns_no_defined_value_eax_passes_through    PASS
+I2_refusers_report_only_failure_and_disagree_on_its_value                PASS
+I2_readiness_refuser_002DEE80_runs_real_both_arms                        PASS
+I2_0024A1A0_real_readiness_refuses_before_the_reshape                    PASS
+I1_receipt_returned_with_no_bank_loaded                                  PASS
+refusals: {'w_c60_gate1_set': 'FFFFFFFF', 'w_c60_resolver_refuses': 'FFFFFFFF', 'w_c60_liveness_refuses': 'FFFFFFFF', 'w_c60_gate2_set': '0', 'ready_ecx0': '0', 'w_a1a0_ready_path': '0'} receipts: {'w_c60_ok': '1', 'w_ca0_ok': '2', 'w_1500_gate1_set': '3'}
+a1a0 ready path: {'ok': True, 'ret': 0, 'bad': [], 'faults': [], 'disp': [], 'dispb': [], 'ready': ['5'], 'functions': 7}
+ALL PASS

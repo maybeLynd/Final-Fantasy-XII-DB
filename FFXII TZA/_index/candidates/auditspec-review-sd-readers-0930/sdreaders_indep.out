@@ -1,0 +1,10 @@
+V1 008C5760+0x78 = 0017D1A0 ; 01CB2508+0x78 = 005C5230
+V2 raw rel32 call/jmp/jcc to 0017D1A0: [] ; raw call index: None
+V3 relocated qwords = 0017D1A0: ['008C57D8'] ; raw unaligned qwords: ['008C57D8 .rdata']
+V4 rip refs into vtable 008C5760..+0x100: 4 ['0015BC5A lea rax, [rip + 0x769aff] -> 008C5760', '0017CC89 lea rax, [rip + 0x748ad0] -> 008C5760', '0017CED3 lea rcx, [rip + 0x74897e] -> 008C5858', '008A6970 lea rax, [rip + 0x1ede9] -> 008C5760']
+V5 call/jmp qword [reg+0x78] sites on instruction boundaries: 192 in 114 owners; in 00790000-007A8000: 0 []
+V5 unowned sites: []
+H1 active 02164280 fields +0x48..+0x67: rip 0, image-base 0, raw-only 1/0
+H1 capture 021BA940 fields +0x48..+0x67: rip 0, image-base 0, raw-only 0/0
+H1 third 02211000 fields +0x48..+0x67: rip 0, image-base 0, raw-only 0/0
+H1 backup 022676C0 fields +0x48..+0x67: rip 0, image-base 0, raw-only 0/0

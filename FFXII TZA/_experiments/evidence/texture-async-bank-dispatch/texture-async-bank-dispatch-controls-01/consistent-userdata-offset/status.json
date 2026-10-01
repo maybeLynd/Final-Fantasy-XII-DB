@@ -1,0 +1,13 @@
+{
+  "case": "consistent-userdata-offset",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-bank-dispatch.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\consistent-userdata-offset\\result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-bank-dispatch-controls-01\\consistent-userdata-offset\\source"
+  ],
+  "exit": 1,
+  "result_absent": true,
+  "expected_error_seen": true
+}

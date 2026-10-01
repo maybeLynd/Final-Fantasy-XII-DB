@@ -1,0 +1,11 @@
+cell 0215F1A0 width 1: 11 sites in 6 functions
+functions reading by exact address: 2; reading incl. overlapping wider/nearby access: 2; writing: 5
+  002E0BEC in 002E09A0  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7e5ae], cl
+  002E0C65 in 002E09A0  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7e534], r8b
+  002E0D10 in 002E09A0  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7e489], bpl
+  002E15D2 in 002E15D0  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7dbc7], 0
+  002E1ABD in 002E1A60  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7d6dc], 1
+  002E1AE9 in 002E1AE0  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7d6b0], 1
+  002E1B35 in 002E1B10  W    w1 tgt 0215F1A0  mov byte ptr [rip + 0x1e7d664], 1
+READERS_NAME ['002E09A0', '002E12D0']
+overlap-only readers: []

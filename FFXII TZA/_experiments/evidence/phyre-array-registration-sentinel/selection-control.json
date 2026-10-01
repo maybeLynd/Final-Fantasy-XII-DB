@@ -1,0 +1,8 @@
+{
+  "rejected_ambiguous_suffix": "c1004.dae.phyre",
+  "matches": [
+    "chr_shadow/chara/c10/c1004/mws/c1004.dae.phyre",
+    "chr/chara/c10/c1004/mws/c1004.dae.phyre"
+  ],
+  "selected_exact_known_retained_path": "gamedata/d3d11/artdata/chr/chara/c10/c1004/mws/c1004.dae.phyre"
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-exception-filter-tail\check.py", line 42, in <module>
+    if '--fault-return-zero' in sys.argv:assert all(p['local_return']==0 for p in paths),'Original local RET is preceded by MOV EAX,1'
+                                                ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original local RET is preceded by MOV EAX,1

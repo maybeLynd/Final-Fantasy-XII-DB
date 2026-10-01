@@ -1,0 +1,18 @@
+07-Combat-Action/how-close-a-unit-must-stand-to-act.md                                     correction hunks 0, unquoted strikes 0, exec-claim lines in correction hunks 0
+15-Input/how-a-gamepad-becomes-a-controller-object.md                                      correction hunks 1, unquoted strikes 0, exec-claim lines in correction hunks 0
+17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md     correction hunks 0, unquoted strikes 0, exec-claim lines in correction hunks 0
+17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md          correction hunks 0, unquoted strikes 0, exec-claim lines in correction hunks 0
+17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md              correction hunks 0, unquoted strikes 0, exec-claim lines in correction hunks 0
+22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md         correction hunks 0, unquoted strikes 0, exec-claim lines in correction hunks 0
+04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md                                   correction hunks 0, unquoted strikes 0, exec-claim lines in correction hunks 0
+problems: []
+record: consumer word True, agreement token True, AFFECTED match True, pending/routed True
+  declared TZA/04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md                                         touched
+  declared TZA/07-Combat-Action/how-close-a-unit-must-stand-to-act.md                                           touched
+  declared TZA/15-Input/how-a-gamepad-becomes-a-controller-object.md                                            touched
+  declared TZA/17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md           touched
+  declared TZA/17-Presentation-Rendering/Effect-File-Formats/an-effect-element-frame-by-frame.md                touched
+  declared TZA/17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md                    touched
+  declared TZA/22-Middleware-PhyreEngine/Post-Process-Chain/the-phyre-post-effect-class-family.md               touched
+receipt tokens: ['d5a70a776']
+exec_needed (correction hunks): False

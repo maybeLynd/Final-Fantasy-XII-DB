@@ -1,0 +1,686 @@
+function	address	instruction	size	base	class
+00202B90	00202BB0	movaps xmmword ptr [rsp + 0x10], xmm6	16	SP-0x18	stack
+00202B90	00202BBD	movaps xmmword ptr [rsp], xmm7	16	SP-0x28	stack
+00202B90	00202C1C	movss dword ptr [rcx], xmm6	4	CSP-0x128	stack
+00202B90	00202C1C	movss dword ptr [rcx], xmm6	4	CSP-0x138	stack
+00202B90	00202C1C	movss dword ptr [rcx], xmm6	4	CSP-0x68	stack
+00202B90	00202C29	movss dword ptr [rcx + 4], xmm3	4	CSP-0x124	stack
+00202B90	00202C29	movss dword ptr [rcx + 4], xmm3	4	CSP-0x134	stack
+00202B90	00202C29	movss dword ptr [rcx + 4], xmm3	4	CSP-0x64	stack
+00202B90	00202C32	movss dword ptr [rcx + 0xc], xmm7	4	CSP-0x11c	stack
+00202B90	00202C32	movss dword ptr [rcx + 0xc], xmm7	4	CSP-0x12c	stack
+00202B90	00202C32	movss dword ptr [rcx + 0xc], xmm7	4	CSP-0x5c	stack
+00202B90	00202C3B	movss dword ptr [rcx + 8], xmm2	4	CSP-0x120	stack
+00202B90	00202C3B	movss dword ptr [rcx + 8], xmm2	4	CSP-0x130	stack
+00202B90	00202C3B	movss dword ptr [rcx + 8], xmm2	4	CSP-0x60	stack
+00202E10	00202E49	movss dword ptr [rsp], xmm1	4	SP-0x18	stack
+00202E10	00202E65	movss dword ptr [rsp + 0xc], xmm0	4	SP-0xc	stack
+00202E10	00202E6B	movss dword ptr [rsp + 8], xmm4	4	SP-0x10	stack
+00202E10	00202E71	movss dword ptr [rsp + 4], xmm1	4	SP-0x14	stack
+00217060	00217081	movaps xmmword ptr [rsp + 0x10], xmm6	16	SP-0x18	stack
+00217060	0021708C	movaps xmmword ptr [rsp], xmm7	16	SP-0x28	stack
+00217060	002170CE	movss dword ptr [rcx], xmm2	4	CSP-0x18	stack
+00217060	0021710D	movss dword ptr [rcx + 4], xmm3	4	CSP-0x14	stack
+00217060	00217138	movss dword ptr [rcx + 8], xmm2	4	CSP-0x10	stack
+00217060	0021713D	movss dword ptr [rcx + 0xc], xmm7	4	CSP-0xc	stack
+00217150	0021717B	movaps xmmword ptr [rax - 0x18], xmm6	16	SP-0x18	stack
+00217150	0021718C	movaps xmmword ptr [rax - 0x28], xmm7	16	SP-0x28	stack
+00217150	00217195	movaps xmmword ptr [rax - 0x38], xmm8	16	SP-0x38	stack
+00217150	002171A0	movaps xmmword ptr [rax - 0x48], xmm9	16	SP-0x48	stack
+00217150	002171AB	movaps xmmword ptr [rax - 0x58], xmm10	16	SP-0x58	stack
+00217150	002171B6	movaps xmmword ptr [rax - 0x68], xmm11	16	SP-0x68	stack
+00217150	002171C1	movaps xmmword ptr [rax - 0x78], xmm12	16	SP-0x78	stack
+00217150	002171CC	movaps xmmword ptr [rsp + 0x70], xmm13	16	SP-0x88	stack
+00217150	002171D2	movaps xmmword ptr [rsp + 0x60], xmm14	16	SP-0x98	stack
+00217150	002171D8	movaps xmmword ptr [rsp + 0x50], xmm15	16	SP-0xa8	stack
+00217150	0021720C	movss dword ptr [rbp + 0x6f], xmm5	4	SP+0x10	stack
+00217150	00217231	movss dword ptr [rbp + 0x77], xmm5	4	SP+0x18	stack
+00217150	00217252	movss dword ptr [rbp + 0x7f], xmm5	4	SP+0x20	stack
+00217150	0021726D	movss dword ptr [rbp + 0x67], xmm1	4	SP+0x8	stack
+00217150	00217299	movss dword ptr [rbp + 0x67], xmm0	4	SP+0x8	stack
+00217150	002172BE	movss dword ptr [rsp], xmm4	4	SP-0xf8	stack
+00217150	002172ED	movss dword ptr [rsp + 4], xmm4	4	SP-0xf4	stack
+00217150	0021732E	movss dword ptr [rsp + 0xc], xmm15	4	SP-0xec	stack
+00217150	0021733F	movss dword ptr [rsp + 8], xmm4	4	SP-0xf0	stack
+00217150	0021747D	movss dword ptr [rsp + 0x10], xmm2	4	SP-0xe8	stack
+00217150	00217493	movss dword ptr [rsp + 0x14], xmm2	4	SP-0xe4	stack
+00217150	002174B2	movss dword ptr [rsp + 0x18], xmm2	4	SP-0xe0	stack
+00217150	002174C5	movss dword ptr [rbp - 0x7d], xmm1	4	SP-0xdc	stack
+00217150	002174D9	movss dword ptr [rbp - 0x79], xmm1	4	SP-0xd8	stack
+00217150	002174EF	movss dword ptr [rbp - 0x75], xmm0	4	SP-0xd4	stack
+00217150	0021750F	movss dword ptr [rbp - 0x71], xmm1	4	SP-0xd0	stack
+00217150	0021752B	movss dword ptr [rbp - 0x69], xmm14	4	SP-0xc8	stack
+00217150	00217539	movss dword ptr [rbp - 0x6d], xmm1	4	SP-0xcc	stack
+00217150	00217555	movss dword ptr [rbp - 0x61], xmm12	4	SP-0xc0	stack
+00217150	0021756C	movss dword ptr [rbp - 0x59], xmm10	4	SP-0xb8	stack
+00217150	00217589	movss dword ptr [rbp - 0x65], xmm13	4	SP-0xc4	stack
+00217150	0021759B	movss dword ptr [rbp - 0x51], xmm8	4	SP-0xb0	stack
+00217150	002175A5	movss dword ptr [rbp - 0x5d], xmm15	4	SP-0xbc	stack
+00217150	002175AB	movss dword ptr [rbp - 0x55], xmm9	4	SP-0xb4	stack
+00217150	002175B1	movss dword ptr [rbp - 0x4d], xmm11	4	SP-0xac	stack
+00217610	00217624	movaps xmmword ptr [rsp + 0x70], xmm6	16	SP-0x18	stack
+00217610	00217629	movaps xmmword ptr [rsp + 0x60], xmm7	16	SP-0x28	stack
+00217610	0021762E	movaps xmmword ptr [r11 - 0x38], xmm8	16	SP-0x38	stack
+00217610	00217638	movaps xmmword ptr [r11 - 0x48], xmm9	16	SP-0x48	stack
+00217610	0021763D	movaps xmmword ptr [r11 - 0x58], xmm10	16	SP-0x58	stack
+00217610	00217646	movaps xmmword ptr [r11 - 0x68], xmm11	16	SP-0x68	stack
+00217610	00217654	movaps xmmword ptr [r11 - 0x78], xmm12	16	SP-0x78	stack
+00217610	0021765E	movaps xmmword ptr [rsp], xmm13	16	SP-0x88	stack
+00217610	002176CB	movss dword ptr [rcx + 0x30], xmm1	4	G020892C0+0x30	loaded/other
+00217610	002176F7	movss dword ptr [rcx + 0x34], xmm1	4	G020892C0+0x34	loaded/other
+00217610	00217723	movss dword ptr [rcx + 0x38], xmm1	4	G020892C0+0x38	loaded/other
+00217610	00217728	movss dword ptr [rcx], xmm13	4	G020892C0+0x0	loaded/other
+00217610	00217732	movss dword ptr [rcx + 4], xmm12	4	G020892C0+0x4	loaded/other
+00217610	0021773D	movss dword ptr [rcx + 8], xmm11	4	G020892C0+0x8	loaded/other
+00217610	00217748	movss dword ptr [rcx + 0x10], xmm10	4	G020892C0+0x10	loaded/other
+00217610	00217753	movss dword ptr [rcx + 0x14], xmm7	4	G020892C0+0x14	loaded/other
+00217610	0021775D	movss dword ptr [rcx + 0x18], xmm3	4	G020892C0+0x18	loaded/other
+00217610	00217762	movss dword ptr [rcx + 0x20], xmm9	4	G020892C0+0x20	loaded/other
+00217610	0021776D	movss dword ptr [rcx + 0x24], xmm4	4	G020892C0+0x24	loaded/other
+00217610	00217772	movss dword ptr [rcx + 0x28], xmm2	4	G020892C0+0x28	loaded/other
+00217610	00217777	mov dword ptr [rcx + 0xc], eax	4	G020892C0+0xc	loaded/other
+00217610	0021777A	mov dword ptr [rcx + 0x1c], eax	4	G020892C0+0x1c	loaded/other
+00217610	0021777D	mov dword ptr [rcx + 0x2c], eax	4	G020892C0+0x2c	loaded/other
+00217610	00217780	mov dword ptr [rcx + 0x3c], 0x3f800000	4	G020892C0+0x3c	loaded/other
+0022EF20	0022EF33	mov qword ptr [rsp + 0xa0], rax	8	SP-0x18	stack
+0022EF20	0022EF42	mov dword ptr [rip + 0x1e5a324], 1	4	G02089270+0x0	loaded/other
+0022EF20	0022EF4F	mov dword ptr [rip + 0x1e5a31b], 1	4	G02089274+0x0	loaded/other
+0022EF20	0022EF65	mov qword ptr [rip + 0x1e5a340], 0	8	G020892B0+0x0	loaded/other
+0022EF20	0022EF77	mov dword ptr [rip + 0x1e5a337], 0	4	G020892B8+0x0	loaded/other
+0022EF20	0022EFB5	movss dword ptr [rsp + 0x20], xmm3	4	SP-0x98	stack
+0022EF20	0022EFBB	movss dword ptr [rsp + 0x48], xmm2	4	SP-0x70	stack
+0022EF20	0022EFC3	movss dword ptr [rsp + 0x20], xmm0	4	SP-0x98	stack
+0022EF20	0022EFD1	movss dword ptr [rsp + 0x48], xmm0	4	SP-0x70	stack
+0022EF20	0022F000	movss dword ptr [rsp + 0x60], xmm0	4	SP-0x58	stack
+0022EF20	0022F006	movss dword ptr [rsp + 0x88], xmm1	4	SP-0x30	stack
+0022F050	0022F053	mov qword ptr [rax + 8], rbx	8	SP+0x8	stack
+0022F050	0022F057	mov qword ptr [rax + 0x10], rsi	8	SP+0x10	stack
+0022F050	0022F06A	movaps xmmword ptr [rax - 0x28], xmm6	16	SP-0x28	stack
+0022F050	0022F078	mov qword ptr [rbp + 0x27], rax	8	SP-0x38	stack
+0022F050	0022F0C7	movss dword ptr [rbp - 0x29], xmm0	4	SP-0x88	stack
+0022F050	0022F0D5	movss dword ptr [rbp - 0x25], xmm1	4	SP-0x84	stack
+0022F050	0022F0E3	movss dword ptr [rbp - 0x21], xmm0	4	SP-0x80	stack
+0022F050	0022F0ED	movss dword ptr [rbp - 0x1d], xmm0	4	SP-0x7c	stack
+0022F050	0022F0F2	mov dword ptr [rbp - 0x25], 0	4	SP-0x84	stack
+0022F050	0022F10D	movss dword ptr [rbp - 0x19], xmm0	4	SP-0x78	stack
+0022F050	0022F11B	movss dword ptr [rbp - 0x15], xmm1	4	SP-0x74	stack
+0022F050	0022F129	movss dword ptr [rbp - 0x11], xmm0	4	SP-0x70	stack
+0022F050	0022F133	movss dword ptr [rbp - 0xd], xmm0	4	SP-0x6c	stack
+0022F050	0022F138	mov dword ptr [rbp - 0x15], 0	4	SP-0x74	stack
+0022F050	0022F153	movss dword ptr [rbp - 9], xmm0	4	SP-0x68	stack
+0022F050	0022F161	movss dword ptr [rbp - 5], xmm1	4	SP-0x64	stack
+0022F050	0022F16F	movss dword ptr [rbp - 1], xmm0	4	SP-0x60	stack
+0022F050	0022F179	movss dword ptr [rbp + 3], xmm0	4	SP-0x5c	stack
+0022F050	0022F17E	mov dword ptr [rbp - 5], 0	4	SP-0x64	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP+0x14,SP+0x24,SP+0x34,SP+0x4,SP-0x1c,SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0xc	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP+0x14,SP+0x24,SP+0x4,SP-0x1c,SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0xc	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP+0x14,SP+0x4,SP-0x1c,SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0xc	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP+0x4,SP-0x1c,SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0xc	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x1c,SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x1c,SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0xc	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x5c,SP-0x6c,SP-0x7c	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x6c,SP-0x7c	stack
+0022F050	0022F1DE	movss dword ptr [rdi], xmm0	4	SP-0x7c	stack
+0022F050	0022F206	movss dword ptr [r14], xmm0	4	CSP-0x58	stack
+0022F050	0022F214	movss dword ptr [r14 + 4], xmm1	4	CSP-0x54	stack
+0022F050	0022F21A	movss dword ptr [r14 + 8], xmm0	4	CSP-0x50	stack
+0022F250	0022F253	mov qword ptr [r11 + 0x18], rbx	8	SP+0x18	stack
+0022F250	0022F269	mov qword ptr [rsp + 0x30], rax	8	SP-0x58	stack
+0022F250	0022F27F	mov qword ptr [r11 + 0x10], rsi	8	SP+0x10	stack
+0022F250	0022F28A	movaps xmmword ptr [rsp + 0x70], xmm6	16	SP-0x18	stack
+0022F250	0022F28F	movaps xmmword ptr [rsp + 0x60], xmm7	16	SP-0x28	stack
+0022F250	0022F294	movaps xmmword ptr [r11 - 0x38], xmm8	16	SP-0x38	stack
+0022F250	0022F299	movaps xmmword ptr [r11 - 0x48], xmm9	16	SP-0x48	stack
+0022F250	0022F2D1	movss dword ptr [rsp + 0x20], xmm0	4	SP-0x68	stack
+0022F250	0022F2E1	movss dword ptr [rsp + 0x24], xmm1	4	SP-0x64	stack
+0022F250	0022F2EC	mov dword ptr [rsp + 0x2c], 0x3f800000	4	SP-0x5c	stack
+0022F250	0022F2F4	movss dword ptr [rsp + 0x28], xmm0	4	SP-0x60	stack
+0022F250	0022F345	movss dword ptr [rsp + 0x2c], xmm2	4	SP-0x5c	stack
+0022F250	0022F358	movss dword ptr [rsp + 0x20], xmm7	4	SP-0x68	stack
+0022F250	0022F35E	movss dword ptr [rsp + 0x24], xmm6	4	SP-0x64	stack
+0022F250	0022F364	movss dword ptr [rsp + 0x28], xmm8	4	SP-0x60	stack
+0022F250	0022F393	movss dword ptr [rsp + 0x20], xmm7	4	SP-0x68	stack
+0022F250	0022F399	movss dword ptr [rsp + 0x24], xmm6	4	SP-0x64	stack
+0022F250	0022F39F	movss dword ptr [rsp + 0x28], xmm8	4	SP-0x60	stack
+0022F250	0022F3BB	movss dword ptr [rbx], xmm0	4	L(L(A+0xc0)+0x138)+0x30	loaded/other
+0022F250	0022F3CA	movss dword ptr [rbx + 4], xmm1	4	L(L(A+0xc0)+0x138)+0x34	loaded/other
+0022F250	0022F3D4	movss dword ptr [rbx + 8], xmm0	4	L(L(A+0xc0)+0x138)+0x38	loaded/other
+0022F9B0	0022F9C5	movaps xmmword ptr [rax - 0x38], xmm6	16	SP-0x38	stack
+0022F9B0	0022F9C9	movaps xmmword ptr [rax - 0x48], xmm7	16	SP-0x48	stack
+0022F9B0	0022F9CD	movaps xmmword ptr [rax - 0x58], xmm8	16	SP-0x58	stack
+0022F9B0	0022F9D2	movaps xmmword ptr [rax - 0x68], xmm9	16	SP-0x68	stack
+0022F9B0	0022F9D7	movaps xmmword ptr [rax - 0x78], xmm10	16	SP-0x78	stack
+0022F9B0	0022F9DC	movaps xmmword ptr [rax - 0x88], xmm11	16	SP-0x88	stack
+0022F9B0	0022F9E4	movaps xmmword ptr [rax - 0x98], xmm12	16	SP-0x98	stack
+0022F9B0	0022F9EC	movaps xmmword ptr [rax - 0xa8], xmm13	16	SP-0xa8	stack
+0022F9B0	0022F9FE	mov qword ptr [rbp - 0x10], rax	8	SP-0xb8	stack
+0022F9B0	0022FA02	mov qword ptr [rsp + 0x50], rcx	8	SP-0x158	stack
+0022F9B0	0022FA0B	mov qword ptr [rsp + 0x58], rdx	8	SP-0x150	stack
+0022F9B0	0022FA17	mov qword ptr [rsp + 0x30], rax	8	SP-0x178	stack
+0022F9B0	0022FA2D	mov qword ptr [rsp + 0x48], r8	8	SP-0x160	stack
+0022F9B0	0022FA36	mov qword ptr [rsp + 0x40], rcx	8	SP-0x168	stack
+0022F9B0	0022FA3F	mov qword ptr [rsp + 0x38], rcx	8	SP-0x170	stack
+0022F9B0	0022FA44	mov dword ptr [rsp + 0x20], 0	4	SP-0x188	stack
+0022F9B0	0022FA4C	mov qword ptr [rsp + 0x60], rax	8	SP-0x148	stack
+0022F9B0	0022FA51	mov qword ptr [rsp + 0x28], rax	8	SP-0x180	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x38,SP-0x48,SP-0x58,SP-0x68,SP-0x78,SP-0x88,SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x48,SP-0x58,SP-0x68,SP-0x78,SP-0x88,SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x58,SP-0x68,SP-0x78,SP-0x88,SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x68,SP-0x78,SP-0x88,SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x78,SP-0x88,SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x88,SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0x98,SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0xa8,SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0xb8,SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0xc8,SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0xd8,SP-0xe8	stack
+0022F9B0	0022FA7B	mov dword ptr [rdi - 8], eax	4	SP-0xe8	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x34,SP-0x44,SP-0x54,SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x44,SP-0x54,SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x54,SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FA81	mov dword ptr [rdi - 4], eax	4	SP-0xe4	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x30,SP-0x40,SP-0x50,SP-0x60,SP-0x70,SP-0x80,SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x40,SP-0x50,SP-0x60,SP-0x70,SP-0x80,SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x50,SP-0x60,SP-0x70,SP-0x80,SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x60,SP-0x70,SP-0x80,SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x70,SP-0x80,SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x80,SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0x90,SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0xa0,SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0xb0,SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0xc0,SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0xd0,SP-0xe0	stack
+0022F9B0	0022FA87	mov dword ptr [rdi], eax	4	SP-0xe0	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x2c,SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x3c,SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x4c,SP-0x5c,SP-0x6c,SP-0x7c,SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x5c,SP-0x6c,SP-0x7c,SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x6c,SP-0x7c,SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x7c,SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x8c,SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0x9c,SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0xac,SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0xbc,SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0xcc,SP-0xdc	stack
+0022F9B0	0022FA89	mov dword ptr [rdi + 4], 0x3f800000	4	SP-0xdc	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x34,SP-0x44,SP-0x54,SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x44,SP-0x54,SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x54,SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x64,SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x74,SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x84,SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0x94,SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0xa4,SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0xb4,SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0xc4,SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0xd4,SP-0xe4	stack
+0022F9B0	0022FAAC	mov dword ptr [rdi - 4], 0	4	SP-0xe4	stack
+0022F9B0	0022FAB7	mov qword ptr [rax], rbx	8	SP-0x108	stack
+0022F9B0	0022FAB7	mov qword ptr [rax], rbx	8	UNKNOWN	UNKNOWN
+0022F9B0	0022FABE	sub qword ptr [rsp + 0x28], 1	8	SP-0x180	stack
+0022F9B0	0022FAC4	mov qword ptr [rsp + 0x38], rcx	8	SP-0x170	stack
+0022F9B0	0022FAC9	mov qword ptr [rsp + 0x30], rax	8	SP-0x178	stack
+0022F9B0	0022FADD	mov qword ptr [rsp + 0x38], rax	8	SP-0x170	stack
+0022F9B0	0022FAED	mov qword ptr [rsp + 0x30], rdx	8	SP-0x178	stack
+0022F9B0	0022FAF2	mov qword ptr [rsp + 0x28], rax	8	SP-0x180	stack
+0022F9B0	0022FB04	mov qword ptr [rsp + 0x40], rax	8	SP-0x168	stack
+0022F9B0	0022FB7E	mov dword ptr [rbp - 0x6c], edi	4	SP-0x114	stack
+0022F9B0	0022FBCB	movss dword ptr [rbp - 0x74], xmm0	4	SP-0x11c	stack
+0022F9B0	0022FC48	movss dword ptr [rbp - 0x80], xmm6	4	SP-0x128	stack
+0022F9B0	0022FC54	movss dword ptr [rbp - 0x7c], xmm7	4	SP-0x124	stack
+0022F9B0	0022FC6A	movss dword ptr [rbp - 0x78], xmm8	4	SP-0x120	stack
+0022F9B0	0022FC81	movss dword ptr [rsp + 0x7c], xmm0	4	SP-0x12c	stack
+0022F9B0	0022FC98	movss dword ptr [rsp + 0x70], xmm6	4	SP-0x138	stack
+0022F9B0	0022FC9E	movss dword ptr [rsp + 0x74], xmm7	4	SP-0x134	stack
+0022F9B0	0022FCA4	movss dword ptr [rsp + 0x78], xmm8	4	SP-0x130	stack
+0022F9B0	0022FD70	mov qword ptr [rdx + rcx*8], rdi	8	G020891F0	loaded/other
+0022F9B0	0022FD76	mov dword ptr [rip + 0x1e59468], ecx	4	G020891E4+0x0	loaded/other
+0022F9B0	0022FD7E	mov dword ptr [rsp + 0x20], eax	4	SP-0x188	stack
+0022F9B0	0022FDAB	movss dword ptr [rsp + 0x70], xmm6	4	SP-0x138	stack
+0022F9B0	0022FDB1	movss dword ptr [rsp + 0x78], xmm8	4	SP-0x130	stack
+0022F9B0	0022FDC6	movss dword ptr [rsp + 0x74], xmm7	4	SP-0x134	stack
+0022F9B0	0022FDD1	movss dword ptr [rax], xmm0	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FDDE	movss dword ptr [rax + 4], xmm1	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FDE3	movss dword ptr [rax + 8], xmm0	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FDED	movss dword ptr [rsi + 0x40], xmm6	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FDF7	movss dword ptr [rsi + 0x44], xmm7	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FE02	movss dword ptr [rsi + 0x48], xmm8	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FE0B	mov dword ptr [rsi + 0x4c], eax	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FE0E	or dword ptr [rsi + 0x60], 0x10	4	UNKNOWN	UNKNOWN
+0022F9B0	0022FE19	mov dword ptr [rsp + 0x20], eax	4	SP-0x188	stack
+0022F9B0	0022FE5A	mov dword ptr [rcx + rdx*4], r8d	4	G02088FE0	loaded/other
+0022F9B0	0022FE6A	mov dword ptr [rip + 0x1e59370], edx	4	G020891E0+0x0	loaded/other
+0022F9B0	0022FE86	mov dword ptr [rsp + 0x20], ecx	4	SP-0x188	stack
+0022F9B0	0022FE95	add qword ptr [rsp + 0x28], 4	8	SP-0x180	stack
+0022F9B0	0022FE9F	add qword ptr [rsp + 0x30], 0x10	8	SP-0x178	stack
+0022F9B0	0022FEA5	add qword ptr [rsp + 0x38], 8	8	SP-0x170	stack
+0022F9B0	0022FEAB	sub qword ptr [rsp + 0x60], 1	8	SP-0x148	stack
+0022F9B0	0022FEB1	mov qword ptr [rsp + 0x40], rax	8	SP-0x168	stack
+00230A40	00230A40	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+00231A90	00231AA5	mov qword ptr [rsp + 0xc0], rax	8	SP-0x48	stack
+00231A90	00231AAD	mov qword ptr [rsp + 0xd0], r15	8	SP-0x38	stack
+00231A90	00231AEE	mov qword ptr [rsp + 0x120], rbx	8	SP+0x18	stack
+00231A90	00231B09	mov qword ptr [rsp + 0x28], rbp	8	SP-0xe0	stack
+00231A90	00231B19	mov qword ptr [rsp + 0xe8], r12	8	SP-0x20	stack
+00231A90	00231B24	mov qword ptr [rsp + 0xe0], r13	8	SP-0x28	stack
+00231A90	00231B31	mov qword ptr [rsp + 0xd8], r14	8	SP-0x30	stack
+00231A90	00231C41	mov word ptr [rbp + 0x54], r15w	2	L(L(A+0xc0)+0x138)+0x84	loaded/other
+00231A90	00231C4E	mov word ptr [rbp + 0x5c], di	2	L(L(A+0xc0)+0x138)+0x8c	loaded/other
+00231A90	00231C93	mov qword ptr [rbp + 0x34], rax	8	L(L(A+0xc0)+0x138)+0x64	loaded/other
+00231A90	00231C9A	mov dword ptr [rbp + 0x30], eax	4	L(L(A+0xc0)+0x138)+0x60	loaded/other
+00231A90	00231CA0	mov dword ptr [rbp + 0x3c], 0x3f800000	4	L(L(A+0xc0)+0x138)+0x6c	loaded/other
+00231A90	00231D02	movss dword ptr [rbp + 0x30], xmm3	4	L(L(A+0xc0)+0x138)+0x60	loaded/other
+00231A90	00231D0B	movss dword ptr [rbp + 0x34], xmm4	4	L(L(A+0xc0)+0x138)+0x64	loaded/other
+00231A90	00231D10	movss dword ptr [rbp + 0x38], xmm1	4	L(L(A+0xc0)+0x138)+0x68	loaded/other
+00231A90	00231D4B	movss dword ptr [rbp + 0x30], xmm2	4	L(L(A+0xc0)+0x138)+0x60	loaded/other
+00231A90	00231D60	movss dword ptr [rbp + 0x34], xmm3	4	L(L(A+0xc0)+0x138)+0x64	loaded/other
+00231A90	00231D7D	movss dword ptr [rbp + 0x38], xmm4	4	L(L(A+0xc0)+0x138)+0x68	loaded/other
+00231A90	00231DA7	movss dword ptr [rbp + 0x30], xmm0	4	L(L(A+0xc0)+0x138)+0x60	loaded/other
+00231A90	00231DC5	movss dword ptr [rbp + 0x34], xmm0	4	L(L(A+0xc0)+0x138)+0x64	loaded/other
+00231A90	00231DDA	movss dword ptr [rbp + 0x38], xmm0	4	L(L(A+0xc0)+0x138)+0x68	loaded/other
+00231A90	00231DE9	movss dword ptr [rbp + 0x30], xmm0	4	L(L(A+0xc0)+0x138)+0x60	loaded/other
+00231A90	00231DF6	movss dword ptr [rbp + 0x34], xmm1	4	L(L(A+0xc0)+0x138)+0x64	loaded/other
+00231A90	00231E03	movss dword ptr [rbp + 0x38], xmm0	4	L(L(A+0xc0)+0x138)+0x68	loaded/other
+00231A90	00231E10	movss dword ptr [rbp + 0x3c], xmm1	4	L(L(A+0xc0)+0x138)+0x6c	loaded/other
+00232020	00232020	mov dword ptr [rsp + 8], ecx	4	SP+0x8	stack
+00232020	00232052	mov dword ptr [rsp + 8], ecx	4	SP+0x8	stack
+00232020	00232066	mov dword ptr [rsp + 8], ecx	4	SP+0x8	stack
+00232020	00232074	mov dword ptr [rsp + 8], ecx	4	SP+0x8	stack
+002324F0	002324F3	mov qword ptr [rax + 0x10], rbx	8	SP+0x10	stack
+002324F0	002324F7	mov qword ptr [rax + 0x18], rbp	8	SP+0x18	stack
+002324F0	002324FB	mov qword ptr [rax + 0x20], rsi	8	SP+0x20	stack
+002324F0	002324FF	mov qword ptr [rax + 8], rcx	8	SP+0x8	stack
+002324F0	00232513	movaps xmmword ptr [rax - 0x38], xmm6	16	SP-0x38	stack
+002324F0	0023251E	movaps xmmword ptr [rax - 0x48], xmm7	16	SP-0x48	stack
+002324F0	00232531	movaps xmmword ptr [rax - 0x58], xmm8	16	SP-0x58	stack
+002324F0	0023253F	movaps xmmword ptr [rax - 0x68], xmm9	16	SP-0x68	stack
+002324F0	0023254D	movaps xmmword ptr [rax - 0x78], xmm10	16	SP-0x78	stack
+002324F0	0023255B	movaps xmmword ptr [rsp + 0x40], xmm11	16	SP-0x88	stack
+002324F0	00232565	movaps xmmword ptr [rsp + 0x30], xmm12	16	SP-0x98	stack
+002324F0	00232583	movaps xmmword ptr [rsp + 0x20], xmm13	16	SP-0xa8	stack
+002324F0	002325AC	mov qword ptr [r15 + 0x10], rax	8	CSP-0xc8	stack
+002324F0	002325AC	mov qword ptr [r15 + 0x10], rax	8	CSP-0xd8	stack
+002324F0	002325CE	mov qword ptr [r15 + 0x18], rdx	8	CSP-0xc0	stack
+002324F0	002325CE	mov qword ptr [r15 + 0x18], rdx	8	CSP-0xd0	stack
+002324F0	002325D6	mov dword ptr [r15 + 0x24], r8d	4	CSP-0xb4	stack
+002324F0	002325D6	mov dword ptr [r15 + 0x24], r8d	4	CSP-0xc4	stack
+002324F0	002325DA	movss dword ptr [r15 + 0x20], xmm0	4	CSP-0xb8	stack
+002324F0	002325DA	movss dword ptr [r15 + 0x20], xmm0	4	CSP-0xc8	stack
+002324F0	002325EA	movss dword ptr [r15 + 0x28], xmm1	4	CSP-0xb0	stack
+002324F0	002325EA	movss dword ptr [r15 + 0x28], xmm1	4	CSP-0xc0	stack
+002324F0	002325F3	mov dword ptr [r15 + 0x2c], eax	4	CSP-0xac	stack
+002324F0	002325F3	mov dword ptr [r15 + 0x2c], eax	4	CSP-0xbc	stack
+002324F0	002325FF	mov dword ptr [r15 + 0x34], r8d	4	CSP-0xa4	stack
+002324F0	002325FF	mov dword ptr [r15 + 0x34], r8d	4	CSP-0xb4	stack
+002324F0	00232603	movss dword ptr [r15 + 0x30], xmm0	4	CSP-0xa8	stack
+002324F0	00232603	movss dword ptr [r15 + 0x30], xmm0	4	CSP-0xb8	stack
+002324F0	0023261D	movss dword ptr [r15 + 0x38], xmm1	4	CSP-0xa0	stack
+002324F0	0023261D	movss dword ptr [r15 + 0x38], xmm1	4	CSP-0xb0	stack
+002324F0	00232626	mov dword ptr [r15 + 0x3c], eax	4	CSP-0x9c	stack
+002324F0	00232626	mov dword ptr [r15 + 0x3c], eax	4	CSP-0xac	stack
+002324F0	00232666	movss dword ptr [r15 + 0x30], xmm6	4	CSP-0xa8	stack
+002324F0	00232666	movss dword ptr [r15 + 0x30], xmm6	4	CSP-0xb8	stack
+002324F0	00232672	movss dword ptr [r15 + 0x34], xmm1	4	CSP-0xa4	stack
+002324F0	00232672	movss dword ptr [r15 + 0x34], xmm1	4	CSP-0xb4	stack
+002324F0	0023267E	movss dword ptr [r15 + 0x3c], xmm0	4	CSP-0x9c	stack
+002324F0	0023267E	movss dword ptr [r15 + 0x3c], xmm0	4	CSP-0xac	stack
+002324F0	00232684	movss dword ptr [r15 + 0x38], xmm2	4	CSP-0xa0	stack
+002324F0	00232684	movss dword ptr [r15 + 0x38], xmm2	4	CSP-0xb0	stack
+00232760	00232760	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+00232760	00232784	mov dword ptr [rip + 0x1e56a56], ecx	4	G020891E0+0x0	loaded/other
+00232760	00232792	mov dword ptr [rip + 0x1e56848], eax	4	G02088FE0+0x0	loaded/other
+00232760	00232798	mov dword ptr [rip + 0x1e56a3e], 1	4	G020891E0+0x0	loaded/other
+00232760	002327A2	mov dword ptr [rip + 0x1e56a3c], ecx	4	G020891E4+0x0	loaded/other
+00233110	00233127	mov qword ptr [rsp + 0xb0], rax	8	SP-0x48	stack
+00233110	00233135	mov word ptr [rdx + 0x52], ax	2	L(L(A+0xc0)+0x138)+0x82	loaded/other
+00233110	00233157	mov qword ptr [r11 - 0x18], rbx	8	SP-0x18	stack
+00233110	0023315D	mov qword ptr [r11 - 0x20], rbp	8	SP-0x20	stack
+00233110	00233174	mov qword ptr [rsp + 0x28], r9	8	SP-0xd0	stack
+00233110	00233182	mov qword ptr [r11 - 0x28], rdi	8	SP-0x28	stack
+00233110	00233186	mov qword ptr [r11 - 0x30], r12	8	SP-0x30	stack
+00233110	00233190	mov qword ptr [r11 - 0x38], r15	8	SP-0x38	stack
+00233110	002331E5	mov word ptr [r14 + 0x52], di	2	L(L(A+0xc0)+0x138)+0x82	loaded/other
+0024ED80	0024ED87	mov qword ptr [rip + 0x2d485b2], rdx	8	G02F97340+0x0	loaded/other
+0024ED80	0024ED8E	mov qword ptr [rip + 0x2d485b3], rcx	8	G02F97348+0x0	loaded/other
+0024ED80	0024ED99	mov qword ptr [rip + 0x2c701d0], rax	8	G02EBEF70+0x0	loaded/other
+0024ED80	0024EDA4	mov qword ptr [rip + 0x2c701fd], rax	8	G02EBEFA8+0x0	loaded/other
+0024ED80	0024EDB2	mov qword ptr [rip + 0x2c701e7], rax	8	G02EBEFA0+0x0	loaded/other
+0024ED80	0024EDC0	mov qword ptr [rip + 0x2c701c9], rax	8	G02EBEF90+0x0	loaded/other
+0024ED80	0024EDCE	mov qword ptr [rip + 0x2c701a3], rax	8	G02EBEF78+0x0	loaded/other
+0024ED80	0024EDDC	mov qword ptr [rip + 0x2c701b5], rax	8	G02EBEF98+0x0	loaded/other
+0024ED80	0024EDEA	mov qword ptr [rip + 0x2c701bf], rax	8	G02EBEFB0+0x0	loaded/other
+0024ED80	0024EDF8	mov qword ptr [rip + 0x2c70189], rax	8	G02EBEF88+0x0	loaded/other
+0024FCF0	0024FD05	mov byte ptr [rip + 0x1e46af5], al	1	G02096800+0x0	loaded/other
+0024FCF0	0024FD12	movdqa xmmword ptr [rip + 0x1e46af6], xmm0	16	G02096810+0x0	loaded/other
+0024FCF0	0024FD3B	movss dword ptr [rip + 0x1e46ad9], xmm0	4	G0209681C+0x0	loaded/other
+0024FCF0	0024FD4F	movaps xmmword ptr [rip + 0x1e46aca], xmm0	16	G02096820+0x0	loaded/other
+0024FCF0	0024FD7A	mov dword ptr [rip + 0x1e46ac0], eax	4	G02096840+0x0	loaded/other
+0024FCF0	0024FD86	mov dword ptr [rip + 0x289ea68], eax	4	G02AEE7F4+0x0	loaded/other
+00265020	00265043	mov dword ptr [rdx], eax	4	CSP-0x98	stack
+00265020	00265048	mov dword ptr [r8], eax	4	CSP-0x94	stack
+00265020	0026504E	mov dword ptr [r9], eax	4	CSP-0x90	stack
+00265020	00265054	mov dword ptr [rdx], eax	4	CSP-0x98	stack
+00265020	00265056	mov dword ptr [r8], eax	4	CSP-0x94	stack
+00265020	00265059	mov dword ptr [r9], eax	4	CSP-0x90	stack
+0026AFE0	0026AFE9	movaps xmmword ptr [rsp + 0x40], xmm6	16	SP-0x18	stack
+0026AFE0	0026AFF5	movaps xmmword ptr [rsp + 0x30], xmm7	16	SP-0x28	stack
+0026AFE0	0026B000	movaps xmmword ptr [rsp + 0x20], xmm8	16	SP-0x38	stack
+0026AFE0	0026B048	or byte ptr [rax + 0x5d], 1	1	L(A+0xb8)+0x5d	loaded/other
+0026AFE0	0026B04C	movss dword ptr [rax], xmm8	4	L(A+0xb8)+0x0	loaded/other
+0026AFE0	0026B051	movss dword ptr [rax + 4], xmm7	4	L(A+0xb8)+0x4	loaded/other
+0026AFE0	0026B056	movss dword ptr [rax + 8], xmm6	4	L(A+0xb8)+0x8	loaded/other
+0026AFE0	0026B05B	movss dword ptr [rax + 0x10], xmm8	4	L(A+0xb8)+0x10	loaded/other
+0026AFE0	0026B061	movss dword ptr [rax + 0x14], xmm7	4	L(A+0xb8)+0x14	loaded/other
+0026AFE0	0026B066	movss dword ptr [rax + 0x18], xmm6	4	L(A+0xb8)+0x18	loaded/other
+0026AFE0	0026B06B	movss dword ptr [rax + 0x20], xmm8	4	L(A+0xb8)+0x20	loaded/other
+0026AFE0	0026B071	movss dword ptr [rax + 0x24], xmm7	4	L(A+0xb8)+0x24	loaded/other
+0026AFE0	0026B076	movss dword ptr [rax + 0x28], xmm6	4	L(A+0xb8)+0x28	loaded/other
+0026AFE0	0026B0A1	mov byte ptr [rbx + 0xef], 0	1	L(L(A+0xc0)+0x138)+0xef	loaded/other
+0026B620	0026B626	movaps xmmword ptr [rsp + 0x20], xmm6	16	SP-0x18	stack
+0026B6A0	0026B70D	movss dword ptr [rax + 0x38], xmm3	4	L(A+0xb8)+0x38	loaded/other
+0026B6A0	0026B712	movss dword ptr [rax + 0x48], xmm3	4	L(A+0xb8)+0x48	loaded/other
+0026C090	0026C0F9	movss dword ptr [rcx + 0x34], xmm3	4	L(L(A+0xb8)+0xf0)+0x34	loaded/other
+0026C120	0026C137	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+0026C120	0026C143	mov qword ptr [rsp + 0x38], rsi	8	SP+0x10	stack
+0026C120	0026C153	mov byte ptr [rax + 0x28], dl	1	L(L(A+0xb8)+0xf0)+0x28	loaded/other
+0026C120	0026C19D	and byte ptr [rax + 0x62], 0xbf	1	L(L(A+0xb8)+0xf0)+0x62	loaded/other
+0026C120	0026C1A3	or byte ptr [rax + 0x62], 0x40	1	L(L(A+0xb8)+0xf0)+0x62	loaded/other
+0026C120	0026C1DC	mov byte ptr [rax + 0x28], 0	1	L(L(A+0xb8)+0xf0)+0x28	loaded/other
+0026C120	0026C20E	and byte ptr [rax + 0x62], 0xbf	1	L(L(A+0xb8)+0xf0)+0x62	loaded/other
+0026C120	0026C214	or byte ptr [rax + 0x62], 0x40	1	L(L(A+0xb8)+0xf0)+0x62	loaded/other
+0026C120	0026C224	mov dword ptr [rax + 0x58], 0x3e20d97c	4	L(L(A+0xb8)+0xf0)+0x58	loaded/other
+0026C120	0026C237	mov dword ptr [rax + 0x5c], 0x40490fdb	4	L(L(A+0xb8)+0xf0)+0x5c	loaded/other
+002E45E0	002E45E3	mov qword ptr [r11 + 0x18], rbx	8	SP+0x18	stack
+002E45E0	002E45F5	movaps xmmword ptr [r11 - 0x68], xmm10	16	SP-0x68	stack
+002E45E0	002E4604	mov qword ptr [rbp - 0x29], rax	8	SP-0x88	stack
+002E45E0	002E4608	movaps xmmword ptr [r11 - 0x28], xmm6	16	SP-0x28	stack
+002E45E0	002E461E	movaps xmmword ptr [r11 - 0x38], xmm7	16	SP-0x38	stack
+002E45E0	002E4623	movaps xmmword ptr [r11 - 0x78], xmm11	16	SP-0x78	stack
+002E45E0	002E46B0	mov qword ptr [rbp - 0x39], 0	8	SP-0x98	stack
+002E45E0	002E46B8	mov dword ptr [rbp - 0x31], 0	4	SP-0x90	stack
+002E45E0	002E46C9	movaps xmmword ptr [rbp - 0x39], xmm0	16	SP-0x98	stack
+002E45E0	002E4710	movss dword ptr [rbp - 0x49], xmm0	4	SP-0xa8	stack
+002E45E0	002E472B	movss dword ptr [rbp - 0x45], xmm0	4	SP-0xa4	stack
+002E45E0	002E474D	mov dword ptr [rsp + 0x20], ebx	4	SP-0xb8	stack
+002E45E0	002E4797	movss dword ptr [rdi + 0xa4], xmm0	4	L(A+0xb8)+0xa4	loaded/other
+002E45E0	002E479F	movss dword ptr [rdi + 0xa0], xmm1	4	L(A+0xb8)+0xa0	loaded/other
+002E45E0	002E47B0	movaps xmmword ptr [rsp + 0x90], xmm8	16	SP-0x48	stack
+002E45E0	002E47DD	movaps xmmword ptr [rsp + 0x80], xmm9	16	SP-0x58	stack
+002E45E0	002E48B5	movss dword ptr [rdi + 0xd0], xmm6	4	L(A+0xb8)+0xd0	loaded/other
+002E45E0	002E48C0	movss dword ptr [rdi + 0xf8], xmm6	4	L(A+0xb8)+0xf8	loaded/other
+002E45E0	002E48CA	or byte ptr [rsi + 0xd], 0x10	1	A+0xd	ACTOR-other
+002E45E0	002E48D0	and byte ptr [rsi + 0xd], 0xef	1	A+0xd	ACTOR-other
+002E45E0	002E4924	mov dword ptr [rsp + 0x20], ebx	4	SP-0xb8	stack
+002E45E0	002E4934	mov dword ptr [rax + 0x24], ebx	4	L(L(A+0xb8)+0xf0)+0x24	loaded/other
+002E45E0	002E493E	mov dword ptr [rdi + 0xd0], ebx	4	L(A+0xb8)+0xd0	loaded/other
+002E45E0	002E4944	mov dword ptr [rax + 0x2c], ebx	4	L(L(A+0xb8)+0xf0)+0x2c	loaded/other
+002E45E0	002E494E	mov byte ptr [rax + 0x29], bl	1	L(L(A+0xb8)+0xf0)+0x29	loaded/other
+002E45E0	002E4975	mov dword ptr [rax + 0x24], ebx	4	L(L(A+0xb8)+0xf0)+0x24	loaded/other
+002E45E0	002E4978	mov dword ptr [rdi + 0xd0], ebx	4	L(A+0xb8)+0xd0	loaded/other
+002E5C70	002E5C74	mov dword ptr [rsp + 0x20], 1	4	SP-0x18	stack
+002E5C90	002E5C90	mov qword ptr [rsp + 0x18], rdi	8	SP+0x18	stack
+002E5C90	002E5CA7	mov qword ptr [rbp - 0x10], rax	8	SP-0x18	stack
+002E5C90	002E5CCE	mov qword ptr [rsp + 0x58], rbx	8	SP+0x10	stack
+002E5C90	002E5CDA	movss dword ptr [rbx + 4], xmm2	4	L(A+0xb8)+0x4	loaded/other
+002E5C90	002E5CDF	movss dword ptr [rbx + 8], xmm3	4	L(A+0xb8)+0x8	loaded/other
+002E5C90	002E5CE4	movss dword ptr [rbx], xmm1	4	L(A+0xb8)+0x0	loaded/other
+002E5C90	002E5CE8	movss dword ptr [rbp - 0x20], xmm1	4	SP-0x28	stack
+002E5C90	002E5CF2	movss dword ptr [rbp - 0x1c], xmm2	4	SP-0x24	stack
+002E5C90	002E5CFC	movss dword ptr [rbp - 0x18], xmm3	4	SP-0x20	stack
+002E5C90	002E5D01	movss dword ptr [rbp - 0x14], xmm0	4	SP-0x1c	stack
+002E5C90	002E5D14	movss dword ptr [rbp - 0x20], xmm1	4	SP-0x28	stack
+002E5C90	002E5D1E	movss dword ptr [rbp - 0x1c], xmm2	4	SP-0x24	stack
+002E5C90	002E5D28	movss dword ptr [rbp - 0x18], xmm3	4	SP-0x20	stack
+002E5C90	002E5D85	movss dword ptr [rbp - 0x20], xmm2	4	SP-0x28	stack
+002E5C90	002E5D8F	movss dword ptr [rbp - 0x1c], xmm0	4	SP-0x24	stack
+002E5C90	002E5D99	movss dword ptr [rbp - 0x18], xmm1	4	SP-0x20	stack
+002E5C90	002E5D9E	movss dword ptr [rbx], xmm2	4	L(A+0xb8)+0x0	loaded/other
+002E5C90	002E5DA7	movss dword ptr [rbx + 4], xmm0	4	L(A+0xb8)+0x4	loaded/other
+002E5C90	002E5DB1	movss dword ptr [rbx + 8], xmm1	4	L(A+0xb8)+0x8	loaded/other
+002E5DF0	002E5DF4	mov dword ptr [rsp + 0x20], 0	4	SP-0x18	stack
+002E5E10	002E5E10	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+002E5E10	002E5E15	mov qword ptr [rsp + 0x10], rbp	8	SP+0x10	stack
+002E5E10	002E5E1A	mov qword ptr [rsp + 0x18], rsi	8	SP+0x18	stack
+002E5E10	002E5E1F	mov qword ptr [rsp + 0x20], rdi	8	SP+0x20	stack
+002E5E10	002E5E2A	movaps xmmword ptr [rsp + 0x50], xmm6	16	SP-0x18	stack
+002E5E10	002E5E31	movaps xmmword ptr [rsp + 0x30], xmm8	16	SP-0x38	stack
+002E5E10	002E5E65	movaps xmmword ptr [rsp + 0x40], xmm7	16	SP-0x28	stack
+002E5E10	002E5E88	movss dword ptr [rsi + 0xac], xmm8	4	L(A+0xb8)+0xac	loaded/other
+002E5E10	002E5EBE	movss dword ptr [rsi + 0xa8], xmm6	4	L(A+0xb8)+0xa8	loaded/other
+002E5E10	002E5F53	mov dword ptr [rsp + 0x20], ebp	4	SP-0x48	stack
+002E6000	002E600A	mov qword ptr [rsp + 0x50], rbx	8	SP+0x8	stack
+002E6000	002E6033	mov qword ptr [rsp + 0x58], rdi	8	SP+0x10	stack
+002E6000	002E6041	movaps xmmword ptr [rsp + 0x30], xmm6	16	SP-0x18	stack
+002E6000	002E6060	mov dword ptr [rsp + 0x20], esi	4	SP-0x28	stack
+002E7650	002E7668	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+002E7650	002E76A5	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E7650	002E76FF	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E7720	002E7738	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+002E7720	002E7775	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E7720	002E77CF	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E77F0	002E7813	mov qword ptr [rsp + 0x20], rbx	8	SP-0x8	stack
+002E77F0	002E783D	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E79A0	002E79C3	mov qword ptr [rsp + 0x20], rbx	8	SP-0x8	stack
+002E79A0	002E79ED	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E8EE0	002E8EF7	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+002E8EE0	002E8EFC	mov qword ptr [rsp + 0x38], rsi	8	SP+0x10	stack
+002E8EE0	002E8F55	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002E8EE0	002E8FAE	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002EB930	002EB93D	mov qword ptr [rsp + 0x20], rbx	8	SP-0x8	stack
+002EBE50	002EBE50	mov qword ptr [rsp + 0x10], rsi	8	SP+0x10	stack
+002EBE50	002EBE6D	mov qword ptr [rsp + 0x40], rbx	8	SP+0x8	stack
+002EBE50	002EBE7F	mov dword ptr [rbx + 0xb4], eax	4	L(A+0xb8)+0xb4	loaded/other
+002EBE50	002EBE85	mov dword ptr [rbx + 0x224], eax	4	L(A+0xb8)+0x224	loaded/other
+002EBE50	002EBE97	movaps xmmword ptr [rsp + 0x20], xmm6	16	SP-0x18	stack
+002EBE50	002EBEAE	movss dword ptr [rbx + 0xb4], xmm0	4	L(A+0xb8)+0xb4	loaded/other
+002EBE50	002EBEB6	mov dword ptr [rbx + 0x224], eax	4	L(A+0xb8)+0x224	loaded/other
+002EBE50	002EBF01	mov dword ptr [rbx + 0xb4], eax	4	L(A+0xb8)+0xb4	loaded/other
+002EBE50	002EBF0A	mov dword ptr [rbx + 0x224], eax	4	L(A+0xb8)+0x224	loaded/other
+002EBE50	002EBF55	mov byte ptr [rcx + 0x62], al	1	L(L(A+0xb8)+0xf0)+0x62	loaded/other
+002EBE50	002EBF63	mov word ptr [rax + 0x60], cx	2	L(L(A+0xb8)+0xf0)+0x60	loaded/other
+002EBE50	002EBF76	mov byte ptr [rax + 0x63], sil	1	L(L(A+0xb8)+0xf0)+0x63	loaded/other
+002EC3F0	002E7883	mov qword ptr [rsp + 0x20], rbx	8	SP-0x8	stack
+002EC3F0	002E78AD	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002EC3F0	002E78E8	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+002EC3F0	002E7925	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002EC3F0	002E797F	or dword ptr [rbx + 0x290], 0x800	4	L(G022C6F28+0x0)	loaded/other
+002EC3F0	002EC433	and byte ptr [r9 + 0x6a], 0xfe	1	L(L(A+0xb8)+0xf0)+0x6a	loaded/other
+003588B0	003588BF	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+003588B0	003588C6	mov qword ptr [rsp + 0x20], rdi	8	SP-0x8	stack
+003808A0	003808A0	mov qword ptr [rsp + 0x10], rsi	8	SP+0x10	stack
+003808A0	003808BD	mov qword ptr [rsp + 0x70], rbx	8	SP+0x8	stack
+003808A0	003808CA	movaps xmmword ptr [rsp + 0x50], xmm6	16	SP-0x18	stack
+003808A0	003808D3	movaps xmmword ptr [rsp + 0x40], xmm7	16	SP-0x28	stack
+003808A0	003808D8	movaps xmmword ptr [rsp + 0x30], xmm8	16	SP-0x38	stack
+003808A0	003808DE	movaps xmmword ptr [rsp + 0x20], xmm9	16	SP-0x48	stack
+003808A0	003808FD	mov word ptr [rdi + 0x56], ax	2	L(L(A+0xc0)+0x138)+0x86	loaded/other
+003808A0	0038090A	mov word ptr [rdi + 0x58], ax	2	L(L(A+0xc0)+0x138)+0x88	loaded/other
+003808A0	00380913	and dword ptr [rdi + 0x60], 0xfffffff3	4	L(L(A+0xc0)+0x138)+0x90	loaded/other
+003808A0	00380923	mov word ptr [rdi + 0x5a], ax	2	L(L(A+0xc0)+0x138)+0x8a	loaded/other
+003808A0	00380927	or dword ptr [rdi + 0x60], ebx	4	L(L(A+0xc0)+0x138)+0x90	loaded/other
+003808A0	0038094E	movss dword ptr [rdi + 0x90], xmm0	4	L(L(A+0xc0)+0x138)+0xc0	loaded/other
+003808A0	00380958	or dword ptr [rdi + 0x60], 8	4	L(L(A+0xc0)+0x138)+0x90	loaded/other
+003808A0	003809BB	movss dword ptr [rdi + 0x80], xmm1	4	L(L(A+0xc0)+0x138)+0xb0	loaded/other
+003808A0	003809FE	movss dword ptr [rdi + 0x84], xmm1	4	L(L(A+0xc0)+0x138)+0xb4	loaded/other
+003808A0	00380A2F	mov word ptr [rcx + 0x54], ax	2	L(L(A+0xc0)+0x138)+0x84	loaded/other
+00380A70	00380A70	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+00380A70	00380A75	mov qword ptr [rsp + 0x10], rbp	8	SP+0x10	stack
+00380A70	00380A7A	mov qword ptr [rsp + 0x18], rsi	8	SP+0x18	stack
+00380A70	00380A7F	mov qword ptr [rsp + 0x20], rdi	8	SP+0x20	stack
+00380A70	00380AA5	movss dword ptr [rdx], xmm0	4	G02089280+0x0	loaded/other
+00380A70	00380AAC	movss dword ptr [rdx + 8], xmm1	4	G02089280+0x8	loaded/other
+00380A70	00380AB1	mov dword ptr [rdx + 4], r14d	4	G02089280+0x4	loaded/other
+00380A70	00380AB5	mov dword ptr [rdx + 0xc], r14d	4	G02089280+0xc	loaded/other
+00380A70	00380AC1	movaps xmmword ptr [rsp + 0x20], xmm6	16	SP-0x18	stack
+00380A70	00380ACA	mov dword ptr [rdx + 0x1c], r14d	4	G02089280+0x1c	loaded/other
+00380A70	00380B1C	movss dword ptr [rbp + 0x20], xmm6	4	G02089280+0x20	loaded/other
+00380A70	00380B26	movss dword ptr [rbp + 0x24], xmm0	4	G02089280+0x24	loaded/other
+00380A70	00380B30	mov dword ptr [rbp + 0x2c], r14d	4	G02089280+0x2c	loaded/other
+00380A70	00380B34	movss dword ptr [rbp + 0x28], xmm1	4	G02089280+0x28	loaded/other
+00380A70	00380B4D	mov dword ptr [rbp + 0xc], r14d	4	G02089280+0xc	loaded/other
+00380A70	00380B53	mov dword ptr [rbp + 0x30], eax	4	G02089280+0x30	loaded/other
+00380A70	00380B59	mov dword ptr [rbp + 0x34], eax	4	G02089280+0x34	loaded/other
+00380A70	00380B5F	mov dword ptr [rbp + 0x38], eax	4	G02089280+0x38	loaded/other
+00380A70	00380B6A	mov dword ptr [rbp + 0x3c], eax	4	G02089280+0x3c	loaded/other
+00380D30	00380D30	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+00380D30	00380D35	mov qword ptr [rsp + 0x10], rsi	8	SP+0x10	stack
+00380D30	00380D90	mov word ptr [rbx + 0x5e], cx	2	L(L(A+0xc0)+0x138)+0x8e	loaded/other
+00380D30	00380D9B	mov word ptr [rbx + 0x52], ax	2	L(L(A+0xc0)+0x138)+0x82	loaded/other
+00380D30	00380DA6	mov dword ptr [rbx], eax	4	L(L(A+0xc0)+0x138)+0x30	loaded/other
+00380D30	00380DAE	mov dword ptr [rbx + 4], eax	4	L(L(A+0xc0)+0x138)+0x34	loaded/other
+00380D30	00380DB4	mov dword ptr [rbx + 8], eax	4	L(L(A+0xc0)+0x138)+0x38	loaded/other
+00380D30	00380DBA	mov dword ptr [rbx + 0xc], eax	4	L(L(A+0xc0)+0x138)+0x3c	loaded/other
+00380D30	00380DCB	movss dword ptr [rbx + 0x7c], xmm0	4	L(L(A+0xc0)+0x138)+0xac	loaded/other
+00380D30	00380DD2	movss dword ptr [rbx + 4], xmm0	4	L(L(A+0xc0)+0x138)+0x34	loaded/other
+003A19C0	003A19C0	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+003A19C0	003A19CA	movaps xmmword ptr [rsp + 0x40], xmm6	16	SP-0x18	stack
+003A19C0	003A19E1	movaps xmmword ptr [rsp + 0x30], xmm7	16	SP-0x28	stack
+003A19C0	003A19F2	movaps xmmword ptr [rsp + 0x20], xmm8	16	SP-0x38	stack
+003A19C0	003A1AB4	movss dword ptr [rdi], xmm0	4	CSP-0xa8	stack
+003A19C0	003A1AB8	movss dword ptr [rbx], xmm6	4	CSP-0xa4	stack
+003A1AD0	003A1ADF	movaps xmmword ptr [rsp + 0x30], xmm6	16	SP-0x18	stack
+003A1AD0	003A1AF3	movaps xmmword ptr [rsp + 0x20], xmm7	16	SP-0x28	stack
+003A1AD0	003A1AF8	movaps xmmword ptr [rsp + 0x10], xmm8	16	SP-0x38	stack
+003A1AD0	003A1B02	movaps xmmword ptr [rsp], xmm9	16	SP-0x48	stack
+003A2B20	003A2B20	movss dword ptr [rsp + 0x10], xmm1	4	SP+0x10	stack
+003A2B20	003A2B2E	mov qword ptr [rip + 0x1f363fb], rax	8	G022D8F30+0x0	loaded/other
+003A9490	003A9490	mov qword ptr [rsp + 0x10], rsi	8	SP+0x10	stack
+003A9490	003A94AC	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+003B3CA0	003B3CC8	mov qword ptr [rsp + 0x30], rbx	8	SP+0x8	stack
+003B3CA0	003B3CD4	mov qword ptr [rsp + 0x38], rdi	8	SP+0x10	stack
+003B3CA0	003B3CEF	mov qword ptr [rip + 0x2be3652], rdi	8	G02F97348+0x0	loaded/other
+003B3CA0	003B3CF6	mov qword ptr [rip + 0x2be3643], rbx	8	G02F97340+0x0	loaded/other
+003DA6A0	003DA6A0	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+003DA6A0	003DA6A5	mov qword ptr [rsp + 0x10], rbp	8	SP+0x10	stack
+003DA6A0	003DA6AA	mov qword ptr [rsp + 0x18], rsi	8	SP+0x18	stack
+003DA6A0	003DA6B7	movaps xmmword ptr [rsp + 0x20], xmm6	16	SP-0x18	stack
+003DA730	003DA736	movaps xmmword ptr [rsp + 0x50], xmm6	16	SP-0x18	stack
+003DA730	003DA74B	movaps xmmword ptr [rsp + 0x40], xmm7	16	SP-0x28	stack
+003DA730	003DA750	movaps xmmword ptr [rsp + 0x30], xmm8	16	SP-0x38	stack
+003DA730	003DA763	movaps xmmword ptr [rsp + 0x20], xmm9	16	SP-0x48	stack
+003DA850	003DA850	movss dword ptr [rcx + 8], xmm1	4	L(A+0xb8)+0x58	loaded/other
+003DA850	003DA850	movss dword ptr [rcx + 8], xmm1	4	L(A+0xb8)+0x68	loaded/other
+003DA850	003DA850	movss dword ptr [rcx + 8], xmm1	4	L(A+0xb8)+0x78	loaded/other
+003DA850	003DA850	movss dword ptr [rcx + 8], xmm1	4	L(L(A+0xc0)+0x138)+0xf8	loaded/other
+003DA9F0	003DA9F2	mov qword ptr [rcx + 0x100], rax	8	L(L(A+0xc0)+0x138)+0x100	loaded/other
+003DA9F0	003DA9F9	mov dword ptr [rcx + 0x108], eax	4	L(L(A+0xc0)+0x138)+0x108	loaded/other
+003DA9F0	003DA9FF	mov word ptr [rcx + 0xec], ax	2	L(L(A+0xc0)+0x138)+0xec	loaded/other
+003DA9F0	003DAA06	mov dword ptr [rcx + 0xe8], eax	4	L(L(A+0xc0)+0x138)+0xe8	loaded/other
+003DA9F0	003DAA0C	mov byte ptr [rcx + 0xee], al	1	L(L(A+0xc0)+0x138)+0xee	loaded/other
+003DAE00	003DAE08	mov dword ptr [rdx], eax	4	CSP-0x28	stack
+003DAE00	003DAE0D	mov dword ptr [rdx + 4], eax	4	CSP-0x24	stack
+003DAE00	003DAE13	mov dword ptr [rdx + 8], eax	4	CSP-0x20	stack
+003DAF20	003DAF20	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+003DAF20	003DAF25	mov qword ptr [rsp + 0x10], rbp	8	SP+0x10	stack
+003DAF20	003DAF2A	mov qword ptr [rsp + 0x18], rsi	8	SP+0x18	stack
+003DAF20	003DAF34	movaps xmmword ptr [rsp + 0x20], xmm6	16	SP-0x18	stack
+003DAF20	003DAF54	movss dword ptr [rbp + 0x40], xmm0	4	L(L(A+0xc0)+0x138)+0x40	loaded/other
+003DAF20	003DAF5C	mov dword ptr [rbp + 0x44], 0	4	L(L(A+0xc0)+0x138)+0x44	loaded/other
+003DAF20	003DAF75	movss dword ptr [rbp + 0x48], xmm0	4	L(L(A+0xc0)+0x138)+0x48	loaded/other
+003DAF20	003DAF7A	mov dword ptr [rbp + 0x4c], 0x3f800000	4	L(L(A+0xc0)+0x138)+0x4c	loaded/other
+003DAF20	003DAF8F	mov dword ptr [rbp + 0x94], eax	4	L(L(A+0xc0)+0x138)+0x94	loaded/other
+003DAF20	003DAF9B	movss dword ptr [rbp + 0x9c], xmm3	4	L(L(A+0xc0)+0x138)+0x9c	loaded/other
+003DAF20	003DAFA3	mov dword ptr [rbp + 0x98], eax	4	L(L(A+0xc0)+0x138)+0x98	loaded/other
+003DAF20	003DAFD1	movss dword ptr [rbp + 0xa0], xmm0	4	L(L(A+0xc0)+0x138)+0xa0	loaded/other
+003DAF20	003DAFF8	movss dword ptr [rbp + 0xa8], xmm1	4	L(L(A+0xc0)+0x138)+0xa8	loaded/other
+003DAF20	003DB000	movss dword ptr [rbp + 0xa4], xmm0	4	L(L(A+0xc0)+0x138)+0xa4	loaded/other
+003DB1B0	003DB1B0	mov qword ptr [rsp + 8], rbx	8	SP+0x8	stack
+003E3120	003E3127	movss dword ptr [rcx + 4], xmm1	4	L(G022C6F28+0x0)	loaded/other
+003E3120	003E3130	movss dword ptr [rcx + 8], xmm2	4	L(G022C6F28+0x0)	loaded/other
+003E3120	003E3135	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E3120	003E3137	movss dword ptr [rcx + 0xc], xmm3	4	L(G022C6F28+0x0)	loaded/other
+003E31C0	003E31C7	movss dword ptr [rcx + 4], xmm1	4	L(G022C6F28+0x0)	loaded/other
+003E31C0	003E31D0	movss dword ptr [rcx + 8], xmm2	4	L(G022C6F28+0x0)	loaded/other
+003E31C0	003E31D5	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E31C0	003E31D7	movss dword ptr [rcx + 0xc], xmm3	4	L(G022C6F28+0x0)	loaded/other
+003E31E0	003E31E7	movss dword ptr [rcx + 4], xmm1	4	L(G022C6F28+0x0)	loaded/other
+003E31E0	003E31F0	movss dword ptr [rcx + 8], xmm2	4	L(G022C6F28+0x0)	loaded/other
+003E31E0	003E31F5	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E31E0	003E31F7	movss dword ptr [rcx + 0xc], xmm3	4	L(G022C6F28+0x0)	loaded/other
+003E3320	003E3327	movss dword ptr [rcx + 4], xmm1	4	L(G022C6F28+0x0)	loaded/other
+003E3320	003E3330	movss dword ptr [rcx + 8], xmm2	4	L(G022C6F28+0x0)	loaded/other
+003E3320	003E3335	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E3320	003E3337	movss dword ptr [rcx + 0xc], xmm3	4	L(G022C6F28+0x0)	loaded/other
+003E33A0	003E33A0	and dword ptr [rcx], 0xfff07fff	4	L(G022C6F28+0x0)	loaded/other
+003E33A0	003E33A6	or dword ptr [rcx], 0x100000	4	L(G022C6F28+0x0)	loaded/other
+003E33A0	003E33AC	movss dword ptr [rcx + 4], xmm1	4	L(G022C6F28+0x0)	loaded/other
+003E33C0	003E33C7	movss dword ptr [rcx + 4], xmm1	4	L(G022C6F28+0x0)	loaded/other
+003E33C0	003E33D0	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E33E0	003E33F2	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E3440	003E3450	mov dword ptr [rcx], edx	4	L(G022C6F28+0x0)	loaded/other
+003E36C0	003E36CA	mov dword ptr [rcx + 0x20], r8d	4	L(G022C6F28+0x0)	loaded/other
+003E36C0	003E36D3	mov dword ptr [rcx + 0x24], r9d	4	L(G022C6F28+0x0)	loaded/other
+003E36C0	003E36D7	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003E36C0	003E36DE	mov dword ptr [rcx + 0x30], r8d	4	L(G022C6F28+0x0)	loaded/other
+003E36C0	003E36E7	mov dword ptr [rcx + 0x34], r9d	4	L(G022C6F28+0x0)	loaded/other
+003E36C0	003E36EB	mov dword ptr [rcx], eax	4	L(G022C6F28+0x0)	loaded/other
+003EC260	003EC271	mov qword ptr [rsp + 0x20], rbx	8	SP-0x8	stack
+003EC260	003EC2C8	mov qword ptr [rbx + 0x120], rcx	8	0x120,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC2CF	mov dword ptr [rbx + 0x128], ecx	4	0x128,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC2D5	mov dword ptr [rbx + 0x12c], 0x3f800000	4	0x12c,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC31C	and dword ptr [rbx + 0x284], 0xfffffdff	4	0x284,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC326	mov dword ptr [rbx + 0x254], eax	4	0x254,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC332	movss dword ptr [rbx + 0x128], xmm3	4	0x128,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC33A	mov dword ptr [rbx + 0x258], eax	4	0x258,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC340	movss dword ptr [rbx + 0x250], xmm1	4	0x250,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC348	movss dword ptr [rbx + 0x120], xmm4	4	0x120,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC350	movss dword ptr [rbx + 0x124], xmm2	4	0x124,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC358	mov dword ptr [rbx + 0x12c], 0x3f800000	4	0x12c,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC378	mov dword ptr [rbx + 0x250], eax	4	0x250,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC384	mov dword ptr [rbx + 0x254], eax	4	0x254,L(G022C6F28+0x0)	loaded/other
+003EC260	003EC390	mov dword ptr [rbx + 0x258], eax	4	0x258,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC3DE	mov qword ptr [rsp + 0x20], rbx	8	SP-0x8	stack
+003EC3D0	003EC435	mov qword ptr [rbx + 0x140], rcx	8	0x140,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC43C	mov dword ptr [rbx + 0x148], ecx	4	0x148,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC442	mov dword ptr [rbx + 0x14c], 0x3f800000	4	0x14c,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC483	and dword ptr [rbx + 0x284], 0xfffffdff	4	0x284,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC48D	movss dword ptr [rbx + 0x140], xmm1	4	0x140,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC495	movss dword ptr [rbx + 0x144], xmm2	4	0x144,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC49D	movss dword ptr [rbx + 0x148], xmm3	4	0x148,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC4A5	mov dword ptr [rbx + 0x14c], 0x3f800000	4	0x14c,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC4BB	or dword ptr [rbx + 0x304], 0x4000	4	0x304,L(G022C6F28+0x0)	loaded/other
+003EC3D0	003EC4CF	mov dword ptr [rbx + 0x23c], ecx	4	0x23c,L(G022C6F28+0x0)	loaded/other
+004288B0	004288B0	or dword ptr [rcx + 0x290], 0x400	4	0x290,L(G022C6F28+0x0)	loaded/other
+004288B0	004288B0	or dword ptr [rcx + 0x290], 0x400	4	L(G022C6F28+0x0)	loaded/other
+004288B0	004288BF	or dword ptr [rcx + 0x284], 0x20000	4	0x284,L(G022C6F28+0x0)	loaded/other
+004288B0	004288BF	or dword ptr [rcx + 0x284], 0x20000	4	L(G022C6F28+0x0)	loaded/other
+004288B0	004288C9	mov byte ptr [rcx + 0x40a], 0	1	0x40a,L(G022C6F28+0x0)	loaded/other
+004288B0	004288C9	mov byte ptr [rcx + 0x40a], 0	1	L(G022C6F28+0x0)	loaded/other
+004288B0	004288D1	add byte ptr [rcx + 0x40a], dl	1	0x40a,L(G022C6F28+0x0)	loaded/other
+004288B0	004288D1	add byte ptr [rcx + 0x40a], dl	1	L(G022C6F28+0x0)	loaded/other
+0045FD00	0045FD00	mov dword ptr [rcx + 0x3d8], 1	4	UNKNOWN	UNKNOWN
+00529D40	00529D40	mov dword ptr [rcx + 0x3d4], 1	4	UNKNOWN	UNKNOWN
+0052A8A0	0052A8A0	mov dword ptr [rcx + 0x434], 1	4	UNKNOWN	UNKNOWN
+0052B5D0	0052B5D0	mov dword ptr [rcx + 0x3f8], 1	4	UNKNOWN	UNKNOWN
+00809654	00809654	mov qword ptr [rsp + 8], rcx	8	SP+0x8	stack
+00809654	00809683	mov qword ptr [rip + 0x26a589e], rax	8	G02EAEF28+0x0	loaded/other
+00809654	00809693	mov qword ptr [rip + 0x26a582e], rax	8	G02EAEEC8+0x0	loaded/other
+00809654	008096A1	mov qword ptr [rip + 0x26a56f8], rax	8	G02EAEDA0+0x0	loaded/other
+00809654	008096AD	mov qword ptr [rip + 0x26a57fc], rax	8	G02EAEEB0+0x0	loaded/other
+00809654	008096B4	mov dword ptr [rip + 0x26a56d2], 0xc0000409	4	G02EAED90+0x0	loaded/other
+00809654	008096BE	mov dword ptr [rip + 0x26a56cc], 1	4	G02EAED94+0x0	loaded/other
+00809654	008096C8	mov dword ptr [rip + 0x26a56d6], 1	4	G02EAEDA8+0x0	loaded/other
+00809654	008096E2	mov qword ptr [rcx + rax], 2	8	G02EAEDB0	loaded/other
+00809654	008096FA	mov qword ptr [rsp + rax + 0x20], rcx	8	SP	stack
+00809654	0080970F	mov qword ptr [rsp + rax + 0x20], rcx	8	SP	stack
+00809848	00809878	and qword ptr [rsp + 0x38], 0	8	SP-0x20	stack
+00809848	0080988B	mov qword ptr [rsp + 0x30], rcx	8	SP-0x28	stack
+00809848	00809898	mov qword ptr [rsp + 0x28], rcx	8	SP-0x30	stack
+00809848	0080989F	mov qword ptr [rsp + 0x20], rbx	8	SP-0x38	stack

@@ -1,0 +1,515 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": "00120000",
+  "method": "Selected contiguous ranges from previously exported historical Ghidra inventory; rehashed and decoded against the original. No fresh import or current GN162 certification.",
+  "bodies": [
+    {
+      "entry": "0016D6A0",
+      "end_exclusive": "0016D6A3",
+      "length": 3,
+      "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b",
+      "historical_name": "_guard_check_icall",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001EC560",
+      "end_exclusive": "001EC59B",
+      "length": 59,
+      "sha256": "eea3b70d8fc7c21d2d301418e7b9c5f36aac4e515899e6d8f336586aecc703ef",
+      "historical_name": "FUN_001ec560",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001EC5C0",
+      "end_exclusive": "001EC5D1",
+      "length": 17,
+      "sha256": "0edbbfff57f6c4103fdc48b6736b9c2c65c435d940ef809d06b01c5414d34ffa",
+      "historical_name": "FUN_001ec5c0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001EC5E0",
+      "end_exclusive": "001EC5F1",
+      "length": 17,
+      "sha256": "a996c3e32226d9f7dd5eedae2e4418d61fb3130b052b2ef172ee558215800bb4",
+      "historical_name": "FUN_001ec5e0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001ED130",
+      "end_exclusive": "001ED179",
+      "length": 73,
+      "sha256": "b4a7b1c3bdcf89f11e27475469c58fca32e32a0a98284da5f976234500e10863",
+      "historical_name": "FUN_001ed130",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001ED180",
+      "end_exclusive": "001ED1D3",
+      "length": 83,
+      "sha256": "7ea10eea0ad9eef16eccb2d974313f85336bbc150303cd5bf455b093cb5356ea",
+      "historical_name": "FUN_001ed180",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001EDC80",
+      "end_exclusive": "001EDCCD",
+      "length": 77,
+      "sha256": "cda4c27e745697a25fdd1ada41f96239d4b9cf3c698182204a765599fa775eee",
+      "historical_name": "FUN_001edc80",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001EDDA0",
+      "end_exclusive": "001EDDBB",
+      "length": 27,
+      "sha256": "a732b1d18fd5f604441cba1061a064a0c2029122eae0c414b41c53f64340d273",
+      "historical_name": "FUN_001edda0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "001EDE80",
+      "end_exclusive": "001EDEBD",
+      "length": 61,
+      "sha256": "41ba827c866d989629f556addefe4d246f84b8c12bca5613628732ca0fb28fa5",
+      "historical_name": "FUN_001ede80",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0025B500",
+      "end_exclusive": "0025B57D",
+      "length": 125,
+      "sha256": "7b193f704ee230bc6d467bb09b470d1b431380d1acc0b67ab035ae9f080d3109",
+      "historical_name": "FUN_0025b500",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0025D9E0",
+      "end_exclusive": "0025DEF1",
+      "length": 1297,
+      "sha256": "d2f00ca3caa9c3a789b30ef6d98b9f334a40fa6bcc4f6838e95bf57bec74a939",
+      "historical_name": "ActorManager_RunFieldRuntimePass",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0025DF00",
+      "end_exclusive": "0025E3CC",
+      "length": 1228,
+      "sha256": "fd07cd5b2637aa837f3cc6f00a946be8cabe02823c250eb783cd0b05954be8fc",
+      "historical_name": "WorldActor_UpdateRuntimeAndScriptExecutionState",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0025E4C0",
+      "end_exclusive": "00261DF6",
+      "length": 14646,
+      "sha256": "cd5e652e4323fdccf2a05a06da193822f30b370b3cea93c88fe33338b1d06335",
+      "historical_name": "WorldActorScriptVM_InterpretBytecode",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002621D0",
+      "end_exclusive": "0026239D",
+      "length": 461,
+      "sha256": "41f6d711514f65f1545d96604cc5eca98214cf6d644cbb7579a3f63e8464a043",
+      "historical_name": "VMNativeCommand_ExecuteLifecycle",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00265020",
+      "end_exclusive": "0026505D",
+      "length": 61,
+      "sha256": "cf09b85d637d05ca695217249179536c30ad2813ed42f5fc678f79963eec6e2d",
+      "historical_name": "Actor_GetWorldPosition",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002651A0",
+      "end_exclusive": "002651BA",
+      "length": 26,
+      "sha256": "da21bdd53336677b5610fdc16973fdaf588e91efadeedd5689f52e95f6611acd",
+      "historical_name": "FUN_002651a0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00265270",
+      "end_exclusive": "0026528C",
+      "length": 28,
+      "sha256": "17c90ed9080aa333f0908e9c6377230bb6fb15504dcb38a15ffec22e1fd9fe24",
+      "historical_name": "FieldData_GetVariable0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00265760",
+      "end_exclusive": "00265768",
+      "length": 8,
+      "sha256": "8cbd0966373f88c3c79230b3c7f8cba599f2d49dbcee0c635f23daefdbc422bb",
+      "historical_name": "FUN_00265760",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00265880",
+      "end_exclusive": "002658AE",
+      "length": 46,
+      "sha256": "4a0dd9e32b8d0a55ddc20f91c8fad46b3b26637ecd36bdc42c1ca4d421fb2151",
+      "historical_name": "FUN_00265880",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00267310",
+      "end_exclusive": "00267326",
+      "length": 22,
+      "sha256": "a23490763048c1cc89123c96c319fc2e6c0c76f134a68d61d06c2ea9a79055df",
+      "historical_name": "FUN_00267310",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00267D40",
+      "end_exclusive": "00267DA8",
+      "length": 104,
+      "sha256": "c373b72ed6cebf72ebe70f7978656cf35c97e80df05fb4d62e2a4a16ee3f5f5f",
+      "historical_name": "FUN_00267d40",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00267DB0",
+      "end_exclusive": "00267E04",
+      "length": 84,
+      "sha256": "842641db8a74264c544eadc0c2fdefaa2052369da2bc57d9457787dece4d937d",
+      "historical_name": "VMValueStack_PopNumericDiscard",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00267E10",
+      "end_exclusive": "00267E5E",
+      "length": 78,
+      "sha256": "cc8a8ea3b56301310d36fd816a0ed7b1967651ec087004a646f6cbb1d554f04b",
+      "historical_name": "VMValueStack_PopInt32CoerceFloat32",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00267F60",
+      "end_exclusive": "00267F89",
+      "length": 41,
+      "sha256": "0aa2b96f423b38989791564d037be95fe9670f85aa3792a454d815dec9b2041b",
+      "historical_name": "VMValueStack_PushFloat32Bits",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00267F90",
+      "end_exclusive": "00267FB7",
+      "length": 39,
+      "sha256": "3deddfdd9b3b01fa895a4004de2b107ca6d409a99de72ef1baaa9970a5bf5703",
+      "historical_name": "VMValueStack_PushInt32",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002681E0",
+      "end_exclusive": "002682C6",
+      "length": 230,
+      "sha256": "62d69468b1b3766bbecd535f3827b94e760256484ed860a6f7c2e8f7f1e62d15",
+      "historical_name": "FUN_002681e0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0026B4C0",
+      "end_exclusive": "0026B4DC",
+      "length": 28,
+      "sha256": "3454829d4382e2dd1ff9043bd0319489452445deb6b30fd736e497f8c32f45a1",
+      "historical_name": "VMResult_WriteFloat32",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0026B4E0",
+      "end_exclusive": "0026B4FC",
+      "length": 28,
+      "sha256": "84ae4f92a43102ca40881beaa0879934ac240a97780cad7888fdb5704ea2b249",
+      "historical_name": "VMResult_WriteInt32",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0026B500",
+      "end_exclusive": "0026B520",
+      "length": 32,
+      "sha256": "75798c45303dce3da4301a874b95061d0a61ea357f1255aa38e33bf8ebf17b76",
+      "historical_name": "FUN_0026b500",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002E0540",
+      "end_exclusive": "002E0592",
+      "length": 82,
+      "sha256": "93d682e87ae8b07d3a964a97042ddbef41432f53fcf3ef960e951b9baa8cbfa2",
+      "historical_name": "FUN_002e0540",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002E5030",
+      "end_exclusive": "002E517A",
+      "length": 330,
+      "sha256": "f739335670ae32f1bffe17b78e178d4ee4a009406894fd1f064a6cc76ea813e9",
+      "historical_name": "Movement_UpdateActorFrame",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002E5750",
+      "end_exclusive": "002E5AF7",
+      "length": 935,
+      "sha256": "e643554f8a478cc27a4ab773e71d3ed2c165964c6c59f3178bb9e7dadb430dfd",
+      "historical_name": "FUN_002e5750",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002E97B0",
+      "end_exclusive": "002E97C0",
+      "length": 16,
+      "sha256": "6e232e22130c3b78e5a57cc1a16a9b29af15ea82ea28b0aae354c35c8aca541a",
+      "historical_name": "FUN_002e97b0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002EF2B0",
+      "end_exclusive": "002EF2C4",
+      "length": 20,
+      "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7",
+      "historical_name": "SaveImage_GetPersistentPayloadBase",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "002EF640",
+      "end_exclusive": "002EF648",
+      "length": 8,
+      "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802",
+      "historical_name": "SaveImage_GetActiveRuntimeBuffer",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00303EC0",
+      "end_exclusive": "00303ED8",
+      "length": 24,
+      "sha256": "f16bd80d5b664d035ec522472c0706d8a6d5fcf1284553f902728e73da66efb5",
+      "historical_name": "FUN_00303ec0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003135C0",
+      "end_exclusive": "003135D8",
+      "length": 24,
+      "sha256": "680512174286d75152895f584c4ee87f4425fb95df34db041070f2fd979487ac",
+      "historical_name": "FUN_003135c0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003148D0",
+      "end_exclusive": "003148E4",
+      "length": 20,
+      "sha256": "8f26c65884b765ce9ec8bfebce9d02e62f24b00388f3ba523e6b24ee7de6edfe",
+      "historical_name": "WorldTransition_GetOptions",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003148F0",
+      "end_exclusive": "0031490B",
+      "length": 27,
+      "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c",
+      "historical_name": "WorldTransition_GetActiveOrPendingFieldId",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00314910",
+      "end_exclusive": "00314924",
+      "length": 20,
+      "sha256": "658b0458f8e50b00466ff2c97922834390cb19649691c1cf4fa967b6bfdff54f",
+      "historical_name": "WorldTransition_GetTransitionFieldId",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0033F310",
+      "end_exclusive": "0033F32D",
+      "length": 29,
+      "sha256": "0c74b6a97c6df17aaadde15810483b8d2fee11757db1688b69bc3ef9170b790c",
+      "historical_name": "FUN_0033f310",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00346710",
+      "end_exclusive": "00346747",
+      "length": 55,
+      "sha256": "f9224f79aebf4d019c036fc6fe11c4430c87aea71044c45237f808df4fa539fe",
+      "historical_name": "FUN_00346710",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00349910",
+      "end_exclusive": "00349918",
+      "length": 8,
+      "sha256": "ca05e13588d6dcb72c6577ae43f315c127d48f29814affb573b58089889a6d23",
+      "historical_name": "FUN_00349910",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00349C90",
+      "end_exclusive": "00349CB0",
+      "length": 32,
+      "sha256": "a9c1092681b40c8f29d756bb1067529fb5a0cd571491d2e0540482cbe701fc2c",
+      "historical_name": "FUN_00349c90",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0034CF90",
+      "end_exclusive": "0034D019",
+      "length": 137,
+      "sha256": "b50cd58dd0383b876f1068f7113f5129c715159aba84e6958cb280ea8d436498",
+      "historical_name": "FUN_0034cf90",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "0034DCC0",
+      "end_exclusive": "0034DCF5",
+      "length": 53,
+      "sha256": "d6ac80447fa90faf883322f316bcf6517bb11f3d8bab4270418895f9d2c6eaf4",
+      "historical_name": "FUN_0034dcc0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00356000",
+      "end_exclusive": "00356021",
+      "length": 33,
+      "sha256": "6016125cff35606ba34e4a6ab588006704257eb035eea3ee76a46347462573fa",
+      "historical_name": "FUN_00356000",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00357760",
+      "end_exclusive": "0035776B",
+      "length": 11,
+      "sha256": "ac4c415787e18699da7b10193a3c67df36836f507126638809a64669a9fa06ec",
+      "historical_name": "FUN_00357760",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00357770",
+      "end_exclusive": "00357777",
+      "length": 7,
+      "sha256": "e3ec66576d544153b624b6848b7d584368e3845554b1e1786418e2a26ca049f6",
+      "historical_name": "FUN_00357770",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00358940",
+      "end_exclusive": "0035895E",
+      "length": 30,
+      "sha256": "e7d50b2c2b1279720b63b38b1d754f6e1ecf4a188afdb1a4a3a4045a7306024d",
+      "historical_name": "ActorManager_GetRecordByOrdinal",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003589E0",
+      "end_exclusive": "003589F5",
+      "length": 21,
+      "sha256": "4e2a6b8775209b05a8df1facbbca56b2f0850e55c8e63b9fd271d0516b2f2f20",
+      "historical_name": "FUN_003589e0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00377C20",
+      "end_exclusive": "00377C6E",
+      "length": 78,
+      "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea",
+      "historical_name": "FieldData_GetActiveFieldRecordBit15",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003DC240",
+      "end_exclusive": "003DC267",
+      "length": 39,
+      "sha256": "9ad30c08acd5b42dcd8efae9183ea0fe08c30e557834195b4d4c60149446a41c",
+      "historical_name": "VMNativeCommandDispatch_GetPollCallback",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003DC270",
+      "end_exclusive": "003DC297",
+      "length": 39,
+      "sha256": "d7c2e93dccc4ae272f67e44e3cb51427ccd414b3223580a7cd361b6789bea354",
+      "historical_name": "VMNativeCommandDispatch_GetBeginCallback",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003DC2A0",
+      "end_exclusive": "003DC2C9",
+      "length": 41,
+      "sha256": "0eeb67716ea5fd46ed45e25e56e72b370697624c24c74aeb21981378032e32f2",
+      "historical_name": "VMNativeCommandDispatch_GetResultCallback",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "003DC2D0",
+      "end_exclusive": "003DC329",
+      "length": 89,
+      "sha256": "2cae58d2b6e2125be459c7c42eac0fba33583b63e25b9de5bc4e2c030f49aadb",
+      "historical_name": "VMNativeCommandDispatch_InitializeFamilyTables",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "00808C40",
+      "end_exclusive": "00808C61",
+      "length": 33,
+      "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63",
+      "historical_name": "__security_check_cookie",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    },
+    {
+      "entry": "008620C0",
+      "end_exclusive": "008620CE",
+      "length": 14,
+      "sha256": "0d21a1f5d20ef0ba8d7d3e91c612aeb506cbd465779fd79134051c832e1ae95e",
+      "historical_name": "FUN_008620c0",
+      "scope": "Selected whole range anchored to original EXE; inclusion does not claim all branches executed."
+    }
+  ],
+  "data_spans": [
+    {
+      "name": "opcode_jump_rvas",
+      "address": "00261DF8",
+      "length": 400,
+      "sha256": "4a926003bd1191c045a7810224482cc45daca16d61c3f7c141f90bdb8ecdc52d"
+    },
+    {
+      "name": "opcode_lengths_and_metadata",
+      "address": "01EFEA60",
+      "length": 2400,
+      "sha256": "495af2eed7cfe6ceca3a621eca4a52fc06c94502a738c6e5e439490512fe4c62"
+    },
+    {
+      "name": "callback_table_01EED700",
+      "address": "01EED700",
+      "length": 47880,
+      "sha256": "ad3d3f56f96e7c2e915d8c4a9a2ec78a32fa7dff113969f2abb30204d0b51a44"
+    },
+    {
+      "name": "callback_table_01F281B0",
+      "address": "01F281B0",
+      "length": 4712,
+      "sha256": "4925c5148735df393a80453405fcc90c75e6e87168e0b7b32982a639905cb9e1"
+    },
+    {
+      "name": "callback_table_01F29418",
+      "address": "01F29418",
+      "length": 40,
+      "sha256": "7b35cb6a3ff5b19c6d7186dca2cde487a52128b899df7ef2c29876beb6abfbb4"
+    },
+    {
+      "name": "callback_table_01F29440",
+      "address": "01F29440",
+      "length": 3336,
+      "sha256": "e95691645e468f0d04bd86f807017e80934eee6ee1796ed1572bdcba2292923e"
+    },
+    {
+      "name": "callback_table_01F26720",
+      "address": "01F26720",
+      "length": 6792,
+      "sha256": "f8c923e0b98620bcdb88d0d3b318edd4a820a2f6645ae8d462b9973953edf5d7"
+    }
+  ]
+}

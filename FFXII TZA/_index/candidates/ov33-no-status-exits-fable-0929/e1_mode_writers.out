@@ -1,0 +1,33 @@
+# rip refs: 19 verified, 0 raw-only
+  0037B2F4 movzx  eax, byte ptr [rip + 0x2762637]          -> 02ADD932  0037B2F0 FUN_0037b2f0  
+  0037B307 mov    byte ptr [rip + 0x2762623], bl           -> 02ADD930  0037B2F0 FUN_0037b2f0  STORE
+  0037B312 mov    byte ptr [rip + 0x2762619], bl           -> 02ADD931  0037B2F0 FUN_0037b2f0  STORE
+  0037B330 cmp    byte ptr [rip + 0x27625fa], 0            -> 02ADD931  0037B330 FUN_0037b330  
+  0037B337 movzx  eax, byte ptr [rip + 0x27625f2]          -> 02ADD930  0037B330 FUN_0037b330  
+  0037B370 movzx  eax, byte ptr [rip + 0x27625bc]          -> 02ADD933  0037B370 FUN_0037b370  
+  0037B380 movzx  eax, byte ptr [rip + 0x27625ab]          -> 02ADD932  0037B380 FUN_0037b380  
+  0037B394 mov    byte ptr [rip + 0x2762596], 1            -> 02ADD931  0037B390 FUN_0037b390  STORE
+  0037B39B mov    byte ptr [rip + 0x2762590], 4            -> 02ADD932  0037B390 FUN_0037b390  STORE
+  0037B3A2 mov    byte ptr [rip + 0x2762587], 0            -> 02ADD930  0037B390 FUN_0037b390  STORE
+  0037B3AE mov    byte ptr [rip + 0x276257c], 0            -> 02ADD931  0037B390 FUN_0037b390  STORE
+  0037B3B5 mov    byte ptr [rip + 0x2762577], 3            -> 02ADD933  0037B390 FUN_0037b390  STORE
+  0037B3E0 movzx  eax, byte ptr [rip + 0x2762549]          -> 02ADD930  0037B3D0 FUN_0037b3d0  
+  0037B3F6 cmp    byte ptr [rip + 0x2762535], al           -> 02ADD931  0037B3D0 FUN_0037b3d0  
+  0037B442 mov    byte ptr [rip + 0x27624e9], 4            -> 02ADD932  0037B3D0 FUN_0037b3d0  STORE
+  0037B458 mov    byte ptr [rip + 0x27624d2], bl           -> 02ADD930  0037B450 FUN_0037b450  STORE
+  0037B463 mov    byte ptr [rip + 0x27624c8], bl           -> 02ADD931  0037B450 FUN_0037b450  STORE
+  0037B47A mov    byte ptr [rip + 0x27624b3], cl           -> 02ADD933  0037B470 FUN_0037b470  STORE
+  0037B490 mov    byte ptr [rip + 0x276249c], cl           -> 02ADD932  0037B490 FUN_0037b490  STORE
+# image-base-relative: 0 verified
+# absolute address operands: 0
+
+# storing functions and their raw callers:
+  0037B2F0 FUN_0037b2f0  callers: ['2E66D3']
+  0037B390 FUN_0037b390  callers: ['22A399']
+  0037B3D0 FUN_0037b3d0  callers: ['37B30D', '37B3A9', '37B45E']
+  0037B450 FUN_0037b450  callers: ['24AB6F', '24AC7F', '35B877', '35B98B', '3DD715']
+  0037B470 FUN_0037b470  callers: ['347C52', '35B851']
+  0037B490 FUN_0037b490  callers: ['3DD71C']
+control 0037B458 listed: True
+FAILS 0
+STATUS COMPLETE

@@ -1,0 +1,91 @@
+PASS N1 in: 166 area files, 1,422 order sets, 50,050 records (the loader page's counts) - (166, 1422, 50050)
+PASS N1 in: bit 0x04 is set on 256 records - 256
+PASS N1 in control: every bit count of section 8g's table is reproduced, and 0x0001 / 0x0002 / 0x8000 are never set - {'0x4': 256, '0x8': 2118, '0x10': 8082, '0x20': 8076, '0x40': 3339, '0x80': 6528, '0x100': 369, '0x200': 1912, '0x400': 99, '0x800': 15084, '0x1000': 82, '0x2000': 283, '0x4000': 11929}
+PASS N2 in: 200 of the 256 carry no chain bit (0x08 / 0x10 / 0x20), so 0x04 is not used as a fourth chain bit - {'0x0': 200, '0x30': 54, '0x38': 2}
+PASS N2 in: 194 of the 256 have only selector entry 0 (60 have entries 0-1, 2 all three) - {(True, False, False): 194, (True, True, False): 60, (True, True, True): 2}
+PASS N1 ch: 166 area files, 1,422 order sets, 50,050 records (the loader page's counts) - (166, 1422, 50050)
+PASS N1 ch: bit 0x04 is set on 256 records - 256
+PASS N1 ch control: every bit count of section 8g's table is reproduced, and 0x0001 / 0x0002 / 0x8000 are never set - {'0x4': 256, '0x8': 2118, '0x10': 8082, '0x20': 8076, '0x40': 3339, '0x80': 6528, '0x100': 369, '0x200': 1912, '0x400': 99, '0x800': 15084, '0x1000': 82, '0x2000': 283, '0x4000': 11929}
+PASS N2 ch: 200 of the 256 carry no chain bit (0x08 / 0x10 / 0x20), so 0x04 is not used as a fourth chain bit - {'0x0': 200, '0x30': 54, '0x38': 2}
+PASS N2 ch: 194 of the 256 have only selector entry 0 (60 have entries 0-1, 2 all three) - {(True, False, False): 194, (True, True, False): 60, (True, True, True): 2}
+PASS N3 the chain test runs only while ebx < 2 - 003016B5  cmp ebx, 2
+PASS N3 ... (else the unchained arm) - 003016B8  jge 0x301750
+PASS N3 it loads record +4 - 003016BE  movzx edx, word ptr [r14 + 4]
+PASS N3 bit 0x20 >> i - 003016CA  sar eax, cl
+PASS N3 ... and 0x20 >> (i + 1) - 003016D4  lea ecx, [rbx + 1]
+PASS N3 ... tested - 003016DE  test edx, eax
+PASS N3 three selector entries - 00301771  cmp ebx, 3
+PASS N3 so the shifted test reaches 0x08, 0x10 and 0x20 only, never 0x04 - ['0x8', '0x10', '0x20']
+PASS N4 the image has 20 qword loads of [reg + 0x708] (the unit's current order) in 19 functions - 20
+PASS N4 exactly eleven accesses cover record +4 - 002FFCB1 003015A6 003016BE 00301B3D 00305D7F 00308736 0030AF49 00325C83 00325CAA 00325DF4 00328604
+PASS N4 no access through a record pointer has an unknown offset - 0
+PASS N4 the one escape is CommitAction storing the record as the current order (+0x708) - [('0x30f760', '0x30f7f9')]
+PASS N4 control: the seven Z-19 reader sites are found
+PASS N5 002FFCB1 tests 0x2000 - test word ptr [rax + 4], cx ; mask 8192
+PASS N5 003015A6 tests 0x800 - test word ptr [r14 + 4], ax ; mask 2048
+PASS N5 00305D7F tests 0x4000 - test word ptr [r14 + 4], ax ; mask 16384
+PASS N5 00325C83 tests 0x200 - test word ptr [rax + 4], cx ; mask 512
+PASS N5 00325CAA tests 0x100 - test word ptr [rax + 4], cx ; mask 256
+PASS N5 00325DF4 tests 0x4 - test byte ptr [rax + 4], 4 ; mask 4
+PASS N5 the two loads are the evaluator's chain test (003016BE, N3) and the selector's word at 00301B3D
+PASS N5 ... whose value is tested against 0x1000 - 00301B47  mov ecx, 0x1000
+PASS N5 ...  - 00301B59  test cx, ax
+PASS N5 ... and 0x400 - 00301B79  mov ecx, 0x400
+PASS N5 ...  - 00301B7E  test cx, ax
+PASS N5 ... eax still holds the flags word at both tests (no write to eax between 00301B3D and 00301B7E) - []
+PASS N5 the only access testing bit 2 (0x04) of record +4 is 00325DF4 - [3300852]
+PASS N5 the walk's own record tests (00305CC0) are the 0x4000 context test and the 0x40 / 0x80 resume bits - ['00305D7F test word ptr [r14 + 4], ax', '00305DB2 test byte ptr [rbx + 4], 0x40', '00305DBC test byte ptr [rbx + 4], 0x80']
+PASS N6 BattleUnit_CanAdvanceCombatNavigation loads the unit's current order - 00325DE8  mov rax, qword ptr [rdi + 0x708]
+PASS N6 ... (none: skip the test) - 00325DF2  je 0x325dfa
+PASS N6 ... tests its flags bit 0x04 - 00325DF4  test byte ptr [rax + 4], 4
+PASS N6 ... and on it leaves with 0 - 00325DF8  jne 0x325da5
+PASS N6 ...  - 00325DA5  xor eax, eax
+PASS N6 ...  - 00325DAC  ret
+PASS N6 the gate is 00325D90..00325E5B (one body) and its name is the battle-unit census's
+PASS N6 its one caller is BattleUnit_UpdateCombatNavigationStep 00325BB0, at 00325BD0 - [(3300272, 3300304)]
+PASS N6 the step's locomotion block is unit + 0x80 - 00325BC4  lea rbx, [rcx + 0x80]
+PASS N6 ... a 0 from the gate - 00325BD7  jne 0x325be6
+PASS N6 ... calls 0033C9B0 on that block - 00325BD9  mov rcx, rbx
+PASS N6 ...  - 00325BDC  call 0x33c9b0
+PASS N6 ... and jumps to the epilogue - 00325BE1  jmp 0x325d66
+PASS N6 ... skipping the route and step calls of the open path (0030A130, 00383620, 00383670, 003003F0) - ['0x30a130', '0x383620', '0x16d6a0', '0x30a130', '0x383670', '0x336ce0', '0x313500', '0x3003f0']
+PASS N6 ... the open path first clears unit flag bit 18 - 00325BE6  and qword ptr [rdi], 0xfffffffffffbffff
+PASS N6 0033C9B0 calls BuildSolverContext 00336710 and 0033E1F0 (the steering page's ResetAvoidanceStateRandomized) - ['0x336710', '0x33e1f0', '0x808c40']
+PASS N7 battle_pack +0x20 is an st2e table of 256 rows of 32 bytes - (b'st2e', 256, 32)
+PASS N7 every row's +0xE (copied to record +4 by the rebuild) is 0 - {0: 256}
+PASS N7 control: the rows' relation bytes +0x10 are 1 / 2 / 4 on 137 / 68 / 51 rows (section 8i) - {1: 137, 4: 51, 2: 68}
+PASS N7 control: 00328140 reads a word at row +0xE - ['0032826F movzx ecx, word ptr [rax + 0xe]']
+PASS N8 00308736 is a sign test of the current order's flags word - (3180048, 'cmp word ptr [rax + 4], 0')
+PASS N8 ... followed by a signed branch - 0030873B  jl 0x308751
+PASS N8 0030AF49 is a sign test of the current order's flags word - (3190576, 'cmp word ptr [rax + 4], 0')
+PASS N8 ... followed by a signed branch - 0030AF4E  jge 0x30af77
+PASS N8 00328604 is a sign test of the current order's flags word - (3310896, 'cmp word ptr [rax + 4], 0')
+PASS N8 ... followed by a signed branch - 00328609  jl 0x328612
+PASS N8 00308736's skip passes over the resume walk 00305AB0(unit, 1) - 0030874C  call 0x305ab0
+PASS N8 the engine's static order sets (01EEC2D0, 01EEC320, 01EEC370, 01EEC3C0, 01EEC410) and record 01EEC298 carry neither 0x04 nor 0x8000 - {'01EEC2D0': ['0000'], '01EEC320': ['0000', '0000'], '01EEC370': ['0000'], '01EEC3C0': ['2000'], '01EEC410': ['0000'], '01EEC298': ['2000']}
+PASS N8 control: those static records' flags are the ones their pages give (01EEC298 and 01EEC3C0 0x2000, the rest 0) - {32424656: [0], 32424736: [0, 0], 32424816: [0], 32424896: [8192], 32424976: [0], 32424600: [8192]}
+PASS P1 register row Z-1's status cell reads ANSWERED - **ANSWERED 2026-09-12 (FABLE)** — the full outer-opcode tabl
+PASS P1 register row Z-2's status cell reads ANSWERED - **ANSWERED 2026-09-17 (FABLE): the 24 bytes, proven from the
+PASS P1 register row Z-3's status cell reads ANSWERED - **ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5): status resta
+PASS P1 register row Z-10's status cell reads CLOSED - **CLOSED 2026-09-08 — NO. It is the frame-rate scalar, and t
+PASS P1 register row Z-15's status cell reads ANSWERED - **ANSWERED (both halves): mode 0 unreachable from authored d
+PASS P1 register row Z-16's status cell reads ANSWERED - **ANSWERED 2026-09-17 (FABLE): yes. The three functions §8i 
+PASS P1 register row Z-19's status cell reads ANSWERED - **ANSWERED 2026-09-12 (FABLE)** — `0x4000` resumable (the se
+PASS P1 register row UQ-121's status cell reads ANSWERED - **ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5): status resta
+PASS P1 register row GR-9's status cell reads ANSWERED - **ANSWERED 2026-09-30 (OPUS `a93fa5c08`, record [`gr9-order-
+PASS P1 register row DH-1's status cell reads ANSWERED - **ANSWERED 2026-09-08 — it is `FrameLimit`, setting 18 of `G
+PASS P1 register row DH-2's status cell reads ANSWERED - **ANSWERED 2026-09-08 — no, and closed from the source rathe
+PASS P2 the selector entry's +4 word (record +6 + 6i + 4) is the s16 threshold - 00301B1F  movsx esi, word ptr [rdx + rdi*2 + 0xa]
+PASS P2 Z-16: 00301830 subtracts 0x4000 from the resolved id - 003018DD  lea eax, [rdx - 0x4000]
+PASS P2 ... bounds it by 0x166 - 003018E3  cmp eax, 0x166
+PASS P2 ... and indexes the order-handler table 01EEC460
+PASS P3 0033F020's seven targets include the six 60-fps table initialisers of the Presentation crossing - ['0x46fbf0', '0x471100', '0x471330', '0x4715f0', '0x4718f0', '0x472580', '0x473210']
+PASS Z1 the page keeps the struck reader cell verbatim
+PASS Z1 ... and the struck meaning cell
+PASS Z2 the page keeps section 7's struck '`0x04` unread' verbatim
+PASS Z3 two corrections carry the batch's Corrected note
+PASS Z3 thirteen dated pointer notes and one added note
+PASS Z4 every line of the page ends CRLF - (2057, 2057)
+PASS Z4 the status line is unchanged by the lane (PARTIAL as the lane left it, or OPUS's attributed owner re-status)
+PASSES 89
+FAILS 0

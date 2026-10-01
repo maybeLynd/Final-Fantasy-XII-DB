@@ -1,0 +1,13 @@
+{
+  "case": "failed-helper-invocation",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-removal.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-removal-controls-01\\failed-helper-invocation\\result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-removal-controls-01\\failed-helper-invocation\\source"
+  ],
+  "exit": 1,
+  "result_absent": true,
+  "expected_error_seen": true
+}

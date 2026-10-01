@@ -1,0 +1,41 @@
+FileSizeTable_ASIA.fst   820000 bytes sha256 0f9c202078c753b7... frozen-equal=True word0=57
+FileSizeTable_CH.fst     820000 bytes sha256 1f7e4ca1ea1a003d... frozen-equal=True word0=57
+FileSizeTable_CN.fst     820000 bytes sha256 e33cb21a6ae3ac84... frozen-equal=True word0=57
+FileSizeTable_DE.fst     820000 bytes sha256 d80b86be6f531667... frozen-equal=True word0=57
+FileSizeTable_ES.fst     820000 bytes sha256 4aec6d0e32f56dbe... frozen-equal=True word0=57
+FileSizeTable_FR.fst     820000 bytes sha256 d8f6211d36a6207a... frozen-equal=True word0=57
+FileSizeTable_IN.fst     820000 bytes sha256 0f9c202078c753b7... frozen-equal=True word0=57
+FileSizeTable_IT.fst     820000 bytes sha256 948c7aee093a63b2... frozen-equal=True word0=57
+FileSizeTable_JP.fst     820000 bytes sha256 0f9c202078c753b7... frozen-equal=True word0=57
+FileSizeTable_KR.fst     820000 bytes sha256 83a4dda471c8b974... frozen-equal=True word0=57
+FileSizeTable_UK.fst     820000 bytes sha256 2451762db99591c4... frozen-equal=True word0=57
+FileSizeTable_US.fst     820000 bytes sha256 3a03ea77c689d1f4... frozen-equal=True word0=57
+languages: 12
+== model: full
+  FileSizeTable_ASIA.fst   g0 ns5 neg=10922 first=10923 absent=10536 negother=0 zero=0 positive=386 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_CH.fst     g0 ns5 neg=10922 first=10923 absent=10536 negother=0 zero=0 positive=386 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_CN.fst     g0 ns5 neg=10922 first=10923 absent=10536 negother=0 zero=0 positive=386 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_DE.fst     g0 ns5 neg=10922 first=10923 absent=10537 negother=0 zero=0 positive=385 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_ES.fst     g0 ns5 neg=10922 first=10923 absent=10537 negother=0 zero=0 positive=385 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_FR.fst     g0 ns5 neg=10922 first=10923 absent=10537 negother=0 zero=0 positive=385 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_IN.fst     g0 ns5 neg=10922 first=10923 absent=10536 negother=0 zero=0 positive=386 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_IT.fst     g0 ns5 neg=10922 first=10923 absent=10537 negother=0 zero=0 positive=385 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_JP.fst     g0 ns5 neg=10922 first=10923 absent=10536 negother=0 zero=0 positive=386 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_KR.fst     g0 ns5 neg=10922 first=10923 absent=10536 negother=0 zero=0 positive=386 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_UK.fst     g0 ns5 neg=10922 first=10923 absent=10537 negother=0 zero=0 positive=385 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+  FileSizeTable_US.fst     g0 ns5 neg=10922 first=10923 absent=10537 negother=0 zero=0 positive=385 oob=0 firstpos=(11667, 35002, -30534, 60002, 12, 2, 24832) | g1 ns8 neg=16384 first=8192 absent=15423 negother=0 zero=0 positive=961 oob=0 firstpos=(8751, 35005, -30531, 75005, 15, 5, 163840)
+== model: WRONG-narrowed
+  FileSizeTable_ASIA.fst   g0 ns5 neg=10922 first=10923 absent=8129 negother=0 zero=0 positive=204 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_CH.fst     g0 ns5 neg=10922 first=10923 absent=8129 negother=0 zero=0 positive=204 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_CN.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15332 negother=0 zero=0 positive=1052 oob=0 firstpos=None
+  FileSizeTable_DE.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15336 negother=0 zero=0 positive=1048 oob=0 firstpos=None
+  FileSizeTable_ES.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_FR.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_IN.fst     g0 ns5 neg=10922 first=10923 absent=8129 negother=0 zero=0 positive=204 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_IT.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_JP.fst     g0 ns5 neg=10922 first=10923 absent=8129 negother=0 zero=0 positive=204 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+  FileSizeTable_KR.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15336 negother=0 zero=0 positive=1048 oob=0 firstpos=None
+  FileSizeTable_UK.fst     g0 ns5 neg=10922 first=10923 absent=8129 negother=0 zero=0 positive=204 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15996 negother=0 zero=0 positive=388 oob=0 firstpos=None
+  FileSizeTable_US.fst     g0 ns5 neg=10922 first=10923 absent=8122 negother=0 zero=0 positive=211 oob=2589 firstpos=None | g1 ns8 neg=16384 first=8192 absent=15334 negother=0 zero=0 positive=1050 oob=0 firstpos=None
+first selector with a positive alias in all 12 languages, group0: 11667 (total 385)
+first selector with a positive alias in all 12 languages, group1: 8751 (total 961)

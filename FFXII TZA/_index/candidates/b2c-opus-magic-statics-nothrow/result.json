@@ -1,0 +1,2433 @@
+{
+ "cases": {
+  "C1_population_1732_sites_1681_guards_1545_with_funclet_136_without": true,
+  "C2_every_site_of_the_136_reaches_its_own_footer": true,
+  "C3_none_of_the_136_reaches_a_throw_or_an_unresolved_call": true,
+  "C4_control_most_funclet_guards_reach_an_unresolved_call_none_of_the_136_do": true,
+  "C5_the_one_named_indirect_call_is_SleepConditionVariableCS": true
+ },
+ "evidence": [
+  "STATIC"
+ ],
+ "funclet_control_by_class": {
+  "NOTHROW-CLOSED": 598,
+  "UNKNOWN": 947
+ },
+ "guards": {
+  "01F811C0": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "001A99B7"
+    }
+   ]
+  },
+  "02CB07F0": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005A66AA"
+    }
+   ]
+  },
+  "02CB5A08": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C4B0A"
+    }
+   ]
+  },
+  "02CB5A28": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C4B9A"
+    }
+   ]
+  },
+  "02CB5A68": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C495A"
+    }
+   ]
+  },
+  "02CB5B38": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C420A"
+    }
+   ]
+  },
+  "02CB5B78": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C405A"
+    }
+   ]
+  },
+  "02CB5B98": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C40EA"
+    }
+   ]
+  },
+  "02CB5C70": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C472A"
+    }
+   ]
+  },
+  "02CB5C88": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C46AA"
+    }
+   ]
+  },
+  "02CB5CA0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C462A"
+    }
+   ]
+  },
+  "02CB5CB8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C44AA"
+    }
+   ]
+  },
+  "02CB5CD0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C452A"
+    }
+   ]
+  },
+  "02CB5CE8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C45AA"
+    }
+   ]
+  },
+  "02CB5D00": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C442A"
+    }
+   ]
+  },
+  "02CB5D58": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C3B4A"
+    }
+   ]
+  },
+  "02CB5D90": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C431A"
+    }
+   ]
+  },
+  "02CB5DA8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C3BCA"
+    }
+   ]
+  },
+  "02CB5DC0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "005C3D6A"
+    }
+   ]
+  },
+  "02CB6148": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005CDA6A"
+    }
+   ]
+  },
+  "02CB6158": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "005CDA30"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005CD993"
+    },
+    {
+     "calls": [
+      "005CDA30"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005CD9FA"
+    },
+    {
+     "calls": [
+      "005CDA30"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005CDB67"
+    },
+    {
+     "calls": [
+      "005CDA30"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "008AAE06"
+    },
+    {
+     "calls": [
+      "005CDA30"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "008AAE3D"
+    }
+   ]
+  },
+  "02CC0320": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005D8CDA"
+    }
+   ]
+  },
+  "02CC0380": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "005D8DAA"
+    }
+   ]
+  },
+  "02CED098": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "005D8D70"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006042DA"
+    }
+   ]
+  },
+  "02CED0B8": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "005D8CA0"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0060425A"
+    }
+   ]
+  },
+  "02CED100": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0060401A"
+    }
+   ]
+  },
+  "02CED308": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006043EA"
+    }
+   ]
+  },
+  "02CED340": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00603CEA"
+    }
+   ]
+  },
+  "02CED358": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00603D6A"
+    }
+   ]
+  },
+  "02CED370": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00603E7A"
+    }
+   ]
+  },
+  "02CED388": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00603EFA"
+    }
+   ]
+  },
+  "02CF9404": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006372EA"
+    }
+   ]
+  },
+  "02CF94EC": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063182C"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006319EB"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00631BCD"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00631DAD"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00631F8D"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063216D"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063234D"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063252D"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063270D"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006328ED"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063740A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00637BD8"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638DC7"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638E2E"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638E9D"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063C899"
+    }
+   ]
+  },
+  "02CF94F0": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063037A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063775A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006380B6"
+    }
+   ]
+  },
+  "02CF94F4": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006304CA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006379DA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638161"
+    }
+   ]
+  },
+  "02CF94F8": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0062FF8A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063783A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006381FE"
+    }
+   ]
+  },
+  "02CF94FC": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0062FFFA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063790A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063829B"
+    }
+   ]
+  },
+  "02CF9500": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063006A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638338"
+    }
+   ]
+  },
+  "02CF9504": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006300DA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006374EA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006383D5"
+    }
+   ]
+  },
+  "02CF9508": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063014A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006375BA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638472"
+    }
+   ]
+  },
+  "02CF950C": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006301BA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063162B"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063768A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063850F"
+    }
+   ]
+  },
+  "02CF9510": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063045A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006385AC"
+    }
+   ]
+  },
+  "02CF9514": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006303EA"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638649"
+    }
+   ]
+  },
+  "02CF9518": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063022A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006386E6"
+    }
+   ]
+  },
+  "02CF951C": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063029A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638783"
+    }
+   ]
+  },
+  "02CF9520": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063030A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638820"
+    }
+   ]
+  },
+  "02CF9524": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063644F"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063747A"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00638F5E"
+    }
+   ]
+  },
+  "02CF9630": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "006316C0",
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00635E18"
+    }
+   ]
+  },
+  "02CF9778": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0063B7BA"
+    }
+   ]
+  },
+  "02CF9798": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0063B83A"
+    }
+   ]
+  },
+  "02CF97B8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0063B72A"
+    }
+   ]
+  },
+  "02CF97D8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0063B69A"
+    }
+   ]
+  },
+  "02CF9808": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00637800"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063B95A"
+    }
+   ]
+  },
+  "02CF9828": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00637800"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "EnterCriticalSection",
+      "LeaveCriticalSection",
+      "ResetEvent",
+      "SetEvent",
+      "WaitForSingleObjectEx",
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0063B8CA"
+    }
+   ]
+  },
+  "02CF9848": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0063B61A"
+    }
+   ]
+  },
+  "02D3E170": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00670AEA"
+    }
+   ]
+  },
+  "02D3EC9C": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006754E3"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0067651B"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00676ADC"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00676E84"
+    },
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00677C42"
+    }
+   ]
+  },
+  "02D3ECE0": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "00676C44"
+    }
+   ]
+  },
+  "02D3ED28": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0067790A"
+    }
+   ]
+  },
+  "02D3ED40": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00677A0A"
+    }
+   ]
+  },
+  "02D3ED58": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0067798A"
+    }
+   ]
+  },
+  "02D3F7F8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0067902A"
+    }
+   ]
+  },
+  "02E407A0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0067F0FA"
+    }
+   ]
+  },
+  "02E407F8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0067F07A"
+    }
+   ]
+  },
+  "02E42A28": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006857CA"
+    }
+   ]
+  },
+  "02E4A120": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "0068F12A"
+    }
+   ]
+  },
+  "02E4D450": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2D0A"
+    }
+   ]
+  },
+  "02E4D488": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2D8A"
+    }
+   ]
+  },
+  "02E4D4E0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A301A"
+    }
+   ]
+  },
+  "02E4D530": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A31BA"
+    }
+   ]
+  },
+  "02E4D548": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2F9A"
+    }
+   ]
+  },
+  "02E4D560": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2F1A"
+    }
+   ]
+  },
+  "02E4D578": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2E9A"
+    }
+   ]
+  },
+  "02E4D590": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2C8A"
+    }
+   ]
+  },
+  "02E4D5A8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2C0A"
+    }
+   ]
+  },
+  "02E4D5C0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A2ADA"
+    }
+   ]
+  },
+  "02E4D818": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A777A"
+    }
+   ]
+  },
+  "02E4E038": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A8F5A"
+    }
+   ]
+  },
+  "02E4E050": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006A906A"
+    }
+   ]
+  },
+  "02E4EA10": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AB14A"
+    }
+   ]
+  },
+  "02E4EA28": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AB1CA"
+    }
+   ]
+  },
+  "02E4EF60": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AC92A"
+    }
+   ]
+  },
+  "02E4EF80": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AC9BA"
+    }
+   ]
+  },
+  "02E4EF98": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AC72A"
+    }
+   ]
+  },
+  "02E4EFB0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AC7AA"
+    }
+   ]
+  },
+  "02E4EFC8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AC81A"
+    }
+   ]
+  },
+  "02E4EFE8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AC89A"
+    }
+   ]
+  },
+  "02E4FE40": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AF48A"
+    }
+   ]
+  },
+  "02E4FE58": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AF40A"
+    }
+   ]
+  },
+  "02E4FE90": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006AF2FA"
+    }
+   ]
+  },
+  "02E52160": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B59DA"
+    }
+   ]
+  },
+  "02E52180": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B5A5A"
+    }
+   ]
+  },
+  "02E521E0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B5B6A"
+    }
+   ]
+  },
+  "02E52218": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B57CA"
+    }
+   ]
+  },
+  "02E52230": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B574A"
+    }
+   ]
+  },
+  "02E52248": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B595A"
+    }
+   ]
+  },
+  "02E52260": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006B58DA"
+    }
+   ]
+  },
+  "02E596B0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006C03DA"
+    }
+   ]
+  },
+  "02E59768": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006C017A"
+    }
+   ]
+  },
+  "02E5BB10": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006C768A"
+    }
+   ]
+  },
+  "02E5BDD8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006C870A"
+    }
+   ]
+  },
+  "02EA15E0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006FE9CB"
+    }
+   ]
+  },
+  "02EA1630": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "006FEB1D"
+    }
+   ]
+  },
+  "02EA16B0": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "0075F410",
+      "00808B90"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "_crt_atexit",
+      "_register_onexit_function"
+     ],
+     "indirect": 0,
+     "site": "006FAEA0"
+    }
+   ]
+  },
+  "02EA1700": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00712664"
+    }
+   ]
+  },
+  "02EA1714": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00712699"
+    }
+   ]
+  },
+  "02EA171C": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00712A5C"
+    }
+   ]
+  },
+  "02EA2408": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00739996"
+    }
+   ]
+  },
+  "02EA2418": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "007399CD"
+    }
+   ]
+  },
+  "02EA2428": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00739A04"
+    }
+   ]
+  },
+  "02EA2438": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00739A43"
+    }
+   ]
+  },
+  "02EA2448": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0073C65C"
+    }
+   ]
+  },
+  "02EA2458": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0073C699"
+    }
+   ]
+  },
+  "02EA2468": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0073C6D5"
+    }
+   ]
+  },
+  "02EA2478": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0073C711"
+    }
+   ]
+  },
+  "02EA2490": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "007494D1"
+    }
+   ]
+  },
+  "02EA3CA0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0074BEB1"
+    }
+   ]
+  },
+  "02EA3D20": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0075B321"
+    }
+   ]
+  },
+  "02EA3FF0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "00764400"
+    }
+   ]
+  },
+  "02EA4008": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0076443A"
+    }
+   ]
+  },
+  "02EA4020": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "007639A6"
+    }
+   ]
+  },
+  "02EA4048": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0077220D"
+    }
+   ]
+  },
+  "02EA4060": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0077785A"
+    }
+   ]
+  },
+  "02EACD50": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "LoadLibraryA"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "LoadLibraryA"
+     ],
+     "indirect": 0,
+     "site": "0079E7CD"
+    }
+   ]
+  },
+  "02EACD60": {
+   "class": "NOTHROW-CLOSED",
+   "sites": [
+    {
+     "calls": [
+      "GetProcAddress",
+      "GetProcAddress",
+      "GetProcAddress"
+     ],
+     "class": "NOTHROW-CLOSED",
+     "imports_reached": [
+      "GetProcAddress"
+     ],
+     "indirect": 0,
+     "site": "0079E80B"
+    }
+   ]
+  },
+  "02EACD90": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CA9A"
+    }
+   ]
+  },
+  "02EACDB0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CB9A"
+    }
+   ]
+  },
+  "02EACDE8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079C77A"
+    }
+   ]
+  },
+  "02EACE00": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CB1A"
+    }
+   ]
+  },
+  "02EACE18": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CD2A"
+    }
+   ]
+  },
+  "02EACE70": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CE5A"
+    }
+   ]
+  },
+  "02EACE88": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CC2A"
+    }
+   ]
+  },
+  "02EACEA0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079CCAA"
+    }
+   ]
+  },
+  "02EACED8": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079C7FA"
+    }
+   ]
+  },
+  "02EACEF0": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079C98A"
+    }
+   ]
+  },
+  "02EACF08": {
+   "class": "NOCALL",
+   "sites": [
+    {
+     "calls": [],
+     "class": "NOCALL",
+     "imports_reached": [],
+     "indirect": 0,
+     "site": "0079C87A"
+    }
+   ]
+  }
+ },
+ "guards_whose_only_wait_is_a_nested_magic_static": [
+  "02CB6158",
+  "02CED098",
+  "02CED0B8",
+  "02CF9630",
+  "02CF9808",
+  "02CF9828"
+ ],
+ "live_game": false,
+ "no_funclet_by_class": {
+  "NOCALL": 103,
+  "NOTHROW-CLOSED": 33
+ },
+ "ok": true
+}

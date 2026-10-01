@@ -1,0 +1,185 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4517,
+      "sha256": "b45579adb4f37c52769e2fd8d613b971a735b01ccf7a15ce822f17e69559d536"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4058,
+      "sha256": "b1430bf97b87cb01a1d28c01ad918f133057992c6202e48d6f86c741b2e728b7"
+    },
+    {
+      "path": "checker-preparation/check-before.py",
+      "bytes": 3251,
+      "sha256": "805aa90f41e2d2dbdd865214a01827bc7fc51896d094fa65e0b70394e5072d47"
+    },
+    {
+      "path": "checker-preparation/failure.json",
+      "bytes": 382,
+      "sha256": "0b8dbf4268f4e0b0d32d85b688dc758bedad079f8a0e7f118b031bb76805d311"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2365,
+      "sha256": "cc284833c52539535ae25ad545a237ae1df6c18adf261d251646079101e95920"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 1141,
+      "sha256": "c2c6a6f760b49cbbcfe6f60568d97c9f19d0ed6a4ccdb74473ddba60cc9f3927"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2466,
+      "sha256": "750256d7967c6122cdc8a43e898f7a8f6269df48a4e926e277aba8926c819c80"
+    },
+    {
+      "path": "reducer-controls/incomplete-good-cases/raw.json",
+      "bytes": 22900,
+      "sha256": "b4dd4055101e902471275ea97f35dc189db684d7163f3475a7b2a6686777671a"
+    },
+    {
+      "path": "reducer-controls/incomplete-good-cases-receipt.json",
+      "bytes": 1223,
+      "sha256": "9bdd08ba7c8f7cd3581a41d488fb803da8523b0247a592bcf0bb2233468bd723"
+    },
+    {
+      "path": "reducer-controls/missing-null-result/raw.json",
+      "bytes": 22856,
+      "sha256": "f1302dfdb58409d2e51b074011dd1562a652a6fcdb380b7b054f06ded4b2b0ae"
+    },
+    {
+      "path": "reducer-controls/missing-null-result/thirty-ready-view/receipt.json",
+      "bytes": 2346,
+      "sha256": "79033753ab22717b9c6989a1e95f5bc251a87231d6feea7acda7b620c16a895c"
+    },
+    {
+      "path": "reducer-controls/missing-null-result-receipt.json",
+      "bytes": 1230,
+      "sha256": "eff924ea436911025713932486964ad4e46187f2945da05a07cfdf6a739185b3"
+    },
+    {
+      "path": "reducer-controls/nonzero-good-json/raw.json",
+      "bytes": 22899,
+      "sha256": "8d43d4bb397be06dec6cbbd53664241457af190af986948eb3010d6379613e6c"
+    },
+    {
+      "path": "reducer-controls/nonzero-good-json/thirty-ready-view/receipt.json",
+      "bytes": 2385,
+      "sha256": "2aac79f91c79917cc63f8dc99f93913b9c60c8b51cbdc4cc3a30142aa38303a3"
+    },
+    {
+      "path": "reducer-controls/nonzero-good-json-receipt.json",
+      "bytes": 1219,
+      "sha256": "2260ac377bcd1c72d85ccf2b573d1883f9fcedba34723ad29d5197f864f13ba1"
+    },
+    {
+      "path": "reducer-controls/wrong-argv-flag/raw.json",
+      "bytes": 22899,
+      "sha256": "2d15b8fca04e75ed7ef937d5b7b960c4da030a0679454f8e4f08c259bacb70d9"
+    },
+    {
+      "path": "reducer-controls/wrong-argv-flag/thirty-ready-view/receipt.json",
+      "bytes": 2385,
+      "sha256": "93d4aac11cb964d3f389ce915cbd241b213dba55c442823c9961cce745727acd"
+    },
+    {
+      "path": "reducer-controls/wrong-argv-flag-receipt.json",
+      "bytes": 1190,
+      "sha256": "effe7e09270517e1690561734fc83bad7461c865d70f10050666f419992f87db"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 5263,
+      "sha256": "f2cb7438f37c7da5b060c9042b8388abb78d8d52cee330b4e8749176826afc61"
+    },
+    {
+      "path": "reducer-controls.py",
+      "bytes": 1605,
+      "sha256": "052bb4cb8a7fcaee51eb1554aa5dad5b79fe2a8ceba2a31c211d3f37d53841ef"
+    },
+    {
+      "path": "result.json",
+      "bytes": 469,
+      "sha256": "81752848557a55366a2035858885cce2faa78bf6d20aac09a1e514496bcc9d9d"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 22899,
+      "sha256": "b16f286e4f4a6b6365627906a3fbc2c3749b8596b4e2ad502b4fefb5f2214b20"
+    },
+    {
+      "path": "run-01/retained-manifest.json",
+      "bytes": 48752,
+      "sha256": "adad575fc71e535a696f34ddc3ac5fada1d79b8ff84596bfd39d47c1bb3152f3"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-01/source/Database/Tools/dashboard/requirements.py",
+      "bytes": 32680,
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148"
+    },
+    {
+      "path": "run-01/source/Database/Tools/dashboard/server.py",
+      "bytes": 44211,
+      "sha256": "ab2d162e4dcdece88011146c5aa8949033e042c72dbe40caab356533d08a5f46"
+    },
+    {
+      "path": "run-01/subsystems.tsv",
+      "bytes": 90,
+      "sha256": "07ece088b4d64635867d34cce2d2b4ba06c10b53f19a0ff98b3e336ff672c7ea"
+    },
+    {
+      "path": "run-01/thirty-measure/input.json",
+      "bytes": 5386,
+      "sha256": "769d4cd579d3df3323d74856d5cc51ebe4342d7f922b806b390602b8c3056d03"
+    },
+    {
+      "path": "run-01/thirty-measure/receipt.json",
+      "bytes": 7026,
+      "sha256": "f53fcc6dca16e65d927a1f7e066076f2d8fecaadffde3a32a6a8cbf28efd5db2"
+    },
+    {
+      "path": "run-01/thirty-ready-view/input.json",
+      "bytes": 19076,
+      "sha256": "6f10f1721247677c388088b9b2b482882507272eed2119f583d9456c5fc2ac75"
+    },
+    {
+      "path": "run-01/thirty-ready-view/receipt.json",
+      "bytes": 2385,
+      "sha256": "e63c228253b63f1d9997b31ad5dbf54bc2704654a49a9cd9f98830e26d7154a0"
+    },
+    {
+      "path": "run-01/zero-measure/input.json",
+      "bytes": 5384,
+      "sha256": "ba5989be3a292af73c14154d8899aa010e6b4eea0c34ca4f756965b48058d3e0"
+    },
+    {
+      "path": "run-01/zero-measure/receipt.json",
+      "bytes": 7368,
+      "sha256": "362c578794c33d482bf0abe0d526a1fe671507f86a0a55813128dba038b493db"
+    },
+    {
+      "path": "run-01/zero-ready-view/input.json",
+      "bytes": 19064,
+      "sha256": "5d72c318401287a3644af28f0a3bb315cf75a5375437979ecebde92ba4ba2309"
+    },
+    {
+      "path": "run-01/zero-ready-view/receipt.json",
+      "bytes": 2531,
+      "sha256": "19c30a5a1187a0a8bbd74418b6fb211c7ae7ae02e07bcf676b256ee9689a0214"
+    }
+  ]
+}

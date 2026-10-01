@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "target_source_sha256": "5b92b5cabf25e4ade07b7b2f5c5743c097609bd45a420a1e898ea0da7ae8e8b1",
+  "harness_sha256": "26917b939c601c87dfb00f09616c50d2d25bd14712b5e8e791ef3629ce31bb4c",
+  "baseline": {
+    "unix": 1789105056.7877576,
+    "exit": null,
+    "debugger": false,
+    "beats": 1
+  },
+  "command": [
+    "C:\\Python314\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\capture.py",
+    "--pid",
+    "37008",
+    "--addr",
+    "0x25bbd480001",
+    "--seconds",
+    "2",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\cold\\capture"
+  ],
+  "capture_exit": 0,
+  "post": [
+    {
+      "unix": 1789105059.041344,
+      "exit": null,
+      "debugger": false,
+      "beats": 45
+    },
+    {
+      "unix": 1789105059.3416605,
+      "exit": null,
+      "debugger": false,
+      "beats": 51
+    },
+    {
+      "unix": 1789105059.6422913,
+      "exit": null,
+      "debugger": false,
+      "beats": 57
+    },
+    {
+      "unix": 1789105059.9425,
+      "exit": null,
+      "debugger": false,
+      "beats": 63
+    }
+  ],
+  "hits": 0,
+  "final_exits": [
+    0,
+    1
+  ]
+}

@@ -1,0 +1,168 @@
+EXE sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+== R1 24A680 full body (owner 0024A680 FUN_0024a680, fsize 141)
+   decoded bytes 141, sha256 d9acb85e3fd2e73d0e88365cc0a39d604086e67b706516b442412a1a6432a78d
+   0024A680 4885c9     test                   rcx, rcx
+   0024A683 0f8483000000 je                     0x24a70c
+   0024A689 48895c2408 mov                    qword ptr [rsp + 8], rbx
+   0024A68E 57         push                   rdi
+   0024A68F 4883ec20   sub                    rsp, 0x20
+   0024A693 8bfa       mov                    edi, edx
+   0024A695 488d05e44ee401 lea                    rax, [rip + 0x1e44ee4] -> 0208F580
+   0024A69C 488bd9     mov                    rbx, rcx
+   0024A69F 4533c0     xor                    r8d, r8d
+   0024A6A2 483bc3     cmp                    rax, rbx
+   0024A6A5 741c       je                     0x24a6c3
+   0024A6A7 4883c048   add                    rax, 0x48
+   0024A6AB 483bc3     cmp                    rax, rbx
+   0024A6AE 7410       je                     0x24a6c0
+   0024A6B0 4883c048   add                    rax, 0x48
+   0024A6B4 4183c002   add                    r8d, 2
+   0024A6B8 4183f840   cmp                    r8d, 0x40
+   0024A6BC 7ce4       jl                     0x24a6a2
+   0024A6BE eb03       jmp                    0x24a6c3
+   0024A6C0 41ffc0     inc                    r8d
+   0024A6C3 4183f840   cmp                    r8d, 0x40
+   0024A6C7 7439       je                     0x24a702
+   0024A6C9 e8426ff3ff call                   0x181610
+   0024A6CE 8b4338     mov                    eax, dword ptr [rbx + 0x38]
+   0024A6D1 25003f0000 and                    eax, 0x3f00
+   0024A6D6 3d00140000 cmp                    eax, 0x1400
+   0024A6DB 750e       jne                    0x24a6eb
+   0024A6DD 488b4b10   mov                    rcx, qword ptr [rbx + 0x10]
+   0024A6E1 4885c9     test                   rcx, rcx
+   0024A6E4 7405       je                     0x24a6eb
+   0024A6E6 e805f11100 call                   0x3697f0
+   0024A6EB 85ff       test                   edi, edi
+   0024A6ED 7409       je                     0x24a6f8
+   0024A6EF 488b4b18   mov                    rcx, qword ptr [rbx + 0x18]
+   0024A6F3 e8f8f01100 call                   0x3697f0
+   0024A6F8 836338df   and                    dword ptr [rbx + 0x38], 0xffffffdf
+   0024A6FC ff0d7e60e401 dec                    dword ptr [rip + 0x1e4607e] -> 02090780
+   0024A702 488b5c2430 mov                    rbx, qword ptr [rsp + 0x30]
+   0024A707 4883c420   add                    rsp, 0x20
+   0024A70B 5f         pop                    rdi
+   0024A70C c3         ret                    
+   reads/writes of [reg+0x38] in body: [('0024A6CE', 'mov', 'eax, dword ptr [rbx + 0x38]'), ('0024A6F8', 'and', 'dword ptr [rbx + 0x38], 0xffffffdf')]
+   stores in body: [('0024A689', 'mov', 'qword ptr [rsp + 8], rbx'), ('0024A6F8', 'and', 'dword ptr [rbx + 0x38], 0xffffffdf'), ('0024A6FC', 'dec', 'dword ptr [rip + 0x1e4607e]')]
+== R2 pool arithmetic
+   base + 64*0x48 = 02090780 (counter 02090780) equal=True
+   ticket pool 02090790 - counter = 16 bytes; 12*0x20 = 384 -> ticket pool ends 02090910
+== R3 249580 ticket allocator (fsize 60)
+   00249580 488d050972e401 lea                    rax, [rip + 0x1e47209] -> 02090790
+   00249587 33d2       xor                    edx, edx
+   00249589 0f1f8000000000 nop                    dword ptr [rax]
+   00249590 f60001     test                   byte ptr [rax], 1
+   00249593 740e       je                     0x2495a3
+   00249595 ffc2       inc                    edx
+   00249597 4883c020   add                    rax, 0x20
+   0024959B 83fa0c     cmp                    edx, 0xc
+   0024959E 7cf0       jl                     0x249590
+   002495A0 33c0       xor                    eax, eax
+   002495A2 c3         ret                    
+   002495A3 33d2       xor                    edx, edx
+   002495A5 488910     mov                    qword ptr [rax], rdx
+   002495A8 48895008   mov                    qword ptr [rax + 8], rdx
+   002495AC 48895010   mov                    qword ptr [rax + 0x10], rdx
+   002495B0 48895018   mov                    qword ptr [rax + 0x18], rdx
+   002495B4 830801     or                     dword ptr [rax], 1
+   002495B7 48894808   mov                    qword ptr [rax + 8], rcx
+   002495BB c3         ret                    
+== R4 394070 caller: mode argument and pointer source
+   00394080 83e90f     sub                    ecx, 0xf
+   00394083 745e       je                     0x3940e3
+   00394085 83f902     cmp                    ecx, 2
+   00394088 740d       je                     0x394097
+   0039408A 488bcb     mov                    rcx, rbx
+   0039408D 4883c420   add                    rsp, 0x20
+   00394091 5b         pop                    rbx
+   00394092 e999112300 jmp                    0x5c5230
+   00394097 488b8bc8000000 mov                    rcx, qword ptr [rbx + 0xc8]
+   0039409E ba01000000 mov                    edx, 1
+   003940A3 e8d865ebff call                   0x24a680
+   003940A8 488b8bd0000000 mov                    rcx, qword ptr [rbx + 0xd0]
+   003940AF 4885c9     test                   rcx, rcx
+   raw callers of 24A680: ['291E6C', '2A7A59', '2CC60C', '2CEF56', '2CEF88', '2D797C', '393929', '3940A3', '3C225A', '3C22DF', '3C63B7', '4041E6', '4041F4', '404202', '406AE2', '406EF2', '53EF2D', '56103E', '56105B', '561078', '561095', '5610B2', '5630C3', '563309', '56EFCB', '56F2FE', '575A27']
+== R5 who touches the counter 02090780 and the pool base 0208F580..02090780 (rip + image-base forms)
+   counter rip refs 2:
+      0024A58A                      [0024A4E0 FUN_0024a4e0]
+      0024A6FC                      [0024A680 FUN_0024a680]
+   counter image-base-relative refs 0; raw-only rip 0
+   pool head/base rip refs 9:
+      00249228                      [00249210 FUN_00249210]
+      002494A4                      [002494A0 FUN_002494a0]
+      002494BD                      [002494A0 FUN_002494a0]
+      0024A4E3                      [0024A4E0 FUN_0024a4e0]
+      0024A5A3                      [0024A5A0 FUN_0024a5a0]
+      0024A5F7                      [0024A5F0 FUN_0024a5f0]
+      0024A613                      [0024A610 FUN_0024a610]
+      0024A662                      [0024A660 FUN_0024a660]
+      0024A695                      [0024A680 FUN_0024a680]
+   pool head/base image-base-relative refs 0; raw-only rip 10
+== R6 helpers: 3697F0 entry (NULL handling), 1B1C00, 1B1440 span, 181610 head
+   003697F0 4885c9     test                   rcx, rcx
+   003697F3 7407       je                     0x3697fc
+   003697F5 33d2       xor                    edx, edx
+   003697F7 e964000000 jmp                    0x369860
+   003697FC c3         ret                    
+   1B1C00 fsize 8
+   001B1C00 488b05e1f5dc01 mov                    rax, qword ptr [rip + 0x1dcf5e1] -> 01F811E8
+   001B1C07 c3         ret                    
+   1B1440 fsize 159, decoded 159 bytes, last 001B14DE ret
+   181610 calls: [('00181619', '0x1b1c00')]
+== R7 249210 member source (cross-check with the member-notification route)
+   00249228 488b1d4963e401 mov                    rbx, qword ptr [rip + 0x1e46349] -> 0208F578
+   0024922F 488be9     mov                    rbp, rcx
+   00249232 33c9       xor                    ecx, ecx
+   00249234 4d63f0     movsxd                 r14, r8d
+   00249237 8bc1       mov                    eax, ecx
+   00249239 418bf9     mov                    edi, r9d
+   0024923C 448bfa     mov                    r15d, edx
+   0024923F 90         nop                    
+   00249240 f6432001   test                   byte ptr [rbx + 0x20], 1
+   00249244 7410       je                     0x249256
+   00249246 ffc0       inc                    eax
+   00249248 4883c328   add                    rbx, 0x28
+   0024924C 83f830     cmp                    eax, 0x30
+   0024924F 7cef       jl                     0x249240
+   00249251 488bd9     mov                    rbx, rcx
+   00249254 eb19       jmp                    0x24926f
+   00249256 33c0       xor                    eax, eax
+   00249258 488903     mov                    qword ptr [rbx], rax
+   0024925B 48894308   mov                    qword ptr [rbx + 8], rax
+   0024925F 48894310   mov                    qword ptr [rbx + 0x10], rax
+== R8 the other counter reference, and stores to +0xC8 in 394070
+   0024A581 or       ecx, 0xa0
+   0024A587 mov      dword ptr [rax + 0x38], ecx
+   0024A58A inc      dword ptr [rip + 0x1e461f0]
+   0024A590 ret      
+   394070 fsize 190; operands naming +0xC8: [('00394097', 'mov', 'rcx, qword ptr [rbx + 0xc8]')]
+== R9 retained manifest body hashes vs the shipping EXE bytes (the retirement checker reads no image)
+   003939B0 1173B exe-sha==manifest True
+   00394070  190B exe-sha==manifest True
+   00394460   82B exe-sha==manifest True
+   00393FF0  118B exe-sha==manifest True
+   00394530  164B exe-sha==manifest True
+   00244F50  175B exe-sha==manifest True
+   00245000   31B exe-sha==manifest True
+   002465F0  395B exe-sha==manifest True
+   00244960   12B exe-sha==manifest True
+   00249580   60B exe-sha==manifest True
+   00249410  133B exe-sha==manifest True
+   0024A680  141B exe-sha==manifest True
+   003697F0   13B exe-sha==manifest True
+   003678F0   79B exe-sha==manifest True
+   00228480   13B exe-sha==manifest True
+   002E1C20   32B exe-sha==manifest True
+   002E1CA0   34B exe-sha==manifest True
+   005C5230    3B exe-sha==manifest True
+   00808C40   33B exe-sha==manifest True
+   001EDDA0   27B exe-sha==manifest True
+   00314960    7B exe-sha==manifest True
+   00861EC0    6B exe-sha==manifest True
+   002493D0   57B exe-sha==manifest True
+   00249320   43B exe-sha==manifest True
+   00248220  190B exe-sha==manifest True
+   00369860 1009B exe-sha==manifest True
+   00181610   30B exe-sha==manifest True
+   002497B0   45B exe-sha==manifest True
+   003946B0   78B exe-sha==manifest True

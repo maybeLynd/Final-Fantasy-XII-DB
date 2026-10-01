@@ -1,0 +1,7 @@
+{
+  "stage": "Preparation import before image/code read/raw/result",
+  "cause": "Own inspect.py shadowed Python standard-library inspect; Capstone imported it and Unicorn requested missing inspect.getfile",
+  "affected_conclusions": [],
+  "correction": "Retain inert original source, rename prepare-source.py; capture/default assert actual inspect module origin/getfile before reader",
+  "limits": "No original/guest/native/live execution occurred in failed preparation"
+}

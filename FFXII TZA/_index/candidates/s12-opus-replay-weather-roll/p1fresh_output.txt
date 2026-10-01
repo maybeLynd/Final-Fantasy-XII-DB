@@ -1,0 +1,10 @@
+roll_matches_the_contract_model    PASS  60 rolls (10 persisted-slot / probability settings x 6, the MT advancing throughout): the slot 0025ACA0 hands the apply equals section 12's roll / resolve model driven by an independent MT19937 seeded like the shipped one (4537)
+override_and_unloaded_script       PASS  a positive debug override (+0xAAC) replaces persisted+1 as the start slot; with the script not loaded every probability reads 33 (0x21)
+ok
+P1_non_primary_returns_at_once                           PASS
+P1_latched_skips_the_body                                PASS
+P2_latched_still_notifies_0B_then_0C                     PASS
+P1_fresh_runs_the_body_roll_then_apply                   PASS
+ALL PASS fresh completed: False stop: ['0040AAD0'] 40AAD0
+P1_fresh_arm_sets_the_bit_itself_and_notifies      PASS
+ALL PASS ['roll 0025ACA0', 'apply 0026D910', 'presentation 0040AAD0', 'set bit 002621A4', 'latched tail 002621A8', 'notify 003601C0', 'notify 003601C0']

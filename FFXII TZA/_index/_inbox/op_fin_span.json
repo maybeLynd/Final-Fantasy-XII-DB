@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-SPAN-LEAD-DISMISSED",
+ "result_refs": ["commit:f0ab296b9"],
+ "note": "published. Four of check_span_access's highest-ranked spans walked to their base registers and all four dismissed against the type's own census: ImageBackedStateBlock +0x386C (Bullet + MSVC init stubs), FrameMarkerSingleton +0x2C38 (BattleMenu_UpdateCommandSelectionAndDispatch), SavePayload +0xC818 (four operands, two of them 32-bit lea arithmetic), BattleUnit +0x0EB4 (LibVPX VP8 decoder). Each dismissal recorded on its row so nobody re-walks them. Two precision issues routed to SWE2-AUDIT-SPEC rather than patched. One genuinely new undeclared game-side object found - via a dismissal, not a hit - and filed as OPUS-LEAD-BATTLE-MENU-OBJECT with its entry point. Also measured: the ctor/dtor frontier is closed at 105/105/105 for non-Phyre types; my carried 'dtor 106/113' was stale."
+}

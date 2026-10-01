@@ -1,0 +1,148 @@
+002ABF70  push      rbx
+002ABF72  sub       rsp, 0x20
+002ABF76  mov       rbx, rcx
+002ABF79  mov       ecx, dword ptr [rcx + 0xb0]
+002ABF7F  movzx     eax, cl
+002ABF82  cmp       eax, 7
+002ABF85  ja        0x2ac1ab
+002ABF8B  lea       r8, [rip - 0x18bf92]   ; -> 00120000 (virtual tail / unmapped)
+002ABF92  mov       edx, dword ptr [r8 + rax*4 + 0x18c1b4]
+002ABF9A  add       rdx, r8
+002ABF9D  jmp       rdx
+002ABF9F  movzx     eax, word ptr [rbx + 0x88]
+002ABFA6  test      ax, ax
+002ABFA9  je        0x2ac1ab
+002ABFAF  sub       ax, 1
+002ABFB3  mov       word ptr [rbx + 0x88], ax
+002ABFBA  jne       0x2abfca
+002ABFBC  mov       byte ptr [rbx + 0x9b], 0x1e
+002ABFC3  mov       byte ptr [rbx + 0xb0], 0
+002ABFCA  movzx     ecx, word ptr [rbx + 0x90]
+002ABFD1  cmp       cx, word ptr [rbx + 0x8c]
+002ABFD8  jge       0x2ac1ab
+002ABFDE  movsx     eax, byte ptr [rbx + 0xa0]
+002ABFE5  add       ax, cx
+002ABFE8  mov       word ptr [rbx + 0x92], cx
+002ABFEF  mov       word ptr [rbx + 0x90], ax
+002ABFF6  add       rsp, 0x20
+002ABFFA  pop       rbx
+002ABFFB  ret       
+002ABFFC  movzx     eax, byte ptr [rbx + 0x9c]
+002AC003  add       byte ptr [rbx + 0x9b], al
+002AC009  cmp       byte ptr [rbx + 0x9b], 0x1e
+002AC010  jl        0x2ac1ab
+002AC016  movzx     ecx, word ptr [rbx + 0x90]
+002AC01D  mov       byte ptr [rbx + 0x9b], 0
+002AC024  cmp       cx, word ptr [rbx + 0x8c]
+002AC02B  jge       0x2ac1ab
+002AC031  movsx     eax, byte ptr [rbx + 0xa0]
+002AC038  add       ax, cx
+002AC03B  mov       word ptr [rbx + 0x92], cx
+002AC042  mov       word ptr [rbx + 0x90], ax
+002AC049  add       rsp, 0x20
+002AC04D  pop       rbx
+002AC04E  ret       
+002AC04F  bt        ecx, 0x16
+002AC053  jae       0x2ac05b
+002AC055  xor       eax, eax
+002AC057  mov       word ptr [rbx + 0x5a], ax
+002AC05B  movzx     eax, word ptr [rbx + 0x5a]
+002AC05F  test      ax, ax
+002AC062  jle       0x2ac06b
+002AC064  dec       ax
+002AC067  mov       word ptr [rbx + 0x5a], ax
+002AC06B  movzx     eax, byte ptr [rbx + 0x9c]
+002AC072  add       byte ptr [rbx + 0x9b], al
+002AC078  cmp       al, 0x1e
+002AC07A  jne       0x2ac0dc
+002AC07C  cmp       byte ptr [rbx + 0xa0], 1
+002AC083  jg        0x2ac08f
+002AC085  call      0x248f20
+002AC08A  cmp       eax, 1
+002AC08D  jne       0x2ac0dc
+002AC08F  movzx     eax, word ptr [rbx + 0x8c]
+002AC096  mov       rcx, rbx
+002AC099  mov       word ptr [rbx + 0x8e], ax
+002AC0A0  mov       byte ptr [rbx + 0x9b], 0
+002AC0A7  call      0x2abb20
+002AC0AC  movzx     eax, word ptr [rbx + 0x8c]
+002AC0B3  mov       ecx, 0x7d00
+002AC0B8  mov       word ptr [rbx + 0x90], ax
+002AC0BF  mov       byte ptr [rbx + 0x9d], 0
+002AC0C6  cmp       ax, cx
+002AC0C9  jle       0x2ac1ab
+002AC0CF  mov       word ptr [rbx + 0x8c], cx
+002AC0D6  add       rsp, 0x20
+002AC0DA  pop       rbx
+002AC0DB  ret       
+002AC0DC  cmp       byte ptr [rbx + 0x9b], 0x1e
+002AC0E3  jl        0x2ac1ab
+002AC0E9  movzx     eax, word ptr [rbx + 0x8c]
+002AC0F0  movzx     ecx, byte ptr [rbx + 0x9d]
+002AC0F7  mov       word ptr [rbx + 0x8e], ax
+002AC0FE  movzx     eax, byte ptr [rbx + 0x9e]
+002AC105  mov       byte ptr [rbx + 0x9b], 0
+002AC10C  cmp       cl, al
+002AC10E  jle       0x2ac11e
+002AC110  sub       cl, byte ptr [rbx + 0xa0]
+002AC116  mov       byte ptr [rbx + 0x9d], cl
+002AC11C  jmp       0x2ac12f
+002AC11E  jge       0x2ac12f
+002AC120  movzx     eax, byte ptr [rbx + 0xa0]
+002AC127  add       al, cl
+002AC129  mov       byte ptr [rbx + 0x9d], al
+002AC12F  movsx     ecx, word ptr [rbx + 0x8c]
+002AC136  movsx     eax, byte ptr [rbx + 0x9d]
+002AC13D  movsx     edx, word ptr [rbx + 0x90]
+002AC144  sub       ecx, eax
+002AC146  cmp       edx, ecx
+002AC148  jg        0x2ac162
+002AC14A  movsx     eax, byte ptr [rbx + 0xa0]
+002AC151  add       ax, dx
+002AC154  mov       word ptr [rbx + 0x92], dx
+002AC15B  mov       word ptr [rbx + 0x90], ax
+002AC162  movsx     eax, byte ptr [rbx + 0xa0]
+002AC169  mov       ecx, 0x7d00
+002AC16E  add       word ptr [rbx + 0x8c], ax
+002AC175  cmp       word ptr [rbx + 0x8c], cx
+002AC17C  jle       0x2ac1ab
+002AC17E  mov       word ptr [rbx + 0x8c], cx
+002AC185  add       rsp, 0x20
+002AC189  pop       rbx
+002AC18A  ret       
+002AC18B  movzx     eax, word ptr [rbx + 0x88]
+002AC192  test      ax, ax
+002AC195  je        0x2ac1ab
+002AC197  sub       ax, 1
+002AC19B  mov       word ptr [rbx + 0x88], ax
+002AC1A2  jne       0x2ac1ab
+002AC1A4  mov       byte ptr [rbx + 0xb0], 0
+002AC1AB  add       rsp, 0x20
+002AC1AF  pop       rbx
+002AC1B0  ret       
+002AC1B1  nop       dword ptr [rax]
+002AC1B4  imul      eax, eax, 0x18
+002AC1B7  add       byte ptr [rbx - 0x40], ch
+002AC1BA  sbb       byte ptr [rax], al
+002AC1BC  rcr       byte ptr [r8], 0
+002AC1C0  lahf      
+002AC1C1  mov       edi, 0xc06b0018
+002AC1C6  sbb       byte ptr [rax], al
+002AC1C8  cld       
+002AC1C9  mov       edi, 0xc1ab0018
+002AC1CE  sbb       byte ptr [rax], al
+002AC1D0  mov       eax, ecx
+002AC1D2  sbb       byte ptr [rax], al
+002AC1D4  int3      
+002AC1D5  int3      
+002AC1D6  int3      
+002AC1D7  int3      
+002AC1D8  int3      
+002AC1D9  int3      
+002AC1DA  int3      
+002AC1DB  int3      
+002AC1DC  int3      
+002AC1DD  int3      
+002AC1DE  int3      
+002AC1DF  int3      
+---

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-logical-coordinate-domain\check.py", line 22, in <module>
+    assert not (raw_end and not decoded.endswith('\\')) or not cont, 'CP932 trailing5C character must not be classified as ASCII continuation'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: CP932 trailing5C character must not be classified as ASCII continuation

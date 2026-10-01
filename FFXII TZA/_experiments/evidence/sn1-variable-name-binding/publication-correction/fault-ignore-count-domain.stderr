@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-variable-name-binding\check.py", line 56, in <module>
+    if '--fault-ignore-count-domain' in sys.argv:assert not rejected,'Count-domain defect accepted'
+                                                        ^^^^^^^^^^^^
+AssertionError: Count-domain defect accepted

@@ -1,0 +1,45 @@
+== 0034ECF0
+  0034ECF0 push rbx
+  0034ECF2 sub rsp, 0x20
+  0034ECF6 mov rcx, r9
+  0034ECF9 mov rbx, rdx
+  0034ECFC call 0x267e10
+  0034ED01 movzx edx, byte ptr [rbx + 0x15]
+  0034ED05 mov ecx, eax
+  0034ED07 add rsp, 0x20
+  0034ED0B pop rbx
+  0034ED0C jmp 0x360710
+== 00360710 head
+  00360710 mov qword ptr [rsp + 0x18], rbp
+  00360715 mov qword ptr [rsp + 0x20], rsi
+  0036071A push r14
+  0036071C sub rsp, 0x20
+  00360720 xor ebp, ebp
+  00360722 movsxd rsi, edx
+  00360725 movsxd r14, ecx
+  00360728 test edx, edx
+  0036072A jne 0x36073f
+  0036072C xor eax, eax
+  0036072E mov rbp, qword ptr [rsp + 0x40]
+  00360733 mov rsi, qword ptr [rsp + 0x48]
+  00360738 add rsp, 0x20
+  0036073C pop r14
+  0036073E ret 
+  0036073F mov qword ptr [rsp + 0x38], rdi
+  00360744 lea rax, [rip + 0x1f6afe5]
+  0036074B lea rdi, [r14 + rsi*8]
+  0036074F mov ecx, esi
+  00360751 shl rdi, 4
+  00360755 add rdi, rax
+  00360758 call 0x267330
+  0036075D test eax, eax
+  0036075F je 0x360768
+  00360761 xor eax, eax
+  00360763 jmp 0x360862
+  00360768 cmp dword ptr [rdi + 0xc], ebp
+  0036076B je 0x360860
+== 00266550..00266630 (rcx/manager flow and the +0x15 store)
+  00266561 mov r14, rcx
+  00266603 mov qword ptr [rbx + 0x28], r13
+  00266616 movzx eax, byte ptr [r14 + 0x28]
+  00266624 mov byte ptr [rbx + 0x15], al

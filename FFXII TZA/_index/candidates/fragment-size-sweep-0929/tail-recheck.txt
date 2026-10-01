@@ -1,0 +1,19 @@
+tails 270, bytes 16361, instructions decoded 2753
+002FAD40: none in the tails
+00315390: none in the tails
+002F7EC0: none in the tails
+003594B0: none in the tails
+00358BB0: none in the tails
+003272A0: none in the tails
+002370C0: none in the tails
+00237DF0: none in the tails
+00329CC0: none in the tails
+003266C0: none in the tails
+022C7FE0: none in the tails
+022C7FE4: none in the tails
+022C7FE8: none in the tails
+022C7FF8: none in the tails
+0034ED30: none in the tails
+002E4380: none in the tails
+0031B9F0: none in the tails
+00322C50: none in the tails

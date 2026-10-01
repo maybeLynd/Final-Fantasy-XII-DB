@@ -1,0 +1,29 @@
+== 003DEB5A lea r15, [rip + 0x277b0bf]   base 02B59C20
+   R 003DEB70 cmp dword ptr [r15], 0   -> 02B59C20
+   C 003DEBA5 call 0x2dee90  (base reg r15 live? False)
+   C 003DEBBA call 0x3697f0  (base reg r15 live? False)
+   W 003DEBCA and dword ptr [r15], eax   -> 02B59C20
+== 003DEB61 lea rax, [rip + 0x277b0cc]   base 02B59C34
+   C 003DEBA5 call 0x2dee90  (base reg rax live? False)
+   C 003DEBBA call 0x3697f0  (base reg rax live? False)
+== 003DEC48 lea rax, [rip + 0x277afe5]   base 02B59C34
+== 003DEDBA lea rdx, [rip + 0x277ae5f]   base 02B59C20
+== 003DEE37 lea rsi, [rip + 0x277ade2]   base 02B59C20
+   C 003DEE9F call 0x2dee90  (base reg rsi live? False)
+== 003DEF4C lea rsi, [rip + 0x277accd]   base 02B59C20
+== 003DF004 lea rcx, [rip + 0x277ac15]   base 02B59C20
+== 003DF412 lea rcx, [rip + 0x277a807]   base 02B59C20
+== 003DF81B lea rax, [rip + 0x277a4ba]   base 02B59CDC
+   R 003DF829 nop dword ptr [rax]   -> 02B59CDC
+   R 003DF830 mov ebp, dword ptr [rax]   -> 02B59CDC
+   C 003DF84B call 0x29cab0  (base reg rax live? False)
+== 003DF822 lea rdx, [rip + 0x277a497]   base 02B59CC0
+   C 003DF84B call 0x29cab0  (base reg rdx live? True)
+== 003DF8F0 lea rcx, [rip + 0x277a429]   base 02B59D20
+== 003DFA5F lea rbx, [rip + 0x277a2e2]   base 02B59D48
+   R 003DFA70 mov rcx, qword ptr [rbx]   -> 02B59D48
+   C 003DFA78 call 0x331880  (base reg rbx live? False)
+   W 003DFA7D mov qword ptr [rbx], rsi   -> 02B59D48
+   C 003DFA96 call 0x331880  (base reg rbx live? False)
+== 003DFD03 lea r9, [rip + 0x277a03e]   base 02B59D48
+== 003DFE63 lea rcx, [rip + 0x2779ede]   base 02B59D48

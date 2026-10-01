@@ -1,0 +1,67 @@
+PART 1 raw call sites per entry (E8/E9/jcc), stored pointers:
+   0036A100 raw 110 ({'call': 110})  thunk jmps excluded 0  real 110  dir64 []  rva32-non-pdata []
+   0036A190 raw 81 ({'call': 81})  thunk jmps excluded 0  real 81  dir64 []  rva32-non-pdata []
+   0036A1A0 raw 2 ({'jmp': 2})  thunk jmps excluded 2  real 0  dir64 []  rva32-non-pdata []
+   0036A230 raw 47 ({'call': 47})  thunk jmps excluded 0  real 47  dir64 []  rva32-non-pdata []
+   0036B160 raw 13 ({'call': 13})  thunk jmps excluded 0  real 13  dir64 []  rva32-non-pdata []
+   0036CAD0 raw 2 ({'call': 2})  thunk jmps excluded 0  real 2  dir64 []  rva32-non-pdata []
+   real allocation call sites: 253
+PART 1b package TSV rows 206; rows that are thunk jmps, not callers: ['0036A195', '0036A232']; real sites missing from the TSV: 49
+   missing by entry: {'0036A230': 47, '0036CAD0': 2}
+PART 3 package classify re-implemented: agrees with the TSV on every TSV row: True
+PART 3 sites whose package class was decided by a suspected defect: {'dJ': 4, 'dK': 3, 'dL': 5, 'dN': 6, 'dS': 3}
+   dJ: 002492C5:RETURNED 003AB8DC:RETURNED 003EA03C:RETURNED 005043A0:RETURNED
+   dK: 0025623B:DEREF 00502DB9:DEREF 005033B1:DEREF
+   dL: 0024B290:DEREF 0024B3C0:DEREF 0024F28C:DEREF 005033B1:DEREF 005033C4:DEREF
+   dN: 002562FE:DEREF 00256351:DEREF 0032E80E:DEREF 00502CF8:DEREF 00502E33:DEREF 00503375:DEREF
+   dS: 00259E27:STORED 00360CDB:STORED 00379EBC:STORED
+PART 2 my classes over all 253 real sites: {'DEREF': 32, 'PASSED': 63, 'RETURNED': 10, 'STORED': 48, 'TESTED': 98, 'UNCLEAR': 2}
+   0036A100 {'DEREF': 30, 'PASSED': 36, 'RETURNED': 7, 'STORED': 32, 'TESTED': 5}
+   0036A190 {'DEREF': 2, 'PASSED': 25, 'RETURNED': 1, 'STORED': 9, 'TESTED': 42, 'UNCLEAR': 2}
+   0036A230 {'TESTED': 47}
+   0036B160 {'PASSED': 2, 'RETURNED': 1, 'STORED': 6, 'TESTED': 4}
+   0036CAD0 {'RETURNED': 1, 'STORED': 1}
+PART 2 on the 204 sites common to both: package -> mine transitions (changed only):
+   DEREF     -> PASSED    1
+   DEREF     -> STORED    3
+   PASSED    -> DEREF     14
+   RETURNED  -> STORED    2
+   RETURNED  -> TESTED    1
+   STORED    -> DEREF     5
+   STORED    -> PASSED    3
+   UNCLEAR   -> STORED    1
+   unchanged: 174
+PART 2 changed sites:
+   002492C5 RETURNED -> STORED  (package defects: dJ)
+   0025623B DEREF -> STORED  (package defects: dK)
+   0037DAE8 STORED -> DEREF  (package defects: -)
+   003A9F7D PASSED -> DEREF  (package defects: -)
+   003A9FA7 PASSED -> DEREF  (package defects: -)
+   003A9FD1 PASSED -> DEREF  (package defects: -)
+   003A9FFB PASSED -> DEREF  (package defects: -)
+   003AA025 PASSED -> DEREF  (package defects: -)
+   003AA04F PASSED -> DEREF  (package defects: -)
+   003AA079 PASSED -> DEREF  (package defects: -)
+   003AA0A0 PASSED -> DEREF  (package defects: -)
+   003AA0C7 PASSED -> DEREF  (package defects: -)
+   003AA4FD PASSED -> DEREF  (package defects: -)
+   003AA527 PASSED -> DEREF  (package defects: -)
+   003AA551 PASSED -> DEREF  (package defects: -)
+   003AA578 PASSED -> DEREF  (package defects: -)
+   003AA59F PASSED -> DEREF  (package defects: -)
+   00502D94 STORED -> DEREF  (package defects: -)
+   00502E0E STORED -> DEREF  (package defects: -)
+   0050332C STORED -> DEREF  (package defects: -)
+   005033B1 DEREF -> STORED  (package defects: dK,dL)
+   005033C4 DEREF -> STORED  (package defects: dL)
+   005043A0 RETURNED -> STORED  (package defects: dJ)
+   00259E27 STORED -> PASSED  (package defects: dS)
+   0032E80E DEREF -> PASSED  (package defects: dN)
+   003332D1 STORED -> DEREF  (package defects: -)
+   00360CDB STORED -> PASSED  (package defects: dS)
+   00379EBC STORED -> PASSED  (package defects: dS)
+   003DF4BB UNCLEAR -> STORED  (package defects: -)
+   003EA03C RETURNED -> TESTED  (package defects: dJ)
+PART 2 my classes on the common sites: {'DEREF': 32, 'PASSED': 63, 'RETURNED': 9, 'STORED': 47, 'TESTED': 51, 'UNCLEAR': 2}
+PART 2 my classes on the sites the package missed: {'RETURNED': 1, 'STORED': 1, 'TESTED': 47}
+controls: 002E678F -> TESTED (package TESTED); 0024A2B9 -> DEREF (package DEREF)

@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-title-root-retirement.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\title-root-retirement-source-01.json"
+  ],
+  "exit": 1,
+  "driver_sha256": "906b77072e687257086e0a95d3877de95f66c847a08e450ba9c5776f71f2cfde"
+}

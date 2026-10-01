@@ -1,0 +1,67 @@
+== context of 00376748 in 00376470 FUN_00376470
+  0037672B call 0x376ac0
+  00376730 lea rcx, [rbp - 0x80]
+  00376734 call 0x203170
+  00376739 movss xmm0, dword ptr [rbx + 0x70]
+  0037673E lea r8, [rsp + 0x40]
+  00376743 movss xmm2, dword ptr [rbx + 0x78]
+  00376748 lea rdx, [rip + 0x27783d1]
+  0037674F movss xmm1, dword ptr [rbx + 0x7c]
+  00376754 lea rcx, [rsp + 0x40]
+  00376759 mov eax, dword ptr [rbx - 0xc]
+  0037675C xorps xmm3, xmm3
+  0037675F movss dword ptr [rsp + 0x40], xmm0
+  00376765 movss dword ptr [rsp + 0x50], xmm0
+== context of 0039CE25 in 0039CDC0 FUN_0039cdc0
+  0039CE04 sub rsi, rdi
+  0039CE07 movaps xmmword ptr [rsp + 0x20], xmm7
+  0039CE0C lea rbx, [rdi + 4]
+  0039CE10 movsd xmm7, qword ptr [rip + 0x578430]
+  0039CE18 nop dword ptr [rax + rax]
+  0039CE20 movzx eax, word ptr [rsi + rbx - 4]
+  0039CE25 lea rdx, [rip + 0x2751cf4]
+  0039CE2C mov r8, rdi
+  0039CE2F mov rcx, rdi
+  0039CE32 movd xmm0, eax
+  0039CE36 cvtdq2pd xmm0, xmm0
+  0039CE3A mulsd xmm0, xmm7
+  0039CE3E cvtpd2ps xmm0, xmm0
+== context of 0039CF67 in 0039CF10 FUN_0039cf10
+  0039CF4E mov qword ptr [rsp + 0x40], rbx
+  0039CF53 sub rsi, rdi
+  0039CF56 lea rbx, [rdi + 0xc]
+  0039CF5A nop word ptr [rax + rax]
+  0039CF60 lea r8, [rsi + rdi]
+  0039CF64 mov rcx, rdi
+  0039CF67 lea rdx, [rip + 0x2751bb2]
+  0039CF6E call 0x202b70
+  0039CF73 movss xmm0, dword ptr [rbx - 0xc]
+  0039CF78 add rdi, 0x10
+  0039CF7C divss xmm0, dword ptr [rbx]
+  0039CF80 lea rbx, [rbx + 0x10]
+  0039CF84 movss dword ptr [rbx - 0x1c], xmm0
+== context of 0024E1EE in 0024E180 FUN_0024e180
+  0024E1CB jne 0x24e1e9
+  0024E1CD movss xmm0, dword ptr [rip + 0x6c7343]
+  0024E1D5 movss xmm1, dword ptr [rip + 0x6c733f]
+  0024E1DD movss dword ptr [rsp + 0x20], xmm0
+  0024E1E3 movss dword ptr [rsp + 0x34], xmm1
+  0024E1E9 lea rdx, [rsp + 0x20]
+  0024E1EE lea rcx, [rip + 0x28a092b]
+  0024E1F5 call 0x202d60
+  0024E1FA mov rcx, qword ptr [rsp + 0x60]
+  0024E1FF xor rcx, rsp
+  0024E202 call 0x808c40
+  0024E207 add rsp, 0x78
+  0024E20B ret 
+== 00216720 head
+  00216720 mov rax, rsp
+  00216723 sub rsp, 0xe8
+  0021672A movss xmm1, dword ptr [rdx + 0x1c]
+  0021672F movss xmm0, dword ptr [rdx + 0x3c]
+  00216734 movss xmm4, dword ptr [rdx + 0x28]
+  00216739 movss xmm2, dword ptr [rdx + 0x24]
+  0021673E movaps xmm3, xmm4
+  00216741 mulss xmm3, xmm0
+== RTTI names with PrimitiveRenderer: ['.?AVPrimitiveRenderer@@', '.?AVPrimitiveRendererD3D11@@']
+== DIR64 pointers to 006CAF40: ['00D86990']

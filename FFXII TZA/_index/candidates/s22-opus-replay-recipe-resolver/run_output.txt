@@ -1,0 +1,13 @@
+RW1_table_extent_static        PASS  ids 0..108 point into the image's data; the 110th qword does not
+RW2_RW4_static                 PASS  recipe 25 is two -1-terminated runs; its preview names slots the committed run does not; 25 and 26 differ in three positions
+39 {'preview': [193], 'committed': [], 'ok': True, 'eax': 0, 'slots_called': [], 'flag_after_each': [], 'stopped_at': []}
+74 {'preview': [], 'committed': [152], 'ok': True, 'eax': 0, 'slots_called': [152], 'flag_after_each': [0], 'stopped_at': []}
+90 {'preview': [], 'committed': [198], 'ok': True, 'eax': 0, 'slots_called': [198], 'flag_after_each': [0], 'stopped_at': []}
+5 {'preview': [], 'committed': [3, 111], 'ok': True, 'eax': 0, 'slots_called': [3, 111], 'flag_after_each': [0, 0], 'stopped_at': []}
+6 {'preview': [], 'committed': [3, 4, 61, 90, 91, 112, 180], 'ok': True, 'eax': 0, 'slots_called': [3, 4], 'flag_after_each': [0, 1], 'stopped_at': []}
+2 {'preview': [], 'committed': [20, 30, 32, 40, 181], 'ok': True, 'eax': 0, 'slots_called': [20, 30, 32, 40], 'flag_after_each': [0, 0, 0, 1], 'stopped_at': []}
+4 {'preview': [], 'committed': [60, 90, 91, 110], 'ok': True, 'eax': 0, 'slots_called': [60, 90, 91, 110], 'flag_after_each': [0, 0, 0, 0], 'stopped_at': []}
+25 {'preview': [5, 6, 22, 33, 34, 35, 42], 'committed': [29, 66, 96, 97, 98, 99, 125, 165, 171, 176, 182], 'ok': False, 'eax': 0, 'slots_called': [29], 'flag_after_each': [], 'stopped_at': ['0000001C']}
+RW2_committed_list_only        PASS  each completed case calls exactly its committed list, in order (a prefix when the flag stops it); recipe 39 (preview [193], committed []) calls no step
+loop_early_exit_observed       PASS  observed: when a step leaves [02AEDFB8] = 1 the loop stops before the next slot (003863D7 cmp / je)
+ok allowed 871

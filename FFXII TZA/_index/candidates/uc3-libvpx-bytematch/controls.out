@@ -1,0 +1,14 @@
+C1 0012696A body_bytes  545 -> [('vp8_filter_block1d16_v6_ssse3', 545)] PASS
+C1 00127BB3 body_bytes  922 -> [('vp8_mbloop_filter_horizontal_edge_uv_sse2', 922)] PASS
+C1 00127F4D body_bytes 1113 -> [('vp8_loop_filter_vertical_edge_uv_sse2', 1113)] PASS
+C1 001283A6 body_bytes 1375 -> [('vp8_mbloop_filter_vertical_edge_sse2', 1375)] PASS
+C1 00128905 body_bytes 1382 -> [('vp8_mbloop_filter_vertical_edge_uv_sse2', 1382)] PASS
+C1 001496A0 body_bytes  739 -> [('vp8_post_proc_down_and_across_mb_row_sse2', 739)] PASS
+C1 00149983 body_bytes  587 -> [('vp8_mbpost_proc_down_xmm', 587)] PASS
+C1 00149BCE body_bytes  487 -> [('vp8_mbpost_proc_across_ip_xmm', 487)] PASS
+C1 00149DC0 body_bytes 1738 -> [('vp8_loop_filter_bh_y_sse2', 1738)] PASS
+C1 0014A48A body_bytes 3383 -> [('vp8_loop_filter_bv_y_sse2', 3383)] PASS
+C1 10 of 10 tagged listed bodies identified at their entry with length == body_bytes
+C2 hits inside window 232, outside window (rest of .text, 7739392 B) 0 []
+C3 one-byte-flipped patterns: 0 of 232 still hit (expect 0 except where the routine has a byte-identical twin)
+C4 image .rodata bytes covered by a whole yasm .rodata section: 4520 of 4544

@@ -1,0 +1,39 @@
+{
+ "real": [
+  {
+   "name": "dtor",
+   "va": "0x633390",
+   "end": "0x633584",
+   "size": 500,
+   "sha256": "2e9ba08fb90cf456170fc7042ce1be4bc571c8d88557d8fb46a31cb58211c501"
+  },
+  {
+   "name": "subobj",
+   "va": "0x63d640",
+   "end": "0x63d6ad",
+   "size": 109,
+   "sha256": "9320cceda1e8922b78dc820ce928d3639ee07ddb6dc8f443cda801606f3eea39"
+  },
+  {
+   "name": "tlsctx",
+   "va": "0x6373d0",
+   "end": "0x637433",
+   "size": 99,
+   "sha256": "d601dcc68b87d529d42f24d2bec42228b5a7b1bf5d8c6c896614b50435a4d110"
+  },
+  {
+   "name": "list60",
+   "va": "0x6b6700",
+   "end": "0x6b6747",
+   "size": 71,
+   "sha256": "4f773d1e8a86fdc0679db27c2f585fcfce9413659797da17a635a510c0f684b9"
+  }
+ ],
+ "stubbed": [
+  {
+   "name": "free",
+   "va": "0x584730",
+   "why": "_aligned_free heap boundary; entry-hooked, rcx logged"
+  }
+ ]
+}

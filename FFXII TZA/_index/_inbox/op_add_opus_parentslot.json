@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-PARENT-SLOT-CENSUS-BY-DECLARED-OFFSET",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the eight sub-objects of ManagerSingleton0209BE80, reached through the 295 bodies that load the singleton's publication cell",
+  "scope": "attribute a parent-relative displacement to the child whose declared EMBED window contains it, instead of waiting for the consumer to form a base register; carve what lands in a gap and record what does not, with the control each result earns",
+  "completion": "every one of the eight carries either a carve or a stated negative distinguishing a window the census entered from one it never entered; the S-02 sub-object debt is recomputed under the verdict cell's own predicate; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "argument": "--fault-attribution-implies-name-shift",
+    "returncode": 1,
+    "expected": "Source alignment does not prove shifted"
+  },
+  {
+    "argument": "--fault-current-group-is-variable-binding",
+    "returncode": 1,
+    "expected": "Actual current marker predicate cannot override"
+  }
+]

@@ -1,0 +1,8 @@
+# NativeAdapter.ByteSaveSecondArgResultTailCall2 - EC-7 family C
+# # save arg2 byte->ebx; call member op; forward (result, saved byte) to a
+# # member tail target. Sibling of ByteSaveSecondArgResultTailCall.
+address	targets
+0017F650	001B5FA0,001E9C30
+00181760	001B1C00,001B1FB0
+00181A70	001B1C00,001B24C0
+001E1100	00198790,00198E70

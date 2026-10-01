@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-object-state.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 3,\n  \"extent_status\": [\n    [\n      \"0x2e6300\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      10,\n      null\n    ],\n    [\n      \"0x3e33e0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      21,\n      null\n    ],\n    [\n      \"0x3e3440\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      19,\n      null\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "ddbba9058af8b280092ff4aae52aa278fe3addc7231536a95d1a99153bdf0832"
+}

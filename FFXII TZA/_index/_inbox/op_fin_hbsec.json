@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBSEC-0922",
+ "note": "Published c712f8cfe: hctg sectioning closed — rec.group = section index (0..captionN-1 corpus-exact), +0x18 aux = section-header table, 00576740 = header resolver (caption + n/total unlocked), 005766E0 = group accessor.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

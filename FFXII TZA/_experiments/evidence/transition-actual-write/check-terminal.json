@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\transition-actual-write\\check.py"
+  ],
+  "checker_sha256": "08d2bc80f1224c74032c230c47dd529947c1903ce7d271822889d040166af275",
+  "returncode": 0,
+  "stdout": "{\n  \"verdict\": \"ACCEPT scoped real transition/writer integration and repeated dispatch\",\n  \"first\": \"two exact derived requests committed through original writer\",\n  \"second\": \"same board/journal bytes, no new request\",\n  \"source\": [\n    \"d27e9aff8e43c7921a717476639fadb573eb55bb\",\n    \"bf000cdc96d3ca9ec7fb461d0e066572d6657041\"\n  ],\n  \"limits\": \"Synthetic review declarations, not actual project reviewers/pilot. Child exit/Saved conditions inferred from exact original caller status, not separately captured child stdout. No races/fairness/cancellation/quota/controller/native host or whole A14/A16 acceptance.\"\n}\n",
+  "stderr": "",
+  "terminal": true
+}

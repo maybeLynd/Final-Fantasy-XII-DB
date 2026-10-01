@@ -1,0 +1,52 @@
+{
+  "status": "PASS_ACTUAL_PRIMARY_ADMISSION_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "bfe1f2ec0e8812826cd06c253018ed942e8fa421457574fcf15aba476be7aa4d",
+  "positive_reused": {
+    "path": "bts-primary-admission-result-02.json",
+    "sha256": "b2ac4ead1c536a1d87ed1a52852badd8339fb5eaeb18b6da85993c815bee33a0"
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-primary-admission.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "primary capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "wrong-positive-guard",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-primary-admission.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\wrong-positive-guard\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\wrong-positive-guard"
+      ],
+      "exit": 1,
+      "expected_error": "primary original bytes changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-upstream",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-primary-admission.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\missing-upstream\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\missing-upstream",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-controls-01\\missing-upstream\\absent-upstream"
+      ],
+      "exit": 1,
+      "expected_error": "upstream canonical manifest missing/changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "6da917dbcd49e93bd1b6815fcf38381fafe49d2b9cc18403634e89d83f21657a",
+  "limits": "Producer prerequisites/identity only; not new original-code execution/independent acceptance"
+}

@@ -1,0 +1,15 @@
+files with exact sites: 30  exact sites: 346  TOP sites: 40
+startscene(file_var) calls whose variable other functions also assign, per file (with/without a wait between the nearest same-function assignment and the call):
+  dgl_g0100    other assigning functions 1 | calls: wait-between 0, no-wait 53 | constprop exact 50, TOP 3
+  enw_a0580    other assigning functions 1 | calls: wait-between 0, no-wait 13 | constprop exact 0, TOP 13
+  gil_c0201    other assigning functions 1 | calls: wait-between 0, no-wait 8 | constprop exact 8, TOP 0
+  grm_c0101    other assigning functions 1 | calls: wait-between 0, no-wait 8 | constprop exact 8, TOP 0
+  hne_b0100    other assigning functions 1 | calls: wait-between 0, no-wait 6 | constprop exact 6, TOP 0
+  hne_b0101    other assigning functions 1 | calls: wait-between 0, no-wait 7 | constprop exact 7, TOP 0
+  mrm_c0100    other assigning functions 1 | calls: wait-between 0, no-wait 7 | constprop exact 7, TOP 0
+  mrm_c0101    other assigning functions 1 | calls: wait-between 0, no-wait 7 | constprop exact 7, TOP 0
+  rui_c0100    other assigning functions 1 | calls: wait-between 0, no-wait 4 | constprop exact 4, TOP 0
+  rwf_d0100    other assigning functions 1 | calls: wait-between 0, no-wait 5 | constprop exact 0, TOP 5
+  rwf_d0101    other assigning functions 1 | calls: wait-between 0, no-wait 3 | constprop exact 0, TOP 3
+  rwg_a0181    other assigning functions 1 | calls: wait-between 1, no-wait 1 | constprop exact 0, TOP 2
+exact constprop sites in files whose counter is assigned by more than one function: 97

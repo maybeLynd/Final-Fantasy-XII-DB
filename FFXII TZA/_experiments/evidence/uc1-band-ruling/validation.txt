@@ -1,0 +1,14 @@
+{
+  "method": "A static verified shipping instructions; never original execution or live",
+  "capstone": "5.0.7",
+  "population": {
+    "split": 1,
+    "hold-ambiguous": 4,
+    "admit": 694,
+    "extend-predecessor": 5
+  },
+  "proposed_admit_flow_failures": [
+    "007EE7C0"
+  ]
+}
+PASS seven nonzero flow controls and four cold-tail edges; original byte identity; peer-input membership and extent agreement

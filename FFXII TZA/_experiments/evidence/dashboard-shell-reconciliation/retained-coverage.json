@@ -1,0 +1,75 @@
+[
+  {
+    "package": "Database/FFXII TZA/_experiments/evidence/migration-dashboard-incident",
+    "commit": "51660c616f8fec23c7ae140a721be58cc54c38cc",
+    "manifest_sha256": "92c19aed186bf1eb31d2e530f7b809976714ee5362af06f54e0318f6c6097eb8",
+    "members_verified": 155,
+    "cases": [
+      {
+        "name": "deployed-seven-view-coherence",
+        "passed": true
+      },
+      {
+        "name": "external-input-baseline",
+        "passed": true
+      },
+      {
+        "name": "actual-http-read-only",
+        "passed": true
+      },
+      {
+        "name": "warm-output-tamper-rejected",
+        "passed": true
+      },
+      {
+        "name": "snapshot-tamper-no-fallback",
+        "passed": true
+      },
+      {
+        "name": "stat-preserved-mismatch-detected",
+        "passed": false
+      },
+      {
+        "name": "stat-preserved-tampered-bytes-not-served",
+        "passed": true
+      },
+      {
+        "name": "missing-output-failed-build-preserves-current",
+        "passed": true
+      },
+      {
+        "name": "strict-input-mid-build-rejected",
+        "passed": true
+      },
+      {
+        "name": "volatile-change-coherent-commit",
+        "passed": true
+      },
+      {
+        "name": "unknown-format-unsupported",
+        "passed": true
+      },
+      {
+        "name": "stale-reader-reports-change",
+        "passed": true
+      },
+      {
+        "name": "actual-build-cli-while-board-advances",
+        "passed": true
+      },
+      {
+        "name": "real-scratch-build-seven-views",
+        "passed": true
+      }
+    ],
+    "limit": "Exact prior captured scope; no new experiment credit or currentdeployment acceptance"
+  },
+  {
+    "package": "Database/FFXII TZA/_experiments/evidence/migration-dashboard-cache-r2",
+    "commit": "dcc53dc222912b31d05205e15037b85b38493367",
+    "manifest_sha256": "b83e751e99282084f9caac1a110327b74f1aa0a1ea06b856e2b23bc6b5cc8670",
+    "members_verified": 101,
+    "cases": [],
+    "limit": "Exact prior captured scope; no new experiment credit or currentdeployment acceptance"
+  }
+]

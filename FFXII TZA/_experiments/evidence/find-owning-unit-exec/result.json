@@ -1,0 +1,453 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "null-rec",
+   "trace": "-",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "-",
+   "faults": []
+  },
+  {
+   "name": "count0",
+   "trace": "n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "n",
+   "faults": []
+  },
+  {
+   "name": "count-neg",
+   "trace": "n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "n",
+   "faults": []
+  },
+  {
+   "name": "hit0",
+   "trace": "n g0",
+   "ok": true,
+   "obs": {
+    "ret": 1073741824
+   },
+   "exp_trace": "n g0",
+   "faults": []
+  },
+  {
+   "name": "hit-mid",
+   "trace": "n g0 n g1 n g2",
+   "ok": true,
+   "obs": {
+    "ret": 1073749664
+   },
+   "exp_trace": "n g0 n g1 n g2",
+   "faults": []
+  },
+  {
+   "name": "hit-last",
+   "trace": "n g0 n g1 n g2 n g3",
+   "ok": true,
+   "obs": {
+    "ret": 1073753584
+   },
+   "exp_trace": "n g0 n g1 n g2 n g3",
+   "faults": []
+  },
+  {
+   "name": "miss-all",
+   "trace": "n g0 n g1 n g2 n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "n g0 n g1 n g2 n",
+   "faults": []
+  },
+  {
+   "name": "miss-adjacent",
+   "trace": "n g0 n g1 n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "n g0 n g1 n",
+   "faults": []
+  },
+  {
+   "name": "miss-low32",
+   "trace": "n g0 n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "n g0 n",
+   "faults": []
+  },
+  {
+   "name": "hit-dup-first",
+   "trace": "n g0",
+   "ok": true,
+   "obs": {
+    "ret": 1073741824
+   },
+   "exp_trace": "n g0",
+   "faults": []
+  },
+  {
+   "name": "base-null-c1",
+   "trace": "n g0 n",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "n g0 n",
+   "faults": []
+  },
+  {
+   "name": "base-null-fault",
+   "trace": "n g0 n g1",
+   "ok": true,
+   "obs": {
+    "ret": 3920
+   },
+   "exp_trace": "n g0 n g1",
+   "faults": [
+    [
+     "MEM",
+     "0x15e8",
+     "access=19",
+     "rip=31b892"
+    ],
+    [
+     "EMU",
+     "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+     3258514
+    ]
+   ]
+  },
+  {
+   "name": "getter-neg",
+   "trace": "g-1",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "g-1",
+   "faults": []
+  },
+  {
+   "name": "getter-neg-huge",
+   "trace": "g-2147483648",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "g-2147483648",
+   "faults": []
+  },
+  {
+   "name": "getter-at-count",
+   "trace": "g3",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "g3",
+   "faults": []
+  },
+  {
+   "name": "getter-over",
+   "trace": "g12",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "g12",
+   "faults": []
+  },
+  {
+   "name": "getter-last",
+   "trace": "g3",
+   "ok": true,
+   "obs": {
+    "ret": 1073753584
+   },
+   "exp_trace": "g3",
+   "faults": []
+  },
+  {
+   "name": "getter0-empty",
+   "trace": "g0",
+   "ok": true,
+   "obs": {
+    "ret": 0
+   },
+   "exp_trace": "g0",
+   "faults": []
+  },
+  {
+   "name": "count-read",
+   "trace": "n",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "exp_trace": "n",
+   "faults": []
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-nullrec",
+   "va": "0x31B86C",
+   "killed": true,
+   "divergent": 1,
+   "why": "null-rec jne -> jmp: rcx=0 still scans the pool",
+   "sample": [
+    [
+     "null-rec",
+     "tr=n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-cmpneq",
+   "va": "0x31B899",
+   "killed": true,
+   "divergent": 7,
+   "why": "match je -> jne: first NON-matching unit is returned",
+   "sample": [
+    [
+     "hit0",
+     "tr=n g0 n g1 ret=40000f50"
+    ],
+    [
+     "hit-mid",
+     "tr=n g0 ret=40000000"
+    ],
+    [
+     "hit-last",
+     "tr=n g0 ret=40000000"
+    ]
+   ]
+  },
+  {
+   "name": "m-off698",
+   "va": "0x31B895",
+   "killed": true,
+   "divergent": 4,
+   "why": "match offset 0x698 -> 0x699: compare reads a shifted qword",
+   "sample": [
+    [
+     "hit0",
+     "tr=n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "hit-mid",
+     "tr=n g0 n g1 n g2 n g3 n g4 n ret=0"
+    ],
+    [
+     "hit-last",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-off690",
+   "va": "0x31B895",
+   "killed": true,
+   "divergent": 4,
+   "why": "match offset 0x698 -> 0x690: compare reads the wrong field",
+   "sample": [
+    [
+     "hit0",
+     "tr=n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "hit-mid",
+     "tr=n g0 n g1 n g2 n g3 n g4 n ret=0"
+    ],
+    [
+     "hit-last",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-missret",
+   "va": "0x31B8A6",
+   "killed": true,
+   "divergent": 4,
+   "why": "miss xor eax,eax -> mov eax,ebx: miss returns the count",
+   "sample": [
+    [
+     "miss-all",
+     "tr=n g0 n g1 n g2 n ret=3"
+    ],
+    [
+     "miss-adjacent",
+     "tr=n g0 n g1 n ret=2"
+    ],
+    [
+     "miss-low32",
+     "tr=n g0 n ret=1"
+    ]
+   ]
+  },
+  {
+   "name": "m-looplt",
+   "va": "0x31B8A4",
+   "killed": true,
+   "divergent": 4,
+   "why": "loop jl -> jle: one extra getter call past count-1",
+   "sample": [
+    [
+     "miss-all",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ],
+    [
+     "miss-adjacent",
+     "tr=n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "miss-low32",
+     "tr=n g0 n g1 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-js",
+   "va": "0x236822",
+   "killed": true,
+   "divergent": 8,
+   "why": "getter js -> jns: negative index returns a pre-pool pointer",
+   "sample": [
+    [
+     "hit0",
+     "tr=n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "hit-mid",
+     "tr=n g0 n g1 n g2 n g3 n g4 n ret=0"
+    ],
+    [
+     "hit-last",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-jg",
+   "va": "0x23682E",
+   "killed": true,
+   "divergent": 3,
+   "why": "getter jg -> jge: the last in-range index is refused",
+   "sample": [
+    [
+     "hit-last",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ],
+    [
+     "base-null-fault",
+     "tr=n g0 n g1 n ret=0"
+    ],
+    [
+     "getter-last",
+     "tr=g3 ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-dec",
+   "va": "0x23682A",
+   "killed": true,
+   "divergent": 2,
+   "why": "getter dec eax removed: bound becomes i>count not i>count-1",
+   "sample": [
+    [
+     "getter-at-count",
+     "tr=g3 ret=40002df0"
+    ],
+    [
+     "getter0-empty",
+     "tr=g0 ret=40000000"
+    ]
+   ]
+  },
+  {
+   "name": "m-stride",
+   "va": "0x236836",
+   "killed": true,
+   "divergent": 4,
+   "why": "unit stride 0xF50 -> 0xF40: elements read off-grid",
+   "sample": [
+    [
+     "hit-mid",
+     "tr=n g0 n g1 n g2 n g3 n g4 n ret=0"
+    ],
+    [
+     "hit-last",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ],
+    [
+     "base-null-fault",
+     "tr=n g0 n g1 ret=f40"
+    ]
+   ]
+  },
+  {
+   "name": "m-getbase",
+   "va": "0x23683D",
+   "killed": true,
+   "divergent": 6,
+   "why": "pool base [0x208E688] -> [0x208E690]: decoy pool scanned",
+   "sample": [
+    [
+     "hit0",
+     "tr=n g0 n g1 n g2 n ret=0"
+    ],
+    [
+     "hit-mid",
+     "tr=n g0 n g1 n g2 n g3 n g4 n ret=0"
+    ],
+    [
+     "hit-last",
+     "tr=n g0 n g1 n g2 n g3 n ret=0"
+    ]
+   ]
+  },
+  {
+   "name": "m-countsrc",
+   "va": "0x236852",
+   "killed": true,
+   "divergent": 8,
+   "why": "count [0x208E6A0] -> [0x208E6A4]: decoy count bounds the scan",
+   "sample": [
+    [
+     "count0",
+     "tr=n g0 n ret=0"
+    ],
+    [
+     "count-neg",
+     "tr=n g0 n ret=0"
+    ],
+    [
+     "hit-mid",
+     "tr=n g0 n ret=0"
+    ]
+   ]
+  }
+ ],
+ "bodies_fired": [
+  "0x236820",
+  "0x236850"
+ ]
+}

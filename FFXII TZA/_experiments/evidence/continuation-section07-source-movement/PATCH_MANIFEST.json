@@ -1,0 +1,224 @@
+{
+  "section": "SECTION-07",
+  "date": "2026-09-23",
+  "base": "FFXII TZA(20260922-211246).zip + Updates01-06 in order",
+  "formal_acceptance": "pending",
+  "files": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+      "before_sha256": "30cfb49ce19163659a4575dacb1ffcb13c31fbc9f116b79519fa7f916b7adbb3",
+      "after_sha256": "f5380d60daef4bf424aec6c80ba807be611c81abd880da0345dbd4ff43313f62",
+      "bytes": 64471,
+      "action": "replace"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+      "before_sha256": "b5e7dd0276f45575279825039bbaec5b235de8733f0425c29e60ad8027e5e4fb",
+      "after_sha256": "a62f9cb0f99c34da2d31ddb0eee59631ec3d157925e5c83c5afee48536083582",
+      "bytes": 31127,
+      "action": "replace"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+      "before_sha256": "0832fc9ccd3f8b7825ed3354467579fab49c02a3496194d599968e0aa968f046",
+      "after_sha256": "07b70e378e109302defecad078da857a2cc342f042d35f5bfa11fe6879e72227",
+      "bytes": 10382,
+      "action": "replace"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+      "before_sha256": null,
+      "after_sha256": "7defe542bd9dbb0e378b22fdb05a5f9fbaa6e9967041215bc0c05dbd7a223edb",
+      "bytes": 11249,
+      "action": "add"
+    },
+    {
+      "path": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "before_sha256": "a80af7465c88a465f181613b05aae6c47c692d7bd09f676056f7eed838a77e48",
+      "after_sha256": "636fbcb0416f908ca664ddcd00d98123d22697e04f09f091ac758e6037ef501f",
+      "bytes": 119084,
+      "action": "replace"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/README.md",
+      "before_sha256": null,
+      "after_sha256": "6c179c0dd5d3bb8758eec0e9df393d9d3d1556b52746fc45486faa880bfb5df6",
+      "bytes": 1156,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/REVIEW.md",
+      "before_sha256": null,
+      "after_sha256": "165dc30542bd237ba7167156e00eef35e1d4206bb98aee65106a12b79401a2b8",
+      "bytes": 12153,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/canonical_changes.diff",
+      "before_sha256": null,
+      "after_sha256": "6f25bb658fa2f25eecf7b5058ce10f6781594663d27c94df0c50fe05a643ddfd",
+      "bytes": 91834,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/canonical_preimages.json",
+      "before_sha256": null,
+      "after_sha256": "fb75e41e4815245ea68db1fb0a85876a435e38e106816321b47fe51be90deec8",
+      "bytes": 1108,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/canonical_row_changes.json",
+      "before_sha256": null,
+      "after_sha256": "af3ea73daf5290b8ffc14ddd68b87b0743e47eedaa8ea988d2f265ef38022a49",
+      "bytes": 21868,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/claim_matrix.tsv",
+      "before_sha256": null,
+      "after_sha256": "7cc527ab6f9149add79e5bff0a69a70cfe6b0b416697969025bc99e511146696",
+      "bytes": 1321,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/native_controls.c",
+      "before_sha256": null,
+      "after_sha256": "c24a9fd9e13d166df24c10dd74a9b1209e30e132f6258ee4fead0083e062a5be",
+      "bytes": 25752,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/original_body_manifest.json",
+      "before_sha256": null,
+      "after_sha256": "2866cff20f647359d0491f4cce2d689a11ce259c2599d06deaec96d6209560f7",
+      "bytes": 37652,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/original_disassembly.txt",
+      "before_sha256": null,
+      "after_sha256": "8a974eb536a2dc44df10d26d4d313f1cfb8f609da3f15d2de48cf5943b90978d",
+      "bytes": 393994,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/body_verification.json",
+      "before_sha256": null,
+      "after_sha256": "4fc9b50bb1cd4d451113af788f88ed259c5e7a7aff8a7bd1543094faaea923cc",
+      "bytes": 23401,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/code_mutations.json",
+      "before_sha256": null,
+      "after_sha256": "383795cd9ff0f9d0480d66803f389d84ba34d134faa7694fb235646e4d1ed0d9",
+      "bytes": 80410,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/content_validation.json",
+      "before_sha256": null,
+      "after_sha256": "af4a19059bd7cab4a1526df81381153a95527f8481e575b1bd4d10b9a3135454",
+      "bytes": 21827,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/native_baseline.json",
+      "before_sha256": null,
+      "after_sha256": "c49c2874fd6c159ba7de8406373b8372996c2449d1e97190b9a2b8ce369501a4",
+      "bytes": 15965,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/native_repeat.json",
+      "before_sha256": null,
+      "after_sha256": "c49c2874fd6c159ba7de8406373b8372996c2449d1e97190b9a2b8ce369501a4",
+      "bytes": 15965,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/overlap_import_boundary.json",
+      "before_sha256": null,
+      "after_sha256": "a8bdd43153e45b9ca346f73059115ed583e67770e54de9239d29c0b6fec18b23",
+      "bytes": 205,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/overlay_checker_controls.json",
+      "before_sha256": null,
+      "after_sha256": "5493a9ef55fae080b33ddb0cee1c9cbd554075030398c1d54133ef41be182ba7",
+      "bytes": 631,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/results/summary.json",
+      "before_sha256": null,
+      "after_sha256": "5b246e8f0ef8cb4b114415f350cc6cd69320162bdcb2b8ee0a31567e173f13b7",
+      "bytes": 2190,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/run_review.py",
+      "before_sha256": null,
+      "after_sha256": "32f894120a9db867f256792f2fd9b35936b1f3dd44868e1be88d07628c4d3617",
+      "bytes": 10359,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/source_inputs.json",
+      "before_sha256": null,
+      "after_sha256": "47246c98588fcc5dc0598c54035298dd6a029390f6d481e1c2328b53bff2e40f",
+      "bytes": 1234,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/test_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "129e01e86a199b6152d3f86f77f8459a9c62dcbc5d8b3427683aaa3c991a44f5",
+      "bytes": 1452,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/validate_content.py",
+      "before_sha256": null,
+      "after_sha256": "3a73e031829e36fd39ba4ec5866fdbf6253216b74d07eb36fc2f8e29caba50a7",
+      "bytes": 7154,
+      "action": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section07-source-movement/verify_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "5742d252d1647e502dd9ca8af929c4f2457b9f7120163fed14201b25d9a9f9f3",
+      "bytes": 3143,
+      "action": "add"
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "before_sha256": "cacec05196b97517d71551da3fddc676baff8e289caea80dd4651e338bf3e073",
+      "after_sha256": "6d9d42f4f119a144278cfcc68c459e60cb205a2b1cc1408a6b0f44dce76a6cbb",
+      "bytes": 14256,
+      "action": "replace"
+    },
+    {
+      "path": "_types/fields.tsv",
+      "before_sha256": "c2ed1645779936f62edf12632e3b4662f679352042df585c9fd10fa31967c369",
+      "after_sha256": "4f009c66212e9ce5ffa809d447cde3059187adf2e9e4bb81a352343049de2a4d",
+      "bytes": 10411985,
+      "action": "replace"
+    },
+    {
+      "path": "_types/types.tsv",
+      "before_sha256": "8f06d7382c041ae6a909431f13b6d5a34fe72effb8f4a55ab02f8e036a9c8791",
+      "after_sha256": "b99a404f2996de1aab7bb72e623cf5cbf04298ceae793ac8380c728764c50fb5",
+      "bytes": 1660969,
+      "action": "replace"
+    }
+  ],
+  "modified_existing": 7,
+  "new_files_including_manifest": 24,
+  "total_overlay_files": 31,
+  "manifest_self_hash": "intentionally excluded; outer ZIP hash covers this file",
+  "original_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "never_remove_unlisted_files": true
+}

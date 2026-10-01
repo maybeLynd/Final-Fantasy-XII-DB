@@ -1,0 +1,88 @@
+file size 0x4f0; chunk head bytes: 00 00 10 00 0b 00 00 00 00 00 00 00 00 00 00 00
+class  0 sec@file 0x290  u16@0=0x1 dataOfs=0x10 presetCnt=0 flag=0 stride=0x0  hdr=01 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00
+class  1 sec@file 0x2a0  u16@0=0x101 dataOfs=0x10 presetCnt=1 flag=0 stride=0x80  hdr=01 01 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x2b0
+      +0x00  1              3F800000
+      +0x04  20             41A00000
+      +0x08  1              3F800000
+      +0x0c  1              3F800000
+      +0x10  500            43FA0000
+      +0x14  0              00000000
+      +0x18  0              00000000
+      +0x1c  1              3F800000
+      +0x20  1              3F800000
+      +0x24  0              00000000
+      +0x28  2.8026e-45     00000002
+      +0x2c  40             42200000
+      +0x30  1.414          3FB4FDF4
+      +0x34  1              3F800000
+      +0x38  9.80909e-45    00000007
+      +0x3c  200            43480000
+      +0x40  1.414          3FB4FDF4
+      +0x44  1              3F800000
+      +0x48  9.80909e-45    00000007
+      +0x4c  800            44480000
+      +0x50  1.414          3FB4FDF4
+      +0x54  1              3F800000
+      +0x58  9.80909e-45    00000007
+      +0x5c  2000           44FA0000
+      +0x60  1.414          3FB4FDF4
+      +0x64  1              3F800000
+      +0x68  1.4013e-45     00000001
+      +0x6c  8000           45FA0000
+      +0x70  1.414          3FB4FDF4
+      +0x74  1              3F800000
+      +0x78  2.8026e-45     00000002
+      +0x7c  0              00000000
+class  2 sec@file 0x330  u16@0=0x201 dataOfs=0x10 presetCnt=1 flag=0 stride=0x20  hdr=01 02 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x340
+      +0x00  0              00000000
+      +0x04  0              00000000
+      +0x08  0              00000000
+      +0x0c  0              00000000
+      +0x10  0              00000000
+      +0x14  0              00000000
+      +0x18  0              00000000
+      +0x1c  0              00000000
+class  3 sec@file 0x360  u16@0=0x301 dataOfs=0x10 presetCnt=1 flag=0 stride=0x10  hdr=01 03 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x370
+      +0x00  0              00000000
+      +0x04  2000           44FA0000
+      +0x08  0.707          3F34FDF4
+      +0x0c  1              3F800000
+class  4 sec@file 0x380  u16@0=0x401 dataOfs=0x10 presetCnt=1 flag=0 stride=0x10  hdr=01 04 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x390
+      +0x00  1              3F800000
+      +0x04  0              00000000
+      +0x08  0              00000000
+      +0x0c  0              00000000
+class  5 sec@file 0x3a0  u16@0=0x501 dataOfs=0x10 presetCnt=1 flag=0 stride=0x10  hdr=01 05 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x3b0
+      +0x00  1.47152e-39    00100601
+      +0x04  1.4013e-45     00000001
+      +0x08  0              00000000
+      +0x0c  0              00000000
+class  6 sec@file 0x3b0  u16@0=0x601 dataOfs=0x10 presetCnt=1 flag=0 stride=0x0  hdr=01 06 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+class  7 sec@file 0x3c0  u16@0=0x701 dataOfs=0x10 presetCnt=1 flag=0 stride=0x10  hdr=01 07 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x3d0
+      +0x00  1.47224e-39    00100801
+      +0x04  1.4013e-45     00000001
+      +0x08  0              00000000
+      +0x0c  0              00000000
+class  8 sec@file 0x3d0  u16@0=0x801 dataOfs=0x10 presetCnt=1 flag=0 stride=0x0  hdr=01 08 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+class  9 sec@file 0x3e0  u16@0=0x901 dataOfs=0x10 presetCnt=1 flag=0 stride=0x10  hdr=01 09 10 00 01 00 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x3f0
+      +0x00  3.58732e-43    00000100
+      +0x04  0              00000000
+      +0x08  0              00000000
+      +0x0c  0              00000000
+class 10 sec@file 0x400  u16@0=0xa01 dataOfs=0x10 presetCnt=1 flag=2 stride=0x20  hdr=01 0a 10 00 01 02 00 00 00 00 00 00 00 00 00 00
+   preset 0 @file 0x410
+      +0x00  1              3F800000
+      +0x04  1              3F800000
+      +0x08  1              3F800000
+      +0x0c  1              3F800000
+      +0x10  0.2            3E4CCCCD
+      +0x14  0.08           3DA3D70A
+      +0x18  2              40000000
+      +0x1c  2000           44FA0000

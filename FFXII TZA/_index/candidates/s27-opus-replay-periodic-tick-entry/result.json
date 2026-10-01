@@ -1,0 +1,205 @@
+{
+ "ok": true,
+ "allowed_functions": 2557,
+ "world": {
+  "fixes": [
+   [
+    "02EBF190",
+    65536
+   ],
+   [
+    "02EA5368",
+    65536
+   ],
+   [
+    "0208EA58",
+    65536
+   ],
+   [
+    "0208EA40",
+    65536
+   ],
+   [
+    "0209AC30",
+    65536
+   ],
+   [
+    "0208EA48",
+    65536
+   ],
+   [
+    "022C6F28",
+    65536
+   ],
+   [
+    "01F83438",
+    131072
+   ],
+   [
+    "01F82D20",
+    131072
+   ]
+  ],
+  "extra_allowed": [
+   "0019CDE0",
+   "001B7EE0",
+   "001DAD60",
+   "001EDF80",
+   "001EDFE0",
+   "002284F0",
+   "00253C50",
+   "00268D10",
+   "002900C0",
+   "0035D640",
+   "003DAE30",
+   "005CDB90",
+   "006CC330",
+   "00809124"
+  ],
+  "inits": [
+   "00809124",
+   "0019CDE0",
+   "003DAE30",
+   "001B7EE0",
+   "001DAD60"
+  ]
+ },
+ "results": {
+  "full_tick_stub_free": {
+   "pass_": true,
+   "result": {
+    "ok": true,
+    "stopped_at": [],
+    "functions_entered": 98,
+    "order": [
+     "recompute+0x24",
+     "deadline_check",
+     "builder",
+     "sink"
+    ],
+    "sink_args_rdx_r8_r9": [
+     "0",
+     "76310000",
+     "FFFF"
+    ],
+    "flag_word_after": "0",
+    "beat_after": 0,
+    "beat_writers": []
+   },
+   "note": "gates pass: the recompute, the deadline check, the builder and then the sink 003112F0(result, 0, stats, 0xFFFF, 0) run, and the tick returns"
+  },
+  "I1_deadline_between_gate1_and_gate2": {
+   "pass_": true,
+   "expired": {
+    "ok": true,
+    "stopped_at": [],
+    "functions_entered": 98,
+    "order": [
+     "recompute+0x24",
+     "deadline_check",
+     "builder",
+     "sink"
+    ],
+    "sink_args_rdx_r8_r9": [
+     "0",
+     "76310000",
+     "FFFF"
+    ],
+    "flag_word_after": "0",
+    "beat_after": 0,
+    "beat_writers": []
+   },
+   "not_expired": {
+    "ok": true,
+    "stopped_at": [],
+    "functions_entered": 98,
+    "order": [
+     "recompute+0x24",
+     "deadline_check",
+     "builder",
+     "sink"
+    ],
+    "sink_args_rdx_r8_r9": [
+     "0",
+     "76310000",
+     "FFFF"
+    ],
+    "flag_word_after": "40000000",
+    "beat_after": 0,
+    "beat_writers": []
+   },
+   "no_stats_block": {
+    "ok": true,
+    "stopped_at": [],
+    "functions_entered": 54,
+    "order": [],
+    "sink_args_rdx_r8_r9": null,
+    "flag_word_after": "40000000",
+    "beat_after": 0,
+    "beat_writers": []
+   },
+   "gate2_refuses": {
+    "ok": true,
+    "stopped_at": [],
+    "functions_entered": 61,
+    "order": [
+     "recompute+0x24",
+     "deadline_check"
+    ],
+    "sink_args_rdx_r8_r9": null,
+    "flag_word_after": "0",
+    "beat_after": 0,
+    "beat_writers": []
+   },
+   "note": "expired (deadline 5 < counter 100) clears bit 30; not expired keeps it; with no stats block (gate 1) the check never runs and the stale bit stays; with gate 2 refusing (mode 5) the check still ran and cleared it"
+  },
+  "gates_refuse_the_builder": {
+   "pass_": true,
+   "mode5": [
+    "recompute+0x24",
+    "deadline_check"
+   ],
+   "mode6": [
+    "recompute+0x24",
+    "deadline_check"
+   ],
+   "not_ready": [
+    "recompute+0x24",
+    "deadline_check"
+   ],
+   "bit36": [
+    "recompute+0x24",
+    "deadline_check"
+   ],
+   "note": "global mode 5 or 6, no ready party slot (00265680 = 0) and unit bit 0x1000000000 each end the tick before the builder"
+  },
+  "sink_commits_the_beat": {
+   "pass_": true,
+   "result": {
+    "ok": true,
+    "stopped_at": [],
+    "functions_entered": 98,
+    "order": [
+     "recompute+0x24",
+     "deadline_check",
+     "builder",
+     "sink"
+    ],
+    "sink_args_rdx_r8_r9": [
+     "0",
+     "76310000",
+     "FFFF"
+    ],
+    "flag_word_after": "0",
+    "beat_after": 15,
+    "beat_writers": [
+     [
+      "003115F8",
+      15
+     ]
+    ]
+   },
+   "note": "the stats beat 25 reads 15 after the whole tick, written ONCE, by the sink's copy 003115B6..00311606: the stages computed it into the record (block 310) and the sink committed it"
+  }
+ }
+}

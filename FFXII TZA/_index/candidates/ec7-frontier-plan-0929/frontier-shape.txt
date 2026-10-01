@@ -1,0 +1,34 @@
+--- control: functions 35064, A 9295, claimed by an accepted family 19953 ---
+    frontier measured here      : 5816
+    frontier per check_dispositions: 5816
+
+--- by SIZE ---
+    0-16         704   12.1%   thunk-sized
+    17-64       2075   35.7%   a few instructions
+    65-256      2553   43.9%   small
+    257-1024     384    6.6%   substantial
+    1025+        100    1.7%   large
+
+--- by WHAT THE LIST ALREADY KNOWS ---
+    flagged as a THUNK by the function list :      2    0.0%
+    carrying a NAME that is not FUN_*       :    946   16.3%
+    total bytes in the frontier             : 1091379
+    in an unbroken run of >= 2   frontier bodies :   3606   62.0%
+    in an unbroken run of >= 8   frontier bodies :    723   12.4%
+    in an unbroken run of >= 32  frontier bodies :    169    2.9%
+    in an unbroken run of >= 128 frontier bodies :      0    0.0%
+    longest run: 48 bodies
+
+  THESE RUNS ARE MEASURED OVER THE WRONG POPULATION FOR THE QUESTION BELOW.
+  5,349 of the 19,909 frontier bodies are already MENTIONED by some document, and
+  they bridge the ones that are not. Over the 14,560 nobody has ever written an
+  address for, the frontier SHATTERS: 3,298 runs - MORE runs over FEWER bodies than
+  the 2,236 counted here - and the share in a run of >= 32 falls 44.2% to 15.8%.
+  So span dispositions are substantially LESS worth attempting than the figures
+  above imply. Run check_untouched_runs.py; see EVIDENCE-STANDARD 2026-09-13r.
+
+  NOTHING IS DISPOSED OF HERE. A long run is a CANDIDATE for a C family and not a family:
+  the PPFX row that carries 1,657 members earned it with a provenance argument, boundary
+  controls and a member list, and a run length is none of those. What the runs decide is
+  whether span dispositions are worth ATTEMPTING at all - if the frontier were evenly
+  scattered through documented code, they would not be.

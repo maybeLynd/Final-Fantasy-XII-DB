@@ -1,0 +1,50 @@
+{
+ "committed_at": "2026-09-29T02:32:00Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T023200Z-0c3da3",
+ "generator": {
+  "name": "ASTRA labelled synthetic seven-view fixture",
+  "sha256": "3788f262c39635f5510bb472eaa6050606420c720fa3b56ac4b572407e48f226"
+ },
+ "inputs": {
+  "controlled": {
+   "external": true,
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\run-01\\external-baseline\\source-input",
+   "sha256": "b7ad085da63812347b8a1b906b1a4f6ce1966e49b80d9134f542db07cc1be215",
+   "size": 26,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view-evidence.json": {
+   "sha256": "a4fc8502230d804685dfbaa9165b7db51174b7ba48e02497bdfef7c38ea29ead",
+   "size": 103
+  },
+  "view-executable.json": {
+   "sha256": "a6af706c905764a9a56b9591b9cb2cb89cee2433e529c85b144005428b674abf",
+   "size": 107
+  },
+  "view-fleet.json": {
+   "sha256": "bce8016fee9e76a255be9c3180b102a80a5a2606d2f04a12f36f290f4e261780",
+   "size": 97
+  },
+  "view-overview.json": {
+   "sha256": "e3bf50b9cd01efc5a7b1b0863984932e6ea1f8e82713eb0849bbf8cecd4cb515",
+   "size": 103
+  },
+  "view-systems.json": {
+   "sha256": "733ae5d2e7abdf24e52f6907788491aebc2ee09e5fa80416dd3df071d0cf53ed",
+   "size": 101
+  },
+  "view-types.json": {
+   "sha256": "db2e7b468f2b1cdf8992a8031d6d71790cbfc0ea036a1783b96585848efd5aed",
+   "size": 97
+  },
+  "view-vbf.json": {
+   "sha256": "ff31364eaa1d7b844c34210f8370c7713ccd1d15b9a281fdc60b36297ca45121",
+   "size": 93
+  }
+ },
+ "parent": null,
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

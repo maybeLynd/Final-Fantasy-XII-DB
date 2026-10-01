@@ -1,0 +1,155 @@
+{
+  "format": "ASTRA-immutable-evidence-1",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal.json",
+      "bytes": 501,
+      "sha256": "1d1dcbc14703d55c5301fb0b9491fed450618742a9aecdb3bf6a0166983bb312"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4337,
+      "sha256": "91724fc14b3f114665c29b631ea2a123e3da44e82806ce4e812bbdb0c2476e1b"
+    },
+    {
+      "path": "check.py",
+      "bytes": 2990,
+      "sha256": "6e6542343029367c1be7e8a58d3f817b7d7824b2be69d9b2cf5350e58a682444"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1595,
+      "sha256": "add251855645803de148e633365c3c3a90e186fc75040284d30a1269b7874c8b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3705,
+      "sha256": "68c94f41d089546ccb53c02d63db9d7300410f1c0e1e494e3dc2f14549b9e1df"
+    },
+    {
+      "path": "reducer-controls/missing-case.json",
+      "bytes": 9114,
+      "sha256": "c2a92f0595b1fe9ad01101235786782727f7ccc1dd545ee1ff6f59b22d96ecf7"
+    },
+    {
+      "path": "reducer-controls/nonzero-with-good-json.json",
+      "bytes": 11869,
+      "sha256": "d8316b3ef753594e275516763eb65b99c84e12ab1e33968681ef244335943452"
+    },
+    {
+      "path": "reducer-controls.json",
+      "bytes": 2167,
+      "sha256": "1bd8dc7771b2e3d9e559f1ae75ef5377a70d87c3fcb612d6da41c2f5081f1a31"
+    },
+    {
+      "path": "reducer-controls.py",
+      "bytes": 808,
+      "sha256": "e8c7f77e34c8df65c0bfaab2e9c5157bc8b9e02fd0e0e8d7749c24571f9454fc"
+    },
+    {
+      "path": "run-01/driver-before-run.py",
+      "bytes": 4323,
+      "sha256": "ea3d91b72d1f86f2a140b7b2b23d369baee4e8b38551a2add0326c55494d1b67"
+    },
+    {
+      "path": "run-01/failure.json",
+      "bytes": 452,
+      "sha256": "ab50b17d788bd1a5fd97b6f0f060b9261d8c74a1696d631bcd6343215629cfa1"
+    },
+    {
+      "path": "run-01/prior-valid-input.json",
+      "bytes": 4284,
+      "sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "bytes": 53608,
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "bytes": 11980,
+      "sha256": "265dcd8b33b600060ff1482820816b23e13252c5395aa2fd4937aae14642e9e7"
+    },
+    {
+      "path": "run-02/commit-full40-crlf-receipt.json",
+      "bytes": 1328,
+      "sha256": "552f20c64a0fe45479da0cfa00c1396095fff95c17d60566d79f2f96f41fdbe3"
+    },
+    {
+      "path": "run-02/commit-full40-crlf.json",
+      "bytes": 4137,
+      "sha256": "a991919a5ea3d0b63e231a32858cb1a8533e2aad6aca3b40ca7cbfb3036bc596"
+    },
+    {
+      "path": "run-02/commit-full40-lf-receipt.json",
+      "bytes": 2532,
+      "sha256": "a6f6c1e88373d2ab7daa9723be4da6319ba12c4996949a9b0bee49a39174b117"
+    },
+    {
+      "path": "run-02/commit-full40-lf.json",
+      "bytes": 4135,
+      "sha256": "659f68bab491f8fa141b41e9b3b1e2d9208aa0716bbb233f4697081048d941cd"
+    },
+    {
+      "path": "run-02/current-transitions-preimage.py",
+      "bytes": 11980,
+      "sha256": "265dcd8b33b600060ff1482820816b23e13252c5395aa2fd4937aae14642e9e7"
+    },
+    {
+      "path": "run-02/driver-before-run.py",
+      "bytes": 4337,
+      "sha256": "91724fc14b3f114665c29b631ea2a123e3da44e82806ce4e812bbdb0c2476e1b"
+    },
+    {
+      "path": "run-02/prior-valid-input.json",
+      "bytes": 4284,
+      "sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951"
+    },
+    {
+      "path": "run-02/raw.json",
+      "bytes": 11869,
+      "sha256": "ab2ea0c2b8be94755fe7c7878f087cb9d8b79fe8dbf059f5d70b08cdfbf6378a"
+    },
+    {
+      "path": "run-02/source/Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "bytes": 53608,
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6"
+    },
+    {
+      "path": "run-02/source/Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "bytes": 11980,
+      "sha256": "265dcd8b33b600060ff1482820816b23e13252c5395aa2fd4937aae14642e9e7"
+    },
+    {
+      "path": "run-02/valid-full40-receipt.json",
+      "bytes": 2518,
+      "sha256": "ad0c3d3b2e6b04b1de2269fcc734cec640537d62847a26260864f3614bec9324"
+    },
+    {
+      "path": "run-02/valid-full40.json",
+      "bytes": 4133,
+      "sha256": "3e779f5ff0c1497b109b512c4f5b66060587d0fece16bcf18e2c5a8f951f04a4"
+    },
+    {
+      "path": "run-02/verdict-lf-receipt.json",
+      "bytes": 2514,
+      "sha256": "a01d5d79ec2acadb1d2ac5bc2858c3bc1618f9718fd7c7ee7cc0d7d4d1cd07c1"
+    },
+    {
+      "path": "run-02/verdict-lf.json",
+      "bytes": 4135,
+      "sha256": "3aa3e7eaf41717665d47d132e8d6b9b0cc0fabd08ef91a442e891617397ab699"
+    },
+    {
+      "path": "run.py",
+      "bytes": 472,
+      "sha256": "de90fd80630c56786550a45171bde0ef61f4ab80c516d30271d038e5e65c8235"
+    }
+  ]
+}

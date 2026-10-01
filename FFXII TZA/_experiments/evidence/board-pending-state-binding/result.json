@@ -1,0 +1,20 @@
+{
+  "result": {
+    "established": "Original pending heal promotes changed full state when revision/last operation match; different-last-operation control refuses",
+    "healthy_prefix": "accepted and healed",
+    "changed_checkpoint_same_last_op": "accepted, changed value persists, new healed hash binds it",
+    "different_last_operation": "refused, exact board/journal unchanged",
+    "full_A13": "NOT_ACCEPTED",
+    "limits": "Constructed copied prefix/state interventions; no genuine interruption, actual production divergence, recovery/deployment or game behavior proof."
+  },
+  "receipt_controls": [
+    {
+      "name": "missing-negative-control",
+      "refused": true
+    },
+    {
+      "name": "hidden-failed-exit",
+      "refused": true
+    }
+  ]
+}

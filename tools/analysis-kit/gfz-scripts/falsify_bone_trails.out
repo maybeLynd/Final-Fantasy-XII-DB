@@ -1,0 +1,6 @@
+SURVIVES  B0  all fourteen sizes as cited
+SURVIVES  B1  0x3C00 allocated; pool, header and image references present
+SURVIVES  B2  command ['or dword ptr [rcx + 0x294], 0x1000000', 'mov byte ptr [rcx + 0x3d0], al']; switch-off ['mov byte ptr [rax + 4], 0']; builder +0x438 / 0xFFFF / stride 0x50 / cap 4
+SURVIVES  B3  02CA8402 and 01DFE0BC read; arccos table first/middle/last [3.1416, 1.5708, 0.0]
+SURVIVES  B4  template 02CA8A90; microprogram address taken at ['0051C147']; phase-2 edge ['0041E4EF']; VIF top bytes {'005409D6': '0x3', '005409DF': '0x2', '005409E6': '0x1', '005409ED': '0x6c', '00540B71': '0x10'}
+FAILS 0

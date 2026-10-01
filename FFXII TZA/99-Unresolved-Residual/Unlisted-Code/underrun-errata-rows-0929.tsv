@@ -1,0 +1,165 @@
+# Underrun rows for _index/FUNCTION-EXTENT-ERRATA.tsv, PREPARED, NOT APPLIED (OPUS, 2026-09-29).
+# From listed-bodies-with-code-past-body-bytes-rewalk-0929.tsv (check_body_underruns.py): 164 truncated bodies less the 5 the
+# applied UC-1 band already extends. Same columns as the errata file; corrected_end = the end of the last reachable non-padding
+# instruction. Applying them is FRONTIER's (OPUS-REQ-FRONTIER-EXTENT-ERRATA-UNDERRUN-159): program_coverage, receiver_flow_census
+# and field_disp_scan read these extents.
+entry	name	size	end	pad	boundary	boundary_listed	prev	prepad_branch_hits_boundary	overlap_into_next	covered_listed_entries	next_entry	corrected_end	verdict	detector
+00121DB0	FUN_00121db0	97	00121E11						0	-	00121E20	00121E12	underrun-extend (1 bytes past body_bytes)	underrun
+0015AC50	FUN_0015ac50	506	0015AE4A						0	-	0015AE60	0015AE52	underrun-extend (8 bytes past body_bytes)	underrun
+001826E0	FUN_001826e0	67	00182723						0	-	00182730	00182728	underrun-extend (5 bytes past body_bytes)	underrun
+00194B00	FUN_00194b00	441	00194CB9						0	-	00194CD0	00194CC7	underrun-extend (14 bytes past body_bytes)	underrun
+00194CD0	FUN_00194cd0	455	00194E97						0	-	00194EB0	00194EA5	underrun-extend (14 bytes past body_bytes)	underrun
+00194F50	FUN_00194f50	270	0019505E						0	-	00195060	0019505F	underrun-extend (1 bytes past body_bytes)	underrun
+00195670	FUN_00195670	398	001957FE						0	-	00195820	00195812	underrun-extend (20 bytes past body_bytes)	underrun
+00195820	FUN_00195820	260	00195924						0	-	00195940	00195938	underrun-extend (20 bytes past body_bytes)	underrun
+0019B2F0	FUN_0019b2f0	270	0019B3FE						0	-	0019B400	0019B3FF	underrun-extend (1 bytes past body_bytes)	underrun
+001A5B30	FUN_001a5b30	3808	001A6A10						0	-	001A6A20	001A6A16	underrun-extend (6 bytes past body_bytes)	underrun
+001A7F10	FUN_001a7f10	3194	001A8B8A						0	-	001A8BA0	001A8B93	underrun-extend (9 bytes past body_bytes)	underrun
+001AA6C0	FUN_001aa6c0	270	001AA7CE						0	-	001AA7D0	001AA7CF	underrun-extend (1 bytes past body_bytes)	underrun
+001B07A0	FUN_001b07a0	627	001B0A13						0	-	001B0A20	001B0A14	underrun-extend (1 bytes past body_bytes)	underrun
+001C76E0	FUN_001c76e0	357	001C7845						0	-	001C7850	001C784A	underrun-extend (5 bytes past body_bytes)	underrun
+001CA600	FUN_001ca600	8186	001CC5FA						0	-	001CC600	001CC5FF	underrun-extend (5 bytes past body_bytes)	underrun
+001CC920	FUN_001cc920	117	001CC995						0	-	001CC9A0	001CC99A	underrun-extend (5 bytes past body_bytes)	underrun
+001DDC40	FUN_001ddc40	430	001DDDEE						0	-	001DDE10	001DDE0B	underrun-extend (29 bytes past body_bytes)	underrun
+001DDE10	FUN_001dde10	419	001DDFB3						0	-	001DDFD0	001DDFC4	underrun-extend (17 bytes past body_bytes)	underrun
+00203E60	FUN_00203e60	263	00203F67						0	-	00203F70	00203F68	underrun-extend (1 bytes past body_bytes)	underrun
+00214C30	FUN_00214c30	898	00214FB2						0	-	00214FC0	00214FB3	underrun-extend (1 bytes past body_bytes)	underrun
+00240DE0	FUN_00240de0	1520	002413D0						0	-	002413E0	002413D9	underrun-extend (9 bytes past body_bytes)	underrun
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	1330	0026CDF2						0	-	0026CE00	0026CDF3	underrun-extend (1 bytes past body_bytes)	underrun
+002748E0	FUN_002748e0	698	00274B9A						0	-	00274BA0	00274B9E	underrun-extend (4 bytes past body_bytes)	underrun
+002B6140	FUN_002b6140	94	002B619E						0	-	002B61B0	002B61A3	underrun-extend (5 bytes past body_bytes)	underrun
+00311E20	FUN_00311e20	93	00311E7D						0	-	00311E90	00311E82	underrun-extend (5 bytes past body_bytes)	underrun
+0035AE30	FUN_0035ae30	203	0035AEFB						0	-	0035AF10	0035AF02	underrun-extend (7 bytes past body_bytes)	underrun
+00368B00	FUN_00368b00	239	00368BEF						0	-	00368C10	00368C02	underrun-extend (19 bytes past body_bytes)	underrun
+00369080	FUN_00369080	104	003690E8						0	-	003690F0	003690ED	underrun-extend (5 bytes past body_bytes)	underrun
+0036EEB0	FUN_0036eeb0	262	0036EFB6						0	-	0036EFD0	0036EFC3	underrun-extend (13 bytes past body_bytes)	underrun
+0036F0F0	FUN_0036f0f0	318	0036F22E						0	-	0036F240	0036F23B	underrun-extend (13 bytes past body_bytes)	underrun
+0037C3F0	FUN_0037c3f0	248	0037C4E8						0	-	0037C730	0037C6F8	underrun-extend (528 bytes past body_bytes, 11 table arms)	underrun
+00392FC0	FUN_00392fc0	360	00393128						0	-	00393160	00393147	underrun-extend (31 bytes past body_bytes, 6 table arms)	underrun
+00393240	FUN_00393240	290	00393362						0	-	003933B0	0039338B	underrun-extend (41 bytes past body_bytes, 6 table arms)	underrun
+003F9720	FUN_003f9720	1827	003F9E43						0	-	003F9E50	003F9E45	underrun-extend (2 bytes past body_bytes)	underrun
+004213E0	FUN_004213e0	428	0042158C						0	-	004215A0	00421595	underrun-extend (9 bytes past body_bytes)	underrun
+0046B560	FUN_0046b560	292	0046B684						0	-	0046B690	0046B68B	underrun-extend (7 bytes past body_bytes)	underrun
+0048AF70	FUN_0048af70	7931	0048CE6B						0	-	0048CE70	0048CE70	underrun-extend (5 bytes past body_bytes)	underrun
+004D7BF0	FUN_004d7bf0	10177	004DA3B1						0	-	004DA3C0	004DA3BD	underrun-extend (12 bytes past body_bytes)	underrun
+004E31E0	FUN_004e31e0	18098	004E7892						0	-	004E78A0	004E789C	underrun-extend (10 bytes past body_bytes)	underrun
+004E7D90	FUN_004e7d90	15212	004EB8FC						0	-	004EB910	004EB901	underrun-extend (5 bytes past body_bytes)	underrun
+004F7070	FUN_004f7070	24541	004FD04D						0	-	004FD060	004FD053	underrun-extend (6 bytes past body_bytes)	underrun
+00505E00	caseD_0	2284	005066EC						0	-	00506700	005066F2	underrun-extend (6 bytes past body_bytes)	underrun
+0053AB50	FUN_0053ab50	9695	0053D12F						0	-	0053D140	0053D131	underrun-extend (2 bytes past body_bytes)	underrun
+00578120	FUN_00578120	118	00578196						0	-	005781A0	00578198	underrun-extend (2 bytes past body_bytes)	underrun
+005C62C0	FUN_005c62c0	1133	005C672D						0	-	005C6730	005C672E	underrun-extend (1 bytes past body_bytes)	underrun
+005CCBA0	FUN_005ccba0	57	005CCBD9						0	-	005CCBF0	005CCBE3	underrun-extend (10 bytes past body_bytes)	underrun
+005CD1E0	FUN_005cd1e0	307	005CD313						0	-	005CD330	005CD323	underrun-extend (16 bytes past body_bytes)	underrun
+00627E50	FUN_00627e50	176	00627F00						0	-	00627F10	00627F04	underrun-extend (4 bytes past body_bytes)	underrun
+0063E2E0	FUN_0063e2e0	231	0063E3C7						0	-	0063E3D0	0063E3CD	underrun-extend (6 bytes past body_bytes)	underrun
+006ABEC0	FUN_006abec0	201	006ABF89						0	-	006ABFA0	006ABF95	underrun-extend (12 bytes past body_bytes)	underrun
+006E5A20	FUN_006e5a20	15896	006E9838						0	-	006E9850	006E9845	underrun-extend (13 bytes past body_bytes)	underrun
+00716410	FUN_00716410	902	00716796						0	-	007167A0	00716797	underrun-extend (1 bytes past body_bytes)	underrun
+0071B070	FUN_0071b070	252	0071B16C						0	-	0071B180	0071B173	underrun-extend (7 bytes past body_bytes)	underrun
+00729920	FUN_00729920	189	007299DD						0	-	00729AB0	00729A60	underrun-extend (131 bytes past body_bytes, 15 table arms)	underrun
+0072DFD0	FUN_0072dfd0	716	0072E29C						0	-	0072E2B0	0072E2A1	underrun-extend (5 bytes past body_bytes)	underrun
+0076CC70	FUN_0076cc70	10104	0076F3E8						0	-	0076F400	0076F3EE	underrun-extend (6 bytes past body_bytes)	underrun
+00772410	FUN_00772410	3929	00773369						0	-	007733F0	00773375	underrun-extend (12 bytes past body_bytes)	underrun
+0077BF30	FUN_0077bf30	7264	0077DB90						0	-	0077DBA0	0077DB96	underrun-extend (6 bytes past body_bytes)	underrun
+007895F0	FUN_007895f0	148	00789684						0	-	007896A0	0078968D	underrun-extend (9 bytes past body_bytes)	underrun
+007A3770	FUN_007a3770	45	007A379D						0	-	007A37B0	007A37A1	underrun-extend (4 bytes past body_bytes)	underrun
+007A5B50	FUN_007a5b50	755	007A5E43						0	-	007A5E50	007A5E45	underrun-extend (2 bytes past body_bytes)	underrun
+007A9A10	FUN_007a9a10	793	007A9D29						0	-	007A9D30	007A9D2A	underrun-extend (1 bytes past body_bytes)	underrun
+007ACD30	FUN_007acd30	1289	007AD239						0	-	007AD240	007AD23A	underrun-extend (1 bytes past body_bytes)	underrun
+007B1AB0	FUN_007b1ab0	860	007B1E0C						0	-	007B1E10	007B1E0D	underrun-extend (1 bytes past body_bytes)	underrun
+007B1E10	FUN_007b1e10	991	007B21EF						0	-	007B2200	007B21F1	underrun-extend (2 bytes past body_bytes)	underrun
+007B2CB0	FUN_007b2cb0	692	007B2F64						0	-	007B2F70	007B2F65	underrun-extend (1 bytes past body_bytes)	underrun
+007B5690	FUN_007b5690	556	007B58BC						0	-	007B58C0	007B58BD	underrun-extend (1 bytes past body_bytes)	underrun
+007B6350	FUN_007b6350	895	007B66CF						0	-	007B66E0	007B66D0	underrun-extend (1 bytes past body_bytes)	underrun
+007B7460	FUN_007b7460	885	007B77D5						0	-	007B77E0	007B77D6	underrun-extend (1 bytes past body_bytes)	underrun
+007BBFB0	FUN_007bbfb0	736	007BC290						0	-	007BC2A0	007BC291	underrun-extend (1 bytes past body_bytes)	underrun
+007BE590	FUN_007be590	770	007BE892						0	-	007BE8A0	007BE894	underrun-extend (2 bytes past body_bytes)	underrun
+007C1620	FUN_007c1620	511	007C181F						0	-	007C1830	007C1820	underrun-extend (1 bytes past body_bytes)	underrun
+007C1830	FUN_007c1830	2624	007C2270						0	-	007C2280	007C2273	underrun-extend (3 bytes past body_bytes)	underrun
+007C2A60	FUN_007c2a60	1625	007C30B9						0	-	007C30C0	007C30BC	underrun-extend (3 bytes past body_bytes)	underrun
+007C30C0	FUN_007c30c0	362	007C322A						0	-	007C3230	007C322B	underrun-extend (1 bytes past body_bytes)	underrun
+007C4030	FUN_007c4030	951	007C43E7						0	-	007C43F0	007C43EA	underrun-extend (3 bytes past body_bytes)	underrun
+007C4790	FUN_007c4790	3767	007C5647						0	-	007C5650	007C564A	underrun-extend (3 bytes past body_bytes)	underrun
+007C5760	FUN_007c5760	532	007C5974						0	-	007C5980	007C5976	underrun-extend (2 bytes past body_bytes)	underrun
+007C9C20	FUN_007c9c20	588	007C9E6C						0	-	007C9E70	007C9E6E	underrun-extend (2 bytes past body_bytes)	underrun
+007C9FB0	FUN_007c9fb0	913	007CA341						0	-	007CA350	007CA343	underrun-extend (2 bytes past body_bytes)	underrun
+007CA7C0	FUN_007ca7c0	527	007CA9CF						0	-	007CA9E0	007CA9D0	underrun-extend (1 bytes past body_bytes)	underrun
+007CAB80	FUN_007cab80	1005	007CAF6D						0	-	007CAF70	007CAF6F	underrun-extend (2 bytes past body_bytes)	underrun
+007CAF70	FUN_007caf70	929	007CB311						0	-	007CB320	007CB313	underrun-extend (2 bytes past body_bytes)	underrun
+007CD350	FUN_007cd350	1477	007CD915						0	-	007CD920	007CD916	underrun-extend (1 bytes past body_bytes)	underrun
+007CDC20	FUN_007cdc20	2780	007CE6FC						0	-	007CE730	007CE6FE	underrun-extend (2 bytes past body_bytes, 9 table arms)	underrun
+007DE120	FUN_007de120	449	007DE2E1						0	-	007DE2F0	007DE2E2	underrun-extend (1 bytes past body_bytes)	underrun
+007DE2F0	FUN_007de2f0	1483	007DE8BB						0	-	007DE8D0	007DE8C4	underrun-extend (9 bytes past body_bytes)	underrun
+007DE8D0	FUN_007de8d0	608	007DEB30						0	-	007DEB40	007DEB31	underrun-extend (1 bytes past body_bytes)	underrun
+007DF1F0	FUN_007df1f0	288	007DF310						0	-	007DF320	007DF312	underrun-extend (2 bytes past body_bytes)	underrun
+007E0B60	FUN_007e0b60	6716	007E259C						0	-	007E25A0	007E259D	underrun-extend (1 bytes past body_bytes)	underrun
+007E3CF0	FUN_007e3cf0	1284	007E41F4						0	-	007E4200	007E41F6	underrun-extend (2 bytes past body_bytes)	underrun
+007E48D0	FUN_007e48d0	1142	007E4D46						0	-	007E4D50	007E4D49	underrun-extend (3 bytes past body_bytes)	underrun
+007E5E80	FUN_007e5e80	1238	007E6356						0	-	007E6360	007E6357	underrun-extend (1 bytes past body_bytes)	underrun
+007E96A0	FUN_007e96a0	704	007E9960						0	-	007E9970	007E9961	underrun-extend (1 bytes past body_bytes)	underrun
+007EA460	FUN_007ea460	1006	007EA84E						0	-	007EA850	007EA84F	underrun-extend (1 bytes past body_bytes)	underrun
+007EAA60	FUN_007eaa60	4052	007EBA34						0	-	007EBA40	007EBA3C	underrun-extend (8 bytes past body_bytes)	underrun
+007EBAD0	FUN_007ebad0	6600	007ED498						0	-	007ED4C0	007ED4B2	underrun-extend (26 bytes past body_bytes)	underrun
+007ED580	FUN_007ed580	1182	007EDA1E						0	-	007EDA30	007EDA21	underrun-extend (3 bytes past body_bytes)	underrun
+007EEA00	FUN_007eea00	1755	007EF0DB						0	-	007EF100	007EF0DC	underrun-extend (1 bytes past body_bytes, 7 table arms)	underrun
+007F3570	FUN_007f3570	653	007F37FD						0	-	007F3800	007F37FF	underrun-extend (2 bytes past body_bytes)	underrun
+007F3950	FUN_007f3950	1165	007F3DDD						0	-	007F3DE0	007F3DDE	underrun-extend (1 bytes past body_bytes)	underrun
+007F6330	FUN_007f6330	1001	007F6719						0	-	007F6730	007F6726	underrun-extend (13 bytes past body_bytes)	underrun
+007FE0F0	FUN_007fe0f0	1077	007FE525						0	-	007FE530	007FE52B	underrun-extend (6 bytes past body_bytes)	underrun
+00808A54	__scrt_is_nonwritable_in_current_image	151	00808AEB						0	-	00808AF0	00808AED	underrun-extend (2 bytes past body_bytes)	underrun
+00808C90	FUN_00808c90	185	00808D49						0	-	00808D4C	00808D4A	underrun-extend (1 bytes past body_bytes)	underrun
+00808D78	FUN_00808d78	330	00808EC2						0	-	00808EE4	00808EE4	underrun-extend (34 bytes past body_bytes)	underrun
+00809124	FUN_00809124	284	00809240						0	-	00809244	00809241	underrun-extend (1 bytes past body_bytes)	underrun
+008098D4	FUN_008098d4	26	008098EE						0	-	00809900	008098F0	underrun-extend (2 bytes past body_bytes)	underrun
+00809D80	FUN_00809d80	622	00809FEE						0	-	0080A270	00809FFB	underrun-extend (13 bytes past body_bytes)	underrun
+0080E300	FUN_0080e300	734	0080E5DE						0	-	0080E5F0	0080E5E6	underrun-extend (8 bytes past body_bytes)	underrun
+0080E940	FUN_0080e940	1168	0080EDD0						0	-	0080EDE0	0080EDDC	underrun-extend (12 bytes past body_bytes)	underrun
+0081D2B0	FUN_0081d2b0	149	0081D345						0	-	0081D350	0081D346	underrun-extend (1 bytes past body_bytes)	underrun
+0081D350	FUN_0081d350	68	0081D394						0	-	0081D3A0	0081D395	underrun-extend (1 bytes past body_bytes)	underrun
+0081D3E0	FUN_0081d3e0	317	0081D51D						0	-	0081D520	0081D51E	underrun-extend (1 bytes past body_bytes)	underrun
+0081D790	FUN_0081d790	356	0081D8F4						0	-	0081D900	0081D8F5	underrun-extend (1 bytes past body_bytes)	underrun
+0081D900	FUN_0081d900	149	0081D995						0	-	0081D9A0	0081D996	underrun-extend (1 bytes past body_bytes)	underrun
+0081D9A0	FUN_0081d9a0	111	0081DA0F						0	-	0081DA20	0081DA10	underrun-extend (1 bytes past body_bytes)	underrun
+0081E420	FUN_0081e420	134	0081E4A6						0	-	0081E4B0	0081E4A8	underrun-extend (2 bytes past body_bytes)	underrun
+0081E5A0	FUN_0081e5a0	445	0081E75D						0	-	0081E760	0081E75F	underrun-extend (2 bytes past body_bytes)	underrun
+0081E800	FUN_0081e800	278	0081E916						0	-	0081E920	0081E918	underrun-extend (2 bytes past body_bytes)	underrun
+0081F0A0	FUN_0081f0a0	329	0081F1E9						0	-	0081F1F0	0081F1EA	underrun-extend (1 bytes past body_bytes)	underrun
+0081F700	FUN_0081f700	386	0081F882						0	-	0081F890	0081F883	underrun-extend (1 bytes past body_bytes)	underrun
+00820260	FUN_00820260	257	00820361						0	-	00820370	00820362	underrun-extend (1 bytes past body_bytes)	underrun
+008216A0	FUN_008216a0	4778	0082294A						0	-	008229F0	0082294C	underrun-extend (2 bytes past body_bytes, 39 table arms)	underrun
+00822BC0	FUN_00822bc0	275	00822CD3						0	-	00822CE0	00822CD4	underrun-extend (1 bytes past body_bytes)	underrun
+00823030	FUN_00823030	493	0082321D						0	-	00823220	0082321E	underrun-extend (1 bytes past body_bytes)	underrun
+008235B0	FUN_008235b0	175	0082365F						0	-	00823670	00823660	underrun-extend (1 bytes past body_bytes)	underrun
+00823910	FUN_00823910	2003	008240E3						0	-	008241A0	008240E5	underrun-extend (2 bytes past body_bytes, 128 table arms)	underrun
+008243C0	FUN_008243c0	556	008245EC						0	-	008245F0	008245EE	underrun-extend (2 bytes past body_bytes)	underrun
+008245F0	FUN_008245f0	775	008248F7						0	-	00824900	008248FA	underrun-extend (3 bytes past body_bytes)	underrun
+00824900	FUN_00824900	1094	00824D46						0	-	00824E00	00824D4C	underrun-extend (6 bytes past body_bytes, 124 table arms)	underrun
+00824E00	FUN_00824e00	494	00824FEE						0	-	00825000	00824FF2	underrun-extend (4 bytes past body_bytes)	underrun
+00825000	FUN_00825000	485	008251E5						0	-	008251F0	008251E9	underrun-extend (4 bytes past body_bytes)	underrun
+008251F0	FUN_008251f0	139	0082527B						0	-	00825280	0082527C	underrun-extend (1 bytes past body_bytes)	underrun
+00825280	FUN_00825280	319	008253BF						0	-	008253D0	008253C0	underrun-extend (1 bytes past body_bytes)	underrun
+00829810	FUN_00829810	594	00829A62						0	-	00829A70	00829A63	underrun-extend (1 bytes past body_bytes)	underrun
+00829B10	FUN_00829b10	606	00829D6E						0	-	00829D70	00829D6F	underrun-extend (1 bytes past body_bytes)	underrun
+00829D70	FUN_00829d70	151	00829E07						0	-	00829E10	00829E08	underrun-extend (1 bytes past body_bytes)	underrun
+00829F50	FUN_00829f50	533	0082A165						0	-	0082A170	0082A169	underrun-extend (4 bytes past body_bytes)	underrun
+0082A280	FUN_0082a280	840	0082A5C8						0	-	0082A5D0	0082A5CA	underrun-extend (2 bytes past body_bytes)	underrun
+0082AD40	FUN_0082ad40	591	0082AF8F						0	-	0082AFA0	0082AF90	underrun-extend (1 bytes past body_bytes)	underrun
+0082AFA0	FUN_0082afa0	466	0082B172						0	-	0082B180	0082B173	underrun-extend (1 bytes past body_bytes)	underrun
+0082B180	FUN_0082b180	280	0082B298						0	-	0082B2A0	0082B299	underrun-extend (1 bytes past body_bytes)	underrun
+0082C6E0	FUN_0082c6e0	470	0082C8B6						0	-	0082C8C0	0082C8B8	underrun-extend (2 bytes past body_bytes)	underrun
+0082D5C0	FUN_0082d5c0	448	0082D780						0	-	0082D8A0	0082D781	underrun-extend (1 bytes past body_bytes, 250 table arms)	underrun
+0082DC30	FUN_0082dc30	171	0082DCDB						0	-	0082DCE0	0082DCDC	underrun-extend (1 bytes past body_bytes)	underrun
+0082DCE0	FUN_0082dce0	864	0082E040						0	-	0082E050	0082E046	underrun-extend (6 bytes past body_bytes)	underrun
+0082E050	FUN_0082e050	753	0082E341						0	-	0082E350	0082E349	underrun-extend (8 bytes past body_bytes)	underrun
+0082E350	FUN_0082e350	317	0082E48D						0	-	0082E490	0082E48F	underrun-extend (2 bytes past body_bytes)	underrun
+0082E490	FUN_0082e490	414	0082E62E						0	-	0082E640	0082E632	underrun-extend (4 bytes past body_bytes)	underrun
+0082E640	FUN_0082e640	126	0082E6BE						0	-	0082E6C0	0082E6BF	underrun-extend (1 bytes past body_bytes)	underrun
+0082E6C0	FUN_0082e6c0	197	0082E785						0	-	0082E790	0082E786	underrun-extend (1 bytes past body_bytes)	underrun
+0082E790	FUN_0082e790	333	0082E8DD						0	-	0082E8E0	0082E8DF	underrun-extend (2 bytes past body_bytes)	underrun
+00830540	FUN_00830540	373	008306B5						0	-	008306C0	008306B6	underrun-extend (1 bytes past body_bytes)	underrun
+00860E90	FUN_00860e90	2669	008618FD						0	-	00861900	008618FE	underrun-extend (1 bytes past body_bytes)	underrun
+0088AD40	FUN_0088ad40	6526	0088C6BE						0	-	0088C6D0	0088C6C0	underrun-extend (2 bytes past body_bytes)	underrun
+0088E8C0	FUN_0088e8c0	4611	0088FAC3						0	-	0088FB20	0088FACB	underrun-extend (8 bytes past body_bytes)	underrun
+008932B0	FUN_008932b0	1245	0089378D						0	-	008937A0	00893798	underrun-extend (11 bytes past body_bytes)	underrun
+00894850	FUN_00894850	1661	00894ECD						0	-	00894EE0	00894ED2	underrun-extend (5 bytes past body_bytes)	underrun

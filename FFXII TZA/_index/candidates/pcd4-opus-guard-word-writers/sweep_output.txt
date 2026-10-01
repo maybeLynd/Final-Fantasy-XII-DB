@@ -1,0 +1,12 @@
+functions with word writes to BOTH +0x100 and +0x102: 8
+ 00266530 [('0026668B', 'mov', 'word ptr [rbx + 0x102], cx'), ('002666C1', 'mov', 'word ptr [rbx + 0x100], r13w')]
+ 003AAA50 [('003AAB9D', 'mov', 'word ptr [rbp + 0x100], 0x502'), ('003AB189', 'mov', 'word ptr [rbp + 0x102], 5')]
+ 0041B550 [('0041B585', 'mov', 'word ptr [rcx + 0x100], r9w'), ('0041B5A3', 'mov', 'word ptr [rbp + 0x102], cx'), ('0041B5FA', 'or', 'word ptr [rbp + 0x102], ax')]
+ 00552250 [('005526B9', 'add', 'word ptr [rax + 0x100], cx'), ('005526C7', 'add', 'word ptr [rax + 0x102], dx'), ('005526E1', 'mov', 'word ptr [rax + 0x100], di'), ('005526FA', 'mov', 'word ptr [rcx + 0x102], si'), ('0055272A', 'mov', 'word ptr [r8 + 0x100], dx'), ('00552745', 'mov', 'word ptr [rcx + 0x102], r9w')]
+ 005528C0 [('00552BB8', 'mov', 'word ptr [rdi + 0x100], r15w'), ('00552BC0', 'mov', 'word ptr [rdi + 0x102], r14w'), ('00552FF2', 'mov', 'word ptr [rdi + 0x100], r13w'), ('00552FFA', 'mov', 'word ptr [rdi + 0x102], r14w'), ('00553850', 'sub', 'word ptr [rdi + 0x100], ax'), ('0055385C', 'sub', 'word ptr [rdi + 0x102], ax'), ('00553885', 'mov', 'word ptr [rdi + 0x100], si'), ('005538AA', 'mov', 'word ptr [rdi + 0x102], ax'), ('005538BD', 'mov', 'word ptr [rdi + 0x100], r14w'), ('005538FF', 'mov', 'word ptr [rdi + 0x102], ax')]
+ 00639290 [('006392F0', 'inc', 'word ptr [rbx + 0x100]'), ('006392FA', 'inc', 'word ptr [rbx + 0x102]')]
+ 0063D410 [('0063D4C5', 'inc', 'word ptr [rbx + 0x100]'), ('0063D4CF', 'inc', 'word ptr [rbx + 0x102]')]
+ 0063D790 [('0063D7C2', 'add', 'word ptr [rcx + 0x100], ax'), ('0063D7C9', 'add', 'word ptr [rcx + 0x102], ax')]
+word writes to +0x102 ONLY (not +0x100 word): 1
+ 00269F40 [('00269F48', 'mov', 'word ptr [rcx + 0x102], dx')]
+dword/qword writes at +0x100 (clear both words at once or unrelated): 253

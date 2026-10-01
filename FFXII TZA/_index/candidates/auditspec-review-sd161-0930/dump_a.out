@@ -1,0 +1,101 @@
+== 00253990 in .pdata [00253970, 00253A10)
+00253970  sub       rsp, 0x28
+00253974  call      0x249840
+00253979  call      0x2ef640
+0025397E  mov       qword ptr [rip + 0x1e3edd3], rax   ; -> 02092758 (virtual tail)
+00253985  call      0x2ef640
+0025398A  add       rax, 0x8200
+00253990  mov       qword ptr [rip + 0x1e3ee29], rax   ; -> 020927C0 (virtual tail)   <==
+00253997  call      0x16d6a0
+0025399C  call      0x24a660
+002539A1  call      0x247ae0
+002539A6  call      0x2494a0
+002539AB  call      0x29ce40
+002539B0  call      0x2a79e0
+002539B5  mov       qword ptr [rip + 0x1e3ee30], 0   ; -> 020927F0 (virtual tail)
+002539C0  call      0x2800f0
+002539C5  call      0x35c560
+002539CA  mov       eax, 0xf
+002539CF  lea       rdx, [rip - 0x256]   ; -> 00253780 u32=245C8948
+002EF57C: no .pdata entry
+002EF5F0  sub       rsp, 0x28
+002EF5F4  xor       edx, edx
+002EF5F6  lea       rcx, [rip + 0x1e74c83]   ; -> 02164280 (virtual tail / unmapped)
+002EF5FD  mov       r8d, 0x56690
+002EF603  call      0x861ec0
+002EF608  xor       ecx, ecx
+002EF60A  add       rsp, 0x28
+002EF60E  jmp       0x16d6a0
+002EF613  int3      
+002EF614  int3      
+002EF615  int3      
+002EF616  int3      
+002EF617  int3      
+002EF618  int3      
+002EF619  int3      
+002EF61A  int3      
+002EF61B  int3      
+002EF61C  int3      
+002EF61D  int3      
+002EF61E  int3      
+002EF61F  int3      
+002EF620  lea       rax, [rip + 0x1ecb319]   ; -> 021BA940 (virtual tail / unmapped)
+002EF627  ret       
+002EF628  int3      
+002EF629  int3      
+002EF62A  int3      
+002EF62B  int3      
+002EF62C  int3      
+002EF62D  int3      
+002EF62E  int3      
+002EF62F  int3      
+002EF630  lea       rax, [rip + 0x1f219c9]   ; -> 02211000 (virtual tail / unmapped)
+002EF637  ret       
+002EF638  int3      
+002EF639  int3      
+002EF63A  int3      
+002EF63B  int3      
+002EF63C  int3      
+002EF63D  int3      
+002EF63E  int3      
+002EF63F  int3      
+002EF640  lea       rax, [rip + 0x1e74c39]   ; -> 02164280 (virtual tail / unmapped)
+002EF647  ret       
+002EF648  int3      
+002EF649  int3      
+002EF64A  int3      
+002EF64B  int3      
+002EF64C  int3      
+002EF64D  int3      
+002EF64E  int3      
+002EF64F  int3      
+002EF650  sub       rsp, 0x28
+002EF654  xor       edx, edx
+002EF656  lea       rcx, [rip + 0x1e74c23]   ; -> 02164280 (virtual tail / unmapped)
+002EF65D  mov       r8d, 0x56690
+002EF663  call      0x861ec0
+002EF668  xor       ecx, ecx
+002EF66A  call      0x16d6a0
+002EF66F  call      0x253a80
+002EF674  call      0x2ef2d0
+002EF679  add       rsp, 0x28
+002EF67D  jmp       0x238a80
+002EF682  int3      
+002EF683  int3      
+002EF684  int3      
+002EF685  int3      
+002EF686  int3      
+002EF687  int3      
+002EF688  int3      
+002EF689  int3      
+002EF68A  int3      
+002EF68B  int3      
+002EF68C  int3      
+002EF68D  int3      
+002EF68E  int3      
+002EF68F  int3      
+002EF690  push      rbx
+002EF692  sub       rsp, 0x20
+002EF696  call      0x236760
+002EF69B  mov       ebx, eax
+---

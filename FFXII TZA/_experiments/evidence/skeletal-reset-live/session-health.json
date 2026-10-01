@@ -1,0 +1,16 @@
+{
+  "runtime_error_observed": true,
+  "responsive_action_observed": false,
+  "observed_at": "2026-09-20T04:02:09.657Z",
+  "source": "runtime-error.json",
+  "screenshot": "runtime-error.jpg",
+  "source_sha256": "d2976365e5f05d11e0ba448bf5f973f498eee61c381ac349f7ec7ffe8f6151dd",
+  "game_process": {
+    "pid": 31940,
+    "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe"
+  },
+  "presentation": "FFXII_TZA.exe Microsoft Visual C++ Runtime Library: application requested Runtime terminate it in an unusual way",
+  "post_trace_action": "No normal gameplay responsiveness action was completed. Error OK acknowledged for cleanup, not evidence of healthy gameplay.",
+  "root_cause": "UNKNOWN; trace load, context handling, later read, and unrelated application failure are unseparated hypotheses. No causal attribution.",
+  "disposition": "INVALID_POST_TRACE; API success and CPU activity are insufficient for a validated live session; raw observations retained for independent review."
+}

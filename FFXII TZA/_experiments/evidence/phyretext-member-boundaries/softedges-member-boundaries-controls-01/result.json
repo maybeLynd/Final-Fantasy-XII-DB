@@ -1,0 +1,45 @@
+{
+  "status": "PASS_PRODUCER_PREREQUISITE_CONTROLS",
+  "driver_sha256": "672a2358f6ec16839466cb45058fbf0051438e67470b7e4d3de44ea3f0cffd18",
+  "control_driver_sha256": "6654d8340787846ea411412208d7e8d8f7973106abbb8b416b4742ef827bb914",
+  "baseline": "Existing result02, not repeated",
+  "checks": [
+    {
+      "case": "missing-callback",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-softedges-member-boundaries.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\missing-callback\\source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\missing-callback\\result.json"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED"
+    },
+    {
+      "case": "incomplete-continuation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-softedges-member-boundaries.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\incomplete-continuation\\source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\incomplete-continuation\\result.json"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED"
+    },
+    {
+      "case": "changed-status-sequence",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\check-softedges-member-boundaries.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\changed-status-sequence\\source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-member-boundaries-controls-01\\changed-status-sequence\\result.json"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED"
+    }
+  ],
+  "limits": "Three actual checker refusal paths; mutation is synthetic disposable source, not changed FF12 behavior, native execution or independent acceptance."
+}

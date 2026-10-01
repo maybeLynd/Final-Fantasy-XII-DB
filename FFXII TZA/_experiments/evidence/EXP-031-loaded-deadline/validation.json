@@ -1,0 +1,50 @@
+{
+  "status": "INCOMPLETE",
+  "reason": "UI stopped with physical Escape after baseline; no armed/post windows",
+  "baseline_receipts_verified": true,
+  "samples": 6154,
+  "cpu_intervals": [
+    {
+      "start": 0.0001188000023830682,
+      "end": 9.999209599998721,
+      "core_seconds_per_second": 0.39222316092993537
+    },
+    {
+      "start": 9.999209599998721,
+      "end": 20.00230030000239,
+      "core_seconds_per_second": 0.42330666860777816
+    },
+    {
+      "start": 20.00230030000239,
+      "end": 30.001575199996296,
+      "core_seconds_per_second": 0.42659343229003527
+    },
+    {
+      "start": 30.001575199996296,
+      "end": 40.00022760000138,
+      "core_seconds_per_second": 0.41568101717366296
+    },
+    {
+      "start": 40.00022760000138,
+      "end": 49.995795399998315,
+      "core_seconds_per_second": 0.41737248783418585
+    },
+    {
+      "start": 49.995795399998315,
+      "end": 59.998890399998345,
+      "core_seconds_per_second": 0.4233064866423829
+    },
+    {
+      "start": 59.998890399998345,
+      "end": 64.90174190000107,
+      "core_seconds_per_second": 0.42067356108967474
+    }
+  ],
+  "restore_verified": true,
+  "missing": [
+    "armed deadline capture",
+    "post-capture window",
+    "baseline menu-closed screenshot"
+  ],
+  "scope": "baseline execution/identity/input receipts only; no debugger validation"
+}

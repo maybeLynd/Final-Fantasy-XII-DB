@@ -1,0 +1,182 @@
+{
+  "method": "Replay of the pinned retained assertion function only; no Unicorn producer execution",
+  "cases": [
+    {
+      "name": "ctor-init",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "ctor-dirty-rerun",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "take-head-empty-pending",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "take-head-nonempty",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "take-tail-nonempty",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "take-free-empty-fault",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "take-last",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "req-basic",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "req-aux",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "req-second",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "req-idwrap",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "req-id-zero",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "stall-then-request",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "bld-neg",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "bld-gate0",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "bld-gate1-clamp",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "bld-gate1",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "bld-reqfail",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "e040-idle",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "e040-loader1",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "e040-loader2",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "name": "cycle-request-pump-retire",
+      "pass": true,
+      "failures": []
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "wrong_free_head",
+      "case": "req-basic",
+      "detected": true,
+      "reasons": [
+        "free_h: got 22c31c0 want 22c3240"
+      ]
+    },
+    {
+      "name": "wrong_generation_id",
+      "case": "req-second",
+      "detected": true,
+      "reasons": [
+        "r2: got 41 want 81"
+      ]
+    },
+    {
+      "name": "lost_recycle_id",
+      "case": "cycle-request-pump-retire",
+      "detected": true,
+      "reasons": [
+        "d64: got 0 want ffffffff"
+      ]
+    },
+    {
+      "name": "missing_stall_flag",
+      "case": "stall-then-request",
+      "detected": true,
+      "reasons": [
+        "stall trace: ['e870', 'e070', 'xadd0=0', 'x46dd50', 'x3e9780', 'x36fd50', 'ea30#1', 'e070', 'xadd0=0', 'x46dd50', 'x3e9780', 'x36fd50', 'ea30#2', 'e070', 'xadd0=0', 'x46dd50', 'x3e9780', 'x36fd50', 'ea30#3', 'e990']"
+      ]
+    }
+  ],
+  "known_assertion_gaps": [
+    {
+      "case": "e040-loader1",
+      "empty_trace_is_accepted_by_historical_check": true
+    },
+    {
+      "case": "e040-loader2",
+      "empty_trace_is_accepted_by_historical_check": true
+    }
+  ],
+  "lifecycle_observation": {
+    "q00": 0,
+    "q10": 36450880,
+    "q18": 0,
+    "b20": 0,
+    "b21": 3,
+    "w22": 0,
+    "d24": 256,
+    "d28": 0,
+    "d2c": 0,
+    "d30": 0,
+    "d34": 0,
+    "q38": 0,
+    "q40": 0,
+    "q48": 0,
+    "q50": 0,
+    "d58": 0,
+    "d5c": 0,
+    "d60": 0,
+    "d64": 4294967295,
+    "q70": 0
+  },
+  "scope": "22 historical branches return pass, including two with no positive assertion; the new native controls independently test both loader predicates."
+}

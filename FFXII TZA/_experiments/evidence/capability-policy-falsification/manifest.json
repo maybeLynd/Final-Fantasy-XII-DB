@@ -1,0 +1,86 @@
+{
+  "reference_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "files": {
+    ".gitattributes": {
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    "callees.json": {
+      "bytes": 53496,
+      "sha256": "0e0f3338c7f5ee209993202517adea4eaac3afe41914bfbefd64cd19cf7764b0"
+    },
+    "cap_policy_callees.py": {
+      "bytes": 3900,
+      "sha256": "1e78932e1f73de7e6e6a72f2f43ab7e8fb45da79b971bcf58dab3febc301c2f6"
+    },
+    "cap_policy_leaves.py": {
+      "bytes": 3836,
+      "sha256": "06c9c31aa8e747202903bfbb0a112002e89496f89e469cf27ea9cfca96e26331"
+    },
+    "cap_policy_outputs.py": {
+      "bytes": 3828,
+      "sha256": "127608d8e23c0f6c3bb8049262099ade7457ccfed5daf47a4f6119742b223b20"
+    },
+    "cap_policy_primary.py": {
+      "bytes": 3864,
+      "sha256": "0cfa30954443c35d88b6b5b5c5d2a725579733d4f4849ff7b3d4cd34502842a4"
+    },
+    "cap_policy_save_base.py": {
+      "bytes": 3822,
+      "sha256": "70e9eb99924cc095bcb9ee3c0d807399e245ec485ab68384ee9c2cb9ff42e54c"
+    },
+    "cap_policy_state.py": {
+      "bytes": 3880,
+      "sha256": "96f39a75bde1b88e85fa38fb471617a7b48f4b0333bf5bab0a11100b132fbf11"
+    },
+    "feasibility.json": {
+      "bytes": 502176,
+      "sha256": "989639e53fb54675984a624e2c81ad9ac7853daeba6ccfd0fdeb41e39aeba6ac"
+    },
+    "leaves.json": {
+      "bytes": 6435,
+      "sha256": "1c4214f293d4678f98d96df89710534f3489bfc604603fb6246458fc4a2a4f02"
+    },
+    "outputs.json": {
+      "bytes": 16177,
+      "sha256": "05377dcf388714f3fc02ed3c053794e8efc39557a3fa89b99e3d833586d18d2c"
+    },
+    "primary.json": {
+      "bytes": 34040,
+      "sha256": "3175f58a7eb8a1b562e949bf836d6ee41e72e55b181f2eb3a9db8b5afc090bde"
+    },
+    "probe.py": {
+      "bytes": 12773,
+      "sha256": "1be8797cdadee8b7d14a5657bb914dd7da35d0288c4f11ffaa54d28541d269bd"
+    },
+    "README.md": {
+      "bytes": 4691,
+      "sha256": "7576433cc7d4019645660f51f219402ba42f9d74e042ac54ddd749195265a0b8"
+    },
+    "result.json": {
+      "bytes": 6299522,
+      "sha256": "6a8def4d6f7339d8c1015148113eb246bd86caa6f5b218f2a1a34913d080633d"
+    },
+    "review.json": {
+      "bytes": 1165,
+      "sha256": "401dda5a53b00199cfea4bd2f5a953f2def0b89c8e24e4f765eb60f9d6d5afb4"
+    },
+    "review.py": {
+      "bytes": 4960,
+      "sha256": "f48d21f0b8c6cd3c719ab6695b8a9ec6815285f2adf4dbab7d9ffab81299a159"
+    },
+    "save-base.json": {
+      "bytes": 2866,
+      "sha256": "eb30de330d1c0c4aadba42db531e568505861fffd657002ce5331dac1bc1bfbf"
+    },
+    "state.json": {
+      "bytes": 17913,
+      "sha256": "08614d1ede79bb22e852dfe02456689d6f0becf9df6740723f8db9b8714027be"
+    }
+  },
+  "executed_probe_sha256": "ed46f5f2db871633462925673e8d22dfbe0282d6fb2dc682880de40f0986d10b",
+  "probe_presentation_normalization": {
+    "change": "Trailing newline bytes only, for whitespace check. Replace published trailing CR/LF bytes with original tail below to recover exact executed bytes.",
+    "original_tail_hex": "0a0d0a"
+  }
+}

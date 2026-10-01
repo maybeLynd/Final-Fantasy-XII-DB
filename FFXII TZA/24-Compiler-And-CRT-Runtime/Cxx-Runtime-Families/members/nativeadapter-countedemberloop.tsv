@@ -1,0 +1,9 @@
+# NativeAdapter.CountedEmberLoop - EC-7 family C
+# if [this+0x90]==0 and arg1 nonzero: call a member op then loop arg1 times
+# # calling shared 00199DB0 on this+0x20 with a stack record, stepping the
+# # record source by 0xA.
+address	targets
+00220DE0	00199DB0,00221310
+00220E80	00199DB0,00221390
+00220F20	00199DB0,00221450
+00220FC0	00199DB0,00221510

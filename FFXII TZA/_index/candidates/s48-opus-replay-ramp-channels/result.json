@@ -1,0 +1,85 @@
+{
+ "ok": true,
+ "allowed_functions": 4250,
+ "results": {
+  "reset_003B6890": {
+   "pass_": true,
+   "enable_bits_after": 0,
+   "gate": 0,
+   "note": "the reset runs to its return over the planted table"
+  },
+  "P1_identity_guard_writes_nothing": {
+   "pass_": true,
+   "note": "a wrong generation in the id: all four setters return with the record byte-identical"
+  },
+  "P2_steps_zero_is_immediate": {
+   "pass_": true,
+   "counter_mid": 50,
+   "value_after": 7.5,
+   "note": "an in-flight 50-step ramp is cancelled: counter 0, value = target"
+  },
+  "P3_delta_and_no_clamp": {
+   "pass_": true,
+   "delta": "0.3333333432674408",
+   "reciprocal_product": "0.3333333432674408",
+   "true_quotient": "0.3333333432674408",
+   "values": [
+    "0.3333333432674408",
+    "0.6666666865348816",
+    "1.0",
+    "1.0"
+   ],
+   "note": "delta = (target - value) * (1/steps); after 3 ticks the counter is 0 and the value stays where the additions left it (1.0 vs target 1.0)"
+  },
+  "P3b_inexact_landing_and_reciprocal": {
+   "pass_": true,
+   "landing_0p1": [
+    "0.03333333507180214",
+    "0.10000000894069672",
+    0
+   ],
+   "delta_0p3": "0.10000000894069672",
+   "reciprocal_product": "0.10000000894069672",
+   "true_quotient": "0.10000000149011612",
+   "note": "0 -> 0.1 in 3 steps ends at 0.10000000894069672, not 0.1 (no clamp); the 0 -> 0.3 delta is the RECIPROCAL product 0.10000000894069672, not the quotient 0.10000000149011612 the contract's (target - value) / steps gives"
+  },
+  "P4_paused_does_not_accumulate": {
+   "pass_": true,
+   "paused": [
+    4,
+    0.0
+   ],
+   "global_gate": [
+    4,
+    0.0
+   ],
+   "running": [
+    3,
+    2.0
+   ],
+   "note": "paused or globally gated: counter and value unchanged; then one step"
+  },
+  "P5_byte_counter": {
+   "pass_": true,
+   "note": "steps 255 stores 255 in the byte counter"
+  },
+  "S2_S3_channel_layout": {
+   "pass_": true,
+   "after_one_tick": {
+    "c00": 1,
+    "v50": 5.0,
+    "v54": 10.0,
+    "c02": 1,
+    "v58": 5.0,
+    "v5C": 10.0,
+    "c01": 1,
+    "v70": 2.0,
+    "c03": 1,
+    "v78": 3.0,
+    "c43": 1,
+    "v98": 0.5
+   },
+   "note": "classes 0x0D/0x0F drive pairs +0x50/+0x54 and +0x58/+0x5C, 0x0E +0x70, 0x10 +0x78; the fifth channel (+0x43, +0x98) advances with no setter"
+  }
+ }
+}

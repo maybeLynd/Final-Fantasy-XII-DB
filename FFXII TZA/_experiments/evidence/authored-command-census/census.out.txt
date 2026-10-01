@@ -1,0 +1,48 @@
+second pass: '@FMC' blocks found by tag outside the containers (extension -> blocks): {'.cm': 209, '.mot': 30057}
+  commands added by the second pass: 635720 ; ids that appear ONLY there: 0x14 0x23 0x48
+control: .ca files 3164 ; '@FRP' containers 3164 (survey 3,164)
+@FMC blocks 62208 ; tracks 172552 ; groups 640217 ; commands 2348027
+track kind byte (value -> tracks): [(0, 110344), (1, 62208)]
+P1 / P2 / other structural failures: {"second pass: '@FMC' bytes that are not a block header": 1}
+P3  largest command id authored: 0x48
+command id -> commands / blocks / files ; top folders ; five commonest block names
+  0x00    62208 /  62208 /  4822 ; event 30057, npc 13574, monster 12211 ; mc_0, mc_1, mc_2, mc_3, mc_4
+  0x01    94937 /  58185 /  4822 ; event 30057, npc 29586, monster 22732 ; ready, c_turbo, mc_0, mc_1, mc_2
+  0x03     6464 /   6277 /   807 ; npc 2634, monster 2474, chara 1064 ; ready, magic_ready, magic, field_magic_ready, field_magic_start
+  0x04    27631 /  13096 /  2613 ; monster 11595, npc 11365, chara 3776 ; attack, magic, item, ev_door, ability
+  0x05    23794 /  11417 /  2771 ; monster 11478, npc 8080, chara 2607 ; ready, attack, knockback_l, dead, poach
+  0x06     7008 /   7008 /  2587 ; monster 3004, npc 2864, chara 914 ; magic, item, ev_treasure, throw, ability
+  0x09   108511 /  60977 /  4822 ; npc 34320, event 30056, monster 28607 ; ready, attack, c_turbo, mc_0, mc_1
+  0x0A     6726 /   5412 /   791 ; npc 2702, monster 2642, chara 1109 ; ready, c_turbo, turn, knockback_s, avoid
+  0x0B     6726 /   5412 /   791 ; npc 2702, monster 2642, chara 1109 ; ready, c_turbo, turn, knockback_s, avoid
+  0x0D   417549 /  55191 /  4812 ; event 148858, npc 115865, monster 100063 ; ready, attack, mc_0, mc_1, mc_2
+  0x0E   325965 /  55191 /  4812 ; event 111897, npc 96908, monster 71293 ; ready, attack, mc_0, mc_1, mc_2
+  0x0F   445335 /  55191 /  4812 ; event 149855, monster 121736, npc 120048 ; ready, attack, mc_0, mc_1, mc_2
+  0x10   196400 /  55094 /  4803 ; event 60165, npc 55216, monster 54134 ; ready, attack, mc_0, mc_1, mc_2
+  0x11    10617 /   1262 /   661 ; monster 4516, npc 4064, chara 1737 ; attack, field_attack, ready, turn, c_turbo
+  0x12    32515 /  14421 /  2707 ; npc 13413, monster 12531, chara 5884 ; attack, field_attack, knockback_l, magic_ready, magic
+  0x13    17416 /  11554 /  2018 ; event 11611, npc 3728, monster 1319 ; mc_0, mc_2, mc_1, mc_3, ready
+  0x14     7193 /    454 /   106 ; event 7193 ; mc_1, mc_0, mc_2, mc_3, mc_4
+  0x15     1218 /   1214 /   571 ; monster 490, npc 462, chara 214 ; active, deact
+  0x16      373 /    119 /    14 ; summon 174, monster 155, event 44 ; ready, turn, mc_0, start_pose, item
+  0x18    28505 /   6466 /  1055 ; npc 18971, chara 7997, monster 760 ; ready, attack, turn, field_attack, c_turbo
+  0x1A    12876 /   8323 /  2269 ; monster 5209, npc 5206, chara 2085 ; attack, avoid, magic, ev_treasure, ability
+  0x1D    11245 /   4778 /  2004 ; event 5606, chara 4454, npc 875 ; mc_12, ready, knockback_l, mc_0, mc_4
+  0x20      148 /    148 /   148 ; monster 88, npc 60 ; m1003_10_0603, m1007_10_0605, m1015_10_0603, m1018_10_0603, m1019_10_0603
+  0x21      613 /    541 /   156 ; npc 429, chara 139, monster 45 ; item, field_item, throw, steal
+  0x23      261 /    145 /    29 ; model-file 261 ; weapon_deact, weapon_active, weapon_ready, weapon_rlx_ready, weapon_shot
+  0x24     1493 /    262 /    42 ; monster 1050, summon 443 ; attack, ready, damage, field_damage, magic
+  0x25      740 /    188 /    22 ; monster 560, summon 180 ; ready, turn, start_pose, item, revive
+  0x28      115 /     26 /     5 ; monster 115 ; ready, knockback_l, knockback_s, c_turbo, ev_walk
+  0x29    80024 /  18155 /  3545 ; event 32552, npc 21209, monster 17898 ; ready, attack, mc_1, mc_0, mc_2
+  0x2A     7183 /   1420 /   339 ; monster 5100, npc 1731, summon 352 ; ready, attack, turn, knockback_l, avoid
+  0x2C   387789 /  18675 /   868 ; monster 235944, npc 103843, summon 26902 ; ready, attack, c_turbo, turn, ev_walk
+  0x2F       30 /     30 /    30 ; npc 30 ; n1009_60_0600, n1018_60_0600, n1018_60_0703, n1018_60_0704, n1056_50_0600
+  0x34     9540 /   1037 /   285 ; event 9512, npc 15, monster 13 ; mc_0, mc_1, mc_2, mc_3, mc_4
+  0x3F     3108 /   1609 /   214 ; chara 1562, npc 1378, summon 168 ; ability_ready, magic_ready, magic, field_magic_ready, ability
+  0x48     5771 /   5517 /   442 ; event 5771 ; mc_0, mc_2, mc_1, mc_3, mc_4
+children of other kinds, not command blocks (tag -> children): [('@FMN', 18303), ('@FMW', 18303), ('@FRM', 3164)]
+class 0x04 subtype byte +2 (value -> commands): [(0, 7656), (1, 2559), (2, 2283), (3, 2559), (4, 3169), (5, 220), (6, 622), (7, 622), (8, 622), (9, 80), (10, 1256), (11, 1050), (12, 4933)]
+class 0x11 (bone trails) byte +2 (value -> commands): [(0, 6363), (1, 4254)]
+class 0x1D (pose sequencer) (byte +2, byte +3) -> commands: [((17, 0), 1913), ((0, 0), 1724), ((16, 1), 1691), ((1, 0), 1525), ((0, 1), 1299), ((1, 1), 1184), ((17, 1), 652), ((16, 0), 343), ((0, 2), 262), ((0, 3), 249), ((2, 255), 134), ((253, 255), 129), ((16, 2), 47), ((33, 0), 36), ((16, 3), 30), ((254, 255), 13)]
+ids 0x00-0x4B never authored: 0x02 0x07 0x08 0x0C 0x17 0x19 0x1B 0x1C 0x1E 0x1F 0x22 0x26 0x27 0x2B 0x2D 0x2E 0x30 0x31 0x32 0x33 0x35 0x36 0x37 0x38 0x39 0x3A 0x3B 0x3C 0x3D 0x3E 0x40 0x41 0x42 0x43 0x44 0x45 0x46 0x47 0x49 0x4A 0x4B

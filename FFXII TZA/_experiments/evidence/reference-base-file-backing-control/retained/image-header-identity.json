@@ -1,0 +1,9 @@
+{
+  "pe_file_offset": 384,
+  "number_of_sections": 10,
+  "optional_header_bytes": 240,
+  "optional_magic": "020B",
+  "preferred_base": "0x120000",
+  "table_file_offset": 648,
+  "section_table_sha256": "a5451f22b0fa60bac5bc61eee8f826198ea92a659eb8a2b5a9320dd6fafbcf63"
+}

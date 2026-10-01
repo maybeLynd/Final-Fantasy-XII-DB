@@ -1,0 +1,331 @@
+function	name	site	disp	kind	instruction	route	note
+0025B2E0	FUN_0025b2e0	0025B381	0x0	r	mov rbx, qword ptr [r12]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B95D	0x0	r	mov rbx, qword ptr [rsi]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B9AE	0x0	r	mov rbx, qword ptr [rsi]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025BA4A	0x0	r	mov rbx, qword ptr [rsi]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C230	FUN_0025c230	0025C4A5	0x0	r	mov rbx, qword ptr [r13]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C230	FUN_0025c230	0025C572	0x0	r	mov rbx, qword ptr [r13]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C230	FUN_0025c230	0025C622	0x0	r	mov rbx, qword ptr [r13]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C230	FUN_0025c230	0025C73C	0x0	r	mov rbx, qword ptr [r13]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C230	FUN_0025c230	0025C7A1	0x0	r	mov rbx, qword ptr [r13]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C830	FUN_0025c830	0025D28E	0x0	r	mov rbx, qword ptr [r12]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C830	FUN_0025c830	0025D33D	0x0	r	mov rbx, qword ptr [r12]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DB2B	0x0	r	mov rax, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0025E16E	0x0	r	mov rbx, qword ptr [r15]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E52	0x0	w	mov qword ptr [rbx], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263050	FUN_00263050	002631D0	0x0	r	mov rbx, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263880	FUN_00263880	00263897	0x0	r	mov rax, qword ptr [rdx + rax]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263A30	FUN_00263a30	00263A63	0x0	r	mov rdi, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002641B0	FUN_002641b0	002641DC	0x0	r	mov rbx, qword ptr [rdi]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00264B90	FUN_00264b90	00264BDC	0x0	r	mov rbx, qword ptr [rdx + rax]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002652D0	FUN_002652d0	002652F3	0x0	r	mov rax, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002652D0	FUN_002652d0	00265322	0x0	r	mov rbx, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265770	FUN_00265770	00265773	0x0	r	mov rcx, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	0026654C	0x0	r	mov rsi, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	002668FD	0x0	r	mov rdi, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	00266970	0x0	r	mov rdi, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	002669BF	0x0	r	mov rdi, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	00266A19	0x0	r	mov rdi, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	00266A63	0x0	r	mov rdi, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266C50	FUN_00266c50	00266C5A	0x0	r	mov rbx, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002675C0	FUN_002675c0	0026766C	0x0	r	mov rbx, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002675C0	FUN_002675c0	002676CB	0x0	r	mov rbx, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267A0C	0x0	r	mov r12, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268EA0	FUN_00268ea0	00268F09	0x0	r	mov rbx, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268EA0	FUN_00268ea0	00268F50	0x0	r	mov rbx, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269640	Actor_RequestConfiguredPrimaryResources	002696C3	0x0	r	mov rbx, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269640	Actor_RequestConfiguredPrimaryResources	0026972A	0x0	r	mov rbx, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269860	FUN_00269860	002698D9	0x0	r	mov rbx, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269860	FUN_00269860	0026993C	0x0	r	mov r14, qword ptr [rcx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026A660	FUN_0026a660	0026A6B1	0x0	r	mov rbx, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C95A	0x0	w	mov qword ptr [rdi], rdx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CF6A	0x0	r	mov rsi, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D008	0x0	r	mov rsi, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D0AE	0x0	r	mov rsi, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D189	0x0	r	mov rdi, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D214	0x0	r	mov rdi, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2A1	0x0	r	mov rcx, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2ED	0x0	r	mov rax, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2FA	0x0	r	mov rdx, qword ptr [rbx]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D464	0x0	r	mov r8, qword ptr [r14]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262D96	0x8	r	mov rcx, qword ptr [rbx + 8]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262DA4	0x8	w	mov qword ptr [rbx + 8], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CEB8	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00358940	ActorManager_GetRecordByOrdinal	00358940	0x8	r	mov r8, qword ptr [rcx + 8]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 exposed	
+0025B250	FUN_0025b250	0025B26A	0x10	r	test byte ptr [rdi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B83A	0x10	r	test byte ptr [rsi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C070	FUN_0025c070	0025C09B	0x10	r	test byte ptr [rsi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C170	FUN_0025c170	0025C18A	0x10	r	test byte ptr [rdi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D4D0	FUN_0025d4d0	0025D4E1	0x10	rw	and byte ptr [rcx + rax + 0x10], 0xfd	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA0D	0x10	r	movzx ecx, byte ptr [rbx + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA4D	0x10	r	test byte ptr [rbx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DAAA	0x10	r	cmp byte ptr [rbx + 0x10], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DAD9	0x10	r	movzx eax, byte ptr [rbx + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DAF2	0x10	rw	or byte ptr [rbx + 0x10], 8	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DB1E	0x10	rw	or byte ptr [rbx + 0x10], 0x10	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DBFA	0x10	r	test byte ptr [rbx + 0x10], 0x20	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DC0C	0x10	rw	and byte ptr [rbx + 0x10], 0xdf	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DC1A	0x10	r	test byte ptr [rbx + 0x10], 0x20	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD92	0x10	r	cmp byte ptr [rbx + 0x10], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DE36	0x10	rw	and byte ptr [rbx + 0x10], 0x7f	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DE67	0x10	rw	and byte ptr [rbx + 0x10], 0x7f	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DE6F	0x10	rw	or byte ptr [rbx + 0x10], bpl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025E400	FUN_0025e400	0025E458	0x10	r	test byte ptr [rdi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00261FA3	0x10	r	test byte ptr [rcx + 0x10], 0x40	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00261FBD	0x10	rw	or byte ptr [rbx + 0x10], 0x20	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	002620D5	0x10	rw	or byte ptr [rbx + 0x10], 0x40	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002620E0	FUN_002620e0	002620F3	0x10	r	test byte ptr [rcx + 0x10], 4	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002620E0	FUN_002620e0	002621A4	0x10	rw	or byte ptr [rbx + 0x10], 4	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002623A0	FUN_002623a0	002623E0	0x10	r	test byte ptr [rdi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	0026292C	0x10	r	test byte ptr [rbx + 0x10], sil	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262DA8	0x10	rw	and byte ptr [rbx + 0x10], 0xfe	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263A30	FUN_00263a30	00263A58	0x10	r	test byte ptr [rcx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263B50	FUN_00263b50	00263B64	0x10	r	test byte ptr [rcx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263C30	FUN_00263c30	00263C41	0x10	r	test byte ptr [rcx + rax + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263C50	FUN_00263c50	00263C64	0x10	r	test byte ptr [rcx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002641B0	FUN_002641b0	002641D1	0x10	r	test byte ptr [rdi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00264610	FUN_00264610	00264621	0x10	r	test byte ptr [rax + rcx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002659F0	FUN_002659f0	00265A05	0x10	r	cmp byte ptr [r8 + 0x10], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00267210	FUN_00267210	00267224	0x10	r	movzx eax, byte ptr [rcx + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00267330	FUN_00267330	00267341	0x10	r	movzx eax, byte ptr [rcx + rax + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00267360	FUN_00267360	00267371	0x10	r	movzx edx, byte ptr [rcx + rax + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268B10	FUN_00268b10	00268BF8	0x10	r	cmp byte ptr [rcx + 0x10], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268B10	FUN_00268b10	00268CA0	0x10	r	cmp byte ptr [rcx + 0x10], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268D10	FUN_00268d10	00268D4F	0x10	r	test byte ptr [rsi + 0x10], bl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002693D0	FUN_002693d0	0026940B	0x10	r	test byte ptr [rcx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269A90	FUN_00269a90	00269AA4	0x10	r	test byte ptr [rcx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269AD0	FUN_00269ad0	00269B0A	0x10	r	test byte ptr [r14 + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026AF80	FUN_0026af80	0026AFAF	0x10	r	movzx eax, byte ptr [rcx + rax + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026B8E0	FUN_0026b8e0	0026B8FA	0x10	r	test byte ptr [rdi + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB0B	0x10	rw	and byte ptr [rdi + 0x10], 0xe7	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB12	0x10	r	movzx r9d, byte ptr [rdi + 0x10]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB67	0x10	w	mov byte ptr [rdi + 0x10], r9b	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC45	0x10	w	mov byte ptr [rdi + 0x10], r9b	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD3F	0x10	rw	and byte ptr [rdi + 0x10], 0x9b	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CE94	0x10	r	test byte ptr [rbx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D305	0x10	rw	or byte ptr [rbx + 0x10], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA09	0x11	rw	and byte ptr [rbx + 0x11], 0xfe	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA17	0x11	rw	or byte ptr [rbx + 0x11], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA25	0x11	r	test byte ptr [rbx + 0x11], 8	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA7B	0x11	r	test byte ptr [rbx + 0x11], 4	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD7C	0x11	rw	or byte ptr [rbx + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD80	0x11	r	movzx eax, byte ptr [rbx + 0x11]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD8F	0x11	w	mov byte ptr [rbx + 0x11], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002659F0	FUN_002659f0	00265A0C	0x11	r	test byte ptr [r8 + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002659F0	FUN_002659f0	00265A1A	0x11	rw	or byte ptr [r8 + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268B10	FUN_00268b10	00268BFE	0x11	r	test byte ptr [rcx + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268B10	FUN_00268b10	00268C0B	0x11	rw	or byte ptr [rcx + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268B10	FUN_00268b10	00268CA6	0x11	r	test byte ptr [rcx + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268B10	FUN_00268b10	00268CB3	0x11	rw	or byte ptr [rcx + 0x11], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAD1	0x11	rw	and byte ptr [rdi + 0x11], 0xfb	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBE0	0x11	r	movzx eax, byte ptr [rdi + 0x11]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBF6	0x11	w	mov byte ptr [rdi + 0x11], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DB25	0x12	r	cmp byte ptr [rbx + 0x12], dil	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DB79	0x12	w	mov byte ptr [rbx + 0x12], r12b	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD28	0x12	w	mov byte ptr [rdi + 0x12], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA1A	0x13	r	cmp byte ptr [rbx + 0x13], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262DB3	0x13	w	mov byte ptr [rbx + 0x13], bpl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00267210	FUN_00267210	00267228	0x13	r	movzx ecx, byte ptr [rcx + 0x13]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC6C	0x13	w	mov word ptr [rdi + 0x13], 0x101	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CE9E	0x13	r	cmp byte ptr [rbx + 0x13], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2D9	0x13	r	cmp byte ptr [rbx + 0x13], bpl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2E3	0x13	w	mov byte ptr [rbx + 0x13], bpl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C3E0	FUN_0026c3e0	0026C410	0x14	w	mov byte ptr [rbx + 0x14], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C5D0	FUN_0026c5d0	0026C606	0x14	w	mov byte ptr [rcx + 0x14], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC0D	0x15	w	mov byte ptr [rdi + 0x15], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C830	FUN_0025c830	0025C8F0	0x16	r	cmp byte ptr [r12 + 0x16], r14b	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CCD3	0x16	w	mov byte ptr [rdi + 0x16], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DA5C	0x17	r	test byte ptr [rbx + 0x17], 0x10	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DB93	0x17	r	cmp byte ptr [rbx + 0x17], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DBF6	0x17	rw	and byte ptr [rbx + 0x17], 0x7f	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DC10	0x17	r	cmp byte ptr [rbx + 0x17], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DC7B	0x17	r	test byte ptr [rbx + 0x17], 4	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD29	0x17	r	test byte ptr [rbx + 0x17], 4	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00261FB7	0x17	r	test byte ptr [rbx + 0x17], 4	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00262000	0x17	r	cmp byte ptr [rbx + 0x17], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00262097	0x17	rw	and byte ptr [rbx + 0x17], 0x7f	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	002620C5	0x17	r	cmp byte ptr [rbx + 0x17], 0x80	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E39	0x17	rw	and byte ptr [rbx + 0x17], 0xf7	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026A2A0	FUN_0026a2a0	0026A2B8	0x17	rw	or byte ptr [rcx + 0x17], 8	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026A2A0	FUN_0026a2a0	0026A2BE	0x17	rw	and byte ptr [rcx + 0x17], 0xf7	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAD5	0x17	rw	or byte ptr [rdi + 0x17], 3	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBD2	0x17	rw	and byte ptr [rdi + 0x17], 0xe7	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CCBF	0x17	rw	and byte ptr [rdi + 0x17], 0xfb	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CCC5	0x17	rw	or byte ptr [rdi + 0x17], 0x20	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CCCF	0x17	r	movzx edx, byte ptr [rdi + 0x17]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD4F	0x17	w	mov byte ptr [rdi + 0x17], dl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B200	0x20	r	cmp dword ptr [rbp + 0x20], edi	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B234	0x20	r	cmp edi, dword ptr [rbp + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C070	FUN_0025c070	0025C0A1	0x20	r	mov edi, dword ptr [rsi + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD08	0x20	r	cmp dword ptr [rbx + 0x20], edi	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD64	0x20	r	cmp edi, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DE7A	0x20	r	cmp dword ptr [rbx + 0x20], edi	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DEAE	0x20	r	cmp edi, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025E400	FUN_0025e400	0025E46C	0x20	r	cmp dword ptr [rdi + 0x20], ebx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025E400	FUN_0025e400	0025E4A7	0x20	r	cmp ebx, dword ptr [rdi + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263A30	FUN_00263a30	00263A6B	0x20	r	cmp edx, dword ptr [rcx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265A20	ActorSystem_BindBattleUnitsForEligibleRecords	00265A2C	0x20	r	mov r15d, dword ptr [rcx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267A11	0x20	r	mov r11d, dword ptr [rcx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269A90	FUN_00269a90	00269AAA	0x20	r	mov eax, dword ptr [rcx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00269AD0	FUN_00269ad0	00269B11	0x20	r	mov ebp, dword ptr [r14 + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026B8E0	FUN_0026b8e0	0026B90C	0x20	r	mov esi, dword ptr [rdi + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBD9	0x20	w	mov dword ptr [rdi + 0x20], eax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CF45	0x20	r	cmp dword ptr [rbx + 0x20], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CFD0	0x20	r	cmp edi, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CFE0	0x20	r	cmp dword ptr [rbx + 0x20], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D079	0x20	r	cmp edi, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D089	0x20	r	cmp dword ptr [rbx + 0x20], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D143	0x20	r	cmp edi, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D154	0x20	r	cmp dword ptr [rbx + 0x20], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D25F	0x20	r	cmp r15d, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D284	0x20	r	cmp dword ptr [rbx + 0x20], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2BD	0x20	r	cmp edi, dword ptr [rbx + 0x20]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DED5	0x24	rw	inc dword ptr [rbx + 0x24]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD59	0x24	w	mov dword ptr [rdi + 0x24], ebx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B21F	0x28	r	mov ecx, dword ptr [rbp + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B8DA	0x28	r	cmp dword ptr [rsi + 0x28], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025BAD0	FUN_0025bad0	0025BDC4	0x28	r	mov eax, dword ptr [r13 + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025BE50	FUN_0025be50	0025BF69	0x28	r	mov eax, dword ptr [r15 + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DC70	0x28	r	cmp dword ptr [rbx + 0x28], edi	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DCE8	0x28	r	cmp dword ptr [rbx + 0x28], edi	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DD1A	0x28	r	cmp dword ptr [rbx + 0x28], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DDA4	0x28	r	cmp dword ptr [rbx + 0x28], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0025E21E	0x28	r	mov ecx, dword ptr [r15 + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00261F96	0x28	r	cmp dword ptr [rcx + 0x28], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00261F90	FUN_00261f90	00261FCD	0x28	r	mov edi, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002620E0	FUN_002620e0	002620E6	0x28	r	cmp dword ptr [rcx + 0x28], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002620E0	FUN_002620e0	0026212C	0x28	r	mov r8d, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002620E0	FUN_002620e0	00262157	0x28	r	mov r8d, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E2F	0x28	r	mov ecx, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265A20	ActorSystem_BindBattleUnitsForEligibleRecords	00265A70	0x28	r	cmp dword ptr [rbp + 0x28], r12d	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	00266616	0x28	r	movzx eax, byte ptr [r14 + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266530	ActorStorage_InitializeRecord	00266646	0x28	r	cmp dword ptr [r14 + 0x28], r13d	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C957	0x28	w	mov dword ptr [rdi + 0x28], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC77	0x28	r	mov ecx, dword ptr [rdi + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026CFBF	0x28	r	mov ecx, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D068	0x28	r	mov ecx, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D132	0x28	r	mov ecx, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D1F4	0x28	r	mov ecx, dword ptr [rbx + 0x28]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E5C	0x30	w	mov qword ptr [rbx + 0x30], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC3E	0x30	w	mov qword ptr [rdi + 0x30], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DED8	0x38	rw	inc dword ptr [rbx + 0x38]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC42	0x38	w	mov dword ptr [rdi + 0x38], ebx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265770	FUN_00265770	00265799	0x40	r	mov rax, qword ptr [r9 + 0x40]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAF4	0x40	w	mov qword ptr [rdi + 0x40], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2E7	0x40	r	cmp qword ptr [rbx + 0x40], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D2F6	0x40	w	mov qword ptr [rbx + 0x40], rcx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D491	0x40	r	mov rax, qword ptr [r14 + 0x40]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265770	FUN_00265770	00265794	0x48	r	mov rax, qword ptr [r9 + 0x48]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAFD	0x48	w	mov qword ptr [rdi + 0x48], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D48B	0x48	r	mov rax, qword ptr [r14 + 0x48]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB17	0x50	w	mov qword ptr [rdi + 0x50], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265770	FUN_00265770	002657A8	0x58	r	mov rax, qword ptr [r9 + 0x58]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB2D	0x58	w	mov qword ptr [rdi + 0x58], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D4A6	0x58	r	mov rax, qword ptr [r14 + 0x58]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265770	FUN_00265770	002657AD	0x60	r	mov rax, qword ptr [r9 + 0x60]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB38	0x60	w	mov qword ptr [rdi + 0x60], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D4AC	0x60	r	mov rax, qword ptr [r14 + 0x60]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB43	0x68	w	mov qword ptr [rdi + 0x68], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB4E	0x70	w	mov qword ptr [rdi + 0x70], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB6B	0x78	w	mov qword ptr [rdi + 0x78], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D3EA	0x78	r	mov rax, qword ptr [rcx + 0x78]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB59	0x80	w	mov qword ptr [rdi + 0x80], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267A79	0x88	r	call qword ptr [r15 + 0x88]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAE6	0x88	w	mov qword ptr [rdi + 0x88], r12	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265770	FUN_00265770	002657A1	0x98	r	jmp qword ptr [r9 + 0x98]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAED	0x98	w	mov qword ptr [rdi + 0x98], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB76	0x98	w	mov qword ptr [rdi + 0x98], rax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026D3E0	FUN_0026d3e0	0026D49D	0x98	r	call qword ptr [r14 + 0x98]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC49	0xA0	w	mov qword ptr [rdi + 0xa0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC50	0xA8	w	mov qword ptr [rdi + 0xa8], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C230	FUN_0025c230	0025C693	0xB0	r	mov r9, qword ptr [r13 + 0xb0]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00268D10	FUN_00268d10	00268E69	0xB0	r	mov r9, qword ptr [rsi + 0xb0]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC57	0xB0	w	mov qword ptr [rdi + 0xb0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC5E	0xB8	w	mov qword ptr [rdi + 0xb8], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+003E91D0	FUN_003e91d0	003E91D6	0xB8	r	cmp qword ptr [rcx + 0xb8], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+003E91D0	FUN_003e91d0	003E91EE	0xB8	w	mov qword ptr [rbx + 0xb8], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+003E91D0	FUN_003e91d0	003E91E3	0xC0	r	mov ecx, dword ptr [rcx + 0xc0]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBE6	0xC8	w	mov qword ptr [rdi + 0xc8], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBEF	0xD0	w	mov qword ptr [rdi + 0xd0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC06	0xD8	w	mov qword ptr [rdi + 0xd8], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D340	0xD8	r	cmp qword ptr [rbx + 0xd8], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+003DA180	FUN_003da180	003DA180	0xD8	w	mov qword ptr [rcx + 0xd8], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBFC	0xE0	w	mov qword ptr [rdi + 0xe0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026CE60	ActorSystem_InitializeManagerRuntime	0026D350	0xE0	r	cmp qword ptr [rbx + 0xe0], 0	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	0026294B	0xE8	r	mov rcx, qword ptr [rbx + 0xe8]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	0026295C	0xE8	w	mov qword ptr [rbx + 0xe8], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E55	0xE8	w	mov qword ptr [rbx + 0xe8], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC2A	0xE8	w	mov qword ptr [rdi + 0xe8], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC17	0xF0	w	mov qword ptr [rdi + 0xf0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC10	0xF8	w	mov qword ptr [rdi + 0xf8], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC31	0x100	w	mov qword ptr [rdi + 0x100], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262F0F	0x108	r	mov rax, qword ptr [rbx + 0x108]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262F20	0x108	w	mov qword ptr [rbx + 0x108], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC65	0x108	w	mov qword ptr [rdi + 0x108], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267B3C	0x1D0	addr	lea rax, [r15 + 0x1d0]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267B50	0x1D0	r	movzx ecx, word ptr [rax]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x1D0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD52	0x1D0	w	mov qword ptr [rdi + 0x1d0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B095	0x1D2	r	movzx r14d, word ptr [rcx + 0x1d2]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025BA01	0x1D2	r	movzx r15d, word ptr [rsi + 0x1d2]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C170	FUN_0025c170	0025C1A5	0x1D2	r	movzx esi, word ptr [rdi + 0x1d2]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267B57	0x1D2	addr	lea rax, [rax + 2]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x1D0	
+0025B250	FUN_0025b250	0025B281	0x1D4	r	movzx esi, word ptr [rdi + 0x1d4]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B122	0x1D6	r	movzx r14d, word ptr [rbp + 0x1d6]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B8AE	0x1D6	r	movzx r15d, word ptr [rsi + 0x1d6]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C170	FUN_0025c170	0025C1E4	0x1D6	r	movzx esi, word ptr [rdi + 0x1d6]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002623A0	FUN_002623a0	00262400	0x1D6	r	movzx esi, word ptr [rdi + 0x1d6]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267B53	0x1D8	w	mov word ptr [rax + 8], dx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x1D0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B086	0x1DA	r	movzx esi, word ptr [rcx + 0x1da]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B9FA	0x1DA	r	movzx ebp, word ptr [rsi + 0x1da]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C170	FUN_0025c170	0025C199	0x1DA	r	movzx ebx, word ptr [rdi + 0x1da]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B250	FUN_0025b250	0025B275	0x1DC	r	movzx ebx, word ptr [rdi + 0x1dc]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B11B	0x1DE	r	movzx esi, word ptr [rbp + 0x1de]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B820	FUN_0025b820	0025B883	0x1DE	r	movzx ebp, word ptr [rsi + 0x1de]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C170	FUN_0025c170	0025C1DD	0x1DE	r	movzx ebx, word ptr [rdi + 0x1de]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002623A0	FUN_002623a0	002623F4	0x1DE	r	movzx ebx, word ptr [rdi + 0x1de]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E4B	0x1E0	w	mov qword ptr [rbx + 0x1e0], rbp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263050	FUN_00263050	002630B7	0x1E0	rw	dec dword ptr [r14 + 0x1e0]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00263230	FUN_00263230	002633C6	0x1E0	rw	inc dword ptr [rcx + r14 + 0x1e0]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CB1F	0x1E0	w	mov qword ptr [rdi + 0x1e0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025B500	FUN_0025b500	0025B523	0x1E4	rw	dec dword ptr [rcx + rax + 0x1e4]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025C830	FUN_0025c830	0025D3CA	0x1E4	rw	inc dword ptr [rcx + rax + 0x1e4]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265A20	ActorSystem_BindBattleUnitsForEligibleRecords	00265B3B	0x1E8	w	mov dword ptr [rbp + 0x1e8], eax	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00265A20	ActorSystem_BindBattleUnitsForEligibleRecords	00265B4D	0x1E8	w	mov dword ptr [rcx + 0x1e8], r12d	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC1E	0x1E8	w	mov dword ptr [rdi + 0x1e8], ebx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267AA8	0x1F0	w	mov qword ptr [r15 + 0x1f0], rcx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAD9	0x1F0	w	mov qword ptr [rdi + 0x1f0], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CAE0	0x1F8	w	mov dword ptr [rdi + 0x1f8], ebx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262E3F	0x1FC	w	mov dword ptr [rbx + 0x1fc], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC24	0x1FC	w	mov dword ptr [rdi + 0x1fc], ebx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DC2C	0x200	r	test byte ptr [rbx + 0x200], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DCE1	0x200	rw	and byte ptr [rbx + 0x200], 0xfd	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0025D9E0	ActorManager_RunFieldRuntimePass	0025DCF2	0x200	r	test byte ptr [rbx + 0x200], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262DAC	0x200	rw	and byte ptr [rbx + 0x200], 0xfb	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C950	0x200	rw	and byte ptr [rdi + 0x200], 0xfb	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CBC7	0x200	rw	or byte ptr [rdi + 0x200], 1	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD2F	0x200	rw	or byte ptr [rdi + 0x200], 2	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CD38	0x200	rw	and byte ptr [rdi + 0x200], 0xfd	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026A5B0	FUN_0026a5b0	0026A5C4	0x201	r	movzx eax, byte ptr [rcx + 0x201]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026A5B0	FUN_0026a5b0	0026A5D3	0x201	w	mov byte ptr [rcx + 0x201], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026A5B0	FUN_0026a5b0	0026A5DE	0x201	w	mov byte ptr [rcx + 0x201], al	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026CC38	0x201	w	mov byte ptr [rdi + 0x201], bl	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+002628B0	FUN_002628b0	00262963	0x202	rw	inc word ptr [rbx + 0x202]	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C918	0x244	w	mov qword ptr [rdi + 0x244], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C91F	0x24C	w	mov qword ptr [rdi + 0x24c], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C926	0x254	w	mov qword ptr [rdi + 0x254], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C92D	0x25C	w	mov qword ptr [rdi + 0x25c], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C934	0x264	w	mov qword ptr [rdi + 0x264], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C93B	0x26C	w	mov qword ptr [rdi + 0x26c], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C942	0x274	w	mov qword ptr [rdi + 0x274], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+0026C8C0	ActorManager_BindLoadedDefinitionPayload	0026C949	0x27C	w	mov qword ptr [rdi + 0x27c], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
+002628B0	FUN_002628b0	00262E45	0x284	w	mov dword ptr [rbx + 0x284], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
+00266D10	FUN_00266d10	00266EF0	0x0	addr	lea rcx, [rbx - 0x10]	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F18	0x8	w	mov qword ptr [rbx - 8], rsi	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F01	0x10	rw	and byte ptr [rbx], 0xfe	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F04	0x11	rw	and byte ptr [rbx + 1], 0xf7	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F1C	0x13	w	mov byte ptr [rbx + 3], sil	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F08	0x17	rw	and byte ptr [rbx + 7], 0xa7	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F13	0x28	w	mov dword ptr [rbx + 0x18], edi	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F0C	0x200	rw	and byte ptr [rbx + 0x1f0], 0xfb	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F20	0x202	w	mov word ptr [rbx + 0x1f2], si	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F27	0x284	w	mov dword ptr [rbx + 0x274], esi	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288

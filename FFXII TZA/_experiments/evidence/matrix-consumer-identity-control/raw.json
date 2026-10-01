@@ -1,0 +1,143 @@
+{
+  "method": "A offline checker falsification; no original-code/native/live execution",
+  "reference": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+  },
+  "dependencies": [
+    {
+      "path": "Database/FFXII TZA/_index/candidates/matrix-alias-consumers/alias_check.py",
+      "retained": "alias_check.py",
+      "git_commit": "46b96cdaeb85896218715a9b4c5a035064ac9d1a",
+      "git_blob": "eb72bbc075c43eb05bd29c651a083854bac1faf1",
+      "sha256": "9f1359b341cc7cd5d5f87ced48eccafd88283ba3b6bb498f87fd23dea8a79d0d",
+      "working_sha256": "9f1359b341cc7cd5d5f87ced48eccafd88283ba3b6bb498f87fd23dea8a79d0d",
+      "view": "canonical Git bytes; peer working page overlay not consumed"
+    },
+    {
+      "path": "Database/FFXII TZA/00-Engine-Core-Runtime/Shared-Transform-Workbench/the-two-transform-primitives.md",
+      "retained": "primitives.md",
+      "git_commit": "46b96cdaeb85896218715a9b4c5a035064ac9d1a",
+      "git_blob": "ccb52a01c02dd619b0ebdcdd1e5ffa573c9e3b97",
+      "sha256": "d55c8735c6aee1255ca06d5cdf2184272d43f6f49e7053b7f36a1f7766002401",
+      "working_sha256": "21f310971888f9a9bbd13e2a79bd2eee3bdc94695612bbbd87268ae8421cc53d",
+      "view": "canonical Git bytes; peer working page overlay not consumed"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/matrix-alias-consumers/README.md",
+      "retained": "consumer-README.md",
+      "git_commit": "46b96cdaeb85896218715a9b4c5a035064ac9d1a",
+      "git_blob": "60982871d6d2d2e7f024d6f9902b6851bf67363d",
+      "sha256": "95dec42b17c000cdb34b37e373b4eda0922fb8ab7478f46177a49fd769129fa6",
+      "working_sha256": "95dec42b17c000cdb34b37e373b4eda0922fb8ab7478f46177a49fd769129fa6",
+      "view": "canonical Git bytes; peer working page overlay not consumed"
+    }
+  ],
+  "driver_sha256_before": "8de1a0f933ba66674476e9aee31648d23b52bf4db5b03d9f0431a447c5991613",
+  "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "interpreter_sha256_before": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "cases": [
+    {
+      "case": "canonical-baseline",
+      "method": "offline Python checker with labelled supplied file-read intervention; NOT native FF12",
+      "input_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "baseline_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "input_bytes": 32864752,
+      "differences": [],
+      "patch": null,
+      "bodies": [
+        {
+          "va": "0x217060",
+          "bytes": 235,
+          "sha256": "5c072a689347f4faf38b7944bce418c22ed521bf5e0f531bc9be30cb3fbce678",
+          "unchanged": true
+        },
+        {
+          "va": "0x202b70",
+          "bytes": 31,
+          "sha256": "8e6a096240f1b573c23d20f1f03d94c0b6f287a65d0979f9a6b9b94c48947a98",
+          "unchanged": true
+        }
+      ],
+      "checker_sha256": "9f1359b341cc7cd5d5f87ced48eccafd88283ba3b6bb498f87fd23dea8a79d0d",
+      "page_sha256": "d55c8735c6aee1255ca06d5cdf2184272d43f6f49e7053b7f36a1f7766002401",
+      "checker_exit_code": 0,
+      "stdout": "PASS  L1 the four vector words are read before the first store ['00217064', '0021706C', '00217086', '00217090']\nPASS  L2 matrix reads interleave with stores (word 2 after the first store, word 3 before the second) \nPASS  L3 replay: disjoint (12,26,42,2), out = m+8 (12,26,54,2); the column-reload model differs replay [12.0, 26.0, 42.0, 2.0] / [12.0, 26.0, 54.0, 2.0], reload model [12.0, 26.0, 54.0, 28.0]\nPASS  W1 the wrapper stages into rsp+0x20, copies 16 bytes after the leaf, and leaves rax on the temporary \nPASS  S the MXV / MXVW rows state the alias hazard and the rax residue \nFAILS 0\n",
+      "file_reads": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+          "mode": "rb",
+          "supplied": "disposable image bytes"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\00-Engine-Core-Runtime\\Shared-Transform-Workbench\\the-two-transform-primitives.md",
+          "mode": "r",
+          "supplied": "canonical page bytes"
+        }
+      ],
+      "pid": 20904,
+      "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "cleanup": "open restored; disposable input only; process exits normally",
+      "child_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "case": "wrong-image-identity",
+      "method": "offline Python checker with labelled supplied file-read intervention; NOT native FF12",
+      "input_sha256": "011ee47f856a9a5fee990684fd9473b7ad162444c2ef696b5b49b0e4e403f019",
+      "baseline_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "input_bytes": 32864752,
+      "differences": [
+        40
+      ],
+      "patch": {
+        "offset": 40,
+        "before": 0,
+        "after": 1
+      },
+      "bodies": [
+        {
+          "va": "0x217060",
+          "bytes": 235,
+          "sha256": "5c072a689347f4faf38b7944bce418c22ed521bf5e0f531bc9be30cb3fbce678",
+          "unchanged": true
+        },
+        {
+          "va": "0x202b70",
+          "bytes": 31,
+          "sha256": "8e6a096240f1b573c23d20f1f03d94c0b6f287a65d0979f9a6b9b94c48947a98",
+          "unchanged": true
+        }
+      ],
+      "checker_sha256": "9f1359b341cc7cd5d5f87ced48eccafd88283ba3b6bb498f87fd23dea8a79d0d",
+      "page_sha256": "d55c8735c6aee1255ca06d5cdf2184272d43f6f49e7053b7f36a1f7766002401",
+      "checker_exit_code": 0,
+      "stdout": "PASS  L1 the four vector words are read before the first store ['00217064', '0021706C', '00217086', '00217090']\nPASS  L2 matrix reads interleave with stores (word 2 after the first store, word 3 before the second) \nPASS  L3 replay: disjoint (12,26,42,2), out = m+8 (12,26,54,2); the column-reload model differs replay [12.0, 26.0, 42.0, 2.0] / [12.0, 26.0, 54.0, 2.0], reload model [12.0, 26.0, 54.0, 28.0]\nPASS  W1 the wrapper stages into rsp+0x20, copies 16 bytes after the leaf, and leaves rax on the temporary \nPASS  S the MXV / MXVW rows state the alias hazard and the rax residue \nFAILS 0\n",
+      "file_reads": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+          "mode": "rb",
+          "supplied": "disposable image bytes"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\00-Engine-Core-Runtime\\Shared-Transform-Workbench\\the-two-transform-primitives.md",
+          "mode": "r",
+          "supplied": "canonical page bytes"
+        }
+      ],
+      "pid": 34416,
+      "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "cleanup": "open restored; disposable input only; process exits normally",
+      "child_returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "cleanup": {
+    "reference_sha256_after": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "driver_unchanged": true,
+    "children_exited": true,
+    "pc_control": "OFF",
+    "game_save_config_reference_writes": false,
+    "peer_source_writes": false
+  }
+}

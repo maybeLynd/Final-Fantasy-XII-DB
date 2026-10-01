@@ -1,0 +1,12 @@
+PASS N0   functions.parent.json: the certified GN162 parent 59629b9b, 38,161 functions, EXE 73461d08  -- 2026-09-17T14:00:15Z
+PASS N1   CONTROL: the 2026-09-02 GN export reproduces the page's pass-3 figures exactly (690 + 72 + 21 + 18 = 801)  -- 690 {'EASTL': 72, 'Lua': 21, 'Bullet': 18}
+PASS N2   GN162 ThirdParty.* = 691; every row of section 2's table holds, plus the R109 XML.ConfigParse member  -- {'Video.LibVPX_VP8_1_6_0': 73, 'Rendering.Yebis': 3, 'Serialization.JsonBox': 4, 'XML.Libxml2': 4, 'XML.ConfigParse': 1, 'Scripting.Lua': 90, 'Physics.Bullet': 120, 'Rendering.PPFX': 348, 'UI.DearImGui': 7, 'Audio.Tremor': 4, 'Compression.ZlibAdapter': 1, 'Compression.Zlib': 9, 'Compression.Zlib_1_2_11': 16, 'Audio.LibVorbis': 11}
+PASS N3   GN162 bare-name: Lua 21 and Bullet 18 hold; EASTL is 97 = BasicString 58 + ContainerRuntime 14 + OrderedContainerRuntime 25 (the page says 72)  -- {'EASTL': 97, 'Lua': 21, 'Bullet': 18}
+PASS N4   the 25 are re-tags of rows that were CxxStandardLibrary.OrderedContainerRuntime.* at GN, 0016D840 among them  -- 25 25
+PASS N5   GN162 bare-name total 136; tag-census total 691 + 136 = 827 (the page says 111 and 802; its lede and section 8 say 801)
+PASS N6   38,161 rows, 0 duplicate entries, no row in two bare families; the 25 carry a single tag each
+PASS G1   001B7F30 calls 0067A480 (the movie player FR-1 names)  -- ['0x1b7f30']
+PASS G2   00679A50 has exactly one caller, 0067A480  -- ['0x67a480']
+PASS G3   00679A50 calls libvorbis bodies 008800C0, 00880AF0, 00880BF0 inside 008800C0..008958B0: libvorbis is reached, two hops below the movie player  -- ['0x8800c0', '0x880af0', '0x880bf0', '0x881830', '0x882200']
+CHECKS 10
+FAILS 0

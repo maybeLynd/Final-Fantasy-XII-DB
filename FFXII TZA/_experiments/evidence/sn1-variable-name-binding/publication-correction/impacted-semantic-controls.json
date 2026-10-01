@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-accept-shifted-operand",
+    "returncode": 1,
+    "expected": "Shifted operand falsely accepted"
+  },
+  {
+    "argument": "--fault-ignore-name-directory",
+    "returncode": 1,
+    "expected": "Changed name directory falsely accepted"
+  },
+  {
+    "argument": "--fault-ignore-count-domain",
+    "returncode": 1,
+    "expected": "Count-domain defect accepted"
+  }
+]

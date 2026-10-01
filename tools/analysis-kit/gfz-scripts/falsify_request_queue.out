@@ -1,0 +1,6 @@
+SURVIVES  Q1  telemetry before the negative-index refusal; gated local +4 = 0x80000, +0x20 = 0; nonzero id: cap, chunk word, remaining, signed first part
+SURVIVES  Q2  pump -> in-flight -> pacer while the free head is null; id = counter << 6 + slot; signed wrap to 1; offset toward zero to 0x800
+SURVIVES  Q3  descriptor +0/+8/+0x10/+0x18 consumed, +0x20 never read, +0x50 cleared; state 1, kind, fields as stated
+SURVIVES  Q4  flag in ECX, slot from the free head, head advanced; recycle pushes on the free head, id -1, nothing else cleared
+SURVIVES  Q5  done(arg, dest, 0) only for a nonnull callback with bytes == -1; kind 0xFF frees the sign-extended path; rax otherwise the callback
+FAILS 0

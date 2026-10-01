@@ -1,0 +1,31 @@
+== C. displacement sweeps
+  disp 0x774 sites: 10
+    00236BE6 root 00236A60 w   4B  mov dword ptr [rdi + 0x774], 0xffffffff
+    00329F86 root 00329F80 r   4B  cmp dword ptr [rcx + 0x774], -1
+    0032A045 root 00329F80 w   4B  mov dword ptr [rbx + 0x774], eax
+    00605E4D root 00604750 r   4B  movss xmm0, dword ptr [rbp + 0x774]
+    006FCCAC root 006FC760 r   4B  mulss xmm3, dword ptr [rbx + 0x774]
+    006FD2E6 root 006FD110 r   4B  comiss xmm6, dword ptr [rsi + 0x774]
+    0070B571 root 0070B500 w   4B  movss dword ptr [rcx + 0x774], xmm2
+    007D2959 root 007D2150 w   8B  mov qword ptr [rcx + 0x774], 0x3fb4fdf4
+    007D760E root 007D6CD0 r   4B  movss xmm9, dword ptr [rbx + 0x774]
+    007D763C root 007D6CD0 r   4B  movss xmm0, dword ptr [rbx + 0x774]
+  writes: ['00236BE6', '0032A045', '0070B571', '007D2959']
+  CONTROL 00236BE6 in writes: True; 0032A045 in writes: True
+  disp 0x6B0 sites: 44; lea ['0030487F(00304850) rsi, [rcx + 0x6b0]', '0030F04A(0030EFF0) rax, [rbx + 0x6b0]', '0030F0E5(0030EFF0) rcx, [rbx + 0x6b0]', '0031081E(00310780) rcx, [rbx + 0x6b0]', '003CA988(003CA860) rcx, [rdi + 0x6b0]']; writes ['001D0BA8(001D0390) mov qword ptr [rdi + 0x6b0], rax', '00236B9D(00236A60) mov byte ptr [rdi + 0x6b0], al', '002E03C4(002DF9A0) mov qword ptr [rax + 0x6b0], rcx', '002FFA22(002FEF30) and dword ptr [r14 + 0x6b0], 0xfffffffd', '003001A5(00300140) and dword ptr [rbx + 0x6b0], 0xfffffffd', '00300EB7(00300E40) and dword ptr [rdi + 0x6b0], 0xfffffffd', '003011EE(00301140) and dword ptr [rbx + 0x6b0], 0xfffffffd', '0030B008(0030AF30) and dword ptr [rbx + 0x6b0], 0xfffffffd', '0030F872(0030F760) mov dword ptr [rbx + 0x6b0], eax', '00311D81(00311CF0) and dword ptr [rbx + 0x6b0], 0xfffffffd', '00311D8C(00311CF0) or dword ptr [rbx + 0x6b0], 2', '00312F33(00312EE0) or dword ptr [rbx + 0x6b0], 1', '0041FB64(0041F730) mov dword ptr [rbx + 0x6b0], esi', '00420640(00420480) mov dword ptr [rsi + 0x6b0], eax', '005434ED(00542740) movss dword ptr [rbx + 0x6b0], xmm6', '005434FF(00542740) movss dword ptr [rbx + 0x6b0], xmm0', '0061E4B0(0061E340) mov qword ptr [rbx + 0x6b0], rbp', '00742CC0(00742B30) movaps xmmword ptr [rsp + 0x6b0], xmm13', '007C0905(007C05C0) mov dword ptr [rdi + 0x6b0], 0xffffffff', '007C0AAF(007C05C0) mov dword ptr [rdi + 0x6b0], 0xffffffff', '007C46F1(007C43F0) mov dword ptr [rdi + 0x6b0], ebx', '007C4F10(007C4790) mov dword ptr [rsi + 0x6b0], eax', '007CE49A(007CDC20) mov dword ptr [rsi + 0x6b0], 0xffffffff', '007D287E(007D2150) mov dword ptr [rcx + 0x6b0], r14d']
+  disp 0xB88 sites: 11; lea ['0087DF64(0087DD50) r8, [rbx + 0xb88]', '0087E497(0087E470) rdi, [r8 + 0xb88]']; writes ['0030F0F1(0030EFF0) mov qword ptr [rbx + 0xb88], rdi', '0070A873(0070A7F0) movups xmmword ptr [rdi + 0xb88], xmm1', '0087E546(0087E470) inc word ptr [r8 + rax*2 + 0xb88]', '0087E5E7(0087E470) add word ptr [r8 + rax*2 + 0xb88], r11w', '0087E5FA(0087E470) add word ptr [rdi + 0xb88], r11w']
+== D. unit pool cells
+  0208E688 rip refs 7 in ['--------', '00234200', '00234480', '002367A0', '002368D0', '00238B70']; image-base 0 []
+    store? 0023693C mov qword ptr [rip + 0x1e57d45], rax
+  0208E6A0 rip refs 27 in ['--------', '00234200', '00234480', '00234880', '002348E0', '00234990', '00234A10', '00234A80', '002352E0', '002367A0', '002368D0', '00237690', '00238B70']; image-base 0 []
+    store? 00234888 cmp dword ptr [rip + 0x1e59e12], ebx
+    store? 002348EE cmp dword ptr [rip + 0x1e59dac], ebx
+    store? 0023499E cmp dword ptr [rip + 0x1e59cfc], ebx
+    store? 00234A1E cmp dword ptr [rip + 0x1e59c7c], ebx
+    store? 00234A8E cmp dword ptr [rip + 0x1e59c0c], ebx
+    store? 002352E8 cmp dword ptr [rip + 0x1e593b2], ebx
+    store? 002368FE mov dword ptr [rip + 0x1e57d9c], eax
+    store? 00237674 cmp dword ptr [rip + 0x1e5702a], ecx
+    store? 00237698 cmp dword ptr [rip + 0x1e57002], ebx
+    store? 00238A70 mov dword ptr [rip + 0x1e55c2e], eax
+    store? 0023B02E mov dword ptr [rip + 0x1e53670], edx

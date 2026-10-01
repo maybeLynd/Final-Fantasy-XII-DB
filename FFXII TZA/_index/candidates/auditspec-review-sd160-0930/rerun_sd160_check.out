@@ -1,0 +1,7 @@
+PASS  F1 type 3 (or definition +0x52 == 0xFFFF) skips the tally call 00253750
+PASS  F2 setfreetargettype(v) -> actor +0x0E low nibble = v
+PASS  F3 btlAtelSetUnitType(v) -> unit +0x58 = {1, 5, 3, 4}[v]; type 3 <- argument 2
+PASS  C1 63,432 sites, all constant; btlAtelSetUnitType(2) 297, setfreetargettype(3) 315 (sd160_census.out)
+PASS  C2 612 sites = 68 x 9 languages, identical per language, in 29 zone files
+PASS  C3 33 unit-type sites (THIRD_* 10, npc_battle 6, event_garif 1, DAL_SOLDIER 9, BASH 3, ex_trial 4) + 35 disp_tama sites in rbl_
+FAILS 0

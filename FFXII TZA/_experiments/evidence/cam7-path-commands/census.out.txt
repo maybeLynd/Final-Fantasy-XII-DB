@@ -1,0 +1,45 @@
+control: files 423 records 3942 arrayB 15350 arrayC 1682 (published 423 / 3,942 / 15,350 / 1,682)
+
+== command stream
+records whose stream parses as key/segment/end: 3942 of 3942 ; failures: []
+bytes between the end byte and the record end: {3: 3942}
+streams: [('KSKE', 3421), ('KE', 421), ('KSKSKE', 59), ('KSKSKSKE', 20), ('KSKKSKE', 11), ('KSKKE', 3), ('KSKKSKKSKE', 2), ('KSKKSKSKE', 1), ('KSKSKSKSKE', 1), ('KSKSKSKSKSKE', 1), ('KSKSKSKSKSKSKSKSKSKSKSKE', 1), ('SKE', 1)]
+streams starting with a segment: [('dst_a07.ebp', 2)]
+
+== key (type 1, 0x40 bytes): value histograms (top 6, distinct count)
+  +0x10 [(1.0, 7614)] distinct 1
+  +0x20 [(1.0, 7614)] distinct 1
+  +0x24 [(0.0, 6607), (0.03, 83), (-0.02, 79), (0.05, 67), (-0.03, 63), (0.07, 62)] distinct 82
+  +0x28 [(40.0, 910), (38.0, 657), (45.0, 624), (27.0, 377), (30.0, 256), (32.0, 246)] distinct 176
+  +0x2C [(0.0, 7612), (0.03, 2)] distinct 2
+  +0x30 [(0.0, 7614)] distinct 1
+  +0x34 [(0.0, 7614)] distinct 1
+  +0x38 [(1.0, 7609), (0.0, 5)] distinct 2
+  +0x3C [(0.0, 7614)] distinct 1
+
+== segment (type 2, 0x2C bytes)
+interpolation kind +0x24: [(0, 3406), (1, 116), (2, 57), (3, 67), (4, 8)]
++0x25 (path offsets absolute when nonzero): [(0, 3631), (1, 22), (65, 1)]
++0x01..+0x03 and +0x26..+0x2B all zero: True 
+duration +0x22 zero: 0
+timing words: {'curve': 15350, 'frames': 32152}
+timing words per slot (curve count): [1764, 1765, 1764, 1951, 1953, 1953, 768, 1593, 762, 913, 56, 55, 53]
+path words: {'none': 5626, 'path': 271, 'path-unscaled': 1411} per slot: [{'none': 2891, 'path': 124, 'path-unscaled': 639}, {'none': 2735, 'path': 147, 'path-unscaled': 772}]
+curve/path index >= the section's count: 0
+array-B records referenced k times: {1: 15350} ; array-C records referenced k times: {1: 1682}
+
+== array B (timing curves)
+length == 0x18 + 0x24*n: 15350 mismatch: 0 ; n histogram: [(1, 7482), (2, 3642), (3, 2304), (4, 862), (5, 424), (6, 265), (7, 143), (8, 81), (9, 47), (10, 40), (11, 14), (12, 13), (13, 10), (14, 5), (15, 3), (16, 3), (17, 1), (18, 2), (19, 1), (21, 2), (22, 2), (24, 1), (28, 1), (29, 1), (30, 1)]
+sum of key spans (+0x20 of each 0x24 key): [(1.0, 15350)]
+
+== array C (paths)
+length == 0x20 + 0x38*n + 8*m: 1682 mismatch: 0
+paths with no arc table (m = 0), by the flag of the word that references them: {'path': 25, 'path-unscaled': 22}
+first arc pair (distance, param): [((0.0, 0.0), 1635)] ; last pair param: [(1.0, 1635)]
++0x02: {0: 1679, 1: 1, 30: 2} ; (n, m) top: [((3, 31), 686), ((4, 41), 284), ((5, 51), 208), ((6, 61), 156), ((7, 71), 89), ((8, 81), 58), ((3, 0), 44), ((9, 91), 38)]
+
+== record +0x20 attachment bitfield
+eye actor id (bits 0-8) nonzero: {False: 3762, True: 180} ; target actor id (bits 16-24) nonzero: {False: 3761, True: 181}
+eye mode bits 13-14: {0: 3836, 1: 39, 2: 67} ; target mode bits 29-30: {0: 3835, 1: 40, 2: 67}
+records with each bit set: {0: 121, 1: 59, 2: 71, 3: 15, 4: 24, 9: 35, 10: 35, 11: 7, 12: 5, 13: 39, 14: 67, 15: 3888, 16: 122, 17: 60, 18: 72, 19: 16, 20: 25, 27: 7, 28: 1, 29: 40, 30: 67, 31: 3887}
+most common words: ['80008000:3730', '80018001:50', '00000000:19', 'C004C004:18', 'A001A001:16', '00020002:11', '80078007:9', 'C00DC60D:9']

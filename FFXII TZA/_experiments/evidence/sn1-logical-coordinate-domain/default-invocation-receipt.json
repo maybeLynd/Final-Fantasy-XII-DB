@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "probe_sha256": "e9f7697952c207cfcd6b6f8e6ad5c191e843da6d31f9b53b235741359902df81",
+  "check_sha256": "adb461d27214128514c07a87530726cb420fec7a006d73d3cd1a292867d1fd69",
+  "preparation_before_sha256": "2a16eee36ddce25800969987f8ef37b49a6225f033771d04cc829523e819e43f",
+  "preparation_after_sha256": "2a16eee36ddce25800969987f8ef37b49a6225f033771d04cc829523e819e43f",
+  "path": "Actual probe default with retained old preparation consumes corrected decoded-source checker; original preparation unchanged, no native/compiler/game execution"
+}

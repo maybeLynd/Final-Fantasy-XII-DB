@@ -1,0 +1,15 @@
+# WidgetSingleton02B47758_02A0 - emitted by Database/Tools/work/OPUS/emit_singleton_widget_census.py, which calls gfz-scripts/receiver_flow_census.py
+# SEED 003CAB00 - the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0; jump tables supplied: 0x3CAB52=0x3CADB8:7
+# REACH 003CAB00 - 176 of 176 instructions; the emitter refuses below 100%
+# CONTROL: no shared widget helper is seeded here, so there is no conflation to exclude - stated rather than printed as an unearned `none`
+# kind: r read, w write, a ADDRESS TAKEN (a lea, which touches no memory)
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+function	name	site	disp	kind	instruction	route	note
+003CAB00	FUN_003cab00	003CAB58	0x50	a	lea rcx, [rbp + 0x50]	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CABC2	0x60	r	mov rcx, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CAD18	0x60	r	mov rax, qword ptr [rbp + 0x60]	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CAB80	0x98	w	mov word ptr [rbp + 0x98], ax	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CAB87	0x9A	w	mov word ptr [rbp + 0x9a], r8w	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CAB8F	0x9C	w	mov word ptr [rbp + 0x9c], dx	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CAB96	0x9E	w	mov word ptr [rbp + 0x9e], cx	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	
+003CAB00	FUN_003cab00	003CAC00	0xC0	a	lea rdi, [rbp + 0xc0]	the child's REGISTERED HANDLER: r8 at 003CA913, beside `mov edx, 0x1c0`, at the in-place construction 003CA92B into the parent's +0x2A0	

@@ -1,0 +1,94 @@
+   A 002832C7  mov           byte ptr [rax + 0xb2d], 0xff                 00283270 FUN_00283270
+   A 00283400  mov           byte ptr [rax + 0xb2d], cl                   00283270 FUN_00283270
+   A 002CEAF4  movzx         r8d, byte ptr [rax + 0xb2d]                  002CEAE0 FUN_002ceae0
+PASS CA control: the +0xB2D census shows 002CEAE0's own read (002CEAF4)
+PASS A1 image-wide byte writes at +0xB2D are exactly 002832C7 and 00283400 - ['002832C7', '00283400']
+PASS A2 00283400 stores cl = byte [copy + 0x60] on the flag-bit-1 branch; the gate bit is set there (002833ED)
+PASS A3 00329220 sets the copy's flag bit 1 only for a kind-0 row byte +4 in 7..0x19
+   A d3c 002832D5  and           dword ptr [rax + 0xd3c], 0xfffffffd          00283270 FUN_00283270
+   A d3c 002832F8  xor           dword ptr [rcx + 0xd3c], eax                 00283270 FUN_00283270
+   A d3c 0028331A  xor           dword ptr [rcx + 0xd3c], eax                 00283270 FUN_00283270
+   A d3c 00283327  and           dword ptr [rax + 0xd3c], 0xfffffffe          00283270 FUN_00283270
+   A d3c 00283348  xor           dword ptr [rcx + 0xd3c], eax                 00283270 FUN_00283270
+   A d3c 002833ED  or            dword ptr [rax + 0xd3c], 2                   00283270 FUN_00283270
+   A d3c 00283423  or            dword ptr [rax + 0xd3c], 1                   00283270 FUN_00283270
+   A d3c 0028BDF8  mov           dword ptr [rdi + 0xd3c], eax                 0028BB50 FUN_0028bb50
+   A d3c 0028C2FA  mov           dword ptr [rdi + 0xd3c], 0x3f800000          0028BB50 FUN_0028bb50
+   A d3c 002C1553  and           dword ptr [rax + 0xd3c], 0xffffffef          002C13C0 FUN_002c13c0
+   A d3c 002C1581  xor           dword ptr [rcx + 0xd3c], eax                 002C13C0 FUN_002c13c0
+   A d3c 002CC097  xor           dword ptr [rcx + 0xd3c], eax                 002CBF80 FUN_002cbf80
+   A d3c 005609CB  and           dword ptr [rax + 0xd3c], 0xffffffef          00560910 FUN_00560910
+   A d3c 00560A4E  or            dword ptr [rax + 0xd3c], 0x10                00560910 FUN_00560910
+   A: other +0xD3C writers are xor-merges of the masks their preceding 'and eax, M' names (printed above for review)
+PASS A4 002CEAE0: id = 0x10 + that byte, gated by +0xD3C bit 1
+   A result: id in 0x17..0x29 when the gate is set
+PASS CB control: 00D11710 = 1,2,4,8,16,32,64 - [1, 2, 4, 8, 16, 32, 64]
+PASS B1 003C9A30 writes +0xC1 only with dl, skipping dl = 7 (003C9D20 / 003C9D3E)
+   B 00D11720[0..15] = [0, 2, 3, 4, 3, 6, 0, 0, 0, 10, 12, 12, 12, 5, 0, 0]
+PASS B2 the child-proc table values written to +0xC1 (00D11720[0..7]) and the word write 0x0A02 (-> 2) are <= 12
+   B image-wide byte/word writes at +0xC1: 22; in the widget module 003C9xxx: 003C9611 003C974F 003C9D28 003C9D46
+PASS B3 the widget module's +0xC1 writers are exactly 003C9611, 003C974F, 003C9D28, 003C9D46
+   B result: id <= 0xE + 12 = 0x1A; the other 18 image-wide +0xC1 writers are in modules that are not handed this widget object (not type-traced)
+PASS CC control: 00D23740[0] = 0x228 = kind-7 menuhandbook_story.bin - PS2Data\image\FF12\myoshiok\in\Handbook\menuhandbook_story.bin
+   C bases: ['0x228', '0x294', '0x2cc', '0x2f4', '0x31c', '0x354'] -> ['menuhandbook_story.bin', 'menuhandbook_world.bin', 'menuhandbook_person.bin', 'menuhandbook_knowledge.bin', 'menuhandbook_tutorial.bin', 'menuhandbook_monster.bin']
+PASS C1 0056F2A0 reaches 00577880 only when its category dl <= 5
+PASS C2 00575C30 stores the category to +0xD2 (00575CD2)
+PASS C3 in the handbook module (0056xxxx-0057xxxx) +0xD2 is written only at 00575CD2 - ['00575CD2']
+   C result: category <= 5, id >= 0x228
+   D 00249296 -> 0032E400 in 00249210 FUN_00249210                   kind: mov ecx, r15d                          id: mov rdx, r14
+   D 0024AB93 -> 0032E400 in 0024AB90 FUN_0024ab90                   kind: (entry argument)                       id: movsxd rdx, edx
+   D 00268814 -> 0032E400 in 00268750 MapRef_BeginLoadResources      kind: lea ecx, [rdi + 9]                     id: lea edx, [rdi + 2]
+   D 002E6776 -> 0032E400 in 002E6700 FUN_002e6700                   kind: mov ecx, dword ptr [rsp + 0x58]        id: movsxd rdx, eax
+   D 002E9988 -> 0032E400 in 002E9920 FUN_002e9920                   kind: mov ecx, r9d                           id: movsxd rdx, eax
+   D 002E99A8 -> 0032E400 in 002E9920 FUN_002e9920                   kind: mov ecx, r9d                           id: movsxd rdx, eax
+   D 002EADEA -> 0032E400 in 002EAD50 FUN_002ead50                   kind: mov ecx, dword ptr [rsp + 0x98]        id: movsxd rdx, eax
+   D 002FC8D8 -> 0032E400 in 002FC860 FUN_002fc860                   kind: cmove ecx, r14d                        id: mov rdx, rdi
+   D 002FC920 -> 0032E400 in 002FC860 FUN_002fc860                   kind: cmove ecx, r14d                        id: mov edx, edi
+   D 002FD027 -> 0032E400 in 002FCFF0 FUN_002fcff0                   kind: cmove ecx, ebp                         id: mov rdx, rbx
+   D 0032F617 -> 0032E400 in 0032F430 FUN_0032f430                   kind: lea ecx, [rdi + 8]                     id: mov edx, 0x350
+   D 0032FD4D -> 0032E400 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: movsxd rdx, ebp
+   D 0032FD83 -> 0032E400 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: movsxd rdx, eax
+   D 0032FD99 -> 0032E400 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: movsxd rdx, ecx
+   D 0032FDCC -> 0032E400 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: mov rdx, rbx
+   D 00330354 -> 0032E400 in 00330310 ActorResource_BeginPrimaryPayl kind: mov ecx, ebp                           id: mov rdx, rsi
+   D 00332280 -> 0032E400 in 00332250 FUN_00332250                   kind: (entry argument)                       id: mov rdx, rbp
+   D 00378059 -> 0032E400 in 00378030 FUN_00378030                   kind: mov ecx, r9d                           id: movsxd rdx, dword ptr [rsp + 0x90]
+   D 00378566 -> 0032E400 in 00378540 FUN_00378540                   kind: lea ecx, [rsi + 1]                     id: lea edx, [rsi + 0x20]
+   D 0037884D -> 0032E400 in 00378540 FUN_00378540                   kind: mov ecx, edx                           id: mov edx, 9
+   D 00379A37 -> 0032E400 in 00379A10 FUN_00379a10                   kind: (entry argument)                       id: mov rdx, rdi
+   D 003A14B9 -> 0032E400 in 003A13F0 FUN_003a13f0                   kind: mov ecx, dword ptr [rbp + 0x20]        id: movsxd rdx, dword ptr [rbp + 0x18]
+   D 003A1538 -> 0032E400 in 003A13F0 FUN_003a13f0                   kind: mov ecx, dword ptr [rbp + 0x20]        id: movsxd rdx, dword ptr [rbp + 0x18]
+   D 003A15B7 -> 0032E400 in 003A13F0 FUN_003a13f0                   kind: mov ecx, dword ptr [rbp + 0x20]        id: movsxd rdx, dword ptr [rbp + 0x18]
+   D 003DC977 -> 0032E400 in 003DC8D0 FUN_003dc8d0                   kind: mov ecx, dword ptr [rsp + 0x30]        id: mov rdx, rcx
+   D 003EAE29 -> 0032E400 in 003EADE0 FUN_003eade0                   kind: mov ecx, dword ptr [rbx + 0x1c]        id: movsxd rdx, dword ptr [rbx + 0x20]
+   D 0050DF9D -> 0032E400 in 0050DF70 FUN_0050df70                   kind: mov ecx, eax                           id: mov rdx, rbx
+   D 0051ED52 -> 0032E400 in 0051ED10 FUN_0051ed10                   kind: mov ecx, ebp                           id: mov rdx, rsi
+   D 002492F3 -> 0032E620 in 00249210 FUN_00249210                   kind: mov ecx, r15d                          id: mov edx, r14d
+   D 00268809 -> 0032E620 in 00268750 MapRef_BeginLoadResources      kind: lea ecx, [rdi + 9]                     id: lea edx, [rdi + 4]
+   D 0026883E -> 0032E620 in 00268750 MapRef_BeginLoadResources      kind: lea ecx, [rdi + 9]                     id: lea edx, [rdi + 2]
+   D 002E700C -> 0032E620 in 002E6EB0 FUN_002e6eb0                   kind: mov ecx, r13d                          id: lea edx, [rcx + rbp]
+   D 002EAE08 -> 0032E620 in 002EAD50 FUN_002ead50                   kind: mov ecx, dword ptr [rsp + 0x90]        id: mov edx, ebx
+   D 002FC96F -> 0032E620 in 002FC860 FUN_002fc860                   kind: mov ecx, esi                           id: mov edx, edi
+   D 0032EC01 -> 0032E620 in 0032EB40 FUN_0032eb40                   kind: mov ecx, edi                           id: mov edx, ebp
+   D 0032FE9E -> 0032E620 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: lea edx, [rbp + 2]
+   D 0032FF0B -> 0032E620 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: lea edx, [rbp + 1]
+   D 0032FF76 -> 0032E620 in 0032FCA0 ActorResource_BeginManagerReso kind: mov ecx, esi                           id: lea edx, [rbp + 3]
+   D 0032FFE2 -> 0032E620 in 0032FCA0 ActorResource_BeginManagerReso kind: lea ecx, [rsi + 0x1d]                  id: lea edx, [rbp + 3]
+   D 00330444 -> 0032E620 in 00330310 ActorResource_BeginPrimaryPayl kind: mov ecx, ebp                           id: mov edx, esi
+   D 0036EDF7 -> 0032E620 in 0036ED50 FUN_0036ed50                   kind: lea ecx, [r12 + 0x21]                  id: mov edx, r15d
+   D 003780E3 -> 0032E620 in 00378030 FUN_00378030                   kind: mov ecx, esi                           id: mov edx, dword ptr [rsp + 0x90]
+   D 003785E6 -> 0032E620 in 00378540 FUN_00378540                   kind: lea ecx, [rsi + 1]                     id: lea edx, [rsi + 0x20]
+   D 003788D2 -> 0032E620 in 00378540 FUN_00378540                   kind: mov ecx, edx                           id: mov edx, 9
+   D 003A151A -> 0032E620 in 003A13F0 FUN_003a13f0                   kind: mov ecx, dword ptr [rbp + 0x20]        id: mov edx, dword ptr [rbp + 0x18]
+   D 003A1599 -> 0032E620 in 003A13F0 FUN_003a13f0                   kind: mov ecx, dword ptr [rbp + 0x20]        id: mov edx, dword ptr [rbp + 0x18]
+   D 003A1618 -> 0032E620 in 003A13F0 FUN_003a13f0                   kind: mov ecx, dword ptr [rbp + 0x20]        id: mov edx, dword ptr [rbp + 0x18]
+   D 003DC683 -> 0032E620 in 003DC5B0 FUN_003dc5b0                   kind: mov ecx, dword ptr [rsp + 0x88]        id: mov edx, dword ptr [rsp + 0x80]
+   D 003DDAB9 -> 0032E620 in 003DDA70 FUN_003dda70                   kind: movsx ecx, word ptr [rbx + 0x10]       id: movsx edx, word ptr [rbx + 0x12]
+   D 003DF593 -> 0032E620 in 003DF550 FUN_003df550                   kind: movsx ecx, word ptr [rcx + 0x2c]       id: movsx edx, word ptr [rcx + 0x2e]
+   D 003E9F59 -> 0032E620 in 003E9EF0 FUN_003e9ef0                   kind: movsx ecx, word ptr [rdi + rbx*2 + 0xc] id: movsx edx, word ptr [rdi + 0x10]
+   D 0050E039 -> 0032E620 in 0050DFE0 FUN_0050dfe0                   kind: mov ecx, eax                           id: mov edx, edi
+   D 0051ED89 -> 0032E620 in 0051ED10 FUN_0051ed10                   kind: mov ecx, ebp                           id: mov edx, esi
+   D 00330744 -> 0032E3F0 in 003306E0 FUN_003306e0                   kind: mov ecx, ebx                           id: mov edx, edi
+PASS D0 the path-API sweep finds the constant kind-7 font request 00365935 (control: a site this sweep must see)
+   D: 124 path-API call sites, 54 with a non-constant kind (listed; their bound is the residue)
+FAILS 0

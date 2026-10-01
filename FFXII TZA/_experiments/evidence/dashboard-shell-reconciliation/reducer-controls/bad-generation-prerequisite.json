@@ -1,0 +1,577 @@
+{
+  "method": "A original repository Python/actual private loopback HTTP; labelled synthetic generations, no FF12/game/PC",
+  "source_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e",
+  "driver_sha256": "a6065a5852f94c0260f90530043a8a0300c1158fed7f20fda63d319012f2cc86",
+  "sources": {
+    "Database/Tools/dashboard/server.py": {
+      "sha256": "ab2d162e4dcdece88011146c5aa8949033e042c72dbe40caab356533d08a5f46",
+      "blob": "58ade2c4b05898b5dc43b39285241027596c9475",
+      "original_preimage_sha256": "ab2d162e4dcdece88011146c5aa8949033e042c72dbe40caab356533d08a5f46"
+    },
+    "Database/Tools/dashboard/requirements.py": {
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "blob": "e705dddd5670fb0a44f7eb043aecf7bff92afdb0",
+      "original_preimage_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148"
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/generation.py": {
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16",
+      "original_preimage_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    }
+  },
+  "cases": [
+    {
+      "name": "valid-selected-view",
+      "expected_selected_status": "OK",
+      "generation": {
+        "generation": "g20260929T103137Z-36d9ef",
+        "manifest_sha256": "a04a4299333656641b9f5215351a9bfb91cf453614c056e0435ceebca7fcd77d",
+        "cli": {
+          "argv": [
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\store"
+          ],
+          "returncode": 1,
+          "stdout": "CURRENT g20260929T103137Z-36d9ef committed 2026-09-29T10:31:37Z; 2 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        },
+        "output_names": [
+          "view-fleet.json",
+          "view-overview.json"
+        ],
+        "overview_bytes_hex": "7b2276696577223a20226f76657276696577222c2022737461747573223a20224f4b222c20226d65617375726573223a205b5d2c202273656e74696e656c223a2022504f5349544956455f53454c45435445445f56494557227d"
+      },
+      "status_http_index": 1,
+      "view_http_index": 2,
+      "observed": "OK",
+      "pass": true,
+      "other_missing_views": {
+        "progress": "UNMEASURED",
+        "systems": "UNMEASURED",
+        "vbf": "UNMEASURED",
+        "executable": "UNMEASURED",
+        "types": "UNMEASURED",
+        "evidence": "UNMEASURED"
+      }
+    },
+    {
+      "name": "hash-declared-nonjson",
+      "expected_selected_status": "MALFORMED",
+      "generation": {
+        "generation": "g20260929T103138Z-cd27b4",
+        "manifest_sha256": "3f3f29f0fbbea60684d5c6f4264044dd87968f763a858c648d23b60a657abbfb",
+        "cli": {
+          "argv": [
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\store"
+          ],
+          "returncode": 0,
+          "stdout": "CURRENT g20260929T103138Z-cd27b4 committed 2026-09-29T10:31:38Z; 2 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        },
+        "output_names": [
+          "view-fleet.json",
+          "view-overview.json"
+        ],
+        "overview_bytes_hex": "6e6f74204a534f4e3a207468697320697320696e74656e74696f6e616c6c7920686173682d6465636c617265642066697874757265206279746573"
+      },
+      "status_http_index": 3,
+      "view_http_index": 4,
+      "observed": "MALFORMED",
+      "pass": true,
+      "other_missing_views": {
+        "progress": "UNMEASURED",
+        "systems": "UNMEASURED",
+        "vbf": "UNMEASURED",
+        "executable": "UNMEASURED",
+        "types": "UNMEASURED",
+        "evidence": "UNMEASURED"
+      }
+    },
+    {
+      "name": "missing-selected-view",
+      "expected_selected_status": "UNMEASURED",
+      "generation": {
+        "generation": "g20260929T103138Z-dc17d1",
+        "manifest_sha256": "5eb55f3d6dd5479dce6b0a7582adda8920a94c0d247cdad76fb7799552e3ed53",
+        "cli": {
+          "argv": [
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\store"
+          ],
+          "returncode": 0,
+          "stdout": "CURRENT g20260929T103138Z-dc17d1 committed 2026-09-29T10:31:38Z; 1 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        },
+        "output_names": [
+          "view-fleet.json"
+        ],
+        "overview_bytes_hex": null
+      },
+      "status_http_index": 5,
+      "view_http_index": 6,
+      "observed": "UNMEASURED",
+      "pass": true,
+      "other_missing_views": {
+        "progress": "UNMEASURED",
+        "systems": "UNMEASURED",
+        "vbf": "UNMEASURED",
+        "executable": "UNMEASURED",
+        "types": "UNMEASURED",
+        "evidence": "UNMEASURED"
+      }
+    },
+    {
+      "name": "failed-selected-view",
+      "expected_selected_status": "FAILED",
+      "generation": {
+        "generation": "g20260929T103138Z-e33d35",
+        "manifest_sha256": "09dbe7601be0375a66a9aa7e926b53b475bb6f6bac2d4302d87bba1d08ac0d03",
+        "cli": {
+          "argv": [
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\store"
+          ],
+          "returncode": 0,
+          "stdout": "CURRENT g20260929T103138Z-e33d35 committed 2026-09-29T10:31:38Z; 2 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        },
+        "output_names": [
+          "view-fleet.json",
+          "view-overview.json"
+        ],
+        "overview_bytes_hex": "7b2276696577223a20226f76657276696577222c2022737461747573223a20224641494c4544222c20226d65617375726573223a205b5d2c2022776879223a20226c6162656c6c65642061646170746572206661696c757265222c202273656e74696e656c223a20224641494c45445f564945575f535441545553227d"
+      },
+      "status_http_index": 7,
+      "view_http_index": 8,
+      "observed": "FAILED",
+      "pass": true,
+      "other_missing_views": {
+        "progress": "UNMEASURED",
+        "systems": "UNMEASURED",
+        "vbf": "UNMEASURED",
+        "executable": "UNMEASURED",
+        "types": "UNMEASURED",
+        "evidence": "UNMEASURED"
+      }
+    }
+  ],
+  "http": [
+    {
+      "path": "/api/status",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133375a2d333664396566222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33375a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133375a2d333664396566222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33375a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a20224f4b222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+      "parsed": {
+        "generation": "g20260929T103137Z-36d9ef",
+        "committed_at": "2026-09-29T10:31:37Z",
+        "historical": false,
+        "current": {
+          "generation": "g20260929T103137Z-36d9ef",
+          "committed_at": "2026-09-29T10:31:37Z",
+          "problems": []
+        },
+        "problems": [],
+        "no_verified_generation": false,
+        "drift": {},
+        "volatile_drift": {},
+        "failure": null,
+        "reader_stale": false,
+        "views": {
+          "progress": "UNMEASURED",
+          "overview": "OK",
+          "systems": "UNMEASURED",
+          "vbf": "UNMEASURED",
+          "executable": "UNMEASURED",
+          "types": "UNMEASURED",
+          "evidence": "UNMEASURED",
+          "fleet": "OK"
+        },
+        "required": [
+          "progress",
+          "overview",
+          "systems",
+          "vbf",
+          "executable",
+          "types",
+          "evidence",
+          "fleet"
+        ],
+        "verified_at": "2026-09-29T10:31:38Z",
+        "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133375a2d333664396566222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33375a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133375a2d333664396566222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33375a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a20224f4b222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+      "parsed": {
+        "generation": "g20260929T103137Z-36d9ef",
+        "committed_at": "2026-09-29T10:31:37Z",
+        "historical": false,
+        "current": {
+          "generation": "g20260929T103137Z-36d9ef",
+          "committed_at": "2026-09-29T10:31:37Z",
+          "problems": []
+        },
+        "problems": [],
+        "no_verified_generation": false,
+        "drift": {},
+        "volatile_drift": {},
+        "failure": null,
+        "reader_stale": false,
+        "views": {
+          "progress": "UNMEASURED",
+          "overview": "OK",
+          "systems": "UNMEASURED",
+          "vbf": "UNMEASURED",
+          "executable": "UNMEASURED",
+          "types": "UNMEASURED",
+          "evidence": "UNMEASURED",
+          "fleet": "OK"
+        },
+        "required": [
+          "progress",
+          "overview",
+          "systems",
+          "vbf",
+          "executable",
+          "types",
+          "evidence",
+          "fleet"
+        ],
+        "verified_at": "2026-09-29T10:31:38Z",
+        "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+      }
+    },
+    {
+      "path": "/api/view/overview",
+      "status": 200,
+      "bytes_hex": "7b226d657461223a207b2267656e65726174696f6e223a2022673230323630393239543130333133375a2d333664396566222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33375a222c20226472696674223a207b7d2c2022686973746f726963616c223a2066616c73652c202263757272656e745f70726f626c656d73223a205b5d7d2c202276696577223a207b2276696577223a20226f76657276696577222c2022737461747573223a20224f4b222c20226d65617375726573223a205b5d2c202273656e74696e656c223a2022504f5349544956455f53454c45435445445f56494557227d7d",
+      "parsed": {
+        "meta": {
+          "generation": "g20260929T103137Z-36d9ef",
+          "committed_at": "2026-09-29T10:31:37Z",
+          "drift": {},
+          "historical": false,
+          "current_problems": []
+        },
+        "view": {
+          "view": "overview",
+          "status": "OK",
+          "measures": [],
+          "sentinel": "POSITIVE_SELECTED_VIEW"
+        }
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d636432376234222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d636432376234222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a20224d414c464f524d4544222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+      "parsed": {
+        "generation": "g20260929T103138Z-cd27b4",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "historical": false,
+        "current": {
+          "generation": "g20260929T103138Z-cd27b4",
+          "committed_at": "2026-09-29T10:31:38Z",
+          "problems": []
+        },
+        "problems": [],
+        "no_verified_generation": false,
+        "drift": {},
+        "volatile_drift": {},
+        "failure": null,
+        "reader_stale": false,
+        "views": {
+          "progress": "UNMEASURED",
+          "overview": "MALFORMED",
+          "systems": "UNMEASURED",
+          "vbf": "UNMEASURED",
+          "executable": "UNMEASURED",
+          "types": "UNMEASURED",
+          "evidence": "UNMEASURED",
+          "fleet": "OK"
+        },
+        "required": [
+          "progress",
+          "overview",
+          "systems",
+          "vbf",
+          "executable",
+          "types",
+          "evidence",
+          "fleet"
+        ],
+        "verified_at": "2026-09-29T10:31:38Z",
+        "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+      }
+    },
+    {
+      "path": "/api/view/overview",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d636432376234222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c20226472696674223a207b7d2c2022686973746f726963616c223a2066616c73652c202263757272656e745f70726f626c656d73223a205b5d2c2022737461747573223a20224d414c464f524d4544222c2022776879223a20226e6f74204a534f4e3a20457870656374696e672076616c75653a206c696e65203120636f6c756d6e2031202863686172203029227d",
+      "parsed": {
+        "generation": "g20260929T103138Z-cd27b4",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "drift": {},
+        "historical": false,
+        "current_problems": [],
+        "status": "MALFORMED",
+        "why": "not JSON: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d646331376431222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d646331376431222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a2022554e4d45415355524544222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+      "parsed": {
+        "generation": "g20260929T103138Z-dc17d1",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "historical": false,
+        "current": {
+          "generation": "g20260929T103138Z-dc17d1",
+          "committed_at": "2026-09-29T10:31:38Z",
+          "problems": []
+        },
+        "problems": [],
+        "no_verified_generation": false,
+        "drift": {},
+        "volatile_drift": {},
+        "failure": null,
+        "reader_stale": false,
+        "views": {
+          "progress": "UNMEASURED",
+          "overview": "UNMEASURED",
+          "systems": "UNMEASURED",
+          "vbf": "UNMEASURED",
+          "executable": "UNMEASURED",
+          "types": "UNMEASURED",
+          "evidence": "UNMEASURED",
+          "fleet": "OK"
+        },
+        "required": [
+          "progress",
+          "overview",
+          "systems",
+          "vbf",
+          "executable",
+          "types",
+          "evidence",
+          "fleet"
+        ],
+        "verified_at": "2026-09-29T10:31:38Z",
+        "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+      }
+    },
+    {
+      "path": "/api/view/overview",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d646331376431222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c20226472696674223a207b7d2c2022686973746f726963616c223a2066616c73652c202263757272656e745f70726f626c656d73223a205b5d2c2022737461747573223a2022554e4d45415355524544222c2022776879223a20226e6f20766965772d6f766572766965772e6a736f6e20696e20746865207365727665642067656e65726174696f6e227d",
+      "parsed": {
+        "generation": "g20260929T103138Z-dc17d1",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "drift": {},
+        "historical": false,
+        "current_problems": [],
+        "status": "UNMEASURED",
+        "why": "no view-overview.json in the served generation"
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a20224641494c4544222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+      "parsed": {
+        "generation": "g20260929T103138Z-e33d35",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "historical": false,
+        "current": {
+          "generation": "g20260929T103138Z-e33d35",
+          "committed_at": "2026-09-29T10:31:38Z",
+          "problems": []
+        },
+        "problems": [],
+        "no_verified_generation": false,
+        "drift": {},
+        "volatile_drift": {},
+        "failure": null,
+        "reader_stale": false,
+        "views": {
+          "progress": "UNMEASURED",
+          "overview": "FAILED",
+          "systems": "UNMEASURED",
+          "vbf": "UNMEASURED",
+          "executable": "UNMEASURED",
+          "types": "UNMEASURED",
+          "evidence": "UNMEASURED",
+          "fleet": "OK"
+        },
+        "required": [
+          "progress",
+          "overview",
+          "systems",
+          "vbf",
+          "executable",
+          "types",
+          "evidence",
+          "fleet"
+        ],
+        "verified_at": "2026-09-29T10:31:38Z",
+        "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+      }
+    },
+    {
+      "path": "/api/view/overview",
+      "status": 200,
+      "bytes_hex": "7b226d657461223a207b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c20226472696674223a207b7d2c2022686973746f726963616c223a2066616c73652c202263757272656e745f70726f626c656d73223a205b5d7d2c202276696577223a207b2276696577223a20226f76657276696577222c2022737461747573223a20224641494c4544222c20226d65617375726573223a205b5d2c2022776879223a20226c6162656c6c65642061646170746572206661696c757265222c202273656e74696e656c223a20224641494c45445f564945575f535441545553227d7d",
+      "parsed": {
+        "meta": {
+          "generation": "g20260929T103138Z-e33d35",
+          "committed_at": "2026-09-29T10:31:38Z",
+          "drift": {},
+          "historical": false,
+          "current_problems": []
+        },
+        "view": {
+          "view": "overview",
+          "status": "FAILED",
+          "measures": [],
+          "why": "labelled adapter failure",
+          "sentinel": "FAILED_VIEW_STATUS"
+        }
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a20224641494c4544222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+      "parsed": {
+        "generation": "g20260929T103138Z-e33d35",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "historical": false,
+        "current": {
+          "generation": "g20260929T103138Z-e33d35",
+          "committed_at": "2026-09-29T10:31:38Z",
+          "problems": []
+        },
+        "problems": [],
+        "no_verified_generation": false,
+        "drift": {},
+        "volatile_drift": {},
+        "failure": null,
+        "reader_stale": false,
+        "views": {
+          "progress": "UNMEASURED",
+          "overview": "FAILED",
+          "systems": "UNMEASURED",
+          "vbf": "UNMEASURED",
+          "executable": "UNMEASURED",
+          "types": "UNMEASURED",
+          "evidence": "UNMEASURED",
+          "fleet": "OK"
+        },
+        "required": [
+          "progress",
+          "overview",
+          "systems",
+          "vbf",
+          "executable",
+          "types",
+          "evidence",
+          "fleet"
+        ],
+        "verified_at": "2026-09-29T10:31:38Z",
+        "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+      }
+    }
+  ],
+  "terminal": true,
+  "exception": null,
+  "cleanup": {
+    "pid": 70696,
+    "owned_handle_terminal": true,
+    "returncode": 1,
+    "exact_port_listeners": [],
+    "netstat_returncode": 0
+  },
+  "child": {
+    "pid": 70696,
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\source\\Database\\Tools\\dashboard\\server.py",
+      "--root",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\dashboard-shell-reconciliation\\run-01\\store",
+      "--port",
+      "57734"
+    ],
+    "host": "127.0.0.1",
+    "port": 57734
+  },
+  "post_health": {
+    "path": "/api/status",
+    "status": 200,
+    "bytes_hex": "7b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022686973746f726963616c223a2066616c73652c202263757272656e74223a207b2267656e65726174696f6e223a2022673230323630393239543130333133385a2d653333643335222c2022636f6d6d69747465645f6174223a2022323032362d30392d32395431303a33313a33385a222c202270726f626c656d73223a205b5d7d2c202270726f626c656d73223a205b5d2c20226e6f5f76657269666965645f67656e65726174696f6e223a2066616c73652c20226472696674223a207b7d2c2022766f6c6174696c655f6472696674223a207b7d2c20226661696c757265223a206e756c6c2c20227265616465725f7374616c65223a2066616c73652c20227669657773223a207b2270726f6772657373223a2022554e4d45415355524544222c20226f76657276696577223a20224641494c4544222c202273797374656d73223a2022554e4d45415355524544222c2022766266223a2022554e4d45415355524544222c202265786563757461626c65223a2022554e4d45415355524544222c20227479706573223a2022554e4d45415355524544222c202265766964656e6365223a2022554e4d45415355524544222c2022666c656574223a20224f4b227d2c20227265717569726564223a205b2270726f6772657373222c20226f76657276696577222c202273797374656d73222c2022766266222c202265786563757461626c65222c20227479706573222c202265766964656e6365222c2022666c656574225d2c202276657269666965645f6174223a2022323032362d30392d32395431303a33313a33385a222c2022766572696669636174696f6e223a2022736572766564206d616e696665737420616e64206f7574707574732068617368656420616761696e737420746865206d616e6966657374206f6e20657665727920726571756573743b20696e70757420736e617073686f74732072652d766572696669656420696e2066756c6c206174206c656173742065766572792036302073202876657269666965645f617429227d",
+    "parsed": {
+      "generation": "g20260929T103138Z-e33d35",
+      "committed_at": "2026-09-29T10:31:38Z",
+      "historical": false,
+      "current": {
+        "generation": "g20260929T103138Z-e33d35",
+        "committed_at": "2026-09-29T10:31:38Z",
+        "problems": []
+      },
+      "problems": [],
+      "no_verified_generation": false,
+      "drift": {},
+      "volatile_drift": {},
+      "failure": null,
+      "reader_stale": false,
+      "views": {
+        "progress": "UNMEASURED",
+        "overview": "FAILED",
+        "systems": "UNMEASURED",
+        "vbf": "UNMEASURED",
+        "executable": "UNMEASURED",
+        "types": "UNMEASURED",
+        "evidence": "UNMEASURED",
+        "fleet": "OK"
+      },
+      "required": [
+        "progress",
+        "overview",
+        "systems",
+        "vbf",
+        "executable",
+        "types",
+        "evidence",
+        "fleet"
+      ],
+      "verified_at": "2026-09-29T10:31:38Z",
+      "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+    }
+  },
+  "page_presentation": "NOT_EXECUTED: HTTP statuses/data only; no rendered browser/navigation acceptance",
+  "verdict": "ACCEPT_SCOPED_SELECTED_VIEW_HTTP_ADMISSION",
+  "source_readback": {
+    "Database/Tools/dashboard/server.py": true,
+    "Database/Tools/dashboard/requirements.py": true,
+    "Database/Tools/analysis-kit/gfz-scripts/generation.py": true
+  }
+}

@@ -1,0 +1,12 @@
+SURVIVES  P0  one caller [('00235720', '00235950')] passing: ['lea rax, [rsp + 0x34]', 'mov dword ptr [rsp + 0x28], 0', 'movaps xmm3, xmm8', 'mov qword ptr [rsp + 0x20], rax', 'movaps xmm2, xmm7', 'lea rdx, [rsp + 0x60]', 'mov ecx, edi', 'call 0x234af0']; argument 5 -> r14 (out_observed), argument 6 -> [rbp + 0x7f] (the slot flag)
+SURVIVES  P1  SpawnKeep_SetReturnWindow 00235340: ['test ecx, ecx', 'mov eax, 0x12c', 'cmovs ecx, eax', 'mov dword ptr [rip + 0x1e5401c], ecx', 'ret'] -> cell 0208936C
+SURVIVES  P2  empty band refused before the fetch (NaN proceeds: jp); fetch refused on js; authored position copied out, then the leader test
+SURVIVES  P3  half arc = (arcDeg / 2, integer) * 6.2831855 / 360 against |wrap(yaw - toCandidate)| (0031A930 ends in andps); bounds squared; then 00234DA0
+SURVIVES  P4  00234DA0 walks slots 0..3 (0031B810), rejects on the first eligible slot outside [min^2, max^2], never calls 003272A0; argument 6 = 0 from the one caller admits only the party-focus slot (003273B0) - the leader's, see P4b
+SURVIVES  P4b  003272A0 resolves call 0x3590d0 through 003588B0; 003273B0 compares a slot's handle with call 0x3590d0 - the same handle
+SURVIVES  P5  r = (RNG % (int)((max-min)*100)) / 100 + min; offset = RNG % arcDeg - arcDeg/2 whole degrees; region test only; no divisor guard
+SURVIVES  P6  draws at ['00234C43', '00234C6C']; NextU32 steps the LCG 3 times and stores once, result < 2^31; point-path closure (23 functions) draws nothing
+SURVIVES  P7  arcDeg cell 02089358: [('00234AF0', 'mov r15d, dword ptr [rip + 0x1e5482a]'), ('0023A1F0', 'mov dword ptr [rip + 0x1e4f15e], eax'), ('0023A520', 'mov dword ptr [rip + 0x1e4edfe], 0xb4')]; its setter is called from ['0050F470']
+SURVIVES  P8  00319390 writes ['movss dword ptr [rdx], xmm3', 'movss dword ptr [rdx + 8], xmm5']; table refs 1; & 0x7fff True; 0x2000 True; 00234AF0 writes into rsp+0x50..0x5B: none; result.y from movss xmm1, dword ptr [rsp + 0x54]
+SURVIVES  P8b  the sine table is 01F004E0 and Y is never written before it is copied
+FAILS 0

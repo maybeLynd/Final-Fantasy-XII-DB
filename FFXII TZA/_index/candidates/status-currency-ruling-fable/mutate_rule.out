@@ -1,0 +1,14 @@
+CAUGHT   U disabled
+CAUGHT   foreign registries empty
+CAUGHT   front matter scanned
+CAUGHT   N disabled
+CAUGHT   parent resolution removed
+CAUGHT   self-parent check removed
+CAUGHT   back-link check removed
+CAUGHT   empty-section check removed
+CAUGHT   tier data-row check removed
+CAUGHT   keyword anchoring removed
+CAUGHT   T disabled
+CAUGHT   T extractor blind
+CAUGHT   Evidence-section scoping removed
+FAILS 0

@@ -1,0 +1,65 @@
+{
+  "mode": "revised",
+  "status": "PASS",
+  "start_unix": 1789094638.9643562,
+  "target_pid": 35100,
+  "target_command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-017-exit-policy\\run.py",
+    "--target",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-017-exit-policy\\revised\\heartbeat.bin"
+  ],
+  "baseline": {
+    "unix": 1789094639.0701945,
+    "exit_code": null,
+    "beats": 1,
+    "debug_read_ok": true,
+    "debugger_present": false
+  },
+  "debugger_pid": 12916,
+  "debugger_command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-017-exit-policy\\run.py",
+    "--debug",
+    "35100",
+    "--mode",
+    "revised",
+    "--ready",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-017-exit-policy\\revised\\attached.json"
+  ],
+  "attached_start": {
+    "unix": 1789094639.1754265,
+    "exit_code": null,
+    "beats": 3,
+    "debug_read_ok": true,
+    "debugger_present": true
+  },
+  "attached_end": {
+    "unix": 1789094639.6758807,
+    "exit_code": null,
+    "beats": 13,
+    "debug_read_ok": true,
+    "debugger_present": true
+  },
+  "intervention_unix": 1789094639.676077,
+  "debugger_exit_code": 1,
+  "post_start": {
+    "unix": 1789094640.1770968,
+    "exit_code": null,
+    "beats": 23,
+    "debug_read_ok": true,
+    "debugger_present": false
+  },
+  "post_end": {
+    "unix": 1789094640.6776786,
+    "exit_code": null,
+    "beats": 33,
+    "debug_read_ok": true,
+    "debugger_present": false
+  },
+  "cleanup": {
+    "debugger_exit": 1,
+    "target_exit": 1
+  },
+  "end_unix": 1789094640.6785293
+}

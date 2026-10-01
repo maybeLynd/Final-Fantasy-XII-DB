@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-texture-async-callback-frame.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\texture-async-callback-frame-result-01.json"
+  ],
+  "exit": 1,
+  "checker_sha256": "33d4ef7a5dd3732dcaa1fa356fa0984ec33efddbcfda91c53e7f16aba3b46e6f"
+}

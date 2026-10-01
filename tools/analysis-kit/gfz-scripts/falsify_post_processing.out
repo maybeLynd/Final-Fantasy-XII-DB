@@ -1,0 +1,6 @@
+SURVIVES  Q1  edges: 0070BA00 ['006DB667 jmp']; 006DB660 ['006CC031 call']; 006CBEA0 ['0065E5C3 jmp']; 0065E5C0 ['00193F58 call']; stored copies {'0070BA00': 0, '006DB660': 0, '006CBEA0': 0, '0065E5C0': 0}
+SURVIVES  Q2  route single at every link; 0x20001 at mov dword ptr [rsp + 0x20], 0x20001; Initialize callers ['006DAD2A', '006DEA1F']; 006DE950 edges 0, stored 0; mov dword ptr [rsi + 0x20c], eax; forbidden-bit stores to +0x20C []
+SURVIVES  Q3  option tests cmp dword ptr [rax + 0x34], 0 (Glare) / cmp dword ptr [rax + 0x30], 0 (DepthofField); the calls follow at ['00193E6C'] / ['00193F40']; conditional jumps over them []
+SURVIVES  Q4  after the 006DB660 call: ['lea rcx, [rsp + 0x90]']
+SURVIVES  Q5  Initialize writes +0x108 at ['007009BB'] and +0x147 at ['00700083'] (gate test dword ptr [rsi + 0x20c], 0x800); 00708110 tests +0x147 at ['00708152'] before 00708186
+FAILS 0

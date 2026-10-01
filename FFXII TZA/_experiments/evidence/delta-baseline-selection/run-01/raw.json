@@ -1,0 +1,104 @@
+{
+  "method": "A original repository Python on labelled private verified Store histories; synthetic function composition, not full builder/deployment/game",
+  "source_commit": "4a2bd8eebc0376f838bf1dac0bb6bb19b01eab39",
+  "driver_sha256": "150379e1df5c694dc219c9f55b5ff54100545b2c0ffa20b087bf8abcb44914f6",
+  "sources": {
+    "Database/Tools/dashboard/build_views.py": {
+      "sha256": "a1542cb9b27e0fd1c54c258455a3b92f22c0c2c640f48a649c3c8c84728ca4ad",
+      "blob": "d89e31b02dcb58c16637fdcccdee2288a6422076",
+      "current_sha256": "a1542cb9b27e0fd1c54c258455a3b92f22c0c2c640f48a649c3c8c84728ca4ad",
+      "current_equal": true
+    },
+    "Database/Tools/dashboard/requirements.py": {
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "blob": "e705dddd5670fb0a44f7eb043aecf7bff92afdb0",
+      "current_sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "current_equal": true
+    },
+    "Database/Tools/analysis-kit/gfz-scripts/generation.py": {
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16",
+      "current_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "current_equal": true
+    },
+    "Database/Tools/dashboard/VIEW-SCHEMA.md": {
+      "sha256": "b0bcc372251c36a41a9f14a52930e8c892b542d1266891ac5f28e4b1fef82858",
+      "blob": "67b7cbf96ded3d9ea0966328ec8f9ea61ddb3033",
+      "current_sha256": "b0bcc372251c36a41a9f14a52930e8c892b542d1266891ac5f28e4b1fef82858",
+      "current_equal": true
+    },
+    "Database/FFXII TZA/_index/workflow/MY-PROGRESS-METRICS.md": {
+      "sha256": "94e9c3b2582aa95f61358d6d5d291e4b6c83504519e894a5a90af343f9847ada",
+      "blob": "4c11acdbc57c3856f6f5774d7baa0864796a02ab",
+      "current_sha256": "94e9c3b2582aa95f61358d6d5d291e4b6c83504519e894a5a90af343f9847ada",
+      "current_equal": true
+    }
+  },
+  "cases": [
+    {
+      "name": "empty-history",
+      "generations": [],
+      "progress_prior": null,
+      "general_prior": null,
+      "general_prior_dir": null,
+      "annotated": {
+        "view": "progress",
+        "definition": "MP-2",
+        "measures": [
+          {
+            "id": "union",
+            "numerator": 40,
+            "denominator": 100,
+            "scope": "labelled synthetic requirement population",
+            "delta": {
+              "na": "no prior",
+              "why": "no comparable measure in the prior generation",
+              "new": {
+                "numerator": 40,
+                "denominator": 100
+              }
+            }
+          }
+        ],
+        "delta_basis": {
+          "generation": null,
+          "committed_at": null
+        }
+      },
+      "composed_change": null,
+      "store_unchanged": true,
+      "store_hashes": {}
+    }
+  ],
+  "terminal": true,
+  "exception": {
+    "type": "AssertionError",
+    "text": "(0, 'CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\\n', '')"
+  },
+  "python": {
+    "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "base": "C:\\Python314\\python.exe",
+    "base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+  },
+  "loaded_paths": {
+    "build_views": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\source\\Database\\Tools\\dashboard\\build_views.py",
+    "requirements": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\source\\Database\\Tools\\dashboard\\requirements.py",
+    "generation": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py"
+  },
+  "static_build_calls": [
+    {
+      "name": "prior_progress",
+      "line": 622
+    },
+    {
+      "name": "prior_generation",
+      "line": 637
+    },
+    {
+      "name": "annotate_deltas",
+      "line": 638
+    }
+  ],
+  "fixture_input_sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+  "verdict": "INVALID"
+}

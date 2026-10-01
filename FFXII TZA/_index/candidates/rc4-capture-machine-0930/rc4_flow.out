@@ -1,0 +1,130 @@
+functions returning the object: 0017F2A0 001806C0 00181AB0 00181B20 00181FD0 001820E0 001821F0 00182280 00182310 00182340 00182490 001824E0 001825A0 001825C0 00182610 00182640 001826E0 00182A60 00183260 00184960 00184CE0 00184E60 00184F20 00186670 00189120 001C2DB0 002F18D0 002F1950 0039CFF0 0039D0C0 0062DD10 006CB5F0
+PASS  control: the machine's and the constructor's stores found through the flow: 5 of 5 (all)
+roots (functions loading 01F7F598): 161; bodies analysed 7820, contexts 8022; cuts 916, of which carry the object 0
+stores that can cover +0xDAC: 71 distinct; beyond the five known: 66
+  KNOWN 00184F20 00185020 mov dword ptr [rdi + 0xdac], esi         base A+0xdac              value UNKNOWN
+  OTHER 001858A0 0018590A add qword ptr [rsi + 8], 0x10            base A                    value UNKNOWN
+  OTHER 001858A0 001859E8 mov qword ptr [rsi], r14                 base A                    value UNKNOWN
+  OTHER 001858A0 001859EB mov qword ptr [rsi + 8], rbx             base A                    value UNKNOWN
+  OTHER 001858A0 00185A00 mov qword ptr [rsi + 0x10], rax          base A                    value UNKNOWN
+  OTHER 00185A90 00185AC1 mov qword ptr [rcx + 8], rax             base A                    value L(A+?)+0x10
+  OTHER 00186CD0 001870C2 mov qword ptr [rdi + rbx + 0xb90], rax   base A                    value R001EE040+0x0
+  OTHER 00186CD0 001870D4 mov qword ptr [rdi + rbx + 0xbe0], rax   base A                    value R001EE040+0x0
+  KNOWN 00187860 00187891 mov dword ptr [rbx + 0xdac], 3           base A+0xdac              value 0x3
+  KNOWN 00187860 001878B3 mov dword ptr [rbx + 0xdac], 4           base A+0xdac              value 0x4
+  KNOWN 00187860 001878D5 mov dword ptr [rbx + 0xdac], 0           base A+0xdac              value 0x0
+  KNOWN 00187860 001878E5 mov dword ptr [rbx + 0xdac], 7           base A+0xdac              value 0x7
+  OTHER 00188640 001886F3 mov qword ptr [rdi], rbp                 base A                    value 0x0
+  OTHER 00188640 001886F3 mov qword ptr [rdi], rbp                 base A                    value UNKNOWN
+  OTHER 00188640 001886F9 mov qword ptr [rdi + 8], rax             base A                    value UNKNOWN
+  OTHER 00188640 0018870C mov qword ptr [rdi + 0x10], rax          base A                    value UNKNOWN
+  OTHER 001897C0 001899D3 movss dword ptr [rcx + 8], xmm0          base A                    value UNKNOWN
+  OTHER 001897C0 001899E4 movss dword ptr [rcx], xmm15             base A                    value UNKNOWN
+  OTHER 001897C0 001899E9 movss dword ptr [rcx + 4], xmm14         base A                    value UNKNOWN
+  OTHER 001897C0 001899EF movss dword ptr [rcx + 0x10], xmm13      base A                    value UNKNOWN
+  OTHER 001897C0 001899F5 movss dword ptr [rcx + 0x14], xmm12      base A                    value UNKNOWN
+  OTHER 001897C0 001899FB movss dword ptr [rcx + 0x18], xmm8       base A                    value UNKNOWN
+  OTHER 001897C0 00189A01 movss dword ptr [rcx + 0x28], xmm0       base A                    value UNKNOWN
+  OTHER 001897C0 00189A06 movss dword ptr [rcx + 0x20], xmm2       base A                    value UNKNOWN
+  OTHER 001897C0 00189A0B movss dword ptr [rcx + 0x24], xmm3       base A                    value UNKNOWN
+  OTHER 001897C0 00189A10 mov dword ptr [rcx + 0x2c], 0x3f800000   base A                    value 0x3f800000
+  OTHER 001897C0 00189A17 movss dword ptr [rcx + 0xc], xmm11       base A                    value UNKNOWN
+  OTHER 001897C0 00189A1D movss dword ptr [rcx + 0x1c], xmm10      base A                    value UNKNOWN
+  OTHER 001897C0 00189A23 movss dword ptr [rcx + 0x2c], xmm6       base A                    value UNKNOWN
+  OTHER 001897C0 00189A55 mov qword ptr [rbx + 0xb8], rcx          base A                    value A
+  OTHER 001897C0 00189A5F movss dword ptr [rbx + 0xc8], xmm0       base A                    value UNKNOWN
+  OTHER 001897C0 00189A70 movss dword ptr [rbx + 0xd0], xmm6       base A                    value UNKNOWN
+  OTHER 001897C0 00189A81 movss dword ptr [rbx + 0xd4], xmm7       base A                    value UNKNOWN
+  OTHER 001897C0 00189A92 movss dword ptr [rbx + 0xc0], xmm8       base A                    value UNKNOWN
+  OTHER 001897C0 00189AA4 movss dword ptr [rbx + 0xc4], xmm9       base A                    value UNKNOWN
+  OTHER 001897C0 00189AE2 movss dword ptr [rax + 8], xmm0          base A                    value UNKNOWN
+  OTHER 001897C0 00189AF0 movss dword ptr [rax], xmm15             base A                    value UNKNOWN
+  OTHER 001897C0 00189AF5 movss dword ptr [rax + 4], xmm14         base A                    value UNKNOWN
+  OTHER 001897C0 00189AFB movss dword ptr [rax + 0x18], xmm0       base A                    value UNKNOWN
+  OTHER 001897C0 00189B06 movss dword ptr [rax + 0x10], xmm13      base A                    value UNKNOWN
+  OTHER 001897C0 00189B0C movss dword ptr [rax + 0x14], xmm12      base A                    value UNKNOWN
+  OTHER 001897C0 00189B12 mov qword ptr [rax + 0x20], 0            base A                    value 0x0
+  OTHER 001897C0 00189B1A mov dword ptr [rax + 0x28], 0            base A                    value 0x0
+  OTHER 001897C0 00189B21 mov dword ptr [rax + 0x2c], 0x3f800000   base A                    value 0x3f800000
+  OTHER 001897C0 00189B28 movss dword ptr [rax + 0xc], xmm11       base A                    value UNKNOWN
+  OTHER 001897C0 00189B2E movss dword ptr [rax + 0x1c], xmm10      base A                    value UNKNOWN
+  OTHER 001897C0 00189B34 movss dword ptr [rax + 0x2c], xmm0       base A                    value UNKNOWN
+  OTHER 001897C0 00189B63 mov qword ptr [rbx + 0xb8], rax          base A                    value A
+  OTHER 001897C0 00189B6D movss dword ptr [rbx + 0xc8], xmm0       base A                    value UNKNOWN
+  OTHER 001897C0 00189B78 movss dword ptr [rbx + 0xd0], xmm6       base A                    value UNKNOWN
+  OTHER 001897C0 00189B8F movss dword ptr [rbx + 0xd4], xmm7       base A                    value UNKNOWN
+  OTHER 001897C0 00189BA0 movss dword ptr [rbx + 0xc0], xmm8       base A                    value UNKNOWN
+  OTHER 001897C0 00189BB2 movss dword ptr [rbx + 0xc4], xmm9       base A                    value UNKNOWN
+  OTHER 0018A120 0018A25B mov dword ptr [rbx + 0x70], ecx          base A                    value UNKNOWN
+  OTHER 0018A120 0018A261 mov dword ptr [rbx + 0x74], ecx          base A                    value UNKNOWN
+  OTHER 0018A120 0018A267 mov dword ptr [rbx + 0x78], ecx          base A                    value UNKNOWN
+  OTHER 0018A120 0018A26D mov dword ptr [rbx + 0x7c], ecx          base A                    value UNKNOWN
+  OTHER 0018A120 0018A273 mov dword ptr [rbx + 0x80], ecx          base A                    value UNKNOWN
+  OTHER 0018A120 0018A27C mov dword ptr [rbx + 0x84], ecx          base A                    value UNKNOWN
+  OTHER 0018A120 0018A285 mov dword ptr [rbx + 0x88], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A28E mov dword ptr [rbx + 0x8c], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A297 mov dword ptr [rbx + 0x90], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2A0 mov dword ptr [rbx + 0x94], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2A9 mov dword ptr [rbx + 0x98], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2B2 mov dword ptr [rbx + 0x9c], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2BB mov dword ptr [rbx + 0xa0], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2C4 mov dword ptr [rbx + 0xa4], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2CD mov dword ptr [rbx + 0xa8], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2D6 mov dword ptr [rbx + 0xac], eax          base A                    value UNKNOWN
+  OTHER 0018A120 0018A2F4 movss dword ptr [rbx + 0xc], xmm0        base A                    value UNKNOWN
+  OTHER 0018A120 0018A2FE movss dword ptr [rbx + 0x1c], xmm1       base A                    value UNKNOWN
+  OTHER 0018A120 0018A303 movss dword ptr [rbx + 0x2c], xmm0       base A                    value UNKNOWN
+escapes of the object pointer into non-stack memory: 14
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x4e0
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x670
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x818
+  ESCAPE 00184AF0 00184B30 mov qword ptr [rcx + 0x80], rax          to A+0x9a8
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x410
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x5a0
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x748
+  ESCAPE 00184AF0 00184B37 mov qword ptr [rdx + 0xb8], r8           to A+0x8d8
+  ESCAPE 001897C0 00189A55 mov qword ptr [rbx + 0xb8], rcx          to A
+  ESCAPE 001897C0 00189B63 mov qword ptr [rbx + 0xb8], rax          to A
+  ESCAPE 00189CE0 00189FC9 mov qword ptr [rbx + 0xb8], rcx          to A+0x748
+  ESCAPE 00189CE0 0018A061 mov qword ptr [rbx + 0xb8], rdi          to A+0x8d8
+  ESCAPE 001F1E80 001F1EAE mov qword ptr [rdi + 0x18], rbx          to UNKNOWN
+  ESCAPE 0060CE50 0060CE6C mov qword ptr [rcx + 0xa8], rdx          to UNKNOWN
+indirect calls receiving the object: 38
+  INDIRECT 001858A0 00185956 call qword ptr [rax + 0x10]              args rcx
+  INDIRECT 001858A0 001859DD call qword ptr [r9 + 0x18]               args rcx
+  INDIRECT 00185C30 00185C53 call qword ptr [rax + 8]                 args rcx,rdx
+  INDIRECT 00185C30 00185C6A call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00185C30 00185C7B call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00185C30 00185CA9 call qword ptr [rax + 0x50]              args rcx
+  INDIRECT 00187950 00187C1E call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00187950 00187C3C call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00187950 00187C91 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00187950 00188237 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00187950 0018824D call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00187950 00188263 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00188640 00188690 call qword ptr [rax + 0x10]              args rcx
+  INDIRECT 00188640 001886E4 call qword ptr [r9 + 0x18]               args rcx
+  INDIRECT 001897C0 00189A67 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189A78 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189A89 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189A9B call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189AAD call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189B75 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189B86 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189B97 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189BA9 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001897C0 00189BBB call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 00189FDE call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 00189FEF call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A000 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A012 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A024 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A076 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A087 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A098 call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A0AA call qword ptr [rax + 8]                 args rcx
+  INDIRECT 00189CE0 0018A0BC call qword ptr [rax + 8]                 args rcx
+  INDIRECT 001F0AD0 001F0B0D call qword ptr [rax + 0x10]              args r8
+  INDIRECT 00808FE4 00809025 call rsi                                 args rcx
+  INDIRECT 00861F0E 00861F0E jmp qword ptr [rip + 0x60c9c]            args rdx
+  INDIRECT 00861F1A 00861F1A jmp qword ptr [rip + 0x60ca0]            args rcx

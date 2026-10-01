@@ -1,0 +1,25 @@
+== 002AF340's return and the 00916548 stop string
+PASS  M1 one ret; eax = -1 (002AF922) only when [rsp+0x3C] != 0 and [rsp+0x20] != 0 and r13d == 0, else eax = r12d (002AF927)
+PASS  M2 r13d (the 'met' flag) is set only by the memcmp result against the context's +0x10C8 string (002AF563 / 002AF56F)
+PASS  M3 00916548 is the string 0F 23 00: the '#' escape (0x0F lead, '#' selector) - 0f230000
+== the reveal stepper 002ABF70 (SD-100, and UQ-173's routed mode-5 line)
+PASS  S1 the mode table at 002AC1B4: 0,1,4 -> 002AC06B; 2 -> 002AC04F; 3 -> 002ABF9F; 5 -> 002ABFFC; 6 -> 002AC1AB (return); 7 -> 002AC18B - ['002AC06B', '002AC06B', '002AC04F', '002ABF9F', '002AC06B', '002ABFFC', '002AC1AB', '002AC18B']
+PASS  S2 +0x88 is decremented only in the mode-3 (002ABFB3) and mode-7 (002AC19B) arms; the mode-5 arm 002ABFFC..002AC04E never touches it - ['002ABFB3', '002AC19B']
+PASS  S3 wording: mode 3 also steps the target every tick while it counts (a nonzero decrement jumps to the step at 002ABFCA), and at zero sets +0x9B = 0x1E and mode 0
+PASS  S4 the '#' escape: payload 0 -> mode 5, +0x88 = 10000 (0x2710), +0xB0 |= 0x4080000; payload p -> +0x88 = p * 30, mode byte not written in this arm
+== the two byte-opcode dispatchers (SD-120)
+PASS  D1 both dispatchers index their 8-entry tables by (opcode byte - 1)
+PASS  D2 per opcode 1..8 the 0050xxxx operation each arm calls is the same in 003CCF20 and 003CD2C0 - ['1:0050AC20', '2:00506B40', '3:005080A0', '4:0050A100', '5:00509BB0', '6:00507490', '7:00508C90', '8:00507120']
+PASS  C1 control: 003CCF20's map is the page's section 16 table (1 0050AC20 ... 8 00507120)
+== the +0x2FE0 census scope
+PASS  P1 image-wide, every literal +0x2FE0 displacement is one of the page's fourteen sites in the three named functions - {'00276D30': 1, '002778C0': 9, '00279E20': 4}
+== SD-124: 0035BB20 and the records 002732E0 matches
+PASS  Q1 0035BB20 is read: i < word[022C8064] -> 022C8080 + i*0xC0, else 0
+PASS  Q2 the slot walk 0035BC50: slot +4 is the handle 003588B0 resolves and the one compared with the focus handle 022C806C; 022C8064 counts accepted slots
+PASS  Q3 at the parent, the ladder page names the four 0xC0 slots at 022C8080..022C82C0 and the packed actor handle at +0x04, and the layout page reads 0035BB20
+== SD-125: who sets +0x2FF0 bit 0x4000
+PASS  K1 image-wide the only immediate 0x4000 op on +0x2FF0 besides the confirm arm's test is 002778C0's set at 002795B5; the clear at 002795C2 is its else - [['00276D30', '00276FD8'], ['002778C0', '002795B5']]
+== SD-128: 002C7660
+PASS  U1 002C7660 calls 002C8310 and 002C7B10 (the row's two callees)
+PASS  U2 at the parent, it has a page row: the unit-display-record page lists it as the display-record channel evaluation (caller 002C62B0), interior verified
+FAILS 0

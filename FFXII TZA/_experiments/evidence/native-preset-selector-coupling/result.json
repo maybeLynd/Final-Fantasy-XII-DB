@@ -1,0 +1,657 @@
+{
+  "method": "A original353B instructions/table bytes/access/layout/branch recipe; private source-only bypass control, no execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "body_sha256": "d418baa0308c940764c58f007d81ff558a2feb1dfc0e612cc52537a7e7b9d8df",
+    "parent_manifest_sha256": "79175607d2f2fa077990bc9f50cefaa9429482e403f70952df7ccbbb6ccc3bb2",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "ordered_write_pairs": [
+    [
+      {
+        "read_pc": "0x7121a4",
+        "write_pc": "0x7121a7",
+        "source_offset": 0,
+        "destination_offset": 76
+      },
+      {
+        "read_pc": "0x7121ab",
+        "write_pc": "0x7121af",
+        "source_offset": 4,
+        "destination_offset": 84
+      }
+    ],
+    [
+      {
+        "read_pc": "0x7121e3",
+        "write_pc": "0x7121e5",
+        "source_offset": 0,
+        "destination_offset": 124
+      },
+      {
+        "read_pc": "0x7121e9",
+        "write_pc": "0x7121ec",
+        "source_offset": 4,
+        "destination_offset": 132
+      },
+      {
+        "read_pc": "0x7121f3",
+        "write_pc": "0x7121f6",
+        "source_offset": 8,
+        "destination_offset": 136
+      },
+      {
+        "read_pc": "0x7121fd",
+        "write_pc": "0x712200",
+        "source_offset": 12,
+        "destination_offset": 204
+      },
+      {
+        "read_pc": "0x712207",
+        "write_pc": "0x71220a",
+        "source_offset": 16,
+        "destination_offset": 140
+      },
+      {
+        "read_pc": "0x712211",
+        "write_pc": "0x712214",
+        "source_offset": 20,
+        "destination_offset": 228
+      },
+      {
+        "read_pc": "0x71221b",
+        "write_pc": "0x71221e",
+        "source_offset": 24,
+        "destination_offset": 232
+      }
+    ],
+    [
+      {
+        "read_pc": "0x712252",
+        "write_pc": "0x712254",
+        "source_offset": 0,
+        "destination_offset": 144
+      },
+      {
+        "read_pc": "0x71225b",
+        "write_pc": "0x71225e",
+        "source_offset": 4,
+        "destination_offset": 148
+      },
+      {
+        "read_pc": "0x712265",
+        "write_pc": "0x712268",
+        "source_offset": 8,
+        "destination_offset": 152
+      },
+      {
+        "read_pc": "0x71226f",
+        "write_pc": "0x712272",
+        "source_offset": 12,
+        "destination_offset": 156
+      },
+      {
+        "read_pc": "0x712279",
+        "write_pc": "0x71227c",
+        "source_offset": 16,
+        "destination_offset": 160
+      },
+      {
+        "read_pc": "0x712283",
+        "write_pc": "0x712286",
+        "source_offset": 20,
+        "destination_offset": 164
+      },
+      {
+        "read_pc": "0x71228d",
+        "write_pc": "0x712290",
+        "source_offset": 24,
+        "destination_offset": 168
+      },
+      {
+        "read_pc": "0x712297",
+        "write_pc": "0x71229a",
+        "source_offset": 28,
+        "destination_offset": 172
+      },
+      {
+        "read_pc": "0x7122a1",
+        "write_pc": "0x7122a4",
+        "source_offset": 32,
+        "destination_offset": 176
+      },
+      {
+        "read_pc": "0x7122ab",
+        "write_pc": "0x7122ae",
+        "source_offset": 36,
+        "destination_offset": 180
+      },
+      {
+        "read_pc": "0x7122b5",
+        "write_pc": "0x7122b8",
+        "source_offset": 40,
+        "destination_offset": 184
+      },
+      {
+        "read_pc": "0x7122bf",
+        "write_pc": "0x7122c2",
+        "source_offset": 44,
+        "destination_offset": 188
+      },
+      {
+        "read_pc": "0x7122c9",
+        "write_pc": "0x7122cc",
+        "source_offset": 48,
+        "destination_offset": 192
+      },
+      {
+        "read_pc": "0x7122d3",
+        "write_pc": "0x7122d6",
+        "source_offset": 52,
+        "destination_offset": 196
+      }
+    ]
+  ],
+  "conditional_examples": {
+    "null": {
+      "target": "0x0",
+      "selectors_low32_signed": [
+        0,
+        0,
+        0
+      ],
+      "mode_nonzero": false,
+      "rows": [
+        null,
+        null,
+        null
+      ],
+      "writes": []
+    },
+    "all_negative": {
+      "target": "0x1",
+      "selectors_low32_signed": [
+        -1,
+        -1,
+        -1
+      ],
+      "mode_nonzero": false,
+      "rows": [
+        null,
+        null,
+        null
+      ],
+      "writes": [],
+      "third_effective_signed": -1
+    },
+    "selected_second_negative_third": {
+      "target": "0x1",
+      "selectors_low32_signed": [
+        -1,
+        0,
+        -1
+      ],
+      "mode_nonzero": false,
+      "rows": [
+        null,
+        0,
+        1
+      ],
+      "writes": [
+        {
+          "destination_offset": "0x7c",
+          "word": "3e800000"
+        },
+        {
+          "destination_offset": "0x84",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0x88",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xcc",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0x8c",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xe4",
+          "word": "00000080"
+        },
+        {
+          "destination_offset": "0xe8",
+          "word": "3e000000"
+        },
+        {
+          "destination_offset": "0x90",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x94",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x98",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0x9c",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xa0",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xa4",
+          "word": "00000002"
+        },
+        {
+          "destination_offset": "0xa8",
+          "word": "00000002"
+        },
+        {
+          "destination_offset": "0xac",
+          "word": "00000002"
+        },
+        {
+          "destination_offset": "0xb0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb4",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb8",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xbc",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc4",
+          "word": "ffffffff"
+        }
+      ],
+      "third_effective_signed": 1
+    },
+    "explicit_third": {
+      "target": "0x1",
+      "selectors_low32_signed": [
+        -1,
+        0,
+        9
+      ],
+      "mode_nonzero": false,
+      "rows": [
+        null,
+        0,
+        9
+      ],
+      "writes": [
+        {
+          "destination_offset": "0x7c",
+          "word": "3e800000"
+        },
+        {
+          "destination_offset": "0x84",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0x88",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xcc",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0x8c",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xe4",
+          "word": "00000080"
+        },
+        {
+          "destination_offset": "0xe8",
+          "word": "3e000000"
+        },
+        {
+          "destination_offset": "0x90",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x94",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x98",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x9c",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xa0",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0xa4",
+          "word": "00000002"
+        },
+        {
+          "destination_offset": "0xa8",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0xac",
+          "word": "00000003"
+        },
+        {
+          "destination_offset": "0xb0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb4",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb8",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xbc",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc4",
+          "word": "ffffffff"
+        }
+      ],
+      "third_effective_signed": 9
+    },
+    "upper_clamps_mode_zero": {
+      "target": "0x1",
+      "selectors_low32_signed": [
+        2147483647,
+        2147483647,
+        2147483647
+      ],
+      "mode_nonzero": false,
+      "rows": [
+        7,
+        10,
+        9
+      ],
+      "writes": [
+        {
+          "destination_offset": "0x4c",
+          "word": "3f800000"
+        },
+        {
+          "destination_offset": "0x54",
+          "word": "00000009"
+        },
+        {
+          "destination_offset": "0x7c",
+          "word": "3f800000"
+        },
+        {
+          "destination_offset": "0x84",
+          "word": "00000007"
+        },
+        {
+          "destination_offset": "0x88",
+          "word": "00000004"
+        },
+        {
+          "destination_offset": "0xcc",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x8c",
+          "word": "00000004"
+        },
+        {
+          "destination_offset": "0xe4",
+          "word": "00000180"
+        },
+        {
+          "destination_offset": "0xe8",
+          "word": "3ecccccd"
+        },
+        {
+          "destination_offset": "0x90",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x94",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x98",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x9c",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xa0",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0xa4",
+          "word": "00000002"
+        },
+        {
+          "destination_offset": "0xa8",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0xac",
+          "word": "00000003"
+        },
+        {
+          "destination_offset": "0xb0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb4",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb8",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xbc",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc4",
+          "word": "ffffffff"
+        }
+      ],
+      "third_effective_signed": 2147483647
+    },
+    "upper_clamps_mode_nonzero": {
+      "target": "0x1",
+      "selectors_low32_signed": [
+        2147483647,
+        2147483647,
+        2147483647
+      ],
+      "mode_nonzero": true,
+      "rows": [
+        7,
+        19,
+        9
+      ],
+      "writes": [
+        {
+          "destination_offset": "0x4c",
+          "word": "3f800000"
+        },
+        {
+          "destination_offset": "0x54",
+          "word": "00000009"
+        },
+        {
+          "destination_offset": "0x7c",
+          "word": "3f800000"
+        },
+        {
+          "destination_offset": "0x84",
+          "word": "00000007"
+        },
+        {
+          "destination_offset": "0x88",
+          "word": "00000004"
+        },
+        {
+          "destination_offset": "0xcc",
+          "word": "00000005"
+        },
+        {
+          "destination_offset": "0x8c",
+          "word": "00000005"
+        },
+        {
+          "destination_offset": "0xe4",
+          "word": "00000180"
+        },
+        {
+          "destination_offset": "0xe8",
+          "word": "3f000000"
+        },
+        {
+          "destination_offset": "0x90",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x94",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x98",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0x9c",
+          "word": "00000001"
+        },
+        {
+          "destination_offset": "0xa0",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0xa4",
+          "word": "00000002"
+        },
+        {
+          "destination_offset": "0xa8",
+          "word": "00000000"
+        },
+        {
+          "destination_offset": "0xac",
+          "word": "00000003"
+        },
+        {
+          "destination_offset": "0xb0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb4",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xb8",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xbc",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc0",
+          "word": "ffffffff"
+        },
+        {
+          "destination_offset": "0xc4",
+          "word": "ffffffff"
+        }
+      ],
+      "third_effective_signed": 2147483647
+    }
+  },
+  "private_source_control": {
+    "target": "0x1",
+    "selectors_low32_signed": [
+      -1,
+      0,
+      -1
+    ],
+    "mode_nonzero": false,
+    "rows": [
+      null,
+      0,
+      null
+    ],
+    "writes": [
+      {
+        "destination_offset": "0x7c",
+        "word": "3e800000"
+      },
+      {
+        "destination_offset": "0x84",
+        "word": "00000001"
+      },
+      {
+        "destination_offset": "0x88",
+        "word": "00000001"
+      },
+      {
+        "destination_offset": "0xcc",
+        "word": "00000001"
+      },
+      {
+        "destination_offset": "0x8c",
+        "word": "00000001"
+      },
+      {
+        "destination_offset": "0xe4",
+        "word": "00000080"
+      },
+      {
+        "destination_offset": "0xe8",
+        "word": "3e000000"
+      }
+    ],
+    "third_effective_signed": -1
+  },
+  "interpretation": "Null target returns unchanged; first negative selector skips its group, second negative skips its group, but third negative is not independent skip: a selected second row supplies its +10 word through EDX->R9D. All20 original bounded second rows have defaults1..5, so this condition selects third row. Nonnegative supplied third takes precedence and cap9, while target+8C still stores the second-row default rather than that effective third selector. Original upper caps7 and(modebyte!=0 ?19:10) and9, scattered DWORD transfers/order and raw bit patterns preserved; no object/system/field semantic meaning guessed.",
+  "limits": "Only this leaf/source/table bounded selector recipe. Object/system identity, scalar semantic types, runtime byteflag/memory initialization/caller occurrence/lifetime/alias constraints unassigned. Current FABLE/SPEC/FRONTIER admission conditions untouched. Model/control below are A computations, not native/isolated/live observations. Conditional recipes additionally require valid stable tables and destination disjoint from tables/mode byte; no generic overlap or object extent/lifetime guarantee. Source field envelope is maxwrite+E8 width4, not a constructor size.",
+  "cleanup": "Read-only reference and published54 inputs, ownedW/E only; PC OFF/noFF12/input/memory/save/config/reference/peer writes, S19budgetunchanged/fullL1+L2NOT_MET"
+}

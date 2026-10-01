@@ -1,0 +1,7 @@
+SURVIVES  C0  [602, 146, 418]
+SURVIVES  C1  +0x6B7: 7 accesses, word-wide at ['003106EB']; +0x6B8: 64 accesses, 4 byte-wide
+SURVIVES  C2  save movzx edi, byte ptr [rcx + 0x6b7] / movzx esi, byte ptr [rcx + 0x6b8]; commit arg mov dword ptr [rsp + 0x20], 1; inc; restore mov byte ptr [rbx + 0x6b8], sil / mov byte ptr [rbx + 0x6b7], dil
+SURVIVES  C3  draw sites call 0x379cd0 / call 0x379cd0; loop bound 0xB; nibble store and byte ptr [rdi + 0x12], 0xf / or byte ptr [rdi + 0x12], r14b
+SURVIVES  C4  movzx eax, byte ptr [rdi + 0x12] / shr 4 / cmp / jae
+SURVIVES  C5  record tables ['0208D480', '0208DE80']
+FAILS 0

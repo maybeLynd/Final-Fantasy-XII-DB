@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-151",
+ "note": "Batch 151 (22 bodies -> 16 hosts): 11 multi-caller + top-11 1-A by size; the UI registry family landed (003F89C0 init-with-callback, 003F8A30 head unlink, 003F8A50 tail append on the +0x28 chain), the 0209BE80/0209C300 teardown pair 00290E10/002970C0, GI counted accessors 006241D0/00624730, and the 0035BB00 0xC0-stride slot read shared by three subsystems. Gates: anchors 4730 (all 22 counted), 0 MID/0 outside-body; address checker 0 UNSUPPORTED in new entries; hash clean (26 standing unreproduced); crossref 2868 findings / 400 dispositioned; neighbour guard ADDS NOTHING after 1 crossing paragraph accounting the standing post-process::Presentation pair (2854->2853).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub151_dumps.txt",
+  "Database/Tools/work/hub151_callers.txt"
+ ]
+}

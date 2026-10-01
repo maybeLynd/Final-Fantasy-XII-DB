@@ -1,0 +1,21 @@
+{
+  "case": "escalate-opus",
+  "is_review": true,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "d75b070dade8f9e40bed473884e15222ed5b18ef6360a9f69509bf4b3437750b",
+  "after_sha256": "bd1c6e7424d9f7e9319bf665b959cae0f70863fbe5823cda02bdedd955895514",
+  "result_refs": [
+    "receipt:fixture",
+    "verdict:ESCALATE-OPUS"
+  ],
+  "plan": [
+    {
+      "kind": "VERDICT-MANUAL",
+      "review": "FIXTURE-A16-ESCALATE-OPUS",
+      "detail": "verdict:ESCALATE-OPUS needs its named REVIEW-POLICY handling; no automatic transition",
+      "has_operation": false
+    }
+  ]
+}

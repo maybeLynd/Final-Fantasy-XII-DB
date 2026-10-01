@@ -1,0 +1,416 @@
+{
+  "method": "saved-data reconciliation only; no original code execution, no executable modifications",
+  "input_sha256": {
+    "arena-allocation-result.json": "3f943302e3924560564e8c830e0480be25f194e650529cc913df155296720c13",
+    "arena-allocation-mutant-result.json": "8dccbe86ee00556236561b3e3b24ae917a920a48f7aa057c66e359c1156797b2"
+  },
+  "reviews": [
+    {
+      "name": "low-two-front",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 587,
+          "calls": 47,
+          "reads": 81,
+          "writes": 73,
+          "returned": true,
+          "rax": "0x400102c0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 665,
+          "calls": 54,
+          "reads": 92,
+          "writes": 80,
+          "returned": true,
+          "rax": "0x40010340",
+          "invalid": []
+        },
+        {
+          "step": "restore-selection",
+          "instructions": 17,
+          "calls": 1,
+          "reads": 5,
+          "writes": 5,
+          "returned": true,
+          "rax": "0x0",
+          "invalid": []
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    },
+    {
+      "name": "above2-two-front",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 587,
+          "calls": 47,
+          "reads": 81,
+          "writes": 73,
+          "returned": true,
+          "rax": "0x800102c0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 665,
+          "calls": 54,
+          "reads": 92,
+          "writes": 80,
+          "returned": true,
+          "rax": "0x80010340",
+          "invalid": []
+        },
+        {
+          "step": "restore-selection",
+          "instructions": 17,
+          "calls": 1,
+          "reads": 5,
+          "writes": 5,
+          "returned": true,
+          "rax": "0x0",
+          "invalid": []
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    },
+    {
+      "name": "above4-two-front",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 587,
+          "calls": 47,
+          "reads": 81,
+          "writes": 73,
+          "returned": true,
+          "rax": "0x1000102c0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 216,
+          "calls": 15,
+          "reads": 35,
+          "writes": 8,
+          "returned": false,
+          "rax": "0x0",
+          "invalid": [
+            {
+              "rip": "0x36ca8a",
+              "access": 20,
+              "address": "0x10290",
+              "bytes": 4,
+              "value": "0x0"
+            }
+          ]
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    },
+    {
+      "name": "above4-two-front-low-alias",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 587,
+          "calls": 47,
+          "reads": 81,
+          "writes": 73,
+          "returned": true,
+          "rax": "0x1000102c0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 665,
+          "calls": 54,
+          "reads": 92,
+          "writes": 80,
+          "returned": true,
+          "rax": "0x100010340",
+          "invalid": []
+        },
+        {
+          "step": "restore-selection",
+          "instructions": 17,
+          "calls": 1,
+          "reads": 5,
+          "writes": 5,
+          "returned": true,
+          "rax": "0x0",
+          "invalid": []
+        }
+      ],
+      "foreign_events": [
+        [
+          "0x36ca8a",
+          "W",
+          "0x10290",
+          4,
+          "0x0"
+        ],
+        [
+          "0x36ca8d",
+          "W",
+          "0x102be",
+          2,
+          "0x0"
+        ],
+        [
+          "0x36b83e",
+          "R",
+          "0x10290",
+          4,
+          "00000000"
+        ],
+        [
+          "0x36b853",
+          "W",
+          "0x10290",
+          4,
+          "0x10300"
+        ],
+        [
+          "0x36b856",
+          "W",
+          "0x102be",
+          2,
+          "0x0"
+        ]
+      ],
+      "alias_final_matches_initial": true
+    },
+    {
+      "name": "above4-whole-block",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 345,
+          "calls": 26,
+          "reads": 49,
+          "writes": 37,
+          "returned": true,
+          "rax": "0x1000102c0",
+          "invalid": []
+        },
+        {
+          "step": "restore-selection",
+          "instructions": 17,
+          "calls": 1,
+          "reads": 5,
+          "writes": 5,
+          "returned": true,
+          "rax": "0x0",
+          "invalid": []
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    },
+    {
+      "name": "low-two-back",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 585,
+          "calls": 47,
+          "reads": 81,
+          "writes": 71,
+          "returned": true,
+          "rax": "0x4010ffc0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 667,
+          "calls": 54,
+          "reads": 92,
+          "writes": 80,
+          "returned": true,
+          "rax": "0x4010ff40",
+          "invalid": []
+        },
+        {
+          "step": "restore-selection",
+          "instructions": 17,
+          "calls": 1,
+          "reads": 5,
+          "writes": 5,
+          "returned": true,
+          "rax": "0x0",
+          "invalid": []
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    },
+    {
+      "name": "above4-two-back",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 585,
+          "calls": 47,
+          "reads": 81,
+          "writes": 71,
+          "returned": true,
+          "rax": "0x10010ffc0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 215,
+          "calls": 15,
+          "reads": 35,
+          "writes": 8,
+          "returned": false,
+          "rax": "0x0",
+          "invalid": [
+            {
+              "rip": "0x36ca75",
+              "access": 20,
+              "address": "0x10ff8c",
+              "bytes": 4,
+              "value": "0x0"
+            }
+          ]
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    },
+    {
+      "name": "zero-decoder-mutant",
+      "all_recorded_memory_consistent": true,
+      "steps": [
+        {
+          "step": "select-logical2",
+          "instructions": 27,
+          "calls": 1,
+          "reads": 6,
+          "writes": 8,
+          "returned": true,
+          "rax": "0x2",
+          "invalid": []
+        },
+        {
+          "step": "allocation1",
+          "instructions": 587,
+          "calls": 47,
+          "reads": 81,
+          "writes": 73,
+          "returned": true,
+          "rax": "0x400102c0",
+          "invalid": []
+        },
+        {
+          "step": "allocation2",
+          "instructions": 610,
+          "calls": 48,
+          "reads": 85,
+          "writes": 75,
+          "returned": true,
+          "rax": "0x40010340",
+          "invalid": []
+        },
+        {
+          "step": "restore-selection",
+          "instructions": 17,
+          "calls": 1,
+          "reads": 5,
+          "writes": 5,
+          "returned": true,
+          "rax": "0x0",
+          "invalid": []
+        }
+      ],
+      "foreign_events": [],
+      "alias_final_matches_initial": null
+    }
+  ],
+  "all_pass": true
+}

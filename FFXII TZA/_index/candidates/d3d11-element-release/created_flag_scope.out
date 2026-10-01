@@ -1,0 +1,4 @@
+PASS  G getters test the flag; 006505A0 and 005D14D5 branch on them before the pass
+PASS  U each pass's only flag access is the store of 0; each destroy calls its pass untested [True, True, True, True]
+PASS  S the four rows scope the skip to the testing routes and name the untested destroy
+FAILS 0

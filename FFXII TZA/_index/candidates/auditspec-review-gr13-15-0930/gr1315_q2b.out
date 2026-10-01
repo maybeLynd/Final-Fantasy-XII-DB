@@ -1,0 +1,184 @@
+== 003FF1F0  extent ['003FF1F0-003FF35F']
+  rel32 callers [] ; jcc [] ; rip ['003FF648 lea rcx, [rip - 0x45f]']
+  entry taint from callers: []
+  holder load 003FF229 mov rax, qword ptr [rcx + 0xc8]
+  -- hit 003FF241
+     003FF20A sub rsp, 0x40
+     003FF20E mov rax, qword ptr [rdx + 0x10]
+     003FF212 mov r15, rdx
+     003FF215 movsxd rbp, r9d
+     003FF218 mov rsi, rcx
+     003FF21B mov rdx, rbp
+     003FF21E xor r14d, r14d
+     003FF221 shl rdx, 5
+     003FF225 mov rbx, qword ptr [rax + 0x10]
+     003FF229 mov rax, qword ptr [rcx + 0xc8]
+     003FF230 lea rdi, [rbp + 0x6a]
+     003FF234 shl rdi, 5
+     003FF238 xor ecx, ecx
+     003FF23A add rdi, qword ptr [rip + 0x1c9b9ef]
+     003FF241 mov rdx, qword ptr [rdx + rax + 0x10]
+     003FF246 mov qword ptr [rbx + 0x18], rdx
+== 0056A1D0  extent ['0056A1D0-0056A3C6']
+  rel32 callers ['00569E26 call', '0056AD3A call'] ; jcc [] ; rip []
+  entry taint from callers: [('r9', 1), ('rcx', 1)]
+  -- hit 0056A269
+     0056A231 mov word ptr [rdi + 0x12], ax
+     0056A235 cmp ax, si
+     0056A238 jne 0x56a24d
+     0056A23A mov ecx, 0x3eb
+     0056A23F call 0x2f9860
+     0056A244 mov qword ptr [rdi + 8], rax
+     0056A248 jmp 0x56a394
+     0056A24D movzx edx, ax
+     0056A250 mov ecx, 0x14
+     0056A255 call 0x35d330
+     0056A25A xor edx, edx
+     0056A25C mov rcx, qword ptr [rax + 0x18]
+     0056A260 call 0x2b58b0
+     0056A265 mov qword ptr [rdi + 8], rax
+     0056A269 movzx eax, word ptr [rdi + 0x10]
+     0056A26D cmp ax, si
+  -- hit 0056A29E
+     0056A265 mov qword ptr [rdi + 8], rax
+     0056A269 movzx eax, word ptr [rdi + 0x10]
+     0056A26D cmp ax, si
+     0056A270 je 0x56a394
+     0056A276 movzx edx, ax
+     0056A279 mov ecx, 0xb
+     0056A27E shl edx, 0x10
+     0056A281 call 0x35d330
+     0056A286 cmp dword ptr [rax + 0x38], 3
+     0056A28A setne al
+     0056A28D mov byte ptr [rdi + 0x15], al
+     0056A290 jmp 0x56a394
+     0056A295 mov eax, dword ptr [rsp + 0x50]
+     0056A299 mov esi, 0xffff
+     0056A29E mov word ptr [rdi + 0x10], ax
+     0056A2A2 cmp ax, si
+  -- hit 0056A312
+     0056A2DE cmp dword ptr [rbx + 0x38], 3
+     0056A2E2 setne al
+     0056A2E5 mov byte ptr [rdi + 0x15], al
+     0056A2E8 cmp word ptr [rdi + 0x12], si
+     0056A2EC jne 0x56a394
+     0056A2F2 mov byte ptr [rdi + 0x15], 2
+     0056A2F6 jmp 0x56a394
+     0056A2FB cmp byte ptr [rdi + 0x14], 0
+     0056A2FF je 0x56a307
+     0056A301 mov byte ptr [rdi + 0x14], 0
+     0056A305 jmp 0x56a31c
+     0056A307 mov esi, 0xffff
+     0056A30C cmp word ptr [rdi + 0x12], si
+     0056A310 je 0x56a33f
+     0056A312 cmp word ptr [rdi + 0x10], si
+     0056A316 je 0x56a33f
+  -- hit 0056A375
+     0056A33F mov eax, 5
+     0056A344 jmp 0x56a3ab
+     0056A346 test r8d, r8d
+     0056A349 jg 0x56a350
+     0056A34B or eax, 0xffffffff
+     0056A34E jmp 0x56a3ab
+     0056A350 mov ecx, 0x3eb
+     0056A355 mov byte ptr [rdi + 0x15], 2
+     0056A359 call 0x2f9860
+     0056A35E mov ecx, 0x3eb
+     0056A363 mov qword ptr [rdi], rax
+     0056A366 call 0x2f9860
+     0056A36B mov qword ptr [rdi + 8], rax
+     0056A36F mov r14d, 0x19
+     0056A375 mov dword ptr [rdi + 0x10], 0xffffffff
+     0056A37C lea eax, [rbx - 1]
+== 0056A890  extent ['0056A890-0056A8B1', '0056A8B1-0056A95F', '0056A95F-0056AA3B', '0056AA3B-0056AA8A', '0056AA8A-0056AAB3']
+  rel32 callers ['0056B77D call', '0056B99E call'] ; jcc [] ; rip []
+  entry taint from callers: []
+  holder load 0056A929 mov rax, qword ptr [r14 + 0xd0]
+  -- hit 0056A938
+     0056A8F0 mov qword ptr [rsp + 0x1080], r15
+     0056A8F8 call 0x861ec0
+     0056A8FD lea rax, [rbx + 8]
+     0056A901 mov r8d, 0x11
+     0056A907 mov r13d, 0xffff
+     0056A90D nop dword ptr [rax]
+     0056A910 mov word ptr [rax], r13w
+     0056A914 lea rax, [rax + 0x20]
+     0056A918 sub r8, 1
+     0056A91C jne 0x56a910
+     0056A91E mov eax, dword ptr [r14 + 0x584]
+     0056A925 mov dword ptr [rsp + 0x4c], eax
+     0056A929 mov rax, qword ptr [r14 + 0xd0]
+     0056A930 mov dword ptr [rsp + 0x20], 0x22
+     0056A938 movzx ecx, word ptr [rax + 0x10]
+     0056A93C mov dword ptr [rsp + 0x58], ecx
+== 0056AE80  extent ['0056AE80-0056AEAD', '0056AEAD-0056AF09', '0056AF09-0056B0B6', '0056B0B6-0056B0D2', '0056B0D2-0056B0FD']
+  rel32 callers ['0056A516 call', '0056ADD1 call'] ; jcc [] ; rip []
+  entry taint from callers: []
+  holder load 0056AEA3 mov rax, qword ptr [rcx + 0xd0]
+  holder load 0056AF5E mov rax, qword ptr [rbx + 0xd0]
+  holder load 0056AFCC mov rax, qword ptr [rbx + 0xc8]
+  holder load 0056AFE0 mov rax, qword ptr [rbx + 0xc8]
+  -- hit 0056AF6D
+     0056AF1D mov eax, 1
+     0056AF22 mov qword ptr [rsp + 0x10a0], r12
+     0056AF2A mov edx, 0x88
+     0056AF2F mov qword ptr [rsp + 0x1090], r15
+     0056AF37 nop word ptr [rax + rax]
+     0056AF40 mov byte ptr [rsi + 7], r14b
+     0056AF44 mov word ptr [rsi + 2], r8w
+     0056AF49 mov word ptr [rsi + 4], ax
+     0056AF4D mov word ptr [rsi], dx
+     0056AF50 mov byte ptr [rsi + 6], 0xff
+     0056AF54 mov eax, dword ptr [rbx + 0x584]
+     0056AF5A mov dword ptr [rsp + 0x5c], eax
+     0056AF5E mov rax, qword ptr [rbx + 0xd0]
+     0056AF65 mov dword ptr [rsp + 0x30], 0x22
+     0056AF6D movzx ecx, word ptr [rax + 0x10]
+     0056AF71 mov dword ptr [rsp + 0x68], ecx
+== 0056B100  extent ['0056B100-0056B12D', '0056B12D-0056B193', '0056B193-0056B2FF', '0056B2FF-0056B323', '0056B323-0056B34E']
+  rel32 callers ['0056A54B call', '0056ADCA call'] ; jcc [] ; rip []
+  entry taint from callers: []
+  holder load 0056B123 mov rax, qword ptr [rcx + 0xd0]
+  holder load 0056B1CD mov rax, qword ptr [rbx + 0xd0]
+  holder load 0056B23B mov rax, qword ptr [rbx + 0xc8]
+  holder load 0056B24F mov rax, qword ptr [rbx + 0xc8]
+  -- hit 0056B151
+     0056B104 mov eax, 0x10a8
+     0056B109 call 0x808f10
+     0056B10E sub rsp, rax
+     0056B111 mov rax, qword ptr [rip + 0x19d9718]
+     0056B118 xor rax, rsp
+     0056B11B mov qword ptr [rsp + 0x1080], rax
+     0056B123 mov rax, qword ptr [rcx + 0xd0]
+     0056B12A mov rbx, rcx
+     0056B12D mov qword ptr [rsp + 0x10d0], rsi
+     0056B135 xor esi, esi
+     0056B137 mov qword ptr [rsp + 0x10d8], rdi
+     0056B13F mov r13d, esi
+     0056B142 mov qword ptr [rsp + 0x1090], r15
+     0056B14A lea rdi, [rcx + 0x300]
+     0056B151 movzx eax, word ptr [rax + 0x10]
+     0056B155 mov dword ptr [rsp + 0x20], eax
+== 0057FB00  extent ['0057FB00-0057FE77']
+  rel32 callers ['0057F92B call'] ; jcc [] ; rip []
+  entry taint from callers: []
+  holder load 0057FBF1 mov rcx, qword ptr [rax + 0xd0]
+  holder load 0057FC73 mov rcx, qword ptr [rax + 0xc8]
+  holder load 0057FCF8 mov rcx, qword ptr [rax + 0xc8]
+  -- hit 0057FC7A
+     0057FC3C mov rdi, qword ptr [rcx + 0xb8]
+     0057FC43 xor ecx, ecx
+     0057FC45 mov qword ptr [rdi + 0x18], rax
+     0057FC49 call 0x20e620
+     0057FC4E or dword ptr [rdi + 8], 1
+     0057FC52 lea r8, [rsp + 0x3c]
+     0057FC57 lea rdx, [rsp + 0x38]
+     0057FC5C mov dword ptr [rdi + 0x20], eax
+     0057FC5F mov rcx, rdi
+     0057FC62 call 0x29fe20
+     0057FC67 mov rax, qword ptr [rbx + 0x10]
+     0057FC6B movsx esi, word ptr [rdi + 0xc]
+     0057FC6F movsx ebp, word ptr [rdi + 0xe]
+     0057FC73 mov rcx, qword ptr [rax + 0xc8]
+     0057FC7A sub si, word ptr [rcx + 0x10]
+     0057FC7E or dword ptr [rcx + 8], 1

@@ -1,0 +1,41 @@
+{
+ "action_ring": {
+  "10_entries_call1": [
+   true,
+   8
+  ],
+  "3_entries": [
+   true,
+   3
+  ],
+  "call2": [
+   true,
+   10
+  ],
+  "call3_empty": [
+   true,
+   10
+  ]
+ },
+ "action_ring_gate_bit_0x20": [
+  true,
+  0
+ ],
+ "allowed_functions": 1565,
+ "cases": {
+  "A_action_ring_drains_at_most_eight_per_call": true,
+  "G_action_drain_skips_entirely_under_02089340_bit_0x20": true,
+  "P_presentation_ring_stops_at_the_first_unresolved_entry": true
+ },
+ "ok": true,
+ "presentation_ring": {
+  "10_entries_call1": [
+   true,
+   1
+  ],
+  "call2": [
+   true,
+   2
+  ]
+ }
+}

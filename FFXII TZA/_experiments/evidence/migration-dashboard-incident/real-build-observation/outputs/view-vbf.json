@@ -1,0 +1,1024 @@
+{
+ "view": "vbf",
+ "title": "VBF archive - the browser's own folder tree",
+ "status": "PARTIAL",
+ "source": {
+  "identity": "vbf_list.txt sha256 f38f57966be4",
+  "as_of": "2026-09-29T02:32:06Z",
+  "instrument": "v_vbf over the archive file table",
+  "limits": "the VBF Browser has no category table: its tree IS the archive's folder tree. This listing is from 2026-09-02 and the archive itself is not yet pinned by hash (PARTIAL). Tree shown to depth 3; formats/parse/field-meaning stages are UNMEASURED"
+ },
+ "measures": [
+  {
+   "id": "files",
+   "label": "files in the archive",
+   "numerator": 89414,
+   "denominator": null,
+   "scope": "archive file table",
+   "instrument": "v_vbf",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "a file count; distinct formats and bytes are other denominators"
+  },
+  {
+   "id": "bytes",
+   "label": "bytes in the archive",
+   "numerator": 58894815547,
+   "denominator": null,
+   "scope": "archive file table",
+   "instrument": "v_vbf",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "uncompressed sizes as listed"
+  },
+  {
+   "id": "extensions",
+   "label": "distinct file extensions",
+   "numerator": 48,
+   "denominator": null,
+   "scope": "archive file table",
+   "instrument": "v_vbf",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "an extension is not a format variant"
+  }
+ ],
+ "tree": [
+  {
+   "id": "gamedata",
+   "label": "gamedata",
+   "counts": {
+    "files": 39653,
+    "bytes": 38076149667
+   },
+   "children": [
+    {
+     "id": "gamedata/d3d11",
+     "label": "d3d11",
+     "counts": {
+      "files": 39650,
+      "bytes": 38063707358
+     },
+     "children": [
+      {
+       "id": "gamedata/d3d11/artdata",
+       "label": "artdata",
+       "counts": {
+        "files": 39650,
+        "bytes": 38063707358
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "gamedata/disableautosavelist",
+     "label": "disableautosavelist",
+     "counts": {
+      "files": 1,
+      "bytes": 673
+     },
+     "children": []
+    },
+    {
+     "id": "gamedata/titleimage",
+     "label": "titleimage",
+     "counts": {
+      "files": 2,
+      "bytes": 12441636
+     },
+     "children": [
+      {
+       "id": "gamedata/titleimage/in",
+       "label": "in",
+       "counts": {
+        "files": 2,
+        "bytes": 12441636
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jsondata",
+   "label": "jsondata",
+   "counts": {
+    "files": 832,
+    "bytes": 3242429
+   },
+   "children": [
+    {
+     "id": "jsondata/cutscenes",
+     "label": "cutscenes",
+     "counts": {
+      "files": 337,
+      "bytes": 2235149
+     },
+     "children": []
+    },
+    {
+     "id": "jsondata/fontcluts",
+     "label": "fontcluts",
+     "counts": {
+      "files": 28,
+      "bytes": 8160
+     },
+     "children": []
+    },
+    {
+     "id": "jsondata/maps",
+     "label": "maps",
+     "counts": {
+      "files": 459,
+      "bytes": 581069
+     },
+     "children": []
+    },
+    {
+     "id": "jsondata/uisize",
+     "label": "uisize",
+     "counts": {
+      "files": 2,
+      "bytes": 12087
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "id": "prefetchdata",
+   "label": "prefetchdata",
+   "counts": {
+    "files": 9351,
+    "bytes": 283340853
+   },
+   "children": [
+    {
+     "id": "prefetchdata/add-on",
+     "label": "add-on",
+     "counts": {
+      "files": 1,
+      "bytes": 1767
+     },
+     "children": [
+      {
+       "id": "prefetchdata/add-on/events",
+       "label": "events",
+       "counts": {
+        "files": 1,
+        "bytes": 1767
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/ch",
+     "label": "ch",
+     "counts": {
+      "files": 1036,
+      "bytes": 30704316
+     },
+     "children": [
+      {
+       "id": "prefetchdata/ch/events",
+       "label": "events",
+       "counts": {
+        "files": 325,
+        "bytes": 1767466
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/ch/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 28902404
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/cn",
+     "label": "cn",
+     "counts": {
+      "files": 1036,
+      "bytes": 30704339
+     },
+     "children": [
+      {
+       "id": "prefetchdata/cn/events",
+       "label": "events",
+       "counts": {
+        "files": 325,
+        "bytes": 1767101
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/cn/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 28902792
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/de",
+     "label": "de",
+     "counts": {
+      "files": 1042,
+      "bytes": 31895767
+     },
+     "children": [
+      {
+       "id": "prefetchdata/de/events",
+       "label": "events",
+       "counts": {
+        "files": 329,
+        "bytes": 2015855
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/de/maps",
+       "label": "maps",
+       "counts": {
+        "files": 711,
+        "bytes": 29845466
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/es",
+     "label": "es",
+     "counts": {
+      "files": 1040,
+      "bytes": 31900515
+     },
+     "children": [
+      {
+       "id": "prefetchdata/es/events",
+       "label": "events",
+       "counts": {
+        "files": 329,
+        "bytes": 2015855
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/es/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 29850214
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/fr",
+     "label": "fr",
+     "counts": {
+      "files": 1040,
+      "bytes": 31905354
+     },
+     "children": [
+      {
+       "id": "prefetchdata/fr/events",
+       "label": "events",
+       "counts": {
+        "files": 329,
+        "bytes": 2020792
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/fr/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 29850116
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/it",
+     "label": "it",
+     "counts": {
+      "files": 1040,
+      "bytes": 31914483
+     },
+     "children": [
+      {
+       "id": "prefetchdata/it/events",
+       "label": "events",
+       "counts": {
+        "files": 329,
+        "bytes": 2027851
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/it/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 29852186
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/jp",
+     "label": "jp",
+     "counts": {
+      "files": 1039,
+      "bytes": 31647034
+     },
+     "children": [
+      {
+       "id": "prefetchdata/jp/events",
+       "label": "events",
+       "counts": {
+        "files": 328,
+        "bytes": 2014625
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/jp/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 29597963
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/kr",
+     "label": "kr",
+     "counts": {
+      "files": 1036,
+      "bytes": 30702870
+     },
+     "children": [
+      {
+       "id": "prefetchdata/kr/events",
+       "label": "events",
+       "counts": {
+        "files": 325,
+        "bytes": 1767103
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/kr/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 28901321
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "prefetchdata/us",
+     "label": "us",
+     "counts": {
+      "files": 1040,
+      "bytes": 31899769
+     },
+     "children": [
+      {
+       "id": "prefetchdata/us/events",
+       "label": "events",
+       "counts": {
+        "files": 329,
+        "bytes": 2016131
+       },
+       "children": []
+      },
+      {
+       "id": "prefetchdata/us/maps",
+       "label": "maps",
+       "counts": {
+        "files": 709,
+        "bytes": 29849192
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ps2data",
+   "label": "ps2data",
+   "counts": {
+    "files": 39578,
+    "bytes": 20532082598
+   },
+   "children": [
+    {
+     "id": "ps2data/add_motion",
+     "label": "add_motion",
+     "counts": {
+      "files": 45,
+      "bytes": 116083
+     },
+     "children": []
+    },
+    {
+     "id": "ps2data/cdi",
+     "label": "cdi",
+     "counts": {
+      "files": 1,
+      "bytes": 57
+     },
+     "children": [
+      {
+       "id": "ps2data/cdi/in",
+       "label": "in",
+       "counts": {
+        "files": 1,
+        "bytes": 57
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/debglobal.bin",
+     "label": "debglobal.bin",
+     "counts": {
+      "files": 1,
+      "bytes": 148
+     },
+     "children": []
+    },
+    {
+     "id": "ps2data/efb",
+     "label": "efb",
+     "counts": {
+      "files": 410,
+      "bytes": 226292720
+     },
+     "children": []
+    },
+    {
+     "id": "ps2data/effect_finish",
+     "label": "effect_finish",
+     "counts": {
+      "files": 3288,
+      "bytes": 4579689088
+     },
+     "children": [
+      {
+       "id": "ps2data/effect_finish/ch",
+       "label": "ch",
+       "counts": {
+        "files": 317,
+        "bytes": 513711376
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/cn",
+       "label": "cn",
+       "counts": {
+        "files": 317,
+        "bytes": 549840144
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/de",
+       "label": "de",
+       "counts": {
+        "files": 248,
+        "bytes": 467675952
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/es",
+       "label": "es",
+       "counts": {
+        "files": 248,
+        "bytes": 454405376
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/fr",
+       "label": "fr",
+       "counts": {
+        "files": 248,
+        "bytes": 452166832
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/in",
+       "label": "in",
+       "counts": {
+        "files": 11,
+        "bytes": 22761376
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/it",
+       "label": "it",
+       "counts": {
+        "files": 248,
+        "bytes": 451637584
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/jp",
+       "label": "jp",
+       "counts": {
+        "files": 1028,
+        "bytes": 615878400
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/kr",
+       "label": "kr",
+       "counts": {
+        "files": 317,
+        "bytes": 549840144
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/uk",
+       "label": "uk",
+       "counts": {
+        "files": 12,
+        "bytes": 6419872
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/effect_finish/us",
+       "label": "us",
+       "counts": {
+        "files": 294,
+        "bytes": 495352032
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/image",
+     "label": "image",
+     "counts": {
+      "files": 5013,
+      "bytes": 4842600848
+     },
+     "children": [
+      {
+       "id": "ps2data/image/ff12",
+       "label": "ff12",
+       "counts": {
+        "files": 5013,
+        "bytes": 4842600848
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/movie_finish",
+     "label": "movie_finish",
+     "counts": {
+      "files": 43,
+      "bytes": 176100
+     },
+     "children": [
+      {
+       "id": "ps2data/movie_finish/in",
+       "label": "in",
+       "counts": {
+        "files": 7,
+        "bytes": 5844
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/movie_finish/jp",
+       "label": "jp",
+       "counts": {
+        "files": 1,
+        "bytes": 3888
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/movie_finish/us",
+       "label": "us",
+       "counts": {
+        "files": 35,
+        "bytes": 166368
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/obj_finish",
+     "label": "obj_finish",
+     "counts": {
+      "files": 4230,
+      "bytes": 817418384
+     },
+     "children": [
+      {
+       "id": "ps2data/obj_finish/in",
+       "label": "in",
+       "counts": {
+        "files": 4230,
+        "bytes": 817418384
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/plan_master",
+     "label": "plan_master",
+     "counts": {
+      "files": 21565,
+      "bytes": 7810114716
+     },
+     "children": [
+      {
+       "id": "ps2data/plan_master/ch",
+       "label": "ch",
+       "counts": {
+        "files": 2593,
+        "bytes": 677316198
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/cn",
+       "label": "cn",
+       "counts": {
+        "files": 2262,
+        "bytes": 675709360
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/de",
+       "label": "de",
+       "counts": {
+        "files": 2261,
+        "bytes": 672250992
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/es",
+       "label": "es",
+       "counts": {
+        "files": 2261,
+        "bytes": 672068016
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/fr",
+       "label": "fr",
+       "counts": {
+        "files": 2261,
+        "bytes": 672160880
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/in",
+       "label": "in",
+       "counts": {
+        "files": 2593,
+        "bytes": 677433318
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/it",
+       "label": "it",
+       "counts": {
+        "files": 2261,
+        "bytes": 675234352
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/kr",
+       "label": "kr",
+       "counts": {
+        "files": 2262,
+        "bytes": 675513840
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/map_ctrl",
+       "label": "map_ctrl",
+       "counts": {
+        "files": 550,
+        "bytes": 1740377984
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/plan_master/us",
+       "label": "us",
+       "counts": {
+        "files": 2261,
+        "bytes": 672049776
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/soft_particle",
+     "label": "soft_particle",
+     "counts": {
+      "files": 5,
+      "bytes": 80260
+     },
+     "children": []
+    },
+    {
+     "id": "ps2data/sound",
+     "label": "sound",
+     "counts": {
+      "files": 4975,
+      "bytes": 2255581964
+     },
+     "children": [
+      {
+       "id": "ps2data/sound/music",
+       "label": "music",
+       "counts": {
+        "files": 116,
+        "bytes": 1375788192
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/sound/se",
+       "label": "se",
+       "counts": {
+        "files": 4594,
+        "bytes": 862263324
+       },
+       "children": []
+      },
+      {
+       "id": "ps2data/sound/shout",
+       "label": "shout",
+       "counts": {
+        "files": 264,
+        "bytes": 17529184
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "id": "ps2data/square_ff12",
+     "label": "square_ff12",
+     "counts": {
+      "files": 1,
+      "bytes": 2048
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "rows": {
+  "columns": [
+   "extension",
+   "files"
+  ],
+  "data": [
+   [
+    "phyre",
+    35984
+   ],
+   [
+    "txt",
+    10253
+   ],
+   [
+    "ebp",
+    10045
+   ],
+   [
+    "sab",
+    4609
+   ],
+   [
+    "mot",
+    4392
+   ],
+   [
+    "efx",
+    3288
+   ],
+   [
+    "ca",
+    3164
+   ],
+   [
+    "dat",
+    2948
+   ],
+   [
+    "ah",
+    2564
+   ],
+   [
+    "snd",
+    2304
+   ],
+   [
+    "vpc",
+    1809
+   ],
+   [
+    "vpcjp",
+    1809
+   ],
+   [
+    "bin",
+    1439
+   ],
+   [
+    "cm",
+    1066
+   ],
+   [
+    "json",
+    830
+   ],
+   [
+    "mpk",
+    550
+   ],
+   [
+    "tm2",
+    447
+   ],
+   [
+    "efb",
+    410
+   ],
+   [
+    "ard",
+    332
+   ],
+   [
+    "nmb",
+    332
+   ],
+   [
+    "seb",
+    248
+   ],
+   [
+    "mab",
+    116
+   ],
+   [
+    "mrp",
+    116
+   ],
+   [
+    "ta",
+    45
+   ],
+   [
+    "mh",
+    43
+   ],
+   [
+    "webm",
+    40
+   ],
+   [
+    "adm",
+    39
+   ],
+   [
+    "ker",
+    34
+   ],
+   [
+    "cl2",
+    20
+   ],
+   [
+    "as7",
+    18
+   ],
+   [
+    "csv",
+    17
+   ],
+   [
+    "sav",
+    16
+   ],
+   [
+    "fex",
+    14
+   ],
+   [
+    "btm",
+    12
+   ],
+   [
+    "lst",
+    9
+   ],
+   [
+    "nfs",
+    9
+   ],
+   [
+    "dbg",
+    8
+   ],
+   [
+    "msb",
+    8
+   ],
+   [
+    "sbn",
+    8
+   ],
+   [
+    "h",
+    6
+   ],
+   [
+    "tga",
+    2
+   ],
+   [
+    "(none)",
+    2
+   ],
+   [
+    "mg",
+    2
+   ],
+   [
+    "sys",
+    2
+   ],
+   [
+    "ico",
+    2
+   ],
+   [
+    "config",
+    1
+   ],
+   [
+    "spp",
+    1
+   ],
+   [
+    "cnf",
+    1
+   ]
+  ]
+ }
+}

@@ -1,0 +1,116 @@
+{
+  "question": "Line drift, earlier marker insertion, and self-documentation false positive",
+  "seed": {
+    "id": "CON-021",
+    "date": "2026-09-10",
+    "kind": "CORRECTED",
+    "category": "actor.md",
+    "document": "actor.md",
+    "line": "1",
+    "claim": "CORRECTED 2026-09-10 \u2014 fixture actor claim",
+    "correction": "curated correction must survive",
+    "instrument": "curated writer trace",
+    "addresses": "00265020"
+  },
+  "runs": {
+    "old": {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-020-contradictions\\baseline-old.py",
+        "extract",
+        "--db",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-exp020-tulers4l\\old",
+        "--ledger",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-exp020-tulers4l\\old\\_index\\CONTRADICTIONS.tsv"
+      ],
+      "exit_code": 0,
+      "stdout": "extracted 3 dated correction(s) into C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-exp020-tulers4l\\old\\_index\\CONTRADICTIONS.tsv\nhand-written summary cells preserved: 0\n",
+      "stderr": "",
+      "source_sha256": "555d2a2a01264fe6cae02ac0e3f6580e8c5a74c88c1f96bc4f46323eae4ff76d",
+      "rows": [
+        {
+          "id": "CON-001",
+          "date": "2020-01-01",
+          "kind": "CORRECTED",
+          "category": "earlier.md",
+          "document": "earlier.md",
+          "line": "1",
+          "claim": "CORRECTED 2020-01-01 \u2014 fixture earlier marker",
+          "correction": "UNSUMMARISED",
+          "instrument": "UNSUMMARISED",
+          "addresses": ""
+        },
+        {
+          "id": "CON-002",
+          "date": "2026-09-02",
+          "kind": "CORRECTED",
+          "category": "_index",
+          "document": "_index/CONTRADICTION-LEDGER.md",
+          "line": "1",
+          "claim": "A dated header \u2014 CORRECTED 2026-09-02, etc.",
+          "correction": "UNSUMMARISED",
+          "instrument": "UNSUMMARISED",
+          "addresses": ""
+        },
+        {
+          "id": "CON-003",
+          "date": "2026-09-10",
+          "kind": "CORRECTED",
+          "category": "actor.md",
+          "document": "actor.md",
+          "line": "3",
+          "claim": "CORRECTED 2026-09-10 \u2014 fixture actor claim",
+          "correction": "UNSUMMARISED",
+          "instrument": "UNSUMMARISED",
+          "addresses": ""
+        }
+      ]
+    },
+    "revised": {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\contradiction_index.py",
+        "extract",
+        "--db",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-exp020-tulers4l\\revised",
+        "--ledger",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-exp020-tulers4l\\revised\\_index\\CONTRADICTIONS.tsv"
+      ],
+      "exit_code": 0,
+      "stdout": "found 2 dated correction(s); retained 2 total records in C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-exp020-tulers4l\\revised\\_index\\CONTRADICTIONS.tsv\nhand-written summary cells preserved: 4\nunmatched historical records: 0\n",
+      "stderr": "",
+      "source_sha256": "782df6057bb1e246b8dccbd70b84b5492c30793bb0fc79178b1ca22ef48f395b",
+      "rows": [
+        {
+          "id": "CON-021",
+          "date": "2026-09-10",
+          "kind": "CORRECTED",
+          "category": "actor.md",
+          "document": "actor.md",
+          "line": "3",
+          "claim": "CORRECTED 2026-09-10 \u2014 fixture actor claim",
+          "correction": "curated correction must survive",
+          "instrument": "curated writer trace",
+          "addresses": "00265020",
+          "source_header": "## CORRECTED 2026-09-10 \u2014 fixture actor claim",
+          "source_status": "present"
+        },
+        {
+          "id": "CON-022",
+          "date": "2020-01-01",
+          "kind": "CORRECTED",
+          "category": "earlier.md",
+          "document": "earlier.md",
+          "line": "1",
+          "claim": "CORRECTED 2020-01-01 \u2014 fixture earlier marker",
+          "correction": "UNSUMMARISED",
+          "instrument": "UNSUMMARISED",
+          "addresses": "",
+          "source_header": "## CORRECTED 2020-01-01 \u2014 fixture earlier marker",
+          "source_status": "present"
+        }
+      ]
+    }
+  },
+  "verdict": "OLD_LOSS_REPRODUCED; REVISED_PRESERVATION_PASSED"
+}

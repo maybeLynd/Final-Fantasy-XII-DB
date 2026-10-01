@@ -1,0 +1,72 @@
+{
+  "status": "PASS_ACTUAL_RECORD_BINDING_REFUSALS_INDEPENDENT_PENDING",
+  "checker_sha256": "8451d8e6ea353b9515cf423a7661bfbc1a6277fb13bdf5cde366c1f46bca0fb6",
+  "positive_reused": {
+    "path": "regfile-spawn-record-result-01.json",
+    "sha256": "3f5230187c47084c6f55102e5f544917c3e62ff0f96a4531941dc9e8620ea4da"
+  },
+  "return_path_control": {
+    "actor_writes": [
+      "0x26986c"
+    ],
+    "excluded_failure_pop": "0x269883",
+    "excluded_return": "0x269884",
+    "reaching_nodes": 83
+  },
+  "refusals": [
+    {
+      "case": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-regfile-spawn-record.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\failed-capture\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\failed-capture"
+      ],
+      "exit": 1,
+      "expected_error": "capture failed/stale",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "different-actor-argument",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-regfile-spawn-record.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\different-actor-argument\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\different-actor-argument"
+      ],
+      "exit": 1,
+      "expected_error": "reference byte identity changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "changed-authored-selector",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-regfile-spawn-record.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\changed-authored-selector\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\changed-authored-selector"
+      ],
+      "exit": 1,
+      "expected_error": "authored source changed",
+      "expected_error_seen": true,
+      "result_absent": true
+    },
+    {
+      "case": "missing-retained-input",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-regfile-spawn-record.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\missing-retained-input\\unexpected-result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\regfile-spawn-record-controls-01\\missing-retained-input"
+      ],
+      "exit": 1,
+      "expected_error": "FileNotFoundError",
+      "expected_error_seen": true,
+      "result_absent": true
+    }
+  ],
+  "driver_sha256": "2ddc910caecf0c884c3590036f301139027c3ac49f6d5a43c7e98a6298f2dada",
+  "limits": "Four actual CLI prerequisite/identity refusals and reused original return-path control, not independent semantic acceptance or native tests"
+}

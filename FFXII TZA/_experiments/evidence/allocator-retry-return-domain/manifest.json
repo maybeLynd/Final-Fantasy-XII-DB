@@ -1,0 +1,90 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8645,
+      "sha256": "1f37b0e4b60ec6d609a4c81cf7f1a7740a2b2d83542f9a95315a17719f75c09b"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5372,
+      "sha256": "15c70ef2fb7936927ff5bcdf48bbcd2ab54dfe5cc6e39cdb3101e0d2756db4aa"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2194,
+      "sha256": "0d11da1297e5fef7bbee7580c54e052cbc4b539d6192093f26963f36f6bc3d83"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1537,
+      "sha256": "cf50728d65e824c1ff4840a0ca4713fe93a07abc3e4b7dd8ba1d3ea667c54dc8"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1903,
+      "sha256": "951d31185c5e35e6f67b13561c5fc7eb5eefb9237335646ec84f07b968ebcdac"
+    },
+    {
+      "path": "raw-source.json",
+      "bytes": 35067,
+      "sha256": "e602d6eca3b8f3097e9a98fb32655fbe5f26ee4505826785359f7213eec9e9a4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5021,
+      "sha256": "e31388488b8839d4e71b3d5be61e972d68578b4b3ff2a627dc39ec75cbeeade4"
+    },
+    {
+      "path": "result.json",
+      "bytes": 7391,
+      "sha256": "87683cd68f928a9a7cc0b9aae919a16296a30c3b657da197d2239efde7f37489"
+    },
+    {
+      "path": "retained/allocation-wrapper.bin",
+      "bytes": 141,
+      "sha256": "8a8aa62dcfc204999aa8f5a3942d28a7e1545dda87f41606dffd3452a53ed127"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 8645,
+      "sha256": "1f37b0e4b60ec6d609a4c81cf7f1a7740a2b2d83542f9a95315a17719f75c09b"
+    },
+    {
+      "path": "retained/entry-thunk.bin",
+      "bytes": 10,
+      "sha256": "b3ffa43dd2c5c4e4eea414474eb535b03ca34a643b27735e6caf5aab9acb7fb5"
+    },
+    {
+      "path": "retained/labelled-retry-jne-to-je.bin",
+      "bytes": 261,
+      "sha256": "9b0c4bfc99ea3ebc15b869ff7cfe781c70514b14e3e737b18b1e7c34b1da2f60"
+    },
+    {
+      "path": "retained/memory-page-preimage.md",
+      "bytes": 7185,
+      "sha256": "bbbd3ac977e3930d644ac9c4677f667fd8e5912078349fbc18f94666ecd0e2f8"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/retry.bin",
+      "bytes": 261,
+      "sha256": "e37aa054ae53cc5be8a94ec0281a6941e0ef49190c57470ec9db26a4c51f4fe2"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "A exactsource/PEextents/conditionalretry predicates/localABIstackread boundary; no original/native/emulator/live or actualfailurepolicy proof"
+}

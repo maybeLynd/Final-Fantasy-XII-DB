@@ -1,0 +1,190 @@
+{
+  "evidence_class": "B: isolated shipping code in injected state, not live gameplay",
+  "receipt_sha256": "951e878d87214005f75da1ee0ffa85a0773136a9ee12f969d2c817d7f0cc348b",
+  "cases": [
+    {
+      "name": "provider-positive",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x40002000"
+    },
+    {
+      "name": "provider-above2",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x80002000"
+    },
+    {
+      "name": "provider-above4",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x180002000"
+    },
+    {
+      "name": "provider-low40-rejected",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x0"
+    },
+    {
+      "name": "provider-low41-accepted",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x100000041"
+    },
+    {
+      "name": "provider-null",
+      "memory_events": 0,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0"
+      ],
+      "return_value": "0x0"
+    },
+    {
+      "name": "provider-invalid-small-tag",
+      "memory_events": 0,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x0"
+    },
+    {
+      "name": "provider-unaligned-tag1",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0",
+        "0x36b130"
+      ],
+      "return_value": "0x40002000"
+    },
+    {
+      "name": "provider-untagged-full",
+      "memory_events": 0,
+      "writes": 0,
+      "calls": [
+        "0x3ab7f0"
+      ],
+      "return_value": "0x180002000"
+    },
+    {
+      "name": "context-positive-forward",
+      "memory_events": 3283,
+      "writes": 9,
+      "calls": [
+        "0x3b3480",
+        "0x3ab7f0",
+        "0x36b130",
+        "0x24d970",
+        "0x3aa3d0",
+        "0x3a9ba0",
+        "0x3a9860",
+        "0x442460",
+        "0x442460"
+      ],
+      "stored_base": "0x40002000",
+      "entry1": "0x40002100",
+      "signed_delta": 8192
+    },
+    {
+      "name": "context-positive-backward",
+      "memory_events": 3283,
+      "writes": 9,
+      "calls": [
+        "0x3b3480",
+        "0x3ab7f0",
+        "0x36b130",
+        "0x24d970",
+        "0x3aa3d0",
+        "0x3a9ba0",
+        "0x3a9860",
+        "0x442460",
+        "0x442460"
+      ],
+      "stored_base": "0x40000000",
+      "entry1": "0x40000100",
+      "signed_delta": -8192
+    },
+    {
+      "name": "context-fourGiB-difference",
+      "memory_events": 3283,
+      "writes": 9,
+      "calls": [
+        "0x3b3480",
+        "0x3ab7f0",
+        "0x36b130",
+        "0x24d970",
+        "0x3aa3d0",
+        "0x3a9ba0",
+        "0x3a9860",
+        "0x442460",
+        "0x442460"
+      ],
+      "stored_base": "0x140000000",
+      "entry1": "0x40000100",
+      "signed_delta": 0
+    },
+    {
+      "name": "context-flag-clear",
+      "memory_events": 1,
+      "writes": 0,
+      "calls": [
+        "0x3b3480"
+      ],
+      "stored_base": "0x40000000",
+      "entry1": "0x40000100",
+      "signed_delta": 8192
+    },
+    {
+      "name": "context-untagged-above2-sign-extension",
+      "memory_events": 10,
+      "writes": 6,
+      "calls": [
+        "0x3b3480",
+        "0x3ab7f0"
+      ],
+      "stored_base": "0xffffffff80002000",
+      "entry1": "0xffffffff80002100",
+      "signed_delta": 0
+    },
+    {
+      "name": "instance-direct-negative-delta",
+      "memory_events": 26,
+      "writes": 9,
+      "calls": [
+        "0x24d940",
+        "0x3a8ff0"
+      ],
+      "zero_fields_become": "0xfffffffffffff000"
+    }
+  ],
+  "negative_control": {
+    "intervention": "Omitted one table write in private receipt copy; original receipt unchanged",
+    "rejected": true,
+    "reason": "('context-positive-forward', '0x50002000', 'final')"
+  },
+  "final": "All 15 nonempty instruction runs return with original code intact, ABI preserved, and complete nonstack memory/final-state reconciliation. Native handler, caller initialization and scheduling limits remain."
+}

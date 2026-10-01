@@ -1,0 +1,9 @@
+PASS  W1 construct: record 0xC of [[0209AC30]+8], atlas named battle_4_c
+PASS  W2 binder: +0x58 = record, +0x60 = item pointers
+PASS  W3 draw: items 0 .. record+0xC-1, revealed in step with the arming counter
+PASS  W4 battle_4_c = tex2pack_ys directory entry 0
+PASS  D1 record 12: 12 items, +0xC = 7
+PASS  D2 drawn items: battle_4_c cells [0, 1, 2, 2, 5, 6, 7]
+PASS  D3 battle_4_c: TIM2 1024 x 512, image type 5
+      wrote battle_4_c-letters.png (atlas x 0..144, y 384..512)
+FAILS 0

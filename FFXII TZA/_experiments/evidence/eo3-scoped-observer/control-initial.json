@@ -1,0 +1,197 @@
+{
+  "status": "SYNTHETIC_INSTRUMENT_CONTROLS_ONLY",
+  "live_game": false,
+  "original_code_executed": false,
+  "positive_results": [
+    {
+      "producer": {
+        "context": {
+          "tid": 77,
+          "rip": 3336269,
+          "rsp": 4831858688,
+          "rcx": 255,
+          "rdx": 1790758912,
+          "rdi": 1790758912,
+          "r8": 1778384896,
+          "r9": 4294967295
+        },
+        "parent_return": 3637127,
+        "path_hex": "505332446174615c6566625c666978747572655f7072696d6172792e65666200"
+      },
+      "builder_context": {
+        "tid": 77,
+        "rip": 3336579,
+        "rsp": 4831858624,
+        "r10": 36451136,
+        "rax": 1219
+      },
+      "builder": {
+        "address": 36451136,
+        "id": 1219,
+        "kind": 255,
+        "state": 1,
+        "low": 1790758912,
+        "count": 4294967295,
+        "offset": 0,
+        "destination": 1778384896,
+        "original_destination": 1778384896,
+        "raw": "000000000000000000000000000000000000000000000000000000000000000001ff000000d0bc6affffffff0000000000000000000000000000006a00000000000000000000000000000000000000000000000000000000030000000000000000000000c304000000000000000000000000006a000000000000000000000000"
+      },
+      "issuer_context": {
+        "tid": 88,
+        "rip": 3334417,
+        "rsp": 4831866880,
+        "rbx": 36451136,
+        "rcx": 1790758912
+      },
+      "issuer": {
+        "address": 36451136,
+        "id": 1219,
+        "kind": 255,
+        "state": 1,
+        "low": 1790758912,
+        "count": 4294967295,
+        "offset": 0,
+        "destination": 1778384896,
+        "original_destination": 1778384896,
+        "raw": "000000000000000000000000000000000000000000000000000000000000000001ff000000d0bc6affffffff0000000000000000000000000000006a00000000000000000000000000000000000000000000000000000000030000000000000000000000c304000000000000000000000000006a000000000000000000000000"
+      },
+      "P": 1790758912,
+      "Q": 1790758912,
+      "pointer_preserved": true
+    },
+    {
+      "producer": {
+        "context": {
+          "tid": 77,
+          "rip": 3336269,
+          "rsp": 4831858688,
+          "rcx": 255,
+          "rdx": 4096,
+          "rdi": 4294971392,
+          "r8": 1778384896,
+          "r9": 4294967295
+        },
+        "parent_return": 3637127,
+        "path_hex": "505332446174615c6566625c666978747572655f7072696d6172792e65666200"
+      },
+      "builder_context": {
+        "tid": 77,
+        "rip": 3336579,
+        "rsp": 4831858624,
+        "r10": 36451136,
+        "rax": 1219
+      },
+      "builder": {
+        "address": 36451136,
+        "id": 1219,
+        "kind": 255,
+        "state": 1,
+        "low": 4096,
+        "count": 4294967295,
+        "offset": 0,
+        "destination": 1778384896,
+        "original_destination": 1778384896,
+        "raw": "000000000000000000000000000000000000000000000000000000000000000001ff000000100000ffffffff0000000000000000000000000000006a00000000000000000000000000000000000000000000000000000000030000000000000000000000c304000000000000000000000000006a000000000000000000000000"
+      },
+      "issuer_context": {
+        "tid": 88,
+        "rip": 3334417,
+        "rsp": 4831866880,
+        "rbx": 36451136,
+        "rcx": 4096
+      },
+      "issuer": {
+        "address": 36451136,
+        "id": 1219,
+        "kind": 255,
+        "state": 1,
+        "low": 4096,
+        "count": 4294967295,
+        "offset": 0,
+        "destination": 1778384896,
+        "original_destination": 1778384896,
+        "raw": "000000000000000000000000000000000000000000000000000000000000000001ff000000100000ffffffff0000000000000000000000000000006a00000000000000000000000000000000000000000000000000000000030000000000000000000000c304000000000000000000000000006a000000000000000000000000"
+      },
+      "P": 4294971392,
+      "Q": 4096,
+      "pointer_preserved": false
+    },
+    {
+      "producer": {
+        "context": {
+          "tid": 77,
+          "rip": 3336269,
+          "rsp": 4831858688,
+          "rcx": 255,
+          "rdx": 2344693760,
+          "rdi": 6639661056,
+          "r8": 1778384896,
+          "r9": 4294967295
+        },
+        "parent_return": 3637127,
+        "path_hex": "505332446174615c6566625c666978747572655f7072696d6172792e65666200"
+      },
+      "builder_context": {
+        "tid": 77,
+        "rip": 3336579,
+        "rsp": 4831858624,
+        "r10": 36451136,
+        "rax": 1219
+      },
+      "builder": {
+        "address": 36451136,
+        "id": 1219,
+        "kind": 255,
+        "state": 1,
+        "low": 2344693760,
+        "count": 4294967295,
+        "offset": 0,
+        "destination": 1778384896,
+        "original_destination": 1778384896,
+        "raw": "000000000000000000000000000000000000000000000000000000000000000001ff00000030c18bffffffff0000000000000000000000000000006a00000000000000000000000000000000000000000000000000000000030000000000000000000000c304000000000000000000000000006a000000000000000000000000"
+      },
+      "issuer_context": {
+        "tid": 88,
+        "rip": 3334417,
+        "rsp": 4831866880,
+        "rbx": 36451136,
+        "rcx": 18446744071759278080
+      },
+      "issuer": {
+        "address": 36451136,
+        "id": 1219,
+        "kind": 255,
+        "state": 1,
+        "low": 2344693760,
+        "count": 4294967295,
+        "offset": 0,
+        "destination": 1778384896,
+        "original_destination": 1778384896,
+        "raw": "000000000000000000000000000000000000000000000000000000000000000001ff00000030c18bffffffff0000000000000000000000000000006a00000000000000000000000000000000000000000000000000000000030000000000000000000000c304000000000000000000000000006a000000000000000000000000"
+      },
+      "P": 6639661056,
+      "Q": 18446744071759278080,
+      "pointer_preserved": false
+    }
+  ],
+  "rejected": [
+    "pre-assignment/old EDX",
+    "old hit record missing RDI",
+    "wrong map-mode caller",
+    "next hit on same thread but different frame",
+    "wrong builder return address",
+    "misaligned pool pointer",
+    "wrong slot ordinal",
+    "slot reused with a new request id",
+    "zero-count path cannot be at this issuer",
+    "assumed preserved pointer instead of actual issued argument",
+    "empty observation",
+    "producer without completed builder/issuer"
+  ],
+  "limits": [
+    "No Windows capture/native-state/health qualification.",
+    "Synthetic fixture path is not a real map identity.",
+    "No claim about actual producer allocation, startup, issue or historical crash."
+  ]
+}

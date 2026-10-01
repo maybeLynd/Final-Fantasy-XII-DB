@@ -1,0 +1,8 @@
+[
+ {
+  "transition": "VERDICT-MANUAL",
+  "review": "FIXTURE-A16-ACCEPT-WITH-NARROWING",
+  "detail": "verdict:ACCEPT-WITH-NARROWING needs its named REVIEW-POLICY handling; no automatic transition",
+  "status": "-"
+ }
+]

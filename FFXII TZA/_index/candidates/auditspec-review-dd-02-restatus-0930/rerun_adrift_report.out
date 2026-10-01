@@ -1,0 +1,43 @@
+REFUSED  22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Phyre PAnimation module  [C, declared 202, 8 member(s) A]
+   members file: ../members/phyre-panimation.tsv   (no selector named: exact A removal)
+   005BFE70  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005BFE86; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005BFE8E
+   005C0820  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C0883; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C08A5; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C08C5 (+13)
+   005C0B60  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C0C43; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C0C49
+   005C0C90  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C0DA1; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C0DAB
+   005C35A0  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C360C; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C3617
+   005C5C80  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C5D8A; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C5DBF
+   005C6020  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005C6041
+   005CB150  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005CB1F7; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005CB22B; 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @005CB3CB (+2)
+REFUSED  22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Phyre PhyreCore module  [C, declared 430, 4 member(s) A]
+   members file: ../members/phyre-phyrecore.tsv   (no selector named: exact A removal)
+   0020C610  A via 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md @0020C674; 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md @0020C684
+   00224470  A via 06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md @0022450D
+   0063AD90  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @0063ADC4
+   0063C4A0  A via 22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md @0063C4B9
+REFUSED  22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Phyre PPostProcessing module  [C, declared 156, 4 member(s) A]
+   members file: ../members/phyre-ppostprocessing.tsv   (no selector named: exact A removal)
+   00658470  A via 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md @00658707; 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md @00658732
+   006587F0  A via 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md @00658AC2
+   00659A90  A via 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md @00659B4B
+   00659C20  A via 17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md @00659DE4
+REFUSED  22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md :: Phyre PSerialization module  [C, declared 21, 2 member(s) A]
+   members file: ../members/phyre-pserialization.tsv   (no selector named: exact A removal)
+   0059ED70  A via 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md @0059EDBF; 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md @0059EDC9
+   0059FAC0  A via 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md @0059FADB; 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md @0059FAE9
+REFUSED  23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md :: PPFX post-effect library  [C, declared 1609, 8 member(s) A]
+   members file: members/ppfx-span.tsv   selector: members/select_ppfx.py
+   006DE780  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006DE805; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006DE81F; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006DE8D4
+   006DE950  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006DE9C8; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006DE9E1; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006DE9FB
+   006FF840  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006FF85F; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @006FF8E7
+   0070D360  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @0070D366; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @0070D380; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @0070D39E (+5)
+   00714860  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @00714872
+   00714920  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @00714932
+   0071D170  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @0071D974; 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @0071D98B
+   0071F180  A via 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md @0071F192
+REFUSED  24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md :: NativeAdapter.ExplainedCalleeForwarder  [B, declared 482, 1 member(s) A]
+   members file: members/explained-callee-adapters.tsv   (no selector named: exact A removal)
+   002E2380  A via 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md @002E2382
+REFUSED  24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md :: NativeAdapter.ConditionalDoubleCallResultTailCall  [C, declared 7, 1 member(s) A]
+   members file: members/nativeadapter-conditionaldoublecallresulttailcall.tsv   (no selector named: exact A removal)
+   008632B0  A via 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md @008632B8; 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md @008632D1
+refused rows with A members: 7

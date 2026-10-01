@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-31",
+  "parent": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf",
+  "explicit": 38001,
+  "unresolved": 160,
+  "coverage_pct": 99.58072,
+  "overlap": 0,
+  "current_addresses_file": "evidence/GM160_CURRENT160_ADDRS.txt",
+  "current_addresses_sha256": "fa6f614a463bf9981f32cbd4582e31ba23b04e6b803cfbb0139b209dffda5a1a",
+  "first_actions": [
+    "Verify SHA256SUMS.txt and package seal.",
+    "Import the bundled GM160 recovery-transfer GZF into a brand-new writable Ghidra project with auto-analysis disabled.",
+    "Reproduce 38,161 / 38,001 explicit / 160 unresolved / 99.58072% / overlap 0 and the authorized embedded EXE hash.",
+    "Regenerate or verify the exact 160-current residual evidence; do not inherit older scan counts.",
+    "Begin GN read-only analysis from the exact current bodies. No GN mutation is pre-authorized."
+  ],
+  "protected_holds": {
+    "002F7380": "Movement caller with Presentation-related callees; caller/callee ownership remains insufficient.",
+    "00313A00": "Mixed CombatAction/WorldAreaField bridge; save/field semantics remain insufficiently resolved."
+  }
+}

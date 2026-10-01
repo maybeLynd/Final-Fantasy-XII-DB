@@ -1,0 +1,9 @@
+# NativeAdapter.PopThreeFloatGuardTail - EC-7 family C
+# pop three floats via shared VMValueStack_PopNumericDiscard 00267DB0 into
+# # xmm6..xmm8; pop an int via 00267E10; call 0016D6A0 (ICF-folded stub) and
+# # shared 003EB700; tail-dispatch to a member op with xmm1..xmm3.
+address	targets
+00340D00	0016D6A0,00267DB0,00267E10,003EB700,003EB860
+00346B80	0016D6A0,00267DB0,00267E10,003EB700,003EB8E0
+003471B0	0016D6A0,00267DB0,00267E10,003EB700,003EB910
+003518C0	0016D6A0,00267DB0,00267E10,003EB700,003EB940

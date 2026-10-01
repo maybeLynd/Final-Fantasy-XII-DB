@@ -1,0 +1,14 @@
+{
+  "question": "Under manager0 indexed primary loading, can any of the31 bts field IDs use the special212 cached carrier or admit a primary payload with missing shipping size?",
+  "hypotheses": [
+    "cached212 bypass can supply bts payload",
+    "missing-size branch skips primary allocation/read but still changes attempt flag/sibling behavior",
+    "runtime overrides or alternate3306E0 can invalidate the fallback premise"
+  ],
+  "method": "A exact original local CFG/dataflow; reuse committed numeric/FST proof; no B/C needed for this conditional branch",
+  "consumer": "Existing SPEC/FABLE/OPUS bts requests, scoped additive result after independent review",
+  "controls": "Failed upstream index invocation must refuse; exact body/changed signed guard must refuse; nonzero supported title sizes from prior package remain separate positives",
+  "acceptance": "31 selectors exclude212, unchanged FST returns-1 under explicit null override, signed guard cut excludes primary allocation/publication/read; list any remaining suffix calls",
+  "limits": "Does not prove actual null override/alternate selection/owner initialization or universal natural script unreachability",
+  "cleanup": "Read-only/finite tools; no menu/game/native/save/config/reference change"
+}

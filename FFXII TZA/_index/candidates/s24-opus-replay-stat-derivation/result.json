@@ -1,0 +1,318 @@
+{
+ "ok": true,
+ "ard": [
+  {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rsn_b\\area\\rsn_b.ard",
+   "sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992",
+   "defs": 22
+  },
+  {
+   "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rwf_d\\area\\rwf_d.ard",
+   "sha256": "7957c1b9d2d251a5f70142811a82f4aba53dd9023570a7e9cc553d750d003e34",
+   "defs": 1
+  }
+ ],
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4263,
+ "results": {
+  "D1_two_disjoint_sources": {
+   "pass_": true,
+   "party_slots_read": [
+    "02EBF040",
+    "02EBF0F8",
+    "02EBF130"
+   ],
+   "foe_slots_read": [
+    "02EBF040",
+    "02EBF0F8",
+    "02EBF120",
+    "02EBF140",
+    "02EBF148",
+    "02EBF150"
+   ],
+   "note": "rec+5 = 0 reads registry slot 02EBF130 (battle_pack growth rows) and none of the four .ard slots; rec+5 = 1 reads 02EBF120 / 140 / 148 / 150 and never 02EBF130"
+  },
+  "D2_every_output_inside_its_cap": {
+   "pass_": true,
+   "runs": 189,
+   "outside": [],
+   "model_mismatches": [],
+   "note": "all 22 + 1 foe definitions of the shipped rsn_b.ard / rwf_d.ard at level spans 0 / 50 / 255 (main value equal to an independent parse of the file in every run) and party types 0..0x27 at growth inputs 0 / 1e6 / 0x7FFFFFFF: every main value lies in [1, cap], every word and byte field inside its cap"
+  },
+  "D3_one_cmove_picks_the_cap": {
+   "pass_": true,
+   "party_max": 9999,
+   "foe_max": 52662254,
+   "note": "the party path saturates at exactly 9,999; the same writeback on the foe path passes 52662254 through (cap 1e9)"
+  },
+  "D4_second_write_of_the_same_slot": {
+   "pass_": true,
+   "types": {
+    "00": {
+     "ok": true,
+     "main": 9999,
+     "stores": [
+      [
+       "002FF7E2",
+       9999
+      ]
+     ]
+    },
+    "1A": {
+     "ok": true,
+     "main": 9999,
+     "stores": [
+      [
+       "002FF7E2",
+       9999
+      ]
+     ]
+    },
+    "1B": {
+     "ok": true,
+     "main": 32767,
+     "stores": [
+      [
+       "002FF7E2",
+       9999
+      ],
+      [
+       "002FF805",
+       32767
+      ]
+     ]
+    },
+    "1E": {
+     "ok": true,
+     "main": 32767,
+     "stores": [
+      [
+       "002FF7E2",
+       9999
+      ],
+      [
+       "002FF805",
+       32767
+      ]
+     ]
+    },
+    "27": {
+     "ok": true,
+     "main": 32767,
+     "stores": [
+      [
+       "002FF7E2",
+       9999
+      ],
+      [
+       "002FF805",
+       32767
+      ]
+     ]
+    }
+   },
+   "note": "growth input 100,000: party types 0x1B / 0x1E / 0x27 store rec+0x24 = 9,999 at 002FF7E2 and AGAIN = 32,767 at 002FF805, and the second survives; types 0x00 / 0x1A store 9,999 once. The band is decided at 002FF007-002FF011 (rec+5 == 0 and rec+4 - 0x1B <= 0xC)"
+  },
+  "growth_input_wraps_to_the_floor": {
+   "pass_": true,
+   "cases": {
+    "06 at 2147483647": {
+     "ok": true,
+     "main": 1,
+     "002F8E50_returned": [
+      -1
+     ]
+    },
+    "0C at 100000000": {
+     "ok": true,
+     "main": 1,
+     "002F8E50_returned": [
+      -11798691
+     ]
+    },
+    "1B at 10000000": {
+     "ok": true,
+     "main": 1,
+     "002F8E50_returned": [
+      -12949672
+     ]
+    },
+    "00 at 2147483647": {
+     "ok": true,
+     "main": 9999,
+     "002F8E50_returned": [
+      21474835
+     ]
+    },
+    "1B at 1000000": {
+     "ok": true,
+     "main": 32767,
+     "002F8E50_returned": [
+      3000000
+     ]
+    }
+   },
+   "note": "for some types a large rec+8 input makes 002F8E50 return a non-positive value, so the party main value lands on the floor 1 (types 0x06 / 0x0C / 0x1B at 0x7FFFFFFF / 1e8 / 1e7); type 0x00 at 0x7FFFFFFF and 0x1B at 1e6 return above their caps and are capped. The threshold is type-dependent; D-2's floor holds. Observed only - what rec+8 counts, and its shipped range, is not claimed"
+  },
+  "D5_either_layer_pays_the_bonus": {
+   "pass_": true,
+   "ids": {
+    "74": {
+     "none": 1470,
+     "mutable": 1500,
+     "derived": 1500
+    },
+    "75": {
+     "none": 1470,
+     "mutable": 1540,
+     "derived": 1540
+    },
+    "76": {
+     "none": 1470,
+     "mutable": 1580,
+     "derived": 1580
+    },
+    "77": {
+     "none": 1470,
+     "mutable": 1620,
+     "derived": 1620
+    },
+    "78": {
+     "none": 1470,
+     "mutable": 1660,
+     "derived": 1660
+    },
+    "79": {
+     "none": 1470,
+     "mutable": 1700,
+     "derived": 1700
+    },
+    "80": {
+     "none": 1470,
+     "mutable": 1740,
+     "derived": 1740
+    },
+    "81": {
+     "none": 1470,
+     "mutable": 1780,
+     "derived": 1780
+    },
+    "82": {
+     "none": 1470,
+     "mutable": 1820,
+     "derived": 1820
+    },
+    "83": {
+     "none": 1470,
+     "mutable": 1860,
+     "derived": 1860
+    },
+    "84": {
+     "none": 1470,
+     "mutable": 1905,
+     "derived": 1905
+    },
+    "85": {
+     "none": 1470,
+     "mutable": 1970,
+     "derived": 1970
+    }
+   },
+   "paying_ids": [
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85
+   ],
+   "note": "each of the twelve main-value list ids (.rdata 00D102B0) set in the mutable layer only or the derived layer only gives the SAME main value; 12 of them change it from the no-status value"
+  },
+  "D7_tail_behind_three_guards": {
+   "pass_": true,
+   "cases": {
+    "party, own block, bit 5 flips": {
+     "ok": true,
+     "entered": [
+      "reset 003105D0",
+      "sink 00307D10"
+     ],
+     "unit_plus4": "00200000",
+     "unit_writes": [
+      "00310651",
+      "002FFA38",
+      "00307DD1",
+      "00307DD8",
+      "00307DE2"
+     ]
+    },
+    "party, own block, no change": {
+     "ok": true,
+     "entered": [],
+     "unit_plus4": "00000000",
+     "unit_writes": []
+    },
+    "party, explicit output block, bit 5 flips": {
+     "ok": true,
+     "entered": [],
+     "unit_plus4": "00000000",
+     "unit_writes": []
+    },
+    "foe, own block, bit 5 flips": {
+     "ok": true,
+     "entered": [],
+     "unit_plus4": "00000000",
+     "unit_writes": []
+    }
+   },
+   "settled_status_word": "00000000",
+   "note": "with the record's own output block, an owning unit and a flip of bit 5 of +0x3C, the tail runs: the reset 003105D0 and the sink 00307D10 execute real and unit+4 gains 0x200000 (002FFA38); no change, an explicit output block, or a foe record each return at 002FFA45 with no unit write"
+  }
+ }
+}

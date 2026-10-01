@@ -1,0 +1,43 @@
+{
+  "status": "PASS_STATIC_AUTHOR_CASE",
+  "source": "exact verified image loader/codec plus immutable prior builder/getter",
+  "asset": "one shipped extracted MPK slot4 checked by full-file SHA and valid100 region lists",
+  "condition": "If this authored header is supplied through the source loader/getter with ordinary f32 nearest, the original builder cell4/13x13/arg6289 differs from omit-floor+1 cell4.125/12x12/arg5364. Initial sqrtf \u00b12 adjacent f32 values leave both shapes unchanged.",
+  "original_conditional": {
+    "initial": 3.015113353729248,
+    "initial_counts": [
+      16,
+      16
+    ],
+    "refined": 3.125,
+    "cell": 4.0,
+    "shape": [
+      13,
+      13
+    ],
+    "conditional_allocation_argument": 6289
+  },
+  "omitted_floor_conditional": {
+    "initial": 3.015113353729248,
+    "initial_counts": [
+      16,
+      16
+    ],
+    "refined": 3.125,
+    "cell": 4.125,
+    "shape": [
+      12,
+      12
+    ],
+    "conditional_allocation_argument": 5364
+  },
+  "sqrtf_neighbourhood": [
+    3.01511287689209,
+    3.015113115310669,
+    3.015113353729248,
+    3.015113592147827,
+    3.0151138305664062
+  ],
+  "new_original_code_or_live_executions": 0,
+  "limits": "No observed game load, builder invocation, malloc, imported DLL execution, lifetime, or 461-map prevalence."
+}

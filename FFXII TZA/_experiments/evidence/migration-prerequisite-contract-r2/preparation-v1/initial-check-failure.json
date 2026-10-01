@@ -1,0 +1,11 @@
+{
+  "state": "INSTRUMENT_FAILURE_NO_ACCEPTANCE",
+  "observed_exception": "AssertionError",
+  "archived_checker_line": 53,
+  "failing_condition": "legacy positive expected exit0 but composer exited1 before helper entry",
+  "cause": "generic composer sent unsupported exits keyword to legacy run(path,argv,tags,names,line)",
+  "affected_observations": ["legacy--custom-tab-pass", "legacy--custom-tab-fail"],
+  "scope": "Original two legacy attempts provide only invocation-failure evidence. Generic16 retained results do not depend on the legacy API.",
+  "shell_receipt_limit": "Initial combined PowerShell command ended with Get-Content; overall exit0 was not the checker exit or PASS. Explicit checker AssertionError was observed and no result.json existed. Later checks use separate checked subprocess status.",
+  "correction": "Separate composer validates exact legacy signature before supported tags/names/line call; only the legacy pair was re-executed. Original capture driver/raw/checker retained."
+}

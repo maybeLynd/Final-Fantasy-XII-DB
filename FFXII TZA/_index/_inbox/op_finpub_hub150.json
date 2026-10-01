@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-150",
+ "result_refs": [
+  "670e2fc40",
+  "3d00420ac"
+ ],
+ "note": "Published 670e2fc40 + splice 3d00420ac - 22 explicit paths (16 pure hosts + AUDIT-LOG + 5 lifecycle ops) via publish_paths.sh, plus a surgical HEAD+entry splice for glyph-quads whose worktree carries an unrelated peer hunk. 22 entries/anchors verified at HEAD."
+}

@@ -1,0 +1,64 @@
+{
+  "scope": "Method A: actual imported apply/plan functions, isolated deep-copy; no CLI transaction/journal/lock",
+  "source_sha256": {
+    "team.py": "93a9c1f01d25ec35419afb3c11f86462d440f2eb5a2ffba3cd9dcda8b0c9c93e",
+    "transitions.py": "0b06ced7b711f3a64926cad6ccc467cd10adf7e8a23086fb24f118a4c4114f7e"
+  },
+  "live_board_preimage_sha256": "33742c5c863cb8e763f300f0168e7e9eb295eab01c67f528513545baa5299f80",
+  "live_board_revision": 40386,
+  "live_board_unchanged": true,
+  "cases": [
+    {
+      "case": "missing-verdict",
+      "finish_error": null,
+      "status": "DONE",
+      "result_refs": [
+        "receipt:isolated"
+      ],
+      "transition": [
+        {
+          "kind": "VERDICT-MISSING",
+          "id": "ASTRA-A16-REVIEW-ADMISSION-CONTROL",
+          "detail": "result refs carry no verdict:",
+          "has_operation": false
+        }
+      ]
+    },
+    {
+      "case": "exact-accept",
+      "finish_error": null,
+      "status": "DONE",
+      "result_refs": [
+        "receipt:isolated",
+        "verdict:ACCEPT"
+      ],
+      "transition": [
+        {
+          "kind": "INCORPORATE",
+          "id": "ASTRA-A16-REVIEW-ADMISSION-CONTROL",
+          "detail": "AUTO-INCORP-ASTRA-A16-REVIEW-ADMISSION-CONTROL",
+          "has_operation": true
+        }
+      ]
+    },
+    {
+      "case": "malformed-verdict-lf",
+      "finish_error": null,
+      "status": "DONE",
+      "result_refs": [
+        "receipt:isolated",
+        "verdict:ACCEPT\n"
+      ],
+      "transition": [
+        {
+          "kind": "VERDICT-MISSING",
+          "id": "ASTRA-A16-REVIEW-ADMISSION-CONTROL",
+          "detail": "result refs carry no verdict:",
+          "has_operation": false
+        }
+      ]
+    }
+  ],
+  "finding": "team.apply finish admits DONE independent review without a structured verdict; transitions refuses incorporation",
+  "limit": "Does not test CLI/transaction, races, durable review receipt, OPUS repair or deployed A16 transition."
+}

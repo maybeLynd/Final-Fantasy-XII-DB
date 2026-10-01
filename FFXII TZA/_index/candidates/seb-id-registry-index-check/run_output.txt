@@ -1,0 +1,5 @@
+C1_id_is_registry_word8_shifted_by_9_after_self_index_validation         PASS
+C2_loader_masks_the_registry_word_to_the_index_and_forwards_n_separately PASS
+C3_bank_plus3C_is_the_index_plus38_is_n                                  PASS
+C4_lookup_matches_id_shr_9_against_plus3C_not_plus38                     PASS
+ALL PASS

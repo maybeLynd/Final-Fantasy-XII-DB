@@ -1,0 +1,57 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"SOURCE_REFUTES_TYPED_POP_SUMMARY\",\n  \"method\": \"A original source/control flow plus conditional tag branch calculation, not executed cases\",\n  \"kind2_tag_actions\": {\n    \"1\": \"convert_signed_int\",\n    \"2\": \"copy_float_bits\",\n    \"3\": \"write_zero_float\"\n  },\n  \"underflow\": {\n    \"kind2\": \"Call original8620C0 returning leaf; write +0.0 at temporary rsp+0x50; no depth decrement on this arm\",\n    \"kind1\": \"Skip reporter; write integer0 at temporary rsp+0x50; no depth decrement on this arm\"\n  },\n  \"report_chain\": \"Original 14B wrapper stages a string and zeroes ECX then tails to original C2 00 00 (ret0). No memory write, raise, abort or display in these instructions.\",\n  \"consumer_change\": \"Correct current EC7-98 paragraph tag3->tag1 and qualify asymmetric underflow/reporting no-op; keep authored state/reachability and later callbacks unproved.\",\n  \"limits\": \"Kind and value branches after00262440 supplies the temporary record. Values written into that record, NOT established final function returns. Actual00262440/0032F240/0026D530 effects, initialization, lifetime, caller reachability, native execution/exception/presentation and live behavior not tested.\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "f2aabba3d8b6e96fcdbe6dff4c624f00b66ace2eee8acdb68290e6752465b5dd"
+  },
+  {
+    "case": "tag3",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py",
+      "--fault-tag3-converts"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py\", line 48, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py\", line 8, in check\n    root=Path(root);raw=json.loads((root/'raw.json').read_bytes());ident=raw['identity']\n                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '--fault-tag3-converts\\\\raw.json'\n",
+    "terminal": true,
+    "checker_sha256": "f2aabba3d8b6e96fcdbe6dff4c624f00b66ace2eee8acdb68290e6752465b5dd"
+  },
+  {
+    "case": "both-underflows",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py",
+      "--fault-both-underflow-report"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py\", line 48, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py\", line 8, in check\n    root=Path(root);raw=json.loads((root/'raw.json').read_bytes());ident=raw['identity']\n                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '--fault-both-underflow-report\\\\raw.json'\n",
+    "terminal": true,
+    "checker_sha256": "f2aabba3d8b6e96fcdbe6dff4c624f00b66ace2eee8acdb68290e6752465b5dd"
+  },
+  {
+    "case": "terminates",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py",
+      "--fault-report-terminates"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py\", line 48, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\scriptvm-retail-report-consumer-boundary\\check.py\", line 8, in check\n    root=Path(root);raw=json.loads((root/'raw.json').read_bytes());ident=raw['identity']\n                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '--fault-report-terminates\\\\raw.json'\n",
+    "terminal": true,
+    "checker_sha256": "f2aabba3d8b6e96fcdbe6dff4c624f00b66ace2eee8acdb68290e6752465b5dd"
+  }
+]

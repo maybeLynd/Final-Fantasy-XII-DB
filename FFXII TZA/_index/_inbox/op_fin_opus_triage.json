@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-TRIAGE-THE-TOP-UNCOVERED-CLUSTERS",
+ "agent": "OPUS",
+ "note": "Committed 87da9c751. Four clusters read, three declined and one declared. 01F44D40 is a run of separate C++ globals, not one object, which is why the sweep now measures cells-per-writing-body and labels a cluster accordingly. 022D8E10 is heterogeneous and is routed as OPUS-REQ-FABLE-WHAT-IS-THE-022D8E10-BLOCK with its 512x448 hint labelled a hint. 02064AA0 IS a type - 168 cells, 126 bodies, 12,442 writes and 11,432 reads in 0x280 bytes - and it holds 02064AD3 at +0x33, the battle-runtime-mode byte that CONTRACT-battle-runtime-mode.md builds its whole state ladder on and that had no row in the store. Declared CoreRuntimeStatic02064AA0 with 172 rows, ONE of them named: battleRuntimeMode, the contract's name cited rather than derived, while the other 171 keep displacement names because the evidence for them is a width and a direction. 592 types / 7,404 fields / 0 errors / 0 gaps. NOT CLAIMED: any meaning for the 171, and any reading of the 022D8E10 block. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/types.tsv",
+  "Database/FFXII TZA/_types/fields.tsv"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "retrieved_utc": "2026-09-27T04:18:34.802753+00:00",
+  "class": "Primary published ISA/debugger documentation, not a native detector receipt; remote PDF not hashed",
+  "intel": {
+    "url": "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3b-part-2-manual.pdf",
+    "identity": "Intel SDM Volume3B,253669-060US,September2016",
+    "section": "17.3.1.2, PDF page120, printed17-9",
+    "excerpt": "The processor generates the exception after it executes the instruction that made the access",
+    "interpretation": "Data watch conditions produce trap-class events after access; execute conditions fault before. Source-access PC and raw context PC must be separated. No generic RIP-minus-fixed-length for unknown branches/string access."
+  },
+  "microsoft": {
+    "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/ba--break-on-access-",
+    "section": "Access/Size",
+    "interpretation": "r means read or write, w means write, e means instruction execution. x64 sizes1/2/4/8 describe watched memory windows, not the width of the triggering instruction."
+  }
+}

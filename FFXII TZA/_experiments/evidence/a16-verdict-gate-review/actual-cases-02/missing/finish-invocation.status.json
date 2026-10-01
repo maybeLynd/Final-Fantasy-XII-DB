@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "apply",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\a16-finish-verdict-review-1001\\actual-cases-02\\missing\\TEAM.json",
+    "--agent",
+    "ASTRA",
+    "--session",
+    "astra-a16-private",
+    "--file",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\a16-finish-verdict-review-1001\\actual-cases-02\\missing\\finish.json"
+  ],
+  "exit": 1
+}

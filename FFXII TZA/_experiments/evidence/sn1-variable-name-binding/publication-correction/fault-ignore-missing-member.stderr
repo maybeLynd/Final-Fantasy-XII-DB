@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-variable-name-binding\publication-correction\check.py", line 5, in <module>
+    if '--fault-ignore-missing-member' in sys.argv:assert len(present)==len(old),'Historical incomplete manifest falsely declared complete'
+                                                          ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Historical incomplete manifest falsely declared complete

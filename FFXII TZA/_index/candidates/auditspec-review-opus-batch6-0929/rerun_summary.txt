@@ -1,0 +1,8 @@
+focus_point          committed-sha256 5ad756cd4f43b7ed rerun-identical-modulo-CR yes
+presentation_track   committed-sha256 b34fff7b8b0ab46b rerun-identical-modulo-CR yes
+character_lighting   committed-sha256 d5ac101c66a4f954 rerun-identical-modulo-CR yes
+bone_trails          committed-sha256 037e2d96a5ce39b0 rerun-identical-modulo-CR yes
+rig_controllers      committed-sha256 78199a25bd2bd670 rerun-identical-modulo-CR yes
+staged_look          committed-sha256 fc87b0c59ec42db3 rerun-identical-modulo-CR yes
+status_look          committed-sha256 c746a2714fab50de rerun-identical-modulo-CR yes
+fade_channels        committed-sha256 eee3170e86541700 rerun-identical-modulo-CR yes

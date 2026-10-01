@@ -1,0 +1,7 @@
+PASS  C 002B79BD: 0xD0 widget at +0xC0 (mov edx, 0xd0 / lea rcx, [rbx+0xc0]); null-tested at four sites
+PASS  H 002465F0's header stores (+0x40 / +0x44 / +0x9C / +0xA0 / +0xA1) are the census's +0x100 / +0x104 / +0x15C / +0x160 / +0x161
+PASS  G 00244DD0: +0x68 record pointer, +0x70 ms->frames, +0x74 clock 0208F570, +0x78 = 0x3F800000
+PASS  P mode-2 rebase zeroes +0x70 only when +0x40 bit 16 is SET (00244E62 bt / 00244E66 jae); the jae->jb copy is rejected
+PASS  T the --patch template reproduces the four Widget rows as they stand (name, ctype, meaning, evidence head and tail)
+PASS  S Widget +0x68..+0x78 declared; MapScreenContainer +0xC0 is one Widget row (now 1 rows there)
+FAILS 0

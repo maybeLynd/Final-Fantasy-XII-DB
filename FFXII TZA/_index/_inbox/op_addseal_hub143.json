@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-143",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "batch-143 seal: op-file commit + board state",
+  "scope": "batch-143 lifecycle",
+  "completion": "commit hash recorded",
+  "dependencies": [
+   "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-143"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

@@ -1,0 +1,608 @@
+function	site	slot	class	literal	dest	last_rdx_write	flow
+0016DFE0	0016E02A	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00186230	00186277	0	residue-no-write-in-block	-	-	-	no-second-argument
+0018B810	0018B860	0	literal	0x1	edx	mov edx, 1	flow-settled
+0018C8F0	0018C987	0	literal	0x1	edx	mov edx, 1	flow-settled
+00197A50	00197B1F	0	literal	0x1	edx	mov edx, 1	flow-settled
+00199320	00199359	7	residue-no-write-in-block	-	-	-	residue-passthrough
+0019A120	0019A138	0	literal	0x1	edx	mov edx, 1	flow-settled
+0019A120	0019A159	0	literal	0x1	edx	mov edx, 1	flow-settled
+0019B990	0019BAAC	0	literal	0x1	edx	mov edx, 1	flow-settled
+0019C490	0019C4C8	7	residue-no-write-in-block	-	-	-	residue-passthrough
+001A11F0	001A1208	0	literal	0x1	edx	mov edx, 1	flow-settled
+001A1850	001A190E	0	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+001A5890	001A58E8	0	literal	0x1	edx	mov edx, 1	flow-settled
+001B2A30	001B2F9E	0	literal	0x6	edx	mov edx, 6	flow-settled
+001B9870	001B98A8	0	literal	0x0	edx	xor edx, edx	flow-settled
+001BA470	001BA6C8	0	literal	0x0	edx	xor edx, edx	flow-settled
+001BA990	001BA9D8	0	literal	0x0	edx	xor edx, edx	flow-settled
+001DDBA0	001DDCEF	0	literal	0x1	edx	mov edx, 1	flow-settled
+001DDC40	001DDCEF	0	literal	0x1	edx	mov edx, 1	flow-settled
+001E1B80	001E1BB8	0	literal	0x0	edx	xor edx, edx	flow-settled
+001E2250	001E2578	0	literal	0x0	edx	xor edx, edx	flow-settled
+001E3D80	001E3DF8	0	literal	0x0	edx	xor edx, edx	flow-settled
+001E8580	001E874C	7	64-bit-arg	-	rdx	mov rdx, qword ptr [r14 + 0x1390]	flow-settled
+001E8580	001E895A	7	64-bit-arg	-	rdx	mov rdx, qword ptr [r14 + 0x1390]	flow-settled
+001E8580	001E8AC1	7	64-bit-arg	-	rdx	mov rdx, qword ptr [r14 + 0x1390]	flow-settled
+001E8580	001E900C	7	64-bit-arg	-	rdx	mov rdx, qword ptr [r14 + 0x1390]	flow-settled
+001F5140	001F5178	0	literal	0x0	edx	xor edx, edx	flow-settled
+001F57E0	001F5B08	0	literal	0x0	edx	xor edx, edx	flow-settled
+001FE8D0	001FE8FA	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FE910	001FE93A	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FE950	001FE97A	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FEE80	001FF05C	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FF090	001FF1DB	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FF870	001FF8A0	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FF8D0	001FF900	0	literal	0x1	edx	mov edx, 1	flow-settled
+001FF930	001FF960	0	literal	0x1	edx	mov edx, 1	flow-settled
+002008F0	00200A19	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r8 + 8]	flow-settled
+00201460	00201529	0	literal	0x1	edx	mov edx, 1	flow-settled
+00201460	0020161B	0	literal	0x1	edx	mov edx, 1	flow-settled
+00201460	00201665	0	literal	0x1	edx	mov edx, 1	flow-settled
+00204540	00204578	0	literal	0x1	edx	mov edx, 1	flow-settled
+00204590	002045BD	0	literal	0x1	edx	mov edx, 1	flow-settled
+002045E0	00204621	0	literal	0x1	edx	mov edx, 1	flow-settled
+00204660	002046C2	0	literal	0x1	edx	mov edx, 1	flow-settled
+00206CD0	00206D01	0	literal	0x1	edx	mov edx, 1	flow-settled
+00209360	002093A6	0	literal	0x1	edx	mov edx, 1	flow-settled
+0020A800	0020A938	0	literal	0x1	edx	mov edx, 1	flow-settled
+0020A800	0020A9E0	0	literal	0x1	edx	mov edx, 1	flow-settled
+0020A800	0020AA0B	0	literal	0x1	edx	mov edx, 1	flow-settled
+0020C940	0020CADB	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+0020CB50	0020CBF2	7	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+0020CB50	0020CC5F	7	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+0020CE10	0020CE36	7	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0020CE60	0020CEB2	7	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0020D720	0020D748	7	residue-no-write-in-block	-	-	-	residue-passthrough
+0020DA50	0020DA6A	0	residue-no-write-in-block	-	-	-	residue-passthrough
+0020DA50	0020DA84	0	residue-32bit-computed	-	edx	mov edx, esi	residue-computed
+0020E6C0	0020E706	0	literal	0x4	edx	mov edx, 4	flow-settled
+0020EB60	0020EBED	0	residue-32bit-computed	-	edx	mov edx, esi	residue-computed
+00212BD0	00212BF9	0	residue-32bit-computed	-	edx	mov edx, esi	residue-computed
+002133D0	00213421	0	residue-32bit-computed	-	edx	mov edx, esi	residue-computed
+002142A0	00214351	0	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+002143E0	002144F9	0	residue-32bit-computed	-	edx	mov edx, edi	residue-computed
+00215440	002156E2	0	residue-32bit-computed	-	edx	mov edx, edi	residue-computed
+00218100	00218138	7	literal	0x0	edx	xor edx, edx	flow-settled
+00218380	00218748	7	literal	0x0	edx	xor edx, edx	flow-settled
+00218880	002188C8	7	literal	0x0	edx	xor edx, edx	flow-settled
+00218920	00218930	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00218920	0021894A	7	residue-no-write-in-block	-	-	-	no-second-argument
+00219530	00219568	7	literal	0x0	edx	xor edx, edx	flow-settled
+002196A0	002198E8	7	literal	0x0	edx	xor edx, edx	flow-settled
+00219A70	00219AB8	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021AB20	0021AB58	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021AC90	0021AEF8	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021B030	0021B078	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021BE80	0021BEB8	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021BFD0	0021C208	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021C330	0021C378	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021C3D0	0021C3E0	7	residue-no-write-in-block	-	-	-	residue-passthrough
+0021CCE0	0021CD18	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021CE30	0021D1EC	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021D330	0021D378	7	literal	0x0	edx	xor edx, edx	flow-settled
+0021EC20	0021EC58	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021ECC0	0021ECF8	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021ED60	0021ED98	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021EE00	0021EE38	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021F440	0021F708	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021F790	0021FA9A	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021FB20	0021FE68	0	literal	0x0	edx	xor edx, edx	flow-settled
+0021FEF0	002202F9	0	literal	0x0	edx	xor edx, edx	flow-settled
+00220860	00220908	0	literal	0x0	edx	xor edx, edx	flow-settled
+00220960	002209A8	0	literal	0x0	edx	xor edx, edx	flow-settled
+00220A00	00220A88	0	literal	0x0	edx	xor edx, edx	flow-settled
+00220AE0	00220B28	0	literal	0x0	edx	xor edx, edx	flow-settled
+00225920	00225963	0	literal	0x1	edx	mov edx, 1	flow-settled
+00225A50	00225ABC	0	literal	0x1	edx	mov edx, 1	flow-settled
+0022F830	0022F894	0	residue-32bit-computed	-	dx	sub dx, r8w	residue-computed
+00417110	004171FA	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rax + rdx*8 + 8]	flow-settled
+00596FC0	00597044	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0059D940	0059DE8C	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0059D940	0059DF7C	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0059FDB0	0059FDED	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+005B2D60	005B30AC	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B33C8	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3549	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B36B9	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3828	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3C0C	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3C59	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3CA9	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3CF8	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3D3D	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B2D60	005B3D89	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B7E80	005B7EB8	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B7EF0	005B7F28	0	literal	0x0	edx	xor edx, edx	flow-settled
+005B7F60	005B7F98	0	literal	0x0	edx	xor edx, edx	flow-settled
+005C0180	005C01EB	0	residue-32bit-computed	-	edx	mov edx, edi	residue-computed
+005C0180	005C0266	0	residue-32bit-computed	-	edx	mov edx, edi	residue-computed
+005F0330	005F0368	0	literal	0x0	edx	xor edx, edx	flow-settled
+005FFFE0	00600022	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + rax*8 + 0x18]	flow-settled
+006084B0	00608870	0	residue-no-write-in-block	-	-	-	no-second-argument
+0060B980	0060BC34	0	64-bit-arg	-	rdx	mov rdx, r13	flow-settled
+0061E550	0061E5E1	0	64-bit-arg	-	rdx	sar rdx, 3	flow-settled
+0061E600	0061E691	0	64-bit-arg	-	rdx	sar rdx, 3	flow-settled
+0061E6B0	0061E741	0	64-bit-arg	-	rdx	sar rdx, 3	flow-settled
+0061F710	0061F806	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdx + rcx*8]	flow-settled
+0061F890	0061F979	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + rdx]	flow-settled
+0061F890	0061FA78	7	residue-no-write-in-block	-	-	-	flow-settled
+0061FAF0	0061FBCF	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + rdx]	flow-settled
+0061FC50	0061FD28	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + rdx]	flow-settled
+00623320	0062337B	7	literal	0x0	edx	xor edx, edx	flow-settled
+00623320	0062339A	7	literal	0x0	edx	xor edx, edx	flow-settled
+00623C10	00623C56	7	literal	0x0	edx	xor edx, edx	flow-settled
+00623C10	00623C81	7	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+00623CB0	00623CDD	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00623CB0	00623D0B	7	literal	0x0	edx	xor edx, edx	flow-settled
+00623CB0	00623D2F	7	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+006242C0	00624317	7	residue-32bit-computed	-	edx	mov edx, dword ptr [rdi + 0x1894]	residue-computed
+006242C0	0062434A	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x40]	flow-settled
+006242C0	00624367	7	residue-no-write-in-block	-	-	-	residue-computed
+006242C0	006243C0	7	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+006242C0	006243EC	7	residue-32bit-computed	-	edx	dec edx	residue-computed
+006242C0	0062441B	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x40]	flow-settled
+00624490	006244D2	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00624490	0062450F	7	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+00624490	0062452F	7	64-bit-arg	-	rdx	add rdx, rbp	flow-settled
+006253D0	00625563	7	literal	0x0	edx	xor edx, edx	flow-settled
+006253D0	0062560C	7	literal	0x0	edx	xor edx, edx	flow-settled
+006253D0	0062562A	7	64-bit-arg	-	rdx	lea rdx, [rbp + 0xc0]	flow-settled
+006253D0	00625668	7	residue-32bit-computed	-	edx	mov edx, edi	residue-computed
+006253D0	00625777	7	residue-32bit-computed	-	edx	mov edx, esi	residue-computed
+00625830	00625B33	0	64-bit-arg	-	rdx	lea rdx, [rip + 0x72f8ed] ; =>00D55418	flow-settled
+00625830	00625B52	0	64-bit-arg	-	rdx	lea rdx, [rip + 0x72f8d9] ; =>00D55428	flow-settled
+00625F30	00625F8F	7	residue-32bit-computed	-	edx	mov edx, dword ptr [rbx + 0x1894]	residue-computed
+00625F30	00625FC4	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x40]	flow-settled
+00629690	006296FF	7	residue-32bit-computed	-	edx	mov edx, dword ptr [rdi + 0x1894]	residue-computed
+00629690	00629731	7	64-bit-arg	-	rdx	lea rdx, [rbp + 0xc0]	flow-settled
+0062EBC0	0062EBEC	0	residue-no-write-in-block	-	-	-	no-second-argument
+0062F0A0	0062F0B6	7	literal	0x0	edx	xor edx, edx	flow-settled
+00633590	00633604	0	literal	0x1	edx	mov edx, 1	flow-settled
+00633790	006337E1	7	literal	0x1	edx	mov edx, 1	flow-settled
+00636280	0063636A	7	literal	0x1	edx	mov edx, 1	flow-settled
+0063B040	0063B318	7	literal	0x1	edx	mov edx, 1	flow-settled
+0063CD20	0063CE45	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 8]	flow-settled
+0063CE80	0063CF1C	7	64-bit-arg	-	rdx	mov rdx, qword ptr [r15 + 8]	flow-settled
+0063D330	0063D361	7	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0063FC60	0063FC76	0	literal	0x0	edx	xor edx, edx	flow-settled
+0066FE20	0067000B	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + rdx]	flow-settled
+00670070	0067025B	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + rdx]	flow-settled
+00679BF0	00679DD3	0	64-bit-arg	-	rdx	mov rdx, rbp	flow-settled
+00689FC0	00689FFD	0	literal	0x1	edx	mov edx, 1	flow-settled
+0068A300	0068A31A	0	literal	0x0	edx	xor edx, edx	flow-settled
+0068B400	0068B434	0	literal	0x0	edx	xor edx, edx	flow-settled
+0068EB70	0068EB77	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00691AB0	00691ADB	0	literal	0x1	edx	mov edx, 1	flow-settled
+00691AB0	00691B06	0	residue-32bit-computed	-	edx	lea edx, [rdi + 1]	residue-computed
+00691C00	00691D0B	0	literal	0x1	edx	mov edx, 1	flow-settled
+00691DB0	00691DD4	0	literal	0x1	edx	mov edx, 1	flow-settled
+006930D0	00693107	0	literal	0x1	edx	mov edx, 1	flow-settled
+006931B0	006931E7	0	literal	0x1	edx	mov edx, 1	flow-settled
+006932A0	006932D7	0	literal	0x1	edx	mov edx, 1	flow-settled
+006933E0	00693417	0	literal	0x1	edx	mov edx, 1	flow-settled
+006934C0	006934F7	0	literal	0x1	edx	mov edx, 1	flow-settled
+006936D0	00693704	0	literal	0x0	edx	xor edx, edx	flow-settled
+00693850	00693884	0	literal	0x1	edx	mov edx, 1	flow-settled
+00693920	00693954	0	literal	0x1	edx	mov edx, 1	flow-settled
+0069F690	0069F756	0	literal	0x1	edx	mov edx, 1	flow-settled
+0069F980	0069FA4C	0	literal	0x1	edx	mov edx, 1	flow-settled
+0069FB10	006A0032	7	residue-no-write-in-block	-	-	-	no-second-argument
+006A0540	006A0565	0	residue-no-write-in-block	-	-	-	residue-passthrough
+006A0600	006A0622	0	residue-no-write-in-block	-	-	-	residue-passthrough
+006A0680	006A0845	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A0680	006A08EB	0	residue-no-write-in-block	-	-	-	residue-passthrough
+006A0980	006A09A5	0	residue-no-write-in-block	-	-	-	residue-passthrough
+006A1DD0	006A1F4C	0	residue-no-write-in-block	-	-	-	flow-settled
+006A2080	006A21A9	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A21D0	006A22F8	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A2780	006A279D	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A27C0	006A2828	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A27C0	006A283B	0	literal	0x0	edx	xor edx, edx	flow-settled
+006A2880	006A289D	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A28C0	006A28DA	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A28C0	006A28F0	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A28C0	006A2906	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A2930	006A294A	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A47F0	006A483F	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+006A47F0	006A4856	7	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+006A5B10	006A5B2D	0	literal	0x0	edx	xor edx, edx	flow-settled
+006A5B10	006A5B4D	0	literal	0x1	edx	mov edx, 1	flow-settled
+006A5B10	006A5B64	0	literal	0x1	edx	mov edx, 1	flow-settled
+006B6FE0	006B703C	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r15]	flow-settled
+006B6FE0	006B7065	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi - 8]	flow-settled
+006B6FE0	006B7084	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx - 8]	flow-settled
+006B70C0	006B7113	0	64-bit-arg	-	rdx	mov rdx, rbp	flow-settled
+006B70C0	006B7143	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+006B70C0	006B7165	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+006B7290	006B7324	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + rbx*8 - 8]	flow-settled
+006B7290	006B7377	0	64-bit-arg	-	rdx	mov rdx, r12	flow-settled
+006B73E0	006B7486	0	64-bit-arg	-	rdx	lea rdx, [rcx - 0x10]	flow-settled
+006B73E0	006B74F3	0	64-bit-arg	-	rdx	lea rdx, [rsp + 0x20]	flow-settled
+006B7560	006B7586	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rcx]	flow-settled
+006B7560	006B759F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx]	flow-settled
+006B7560	006B75B5	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi]	flow-settled
+006B75E0	006B7606	0	64-bit-arg	-	rdx	mov rdx, rcx	flow-settled
+006B75E0	006B761F	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+006B75E0	006B7639	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+006B7800	006B786B	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi]	flow-settled
+006B7800	006B7878	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx]	flow-settled
+006B7800	006B7896	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi]	flow-settled
+006B7800	006B78A3	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi]	flow-settled
+006B7800	006B78CB	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx]	flow-settled
+006B7800	006B78D8	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi]	flow-settled
+006B7800	006B7916	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi]	flow-settled
+006B7800	006B7923	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r14]	flow-settled
+006B7A00	006B7A6A	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+006B7A00	006B7A77	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+006B7A00	006B7A96	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+006B7A00	006B7AA3	0	64-bit-arg	-	rdx	mov rdx, rbp	flow-settled
+006B7A00	006B7AD6	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+006B7A00	006B7AE3	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+006B7A00	006B7B26	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+006B7A00	006B7B33	0	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+006B7CF0	006B7D51	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + rbx*8 - 8]	flow-settled
+006B7CF0	006B7DA7	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r14]	flow-settled
+006B7E00	006B7E76	0	64-bit-arg	-	rdx	lea rdx, [rcx - 0x10]	flow-settled
+006B7F00	006B7F60	0	64-bit-arg	-	rdx	mov rdx, r14	flow-settled
+006BAED0	006BAF23	0	literal	0x3	edx	mov edx, 3	flow-settled
+006CC2F0	006CC31F	0	literal	0x1	edx	mov edx, 1	flow-settled
+006DA470	006DA4C7	0	residue-no-write-in-block	-	-	-	residue-passthrough
+006DA470	006DA4F6	0	residue-no-write-in-block	-	-	-	no-second-argument
+006DA5A0	006DA5FB	0	residue-no-write-in-block	-	-	-	residue-passthrough
+006DA5A0	006DA63A	0	residue-no-write-in-block	-	-	-	no-second-argument
+006E04F0	006E06E7	0	64-bit-arg	-	rdx	mov rdx, rbp	flow-settled
+006FB780	006FB7A1	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x30]	flow-settled
+006FF900	00700E47	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00700EA9	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x30]	flow-settled
+006FF900	00703957	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	007039E8	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703A79	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703AFC	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703B8C	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703C1D	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703CAE	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703D3F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703DD0	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703E61	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703EF2	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00703F83	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00704014	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	007040A5	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	0070415D	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	0070428C	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	007042F7	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00704402	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x20]	flow-settled
+006FF900	00705469	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x30]	flow-settled
+00705520	0070562C	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x30]	flow-settled
+00705520	00706533	7	residue-no-write-in-block	-	-	-	flow-settled
+00720320	007204E1	0	residue-no-write-in-block	-	-	-	flow-settled
+00720320	00720865	0	residue-no-write-in-block	-	-	-	no-second-argument
+00720320	00720982	0	residue-no-write-in-block	-	-	-	no-second-argument
+00720320	00720A23	0	residue-no-write-in-block	-	-	-	no-second-argument
+00720320	00720ADF	0	residue-no-write-in-block	-	-	-	residue-computed
+007215C0	007216E2	0	residue-no-write-in-block	-	-	-	no-second-argument
+007215C0	007218FE	0	residue-no-write-in-block	-	-	-	no-second-argument
+007215C0	0072192E	0	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+00721B10	00721D32	7	literal	0x0	edx	xor edx, edx	flow-settled
+00722110	0072235F	7	literal	0x0	edx	xor edx, edx	flow-settled
+00722110	00722436	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsp + 0xe8]	flow-settled
+00722E80	00722EF4	7	64-bit-arg	-	rdx	mov rdx, r15	flow-settled
+007231A0	007231B6	7	64-bit-arg	-	rdx	mov rdx, rcx	flow-settled
+00723440	00723633	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x9e8]	flow-settled
+00724600	0072467B	0	residue-no-write-in-block	-	-	-	no-second-argument
+007246E0	007247BB	0	residue-no-write-in-block	-	-	-	no-second-argument
+00724A00	00724A4B	0	residue-no-write-in-block	-	-	-	no-second-argument
+00724A60	00724A8D	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00724AB0	00724AD5	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00724AF0	00724B0D	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00724B20	00724B45	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00724B60	00724BA2	0	residue-no-write-in-block	-	-	-	no-second-argument
+00724BC0	00724BED	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00727170	00727198	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+0072D820	0072D8D9	7	residue-no-write-in-block	-	-	-	no-second-argument
+0072F7D0	0072F7E4	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rcx + 0x28]	flow-settled
+007307A0	007309B4	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rsi + 0x28]	flow-settled
+00741290	0074144D	7	literal	0x0	edx	xor edx, edx	flow-settled
+00759490	007595B6	7	literal	0x0	edx	xor edx, edx	flow-settled
+0075C080	0075C1C8	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+0075C080	0075C25F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+0075C080	0075C38D	0	residue-no-write-in-block	-	-	-	no-second-argument
+0075C080	0075C3A3	0	residue-no-write-in-block	-	-	-	no-second-argument
+0075C080	0075C3C4	0	residue-no-write-in-block	-	-	-	no-second-argument
+0075C080	0075C950	0	residue-no-write-in-block	-	-	-	no-second-argument
+0075CEB0	0075D0C0	7	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+0075CEB0	0075D1FF	7	literal	0x0	edx	xor edx, edx	flow-settled
+0075CEB0	0075D25F	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsp + 0x78]	flow-settled
+0075E330	0075E586	0	residue-no-write-in-block	-	-	-	flow-settled
+0075EB00	0075EB54	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rdi + 0x28]	flow-settled
+007621F0	0076221D	0	residue-no-write-in-block	-	-	-	flow-settled
+007621F0	00762235	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	00762252	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	0076226F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	0076228C	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007622D2	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007622F2	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	0076230F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	00762393	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007623B0	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007623D1	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	00762494	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007624BB	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007624D8	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007621F0	007624F5	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+00769FC0	0076A176	7	literal	0x0	edx	xor edx, edx	flow-settled
+0076F400	0076F445	0	residue-no-write-in-block	-	-	-	flow-settled
+0076F400	0076F4C2	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F4E1	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F510	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F560	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F57F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F59E	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F5BD	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F5FE	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F64B	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F67C	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F6A4	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F6CC	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F6F4	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F71C	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F749	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F771	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F799	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F7C1	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F7EE	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0076F400	0076F816	0	64-bit-arg	-	rdx	mov rdx, qword ptr [r12 + 0x28]	flow-settled
+0077FE20	0077FE44	0	residue-no-write-in-block	-	-	-	flow-settled
+00781080	007810A4	0	residue-no-write-in-block	-	-	-	flow-settled
+00781080	007810B5	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+007819F0	00781A1A	0	residue-no-write-in-block	-	-	-	flow-settled
+007819F0	00781A2F	0	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+00784380	007843B6	7	64-bit-arg	-	rdx	lea rdx, [rbp + 0x5f]	flow-settled
+00784810	00784871	7	64-bit-arg	-	rdx	lea rdx, [rdi + 0x2c]	flow-settled
+00784A70	00784A8B	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x58]	flow-settled
+00784B60	00784B7B	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x58]	flow-settled
+00784C50	00784C7B	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x58]	flow-settled
+00784D70	00784D8B	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x38]	flow-settled
+00785080	007850A2	0	residue-no-write-in-block	-	-	-	residue-passthrough
+007857D0	0078585A	7	64-bit-arg	-	rdx	mov rdx, r14	flow-settled
+007858A0	007859B5	7	residue-no-write-in-block	-	-	-	flow-settled
+00785C90	00785CC8	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x40]	flow-settled
+00785C90	00785DD5	7	64-bit-arg	-	rdx	lea rdx, [rdi + 0x38]	flow-settled
+00785EE0	00785F7C	7	64-bit-arg	-	rdx	lea rdx, [rdi + 0x38]	flow-settled
+007861A0	007863D8	0	residue-no-write-in-block	-	-	-	no-second-argument
+00787080	007871A3	7	64-bit-arg	-	rdx	lea rdx, [rbx + 0x38]	flow-settled
+00787080	007871AC	7	residue-no-write-in-block	-	-	-	no-second-argument
+007871F0	0078721C	0	residue-no-write-in-block	-	-	-	residue-passthrough
+007872F0	00787498	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbp - 0x71]	flow-settled
+00787930	00787A53	7	64-bit-arg	-	rdx	lea rdx, [rbx + 0x38]	flow-settled
+00789320	0078932C	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00789950	007899A3	0	literal	0x0	edx	xor edx, edx	flow-settled
+0078A4F0	0078A513	0	literal	0x0	edx	xor edx, edx	flow-settled
+0078AD20	0078AE0C	0	64-bit-arg	-	rdx	lea rdx, [rsp + 0x38]	flow-settled
+0078AD20	0078AF7C	0	64-bit-arg	-	rdx	lea rdx, [rbx + 0x68]	flow-settled
+0078AD20	0078AF9A	0	64-bit-arg	-	rdx	lea rdx, [rbx + 0x98]	flow-settled
+0078B6E0	0078B76A	0	literal	0x0	edx	xor edx, edx	flow-settled
+0078C080	0078C692	0	64-bit-arg	-	rdx	lea rdx, [rbp - 0x40]	flow-settled
+0078EAF0	0078F364	7	literal	0x0	edx	xor edx, edx	flow-settled
+007906C0	00790752	0	literal	0x0	edx	xor edx, edx	flow-settled
+00790790	00790815	0	literal	0x0	edx	xor edx, edx	flow-settled
+00795C00	00795D63	7	residue-no-write-in-block	-	-	-	no-second-argument
+00796490	00796580	7	residue-no-write-in-block	-	-	-	no-second-argument
+007973D0	00797432	7	residue-no-write-in-block	-	-	-	no-second-argument
+00797460	00797634	7	residue-no-write-in-block	-	-	-	no-second-argument
+00797690	007978B9	7	residue-no-write-in-block	-	-	-	no-second-argument
+00797910	00797936	0	residue-no-write-in-block	-	-	-	no-second-argument
+00797F60	00797FB5	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00798000	00798085	7	literal	0x0	edx	xor edx, edx	flow-settled
+00799860	007998C0	0	literal	0x1	edx	mov edx, 1	flow-settled
+007998E0	00799960	0	literal	0x1	edx	mov edx, 1	flow-settled
+0079C140	0079C26B	7	residue-no-write-in-block	-	-	-	no-second-argument
+0079EDD0	0079EE9B	0	literal	0x1	edx	mov edx, 1	flow-settled
+0079EDD0	0079EF38	0	literal	0x1	edx	mov edx, 1	flow-settled
+0079EDD0	0079F09D	0	literal	0x1	edx	mov edx, 1	flow-settled
+007A1640	007A16EF	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A1640	007A1706	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A1790	007A17F0	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A1790	007A1807	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A1A50	007A1AA7	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A1A50	007A1ABB	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A3FC0	007A3FE4	7	residue-no-write-in-block	-	-	-	no-second-argument
+007A4310	007A433C	0	residue-no-write-in-block	-	-	-	no-second-argument
+007A4930	007A49DA	0	literal	0x1	edx	mov edx, 1	flow-settled
+007A9760	007A978B	0	literal	0x3	edx	mov edx, 3	flow-settled
+007A9760	007A97B0	0	literal	0x3	edx	mov edx, 3	flow-settled
+007A9760	007A97E0	0	literal	0x3	edx	mov edx, 3	flow-settled
+007A98E0	007A9911	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AA010	007AA03D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AB080	007AB0B1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AB240	007AB26D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AB5C0	007AB8BF	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rax]	flow-settled
+007AE600	007AE631	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AE6A0	007AE6D1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AE740	007AE77F	0	literal	0x1	edx	mov edx, 1	flow-settled
+007AED10	007AED3D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AEE20	007AEE4D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007AEF30	007AF31F	0	literal	0x1	edx	mov edx, 1	flow-settled
+007B0000	007B01C2	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B0000	007B0290	0	literal	0x1	edx	mov edx, 1	flow-settled
+007B0000	007B02C6	0	literal	0x1	edx	mov edx, 1	flow-settled
+007B1420	007B1451	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B14C0	007B14EB	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B1520	007B15A1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B2200	007B22B3	7	64-bit-arg	-	rdx	lea rdx, [rbp + 0x1f]	flow-settled
+007B2500	007B252D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B2600	007B262D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B2920	007B2A61	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B2B30	007B2B61	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B4540	007B45E2	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x20]	flow-settled
+007B4670	007B469D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B4840	007B485F	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B4840	007B48A7	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B4A70	007B4B7F	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B4A70	007B4CDE	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B4D60	007B4D91	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B50F0	007B511D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B51F0	007B5218	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B52B0	007B53E1	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B54B0	007B54E1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B5900	007B592D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B5A00	007B5A28	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B5AD0	007B5BF3	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B5C50	007B5C81	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B5E90	007B5EBD	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B5F90	007B5FB8	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B6050	007B6163	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B61C0	007B61F1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B6350	007B6641	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B66E0	007B670D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B69C0	007B69DF	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B69C0	007B6A51	0	literal	0x1	edx	mov edx, 1	flow-settled
+007B6B00	007B6B8F	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B7110	007B7141	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B7860	007B78DB	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x20]	flow-settled
+007B7B00	007B7B2D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B7C10	007B7C34	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B7D60	007B7EB2	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B7F30	007B7F61	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B8060	007B808D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B8170	007B8194	0	literal	0x3	edx	mov edx, 3	flow-settled
+007B82D0	007B83A0	0	literal	0x0	edx	xor edx, edx	flow-settled
+007B99B0	007B9AB3	0	literal	0x1	edx	mov edx, 1	flow-settled
+007BA990	007BA9C1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BAB30	007BAB5D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BB830	007BB870	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BB8B0	007BB8E1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BBC30	007BBC5D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BBE50	007BBE81	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BBFB0	007BC1CD	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x30]	flow-settled
+007BC2F0	007BC31D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007BC4F0	007BC830	0	literal	0x0	edx	xor edx, edx	flow-settled
+007C1100	007C114D	0	residue-32bit-computed	-	edx	mov edx, ebx	residue-computed
+007C1530	007C1561	0	literal	0x3	edx	mov edx, 3	flow-settled
+007C5980	007C5A04	0	literal	0x3	edx	mov edx, 3	flow-settled
+007C6EA0	007C6ECD	0	literal	0x3	edx	mov edx, 3	flow-settled
+007D08A0	007D08B3	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x20]	flow-settled
+007DC730	007DC7E3	0	literal	0x3	edx	mov edx, 3	flow-settled
+007DC730	007DC83A	0	literal	0x3	edx	mov edx, 3	flow-settled
+007DC970	007DC9A1	0	literal	0x3	edx	mov edx, 3	flow-settled
+007DCC60	007DCC8D	0	literal	0x3	edx	mov edx, 3	flow-settled
+007DD360	007DD3AC	0	literal	0x1	edx	mov edx, 1	flow-settled
+007DD410	007DD469	7	64-bit-arg	-	rdx	lea rdx, [rbx + 0x10]	flow-settled
+007DD600	007DD786	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x50]	flow-settled
+007DD600	007DD7E2	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x54]	flow-settled
+007DD9F0	007DDA3A	0	residue-32bit-computed	-	edx	lea edx, [r14 + 1]	residue-computed
+007DD9F0	007DDAD2	0	literal	0x1	edx	mov edx, 1	flow-settled
+007DDED0	007DE05E	0	literal	0x1	edx	mov edx, 1	flow-settled
+007DDED0	007DE0F1	0	literal	0x1	edx	mov edx, 1	flow-settled
+007DE2F0	007DE5B2	7	literal	0x0	edx	xor edx, edx	flow-settled
+007DEB80	007DEC15	0	residue-no-write-in-block	-	-	-	no-second-argument
+007DEC50	007DEC7A	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x28]	flow-settled
+007DEEF0	007DEF75	0	residue-no-write-in-block	-	-	-	no-second-argument
+007DEFB0	007DF15E	0	residue-no-write-in-block	-	-	-	no-second-argument
+007E2CE0	007E2D34	0	literal	0x1	edx	mov edx, 1	flow-settled
+007E3450	007E34DB	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x50]	flow-settled
+007E3450	007E3573	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x50]	flow-settled
+007E3450	007E36F1	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x50]	flow-settled
+007E3CF0	007E3D7A	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x58]	flow-settled
+007E3CF0	007E3F7F	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x48]	flow-settled
+007E4310	007E4363	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x38]	flow-settled
+007E48D0	007E4C64	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x38]	flow-settled
+007E8960	007E8A17	7	residue-no-write-in-block	-	-	-	no-second-argument
+007E8BB0	007E8F0E	7	residue-no-write-in-block	-	-	-	no-second-argument
+007E9D90	007E9DD1	7	residue-no-write-in-block	-	-	-	no-second-argument
+007EA050	007EA0C0	0	literal	0x1	edx	mov edx, 1	flow-settled
+007EDE90	007EE015	7	64-bit-arg	-	rdx	lea rdx, [rsp + 0x60]	flow-settled
+007EE300	007EE386	7	residue-no-write-in-block	-	-	-	no-second-argument
+007F7680	007F77B3	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+007F7680	007F7831	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+007F7680	007F78B1	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+007FFEE0	007FFF34	0	literal	0x1	edx	mov edx, 1	flow-settled
+008001B0	00800225	0	literal	0x1	edx	mov edx, 1	flow-settled
+008001B0	00800294	0	literal	0x1	edx	mov edx, 1	flow-settled
+00800D20	00800E06	0	literal	0x1	edx	mov edx, 1	flow-settled
+00800F90	008011E7	0	literal	0x1	edx	mov edx, 1	flow-settled
+00801480	00801530	0	literal	0x1	edx	mov edx, 1	flow-settled
+00802910	00802998	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+00803450	008036CC	0	literal	0x1	edx	mov edx, 1	flow-settled
+00803730	0080382B	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+00803730	008038BB	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+00803730	00803973	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+00804CF0	00804EB3	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+00805A80	00805DCF	0	literal	0x1	edx	mov edx, 1	flow-settled
+00805E90	0080614E	0	residue-no-write-in-block	-	-	-	flow-settled
+00806200	0080631C	0	64-bit-arg	-	rdx	mov rdx, rbx	flow-settled
+00806B10	00806C40	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+00806B10	00806CB3	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+00806B10	00806D26	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+008074B0	008075CF	0	residue-no-write-in-block	-	-	-	flow-settled
+00807650	00807855	0	64-bit-arg	-	rdx	mov rdx, r14	flow-settled
+00807650	008079DE	0	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+00807E20	00807E50	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00807E20	00807ED9	0	64-bit-arg	-	rdx	add rdx, rbp	flow-settled
+00807F30	00807F61	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00807F30	00807FE6	0	64-bit-arg	-	rdx	mov rdx, rsi	flow-settled
+008083D0	00808416	0	residue-no-write-in-block	-	-	-	residue-passthrough
+008084E0	0080852D	0	residue-no-write-in-block	-	-	-	residue-passthrough
+008084E0	00808564	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+008085C0	0080865C	0	64-bit-arg	-	rdx	mov rdx, rbp	flow-settled
+00808690	008086E4	0	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+0080DF00	0080DF2E	7	residue-no-write-in-block	-	-	-	flow-settled
+0080DF00	0080DF39	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+0080DF50	0080E020	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+0080E080	0080E0F5	7	residue-no-write-in-block	-	-	-	flow-settled
+0081E050	0081E0BE	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rsp + 0x30]	flow-settled
+0081E920	0081E974	7	residue-no-write-in-block	-	-	-	no-second-argument
+00823670	008236A5	0	residue-no-write-in-block	-	-	-	residue-passthrough
+00823670	008236CE	0	64-bit-arg	-	rdx	mov rdx, r15	flow-settled
+00836BB0	00836BE2	0	literal	0x0	edx	xor edx, edx	flow-settled
+00836C60	00836C81	0	literal	0x0	edx	xor edx, edx	flow-settled
+00838650	0083868C	0	literal	0x0	edx	xor edx, edx	flow-settled
+00838650	008386A8	0	literal	0x0	edx	xor edx, edx	flow-settled
+00838650	008386F6	0	literal	0x0	edx	xor edx, edx	flow-settled
+00838D80	00838F9D	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+0083DE00	0083DEBC	7	64-bit-arg	-	rdx	lea rdx, [rdi - 0x30]	flow-settled
+0083F6D0	0083F6EE	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+0083F6D0	0083F719	7	64-bit-arg	-	rdx	mov rdx, rax	flow-settled
+00840B10	00840B26	7	residue-no-write-in-block	-	-	-	residue-passthrough
+008481F0	0084820E	0	literal	0x0	edx	xor edx, edx	flow-settled
+00848910	00848931	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00848960	00848A67	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+00849C30	00849C61	0	literal	0x0	edx	xor edx, edx	flow-settled
+0084A330	0084A44E	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+0084BED0	0084C4A6	0	residue-no-write-in-block	-	-	-	no-second-argument
+00854CE0	00854D16	0	literal	0x0	edx	xor edx, edx	flow-settled
+00854CE0	00854D3B	0	literal	0x0	edx	xor edx, edx	flow-settled
+00855660	008557D1	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+008557F0	00855953	7	64-bit-arg	-	rdx	mov rdx, rdi	flow-settled
+00858370	00858386	7	residue-no-write-in-block	-	-	-	residue-passthrough
+0085C3E0	0085C44D	7	residue-no-write-in-block	-	-	-	residue-passthrough
+00863850	00863892	0	literal	0x4	edx	mov edx, 4	flow-settled
+00863D80	00863DD1	0	residue-32bit-computed	-	edx	mov edx, dword ptr [r14 + 0x60]	residue-computed
+00864330	00864373	0	literal	0x4	edx	mov edx, 4	flow-settled
+00864860	008648A9	0	literal	0x4	edx	mov edx, 4	flow-settled
+0087C6C0	0087C6F6	7	residue-no-write-in-block	-	-	-	flow-settled
+0087C6C0	0087C70A	7	residue-no-write-in-block	-	-	-	flow-settled
+0087C6C0	0087C71E	7	residue-no-write-in-block	-	-	-	flow-settled
+0087C6C0	0087C732	7	residue-no-write-in-block	-	-	-	flow-settled
+0087C6C0	0087C73D	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rbx + 0x28]	flow-settled
+0088E280	0088E57B	7	64-bit-arg	-	rdx	mov rdx, qword ptr [rdx + rcx*8]	flow-settled
+00899670	0089968E	0	literal	0x1	edx	mov edx, 1	flow-settled
+008AF490	008AF4E7	7	literal	0x1	edx	mov edx, 1	flow-settled
+008B86A0	008B86CD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8720	008B874D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B87B0	008B87DF	0	literal	0x1	edx	mov edx, 1	flow-settled
+008B8850	008B887D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B88D0	008B88FD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B89A0	008B89CD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8A10	008B8A3D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8AB0	008B8ADD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8B30	008B8B5D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8BB0	008B8BDD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8C20	008B8C4D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8CD0	008B8CFD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8DB0	008B8DDD	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8E40	008B8E6D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8EC0	008B8EED	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8F40	008B8F6D	0	literal	0x3	edx	mov edx, 3	flow-settled
+008B8FD0	008B8FFD	0	literal	0x3	edx	mov edx, 3	flow-settled

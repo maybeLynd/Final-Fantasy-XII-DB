@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-RUN-THE-BOUNDARY-TEST-AGAINST-THE-ERROR-IT-EXISTS-FOR",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the which-bodies boundary check promised last round, and whether it catches the extent error it was designed for",
+  "scope": "build the check into the sweep, run it against CoreRuntimeStatic02064AA0's wrong 0x280 extent and against the two extents known to be right, and keep only what survives that",
+  "completion": "the check is validated against a known answer before being trusted; every formulation that fails is reported with why; the tool ends the round printing whatever the reader needs and no verdict it cannot support",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

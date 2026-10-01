@@ -1,0 +1,526 @@
+{
+  "method": "A actual admitted DBG/SBN bytes and unchanged published OPUS SBN parser definitions; no original/native/emulator/live/compiled script execution",
+  "reference": {
+    "producer_path": "Database/FFXII TZA/_index/candidates/sn1-layouts/sn1_layouts.py",
+    "producer_sha256": "15df4aad0791835f0b3e4bff2f59e383f4723c5c5cbafc5323e4899955a47227",
+    "selected_parser_sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48",
+    "consumer_path": "Database/FFXII TZA/01-Script-VM-Native-Bridge/ATEL-Control-Modules/the-ctrl-module-debug-companions.md",
+    "consumer_sha256": "c88a5a200fe3325de897a7241162f55b6e6ea098b0bc0e4a6f6fec02d1b38ee4",
+    "files": [
+      {
+        "module": "ctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\ctrl.dbg",
+        "bytes": 83120,
+        "sha256": "73b8f70b155b76971945a028ffe5f89eeb8733620a970854c635463de7368aa4",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "ctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\ctrl.sbn",
+        "bytes": 24976,
+        "sha256": "9cc2473f9c167eb203b6a3aff751df2b31d14e6282b70401bb1d794af3596662",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "btlctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\btlctrl.dbg",
+        "bytes": 270160,
+        "sha256": "3d83baa3d728d70e310c92e7df3d7151f912fc3ee0992c64d21cd9a032e73058",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "btlctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\btlctrl.sbn",
+        "bytes": 98136,
+        "sha256": "7492061636eac4cd7b5cdd5f06ff50d67c80fe1dad686044e89414ba40f0608d",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "evctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.dbg",
+        "bytes": 126112,
+        "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "evctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\evctrl.sbn",
+        "bytes": 57816,
+        "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "mapctrl",
+        "extension": "dbg",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapctrl.dbg",
+        "bytes": 301776,
+        "sha256": "499b2394d9e8c38d2119f238730b6e6b79a3888dd2e7157fefe3ff26035de317",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      },
+      {
+        "module": "mapctrl",
+        "extension": "sbn",
+        "path": "D:\\FFXII_TZA_extract\\ps2data\\image\\ff12\\in\\bin\\mapctrl.sbn",
+        "bytes": 140128,
+        "sha256": "4d399c23df9fc1ae931753c6247084cca26fdfda4446e6bdbe66f85d71e9ec35",
+        "provenance": "Existing admitted extraction path used by FABLE/OPUS; exact local bytes pinned, no fresh whole-VBF provenance audit"
+      }
+    ]
+  },
+  "raw_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "modules": [
+    {
+      "module": "ctrl",
+      "scope_count": 7,
+      "source_line_counts": [
+        977,
+        79
+      ],
+      "coordinate_counts": {
+        "inside-both-index-ranges": 4402,
+        "zero-line-convention-unresolved": 6
+      }
+    },
+    {
+      "module": "btlctrl",
+      "scope_count": 23,
+      "source_line_counts": [
+        2507,
+        79,
+        558
+      ],
+      "coordinate_counts": {
+        "inside-both-index-ranges": 15522,
+        "zero-line-convention-unresolved": 20,
+        "one-based-only-boundary": 3,
+        "outside-both-index-conventions": 3
+      }
+    },
+    {
+      "module": "evctrl",
+      "scope_count": 13,
+      "source_line_counts": [
+        2456,
+        79
+      ],
+      "coordinate_counts": {
+        "inside-both-index-ranges": 12921,
+        "zero-line-convention-unresolved": 23
+      }
+    },
+    {
+      "module": "mapctrl",
+      "scope_count": 7,
+      "source_line_counts": [
+        2768,
+        79,
+        557
+      ],
+      "coordinate_counts": {
+        "inside-both-index-ranges": 20865,
+        "zero-line-convention-unresolved": 10,
+        "one-based-only-boundary": 6,
+        "outside-both-index-conventions": 3
+      }
+    }
+  ],
+  "coordinate_counts": {
+    "inside-both-index-ranges": 53710,
+    "zero-line-convention-unresolved": 59,
+    "one-based-only-boundary": 9,
+    "outside-both-index-conventions": 6
+  },
+  "unresolved_physical_coordinates": [
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3978,
+      "flag": 1,
+      "coordinate_line": 559,
+      "physical_line_count": 558,
+      "block": 2,
+      "record_hex": "2f020201",
+      "file_offset": 63704,
+      "scope_records": 4084,
+      "last_indexed_source": {
+        "offset": 98120,
+        "bytes": "090909090975636f6e2829"
+      },
+      "source_tail_hex": "090909090975636f6e28290000000000",
+      "reason": "One past physical source block under both candidate index conventions; internal to q0 scope, not trailing table padding"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3979,
+      "flag": 0,
+      "coordinate_line": 559,
+      "physical_line_count": 558,
+      "block": 2,
+      "record_hex": "2f020200",
+      "file_offset": 63708,
+      "scope_records": 4084,
+      "last_indexed_source": {
+        "offset": 98120,
+        "bytes": "090909090975636f6e2829"
+      },
+      "source_tail_hex": "090909090975636f6e28290000000000",
+      "reason": "One past physical source block under both candidate index conventions; internal to q0 scope, not trailing table padding"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "index": 3980,
+      "flag": 0,
+      "coordinate_line": 559,
+      "physical_line_count": 558,
+      "block": 2,
+      "record_hex": "2f020200",
+      "file_offset": 63712,
+      "scope_records": 4084,
+      "last_indexed_source": {
+        "offset": 98120,
+        "bytes": "090909090975636f6e2829"
+      },
+      "source_tail_hex": "090909090975636f6e28290000000000",
+      "reason": "One past physical source block under both candidate index conventions; internal to q0 scope, not trailing table padding"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5201,
+      "flag": 1,
+      "coordinate_line": 558,
+      "physical_line_count": 557,
+      "block": 2,
+      "record_hex": "2e020201",
+      "file_offset": 69252,
+      "scope_records": 16028,
+      "last_indexed_source": {
+        "offset": 140107,
+        "bytes": "09090909097761697428203120293b"
+      },
+      "source_tail_hex": "09090909097761697428203120293b000000000000",
+      "reason": "One past physical source block under both candidate index conventions; internal to q0 scope, not trailing table padding"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5202,
+      "flag": 0,
+      "coordinate_line": 558,
+      "physical_line_count": 557,
+      "block": 2,
+      "record_hex": "2e020200",
+      "file_offset": 69256,
+      "scope_records": 16028,
+      "last_indexed_source": {
+        "offset": 140107,
+        "bytes": "09090909097761697428203120293b"
+      },
+      "source_tail_hex": "09090909097761697428203120293b000000000000",
+      "reason": "One past physical source block under both candidate index conventions; internal to q0 scope, not trailing table padding"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "index": 5203,
+      "flag": 0,
+      "coordinate_line": 558,
+      "physical_line_count": 557,
+      "block": 2,
+      "record_hex": "2e020200",
+      "file_offset": 69260,
+      "scope_records": 16028,
+      "last_indexed_source": {
+        "offset": 140107,
+        "bytes": "09090909097761697428203120293b"
+      },
+      "source_tail_hex": "09090909097761697428203120293b000000000000",
+      "reason": "One past physical source block under both candidate index conventions; internal to q0 scope, not trailing table padding"
+    }
+  ],
+  "zero_suffixes": [
+    {
+      "module": "ctrl",
+      "scope": 0,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "ctrl",
+      "scope": 1,
+      "count": 3,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "ctrl",
+      "scope": 4,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "ctrl",
+      "scope": 6,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 0,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 2,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 3,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 4,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 7,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 11,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 14,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 17,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 20,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 21,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "btlctrl",
+      "scope": 22,
+      "count": 3,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 0,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 1,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 2,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 3,
+      "count": 3,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 4,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 5,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 6,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 7,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 8,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 9,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 10,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 11,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "evctrl",
+      "scope": 12,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 0,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "count": 3,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 3,
+      "count": 3,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 4,
+      "count": 2,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    },
+    {
+      "module": "mapctrl",
+      "scope": 5,
+      "count": 1,
+      "role": "Observed all-zero suffix with no instruction-start flag; actual range0..3, not canonical0..2; no real instruction-start at line0 in this corpus"
+    }
+  ],
+  "raw_record_controls": [
+    {
+      "name": "positive-original",
+      "bytes": "21000101",
+      "decoded": {
+        "line": 33,
+        "block": 1,
+        "flag": 1,
+        "category": "inside-both-index-ranges"
+      },
+      "expected": "inside-both-index-ranges",
+      "method": "Actual struct.unpack raw4B record path, private changed record only, no compiler/game execution"
+    },
+    {
+      "name": "private-blockCount",
+      "bytes": "21000201",
+      "decoded": {
+        "line": 33,
+        "block": 2,
+        "flag": 1,
+        "category": "block-outside-domain"
+      },
+      "expected": "block-outside-domain",
+      "method": "Actual struct.unpack raw4B record path, private changed record only, no compiler/game execution"
+    },
+    {
+      "name": "private-lineCount-plus1",
+      "bytes": "50000101",
+      "decoded": {
+        "line": 80,
+        "block": 1,
+        "flag": 1,
+        "category": "outside-both-index-conventions"
+      },
+      "expected": "outside-both-index-conventions",
+      "method": "Actual struct.unpack raw4B record path, private changed record only, no compiler/game execution"
+    },
+    {
+      "name": "private-zero-line",
+      "bytes": "00000101",
+      "decoded": {
+        "line": 0,
+        "block": 1,
+        "flag": 1,
+        "category": "zero-line-convention-unresolved"
+      },
+      "expected": "zero-line-convention-unresolved",
+      "method": "Actual struct.unpack raw4B record path, private changed record only, no compiler/game execution"
+    },
+    {
+      "name": "private-lineCount",
+      "bytes": "4f000101",
+      "decoded": {
+        "line": 79,
+        "block": 1,
+        "flag": 1,
+        "category": "one-based-only-boundary"
+      },
+      "expected": "one-based-only-boundary",
+      "method": "Actual struct.unpack raw4B record path, private changed record only, no compiler/game execution"
+    }
+  ],
+  "interpretation": "Two source block2 EOF+1 coordinate groups are inside q0 scope1 and include a start flag1, followed by two flag0 records. Btl source558 lines is addressed as559; map source557 lines as558. These six records cannot be blindly dereferenced into indexed physical SBN text under either 0/1-based convention. Nine lineCount coordinates are valid only in 1-based candidate; bounds do not independently certify compiler convention. All59 line0 records are observed all-zero suffixes of0..3 records and no start flags in this corpus; ctrl1, btl22, ev3, map1/map3 each have3. This refutes the canonical0..2 bound, not a q2/q3 formula.",
+  "required_change": "Qualified source mapper returns unresolved/missing physical line for EOF+1 rather than clamp/index-past-end; canonical q0 prose records these internal instruction-start exceptions. Preserve physical layouts/source relation/q2-q3 evidence; unknown generated/virtual/stale/source-omission cause and source convention remain explicit. Owners add raw record domain controls to actual consumer/helper, not just a footnote.",
+  "control_limit": "Initial capture controls perturb parsed coordinate fields; their record_hex is original context, not encoded mutant bytes. No raw-byte mutation proof attributed to those dictionaries. Default retained checker adds actual4B encode/decode controls through record_domain and keeps original raw/driver intact; these raw controls supersede any stronger interpretation of the coordinate-only receipt.",
+  "limits": "Coordinate range/actual bytes only; index convention, compiler source relation and causes of any inconsistent or zero-line record cannot be inferred from bounds alone. No X formula/disposition, q2/q3/bytecode law recapture, normal runtime reader/game claim or fresh full VBF audit. Private controls mutate data records only; parents immutable/full L1+L2 NOT_MET/S19 parked",
+  "cleanup": {
+    "inputs_unchanged": true,
+    "peer_producer_unchanged": true,
+    "pc_off": true
+  }
+}

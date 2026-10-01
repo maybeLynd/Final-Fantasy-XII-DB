@@ -1,0 +1,14 @@
+{
+  "unix": 1789103373.1514623,
+  "before": [
+    {
+      "pid": 38872,
+      "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe"
+    }
+  ],
+  "exited": [
+    38872
+  ],
+  "left": [],
+  "remaining": []
+}

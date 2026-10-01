@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": "003A8390.bin",
+      "bytes": 373,
+      "sha256": "bc36b2e35e3ba5f57771de1a1b4b4320c690643718f9fb05cc1cb0bd9abc222d"
+    },
+    {
+      "path": "0043EF40.bin",
+      "bytes": 716,
+      "sha256": "d1145443b695b982ec5415088b91c23e99aa07e07d2ea6233efaa021bf1627d2"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2039,
+      "sha256": "9afaa0fe88d28e596bb98dac09c4a0d0d66978a0ad7cf0c6f2d18d7df6be46d3"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 5721,
+      "sha256": "50eb24038787f7c9588a91672a26d1a8b88a5088521ba02cf8dca29db13dc499"
+    },
+    {
+      "path": "check.py",
+      "bytes": 9337,
+      "sha256": "00d01edcd20bfd9d2cd12681bedb9d7e9fd5c9326f82857320344d76d8bca354"
+    },
+    {
+      "path": "result.json",
+      "bytes": 6534,
+      "sha256": "db8f1a620e6c130cc61bf02d105768e7507c69d21b6d47e27f98adb1d99bc5c1"
+    },
+    {
+      "path": "terminal.json",
+      "bytes": 799,
+      "sha256": "ecd29be8121382bcbd146ef14e1a5e4612e9701d430bca93fd436a3883b5d252"
+    }
+  ],
+  "limits": "Method A structural list/address result only. No stable live instance, normal scheduling, class preservation or player-visible effect."
+}

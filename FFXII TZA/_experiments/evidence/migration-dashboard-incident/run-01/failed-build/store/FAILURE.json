@@ -1,0 +1,7 @@
+{
+ "generation": "g20260929T023204Z-07c378",
+ "failed_at": "2026-09-29T02:32:04Z",
+ "reason": "inputs moved during the build: controlled",
+ "current_unchanged": "g20260929T023203Z-639bc1",
+ "current_committed_at": "2026-09-29T02:32:03Z"
+}

@@ -1,0 +1,306 @@
+{
+  "method": "A read-only actual deployed HTTP sample, no restart/write/controller/game control",
+  "base": "http://127.0.0.1:8765",
+  "driver_sha256": "38f63a372318b1def8043527c4b37b1fcbca826f3fb3d4d0abf4f496f2900ac6",
+  "requests": [
+    {
+      "name": "status-before",
+      "path": "/api/status",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:46:26 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1143"
+      },
+      "bytes": 1143,
+      "sha256": "c29c2d425ee34103ff4ab97478181da62b92bf79621a2234740d1e0619bd0674"
+    },
+    {
+      "name": "progress",
+      "path": "/api/view/progress",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:46:26 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "224380"
+      },
+      "bytes": 224380,
+      "sha256": "462f9c27c94eac7782c030d6d09dc52d22030d011d75615b933818607156eeb4"
+    },
+    {
+      "name": "page",
+      "path": "/",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:46:26 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "20446"
+      },
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+    },
+    {
+      "name": "status-after",
+      "path": "/api/status",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 07:46:26 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1143"
+      },
+      "bytes": 1143,
+      "sha256": "c29c2d425ee34103ff4ab97478181da62b92bf79621a2234740d1e0619bd0674"
+    }
+  ],
+  "finished": true,
+  "limits": "Bracketed same-generation observations are not an atomic snapshot or loaded-module/PID proof; browser presentation separate",
+  "generation": "g20260929T074315Z-b38fd2",
+  "view_status": "PARTIAL",
+  "reported_reader_stale": [
+    true,
+    true
+  ],
+  "verified_projection": [
+    "union",
+    "L1",
+    "L2",
+    "union-exf",
+    "cat-W",
+    "cat-C",
+    "cat-E",
+    "cat-S",
+    "cat-P",
+    "cat-I",
+    "cat-T",
+    "cat-M",
+    "cat-G",
+    "cat-V",
+    "cat-D",
+    "cat-N",
+    "cat-whole",
+    "cat-untied"
+  ],
+  "headline": {
+    "union": {
+      "accepted": 26330,
+      "total": 38714
+    },
+    "L1": {
+      "accepted": 26079,
+      "total": 38463
+    },
+    "L2": {
+      "accepted": 1283,
+      "total": 1398
+    },
+    "union_exF": {
+      "accepted": 3373,
+      "total": 3650
+    }
+  },
+  "progress_measured": false,
+  "gaps": {
+    "X": "member formats of the bucketed extension(s) .bin, .dat are not declared (Database/Tools/work/formats/bucket-members.tsv); until they are, those files are UNMEASURED at format granularity - repair: OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS (SWE2-DATA)"
+  },
+  "reconstruction": {
+    "state": "NOT READY",
+    "why": "the governing goal gate reads NOT_MET: questions outstanding: OPEN=26, PARTIAL=2"
+  },
+  "required": [
+    "progress",
+    "overview",
+    "systems",
+    "vbf",
+    "executable",
+    "types",
+    "evidence",
+    "fleet"
+  ],
+  "server_progress_status": [
+    "PARTIAL",
+    "PARTIAL"
+  ],
+  "selected_drilldown": {
+    "code": "W",
+    "label": "World & maps",
+    "accepted": 690,
+    "total": 831,
+    "remaining_by_family": {
+      "F": 125,
+      "DA": 10,
+      "DD": 6
+    },
+    "change": {
+      "accepted": 0,
+      "scope": 0,
+      "pct": 0.0
+    },
+    "items": [
+      {
+        "k": "DA:03-World-Area-Field/CONTRACT-authored-trigger-points.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "03-World-Area-Field/CONTRACT-authored-trigger-points.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:03-World-Area-Field/CONTRACT-field-environment-variant.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "03-World-Area-Field/CONTRACT-field-environment-variant.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DD:03-World-Area-Field/choosing-the-field-environment-variant.md",
+        "f": "DD",
+        "st": "not documented",
+        "o": "",
+        "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)",
+        "e": "03-World-Area-Field/choosing-the-field-environment-variant.md front matter status/readiness",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/CONTRACT-battle-locomotion-turn-limiter.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/CONTRACT-battle-locomotion-turn-limiter.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/CONTRACT-corridor-query-family.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/CONTRACT-navigation-search-and-follow.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/CONTRACT-navigation-search-and-follow.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/CONTRACT-separation-pass.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/CONTRACT-separation-pass.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DD:06-Movement-And-Navigation/clamping-a-point-into-a-volume.md",
+        "f": "DD",
+        "st": "not documented",
+        "o": "",
+        "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)",
+        "e": "06-Movement-And-Navigation/clamping-a-point-into-a-volume.md front matter status/readiness",
+        "lv": "L1"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md audit block",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/how-an-animation-moves-and-turns-a-character-toward-its-target.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/how-an-animation-moves-and-turns-a-character-toward-its-target.md audit block",
+        "lv": "L1"
+      },
+      {
+        "k": "DD:06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+        "f": "DD",
+        "st": "not documented",
+        "o": "",
+        "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)",
+        "e": "06-Movement-And-Navigation/the-unit-shape-distance-primitives.md front matter status/readiness",
+        "lv": "L1"
+      },
+      {
+        "k": "DA:06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+        "f": "DA",
+        "st": "no named falsification pass",
+        "o": "",
+        "n": "run one named falsification pass and stamp audit.last_pass_state",
+        "e": "06-Movement-And-Navigation/the-unit-shape-distance-primitives.md audit block",
+        "lv": "L1"
+      },
+      {
+        "k": "DD:06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md",
+        "f": "DD",
+        "st": "not documented",
+        "o": "",
+        "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)",
+        "e": "06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md front matter status/readiness",
+        "lv": "L1L2"
+      },
+      {
+        "k": "DD:06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+        "f": "DD",
+        "st": "not documented",
+        "o": "",
+        "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)",
+        "e": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md front matter status/readiness",
+        "lv": "L1"
+      },
+      {
+        "k": "DD:06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md",
+        "f": "DD",
+        "st": "not documented",
+        "o": "",
+        "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)",
+        "e": "06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md front matter status/readiness",
+        "lv": "L1"
+      }
+    ],
+    "functions": [
+      [
+        "frontier (no disposition) | Movement",
+        108,
+        "0022CC50 0022CF50 0022D4B0 0022DE60 0022E6D0 0022EAC0 00231400 00231820 00231F20 00232160 00232760 002330D0 00239370 0023B260 0023B2A0 0025D540 00263B50 00263B90 00263BC0 00263C50 002640E0 002644C0 002646A0 00265240 00265550 00265600 00269E60 0026A290 0026A370 0026A420 0026A490 0026A7C0 0026A9C0 0026AA60 0026AC00 0026ACE0 0026ADF0 0026AE30 0026AF40 0026B2D0 0026B720 0026B940 0026BA00 0026BB00 0026BB50 0026BD50 0026BFF0 0026C330 0026C3C0 0026E100 0026E130 0026E150 0026E1A0 0026E1D0 0026E260 0026E290 0026E300 0026E5D0 0026EAF0 002E5B60 002E5B90 002E6310 00309B10 00310D30 00317DE0 0032A6B0 0032A6C0 00334C30 0033B6D0 0033CBF0 0033CDE0 0033FFC0 00343E20 00344290 00345430 003488B0 00349680 0034A940 0034EBC0 0034F210 00350C30 00352040 003538C0 003567D0 00377560 00378FB0 00379010 00379080 00379110 00380FA0 00381630 00381AC0 00382080 003B7B00 003B7D80 003B7E20 003B7F40 003B8140 003B8170 003DB150 003ED7B0 003ED820 003ED840 00468D10 00468F70 00469060 00505240 0050DF00"
+      ],
+      [
+        "frontier (no disposition) | WorldAreaField",
+        17,
+        "00238850 00264110 00264B50 00264B90 002677B0 002678A0 00269060 0026DE00 00314AE0 00331990 00377400 00377750 003777A0 003777B0 003778B0 00377900 003EA6B0"
+      ]
+    ]
+  },
+  "served_page_limit": "Raw HTML retained, not rendered screenshot/browser interaction"
+}

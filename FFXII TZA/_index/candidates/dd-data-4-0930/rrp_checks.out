@@ -1,0 +1,9 @@
+   keymap sections ['Setting', 'Button', 'Analog', 'KeyFunction', 'Mouse']
+PASS K1 keymap.ini: 16 buttons, 8 analog codes, 3 key functions, mouse Left/Middle/Right
+   name refs ['001C8FBF->008FB030', '001C8FD6->008FB030', '001C8FF8->008FB050', '001C9017->008FB050']
+PASS F1 the two names are read only in 001C7940 and stored to 02CB8414 / 02CB8410
+   global refs ['001C8FFF movss', '001C9040 movss']
+PASS C1 control: the sweep finds the two stores
+PASS F2 no rip-relative reader of either global
+RESULT keymap counts anchored; the flying-fade pair is read into two globals no rip-relative code reads
+FAILS 0

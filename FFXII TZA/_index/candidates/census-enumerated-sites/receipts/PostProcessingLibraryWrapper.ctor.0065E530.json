@@ -1,0 +1,32 @@
+{
+"seed": "ctor",
+"cell": "0065E530",
+"embed": 0,
+"extent": 16,
+"enumerated_sites": [],
+"converged": true,
+"rounds": 1,
+"functions": 1,
+"pairs": 1,
+"vtinstall": [],
+"poly_asserted": null,
+"canary_widths": [],
+"sites": {
+"0:8": {
+"0065E549": [
+0,
+1
+],
+"0065E56D": [
+0,
+1
+]
+},
+"8:1": {
+"0065E54C": [
+0,
+1
+]
+}
+}
+}

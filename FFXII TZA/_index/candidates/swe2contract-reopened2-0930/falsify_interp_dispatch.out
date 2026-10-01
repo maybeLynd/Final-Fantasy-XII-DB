@@ -1,0 +1,21 @@
+PASS I0 image is the certified FFXII_TZA.exe 73461d08...
+PASS I1 0025E4C0 is 14646 B and decodes linearly to 3229 instructions covering it (page: 14,646 B, 3,229)
+PASS I1b the table 00261DF8 lies past the body end 00261DF6, so the linear decode does not run through it
+PASS I2 0025E5D6 lea r8, [rip-0x13e5dd] resolves to 00120000 (page: the image base 00120000)
+PASS I3 0025E5D1 cmp eax, 0x63 then 0025E5D4 ja 0025E60A (opcodes 0x00-0x63, out of range -> default)
+PASS I4 0025E5DD scaled-by-4 dword load at base + 0x141df8 = 00261DF8, add, jmp reg (page: RVA table at 00261DF8)
+PASS I5 all 100 entries land inside 0025E4C0's extent (100 inside)
+PASS I6 every target is an instruction start of the linear decode (100 of 100)
+PASS I7 distinct targets: 92 (page: 92)
+PASS I8 shared targets: 0025E60A <- 01 02 19 1A 31 47; 0026121A <- 2A 2B 2C; 002618A8 <- 51 60 (page: 0025E60A <- 01 02 19 1A 31 47; 0026121A <- 2A 2B 2C; 002618A8 <- 51 60)
+PASS I9 handler targets span 0025E5EA-00261D36 (page: 0025E5EA-00261D36)
+PASS I10 opcodes 0x36-0x45 dispatch to the sixteen section-13.1 handlers
+PASS I11 the sixteen register handlers move I0-I3 at r15+0x64.. and F0-F3 at r15+0x74.. through the pop/push helpers
+PASS I12 0025E4D2 xor r11d,r11d; 0025E4D8 stores it to dword 02099AC0 before any branch; the refusal test 0025E4FF/0025E502 then returns 1 at 0025E511 (SECTION-11: depth reset even on refusal)
+PASS I13 0025E4FA mov ecx, 0x10000; 0025E555 mov ebp, 1; 0025E570 sub ecx, ebp (budget 65,536)
+PASS I14 0025E5A9 cmp r12b, 0x47 / 0025E5AD jb; 0025E5AF reads byte [pc+2] (pre-decode from 0x47)
+PASS I15 0025E60A is mov dword [rsp+0xC0], ebp ; mov edi, ebp (the inert six carry no behaviour of their own)
+PASS C1 control: entry 0x36 repointed to 00262000 -> I5 and I10 FAIL on the copy
+PASS C2 control: entry 0x03 duplicated from 0x04 -> I7 (91 distinct) and I8 FAIL
+PASS C3 control: entry 0x19 taken out of the default group -> I8 FAIL
+FAILS 0

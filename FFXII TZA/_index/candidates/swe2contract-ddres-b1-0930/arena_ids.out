@@ -1,0 +1,16 @@
+0022A0B0  0022A2AE call id=0x2
+0022A0B0  0022A2CB call id=0x3
+0022A0B0  0022A2E7 call id=0x4
+0022A0B0  0022A304 call id=0x5
+0022A0B0  0022A321 call id=0x6
+0022A0B0  0022A33E call id=0x7
+0022A0B0  0022A35B call id=0x8
+0022A0B0  0022A377 call id=0x9
+0022A0B0  0022A394 call id=0xb
+0025A990  0025AA21 jmp  id=0xd
+0025AA30  0025AAC1 jmp  id=0xe
+0037B3D0  0037B43D call id=0xb
+003E9AA0  003E9AEF call id=0xc
+PASS  control: boot registers ['0x2', '0x3', '0x4', '0x5', '0x6', '0x7', '0x8', '0x9', '0xb']
+absolute qword 00369D30 occurrences in the file: 0
+ids registered image-wide: ['0x2', '0x3', '0x4', '0x5', '0x6', '0x7', '0x8', '0x9', '0xb', '0xc', '0xd', '0xe'] ; id 10 present: False

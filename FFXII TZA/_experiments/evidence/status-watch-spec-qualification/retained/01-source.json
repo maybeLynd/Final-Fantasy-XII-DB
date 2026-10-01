@@ -1,0 +1,57 @@
+{
+  "method": "A: exact authored resource; no live or isolated execution",
+  "archive": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\FFXII_TZA.vbf",
+  "archive_size": 31196932183,
+  "archive_mtime_ns": 1788875311803686800,
+  "index_bytes": 11995716,
+  "index_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+  "entry": "ps2data/image/ff12/test_battle/us/binaryfile/battle_pack.bin",
+  "entry_tuple": [
+    791587,
+    281128,
+    29412447668
+  ],
+  "entry_bytes": 281128,
+  "entry_sha256": "d1bb89aac759cfcd4eb181715d9e88afb78d62a9a3fcffa6242f365f182cbc98",
+  "stored_blocks": [
+    {
+      "index": 791587,
+      "archive_offset": 29412447668,
+      "bytes": 20762,
+      "sha256": "f9d52c17b81542b63b243ca9e76910abc9e396cee850b38ea11c66b702bbedc2"
+    },
+    {
+      "index": 791588,
+      "archive_offset": 29412468430,
+      "bytes": 22365,
+      "sha256": "cec49dc9687e68fc0c9f1d04f91e3348279cd537ea9bd6fc60e353fffb31ea89"
+    },
+    {
+      "index": 791589,
+      "archive_offset": 29412490795,
+      "bytes": 18231,
+      "sha256": "6999f441585d3492a77530955a95ccaf501868d9fb607923c0a51df579f375f3"
+    },
+    {
+      "index": 791590,
+      "archive_offset": 29412509026,
+      "bytes": 16908,
+      "sha256": "0779dcbc89697b9af87d664e62acbcf4c2ce5d455275e696614ed84179a2df4f"
+    },
+    {
+      "index": 791591,
+      "archive_offset": 29412525934,
+      "bytes": 4442,
+      "sha256": "5dcfea6a877ccc8a25461c284fb6b8bfe1efc44df08dfe1f0e39c71b31e726c4"
+    }
+  ],
+  "directory_bytes": 68,
+  "directory_sha256": "28fa9ccaa990a06e3470dbee450e8bebbf5f6d612fab89716e322ebda84efec9",
+  "table_file_offset": 110968,
+  "table_bytes": 1312,
+  "table_sha256": "c5ea6807f40789f68ee79e4648c6fc8da0d90ea3af0639b73256f8f14c9e8821",
+  "extractor_sha256": "1841f666b28fb737bf02ab3bb0ea90a7515273f74533a772e7f7131c0e0de611",
+  "observer_path": "Database/Tools/analysis-kit/gfz-scripts/hwbp.py",
+  "observer_sha256": "fb69cd13ee47c54745c9e5942aebbe6a5b2b574ebe145e3a8d8a6c800b10e091",
+  "limits": "One US entry, no other languages. Whole archive content not hashed. Table values do not prove readers, native binding, lifecycle or meaning."
+}

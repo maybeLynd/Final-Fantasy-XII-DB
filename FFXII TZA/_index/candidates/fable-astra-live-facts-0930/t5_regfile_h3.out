@@ -1,0 +1,237 @@
+H0 = 162 functions (getter callers 75, manager-array referrers 96); H3 = 1643 functions
+W = 1443 functions image-wide; W & H3 = 48 functions
+  00217150 FUN_00217150
+       0021720C movss    dword ptr [rbp + 0x6f], xmm5                 base=rbp
+       00217231 movss    dword ptr [rbp + 0x77], xmm5                 base=rbp
+       00217252 movss    dword ptr [rbp + 0x7f], xmm5                 base=rbp
+       0021726D movss    dword ptr [rbp + 0x67], xmm1                 base=rbp
+       00217299 movss    dword ptr [rbp + 0x67], xmm0                 base=rbp
+  00234200 ActorSystem_ReleaseBattleUnitSlotForActor
+       00234291 movups   xmmword ptr [rcx + 0x60], xmm0               base=rcx
+       0023429E mov      dword ptr [rcx + 0x74], eax                  base=rcx
+  0023A570 BattleUnit_ApplyUnitDefinition
+       0023ABD1 movss    dword ptr [rdi + 0x64], xmm6                 base=rdi
+       0023ABD6 movss    dword ptr [rdi + 0x6c], xmm7                 base=rdi
+       0023AC0C movss    dword ptr [rdi + 0x68], xmm0                 base=rdi
+  002419B0 FUN_002419b0
+       002419EF mov      dword ptr [rbx + 0x7c], eax                  base=rbx
+  00244DD0 FUN_00244dd0
+       00244E1F and      dword ptr [rbx + 0x7c], 0xfffffff1           base=rbx
+       00244E23 or       dword ptr [rbx + 0x7c], 1                    base=rbx
+       00244E6A mov      dword ptr [rbx + 0x70], ecx                  base=rbx
+       00244E7B mov      dword ptr [rbx + 0x74], eax                  base=rbx
+       00244E88 mov      qword ptr [rbx + 0x68], rcx                  base=rbx
+       00244E92 mov      dword ptr [rbx + 0x74], eax                  base=rbx
+       00244E95 mov      dword ptr [rbx + 0x78], 0x3f800000           base=rbx
+       00244EBC mov      dword ptr [rbx + 0x7c], edi                  base=rbx
+       00244ED4 mov      dword ptr [rbx + 0x70], edx                  base=rbx
+       00244ED7 and      dword ptr [rbx + 0x7c], 0xfffffff4           base=rbx
+       00244EDB or       dword ptr [rbx + 0x7c], 4                    base=rbx
+       00244EDF or       dword ptr [rbx + 0x7c], 0x30                 base=rbx
+  00259620 FUN_00259620  [H0]
+       0025977D movups   xmmword ptr [rdi + 0x58], xmm1               base=rdi
+       00259788 movups   xmmword ptr [rdi + 0x68], xmm0               base=rdi
+       00259793 movups   xmmword ptr [rdi + 0x78], xmm1               base=rdi
+  0025B070 ActorSystem_ReleaseManagerRecords  [H0]
+       0025B111 mov      dword ptr [rax + 0x74], edi                  base=rax
+       0025B1A6 mov      dword ptr [rax + 0x74], edi                  base=rax
+  0025E4C0 WorldActorScriptVM_InterpretBytecode  [H0]
+       00261624 mov      dword ptr [r15 + 0x64], eax                  base=r15
+       00261635 mov      dword ptr [r15 + 0x68], eax                  base=r15
+       00261646 mov      dword ptr [r15 + 0x6c], eax                  base=r15
+       00261657 mov      dword ptr [r15 + 0x70], eax                  base=r15
+       00261668 movss    dword ptr [r15 + 0x74], xmm0                 base=r15
+       0026167B movss    dword ptr [r15 + 0x78], xmm0                 base=r15
+       0026168E movss    dword ptr [r15 + 0x7c], xmm0                 base=r15
+       002616A1 movss    dword ptr [r15 + 0x80], xmm0                 base=r15
+  00265A20 ActorSystem_BindBattleUnitsForEligibleRecords  [H0]
+       00265B0B mov      byte ptr [rax + 0x65], r12b                  base=rax
+  00265B60 FUN_00265b60
+       00265C4E mov      byte ptr [rcx + 0x70], al                    base=rcx
+       00265C55 mov      qword ptr [rcx + 0x68], rdi                  base=rcx
+       00265C64 mov      byte ptr [rcx + 0x71], al                    base=rcx
+       00265C6E mov      dword ptr [rcx + 0x80], edi                  base=rcx
+       00265C74 and      byte ptr [rcx + 0x71], 0xf7                  base=rcx
+       00265C78 and      byte ptr [rcx + 0x70], 0xfb                  base=rcx
+       00265C7C mov      dword ptr [rcx + 0x74], 0xbf800000           base=rcx
+       00265C83 mov      dword ptr [rcx + 0x78], 0xbf800000           base=rcx
+       00265C8A mov      dword ptr [rcx + 0x7c], 0xbf800000           base=rcx
+       00265C99 mov      word ptr [rcx + 0x72], 0xffff                base=rcx
+  00265FF0 FUN_00265ff0
+       0026617B and      byte ptr [rax + 0x6a], 0xfe                  base=rax
+       00266186 and      byte ptr [rax + 0x6a], 0xfd                  base=rax
+       00266201 and      byte ptr [rax + 0x6a], 0xfe                  base=rax
+       0026620C and      byte ptr [rax + 0x6a], 0xfd                  base=rax
+       002663C6 mov      dword ptr [rsi + 0x70], 0x3f800000           base=rsi
+       0026646E mov      dword ptr [rsi + 0x68], 0xbf800000           base=rsi
+       00266475 mov      dword ptr [rsi + 0x6c], 0x3f000000           base=rsi
+       00266480 mov      dword ptr [rsi + 0x74], r15d                 base=rsi
+       002664CD mov      dword ptr [rax + 0x7c], r15d                 base=rax
+       002664F2 mov      dword ptr [rax + 0x7c], r15d                 base=rax
+  002681E0 FUN_002681e0
+       002682A7 mov      word ptr [rcx + 0x80], bx                    base=rcx
+  0026A870 FUN_0026a870
+       0026A8CF movss    dword ptr [rcx + 0x74], xmm3                 base=rcx
+  0026A8E0 FUN_0026a8e0
+       0026A93F movss    dword ptr [rcx + 0x70], xmm3                 base=rcx
+  0026AE90 Movement_SetSteeringMode
+       0026AF02 mov      dword ptr [rcx + 0x7c], 0                    base=rcx
+  0026C070 FUN_0026c070
+       0026C088 mov      byte ptr [rcx + 0x64], dl                    base=rcx
+  0026C300 FUN_0026c300
+       0026C31F movss    dword ptr [rcx + 0x78], xmm0                 base=rcx
+  0026C8C0 ActorManager_BindLoadedDefinitionPayload  [H0]
+       0026CB38 mov      qword ptr [rdi + 0x60], rax                  base=rdi
+       0026CB43 mov      qword ptr [rdi + 0x68], rax                  base=rdi
+       0026CB4E mov      qword ptr [rdi + 0x70], rax                  base=rdi
+       0026CB59 mov      qword ptr [rdi + 0x80], rax                  base=rdi
+       0026CB6B mov      qword ptr [rdi + 0x78], rax                  base=rdi
+  0029DF20 FUN_0029df20
+       0029DF55 mov      dword ptr [r8 + 0x7c], ecx                   base=r8
+  002A27F0 FUN_002a27f0
+       002A281E mov      dword ptr [rcx + 0x7c], eax                  base=rcx
+  002EC3F0 FUN_002ec3f0
+       002EC433 and      byte ptr [r9 + 0x6a], 0xfe                   base=r9
+  00300E40 BattleUnit_TeardownAndDespawn
+       00300F2E mov      dword ptr [rdi + 0x74], 0xffffffff           base=rdi
+  0030E360 BattleStats_ChangeStatusAndProcessSideEffects
+       0030E4F8 mov      dword ptr [rsi + 0x64], eax                  base=rsi
+       0030E53E mov      dword ptr [rsi + 0x64], eax                  base=rsi
+  00329A80 FUN_00329a80
+       00329AD0 movss    dword ptr [rbx + 0x70], xmm6                 base=rbx
+  0032B880 FUN_0032b880
+       0032B890 movss    dword ptr [rcx + 0x70], xmm1                 base=rcx
+       0032B8A1 mov      byte ptr [rcx + 0x80], 0                     base=rcx
+  0032B8B0 FUN_0032b8b0
+       0032B8DB movss    dword ptr [rcx + 0x7c], xmm2                 base=rcx
+       0032B8EC mov      byte ptr [rcx + 0x80], 0                     base=rcx
+  0032E870 FUN_0032e870
+       0032E965 mov      dword ptr [r10 + 0x64], eax                  base=r10
+       0032E970 mov      qword ptr [r10 + 0x70], rdi                  base=r10
+  0032EC40 FUN_0032ec40
+       0032ECC5 mov      dword ptr [rcx + 0x64], 0xffffffff           base=rcx
+  0033CA00 FUN_0033ca00
+       0033CA8D movups   xmmword ptr [rcx + 0x60], xmm0               base=rcx
+       0033CA95 movups   xmmword ptr [rcx + 0x70], xmm0               base=rcx
+       0033CAA0 movups   xmmword ptr [rcx + 0x80], xmm1               base=rcx
+  0035BB70 FUN_0035bb70
+       0035BBC2 mov      dword ptr [rcx + 0x7c], eax                  base=rcx
+       0035BC05 mov      dword ptr [rbx + 0x7c], eax                  base=rbx
+  00369860 FUN_00369860
+       00369B18 sub      dword ptr [rcx + 0x68], eax                  base=rcx
+  00369D30 FUN_00369d30
+       00369F70 mov      dword ptr [rbx + 0x64], r8d                  base=rbx
+       00369FAD mov      qword ptr [rbx + 0x68], r8                   base=rbx
+       00369FB1 mov      qword ptr [rbx + 0x70], r8                   base=rbx
+       00369FB5 mov      qword ptr [rbx + 0x78], r8                   base=rbx
+       00369FB9 mov      qword ptr [rbx + 0x80], r8                   base=rbx
+  0036BC60 FUN_0036bc60
+       0036BFAD add      dword ptr [rbx + rdi*4 + 0x68], r14d         base=rbx idx
+  00375900 FUN_00375900
+       003759BB mov      dword ptr [rcx + 0x68], eax                  base=rcx
+       003759C2 mov      dword ptr [rcx + 0x6c], 0                    base=rcx
+       00375A01 movsd    qword ptr [rcx + 0x60], xmm0                 base=rcx
+  00375A20 FUN_00375a20
+       00375AC3 movups   xmmword ptr [rdx + 0x60], xmm0               base=rdx
+  00380B80 FUN_00380b80
+       00380B9D mov      qword ptr [rcx + 0x80], rax                  base=rcx
+       00380BB1 mov      dword ptr [rcx + 0x64], 0x3f000000           base=rcx
+       00380BB8 mov      dword ptr [rcx + 0x68], 0x3f000000           base=rcx
+       00380BBF mov      dword ptr [rcx + 0x6c], 0x40000000           base=rcx
+       00380BC6 mov      dword ptr [rcx + 0x70], 0x3f000000           base=rcx
+       00380BCD mov      dword ptr [rcx + 0x74], 0x3f000000           base=rcx
+       00380BD4 mov      qword ptr [rcx + 0x78], 0x40000000           base=rcx
+  00380D30 FUN_00380d30
+       00380DCB movss    dword ptr [rbx + 0x7c], xmm0                 base=rbx
+  003A4290 FUN_003a4290  [H0]
+       003A42C4 mov      qword ptr [rbp + 0x78], rax                  base=rbp
+       003A501B movss    dword ptr [rbp + 0x68], xmm6                 base=rbp
+       003A5033 movss    dword ptr [rbp + 0x70], xmm4                 base=rbp
+  003AB960 FUN_003ab960
+       003AB9D6 movups   xmmword ptr [rdx + 0x60], xmm0               base=rdx
+       003ABAC4 movss    dword ptr [rdx + 0x68], xmm0                 base=rdx
+       003ABAD7 movss    dword ptr [rdx + 0x6c], xmm2                 base=rdx
+  003D99B0 FUN_003d99b0
+       003D99F7 mov      dword ptr [rdi + 0x64], 0x3fa66666           base=rdi
+       003D99FE mov      dword ptr [rdi + 0x68], 0x40000000           base=rdi
+  00409D60 FUN_00409d60
+       00409DE6 mov      qword ptr [rsi + rdi + 0x68], r15            base=rsi idx
+  0042DA30 CharacterRenderRecord_RefreshLoadedResourceBindings
+       0042DB74 mov      qword ptr [rbx + 0x68], rdi                  base=rbx
+  00472820 FUN_00472820
+       004728FC movups   xmmword ptr [rcx + 0x60], xmm1               base=rcx
+       00472907 movups   xmmword ptr [rcx + 0x70], xmm0               base=rcx
+       00472912 movups   xmmword ptr [rcx + 0x80], xmm1               base=rcx
+  004FE930 FUN_004fe930
+       004FEA24 movdqa   xmmword ptr [rbx + 0x80], xmm1               base=rbx
+       004FEA2E movdqa   xmmword ptr [rbx + 0x80], xmm1               base=rbx
+       004FEA60 movdqa   xmmword ptr [rbx + 0x80], xmm0               base=rbx
+  004FEAD0 FUN_004fead0
+       004FEB8B movups   xmmword ptr [rdi + 0x80], xmm0               base=rdi
+       004FF006 movups   xmmword ptr [rdi + 0x80], xmm0               base=rdi
+       004FF02E movaps   xmmword ptr [rdi + 0x60], xmm0               base=rdi
+       004FF032 movaps   xmmword ptr [rdi + 0x70], xmm1               base=rdi
+       004FF05C movups   xmmword ptr [rdi + 0x70], xmm0               base=rdi
+  00518E60 FUN_00518e60
+       00518F48 movups   xmmword ptr [rcx + 0x60], xmm1               base=rcx
+  00519A30 FUN_00519a30
+       00519B21 movups   xmmword ptr [rcx + 0x60], xmm1               base=rcx
+       00519B2C movups   xmmword ptr [rcx + 0x80], xmm0               base=rcx
+  0051A320 FUN_0051a320
+       0051A33A mov      qword ptr [rbx + 0x70], rax                  base=rbx
+       0051A33E mov      dword ptr [rbx + 0x78], eax                  base=rbx
+
+== bulk operations inside H3 (memset/memcpy calls and rep string ops), for reading:
+  00233440 SpawnKeep_SerializePersistenceBanks: ['00233451 call memset']
+  00233780 SpawnKeep_RotatePersistenceBanksForAreaTransition: ['002339B0 call memset', '002339E2 rep stosw']
+  00234200 ActorSystem_ReleaseBattleUnitSlotForActor: ['002342CE call memset']
+  00234480 BattleUnit_AllocateSlotAndBindActor: ['002344D2 call memset']
+  002370C0 FUN_002370c0: ['002370D3 call memset']
+  0023AC80 BattleStats_InitializeDefinitionRecord: ['0023ACBD call memset']
+  002556F0 FUN_002556f0: ['0025574F call memset', '002557C9 call memset']
+  00259B30 FUN_00259b30: ['00259C4C call memset', '00259C60 call memset', '00259C74 call memset', '00259C88 call memset']
+  00259E90 CameraSystem_InitializeRecords: ['00259F2A call memset', '00259F53 call memset', '00259F73 call memset']
+  00266530 ActorStorage_InitializeRecord: ['002668B0 rep stosw']
+  00266D10 FUN_00266d10: ['00266EFC call memset', '0026717A call memset', '0026718E call memset']
+  002679F0 ActorStorage_AllocateAndInitializeRecords: ['00267A8B call memset']
+  002695A0 FUN_002695a0: ['002695D3 call memset']
+  0026B870 FUN_0026b870: ['0026B898 rep stosd']
+  0026D3E0 FUN_0026d3e0: ['0026D4D5 call memcpy']
+  0026DB30 WorldPersistence_ResetBanksForFieldTransition: ['0026DB80 call memset', '0026DC11 call memset', '0026DC2E call memset']
+  0026E640 FUN_0026e640: ['0026E6EE rep stosw']
+  0026F470 FUN_0026f470: ['0026F586 call memset', '0026F7E8 call memset']
+  00273E30 FUN_00273e30: ['0027428C call memset', '002744CF call memset']
+  002A2720 FUN_002a2720: ['002A277E call memset']
+  002EA320 FUN_002ea320: ['002EA3B6 rep stosw']
+  002EF2D0 FUN_002ef2d0: ['002EF2E8 call memset']
+  0030C3F0 FUN_0030c3f0: ['0030C3FF jmp memset']
+  0030E360 BattleStats_ChangeStatusAndProcessSideEffects: ['0030E5E1 call memset']
+  003145E0 WorldTransition_StageFieldTransition: ['0031478D call memset', '0031479F call memset', '003147B4 call memset']
+  00330310 ActorResource_BeginPrimaryPayloadLoad: ['00330407 call memcpy']
+  0035BB70 FUN_0035bb70: ['0035BB85 call memset']
+  00369D30 FUN_00369d30: ['00369F45 rep stosq', '00369F5B rep stosd']
+  00375470 FUN_00375470: ['003754DF rep movsq']
+  00379630 FUN_00379630: ['003796DB call memset']
+  00379F70 FUN_00379f70: ['0037A0EA call memset']
+  003924B0 FUN_003924b0: ['0039267E call memset']
+  00392710 FUN_00392710: ['00392738 jmp memset']
+  00392740 FUN_00392740: ['003927BB call memset', '003927D9 call memset', '003927ED call memset']
+  003B02A0 FUN_003b02a0: ['003B03B6 call memset']
+  003B0770 FUN_003b0770: ['003B07EF rep movsq']
+  003B0980 FUN_003b0980: ['003B0A9A rep movsq']
+  003B18E0 FUN_003b18e0: ['003B1A06 rep movsq']
+  003B6C20 FUN_003b6c20: ['003B6C39 rep stosd']
+  003B6ED0 FUN_003b6ed0: ['003B6EF9 rep stosd']
+  003B81A0 FUN_003b81a0: ['003B81F6 call memset']
+  003BBCD0 FUN_003bbcd0: ['003BBCE6 jmp memset']
+  003C5410 FUN_003c5410: ['003C54A2 call memset', '003C54C2 call memset']
+  003C5E50 FUN_003c5e50: ['003C5EBB call memset', '003C5ED4 call memset', '003C5EE8 call memset', '003C5F1A call memset']
+  003C5F00 FUN_003c5f00: ['003C5F1A call memset', '003C5F59 call memset', '003C5F6D call memset']
+  003D9FB0 FUN_003d9fb0: ['003D9FBF jmp memset']
+  003DC2D0 VMNativeCommandDispatch_InitializeFamilyTables: ['003DC2E8 rep stosq']
+  003DDD10 FUN_003ddd10: ['003DDD5F call memset']
+  003DE710 FUN_003de710: ['003DE755 call memset']
+  005844A0 SaveTransition_PrepareRuntimeImageForCapture: ['005844E9 call memset']
+
+CONTROL interpreter 0025E4C0 in W & H3 with its register stores: True ['00261624', '00261635', '00261646', '00261657', '00261668', '0026167B', '0026168E', '002616A1']
+CONTROL pool memset 00267A8B listed in H3 bulk: True

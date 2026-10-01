@@ -1,0 +1,29 @@
+   load: lifecycle handler -> normaliser            00582860 -> 00584210 at 00582EBA
+PASS E load: lifecycle handler -> normaliser
+   load: lifecycle handler -> load-mode bit setter  00582860 -> 00238A30 at 00582CC8 00582CDE
+PASS E load: lifecycle handler -> load-mode bit setter
+   load: lifecycle handler -> restore mark          00582860 -> 00285E60 at 00582CD0 00582CE6
+PASS E load: lifecycle handler -> restore mark
+   load: restore mark -> guard                      00285E60 -> 00233C10 at 00285E86
+PASS E load: restore mark -> guard
+   guard -> reinitialise                            00233C10 -> 00237DF0 at 00233C3F 00233C48 00233C59
+PASS E guard -> reinitialise
+   reinitialise -> inventory/authored init          00237DF0 -> 0023AF50 at 00237DF6
+PASS E reinitialise -> inventory/authored init
+   authored init -> zero-and-stamp                  0023AF50 -> 002370C0 at 0023AF56
+PASS E authored init -> zero-and-stamp
+   save: header init -> 0x58 constant               00253A80 -> 002EF2A0 at 00253AAC
+PASS E save: header init -> 0x58 constant
+   save: header init -> 0x60 constant               00253A80 -> 00235E90 at 00253ACA
+PASS E save: header init -> 0x60 constant
+   save: finaliser -> bit-12 reader                 00583D60 -> 00236760 at 00583F5A
+PASS E save: finaliser -> bit-12 reader
+   control C1: finaliser -> persistent-flag gate    00583D60 -> 0032A8A0 at 00583F17
+PASS E control C1: finaliser -> persistent-flag gate
+PASS O 00584210's complete raw caller set is 00582860 - 00582860
+PASS O 002EF2A0's complete raw caller set is 00253A80 - 00253A80
+PASS O 00235E90's complete raw caller set is 00253A80 - 00253A80
+   guard 00233C10 raw callers: 00280140 00285E60 0036FCC0 00394130
+PASS O guard callers are 00280140, 00285E60, 0036FCC0, 00394130 (the page's list)
+PASS C2 control: no direct 00584210 -> 002370C0 edge is reported
+FAILS 0

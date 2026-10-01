@@ -1,0 +1,5 @@
+PASS  T this + 0x480 / + 0x4D0: 005DC1C0(texture170 / texture2F8) then the eight PRenderTargetD3D11 fields +0x10..+0x48 (store rows ['+0x10/8', '+0x18/8', '+0x20/8', '+0x28/8', '+0x30/4', '+0x38/8', '+0x40/4', '+0x48/8'])
+PASS  S descriptor slot +0x50 = 00611420 -> 00615ED0, the default constructor; its stores are the D3D11 default raster / depth-stencil / blend state
+PASS  P this + 0x830 / + 0x9C0: PShaderPassStateD3D11; this + 0xB50: ten qwords then 8 x 0x190 PShaderPassStateD3D11 through the vector constructor iterator
+PASS  W the sub-object rows are in the store; RenderContextPassStateBlock tiles; the context's rows end at +0x18C0, or at +0x221F8 once render_primitive.py adds the renderer
+FAILS 0

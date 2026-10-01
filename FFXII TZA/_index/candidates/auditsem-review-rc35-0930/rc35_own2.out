@@ -1,0 +1,23 @@
+L site 003BC2C2 routine 003BC2C0..003BC2CC e0=0 byte+2=0 x20=0 
+L site 003BD860 routine 003BD860..003BD86E e0=0 byte+2=0 x20=0 
+L site 003BD890 routine 003BD890..003BD8CD e0=0 byte+2=0 x20=0 
+L site 003BE680 routine 003BE680..003BE6F6 e0=1 byte+2=1 x20=2 CAND
+L site 003BF8E0 routine 003BF8E0..003BF90F e0=0 byte+2=0 x20=0 
+L site 003C0250 routine 003C0250..003C0297 e0=0 byte+2=0 x20=0 
+L site 003C0340 routine 003C0340..003C036F e0=1 byte+2=0 x20=0 
+L site 003C0890 routine 003C0890..003C089E e0=0 byte+2=0 x20=0 
+L site 003C0CC0 routine 003C0CC0..003C0CD1 e0=0 byte+2=0 x20=0 
+L site 003C0CF0 routine 003C0CF0..003C0D22 e0=0 byte+2=0 x20=0 
+L site 003C20D0 routine 003C20D0..003C20DC e0=0 byte+2=0 x20=0 
+L site 003C2199 routine 003C2190..003C21A0 e0=0 byte+2=0 x20=0 
+L site 003C21B0 routine 003C21B0..003C21B7 e0=0 byte+2=0 x20=0 
+L site 003C21C5 routine 003C21C0..003C21F2 e0=0 byte+2=0 x20=0 
+L site 003C2202 routine 003C2200..003C2209 e0=0 byte+2=0 x20=0 
+P 003BCAF0
+   003BCB41 movzx ecx, byte ptr [rdx + 2]
+   003BCB56 lea r9, [rax + r8*4]
+   003BCB78 lea r9, [rax + r8*4]
+P 003BF520
+N 003BFF20 negative-displacement memory operands: 0
+N 003C1070 negative-displacement memory operands: 0
+N 003C0740 negative-displacement memory operands: 0

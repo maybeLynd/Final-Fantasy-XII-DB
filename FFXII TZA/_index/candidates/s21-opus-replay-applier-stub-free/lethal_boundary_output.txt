@@ -1,0 +1,7 @@
+font_pack_binds_by_its_shipped_callback                                            PASS
+lethal_path_reaches_the_message_display_through_the_death_credit                   PASS
+font_table_read_now_succeeds_and_the_glyph_emitter_calls_the_graphics_context      PASS
+zeroed_context_cell_only_moves_the_fault_into_the_graphics_layer                   PASS
+no_contract_step_of_the_lethal_chain_is_reached                                    PASS
+{'graphics_context_null': (['0028F1F0 display', '00469BB0 death credit', '0032A150 credit', '002B4090 display', '002AC5F0 glyph emitter', '0039BA00 font table', '002AC5F0 glyph emitter', '0039BA00 font table', '002AC5F0 glyph emitter', '001B5FA0 graphics context'], '005C52D0', ['00000028']), 'graphics_context_zeroed_cell': (['0028F1F0 display', '00469BB0 death credit', '0032A150 credit', '002B4090 display', '002AC5F0 glyph emitter', '0039BA00 font table', '002AC5F0 glyph emitter', '0039BA00 font table', '002AC5F0 glyph emitter', '001B5FA0 graphics context'], '001B51C0', ['00000040'])}
+ALL PASS

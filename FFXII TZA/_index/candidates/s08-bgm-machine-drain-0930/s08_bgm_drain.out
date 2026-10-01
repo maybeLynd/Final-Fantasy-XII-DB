@@ -1,0 +1,18 @@
+PASS C0 returns with a valid id  "1040"
+PASS C0 drains all 64 in the same call  {"free": 63, "pending": 1, "cover": true}
+PASS C0 machine entered once per state-1 arm visit and returns 0  [65, 64, [0]]
+PASS C0 stream bytes unchanged  ""
+PASS C1 drains all 64 in the same call  {"free": 63, "pending": 1, "cover": true}
+PASS C1 machine returns 0 at every arm visit  [0]
+PASS C1 stream bytes unchanged  ""
+PASS C3 does not return (planned stop)  "planned stop: 0032E870 entered 8 times without returning"
+PASS C3 nothing drained: 64 pending, 0 free at the stop  {"free": 0, "pending": 64, "cover": true}
+PASS C3 re-entry chain: requester nested 1+DEPTH deep via 0032E780, machine re-entered in state 7 each level  [8, 7, [7], 304]
+PASS C3 state never advances to 8 (the write follows the submission)  7
+PASS C4 does not return (planned stop)  "planned stop: 0032E870 entered 8 times without returning"
+PASS C4 nothing drained: 64 pending, 0 free at the stop  {"free": 0, "pending": 64, "cover": true}
+PASS C4 re-entry chain in state 1  [8, 7, [1], 304]
+PASS C4 fileBytes taken from the size table (0x40000) and state still 1  "00000400"
+PASS NEG corrupted C0 record is rejected by the drain predicate  {"free": 62, "pending": 2, "cover": true}
+harness sha16: {"printf_bridge.py": "17682a34bacb2b26", "world.json": "7b4c96882ac47df1", "world.py": "4de4b00a6f1cd8a7"}
+checks 16 FAILS 0

@@ -1,0 +1,7 @@
+R2_R3_construct                    PASS  001F4DA0 over a 0xCC-filled 0x668 buffer installs vtable 00903B68 and clears the ready latch +0x4B4 with one byte store at 001F4EC9
+R7_clear_latch_publishes_nothing   PASS  latch 0: 001FB120 returns at 001FB13A with no store to the object or the element - both banks keep their previous bytes
+R5_selector_picks_one_bank         PASS  latch 1: with [01F7F598]+0x1C = 0 the three source matrices land in bank A (+0x4C4) and bank B is untouched; with 1 they land in bank B (+0x584) and bank A is untouched - the bank is chosen outside the object
+R6_publish_has_no_loops            PASS  001FB120: 105 instructions, 48 movups, no backward jump (static)
+R1_one_size_both_ends              PASS  the allocation at 001BD527 and the sized delete at 001F5309 both load 0x668 (static)
+R2_teardown_vtable_chain           PASS  001F51E0 first stores the class vtable 00903B68 (001F51F9 - the class's second and last reference), runs its member teardown, and the base destructor then installs the base vtable; the latch is not cleared by it
+ok

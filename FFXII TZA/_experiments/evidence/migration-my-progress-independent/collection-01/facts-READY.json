@@ -1,0 +1,403 @@
+{
+  "version": "MP-2",
+  "facts": [
+    {
+      "k": "Q:W-901",
+      "f": "Q",
+      "ok": false,
+      "st": "transferred to ASTRA-FIX-CARRIER-0001 - carrier open, obligation not closed",
+      "doc": null,
+      "h": [
+        [
+          "section",
+          "W"
+        ]
+      ],
+      "o": "",
+      "e": "_index/OPEN-QUESTIONS.md row W-901",
+      "n": "answer the row, or record an accepted disposition under the register rules"
+    },
+    {
+      "k": "Q:W-902",
+      "f": "Q",
+      "ok": true,
+      "st": "ANSWERED",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "_index/OPEN-QUESTIONS.md row W-902; page 04-Actor-Entity/answered.md",
+      "n": ""
+    },
+    {
+      "k": "Q:W-903",
+      "f": "Q",
+      "ok": false,
+      "st": "OPEN",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "_index/OPEN-QUESTIONS.md row W-903; page 04-Actor-Entity/answered.md",
+      "n": "answer the row, or record an accepted disposition under the register rules"
+    },
+    {
+      "k": "P:04-Actor-Entity/answered.md#184c9a37",
+      "f": "P",
+      "ok": false,
+      "st": "unticked box naming closed row(s) W-902",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/answered.md line 6: - [ ] **W-902.** open page against answered row, retain residue",
+      "n": "tick the box to match the closed row, or reopen the row"
+    },
+    {
+      "k": "P:04-Actor-Entity/answered.md#4e62eb74",
+      "f": "P",
+      "ok": false,
+      "st": "unticked box with no register id",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/answered.md line 7: - [ ] independent idless obligation",
+      "n": "give the box a register id and row, or close it with evidence (register header rule; audit pass 29)"
+    },
+    {
+      "k": "DD:04-Actor-Entity/answered.md",
+      "f": "DD",
+      "ok": true,
+      "st": "documented, all answered",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/answered.md front matter status/readiness",
+      "n": ""
+    },
+    {
+      "k": "DA:04-Actor-Entity/answered.md",
+      "f": "DA",
+      "ok": false,
+      "st": "no named falsification pass",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/answered.md audit block",
+      "n": "run one named falsification pass and stamp audit.last_pass_state"
+    },
+    {
+      "k": "DV:04-Actor-Entity/answered.md",
+      "f": "DV",
+      "ok": false,
+      "st": "no exe_sha256 stamp",
+      "doc": "04-Actor-Entity/answered.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/answered.md verified_against",
+      "n": "re-verify against the certified parent, then update the stamp"
+    },
+    {
+      "k": "DD:04-Actor-Entity/dispositioned.md",
+      "f": "DD",
+      "ok": false,
+      "st": "not documented",
+      "doc": "04-Actor-Entity/dispositioned.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/dispositioned.md front matter status/readiness",
+      "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)"
+    },
+    {
+      "k": "DA:04-Actor-Entity/dispositioned.md",
+      "f": "DA",
+      "ok": false,
+      "st": "no named falsification pass",
+      "doc": "04-Actor-Entity/dispositioned.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/dispositioned.md audit block",
+      "n": "run one named falsification pass and stamp audit.last_pass_state"
+    },
+    {
+      "k": "DV:04-Actor-Entity/dispositioned.md",
+      "f": "DV",
+      "ok": false,
+      "st": "no exe_sha256 stamp",
+      "doc": "04-Actor-Entity/dispositioned.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/dispositioned.md verified_against",
+      "n": "re-verify against the certified parent, then update the stamp"
+    },
+    {
+      "k": "DD:04-Actor-Entity/partial.md",
+      "f": "DD",
+      "ok": false,
+      "st": "not documented",
+      "doc": "04-Actor-Entity/partial.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/partial.md front matter status/readiness",
+      "n": "bring the page to DOCUMENTED (or readiness at BEHAVIORALLY UNDERSTOOD)"
+    },
+    {
+      "k": "DA:04-Actor-Entity/partial.md",
+      "f": "DA",
+      "ok": false,
+      "st": "no named falsification pass",
+      "doc": "04-Actor-Entity/partial.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/partial.md audit block",
+      "n": "run one named falsification pass and stamp audit.last_pass_state"
+    },
+    {
+      "k": "DV:04-Actor-Entity/partial.md",
+      "f": "DV",
+      "ok": false,
+      "st": "no exe_sha256 stamp",
+      "doc": "04-Actor-Entity/partial.md",
+      "h": [
+        [
+          "folder",
+          "04"
+        ]
+      ],
+      "o": "",
+      "e": "04-Actor-Entity/partial.md verified_against",
+      "n": "re-verify against the certified parent, then update the stamp"
+    },
+    {
+      "k": "E:container",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit container",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_000",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_000",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_002",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_002",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_003",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_003",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_004",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_004",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_006",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_006",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_008",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_008",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_009",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_009",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_010",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_010",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_011",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_011",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_012",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_012",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_014",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_014",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_016",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_016",
+      "n": "explain the unit (ebp_units:)"
+    },
+    {
+      "k": "E:section_019",
+      "f": "E",
+      "ok": false,
+      "st": "unexplained",
+      "doc": null,
+      "h": [],
+      "o": "",
+      "e": "EBP unit section_019",
+      "n": "explain the unit (ebp_units:)"
+    }
+  ],
+  "failed": {
+    "F": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-01\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\..\\\\..\\\\..\\\\FFXII TZA\\\\99-Unresolved-Residual\\\\Unlisted-Code\\\\uc1-applied-population-1-64.tsv'",
+    "R": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-01\\\\fixture-db\\\\02-Resource-And-Asset-Pipeline\\\\authored-data-table-registry.md'",
+    "X": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-01\\\\source\\\\Database\\\\Tools\\\\analysis-kit\\\\gfz-scripts\\\\..\\\\..\\\\work\\\\formats\\\\archive-extension-census.tsv'",
+    "K": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\migration-my-progress-independent\\\\collection-01\\\\fixture-db\\\\_index\\\\CONTRADICTIONS.tsv'"
+  },
+  "gaps": {},
+  "excluded": [
+    [
+      "Q:W-904",
+      "WITHDRAWN - not a requirement (withdrawn)"
+    ],
+    [
+      "Q:W-905",
+      "struck row id (removed from the register; not read by the gate)"
+    ]
+  ],
+  "counts": {
+    "Q_rows": 4
+  }
+}

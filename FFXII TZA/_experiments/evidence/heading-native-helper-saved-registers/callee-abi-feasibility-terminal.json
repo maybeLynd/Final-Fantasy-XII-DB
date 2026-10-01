@@ -1,0 +1,5 @@
+{
+  "status": "FEASIBILITY_ONLY",
+  "command": "Collaboration/Tools/analysis/venv/Scripts/python.exe -B Database/Tools/work/ASTRA/heading-class-effects-slice/callee-abi-feasibility.py",
+  "exit_code": 0
+}

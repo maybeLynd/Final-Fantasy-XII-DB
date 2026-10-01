@@ -1,0 +1,206 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_primary.py",
+      "bytes": 4743,
+      "sha256": "837c6a2d0fa038070c58a1e1fb28380cf8e213726113963d059f0100d5f87f18",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-primary.json",
+      "bytes": 52504,
+      "sha256": "cd525092e3a97672787beac4f445586e5cd750c4c2494d7fbd0e9df4375e6bf7",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "decode.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_decode.py",
+      "bytes": 4751,
+      "sha256": "9ebc8c71fcfdc3c8a2cb4bfa125a4de0f8c5c759dca2b162e453073329613a8e",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "decode.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-decode.json",
+      "bytes": 35438,
+      "sha256": "851588536b3dc8f0ea6d5d60f0eb1681e5e977c21a2f70d0adf128374423e3e5",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "zlib.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_zlib.py",
+      "bytes": 4731,
+      "sha256": "5afddf532111336a73e9bee87e3c7badc788b5bdd41ea10a7a17e2731bd97303",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "zlib.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-zlib.json",
+      "bytes": 47504,
+      "sha256": "91b69e94fbd81fe28eef1f81cdcf6f52fc63febedd15ecced65e56360f25240e",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "inflate-init.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_inflate_init.py",
+      "bytes": 4731,
+      "sha256": "cd133e9ef3874f2f5527a1f85f2c54ae1129c8891eaadb52fa14957f3a4ce595",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "inflate-init.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-inflate-init.json",
+      "bytes": 3062,
+      "sha256": "427649c76e56ae9415177794136bf1f076069470c1255fe3f14cb3420fb54542",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "literals.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_literals.py",
+      "bytes": 1008,
+      "sha256": "4e1ad572c5807c55785c46b11f00c32e122fac558b6c3d91e708799664e1b292",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "literals.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-literals.json",
+      "bytes": 1500,
+      "sha256": "36626ca064777de90652086385921004403865f43cbba75a160ea0151e67bb7a",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_check.py",
+      "bytes": 5885,
+      "sha256": "fc61105ebd23f80affaa1cb3ec744d4038f4619e49969cc20f6c7ff9e69430c3",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-check.json",
+      "bytes": 16029,
+      "sha256": "3b551c41f4712387112044ca2c4c480a06eb1bca4b64922650d03a6f812e7c4d",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "literal-broad-spans.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-constants.json",
+      "bytes": 1655,
+      "sha256": "fadcb1f2af07e2d6eba0e4186a1afcae5b07c693a7f52f3b964605944f80a514",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "literal-extraction-failures.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-save-container-literal-failure.json",
+      "bytes": 632,
+      "sha256": "19c298aca51ae61427f19be09bd5e764d836846caf9e40d7ab28ee96aa3007de",
+      "source_newlines": "CRLF",
+      "crlf_lines": [],
+      "transform": "CRLF to LF only"
+    },
+    "rejected-literals.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_literals_rejected.py",
+      "bytes": 830,
+      "sha256": "ebc55f491266457db3dc7c84aa624cb47152025518a13d8ad24e68dcf079285c",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    },
+    "rejected-literals-second.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_save_container_literals_rejected_second.py",
+      "bytes": 830,
+      "sha256": "e2ad9bd699c188d849cefcf43621583108af7ad7b8e6005bf47967ffe49f122c",
+      "source_newlines": "LF",
+      "crlf_lines": [],
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "check.json": {
+      "bytes": 16029,
+      "sha256": "3b551c41f4712387112044ca2c4c480a06eb1bca4b64922650d03a6f812e7c4d"
+    },
+    "check.py": {
+      "bytes": 5885,
+      "sha256": "fc61105ebd23f80affaa1cb3ec744d4038f4619e49969cc20f6c7ff9e69430c3"
+    },
+    "decode.json": {
+      "bytes": 34104,
+      "sha256": "fb3f86a2bbc11fb45c70323f6839f8021ebf15e1600ec819c8fefc73411ccf67"
+    },
+    "decode.py": {
+      "bytes": 4751,
+      "sha256": "9ebc8c71fcfdc3c8a2cb4bfa125a4de0f8c5c759dca2b162e453073329613a8e"
+    },
+    "existing-work.json": {
+      "bytes": 3674,
+      "sha256": "19021656bfc3ae2ce50dab1b732f76d77ccef342aee810bd0995dbcf9b01c974"
+    },
+    "inflate-init.json": {
+      "bytes": 2934,
+      "sha256": "4e7f8f50a4b6c85ce85ca34afc65d3211abb98e5cf7862cbc95248b0ddc89637"
+    },
+    "inflate-init.py": {
+      "bytes": 4731,
+      "sha256": "cd133e9ef3874f2f5527a1f85f2c54ae1129c8891eaadb52fa14957f3a4ce595"
+    },
+    "literal-broad-spans.json": {
+      "bytes": 1618,
+      "sha256": "f49ee0d8ef6b8b0e75c3743a12dce44c817e2ff319ecd650afef7f59b9e02423"
+    },
+    "literal-extraction-failures.json": {
+      "bytes": 620,
+      "sha256": "b49f539439b16695ba906220664b60b12390cfb20286ceffcfd15df35b68d42e"
+    },
+    "literals.json": {
+      "bytes": 1500,
+      "sha256": "36626ca064777de90652086385921004403865f43cbba75a160ea0151e67bb7a"
+    },
+    "literals.py": {
+      "bytes": 1008,
+      "sha256": "4e1ad572c5807c55785c46b11f00c32e122fac558b6c3d91e708799664e1b292"
+    },
+    "primary.json": {
+      "bytes": 50514,
+      "sha256": "aec596c1b0e94a6e431c9f0da668d7b564d12c3c16d67569bc69b6e49ab7e569"
+    },
+    "primary.py": {
+      "bytes": 4743,
+      "sha256": "837c6a2d0fa038070c58a1e1fb28380cf8e213726113963d059f0100d5f87f18"
+    },
+    "README.md": {
+      "bytes": 3419,
+      "sha256": "bfab9be4629155390499dc30fca2a429eadfb9ad969a6cf1da3c016c50d60761"
+    },
+    "rejected-literals-second.py": {
+      "bytes": 830,
+      "sha256": "e2ad9bd699c188d849cefcf43621583108af7ad7b8e6005bf47967ffe49f122c"
+    },
+    "rejected-literals.py": {
+      "bytes": 830,
+      "sha256": "ebc55f491266457db3dc7c84aa624cb47152025518a13d8ad24e68dcf079285c"
+    },
+    "zlib.json": {
+      "bytes": 45686,
+      "sha256": "9fe3f460dfa0ff403eb4b26d82481c12e551a1ac5f2d69cf3762f0f8cc406228"
+    },
+    "zlib.py": {
+      "bytes": 4731,
+      "sha256": "5afddf532111336a73e9bee87e3c7badc788b5bdd41ea10a7a17e2731bd97303"
+    }
+  }
+}

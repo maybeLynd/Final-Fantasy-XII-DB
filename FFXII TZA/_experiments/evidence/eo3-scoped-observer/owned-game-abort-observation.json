@@ -1,0 +1,224 @@
+{
+  "method": "Synthetic adapter control only; native_calls=0; no original/game execution",
+  "supplied_identity_label": "Supplied FF12 identity shape using retained native PID/time values; not an observed FF12 process.",
+  "source_sha256": "4e1157eadeccd6446321deec53790cbd668b20db33e53f589af9f662f225abb9",
+  "abort_ast_sha256": "a72af2d2fa1a2680688d28a4d2d245aaeaee163389c213e060eee72077da8209",
+  "retained_pid_reuse": {
+    "earlier_reader_ownership": {
+      "parent_pid": 46232,
+      "popen_pid": 38728,
+      "child_pid": 38728,
+      "child_parent_pid": 46232,
+      "opened_image": "C:\\Python314\\python.exe",
+      "python_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+      "access": 1040
+    },
+    "later": {
+      "pid": 38728,
+      "creation": 134344741007691989,
+      "image": "C:\\Python314\\python.exe",
+      "image_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+    },
+    "earlier_creation_unrecorded": true
+  },
+  "supplied_stale_creation": 134344741007691988,
+  "positive": {
+    "result": {
+      "pending_event_serviced": true,
+      "terminal": true,
+      "exit_event": true,
+      "wait_result": 0,
+      "exit_code": 59907
+    },
+    "calls": [
+      [
+        "identity",
+        91
+      ],
+      [
+        "terminate",
+        91,
+        59907
+      ],
+      [
+        "continue",
+        38728,
+        77,
+        65538
+      ],
+      [
+        "wait_event",
+        4,
+        88
+      ],
+      [
+        "continue",
+        38728,
+        88,
+        65538
+      ],
+      [
+        "wait_event",
+        5,
+        77
+      ],
+      [
+        "continue",
+        38728,
+        77,
+        65538
+      ],
+      [
+        "wait_terminal",
+        91,
+        1000
+      ],
+      [
+        "exit_code",
+        91
+      ],
+      [
+        "owned_abort_terminal",
+        {
+          "pending_event_serviced": true,
+          "terminal": true,
+          "exit_event": true,
+          "wait_result": 0,
+          "exit_code": 59907
+        }
+      ]
+    ]
+  },
+  "rejected_expected": [
+    "creation",
+    "pid",
+    "image",
+    "image_sha256"
+  ],
+  "controls": {
+    "observed_creation": [
+      [
+        "identity",
+        91
+      ]
+    ],
+    "observed_pid": [
+      [
+        "identity",
+        91
+      ]
+    ],
+    "observed_image": [
+      [
+        "identity",
+        91
+      ]
+    ],
+    "observed_image_sha256": [
+      [
+        "identity",
+        91
+      ]
+    ],
+    "event_pid": [
+      [
+        "identity",
+        91
+      ]
+    ],
+    "event_tid": [
+      [
+        "identity",
+        91
+      ]
+    ],
+    "terminate_failure": [
+      [
+        "identity",
+        91
+      ],
+      [
+        "terminate",
+        91,
+        59907
+      ]
+    ],
+    "unexpected_exit_code": {
+      "result": {
+        "pending_event_serviced": true,
+        "terminal": false,
+        "exit_event": true,
+        "wait_result": 0,
+        "exit_code": 0
+      },
+      "calls": [
+        [
+          "identity",
+          91
+        ],
+        [
+          "terminate",
+          91,
+          59907
+        ],
+        [
+          "continue",
+          38728,
+          77,
+          65538
+        ],
+        [
+          "wait_event",
+          4,
+          88
+        ],
+        [
+          "continue",
+          38728,
+          88,
+          65538
+        ],
+        [
+          "wait_event",
+          5,
+          77
+        ],
+        [
+          "continue",
+          38728,
+          77,
+          65538
+        ],
+        [
+          "wait_terminal",
+          91,
+          1000
+        ],
+        [
+          "exit_code",
+          91
+        ],
+        [
+          "owned_abort_terminal",
+          {
+            "pending_event_serviced": true,
+            "terminal": false,
+            "exit_event": true,
+            "wait_result": 0,
+            "exit_code": 0
+          }
+        ]
+      ]
+    }
+  },
+  "tool_sha256": {
+    "owned_game_abort.py": "16aa39c14f3dead0db94b586c46f87b0d46b81f9a25588f6d9efe9f74d8fd759",
+    "owned_game_abort_check.py": "38bae0b53b668c39a3ad1db6001a0b7a773bf200a510952b9eb61360511be1ef"
+  },
+  "limits": [
+    "Exact abort body reused from native controls, not a fresh native game abort.",
+    "Expected lifetime must originate in a fresh authorized setup; shape validation cannot prove that.",
+    "Runner must still bind its attach, reference code/module state, backup and health checks.",
+    "No semantic healthy-game result from intentional termination."
+  ]
+}

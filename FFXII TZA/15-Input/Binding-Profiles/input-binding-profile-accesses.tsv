@@ -1,0 +1,5 @@
+function	name	site	disp	kind	instruction	route	note
+00197710	FUN_00197710	0019776F	0x0	r	mov eax, dword ptr [rax + rdx*4]	array 01F80F90 reg	
+00197710	FUN_00197710	00197755	0x40	r	mov eax, dword ptr [rax + rdx*4 + 0x40]	array 01F80F90 reg	
+00197710	FUN_00197710	0019773B	0x60	r	mov eax, dword ptr [rax + rdx*4 + 0x60]	array 01F80F90 reg	
+00198B60	InputManager_MaterializeRuntimeBindingProfiles	00198E5A	0x60	w	movups xmmword ptr [rip + 0x1de818f], xmm0	array 01F80F90 rip	

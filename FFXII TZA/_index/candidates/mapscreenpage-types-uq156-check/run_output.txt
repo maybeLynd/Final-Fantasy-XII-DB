@@ -1,0 +1,6 @@
+E1_marker_entries_are_0x70_with_links_at_60_68           PASS
+E2_at_most_24_entries_fill_B140_to_BBC0                  PASS
+N1_link_nodes_come_from_selector_0                       PASS
+N2_points_and_count_3_to_16                              PASS
+N3_pulse_bit_and_draw_reads                              PASS
+ALL PASS

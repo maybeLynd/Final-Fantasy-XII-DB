@@ -1,0 +1,98 @@
+ebp files: 10045; skipped {'no-section': 9}
+raw 3-byte call-pattern hits (upper bound, unaligned): 63446
+decoded call sites of the two verbs: 63432
+call opcodes: {'0x5d': 63432}
+   59814  ('btlAtelSetUnitType', '0')
+     234  ('btlAtelSetUnitType', '1')
+     297  ('btlAtelSetUnitType', '2')
+     369  ('btlAtelSetUnitType', '3')
+      18  ('setfreetargettype', '1')
+     315  ('setfreetargettype', '3')
+    2340  ('setfreetargettype', '4')
+      45  ('setfreetargettype', '6')
+not a direct constant: 0
+type-3 sites: 612 in 261 files
+type-3 sites outside plan_master: 0
+languages with type-3 sites: ['ch', 'cn', 'de', 'es', 'fr', 'in', 'it', 'kr', 'us']
+  ch: sites 68, zone files 29
+  cn: sites 68, zone files 29
+  de: sites 68, zone files 29
+  es: sites 68, zone files 29
+  fr: sites 68, zone files 29
+  in: sites 68, zone files 29
+  it: sites 68, zone files 29
+  kr: sites 68, zone files 29
+  us: sites 68, zone files 29
+all languages identical to us (zone, verb, script, count): True
+-- us type-3 list (zone, verb, script, sites):
+  bhm_c01.ebp	btlAtelSetUnitType	THIRD_ガブラス	1
+  bhm_c01.ebp	btlAtelSetUnitType	THIRD_ラーサー	1
+  dst_a02.ebp	btlAtelSetUnitType	npc_battle_00	1
+  enw_c01.ebp	btlAtelSetUnitType	THIRD_モーニ	1
+  fon_c02.ebp	btlAtelSetUnitType	npc_battle_00	1
+  frs_a04.ebp	btlAtelSetUnitType	THIRD_カロリーヌ	1
+  grm_b02.ebp	btlAtelSetUnitType	THIRD_アルマ	1
+  naf_a02.ebp	btlAtelSetUnitType	BASH	1
+  naf_a02.ebp	btlAtelSetUnitType	DAL_SOLDIER_A	1
+  naf_a02.ebp	btlAtelSetUnitType	DAL_SOLDIER_B	1
+  naf_a02.ebp	btlAtelSetUnitType	DAL_SOLDIER_C	1
+  naf_b01.ebp	btlAtelSetUnitType	BASH	1
+  naf_b01.ebp	btlAtelSetUnitType	DAL_SOLDIER_A	1
+  naf_b01.ebp	btlAtelSetUnitType	DAL_SOLDIER_B	1
+  naf_b01.ebp	btlAtelSetUnitType	DAL_SOLDIER_C	1
+  naf_b02.ebp	btlAtelSetUnitType	BASH	1
+  naf_b02.ebp	btlAtelSetUnitType	DAL_SOLDIER_A	1
+  naf_b02.ebp	btlAtelSetUnitType	DAL_SOLDIER_B	1
+  naf_b02.ebp	btlAtelSetUnitType	DAL_SOLDIER_C	1
+  ozm_a03.ebp	btlAtelSetUnitType	event_garif_00	1
+  ozm_a03.ebp	btlAtelSetUnitType	npc_battle_00	1
+  pbc_b01.ebp	btlAtelSetUnitType	THIRD_モーニ	1
+  rbl_b01.ebp	setfreetargettype	disp_tama01	1
+  rbl_b01.ebp	setfreetargettype	disp_tama02	1
+  rbl_b01.ebp	setfreetargettype	disp_tama03	1
+  rbl_b01.ebp	setfreetargettype	disp_tama04	1
+  rbl_b01.ebp	setfreetargettype	disp_tama05	1
+  rbl_g02.ebp	setfreetargettype	disp_tama01	1
+  rbl_g02.ebp	setfreetargettype	disp_tama02	1
+  rbl_g02.ebp	setfreetargettype	disp_tama03	1
+  rbl_g02.ebp	setfreetargettype	disp_tama04	1
+  rbl_g02.ebp	setfreetargettype	disp_tama05	1
+  rbl_g03.ebp	setfreetargettype	disp_tama01	1
+  rbl_g03.ebp	setfreetargettype	disp_tama02	1
+  rbl_g03.ebp	setfreetargettype	disp_tama03	1
+  rbl_g03.ebp	setfreetargettype	disp_tama04	1
+  rbl_g03.ebp	setfreetargettype	disp_tama05	1
+  rbl_h02.ebp	setfreetargettype	disp_tama01	1
+  rbl_h02.ebp	setfreetargettype	disp_tama02	1
+  rbl_h02.ebp	setfreetargettype	disp_tama03	1
+  rbl_h02.ebp	setfreetargettype	disp_tama04	1
+  rbl_h02.ebp	setfreetargettype	disp_tama05	1
+  rbl_h03.ebp	setfreetargettype	disp_tama01	1
+  rbl_h03.ebp	setfreetargettype	disp_tama02	1
+  rbl_h03.ebp	setfreetargettype	disp_tama03	1
+  rbl_h03.ebp	setfreetargettype	disp_tama04	1
+  rbl_h03.ebp	setfreetargettype	disp_tama05	1
+  rbl_i02.ebp	setfreetargettype	disp_tama01	1
+  rbl_i02.ebp	setfreetargettype	disp_tama02	1
+  rbl_i02.ebp	setfreetargettype	disp_tama03	1
+  rbl_i02.ebp	setfreetargettype	disp_tama04	1
+  rbl_i02.ebp	setfreetargettype	disp_tama05	1
+  rbl_i03.ebp	setfreetargettype	disp_tama01	1
+  rbl_i03.ebp	setfreetargettype	disp_tama02	1
+  rbl_i03.ebp	setfreetargettype	disp_tama03	1
+  rbl_i03.ebp	setfreetargettype	disp_tama04	1
+  rbl_i03.ebp	setfreetargettype	disp_tama05	1
+  rui_a04.ebp	btlAtelSetUnitType	THIRD_シーク	1
+  sav_c03.ebp	btlAtelSetUnitType	npc_battle_00	1
+  sav_f01.ebp	btlAtelSetUnitType	npc_battle_00	1
+  sav_g01.ebp	btlAtelSetUnitType	THIRD_バンサト	1
+  srb_b04.ebp	btlAtelSetUnitType	THIRD_ヴィエラ	1
+  tri_f05.ebp	btlAtelSetUnitType	ex_trial_03	1
+  tri_k02.ebp	btlAtelSetUnitType	ex_trial_00	1
+  tri_l04.ebp	btlAtelSetUnitType	ex_trial_03	1
+  tri_n05.ebp	btlAtelSetUnitType	ex_trial_05	1
+  wdl_a01.ebp	btlAtelSetUnitType	npc_battle_00	1
+  ztc_a03.ebp	btlAtelSetUnitType	THIRD_ガリフ	1
+us distinct (zone, script) pairs: 68; sites 68
+us families: {('btlAtelSetUnitType', 'BASH'): 3, ('btlAtelSetUnitType', 'DAL_SOLDIER'): 9, ('btlAtelSetUnitType', 'THIRD'): 10, ('btlAtelSetUnitType', 'event_garif'): 1, ('btlAtelSetUnitType', 'ex_trial'): 4, ('btlAtelSetUnitType', 'npc_battle'): 6, ('setfreetargettype', 'disp_tama'): 35}
+us zone families: {'bhm': 1, 'dst': 1, 'enw': 1, 'fon': 1, 'frs': 1, 'grm': 1, 'naf': 3, 'ozm': 1, 'pbc': 1, 'rbl': 7, 'rui': 1, 'sav': 3, 'srb': 1, 'tri': 4, 'wdl': 1, 'ztc': 1}

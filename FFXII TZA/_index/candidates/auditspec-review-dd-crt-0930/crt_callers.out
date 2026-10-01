@@ -1,0 +1,8 @@
+00714860 rel32 ['00712E72 call'] jcc [] abs [] rva ['01DC5928(.rdata)']
+00714920 rel32 ['00712F32 call'] jcc [] abs [] rva ['01DC5718(.rdata)']
+0071F180 rel32 ['0071E360 call', '0071E3FC call'] jcc [] abs [] rva ['01DC9B98(.rdata)']
+00712E60 rel32 ['006F21CB call'] jcc [] abs [] rva ['01DC81F8(.rdata)']
+00712F20 rel32 ['006F1EFA call'] jcc [] abs [] rva ['01DC8340(.rdata)']
+0071E340 rel32 ['0071F05F call'] jcc [] abs [] rva ['01DC9DB8(.rdata)']
+0071E3E0 rel32 ['0071D07D call'] jcc [] abs [] rva ['01DC9C98(.rdata)']
+00210EC0 rel32 258 sites jcc [] abs [] rva []

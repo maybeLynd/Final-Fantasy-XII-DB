@@ -1,0 +1,48 @@
+PASS text bank 0 control: entries 0/1/2 = Cure / Blindna / Vox  -- ['Cure', 'Blindna', 'Vox']
+PASS text bank 0 control: entries 0x106 / 0x112 = Belias / Zodiark (the Esper block)  -- ('Belias', 'Zodiark')
+PASS action table: 543 rows of 60 bytes  -- (543, 60)
+PASS 0030A213 is 'movzx eax, word ptr [rbx + 0x24]'  -- movzx eax, word ptr [rbx + 0x24]
+PASS 0030A21C is 'cmp ax, cx'  -- cmp ax, cx
+PASS 0030A221 is 'test dword ptr [rbx + 0xc], 0x40000000'  -- test dword ptr [rbx + 0xc], 0x40000000
+PASS 0030A22D is 'js 0x30a238'  -- js 0x30a238
+PASS 0030A209 is 'movzx eax, word ptr [rbx + 0x28]'  -- movzx eax, word ptr [rbx + 0x28]
+PASS 0030CCC3 is 'call 0x30a190'  -- call 0x30a190
+PASS 0030CCCA is 'call 0x328360'  -- call 0x328360
+PASS 00328368 is 'jmp 0x42fce0'  -- jmp 0x42fce0
+PASS 002FCC7F is 'mov word ptr [rbx + 0x20], di'  -- mov word ptr [rbx + 0x20], di
+PASS 002FC585 is 'mov edx, 0x26'  -- mov edx, 0x26
+PASS 002FC58C is 'mov ecx, 0xb'  -- mov ecx, 0xb
+PASS 002FC594 is 'movzx edx, word ptr [r15 + 0x20]'  -- movzx edx, word ptr [r15 + 0x20]
+PASS 002FC599 is 'call 0x2df980'  -- call 0x2df980
+PASS path table 01E18670: every non-null entry i names magic\m%04d.efx with %04d = i  -- (512, 0)
+PASS path table 01EBE740: every non-null entry i names magic\m%04d.efx with %04d = i  -- (512, 0)
+
+magic files carrying element types 0x60-0x74 (census): 24
+m0080  types 0x61                     actions: 0x04f Gravity; 0x085 Gravity Mote
+m0081  types 0x61                     actions: 0x050 Graviga; 0x1bb Piercing Graviga
+m0082  types 0x61                     actions: -
+m0125  types 0x69                     actions: -   [+0x28 path, world state 5/6: 0x0d5 Shatterheart]
+m0130  types 0x69,0x73                actions: -   [+0x28 path, world state 5/6: 0x0da Ruin Impendent]
+m0131  types 0x74                     actions: -   [+0x28 path, world state 5/6: 0x0db Flame Purge]
+m0133  types 0x69                     actions: -   [+0x28 path, world state 5/6: 0x0dd Heaven's Wrath]
+m0137  types 0x73                     actions: -   [+0x28 path, world state 5/6: 0x0e1 Resplendence]
+m0176  types 0x61                     actions: 0x090 Dark Matter
+m0239  types 0x69                     actions: 0x1b7 Kamikaze
+m0275  types 0x61                     actions: 0x15c Hell Blaster
+m0319  types 0x69                     actions: 0x188 Self-Sacrifice
+m0321  types 0x69                     actions: 0x18a Spiral Cut
+m0324  types 0x69                     actions: 0x18d Mind Lash
+m0325  types 0x69                     actions: 0x18e Snake Lash
+m0331  types 0x69                     actions: 0x194 Tail Swipe
+m0360  types 0x73                     actions: 0x1cd Sword Dance
+m0364  types 0x69                     actions: 0x1d1 Slice Thrice
+m0367  types 0x71                     actions: 0x1d4 Monarch Sword
+m0371  types 0x69                     actions: 0x1d8 Sentence
+m0386  types 0x73                     actions: 0x1e6 Force of Will
+m0387  types 0x71                     actions: 0x1e7 Mach Wave
+m0388  types 0x71                     actions: 0x1e8 Azure Vortice
+m0389  types 0x71                     actions: 0x1e9 Crimson Vortice
+
+coverage: 23 of 24 band-carrying magic files get at least one action name by the exact join
+
+FAILS 0

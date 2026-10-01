@@ -1,0 +1,5 @@
+PASS  X executed: n=0 -> 0, n=1 -> 51, n=2 -> 169, n=98 -> 13741148, n=99 -> -1
+PASS  B ecx = 2 before the lea, so the coefficient starts at 0x18 = 24 and steps by 12; the cubic factor is 0.4f
+PASS  F executed == sum trunc(0.4f k^3 + 12k^2) for every n 0..100; thresholds: level 2 = 51, level 10 = 5814, level 50 = 1165318, level 99 = 13741148
+PASS  K the pages' k(12k-2) reading differs from the execution at 98 of 98 levels (level 2: pages 47, executed 51)
+FAILS 0

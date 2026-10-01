@@ -1,0 +1,6 @@
+PASS  V 14139 containers (4392 .mot packs; variant0 12944, variant1 1195); header/table violations: {}
+PASS  O 320736 entries (72827 empty variant-1 slots); offsets past the content: 0; ids not '@F'+2 letters: 0; tags {b'@FMC': 109560, b'@FMN': 95814, b'@FMW': 95814, b'@FRM': 13073, b'@FCP': 1066, b'@FTR': 1066, b'@FOR': 1066, b'@FDM': 1045, b'@FTE': 1044, b'@FCT': 1044, b'@FEF': 144}
+      entry-start alignment (largest power of two dividing it, of 0x800/0x100/0x40/0x10/4/1): {16: 241616, 64: 60795, 256: 16238, 2048: 2087}
+      .mot slots that are not @FRP: 0; unreadable files: 0
+PASS  M sensitivity: read file-relative, 319349 of 320736 entry ids fail the check
+FAILS 0

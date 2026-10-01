@@ -1,0 +1,160 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8031,
+      "sha256": "736b3fd67c7d9725ed2026b1f0a53ae4854d3d484da3019185a34338d42be1f1"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7010,
+      "sha256": "c45d416c52e8c458fe2e14513b8d1bab48e50904d484c1c5a20441894888b586"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 462,
+      "sha256": "b05ee586eae03ffd4d1944c666872266a81730405205d09f0fc9e02c67868ecd"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 92,
+      "sha256": "e705f6be6f6e5649f755e64ac1e39cce5bd1f41519f4d0b230ad5ec76e1e641d"
+    },
+    {
+      "path": "fault-jp-control-unchanged.stderr",
+      "bytes": 545,
+      "sha256": "57de67575b54309ba7ea85ed80af9b93ef82aaa7b1d3d43946c8d3cac56b861e"
+    },
+    {
+      "path": "fault-jp-control-unchanged.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-unordered-is-equal.stderr",
+      "bytes": 519,
+      "sha256": "01a7ac29d6a245d3c676c19d2ef8c8b0d47fe37bce071c1b99f46dad32b5881b"
+    },
+    {
+      "path": "fault-unordered-is-equal.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-unordered-is-negative.stderr",
+      "bytes": 503,
+      "sha256": "553bbc6a077a4dae2f60c550876fe77cd7983142d87b87663880d1e993aed5f2"
+    },
+    {
+      "path": "fault-unordered-is-negative.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 3363,
+      "sha256": "52fc1786dca1663adc62f3c1e3b37f85e36d08181a6b6f216acdc4887d524883"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3779,
+      "sha256": "a1ef40b7ac79c37c5fe0d6ed595c1e3c41fc8ee3b62676ec04b79cfcd2a65d23"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 3007,
+      "sha256": "69f3eb8228e61cd85bad82c3075a7fae7dd82233348188b94f3f8d206879ba6e"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 229872,
+      "sha256": "249f0442edda6a05880cb4d50168e0f775e6f964226c9397afb936737bad09c5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3430,
+      "sha256": "ce5b03dfaff431f08d309c676c4500d72ec9889a4406f61204249acf2ae0cc94"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 455,
+      "sha256": "acc68bc3084b132e20ca8adbc0158f0357ffe563f8557c2b86e0c6072977b4b9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3796,
+      "sha256": "896ffbd8234d5ef1c65990ee025778e6d3808bb4efc0ab15b83ba584da217993"
+    },
+    {
+      "path": "retained/compare413.bin",
+      "bytes": 413,
+      "sha256": "b576afcd9c4c4cda7d69e488603ee49378c5dea2611225a9251aa6b5bb4e2afd"
+    },
+    {
+      "path": "retained/consumer-0a.bin",
+      "bytes": 24,
+      "sha256": "4e9aa373c8dcbee5d361103078c720de1ab3835b53f1f6009911d6c99b9e8b3c"
+    },
+    {
+      "path": "retained/consumer-0b.bin",
+      "bytes": 24,
+      "sha256": "2e5dd08f5aee05657347d3752c5ef464bcb0880f3ad1ae2948b8065a0e844da0"
+    },
+    {
+      "path": "retained/consumer-0c.bin",
+      "bytes": 24,
+      "sha256": "26a6eec1de15c14b28962c3da443b065e6cf6725b977251a07e4d20b8ed16214"
+    },
+    {
+      "path": "retained/consumer-0d.bin",
+      "bytes": 24,
+      "sha256": "d6fb3cb7948bf48cd6f5210a0e8675eba1d5ec7ecd1fb48c5cd2285b93f35d45"
+    },
+    {
+      "path": "retained/consumer-0e.bin",
+      "bytes": 24,
+      "sha256": "654429160d922e8a80425751eb0151a9fb6efcd822907ca1cd9c570fd4ca5473"
+    },
+    {
+      "path": "retained/consumer-0f.bin",
+      "bytes": 24,
+      "sha256": "5ff7db8fb4c3a74c3fa4cd7bd9ae2af6ccff6b4bbe465606b96e7feffe7df179"
+    },
+    {
+      "path": "retained/consumer-table24.bin",
+      "bytes": 24,
+      "sha256": "a4f8eb6cdff16bf672514c256f30d3ed7c230cd0a92cc731cce77d135e0e728d"
+    },
+    {
+      "path": "retained/executed-capture-before-checker-preflight.py",
+      "bytes": 7881,
+      "sha256": "351135727bd12913d7e332e543f06f8b3d21ecb47ab1c1edb7248ee9ec695b61"
+    },
+    {
+      "path": "retained/first-invocation-incomplete.json",
+      "bytes": 584,
+      "sha256": "9a727a3b52ad26ae8045a1b416cee2028e3e4751ddcb4a670a234cedf80556d7"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "Six original comparator guest cases and one private control; consumers source-only, not native exceptions/full caller/interpreter/live/independent acceptance. First incomplete invocation preserved, later reduction passed without replay."
+}

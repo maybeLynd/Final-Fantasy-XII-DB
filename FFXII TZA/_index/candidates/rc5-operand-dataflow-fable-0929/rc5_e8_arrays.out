@@ -1,0 +1,22 @@
+ctrl.ebp 13db: array 9E0, file +0, dims [10], never stored and no alias -> set id is one of [0]
+evctrl.ebp 26ca: file scalar at 8DC, DYNAMIC-STORE (dyn:PUSHV) - not bounded here
+evctrl.ebp 27a6: array 1B40, file +64, dims [10], never stored and no alias -> set id is one of [0]
+evctrl.ebp 2f0d: array 1B90, file +288, dims [4], never stored and no alias -> set id is one of [0]
+evctrl.ebp 36bf: array 1C50 (file +8FC, dims [2]) has stores (DYNAMIC-STORE) - elements' initial values [0], not a bound
+evctrl.ebp 36d1: array 1C50 (file +8FC, dims [2]) has stores (DYNAMIC-STORE) - elements' initial values [0], not a bound
+evctrl.ebp 38f8: file scalar at 8EC, DYNAMIC-STORE (dyn:call:aask,dyn:unresolved:ret-boundary) - not bounded here
+evctrl.ebp 403a: file scalar at 8DC, DYNAMIC-STORE (dyn:PUSHV) - not bounded here
+evctrl.ebp 440d: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 44b4: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 455b: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 4602: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 46a9: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 4750: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 47f7: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 489e: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 4945: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 49ec: array 1C40, file +510, dims [24], never stored and no alias -> set id is one of [0]
+evctrl.ebp 4f60: file scalar at 8DC, DYNAMIC-STORE (dyn:PUSHV) - not bounded here
+bounded eventread_e8 sites by file: {'ctrl.ebp': 1, 'evctrl.ebp': 12}  total 13
+CONTROL alias scan finds the stores of every stored array: [('evctrl.ebp 36bf', 4), ('evctrl.ebp 36d1', 4)] PASS
+FAILS 0

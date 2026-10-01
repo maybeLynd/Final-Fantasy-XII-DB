@@ -1,0 +1,6 @@
+PASS  Z 00691120 (called from the slot-10 constructors 00688570 / 006895C0) zeroes and 00692540 copies exactly the four qwords +0x130..+0x148
+PASS  Z2 descriptor slots: destroy 00687F30 / 006890D0 beside constructors 00688570 / 006895C0
+PASS  O 006A27C0: unregister from +0x130, delete +0x148 (slot 0, 1), destroy+free +0x138, delete +0x140 (slot 1, 1); +0x130 never freed
+PASS  U the unregister loop calls +0x130's +0x78 / +0x40 with +0x138 / +0x140, then nulls +0x130
+PASS  S +0x130..+0x18F re-cut into four pointer rows and a 64-byte remainder; the type still tiles 0x190
+FAILS 0

@@ -1,0 +1,8 @@
+SURVIVES  T0  003364D0 564 B
+SURVIVES  T1  raise 45.0 deg, latch 120.0 deg, release 20.0 deg
+SURVIVES  T2  bit 3 clear -> the current heading, unchanged
+SURVIVES  T3  latch needs 0x1C; release below 20 deg; middle band only reads the latch
+SURVIVES  T4  written clear-then-set; read above 120 deg to step +rate / -rate in the stored direction with no wrap call
+SURVIVES  T5  arrival clears bit 3 of +0x38 and bit 0 of +0x3C
+SURVIVES  T6  writes ['and byte ptr [rdx + 0x21]', 'and dword ptr [rdx + 0x3c]', 'mov dword ptr [rdx + 0x38]', 'or byte ptr [rdx + 0x21]', 'or dword ptr [rdx + 0x38]', 'or dword ptr [rdx + 0x3c]'] - all through rdx = ctx + 0x100
+FAILS 0

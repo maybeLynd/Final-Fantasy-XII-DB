@@ -1,0 +1,8 @@
+SURVIVES  E0  base 02B581A0 (+0x0D); 16 records of 0x1C per group (0x1C0); +0x00 qword, +0x0C group, +0x0D route, +0x0E index; mask 02B58A60
+SURVIVES  E1  state 0 only; +0x08 = arg 3; state 2; pending bit ORed at 02B58A60
+SURVIVES  E2  descriptor at rsp+0x30: offset, low32(owner), 003DD850, null; state 3 written right after 0032E620, its return unread
+SURVIVES  E3  16 records; 1 -> free + clears; 3 -> 5; 4 -> dispose then free + clears; others untouched
+SURVIVES  E4  owner = low32 (mov edi, ecx); unpin first; 5 -> dispose, free, state 0; else register, state 4, result untested
+SURVIVES  E5  handle returned only for state 4
+SURVIVES  E6  completion only when +0x40 is set and the length +0x28 is -1
+FAILS 0

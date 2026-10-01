@@ -1,0 +1,86 @@
+H1 002E4380 .. 002E4430
+   002E4380 push rbx
+   002E4382 push rsi
+   002E4383 push r14
+   002E4385 sub rsp, 0x60
+   002E4389 xor eax, eax
+   002E438B mov r14, r9
+   002E438E mov qword ptr [rdx], rax
+   002E4391 mov rbx, rdx
+   002E4394 mov dword ptr [rdx + 8], eax
+   002E4397 mov rsi, rcx
+   002E439A movzx eax, byte ptr [rcx + 3]
+   002E439E and al, 0xe0
+   002E43A0 cmp al, 0x60
+   002E43A2 jne 0x2e45c9
+   002E43A8 mov qword ptr [rsp + 0x90], rdi
+   002E43B0 mov rdi, qword ptr [rcx + 0xb8]
+   002E43B7 test r8d, r8d
+   002E43BA je 0x2e4419
+   002E43BC movss xmm1, dword ptr [r9 + 4]
+   002E43C2 movss xmm0, dword ptr [r9]
+   002E43C7 movss xmm2, dword ptr [r9 + 8]
+   002E43CD mulss xmm0, xmm0
+   002E43D1 mulss xmm1, xmm1
+   002E43D5 mulss xmm2, xmm2
+   002E43D9 addss xmm0, xmm1
+   002E43DD addss xmm0, xmm2
+   002E43E1 call 0x3a1d30
+   002E43E6 movss dword ptr [rdi + 0xf8], xmm0
+   002E43EE mov eax, dword ptr [r14]
+   002E43F1 mov rdi, qword ptr [rsp + 0x90]
+   002E43F9 mov dword ptr [rbx], eax
+   002E43FB mov eax, dword ptr [r14 + 4]
+   002E43FF mov dword ptr [rbx + 4], eax
+   002E4402 mov eax, dword ptr [r14 + 8]
+   002E4406 mov dword ptr [rbx + 8], eax
+   002E4409 mov dword ptr [rbx + 0xc], 0x3f800000
+   002E4410 add rsp, 0x60
+   002E4414 pop r14
+   002E4416 pop rsi
+   002E4417 pop rbx
+   002E4418 ret 
+   002E4419 movss xmm3, dword ptr [rdi + 0xd0]
+   002E4421 movss xmm2, dword ptr [rdi + 0xa4]
+   002E4429 movaps xmmword ptr [rsp + 0x50], xmm6
+   002E442E movss xmm6, dword ptr [rdi + 0xa0]
+H1b reads of r9/r14 at or after 002E4419 in 002E4380's body: ['002E45C4 pop r14', '002E45D4 pop r14']
+H2 002E5090 .. 002E50D0
+   002E5090 add byte ptr [rax - 0x77], cl
+   002E5093 mov esp, 0x8824
+   002E5098 add byte ptr [rax - 0x75], cl
+   002E509B mov ebx, 0xb8
+   002E50A0 mov rax, qword ptr [rdi + 0xf0]
+   002E50A7 movzx ecx, byte ptr [rax + 0x29]
+   002E50AB dec cl
+   002E50AD cmp cl, 3
+   002E50B0 ja 0x2e50bd
+   002E50B2 mov rdx, rdi
+   002E50B5 mov rcx, rbx
+   002E50B8 call 0x2e45e0
+   002E50BD mov r9, r14
+   002E50C0 lea rdx, [rsp + 0x30]
+   002E50C5 mov r8d, ebp
+   002E50C8 mov rcx, rbx
+   002E50CB call 0x2e4380
+   002E50D0 movss xmm2, dword ptr [rdi + 0xa4]
+H3 002E45E0 direct report
+   instructions 223 unsaved non-volatile writes: [] direct targets: 15 indirect calls: 0
+H4 transitive closure to depth 4: 54 functions, 6 indirect calls inside them
+H4 bodies with a non-volatile register written without a save in the same body: 0
+CONTROL 003DA6A0 rbp writes classified saved: True ['003DA6A5 mov qword ptr [rsp + 0x10], rbp', '003DA6C5 mov rbp, rcx', '003DA6E8 addss xmm6, dword ptr [rbp + 0xc]', '003DA6F7 mov rbp, qword ptr [rsp + 0x48]']
+H5 002E5030 entry .. 002E5060 (where r14 comes from) and the call count in 002E45E0
+   002E5030 push rbx
+   002E5032 push rbp
+   002E5033 push r14
+   002E5035 sub rsp, 0x50
+   002E5039 mov rax, qword ptr [rip + 0x1c5f7f0]
+   002E5040 xor rax, rsp
+   002E5043 mov qword ptr [rsp + 0x40], rax
+   002E5048 cmp byte ptr [rcx + 0x18], 1
+   002E504C mov r14, r8
+   002E504F mov ebp, edx
+   002E5051 mov rbx, rcx
+   002E5054 je 0x2e5164
+   002E505A mov rcx, qword ptr [rcx + 0xc0]
+H5 002E45E0 call instructions: 21  extent 002E45E0-002E49A3

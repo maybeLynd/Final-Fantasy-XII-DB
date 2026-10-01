@@ -1,0 +1,6 @@
+palettes measured 1970
+page 0 mean grey-fraction 0.273 pages >=0.95 grey 89 mean luminance 78.9 mean chroma 30.6
+page 1 mean grey-fraction 0.274 pages >=0.95 grey 89 mean luminance 98.7 mean chroma 30.5
+page 2 mean grey-fraction 0.335 pages >=0.95 grey 112 mean luminance 98.3 mean chroma 21.4
+page 3 mean grey-fraction 0.995 pages >=0.95 grey 1914 mean luminance 126.0 mean chroma 1.6
+page == page0: [((0, True), 1970), ((1, False), 1970), ((2, False), 1970), ((3, False), 1970)]

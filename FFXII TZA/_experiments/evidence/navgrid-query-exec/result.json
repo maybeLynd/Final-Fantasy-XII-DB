@@ -1,0 +1,8 @@
+{
+  "functional_fail": [],
+  "functional_pass": 54,
+  "functional_total": 54,
+  "mutants_killed": 61,
+  "mutants_survived": [],
+  "mutants_total": 61
+}

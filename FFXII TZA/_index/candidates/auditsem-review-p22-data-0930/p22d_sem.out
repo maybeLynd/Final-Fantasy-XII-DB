@@ -1,0 +1,30 @@
+PASS E amap: 00309EC0's callers named: 6 stated edges hold | scan 6
+PASS E himg: pool claim / batch close / label helper: 10 stated edges hold | scan 10
+PASS E lst: 4 stated edges hold | scan 4
+PASS E mg: 16 stated edges hold | lea 1 scan 15
+PASS E wmap: 10 stated edges hold | scan 10
+PASS E dat-and-bin: 8 stated edges hold | scan 8
+PASS E binmenu: rebase callers and callee: 8 stated edges hold | scan 8
+PASS E cl2: 19 stated edges hold | scan 19
+PASS E cmap: 26 stated edges hold | scan 26
+PASS E as7/btm/mrp request path: 14 stated edges hold | scan 14
+PASS F3 only 0050DF70 writes its result through 0026B4E0 (tail jump 0050DFB6); 0050DFE0 queues through 0032E620 and has no 0026B4E0 edge
+PASS E as7 party-row path: 30 stated edges hold | scan 30
+PASS E btm allocation and glyph path: 14 stated edges hold | scan 14
+PASS E mrp drawers: 11 stated edges hold | scan 11
+PASS R 0032E400: kind 0xFF -> -1; [022C51F0][kind] for id < 0x400; else 0046DE70; rounded up to 64
+PASS R 0036A100: pool index from 022D89BC; 0036BC60 first, 0036BFE0 as the fallback
+PASS R 003845F0 relocates +0xC/+0x10/+0x18/+0x1C by the base, re-encodes +0x14 through 0020E620 and walks entries through 003846F0
+PASS R 00249210 takes a free 0x28-byte request slot (of 0x30), sizes it (0032E400), allocates (0036A100/0036A190), queues (0032E620) with the completion 002495C0, stores its rcx at slot +0 and counts it at [rcx+0x18]
+PASS F1 00249580 claims the batch record: the first free of 12 x 0x20 at 02090790, owner object stored at +8
+PASS F1 each request's completion 002495C0 counts [slot+0]'s +0x1A and, once the batch is closed (bit 1) and +0x1A == +0x18, fires it
+PASS F1 00249410 closes a BATCH (the 00249580 record), not a slot: sets bit 1; only if +0x18 == +0x1A does it fire; the choice callback +0x10 vs notify is +4 != 0, and the notify is message 0x10 (DL-1: 16 = resource batch complete) to +8, then bit 0 cleared
+PASS R 0024A440 creates a label (0024A4E0) and calls the image member callback 0024A1D0
+PASS R 00283270's count at 002833C5 is +0x60 in 0..5 AND record bit 1 clear (002833BD js, 002833BF test [r9], 2) - the page states only '<= 5'
+PASS R 0023AC80 stores the definition selector word at +4 (0023AD8E), low byte = the row (AL-6)
+PASS R 00265270 = flag byte 02098E20 bit 0 ? word [[02098E58]] : 0
+PASS R 003779F0 reads a 12-bit entry of the table at [02ADD100], 0xFFF -> -1
+PASS R 0024AB90 is movsxd + tail jump to 0032E400
+PASS R 0017F3B0 allocates (0085E730), clears (00861EC0 memset) and ends in 0061E200
+PASS F2 the request-path paragraph is the same text on as7, btm and mrp (as7 adds one sentence); 135 words
+FAILS 0

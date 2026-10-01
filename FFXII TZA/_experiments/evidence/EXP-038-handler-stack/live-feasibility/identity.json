@@ -1,0 +1,93 @@
+{
+  "status": "COMMAND_OBSERVER_DEPENDENCY_DRIFT_CAUGHT_BEFORE_EXECUTION",
+  "method": "Offline identity reconciliation only; no execution or live evidence",
+  "stack_candidate": {
+    "capture.py": {
+      "current": "1867e44348472f0cd5897daa713da262c5d547caae3e8ea6d74f8588c9cb4b4d",
+      "native_control": "1867e44348472f0cd5897daa713da262c5d547caae3e8ea6d74f8588c9cb4b4d"
+    },
+    "timeout_cleanup.py": {
+      "current": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+      "native_control": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a"
+    },
+    "api_receipts.py": {
+      "current": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+      "native_control": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a"
+    },
+    "hwbp-source.py": {
+      "current": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+      "native_control": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6"
+    },
+    "stack_receipt.py": {
+      "current": "57cbf8874fe48b400e2a54eef856e6046d82a831ab35ad8381402d81d6d14441",
+      "native_control": "57cbf8874fe48b400e2a54eef856e6046d82a831ab35ad8381402d81d6d14441"
+    }
+  },
+  "command_observer_sha256": "2dbe98a2e12c591e77e62411358b842fedd53ae5607c09efcb8f207f72dd6bd3",
+  "command_dependencies": {
+    "../EXP-035-command-target-binding/binding.py": {
+      "current": "a75f364d0037ae0e3f5412394951005bf02e9d8b504d9b8e204a0665aaf3249e",
+      "pinned": "a75f364d0037ae0e3f5412394951005bf02e9d8b504d9b8e204a0665aaf3249e",
+      "lf_sha256": "a75f364d0037ae0e3f5412394951005bf02e9d8b504d9b8e204a0665aaf3249e",
+      "crlf_sha256": "2c2959e9e05e45134f89d945c0a738552c34767ea4e2a96d0769b5166621bde5"
+    },
+    "../EXP-032-command-snapshot/command_snapshot.py": {
+      "current": "7ddf5139d8c0b2f9eacc93a5699b5bc800e295c83c04ec63a505587b391702b5",
+      "pinned": "7ddf5139d8c0b2f9eacc93a5699b5bc800e295c83c04ec63a505587b391702b5",
+      "lf_sha256": "7ddf5139d8c0b2f9eacc93a5699b5bc800e295c83c04ec63a505587b391702b5",
+      "crlf_sha256": "213181d0b6619691ca0c1d81e34f5852033fe7ff9c1a795f462591a15395ca95"
+    },
+    "../EXP-034-focus-resolver/reader_resolver.py": {
+      "current": "eba159b9d985880f02c9716fe6959b60b3cca02d045012894174a4264cfb1002",
+      "pinned": "eba159b9d985880f02c9716fe6959b60b3cca02d045012894174a4264cfb1002",
+      "lf_sha256": "eba159b9d985880f02c9716fe6959b60b3cca02d045012894174a4264cfb1002",
+      "crlf_sha256": "97bba6706c80bfb1720b85b26a8434f8fe985eddb79914ba2f8c3f72c2da4a08"
+    },
+    "../EXP-024-group-approach/step.py": {
+      "current": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+      "pinned": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+      "lf_sha256": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+      "crlf_sha256": "3e15ac944acfc1810fc806d175248ae8cd7e1dce747f721c1280cd9017abf6ac"
+    },
+    "../EXP-023-camera-input/key_packet.py": {
+      "current": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59",
+      "pinned": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59",
+      "lf_sha256": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59",
+      "crlf_sha256": "674f4e2fe71646a376ef814cb64e9c86dfd9f3666a3617bc983b24b682f06629"
+    },
+    "../../../../Tools/analysis-kit/gfz-scripts/runtime_probe.py": {
+      "current": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+      "pinned": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+      "lf_sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+      "crlf_sha256": "6854f42ef87a07bca8e5d29195642c054b4fc401661d334eda74ed6c26813ddf"
+    },
+    "../../../../Tools/analysis-kit/gfz-scripts/ffxii_runtime.py": {
+      "current": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+      "pinned": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+      "lf_sha256": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+      "crlf_sha256": "e5cab1549a33586daa01ae5e9713047fed2d59ee2a13c7f34f8e3539700c5921"
+    },
+    "../../../../Tools/analysis-kit/gfz-scripts/window_focus.py": {
+      "current": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+      "pinned": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+      "lf_sha256": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d",
+      "crlf_sha256": "dfb2bed3c293a8e56da9a5ef28278c5e6119d28b5fd1aba4997b862fa3b748b5"
+    },
+    "../../../../Tools/analysis-kit/gfz-scripts/runtime_input_probe.py": {
+      "current": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+      "pinned": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+      "lf_sha256": "7a635333e0a842ca140cc64e03d98b4e70cd9944cea776a8f064c3f279c76fae",
+      "crlf_sha256": "390f54a63760db9879c7e0fa1d7abdd0c27dcceb4e664ceae5147f146e0d25af"
+    },
+    "../../../../Tools/analysis-kit/gfz-scripts/runtime_poke.py": {
+      "current": "0985437f4e383cce97f445525ffb41c32d8201a3f3b64704ce59f3402016130b",
+      "pinned": "0985437f4e383cce97f445525ffb41c32d8201a3f3b64704ce59f3402016130b",
+      "lf_sha256": "0985437f4e383cce97f445525ffb41c32d8201a3f3b64704ce59f3402016130b",
+      "crlf_sha256": "e682d8c8ebd5abe59a8423a445a765349bbe909053b8d8404c61fce1e6467406"
+    }
+  },
+  "fresh_live_stack_capture": false,
+  "fresh_live_command_observer": false,
+  "qualification_review": "ASTRA-REVIEW-EXP031-BOUNDED",
+  "live_authorization": "ACTIVE; new stop/takeover halts; @runtime required"
+}

@@ -1,0 +1,18 @@
+{
+  ".gitattributes": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d",
+  "environment.json": "7c1c6dbd57220ce13a3c68820fbf04de6fbf0abcea0f9d12d09c3d25498f3707",
+  "hwbp-tested.py": "fb69cd13ee47c54745c9e5942aebbe6a5b2b574ebe145e3a8d8a6c800b10e091",
+  "run.py": "7271a9d7a141991751bd432adf24b05ef591b7d2147f7a8c4e3631549c1e23c4",
+  "source-receipt.json": "bdae6fbd6fe0304318fdab3063caebdecaf9f833fc67b2a99d4a4054e673f69f",
+  "unit-tests.txt": "42a86ab1328ef357270502a20580e6f52872fa4eaf6c90c43d257d699d762e46",
+  "old\\attached.json": "597118fdc6d2c5bfce0c34618b58096bae855c30c2ded86629a061b647e8f555",
+  "old\\debugger.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "old\\heartbeat.bin": "1daed90b5518b44bf5d8add9b231fef90f7083e36bf6f679f988b5b00403e308",
+  "old\\result.json": "51fe91323a371c3435a3f62e9e11cd2a729d43c30eca7b1825366a820ece057e",
+  "old\\target.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "revised\\attached.json": "93d7d1a7fc83c17cd3f403c5a12b0c272bb88e3c3a87895f2466d1e9a980cd98",
+  "revised\\debugger.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "revised\\heartbeat.bin": "4f653a0e984483819dba67aef5fb2c0453694565f100d3fb21d55c7f5e856718",
+  "revised\\result.json": "2a2c445c812427d9bfacfbeabdb165f3774178e6ee4dbd639b0b92b98038beac",
+  "revised\\target.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

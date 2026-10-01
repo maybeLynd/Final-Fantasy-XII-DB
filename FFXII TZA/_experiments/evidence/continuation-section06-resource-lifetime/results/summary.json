@@ -1,0 +1,35 @@
+{
+  "section": "SECTION-06",
+  "production_status": "locally validated; formal peer acceptance pending",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "selected_body_records": 85,
+  "native_assertions": 171,
+  "native_passed": 171,
+  "repeat_identical": true,
+  "code_variants": 10,
+  "variants_rejected": 10,
+  "evidence": "isolated original-instruction execution with synthetic data/arenas",
+  "application_substitutions": [
+    "0017D2E0 diagnostic formatter: empty string, invocation counter, returns zero"
+  ],
+  "import_bridges": [
+    "memset IAT008C2A60",
+    "memcpy IAT008C2A68",
+    "strncpy IAT008C2F70"
+  ],
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0"
+  },
+  "source_sha256": "a0bee3855a21da68530169abe2628442a6ab3c2a6f1f98f53394d568cf74a01a",
+  "limitations": [
+    "No live FF12 process, Windows deployment, real IO/audio/GPU, or full-game concurrency.",
+    "Default subtype fixtures do not execute all chunk-specific rebasers.",
+    "Indexed bank/page tables, handle slots and empty child structures are constructed fixture state.",
+    "Only the existing-entry path of 00409FE0 is executed, not its full new-entry discovery path.",
+    "No full historical Unicorn or project mutation campaign; ten impacted code variants only.",
+    "Hashes establish bytes, not branch coverage. Observed allocation release is not OS deallocation."
+  ],
+  "original_exe_unchanged": true
+}

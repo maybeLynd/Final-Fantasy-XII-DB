@@ -1,0 +1,718 @@
+{
+  "method": "A original Python tooling/labelled private fixtures; not FF12 original-code or live",
+  "source_tree_commit": "12e20b066ff4cd5775ac73327c187b4ec1277581",
+  "source_last_commit": "225465c2e89187c43f2731eb25f725cb0012bbf2",
+  "source_path": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+  "source_sha256": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1",
+  "source_blob": "3993deaf0f2812f00e1e7a181e2ce8cd15b29cb3",
+  "driver_sha256": "31fae3247d6b4c561a545d889cb808386ccb155d4e53051f9142f48ab9476dcf",
+  "worker_sha256": "10725217f184f6e8b3718d26968fe91d870b286494c2e150a40a6573ef867fb5",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Python314\\python.exe",
+  "retained": {
+    "commit": "51660c616f8fec23c7ae140a721be58cc54c38cc",
+    "raw_sha256": "c086edb58c0914b2197993c88c28e5cceadbebeb981d3289abd424d166ab41ac",
+    "source_sha256": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1",
+    "cases": [
+      {
+        "name": "warm-output-tamper-rejected",
+        "passed": true,
+        "observed": {
+          "view": {
+            "meta": {
+              "generation": "g20260929T023201Z-b47b7c",
+              "committed_at": "2026-09-29T02:32:01Z",
+              "drift": {},
+              "historical": true,
+              "current_problems": [
+                "output view-overview.json does not match the manifest"
+              ]
+            },
+            "view": {
+              "view": "overview",
+              "status": "OK",
+              "title": "overview",
+              "measures": [],
+              "sentinel": "PRIOR_VALID"
+            }
+          },
+          "status": {
+            "generation": "g20260929T023201Z-b47b7c",
+            "committed_at": "2026-09-29T02:32:01Z",
+            "historical": true,
+            "current": {
+              "generation": "g20260929T023201Z-7d48e0",
+              "committed_at": "2026-09-29T02:32:01Z",
+              "problems": [
+                "output view-overview.json does not match the manifest"
+              ]
+            },
+            "problems": [
+              "output view-overview.json does not match the manifest"
+            ],
+            "no_verified_generation": false,
+            "drift": {},
+            "volatile_drift": {},
+            "failure": null,
+            "reader_stale": false,
+            "views": {
+              "overview": "HISTORICAL",
+              "systems": "HISTORICAL",
+              "vbf": "HISTORICAL",
+              "executable": "HISTORICAL",
+              "types": "HISTORICAL",
+              "evidence": "HISTORICAL",
+              "fleet": "HISTORICAL"
+            },
+            "required": [
+              "overview",
+              "systems",
+              "vbf",
+              "executable",
+              "types",
+              "evidence",
+              "fleet"
+            ]
+          },
+          "cli": 1
+        },
+        "limits": ""
+      },
+      {
+        "name": "snapshot-tamper-no-fallback",
+        "passed": true,
+        "observed": {
+          "http": {
+            "generation": null,
+            "committed_at": null,
+            "drift": {},
+            "historical": false,
+            "current_problems": [
+              "input snapshot controlled does not match the manifest"
+            ],
+            "status": "INVALID",
+            "problems": [
+              "input snapshot controlled does not match the manifest"
+            ],
+            "why": "no verified generation is available"
+          },
+          "cli": 1
+        },
+        "limits": ""
+      },
+      {
+        "name": "missing-output-failed-build-preserves-current",
+        "passed": true,
+        "observed": {
+          "error": "required outputs missing: view-fleet.json",
+          "failure": {
+            "generation": "g20260929T023203Z-257705",
+            "failed_at": "2026-09-29T02:32:03Z",
+            "reason": "required outputs missing: view-fleet.json",
+            "current_unchanged": "g20260929T023203Z-639bc1",
+            "current_committed_at": "2026-09-29T02:32:03Z"
+          },
+          "cli": 0
+        },
+        "limits": ""
+      },
+      {
+        "name": "strict-input-mid-build-rejected",
+        "passed": true,
+        "observed": {
+          "error": "inputs moved during the build: controlled",
+          "current": "g20260929T023203Z-639bc1"
+        },
+        "limits": ""
+      },
+      {
+        "name": "volatile-change-coherent-commit",
+        "passed": true,
+        "observed": {
+          "generation": "g20260929T023204Z-2573ea",
+          "problems": [],
+          "drift": {
+            "controlled": "changed"
+          },
+          "snapshot_sha": "b7ad085da63812347b8a1b906b1a4f6ce1966e49b80d9134f542db07cc1be215"
+        },
+        "limits": "Synthetic board bytes, not a real TEAM mutation."
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "required-missing",
+      "observed": {
+        "state": {
+          "state": "missing"
+        },
+        "schema_error": null,
+        "error": {
+          "type": "GenerationError",
+          "reason": "required input not usable at begin: data=missing"
+        },
+        "old": "g20260929T071156Z-c32290",
+        "new": null,
+        "pointer_unchanged": true,
+        "history_unchanged": true,
+        "failure": {
+          "generation": "g20260929T071156Z-85aa5d",
+          "failed_at": "2026-09-29T07:11:56Z",
+          "reason": "required input not usable at begin: data=missing",
+          "current_unchanged": "g20260929T071156Z-c32290",
+          "current_committed_at": "2026-09-29T07:11:56Z"
+        },
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "status",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\required-missing\\store"
+          ],
+          "returncode": 0,
+          "stdout": "STALE g20260929T071156Z-c32290 committed 2026-09-29T07:11:56Z; 1 outputs; sources moved since: {'data': 'missing'}\nlast failure: {  \"generation\": \"g20260929T071156Z-85aa5d\",  \"failed_at\": \"2026-09-29T07:11:56Z\",  \"reason\": \"required input not usable at begin: data=missing\",  \"current_unchanged\": \"g20260929T071156Z-c32290\",  \"current_committed_at\": \"2026-09-29T07:11:56Z\" }\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "default-empty",
+      "observed": {
+        "state": {
+          "state": "empty",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "schema_error": null,
+        "error": {
+          "type": "GenerationError",
+          "reason": "required input not usable at begin: data=empty"
+        },
+        "old": "g20260929T071156Z-f9a848",
+        "new": null,
+        "pointer_unchanged": true,
+        "history_unchanged": true,
+        "failure": {
+          "generation": "g20260929T071157Z-201534",
+          "failed_at": "2026-09-29T07:11:57Z",
+          "reason": "required input not usable at begin: data=empty",
+          "current_unchanged": "g20260929T071156Z-f9a848",
+          "current_committed_at": "2026-09-29T07:11:56Z"
+        },
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "status",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\default-empty\\store"
+          ],
+          "returncode": 0,
+          "stdout": "STALE g20260929T071156Z-f9a848 committed 2026-09-29T07:11:56Z; 1 outputs; sources moved since: {'data': 'empty'}\nlast failure: {  \"generation\": \"g20260929T071157Z-201534\",  \"failed_at\": \"2026-09-29T07:11:57Z\",  \"reason\": \"required input not usable at begin: data=empty\",  \"current_unchanged\": \"g20260929T071156Z-f9a848\",  \"current_committed_at\": \"2026-09-29T07:11:56Z\" }\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "schema-allowed-empty",
+      "observed": {
+        "state": {
+          "state": "empty",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "schema_error": null,
+        "error": null,
+        "old": "g20260929T071157Z-ab6604",
+        "new": "g20260929T071157Z-199557",
+        "pointer_unchanged": false,
+        "history_unchanged": false,
+        "failure": null,
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "status",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\schema-allowed-empty\\store"
+          ],
+          "returncode": 0,
+          "stdout": "CURRENT g20260929T071157Z-199557 committed 2026-09-29T07:11:57Z; 1 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "schema-malformed-nonempty",
+      "observed": {
+        "state": {
+          "state": "present",
+          "size": 7,
+          "sha256": "be302461cda285db3ed2d45fb767b23e08ca8808b35a638009937df22b332d73"
+        },
+        "schema_error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+        "error": {
+          "type": "GenerationError",
+          "reason": "input data failed validation: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+        },
+        "old": "g20260929T071157Z-9b12cb",
+        "new": null,
+        "pointer_unchanged": true,
+        "history_unchanged": true,
+        "failure": {
+          "generation": "g20260929T071157Z-c274ed",
+          "failed_at": "2026-09-29T07:11:57Z",
+          "reason": "input data failed validation: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+          "current_unchanged": "g20260929T071157Z-9b12cb",
+          "current_committed_at": "2026-09-29T07:11:57Z"
+        },
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "status",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\schema-malformed-nonempty\\store"
+          ],
+          "returncode": 0,
+          "stdout": "STALE g20260929T071157Z-9b12cb committed 2026-09-29T07:11:57Z; 1 outputs; sources moved since: {'data': 'changed'}\nlast failure: {  \"generation\": \"g20260929T071157Z-c274ed\",  \"failed_at\": \"2026-09-29T07:11:57Z\",  \"reason\": \"input data failed validation: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\",  \"current_unchanged\": \"g20260929T071157Z-9b12cb\",  \"current_committed_at\": \"2026-09-29T07:11:57Z\" }\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "interrupt-before-rename",
+      "observed": {
+        "old": "g20260929T071157Z-c7b4dc",
+        "gate": {
+          "pid": 43332,
+          "stage": "before-rename",
+          "build": "g20260929T071157Z-d8d55a",
+          "src": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename\\store\\.g20260929T071157Z-d8d55a.partial",
+          "dst": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename\\store\\g20260929T071157Z-d8d55a"
+        },
+        "partial_at_gate": true,
+        "final_at_gate": false,
+        "pointer_unchanged": true,
+        "history_unchanged": true,
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename\\store"
+          ],
+          "returncode": 0,
+          "stdout": "CURRENT g20260929T071157Z-c7b4dc committed 2026-09-29T07:11:57Z; 1 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        },
+        "owned_pid": 43332
+      }
+    },
+    {
+      "name": "interrupt-after-rename",
+      "observed": {
+        "old": "g20260929T071157Z-d230d5",
+        "gate": {
+          "pid": 47856,
+          "stage": "after-rename",
+          "build": "g20260929T071157Z-c6681b",
+          "src": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\store\\.g20260929T071157Z-c6681b.partial",
+          "dst": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\store\\g20260929T071157Z-c6681b"
+        },
+        "partial_at_gate": false,
+        "final_at_gate": true,
+        "pointer_unchanged": true,
+        "history_unchanged": true,
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\store"
+          ],
+          "returncode": 0,
+          "stdout": "CURRENT g20260929T071157Z-d230d5 committed 2026-09-29T07:11:57Z; 1 outputs; sources unchanged\n",
+          "stderr": "",
+          "terminal": true
+        },
+        "owned_pid": 47856
+      }
+    },
+    {
+      "name": "cli-positive-export",
+      "observed": {
+        "old": "g20260929T071157Z-69ff7d",
+        "cli": {
+          "status": {
+            "args": [
+              "C:\\Python314\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+              "status",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\store"
+            ],
+            "returncode": 0,
+            "stdout": "CURRENT g20260929T071157Z-69ff7d committed 2026-09-29T07:11:57Z; 1 outputs; sources unchanged\n",
+            "stderr": "",
+            "terminal": true
+          },
+          "verify": {
+            "args": [
+              "C:\\Python314\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+              "verify",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\store"
+            ],
+            "returncode": 0,
+            "stdout": "CURRENT g20260929T071157Z-69ff7d committed 2026-09-29T07:11:57Z; 1 outputs; sources unchanged\n",
+            "stderr": "",
+            "terminal": true
+          },
+          "export": {
+            "args": [
+              "C:\\Python314\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+              "export",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\store",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\positive.zip"
+            ],
+            "returncode": 0,
+            "stdout": "EXPORTED g20260929T071157Z-69ff7d -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\positive.zip\n",
+            "stderr": "",
+            "terminal": true
+          },
+          "zip": {
+            "args": [
+              "C:\\Python314\\python.exe",
+              "-B",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+              "verify-zip",
+              "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\positive.zip"
+            ],
+            "returncode": 0,
+            "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+            "stderr": "",
+            "terminal": true
+          }
+        }
+      }
+    },
+    {
+      "name": "refresh-during-export",
+      "observed": {
+        "entry": "original main export with explicit ZipFile.write callback intervention",
+        "returncode": 0,
+        "stdout": "EXPORTED g20260929T071157Z-69ff7d -> C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\refresh.zip\n",
+        "stderr": "",
+        "event": [
+          {
+            "after_member": "MANIFEST.json",
+            "new_current": "g20260929T071158Z-376657"
+          }
+        ],
+        "old": "g20260929T071157Z-69ff7d",
+        "current": "g20260929T071158Z-376657",
+        "export_generation": "g20260929T071157Z-69ff7d",
+        "view": {
+          "sentinel": "OLD"
+        },
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify-zip",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\refresh.zip"
+          ],
+          "returncode": 0,
+          "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "mixed-zip",
+      "observed": {
+        "archive": "mixed-zip.zip",
+        "sha256": "ddf5103913c0b989a13d27f0df13bc150ad13351663cb5bf69fc4e1db18e7cfd",
+        "member_names": [
+          "MANIFEST.json",
+          "inputs/data",
+          "outputs/view.json"
+        ],
+        "entries": [
+          {
+            "name": "MANIFEST.json",
+            "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+          },
+          {
+            "name": "inputs/data",
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "name": "outputs/view.json",
+            "sha256": "12623ad66fdd5ccda39bad597a850d38d711fe1f884a9d38356087dd2b98b36b"
+          }
+        ],
+        "warnings": [],
+        "label": "UNVERIFIED",
+        "info": {
+          "reason": "members do not match the manifest",
+          "generation": "g20260929T071157Z-69ff7d",
+          "extra": [],
+          "missing": [],
+          "hash_mismatch": [
+            "outputs/view.json"
+          ]
+        },
+        "exception": null,
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify-zip",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\mixed-zip.zip"
+          ],
+          "returncode": 1,
+          "stdout": "UNVERIFIED {\"reason\": \"members do not match the manifest\", \"generation\": \"g20260929T071157Z-69ff7d\", \"extra\": [], \"missing\": [], \"hash_mismatch\": [\"outputs/view.json\"]}\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "duplicate-zip-member",
+      "observed": {
+        "archive": "duplicate-zip-member.zip",
+        "sha256": "136cc354a6399d7913344d2d34837e2bfbc9b4ead4b4cdf11b8ed624e62f2270",
+        "member_names": [
+          "outputs/view.json",
+          "MANIFEST.json",
+          "inputs/data",
+          "outputs/view.json"
+        ],
+        "entries": [
+          {
+            "name": "outputs/view.json",
+            "sha256": "5cec957a0c5cf3e202e810583c423cc139d716af05dc4a49b7ff203ed6bb78f8"
+          },
+          {
+            "name": "MANIFEST.json",
+            "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+          },
+          {
+            "name": "inputs/data",
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "name": "outputs/view.json",
+            "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+          }
+        ],
+        "warnings": [
+          "Duplicate name: 'outputs/view.json'"
+        ],
+        "label": "VERIFIED",
+        "info": {
+          "generation": "g20260929T071157Z-69ff7d",
+          "members": 3
+        },
+        "exception": null,
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify-zip",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\duplicate-zip-member.zip"
+          ],
+          "returncode": 0,
+          "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "unknown-format-zip",
+      "observed": {
+        "archive": "unknown-format-zip.zip",
+        "sha256": "f13040b84eb39c42e0cdb196059154827a0d7fa0373166935cdf1bf7a5e46b15",
+        "member_names": [
+          "MANIFEST.json",
+          "inputs/data",
+          "outputs/view.json"
+        ],
+        "entries": [
+          {
+            "name": "MANIFEST.json",
+            "sha256": "ee9a70d68a8aa191b817311f172d4446e3d616fd7e8f5fec48432e55b86682bf"
+          },
+          {
+            "name": "inputs/data",
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "name": "outputs/view.json",
+            "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+          }
+        ],
+        "warnings": [],
+        "label": "VERIFIED",
+        "info": {
+          "generation": "g20260929T071157Z-69ff7d",
+          "members": 3
+        },
+        "exception": null,
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify-zip",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\unknown-format-zip.zip"
+          ],
+          "returncode": 0,
+          "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "malformed-manifest-zip",
+      "observed": {
+        "archive": "malformed-manifest-zip.zip",
+        "sha256": "8b5224a81a715195bf1b8604495bbf4d7b6f8116a70ed21c49a53d1371daf03b",
+        "member_names": [
+          "MANIFEST.json",
+          "inputs/data",
+          "outputs/view.json"
+        ],
+        "entries": [
+          {
+            "name": "MANIFEST.json",
+            "sha256": "be302461cda285db3ed2d45fb767b23e08ca8808b35a638009937df22b332d73"
+          },
+          {
+            "name": "inputs/data",
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "name": "outputs/view.json",
+            "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+          }
+        ],
+        "warnings": [],
+        "label": null,
+        "info": null,
+        "exception": {
+          "type": "JSONDecodeError",
+          "reason": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+        },
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify-zip",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\export\\malformed-manifest-zip.zip"
+          ],
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py\", line 316, in <module>\n    sys.exit(main(sys.argv))\n             ~~~~^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py\", line 297, in main\n    label, info = verify_zip(argv[2]); print(label, json.dumps(info)); return 0 if label == \"VERIFIED\" else 1\n                  ~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py\", line 278, in verify_zip\n    man = json.loads(z.read(MANIFEST))\n  File \"C:\\Python314\\Lib\\json\\__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"C:\\Python314\\Lib\\json\\decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\json\\decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)\n",
+          "terminal": true
+        }
+      }
+    },
+    {
+      "name": "added-output-membership",
+      "observed": {
+        "problems": [
+          "outputs not in the manifest: ['uncited.json']"
+        ],
+        "cli": {
+          "args": [
+            "C:\\Python314\\python.exe",
+            "-B",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+            "verify",
+            "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\added-output-membership\\store"
+          ],
+          "returncode": 1,
+          "stdout": "INVALID outputs not in the manifest: ['uncited.json']\n",
+          "stderr": "",
+          "terminal": true
+        }
+      }
+    }
+  ],
+  "owned_process_cleanup": [
+    {
+      "pid": 43332,
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\interrupt-worker.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename",
+        "before-rename",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename\\gate.json"
+      ],
+      "gate": {
+        "pid": 43332,
+        "stage": "before-rename",
+        "build": "g20260929T071157Z-d8d55a",
+        "src": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename\\store\\.g20260929T071157Z-d8d55a.partial",
+        "dst": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-before-rename\\store\\g20260929T071157Z-d8d55a"
+      },
+      "terminal": false,
+      "limit_seconds": 10,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "",
+      "no_child_launch": "Inspected immutable worker and generation import paths: worker launches no process; --self-test not called"
+    },
+    {
+      "pid": 47856,
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\interrupt-worker.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\generation.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename",
+        "after-rename",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\gate.json"
+      ],
+      "gate": {
+        "pid": 47856,
+        "stage": "after-rename",
+        "build": "g20260929T071157Z-c6681b",
+        "src": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\store\\.g20260929T071157Z-c6681b.partial",
+        "dst": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\store\\g20260929T071157Z-c6681b"
+      },
+      "terminal": true,
+      "limit_seconds": 10,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "",
+      "no_child_launch": "Inspected immutable worker and generation import paths: worker launches no process; --self-test not called"
+    }
+  ],
+  "finished": true,
+  "source_restored": true
+}

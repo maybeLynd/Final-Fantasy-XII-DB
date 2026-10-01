@@ -1,0 +1,10 @@
+# NativeAdapter.FloatPipelineVcallAdapter - EC-7 family C
+# # run shared float helpers 00811640/00811130 on arg1, look up the
+# # object via shared 00683BF0; if non-null vcall [this+8] slot 1 with
+# # xmm1=saved float, then call a member op and return 1.
+address	targets
+006B2400	00683BF0,00684280,00811130,00811640
+006B2480	00683BF0,00684300,00811130,00811640
+006B2500	00683BF0,00684360,00811130,00811640
+006B2580	00683BF0,006843D0,00811130,00811640
+006B2600	00683BF0,00684450,00811130,00811640

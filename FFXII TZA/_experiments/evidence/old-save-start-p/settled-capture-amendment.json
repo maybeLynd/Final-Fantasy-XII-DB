@@ -1,0 +1,8 @@
+{
+  "reason": "Initial field snapshot INVALID: registry+68 changed zero -> pool0x6F6343C0 during sequential reads; no other bracket differed. Preserve rejected raw; do not use it for semantic closure.",
+  "specific_change": "Require observed post-load settled field after responsive menu open/inventory/back cycle; distinct output label, observer checks unchanged.",
+  "source_before": "61b1e3be13047471ce808d3667145007672f725395f673d10305a03bd36cbcbf",
+  "source_after": "478ee7b5ba72f0cd304d189cd8fb24889e65470f6d269ca74c8e3d9d4c08048a",
+  "sample_budget": "6 accepted samples +1 rejected +2 settled =9 attempted; <=10",
+  "regression_control": "Reducer must reject the actual changed-registry snapshot even if status relabelled OBSERVED."
+}

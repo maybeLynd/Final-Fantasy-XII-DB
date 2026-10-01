@@ -1,0 +1,8 @@
+{
+  "stage": "pre-emulation byte assertion",
+  "error": "AssertionError",
+  "expected_index_doubling": "4801c0",
+  "observed_index_doubling": "4803c0",
+  "emulation_ran": false,
+  "initial_source_sha256": "902f22e6333bde4d06a9a87d0af0f32a643d9bfe001c7859f1d60c692588aa6e"
+}

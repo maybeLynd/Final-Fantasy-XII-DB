@@ -1,0 +1,5 @@
+PASS  A allocator: arena, fallback, else NULL
+PASS  T wrapper: arena 6, mode 0 returns the allocator's result
+PASS  C copy setup stores the result unconditionally; the follow-up call is null-safe
+PASS  S setup: NULL buffer -> copy skipped, size recorded, normal return
+FAILS 0

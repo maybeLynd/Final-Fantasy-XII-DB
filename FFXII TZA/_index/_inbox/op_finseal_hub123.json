@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-123",
+ "result_refs": [
+  "commit:be19a14b2"
+ ],
+ "note": "batch-123 seal: board state + patched finpub op committed (be19a14b2)"
+}

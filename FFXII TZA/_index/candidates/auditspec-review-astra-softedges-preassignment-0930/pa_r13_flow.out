@@ -1,0 +1,8 @@
+state of r13 on entry to 0059CB2E: TOP
+state of r13 on entry to 0059CC38: TOP
+state of r13 on entry to 0059CC3B: ZERO
+state of r13 on entry to 0059CD14: ZERO
+state of r13 on entry to 0059CB1C: ZERO
+edge 0059CB1C->0059CC3B carries: ZERO
+unreached instructions: 0 of 508
+branch targets outside the listed extent: []

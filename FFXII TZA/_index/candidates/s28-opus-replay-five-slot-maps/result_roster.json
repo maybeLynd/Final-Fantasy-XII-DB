@@ -1,0 +1,198 @@
+{
+ "ok": true,
+ "allowed_functions": 4246,
+ "results": {
+  "writer_keeps_its_own_side_only": {
+   "pass_": true,
+   "assign_0_to_3": {
+    "roster": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "slots": [
+     0,
+     1,
+     2,
+     3,
+     -1
+    ],
+    "states": [
+     2,
+     2,
+     2,
+     2,
+     3
+    ],
+    "bijection": true
+   },
+   "over_an_occupant": {
+    "roster": [
+     0,
+     1,
+     4,
+     3
+    ],
+    "slots": [
+     0,
+     1,
+     2,
+     3,
+     2
+    ],
+    "states": [
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "bijection": false,
+    "displaced_ctx_152": 1
+   },
+   "move_record0_to_slot3": {
+    "roster": [
+     "-",
+     1,
+     2,
+     0
+    ],
+    "slots": [
+     3,
+     1,
+     2,
+     3,
+     -1
+    ],
+    "states": [
+     2,
+     2,
+     2,
+     2,
+     3
+    ],
+    "bijection": false
+   },
+   "null_into_slot1": {
+    "roster": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "slots": [
+     0,
+     1,
+     2,
+     3,
+     -1
+    ],
+    "bijection": true
+   },
+   "slot_7": {
+    "roster": [
+     0,
+     "-",
+     2,
+     3
+    ],
+    "slots": [
+     0,
+     7,
+     2,
+     3,
+     -1
+    ],
+    "states": [
+     2,
+     3,
+     2,
+     2,
+     3
+    ],
+    "roster_7": "76301000"
+   },
+   "note": "records 0..3 into slots 0..3: the bijection holds. Assigning over an occupant vacates the INCOMING record's old slot and resets it, but the DISPLACED occupant keeps +0x12 = its slot and +0x0F = 2 (only its context's +0x152 is set) - the writer itself breaks the bijection. A null actor stores nothing. Slot 7 passes the sign test and is STORED at roster[7], past the four-entry array, with +0x12 = 7 and +0x0F = 3"
+  },
+  "bulk_clears_break_it": {
+   "pass_": true,
+   "cases": {
+    "002695A0": {
+     "roster": [
+      "-",
+      "-",
+      "-",
+      "-"
+     ],
+     "slots_still": [
+      0,
+      1,
+      2,
+      3,
+      -1
+     ],
+     "records_untouched": true,
+     "bijection": false
+    },
+    "0026DB30": {
+     "roster": [
+      "-",
+      "-",
+      "-",
+      "-"
+     ],
+     "slots_still": [
+      0,
+      1,
+      2,
+      3,
+      -1
+     ],
+     "records_untouched": true,
+     "bijection": false
+    },
+    "0025BFB0 (mask bit 0)": {
+     "roster": [
+      "-",
+      "-",
+      "-",
+      "-"
+     ],
+     "slots_still": [
+      0,
+      1,
+      2,
+      3,
+      -1
+     ],
+     "bijection": false
+    },
+    "0025BFB0 (mask bit 1 only)": {
+     "roster": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "slots_still": [
+      0,
+      1,
+      2,
+      3,
+      -1
+     ]
+    }
+   },
+   "note": "002695A0, 0026DB30 and 0025BFB0's bit-0 arm zero the roster and touch no record: every former member keeps +0x12 = its slot, and the bijection is broken until each is assigned again; 0025BFB0 without bit 0 leaves the roster"
+  },
+  "readers": {
+   "pass_": true,
+   "results": {
+    "slot 2": "True",
+    "slot 5": "0"
+   },
+   "note": "00263750 returns the occupant, NULL past slot 3"
+  }
+ }
+}

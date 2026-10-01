@@ -1,0 +1,96 @@
+/* group_completion.h - "the last one of the group died" and what that costs.
+ *
+ * Written from Database/FFXII TZA/05-Spawn-Encounter-Lifecycle/
+ * CONTRACT-group-completion-and-respawn.md and from the body of `00306F00`, which is the
+ * authority wherever the two differ. They differ in one place that matters; see BIT INDEX below.
+ */
+#ifndef FFXII_GROUP_COMPLETION_H
+#define FFXII_GROUP_COMPLETION_H
+
+#include <stdint.h>
+#include <stddef.h>
+
+/* The ledger lives in BSS at 0x02EC13C0: 64 entries of 24 bytes = 1,536, and
+ * 0x02EC19C0 - 0x02EC13C0 is exactly that. */
+#define GROUP_LEDGER_BASE   0x02EC13C0u
+#define GROUP_LEDGER_STRIDE 24
+#define GROUP_LEDGER_COUNT  64
+
+typedef struct SpawnGroupLedger {
+    uint64_t memberMask;     /* +0x00  the members this group waits for */
+    uint64_t deadMask;       /* +0x08  the members confirmed dead       */
+    uint8_t  flags;          /* +0x10  bit 0, set on ONE completion arm */
+    uint8_t  pad[7];         /* +0x11..+0x17 */
+} SpawnGroupLedger;
+
+/* The fields of the battle unit this path reads. Offsets are the physical truth and the names
+ * accompany them; nothing here renames an offset away. */
+#define UNIT_FLAGS64   0x000   /* q  bit 47 is set on one arm and cleared on the other */
+#define UNIT_P10       0x010   /* q  the object carrying the bkei index at its +0xF6   */
+#define BKEI_AT_P10    0x0F6   /* w  `00263D30` is movzx eax, word [rcx+0xF6] / ret    */
+#define UNIT_MAP       0x41   /* q  the bkei -> slot map                              */
+#define UNIT_P698      0x698   /* q  a record; byte +5 must equal 1                    */
+#define UNIT_GROUP     0xE98   /* b  1-based group id; 0 disables the whole path       */
+#define UNIT_ARM       0xE99   /* b  bit 0 selects which completion arm runs           */
+
+#define UNIT_FLAG_BIT47   (1ull << 47)
+
+#define GROUP_EVENT_ARM_A  0x2005   /* taken when UNIT_ARM bit 0 is SET   */
+#define GROUP_EVENT_ARM_B  0x2008   /* taken when it is CLEAR             */
+
+/* The side effects `00306F00` performs on completion, hoisted behind a vtable so the pure part
+ * can be compared without reproducing four unread callees. `00307140(1)`, `00238B70(1)` and
+ * `00238AE0(1)` are invoked before either arm; `dispatch` is `003299B0(unit, event, 0)`.
+ * Each original callee is observable separately. These hooks omit its native effects. */
+typedef struct GroupCompletionHooks {
+    void (*on_complete_prologue)(void *ctx, uint32_t callee_va, int argument);
+    void (*dispatch)(void *ctx, uint64_t unit, int event, int argument3);
+    void *ctx;
+} GroupCompletionHooks;
+
+/* A flat image the reconstruction addresses instead of raw pointers, so a test can hand it the
+ * same bytes the emulator gets. Same shape as `name_registry`'s NameImage. */
+typedef struct GroupImageRegion {
+    uint64_t va;
+    uint8_t *bytes;
+    size_t   size;
+} GroupImageRegion;
+
+typedef struct GroupImage {
+    GroupImageRegion *regions;
+    size_t            count;
+} GroupImage;
+
+uint8_t *GroupImage_At(const GroupImage *image, uint64_t va, size_t need);
+
+/* -> lane/slot byte, or -1. `00236 0D0`: bounds on map[0], rejects the 0xFF sentinel, and
+ * returns map[1 + bkei] -- the record SLOT, not the index it was given. */
+int SpawnLane_FromBkei(const GroupImage *image, uint64_t map_va, int bkei);
+
+/* -> 1 when the mask is complete, including repeated completion calls. `00306F00`. */
+int GroupCompletion_RecordDeath(const GroupImage *image, uint64_t unit_va,
+                                const GroupCompletionHooks *hooks);
+
+/* THE BIT INDEX, and the one place the contract's §12 formula and the machine disagree.
+ *
+ * §12 writes `L->deadMask |= 1ull << lane`. The body does:
+ *
+ *     mov ecx, r8d      ; the slot byte returned by SpawnLane_FromBkei, 0..254
+ *     mov eax, 1
+ *     shl eax, cl       ; a THIRTY-TWO bit shift: x86 masks the count to 5 bits
+ *     cdqe              ; and then SIGN-EXTENDS eax into rax
+ *     or  [rdx+8], rax
+ *
+ * so the three cases a 64-bit shift would not produce are real:
+ *
+ *   slot 0..30      bit `slot`, as expected
+ *   slot 31         `0xFFFFFFFF80000000` -- bits 31 THROUGH 63, all at once
+ *   slot 32..254    aliases onto `slot & 31`; slot 32 sets bit 0, not bit 32
+ *
+ * The upper half of a 64-bit `memberMask` is therefore unreachable except through slot 31's
+ * sign extension. This function reproduces that exactly; it is not a bug being carried forward
+ * blindly but the observed behaviour of the shipped code, and a reimplementation that used
+ * `1ull << slot` would complete groups the original never completes. */
+uint64_t GroupCompletion_DeadBit(int slot);
+
+#endif /* FFXII_GROUP_COMPLETION_H */

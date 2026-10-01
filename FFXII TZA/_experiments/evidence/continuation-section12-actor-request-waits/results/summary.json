@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "assertions": 139,
+  "identical_repeat": true,
+  "mutants_rejected": 8,
+  "original_bodies_verified": 85,
+  "original_data_spans_verified": 8,
+  "application_substitutions": 0,
+  "import_bridges": 0,
+  "planted_callbacks": 0,
+  "live_game": false,
+  "fresh_ghidra": false,
+  "full_historical_campaign_rerun": false,
+  "source_sha256": "5e6e2254408208232376397291db6b24ca9ff10cd716f3cf5b3afa0972af95d9",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "compiler": "gcc (Debian 14.2.0-19) 14.2.0"
+  },
+  "build_command": [
+    "gcc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fno-strict-aliasing",
+    "-fPIE",
+    "-pie",
+    "/mnt/data/section12_work/evidence/native_controls.c",
+    "-o",
+    "<temporary binary>"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+ "ok": true,
+ "results": {
+  "PRE_and_marshalling_00683C30": {
+   "pass_": true,
+   "data_null_reached": null,
+   "loadbufferx_args": {
+    "L": "0x76380000",
+    "data": "0x76382000",
+    "len": "0x1234",
+    "name": "0x20",
+    "mode": "0x0"
+   },
+   "null_buffer_pointer": [
+    "00000048"
+   ],
+   "note": "a NULL data pointer is refused before any load; rdx itself is dereferenced first (a NULL buffer faults); the load receives L, data, length and name as the recorded values"
+  },
+  "I1_I2_fork_and_mode_guards": {
+   "pass_": true,
+   "cases": {
+    "binary_mode_NULL": {
+     "reached": "luaU_undump",
+     "why": null
+    },
+    "text_mode_NULL": {
+     "reached": "luaY_parser",
+     "why": null
+    },
+    "binary_mode_t": {
+     "reached": "luaO_pushfstring",
+     "why": "t"
+    },
+    "text_mode_b": {
+     "reached": "luaO_pushfstring",
+     "why": "b"
+    },
+    "binary_mode_bt": {
+     "reached": "luaU_undump",
+     "why": null
+    }
+   },
+   "note": "first byte 0x1B -> luaU_undump, anything else -> luaY_parser; with mode NULL no guard fires; a mode that excludes the chunk's kind is refused (the message is formatted) before either path"
+  },
+  "I3_header_18_compared_17_read": {
+   "pass_": true,
+   "shipped_header_accepted": {
+    "accepted": true,
+    "why": null
+   },
+   "per_byte_flip": {
+    "1": "not a",
+    "2": "not a",
+    "3": "not a",
+    "4": "version mismatch in",
+    "5": "version mismatch in",
+    "6": "incompatible",
+    "7": "incompatible",
+    "8": "incompatible",
+    "9": "incompatible",
+    "10": "incompatible",
+    "11": "incompatible",
+    "12": "corrupted",
+    "13": "corrupted",
+    "14": "corrupted",
+    "15": "corrupted",
+    "16": "corrupted",
+    "17": "corrupted"
+   },
+   "truncated_16_bytes": {
+    "accepted": false,
+    "why": "truncated"
+   },
+   "note": "the shipped 5.2 float header passes; a flip at ANY of header bytes 1..17 is refused (with the message recorded); 16 bytes is 'truncated': 17 are read after the dispatcher's 0x1B"
+  }
+ }
+}

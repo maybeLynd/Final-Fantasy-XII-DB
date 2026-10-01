@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-78",
+ "result_refs": [
+  "audit:xref_hub78"
+ ],
+ "note": "22 frontier bodies (the last 2-A straggler + top 21 of 1-A, 001B7D20..007A4250) measured and placed on 16 bearing hosts; 22/22 A-measured; anchors 2,904/0 MID/0 not-in-body; links/consistency/questions clean; byte/hash audit reproduces; crossref 88 findings, two batch-owned mechanical fan-ins dispositioned in-section; ready to publish"
+}

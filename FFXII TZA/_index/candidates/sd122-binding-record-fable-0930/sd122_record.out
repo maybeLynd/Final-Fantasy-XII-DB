@@ -1,0 +1,7 @@
+CONTROL pool users = 003CCC20, 003CCF20, 003CD650, 003CD6E0 PASS
+R1 payload copied as 3 x 16 bytes (+0x00, +0x10, +0x20) PASS
+R2 zeroes +0x34/+0x38/+0x40 then writes the handle at +0x30 PASS
+R3 list links: entry validated (003CCE59), ordered by byte +2 (003CCEA0), +0x38/+0x40 written in the insert arms PASS
+R4 delay +0x0A counted by r14w; +0x34 seeded / advanced; bounded by +0x08 PASS
+R5 +0x0C non-zero adds a spread to +0x0A PASS
+FAILS 0

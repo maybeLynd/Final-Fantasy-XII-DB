@@ -1,0 +1,209 @@
+{
+ "cases": [
+  {
+   "after": {
+    "cover": true,
+    "free": 63,
+    "pending": 1
+   },
+   "arm_calls": 64,
+   "arm_returns": [
+    0
+   ],
+   "bgm_active_after": 0,
+   "bgm_after": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000100000001000000407f00000000",
+   "bgm_before": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000100000001000000407f00000000",
+   "bgm_state_after": 0,
+   "case": "C0_inactive",
+   "full_before": {
+    "cover": true,
+    "free": 0,
+    "pending": 64
+   },
+   "headreq_calls": 0,
+   "id": "1040",
+   "mach_calls": 65,
+   "mach_rsp_step": 0,
+   "mach_rsp_strictly_falling": false,
+   "mach_states": [
+    0
+   ],
+   "pacer_polls": 1,
+   "req_entries": 1,
+   "req_max_live": 1,
+   "returned": true,
+   "stop": null
+  },
+  {
+   "after": {
+    "cover": true,
+    "free": 63,
+    "pending": 1
+   },
+   "arm_calls": 64,
+   "arm_returns": [
+    0
+   ],
+   "bgm_active_after": 1,
+   "bgm_after": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000100000001000501407f00000000",
+   "bgm_before": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000100000001000501407f00000000",
+   "bgm_state_after": 5,
+   "case": "C1_active_state5_ready",
+   "full_before": {
+    "cover": true,
+    "free": 0,
+    "pending": 64
+   },
+   "headreq_calls": 0,
+   "id": "1040",
+   "mach_calls": 65,
+   "mach_rsp_step": 0,
+   "mach_rsp_strictly_falling": false,
+   "mach_states": [
+    5
+   ],
+   "pacer_polls": 1,
+   "req_entries": 1,
+   "req_max_live": 1,
+   "returned": true,
+   "stop": null
+  },
+  {
+   "after": {
+    "cover": true,
+    "free": 0,
+    "pending": 64
+   },
+   "arm_calls": 0,
+   "arm_returns": [],
+   "bgm_active_after": 1,
+   "bgm_after": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000100000001000701407f00000000",
+   "bgm_before": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000100000001000701407f00000000",
+   "bgm_state_after": 7,
+   "case": "C3_active_state7_piece_pending",
+   "full_before": {
+    "cover": true,
+    "free": 0,
+    "pending": 64
+   },
+   "headreq_calls": 7,
+   "id": null,
+   "mach_calls": 7,
+   "mach_rsp_step": 304,
+   "mach_rsp_strictly_falling": true,
+   "mach_states": [
+    7
+   ],
+   "pacer_polls": 0,
+   "req_entries": 8,
+   "req_max_live": 8,
+   "returned": false,
+   "stop": "planned stop: 0032E870 entered 8 times without returning"
+  },
+  {
+   "after": {
+    "cover": true,
+    "free": 0,
+    "pending": 64
+   },
+   "arm_calls": 0,
+   "arm_returns": [],
+   "bgm_active_after": 1,
+   "bgm_after": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000040000000000000000000101407f00000000",
+   "bgm_before": "ffffffff00000000000040760000000000000300000000000000000024000000030000000000000000000000000000000101407f00000000",
+   "bgm_state_after": 1,
+   "case": "C4_active_state1_fresh_read",
+   "full_before": {
+    "cover": true,
+    "free": 0,
+    "pending": 64
+   },
+   "headreq_calls": 7,
+   "id": null,
+   "mach_calls": 7,
+   "mach_rsp_step": 304,
+   "mach_rsp_strictly_falling": true,
+   "mach_states": [
+    1
+   ],
+   "pacer_polls": 0,
+   "req_entries": 8,
+   "req_max_live": 8,
+   "returned": false,
+   "stop": "planned stop: 0032E870 entered 8 times without returning"
+  }
+ ],
+ "checks": [
+  {
+   "name": "C0 returns with a valid id",
+   "pass": true
+  },
+  {
+   "name": "C0 drains all 64 in the same call",
+   "pass": true
+  },
+  {
+   "name": "C0 machine entered once per state-1 arm visit and returns 0",
+   "pass": true
+  },
+  {
+   "name": "C0 stream bytes unchanged",
+   "pass": true
+  },
+  {
+   "name": "C1 drains all 64 in the same call",
+   "pass": true
+  },
+  {
+   "name": "C1 machine returns 0 at every arm visit",
+   "pass": true
+  },
+  {
+   "name": "C1 stream bytes unchanged",
+   "pass": true
+  },
+  {
+   "name": "C3 does not return (planned stop)",
+   "pass": true
+  },
+  {
+   "name": "C3 nothing drained: 64 pending, 0 free at the stop",
+   "pass": true
+  },
+  {
+   "name": "C3 re-entry chain: requester nested 1+DEPTH deep via 0032E780, machine re-entered in state 7 each level",
+   "pass": true
+  },
+  {
+   "name": "C3 state never advances to 8 (the write follows the submission)",
+   "pass": true
+  },
+  {
+   "name": "C4 does not return (planned stop)",
+   "pass": true
+  },
+  {
+   "name": "C4 nothing drained: 64 pending, 0 free at the stop",
+   "pass": true
+  },
+  {
+   "name": "C4 re-entry chain in state 1",
+   "pass": true
+  },
+  {
+   "name": "C4 fileBytes taken from the size table (0x40000) and state still 1",
+   "pass": true
+  },
+  {
+   "name": "NEG corrupted C0 record is rejected by the drain predicate",
+   "pass": true
+  }
+ ],
+ "depth": 6,
+ "harness": {
+  "printf_bridge.py": "17682a34bacb2b26",
+  "world.json": "7b4c96882ac47df1",
+  "world.py": "4de4b00a6f1cd8a7"
+ },
+ "image_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+}

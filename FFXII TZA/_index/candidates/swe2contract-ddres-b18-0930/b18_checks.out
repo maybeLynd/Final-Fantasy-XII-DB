@@ -1,0 +1,102 @@
+PASS image identity - 73461d0896204b1c
+PASS T1 0036C660 keeps arg 3 in edi - 0036C66A  mov edi, r8d
+PASS T1 0036C660 stores its low 16 bits at payload -0x22 - 0036C6A0  mov word ptr [rbx - 0x22], di
+PASS T1 0036C6C0 (handle form) keeps arg 3 in esi - 0036C6CA  mov esi, r8d
+PASS T1 0036C6C0 stores it at payload -0x22 - 0036C72C  mov word ptr [rbx - 0x22], si
+PASS T1 control: the page's own case passes 0x95C - 003303A4  mov r8d, 0x95c
+PASS T2 0036C660 has 63 direct call sites - 63
+PASS T2 tag argument classes - {'imm+label': 3, 'imm+basename': 25, 'register/memory': 22, 'zero': 13}
+PASS T2 the basename-labelled immediates lie in 0xF3..0x16E6 (line-like) - F3..16E6
+PASS T2 EVTMEM passes its size 0x100000 (low 16 bits 0) - 0025A9F7  mov r8d, 0x100000
+PASS T3 reads of header +0x1E in the arena code: four copies and one zero test - 0036A2A0@0036A309 movzx; 0036A570@0036A6E0 cmp; 0036B980@0036BB61 movzx; 0036CB00@0036CD0E movzx; 0036CB00@0036CF6B movzx
+PASS T3 0036CB00's second copy lands in the new header (through its template +0x4E) - 0036CFCC  mov word ptr [rdi + 0x1e], ax
+PASS T3 0036A2A0 copies it into its header template - 0036A30D  mov word ptr [rsp + 0x3e], ax
+PASS T3 0036A2A0 writes the template's word into the rebuilt header - 0036A404  mov word ptr [rbx + 0x1e], ax
+PASS T3 0036B980 copies it header to header - 0036BB65  mov word ptr [rdi + 0x1e], ax
+PASS T3 0036CB00 copies it into its header template - 0036CD1A  mov word ptr [rsp + 0x4e], ax
+PASS T3 the dump's zero test decides only whether the block's name is printed - 0036A6E5  jne 0x36a6ed
+PASS T3 ... and the taken branch copies the name +0x34 - 0036A6EF  lea rdx, [rbx + 0x34]
+PASS T4 image-wide word accesses at [reg - 0x22]: the two tagger stores and one stack slot - 0036C6A0 mov word ptr [rbx - 0x22], di; 0036C72C mov word ptr [rbx - 0x22], si; 004197F8 movsx eax, word ptr [rbp - 0x22]
+PASS T4 control: 00418880's rbp is a stack frame - 0041888C  lea rbp, [rsp - 0x380]
+PASS T5 the free routine clears the tag - 00369B3C  mov word ptr [rbx + 0x1e], si
+PASS T5 ... with the register that clears the name byte - 00369B36  mov byte ptr [rbx + 0x34], sil
+PASS A1 0037B3D0 sequence - 0037B3FE  mov ecx, 0xb
+PASS A1 0037B3D0 sequence - 0037B403  call 0x369760
+PASS A1 0037B3D0 sequence - 0037B40D  call 0x36d160
+PASS A1 0037B3D0 sequence - 0037B412  mov rcx, qword ptr [rip + 0x1c595ff]
+PASS A1 0037B3D0 sequence - 0037B419  call 0x36d250
+PASS A1 0037B3D0 sequence - 0037B420  call 0x36d240
+PASS A1 0037B3D0 sequence - 0037B42B  mov qword ptr [rip + 0x1c595e6], rax
+PASS A1 0037B3D0 sequence - 0037B425  mov r9d, 0x100
+PASS A1 0037B3D0 sequence - 0037B43D  call 0x369d30
+PASS A1 the freed and the stored qword are arena 11's backing slot 01FD4A18
+PASS A2 0036D250 tail-jumps for a non-null pointer - 0036D253  jne 0x19c590
+PASS A2 0019C590 jumps through IAT slot 008C2B48
+PASS A2 IAT 008C2B48 is the CRT free import
+PASS A3 the report 00369760 runs the dump 0036A570 when the arena is not one whole free block - 003697B2  call 0x36a570
+PASS A3 0036D250 has one caller, 0037B3D0
+PASS U1 002628B0 direct callers - [('0025BFB0', '0025C036'), ('0032FCA0', '0032FCF6')]
+PASS U2 the drain 0025BFB0 is called only by the tick 00314020 at 00314078
+PASS U3 the world-tick page owns the unload's subtree and EX-9 is a ticked box
+PASS B1 0x800 table: 003A9560 allocates 0xA00 bytes (320 slots) - 003A9564  mov ecx, 0xa00
+PASS B1 0xA00 table: 003A9920 allocates 0x1800 bytes (768 slots) - 003A9924  mov ecx, 0x1800
+PASS B2 registrar - 003A973A  movzx r8d, word ptr [rcx]
+PASS B2 registrar - 003A974B  movzx eax, byte ptr [rdi + 2]
+PASS B2 registrar - 003A974F  mov byte ptr [rcx + 0x282], al
+PASS B2 registrar - 003A9767  mov qword ptr [r8 + r9*8], rcx
+PASS B2 registrar - 003A9A7A  movzx r8d, word ptr [rcx]
+PASS B2 registrar - 003A9A8B  movzx eax, byte ptr [rdi + 2]
+PASS B2 registrar - 003A9A8F  mov byte ptr [rcx + 0x44], al
+PASS B2 registrar - 003A9AA1  mov qword ptr [r8 + r9*8], rcx
+PASS B3 the teardown walk starts at index 1 (0x800 table) - 003A967A  cmp rbx, 0xa00
+PASS B4 control: the walk reproduces the published chunk counts (53,351 0x800; 48,868 0xA00) over exact streams - 4229 streams, 53351 / 48868
+PASS B5 every 0x800 id is below 320 and every 0xA00 id below 768 - max 296 (ps2data/effect_finish/jp/common/c_all.efx), 722 (ps2data/effect_finish/jp/common/c_all.efx)
+PASS B5 no chunk uses id 0, the slot the teardown and rebase skip
+PASS B5 no id repeats within a stream
+PASS B6 the 0x800 subtype byte (chunk +0xE) stays in 0..8 - [(0, 2153), (1, 41058), (2, 1237), (3, 2502), (4, 620), (5, 2810), (6, 26), (7, 2203), (8, 742)]
+PASS G1 0024D050 has one direct caller, 003EF2E0 at 003EF419
+PASS G1 no rip reference and no data qword names 0024D050
+PASS G2 003EF2E0's address is taken once, by 003EF830 at 003EFA2D, and nothing calls it directly
+PASS G2 ... and handed to the task registrar 00244F50 - 003EFA39  call 0x244f50
+PASS G3 003EF830 names the game-over layout and image (00D11C88, 00D11CA0; b15 P1)
+PASS G3 the countdown reaching zero runs 0024D050 - 003EF405  sub eax, 1
+PASS G3 the countdown reaching zero runs 0024D050 - 003EF408  mov dword ptr [rbx + 0xc8], eax
+PASS G3 the countdown reaching zero runs 0024D050 - 003EF40E  jne 0x3ef496
+PASS G3 the countdown reaching zero runs 0024D050 - 003EF414  call 0x363560
+PASS G3 the countdown reaching zero runs 0024D050 - 003EF419  call 0x24d050
+PASS G4 0024D050, 003A7420, 00332FA0, 0024FCF0, 003B3EA0 call no release front directly
+PASS G5 003A7420 walks the instance's sixteen +0x130 slots - 003A7449  cmp rbx, 0x80
+PASS G5 ... calling the slot teardown 00332FA0 - 003A7440  call 0x332fa0
+PASS S1 0024D540 callers = the three main-loop frame functions
+PASS R1 SD-164 lead word ANSWERED - ANSWERED 2026-09-30 (OPUS `1F1DEFD7D`, S
+PASS R1 SD-165 lead word ANSWERED - ANSWERED 2026-09-30 (OPUS `E87A83339`, S
+PASS R1 SD-166 lead word ANSWERED - ANSWERED 2026-09-30 (OPUS `B3F5172C9`, R
+PASS R1 J-C lead word SUPERSEDED - SUPERSEDED 2026-09-27 (FABLE, CLAUDE OPU
+PASS R1 CD-2 lead word SUPERSEDED - SUPERSEDED 2026-09-27 (FABLE, CLAUDE OPU
+PASS R1 BW-2 lead word SUPERSEDED - SUPERSEDED 2026-09-26 (FABLE, CLAUDE OPU
+PASS R1 OV-24 lead word SUPERSEDED - SUPERSEDED 2026-09-29 (SWE2-FRONTIER): D
+PASS R1 OV-25 lead word ANSWERED - ANSWERED 2026-09-29 (FABLE, CLAUDE OPUS 
+PASS R1 OV-26 lead word ANSWERED - ANSWERED 2026-09-29 (FABLE, APPLIED BY S
+PASS R1 OV-27 lead word NOT A QUESTION - NOT A QUESTION 2026-09-29 (SWE2-FRONTIER
+PASS R1 OV-28 lead word NOT A QUESTION - NOT A QUESTION 2026-09-29 (SWE2-FRONTIER
+PASS R1 OV-41 lead word ANSWERED - ANSWERED 2026-09-29 (FABLE, CLAUDE OPUS 
+PASS R1 EX-9 lead word ANSWERED - ANSWERED
+PASS Q1 the 28 review / correction requests the sections route are DONE
+INFO OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME status BLOCKED (reported, not pinned)
+INFO SWE2CONTRACT-REQ-AUDITSPEC-SECTION06-ACCEPT-0930 status READY (reported, not pinned)
+PASS P1 OV-41 record: the 0x800 registrar's subtype byte is record +0x282, a family of its own
+PASS P1 FABLE's arena-residue record states the replacement
+PASS P1 the parent reads 003EE2D0 and records the descriptor tail as padding
+PASS P1 the container page's section 2b: the EFB buffer is one block freed only by the map teardown
+PASS P1 b15 P1 names 00D11C88 / 00D11CA0
+PASS P1 cited record tracked: ov41-efx-children-fable/README.md
+PASS P1 cited record tracked: ov42-arena-residue-fable/README.md
+PASS P1 cited record tracked: sd166-arena-7-0930/README.md
+PASS P1 cited record tracked: swe2contract-ddres-b15-0930/README.md
+PASS Z1 the superseded SD-166 sentence is kept verbatim under a strike
+PASS Z1 ... with the batch-18 correction note
+PASS Z2 the batch-18 pointer notes - 44
+PASS Z2 the new Limits subsection
+PASS Z3 the page stays LF-only
+PASS Z4 no batch-18 note carries a literal '|'
+PASSES 99 FAILS 0

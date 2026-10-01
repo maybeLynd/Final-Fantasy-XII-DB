@@ -1,0 +1,10 @@
+SURVIVES  A0  sizes all nine as read
+SURVIVES  A1  asset: 5 calls before the 02AEE4C0 guard, 0xD8 via 00244F50; consumer: needs 02AEE4C0, 0x1D0 via 00244F50
+SURVIVES  A2  message 1 -> 003939F7: message byte to consumer +0xC0, +0xC4/+0xC8 zeroed, 02AEE4C8 published, 002E1C20(1, 21)
+SURVIVES  A3  message 1 publishes, zeroes +0xC0, requests, sets channel 0 bit 21; 16 ORs bit 0; 18 releases with no slot compare
+SURVIVES  A4  002493D0(ticket, 7, 0x3D, 3, descriptor, 2) -> +0xC8, its record's +0x40 = 0; 00249320(ticket, 7, 0x3A) -> +0xD0; submit
+SURVIVES  A5  equal +0x18/+0x1A and +4 == 0 -> message 0x10 to the owner at +8; the ticket records its owner at +8
+SURVIVES  A6  message 2 -> 00393A7A: own +0xC4 bit 0; asset from 02AEE4C0, bit 0 of its +0xC0; asset +0xD0 to 003946B0 with 5
+SURVIVES  A7  the two wrappers restore the receiver into rax; 002465F0 keeps it in rdi and never moves it to rax
+SURVIVES  A8  00249320 callers 003933F0 00393FF0 003F4840 00404060; the title asset's is 00393FF0 (from its own handler 00394106), not the consumer 003939B0
+FAILS 0

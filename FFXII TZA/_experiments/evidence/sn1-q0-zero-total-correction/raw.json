@@ -1,0 +1,32 @@
+{
+  "question": "Why did60 report61 zero suffix records although numeric/raw original data reports59?",
+  "method": "A immutable original60 byte records/numeric result and actual producer source; no recapture/execution",
+  "parent": "Database/FFXII TZA/_experiments/evidence/sn1-q0-source-coordinate-domain",
+  "parent_manifest_sha256": "bc4b00822d6828bc5cc9ce012951296111e99902c439bf3e556da2148ca04449",
+  "parent_raw_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "parent_result_sha256": "d8a9202432e3575d965d1438c78380e085a0f78851de8b66da46185b0fb08379",
+  "original_checker_sha256": "4750afc8b9b3aae1f0d96af994d507c168e23cdd84c9e6e197e0e410a514228c",
+  "by_module": {
+    "ctrl": 6,
+    "btlctrl": 20,
+    "evctrl": 23,
+    "mapctrl": 10
+  },
+  "actual_zero_total": 59,
+  "incorrect_text_total": 61,
+  "cause": "Hardcoded unchecked interpretation/stdout, while numeric field and physical byte counter are59; control/counter/data did not regress",
+  "affected_claims": [
+    "60 README/check interpretation/stdout/default stdout and result.interpretation",
+    "60 delivery task question/board note/ASTRA handoff prose total61",
+    "FABLE flagged discrepancy; OPUS/DATA/SPEC pending payloads must use59"
+  ],
+  "unaffected": [
+    "Original eight input identities/raw bytes and numeric coordinate_counts",
+    "six internal EOF+1 records and nine lineCount coordinates",
+    "0..3 suffix bound/five scopes with3, no interior all-zero records",
+    "61 source-statement anchors and their original code identities",
+    "canonical index not reported regressed"
+  ],
+  "consumer": "FABLE/DATA/OPUS/SPEC original60 consumers; original package remains immutable with additive correction",
+  "cleanup": "PC OFF; no game/save/config/reference/peer writes"
+}

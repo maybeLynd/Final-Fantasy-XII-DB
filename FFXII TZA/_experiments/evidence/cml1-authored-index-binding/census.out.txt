@@ -1,0 +1,29 @@
+exe sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+
+== tier 1: the gate
+005C5230 .text  routine the gate ends in: 33 c0 c3
+0032F3D0 .text  FUN_0032F3D0 whole body: 40 53 48 83 ec 20 8b d9 e8 53 97 0d 00 83 f8 01 74 3d e8 29 97 0d 00 83 f8 03 74 33 85 db 74 16 83 eb 01 74 0a 83 fb 01 75 1a 8d 4b 0d eb 0c b9 05 00 00 00 eb 05 b9 04 00 00 00 e8 20 5e 29 00 85 c0 74 0b b8 01 00 00 00 48 83 c4 20 5b c3 33 c0 48 83 c4 20 5b c3
+call at 0032F40B targets 005C5230
+kind argument at each call site of 0032F3D0:
+  002E4D46  bytes 48 63 f9 b9 02 00 00 00 e8 85 a6 04 00  kind 2
+  00378AAB  bytes c9 e8 f7 d8 04 00 33 c9 e8 20 69 fb ff  kind 0
+  00378AEA  bytes f6 45 76 02 74 6e 33 c9 e8 e1 68 fb ff  kind 0
+  00378B01  bytes ff e8 a1 f9 ff ff 33 c9 e8 ca 68 fb ff  kind 0
+  003DA27B  bytes b9 01 00 00 00 49 03 fe e8 50 51 f5 ff  kind 1
+  003DD1AB  bytes b9 01 00 00 00 49 03 fe e8 20 22 f5 ff  kind 1
+
+== tier 2: authored index vs first-match lookup
+control: camera files 423 entries 3933 (published 423 / 3,933); shake files 113 entries 300 (published 113 / 300)
+camera entries whose authored index != first-match lookup: 11
+  ald_a0180.ebp  entry  5 cut_05_02                authored  6  first-match  5  all matches [5, 6]  records differ in 6 bytes
+  bul_a0101.ebp  entry  0 cut1_2                   authored 19  first-match  0  all matches [0, 19]  records differ in 11 bytes
+  byu_x0100.ebp  entry  1 cut2_2                   authored 14  first-match  8  all matches [8, 14]  records identical
+  evt_t0081.ebp  entry  1 mapgcam_mfr_gate1        authored  4  first-match  0  all matches [0, 4]  records differ in 3 bytes
+  evt_t0083.ebp  entry  4 open04                   authored 29  first-match 28  all matches [28, 29]  records identical
+  evt_t0086.ebp  entry 14 magcam_rblj01_r_nw2      authored 31  first-match 21  all matches [21, 31]  records differ in 2 bytes
+  ozm_c0180.ebp  entry  1 cut4                     authored  1  first-match  0  all matches [0, 1]  records differ in 8 bytes
+  rbn_a0380.ebp  entry  6 stay_cam_mg_cut06        authored  9  first-match  6  all matches [6, 9]  records identical
+  sum_d0001.ebp  entry  8 カット00                    authored  4  first-match  0  all matches [0, 4]  records identical
+  glf_a01.ebp    entry  2 cut001                   authored 11  first-match  2  all matches [2, 11]  records differ in 11 bytes
+  grm_e13.ebp    entry  2 mapgcam_SUIMON_E_床の丸     authored  4  first-match  0  all matches [0, 4]  records differ in 2 bytes
+authored index is the LAST of the duplicates in 11 of 11

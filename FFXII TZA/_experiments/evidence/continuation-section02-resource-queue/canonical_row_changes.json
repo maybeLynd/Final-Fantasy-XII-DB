@@ -1,0 +1,415 @@
+[
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x000"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x000",
+      "size": "8",
+      "name": "counterAccum",
+      "ctype": "uint64",
+      "meaning": "ACCUMULATES ABSOLUTE COUNTER READINGS, and it is not an elapsed time. State 2 of the pump is `call 0035E810` (result discarded) / `call 0035E810` / `add qword [rbx], rax` / `mov [rbx+8], rax`, and 0035E810 is eight bytes - `mov rax, [022CA5E0]` / `ret` - a plain getter with no delta and no side effect, so both calls return the same value and there is no subtraction of the +0x08 stamp anywhere in the arm. What the running sum is FOR is not established; a deliberate accumulator and a defect look identical here.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x000",
+      "size": "8",
+      "name": "counterAccum",
+      "ctype": "uint64",
+      "meaning": "State 2 adds the second absolute-counter getter return to this qword; it does not subtract +0x08. The first call return is discarded. Getter-side absence of writes does not imply both live reads must be equal. The purpose of this accumulator remains unestablished.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x020"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x020",
+      "size": "1",
+      "name": "state",
+      "ctype": "uint8",
+      "meaning": "THE SIX-STATE MACHINE, and the busiest field on the type - fourteen sites in the pump alone. 1 queued, 2 issued, 3 waiting, 4 cancelled, 5 part delivered, 6 failed; the pump dispatches on it through the six-entry table at 0032E2D0 and the bound `<= 5` sends anything else to teardown. The pool builder zeroes it together with +0x21 in one WORD store (0032E48E `mov word [rax+8], r8w`), which is a combined store and not a two-byte field: every access in the pump is a byte.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x020",
+      "size": "1",
+      "name": "state",
+      "ctype": "uint8",
+      "meaning": "Byte state: 1 queued, 2 issued, 3 waiting, 4 cancelling, 5 delivered, 6 failed. Dispatch re-reads pending head and can process multiple states/records in one call. Invalid state reaches the common footer, not proven shutdown. The constructor clears state+kind with a word store; recycle helper alone does not clear state.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x023"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x023",
+      "size": "1",
+      "name": "chunkFlag23",
+      "ctype": "uint8",
+      "meaning": "the chunk progress flag - five sites, read and written. The value 2 with +0x22 == 1 takes the requeue-probe arm; the retire arms clear it.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x023",
+      "size": "1",
+      "name": "chunkFlag23",
+      "ctype": "uint8",
+      "meaning": "Progress-result byte in the chunked path. Value 2 selects callback re-probing before another subtraction. A return of 3 is not a release and does not select that re-probe; later state-5 execution can subtract the prior part again. These are bounded original-code controls, not evidence of reachable shipped callback producers.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x028"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x028",
+      "size": "4",
+      "name": "bytes",
+      "ctype": "uint32",
+      "meaning": "the byte count of the current part. Zero in state 1 means there is nothing to read and the request retires immediately; the state-5 requeue arm resizes it to min(+0x30, +0x34).",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x028",
+      "size": "4",
+      "name": "bytes",
+      "ctype": "int32",
+      "meaning": "Current part count. Zero queued count completes without a file issue. Requeue uses a signed minimum; error callback is gated on exactly -1. Cancel paths zero the count only when a cancel callback exists. Width is 32 bits; do not replace signed comparisons with unsigned ones.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x02C"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x02C",
+      "size": "4",
+      "name": "offset",
+      "ctype": "uint32",
+      "meaning": "the read offset, advanced by the part size on each chunk - AND THEN ROUNDED DOWN to a 0x800 boundary by the signed-bias form `cdq` / `+edx` / `&0x7ff` / subtract / `&0xfffff800`, so a negative value rounds toward zero rather than away from it.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x02C",
+      "size": "4",
+      "name": "offset",
+      "ctype": "int32",
+      "meaning": "Signed 32-bit file offset. Initially and on requeue: cdq; and edx,0x7ff; add eax,edx; and eax,0xfffff800. Truncates toward zero to a 0x800 multiple; positive values round down, negative toward zero. The former listed subtract instruction does not exist.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x030"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x030",
+      "size": "4",
+      "name": "partCap",
+      "ctype": "uint32",
+      "meaning": "the maximum size of one part; the cap in min(+0x30, +0x34).",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x030",
+      "size": "4",
+      "name": "partCap",
+      "ctype": "int32",
+      "meaning": "Signed-comparison part cap. The gated builder writes 0x80000; requeue takes signed min(cap,remaining). Whole requests can retain earlier contents here; acquisition is not whole-slot clearing.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x034"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x034",
+      "size": "4",
+      "name": "remaining",
+      "ctype": "uint32",
+      "meaning": "what is left of the request - decremented by the part size on each chunk, and reaching zero is what retires a chunked request.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x034",
+      "size": "4",
+      "name": "remaining",
+      "ctype": "int32",
+      "meaning": "Remaining count for chunked requests; decremented by the previous part and tested signed >0. Counts <=0 complete. It is not reset by ordinary whole-request acquisition or the recycle splice.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x048"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x048",
+      "size": "8",
+      "name": "cancelCallback",
+      "ctype": "void*",
+      "meaning": "called as cb(+0x60) on cancel completion and by 0032E590 for a request not yet issued.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x048",
+      "size": "8",
+      "name": "cancelCallback",
+      "ctype": "void*",
+      "meaning": "Cancellation callback copied from descriptor +0x18. Called with zero-extended descriptor argument +0x60 on cancellation; byte count is cleared only when this pointer is nonnull. Callback-return value is not a general cancellation result.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x050"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x050",
+      "size": "8",
+      "name": "partCallback",
+      "ctype": "void*",
+      "meaning": "called between parts by 0032E3B0 as int cb(slot) - 1 continue, 2 or 3 stop.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x050",
+      "size": "8",
+      "name": "partCallback",
+      "ctype": "void*",
+      "meaning": "Optional part callback consulted by 0032E3B0; default null returns 1. The requester at 0032E959 always clears this slot and does NOT copy descriptor +0x20; the gated builder clears it again. Results 1/2/3 have different pump behavior. Additional nonnull installation/reachability remains separately scoped.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x064"
+    },
+    "before": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x064",
+      "size": "4",
+      "name": "requestId",
+      "ctype": "int32",
+      "meaning": "the request id, counted up from the global at 01EED498. The pool builder and 0032EC40 both set it to -1 to mark the slot free (0032E47F, and again on the free-list push).",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv."
+    },
+    "after": {
+      "type": "ResourceRequestSlot",
+      "offset": "0x064",
+      "size": "4",
+      "name": "requestId",
+      "ctype": "int32",
+      "meaning": "32-bit request id: (old counter << 6) + (slotIndex & 0x3F). Constructor-derived counter 1..0xFFFFFF increments and resets to1 after the signed comparison; init/recycle write -1. A planted counter0 can enqueue id0, so result0 alone is not proof that acquisition failed. Cancellation tests exact id, not only low slot bits.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Measured 2026-09-20 (OPUS) from the shipping image, authority hash 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, image base 0x120000. Width from the cleaned census 02-Resource-And-Asset-Pipeline/resource-request-slot-accesses.tsv. || CURRENT SEMANTICS CORRECTED/BOUNDED: SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x00"
+    },
+    "before": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x00",
+      "size": "8",
+      "name": "pendingHead",
+      "ctype": "ResourceRequestSlot*",
+      "meaning": "the head of the pending request list; null when nothing is queued",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Established by a RIP-relative census of 022C5140..022C5200 over every listed body, which returns accesses at exactly six addresses in this run and none between them. NULLED AT INIT AND TESTED FIRST BY THE PUMP, which is what names it. 0032E4BF writes it with the constructor's zero register, and the pump 0032E070 opens with 0032E090 `mov rbx, qword ptr [rip + 0x1f97129]` then `test rbx, rbx / je` - it reads this field before anything else and returns immediately when it is null. Nine references, four of them writes. ResourceRequestSlot's own evidence already called this address the pending head; this row is where that becomes a declared field rather than a remark inside another type."
+    },
+    "after": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x00",
+      "size": "8",
+      "name": "pendingHead",
+      "ctype": "ResourceRequestSlot*",
+      "meaning": "Head of pending requests; null means no queued slot. The pump still calls the service gate and common footer when null.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "0032E090 loads pending head; 0032E09A branches to 0032E29B, not directly to the return. SECTION-02 empty/busy/drained controls execute that footer. Historical direct-return description corrected. SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x08"
+    },
+    "before": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x08",
+      "size": "8",
+      "name": "pendingTail",
+      "ctype": "ResourceRequestSlot*",
+      "meaning": "the tail of the same list",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Established by a RIP-relative census of 022C5140..022C5200 over every listed body, which returns accesses at exactly six addresses in this run and none between them. Nulled by 0032E4C6 in the same instruction pair that nulls the head - the two writes are seven bytes apart with the same source register - and written by 0032E990 with rdx. Six references, four writes. THE NAME IS AN INFERENCE and is marked as one: what is proven is that it is an 8-byte field nulled beside the head at init and written by an enqueue-side body. Nothing read here walks from head to tail to confirm the direction."
+    },
+    "after": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x08",
+      "size": "8",
+      "name": "pendingTail",
+      "ctype": "ResourceRequestSlot*",
+      "meaning": "Tail of the pending list, established by head/tail insertions and head/middle/last removals.",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "0032E9DA initializes tail when inserting into an empty list; 0032EA1A/0032EA21 read/update tail during append; 0032EC60..0032EC71 update tail when removing the last node. Native graph controls verify direction across all 64 slots. Replaces the earlier inference-only explanation; current ladder label is retained pending peer acceptance. SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/fields.tsv",
+    "key": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x10"
+    },
+    "before": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x10",
+      "size": "8",
+      "name": "slotArrayBase",
+      "ctype": "ResourceRequestSlot*",
+      "meaning": "the base of the 64-slot array this queue draws from",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "Established by a RIP-relative census of 022C5140..022C5200 over every listed body, which returns accesses at exactly six addresses in this run and none between them. PROVEN BY THE VALUE STORED, not by position. 0032E4A3 `lea rax, [rip + 0x1f94d16]` resolves to 022C31C0 - the slot array's declared base - and 0032E4B1 stores that rax here. The requester 0032E870 then compares against it at 0032E88D `cmp qword ptr [rip + 0x1f9693c], rbx`, which is the shape of a bounds or identity check against the array's start. Seven references, three writes."
+    },
+    "after": {
+      "type": "ResourceRequestQueue",
+      "offset": "0x10",
+      "size": "8",
+      "name": "freeHead",
+      "ctype": "ResourceRequestSlot*",
+      "meaning": "Mutable free-list head, null when all slots are pending. It equals 022C31C0 only immediately after pool initialization, not a constant slot-array base.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "0032E4B1 initializes 022C51D0 to SLOT0. 0032E990 loads this head, 0032E9B5 advances it, and 0032ECBE pushes a recycled slot. At 0032E88D RBX is zero from 0032E888, so the comparison is an empty-list check, not a bounds/identity test. Native take/recycle/64-slot controls distinguish these meanings. Old name slotArrayBase was incorrect. SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending."
+    }
+  },
+  {
+    "file": "_types/types.tsv",
+    "key": {
+      "type": "ResourceRequestQueue"
+    },
+    "before": {
+      "type": "ResourceRequestQueue",
+      "size": "0x28",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "one instance, the image-resident queue head at 022C51C0",
+      "allocation_site": "IMAGE 022C51C0 - .data past raw data, so .bss. No allocation call exists; the pool constructor 0032E450 initialises it in place and the pump, requester and builder share it.",
+      "ctor": "0032E450 - its tail writes this object's first three fields: 0032E4B1 stores the slot array base into +0x10, 0032E4BF and 0032E4C6 null +0x00 and +0x08.",
+      "dtor": "none - image storage",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "level": "L1",
+      "evidence": "DECLARED 2026-09-21 (OPUS), closing the types gap S-08's own verdict names. That row says the subsystem's slot type is 100% and constructor-corroborated and that what has no type is the QUEUE, whose head and tail are named only inside another type's evidence. THE ADJACENCY IS MEASURED, NOT ASSUMED, and it is why this is declared now when I deferred it on 2026-09-20 as a convention question. My objection then was that a struct over these globals would assert an adjacency the addresses do not support - there is a gap between 022C5150 and 022C51C0. THAT IS TRUE OF 022C5150, WHICH IS EXCLUDED HERE: it is written once by the constructor at 0032E4B8 and referenced nowhere else in the image, so it is a loose global and not part of this object. From 022C51C0 the run is CONTIGUOUS - the census returns 51C0, 51C8, 51D0, 51D8, 51DC and 51E0 with nothing between them, and the next referenced address, 022C51F0, is address-taken by three `lea` sites and is a separate object. THE CENSUS ALSO FOUND A SIXTH FIELD the 2026-09-20 note missed: 022C51E0 at +0x20, written by 0032EA90 and zeroed by 0032EAE0. The note listed five globals. SIZE 0x28 is the extent of the contiguous run, not a measured allocation - nothing here shows the object ending, and +0x20's eight bytes are the last referenced address before the gap.",
+      "documents": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "route": "STATIC 0x022C51C0"
+    },
+    "after": {
+      "type": "ResourceRequestQueue",
+      "size": "0x28",
+      "category": "02-Resource-And-Asset-Pipeline",
+      "instance": "one instance, the image-resident queue head at 022C51C0",
+      "allocation_site": "IMAGE 022C51C0 - .data past raw data, so .bss. No allocation call exists; the pool constructor 0032E450 initialises it in place and the pump, requester and builder share it.",
+      "ctor": "0032E450 initializes mutable freeHead (+0x10) to pool start 022C31C0, and clears pending head/tail (+0/+8). The free-head value subsequently advances or changes on pop/recycle; it is not a constant base pointer.",
+      "dtor": "none - image storage",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "level": "L1",
+      "evidence": "DECLARED 2026-09-21 (OPUS), closing the types gap S-08's own verdict names. That row says the subsystem's slot type is 100% and constructor-corroborated and that what has no type is the QUEUE, whose head and tail are named only inside another type's evidence. THE ADJACENCY IS MEASURED, NOT ASSUMED, and it is why this is declared now when I deferred it on 2026-09-20 as a convention question. My objection then was that a struct over these globals would assert an adjacency the addresses do not support - there is a gap between 022C5150 and 022C51C0. THAT IS TRUE OF 022C5150, WHICH IS EXCLUDED HERE: it is written once by the constructor at 0032E4B8 and referenced nowhere else in the image, so it is a loose global and not part of this object. From 022C51C0 the run is CONTIGUOUS - the census returns 51C0, 51C8, 51D0, 51D8, 51DC and 51E0 with nothing between them, and the next referenced address, 022C51F0, is address-taken by three `lea` sites and is a separate object. THE CENSUS ALSO FOUND A SIXTH FIELD the 2026-09-20 note missed: 022C51E0 at +0x20, written by 0032EA90 and zeroed by 0032EAE0. The note listed five globals. SIZE 0x28 is the extent of the contiguous run, not a measured allocation - nothing here shows the object ending, and +0x20's eight bytes are the last referenced address before the gap. || CURRENT FIELD CORRECTION: +0x10 is freeHead, not slotArrayBase. 0032E88D compares it to RBX=0, not a pool bound. Graph controls establish pending-tail direction and selective constructor/recycle writes. The 0x28 declared view remains a referenced extent, not new proof of allocation size. SECTION-02 (2026-09-22), original EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8; evidence: _experiments/evidence/continuation-section02-resource-queue/REVIEW.md. Formal peer acceptance of this edit remains pending.",
+      "documents": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "route": "STATIC 0x022C51C0"
+    }
+  }
+]

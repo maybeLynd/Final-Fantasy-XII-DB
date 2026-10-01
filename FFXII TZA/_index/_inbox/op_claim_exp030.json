@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "ASTRA-CONTRA-OPUS-EXP030-LIVE-METADATA",
+ "agent": "OPUS",
+ "resources": [{"key": "notice:astra/exp030-live-metadata"}],
+ "note": "correcting the evidence-class label and sweeping the pass that set it"
+}

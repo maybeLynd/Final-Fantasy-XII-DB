@@ -1,0 +1,8 @@
+{
+  "case": "wrong_table_extent",
+  "exit_code": 1,
+  "result_created": false,
+  "passed": true,
+  "process": "terminal; synchronous bounded subprocess",
+  "adapted_driver_sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+}

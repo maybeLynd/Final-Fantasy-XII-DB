@@ -1,0 +1,12 @@
+# RefFlag.DwordFlagAlignedFreeResetReturnTrue - EC-7 family C
+# # flag read from [rdx] (shr eax,0x12, inverted bit); if set, free
+# # [rdx+8] via shared aligned-free wrapper 00584730; zero {+8,+0} and
+# # the flag dword; return 1.
+address	targets
+005A4A20	00584730
+005D00C0	00584730
+005D1C30	00584730
+005D5070	00584730
+0065E870	00584730
+006607D0	00584730
+006CF330	00584730

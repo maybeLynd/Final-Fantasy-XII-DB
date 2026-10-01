@@ -1,0 +1,6 @@
+PASS S1  004269D8 lea -> 01F000A0, 0041D6E0 stores it at 02CA4668; kinds with their own selector ['0x0', '0x1', '0x2', '0x4', '0xa', '0xb', '0x10', '0x20', '0x21', '0x22', '0x23', '0x24', '0x25', '0x2f']
+PASS S2  rand via IAT 008C3098; n = (lo - 1 + rand % (hi - lo + 1)) * byte[01DFE0B4]; countdown returns 0, then 1 and re-arms
+PASS S3  authored kinds {'0x0': 782, '0x1': 450, '0x2': 643, '0xa': 700, '0xb': 7, '0x10': 1831, '0x20': 1746, '0x21': 56, '0x24': 507, '0x25': 4}
+PASS S4  kind 0x10 (lo, hi): {(2, 4): 792, (4, 6): 608, (1, 2): 429, (6, 12): 2}
+PASS C  kinds 5-9 bind to 005C5230 and none is authored
+FAILS 0

@@ -1,0 +1,68 @@
+{
+  "method": "B \u2014 isolated original caller-to-collector execution",
+  "observations": [
+    {
+      "case": "DIRECT-clean-control",
+      "seed": "0x0",
+      "after_real_byte_store": "0x0",
+      "callback_dword": "0x0",
+      "collected_flag": 0,
+      "instructions": 232,
+      "class": "Isolated shipping-code execution with controlled state and three native-effect stubs"
+    },
+    {
+      "case": "DIRECT-upper-byte",
+      "seed": "0x100",
+      "after_real_byte_store": "0x100",
+      "callback_dword": "0x100",
+      "collected_flag": 1,
+      "instructions": 232,
+      "class": "Isolated shipping-code execution with controlled state and three native-effect stubs"
+    },
+    {
+      "case": "DIRECT-low-byte-overwritten",
+      "seed": "0x1",
+      "after_real_byte_store": "0x0",
+      "callback_dword": "0x0",
+      "collected_flag": 0,
+      "instructions": 232,
+      "class": "Isolated shipping-code execution with controlled state and three native-effect stubs"
+    },
+    {
+      "case": "DIRECT-high-bit",
+      "seed": "0x80000000",
+      "after_real_byte_store": "0x80000000",
+      "callback_dword": "0x80000000",
+      "collected_flag": 1,
+      "instructions": 232,
+      "class": "Isolated shipping-code execution with controlled state and three native-effect stubs"
+    },
+    {
+      "case": "DIRECTHL-clean-control",
+      "seed": "0x0",
+      "after_real_byte_store": "0x0",
+      "callback_dword": "0x0",
+      "collected_flag": 0,
+      "instructions": 232,
+      "class": "Isolated shipping-code execution with controlled state and three native-effect stubs"
+    },
+    {
+      "case": "DIRECTHL-upper-byte",
+      "seed": "0x100",
+      "after_real_byte_store": "0x100",
+      "callback_dword": "0x100",
+      "collected_flag": 1,
+      "instructions": 232,
+      "class": "Isolated shipping-code execution with controlled state and three native-effect stubs"
+    }
+  ],
+  "established": "In this original call chain, a zero low flag byte does not imply a zero collected flag. The original wrapper/decoder forward all32 bits and adapter tests all32 before converting to byte0/1. Supplied nonzero upper bytes survive the real caller byte store and produce1; supplied low1 alone is overwritten and produces0.",
+  "semantic_implication": "Preserve access widths and the argument-slot initialization precondition. Do not model this path as merely copying the byte written by GiVmax or as DIRECT versusDIRECTHL selecting its bool. A source-level bool/int label cannot erase the physical width difference.",
+  "limits": "Controlled guest stack/object/one EOP packet; three disclosed stubs. Native allocator/copy/registration effects, actual upper stack values, normal reachability, scheduler, replay and visual outcomes are NOT established. No claim that original game output normally differs or crashes.",
+  "cleanup": "Guest processes end/disposable memory discarded; no FF12/native attach/input/save/config/reference writes. Original guest code and source packet unchanged in each retained run; no fresh live restoration receipt.",
+  "affected_consumers": [
+    "FABLE legacy VIF/GIF mechanism and callback description",
+    "OPUS exact wrapper/decoder/adapter/collector argument widths and preconditions"
+  ],
+  "propagation": "PENDING independent review and owner incorporation"
+}

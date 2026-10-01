@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-165",
+ "note": "Batch 165 DONE: 22/22 bodies decoded from shipping bytes and appended to 18 bearing hosts with interior anchors. Gates: anchors 5,051 (0 MID, 0 outside); address gate 0 unsupported in new content; hash audit standing set only (26 unreproduced); neighbour guard ADDS NOTHING (2778->2772, 6 standing pairs cleared; covering prose in battle-stats-field-map/storage-read-completion/nine-patch).",
+ "result_refs": [
+  "_index/AUDIT-LOG.md#ec7-199-batch-165-seal"
+ ]
+}

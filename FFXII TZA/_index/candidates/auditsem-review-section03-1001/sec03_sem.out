@@ -1,0 +1,70 @@
+PASS exe-pin 73461d0896204b1c
+PASS image-base 0x120000
+PASS manifest-24-bodies 24
+PASS sample-spread manifest indices [0, 1, 18, 16, 15, 19, 20, 21, 22, 23]
+PASS A-hash 002F8BB0 own offset 0x1D81B0
+PASS A-extent 002F8BB0 .pdata end 002F8C8D; last ret
+PASS A-hash 002F90C0 own offset 0x1D86C0
+PASS A-extent 002F90C0 .pdata end 002F9173; last ret
+PASS A-hash 00264150 own offset 0x143750
+PASS A-extent 00264150 .pdata end none (not a .pdata root); last ret
+PASS A-hash 002367A0 own offset 0x115DA0
+PASS A-extent 002367A0 .pdata end 0023681E; last ret
+PASS A-hash 0031B810 own offset 0x1FAE10
+PASS A-extent 0031B810 .pdata end 0031B856; last jmp
+PASS A-hash 0023A570 own offset 0x119B70
+PASS A-extent 0023A570 .pdata end 0023AC80; last ret
+PASS A-hash 0020E600 own offset 0xEDC00
+PASS A-extent 0020E600 .pdata end none (not a .pdata root); last ret
+PASS A-hash 00312280 own offset 0x1F1880
+PASS A-extent 00312280 .pdata end 00312330; last ret
+PASS A-hash 00254EE0 own offset 0x1344E0
+PASS A-extent 00254EE0 .pdata end 00254F28; last ret
+PASS A-hash 00469E80 own offset 0x349480
+PASS A-extent 00469E80 .pdata end 00469EBC; last ret
+PASS A-neg shifted range hash differs 
+PASS A-neg no .pdata root mid-body 
+PASS B1 EXP signed divide by roster count (cdq; idiv ebp) 
+PASS B1-neg LP has no divide 
+PASS B1 EXP DWORD coefficient row+0x34 (both rows, both paths) 
+PASS B1 EXP walks four roster slots via 0031B810 
+PASS B1 EXP id 0x1A admitted as recipient but not counted 
+PASS B1 EXP zero count skips row reads (test ebp; je to modifiers) 
+PASS B1 EXP NULL recipient skips recipient checks to subject validation 
+PASS B1 EXP NULL skips designation equality and modifiers 
+PASS B1 EXP doubling (bit 8) precedes zeroing (bit 0x20) ([3116340], [3116352])
+PASS B2 LP global gate is the first act (call 00264150; nonzero rejects) 
+PASS B2 LP gate precedes every recipient/subject dereference 002F90E2
+PASS B2 gate loads a signed global byte 
+PASS B2 LP unsigned byte coefficients row+0x2F (movzx x2) 
+PASS B2-neg sign-extending mutant is caught 
+PASS B2 LP no owner lookup: its only call is the gate 
+PASS B2-neg EXP does call the owner/selector helpers 
+PASS B2 LP ids 0..6, 0x1A, >=0x28 
+PASS B3 selector 0xFF compares against 0xFFFF 
+PASS B3 0031B810 feeds 0xFF when its descriptor gate fails 
+PASS B3-neg the EXP body has no 0xFFFF literal 
+PASS B4 base row store 0023A9A5 is a QWORD of a 32-bit sum 
+PASS B4 per-level row store 0023A9F4 is a QWORD of a 32-bit sum 
+PASS B4 descriptor absence and decoded zero both give 0 
+PASS B4-neg stores at a non-site are not row stores 
+PASS B4 decoder zero-extends and adds the relocation base 
+PASS B5 caller zeroes ECX for both computers 
+PASS B5 ebp is zero for the gil floor 
+PASS B5 floor old+award at 0, set, then notify requested-old ['lea edx, [rax + rdi]', 'test edx, edx', 'cmovns ebp, edx', 'mov ecx, ebp', 'call 0x254ee0', 'sub ebp, ebx', 'mov ecx, ebp', 'call 0x469e80']
+PASS B5 setter meters requested-current, then clamps 0..99,999,999 and stores 
+PASS B5 worked example 99,999,995 + 10 (10, 10, 4)
+PASS B5 worked example 5 - 10 (-5, -5, -5)
+PASS B6 notifier clears six QWORDs at rsp+0x20..+0x48 ['0x20', '0x28', '0x30', '0x38', '0x40', '0x48']
+PASS B6 delta at rsp+0x30 = payload+0x10 (payload r8 = rsp+0x20) 
+PASS B6 positive deltas only, event 0x26 
+PASS B6-neg a mutant with one store removed counts five 
+PASS C rerun outputs identical to shipped (14 files) diff=['execution_environment.json']
+PASS C rerun summary: 24 bodies, 71/71 native, 6 mutants, 88 spans, 10 corruptions 
+PASS C rerun used the shipped fixture and driver 
+PASS C live-tree input drift is exactly one file ['_experiments/evidence/retained-reward-bindings/check.py']
+PASS C pinned check.py = the pre-image of 13a61b94b 
+PASS C rerun tree used that pre-image 
+PASS C current (sealed) check.py --mutations still equals observation.json 
+PASSES 68
+FAILS 0

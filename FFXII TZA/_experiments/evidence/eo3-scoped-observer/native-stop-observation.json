@@ -1,0 +1,146 @@
+{
+  "status": "NATIVE_STOP_CONTROLS_REVIEWABLE",
+  "method": "Native instrument controls using supplied shared state; not shipping code or live FF12",
+  "outcomes": [
+    {
+      "arm": "normal",
+      "pid": 17004,
+      "tid": 41460,
+      "stopped": [
+        5,
+        4
+      ],
+      "final": [
+        9,
+        9
+      ],
+      "path_address": 2865006447360,
+      "counter_address": 2865006447104,
+      "rax": 1234605616436508552,
+      "selected_context_and_read_bytes": 1609,
+      "capture_status": "MATCHED_PENDING_HEALTH",
+      "target_exit": 0,
+      "exact_stopped_event_binding": true,
+      "normal_target_finally": true
+    },
+    {
+      "arm": "abort",
+      "pid": 33124,
+      "tid": 46724,
+      "stopped": [
+        5,
+        4
+      ],
+      "final": [
+        5,
+        4
+      ],
+      "path_address": 2246994168576,
+      "counter_address": 2246994168320,
+      "rax": 1234605616436508552,
+      "selected_context_and_read_bytes": 1609,
+      "capture_status": "CONTROL_ABORTED",
+      "target_exit": 59907,
+      "exact_stopped_event_binding": true,
+      "normal_target_finally": false
+    },
+    {
+      "arm": "read-failure",
+      "pid": 36004,
+      "tid": 50292,
+      "stopped": [
+        5,
+        4
+      ],
+      "final": [
+        5,
+        4
+      ],
+      "path_address": 2944603196160,
+      "counter_address": 2944603195904,
+      "rax": 1234605616436508552,
+      "selected_context_and_read_bytes": 1609,
+      "capture_status": "CONTROL_ABORTED",
+      "target_exit": 59907,
+      "exact_stopped_event_binding": true,
+      "normal_target_finally": false
+    }
+  ],
+  "rejected": [
+    "normal: empty control",
+    "normal: wrong observer thread",
+    "normal: read from another event",
+    "normal: failed debug-register readback",
+    "normal: missing normal allocation cleanup",
+    "normal: wrong process creation identity",
+    "abort: successor executed despite abort",
+    "abort: abort promoted to healthy capture",
+    "abort: resume write in place of terminate",
+    "read-failure: successor executed despite abort",
+    "read-failure: abort promoted to healthy capture",
+    "read-failure: resume write in place of terminate"
+  ],
+  "raw_sha256": {
+    "native-stop-normal-1": {
+      "api.json": "87561abebc34c5abb573555e722e6a29e7c5a5e02ef6cbed405b66d160b19cf0",
+      "baseline.json": "734c8d338b48d71e3e1729dca5db2ade0fe12240ae9b421abf952424b35ae937",
+      "capture.json": "04d72dbbeebedfbba9b0be9994bd32d39e6cdee582645837d9b9e8639c8a9c4c",
+      "debugger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixture.bin": "151d20d22cfde14fd6641751b619584695df8338d1b7f8157cf0444c3f4a275c",
+      "fixture.json": "627134413b873b94bf1da51e71159922f65d097303534efd78ff301d58845efa",
+      "owned-child.json": "fcbd44662d71b153543b0f9791a4d3a099d276fe0a8850b2fc3becdfea780f68",
+      "plan.json": "7aaa3a4a8640e7316207e300f5d955de66903df359bd43171ba602a8153a4d35",
+      "result.json": "ab0a14ab839e74044642913f31e62f5dc415e521811147b9643c9526728dffb0",
+      "samples.jsonl": "d2b23ae4939bd26cf45d6cd405c5193e18d550fe62f37c2470780a01b31bc425",
+      "shared-final.bin": "5ab3ae46cdd03299e1cd9d10e2a3938e04a46ce4d036933760a81f09cc6a94e8",
+      "shared.bin": "5ab3ae46cdd03299e1cd9d10e2a3938e04a46ce4d036933760a81f09cc6a94e8",
+      "stop.flag": "e9cca6c81cfc1eda3873638f161c9bea0d80c52791d9374d1c0d60f2031f12eb",
+      "stopped-observation.json": "5e169ff179fb72b80fd4bb9f7d3d7a4711df56ef91a6025dad3aed829c3864b5",
+      "target-exit.json": "b63e4fbb91a13166210650d6196677a8981d38203bbd18a787bd81474e796fb5",
+      "target-ready.json": "4f15396f63cab5f1cd1c5a8fa0d39ba04ced0a5abd5cff569e51e424241216ff",
+      "target.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-stop-abort-1": {
+      "api.json": "85c3f2c18f539b79b6a267da0767dfc2ecc4ac76a10e54af3dd2028cbde1d1d3",
+      "baseline.json": "ce9c5684a023ed5a45e75ab13835473649e8b37be9e3fa8490adf3fdffd0753b",
+      "capture.json": "780506cbfe6a1b65ee52f9808f31546da16ac50164135d52dd433d93836580ce",
+      "debugger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixture.bin": "151d20d22cfde14fd6641751b619584695df8338d1b7f8157cf0444c3f4a275c",
+      "fixture.json": "627134413b873b94bf1da51e71159922f65d097303534efd78ff301d58845efa",
+      "owned-child.json": "38336acc99c66322d8f20e589a8950c9397834bb201ce70761e6810099b4bc5f",
+      "plan.json": "e6681dc6dcddde975f0c53d05f3696d5bd8429275f2f4399387984e7227a95c2",
+      "result.json": "5c37574324e1bc55a874a0560a12919dfb752cdfa3777e865d3d958686446aec",
+      "samples.jsonl": "ceef501b113b263d565c14bc32e0dc977a9431a6009f757b1f71d09672218dfe",
+      "shared-final.bin": "6b644f3e12a2bcb3e22cb3cfe9a45eff03854fe5539a31b4125220a743813f1e",
+      "shared.bin": "6b644f3e12a2bcb3e22cb3cfe9a45eff03854fe5539a31b4125220a743813f1e",
+      "stopped-observation.json": "e1d6aa16bfe6d29462ae7aaa02a744846cefe675256ade24274867cb632164b6",
+      "target-ready.json": "950a22cac99d5642dd493921b51905b3945c423a43d98ae06580eea304b5082b",
+      "target.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-stop-read-failure-1": {
+      "api.json": "021536b1e6105dc47adee43fc0fa95970a029543a699f4e485a3b610f5bbefe0",
+      "baseline.json": "c1847f1052ed4cc20ae56ae5bbb39e723baec7987e230e4b4ae6015e328a0d81",
+      "capture.json": "353ad296c08b7ba2e4b367095a3430089b7ea68f917ef605ae5fa863f09b56cf",
+      "debugger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixture.bin": "151d20d22cfde14fd6641751b619584695df8338d1b7f8157cf0444c3f4a275c",
+      "fixture.json": "627134413b873b94bf1da51e71159922f65d097303534efd78ff301d58845efa",
+      "owned-child.json": "58611bf706346dce752c2b2d8049530591e94392a1aee0bc441ba56e380af210",
+      "plan.json": "5b52f080319385d743db259ef7dcea1cf1e66d4a3bbcc538c22e0c4dfddb01f5",
+      "result.json": "29b3ad054c4ff2bf9d9949a0a3aeb054c28c6da3d1d64827b45c31518646315d",
+      "samples.jsonl": "e95268134ada7a12443ebc9d0441e713216f96b6890ea169ad3feb3f6f67a4df",
+      "shared-final.bin": "65fba628b73aa8d307e22091007bde6ba2f590fabafede96a4d54d640717bc6c",
+      "shared.bin": "65fba628b73aa8d307e22091007bde6ba2f590fabafede96a4d54d640717bc6c",
+      "stopped-observation.json": "13c616945d06fda8b5bfd3817028f09937312fccbfe69ba5ae7637b61add5347",
+      "target-ready.json": "235113930a7ea1ff7c80e928c678d979ff86b6ab291dc4c5bae58b6dc9c0dd52",
+      "target.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "limits": [
+    "One normal, one intentional abort and one failed-read abort on this host/fixture.",
+    "Counters establish successor execution/nonexecution only in this controlled single-writer fixture.",
+    "Successful API raw last-error values can be stale; result and transfer count govern read acceptance.",
+    "No target-finally/allocation-free observation after intentional termination; subject exit is the boundary.",
+    "No FF12 allocation/caller/queue/crash claim or whole-state/scheduling transparency; FIP counterexample remains.",
+    "Native operating controls do not replace live initial-state, responsiveness and restoration proof."
+  ]
+}

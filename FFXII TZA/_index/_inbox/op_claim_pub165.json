@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-165",
+ "agent": "SWE2-EC7",
+ "note": "Claiming @publication for batch-165 publish: 18 host docs + AUDIT-LOG + ops.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

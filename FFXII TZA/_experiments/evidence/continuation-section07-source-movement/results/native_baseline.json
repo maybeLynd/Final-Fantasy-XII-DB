@@ -1,0 +1,745 @@
+{
+  "evidence_class": "isolated original-instruction execution; synthetic arenas",
+  "cases": [
+    {
+      "name": "movement_latch_initially_clear",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "tagged_new_block_tree_eligible",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "exact_fit_reports_one_move",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "exact_fit_moves_across_raw_barrier",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "mover_preserves_full_payload",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "mover_keeps_source_size",
+      "pass": true,
+      "actual": 1024,
+      "expected": 1024
+    },
+    {
+      "name": "mover_keeps_live_handle_slot",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "mover_updates_slot_header",
+      "pass": true,
+      "actual": 805307264,
+      "expected": 805307264
+    },
+    {
+      "name": "mover_updates_header_slot_backlink",
+      "pass": true,
+      "actual": 805306752,
+      "expected": 805306752
+    },
+    {
+      "name": "mover_updates_generation_pair",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "mover_changes_generation_not_handle_value",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "mover_reinserts_tree_membership",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "mover_does_not_free_raw_barrier",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "mover_preserves_arena_payload_accounting",
+      "pass": true,
+      "actual": 1408,
+      "expected": 1408
+    },
+    {
+      "name": "mover_marks_compaction_change",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "copy_boundary_observed_once",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "slot_published_before_payload_copy",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "old_block_freed_before_payload_copy",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "tested_copy_regions_do_not_overlap",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "old_raw_payload_is_no_longer_allocation",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "stable_handle_resolves_new_source",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "exact_move_cleanup_accounting",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "exact_move_no_diagnostics",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "movement_latch_survives_release",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "movement_latch_explicitly_cleared",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "empty_tree_compaction_returns_zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "no_move_does_not_set_latch",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "pin_returns_current_payload",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "unlinked_block_is_not_moved",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "unlinked_handle_stays_old",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "member_with_inhibit_bit_is_not_moved",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "inhibit_preserves_source",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "clear_inhibit_allows_real_move",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "allowed_move_reaches_hole",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "gate_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "nonadjacent_smaller_candidate_not_best_fit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "nonexact_nonadjacent_stays",
+      "pass": true,
+      "actual": 805309760,
+      "expected": 805309760
+    },
+    {
+      "name": "nonexact_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "adjacent_unequal_can_move",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "adjacent_unequal_destination",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "adjacent_payload_preserved",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "adjacent_test_copy_nonoverlap",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "adjacent_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "lower_source_not_moved_to_higher_hole",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "lower_source_location_preserved",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "lower_source_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "consumer_initial_handle_binding",
+      "pass": true,
+      "actual": 805306755,
+      "expected": 805306755
+    },
+    {
+      "name": "consumer_initial_source",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "consumer_initial_table_pointer",
+      "pass": true,
+      "actual": 805308768,
+      "expected": 805308768
+    },
+    {
+      "name": "integrated_native_move_occurs",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "original_slot_now_points_at_hole",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "allocator_does_not_repair_consumer_base",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "allocator_does_not_repair_consumer_lookup",
+      "pass": true,
+      "actual": 805308768,
+      "expected": 805308768
+    },
+    {
+      "name": "original_refresh_reads_actual_moved_slot",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "original_refresh_repairs_actual_moved_pointer",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "original_refresh_preserves_stale_run_origin",
+      "pass": true,
+      "actual": 805308752,
+      "expected": 805308752
+    },
+    {
+      "name": "actual_move_repeat_refresh_is_not_double_delta",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "actual_move_context_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "actual_move_owner_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "actual_move_no_diagnostics",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "request_sets_pending_bit",
+      "pass": true,
+      "actual": 134217728,
+      "expected": 134217728
+    },
+    {
+      "name": "request_preserves_low27",
+      "pass": true,
+      "actual": 19088743,
+      "expected": 19088743
+    },
+    {
+      "name": "request_selects_high_five_bits",
+      "pass": true,
+      "actual": 9,
+      "expected": 9
+    },
+    {
+      "name": "later_request_replaces_not_appends",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "issuer_truncates_to_five_bits",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "dirty_fixture_original_move",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "pending_does_not_itself_repair_context",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "pending_does_not_itself_repair_container",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "negative_child_index_rejected",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "eleven_is_excluded",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "rejected_index_does_not_refresh",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "zero_child_index_returns_success",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "zero_success_is_not_a_refresh",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "zero_success_leaves_lookup_old",
+      "pass": true,
+      "actual": 805308768,
+      "expected": 805308768
+    },
+    {
+      "name": "unbound_record_keeps_pending_bit",
+      "pass": true,
+      "actual": 134217728,
+      "expected": 134217728
+    },
+    {
+      "name": "unbound_record_keeps_stale_context",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "stale_full_ticket_retires_pending_bit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "stale_ticket_did_not_refresh",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "invalid_child_retires_pending_bit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "invalid_child_left_context_old",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "zero_child_retires_pending_bit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "zero_child_dirty_delivery_does_not_refresh",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "failed_start_still_consumes_pending_bit",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "full_dirty_driver_repairs_context_after_move",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "full_dirty_driver_repairs_lookup_after_move",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "full_dirty_driver_repairs_container_base",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "full_dirty_driver_keeps_old_run_origin",
+      "pass": true,
+      "actual": 805308752,
+      "expected": 805308752
+    },
+    {
+      "name": "no_group_has_no_successful_start",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "ten_is_admitted_and_runs_refresh",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "no_pending_repeat_preserves_lookup",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "null_container_rejects",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "dirty_fixture_context_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "dirty_fixture_source_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "dirty_fixture_no_diagnostics",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "pressure_fixture_has_no_spare_free_head",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "pressure_first_gap_is_only_0800",
+      "pass": true,
+      "actual": 2048,
+      "expected": 2048
+    },
+    {
+      "name": "larger_request_succeeds_after_original_fallback",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "allocation_itself_moves_prior_source",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "allocation_fallback_executed_original_copy",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "allocation_fallback_preserves_prior_contents",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "allocation_fallback_result_is_separate",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "allocation_fallback_marks_movement",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "fallback_all_allocations_reclaimed",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "fallback_no_diagnostic_substitution_used",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "repeat_zero_can_still_report_two_moves",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "first_selection_moved_exact_member",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "second_selection_moved_adjacent_member",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "two_passes_changed_second_location",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "two_pass_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "combined_fixture_actual_move",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "combined_nonzero_argument_skips_refresh",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "combined_zero_argument_repairs_context",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "combined_walk_repairs_lookup",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "combined_first_container_rebased",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "combined_shared_context_second_container_rebased",
+      "pass": true,
+      "actual": 805307328,
+      "expected": 805307328
+    },
+    {
+      "name": "combined_keeps_old_run_origin",
+      "pass": true,
+      "actual": 805308752,
+      "expected": 805308752
+    },
+    {
+      "name": "combined_repeat_not_double_delta",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "combined_nonborrow_context_skips_rebase",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "combined_nonborrow_container_skips_rebase",
+      "pass": true,
+      "actual": 805308736,
+      "expected": 805308736
+    },
+    {
+      "name": "combined_restore_borrow_repairs_again",
+      "pass": true,
+      "actual": 805307360,
+      "expected": 805307360
+    },
+    {
+      "name": "combined_context_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "combined_owner_cleanup",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "combined_no_diagnostics",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    }
+  ],
+  "checks": 123,
+  "failures": 0
+}

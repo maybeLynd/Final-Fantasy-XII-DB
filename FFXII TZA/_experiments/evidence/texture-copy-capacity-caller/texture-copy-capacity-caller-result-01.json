@@ -1,0 +1,87 @@
+{
+  "status": "PRODUCER_CHECKED_SELECTED_CALLER_CAPACITY_INVARIANT_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-copy-capacity-caller-source-01.json",
+      "sha256": "b173d2119cc2a8b04565c23b2ea85d44e0d647e3a64544c075b76edec4ef8b25"
+    },
+    {
+      "path": "texture-copy-construction-source-01.json",
+      "sha256": "19ed6260edd71168e4fa60a2e9f010760fb5810f7fd4611078040fb0924284e1"
+    },
+    {
+      "path": "texture-copy-construction-result-01.json",
+      "sha256": "c05d8114657aeabacdcf7f453805ab477090284056f3dd1f515d96f38c368207"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 58,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "helper_annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 99,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfg": {
+    "entry": "0x627da0",
+    "end_exclusive": "0x627e4f",
+    "instructions": 58,
+    "returns": [
+      "0x627e4e"
+    ],
+    "calls": [
+      {
+        "pc": "0x627de8",
+        "target": "0x61d100"
+      },
+      {
+        "pc": "0x627e24",
+        "target": "0x584730"
+      }
+    ]
+  },
+  "call_dominators": [
+    "0x627db4",
+    "0x627db7",
+    "0x627db9",
+    "0x627dde",
+    "0x627de4"
+  ],
+  "checker_sha256": "c3d329fe6d9c9a5cf3228b6acf1868a271459e52e91a1d5218dbc85d0a5bc0a9",
+  "question": "Does the selected original627DA0 caller enforce the helper copy-capacity precondition?",
+  "established": [
+    "On every normal path reaching627DE8, oldcount=qword-record DWORD&7FFFFFFF and newN=EDX low32. CMP newN,oldcount / unsigned CMOVB sets R9D=min(newN,oldcount), with no call or intervening write before61D100. The clamp dominates that call across all175B/three unwind fragments. Thus this caller suppliesK<=N for all u32N/oldWORD bitpatterns, excluding the helper-only N2/K3 counterexample on this path.",
+    "Old source isNULL for masked0, record+8 for1, and pointer[record+8] for>1. If input newN equals the full unmasked oldDWORD, the caller returns0 without allocating/copying/freeing. Comparing the unmasked word is distinct from the masked copy count.",
+    "NULL helper output with nonzero newN returns0xD before changing the record or reaching old-storage free; newN0 withNULL output is an accepted success path. Success conditionally calls584730 on old storage only when old!=new, old!=record+8, oldnonNULL and old bit31clear; it then stores the returned pointer when different frominline and writes the newN DWORD, returning0. Nativefree effects, external record ownership and high-bit newN validity remain open.",
+    "This local caller/helper closure preserves copied wait-counter and userdata fields and performs no local wait, queue-key removal, copied-member rebinding or async invocation. That does not establish natural pending resize or transitive allocator/free behavior; higher callers may enforce the missing lifetime premise."
+  ],
+  "assumptions": [
+    "Correct normally returning ABI/callees, valid nonwrapping record/source/output/stack storage",
+    "Interfering/transitive allocator/free effects excluded from local guard/write-order conclusions",
+    "N must additionally satisfy the encoded count-domain/storage interpretation for ordinary reconstructed use; this proof does not sanitize arbitrary new high-bit values"
+  ],
+  "limitations": [
+    "Only this selected caller, not a complete direct/indirect/RVA/indexed caller census",
+    "No game/resize/timing observation or universal allocator, cancellation, lifetime or malformed-state guarantee",
+    "Helper producer and original bytes requalified, independent acceptance still pending; no external tests/census credit"
+  ],
+  "affected_claims": [
+    "OPUS bounded resize caller ABI, capacity clamp and failure/record-publication contract",
+    "FABLE counter-copy versus pending async object/lifetime preconditions"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Original bytes/static proof only; no game/PC/instrument/save/config/reference/peer mutation"
+}

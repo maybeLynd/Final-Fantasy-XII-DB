@@ -1,0 +1,14 @@
+OK       M0 baseline                                        B-record                     want PASS got PASS   FAILS 0  GATE-PENDING none
+OK       M1 one digit changed in sealed result              R-EXP-201-verify             want FAIL got FAIL   FAILS 2  GATE-PENDING none
+OK       M1b syntax-breaking byte in sealed result          (crash)                      want CRASH got CRASH  CRASH JSONDecodeError
+OK       M2a seal.verify on the re-stamped receipt          (seal.verify problems)       want []   got []     
+OK       M2b seal.publishable on the re-stamped receipt     (publishable problems)       want []   got []     (the run id no longer derives from the content)
+OK       M2 consistent re-stamp (result + RECEIPT sha)      R-EXP-201-hash               want FAIL got FAIL   FAILS 1  GATE-PENDING none
+OK       M3 one case dropped from RECEIPT cases             R-EXP-201-cases              want FAIL got FAIL   FAILS 2  GATE-PENDING none
+OK       M4 record without receipt id                       B-record                     want FAIL got FAIL   FAILS 1  GATE-PENDING none
+OK       M5 record with altered result hash                 B-record                     want FAIL got FAIL   FAILS 1  GATE-PENDING none
+OK       M6 receipt id moved out of 13j                     B-contract-13j               want FAIL got FAIL   FAILS 1  GATE-PENDING none
+OK       M7 live path holds the EXP-201 bytes               P-live-moved                 want FAIL got FAIL   FAILS 1  GATE-PENDING none
+OK       M8 negative control fed the bound record           N-original-error-rejected    want FAIL got FAIL   FAILS 1  GATE-PENDING none
+OK       M9 package-time seal.py (475456436)                R-EXP-201-gate               want PEND got PEND   FAILS 0  GATE-PENDING EXP-201,EXP-202,EXP-256
+mutants as expected: 13 of 13

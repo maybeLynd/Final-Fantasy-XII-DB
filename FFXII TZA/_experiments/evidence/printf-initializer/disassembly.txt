@@ -1,0 +1,168 @@
+ASTRA: decoded retained original file bytes; Method A, no execution.
+
+Range 0016D670, file offset 4CC70, SHA256 3cfbe7e81225a3f1f1232206f4754a6127e1bcafc9c9f726d476192e97c09ca5
+0016D670  488d0559cdd402           lea     rax, [rip + 0x2d4cd59]
+0016D677  c3                       ret     
+
+Range 0018A320, file offset 69920, SHA256 d22a1ba3491af895e5817766abcacea5ccc9be00f8ebfc0753b4c32dd8810469
+0018A320  488d058952df01           lea     rax, [rip + 0x1df5289]
+0018A327  c3                       ret     
+
+Range 00194EF0, file offset 744F0, SHA256 ef50f0e57590e4aaf82c66a7861152d288f4b6b115536eac9d6a1f8561eca5be
+00194EF0  4889542410               mov     qword ptr [rsp + 0x10], rdx
+00194EF5  4c89442418               mov     qword ptr [rsp + 0x18], r8
+00194EFA  4c894c2420               mov     qword ptr [rsp + 0x20], r9
+00194EFF  53                       push    rbx
+00194F00  56                       push    rsi
+00194F01  57                       push    rdi
+00194F02  4883ec30                 sub     rsp, 0x30
+00194F06  488bda                   mov     rbx, rdx
+00194F09  488d742460               lea     rsi, [rsp + 0x60]
+00194F0E  488bf9                   mov     rdi, rcx
+00194F11  e85a87fdff               call    0x16d670
+00194F16  4889742428               mov     qword ptr [rsp + 0x28], rsi
+00194F1B  4c8bcb                   mov     r9, rbx
+00194F1E  41b800020000             mov     r8d, 0x200
+00194F24  48c744242000000000       mov     qword ptr [rsp + 0x20], 0
+00194F2D  488bd7                   mov     rdx, rdi
+00194F30  488b08                   mov     rcx, qword ptr [rax]
+00194F33  ff154fdf7200             call    qword ptr [rip + 0x72df4f]
+00194F39  83c9ff                   or      ecx, 0xffffffff
+00194F3C  85c0                     test    eax, eax
+00194F3E  0f48c1                   cmovs   eax, ecx
+00194F41  4883c430                 add     rsp, 0x30
+00194F45  5f                       pop     rdi
+00194F46  5e                       pop     rsi
+00194F47  5b                       pop     rbx
+00194F48  c3                       ret     
+
+Range 00808D4C, file offset 6E834C, SHA256 c721e5936ae5d47f7a3628d5162ce537b87246d4b83a78133fc89564b480bc93
+00808D4C  4883ec28                 sub     rsp, 0x28
+00808D50  e8fb0e0000               call    0x809c50
+00808D55  33c0                     xor     eax, eax
+00808D57  4883c428                 add     rsp, 0x28
+00808D5B  c3                       ret     
+
+Range 00808D78, file offset 6E8378, SHA256 47cb3e265e63dc08b006e0744c4ef63fd9a6895f37b7bf80ca8d4f0e0ec3a40c
+00808D78  48895c2408               mov     qword ptr [rsp + 8], rbx
+00808D7D  57                       push    rdi
+00808D7E  4883ec30                 sub     rsp, 0x30
+00808D82  b901000000               mov     ecx, 1
+00808D87  e8b0fbffff               call    0x80893c
+00808D8C  84c0                     test    al, al
+00808D8E  750b                     jne     0x808d9b
+00808D90  b907000000               mov     ecx, 7
+00808D95  e8d20b0000               call    0x80996c
+00808D9A  cc                       int3    
+00808D9B  4032ff                   xor     dil, dil
+00808D9E  40887c2420               mov     byte ptr [rsp + 0x20], dil
+00808DA3  e858fbffff               call    0x808900
+00808DA8  8ad8                     mov     bl, al
+00808DAA  8b0d485f6a02             mov     ecx, dword ptr [rip + 0x26a5f48]
+00808DB0  83f901                   cmp     ecx, 1
+00808DB3  750a                     jne     0x808dbf
+00808DB5  b907000000               mov     ecx, 7
+00808DBA  e8ad0b0000               call    0x80996c
+00808DBF  85c9                     test    ecx, ecx
+00808DC1  754a                     jne     0x808e0d
+00808DC3  c7052b5f6a0201000000     mov     dword ptr [rip + 0x26a5f2b], 1
+00808DCD  488d15ccc80b00           lea     rdx, [rip + 0xbc8cc]
+00808DD4  488d0da5c80b00           lea     rcx, [rip + 0xbc8a5]
+00808DDB  e842920500               call    0x862022
+00808DE0  85c0                     test    eax, eax
+00808DE2  740a                     je      0x808dee
+00808DE4  b8ff000000               mov     eax, 0xff
+00808DE9  e9eb000000               jmp     0x808ed9
+00808DEE  488d1583c80b00           lea     rdx, [rip + 0xbc883]
+00808DF5  488d0dd4a30b00           lea     rcx, [rip + 0xba3d4]
+00808DFC  e81b920500               call    0x86201c
+00808E01  c705ed5e6a0202000000     mov     dword ptr [rip + 0x26a5eed], 2
+00808E0B  eb08                     jmp     0x808e15
+00808E0D  40b701                   mov     dil, 1
+00808E10  40887c2420               mov     byte ptr [rsp + 0x20], dil
+00808E15  8acb                     mov     cl, bl
+00808E17  e8d4fcffff               call    0x808af0
+00808E1C  e8570e0000               call    0x809c78
+00808E21  488bd8                   mov     rbx, rax
+00808E24  48833800                 cmp     qword ptr [rax], 0
+00808E28  7422                     je      0x808e4c
+00808E2A  488bc8                   mov     rcx, rax
+00808E2D  e822fcffff               call    0x808a54
+00808E32  84c0                     test    al, al
+00808E34  7416                     je      0x808e4c
+00808E36  488b1b                   mov     rbx, qword ptr [rbx]
+00808E39  488bcb                   mov     rcx, rbx
+00808E3C  e8170b0000               call    0x809958
+00808E41  4533c0                   xor     r8d, r8d
+00808E44  418d5002                 lea     edx, [r8 + 2]
+00808E48  33c9                     xor     ecx, ecx
+00808E4A  ffd3                     call    rbx
+00808E4C  e82f0e0000               call    0x809c80
+00808E51  488bd8                   mov     rbx, rax
+00808E54  48833800                 cmp     qword ptr [rax], 0
+00808E58  7414                     je      0x808e6e
+00808E5A  488bc8                   mov     rcx, rax
+00808E5D  e8f2fbffff               call    0x808a54
+00808E62  84c0                     test    al, al
+00808E64  7408                     je      0x808e6e
+00808E66  488b0b                   mov     rcx, qword ptr [rbx]
+00808E69  e8cc910500               call    0x86203a
+00808E6E  e8410c0000               call    0x809ab4
+00808E73  0fb7d8                   movzx   ebx, ax
+00808E76  e89b910500               call    0x862016
+00808E7B  4c8bc0                   mov     r8, rax
+00808E7E  448bcb                   mov     r9d, ebx
+00808E81  33d2                     xor     edx, edx
+00808E83  488d0d767191ff           lea     rcx, [rip - 0x6e8e8a]
+00808E8A  e8e1a8f9ff               call    0x7a3770
+00808E8F  8bd8                     mov     ebx, eax
+00808E91  e85a0c0000               call    0x809af0
+00808E96  84c0                     test    al, al
+00808E98  7507                     jne     0x808ea1
+00808E9A  8bcb                     mov     ecx, ebx
+00808E9C  e8d9900500               call    0x861f7a
+00808EA1  4084ff                   test    dil, dil
+00808EA4  7505                     jne     0x808eab
+00808EA6  e853910500               call    0x861ffe
+00808EAB  33d2                     xor     edx, edx
+00808EAD  b101                     mov     cl, 1
+00808EAF  e860fcffff               call    0x808b14
+00808EB4  8bc3                     mov     eax, ebx
+00808EB6  eb21                     jmp     0x808ed9
+00808EB8  8bd8                     mov     ebx, eax
+00808EBA  e8310c0000               call    0x809af0
+00808EBF  84c0                     test    al, al
+00808EC1  7508                     jne     0x808ecb
+00808EC3  8bcb                     mov     ecx, ebx
+00808EC5  e85e910500               call    0x862028
+00808ECA  cc                       int3    
+00808ECB  807c242000               cmp     byte ptr [rsp + 0x20], 0
+00808ED0  7505                     jne     0x808ed7
+00808ED2  e85d910500               call    0x862034
+00808ED7  8bc3                     mov     eax, ebx
+00808ED9  488b5c2440               mov     rbx, qword ptr [rsp + 0x40]
+00808EDE  4883c430                 add     rsp, 0x30
+00808EE2  5f                       pop     rdi
+00808EE3  c3                       ret     
+
+Range 00808EE4, file offset 6E84E4, SHA256 57c3e9d4e89c14d12d1f8524acaf01b290c91e2b230d1c56eb0bb46d124baa84
+00808EE4  4883ec28                 sub     rsp, 0x28
+00808EE8  e89f0c0000               call    0x809b8c
+00808EED  4883c428                 add     rsp, 0x28
+00808EF1  e982feffff               jmp     0x808d78
+
+Range 00809C50, file offset 6E9250, SHA256 0d46c940d6a6f7eab39119c99bf68d3b3e592ea8359bc82a0d5f47b73ff798fd
+00809C50  4883ec28                 sub     rsp, 0x28
+00809C54  e8173a96ff               call    0x16d670
+00809C59  48830804                 or      qword ptr [rax], 4
+00809C5D  e8be0698ff               call    0x18a320
+00809C62  48830802                 or      qword ptr [rax], 2
+00809C66  4883c428                 add     rsp, 0x28
+00809C6A  c3                       ret     
+
+Range 00862022, file offset 741622, SHA256 fe3434167a9c81f1c1614d7341ba1c8e9ca4fd6c3c504641833d83010beed5e4
+00862022  ff25900d0600             jmp     qword ptr [rip + 0x60d90]
+
+Range 0086201C, file offset 74161C, SHA256 994a81a886e9fc82066a5fac9550068a6de4d5361ab7bf1e03827c8bc2a86658
+0086201C  ff25fe0c0600             jmp     qword ptr [rip + 0x60cfe]
+

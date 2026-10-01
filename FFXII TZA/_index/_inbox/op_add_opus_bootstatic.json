@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-FOUR-REFUSED-CLASSES-AND-AN-UNCLAIMED-STATIC",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the four Phyre classes the vtable anchor refused, and the boundary warning the control run had been printing past PApplication's declared end",
+  "scope": "try every remaining route on PInputMapper and record each with its own control; then read the PApplication boundary signal instead of filing it, and census the range it points at",
+  "completion": "PInputMapper's rows state all three routes and grade the weak ones as weak; the range past PApplication is either shown to be its tail or declared as the separate object it is, with an extent the evidence supports rather than one assumed from the next neighbour; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

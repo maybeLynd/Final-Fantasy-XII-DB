@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-divide-consumer-scope\check.py", line 25, in <module>
+    if '--fault-rejects-analysis' in sys.argv:assert not error['source_check']['ok'],'Exact source Z suppresses required register-analysis failure and still passes'
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Exact source Z suppresses required register-analysis failure and still passes

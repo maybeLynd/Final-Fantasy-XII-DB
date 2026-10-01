@@ -1,0 +1,6 @@
+PASS L1  continued lines (physical, continued, first): {'ctrl 0': (977, 19, 40), 'ctrl 1': (79, 0, None), 'btlctrl 0': (2507, 0, None), 'btlctrl 1': (79, 0, None), 'btlctrl 2': (558, 0, None), 'evctrl 0': (2456, 544, 14), 'evctrl 1': (79, 0, None), 'mapctrl 0': (2768, 2, 977), 'mapctrl 1': (79, 0, None), 'mapctrl 2': (557, 0, None)}
+PASS L2  (pc, q0 line, block, flag, physical, logical match, direct match): [(22, 417, 0, 1, 961, True, False), (34, 418, 0, 1, 962, True, False), (3230, 708, 0, 1, 1252, True, False), (3242, 709, 0, 1, 1253, True, False)]
+PASS L3  no continuation before btlctrl block 2 line 5 or mapctrl block 0 line 389 (first continuation at 977); blocks 2 have none
+PASS L4  pc 16 and pc 22 both start instructions and both carry line 417
+PASS C  with one continuation removed (physical 681), pc 22's line lands on physical 960: b'test_load_flg = 0'
+FAILS 0

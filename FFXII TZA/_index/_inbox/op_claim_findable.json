@@ -1,0 +1,1 @@
+{"action": "claim", "task": "OPUS-VERIFY-ALL-47-CONTRACT-CLAIM-TABLES-FINDABLE", "note": "SWE2-CONTRACT claiming: turn the one-time sweep into a permanent findability guard in parity_status.py"}

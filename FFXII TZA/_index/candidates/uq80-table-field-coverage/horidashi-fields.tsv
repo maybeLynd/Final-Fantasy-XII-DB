@@ -1,0 +1,24 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	page	nameRef	u16: 0x4800 x1, 0x4801 x1, 0x4802 x1, 0x4803 x1, 0x4804 x1 (128 distinct)	0031D9BF* movzx ecx, word ptr [rax] | 0031DA06* movzx edx, word ptr [rax]	name reference, bank 9	STATIC	BAZ
+0x02	2	page	descId	u16: 0x55f0 x1, 0x55f1 x1, 0x55f2 x1, 0x55f3 x1, 0x55f4 x1 (128 distinct)	0031DA25* movzx ecx, word ptr [rbp + 2]	description string id (0x55F0 + row)	STATIC	BAZ
+0x04	2	page	giveA	u16: 0x6 x7, 0x0 x3, 0x9 x2, 0x1 x2, 0xf x2 (117 distinct)	002FD7FE* movzx ecx, word ptr [rbx + 4] | 0031DA39* movzx eax, word ptr [rbp + 4]	granted item 1	STATIC	BAZ
+0x06	1	page	giveACount	u8: 1 x105, 10 x5, 5 x4, 3 x3, 2 x3 (12 distinct)	002FD7F2* movzx eax, byte ptr [rbx + 6] | 0031DA41* movzx eax, byte ptr [rbp + 6]	granted item 1 count	STATIC	BAZ
+0x07	1	pad	pad07	u8: 0 x128 (1 distinct)	-	const=0x00	-	PASS
+0x08	2	page	giveB	u16: 0x0 x91, 0xe x2, 0x1 x2, 0x10df x1, 0x1042 x1 (36 distinct)	002FD822* movzx ecx, word ptr [rbx + 8] | 0031DA49* movzx eax, word ptr [rbp + 8]	granted item 2	STATIC	BAZ
+0x0a	1	page	giveBCount	u8: 0 x90, 1 x30, 2 x2, 3 x2, 5 x1 (8 distinct)	002FD81A* movzx eax, byte ptr [rbx + 0xa] | 0031DA51* movzx eax, byte ptr [rbp + 0xa]	granted item 2 count	STATIC	BAZ
+0x0b	1	pad	pad0B	u8: 0 x128 (1 distinct)	-	const=0x00	-	PASS
+0x0c	2	page	giveC	u16: 0x0 x122, 0x7 x1, 0x10ce x1, 0x10cf x1, 0x8 x1 (7 distinct)	002FD846* movzx ecx, word ptr [rbx + 0xc] | 0031DA59* movzx eax, word ptr [rbp + 0xc]	granted item 3	STATIC	BAZ
+0x0e	1	page	giveCCount	u8: 0 x122, 1 x3, 3 x1, 12 x1, 10 x1 (5 distinct)	002FD83E* movzx eax, byte ptr [rbx + 0xe] | 0031DA61* movzx eax, byte ptr [rbp + 0xe]	granted item 3 count	STATIC	BAZ
+0x0f	1	pad	pad0F	u8: 0 x128 (1 distinct)	-	const=0x00	-	PASS
+0x10	4	page	priceGil	u32: 0x64 x3, 0x190 x3, 0x3200 x3, 0x1d4c x3, 0x1c2 x2 (100 distinct)	0031DA1F* mov eax, dword ptr [rbp + 0x10]	price in gil	STATIC	BAZ
+0x14	2	page	flags	u8: 0 x234, 1 x15, 2 x7 (3 distinct)	0030B33F* test byte ptr [rbx + 0x14], 1 | 0030B5F6* test byte ptr [rcx + 0x14], 2	bit 0 repeatable, bit 1 script-settable availability	STATIC	BAZ
+0x16	2	page	needA	u16: 0x0 x7, 0x206a x3, 0x2074 x3, 0x2094 x3, 0x2069 x2 (101 distinct)	0030B20C* movzx ecx, word ptr [rbx + 0x16] | 0030B375* movzx r8d, word ptr [rbx + 0x16]	required loot 1	STATIC	BAZ
+0x18	1	page	needASold	u8: 2 x39, 3 x26, 1 x17, 4 x17, 5 x10 (11 distinct)	0030B35F* cmp byte ptr [rbx + 0x18], 0 | 0030B3D4* movzx eax, byte ptr [rbx + 0x18]	sold count loot 1 needs	STATIC	BAZ
+0x19	1	pad	pad19	u8: 0 x128 (1 distinct)	-	const=0x00	-	PASS
+0x1a	2	page	needB	u16: 0x0 x43, 0x2065 x3, 0x208b x3, 0x2089 x2, 0x2098 x2 (67 distinct)	0030B225* movzx ecx, word ptr [rbx + 0x1a] | 0030B3E0* movzx r8d, word ptr [rbx + 0x1a]	required loot 2	STATIC	BAZ
+0x1c	1	page	needBSold	u8: 0 x43, 2 x36, 3 x18, 1 x10, 7 x8 (9 distinct)	0030B365* cmp byte ptr [rbx + 0x1c], 0 | 0030B446* movzx eax, byte ptr [rbx + 0x1c]	sold count loot 2 needs	STATIC	BAZ
+0x1d	1	pad	pad1D	u8: 0 x128 (1 distinct)	-	const=0x00	-	PASS
+0x1e	2	page	needC	u16: 0x0 x42, 0x2037 x5, 0x2033 x5, 0x204d x4, 0x2020 x3 (56 distinct)	0030B240* movzx ecx, word ptr [rbx + 0x1e] | 0030B44E* movzx ecx, word ptr [rbx + 0x1e]	required loot 3	STATIC	BAZ
+0x20	1	page	needCSold	u8: 0 x42, 1 x20, 3 x20, 4 x10, 7 x7 (12 distinct)	0030B36B* cmp byte ptr [rbx + 0x20], 0 | 0030B459* movzx ecx, byte ptr [rbx + 0x20]	sold count loot 3 needs	STATIC	BAZ
+0x21	1	pad	pad21	u8: 0 x128 (1 distinct)	-	const=0x00	-	PASS
+0x22	2	page	icon	u16: 0x78 x128 (1 distinct)	0031DA32* movzx eax, word ptr [rbp + 0x22]	icon frame, 120 on every row (UQ-130)	STATIC	BAZ

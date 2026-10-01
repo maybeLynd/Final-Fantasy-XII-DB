@@ -1,0 +1,25 @@
+{
+  "result": "PASS_STATIC_PREFLIGHT_ONLY",
+  "cases": 4,
+  "controls": [
+    {
+      "name": "wrong binary identity",
+      "rejected": true
+    },
+    {
+      "name": "empty branch redirected to proposed trigger",
+      "rejected": true
+    },
+    {
+      "name": "transcript differs from bytes",
+      "rejected": true
+    },
+    {
+      "name": "one trigger proves every miss",
+      "rejected": true
+    }
+  ],
+  "positive": "nonempty one-node miss includes608, matching path includes callback61A, empty path bypasses both",
+  "live_semantic_closure": [],
+  "external_call_effects_executed": false
+}

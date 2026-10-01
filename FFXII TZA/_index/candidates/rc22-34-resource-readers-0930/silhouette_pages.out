@@ -1,0 +1,20 @@
+   002CEFEF movdqa xmm0, xmmword ptr [rip + 0x648169]
+   002CEFF7 mov dword ptr [rsp + 0x40], 4
+   002CEFFF mov dword ptr [rsp + 0x44], 5
+   002CF235 movsx rax, byte ptr [rbx + 0x10d]
+   002CF249 imul ebp, dword ptr [rsp + rax*4 + 0x30], 0x204
+   002CF2A0 mov r14d, 0x102
+   002CF2B0 movzx r8d, bp
+   002CF2B4 call 0x24aa00
+   002CF2C0 lea r8d, [r14 + rbp]
+   002CF2CE call 0x24aa00
+PASS S1 first page = T[s] * 0x204; runs of 0x102 at first and first + 0x102
+PASS S2 T = {0,1,3,2,4,5} (00917160 + the two immediates) - [0, 1, 3, 2, 4, 5]
+   raw callers of 0024AA00: 00292768 in 00292390 002CF2B4 in 002CEFD0 002CF2CE in 002CEFD0
+PASS S3 the silhouette call sites of the walker are exactly 002CF2B4 and 002CF2CE
+PASS C1 control: the sweep also finds the item_gra call 00292768
+PASS S4 six groups of 0x204 pages partition the shipped page count exactly - count 3096
+PASS S5 the setter stores ecx to +0x10D and turns the silhouette bit off when ecx > 5 (unsigned: -1 too)
+   raw callers of the setter 002CEE00: 00567A52 in 005679D0 0056A05E in 0056A010
+PASS S5b the setter's callers are 00567A52 (ecx = -1) and 0056A05E (ecx = word [record + 0x60])
+FAILS 0

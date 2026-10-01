@@ -1,0 +1,12 @@
+   02B40530 stores 2: 003B6F1A(003B6ED0) 003B7E10(003B7E10)
+   02B40530 other refs 1: 003B7730
+   02B40534 stores 8: 003B6ED7(003B6ED0) 003B6F37(003B6F30) 003B7089(003B7080) 003B7308(003B72F0) 003B7BCB(003B7BB0) 003B7CBE(003B7C60) 003B7E00(003B7E00) 003B7E4C(003B7E20)
+   02B40534 other refs 1: 003B7739
+PASS W1 02B40534 has eight store sites in eight functions; 02B40530 has two - 8 sites / 8 functions; 0530 2
+PASS C2 control: the sweep sees the gate 003B7730 reading both globals
+PASS K1 00263CC0: class 1 -> +0x38, class 3 -> +0xA4 (edx = class - 1 compared with 2)
+   0025E3AA in 0025DF00: edx <- mov edx, ebp
+PASS I1 the integrator's raw call sites are found and each edx source is printed - 1 sites, 1 not a literal zero
+PASS I2 the one caller 0025DF00 passes ebp: 1 only when actor +0x0D bit 1 is set, the render record is live and 003E6A70's result has bit 0 set; ebp is 0 otherwise
+PASS C1 control: 29 raw call sites reach 0026C120 - 29
+FAILS 0

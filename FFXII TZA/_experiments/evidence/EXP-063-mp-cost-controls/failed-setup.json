@@ -1,0 +1,13 @@
+{
+  "status": "INVALID_FIXTURE",
+  "initial_source_sha256": "408175aa0fd57d2848a6622ae6404332d80b4d1d38ce0fbf450c47fdac9b4406",
+  "case": "reduce91",
+  "error": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+  "rip": "002F96E5",
+  "invalid_read": {
+    "address": 4,
+    "bytes": 2
+  },
+  "cause": "Fixture initialized effect registry02EBF140; original reads02EBF040. Both runs stopped by assertions; no PASS artifact existed. Second diagnostic run added assertion context only.",
+  "correction": "Initialize02EBF040, derived from2F96A7+2BC5999; rerun controls."
+}

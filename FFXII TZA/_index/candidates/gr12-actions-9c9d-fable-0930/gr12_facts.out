@@ -1,0 +1,54 @@
+PASS 0027C40C add eax, -6 / 0027C40F cmp eax, 0x16 
+  kind  6 -> 0027C437
+  kind  7 -> 0027C690
+  kind  8 -> 0027C552
+  kind  9 -> 0027C437
+  kind 10 -> 0027C690
+  kind 11 -> 0027C584
+  kind 12 -> 0027C67A
+  kind 13 -> 0027C67A
+  kind 14 -> 0027C67A
+  kind 15 -> 0027C67A
+  kind 16 -> 0027C67A
+  kind 17 -> 0027C690
+  kind 18 -> 0027C690
+  kind 19 -> 0027C690
+  kind 20 -> 0027C690
+  kind 21 -> 0027C690
+  kind 22 -> 0027C690
+  kind 23 -> 0027C690
+  kind 24 -> 0027C613
+  kind 25 -> 0027C690
+  kind 26 -> 0027C67A
+  kind 27 -> 0027C67A
+  kind 28 -> 0027C67A
+PASS kind 11 -> 0027C584 and nothing else 
+PASS kind 24 -> 0027C613 and nothing else 
+PASS 0027C591 movzx r10d, word ptr [rdx + 0x50] -> movzx r10d, word ptr [rdx + 0x50]
+PASS 0027C596 mov r8d, 0x9c -> mov r8d, 0x9c
+PASS 0027C5A0 sub ax, r8w -> sub ax, r8w
+PASS 0027C5A4 cmp ax, 1 -> cmp ax, 1
+PASS 0027C5A8 jbe 0x27c5f2 -> jbe 0x27c5f2
+PASS 0027C5FA movzx r8d, r10w -> movzx r8d, r10w
+PASS 0027C5FE call 0x311cd0 -> call 0x311cd0
+PASS 0027C608 mov eax, 0x17 -> mov eax, 0x17
+PASS 0027C620 call 0x273270 -> call 0x273270
+PASS 0027C625 cmp di, ax -> cmp di, ax
+PASS 0027C637 mov r8d, 0x9c -> mov r8d, 0x9c
+PASS 0027C65A mov r8d, 0x9d -> mov r8d, 0x9d
+PASS 0027D131 mov ecx, 0x9c -> mov ecx, 0x9c
+PASS 0027D141 cmp ax, 1 -> cmp ax, 1
+PASS 0027D14D call 0x273270 -> call 0x273270
+PASS 0027D152 cmp ax, r14w -> cmp ax, r14w
+PASS 0031EFB3 sub ecx, 0x9b -> sub ecx, 0x9b
+PASS 0031EFBB sub ecx, 0x78 -> sub ecx, 0x78
+PASS 0031F17F cmp ebp, 0x9b -> cmp ebp, 0x9b
+PASS control: row 0x95 names Dismount 
+PASS category 13 rows are exactly 0x9B-0x9D ['0x9b', '0x9c', '0x9d']
+  row 09B 1c 10 00 00 00 00 00 00 00 00 00 00 10 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 00 0d 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 20 00 00 00 00 00 00 9b 00 00 00 ff ff ff 00
+PASS row 09B +0x22 = 0xFFFF (none), +0x1C = 3 
+  row 09C 1d 10 00 00 00 00 00 00 00 00 00 00 10 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 00 0d 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 20 00 00 00 00 00 00 9c 00 00 00 ff ff ff 00
+PASS row 09C +0x22 = 0xFFFF (none), +0x1C = 3 
+  row 09D 1e 10 00 00 00 00 00 00 00 00 00 00 10 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 00 0d 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 20 00 00 00 00 00 00 9d 00 00 00 ff ff ff 00
+PASS row 09D +0x22 = 0xFFFF (none), +0x1C = 3 
+FAILS 0

@@ -1,0 +1,15 @@
+cells holding the pointer: 01F812C8, 01F82EA8 | rounds 2
+creators and getters returning the pointer: 0015CC00, 001AC7C0, 001F0810, 001F0850, 001F1590, 001F1600, 001FB310
+functions reached 39 | seeds: loaders 7 creator call sites 33
+count writes (+0x13C covered by a write through the pointer):
+  001EF2D0 ('001EF389', 'mov dword ptr [rbx + 0x13c], 3', 'object+13C')
+escapes (grouped by site; lowest object offset the escaping value can carry):
+  001EF6D0 001F0470 indirect call qword ptr [rax + 8] with tainted ['rcx']                 lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+  001EF6D0 001F0482 indirect call qword ptr [rax + 8] with tainted ['rcx']                 lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+  001EF6D0 001F04A2 indirect call qword ptr [rax + 8] with tainted ['rcx']                 lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+  00808FE4 00808FF3 store of the pointer                                                   lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+  00808FE4 00809025 indirect call rsi with tainted ['rcx']                                 lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+  00808FE4 0080901D stack argument slot(s) [80] to 00809958                                lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+  00808FE4 00809025 indirect call rsi with tainted ['rcx', "('stk', 80)"]                  lowest=148  cannot reach +0x13C (lowest offset >= 0x140)
+import calls made while a pointer register was live (the import is given no pointer by type): [('001EB531', 'api-ms-win-crt-math-l1-1-0.dll!sqrtf', 'rdx'), ('001F09AC', 'api-ms-win-crt-math-l1-1-0.dll!sqrtf', 'rcx')]
+FAILS 0 []

@@ -1,0 +1,43 @@
+[
+  {
+    "control": "replacement_expected",
+    "state": "expected_preimage",
+    "pass": true,
+    "read_only": true
+  },
+  {
+    "control": "already_applied",
+    "state": "already_applied",
+    "pass": true,
+    "read_only": true
+  },
+  {
+    "control": "new_file_missing",
+    "state": "new_file",
+    "pass": true,
+    "read_only": true
+  },
+  {
+    "control": "local_edit_conflict",
+    "state": "conflict",
+    "pass": true,
+    "read_only": true
+  },
+  {
+    "control": "required_old_file_missing",
+    "state": "conflict",
+    "pass": true,
+    "read_only": true
+  },
+  {
+    "control": "directory_conflict",
+    "state": "conflict_nonfile",
+    "pass": true,
+    "read_only": true
+  },
+  {
+    "control": "unsafe_path",
+    "pass": true,
+    "rejected": true
+  }
+]

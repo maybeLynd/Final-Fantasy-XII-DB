@@ -1,0 +1,101 @@
+00267260  push      rbx
+00267262  sub       rsp, 0x20
+00267266  mov       rbx, rcx
+00267269  call      0x3b7730
+0026726E  test      eax, eax
+00267270  jne       0x26727a
+00267272  xor       eax, eax
+00267274  add       rsp, 0x20
+00267278  pop       rbx
+00267279  ret       
+0026727A  mov       rax, qword ptr [rbx + 0xc0]
+00267281  test      rax, rax
+00267284  je        0x267299
+00267286  test      byte ptr [rax + 0x14f], 1
+0026728D  jne       0x267272
+0026728F  cmp       qword ptr [rax + 0x138], 0
+00267297  je        0x267272
+00267299  test      byte ptr [rbx + 9], 1
+0026729D  je        0x267272
+0026729F  movzx     eax, byte ptr [rbx + 8]
+002672A3  shr       eax, 1
+002672A5  and       eax, 1
+002672A8  add       rsp, 0x20
+002672AC  pop       rbx
+002672AD  ret       
+002672AE  int3      
+002672AF  int3      
+---
+002E5030  push      rbx
+002E5032  push      rbp
+002E5033  push      r14
+002E5035  sub       rsp, 0x50
+002E5039  mov       rax, qword ptr [rip + 0x1c5f7f0]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+002E5040  xor       rax, rsp
+002E5043  mov       qword ptr [rsp + 0x40], rax
+002E5048  cmp       byte ptr [rcx + 0x18], 1
+002E504C  mov       r14, r8
+002E504F  mov       ebp, edx
+002E5051  mov       rbx, rcx
+002E5054  je        0x2e5164
+002E505A  mov       rcx, qword ptr [rcx + 0xc0]
+002E5061  test      rcx, rcx
+002E5064  je        0x2e5164
+002E506A  test      byte ptr [rcx + 0x14f], 1
+002E5071  jne       0x2e5164
+---
+002E5150  add       byte ptr [rax + riz*8], ah
+002E5153  mov       rsi, qword ptr [rsp + 0x78]
+002E5158  cmp       al, 0x60
+002E515A  jne       0x2e5164
+002E515C  mov       rcx, rbx
+002E515F  call      0x2e6330
+002E5164  mov       rcx, qword ptr [rsp + 0x40]
+002E5169  xor       rcx, rsp
+002E516C  call      0x808c40
+002E5171  add       rsp, 0x50
+002E5175  pop       r14
+002E5177  pop       rbp
+002E5178  pop       rbx
+002E5179  ret       
+002E517A  int3      
+002E517B  int3      
+002E517C  int3      
+002E517D  int3      
+002E517E  int3      
+002E517F  int3      
+002E5180  mov       r11, rsp
+002E5183  push      rbx
+002E5184  sub       rsp, 0x70
+002E5188  mov       rax, qword ptr [rip + 0x1c5f6a1]   ; -> 01F44830 u32=2DDFA232 f32=2.54242e-11
+---
+002E5750  mov       qword ptr [rsp + 0x10], rbx
+002E5755  push      rdi
+002E5756  sub       rsp, 0x60
+002E575A  cmp       byte ptr [rcx + 0x18], 1
+002E575E  mov       rdi, r8
+002E5761  mov       rbx, rcx
+002E5764  je        0x2e5951
+002E576A  mov       rax, qword ptr [rcx + 0xc0]
+002E5771  test      rax, rax
+002E5774  je        0x2e5783
+002E5776  test      byte ptr [rax + 0x14f], 1
+002E577D  jne       0x2e5951
+---
+002E5940  movaps    xmm6, xmmword ptr [rsp + 0x50]
+002E5945  movaps    xmm8, xmmword ptr [rsp + 0x30]
+002E594B  movaps    xmm9, xmmword ptr [rsp + 0x20]
+002E5951  mov       rbx, qword ptr [rsp + 0x78]
+002E5956  add       rsp, 0x60
+002E595A  pop       rdi
+002E595B  ret       
+002E595C  mov       rcx, rbx
+002E595F  call      0x265550
+002E5964  mov       rcx, rbx
+002E5967  movaps    xmm8, xmm0
+002E596B  call      0x2654e0
+002E5970  test      eax, eax
+002E5972  je        0x2e5a21
+002E5978  mov       rcx, rbx
+002E597B  call      0x2655d0
+---

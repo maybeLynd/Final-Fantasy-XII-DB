@@ -1,0 +1,55 @@
+{
+  "status": "INVALID",
+  "mode": "preserve",
+  "method": "native disposable instrument qualification, not FF12",
+  "start_unix": 1789990008.6157796,
+  "sources": {
+    "run.py": "e7e699a2fdb7f59051668e1d893bcbed6a0ce3832b427a98beef9b29090edac6",
+    "fixture.py": "41a90a19db11ca7deb48362092bc9234b3c5288c224387aadcace4986e7adf96",
+    "preserve.bin": "82486c57c1054d44549a1a04fe1d0e41a345ab5c6366fa023ab44f0877dae620",
+    "change.bin": "4bcdeb92fe7aa93f5fe1de487cfd4588fa74fdea02702bb8db7603b2d6ac56e3",
+    "fixture-decode.json": "64dc13141cf7b5bafb3ae9ef8c0611489ba7d9bda7ffbd3b66b56b43d00c6422",
+    "../exp127-native-dispatch-control/run.py": "4e7659eea7b8aaa3026e9404b960fb45691b2a4fce08d88bfed20ae7221477ed",
+    "../exp127-instrument-control/capture_candidate.py": "a4824020766a4f795e91bbb7387e10e1c821f04faa41d64189ad6b9141b6fe19",
+    "../exp127-instrument-control/cleanup_candidate.py": "c737324fadc5a126e413dc2b71aff3c3ca3ffc12d4f14e0cdfd04bfc1c53cb20",
+    "../exp127-instrument-control/ownership.py": "8f75d7f7fe1545a323acb58169c836a717f2b1ddad403231c3ebb1b710862c2b",
+    "../exp127-instrument-control/original/api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a",
+    "../exp127-instrument-control/original/capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "../exp127-instrument-control/original/hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "../exp127-instrument-control/original/timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a"
+  },
+  "host": {
+    "windows": [
+      10,
+      0,
+      26200,
+      2,
+      ""
+    ],
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_binary": "C:\\Python314\\python.exe",
+    "python_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+    "modules": {
+      "kernel32.dll": {
+        "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+        "sha256": "8f8629741558b5df71def4e1dd8ef9645d4f806b949762c47757c50fea1a9e6d"
+      },
+      "kernelbase.dll": {
+        "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+        "sha256": "becad014fb8efa8cb5e314931cca92778ad42c649b12a6909632cacd68af4f40"
+      },
+      "ntdll.dll": {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+        "sha256": "a74f7482085eab125ccc09152ab7e0b5994bcb13e1a7b29880bdbb24179ecb8b"
+      },
+      "python314.dll": {
+        "path": "C:\\Python314\\python314.dll",
+        "sha256": "fde89cdb5c2d08ae65de7ef4abca1876c93ba3796002f5ac0bf7e4d4f5a94da0"
+      }
+    }
+  },
+  "resume_policy": "control-debug-read-write",
+  "arm": "no-fp-request",
+  "forced_termination": []
+}

@@ -1,0 +1,56 @@
+{
+  "files": {
+    "00236820.bin": {
+      "bytes": 37,
+      "sha256": "f53995268db38c36b63da2cdd7f5979c5600294e05010a97c09aa149f9129578"
+    },
+    "00236850.bin": {
+      "bytes": 7,
+      "sha256": "78967330e777673e22aa8a475b61095e6cc0b7ce4b6641c5e641f713cca6ab33"
+    },
+    "00263E30.bin": {
+      "bytes": 5,
+      "sha256": "efbd103662ccda4c0f468ab461257f1b371879ef59acc4189da3ceb1394859cc"
+    },
+    "00263FF0.bin": {
+      "bytes": 21,
+      "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d"
+    },
+    "002659D0.bin": {
+      "bytes": 24,
+      "sha256": "8f36f42cad4a005912c9dcaf2499613edf1e57072835c2db985a9eac2539d391"
+    },
+    "0031B7E0.bin": {
+      "bytes": 42,
+      "sha256": "42d9fb03d4e61a5eb54f3937e87c9068decc289b61409fdb1e55f3b7a5533585"
+    },
+    "003220E0.bin": {
+      "bytes": 176,
+      "sha256": "df159419e479ac9b2722ec41df58c8563c4fad84d6d2c6c88172bce851f372f1"
+    },
+    "00327150.bin": {
+      "bytes": 117,
+      "sha256": "9c8d73228f088790c2562dd06efc80bc583f1be3b728b33f2548fd2dc966cd60"
+    },
+    "003588B0.bin": {
+      "bytes": 143,
+      "sha256": "ee587d783b5790f447385952fff3663b09d20653e57327ed10dd1d06ad72b644"
+    },
+    "003589B0.bin": {
+      "bytes": 38,
+      "sha256": "808e4fe5b600c98b70504da52344ec98cab2e89c5e46b19b3c605dd8cbed4c55"
+    },
+    "check.py": {
+      "bytes": 8354,
+      "sha256": "89b6bf4d9ec45ea5cb3ff533876272c469d4b1d2b41b62029d915a89b41af07e"
+    },
+    "disassembly.txt": {
+      "bytes": 9729,
+      "sha256": "8278a10d4b7b6cfd9ba6ff6cde277629c55d1b3f2a0d184a51f5a45dd92d8d25"
+    },
+    "result.json": {
+      "bytes": 20587,
+      "sha256": "1cdc5b7a1b507de07985471acea436391f2152f1d835f38a1eeaf6585c027190"
+    }
+  }
+}

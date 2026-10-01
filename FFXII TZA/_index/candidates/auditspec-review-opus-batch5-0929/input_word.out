@@ -1,0 +1,13 @@
+cell 02F9736A width 2: 76 sites in 54 functions
+functions reading by exact address: 51; reading incl. overlapping wider/nearby access: 52; writing: 4
+  0022860C in 002284F0  W    w8 tgt 02F97368  mov qword ptr [rip + 0x2d6ed55], rax
+  002498C4 in 002498B0  W    w8 tgt 02F97368  mov qword ptr [rip + 0x2d4da9d], rax
+  00249A5E in 002498B0  R    w16 tgt 02F97360  movups xmm0, xmmword ptr [rip + 0x2d4d8fb]
+  00253F70 in 00253C70  W    w2 tgt 02F9736A  mov word ptr [rip + 0x2d433f3], di
+  00253FE9 in 00253C70  W    w2 tgt 02F9736A  mov word ptr [rip + 0x2d4337a], di
+  002540C5 in 00253C70  W    w2 tgt 02F9736A  mov word ptr [rip + 0x2d4329e], di
+  0025415F in 00253C70  W    w2 tgt 02F9736A  mov word ptr [rip + 0x2d43204], di
+  002541BC in 00253C70  W    w2 tgt 02F9736A  mov word ptr [rip + 0x2d431a7], di
+  002A329B in 002A3250  W    w8 tgt 02F97368  mov qword ptr [rip + 0x2cf40c6], r12
+READERS_NAME ['002287D0', '00228C70', '0023B6F0', '0023BD40', '0023C5C0', '0023CE10', '0023D6B0', '0023DB40', '0023F240', '0023FBE0', '00240DE0', '00241D40', '00253C70', '002778C0', '0027AA70', '0027EA70', '00280DE0', '00284EC0', '002878E0', '0029B870', '002A5CC0', '002A5F40', '002A6190', '002A9980', '002C2320', '002C59D0', '002D3900', '002D5EB0', '003C87B0', '003C8B70', '003CAB00', '003EF050', '003F4330', '003FDAD0', '003FF360', '005519E0', '00552250', '005528C0', '005542D0', '0055C740', '00560910', '00564D30', '00564E10', '0056CA60', '0056DED0', '00571A50', '00572600', '00572E10', '005742D0', '005789D0', '0057AC10']
+overlap-only readers: ['002498B0']

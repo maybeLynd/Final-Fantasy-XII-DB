@@ -1,0 +1,12 @@
+{
+  "start_va": "00712180",
+  "bytes": "353",
+  "prev_entry": "00712090",
+  "prev_last_ins": "jmp",
+  "referenced": "yes",
+  "routes": "rel32/lea",
+  "aligned16": "yes",
+  "decodes_to_end": "yes",
+  "verdict": "body",
+  "why": "predecessor ends in jmp"
+}

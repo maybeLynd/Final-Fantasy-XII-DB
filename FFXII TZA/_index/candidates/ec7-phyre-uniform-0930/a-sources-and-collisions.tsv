@@ -1,0 +1,1736 @@
+family	address	role	owner
+Phyre_PAnimation_module	005A5BD0	A-measured closure source	
+Phyre_PAnimation_module	005A5CC0	A-measured closure source	
+Phyre_PAnimation_module	005A5DC0	A-measured closure source	
+Phyre_PAnimation_module	005A7E90	A-measured closure source	
+Phyre_PAnimation_module	005A9CF0	A-measured closure source	
+Phyre_PAnimation_module	005AA0E0	A-measured closure source	
+Phyre_PAnimation_module	005AC950	A-measured closure source	
+Phyre_PAnimation_module	005ACD30	A-measured closure source	
+Phyre_PAnimation_module	005AD2B0	A-measured closure source	
+Phyre_PAnimation_module	005AD330	A-measured closure source	
+Phyre_PAnimation_module	005AD3B0	A-measured closure source	
+Phyre_PAnimation_module	005AD440	A-measured closure source	
+Phyre_PAnimation_module	005AD4E0	A-measured closure source	
+Phyre_PAnimation_module	005AD8F0	A-measured closure source	
+Phyre_PAnimation_module	005B0BB0	A-measured closure source	
+Phyre_PAnimation_module	005B7FD0	A-measured closure source	
+Phyre_PAnimation_module	005BED40	A-measured closure source	
+Phyre_PAnimation_module	005BEDC0	A-measured closure source	
+Phyre_PAnimation_module	005BEE50	A-measured closure source	
+Phyre_PAnimation_module	005BFE70	A-measured closure source	
+Phyre_PAnimation_module	005C0090	A-measured closure source	
+Phyre_PAnimation_module	005C0180	A-measured closure source	
+Phyre_PAnimation_module	005C0820	A-measured closure source	
+Phyre_PAnimation_module	005C0B60	A-measured closure source	
+Phyre_PAnimation_module	005C0C90	A-measured closure source	
+Phyre_PAnimation_module	005C1160	A-measured closure source	
+Phyre_PAnimation_module	005C2F40	A-measured closure source	
+Phyre_PAnimation_module	005C35A0	A-measured closure source	
+Phyre_PAnimation_module	005C5A40	A-measured closure source	
+Phyre_PAnimation_module	005C5C80	A-measured closure source	
+Phyre_PAnimation_module	005C6020	A-measured closure source	
+Phyre_PAnimation_module	005C62C0	A-measured closure source	
+Phyre_PAnimation_module	005C72A0	A-measured closure source	
+Phyre_PAnimation_module	005C8CA0	A-measured closure source	
+Phyre_PAnimation_module	005C8D30	A-measured closure source	
+Phyre_PAnimation_module	005C8DC0	A-measured closure source	
+Phyre_PAnimation_module	005C8E50	A-measured closure source	
+Phyre_PAnimation_module	005C8EE0	A-measured closure source	
+Phyre_PAnimation_module	005C99A0	A-measured closure source	
+Phyre_PAnimation_module	005C9CF0	A-measured closure source	
+Phyre_PAnimation_module	005C9FF0	A-measured closure source	
+Phyre_PAnimation_module	005CB150	A-measured closure source	
+Phyre_PAnimation_module	005AA840	predicate member owned elsewhere	NativeAdapter.ExplainedCalleeForwarder
+Phyre_PAnimation_module	005ACCD0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PAnimation_module	005ACE30	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PAnimation_module	005B5AE0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B5E10	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B6140	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B6470	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B67A0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B6AD0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B6E00	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B7130	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B7460	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PAnimation_module	005B7E10	predicate member owned elsewhere	counted aligned-free loop plus self-free, 104-byte form
+Phyre_PAnimation_module	005B8050	predicate member owned elsewhere	counted aligned-free loop plus self-free, 104-byte form
+Phyre_PAnimation_module	005B9290	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B93B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B94D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B95D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B96D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B97D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B98D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B99D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B9AD0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B9BD0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B9CD0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B9DF0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B9EF0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005B9FF0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA110	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA210	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA330	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA430	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA530	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA630	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA750	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA850	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BA950	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BAA70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BAB90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BACB0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BAEB0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BAFD0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BB0F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PAnimation_module	005BC4D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BC600	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BC730	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BC860	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BC990	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BCAC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BCBF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BCD20	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BCE50	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BCF80	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD0B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD1E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD310	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD440	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD570	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD6A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD7D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BD900	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BDA30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BDB60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BDC90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BDDC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BDEF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE020	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE150	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE280	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE3B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE4E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE610	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE740	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BE9A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BEAD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005BEC00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PAnimation_module	005C7930	predicate member owned elsewhere	NativeAdapter.ExplainedCalleeForwarder
+Phyre_PAnimation_module	005CA130	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PAnimation_module	005CA1A0	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PAnimation_module	005CA210	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PAnimation_module	005CA280	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PAnimation_module	005CA290	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PAnimation_module	005CA2A0	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PAnimation_module	005CA2B0	predicate member owned elsewhere	NativeAdapter.RefFlagSetCallZero
+Phyre_PAnimation_module	005CAA30	predicate member owned elsewhere	NativeAdapter.ExplainedCalleeForwarder
+Phyre_PAnimation_module	005CAC80	predicate member owned elsewhere	NativeLeaf.FieldClear
+Phyre_PDynamicGeometry_module	006BB930	A-measured closure source	
+Phyre_PDynamicGeometry_module	006BBC70	A-measured closure source	
+Phyre_PDynamicGeometry_module	006C45F0	A-measured closure source	
+Phyre_PDynamicGeometry_module	006BC750	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006BCA20	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006BCF80	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PDynamicGeometry_module	006BD2B0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PDynamicGeometry_module	006BD910	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006BDA30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006BDEF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006BE020	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006C3380	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006C3580	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006C36C0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006C3C50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006C3D50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006C3E50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006C4090	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006C41C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006C42F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D0D50	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D0FA0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D1580	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D1810	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D1C70	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D1D30	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D1EE0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D2110	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D2250	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D2390	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PDynamicGeometry_module	006D26C0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PDynamicGeometry_module	006D29F0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PDynamicGeometry_module	006D3680	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3780	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3880	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3980	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3A80	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3B80	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3C80	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D3D80	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D4240	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D4370	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D44A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D45D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D4700	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D4830	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D4960	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D4A90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D4BC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	006D5670	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PDynamicGeometry_module	006D56E0	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PDynamicGeometry_module	006D5810	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D5A50	predicate member owned elsewhere	internal tail-call forwarders
+Phyre_PDynamicGeometry_module	006D8EF0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PDynamicGeometry_module	006D8FD0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PDynamicGeometry_module	006D90D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PDynamicGeometry_module	008B5D40	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PDynamicGeometry_module	008B5D50	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PDynamicGeometry_module	008B5D80	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PDynamicGeometry_module	008B5DA0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PDynamicGeometry_module	008B5DD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5DE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B5E90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B69C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B69E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B69F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B6A00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B6A10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B6A20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B6A30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7210	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PDynamicGeometry_module	008B7220	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PDynamicGeometry_module	008B7230	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PDynamicGeometry_module	008B7240	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PDynamicGeometry_module	008B7260	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PDynamicGeometry_module	008B7280	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PDynamicGeometry_module	008B72A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B72B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B72C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B72D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B72E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B72F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7300	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7310	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7320	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7330	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7340	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7350	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7360	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7370	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7380	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7390	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B73A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B73B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B73C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B73D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B73E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B73F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7400	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7410	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7420	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7430	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7440	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7450	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7460	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7470	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7480	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7490	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B74A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B74B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B74C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B74D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B74E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B74F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7500	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7510	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7520	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7530	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7540	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7550	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7560	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7570	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7580	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PDynamicGeometry_module	008B7590	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PDynamicGeometry_module	008B76A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PFramework_module	007939A0	A-measured closure source	
+Phyre_PFramework_module	00793DA0	A-measured closure source	
+Phyre_PFramework_module	0079D320	A-measured closure source	
+Phyre_PFramework_module	007A0410	A-measured closure source	
+Phyre_PFramework_module	007A1640	A-measured closure source	
+Phyre_PFramework_module	007A1CD0	A-measured closure source	
+Phyre_PFramework_module	007A2440	A-measured closure source	
+Phyre_PFramework_module	007A3110	A-measured closure source	
+Phyre_PFramework_module	007A3150	A-measured closure source	
+Phyre_PFramework_module	0060EDA0	predicate member owned elsewhere	internal tail-call forwarders
+Phyre_PFramework_module	00793EB0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PFramework_module	00793F80	predicate member owned elsewhere	scalar deleting destructors that call free
+Phyre_PFramework_module	00796640	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PFramework_module	00796760	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PFramework_module	00796860	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PFramework_module	00796960	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PFramework_module	00796A90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PFramework_module	00796BC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PFramework_module	00796CF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PFramework_module	00861EA2	predicate member owned elsewhere	external import stubs
+Phyre_PFramework_module	00861EA8	predicate member owned elsewhere	external import stubs
+Phyre_PGameplay_module	006A8920	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGameplay_module	006A8B60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGameplay_module	006A99E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGameplay_module	006A9AE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGameplay_module	006CD140	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGameplay_module	006CDC00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGameplay_module	006CE340	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGameplay_module	006CE440	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGameplay_module	008B3F40	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PGameplay_module	008B3F50	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PGameplay_module	008B3F70	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGameplay_module	008B3FD0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGameplay_module	008B4030	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGameplay_module	008B4090	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B40A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B40B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B40C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B40D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B40E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B40F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B4100	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGameplay_module	008B4180	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B4190	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B41A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B6F80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B6F90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B7010	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PGameplay_module	008B7040	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B7050	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B7060	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B7070	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B70A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B70B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGameplay_module	008B70C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	006739A0	A-measured closure source	
+Phyre_PGeometry_module	00664EB0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PGeometry_module	00669470	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PGeometry_module	006697A0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PGeometry_module	00669AD0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PGeometry_module	00669E00	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PGeometry_module	0066A130	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PGeometry_module	0066BA00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066BB00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066BC00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066BD00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066BE00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066BF00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C000	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C100	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C200	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C300	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C400	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C500	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C600	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C700	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C800	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066C900	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066CA00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066CB00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066CC00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PGeometry_module	0066DAC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066DBF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066DD20	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066DE50	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066DF80	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E0B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E1E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E310	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E440	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E570	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E6A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E7D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066E900	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066EA30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066EB60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066EC90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066EDC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066EEF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066F020	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	0066F150	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PGeometry_module	00672EC0	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PGeometry_module	006731B0	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PGeometry_module	008B11D0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PGeometry_module	008B11E0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PGeometry_module	008B11F0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PGeometry_module	008B1200	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PGeometry_module	008B1210	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PGeometry_module	008B12B0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PGeometry_module	008B12D0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PGeometry_module	008B12F0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PGeometry_module	008B1310	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PGeometry_module	008B1330	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PGeometry_module	008B13C0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGeometry_module	008B1420	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGeometry_module	008B1480	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PGeometry_module	008B1530	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1540	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1550	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1560	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1570	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B15B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B15E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B15F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1600	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1610	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1620	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1630	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1640	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1680	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1690	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B16A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B16B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B16C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B16D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B16E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B16F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1700	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1710	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1730	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1740	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1750	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1760	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1770	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1780	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1790	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B17A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B17B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B17C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B17D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B17E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B17F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1800	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1810	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1820	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1850	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1860	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1870	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1880	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1890	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B18A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B18B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B18C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B18D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B18E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B18F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1900	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1910	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1920	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1930	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1940	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1950	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1960	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1970	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1980	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B19C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B19E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B19F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PGeometry_module	008B1A00	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PHierarchy_module	00878630	A-measured closure source	
+Phyre_PHierarchy_module	00878C70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PHierarchy_module	00878DA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PHierarchy_module	00878ED0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PHierarchy_module	00879000	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PHierarchy_module	008BDDC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDDD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDDE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDDF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDE90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDEA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDEB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDEC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDED0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDEE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDEF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDF00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDF10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PHierarchy_module	008BDF20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	0086ED10	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086EE30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086EF30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F050	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F170	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F290	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F3B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F4D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F5F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F710	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F830	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086F950	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086FA70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086FB90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086FCB0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086FDD0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	0086FEF0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870010	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870130	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870250	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870370	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870490	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	008705B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	008706D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	008707F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870910	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870A30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PInputs_module	00870DD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00870F00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871030	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871160	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871290	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008713C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008714F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871620	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871750	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871880	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008719B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871AE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871C10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871D40	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871E70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00871FA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008720D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872200	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872330	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872460	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872590	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008726C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008727F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872920	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872A50	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872B80	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872CB0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	00872DE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PInputs_module	008B9560	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PInputs_module	008B9570	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PInputs_module	008B9580	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PInputs_module	008B95A0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PInputs_module	008B95C0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PInputs_module	008B9620	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PInputs_module	008B9680	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9690	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B96A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B96B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B96C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B96D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B96E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B96F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9700	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9710	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9720	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9730	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9740	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9750	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9760	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9770	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9780	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B9790	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B97A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B97B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008B97C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PInputs_module	008BA250	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PInputs_module	008BA680	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PInputs_module	008BB710	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PInputs_module	008BDB80	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PInputs_module	008BDD10	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PInputs_module	008C14D0	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PLOD_module	006C6230	A-measured closure source	
+Phyre_PLOD_module	006C6C60	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PLOD_module	006C6D60	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PLOD_module	006C70E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PLOD_module	006C7210	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PLOD_module	006C7E80	predicate member owned elsewhere	NativeAdapter.RefFlagSetCallZero
+Phyre_PLOD_module	008B6B40	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PLOD_module	008B6B60	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PLOD_module	008B6BA0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PLOD_module	008B6C00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6C90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6CA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6CB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6CC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6CD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6CE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PLOD_module	008B6D00	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PLOD_module	008B77D0	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PLOD_module	008B78A0	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PPhysics_module	0069E790	A-measured closure source	
+Phyre_PPhysics_module	0069E880	A-measured closure source	
+Phyre_PPhysics_module	0069ECE0	A-measured closure source	
+Phyre_PPhysics_module	0069FB10	A-measured closure source	
+Phyre_PPhysics_module	006A0A50	A-measured closure source	
+Phyre_PPhysics_module	006A1A70	A-measured closure source	
+Phyre_PPhysics_module	006A1DD0	A-measured closure source	
+Phyre_PPhysics_module	006A2320	A-measured closure source	
+Phyre_PPhysics_module	006A4100	A-measured closure source	
+Phyre_PPhysics_module	006A4A60	A-measured closure source	
+Phyre_PPhysics_module	006CCD80	A-measured closure source	
+Phyre_PPhysics_module	006CCDA0	A-measured closure source	
+Phyre_PPhysics_module	00832390	A-measured closure source	
+Phyre_PPhysics_module	00861D30	A-measured closure source	
+Phyre_PPhysics_module	00693240	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPhysics_module	00693330	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPhysics_module	00693EC0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00693F80	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00694120	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00694260	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	006949A0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00695490	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	006955D0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00695780	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00695840	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	006959F0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00695AB0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00696470	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00697320	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	006976A0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00697760	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00697910	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00697AC0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00698180	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00698500	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00698930	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PPhysics_module	00698E10	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00698F30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699050	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699170	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699290	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	006993B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	006994D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	006995F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	006996F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	006997F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	006998F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699A10	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699B30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699C50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699D70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699E90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	00699F90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A0B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A1D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A2F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A3F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A510	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A630	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A750	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A850	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069A950	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069AA50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069AB70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069AC90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069ADB0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069AED0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069AFF0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069B110	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069B230	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069B330	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069B430	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069B530	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPhysics_module	0069B770	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069B8A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069B9D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069BB00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069BC30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069BD60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069BE90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069BFC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C0F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C220	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C350	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C480	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C5B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C6E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C810	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069C940	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069CA70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069CBA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069CCD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069CE00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069CF30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D060	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D190	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D2C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D3F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D520	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D650	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D780	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D8B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069D9E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069DB10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069DC40	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069DD70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069DEA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069DFD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069E100	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069E230	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069E360	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069E490	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069E5C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPhysics_module	0069ECC0	predicate member owned elsewhere	NativeAdapter.SecondArgumentConstTailCall
+Phyre_PPhysics_module	0069ECD0	predicate member owned elsewhere	internal tail-call forwarders
+Phyre_PPhysics_module	006A0A40	predicate member owned elsewhere	internal tail-call forwarders
+Phyre_PPhysics_module	006A0B50	predicate member owned elsewhere	internal tail-call forwarders
+Phyre_PPhysics_module	006A3950	predicate member owned elsewhere	NativeLeaf.MemberAddressAccessor
+Phyre_PPhysics_module	006A3970	predicate member owned elsewhere	NativeLeaf.MemberAddressAccessor
+Phyre_PPhysics_module	006A3A90	predicate member owned elsewhere	NativeLeaf.FieldByteGetter
+Phyre_PPhysics_module	006A3B00	predicate member owned elsewhere	NativeLeaf.FieldFloatGetter
+Phyre_PPhysics_module	006A4000	predicate member owned elsewhere	NativeLeaf.FieldQwordGetter
+Phyre_PPhysics_module	006A4040	predicate member owned elsewhere	NativeLeaf.FieldFloatGetter
+Phyre_PPhysics_module	006A43D0	predicate member owned elsewhere	NativeLeaf.FieldByteGetter
+Phyre_PPhysics_module	006A5560	predicate member owned elsewhere	ref-flag bounded element op (second spelling), 135-byte form
+Phyre_PPhysics_module	006A55F0	predicate member owned elsewhere	ref-flag bounded element op (second spelling), 135-byte form
+Phyre_PPhysics_module	006A5680	predicate member owned elsewhere	ref-flag bounded element op (second spelling), 135-byte form
+Phyre_PPhysics_module	006A5A10	predicate member owned elsewhere	Phyre shared-runtime identity dispatch adapters, 118-byte form
+Phyre_PPhysics_module	00831D30	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00832590	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00833390	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00833440	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008341D0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008343A0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00834460	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00834890	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008348A0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008353F0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00836AD0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00837700	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008382D0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00838600	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0083A480	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00840F90	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00841870	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008472A0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00847E60	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00849B30	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00852DB0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00854980	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00854AB0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00858E80	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085E630	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085E690	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085E6C0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085E6F0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085E740	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085EA40	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085EE10	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085F020	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0085F980	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00860070	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008606A0	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00860720	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00860830	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00860960	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00860B70	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00860E90	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00861900	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00861A10	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	00861C80	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0087F300	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	0087FE70	predicate member owned elsewhere	Bullet physics library
+Phyre_PPhysics_module	008B2BD0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2C30	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2C90	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PPhysics_module	008B2CA0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2D00	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2D60	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2DC0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2E20	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2E80	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2EE0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2F40	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B2FA0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3000	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PPhysics_module	008B3020	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3080	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B30E0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3140	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B31A0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3200	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3260	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B32C0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3320	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3380	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B33E0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3440	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B34A0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3500	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3560	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B35C0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3620	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3630	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3640	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3650	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3660	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3670	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3680	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3690	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B36A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B36B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B36C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B36D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B36E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B36F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3700	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3710	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3720	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3730	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3740	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3750	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3760	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3770	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3780	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3790	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B37A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B37B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B37C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B37D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B37E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B37F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3800	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3810	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3820	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3830	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3840	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3850	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3860	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3870	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3880	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3890	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B38A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B38B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B38C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B38D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B38E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B38F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3900	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3910	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3920	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3930	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3940	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3950	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3960	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3970	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3980	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3990	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B39A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B39B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B39C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B39D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B39E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B39F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3A90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3AA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3AB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3AC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3AD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3AE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3AF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3B90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3BA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3BB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3BC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3BD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPhysics_module	008B3C40	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3CA0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3D00	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3D60	predicate member owned elsewhere	Phyre.Reflection.PTypeStaticTeardown
+Phyre_PPhysics_module	008B3D70	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPhysics_module	008B3DD0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPostProcessing_module	0060DE00	A-measured closure source	
+Phyre_PPostProcessing_module	0061F200	A-measured closure source	
+Phyre_PPostProcessing_module	0061F710	A-measured closure source	
+Phyre_PPostProcessing_module	006209C0	A-measured closure source	
+Phyre_PPostProcessing_module	00650660	A-measured closure source	
+Phyre_PPostProcessing_module	00650D40	A-measured closure source	
+Phyre_PPostProcessing_module	006510B0	A-measured closure source	
+Phyre_PPostProcessing_module	00655920	A-measured closure source	
+Phyre_PPostProcessing_module	006561D0	A-measured closure source	
+Phyre_PPostProcessing_module	006575E0	A-measured closure source	
+Phyre_PPostProcessing_module	00658470	A-measured closure source	
+Phyre_PPostProcessing_module	006587F0	A-measured closure source	
+Phyre_PPostProcessing_module	00659A90	A-measured closure source	
+Phyre_PPostProcessing_module	00659C20	A-measured closure source	
+Phyre_PPostProcessing_module	0065A960	A-measured closure source	
+Phyre_PPostProcessing_module	005DD5E0	predicate member owned elsewhere	NativeAdapter.ChainPredicateReleaseTail
+Phyre_PPostProcessing_module	005DE210	predicate member owned elsewhere	NativeAdapter.ChainPredicateReleaseTail
+Phyre_PPostProcessing_module	00646F90	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00646FF0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647050	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647260	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	006472C0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647320	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	006474D0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647530	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647590	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	006475F0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647C50	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647D40	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00647FE0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	00648040	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	006480A0	predicate member owned elsewhere	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+Phyre_PPostProcessing_module	0064B030	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B150	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B270	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B390	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B4B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B5D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B6F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B810	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064B930	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064BA50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064BB70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064BC90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064BDB0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064BED0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064BFF0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C110	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C230	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C350	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C470	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C590	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C6B0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C7D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064C8F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064CA10	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064CB30	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064CC50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064CD70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064CE90	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064CFB0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D0D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D1D0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D2F0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D410	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D530	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D650	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D770	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PPostProcessing_module	0064D9D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064DB00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064DC30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064DD60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064DE90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064DFC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E0F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E220	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E350	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E480	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E5B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E6E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E810	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064E940	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064EA70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064EBA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064ECD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064EE00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064EF30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F060	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F190	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F2C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F3F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F520	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F650	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F780	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F8B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064F9E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064FB10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064FC40	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064FD70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064FEA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	0064FFD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	00650100	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	00650230	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	00650360	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PPostProcessing_module	008B0630	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PPostProcessing_module	008B0640	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PPostProcessing_module	008B06F0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPostProcessing_module	008B0750	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPostProcessing_module	008B07B0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPostProcessing_module	008B0810	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPostProcessing_module	008B0870	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PPostProcessing_module	008B08D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B08E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B08F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0900	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0910	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0920	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0930	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0940	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0950	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0960	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0970	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0980	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0990	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B09A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B09B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B09C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B09D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B09E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B09F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0A90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0AA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0AB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0AC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0AD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0AE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0AF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0B00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0B10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PPostProcessing_module	008B0B20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PProfiling_module	005E2B80	predicate member owned elsewhere	scalar deleting destructors that call free
+Phyre_PRendering_module	005D8340	A-measured closure source	
+Phyre_PRendering_module	005D87E0	A-measured closure source	
+Phyre_PRendering_module	005E32F0	A-measured closure source	
+Phyre_PRendering_module	005E3820	A-measured closure source	
+Phyre_PRendering_module	005E5400	A-measured closure source	
+Phyre_PRendering_module	005E67C0	A-measured closure source	
+Phyre_PRendering_module	005E6D10	A-measured closure source	
+Phyre_PRendering_module	005E6F30	A-measured closure source	
+Phyre_PRendering_module	005E9C20	A-measured closure source	
+Phyre_PRendering_module	005EA0E0	A-measured closure source	
+Phyre_PRendering_module	005FD170	A-measured closure source	
+Phyre_PRendering_module	005FD240	A-measured closure source	
+Phyre_PRendering_module	00600D20	A-measured closure source	
+Phyre_PRendering_module	00600E30	A-measured closure source	
+Phyre_PRendering_module	0060C630	A-measured closure source	
+Phyre_PRendering_module	0060C990	A-measured closure source	
+Phyre_PRendering_module	006B6C20	A-measured closure source	
+Phyre_PRendering_module	006B6D70	A-measured closure source	
+Phyre_PRendering_module	006B6F30	A-measured closure source	
+Phyre_PRendering_module	006B6FE0	A-measured closure source	
+Phyre_PRendering_module	006B71A0	A-measured closure source	
+Phyre_PRendering_module	006B7290	A-measured closure source	
+Phyre_PRendering_module	006B7560	A-measured closure source	
+Phyre_PRendering_module	006B7660	A-measured closure source	
+Phyre_PRendering_module	006B7800	A-measured closure source	
+Phyre_PRendering_module	006B7C20	A-measured closure source	
+Phyre_PRendering_module	006B7CF0	A-measured closure source	
+Phyre_PRendering_module	006B7FC0	A-measured closure source	
+Phyre_PRendering_module	006B8060	A-measured closure source	
+Phyre_PRendering_module	006B8180	A-measured closure source	
+Phyre_PRendering_module	006B82A0	A-measured closure source	
+Phyre_PRendering_module	006B9120	A-measured closure source	
+Phyre_PRendering_module	006B9CF0	A-measured closure source	
+Phyre_PRendering_module	006BA4D0	A-measured closure source	
+Phyre_PRendering_module	006BEC40	A-measured closure source	
+Phyre_PRendering_module	006BED20	A-measured closure source	
+Phyre_PRendering_module	006C0BA0	A-measured closure source	
+Phyre_PRendering_module	006C0FE0	A-measured closure source	
+Phyre_PRendering_module	006C1500	A-measured closure source	
+Phyre_PRendering_module	006C1540	A-measured closure source	
+Phyre_PRendering_module	006C18D0	A-measured closure source	
+Phyre_PRendering_module	006C2320	A-measured closure source	
+Phyre_PRendering_module	006C26E0	A-measured closure source	
+Phyre_PRendering_module	005ECB40	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005ECE70	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005ED4D0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005ED800	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EDB30	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EDE60	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EE190	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EE4C0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EE7F0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EEB20	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EEE50	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EF180	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EF4B0	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	005EFE60	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PRendering_module	005F0520	predicate member owned elsewhere	counted aligned-free loop plus self-free, 104-byte form
+Phyre_PRendering_module	005F24E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F25E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F26E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F27E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F28E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F29E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F2AE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F2BE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F2CE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F2DE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F2EE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F2FE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F30E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F31E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F32E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F33E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F34E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F35E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F36E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F37E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F38E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F39E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F3AE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F3BE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F3CE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F3DE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F3EE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F3FE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F40E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F41E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F42E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F43E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F44E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F45E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F46E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F47E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F48E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F49E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F4AE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F4BE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F4CE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F4DE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F4EE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F4FE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F50E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F51E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F52E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F53E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F54E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F55E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F56E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F57E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F58E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F59E0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F5AE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F5BE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	005F79A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F7AD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F7C00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F7D30	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F7E60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F7F90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F80C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F81F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8320	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8580	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F86B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F87E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8910	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8A40	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8B70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8CA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8DD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F8F00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9030	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9160	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9290	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F93C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F94F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9620	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9750	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9880	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F99B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9AE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9C10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9D40	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9E70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005F9FA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA0D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA200	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA330	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA460	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA590	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA6C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA7F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FA920	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FAA50	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FAB80	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FACB0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FADE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FAF10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB040	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB170	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB2A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB3D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB500	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB630	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB760	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB890	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FB9C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FBAF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FBC20	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FBD50	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FBE80	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FBFB0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC0E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC210	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC340	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC470	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC5A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC6D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC800	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FC930	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FCA60	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FCB90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FCCC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	005FCDF0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	006045D0	predicate member owned elsewhere	NativeLeaf.FieldQwordGetter
+Phyre_PRendering_module	0060EE20	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PRendering_module	0060EE90	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PRendering_module	0060EF00	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PRendering_module	0060F050	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PRendering_module	0060F0C0	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PRendering_module	0060F130	predicate member owned elsewhere	ref-flag handle store with release, 109-byte form
+Phyre_PRendering_module	0060F210	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	0060F220	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	0060F230	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	0060F240	predicate member owned elsewhere	NativeAdapter.RefFlagSetCallZero
+Phyre_PRendering_module	0060F260	predicate member owned elsewhere	NativeAdapter.RefFlagSetCallZero
+Phyre_PRendering_module	0060F280	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	0060F290	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	0060F2A0	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	0060F2B0	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PRendering_module	00619300	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619400	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619500	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619600	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619700	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619800	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619900	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619A00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619B00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	00619C00	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	0061AB10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061AC40	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061AD70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061AEA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061AFD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B100	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B230	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B360	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B490	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B5C0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B6F0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B820	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061B950	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061BA80	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061BBB0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061BCE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	0061BE10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	006B86D0	predicate member owned elsewhere	scalar deleting destructors that call free
+Phyre_PRendering_module	006B8AE0	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	006B8BE0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	006BFA10	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	006BFB10	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	006C1920	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PRendering_module	006C1D60	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	006C1E60	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PRendering_module	006C20A0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	006C21D0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PRendering_module	008AC950	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC970	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC980	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC990	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC9A0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC9B0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC9C0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC9E0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008AC9F0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA00	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA10	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA20	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA30	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA40	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA50	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA60	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA70	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACA80	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACAB0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008ACAC0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACB00	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACB20	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACB40	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACB60	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACB80	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACBA0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACBE0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACC00	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACC20	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACC40	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACC60	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACC80	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACCA0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACCC0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACCE0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACD00	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACD20	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACD80	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008ACDB0	predicate member owned elsewhere	NativeAdapter.StaticAddressTailCall
+Phyre_PRendering_module	008ACDC0	predicate member owned elsewhere	NativeAdapter.StaticAddressTailCall
+Phyre_PRendering_module	008ACDD0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ACE30	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ACE90	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ACEF0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ACF50	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ACFB0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AD010	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD020	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD030	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD040	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD050	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD060	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD070	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD080	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD090	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD0A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD0B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD0C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD0D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD0E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD0F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD100	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD110	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD120	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD130	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD140	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD150	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD160	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD170	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD190	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD1A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD1B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD1C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD1D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD1E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD200	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD210	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD220	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD230	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD240	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD250	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD260	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD270	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD280	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD290	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD2A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD2D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD2E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD2F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD300	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD310	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD320	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD330	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD340	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD350	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD360	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD370	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD380	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD390	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD3A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD3B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD3C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD3D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD3E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD3F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD400	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD410	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD420	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD430	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD450	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD460	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD470	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD480	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD490	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD4A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD4C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD4D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD4E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD4F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD500	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD510	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD520	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD530	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD540	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD550	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD560	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD580	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD590	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD5A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD5B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD5C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD5D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD5E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD5F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD600	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD610	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD620	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD630	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD640	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD650	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD660	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD670	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD680	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD690	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD6A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD6B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD6C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD6D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD6E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD6F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD700	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD710	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD720	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD730	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD740	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD750	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD760	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD770	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD780	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD790	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD7A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD7B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD7C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD7D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD7E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD7F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD800	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD810	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD820	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD830	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD840	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD850	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD860	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD870	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD880	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD890	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD8A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD8B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD8C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD8D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD8E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD8F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD900	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD910	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD920	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD930	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD940	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD950	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD960	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD970	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD980	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD990	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD9A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD9B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD9C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD9D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD9E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008AD9F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADA90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADAA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADAB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADAC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADAD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADAE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADAF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADB90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADBA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADBB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADBC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADBD0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADBE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADBF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADC90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADCA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADCB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADCC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADCE0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADCF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD00	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD10	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD20	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD30	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD40	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD50	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD60	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD70	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD80	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADD90	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADDA0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADDB0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADDC0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008ADED0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ADF30	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ADF90	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008ADFF0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE050	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE0B0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE110	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE170	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE1D0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE230	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE290	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE2F0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE350	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE3B0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE410	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE470	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE4D0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE530	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE590	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE5F0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE650	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008AE6B0	predicate member owned elsewhere	Phyre.Reflection.PTypeStaticTeardown
+Phyre_PRendering_module	008AE6C0	predicate member owned elsewhere	Phyre.Reflection.PTypeStaticTeardown
+Phyre_PRendering_module	008AF080	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PRendering_module	008B5C90	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PRendering_module	008B6140	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PRendering_module	008B6150	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B61B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B61C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B61D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B61E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B61F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6200	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6210	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6220	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6230	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6240	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6250	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B62B0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B6310	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B6370	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B63D0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B6430	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B6490	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B64F0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B6550	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PRendering_module	008B6870	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PRendering_module	008B6880	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PRendering_module	008B68A0	predicate member owned elsewhere	Phyre.Reflection.NamedDescriptorStaticTeardown
+Phyre_PRendering_module	008B68B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B68C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B68D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B68E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B68F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6900	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PRendering_module	008B6910	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	005A0D20	predicate member owned elsewhere	NativeAdapter.CallThenReturnZero
+Phyre_PScene_module	006B41A0	predicate member owned elsewhere	guarded class-registration stubs
+Phyre_PScene_module	006B5050	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PScene_module	006B5170	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PScene_module	006B5D50	predicate member owned elsewhere	NativeLeaf.FieldQwordStore
+Phyre_PScene_module	008B5220	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5280	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B52E0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5340	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B53A0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5400	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5460	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B54C0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5520	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	008B5530	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	008B5540	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	008B5550	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	008B5560	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	008B5570	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScene_module	008B5580	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B55E0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5640	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B56A0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5700	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScene_module	008B5760	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScripting_module	00681010	A-measured closure source	
+Phyre_PScripting_module	006810B0	A-measured closure source	
+Phyre_PScripting_module	00681130	A-measured closure source	
+Phyre_PScripting_module	006811B0	A-measured closure source	
+Phyre_PScripting_module	00681560	A-measured closure source	
+Phyre_PScripting_module	00681720	A-measured closure source	
+Phyre_PScripting_module	00681880	A-measured closure source	
+Phyre_PScripting_module	00681BF0	A-measured closure source	
+Phyre_PScripting_module	00681C50	A-measured closure source	
+Phyre_PScripting_module	00681D80	A-measured closure source	
+Phyre_PScripting_module	00681F30	A-measured closure source	
+Phyre_PScripting_module	006822E0	A-measured closure source	
+Phyre_PScripting_module	006827C0	A-measured closure source	
+Phyre_PScripting_module	00682AA0	A-measured closure source	
+Phyre_PScripting_module	00683C30	A-measured closure source	
+Phyre_PScripting_module	006844C0	A-measured closure source	
+Phyre_PScripting_module	00684D10	A-measured closure source	
+Phyre_PScripting_module	00684F60	A-measured closure source	
+Phyre_PScripting_module	00685140	A-measured closure source	
+Phyre_PScripting_module	006852B0	A-measured closure source	
+Phyre_PScripting_module	00685AC0	A-measured closure source	
+Phyre_PScripting_module	00685B70	A-measured closure source	
+Phyre_PScripting_module	00686280	A-measured closure source	
+Phyre_PScripting_module	00681BB0	predicate member owned elsewhere	scalar deleting destructors that call free
+Phyre_PScripting_module	00682F40	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PScripting_module	00683150	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PScripting_module	00683250	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PScripting_module	00683350	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PScripting_module	00683450	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PScripting_module	00683580	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PScripting_module	006836B0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PScripting_module	006837E0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PScripting_module	00683910	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PScripting_module	00683AE0	predicate member owned elsewhere	Trivial global accessors
+Phyre_PScripting_module	00810ED0	predicate member owned elsewhere	Lua 5.2.1 library
+Phyre_PScripting_module	00815500	predicate member owned elsewhere	Lua 5.2.1 library
+Phyre_PScripting_module	00817230	predicate member owned elsewhere	Lua 5.2.1 library
+Phyre_PScripting_module	00817550	predicate member owned elsewhere	Lua 5.2.1 library
+Phyre_PScripting_module	00818A40	predicate member owned elsewhere	Lua 5.2.1 library
+Phyre_PScripting_module	00819410	predicate member owned elsewhere	Lua 5.2.1 library
+Phyre_PScripting_module	008B2360	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScripting_module	008B23C0	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScripting_module	008B2420	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScripting_module	008B2480	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PScripting_module	008B24E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B24F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2500	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2510	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2520	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2530	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2540	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2550	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2560	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2570	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2580	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2590	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B25A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B25B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PScripting_module	008B2610	predicate member owned elsewhere	static intrusive-list teardowns
+Phyre_PSerialization_module	005983E0	A-measured closure source	
+Phyre_PSerialization_module	00598DF0	A-measured closure source	
+Phyre_PSerialization_module	00599770	A-measured closure source	
+Phyre_PSerialization_module	0059ED70	A-measured closure source	
+Phyre_PSerialization_module	0059FAC0	A-measured closure source	
+Phyre_PSerialization_module	00599870	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PSerialization_module	00599970	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PSerialization_module	00599A70	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PSerialization_module	00599B70	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PSerialization_module	00599CA0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PSerialization_module	00599DD0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PSerialization_module	00599F00	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PSerialization_module	008A8200	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8210	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8220	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8230	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8240	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8250	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8260	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8270	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8280	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8290	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A82A0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A82B0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A82C0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A82D0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A82E0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A82F0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8300	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8310	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8320	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8330	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8340	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8350	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8360	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8370	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8380	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A8390	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A83A0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A83B0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A83C0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PSerialization_module	008A83D0	predicate member owned elsewhere	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+Phyre_PText_module	0067D810	predicate member owned elsewhere	two-member class-descriptor registrars (m_count + m_els)
+Phyre_PText_module	0067DC50	predicate member owned elsewhere	script-VM object reference accessors
+Phyre_PText_module	0067DE90	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PText_module	0067DFC0	predicate member owned elsewhere	script-VM object pointer accessors
+Phyre_PText_module	008B1FC0	predicate member owned elsewhere	Phyre.Reflection.AnnotationStaticTeardown
+Phyre_PText_module	008B1FD0	predicate member owned elsewhere	PClassDescriptor static teardowns
+Phyre_PText_module	008B1FF0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2000	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2010	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2020	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2030	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2040	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2050	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2060	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2070	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2080	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2090	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B20A0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B20B0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B20C0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B20D0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B20E0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B20F0	predicate member owned elsewhere	PDataMemberMetadata static teardowns
+Phyre_PText_module	008B2100	predicate member owned elsewhere	PDataMemberMetadata static teardowns

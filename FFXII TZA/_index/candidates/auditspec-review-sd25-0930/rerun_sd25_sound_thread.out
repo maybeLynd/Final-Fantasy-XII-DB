@@ -1,0 +1,4 @@
+PASS  F1 roots above the stepper 007BD120: ['007A5400', '007E6620', '007E9AE0'] (007E6620 = CycleSound slot 42, 007E9AE0 = SoundTrack slot 13)
+PASS  F2 _beginthreadex(start 007A5550, arg 02EACF70) at 007A5232; [02EACF78] = 007A5400; 007A5550 calls [arg + 8]
+PASS  F3 rand callers 31; inside the sound thread's closure (1359 functions): ['007D0260', '007E6DD0', '007E7E00', '007F3E30']; outside: 27
+FAILS 0

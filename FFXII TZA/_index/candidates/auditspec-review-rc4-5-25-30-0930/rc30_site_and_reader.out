@@ -1,0 +1,38 @@
+R1 003C2040..003C2098:
+  003C2040 add dword ptr [rax], eax
+  003C2042 add byte ptr [rax - 0x75], cl
+  003C2045 mov al, ch
+  003C2047 add byte ptr [rax], al
+  003C2049 add byte ptr [rdi], cl
+  003C204B mov bh, 0x51
+  003C204D or byte ptr [rbx], al
+  003C204F ror dword ptr [rbx + 0x3b5074ca], 1
+  003C2055 cmp dh, byte ptr [rbx + 0x4c]
+  003C2058 lea r8, [rdi*8 + 4]
+  003C2060 mov rax, rdi
+  003C2063 add r8, rcx
+  003C2066 je 0x3c20a4
+  003C2068 movzx eax, byte ptr [r8 + 1]
+  003C206D test al, al
+  003C206F je 0x3c20a4
+  003C2071 mov edx, 7
+  003C2076 movzx r8d, al
+  003C207A add r8d, 0xe1
+  003C2081 mov dword ptr [rsp + 0x20], r15d
+  003C2086 mov rcx, rbp
+  003C2089 lea r9d, [rdx - 4]
+  003C208D call 0x249210
+  003C2092 mov rcx, qword ptr [rax + 8]
+R2 003C26C0 header-range operands: 5
+  003C26EC +0x10 w1 | movzx eax, byte ptr [rbx + 0x10]
+  003C2733 +0x13 w1 | mov byte ptr [rbx + 0x13], cl
+  003C2771 +0x18 w8 | lea r15, [rbx + 0x18]
+  003C2815 +0x12 w1 | movzx r8d, byte ptr [rbx + 0x12]
+  003C282C +0x13 w1 | movzx eax, byte ptr [rbx + 0x13]
+  CONTROL 003C27B0/003C27B4/003C27B7 present: False
+  any +0x22/+0x23 operand: False
+R2 0024A9E0 header-range operands: 1
+  0024A9E0 +0x10 w8 | lea rax, [rcx + 0x10]
+R3 raw callers of 003C26C0: 1 3C2209
+R3 raw callers of 003C1F00: 1 3C21A0
+R3 raw callers of 0024A9E0: 4 250B08 250B75 3C27A9 3C27C7

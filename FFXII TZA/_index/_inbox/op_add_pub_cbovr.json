@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-CONTRACT-PUB-CALLBACK-OVERRIDE",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-CONTRACT",
+  "assigned_to": "SWE2-CONTRACT",
+  "target": "publish callback-override batch: contract page + diff_storage_read map + PARITY-STATUS + ADDRESS-INDEX + PROGRAM-STATE + resume + tripwires",
+  "scope": "explicit batch paths only",
+  "completion": "publish commit exists; task finished with the commit ref",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

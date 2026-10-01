@@ -1,0 +1,13 @@
+{
+  "result": "A_PREFLIGHT; ACTUAL_C_CALLER_OPEN",
+  "original_tables": 36,
+  "original_render_entries": 10,
+  "historical_stopped_stack_reads": {
+    "positive": 41,
+    "cold": 0
+  },
+  "instrument_gap": "Accepted EXP038 stack reader resides in old foreign-step-defective duration-only capture; accepted corrected EXP127 dispatch has no stack capture or first-hit cap. Qualifications do not compose automatically.",
+  "state_gap": "No exact save/scene/preset instantiating selected effect or current consumer acceptance supplied.",
+  "acceptance_limit": "One verified receiver/caller observation is state-specific; not per-frame cadence or pass-list traversal. Actual slot-6 ABI required before argument interpretation.",
+  "cleanup": "Offline file reads only; no native child, FF12 process, PC control, input, debugger or save/config/reference writes."
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "missing-case",
+    "reason": "MISSING_CASE",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\reducer-controls\\missing-case.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\check.py\", line 20, in <module>\n    cs={x['name']:x for x in r['cases']};assert len(cs)==len(r['cases'])==6 and set(cs)==set(expected),'MISSING_CASE'\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_CASE\n",
+    "terminal": true,
+    "checker_sha256": "f999d59a704e87329265f8451e783f5591aaac0c5510c6ae3335e088a13c968c"
+  },
+  {
+    "name": "nonzero-good-json",
+    "reason": "CHILD_FAILED",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\reducer-controls\\nonzero-good-json.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\check.py\", line 22, in <module>\n    assert x['terminal'] and x['returncode']==0 and not x['stderr'] and x['input_unchanged'],'CHILD_FAILED'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: CHILD_FAILED\n",
+    "terminal": true,
+    "checker_sha256": "f999d59a704e87329265f8451e783f5591aaac0c5510c6ae3335e088a13c968c"
+  },
+  {
+    "name": "unknown-is-not-missing",
+    "reason": "RECEIPT_CHANGED",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\reducer-controls\\unknown-is-not-missing.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\activity-attribution-r2\\check.py\", line 24, in <module>\n    assert x==json.loads((R/name/'receipt.json').read_text()),'RECEIPT_CHANGED'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RECEIPT_CHANGED\n",
+    "terminal": true,
+    "checker_sha256": "f999d59a704e87329265f8451e783f5591aaac0c5510c6ae3335e088a13c968c"
+  }
+]

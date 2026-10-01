@@ -1,0 +1,28 @@
+0015C2D0 no .pdata fragment
+0015C370 no .pdata fragment
+0015C410 no .pdata fragment
+0015C4B0 no .pdata fragment
+001962B0 no .pdata fragment
+00196350 no .pdata fragment
+001963F0 no .pdata fragment
+00196D50 fragment 00196C40: r8 <- 00196D42 lea r8, [rip + 0x1dea3df] | rax <- 00196D3B lea rax, [rip + 0x1dea296]
+00247A11 fragment 002479DF: r8 <- 00247A03 xor r8d, r8d
+0024CA40 fragment 0024C970: rcx <- 0024C9B5 lea ecx, [rdx + 0x20]
+0024CF25 fragment 0024CEB0: rdi <- 0024CF22 lea edi, [rsi + 5]
+0024EBD0 fragment 0024EB20: rdi <- 0024EBCA lea edi, [rsi + 8]
+00255720 fragment 002556F0: r14 <- 00255713 lea r14, [rip + 0x1e40b66] | rdi <- 0025570A lea rdi, [rip + 0x1e3d0ff]
+00255820 no .pdata fragment
+00259670 fragment 00259620: rbp <- 00259652 lea rbp, [rip + 0x1e3fe8f] | rdi <- 0025963F lea rdi, [rip + 0x1e3ede2]
+00259EF0 fragment 00259E90: rbp <- 00259EB8 lea rbp, [rip + 0x1e3dcc5] | rdi <- 00259EAB lea rdi, [rip + 0x1e3d452]
+0025A010 fragment 00259FF4: rbx <- 00259FF9 lea rbx, [rip + 0x1e3dd40] | rdi <- 0025A005 lea rdi, [rip + 0x1e3edf4]
+00266EF0 fragment 00266D10: rdi <- 00266EDE mov edi, esi
+0026C980 fragment 0026C8C0: rax <- 0026C96A lea rax, [rip + 0x1e2c6a3] | rcx <- 0026C971 lea rcx, [rip + 0x1e2ce34]
+0026EA13 fragment 0026E992: rdi <- 0026EA0C lea rdi, [rip + 0x1e2bacd] | rsi <- 0026EA05 lea rsi, [rip + 0x1e2b9d4]
+0026EA30 fragment 0026E992: rdi <- 0026EA0C lea rdi, [rip + 0x1e2bacd] | rsi <- 0026EA23 lea rsi, [rip + 0x1e2bbb6]
+0026EA47 fragment 0026E992: rdi <- 0026EA40 lea rdi, [rip + 0x1e2bc19] | rsi <- 0026EA23 lea rsi, [rip + 0x1e2bbb6]
+00270F80 fragment 00270F60: r10 <- 00270F6E lea r10d, [r11 + 0x10]
+00291CB0 fragment 00291C80: rbx <- 00291CA1 mov ebx, ebp
+002962F4 fragment 002962D0: rbx <- 002962DF lea rbx, [rip + 0x1e05cd8] | rsi <- 002962ED lea rsi, [rip + 0x1e05fca]
+002A8520 fragment 002A8500: rbx <- 002A8505 lea rbx, [rip + 0x1df470c] | rsi <- 002A8511 lea rsi, [rip + 0x1df4718]
+002C8F10 fragment 002C8EE0: rdi <- 002C8F02 mov edi, r14d
+002DE3E0 fragment 002DE360: rcx <- 002DE3D0 mov ecx, ebx

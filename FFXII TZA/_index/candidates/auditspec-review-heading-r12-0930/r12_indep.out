@@ -1,0 +1,18 @@
+A listed size 9526; pdata ['00533B20-00533C1C']; reached 1653 insns; indirect jmp/jcc []; direct edges leaving body []
+A indirect calls in body: 0
+B instructions writing an R12 width: ['005341AF mov r12d, r14d', '0053450F inc r12d', '00534540 mov r12, qword ptr [rsp + 0x390]']
+C dataflow at RET (r12_is_caller, slot_holds_caller): {'00536055': (True, False)}
+K control, reload treated as nop: {'00536055': (False, False)}
+C spill ['00533C56'] reload ['00534540'] other direct stores covering +0x390 []
+D lea reg,[rsp+d]: 6 sites; displacements ['0x2c0', '0x2d0', '0xc0']
+D lea nearest below 0x390: [('0xc0', '00534393'), ('0x2c0', '00534475'), ('0x2d0', '005344F5')]
+C explicit RSP writes: ['00533B29 sub rsp, 0x3a0', '00536046 add rsp, 0x3a0']
+E 00460A5B xor r12d, r12d
+E 00460A6F cmp dword ptr [rbx + 0x48], r12d
+E 00460A75 mov esi, r12d
+E 00460A78 cmp r12w, word ptr [rbp + 0x5d6]
+E 00460A9A call 0x533b20
+E 00460AB6 call 0x533b20
+E 00460AC5 call 0x533b20
+E 00460ACA cmp dword ptr [rbx + 0x3d8], r12d
+E raw callers of 00533B20: ['460A9A', '460AB6', '460AC5', '460AEA', '52A03A', '52A05E', '52A08A']

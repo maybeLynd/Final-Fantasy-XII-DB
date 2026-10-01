@@ -1,0 +1,51 @@
+Final retained-API and synthetic dispatch check. NO native debugger/game calls.
+Exit: 0
+{
+  "arms": {
+    "control": {
+      "debug_events": 410,
+      "single_steps": 204,
+      "counts_by_phase_address": {
+        "capture/003A1C50": 202,
+        "cleanup/003A1C50": 2
+      },
+      "recorded_context_changed_fields": {
+        "EFlags": 204,
+        "Dr6": 204
+      },
+      "raw_hit_sequence_matches": true,
+      "ownership_or_recorded_write_anomalies": [],
+      "unknowns": [
+        "FirstChance was not logged",
+        "integer registers other than RIP/RSP not in context-write receipts",
+        "floating/vector state not in context-write receipts",
+        "target-side effects and post-detach events not captured"
+      ]
+    },
+    "skeletal": {
+      "debug_events": 5661,
+      "single_steps": 5454,
+      "counts_by_phase_address": {
+        "capture/003A1C50": 205,
+        "capture/003E3C30": 1022,
+        "capture/003E3C7A": 2113,
+        "capture/003E3C7F": 2113,
+        "cleanup/003E3C7A": 1
+      },
+      "recorded_context_changed_fields": {
+        "EFlags": 5454,
+        "Dr6": 5454
+      },
+      "raw_hit_sequence_matches": true,
+      "ownership_or_recorded_write_anomalies": [],
+      "unknowns": [
+        "FirstChance was not logged",
+        "integer registers other than RIP/RSP not in context-write receipts",
+        "floating/vector state not in context-write receipts",
+        "target-side effects and post-detach events not captured"
+      ]
+    }
+  },
+  "synthetic_checks": 16,
+  "native_calls": 0
+}

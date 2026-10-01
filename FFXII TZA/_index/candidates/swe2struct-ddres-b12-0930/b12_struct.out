@@ -1,0 +1,160 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+
+== SB: the three model-declared special bones (render-record page, section 13)
+PASS SB1 003E5AD0 reads the record's @FCP payload pointer +0x400 - 003E5AD0  mov r8, qword ptr [rcx + 0x400]
+PASS SB1 ids below 0x20 ... - 003E5AE7  cmp edx, 0x20
+PASS SB1 ... index section 1's u16 bone table at +0x14C - 003E5AEF  movzx eax, word ptr [rcx + rax*2 + 0x14c]
+PASS SB1 id 0x104 ... - 003E5AF8  cmp edx, 0x104
+PASS SB1 ... returns payload word +0x3A - 003E5B00  movzx eax, word ptr [r8 + 0x3a]
+PASS SB1 id 0x105 ... - 003E5B06  cmp edx, 0x105
+PASS SB1 ... returns payload word +0x3C - 003E5B0E  movzx eax, word ptr [r8 + 0x3c]
+PASS SB1 id 0x106 ... - 003E5B14  cmp edx, 0x106
+PASS SB1 ... returns payload word +0x3E - 003E5B1C  movzx eax, word ptr [r8 + 0x3e]
+PASS SB1 every other id returns 0xFFFF - 003E5B22  mov eax, 0xffff
+PASS SB2 003E5AD0 has exactly 8 direct call sites and no rip reference - 003B56D0@003B57FF 003B56D0@003B5834 0041EDE0@0041EE7E 0041F010@0041F0B9 004215A0@0042173E 00421E20@00421F51 00471230@0047124D 004717E0@0047180B
+PASS SB2 the id at 003B57FF (in 003B56D0) - 003B57FA  mov edx, 0x104
+PASS SB2 the id at 003B5834 (in 003B56D0) - 003B582F  mov edx, 0x106
+PASS SB2 the id at 0041EE7E (in 0041EDE0) - 0041EE76  movzx edx, word ptr [r15 + 0x36]
+PASS SB2 the id at 0041F0B9 (in 0041F010) - 0041F0B1  movzx edx, word ptr [r15 + 0x36]
+PASS SB2 the id at 0042173E (in 004215A0) - 00421738  movsx edx, bp
+PASS SB2 the id at 00421F51 (in 00421E20) - 00421F4B  movsx edx, bx
+PASS SB2 the id at 0047124D (in 00471230) - 00471245  mov edx, 0x104
+PASS SB2 the id at 0047180B (in 004717E0) - 00471803  mov edx, 0x104
+PASS SB2 004215A0: a variable id reaches 003E5AD0 only below 0x100 ... - 00421733  cmp bp, ax
+PASS SB2 ... (the bound) - 0042172E  mov eax, 0x100
+PASS SB2 ... ids at or above it go to 00422380 instead - 00421736  jge 0x42176a
+PASS SB2 00421E20: the bound is 0xFF ... - 00421EAE  mov ecx, 0xff
+PASS SB2 ... and the id is tested against it ... - 00421F46  cmp bx, cx
+PASS SB2 ... before the call, so no call passes 0x105 - 00421F49  jge 0x421f9b
+PASS SB3 census (42 payload-pointer functions, 11 getter callers): the readers of +0x3A/+0x3C/+0x3E are exactly five functions, all reads - 003E4CE6:+3A 003E4CF4:+3C 003E4CFD:+3E 003E5B00:+3A 003E5B0E:+3C 003E5B1C:+3E 003E5FD2:+3A 003E5FE0:+3C 003E5FE9:+3E 00421CE7:+3A 00421CF5:+3C 00421D07:+3E 0042225D:+3A
+PASS SB3 control: the census finds the selector's own three reads (known before it ran)
+PASS SB4 00421CD0 gates on payload byte 0 >= 3 - 00421CE2  cmp byte ptr [rax], 3
+PASS SB4 then takes +0x3A ... - 00421CE7  movzx ecx, word ptr [rax + 0x3a]
+PASS SB4 ... else +0x3C ... - 00421CF5  movzx ecx, word ptr [rax + 0x3c]
+PASS SB4 ... else +0x3E ... - 00421D07  movzx eax, word ptr [rax + 0x3e]
+PASS SB4 ... and returns 0 when all three are 0xFFFF - 00421D0E  cmovne bx, ax
+PASS SB4 003E4CB0 runs the same chain - 003E4CE6  movzx ebx, word ptr [rax + 0x3a]
+PASS SB4 003E5FA0 (the focus-point frame) runs the same chain - 003E5FD2  movzx ebx, word ptr [rax + 0x3a]
+PASS SB4 0041F340 calls the chain at 0041F6B8 ...
+PASS SB4 ... and stores it at the model object's +0xB6 - 0041F6C1  mov word ptr [rbx + 0xb6], ax
+PASS SB4 0042F4C0 calls the chain at 0042F5D0 ...
+PASS SB4 ... and stores it at the model object's +0xB6 - 0042F5D5  mov word ptr [rdi + 0xb6], ax
+PASS SB4 0042F880 calls the chain at 0042FA5F ...
+PASS SB4 ... and stores it at the model object's +0xB6 - 0042FA64  mov word ptr [rbx + 0xb6], ax
+PASS SB4 the chain 00421CD0 has exactly these three callers
+PASS SB5 image-wide, +0xB6 is written by the three chain callers and the initialiser 005049E0, and read once - 0041F6C1 mov word ptr [rbx + 0xb6], ax; 0042F5D5 mov word ptr [rdi + 0xb6], ax; 0042FA64 mov word ptr [rbx + 0xb6], ax; 00504A34 mov dword ptr [rcx + 0xb6], 0xff0000; 0053D952 movsx rax, word ptr [rdi + 0xb6]
+PASS SB5 0053D780 scales the bone by the 0x290-byte pose record ... - 0053D965  imul rdx, rax, 0x290
+PASS SB5 ... + 0x80, the bone's matrix ... - 0053D96C  sub rdx, -0x80
+PASS SB5 ... and hands it to the draw setup 004FD4B0 as rdx - 0053D973  call 0x4fd4b0
+PASS SB5 004FD4B0 keeps that matrix in r15 - 004FD4E3  mov r15, rdx
+PASS SB5 its translation row +0x30 is copied into the draw packet - 004FDA6F  mov eax, dword ptr [r15 + 0x30]
+PASS SB5 its translation row +0x34 is copied into the draw packet - 004FDA79  mov eax, dword ptr [r15 + 0x34]
+PASS SB5 its translation row +0x38 is copied into the draw packet - 004FDA83  mov eax, dword ptr [r15 + 0x38]
+PASS SB5 the published point 02EBA4A0..A8 is written only by 004FD4B0 and read only by 0053AB50 (the FTE/FCT packet builder) - [('R', '0053AB50'), ('R', '0053AB50'), ('R', '0053AB50'), ('W', '004FD4B0'), ('W', '004FD4B0')]
+PASS SB6 003B56D0 stores bone 0x104 at the shadow entry's +0x3C - 003B5804  mov word ptr [rbx + 0x3c], ax
+PASS SB6 ... and bone 0x106 at +0x3E - 003B5839  mov word ptr [rbx + 0x3e], ax
+PASS SB6 ... and starts the current anchor +0x38 on bone 0x104 - 003B5841  mov word ptr [rbx + 0x38], ax
+PASS SB6 003B5CE0 saves the current anchor as the previous one ... - 003B5D0D  mov word ptr [r9 + 0x3a], ax
+PASS SB6 ... and picks bone 0x104 when its edx is 0 ... - 003B5D22  movzx eax, word ptr [r9 + 0x3c]
+PASS SB6 ... or bone 0x106 otherwise - 003B5D2D  movzx eax, word ptr [r9 + 0x3e]
+PASS SB6 003B5CE0's only caller is the class-0x09 authored presentation command 00417F40
+PASS SB6 the command passes its own +0xA8 as the choice - 004183D7  mov edx, dword ptr [r14 + 0xa8]
+PASS SB6 the shadow LOD 003B5980 measures height from bone 0x104 - 003B59D9  movzx edx, word ptr [rbx + 0x3c]
+PASS SB6 the shadow draw 003B62D0 resolves bone 0x104 ... - 003B6343  movzx edx, word ptr [rbx + 0x3c]
+PASS SB6 ... and bone 0x106, and blends between them - 003B6360  movzx edx, word ptr [rbx + 0x3e]
+PASS SB7 00471230 asks for bone 0x104 ... - 00471245  mov edx, 0x104
+PASS SB7 ... loads that bone's pose translation (+0x260) ... - 0047126B  movups xmm1, xmmword ptr [rax + rbx + 0x260]
+PASS SB7 ... and writes it back moved by the controller's +0x20 vector - 004712DA  movups xmmword ptr [rax + rbx + 0x260], xmm0
+PASS SB7 004717E0 asks for bone 0x104 ... - 00471803  mov edx, 0x104
+PASS SB7 ... loads that bone's pose translation (+0x260) ... - 0047184D  movups xmm1, xmmword ptr [rax + rbx + 0x260]
+PASS SB7 ... and writes it back moved by the controller's +0x20 vector - 004718BC  movups xmmword ptr [rax + rbx + 0x260], xmm0
+PASS SB8 0042E7F0 resolves bone +0x3A through 004221F0 ... - 0042E82C  call 0x4221f0
+PASS SB8 ... into the model instance's +0xF0 (record matrix +0x180 at +0xE8) - 0042E831  mov qword ptr [rbx + 0xf0], rax
+PASS SB8 004FD4B0 passes +0xE8 as the gather's r8 ... - 004FD57C  mov r8, qword ptr [rdi + 0xe8]
+PASS SB8 ... and +0xF0 as its r9 - 004FD56E  mov r9, qword ptr [rdi + 0xf0]
+PASS SB8 003ABD50 tests each light's +5 bits 1-3 ... - 003ABE80  test byte ptr [rax + 5], 0xe
+PASS SB8 ... clear: install the record's matrix (the spilled r8) ... - 003ABE86  mov rax, qword ptr [rsp + 0xc0]
+PASS SB8 ... set: install the bone's matrix (r13 = r9) - 003ABEB4  movups xmm0, xmmword ptr [r13]
+PASS SB8 004221F0 uses +0x3A alone ... - 0042225D  movzx ecx, word ptr [rdi + 0x3a]
+PASS SB8 ... and without it falls back to 00421E20(0x100) ... - 004222A9  mov edx, 0x100
+PASS SB8 ... then 00421E20(0x101) - 004222C3  mov edx, 0x101
+PASS SB9 1,066 .cm read - 1066
+PASS SB9 control: +0x3A is 1 / 0xFFFF / other in 628 / 426 / 12 and +0x3C 0xFFFF / 1 / other in 762 / 301 / 3, the FCP page's falsification-pass figures - {'ffff': 426, '1': 628, 'other': 12} {'ffff': 762, '1': 301, 'other': 3}
+PASS SB9 +0x3E (bone 0x106) is 0, the root, in all 1,066; payload byte 0 is 4 in all 1,066, so the >= 3 gate always passes - {0: 1066} {4: 1066}
+PASS SB9 by directory (A = +0x3A declared, B = only +0x3C declared, none = the chain falls to +0x3E): characters declare 0x104, weapons 0x105 - {'bg_obj': {'none': 2, 'A': 15}, 'chara': {'A': 17}, 'gadget': {'A': 87, 'B': 16}, 'high': {'none': 121, 'A': 11}, 'monster': {'A': 253, 'B': 1}, 'npc': {'A': 173, 'none': 1}, 'summon': {'A': 26}, 'treasure': {'A': 17}, 'weapon': {'B': 284, 'A': 41, 'none': 1}}
+
+== F: CharacterRenderRecord +0x414 (render-record page, section 12)
+PASS F1 the reset writes 1/6 - 0041FA68  mov dword ptr [rbx + 0x414], 0x3e2aaaab
+PASS F1 the promoter reads tail +0x28 ... - 0042876A  mov eax, dword ptr [rdi + 0x48828]
+PASS F1 ... and copies it into +0x414 - 00428773  mov dword ptr [rsi + 0x414], eax
+PASS F1 tail +0x28 is written with the constant 1/6 by 004269A0 and 0042ED30 and read only by the promoter - 00426C75 mov dword ptr [rax + 0x48828], 0x3e2aaaab; 0042876A mov eax, dword ptr [rdi + 0x48828]; 0042ED53 mov dword ptr [rax + 0x48828], 0x3e2aaaab
+PASS F2 from the array global (639 seed sites in 375 functions, call depth 3, 845 functions walked): the only accesses to +0x414 are the two writes - ['0041FA68w', '00428773w']
+PASS F2 every other hit is a loop-induction alias (the base register carries >= 232 offsets) - 32 alias sites
+PASS F3 the record pointer escapes at 12 sites (the published array, the model instance +0xF8 / +0xE8, the +0x2E0 holders, the status-push blocks, two out-parameters) - 00332446 003A41FA 00424302 004247FF 00425362 004260D1 00426755 0042E80A 0042E822 0042ED6D 0046FD38 0051E3C0
+PASS F3 with those routes seeded as well (176 more seeds, 1238 functions walked): still only the two writes - ['0041FA68w', '00428773w']
+PASS F4 control: the same census finds the known +0x408 read 002EDC14 (array route) and the light gather's +0x5EC read 003ABDF3, reached only through the model instance's +0xF8 back-pointer - 14 hits
+PASS F5 no 16-byte or wider access covers +0x414 on any followed route - []
+
+== C: the FCP page
+PASS C1 0041F010 takes the slot from the child (003E5CF0) ... - 0041F035  call 0x3e5cf0
+PASS C1 ... which is the child's @FOR byte +0x6A0 - 003E5CF0  movzx eax, byte ptr [rcx + 0x6a0]
+PASS C1 a slot below 0x16 is recorded at the parent's +0x40C - 0041F042  mov byte ptr [rdi + 0x40c], bpl
+PASS C1 bit 27 of the parent's +0x284 forces mode 0 ... - 0041F04C  test dword ptr [rdi + 0x284], 0x8000000
+PASS C1 ... otherwise the mode is the parent's default (+0x40B bits 0-1), no requested mode - 0041F05D  movzx eax, byte ptr [rdi + 0x40b]
+PASS C1 the parent's section 3 (003E5CD0) ... - 0041F07B  call 0x3e5cd0
+PASS C1 mode 1: the child's own header word +0x36 as the bone - 0041F0B1  movzx edx, word ptr [r15 + 0x36]
+PASS C1 the slot's scale from section 3 +0x1C0 - 0041F10B  movss xmm0, dword ptr [r14 + rbp*4 + 0x1c0]
+PASS C1 mode 0: the slot's bone word from section 3 +0 - 0041F158  movzx eax, word ptr [rax + rbp*2]
+PASS C1 mode 0: the rotation from +0x240 - 0041F19F  mov ecx, dword ptr [r14 + rax*4 + 0x240]
+PASS C1 mode 0: the offset from +0x40, scaled as in 0041EDE0 - 0041F1CF  mulss xmm0, dword ptr [r14 + rdx*4 + 0x40]
+PASS C1 the child's index is kept at the parent's +0x2C8 (slot below 0x16) ... - 0041F143  mov word ptr [rdi + 0x2c8], ax
+PASS C1 ... or +0x2CA (slot 0x16): the two children 00429760 re-attaches - 0041F246  mov word ptr [rdi + 0x2ca], ax
+PASS C1 0041F010's callers are 004215A0 (the dirty-bit-19 handler) and 00424D80 (twice)
+PASS C2 002E9698: the id is 0x1002143 ... - 002E9688  mov edx, 0x1002143
+PASS C2 ... or 0x1002D4F when the field bit holds - two constants - 002E968D  cmovne edx, ecx
+PASS C2 ... handed to the scaling wrapper - 002E9698  jmp 0x3e6150
+PASS C2 002ECE50 passes its caller's edx through (002ECE69) - no write to rdx
+PASS C2 003E6310 passes its caller's edx through (003E6332) - 003E6328 mov edx, ebx
+PASS C3 lead: 003E6680 reads the record's section-8 copy offset +0x300 - 003E6694  cmp dword ptr [rbx + 0x300], 0
+PASS C3 lead: 003E6680 reads the record's section-8 copy offset +0x300 - 003E66B0  add eax, dword ptr [rbx + 0x300]
+PASS C3 lead: the four +0x300 accessors and their callers
+
+== R: the registry page
+PASS R1 nine battle_pack.bin, every st2e section header: the word at +0x0A (the high half of the u32 recordSize) is 0 - 333 sections, {0: 333}
+PASS R1 census from 1818 slot loads in 254 functions: no access covers +0x0A except the dword +8 of slot 02EBF158, whose header is {u16 +4 stride, u16 +6 count, u32 +8 rows} (not st2e) - 002386A1:+8/4 002386B9:+8/4 002386E2:+8/4 002386F6:+8/4 002FA96A:+8/4 002FA97E:+8/4 002FAE78:+8/4 002FAE8C:+8/4
+PASS R1 control: every one of those three functions loads its descriptor from 02EBF158
+PASS R1 a stride reader (002FF110, the .ard slot 02EBF120 block) takes the low word only - 002FF110  movzx r13d, word ptr [rcx + 8]
+PASS R2 00238260 passes 3 as 00384420's fourth argument ... - 00238364  mov r9d, 3
+PASS R2 ... 00384420 keeps it in ebx ... - 00384448  mov ebx, r9d
+PASS R2 ... and spends it on 0036C1D0 ... - 00384464  mov ecx, ebx
+PASS R2 ... before allocating the buffer ... - 00384479  call 0x36a190
+PASS R2 ... which replaces rbx - 0038447E  mov rbx, rax
+PASS R2 the request descriptor is rsp+0x30 ... - 003844B4  lea rax, [rsp + 0x30]
+PASS R2 ... and its +8 word is the buffer's low dword, not 3 ... - 003844B9  mov dword ptr [rsp + 0x38], ebx
+PASS R2 ... its +0x10 the callback (the setter) ... - 003844A0  mov qword ptr [rsp + 0x40], r14
+PASS R2 ... and the buffer is also the load's destination - 003844B1  mov r8, rbx
+PASS R2 0032E620 copies the descriptor whole - 0032E678  movups xmm0, xmmword ptr [rax]
+PASS R2 0032E870 takes the descriptor's +8 word ... - 0032E8E5  mov r11d, dword ptr [rcx + 8]
+PASS R2 ... into the request's +0x60 - 0032E961  mov dword ptr [r10 + 0x60], r11d
+PASS R2 the delivery call passes +0x60 as ecx - 0032E34C  mov ecx, dword ptr [rcx + 0x60]
+PASS R2 the failure call passes +0x60 as ecx - 0032E38F  mov ecx, dword ptr [rcx + 0x60]
+PASS R2 the setter sign-extends that word ... - 00238396  movsxd rbx, ecx
+PASS R2 ... after releasing the previous value through 003844F0 ... - 002383A5  call 0x3844f0
+PASS R2 ... and stores it at 02EBF1A0 - 002383AA  mov qword ptr [rip + 0x2c86def], rbx
+PASS R2 003844F0 is the free 003697F0 - 003844F0  jmp 0x3697f0
+PASS R2 0055BFF0 loads a slot of the 02EBF1A0 array ... - 0055C0A8  mov rdx, qword ptr [rdx + rax*8 + 0x2d9f1a0]
+PASS R2 ... and dereferences it: word +4 (licd width) ... - 0055C0B0  movzx ecx, word ptr [rdx + 4]
+PASS R2 ... word +6 (licd height) ... - 0055C0B9  movzx eax, word ptr [rdx + 6]
+PASS R2 ... and the u16 cell grid at +8 - 0055C0CC  movzx ecx, word ptr [rdx + rax*2 + 8]
+PASS R2 control: every shipped board_N.bin is 'licd' with width and height 24 at +4 / +6 - the two words 0055BFF0 reads as bounds through the slot - 48 of 48
+PASS R3 003845F0 stores the descriptor into [rcx] only - 003845F4  mov qword ptr [rcx], rdx
+PASS R3 all 42 calls of 003845F0 hand it one slot's own address (a rip lea), never 02EBF198; 00238640 indexes 02F973C0, outside the registry - 41 distinct slots
+PASS R3 the 'array base' lea at 00237010 is slot 0 (02EBF008) itself ... - 00237010  lea rcx, [rip + 0x2c87ff1]
+PASS R3 ... and the data-driven value beside it is the descriptor - 00237017  movsxd rdx, dword ptr [rax + 0x118]
+PASS R3 00238640's base is 02F973C0 - 00238643  lea rcx, [rip + 0x2d5ed76]
+PASS R4 003DC330 (sets 02B58188) is referenced once, as a load-completion callback the binder 003DCBC0 registers
+PASS R4 003DC330 stores 02B58188 - 003DC332  mov qword ptr [rip + 0x277be4f], rax
+PASS R4 003DCF00 (02B58178) is called from 003EA6B0, 003EA710 and 003EA820; 003DCF10 (02B58180) from 003EA6B0 and 003EAA00
+
+FAILS 0

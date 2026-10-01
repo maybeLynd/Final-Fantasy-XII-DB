@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\dashboard-rendered-navigation\\check.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"result\": \"SCOPED_OBSERVATIONS_SUPPORTED_RETURN_TRANSITION_UNPROVED\",\n  \"navigation\": \"Progress baseline -> Overview -> Activity observed\",\n  \"refused_inputs\": 2,\n  \"cleanup\": \"owned tab closed; absent from inventory\",\n  \"source\": \"later HTTP PAGE byte match only\",\n  \"limits\": \"No full A17/M3, totals, taxonomy, adapters, deployment or FF12 acceptance. Evidence author review pending.\"\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "checker_sha256": "bcdcb359f69dcec51a81ad529d81e8eceef1d11e4fc6a0e8adf0e373d4049d9b"
+}

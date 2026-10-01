@@ -1,0 +1,6 @@
+null-handler-default               PASS
+handler-message-1-payload          PASS
+handler-null-locals-zero-payload   PASS
+flag-bit14                         PASS
+small-size-measurement             PASS
+5/5 pass

@@ -1,0 +1,5 @@
+0017F150: 1 raw rel32 references
+  0053BECB in 0053AB50 FUN_0053ab50                                        rcx: mov rcx, qword ptr [rax + 0x6b8]         app-holder refs in owner: -
+0017F250: 1 raw rel32 references
+  00477E2E in 00477B10 FUN_00477b10                                        rcx: ?                                        app-holder refs in owner: -
+callers whose owner touches an application holder: 0

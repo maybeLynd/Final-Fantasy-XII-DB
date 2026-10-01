@@ -1,0 +1,8 @@
+PASS  Q prerequisite sn1_q0_domain.py: exit 0, PASS I A R Z E C, FAILS 0
+PASS  X 50 scopes; q0 length = code bytes + 0..3 pad in every scope
+PASS  G same-shape groups [[('btlctrl', 0), ('ctrl', 0), ('evctrl', 0), ('mapctrl', 0)], [('btlctrl', 10), ('mapctrl', 6)], [('btlctrl', 12), ('btlctrl', 16), ('mapctrl', 2)], [('btlctrl', 18), ('btlctrl', 19)], [('evctrl', 6), ('evctrl', 8)]]: X [[3, 3, 3, 3], [6, 6], [6, 6, 6], [1, 2], [11, 11]]; same >= 0x100 pattern and one X in 4, different pattern and different X in [[('btlctrl', 18), ('btlctrl', 19)]]; btlctrl sc10 / mapctrl sc6 differ in the >= 0x80 class and share X 6
+PASS  P btlctrl sc18 / sc19: code differs only at bytes [33, 34] (push 0x62 / 0x1F9), same instruction layout, X 1 / 2; source span 188 / 183 bytes
+PASS  B mapctrl sc1: X 254 > 252, the most 64-byte pages 16028 bytes can touch
+PASS  N best fits of X: line pages 11, byte-value pages 27, compact size 32, of 50
+PASS  C the size-law search recovers E = ceil(codeBytes / 32) in 50 of 50
+FAILS 0

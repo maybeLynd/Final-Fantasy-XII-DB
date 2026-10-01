@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-HUB16-RESUME",
+ "note": "published dfe3d584 - resume block + tail op files",
+ "result_refs": [
+  "commit dfe3d584"
+ ]
+}

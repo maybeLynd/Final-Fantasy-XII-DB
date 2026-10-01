@@ -1,0 +1,2636 @@
+{
+  "status": "PASS",
+  "method": "original focus body and encoder; all other callees controlled; stop before native tail dispatcher",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "c1300489b8507ad79adbce0dc35dca9cd0b7662331697ab44b99f38a97440854",
+  "cases": [
+    {
+      "name": "preferred-mode0",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2703443303
+      ],
+      "expected_handle": 2703443303,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "preferred-mode1",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3240960,
+          "args": [
+            1342177536
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3240960,
+          "args": [
+            1342177536
+          ]
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2703443303
+      ],
+      "expected_handle": 2703443303,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302687,
+        3302690,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302920,
+        3302923,
+        3240960,
+        3302928,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "mode2-fixed-selector",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 2,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            26
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 2,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            26
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2703443303
+      ],
+      "expected_handle": 2703443303,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302687,
+        3302690,
+        3302692,
+        3302695,
+        3302711,
+        3302713,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "mode3-low-byte-selector",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 3,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3636336,
+          "args": [],
+          "result": 291,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            35
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 3,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3636336,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            35
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2703443303
+      ],
+      "expected_handle": 2703443303,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302687,
+        3302690,
+        3302692,
+        3302695,
+        3302697,
+        3302700,
+        3302702,
+        3636336,
+        3302707,
+        3302709,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "other-mode-ff",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 4,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            255
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 4,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            255
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2703443303
+      ],
+      "expected_handle": 2703443303,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302687,
+        3302690,
+        3302692,
+        3302695,
+        3302697,
+        3302700,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "second-mode-read",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3240960,
+          "args": [
+            1342177536
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3240960,
+          "args": [
+            1342177536
+          ]
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2703443303
+      ],
+      "expected_handle": 2703443303,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302920,
+        3302923,
+        3240960,
+        3302928,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "first-fallback",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            11
+          ],
+          "result": 1342185472,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            11
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2989774456
+      ],
+      "expected_handle": 2989774456,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302769,
+        3302771,
+        3302776,
+        3302778,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302833,
+        3302840,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "last-fallback-after-null-stats",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 1342177536,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            255
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ],
+          "result": 1342185472,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            255
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ]
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        2989774456
+      ],
+      "expected_handle": 2989774456,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302755,
+        3302763,
+        3302769,
+        3302771,
+        3302776,
+        3302778,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302802,
+        3302804,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302833,
+        3302840,
+        3302907,
+        3302910,
+        3201440,
+        3302915,
+        3302918,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "fallback-disabled",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            255
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2504528,
+          "args": [
+            0
+          ],
+          "result": 1342193664,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3508656,
+          "args": [
+            1342193664
+          ],
+          "method": "original encoder"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            255
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ]
+        },
+        {
+          "va": 2504528,
+          "args": [
+            0
+          ]
+        },
+        {
+          "va": 3508656,
+          "args": [
+            1342193664
+          ]
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        9568261
+      ],
+      "expected_handle": 9568261,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302769,
+        3302771,
+        3302776,
+        3302778,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302802,
+        3302804,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302853,
+        3302855,
+        2504528,
+        3302860,
+        3302863,
+        3302865,
+        3302868,
+        3508656,
+        3508659,
+        3508661,
+        3508665,
+        3508669,
+        3508674,
+        3508677,
+        3508680,
+        3508683,
+        3508685,
+        3508688,
+        3508690,
+        3302873,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "no-units-slot0-actor",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            11
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2504528,
+          "args": [
+            0
+          ],
+          "result": 1342193664,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3508656,
+          "args": [
+            1342193664
+          ],
+          "method": "original encoder"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            11
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ]
+        },
+        {
+          "va": 2504528,
+          "args": [
+            0
+          ]
+        },
+        {
+          "va": 3508656,
+          "args": [
+            1342193664
+          ]
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        9568261
+      ],
+      "expected_handle": 9568261,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302769,
+        3302771,
+        3302776,
+        3302778,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302853,
+        3302855,
+        2504528,
+        3302860,
+        3302863,
+        3302865,
+        3302868,
+        3508656,
+        3508659,
+        3508661,
+        3508665,
+        3508669,
+        3508674,
+        3508677,
+        3508680,
+        3508683,
+        3508685,
+        3508688,
+        3508690,
+        3302873,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    },
+    {
+      "name": "no-actor",
+      "matches": true,
+      "calls": [
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3302944,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3201440,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            11
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ],
+          "result": 1,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 2504528,
+          "args": [
+            0
+          ],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        },
+        {
+          "va": 3218976,
+          "args": [],
+          "result": 0,
+          "method": "controlled return; native effects omitted"
+        }
+      ],
+      "expected_calls": [
+        {
+          "va": 3218976,
+          "args": []
+        },
+        {
+          "va": 3302944,
+          "args": []
+        },
+        {
+          "va": 3201440,
+          "args": []
+        },
+        {
+          "va": 3258224,
+          "args": [
+            7
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            0,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            11
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            1,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            12
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            2,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            13
+          ]
+        },
+        {
+          "va": 3288144,
+          "args": [
+            23,
+            3,
+            0
+          ]
+        },
+        {
+          "va": 2320288,
+          "args": [
+            14
+          ]
+        },
+        {
+          "va": 2504528,
+          "args": [
+            0
+          ]
+        },
+        {
+          "va": 3218976,
+          "args": []
+        }
+      ],
+      "tail_handle": [
+        0
+      ],
+      "expected_handle": 0,
+      "visited": [
+        3302656,
+        3302661,
+        3302662,
+        3302666,
+        3302668,
+        3218976,
+        3302673,
+        3302944,
+        3302678,
+        3201440,
+        3302683,
+        3302685,
+        3302715,
+        3302722,
+        3302729,
+        3302734,
+        3302737,
+        3302742,
+        3258224,
+        3302747,
+        3302750,
+        3302753,
+        3302769,
+        3302771,
+        3302776,
+        3302778,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302784,
+        3302787,
+        3302789,
+        3302793,
+        3288144,
+        3302798,
+        3302800,
+        3302806,
+        3302813,
+        3302817,
+        3302820,
+        2320288,
+        3302825,
+        3302828,
+        3302831,
+        3302842,
+        3302844,
+        3302848,
+        3302851,
+        3302853,
+        3302855,
+        2504528,
+        3302860,
+        3302863,
+        3302875,
+        3218976,
+        3302880,
+        3302882,
+        3302887,
+        3302892,
+        3302897,
+        3302901,
+        3302902,
+        3511472
+      ],
+      "nonstack_writes": [],
+      "boundary": "tail dispatch entry; native dispatcher not executed"
+    }
+  ],
+  "three_slot_mutant": {
+    "name": "three-slot-mutant",
+    "matches": false,
+    "calls": [
+      {
+        "va": 3218976,
+        "args": [],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3302944,
+        "args": [],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3201440,
+        "args": [],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3258224,
+        "args": [
+          7
+        ],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          0,
+          0
+        ],
+        "result": 1,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 2320288,
+        "args": [
+          11
+        ],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          1,
+          0
+        ],
+        "result": 1,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 2320288,
+        "args": [
+          12
+        ],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          2,
+          0
+        ],
+        "result": 1,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 2320288,
+        "args": [
+          13
+        ],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 2504528,
+        "args": [
+          0
+        ],
+        "result": 1342193664,
+        "method": "controlled return; native effects omitted"
+      },
+      {
+        "va": 3508656,
+        "args": [
+          1342193664
+        ],
+        "method": "original encoder"
+      },
+      {
+        "va": 3218976,
+        "args": [],
+        "result": 0,
+        "method": "controlled return; native effects omitted"
+      }
+    ],
+    "expected_calls": [
+      {
+        "va": 3218976,
+        "args": []
+      },
+      {
+        "va": 3302944,
+        "args": []
+      },
+      {
+        "va": 3201440,
+        "args": []
+      },
+      {
+        "va": 3258224,
+        "args": [
+          7
+        ]
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          0,
+          0
+        ]
+      },
+      {
+        "va": 2320288,
+        "args": [
+          11
+        ]
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          1,
+          0
+        ]
+      },
+      {
+        "va": 2320288,
+        "args": [
+          12
+        ]
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          2,
+          0
+        ]
+      },
+      {
+        "va": 2320288,
+        "args": [
+          13
+        ]
+      },
+      {
+        "va": 3288144,
+        "args": [
+          23,
+          3,
+          0
+        ]
+      },
+      {
+        "va": 2320288,
+        "args": [
+          14
+        ]
+      },
+      {
+        "va": 3201440,
+        "args": []
+      },
+      {
+        "va": 3218976,
+        "args": []
+      }
+    ],
+    "tail_handle": [
+      9568261
+    ],
+    "expected_handle": 2989774456,
+    "visited": [
+      3302656,
+      3302661,
+      3302662,
+      3302666,
+      3302668,
+      3218976,
+      3302673,
+      3302944,
+      3302678,
+      3201440,
+      3302683,
+      3302685,
+      3302715,
+      3302722,
+      3302729,
+      3302734,
+      3302737,
+      3302742,
+      3258224,
+      3302747,
+      3302750,
+      3302753,
+      3302769,
+      3302771,
+      3302776,
+      3302778,
+      3302784,
+      3302787,
+      3302789,
+      3302793,
+      3288144,
+      3302798,
+      3302800,
+      3302806,
+      3302813,
+      3302817,
+      3302820,
+      2320288,
+      3302825,
+      3302828,
+      3302831,
+      3302842,
+      3302844,
+      3302848,
+      3302851,
+      3302784,
+      3302787,
+      3302789,
+      3302793,
+      3288144,
+      3302798,
+      3302800,
+      3302806,
+      3302813,
+      3302817,
+      3302820,
+      2320288,
+      3302825,
+      3302828,
+      3302831,
+      3302842,
+      3302844,
+      3302848,
+      3302851,
+      3302784,
+      3302787,
+      3302789,
+      3302793,
+      3288144,
+      3302798,
+      3302800,
+      3302806,
+      3302813,
+      3302817,
+      3302820,
+      2320288,
+      3302825,
+      3302828,
+      3302831,
+      3302842,
+      3302844,
+      3302848,
+      3302851,
+      3302853,
+      3302855,
+      2504528,
+      3302860,
+      3302863,
+      3302865,
+      3302868,
+      3508656,
+      3508659,
+      3508661,
+      3508665,
+      3508669,
+      3508674,
+      3508677,
+      3508680,
+      3508683,
+      3508685,
+      3508688,
+      3508690,
+      3302873,
+      3302875,
+      3218976,
+      3302880,
+      3302882,
+      3302887,
+      3302892,
+      3302897,
+      3302901,
+      3302902,
+      3511472
+    ],
+    "nonstack_writes": [],
+    "boundary": "tail dispatch entry; native dispatcher not executed"
+  }
+}

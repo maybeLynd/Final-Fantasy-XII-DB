@@ -1,0 +1,5 @@
+PASS  Q requester: negative index -> -1; failed insert -> 0
+PASS  S submitter writes state 3 whatever the requester returned
+PASS  N a deleted state3 owner goes to 5 and waits for a callback its missing queue entry will never deliver
+PASS  I group init clears handle/state and calls nothing: no unpin, no free
+FAILS 0

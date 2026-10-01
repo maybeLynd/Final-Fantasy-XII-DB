@@ -1,0 +1,727 @@
+{
+  "scope": "Private in-memory line-ending and changed-text controls only.",
+  "results": [
+    {
+      "record": "EXP-037-command-observer.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "d01d5b86273fe3b87b2ee5d01c1b912d6d3e1871944dfcf460938f332acf4930",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-037-command-observer.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "b60b55f4631679474083265ea3a492cb15b176f43f478466b67b29cb277ed3db",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-037-command-observer.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-038-handler-stack.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "51013c62e9c41d215d730ea1a33ed65c6fc1753c286e052729201af31f2a8f67",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-038-handler-stack.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "c767f033c63059b7fa75b01e142e2e27d59b2b5c3f8cb2c3df7650b8545ef4de",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-038-handler-stack.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-039-stack-native-control.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "54281336dc6f82823353a4555b00fb4f1a2bbee07e9cbe633ad21ed0f48b9687",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-039-stack-native-control.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "8e065a1997f54cd5108c90c0f2f2538db8f2a240e72b19f61c8ad1b7fe5c53e6",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-039-stack-native-control.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-040-cancel-snapshot-control.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "84520df8bd93d6d5b3a7d9445f98ca7ceb28a01153098188d10f861cdbe59aaa",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-040-cancel-snapshot-control.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "071dbb854fba0c3cbd8a569edb68c3ab6c71a355d0bb8f8563c5359a3a2a8a31",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-040-cancel-snapshot-control.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-041-config-pointer-closure.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "20654a8458ae5cd4afbcc4434a89673fc8236728e32514fbbcc71d5d923ff7c2",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-041-config-pointer-closure.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "beac9e474b1c42d4a5aba5e9c21e880cb37fced97f4b132e3e932c3e706744f6",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-041-config-pointer-closure.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-042-command-source-refresh.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "302368eed8c312433f0d6882a7008735e3a87a75d864934dda3ed6c688835e44",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-042-command-source-refresh.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "3540a83e82438ab7d45c1ffcbfd6994e1fa055f3115bfe0b756f8ce9e0cc95db",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-042-command-source-refresh.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-043-target-buffer-boundary.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "bc6544a11606a8cea403cbae677a8655f9c7e87d1857dcfd336df908bab3943d",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-043-target-buffer-boundary.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "56ac6756bab0bd694dd8764932c21b7f752f68d788ade0d50b550d8dccd6f071",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-043-target-buffer-boundary.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-044-check-verdict.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "5f281778bf8137e5dbf869fbd4eb42010ea7ba99b33a3e719d27abc4c03a915e",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-044-check-verdict.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "50e4bc11b1aef14be6f4c0882eba6774b5c6a805b7ef05c8e9e4b45471b8bd7e",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-044-check-verdict.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-045-observer-repaired-dependency.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "80c0ef4b63cacb6cb57cc3af0dee04fd498bcdb0aa699807702b3d24048fe800",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-045-observer-repaired-dependency.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "b3f8d9beb51cf9cd5062ea4e53e27d0af2680ba5caaa2e8afa7eb207d22a33c0",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-045-observer-repaired-dependency.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-046-target-buffer-reset.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "81fce649234a96b1b0b71192d3c40c673ad437c9d2a7f5281dcdd74993b0d886",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-046-target-buffer-reset.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "23ee60f337efd95fb359bd44d028b93f2cd5893908f0e2e8309ef4e5dc968c0c",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-046-target-buffer-reset.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-047-attacker-mask-reset.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "9bed00b301583ed0dc82b868aa5b2436243cb6c8c2347880cf07a7574c364bd5",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-047-attacker-mask-reset.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "02c6a129eb0c2a8388205c851281d9b2bfc55ed70f0336b52e942e130a20bdec",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-047-attacker-mask-reset.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-048-handle-discriminator-advance.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "14de801a1fb8d131cfdd8a691745e4bb81f53ab656c35638336b73b9938906fa",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-048-handle-discriminator-advance.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "edf197387b2c535ccba56f7b17c1f6fedc78175fabeb0ffbecd082a9cd27a088",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-048-handle-discriminator-advance.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-049-handle-renewal-focus.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "013446a06b255512cc6b62f447e517b4412258b9a48e91a59500c5c5fe2b5de4",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-049-handle-renewal-focus.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "c2cfb8c2cc6013d700ffd61b25a3669a432e20233e87a377ca6291b4f16944c0",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-049-handle-renewal-focus.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-050-focus-fallback-selection.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "6c8623cf2ac7dfc999cc7e331a9692c2a96ee9276cc619319e7459630e1f8c96",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-050-focus-fallback-selection.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "8119a93e188bda92c9d2d2b5ef4117b5fc467fb543152709e539fad48243f7e1",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-050-focus-fallback-selection.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-051-focus-commit-reentrancy.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "d6361934d771af7cbdb185dcc3815e2e763f811ede9b37d21b0cfbca398014b0",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-051-focus-commit-reentrancy.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "e3e937f4687527712131fbd35f7fbf6a292374457ff152d91f47dc97364552b5",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-051-focus-commit-reentrancy.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-052-loot-pickup-selection.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "9c3eae8297d73e38c8d6b784b5d58926caae07db5c8d1e60c61c5f4dbd869ef8",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-052-loot-pickup-selection.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "7350e804d0d27ff33597938aa611a5dd59a012537c289d115fea1e8ef268e1f1",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-052-loot-pickup-selection.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-053-loot-overlap-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "022ad71125031882c524bece6412e3456da0d2755aeb042758b92f218e520df2",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-053-loot-overlap-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "3d3465bf21983db626c6a9e7713a4e7281ed0a18c7d9f134c7ed0206711bbc2d",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-053-loot-overlap-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-054-loot-caller-geometry.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "a43ac3a36a3859ac6f0ffc44bcfd165ca8d830725b170e9e387d5185581bb1af",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-054-loot-caller-geometry.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "aecca424d09ae67fd4f18c0f56a6264ba06925eb52314e6f9543d9561e387f27",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-054-loot-caller-geometry.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-055-loot-collection-effects.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "d241c74ed3c24525e6896276aabea65b35bf27cf2c08da3e9cf4c3d9cd243118",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-055-loot-collection-effects.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "d48942df0eb8c97057bdb0405d6b92bc86e9a08d4229a697dc7296d7e13ed9d1",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-055-loot-collection-effects.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-056-save-normalize-roundtrip.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "b3b748d42bd37ea53ef5afdc2d2adebba4f7031b33594c3c0d7998ec64e3384a",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-056-save-normalize-roundtrip.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "5b94a1ec668f33bb9f834ef34e1da952de9dcc551b5c3bdc3aedf37a47aebabb",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-056-save-normalize-roundtrip.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-057-save-checksum-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "deab2458828888b9b5915b78ac5368344d23a854adb7262961aec2944f592649",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-057-save-checksum-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "dd5bc26985b072ae0b9aefe84d122757bbc465c7ad879ab0f3731a2039fd9868",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-057-save-checksum-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-058-save-validator-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "c2d5aa860c2466405b80f2a05bd78ceb4937fc9012b6109272dd6983019449a6",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-058-save-validator-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "0bfa01d81c369081c329ffde6d433399cad013bba441b01740c028924b7043fd",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-058-save-validator-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-059-formula-copyout-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "7eca0e2b8bebf2141912093d6e309b9bfd3f04942b6209b59079a300a39006a5",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-059-formula-copyout-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "22d668120e903d8f398a4894df2b6621a6b29859a200c81eb7ca90491fe09c85",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-059-formula-copyout-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-060-result-numeric-dispatch.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "eaa161fb88d7e2cec58055f01b94cdbdbff1893ac9237a7ff395cba05b82fd3d",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-060-result-numeric-dispatch.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "018799d9950f405d8f29954864248ac4169896b62caa678dd1fc73f6a60c2a58",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-060-result-numeric-dispatch.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-061-mp-writer-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "9cf019d52dd52c40442d54c791e11a9cf90c17e0a8886e14c2dbf304b21365af",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-061-mp-writer-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "079e7611c935afaf64d0a9897f4eab8b78c58a94a14c33b446df7650aeed5241",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-061-mp-writer-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-062-mp-composition.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "dd42e412b74f0302646f366e9ccb0ca1e876ff8ac179097bc0365177fde4ae12",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-062-mp-composition.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "dc5c6c94eeed4f230bc9f250639943d3ea499d5ba7da03fa5ced50a600f64f28",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-062-mp-composition.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-063-mp-cost-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "e1121015674bec5e37bc994345b55eb57ff8966772a97bccbb65348b21afaf39",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-063-mp-cost-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "1c58b48fca44fc961c949446b6afe97f54f2922e89c697630955248770e34c59",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-063-mp-cost-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-064-resource-payer-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "0a9aaa9b9963b24112d31d9a99734345df96d7e0f824b28188d86d31acb04571",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-064-resource-payer-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "0ffb7d7dc64e0ceb1584b61aa60f5fc62789f8946fb0ca780096e14e238b8c7b",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-064-resource-payer-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-065-resource-consume-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "3391d54e128f0378c4304bc83c23ef72b8c1748020e2b4ee492a63cd65cd14b2",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-065-resource-consume-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "3679a9a14cc189beb555fc3e845c937620bf785ef3ee70e22361721e56e17187",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-065-resource-consume-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-066-consume-native-composition.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "338093a523614752f082a114072a4433376a948f3c9650ae035a8aba7f129f8a",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-066-consume-native-composition.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "86146b3d5820e6d386e9c28b90303fd3de1d93cef8052bd7988be969af99d4dd",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-066-consume-native-composition.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-067-ui-router-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "24dd07ee666ebb006de666aae91ffecb3f471fe2661618eef112946476d01117",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-067-ui-router-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "97ffc258d97eb500ecd01bf9ea37807f1f8a800326a4c4bff951c96f4725e542",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-067-ui-router-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-068-ui-generic-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "cc92a39a78190fb682f0d89f93b38d6444fad5605d67753bb0fad25ecd0e7f44",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-068-ui-generic-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "2f15b36984c844abd5f07bb974a4e4ad4cdc49e6e9ed287529055dcec50b79ad",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-068-ui-generic-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-069-ui-native-feedback.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "3e9570693bc2f164a2b5011c1edc8691065ef9dc7108054ea3457e04f964cd29",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-069-ui-native-feedback.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "98d765179a0997d07f12f8c02cc2ad0ed1fff6ade28bceb0ef7fa31e4c4b96a5",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-069-ui-native-feedback.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-070-procedural-rng-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "48513b0161e4ce86db8f2ae575ba70647f89a5f9d27dba07b2af8077348c843a",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-070-procedural-rng-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "705778d7074a7525eb6f859254289c2153720ffdf36627847e9e45a01e52792f",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-070-procedural-rng-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-071-procedural-rng-init.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "af5f9558b810cae4836c22958284f9ea10d3be7245b943ddc5ed92f1e7662e86",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-071-procedural-rng-init.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "fac01413099f040c44808e524c9a4edd2d83cd7e427e65001388a8e564d6b750",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-071-procedural-rng-init.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-072-facing-writer-controls.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "5c223062375cc42a99990780c3317a375a1b5c2f4b245cadd015af0bbf0db353",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-072-facing-writer-controls.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "d7714ced9d4d8c6b1f1c0b43b190a9521109c6e1c71f37d6d03676dbd19e183c",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-072-facing-writer-controls.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-073-facing-reapply-comparison.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "75d9d79f7c400c98dc7d57ca7db33c38469110aacc5c0a3d3236aef3198e8ef6",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-073-facing-reapply-comparison.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "5fa6327feffab633f82ffd9ff40881b9d126663735bd58acc18446676c6da1e9",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-073-facing-reapply-comparison.md",
+      "representation": "body text mutation",
+      "rejected": true
+    },
+    {
+      "record": "EXP-074-angle-conversion-boundary.md",
+      "representation": "LF",
+      "accepted": true,
+      "observed_body_sha256": "64b96764093a5c9820398ccd2d25b7f9cb5504ad490640a4c5a662a007d6c977",
+      "original_raw_match": true
+    },
+    {
+      "record": "EXP-074-angle-conversion-boundary.md",
+      "representation": "CRLF",
+      "accepted": true,
+      "observed_body_sha256": "c7da28f54dbf7ff31659a78905a724bb50a7522a331b5e1e7bd00cdfb6a87b70",
+      "original_raw_match": false
+    },
+    {
+      "record": "EXP-074-angle-conversion-boundary.md",
+      "representation": "body text mutation",
+      "rejected": true
+    }
+  ]
+}

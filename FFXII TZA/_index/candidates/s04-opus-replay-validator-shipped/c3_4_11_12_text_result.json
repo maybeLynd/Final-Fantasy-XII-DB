@@ -1,0 +1,228 @@
+{
+ "area": {
+  "3": {
+   "count": 22,
+   "edges": {
+    "0": 1,
+    "15": 1,
+    "16": 0,
+    "FFFFFFFF": 0
+   },
+   "table": "76C08C00"
+  },
+  "4": {
+   "count": 6,
+   "edges": {
+    "0": 1,
+    "5": 1,
+    "6": 0,
+    "FFFFFFFF": 0
+   },
+   "table": "76C01030"
+  }
+ },
+ "area_bound": true,
+ "cases": {
+  "C11_class11_over_the_bound_gambit_table": true,
+  "C12_class12_slot_has_no_writer_in_the_image": true,
+  "C3_class3_over_the_shipped_area_table": true,
+  "C4_class4_over_the_shipped_area_table": true,
+  "T_I6_text_pointers_resolve_into_the_bound_pack": true
+ },
+ "class11": {
+  "bound": true,
+  "count": 256,
+  "dirent": "20",
+  "edges": {
+   "5FFF": 0,
+   "6000": 1,
+   "60FF": 1,
+   "6100": 0
+  },
+  "table": "76101DD0"
+ },
+ "class12": {
+  "data_copies": 0,
+  "fill": {
+   "first_lane_read": null,
+   "lane_reads": 0,
+   "ret": 4294967294,
+   "returned": true,
+   "stopped_at": []
+  },
+  "slot_value": "0",
+  "text_refs": [
+   "00322DFE"
+  ],
+  "validator": {
+   "7000": 0,
+   "7001": 0
+  }
+ },
+ "ok": true,
+ "pack": [
+  "76100000",
+  "76144A28"
+ ],
+ "shared_text_pointers": [
+  "7612C478",
+  "7612C484",
+  "7613460C"
+ ],
+ "text": {
+  "13": {
+   "bytes_at_first": "0000313a3b3a473a4c4d4b3e",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "76140D7C",
+    "76140D98"
+   ]
+  },
+  "17": {
+   "bytes_at_first": "0000313e3d043249424b3a45",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7612D2D4",
+    "7612D2E4"
+   ]
+  },
+  "18": {
+   "bytes_at_first": "000020474d423d484d3e0432",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7613B044",
+    "7613B058"
+   ]
+  },
+  "2": {
+   "bytes_at_first": "0000353a3a47000000000000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7613844C",
+    "761384BC"
+   ]
+  },
+  "20": {
+   "bytes_at_first": "0000224e4b3e000000000000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7612C478",
+    "7612C484"
+   ]
+  },
+  "21": {
+   "bytes_at_first": "0000204d4d3a3c4400000000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "76134720",
+    "7613472C"
+   ]
+  },
+  "24": {
+   "bytes_at_first": "00003641424d3e042c3a4042",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7613487C",
+    "76134890"
+   ]
+  },
+  "25": {
+   "bytes_at_first": "0000304e423c443e47424740",
+   "distinct": false,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7613460C",
+    "7613460C"
+   ]
+  },
+  "26": {
+   "bytes_at_first": "00002a2e000000000000324d",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "76134BF4",
+    "76134BFC"
+   ]
+  },
+  "27": {
+   "bytes_at_first": "000025424b3e000000000000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "761348E0",
+    "761348EC"
+   ]
+  },
+  "28": {
+   "bytes_at_first": "000034473a4b463e3d000000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "76134944",
+    "76134954"
+   ]
+  },
+  "29": {
+   "bytes_at_first": "00002d2e3304343224230000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7613BDD0",
+    "7613BDE0"
+   ]
+  },
+  "8": {
+   "bytes_at_first": "0000224e4b3e000000000000",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7612C478",
+    "7612C484"
+   ]
+  },
+  "9": {
+   "bytes_at_first": "000025424b4c4d0420423d00",
+   "distinct": true,
+   "inside_pack": true,
+   "not_in_record": true,
+   "ok": true,
+   "p18": [
+    "7612CFBC",
+    "7612CFCC"
+   ]
+  }
+ }
+}

@@ -1,0 +1,11 @@
+image sha256 ok
+pefile: exception dir size 428556 -> 35713 slots; parsed entries 35713; warnings: 323 'Chained function entry cannot be changed' (pefile's back-link on a SHARED UNWIND_INFO; this script reads ui.FunctionEntry itself), 0 other
+entries with UnwindData bit0 set (indirect chain form): 0; entries without unwindinfo: 0
+chained entries (UNW_FLAG_CHAININFO): 11353
+chained roots 3828; non-contiguous 0; roots not in functions.tsv 0; short roots 270; bytes 16361
+controls 3828/0/270/16361 reproduced: True
+HEAD ledger: pdata-chain rows 254; == own short roots minus same-end instruction-scan rows: True (same-end 16)
+short roots whose furthest ledger end runs past the chain end: 0
+roots in the 270 not covered at their chain end by the furthest ledger end: 0
+tail bytes by v3 class: {'fill': 258, 'no-body': 15533, 'held': 570} (total 16361)
+  held (root <- other body, bytes): 00441970<-00441A8F:154 00602A40<-00602CF9:416

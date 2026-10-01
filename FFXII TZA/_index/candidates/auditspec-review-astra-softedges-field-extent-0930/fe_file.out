@@ -1,0 +1,35 @@
+shipped 44634 f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf
+retained == shipped: True
+header ['0x50485952', '0x54', '0x356c', '0x44583131', '0x12', '0x77', '0x48', '0x12f', '0x86', '0x4', '0x1', '0x1', '0xb', '0xd1', '0x725f', '0x1', '0xb', '0x0', '0x0', '0x0', '0x0']
+nt 13 ns words 0..7 [16909060, 13676, 13, 78, 239, 5048, 0, 0]
+list 0 (1, 2, 80, 6, 74, 0, 2, 4, 0)
+list 1 (7, 1, 88, 44, 44, 1, 2, 2, 1)
+list 2 (13, 1, 32, 32, 0, 0, 0, 4, 0)
+list 3 (19, 1, 8, 8, 0, 0, 0, 2, 0)
+list 4 (21, 1, 8, 8, 0, 0, 0, 0, 0)
+list 5 (22, 1, 192, 188, 4, 0, 0, 3, 0)
+list 6 (25, 1, 32, 29, 3, 0, 0, 0, 0)
+list 7 (27, 7, 160, 154, 6, 0, 0, 21, 0)
+list 8 (33, 7, 168, 161, 7, 0, 0, 14, 0)
+list 9 (37, 7, 12012, 119, 11893, 0, 7, 0, 0)
+list 10 (38, 14, 28, 28, 0, 0, 0, 0, 0)
+list 11 (39, 182, 2008, 2002, 6, 0, 0, 0, 0)
+list 12 (43, 12, 320, 156, 164, 0, 12, 0, 0)
+list 13 (45, 7, 3584, 3584, 0, 0, 0, 49, 0)
+list 14 (53, 7, 280, 140, 140, 0, 14, 0, 0)
+list 15 (67, 14, 160, 140, 20, 0, 14, 14, 0)
+list 16 (68, 7, 9904, 154, 9750, 0, 7, 7, 0)
+list 17 (71, 14, 215, 196, 19, 0, 14, 14, 0)
+data_start 14408 sum sizes == h14: True
+fixup tables start 44208 + packed sizes 4 303 119 = 44634 file len 44634
+12-count list 12 class 43 start 29224 obj 156 arr 164 arrays_start 29380
+PShaderParameterDefinition ns offsets [10151]
+PShaderParameterCaptureBufferLocationSize ns offsets [9936]
+PShaderParameterCaptureBufferLocation ns offsets [9898]
+m_offset ns offsets [12135]
+m_size ns offsets [10710]
+m_name ns offsets [11645]
+m_bufferLoc ns offsets [12285]
+class 38 ['0x2', '0x10000002', '0x4f6', '0x1', '0x0', '0x0', '0x0', '0x0', '0x0']
+class 43 ['0x2', '0x3000000d', '0x5f3', '0x6', '0x0', '0x0', '0x0', '0x0', '0x0']
+class 44 ['0x26', '0x10000004', '0x51c', '0x1', '0x0', '0x0', '0x0', '0x0', '0x0']

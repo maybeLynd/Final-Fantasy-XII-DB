@@ -1,0 +1,1 @@
+Observed My Progress STALE exact-name locator later had zero matches at dispatch. Selector deadline exceeded; no return transition is claimed. Dynamic labels can change between observation and input. Unchanged click was not repeated.

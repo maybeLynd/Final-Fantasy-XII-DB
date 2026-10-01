@@ -1,0 +1,9 @@
+{
+  "invalid_commit": "cccd7c04c488744ed4d99600ba1232cd7e4e0856",
+  "reason": "Git clean conversion altered exact CRLF JSON payloads. All mismatches are exactly CRLF->LF; original bytes retained and restored by package-local -text. Existing invalid commit immutable; no accepted receipt/DONE or capture rerun.",
+  "members_affected": 35,
+  "next_publication_task": "ASTRA-PUBLISH-MIGRATION-DASHBOARD-BYTE-CORRECTION",
+  "raw_original_sha256": "c086edb58c0914b2197993c88c28e5cceadbebeb981d3289abd424d166ab41ac",
+  "result_original_sha256": "f7bed41bbf54c3480a05af868289d32294372a950273f36b8ccdd7b6ba781de3",
+  "path_rule": "Use forward-slash Git path spelling, same actual invocation as publisher. Compare filtered hash-object to --no-filters before claiming/staging."
+}

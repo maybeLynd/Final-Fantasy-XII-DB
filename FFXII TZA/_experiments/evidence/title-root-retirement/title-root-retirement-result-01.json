@@ -1,0 +1,449 @@
+{
+  "status": "PRODUCER_VALID_CONDITIONAL_TITLE_RETENTION_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A RETAINED/STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "title-root-retirement-source-01.json",
+      "sha256": "4f84753aafc67b4aaccf7441dfa192312c80206a3ad7d6add5f3ff44adfa9c49"
+    },
+    {
+      "path": "title-watcher-lifetime-raw-02.json",
+      "sha256": "6f1592b32f094155884bfd4a78f285a773ed1c1cdd4a97d29eb8168551504759"
+    },
+    {
+      "path": "title-watcher-attachment-raw-01.json",
+      "sha256": "4ed56c3c88151b514623482411340366e1d0cebc81ed4e2041df92e244884aac"
+    }
+  ],
+  "retained_source_pins": [
+    {
+      "path": "section04-title-member-source/original_body_manifest.json",
+      "sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef"
+    },
+    {
+      "path": "section04-title-member-source/original_disassembly.txt",
+      "sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57"
+    }
+  ],
+  "annotation_prerequisite": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 271,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 790,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 428,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 290,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "title-root-retirement-capture-02.status.json",
+      "sha256": "0d076327a404b61b5da8ba60cd18086e66a02ede8ab26b2150481ee5a1a04c6c"
+    },
+    {
+      "path": "title-root-retirement-capture-02.stdout",
+      "sha256": "1faa281d772581f626b8e10e6176fabec36e13c6a93067c42fb6a3141e1de45a"
+    },
+    {
+      "path": "title-root-retirement-capture-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-title-root-retirement.py",
+      "sha256": "906b77072e687257086e0a95d3877de95f66c847a08e450ba9c5776f71f2cfde"
+    },
+    {
+      "path": "capture-index-path.py",
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    }
+  ],
+  "instruction_pins": [
+    {
+      "pc": "0x394495",
+      "mnemonic": "xor",
+      "args": "r8d, r8d"
+    },
+    {
+      "pc": "0x394498",
+      "mnemonic": "lea",
+      "args": "rdx, [rip - 0x42f]"
+    },
+    {
+      "pc": "0x39449f",
+      "mnemonic": "mov",
+      "args": "ecx, 0xd8"
+    },
+    {
+      "pc": "0x3944a4",
+      "mnemonic": "call",
+      "args": "0x244f50"
+    },
+    {
+      "pc": "0x244fc5",
+      "mnemonic": "mov",
+      "args": "r9, rsi"
+    },
+    {
+      "pc": "0x244fc8",
+      "mnemonic": "mov",
+      "args": "r8, rbp"
+    },
+    {
+      "pc": "0x244fcd",
+      "mnemonic": "call",
+      "args": "0x2465f0"
+    },
+    {
+      "pc": "0x246641",
+      "mnemonic": "mov",
+      "args": "qword ptr [rdi], rbx"
+    },
+    {
+      "pc": "0x246748",
+      "mnemonic": "call",
+      "args": "rax"
+    },
+    {
+      "pc": "0x394106",
+      "mnemonic": "call",
+      "args": "0x393ff0"
+    },
+    {
+      "pc": "0x394117",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rip + 0x1cfa90a]"
+    },
+    {
+      "pc": "0x39411e",
+      "mnemonic": "mov",
+      "args": "rdx, rbx"
+    },
+    {
+      "pc": "0x394121",
+      "mnemonic": "call",
+      "args": "0x244960"
+    },
+    {
+      "pc": "0x244960",
+      "mnemonic": "cmp",
+      "args": "qword ptr [rdx + 0x10], 0"
+    },
+    {
+      "pc": "0x244965",
+      "mnemonic": "je",
+      "args": "0x248220"
+    },
+    {
+      "pc": "0x247cf2",
+      "mnemonic": "mov",
+      "args": "ebp, 3"
+    },
+    {
+      "pc": "0x247d20",
+      "mnemonic": "lea",
+      "args": "rdi, [rip + 0x1e46cf9]"
+    },
+    {
+      "pc": "0x247d40",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x58], rsi"
+    },
+    {
+      "pc": "0x247d93",
+      "mnemonic": "lea",
+      "args": "r8, [rip - 0x37ca]"
+    },
+    {
+      "pc": "0x247d9a",
+      "mnemonic": "call",
+      "args": "0x2465f0"
+    },
+    {
+      "pc": "0x247d9f",
+      "mnemonic": "mov",
+      "args": "qword ptr [rdi], rbx"
+    },
+    {
+      "pc": "0x247da2",
+      "mnemonic": "inc",
+      "args": "rsi"
+    },
+    {
+      "pc": "0x247dac",
+      "mnemonic": "add",
+      "args": "rdi, 8"
+    },
+    {
+      "pc": "0x247db0",
+      "mnemonic": "sub",
+      "args": "rbp, 1"
+    },
+    {
+      "pc": "0x247db4",
+      "mnemonic": "jne",
+      "args": "0x247d40"
+    },
+    {
+      "pc": "0x247fac",
+      "mnemonic": "inc",
+      "args": "al"
+    },
+    {
+      "pc": "0x247fbc",
+      "mnemonic": "mov",
+      "args": "rcx, rbx"
+    },
+    {
+      "pc": "0x247fbf",
+      "mnemonic": "jmp",
+      "args": "0x247d89"
+    },
+    {
+      "pc": "0x2445d0",
+      "mnemonic": "cmp",
+      "args": "dword ptr [rdx], 1"
+    },
+    {
+      "pc": "0x2445d8",
+      "mnemonic": "or",
+      "args": "dword ptr [rcx + 0x40], 0x23"
+    },
+    {
+      "pc": "0x248267",
+      "mnemonic": "mov",
+      "args": "qword ptr [rdx + 0x10], rbx"
+    },
+    {
+      "pc": "0x24826b",
+      "mnemonic": "test",
+      "args": "byte ptr [rbx + 0x40], 0x20"
+    },
+    {
+      "pc": "0x24826f",
+      "mnemonic": "je",
+      "args": "0x2482cc"
+    },
+    {
+      "pc": "0x248271",
+      "mnemonic": "or",
+      "args": "dword ptr [rdx + 0x40], 0x20"
+    },
+    {
+      "pc": "0x245050",
+      "mnemonic": "lea",
+      "args": "rdx, [rip + 0x6d0019]"
+    },
+    {
+      "pc": "0x24505a",
+      "mnemonic": "call",
+      "args": "rax"
+    },
+    {
+      "pc": "0x245072",
+      "mnemonic": "test",
+      "args": "byte ptr [rdi + 0x40], 0x20"
+    },
+    {
+      "pc": "0x24507e",
+      "mnemonic": "jne",
+      "args": "0x24508a"
+    },
+    {
+      "pc": "0x245085",
+      "mnemonic": "jmp",
+      "args": "0x2482e0"
+    },
+    {
+      "pc": "0x24508a",
+      "mnemonic": "xor",
+      "args": "edx, edx"
+    },
+    {
+      "pc": "0x24508c",
+      "mnemonic": "call",
+      "args": "0x2473f0"
+    },
+    {
+      "pc": "0x245094",
+      "mnemonic": "and",
+      "args": "eax, 0xfffffffd"
+    },
+    {
+      "pc": "0x245097",
+      "mnemonic": "bts",
+      "args": "eax, 0xa"
+    },
+    {
+      "pc": "0x24509b",
+      "mnemonic": "mov",
+      "args": "dword ptr [rdi + 0x40], eax"
+    },
+    {
+      "pc": "0x24960b",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rdi + 8]"
+    },
+    {
+      "pc": "0x249612",
+      "mnemonic": "mov",
+      "args": "dword ptr [rsp + 0x20], 0x10"
+    },
+    {
+      "pc": "0x249620",
+      "mnemonic": "test",
+      "args": "rcx, rcx"
+    },
+    {
+      "pc": "0x249623",
+      "mnemonic": "je",
+      "args": "0x249634"
+    },
+    {
+      "pc": "0x249625",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rcx]"
+    },
+    {
+      "pc": "0x249628",
+      "mnemonic": "test",
+      "args": "rax, rax"
+    },
+    {
+      "pc": "0x24962b",
+      "mnemonic": "je",
+      "args": "0x249634"
+    },
+    {
+      "pc": "0x249632",
+      "mnemonic": "call",
+      "args": "rax"
+    },
+    {
+      "pc": "0x3940e3",
+      "mnemonic": "or",
+      "args": "dword ptr [rbx + 0xc0], 1"
+    },
+    {
+      "pc": "0x3940ea",
+      "mnemonic": "xor",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x3940ec",
+      "mnemonic": "add",
+      "args": "rsp, 0x20"
+    },
+    {
+      "pc": "0x3940f0",
+      "mnemonic": "pop",
+      "args": "rbx"
+    },
+    {
+      "pc": "0x3940f1",
+      "mnemonic": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x2483ce",
+      "mnemonic": "mov",
+      "args": "qword ptr [rdi], 0"
+    },
+    {
+      "pc": "0x2483d5",
+      "mnemonic": "bt",
+      "args": "eax, 0xe"
+    },
+    {
+      "pc": "0x2483de",
+      "mnemonic": "call",
+      "args": "0x3697f0"
+    },
+    {
+      "pc": "0x2483e9",
+      "mnemonic": "mov",
+      "args": "byte ptr [rdi + 0xa2], 0"
+    }
+  ],
+  "local_owner_reads": [
+    [
+      "0x249625",
+      0,
+      8,
+      "r"
+    ]
+  ],
+  "established": [
+    "Title394460 selects handler394070/extentD8 via244F50. Original constructor clears requested bytes, installs handler and invokes message1. Titlemessage1 starts393FF0 requests BEFORE loading root0208EA28 and calling244960(this). Parentless gate tail248220 sets self+10 and propagates root bit5 directly into title flags40. This is the actual title path, not an unrelated rooted widget.",
+    "Original247AE0 loop publishes three constructed roots into0208EA20/28/30. It selects2445D0, whose message1 ORs23 into flags40. Under successful valid unchanged root construction/attachment, the title inherits bit5. This proves conditional deferral applicability, not a captured initialized root.",
+    "245020 broadcastsmessage18 then REREADS self flags40 bit5. If still set, it calls2473F0(self,0), clears bit1/sets bit10 and does not locally release through2482E0. If clear, it tailcalls2482E0. Handler/children/opaque helper mutation can change that branch; initial root bit5 alone is not unconditional lifetime proof.",
+    "After existing ticket sealed/equal/custom-zero gates, ordinary2495C0 loads RAW owner ticket+8, rejectsNULL, loads current owner handler and rejectsNULL, then calls it withmessage16. The owner-use window reads only owner+0; it does not locally read owner flags40, a generation, or title publication02AEE4C0. Ticket flags/counters are not owner flags.",
+    "Title394070 message16 directly ORs readybit0 at+C0; that arm has no closing/publication/parent test. At a valid retained post-teardown boundary with handler unchanged and ordinary ticket gates satisfied, this local composition permits readybit mutation despite bit10 and cleared publication. This is a conditional source counterexample to inherent local notification revocation, not a natural late-delivery witness.",
+    "Physical2482E0 release nulls handler BEFORE its pool/heap disposition. A still-backed, unreused pool slot with thatNULL suppresses ordinary notification.244F50 can select released pool slots and2465F0 installs a new handler, so the NULL is not a perpetual identity token. Retained ticket raw owner+8 has no local generation resolution. Natural surviving tickets/reuse, safety and cross-system cancellation remain unproved."
+  ],
+  "assumptions": [
+    "Normal ABI-correct calls with valid backing/root/tree; successful allocator/memset/constructor and unchanged handler/global/parent until attachment",
+    "Root flag5 still set on attach; no opaque or message handler clears it before post-broadcast branch",
+    "Conditional late boundary has valid retained owner/ticket/member and satisfied ordinary completion gates; pointer/context roundtrip assumptions unchanged",
+    "No assertion opaque focus, enable, resource, allocator/free or message callbacks leave all storage unchanged; only explicit local operations/order proved"
+  ],
+  "limitations": [
+    "No live/native/emulated run or observed IO/callback/thread/frame; no full natural caller/reachability or actual pending teardown",
+    "Root initialized successfully in source is conditional, not actual process initial-state proof; message18/pre-release/physical-release and pool reuse are distinct",
+    "No transitive no-cancellation/drain, arbitrary double teardown, heap dereference validity, ABA occurrence or scheduler lifetime guarantee",
+    "Earlier accepted sender/retirement guards reused, not reviewed again; independent acceptance/canonical incorporation of this additive composition still pending"
+  ],
+  "conditional_witness": {
+    "boundary": "after245020 retained branch returns normally",
+    "flags40": "bit5 andbit10 set/bit1 clear",
+    "publication02AEE4C0": 0,
+    "owner_handler": "394070 unchanged",
+    "c0_before": 0,
+    "c0_after_local_message16": 1,
+    "natural_reachability": false
+  },
+  "affected_claims": [
+    "FABLE title OV31: actual parent/root and deferral applicability conditional source gap",
+    "FABLE/OPUS OV29: closing/publication is not local ordinary-notification revocation; raw current-handler lookup distinct from identity/lifetime guarantee"
+  ],
+  "next_discriminator": "Determine whether original request/retirement/callback scheduling prevents a surviving ordinary ticket across handler null/reuse; use retained queue/cancellation source before automated observation. Actual overlap/timing remains open.",
+  "checker_sha256": "30eb014248ad9b77f57177bdb87e84d4ea005803f80c164b61498e5b22b469b4",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Finite read-only original/retained reduction; no game/PC/input/instrument/native/save/config/reference/peer process mutation"
+}

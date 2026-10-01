@@ -1,0 +1,9 @@
+reset_003B6890                   PASS  the reset runs to its return over the planted table
+P1_identity_guard_writes_nothing PASS  a wrong generation in the id: all four setters return with the record byte-identical
+P2_steps_zero_is_immediate       PASS  an in-flight 50-step ramp is cancelled: counter 0, value = target
+P3_delta_and_no_clamp            PASS  delta = (target - value) * (1/steps); after 3 ticks the counter is 0 and the value stays where the additions left it (1.0 vs target 1.0)
+P3b_inexact_landing_and_reciprocal PASS  0 -> 0.1 in 3 steps ends at 0.10000000894069672, not 0.1 (no clamp); the 0 -> 0.3 delta is the RECIPROCAL product 0.10000000894069672, not the quotient 0.10000000149011612 the contract's (target - value) / steps gives
+P4_paused_does_not_accumulate    PASS  paused or globally gated: counter and value unchanged; then one step
+P5_byte_counter                  PASS  steps 255 stores 255 in the byte counter
+S2_S3_channel_layout             PASS  classes 0x0D/0x0F drive pairs +0x50/+0x54 and +0x58/+0x5C, 0x0E +0x70, 0x10 +0x78; the fifth channel (+0x43, +0x98) advances with no setter
+ok

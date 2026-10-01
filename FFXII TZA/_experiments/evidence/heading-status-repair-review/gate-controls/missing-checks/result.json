@@ -1,0 +1,9 @@
+{
+  "verdict": "ACCEPT scoped2366027d9 H8 CLI/gated-count repair",
+  "original": "SURVIVES H8 / extent validTrue / calls21 / FAILS0 / exit0",
+  "first_fragment_intervention": "BROKEN H8 / extent validFalse / callsNone / operandsNone / FAILS1 / exit1",
+  "source_order": "extent_ok assigned before conditional ncalls/plus3; AST plus original actual process output",
+  "prior_evidence": "feb631dd4 failed exit propagation remains immutable; new code separately fixes it",
+  "method": "A actual producer Python and same published labelled io.open catalogue963->40 substitution; not native/game execution",
+  "limits": "Only heading script dynamically exercised, not all47 modified scripts or H0H7 semantics/class effects/live reachability/migration/L1L2. Nonauthor ASTRA checker/gate review and canonical owner incorporation separate."
+}

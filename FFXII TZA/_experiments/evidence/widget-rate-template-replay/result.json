@@ -1,0 +1,90 @@
+{
+  "question": "Fresh legacy-input generation retains FP qualifiers or current-row-only repair?",
+  "method": "A actual boundedhostproducer threeinvocations withFI-onlywritepath redirection; no original/native/emulator/live FF12 executions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "producer_path": "Database/FFXII TZA/_index/candidates/widget-rate-b8/widget_b8_rate.py",
+    "producer_sha256": "f7ed873453dc0b19e41152a85215892c13b45cd7bcd8353a847948e0c037176c",
+    "fields_path": "Database/FFXII TZA/_types/fields.tsv",
+    "fields_pre_sha256": "0d7dccce2794fa63d8d97696e6923aa240310f10592c28019df380e9aab20971",
+    "fields_post_sha256": "0d7dccce2794fa63d8d97696e6923aa240310f10592c28019df380e9aab20971",
+    "fields_readback_unchanged": true,
+    "old_input_path": "Database/FFXII TZA/_experiments/evidence/rate-normalizer-domain/retained/field-preimage.json",
+    "old_input_sha256": "e361a8a4d518914e9fe975429cac8961f22bae46f1b5af192b49bf360c6354ee"
+  },
+  "tools": {
+    "utc": "2026-09-28T09:45:58.419309+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "d0558ec306e981fba40a4acd505992568eacd81b6872f1017d99a49f9e1bef77",
+  "invocation": {
+    "original_file": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\candidates\\widget-rate-b8\\widget_b8_rate.py",
+    "producer_sha256": "f7ed873453dc0b19e41152a85215892c13b45cd7bcd8353a847948e0c037176c",
+    "transform": "One exact FI assignment substitution to a private fixture absolute path; original __file__ and EXE hash guard/read/source logic unchanged",
+    "needle": "FI = os.path.join(DB, \"_types\", \"fields.tsv\")",
+    "private_fixture_root": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\widget-rate-template-replay\\disposable",
+    "wrapper_sha256": "792182fd85fd490debbdd9b8756e751105a620f6f9f624bc437fef8f728c818f"
+  },
+  "receipts": [
+    {
+      "name": "current-positive",
+      "args": [],
+      "fixture": "current.tsv",
+      "returncode": 0,
+      "stdout_sha256": "073faabbd804d3ac7f4e12e0da6a6304c263dc69a04f4f36885e8025fd98b1be",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_sha256": "7ab2f90904f994df6aa68d164fee491312d04c17526d72e6e8ebc42ed3bdc4bc",
+      "after_sha256": "7ab2f90904f994df6aa68d164fee491312d04c17526d72e6e8ebc42ed3bdc4bc",
+      "transformed_source_sha256": "09bd02d1b77fafd8ea324b93a5ef60802b65f751c23dcd35701d9d36becc25bd",
+      "limits": "Actual hostproducer clonedsource invocation with FI-only redirection. No FF12 machine code/game/native FP execution."
+    },
+    {
+      "name": "legacy-patch",
+      "args": [
+        "--patch"
+      ],
+      "fixture": "legacy.tsv",
+      "returncode": 0,
+      "stdout_sha256": "20dd7fb13ae95c757ee9f6e9832b7d47671f5b0800c5b5b759a8b4dbbc113e99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_sha256": "3abf49cc9e6b62411b0637cf68d198be383fe292fa6599bf71200ef97ef37b72",
+      "after_sha256": "8d9b77675c0c5331d59d75fcb9251b37d0fe6f17aecc24458d4ed5b5ffc483d5",
+      "transformed_source_sha256": "0bf9931539e1332a68f82ab0c0b586e66184faf49c2e43d5b7b8a35afbaaba59",
+      "limits": "Actual hostproducer clonedsource invocation with FI-only redirection. No FF12 machine code/game/native FP execution."
+    },
+    {
+      "name": "generated-check",
+      "args": [],
+      "fixture": "legacy.tsv",
+      "returncode": 1,
+      "stdout_sha256": "03ec3af0347a13c5bc6e4e69516029ff761c77fd615b38674b25343f8dfa8a4d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "before_sha256": "8d9b77675c0c5331d59d75fcb9251b37d0fe6f17aecc24458d4ed5b5ffc483d5",
+      "after_sha256": "8d9b77675c0c5331d59d75fcb9251b37d0fe6f17aecc24458d4ed5b5ffc483d5",
+      "transformed_source_sha256": "0bf9931539e1332a68f82ab0c0b586e66184faf49c2e43d5b7b8a35afbaaba59",
+      "limits": "Actual hostproducer clonedsource invocation with FI-only redirection. No FF12 machine code/game/native FP execution."
+    }
+  ],
+  "normalized": {
+    "current_positive_S": "PASS",
+    "legacy_patch_exit": 0,
+    "generated_S": "FAIL",
+    "generated_failure_count": 1,
+    "source_R1_R2_M": "PASS on both current and generated check",
+    "generated_default_refinement": true,
+    "generated_completed_qualifier": false,
+    "generated_DAZ_qualifier": false
+  },
+  "initial_failure": "Firstthreehostinvocations reachedexpectedexitcodes but captureparser incorrectly required single-spaced FAIL S; normalization abortedbeforefinalidentity/result. Exactinitialsource/raw/privatefixtures retained INVALID_NORMALIZATION. Correctedtokenparser regressedagainstbothactualrawcontrols, completedthreeinvocations/identities below; notsixsemantic/nativeexperiments.",
+  "interpretation": "Actual e867536cf consumer/Scurrentrow repair valid, but existing --patch generator still emits oldunqualifiedrate text. Successful --patch is not satisfiedpostcondition. Default refinement/sourcefinitepredictions retained; no semanticrate/FP/native results changed.",
+  "required_change": "OPUS fix actual --patch generatedtemplate or shared amendment procedure, retaining completedCOMISS/DAZ/DIVSS/nativeMXCSR/hostmodel limits already supplied41. Add same freshlegacy->patch->S regression withcurrentpositive, not just editscurrentrow/Stext. No new FF12/nativetest. SPEC verify producerpath and retainedfailure independently.",
+  "limits": "Single WidgetB8 generator path with exact clonedproducer and two retained row inputs; other generator/type paths not surveyed. FI-only transformation and original__file__ explicit; source/hash guard unchanged, not raw unmodifiedhostprogram defaultpath invocation. R1/R2 staticdecoder and M hostfloat calculations, not original instructions/native game FP. Currentcanonical peerinput maychange later; historicalspecimen immutable. No canonical acceptance from owncontrols.",
+  "cleanup": "No peerfield/reference/game/save/config/input/instrument/process writes. Only two privatefixture files writable; producer/reference readback unchanged; fieldsreadback status reported separately, no unrelatedpeerchange reset. Privatefixtures retained as boundedhostreplay data. PC OFF/S19spentunapproved/DBGOALNOT_MET."
+}

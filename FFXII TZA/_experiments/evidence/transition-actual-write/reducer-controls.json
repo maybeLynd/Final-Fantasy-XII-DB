@@ -1,0 +1,17 @@
+[
+  {
+    "case": "missing-second",
+    "refused": true,
+    "exception_type": "FileNotFoundError"
+  },
+  {
+    "case": "nonzero-first",
+    "refused": true,
+    "exception_type": "AssertionError"
+  },
+  {
+    "case": "changed-second-state",
+    "refused": true,
+    "exception_type": "AssertionError"
+  }
+]

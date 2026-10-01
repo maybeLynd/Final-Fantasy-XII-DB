@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-HBDETAIL-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the 005760A0/00576030 detail-resolver decode: monster tail reader found, Esper subtitle table, rec+0x0A flag join, family ordinal obj+0xD2.",
+  "scope": "hchk-hctg-hdat-handbook-indexes.md, the-handbook-screen.md, AUDIT-LOG.md, ADDRESS-INDEX.md, SWE2-DATA.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

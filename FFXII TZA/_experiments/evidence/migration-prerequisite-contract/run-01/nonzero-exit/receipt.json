@@ -1,0 +1,29 @@
+{
+  "name": "nonzero-exit",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\nonzero-exit\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\nonzero-exit\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "tagged",
+    "tags": [
+      "A",
+      "B"
+    ],
+    "exits": [
+      0
+    ]
+  },
+  "upstream_sha256": "15916d42d8b4e476b5e2fb0dd877f79e0901cba9237162331fef8972ade04e12",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py exit 1 (accepted: [0])\n",
+  "stderr": "",
+  "timed_out": false
+}

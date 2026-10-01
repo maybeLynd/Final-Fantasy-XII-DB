@@ -1,0 +1,16 @@
+002E4C90 r8=('E', 24) depth 2: walked 1; +0x27 hits none; unknown 0; escapes 0
+002E4C90 r8=('E', 24) depth 4: walked 1; +0x27 hits none; unknown 0; escapes 0
+0025B500 r8=('E', 24) depth 2: walked 3; +0x27 hits none; unknown 0; escapes 0
+0025B500 r8=('E', 24) depth 4: walked 3; +0x27 hits none; unknown 0; escapes 0
+00244F00 r8=('E', 24) depth 2: walked 5; +0x27 hits none; unknown 0; escapes 0
+00244F00 r8=('E', 24) depth 4: walked 6; +0x27 hits none; unknown 0; escapes 0
+002BED30 r8=('E', 24) depth 2: walked 1; +0x27 hits none; unknown 0; escapes 0
+002BED30 r8=('E', 24) depth 4: walked 1; +0x27 hits none; unknown 0; escapes 0
+001DBCE0 r8=('E', 24) depth 2: walked 3; +0x27 hits none; unknown 0; escapes 0
+001DBCE0 r8=('E', 24) depth 4: walked 3; +0x27 hits none; unknown 0; escapes 0
+003E6AF0 r8=('E', 24) depth 2: walked 1; +0x27 hits none; unknown 0; escapes 0
+003E6AF0 r8=('E', 24) depth 4: walked 1; +0x27 hits none; unknown 0; escapes 0
+004278D0 r8=('E', 24) depth 2: walked 1; +0x27 hits none; unknown 0; escapes 0
+004278D0 r8=('E', 24) depth 4: walked 1; +0x27 hits none; unknown 0; escapes 0
+0087AF34 r9=('E', 0) depth 2: walked 1; +0x27 hits none; unknown 0; escapes 0
+0087AF34 r9=('E', 0) depth 4: walked 1; +0x27 hits none; unknown 0; escapes 0

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-render-position-commit-boundaries.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 2,\n  \"extent_status\": [\n    [\n      \"0x4288b0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      40,\n      null\n    ],\n    [\n      \"0x3b3ca0\",\n      \"UNWIND_UNION_MATCH\",\n      114,\n      114\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "601a564d32fd8bb320bf8c91a69b518bdce0a4551d43e852fb2e3c17c276ec8a"
+}

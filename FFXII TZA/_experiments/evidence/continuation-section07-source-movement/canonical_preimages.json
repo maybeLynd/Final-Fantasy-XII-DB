@@ -1,0 +1,30 @@
+[
+  {
+    "path": "02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md",
+    "sha256": "30cfb49ce19163659a4575dacb1ffcb13c31fbc9f116b79519fa7f916b7adbb3"
+  },
+  {
+    "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md",
+    "sha256": "b5e7dd0276f45575279825039bbaec5b235de8733f0425c29e60ad8027e5e4fb"
+  },
+  {
+    "path": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+    "sha256": "0832fc9ccd3f8b7825ed3354467579fab49c02a3496194d599968e0aa968f046"
+  },
+  {
+    "path": "24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+    "sha256": "a80af7465c88a465f181613b05aae6c47c692d7bd09f676056f7eed838a77e48"
+  },
+  {
+    "path": "_types/types.tsv",
+    "sha256": "8f06d7382c041ae6a909431f13b6d5a34fe72effb8f4a55ab02f8e036a9c8791"
+  },
+  {
+    "path": "_types/fields.tsv",
+    "sha256": "c2ed1645779936f62edf12632e3b4662f679352042df585c9fd10fa31967c369"
+  },
+  {
+    "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+    "sha256": "cacec05196b97517d71551da3fddc676baff8e289caea80dd4651e338bf3e073"
+  }
+]

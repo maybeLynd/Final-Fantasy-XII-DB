@@ -1,0 +1,5 @@
+PASS  C 00646000: identity blocks at +0x50 / +0x90 and, by a 16-pass loop, +0x110 + 0x40k and +0x510 + 0x40k; +0xD10 = 10.0f; +0xD18..+0xD60 zero
+PASS  R +0xA0 is written 0 and +0x90 1.0f (a 0x14 record predicts the reverse); all 136 1.0f stores sit at block + {0, 0x14, 0x28, 0x3C}
+PASS  D 0063F580 = PMotionBlurD3D11's placement constructor (00646000, vtable 00D62120, +0xD68 = 0); 0063E9C0 is PMotionBlurBase's
+PASS  W PMotionBlurBase states the 0x40 identity blocks and the loop; old text kept; rows tile to 0xD68
+FAILS 0

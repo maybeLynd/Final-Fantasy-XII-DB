@@ -1,0 +1,9 @@
+{
+  "status": "INVALID_PREPARATION",
+  "tool_chunk": "6c5438",
+  "exit_code": 1,
+  "error": "AssertionError: driver expected an invented additional fixture:review-record ref; actual retained baseline has only verdict:ACCEPT",
+  "cases_executed": 0,
+  "old_driver": "driver-before-run.py",
+  "fix": "Bind actual retained result_refs=[verdict:ACCEPT]; preserve run-01, new run-02, checked external wrapper receipts cover preparation failures"
+}

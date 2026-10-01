@@ -1,0 +1,161 @@
+{
+  "status": "PRODUCER_VALIDATED_PENDING_INDEPENDENT_REVIEW",
+  "limits": "STATIC_ONLY; bounded selector domain; natural shipped rejection OPEN; no live execution",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "freeze-local.py",
+      "bytes": 3713,
+      "sha256": "1b9bc734f4426c07779b1aff47e207d9b04b805a93432e8f4b9e5e33a4fd81dc"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_ASIA.fst",
+      "bytes": 820000,
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_CH.fst",
+      "bytes": 820000,
+      "sha256": "1f7e4ca1ea1a003d2ade2a6338be3513f659ab986efb3dc734db12c36498075b"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_CN.fst",
+      "bytes": 820000,
+      "sha256": "e33cb21a6ae3ac84aaf7500d724e20aefdf6cbc6e7ff9e97ee2faa8448f41258"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_DE.fst",
+      "bytes": 820000,
+      "sha256": "d80b86be6f53166701abf5c15356c449421fbb41f2e82e105044a406e90e350c"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_ES.fst",
+      "bytes": 820000,
+      "sha256": "4aec6d0e32f56dbe95fd9c76aef4685c42e2eb043e1ffffa2059c2ba5c2af5a9"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_FR.fst",
+      "bytes": 820000,
+      "sha256": "d8f6211d36a6207a2a20ecbfe0e8b53f12b6ba5c473f4693fec4730e30293213"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_IN.fst",
+      "bytes": 820000,
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_IT.fst",
+      "bytes": 820000,
+      "sha256": "948c7aee093a63b210972227e68172d79303f7a1e2a9a2d44b4012b589e7fdc1"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_JP.fst",
+      "bytes": 820000,
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_KR.fst",
+      "bytes": 820000,
+      "sha256": "83a4dda471c8b9744375227389730097ba8502984e66c88dc5de0738549976ca"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_UK.fst",
+      "bytes": 820000,
+      "sha256": "2451762db99591c4b8417d1278d6120f20226f338f4da36aa2ff544d713bb40f"
+    },
+    {
+      "path": "fst-inputs-01/FileSizeTable_US.fst",
+      "bytes": 820000,
+      "sha256": "3a03ea77c689d1f48428c440a272b7dbfd77b121758bfd2c5ac0697ceeeb2b3e"
+    },
+    {
+      "path": "index-domain-result-01.json",
+      "bytes": 17277,
+      "sha256": "defa5083a7289a4f13c520e226c5468b2423d316dacb50489d7b27c5c3133569"
+    },
+    {
+      "path": "index-path-raw-02.json",
+      "bytes": 192936,
+      "sha256": "aa1325dd3ada5ca52a7c6173215c973031fc5ee9f38b9ef4f22bfd5f808f0e12"
+    },
+    {
+      "path": "input-restoration-receipt.json",
+      "bytes": 4565,
+      "sha256": "60838c936cf16e5114ec0515027dc8d4887255cf10abc0ae66c5dd93c5123958"
+    },
+    {
+      "path": "METHODS.md",
+      "bytes": 11913,
+      "sha256": "f8ab99ec1920f74c1287e189b02784c0fa099fbebadbbfd3c2a59f9cf10ae93a"
+    },
+    {
+      "path": "prove-index-domain.py",
+      "bytes": 6347,
+      "sha256": "465eeb72cb603575f6782d7573c04c77ce3657d820413b4f284e6b0515316beb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7469,
+      "sha256": "ef9693ec3134033984c1f9fa0777f59a5798a6b72afad7c29ce119ee39f40569"
+    },
+    {
+      "path": "source-preimages/00-README.md",
+      "bytes": 8028,
+      "sha256": "86edacf26be0c2e65235f9aac8d38f873e6b682b43856b69854d0d555c41910d"
+    },
+    {
+      "path": "source-preimages/01-notes.md",
+      "bytes": 26373,
+      "sha256": "604f81043b36db624a44d12efad0bf617bba621d4de62e43bb03d2881b8664df"
+    },
+    {
+      "path": "source-preimages/02-successor-request.md",
+      "bytes": 11641,
+      "sha256": "cd348251b6d80de019a96f0ceea5fa04175bbda95e5c108b73a2e38f6d9b0ade"
+    },
+    {
+      "path": "source-preimages/03-OPEN-QUESTIONS.md",
+      "bytes": 2825512,
+      "sha256": "c6b5a3aa9f2877d500f8e0fcceb65c366c7dddb7fda4a203b12370718e14794d"
+    },
+    {
+      "path": "source-preimages/04-file-size-tables-fst.md",
+      "bytes": 34306,
+      "sha256": "820b9a60f6cdc2deffb1429c7d368387b99e67e427087bca18861abc208430b9"
+    },
+    {
+      "path": "source-preimages/05-the-voice-pack-slots-and-the-voice-verbs.md",
+      "bytes": 41802,
+      "sha256": "0a00ea40fccfb38754a1eacf09f2a6f3042803e1872b56354f2c85d66f823aa1"
+    },
+    {
+      "path": "source-preimages/06-CONTRACT-authored-table-row-lookup.md",
+      "bytes": 110439,
+      "sha256": "d8955e1251cbcf0856648c6db6dc0bdcbd055659a91704d5515175dbaf62ac90"
+    },
+    {
+      "path": "source-preimages/07-README.md",
+      "bytes": 2011,
+      "sha256": "9d6f5c3053306b2ffd001bd3277aa1aa89765c83710345a39ddfb19bcbb8760d"
+    },
+    {
+      "path": "source-preimages/08-reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "source-preimages.json",
+      "bytes": 2186,
+      "sha256": "8198f9e91eb420ce8082eda69c2afb4ba938bd57e45775565d2969ad53f2ca2e"
+    }
+  ]
+}

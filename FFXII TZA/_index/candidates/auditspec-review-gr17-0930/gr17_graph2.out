@@ -1,0 +1,12 @@
+boundary-checked, jcc=False: dropped 9153 raw sites; 0 jcc edges; 382 functions reach 00312280
+   probes: 0024CFF0=False 002693D0=False 002E3AF0=False 00319140=False 002EB780=False 003603F0=False 0032E620=False 0036DE70=False 003DEE10=False 003EB010=False 0024E910=False 003319D0=False 00300140=True 0046EFD0=True 003B8670=True 00319F50=True
+boundary-checked, jcc=True: dropped 9153 raw sites; 154 jcc edges; 388 functions reach 00312280
+   probes: 0024CFF0=False 002693D0=False 002E3AF0=False 00319140=False 002EB780=False 003603F0=False 0032E620=False 0036DE70=False 003DEE10=False 003EB010=False 0024E910=False 003319D0=False 00300140=True 0046EFD0=True 003B8670=True 00319F50=True
+== window (package S9) against the boundary-checked graph with jcc
+  003EA820 after the first free: 25 direct call/tail sites; reaching: []; indirect: []
+  0032FC30 after 003EA6E0: 6 direct call/tail sites; reaching: ['0032FC7B->0032FCA0']; indirect: []
+  0032FCA0 to 0032FCF6: 4 direct call/tail sites; reaching: ['0032FCF6->002628B0']; indirect: []
+  002628B0 to 00262D34: 130 direct call/tail sites; reaching: ['00262930->00262D96', '00262AFC->002E65A0', '00262B12->002E65A0', '00262D2F->00262D96', '00262D34->0025B070']; indirect: []
+  0025B070: 11 direct call/tail sites; reaching: ['0025B225->00234200']; indirect: []
+  00234200 to 002342CE: 8 direct call/tail sites; reaching: ['0023423F->00300140', '002342C1->002342D6']; indirect: []
+  total direct call/tail sites 184

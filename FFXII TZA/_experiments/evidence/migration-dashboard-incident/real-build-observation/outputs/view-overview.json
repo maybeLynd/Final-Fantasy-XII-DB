@@ -1,0 +1,353 @@
+{
+ "view": "overview",
+ "title": "Overview - where the whole database stands",
+ "status": "OK",
+ "source": {
+  "identity": "goal gate NOT_MET; register rows 1596",
+  "as_of": "2026-09-29T02:32:06Z",
+  "instrument": "goal_gate.py --json / check_questions.py, captured 2026-09-29T02:32:06Z",
+  "limits": "DB_GOAL is the gate's verdict, not this dashboard's; a package stage is as recorded in its file"
+ },
+ "measures": [
+  {
+   "id": "register-answered",
+   "label": "register rows ANSWERED (accepted answers)",
+   "numerator": 1410,
+   "denominator": 1604,
+   "scope": "OPEN-QUESTIONS (reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "reporter's L1 scoring (1604 rows scored); counted once each; STALE per the reporter's own check"
+  },
+  {
+   "id": "register-dispositioned",
+   "label": "rows DISPOSITIONED: closed for the gate, UNANSWERED in fact (NAS 17, OEB 15)",
+   "numerator": 32,
+   "denominator": 1604,
+   "scope": "OPEN-QUESTIONS (reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "reporter's L1 scoring (1604 rows scored); counted once each; STALE per the reporter's own check"
+  },
+  {
+   "id": "register-withdrawn",
+   "label": "rows WITHDRAWN / superseded / not a question (DISSOLVED 2, NOT A QUESTION 29, SUPERSEDED 121, WITHDRAWN 7)",
+   "numerator": 159,
+   "denominator": 1604,
+   "scope": "OPEN-QUESTIONS (reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "not learned; not counted as answers"
+  },
+  {
+   "id": "register-partial",
+   "label": "rows PARTIAL (block the gate)",
+   "numerator": 2,
+   "denominator": 1604,
+   "scope": "OPEN-QUESTIONS (reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "residue named on each row; check_questions (captured) agrees: PARTIAL 2 of 1596 rows"
+  },
+  {
+   "id": "register-open",
+   "label": "rows OPEN or BLOCKED",
+   "numerator": 0,
+   "denominator": 1604,
+   "scope": "OPEN-QUESTIONS (reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "reporter's L1 scoring (1604 rows scored); counted once each; STALE per the reporter's own check"
+  },
+  {
+   "id": "register-other",
+   "label": "rows in no class above (other status words: UNKNOWN 1)",
+   "numerator": 1,
+   "denominator": 1604,
+   "scope": "OPEN-QUESTIONS (reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "the remainder, shown so nothing is silently dropped; each needs a class"
+  },
+  {
+   "id": "page-local",
+   "label": "page-local obligations: unticked page boxes with no register id (17 on untracked pages)",
+   "numerator": 49,
+   "denominator": null,
+   "scope": "page checklists (check_questions.read_boxes via the reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "required unless dispositioned; 2 further unticked boxes belong to live register rows"
+  },
+  {
+   "id": "transfers",
+   "label": "obligations transferred with their residue (untracked 0)",
+   "numerator": 60,
+   "denominator": null,
+   "scope": "batch-K transfers (transfer_audit via the reporter)",
+   "instrument": "progress_report.py snapshot 66c3a62b00a1dbf3 (2026-09-29T02:25:40+00:00); STALE: generated 2026-09-29T02:25:40+00:00, fp dbe8648f99ff vs current 38bc8d2b22b7",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "a transfer is not closure: it blocks until its destination resolves it"
+  },
+  {
+   "id": "pkg-false-complete",
+   "label": "package items claiming completion while a linked board task is open (A02)",
+   "numerator": 0,
+   "denominator": 15,
+   "scope": "completion-packages/*.md x board",
+   "instrument": "package_checks",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "a consistency check, not a derivation of acceptance"
+  },
+  {
+   "id": "pkg-link-done",
+   "label": "package items whose linked board tasks are all DONE but whose stage has not moved",
+   "numerator": 0,
+   "denominator": 15,
+   "scope": "completion-packages/*.md x board",
+   "instrument": "package_checks",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "likely stale item stages; FABLE updates them"
+  },
+  {
+   "id": "pkg-stage-mismatch",
+   "label": "packages whose recorded stage is not their earliest item's stage",
+   "numerator": 0,
+   "denominator": 2,
+   "scope": "completion-packages/*.md",
+   "instrument": "package_checks",
+   "as_of": "2026-09-29T02:32:06Z",
+   "limits": "FABLE's rule: the package stage is the earliest non-adjacent item stage"
+  }
+ ],
+ "rows": {
+  "columns": [
+   "state",
+   "value"
+  ],
+  "data": [
+   [
+    "1. migration acceptance (M0-M5)",
+    "NOT ACCEPTED - no migration acceptance receipt exists; matrix items are NOT_RUN until a non-author receipt names its commit (see _index/workflow/IMPLEMENTATION-MAP.md delivery links)"
+   ],
+   [
+    "2. package acceptance",
+    "0 of 2 completion packages accepted-and-incorporated (as recorded; stages: PKG-GP-HP-LETHAL research, PKG-TECH-SCRIPTVM-VALUE review)"
+   ],
+   [
+    "3. whole database (goal_gate)",
+    "NOT_MET - questions outstanding: PARTIAL=2"
+   ],
+   [
+    "goal gate: scope",
+    "OK -- population sealed, 0 residual"
+   ],
+   [
+    "goal gate: provenance",
+    "OK -- every doc verified against the certified parent"
+   ],
+   [
+    "goal gate: verdicts",
+    "OK -- all 52 registered systems verdict MET"
+   ],
+   [
+    "goal gate: questions",
+    "UNMET -- questions outstanding: PARTIAL=2"
+   ],
+   [
+    "goal gate: transfers",
+    "OK -- transfer audit: 60 obligations checked, 0 untracked"
+   ],
+   [
+    "goal gate: contradictions",
+    "OK -- every contradiction carries a resolved disposition"
+   ],
+   [
+    "goal gate: acceptance",
+    "UNMET -- no committed receipt of a complete clean thirty-pass run"
+   ],
+   [
+    "goal gate: next",
+    "resolve or carry an accepted disposition for every register row"
+   ]
+  ]
+ },
+ "tree": [
+  {
+   "id": "packages",
+   "label": "completion packages - recorded stages, checked against their items and the board",
+   "children": [
+    {
+     "id": "PKG-GP-HP-LETHAL",
+     "label": "PKG-GP-HP-LETHAL",
+     "state": "research",
+     "counts": {
+      "items": 9
+     },
+     "children": [
+      {
+       "id": "PKG-GP-HP-LETHAL:G1",
+       "label": "G1 stale-text",
+       "state": "review",
+       "counts": {
+        "owner": "FABLE (page edit)",
+        "reviewer": "AUDIT-SEM",
+        "board links": "FABLE-REQ-AUDITSEM-REVIEW-HP-LETHAL-1"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G2",
+       "label": "G2 stale-text",
+       "state": "review",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SEM",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G3",
+       "label": "G3 stale-text",
+       "state": "review",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SEM",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G4",
+       "label": "G4 stale-text",
+       "state": "review",
+       "counts": {
+        "owner": "OPUS",
+        "reviewer": "non-OPUS auditor",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G5",
+       "label": "G5 stale-text (label)",
+       "state": "dispositioned",
+       "counts": {
+        "owner": "OPUS / FABLE",
+        "reviewer": "AUDIT-SEM",
+        "board links": "OPUS-REQ-FRONTIER-G5-DEFEAT-REWARDS-LABEL"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G6",
+       "label": "G6 incorporation",
+       "state": "dispositioned",
+       "counts": {
+        "owner": "OPUS",
+        "reviewer": "\u2014",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G7",
+       "label": "G7 gap",
+       "state": "review",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SEM",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G8",
+       "label": "G8 gap",
+       "state": "review",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SEM",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-GP-HP-LETHAL:G9",
+       "label": "G9 review",
+       "state": "research",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SEM",
+        "board links": "none"
+       }
+      }
+     ]
+    },
+    {
+     "id": "PKG-TECH-SCRIPTVM-VALUE",
+     "label": "PKG-TECH-SCRIPTVM-VALUE",
+     "state": "review",
+     "counts": {
+      "items": 6
+     },
+     "children": [
+      {
+       "id": "PKG-TECH-SCRIPTVM-VALUE:T1",
+       "label": "T1 review",
+       "state": "accepted-and-incorporated",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SPEC (FABLE-REQ-AUDITSPEC-REVIEW-ARITH)",
+        "board links": "FABLE-REQ-AUDITSPEC-REVIEW-ARITH"
+       }
+      },
+      {
+       "id": "PKG-TECH-SCRIPTVM-VALUE:T2",
+       "label": "T2 review",
+       "state": "accepted-and-incorporated",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SPEC",
+        "board links": "FABLE-REQ-AUDITSPEC-REVIEW-SCRIPTVM-STORE-EDITS"
+       }
+      },
+      {
+       "id": "PKG-TECH-SCRIPTVM-VALUE:T3",
+       "label": "T3 disposition",
+       "state": "accepted-and-incorporated",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SPEC",
+        "board links": "ASTRA-REQ-FABLE-NATIVE-DIVIDE-CONSUMER-SCOPE"
+       }
+      },
+      {
+       "id": "PKG-TECH-SCRIPTVM-VALUE:T4",
+       "label": "T4 gap",
+       "state": "accepted-and-incorporated",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SPEC",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-TECH-SCRIPTVM-VALUE:T5",
+       "label": "T5 gap",
+       "state": "accepted-and-incorporated",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SPEC",
+        "board links": "none"
+       }
+      },
+      {
+       "id": "PKG-TECH-SCRIPTVM-VALUE:T6",
+       "label": "T6 review",
+       "state": "review",
+       "counts": {
+        "owner": "FABLE",
+        "reviewer": "AUDIT-SPEC",
+        "board links": "FABLE-REQ-AUDITSPEC-T6-SCRIPTVM-FRESH-READER"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

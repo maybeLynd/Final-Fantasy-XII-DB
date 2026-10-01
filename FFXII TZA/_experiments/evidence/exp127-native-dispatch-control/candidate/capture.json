@@ -1,0 +1,102 @@
+{
+  "status": "INVALID",
+  "hits": [
+    {
+      "unix": 1789984858.9084713,
+      "tid": 20904,
+      "rip": 2652361654272,
+      "rsp": 1021659966696,
+      "rcx": 0,
+      "rdx": 0,
+      "r8": 0,
+      "r9": 1152921504606846960
+    },
+    {
+      "unix": 1789984858.9589603,
+      "tid": 20904,
+      "rip": 2652361654272,
+      "rsp": 1021659966696,
+      "rcx": 0,
+      "rdx": 0,
+      "r8": 0,
+      "r9": 1152921504606846960
+    }
+  ],
+  "arming": [
+    [
+      20904,
+      true
+    ],
+    [
+      46948,
+      true
+    ],
+    [
+      47688,
+      true
+    ],
+    [
+      31820,
+      true
+    ],
+    [
+      8392,
+      true
+    ]
+  ],
+  "errors": [
+    "unowned or unreadable single step; no resume write"
+  ],
+  "cleanup": {
+    "status": "PASS",
+    "reason": "stopped-event clear and readback",
+    "clears": [
+      [
+        20904,
+        true
+      ],
+      [
+        46948,
+        true
+      ],
+      [
+        47688,
+        true
+      ],
+      [
+        31820,
+        true
+      ],
+      [
+        23508,
+        true
+      ]
+    ],
+    "verified": [
+      [
+        20904,
+        true
+      ],
+      [
+        46948,
+        true
+      ],
+      [
+        47688,
+        true
+      ],
+      [
+        31820,
+        true
+      ],
+      [
+        23508,
+        true
+      ]
+    ],
+    "breakpoint_tid": 23508
+  },
+  "detach": true,
+  "mode": "candidate",
+  "trigger_issued": true
+}

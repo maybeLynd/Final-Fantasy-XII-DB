@@ -1,0 +1,30 @@
+[
+  {
+    "name": "incomplete",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\check.py\", line 6, in <module>\n    r=json.loads(a.raw.read_text());assert r['finished'] is True and r['source_restored'] is True\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "missing-case",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\check.py\", line 16, in <module>\n    cs={c['name']:c['observed'] for c in r['cases']};assert len(cs)==len(r['cases'])==13 and set(cs)==names\n                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "hide-duplicate-certification",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\check.py\", line 48, in <module>\n    assert c['label']=='VERIFIED' and c['info']['members']==3 and len(c['entries'])==4;cli(c['cli'],0,'VERIFIED')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "unverified-cleanup",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\check.py\", line 29, in <module>\n    for c in r['owned_process_cleanup']:assert c['terminal'] is True and c['returncode']!=0 and c['pid']==c['gate']['pid'] and c['no_child_launch']\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  }
+]

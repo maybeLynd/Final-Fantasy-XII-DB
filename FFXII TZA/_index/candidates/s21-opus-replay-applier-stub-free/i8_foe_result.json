@@ -1,0 +1,155 @@
+{
+ "cases": {
+  "E_effect_bytes_or_and_not_and_flag_only_for_kind1": true,
+  "G_the_gate_clears_availability_for_every_steal_byte_either_kind": true,
+  "M_member_adds_only_on_foe_stats": true,
+  "S_steal_ids_from_p_E60_skip_FFFF_kind1_only": true
+ },
+ "effect": {
+  "kind0": {
+   "bytes_78_79_7A_7B": [
+    "55",
+    "55",
+    "55",
+    "55"
+   ],
+   "halt": [],
+   "lead": "0",
+   "ok": true,
+   "stop": null
+  },
+  "kind1": {
+   "bytes_78_79_7A_7B": [
+    "55",
+    "71",
+    "55",
+    "0F"
+   ],
+   "halt": [],
+   "lead": "80",
+   "ok": false,
+   "stop": "002FEF30 foe arm"
+  },
+  "want": [
+   "55",
+   "71",
+   "55",
+   "0F"
+  ]
+ },
+ "member": {
+  "kind0": {
+   "fields": {
+    "08": 5,
+    "0A": 7,
+    "12": 9,
+    "14": 11
+   },
+   "halt": [],
+   "ok": true,
+   "stop": null
+  },
+  "kind1": {
+   "fields": {
+    "08": 24,
+    "0A": 35,
+    "12": 46,
+    "14": 57
+   },
+   "halt": [],
+   "ok": false,
+   "stop": "002FEF30 foe arm"
+  },
+  "want": {
+   "08": 24,
+   "0A": 35,
+   "12": 46,
+   "14": 57
+  }
+ },
+ "ok": true,
+ "steal": {
+  "gate_writes_kind1_kind0": [
+   [
+    [
+     "00385C17",
+     "+14",
+     3
+    ],
+    [
+     "00385C41",
+     "+14",
+     1
+    ],
+    [
+     "00385C6B",
+     "+14",
+     0
+    ]
+   ],
+   [
+    [
+     "00385C17",
+     "+14",
+     3
+    ],
+    [
+     "00385C41",
+     "+14",
+     1
+    ],
+    [
+     "00385C6B",
+     "+14",
+     0
+    ]
+   ]
+  ],
+  "kind0": {
+   "avail_14": "00",
+   "halt": [],
+   "item_writes": [],
+   "ok": true,
+   "steal_tail": [],
+   "stop": null
+  },
+  "kind1": {
+   "avail_14": "00",
+   "halt": [],
+   "item_writes": [
+    [
+     "3001",
+     1
+    ],
+    [
+     "4002",
+     1
+    ]
+   ],
+   "ok": true,
+   "steal_tail": [
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "stop": null
+  },
+  "steal_loop_btr_kind1": [
+   [
+    "0031146F",
+    "+14",
+    0
+   ],
+   [
+    "0031146F",
+    "+14",
+    0
+   ]
+  ]
+ }
+}

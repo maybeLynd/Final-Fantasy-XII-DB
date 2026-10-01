@@ -1,0 +1,63 @@
+{
+ "pass": 5,
+ "total": 5,
+ "ok": true,
+ "results": {
+  "delta_class_gate_LD1_LD3_LD5": {
+   "pass_": true,
+   "n": 256,
+   "mismatches": 0,
+   "detail": [],
+   "accepted_class_bytes": "0x60..0x7F (32)",
+   "note": "refused output exactly {0,0,0,1.0} over a 0xAA-filled buffer"
+  },
+  "delta_spherical_LD4_LD6_grid": {
+   "pass_": true,
+   "n": 3200,
+   "mismatches": 0,
+   "detail": [],
+   "wrapped_yaw_min": -3.1415927410125732,
+   "wrapped_yaw_max": 3.1415927410125732,
+   "wrap_of_plus_pi": -3.1415927410125732,
+   "wrap_of_minus_pi": 3.1415927410125732,
+   "note": "every output bit-exact; the sinf/cosf arguments are the wrapped angles"
+  },
+  "delta_planar_branch": {
+   "pass_": true,
+   "n": 144,
+   "mismatches": 0,
+   "detail": [],
+   "planar_cases": 1,
+   "planar_example_pitch_0p7": [
+    -2.8297371864318848,
+    0.0,
+    -2.0597541332244873,
+    1.0
+   ],
+   "note": "planar when 00267260(actor) != 0 and 00264460(actor) == 0: Y = 0 and no cos(pitch) on X/Z"
+  },
+  "delta_vector_arm_r8_nonzero": {
+   "pass_": true,
+   "n": 4,
+   "mismatches": 0,
+   "detail": [],
+   "note": "not in the contract; the page's section 8 describes it"
+  },
+  "getpos_LD2": {
+   "pass_": true,
+   "n": 257,
+   "mismatches": 0,
+   "detail": [],
+   "admitted_classes": [
+    1,
+    3
+   ],
+   "null_actor": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "note": "classes {1,3} read +0xB8; others and null -> (0,0,0)"
+  }
+ }
+}

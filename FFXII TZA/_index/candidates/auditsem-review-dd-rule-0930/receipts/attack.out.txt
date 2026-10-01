@@ -1,0 +1,24 @@
+== Part 1: adversarial pages
+subsystem id S-31 (L2-VERDICTS row, not a register question)   -> UNKNOWN-ID       ['S-31(unknown)']
+zero-padded subsystem id S-05 (register has S-5)               -> UNKNOWN-ID       ['S-05(unknown)']
+ASTRA-QUEUE item AQ-9 (register AQ-1..6 are other questions)   -> UNKNOWN-ID       ['AQ-9(unknown)']
+contract invariant I-10                                        -> UNKNOWN-ID       ['I-10(unknown)']
+My Progress requirement MP-3                                   -> UNKNOWN-ID       ['MP-3(unknown)']
+register id EC-7 used as the mechanism name                    -> READY            []
+unknown token only in YAML frontmatter                         -> UNKNOWN-ID       ['S-44(unknown)']
+note: five headings, no content, header-only tier table        -> READY            []
+note: 'Out of scope' / 'Results' / 'No limits' headings        -> READY            []
+note: parent is the directory itself                           -> READY            []
+note: parent is the page's own folder file README-less path .. -> READY            []
+note: tier column only in an unrelated table                   -> READY            []
+note: note_kind in the BODY, not the frontmatter               -> READY            []
+note: missing parent, page_dir given (control)                 -> NOTE-INCOMPLETE  ['parent(missing)']
+note: unresolved parent (control)                              -> NOTE-INCOMPLETE  ['parent(unresolved)']
+== Part 2: mutants of the rule; S must FAIL on each
+U disabled (elif unknown never true)                 CAUGHT (S FAIL)
+N disabled (note_gaps returns [])                    CAUGHT (S FAIL)
+N section check removed                              CAUGHT (S FAIL)
+N tier-column check removed                          CAUGHT (S FAIL)
+N parent-resolution check removed                    NOT CAUGHT: PASS  S self-test ['clean->READY-WITH-POINTER', 'open box->PARTIAL', 'live id->PARTIAL', 'no pointer->NEEDS-POINTER', 'oeb stated->READY-WITH-POINTER', 'oeb sta
+N kind check removed                                 CAUGHT (S FAIL)
+U prefix test dropped (every unregistered id fails)  CAUGHT (S FAIL)

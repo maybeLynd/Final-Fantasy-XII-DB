@@ -1,0 +1,14 @@
+class 0 -> 0026D48B mov rax, qword ptr [r14 + 0x48]
+class 1 -> 0026D491 mov rax, qword ptr [r14 + 0x40]
+class 2 -> 0026D497 mov rdx, rax
+class 3 -> 0026D4B2 mov eax, dword ptr [r8 + 0x40]
+class 4 -> 0026D4A6 mov rax, qword ptr [r14 + 0x58]
+class 5 -> 0026D4AC mov rax, qword ptr [r14 + 0x60]
+   0026D4BD mov r8d, dword ptr [rbp + r12 + 4]
+   0026D4C2 lea rdx, [r12 + 8]
+   0026D4C7 mov ecx, edi
+   0026D4C9 add rdx, rbp
+   0026D4CC and ecx, 0xffffff
+   0026D4D2 add rcx, rax
+   0026D4D5 call 0x861eba
+   0026D4DA add rsi, 8

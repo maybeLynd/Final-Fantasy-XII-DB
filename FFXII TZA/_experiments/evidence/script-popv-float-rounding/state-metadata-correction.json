@@ -1,0 +1,22 @@
+{
+  "status": "ADDITIVE_INPUT_LABEL_CORRECTION_NOT_RECAPTURE",
+  "affected": "72 first two feasibility cases only; no scientificresult/consumerclosure existed",
+  "cause": "String adapter looked for dictionary key syntax in AST-unparsed dict(keyword) constructor, so value execution used requestedMXCSR but returnedinitiallabel stayedliteral1F80 andR8label absent.",
+  "raw_preserved": true,
+  "executed_adapter_preserved": "runner-adapted.py",
+  "actual_state_basis": "Retained executed adapter u.reg_write(MXCSR,mxcsr) andR8D1; originalactualfeasibility loop RN1F80/RU5F80, plus recordedpoststageMXCSRRC bits. Not a new initial live observation.",
+  "normalized_initial": [
+    {
+      "case": 0,
+      "mxcsr": "0x1f80",
+      "kind_selector_r8d": 1
+    },
+    {
+      "case": 1,
+      "mxcsr": "0x5f80",
+      "kind_selector_r8d": 1
+    }
+  ],
+  "repair": "Matchactualkeywordconstructorsyntax and assertreplacement; actualproduceradapter/default metadata control beforeacceptingresult, no two guestcases replay.",
+  "limits": "Original raw labels remainwrong; normalizedlabel is source/invocation-derived andpoststageRC-corroborated. Native status/unmasked/nativegame stillunproved."
+}

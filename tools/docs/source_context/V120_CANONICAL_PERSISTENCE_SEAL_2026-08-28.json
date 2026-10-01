@@ -1,0 +1,80 @@
+{
+  "schema": "GFZ_V120_CANONICAL_PERSISTENCE_SEAL_V1",
+  "date": "2026-08-28",
+  "semantic_branch": "761B",
+  "status": "PASS_CANONICAL_V120",
+  "canonical_v120": true,
+  "parent": {
+    "mode": "reconstructed canonical-equivalent V119",
+    "artifact": "FFXII_TZA_XIIOnline_Gfz9_V119_RECONSTRUCTED_CANONICAL_EQUIVALENT_2026-08-28.gzf",
+    "sha256": "db851ef4c1a1b3b8dcccb5f87acea09647f2f5dd94ffd1b2986d8ca977e3b46a",
+    "fas2_sha256": "c989a5f33292622afda1d8b3c47c6e7ee4f2cb6626f9726c1769cbd398acd49e",
+    "functions": 38160,
+    "equivalence_seal": "V119_RECONSTRUCTED_CANONICAL_EQUIVALENCE_SEAL_2026-08-28.json"
+  },
+  "replay": {
+    "exact_delta_manifest": "V119_RECONSTRUCTED_TO_V120_CANONICAL_EXACT_DELTA_2026-08-28.json",
+    "exact_delta_manifest_sha256": "a4835787fbbb2542c5612cfaa30bbb5a59c81471e956a7c8c6809aac97cacc82",
+    "created_functions": 1,
+    "created_function": "008A4BAB Catch_All_008A4BAB",
+    "semantic_renames": 1,
+    "semantic_rename": "0037CF50 FUN_0037cf50 -> VMEventContext_InitializeActorOperation",
+    "existing_function_comment_changes": 10103,
+    "tag_associations_added": 54006,
+    "tag_associations_removed": 4,
+    "function_body_changes_during_replay": 0,
+    "no_return_changes_during_replay": 0,
+    "why_structural_changes_zero": "Exact-current structural/CFG hygiene was deliberately preserved in the reconstructed parent; final structural target was already satisfied before semantic V120 replay.",
+    "flow_target_records": 13837,
+    "flow_override_mutations_during_replay": 0,
+    "run2_symbol_renames": 1,
+    "run2_instruction_precomments_added": 2,
+    "mutation_log_sha256": "77a464f32bb33b805870a627462dfd602a1ce1eeb850e648d1518f4814e05fa3"
+  },
+  "final_target": {
+    "artifact": "FFXII_TZA_XIIOnline_Gfz9_V120_CANONICAL_761B_2026-08-28.gzf",
+    "size": 75017534,
+    "sha256": "507490534a8bb67e8d3c6deba4d527c23ab9fdd3672494e511db0d9ef0e511a9",
+    "internal_functions": 38161,
+    "fas2_sha256": "2f2ae19e3fad6ea56dea82d6ca399af662f5b8a31fbc213bd207edf903a693fb",
+    "flow_snapshot_sha256": "d680426c1eae6c5595ad037e2dca576fe911ea6e9558120121a8cbbb01d2a758",
+    "flow_override_records": 13837,
+    "primary_owners": 9409,
+    "primary_owner_categories": 22,
+    "primary_owner_overlap": 0,
+    "final_no_primary_owner": 585,
+    "scriptvm_external_corroboration": 1838,
+    "run2_symbol_and_listing": "PASS",
+    "program_name": "FFXII_TZA.exe",
+    "image_base": "0x00120000",
+    "embedded_original_count": 1,
+    "embedded_original_size": 32864752,
+    "embedded_original_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "embedded_original_byte_identical": true
+  },
+  "packing": {
+    "separate_invocation": true,
+    "target_open": false,
+    "target_busy": false,
+    "target_changed": false,
+    "pack_log_sha256": "462ee1fb2c8776713b62894ca75ddc5a5280f7fa2b243a0bf670313ddfb2c33e"
+  },
+  "fresh_reopen": {
+    "performed_in_new_clean_project": true,
+    "independent_final_verifier": "PASS",
+    "fas2_sha256": "2f2ae19e3fad6ea56dea82d6ca399af662f5b8a31fbc213bd207edf903a693fb",
+    "fas2_byte_identical_to_target": true,
+    "flow_sha256": "d680426c1eae6c5595ad037e2dca576fe911ea6e9558120121a8cbbb01d2a758",
+    "flow_byte_identical_to_target": true,
+    "embedded_original_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "embedded_original_byte_identical": true,
+    "verify_log_sha256": "0dbc572238dbc26b389a7b17253898428a2b218060bde945deb2dd672a8d6054"
+  },
+  "lineage_policy": {
+    "lost_historical_v119_container_sha256": "3233684f28b485f1b824143142dfeb8491cd4e2ea98cb218fd30caf0a6e65826",
+    "historical_container_hash_is_not_reproduced": true,
+    "superseding_basis": "Freshly reconstructed V119 canonical-equivalent state + exact deterministic replay + exact final FAS2/flow targets + closed-file pack + independent fresh reopen + byte-identical authorized EXE.",
+    "v121_lineage_permitted": true
+  },
+  "verdict": "Canonical V120 is materialized and persistence-certified. V121 lineage may proceed from this artifact."
+}

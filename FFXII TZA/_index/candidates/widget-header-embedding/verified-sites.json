@@ -1,0 +1,470 @@
+{
+"ActiveLogWidget40C8": [
+"0x2bde8b",
+"0x244f50",
+"0x2bde86",
+"whole"
+],
+"BattleMenuChildBase4C0": [
+"0x29849e",
+"0x245000",
+"0x298492",
+"whole"
+],
+"BattleMenuChildWidget1620": [
+"0x2779fa",
+"0x245000",
+"0x2779e6",
+"whole"
+],
+"BattleMenuPanelWidget3010": [
+"0x27a42d",
+"0x245000",
+"0x27a428",
+"whole"
+],
+"BattleMenuWidget2DC0": [
+"0x276de6",
+"0x245000",
+"0x276dda",
+"whole"
+],
+"GlyphRunWidget1498": [
+"0x53ed4f",
+"0x244f50",
+"0x53ed46",
+"whole"
+],
+"HelpMessageSlotRecord0100": [
+"0x2bfcca",
+"0x245000",
+"0x2bfcc2",
+"whole"
+],
+"HelpMessageWidget0500": [
+"0x2bf60b",
+"0x245000",
+"0x2bf5ff",
+"whole"
+],
+"ManagerSub0209AC60_02F8": [
+"0x292fe8",
+"0x244f50",
+"0x292fd7",
+"whole"
+],
+"ManagerSub0209AC60_02F8_00C0": [
+"0x293281",
+"0x244f50",
+"0x293275",
+"whole"
+],
+"ManagerSub7FB0Record": [
+"0x2968de",
+"0x245000",
+"0x2968c0",
+"prefix:0xf0"
+],
+"ManagerSub8FA0SlotRecord02B8": [
+"0x2c0f8a",
+"0x245000",
+"0x2c0f7d",
+"whole"
+],
+"ManagerSubA0D0Record": [
+"0x3f7f0d",
+"0x245000",
+"0x3f7efe",
+"whole"
+],
+"MessageWindowRecord": [
+"0x2a2c2e",
+"0x244f50",
+"0x2a2c22",
+"whole"
+],
+"PaneListWidget0B68": [
+"0x296502",
+"0x244f50",
+"0x2964fd",
+"whole"
+],
+"PaneSlotWidget0160": [
+"0x29bbda",
+"0x245000",
+"0x29bbce",
+"whole"
+],
+"Widget0209CC18": [
+"0x2a83a7",
+"0x244f50",
+"0x2a8394",
+"whole"
+],
+"Widget02B5F1F8": [
+"0x3f4828",
+"0x244f50",
+"0x3f4813",
+"whole"
+],
+"Widget02B5F200": [
+"0x3f4c15",
+"0x244f50",
+"0x3f4c04",
+"whole"
+],
+"Widget02CA6C80": [
+"0x4740d3",
+"0x244f50",
+"0x4740ba",
+"whole"
+],
+"Widget02CA8F30": [
+"0x2d1513",
+"0x244f50",
+"0x2d150b",
+"whole"
+],
+"Widget02CA9718": [
+"0x574ce5",
+"0x244f50",
+"0x574cd3",
+"whole"
+],
+"Widget02CA9790": [
+"0x57b872",
+"0x244f50",
+"0x57b86d",
+"whole"
+],
+"Widget02CA99B0": [
+"0x581024",
+"0x244f50",
+"0x581018",
+"whole"
+],
+"Widget02CA99B4": [
+"0x583205",
+"0x244f50",
+"0x5831e8",
+"whole"
+],
+"Widget02CA99E8": [
+"0x583295",
+"0x244f50",
+"0x583283",
+"whole"
+],
+"Widget0720At0209BE80_AB30": [
+"0x29694f",
+"0x245000",
+"0x29694a",
+"whole"
+],
+"WidgetChild00D0At3CA530": [
+"0x3cae3d",
+"0x245000",
+"0x3cae38",
+"whole"
+],
+"WidgetChild0650At298250": [
+"0x298686",
+"0x245000",
+"0x29867a",
+"whole"
+],
+"WidgetConsumer02AEE4C8": [
+"0x39457d",
+"0x244f50",
+"0x39456c",
+"whole"
+],
+"WidgetSingleton01EFAC10": [
+"0x394618",
+"0x244f50",
+"0x394613",
+"whole"
+],
+"WidgetSingleton01FD4940": [
+"0x22834a",
+"0x244f50",
+"0x22833a",
+"whole"
+],
+"WidgetSingleton01FD4948": [
+"0x2284cd",
+"0x244f50",
+"0x2284bb",
+"whole"
+],
+"WidgetSingleton0208E6C0": [
+"0x23bcff",
+"0x244f50",
+"0x23bcf3",
+"whole"
+],
+"WidgetSingleton0208E6C8": [
+"0x240d9f",
+"0x244f50",
+"0x240d93",
+"whole"
+],
+"WidgetSingleton0208E6D0": [
+"0x23ccd0",
+"0x244f50",
+"0x23ccc4",
+"whole"
+],
+"WidgetSingleton0208E6D8": [
+"0x23c53e",
+"0x244f50",
+"0x23c532",
+"whole"
+],
+"WidgetSingleton020927F0": [
+"0x251de2",
+"0x244f50",
+"0x251dc8",
+"whole"
+],
+"WidgetSingleton0209AC18": [
+"0x27ea1f",
+"0x244f50",
+"0x27ea13",
+"whole"
+],
+"WidgetSingleton0209AC20": [
+"0x27ebff",
+"0x244f50",
+"0x27ebf3",
+"whole"
+],
+"WidgetSingleton0209C300": [
+"0x297121",
+"0x244f50",
+"0x29711c",
+"whole"
+],
+"WidgetSingleton0209C318": [
+"0x29d306",
+"0x244f50",
+"0x29d301",
+"whole"
+],
+"WidgetSingleton0209C380": [
+"0x29d2bb",
+"0x244f50",
+"0x29d2b6",
+"whole"
+],
+"WidgetSingleton0209C498": [
+"0x29e106",
+"0x244f50",
+"0x29e101",
+"whole"
+],
+"WidgetSingleton0209C4C8": [
+"0x2a1d9b",
+"0x244f50",
+"0x2a1d7b",
+"whole"
+],
+"WidgetSingleton0209E5F8": [
+"0x2b9c33",
+"0x244f50",
+"0x2b9c2e",
+"whole"
+],
+"WidgetSingleton0209E600": [
+"0x2b9bfd",
+"0x244f50",
+"0x2b9bf8",
+"whole"
+],
+"WidgetSingleton022C83A8": [
+"0x35dc7d",
+"0x244f50",
+"0x35dc78",
+"whole"
+],
+"WidgetSingleton022C83E0": [
+"0x35c0ed",
+"0x244f50",
+"0x35c0e8",
+"whole"
+],
+"WidgetSingleton022CA428": [
+"0x35d0c1",
+"0x244f50",
+"0x35d0b0",
+"whole"
+],
+"WidgetSingleton022CBE20": [
+"0x366785",
+"0x244f50",
+"0x36677b",
+"whole"
+],
+"WidgetSingleton02AED490": [
+"0x37f406",
+"0x244f50",
+"0x37f3d7",
+"whole"
+],
+"WidgetSingleton02AEE4C0": [
+"0x3944a4",
+"0x244f50",
+"0x39449f",
+"whole"
+],
+"WidgetSingleton02AEE4D0": [
+"0x394659",
+"0x244f50",
+"0x394654",
+"whole"
+],
+"WidgetSingleton02B457E0": [
+"0x3bc4a2",
+"0x244f50",
+"0x3bc493",
+"whole"
+],
+"WidgetSingleton02B476B0": [
+"0x3c80fa",
+"0x244f50",
+"0x3c80f5",
+"whole"
+],
+"WidgetSingleton02B47730": [
+"0x3c8a3d",
+"0x244f50",
+"0x3c8a38",
+"whole"
+],
+"WidgetSingleton02B47740": [
+"0x3c98f9",
+"0x244f50",
+"0x3c98f4",
+"whole"
+],
+"WidgetSingleton02B47758": [
+"0x3ca29f",
+"0x244f50",
+"0x3ca29a",
+"whole"
+],
+"WidgetSingleton02B47758_02A0": [
+"0x3ca92b",
+"0x245000",
+"0x3ca91f",
+"whole"
+],
+"WidgetSingleton02B47758_0460": [
+"0x3caa79",
+"0x245000",
+"0x3caa6d",
+"whole"
+],
+"WidgetSingleton02B47758_05F0": [
+"0x3ca8dc",
+"0x245000",
+"0x3ca8d0",
+"whole"
+],
+"WidgetSingleton02B62D78": [
+"0x40269f",
+"0x244f50",
+"0x40269a",
+"whole"
+],
+"WidgetSingleton02B62D80": [
+"0x408346",
+"0x244f50",
+"0x40833a",
+"whole"
+],
+"WidgetSingleton02B62D88": [
+"0x4051c9",
+"0x244f50",
+"0x4051c4",
+"whole"
+],
+"WidgetSingleton02CA8A78": [
+"0x53ed2d",
+"0x244f50",
+"0x53ed28",
+"whole"
+],
+"WidgetSingleton02CA8F38": [
+"0x550450",
+"0x244f50",
+"0x550444",
+"whole"
+],
+"WidgetSingleton02CA8FE0": [
+"0x558c9a",
+"0x244f50",
+"0x558c95",
+"whole"
+],
+"WidgetSingleton02CA9670": [
+"0x561364",
+"0x244f50",
+"0x56134f",
+"whole"
+],
+"WidgetSingleton02CA9678": [
+"0x557b3a",
+"0x244f50",
+"0x557b35",
+"whole"
+],
+"WidgetSingleton02CA96D8": [
+"0x56778f",
+"0x244f50",
+"0x56778a",
+"whole"
+],
+"WidgetSingleton02CA972C": [
+"0x2cd84d",
+"0x244f50",
+"0x2cd83c",
+"whole"
+],
+"WidgetSingleton02CA9738": [
+"0x57714d",
+"0x244f50",
+"0x577143",
+"whole"
+],
+"WidgetSingleton02CA99C0": [
+"0x5829ee",
+"0x244f50",
+"0x5829e9",
+"whole"
+],
+"WidgetSingleton02CA99C8": [
+"0x582de2",
+"0x244f50",
+"0x582dce",
+"whole"
+],
+"WidgetSingleton02CA99D0": [
+"0x582aa9",
+"0x244f50",
+"0x582aa4",
+"whole"
+],
+"WidgetSingleton02CA99D8": [
+"0x582ac7",
+"0x244f50",
+"0x582ac2",
+"whole"
+],
+"WidgetSingleton02CA99E0": [
+"0x583bbd",
+"0x244f50",
+"0x583bb8",
+"whole"
+]
+}

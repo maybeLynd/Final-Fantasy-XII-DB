@@ -1,0 +1,102 @@
+[
+  {
+    "name": "omit_entry_depth_reset",
+    "address": "0025E4D8",
+    "before": "44891de1b5e301",
+    "after": "90909090909090",
+    "expected_first_failure": "entry_clears_shared_depth_even_blocked",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "entry_clears_shared_depth_even_blocked"
+  },
+  {
+    "name": "repeat_begin_on_phase1",
+    "address": "00262251",
+    "before": "8a000000",
+    "after": "5a000000",
+    "expected_first_failure": "wait1_return",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "wait1_return"
+  },
+  {
+    "name": "omit_busy_pc_rewind",
+    "address": "002619E4",
+    "before": "4c2bf1",
+    "after": "909090",
+    "expected_first_failure": "wait0_pc",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "wait0_pc"
+  },
+  {
+    "name": "keep_phase_one_after_completion",
+    "address": "00262385",
+    "before": "00",
+    "after": "01",
+    "expected_first_failure": "wait2_phase",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "wait2_phase"
+  },
+  {
+    "name": "mislabel_float_result_as_integer",
+    "address": "0026B4DA",
+    "before": "03",
+    "after": "02",
+    "expected_first_failure": "real_getx_float_result",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "real_getx_float_result"
+  },
+  {
+    "name": "force_issuer_instead_of_target",
+    "address": "00262236",
+    "before": "74",
+    "after": "eb",
+    "expected_first_failure": "callact_uses_other_actor",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "callact_uses_other_actor"
+  },
+  {
+    "name": "omit_stop_depth_discard",
+    "address": "0025E596",
+    "before": "44891d23b5e301",
+    "after": "90909090909090",
+    "expected_first_failure": "yield_discards_nonempty_stack",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "yield_discards_nonempty_stack"
+  },
+  {
+    "name": "shorten_instruction_budget",
+    "address": "0025E4FB",
+    "before": "00000100",
+    "after": "10000000",
+    "expected_first_failure": "instruction_budget_65536_advance",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "instruction_budget_65536_advance"
+  },
+  {
+    "name": "callactpopa_uses_issuer",
+    "address": "00261B14",
+    "before": "aa",
+    "after": "a6",
+    "expected_first_failure": "callactpopa_preserves_popped_target",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "callactpopa_preserves_popped_target"
+  },
+  {
+    "name": "omit_default_zero_result",
+    "address": "00262360",
+    "before": "48630b83f9",
+    "after": "e91d000000",
+    "expected_first_failure": "absent_callbacks_append_one_zero",
+    "rejected": true,
+    "exit_code": 1,
+    "first_failure": "absent_callbacks_append_one_zero"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "empty-list-rejection-invented",
+      "rejected": true
+    },
+    {
+      "name": "no-match-sentinel-invented",
+      "rejected": true
+    }
+  ],
+  "class": "Original static flow and symbolic path witnesses; no original/native/guest/live execution or mutation campaign"
+}

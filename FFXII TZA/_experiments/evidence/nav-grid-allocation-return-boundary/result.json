@@ -1,0 +1,159 @@
+{
+  "method": "A source/conditional CFG/ABI boundary only; zero FF12/native/emulator/live instructions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "driver_sha256": "81e64a09cb1b8c5c4cde67a95aa38c1c5900ca2bc3a6c0e769b4bebb3252cc20",
+  "cases": [
+    {
+      "name": "returning-zero",
+      "path": {
+        "visited": [
+          "0x3845b5",
+          "0x3845b8",
+          "0x3845bb",
+          "0x3845cb",
+          "0x3845d0",
+          "0x3845d5",
+          "0x3845da",
+          "0x3845dd",
+          "0x3845e2",
+          "0x3845e6",
+          "0x3845e7"
+        ],
+        "calls": [
+          "0x36c110",
+          "0x36c140"
+        ],
+        "initializer": false,
+        "returned": "zero"
+      }
+    },
+    {
+      "name": "returning-nonzero",
+      "path": {
+        "visited": [
+          "0x3845b5",
+          "0x3845b8",
+          "0x3845bb",
+          "0x3845bd",
+          "0x3845c0",
+          "0x3845c3",
+          "0x3845c6",
+          "0x3845cb",
+          "0x3845d0",
+          "0x3845d5",
+          "0x3845da",
+          "0x3845dd",
+          "0x3845e2",
+          "0x3845e6",
+          "0x3845e7"
+        ],
+        "calls": [
+          "0x36c660",
+          "0x36c110",
+          "0x36c140"
+        ],
+        "initializer": true,
+        "returned": "same allocator pointer"
+      }
+    }
+  ],
+  "source_controls": {
+    "branch": {
+      "site": "0x3845bb",
+      "original": "je",
+      "private": "jne",
+      "null_path": {
+        "visited": [
+          "0x3845b5",
+          "0x3845b8",
+          "0x3845bb",
+          "0x3845bd",
+          "0x3845c0",
+          "0x3845c3",
+          "0x3845c6",
+          "0x3845cb",
+          "0x3845d0",
+          "0x3845d5",
+          "0x3845da",
+          "0x3845dd",
+          "0x3845e2",
+          "0x3845e6",
+          "0x3845e7"
+        ],
+        "calls": [
+          "0x36c660",
+          "0x36c110",
+          "0x36c140"
+        ],
+        "initializer": true,
+        "returned": "zero"
+      },
+      "original_binding_rejects": true
+    },
+    "destination": {
+      "site": "0x392674",
+      "original": "rcx, rax",
+      "private": "rcx, rbx",
+      "original_binding_rejects": true
+    }
+  },
+  "memset_import": {
+    "iat": "0x8c2a60",
+    "descriptor_va": "0x1deac68",
+    "descriptor_hex": "48b7cc01000000000000000062eccc01d8297a00",
+    "lookup_va": "0x1deb7d0",
+    "lookup_hex": "4cebcc0100000000",
+    "name_va": "0x1deeb4c",
+    "name_hex": "3e006d656d73657400",
+    "dll_va": "0x1deec62",
+    "dll_hex": "564352554e54494d453134302e646c6c00",
+    "dll": "VCRUNTIME140.dll",
+    "name": "memset"
+  },
+  "caller": {
+    "pcs": [
+      "0x39266f",
+      "0x392672",
+      "0x392674",
+      "0x392677",
+      "0x39267e"
+    ],
+    "base_store": "0x2aee0a0",
+    "store_before_call": true,
+    "conditional_guard": false,
+    "destination": "wrapper-return RAX",
+    "fill": "zero",
+    "length": "sign-extension of original low32 total in EBX",
+    "allocator_input": "ECX low32 total, zero-extended register; downstream allocator interpretation not proved"
+  },
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+      "full_source_sha256": "a2fa28dcfd41d229ca191697ce252845b5f71782048b113909b297ec1670d3ac",
+      "retained": "corridor-preimage.md",
+      "retained_sha256": "a2fa28dcfd41d229ca191697ce252845b5f71782048b113909b297ec1670d3ac",
+      "scope": "all"
+    },
+    {
+      "path": "Database/FFXII TZA/04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md",
+      "full_source_sha256": "515d21bb53894cd692bb38bdcd1b3bff1c148e83c32ed6fbca4520c3df75f7b2",
+      "retained": "rebuild-preimage.md",
+      "retained_sha256": "20d3edca8db78fedb56313c1570d7b24365098a207592dc99ea4d7711df701d3",
+      "scope": "rebuild"
+    },
+    {
+      "path": "Database/FFXII TZA/_types/fields.tsv",
+      "full_source_sha256": "5352d0b1c04975ff55d10da83226e719d22e1d94a76a393051e526a28bb6ecd8",
+      "retained": "nav-fields-preimage.tsv",
+      "retained_sha256": "d7fbae33eb1176be8c359fe89fc2a424e00fe665af4a266f4d55907b2182d594",
+      "scope": "fields"
+    }
+  ],
+  "limits": "Conditional on opaque allocator/initializer/synchronizers returning conformingly and preserving nonvolatile RBX. No actual null return/OOM/fault/loaded CRT/lock semantics/lifetime/leak/global readiness/normal reachability/whole malformed safety. Caller partial published base and dimensions are source-order facts; actual callback or cross-thread effects unknown.",
+  "cleanup": "Reference and peer source readback unchanged; no process/game/input/memory/hook/save/config writes; private changed bytes data only."
+}

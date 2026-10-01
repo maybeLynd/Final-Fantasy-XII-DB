@@ -1,0 +1,47 @@
+{
+  "status": "INVALID",
+  "hits": [
+    {
+      "unix": 1789989658.8584204,
+      "tid": 52100,
+      "rip": 2640602792167,
+      "rsp": 971617723968,
+      "rcx": 2640602857472,
+      "rdx": 0,
+      "r8": 0,
+      "r9": 1152921504606846960
+    }
+  ],
+  "arming": [
+    [
+      52100,
+      true
+    ],
+    [
+      4592,
+      true
+    ],
+    [
+      26688,
+      true
+    ],
+    [
+      43308,
+      true
+    ],
+    [
+      45732,
+      true
+    ]
+  ],
+  "errors": [
+    "target exited"
+  ],
+  "cleanup": {
+    "status": "INVALID",
+    "reason": "DebugBreakProcess failed",
+    "clears": [],
+    "verified": []
+  },
+  "detach": true
+}

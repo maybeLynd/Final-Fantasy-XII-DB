@@ -1,0 +1,22 @@
+{
+  "section": "SECTION-04",
+  "status": "LOCAL PRODUCTION VALIDATED; independent acceptance pending",
+  "original_bodies_verified": 29,
+  "bounded_original_instruction_assertions": 65,
+  "repeat_identical": true,
+  "original_code_mutants_rejected": 6,
+  "auditor_regression_checks": 16,
+  "auditor_mutants_rejected": 5,
+  "concrete_positive_support_checks": 14,
+  "analyzed_bodies": 5,
+  "original_exe_unchanged": true,
+  "application_boundary_substitutions": 7,
+  "import_bridge": "memset only",
+  "scope_limits": [
+    "No live FF12 session or actual IO/GPU/manager-tree/lifetime validation.",
+    "Positive consumer build path stops at 003946B0; later child tree not executed.",
+    "Service returns/pending counts and allocation/free boundaries are synthetic.",
+    "No rerun or repair of unavailable original producer scanner.",
+    "No new Ghidra import, whole-game scan, TEAM/L2 or terminal acceptance."
+  ]
+}

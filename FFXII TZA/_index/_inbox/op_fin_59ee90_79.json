@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "FABLE-CONTRA-0059EE90-IS-NOT-THE-LOCALE-INIT",
+ "result_refs": [
+  "file:Database/FFXII TZA/19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md"
+ ],
+ "note": "ACCEPTED - FABLE's reading verified at the image: 00D27910 is '[FFXII_data_notcache] %s' (a data-source log tag), and the 005979xx stream-construction callers confirm the resolver role. Row renamed to 'the data-source resolver behind Phyre's file stream reader' on language-selection-and-locale-ids.md, with the caller-count amendment folded in (six callers, none locale-specific). Disposition letter unchanged."
+}

@@ -1,0 +1,43 @@
+   0024AA0A movzx r10d, byte ptr [rcx + 2]
+   0024AA26 movzx eax, byte ptr [rdi + 3]
+   0024AA62 movzx ebp, byte ptr [rdi + 4]
+   0024AA97 add rbp, rdi
+   0024AAC3 movzx ecx, byte ptr [rdi + rax*4 + 8]
+   0024AAF4 call 0x248500
+   00248516 movzx edx, byte ptr [rdx]
+   00248525 movzx r9d, byte ptr [rdi + 1]
+   0024852E cmp dl, 2
+   00248559 shr r15w, cl
+   00248561 cmp dl, 3
+   002485B6 jns 0x2485fd
+   002485B8 and cl, 0x7f
+   00248610 shr r9w, cl
+   00248614 add r9w, 3
+   00248628 and r10w, r15w
+   0024864C movzx ecx, byte ptr [rcx + rdi]
+   0024866A ja 0x248696
+PASS P1 the walker/codec instructions read as described (18 pins) - []
+   ch/char_silhouette.as7       pages 3096 decoded 3096 exact-span 3096 dict-inside 3096 wrong-k-ok    3 outLen {1024: 3096} tail mode 0 k 5 tail 1028 B, output byte max 255 distinct 256
+   ch/item_gra00.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 900 B, output byte max 255 distinct 255
+   ch/item_gra01.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 937 B, output byte max 255 distinct 255
+   ch/item_gra02.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 990 B, output byte max 255 distinct 255
+   ch/item_gra03.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 987 B, output byte max 255 distinct 255
+   ch/item_gra04.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 1028 B, output byte max 255 distinct 255
+   ch/item_gra05.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 1009 B, output byte max 255 distinct 255
+   ch/item_gra06.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 1028 B, output byte max 255 distinct 255
+   ch/item_gra07.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {1536: 64} tail mode 0 k 5 tail 38 B, output byte max 0 distinct 1
+   in/char_silhouette.as7       pages 3096 decoded 3096 exact-span 3096 dict-inside 3096 wrong-k-ok    3 outLen {1024: 3096} tail mode 0 k 5 tail 1028 B, output byte max 255 distinct 256
+   in/item_gra00.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 900 B, output byte max 255 distinct 255
+   in/item_gra01.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 937 B, output byte max 255 distinct 255
+   in/item_gra02.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 990 B, output byte max 255 distinct 255
+   in/item_gra03.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 987 B, output byte max 255 distinct 255
+   in/item_gra04.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 1028 B, output byte max 255 distinct 255
+   in/item_gra05.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 1009 B, output byte max 255 distinct 255
+   in/item_gra06.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {6144: 64} tail mode 0 k 5 tail 1028 B, output byte max 255 distinct 255
+   in/item_gra07.as7            pages   64 decoded   64 exact-span   64 dict-inside   64 wrong-k-ok    0 outLen {1536: 64} tail mode 0 k 5 tail 38 B, output byte max 0 distinct 1
+PASS D1 every page of every shipped .as7 decodes to exactly outLen (no overshoot) - 7216 / 7216 pages, 18 files
+PASS D2 every page's tokens consume exactly its offsets[] span - 7216 / 7216
+PASS D3 every dictionary copy stays inside the tail block (after its 4-byte head) - 7216 / 7216
+PASS X1 control: with k - 1 the same pages mostly fail (the window split is load-bearing) - 6 of 7216 still decode
+PASS X2 control: raw page spans are not a constant texel size (991 distinct span sizes)
+FAILS 0

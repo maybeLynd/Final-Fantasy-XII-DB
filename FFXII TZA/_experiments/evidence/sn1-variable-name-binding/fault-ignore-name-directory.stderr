@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-variable-name-binding\check.py", line 45, in <module>
+    if '--fault-ignore-name-directory' in sys.argv:assert name_mutant['name']==c['expected_source_name'],'Changed name directory falsely accepted'
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Changed name directory falsely accepted

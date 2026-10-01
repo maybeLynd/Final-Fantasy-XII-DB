@@ -1,0 +1,7 @@
+PASS  D teardown 0062B5A0 and initialiser 00625CC0 hand the context's +0x520 / +0x548 / +0x708 / +0x760 / +0x7D8 to the objects' routines
+PASS  V +0x708: two dynamic vertex and two index ID3D11Buffer, their sizes at +0x30 / +0x34 and 16-aligned CPU copies at +0x38..+0x50
+PASS  U +0x760: the same buffer header built GPU-writable (bind | 0x80, misc 0x20) and raw R32 UAVs at +0x38..+0x50
+PASS  P +0x7D8: vertex buffer, input layout, constant buffer, a vertex and three pixel shaders; its release also releases its +0x58 pass state (0062BA30, the pass-state release the renderer uses)
+PASS  R 0x28 records at +0x520 / +0x548, 8 x 0x18 at +0x570, 005DC190 at +0x630, the 0x30-record array at +0x6F8 / +0x700, floats at +0x7C0..+0x7D0
+PASS  W the span's rows are in the store; the five new types tile; the pass state at +0x830 is the +0x7D8 object's +0x58
+FAILS 0

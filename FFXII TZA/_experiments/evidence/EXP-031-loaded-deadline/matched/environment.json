@@ -1,0 +1,98 @@
+{
+  "at": 1789337526.0590649,
+  "chosen": {
+    "dir": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64",
+    "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "exists": true,
+    "unexpected_files": [],
+    "modules_dir": false,
+    "hook_ini": false,
+    "launch_options": "",
+    "clean": true,
+    "label": "steam-vanilla",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "build_ok": true
+  },
+  "report": [
+    {
+      "dir": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64",
+      "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "exists": true,
+      "unexpected_files": [],
+      "modules_dir": false,
+      "hook_ini": false,
+      "launch_options": "",
+      "clean": true,
+      "label": "steam-vanilla",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "build_ok": true
+    },
+    {
+      "dir": "D:\\FFXII MP Mod\\FFXII_TestClient3\\x64",
+      "exe": "D:\\FFXII MP Mod\\FFXII_TestClient3\\x64\\FFXII_TZA.exe",
+      "exists": false,
+      "label": "mod-client-3"
+    },
+    {
+      "dir": "D:\\FFXII MP Mod\\FFXII_TestClient1\\x64",
+      "exe": "D:\\FFXII MP Mod\\FFXII_TestClient1\\x64\\FFXII_TZA.exe",
+      "exists": true,
+      "unexpected_files": [
+        "dinput8.dll",
+        "ff12-trampoline.dll",
+        "hook.ini",
+        "simpleLog.dll"
+      ],
+      "modules_dir": true,
+      "hook_ini": true,
+      "module_files": [
+        "00-ff12-tkmalloc.dll",
+        "XIIOnline.command.json",
+        "XIIOnline.session.json",
+        "XIIOnline.session.p1.json",
+        "XIIOnline.session.p2.json",
+        "XIIOnlineNet.dll",
+        "XIIOnlineNet.log",
+        "XIIOnlineNet.pdb",
+        "config",
+        "ff12-file-loader.dll",
+        "ff12-lua-loader.dll"
+      ],
+      "launch_options": "",
+      "clean": false,
+      "label": "mod-client-1",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "build_ok": true
+    },
+    {
+      "dir": "D:\\FFXII MP Mod\\FFXII_TestClient2\\x64",
+      "exe": "D:\\FFXII MP Mod\\FFXII_TestClient2\\x64\\FFXII_TZA.exe",
+      "exists": true,
+      "unexpected_files": [
+        "dinput8.dll",
+        "ff12-trampoline.dll",
+        "hook.ini",
+        "simpleLog.dll"
+      ],
+      "modules_dir": true,
+      "hook_ini": true,
+      "module_files": [
+        "00-ff12-tkmalloc.dll",
+        "XIIOnline.session.p1.json",
+        "XIIOnline.session.p2.json",
+        "XIIOnline.session.p3.json",
+        "XIIOnlineNet.dll",
+        "XIIOnlineNet.log",
+        "XIIOnlineNet.pdb",
+        "config",
+        "ff12-file-loader.dll",
+        "ff12-lua-loader.dll"
+      ],
+      "launch_options": "",
+      "clean": false,
+      "label": "mod-client-2",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "build_ok": true
+    }
+  ]
+}

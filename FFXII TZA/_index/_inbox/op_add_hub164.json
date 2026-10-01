@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-164",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "frontier-shared-callee-hubs batch 164: multi-caller band (0041D790/002418F0 2-A) + top-20 1-A by size (00370180/00280750/004253D0/0037C2E0/003F30D0/001A7770/00427BD0/003A1C90/003800D0/002CBDA0/002A7ED0/00259DF0/004DA3C0/004C8280/003355A0/002A8410/00250E90/0024C3C0/003C2210/003A9950)",
+  "scope": "all 22 ranked bodies: dump, route to bearing hosts, append evidence-backed sections",
+  "completion": "22/22 interior-cited + gates clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

@@ -1,0 +1,2 @@
+# Preserve the bounded raw ZIP test fixtures in this evidence package.
+!run-01/export/*.zip

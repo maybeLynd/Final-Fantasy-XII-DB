@@ -1,0 +1,123 @@
+{
+  "question": "Actual consumer rejects source/view mismatch or accepts stale pair?",
+  "method": "A verifiedfourbodyview and threeexistinghostproducerinvocations plus onebyteprivatebinarydata control; zero original/native/emulator/live executions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "producer_path": "Database/FFXII TZA/_index/candidates/fable-returns-0928e/three_check.py",
+    "producer_sha256": "43dca61efbdb1a720a0fd4d0d1c157e3b29367d368d50a28230bca43b66a9978",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "original_view_sha256": "6c6fe1a11470963bcc9b0b7bc1b54103f367f4c573c0dbe7b933c1e7c05686b0",
+    "changed_view_sha256": "454eec2be385a6faeb551a491705854e37579eacbdf2cd37ce12a9090a82c3d4",
+    "body_sources": [
+      {
+        "entry": "00229E70",
+        "bytes": 37,
+        "path": "Database/FFXII TZA/_experiments/evidence/rate-normalizer-domain/retained/source.bin",
+        "sha256": "749953009c38a262b64c21f7bed7057d31ff25de5d32469b00ec0e55382bb5fa",
+        "scope": "Dependency-verified retained source matched certified original image, not neworiginalcode execution"
+      },
+      {
+        "entry": "0020E600",
+        "bytes": 10,
+        "path": "Database/FFXII TZA/_experiments/evidence/image-reference-roundtrip-domain/retained/decode.bin",
+        "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+        "scope": "Dependency-verified retained source matched certified original image, not neworiginalcode execution"
+      },
+      {
+        "entry": "0020E620",
+        "bytes": 9,
+        "path": "Database/FFXII TZA/_experiments/evidence/image-reference-roundtrip-domain/retained/encode.bin",
+        "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+        "scope": "Dependency-verified retained source matched certified original image, not neworiginalcode execution"
+      },
+      {
+        "entry": "00339630",
+        "bytes": 1061,
+        "path": "Database/FFXII TZA/_experiments/evidence/approach-angle-divisor-domain/retained/source.bin",
+        "sha256": "8a75e847cb7520bb1e19c64607ac094482fb0ad6ba8c825c7a8f8c363478d1f6",
+        "scope": "Dependency-verified retained source matched certified original image, not neworiginalcode execution"
+      }
+    ]
+  },
+  "tools": {
+    "utc": "2026-09-28T10:12:49.697882+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "2e6070bc39fdd02b95f12094d19bf8f25b38f234cf3b62edb340ec75c9af2572",
+  "mutation": {
+    "pc": "0x229e7e",
+    "file_offset": "0x10947e",
+    "original_hex": "72",
+    "changed_hex": "76",
+    "instruction": "JB->JBE samebranchdestination",
+    "original_body_sha256": "749953009c38a262b64c21f7bed7057d31ff25de5d32469b00ec0e55382bb5fa",
+    "changed_body_sha256": "d3f45d13075629071d127b6752801f83952d38dd6fd29241b854f603c4ccc70f",
+    "changed_image_sha256": "9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040",
+    "changed_image_bytes": 32864752,
+    "changed_private_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\consumer-view-binding-control\\disposable\\changed-image-data.bin",
+    "limits": "One-byte private data copy only; no machine instruction execution/deployment or original reference changes"
+  },
+  "receipts": [
+    {
+      "name": "original-pair",
+      "returncode": 0,
+      "stdout_sha256": "536af028b9ec7c90786190b53f3428a01d3225ce749af6b7a0c7f85b4510a648",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "view_sha256": "6c6fe1a11470963bcc9b0b7bc1b54103f367f4c573c0dbe7b933c1e7c05686b0",
+      "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "method": "Actual cloned hostproducer, only its documented inputenvironment configured. NoFF12code/native/FP/live execution",
+      "tags": {
+        "R1": "PASS",
+        "I1": "PASS",
+        "A1": "PASS",
+        "C": "PASS"
+      }
+    },
+    {
+      "name": "stale-view-changed-image",
+      "returncode": 0,
+      "stdout_sha256": "536af028b9ec7c90786190b53f3428a01d3225ce749af6b7a0c7f85b4510a648",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "view_sha256": "6c6fe1a11470963bcc9b0b7bc1b54103f367f4c573c0dbe7b933c1e7c05686b0",
+      "exe_sha256": "9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040",
+      "method": "Actual cloned hostproducer, only its documented inputenvironment configured. NoFF12code/native/FP/live execution",
+      "tags": {
+        "R1": "PASS",
+        "I1": "PASS",
+        "A1": "PASS",
+        "C": "PASS"
+      }
+    },
+    {
+      "name": "changed-view-changed-image",
+      "returncode": 1,
+      "stdout_sha256": "940c41eed27cd2f512c8537aa8d398b5bcfb9fb28c5390efad10d52ee14ff88a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "view_sha256": "454eec2be385a6faeb551a491705854e37579eacbdf2cd37ce12a9090a82c3d4",
+      "exe_sha256": "9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040",
+      "method": "Actual cloned hostproducer, only its documented inputenvironment configured. NoFF12code/native/FP/live execution",
+      "tags": {
+        "R1": "FAIL",
+        "I1": "PASS",
+        "A1": "PASS",
+        "C": "PASS"
+      }
+    }
+  ],
+  "interpretation": "ActualexistingFABLEproducer passes changedJB->JBEimage when itsview remainsoriginal, but failsR1 with changedview. Viewside branch detector works; executable-to-view dependency/reference identity notchecked bythisconfigurableinvocation. A greenrundoesnotattest actualEXE branch. Historical/defaultcachepairwrongnessnotproven; originalASTRA41-43source andSPECacceptance unaffected.",
+  "required_change": "FABLE bindactualEXE/cachedview identity/sourcecoverage or consumeverifiedimmutableoriginalsource; guardmustrejectstale/wrongpair, actualinvocationregressionnothelperhashonly. Preserve existingvalidfinite/sourcefields and COMISScompletion/DAZ/nativeFP/hostmodel limits in R1producer/consumer prose; no unqualifiedbitexact. Need namedaffectedconsumerclaims only, no broadclassification/export/reporter.",
+  "limits": "Onlythreeexplicitconfigurableinvocations/fourbodyprojection, nothistoricaldefaultcacheprovenance or allrepositoryconsumers. Privatebinaryreadasdata neverexecuted; JB/JBE source distinction fromISA notnativeeffect. NooriginalFPcases/newsemantictestcount/nativecaller/init/lifetime/presentation claims. Producer/integritychecksnotindependentacceptance.",
+  "cleanup": {
+    "changed_private_copy_removed": true,
+    "original_reference_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "original_readback_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "limits": "Onlyownprivatechangeddatafile removed afterverifiedpath/hash; source/views/rawretained, no peer/process/control/saves"
+  }
+}

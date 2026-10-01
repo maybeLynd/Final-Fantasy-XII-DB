@@ -1,0 +1,7 @@
+PASS  Z1 the census's four known-offset stores on +0x385C are 00861EC0 calls in 00253A80 (x2), 002EF5F0, 002EF650
+PASS  Z2 three are memset(.., 0, ..) over ranges that contain 0216FCDC; 00253A93 clears 0x58 bytes elsewhere
+PASS  Z3 002EF650: image clear, then 00253A80's record clear
+PASS  Z4 00316A50 kind-4 arm: sum >= 0, else 0
+PASS  Z5 image -> snapshot 021BA940 -> save buffer 02211000 -> file
+PASS  Z6 002EF4A0 and 00229B40's first loop end away from 0216FCDC
+FAILS 0

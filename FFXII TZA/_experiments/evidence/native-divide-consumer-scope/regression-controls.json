@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-rejects-analysis",
+    "returncode": 1,
+    "expected": "Exact source Z suppresses required register-analysis failure and still passes"
+  },
+  {
+    "argument": "--fault-rejects-short-decode",
+    "returncode": 1,
+    "expected": "Exact source Z accepts incomplete declared-range decoding"
+  },
+  {
+    "argument": "--fault-retract-baseline",
+    "returncode": 1,
+    "expected": "Current independent declared-range baseline is complete and error-free; preserve its valid scoped facts"
+  }
+]

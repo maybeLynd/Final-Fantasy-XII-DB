@@ -1,0 +1,9 @@
+PASS  R RTTI: {30098576: '.?AVCategory@Driver@Sd@SQEX@@', 30098560: '.?AV?$FixedList@$0A@VSeadHandle@Sd@SQEX@@@Sd@SQEX@@', 30098544: '.?AV?$SeadObject@$0A@$07@Sd@SQEX@@', 30098736: '.?AUNODE@?$FixedList@$0A@VSeadHandle@Sd@SQEX@@@Sd@SQEX@@'}
+PASS  K Category's constructor: +0x00 = 01CB4490, +0x08 = 01CB4480
+PASS  D the list's deleting destructor frees 0x30 and array-deletes +0x10; Category's destructor does it inline at +0x18..+0x30 / +0x14
+PASS  I Init: capacity at +0x08, capacity x 0x28 + 8 with the cookie, nodes {01CB4530, 0, 0, -1, 0, 0}, array at +0x10, then reset 007B6AA0
+PASS  S reset: free head = nodes, index i, free chain through +0x08/+0x10, head/tail/count cleared; insert: pop, prepend, flags |= 1, payload +0x20, count++
+PASS  C 007AA110: +0x60 = edx (007AAA40's slot index ebx), +0x70 = element pointer, +0x78 / +0x7C ramp counts, Init(element +4) on +0x08
+PASS  U users: 007AA680 increments the dword +0x64 (0 -> 1 calls handle slot +0x18 on each listed handle of this category and stores its float at +0x68), 007AA3E0 decrements it clamped at 0 (1 -> 0 calls slot +0x20), 007A9A10 replays slot +0x18 with +0x68 while +0x64 > 0, 007AA770 counts +0x68 down to 0.0; +0x50 / +0x51 are separate bytes set by 007AA540 / 007AA530 with the masters and consumed by 007AA770; the walks start at Category +0x28 (the list's active head)
+PASS  W the list and node types tile; Category +0x08 is the embedded list; +0x50 / +0x51 bytes, +0x60 index, +0x64 int32 count, +0x68 float, +0x70 element pointer; Category still tiles 0x88
+FAILS 0

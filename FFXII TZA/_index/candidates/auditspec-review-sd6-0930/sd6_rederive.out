@@ -1,0 +1,48 @@
+gate1 rip refs [02EA5220,02EA5228): 1 (raw-only 0)
+   0079F1CF mov    rbx, qword ptr [rip + 0x270604a]         owner=0079F150 FUN_0079f150 store=False
+gate1 image-base-relative disp refs: 0
+gate2 rip refs [02EA5230,02EA5238): 1 (raw-only 0)
+   0079F2EB mov    r14, qword ptr [rip + 0x2705f3e]         owner=0079F150 FUN_0079f150 store=False
+gate2 image-base-relative disp refs: 0
+count+table rip refs [02EA5480,02EA5490): 24 (raw-only 2)
+   007964A9 mov    edx, dword ptr [rip + 0x270efd1]         owner=00796490 FUN_00796490 store=False
+   007964E9 add    rdx, qword ptr [rip + 0x270ef98]         owner=00796490 FUN_00796490 store=False
+   00796539 add    rdx, qword ptr [rip + 0x270ef48]         owner=00796490 FUN_00796490 store=False
+   00796591 mov    edx, dword ptr [rip + 0x270eee9]         owner=00796490 FUN_00796490 store=False
+   007965A6 mov    rcx, qword ptr [rip + 0x270eedb]         owner=00796490 FUN_00796490 store=False
+   007965C4 mov    qword ptr [rip + 0x270eebd], r14         owner=00796490 FUN_00796490 store=True
+   007965CB mov    dword ptr [rip + 0x270eeaf], edx         owner=00796490 FUN_00796490 store=True
+   007965E2 mov    rcx, qword ptr [rip + 0x270ee9f]         owner=00796490 FUN_00796490 store=False
+   007965FD mov    qword ptr [rip + 0x270ee84], r14         owner=00796490 FUN_00796490 store=True
+   00796604 mov    dword ptr [rip + 0x270ee75], r14d        owner=00796490 FUN_00796490 store=True
+   0079FC78 lea    rcx, [rip + 0x2705801]                   owner=0079FB10 FUN_0079fb10 store=False
+   0079FD1F mov    rax, qword ptr [rip + 0x2705762]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FD49 mov    rbx, qword ptr [rip + 0x2705738]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FD9E mov    rax, qword ptr [rip + 0x27056e3]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FDD0 mov    rax, qword ptr [rip + 0x27056b1]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FE1D mov    rax, qword ptr [rip + 0x2705664]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FE2C mov    r15, qword ptr [rip + 0x2705655]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FEEF mov    r13, qword ptr [rip + 0x2705592]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FF45 mov    rax, qword ptr [rip + 0x270553c]         owner=0079FB10 FUN_0079fb10 store=False
+   0079FFD6 mov    rax, qword ptr [rip + 0x27054ab]         owner=0079FB10 FUN_0079fb10 store=False
+   008B7B9D mov    eax, dword ptr [rip + 0x25ed8dd]         owner=008B7B90 FUN_008b7b90 store=False
+   008B7BAC mov    rcx, qword ptr [rip + 0x25ed8d5]         owner=008B7B90 FUN_008b7b90 store=False
+   008B7BBF mov    qword ptr [rip + 0x25ed8c2], rax         owner=008B7B90 FUN_008b7b90 store=True
+   008B7BC6 mov    dword ptr [rip + 0x25ed8b4], eax         owner=008B7B90 FUN_008b7b90 store=True
+count+table image-base-relative disp refs: 0
+C-byte rip refs [02EA5213,02EA5214): 8 (raw-only 0)
+   00799137 mov    byte ptr [rip + 0x270c0d5], r13b         owner=00798FF0 FUN_00798ff0 store=True
+   00799154 mov    byte ptr [rip + 0x270c0b8], 0            owner=00798FF0 FUN_00798ff0 store=True
+   007996FA cmp    byte ptr [rip + 0x270bb12], 0            owner=00798FF0 FUN_00798ff0 store=False
+   0079B0C4 mov    byte ptr [rip + 0x270a149], al           owner=0079B0B0 FUN_0079b0b0 store=True
+   007A223C mov    byte ptr [rip + 0x2702fd0], 1            owner=007A2140 XInputController_PollState store=True
+   007A2410 mov    byte ptr [rip + 0x2702dfc], 0            owner=007A2140 XInputController_PollState store=True
+   007A30C4 mov    byte ptr [rip + 0x2702148], 1            owner=007A2440 InputBackend_UpdateResolvedDeviceState store=True
+   007A30DB mov    byte ptr [rip + 0x2702131], 0            owner=007A2440 InputBackend_UpdateResolvedDeviceState store=True
+C-byte image-base-relative disp refs: 0
+R2 relocs into 02EA5210..02EA5238: 0  raw qwords: 0
+R4 .data va 01DF0000 raw end 01F7E400 virtual end 02F97530; gate1 past raw: True gate2 past raw: True
+R3 0079FB10 raw call/jmp sites: ['797AAD']  owners: ['00797A20 FUN_00797a20']  rip refs(lea/ptr): []  jcc: []
+R3 00797A20 raw call/jmp sites: []  owners: []  rip refs(lea/ptr): ['007A0180 FUN_007a0180@007A0298']  jcc: []
+R3 007A0180 raw call/jmp sites: ['7927A4', '79F3F9']  owners: ['00792760 FUN_00792760', '0079F150 FUN_0079f150']  rip refs(lea/ptr): []  jcc: []
+R3 00792760 raw call/jmp sites: ['79F211']  owners: ['0079F150 FUN_0079f150']  rip refs(lea/ptr): []  jcc: []

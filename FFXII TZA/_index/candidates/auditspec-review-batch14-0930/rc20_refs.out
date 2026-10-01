@@ -1,0 +1,13 @@
+003548B0 relocs 2 raw-qwords 2 code 0
+    reloc at 01EEDEC8 -> family-0 record 0x003E, slot +0x0
+    reloc at 01EEE228 -> family-0 record 0x0059, slot +0x0
+003488B0 relocs 2 raw-qwords 2 code 0
+    reloc at 01EEDF48 -> family-0 record 0x0042, slot +0x0
+    reloc at 01EEE2A8 -> family-0 record 0x005D, slot +0x0
+00349680 relocs 1 raw-qwords 1 code 1
+    reloc at 01EF70C8 -> family-0 record 0x04CE, slot +0x0
+    code  0033F850 jmp in 0033F850 thunk_FUN_00349680
+00345430 relocs 1 raw-qwords 1 code 0
+    reloc at 01EEEA48 -> family-0 record 0x009A, slot +0x0
+0033F850 relocs 1 raw-qwords 1 code 0
+    reloc at 01EF7148 -> family-0 record 0x04D2, slot +0x0

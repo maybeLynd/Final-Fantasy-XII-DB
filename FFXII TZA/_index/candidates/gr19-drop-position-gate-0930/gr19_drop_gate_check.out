@@ -1,0 +1,6 @@
+PASS  D1 focus unit only under 02089340 bit 4 and unit flag bit 3, else NULL; position -> 003377C0
+PASS  D2 003377C0: NULL / actorless -> 0; collision extent 00265090; gather up to 0x1C actors (00391D10 / 003920F0)
+PASS  D3 any gathered actor sharing the unit's +0x138 byte +6 group (not the same non-zero +0x119) makes the answer 0
+PASS  D4 00337700: 00391410 must pass, 00384130 must find a region, 00336390 tests 0032A6A0 at the point and four offsets
+PASS  D5 the defeat body calls the gate at 00312588-00312597 and rolls the drop only on a non-zero answer
+FAILS 0

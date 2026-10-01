@@ -1,0 +1,334 @@
+{
+  "status": "PRODUCER_CHECKED_ORIGINAL_BANK_CALLBACK_FRAME_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A RETAINED STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "render-executor-consumption-raw-01.json",
+      "sha256": "bf5ab0f91f75b45912a8a798bd46fab29bfcccb1d2f719b7861f559bf86ea689"
+    },
+    {
+      "path": "texture-async-bank-dispatch-source-01.json",
+      "sha256": "75fb672a306b7a228e14131ad242fa228f49f98b3be9e33cd9e707ad81348b9a"
+    }
+  ],
+  "annotation_prerequisite": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 556,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 120,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "required_invocation_receipts": [
+    {
+      "path": "texture-async-bank-dispatch-positive-01.status.json",
+      "sha256": "c71665e5f8625c40ebfb1309a021452867da9a767e02cd831a166a76015292b4"
+    },
+    {
+      "path": "texture-async-bank-dispatch-positive-01.stdout",
+      "sha256": "8381e8415ff6fd672ffb791dc5aa4214c0d58c73f98b666d8d2775892729c43e"
+    },
+    {
+      "path": "texture-async-bank-dispatch-positive-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-texture-async-bank-dispatch.py",
+      "sha256": "6e47a0aadf0ca41b2f4e4c041df1ae680e04da43530edecfe845ca5597ec7b44"
+    },
+    {
+      "path": "texture-async-bank-dispatch-result-01.json",
+      "sha256": "6ffa4e4ceffbd9be6b30ed86d71195e596c21d7341a504210313e226f866f0d9"
+    },
+    {
+      "path": "render-executor-consumption-result-01.json",
+      "sha256": "299b241a8a1df25b20527713a82a3945d6606d6a8d220f29345d75ad48a1cb6c"
+    },
+    {
+      "path": "check-render-executor-consumption.py",
+      "sha256": "e7ee07cba0f42483ce36fac093a884c09540fad0537494045622f8a613791e0d"
+    },
+    {
+      "path": "capture-render-executor-consumption.py",
+      "sha256": "b8711f7358c2a8a94075ace3753a96b0b4e64f39e6494a31c02cf2bfb200d0cd"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.status.json",
+      "sha256": "39a68310f3300880f85211d74e8dc8aac006d7fae7038987b1d64fee42697fc5"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.stdout",
+      "sha256": "31b070cccd7d5af7092e03a7de3cf2fc4c1e95748f766e08db6520bbeeca654c"
+    },
+    {
+      "path": "texture-async-bank-dispatch-capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-texture-async-bank-dispatch.py",
+      "sha256": "a4bd2d75a4e17b23181a47f328f8276a1627c30904264dfa512783e87fbb1f1a"
+    }
+  ],
+  "original_dispatch": {
+    "opcode": 47,
+    "arm": 6,
+    "target": "0x60a899",
+    "labels_hex": "0001020304050707070707070707070707070707070707070707070707070707070707070707070707070707070706",
+    "targets_hex": "e6a54e009aa64e004aa74e00f8a74e00dea84e0058a94e0099a84e00c6a94e00"
+  },
+  "instruction_pins": [
+    {
+      "pc": "0x60a5b3",
+      "mnemonic": "lea",
+      "args": "rbx, [rsi + 0x70]"
+    },
+    {
+      "pc": "0x60a5c0",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [rsi]"
+    },
+    {
+      "pc": "0x60a5c2",
+      "mnemonic": "dec",
+      "args": "ecx"
+    },
+    {
+      "pc": "0x60a5c4",
+      "mnemonic": "cmp",
+      "args": "ecx, 0x2e"
+    },
+    {
+      "pc": "0x60a5c7",
+      "mnemonic": "ja",
+      "args": "0x60a9c6"
+    },
+    {
+      "pc": "0x60a5cd",
+      "mnemonic": "movsxd",
+      "args": "rax, ecx"
+    },
+    {
+      "pc": "0x60a5d0",
+      "mnemonic": "movzx",
+      "args": "eax, byte ptr [r12 + rax + 0x4eaad8]"
+    },
+    {
+      "pc": "0x60a5d9",
+      "mnemonic": "mov",
+      "args": "ecx, dword ptr [r12 + rax*4 + 0x4eaab8]"
+    },
+    {
+      "pc": "0x60a5e1",
+      "mnemonic": "add",
+      "args": "rcx, r12"
+    },
+    {
+      "pc": "0x60a5e4",
+      "mnemonic": "jmp",
+      "args": "rcx"
+    },
+    {
+      "pc": "0x60a899",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rsp + 0x50]"
+    },
+    {
+      "pc": "0x60a89e",
+      "mnemonic": "test",
+      "args": "rcx, rcx"
+    },
+    {
+      "pc": "0x60a8a1",
+      "mnemonic": "je",
+      "args": "0x60a8b4"
+    },
+    {
+      "pc": "0x60a8a3",
+      "mnemonic": "mov",
+      "args": "r8, rcx"
+    },
+    {
+      "pc": "0x60a8a6",
+      "mnemonic": "lea",
+      "args": "rdx, [rsp + 0x58]"
+    },
+    {
+      "pc": "0x60a8ab",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rcx + 0x28]"
+    },
+    {
+      "pc": "0x60a8af",
+      "mnemonic": "call",
+      "args": "0x60b750"
+    },
+    {
+      "pc": "0x60a8b4",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x50], 0"
+    },
+    {
+      "pc": "0x60a8bd",
+      "mnemonic": "mov",
+      "args": "qword ptr [rbp - 0x50], r14"
+    },
+    {
+      "pc": "0x60a8c1",
+      "mnemonic": "lea",
+      "args": "rax, [rsp + 0x50]"
+    },
+    {
+      "pc": "0x60a8c6",
+      "mnemonic": "mov",
+      "args": "qword ptr [rbp - 0x48], rax"
+    },
+    {
+      "pc": "0x60a8ca",
+      "mnemonic": "mov",
+      "args": "rax, qword ptr [rbx - 0x60]"
+    },
+    {
+      "pc": "0x60a8ce",
+      "mnemonic": "mov",
+      "args": "qword ptr [rbp - 0x40], rax"
+    },
+    {
+      "pc": "0x60a8d2",
+      "mnemonic": "lea",
+      "args": "rcx, [rbp - 0x50]"
+    },
+    {
+      "pc": "0x60a8d6",
+      "mnemonic": "call",
+      "args": "qword ptr [rbx - 0x68]"
+    },
+    {
+      "pc": "0x60a8d9",
+      "mnemonic": "jmp",
+      "args": "0x60a9d9"
+    },
+    {
+      "pc": "0x60a9d9",
+      "mnemonic": "sub",
+      "args": "rsi, -0x80"
+    },
+    {
+      "pc": "0x60a9dd",
+      "mnemonic": "sub",
+      "args": "rbx, -0x80"
+    },
+    {
+      "pc": "0x60a9e1",
+      "mnemonic": "cmp",
+      "args": "rsi, r15"
+    },
+    {
+      "pc": "0x60a9e4",
+      "mnemonic": "jne",
+      "args": "0x60a5c0"
+    },
+    {
+      "pc": "0x185a54",
+      "mnemonic": "mov",
+      "args": "r8d, dword ptr [rip + 0x1df9b35]"
+    },
+    {
+      "pc": "0x185a5b",
+      "mnemonic": "lea",
+      "args": "rdx, [rip + 0xbae]"
+    },
+    {
+      "pc": "0x185a62",
+      "mnemonic": "call",
+      "args": "0x5fea50"
+    },
+    {
+      "pc": "0x5fea5f",
+      "mnemonic": "mov",
+      "args": "rsi, r8"
+    },
+    {
+      "pc": "0x5fea62",
+      "mnemonic": "mov",
+      "args": "rdi, rdx"
+    },
+    {
+      "pc": "0x5feaf4",
+      "mnemonic": "mov",
+      "args": "qword ptr [rcx + 8], rdi"
+    },
+    {
+      "pc": "0x5feaf8",
+      "mnemonic": "mov",
+      "args": "qword ptr [rcx + 0x10], rsi"
+    },
+    {
+      "pc": "0x186610",
+      "mnemonic": "mov",
+      "args": "edx, dword ptr [rcx + 0x10]"
+    },
+    {
+      "pc": "0x186613",
+      "mnemonic": "mov",
+      "args": "rcx, qword ptr [rip + 0x1df8f9e]"
+    },
+    {
+      "pc": "0x18661a",
+      "mnemonic": "jmp",
+      "args": "0x62ebc0"
+    }
+  ],
+  "composition": {
+    "command_bytes": 128,
+    "command_callback_offset": 8,
+    "command_data_offset": 16,
+    "frame_bytes": 24,
+    "frame_field0": "executor R14",
+    "frame_field8": "pointer to executor stack slot rsp+50",
+    "frame_field16": "QWORD from command+10",
+    "callback_input": "temporary stack frame at rbp-50, not raw command",
+    "bank_read": "lowDWORD frame+10, zero-extendedEDX",
+    "context_read": "CURRENT global1F7F5B8 at callback execution",
+    "next_bank_read": false,
+    "normal_callback_return": "60A8D9 then jump to128B cursor advance"
+  },
+  "established": [
+    "If the verified interpreter reaches opcode2F on a valid original command record and optional60B750 returns normally, it reads callback from raw command+8 but passes a synthesized24B stack frame. Raw command+10 is copied into frame+10. It does not pass the raw opcode record.",
+    "Composed with original185A50/5FEA50/186610, the callback selects the bank captured before submission, not the then-current global1F7F590 bank. The DWORD read discards any high bits; submission R8D zero-extends the bank. Context1F7F5B8 is instead freshly loaded by186610. Bank and context therefore have different read times.",
+    "After186610/keyed consumer returns normally, the interpreter continues at60A8D9 and advances source and biased record cursors by128B before the next equality test. This local source order is not actual process timing, synchronous completion with the submitting caller or frame frequency.",
+    "Earlier raw-command-address hypothesis is refuted for this shipped opcode2F branch. New bank-dispatch packet correctly left ABI unproved; this additive retained-data composition supplies that missing local connection without recapture, native calls or gameplay. The old BG11 request remains already retired, not counted again."
+  ],
+  "assumptions": [
+    "Execution reaches the verified opcode2F branch with a valid stable unmodified record and normally returning optional helper/callback; native Windows x64 ABI preserves nonvolatileRBX/RBP/R14 and stack storage",
+    "Original context/key/bank storage valid for the selected operation; natural initialization and complete queue publication/protocol remain independent"
+  ],
+  "limitations": [
+    "No fresh native/emulated/live execution or observed thread/event hit; no claim all interpreter paths/exception paths or normal game caller reachability proved",
+    "Optional60B750 effects, record mutation/reentry/concurrency and runtime stack-frame lifetime beyond normal callback remain unproved; frame is transient and not a portable persistent object",
+    "The context pointer may differ from submission-time state because the callback rereads it; no equality/lifetime/stability guarantee. Unconditional all-bank cancellation, counter38 meaning/writers/drain and native graphics effects remain OPEN",
+    "No new wholeOV or historicalRT request closure, native experiment or external review run count; canonical BG11 is reused and scoped independent consumption remains pending"
+  ],
+  "affected_claims": [
+    "Existing OPUS bank-dispatch consumer: distinguish128B command from24B transient callback frame; queued bank versus current context ABI",
+    "Existing FABLE bank-dispatch consumer: submission/global bank advance does not choose later callback bank; initialized scheduling/lifetime still open"
+  ],
+  "next_discriminator": "Selected original submitting caller/flush/drain ordering and element38 writer closure if still unowned/required, before real-process scheduling. Existing BG11 consumer source is sufficient for this local callback ABI.",
+  "checker_sha256": "0ba068ac8a2a3a2c3eddae801643bccb02ca4853ef252c9338e87697b83e1c31",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Read-only shipping/retained inputs and finite reducer, no game/PC/input/instrument/native/save/config/reference/peer-process mutation"
+}

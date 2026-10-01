@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\capture.py"
+  ],
+  "driver_sha256": "0da942b495bf074ec5564d3fa7b7158772931c6688c05b97377040637f4bd5eb",
+  "returncode": 0,
+  "stdout": "RETAINED_ORIGINAL_MOVEMENT_ALIAS_BOUNDARY\n",
+  "stderr": "",
+  "terminal": true
+}

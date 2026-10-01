@@ -1,0 +1,6 @@
+PASS  P fill, then routines on 16-byte boundaries, each ending in a return: 00148D64 -> 00148D70, 00148BB3 -> 00148BC0 + 00148C00, 001491CE -> 001491D0 + 00149220, 001492FF -> 00149300, 00809D65 -> 00809D70
+PASS  E entries at the held start: 00125770 (int3 fill, 16-aligned, rbp frame, saves xmm6/xmm7, no call), 0071B6B0 (int3 fill, 16-aligned), 00158C97 (right after 00158C09's ret, rbp frame, no call)
+PASS  S 00713760 ends `jmp rcx` after `mov ecx, [r8 + rax*4 + TAB]` (index 0..0xD); TAB 007137E0..00713818 is 14 RVAs, each landing on an arm in 007137BC..007137E0 or in 00713760 itself (its default, 00713782: 8)
+PASS  T 002085B0's second dispatch: tables ['00208628', '00208664'], index tables ['00208630', '00208674']; 00208664 holds 4 RVAs into 002085B0, 00208674..002086D0 values < 4
+PASS  R references per entry (rel32 / lea / qword / rva): 00148D70 0/0/0/1, 00148BC0 0/0/0/0, 00148C00 0/0/0/0, 001491D0 0/0/0/0, 00149220 0/0/0/0, 00149300 0/0/0/0, 00809D70 0/0/0/0, 00125770 0/0/0/0, 0071B6B0 0/0/0/0, 00158C97 0/0/0/0
+FAILS 0

@@ -1,0 +1,658 @@
+{
+  "status": "BOUNDED_ONE_BASED_SOURCE_STATEMENTS_SUPPORTED",
+  "method": "A actual admitted original files and retained OPUS source parser; no compiled script/native/guest/live execution",
+  "raw_sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3",
+  "named_entries": [
+    {
+      "module": "btlctrl",
+      "name": "DEBUG_MENU",
+      "scope": 1,
+      "pc": 525,
+      "label": {
+        "block": 0,
+        "index": 243,
+        "source": {
+          "offset": 12540,
+          "hex": "09090944454255475f4d454e553a",
+          "text": "\t\t\tDEBUG_MENU:"
+        }
+      },
+      "coordinate_line": 245,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "btlctrl",
+      "name": "MJMENU_PAGE_CHG",
+      "scope": 1,
+      "pc": 630,
+      "label": {
+        "block": 2,
+        "index": 14,
+        "source": {
+          "offset": 76087,
+          "hex": "4d4a4d454e555f504147455f4348473a",
+          "text": "MJMENU_PAGE_CHG:"
+        }
+      },
+      "coordinate_line": 17,
+      "coordinate_block": 2,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "evctrl",
+      "name": "MENU_TOP",
+      "scope": 1,
+      "pc": 16,
+      "label": {
+        "block": 0,
+        "index": 958,
+        "source": {
+          "offset": 18527,
+          "hex": "094d454e555f544f503a",
+          "text": "\tMENU_TOP:"
+        }
+      },
+      "coordinate_line": 417,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "UNACCEPTED_SHARED_TAIL_Q1_COUNT_MISMATCH",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "evctrl",
+      "name": "summon",
+      "scope": 1,
+      "pc": 3230,
+      "label": {
+        "block": 0,
+        "index": 1250,
+        "source": {
+          "offset": 25622,
+          "hex": "09090973756d6d6f6e3a",
+          "text": "\t\t\tsummon:"
+        }
+      },
+      "coordinate_line": 708,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "UNACCEPTED_SHARED_TAIL_Q1_COUNT_MISMATCH",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "DEBUG_MENU",
+      "scope": 1,
+      "pc": 717,
+      "label": {
+        "block": 0,
+        "index": 383,
+        "source": {
+          "offset": 21359,
+          "hex": "44454255475f4d454e553a",
+          "text": "DEBUG_MENU:"
+        }
+      },
+      "coordinate_line": 385,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "JUST_OPEN_MJ_MENU",
+      "scope": 1,
+      "pc": 1726,
+      "label": {
+        "block": 0,
+        "index": 569,
+        "source": {
+          "offset": 26539,
+          "hex": "4a5553545f4f50454e5f4d4a5f4d454e553a",
+          "text": "JUST_OPEN_MJ_MENU:"
+        }
+      },
+      "coordinate_line": 571,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "JUST_OPEN_MJ_MENU2",
+      "scope": 1,
+      "pc": 1751,
+      "label": {
+        "block": 0,
+        "index": 575,
+        "source": {
+          "offset": 26679,
+          "hex": "4a5553545f4f50454e5f4d4a5f4d454e55323a",
+          "text": "JUST_OPEN_MJ_MENU2:"
+        }
+      },
+      "coordinate_line": 577,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "MJMENU_PAGE_CHG",
+      "scope": 1,
+      "pc": 1856,
+      "label": {
+        "block": 2,
+        "index": 14,
+        "source": {
+          "offset": 118091,
+          "hex": "4d4a4d454e555f504147455f4348473a",
+          "text": "MJMENU_PAGE_CHG:"
+        }
+      },
+      "coordinate_line": 17,
+      "coordinate_block": 2,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "WEATHER_MENU",
+      "scope": 1,
+      "pc": 5374,
+      "label": {
+        "block": 0,
+        "index": 610,
+        "source": {
+          "offset": 28115,
+          "hex": "574541544845525f4d454e553a",
+          "text": "WEATHER_MENU:"
+        }
+      },
+      "coordinate_line": 612,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "INDEX_MOVE_FROM_MENU",
+      "scope": 1,
+      "pc": 6559,
+      "label": {
+        "block": 0,
+        "index": 867,
+        "source": {
+          "offset": 36680,
+          "hex": "494e4445585f4d4f56455f46524f4d5f4d454e553a",
+          "text": "INDEX_MOVE_FROM_MENU:"
+        }
+      },
+      "coordinate_line": 869,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "BENRI",
+      "scope": 1,
+      "pc": 6611,
+      "label": {
+        "block": 0,
+        "index": 891,
+        "source": {
+          "offset": 37437,
+          "hex": "42454e52493a",
+          "text": "BENRI:"
+        }
+      },
+      "coordinate_line": 893,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "RE_HIGHMODELSETTING",
+      "scope": 1,
+      "pc": 7837,
+      "label": {
+        "block": 0,
+        "index": 977,
+        "source": {
+          "offset": 39652,
+          "hex": "52455f484947484d4f44454c53455454494e473a",
+          "text": "RE_HIGHMODELSETTING:"
+        }
+      },
+      "coordinate_line": 979,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "BEHIND_CAMERA",
+      "scope": 1,
+      "pc": 8184,
+      "label": {
+        "block": 0,
+        "index": 1039,
+        "source": {
+          "offset": 41556,
+          "hex": "424548494e445f43414d4552413a",
+          "text": "BEHIND_CAMERA:"
+        }
+      },
+      "coordinate_line": 1042,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "INDEX_MOVE",
+      "scope": 1,
+      "pc": 8447,
+      "label": {
+        "block": 0,
+        "index": 1083,
+        "source": {
+          "offset": 43365,
+          "hex": "494e4445585f4d4f56453a",
+          "text": "INDEX_MOVE:"
+        }
+      },
+      "coordinate_line": 1085,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "BENRI_DEBUG",
+      "scope": 1,
+      "pc": 8937,
+      "label": {
+        "block": 0,
+        "index": 1155,
+        "source": {
+          "offset": 45780,
+          "hex": "42454e52495f44454255473a",
+          "text": "BENRI_DEBUG:"
+        }
+      },
+      "coordinate_line": 1157,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    },
+    {
+      "module": "mapctrl",
+      "name": "SCENARIO_MENU",
+      "scope": 1,
+      "pc": 15512,
+      "label": {
+        "block": 0,
+        "index": 1221,
+        "source": {
+          "offset": 47577,
+          "hex": "5343454e4152494f5f4d454e553a",
+          "text": "SCENARIO_MENU:"
+        }
+      },
+      "coordinate_line": 1224,
+      "coordinate_block": 0,
+      "coordinate_selects_label_under_either_scheme": false,
+      "binding_status": "DIRECTORY_AND_Q1_BOUND",
+      "attribution": "Entry does not itself locate the label declaration; source statement/bytecode discriminator required"
+    }
+  ],
+  "anchors": [
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "pc": 531,
+      "kind": "assignment",
+      "one_based": {
+        "line": 4,
+        "block": 2,
+        "index": 3,
+        "record_hex": "04000201",
+        "bytecode_hex": "4f0000490d00",
+        "value": 0,
+        "target_operand": 13,
+        "source": {
+          "offset": 75527,
+          "hex": "09090909096c6f6f705f666c67093d20303b",
+          "text": "\t\t\t\t\tloop_flg\t= 0;"
+        },
+        "source_literal": 0,
+        "literal_and_operation_match": true,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "zero_based": {
+        "line": 4,
+        "block": 2,
+        "index": 4,
+        "record_hex": "04000201",
+        "bytecode_hex": "4f0000490d00",
+        "value": 0,
+        "target_operand": 13,
+        "source": {
+          "offset": 75547,
+          "hex": "09090909096d61706a756d705f6d656e755f666c67093d20313b092f2f837d8362837683578383839383768381836a8385815b82f08a4a82a282bd",
+          "text": "\t\t\t\t\tmapjump_menu_flg\t= 1;\t//\u30de\u30c3\u30d7\u30b8\u30e3\u30f3\u30d7\u30e1\u30cb\u30e5\u30fc\u3092\u958b\u3044\u305f"
+        },
+        "source_literal": 1,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      }
+    },
+    {
+      "module": "btlctrl",
+      "scope": 1,
+      "pc": 537,
+      "kind": "assignment",
+      "one_based": {
+        "line": 5,
+        "block": 2,
+        "index": 4,
+        "record_hex": "05000201",
+        "bytecode_hex": "4f0100490e00",
+        "value": 1,
+        "target_operand": 14,
+        "source": {
+          "offset": 75547,
+          "hex": "09090909096d61706a756d705f6d656e755f666c67093d20313b092f2f837d8362837683578383839383768381836a8385815b82f08a4a82a282bd",
+          "text": "\t\t\t\t\tmapjump_menu_flg\t= 1;\t//\u30de\u30c3\u30d7\u30b8\u30e3\u30f3\u30d7\u30e1\u30cb\u30e5\u30fc\u3092\u958b\u3044\u305f"
+        },
+        "source_literal": 1,
+        "literal_and_operation_match": true,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "zero_based": {
+        "line": 5,
+        "block": 2,
+        "index": 5,
+        "record_hex": "05000201",
+        "bytecode_hex": "4f0100490e00",
+        "value": 1,
+        "target_operand": 14,
+        "source": {
+          "offset": 75608,
+          "hex": "",
+          "text": ""
+        },
+        "source_literal": null,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      }
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "pc": 729,
+      "kind": "dvar",
+      "one_based": {
+        "line": 388,
+        "block": 0,
+        "index": 387,
+        "record_hex": "84010001",
+        "bytecode_hex": "4f02004a520046",
+        "value": 2,
+        "target_operand": 82,
+        "source": {
+          "offset": 21459,
+          "hex": "6476617228322c2074657374293b",
+          "text": "dvar(2, test);"
+        },
+        "source_literal": 2,
+        "literal_and_operation_match": true,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "zero_based": {
+        "line": 388,
+        "block": 0,
+        "index": 388,
+        "record_hex": "84010001",
+        "bytecode_hex": "4f02004a520046",
+        "value": 2,
+        "target_operand": 82,
+        "source": {
+          "offset": 21475,
+          "hex": "6476617228332c206d705f64656275676d656e755f666c67293b",
+          "text": "dvar(3, mp_debugmenu_flg);"
+        },
+        "source_literal": 3,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      }
+    },
+    {
+      "module": "mapctrl",
+      "scope": 1,
+      "pc": 736,
+      "kind": "dvar",
+      "one_based": {
+        "line": 389,
+        "block": 0,
+        "index": 388,
+        "record_hex": "85010001",
+        "bytecode_hex": "4f03004a200046",
+        "value": 3,
+        "target_operand": 32,
+        "source": {
+          "offset": 21475,
+          "hex": "6476617228332c206d705f64656275676d656e755f666c67293b",
+          "text": "dvar(3, mp_debugmenu_flg);"
+        },
+        "source_literal": 3,
+        "literal_and_operation_match": true,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "zero_based": {
+        "line": 389,
+        "block": 0,
+        "index": 389,
+        "record_hex": "85010001",
+        "bytecode_hex": "4f03004a200046",
+        "value": 3,
+        "target_operand": 32,
+        "source": {
+          "offset": 21503,
+          "hex": "090909090973776974636828206e6f776c6f636174696f6e6d617028292029",
+          "text": "\t\t\t\t\tswitch( nowlocationmap() )"
+        },
+        "source_literal": null,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "module": "btlctrl",
+      "pc": 531,
+      "positive": true,
+      "private_line_shift": {
+        "line": 5,
+        "block": 2,
+        "index": 4,
+        "record_hex": "05000201",
+        "bytecode_hex": "4f0000490d00",
+        "value": 0,
+        "target_operand": 13,
+        "source": {
+          "offset": 75547,
+          "hex": "09090909096d61706a756d705f6d656e755f666c67093d20313b092f2f837d8362837683578383839383768381836a8385815b82f08a4a82a282bd",
+          "text": "\t\t\t\t\tmapjump_menu_flg\t= 1;\t//\u30de\u30c3\u30d7\u30b8\u30e3\u30f3\u30d7\u30e1\u30cb\u30e5\u30fc\u3092\u958b\u3044\u305f"
+        },
+        "source_literal": 1,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "private_immediate_change": {
+        "line": 4,
+        "block": 2,
+        "index": 3,
+        "record_hex": "04000201",
+        "bytecode_hex": "4f0100490d00",
+        "value": 1,
+        "target_operand": 13,
+        "source": {
+          "offset": 75527,
+          "hex": "09090909096c6f6f705f666c67093d20303b",
+          "text": "\t\t\t\t\tloop_flg\t= 0;"
+        },
+        "source_literal": 0,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "observation": "Static interpretation of private data bytes only; no VM/original-code/live execution"
+    },
+    {
+      "module": "btlctrl",
+      "pc": 537,
+      "positive": true,
+      "private_line_shift": {
+        "line": 6,
+        "block": 2,
+        "index": 5,
+        "record_hex": "06000201",
+        "bytecode_hex": "4f0100490e00",
+        "value": 1,
+        "target_operand": 14,
+        "source": {
+          "offset": 75608,
+          "hex": "",
+          "text": ""
+        },
+        "source_literal": null,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "private_immediate_change": {
+        "line": 5,
+        "block": 2,
+        "index": 4,
+        "record_hex": "05000201",
+        "bytecode_hex": "4f0200490e00",
+        "value": 2,
+        "target_operand": 14,
+        "source": {
+          "offset": 75547,
+          "hex": "09090909096d61706a756d705f6d656e755f666c67093d20313b092f2f837d8362837683578383839383768381836a8385815b82f08a4a82a282bd",
+          "text": "\t\t\t\t\tmapjump_menu_flg\t= 1;\t//\u30de\u30c3\u30d7\u30b8\u30e3\u30f3\u30d7\u30e1\u30cb\u30e5\u30fc\u3092\u958b\u3044\u305f"
+        },
+        "source_literal": 1,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "observation": "Static interpretation of private data bytes only; no VM/original-code/live execution"
+    },
+    {
+      "module": "mapctrl",
+      "pc": 729,
+      "positive": true,
+      "private_line_shift": {
+        "line": 389,
+        "block": 0,
+        "index": 388,
+        "record_hex": "85010001",
+        "bytecode_hex": "4f02004a520046",
+        "value": 2,
+        "target_operand": 82,
+        "source": {
+          "offset": 21475,
+          "hex": "6476617228332c206d705f64656275676d656e755f666c67293b",
+          "text": "dvar(3, mp_debugmenu_flg);"
+        },
+        "source_literal": 3,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "private_immediate_change": {
+        "line": 388,
+        "block": 0,
+        "index": 387,
+        "record_hex": "84010001",
+        "bytecode_hex": "4f03004a520046",
+        "value": 3,
+        "target_operand": 82,
+        "source": {
+          "offset": 21459,
+          "hex": "6476617228322c2074657374293b",
+          "text": "dvar(2, test);"
+        },
+        "source_literal": 2,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "observation": "Static interpretation of private data bytes only; no VM/original-code/live execution"
+    },
+    {
+      "module": "mapctrl",
+      "pc": 736,
+      "positive": true,
+      "private_line_shift": {
+        "line": 390,
+        "block": 0,
+        "index": 389,
+        "record_hex": "86010001",
+        "bytecode_hex": "4f03004a200046",
+        "value": 3,
+        "target_operand": 32,
+        "source": {
+          "offset": 21503,
+          "hex": "090909090973776974636828206e6f776c6f636174696f6e6d617028292029",
+          "text": "\t\t\t\t\tswitch( nowlocationmap() )"
+        },
+        "source_literal": null,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "private_immediate_change": {
+        "line": 389,
+        "block": 0,
+        "index": 388,
+        "record_hex": "85010001",
+        "bytecode_hex": "4f04004a200046",
+        "value": 4,
+        "target_operand": 32,
+        "source": {
+          "offset": 21475,
+          "hex": "6476617228332c206d705f64656275676d656e755f666c67293b",
+          "text": "dvar(3, mp_debugmenu_flg);"
+        },
+        "source_literal": 3,
+        "literal_and_operation_match": false,
+        "variable_identity": "Source spelling retained; descriptor operand is physical only, name equivalence not newly proved"
+      },
+      "observation": "Static interpretation of private data bytes only; no VM/original-code/live execution"
+    }
+  ],
+  "invalid_first_attempt": {
+    "stage": "BYTECODE_BINDING_PRECONDITION",
+    "cause": "Known evctrl scope1 shared/dedup tail was incorrectly required to decode contiguously past directory instruction bound; first mismatch6130. No raw/result completed by that attempt.",
+    "corrected_default": "Directory-bounded2084 instructions/6130 bytes checked, debug144-byte/48-mark tail recorded but not decoded as this body. Both named entries in exceptional q1=160/jt=158 scope left UNACCEPTED. Old driver and diagnostic retained."
+  },
+  "interpretation": "Four exact original assignment/debug-call statements match source[lineNo-1]; source[lineNo] mismatches operation/literal or blank. Refutes unqualified historical zero-based mapping for these original statements and supports one-based lookup for them. Named label declaration heuristic alone failed; fourteen otherwise bound named entries do not select declaration under either convention. Source coordinate attribution need not equal label declaration. Two evctrl named bindings not accepted by this package.",
+  "limits": "No universal writer/reader convention proof, malformed safety, opcode execution/native effects, source variable-to-descriptor identity, compiler cause for60 EOF+1, original shared-tail reconstruction or SN1 X closure. Read-only extracted files, no new whole-VBF provenance audit. Independent acceptance and canonical propagation pending; PC OFF/S19 parked/full L1+L2 NOT_MET."
+}

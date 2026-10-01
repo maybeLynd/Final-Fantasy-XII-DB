@@ -1,0 +1,60 @@
+# The types column measured at CATEGORY grain - OPUS, 2026-09-21.
+#
+# WHY CATEGORY AND NOT SYSTEM, which is what a reader will want. There is no system-to-type
+# mapping in this store: a type carries a category, a system carries a category, and 16 of the 23
+# categories are shared by two to six systems. Only 7 systems own their category alone. A first
+# version of this file reported one row per system and was withdrawn before publication: six
+# systems would have shown identical numbers as though each had been measured on its own.
+#
+# TEN TYPES HAVE NO PARSEABLE NUMERIC SIZE (PSharray, Widget, FieldRecordTable,
+# EquipmentDefinitionRecord, NavRunStateBlock, ActorRecordPool and four more). Their rows would
+# count toward a numerator while contributing nothing to a denominator, so they are excluded from
+# covered_pct and counted in unsized_types instead.
+#
+# AND COVERAGE IS DISTINCT BYTES, NOT THE SUM OF ROW LENGTHS - which is what actually produced the
+# 107.7% an earlier draft showed for category 08. Rows legitimately OVERLAP where a packed field is
+# also byte-addressed: ImageAddressArenaRecord declares a dword at +0x04 whose second byte is read
+# separately at +0x05. Two types carry real overlap - BattleStatsRecord, 508 row-bytes over a
+# 456-byte extent, and EncodedIdQueryRecord, 154 over 152 - and in BOTH the highest row END equals
+# the declared size exactly, so nothing overflows its type. The excess was double counting, not a
+# data defect, and the fix is the metric rather than the rows.
+#
+# covered_pct   bytes inside declared field rows over declared size, over SIZED types only.
+#               100% does NOT mean resolved - it means no byte sits outside a row.
+# resolved_pct  bytes in rows at TYPE RESOLVED or SEMANTICALLY IDENTIFIED. CLASSIFIED is NOT
+#               counted: it is a real rung the store uses heavily and folding it in would flatter
+#               the figure. Read the two columns together.
+# gap_rows      rows still DISCOVERED - usually what a types cell actually turns on.
+# types_below   declared types in the category not at TYPE RESOLVED.
+#
+# 33 of the 44 non-MET types cells have no stated reason anywhere; 27 of those systems have no
+# verdict section at all. Three measured by hand this session (S-17, S-21, S-33) all came out the
+# same shape - coverage complete, the cell turning on unresolved rows and on the type-level rung.
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+category	systems	types_cells	n_types	types_below	unsized_types	covered_pct	resolved_pct	gap_rows
+00	S-01,S-02,S-03,S-04,S-05,S-06	,MET,NOT MET,PARTIAL	32	19	0	100.0	82.4	213
+01	S-07	PARTIAL	5	1	0	100.0	93.7	1
+02	S-08,S-09,S-10,S-47	MET,PARTIAL	8	7	1	100.0	44.5	10
+03	S-11,S-12	PARTIAL	6	6	1	100.0	55.7	7
+04	S-13,S-14,S-15	MET,PARTIAL	14	11	3	100.0	90.0	64
+05	S-16,S-17	PARTIAL	3	1	0	100.0	99.9	10
+06	S-18,S-19,S-51	?,PARTIAL	11	10	1	100.0	95.5	16
+07	S-20,S-21	PARTIAL	6	4	0	100.0	94.7	10
+08	S-22,S-23,S-24	PARTIAL	3	2	0	100.0	92.0	10
+09	S-25	PARTIAL	3	2	0	100.0	89.0	2
+10	S-26,S-27	PARTIAL	1	1	0	100.0	55.0	4
+11	S-28	PARTIAL	2	1	0	100.0	88.3	1
+12	S-29,S-30,S-31	PARTIAL	4	3	1	100.0	97.5	3
+13	S-32,S-33	PARTIAL	3	3	0	100.0	69.9	4
+14	S-34	MET	1	0	0	100.0	85.7	1
+15	S-35	PARTIAL	3	2	0	100.0	94.1	1
+16	S-36,S-37	PARTIAL	24	17	1	100.0	66.0	166
+17	S-38,S-39,S-40,S-48	,PARTIAL	28	20	0	100.0	91.2	125
+18	S-41,S-42	PARTIAL	3	2	0	100.0	53.4	14
+19	S-43,S-44	PARTIAL	3	2	0	100.0	99.1	11
+20	S-45,S-46	MET,PARTIAL	3	3	0	100.0	98.3	11
+21	-	-	7	2	0	100.0	100.0	0
+22	S-49	NOT MET	335	334	1	100.0	60.9	159
+23	S-50	PARTIAL	8	6	1	100.0	32.1	24
+24	-	-	4	2	0	100.0	100.0	0
+99	-	-	1	1	0	100.0	4.2	16

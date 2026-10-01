@@ -1,0 +1,10 @@
+walks: 135; walks crossing a D1 or D2 node: 3
+   site 00249210/002492B4  value [('C', 2), ('C', 3), ('M', '0039352E dword ptr [rbx]'), ('M', '003C1DC9 dword ptr [r11]'), ('M', '003C1FFD dword ptr [r14]')]
+        003800EC D2 cmp al, 2 / je
+        003800F0 D2 cmp al, 4 / jne
+        003C2076 D1 movzx r8d, al
+   site 003E9F80/003EA031  value [('C', 12), ('C', 2)]
+        003EA02A D1 movzx ecx, sil
+   site 003EC8D0/003EC8DD  value [('C', 6)]
+        00466FE8 D1 movsx rax, r15w
+control D1: the walk from 001BAD17 visited in its own walk and classified D1: True

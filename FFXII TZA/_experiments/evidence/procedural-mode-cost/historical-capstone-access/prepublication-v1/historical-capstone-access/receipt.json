@@ -1,0 +1,20 @@
+{
+  "defect": "Capstone5.0.7 packed-store operand access flags report READ for native MOVUPS memory destination; LEA is address formation, not memory read.",
+  "before_sha256": "8de9a08f8485e8d89a2ff289028ecaad680501a0bbd5b8993b2a3c6e528e9c1e",
+  "after_sha256": "d207898e5b33482c0ece77ab039c444e3ef09f530e9c0dccf131aba43b3ef0e7",
+  "no_recapture": true,
+  "affected_19": [
+    {
+      "pc": "0x202b79",
+      "prior": "read",
+      "corrected": "address",
+      "bytes": "488d4c2420"
+    },
+    {
+      "pc": "0x202b86",
+      "prior": "read",
+      "corrected": "write",
+      "bytes": "0f1103"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "INVALID_REDUCTION_ROW_HASH",
+  "phase": "Before guest/path reduction and before result.json existed",
+  "check_sha256": "783a30a9d234a260197db9be046d2ea98ce4b6dcb702a6b7cd6897701984dadf",
+  "assertion": "sha((R/'affected-field-row.txt').read_bytes())==raw['consumer']['affected_row_sha256']",
+  "cause": "Producer checksum was UTF8 LF normalized row text; Windows write_text retained CRLF bytes. First checker compared physical bytes instead of declared normalized text.",
+  "recorded_normalized_sha256": "b1a33ec147bc2308bef136929e911ac12fa4d66c7d6cfb1c40295e21e9427190",
+  "physical_sha256": "ed5b219cad6ed9238059697cf010f96f5c0a5a92a51d911d8a916db4a824c9d8",
+  "normalized_sha256": "b1a33ec147bc2308bef136929e911ac12fa4d66c7d6cfb1c40295e21e9427190",
+  "correction": "Default checker hashes read_text().encode() for this normalized row field. Raw capture/driver/guest observations untouched; file byte identities still separately protected by manifest.",
+  "limits": "This was an invalid reduction, not a passed experiment. No result from first reduction; no original guest re-execution for a row encoding fix."
+}

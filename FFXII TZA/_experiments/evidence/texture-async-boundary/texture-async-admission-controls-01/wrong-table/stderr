@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 28, in main
+    if table.get('address')!='0xd54348' or table.get('COL')!='0x1d12448' or table.get('type_descriptor')!='0x1f5c5a0' or table.get('name')!=name or table.get('type_name_bytes')!=name.encode().hex() or table.get('slot0')!='0x621ff0' or table.get('raw_from_minus8')!='4824d10100000000f01f620000000000c824d10100000000':raise ValueError('physical RTTI/slot0 prerequisite changed')
+                                                                                                                                                                                                                                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: physical RTTI/slot0 prerequisite changed

@@ -1,0 +1,2 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+Retained two branch-closed original node helpers [('0x16d6d0', '0x16d714', 'a0978695096493b0fe7886fe4e1facb0122606de8436fe80dfe2736ccfe34347'), ('0x16da60', '0x16ddc3', '7ea8d0fa30a780a566012ea42129eecd946867ed4fde3591f07359c9e6e3e576')] calls [[], [{'pc': '0x16dc97', 'target': '0x16d7e0'}, {'pc': '0x16dcc3', 'target': '0x16d780'}, {'pc': '0x16dd7c', 'target': '0x16d780'}, {'pc': '0x16ddaa', 'target': '0x16d7e0'}]]

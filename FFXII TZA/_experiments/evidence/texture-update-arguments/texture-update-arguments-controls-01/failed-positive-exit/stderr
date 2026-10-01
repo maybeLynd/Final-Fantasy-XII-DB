@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\freeze-texture-update-arguments.py", line 158, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\freeze-texture-update-arguments.py", line 47, in main
+    r = prerequisites(source)  # A required upstream FAIL cannot be masked below.
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\freeze-texture-update-arguments.py", line 17, in prerequisites
+    raise ValueError('required positive invocation failed or incomplete')
+ValueError: required positive invocation failed or incomplete

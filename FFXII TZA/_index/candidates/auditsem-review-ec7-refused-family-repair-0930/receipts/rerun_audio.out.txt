@@ -1,0 +1,12 @@
+SEAD entries past the span added: 9 (007F7390 007F73D0 007F7400 007F7420 007F7360 007F7380 007F7440 007F74E0 007F7570); left out as unestablished upstream: 007F6FB0 (MS ADPCM block decoder), 007F7350 (its samples-per-block helper)
+Tremor + vorbisfile: object entries 107, members 102 (A-measured or declared elsewhere: 007F41A0 007F5CC0 007F7FF0 007FE0F0 007FF1C0), callers from outside the object and its client: 0 , entries joined by nothing: 0 
+CRI HCA decoder: object entries 53, members 53 (A-measured or declared elsewhere: none), callers from outside the object and its client: 0 , entries joined by nothing: 0 
+libvorbis: object entries 122, members 116 (A-measured or declared elsewhere: 008822F0 008845A0 008888F0 0088DE20 00893E80 00894EE0), callers from outside the object and its client: 0 , entries joined by nothing: 0 
+libogg bitwise.c: object entries 4, members 4 (A-measured or declared elsewhere: none), callers from outside the object and its client: 0 , entries joined by nothing: 0 
+SEAD            selector  1136 tracked  1136  equal=True  +  -
+libogg framing  selector    22 tracked    22  equal=True  +  -
+tremor          selector   102 tracked   102  equal=True  +  -
+cri             selector    53 tracked    53  equal=True  +  -
+libvorbis       selector   116 tracked   116  equal=True  +  -
+bitwise         selector     4 tracked     4  equal=True  +  -
+SEAD span 007A4380-007F41A0; tracked members outside it: 9 007F7360 007F7380 007F7390 007F73D0 007F7400 007F7420 007F7440 007F74E0 007F7570

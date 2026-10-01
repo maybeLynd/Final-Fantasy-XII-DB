@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-list-identity\\check.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"STATIC_SHARED_REGISTRY_AND_CHAIN\",\n  \"roots\": [\n    \"02EBEF88\",\n    \"02EBEF88\",\n    \"02EBEF88\"\n  ],\n  \"element_heads\": [\n    280,\n    280\n  ],\n  \"element_next\": [\n    48,\n    48\n  ],\n  \"controls\": {\n    \"known_registry_root\": true,\n    \"same_count_wrong_root_rejected\": true,\n    \"same_count_wrong_link_rejected\": true\n  },\n  \"selected_instructions\": 29\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "00d01edcd20bfd9d2cd12681bedb9d7e9fd5c9326f82857320344d76d8bca354"
+}

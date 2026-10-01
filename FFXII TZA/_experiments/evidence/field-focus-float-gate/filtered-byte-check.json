@@ -1,0 +1,73 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "architecture.json",
+      "git_blob": "ba91534b8e3b2c916249f85e6d96445a6a922076"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "000a91caf0d9f99c202f133a87bc86b55e80d4e4"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "a77316d01abdb19e991d979659fe679a7e7f1403"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "a56d3d91778191bf02939cc71b86422b246e56a8"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "dfe01da70fc01b0878fabb09f6cb26aa1062eba4"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "ebf022389c8c1b48712f4ecdd64a9e36c4bc0845"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "fc65d4a0311acc8726ace07952a9d35740fd85fd"
+    },
+    {
+      "path": "retained/bit3-helper.bin",
+      "git_blob": "2f9dfdd0dc56588642d044a516d9020e03b69d15"
+    },
+    {
+      "path": "retained/cache-mutation.json",
+      "git_blob": "cebf420ff7be90557939a797f1088a03cdad4f23"
+    },
+    {
+      "path": "retained/gate.bin",
+      "git_blob": "8071ff64c2751f176187a36702fdb33d5cbe9298"
+    },
+    {
+      "path": "retained/gg1-readme.md",
+      "git_blob": "1b74809fe23a7bae30107b22c18d65ead9fa08b3"
+    },
+    {
+      "path": "retained/gg1_order.py",
+      "git_blob": "48bff02e3c84b7600c8f30b97f8c99145e474ac9"
+    },
+    {
+      "path": "retained/input-contract.md",
+      "git_blob": "4eb0e3e25c2ca74c3056a8486a506681d737b3f3"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/zero.bin",
+      "git_blob": "3bb195f727514299f3d2d6715be1c0a111ad747e"
+    },
+    {
+      "path": "tool-identity-supplement.json",
+      "git_blob": "ea03a541558a7e830487a4e122ed91ebb89f5c6b"
+    }
+  ]
+}

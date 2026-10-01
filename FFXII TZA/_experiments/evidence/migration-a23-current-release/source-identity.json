@@ -1,0 +1,38 @@
+{
+  "status": "CURRENT_CHECKOUT_FILES_MATCH_HEAD",
+  "files": [
+    {
+      "path": "Database/Tools/dashboard/server.py",
+      "sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+      "git_blob": "9266a5abfb30cda3e1330d2bb670ca0135bb0a16",
+      "head_blob": "9266a5abfb30cda3e1330d2bb670ca0135bb0a16",
+      "last_path_commit": "7c14ecf567699d13a6ce9eddeb3e720fa9f5ff4d",
+      "git_warnings": []
+    },
+    {
+      "path": "Database/Tools/dashboard/build_views.py",
+      "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+      "git_blob": "5952119fd54ef90fa2d0c190674920d717d55453",
+      "head_blob": "5952119fd54ef90fa2d0c190674920d717d55453",
+      "last_path_commit": "cdbf25a5d711654ccbb883f472309c3f42df290f",
+      "git_warnings": []
+    },
+    {
+      "path": "Database/Tools/dashboard/requirements.py",
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148",
+      "git_blob": "e705dddd5670fb0a44f7eb043aecf7bff92afdb0",
+      "head_blob": "e705dddd5670fb0a44f7eb043aecf7bff92afdb0",
+      "last_path_commit": "69bbf8c81bbfea644a05584e70b7fd73e51fb80e",
+      "git_warnings": []
+    },
+    {
+      "path": "Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "git_blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16",
+      "head_blob": "b3955bd182656cd5b2ae9987cd396b8c7b02ac16",
+      "last_path_commit": "b6e6de3f0080cd311336c04d68cf17516c228dff",
+      "git_warnings": []
+    }
+  ],
+  "limits": "This pins the current checkout files; it is not a loaded process PID/path/module proof."
+}

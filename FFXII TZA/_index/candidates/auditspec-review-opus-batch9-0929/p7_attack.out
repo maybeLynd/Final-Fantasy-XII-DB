@@ -1,0 +1,301 @@
+falsifier imported; its tail: FAILS 0
+A  stamping bodies 66; in-band closure 92 bodies
+B  control: rip references to the PFXAA vtable 00D625D0: 2 (0063E87A, 00645DD0)
+B  non-direct references to closure bodies from outside the band (excluding .pdata): 198
+   abs64 00D592D0 owner - -> 0063E840 (stamper) 00D592D0(.rdata)
+   rva32 01DAF108 owner - -> 0063E840 (stamper) 01DAF108(.rdata)
+   abs64 00D594B8 owner - -> 0063E9C0 (in-band caller) 00D594B8(.rdata)
+   rva32 01DADA90 owner - -> 0063E9C0 (in-band caller) 01DADA90(.rdata)
+   abs64 00D595B0 owner - -> 0063EA60 (in-band caller) 00D595B0(.rdata)
+   rva32 01DAFDD8 owner - -> 0063EA60 (in-band caller) 01DAFDD8(.rdata)
+   abs64 00D59AB8 owner - -> 0063EF60 (stamper) 00D59AB8(.rdata)
+   rva32 01DAD860 owner - -> 0063EF60 (stamper) 01DAD860(.rdata)
+   abs64 00D59E58 owner - -> 0063F2A0 (stamper) 00D59E58(.rdata)
+   rva32 01DAFEF0 owner - -> 0063F2A0 (stamper) 01DAFEF0(.rdata)
+   abs64 00D5A048 owner - -> 0063F3F0 (in-band caller) 00D5A048(.rdata)
+   rva32 01DAF3A8 owner - -> 0063F3F0 (in-band caller) 01DAF3A8(.rdata)
+   abs64 00D5A190 owner - -> 0063F580 (stamper) 00D5A190(.rdata)
+   rva32 01DADBE8 owner - -> 0063F580 (stamper) 01DADBE8(.rdata)
+   abs64 00D5A3E0 owner - -> 0063F6E0 (in-band caller) 00D5A3E0(.rdata)
+   rva32 01DAE1A8 owner - -> 0063F6E0 (in-band caller) 01DAE1A8(.rdata)
+   abs64 00D5A688 owner - -> 0063F9A0 (in-band caller) 00D5A688(.rdata)
+   rva32 01DACC68 owner - -> 0063F9A0 (in-band caller) 01DACC68(.rdata)
+   abs64 00D5A9D8 owner - -> 0063FC80 (in-band caller) 00D5A9D8(.rdata)
+   rva32 01DAE738 owner - -> 0063FC80 (in-band caller) 01DAE738(.rdata)
+   abs64 00D5ACF8 owner - -> 0063FF00 (stamper) 00D5ACF8(.rdata)
+   rva32 01DAF4C0 owner - -> 0063FF00 (stamper) 01DAF4C0(.rdata)
+   abs64 00D5B110 owner - -> 00640280 (stamper) 00D5B110(.rdata)
+   rva32 01DB0048 owner - -> 00640280 (stamper) 01DB0048(.rdata)
+   abs64 00D5B220 owner - -> 00640340 (stamper) 00D5B220(.rdata)
+   rva32 01DAE2D8 owner - -> 00640340 (stamper) 01DAE2D8(.rdata)
+   abs64 00D5B3A0 owner - -> 006404D0 (stamper) 00D5B3A0(.rdata)
+   rva32 01DADD00 owner - -> 006404D0 (stamper) 01DADD00(.rdata)
+   abs64 00D5B8D0 owner - -> 00640900 (stamper) 00D5B8D0(.rdata)
+   rva32 00F28F20 owner - -> 00640900 (stamper) 00F28F20(.rdata)
+   rva32 00F29E40 owner - -> 00640900 (stamper) 00F29E40(.rdata)
+   rva32 00F2AE28 owner - -> 00640900 (stamper) 00F2AE28(.rdata)
+   rva32 00F2BED4 owner - -> 00640900 (stamper) 00F2BED4(.rdata)
+   rva32 0155D1C4 owner - -> 00640900 (stamper) 0155D1C4(.rdata)
+   rva32 0155E5E0 owner - -> 00640900 (stamper) 0155E5E0(.rdata)
+   rva32 0156065C owner - -> 00640900 (stamper) 0156065C(.rdata)
+   rva32 01563968 owner - -> 00640900 (stamper) 01563968(.rdata)
+   rva32 01568534 owner - -> 00640900 (stamper) 01568534(.rdata)
+   rva32 0157FE4C owner - -> 00640900 (stamper) 0157FE4C(.rdata)
+   rva32 01581368 owner - -> 00640900 (stamper) 01581368(.rdata)
+   rva32 015834E4 owner - -> 00640900 (stamper) 015834E4(.rdata)
+   rva32 015868F0 owner - -> 00640900 (stamper) 015868F0(.rdata)
+   rva32 0158B5BC owner - -> 00640900 (stamper) 0158B5BC(.rdata)
+   rva32 0160DDBC owner - -> 00640900 (stamper) 0160DDBC(.rdata)
+   rva32 0160F504 owner - -> 00640900 (stamper) 0160F504(.rdata)
+   rva32 01611F54 owner - -> 00640900 (stamper) 01611F54(.rdata)
+   rva32 01616504 owner - -> 00640900 (stamper) 01616504(.rdata)
+   rva32 0161CFD4 owner - -> 00640900 (stamper) 0161CFD4(.rdata)
+   rva32 0163F418 owner - -> 00640900 (stamper) 0163F418(.rdata)
+   rva32 01640C60 owner - -> 00640900 (stamper) 01640C60(.rdata)
+   rva32 016437B0 owner - -> 00640900 (stamper) 016437B0(.rdata)
+   rva32 01647E60 owner - -> 00640900 (stamper) 01647E60(.rdata)
+   rva32 0164EA30 owner - -> 00640900 (stamper) 0164EA30(.rdata)
+   rva32 016AA358 owner - -> 00640900 (stamper) 016AA358(.rdata)
+   rva32 016AB6C8 owner - -> 00640900 (stamper) 016AB6C8(.rdata)
+   rva32 016AD67C owner - -> 00640900 (stamper) 016AD67C(.rdata)
+   rva32 016B0758 owner - -> 00640900 (stamper) 016B0758(.rdata)
+   rva32 016B5004 owner - -> 00640900 (stamper) 016B5004(.rdata)
+   rva32 016CB820 owner - -> 00640900 (stamper) 016CB820(.rdata)
+   rva32 016CCC90 owner - -> 00640900 (stamper) 016CCC90(.rdata)
+   rva32 016CED44 owner - -> 00640900 (stamper) 016CED44(.rdata)
+   rva32 016D1F20 owner - -> 00640900 (stamper) 016D1F20(.rdata)
+   rva32 016D68CC owner - -> 00640900 (stamper) 016D68CC(.rdata)
+   rva32 0174C78C owner - -> 00640900 (stamper) 0174C78C(.rdata)
+   rva32 0174DDF0 owner - -> 00640900 (stamper) 0174DDF0(.rdata)
+   rva32 017505B0 owner - -> 00640900 (stamper) 017505B0(.rdata)
+   rva32 017545E8 owner - -> 00640900 (stamper) 017545E8(.rdata)
+   rva32 0175A900 owner - -> 00640900 (stamper) 0175A900(.rdata)
+   rva32 01779624 owner - -> 00640900 (stamper) 01779624(.rdata)
+   rva32 0177AD88 owner - -> 00640900 (stamper) 0177AD88(.rdata)
+   rva32 0177D648 owner - -> 00640900 (stamper) 0177D648(.rdata)
+   rva32 01781780 owner - -> 00640900 (stamper) 01781780(.rdata)
+   rva32 01787B98 owner - -> 00640900 (stamper) 01787B98(.rdata)
+   rva32 01DAEA60 owner - -> 00640900 (stamper) 01DAEA60(.rdata)
+   rva32 01F338BE owner - -> 00640900 (stamper) 01F338BE(.data,unaligned)
+   rva32 01F33906 owner - -> 00640900 (stamper) 01F33906(.data,unaligned)
+   abs64 00D5BC00 owner - -> 00640D00 (stamper) 00D5BC00(.rdata)
+   rva32 01DAF5D8 owner - -> 00640D00 (stamper) 01DAF5D8(.rdata)
+   abs64 00D5BD88 owner - -> 00640E40 (stamper) 00D5BD88(.rdata)
+   rva32 01DB0170 owner - -> 00640E40 (stamper) 01DB0170(.rdata)
+   abs64 00D5BF00 owner - -> 00640FD0 (stamper) 00D5BF00(.rdata)
+   rva32 01DAE408 owner - -> 00640FD0 (stamper) 01DAE408(.rdata)
+   abs64 00D5C098 owner - -> 00641280 (stamper) 00D5C098(.rdata)
+   rva32 01DADE28 owner - -> 00641280 (stamper) 01DADE28(.rdata)
+   abs64 00D5C350 owner - -> 006414F0 (in-band caller) 00D5C350(.rdata)
+   rva32 01DAD1E0 owner - -> 006414F0 (in-band caller) 01DAD1E0(.rdata)
+   abs64 00D5C498 owner - -> 00641590 (stamper) 00D5C498(.rdata)
+   rva32 01DAEB90 owner - -> 00641590 (stamper) 01DAEB90(.rdata)
+   abs64 00D5C9B0 owner - -> 00641B50 (stamper) 00D5C9B0(.rdata)
+   rva32 01DB02F0 owner - -> 00641B50 (stamper) 01DB02F0(.rdata)
+   abs64 00D5CB10 owner - -> 00641BB0 (in-band caller) 00D5CB10(.rdata)
+   rva32 01DAF7E0 owner - -> 00641BB0 (in-band caller) 01DAF7E0(.rdata)
+   abs64 00D5CC28 owner - -> 00641D40 (stamper) 00D5CC28(.rdata)
+   rva32 01DADF50 owner - -> 00641D40 (stamper) 01DADF50(.rdata)
+   abs64 00D5D178 owner - -> 006421B0 (in-band caller) 00D5D178(.rdata)
+   rva32 01DAECC0 owner - -> 006421B0 (in-band caller) 01DAECC0(.rdata)
+   abs64 00D5D398 owner - -> 00642420 (stamper) 00D5D398(.rdata)
+   rva32 01DAD2F8 owner - -> 00642420 (stamper) 01DAD2F8(.rdata)
+   abs64 00D5D420 owner - -> 00642540 (stamper) 00D5D420(.rdata)
+   rva32 01DAF908 owner - -> 00642540 (stamper) 01DAF908(.rdata)
+   abs64 00D5D628 owner - -> 006426F0 (stamper) 00D5D628(.rdata)
+   rva32 01DAE078 owner - -> 006426F0 (stamper) 01DAE078(.rdata)
+   abs64 00D5DCA8 owner - -> 00642CD0 (stamper) 00D5DCA8(.rdata)
+   rva32 01DAEED8 owner - -> 00642CD0 (stamper) 01DAEED8(.rdata)
+   abs64 00D5DFE8 owner - -> 00642E70 (stamper) 00D5DFE8(.rdata)
+   rva32 01DAD488 owner - -> 00642E70 (stamper) 01DAD488(.rdata)
+   abs64 00D5E0F8 owner - -> 00643000 (stamper) 00D5E0F8(.rdata)
+   rva32 01DAFA30 owner - -> 00643000 (stamper) 01DAFA30(.rdata)
+   abs64 00D5E6A0 owner - -> 00643530 (in-band caller) 00D5E6A0(.rdata)
+   rva32 01DAE560 owner - -> 00643530 (in-band caller) 01DAE560(.rdata)
+   abs64 00D5E728 owner - -> 006435D0 (stamper) 00D5E728(.rdata)
+   rva32 01DAEFF0 owner - -> 006435D0 (stamper) 01DAEFF0(.rdata)
+   abs64 00D5E9A0 owner - -> 006437E0 (in-band caller) 00D5E9A0(.rdata)
+   rva32 01DAC7B8 owner - -> 006437E0 (in-band caller) 01DAC7B8(.rdata)
+   abs64 00D5F0D8 owner - -> 00643C10 (stamper) 00D5F0D8(.rdata)
+   rva32 01DAD748 owner - -> 00643C10 (stamper) 01DAD748(.rdata)
+   rva32 01DACB18 owner - -> 006458A0 (stamper) 01DACB18(.rdata)
+   rva32 01DAC658 owner - -> 006461B0 (stamper) 01DAC658(.rdata)
+   rva32 01DAFBB8 owner - -> 00646510 (stamper) 01DAFBB8(.rdata)
+   rva32 01DACB40 owner - -> 00646590 (stamper) 01DACB40(.rdata)
+   rva32 01DACCC0 owner - -> 00646600 (stamper) 01DACCC0(.rdata)
+   rva32 01DAD4E0 owner - -> 006466E0 (stamper) 01DAD4E0(.rdata)
+   rva32 01DAED18 owner - -> 00646770 (stamper) 01DAED18(.rdata)
+   rva32 01DADAE8 owner - -> 00646A30 (stamper) 01DADAE8(.rdata)
+   rva32 01DAC680 owner - -> 00646AB0 (stamper) 01DAC680(.rdata)
+   rva32 01DAF1B0 owner - -> 00646B80 (stamper) 01DAF1B0(.rdata)
+   abs64 00D628A0 owner - -> 00646F90 (in-band caller) 00D628A0(.rdata)
+   rva32 01DAFF90 owner - -> 00646F90 (in-band caller) 01DAFF90(.rdata)
+   abs64 00D62800 owner - -> 00646FF0 (in-band caller) 00D62800(.rdata)
+   rva32 01DAFD20 owner - -> 00646FF0 (in-band caller) 01DAFD20(.rdata)
+   abs64 00D62850 owner - -> 00647050 (in-band caller) 00D62850(.rdata)
+   rva32 01DAFE38 owner - -> 00647050 (in-band caller) 01DAFE38(.rdata)
+   abs64 00D627B0 owner - -> 006470B0 (stamper) 00D627B0(.rdata)
+   rva32 01DAF968 owner - -> 006470B0 (stamper) 01DAF968(.rdata)
+   abs64 00D62710 owner - -> 00647140 (stamper) 00D62710(.rdata)
+   rva32 01DAF718 owner - -> 00647140 (stamper) 01DAF718(.rdata)
+   abs64 00D62760 owner - -> 006471D0 (stamper) 00D62760(.rdata)
+   rva32 01DAF840 owner - -> 006471D0 (stamper) 01DAF840(.rdata)
+   abs64 00D61F40 owner - -> 00647260 (in-band caller) 00D61F40(.rdata)
+   rva32 01DAD240 owner - -> 00647260 (in-band caller) 01DAD240(.rdata)
+   abs64 00D61EA0 owner - -> 006472C0 (in-band caller) 00D61EA0(.rdata)
+   rva32 01DACBB0 owner - -> 006472C0 (in-band caller) 01DACBB0(.rdata)
+   abs64 00D61EF0 owner - -> 00647320 (in-band caller) 00D61EF0(.rdata)
+   rva32 01DAD120 owner - -> 00647320 (in-band caller) 01DAD120(.rdata)
+   abs64 00D62080 owner - -> 00647380 (stamper) 00D62080(.rdata)
+   rva32 01DAD7A8 owner - -> 00647380 (stamper) 01DAD7A8(.rdata)
+   abs64 00D61F90 owner - -> 006473E0 (stamper) 00D61F90(.rdata)
+   rva32 01DAD3C0 owner - -> 006473E0 (stamper) 01DAD3C0(.rdata)
+   abs64 00D62030 owner - -> 00647470 (stamper) 00D62030(.rdata)
+   rva32 01DAD690 owner - -> 00647470 (stamper) 01DAD690(.rdata)
+   abs64 00D61FE0 owner - -> 006474D0 (in-band caller) 00D61FE0(.rdata)
+   rva32 01DAD660 owner - -> 006474D0 (in-band caller) 01DAD660(.rdata)
+   abs64 00D625D0 owner - -> 00647530 (in-band caller) 00D625D0(.rdata)
+   rva32 01DAF050 owner - -> 00647530 (in-band caller) 01DAF050(.rdata)
+   abs64 00D62530 owner - -> 00647590 (in-band caller) 00D62530(.rdata)
+   rva32 01DAEE20 owner - -> 00647590 (in-band caller) 01DAEE20(.rdata)
+   abs64 00D62580 owner - -> 006475F0 (in-band caller) 00D62580(.rdata)
+   rva32 01DAEF38 owner - -> 006475F0 (in-band caller) 01DAEF38(.rdata)
+   abs64 00D624E0 owner - -> 00647650 (stamper) 00D624E0(.rdata)
+   rva32 01DAEBF0 owner - -> 00647650 (stamper) 01DAEBF0(.rdata)
+   abs64 00D623F0 owner - -> 006476F0 (stamper) 00D623F0(.rdata)
+   rva32 01DAE670 owner - -> 006476F0 (stamper) 01DAE670(.rdata)
+   abs64 00D62490 owner - -> 00647780 (stamper) 00D62490(.rdata)
+   rva32 01DAEAC0 owner - -> 00647780 (stamper) 01DAEAC0(.rdata)
+   abs64 00D62440 owner - -> 00647820 (stamper) 00D62440(.rdata)
+   rva32 01DAE990 owner - -> 00647820 (stamper) 01DAE990(.rdata)
+   abs64 00D628F0 owner - -> 006478C0 (stamper) 00D628F0(.rdata)
+   rva32 01DB00A8 owner - -> 006478C0 (stamper) 01DB00A8(.rdata)
+   abs64 00D62350 owner - -> 00647950 (stamper) 00D62350(.rdata)
+   rva32 01DAE338 owner - -> 00647950 (stamper) 01DAE338(.rdata)
+   abs64 00D622B0 owner - -> 006479F0 (stamper) 00D622B0(.rdata)
+   rva32 01DAE0D8 owner - -> 006479F0 (stamper) 01DAE0D8(.rdata)
+   abs64 00D62300 owner - -> 00647A90 (stamper) 00D62300(.rdata)
+   rva32 01DAE208 owner - -> 00647A90 (stamper) 01DAE208(.rdata)
+   abs64 00D62940 owner - -> 00647B30 (stamper) 00D62940(.rdata)
+   rva32 01DB0228 owner - -> 00647B30 (stamper) 01DB0228(.rdata)
+   abs64 00D623A0 owner - -> 00647BC0 (stamper) 00D623A0(.rdata)
+   rva32 01DAE498 owner - -> 00647BC0 (stamper) 01DAE498(.rdata)
+   abs64 00D62170 owner - -> 00647C50 (in-band caller) 00D62170(.rdata)
+   rva32 01DADC48 owner - -> 00647C50 (in-band caller) 01DADC48(.rdata)
+   abs64 00D620D0 owner - -> 00647CB0 (stamper) 00D620D0(.rdata)
+   rva32 01DAD9C8 owner - -> 00647CB0 (stamper) 01DAD9C8(.rdata)
+   abs64 00D62120 owner - -> 00647D40 (in-band caller) 00D62120(.rdata)
+   rva32 01DADB30 owner - -> 00647D40 (in-band caller) 01DADB30(.rdata)
+   abs64 00D61E50 owner - -> 00647DA0 (stamper) 00D61E50(.rdata)
+   rva32 01DAC6E8 owner - -> 00647DA0 (stamper) 01DAC6E8(.rdata)
+   abs64 00D62260 owner - -> 00647E30 (stamper) 00D62260(.rdata)
+   rva32 01DADFB0 owner - -> 00647E30 (stamper) 01DADFB0(.rdata)
+   abs64 00D621C0 owner - -> 00647EC0 (stamper) 00D621C0(.rdata)
+   rva32 01DADD60 owner - -> 00647EC0 (stamper) 01DADD60(.rdata)
+   abs64 00D62210 owner - -> 00647F50 (stamper) 00D62210(.rdata)
+   rva32 01DADE88 owner - -> 00647F50 (stamper) 01DADE88(.rdata)
+   abs64 00D626C0 owner - -> 00647FE0 (in-band caller) 00D626C0(.rdata)
+   rva32 01DAF520 owner - -> 00647FE0 (in-band caller) 01DAF520(.rdata)
+   abs64 00D62620 owner - -> 00648040 (in-band caller) 00D62620(.rdata)
+   rva32 01DAF2F0 owner - -> 00648040 (in-band caller) 01DAF2F0(.rdata)
+   abs64 00D62670 owner - -> 006480A0 (in-band caller) 00D62670(.rdata)
+   rva32 01DAF408 owner - -> 006480A0 (in-band caller) 01DAF408(.rdata)
+C  exit target 00645DB0: 2 in-band bodies below it; stamps ['PFXAA', 'PPostEffectBase']
+C  exit target 00646770: 1 in-band bodies below it; stamps ['PFXAABase', 'PPostEffectBase']
+C  exit target 00646AB0: 1 in-band bodies below it; stamps ['PPostEffectBase']
+D  classification: {'other': 81, 'rva32 inside unwind info': 81, 'abs64 in a family vtable slot array': 36} (unwind info range 01D529D0..01DEAB64)
+   other abs64 00D592D0 -> 0063E840  bytes[-8..+16] 80f062000000000040e863000000000060fc630000000000
+   other abs64 00D594B8 -> 0063E9C0  bytes[-8..+16] 80f0620000000000c0e963000000000060fc630000000000
+   other abs64 00D595B0 -> 0063EA60  bytes[-8..+16] 80f062000000000060ea63000000000060fc630000000000
+   other abs64 00D59AB8 -> 0063EF60  bytes[-8..+16] 80f062000000000060ef63000000000060fc630000000000
+   other abs64 00D59E58 -> 0063F2A0  bytes[-8..+16] 80f0620000000000a0f263000000000060fc630000000000
+   other abs64 00D5A048 -> 0063F3F0  bytes[-8..+16] 80f0620000000000f0f363000000000060fc630000000000
+   other abs64 00D5A190 -> 0063F580  bytes[-8..+16] 80f062000000000080f563000000000060fc630000000000
+   other abs64 00D5A3E0 -> 0063F6E0  bytes[-8..+16] 80f0620000000000e0f663000000000060fc630000000000
+   other abs64 00D5A688 -> 0063F9A0  bytes[-8..+16] 80f0620000000000a0f963000000000060fc630000000000
+   other abs64 00D5A9D8 -> 0063FC80  bytes[-8..+16] 80f062000000000080fc63000000000060fc630000000000
+   other abs64 00D5ACF8 -> 0063FF00  bytes[-8..+16] 80f062000000000000ff63000000000060fc630000000000
+   other abs64 00D5B110 -> 00640280  bytes[-8..+16] 80f0620000000000800264000000000060fc630000000000
+   other abs64 00D5B220 -> 00640340  bytes[-8..+16] 80f0620000000000400364000000000060fc630000000000
+   other abs64 00D5B3A0 -> 006404D0  bytes[-8..+16] 80f0620000000000d00464000000000060fc630000000000
+   other abs64 00D5B8D0 -> 00640900  bytes[-8..+16] 80f0620000000000000964000000000060fc630000000000
+   other rva32 00F28F20 -> 00640900  bytes[-8..+16] 100000000000320000095200100000000000060210000000
+   other rva32 00F29E40 -> 00640900  bytes[-8..+16] 100000000000320000095200100000000000060210000000
+   other rva32 00F2AE28 -> 00640900  bytes[-8..+16] 100000000000320000095200100000000000060210000000
+   other rva32 00F2BED4 -> 00640900  bytes[-8..+16] 100000000000320000095200100000000000060210000000
+   other rva32 0155D1C4 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0155E5E0 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0156065C -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01563968 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01568534 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0157FE4C -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01581368 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 015834E4 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 015868F0 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0158B5BC -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0160DDBC -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0160F504 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01611F54 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01616504 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0161CFD4 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0163F418 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01640C60 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016437B0 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01647E60 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0164EA30 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016AA358 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016AB6C8 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016AD67C -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016B0758 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016B5004 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016CB820 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016CCC90 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016CED44 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016D1F20 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 016D68CC -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0174C78C -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0174DDF0 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 017505B0 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 017545E8 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0175A900 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01779624 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0177AD88 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 0177D648 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01781780 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01787B98 -> 00640900  bytes[-8..+16] 00009a000000330000095200100000000000060210000000
+   other rva32 01F338BE -> 00640900  bytes[-8..+16] 000000000000000000095200100004000000060210804100
+   other rva32 01F33906 -> 00640900  bytes[-8..+16] 100003000000370000095200100002000000060210000200
+   other abs64 00D5BC00 -> 00640D00  bytes[-8..+16] 80f0620000000000000d64000000000060fc630000000000
+   other abs64 00D5BD88 -> 00640E40  bytes[-8..+16] 80f0620000000000400e64000000000060fc630000000000
+   other abs64 00D5BF00 -> 00640FD0  bytes[-8..+16] 80f0620000000000d00f64000000000060fc630000000000
+   other abs64 00D5C098 -> 00641280  bytes[-8..+16] 80f0620000000000801264000000000060fc630000000000
+   other abs64 00D5C350 -> 006414F0  bytes[-8..+16] 80f0620000000000f01464000000000060fc630000000000
+   other abs64 00D5C498 -> 00641590  bytes[-8..+16] 80f0620000000000901564000000000060fc630000000000
+   other abs64 00D5C9B0 -> 00641B50  bytes[-8..+16] 80f0620000000000501b64000000000060fc630000000000
+   other abs64 00D5CB10 -> 00641BB0  bytes[-8..+16] 80f0620000000000b01b64000000000060fc630000000000
+   other abs64 00D5CC28 -> 00641D40  bytes[-8..+16] 80f0620000000000401d64000000000060fc630000000000
+   other abs64 00D5D178 -> 006421B0  bytes[-8..+16] 80f0620000000000b02164000000000060fc630000000000
+   other abs64 00D5D398 -> 00642420  bytes[-8..+16] 80f0620000000000202464000000000060fc630000000000
+   other abs64 00D5D420 -> 00642540  bytes[-8..+16] 80f0620000000000402564000000000060fc630000000000
+   other abs64 00D5D628 -> 006426F0  bytes[-8..+16] 80f0620000000000f02664000000000060fc630000000000
+   other abs64 00D5DCA8 -> 00642CD0  bytes[-8..+16] 80f0620000000000d02c64000000000060fc630000000000
+   other abs64 00D5DFE8 -> 00642E70  bytes[-8..+16] 80f0620000000000702e64000000000060fc630000000000
+   other abs64 00D5E0F8 -> 00643000  bytes[-8..+16] 80f0620000000000003064000000000060fc630000000000
+   other abs64 00D5E6A0 -> 00643530  bytes[-8..+16] 80f0620000000000303564000000000060fc630000000000
+   other abs64 00D5E728 -> 006435D0  bytes[-8..+16] 80f0620000000000d03564000000000060fc630000000000
+   other abs64 00D5E9A0 -> 006437E0  bytes[-8..+16] 80f0620000000000e03764000000000060fc630000000000
+   other abs64 00D5F0D8 -> 00643C10  bytes[-8..+16] 80f0620000000000103c64000000000060fc630000000000
+E  stamper classes of 006458A0: ['PDeferredLightingBase'] | of 00645DB0: ['PFXAA']
+   01DACB00  000A3418  -> 001C3418
+   01DACB04  7006520A  -> 7018520A
+   01DACB08  00741EB4  -> 00861EB4
+   01DACB0C  00C3F538  -> 00D5F538
+   01DACB10  FFFFFFFF  -> 10011FFFF
+   01DACB14  0077E870  -> 0089E870
+   01DACB18  005258A0  -> 006458A0
+   01DACB1C  FFFFFFFF  -> 10011FFFF
+   01DACB20  005258C6  -> 006458C6
+   01DACB24  00000000  -> 00120000
+   01DACB28  00525BAD  -> 00645BAD
+   01DACB2C  FFFFFFFF  -> 10011FFFF
+   .pdata entries with unwind info in 01DACA80..01DACB14: ['006458A0-00645BC0 uw 01DACAF8']

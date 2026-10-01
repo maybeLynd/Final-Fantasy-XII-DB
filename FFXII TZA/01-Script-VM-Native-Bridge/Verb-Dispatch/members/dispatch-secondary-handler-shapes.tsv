@@ -1,0 +1,516 @@
+# Shape classification of the dispatch record's SECONDARY handler slots, keyed by
+# slot DISPLACEMENT and not by slot name - because the names are in dispute
+# (OPUS-REQ-FRONTIER-DISPATCH-SLOT-NAMES-OR-BASE-IS-OFF-BY-EIGHT). A shape is a
+# property of the body, so these rows stay correct under either resolution; only the
+# header line naming +0x08 and +0x10 would change.
+#
+# Generated 2026-09-22 (OPUS) from the shipping image: records at 0x01EED720, stride
+# 0x20, count 0x5D8 = 1,496 from the word at 0x01EED700. Sentinels (0xFFFFFFFF) and
+# nulls are omitted. The taxonomy is the one scriptvm-verb-shapes.tsv uses, and the
+# control is that re-classifying slot +0x00 reproduces that table's family counts.
+record	slot	handler	family	detail
+0004	+0x08	00353D10	LINEAR	2 call(s) (2 direct), no branching
+0004	+0x10	00354230	BRANCHING	1 conditional branch(es), 2 call(s)
+000B	+0x08	00340380	LINEAR	2 call(s) (2 direct), no branching
+000B	+0x10	003409F0	BRANCHING	8 conditional branch(es), 18 call(s)
+000F	+0x08	0034B760	CALL1	-> 0x267f90, then tail-jump
+000F	+0x10	0034C7D0	TAILJUMP	-> 0x34bdc0
+0010	+0x08	003479F0	LINEAR	2 call(s) (2 direct), no branching
+0010	+0x10	00348920	TAILJUMP	-> 0x357790
+0023	+0x08	0034DDE0	CALL1	-> 0x267f90, then tail-jump
+002D	+0x08	003567F0	CALL1	-> 0x267e10
+002D	+0x10	00356C40	CALL1	-> 0x36ff70
+002E	+0x08	003567F0	CALL1	-> 0x267e10
+002E	+0x10	00357530	CALL1	-> 0x36ffc0
+002F	+0x08	003567F0	CALL1	-> 0x267e10
+002F	+0x10	0033F8E0	CALL1	-> 0x36ffd0
+0030	+0x08	003567F0	CALL1	-> 0x267e10
+0030	+0x10	003401F0	CALL1	-> 0x36ffe0
+003C	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+003D	+0x08	003548B0	LINEAR	2 call(s) (2 direct), no branching
+003E	+0x08	00354E70	TAILJUMP	-> 0x357a20
+003F	+0x08	00348240	LINEAR	2 call(s) (2 direct), no branching
+0040	+0x08	00355BF0	TAILJUMP	-> 0x357980
+0041	+0x08	003488B0	LINEAR	3 call(s) (3 direct), no branching
+0042	+0x08	003567D0	CALL1	-> 0x357a20, then tail-jump
+0043	+0x08	00349080	LINEAR	3 call(s) (3 direct), no branching
+0044	+0x08	0033F190	CALL1	-> 0x357980, then tail-jump
+0045	+0x10	00341D50	CALL1	-> 0x265600
+0046	+0x08	0034B670	CALL1	-> 0x26a1a0, then tail-jump
+0047	+0x08	00341AB0	LINEAR	5 call(s) (5 direct), no branching
+0048	+0x08	0034BE50	LINEAR	12 call(s) (12 direct), no branching
+0049	+0x08	003425D0	LINEAR	4 call(s) (4 direct), no branching
+004A	+0x08	0034D1B0	LINEAR	8 call(s) (8 direct), no branching
+004B	+0x08	0034D9B0	LINEAR	3 call(s) (3 direct), no branching
+004C	+0x08	0034E040	LINEAR	4 call(s) (4 direct), no branching
+004D	+0x08	0034E360	LINEAR	5 call(s) (5 direct), no branching
+004E	+0x08	003439B0	LINEAR	3 call(s) (3 direct), no branching
+004F	+0x08	0034CD60	LINEAR	7 call(s) (7 direct), no branching
+0055	+0x08	00351F40	LINEAR	2 call(s) (2 direct), no branching
+0055	+0x10	003523B0	BRANCHING	4 conditional branch(es), 5 call(s)
+0058	+0x08	003548B0	LINEAR	2 call(s) (2 direct), no branching
+0058	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+0059	+0x08	00354E70	TAILJUMP	-> 0x357a20
+0059	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+005A	+0x08	00348240	LINEAR	2 call(s) (2 direct), no branching
+005A	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+005B	+0x08	00355BF0	TAILJUMP	-> 0x357980
+005B	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+005C	+0x08	003488B0	LINEAR	3 call(s) (3 direct), no branching
+005C	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+005D	+0x08	003567D0	CALL1	-> 0x357a20, then tail-jump
+005D	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+005E	+0x08	00349080	LINEAR	3 call(s) (3 direct), no branching
+005E	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+005F	+0x08	0033F190	CALL1	-> 0x357980, then tail-jump
+005F	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+0060	+0x08	0034B670	CALL1	-> 0x26a1a0, then tail-jump
+0060	+0x10	00341D50	CALL1	-> 0x265600
+0061	+0x08	00341AB0	LINEAR	5 call(s) (5 direct), no branching
+0061	+0x10	00341D50	CALL1	-> 0x265600
+0062	+0x08	003420A0	TAILJUMP	-> 0x34be50
+0062	+0x10	00341D50	CALL1	-> 0x265600
+0063	+0x08	003425D0	LINEAR	4 call(s) (4 direct), no branching
+0063	+0x10	00341D50	CALL1	-> 0x265600
+0064	+0x08	00342E40	TAILJUMP	-> 0x34d1b0
+0064	+0x10	00341D50	CALL1	-> 0x265600
+0065	+0x08	0034D9B0	LINEAR	3 call(s) (3 direct), no branching
+0065	+0x10	00341D50	CALL1	-> 0x265600
+0066	+0x08	003439B0	LINEAR	3 call(s) (3 direct), no branching
+0066	+0x10	00341D50	CALL1	-> 0x265600
+0067	+0x08	00344720	TAILJUMP	-> 0x34cd60
+0067	+0x10	00341D50	CALL1	-> 0x265600
+006A	+0x08	00344EA0	CALL1	-> 0x35a640
+006A	+0x10	003453D0	BRANCHING	2 conditional branch(es), 2 call(s)
+006B	+0x08	00345A30	BRANCHING	1 conditional branch(es), 2 call(s)
+006B	+0x10	00346020	BRANCHING	3 conditional branch(es), 2 call(s)
+0078	+0x08	0034C290	LINEAR	2 call(s) (2 direct), no branching
+0078	+0x10	0034C570	BRANCHING	1 conditional branch(es), 3 call(s)
+007E	+0x08	003567F0	CALL1	-> 0x267e10
+007E	+0x10	0034C570	BRANCHING	1 conditional branch(es), 3 call(s)
+0085	+0x08	003567F0	CALL1	-> 0x267e10
+0085	+0x10	0034F770	BRANCHING	3 conditional branch(es), 4 call(s)
+0088	+0x08	00352320	CALL1	-> 0x267e10
+0088	+0x10	003527F0	CALL1	-> 0x3e9a10
+008C	+0x08	00354D00	BRANCHING	1 conditional branch(es), 6 call(s)
+008C	+0x10	00355350	BRANCHING	8 conditional branch(es), 6 call(s)
+0099	+0x08	00345430	BRANCHING	1 conditional branch(es), 13 call(s)
+009A	+0x08	00346680	CALL1	-> 0x2640c0, then tail-jump
+009A	+0x10	00346A60	BRANCHING	1 conditional branch(es), 2 call(s)
+009F	+0x08	003567F0	CALL1	-> 0x267e10
+009F	+0x10	003486A0	BRANCHING	2 conditional branch(es), 4 call(s)
+00A2	+0x08	00349560	LINEAR	2 call(s) (2 direct), no branching
+00A2	+0x10	003499C0	BRANCHING	2 conditional branch(es), 4 call(s)
+00A5	+0x08	0034C2F0	LINEAR	2 call(s) (2 direct), no branching
+00A5	+0x10	0034C700	TAILJUMP	-> 0x34bbd0
+00B0	+0x08	00352680	LINEAR	2 call(s) (2 direct), no branching
+00B0	+0x10	003537B0	CALL1	-> 0x3e9b80
+00B1	+0x08	003533D0	LINEAR	2 call(s) (2 direct), no branching
+00B1	+0x10	003537B0	CALL1	-> 0x3e9b80
+00B2	+0x08	00354DA0	LINEAR	3 call(s) (3 direct), no branching
+00B2	+0x10	003537B0	CALL1	-> 0x3e9b80
+00B3	+0x08	00354120	LINEAR	3 call(s) (3 direct), no branching
+00B3	+0x10	003537B0	CALL1	-> 0x3e9b80
+00B8	+0x08	0033F4C0	LINEAR	2 call(s) (2 direct), no branching
+00B8	+0x10	0033FD40	BRANCHING	1 conditional branch(es), 1 call(s)
+00BC	+0x08	00340380	LINEAR	2 call(s) (2 direct), no branching
+00BC	+0x10	00342330	TAILJUMP	-> 0x3409f0
+00BE	+0x08	00340FA0	BRANCHING	2 conditional branch(es), 7 call(s)
+00BF	+0x08	003414A0	LINEAR	4 call(s) (4 direct), no branching
+00BF	+0x10	00341840	BRANCHING	4 conditional branch(es), 5 call(s)
+00D2	+0x08	003567F0	CALL1	-> 0x267e10
+00D2	+0x10	0033FD40	BRANCHING	1 conditional branch(es), 1 call(s)
+00D3	+0x08	0033F330	BRANCHING	4 conditional branch(es), 12 call(s)
+00D3	+0x10	00342330	TAILJUMP	-> 0x3409f0
+00D5	+0x08	0033FC60	CALL1	-> 0x267f90, then tail-jump
+00D5	+0x10	00342330	TAILJUMP	-> 0x3409f0
+00D6	+0x08	00344F00	BRANCHING	1 conditional branch(es), 5 call(s)
+00D6	+0x10	00342330	TAILJUMP	-> 0x3409f0
+00DB	+0x08	0034C290	LINEAR	2 call(s) (2 direct), no branching
+00DB	+0x10	0034D740	BRANCHING	2 conditional branch(es), 4 call(s)
+00DD	+0x08	0034C290	LINEAR	2 call(s) (2 direct), no branching
+00DD	+0x10	0034EF60	BRANCHING	3 conditional branch(es), 5 call(s)
+00E0	+0x08	003567F0	CALL1	-> 0x267e10
+00E0	+0x10	0034D740	BRANCHING	2 conditional branch(es), 4 call(s)
+00E2	+0x08	003567F0	CALL1	-> 0x267e10
+00E2	+0x10	0034EF60	BRANCHING	3 conditional branch(es), 5 call(s)
+00E6	+0x08	003529E0	LINEAR	5 call(s) (5 direct), no branching
+00E6	+0x10	00352D70	BRANCHING	1 conditional branch(es), 2 call(s)
+00E7	+0x08	00351880	LINEAR	2 call(s) (2 direct), no branching
+00E7	+0x10	00351C90	BRANCHING	2 conditional branch(es), 1 call(s)
+00E8	+0x08	00353E20	BRANCHING	1 conditional branch(es), 2 call(s)
+00E8	+0x10	00354740	TAILJUMP	-> 0x3541b0
+00E9	+0x08	00353A10	BRANCHING	1 conditional branch(es), 1 call(s)
+00E9	+0x10	003541B0	BRANCHING	5 conditional branch(es), 7 call(s)
+00EC	+0x08	00353E20	BRANCHING	1 conditional branch(es), 2 call(s)
+00EC	+0x10	00355F60	BRANCHING	2 conditional branch(es), 3 call(s)
+00ED	+0x08	00353A10	BRANCHING	1 conditional branch(es), 1 call(s)
+00ED	+0x10	00355970	BRANCHING	2 conditional branch(es), 3 call(s)
+00F0	+0x08	0033F710	BRANCHING	1 conditional branch(es), 2 call(s)
+00F0	+0x10	0033F150	BRANCHING	1 conditional branch(es), 0 call(s)
+00F1	+0x08	00356D40	BRANCHING	4 conditional branch(es), 9 call(s)
+00F1	+0x10	0033F150	BRANCHING	1 conditional branch(es), 0 call(s)
+0117	+0x08	0034B120	BRANCHING	3 conditional branch(es), 9 call(s)
+0118	+0x10	0034B8D0	BRANCHING	8 conditional branch(es), 11 call(s)
+0119	+0x08	0034C2E0	TAILJUMP	-> 0x2e6bc0
+0128	+0x08	00347E80	LINEAR	3 call(s) (3 direct), no branching
+0128	+0x10	00348920	TAILJUMP	-> 0x357790
+013E	+0x08	003574B0	LINEAR	6 call(s) (6 direct), no branching
+0145	+0x08	00340450	LINEAR	2 call(s) (2 direct), no branching
+0145	+0x10	00340800	LINEAR	0 call(s) (0 direct), no branching
+0149	+0x08	0034BB10	LINEAR	4 call(s) (4 direct), no branching
+0149	+0x10	0034C7D0	TAILJUMP	-> 0x34bdc0
+014B	+0x08	00342C90	CALL1	-> 0x3601b0, then tail-jump
+014B	+0x10	00342F50	BRANCHING	1 conditional branch(es), 2 call(s)
+0151	+0x08	00344C30	LINEAR	2 call(s) (2 direct), no branching
+0151	+0x10	00345250	BRANCHING	3 conditional branch(es), 5 call(s)
+015C	+0x08	0034AF50	LINEAR	2 call(s) (2 direct), no branching
+015C	+0x10	0034B350	BRANCHING	3 conditional branch(es), 3 call(s)
+0164	+0x08	0034F3C0	BRANCHING	1 conditional branch(es), 4 call(s)
+0164	+0x10	0034F6F0	BRANCHING	4 conditional branch(es), 0 call(s)
+0165	+0x08	0034E460	BRANCHING	1 conditional branch(es), 3 call(s)
+0165	+0x10	0034EAB0	BRANCHING	4 conditional branch(es), 0 call(s)
+0166	+0x08	0034FC50	BRANCHING	1 conditional branch(es), 5 call(s)
+0166	+0x10	0034F6F0	BRANCHING	4 conditional branch(es), 0 call(s)
+016F	+0x10	00353700	CALL1	-> 0x2f1a20
+017E	+0x08	00341C50	LINEAR	2 call(s) (2 direct), no branching
+017E	+0x10	00341590	BRANCHING	1 conditional branch(es), 2 call(s)
+0187	+0x08	00341C50	LINEAR	2 call(s) (2 direct), no branching
+0187	+0x10	00341F50	BRANCHING	1 conditional branch(es), 2 call(s)
+018A	+0x08	00341C50	LINEAR	2 call(s) (2 direct), no branching
+018A	+0x10	003428C0	BRANCHING	1 conditional branch(es), 2 call(s)
+019F	+0x08	0034C290	LINEAR	2 call(s) (2 direct), no branching
+019F	+0x10	0034BFE0	LINEAR	2 call(s) (2 direct), no branching
+01A3	+0x08	003567F0	CALL1	-> 0x267e10
+01A3	+0x10	0034BFE0	LINEAR	2 call(s) (2 direct), no branching
+01AC	+0x10	0050C9F0	CALL1	-> 0x5c5230
+01E4	+0x10	003445E0	BRANCHING	1 conditional branch(es), 3 call(s)
+01FE	+0x08	0034ADA0	BRANCHING	1 conditional branch(es), 16 call(s)
+01FE	+0x10	0034BDC0	BRANCHING	4 conditional branch(es), 5 call(s)
+01FF	+0x08	00343B00	BRANCHING	2 conditional branch(es), 7 call(s)
+01FF	+0x10	00342330	TAILJUMP	-> 0x3409f0
+0203	+0x10	0034E3E0	BRANCHING	1 conditional branch(es), 2 call(s)
+0204	+0x08	0034EA30	TAILJUMP	-> 0x3b7c60
+0205	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+0205	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+0207	+0x10	0034E3E0	BRANCHING	1 conditional branch(es), 2 call(s)
+0208	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+0208	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+0213	+0x08	003567F0	CALL1	-> 0x267e10
+0213	+0x10	00355300	BRANCHING	1 conditional branch(es), 5 call(s)
+0229	+0x08	00341C80	LINEAR	2 call(s) (2 direct), no branching
+0229	+0x10	00341F90	BRANCHING	7 conditional branch(es), 4 call(s)
+022A	+0x08	00342770	BRANCHING	2 conditional branch(es), 10 call(s)
+022A	+0x10	00341F90	BRANCHING	7 conditional branch(es), 4 call(s)
+022D	+0x08	00347A50	LINEAR	2 call(s) (2 direct), no branching
+022D	+0x10	00347E20	TAILJUMP	-> 0x347310
+022E	+0x08	00346C00	BRANCHING	3 conditional branch(es), 14 call(s)
+022E	+0x10	00347310	BRANCHING	4 conditional branch(es), 3 call(s)
+022F	+0x08	00346460	CALL1	-> 0x267f90, then tail-jump
+0230	+0x08	00345B60	BRANCHING	2 conditional branch(es), 10 call(s)
+023A	+0x10	0034A600	BRANCHING	1 conditional branch(es), 3 call(s)
+023E	+0x10	0034B3C0	BRANCHING	1 conditional branch(es), 3 call(s)
+0242	+0x08	00344050	LINEAR	2 call(s) (2 direct), no branching
+0242	+0x10	00341D50	CALL1	-> 0x265600
+0243	+0x08	00344050	LINEAR	2 call(s) (2 direct), no branching
+024B	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+024C	+0x08	00342040	LINEAR	2 call(s) (2 direct), no branching
+024C	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+024D	+0x08	00343F90	LINEAR	4 call(s) (4 direct), no branching
+024D	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+024E	+0x08	00340480	LINEAR	4 call(s) (4 direct), no branching
+024E	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+024F	+0x08	003544A0	CALL1	-> 0x26a1a0, then tail-jump
+024F	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0250	+0x08	00348650	TAILJUMP	-> 0x356af0
+0250	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0251	+0x08	0034BD20	TAILJUMP	-> 0x3573c0
+0251	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0252	+0x08	00349F10	LINEAR	4 call(s) (4 direct), no branching
+0252	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0253	+0x08	003551A0	CALL1	-> 0x26a1a0, then tail-jump
+0253	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0254	+0x08	00342040	LINEAR	2 call(s) (2 direct), no branching
+0255	+0x08	00343F90	LINEAR	4 call(s) (4 direct), no branching
+0256	+0x08	00340480	LINEAR	4 call(s) (4 direct), no branching
+0257	+0x08	003544A0	CALL1	-> 0x26a1a0, then tail-jump
+0258	+0x08	00356AF0	LINEAR	5 call(s) (5 direct), no branching
+0259	+0x08	003573C0	LINEAR	4 call(s) (4 direct), no branching
+025A	+0x08	00349F10	LINEAR	4 call(s) (4 direct), no branching
+025B	+0x08	003551A0	CALL1	-> 0x26a1a0, then tail-jump
+025C	+0x08	0034FB40	CALL1	-> 0x26a1a0, then tail-jump
+025D	+0x08	0034E710	LINEAR	11 call(s) (11 direct), no branching
+025E	+0x08	0034EFE0	LINEAR	5 call(s) (5 direct), no branching
+025F	+0x08	0034FB40	CALL1	-> 0x26a1a0, then tail-jump
+025F	+0x10	00341D50	CALL1	-> 0x265600
+0260	+0x08	00350950	TAILJUMP	-> 0x34e710
+0260	+0x10	00341D50	CALL1	-> 0x265600
+0261	+0x08	00351200	TAILJUMP	-> 0x34efe0
+0261	+0x10	00341D50	CALL1	-> 0x265600
+0269	+0x08	00354CB0	LINEAR	3 call(s) (3 direct), no branching
+0269	+0x10	00355160	BRANCHING	2 conditional branch(es), 2 call(s)
+0273	+0x08	00355CC0	LINEAR	5 call(s) (5 direct), no branching
+0273	+0x10	00355F40	CALL1	-> 0x36e5e0
+0274	+0x08	0050EA20	LINEAR	2 call(s) (2 direct), no branching
+0274	+0x10	00355F40	CALL1	-> 0x36e5e0
+0276	+0x08	00350980	TAILJUMP	-> 0x34eb40
+0276	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0277	+0x08	00341390	CALL1	-> 0x26a1a0, then tail-jump
+0277	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0278	+0x08	003492E0	TAILJUMP	-> 0x33f770
+0278	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+0279	+0x08	0034AEC0	CALL1	-> 0x26a1a0, then tail-jump
+0279	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+027A	+0x08	0034EB40	LINEAR	5 call(s) (5 direct), no branching
+027B	+0x08	00341390	CALL1	-> 0x26a1a0, then tail-jump
+027C	+0x08	0033F770	LINEAR	4 call(s) (4 direct), no branching
+027D	+0x08	0034AEC0	CALL1	-> 0x26a1a0, then tail-jump
+0281	+0x08	0034B860	CALL1	-> 0x267e10
+0281	+0x10	0034BBD0	BRANCHING	3 conditional branch(es), 3 call(s)
+0296	+0x10	003473C0	CALL1	-> 0x37b380
+029B	+0x08	003567F0	CALL1	-> 0x267e10
+029B	+0x10	003491B0	BRANCHING	1 conditional branch(es), 2 call(s)
+029D	+0x08	003567F0	CALL1	-> 0x267e10
+029D	+0x10	0034A030	CALL1	-> 0x35a200
+029E	+0x08	003567F0	CALL1	-> 0x267e10
+029E	+0x10	0034AA70	BRANCHING	1 conditional branch(es), 2 call(s)
+02A8	+0x10	0034DD00	CALL1	-> 0x2e1660
+02B6	+0x08	003567F0	CALL1	-> 0x267e10
+02B6	+0x10	0034B310	BRANCHING	1 conditional branch(es), 2 call(s)
+02BD	+0x08	00354400	BRANCHING	2 conditional branch(es), 8 call(s)
+02BD	+0x10	00354A40	BRANCHING	3 conditional branch(es), 5 call(s)
+02BE	+0x08	00355830	BRANCHING	1 conditional branch(es), 7 call(s)
+02BE	+0x10	00355E20	CALL1	-> 0x2677e0
+02C7	+0x08	00340BE0	LINEAR	4 call(s) (4 direct), no branching
+02C7	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02C8	+0x08	003547A0	CALL1	-> 0x26a1a0, then tail-jump
+02C8	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02C9	+0x08	00348B90	TAILJUMP	-> 0x356f20
+02C9	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02CA	+0x08	0034C420	TAILJUMP	-> 0x33f270
+02CA	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02CB	+0x08	00356740	LINEAR	4 call(s) (4 direct), no branching
+02CB	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02CC	+0x08	0034D0C0	CALL1	-> 0x26a1a0, then tail-jump
+02CC	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02CD	+0x08	00340BE0	LINEAR	4 call(s) (4 direct), no branching
+02CE	+0x08	003547A0	CALL1	-> 0x26a1a0, then tail-jump
+02CF	+0x08	00356F20	LINEAR	5 call(s) (5 direct), no branching
+02D0	+0x08	0033F270	LINEAR	4 call(s) (4 direct), no branching
+02D1	+0x08	00356740	LINEAR	4 call(s) (4 direct), no branching
+02D2	+0x08	0034D0C0	CALL1	-> 0x26a1a0, then tail-jump
+02D3	+0x08	00350260	CALL1	-> 0x26a1a0, then tail-jump
+02D4	+0x08	0034F4F0	LINEAR	5 call(s) (5 direct), no branching
+02D5	+0x08	00350260	CALL1	-> 0x26a1a0, then tail-jump
+02D5	+0x10	00341D50	CALL1	-> 0x265600
+02D6	+0x08	00351A30	TAILJUMP	-> 0x34f4f0
+02D6	+0x10	00341D50	CALL1	-> 0x265600
+02D7	+0x08	00353330	CALL1	-> 0x26a1a0, then tail-jump
+02D7	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02D8	+0x08	003498C0	TAILJUMP	-> 0x33fba0
+02D8	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02D9	+0x08	0034B450	CALL1	-> 0x26a1a0, then tail-jump
+02D9	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+02DA	+0x08	00353330	CALL1	-> 0x26a1a0, then tail-jump
+02DB	+0x08	0033FBA0	LINEAR	4 call(s) (4 direct), no branching
+02DC	+0x08	0034B450	CALL1	-> 0x26a1a0, then tail-jump
+02DD	+0x08	0034BA50	CALL1	-> 0x26a1a0, then tail-jump
+02DF	+0x08	00341600	LINEAR	5 call(s) (5 direct), no branching
+02DF	+0x10	00342CE0	TAILJUMP	-> 0x357f00
+02E0	+0x08	00343290	BRANCHING	1 conditional branch(es), 7 call(s)
+033C	+0x08	003567F0	CALL1	-> 0x267e10
+033C	+0x10	00351DE0	CALL1	-> 0x2dee80
+0341	+0x10	00346AA0	BRANCHING	4 conditional branch(es), 4 call(s)
+0344	+0x10	00347660	BRANCHING	2 conditional branch(es), 4 call(s)
+034F	+0x10	0034A530	BRANCHING	1 conditional branch(es), 3 call(s)
+0352	+0x08	0034C030	CALL1	-> 0x267e10
+0352	+0x10	0034C370	BRANCHING	4 conditional branch(es), 4 call(s)
+0353	+0x08	0034C030	CALL1	-> 0x267e10
+0353	+0x10	0034CDF0	BRANCHING	4 conditional branch(es), 4 call(s)
+0354	+0x08	0034D4E0	BRANCHING	8 conditional branch(es), 10 call(s)
+0354	+0x10	003506A0	BRANCHING	1 conditional branch(es), 2 call(s)
+0357	+0x08	00350160	BRANCHING	2 conditional branch(es), 6 call(s)
+0357	+0x10	003506A0	BRANCHING	1 conditional branch(es), 2 call(s)
+0358	+0x08	00350CD0	BRANCHING	5 conditional branch(es), 9 call(s)
+0358	+0x10	003506A0	BRANCHING	1 conditional branch(es), 2 call(s)
+0359	+0x08	00351A40	BRANCHING	1 conditional branch(es), 5 call(s)
+0359	+0x10	003506A0	BRANCHING	1 conditional branch(es), 2 call(s)
+035A	+0x08	00352190	BRANCHING	3 conditional branch(es), 6 call(s)
+035A	+0x10	003506A0	BRANCHING	1 conditional branch(es), 2 call(s)
+035B	+0x08	00352AF0	BRANCHING	1 conditional branch(es), 3 call(s)
+035B	+0x10	003506A0	BRANCHING	1 conditional branch(es), 2 call(s)
+0363	+0x08	00344410	CALL1	-> 0x342770, then tail-jump
+0363	+0x10	00341F90	BRANCHING	7 conditional branch(es), 4 call(s)
+0367	+0x08	003567F0	CALL1	-> 0x267e10
+0367	+0x10	00356050	BRANCHING	1 conditional branch(es), 2 call(s)
+0368	+0x10	00356810	BRANCHING	1 conditional branch(es), 1 call(s)
+036A	+0x10	00357300	BRANCHING	1 conditional branch(es), 2 call(s)
+036D	+0x08	0033FEC0	TAILJUMP	-> 0x35b720
+036D	+0x10	00357300	BRANCHING	1 conditional branch(es), 2 call(s)
+0371	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+0371	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+0372	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+0372	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+0373	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+0373	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+037B	+0x08	00344C60	BRANCHING	1 conditional branch(es), 5 call(s)
+037B	+0x10	00345140	BRANCHING	1 conditional branch(es), 3 call(s)
+037D	+0x08	00347230	TAILJUMP	-> 0x37cff0
+037D	+0x10	00347C60	BRANCHING	1 conditional branch(es), 2 call(s)
+037E	+0x08	00347820	TAILJUMP	-> 0x37cfc0
+037E	+0x10	00347C60	BRANCHING	1 conditional branch(es), 2 call(s)
+0385	+0x08	003456E0	BRANCHING	1 conditional branch(es), 5 call(s)
+0385	+0x10	00345E20	CALL1	-> 0x2e1630
+0386	+0x08	0034A790	TAILJUMP	-> 0x35a630
+0386	+0x10	0034A300	BRANCHING	1 conditional branch(es), 2 call(s)
+0387	+0x08	00349F90	TAILJUMP	-> 0x35a620
+0387	+0x10	0034A300	BRANCHING	1 conditional branch(es), 2 call(s)
+038B	+0x08	0034C630	BRANCHING	1 conditional branch(es), 5 call(s)
+038B	+0x10	0034C9E0	BRANCHING	2 conditional branch(es), 1 call(s)
+03A1	+0x08	003508E0	BRANCHING	1 conditional branch(es), 2 call(s)
+03A1	+0x10	00350EC0	BRANCHING	2 conditional branch(es), 4 call(s)
+03A2	+0x08	00351460	TAILJUMP	-> 0x473b20
+03A2	+0x10	00352350	CALL1	-> 0x473b30
+03A3	+0x08	00351EE0	LINEAR	2 call(s) (2 direct), no branching
+03A3	+0x10	00352350	CALL1	-> 0x473b30
+03A5	+0x08	00352B80	TAILJUMP	-> 0x2e0650
+03A5	+0x10	00352E00	CALL1	-> 0x2e0f80
+03BC	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+03BC	+0x10	00345100	CALL1	-> 0x3de150
+03C7	+0x08	00340EC0	CALL1	-> 0x2e3e20, then tail-jump
+03C7	+0x10	00340800	LINEAR	0 call(s) (0 direct), no branching
+03D1	+0x08	0034B030	LINEAR	3 call(s) (3 direct), no branching
+03D1	+0x10	0034B5A0	BRANCHING	1 conditional branch(es), 1 call(s)
+03E1	+0x08	0034EB20	TAILJUMP	-> 0x3603d0
+03E1	+0x10	0053DD10	CONST	no call, no jump, no memory - a constant or a bare ret
+03EA	+0x08	0034CCD0	CALL1	-> 0x3601b0, then tail-jump
+03EA	+0x10	0034E3E0	BRANCHING	1 conditional branch(es), 2 call(s)
+03FA	+0x08	003567F0	CALL1	-> 0x267e10
+03FA	+0x10	00340C70	CALL1	-> 0x248f10
+03FB	+0x08	003567F0	CALL1	-> 0x267e10
+03FB	+0x10	003414E0	CALL1	-> 0x248ee0
+03FC	+0x08	003567F0	CALL1	-> 0x267e10
+03FC	+0x10	00341D70	CALL1	-> 0x248f00
+03FD	+0x08	003567F0	CALL1	-> 0x267e10
+03FD	+0x10	00342450	CALL1	-> 0x248ef0
+0413	+0x08	00356570	LINEAR	4 call(s) (4 direct), no branching
+0413	+0x10	00356A10	CALL1	-> 0x2677e0
+041A	+0x08	00343A30	BRANCHING	1 conditional branch(es), 9 call(s)
+041A	+0x10	00344200	BRANCHING	3 conditional branch(es), 5 call(s)
+041B	+0x08	00344D80	CALL1	-> 0x267f90, then tail-jump
+041B	+0x10	00345FB0	TAILJUMP	-> 0x344200
+041C	+0x08	00345AE0	LINEAR	2 call(s) (2 direct), no branching
+041C	+0x10	00345FB0	TAILJUMP	-> 0x344200
+041F	+0x08	0034AA20	LINEAR	3 call(s) (3 direct), no branching
+041F	+0x10	0034AD90	TAILJUMP	-> 0x34a1d0
+0420	+0x08	00349CB0	LINEAR	2 call(s) (2 direct), no branching
+0420	+0x10	0034A1D0	BRANCHING	3 conditional branch(es), 4 call(s)
+043C	+0x08	003567F0	CALL1	-> 0x267e10
+043C	+0x10	003529B0	BRANCHING	1 conditional branch(es), 1 call(s)
+043E	+0x08	003567F0	CALL1	-> 0x267e10
+043E	+0x10	003514A0	BRANCHING	1 conditional branch(es), 1 call(s)
+043F	+0x08	003567F0	CALL1	-> 0x267e10
+043F	+0x10	00351FD0	BRANCHING	1 conditional branch(es), 1 call(s)
+0442	+0x08	003567F0	CALL1	-> 0x267e10
+0442	+0x10	00353720	BRANCHING	1 conditional branch(es), 2 call(s)
+0448	+0x10	00354920	BRANCHING	1 conditional branch(es), 2 call(s)
+044A	+0x10	003550F0	BRANCHING	1 conditional branch(es), 2 call(s)
+0463	+0x08	003567F0	CALL1	-> 0x267e10
+0463	+0x10	003436B0	BRANCHING	2 conditional branch(es), 4 call(s)
+046E	+0x08	0034D8B0	CALL1	-> 0x314d40, then tail-jump
+046E	+0x10	0034E3E0	BRANCHING	1 conditional branch(es), 2 call(s)
+0471	+0x08	003470D0	LINEAR	6 call(s) (6 direct), no branching
+0471	+0x10	00347390	CALL1	-> 0x2e0f80
+0472	+0x08	003479E0	TAILJUMP	-> 0x2ecfd0
+0472	+0x10	00347DD0	CALL1	-> 0x2ecf60
+047F	+0x08	0034A6D0	LINEAR	3 call(s) (3 direct), no branching
+047F	+0x10	0034ABF0	CALL1	-> 0x2e2530
+0482	+0x08	003419F0	BRANCHING	1 conditional branch(es), 7 call(s)
+0482	+0x10	00342CE0	TAILJUMP	-> 0x357f00
+0483	+0x08	00343770	TAILJUMP	-> 0x343290
+0489	+0x10	0034D4C0	CALL1	-> 0x2e2520
+048C	+0x08	003462D0	LINEAR	5 call(s) (5 direct), no branching
+048C	+0x10	00352E00	CALL1	-> 0x2e0f80
+049A	+0x10	00345800	BRANCHING	1 conditional branch(es), 3 call(s)
+049C	+0x08	003567F0	CALL1	-> 0x267e10
+049C	+0x10	00351120	CALL1	-> 0x2e1130
+04AA	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+04AC	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+04AD	+0x08	0016D6A0	CONST	no call, no jump, no memory - a constant or a bare ret
+04AD	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+04B4	+0x10	00355C20	LINEAR	0 call(s) (0 direct), no branching
+04B9	+0x08	0034FFF0	LINEAR	2 call(s) (2 direct), no branching
+04BA	+0x08	0034F470	LINEAR	5 call(s) (5 direct), no branching
+04BB	+0x08	0034FBB0	LINEAR	6 call(s) (6 direct), no branching
+04BC	+0x08	0034FFF0	LINEAR	2 call(s) (2 direct), no branching
+04BC	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04BD	+0x08	003455F0	TAILJUMP	-> 0x34f470
+04BD	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04BE	+0x08	00345EE0	TAILJUMP	-> 0x34fbb0
+04BE	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04BF	+0x08	00342040	LINEAR	2 call(s) (2 direct), no branching
+04C0	+0x08	00350980	TAILJUMP	-> 0x34eb40
+04C1	+0x08	00350410	LINEAR	6 call(s) (6 direct), no branching
+04C2	+0x08	00342040	LINEAR	2 call(s) (2 direct), no branching
+04C2	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04C3	+0x08	00350980	TAILJUMP	-> 0x34eb40
+04C3	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04C4	+0x08	00342D30	TAILJUMP	-> 0x350410
+04C4	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04C5	+0x08	003517E0	LINEAR	4 call(s) (4 direct), no branching
+04C6	+0x08	00351D10	LINEAR	5 call(s) (5 direct), no branching
+04C7	+0x08	003517E0	LINEAR	4 call(s) (4 direct), no branching
+04C7	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04C8	+0x08	00346DC0	TAILJUMP	-> 0x351d10
+04C8	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04C9	+0x08	00343F90	LINEAR	4 call(s) (4 direct), no branching
+04CA	+0x08	003520B0	LINEAR	5 call(s) (5 direct), no branching
+04CB	+0x08	00343F90	LINEAR	4 call(s) (4 direct), no branching
+04CB	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04CC	+0x08	00343950	TAILJUMP	-> 0x3520b0
+04CC	+0x10	003435C0	BRANCHING	2 conditional branch(es), 3 call(s)
+04CD	+0x08	00349680	LINEAR	5 call(s) (5 direct), no branching
+04CE	+0x08	0033FFC0	LINEAR	3 call(s) (3 direct), no branching
+04CF	+0x08	00349D90	LINEAR	5 call(s) (5 direct), no branching
+04D0	+0x08	0034A290	LINEAR	3 call(s) (3 direct), no branching
+04D1	+0x08	0033F850	TAILJUMP	-> 0x349680
+04D1	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+04D2	+0x08	0033FFC0	LINEAR	3 call(s) (3 direct), no branching
+04D2	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+04D3	+0x08	00340520	TAILJUMP	-> 0x349d90
+04D3	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+04D4	+0x08	0034A290	LINEAR	3 call(s) (3 direct), no branching
+04D4	+0x10	00356A90	BRANCHING	1 conditional branch(es), 1 call(s)
+04D7	+0x08	0033F640	TAILJUMP	-> 0x237d60
+04D7	+0x10	005C5230	CONST	no call, no jump, no memory - a constant or a bare ret
+04EB	+0x08	0050EA20	LINEAR	2 call(s) (2 direct), no branching
+04EB	+0x10	00356BD0	CALL1	-> 0x36e4d0
+050D	+0x08	003437A0	LINEAR	2 call(s) (2 direct), no branching
+050D	+0x10	00341F90	BRANCHING	7 conditional branch(es), 4 call(s)
+0519	+0x08	0034D3A0	LINEAR	2 call(s) (2 direct), no branching
+051A	+0x08	0034D820	BRANCHING	1 conditional branch(es), 2 call(s)
+051A	+0x10	0034DB30	BRANCHING	12 conditional branch(es), 9 call(s)
+0524	+0x08	003407C0	LINEAR	2 call(s) (2 direct), no branching
+0524	+0x10	00340BC0	CALL1	-> 0x2677f0
+0529	+0x08	003567F0	CALL1	-> 0x267e10
+0529	+0x10	00340BC0	CALL1	-> 0x2677f0
+052A	+0x08	00345CD0	BRANCHING	2 conditional branch(es), 20 call(s)
+052B	+0x08	00345F60	LINEAR	3 call(s) (3 direct), no branching
+052B	+0x10	003465D0	BRANCHING	1 conditional branch(es), 1 call(s)
+0532	+0x08	003536B0	LINEAR	4 call(s) (4 direct), no branching
+0532	+0x10	00353AC0	BRANCHING	1 conditional branch(es), 0 call(s)
+0533	+0x08	00354030	LINEAR	3 call(s) (3 direct), no branching
+0533	+0x10	003544F0	BRANCHING	1 conditional branch(es), 0 call(s)
+0535	+0x10	003466F0	CALL1	-> 0x2f1a30
+055A	+0x08	003497B0	CALL1	-> 0x267e10, then tail-jump
+055A	+0x10	00349A30	BRANCHING	1 conditional branch(es), 2 call(s)
+0572	+0x08	00342910	BRANCHING	1 conditional branch(es), 1 call(s)
+0572	+0x10	00342EC0	BRANCHING	4 conditional branch(es), 4 call(s)
+0576	+0x08	00343C60	BRANCHING	1 conditional branch(es), 6 call(s)
+0587	+0x08	003567F0	CALL1	-> 0x267e10
+0587	+0x10	0034E630	BRANCHING	5 conditional branch(es), 3 call(s)
+05A5	+0x10	0034F570	BRANCHING	1 conditional branch(es), 1 call(s)
+05CA	+0x08	00340380	LINEAR	2 call(s) (2 direct), no branching
+05CA	+0x10	003418B0	BRANCHING	6 conditional branch(es), 7 call(s)
+05D4	+0x08	0034D790	BRANCHING	7 conditional branch(es), 6 call(s)
+05D4	+0x10	0034DCC0	BRANCHING	2 conditional branch(es), 1 call(s)

@@ -1,0 +1,7 @@
+variant leaf-mapped=False jcc=False: 635 functions reach 00312280; probes {'0024CFF0': False, '002693D0': False, '002E3AF0': False, '00319140': False, '002EB780': False, '003603F0': False, '0032E620': False}
+variant leaf-mapped=True jcc=False: 773 functions reach 00312280; probes {'0024CFF0': False, '002693D0': False, '002E3AF0': False, '00319140': False, '002EB780': False, '003603F0': False, '0032E620': False}
+variant leaf-mapped=False jcc=True: 635 functions reach 00312280; probes {'0024CFF0': False, '002693D0': False, '002E3AF0': False, '00319140': False, '002EB780': False, '003603F0': False, '0032E620': False}
+variant leaf-mapped=True jcc=True: 2208 functions reach 00312280; probes {'0024CFF0': True, '002693D0': True, '002E3AF0': True, '00319140': False, '002EB780': False, '003603F0': True, '0032E620': True}
+path from 002693D0 (pdata-rooted E8/E9 only): none
+path from 0024CFF0 (pdata-rooted E8/E9 only): none
+path from 002E3AF0 (pdata-rooted E8/E9 only): none

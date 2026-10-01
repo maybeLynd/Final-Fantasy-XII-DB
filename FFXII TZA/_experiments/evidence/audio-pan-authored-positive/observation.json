@@ -1,0 +1,113 @@
+{
+  "method": "A: selected first blocks from designated reference VBF",
+  "archive_index_sha256": "c9e1f5304221b2e01c6239b5d5ed6e6e8a439d66d6436be32e6f9aeb4fa449ff",
+  "rows": [
+    {
+      "path": "ps2data/sound/se/sead_data_win/se001/se001001.win.sab",
+      "entry_size": 469552,
+      "header": {
+        "bank_name": "se001",
+        "word_0a": 1,
+        "directory": 32,
+        "chunks": [
+          {
+            "tag": "snd ",
+            "offset": 96,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "seq ",
+            "offset": 256,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "trk ",
+            "offset": 352,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "mtrl",
+            "offset": 480,
+            "trailing_word_0c": 0
+          }
+        ]
+      },
+      "raw_sha256": "351071e3905d0909f8a49ac749c4c8f581eb5881350c56dcd85ff48e1c9e7901",
+      "matches_value_one": true
+    },
+    {
+      "path": "ps2data/sound/se/sead_data_win/se001/se001002.win.sab",
+      "entry_size": 349232,
+      "header": {
+        "bank_name": "se001",
+        "word_0a": 1,
+        "directory": 32,
+        "chunks": [
+          {
+            "tag": "snd ",
+            "offset": 96,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "seq ",
+            "offset": 256,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "trk ",
+            "offset": 352,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "mtrl",
+            "offset": 480,
+            "trailing_word_0c": 0
+          }
+        ]
+      },
+      "raw_sha256": "e7b56993448437bee1f62e9d3096bf1739fcd7a4ac6e09257ead6d72221cb655",
+      "matches_value_one": true
+    },
+    {
+      "path": "ps2data/sound/se/sead_data_win/se000/se000.win.sab",
+      "entry_size": 9434608,
+      "header": {
+        "bank_name": "se000",
+        "word_0a": 0,
+        "directory": 32,
+        "chunks": [
+          {
+            "tag": "snd ",
+            "offset": 96,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "seq ",
+            "offset": 16816,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "trk ",
+            "offset": 25200,
+            "trailing_word_0c": 0
+          },
+          {
+            "tag": "mtrl",
+            "offset": 37520,
+            "trailing_word_0c": 0
+          }
+        ]
+      },
+      "raw_sha256": "81a215c4b0d587e8250e59741ebd17008ce0b0ef68a299c8c54da19f404b98fd",
+      "matches_value_one": false
+    }
+  ],
+  "controls": [
+    "truncated compressed block rejected",
+    "wrong magic rejected",
+    "wrong logical size rejected",
+    "labelled value-one to zero mutation changes discriminator without inventing shipping data"
+  ],
+  "established": "Two specifically identified authored bank entries carry word+0A=1; the selected contrast carries 0.",
+  "unresolved": "Whole-corpus distribution, semantic field name, runtime class/binding, scene reachability and audible output are not established."
+}

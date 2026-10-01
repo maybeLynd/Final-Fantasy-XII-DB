@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "max-becomes-exclusive",
+      "rejected": true
+    },
+    {
+      "name": "callback-rounding-now-includes-boundary",
+      "rejected": true
+    },
+    {
+      "name": "callback-visit-count-changed",
+      "rejected": true
+    },
+    {
+      "name": "reader-page-stride-changed",
+      "rejected": true
+    },
+    {
+      "name": "reader-rebases-offset-before-use",
+      "rejected": true
+    }
+  ],
+  "evidence": "Static boundary calculations and retained finite reader results; no fresh native cases/mutations"
+}

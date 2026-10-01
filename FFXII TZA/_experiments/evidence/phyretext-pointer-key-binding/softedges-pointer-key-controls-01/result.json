@@ -1,0 +1,31 @@
+{
+  "status": "PASS_PRODUCER_CONTROLS",
+  "reducer_sha256": "cbe55b5177fc00a8970ea328c0fc0cd7913ab2bb6e95aa8e79918964e0b7e8f0",
+  "checks": [
+    {
+      "case": "missing-guard-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-pointer-key-binding.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\missing-guard-source\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\missing-guard-source\\source"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED"
+    },
+    {
+      "case": "wrong-count-base",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-pointer-key-binding.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\wrong-count-base\\result.json",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\wrong-count-base\\source"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "status": "PASS_REFUSED"
+    }
+  ],
+  "limits": "Actual subprocess refusals of disposable source defects, not original-code or live tests. Baseline03 reused; no changed game binary or canonical input."
+}

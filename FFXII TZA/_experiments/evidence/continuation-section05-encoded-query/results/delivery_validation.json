@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "separate_extraction": true,
+  "all_listed_payload_hashes_match": 35,
+  "preimage_conflicts": 0,
+  "all_payload_files_already_applied_after_merge": true,
+  "native_reproduced_assertions": 200,
+  "same_native_repeat_and_code_mutants": true,
+  "same_independent_retained_review_and_controls": true,
+  "original_exe_sha256_after": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "note": "Tested local Linux extraction with expected canonical preimages and unchanged original historical inputs. Not a new live game session. Manifest and receipt are not recursively self-certified."
+}

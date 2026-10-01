@@ -1,0 +1,45 @@
+{
+  "question": "Does required SP1 corpus-control mismatch produce terminal failure?",
+  "method": "offline actual returned producer subprocess, declared input-path substitution",
+  "original_source": "Database\\FFXII TZA\\_index\\candidates\\fable-astra-live-facts-0930\\t1b_sp1_counts.py",
+  "original_source_sha256": "6cd80a4d37f0a0870106c11253c91bd01541d3065c4a2654f6a324bc5abd1701",
+  "extractor_sha256": "1841f666b28fb737bf02ab3bb0ea90a7515273f74533a772e7f7131c0e0de611",
+  "driver_sha256": "9e3ab8a120e1ed20fc707bdc5ce4a9cc0b6aacd305ef135a274cd5a0335298cf",
+  "records": [
+    {
+      "case": "no_mpk_corpus",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sp1-prerequisite-02\\no_mpk_corpus.py"
+      ],
+      "exit_code": 0,
+      "terminal": true,
+      "stdout": "packs 0  records 0  shapes {}  count==1 0\nCONTROL page census: records 2326, shape-2 400, count==1 2265 -> MISMATCH (0, 0, 0)\nlargest shape-2 counts: []\nshape-2 records with count >= 128: NONE\nFAILS 0\n",
+      "stderr": "",
+      "input_sha256": "fe50bd5aed88d761a094e911f596ec3006728abbdddb8eacb855a0bc698cd94f",
+      "adapted_driver_sha256": "c4d497b0ffde31624486c19d8861e40df08fbdde19ccc07f83b359809c888463"
+    },
+    {
+      "case": "bad_archive_control",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sp1-prerequisite-02\\bad_archive_control.py"
+      ],
+      "exit_code": 1,
+      "terminal": true,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sp1-prerequisite-02\\bad_archive_control.py\", line 27, in <module>\n    names, blocks = vbfextract.load_index(f)\n                    ~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"C:\\Users/Kristian/source/repos/XIIOnline/agent_flow/tools\\vbfextract.py\", line 15, in load_index\n    assert magic == b\"SRYK\"\n           ^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "input_sha256": "0054cc9fa2a031e8e89d9a47447940b0acf970f4421ddd1e8d3c296c277ddb80",
+      "adapted_driver_sha256": "f370a37cdb0c4eef9daf6ec6abba4eb9123a6f864cbc878e4899363c7257b0c0"
+    }
+  ],
+  "defect_reproduced": true,
+  "archive_parser_negative_control": true,
+  "verdict": "REJECT upstream prerequisite gate; retained actual 550-pack data findings not disproved",
+  "prior_run": "sp1-prerequisite-01 INVALID: regex replacement re-interpreted Windows path escapes; both child scripts failed before the producer ran. Do not use its REJECT wording/control boolean as a verdict. Use literal callback replacement and require actual archive-magic failure.",
+  "limits": "Synthetic index has two non-mpk entries; no scientific corpus rerun or new game observation. Actual original-corpus count matched; this exposes a missing gate, not a counterexample count>=128.",
+  "needed_repair": "Mandatory expected-corpus mismatch and omitted/malformed referenced SP1 records must fail or produce explicit incomplete status, which downstream acceptance checks. Add this actual invocation regression.",
+  "peer_source_unchanged": true
+}

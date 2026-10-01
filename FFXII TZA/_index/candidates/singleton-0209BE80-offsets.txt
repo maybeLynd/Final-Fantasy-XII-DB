@@ -1,0 +1,62 @@
+slot 0209BE80: 136 function(s) load it; 56 distinct offset(s) used off the loaded pointer
+
+offset     reads writes  lea widths     first site
++0x80           0     0    1 -          0028F8F9 lea rcx, [rax + 0x80]
++0xA0           0     0    5 -          0028E4BF lea rcx, [rbx + 0xa0]
++0x5380         0     0    8 -          0028E2AB add rcx, 0x5380
++0x57E0         0     0   10 -          0028E39B lea rcx, [rbx + 0x57e0]
++0x58A4         1     0    0 1          0028F15B test byte ptr [rcx + 0x58a4], 1
++0x58B0         0     0    2 -          0028F177 add rcx, 0x58b0
++0x5972         1     0    0 2          0028F18E cmp word ptr [rcx + 0x5972], 0
++0x5980         0     0    2 -          0028F1AB add rcx, 0x5980
++0x5A42         1     0    0 2          0028F1C2 cmp word ptr [rcx + 0x5a42], 0
++0x7C70         4     0    0 8          0028EBEB cmp qword ptr [rax + 0x7c70], 0
++0x7C78         0     3    0 2          0028EF39 mov word ptr [rax + 0x7c78], cx
++0x7C7C         1     9    0 4          0028EF07 mov dword ptr [rax + 0x7c7c], 0
++0x7C82         0     3    0 2          0028EF47 mov word ptr [rax + 0x7c82], dx
++0x7EA0         0     0    6 -          0028E55A lea rcx, [rbx + 0x7ea0]
++0x7EC4         1     0    0 4          0028F5D4 mov eax, dword ptr [rax + 0x7ec4]
++0x7EC8         1     0    0 2          0028F5C3 movzx ecx, word ptr [rax + 0x7ec8]
++0x7FB0         0     0    4 -          0028E459 lea rcx, [rbx + 0x7fb0]
++0x8FA0         0     0   24 -          0028E08E add rcx, 0x8fa0
++0x9FE8         1     0    0 8          0028F57D mov rax, qword ptr [rax + 0x9fe8]
++0xA09A         2     2    0 2          0028F890 xor cx, word ptr [rax + 0xa09a]
++0xA09C         0     1    0 2          0029025C mov word ptr [rax + 0xa09c], cx
++0xA09E         0     1    0 2          0029026A mov word ptr [rax + 0xa09e], dx
++0xA0D0         0     0    2 -          0028E43D lea rcx, [rbx + 0xa0d0]
++0xAA44         1     2    0 4          0028F911 mov dword ptr [rax + 0xaa44], 1
++0xAA60         0     1    1 4          0028E88C add rcx, 0xaa60
++0xAB30         0     0   12 -          0028F613 add rcx, 0xab30
++0xB240         1     0    0 4          002906FF cmp dword ptr [rcx + 0xb240], eax
++0x10CFC        0     1    0 4          0028F9D4 or dword ptr [rax + 0x10cfc], 0x40
++0x10EF0        3     4    0 8          0028EB9C mov qword ptr [rax + 0x10ef0], rcx
++0x10F00        9     1    0 8          0028E31C mov rcx, qword ptr [rbx + 0x10f00]
++0x10F10        6     0    0 8          0028ECDF cmp qword ptr [rbx + 0x10f10], 0
++0x10F20        4     0    0 8          0028E3D8 mov rcx, qword ptr [rbx + 0x10f20]
++0x10F30        6     0    0 8          0028E35D mov rcx, qword ptr [rbx + 0x10f30]
++0x10F40        4     2    0 8          0028E4DE mov rcx, qword ptr [rbx + 0x10f40]
++0x10F50        3     1    0 8          0028EC15 cmp qword ptr [r9 + 0x10f50], 0
++0x10F60        0     2    0 2          0028E955 mov word ptr [rax + 0x10f60], cx
++0x10F68       25    24    0 1,4        0028E080 or dword ptr [rax + 0x10f68], 0x40
++0x10F6C        1     1    0 4          0028E30A mov edx, dword ptr [rbx + 0x10f6c]
++0x10F70        1     1    0 2          0028E302 movzx r8d, word ptr [rbx + 0x10f70]
++0x10F72        1     1    0 2          0028E2F7 movzx r9d, word ptr [rbx + 0x10f72]
++0x10F74        1     1    0 4          0028F472 mov eax, dword ptr [rcx + 0x10f74]
++0x10F78       19     3    0 8          0028E391 cmp qword ptr [rbx + 0x10f78], 0
++0x10F80       18     2    0 8          0028E536 mov rcx, qword ptr [rbx + 0x10f80]
++0x10F88        3     3    0 8          0028EA61 mov rcx, qword ptr [rax + 0x10f88]
++0x10F90        0     3    0 4          0028EA50 mov dword ptr [rax + 0x10f90], 0xfffffff
++0x10FA0        0     2    0 2          0028F9AF mov word ptr [rax + 0x10fa0], cx
++0x10FA2        4     2    0 1          0028E6F6 mov byte ptr [rax + 0x10fa2], 1
++0x10FA3        1     1    0 1          0028F722 movzx ecx, byte ptr [rax + 0x10fa3]
++0x10FA4        0     1    0 2          002901E0 mov word ptr [rax + 0x10fa4], cx
++0x10FA6        2     2    0 2          0028E70B movzx edx, word ptr [rax + 0x10fa6]
++0x10FA8        1     1    0 4          0028E806 mov ecx, dword ptr [rax + 0x10fa8]
++0x10FAC        1     2    0 2,4        0028F747 movzx eax, word ptr [rax + 0x10fac]
++0x10FB0        6     3    0 4,8        0028E97F mov rcx, qword ptr [rax + 0x10fb0]
++0x10FB8        1     2    0 8          0028F28C mov qword ptr [rax + 0x10fb8], 0
++0x10FC0       13     1    0 8          0028F3C0 mov rcx, qword ptr [rcx + 0x10fc0]
++0x10FC8        3     2    0 8          0028F506 mov rax, qword ptr [rcx + 0x10fc8]
+
+A LOWER BOUND, by construction: the taint does not enter callees, does not survive a
+call, and ignores indexed accesses. Every offset here is used; offsets may be missing.

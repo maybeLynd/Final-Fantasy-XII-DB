@@ -1,0 +1,135 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6514,
+      "sha256": "a714c58c194df6698574181152d51f87dda58cde5d8ee23f0818bb5c0cb896a7"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2979,
+      "sha256": "3b8a2468f5f33403ad40733fc457640f497258ff2f46c68ba3c77a1689dd8cb2"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1651,
+      "sha256": "4342cc08e994b1239c1efbd5f86b5deb6602592327f93375aeb69735c8ba885b"
+    },
+    {
+      "path": "normalize.py",
+      "bytes": 1830,
+      "sha256": "c164595bf121f41dca4833374d9fdc844fcf587207a8a92626a53351880f7539"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2245,
+      "sha256": "ffbb552135fc909d26ff36234816b3cb7f9a8a89acf2d22e09aa77d406541789"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 281969,
+      "sha256": "1c0607ef41a4756a71b2d56f4ff089cf9719ac562388996f78176871135d5444"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4167,
+      "sha256": "860e87d05e3944f9e058066c1eb362e755e0888732ad632edd655c15acceda88"
+    },
+    {
+      "path": "recover.py",
+      "bytes": 2661,
+      "sha256": "aef052e5b208a8713c170f2c08c5e0c73ab7e461404d2e8df95fa27141212484"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1343,
+      "sha256": "0d48b364d8d58e35f9fa12043a7f164de8e2d9ccdf34b1c851d864a6cb8fcd15"
+    },
+    {
+      "path": "retained/admission-row.json",
+      "bytes": 267,
+      "sha256": "d0c2d6665bcddc2435deb4c1f15cf815bd7d509c0f6b5b53d62a16fc8ee88067"
+    },
+    {
+      "path": "retained/admissions.tsv",
+      "bytes": 134273,
+      "sha256": "98efe1233aca4251ebc7e02dd932ac600ccb0fe66f6af3af5a4642b58690bb64"
+    },
+    {
+      "path": "retained/applied1.tsv",
+      "bytes": 37250,
+      "sha256": "9c4ce599202dbfc147b7d939d873ba8dae27ba29ead5301619558aba874a17fa"
+    },
+    {
+      "path": "retained/applied65.tsv",
+      "bytes": 11254,
+      "sha256": "365a624051d116d134959142a4a66e9e4dac2e56b6d7caa730858f0de5228f97"
+    },
+    {
+      "path": "retained/band.tsv",
+      "bytes": 4285,
+      "sha256": "c7c95d2007285c09f97f9c55cdd39480c71d9f44a895703f01810d4e0e1ba7eb"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 7687,
+      "sha256": "97e8004d15a73dd8a381dbb63de6b2df1ea8a21310d8701ed5daea837efc9fef"
+    },
+    {
+      "path": "retained/errata.tsv",
+      "bytes": 4807,
+      "sha256": "4cabc5f7527f8fe021a1e548878ab410789d214948a78c8766c24a756f34db5e"
+    },
+    {
+      "path": "retained/functions-parent.json",
+      "bytes": 522,
+      "sha256": "e000604e85102c4b3d8aa0e0b070c05a4c8cb6eb54995779e87d033a164c498c"
+    },
+    {
+      "path": "retained/functions.tsv",
+      "bytes": 7008993,
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad"
+    },
+    {
+      "path": "retained/invalid-normalization/diagnostic.json",
+      "bytes": 660,
+      "sha256": "7bd07a90e78980d5164216a2a199ef8612761d4ecbef1cfab2d21ed746a4272d"
+    },
+    {
+      "path": "retained/invalid-normalization/raw-before.json",
+      "bytes": 281969,
+      "sha256": "1c0607ef41a4756a71b2d56f4ff089cf9719ac562388996f78176871135d5444"
+    },
+    {
+      "path": "retained/invalid-normalization/review-before.py",
+      "bytes": 7687,
+      "sha256": "97e8004d15a73dd8a381dbb63de6b2df1ea8a21310d8701ed5daea837efc9fef"
+    },
+    {
+      "path": "retained/listed-span-projection.tsv",
+      "bytes": 469006,
+      "sha256": "dbb8f29f973791705977b1db46471197d48bfd46ab7eaff1dd5863910ddb06be"
+    },
+    {
+      "path": "retained/old-flow.py",
+      "bytes": 8990,
+      "sha256": "b267b5565dce8bfb8de4a0d955529ebfebd9eba3e2a3bc24e982d59e24873be4"
+    },
+    {
+      "path": "retained/ruling.md",
+      "bytes": 3986,
+      "sha256": "70f912fc8223533edc3ccf83f0402d4bfa02689c869d21ceb117dd7fe2287edf"
+    },
+    {
+      "path": "review.py",
+      "bytes": 7058,
+      "sha256": "00cac2699c136f73ac0750963c58e954f236978cc6c0f08f98ba30b1893e2c7a"
+    }
+  ],
+  "limits": "A one requested353B extent only, current-at-capture source projection; other49held untouched; independent acceptance/admission/ABI/meaning/native reachability not awarded"
+}

@@ -1,0 +1,7 @@
+{
+  "stage": "Preparation only, no raw/result",
+  "cause": "Companion read began25E67B inside an instruction, produced meaningless sal decode",
+  "affected_conclusions": [],
+  "correction": "Capture actual branch target25E682 with64 fully decoded bytes; do not treat arbitrary adjacent offset as validated entry",
+  "limits": "OPDIV298 decoded validly; invalid companion never evidence/test PASS"
+}

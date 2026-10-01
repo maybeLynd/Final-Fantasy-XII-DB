@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-q0-source-coordinate-domain\check.py", line 50, in <module>
+    assert [x['index'] for x in zeros]==list(range(scope['record_count']-len(zeros),scope['record_count'])) and len(zeros)<=(2 if '--fault-two-padding' in sys.argv else 3), 'Two-record suffix assumption excludes actual three-record suffix'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Two-record suffix assumption excludes actual three-record suffix

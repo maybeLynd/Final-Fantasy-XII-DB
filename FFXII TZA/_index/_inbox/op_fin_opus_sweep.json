@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-SWEEP-FOR-UNDECLARED-WRITABLE-STATICS",
+ "agent": "OPUS",
+ "note": "Committed f79613b30. The sweep exists and its limit is stated with it: 11,563 written rip-relative targets, 11,150 outside every route cell, 1,253 clusters - reported as a candidate list and explicitly NOT as a count of missing types, because route cells are not the store's only way of covering an address. Two clusters were read rather than counted. The densest, 02E41000, is not an object: 1,494 writes from 752 bodies and zero reads image-wide, an inlined diagnostic context, and declaring it would have been the wrong answer to a high number. The third is the emulated PS2 EE/VU0 register bank, mapped by FABLE on 2026-09-14 and carrying no row in _types/ at all - now declared as EeVu0RegisterBank, 70 rows tiling 0x590, semantics cited to FABLE and the ABI measured here at 248 bodies and 310 displacements, with 15 map-named registers that nothing touches recorded as untouched instead of given an access. 591 types / 7,232 fields / 0 errors / 0 gaps. WHAT IS LEFT AND IS NOT CLAIMED: 1,251 clusters unread, and the sweep cannot see an object reached only through a pointer, which is most of this engine. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/types.tsv",
+  "Database/FFXII TZA/_types/fields.tsv"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\control-texture-update-arguments.py"
+  ],
+  "exit": 0,
+  "driver_sha256": "365dc88ba9b78376f07671a083806a77db3d35160c4d955a8b0a4ef083880bd7"
+}

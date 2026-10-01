@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-UQ218-P17T",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "publish pass-17 tail: resume block + board op records",
+  "scope": "SWE2-DATA.md, op_uq218_p17_fin.json, op_uq218_p17t_pub.json",
+  "completion": "commit hash recorded; @publication released",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}],
+  "known_evidence": "e45bbb909 published",
+  "missing_information": "",
+  "why_it_matters": "durable resume state",
+  "what_is_blocked": "nothing"
+ }
+}

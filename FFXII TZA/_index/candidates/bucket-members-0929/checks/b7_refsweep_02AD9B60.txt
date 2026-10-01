@@ -1,0 +1,15 @@
+== refsweep [02AD9B60,02AD9E00)
+(a) rip-relative confirmed: 9
+  0036F561  -> 02AD9DF4  mov ecx, dword ptr [rip + 0x276a88d]   [0036F550 FUN_0036f550]
+  0036F583  -> 02AD9DF0  mov r8, qword ptr [rip + 0x276a866]   [0036F550 FUN_0036f550]
+  0036F5AE  -> 02AD9DEC  movss xmm0, dword ptr [rip + 0x276a836]   [0036F550 FUN_0036f550]
+  0036F7AA  -> 02AD9DE8  movss xmm2, dword ptr [rip + 0x276a636]   [0036F550 FUN_0036f550]
+  0036FA09  -> 02AD9B60  lea rcx, [rip + 0x276a150]   [0036F9F0 FUN_0036f9f0]
+  0036FA30  -> 02AD9DE0  movss xmm0, dword ptr [rip + 0x276a3a8]   [0036F9F0 FUN_0036f9f0]
+  0036FA46  -> 02AD9DE4  movss xmm1, dword ptr [rip + 0x276a396]   [0036F9F0 FUN_0036f9f0]
+  0036FC12  -> 02AD9B60  lea rcx, [rip + 0x2769f47]   [0036FBB0 FUN_0036fbb0]
+  003B541D  -> 02AD9B60  lea r8, [rip + 0x272473c]   [003B53C0 FUN_003b53c0]
+  CONTROL 003B541D: PASS
+(b) dword hits: 0
+(c) qword pointer hits: 0
+FAILS 0

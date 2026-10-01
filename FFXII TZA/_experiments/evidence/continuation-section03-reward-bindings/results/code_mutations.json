@@ -1,0 +1,32 @@
+[
+  {
+    "mutant": "skip_xp_division",
+    "detected": true,
+    "failed_assertion": "null_xp_roster_count_2"
+  },
+  {
+    "mutant": "lp_signed_row_byte",
+    "detected": true,
+    "failed_assertion": "lp_unsigned_byte_multiplier"
+  },
+  {
+    "mutant": "xp_widen_double_mask",
+    "detected": true,
+    "failed_assertion": "xp_unrelated_modifier_bit0"
+  },
+  {
+    "mutant": "only_three_roster_slots",
+    "detected": true,
+    "failed_assertion": "null_xp_roster_count_4"
+  },
+  {
+    "mutant": "xp_ignore_missing_owner",
+    "detected": true,
+    "failed_assertion": "xp_orphan_has_no_owner"
+  },
+  {
+    "mutant": "lp_ignore_global_gate",
+    "detected": true,
+    "failed_assertion": "lp_global_gate_precedes_award"
+  }
+]

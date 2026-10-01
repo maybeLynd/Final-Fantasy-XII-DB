@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-163",
+ "result_refs": [
+  "bf3c65a5b",
+  "8f9ecd738"
+ ],
+ "note": "batch-163 publish bf3c65a5b (19 hosts + audit + ops) + overlay splice 8f9ecd738 (efx contract, independent tail append): 22 entries + interior anchors across 20 bearing hosts.",
+ "summary": ""
+}

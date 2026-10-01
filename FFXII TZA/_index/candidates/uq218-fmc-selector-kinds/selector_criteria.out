@@ -1,0 +1,6 @@
+PASS  N 0x0B: -1 skips (00417262); index = low half, offset = high half; index must be below the list length
+PASS  Q view query 0x10 -> flag 2 = combo predicate & 1; query 0x20 -> flag 4 = entry0 code in 2..5 or 7 with knockback clear
+PASS  K1 kind 1: draw 0..4, keep it; at 11 x frameLimit (01DFE0B4) with view flag 4 -> +5; else -1, counter capped at 100
+PASS  K2 kind 2: sticky; combo-continues -> 0, else evaded/absorbed -> 1, else 2
+PASS  Y anchors True; constants True; model 0x20 [0, 1, 1], 0x21 [0, 1, 2], 0x24 [0, 1, 2, 3], 0x25 [0, 1, 3, 2]
+FAILS 0

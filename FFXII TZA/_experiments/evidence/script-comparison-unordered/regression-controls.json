@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-unordered-is-equal",
+    "returncode": 1,
+    "expected": "Original masked qNaN compare returns +1, not equality"
+  },
+  {
+    "argument": "--fault-unordered-is-negative",
+    "returncode": 1,
+    "expected": "Original masked qNaN compare keeps EDI +1"
+  },
+  {
+    "argument": "--fault-jp-control-unchanged",
+    "returncode": 1,
+    "expected": "Private JP removal changes unordered result to zero"
+  }
+]

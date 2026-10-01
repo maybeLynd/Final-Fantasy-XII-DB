@@ -1,0 +1,56 @@
+{
+  "name": "ready-with-open-Q",
+  "view_sha256": "f3184120a809ed9038420cc1201cc92e11519c329524f6e4d484c47dd058a06a",
+  "original_producer_sha256": "74b6eee3b8ee0f4e7e7d0a697c01951c90043a7d195cbdaa83bc1ae887fa9de8",
+  "intervention": "pre-resolved reporter/gate/facts fixture; extra post-producer view field mutation",
+  "check_view_reason": "DATABASE READY claimed while requirements remain or a family is unmeasured",
+  "generation": "g20260929T073828Z-82eebb",
+  "status": {
+    "generation": "g20260929T073828Z-82eebb",
+    "committed_at": "2026-09-29T07:38:28Z",
+    "historical": false,
+    "current": {
+      "generation": "g20260929T073828Z-82eebb",
+      "committed_at": "2026-09-29T07:38:28Z",
+      "problems": []
+    },
+    "problems": [],
+    "no_verified_generation": false,
+    "drift": {},
+    "volatile_drift": {},
+    "failure": null,
+    "reader_stale": false,
+    "views": {
+      "progress": "MALFORMED",
+      "overview": "UNMEASURED",
+      "systems": "UNMEASURED",
+      "vbf": "UNMEASURED",
+      "executable": "UNMEASURED",
+      "types": "UNMEASURED",
+      "evidence": "UNMEASURED",
+      "fleet": "UNMEASURED"
+    },
+    "required": [
+      "progress",
+      "overview",
+      "systems",
+      "vbf",
+      "executable",
+      "types",
+      "evidence",
+      "fleet"
+    ],
+    "verified_at": "2026-09-29T07:38:28Z",
+    "verification": "served manifest and outputs hashed against the manifest on every request; input snapshots re-verified in full at least every 60 s (verified_at)"
+  },
+  "served": {
+    "generation": "g20260929T073828Z-82eebb",
+    "committed_at": "2026-09-29T07:38:28Z",
+    "drift": {},
+    "historical": false,
+    "current_problems": [],
+    "status": "MALFORMED",
+    "why": "DATABASE READY claimed while requirements remain or a family is unmeasured"
+  },
+  "admitted": false
+}

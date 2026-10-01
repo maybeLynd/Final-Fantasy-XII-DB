@@ -1,0 +1,30 @@
+{
+  "status": "FROZEN_PRODUCER_EVIDENCE_NOT_INDEPENDENT_ACCEPTANCE",
+  "members": [
+    {
+      "path": "PLAN.md",
+      "bytes": 1790,
+      "sha256": "681f924bfdbf57bdf4310eaca9c4fb846a7e5483f7d622fd71e7b34574608647"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 4316,
+      "sha256": "fda6eeb3ed3b044d02713309754e9cda22b2c081ce846fdee26cf519b9ce06ae"
+    },
+    {
+      "path": "check.py",
+      "bytes": 8589,
+      "sha256": "316dcc6526d65561c4d9b79e36065eec9b1da8e7adda86d2a9fb10346fd4f160"
+    },
+    {
+      "path": "result.json",
+      "bytes": 6015,
+      "sha256": "697f446b6b7c19cbf559aaecebb60073c9774d1935c295ac79b8353382c03053"
+    },
+    {
+      "path": "terminal.json",
+      "bytes": 196,
+      "sha256": "65cc6b8f3b2e708ce79563769596d5973173672aaebff9749302eefccdfe2df5"
+    }
+  ]
+}

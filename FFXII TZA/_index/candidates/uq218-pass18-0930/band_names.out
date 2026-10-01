@@ -1,0 +1,87 @@
+files 3164 selector commands by kind {11: 7, 10: 700, 0: 782}
+control {'op09 slot is @FMN': 33753, 'track out of range': 881}
+kind 0x00 band  0 off 0  n=  782  <no op09> 614, idle 88, rlx_idle 38, typeb_idle 24, CreateStartPoseDammyActFile 12
+kind 0x00 band  0 off 1  n=  782  idle 596, CreateStartPoseDammyActFile 107, walk_f_l 33, rlx_walk_l 28, typeb_idle 18
+kind 0x00 band  1 off 0  n=  782  walk_f_l 627, CreateStartPoseDammyActFile 114, rlx_walk_l 28, idle 13
+kind 0x00 band  1 off 1  n=  782  walk_f_r 513, CreateStartPoseDammyActFile 114, walk_f_l 110, rlx_walk_r 19, idle 17
+kind 0x00 band  2 off 0  n=  782  run_l 554, CreateStartPoseDammyActFile 190, rlx_run_l 28, walk_f_l 8, idle 2
+kind 0x00 band  2 off 1  n=  782  run_r 431, CreateStartPoseDammyActFile 191, run_l 123, rlx_run_r 19, rlx_run_l 9
+kind 0x00 band  3 off 0  n=  782  walk_f_l 325, walk_l_l 196, idle 119, CreateStartPoseDammyActFile 114, rlx_walk_l 28
+kind 0x00 band  3 off 1  n=  782  walk_f_r 292, walk_l_r 163, idle 125, CreateStartPoseDammyActFile 114, walk_f_l 33
+kind 0x00 band  4 off 0  n=  782  walk_f_l 325, walk_r_l 196, idle 119, CreateStartPoseDammyActFile 114, rlx_walk_l 28
+kind 0x00 band  4 off 1  n=  782  walk_f_r 292, walk_r_r 163, idle 125, CreateStartPoseDammyActFile 114, walk_f_l 33
+kind 0x00 band  5 off 0  n=  782  walk_f_l 352, walk_b_l 159, idle 129, CreateStartPoseDammyActFile 114, rlx_walk_l 28
+kind 0x00 band  5 off 1  n=  782  walk_f_r 314, walk_b_r 155, idle 132, CreateStartPoseDammyActFile 114, walk_f_l 38
+kind 0x00 band  6 off 0  n=  782  walk_f_r 266, trn_l 216, idle 138, CreateStartPoseDammyActFile 121, walk_f_l 13
+kind 0x00 band  6 off 1  n=  782  walk_f_l 279, trn_r 216, idle 138, CreateStartPoseDammyActFile 121, rlx_walk_l 16
+kind 0x00 band  7 off 0  n=  782  walk_f_r 430, idle 137, CreateStartPoseDammyActFile 124, hi_trn_l 37, walk_f_l 26
+kind 0x00 band  7 off 1  n=  782  walk_f_l 456, idle 137, CreateStartPoseDammyActFile 124, hi_trn_r 37, rlx_walk_l 28
+kind 0x00 band  8 off 0  n=  782  run_l 554, CreateStartPoseDammyActFile 190, rlx_run_l 28, walk_f_l 8, idle 2
+kind 0x00 band  8 off 1  n=  782  run_r 431, CreateStartPoseDammyActFile 191, run_l 123, rlx_run_r 19, rlx_run_l 9
+kind 0x00 band  9 off 0  n=  782  run_l 554, CreateStartPoseDammyActFile 190, rlx_run_l 28, walk_f_l 8, idle 2
+kind 0x00 band  9 off 1  n=  782  run_r 431, CreateStartPoseDammyActFile 191, run_l 123, rlx_run_r 19, rlx_run_l 9
+kind 0x00 band 10 off 0  n=  782  run_l 554, CreateStartPoseDammyActFile 190, rlx_run_l 28, walk_f_l 8, idle 2
+kind 0x00 band 10 off 1  n=  782  run_r 431, CreateStartPoseDammyActFile 191, run_l 123, rlx_run_r 19, rlx_run_l 9
+kind 0x00 band 11 off 0  n=  782  sleep 389, idle 334, rlx_idle 27, CreateStartPoseDammyActFile 21, rlx_sleep 11
+kind 0x0A band  0 off 0  n=  700  <no op09> 700
+kind 0x0A band  0 off 1  n=  700  CreateStartPoseDammyActFile 602, idle 91, turbo_idle 7
+kind 0x0A band  1 off 0  n=  700  walk_f_l 694, CreateStartPoseDammyActFile 3, idle 3
+kind 0x0A band  1 off 1  n=  700  walk_f_r 580, walk_f_l 110, idle 7, CreateStartPoseDammyActFile 3
+kind 0x0A band  2 off 0  n=  700  CreateStartPoseDammyActFile 602, run_l 91, turbo_l 7
+kind 0x0A band  2 off 1  n=  700  CreateStartPoseDammyActFile 602, run_r 91, turbo_r 7
+kind 0x0A band  3 off 0  n=  700  walk_f_l 603, walk_l_l 91, CreateStartPoseDammyActFile 3, idle 3
+kind 0x0A band  3 off 1  n=  700  walk_f_r 489, walk_f_l 110, walk_l_r 91, idle 7, CreateStartPoseDammyActFile 3
+kind 0x0A band  4 off 0  n=  700  walk_f_l 603, walk_r_l 91, CreateStartPoseDammyActFile 3, idle 3
+kind 0x0A band  4 off 1  n=  700  walk_f_r 489, walk_f_l 110, walk_r_r 91, idle 7, CreateStartPoseDammyActFile 3
+kind 0x0A band  5 off 0  n=  700  walk_f_l 603, walk_b_l 91, CreateStartPoseDammyActFile 3, idle 3
+kind 0x0A band  5 off 1  n=  700  walk_f_r 489, walk_f_l 110, walk_b_r 91, idle 7, CreateStartPoseDammyActFile 3
+kind 0x0A band  6 off 0  n=  700  walk_f_l 603, walk_f_r 91, CreateStartPoseDammyActFile 3, idle 3
+kind 0x0A band  6 off 1  n=  700  walk_f_r 489, walk_f_l 201, idle 7, CreateStartPoseDammyActFile 3
+kind 0x0A band  7 off 0  n=  700  walk_f_l 603, walk_f_r 91, CreateStartPoseDammyActFile 3, idle 3
+kind 0x0A band  7 off 1  n=  700  walk_f_r 489, walk_f_l 201, idle 7, CreateStartPoseDammyActFile 3
+kind 0x0A band  8 off 0  n=  700  CreateStartPoseDammyActFile 509, stp_l 191
+kind 0x0A band  8 off 1  n=  700  CreateStartPoseDammyActFile 509, stp_r 191
+kind 0x0A band  9 off 0  n=  700  CreateStartPoseDammyActFile 602, run_l_l 91, turbo_l 7
+kind 0x0A band  9 off 1  n=  700  CreateStartPoseDammyActFile 602, run_l_r 91, turbo_r 7
+kind 0x0A band 10 off 0  n=  700  CreateStartPoseDammyActFile 602, run_r_l 91, turbo_l 7
+kind 0x0A band 10 off 1  n=  700  CreateStartPoseDammyActFile 602, run_r_r 91, turbo_r 7
+kind 0x0A band 11 off 0  n=  700  CreateStartPoseDammyActFile 602, run_l 91, turbo_l 7
+kind 0x0A band 11 off 1  n=  700  CreateStartPoseDammyActFile 602, run_r 91, turbo_r 7
+kind 0x0A band 12 off 0  n=   92  sleep 91, CreateStartPoseDammyActFile 1
+kind 0x0B band  0 off 0  n=    7  rlx_idle 7
+kind 0x0B band  0 off 1  n=    7  rlx_walk_l 7
+kind 0x0B band  1 off 0  n=    7  rlx_walk_l 7
+kind 0x0B band  1 off 1  n=    7  rlx_walk_r 7
+kind 0x0B band  2 off 0  n=    7  rlx_run_l 7
+kind 0x0B band  2 off 1  n=    7  rlx_run_r 7
+kind 0x0B band  3 off 0  n=    7  rlx_walk_l 7
+kind 0x0B band  3 off 1  n=    7  rlx_walk_r 7
+kind 0x0B band  4 off 0  n=    7  rlx_walk_l 7
+kind 0x0B band  4 off 1  n=    7  rlx_walk_r 7
+kind 0x0B band  5 off 0  n=    7  rlx_walk_l 7
+kind 0x0B band  5 off 1  n=    7  rlx_walk_r 7
+kind 0x0B band  6 off 0  n=    7  rlx_trn_l 6, rlx_walk_r 1
+kind 0x0B band  6 off 1  n=    7  rlx_trn_r 6, rlx_walk_l 1
+kind 0x0B band  7 off 0  n=    7  rlx_walk_r 7
+kind 0x0B band  7 off 1  n=    7  rlx_walk_l 7
+kind 0x0B band  8 off 0  n=    7  rlx_run_l 7
+kind 0x0B band  8 off 1  n=    7  rlx_run_r 7
+kind 0x0B band  9 off 0  n=    7  rlx_run_l 7
+kind 0x0B band  9 off 1  n=    7  rlx_run_r 7
+kind 0x0B band 10 off 0  n=    7  rlx_run_l 7
+kind 0x0B band 10 off 1  n=    7  rlx_run_r 7
+kind 0x0B band 11 off 0  n=    7  rlx_escape_l 7
+kind 0x0B band 11 off 1  n=    7  rlx_escape_r 7
+kind 0x0B band 12 off 0  n=    7  rlx_escape_stp_l 7
+kind 0x0B band 12 off 1  n=    7  rlx_escape_stp_r 7
+kind 0x0B band 13 off 0  n=    7  rlx_sleep 7
+PASS  S0 band 3 -> walk_l only  walk_l 287 / walk_r 0
+PASS  S0 band 4 -> walk_r only  walk_r 287 / walk_l 0
+PASS  S1 band 3 -> walk_l only  walk_l 281 / walk_r 0
+PASS  S1 band 4 -> walk_r only  walk_r 281 / walk_l 0
+PASS  T band 6: offset 0 (turn delta >= 0) -> trn_l, offset 1 -> trn_r  off0 trn_l 226 trn_r 0 | off1 trn_r 226 trn_l 0
+PASS  T7 band 7 offset 0 -> hi_trn_l  hi_trn_l 37 hi_trn_r 0
+PASS  R kind 0xA: band 9 -> run_l_*, band 10 -> run_r_*  b9 run_l 91 run_r 0 | b10 run_r 91 run_l 0
+PASS  C control: every op 0x09 index read as a .ca slot lands on an @FMN  33753 on @FMN, 0 not
+PASS  P the code path  10 sites
+FAILS 0

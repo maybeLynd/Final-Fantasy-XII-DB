@@ -1,0 +1,5 @@
+PASS  R four records from +0x1A40, then +0x1CA0, +0x1D30, and +0x1DC0 only when +0x1E50 != 0
+PASS  O owned buffers at +0x1E58, +0x2C18, +0x1EA8: free [p-8] through the CRT free import, then null
+PASS  I the frame-buffer index at +0x1C90, sign-extended
+PASS  S the three spans re-cut as generated (name, ctype, meaning; or re-cut since by a later record of this package, covering the same bytes); Vp8DecoderInstance still tiles 0x4480
+FAILS 0

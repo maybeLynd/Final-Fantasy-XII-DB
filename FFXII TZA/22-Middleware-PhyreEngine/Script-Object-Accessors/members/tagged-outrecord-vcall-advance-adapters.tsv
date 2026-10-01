@@ -1,0 +1,10 @@
+# Tagged.OutRecordVcallAdvanceAdapters - EC-7 family C
+# # as the 94B sibling with an incremented input field (add [rax+0x30],1)
+# # before the member vcall.
+address	targets
+005CC3E0	
+005CC460	
+005CC570	
+0065E430	
+00674860	
+006AF890	

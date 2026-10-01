@@ -1,0 +1,64 @@
+{
+  "method": "Labelled receipt substitution to exact default predicate, not new Store/selector execution",
+  "source_sha256": "6d09cca8e9c7d10d4390a5337e68650ae5ef0abac2715c1c08bc5bea37799e3d",
+  "actual_default_call_lines": [
+    25,
+    34
+  ],
+  "cases": [
+    {
+      "name": "actual-retained-positive",
+      "input": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+          "verify",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\aligned-latest\\store"
+        ],
+        "returncode": 0,
+        "stdout": "CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\n",
+        "stderr": "",
+        "terminal": true
+      },
+      "accepted": true,
+      "error": null
+    },
+    {
+      "name": "nonzero-current-looking-output",
+      "input": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+          "verify",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\aligned-latest\\store"
+        ],
+        "returncode": 1,
+        "stdout": "CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\n",
+        "stderr": "",
+        "terminal": true
+      },
+      "accepted": false,
+      "error": "('VERIFIER_PREREQUISITE', 1, 'CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\\n', '', 'CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\\n')"
+    },
+    {
+      "name": "invented-pass-output",
+      "input": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+          "verify",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-01\\aligned-latest\\store"
+        ],
+        "returncode": 0,
+        "stdout": "PASS\n",
+        "stderr": "",
+        "terminal": true
+      },
+      "accepted": false,
+      "error": "('VERIFIER_PREREQUISITE', 0, 'PASS\\n', '', 'CURRENT g20260929T112302Z-8bf56b committed 2026-09-29T11:23:02Z; 2 outputs; sources unchanged\\n')"
+    }
+  ]
+}

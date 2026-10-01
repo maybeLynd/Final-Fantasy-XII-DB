@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\check.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"result\": {\n    \"scope\": \"Fresh/stale expected-revision arbitration in original private-fixture CLI\",\n    \"winner\": \"race-a\",\n    \"stale_write_landed\": false,\n    \"race_commits\": 1,\n    \"fresh_follow_on\": true,\n    \"full_A13\": \"NOT_ACCEPTED\",\n    \"limits\": \"One process-lifetime-overlap pair; no simultaneous critical-entry, fairness, fault/recovery, removed-lock, controller/deployment or FF12 behavior proof.\"\n  },\n  \"receipt_controls\": [\n    {\n      \"name\": \"missing-race\",\n      \"refused\": true\n    },\n    {\n      \"name\": \"hidden-exit\",\n      \"refused\": true\n    },\n    {\n      \"name\": \"extra-output\",\n      \"refused\": true\n    }\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "scope": "read-only reducer/receipt controls; no original writer replay"
+}

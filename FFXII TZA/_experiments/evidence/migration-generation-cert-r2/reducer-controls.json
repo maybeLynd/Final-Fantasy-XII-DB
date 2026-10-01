@@ -1,0 +1,23 @@
+[
+  {
+    "name": "incomplete",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\check.py\", line 5, in <module>\n    r=json.loads(a.raw.read_text());assert r['finished'] is True and r['source_restored'] is True\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "omit-positive",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\check.py\", line 11, in <module>\n    cs={c['name']:c for c in r['cases']};assert len(cs)==len(r['cases'])==9 and set(cs)==want\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  },
+  {
+    "name": "hide-unknown-state-certification",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r2\\check.py\", line 21, in <module>\n    assert c['label']==expected and q['stdout'].startswith(expected+' ') and q['returncode']==(0 if expected=='VERIFIED' else 1)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "result_created": false
+  }
+]

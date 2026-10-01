@@ -1,0 +1,100 @@
+# call sites scanned: 122250; wanted pairs: [('0x2', '0x0'), ('0x2', '0x10'), ('0x2', '0x11'), ('0x2', '0x12'), ('0x2', '0x1a'), ('0x2', '0x1b'), ('0x2', '0x1c'), ('0x2', '0x1d'), ('0x2', '0x1e'), ('0x2', '0x1f'), ('0x2', '0x20'), ('0x2', '0x21'), ('0x2', '0x22'), ('0x2', '0x23'), ('0x2', '0x24'), ('0x2', '0x25'), ('0x2', '0x26'), ('0x2', '0x27'), ('0x2', '0x29'), ('0x2', '0x2a'), ('0x2', '0x3'), ('0x2', '0x39'), ('0x2', '0x3a'), ('0x2', '0x3b'), ('0x2', '0x3c'), ('0x2', '0x4'), ('0x2', '0x44'), ('0x2', '0x45'), ('0x2', '0x46'), ('0x2', '0x5'), ('0x2', '0x6'), ('0x2', '0x7'), ('0x2', '0x8'), ('0x2', '0x9'), ('0x2', '0xa'), ('0x2', '0xb'), ('0x2', '0xc'), ('0x2', '0xd'), ('0x2', '0xe'), ('0x2', '0xf'), ('0x9', '0x4')]
+00198120	00198000 InputManager_LoadKeymapIni	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x72a59a]
+00198190	00198000 InputManager_LoadKeymapIni	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x72a52a]
+0019856D	00198000 InputManager_LoadKeymapIni	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x72a14d]
+001994D9	001993B0 FUN_001993b0	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x7291e1]
+001996A9	001993B0 FUN_001993b0	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x729011]
+001E60C1	001E6040 FUN_001e6040	(rdx=0x2, next=0x0)	call 0x18aa00
+00202A4C	00202930 FUN_00202930	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x6bfc4e]
+00202AA2	00202930 FUN_00202930	(rdx=0x2, next=0x0)	call qword ptr [rip + 0x6bfbf8]
+00228A48	002289D0 FUN_002289d0	(rcx=0x2, next=0x6)	call 0x251d90
+002499B7	002498B0 InputGameplay_RebuildFrameSnapshotFromChannelHistory	(rdx=0x2, next=0x0)	call 0x35eeb0
+00251070	00251010 FUN_00251010	(rcx=0x2, next=0xc)	call 0x36c1d0
+00253D78	00253C70 InputGameplay_ArbitrateDigitalInputAndModalState	(rcx=0x2, next=0x0)	call 0x2e1b10
+00258DB2	00258D70 FUN_00258d70	(rcx=0x2, next=0x0)	call 0x3ccf20
+00258E60	00258E40 FUN_00258e40	(rcx=0x2, next=0x0)	call 0x3ccf20
+00258EBC	00258EB0 FUN_00258eb0	(rcx=0x2, next=0xa)	call 0x36c1d0
+0025913D	002590F0 VFXSystem_RenderSpecialPassWithGraphicsFence	(rcx=0x2, next=0xa)	call 0x36c1d0
+0025C629	0025C230 FUN_0025c230	(rdx=0x2, next=0x0)	call 0x20e600
+0025DE02	0025D9E0 ActorManager_RunFieldRuntimePass	(rcx=0x2, next=0x8)	call 0x2efa70
+00262B5D	002628B0 FUN_002628b0	(rcx=0x2, next=0x0)	call 0x25a280
+00265F0F	00265B60 FUN_00265b60	(rdx=0x2, next=0x0)	call 0x2ebc90
+00268762	00268750 MapRef_BeginLoadResources	(rcx=0x9, next=0x4)	call 0x32e400
+00268809	00268750 MapRef_BeginLoadResources	(rcx=0x9, next=0x4)	call 0x32e620
+002695FE	002695A0 FUN_002695a0	(rcx=0x2, next=0x0)	call 0x229f10
+0026DF6C	0026DF40 FUN_0026df40	(rdx=0x2, next=0x0)	call 0x2ebc90
+0027FA00	0027F5D0 FUN_0027f5d0	(rcx=0x2, next=0x0)	call 0x3ca140
+0028421B	00283E40 FUN_00283e40	(rdx=0x2, next=0x9)	call 0x29f6e0
+00284243	00283E40 FUN_00283e40	(rdx=0x2, next=0x9)	call 0x29f6e0
+002B5D22	002B5C90 FUN_002b5c90	(rdx=0x2, next=0x3)	call 0x1e0bd0
+002C018B	002BFD20 FUN_002bfd20	(rdx=0x2, next=0x5)	call 0x29f6e0
+002D59B9	002D5830 FUN_002d5830	(rdx=0x2, next=0x10)	call 0x29f6e0
+00313A68	00313A00 FUN_00313a00	(rcx=0x2, next=0x0)	call rdi
+00313A94	00313A00 FUN_00313a00	(rcx=0x2, next=0x3)	call rdi
+00313A9E	00313A00 FUN_00313a00	(rcx=0x2, next=0x4)	call rdi
+00313AA8	00313A00 FUN_00313a00	(rcx=0x2, next=0x5)	call rdi
+00313AB2	00313A00 FUN_00313a00	(rcx=0x2, next=0x6)	call rdi
+00313ABC	00313A00 FUN_00313a00	(rcx=0x2, next=0x7)	call rdi
+00313AC6	00313A00 FUN_00313a00	(rcx=0x2, next=0x8)	call rdi
+00313AD7	00313A00 FUN_00313a00	(rcx=0x2, next=0xa)	call rbp
+00313AE1	00313A00 FUN_00313a00	(rcx=0x2, next=0xb)	call rdi
+00313AEB	00313A00 FUN_00313a00	(rcx=0x2, next=0xc)	call rdi
+00314175	00314020 World_UpdateSimulationTick	(rdx=0x2, next=0x0)	call 0x3df760
+003145BA	00314530 WorldTransition_RequeueCurrentFieldForRestore	(rcx=0x2, next=0x0)	call 0x2efa70
+003217BC	00321770 BattleEnmity_AnyAboveThreshold	(rcx=0x2, next=0x0)	call 0x322c50
+0032198C	00321850 BattleEnmity_WriteForCombatantId	(rcx=0x2, next=0x0)	call 0x322c50
+00321CC1	00321B00 BattleEnmity_AdjustOtherRelevantCombatants	(rcx=0x2, next=0x0)	call 0x322c50
+00321DFC	00321DC0 FUN_00321dc0	(rcx=0x2, next=0x0)	call 0x322c50
+00345AAB	00345A60 FUN_00345a60	(rdx=0x2, next=0x0)	call 0x2e3110
+00346112	003460F0 FUN_003460f0	(rdx=0x2, next=0x0)	call 0x2e3c20
+00358C77	00358C60 PartyControl_UpdateControlledActorLocomotion	(rcx=0x2, next=0x0)	call 0x25a520
+00359499	00359410 PartyFocus_SetSecondaryPackedActorHandle	(rcx=0x2, next=0x0)	call 0x25a280
+0035955F	003594E0 PartyControl_BuildAnalogMovementVectorFromInputHistory	(rdx=0x2, next=0x0)	call 0x35eeb0
+0035BDBE	0035BC50 FUN_0035bc50	(rcx=0x2, next=0x0)	call 0x320040
+0035E61A	0035E5F0 FUN_0035e5f0	(rcx=0x2, next=0x0)	call 0x46b560
+0035EA14	0035EA00 FUN_0035ea00	(rcx=0x2, next=0x0)	call 0x368aa0
+003602FC	003601D0 FUN_003601d0	(rcx=0x2, next=0x0)	call 0x2efa70
+0037B99D	0037B4D0 FUN_0037b4d0	(rdx=0x2, next=0x0)	call 0x2ebc90
+00394315	00394130 FUN_00394130	(rcx=0x2, next=0xf)	call 0x2efa70
+003B29C8	003B29B0 FUN_003b29b0	(rcx=0x2, next=0xa)	call 0x36c1d0
+003B2A44	003B29B0 FUN_003b29b0	(rcx=0x2, next=0xa)	call 0x36c1d0
+003B2DBF	003B2D80 FUN_003b2d80	(rcx=0x2, next=0xa)	call 0x36c1d0
+003EA8C1	003EA820 AreaArd_LoadOrUnloadFieldResource	(rcx=0x2, next=0x0)	call 0x23a160
+003EA8F9	003EA820 AreaArd_LoadOrUnloadFieldResource	(rcx=0x2, next=0x0)	call 0x23a160
+003EA9CB	003EA820 AreaArd_LoadOrUnloadFieldResource	(rcx=0x2, next=0x0)	call 0x23a160
+003EACCE	003EACA0 FUN_003eaca0	(rcx=0x2, next=0x5)	call 0x36c1d0
+003EFBC9	003EFAA0 FUN_003efaa0	(rcx=0x2, next=0x3c)	call 0x2efa70
+003F8B73	003F8B40 FUN_003f8b40	(rdx=0x2, next=0x0)	call rax
+00504412	005043F0 FUN_005043f0	(rcx=0x2, next=0xa)	call 0x36c1d0
+0050CF5D	0050CF20 FUN_0050cf20	(rdx=0x2, next=0x0)	call 0x2e3110
+005554F0	00555400 FUN_00555400	(rdx=0x2, next=0x0)	call 0x181890
+00568AE7	00568AA0 FUN_00568aa0	(rdx=0x2, next=0x10)	call 0x29f6e0
+00570251	005701B0 FUN_005701b0	(rcx=0x2, next=0x0)	call 0x363b00
+0057B715	0057B6F0 FUN_0057b6f0	(rdx=0x2, next=0x0)	call 0x2fad30
+0057B736	0057B6F0 FUN_0057b6f0	(rdx=0x2, next=0x0)	call 0x2fa920
+0057D03F	0057CF20 FUN_0057cf20	(rdx=0x2, next=0x0)	call 0x2fad30
+0057D07B	0057CF20 FUN_0057cf20	(rdx=0x2, next=0x0)	call 0x2fa920
+006853A4	006852B0 FUN_006852b0	(rdx=0x2, next=0x0)	call 0x80f800
+0073189C	007307A0 FUN_007307a0	(rdx=0x2, next=0x0)	call 0x788250
+0073AB72	0073A910 FUN_0073a910	(rdx=0x2, next=0xe)	call 0x7251c0
+0076A6B7	00769FC0 FUN_00769fc0	(rdx=0x2, next=0xe)	call 0x7251c0
+0079B8FC	0079B850 FUN_0079b850	(rdx=0x2, next=0x0)	call 0x622350
+0079F124	0079F0F0 FUN_0079f0f0	(rcx=0x2, next=0x6)	call qword ptr [rip + 0x1237fe]
+007D2D59	007D2150 FUN_007d2150	(rdx=0x2, next=0x0)	call 0x7ad550
+00808E4A	00808D78 FUN_00808d78	(rdx=0x2, next=0x0)	call rbx
+008147F1	008147B0 FUN_008147b0	(rdx=0x2, next=0x0)	call 0x813330
+00814AA6	00814A70 FUN_00814a70	(rdx=0x2, next=0x0)	call 0x813380
+00815A9B	00815A40 FUN_00815a40	(rdx=0x2, next=0x6)	call 0x812740
+00815F5F	00815F40 FUN_00815f40	(rdx=0x2, next=0x0)	call 0x812500
+00825DF0	00825DA0 FUN_00825da0	(rdx=0x2, next=0x0)	call 0x812620
+00826B26	00826B00 FUN_00826b00	(rdx=0x2, next=0x0)	call 0x812500
+008275C8	00827570 FUN_00827570	(rdx=0x2, next=0x5)	call 0x812740
+00827EC9	00827E50 FUN_00827e50	(rdx=0x2, next=0x0)	call 0x812500
+008283B9	00828330 FUN_00828330	(rdx=0x2, next=0x0)	call 0x813330
+0082852C	008284A0 FUN_008284a0	(rdx=0x2, next=0x0)	call 0x80f3a0
+008285A6	00828580 FUN_00828580	(rdx=0x2, next=0x0)	call 0x812500
+00828660	00828610 FUN_00828610	(rdx=0x2, next=0x0)	call 0x812500
+00828C4C	00828B80 FUN_00828b80	(rdx=0x2, next=0x0)	call 0x810470
+0088DDF6	0088DDB0 FUN_0088ddb0	(rcx=0x2, next=0x8)	call 0x861fbc
+CONTROL 00268762: PASS
+FAILS 0

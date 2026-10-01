@@ -1,0 +1,8 @@
+== refsweep [02099D98,02099DA0)
+(a) rip-relative confirmed: 2
+  00268772  -> 02099D98  mov qword ptr [rip + 0x1e3161f], rdi   [00268750 MapRef_BeginLoadResources]
+  00268829  -> 02099D98  mov qword ptr [rip + 0x1e31568], rax   [00268750 MapRef_BeginLoadResources]
+  CONTROL 00268829: PASS
+(b) dword hits: 0
+(c) qword pointer hits: 0
+FAILS 0

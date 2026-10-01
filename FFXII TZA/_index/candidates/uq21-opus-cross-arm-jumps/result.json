@@ -1,0 +1,574 @@
+{
+ "cases": {
+  "X1_21_jumps_from_14_arms_into_another_arms_interior": true,
+  "X2_every_target_is_an_instruction_boundary_of_its_host": true,
+  "X3_every_jump_lands_at_the_maximal_common_suffix": true,
+  "X4_8_enter_mid_expression_6_argument_2_flags": true
+ },
+ "evidence": [
+  "STATIC"
+ ],
+ "jumps": [
+  {
+   "agree_before": 0,
+   "arm": "001D1F5A",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2AFD",
+   "host_ids": [
+    103
+   ],
+   "host_prev": "jne 0x1d4bfa",
+   "host_suffix": [
+    "call 0x189120",
+    "mov ecx, dword ptr [rax + 0xcc4]",
+    "mov dword ptr [rdi + 0xc10], ecx",
+    "call 0x189120",
+    "mov ecx, dword ptr [rax + 0xcc8]",
+    "mov dword ptr [rdi + 0xc14], ecx"
+   ],
+   "ids": [
+    60
+   ],
+   "jump_prev": "mov byte ptr [rdi + 0xc0c], 0",
+   "kind": "statement-boundary",
+   "site": "001D1FAB",
+   "target": "001D2B15"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2923",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "call 0x1df340",
+   "host_suffix": [
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    166
+   ],
+   "jump_prev": "call qword ptr [rax + 0x60]",
+   "kind": "statement-boundary",
+   "site": "001D295F",
+   "target": "001D4B65"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2C25",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2C91",
+   "host_ids": [
+    178
+   ],
+   "host_prev": "mov qword ptr [rdi + 0xac8], rsi",
+   "host_suffix": [
+    "mov edx, dword ptr [rdi + 0xacc]",
+    "mov ecx, dword ptr [rdi + 0xac8]",
+    "call 0x2f1cd0",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    177
+   ],
+   "jump_prev": "mov dword ptr [rdi + 0xac8], eax",
+   "kind": "statement-boundary",
+   "site": "001D2C3B",
+   "target": "001D2CE6"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2C25",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2C91",
+   "host_ids": [
+    178
+   ],
+   "host_prev": "mov qword ptr [rdi + 0xac8], rsi",
+   "host_suffix": [
+    "mov edx, dword ptr [rdi + 0xacc]",
+    "mov ecx, dword ptr [rdi + 0xac8]",
+    "call 0x2f1cd0",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    177
+   ],
+   "jump_prev": "mov dword ptr [rdi + 0xacc], eax",
+   "kind": "statement-boundary",
+   "site": "001D2C58",
+   "target": "001D2CE6"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2C25",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2C91",
+   "host_ids": [
+    178
+   ],
+   "host_prev": "mov qword ptr [rdi + 0xac8], rsi",
+   "host_suffix": [
+    "mov edx, dword ptr [rdi + 0xacc]",
+    "mov ecx, dword ptr [rdi + 0xac8]",
+    "call 0x2f1cd0",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    177
+   ],
+   "jump_prev": "mov dword ptr [rdi + 0xacc], eax",
+   "kind": "statement-boundary",
+   "site": "001D2C8F",
+   "target": "001D2CE6"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2CFC",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2D68",
+   "host_ids": [
+    181
+   ],
+   "host_prev": "mov qword ptr [rdi + 0xad4], rsi",
+   "host_suffix": [
+    "mov edx, dword ptr [rdi + 0xad8]",
+    "mov ecx, dword ptr [rdi + 0xad4]",
+    "call 0x2f4510",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    180
+   ],
+   "jump_prev": "mov dword ptr [rdi + 0xad4], eax",
+   "kind": "statement-boundary",
+   "site": "001D2D12",
+   "target": "001D2DBD"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2CFC",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2D68",
+   "host_ids": [
+    181
+   ],
+   "host_prev": "mov qword ptr [rdi + 0xad4], rsi",
+   "host_suffix": [
+    "mov edx, dword ptr [rdi + 0xad8]",
+    "mov ecx, dword ptr [rdi + 0xad4]",
+    "call 0x2f4510",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    180
+   ],
+   "jump_prev": "mov dword ptr [rdi + 0xad8], eax",
+   "kind": "statement-boundary",
+   "site": "001D2D2F",
+   "target": "001D2DBD"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D2CFC",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D2D68",
+   "host_ids": [
+    181
+   ],
+   "host_prev": "mov qword ptr [rdi + 0xad4], rsi",
+   "host_suffix": [
+    "mov edx, dword ptr [rdi + 0xad8]",
+    "mov ecx, dword ptr [rdi + 0xad4]",
+    "call 0x2f4510",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    180
+   ],
+   "jump_prev": "mov dword ptr [rdi + 0xad8], eax",
+   "kind": "statement-boundary",
+   "site": "001D2D66",
+   "target": "001D2DBD"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D3282",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "call 0x1df340",
+   "host_suffix": [
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    134
+   ],
+   "jump_prev": "call 0x1a5b00",
+   "kind": "statement-boundary",
+   "site": "001D32C5",
+   "target": "001D4B65"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D3CBD",
+   "boundary": true,
+   "crossing": [
+    "xmm0"
+   ],
+   "host": "001D3D17",
+   "host_ids": [
+    191
+   ],
+   "host_prev": "call 0x2b6680",
+   "host_suffix": [
+    "call 0x2b6660",
+    "movaps xmm6, xmm0",
+    "call 0x2b6650",
+    "movaps xmm1, xmm6",
+    "call 0x1c7360",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    190
+   ],
+   "jump_prev": "call 0x2b6670",
+   "kind": "argument-live",
+   "site": "001D3D01",
+   "target": "001D3D6A"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D3CBD",
+   "boundary": true,
+   "crossing": [
+    "xmm0"
+   ],
+   "host": "001D3D17",
+   "host_ids": [
+    191
+   ],
+   "host_prev": "call 0x2b6680",
+   "host_suffix": [
+    "call 0x2b6660",
+    "movaps xmm6, xmm0",
+    "call 0x2b6650",
+    "movaps xmm1, xmm6",
+    "call 0x1c7360",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    190
+   ],
+   "jump_prev": "call 0x2b6670",
+   "kind": "argument-live",
+   "site": "001D3D15",
+   "target": "001D3D6A"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D3D84",
+   "boundary": true,
+   "crossing": [
+    "xmm0"
+   ],
+   "host": "001D3DE5",
+   "host_ids": [
+    193
+   ],
+   "host_prev": "call 0x2b66a0",
+   "host_suffix": [
+    "call 0x2b66c0",
+    "movaps xmm6, xmm0",
+    "call 0x2b66b0",
+    "movaps xmm1, xmm6",
+    "call 0x1c7520",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    192
+   ],
+   "jump_prev": "call 0x2b6690",
+   "kind": "argument-live",
+   "site": "001D3DC8",
+   "target": "001D3E60"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D3D84",
+   "boundary": true,
+   "crossing": [
+    "xmm0"
+   ],
+   "host": "001D3DE5",
+   "host_ids": [
+    193
+   ],
+   "host_prev": "call 0x2b66a0",
+   "host_suffix": [
+    "call 0x2b66c0",
+    "movaps xmm6, xmm0",
+    "call 0x2b66b0",
+    "movaps xmm1, xmm6",
+    "call 0x1c7520",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    192
+   ],
+   "jump_prev": "call 0x2b6690",
+   "kind": "argument-live",
+   "site": "001D3DE3",
+   "target": "001D3E60"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4972",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "call 0x1df340",
+   "host_suffix": [
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    274
+   ],
+   "jump_prev": "call 0x1bd940",
+   "kind": "statement-boundary",
+   "site": "001D49BC",
+   "target": "001D4B65"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D49C1",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "call 0x1df340",
+   "host_suffix": [
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    275
+   ],
+   "jump_prev": "call 0x1ef520",
+   "kind": "statement-boundary",
+   "site": "001D4A23",
+   "target": "001D4B65"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4A28",
+   "boundary": true,
+   "crossing": [
+    "rcx",
+    "rdx"
+   ],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "lea edx, [rsi + 0xd]",
+   "host_suffix": [
+    "setne sil",
+    "mov r8d, esi",
+    "call 0x1df340",
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax"
+   ],
+   "ids": [
+    276
+   ],
+   "jump_prev": "lea edx, [rsi + 0xf]",
+   "kind": "flags-live",
+   "site": "001D4A38",
+   "target": "001D4B59"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4A3D",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "call 0x1df340",
+   "host_suffix": [
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    277
+   ],
+   "jump_prev": "call 0x189520",
+   "kind": "statement-boundary",
+   "site": "001D4A85",
+   "target": "001D4B65"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4A8A",
+   "boundary": true,
+   "crossing": [],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "call 0x1df340",
+   "host_suffix": [
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340",
+    "jmp 0x1d4bfa"
+   ],
+   "ids": [
+    278
+   ],
+   "jump_prev": "mov byte ptr [rax + 0x4a3], bl",
+   "kind": "statement-boundary",
+   "site": "001D4ABB",
+   "target": "001D4B65"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4B03",
+   "boundary": true,
+   "crossing": [
+    "r8",
+    "rdx"
+   ],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "mov r8d, esi",
+   "host_suffix": [
+    "call 0x1df340",
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340"
+   ],
+   "ids": [
+    279
+   ],
+   "jump_prev": "lea edx, [rbp + 8]",
+   "kind": "argument-live",
+   "site": "001D4B21",
+   "target": "001D4B60"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4B03",
+   "boundary": true,
+   "crossing": [
+    "r8",
+    "rdx"
+   ],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "mov r8d, esi",
+   "host_suffix": [
+    "call 0x1df340",
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax",
+    "mov edx, eax",
+    "call 0x1df340"
+   ],
+   "ids": [
+    279
+   ],
+   "jump_prev": "mov edx, 0xa",
+   "kind": "argument-live",
+   "site": "001D4B35",
+   "target": "001D4B60"
+  },
+  {
+   "agree_before": 0,
+   "arm": "001D4B37",
+   "boundary": true,
+   "crossing": [
+    "rcx",
+    "rdx"
+   ],
+   "host": "001D4B49",
+   "host_ids": [
+    281
+   ],
+   "host_prev": "lea edx, [rsi + 0xd]",
+   "host_suffix": [
+    "setne sil",
+    "mov r8d, esi",
+    "call 0x1df340",
+    "mov rcx, qword ptr [0x1f82d20]",
+    "mov eax, 3",
+    "mov r8d, eax"
+   ],
+   "ids": [
+    280
+   ],
+   "jump_prev": "lea edx, [rsi + 0xc]",
+   "kind": "flags-live",
+   "site": "001D4B47",
+   "target": "001D4B59"
+  }
+ ],
+ "kinds": {
+  "argument-live": 6,
+  "flags-live": 2,
+  "statement-boundary": 13
+ },
+ "live_game": false,
+ "ok": true
+}

@@ -1,0 +1,22 @@
+{
+  "status": "FAILED_BEFORE_CAPTURE_NO_SEMANTIC_RESULT",
+  "exit": 1,
+  "exception": "ValueError: type-query slot identity changed",
+  "driver_sha256": "e7f76391f0b049db1fa1ce8e2e13420914b9f130ff6dc3ac6869f383dd790a1c",
+  "output_directory_exists": false,
+  "slots": [
+    {
+      "table": "0xd49ea0",
+      "offset": "0x8",
+      "bytes": "80d6160000000000",
+      "target": "0x16d680"
+    },
+    {
+      "table": "0xd4bd30",
+      "offset": "0x8",
+      "bytes": "80d6160000000000",
+      "target": "0x16d680"
+    }
+  ],
+  "limits": "Diagnostic exact slots and bounded preview; no validated native guard or mapping result. Completed member-boundary packet does not depend on getter interpretation."
+}

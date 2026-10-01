@@ -1,0 +1,375 @@
+FFXII TZA - function disposition (A/B/C/D), EC-7
+
+  population (function bodies in the census): 35064
+      post-2026-09-28 series: 34269 listed + 795 UC-1 frontier
+      held (declared uncertainty, counted nowhere)    : 25
+      pre-2026-09-28 figures count the 34,270 listed bodies - a
+      different population identity, annotated, not restated
+  A  individually explained (interior cite, evidence-bearing page)   :   9295
+  B  class-explained          (declared)                               :   3063
+  C  dispositioned            (declared)                               :  16890
+  D  declared exception       (declared, NOT counted as explained)     :      0
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  explained (A + B + C)                                                :  29248  83.41%
+  frontier  (declared by nothing)                                      :   5816
+      of which UC-1 1-64 B band (unexplained code admitted 2026-09-28)  :    795
+
+  WHERE THE GAP COMES FROM -- attributed, not asserted. Two filters separate A from
+  engine_explained, and they are worth different amounts:
+      cited anywhere in a body, any document      (engine_explained's measure)
+      cited anywhere in a body, DOCUMENTED page :  18532
+      cited INSIDE a body, any document         :   9876
+      cited INSIDE a body, DOCUMENTED page  = A :   9295
+      of the DOCUMENTED set, ENTRY-ONLY         :   9237
+          of those, ALREADY declared B/C      :   6959   <- counted as explained above
+          genuinely undeclared entry-only     :   2278
+
+  An entry-only citation is a mention -- but HALF of them are bodies a declared
+  family already explains as a class, so they are inside A+B+C above and are not
+  an outstanding gap. Read the A figure carefully too: interior
+  citation is a PROXY for explanation, not explanation itself. A page can explain a
+  six-instruction function perfectly while citing only its entry, and that function
+  scores 0 here. A is a STRICTER proxy than engine_explained, not a true count, and
+  the honest reading of the gap is that the citation dimension is dominated by
+  mentions -- not that the database is 83.4% finished.
+
+  families accepted: 334   refused: 0
+      B      the-shape-of-the-verb-population.md :: ScriptVM.VerbAdapter   1037
+      B      binmenu-guest-face-and-map-effect-images.md :: MMSG value re    28
+      C      the-input-name-registry-and-channel-aliases.md :: PInputs se   319
+      C      sead-function-identification.md :: SQEX SEAD sound library s  1136
+      C      class-descriptor-and-metadata-system.md :: PClassDescriptorF  1149
+      C      class-descriptor-and-metadata-system.md :: PClassDataMember    138
+      C      class-descriptor-and-metadata-system.md :: AbstractClassDesc   132
+      C      class-descriptor-and-metadata-system.md :: PClassDescriptorC   254
+      C      class-descriptor-and-metadata-system.md :: AbstractClassDesc   178
+      C      class-descriptor-and-metadata-system.md :: reflection object   304
+      C      class-descriptor-and-metadata-system.md :: registry-fetch re    84
+      C      class-descriptor-and-metadata-system.md :: PDataMemberMetada   853
+      C      class-descriptor-and-metadata-system.md :: PClassDescriptor    404
+      C      class-descriptor-and-metadata-system.md :: PClassDescriptorF   384
+      C      class-descriptor-and-metadata-system.md :: PType name-only c   110
+      C      class-descriptor-and-metadata-system.md :: two-member class-    38
+      C      class-descriptor-and-metadata-system.md :: descriptor-flag r    34
+      C      class-descriptor-and-metadata-system.md :: guarded class-reg    72
+      C      class-descriptor-and-metadata-system.md :: guarded class-reg    25
+      C      class-descriptor-and-metadata-system.md :: descriptor-flag r     5
+      C      class-descriptor-and-metadata-system.md :: flag-selected ref    11
+      C      class-descriptor-and-metadata-system.md :: Phyre object-life     6
+      C      class-descriptor-and-metadata-system.md :: Phyre shared-runt     6
+      C      class-descriptor-and-metadata-system.md :: Phyre static-desc     7
+      C      class-descriptor-and-metadata-system.md :: Phyre static-desc     5
+      C      class-descriptor-and-metadata-system.md :: Phyre static-desc     4
+      C      class-descriptor-and-metadata-system.md :: descriptor-or-fie     4
+      C      class-descriptor-and-metadata-system.md :: Phyre singleton-a     5
+      C      phyre-script-object-accessors.md :: script-VM object push ad   304
+      C      phyre-script-object-accessors.md :: optional-pointer context    70
+      C      phyre-script-object-accessors.md :: context-acquire three-ar    70
+      C      phyre-script-object-accessors.md :: script-VM object pointer   323
+      C      phyre-script-object-accessors.md :: script-VM object referen   264
+      C      phyre-script-object-accessors.md :: script-VM nullable objec   295
+      C      phyre-script-object-accessors.md :: optional-pointer context    16
+      C      phyre-script-object-accessors.md :: member-vcall optional-po    12
+      C      phyre-script-object-accessors.md :: optional-pointer offset-     8
+      C      phyre-script-object-accessors.md :: optional-pointer member-     8
+      C      phyre-script-object-accessors.md :: optional-pointer member-     6
+      C      phyre-script-object-accessors.md :: optional-pointer member-     7
+      C      phyre-script-object-accessors.md :: optional-pointer member-     6
+      C      phyre-script-object-accessors.md :: tagged out-record member     8
+      C      phyre-script-object-accessors.md :: tagged out-record member     6
+      C      phyre-script-object-accessors.md :: descriptor-forward tail-     5
+      C      phyre-script-object-accessors.md :: optional-pointer member-     4
+      C      phyre-script-object-accessors.md :: optional-pointer alloc +     4
+      C      phyre-script-object-accessors.md :: optional-pointer member-     4
+      C      phyre-script-object-accessors.md :: optional-pointer member-     4
+      C      phyre-script-object-accessors.md :: optional-pointer float-p     4
+      C      phyre-script-object-accessors.md :: optional-pointer member-     4
+      C      phyre-script-object-accessors.md :: tagged out-record vptr s     4
+      C      phyre-script-object-accessors.md :: float-pipeline member vc     5
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PAnim   202
+      C      the-fifteen-modules-registered-before-main.md :: Phyre Phyre   429
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PPhys    95
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PRend   286
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PPost   156
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PSeri    21
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PInpu   103
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PFram    47
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PGeom    72
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PDyna    39
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PScri    17
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PLOD     28
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PGame    19
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PHier    16
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PText     9
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PScen     2
+      C      the-fifteen-modules-registered-before-main.md :: Phyre PProf     1
+      C      the-fifteen-modules-registered-before-main.md :: Phyre modul    13
+      C      third-party-middleware-inventory.md :: libogg framing.c obje    22
+      C      third-party-middleware-inventory.md :: Tremor with vorbisfil   102
+      C      third-party-middleware-inventory.md :: CRI HCA decoder          53
+      C      third-party-middleware-inventory.md :: libvorbis float codec   116
+      C      third-party-middleware-inventory.md :: libogg bitwise.c obje     4
+      C      third-party-middleware-inventory.md :: Bullet physics librar   472
+      C      third-party-middleware-inventory.md :: Lua 5.2.1 library       600
+      C      third-party-middleware-inventory.md :: zlib 1.2.11              56
+      C      third-party-middleware-inventory.md :: libvpx VP8 decoder ob   116
+      C      third-party-middleware-inventory.md :: libvpx VP8 DSP kernel    63
+      C      third-party-middleware-inventory.md :: libwebm mkvparser       104
+      C      third-party-middleware-inventory.md :: MSVC runtime tail        52
+      C      third-party-middleware-inventory.md :: JsonBox JSON library     57
+      C      third-party-middleware-inventory.md :: Dear ImGui context ob    10
+      C      eastl-strings-containers-and-the-logging-allocator.md :: EAS    51
+      C      eastl-strings-containers-and-the-logging-allocator.md :: EAS     7
+      C      eastl-strings-containers-and-the-logging-allocator.md :: EAS     4
+      C      yebis-ppfx-source-map.md :: PPFX post-effect library          1610
+      C      image-hardening-cfg-aslr-dep-and-stack-cookies.md :: Phyre s   143
+      C      object-construction-destruction-and-static-lifetime.md :: co    21
+      C      object-construction-destruction-and-static-lifetime.md :: co    20
+      C      object-construction-destruction-and-static-lifetime.md :: co    17
+      C      object-construction-destruction-and-static-lifetime.md :: co    12
+      C      object-construction-destruction-and-static-lifetime.md :: re    15
+      C      object-construction-destruction-and-static-lifetime.md :: re    13
+      C      object-construction-destruction-and-static-lifetime.md :: in    12
+      C      object-construction-destruction-and-static-lifetime.md :: ma    14
+      C      object-construction-destruction-and-static-lifetime.md :: re     6
+      C      object-construction-destruction-and-static-lifetime.md :: re     7
+      C      object-construction-destruction-and-static-lifetime.md :: re     5
+      C      object-construction-destruction-and-static-lifetime.md :: co     4
+      C      object-construction-destruction-and-static-lifetime.md :: re     4
+      C      object-construction-destruction-and-static-lifetime.md :: re     4
+      C      object-construction-destruction-and-static-lifetime.md :: re     4
+      C      object-construction-destruction-and-static-lifetime.md :: dy     4
+      C      object-construction-destruction-and-static-lifetime.md :: re     4
+      C      object-construction-destruction-and-static-lifetime.md :: re     4
+      C      object-construction-destruction-and-static-lifetime.md :: in     4
+      C      object-construction-destruction-and-static-lifetime.md :: fl     4
+      C      object-construction-destruction-and-static-lifetime.md :: co     4
+      C      object-construction-destruction-and-static-lifetime.md :: co     4
+      C      object-construction-destruction-and-static-lifetime.md :: bu     2
+      C      object-construction-destruction-and-static-lifetime.md :: mu     4
+      C      object-construction-destruction-and-static-lifetime.md :: la     4
+      C      object-construction-destruction-and-static-lifetime.md :: bo     4
+      C      object-construction-destruction-and-static-lifetime.md :: re     5
+      C      object-construction-destruction-and-static-lifetime.md :: re     5
+      C      object-construction-destruction-and-static-lifetime.md :: ve     5
+      C      object-construction-destruction-and-static-lifetime.md :: ve     5
+      C      the-msvc-ordered-container-runtime.md :: MSVC ordered-contai    23
+      C      the-ordered-container-runtime.md :: ordered-container (red-b     6
+      C      exception-funclets-and-lazy-static-guards.md :: stream sentr     4
+      C      the-return-value-adapter-family.md :: return-value adapters    402
+      C      the-return-value-adapter-family.md :: owned-buffer reset ada    46
+      B      generated-function-families.md :: Trivial global accessors     482
+      B      generated-function-families.md :: NativeLeaf.DocumentedGloba   211
+      B      generated-function-families.md :: NativeAdapter.ExplainedCal   448
+      C      generated-function-families.md :: CompilerGeneratedCpp.Stati    60
+      C      generated-function-families.md :: Runtime.NamedRegistryRecor    60
+      C      generated-function-families.md :: Runtime.NameRegistryEntry.    56
+      C      generated-function-families.md :: Phyre.Reflection.Annotatio    55
+      C      generated-function-families.md :: CxxObjectLifecycle.Deletin    46
+      C      generated-function-families.md :: NativeAdapter.CallResultTa    62
+      C      generated-function-families.md :: NativeAdapter.ForwardSecon    47
+      C      generated-function-families.md :: NativeAdapter.RelativeMemb     8
+      C      generated-function-families.md :: NativeAdapter.StaticAddres    35
+      C      generated-function-families.md :: NativeLeaf.NoOpReturnStub     32
+      C      generated-function-families.md :: Phyre.Reflection.PClassDat    30
+      C      generated-function-families.md :: CxxObjectLifecycle.VtableI    40
+      C      generated-function-families.md :: CxxObjectLifecycle.Conditi    17
+      C      generated-function-families.md :: Phyre.Reflection.Reflectio    28
+      C      generated-function-families.md :: CompilerGeneratedCpp.Guard    28
+      C      generated-function-families.md :: NativeAdapter.MemberPointe    36
+      C      generated-function-families.md :: CxxObjectLifecycle.Derived    25
+      C      generated-function-families.md :: NativeLeaf.TaggedStaticAdd    23
+      C      generated-function-families.md :: Runtime.Memory.IndirectAll    22
+      C      generated-function-families.md :: NativeDispatch.MemberVirtu    22
+      C      generated-function-families.md :: NativeAdapter.StaticPointe    20
+      C      generated-function-families.md :: NativeAdapter.CallThenRetu    19
+      C      generated-function-families.md :: Runtime.VirtualDispatch.Fi    20
+      C      generated-function-families.md :: NativeAdapter.RelativeMemb    19
+      C      generated-function-families.md :: NativeAdapter.CallResultMa    19
+      C      generated-function-families.md :: Platform.Windows.CriticalS    19
+      C      generated-function-families.md :: NativeAdapter.CallResultWi    31
+      C      generated-function-families.md :: NativeAdapter.NullableCall    11
+      C      generated-function-families.md :: Phyre.Reflection.PTypeStat    17
+      C      generated-function-families.md :: NativeAdapter.CallResultMa    16
+      C      generated-function-families.md :: Phyre.Reflection.NamedDesc    15
+      C      generated-function-families.md :: NativeLeaf.StaticGlobalFlo    15
+      C      generated-function-families.md :: NativeAdapter.CallResultFi    14
+      C      generated-function-families.md :: NativeAdapter.DualLookupIn    12
+      C      generated-function-families.md :: NativeLeaf.MemberAddressAc    19
+      C      generated-function-families.md :: Runtime.Container.OwnedBuf    13
+      C      generated-function-families.md :: Runtime.Container.OwnedBuf    13
+      C      generated-function-families.md :: NativeDispatch.VirtualTail    13
+      C      generated-function-families.md :: NativeAdapter.CallThenTail    18
+      C      generated-function-families.md :: Phyre.Reflection.StaticDes    12
+      C      generated-function-families.md :: Lua.Math.UnaryFunctionAdap    13
+      C      generated-function-families.md :: NativeAdapter.MemberArgume    12
+      C      generated-function-families.md :: NativeLeaf.StaticPointerBi    12
+      C      generated-function-families.md :: NativeLeaf.StaticHandleRep    12
+      C      generated-function-families.md :: Runtime.Container.OwnedBuf    11
+      C      generated-function-families.md :: NativeAdapter.ConstantFirs    11
+      C      generated-function-families.md :: CompilerGeneratedCpp.Stati    11
+      C      generated-function-families.md :: NativeAdapter.EHCallWrappe    11
+      C      generated-function-families.md :: NativeLeaf.StaticPointerNe    10
+      C      generated-function-families.md :: NativeDispatch.NullableVir    11
+      C      generated-function-families.md :: Runtime.Registry.StringLoo    10
+      C      generated-function-families.md :: NativeLeaf.StaticPointerNo    10
+      C      generated-function-families.md :: Runtime.Singleton.LazyAllo     8
+      C      generated-function-families.md :: CxxObjectLifecycle.Deletin    10
+      C      generated-function-families.md :: NativeAdapter.BooleanSelec    10
+      C      generated-function-families.md :: Presentation.EffectInstanc    51
+      C      generated-function-families.md :: CxxObjectLifecycle.Deletin    36
+      C      generated-function-families.md :: NativeLeaf.FieldClear         17
+      C      generated-function-families.md :: NativeLeaf.FieldConstStore    14
+      C      generated-function-families.md :: NativeAdapter.MemberOffset    30
+      C      generated-function-families.md :: NativeLeaf.ConstantDwordRe    26
+      C      generated-function-families.md :: NativeAdapter.FieldResetOf    26
+      C      generated-function-families.md :: NativeAdapter.FirstMemberP    12
+      C      generated-function-families.md :: NativeDispatch.GlobalHandl    25
+      C      generated-function-families.md :: NativeLeaf.FieldByteStore     22
+      C      generated-function-families.md :: NativeLeaf.FieldByteGetter    19
+      C      generated-function-families.md :: NativeLeaf.FieldDwordGette    20
+      C      generated-function-families.md :: NativeLeaf.FieldDwordStore    20
+      C      generated-function-families.md :: NativeLeaf.FieldQwordGette    18
+      C      generated-function-families.md :: NativeLeaf.FieldQwordStore    14
+      C      generated-function-families.md :: NativeLeaf.FieldFloatStore    15
+      C      generated-function-families.md :: NativeAdapter.OutRecordDes    19
+      C      generated-function-families.md :: Runtime.Singleton.StaticOb    18
+      C      generated-function-families.md :: NativeAdapter.CallResultWi    14
+      C      generated-function-families.md :: NativeAdapter.GuardedPairI    11
+      C      generated-function-families.md :: NativeLeaf.PairedStaticCon    10
+      C      generated-function-families.md :: NativeAdapter.NullableGlob    10
+      C      generated-function-families.md :: NativeAdapter.NullableOutR     9
+      C      generated-function-families.md :: Runtime.Container.StringKe     9
+      C      generated-function-families.md :: NativeAdapter.GuardedShare     9
+      C      generated-function-families.md :: NativeAdapter.CallResultDu     8
+      C      generated-function-families.md :: NativeAdapter.MemberFieldS     4
+      C      generated-function-families.md :: NativeAdapter.FirstMemberI     7
+      C      generated-function-families.md :: NativeAdapter.ConditionalD     7
+      C      generated-function-families.md :: NativeAdapter.CallResultAr     7
+      C      generated-function-families.md :: NativeAdapter.SecondArgume     7
+      C      generated-function-families.md :: NativeAdapter.SecondArgume     6
+      C      generated-function-families.md :: NativeAdapter.ThirdArgumen     6
+      C      generated-function-families.md :: NativeAdapter.FourthArgume     5
+      C      generated-function-families.md :: NativeAdapter.ConstFirstAr     4
+      C      generated-function-families.md :: Runtime.SerialRangeInvokeL     7
+      C      generated-function-families.md :: NativeAdapter.ChainedMembe     7
+      C      generated-function-families.md :: NativeLeaf.ClampedTableLoo     7
+      C      generated-function-families.md :: NativeAdapter.CallBoolNorm     6
+      C      generated-function-families.md :: NativeLeaf.GlobalHandleSta     5
+      C      generated-function-families.md :: NativeLeaf.DoubleDerefFlag     6
+      C      generated-function-families.md :: NativeAdapter.SmallRecordV     6
+      C      generated-function-families.md :: NativeAdapter.DoubleSelfIn     6
+      C      generated-function-families.md :: NativeAdapter.TwoSubobject     6
+      C      generated-function-families.md :: NativeAdapter.MemberPredic     6
+      C      generated-function-families.md :: NativeAdapter.FlagGatedIni     5
+      C      generated-function-families.md :: NativeAdapter.TwoSharedCom     6
+      C      generated-function-families.md :: NativeAdapter.SharedNormal     6
+      C      generated-function-families.md :: NativeAdapter.SharedNormal     6
+      C      generated-function-families.md :: NativeAdapter.GuardedCallR     6
+      C      generated-function-families.md :: NativeAdapter.OutRecordZer     7
+      C      generated-function-families.md :: NativeAdapter.OutRecordVta     6
+      C      generated-function-families.md :: NativeAdapter.TwoMemberCal     7
+      C      generated-function-families.md :: NativeAdapter.TripleMember     6
+      C      generated-function-families.md :: NativeAdapter.NamedRecordR     6
+      C      generated-function-families.md :: NativeAdapter.MallocRecord     5
+      C      generated-function-families.md :: Runtime.Container.SpanChec     6
+      C      generated-function-families.md :: Runtime.Container.Recursiv     6
+      C      generated-function-families.md :: NativeLeaf.FieldFlagMaskCl     6
+      C      generated-function-families.md :: NativeLeaf.FieldFloatGette     8
+      C      generated-function-families.md :: NativeLeaf.SlideTableRecor     9
+      C      generated-function-families.md :: NativeAdapter.BitfieldOrNo     9
+      C      generated-function-families.md :: NativeAdapter.TableIndexDi     5
+      C      generated-function-families.md :: NativeAdapter.NullGuardTai     5
+      C      generated-function-families.md :: NativeLeaf.RecursiveListVc     5
+      C      generated-function-families.md :: NativeAdapter.DoubleCallRe     5
+      C      generated-function-families.md :: NativeAdapter.ByteSaveSeco     5
+      C      generated-function-families.md :: NativeAdapter.FixedPipelin     4
+      C      generated-function-families.md :: NativeAdapter.SavedFourArg     5
+      C      generated-function-families.md :: NativeAdapter.StackConstOn     5
+      C      generated-function-families.md :: NativeLeaf.NullableGlobalC     5
+      C      generated-function-families.md :: NativeAdapter.RefFlagSetCa     5
+      C      generated-function-families.md :: NativeAdapter.DynamicOffse     5
+      C      generated-function-families.md :: NativeAdapter.CountedLoopM     5
+      C      generated-function-families.md :: NativeLeaf.TaggedOutRecord     5
+      C      generated-function-families.md :: NativeAdapter.SharedGetter     5
+      C      generated-function-families.md :: NativeAdapter.RecordFieldC     5
+      C      generated-function-families.md :: NativeAdapter.TableIndexDi     5
+      C      generated-function-families.md :: NativeAdapter.ChainPredica     5
+      C      generated-function-families.md :: NativeAdapter.OutRecordMem     5
+      C      generated-function-families.md :: NativeAdapter.GlobalOffset     3
+      C      generated-function-families.md :: NativeLeaf.BoundedTableWor     5
+      C      generated-function-families.md :: NativeAdapter.NullableOutR     5
+      C      generated-function-families.md :: NativeAdapter.FloatFetchPu     4
+      C      generated-function-families.md :: NativeAdapter.GlobalSlotFl     4
+      C      generated-function-families.md :: NativeAdapter.FanoutFieldU     4
+      C      generated-function-families.md :: NativeAdapter.FanoutFieldU     4
+      C      generated-function-families.md :: NativeLeaf.VectCountFloatO     4
+      C      generated-function-families.md :: NativeLeaf.FloatBankGlobal     4
+      C      generated-function-families.md :: NativeLeaf.TwoFloatStore       4
+      C      generated-function-families.md :: NativeAdapter.NullableReco     4
+      C      generated-function-families.md :: NativeLeaf.GlobalQwordStor     4
+      C      generated-function-families.md :: NativeAdapter.PopThreeIntF     4
+      C      generated-function-families.md :: NativeAdapter.FlagByteCond     4
+      C      generated-function-families.md :: NativeLeaf.LargeFloatGloba     4
+      C      generated-function-families.md :: NativeAdapter.PopThreeFloa     4
+      C      generated-function-families.md :: NativeLeaf.DoubleCallBool      3
+      C      generated-function-families.md :: NativeAdapter.ZeroSecondAr     4
+      C      generated-function-families.md :: NativeAdapter.NullableFetc     4
+      C      generated-function-families.md :: NativeLeaf.ListStringCompa     4
+      C      generated-function-families.md :: NativeAdapter.SetneFirstAr     4
+      C      generated-function-families.md :: NativeAdapter.RecordChainD     4
+      C      generated-function-families.md :: NativeAdapter.HandleRecord     4
+      C      generated-function-families.md :: NativeLeaf.ClampedIndexTab     4
+      C      generated-function-families.md :: NativeAdapter.PredicateGua     2
+      C      generated-function-families.md :: NativeAdapter.PredicateGua     4
+      C      generated-function-families.md :: NativeLeaf.FlagBit2SetClea     4
+      C      generated-function-families.md :: NativeAdapter.PopIntForwar     4
+      C      generated-function-families.md :: NativeAdapter.NullableFirs     4
+      C      generated-function-families.md :: NativeAdapter.BoolArgFetch     4
+      C      generated-function-families.md :: NativeLeaf.GlobalArrayFlag     4
+      C      generated-function-families.md :: NativeAdapter.ZeroFirstArg     4
+      C      generated-function-families.md :: NativeAdapter.VtableInstal     4
+      C      generated-function-families.md :: NativeLeaf.FlagBit1SetClea     4
+      C      generated-function-families.md :: NativeLeaf.NullableDerefWo     4
+      C      generated-function-families.md :: NativeAdapter.IndexedRecor     4
+      C      generated-function-families.md :: NativeAdapter.GuardedRecor     4
+      C      generated-function-families.md :: NativeAdapter.GlobalGuardI     4
+      C      generated-function-families.md :: NativeLeaf.PayloadBaseBitE     4
+      C      generated-function-families.md :: NativeLeaf.PayloadBaseFlag     4
+      C      generated-function-families.md :: NativeLeaf.ThreeFloatStore     4
+      C      lazy-statics-and-the-one-time-init-lock.md :: magic-static d    61
+      C      lazy-statics-and-the-one-time-init-lock.md :: thread-safe ma    17
+      C      lazy-statics-and-the-one-time-init-lock.md :: magic-static d    57
+      C      static-initialisers-and-teardowns.md :: static intrusive-lis   224
+      C      static-initialisers-and-teardowns.md :: empty-destructor sta   145
+      C      static-initialisers-and-teardowns.md :: float32-to-float16 s    69
+      C      static-initialisers-and-teardowns.md :: scalar deleting dest    65
+      C      static-initialisers-and-teardowns.md :: scalar deleting dest    37
+      C      static-initialisers-and-teardowns.md :: scalar deleting dest    24
+      C      static-initialisers-and-teardowns.md :: two-deallocator scal    12
+      C      static-initialisers-and-teardowns.md :: intrusive-list node-    43
+      C      static-initialisers-and-teardowns.md :: MSVC dynamic-initial    43
+      C      static-initialisers-and-teardowns.md :: registry-unlink stat   327
+      C      static-initialisers-and-teardowns.md :: atexit teardown-regi    30
+      C      static-initialisers-and-teardowns.md :: record-ctor 00662C00    28
+      C      static-initialisers-and-teardowns.md :: record-ctor 00616210    33
+      C      static-initialisers-and-teardowns.md :: counter-append stati    19
+      C      static-initialisers-and-teardowns.md :: zero-init record sta    16
+      C      static-initialisers-and-teardowns.md :: record-ctor 006D58D0     9
+      C      static-initialisers-and-teardowns.md :: callback-record 0061     6
+      C      static-initialisers-and-teardowns.md :: ctor 00808FE4 callba     5
+      C      static-initialisers-and-teardowns.md :: alloc-record 0067FFB     8
+      C      static-initialisers-and-teardowns.md :: cloned grow-helper s     6
+      C      static-initialisers-and-teardowns.md :: zero-init three-qwor     3
+      C      static-initialisers-and-teardowns.md :: ctor 0060DF70 static     2
+      C      static-initialisers-and-teardowns.md :: xc-registered librar   190
+      B      static-initialisers-and-teardowns.md :: xc-registered static   108
+      B      the-thunk-layer-and-why-call-counts-disagree.md :: internal    749
+      C      the-thunk-layer-and-why-call-counts-disagree.md :: forward-s    72
+      C      the-thunk-layer-and-why-call-counts-disagree.md :: call-resu    29
+      C      the-thunk-layer-and-why-call-counts-disagree.md :: external    117
+
+  NOT weighted into the headline - A/B/C/D is a separate dimension, and whether it
+  should be weighted is the three-identity decision EC-7 names.
+  (engine_explained IS no longer the old citation count: since 2026-09-14 the scorer
+  applies SWE2-AUDIT-SPEC's adjudicated rule, and this gate shares its ladder test.)

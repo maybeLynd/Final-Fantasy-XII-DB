@@ -1,0 +1,54 @@
+>256 B band: 50 rows; outcomes {'nonleaf-no-unwind': 1, 'multi': 16, 'gate': 28, 'clean': 2, 'unaligned-unreferenced': 3}
+   00129640 414 nonleaf-no-unwind 
+   00129BE5 1700 multi 
+   0012A510 1915 multi 
+   0012AC90 3304 multi BT1 indexed-rva 0073DAA9 +0x308; BT1 indexed-rva 0073DAC8 +0x518
+   0012C02C 835 gate 
+   0012C370 3647 gate BT1 indexed-rva 001D666D +0x188; BT1 indexed-rva 001D668C +0x18C; BT1 indexed-rva 001D669D
+   0012D1B0 4879 gate BT1 indexed-rva 0073DDE6 +0x990; BT4 jne 0012F44B +0x1197
+   0012E4C0 3231 gate BT1 indexed-rva 0073DDEF +0x7B0
+   0012F160 959 gate BT4 jne 0012F58A +0x312; BT4 jne 00130567 +0x300
+   0012F520 9775 gate BT1 indexed-rva 0073E00A +0xCF4; BT1 indexed-rva 0073E026 +0xF04; BT1 indexed-rva 0073E047
+   00133650 1264 multi 
+   00133BBF 3283 multi 
+   001348A0 3636 multi BT1 indexed-rva 0073E684 +0xB08; BT1 indexed-rva 0073E69C +0xAD0; BT1 indexed-rva 0073EAF6
+   001356E0 511 gate 
+   001359B0 1295 gate 
+   00135F90 3615 gate 
+   00136E80 1295 gate 
+   00137460 1295 gate 
+   00137970 2319 gate 
+   00138350 1295 gate 
+   00138930 1295 gate 
+   00138E40 5359 gate BT1 indexed-rva 00736533 +0x1228; BT1 indexed-rva 0073E2BB +0x1268; BT4 jmp 00137117 +0xC3
+   0013A330 815 gate 
+   0013A730 2927 gate BT1 indexed-rva 0072CA1B +0x610; BT1 indexed-rva 0072CA3A +0x610; BT1 indexed-rva 0072CAAB
+   0013B2A0 815 gate BT1 indexed-rva 0073AD0B +0xA8; BT1 indexed-rva 0074664C +0xA8
+   0013B6A0 815 gate 
+   0013B9D0 846 gate BT4 jmp 0013A82C +0x2FE; BT4 jmp 0013AA4D +0x2FE; BT4 jmp 0013AC6E +0x2FE
+   0013BD20 2575 multi BT1 indexed-rva 0073B1E7 +0x1D4; BT1 indexed-rva 0073B1F0 +0x1B8; BT1 indexed-rva 0073B1FE
+   0013C730 46018 multi BT1 indexed-rva 0072D5DB +0x5A60; BT1 indexed-rva 0072D5FA +0x5A60; BT1 indexed-rva 0072D6
+   001482A2 379 unaligned-unreferenced 
+   00148584 312 unaligned-unreferenced 
+   001489E0 272 multi 
+   00148F41 543 multi 
+   00149504 263 unaligned-unreferenced 
+   0014B1D0 847 gate BT4 jne 0014B70F +0x26F
+   0014B520 367 gate 
+   0014B690 2763 multi 
+   0014C4E6 891 multi 
+   0014C870 1311 gate 
+   0014CD90 744 multi 
+   0014D080 2383 gate 
+   0014D9D0 511 gate 
+   0014DBD0 3917 multi 
+   0014EB20 6810 multi 
+   001505C0 6271 gate BT4 jg 00151E8F +0x1832
+   00151E40 12831 gate BT4 jne 00151BDE +0xC7; BT4 jg 001550C6 +0x31C8
+   00155060 15059 multi BT4 jne 00154E00 +0xCF
+   00602CF9 416 gate BT1 indexed-rva 00602B2F +0xB; BT1 indexed-rva 00602B38 +0x3; BT1 indexed-rva 00602B58 +0x
+PASS  C1 indexed image-base-RVA operands reach 431 of 431 classified table rows (100%) - the test sees tables
+PASS  C2 1-64 B rows with an interior hit: ['00253BF5', '007298DD', '007C2A29', '007C9BF8', '00809D65'] - each one FABLE held or extended (['hold-ambiguous', 'hold-ambiguous', 'extend-predecessor', 'extend-predecessor', 'hold-ambiguous']), none she admitted; 007C2A29 is the extend-listed row whose instruction and native extents differ
+PASS  C3 no clean row's [start, start + bytes) overlaps a listed body (the 007EE7F0 class): 2 clean rows
+wrote uc1-band-257-up-rows.tsv
+FAILS 0

@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-147",
+ "note": "seal commit 674843aca (private index via publish_paths.sh, TEAM.json + finpub/addseal/claimseal ops; real index normalized after)",
+ "result_refs": [
+  "674843aca"
+ ]
+}

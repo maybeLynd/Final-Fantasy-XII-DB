@@ -1,0 +1,8 @@
+# NativeAdapter.RefFlagSetCallZero - EC-7 family C
+# # if r8d bit31 is clear, set it (bts) and call a member op; return 0.
+address	targets
+005CA2B0	005C9910
+0060F240	0060E460
+0060F260	0060E500
+00673190	001B8100
+006C7E80	006C7C60

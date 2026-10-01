@@ -1,0 +1,10 @@
+C-agreed                     n= 31  min 0.000  p25 0.192  median 0.333  p75 0.425  max 0.545
+other:C+fragments/-          n= 40  min 0.000  p25 0.031  median 0.308  p75 0.532  max 0.648
+other:C+fragments/C-fragment n= 13  min 0.000  p25 0.000  median 0.000  p75 0.000  max 0.182
+other:C+fragments/MMI-mixed  n=  2  min 0.689  p25 0.689  median 0.704  p75 0.720  max 0.720
+other:mostly/-               n= 16  min 0.333  p25 0.397  median 0.474  p75 0.547  max 0.622
+other:mostly/C+fragments     n=  3  min 0.516  p25 0.516  median 0.700  p75 0.744  max 0.744
+other:mostly/C-fragment      n=  2  min 0.500  p25 0.500  median 0.543  p75 0.585  max 0.585
+other:mostly/MMI-mixed       n=  5  min 0.458  p25 0.481  median 0.560  p75 0.571  max 0.644
+undecided                    n=104  min 0.007  p25 0.378  median 0.436  p75 0.511  max 0.731
+whole                        n= 47  min 0.000  p25 0.390  median 0.535  p75 0.667  max 0.713

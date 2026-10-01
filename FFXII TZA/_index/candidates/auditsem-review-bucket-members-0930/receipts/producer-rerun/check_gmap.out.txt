@@ -1,0 +1,288 @@
+=== 1. corpus: every shipped copy
+files: 35 {'us': 5, 'de': 1, 'es': 5, 'fr': 5, 'it': 5, 'ch': 2, 'cn': 5, 'kr': 5, 'in': 2}
+PASS 35 menumap_guide##.bin copies (us/cn/es/fr/it/kr 00-04, ch 00-01, in 00-01, de 00)
+PASS no guide05..15 ships although the image carries paths for 00..15
+PASS ch/guide00 (6320 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS ch/guide00 (6320 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS ch/guide00 (6320 B): each string's 00 terminator is the byte before the next entry's text
+PASS ch/guide00 (6320 B): +0xA = 0xd60 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 2896 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.....u.......A.M.U...Z.....B..MMH'
+PASS ch/guide01 (3632 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS ch/guide01 (3632 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS ch/guide01 (3632 B): each string's 00 terminator is the byte before the next entry's text
+PASS ch/guide01 (3632 B): +0xA = 0x2a0 == align16(text end); 'TIM2' there, 1 picture(s), 16+sum(TotalSize) = 2960 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '....................Vy...x...........AN.n....j............p.....s..oo.'
+PASS cn/guide00 (6272 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS cn/guide00 (6272 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS cn/guide00 (6272 B): each string's 00 terminator is the byte before the next entry's text
+PASS cn/guide00 (6272 B): +0xA = 0xd30 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 2896 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.......x...i.A.........t.b.B..LLF'
+PASS cn/guide01 (17568 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS cn/guide01 (17568 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS cn/guide01 (17568 B): each string's 00 terminator is the byte before the next entry's text
+PASS cn/guide01 (17568 B): +0xA = 0x1b0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17136 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C..B.D..E.F..G.B..H.B.p.I.J.K...A.A.L.M.N.B.B...A.O.P.B.Q.null.'
+PASS cn/guide02 (20032 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS cn/guide02 (20032 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS cn/guide02 (20032 B): each string's 00 terminator is the byte before the next entry's text
+PASS cn/guide02 (20032 B): +0xA = 0x1a0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 19616 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D..C.E..F.M.G.H.I.J.K.L.M.H.N.O.P..Q.H...A.H.H.R.S..null.'
+PASS cn/guide03 (18416 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x48 == 0x10 + 8*count(7)
+PASS cn/guide03 (18416 B): entry +6 == 0 in all 7; text offsets strictly ascending
+PASS cn/guide03 (18416 B): each string's 00 terminator is the byte before the next entry's text
+PASS cn/guide03 (18416 B): +0xA = 0x200 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17904 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: 'Larsa.A.B.C.D..A...A.A.E.ur.Omisace.A.F.A.G..H.null.'
+PASS cn/guide04 (15808 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x30 == 0x10 + 8*count(4)
+PASS cn/guide04 (15808 B): entry +6 == 0 in all 4; text offsets strictly ascending
+PASS cn/guide04 (15808 B): each string's 00 terminator is the byte before the next entry's text
+PASS cn/guide04 (15808 B): +0xA = 0x120 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 15520 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D.E...FThe Feywood.B.G.H.E.I.B....J.J.E.K.L.E.E.I.M.B.E.N..E.E.'
+PASS de/guide00 (4376 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS de/guide00 (4376 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS de/guide00 (4376 B): each string's 00 terminator is the byte before the next entry's text
+PASS de/guide00 (4376 B): +0xA = 0x1120 lies at/after EOF 0x1118; == align16(text end 0x1116); file ends at align4(text end) with zero pad -> no embedded TIM2; the pointer 003BD915-003BD92D forms is past the data
+      first text: 'Seine Majest.t braucht Hilfe ... vor Ende der Zeremonie.'
+PASS es/guide00 (4748 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS es/guide00 (4748 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS es/guide00 (4748 B): each string's 00 terminator is the byte before the next entry's text
+PASS es/guide00 (4748 B): +0xA = 0x1290 lies at/after EOF 0x128c; == align16(text end 0x128c); file ends at align4(text end) with zero pad -> no embedded TIM2; the pointer 003BD915-003BD92D forms is past the data
+      first text: '.Hay que encontrar al Rey antes de que firme el tratado.'
+PASS es/guide01 (17568 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS es/guide01 (17568 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS es/guide01 (17568 B): each string's 00 terminator is the byte before the next entry's text
+PASS es/guide01 (17568 B): +0xA = 0x1b0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17136 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C..B.D..E.F..G.B..H.B.p.I.J.K...A.A.L.M.N.B.B...A.O.P.B.Q.null.'
+PASS es/guide02 (20032 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS es/guide02 (20032 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS es/guide02 (20032 B): each string's 00 terminator is the byte before the next entry's text
+PASS es/guide02 (20032 B): +0xA = 0x1a0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 19616 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D..C.E..F.M.G.H.I.J.K.L.M.H.N.O.P..Q.H...A.H.H.R.S..null.'
+PASS es/guide03 (18416 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x48 == 0x10 + 8*count(7)
+PASS es/guide03 (18416 B): entry +6 == 0 in all 7; text offsets strictly ascending
+PASS es/guide03 (18416 B): each string's 00 terminator is the byte before the next entry's text
+PASS es/guide03 (18416 B): +0xA = 0x200 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17904 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: 'Larsa.A.B.C.D..A...A.A.E.ur.Omisace.A.F.A.G..H.null.'
+PASS es/guide04 (15808 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x30 == 0x10 + 8*count(4)
+PASS es/guide04 (15808 B): entry +6 == 0 in all 4; text offsets strictly ascending
+PASS es/guide04 (15808 B): each string's 00 terminator is the byte before the next entry's text
+PASS es/guide04 (15808 B): +0xA = 0x120 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 15520 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D.E...FThe Feywood.B.G.H.E.I.B....J.J.E.K.L.E.E.I.M.B.E.N..E.E.'
+PASS fr/guide00 (5244 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS fr/guide00 (5244 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS fr/guide00 (5244 B): each string's 00 terminator is the byte before the next entry's text
+PASS fr/guide00 (5244 B): +0xA = 0x1480 lies at/after EOF 0x147c; == align16(text end 0x147c); file ends at align4(text end) with zero pad -> no embedded TIM2; the pointer 003BD915-003BD92D forms is past the data
+      first text: 'Il faut sauver le Roi avant qu.il signe le trait. .'
+PASS fr/guide01 (17568 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS fr/guide01 (17568 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS fr/guide01 (17568 B): each string's 00 terminator is the byte before the next entry's text
+PASS fr/guide01 (17568 B): +0xA = 0x1b0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17136 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C..B.D..E.F..G.B..H.B.p.I.J.K...A.A.L.M.N.B.B...A.O.P.B.Q.null.'
+PASS fr/guide02 (20032 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS fr/guide02 (20032 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS fr/guide02 (20032 B): each string's 00 terminator is the byte before the next entry's text
+PASS fr/guide02 (20032 B): +0xA = 0x1a0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 19616 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D..C.E..F.M.G.H.I.J.K.L.M.H.N.O.P..Q.H...A.H.H.R.S..null.'
+PASS fr/guide03 (18416 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x48 == 0x10 + 8*count(7)
+PASS fr/guide03 (18416 B): entry +6 == 0 in all 7; text offsets strictly ascending
+PASS fr/guide03 (18416 B): each string's 00 terminator is the byte before the next entry's text
+PASS fr/guide03 (18416 B): +0xA = 0x200 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17904 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: 'Larsa.A.B.C.D..A...A.A.E.ur.Omisace.A.F.A.G..H.null.'
+PASS fr/guide04 (15808 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x30 == 0x10 + 8*count(4)
+PASS fr/guide04 (15808 B): entry +6 == 0 in all 4; text offsets strictly ascending
+PASS fr/guide04 (15808 B): each string's 00 terminator is the byte before the next entry's text
+PASS fr/guide04 (15808 B): +0xA = 0x120 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 15520 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D.E...FThe Feywood.B.G.H.E.I.B....J.J.E.K.L.E.E.I.M.B.E.N..E.E.'
+PASS in/guide00 (8880 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS in/guide00 (8880 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS in/guide00 (8880 B): each string's 00 terminator is the byte before the next entry's text
+PASS in/guide00 (8880 B): +0xA = 0xc40 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 5744 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '......p........A.a.n..h..u...b.bF'
+PASS in/guide01 (3632 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS in/guide01 (3632 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS in/guide01 (3632 B): each string's 00 terminator is the byte before the next entry's text
+PASS in/guide01 (3632 B): +0xA = 0x2a0 == align16(text end); 'TIM2' there, 1 picture(s), 16+sum(TotalSize) = 2960 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '....................Vy...x...........AN.n....j............p.....s..oo.'
+PASS it/guide00 (4960 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS it/guide00 (4960 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS it/guide00 (4960 B): each string's 00 terminator is the byte before the next entry's text
+PASS it/guide00 (4960 B): +0xA = 0x1360 lies at/after EOF 0x1360; == align16(text end 0x135d); file ends at align4(text end) with zero pad -> no embedded TIM2; the pointer 003BD915-003BD92D forms is past the data
+      first text: 'Devo raggiungere il Re prima che firmi il trattato.'
+PASS it/guide01 (17568 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS it/guide01 (17568 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS it/guide01 (17568 B): each string's 00 terminator is the byte before the next entry's text
+PASS it/guide01 (17568 B): +0xA = 0x1b0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17136 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C..B.D..E.F..G.B..H.B.p.I.J.K...A.A.L.M.N.B.B...A.O.P.B.Q.null.'
+PASS it/guide02 (20032 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS it/guide02 (20032 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS it/guide02 (20032 B): each string's 00 terminator is the byte before the next entry's text
+PASS it/guide02 (20032 B): +0xA = 0x1a0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 19616 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D..C.E..F.M.G.H.I.J.K.L.M.H.N.O.P..Q.H...A.H.H.R.S..null.'
+PASS it/guide03 (18416 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x48 == 0x10 + 8*count(7)
+PASS it/guide03 (18416 B): entry +6 == 0 in all 7; text offsets strictly ascending
+PASS it/guide03 (18416 B): each string's 00 terminator is the byte before the next entry's text
+PASS it/guide03 (18416 B): +0xA = 0x200 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17904 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: 'Larsa.A.B.C.D..A...A.A.E.ur.Omisace.A.F.A.G..H.null.'
+PASS it/guide04 (15808 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x30 == 0x10 + 8*count(4)
+PASS it/guide04 (15808 B): entry +6 == 0 in all 4; text offsets strictly ascending
+PASS it/guide04 (15808 B): each string's 00 terminator is the byte before the next entry's text
+PASS it/guide04 (15808 B): +0xA = 0x120 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 15520 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D.E...FThe Feywood.B.G.H.E.I.B....J.J.E.K.L.E.E.I.M.B.E.N..E.E.'
+PASS kr/guide00 (6144 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS kr/guide00 (6144 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS kr/guide00 (6144 B): each string's 00 terminator is the byte before the next entry's text
+PASS kr/guide00 (6144 B): +0xA = 0x1070 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 1936 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.......F ...B.. ...P .B.... ...... ..JJ.'
+PASS kr/guide01 (15104 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x110 == 0x10 + 8*count(32)
+PASS kr/guide01 (15104 B): entry +6 == 0 in all 32; text offsets strictly ascending
+PASS kr/guide01 (15104 B): each string's 00 terminator is the byte before the next entry's text
+PASS kr/guide01 (15104 B): +0xA = 0x590 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 13680 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '..S.....A..A.A.. .i.u.....B....B'
+PASS kr/guide02 (20032 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS kr/guide02 (20032 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS kr/guide02 (20032 B): each string's 00 terminator is the byte before the next entry's text
+PASS kr/guide02 (20032 B): +0xA = 0x1a0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 19616 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D..C.E..F.M.G.H.I.J.K.L.M.H.N.O.P..Q.H...A.H.H.R.S..null.'
+PASS kr/guide03 (18416 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x48 == 0x10 + 8*count(7)
+PASS kr/guide03 (18416 B): entry +6 == 0 in all 7; text offsets strictly ascending
+PASS kr/guide03 (18416 B): each string's 00 terminator is the byte before the next entry's text
+PASS kr/guide03 (18416 B): +0xA = 0x200 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17904 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: 'Larsa.A.B.C.D..A...A.A.E.ur.Omisace.A.F.A.G..H.null.'
+PASS kr/guide04 (15808 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x30 == 0x10 + 8*count(4)
+PASS kr/guide04 (15808 B): entry +6 == 0 in all 4; text offsets strictly ascending
+PASS kr/guide04 (15808 B): each string's 00 terminator is the byte before the next entry's text
+PASS kr/guide04 (15808 B): +0xA = 0x120 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 15520 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D.E...FThe Feywood.B.G.H.E.I.B....J.J.E.K.L.E.E.I.M.B.E.N..E.E.'
+PASS us/guide00 (4728 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x278 == 0x10 + 8*count(77)
+PASS us/guide00 (4728 B): entry +6 == 0 in all 77; text offsets strictly ascending
+PASS us/guide00 (4728 B): each string's 00 terminator is the byte before the next entry's text
+PASS us/guide00 (4728 B): +0xA = 0x1280 lies at/after EOF 0x1278; == align16(text end 0x1276); file ends at align4(text end) with zero pad -> no embedded TIM2; the pointer 003BD915-003BD92D forms is past the data
+      first text: 'I must reach the King before he signs the treaty.'
+PASS us/guide01 (17568 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS us/guide01 (17568 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS us/guide01 (17568 B): each string's 00 terminator is the byte before the next entry's text
+PASS us/guide01 (17568 B): +0xA = 0x1b0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17136 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C..B.D..E.F..G.B..H.B.p.I.J.K...A.A.L.M.N.B.B...A.O.P.B.Q.null.'
+PASS us/guide02 (20032 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x40 == 0x10 + 8*count(6)
+PASS us/guide02 (20032 B): entry +6 == 0 in all 6; text offsets strictly ascending
+PASS us/guide02 (20032 B): each string's 00 terminator is the byte before the next entry's text
+PASS us/guide02 (20032 B): +0xA = 0x1a0 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 19616 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D..C.E..F.M.G.H.I.J.K.L.M.H.N.O.P..Q.H...A.H.H.R.S..null.'
+PASS us/guide03 (18416 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x48 == 0x10 + 8*count(7)
+PASS us/guide03 (18416 B): entry +6 == 0 in all 7; text offsets strictly ascending
+PASS us/guide03 (18416 B): each string's 00 terminator is the byte before the next entry's text
+PASS us/guide03 (18416 B): +0xA = 0x200 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 17904 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: 'Larsa.A.B.C.D..A...A.A.E.ur.Omisace.A.F.A.G..H.null.'
+PASS us/guide04 (15808 B): 'gmap', +4 == 0x64, +0xC == 0, text section +8 = 0x30 == 0x10 + 8*count(4)
+PASS us/guide04 (15808 B): entry +6 == 0 in all 4; text offsets strictly ascending
+PASS us/guide04 (15808 B): each string's 00 terminator is the byte before the next entry's text
+PASS us/guide04 (15808 B): +0xA = 0x120 == align16(text end); 'TIM2' there, 2 picture(s), 16+sum(TotalSize) = 15520 closes at EOF; byte TIM2+0x40 low nibble == 1 (the 0039BEC0 gate)
+      first text: '.A.B.C.D.E...FThe Feywood.B.G.H.E.I.B....J.J.E.K.L.E.E.I.M.B.E.N..E.E.'
+embedded TIM2 present in 30 of 35 files
+
+=== 2. join to menumap_common.bin section 3 (the selection table 003BD950 walks)
+PASS ch: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS ch: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      ch/guide01: 6 entries, (gate,key) found in cmap sec3 0/6, gate value found 2/6, keys ['0xffff', '0xffff', '0xffff', '0xffff', '0xffff', '0xffff']
+PASS cn: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS cn: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      cn/guide01: 6 entries, (gate,key) found in cmap sec3 6/6, gate value found 6/6, keys ['0x4035', '0x4036', '0x4037', '0x4038', '0x4039', '0x403a']
+      cn/guide02: 6 entries, (gate,key) found in cmap sec3 5/6, gate value found 6/6, keys ['0x405b', '0x403b', '0x405c', '0x403c', '0x403d', '0x403e']
+      cn/guide03: 7 entries, (gate,key) found in cmap sec3 7/7, gate value found 7/7, keys ['0x403f', '0x4040', '0x405d', '0x405e', '0x405f', '0x4042', '0x4043']
+      cn/guide04: 4 entries, (gate,key) found in cmap sec3 4/4, gate value found 4/4, keys ['0x4060', '0x4054', '0x4044', '0x4045']
+PASS de: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS de: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+PASS es: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS es: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      es/guide01: 6 entries, (gate,key) found in cmap sec3 6/6, gate value found 6/6, keys ['0x4035', '0x4036', '0x4037', '0x4038', '0x4039', '0x403a']
+      es/guide02: 6 entries, (gate,key) found in cmap sec3 5/6, gate value found 6/6, keys ['0x405b', '0x403b', '0x405c', '0x403c', '0x403d', '0x403e']
+      es/guide03: 7 entries, (gate,key) found in cmap sec3 7/7, gate value found 7/7, keys ['0x403f', '0x4040', '0x405d', '0x405e', '0x405f', '0x4042', '0x4043']
+      es/guide04: 4 entries, (gate,key) found in cmap sec3 4/4, gate value found 4/4, keys ['0x4060', '0x4054', '0x4044', '0x4045']
+PASS fr: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS fr: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      fr/guide01: 6 entries, (gate,key) found in cmap sec3 6/6, gate value found 6/6, keys ['0x4035', '0x4036', '0x4037', '0x4038', '0x4039', '0x403a']
+      fr/guide02: 6 entries, (gate,key) found in cmap sec3 5/6, gate value found 6/6, keys ['0x405b', '0x403b', '0x405c', '0x403c', '0x403d', '0x403e']
+      fr/guide03: 7 entries, (gate,key) found in cmap sec3 7/7, gate value found 7/7, keys ['0x403f', '0x4040', '0x405d', '0x405e', '0x405f', '0x4042', '0x4043']
+      fr/guide04: 4 entries, (gate,key) found in cmap sec3 4/4, gate value found 4/4, keys ['0x4060', '0x4054', '0x4044', '0x4045']
+PASS in: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS in: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      in/guide01: 6 entries, (gate,key) found in cmap sec3 0/6, gate value found 2/6, keys ['0xffff', '0xffff', '0xffff', '0xffff', '0xffff', '0xffff']
+PASS it: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS it: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      it/guide01: 6 entries, (gate,key) found in cmap sec3 6/6, gate value found 6/6, keys ['0x4035', '0x4036', '0x4037', '0x4038', '0x4039', '0x403a']
+      it/guide02: 6 entries, (gate,key) found in cmap sec3 5/6, gate value found 6/6, keys ['0x405b', '0x403b', '0x405c', '0x403c', '0x403d', '0x403e']
+      it/guide03: 7 entries, (gate,key) found in cmap sec3 7/7, gate value found 7/7, keys ['0x403f', '0x4040', '0x405d', '0x405e', '0x405f', '0x4042', '0x4043']
+      it/guide04: 4 entries, (gate,key) found in cmap sec3 4/4, gate value found 4/4, keys ['0x4060', '0x4054', '0x4044', '0x4045']
+PASS kr: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS kr: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      kr/guide01: 32 entries, (gate,key) found in cmap sec3 32/32, gate value found 32/32, keys ['0x403c', '0x4084', '0x403d', '0x4085', '0x4086', '0x403e', '0x403f', '0x4088', '0x4040', '0x4089', '0x408a', '0x405d', '0x405e', '0x408b', '0x405f', '0x408c', '0x4042', '0x408d', '0x408e', '0x408f', '0x4090', '0x4043', '0x4060', '0x4091', '0x4092', '0x4054', '0x4044', '0x4093', '0x4094', '0x4095', '0x4045', '0x4096']
+      kr/guide02: 6 entries, (gate,key) found in cmap sec3 5/6, gate value found 6/6, keys ['0x405b', '0x403b', '0x405c', '0x403c', '0x403d', '0x403e']
+      kr/guide03: 7 entries, (gate,key) found in cmap sec3 7/7, gate value found 7/7, keys ['0x403f', '0x4040', '0x405d', '0x405e', '0x405f', '0x4042', '0x4043']
+      kr/guide04: 4 entries, (gate,key) found in cmap sec3 4/4, gate value found 4/4, keys ['0x4060', '0x4054', '0x4044', '0x4045']
+PASS us: cmap sec3 @ 0x474: 77 recs, byte +4 (guide selector read at 003C1EA7) == 0 in all -> 003C1DF0 only ever requests id 0x496 (guide00)
+PASS us: guide00 count 77 == cmap sec3 count 77; (gate,key) equal at the same index 77/77 (control, index+1: 0/77); cmap +6 seq == index (003BD8BD uses it to index guide00)
+      us/guide01: 6 entries, (gate,key) found in cmap sec3 6/6, gate value found 6/6, keys ['0x4035', '0x4036', '0x4037', '0x4038', '0x4039', '0x403a']
+      us/guide02: 6 entries, (gate,key) found in cmap sec3 5/6, gate value found 6/6, keys ['0x405b', '0x403b', '0x405c', '0x403c', '0x403d', '0x403e']
+      us/guide03: 7 entries, (gate,key) found in cmap sec3 7/7, gate value found 7/7, keys ['0x403f', '0x4040', '0x405d', '0x405e', '0x405f', '0x4042', '0x4043']
+      us/guide04: 4 entries, (gate,key) found in cmap sec3 4/4, gate value found 4/4, keys ['0x4060', '0x4054', '0x4044', '0x4045']
+
+=== 3. .fst sizes for kind 7 ids 0x496..0x4A5
+PASS FileSizeTable_US: ids 0x496..0x4A5 sizes [4728, 17568, 20032, 18416, 15808, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_DE: ids 0x496..0x4A5 sizes [4376, -1, -1, -1, -1, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_ES: ids 0x496..0x4A5 sizes [4748, 17568, 20032, 18416, 15808, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_FR: ids 0x496..0x4A5 sizes [5244, 17568, 20032, 18416, 15808, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_IT: ids 0x496..0x4A5 sizes [4960, 17568, 20032, 18416, 15808, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_CH: ids 0x496..0x4A5 sizes [6320, 3632, -1, -1, -1, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_CN: ids 0x496..0x4A5 sizes [6272, 17568, 20032, 18416, 15808, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_KR: ids 0x496..0x4A5 sizes [6144, 15104, 20032, 18416, 15808, -1]... == extracted sizes / -1 for absent
+PASS FileSizeTable_IN: ids 0x496..0x4A5 sizes [8880, 3632, -1, -1, -1, -1]... == extracted sizes / -1 for absent
+PASS kind-7 path slots 01E0E530[0x496+k] name menumap_guide{k:02d}.bin for k = 0..15
+
+=== 4. static image
+PASS 003C1E15: expect `mov ..rcx, qword ptr [rax + 0xe8]..` got `mov rcx, qword ptr [rax + 0xe8]`
+PASS 003C1E21: expect `movzx ..eax, word ptr [rcx + 0xa]..` got `movzx eax, word ptr [rcx + 0xa]`
+PASS 003C1E48: expect `call ..0x3bd950..` got `call 0x3bd950`
+PASS 003C1E59: expect `mov ..qword ptr [rcx + 0xf0], rax..` got `mov qword ptr [rcx + 0xf0], rax`
+PASS 003C1EA7: expect `movzx ..r8d, byte ptr [rdx + 4]..` got `movzx r8d, byte ptr [rdx + 4]`
+PASS 003C1EAC: expect `mov ..edx, 7..` got `mov edx, 7`
+PASS 003C1EB1: expect `add ..r8d, 0x496..` got `add r8d, 0x496`
+PASS 003C1EB8: expect `lea ..r9d, [rdx - 4]..` got `lea r9d, [rdx - 4]`
+PASS 003C1EBC: expect `call ..0x249210..` got `call 0x249210`
+PASS 003C1EC8: expect `mov ..rdx, qword ptr [rax + 8]..` got `mov rdx, qword ptr [rax + 8]`
+PASS 003C1ECC: expect `mov ..qword ptr [rcx + 0xf8], rdx..` got `mov qword ptr [rcx + 0xf8], rdx`
+PASS 003BD8BD: expect `movzx ..r8d, word ptr [rdx + 6]..` got `movzx r8d, word ptr [rdx + 6]`
+PASS 003BD8C2: expect `movzx ..eax, word ptr [rcx + 0xe]..` got `movzx eax, word ptr [rcx + 0xe]`
+PASS 003BD8CE: expect `movzx ..edx, word ptr [rcx + r8*8 + 0x14]..` got `movzx edx, word ptr [rcx + r8*8 + 0x14]`
+PASS 003BD8DE: expect `movzx ..eax, word ptr [rcx + 8]..` got `movzx eax, word ptr [rcx + 8]`
+PASS 003BD8F8: expect `movzx ..eax, word ptr [rcx + 0xe]..` got `movzx eax, word ptr [rcx + 0xe]`
+PASS 003BD915: expect `movzx ..eax, word ptr [rcx + 0xa]..` got `movzx eax, word ptr [rcx + 0xa]`
+PASS 003BD930: expect `movzx ..edx, word ptr [rdx + 4]..` got `movzx edx, word ptr [rdx + 4]`
+PASS 003BD93A: expect `movzx ..eax, word ptr [rcx + 8]..` got `movzx eax, word ptr [rcx + 8]`
+PASS 003BC7A7: expect `call ..0x3bd8f0..` got `call 0x3bd8f0`
+PASS 003BC7B3: expect `mov ..qword ptr [rbx + 0x100], rax..` got `mov qword ptr [rbx + 0x100], rax`
+PASS 003BC7C3: expect `call ..0x39bec0..` got `call 0x39bec0`
+PASS 0039BEDC: expect `lea ..rdx, [rip + 0x97558d]..` got `lea rdx, [rip + 0x97558d]`
+PASS 0039BEED: expect `mov ..eax, dword ptr [rdi + 0x40]..` got `mov eax, dword ptr [rdi + 0x40]`
+PASS 002BA9DE: expect `call ..0x28fd00..` got `call 0x28fd00`
+PASS 00D11470 holds 'TIM2' (0039BEC0 memcmp operand)
+
+=== 5. id sweep: who else could request 0x497..0x4A5 (function-list independent byte sweep)
+   control hit 003BC305 mov r8d, 0xa2 [listed] -> request call 003BC312
+   control hit 003BC333 mov r8d, 0xa3 [listed] -> request call 003BC340
+   control hit 003BC35D mov r8d, 0xa4 [listed] -> request call 003BC36A
+PASS positive control: sweeping 0xA2..0xA4 finds the three documented 003BC2D0 requests (wmap/lmap/cmap)
+   0027A376 mov edx, 0x4a0 [listed]                  request-call-within-12: -  fn 00279E20
+   0035E4B1 mov ecx, 0x4a0 [listed]                  request-call-within-12: -  fn 0035E070
+   003C1EB1 add r8d, 0x496 [listed]                  request-call-within-12: 003C1EBC  fn 003C1DF0
+   003CA8D0 mov edx, 0x4a0 [listed]                  request-call-within-12: -  fn 003CA860
+   005409C8 mov r8d, 0x4a0 [listed]                  request-call-within-12: -  fn 005409C0
+   005530E1 mov ecx, 0x4a0 [listed]                  request-call-within-12: -  fn 005528C0
+   005534C0 mov ecx, 0x4a0 [listed]                  request-call-within-12: -  fn 005528C0
+   005839FA mov ecx, 0x49a [listed]                  request-call-within-12: -  fn 00583990
+   00583A03 mov ecx, 0x49c [listed]                  request-call-within-12: -  fn 00583990
+   0058402A mov ecx, 0x49a [listed]                  request-call-within-12: -  fn 00583FD0
+   00584033 mov ecx, 0x49c [listed]                  request-call-within-12: -  fn 00583FD0
+   007235FB mov edx, 0x49c [listed]                  request-call-within-12: -  fn 00723440
+   0072364E mov edx, 0x4a3 [listed]                  request-call-within-12: -  fn 00723440
+PASS only register-immediate use of 0x496..0x4A5 followed by a kind-7 request call is 003C1EB1 add r8d, 0x496
+
+FAILS 0

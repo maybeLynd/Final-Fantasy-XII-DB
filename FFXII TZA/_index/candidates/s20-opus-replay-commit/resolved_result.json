@@ -1,0 +1,182 @@
+{
+ "cases": {
+  "R1_relation_2_walks_the_group_writes_754_then_750": true,
+  "R2_relation_1_skips_the_whole_walk": true,
+  "R3_confused_actor_on_same_side_is_relation_2": true,
+  "R4_only_the_actors_group_is_written": true,
+  "R5_actor_handle_not_equal_group_skips_the_walk_after_the_first_store": true,
+  "R6_status_masked_unit_skipped": true,
+  "no_fault": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "actor_handle_not_its_group": {
+   "U1_754": "0",
+   "U750": "0",
+   "U754": "100000",
+   "halt": [],
+   "ok": true,
+   "relation": [
+    2
+   ],
+   "writes": [
+    [
+     "U",
+     "+750",
+     "0",
+     "0030F8A3"
+    ],
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F8CF"
+    ]
+   ]
+  },
+  "opposite_side": {
+   "U1_754": "100000",
+   "U750": "100000",
+   "U754": "100000",
+   "halt": [],
+   "ok": true,
+   "relation": [
+    2
+   ],
+   "writes": [
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F8CF"
+    ],
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F920"
+    ],
+    [
+     "U1",
+     "+754",
+     "100000",
+     "0030F920"
+    ],
+    [
+     "U",
+     "+750",
+     "100000",
+     "0030F931"
+    ]
+   ]
+  },
+  "same_side_confused": {
+   "U1_754": "100000",
+   "U750": "100000",
+   "U754": "100000",
+   "halt": [],
+   "ok": true,
+   "relation": [
+    2
+   ],
+   "writes": [
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F8CF"
+    ],
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F920"
+    ],
+    [
+     "U1",
+     "+754",
+     "100000",
+     "0030F920"
+    ],
+    [
+     "U",
+     "+750",
+     "100000",
+     "0030F931"
+    ]
+   ]
+  },
+  "same_side_unconfused": {
+   "U1_754": "0",
+   "U750": "0",
+   "U754": "0",
+   "halt": [],
+   "ok": true,
+   "relation": [
+    1
+   ],
+   "writes": []
+  },
+  "u1_other_group": {
+   "U1_754": "0",
+   "U750": "100000",
+   "U754": "100000",
+   "halt": [],
+   "ok": true,
+   "relation": [
+    2
+   ],
+   "writes": [
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F8CF"
+    ],
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F920"
+    ],
+    [
+     "U",
+     "+750",
+     "100000",
+     "0030F931"
+    ]
+   ]
+  },
+  "u1_status_masked": {
+   "U1_754": "0",
+   "U750": "100000",
+   "U754": "100000",
+   "halt": [],
+   "ok": true,
+   "relation": [
+    2
+   ],
+   "writes": [
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F8CF"
+    ],
+    [
+     "U",
+     "+754",
+     "100000",
+     "0030F920"
+    ],
+    [
+     "U",
+     "+750",
+     "100000",
+     "0030F931"
+    ]
+   ]
+  }
+ }
+}

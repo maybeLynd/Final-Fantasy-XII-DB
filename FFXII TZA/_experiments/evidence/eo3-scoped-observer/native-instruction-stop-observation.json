@@ -1,0 +1,141 @@
+{
+  "status": "NATIVE_CURRENT_INSTRUCTION_CONTROL_REVIEWABLE",
+  "method": "Native synthetic controlled process; not shipping FF12 instructions or live game",
+  "outcomes": [
+    {
+      "arm": "normal",
+      "pid": 41776,
+      "tid": 51284,
+      "stopped": [
+        5,
+        4
+      ],
+      "final": [
+        9,
+        9
+      ],
+      "path_address": 2762759080704,
+      "counter_address": 2762759080448,
+      "rax": 1234605616436508552,
+      "selected_context_and_read_bytes": 1609,
+      "capture_status": "MATCHED_PENDING_HEALTH",
+      "target_exit": 0,
+      "exact_stopped_event_binding": true,
+      "normal_target_finally": true
+    },
+    {
+      "arm": "abort",
+      "pid": 55952,
+      "tid": 56088,
+      "stopped": [
+        5,
+        4
+      ],
+      "final": [
+        5,
+        4
+      ],
+      "path_address": 2340695247616,
+      "counter_address": 2340695247360,
+      "rax": 1234605616436508552,
+      "selected_context_and_read_bytes": 1609,
+      "capture_status": "CONTROL_ABORTED",
+      "target_exit": 59907,
+      "exact_stopped_event_binding": true,
+      "normal_target_finally": false
+    },
+    {
+      "arm": "read-failure",
+      "pid": 38728,
+      "tid": 38820,
+      "stopped": [
+        5,
+        4
+      ],
+      "final": [
+        5,
+        4
+      ],
+      "path_address": 1675294608128,
+      "counter_address": 1675294607872,
+      "rax": 1234605616436508552,
+      "selected_context_and_read_bytes": 1609,
+      "capture_status": "CONTROL_ABORTED",
+      "target_exit": 59907,
+      "exact_stopped_event_binding": true,
+      "normal_target_finally": false
+    }
+  ],
+  "rejected": [
+    "normal: prior NOP substituted for the stopped effect instruction",
+    "abort: prior NOP substituted for the stopped effect instruction",
+    "abort: stopped INC committed its effect before termination",
+    "abort: resume write inserted after hold decision",
+    "read-failure: prior NOP substituted for the stopped effect instruction",
+    "read-failure: stopped INC committed its effect before termination",
+    "read-failure: resume write inserted after hold decision"
+  ],
+  "raw_sha256": {
+    "native-instruction-normal-1": {
+      "api.json": "a15412fbdee7b2194968085a8cfe78b69ffe36ca53a17f6c5130d456c3341a67",
+      "baseline.json": "11d84d169c6e5a52a148a12e8b7ff918da4a2347f8b960becf42e403eae02248",
+      "capture.json": "88279050283a25edc8d98bcdd9ac0b5c29ca7ea614c2c974ef1f7894ea08936e",
+      "debugger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixture.bin": "151d20d22cfde14fd6641751b619584695df8338d1b7f8157cf0444c3f4a275c",
+      "fixture.json": "5c3e11bee72e8df1465f028a05a8d125fd7c94c71d60d62692b20f8225f19da6",
+      "owned-child.json": "0c34c3556d48f00848a25a4f2843e583f4b4628f4bbcc3bab8f89a54656e686d",
+      "plan.json": "3b24476087f446e588e8b25090471e8b87fc958ad863e08827cd656aa2f16737",
+      "result.json": "ab0a14ab839e74044642913f31e62f5dc415e521811147b9643c9526728dffb0",
+      "samples.jsonl": "7197e85b8ead5f25998b155f4dacb98871e9708e67ba19ff675f68cc1d56a0fe",
+      "shared-final.bin": "5609be98a8c9115e84969d68329bd41c9943a379add96582b3864bbbb4c3f272",
+      "shared.bin": "5609be98a8c9115e84969d68329bd41c9943a379add96582b3864bbbb4c3f272",
+      "stop.flag": "e9cca6c81cfc1eda3873638f161c9bea0d80c52791d9374d1c0d60f2031f12eb",
+      "stopped-observation.json": "83df19c377e36fded85da00476dcde6f9760c5f9d0273d2c080daa65c1175062",
+      "target-exit.json": "b63e4fbb91a13166210650d6196677a8981d38203bbd18a787bd81474e796fb5",
+      "target-ready.json": "eea5b3007b468f93f4b02892f37b453ee4d7af8f4ecb5ca0954e0a0e551c7dfa",
+      "target.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-instruction-abort-1": {
+      "api.json": "da7cbda5b8eb38e21924104124d6305e508888058857930c511052aa5b8d4fe6",
+      "baseline.json": "5a48d73bfc6696f68a90e9816bd65dcaad1020f25b7c3fb9bfd74b787c2c38c6",
+      "capture.json": "c8fd3d36831a7ced6a2355542c709a68c63cabba05a7475bb007f58ed646d6ca",
+      "debugger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixture.bin": "151d20d22cfde14fd6641751b619584695df8338d1b7f8157cf0444c3f4a275c",
+      "fixture.json": "5c3e11bee72e8df1465f028a05a8d125fd7c94c71d60d62692b20f8225f19da6",
+      "owned-child.json": "120cfef8d94f73139c173f7398923f5501d57042f3f7af0e7ba3da3877f628ce",
+      "plan.json": "ae62a594ce158cb7cfe60a12b4f3102475b3add7a3b525878b06bc344d999317",
+      "result.json": "5c37574324e1bc55a874a0560a12919dfb752cdfa3777e865d3d958686446aec",
+      "samples.jsonl": "57e22664493040965b85ac965e7f3be80a595daa66a07dfefba230c6ae78e090",
+      "shared-final.bin": "7657f788534717b0d2f02af5307bc0c7905e8f7d0ad8e016e2ec5a39418da95f",
+      "shared.bin": "7657f788534717b0d2f02af5307bc0c7905e8f7d0ad8e016e2ec5a39418da95f",
+      "stopped-observation.json": "10e56421d8acf560982c0df6dd70babb347e9b1f463c0c1e77025f563a4c7136",
+      "target-ready.json": "a15efefb835bcc78305ef04d60fc4f21fb24c7de1d6acfebda63bfbea2578595",
+      "target.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-instruction-read-failure-1": {
+      "api.json": "d459009b9cd01e60da9664ae72b3c16385ca8214e16878e618eef38d7f1b6278",
+      "baseline.json": "3594c9537ab227ca3f90ee03836ef8aa00750781e1e3017981ee095587ce6aa0",
+      "capture.json": "136b0d0baf1c31847c87229156efb237a4328d622277aca90fd9a3bea66768a0",
+      "debugger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixture.bin": "151d20d22cfde14fd6641751b619584695df8338d1b7f8157cf0444c3f4a275c",
+      "fixture.json": "5c3e11bee72e8df1465f028a05a8d125fd7c94c71d60d62692b20f8225f19da6",
+      "owned-child.json": "a7509e3ea151e075d88762515d0b5f1386ca9e4df53c2618f9d1699bc7410aa9",
+      "plan.json": "66b40b38e3bd7293be7e661fb74ae8da470612016e847ae1eb81959816b97c4d",
+      "result.json": "29b3ad054c4ff2bf9d9949a0a3aeb054c28c6da3d1d64827b45c31518646315d",
+      "samples.jsonl": "3b9fcf3771c19261a421c5b24ed773543b8905315fe54cd5ae67a4afe0b7f73a",
+      "shared-final.bin": "824ae271802e02f97069dc3f1c659a8b1fc3b6bbddec528375f69647a184935e",
+      "shared.bin": "824ae271802e02f97069dc3f1c659a8b1fc3b6bbddec528375f69647a184935e",
+      "stopped-observation.json": "a1c825da66f84e2829864bff798989269d32a0ac9f791d828b660ebe7d34e4c8",
+      "target-ready.json": "57a0e3663b7c2c2361a7077718bdd18941aeedd248de28bbd7779257c5528d66",
+      "target.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "established": "The selected hardware stop is on INC itself. Normal resume commits its shared counter effect; requested/read-failure aborts leave that effect uncommitted through verified process exit.",
+  "limits": [
+    "One bounded observation per arm on this host and fixture; no universal instruction/process guarantee.",
+    "No claim about unobservable micro-operations; the measured boundary is the architectural memory effect.",
+    "Prior NOP controls remain successor-effect observations, not proof of NOP execution/nonexecution.",
+    "Intentional abort is CONTROL_ABORTED and has no target-finally/free receipt, never healthy semantic acceptance.",
+    "No FF12 call/queue/allocation/crash behavior or whole-state/scheduling transparency established."
+  ]
+}

@@ -1,0 +1,3 @@
+captured instructions 1530; byte mismatches vs EXE 0; text mismatches vs fresh decode 0
+bytes-only 001EA5C1 disp 0x118->0x9c8 (patched=1): exit=0 result=True | : offset160, masked extent8; conditional outer+120..127 excludes AE0. Loaded binding/full effects remain OPEN.
+disposable dir removed: True

@@ -1,0 +1,7 @@
+PASS  C 00175EF0 calls init_frame with rcx = r12 and decode_mb_rows with rcx = rbx
+PASS  D rcx unwritten in 00175CA0; rbx / rdi written once in 00175070 (pbi / pbi + 0x12C0); rsi = decFbRef[0] through the T sites
+PASS  I init_frame: key-frame context defaults and resets, the inter-frame filter pointers, ecActive, and the per-frame macroblock-decoder fields
+PASS  M decode_mb_rows: availability flags, currentBc, contexts, edges, plane pointers and strides, per-macroblock advances
+PASS  T decode_mb_rows: the 0x7F border rows above the three planes of decFbRef[0]
+PASS  P the rows are in the store; lastFrameContext / frameContext are Vp8FrameContext; the four types tile
+FAILS 0

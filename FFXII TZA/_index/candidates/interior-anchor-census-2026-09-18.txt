@@ -1,0 +1,107 @@
+MID-INSTRUCTION  0079E6AD  in InputBackend_IsControlCode28To283ActiveForBank (0079E6A0, 44 B)
+    00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:1503
+MID-INSTRUCTION  0046DFE4  in FUN_0046dfe0 (0046DFE0, 18 B)
+    00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:1511
+MID-INSTRUCTION  001C50C5  in FUN_001c50c0 (001C50C0, 73 B)
+    00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:1521
+MID-INSTRUCTION  00427282  in FUN_00427280 (00427280, 25 B)
+    00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:1531
+MID-INSTRUCTION  00409604  in ResourceEntry_GetResolvedBasePointer (00409600, 86 B)
+    02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md:359
+MID-INSTRUCTION  003ECF76  in FUN_003ecf70 (003ECF70, 84 B)
+    03-World-Area-Field/CONTRACT-field-record-accessors.md:578
+MID-INSTRUCTION  004FF0D3  in FUN_004ff0d0 (004FF0D0, 56 B)
+    04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:678
+MID-INSTRUCTION  0042665B  in FUN_00426650 (00426650, 288 B)
+    04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:695
+MID-INSTRUCTION  004220FC  in FUN_004220f0 (004220F0, 119 B)
+    04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:701
+MID-INSTRUCTION  00550475  in FUN_00550470 (00550470, 153 B)
+    04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md:338
+MID-INSTRUCTION  0030A88D  in BattleUnit_BuildFilteredFourSlotUnitBuffer (0030A880, 31 B)
+    04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md:1387
+MID-INSTRUCTION  0042F253  in FUN_0042f250 (0042F250, 70 B)
+    05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md:993
+MID-INSTRUCTION  003FFEF3  in FUN_003ffee0 (003FFEE0, 33 B)
+    05-Spawn-Encounter-Lifecycle/Spawn-Record/the-spawn-keep-entry-field-map.md:517
+MID-INSTRUCTION  004697C2  in FUN_004697c0 (004697C0, 251 B)
+    07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:820
+MID-INSTRUCTION  003EFD03  in FUN_003efd00 (003EFD00, 236 B)
+    08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md:587
+MID-INSTRUCTION  003183B9  in FUN_003183a0 (003183A0, 42 B)
+    13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md:750
+MID-INSTRUCTION  0057A2D2  in FUN_0057a2d0 (0057A2D0, 38 B)
+    16-UI/Widget-Object-Model/the-widget-message-protocol.md:713
+MID-INSTRUCTION  0023DFCF  in FUN_0023dfc0 (0023DFC0, 95 B)
+    16-UI/Widget-Object-Model/the-widget-message-protocol.md:736
+MID-INSTRUCTION  0060E7A5  in FUN_0060e7a0 (0060E7A0, 98 B)
+    17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md:787
+MID-INSTRUCTION  0060CE52  in FUN_0060ce50 (0060CE50, 827 B)
+    17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md:797
+MID-INSTRUCTION  00609712  in FUN_00609710 (00609710, 7 B)
+    17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md:802
+MID-INSTRUCTION  0051FF3B  in FUN_0051ff30 (0051FF30, 217 B)
+    17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md:809
+MID-INSTRUCTION  0051F9F2  in FUN_0051f9f0 (0051F9F0, 380 B)
+    17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md:817
+MID-INSTRUCTION  0041C765  in FUN_0041c760 (0041C760, 14 B)
+    17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md:830
+MID-INSTRUCTION  0062C361  in FUN_0062c360 (0062C360, 515 B)
+    19-Save-Load-Settings/CONTRACT-save-image-buffers.md:510
+MID-INSTRUCTION  0061E205  in FUN_0061e200 (0061E200, 105 B)
+    19-Save-Load-Settings/CONTRACT-save-image-buffers.md:518
+MID-INSTRUCTION  005CD7D5  in FUN_005cd7d0 (005CD7D0, 74 B)
+    19-Save-Load-Settings/CONTRACT-save-image-buffers.md:526
+MID-INSTRUCTION  006160C9  in FUN_006160b0 (006160B0, 139 B)
+    19-Save-Load-Settings/CONTRACT-save-image-buffers.md:545
+MID-INSTRUCTION  005837F9  in SavePath_BuildSlotAssetName (005837F0, 304 B)
+    19-Save-Load-Settings/CONTRACT-storage-read-completion.md:792
+MID-INSTRUCTION  00581357  in FUN_00581350 (00581350, 130 B)
+    19-Save-Load-Settings/CONTRACT-storage-read-completion.md:798
+MID-INSTRUCTION  00866D6C  in RNG_MT19937_SeedState (00866D60, 67 B)
+    21-RNG-And-Determinism/CONTRACT-gameplay-generators.md:623
+MID-INSTRUCTION  005CD5E3  in FUN_005cd5e0 (005CD5E0, 98 B)
+    22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md:692
+MID-INSTRUCTION  00599676  in FUN_00599670 (00599670, 254 B)
+    22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md:715
+
+interior anchors checked : 176
+on an instruction boundary: 143
+MID-INSTRUCTION           : 33
+not inside a known body   : 0
+skipped, already refuted  : 1
+
+A mid-instruction anchor means the prose around it was written from a misaligned decode:
+x86-64 resynchronises, so a late start yields a fluent but fictional instruction stream.
+A boundary anchor is NOT a certificate - it only removes this one failure mode.
+
+================================================================================
+ADDENDUM (OPUS, same day) - THE PASS KNEW.
+
+Four of the 33 flagged paragraphs state, of their own subject, that "the window
+opens mid-instruction":
+
+    02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md        00409604
+    00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md
+                                                                         0046DFE4
+    04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md
+                                                                         004FF0D3
+    07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md
+                                                                         004697C2
+
+This was found by accident: the first draft of check_interior_anchors.py skipped
+any paragraph containing the phrase "mid-instruction", on the theory that such a
+paragraph must be a refutation. It silently excused exactly these four. The skip
+list was narrowed to genuine refutation verbs, and a control now pins the
+distinction - an author's own caveat must never suppress the flag.
+
+It matters because it changes what the defect IS. This is not a tool that was
+misaligned without anyone noticing; at least four times the misalignment was
+observed, written down, and the description derived from it published anyway.
+00409604's paragraph is the clearest: it says the window opens mid-instruction
+and then describes "a six-slot lea rax,[rip+...] / mov [rip+0x286CBxx],rax block"
+inside ResourceEntry_GetResolvedBasePointer - a NAMED function whose actual 86
+bytes are a mode dispatch with no lea block at all.
+
+A caveat is not a hedge when the content it qualifies is wholly invented.
+================================================================================

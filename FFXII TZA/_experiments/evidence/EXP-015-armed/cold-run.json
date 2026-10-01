@@ -1,0 +1,93 @@
+{
+  "mode": "cold",
+  "pid": 31676,
+  "start_unix": 1789092057.6852915,
+  "status": "COMPLETED",
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\observe.py",
+        "--pid",
+        "31676",
+        "--seconds",
+        "65",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\cold-window.json"
+      ],
+      "label": "observer",
+      "pid": 38408,
+      "start_unix": 1789092058.3726852,
+      "exit_code": 0,
+      "observed_end_unix": 1789092123.505835
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\hwbp.py",
+        "--pid",
+        "31676",
+        "--seconds",
+        "60",
+        "--stop-after",
+        "2",
+        "--trace-out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\cold-trace.tsv",
+        "--addr",
+        "003250F0"
+      ],
+      "label": "debugger",
+      "pid": 11120,
+      "start_unix": 1789092060.3789172,
+      "exit_code": 0,
+      "observed_end_unix": 1789092123.505846
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\input_receipt.py",
+        "--keys",
+        "Enter",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\cold-Enter.json"
+      ],
+      "label": "Enter",
+      "pid": 38736,
+      "start_unix": 1789092065.3855014,
+      "exit_code": 0,
+      "observed_end_unix": 1789092123.5058475
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\input_receipt.py",
+        "--keys",
+        "C",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\cold-C.json"
+      ],
+      "label": "C",
+      "pid": 34728,
+      "start_unix": 1789092110.3850815,
+      "exit_code": 0,
+      "observed_end_unix": 1789092123.5058484
+    }
+  ],
+  "sources": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\window_run.py": "3d65ad4776a3b35c6fa7fcf11b6b2c88d32b3431b57586c2216c92d99d2c0719",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\observe.py": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-015-armed\\probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\hwbp.py": "c0c643355ffdc09b82860744e35c5301535448302bdae92847aad631a50c87e5",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\process_liveness.py": "b6d6ef01c3fc4803115743cad610e70344a4935e48f4bd7807b6217ef7264ec4"
+  },
+  "state_before": {
+    "stdout": "pid 31676\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "end_unix": 1789092123.5058491,
+  "live_children": []
+}

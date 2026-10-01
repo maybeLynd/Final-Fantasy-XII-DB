@@ -1,0 +1,127 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "not_bound": [
+  "238880 (heap 6)",
+  "00237FC0 tail (heap 6)"
+ ],
+ "allowed_functions": 4262,
+ "results": {
+  "second_store_on_the_lethal_path": {
+   "pass_": true,
+   "lethal": [
+    {
+     "ok": true,
+     "stores": [
+      [
+       "00300749",
+       0
+      ],
+      [
+       "00310508",
+       0
+      ]
+     ],
+     "entered": [
+      "recompute 0030FED0",
+      "status 0030E360"
+     ],
+     "hp_after": 0,
+     "ko_bit": 1
+    },
+    {
+     "ok": true,
+     "stores": [
+      [
+       "00300749",
+       0
+      ],
+      [
+       "00310508",
+       0
+      ]
+     ],
+     "entered": [
+      "recompute 0030FED0",
+      "status 0030E360"
+     ],
+     "hp_after": 0,
+     "ko_bit": 1
+    }
+   ],
+   "note": "one lethal call of 00300530 stores +0x48 TWICE: its own store at 00300749, then 0030E360 (KO bit 0, mode 3) reaches the recompute 0030FED0, which stores +0x48 again at 00310508; the KO bit is set and no presentation call runs"
+  },
+  "single_store_without_a_status_transition": {
+   "pass_": true,
+   "non_lethal": {
+    "ok": true,
+    "stores": [
+     [
+      "00300749",
+      70
+     ]
+    ],
+    "entered": [],
+    "hp_after": 70,
+    "ko_bit": 0
+   },
+   "heal_past_cap": {
+    "ok": true,
+    "stores": [
+     [
+      "00300749",
+      500
+     ]
+    ],
+    "entered": [],
+    "hp_after": 500,
+    "ko_bit": 0
+   },
+   "note": "100 - 30 and 480 + 50 (cap 500): one store each, at 00300749 (70; clamped to 500) - no status transition, no recompute"
+  },
+  "bound_holds_after_every_store": {
+   "pass_": true,
+   "note": "every stored value lies in [floor 0, cap 500] - the second store clamps as well"
+  }
+ }
+}

@@ -1,0 +1,36 @@
+S1 id 0xE2 Loca_gil.cl2: 61 instructions carry the value, 5 in an argument-register/stack-argument shape
+   00305F21 mov ecx, 0xe2                          in 00305F10  calls after: 0x20e600
+   0030993F mov ecx, 0xe2                          in 003098D0  calls after: -
+   0030A43F mov ecx, 0xe2                          in 0030A370  calls after: -
+   0030DC3B mov ecx, 0xe2                          in 0030DB70  calls after: 0x2f8d60 0x322c50
+   00313220 mov ecx, 0xe2                          in 00313120  calls after: -
+PASS R id 0xE2 is never loaded as a constant request argument (Loca_gil.cl2)
+S1 id 0xE3 Loca_bhm.cl2: 23 instructions carry the value, 1 in an argument-register/stack-argument shape
+   0018EE26 mov r9d, 0xe3                          in 0018EE20  calls after: -
+PASS R id 0xE3 is never loaded as a constant request argument (Loca_bhm.cl2)
+S1 id 0xE4 Loca_rbl.cl2: 542 instructions carry the value, 3 in an argument-register/stack-argument shape
+   00694BE9 mov dword ptr [rsp + 0x20], 0xe4       in 006949A0  calls after: 0x632960 0x808b90
+   006964EF mov dword ptr [rsp + 0x20], 0xe4       in 00696470  calls after: 0x632960 0x808b90
+   00760214 mov ecx, 0xe4                          in unlisted  calls after: -
+PASS R id 0xE4 is never loaded as a constant request argument (Loca_rbl.cl2)
+S1 id 0xBF Loca.mrp (control): 9 instructions carry the value, 2 in an argument-register/stack-argument shape
+   003FA0C3 mov ecx, 0xbf                          in 003F9F40  calls after: 0x2dd7e0 0x3faaf0
+   004040FE mov r8d, 0xbf                          in 00404060  calls after: 0x249320
+PASS C1 the Loca.mrp constant request at 004040FE is found
+S1 id 0xA6 w_menu.mrp (control): 56 instructions carry the value, 3 in an argument-register/stack-argument shape
+   0017DD28 mov r8d, 0xa6                          in 0017DB90  calls after: 0x1cd040 0x16d6a0 0x17e070
+   0056303B mov r8d, 0xa6                          in 00562F90  calls after: 0x249350
+   00715B28 mov r9d, 0xa6                          in 00715AC0  calls after: 0x6da880
+PASS C2 a w_menu.mrp (0xA6) argument-shape constant is found in 00562F90
+S2 computed kind-7 request ids (register-held sites of the pool APIs):
+   002CEB01 add    r8d, 0x10                      0x10 + byte[obj+0xB2D]                                     face_guest / map_efe family (0x0D..0x20)
+   003C9988 add    r8d, 0xe                       0xE + byte[obj+0xC1]                                       map_efe00..06 (0x0E..0x14)
+   003C1DC2 add    r8d, 0xe8                      0xE8 + byte[rec+0xB]                                       worldmap AreaTim2 loca_NN.tm2 (0xE8..) - cannot reach 0xE2..0xE4
+   003C1EB1 add    r8d, 0x496                     0x496 + byte[+4]                                           cannot reach 0xE2..0xE4
+   003C1FF6 add    r8d, 0x142                     0x142 + dil                                                cannot reach 0xE2..0xE4
+   00380120 add    ebx, 0x12a                     0x129 / 0x12A + byte                                       menuquest.nfs / menuquest00..15.bin - cannot reach
+   00577019 inc    r8d                            u16 table 00D23740[i] + 1                                  table values 0x228.. - cannot reach
+   00575C73 add    edi, eax                       u16 table 00D23740[byte] + word[obj+0xCA] (+ word[arg+2])  unbounded sum
+   0057A2DF lea    r8d, [rdx + 0x31]              caller rdx + 0x31                                          callers 005591A5 / 00561763 / 00572EC8 pass rdx 2 / 0 / 1: 0x31..0x33 m_all*.efx - cannot reach
+PASS S2 the listed shape instructions decode as add/lea/movzx/inc (the id arithmetic)
+FAILS 0

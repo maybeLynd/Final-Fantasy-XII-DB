@@ -1,0 +1,48 @@
+# FINAL-AUDIT pass 22 - the R3 clauses-1+2 work list (FABLE-NOTICE-FRONTIER-PASS22-368).
+#
+# Measured live on the working tree with Database/Tools/work/FABLE/regprose/pass22_r3_clauses12.py
+# (R3MODE=12): tightened matching = body text only (YAML front matter and markdown link
+# targets removed), whole-word alias matches, folder path still counts, R1 registry
+# clearing unchanged.
+#
+# DRIFT NOTE (2026-09-14/15): FABLE measured 368 pairs at commit 6b97c90a; OPUS noted
+# 356 later the same day; the first FRONTIER run of this file reported 25. The
+# lane-disposition program (neighbour-dispositions.tsv, 1,056+ rows) plus in-flight
+# peer passes absorbed most of the list between those measurements. THE ROWS BELOW ARE
+# THE LIVE SET as of this revision - peers are dispositioning in flight, so re-run
+# R3MODE=12 before assuming a row still stands.
+#
+# A pair leaves this list the same way the first 1,056 did: a sentence on the page that
+# accounts for the crossing (CROSSING-ACCOUNTED / EDGE-ON-PAGE), or a registry verdict
+# (GENUINELY-IRRELEVANT / FALSE-SUBJECT) appended to neighbour-dispositions.tsv. Verdict
+# vocabulary is in that file's header. A registry verdict clears the pair for BOTH the
+# shipped and the tightened instrument, since load_dispositions is shared.
+#
+# LANE = the neighbour_disposition_bands owner of the document's folder
+# (fleet-plan.json): FRONTIER 00+99, STRUCT 01+24+25, DATA 19, ORACLE 02+22,
+# EC7 18+23, CONTRACT the remainder.
+#
+# ALSO LIVE: the shipped instrument currently reports 2 findings on
+# 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md
+# (Presentation, RNG_Random_Selection). A peer disposition was IN FLIGHT on that
+# page while this list was measured (Resource and Presentation crossings prose was
+# being added). Recheck before duplicating - the pair may already be gone.
+#
+# document	neighbour_subsystem	edges	hint	lane	sample_edges
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md	CoreRuntimeScheduling	2	unaccounted	STRUCT	002EDBD0 callee 0020E600; 0037B4D0 callee 0020E600
+02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	CoreRuntimeScheduling	10	CITES-THE-EDGE	ORACLE	0029F130 callee 0020E600; 0029F930 callee 0020E600; 0029FEB0 callee 0020E620; 002A0060 callee 0020E600 (+6 more)
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	Presentation	117	unaccounted	ORACLE	001A7A50 callee 001A92C0; 001C61F0 callee 001C7940; 001C61F0 callee 001C53F0; 00214C30 caller 0022B0B0 (+113 more)
+06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md	Script_VM_Native_Bridge	124	unaccounted	CONTRACT	00263CC0 caller 00349490; 00263CC0 caller 00348840; 00265550 caller 00340E90; 00265600 caller 003482A0 (+120 more)
+07-Combat-Action/Command-And-Action-Seam/native-command-seam.md	CoreRuntimeScheduling	3	unaccounted	CONTRACT	00304850 callee 0020E600; 0030CA80 callee 0020E600; 0030CFB0 callee 0020E600
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md	CoreRuntimeScheduling	2	unaccounted	CONTRACT	0031ADB0 callee 0020E600; 00385680 callee 0020E600
+10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md	Presentation	29	unaccounted	CONTRACT	00301140 callee 003125E0; 00307D10 caller 00308130; 00310780 callee 00313B30; 00312280 callee 0028FB80 (+25 more)
+11-Party/active-party-reserve-and-the-moment-the-leader-changes.md	Presentation	13	unaccounted	CONTRACT	00312280 callee 0028FB80; 003590D0 caller 00464650; 003590D0 caller 004640A0; 003590D0 caller 00426090 (+9 more)
+12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md	CoreRuntimeScheduling	5	CITES-THE-EDGE	CONTRACT	002F8FA0 callee 0020E600; 00323910 callee 0020E600; 00323C60 callee 0020E600; 00323D10 callee 0020E600 (+1 more)
+12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	CoreRuntimeScheduling	10	CITES-THE-EDGE	CONTRACT	00238660 callee 0020E620; 00238660 callee 0020E600; 002BD8C0 callee 0020E620; 002FA920 callee 0020E600 (+6 more)
+13-Rewards-Progression-Economy/experience-and-license-point-award.md	CoreRuntimeScheduling	1	unaccounted	CONTRACT	002F8FA0 callee 0020E600
+15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	CoreRuntimeScheduling	?	unaccounted	CONTRACT	(new pair since first measure - enumerate via R3MODE=12)
+16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	Script_VM_Native_Bridge	24	unaccounted	CONTRACT	00229EA0 caller 00354D00; 00265020 caller 003516E0; 00265020 caller 00346710; 00265020 caller 003562B0 (+20 more)
+17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	Movement	59	unaccounted	CONTRACT	00233AD0 callee 00311F70; 00265240 caller 00505240; 0026A490 callee 00268380; 002E28E0 callee 00269F90 (+55 more)
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	Presentation	?	unaccounted	CONTRACT	(reported under the shipped instrument too - peer disposition in flight; recheck before working)
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	RNG_Random_Selection	?	unaccounted	CONTRACT	(reported under the shipped instrument too - peer disposition in flight; recheck before working)
+21-RNG-And-Determinism/rng-streams.md	Resource	1	unaccounted	CONTRACT	0022B6E0 callee 0032E520

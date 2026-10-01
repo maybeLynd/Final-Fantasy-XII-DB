@@ -1,0 +1,5 @@
+PASS F1  int -> cvtdq2ps; float copied; empty -> 0.0
+PASS F2  width 5 -> raw dword copy
+PASS F3  16777217 -> RN 4B800000, RU 4B800001; ints up to 2^24 are exact under both
+PASS C  a truncating model gives 4B800000 regardless of mode
+FAILS 0

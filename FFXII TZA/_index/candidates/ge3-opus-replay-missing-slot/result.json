@@ -1,0 +1,35 @@
+{
+ "ok": true,
+ "slot_02EBF118": "7611B178",
+ "cases": {
+  "slot bound (control)": {
+   "returned": true,
+   "reached": [
+    "0031E14C",
+    "0031E22C",
+    "0031E24F",
+    "0031E288"
+   ],
+   "unmapped_reads": []
+  },
+  "slot null": {
+   "returned": true,
+   "reached": [],
+   "unmapped_reads": []
+  },
+  "slot +0xC zeroed": {
+   "returned": false,
+   "reached": [
+    "0031E14C",
+    "0031E22C"
+   ],
+   "unmapped_reads": [
+    [
+     "0031E22C",
+     "10"
+    ]
+   ]
+  }
+ },
+ "note": "slot null: the validator 00322C50 refuses first (0031E14C never reached) and the arm exits cleanly; slot +0xC zeroed (the resolve returns 0): validation passes and the arm faults at 0031E22C reading [0x10]. Neither reaches 0031E24F / 0031E288, so GE-3's branches 0031E259 / 0031E266 are never taken in a non-faulting run; the bound control reaches 0031E288 on the normal path"
+}

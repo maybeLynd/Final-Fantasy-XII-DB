@@ -1,0 +1,16 @@
+{
+  "path": "Database/Tools/work/graph/functions.tsv",
+  "source_sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+  "row": {
+    "entry": "00229E70",
+    "name": "FUN_00229e70",
+    "body_bytes": "37",
+    "owner": "CoreRuntimeScheduling",
+    "final_no_owner": "false",
+    "thunk": "false",
+    "noreturn": "false",
+    "comment_len": "1284",
+    "tags": "CategoryExitV108;CategoryExitV110;ContextAuditV108;CorrectionV108;FFXII.CoreRuntimeScheduling;FFXII_V108;FunctionEvidenceV108;GFZ.V120.PrimaryOwner.CoreRuntimeScheduling;GFZ.V120WIP.PrimaryOwner.CoreRuntimeScheduling;GFZ.V120WIP.X0.CoreRuntimeReconstructionBI.Owner;MechanismContextV108;MilestoneAuditV110"
+  },
+  "scope": "Corroborative catalog identity, complete37B/branches/RIP operands are checked independently"
+}

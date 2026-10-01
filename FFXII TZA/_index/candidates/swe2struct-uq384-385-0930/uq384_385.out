@@ -1,0 +1,170 @@
+=== image ===
+PASS  R0 the image read is the certified shipping EXE (sha256 73461D0896204B1C..., image base 00120000)
+=== UQ-384 (a): the object stored at 01FC35F8 ===
+PASS  R1 01FC35F8 has exactly one writer, 0021037B in 00210320: rip census ['0021037B']; byte-level rel32 sweep writers ['0021037B'] (readers 20); no data pointer into 01FC3580-01FC361F (0; 7 byte runs inside rip-relative encodings dismissed); no image-base-relative operand (0); no lea of 01FC3480-01FC361F (0)
+PASS  K1 control: the same rip-write census sees all 7 writers of 01FC3603 (incl. 00210447, 0020FCD6)
+PASS  K2 control: the byte-level sweep finds the store 0021037B -> 01FC35F8 and the call 001DB4AC -> 00210320
+PASS  R2 00210320 stores its second argument rdx, unmodified since entry (no write), and its only caller is 001DB4AC in 001DB3D0 (byte sweep ['001DB4AC']; no qword/dword names it ) 
+PASS  R3 001DB3D0 passes its own rdx (rsi, not rewritten 001DB3F7-001DB4B0) to every 00210320 call; it is GiVmax (vtable 009007E8, RTTI) slot 1, named only by the qword 009007F0, with no direct caller and no rip reference 
+PASS  R4 GiVmax's vtable is installed only by 001DB220, whose callers are 001DB840 (registrar build) and 001DB7E0 (effect-element build) 
+PASS  R5 every submit 0020E630 jumps to 001FB810, which hands the command to 001A17F0 with the handler object [01F7F4D0]; that 0x10 object is built once (0017D538) by 001A17D0 = vtable 008F5F28 GeometryRenderTargetImmediate with +8 = itself, and neither reader of 01F7F4D0 (001FB810, 001FB830->001A1850) stores through it; its slot 0 is 001F48B0 
+PASS  R6 001F48B0 stores the command at record+0x18 of a GeometryInstanceOrderedObject (vtable 00903920, slot 1 = 001F49F0) and appends the record (0018B4E0 list, 0018AFF0 push_back) 
+PASS  R7 the render pass list's drain 0018B100 calls record slot 1 (0018B187); 001F49F0 queues a 0x80-byte block {opcode 0x2F, +8 = 001F4A10, +0x10 = the command} through 005FEA50 
+PASS  R8 the executor 0060A410 switches on block+0 (rbx = block+0x70); opcode 0x2F decodes to the arm 0060A899, which calls block+8 with a frame {+0 = r14, +0x10 = block+0x10}; r14 is written once, 0060A46F = 00624670() [('0060A46F', 'mov')]
+PASS  R9 00624670 jumps to the magic-static getter 005FD050, which returns 02CC0410 on both exits and is the only caller of its constructor 00615840 
+PASS  R10 001F4A10 calls the command's slot 1 with rdx = frame[0] + 0x18C0 = 02CC1CD0; it is named only by 001F49FA 
+PASS  R11 00615840 (this = rbp, unchanged to 00615B57) constructs this+0x18C0 with 006C8750, which writes vtable 00D86960 (RTTI PrimitiveRendererD3D11, 45 slots) at +0 and 00D86AD0 (same class, secondary) at +8; the only other lea of 00D86960 is 006C8870 
+PASS  R12 02CC0410 (the context, so the device 02CC1CD0) and 01FC35F8 lie in the zero-initialised tail of .data: static storage, constructed in place, not allocated
+PASS  R13 so the value 0021037B stores into 01FC35F8 is 02CC1CD0 = 02CC0410 + 0x18C0, the embedded PrimitiveRendererD3D11 (vtable 00D86960), on the route GiVmax slot 1 <- 001F4A10 <- block 0x2F <- 001F49F0 <- 0018B100
+=== UQ-384 (a): which PrimitiveRendererD3D11 methods the GS replay calls ===
+PASS  D1 every one of the 20 rip reads of 01FC35F8 is followed: 19 inside the replay functions, plus 0020ECA3 which becomes 0020EB60's rdx (its only caller) 
+PASS  D2 two more receivers are the same object: 001DB3D0 calls slot 11 on its rsi (= the device) twice, and the PACKED TEXFLUSH arm 0020FA0F calls slot 37 on r8, which is 00210320's r14 (= its rdx) spilled at entry (0x18 + 5 pushes + 0x50 = 0x90) and reloaded from [rsp + 0x90] at 0020F492 (after the only call before the dispatch) and 0020FA84 (loop tail); the 8 other r8 writes sit in the index arms, which exit only to the loop tail or the no-return range-check failure 0020FACE 
+      slot  0 (+0x000) -> 006CA760  at 0020EBED
+      slot  1 (+0x008) -> 006CB5E0  at 0020EC0C
+      slot  2 (+0x010) -> 006CA650  at 0020EC22
+      slot  3 (+0x018) -> 006CB530  at 0020EC45
+      slot  5 (+0x028) -> 006C8BF0  at 0020EC67
+      slot  8 (+0x040) -> 006CAEB0  at 0020F13C 0020F22E
+      slot  9 (+0x048) -> 006CAE90  at 0020F1BB
+      slot 11 (+0x058) -> 006CAD90  at 001DB416 001DB4ED
+      slot 15 (+0x078) -> 006CAB80  at 00210178 002101EA
+      slot 16 (+0x080) -> 0060D760  at 002101BB
+      slot 17 (+0x088) -> 0060D760  at 00210016
+      slot 19 (+0x098) -> 006CAB40  at 0021018D 002101FC
+      slot 20 (+0x0A0) -> 006CABF0  at 002100DE
+      slot 21 (+0x0A8) -> 006CAC00  at 00210049 00210075
+      slot 36 (+0x120) -> 006CAE70  at 00210092
+      slot 37 (+0x128) -> 006C9B00  at 002104F7 0020FD88 0020FA0F
+      slot 39 (+0x138) -> 006C9AF0  at 0020F191
+PASS  D3 the replay makes 24 dispatches on the device at 17 distinct slots, all inside PrimitiveRendererD3D11's 45-slot table (control: 0020EB60's draw at +0x28 and TEXFLUSH's slot 37 in both dispatchers are among them)
+=== UQ-384 (b): what the GS state handlers store ===
+PASS  H1 PACKED dispatcher 0020F3E0: the descriptor is (REGS >> 4k) & 0xF (width (k*4+3) - k*4 + 1 = 4 bits), so only descriptors 0-0xF reach the map at 0020FB28; arms above 0xF are unreachable from PACKED 
+PASS  H2 A+D handler 0020FCA0: stores the data qword at 01FC3608 and the register byte (bits 64-71) at 01FC3610; for a register outside 1-5 it first flushes (0020EC80) and sets 01FC3603; then registers 0-0x4F go through the map at 0020FE14 
+    PACKED (0020F3E0) - descriptor: GS register -> arm : stores (address/bytes) ; calls ; exit
+      00 PRIM      reach 0020F4C2 : 01F83562/1,01F83568/4,01F83574/4,01F8357C/1,01F8357D/1,01F8357E/1,01F8357F/1,01FC3600/1,01FC3601/1,01FC3602/1 ; 0x20fba0 ; jmp 0x20fa6f
+      01 RGBAQ     reach 0020F55F : 01FC3618/4,01FC361C/1,01FC361D/1,01FC361E/1,01FC361F/1 ; - ; jmp 0x20fa6f
+      02 ST        reach 0020F5AA : 01E027B0/4,01FCB600/4,01FCB604/4 ; - ; jmp 0x20fa6f
+      03 UV        reach 0020F61E : 01FCB608/4,01FCB60C/4 ; - ; jmp 0x20fa6f
+      04 XYZF2     reach 0020F66B : 01F83563/1,01F83568/4,01F83574/4 ; 0x20ec80 ; jmp 0x20f6f6
+      05 XYZ2      reach 0020F6B5 : 01F83568/4,01F83574/4 ; 0x20ec80 ; falls into 0020F6F6
+      06 TEX0_1    reach 0020F97F : 01FC3588/8 ; - ; jmp 0x20fa6f
+      07 TEX0_2    reach 0020F991 : 01FC3590/8 ; - ; jmp 0x20fa6f
+      08 CLAMP_1   reach 0020F9A3 : 01FC35B8/8 ; - ; jmp 0x20fa6f
+      09 CLAMP_2   reach 0020F9B5 : 01FC35C0/8 ; - ; jmp 0x20fa6f
+      0A FOG       reach 0020F9C7 : 01F83563/1 ; - ; jmp 0x20fa6f
+      0E A+D       reach 0020F9F0 : - ; 0x20fca0 ; jmp 0x20fa6f
+      3B TEXA      DEAD  0020F9FA : 01E027B8/8 ; - ; jmp 0x20fa6f
+      3F TEXFLUSH  DEAD  0020FA09 : - ; qword ptr [rax + 0x128] ; jmp 0x20fa6f
+      42 ALPHA_1   DEAD  0020FA17 : 01FC35D8/8 ; - ; jmp 0x20fa6f
+      43 ALPHA_2   DEAD  0020FA26 : 01FC35E0/8 ; - ; jmp 0x20fa6f
+      47 TEST_1    DEAD  0020FA35 : 01FC35C8/8 ; - ; jmp 0x20fa6f
+      48 TEST_2    DEAD  0020FA44 : 01FC35D0/8 ; - ; jmp 0x20fa6f
+      4E ZBUF_1    DEAD  0020FA53 : 01FC35E8/8 ; - ; jmp 0x20fa6f
+      4F ZBUF_2    DEAD  0020FA62 : 01FC35F0/8 ; - ; falls into 0020FA6F
+      ignored (-> 0020FA6F): 0B 0C 0D 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3C 3D 3E 40 41 44 45 46 49 4A 4B 4C 4D
+    A+D (0020FCA0) - register -> arm : stores ; exit
+      00 PRIM      0020FD07 : - ; jmp 0x20fe70
+      06 TEX0_1    0020FD16 : 01FC3588/8 ; ret 
+      07 TEX0_2    0020FD22 : 01FC3590/8 ; ret 
+      08 CLAMP_1   0020FD2E : 01FC35B8/8 ; ret 
+      09 CLAMP_2   0020FD3A : 01FC35C0/8 ; ret 
+      3B TEXA      0020FD46 : 01E027B8/8 ; ret 
+      3D FOGCOL    0020FD52 : 01FC3604/1,01FC3605/1,01FC3606/1 ; ret 
+      3F TEXFLUSH  0020FD7A : - ; jmp qword ptr [rax + 0x128]
+      42 ALPHA_1   0020FD8F : 01FC35D8/8 ; ret 
+      43 ALPHA_2   0020FD9B : 01FC35E0/8 ; ret 
+      47 TEST_1    0020FDA7 : 01FC35C8/8 ; ret 
+      48 TEST_2    0020FDB3 : 01FC35D0/8 ; ret 
+      4E ZBUF_1    0020FDBF : 01FC35E8/8 ; ret 
+      4F ZBUF_2    0020FDCB : 01FC35F0/8 ; ret 
+      ignored (-> 0020FDD2): 01 02 03 04 05 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3C 3E 40 41 44 45 46 49 4A 4B 4C 4D
+PASS  H3 PACKED: 12 reachable arms (PRIM, RGBAQ, ST, UV, XYZF2, XYZ2, TEX0_1/2, CLAMP_1/2, FOG, A+D) store exactly the listed globals; XYZF3 / XYZ3 / NOP / 0x0B are ignored; the 8 arms for 0x3B-0x4F exist but are unreachable 
+PASS  H4 A+D: 14 registers have arms (PRIM via 0020FE70, TEX0, CLAMP, TEXA, FOGCOL, TEXFLUSH, ALPHA, TEST, ZBUF); RGBAQ/ST/UV/XYZF2/XYZ2/FOG/XYZF3/XYZ3 written through A+D are ignored 
+PASS  H5 value forms: PRIM bits 0-2 / 3 / 4 / 5 / 6 / 8 / 9 / 10 (type, IIP, TME, FGE, ABE, FST, CTXT, FIX; bit 7 AA1 dropped) in both writers; RGBAQ R,G,B,A bytes reversed into 01FC361F..1C and (int)Q into 01FC3618; ST stores S/Q, T/Q and Q; UV the 14-bit U, V as floats; FOG = (int)(F x 0.0625) into a byte; FOGCOL bytes 0-2 of the data; PRIM via A+D passes the data's low dword 
+PASS  K9 control: the image-base-relative detector finds 0020F93C's write [r14 + r9*2 + 0x1eab610] = 01FCB610 (the index buffer just above the UV window)
+    stored global -> readers (function@site)
+      01E027B0/4 : 0020F3E0@0020F596
+      01E027B8/8 : 0020ED30@0020F0E5
+      01F83562/1 : 0020F3E0@0020F721 0020FBA0@0020FBA0 0020FF10@002100F3
+      01F83563/1 : NO READER
+      01F83568/4 : 0020EC80@0020ECBC 0020F3E0@0020F671 0020F3E0@0020F699 0020F3E0@0020F6BB 0020F3E0@0020F6E3 0020F3E0@0020F749 0020F3E0@0020F769 0020F3E0@0020F7A5 0020F3E0@0020F7E0 0020F3E0@0020F819 0020F3E0@0020F84C 0020F3E0@0020F880
+      01F83574/4 : 0020F3E0@0020F66B 0020F3E0@0020F6B5 00210230@002102FB
+      01F8357C/1 : 0020EB60@0020EB88 0020ED30@0020ED57 0020FF10@0021010C
+      01F8357D/1 : NO READER
+      01F8357E/1 : 0020FF10@00210171
+      01F8357F/1 : 0020EA50@0020EB11
+      01FC3580/8 : 0020F3E0@0020FA7D
+      01FC3588/8 : 0020EB60@0020EB80 0020ED30@0020EDAE
+      01FC3590/8 : 0020EB60@0020EB79 0020ED30@0020EDA7
+      01FC35B8/8 : 0020ED30@0020F070 0020FF10@0021011D
+      01FC35C0/8 : 0020ED30@0020F064 0020FF10@002100FA
+      01FC35C8/8 : 0020FF10@0020FF47
+      01FC35D0/8 : 0020FF10@0020FF40
+      01FC35D8/8 : 0020FF10@00210125
+      01FC35E0/8 : 0020FF10@00210101
+      01FC35E8/8 : NO READER
+      01FC35F0/8 : NO READER
+      01FC3600/1 : 0020ED30@0020F13F
+      01FC3601/1 : 0020EB60@0020EB6F 0020ED30@0020EDA0 0020ED30@0020F055 0020FF10@0020FF36 0020FF10@002100EC
+      01FC3602/1 : NO READER
+      01FC3604/1 : NO READER
+      01FC3605/1 : NO READER
+      01FC3606/1 : NO READER
+      01FC3608/8 : 0020FCA0@0020FCCF 0020FCA0@0020FD07 0020FCA0@0020FD5B 0020FCA0@0020FD68
+      01FC3610/4 : 0020FCA0@0020FCC8
+      01FC3618/4 : NO READER
+      01FC361C/1 : 0020EA50@0020EAAE
+      01FC361D/1 : 0020EA50@0020EAA0
+      01FC361E/1 : 0020EA50@0020EA92
+      01FC361F/1 : 0020EA50@0020EA87
+      01FCB600/4 : 0020EA50@0020EB3A
+      01FCB604/4 : 0020EA50@0020EB42
+      01FCB608/4 : 0020EA50@0020EB1A
+      01FCB60C/4 : 0020EA50@0020EB22
+PASS  K4 control: the reader census finds TEX0_1's known readers 0020EB60 and 0020ED30
+PASS  H6 nine stored values have no reader anywhere in .text (rip operand of any width, byte-level), no data pointer into their blocks (0) and no image-base-relative operand (0): FGE 01F8357D, FIX 01FC3602, FOG 01F83563, FOGCOL 01FC3604-06, (int)Q 01FC3618, ZBUF_1 01FC35E8, ZBUF_2 01FC35F0 
+=== UQ-385: the 19 caller-less VU-state touchers ===
+PASS  V1 rebuilt with the census's own method (vu1_census.json touchers x the E8/E9 edge index, as Tools/work/SWE2-FRONTIER/vu1_region_tsv.py): 54 touchers = 33 with only microprogram callers + 2 with sibling-toucher callers (004A6780, 004EF860) + 19 with none; the 19: 004804A0 00485790 00488340 0048AF70 0048D4B0 0048F8C0 004958A0 00499A20 0049B9E0 0049D540 004A0090 004A1E30 004A33B0 004A4410 004A8B00 004AAFC0 004B0230 004C0EA0 004C37C0
+PASS  V2 all 19 are in UQ-213's 57 VU1 microprograms: 9 were already in the 2026-09-13 registrar list the census itself used (it gave the toucher role without excluding microprograms), 10 were added by UQ-213 through 003A33B0 / 003A2F70
+PASS  K5 control: the rel8 sweep finds the short branch 0021047D -> 00210495
+PASS  K7 control: the direct-branch sweep finds the sub-program 0047BFB0's callers ['00482860@0048398B', '0048D4B0@0048E077', '0048F8C0@0049083F', '004930A0@00493CEF', '004930A0@004941B7', '00482860@00483254', '00482860@00483570', '00482860@00483628', '00485790@00486504', '00485790@0048672C', '0048AF70@0048BAD8', '0048F8C0@004902FC', '0048F8C0@0049044C', '004930A0@00493AEC', '004B1190@004B4984', '0047C360@0047C8E9', '00482860@00483A0D', '00485790@004860A9', '00485790@0048667D', '0048F8C0@00490B75', '0048F8C0@00490E61', '0048F8C0@00490FB1', '0048F8C0@0049121D', '004930A0@004936A5', '004930A0@00493BB9', '00482860@00483B52', '00485790@004868E2', '0048F8C0@0048FAF6', '0048F8C0@004900AA', '0048F8C0@004906C2', '0048F8C0@004914A2', '004930A0@00493E6A', '004B1190@004B5FC2'] (all microprograms)
+PASS  V3 none of the 19 is the target of a direct call / jmp / jcc of any width anywhere in .text (byte-level rel32 and rel8 sweeps), and each is preceded by 0xCC padding, so none is entered by fall-through: no x64 JAL equivalent reaches them; byte-sweep residue: 11 field(s) spelling a rel32 to one of them that decode as no listed-stream instruction and have no decoding that uses the target at all (False = coincidental bytes) [('004804A0', '004803E6', 6, False), ('00488340', '00495D73', 5, False), ('0048D4B0', '00812BC3', 5, False), ('0048F8C0', '0046C434', 8, False), ('0049B9E0', '0049B917', 5, False), ('004A0090', '004A0045', 4, False), ('004A0090', '0048D007', 6, False), ('004A33B0', '004A3363', 6, False), ('004A4410', '004A4328', 8, False), ('004A8B00', '004A89F7', 5, False), ('004AAFC0', '0049FF39', 6, False)]  
+PASS  K8 control: the base-relocation table (114962 slots) contains the vtable slot 009007F0
+PASS  K3 control: the data sweep finds the qword 009007F0 = 001DB3D0 and the jump-table RVA 0060AAD0 -> 0060A899
+PASS  V4 data: no qword anywhere holds any of the 19 (and no relocated slot does); every 32-bit VA or RVA match is metadata - each one's own .pdata entry, chained-unwind parent links, one handler table naming 005A5790, two .pdata RVAs of other functions, and one stray byte run inside 00315EC5 - none is a pointer to the entry 
+      004804A0: chained unwind: fragment 004804C6's unwind info names its parent's RUNTIME_FUNCTION (begin 004804A0); chained unwind: fragment 004823A5's unwind info names its parent's RUNTIME_FUNCTION (begin 004804A0)
+      00485790: exception-handler data of 005A5790 (unwind 01D99B88): the RVA of its own start, 0x485790; .pdata field Begin: an RVA, so it names VA 005A5790, not this address; chained unwind: fragment 004857B4's unwind info names its parent's RUNTIME_FUNCTION (begin 00485790); chained unwind: fragment 00487B3C's unwind info names its parent's RUNTIME_FUNCTION (begin 00485790)
+      00488340: chained unwind: fragment 00488362's unwind info names its parent's RUNTIME_FUNCTION (begin 00488340); chained unwind: fragment 0048AAE0's unwind info names its parent's RUNTIME_FUNCTION (begin 00488340)
+      0048D4B0: chained unwind: fragment 0048D692's unwind info names its parent's RUNTIME_FUNCTION (begin 0048D4B0); chained unwind: fragment 0048F395's unwind info names its parent's RUNTIME_FUNCTION (begin 0048D4B0)
+      0048F8C0: chained unwind: fragment 0048F8DE's unwind info names its parent's RUNTIME_FUNCTION (begin 0048F8C0); chained unwind: fragment 00492CC0's unwind info names its parent's RUNTIME_FUNCTION (begin 0048F8C0)
+      004958A0: chained unwind: fragment 004958C6's unwind info names its parent's RUNTIME_FUNCTION (begin 004958A0); chained unwind: fragment 00497881's unwind info names its parent's RUNTIME_FUNCTION (begin 004958A0)
+      0049B9E0: chained unwind: fragment 0049B9FB's unwind info names its parent's RUNTIME_FUNCTION (begin 0049B9E0); chained unwind: fragment 0049D2B7's unwind info names its parent's RUNTIME_FUNCTION (begin 0049B9E0)
+      004A0090: .pdata field Begin: an RVA, so it names VA 005C0090, not this address
+      004A4410: bytes inside the encoding of 00315EC5 movzx r8d, byte ptr [rax + rdx + 0x3844] (no operand equals the value)
+      004C37C0: chained unwind: fragment 004C37DB's unwind info names its parent's RUNTIME_FUNCTION (begin 004C37C0); chained unwind: fragment 004C4A27's unwind info names its parent's RUNTIME_FUNCTION (begin 004C37C0)
+PASS  V5 each of the 19 has its address formed only by rip-relative lea (48 sites, byte sweep = rip census), and every lea feeds the program argument of a registrar call with no rewrite in between (003A2F70 x7, 003A33B0 x16, 003A34D0 x17, 003A35E0 x8)
+PASS  K6 control: the slice rejects 0020F420 (lea r14 -> image base, no registrar) and accepts 0044E8D9 -> 003A34D0
+PASS  V6 route: each registrar carries the program to 001DB840's 4th argument, which stores it as the MPG chunk's +8 pointer (01DFD040, its only writer); the interpreter's MPG case copies that 8-byte payload into the program table 02068E30 (touched only by 0022C970's leas), and MSCAL calls it (0022CB1E) 
+PASS  V7 no VU microcode is embedded anywhere the layer reads: the MPG arm (0022CA3D-0022CA67) has no loop, loads exactly one qword of payload and advances the cursor 4 + 8 bytes whatever NUM says, so MPG carries one x64 pointer and there is no VU instruction stream in which a JAL / JR could be decoded; a VU JAL compiled to x64 is a direct call (V3: none reaches the 19) 
+      004804A0  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      00485790  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      00488340  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      0048AF70  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      0048D4B0  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      0048F8C0  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      004958A0  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+      00499A20  neither: a VU1 microprogram entry, address taken in code by 4 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A2F70 003A33B0
+      0049B9E0  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A2F70 003A33B0
+      0049D540  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A33B0
+      004A0090  neither: a VU1 microprogram entry, address taken in code by 1 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A33B0
+      004A1E30  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A33B0
+      004A33B0  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A33B0
+      004A4410  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A33B0
+      004A8B00  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A2F70 003A33B0
+      004AAFC0  neither: a VU1 microprogram entry, address taken in code by 4 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A2F70 003A33B0
+      004B0230  neither: a VU1 microprogram entry, address taken in code by 2 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A2F70 003A33B0
+      004C0EA0  neither: a VU1 microprogram entry, address taken in code by 1 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0
+      004C37C0  neither: a VU1 microprogram entry, address taken in code by 3 lea(s) as a registrar's program argument, started by MSCAL through the program table; registrars 003A34D0 003A35E0
+PASS  V8 classification: of the 19, 0 are JAL / JR sub-program targets, 0 are data-referenced entries; all 19 are neither - they are registered microprogram entries (UQ-213's population), reached only by MSCAL
+PASS  V9 the region table's real sub-programs are a different set: its 21 'sub-program' rows are disjoint from the 19 and every one has a direct-branch caller in the byte sweep; of the 19 rows, 9 already carry 'microprogram(registrar)' beside the toucher role and 10 carry 'VU1-microprogram(VU-state-toucher)' ({'microprogram(registrar);VU-helper(sticky-flag-user);VU-helper(VU-state-toucher)': 6, 'microprogram(registrar);VU-helper(VU-state-toucher)': 3, 'VU1-microprogram(VU-state-toucher)': 8, 'VU-helper(sticky-flag-user);VU1-microprogram(VU-state-toucher)': 2})
+FAILS 0

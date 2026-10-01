@@ -1,0 +1,1192 @@
+{
+  "evidence_class": "B isolated verified shipping instructions; planted stats/tables; memset import bridge; no live game",
+  "reference": {
+    "records": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/check.py",
+        "copy": "check.py",
+        "commit": "ced7c61fd041bdac490daec48e24d913341704da",
+        "blob": "c37bdd61e59380756aeb6da8b8c1207728970582",
+        "sha256": "2cbc80696fe72fc38d8854d97b0f6ca5e5d68be34d4823a169f058c1c16fa9d7",
+        "current_preimage_sha256": "2cbc80696fe72fc38d8854d97b0f6ca5e5d68be34d4823a169f058c1c16fa9d7",
+        "current_matches": true
+      },
+      {
+        "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/poison.py",
+        "copy": "poison.py",
+        "commit": "ced7c61fd041bdac490daec48e24d913341704da",
+        "blob": "e06cd949ffd92124edb11e8a18938b82ec42fba4",
+        "sha256": "56e361340d94d6b5f7b610163a2e4d56914b7f814e875423d0e01c0ae7b571d5",
+        "current_preimage_sha256": "56e361340d94d6b5f7b610163a2e4d56914b7f814e875423d0e01c0ae7b571d5",
+        "current_matches": true
+      },
+      {
+        "path": "Database/FFXII TZA/_index/candidates/s27-opus-replay-periodic-builder/poison_result.json",
+        "copy": "author-poison-result.json",
+        "commit": "ced7c61fd041bdac490daec48e24d913341704da",
+        "blob": "9b5881b8bbc9a22ac5e1deec18a847beab223f5a",
+        "sha256": "40d81950ee1fab54b7ed5980cfa007f97fac7983d0f87a3ddca12e9bea9affc0",
+        "current_preimage_sha256": "38643e333c2de709024b712b929a4102c8d775f8c94fd9b3db9397f29ac4d14f",
+        "current_matches": false
+      },
+      {
+        "path": "Database/FFXII TZA/_index/candidates/pkg-gp-status-poison/q6.md",
+        "copy": "fable-q6.md",
+        "commit": "f7a5ce0d6ab267d133b7874b8969c51d53dd9396",
+        "blob": "51133b8a05a4c73779b385df81391c1c5e667b91",
+        "sha256": "028053740c449c963236512f88e60f5fcd219a2c31b5cb26e7dcac6c90ed8b22",
+        "current_preimage_sha256": "028053740c449c963236512f88e60f5fcd219a2c31b5cb26e7dcac6c90ed8b22",
+        "current_matches": true
+      },
+      {
+        "path": "Database/FFXII TZA/10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md",
+        "copy": "status-page.md",
+        "commit": "f7a5ce0d6ab267d133b7874b8969c51d53dd9396",
+        "blob": "b73804b5adce660714e8673a924a98c64721242e",
+        "sha256": "899ec2f8c56c227977a0d776320f2ddd97f702451df926740c77af7ad2f2487d",
+        "current_preimage_sha256": "12d6c4a9b026a27aeeda1076d09b7650c40a8b8fd24309083fd9af9ea650c7c3",
+        "current_matches": false
+      }
+    ],
+    "image": {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+      "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "size": 32864752,
+      "base": "0x120000",
+      "stage2_bytes_sha256": "bcdbed8dd31813fa18fa3d34011f7e945413e6fc982e328af0f35c76d412cac5"
+    },
+    "graph": [
+      {
+        "path": "Database/Tools/work/graph/edges.tsv",
+        "sha256": "de21ba1bc62d92243ea66f47ec7a08355ac2f77d355ed8abc542c158fc709095",
+        "size": 3654138
+      },
+      {
+        "path": "Database/Tools/work/graph/functions.tsv",
+        "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+        "size": 7008993
+      }
+    ],
+    "tools": {
+      "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+      "python_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "base_python": "C:\\Python314\\python.exe",
+      "base_python_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+      "unicorn": "2.1.0",
+      "capstone": "5.0.7",
+      "native_modules": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+          "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75",
+          "size": 9343488
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+          "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3",
+          "size": 7576576
+        }
+      ]
+    },
+    "driver_sha256": "f064b92aa2e5e33ce5bc0294129491c69cef5461ef098e66617f7d034cc6e0f7"
+  },
+  "driver_sha256": "dd241883e63dbe27f7a23f1492539d9bb2da3d1774b2a4785ace590b039244d0",
+  "terminal": true,
+  "exception": null,
+  "downstream_started": true,
+  "module_paths": {
+    "check": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\private-source\\check.py",
+    "poison": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\private-source\\poison.py"
+  },
+  "prerequisite": {
+    "pass": 6,
+    "total": 6,
+    "ok": false,
+    "allowed_functions": 24,
+    "results": {
+      "A_order_and_empty_ownership": {
+        "pass_": true,
+        "order": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "ownership": {
+          "1": {
+            "result": [
+              "+8..+147"
+            ],
+            "stats": [],
+            "other": []
+          }
+        },
+        "stage1_memset": [
+          [
+            1,
+            "72002008",
+            0,
+            "0x140"
+          ]
+        ],
+        "stage1_writes_outside_I3_list": 306,
+        "note": "order [1, 2, 3, 4, 5]; stats written by any stage: False; stage 1 writes 320 result bytes (I-3 names 4 fields)"
+      },
+      "B_stage3_effect_slots": {
+        "pass_": true,
+        "result_42": [
+          4,
+          0,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "result_3E": [
+          9,
+          255,
+          255,
+          255
+        ],
+        "stage3_result_writes": [
+          "+3E",
+          "+42..+45"
+        ],
+        "stats_changed": false,
+        "note": "slot 0: 5 -> 4; slot 1: 1 -> 0 and id 9 listed; slot 2 (0) skipped; 0xFF never; the stats +0x17C are NOT written"
+      },
+      "C_five_expiries_list_bound": {
+        "pass_": true,
+        "result_3E_to_4D": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          255,
+          255
+        ],
+        "result_42_slots": [
+          6,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          -1,
+          -1
+        ],
+        "stage3_writes": [
+          "+3E..+4B"
+        ],
+        "note": "observed, not asserted: ids 1,2,4,5,6 expire in one tick; the fifth id byte is written at +0x42 and the slot-0 timer write that follows lands on +0x42..+0x43"
+      },
+      "D_stage2_beat_and_regen": {
+        "pass_": true,
+        "beat_countdown": {
+          "beat_25_minus_10": [
+            true,
+            15,
+            25,
+            []
+          ]
+        },
+        "regen": [
+          {
+            "frame": 1,
+            "div": 7,
+            "ok": true,
+            "rng": [
+              3499211612
+            ],
+            "mt_expected": 3499211612,
+            "acc_24": 2,
+            "expected_heal": 2,
+            "flags_2C": "0x501",
+            "new_beat": 120,
+            "expected_beat": 120
+          },
+          {
+            "frame": 1,
+            "div": 1,
+            "ok": true,
+            "rng": [
+              581869302
+            ],
+            "mt_expected": 581869302,
+            "acc_24": 1,
+            "expected_heal": 1,
+            "flags_2C": "0x501",
+            "new_beat": 120,
+            "expected_beat": 120
+          },
+          {
+            "frame": 1,
+            "div": 250,
+            "ok": true,
+            "rng": [
+              3890346734
+            ],
+            "mt_expected": 3890346734,
+            "acc_24": 235,
+            "expected_heal": 235,
+            "flags_2C": "0x501",
+            "new_beat": 120,
+            "expected_beat": 120
+          },
+          {
+            "frame": 2,
+            "div": 7,
+            "ok": true,
+            "rng": [
+              3586334585
+            ],
+            "mt_expected": 3586334585,
+            "acc_24": 2,
+            "expected_heal": 2,
+            "flags_2C": "0x501",
+            "new_beat": 240,
+            "expected_beat": 240
+          },
+          {
+            "frame": 2,
+            "div": 1,
+            "ok": true,
+            "rng": [
+              545404204
+            ],
+            "mt_expected": 545404204,
+            "acc_24": 1,
+            "expected_heal": 1,
+            "flags_2C": "0x501",
+            "new_beat": 240,
+            "expected_beat": 240
+          },
+          {
+            "frame": 2,
+            "div": 250,
+            "ok": true,
+            "rng": [
+              4161255391
+            ],
+            "mt_expected": 4161255391,
+            "acc_24": 142,
+            "expected_heal": 142,
+            "flags_2C": "0x501",
+            "new_beat": 240,
+            "expected_beat": 240
+          }
+        ],
+        "note": "beat -10 per tick into result+0xDC+2s (stats untouched); Regen heal = (MT19937(5489) draw mod byte[+0x1C2]) + 1, ADDED; new beat = row+9 x frame base x 30"
+      },
+      "F_stage4_drain_modes": {
+        "pass_": true,
+        "rows": [
+          {
+            "frame": 1,
+            "clock": 20,
+            "hp_src": 1000,
+            "mp_src": 300,
+            "ok": true,
+            "fires": true,
+            "acc_24": -10,
+            "want_24": -10,
+            "mp_2A": -6,
+            "want_2A": -6,
+            "flags_2C": "0x4101",
+            "stage4_writes": [
+              "+24..+27",
+              "+2A..+2F"
+            ]
+          },
+          {
+            "frame": 1,
+            "clock": 20,
+            "hp_src": 60,
+            "mp_src": 30,
+            "ok": true,
+            "fires": true,
+            "acc_24": -1,
+            "want_24": -1,
+            "mp_2A": -1,
+            "want_2A": -1,
+            "flags_2C": "0x4101",
+            "stage4_writes": [
+              "+24..+27",
+              "+2A..+2F"
+            ]
+          },
+          {
+            "frame": 1,
+            "clock": 25,
+            "hp_src": 1000,
+            "mp_src": 300,
+            "ok": true,
+            "fires": false,
+            "acc_24": 0,
+            "want_24": 0,
+            "mp_2A": 0,
+            "want_2A": 0,
+            "flags_2C": "0x1",
+            "stage4_writes": []
+          },
+          {
+            "frame": 1,
+            "clock": 25,
+            "hp_src": 60,
+            "mp_src": 30,
+            "ok": true,
+            "fires": false,
+            "acc_24": 0,
+            "want_24": 0,
+            "mp_2A": 0,
+            "want_2A": 0,
+            "flags_2C": "0x1",
+            "stage4_writes": []
+          },
+          {
+            "frame": 2,
+            "clock": 30,
+            "hp_src": 1000,
+            "mp_src": 300,
+            "ok": true,
+            "fires": false,
+            "acc_24": 0,
+            "want_24": 0,
+            "mp_2A": 0,
+            "want_2A": 0,
+            "flags_2C": "0x1",
+            "stage4_writes": []
+          },
+          {
+            "frame": 2,
+            "clock": 30,
+            "hp_src": 60,
+            "mp_src": 30,
+            "ok": true,
+            "fires": false,
+            "acc_24": 0,
+            "want_24": 0,
+            "mp_2A": 0,
+            "want_2A": 0,
+            "flags_2C": "0x1",
+            "stage4_writes": []
+          },
+          {
+            "frame": 2,
+            "clock": 40,
+            "hp_src": 1000,
+            "mp_src": 300,
+            "ok": true,
+            "fires": true,
+            "acc_24": -10,
+            "want_24": -10,
+            "mp_2A": -6,
+            "want_2A": -6,
+            "flags_2C": "0x4101",
+            "stage4_writes": [
+              "+24..+27",
+              "+2A..+2F"
+            ]
+          },
+          {
+            "frame": 2,
+            "clock": 40,
+            "hp_src": 60,
+            "mp_src": 30,
+            "ok": true,
+            "fires": true,
+            "acc_24": -1,
+            "want_24": -1,
+            "mp_2A": -1,
+            "want_2A": -1,
+            "flags_2C": "0x4101",
+            "stage4_writes": [
+              "+24..+27",
+              "+2A..+2F"
+            ]
+          }
+        ],
+        "note": "fires only when the clock is a multiple of frame x 10; HP arm -(src/100) or -1 below 100; MP arm -(MP/50) or -1 below 50: both NEGATIVE in the record"
+      },
+      "E_I5_no_stage_calls_another": {
+        "pass_": true,
+        "note": "each stage entered once, in order"
+      }
+    }
+  },
+  "original_case_results": {
+    "builder": "00385DF0",
+    "cases": {
+      "10_no_status_hp_below_line": {
+        "expected": {
+          "apply_has": 536870912,
+          "flagA_lacks": 256,
+          "hp_delta": 0
+        },
+        "fixture": {
+          "hp": 100
+        },
+        "observed": {
+          "apply": "0x20000000",
+          "beat8": -1,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "11_no_status_hp_above_line": {
+        "expected": {
+          "apply_lacks": 536870912,
+          "flagA_lacks": 256,
+          "hp_delta": 0,
+          "remove_lacks": 536870912
+        },
+        "fixture": {
+          "hp": 500
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": -1,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "12_crit_only_hp_above_line": {
+        "expected": {
+          "flagA_lacks": 256,
+          "hp_delta": 0,
+          "remove_has": 536870912
+        },
+        "fixture": {
+          "hp": 500,
+          "w3c": 536870912
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": -1,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x20000000",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "1_poison_maxhp_1000": {
+        "expected": {
+          "flagA_has": 320,
+          "flagC_has": 16384,
+          "hp_delta": -62
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "w3c": 256
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": 90,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x141",
+          "flagC": "0x4000",
+          "hp_delta": -62,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "2_poison_under_bubble": {
+        "expected": {
+          "flagA_has": 320,
+          "flagC_has": 16384,
+          "hp_delta": -125
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "w3c": 268435712
+        },
+        "observed": {
+          "apply": "0x20000000",
+          "beat8": 90,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x141",
+          "flagC": "0x4000",
+          "hp_delta": -125,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "3_poison_under_disease_hp40": {
+        "expected": {
+          "flagA_has": 320,
+          "flagC_has": 16384,
+          "hp_delta": -2
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "hp": 40,
+          "w3c": 65792
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": 90,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x141",
+          "flagC": "0x4000",
+          "hp_delta": -2,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "4_poison_maxhp_15_zero_share": {
+        "expected": {
+          "flagA_has": 320,
+          "flagC_has": 16384,
+          "hp_delta": -1
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "hp": 15,
+          "maxhp": 15,
+          "w3c": 256
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": 90,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x141",
+          "flagC": "0x4000",
+          "hp_delta": -1,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "5a_sap_hp_1": {
+        "expected": {
+          "flagA_lacks": 256,
+          "hp_delta": 0
+        },
+        "fixture": {
+          "beat": {
+            "10": 10
+          },
+          "hp": 1,
+          "w3c": 1024
+        },
+        "observed": {
+          "apply": "0x20000000",
+          "beat8": -1,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "5b_sap_hp_2": {
+        "expected": {
+          "flagA_has": 256,
+          "hp_delta": -1
+        },
+        "fixture": {
+          "beat": {
+            "10": 10
+          },
+          "hp": 2,
+          "w3c": 1024
+        },
+        "observed": {
+          "apply": "0x20000000",
+          "beat8": -1,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x101",
+          "flagC": "0x0",
+          "hp_delta": -1,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "6a_word1_duration_expires": {
+        "expected": {
+          "dur20": 0,
+          "remove_has": 1048576
+        },
+        "fixture": {
+          "dur": {
+            "20": 10
+          },
+          "w64": 1048576
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": -1,
+          "dur20": 0,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x100000",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "6b_word1_duration_not_yet": {
+        "expected": {
+          "dur20": 1,
+          "remove_lacks": 1048576
+        },
+        "fixture": {
+          "dur": {
+            "20": 11
+          },
+          "w64": 1048576
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": -1,
+          "dur20": 1,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "7_stop_skips_poison": {
+        "expected": {
+          "beat8": -1,
+          "flagA_lacks": 320,
+          "flagC_lacks": 16384,
+          "hp_delta": 0
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "w3c": 264
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": -1,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x1",
+          "flagC": "0x0",
+          "hp_delta": 0,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "8_poison_crosses_crit_line": {
+        "expected": {
+          "apply_has": 536870912,
+          "hp_delta": -62
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "hp": 250,
+          "w3c": 256
+        },
+        "observed": {
+          "apply": "0x20000000",
+          "beat8": 90,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x141",
+          "flagC": "0x4000",
+          "hp_delta": -62,
+          "outside": [],
+          "ran": true,
+          "remove": "0x0",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      },
+      "9_crit_present_above_line": {
+        "expected": {
+          "apply_lacks": 536870912,
+          "hp_delta": -62,
+          "remove_has": 536870912
+        },
+        "fixture": {
+          "beat": {
+            "8": 10
+          },
+          "hp": 500,
+          "w3c": 536871168
+        },
+        "observed": {
+          "apply": "0x0",
+          "beat8": 90,
+          "dur20": -1,
+          "faults": [],
+          "flagA": "0x141",
+          "flagC": "0x4000",
+          "hp_delta": -62,
+          "outside": [],
+          "ran": true,
+          "remove": "0x20000000",
+          "rng_draws": 0
+        },
+        "verdict": "PASS"
+      }
+    },
+    "evidence_class": "NATIVE-REPLAY (unicorn), live_game false",
+    "fails": 0,
+    "stage": "00386C70"
+  },
+  "independent_boundaries": {
+    "below_critical_line": {
+      "fixture": {
+        "hp": 199
+      },
+      "expected": {
+        "apply_has": 536870912,
+        "flagA_lacks": 256,
+        "hp_delta": 0
+      },
+      "observed": {
+        "ran": true,
+        "faults": [],
+        "outside": [],
+        "rng_draws": 0,
+        "hp_delta": 0,
+        "flagA": 1,
+        "flagC": 0,
+        "apply": 536870912,
+        "remove": 0,
+        "dur20": -1,
+        "beat8": -1
+      },
+      "trace": [
+        {
+          "pc": "0x386f81",
+          "r8d": 199,
+          "ecx": 199,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f85",
+          "r8d": 199,
+          "ecx": 199,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f95",
+          "r8d": 199,
+          "ecx": 199,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386fd2",
+          "r8d": 199,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386fd5",
+          "r8d": 199,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386fde",
+          "r8d": 199,
+          "ecx": 1000,
+          "edx": 200
+        }
+      ],
+      "stage_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stats_write_observed": false,
+      "guard_unchanged": true,
+      "verdict": "PASS"
+    },
+    "equal_critical_line": {
+      "fixture": {
+        "hp": 200,
+        "w3c": 536870912
+      },
+      "expected": {
+        "remove_has": 536870912,
+        "apply_lacks": 536870912,
+        "flagA_lacks": 256,
+        "hp_delta": 0
+      },
+      "observed": {
+        "ran": true,
+        "faults": [],
+        "outside": [],
+        "rng_draws": 0,
+        "hp_delta": 0,
+        "flagA": 1,
+        "flagC": 0,
+        "apply": 0,
+        "remove": 536870912,
+        "dur20": -1,
+        "beat8": -1
+      },
+      "trace": [
+        {
+          "pc": "0x386f81",
+          "r8d": 200,
+          "ecx": 200,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f85",
+          "r8d": 200,
+          "ecx": 200,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f95",
+          "r8d": 200,
+          "ecx": 200,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386fd2",
+          "r8d": 200,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386fd5",
+          "r8d": 200,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386fe7",
+          "r8d": 200,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386ff3",
+          "r8d": 200,
+          "ecx": 1000,
+          "edx": 200
+        }
+      ],
+      "stage_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stats_write_observed": false,
+      "guard_unchanged": true,
+      "verdict": "PASS"
+    },
+    "nonpositive_removes_critical": {
+      "fixture": {
+        "hp": 0,
+        "w3c": 536870912
+      },
+      "expected": {
+        "remove_has": 536870912,
+        "apply_lacks": 536870912,
+        "flagA_lacks": 256,
+        "hp_delta": 0
+      },
+      "observed": {
+        "ran": true,
+        "faults": [],
+        "outside": [],
+        "rng_draws": 0,
+        "hp_delta": 0,
+        "flagA": 1,
+        "flagC": 0,
+        "apply": 0,
+        "remove": 536870912,
+        "dur20": -1,
+        "beat8": -1
+      },
+      "trace": [
+        {
+          "pc": "0x386f81",
+          "r8d": 0,
+          "ecx": 0,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f85",
+          "r8d": 0,
+          "ecx": 0,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f95",
+          "r8d": 0,
+          "ecx": 0,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386fe7",
+          "r8d": 0,
+          "ecx": 0,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386ff3",
+          "r8d": 0,
+          "ecx": 0,
+          "edx": 1912610816
+        }
+      ],
+      "stage_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stats_write_observed": false,
+      "guard_unchanged": true,
+      "verdict": "PASS"
+    },
+    "stop_poison_low_hp": {
+      "fixture": {
+        "hp": 100,
+        "w3c": 264,
+        "beat": {
+          "8": 10
+        }
+      },
+      "expected": {
+        "apply_has": 536870912,
+        "flagA_lacks": 256,
+        "hp_delta": 0
+      },
+      "observed": {
+        "ran": true,
+        "faults": [],
+        "outside": [],
+        "rng_draws": 0,
+        "hp_delta": 0,
+        "flagA": 1,
+        "flagC": 0,
+        "apply": 536870912,
+        "remove": 0,
+        "dur20": -1,
+        "beat8": -1
+      },
+      "trace": [
+        {
+          "pc": "0x386f81",
+          "r8d": 100,
+          "ecx": 100,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f85",
+          "r8d": 100,
+          "ecx": 100,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f95",
+          "r8d": 100,
+          "ecx": 100,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386fd2",
+          "r8d": 100,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386fd5",
+          "r8d": 100,
+          "ecx": 1000,
+          "edx": 200
+        },
+        {
+          "pc": "0x386fde",
+          "r8d": 100,
+          "ecx": 1000,
+          "edx": 200
+        }
+      ],
+      "stage_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stats_write_observed": false,
+      "guard_unchanged": true,
+      "verdict": "PASS"
+    },
+    "bubble_equal_line": {
+      "fixture": {
+        "hp": 400,
+        "w3c": 805306368
+      },
+      "expected": {
+        "remove_has": 536870912,
+        "apply_lacks": 536870912,
+        "flagA_lacks": 256,
+        "hp_delta": 0
+      },
+      "observed": {
+        "ran": true,
+        "faults": [],
+        "outside": [],
+        "rng_draws": 0,
+        "hp_delta": 0,
+        "flagA": 1,
+        "flagC": 0,
+        "apply": 0,
+        "remove": 536870912,
+        "dur20": -1,
+        "beat8": -1
+      },
+      "trace": [
+        {
+          "pc": "0x386f81",
+          "r8d": 400,
+          "ecx": 400,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f85",
+          "r8d": 400,
+          "ecx": 400,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386f95",
+          "r8d": 400,
+          "ecx": 400,
+          "edx": 1912610816
+        },
+        {
+          "pc": "0x386fd2",
+          "r8d": 400,
+          "ecx": 2000,
+          "edx": 400
+        },
+        {
+          "pc": "0x386fd5",
+          "r8d": 400,
+          "ecx": 2000,
+          "edx": 400
+        },
+        {
+          "pc": "0x386fe7",
+          "r8d": 400,
+          "ecx": 2000,
+          "edx": 400
+        },
+        {
+          "pc": "0x386ff3",
+          "r8d": 400,
+          "ecx": 2000,
+          "edx": 400
+        }
+      ],
+      "stage_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stats_write_observed": false,
+      "guard_unchanged": true,
+      "verdict": "PASS"
+    }
+  },
+  "judge_controls": {
+    "valid": [],
+    "wrong_hp_delta": [
+      "hp_delta = 0, expected -1"
+    ]
+  },
+  "verdict": "ACCEPT_SCOPED_ORIGINAL_BUILDER_Q6_AND_CRITICAL_SELECTION",
+  "stdout": "A_order_and_empty_ownership          PASS  {'note': 'order [1, 2, 3, 4, 5]; stats written by any stage: False; stage 1 writes 320 result bytes (I-3 names 4 fields)'}\nB_stage3_effect_slots                PASS  {'note': 'slot 0: 5 -> 4; slot 1: 1 -> 0 and id 9 listed; slot 2 (0) skipped; 0xFF never; the stats +0x17C are NOT written'}\nC_five_expiries_list_bound           PASS  {'note': 'observed, not asserted: ids 1,2,4,5,6 expire in one tick; the fifth id byte is written at +0x42 and the slot-0 timer write that follows lands on +0x42..+0x43'}\nD_stage2_beat_and_regen              PASS  {'note': 'beat -10 per tick into result+0xDC+2s (stats untouched); Regen heal = (MT19937(5489) draw mod byte[+0x1C2]) + 1, ADDED; new beat = row+9 x frame base x 30'}\nF_stage4_drain_modes                 PASS  {'note': 'fires only when the clock is a multiple of frame x 10; HP arm -(src/100) or -1 below 100; MP arm -(MP/50) or -1 below 50: both NEGATIVE in the record'}\nE_I5_no_stage_calls_another          PASS  {'note': 'each stage entered once, in order'}\n6/6 pass (allowed 24 functions)\nPASS  1_poison_maxhp_1000              delta -62 flagA 0x141 flagC 0x4000 apply 0x0 remove 0x0\nPASS  2_poison_under_bubble            delta -125 flagA 0x141 flagC 0x4000 apply 0x20000000 remove 0x0\nPASS  3_poison_under_disease_hp40      delta -2 flagA 0x141 flagC 0x4000 apply 0x0 remove 0x0\nPASS  4_poison_maxhp_15_zero_share     delta -1 flagA 0x141 flagC 0x4000 apply 0x0 remove 0x0\nPASS  5a_sap_hp_1                      delta 0 flagA 0x1 flagC 0x0 apply 0x20000000 remove 0x0\nPASS  5b_sap_hp_2                      delta -1 flagA 0x101 flagC 0x0 apply 0x20000000 remove 0x0\nPASS  6a_word1_duration_expires        delta 0 flagA 0x1 flagC 0x0 apply 0x0 remove 0x100000\nPASS  6b_word1_duration_not_yet        delta 0 flagA 0x1 flagC 0x0 apply 0x0 remove 0x0\nPASS  7_stop_skips_poison              delta 0 flagA 0x1 flagC 0x0 apply 0x0 remove 0x0\nPASS  8_poison_crosses_crit_line       delta -62 flagA 0x141 flagC 0x4000 apply 0x20000000 remove 0x0\nPASS  9_crit_present_above_line        delta -62 flagA 0x141 flagC 0x4000 apply 0x0 remove 0x20000000\nPASS  10_no_status_hp_below_line       delta 0 flagA 0x1 flagC 0x0 apply 0x20000000 remove 0x0\nPASS  11_no_status_hp_above_line       delta 0 flagA 0x1 flagC 0x0 apply 0x0 remove 0x0\nPASS  12_crit_only_hp_above_line       delta 0 flagA 0x1 flagC 0x0 apply 0x0 remove 0x20000000\nFAILS 0\n"
+}

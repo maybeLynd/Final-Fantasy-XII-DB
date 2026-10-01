@@ -1,0 +1,1041 @@
+V121_COVERAGE internal=38161 owner=9409 finalNo=585 codeDomain=27987 overlap=0 explicit=37981 unresolved=180 pct=99.52831
+1	Actor.PresentationBinding.SwbiHandleTeardownAndCharacterRenderReset
+1	Actor.PresentationState.DefaultResetAndVisibilityRefresh
+1	Actor.ResourceAuxiliaryTable
+2	Actor.RuntimeSupport
+1	ActorEntity.ManagerPopulationFiltering
+1	ActorEntity.RuntimeListMaintenance
+1	ActorEntity.StateInterpolation.NativeImplementation
+1	Algorithm.Sort.Int32KeyedEightByteRecords.BidirectionalQuickSortWithInsertionCutoff
+1	Application.Bootstrap.CrossSubsystemServices
+4	Application.RuntimeSupport
+1	Application.StaticLifetime
+1	Audio.AmbientRuntimePoolUpdate
+1	Audio.ResourceRequestCallbackSupport
+2	Audio.SQEXSd.RuntimeSupport
+16	Boundary.ActorGameplay.NativeSupport
+177	Boundary.Audio.NativeSupport
+35	Boundary.CrossSubsystem.NativeSupport
+5	Boundary.Gameplay.NativeSupport
+193	Boundary.Input.NativeSupport
+4	Boundary.Items.NativeSupport
+53	Boundary.ItemsEquipment.NativeSupport
+1	Boundary.PartyMovement.LocomotionScaleProvider
+4	Boundary.Platform.NativeSupport
+25	Boundary.PlatformOnlineAchievements.NativeSupport
+11	Boundary.Presentation.CharacterRenderSupport
+51	Boundary.Presentation.NativeSupport
+40	Boundary.Presentation.RegisteredFunctionAddress
+9	Boundary.Presentation.SingleOwnerReferencedSupport
+32	Boundary.PresentationUI.NativeSupport
+111	Boundary.SaveLoad.NativeSupport
+33	Boundary.StoryEvent.NativeSupport
+1	Boundary.UI.RegisteredFunctionAddress
+6	Boundary.UI.SingleOwnerReferencedSupport
+1	Bullet.Collision.btCompoundShape.AddChildShape
+1	Bullet.Collision.btDbvt.CollideTTPersistentStack.DbvtTreeColliderPolicy
+1	Bullet.Collision.btDbvt.CollideTV.BroadphaseAabbTesterPolicy
+1	Bullet.Collision.btDbvt.CollideTV.DbvtTreeColliderPolicy
+1	Bullet.Collision.btDbvt.RayTestInternal.BroadphaseRayTesterPolicy
+1	Bullet.Collision.btDbvtBroadphase.Collide
+1	Bullet.Collision.btHashedOverlappingPairCache.GrowTables
+1	Bullet.Collision.btHashedOverlappingPairCache.InternalAddPair
+1	Bullet.Collision.btVoronoiSimplexSolver.ClosestPtPointTetrahedron
+1	Bullet.Collision.btVoronoiSimplexSolver.ClosestPtPointTriangle
+1	Bullet.Collision.btVoronoiSimplexSolver.UpdateClosestVectorAndPoints
+1	Bullet.Dynamics.btRigidBody.SetupRigidBody
+1	Bullet.Dynamics.btSequentialImpulseConstraintSolver.ConvertContact
+1	Bullet.Dynamics.btSequentialImpulseConstraintSolver.SetFrictionConstraintImpulse
+1	Bullet.Dynamics.btSequentialImpulseConstraintSolver.SetupContactConstraint
+1	Bullet.Dynamics.btSequentialImpulseConstraintSolver.SetupFrictionConstraint
+1	Bullet.LinearMath.HullLibrary.B2BFix
+1	Bullet.Physics.btDiscreteDynamicsWorld.SerializeRigidBodiesAndConstraints
+1	Combat.FormulaResourceSupport
+1	CombatAction.AuthoredDefinitionSupport
+1	CombatAction.ResourceReadinessConsumer
+1	CombatAction.TargetConstructionSupport
+1	CombatAction.UIResourceLookupSupport
+145	CompilerGeneratedCFG.StaticGuardAdapter
+28	CompilerGeneratedCpp.GuardedStaticObjectTeardown
+88	CompilerGeneratedCpp.ScalarDeletingDestructor
+60	CompilerGeneratedCpp.StaticContainerTeardown.IndirectAllocator
+90	CompilerGeneratedCpp.StaticObjectInitializer
+11	CompilerGeneratedCpp.StaticZeroInitObjectInitializer
+23	CompilerGeneratedCpp.ThreadSafeStaticObjectInitializer
+117	CompilerGeneratedCpp.ThreadSafeStaticRecordAccessor
+2	CompilerGeneratedEH.AdjustedObjectCleanup
+72	CompilerGeneratedEH.CatchHandler
+1	CompilerGeneratedEH.ExceptionFilter
+3820	CompilerGeneratedEH.UnwindFunclet
+1	CompilerRuntime.ControlFlowGuard
+1	Core.CrossSubsystemResetOrchestration
+1	CoreRuntimeScheduling.TableStateMaintenance
+28	CxxObjectLifecycle.ConditionalTeardownReturnTrue
+53	CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree
+10	CxxObjectLifecycle.DeletingDestructor.VtableAlignedOrGuardedFree
+25	CxxObjectLifecycle.DerivedConstructorVtableInstall
+1	CxxObjectLifecycle.PolymorphicArrayDestroyAndFree.Stride312
+1	CxxObjectLifecycle.PolymorphicArrayDestroyAndFree.Stride32
+63	CxxObjectLifecycle.ScalarDeletingDestructor.Free
+9	CxxObjectLifecycle.ScalarDeletingDestructor.VtableFree
+28	CxxObjectLifecycle.VtableInstallStub
+7	CxxObjectLifecycle.VtableInstallTailCall
+1	CxxRuntime.FloatingPointClassification
+1	CxxStandardLibrary.BasicString.Runtime
+40	CxxStandardLibrary.ContainerAllocatorSupport
+1	CxxStandardLibrary.HeapAlgorithms.AdjustHeap16ByteRecords
+1	CxxStandardLibrary.HeapAlgorithms.AdjustHeap8ByteRecords
+1	CxxStandardLibrary.HeapAlgorithms.MakeHeap16ByteRecords
+1	CxxStandardLibrary.HeapAlgorithms.MakeHeap24ByteRecords
+1	CxxStandardLibrary.HeapAlgorithms.MakeHeap8ByteRecords
+1	CxxStandardLibrary.HeapAlgorithms.PushHeapByIndex16ByteRecords
+1	CxxStandardLibrary.Introsort.InsertionSort24ByteRecords
+1	CxxStandardLibrary.Introsort.ThreeWayMedianPartition16ByteRecords
+1	CxxStandardLibrary.Introsort.ThreeWayMedianPartition24ByteRecords
+1	CxxStandardLibrary.Introsort.ThreeWayMedianPartition4ByteRecords
+1	CxxStandardLibrary.Introsort.ThreeWayMedianPartition8ByteRecords
+52	CxxStandardLibrary.NativeQualified
+2	CxxStandardLibrary.OrderedContainerRuntime
+1	CxxStandardLibrary.OrderedContainerRuntime.CompositeKeyUniqueInsert
+6	CxxStandardLibrary.OrderedContainerRuntime.HintAwareUniqueInsert
+1	CxxStandardLibrary.OrderedContainerRuntime.RedBlackTreeEraseRebalance
+1	CxxStandardLibrary.OrderedContainerRuntime.RedBlackTreeInsertRebalance
+1	CxxStandardLibrary.OrderedContainerRuntime.RedBlackTreePackedParentColorEraseFixup
+1	CxxStandardLibrary.OrderedContainerRuntime.RootListTreeDestroy
+1	CxxStandardLibrary.OrderedContainerRuntime.StringKeyFindOrDefaultInsert
+1	CxxStandardLibrary.OrderedContainerRuntime.TreeClone
+1	CxxStandardLibrary.OrderedContainerRuntime.TreeCloneDynamicPayload
+1	CxxStandardLibrary.OrderedContainerRuntime.TreeDestroy
+1	CxxStandardLibrary.OrderedContainerRuntime.TreeDestroyDynamicPayload
+1	CxxStandardLibrary.OrderedContainerRuntime.TreeDestroyNestedPayload
+1	CxxStandardLibrary.OrderedContainerRuntime.TreeDestroyVariantPayload
+10	CxxStandardLibrary.OrderedContainerRuntime.UniqueInsert
+1	CxxStandardLibrary.SmallStringMoveTransfer
+1	CxxStandardLibrary.Sort.ComparatorInsertionSortVariableWidthRecords
+1	CxxStandardLibrary.Sort.ComparatorQuickSortVariableWidthRecords
+21	CxxStandardLibrary.StdRegex.Runtime
+6	CxxStandardLibrary.StringHeapAlgorithms
+1	CxxStandardLibrary.Vector.FillInsertReallocate.Stride544
+1	CxxStandardLibrary.VectorBoolRuntime
+1	Developer.AutoTest.MapIndexRuntime
+1	Developer.MonsterViewer.RenderingSettings
+58	EASTL.BasicString.StaticInitializer
+13	EASTL.ContainerRuntime
+1	EASTL.ContainerRuntime.VectorInsertFillReallocate
+1	Gameplay.BattleEncodedId.DefinitionResolutionValidationRuntime
+27	Gameplay.Combat.NativeSemanticHelper
+4	Gameplay.Combat.PresentationBridge
+1	Gameplay.CombatAction.EngagedActionStateRefresh
+1	Gameplay.CombatAction.ReactionPresentationTimelineBridge
+1	Gameplay.CombatAction.TargetFocusGeometryRuntime
+1	Gameplay.CombatAction.TargetedMovement.FacingOperandEvaluator
+2	Gameplay.DefinitionRuntime.NativeSemanticHelper
+3	Gameplay.WorldActor.NativeSemanticHelper
+1	Input.ActorControlMaskPropagationRuntime
+2	Input.CommandGateBoundarySupport
+2	Input.NativeSupport
+1	Input.PlatformObjectLifetime
+2	Input.UI.AuthoredAssetSupport
+1	Items.BattleData.AuthoredTableSupport
+2	Lua.Math.RNGRuntime
+13	Lua.Math.UnaryFunctionAdapter
+3	Lua.Runtime.CallbackAdapter
+1	Lua.Runtime.GCMetamethodCallback
+2	Lua.StringPattern.BooleanAdapter
+1	Math.Geometry.EightVertexHomogeneousClipOutcodeIntersection
+10	Math.Geometry.NativeSemanticHelper
+1	Math.Geometry.TransformBoxCornersToAabbMinMax
+1	Math.Geometry.TransformedBoxHomogeneousClipVisibilityTest
+1	Math.Matrix.AffineTransformPointerArrayToHomogeneousPalette
+1	Math.Matrix.General4x4Inverse
+1	Math.Matrix.General4x4Multiply
+1	Math.Matrix.Global4x4TransformCompositionAndPublication
+2	Math.Quaternion
+1	Math.Transform.DCT8x8.FixedPointForward
+1	Math.Transform.DCT8x8.FixedPointInverseAddClampPixels
+1	Math.Transform.PrimeFactorTrigCoefficientTableInitialization
+1	Media.ImageAddressResolver
+24	Media.ImageProcessing.SIMD
+1	Media.Video.VbfMkvReader
+34	Media.Video.WebM_MKV.NativeImplementation
+2	Media.Video.WebM_MKV.ObjectCleanup
+1	Media.Video.WebM_MKV.Parser
+7	Media.Video.WebM_VbfMkv.Runtime
+3	Microsoft.ATLRuntime
+3	Microsoft.CRT.FormattingIO
+8	Microsoft.ConcurrencyRuntime
+1	Microsoft.MSVCCRT.ExecutableStartup
+1	Microsoft.MSVCCRT.InitializerTableDispatch
+1	Microsoft.MSVCCRT.TerminatorTableDispatch
+38	Microsoft.MSVCCRT_STL_Runtime
+1	Microsoft.MSVCCRT_STL_Runtime.ExceptionTermination
+3	Microsoft.MSVCCRT_STL_Runtime.StaticLifetime
+1	Microsoft.MSVCCRT_STL_Runtime.StaticObjectVectorLifetime
+3	Microsoft.MSVCCRT_STL_Runtime.StreamDeletingDestructor
+43	Microsoft.MSVCCRT_STL_Runtime.Support
+1	Movement.CharacterPresentation.BindingInitialization
+1	Movement.CharacterPresentation.BindingUpdate
+69	NativeAdapter.AdjustedThisTailCall
+5	NativeAdapter.ArgumentShiftWithStaticThirdTailCall
+7	NativeAdapter.BooleanNormalizeThenCallResultTailCall
+10	NativeAdapter.BooleanSelectedCallReturnTrue
+83	NativeAdapter.BooleanSelectedContextDispatchReturnTrue
+500	NativeAdapter.BoundedDirectCall.Single.AcyclicConditional
+567	NativeAdapter.BoundedDirectCall.Single.Linear
+6	NativeAdapter.CallBooleanNormalizeReturn
+5	NativeAdapter.CallByteReturnZeroExtend
+4	NativeAdapter.CallResultByteBitfieldGetter
+7	NativeAdapter.CallResultByteNonzeroPredicate
+6	NativeAdapter.CallResultDerefStoreQword
+6	NativeAdapter.CallResultDerefTailCall
+6	NativeAdapter.CallResultEqualsConstantPredicate
+16	NativeAdapter.CallResultField32Getter
+4	NativeAdapter.CallResultMarshal16Bytes
+16	NativeAdapter.CallResultMarshal24Bytes
+6	NativeAdapter.CallResultMarshal32Bytes
+4	NativeAdapter.CallResultMarshal4Bytes
+19	NativeAdapter.CallResultMarshalCompositeRecord
+4	NativeAdapter.CallResultNestedField32Getter
+35	NativeAdapter.CallResultStoreQword
+9	NativeAdapter.CallResultTaggingAdapter
+49	NativeAdapter.CallResultTailCall
+85	NativeAdapter.CallResultThenTailCall
+9	NativeAdapter.CallResultWithOriginalThisTailCall
+18	NativeAdapter.CallResultWithSavedIntTailCall
+6	NativeAdapter.CallThenReturnOriginalThis
+20	NativeAdapter.CallThenReturnZero
+13	NativeAdapter.CallThenTailCall
+9	NativeAdapter.ConditionalFlagAdjustedTailCall
+12	NativeAdapter.ConstantFirstArgumentTailCall
+5	NativeAdapter.ConstantThirdArgumentTailCall
+70	NativeAdapter.ContextAcquireThenThreeArgTailDispatch
+6	NativeAdapter.DerefThisTailCall
+8	NativeAdapter.DoubleCallThenSavedResultFieldGetter
+13	NativeAdapter.DualLookupIndirectCallback
+11	NativeAdapter.EHCallWrapper
+8	NativeAdapter.EHForwardSecondArgumentCallReturnTrue
+5	NativeAdapter.ForwardSecondAndDerefThirdTailCall
+48	NativeAdapter.ForwardSecondArgumentCallReturnTrue
+82	NativeAdapter.ForwardSecondArgumentTailCall
+12	NativeAdapter.MemberArgumentEHCallWrapper
+4	NativeAdapter.MemberPointerAndFieldTailCall
+26	NativeAdapter.MemberPointerTailCall
+2	NativeAdapter.NoCall.DirectTailTransfer
+4	NativeAdapter.NormalizeFirstBooleanTailCall
+17	NativeAdapter.NullableCallChainTailCall
+70	NativeAdapter.OptionalPointerContextDispatchOrFallback
+46	NativeAdapter.RelativeMemberAddressTailCall32
+19	NativeAdapter.RelativeMemberAddressTailCall64
+4	NativeAdapter.SavedFirstAsSecondConstantFirstTailCall
+9	NativeAdapter.ShiftArgumentsLeftTailCall
+35	NativeAdapter.StaticAddressTailCall
+21	NativeAdapter.StaticPointerTailCall
+6	NativeAdapter.VariableAdjustedThisTailCall
+8	NativeAdapter.ZeroFirstArgumentTailCall
+5	NativeAdapter.ZeroSecondArgumentTailCall
+9	NativeAdapter.ZeroThirdArgumentTailCall
+151	NativeDispatch.AcyclicComputedJump.Bounded
+506	NativeDispatch.BoundedComputedCall.Acyclic.Branching
+37	NativeDispatch.BoundedComputedCall.Acyclic.Linear
+219	NativeDispatch.BoundedComputedCall.AcyclicConditional
+66	NativeDispatch.BoundedComputedCall.Linear
+27	NativeDispatch.MemberVirtualTailCall
+37	NativeDispatch.NoCall.ComputedTailTransfer
+11	NativeDispatch.NullableVirtualTailCall
+13	NativeDispatch.VirtualTailCall
+236	NativeInline.AcyclicControlFlow.ExtendedBounded
+57	NativeInline.BoundedLoop.Extended.NoComputedTransfer
+163	NativeInline.BoundedLoop.NoComputedTransfer
+343	NativeInline.NoCall.BitfieldOrPredicate
+510	NativeInline.NoCall.BitfieldStateAlgorithm
+80	NativeInline.NoCall.BranchingControlFlow
+62	NativeInline.NoCall.ConditionalStateAlgorithm
+33	NativeInline.NoCall.PredicateOrSelection
+70	NativeInline.NoCall.SIMDComputation
+250	NativeInline.NoCall.SIMDStateAlgorithm
+1	NativeInline.NoCall.ScalarOrPointerComputation
+17	NativeInline.NoCall.StateAlgorithm
+16	NativeInline.NoCall.TableAccessorOrComputation
+43	NativeInline.NoCall.TableUpdateAlgorithm
+1	NativeLeaf.AtomicIncrementReturnPrevious
+4	NativeLeaf.ConditionalStaticPointerField16Setter
+81	NativeLeaf.ConstantReturn
+8	NativeLeaf.IndexedStaticBitfieldGetter
+7	NativeLeaf.IndexedStaticBitfieldSetter
+19	NativeLeaf.InlineAccessorOrValueTransform
+127	NativeLeaf.InlineBitfieldOrPredicate
+191	NativeLeaf.InlineBitfieldStateMutation
+68	NativeLeaf.InlinePredicate
+31	NativeLeaf.InlineSIMDComputation
+66	NativeLeaf.InlineSIMDStateMutation
+173	NativeLeaf.InlineStateMutation
+30	NativeLeaf.InlineTableAccessor
+23	NativeLeaf.InlineTableUpdate
+13	NativeLeaf.MemberAddressAccessor
+5	NativeLeaf.MemberBitmaskGetter
+4	NativeLeaf.MemberBooleanBitSetter
+9	NativeLeaf.MemberComparisonPredicate
+12	NativeLeaf.MemberConstantSetter
+2	NativeLeaf.MemberCounterIncrementReturn
+1	NativeLeaf.MemberFieldAccumulator
+85	NativeLeaf.MemberFieldGetter
+62	NativeLeaf.MemberFieldSetter
+4	NativeLeaf.MemberFloat3Setter
+14	NativeLeaf.MemberMultiFieldSetter
+6	NativeLeaf.NestedMemberBitfieldGetter
+32	NativeLeaf.NoOpReturnStub
+8	NativeLeaf.NonnegativeFloatClampSetter
+9	NativeLeaf.OptionalOutputRecordZeroInitializer
+7	NativeLeaf.StaticAddressStore
+101	NativeLeaf.StaticGlobalAddressAccessor
+5	NativeLeaf.StaticGlobalBitSet
+4	NativeLeaf.StaticGlobalBitmaskGetter
+4	NativeLeaf.StaticGlobalBooleanSetter
+43	NativeLeaf.StaticGlobalConstantSetter
+4	NativeLeaf.StaticGlobalFloat2Setter
+15	NativeLeaf.StaticGlobalFloatSetter
+176	NativeLeaf.StaticGlobalGetter
+87	NativeLeaf.StaticGlobalSetter
+4	NativeLeaf.StaticGlobalWordBitfieldGetter
+12	NativeLeaf.StaticHandleReplaceWithPreRelease
+14	NativeLeaf.StaticPointerBitfieldGetter
+4	NativeLeaf.StaticPointerBitfieldSetter
+7	NativeLeaf.StaticPointerField32Getter
+4	NativeLeaf.StaticPointerFloatGetter
+11	NativeLeaf.StaticPointerNestedFieldGetter
+10	NativeLeaf.StaticPointerNonNullPredicate
+5	NativeLeaf.StaticPointerNullPredicate
+23	NativeLeaf.TaggedStaticAddressAccessor
+1372	NativeRoutine.AcyclicDirectCall.Bounded.Conditional
+311	NativeRoutine.AcyclicDirectCall.Bounded.Linear
+1136	NativeRoutine.AcyclicDirectCall.ExtendedBounded
+411	NativeRoutine.BoundedDirectCall.Pair.AcyclicConditional
+383	NativeRoutine.BoundedDirectCall.Pair.Linear
+1149	NativeRoutine.BoundedLoop.DirectCallOnly
+323	NativeRoutine.BoundedLoop.Extended.DirectCallOnly
+1	Parsing.ObjectFlag.Callback
+1	Party.BattleStats.ResetSupport
+1	Party.CallbackSupport
+1	Party.Configuration.NineSlotEligibleSelectorAssembly
+1	Party.Movement.AnalogLocomotionDirectionVectorSmoothing
+1	Phyre.Animation.ModifierRuntime
+50	Phyre.Animation.NativeQualified
+16	Phyre.Animation.ReflectedMethod
+2	Phyre.Animation.TargetBindingValidation
+11	Phyre.Application.ReflectedGetter
+2	Phyre.BitmapFont.Runtime
+1	Phyre.Camera.ReflectedMethod
+1	Phyre.DebugUtils.AddressInformation
+1	Phyre.DebugUtils.ReflectedMethod
+19	Phyre.Framework.NativeQualified
+3	Phyre.GameplayTrigger.ReflectedMethod
+14	Phyre.Geometry.NativeQualified
+2	Phyre.InputAction.Method
+2	Phyre.InputMapper.ReflectedGetter
+2	Phyre.InstanceComponent.ReflectedMethod
+5	Phyre.Math.ReflectedMethod
+137	Phyre.Middleware.NativeImplementation
+192	Phyre.Middleware.NativeQualified
+15	Phyre.Middleware.RealVtableFunctionMember
+3	Phyre.Middleware.SerializationRenderingIntegration
+1	Phyre.PDynamicGeometry.PModifierNetworkDynamicMesh.ChunkedModifierGraphExecution
+1	Phyre.PGeometry.PDataBlockD3D11.AlignedDualArenaSuballocationAndBinding
+1	Phyre.PGeometry.PUtilityGeometry.GlobalRegistryDetach
+1	Phyre.PGeometry.VertexElementFormatToFloat3Conversion
+1	Phyre.PPhysics.Bullet.RigidBodyCompoundShapeAndBtRigidBodyMaterialization
+1	Phyre.PPhysics.PPhysicsRigidBody.ResetBulletTransformScaleAndActivation
+1	Phyre.PPostProcessing.PDepthOfField.FourFullResolutionTextureResourceInitialization
+1	Phyre.PPostProcessing.PScreenSpaceReflection.ThreeHalfResolutionTextureResourceInitialization
+1	Phyre.PRendering.D3D11.InputAssemblerStreamBindingAndInputLayoutCacheUpdate
+1	Phyre.PRendering.D3D11.PrimitiveRenderer.DirtyStateDetectionAndCachedStateCommit
+1	Phyre.PRendering.D3D11.StreamInputVertexDataMaterializationAndRecordRepack
+1	Phyre.PRendering.PTexture2DD3D11.AsyncMipChainUploadAndBackingRelease
+1	Phyre.PRendering.PTexture2DD3D11.BufferSlotUpdateSchedulingAndImmediateMipDispatch
+1	Phyre.PRendering.PTexture3DD3D11.VolumeMipChainSubresourceUpload
+1	Phyre.PRendering.TextureFormatDescriptorRegistryTeardown
+1	Phyre.PScripting.PAsyncProcessBuffer.PendingEntryProcessing
+2	Phyre.Physics.AllocatorCallback
+55	Phyre.Physics.NativeQualified
+13	Phyre.Physics.ReflectedMethod
+2	Phyre.PostProcessing.AtmosphereParameters
+1	Phyre.PostProcessing.GlowParameters
+1	Phyre.PostProcessing.MotionBlurParameters
+66	Phyre.PostProcessing.NativeQualified
+1	Phyre.PostProcessing.ReflectionParameters
+1	Phyre.PostProcessing.Vignette
+2	Phyre.Profiling.NativeQualified
+1	Phyre.Profiling.RecordConstructor
+133	Phyre.Reflection.AbstractClassDescriptor.BaseAwareConstructor
+182	Phyre.Reflection.AbstractClassDescriptor.Constructor
+55	Phyre.Reflection.AnnotationStaticTeardown
+1	Phyre.Reflection.ArrayDataMember.StructuredContext.ConsumeFixedStrideElements
+1	Phyre.Reflection.ArrayDataMember.StructuredContext.EmitFixedStrideElements
+1	Phyre.Reflection.ArrayDataMember.StructuredContext.EmitPointerElements
+1	Phyre.Reflection.CallbackAdapter
+404	Phyre.Reflection.ClassDescriptorStaticTeardown
+1	Phyre.Reflection.DataMemberLayoutValidation
+853	Phyre.Reflection.DataMemberMetadataStaticTeardown
+1	Phyre.Reflection.DataMemberRegistration
+111	Phyre.Reflection.DescriptorRegistrationFinalizer
+29	Phyre.Reflection.DescriptorRuntime
+12	Phyre.Reflection.DescriptorVisitor
+189	Phyre.Reflection.GeneratedMetadataRoutine
+1	Phyre.Reflection.MethodCaller
+1	Phyre.Reflection.NameComponentLookup
+15	Phyre.Reflection.NamedDescriptorStaticTeardown
+1	Phyre.Reflection.NamedSemanticStringAdapter
+111	Phyre.Reflection.NativeQualified
+1	Phyre.Reflection.ObjectLifecycleDispatch
+2	Phyre.Reflection.ObjectTraversal
+299	Phyre.Reflection.ObjectTraversalAdapter
+138	Phyre.Reflection.PClassDataMember.DeletingDestructor
+30	Phyre.Reflection.PClassDataMemberStaticTeardownAdapter
+255	Phyre.Reflection.PClassDescriptorConcrete.StaticInitializer
+1149	Phyre.Reflection.PClassDescriptorForType.DeletingDestructor
+384	Phyre.Reflection.PClassDescriptorForType.DestructorThunk
+2	Phyre.Reflection.PFunctionCallerAdapter
+17	Phyre.Reflection.PTypeStaticTeardown
+28	Phyre.Reflection.ReflectionStaticTeardown
+5	Phyre.Reflection.RuntimeSupport
+13	Phyre.Reflection.SerializationDescriptor
+17	Phyre.Reflection.SharedRuntime
+13	Phyre.Reflection.StaticDescriptorSingleton
+2	Phyre.Reflection.StringContainerHelper
+93	Phyre.Reflection.TypeInfrastructure
+1	Phyre.Reflection.TypeMetadataDescriptorAdapter
+2	Phyre.Reflection.TypeNameRegistry
+1	Phyre.Reflection.TypeRegistryBootstrapLookup
+13	Phyre.Rendering
+1	Phyre.Rendering.D3D11TextureRuntime
+4	Phyre.Rendering.DataBlockBinding
+1	Phyre.Rendering.DynamicGeometryProcess
+1	Phyre.Rendering.DynamicMeshVtableSetter
+7	Phyre.Rendering.LightReflectedMethod
+65	Phyre.Rendering.NativeQualified
+4	Phyre.Rendering.ParameterReflection
+16	Phyre.Rendering.ReflectedMethod
+171	Phyre.Rendering.RegistryStaticTeardown
+1	Phyre.Rendering.RenderThreadDefault2D3DAndCubeTextureSetInitialization
+1	Phyre.Rendering.StretchBlit
+1	Phyre.Rendering.TextureCapture
+1	Phyre.Rendering.VertexStreamBinding
+2	Phyre.Runtime.UtilityThreadPoolOrchestration
+4	Phyre.Scene.ReflectedMethod
+21	Phyre.SceneCamera.NativeQualified
+1	Phyre.SceneCamera.PWorldMatrixFlyController.OrientationTransformUpdate
+1	Phyre.ScriptVM.ApplicationBridge
+1	Phyre.ScriptVM.CrossContextObjectCopy
+2	Phyre.ScriptVM.InputBinding
+299	Phyre.ScriptVM.NullableObjectPushAdapter
+323	Phyre.ScriptVM.ObjectPointerAccessor
+305	Phyre.ScriptVM.ObjectPushAdapter
+265	Phyre.ScriptVM.ObjectReferenceAccessor
+20	Phyre.ScriptVM.ReflectionBridge
+1	Phyre.ScriptVM.ScriptEntryPoint
+2	Phyre.ScriptVM.VarargsBridge
+10	Phyre.Serialization
+1	Phyre.Serialization.Callback
+2	Phyre.Serialization.NativeQualified
+1	Phyre.Serialization.SchemaCompatibility
+2	Phyre.Serialization.SortComparator
+2	Phyre.Serialization.UnpackRuntime
+1	Phyre.Threading.EngineThreadRuntime
+9	Phyre.Threading.NativeQualified
+1	Phyre.Threading.WorkerDispatchAdapter
+2	Phyre.Threading.WorkerThread
+1	Phyre.World.OctreeElementConstructor
+1	Phyre.World.OctreeRuntime
+1	Platform.Graphics.AMD.AmdAdapterInfo.AdapterMetricQuery
+2	Platform.Graphics.AMD_ADL
+1	Platform.Graphics.AMD_ADL.RuntimeAdapter
+1	Platform.Graphics.D3D11.BufferArrayCreationAndResourceViewInitialization
+1	Platform.Graphics.D3D11.ConfigurableDoubleBufferedBufferPairInitialization
+1	Platform.Graphics.D3D11.DeviceInitialization
+1	Platform.Graphics.D3D11.DirtyBufferSubresourceMapCopyUnmap
+1	Platform.Graphics.D3D11.DoubleBufferedDynamicVertexIndexBufferInitialization
+1	Platform.Graphics.D3D11.EightSlotUnorderedAccessViewBindingCacheUpdate
+1	Platform.Graphics.D3D11.FourBufferUnorderedAccessViewInitialization
+1	Platform.Graphics.D3D11.MultisampleQualityLevelsProbe
+1	Platform.Graphics.D3D11.PairedWidthHeightBufferCreationAndResourceCommandPatch
+1	Platform.Graphics.D3D11.SelectedDynamicVertexIndexBufferUpload
+1	Platform.Graphics.D3D11.ShaderResourceViewArrayInitialization
+1	Platform.Graphics.D3D11.UnorderedAccessViewArrayInitialization
+1	Platform.Graphics.DXGI.AdapterAndOutputInventoryCacheMaterialization
+1	Platform.Graphics.DXGI.AdapterCountEnumerationAndCachedFieldReadback
+1	Platform.Graphics.DXGI.AdapterDescriptionAndOutputCountQuery
+1	Platform.Graphics.DXGI.AdapterOutputDataLookup
+1	Platform.Graphics.DXGI.AdapterOutputDescriptionArrayQuery
+1	Platform.Graphics.DisplayMode.EnumerateFilterDeduplicateAndSelectClosest
+1	Platform.Graphics.DisplayMonitorRuntime
+1	Platform.Graphics.NVIDIA.NvAPIAdapterRuntime
+15	Platform.GraphicsDriverCompatibility
+19	Platform.Windows.CriticalSectionStaticInitializer
+17	Platform.Windows.DynamicLoaderRegistrySupport
+1	Platform.Windows.MessagePump
+1	Platform.Windows.MessageThreadDispatch
+5	Platform.Windows.NativeSupport
+1	Platform.Windows.NetworkAdapterIdentity
+1	Platform.Windows.ProcessAffinityTopology
+2	Platform.Windows.Runtime
+1	Platform.Windows.ThreadingSync
+1	Platform.Windows.Timing.QPC
+1	Presentation.AuthoredLineGeometry.WLine01RenderKernel
+1	Presentation.AuthoredResource.TaggedSectionBinding
+1	Presentation.Camera.CAM7ResourceLoader
+1	Presentation.Camera.ViewModifierBankAccumulationAndPublish
+1	Presentation.CameraAnimation.AuthoredChannelNameLookup
+1	Presentation.CameraAnimation.ProceduralChannelUpdate
+1	Presentation.CameraSystem.AuxiliaryBasisAndTransformRecordInitialization
+1	Presentation.CharacterModel.ResourceReleaseSupport
+1	Presentation.CharacterRender.ActorOverlapDrivenTransparencyFadeUpdate
+1	Presentation.CharacterRender.PendingMaskedRecordMaterializationSweep
+1	Presentation.CharacterRender.PendingRecordFlushAndGlobalReset
+1	Presentation.CharacterRender.RecordIndexListCallbackTraversal
+1	Presentation.CharacterRender.SkillMotionCache.RegisterOrAcquire
+1	Presentation.CharacterRender.TopFourDistanceWeightedEntrySelection
+1	Presentation.CharacterRenderObject.MaterialOverrideParameterPropagation
+1	Presentation.CharacterRenderObject.NamedTransformPalettePropagation
+1	Presentation.CharacterRenderObject.RenderPartMaterialParameterBinding
+1	Presentation.CharacterRenderQuerySupport
+1	Presentation.Cubemap.CompletionCallback
+1	Presentation.Cutscene.AuthoredPathCondition
+1	Presentation.Cutscene.RuntimeSupport
+2	Presentation.DebugCapture.ScreenCapture
+1	Presentation.DebugCapture.ScreenCapture.SixSliceTexturedQuadAssembly
+1	Presentation.DebugCapture.TGA
+1	Presentation.DebugCapture.TGA4K
+1	Presentation.Effect.TypeSpecificFrameRenderUpdateDispatchWithCadenceGate
+1	Presentation.Effect.TypeSpecificInitializationDispatch
+1	Presentation.EffectConstraint.ActorScopedEligibleRecordCollection
+1	Presentation.EffectFont.BindingAndMaterialization
+1	Presentation.EffectFont.LoadedFontVariantBindingAndSlotRegistration
+25	Presentation.EffectFont.MaterializationConsumer
+5	Presentation.EffectFont.NativeSupport
+1	Presentation.EffectGeometry.NativeImplementation
+1	Presentation.EffectInstance.FrameAdvanceCurveMotionCollisionAttachmentUpdate
+1	Presentation.EffectResource.Version8Or9PackedRecordNormalization
+2	Presentation.EffectRuntime
+3	Presentation.EffectRuntime.ParameterStateKernel
+1	Presentation.EffectSystem.QueuedType13GraphicsEffectStateMaterializationAndSubmission
+1	Presentation.EffectSystem.QueuedType2GraphicsEffectStateMaterializationAndSubmission
+1	Presentation.EffectSystem.QueuedType6GraphicsEffectStateMaterializationAndSubmission
+1	Presentation.EffectVisibility.ScreenSpaceOcclusionDistanceAttenuationAndRecordSubmission
+1	Presentation.Effects.MagicElementTypeNameLookup
+1	Presentation.EnvironmentState
+1	Presentation.GPUQuery.SampleEmitter
+1	Presentation.Geometry.IndexedCoordinateExpansion
+1	Presentation.Geometry.QuadRotateAroundViewportCenter
+1	Presentation.Geometry.QuadScaleAroundViewportCenter
+1	Presentation.Geometry.TexturedQuadCommandAndFourVertexEmission
+4	Presentation.Geometry.TransformNormalizeKernel
+7	Presentation.Graphics.AssetMaterializationSupport
+2	Presentation.LegacyPS2Effect.CallbackBoundVIFProgramStateBlockInitializer
+3	Presentation.LegacyPS2Effect.VIFProgramStateBlockInitializer
+1	Presentation.Map.TexturePathResolver
+1	Presentation.NavigationDebugVisualization
+1	Presentation.PartyGuardEffect.Runtime
+1	Presentation.ProceduralPose.TableResampling.ByteBounded
+1	Presentation.ProceduralPose.TableResampling.ByteKernel
+1	Presentation.ProceduralPose.TableResampling.FloatBounded
+1	Presentation.ProceduralPose.TableResampling.FloatCyclic
+1	Presentation.Render.Callback
+1	Presentation.Render.LayoutSortComparator
+1	Presentation.Render.ThreadSignalAdapter
+1	Presentation.Render.ThreadStagingRecordConstructor
+1	Presentation.RenderQueue.UIntKeyMergeInsertionSort40ByteRecords
+1	Presentation.Rendering.ActiveCameraSnapshotAndDerivedRenderMatrixCommit
+1	Presentation.Rendering.CLUTResourceNaming
+1	Presentation.Rendering.CaptureCameraProjectionAndCubemapFaceParameters
+1	Presentation.Rendering.DatasetConstruction
+1	Presentation.Rendering.EffectTexture16BppLowNibbleChannelMaterialization
+1	Presentation.Rendering.EffectTexture24BppFirstChannelMaterialization
+1	Presentation.Rendering.EffectTexture4BppPackedNibbleMaterialization
+1	Presentation.Rendering.EffectTextureByteChannelScaleAndPhyreMaterialization
+1	Presentation.Rendering.EffectTexturePairCacheMaterializationAndDescriptorAppend
+1	Presentation.Rendering.Fixed48ByteRecordChunkSubmission
+1	Presentation.Rendering.FrameOrchestration
+1	Presentation.Rendering.GlobalTuningSettings
+1	Presentation.Rendering.InputLayoutDescriptorBatchMaterialization
+1	Presentation.Rendering.MapCubemapConfiguration.NumericRecordTextParser
+51	Presentation.Rendering.NativeSupport
+1	Presentation.Rendering.PostProcessParameterBinding
+1	Presentation.Rendering.ProceduralNoiseTexture
+1	Presentation.Rendering.ProjectedPointPairGeometryBatchSubmission
+25	Presentation.Rendering.ShaderMaterial
+1	Presentation.Rendering.ShaderPermutation
+1	Presentation.Rendering.SixFaceMipChainUpload
+1	Presentation.Rendering.ThreeByThreeAtlasPatchGeometryBuild
+3	Presentation.Rendering.VisibilityGeometry
+1	Presentation.Rendering.WorldPointBatchProjectionToPackedScreenDepthRecords
+1	Presentation.Rendering.WorldPointProjectionToPackedScreenCoordinates
+1	Presentation.ResourceBinding.LinkedRecordRebuildAndParameterPropagation
+1	Presentation.ResourceHandleTable.NativeImplementation
+1	Presentation.ResourceSlots.ResetAndMaterializeConfiguredEntries
+1	Presentation.Runtime.Callback
+1	Presentation.Runtime.Support
+2	Presentation.RuntimeEligibilityAndInstanceResolution
+1	Presentation.ScreenTransition.FullscreenOverlayAndAnimatedFadeCommandSubmission
+2	Presentation.TargetLine.Runtime
+1	Presentation.Timing.Support
+1	Presentation.UI.AnalogCursorStateMachine
+1	Presentation.UI.InformationPage
+2	Presentation.UI.InputConsumerStateMachine
+2	Presentation.UI.NativeSupport
+1	Presentation.UI.Quest.ListEntryMetadataResolution
+1	Presentation.UI.Quest.ListScreenSelectionStateMachine
+1	Presentation.UI.Quest.SelectedEntryDetailResourceResolution
+1	Presentation.VFXRuntimeInitialization
+1	Presentation.Video.WebMYuvFullscreenTriangleGeometryMaterialization
+1	Resource.ImageAddressIndexedChainCallbackTraversal
+1	Resource.MaterializationAdapter
+1	Resource.PostLoadPointerFixup
+2	Resource.Prefetch.NativeSupport
+1	Rewards.EventAuthoredDispatchSupport
+1	Runtime.ActorAnchored.SixSlotTwoDigitRecordUpdate
+1	Runtime.Buffer.SixPlaneHalvingLevelLayoutMaterialization
+1	Runtime.Callback.LinkedListFirstSuccessDispatch
+1	Runtime.Callback.LinkedVirtualPredicateFirstSuccessTraversal
+46	Runtime.Callback.OwnedBufferResetAdapter
+351	Runtime.Callback.ReturnValueAdapter
+1	Runtime.CallbackAdapter
+1	Runtime.CallbackQueue.DoubleBufferedPointerDrainAndFlip
+1	Runtime.CallbackQueue.FourSlotDeferredInvocationDrain
+1	Runtime.CompositeRecord.DeepCopyWithNestedMember
+1	Runtime.Container.AddressRangeBucketRedistributionAndConsumedOwnerRelease
+1	Runtime.Container.ArenaStringRecordMaterialization
+1	Runtime.Container.CompositeNestedArrayRecordDeepCopy
+1	Runtime.Container.CompositeOwnedRegistryClear
+1	Runtime.Container.Fixed16ByteVectorReserveAndRelocate
+1	Runtime.Container.FixedStride60ArrayAllocateCopy
+1	Runtime.Container.FlaggedIntrusiveListPruneWithCallback
+1	Runtime.Container.FourInterfacePointerRecordArrayReleaseAndReset
+1	Runtime.Container.FourOwnedStringRecordArrayDeepCopy
+1	Runtime.Container.IndexedCompositeRecordClear
+1	Runtime.Container.KeyMatchedIntrusiveListEraseAndRelease
+1	Runtime.Container.LinkedChainCallbackTraversal
+3	Runtime.Container.LinkedNodeListDestroyWithDynamicPayload
+5	Runtime.Container.LinkedNodeListDestroyWithPayload
+1	Runtime.Container.LinkedNodeNameHashBindingTraversal
+1	Runtime.Container.LinkedNodeTableConstruction
+1	Runtime.Container.NestedGroupDetachAndMemberUnlink
+1	Runtime.Container.NestedGroupMemberCallbackSweepAndStateClear
+2	Runtime.Container.OrderedTreeSupport
+11	Runtime.Container.OwnedBufferAlignedFreeResetReturnTrue
+13	Runtime.Container.OwnedBufferReset
+13	Runtime.Container.OwnedBufferTeardownReset
+13	Runtime.Container.OwnedBufferTeardownResetReturnTrue
+1	Runtime.Container.Polymorphic24ByteRangeEraseCompaction
+1	Runtime.Container.PolymorphicPointerVectorClear
+2	Runtime.Container.PolymorphicRecordVectorDestroy
+1	Runtime.Container.SmallBufferPolymorphicPointerArrayReleaseReset
+3	Runtime.Container.UInt64ChangedSpanCopyAndNotify
+1	Runtime.Container.UInt64KeyEraseAndSecondaryIndexUpdate
+1	Runtime.Container.VectorInsertFillReallocate.UInt32
+1	Runtime.Container.VectorInsertReallocate.Stride36
+1	Runtime.Container.VectorInsertReallocate.Stride60
+168	Runtime.ContainerAllocator.NativeSupport
+59	Runtime.ContainerStringSupport
+1	Runtime.CrossDomainSharedHelper
+1	Runtime.DatasetConstructorCallbackSupport
+1	Runtime.Diagnostics.CRTReportOutput
+2	Runtime.Diagnostics.Logging
+3	Runtime.FileLoading.SAFHScratchBuffer
+1	Runtime.Fixed32Slot.CallbackCountdownScheduler
+44	Runtime.FunctionAddressReferencedFromCode
+1	Runtime.Geometry.IndexedBatchAppendExplicitIndicesAndVertices
+1	Runtime.Geometry.IndexedBatchAppendGeneratedTopologyIndicesAndVertices
+1	Runtime.Geometry.SubdividedOctahedralUnitSphereMesh
+1	Runtime.GiVmax.VirtualMethodSupport
+1	Runtime.GlobalAddressBinding.BulkStaticPointerTableInitialization
+1	Runtime.HierarchicalNode.DescendantStateBitPropagationWithCallbackToken
+1	Runtime.HierarchicalNode.PredicateDrivenRemovalOrchestration
+1	Runtime.HierarchicalNode.PredicateDrivenSubtreeRemovalTraversal
+1	Runtime.HierarchicalNode.PreorderCallbackTraversal
+1	Runtime.HierarchicalNode.RecursiveNodeCallbackBroadcastDefaultToken
+1	Runtime.HierarchicalNode.RecursiveSubtreeTeardownAndUnlink
+1	Runtime.HierarchicalNode.RootStateBitPropagationWithCallbackToken
+6	Runtime.ImageAddressMemoryStructure
+1	Runtime.ImageAddressRecordFixup
+1	Runtime.ImageAddressStructuredRelocation
+1	Runtime.KeyframeInterpolation.SineOrLinearFourChannel
+1	Runtime.LegacyPS2Emulation
+1	Runtime.LegacyPS2Emulation.VIFCommandStreamInterpreter
+1	Runtime.LegacyPS2Emulation.VIFUnpackCommand
+1	Runtime.LinkedRecord.StagedCallbackRecomputeSweep
+1	Runtime.LinkedResourceList.ClearAndReleaseOwnedInterfacePayloads
+1	Runtime.LinkedResourceList.RemoveAndReleaseOwnedInterfacePayload
+1	Runtime.Lookup.FiveBankFixedPrefixRecordIndexLookup
+1	Runtime.Math.CosineLargeArgumentFallback
+1	Runtime.Math.PowfScalarExceptionalKernel
+1	Runtime.Math.VectorCosf4
+1	Runtime.Math.VectorCosinePair
+1	Runtime.Math.VectorPowf4
+1	Runtime.Math.VectorSinf4
+1	Runtime.Memory.AlignedFreeCallback
+1	Runtime.Memory.AlignedHeapWrapper
+1	Runtime.Memory.FixedSlotArenaInitialization
+1	Runtime.Memory.FixedStridePoolValidatedRelease
+1	Runtime.Memory.ImageAddressArena.Aligned64FreeBlockAllocationAndSplit
+1	Runtime.Memory.ImageAddressArena.AllocationRetryAndReclamationLoop
+22	Runtime.Memory.IndirectAllocatorRelease
+5	Runtime.MemoryAllocatorSupport
+2	Runtime.MemoryBudget
+1	Runtime.MemorySupport
+56	Runtime.NameRegistryEntry.StaticInitializer
+1	Runtime.NamedEntry.StringLookup
+57	Runtime.NamedRegistryRecord.StaticInitializer
+1	Runtime.NestedIntrusiveListBankReset
+1	Runtime.Numeric.FixedPointTableAccumulationAndClampCorrection
+69	Runtime.Numeric.Float32ToFloat16.StaticGlobalInitializer
+1	Runtime.Numeric.Float32ToFloat16Converter
+1	Runtime.ObjectLifecycle.DualLinkedListDetachAndOwnedInterfaceRelease
+1	Runtime.PackedIdBucketRegistry.SixStateBitLookup
+1	Runtime.PolymorphicGlobalTeardown
+1	Runtime.Pool.Fixed64PolymorphicEntryAcquireOrReconfigure
+1	Runtime.Queue.ElementConstructor
+26	Runtime.RealFunctionPointerOrVtableMember
+1	Runtime.RecordCopy.Callback
+1	Runtime.RecordCopy.FixedCompositeSparseLayoutCopy
+1	Runtime.Registry.Direct48SlotIdStateCodeLookup
+1	Runtime.Registry.Fixed32RecordIdStateStatusLookup
+1	Runtime.Registry.Fixed32SentinelIdStateCodeLookup
+1	Runtime.Registry.Fixed36IdToObjectStateCodeLookup
+1	Runtime.Registry.Fixed64IdToObjectStateCodeLookup
+1	Runtime.Registry.HeaderAndKindValidatedSevenSlotPointerRegister
+1	Runtime.Registry.IndexedCategoryListTeardown
+2	Runtime.Registry.IndexedRecordBankStateTransitionAndEntryReferenceReset
+10	Runtime.Registry.StringLookup
+1	Runtime.Registry.UInt16IdLazyObjectCacheMaterialization
+1	Runtime.ResourceNameIndexRemap
+1	Runtime.SIMD.MMStateCleanup
+1	Runtime.ScheduledSlotTimerTransaction
+1	Runtime.Serialization.AlignedOffsetTableRecordMaterialization
+1	Runtime.Serialization.CallbackDrivenAlignedAggregateSizeComputation
+1	Runtime.SharedLibrarySupport
+10	Runtime.Singleton.LazyAllocatorInitializer
+1	Runtime.SingletonInfrastructure
+1	Runtime.Sort.Comparator
+1	Runtime.Sort.FloatKeyPointerArray
+2	Runtime.Sort.QsortComparator
+1	Runtime.SortedFloatCircularRange.CallbackTraversal
+1	Runtime.Sorting.PointerIndexQsort
+224	Runtime.StaticIntrusiveListTeardown
+149	Runtime.StaticLifetimeInfrastructure
+1	Runtime.Storage.CallbackAdapter
+1	Runtime.Stream.RecordArrayWriteAndOptionalElementDestroy
+1	Runtime.String.InPlaceSubstringReplacement
+1	Runtime.StringBuilder.NullPointerFormatting
+1	Runtime.StringIdentifier.Comparator
+1	Runtime.StringRecordHelper
+1	Runtime.Table.IndexedShortListCallbackTraversal
+1	Runtime.TagTypeConversionHelper
+1	Runtime.TaggedVariant.DeepCopy
+1	Runtime.TaggedVariant.ForwardRangeDeepCopy
+1	Runtime.TaggedVariant.ReverseRangeDeepCopy
+1	Runtime.TaggedVariant.VectorCopyAssign
+1	Runtime.TaggedVariant.VectorInsert
+1	Runtime.Text.ControlCode8And9StringTemplateExpansion
+1	Runtime.Text.DecimalGlyphCodeEncoder
+1	Runtime.Text.EncodedMessageTemplateFormattingInterpreter
+1	Runtime.Text.ExIntegerTemplateSubstitutionExpansion
+1	Runtime.Text.PatternOffsetTwoDigitDecimalParse
+1	Runtime.Text.UInt32DecimalTaggedFieldEncoding
+1	Runtime.TextParser.WhitespaceCommentSkip
+1	Runtime.TextParser.WhitespaceScan
+1	Runtime.Threading.CriticalSectionLifetime
+2	Runtime.Threading.CrossThreadRegistry
+1	Runtime.Threading.ExitThreadAdapter
+1	Runtime.Threading.SRWEventSynchronization
+2	Runtime.Threading.Win32LockWait
+1	Runtime.Timing.DeltaCallback
+20	Runtime.VirtualDispatch.FixedSlotAdapter
+1	Runtime.VirtualDispatch.ObjectPointerArrayBroadcast
+1	Runtime.VirtualDispatch.VariableStrideTwoStageOperationSweep
+3	SEAD.Allocator.Adapter
+9	SQEX.Sd.FixedQueue.StaticTeardown
+1	SaveLoad.AssetMaterializationSupport
+3	SaveLoad.Crypto
+1	SaveLoad.RuntimeLifecycleSupport
+1	SaveLoad.WorldTransition.AutosavePolicy
+1	SaveLoadSettings.RequestCallback
+1	StoryEvent.AuthoredAssetBinding.Runtime
+1	StoryEvent.AuthoredCondition.Runtime
+1	StoryEvent.AuthoredEventPathParser
+10	ThirdParty.Audio.LibVorbis
+1	ThirdParty.Audio.LibVorbis.VorbisSynthesisBlockin
+1	ThirdParty.Audio.Tremor.MdctBackward
+1	ThirdParty.Audio.Tremor.MdctBitreverse
+1	ThirdParty.Audio.Tremor.MdctButterflyGeneric
+1	ThirdParty.Audio.Tremor.VorbisApplyWindow
+9	ThirdParty.Compression.Zlib
+1	ThirdParty.Compression.ZlibAdapter
+15	ThirdParty.Compression.Zlib_1_2_11
+1	ThirdParty.Compression.Zlib_1_2_11.InflateInit2
+102	ThirdParty.Physics.Bullet
+11	ThirdParty.Physics.Bullet.RealVtableFunctionMember
+1	ThirdParty.Physics.Bullet.btHashedOverlappingPairCache.ProcessAllOverlappingPairs
+1	ThirdParty.Physics.Bullet.btHashedOverlappingPairCache.RemoveOverlappingPair
+1	ThirdParty.Physics.Bullet.btSequentialImpulseConstraintSolver.VirtualIterationStage
+1	ThirdParty.Physics.Bullet.btSequentialImpulseConstraintSolver.VirtualSolveGroup
+1	ThirdParty.Physics.Bullet.btSequentialImpulseConstraintSolver.VirtualSolvePreparation
+1	ThirdParty.Physics.Bullet.btTriangleRaycastCallback.ProcessTriangle
+1	ThirdParty.Physics.Bullet.btTriangleShape.IsInside
+345	ThirdParty.Rendering.PPFX
+3	ThirdParty.Rendering.PPFX.ObjectLifecycle
+1	ThirdParty.Rendering.Yebis
+1	ThirdParty.Rendering.Yebis.YebisPfxMemoryAllocatorD3D11.TrackedAllocate
+1	ThirdParty.Rendering.Yebis.YebisPfxMemoryAllocatorD3D11.TrackedFree
+25	ThirdParty.Scripting.Lua
+35	ThirdParty.Scripting.Lua.CoreRuntime
+1	ThirdParty.Scripting.Lua.ErrorRuntime
+2	ThirdParty.Scripting.Lua.FormatLibrary
+2	ThirdParty.Scripting.Lua.IOLibrary
+3	ThirdParty.Scripting.Lua.Loader
+1	ThirdParty.Scripting.Lua.NumberParser
+3	ThirdParty.Scripting.Lua.OSDateLibrary
+7	ThirdParty.Scripting.Lua.ParserCompiler
+1	ThirdParty.Scripting.Lua.ParserCompiler.Exp2Reg
+1	ThirdParty.Scripting.Lua.Registry
+1	ThirdParty.Scripting.Lua.StandaloneExitRuntime
+7	ThirdParty.Scripting.Lua.StringLibrary
+1	ThirdParty.Scripting.Lua.VM
+4	ThirdParty.Serialization.JsonBox
+7	ThirdParty.UI.DearImGui
+45	ThirdParty.Video.LibVPX_VP8_1_6_0
+25	ThirdParty.Video.LibVPX_VP8_1_6_0.Support
+1	ThirdParty.Video.LibVPX_VP8_1_6_0.Vp8FilterBlock1d16V6Ssse3
+1	ThirdParty.Video.LibVPX_VP8_1_6_0.Vp8MbPostProcAcrossIpC
+1	ThirdParty.Video.LibVPX_VP8_1_6_0.Vp8MbPostProcDownC
+4	ThirdParty.XML.Libxml2
+12	Thunk.DirectTailForwarder
+117	Thunk.ExternalImport
+560	Thunk.InternalForwarder
+1	UI.Animation.FiveSegmentSinusoidalColorAlphaUpdate
+1	UI.Animation.ShortCoordinateTweenSetup
+1	UI.BattleMenu.AuthoredCommandEntryOrderRemap
+1	UI.BattleMenu.CallbackRecordPruneRuntime
+1	UI.BattleMenu.CommandAvailabilityEvaluation
+1	UI.BattleMenu.CommandCandidateSelection.DirectionalAndFallbackPolicy
+1	UI.BattleMenu.CommandListConstructionRuntime
+1	UI.BattleMenu.CommandVisualResourceSelection
+1	UI.BattleMenu.TargetStatusEligibilityEvaluation
+1	UI.BattleWindow.BtWin0CResourceRuntime
+1	UI.ChildPresentation.FourChannelSinusoidalTransformHistoryUpdate
+1	UI.ChildPresentation.LinkedRecordTransitionQueueAndFadeUpdate
+1	UI.ChildPresentation.TransitionStateAndInterpolationUpdate
+1	UI.CommandRow.ProgressPalettePulseAndFadeVisualUpdate
+1	UI.EquipmentMenu.NineEntryEligibilityVisibilityAndVerticalLayoutRefresh
+1	UI.Fsroll.NameEntryLayoutMaterialization
+1	UI.Fsroll.ParameterAndRecordAccumulator
+1	UI.GambitConfiguration.BankMaterialization
+1	UI.Geometry.MultiPartBoundsUnionAndAnimatedAtlasPlacement
+1	UI.Geometry.SegmentedTransformRecordInitialization
+1	UI.Graphics.PackedElementCommandListRenderDispatch
+1	UI.Graphics.PackedElementCommandListRenderDispatchWithoutType5
+1	UI.Graphics.PackedTexturedQuadCommandAndFourVertexEmission
+1	UI.Graphics.Type5TexturedElementMaterialAndGeometrySubmission
+1	UI.Grid.PackedElementCellLayoutAndRenderOrchestration
+1	UI.Layout.ActivePanelElementRectangleResolution
+1	UI.List.RootAndPerRowChildVisualMaterialization
+1	UI.ModePanel.ActiveVariantSelectionAndVisibilityReset
+1	UI.NumericDisplay.FixedWidthDecimalDigitRecordFormatting
+1	UI.RadialGeometry.Generation
+2	UI.RuntimeTreeTraversalCleanup
+1	UI.ScreenEntry.EligibleDescriptorCollectionAndFourSlotRelationResolution
+1	UI.ScreenInstance.DoubleBufferedCreateOrSwapMaterialization
+1	UI.Text.CompositeMessageConstruction
+1	UI.TimedEligibleEntry.CyclicSelectionRuntime
+2	World.ActorManager.FrameOrchestration
+1	World.Area.AuthoredDataBinding
+1	World.Area.AuthoredSectionBindingCallback
+1	World.Area.StagedDatasetLifecycle
+1	World.GameplayDataCallback
+1	World.NativeSupport
+1	World.Navigation.AssetSetup
+28	WorldArea.AuthoredSection.BindingCompletionAdapter
+7	WorldArea.StagedData.SetterCallback
+1	WorldAreaField.AuthoredPresentationCondition
+1	WorldAreaField.ConditionalBattleIdResolution
+1	WorldAreaField.PersistenceGroupEntryCollection
+1	WorldAreaField.PersistenceMappingRuntime
+--UNRESOLVED--
+00180A70	FUN_00180a70	519
+00183320	FUN_00183320	799
+00188B10	FUN_00188b10	643
+001897C0	FUN_001897c0	1101
+0018EEE0	FUN_0018eee0	1581
+001B0CE0	FUN_001b0ce0	685
+001C22A0	FUN_001c22a0	962
+001C2980	FUN_001c2980	897
+001D72F0	FUN_001d72f0	937
+001D76A0	FUN_001d76a0	885
+001D7A20	FUN_001d7a20	932
+001D7DD0	FUN_001d7dd0	881
+001E2250	FUN_001e2250	928
+001E59B0	FUN_001e59b0	645
+001E5C40	FUN_001e5c40	1021
+001E6480	FUN_001e6480	1302
+001E8070	FUN_001e8070	1293
+001E8580	FUN_001e8580	3572
+001E9D20	FUN_001e9d20	472
+001F57E0	FUN_001f57e0	928
+0020AC30	FUN_0020ac30	572
+0020ED30	FUN_0020ed30	1301
+0020F3E0	FUN_0020f3e0	1779
+0020FF10	FUN_0020ff10	793
+00226640	FUN_00226640	861
+002376F0	FUN_002376f0	1445
+0023ED80	FUN_0023ed80	466
+0023EFC0	FUN_0023efc0	449
+0023F8B0	FUN_0023f8b0	714
+00244A20	FUN_00244a20	943
+00245170	FUN_00245170	927
+002455A0	FUN_002455a0	2232
+00245E60	FUN_00245e60	1416
+002465F0	FUN_002465f0	395
+00246C20	FUN_00246c20	1178
+00247AE0	FUN_00247ae0	1348
+00248030	FUN_00248030	339
+002481C0	FUN_002481c0	81
+00248A90	FUN_00248a90	888
+0024B580	FUN_0024b580	324
+0024B9B0	FUN_0024b9b0	1500
+00256960	FUN_00256960	828
+00256CA0	FUN_00256ca0	694
+00258350	FUN_00258350	1942
+0026F470	FUN_0026f470	1361
+00273BA0	FUN_00273ba0	643
+00275570	FUN_00275570	1835
+002856B0	FUN_002856b0	491
+00287400	FUN_00287400	455
+002875D0	FUN_002875d0	638
+0028A350	FUN_0028a350	499
+0028AAA0	FUN_0028aaa0	1692
+0028B140	FUN_0028b140	1462
+0028B860	FUN_0028b860	666
+0028BB50	FUN_0028bb50	2387
+0028DC00	FUN_0028dc00	965
+00292B70	FUN_00292b70	993
+0029E3B0	FUN_0029e3b0	759
+002A0440	FUN_002a0440	5301
+002A4430	FUN_002a4430	1020
+002A4830	FUN_002a4830	1701
+002A5020	FUN_002a5020	783
+002A86A0	FUN_002a86a0	1364
+002AAE40	FUN_002aae40	2440
+002ABB20	FUN_002abb20	918
+002ABF70	FUN_002abf70	577
+002AC5F0	FUN_002ac5f0	7489
+002AE610	FUN_002ae610	1281
+002AF340	FUN_002af340	1563
+002AF960	FUN_002af960	1117
+002AFDC0	FUN_002afdc0	1208
+002B2150	FUN_002b2150	861
+002B2DF0	FUN_002b2df0	598
+002B4810	FUN_002b4810	381
+002B5390	FUN_002b5390	747
+002B6350	FUN_002b6350	541
+002B6DB0	FUN_002b6db0	1033
+002B8EE0	FUN_002b8ee0	2865
+002BA310	FUN_002ba310	543
+002BCB00	FUN_002bcb00	2703
+002C3D70	FUN_002c3d70	1151
+002C7660	FUN_002c7660	1190
+002C7B10	FUN_002c7b10	1146
+002C84E0	FUN_002c84e0	829
+002D2600	FUN_002d2600	721
+002D4330	FUN_002d4330	575
+002D66D0	FUN_002d66d0	616
+002D8D40	FUN_002d8d40	1595
+002DA2D0	FUN_002da2d0	1262
+002DA7C0	FUN_002da7c0	1193
+002DBDD0	FUN_002dbdd0	1207
+002DC290	FUN_002dc290	1363
+002DC7F0	FUN_002dc7f0	2194
+002EE430	FUN_002ee430	1390
+002F0280	FUN_002f0280	5130
+002F67C0	FUN_002f67c0	739
+002F7380	FUN_002f7380	723
+002FCCC0	FUN_002fccc0	562
+00313A00	FUN_00313a00	289
+0032C650	FUN_0032c650	692
+0032D820	FUN_0032d820	737
+00364530	FUN_00364530	684
+003649A0	FUN_003649a0	3020
+00366110	FUN_00366110	1318
+00367200	FUN_00367200	1196
+00367AA0	FUN_00367aa0	1042
+00368010	FUN_00368010	559
+0036A2A0	FUN_0036a2a0	495
+0036A570	FUN_0036a570	729
+0037F1F0	FUN_0037f1f0	324
+00392A10	FUN_00392a10	707
+00392CE0	FUN_00392ce0	589
+00392FC0	FUN_00392fc0	360
+00393240	FUN_00393240	290
+003AEF90	FUN_003aef90	655
+003BA7B0	FUN_003ba7b0	402
+003BA990	FUN_003ba990	756
+003BAC90	FUN_003bac90	448
+003BDDE0	FUN_003bdde0	524
+003BDFF0	FUN_003bdff0	493
+003BE3A0	FUN_003be3a0	734
+003BE950	FUN_003be950	759
+003BED70	FUN_003bed70	1720
+003C1A20	FUN_003c1a20	848
+003F3E40	FUN_003f3e40	511
+003F8790	FUN_003f8790	492
+003FAF10	FUN_003faf10	1226
+003FBE90	FUN_003fbe90	730
+003FD360	FUN_003fd360	842
+003FDFE0	FUN_003fdfe0	947
+00402000	FUN_00402000	511
+004027D0	FUN_004027d0	623
+00402F00	FUN_00402f00	545
+004044D0	FUN_004044d0	606
+004058E0	FUN_004058e0	828
+00407D10	FUN_00407d10	639
+004753B0	FUN_004753b0	1322
+0048CE70	FUN_0048ce70	965
+004EB910	FUN_004eb910	1387
+004EDB50	FUN_004edb50	7440
+004F4F80	FUN_004f4f80	992
+004F5360	FUN_004f5360	7440
+0053E0B0	FUN_0053e0b0	718
+0053E640	FUN_0053e640	1251
+00564430	FUN_00564430	497
+00564780	FUN_00564780	729
+005651E0	FUN_005651e0	1028
+00565720	FUN_00565720	656
+00565A00	FUN_00565a00	454
+00565E00	FUN_00565e00	1914
+00566680	FUN_00566680	997
+005680E0	FUN_005680e0	326
+0056C490	FUN_0056c490	959
+0056E140	FUN_0056e140	632
+0056E880	FUN_0056e880	331
+0056F810	FUN_0056f810	621
+005709E0	FUN_005709e0	515
+005713C0	FUN_005713c0	536
+00571710	FUN_00571710	488
+00571F60	FUN_00571f60	895
+00572920	FUN_00572920	679
+005734C0	FUN_005734c0	464
+00573690	FUN_00573690	562
+00573BE0	FUN_00573be0	850
+00576300	FUN_00576300	578
+005771F0	FUN_005771f0	758
+0057CF20	FUN_0057cf20	1524
+0057D620	FUN_0057d620	1088
+0057E6D0	FUN_0057e6d0	499
+005BF110	FUN_005bf110	380
+005C6770	FUN_005c6770	310
+005C6A90	FUN_005c6a90	342
+005DC8D0	FUN_005dc8d0	764
+005DD890	FUN_005dd890	581
+005DF890	FUN_005df890	906
+00607990	FUN_00607990	881
+00626120	FUN_00626120	971
+00631290	FUN_00631290	542
+0063CD20	FUN_0063cd20	343
+00692AC0	FUN_00692ac0	923

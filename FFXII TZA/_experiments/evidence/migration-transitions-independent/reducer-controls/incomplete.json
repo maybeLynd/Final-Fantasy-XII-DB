@@ -1,0 +1,341 @@
+{
+  "method": "A actual immutable transition CLI DRY RUN on validated labelled fixtures, no board writes",
+  "driver_sha256": "59241d5fc46b92bc9a38703f8af26716fec58aa9c7207979936bc7ac0b500709",
+  "source_tree_commit": "4ed1ad40e43f1fd5dbfdb0f9bd2e6b68bccd8d4c",
+  "sources": {
+    "transitions.py": {
+      "sha256": "3f6c8ed51d067d6516cfebdfdeabee957df82b6a92acc0e51cca0cd601a2e9b8",
+      "path": "Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+      "blob": "322daab339fecaa9a7e83ddcd0c9411302455b58",
+      "last_commit": "c545ed76060aae750c398422b371cea80b8119c3"
+    },
+    "team.py": {
+      "sha256": "70068994a0313652ef4f0ec0791a4d4d64163d3ff0c754f49ae9ab817cabd1f6",
+      "path": "Database/Tools/analysis-kit/gfz-scripts/team.py",
+      "blob": "7084d894fa05f8afa5502e56870beadff94b3f62",
+      "last_commit": "a70307d377ed97473b731ca9c774c6bcdb2bed7c"
+    }
+  },
+  "prior_partial_raw_sha256": "55a1bf10f587ea357367196c6f74d64e8694098b47586eaca4a7b470455cc84a",
+  "cases": [
+    {
+      "name": "valid-reject",
+      "expected": "REPAIR",
+      "input_sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\valid-reject\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-VALID-REJECT\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-VALID-REJECT\",\n  \"status\": \"planned\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "REPAIR",
+          "review": "REVIEW-VALID-REJECT",
+          "detail": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+          "status": "planned"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "valid-accept",
+      "expected": "INCORPORATE",
+      "input_sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\valid-accept\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"INCORPORATE\",\n  \"review\": \"REVIEW-VALID-ACCEPT\",\n  \"detail\": \"AUTO-INCORP-REVIEW-VALID-ACCEPT\",\n  \"status\": \"planned\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "INCORPORATE",
+          "review": "REVIEW-VALID-ACCEPT",
+          "detail": "AUTO-INCORP-REVIEW-VALID-ACCEPT",
+          "status": "planned"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "no-owner",
+      "expected": "ACCEPTED",
+      "input_sha256": "78ba99f9b20d3021fbff1509be565ee3748e2edda48dd61fc34eb306b3d38e01",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\no-owner\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"ACCEPTED\",\n  \"review\": \"REVIEW-NO-OWNER\",\n  \"detail\": \"no separate incorporation owner named\",\n  \"status\": \"-\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "ACCEPTED",
+          "review": "REVIEW-NO-OWNER",
+          "detail": "no separate incorporation owner named",
+          "status": "-"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "missing-verdict",
+      "expected": "VERDICT-MISSING",
+      "input_sha256": "9d4841081ea3d534310ea7ae6dbffa3003d15210a21bbb712ebb9e1e45c9fb53",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\missing-verdict\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"VERDICT-MISSING\",\n  \"review\": \"REVIEW-MISSING-VERDICT\",\n  \"detail\": \"result refs carry no verdict:\",\n  \"status\": \"-\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "VERDICT-MISSING",
+          "review": "REVIEW-MISSING-VERDICT",
+          "detail": "result refs carry no verdict:",
+          "status": "-"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "conflicting-verdict",
+      "expected": "VERDICT-CONFLICT",
+      "input_sha256": "f8fcfcaaa59a0d0b09ae782928690630b253e5dea0eb9ae29f970ef9190edfee",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\conflicting-verdict\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"VERDICT-CONFLICT\",\n  \"review\": \"REVIEW-CONFLICTING-VERDICT\",\n  \"detail\": \"result refs carry ['ACCEPT', 'REJECT']\",\n  \"status\": \"-\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "VERDICT-CONFLICT",
+          "review": "REVIEW-CONFLICTING-VERDICT",
+          "detail": "result refs carry ['ACCEPT', 'REJECT']",
+          "status": "-"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "malformed-string",
+      "expected": "MALFORMED",
+      "input_sha256": "be4d3b7c77dfff2f7bbb0bbc1ffdcc9b361037212fb64ca2647e748d58c9f4c3",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\malformed-string\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-MALFORMED-STRING\",\n  \"detail\": \"reviews field needs author (a board identity) and commit\",\n  \"status\": \"-\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "MALFORMED",
+          "review": "REVIEW-MALFORMED-STRING",
+          "detail": "reviews field needs author (a board identity) and commit",
+          "status": "-"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "missing-commit",
+      "expected": "MALFORMED",
+      "input_sha256": "ae58bce5c16ff04c9ec03b1e3908cd74fe3d958006fb1fd85c3023f540eba5fa",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\missing-commit\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"MALFORMED\",\n  \"review\": \"REVIEW-MISSING-COMMIT\",\n  \"detail\": \"reviews field needs author (a board identity) and commit\",\n  \"status\": \"-\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "MALFORMED",
+          "review": "REVIEW-MISSING-COMMIT",
+          "detail": "reviews field needs author (a board identity) and commit",
+          "status": "-"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "typed-commit",
+      "expected": "MALFORMED",
+      "input_sha256": "046f16c33628b30c984282e219226f8bfc6c3e592d24160f7d5dfa6e23e5e237",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\typed-commit\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-TYPED-COMMIT\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-TYPED-COMMIT\",\n  \"status\": \"planned\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "REPAIR",
+          "review": "REVIEW-TYPED-COMMIT",
+          "detail": "AUTO-REPAIR-REVIEW-TYPED-COMMIT",
+          "status": "planned"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "non-sha-commit",
+      "expected": "MALFORMED",
+      "input_sha256": "6c1a7452dd4f2594f8bc24711904145b6059221715472a9de26463a8a0444076",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\non-sha-commit\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-NON-SHA-COMMIT\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-NON-SHA-COMMIT\",\n  \"status\": \"planned\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "REPAIR",
+          "review": "REVIEW-NON-SHA-COMMIT",
+          "detail": "AUTO-REPAIR-REVIEW-NON-SHA-COMMIT",
+          "status": "planned"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "typed-record",
+      "expected": "MALFORMED",
+      "input_sha256": "ac521e2f2560fc551d0ab1d93ac07b61d4e56dcd566d6f667a7764672310480a",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\typed-record\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-TYPED-RECORD\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-TYPED-RECORD\",\n  \"status\": \"planned\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "REPAIR",
+          "review": "REVIEW-TYPED-RECORD",
+          "detail": "AUTO-REPAIR-REVIEW-TYPED-RECORD",
+          "status": "planned"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "self-review",
+      "expected": "independent-review-refusal",
+      "input_sha256": "522a5da746b054de9f3389926885622bf1661de75329fe3556e22e526a52309b",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\self-review\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "[\n {\n  \"transition\": \"INCORPORATE\",\n  \"review\": \"REVIEW-SELF-REVIEW\",\n  \"detail\": \"AUTO-INCORP-REVIEW-SELF-REVIEW\",\n  \"status\": \"planned\"\n }\n]\n",
+      "stderr": "",
+      "parsed_report": [
+        {
+          "transition": "INCORPORATE",
+          "review": "REVIEW-SELF-REVIEW",
+          "detail": "AUTO-INCORP-REVIEW-SELF-REVIEW",
+          "status": "planned"
+        }
+      ],
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    },
+    {
+      "name": "typed-author",
+      "expected": "MALFORMED",
+      "input_sha256": "f220ec2025f48afdeb2bf9ca6a96be2b72a12cd5ed68b1367758f9808f01fc37",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\typed-author\\TEAM.json",
+        "--json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py\", line 160, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py\", line 128, in main\n    p = plan(board)\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py\", line 75, in plan\n    if not isinstance(rv, dict) or rv.get(\"author\") not in team.AGENTS or not rv.get(\"commit\"):\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: cannot use 'list' as a set element (unhashable type: 'list')\n",
+      "parsed_report": null,
+      "board_unchanged": true,
+      "timed_out": false,
+      "child_reaped": true
+    }
+  ],
+  "finished": false,
+  "limits": "Original apply campaign INCOMPLETE after valid reject and timeout at valid accept. Nested writer later produced private incorporation row/journal but response/descendant cleanup not independently proven. Unmodified lock uses one Local mutex name for all board paths; potential production contention is a bounded hypothesis, not proven timeout cause. No additional apply or unchanged retry. Dry-run proves admitted plans, not execution/duplicate or racing closure."
+}

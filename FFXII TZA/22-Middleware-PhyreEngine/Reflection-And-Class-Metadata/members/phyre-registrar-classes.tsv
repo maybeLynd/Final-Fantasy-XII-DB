@@ -1,0 +1,467 @@
+# named descriptors 399 (constructors 315, template getters 69 with one name)
+# registrars 409  registration sites 523  sites named 470  registrars with every site named 388
+# against the 315 of the registrar census: present here 315; string-less 112, of which every site named 112
+registrar	sites	named	classes
+00584D10	1	1	PClusterHeader
+005983E0	1	1	PClusterHeaderBase
+00598C50	1	1	PClusterHeaderD3D11
+00598DF0	1	1	PInstanceListHeader
+0059D550	1	1	PClusterHeader
+005A08E0	11	10	Matrix3 | Matrix4 | PMatrix4 | PMatrix4x3 | PTimer | Point3 | Quat | Vector2 | Vector3 | Vector4
+005A3400	1	1	PAnimationNetworkInstanceTarget
+005A4280	1	1	PAnimationSlotArray
+005A5710	1	1	PAnimationHierarchyNode
+005AD8F0	1	1	PAnimatableComponent
+005AEEC0	1	1	PAnimationAdditiveBlenderController
+005AEFB0	1	1	PAnimationBlenderController
+005AF0A0	1	1	PAnimationChannel
+005AF280	1	1	PAnimationChannelBase
+005AF3B0	1	1	PAnimationChannelTarget
+005AFA60	1	1	PAnimationChannelTimes
+005AFBC0	1	1	PAnimationClip
+005B0700	1	1	PAnimationClipBinding
+005B0930	1	1	PAnimationClipBindingChannelMap
+005B0A70	1	1	PAnimationClipBindingDataBlockCache
+005B0BB0	1	1	PAnimationConstantChannel
+005B0C70	1	1	PAnimationController
+005B0DB0	1	1	PAnimationDataSource
+005B0E70	1	1	PAnimationDataSourceListEntry
+005B1180	1	1	PAnimationEvent
+005B12C0	1	1	PAnimationEventController
+005B1400	1	1	PAnimationEventList
+005B14E0	1	1	PAnimationNetworkInstance
+005B1900	1	1	PAnimationSet
+005B1D90	1	1	PAnimationSlotFilter
+005B1F90	1	1	PAnimationSlotFilterDeferredLoad
+005B20D0	1	1	PAnimationSlotListIndex
+005B22F0	1	1	PAnimationSpuTargetBlenderController
+005B23B0	1	1	PAnimationTargetBlenderController
+005B2470	1	1	PAnimationWeightedBlenderController
+005B2560	1	1	PBlendableAnimationSource
+005B2860	1	1	PTimeController
+005B2990	1	1	PTimeIntervalController
+005B2BB0	1	1	PTimeScaleOffsetController
+005B4E00	1	1	PArray<PUInt32>
+005B5130	1	1	PArray<float>
+005B5460	1	1	PArray<PAnimationChannel *>
+005B57A0	1	1	PArray<PAnimationDataSource *>
+005B5AE0	1	1	PArray<PAnimationChannelTarget>
+005B5E10	1	1	PArray<PAnimationConstantChannel>
+005B6140	1	1	PArray<PAnimationDataSourceListEntry>
+005B6470	1	1	PArray<PAnimationEvent>
+005B67A0	1	1	PArray<PAnimationNetworkInstanceTarget>
+005B6AD0	1	1	PArray<PAnimationSlotArray>
+005B6E00	1	1	PArray<PAnimationSlotFilterDeferredLoad>
+005B7130	1	1	PArray<PAnimationSlotListIndex>
+005B7460	1	1	PArray<PBlendableAnimationSource>
+005B7790	1	1	PArray<PUInt128>
+005B7AC0	1	1	PSharray<PAnimationClip *>
+005C5C80	4	3	PAnimationHierarchyNode | PAnimationNetworkInstanceTarget | PAnimationSlotArray
+005CE620	1	1	PSamplerState
+005CFB60	1	1	PTexture3D
+005D12D0	1	1	PShaderPass
+005D1500	1	1	PShaderParameterCaptureBufferStream
+005D1BB0	1	1	PConstantBuffer
+005D26D0	1	1	PShaderProgramBase
+005D3250	1	1	PShaderVertexProgram
+005D3480	1	1	PRenderTarget
+005D34B0	1	1	PTexture2D
+005D3DB0	1	1	PStructuredBuffer
+005D3FB0	1	1	PShadowRenderer
+005D43A0	1	1	PShaderFragmentProgram
+005D5280	1	1	PIndirectArgsBufferBase
+005D58A0	1	1	PForwardShadowRenderer
+005D5A80	1	1	PShaderGeometryProgram
+005D6530	1	1	PTextureCubeMap
+005D6CA0	1	1	PShaderComputeProgram
+005D7060	1	1	PSceneWideParameterBuffer
+005D7D40	1	1	PIndirectArgsBuffer
+005E3B70	1	1	PConstantBufferBase
+005E3C30	1	1	PContextVariantFoldingTable
+005E3EB0	1	1	PDynamicMeshInstance
+005E3F70	1	1	PEffect
+005E45B0	1	1	PEffectVariant
+005E4AA0	1	1	PMaterial
+005E52D0	1	1	PMaterialSwitch
+005E5400	1	1	PMeshInstance
+005E6400	1	1	PMeshInstanceAttachPoint
+005E65B0	1	1	PMeshInstanceBounds
+005E67C0	1	1	PMeshInstanceSegmentContext
+005E68B0	1	1	PMeshInstanceSegmentStreamBinding
+005E6B40	1	1	PModifierNetworkDynamicMeshInstance
+005E6C30	1	1	PNodeContext
+005E6D10	1	1	PParameterBuffer
+005E6E70	1	1	PParameterBufferBase
+005E6F30	1	1	PRenderTargetBase
+005E7070	1	1	PSamplerStateBase
+005E7E60	1	1	PSceneRenderPass
+005E81E0	1	1	PShader
+005E84D0	1	1	PShaderParameterCaptureBufferByteAddressBuffer
+005E8610	1	1	PShaderParameterCaptureBufferDataBlock
+005E86D0	1	1	PShaderParameterCaptureBufferIndexDataBlock
+005E8790	1	1	PShaderParameterCaptureBufferLocation
+005E8840	1	1	PShaderParameterCaptureBufferLocationSize
+005E8900	1	1	PShaderParameterCaptureBufferLocationType
+005E89C0	1	1	PShaderParameterCaptureBufferLocationTypeConstantBuffer
+005E8B60	1	1	PShaderParameterCaptureBufferRWByteAddressBuffer
+005E8D10	1	1	PShaderParameterCaptureBufferRWStructuredBuffer
+005E8E50	1	1	PShaderParameterCaptureBufferRWTexture2D
+005E8F10	1	1	PShaderParameterCaptureBufferRWTexture3D
+005E8FD0	1	1	PShaderParameterCaptureBufferSampler
+005E9090	1	1	PShaderParameterCaptureBufferStructuredBuffer
+005E91D0	1	1	PShaderParameterCaptureBufferTexture2D
+005E9290	1	1	PShaderParameterCaptureBufferTexture3D
+005E9350	1	1	PShaderParameterCaptureBufferTextureBase
+005E9500	1	1	PShaderParameterCaptureBufferTextureCubeMap
+005E95C0	1	1	PShaderParameterCaptureConstantBuffer
+005E9680	1	1	PShaderParameterDefinition
+005E9970	1	1	PShaderPassBase
+005E9C20	1	1	PShaderPassInfo
+005E9FF0	1	1	PShaderPassParameterLocationTypes
+005EA0E0	1	1	PShaderPassParameterLocationTypesBase
+005EA220	1	1	PShaderPassParameterLocationTypesConstantBuffer
+005EA310	1	1	PShaderPassStateBase
+005EA3D0	1	1	PShaderProgramParamsAndStreams
+005EA560	1	1	PShaderSource
+005EA7A0	1	1	PShaderStreamDefinition
+005EAAA0	1	1	PStructuredBufferBase
+005EAC50	1	1	PTexture2DBase
+005EAD90	1	1	PTexture3DBase
+005EAF40	1	1	PTextureCommonBase
+005EB2B0	1	1	PTextureCubeMapBase
+005EB7C0	1	1	PArray<PEffectVariant *>
+005EBB00	1	1	PArray<PModifierNetworkInstance *>
+005EBE40	1	1	PArray<PSceneRenderPass *>
+005EC180	1	1	PArray<PContextSwitch *>
+005EC4C0	1	1	PArray<PLightType *>
+005EC800	1	1	PArray<PShadowCasterType *>
+005ECB40	1	1	PArray<PContextVariantFoldingTable>
+005ECE70	1	1	PArray<PMaterialSwitch>
+005ED1A0	1	1	PArray<PMatrix4>
+005ED4D0	1	1	PArray<PMeshInstanceSegmentContext>
+005ED800	1	1	PArray<PNodeContext>
+005EDB30	1	1	PArray<PSceneRenderPass>
+005EDE60	1	1	PArray<PShader>
+005EE190	1	1	PArray<PShaderParameterCaptureBufferLocation>
+005EE4C0	1	1	PArray<PShaderParameterCaptureBufferLocationType>
+005EE7F0	1	1	PArray<PShaderParameterCaptureBufferLocationTypeConstantBuffer>
+005EEB20	1	1	PArray<PShaderParameterDefinition>
+005EEE50	1	1	PArray<PShaderPass>
+005EF180	1	1	PArray<PShaderPassInfo>
+005EF4B0	1	1	PArray<PShaderStreamDefinition>
+005EF7E0	1	1	PArray<PString>
+005EFB10	1	1	PSharray<PUInt32>
+005EFE60	1	1	PSharray<PMeshInstanceSegmentStreamBinding *>
+00608A40	22	17	PConstantBuffer | PIndirectArgsBuffer | PIndirectArgsBufferBase | PRenderTarget | PSamplerState | PSceneWideParameterBuffer | PShaderComputeProgram | PShaderFragmentProgram | PShaderGeometryProgram | PShaderParameterCaptureBufferStream | PShaderPass | PShaderProgramBase | PShaderVertexProgram | PStructuredBuffer | PTexture2D | PTexture3D | PTextureCubeMap
+00611110	1	1	PTexture3DD3D11
+00612550	1	1	PRenderTargetD3D11
+00612640	1	1	PStructuredBufferD3D11
+006130D0	1	1	PIndirectArgsBufferD3D11
+006177D0	1	1	PConstantBufferD3D11
+006177F0	1	1	PSamplerStateD3D11
+00617810	1	1	PShaderComputeProgramD3D11
+006179C0	1	1	PShaderFragmentProgramD3D11
+006179E0	1	1	PShaderGeometryProgramD3D11
+00617A00	1	1	PShaderPassD3D11
+00617E60	1	1	PShaderPassStateD3D11
+00618080	1	1	PShaderProgramD3D11
+006182D0	1	1	PShaderVertexProgramD3D11
+00618390	1	1	PStreamInputDescD3D11
+00618620	1	1	PStreamInputLayoutD3D11
+00618700	1	1	PTexture2DD3D11
+00618720	1	1	PTextureCubeMapD3D11
+00618970	1	1	PArray<PUInt8>
+00618CA0	1	1	PArray<PStreamInputDescD3D11>
+0061D950	1	0	
+006344A0	1	0	
+00634540	2	0	
+00634830	2	0	
+006349B0	2	0	
+006352A0	2	0	
+00635470	2	0	
+006357E0	2	0	
+00635980	2	0	
+00635B80	2	0	
+00635DC0	2	0	
+00636280	1	0	
+00637F20	14	0	
+00639450	1	0	
+0063EC70	1	1	PDepthOfField
+0063EF40	1	1	PAtmosphericsD3D11
+0063F200	1	1	PMotionBlurD3D11
+0063F350	1	1	PMLAABase
+0063FBE0	1	1	PScreenSpaceReflectionD3D11
+0063FFB0	1	1	PAtmospherics
+006400A0	1	1	PMLAAD3D11
+00640200	1	1	PMotionBlur
+006406A0	1	1	PGlowGPUBase
+00640970	1	1	PScreenSpaceReflection
+00640AB0	1	1	PLowResParticles
+00640CE0	1	1	PMLAA
+00640E90	1	1	PScreenSpaceAmbientOcclusionBase
+00641350	1	1	PDeferredLightingD3D11
+00641430	1	1	PGlowD3D11
+00641940	1	1	PMaterialPostEffect
+00641A70	1	1	PScreenSpaceAmbientOcclusionD3D11
+00641F70	1	1	PGlow
+00642130	1	1	PDeferredLighting
+00642250	1	1	PCelShadingD3D11
+00642580	1	1	PScreenSpaceAmbientOcclusion
+00642950	1	1	PFXAABase
+00642D20	1	1	PCelShading
+00643340	1	1	PMeshParticleSystemBase
+006433C0	1	1	PFXAAD3D11
+006439B0	1	1	PDepthOfFieldD3D11
+00643C50	1	1	PFXAA
+00648100	1	1	PAtmosphericsBase
+00648620	1	1	PCelShadingBase
+006488A0	1	1	PDeferredLightingBase
+00648C70	1	1	PDepthOfFieldBase
+00648E10	1	1	PGlowBase
+00648FB0	1	1	PMotionBlurBase
+00649070	1	1	PPostEffectBase
+006491B0	1	1	PPostEffectManager
+006496A0	1	1	PScreenSpaceReflectionBase
+0064AA20	1	1	PArray<PPostEffectBase *>
+00654830	26	26	PAtmospherics | PAtmosphericsD3D11 | PCelShading | PCelShadingD3D11 | PDeferredLighting | PDeferredLightingD3D11 | PDepthOfField | PDepthOfFieldD3D11 | PFXAA | PFXAABase | PFXAAD3D11 | PGlow | PGlowD3D11 | PGlowGPUBase | PLowResParticles | PMLAA | PMLAABase | PMLAAD3D11 | PMaterialPostEffect | PMotionBlur | PMotionBlurD3D11 | PScreenSpaceAmbientOcclusion | PScreenSpaceAmbientOcclusionBase | PScreenSpaceAmbientOcclusionD3D11 | PScreenSpaceReflection | PScreenSpaceReflectionD3D11
+0065F5A0	1	1	PDataBlockBufferD3D11
+0065FA20	1	1	PMeshSegment
+00660CD0	1	1	PIndexDataBlock
+00661170	1	1	PDataBlock
+00665620	1	1	PDataBlockBase
+00665870	1	1	PDataBlockD3D11
+00665A40	1	1	PDynamicDataBlock
+00665CB0	1	1	PDynamicMesh
+00665EB0	1	1	PDynamicSegmentDesc
+006660D0	1	1	PIndexDataBlockBase
+00666360	1	1	PIndexDataBlockBufferD3D11
+00666380	1	1	PIndexDataBlockD3D11
+00666550	1	1	PMaterialSet
+006668B0	1	1	PMesh
+00666E90	1	1	PMeshSegmentBase
+00667230	1	1	PMeshSegmentD3D11
+006673A0	1	1	PShape
+00667700	1	1	PSkeletonJointBounds
+00667920	1	1	PSkinBoneRemap
+00667A60	1	1	PVertexStream
+00668AE0	1	1	PArray<PUInt8,4>
+00668E10	1	1	PArray<PInt32>
+00669140	1	1	PArray<PDataBlockD3D11>
+00669470	1	1	PArray<PDynamicSegmentDesc>
+006697A0	1	1	PArray<PMeshSegment>
+00669AD0	1	1	PArray<PSkeletonJointBounds>
+00669E00	1	1	PArray<PSkinBoneRemap>
+0066A130	1	1	PArray<PVertexStream>
+0066A460	1	1	PSharray<PMaterial *>
+0066A7B0	1	1	PSharray<PDataBlockBufferD3D11>
+0066AB00	1	1	PSharray<PIndexDataBlockBufferD3D11>
+006716D0	4	3	PDataBlock | PIndexDataBlock | PMeshSegment
+00675740	1	1	PAssetReference
+00675DA0	1	1	PAssetReferenceImport
+006784E0	1	1	PCamera
+006788C0	1	1	PCameraProjection
+0067CFE0	1	1	PBitmapFont
+0067D3B0	1	1	PBitmapFontCharInfo
+0067D810	1	1	PArray<PBitmapFontCharInfo>
+0067E6C0	1	1	PWorldMatrix
+00681C50	1	1	PAsyncProcessHeader
+00681D80	1	1	PClassCallableMethodScript
+00681F30	1	1	PScheduler
+006822E0	1	1	PScript
+006827C0	1	1	PScriptCallbackHandler
+00686C40	5	5	CD3D11_BLEND_DESC | CD3D11_DEPTH_STENCIL_DESC | CD3D11_RASTERIZER_DESC | D3D11_DEPTH_STENCILOP_DESC | D3D11_RENDER_TARGET_BLEND_DESC
+006882A0	1	1	PPhysicsCharacterControllerBullet
+006888E0	1	1	PPhysicsShapeBullet
+00688B30	1	1	PPhysicsMeshBullet
+00689320	1	1	PPhysicsCharacterController
+006893C0	1	1	PPhysicsInterfaceBase
+006897B0	1	1	PPhysicsShape
+006898B0	1	1	PPhysicsMesh
+0068A3A0	1	1	PPhysicsRigidBodyBullet
+0068AB40	1	1	PPhysicsInterfaceBullet
+0068AB60	1	1	PPhysicsPlaneBullet
+0068BA40	1	1	PPhysicsSphereBullet
+0068BA60	1	1	PPhysicsInterface
+0068BC30	1	1	PPhysicsCylinderBullet
+0068BC50	1	1	PPhysicsPlane
+0068C700	1	1	PPhysicsSphere
+0068C7F0	1	1	PPhysicsCylinder
+0068DB00	1	1	PPhysicsBoxBullet
+0068DB20	1	1	PPhysicsCapsuleBullet
+0068E140	1	1	PPhysicsWorldBullet
+0068E480	1	1	PPhysicsBox
+0068E4A0	1	1	PPhysicsCapsule
+00693EC0	1	1	PPhysicsBoxBase
+00693F80	1	1	PPhysicsCallbackData
+00694120	1	1	PPhysicsCapsuleBase
+00694260	1	1	PPhysicsCharacterCamera
+006949A0	1	1	PPhysicsCharacterControllerBase
+00695490	1	1	PPhysicsCylinderBase
+006955D0	1	1	PPhysicsMaterial
+00695780	1	1	PPhysicsMeshBase
+00695840	1	1	PPhysicsModel
+006959F0	1	1	PPhysicsPlaneBase
+00695AB0	1	1	PPhysicsRigidBody
+00696470	1	1	PPhysicsRigidBodyBase
+00697320	1	1	PPhysicsShapeBase
+006976A0	1	1	PPhysicsSphereBase
+00697760	1	1	PPhysicsTaperedCapsule
+00697910	1	1	PPhysicsTaperedCylinder
+00697AC0	1	1	PPhysicsWorld
+00698180	1	1	PPhysicsWorldBase
+00698500	1	1	PRaycastResult
+00698930	1	1	PSharray<PPhysicsShape *>
+006A4100	21	21	PPhysicsBox | PPhysicsBoxBullet | PPhysicsCapsule | PPhysicsCapsuleBullet | PPhysicsCharacterController | PPhysicsCharacterControllerBullet | PPhysicsCylinder | PPhysicsCylinderBullet | PPhysicsInterface | PPhysicsInterfaceBase | PPhysicsInterfaceBullet | PPhysicsMesh | PPhysicsMeshBullet | PPhysicsPlane | PPhysicsPlaneBullet | PPhysicsRigidBodyBullet | PPhysicsShape | PPhysicsShapeBullet | PPhysicsSphere | PPhysicsSphereBullet | PPhysicsWorldBullet
+006A72B0	1	1	PString
+006A7EE0	1	1	PTrigger
+006A84C0	1	1	PSharray<PTriggerReceiverComponent *>
+006A9840	1	1	PQuarryComponent
+006A9F10	1	1	PTypedObject
+006AAA80	1	1	PComponent
+006AB7E0	1	1	PEntity
+006AD0A0	1	1	PCameraOrthographic
+006AD910	1	1	PCameraPerspective
+006AE350	1	1	PInstancesComponent
+006AE780	1	1	PArray<PTypedObject>
+006AFC20	1	1	PNameComponent
+006B04B0	1	1	PRandomGenerator
+006B41A0	1	1	PNode
+006B8910	1	1	PMeshSegmentContext
+006BC750	1	1	PModifierNetworkDynamicMesh
+006BCA20	1	1	PModifierNetworkDynamicMeshSegment
+006BCC40	1	1	PArray<PUInt8 *>
+006BCF80	1	1	PArray<PModifierNetworkDynamicMeshSegment>
+006BD2B0	1	1	PArray<PRenderStream>
+006BED60	1	1	PLight
+006C15D0	1	1	PShadowCaster
+006C1810	1	1	PShadowSplit
+006C1920	1	1	PArray<PShadowSplit>
+006C3380	1	1	PModifierNetworkInstance
+006C3580	1	1	PModifierNetworkInstanceInput
+006C36C0	1	1	PModifierNetworkInstancePacketInput
+006C3800	1	1	PArray<PBase *>
+006C45F0	1	0	
+006C4860	2	0	
+006C5A50	1	1	PLODGroup
+006C5FF0	1	1	PLODLevel
+006C6230	1	1	PArray<PLODLevel>
+006C6560	1	1	PSharray<PMeshInstance *>
+006C8310	1	1	POccluderGeometryInstance
+006CD000	1	1	PScriptableComponent
+006CD960	1	1	PTriggerReceiverTypeCallbackData
+006CE190	1	1	PTriggerReceiverComponent
+006D0D50	1	1	PModifierAndInputs
+006D0FA0	1	1	PModifierNetwork
+006D1580	1	1	PModifierNetworkBuffer
+006D1810	1	1	PModifierNetworkInfoPacket
+006D1C70	1	1	PModifierNetworkInfoPacket_Buffer
+006D1D30	1	1	PModifierNetworkInfoPacket_ModifierCode
+006D1EE0	1	1	PModifierNetworkInfoPacket_ModifierInstance
+006D2110	1	1	PRenderStream
+006D2250	1	1	PRenderStreamInput
+006D2390	1	1	PArray<PModifierAndInputs>
+006D26C0	1	1	PArray<PModifierNetworkBuffer>
+006D29F0	1	1	PArray<PRenderStreamInput>
+006D8EF0	1	1	PMorphModifierWeightsUserDataObject
+006D9FC0	1	1	POccluderGeometryObject
+007943E0	1	1	PApplication
+00794E80	1	1	PApplicationViewport
+00795320	1	1	PDebugUtils
+00795590	1	1	PInputMapper
+00867660	1	1	PInputSourceTouchRotate
+00867C40	1	1	PInputSourceMotionAngularVelocityX
+008684F0	1	1	PInputSourceTouchTwoFingerDragX
+00868BF0	1	1	PInputSourceMotionAngularVelocityZ
+00868D00	1	1	PInputSourceTouchTwoFingerDragY
+00869510	1	1	PInputSourceMotionLinearAccelerationX
+00869CE0	1	1	PInputSourceMotionLinearAccelerationY
+00869D80	1	1	PInputSourceTouchDragY
+0086D670	1	1	PInputAction
+0086D990	1	1	PInputMap
+0086DA70	1	1	PInputSource
+0086DC90	1	1	PInputSourceJoypadAxis
+0086DD50	1	1	PInputSourceJoypadButton
+0086DE90	1	1	PInputSourceKey
+0086DFD0	1	1	PInputSourceMotionAngularVelocityY
+0086DFF0	1	1	PInputSourceMotionLinearAccelerationZ
+0086E010	1	1	PInputSourceMotionQuatW
+0086E030	1	1	PInputSourceMotionQuatX
+0086E050	1	1	PInputSourceMotionQuatY
+0086E070	1	1	PInputSourceMotionQuatZ
+0086E090	1	1	PInputSourceMouseButton
+0086E150	1	1	PInputSourceMouseDeltaX
+0086E290	1	1	PInputSourceMouseDeltaY
+0086E3D0	1	1	PInputSourceTouchDragX
+0086E3F0	1	1	PInputSourceTouchPinch
+0086E410	1	1	PInputSourceVisionTrackerX
+0086E430	1	1	PInputSourceVisionTrackerY
+0086E450	1	1	PInputSourceVisionTrackerZ
+0086E470	1	1	PArray<PInputAction *>
+0086E7B0	1	1	PArray<PInputSource *>
+00874830	1	1	PVisionMoveTrackerBase
+008749C0	1	1	PVisionMoveTrackerWin32
+00874B50	1	1	PVisionMoveTracker
+00875290	1	1	PVisionTracker
+008754A0	1	1	PVisionTrackerBase
+00875630	1	1	PVisionTrackerWin32
+00875E10	6	0	
+008780F0	1	1	POctree
+00878630	1	1	POctreeChildren
+008786F0	1	1	POctreeData
+00878980	1	1	POctreeWorld
+00879D60	1	1	PGameConfig
+00879EC0	1	1	PArray<PInputMap *>
+# unnamed by route: {'returned': 17, 'descriptor': 2, 'static': 27, 'unresolved': 7}
+# unnamed	005A08E0	005A0AAD	returned by 006372A0
+# unnamed	005C5C80	005C5D03	returned by 005A65B0
+# unnamed	00608A40	00608B12	returned by 005D8BE0
+# unnamed	00608A40	00608B29	returned by 006B6B60
+# unnamed	00608A40	00608B5D	returned by 0062CC80
+# unnamed	00608A40	00608D23	returned by 006C0C90
+# unnamed	00608A40	00608D3F	returned by 006BEAC0
+# unnamed	0061D950	0061D950	descriptor is the registrar's own argument
+# unnamed	006344A0	00634532	static 02CF8270
+# unnamed	00634540	00634566	static 02CF8370
+# unnamed	00634540	0063480B	unresolved
+# unnamed	00634830	00634844	static 02CF8470
+# unnamed	00634830	0063499A	static 02CF8470
+# unnamed	006349B0	006349D6	static 02CF8580
+# unnamed	006349B0	00635283	unresolved
+# unnamed	006352A0	006352C3	static 02CF8680
+# unnamed	006352A0	0063545A	unresolved
+# unnamed	00635470	00635490	static 02CF8780
+# unnamed	00635470	006357C8	static 02CF8780
+# unnamed	006357E0	006357FE	static 02CF8880
+# unnamed	006357E0	0063596F	unresolved
+# unnamed	00635980	00635996	static 02CF8980
+# unnamed	00635980	00635B70	static 02CF8980
+# unnamed	00635B80	00635B94	static 02CF8A80
+# unnamed	00635B80	00635CB6	static 02CF8A80
+# unnamed	00635DC0	00636146	unresolved
+# unnamed	00635DC0	0063619B	unresolved
+# unnamed	00636280	00636412	unresolved
+# unnamed	00637F20	00637F5C	static 01F2E370
+# unnamed	00637F20	00637F68	static 02CF8470
+# unnamed	00637F20	00637F82	static 01F2E3C0
+# unnamed	00637F20	00637F9C	static 01F2E410
+# unnamed	00637F20	00637FB6	static 01F2E460
+# unnamed	00637F20	00637FD0	static 01F2E4B0
+# unnamed	00637F20	00637FEA	static 01F2E500
+# unnamed	00637F20	00638004	static 01F2E550
+# unnamed	00637F20	0063801E	static 01F2E5A0
+# unnamed	00637F20	00638038	static 01F2E5F0
+# unnamed	00637F20	00638052	static 01F2E640
+# unnamed	00637F20	0063806C	static 01F2E690
+# unnamed	00637F20	00638086	static 01F2E6E0
+# unnamed	00637F20	006380AA	static 01F2E730
+# unnamed	00639450	0063949D	descriptor is the registrar's own argument
+# unnamed	006716D0	00671756	returned by 00661A70
+# unnamed	006C45F0	006C45FC	returned by 006D5810
+# unnamed	006C4860	006C4886	returned by 006D94E0
+# unnamed	006C4860	006C4893	returned by 006D98D0
+# unnamed	00875E10	00875EA8	returned by 008762F0
+# unnamed	00875E10	00875EB5	returned by 008793D0
+# unnamed	00875E10	00875EC2	returned by 008766D0
+# unnamed	00875E10	00875ECF	returned by 00876AE0
+# unnamed	00875E10	00875EDC	returned by 00876EC0
+# unnamed	00875E10	00875EE9	returned by 00875F00

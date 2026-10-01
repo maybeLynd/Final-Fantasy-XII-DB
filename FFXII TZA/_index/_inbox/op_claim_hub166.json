@@ -1,0 +1,10 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-166",
+ "note": "Claiming batch 166: 4 multi-caller (00290320 34B, 00290B90 78B, 0028FA50 22B, 003AFBE0 35B - all batch-165 callees) + top-18 1-A by size (408..148 B). Frontier 5,175 after batch 165.",
+ "resources": [
+  {
+   "key": "target:frontier-shared-callee-hubs"
+  }
+ ]
+}

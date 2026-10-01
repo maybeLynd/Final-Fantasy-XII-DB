@@ -1,0 +1,299 @@
+{
+ "real": [
+  {
+   "name": "cpy2",
+   "va": "0x202c70",
+   "end": "0x202c8f",
+   "size": 31,
+   "sha256": "eb7ce469328090128b05931d62c3298b9b51829632b9b56e378939863ace8be3"
+  },
+  {
+   "name": "base",
+   "va": "0x20e600",
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "name": "bas2",
+   "va": "0x20e620",
+   "end": "0x20e629",
+   "size": 9,
+   "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7"
+  },
+  {
+   "name": "t4i",
+   "va": "0x3af2b0",
+   "end": "0x3af316",
+   "size": 102,
+   "sha256": "085ee039b6c5d7397f8fcd0bec65e320e71914bfd11ad821710af9b34404be9f"
+  },
+  {
+   "name": "hc2",
+   "va": "0x3afbe0",
+   "end": "0x3afc03",
+   "size": 35,
+   "sha256": "6c89432d8f3bbb5c24420fb3e5da967b17e1cc0e2f5a6debd933353817301b3d"
+  },
+  {
+   "name": "hti",
+   "va": "0x3afcd0",
+   "end": "0x3afcfd",
+   "size": 45,
+   "sha256": "eaaceb88fa64fd94fcce29c9b7ab6eb892340513f3756a2eb2fdd6a6370fd014"
+  },
+  {
+   "name": "s53",
+   "va": "0x3b53c0",
+   "end": "0x3b5437",
+   "size": 119,
+   "sha256": "3d30de5e281984ccea0bd808868f2a5e5eab3f3e65b3cd001982b9bfcd70a621"
+  },
+  {
+   "name": "hc1",
+   "va": "0x3b6000",
+   "end": "0x3b601b",
+   "size": 27,
+   "sha256": "e977c40f4812f73f28f02c9a139f873073f3e06ee4257c9b8b86b8b68b480661"
+  },
+  {
+   "name": "slti",
+   "va": "0x3b6890",
+   "end": "0x3b68fe",
+   "size": 110,
+   "sha256": "e140b8de63e42e3961e769af213a55be4f50125889ea312e31222a0353ec4f3e"
+  },
+  {
+   "name": "e0720",
+   "va": "0x3e0720",
+   "end": "0x3e0732",
+   "size": 18,
+   "sha256": "23cd1f4e9e13bba697df85b9667acbb9406e9fecad36d27e26de4bc2e2e64e4c"
+  },
+  {
+   "name": "z50",
+   "va": "0x3e37e0",
+   "end": "0x3e37eb",
+   "size": 11,
+   "sha256": "b021e94bba11ace033e0c88cd4d254fb1e5d16651a753355b57af503a844606b"
+  },
+  {
+   "name": "a8w",
+   "va": "0x3e5d00",
+   "end": "0x3e5d2c",
+   "size": 44,
+   "sha256": "b5bce8f099ce31f978b2f3cef1b7dcb8401d529c6c2367e61998bd92bfad1bd5"
+  },
+  {
+   "name": "g68",
+   "va": "0x3e68e0",
+   "end": "0x3e6908",
+   "size": 40,
+   "sha256": "5ba572d4bf157891835d6f5fac3b58b186168d2b103373e55b5dcfa8ccc12f38"
+  },
+  {
+   "name": "t1w",
+   "va": "0x41d6c0",
+   "end": "0x41d6cf",
+   "size": 15,
+   "sha256": "7748fc18766eb084113389c1d320d028fb3c131b30e3e3949b853911e7f5d141"
+  },
+  {
+   "name": "t2w",
+   "va": "0x41d6d0",
+   "end": "0x41d6df",
+   "size": 15,
+   "sha256": "1a48c4fa445fe76ed4525b6067e144e97a54e24a1807cbfefb527eb22384c2e2"
+  },
+  {
+   "name": "t3w",
+   "va": "0x41d6e0",
+   "end": "0x41d6e8",
+   "size": 8,
+   "sha256": "a4cfcd7e3665214879aab6772df0f6c621981ac69bd3fb2b7af613fbdd34c000"
+  },
+  {
+   "name": "clr",
+   "va": "0x41f730",
+   "end": "0x41fbe8",
+   "size": 1208,
+   "sha256": "96b995562549361a091795f3d11532a1dd69c15e28eb4e9732b4a74c7f745108"
+  },
+  {
+   "name": "l2d",
+   "va": "0x422d50",
+   "end": "0x422d89",
+   "size": 57,
+   "sha256": "2fc84017f26cddaf49f2aebb6f5e35c7bc63c42a2f9cb619db380a8f9af545fe"
+  },
+  {
+   "name": "ctor",
+   "va": "0x4269a0",
+   "end": "0x426c85",
+   "size": 741,
+   "sha256": "d09b01213a79039255b5154b51aeb25b96cea97977e49f75edfcffd72238865c"
+  },
+  {
+   "name": "drain",
+   "va": "0x426ec0",
+   "end": "0x426f98",
+   "size": 216,
+   "sha256": "484270068231e87a38e344f4079287c4f8d89a4b2d5e599e5942d1891c18affb"
+  },
+  {
+   "name": "lkup",
+   "va": "0x4278e0",
+   "end": "0x4279b0",
+   "size": 208,
+   "sha256": "d9f404b5078f856c664878752e28163b0ba24de4f8d374828b24e06707f4021f"
+  },
+  {
+   "name": "aloc",
+   "va": "0x4279b0",
+   "end": "0x427af9",
+   "size": 329,
+   "sha256": "17d81f99eaccb4bedc05bbacedfc7a0337470d51c8121cfaba581c6b65391067"
+  },
+  {
+   "name": "reti",
+   "va": "0x427c90",
+   "end": "0x427dd8",
+   "size": 328,
+   "sha256": "bd165ea1566a30be1561079dd0fbb356a28c3c81ab0674243840a4c430daaf59"
+  },
+  {
+   "name": "prom",
+   "va": "0x428710",
+   "end": "0x4288a3",
+   "size": 403,
+   "sha256": "ecab7de70e4cac36b2b43ccbd73aca9c9d50df4e46622deef22c0d8e9673af2d"
+  },
+  {
+   "name": "rele",
+   "va": "0x429140",
+   "end": "0x4292a6",
+   "size": 358,
+   "sha256": "c8f3a68aa0b8d1cc6e07718a0c40fbb0e74de632b3bdde56b3df5bed0ccf7873"
+  },
+  {
+   "name": "t5i",
+   "va": "0x42f000",
+   "end": "0x42f021",
+   "size": 33,
+   "sha256": "a7536f196c8137b5aea88b0b6b716f38f9402c8c81e7f6fdd6cb5d104e84365c"
+  },
+  {
+   "name": "cpy",
+   "va": "0x46d110",
+   "end": "0x46d11c",
+   "size": 12,
+   "sha256": "7fb75fd68de162a9ae142bfa5e4a057ad19b6233282811db904893215f080b50"
+  },
+  {
+   "name": "t3i",
+   "va": "0x4778a0",
+   "end": "0x4778ce",
+   "size": 46,
+   "sha256": "d6fa36b123f97e7ba484593c131379e9ea0f78d98c131127411ab50f0e5a67a6"
+  },
+  {
+   "name": "f4w",
+   "va": "0x6c0520",
+   "end": "0x6c053a",
+   "size": 26,
+   "sha256": "b155e4cfb5d1677d5ffe6e83aaf47d45c4b0a68448c6a74a51daa70f8fd7e100"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "rinit",
+   "va": "0x420480",
+   "note": "00420480 record-init boundary: entry-intercepted, args (rec,name,buf1,obj,stack:orig r8d/r9d) captured"
+  },
+  {
+   "name": "ptd",
+   "va": "0x41fcf0",
+   "note": "0041FCF0 pending-teardown boundary: entry-intercepted, arg captured"
+  },
+  {
+   "name": "hid",
+   "va": "0x3b56d0",
+   "note": "003B56D0 handle-id allocator: entry-intercepted, planted hid_ret+i returned, arg w[rec] captured"
+  },
+  {
+   "name": "phook",
+   "va": "0x42c410",
+   "note": "0042C410 promotion hook: entry-intercepted, fx writes applied, arg captured; caller pins +0x48818 bit0"
+  },
+  {
+   "name": "tdown",
+   "va": "0x4200a0",
+   "note": "004200A0 record resource teardown (frees ~10 sub-objects then tail-jmps 0041F730): entry-intercepted, arg captured"
+  },
+  {
+   "name": "f4c0",
+   "va": "0x42f4c0",
+   "note": "0042F4C0 retire pre-teardown boundary: entry-intercepted, arg captured"
+  },
+  {
+   "name": "e56",
+   "va": "0x3e56a0",
+   "note": "003E56A0 deep object resolver: entry-intercepted, planted E56O returned, arg captured; caller tests b[ret]"
+  },
+  {
+   "name": "mids",
+   "va": "0x2ed570",
+   "note": "002ED570 mid resolver (deep subtree): entry-intercepted, planted MIDO returned, args captured"
+  },
+  {
+   "name": "t51",
+   "va": "0x51b9e0",
+   "note": "0051B9E0 resolver tail target of 00422D50: entry-intercepted, planted T51O returned, args captured"
+  },
+  {
+   "name": "s512",
+   "va": "0x512ef0",
+   "note": "00512EF0 subsystem boundary: entry-intercepted"
+  },
+  {
+   "name": "d40",
+   "va": "0x40db70",
+   "note": "0040DB70 subsystem boundary: entry-intercepted"
+  },
+  {
+   "name": "e400",
+   "va": "0x32e400",
+   "note": "0032E400 subsystem boundary: entry-intercepted"
+  },
+  {
+   "name": "e620",
+   "va": "0x32e620",
+   "note": "0032E620 subsystem boundary: entry-intercepted"
+  },
+  {
+   "name": "e520",
+   "va": "0x32e520",
+   "note": "0032E520 subsystem boundary: entry-intercepted"
+  },
+  {
+   "name": "al1",
+   "va": "0x36c1d0",
+   "note": "0036C1D0 allocator (unplanted-table path only): entry-intercepted, planted table returned"
+  },
+  {
+   "name": "al2",
+   "va": "0x36a100",
+   "note": "0036A100 allocator (unplanted-table path only): entry-intercepted, planted table returned"
+  },
+  {
+   "name": "al3",
+   "va": "0x36c140",
+   "note": "0036C140 allocator (unplanted-table path only): entry-intercepted, planted table returned"
+  },
+  {
+   "name": "memset",
+   "va": "0x861ec0",
+   "note": "00861EC0 memset thunk: entry-intercepted, implemented as a real byte-fill (its writes ARE the semantics), args captured"
+  }
+ ]
+}

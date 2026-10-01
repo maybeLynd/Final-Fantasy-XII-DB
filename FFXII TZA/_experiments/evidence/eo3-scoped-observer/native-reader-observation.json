@@ -1,0 +1,56 @@
+{
+  "status": "VALID_NATIVE_READER_CONTROL_ONLY",
+  "observation": {
+    "path_address": 1689776820191,
+    "path_bytes": 33,
+    "cross_page_raw": {
+      "handle": 552,
+      "address": 1689776820223,
+      "requested": 2,
+      "result": 0,
+      "transferred": 0,
+      "error": 299,
+      "raw_hex": ""
+    },
+    "noaccess_raw": {
+      "handle": 552,
+      "address": 1689776820224,
+      "requested": 1,
+      "result": 0,
+      "transferred": 0,
+      "error": 299,
+      "raw_hex": ""
+    },
+    "owned_child_pid": 38728,
+    "cleanup_verified": true,
+    "established": "Full-width exact native read succeeds; failed/cross-page reads are rejected; byte-limited NUL read avoids the guard page; positive still succeeds after failures.",
+    "limits": [
+      "Supplied stable native memory, not FF12 initialization/ownership/lifetime.",
+      "Selected Python/kernel32 identities only; no complete forwarded-module census.",
+      "No stopped debug-event read adapter, pending-event abort or game health qualification."
+    ]
+  },
+  "rejected": [
+    "empty reads",
+    "truncated native source pointer",
+    "partial failed read promoted to data",
+    "wrong native parent identity",
+    "unclosed owned read handle",
+    "unfreed native allocation",
+    "post-failure positive lost"
+  ],
+  "raw_source_sha256": {
+    "calls.json": "150b1cd38666cf56dd759d08569ee8718d4522d9d1f1b7cd1d7cfb94cd153f90",
+    "child.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit.json": "0c1a33a27d9b7e09c42633bb4140557e7a6c19a51a5400706fdd121a39cefe6f",
+    "ownership.json": "bba14a56ef297a9b4b2def82a569fc1c607beddb44f25a9272d24b8778772dc2",
+    "parent-cleanup.json": "be361a2f4af91a7d9267f64ed4a6f1b4af4b2e3bee47ae34625ea477963ba4e0",
+    "plan.json": "e5782996b600446cb7aef9623d7648553d6aecd856af6f3d6c249cd370787253",
+    "reader-source.py": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172",
+    "ready.json": "d71fc9eba3786f83862e12afca1c3ed9977298ba2fa24430fbcb34d492596a31",
+    "result.json": "cd32b00436c9cc26cff7a7c6db41a1b82aedb1b673bf0a3cfad4f6b34783cc5d",
+    "stop.flag": "69bfe4c7b961763e8e94ccd78bb4e9cc398977afd33355ec34280c0151fb20f3"
+  },
+  "ff12_run": false,
+  "original_code_executed": false
+}

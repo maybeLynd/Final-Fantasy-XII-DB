@@ -1,0 +1,33 @@
+section	key	measurable	value	instrument
+charter-3	Identity	yes	5320-5813/7386 named in PROSE; 679 in the ledger	knowledge_db doc_names (a RANGE - see prose_named) vs functions.tsv
+charter-3	Identity/owner	yes	1606/7386 owned	functions.tsv owner, joined to citations
+charter-3	Interface	yes	7/229 documents declare signatures	contract §2 is the only parsable signature record
+charter-3	Data	yes	189 types / 776 fields; 10 GAME types	_types/ store, validated by types_index.py
+charter-3	Behaviour	yes	7/229 documents; 63 claims, 11 UNKNOWN	knowledge_db contract_sections 4/5/7/10/12 + contract_claims
+charter-3	Relationships	yes	7386/7386 have graph callers+callees	edges.tsv with caller_is_eh filtered - true by construction
+charter-3	Runtime	yes	0/229 documents at RUNTIME VALIDATED	readiness frontmatter; EXP-001 is the blocker
+charter-3	Validation	yes	20/229 carry a confidence label	frontmatter; DJ-1 is the labelling backlog
+#
+#	ladder rung debt
+section	document	stated_rung	unmet_rungs_below	
+ladder	01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md	CONTRACT READY	RUNTIME VALIDATED	
+ladder	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	CONTRACT READY	RUNTIME VALIDATED	
+ladder	06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	CONTRACT READY	RUNTIME VALIDATED	
+ladder	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	CONTRACT READY	RUNTIME VALIDATED	
+ladder	15-Input/Input-Name-Registry/the-input-name-registry-and-channel-aliases.md	DIFFERENTIAL TESTED	SIGNATURE RESOLVED;TYPE RESOLVED;RUNTIME VALIDATED	
+ladder	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	CONTRACT READY	RUNTIME VALIDATED	
+ladder	18-Audio/CONTRACT-field-music-selection.md	DIFFERENTIAL TESTED	RUNTIME VALIDATED	
+ladder	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	CONTRACT READY	RUNTIME VALIDATED	
+
+#
+#	RE-MEASURED 2026-09-20 (OPUS). The rows above are the 2026-09-08 starting position and are KEPT; every figure in them is superseded by the rows below, measured with each row's own named instrument against a knowledge.sqlite rebuilt the same day.
+charter-3-2026-09-20	POPULATION	yes	412 documents (non-template), 47 of them contracts; 38161 functions in the list	knowledge.sqlite rebuilt 2026-09-20; was 229 documents / 7,386 functions
+charter-3-2026-09-20	Identity	yes	6566 of 38161 functions named in prose; 6513 of those at the ENTRY address	doc_names vs functions - was '5320-5813/7386'
+charter-3-2026-09-20	Identity/owner	yes	9409 of 38161 owned; 5410 of those also cited by a document	functions.owner joined to citations - was '1606/7386'
+charter-3-2026-09-20	Interface	yes	47 of 412 documents declare signatures (every contract, and only contracts)	contract section 2 - was '7/229'
+charter-3-2026-09-20	Data	yes	445 types / 3912 fields; 113 non-Phyre	_types store, validated by types_index.py - was '189 types / 776 fields; 10 GAME'
+charter-3-2026-09-20	Behaviour	yes	47 of 412 documents; 857 claims, 46 UNKNOWN	contract_sections 4/5/7/10/12 + contract_claims - was '7/229; 63 claims, 11 UNKNOWN'
+charter-3-2026-09-20	Relationships	yes	38161 of 38161 have graph callers+callees	edges.tsv - true by construction, unchanged in kind
+charter-3-2026-09-20	Runtime	yes	2 of 412 at RUNTIME VALIDATED - THE BINDING L2 CONSTRAINT	readiness frontmatter - was '0/229'. L2 requires runtime evidence for major systems and this row is why L2 is not satisfiable today; the live tier is paused by user decision, which blocks the affected claims and not the database
+charter-3-2026-09-20	Validation	yes	96 of 412 carry a confidence label	frontmatter - was '20/229'; the DJ-1 labelling backlog is still 316 documents
+charter-3-2026-09-20	Ladder vocabulary	yes	94 of 97 readiness lines are ON the 13-rung ladder; 3 are not	KNOWLEDGE-SCHEMA's ordered sequence. The 3 exceptions are PARTIALLY UNDERSTOOD (the-movement-and-secondary-context-censuses.md); RUNTIME VALIDATED and DIFFERENTIAL TES (CONTRACT-input-name-registry.md); SEMANTICALLY IDENTIFIED - the family,  (the-msvc-ordered-container-runtime.md)

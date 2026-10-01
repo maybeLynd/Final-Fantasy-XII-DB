@@ -1,0 +1,7 @@
+# NativeAdapter.SetneFirstArgTailCall - EC-7 family C
+# ecx = setne(arg1); tail-dispatch to a member op.
+address	targets
+00291D70	0028E840
+002E16A0	00290780
+002EA870	003E09B0
+0036E6F0	0016D6A0

@@ -1,0 +1,119 @@
+== A. operands starting in [022D8E70, 022D8EB4)
+  00244224 rip   mov      rcx, qword ptr [rip + 0x2094c81]             start 022D8EAC w8  COVERS  root 00244200
+  0024422E rip   mov      eax, dword ptr [rip + 0x2094c74]             start 022D8EA8 w4   root 00244200
+  002442FF rip   movsxd   rax, dword ptr [rip + 0x2094ba6]             start 022D8EAC w4   root 00244200
+  00244362 rip   movsxd   rax, dword ptr [rip + 0x2094b43]             start 022D8EAC w4   root 00244200
+  002443E7 rip   mov      r10, qword ptr [rip + 0x2094abe]             start 022D8EAC w8  COVERS  root 002443D0
+  0024DF2E rip   movsxd   rax, dword ptr [rip + 0x208af73]             start 022D8EA8 w4   root 0024DEE0
+  0025107C rip   mov      r8d, dword ptr [rip + 0x2087e29]             start 022D8EAC w4   root 00251010
+  002511E0 rip   mov      eax, dword ptr [rip + 0x2087cc6]             start 022D8EAC w4   root 00251010
+  002513DB rip   mov      eax, dword ptr [rip + 0x2087acb]             start 022D8EAC w4   root 002512B0
+  00251557 rip   mov      eax, dword ptr [rip + 0x208794f]             start 022D8EAC w4   root 002512B0
+  002516F8 rip   mov      eax, dword ptr [rip + 0x20877ae]             start 022D8EAC w4   root 002512B0
+  002517B5 rip   mov      eax, dword ptr [rip + 0x20876f1]             start 022D8EAC w4   root 002512B0
+  00251AC4 rip   mov      eax, dword ptr [rip + 0x20873e2]             start 022D8EAC w4   root 002512B0
+  00251B4D rip   mov      eax, dword ptr [rip + 0x2087359]             start 022D8EAC w4   root 002512B0
+  00251E1C rip   mov      eax, dword ptr [rip + 0x208708a]             start 022D8EAC w4   root 00251E00
+  00252586 rip   sub      edx, dword ptr [rip + 0x2086920]             start 022D8EAC w4   root 00252500
+  002525D6 rip   mov      eax, dword ptr [rip + 0x20868d0]             start 022D8EAC w4   root 00252500
+  002D7FEC rip   mov      eax, dword ptr [rip + 0x2000eba]             start 022D8EAC w4   root 002D7FC0
+  0036D286 rip   mov      dword ptr [rip + 0x1f6bc1c], 0x200           start 022D8EAC w4   root 0036D280
+  0036D290 rip   mov      dword ptr [rip + 0x1f6bc12], eax             start 022D8EA8 w4   root 0036D280
+  0036D2A3 rip   mov      dword ptr [rip + 0x1f6bc03], 0x200           start 022D8EB0 w4  COVERS  root 0036D280
+  0036D31B rip   mov      ebx, dword ptr [rip + 0x1f6bb8b]             start 022D8EAC w4   root 0036D2F0
+  0036D342 rip   movzx    r8d, word ptr [rip + 0x1f6bb66]              start 022D8EB0 w2  COVERS  root 0036D2F0
+  0036D380 rip   movsd    qword ptr [rip + 0x1f6bae8], xmm0            start 022D8E70 w8   root 0036D2F0
+  0036D3B2 rip   mov      qword ptr [rip + 0x1f6bae7], rax             start 022D8EA0 w8   root 0036D2F0
+  0036D3B9 rip   movups   xmmword ptr [rip + 0x1f6bab8], xmm1          start 022D8E78 w16  root 0036D2F0
+  0036D3C9 rip   movups   xmmword ptr [rip + 0x1f6bab8], xmm0          start 022D8E88 w16  root 0036D2F0
+  0036D3D0 rip   movsd    qword ptr [rip + 0x1f6bac0], xmm1            start 022D8E98 w8   root 0036D2F0
+  0036D429 rip   mov      edi, dword ptr [rip + 0x1f6ba7d]             start 022D8EAC w4   root 0036D400
+  0036D452 rip   mov      eax, dword ptr [rip + 0x1f6ba50]             start 022D8EA8 w4   root 0036D400
+  0036D7E0 rip   movsxd   rax, dword ptr [rip + 0x1f6b6c1]             start 022D8EA8 w4   root 00000000
+  0036D800 rip   mov      qword ptr [rip + 0x1f6b699], rax             start 022D8EA0 w8   root 00000000
+  003764BE rip   mov      r12d, dword ptr [rip + 0x1f629e7]            start 022D8EAC w4   root 00376470
+  00382922 rip   mov      edx, dword ptr [rip + 0x1f56584]             start 022D8EAC w4   root 00382910
+  0039D214 rip   mov      ebx, dword ptr [rip + 0x1f3bc92]             start 022D8EAC w4   root 0039D200
+  00467AA6 rip   imul     eax, dword ptr [rip + 0x1e713ff]             start 022D8EAC w4   root 00000000
+  00467AD6 rip   imul     eax, dword ptr [rip + 0x1e713cf]             start 022D8EAC w4   root 00000000
+  00474767 rip   mov      r12d, dword ptr [rip + 0x1e6473e]            start 022D8EAC w4   root 00474710
+  004FDDC7 rip   mov      rsi, qword ptr [rip + 0x1ddb0de]             start 022D8EAC w8  COVERS  root 004FDDA0
+  00537B21 rip   mov      r11d, dword ptr [rip + 0x1da1384]            start 022D8EAC w4   root 00537B10
+  covering 022D8EB0: ['00244224 rip mov w8', '002443E7 rip mov w8', '0036D2A3 rip mov w4', '0036D342 rip movzx w2', '004FDDC7 rip mov w8']
+== B. leas of addresses in [022D8D10, 022D8EB4)
+  0024DF87 lea rax -> 022D8E60 (cell - 0x50) root 0024DEE0: accesses 1, hand-ons 0, stores 0
+  00369B26 lea rcx -> 022D8E10 (cell - 0xA0) root 00369860: accesses 1, hand-ons 0, stores 0
+  0036A381 lea rcx -> 022D8E10 (cell - 0xA0) root 0036A2A0: accesses 1, hand-ons 0, stores 0
+  0036C11C lea rcx -> 022D8DD0 (cell - 0xE0) root 00000000: accesses 1, hand-ons 0, stores 0
+  0036C1B4 lea r9 -> 022D8DD0 (cell - 0xE0) root 00000000: accesses 1, hand-ons 0, stores 0
+  0036C605 lea r9 -> 022D8E10 (cell - 0xA0) root 00000000: accesses 2, hand-ons 0, stores 0
+  0036C63B lea r9 -> 022D8E10 (cell - 0xA0) root 00000000: accesses 2, hand-ons 0, stores 0
+  0036D0F0 lea r14 -> 022D8E10 (cell - 0xA0) root 0036D050: accesses 2, hand-ons 0, stores 0
+  0036D3A2 lea rax -> 022D8E50 (cell - 0x60) root 0036D2F0: accesses 0, hand-ons 0, stores 1
+  0036D7F5 lea rax -> 022D8E50 (cell - 0x60) root 00000000: accesses 1, hand-ons 0, stores 0
+  10 leas
+== C. stored pointers
+  relocations 0 []; raw values outside .text 0 []
+== D. 0036D2F0 after the stub call; the stub
+  first r8 event after 0036D34E: ('written/call', 3593187, 'call 0x808c40')
+  0016D6A0 bytes c20000cc = `ret 0`; raw callers (E8/E9 + jcc) 2868
+== E. 00244200 packet stores
+  00244200 mov qword ptr [rsp + 8], rbx
+  00244205 mov qword ptr [rsp + 0x10], rbp
+  0024420A mov qword ptr [rsp + 0x18], rsi
+  00244224 mov rcx, qword ptr [rip + 0x2094c81]   ; -> 022D8EAC
+  0024422E mov eax, dword ptr [rip + 0x2094c74]   ; -> 022D8EA8
+  00244236 imul eax, dword ptr [rip + 0x2094c77]   ; -> 022D8EB4
+  00244241 sar edx, 6
+  00244250 mov qword ptr [rsp + 0x20], rbx
+  00244255 imul eax, ecx
+  0024425A sar eax, 6
+  00244262 shl rax, 0x20
+  00244266 or rax, rdx
+  0024426E or rax, 0x333c0000
+  00244274 shl rax, 0x10
+  00244278 or rsi, rax
+  0024427B call 0x39d0c0
+  00244280 mov eax, dword ptr [rip + 0x2094c2e]   ; -> 022D8EB4
+  00244298 call 0x248eb0
+  002442A2 movabs rdx, 0x1000000000
+  002442AC movabs rcx, 0x1000000000008007
+  002442B6 mov qword ptr [rax], rcx
+  002442B9 mov qword ptr [rax + 8], 0xe
+  002442CA mov qword ptr [rsp + 0x50], rax
+  002442CF mov qword ptr [rax], rsi
+  002442D2 mov qword ptr [rax + 8], 0x50
+  002442E6 mov qword ptr [rsp + 0x50], rcx
+  002442EB shl rax, 0x10
+  002442EF mov qword ptr [rcx], rax
+  002442F2 mov qword ptr [rcx + 8], 0x51
+  002442FF movsxd rax, dword ptr [rip + 0x2094ba6]   ; -> 022D8EAC
+  0024430A mov qword ptr [rsp + 0x50], rcx
+  0024430F or rax, rdx
+  00244312 mov qword ptr [rcx], rax
+  00244315 mov qword ptr [rcx + 8], 0x52
+  00244326 mov qword ptr [rsp + 0x50], rax
+  0024432B mov qword ptr [rax], 2
+  00244332 mov qword ptr [rax + 8], 0x53
+  00244346 mov qword ptr [rsp + 0x50], rcx
+  0024434B or rax, rdx
+  0024434E shl rax, 0x10
+  00244352 mov qword ptr [rcx], rax
+  00244355 mov qword ptr [rcx + 8], 0x51
+  00244362 movsxd rax, dword ptr [rip + 0x2094b43]   ; -> 022D8EAC
+  0024436D or rax, rdx
+  00244370 mov qword ptr [rsp + 0x50], rcx
+  00244375 mov qword ptr [rcx], rax
+  00244378 mov qword ptr [rcx + 8], 0x52
+  00244389 mov qword ptr [rsp + 0x50], rax
+  00244393 mov qword ptr [rax], 2
+  0024439C mov qword ptr [rax + 8], 0x53
+  002443AA call 0x248e10
+  GIF tag 0x1000000000008007: NLOOP 7 EOP 1 PRE 0 FLG 0 NREG 1 REGS 0x0
+== controls
+PASS  K1 +0x9C readers 00244224 / 0036D31B found: ['00244224 mov', '002442FF movsxd', '00244362 movsxd', '002443E7 mov', '0025107C mov', '002511E0 mov', '002513DB mov', '00251557 mov', '002516F8 mov', '002517B5 mov', '00251AC4 mov', '00251B4D mov', '00251E1C mov', '00252586 sub', '002525D6 mov', '002D7FEC mov', '0036D286 mov', '0036D31B mov', '0036D429 mov', '003764BE mov', '00382922 mov', '0039D214 mov', '00467AA6 imul', '00467AD6 imul', '00474767 mov', '004FDDC7 mov', '00537B21 mov']
+PASS  K2 image-base-relative control
+PASS  V1 022D8EB0 is covered by the boot store 0036D2A3, the word read 0036D342 AND three qword loads of +0x9C (00244224, 002443E7, 004FDDC7) that carry +0xA0 in their high half - see sd169_qword.out
+PASS  V2 no lea'd base or stored pointer reaches 022D8EB0
+PASS  V3 0016D6A0 is `ret 0`; r8 is not read after the call
+FAILS 0

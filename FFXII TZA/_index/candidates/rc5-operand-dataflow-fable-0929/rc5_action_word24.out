@@ -1,0 +1,44 @@
+action_data_ch.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_cn.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_de.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_es.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_fr.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_in.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_it.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_kr.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+action_data_us.st2e: rows 543 stride 60 FFFF 68 band511-534 True -> CONTROL PASS; bit-30 rows 87, their +0x24 words: {0: 1, 40: 1, 41: 1, 43: 1, 44: 1, 46: 1, 47: 1, 49: 1, 50: 1, 52: 1, 53: 1, 55: 1, 56: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 68: 1, 70: 1, 71: 1, 73: 1, 74: 1, 76: 1, 77: 1, 210: 34, 355: 1, 65535: 25}
+
+'us' bit-30 rows by +0x24 word -> the set id's name (rc5_paths.tsv):
+      0 x1   rows [148] -> ('(no kind-8 name)', '')
+     40 x1   rows [262] -> ('sum_a0000', 'sum_(json only)')
+     41 x1   rows [183] -> ('sum_a0001', 'A(sum_+0001)')
+     43 x1   rows [263] -> ('sum_j0000', 'sum_(json only)')
+     44 x1   rows [185] -> ('sum_j0001', 'A(sum_+0001)')
+     46 x1   rows [264] -> ('sum_h0000', 'sum_(json only)')
+     47 x1   rows [187] -> ('sum_h0001', 'A(sum_+0001)')
+     49 x1   rows [265] -> ('sum_e0000', 'sum_(json only)')
+     50 x1   rows [189] -> ('sum_e0001', 'A(sum_+0001)')
+     52 x1   rows [266] -> ('sum_f0000', 'sum_(json only)')
+     53 x1   rows [191] -> ('sum_f0001', 'A(sum_+0001)')
+     55 x1   rows [267] -> ('sum_i0000', 'sum_(json only)')
+     56 x1   rows [193] -> ('sum_i0001', 'A(sum_+0001)')
+     58 x1   rows [268] -> ('sum_g0000', 'sum_(json only)')
+     59 x1   rows [195] -> ('sum_g0001', 'A(sum_+0001)')
+     61 x1   rows [269] -> ('sum_k0000', 'sum_(json only)')
+     62 x1   rows [197] -> ('sum_k0001', 'A(sum_+0001)')
+     64 x1   rows [270] -> ('sum_d0000', 'sum_(json only)')
+     65 x1   rows [199] -> ('sum_d0001', 'A(sum_+0001)')
+     67 x1   rows [271] -> ('sum_c0000', 'sum_(json only)')
+     68 x1   rows [201] -> ('sum_c0001', 'A(sum_+0001)')
+     70 x1   rows [272] -> ('sum_l0000', 'sum_(json only)')
+     71 x1   rows [203] -> ('sum_l0001', 'A(sum_+0001)')
+     73 x1   rows [273] -> ('sum_b0000', 'sum_(json only)')
+     74 x1   rows [205] -> ('sum_b0001', 'A(sum_+0001)')
+     76 x1   rows [274] -> ('sum_m0000', 'sum_(json only)')
+     77 x1   rows [207] -> ('sum_m0001', 'A(sum_+0001)')
+    210 x34  rows [208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219] -> ('spc_z0000', 'B(spc_)')
+    355 x1   rows [149] -> ('chb_z0000', '')
+   FFFF x25  rows [275, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521] -> ('(no kind-8 name)', '')
+sum_<x>0001 (flag A) set ids reached by a bit-30 row's +0x24: [41, 44, 47, 50, 53, 56, 59, 62, 65, 68, 71, 74, 77]
+all nine languages give the same bit-30 word multiset: True
+FAILS 0

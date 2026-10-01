@@ -1,0 +1,12 @@
+A_order_and_empty_ownership          PASS  {'note': 'order [1, 2, 3, 4, 5]; stats written by any stage: False; stage 1 writes 320 result bytes (I-3 names 4 fields)'}
+B_stage3_effect_slots                PASS  {'note': 'slot 0: 5 -> 4; slot 1: 1 -> 0 and id 9 listed; slot 2 (0) skipped; 0xFF never; the stats +0x17C are NOT written'}
+C_five_expiries_list_bound           PASS  {'note': 'observed, not asserted: ids 1,2,4,5,6 expire in one tick; the fifth id byte is written at +0x42 and the slot-0 timer write that follows lands on +0x42..+0x43'}
+D_stage2_beat_and_regen              PASS  {'note': 'beat -10 per tick into result+0xDC+2s (stats untouched); Regen heal = (MT19937(5489) draw mod byte[+0x1C2]) + 1, ADDED; new beat = row+9 x frame base x 30'}
+F_stage4_drain_modes                 PASS  {'note': 'fires only when the clock is a multiple of frame x 10; HP arm -(src/100) or -1 below 100; MP arm -(MP/50) or -1 below 50: both NEGATIVE in the record'}
+E_I5_no_stage_calls_another          PASS  {'note': 'each stage entered once, in order'}
+6/6 pass (allowed 24 functions)
+I4_only_stage3_reads_the_effect_slot_timers              PASS
+I4_only_stage2_reaches_the_duration_beat_pair            PASS
+I4_no_stage_writes_the_stats_block                       PASS
+I3_stage1_zeroes_all_320_bytes_then_plants_sentinels     PASS
+ALL PASS

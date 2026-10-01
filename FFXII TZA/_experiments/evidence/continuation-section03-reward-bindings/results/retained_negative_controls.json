@@ -1,0 +1,52 @@
+[
+  {
+    "control": "changed_reward_after_bracket",
+    "rejected": true,
+    "reason": "unit binding changed across reward bracket"
+  },
+  {
+    "control": "wrong_registry_address",
+    "rejected": true,
+    "reason": "wrong span address registry_before"
+  },
+  {
+    "control": "wrong_stats_address",
+    "rejected": true,
+    "reason": "wrong span address unit_4_stats"
+  },
+  {
+    "control": "changed_stats_content",
+    "rejected": true,
+    "reason": "spawn stats do not match keep slice"
+  },
+  {
+    "control": "misaligned_definition_pointer",
+    "rejected": true,
+    "reason": "definition pointer extent"
+  },
+  {
+    "control": "empty_field_samples",
+    "rejected": true,
+    "reason": "expected two retained samples per stage"
+  },
+  {
+    "control": "duplicate_sample_id",
+    "rejected": true,
+    "reason": "sample identity duplicated or changed"
+  },
+  {
+    "control": "false_observer_flag",
+    "rejected": true,
+    "reason": "original stability flag false"
+  },
+  {
+    "control": "added_uncaptured_reward_bytes",
+    "rejected": true,
+    "reason": "reward row capture unexpectedly present"
+  },
+  {
+    "control": "restoration_mismatch",
+    "rejected": true,
+    "reason": "original restore/exit receipt mismatch"
+  }
+]

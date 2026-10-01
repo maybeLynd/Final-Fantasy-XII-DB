@@ -1,0 +1,8 @@
+scripts: 1114
+control: mapsoundplay( occurrences: 3838
+uses: [('unkCall_5be()', 200), ('unkCall_5bf()', 100)]
+files with a use: 100 ; prefixes: [('tri_a', 5), ('tri_b', 5), ('tri_c', 5), ('tri_d', 5), ('tri_e', 5), ('tri_f', 5), ('tri_g', 5), ('tri_h', 5), ('tri_i', 5), ('tri_j', 5), ('tri_k', 5), ('tri_l', 5), ('tri_m', 5), ('tri_n', 5), ('tri_o', 5), ('tri_p', 5), ('tri_q', 5), ('tri_r', 5), ('tri_s', 5), ('tri_t', 5)]
+uses per file: [(3, 100)]
+  unkCall_5be() in actor トライアル監督(0), function init(): 100
+  unkCall_5be() in actor トライアル監督(0), function main(1): 100
+  unkCall_5bf() in actor トライアル監督(0), function main(1): 100

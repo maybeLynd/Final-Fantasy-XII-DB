@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-136",
+ "result_refs": [
+  "publish commit 957fb3a2e"
+ ],
+ "note": "batch-136 publish: 25 paths, guard ADDS NOTHING after 1 same-edit crossing section (2816->2815)"
+}

@@ -1,0 +1,13 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-ACCESSOR-BLIND-SPOT",
+ "note": "Published 1ea4ba919 with publish_paths.sh under @publication. Accessor-aware census swept all eight pointer-slot singletons: both types with an accessor (BootSingleton01F7F598, ImageBackedStateBlock) had gaps and are fixed, the five without were clean, and 01F7F5F0 is a saved/restored slot with nothing to census.",
+ "result_refs": [
+  {
+   "key": "file:database/ffxii tza/_types/fields.tsv"
+  },
+  {
+   "key": "file:database/ffxii tza/_index/audit-log.md"
+  }
+ ]
+}

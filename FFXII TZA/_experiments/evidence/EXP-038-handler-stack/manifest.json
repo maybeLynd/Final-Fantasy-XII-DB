@@ -1,0 +1,44 @@
+{
+  "files": {
+    "api_receipts.py": {
+      "bytes": 2970,
+      "sha256": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a"
+    },
+    "capture.py": {
+      "bytes": 6854,
+      "sha256": "1867e44348472f0cd5897daa713da262c5d547caae3e8ea6d74f8588c9cb4b4d"
+    },
+    "hwbp-source.py": {
+      "bytes": 22628,
+      "sha256": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6"
+    },
+    "origins.json": {
+      "bytes": 1079,
+      "sha256": "6bd75452963e568d4363a3fe80f54baf4685dc91a8b8175a2b8c8a8df7650505"
+    },
+    "stack_receipt.py": {
+      "bytes": 1096,
+      "sha256": "57cbf8874fe48b400e2a54eef856e6046d82a831ab35ad8381402d81d6d14441"
+    },
+    "test_capture.py": {
+      "bytes": 4854,
+      "sha256": "53d970bb31e72cd2f343624a71c1b9d1643e517cb8e41a99e474674cc25ee8f5"
+    },
+    "test_capture.txt": {
+      "bytes": 106,
+      "sha256": "5ccab29804d10399d37a1e42fcce6c3fb7408f413b9a6c263788ce0fa594f82d"
+    },
+    "test_stack.py": {
+      "bytes": 1412,
+      "sha256": "4f336b34be93dc45ca81762d612403b145d9d0b9fc49ae5143b72310a718dc74"
+    },
+    "test_stack.txt": {
+      "bytes": 386,
+      "sha256": "54077b630ca3d4a9190333f57390e548b27d01408834e54ff480f77fce2a4a39"
+    },
+    "timeout_cleanup.py": {
+      "bytes": 3735,
+      "sha256": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a"
+    }
+  }
+}

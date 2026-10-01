@@ -1,0 +1,9 @@
+cell 0215F1A4 width 4: 9 sites in 5 functions
+functions reading by exact address: 1; reading incl. overlapping wider/nearby access: 1; writing: 5
+  002E0B97 in 002E09A0  W    w4 tgt 0215F1A4  mov dword ptr [rip + 0x1e7e607], ebp
+  002E15D9 in 002E15D0  W    w4 tgt 0215F1A4  mov dword ptr [rip + 0x1e7dbc5], eax
+  002E1AC4 in 002E1A60  W    w4 tgt 0215F1A4  mov dword ptr [rip + 0x1e7d6da], edi
+  002E1AF0 in 002E1AE0  W    w4 tgt 0215F1A4  mov dword ptr [rip + 0x1e7d6aa], 0xc
+  002E1B41 in 002E1B10  W    w4 tgt 0215F1A4  mov dword ptr [rip + 0x1e7d65d], ebx
+READERS_NAME ['002E09A0']
+overlap-only readers: []

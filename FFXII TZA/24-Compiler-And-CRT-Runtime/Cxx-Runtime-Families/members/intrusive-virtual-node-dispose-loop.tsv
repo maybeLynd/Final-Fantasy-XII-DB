@@ -1,0 +1,17 @@
+# intrusive virtual node-dispose loop - EC-7 family C
+# # walk the intrusive circular list at [rcx]; virtual-call
+# # [rdi+0x10][0x18](node, 0x18) per node until back at head.
+# # No direct external targets.
+address	targets
+00199B00	
+0019F780	
+001B9570	
+001BCCB0	
+001BCD10	
+001D97A0	
+001D9800	
+001D9860	
+001D98C0	
+00211970	
+00218010	
+00221810	

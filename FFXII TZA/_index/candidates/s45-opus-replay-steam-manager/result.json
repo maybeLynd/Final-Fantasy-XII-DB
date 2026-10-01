@@ -1,0 +1,118 @@
+{
+ "cases": {
+  "I2_1101_sets_flag_and_overwrites_entries_the_early_award_is_lost": true,
+  "I2_award_before_1101_marks_locally_no_steam_call": true,
+  "I2_control_1101_for_another_game_changes_nothing": true,
+  "I3_award_after_1101_sends_once_then_is_idempotent": true,
+  "I4_entry0_awarded_once_on_the_receipt_that_reaches_count_minus_1": true,
+  "I4_static_no_by_index_payload_is_0": true,
+  "M0_manager_built_registers_1101_1102_1103_reads_appid_requests_stats": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "I2": {
+   "after_1101": {
+    "entry5_190": 0,
+    "flag18": 1,
+    "getachievement_calls": 40
+   },
+   "award_before": [
+    true,
+    []
+   ],
+   "entry_marked": 1,
+   "receipt_1101": {
+    "ok": true
+   },
+   "wrong_game": {
+    "calls": [],
+    "flag18": 0,
+    "ok": true
+   }
+  },
+  "I3": {
+   "award_after": [
+    true,
+    [
+     [
+      "SetAchievement",
+      "ACH_COUNT_KILL"
+     ],
+     [
+      "StoreStats"
+     ]
+    ]
+   ],
+   "award_again": [
+    true,
+    []
+   ],
+   "entry5_name": "ACH_COUNT_KILL"
+  },
+  "I4": {
+   "awarded_at_receipt": [
+    39
+   ],
+   "counts": [
+    1,
+    2,
+    3,
+    "...",
+    39,
+    40,
+    41
+   ],
+   "entry0_name": "ACH_CHAMPION_IVALICE",
+   "payload_ids_0_29": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    12,
+    15,
+    16,
+    13,
+    30,
+    19,
+    11,
+    18,
+    14,
+    9,
+    6,
+    17,
+    22,
+    24,
+    25,
+    21,
+    23,
+    20,
+    26,
+    27,
+    28,
+    29
+   ]
+  },
+  "M0": {
+   "appid": "91640",
+   "calls": [
+    "GetAppID",
+    "BLoggedOn",
+    "RequestCurrentStats"
+   ],
+   "count": 41,
+   "manager": "7306CF80",
+   "ok": true,
+   "registered": [
+    1101,
+    1102,
+    1103
+   ],
+   "stats_received": 0
+  }
+ }
+}

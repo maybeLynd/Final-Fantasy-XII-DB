@@ -1,0 +1,3 @@
+PASS  V thunks: 0063FC60 slot 0, 0068C4E0 slot 3, 00680910 slot 2; cells per thunk {('0063FC60', 0): 87, ('0068C4E0', 3): 23, ('00680910', 2): 1}
+PASS  S every 'virtual' cell states its thunk's slot (0 wrong); the page tables and the generator docstring corrected
+FAILS 0

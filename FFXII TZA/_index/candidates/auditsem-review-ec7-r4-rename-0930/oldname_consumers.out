@@ -1,0 +1,3 @@
+./24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md
+./24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md
+./24-Compiler-And-CRT-Runtime/Generated-Families/members/cxxobjectlifecycle-conditionalteardownreturntrue.tsv

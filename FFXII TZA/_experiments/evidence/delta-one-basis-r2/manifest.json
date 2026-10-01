@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-terminal-tool-receipt.json",
+      "bytes": 539,
+      "sha256": "cc4acd65cfef5d4ed2540c0c9e6116f5a953a1311cb6734fc7b5afa09d81f416"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7424,
+      "sha256": "d75bcbeda5683f95614e4bad5b52b6613bc115dc7b412584309e796b0c98412a"
+    },
+    {
+      "path": "check-terminal.json",
+      "bytes": 1114,
+      "sha256": "54ee27d2a72ca600cd45eca42506b4a0a4c870c985fb262f6343b34ec4218280"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4237,
+      "sha256": "c90707ab04a65b48b3498f14eafd2140cf20f776783e5a2297bcff5e42f76889"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3640,
+      "sha256": "98af785c5429618484b20d1e5e82c3111421fdd1caa19506ac47ef196f075688"
+    },
+    {
+      "path": "result.json",
+      "bytes": 693,
+      "sha256": "8e87d539283b2dc22ed76c55efdb6976f6a5a320a2c20960f0cea5e74ae686b6"
+    },
+    {
+      "path": "run-01/aligned-latest/store/CURRENT",
+      "bytes": 129,
+      "sha256": "29d15e23fcaccac4ffd178fd6c4c90b2188237035f07be82afb846bd2bc4cd28"
+    },
+    {
+      "path": "run-01/aligned-latest/store/g20260929T112302Z-8bf56b/inputs/fixture",
+      "bytes": 74,
+      "sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad"
+    },
+    {
+      "path": "run-01/aligned-latest/store/g20260929T112302Z-8bf56b/MANIFEST.json",
+      "bytes": 929,
+      "sha256": "74c3d5fcf99ae3c876f1d87fc0b01053f98cce28c3c4fa0cf12d0191803a95cf"
+    },
+    {
+      "path": "run-01/aligned-latest/store/g20260929T112302Z-8bf56b/outputs/view-overview.json",
+      "bytes": 74,
+      "sha256": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b"
+    },
+    {
+      "path": "run-01/aligned-latest/store/g20260929T112302Z-8bf56b/outputs/view-progress.json",
+      "bytes": 286,
+      "sha256": "50e41d7dcb57fb3230cb5b79576ef703ccbc44ccff074ef9f13260a5f343ea91"
+    },
+    {
+      "path": "run-01/aligned-latest/store/history.jsonl",
+      "bytes": 171,
+      "sha256": "0eade38d5e70bb7a1c83d00a11522dfa988dfe0ed5c8dfc99d97aa525ce220e2"
+    },
+    {
+      "path": "run-01/capture.py",
+      "bytes": 7424,
+      "sha256": "d75bcbeda5683f95614e4bad5b52b6613bc115dc7b412584309e796b0c98412a"
+    },
+    {
+      "path": "run-01/current-preimages/Database/FFXII TZA/_index/workflow/MY-PROGRESS-METRICS.md",
+      "bytes": 8890,
+      "sha256": "94e9c3b2582aa95f61358d6d5d291e4b6c83504519e894a5a90af343f9847ada"
+    },
+    {
+      "path": "run-01/current-preimages/Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-01/current-preimages/Database/Tools/dashboard/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-01/current-preimages/Database/Tools/dashboard/requirements.py",
+      "bytes": 32680,
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148"
+    },
+    {
+      "path": "run-01/current-preimages/Database/Tools/dashboard/VIEW-SCHEMA.md",
+      "bytes": 6508,
+      "sha256": "6a076028ae2add7a2b0be4cf46ea0f02a94325346edf8e540081785bcb17047d"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/CURRENT",
+      "bytes": 129,
+      "sha256": "efc1c172649135390caabb5b108d97a3298a547e9709cf3ede94133fcce7ed04"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-b00dd9/inputs/fixture",
+      "bytes": 74,
+      "sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-b00dd9/MANIFEST.json",
+      "bytes": 929,
+      "sha256": "62e48e8780301f7fbb71d41b9b1e55fb0b4b8cc43987e5acaa6b535d853d940a"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-b00dd9/outputs/view-overview.json",
+      "bytes": 74,
+      "sha256": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-b00dd9/outputs/view-progress.json",
+      "bytes": 286,
+      "sha256": "5102923192eedb3099b7f5de71051d26064e55ca0748d7886476424fb84e800f"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-f0716b/inputs/fixture",
+      "bytes": 74,
+      "sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-f0716b/MANIFEST.json",
+      "bytes": 824,
+      "sha256": "71329bd22e8c4de88e145d96a6f06a56c980dafdb402eda1036a8109c2cd5cc2"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/g20260929T112552Z-f0716b/outputs/view-overview.json",
+      "bytes": 74,
+      "sha256": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b"
+    },
+    {
+      "path": "run-01/latest-missing-progress/store/history.jsonl",
+      "bytes": 342,
+      "sha256": "ba9c2b7053602241af29a2726632ece8d122702511798747d1b8fa8a240f361c"
+    },
+    {
+      "path": "run-01/parent-manifest.json",
+      "bytes": 14851,
+      "sha256": "30d6408dd9749d39588d16ff5443b82c2d665f7485972e75bb367a2759638451"
+    },
+    {
+      "path": "run-01/parent-raw.json",
+      "bytes": 18036,
+      "sha256": "03f31b953d37e18280511d40ca929b840bd15fc2cce1f6b3f501baaef33f1c93"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 17661,
+      "sha256": "cc34adf83852aa08bb548fbeb82a91584962a4e018920789b66c2993423e823d"
+    },
+    {
+      "path": "run-01/source/Database/FFXII TZA/_index/workflow/MY-PROGRESS-METRICS.md",
+      "bytes": 8890,
+      "sha256": "94e9c3b2582aa95f61358d6d5d291e4b6c83504519e894a5a90af343f9847ada"
+    },
+    {
+      "path": "run-01/source/Database/Tools/analysis-kit/gfz-scripts/generation.py",
+      "bytes": 21083,
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+    },
+    {
+      "path": "run-01/source/Database/Tools/dashboard/build_views.py",
+      "bytes": 48235,
+      "sha256": "787cb54c33e4682e031b496497a4a4608dd920f906de207152fb34a04386dbb4"
+    },
+    {
+      "path": "run-01/source/Database/Tools/dashboard/requirements.py",
+      "bytes": 32680,
+      "sha256": "02cd6ce80275b4af718715b8ac6a0377d5b61a5fd203f9e82bfcc8db32ed1148"
+    },
+    {
+      "path": "run-01/source/Database/Tools/dashboard/VIEW-SCHEMA.md",
+      "bytes": 6508,
+      "sha256": "6a076028ae2add7a2b0be4cf46ea0f02a94325346edf8e540081785bcb17047d"
+    }
+  ],
+  "limits": "Integrity is not independent acceptance. Copied retained histories/synthetic counts/extracted original expression are explicit."
+}

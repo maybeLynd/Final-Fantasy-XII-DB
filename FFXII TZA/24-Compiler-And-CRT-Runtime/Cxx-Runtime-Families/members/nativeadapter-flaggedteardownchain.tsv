@@ -1,0 +1,8 @@
+# NativeAdapter.FlaggedTeardownChain - EC-7 family C
+# if [this+0xB8]!=0 call shared 005CD6D0 on this+0x90; then call a member
+# # teardown on +0x58 and +0x20; tail-dispatch to a member finisher.
+address	targets
+0019DA80	0019DBA0,0019DCC0,005CD6D0
+001AE070	001AE2F0,001AE3E0,005CD6D0
+001B3B50	001B3CB0,001B3D90,005CD6D0
+001B9520	001B97D0,001B9870,005CD6D0

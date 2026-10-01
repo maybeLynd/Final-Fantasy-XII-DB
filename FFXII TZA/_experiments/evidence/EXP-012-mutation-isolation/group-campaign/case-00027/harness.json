@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "diff_group_completion.py",
+    "--exe",
+    "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "--driver",
+    "./group_completion_mut.exe",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\case-00027\\differential"
+  ],
+  "exit_code": 1,
+  "stdout": "cases 100; completions 19; record mismatches 97; final bytes equal False\nExact callback identity/order/count/arguments and boundary memory compared; four callees remain ret stubs.\nRESULT: MISMATCH (isolated calculation/state and callback invocation only)\nEvidence: C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-012-mutation-isolation\\group-campaign\\case-00027\\differential\n",
+  "stderr": "",
+  "timed_out": false,
+  "verdict": "FAIL"
+}

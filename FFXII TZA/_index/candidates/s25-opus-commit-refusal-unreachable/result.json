@@ -1,0 +1,108 @@
+{
+ "cases": {
+  "D1_class20_is_exactly_0_to_21E": true,
+  "D2_availability_refuses_ids_outside_class20_with_reason_4": true,
+  "D3_the_commit_band_is_real": true,
+  "T1_one_success_exit_one_out_writer_walk_slot_only_to_the_evaluator": true,
+  "T2_two_arms_condition_band_and_availability": true,
+  "T3_commit_returns_0_only_from_the_band_test": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "action_table_rows": 543,
+  "availability": {
+   "21F": {
+    "ok": true,
+    "reason": 4
+   },
+   "3FFF": {
+    "ok": true,
+    "reason": 4
+   },
+   "4167": {
+    "ok": true,
+    "reason": 4
+   },
+   "7FFF": {
+    "ok": true,
+    "reason": 4
+   },
+   "96": {
+    "ok": true,
+    "reason": 0
+   }
+  },
+  "class20_valid_runs": [
+   "0-21E"
+  ],
+  "commit": {
+   "21E": {
+    "ok": true,
+    "ret": 1
+   },
+   "21F": {
+    "ok": true,
+    "ret": 0
+   },
+   "4166": {
+    "ok": true,
+    "ret": 1
+   },
+   "4167": {
+    "ok": true,
+    "ret": 0
+   }
+  },
+  "static": {
+   "commit_branches_to_return0": [
+    "0030F7EC"
+   ],
+   "commit_return0_sites": [
+    "0030F981"
+   ],
+   "eval_arm_sites": {
+    "condition_arm": [
+     [
+      "003015CE",
+      "cx, r8w"
+     ],
+     [
+      "003015D2",
+      "0x3015ea"
+     ],
+     [
+      "003015DA",
+      "0x301830"
+     ]
+    ],
+    "unit_arm": [
+     [
+      "003015FF",
+      "0x2ffcf0"
+     ],
+     [
+      "00301604",
+      "eax, eax"
+     ],
+     [
+      "00301606",
+      "0x3015e3"
+     ]
+    ]
+   },
+   "eval_out_writers": [
+    "00301500"
+   ],
+   "eval_success_exits": [
+    "003017E9"
+   ],
+   "walk_slot_refs": [
+    "00305CD6 mov",
+    "00305DCA lea",
+    "00305DE3 movzx",
+    "00305E44 movzx"
+   ]
+  }
+ }
+}

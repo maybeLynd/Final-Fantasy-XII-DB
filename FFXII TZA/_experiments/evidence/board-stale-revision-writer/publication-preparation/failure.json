@@ -1,0 +1,47 @@
+{
+  "failure": "RAW-BYTE-OR-FILTER-MISMATCH before claim/commit",
+  "differences": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/board-stale-revision-writer/check-terminal-r2.json",
+      "pin": "22c87f143afecf2c2a5bba7ab9db2bc76e2383f6",
+      "default": "22c87f143afecf2c2a5bba7ab9db2bc76e2383f6",
+      "raw": "df4aa9a2ad737415dfbdb582935deac5abac37f5",
+      "attributes": "",
+      "status": 0
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/board-stale-revision-writer/check-terminal.json",
+      "pin": "09620fd2b2c855d351479130b43b9a7fa598a5c2",
+      "default": "09620fd2b2c855d351479130b43b9a7fa598a5c2",
+      "raw": "65da2921e6cd14d06ffe5133c8383c00df1c2e93",
+      "attributes": "",
+      "status": 0
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/board-stale-revision-writer/manifest.json",
+      "pin": "90d4066e24a236f6edc7013a6f3f66e30ca4502d",
+      "default": "90d4066e24a236f6edc7013a6f3f66e30ca4502d",
+      "raw": "6e15be8bf54d46ddac640f93980fe153cc8690b8",
+      "attributes": "",
+      "status": 0
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/board-stale-revision-writer/producer-versions.json",
+      "pin": "f8314fcbc1923128947ed5ada4a187026a075a2f",
+      "default": "f8314fcbc1923128947ed5ada4a187026a075a2f",
+      "raw": "7ae35002dca992a2977f405f146493ca6f9e3641",
+      "attributes": "",
+      "status": 0
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/board-stale-revision-writer/result.json",
+      "pin": "2e55b8708b5478ab65666513babdfbd258f5905d",
+      "default": "2e55b8708b5478ab65666513babdfbd258f5905d",
+      "raw": "12dbbac4d934aa980d1c27928b1442a78d29fead",
+      "attributes": "",
+      "status": 0
+    }
+  ],
+  "claim_taken": false,
+  "commit_created": false
+}

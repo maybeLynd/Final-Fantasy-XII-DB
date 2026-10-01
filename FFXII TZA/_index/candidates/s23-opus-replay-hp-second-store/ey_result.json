@@ -1,0 +1,213 @@
+{
+ "cases": {
+  "EY1_bubble_doubles_the_cap": true,
+  "EY4_alive_variant_is_entryFlags_bit8": true,
+  "EY4_dead_variant_inverted_2008_2007": true,
+  "EY4_no_entry_is_variant_0": true,
+  "flag_bit8_death_posts_200E": true,
+  "no_fault": true,
+  "presentation_calls_run_as_shipped": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "alive_kb0": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0"
+   ],
+   "events": [
+    "2005"
+   ],
+   "halt": [],
+   "hp": 70,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     70
+    ]
+   ]
+  },
+  "alive_kb1": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0"
+   ],
+   "events": [
+    "2006"
+   ],
+   "halt": [],
+   "hp": 70,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     70
+    ]
+   ]
+  },
+  "alive_no_entry": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0"
+   ],
+   "events": [
+    "2005"
+   ],
+   "halt": [],
+   "hp": 70,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     70
+    ]
+   ]
+  },
+  "dead_flag_bit8": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0",
+    "recompute 0030FED0",
+    "status 0030E360"
+   ],
+   "events": [
+    "200E"
+   ],
+   "halt": [],
+   "hp": 0,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     0
+    ],
+    [
+     "00310508",
+     0
+    ]
+   ]
+  },
+  "dead_kb0": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0",
+    "recompute 0030FED0",
+    "status 0030E360"
+   ],
+   "events": [
+    "2008"
+   ],
+   "halt": [],
+   "hp": 0,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     0
+    ],
+    [
+     "00310508",
+     0
+    ]
+   ]
+  },
+  "dead_kb1": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0",
+    "recompute 0030FED0",
+    "status 0030E360"
+   ],
+   "events": [
+    "2007"
+   ],
+   "halt": [],
+   "hp": 0,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     0
+    ],
+    [
+     "00310508",
+     0
+    ]
+   ]
+  },
+  "dead_no_entry": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0",
+    "recompute 0030FED0",
+    "status 0030E360"
+   ],
+   "events": [
+    "2008"
+   ],
+   "halt": [],
+   "hp": 0,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     0
+    ],
+    [
+     "00310508",
+     0
+    ]
+   ]
+  },
+  "heal_bubble": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0"
+   ],
+   "events": [],
+   "halt": [],
+   "hp": 880,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     880
+    ]
+   ]
+  },
+  "heal_bubble_over": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0"
+   ],
+   "events": [],
+   "halt": [],
+   "hp": 1000,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     1000
+    ]
+   ]
+  },
+  "heal_no_bubble": {
+   "entered": [
+    "003283D0",
+    "display 0028F1F0"
+   ],
+   "events": [],
+   "halt": [],
+   "hp": 500,
+   "ok": true,
+   "stores": [
+    [
+     "00300749",
+     500
+    ]
+   ]
+  }
+ }
+}

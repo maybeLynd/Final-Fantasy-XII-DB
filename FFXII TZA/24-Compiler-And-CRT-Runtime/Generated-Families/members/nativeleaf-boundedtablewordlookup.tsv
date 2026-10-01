@@ -1,0 +1,10 @@
+# NativeLeaf.BoundedTableWordLookup - EC-7 family C
+# # if ecx <= member bound, index a member rip table of row pointers;
+# # if the row's first byte is non-null return [row + edx*stride + 8],
+# # else return -1. Member-specific bound and table base.
+address	targets
+0032F260	
+0032F290	
+0032F2C0	
+0032F2F0	
+0032F3A0	

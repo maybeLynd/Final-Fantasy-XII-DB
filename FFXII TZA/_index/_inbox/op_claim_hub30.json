@@ -1,0 +1,3 @@
+{"action":"claim","task":"SWE2-EC7-SHARED-HUB-IDENTIFICATION-30","agent":"SWE2-EC7",
+ "resources":[{"key":"target:frontier-shared-callee-hubs"}],
+ "note":"claiming batch 30: top 22 of the 3-A band"}

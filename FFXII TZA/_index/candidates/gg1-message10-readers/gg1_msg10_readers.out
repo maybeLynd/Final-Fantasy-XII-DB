@@ -1,0 +1,8 @@
+PASS M1  51 readers; 18 decoded (33 undecoded)
+PASS M2  16 readers read only in a message-10 (or 10/11) arm: ['00228C70', '0023BD40', '0023CE10', '00241D40', '002778C0', '00280DE0', '002A6190', '002D5EB0', '00552250', '005528C0', '005542D0', '00560910', '00571A50', '00572E10', '005742D0', '0057AC10']
+     other arms: {'0023FBE0': [(12,)], '003CAB00': [(31,)]}
+PASS M3  {10}/{11} records referenced only by 002481C0; the one stack {10} in rdx (0057F6B0) goes to the event-queue copy 00582540
+PASS C1  control: 002778C0 decodes to message 1 -> 00277925, 10/11 -> 00277A64
+PASS C2  control: the stack scan finds the known stack {10} at 0057F72B
+undecoded (not placed): ['002287D0', '0023B6F0', '0023C5C0', '0023D6B0', '0023DB40', '0023F240', '00240DE0', '00253C70', '0027AA70', '0027EA70', '00284EC0', '002878E0', '0029B870', '002A5CC0', '002A5F40', '002A9980', '002C2320', '002C59D0', '002D3900', '003C87B0', '003C8B70', '003EF050', '003F4330', '003FDAD0', '003FF360', '005519E0', '0055C740', '00564D30', '00564E10', '0056CA60', '0056DED0', '00572600', '005789D0']
+FAILS 0

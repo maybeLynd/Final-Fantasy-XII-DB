@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-array-flatten-width\check.py", line 25, in <module>
+    if '--fault-saturating-index' in sys.argv:assert c['predicted_signed_handler_index']==min(unbounded,0x7fffffff),'Originalflatten wraps instead of saturating'
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Originalflatten wraps instead of saturating

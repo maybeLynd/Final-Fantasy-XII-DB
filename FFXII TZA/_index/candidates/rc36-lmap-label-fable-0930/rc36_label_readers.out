@@ -1,0 +1,41 @@
+003BF430 call sites: 25; +0xC loads after a call: 8
+  load 003BCE94 after call 003BCE66 in 003BCDE0: kind==0 only (A point)
+  load 003BCF45 after call 003BCF39 in 003BCDE0: kind==0 only (A point)
+  load 003BEEE9 after call 003BEE95 in 003BED70: kind==0 only (A point)
+  load 003BF159 after call 003BF105 in 003BED70: kind==0 only (A point)
+  load 003BF973 after call 003BF962 in 003BF920: kind==0 only (A point)
+  load 003C0416 after call 003C040A in 003C0380: kind==0 only (A point)
+  load 003C148B after call 003C1447 in 003C12B0: kind==0 only (A point)
+  load 003C1BE8 after call 003C1B78 in 003C1A20: kind==0 only (A point)
+
+Part 2: other word loads at +0xC in the widget's reach (258 functions): 42
+  0024A1D0 FUN_0024a1d0: ['0024A33D movzx edx, word ptr [rax + 0xc]', '0024A392 movzx eax, word ptr [rdx + 0xc]', '0024A3C6 movzx edx, word ptr [rax + 0xc]', '0024A3FE movzx eax, word ptr [rdx + 0xc]']
+  002543F0 FUN_002543f0: ['002543FB movzx edx, word ptr [rax + 0xc]']
+  002F9920 FUN_002f9920: ['002F99BD mov ecx, dword ptr [rax + 0xc]', '002F99D2 mov ecx, dword ptr [rax + 0xc]']
+  00369860 FUN_00369860: ['00369B49 mov ecx, dword ptr [rbx + 0xc]']
+  0036AE00 FUN_0036ae00: ['0036AE1C mov ecx, dword ptr [rdx + 0xc]']
+  0036B210 FUN_0036b210: ['0036B235 mov ecx, dword ptr [rdi + 0xc]']
+  0036BC60 FUN_0036bc60: ['0036BD6C mov ecx, dword ptr [rdi + 0xc]']
+  0039BB60 FUN_0039bb60: ['0039BC4A mov ecx, dword ptr [rdi + 0xc]']
+  0039BF50 FUN_0039bf50: ['0039BFFB mov ecx, dword ptr [rdi + 0xc]']
+  003BC4E0 FUN_003bc4e0: ['003BC92B mov ebp, dword ptr [rdi + 0xc]']
+  003BCAF0 FUN_003bcaf0: ['003BCB05 movzx r8d, word ptr [rdx + 0xc]']
+  003BCBA0 FUN_003bcba0: ['003BCBAF movzx esi, word ptr [rcx + 0xc]', '003BCBF7 movzx ecx, word ptr [rdi + 0xc]']
+  003BCDE0 FUN_003bcde0: ['003BCEEC movzx eax, word ptr [rdi + 0xc]']
+  003BD040 FUN_003bd040: ['003BD116 movzx eax, word ptr [rsi + 0xc]']
+  003BE950 FUN_003be950: ['003BEAAC movzx edi, word ptr [rbx + 0xc]', '003BEB06 mov ecx, dword ptr [rbx + 0xc]']
+  003BED70 FUN_003bed70: ['003BF27E movzx edi, word ptr [rax + 0xc]', '003BF30A movzx edi, word ptr [r14 + 0xc]', '003BF363 movzx edi, word ptr [r14 + 0xc]']
+  003BF9A0 FUN_003bf9a0: ['003BF9CA movzx r14d, word ptr [rcx + 0xc]']
+  003BFFF0 FUN_003bfff0: ['003C000F movzx r14d, word ptr [r9 + 0xc]']
+  003C00C0 FUN_003c00c0: ['003C00DF movzx r14d, word ptr [r9 + 0xc]']
+  003C0180 FUN_003c0180: ['003C019F movzx r10d, word ptr [r9 + 0xc]']
+  003C1180 FUN_003c1180: ['003C11A6 movzx ecx, word ptr [rdi + 0xc]', '003C11CA movzx ecx, word ptr [rdi + 0xc]', '003C11DC movzx ebx, word ptr [rdi + 0xc]', '003C11FE movzx edx, word ptr [rdi + 0xc]']
+  003C1680 FUN_003c1680: ['003C17A2 movzx ecx, word ptr [rcx + 0xc]']
+  003C18A0 FUN_003c18a0: ['003C1936 movzx ecx, word ptr [rdi + 0xc]']
+  003C2320 FUN_003c2320: ['003C23CB movzx ecx, word ptr [rdx + 0xc]', '003C23F3 movzx edi, word ptr [r15 + 0xc]', '003C25A4 movzx ecx, word ptr [rax + 0xc]', '003C25BD mov ecx, dword ptr [r15 + 0xc]']
+  003C26C0 FUN_003c26c0: ['003C27B0 movzx ecx, word ptr [rax + 0xc]']
+  003DFB50 FUN_003dfb50: ['003DFB6C movzx eax, word ptr [rcx + rdx*4 + 0xc]']
+  003DFBB0 FUN_003dfbb0: ['003DFBD2 movzx eax, word ptr [rcx + rax*4 + 0xc]']
+CONTROL 003C0416 (known A-point reader) classified kind==0 only: PASS
+Part-1 loads not shown kind-0-guarded: NONE
+FAILS 0

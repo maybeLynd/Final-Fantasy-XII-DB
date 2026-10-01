@@ -1,0 +1,31 @@
+{
+  "evidence_class": "A: offline shipping-byte review only",
+  "inputs": {
+    "Database/Tools/work/exe/FFXII_TZA.exe": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "Database/Tools/work/graph/functions.tsv": "2699b933bdaed8562a1082f17e986c8abeb4c1fb0eabc81e6f532d49926a67b6",
+    "Database/Tools/work/graph/imagebase_refs.tsv": "64ba73b154cc158e247c7794d1b5e580921f88f2b5561a3d086352e1c59ab0e2",
+    "Database/Tools/work/graph/edges.tsv": "de21ba1bc62d92243ea66f47ec7a08355ac2f77d355ed8abc542c158fc709095",
+    "Database/FFXII TZA/_experiments/evidence/authored-reference-lifetime-review/reviewed-ripscan.py": "236e7cee6eebf73d8fb0885346876a6efba99c04caebb96c63bbb55029a1ab47"
+  },
+  "scan_arguments": [
+    "022D89A8",
+    "022D89B8"
+  ],
+  "indexed_reader_rows": [
+    "0036C1F0\t0036C272\t022D89A8\tread\tFUN_0036c1f0\t"
+  ],
+  "direct_reset_caller_rows": [
+    "002628B0\t0036A280\tfalse\tFUN_0036a280"
+  ],
+  "controls": {
+    "known_initializer_address_materialization_found": true,
+    "known_indexed_selector_reader_missed": true,
+    "six_complete_body_lengths_and_hashes_match": true
+  },
+  "limits": [
+    "RIP scanner matches operand target start addresses only and labels LEA as read.",
+    "Indexed references, aliases, overlapping wider stores and unlisted code are not exhaustively covered.",
+    "Direct-call graph is a candidate source, not indirect-call or reachability proof.",
+    "Original-byte body review proves reset stores and local branches, not actual gameplay scheduling."
+  ]
+}

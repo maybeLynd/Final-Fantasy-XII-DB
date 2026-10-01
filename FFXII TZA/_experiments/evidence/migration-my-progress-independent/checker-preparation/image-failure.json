@@ -1,0 +1,9 @@
+{
+  "status": "INVALID_IMAGE_FORMAT_EXPECTATION",
+  "original": "check-v2.py",
+  "invocation": "check.py --out result.json",
+  "returncode": 1,
+  "error": "AssertionError at PNG signature check; no result produced",
+  "cause": "CUA getAXStateAndScreenshot returned JPEG JFIF bytes. Initial persistence named it png without testing MIME. Actual screenshot was viewable, original bytes and hash binding remain unchanged.",
+  "correction": "Verify JPEG signature and preserve a byte-identical jpg copy. Original png-named record immutable; no recapture or additional evidence credit. Future capture helpers must derive extension from returned bytes."
+}

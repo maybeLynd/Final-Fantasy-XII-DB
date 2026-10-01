@@ -1,0 +1,72 @@
+{
+  "files": {
+    "baseline-old.py": {
+      "bytes": 7932,
+      "sha256": "555d2a2a01264fe6cae02ac0e3f6580e8c5a74c88c1f96bc4f46323eae4ff76d"
+    },
+    "canonical-before.tsv": {
+      "bytes": 13147,
+      "sha256": "404c525237bfc707269423c54be4037ad56d6f5154b6c7fe4b1e309c2b6daf07"
+    },
+    "compare_extractors.py": {
+      "bytes": 3091,
+      "sha256": "5a242be4e4f4df76987da6e62e20a1af05cc9dc2be48a3e016bfa5e93501b83b"
+    },
+    "comparison.json": {
+      "bytes": 4702,
+      "sha256": "169e065db5dcb952b5ce3a622b8ac10a557464e49a1a7ce1bfbbdb0d98ad079d"
+    },
+    "idempotence.json": {
+      "bytes": 844,
+      "sha256": "1e3180dbe759b4c8d2ce28fc126e52cc5ef59f93c975add189b0eafc8557807a"
+    },
+    "migrate_ledger.py": {
+      "bytes": 4118,
+      "sha256": "9e72b817e77dce8ba087c4d4ed3bf717adac0405f453c829e51f8e582b61c07b"
+    },
+    "old-after.tsv": {
+      "bytes": 1043,
+      "sha256": "5644b9b6a36c0c5f504e136599bd4941e5a356af21015a00b8da3d65bbd66b25"
+    },
+    "old-before.tsv": {
+      "bytes": 232,
+      "sha256": "a6c1413859c3690c5720d3f4909bd6ec6204d077e601cc81c6ccb7d4d3c1f8c4"
+    },
+    "proposal-validation.json": {
+      "bytes": 51878,
+      "sha256": "25c004cc46961460e4dbc5c29ce70ea4c601bdaedc992e24c24cfb67e1d9e3d9"
+    },
+    "proposal.tsv": {
+      "bytes": 27738,
+      "sha256": "5cd392de527daff63b9b93b6a93df5badbd164d1d641b4a8697a6333cee822f8"
+    },
+    "publication-validation.json": {
+      "bytes": 2938,
+      "sha256": "cffbc7f1e3d7316277752795a5b364770cc2c3567f398724caf975cdff6f0692"
+    },
+    "published-migration.json": {
+      "bytes": 51877,
+      "sha256": "c2ebb448162337acff7da43ffe7ae282a2ed478478759f1e6cf4eb1531be7c66"
+    },
+    "revised-after.tsv": {
+      "bytes": 806,
+      "sha256": "1c06cad6bd35babd18c8e3892ce0830738e5079aa4126f9da1cf70841ca1c04e"
+    },
+    "revised-before.tsv": {
+      "bytes": 232,
+      "sha256": "a6c1413859c3690c5720d3f4909bd6ec6204d077e601cc81c6ccb7d4d3c1f8c4"
+    },
+    "validate_publication.py": {
+      "bytes": 2443,
+      "sha256": "3ab12572c99877fd90016fbae2ff9c00eab58839f9767e3ad7b9d026fdc89f2b"
+    },
+    "validated-contradiction_index.py": {
+      "bytes": 11912,
+      "sha256": "782df6057bb1e246b8dccbd70b84b5492c30793bb0fc79178b1ca22ef48f395b"
+    },
+    "validated-test_contradiction_index.py": {
+      "bytes": 6505,
+      "sha256": "2adc296af2462eaf14e7044ce691ce095d14153c636521903c0f4fd76dfb7ec4"
+    }
+  }
+}

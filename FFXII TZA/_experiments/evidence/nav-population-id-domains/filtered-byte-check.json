@@ -1,0 +1,145 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "bind_trailer.py",
+      "git_blob": "95c1a5945b0b9637849e5a94861a2ef7715be345"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "4feb7022319e69d2e686ba71292bac456d0a642b"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "69a3dbd2e14fc1eee2b1dca3e02a8dc1dd6d763b"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "3b5fc7d0ea60da057c987427cad67430c147231a"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/capture-before-fix.py",
+      "git_blob": "ebea3f407df81c77dbce70b411ceb36f5cd887bf"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/diagnostic.json",
+      "git_blob": "312aa12030259a1d75af486c22300490609b5524"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/driver-before-run.py",
+      "git_blob": "ebea3f407df81c77dbce70b411ceb36f5cd887bf"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/populator.bin",
+      "git_blob": "96f86ff9e15660a239aec9b0abb409e3af0d4f3a"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/registry-count-getter.bin",
+      "git_blob": "3d92ee2d381ae36d2747b42f74b7d610eaac1721"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/retained-partial/source-rules-before-run.py",
+      "git_blob": "4c18cd2060c31cce2cc40849cfbcf515a853df3b"
+    },
+    {
+      "path": "invalid-single-unwind-assumption/source-rules-before-fix.py",
+      "git_blob": "4c18cd2060c31cce2cc40849cfbcf515a853df3b"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "18c8b433d48caca4fde4779379140089789caabb"
+    },
+    {
+      "path": "raw-source.json",
+      "git_blob": "e73dd151fc46e61fb226b72b5610a58526e209c6"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "3b41973577f2017b5a9ef359fb04472ef3357302"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "a7047e808b237459a7ab339d70b035b617e856a9"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "4feb7022319e69d2e686ba71292bac456d0a642b"
+    },
+    {
+      "path": "retained/grid-count-fields-preimage.tsv",
+      "git_blob": "b23d5a3f95ccaf148fe01f67e11f72fd875cebf6"
+    },
+    {
+      "path": "retained/labelled-pointer-limit-129.bin",
+      "git_blob": "7dfcc04a0b8518fa13f205b866809470a1c500f8"
+    },
+    {
+      "path": "retained/labelled-single-count-read.bin",
+      "git_blob": "c3b081e35b80c7fe716b8b2f5f3bc88d34ff00e0"
+    },
+    {
+      "path": "retained/pointer-type-preimage.tsv",
+      "git_blob": "e7e7e68b862c702660f9611b35fa53bd1b0c401b"
+    },
+    {
+      "path": "retained/populator.bin",
+      "git_blob": "96f86ff9e15660a239aec9b0abb409e3af0d4f3a"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/registry-count-getter.bin",
+      "git_blob": "3d92ee2d381ae36d2747b42f74b7d610eaac1721"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source-rules-before-run.py",
+      "git_blob": "c4f04c0a78153ca4eda7f1a23a3fc1d078a15325"
+    },
+    {
+      "path": "retained/teardown-parent-raw.json",
+      "git_blob": "bbd6413953c067670b8c1a157f94d9e9ccde3e65"
+    },
+    {
+      "path": "retained/trailer-binding/driver-before-run.py",
+      "git_blob": "95c1a5945b0b9637849e5a94861a2ef7715be345"
+    },
+    {
+      "path": "retained/trailer-binding/root-return-getter.bin",
+      "git_blob": "59d74bd510a93b65a39c9be499a44c72d0679a0f"
+    },
+    {
+      "path": "retained/trailer-binding/trailer-fields-preimage.tsv",
+      "git_blob": "2ee3e229379921ae1ab9ac6a9d35265eed44584e"
+    },
+    {
+      "path": "retained/trailer-binding/trailer-type-preimage.tsv",
+      "git_blob": "09244cb9e8cac36cf287d4636d2477728f7b6b0f"
+    },
+    {
+      "path": "source_rules.py",
+      "git_blob": "c4f04c0a78153ca4eda7f1a23a3fc1d078a15325"
+    },
+    {
+      "path": "trailer-binding-result.json",
+      "git_blob": "ff6f20497f6ac3339cf67b134b932849a9e43182"
+    }
+  ]
+}

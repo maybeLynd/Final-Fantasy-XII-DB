@@ -1,0 +1,3 @@
+SS7_reach_executed_all_28_slots    PASS  00226BE0 runs to its return for every slot 0..27. The breadth is the value the code computes at 00226C94; it equals (~(A >> 30) & 2) | 1 of the record the code itself built, and the loop asks 00263FF0 for managers 0..breadth-1 exactly. Only slot 11 reaches 3 managers
+slot0_record_depends_on_flag_bit3  PASS  slot 0's record is built through 002DDC30 (bit 3 of the flag word behind 0215E6E0); recorded both ways
+ok

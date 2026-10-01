@@ -1,0 +1,9 @@
+# NativeLeaf.NullableGlobalClearCall - EC-7 family C
+# # if a member global is non-null call a member op on it, then zero
+# # the global.
+address	targets
+00366A00	00245020
+003CA2B0	00244F00
+003CB410	00245020
+00404F20	00244F00
+00474040	00245020

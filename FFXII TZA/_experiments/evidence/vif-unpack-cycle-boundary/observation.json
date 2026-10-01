@@ -1,0 +1,202 @@
+{
+  "cases": [
+    {
+      "name": "V2-32-CL1",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ],
+      "nominal_return_bytes": 24,
+      "actual_payload_read_end": 24,
+      "destination_written_bytes": 24,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 140
+    },
+    {
+      "name": "V2-32-CL2",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        4,
+        4,
+        8,
+        16,
+        20
+      ],
+      "nominal_return_bytes": 24,
+      "actual_payload_read_end": 24,
+      "destination_written_bytes": 24,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 125
+    },
+    {
+      "name": "V2-32-CL3",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        4,
+        4,
+        8,
+        8,
+        12
+      ],
+      "nominal_return_bytes": 24,
+      "actual_payload_read_end": 16,
+      "destination_written_bytes": 24,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 110
+    },
+    {
+      "name": "V4_5-CL1",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        2,
+        4
+      ],
+      "nominal_return_bytes": 8,
+      "actual_payload_read_end": 6,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 187
+    },
+    {
+      "name": "V4_5-CL2",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        8,
+        4
+      ],
+      "nominal_return_bytes": 8,
+      "actual_payload_read_end": 10,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 172
+    },
+    {
+      "name": "V4_5-CL3",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        8,
+        16
+      ],
+      "nominal_return_bytes": 8,
+      "actual_payload_read_end": 18,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 157
+    },
+    {
+      "name": "V4-32-CL1",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44
+      ],
+      "nominal_return_bytes": 48,
+      "actual_payload_read_end": 48,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 156
+    },
+    {
+      "name": "V4-32-CL2",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44
+      ],
+      "nominal_return_bytes": 48,
+      "actual_payload_read_end": 48,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 140
+    },
+    {
+      "name": "V4-32-CL3",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44
+      ],
+      "nominal_return_bytes": 48,
+      "actual_payload_read_end": 48,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 124
+    },
+    {
+      "name": "V4_5-decoder-CL2",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        8,
+        4
+      ],
+      "nominal_return_bytes": 20,
+      "actual_payload_read_end": 10,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": true,
+      "instruction_count": 288
+    },
+    {
+      "name": "V4_5-guard-CL1",
+      "status": "ORIGINAL_RETURN",
+      "source_element_offsets": [
+        0,
+        2,
+        4
+      ],
+      "nominal_return_bytes": 8,
+      "actual_payload_read_end": 6,
+      "destination_written_bytes": 48,
+      "next_command_also_read_as_payload": false,
+      "instruction_count": 187
+    },
+    {
+      "name": "V4_5-guard-CL2",
+      "status": "CONTROLLED_GUEST_FAULT",
+      "fault_source_offset": 8,
+      "limits": "Partial operation, no return; not a live crash."
+    }
+  ],
+  "limits": "NUM3; WL=CL1/2/3, unsigned0/addTOPS0/ADDR0. Supplied state. No data-borne reachability, real initialization, drawing, scheduler or native effects.",
+  "semantic_status": "SUPPORTED BOUNDED B; canonical propagation and independent review pending"
+}

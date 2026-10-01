@@ -1,0 +1,139 @@
+{
+  "method": "Original widget bodies, explicit service replacements, synthetic states; no live FF12",
+  "cases": [
+    {
+      "name": "raw_initializer_does_not_return_object",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "constructor_publishes_asset_receiver",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "constructor_handler_identity",
+      "pass": true,
+      "observed": 3752048,
+      "expected": 3752048
+    },
+    {
+      "name": "constructor_declared_extent_zeroed",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "constructor_does_not_zero_pool_tail",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "pending_resource_ready_remains_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "resource_slot_written_at_c8",
+      "pass": true,
+      "observed": 34141568,
+      "expected": 34141568
+    },
+    {
+      "name": "file_result_written_at_d0",
+      "pass": true,
+      "observed": 1073774592,
+      "expected": 1073774592
+    },
+    {
+      "name": "resource_pointee_offset40_is_reset",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "resource_call_argument_contract",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "request_owner_is_asset_not_message",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "request_counts_two_pending_boundaries",
+      "pass": true,
+      "observed": 2,
+      "expected": 2
+    },
+    {
+      "name": "manager_receives_asset",
+      "pass": true,
+      "observed": 1073745920,
+      "expected": 1073745920
+    },
+    {
+      "name": "manager_is_selected_global",
+      "pass": true,
+      "observed": 1073778688,
+      "expected": 1073778688
+    },
+    {
+      "name": "asset_sets_channel0_bit21",
+      "pass": true,
+      "observed": 2097152,
+      "expected": 2097152
+    },
+    {
+      "name": "asset_does_not_set_channel1",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "ready_message_zero_return",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "ready_message_sets_bit0",
+      "pass": true,
+      "observed": 1,
+      "expected": 1
+    },
+    {
+      "name": "ready_message_preserves_other_bits",
+      "pass": true,
+      "observed": 2147483653,
+      "expected": 2147483653
+    },
+    {
+      "name": "default_message_returns_zero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "default_preserves_unrelated_header",
+      "pass": true,
+      "observed": 1234605616436508552,
+      "expected": 1234605616436508552
+    },
+    {
+      "name": "teardown_clears_file_pointer",
+      "pass": false,
+      "observed": 1073774592,
+      "expected": 0
+    }
+  ],
+  "checks": 22,
+  "failures": 1
+}

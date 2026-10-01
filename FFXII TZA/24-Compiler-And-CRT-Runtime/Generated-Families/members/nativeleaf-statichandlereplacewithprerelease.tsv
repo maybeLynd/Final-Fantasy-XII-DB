@@ -1,0 +1,20 @@
+# NativeLeaf.StaticHandleReplaceWithPreRelease - EC-7 family C, declared on generated-function-families.md
+#
+# 12 members. Body size(s): 39 B x12.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 1 external target(s): 1 shared across all 12 members.
+#
+# NOT dispositioned: the 1 shared implementation these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00238390
+002383F0
+00238420
+00238450
+00238480
+002384B0
+002384E0
+00238510
+00238540
+00238570
+002385A0

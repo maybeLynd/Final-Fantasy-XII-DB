@@ -1,0 +1,404 @@
+{
+ "cases": {
+  "W1_authored_set_from_preset_11": true,
+  "W2_first_match_commits_with_real_conditions": true,
+  "W3_commit_block_names_the_committed_record": true,
+  "W4_no_grudge_no_target_no_commit": true,
+  "W5_resume_reaches_its_record_and_returns_1_unevaluated": true,
+  "W6_resumed_commit_makes_the_third_call_with_the_latched_word": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "W1_set": {
+   "config": "5a60aa000060960004609600056096000160960002609600ffffffffffffffffffffffffffffffffffffffffffffffff3f000600",
+   "ok": true,
+   "records": [
+    "aa000000000001002e0a0000000000000000000000000000",
+    "960000000000010001380000000000000000000000000000",
+    "960000000000010019220000000000000000000000000000",
+    "96000000000001001a220000000000000000000000000000",
+    "960000000000010000380000000000000000000000000000",
+    "960000000000010000000000000000000000000000000000"
+   ]
+  },
+  "W2": {
+   "events": [
+    [
+     "eval",
+     "+20"
+    ],
+    [
+     "availability",
+     15
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+38"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+50"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+68"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+80"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     1
+    ],
+    [
+     "eval_ret",
+     1
+    ],
+    [
+     "commit",
+     "96",
+     "100000"
+    ],
+    [
+     "commit_ret",
+     1
+    ]
+   ],
+   "halt": [],
+   "ok": true,
+   "ret": 1
+  },
+  "W3_block": {
+   "708": "20893F8",
+   "710": "100000",
+   "714": "96",
+   "copy_718_equals_700": true
+  },
+  "W4_no_grudge": {
+   "events": [
+    [
+     "eval",
+     "+20"
+    ],
+    [
+     "availability",
+     15
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+38"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+50"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+68"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+80"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+98"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ]
+   ],
+   "halt": [],
+   "ok": true,
+   "ret": 0,
+   "table": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "W5_resume_same_set": {
+   "events": [
+    [
+     "eval",
+     "+20"
+    ],
+    [
+     "availability",
+     15
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+38"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+50"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+68"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ]
+   ],
+   "halt": [],
+   "ok": true,
+   "ret": 1
+  },
+  "W6_resume_other_set": {
+   "events": [
+    [
+     "eval",
+     "+20"
+    ],
+    [
+     "availability",
+     15
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+38"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+50"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+68"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     0
+    ],
+    [
+     "eval_ret",
+     0
+    ],
+    [
+     "eval",
+     "+80"
+    ],
+    [
+     "availability",
+     0
+    ],
+    [
+     "selector",
+     1
+    ],
+    [
+     "eval_ret",
+     1
+    ],
+    [
+     "commit",
+     "96",
+     "100000"
+    ],
+    [
+     "commit_ret",
+     1
+    ],
+    [
+     "notify",
+     "76000008",
+     "96",
+     "4021",
+     4
+    ]
+   ],
+   "halt": [],
+   "ok": true,
+   "ret": 1
+  },
+  "grudge": {
+   "ok": true,
+   "table": [
+    0,
+    30,
+    1,
+    1
+   ]
+  }
+ }
+}

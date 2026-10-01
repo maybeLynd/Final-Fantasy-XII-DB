@@ -1,0 +1,2 @@
+ov39-fef-producers-fable/producers.py: exit 0, FAILS 0, identical to the committed producers.out (CRLF-insensitive)
+gfz-scripts/falsify_fef_entries.py: needs pefile (not in the analysis venv; ran with the system python): F0-F5 SURVIVES, FAILS 0

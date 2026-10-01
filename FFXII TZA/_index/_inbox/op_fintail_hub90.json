@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-90",
+ "result_refs": [
+  "commit:1d25f8b3a"
+ ],
+ "note": "batch-90 tail: board state + remaining ops committed as 1d25f8b3a"
+}

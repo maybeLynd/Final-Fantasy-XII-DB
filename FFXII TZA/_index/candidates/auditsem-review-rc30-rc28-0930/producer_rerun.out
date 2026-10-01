@@ -1,0 +1,6 @@
+At 79e70e154 (the reviewed commit, scripts extracted with git archive):
+  rc30c_kind_slice.py, rc30c_cl2_reader.py, rc28c_callback.py: exit 0, FAILS 0, identical to their committed .out
+  rc30c_data_fields.py: exit 0, FAILS 0, but it is an .ard mapped-id census (C1-C4) and does NOT print its committed .out (the S1/S2/S3 census): script and output did not match at this commit
+At HEAD (after SWE2-DATA's repair 280006c24):
+  rc30c_data_fields.py (restored S1/S2/S3 census; needs pefile, run with the system python): exit 0, FAILS 0, identical to its .out
+  rc30c_ard_list.py (the .ard census, re-homed): exit 0, FAILS 0, identical to its .out

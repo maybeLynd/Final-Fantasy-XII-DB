@@ -1,0 +1,8 @@
+# NativeLeaf.NullableDerefWordAdd - EC-7 family C
+# rdx=[this+X]; if non-null and [rdx] nonzero, return (u16)[rdx]+arg2
+# # sign-extended; else 0.
+address	targets
+003E6CF0	
+003E6D80	
+003E6E40	
+003E6F50	

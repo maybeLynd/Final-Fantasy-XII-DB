@@ -1,0 +1,9 @@
+whole {'n': 47, 'I1 x64 args at entry': 43, 'I2 bank a0-a3 at entry': 0, 'I3 bank sp/fp/ra anywhere': 0, 'C1 bank v0 anywhere': 8, 'C1 bank a0 anywhere': 0}
+C-agreed {'n': 31, 'I1 x64 args at entry': 30, 'I2 bank a0-a3 at entry': 0, 'I3 bank sp/fp/ra anywhere': 0, 'C1 bank v0 anywhere': 3, 'C1 bank a0 anywhere': 3}
+undecided {'n': 104, 'I1 x64 args at entry': 103, 'I2 bank a0-a3 at entry': 0, 'I3 bank sp/fp/ra anywhere': 0, 'C1 bank v0 anywhere': 2, 'C1 bank a0 anywhere': 0}
+PASS I1  x64 argument reads at entry in 43/47 whole and 30/31 C-agreed: no separation
+PASS I2  no member of any set touches bank a0-a3 in its entry block
+PASS I3  no member of any set touches bank $sp / $fp / $ra anywhere
+PASS C1  the same detector finds bank v0 in 13 members and bank a0 in 3
+PASS C2  a body whose entry defines rcx before any read reports no argument read: 0015BCF0
+FAILS 0

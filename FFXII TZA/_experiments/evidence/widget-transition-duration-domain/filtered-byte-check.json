@@ -1,0 +1,65 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "ed8cb051ea35754e69c9af200315a3df12637216"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "f3c5afe653d5c1e5d86ebf349b85ee4132e376c9"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "0c1c8cb7e14859a427ac985afeda4451eb46fcd3"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "6586ab948e9c84b82f18cc3708d7a55f64f89210"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "ec5090175b2282db2d28cdcc701b1b07ba800187"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "2c933e15f5f538fa65e1990ad21d255bb8dec701"
+    },
+    {
+      "path": "retained/changed-multiply-source.bin",
+      "git_blob": "581e61c54a14ade2a436a4f760e012f1936895e1"
+    },
+    {
+      "path": "retained/contract.md",
+      "git_blob": "4abd9e0ebfe8cf96017e953fddc0f22488cb6184"
+    },
+    {
+      "path": "retained/field-preimages.json",
+      "git_blob": "af9d4e87d6029e503d81cee123aa2b8ebd8f8e4c"
+    },
+    {
+      "path": "retained/peer-producer.py",
+      "git_blob": "f1b39bde7a0aec8350db63ba09a063bd46e74ddb"
+    },
+    {
+      "path": "retained/prior37-manifest.json",
+      "git_blob": "146f2a6340b09f52883eabf1882cf3d94411a47c"
+    },
+    {
+      "path": "retained/prior37-source.bin",
+      "git_blob": "071803684cdd071c20897724f26200f1befa9529"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "b5674bde0eff4c6eadefdacebbef24df63b51f3c"
+    }
+  ]
+}

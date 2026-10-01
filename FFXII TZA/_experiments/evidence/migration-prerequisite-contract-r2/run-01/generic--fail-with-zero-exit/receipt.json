@@ -1,0 +1,23 @@
+{
+  "name": "generic--fail-with-zero-exit",
+  "source": "generic",
+  "original_case": "fail-with-zero-exit",
+  "original_fixture_commit": "c5c0111ebf885668e06804da3642fc0117c644eb",
+  "expected_accepted": false,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic-prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--fail-with-zero-exit\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\reverify-r2\\run-01\\generic--fail-with-zero-exit\\declaration.json"
+  ],
+  "deadline_seconds": 5,
+  "declaration_sha256": "9d793eef5b00cf66de9d86bb01eb938b8dd1006a96f5576706cc345b97700f78",
+  "upstream_sha256": "b1e0c7d46322c25b29c32b7c1d78ec9ca095b35d11d82e47abeb1ff2c4e57ba1",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py exited 0 but printed FAIL lines: FAIL  B required\n",
+  "stderr": "",
+  "timed_out": false,
+  "child_reaped": true
+}

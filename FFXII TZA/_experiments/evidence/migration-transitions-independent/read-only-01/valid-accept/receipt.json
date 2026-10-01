@@ -1,0 +1,27 @@
+{
+  "name": "valid-accept",
+  "expected": "INCORPORATE",
+  "input_sha256": "79f170f676d3fa5b112362f56f77f89dbc50299d1900431221e450546078f951",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\valid-accept\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"INCORPORATE\",\n  \"review\": \"REVIEW-VALID-ACCEPT\",\n  \"detail\": \"AUTO-INCORP-REVIEW-VALID-ACCEPT\",\n  \"status\": \"planned\"\n }\n]\n",
+  "stderr": "",
+  "parsed_report": [
+    {
+      "transition": "INCORPORATE",
+      "review": "REVIEW-VALID-ACCEPT",
+      "detail": "AUTO-INCORP-REVIEW-VALID-ACCEPT",
+      "status": "planned"
+    }
+  ],
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true
+}

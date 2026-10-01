@@ -1,0 +1,5 @@
+pid 19560   held-array at 0x000000000E457E30, 256 bytes
+baseline: all 256 bytes zero
+REFUSING: could not take the foreground (it is 0xec0edc). Every negative below would be a measurement of this terminal, not of the game.
+SENDINPUT vk=0xd up=True accepted=2 requested=2
+ 

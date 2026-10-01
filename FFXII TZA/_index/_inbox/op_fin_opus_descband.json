@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-THE-FIFTY-SIX-HEADS-ARE-CLASS-DESCRIPTORS",
+ "agent": "OPUS",
+ "note": "Committed 66ace7ad5. The repeated head belongs to Phyre class descriptors, established from a contract-named callee - 006388C0, PType_FindOrRegisterByName - rather than from the shape's own regularity, and the head itself turned out to be +0x58 inside a descriptor rather than the base of anything. The sweep's coverage model now counts the 153 descriptor addresses the store cites in prose, at the contract's 0x140 floor and stated as a floor, which takes uncovered targets from 10,681 to 10,296 and clusters from 1,251 to 1,096. Six clusters read across three rounds, five declined and one declared; this decline removed 155 clusters. NOT CLAIMED: the descriptors' real extent, which is at least 0x140 and is not measured here, so the remaining band coverage is understated by whatever that floor is short by. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/_inbox/OPUS.md",
+  "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

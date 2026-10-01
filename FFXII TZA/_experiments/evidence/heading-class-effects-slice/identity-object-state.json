@@ -1,0 +1,62 @@
+{
+  "method": "A justified native nested source capture; no machine-code/game execution",
+  "prior_commit": "feb631dd4755e77a1edfed3c9b20f7d629d30d70",
+  "driver_sha256": "ddbba9058af8b280092ff4aae52aa278fe3addc7231536a95d1a99153bdf0832",
+  "inputs": [
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\retained\\producer-source.py",
+      "sha256": "4ff039139b2da694f63b9b7b49e85c805e9cfcd9b29d6c4e4b280d71ffb82ead",
+      "published_member": "retained/producer-source.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\retained\\functions.tsv",
+      "sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+      "published_member": "retained/functions.tsv"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\retained\\intervening-body963.bin",
+      "sha256": "40220180106db95c8d66bb8e47227ef9edb3f62b31ee4dafb891f5612cc06d8d",
+      "published_member": "retained/intervening-body963.bin"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\retained\\reg_tracking.py",
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "published_member": "retained/reg_tracking.py"
+    },
+    {
+      "path": "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+      "published_member": "python-deps/pefile.py"
+    }
+  ],
+  "providers": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+      "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345"
+    }
+  ],
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "capstone": "5.0.7",
+  "loaded_pefile": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\python-deps\\pefile.py",
+  "exe": {
+    "path": "Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "external": true
+  },
+  "previous_raw_sha256": "386a65b8324bc9fe8ad733cee2c883a09e28e18b939c49fc7de08d25d41e0f51",
+  "previous_driver_sha256": "e6eef80f103e4063d8687929397b2a121f013496c1bce85d6df48a4ff57fdeb9",
+  "closure_source_sha256": "bfb1384cc530c08ef91598a5db04c625c4eba6b92a7ab0644ac4eca17ea5492a",
+  "edge_policy": "Corrected default producer uses CS_GRP_JUMP including conditional branches; 2E6300 is a deliberate smallest regression control, not a new native semantic experiment."
+}

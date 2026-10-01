@@ -1,0 +1,232 @@
+candidates	bucket	skeleton	census_twins	examples
+3	forwarder	mov edx, dword ptr [rdx + K] ; jmp T	frontier=3	0042BDD0 0042E530 0042E540
+3	tiny-leaf	cmp byte ptr [rcx], 0 ; jne T ; ret 	frontier=3	0045AEE0 0045B2A0 0045BAD0
+2	forwarder	mov edx, ecx ; xor ecx, ecx ; jmp T	frontier=2	002E2300 003E82A0
+2	tiny-leaf	cmp dword ptr [rcx + K], 2 ; je T ; ret 	frontier=2	00370390 00370BA0
+2	tiny-leaf	mov dword ptr [rip + K], ecx ; mov dword ptr [rip + K], edx ; ret 	frontier=2	002F1CD0 002F4510
+2	tiny-leaf	inc dword ptr [rip + K] ; ret 	frontier=2	001EC690 0042FCB0
+2	tiny-leaf	mov eax, dword ptr [rcx + K] ; shr eax, K ; and eax, 1 ; ret 	frontier=2	0041C6B0 00556580
+2	tiny-leaf	or byte ptr [rip + K], cl ; ret 	frontier=2; A=1	003ACA60 003B4A30
+2	tiny-leaf	mov byte ptr [rcx + K], 1 ; xor eax, eax ; ret 	frontier=2; family:SQEX SEAD sound library span=1	00798A30 007A0FB0
+2	tiny-leaf	not cl ; and byte ptr [rip + K], cl ; ret 	frontier=2; A=1	003ACA70 003B4A40
+2	forwarder	mov ecx, edx ; jmp T	frontier=2	00197980 00210AE0
+2	tiny-leaf	movsd xmm0, qword ptr [rcx + K] ; ret 	frontier=2; family:libwebm mkvparser=1	0079CF70 0079DA00
+2	forwarder	lea rcx, [rip + K] ; jmp T	family:PDataMemberMetadata static teardowns=853; family:empty-destructor static-teardown wrappers=145; family:xc-registered library teardowns=96; family:Phyre.Reflection.AnnotationStaticTeardown=55	0035D070 008B7DB0
+2	forwarder	mov rax, qword ptr [rcx] ; movss dword ptr [rcx + K], xmm1 ; jmp qword ptr [rax + 8]	frontier=2	00679110 00679120
+2	forwarder	mov edx, 1 ; xor ecx, ecx ; jmp T	frontier=2	002E7080 0035D560
+2	tiny-leaf	mov rax, qword ptr [rip + K] ; mov eax, dword ptr [rax + K] ; ret 	family:NativeLeaf.DocumentedGlobalAccessor=6; A=2; frontier=2	0032A6B0 00862C00
+2	forwarder	test r8d, r8d ; jne T ; jmp T	frontier=2	003DE9A0 003DEA00
+2	forwarder	mov r8d, 1 ; jmp T	family:NativeAdapter.ExplainedCalleeForwarder=2; frontier=2; A=1; family:Tremor with vorbisfile.c=1	003DB790 00422E40
+2	forwarder	xor r8d, r8d ; mov r9d, edx ; mov edx, ecx ; lea ecx, [r8 + 1] ; jmp T	frontier=2; A=1	002DEF20 002DF170
+2	tiny-leaf	test rcx, rcx ; je T ; mov r10, qword ptr [rcx] ; jmp qword ptr [r10 + K] ; ret 	frontier=2	0017F210 0017F250
+2	forwarder	movaps xmm2, xmm1 ; jmp T	frontier=2	0026B2D0 0026BB50
+2	tiny-leaf	test byte ptr [rcx + K], K ; je T ; movsx eax, byte ptr [rcx + K] ; ret  ; xor eax, eax ; ret 	frontier=2	00263AA0 00263AB0
+2	forwarder	mov rax, qword ptr [rdx] ; mov rcx, rdx ; jmp qword ptr [rax + K]	frontier=2	001FBD70 001FBE40
+1	forwarder	mov ecx, dword ptr [rcx + K] ; jmp T	family:NativeAdapter.ExplainedCalleeForwarder=2; frontier=1	00330050
+1	tiny-leaf	or byte ptr [rcx + K], 2 ; ret 	frontier=1	00464090
+1	tiny-leaf	movaps xmm0, xmmword ptr [rip + K] ; movups xmmword ptr [rcx], xmm0 ; ret 	frontier=1	003600C0
+1	tiny-leaf	test byte ptr [rcx + K], 1 ; jne T ; ret 	frontier=1	003F80D0
+1	tiny-leaf	test rcx, rcx ; je T ; mov eax, dword ptr [rcx - K] ; ret  ; xor eax, eax ; ret 	frontier=1	0036C100
+1	forwarder	mov edx, ecx ; mov rcx, qword ptr [rip + K] ; add rcx, K ; jmp T	A=1; frontier=1	00290190
+1	tiny-leaf	mov dword ptr [rcx + K], edx ; mov al, 1 ; mov dword ptr [rcx + K], r8d ; ret 	frontier=1	0020C1A0
+1	tiny-leaf	xor eax, eax ; mov qword ptr [rcx], rax ; mov qword ptr [rcx + 8], rax ; mov dword ptr [rcx + K], eax ; mov rax, rcx ; ret 	frontier=1	005DC1B0
+1	forwarder	movsx edx, byte ptr [rcx + K] ; jmp T	frontier=1	002681C0
+1	forwarder	mov r10, qword ptr [rcx] ; jmp qword ptr [r10 + 8]	frontier=1	005A0240
+1	tiny-leaf	movsx r8d, byte ptr [rcx + 1] ; movsx eax, byte ptr [rdx + 1] ; sub eax, r8d ; ret 	frontier=1	002D0270
+1	forwarder	mov r8d, edx ; mov edx, ecx ; mov rcx, qword ptr [rip + K] ; jmp T	frontier=1; A=1	00290300
+1	forwarder	cmp ecx, -1 ; jne T ; or eax, ecx ; ret  ; jmp T	frontier=1	00328360
+1	tiny-leaf	mov rax, qword ptr [rip + K] ; movss dword ptr [rax + K], xmm0 ; ret 	frontier=1; A=1	002E83A0
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; movzx ecx, word ptr [rax + K] ; movd xmm0, ecx ; cvtdq2ps xmm0, xmm0 ; ret 	frontier=1	0041C3A0
+1	tiny-leaf	test rdx, rdx ; je T ; xor eax, eax ; mov qword ptr [rdx], rax ; mov al, 1 ; ret 	frontier=1	005A44E0
+1	tiny-leaf	or eax, K ; ret 	frontier=1; family:SQEX SEAD sound library span=1	00660570
+1	tiny-leaf	mov eax, dword ptr [rdx] ; sub eax, dword ptr [rcx] ; jne T ; mov eax, dword ptr [rcx + 4] ; sub eax, dword ptr [rdx + 4] ; ret 	frontier=1	00244610
+1	forwarder	movsxd rax, ecx ; lea rcx, [rip + K] ; lea rcx, [rcx + rax*8] ; jmp T	frontier=1	00238640
+1	tiny-leaf	mov eax, dword ptr [rip + K] ; shr eax, 1 ; and eax, 1 ; ret 	frontier=1	0035C740
+1	tiny-leaf	movsxd rax, edx ; mov eax, dword ptr [rcx + rax*8] ; add rax, rcx ; ret 	frontier=1	00274780
+1	forwarder	mov word ptr [rip + K], cx ; jmp T	frontier=1	002547C0
+1	forwarder	mov rax, qword ptr [rip + K] ; mov byte ptr [rax + K], r9b ; jmp T	frontier=1	003C0890
+1	forwarder	mov rax, qword ptr [rdx] ; movzx r9d, r8b ; mov rcx, rdx ; xor r8d, r8d ; movzx edx, r9b ; jmp qword ptr [rax + K]	frontier=1	00214890
+1	tiny-leaf	test rcx, rcx ; je T ; cmp dword ptr [rcx], -1 ; je T ; mov word ptr [rcx + K], dx ; ret 	frontier=1	002EC960
+1	tiny-leaf	movzx eax, byte ptr [rcx + 3] ; shr eax, 5 ; ret 	frontier=1	003589A0
+1	tiny-leaf	mov eax, dword ptr [rcx + K] ; lea rax, [rax + rax*4] ; shl rax, 6 ; add rax, qword ptr [rcx + K] ; ret 	frontier=1	001DC9C0
+1	forwarder	or dword ptr [rcx + K], K ; add rcx, K ; jmp T	frontier=1	004209F0
+1	forwarder	xor edx, edx ; mov r8d, K ; jmp T	family:CRI HCA decoder=1; A=1; frontier=1	0028CA30
+1	tiny-leaf	xor eax, eax ; cmp ecx, K ; sete al ; ret 	frontier=1	002CCA30
+1	tiny-leaf	mov dword ptr [rcx], K ; mov dword ptr [rcx + 4], K ; ret 	frontier=1	00194AA0
+1	forwarder	movsxd rcx, ecx ; jmp T	A=1; frontier=1	00368AD0
+1	tiny-leaf	xor eax, eax ; add ecx, K ; cmp ecx, K ; setbe al ; ret 	frontier=1	002CCB00
+1	tiny-leaf	mov byte ptr [rcx + K], dl ; xor eax, eax ; ret 	frontier=1; family:Phyre PFramework module=1	007A0B30
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; movzx eax, word ptr [rax + 4] ; ret 	frontier=1	003E4B40
+1	tiny-leaf	mov dword ptr [rip + K], ecx ; mov byte ptr [rip + K], 1 ; ret 	frontier=1; A=1	00214B40
+1	tiny-leaf	mov eax, dword ptr [rcx + K] ; shr eax, 1 ; and eax, 1 ; ret 	family:SQEX SEAD sound library span=2; frontier=1	0063CB50
+1	tiny-leaf	or byte ptr [rcx + K], 1 ; ret 	frontier=1; A=1	00464BC0
+1	tiny-leaf	cmp byte ptr [rcx], 0 ; je T ; mov eax, dword ptr [rcx + 4] ; ret  ; or eax, K ; ret 	frontier=1	001D8C70
+1	tiny-leaf	mov eax, dword ptr [rcx] ; btr eax, K ; ret 	frontier=1	005C4CC0
+1	forwarder	test edx, edx ; jle T ; lea ecx, [rdx - 1] ; jmp T ; xor ecx, ecx ; jmp T	frontier=1	0029CCD0
+1	forwarder	mov r9d, 1 ; jmp T	A=1; frontier=1	003DCCF0
+1	forwarder	mov ecx, dword ptr [rip + K] ; jmp T	frontier=1; A=1	00254E70
+1	tiny-leaf	and ecx, K ; mov eax, ecx ; ret 	frontier=1	0035A050
+1	getter-leaf	movsx eax, byte ptr [rcx + K] ; ret 	frontier=1	00264EC0
+1	forwarder	mov r9d, K ; jmp T	frontier=1	00270F50
+1	forwarder	movss xmm2, dword ptr [rcx + K] ; mov r9, rdx ; lea rdx, [rcx + K] ; jmp T	frontier=1	00468F70
+1	forwarder	test ecx, ecx ; mov rcx, qword ptr [rip + K] ; jne T ; jmp T	frontier=1	00378F90
+1	forwarder	cmp dword ptr [rdx], 4 ; jne T ; mov rax, qword ptr [rcx + K] ; mov byte ptr [rax + K], 4 ; jmp T	frontier=1	00290FF0
+1	tiny-leaf	xor eax, eax ; test ecx, ecx ; sete al ; mov dword ptr [rip + K], eax ; ret 	frontier=1	0035D010
+1	forwarder	mov ecx, dword ptr [rip + K] ; xor ecx, 1 ; mov dword ptr [rip + K], ecx ; jmp T	frontier=1	00255020
+1	tiny-leaf	cmp dword ptr [rcx + K], 0 ; jne T ; mov eax, dword ptr [rcx + K] ; ret  ; mov eax, dword ptr [rcx + K] ; ret 	frontier=1	001DD050
+1	forwarder	mov rcx, qword ptr [rip + K] ; mov qword ptr [rip + K], rdx ; jmp T	frontier=1	00369050
+1	tiny-leaf	movsxd rax, ecx ; lea rcx, [rip + K] ; mov qword ptr [rcx + rax*8], rdx ; ret 	A=3; family:NativeLeaf.DocumentedGlobalAccessor=1; frontier=1	00369070
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; mov byte ptr [rax + 9], 0 ; ret 	frontier=1	00189090
+1	tiny-leaf	shr ecx, K ; not ecx ; and ecx, 1 ; mov eax, ecx ; ret 	frontier=1	003A10F0
+1	forwarder	mov rcx, qword ptr [rip + K] ; jmp T	family:NativeAdapter.StaticPointerTailCall=20; frontier=1; family:NativeAdapter.ExplainedCalleeForwarder=1; A=1	003690F0
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; mov rcx, qword ptr [rax] ; movzx eax, byte ptr [rax + 8] ; mov byte ptr [rcx + 9], al ; ret 	frontier=1	00189110
+1	tiny-leaf	xor eax, eax ; mov byte ptr [rcx], 0 ; mov word ptr [rcx + 2], ax ; ret 	frontier=1	00471140
+1	tiny-leaf	mov byte ptr [rcx + K], 1 ; xor eax, eax ; mov dword ptr [rcx + K], edx ; mov dword ptr [rcx + K], r8d ; ret 	frontier=1	007A1180
+1	forwarder	movsxd rax, ecx ; lea rcx, [rip + K] ; movsxd rcx, dword ptr [rcx + rax*4] ; jmp T	family:NativeAdapter.ExplainedCalleeForwarder=1; frontier=1	003691B0
+1	forwarder	test ecx, ecx ; jns T ; mov edx, K ; xor ecx, ecx ; jmp T ; jmp T	frontier=1	003791D0
+1	forwarder	mov rcx, qword ptr [rcx + K] ; movzx r9d, r9b ; jmp T	frontier=1	00211220
+1	tiny-leaf	cmp dword ptr [rcx + 4], 2 ; je T ; mov eax, dword ptr [rcx + K] ; ret  ; movzx eax, word ptr [rcx + K] ; ret 	frontier=1	00409240
+1	forwarder	test ecx, ecx ; jns T ; mov edx, K ; mov ecx, edx ; jmp T ; add ecx, K ; jmp T	frontier=1	00379270
+1	forwarder	mov rcx, qword ptr [rip + K] ; xor edx, edx ; jmp T	A=1; frontier=1; family:NativeAdapter.ExplainedCalleeForwarder=1	004052A0
+1	forwarder	mov rcx, qword ptr [rip + K] ; mov edx, 1 ; jmp T	frontier=1; family:NativeAdapter.ExplainedCalleeForwarder=1	004052B0
+1	forwarder	mov rcx, qword ptr [rcx + K] ; and r9d, K ; jmp T	frontier=1	002112C0
+1	forwarder	cmp dword ptr [rcx + K], 2 ; je T ; xor eax, eax ; ret  ; jmp T	frontier=1	003712C0
+1	tiny-leaf	xor eax, eax ; mov qword ptr [rcx + K], rax ; mov qword ptr [rcx + K], rax ; mov byte ptr [rcx], al ; ret 	frontier=1	002152D0
+1	forwarder	cmp byte ptr [rdx + K], 1 ; jne T ; xor eax, eax ; ret  ; jmp T	frontier=1	00265380
+1	tiny-leaf	movsxd rax, ecx ; lea rcx, [rip + K] ; mov dword ptr [rcx + rax*4], edx ; ret 	A=1; frontier=1	003C5400
+1	tiny-leaf	mov rax, qword ptr [rcx + 8] ; mov qword ptr [rcx + K], rax ; ret 	frontier=1	001A1460
+1	forwarder	mov dword ptr [rip + K], 0 ; jmp T	frontier=1	002DD4A0
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; mov qword ptr [rcx + 8], rax ; ret 	frontier=1	001A14D0
+1	forwarder	mov rax, rcx ; mov rcx, qword ptr [rcx + K] ; jmp qword ptr [rax + K]	frontier=1	00865540
+1	forwarder	mov rax, qword ptr [rcx] ; jmp qword ptr [rax + 8]	frontier=1	00865550
+1	forwarder	xor edx, edx ; xor ecx, ecx ; jmp T	family:ScriptVM.VerbAdapter=1; frontier=1	0035D550
+1	forwarder	movsx rax, byte ptr [rcx + K] ; lea rdx, [rip + K] ; jmp qword ptr [rdx + rax*8]	frontier=1	00505560
+1	tiny-leaf	xor eax, eax ; mov dword ptr [rcx + K], eax ; mov dword ptr [rcx + K], eax ; ret 	frontier=1	00865590
+1	tiny-leaf	mov qword ptr [rcx + K], rdx ; mov qword ptr [rcx + K], r8 ; ret 	frontier=1; A=1	002255B0
+1	tiny-leaf	and byte ptr [rip + K], K ; ret 	frontier=1	0025D5D0
+1	tiny-leaf	mov edx, dword ptr [rcx + K] ; cmp dword ptr [rcx + K], edx ; sete al ; ret 	frontier=1	001BD620
+1	forwarder	mov ecx, 2 ; jmp T	frontier=1	0079D620
+1	tiny-leaf	xor eax, eax ; cmp ecx, -1 ; je T ; test ecx, ecx ; sets al ; ret 	frontier=1	003A1640
+1	forwarder	xor eax, eax ; lea rcx, [rip + K] ; xchg dword ptr [rip + K], eax ; jmp T	frontier=1	00169640
+1	forwarder	mov rdx, qword ptr [rcx + 8] ; mov rcx, qword ptr [rcx + K] ; jmp T	frontier=1	00249670
+1	tiny-leaf	mov eax, K ; or word ptr [rcx + K], ax ; ret 	frontier=1	00465680
+1	tiny-leaf	test rdx, rdx ; jne T ; xor eax, eax ; ret  ; mov rax, qword ptr [rdx] ; ret 	frontier=1	006CD6A0
+1	forwarder	mov rax, qword ptr [rdx] ; mov r9, rdx ; mov r8, qword ptr [rcx + K] ; mov rdx, qword ptr [rcx + 8] ; mov rcx, r9 ; jmp qword ptr [rax + K]	frontier=1	001F16A0
+1	forwarder	mov rcx, rdx ; jmp T	family:forward-second-argument tail calls=72; family:ScriptVM.VerbAdapter=15; A=12; frontier=1	0016D6C0
+1	forwarder	xor eax, eax ; xchg byte ptr [rcx + K], al ; jmp T	frontier=1	001C1710
+1	forwarder	movsxd rcx, ecx ; jmp qword ptr [rip + K]	frontier=1	0020D7B0
+1	tiny-leaf	mov eax, dword ptr [rip + K] ; and eax, K ; ret 	frontier=1	002498A0
+1	tiny-leaf	test rdx, rdx ; jne T ; xor eax, eax ; ret  ; mov rax, qword ptr [rdx + 8] ; ret 	frontier=1	006D98C0
+1	tiny-leaf	and dword ptr [rcx + K], K ; and edx, 1 ; shl edx, 5 ; or dword ptr [rcx + K], edx ; ret 	frontier=1	002418E0
+1	forwarder	mov rdx, rcx ; mov rcx, qword ptr [rip + K] ; jmp T	frontier=1; A=1	001D9920
+1	forwarder	mov eax, dword ptr [rcx + K] ; mov dword ptr [rcx + K], eax ; add rcx, K ; jmp T	frontier=1	003D9930
+1	tiny-leaf	and byte ptr [rcx + 9], K ; mov byte ptr [rcx + 8], 0 ; ret 	frontier=1	004719A0
+1	forwarder	mov edx, ecx ; mov rcx, qword ptr [rip + K] ; jmp T	frontier=1; A=1	0017D9C0
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; mov qword ptr [rcx + K], rax ; ret 	frontier=1; A=1	001A5A70
+1	tiny-leaf	mov rax, qword ptr [rcx] ; test rax, rax ; je T ; mov dword ptr [rax + 8], 0 ; ret 	frontier=1	005DDAE0
+1	forwarder	xor edx, edx ; lea eax, [rdx + 2] ; test ecx, ecx ; js T ; mov eax, ecx ; div dword ptr [rip + K] ; mov ecx, eax ; jmp T	frontier=1	0026DB10
+1	forwarder	mov edx, ecx ; xor r8d, r8d ; xor ecx, ecx ; jmp T	frontier=1	0046DB10
+1	tiny-leaf	mov qword ptr [rcx + 8], rdx ; mov dword ptr [rcx + K], r8d ; ret 	frontier=1	00225CC0
+1	tiny-leaf	mov rax, qword ptr [rcx + 8] ; mov qword ptr [rip + K], rax ; ret 	frontier=1	0029DCD0
+1	forwarder	mov ecx, 1 ; jmp T	family:ScriptVM.VerbAdapter=9; family:NativeAdapter.ConstantFirstArgumentTailCall=6; A=1; frontier=1	004FDD90
+1	forwarder	mov dl, 2 ; jmp T	frontier=1	00379F20
+1	forwarder	mov ecx, ecx ; jmp T	frontier=1	00379F30
+1	tiny-leaf	movd xmm0, edx ; cvtdq2ps xmm0, xmm0 ; movss dword ptr [rcx + K], xmm0 ; ret 	frontier=1	001B1F70
+1	tiny-leaf	test edx, edx ; setne al ; mov byte ptr [rcx + K], al ; ret 	frontier=1	001B1FD0
+1	tiny-leaf	movsxd rax, ecx ; lea rcx, [rip + K] ; mov eax, dword ptr [rcx + rax*4] ; ret 	A=1; frontier=1; family:NativeLeaf.DocumentedGlobalAccessor=1	002EA030
+1	tiny-leaf	movzx eax, word ptr [rdx] ; rol ax, 8 ; mov word ptr [rdx], ax ; mov al, 1 ; ret 	frontier=1	0063E040
+1	tiny-leaf	or word ptr [rcx + K], 2 ; mov word ptr [rcx + K], dx ; ret 	frontier=1	002BE090
+1	forwarder	mov eax, K ; and rcx, rax ; jmp T	frontier=1; A=1	003320D0
+1	forwarder	mov edx, ecx ; mov eax, K ; and rdx, rax ; mov ecx, 1 ; jmp T	frontier=1	00332110
+1	forwarder	movsxd rax, ecx ; lea rcx, [rip + K] ; mov dword ptr [rcx + rax*8], 0 ; jmp T	frontier=1	0026E130
+1	tiny-leaf	mov eax, ecx ; ret 	frontier=1	003DA190
+1	tiny-leaf	cvttss2si eax, xmm0 ; mov dword ptr [rip + K], eax ; ret 	frontier=1	0023A1F0
+1	forwarder	mov ecx, K ; mov qword ptr [rip + K], 0 ; jmp T	frontier=1	00552230
+1	jmp-thunk	jmp rax	frontier=1	00896270
+1	forwarder	mov byte ptr [rip + K], cl ; jmp T	frontier=1	0026A290
+1	forwarder	xorps xmm3, xmm3 ; xorps xmm2, xmm2 ; xor edx, edx ; xorps xmm0, xmm0 ; jmp T	frontier=1	003DA2C0
+1	forwarder	mov edx, ecx ; mov ecx, 1 ; jmp T	frontier=1; family:NativeAdapter.ExplainedCalleeForwarder=1	002E2310
+1	tiny-leaf	xor eax, eax ; sub cl, 7 ; cmp cl, K ; setbe al ; ret 	frontier=1	00322350
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; mov edx, edx ; mov rax, qword ptr [rax + rdx*8] ; ret 	family:Phyre PAnimation module=1; frontier=1	0079E380
+1	tiny-leaf	mov eax, dword ptr [rcx + K] ; btr eax, K ; ret 	family:Phyre PAnimation module=2; frontier=1	0079E390
+1	forwarder	mov eax, edx ; test ecx, ecx ; jne T ; mov rdx, r8 ; mov ecx, eax ; jmp T ; mov rcx, r8 ; jmp T	frontier=1	0025A3B0
+1	tiny-leaf	mov eax, dword ptr [rcx] ; mov dword ptr [rip + K], eax ; mov byte ptr [rip + K], K ; ret 	frontier=1	003DE450
+1	tiny-leaf	cvttss2si rax, xmm0 ; mov byte ptr [rip + K], al ; ret 	frontier=1	003DE460
+1	forwarder	mov rcx, qword ptr [rcx] ; jmp qword ptr [rip + K]	frontier=1	0019A4F0
+1	tiny-leaf	test rcx, rcx ; jne T ; xor eax, eax ; ret  ; movzx eax, byte ptr [rcx + K] ; ret 	frontier=1	00296570
+1	tiny-leaf	xor eax, eax ; mov edx, K ; cmp word ptr [rcx + 8], dx ; setne al ; ret 	frontier=1	00556570
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; test rax, rax ; je T ; mov rcx, rdx ; jmp rax ; ret 	frontier=1	006065D0
+1	forwarder	mov edx, dword ptr [rcx + K] ; mov rcx, qword ptr [rip + K] ; jmp T	frontier=1	00186610
+1	tiny-leaf	xor eax, eax ; test ecx, ecx ; sete al ; ret 	frontier=1	0020E610
+1	forwarder	xor edx, edx ; lea rcx, [rip + K] ; mov r8d, K ; jmp T	A=3; family:NativeAdapter.ExplainedCalleeForwarder=2; frontier=1	0024A660
+1	tiny-leaf	mov qword ptr [rcx], rdx ; mov rax, rcx ; mov qword ptr [rcx + 8], 0 ; ret 	frontier=1	006B66F0
+1	tiny-leaf	movsx edx, byte ptr [rip + K] ; xor eax, eax ; bt edx, ecx ; setb al ; ret 	frontier=1	003DE700
+1	tiny-leaf	or dword ptr [rcx], K ; ret 	frontier=1	003E2800
+1	tiny-leaf	mov byte ptr [rcx], dl ; test dl, dl ; jne T ; mov word ptr [rcx + 1], 0 ; ret 	frontier=1	0018A820
+1	tiny-leaf	xorps xmm0, xmm0 ; movss dword ptr [rip + K], xmm0 ; ret 	frontier=1	0025A830
+1	tiny-leaf	xor eax, eax ; test ecx, ecx ; setne al ; mov dword ptr [rip + K], eax ; ret 	family:NativeLeaf.DocumentedGlobalAccessor=2; frontier=1	0025A880
+1	forwarder	xor edx, edx ; lea rcx, [rip + K] ; jmp T	frontier=1	003E6890
+1	forwarder	xor r9d, r9d ; lea r8, [rip + K] ; mov edx, K ; jmp T	frontier=1	00296940
+1	tiny-leaf	movaps xmm0, xmmword ptr [rip + K] ; movaps xmmword ptr [rip + K], xmm0 ; ret 	frontier=1	003769E0
+1	forwarder	test edx, edx ; jne T ; jmp T	frontier=1	003DEA10
+1	forwarder	mov r9d, edx ; mov edx, ecx ; mov rcx, qword ptr [rip + K] ; jmp T	frontier=1	0028EA20
+1	forwarder	movsxd rax, ecx ; lea rcx, [rip + K] ; mov ecx, dword ptr [rcx + rax*4] ; jmp T	frontier=1	002EAA30
+1	forwarder	xor r8d, r8d ; lea rdx, [rip + K] ; jmp T	frontier=1	003E6A60
+1	tiny-leaf	test cl, 1 ; jne T ; ret 	frontier=1	002FEAC0
+1	tiny-leaf	mov byte ptr [rip + K], cl ; mov byte ptr [rip + K], dl ; ret 	frontier=1	0026AB50
+1	forwarder	mov eax, edx ; xor edx, edx ; test eax, eax ; setne dl ; jmp T	frontier=1	0032AB50
+1	tiny-leaf	mov qword ptr [rcx + K], rdx ; xor eax, eax ; ret 	frontier=1; family:PPFX post-effect library=1; family:SQEX SEAD sound library span=1	006CAC10
+1	getter-leaf	movsx eax, word ptr [rcx + 8] ; ret 	frontier=1	002DEC10
+1	forwarder	mov eax, ecx ; movzx r8d, cx ; shr eax, K ; mov r9, rdx ; movzx edx, al ; shr ecx, K ; jmp T	frontier=1	0032EC20
+1	tiny-leaf	mov byte ptr [rcx + K], dl ; mov word ptr [rcx + K], r8w ; ret 	frontier=1	006CAC30
+1	tiny-leaf	mov rcx, qword ptr [rcx + 8] ; test rcx, rcx ; jne T ; ret 	frontier=1	00212C60
+1	tiny-leaf	mov eax, dword ptr [rcx + K] ; mov dword ptr [rip + K], eax ; ret 	frontier=1	0017ECB0
+1	forwarder	mov r8d, edx ; mov rdx, qword ptr [rcx + K] ; add rcx, K ; jmp T	frontier=1	0061ECD0
+1	tiny-leaf	test rdx, rdx ; jne T ; mov eax, 1 ; ret 	frontier=1	0063AD20
+1	tiny-leaf	xor eax, eax ; cmp qword ptr [rip + K], rax ; sete al ; ret 	family:NativeLeaf.DocumentedGlobalAccessor=4; frontier=1	0053ED60
+1	forwarder	mov rcx, rdx ; mov rdx, r8 ; jmp T	family:NativeAdapter.ExplainedCalleeForwarder=8; frontier=1	006B2E40
+1	tiny-leaf	movss dword ptr [rcx + K], xmm1 ; mov rax, rcx ; ret 	frontier=1	006B2E60
+1	tiny-leaf	mov rax, qword ptr [rcx + K] ; mov rax, qword ptr [rax + K] ; ret 	frontier=1; family:PPFX post-effect library=1	001F6E60
+1	tiny-leaf	movss dword ptr [rcx], xmm1 ; mov rax, rcx ; ret 	frontier=1	006B2E70
+1	tiny-leaf	movss dword ptr [rcx + 4], xmm1 ; mov rax, rcx ; ret 	frontier=1	006B2E80
+1	tiny-leaf	movss dword ptr [rcx + 8], xmm1 ; mov rax, rcx ; ret 	frontier=1	006B2E90
+1	forwarder	xor r8d, r8d ; or edx, K ; jmp T	frontier=1	002DEEF0
+1	tiny-leaf	mov rax, qword ptr [rcx + 8] ; sub rax, qword ptr [rcx] ; sar rax, 3 ; mov dword ptr [rcx + K], eax ; ret 	frontier=1	0018B030
+1	forwarder	or ecx, K ; jmp T	frontier=1; family:ScriptVM.VerbAdapter=1	002DF060
+1	tiny-leaf	test rcx, rcx ; je T ; mov rax, qword ptr [rcx] ; xor edx, edx ; jmp qword ptr [rax + 8] ; ret 	frontier=1	0017F0B0
+1	tiny-leaf	xor al, al ; ret 	frontier=1; family:SQEX SEAD sound library span=1	00657140
+1	tiny-leaf	mov byte ptr [rcx + K], 1 ; xor eax, eax ; mov byte ptr [rcx + K], dl ; ret 	frontier=1	0079F140
+1	tiny-leaf	mov eax, dword ptr [rdx] ; bswap eax ; mov dword ptr [rdx], eax ; mov al, 1 ; ret 	frontier=1	005CB140
+1	forwarder	add rcx, 8 ; xor edx, edx ; jmp T	frontier=1	0079B150
+1	tiny-leaf	mov byte ptr [rip + K], cl ; mov dword ptr [rip + K], edx ; ret 	frontier=1	003631A0
+1	forwarder	mov rax, r8 ; mov dword ptr [rcx + 4], edx ; mov rdx, rax ; mov r8d, r9d ; jmp T	frontier=1	00597200
+1	tiny-leaf	test rcx, rcx ; je T ; mov r8, qword ptr [rcx] ; jmp qword ptr [r8 + K] ; ret 	frontier=1	0017F200
+1	forwarder	mov r8d, dword ptr [rcx + K] ; jmp T	frontier=1	00537260
+1	forwarder	cmp ecx, -1 ; jne T ; xor eax, eax ; ret  ; bts ecx, K ; jmp T	frontier=1	002DF280
+1	tiny-leaf	mov eax, dword ptr [rcx + K] ; bts eax, edx ; mov dword ptr [rcx + K], eax ; ret 	frontier=1	001DF2B0
+1	forwarder	cmp edx, -1 ; je T ; cmp edx, -4 ; jne T ; mov rax, qword ptr [rcx] ; jmp qword ptr [rax + 8] ; xor edx, edx ; jmp T	frontier=1	00223300
+1	tiny-leaf	mov eax, edx ; shl rax, 4 ; add rax, qword ptr [rcx + K] ; ret 	frontier=1	006AF4E0
+1	tiny-leaf	lea rax, [rip + K] ; mov qword ptr [rip + K], rax ; ret 	family:Phyre.Reflection.PTypeStaticTeardown=17; family:xc-registered static-object teardowns=7; A=1; frontier=1	008AF500
+1	tiny-leaf	movzx eax, byte ptr [rcx + 3] ; and al, K ; cmp al, K ; je T ; ret 	frontier=1	0026B720
+1	forwarder	xor r8d, r8d ; lea rdx, [rip + K] ; mov ecx, K ; jmp T	frontier=1	003EF750
+1	forwarder	mov r9d, 4 ; lea r8d, [r9 - 1] ; jmp T	frontier=1	003777A0
+1	forwarder	mov r9d, 2 ; lea r8d, [r9 + 5] ; jmp T	frontier=1	003777B0
+1	tiny-leaf	movzx edx, byte ptr [rcx] ; mov rax, qword ptr [rcx] ; and edx, 1 ; sub rax, rdx ; ret 	frontier=1	006A77F0
+1	forwarder	mov rcx, qword ptr [rip + K] ; mov rcx, qword ptr [rcx + K] ; jmp T	frontier=1; A=1	0028F810
+1	forwarder	mov rdx, qword ptr [rcx] ; mov rcx, qword ptr [rip + K] ; jmp T	frontier=1	001FB830
+1	forwarder	lea rdx, [rip + K] ; mov ecx, 2 ; jmp T	frontier=1	0063F850
+1	forwarder	movzx eax, byte ptr [rcx + 3] ; and al, K ; cmp al, K ; je T ; movss xmm0, dword ptr [rsp + 8] ; ret  ; jmp T	frontier=1	00263860
+1	getter-leaf	movzx eax, word ptr [rcx] ; ret 	frontier=1	00263980
+1	tiny-leaf	mov dword ptr [rcx + K], edx ; mov byte ptr [rip + K], 0 ; ret 	frontier=1	001EB9B0
+1	tiny-leaf	movsx eax, byte ptr [rcx + K] ; bt eax, edx ; setb al ; ret 	frontier=1	00197A40
+1	tiny-leaf	mov dword ptr [rcx + 8], r8d ; mov rax, rcx ; mov dword ptr [rcx + K], r9d ; mov qword ptr [rcx], rdx ; ret 	frontier=1	00217A60
+1	tiny-leaf	movss xmm0, dword ptr [rcx + K] ; mulss xmm0, dword ptr [rcx + K] ; ret 	frontier=1	006A3AF0
+1	forwarder	add rcx, K ; lea rdx, [rip + 5] ; jmp T	frontier=1	00467B20
+1	tiny-leaf	cmp edx, K ; jge T ; movsxd rax, edx ; mov qword ptr [rcx + rax*8 + 8], r8 ; ret 	frontier=1	00213B30
+1	getter-leaf	movsx eax, word ptr [rcx + K] ; ret 	A=2; family:SQEX SEAD sound library span=2; frontier=1	00263B40
+1	tiny-leaf	test dword ptr [rcx + K], K ; jne T ; ret 	frontier=1	0051BBE0
+1	tiny-leaf	mov eax, dword ptr [rip + K] ; shr eax, 2 ; and eax, 1 ; ret 	frontier=1	0035BC30
+1	forwarder	inc dword ptr [rip + K] ; jmp T	frontier=1	0042FCE0
+1	forwarder	mov rax, rdx ; mov r9, rcx ; mov rdx, r8 ; mov rcx, rax ; jmp qword ptr [r9 + K]	frontier=1	005A3EA0
+1	tiny-leaf	and byte ptr [rcx + 8], K ; neg edx ; sbb al, al ; and al, K ; or byte ptr [rcx + 8], al ; ret 	frontier=1	0026BED0
+1	tiny-leaf	xor eax, eax ; mov qword ptr [rcx], rax ; mov byte ptr [rcx + 8], al ; mov rax, rcx ; ret 	frontier=1	005DBF20

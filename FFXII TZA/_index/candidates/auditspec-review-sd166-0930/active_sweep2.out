@@ -1,0 +1,4 @@
+rip-relative operands into 022D8A60..022D8BD0: 0
+image-base-form operands (non-rip base, disp = VA - 0x120000) into the window: 0
+controls: 0036C272 False, 00369D73 False
+functions writing 022D89BC: rip []; image-base []

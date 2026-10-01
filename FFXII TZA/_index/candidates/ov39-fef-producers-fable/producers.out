@@ -1,0 +1,5 @@
+PASS  F 144 @FEF entries in 14139 containers; all in .cm under ps2data/obj_finish/in/: True
+PASS  M the dword at roundup64(size) - 4 never locates the carrier's EFX data: {('archive size', '0'): 144, ('contentLength', '0'): 112, ('contentLength', 'another value'): 32}
+PASS  N container and @FEF entry names NUL-terminated within their 16 bytes (0 exceptions)
+PASS  K sensitivity: EFX data found in all 144 carriers (within 0x40 of the @FEF entry); a planted true offset is accepted 144/144
+FAILS 0

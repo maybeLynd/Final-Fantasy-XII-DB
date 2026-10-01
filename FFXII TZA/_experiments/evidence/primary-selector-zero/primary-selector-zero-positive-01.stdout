@@ -1,0 +1,1 @@
+Original caller selector is always zero under normal ABI; alternate edge excluded here without live observation

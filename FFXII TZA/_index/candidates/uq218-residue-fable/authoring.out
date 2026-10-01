@@ -1,0 +1,4 @@
+PASS  D 0041D220: descriptor +0x20 -> +0x31C, +0x24 -> +0x31A
+PASS  A callers: 0041D220 <- ['0051BAD7']; 0051BA80 <- ['004247AD', '00425244']; both blocks put the event at +0x20 and render +0x413 at +0x24
+PASS  V 002E8220 (stdmotionvariation): v << 3 into actor +0x14F, mirrored >> 3 to render +0x413
+FAILS 0

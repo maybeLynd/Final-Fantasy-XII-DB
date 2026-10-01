@@ -1,0 +1,68 @@
+{
+  "repair": "cdbf25a5d711654ccbb883f472309c3f42df290f",
+  "head": "9ede80afb2afc121ccc9715edb8dcfc7716b2c2c",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "driver_sha256": "e8cfc78599eaabf404d4996cd9766184bfa4cda6d84f16cf2a53c90dcf268f80",
+  "sources": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\dashboard\\build_views.py",
+      "copy": "source/build_views.py",
+      "sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+      "commit_copy": "committed-source/build_views.py",
+      "commit_sha256": "820648358a3864643101a92cfd0169952ecaffb7c783953cdc010d263815c790",
+      "only_CRLF_LF_equivalent": true
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\generation.py",
+      "copy": "source/generation.py",
+      "sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "commit_copy": "committed-source/generation.py",
+      "commit_sha256": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183",
+      "only_CRLF_LF_equivalent": true
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\uc1_band.py",
+      "copy": "source/uc1_band.py",
+      "sha256": "746b6fabbee735e74b33a052da9088de8680743407ed601605100d2d8bdac86b",
+      "commit_copy": "committed-source/uc1_band.py",
+      "commit_sha256": "b8ae56ef337f928d6822b30d6f092c98a1e80d32982d20cba1b9fd6ec83c8149",
+      "only_CRLF_LF_equivalent": true
+    }
+  ],
+  "providers": [
+    {
+      "copy": "python-deps/pefile.py",
+      "sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+      "provenance": "Earlier text-overlap-boundary identity/run; no install"
+    },
+    {
+      "copy": "python-deps/ordlookup/__init__.py",
+      "sha256": "fe7e3869702abb571846d74bc34ea4966e8f75a6603530fe3f9e03c982d736a7",
+      "provenance": "Earlier text-overlap-boundary identity/run; no install"
+    },
+    {
+      "copy": "python-deps/ordlookup/oleaut32.py",
+      "sha256": "d3199a7ea2f1ef42a93cb8b20acc752de67789671cb4248584e2b43f441e5aaf",
+      "provenance": "Earlier text-overlap-boundary identity/run; no install"
+    },
+    {
+      "copy": "python-deps/ordlookup/ws2_32.py",
+      "sha256": "0879ce2fee63d738838f61332e69a149d463c177649c78935295d7f335604810",
+      "provenance": "Earlier text-overlap-boundary identity/run; no install"
+    },
+    {
+      "copy": "python-deps/ordlookup/wsock32.py",
+      "sha256": "f029bc58669eae582a7087c630fd8be8f9f5aa2df6f7cecaa13f8f1e1199ed17",
+      "provenance": "Earlier text-overlap-boundary identity/run; no install"
+    }
+  ],
+  "limits": "Original repository Python with labelled fixtures and only executable adapter enabled; no game code/live/full census/full build/deployment. Original helper path declared; drift control redirects only its input to disposable copy.",
+  "preflight_correction": "Run01 failed raw equality for helper before import/control; no semantic tests. Additive diagnostic proves only CRLF/LF difference. Both raw identities retained; Python-only comparison now permits that difference and rejects import-os-to-io mutation; actual loaded checked-out bytes bound unchanged.",
+  "exe": {
+    "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+    "sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "external": true,
+    "copied": false
+  }
+}

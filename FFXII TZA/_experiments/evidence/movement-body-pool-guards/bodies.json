@@ -1,0 +1,181 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "real_bodies_executed": [
+  {
+   "va": "0x2E3500",
+   "span": "0x2E3500-0x2E357F",
+   "sha256": "9180623dfd5d81578e2db14bcb0e437898e27993cf0b92a8a46114f06bbdab91",
+   "note": "the creation sequence: actor guard, release-old + slot clear, alloc, UNTESTED store at actor+0x138, calls consumers 1-4, tail-jmps consumer 5 (rcx=ctx for all; edx=0)"
+  },
+  {
+   "va": "0x3DA8A0",
+   "span": "0x3DA8A0-0x3DA9E7",
+   "sha256": "05441fe3682bb71e52f2f3ff0be470da643ea90c239d1fdca91829743b1a7c56",
+   "note": "allocator: pops free head (G_FREE 02B57CC4), pushes onto active (G_ACTV 02B57CC0), memset body+0x30..0xDF, calls 00380B80 and 003DA830, returns NULL at exhaustion"
+  },
+  {
+   "va": "0x3DAD00",
+   "span": "0x3DAD00-0x3DADDF",
+   "sha256": "01fadf05600dd1db4667c1de65f336e4ecf6d4fa26181d447f5e2decd9264632",
+   "note": "release: null-guarded; unlinks from active list (low32 pointer compare vs head), writes -1.0f at body+0xF0/0xF4, pushes onto free list storing self-index word"
+  },
+  {
+   "va": "0x380B80",
+   "span": "0x380B80-0x380C3F",
+   "sha256": "ada9cf33d1a8f50a3a5d10b0d33b4d4574d743d6bc20e3b9ae1ed5e1b34b957f",
+   "note": "body+0x30 sub-object initialiser; writes 0xFFFF sentinels at +0x50..+0x5A (=> body+0x80..0x8A), float 1.0/0.5/2.0 defaults"
+  },
+  {
+   "va": "0x3DA830",
+   "span": "0x3DA830-0x3DA843",
+   "sha256": "25bfcc86ad6d7fc8f2fab02c7580c689a339a42955925807d165775fb67828c2",
+   "note": "body+0xF0 initialiser: writes 0x3727C5AC epsilon constants"
+  },
+  {
+   "va": "0x269EC0",
+   "span": "0x269EC0-0x269EDB",
+   "sha256": "66d6b4082aac6e4fc63d68df0f5cf163a7bd18708f6af9c818653f2f9d36e052",
+   "note": "consumer 1: two-hop guard ([ctx+0xC0], [act+0x138]), writes dl to body+6"
+  },
+  {
+   "va": "0x2681D0",
+   "span": "0x2681D0-0x2681D9",
+   "sha256": "fe90717491517c2ff53bc0c10d70dd075982f13d393b03a9e0b38f3f4a714f8e",
+   "note": "consumer 2 head: the ONLY consumer that guards rcx itself (test rcx,rcx; jne 0x2681E0; ret)"
+  },
+  {
+   "va": "0x2681E0",
+   "span": "0x2681E0-0x2682C5",
+   "sha256": "62d69468b1b3766bbecd535f3827b94e760256484ed860a6f7c2e8f7f1e62d15",
+   "note": "consumer 2 body: kind==3 gate ([ctx+3]&0xE0==0x60), edx dispatch on actor+0x152 (0->chain, 2->3, 3->5, else 2), handle-match+flag+pred chain, cmove on 002672B0, final override via 0037C860; both writes (body+0x80, actor+0x153) behind the body reload guard"
+  },
+  {
+   "va": "0x2682D0",
+   "span": "0x2682D0-0x26831E",
+   "sha256": "ba4a9cdca6592fc64f811560cf99df3fe88c4744e979d8c813895cf83ee0c48d",
+   "note": "consumer 3: actor/ctx/body/body+0x30 guards; merges actor+0x151 bits0-1 into body+0x90 preserving upper bits"
+  },
+  {
+   "va": "0x2685F0",
+   "span": "0x2685F0-0x26861F",
+   "sha256": "3f7f48547f7d37ad3194980bc9ff53fa97b7124d600ba49b41cd9985db254b39",
+   "note": "consumer 4: copies actor+0x148 float to body+8; the xorps zero-substitution is measurably dead (second test rejects null before any store)"
+  },
+  {
+   "va": "0x268380",
+   "span": "0x268380-0x268523",
+   "sha256": "a43e9f0e5061fccb699543d7aeaa0ffb91805cf0acba71918ccc83b80d804313",
+   "note": "consumer 5: kind-nibble dispatch (1->pb+0x68/pb+0x38, 3->pb+0xC0*pb+0x24/pb+0xA8), initial actor+body guard then dominated (NOT re-tested) reloads of the chain for 003DB130/003DB120/003DAF20 calls"
+  },
+  {
+   "va": "0x3DA710",
+   "span": "0x3DA710-0x3DA724",
+   "sha256": "c08a30a8cc6071cbca91011f60139a8bb54432f0316ee73c17d3447497c08659",
+   "note": "two-dword copy with per-dest null guards"
+  },
+  {
+   "va": "0x6C0520",
+   "span": "0x6C0520-0x6C0539",
+   "sha256": "b155e4cfb5d1677d5ffe6e83aaf47d45c4b0a68448c6a74a51daa70f8fd7e100",
+   "note": "quaternion writer: xmm1/xmm2/xmm3 to [rcx]+0/4/8, arg5 float at [rsp+0x28] to +0xC"
+  },
+  {
+   "va": "0x3DB130",
+   "span": "0x3DB130-0x3DB138",
+   "sha256": "06247918e624e971ea991ada032b83ddba5db902592f19f28233b585acc68a66",
+   "note": "body+0xE0 = xmm1"
+  },
+  {
+   "va": "0x3DB120",
+   "span": "0x3DB120-0x3DB128",
+   "sha256": "7c1ded8c206d0218e974edb7fb743148f2d98c48a15e0efb9fa3446b4d1dc52d",
+   "note": "body+0xE4 = xmm1"
+  },
+  {
+   "va": "0x3DAF20",
+   "span": "0x3DAF20-0x3DB012",
+   "sha256": "504f3cd7159227fee5d29429a45476b0a096d85e416ef9b5d255c5ba1a62832a",
+   "note": "rotation/shape writer: cosf(body+0xF8)->body+0x40, sinf->body+0x48, int args edx/r8d/r9d scaled by body+0xF0/0xE0/0xF4/0xE4 over divisor 0x8F312F into body+0x94..0xA8"
+  },
+  {
+   "va": "0x3590D0",
+   "span": "0x3590D0-0x3590D6",
+   "sha256": "a40d2ed05eca9aa062885c59f8ce7103f120dabe117bf557a2d23ac34b158241",
+   "note": "global getter: eax = [022C7FE0]"
+  },
+  {
+   "va": "0x263F10",
+   "span": "0x263F10-0x263F3B",
+   "sha256": "5bf6cca3e73ba7589198926862582175d4654f5854cac1bca9c481dbafaf0208",
+   "note": "record resolver: [rcx+0x18]==2 -> 003587C0(row=movsx[rcx+0x19], slot=[rcx+0x1A]); cmovne keeps original on null"
+  },
+  {
+   "va": "0x263FF0",
+   "span": "0x263FF0-0x264004",
+   "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d",
+   "note": "row getter: 02098E10 + movsxd(ecx)*0x288"
+  },
+  {
+   "va": "0x3587C0",
+   "span": "0x3587C0-0x3587F1",
+   "sha256": "bf9121862b5d78d0c3f2fe3048be03d21d58cd801f4e51942501161c65250fda",
+   "note": "slot-array lookup: row=[003FF0(ecx)]; slots=[row+8]; bounds-checks edx vs [slots], returns [slots+8+idx*8] or 0"
+  },
+  {
+   "va": "0x3589B0",
+   "span": "0x3589B0-0x3589D5",
+   "sha256": "808e4fe5b600c98b70504da52344ec98cab2e89c5e46b19b3c605dd8cbed4c55",
+   "note": "handle encoder: ((w[rec+0x16]&0x7FF)<<4 | b[rec+0x15]&0xF)<<16 | w[rec+0]; null->0"
+  },
+  {
+   "va": "0x2672B0",
+   "span": "0x2672B0-0x2672E8",
+   "sha256": "0877ca2a45bf23673e95909abced38dce0306c12187ba334333ea78bcca04410",
+   "note": "row-scan predicate: eax=1; for each row 02098E10..(<02099ACF step 0x288): if row+0x10 flag&1, eax &= (b[row+0x17]&3)==3"
+  },
+  {
+   "va": "0x861EC0",
+   "span": "0x861EC0-0x861EC7",
+   "sha256": "0d45d725df14d2e0e6ddac9661bf7ec229dec7adfa554ff9174e7220423c4c43",
+   "note": "memset import thunk jmp [0x8C2A60]; slot planted to a fixture rep-stosb memset"
+  },
+  {
+   "va": "0x861F08",
+   "span": "0x861F08-0x861F0F",
+   "sha256": "d9474b23fb11e1180cc7d0c9f144418e13680ad3aad53c4cdb38a06e27193819",
+   "note": "cosf import thunk jmp [0x8C2BA8]; slot planted to a fixture x87 fcos implementation"
+  },
+  {
+   "va": "0x861F0E",
+   "span": "0x861F0E-0x861F15",
+   "sha256": "237c6a40c63205a97ad2208b60fad2aac083763dbc87a44e89ef4aa799a5dc54",
+   "note": "sinf import thunk jmp [0x8C2BB0]; slot planted to a fixture x87 fsin implementation"
+  }
+ ],
+ "stubbed_callees": {
+  "0x265680": "consumer-2 table predicate feeding ebx on the matched-handle+flag-set path - ret-stub, eax controlled per case, args logged",
+  "0x37C860": "consumer-2 final-override predicate (tail jmps into 00303EC0) - ret-stub, eax controlled per case, args logged"
+ },
+ "globals_planted": {
+  "0x2B57CC4": "free-list head word (index; 0xFFFF = empty)",
+  "0x2B57CC0": "active-list head word",
+  "0x2B4E4C0": "pool array, 128 x 0x130 bodies, poisoned 0xCC with self-index at +4",
+  "0x22C7FE0": "consumer-2 compare global read by 003590D0",
+  "0x2098E10": "codec row table: +8 = slot array ptr (resolver); +0x10 = row enable flag, +0x17 = value byte (002672B0 scan)",
+  "0x8C2A60": "memset IAT slot -> fixture rep-stosb",
+  "0x8C2BA8": "cosf IAT slot -> fixture x87 fcos",
+  "0x8C2BB0": "sinf IAT slot -> fixture x87 fsin",
+  "0x8F3000": "real .rdata page (contains the 003DAF20 divisor float at 0x8F312F, extracted verbatim)"
+ },
+ "fixture_layout": {
+  "CTX 0x60001000": "context: +3 kind byte (0xE0 nibble), +0xC flag byte (0x10 gates pred_265680), +0x18 resolver mode, +0x19 row idx, +0x1A slot idx, +0xB8 param block, +0xC0 actor",
+  "ACT 0x60003000": "actor record: +0x138 body ptr (creator stores alloc result untested), +0x140/144/148 floats, +0x151/152 source bytes, +0x153 consumer-2 output byte",
+  "ALT 0x60004000": "alternate record returned by the resolver (handle fields +0,+0x15,+0x16)",
+  "PB 0x60005000": "param block: +0x24,+0x38,+0x50,+0x54,+0x68,+0xA8,+0xC0 floats, +0x104..106 rgb bytes",
+  "SLOTS 0x60006000": "slot array for 003587C0: +0 count, +8 entries",
+  "CODE 0x6000F000": "fixture memset/cosf/sinf implementations",
+  "STACK 0x61000000": "1 MiB stack",
+  "RETQ 0x62000000": "single-byte ret landing pad; emu terminates on fetch"
+ },
+ "emulator_note": "All guest memory is host-backed via mem_map_ptr + ctypes buffers. The vendored and stock unicorn 2.1.x DLLs on this host intermittently return UC_ERR_*_UNMAPPED from the uc_mem_write/uc_mem_read API for mapped, executable pages (emulation itself is unaffected); fixture I/O therefore bypasses the API. Verified stable: 3 consecutive full-suite processes, identical results."
+}

@@ -1,0 +1,18 @@
+PASS 001D03C6 add rcx, 8 -> add rcx, 8
+PASS 001EA3DC mov rsi, rcx -> mov rsi, rcx
+PASS 001EA5C1 lea r10, [rsi + 0x118] -> lea r10, [rsi + 0x118]
+PASS 001D03CA call 001EA3C0 -> call 0x1ea3c0
+PASS 001EA5AD lea rdx -> "softEdges" -> 00901B18 'softEdges'
+PASS 0059ECDE cmp eax, 1 -> cmp eax, 1
+PASS 0059ECE1 sete al -> sete al
+PASS 0059ED3F lea eax, [rdx + rbx] -> lea eax, [rdx + rbx]
+PASS 0059ED42 add rax, r13 -> add rax, r13
+PASS 0060EFF8 test r8d, r8d -> test r8d, r8d
+PASS 0059CC84 movsxd rdx, ecx -> movsxd rdx, ecx
+PASS 0059CD14 mov qword ptr [rdx], r13 -> mov qword ptr [rdx], r13
+PASS 00D32DC0 "m_els" -> 'm_els'
+PASS asset length 44,634 44634
+PASS asset sha256 f67d4492...a767a4cf f67d4492...a767a4cf
+PASS softEdges record at 29328 0000400100a0000800b8000000
+PASS softEdges record size word 8 8
+FAILS 0

@@ -1,0 +1,67 @@
+== J  jump tables
+reader 00321190 kind->arm: 1:003211BA 2:003211CF 3:003211E4 4:003211F9 5:0032120B 6:0032121D 7:0032122F 8:00321241 9:00321253 10:0032126F
+writer 00329E60 kind->arm: 1:00329E85 2:00329E98 3:00329EAB 4:00329EBE 5:00329ED5 6:00329F38 7:00329F38 8:00329EEC 9:00329F03 10:00329F1C
+slots pointing at 0032126F: [10]  at 00329F1C: [10]
+selector loop: 70 opcodes, 31 distinct arms, max byte index 30 (dword table has room for 31 entries)
+  arm 00301ECC <- opcodes 0x00
+  arm 00301EF7 <- opcodes 0x02,0x03
+  arm 003021A3 <- opcodes 0x06,0x07
+  arm 003021CC <- opcodes 0x08,0x09
+  arm 003021EC <- opcodes 0x0A,0x0B
+  arm 003021F3 <- opcodes 0x0C,0x0D
+  arm 00302203 <- opcodes 0x0E,0x0F
+  arm 003022FC <- opcodes 0x10,0x11
+  arm 003023A5 <- opcodes 0x14,0x15
+  arm 003023C9 <- opcodes 0x16,0x17
+  arm 003023ED <- opcodes 0x18,0x19
+  arm 00302416 <- opcodes 0x1A,0x1B
+  arm 00302451 <- opcodes 0x1C,0x1D
+  arm 00302478 <- opcodes 0x20,0x21
+  arm 003024B0 <- opcodes 0x22,0x23
+  arm 00302C8F <- opcodes 0x24,0x25
+  arm 00302D1F <- opcodes 0x26,0x27
+  arm 00302DB4 <- opcodes 0x28,0x29
+  arm 00302E80 <- opcodes 0x2A,0x2B
+  arm 00302F17 <- opcodes 0x2C,0x2D
+  arm 00302F7E <- opcodes 0x2E,0x2F
+  arm 00303027 <- opcodes 0x30,0x31
+  arm 00303079 <- opcodes 0x36,0x37
+  arm 003030A7 <- opcodes 0x38,0x39
+  arm 003031C4 <- opcodes 0x3A,0x3B
+  arm 0030329B <- opcodes 0x3C,0x3D
+  arm 003032A7 <- opcodes 0x3E,0x3F
+  arm 003032C0 <- opcodes 0x40,0x41
+  arm 00303334 <- opcodes 0x42,0x43
+  arm 00303523 <- opcodes 0x44,0x45
+  arm 00303567 <- opcodes 0x01,0x04,0x05,0x12,0x13,0x1E,0x1F,0x32,0x33,0x34,0x35
+== C  raw +0xB90 census
+00172814  00172750  mem  w4  cmp    dword ptr [rdi + 0xb90], 0
+00172AFE  001728C0  mem  w4  mov    dword ptr [rsi + 0xb90], edi
+00177B83  00177B71  mem  w4  cmp    dword ptr [rcx + 0xb90], 0
+00177BE4  00177B71  mem  w4  mov    dword ptr [rsi + 0xb90], 1
+00177C48  00177B71  mem  w4  cmp    dword ptr [rsi + 0xb90], 0
+00186807  no-pdata  mem  w8  mov    rax, qword ptr [rcx + rax*8 + 0xb90]
+001870C2  00186CD0  mem  w8  mov    qword ptr [rdi + rbx + 0xb90], rax
+00236BE0  00236A60  mem  w4  mov    dword ptr [rdi + 0xb90], esi
+0032127C  00321190  mem  w4  mov    ecx, dword ptr [rdx + rax*4 + 0xb90]
+00329F29  00329E60  mem  w4  mov    dword ptr [rdx + rax*4 + 0xb90], r9d
+004B962B  004B8F20  mem  w8  mov    qword ptr [rbx + 0xb8c], r9
+0052D1FA  0052D1E7  imm  w4  add    rdx, 0xb90
+0054FFBB  0054FE00  mem  w8  lea    rcx, [rbp + 0xb90]
+0070A874  0070A83C  mem  w16 movups xmmword ptr [rdi + 0xb88], xmm1
+0070A8FD  0070A894  mem  w8  mov    qword ptr [rcx + 0xb90], rax
+00791E86  00791E70  mem  w8  lea    rcx, [rbx + 0xb90]
+007D47DC  007D44BC  mem  w16 movaps xmmword ptr [rbp + 0xb90], xmm5
+007D49DD  007D44BC  mem  w16 movaps xmm5, xmmword ptr [rbp + 0xb90]
+hits 18 in 15 functions
+== X  raw callers of the store reader / writer
+00321190: rel32 E8/E9 6; jcc 0; stored qwords 0
+  002FADDF call  in 002FAD40  on-boundary True  last ecx write: 002FADDC lea ecx, [rdx + 3]
+  002FAE00 call  in 002FAD40  on-boundary True  last ecx write: 002FADFD lea ecx, [rdx + 3]
+  002FE6E7 call  in 002FE660  on-boundary True  last ecx write: 002FE6E5 mov ecx, esi
+  00301C52 call  in 00301BD3  on-boundary True  last ecx write: 00301C39 shr ecx, 0xc
+  00303088 call  in 00301DD0  on-boundary True  last ecx write: 00303084 lea ecx, [r8 + 0xa]
+  00312248 call  in 00312170  on-boundary True  last ecx write: 00312244 lea ecx, [r8 + 0xa]
+00329E60: rel32 E8/E9 2; jcc 0; stored qwords 0
+  002FE74E call  in 002FE660  on-boundary True  last ecx write: 002FE74C mov ecx, esi
+  0031225E call  in 00312170  on-boundary True  last ecx write: 0031225A lea ecx, [r8 + 0xa]

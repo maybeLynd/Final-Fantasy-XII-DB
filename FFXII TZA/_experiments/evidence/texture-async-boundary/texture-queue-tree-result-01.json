@@ -1,0 +1,108 @@
+{
+  "status": "PRODUCER_CHECKED_POINTER_KEY_INSERTION_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "texture-queue-tree-source-02.json",
+      "sha256": "1987673c4dd8c328e5ee0b2206612c465507407581ec34d0374806381fbcc422"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 287,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normal_cfgs": [
+    {
+      "entry": "0x199db0",
+      "end_exclusive": "0x199f05",
+      "instructions": 104,
+      "returns": [
+        "0x199f04"
+      ],
+      "calls": [
+        {
+          "pc": "0x199e23",
+          "target": "0x16d720"
+        },
+        {
+          "pc": "0x199e70",
+          "target": "qword ptr [rax + 0x10]"
+        },
+        {
+          "pc": "0x199e8e",
+          "target": "0x16d840"
+        },
+        {
+          "pc": "0x199eb0",
+          "target": "qword ptr [rax + 0x10]"
+        },
+        {
+          "pc": "0x199ece",
+          "target": "0x16d840"
+        }
+      ]
+    },
+    {
+      "entry": "0x16d720",
+      "end_exclusive": "0x16d77e",
+      "instructions": 29,
+      "returns": [
+        "0x16d736",
+        "0x16d75e",
+        "0x16d77d"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x16d840",
+      "end_exclusive": "0x16da54",
+      "instructions": 154,
+      "returns": [
+        "0x16da53"
+      ],
+      "calls": []
+    }
+  ],
+  "normal_event_invariant": {
+    "states": 115,
+    "terminal_stages": [
+      "inserted",
+      "not-inserted"
+    ],
+    "scope": "Local physical insertion/count/output order, not allocator success/exception or universal tree termination"
+  },
+  "checker_sha256": "19fd8898ce9d3aef39f2245b3e9ae12d9d4fe9341b6fefcf4fbd69bc6d92568d",
+  "helper_sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344",
+  "question": "Does the verified62EB90 callee execute the embedded async object or instead maintain pointer-key storage, and which count changes locally?",
+  "established": [
+    "199DB0 compares the unsigned pointer value loaded from inputR8 with node+20, following node+8 or node+0. Under a valid finite ordered-tree/sentinel invariant this is keyed insertion with an existing-key refusal, not a FIFO callback-pair append. The physical result is an iterator/node pointer and byte insertion flag through inputRDX; RAX returns that result address.",
+    "Both normal insertion branches request28B via container+30 allocator vslot10, conditionally copy the pointer value to allocated node+20, call16D840 to link/rebalance node fields, increment DWORD[container+28], and set result+8=1. The local non-insertion branch sets result+8=0 and performs none of those insertion events. The finite event analysis checks this order across every decoded normal branch, including lookup cycles; it does not assert termination on cyclic/malformed trees.",
+    "All local call targets are16D720 (node traversal),16D840 (node link/rebalance), and the two allocator-vslot10 sites. Both complete local helpers have no calls. The queued async object pointer is compared/copied as a key, never used as the direct target of a callback call in these three bodies. Opaque allocator transitive effects are excluded from this conclusion.",
+    "The increment is container+28, with container supplied by62EB90 as context+38*zeroextend32(bank). It is distinct in expression and ownership premise from element+38 observed by the texture drain; this is not the missing complete writer closure for that element field.",
+    "The entry makes no local control-flow test of incomingR9D. It usesR9 for the loaded key during nonempty search and resetsR9D for the link direction. An initially empty route can carry incomingR9 into the opaque allocator call, so neither its transitive relevance nor a universal unused-fourth-argument ABI is proved."
+  ],
+  "assumptions": [
+    "Normally returning ABI-preserving callees, correctly backed result/container/key/node storage",
+    "Valid finite unsigned-pointer-ordered tree and matching sentinel/node layout for keyed/deduplicating interpretation",
+    "Successful correctly sized nonNULL allocator result and distinct container/node/texture allocations for ordinary ownership claims; failure, alias and arithmetic-wrap cases are not sanitized by this proof"
+  ],
+  "unresolved": [
+    "Actual initialized container construction, slot binding, insertion caller/thread/schedule and consumption/removal",
+    "Element pendingCount+38 complete writer set and relationship to this pointer-key container",
+    "Opaque allocator/native effects, failed allocation behavior, natural title-object binding and destruction/cancellation/lifetime"
+  ],
+  "affected_claims": [
+    "OPUS Phyre async container ABI and container+28 versus texture-element+38",
+    "FABLE admission versus invocation and natural scheduler/lifetime premises"
+  ],
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Only original file reads/source analysis; all scripts terminal; no game/control/instrument/save/config/reference/peer mutations"
+}

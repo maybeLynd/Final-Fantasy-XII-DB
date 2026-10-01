@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "path": "Actual W60 capture.py -> own corrected check.py forwarding shim -> additive E62 corrected60-check.py; immutable E60 retained unchanged",
+  "old_work_check_sha256": "4750afc8b9b3aae1f0d96af994d507c168e23cdd84c9e6e197e0e410a514228c",
+  "new_work_check_sha256": "8499daf93fdb3682967fce68155d9c8364f885e99f62e7582d8e7187ffccbf48",
+  "expected_shim_sha256": "8499daf93fdb3682967fce68155d9c8364f885e99f62e7582d8e7187ffccbf48",
+  "capture_before_sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec",
+  "capture_after_sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec",
+  "raw_before_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "raw_after_sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06",
+  "stdout_sha256": "8ce411e61a38e3876efeae2c87b758419ea84740aeec27c914e3b63827ad38fa",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

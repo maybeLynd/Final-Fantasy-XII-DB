@@ -1,0 +1,20 @@
+# NativeDispatch.NullableVirtualTailCall - EC-7 family C, declared on generated-function-families.md
+#
+# 11 members. Body size(s): 13 B x6, 16 B x5.
+# 11 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 11 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0017F0C0
+0017F140
+0017F150
+0017F160
+0017F170
+0017F180
+0017F1B0
+0017F1C0
+0017F1F0
+0017F240
+0017F260

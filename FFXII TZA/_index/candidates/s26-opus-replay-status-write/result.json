@@ -1,0 +1,664 @@
+{
+ "block348_result_md5_unchanged": null,
+ "cases": {
+  "I1_I2_bit_written_into_the_other_word_fires_nothing": true,
+  "I1_addendum_the_real_recompute_rewrites_+3C_after_the_add": true,
+  "I1_mode5_sets_+38_and_fires_nothing": true,
+  "I3_every_mode_refuses_when_already_in_the_requested_state": true,
+  "I4_cascade_calls_are_mode_0_and_one_level_deep": true,
+  "I4_present_bit_cleared_absent_bit_refused": true,
+  "I5_no_heap_import_and_no_operator_new_in_any_case": true,
+  "control_presence_change_fires_side_effects_with_real_callees": true,
+  "no_fence_no_fault_in_any_case": true
+ },
+ "detail": {
+  "I1a_mode5_plus38": {
+   "after": {
+    "38": 16,
+    "3C": 0,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "exp086_stubbed_entered": [
+    "0030B9B0",
+    "0031B860"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 5,
+     "status": 4
+    }
+   ]
+  },
+  "I1b_add64_while_3C": {
+   "after": {
+    "38": 0,
+    "3C": 16,
+    "64": 16
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 16,
+    "64": 0
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0031B860"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": true,
+   "rip": "71000000",
+   "side_effects": [],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 3,
+     "status": 4
+    }
+   ]
+  },
+  "I1c_add3C_while_64": {
+   "after": {
+    "38": 0,
+    "3C": 16,
+    "64": 16
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 16
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0031B860"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 4
+    }
+   ]
+  },
+  "I3": {
+   "0": {
+    "after": {
+     "38": 0,
+     "3C": 0,
+     "64": 0
+    },
+    "bad": [],
+    "before": {
+     "38": 0,
+     "3C": 0,
+     "64": 0
+    },
+    "exp086_stubbed_entered": [
+     "0030B9B0",
+     "0031B860"
+    ],
+    "faults": [],
+    "heap": {},
+    "ok": true,
+    "operator_new": 0,
+    "params_changed": false,
+    "rip": "71000000",
+    "side_effects": [],
+    "sw_entries": [
+     {
+      "depth": 0,
+      "mode": 0,
+      "status": 4
+     }
+    ]
+   },
+   "1": {
+    "after": {
+     "38": 0,
+     "3C": 0,
+     "64": 0
+    },
+    "bad": [],
+    "before": {
+     "38": 0,
+     "3C": 0,
+     "64": 0
+    },
+    "exp086_stubbed_entered": [
+     "0030B9B0",
+     "0031B860"
+    ],
+    "faults": [],
+    "heap": {},
+    "ok": true,
+    "operator_new": 0,
+    "params_changed": false,
+    "rip": "71000000",
+    "side_effects": [],
+    "sw_entries": [
+     {
+      "depth": 0,
+      "mode": 1,
+      "status": 4
+     }
+    ]
+   },
+   "2": {
+    "after": {
+     "38": 0,
+     "3C": 0,
+     "64": 0
+    },
+    "bad": [],
+    "before": {
+     "38": 0,
+     "3C": 0,
+     "64": 0
+    },
+    "exp086_stubbed_entered": [
+     "0030B9B0",
+     "0031B860"
+    ],
+    "faults": [],
+    "heap": {},
+    "ok": true,
+    "operator_new": 0,
+    "params_changed": false,
+    "rip": "71000000",
+    "side_effects": [],
+    "sw_entries": [
+     {
+      "depth": 0,
+      "mode": 2,
+      "status": 4
+     }
+    ]
+   },
+   "3": {
+    "after": {
+     "38": 0,
+     "3C": 0,
+     "64": 16
+    },
+    "bad": [],
+    "before": {
+     "38": 0,
+     "3C": 0,
+     "64": 16
+    },
+    "exp086_stubbed_entered": [
+     "0030B8E0",
+     "0030B9B0",
+     "0031B860"
+    ],
+    "faults": [],
+    "heap": {},
+    "ok": true,
+    "operator_new": 0,
+    "params_changed": false,
+    "rip": "71000000",
+    "side_effects": [],
+    "sw_entries": [
+     {
+      "depth": 0,
+      "mode": 3,
+      "status": 4
+     }
+    ]
+   },
+   "4": {
+    "after": {
+     "38": 0,
+     "3C": 16,
+     "64": 0
+    },
+    "bad": [],
+    "before": {
+     "38": 0,
+     "3C": 16,
+     "64": 0
+    },
+    "exp086_stubbed_entered": [
+     "0030B8E0",
+     "0030B9B0",
+     "0031B860"
+    ],
+    "faults": [],
+    "heap": {},
+    "ok": true,
+    "operator_new": 0,
+    "params_changed": false,
+    "rip": "71000000",
+    "side_effects": [],
+    "sw_entries": [
+     {
+      "depth": 0,
+      "mode": 4,
+      "status": 4
+     }
+    ]
+   },
+   "5": {
+    "after": {
+     "38": 16,
+     "3C": 0,
+     "64": 0
+    },
+    "bad": [],
+    "before": {
+     "38": 16,
+     "3C": 0,
+     "64": 0
+    },
+    "exp086_stubbed_entered": [
+     "0030B9B0",
+     "0031B860"
+    ],
+    "faults": [],
+    "heap": {},
+    "ok": true,
+    "operator_new": 0,
+    "params_changed": false,
+    "rip": "71000000",
+    "side_effects": [],
+    "sw_entries": [
+     {
+      "depth": 0,
+      "mode": 5,
+      "status": 4
+     }
+    ]
+   }
+  },
+  "I4_KO_add": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0030FED0",
+    "0031B860",
+    "0046A800"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [
+    "extra 0046A800",
+    "recompute 0030FED0"
+   ],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 0
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 2
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 3
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 4
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 5
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 6
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 8
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 10
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 12
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 13
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 14
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 15
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 17
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 18
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 19
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 20
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 21
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 22
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 23
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 24
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 25
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 26
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 27
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 28
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 29
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 30
+    }
+   ]
+  },
+  "I4_status10_absent": {
+   "after": {
+    "38": 0,
+    "3C": 1024,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0031B860",
+    "0046A800"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [
+    "extra 0046A800"
+   ],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 10
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 25
+    }
+   ]
+  },
+  "I4_status10_with_bit25": {
+   "after": {
+    "38": 0,
+    "3C": 1024,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 33554432
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0031B860",
+    "0046A800"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [
+    "extra 0046A800"
+   ],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 10
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 25
+    }
+   ]
+  },
+  "I4_status20_with_bit15": {
+   "after": {
+    "38": 0,
+    "3C": 1048576,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 32768
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0031B860",
+    "0046A800"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [
+    "extra 0046A800"
+   ],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 20
+    },
+    {
+     "depth": 64,
+     "mode": 0,
+     "status": 15
+    }
+   ]
+  },
+  "control_presence_changes": {
+   "after": {
+    "38": 0,
+    "3C": 16,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0031B860",
+    "0046A800"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [
+    "extra 0046A800"
+   ],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 4
+    }
+   ]
+  },
+  "control_with_recompute": {
+   "after": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "bad": [],
+   "before": {
+    "38": 0,
+    "3C": 0,
+    "64": 0
+   },
+   "exp086_stubbed_entered": [
+    "0030B8E0",
+    "0030B9B0",
+    "0030FED0",
+    "0031B860",
+    "0046A800"
+   ],
+   "faults": [],
+   "heap": {},
+   "ok": true,
+   "operator_new": 0,
+   "params_changed": false,
+   "rip": "71000000",
+   "side_effects": [
+    "extra 0046A800",
+    "recompute 0030FED0"
+   ],
+   "sw_entries": [
+    {
+     "depth": 0,
+     "mode": 4,
+     "status": 4
+    }
+   ]
+  }
+ },
+ "exp086_stubbed_callees_run_real": [
+  "0030B8E0",
+  "0030B9B0",
+  "0030FED0",
+  "0031B860",
+  "0046A800"
+ ],
+ "live_game": false,
+ "ok": true
+}

@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-texture-async-removal-rotations.py"
+  ],
+  "exit": 0,
+  "driver_sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+}

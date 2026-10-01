@@ -1,0 +1,7 @@
+PASS  C1 tallies {'held': 21, 'admit-frontier': 99}
+PASS  C2 00125770: non-leaf (push) and no .pdata entry at or over it
+PASS  C3 all 99 decode exactly to their end on ret / jmp; failures []
+PASS  C4 all 99 in .text; overlaps involving an admitted body: []
+PASS  C5 external edges exactly ['002E4C90->004232D0', '002E5B00->002ED6A0', '00708270->0071BB70', '00708270->0071BB70']; targets 004232D0 / 002ED6A0 listed, 0071BB70 a 1-64 B admitted body
+PASS  C6 population 34965 -> 35064
+FAILS 0

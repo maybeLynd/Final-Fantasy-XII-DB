@@ -1,0 +1,8 @@
+SURVIVES  Y0  [141, 381, 296, 551, 142]
+SURVIVES  Y1  movzx ecx, byte ptr [rdi] / movzx esi, byte ptr [r14 + rbp + 1]
+SURVIVES  Y2  generate movzx eax, byte ptr [r9 + 5]; decay cmp byte ptr [rax + 5], 1; propagate cmp byte ptr [rax + 5], 1; write cmp byte ptr [rax + 5], 1
+SURVIVES  Y3  three calls; negation ['neg edx']
+SURVIVES  Y4  call 0x307ce0; lea edx, [rsi - 0xa]; call 0x321d30
+SURVIVES  Y5  ['01DFE0B8'] x ['008F8D80'] = 30.0? 30.0
+SURVIVES  Y6  test eax, 0x80000003; call 0x313f60; call 0x322c50
+FAILS 0

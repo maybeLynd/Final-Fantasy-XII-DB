@@ -1,0 +1,17 @@
+pointer 0209CC40: 121 rip references (120 loads)
+round 1: 26 new root functions, 0 new escape globals (52 s)
+round 2: 25 new root functions, 0 new escape globals (54 s)
+round 3: 3 new root functions, 0 new escape globals (65 s)
+round 4: 8 new root functions, 0 new escape globals (176 s)
+round 5: 1 new root functions, 0 new escape globals (181 s)
+pass 1: escape globals none
+root functions 63; bodies reached 3523 (contexts 23031); object stores by class: {'INDEXED-BELOW': 5, 'REGION': 1, 'STATE-OTHER': 140} (181 s)
+stores that can reach [0x1060, 0x1098): 6 in 2 functions
+  INDEXED-BELOW   002432B0 00243305 mov qword ptr [r15 + 8], r12                     size 8  base A@0+0x8 lo=0x8
+  INDEXED-BELOW   002432B0 00243322 mov dword ptr [r15], edx                         size 4  base A@0+0x0 lo=0x0
+  INDEXED-BELOW   002432B0 00243333 mov dword ptr [r15], ecx                         size 4  base A@0+0x0 lo=0x0
+  INDEXED-BELOW   002432B0 0024338C mov qword ptr [r15 + 0x10], 0                    size 8  base A@0+0x10 lo=0x10
+  INDEXED-BELOW   002432B0 002433AA mov qword ptr [r15 + 0x10], rax                  size 8  base A@0+0x10 lo=0x10
+  REGION          008620A0 008620A5 jmp 0x861ec0                                     size 4360  base A+0x0 lo=0x0
+blind spots: escapes 1, indirect calls carrying the object 0, recursion/depth cuts 0
+  escape 002B3550 002B356A mov qword ptr [rip + 0x1de96cf], rbx -> G0209CC40+0x0

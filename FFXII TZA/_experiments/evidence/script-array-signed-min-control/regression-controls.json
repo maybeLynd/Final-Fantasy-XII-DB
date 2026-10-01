@@ -1,0 +1,12 @@
+[
+  {
+    "argument": "--fault-real-number-dim-minus-one",
+    "returncode": 1,
+    "expected": "Actual consumer unbounded subtraction disagrees with original32bit boundary"
+  },
+  {
+    "argument": "--fault-accept-green-default",
+    "returncode": 1,
+    "expected": "Green default does not cover the signed-min dimension"
+  }
+]

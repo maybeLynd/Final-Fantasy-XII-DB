@@ -1,0 +1,34 @@
+SWE2-AUDIT-SPEC re-runs of 1e4537034's controls (2026-09-30), stdout vs committed .out ignoring CR; every script exited 0
+rc11-arena-ten-0930                  arena_sites.out              IDENTICAL
+rc11-arena-ten-0930                  b00_census.out               IDENTICAL
+rc11-arena-ten-0930                  basedisp_02096Axx.out        IDENTICAL
+rc11-arena-ten-0930                  basedisp_022D89B8.out        IDENTICAL
+rc11-arena-ten-0930                  closure.out                  IDENTICAL
+rc11-arena-ten-0930                  reach59.out                  IDENTICAL
+rc11-arena-ten-0930                  residue5.out                 IDENTICAL
+rc11-arena-ten-0930                  riprefs_02096Axx.out         IDENTICAL
+rc11-arena-ten-0930                  riprefs_02096B98.out         IDENTICAL
+rc11-arena-ten-0930                  riprefs_02096C70.out         IDENTICAL
+rc11-arena-ten-0930                  riprefs_022D89B8.out         IDENTICAL
+rc11-arena-ten-0930                  riprefs_02F97340.out         IDENTICAL
+rc11-arena-ten-0930                  uninit.out                   IDENTICAL
+rc11-arena-ten-0930                  verb_census.out              IDENTICAL
+rc12-footer-channels-runstate-0930   rc12_slots.out               IDENTICAL
+rc12-footer-channels-runstate-0930   rc13_engine_channels.out     IDENTICAL
+rc12-footer-channels-runstate-0930   rc13_script_channels.out     IDENTICAL
+rc12-footer-channels-runstate-0930   rc14_sweep.out               IDENTICAL
+rc15-regfile-skipmask-0930           rc15_flow.out                IDENTICAL
+rc15-regfile-skipmask-0930           rc16_check.out               IDENTICAL
+rc15-regfile-skipmask-0930           rc17_skip_chain.out          IDENTICAL
+rc15-regfile-skipmask-0930           scan_bit13.out               IDENTICAL
+rc18-map1-blend-arms-0930            rc18_follow_path.out         IDENTICAL
+rc18-map1-blend-arms-0930            rc18_map1_writers.out        IDENTICAL
+rc18-map1-blend-arms-0930            rc18_mode_idiom.out          IDENTICAL
+rc18-map1-blend-arms-0930            rc18_modes_emu.out           IDENTICAL
+rc18-map1-blend-arms-0930            rc19_blend_arms.out          IDENTICAL
+rc18-map1-blend-arms-0930            rc19_rate_readers.out        IDENTICAL
+rc18-map1-blend-arms-0930            slice.out                    IDENTICAL
+rc20-float-push-verbs-0930           rc20_verbs.out               IDENTICAL
+rc21-verb-reach-regen-0930           rc21_draws.out               IDENTICAL
+rc21-verb-reach-regen-0930           rc21_reach.out               IDENTICAL
+windows: riprefs.py/basedisp.py 02096A00 02096C78 (02096Axx outputs) and 022D89B8 022D89BC; other riprefs use the default lo+8

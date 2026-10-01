@@ -1,0 +1,105 @@
+{
+  "method": "A original shipping instructions and selected authored resource; no live or isolated execution",
+  "native": {
+    "name": "PMeshInstanceSegmentContext",
+    "descriptor": "02CB6D80",
+    "instance_size": 72,
+    "base": "PMeshSegmentContext",
+    "base_size": 40,
+    "native_member": "m_streamBindings",
+    "native_offset": 56,
+    "native_offset_hex": "0x38",
+    "node": "02CE3680",
+    "guarded_callsite": "005E6860",
+    "wrapper": "00632A10",
+    "base_registration_callsite": "00632A41",
+    "claim": "A guarded original native member-registration path exists; direct-only counter zero does not mean no reflected member."
+  },
+  "authored": {
+    "source": "gamedata/d3d11/artdata/chr/chara/c10/c1004/mws/c1004.dae.phyre",
+    "list": {
+      "index": 10,
+      "class_id": 50,
+      "class": "PMeshInstanceSegmentContext",
+      "count": 25,
+      "objects_size": 128,
+      "words": [
+        50,
+        25,
+        128,
+        125,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "entry_offset": 22037
+    },
+    "class": {
+      "id": 50,
+      "name": "PMeshInstanceSegmentContext",
+      "words": [
+        52,
+        805306373,
+        1644,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "members": [
+        {
+          "name": "m_streamBindings",
+          "words": [
+            5104,
+            131,
+            0,
+            5,
+            8,
+            0
+          ],
+          "namespace_offset": 9020,
+          "type_name": "PSharray<PMeshInstanceSegmentStreamBinding *>"
+        }
+      ],
+      "namespace_offset": 1856,
+      "parent": "PMeshSegmentContext"
+    }
+  },
+  "instrument": {
+    "old_direct_counter": 0,
+    "old_scalar_positive": 1,
+    "candidate_wrapper_aware_counter": 1,
+    "production_generator_changed": false,
+    "definition": [
+      {
+        "line": 388,
+        "text": "               and i.operands[0].imm in (0x00632960, 0x00632A70))"
+      }
+    ]
+  },
+  "controls": {
+    "original_resource_positives": [
+      "PMesh count1",
+      "PAssetReference count83"
+    ],
+    "corruptions_rejected": [
+      "bad-list-id",
+      "short-namespace",
+      "name-middle",
+      "wrong-native-offset",
+      "wrong-native-descriptor",
+      "wrong-final-slot"
+    ]
+  },
+  "limits": [
+    "One named sentinel; historical137 cohort/count not reclassified.",
+    "Native type/field width unproved here; file member offset0 is not native+38.",
+    "Guarded registration path is static, not proof it executed in the title/scene.",
+    "Authored25 objects do not establish normal scene reachability, initialized runtime pointers or lifetime.",
+    "EXP124173 default capture does not contain this class; no recapture or default-byte value inferred."
+  ]
+}

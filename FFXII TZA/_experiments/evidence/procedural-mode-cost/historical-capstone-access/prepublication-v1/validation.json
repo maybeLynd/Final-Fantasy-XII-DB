@@ -1,0 +1,36 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "zero_ordered_amplitude": "Early return before calls/global state/scratch writes; unordered takes JP instead.",
+  "mode": "Read once after first native call, latched R8D reused for both own recurrence gates. Zero skips5+2 blocks; any nonzero includes them.",
+  "direct_recurrence_steps": {
+    "zero_amplitude": 0,
+    "mode_zero_nonzero_amplitude": 0,
+    "mode_nonzero_nonzero_amplitude": 7
+  },
+  "direct_state_write_pcs": [
+    "0x3d8f26",
+    "0x3d8fb8"
+  ],
+  "scratch_write_pcs": [
+    "0x3d8f44",
+    "0x3d8f56",
+    "0x3d8f65",
+    "0x3d8f71",
+    "0x3d8fcd",
+    "0x3d8fd5"
+  ],
+  "calls": [
+    {
+      "pc": "0x3d8e78",
+      "target": "0x36d930"
+    },
+    {
+      "pc": "0x3d8fe2",
+      "target": "0x36d8e0"
+    }
+  ],
+  "new_original_code_executions": 0,
+  "live_cases": 0,
+  "limits": "A direct original-body proof. Native save/restore-call effects not executed/assumed inert; actual invocation state/caller ordering unobserved. 14/28-step composition needs enabled mode at each latch and separately justified callee/caller effects. Disabled nonzero is not no-op.",
+  "access_fix": "Packed MOVUPS memory destination WRITE and LEA address-only, raw unreliable provider flags retained separately. Additive19 correction, not rewrite of published source. Byte-based19 copy/alias proof unaffected."
+}

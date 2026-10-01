@@ -1,0 +1,17 @@
+import hashlib,json,shutil,subprocess,sys
+from pathlib import Path
+W=Path(__file__).resolve().parent;P=Path('Database/FFXII TZA/_experiments/evidence/sn1-evctrl-jump-binding');sha=lambda b:hashlib.sha256(b).hexdigest();assert not P.exists()
+before=sha((W/'raw.json').read_bytes());r=subprocess.run([sys.executable,str(W/'capture.py')],capture_output=True,text=True,timeout=30);assert r.returncode==0 and 'PASS63' in r.stdout and 'CAPTURE63' not in r.stdout and sha((W/'raw.json').read_bytes())==before
+(W/'default-invocation.stdout').write_text(r.stdout);(W/'default-invocation.stderr').write_text(r.stderr);(W/'default-invocation-receipt.json').write_text(json.dumps(dict(returncode=r.returncode,capture_sha256=sha((W/'capture.py').read_bytes()),check_sha256=sha((W/'check.py').read_bytes()),raw_before_sha256=before,raw_after_sha256=sha((W/'raw.json').read_bytes()),path='Actual capture default with retained raw calls corrected check/corrected-spec; no recapture/VM/native/game/compiler execution'),indent=2)+'\n')
+receipts=[]
+for arg,expected in [('--fault-physical-map','Original call must match continued logical source'),('--fault-ignore-splice-control','Removing one actual continuation'),('--fault-old-call-start','Original source-call entry/variant precondition')]:
+ c=subprocess.run([sys.executable,str(W/'check.py'),arg],capture_output=True,text=True,timeout=30);name=arg[2:];(W/(name+'.stdout')).write_text(c.stdout);(W/(name+'.stderr')).write_text(c.stderr);assert c.returncode==1 and expected in c.stderr;receipts.append(dict(argument=arg,returncode=c.returncode,expected=expected,stdout_sha256=sha(c.stdout.encode()),stderr_sha256=sha(c.stderr.encode())))
+(W/'regression-controls.json').write_text(json.dumps(receipts,indent=2)+'\n');subprocess.run([sys.executable,str(W/'check.py')],check=True)
+P.mkdir();(P/'.gitattributes').write_bytes(b'* -text\n')
+for n in ['PLAN.md','README.md','probe.py','feasibility.json','capture.py','check.py','repair.py','raw.json','result.json','corrected-spec.json','failure.json','freeze.py','default-invocation.stdout','default-invocation.stderr','default-invocation-receipt.json','regression-controls.json','fault-physical-map.stdout','fault-physical-map.stderr','fault-ignore-splice-control.stdout','fault-ignore-splice-control.stderr','fault-old-call-start.stdout','fault-old-call-start.stderr']:shutil.copyfile(W/n,P/n)
+shutil.copytree(W/'retained',P/'retained',ignore=shutil.ignore_patterns('__pycache__'));rr=[]
+for p in sorted(P.rglob('*')):
+ if p.is_file():
+  a=subprocess.check_output(['git','hash-object','--',p.as_posix()],text=True).strip();b=subprocess.check_output(['git','hash-object','--no-filters','--',p.as_posix()],text=True).strip();assert a==b;rr.append(dict(path=p.relative_to(P).as_posix(),git_blob=a))
+(P/'filtered-byte-check.json').write_text(json.dumps(dict(existing_policy='* -text',receipts=rr),indent=2)+'\n');members=[dict(path=p.relative_to(P).as_posix(),bytes=p.stat().st_size,sha256=sha(p.read_bytes())) for p in sorted(P.rglob('*')) if p.is_file()]
+(P/'manifest.json').write_text(json.dumps(dict(members=members,limits='A conditional logical source-splice carrier/four actual CALLPOPA controls/two coherent named candidates; assignment/call attribution qualifier. No actual compiler/global source rule/mismatch cause/live/native parity; independent acceptance pending.'),indent=2)+'\n');subprocess.run([sys.executable,str(P/'capture.py')],check=True);print('FROZEN63',len(members),flush=True)

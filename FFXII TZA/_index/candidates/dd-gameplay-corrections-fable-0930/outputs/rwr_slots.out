@@ -1,0 +1,5 @@
+00389040 BattleFormula_LoadHitAvoidGuardThresholds     slots [25]
+00388FE0 FUN_00388fe0                                  slots [23, 24]
+0038B220 FUN_0038b220                                  slots [94]
+0038B6A0 BattleFormula_ApplyActionElementAffinity      slots [95]
+003896B0 BattleFormula_RollAvoidGuardParryOutcome      slots [41]

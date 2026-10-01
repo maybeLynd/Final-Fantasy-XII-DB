@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-21",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "read + interior-cite the next 22 true-frontier hubs (5->3 A-callers): 001C50C0 004FE3C0 003935C0 0023DFC0 001823B0 0061DE20 006160B0 00550470 0046BA50 004697C0 00469320 00431B10 0042FB80 0042F250 00427280 00426650 004220F0 0041C760 00409600 003FFEE0 003EFD00 003ECF70",
+  "scope": "disassemble from shipping image, find bearing hosts, interior cite or mark evidence-only",
+  "completion": "all 22 dispositioned, gates clean, audit entry",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

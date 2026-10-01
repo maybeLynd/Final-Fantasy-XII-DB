@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-154",
+ "result_refs": [
+  "7bfe46029",
+  "2e8ab97cb"
+ ],
+ "note": "Published 7bfe46029 (13 hosts + AUDIT-LOG + 5 ops) + 2e8ab97cb surgical splice on CONTRACT-efx-source-rebase (overlay carrier - independent tail append, +4/-0). All 22 entries + anchors verified at HEAD.",
+ "summary": ""
+}

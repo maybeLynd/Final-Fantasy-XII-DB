@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-texture-async-removal-tail.py"
+  ],
+  "exit": 0,
+  "driver_sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+}

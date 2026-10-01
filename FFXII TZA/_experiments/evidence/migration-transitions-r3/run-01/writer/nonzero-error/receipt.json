@@ -1,0 +1,77 @@
+{
+  "name": "nonzero-error",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\writer\\nonzero-error\\TEAM.json",
+    "--agent",
+    "SWE2-FRONTIER",
+    "--apply",
+    "--json"
+  ],
+  "returncode": 1,
+  "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-VALID-REJECT\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-VALID-REJECT\",\n  \"status\": \"FAILED: exit 1: Labelled writer failed before success\"\n }\n]\n",
+  "stderr": "",
+  "terminal": true,
+  "report": [
+    {
+      "transition": "REPAIR",
+      "review": "REVIEW-VALID-REJECT",
+      "detail": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+      "status": "FAILED: exit 1: Labelled writer failed before success"
+    }
+  ],
+  "child": {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+      "apply",
+      "--agent",
+      "SWE2-FRONTIER",
+      "--board",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r3\\run-01\\writer\\nonzero-error\\TEAM.json",
+      "--file",
+      "C:\\Users\\Kristian\\AppData\\Local\\Temp\\tmpm9dvlcqi.json"
+    ],
+    "received_op": {
+      "action": "add",
+      "task": {
+        "id": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+        "kind": "request",
+        "priority": "P2",
+        "assigned_to": "OPUS",
+        "target": "REVIEW-VALID-REJECT -> Database/Tools/analysis-kit/gfz-scripts/transitions.py",
+        "scope": "repair after rejected review",
+        "question": "Review REVIEW-VALID-REJECT REJECTED c545ed76060aae750c398422b371cea80b8119c3 (reviewer ASTRA). Repair at the cause, update affected consumers, and re-request review with a `reviews` field naming this task. Reviewer's receipts: []. Review note: verdict:ACCEPT in prose is not a structured ref",
+        "known_evidence": "review REVIEW-VALID-REJECT (commit c545ed76060aae750c398422b371cea80b8119c3)",
+        "missing_information": "the next step's result",
+        "why_it_matters": "review-to-repair transition without a relayed message (M2, A16)",
+        "what_is_blocked": "the reviewed claim's completion",
+        "completion": "committed, with receipts",
+        "resources": [
+          {
+            "key": "request:auto-repair-review-valid-reject"
+          }
+        ],
+        "dependencies": [],
+        "transition_of": {
+          "review": "REVIEW-VALID-REJECT",
+          "commit": "c545ed76060aae750c398422b371cea80b8119c3"
+        },
+        "requester": "SWE2-FRONTIER"
+      }
+    },
+    "exit_code": 1,
+    "stdout": "Labelled writer failed before success\n",
+    "real_writer_executed": false,
+    "private_intervention": "none",
+    "board_before_sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c",
+    "board_after_sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c"
+  },
+  "input_sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c",
+  "after_sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c",
+  "expected_status": "FAILED:",
+  "expected_parent_code": 1,
+  "temp_op_removed": true
+}

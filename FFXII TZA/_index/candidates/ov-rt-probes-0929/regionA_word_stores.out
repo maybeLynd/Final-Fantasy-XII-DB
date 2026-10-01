@@ -1,0 +1,38 @@
+== 002FD150 InventoryPackedCountClass_MutateChannels (3 word-store/bulk lines)
+    002FD298 mov word ptr [r10], r8w
+    002FD31A mov word ptr [r11], cx
+    002FD3F1 mov word ptr [r10], r8w
+== 002FD420 InventoryBitsetClass_MutateState (1 word-store/bulk lines)
+    002FD4E9 mov word ptr [r8], dx
+== 002FD8D0 InventoryPackedCountClass_QueryChannel (0 word-store/bulk lines)
+== 002FD970 InventoryBitsetClass_QueryState (0 word-store/bulk lines)
+== 003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState (0 word-store/bulk lines)
+== 003047F0 FUN_003047f0 (1 word-store/bulk lines)
+    0030482A mov word ptr [r8 + rcx - 2], r9w
+== 00308DE0 FUN_00308de0 (0 word-store/bulk lines)
+== 00309440 FUN_00309440 (0 word-store/bulk lines)
+== 003096F0 Equipment_CheckMatchingSecondaryPartnerSelectedOrOwned (0 word-store/bulk lines)
+== 00309B60 Inventory_QueryEncodedItemDiscoveryBit (0 word-store/bulk lines)
+== 00309EC0 BattleEncodedId_DispatchQueryMode0Value (0 word-store/bulk lines)
+== 00309F30 Inventory_QueryEncodedItemStateByClass (0 word-store/bulk lines)
+== 00309FB0 Inventory_QueryOwnedCountIncludingReservedActionItems (0 word-store/bulk lines)
+== 0030ADC0 BattleEncodedId_DispatchQueryMode3 (0 word-store/bulk lines)
+== 0030AE30 BattleEncodedId_DispatchQueryMode1 (0 word-store/bulk lines)
+== 0030B0E0 BattleEncodedId_QueryMode0Positive (0 word-store/bulk lines)
+== 0030B270 BattleIdClassD_RefreshPrerequisiteRuntimeFlags (0 word-store/bulk lines)
+== 0030B6A0 InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState (0 word-store/bulk lines)
+== 0030DCB0 FUN_0030dcb0 (0 word-store/bulk lines)
+== 0030DD10 FUN_0030dd10 (0 word-store/bulk lines)
+== 0030DD70 FUN_0030dd70 (0 word-store/bulk lines)
+== 0030DDC0 FUN_0030ddc0 (0 word-store/bulk lines)
+== 0030DE20 FUN_0030de20 (0 word-store/bulk lines)
+== 0030DE80 FUN_0030de80 (0 word-store/bulk lines)
+== 0030DEE0 FUN_0030dee0 (0 word-store/bulk lines)
+== 0030DF40 FUN_0030df40 (0 word-store/bulk lines)
+== 0030FAA0 InventoryEquipment_RestoreTemporarySnapshotAndClearBackup (1 word-store/bulk lines)
+    0030FBC7 call 0x861ec0 (memset/memcpy family)
+== 0030FBE0 InventoryEquipment_SnapshotAndClearTemporaryState (3 word-store/bulk lines)
+    0030FC29 mov word ptr [rax + 0x62], cx
+    0030FC6F mov word ptr [rcx + rdx*2 + 0x4f84], ax
+    0030FCCF mov word ptr [rcx + rdx*2 + 0x5004], ax
+CONTROL 002FD298 and 002FD31A listed: True

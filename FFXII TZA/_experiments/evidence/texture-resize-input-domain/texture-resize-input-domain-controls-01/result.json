@@ -1,0 +1,29 @@
+{
+  "status": "PASS_ACTUAL_SELECTED_COUNT_REFUSALS_INDEPENDENT_PENDING",
+  "positive_reused": {
+    "path": "texture-resize-input-domain-result-01.json",
+    "sha256": "603cb3a9d083860c022cfabd671215915ec6c5964033beb8f337afaf63670129"
+  },
+  "checker_sha256": "b0b8cb0b3c3dc10dfe8baa50da2498269206a785098bff93531f343e6493c351",
+  "refusals": [
+    {
+      "case": "consistent-wrong-floor",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-normal-tail",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-tail-metadata",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error_seen": true
+    }
+  ],
+  "limits": "Three synthetic producer CLI controls, no live/native runs or independent acceptance"
+}

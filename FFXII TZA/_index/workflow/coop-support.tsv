@@ -1,0 +1,9 @@
+# XIIOnline co-op support ledger, read by the dashboard's Player progression tab (OPUS, 2026-09-30).
+# One row per piece of game content whose co-op behaviour has been checked. The tab shows a family's co-op percentage
+# only when the family has rows here; with none it shows "—" (unmeasured), never zero.
+# family: a Player progression family id (world, story, party, licences, abilities, commands, gambits, statuses,
+#         equipment, key_items, bazaar, enemies)
+# key:    the catalogue key (for example enemy:bds_a:3, or a map code such as rbn_z01 for the world)
+# state:  WORKS | PARTIAL | BROKEN | UNTESTED
+# evidence: the test, log or commit that shows it
+family	key	state	evidence

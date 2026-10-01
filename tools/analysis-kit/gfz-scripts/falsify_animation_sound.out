@@ -1,0 +1,7 @@
+SURVIVES  S0  sizes all seven as cited
+SURVIVES  S1  0x05 -> 0046CBA0 (volume 0) -> 0046CC70; 0x29 -> mode 0, type 1, signed volume; emitter +0x5F0
+SURVIVES  S2  CON-190: the picker's only draw is 003A6E60, the presentation bit-feedback PRNG (01EF93E8, mode 022D9138); calls 0x2ed500,0x3326c0,0x3a6e60,0x808c40
+SURVIVES  S3  the type table; 6 -> 8 or 9; 7's countdown; 4 and 5 silent when 003326C0 finds nothing
+SURVIVES  S4  point table 1,8 / 2,3 / 4-7 / 9-12; radius = FCP 0x9001D1E x 0.5
+SURVIVES  S5  enabled emitter, mute test 00237420, live owner record with +0x284 bit 4
+FAILS 0

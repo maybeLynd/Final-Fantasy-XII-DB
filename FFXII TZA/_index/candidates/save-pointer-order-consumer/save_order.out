@@ -1,0 +1,3 @@
+PASS S1  record 0036D969 < load 0036D974 < value store 0036D977; bases ['=>02EC0800', '=>02EC0A00']
+PASS C  control: with the record store after the load, the order test refuses
+FAILS 0

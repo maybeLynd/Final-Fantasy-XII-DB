@@ -1,0 +1,62 @@
+{
+  "method": "A exact teardown/release-entry request/control and typed clear-range calculation, no original/native/emulator/live execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "driver_sha256": "2a32a84e15882fe52454974501155cd08c1d93ed41ac2dde41c5d7d8e76201cc",
+  "source_bindings": {
+    "heap_cell": "0x2aee0a0",
+    "guard": "0x39271e",
+    "release_call": "0x392720",
+    "release_entry": "0x3697f0",
+    "deeper_release_dispatch": "0x369860",
+    "clear_destination": "0x2aee060",
+    "clear_bytes": 1120,
+    "clear_end_exclusive": "0x2aee4c0",
+    "mask_cell_offset": 80,
+    "parameter_span_bytes": 96,
+    "following_span_start": "0x2aee0c0",
+    "following_span_bytes": 1024,
+    "nav_root_02AEDFB0_in_clear_range": false
+  },
+  "controls": {
+    "branch": {
+      "original_null_skips_release": true,
+      "private_null_reaches_release": true,
+      "same_target": true
+    },
+    "clear_span": {
+      "original_covers_table_head": true,
+      "private_parameter_only_excludes_table_head": true
+    },
+    "immutable_source_refuses_both": true
+  },
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/_types/types.tsv",
+      "full_source_sha256": "8d794efd68a279d71164a2001a658e47182374f6daa9e6bf4347ae450f62cb0e",
+      "retained": "nav-types-preimage.tsv",
+      "retained_sha256": "05c4cda241389e331f7045dfb63fc32353ef86b84ae2efc6af649fa3eee2d352",
+      "scope": "types"
+    },
+    {
+      "path": "Database/FFXII TZA/_types/fields.tsv",
+      "full_source_sha256": "f3256114467c12c2d47bafbd1fa2d5ff68cb41a6e6941f0642d354d9c42c276c",
+      "retained": "nav-fields-preimage.tsv",
+      "retained_sha256": "adb46bc46082a90640f183de76cdf7f43cc67fcd146cf15cd850bd96b8e61db0",
+      "scope": "fields"
+    },
+    {
+      "path": "Database/FFXII TZA/24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "full_source_sha256": "92e59e9e5e61d922a29e899958ede3ad74d55862099003834a263277eae90d75",
+      "retained": "known-release-primary.md",
+      "retained_sha256": "9845412f53e90fe6548778b009e67a1069b902443ac6621e89a257f6c3998ce7",
+      "scope": "release"
+    }
+  ],
+  "interpretation": "On normal entry with a nonzero current heap cell, source routes it to known raw-pointer release; after conforming return, or directly if zero, source tailrequests zero fill of02AEE060..02AEE4C0. Covers whole60Bparams and400Bstarting at pointertablehead. Doesnotclear navroot02AEDFB0. This is a source-known teardown route, not actualdeallocation/clearedbytes or free-beforeeveryrebuild guarantee.",
+  "limits": "Native release/CRT effects, header/arena invariants and actualinitializedpointer values unobserved. Clear400B beginning at arrayhead is physicalrequest range, not proof128logicalslots/capacity/elementcountbound/allrange semanticlayout. Originalno-clear-on-four-specific-routes finding notautomatically disproved or sharedproducerdeclared defective; ownermust evaluate this additionalroute. Repeatedrebuildrelease ordering, no-leak, rootclear-versuspack-unload ordering/reentrancy/threadatomicity remainopen."
+}

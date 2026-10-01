@@ -1,0 +1,2132 @@
+{
+ "bit0_records": [],
+ "bit0_total": 0,
+ "classes": {
+  "CD3D11_BLEND_DESC": {
+   "members": {
+    "3": 2184
+   },
+   "static": true,
+   "super": {
+    "(none)": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "CD3D11_DEPTH_STENCIL_DESC": {
+   "members": {
+    "8": 2184
+   },
+   "static": true,
+   "super": {
+    "(none)": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "CD3D11_RASTERIZER_DESC": {
+   "members": {
+    "10": 2184
+   },
+   "static": true,
+   "super": {
+    "(none)": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "D3D11_DEPTH_STENCILOP_DESC": {
+   "members": {
+    "4": 2184
+   },
+   "static": false,
+   "super": {
+    "(none)": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "D3D11_RENDER_TARGET_BLEND_DESC": {
+   "members": {
+    "8": 2184
+   },
+   "static": true,
+   "super": {
+    "(none)": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "Matrix4": {
+   "members": {
+    "1": 247
+   },
+   "static": false,
+   "super": {
+    "(none)": 247
+   },
+   "w7": {
+    "32": 247
+   }
+  },
+  "PAnimationChannel": {
+   "members": {
+    "3": 2
+   },
+   "static": true,
+   "super": {
+    "PAnimationChannelBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationChannelBase": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PAnimationChannelTarget": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationChannelTarget": {
+   "members": {
+    "7": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationChannelTimes": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationClip": {
+   "members": {
+    "6": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationClipBinding": {
+   "members": {
+    "4": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "20": 2
+   }
+  },
+  "PAnimationClipBindingChannelMap": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "32": 2
+   }
+  },
+  "PAnimationClipBindingDataBlockCache": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "32": 2
+   }
+  },
+  "PAnimationConstantChannel": {
+   "members": {
+    "1": 2
+   },
+   "static": true,
+   "super": {
+    "PAnimationChannelBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationSet": {
+   "members": {
+    "3": 2
+   },
+   "static": false,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAnimationSlotListIndex": {
+   "members": {
+    "4": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PArray<PAnimationChannel *>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PArray<PAnimationChannelTarget>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PArray<PAnimationConstantChannel>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PArray<PAnimationSlotListIndex>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PArray<PBase *>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PBitmapFontCharInfo>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PArray<PContextSwitch *>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PContextVariantFoldingTable>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PDataBlockD3D11>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PDynamicSegmentDesc>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PEffectVariant *>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PInt32>": {
+   "members": {
+    "2": 2093
+   },
+   "static": true,
+   "super": {
+    "PBase": 2093
+   },
+   "w7": {
+    "0": 2093
+   }
+  },
+  "PArray<PLODLevel>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PLightType *>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PMaterialSwitch>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PMatrix4>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PMeshInstanceSegmentContext>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PMeshSegment>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PModifierAndInputs>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PModifierNetworkBuffer>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PModifierNetworkDynamicMeshSegment>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PModifierNetworkInstance *>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PNodeContext>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PRenderStream>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PRenderStreamInput>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PSceneRenderPass *>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PSceneRenderPass>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShader>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShaderParameterCaptureBufferLocation>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShaderParameterCaptureBufferLocationTypeConstantBuffer>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShaderParameterDefinition>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShaderPass>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShaderPassInfo>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShaderStreamDefinition>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PShadowCasterType *>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PSkeletonJointBounds>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PSkinBoneRemap>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<PStreamInputDescD3D11>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PString>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PUInt128>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PUInt8 *>": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PArray<PUInt8>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PArray<PVertexStream>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PArray<float>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PAssetReference": {
+   "members": {
+    "3": 35984
+   },
+   "static": true,
+   "super": {
+    "PBase": 35984
+   },
+   "w7": {
+    "8": 35984
+   }
+  },
+  "PAssetReferenceImport": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PBase": {
+   "members": {
+    "0": 35984
+   },
+   "static": false,
+   "super": {
+    "(none)": 35984
+   },
+   "w7": {
+    "32": 35984
+   }
+  },
+  "PBitmapFont": {
+   "members": {
+    "7": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "8": 2
+   }
+  },
+  "PBitmapFontCharInfo": {
+   "members": {
+    "9": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PCamera": {
+   "members": {
+    "6": 247
+   },
+   "static": true,
+   "super": {
+    "PBase": 247
+   },
+   "w7": {
+    "0": 247
+   }
+  },
+  "PCameraOrthographic": {
+   "members": {
+    "1": 232
+   },
+   "static": true,
+   "super": {
+    "PCameraProjection": 232
+   },
+   "w7": {
+    "0": 232
+   }
+  },
+  "PCameraPerspective": {
+   "members": {
+    "1": 247
+   },
+   "static": true,
+   "super": {
+    "PCameraProjection": 247
+   },
+   "w7": {
+    "0": 247
+   }
+  },
+  "PCameraProjection": {
+   "members": {
+    "1": 247
+   },
+   "static": true,
+   "super": {
+    "PCamera": 247
+   },
+   "w7": {
+    "2": 247
+   }
+  },
+  "PClassDescriptor": {
+   "members": {
+    "0": 35984
+   },
+   "static": false,
+   "super": {
+    "PBase": 35984
+   },
+   "w7": {
+    "2": 35984
+   }
+  },
+  "PClusterHeader": {
+   "members": {
+    "0": 35984
+   },
+   "static": false,
+   "super": {
+    "PClusterHeaderD3D11": 35984
+   },
+   "w7": {
+    "0": 35984
+   }
+  },
+  "PClusterHeaderBase": {
+   "members": {
+    "18": 35984
+   },
+   "static": true,
+   "super": {
+    "PBase": 35984
+   },
+   "w7": {
+    "0": 35984
+   }
+  },
+  "PClusterHeaderD3D11": {
+   "members": {
+    "3": 35984
+   },
+   "static": true,
+   "super": {
+    "PClusterHeaderBase": 35984
+   },
+   "w7": {
+    "0": 35984
+   }
+  },
+  "PContextVariantFoldingTable": {
+   "members": {
+    "5": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PDataBlock": {
+   "members": {
+    "0": 2091
+   },
+   "static": false,
+   "super": {
+    "PDataBlockD3D11": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PDataBlockBase": {
+   "members": {
+    "4": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PDataBlockBufferD3D11": {
+   "members": {
+    "0": 2091
+   },
+   "static": false,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PDataBlockD3D11": {
+   "members": {
+    "3": 2091
+   },
+   "static": true,
+   "super": {
+    "PDataBlockBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PDynamicDataBlock": {
+   "members": {
+    "4": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PDynamicMesh": {
+   "members": {
+    "3": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "2": 2091
+   }
+  },
+  "PDynamicMeshInstance": {
+   "members": {
+    "1": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "8": 2091
+   }
+  },
+  "PDynamicSegmentDesc": {
+   "members": {
+    "4": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PEffect": {
+   "members": {
+    "12": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PEffectVariant": {
+   "members": {
+    "9": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PIndexDataBlock": {
+   "members": {
+    "0": 2091
+   },
+   "static": false,
+   "super": {
+    "PIndexDataBlockD3D11": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PIndexDataBlockBase": {
+   "members": {
+    "5": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PIndexDataBlockBufferD3D11": {
+   "members": {
+    "0": 2091
+   },
+   "static": false,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PIndexDataBlockD3D11": {
+   "members": {
+    "3": 2091
+   },
+   "static": true,
+   "super": {
+    "PIndexDataBlockBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PInstanceListHeader": {
+   "members": {
+    "9": 35984
+   },
+   "static": true,
+   "super": {
+    "PBase": 35984
+   },
+   "w7": {
+    "0": 35984
+   }
+  },
+  "PLODGroup": {
+   "members": {
+    "8": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PLODLevel": {
+   "members": {
+    "4": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMaterial": {
+   "members": {
+    "5": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PMaterialSet": {
+   "members": {
+    "1": 2091
+   },
+   "static": false,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMaterialSwitch": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PMatrix4": {
+   "members": {
+    "1": 2097
+   },
+   "static": false,
+   "super": {
+    "(none)": 2097
+   },
+   "w7": {
+    "32": 2097
+   }
+  },
+  "PMatrix4x3": {
+   "members": {
+    "1": 2097
+   },
+   "static": false,
+   "super": {
+    "(none)": 2097
+   },
+   "w7": {
+    "32": 2097
+   }
+  },
+  "PMesh": {
+   "members": {
+    "8": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshInstance": {
+   "members": {
+    "20": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "8": 2091
+   }
+  },
+  "PMeshInstanceBounds": {
+   "members": {
+    "4": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshInstanceSegmentContext": {
+   "members": {
+    "1": 2091
+   },
+   "static": false,
+   "super": {
+    "PMeshSegmentContext": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshInstanceSegmentStreamBinding": {
+   "members": {
+    "5": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshSegment": {
+   "members": {
+    "0": 2091
+   },
+   "static": false,
+   "super": {
+    "PMeshSegmentD3D11": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshSegmentBase": {
+   "members": {
+    "7": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshSegmentContext": {
+   "members": {
+    "0": 2091
+   },
+   "static": false,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PMeshSegmentD3D11": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PMeshSegmentBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PModifierAndInputs": {
+   "members": {
+    "4": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PModifierNetwork": {
+   "members": {
+    "11": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PModifierNetworkBuffer": {
+   "members": {
+    "5": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PModifierNetworkDynamicMesh": {
+   "members": {
+    "4": 3
+   },
+   "static": false,
+   "super": {
+    "PDynamicMesh": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PModifierNetworkDynamicMeshInstance": {
+   "members": {
+    "1": 3
+   },
+   "static": false,
+   "super": {
+    "PDynamicMeshInstance": 3
+   },
+   "w7": {
+    "8": 3
+   }
+  },
+  "PModifierNetworkDynamicMeshSegment": {
+   "members": {
+    "4": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PModifierNetworkInfoPacket": {
+   "members": {
+    "9": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "20": 3
+   }
+  },
+  "PModifierNetworkInfoPacket_Buffer": {
+   "members": {
+    "1": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "32": 3
+   }
+  },
+  "PModifierNetworkInfoPacket_ModifierCode": {
+   "members": {
+    "3": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "32": 3
+   }
+  },
+  "PModifierNetworkInfoPacket_ModifierInstance": {
+   "members": {
+    "4": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "32": 3
+   }
+  },
+  "PModifierNetworkInstance": {
+   "members": {
+    "3": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PNode": {
+   "members": {
+    "6": 2097
+   },
+   "static": true,
+   "super": {
+    "PBase": 2097
+   },
+   "w7": {
+    "0": 2097
+   }
+  },
+  "PNodeContext": {
+   "members": {
+    "1": 2184
+   },
+   "static": false,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PParameterBuffer": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PParameterBufferBase": 2184
+   },
+   "w7": {
+    "12": 2184
+   }
+  },
+  "PParameterBufferBase": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "34": 2184
+   }
+  },
+  "PRenderStream": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PRenderStreamInput": {
+   "members": {
+    "2": 3
+   },
+   "static": true,
+   "super": {
+    "PBase": 3
+   },
+   "w7": {
+    "0": 3
+   }
+  },
+  "PSamplerState": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PSamplerStateD3D11": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PSamplerStateBase": {
+   "members": {
+    "11": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PSamplerStateD3D11": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PSamplerStateBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PSceneRenderPass": {
+   "members": {
+    "6": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShader": {
+   "members": {
+    "5": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderComputeProgram": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderComputeProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderComputeProgramD3D11": {
+   "members": {
+    "3": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderFragmentProgram": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderFragmentProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderFragmentProgramD3D11": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderGeometryProgram": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderGeometryProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderGeometryProgramD3D11": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferLocation": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferLocationSize": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderParameterCaptureBufferLocation": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferLocationTypeConstantBuffer": {
+   "members": {
+    "3": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderParameterCaptureBufferLocation": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferSampler": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderParameterCaptureBufferTextureBase": 2184
+   },
+   "w7": {
+    "32": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferTexture2D": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderParameterCaptureBufferTextureBase": 2184
+   },
+   "w7": {
+    "32": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferTextureBase": {
+   "members": {
+    "3": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "40": 2184
+   }
+  },
+  "PShaderParameterCaptureBufferTextureCubeMap": {
+   "members": {
+    "1": 2171
+   },
+   "static": true,
+   "super": {
+    "PShaderParameterCaptureBufferTextureBase": 2171
+   },
+   "w7": {
+    "32": 2171
+   }
+  },
+  "PShaderParameterDefinition": {
+   "members": {
+    "6": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPass": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderPassD3D11": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassBase": {
+   "members": {
+    "5": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassD3D11": {
+   "members": {
+    "9": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderPassBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassInfo": {
+   "members": {
+    "8": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassParameterLocationTypesBase": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassParameterLocationTypesConstantBuffer": {
+   "members": {
+    "1": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderPassParameterLocationTypesBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassStateBase": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderPassStateD3D11": {
+   "members": {
+    "4": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderPassStateBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderProgramBase": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderProgramD3D11": {
+   "members": {
+    "4": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderProgramBase": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderStreamDefinition": {
+   "members": {
+    "6": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PShaderVertexProgram": {
+   "members": {
+    "0": 2184
+   },
+   "static": false,
+   "super": {
+    "PShaderVertexProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PShaderVertexProgramD3D11": {
+   "members": {
+    "1": 2184
+   },
+   "static": true,
+   "super": {
+    "PShaderProgramD3D11": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PSharray<PAnimationClip *>": {
+   "members": {
+    "2": 2
+   },
+   "static": true,
+   "super": {
+    "PBase": 2
+   },
+   "w7": {
+    "0": 2
+   }
+  },
+  "PSharray<PDataBlockBufferD3D11>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PSharray<PIndexDataBlockBufferD3D11>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PSharray<PMaterial *>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PSharray<PMeshInstance *>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PSharray<PMeshInstanceSegmentStreamBinding *>": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PSharray<PUInt32>": {
+   "members": {
+    "2": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PSkeletonJointBounds": {
+   "members": {
+    "4": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PSkinBoneRemap": {
+   "members": {
+    "2": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PStreamInputDescD3D11": {
+   "members": {
+    "5": 2184
+   },
+   "static": true,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "0": 2184
+   }
+  },
+  "PStreamInputLayoutD3D11": {
+   "members": {
+    "1": 2184
+   },
+   "static": false,
+   "super": {
+    "PBase": 2184
+   },
+   "w7": {
+    "8": 2184
+   }
+  },
+  "PString": {
+   "members": {
+    "1": 35984
+   },
+   "static": false,
+   "super": {
+    "PBase": 35984
+   },
+   "w7": {
+    "0": 35984
+   }
+  },
+  "PTexture2D": {
+   "members": {
+    "0": 31368
+   },
+   "static": false,
+   "super": {
+    "PTexture2DD3D11": 31368
+   },
+   "w7": {
+    "0": 31368
+   }
+  },
+  "PTexture2DBase": {
+   "members": {
+    "2": 31368
+   },
+   "static": true,
+   "super": {
+    "PTextureCommonBase": 31368
+   },
+   "w7": {
+    "0": 31368
+   }
+  },
+  "PTexture2DD3D11": {
+   "members": {
+    "0": 31368
+   },
+   "static": false,
+   "super": {
+    "PTexture2DBase": 31368
+   },
+   "w7": {
+    "0": 31368
+   }
+  },
+  "PTextureCommonBase": {
+   "members": {
+    "5": 35978
+   },
+   "static": true,
+   "super": {
+    "PBase": 35978
+   },
+   "w7": {
+    "0": 35978
+   }
+  },
+  "PTextureCubeMap": {
+   "members": {
+    "0": 6781
+   },
+   "static": false,
+   "super": {
+    "PTextureCubeMapD3D11": 6781
+   },
+   "w7": {
+    "0": 6781
+   }
+  },
+  "PTextureCubeMapBase": {
+   "members": {
+    "1": 6781
+   },
+   "static": true,
+   "super": {
+    "PTextureCommonBase": 6781
+   },
+   "w7": {
+    "0": 6781
+   }
+  },
+  "PTextureCubeMapD3D11": {
+   "members": {
+    "0": 6781
+   },
+   "static": false,
+   "super": {
+    "PTextureCubeMapBase": 6781
+   },
+   "w7": {
+    "0": 6781
+   }
+  },
+  "PVertexStream": {
+   "members": {
+    "4": 2091
+   },
+   "static": true,
+   "super": {
+    "PBase": 2091
+   },
+   "w7": {
+    "0": 2091
+   }
+  },
+  "PWorldMatrix": {
+   "members": {
+    "1": 2097
+   },
+   "static": true,
+   "super": {
+    "PBase": 2097
+   },
+   "w7": {
+    "0": 2097
+   }
+  },
+  "Vector3": {
+   "members": {
+    "1": 2091
+   },
+   "static": false,
+   "super": {
+    "(none)": 2091
+   },
+   "w7": {
+    "32": 2091
+   }
+  }
+ },
+ "files": 35984,
+ "super_out_of_range": 0
+}

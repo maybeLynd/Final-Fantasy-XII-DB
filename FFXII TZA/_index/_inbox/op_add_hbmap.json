@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-HBMAP-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the hctg page-map decode: +0x0C/+0x10/+0x16 bound via 00575DD0/00575C30 resource-id arithmetic; rec+0x06 groupHi; buffer graph +0x118=himg.",
+  "scope": "hchk-hctg-hdat-handbook-indexes.md, AUDIT-LOG.md, ADDRESS-INDEX.md, SWE2-DATA.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

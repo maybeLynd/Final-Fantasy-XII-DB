@@ -1,0 +1,7 @@
+SURVIVES  G0  {'003ACC10': 2342, '003ABD50': 950, '003ACAA0': 358, '003AB960': 506, '003ABD00': 26, '003ACA80': 7, '003ACA90': 9, '003AD540': 745, '003AE0E0': 991, '003AC110': 1876}
+SURVIVES  G1  pool 0x70 x 0x80, handle << 8 | index, 0x50-byte copy to +0x20, 1/range^2 at +0x50, list 02B3F508 / 02B3F510
+SURVIVES  G2  setter / clearer on 02B3F501; the selector reads 02B3F501 and 02B3F520
+SURVIVES  G3  ambient mode +0x5E0, +0x5DC, +0x5D0; 02B3F503 / 02B3F51C; camera 02AEDF20
+SURVIVES  G4  enable 02B3F502, scale 02B3F518, the +5 < 0x80 test
+SURVIVES  G5  1.0 stored to 02B3F518 at 003AC1D6, before the list walk at 003AC1F8; the only earlier call is the output memset [(3850640, 'call 0x861ec0')]
+FAILS 0

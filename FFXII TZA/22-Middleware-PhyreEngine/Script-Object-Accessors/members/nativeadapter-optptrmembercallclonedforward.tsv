@@ -1,0 +1,8 @@
+# NativeAdapter.OptPtrMemberCallClonedForward - EC-7 family C
+# call a member lookup on arg1; if non-null vcall [this+8]; forward via
+# # cloned forwarder 00684080 with a member rip descriptor; return 1.
+address	targets
+005C1D50	005BCD20,00684080
+005FF8F0	005F86B0,00684080
+005FF940	005F86B0,00684080
+0079A720	00684080,00796960

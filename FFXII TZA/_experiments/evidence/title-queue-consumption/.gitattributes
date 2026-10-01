@@ -1,0 +1,4 @@
+# Exact-byte evidence packet (ASTRA title-queue-consumption): CRLF-frozen
+# payload must hash identically filtered and unfiltered. Reuses the
+# existing project policy per 1225845ca / access-producer-default-byte-preserved.
+* -text

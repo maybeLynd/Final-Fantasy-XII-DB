@@ -1,0 +1,31 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "new_original_code_executions": 0,
+  "live_cases": 0,
+  "vector_input_snapshot": true,
+  "vector_overlap_limit": "Matrix disjoint from output; valid/stable source ranges and private frame unaliased.",
+  "output_matrix_offset8_hazard": [
+    {
+      "write_pc": "0x2170ce",
+      "read_pc": "0x2170ff",
+      "matrix_disp": 8
+    }
+  ],
+  "conditional_disjoint": [
+    12,
+    26,
+    42,
+    2
+  ],
+  "conditional_overlap": [
+    12,
+    26,
+    54,
+    2
+  ],
+  "incorrect_per_column_reload_w": 28,
+  "wrapper_rax_residue": "Leaf scratch pointer S-0x18; wrapper does not replace with caller out. Copied before frame teardown; not a usable returned-object guarantee or inferred C return type.",
+  "wrapper": "Stages16B in private stack until real leaf returns then copies to original out; alias-safe under stated frame/domain assumptions.",
+  "source_sha256": "e125c032c97546fca2f320c992a87a6eaf28a7c4f4e8ac39d8e1ee1bf5221500",
+  "cleanup": "Read-only retained artifacts; PC OFF, no native game/save/config/reference changes."
+}

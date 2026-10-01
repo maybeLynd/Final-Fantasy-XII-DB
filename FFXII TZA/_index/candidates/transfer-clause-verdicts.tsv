@@ -1,0 +1,74 @@
+# The `voided_by` clause executed per document, 2026-09-14.
+# Regenerate: check_transfer_eligible.py --db <db> --transfers
+# A HOLDS row is not a stamp. It says the basis this document already
+# carries was re-tested and survived the advance, so what it owes is a
+# re-pointed target rather than a fresh verification.
+#
+# document	target	basis	verdict	reason
+00-Engine-Core-Runtime/Application-Root/game-application.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/Object-Model/rtti-vtable-object-model.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md	GN160	snapshot-identity	VOID	cites 3 changed record(s): 003bed70 00402f00 004044d0
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md	GN160	snapshot-identity	VOID	cites 1 changed record(s): 00248a90
+00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/the-all-ones-empty-convention.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+00-Engine-Core-Runtime/the-encoded-id-class-registry.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+03-World-Area-Field/Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+03-World-Area-Field/walking-into-an-authored-trigger-point.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+04-Actor-Entity/Battle-Record-Kind/actor-type-id-partition-and-the-13-value-band.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+04-Actor-Entity/the-field-runtime-pass.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+07-Combat-Action/Action-Availability/battle-command-availability-and-reason-codes.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+07-Combat-Action/Action-Dispatch/battle-action-handler-table.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+08-Combat-Formula/Step-Table/combat-formula-step-table.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+08-Combat-Formula/Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+12-Items-Equipment-Shops-License/using-an-item-is-an-action-that-costs-an-item.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+13-Rewards-Progression-Economy/experience-and-license-point-award.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	GN160	snapshot-identity	VOID	cites 1 changed record(s): 00576300
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	GN160	snapshot-identity	VOID	cites 1 changed record(s): 0032c650
+16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+17-Presentation-Rendering/Character-Rendering/character-render-object.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md	GN160	snapshot-identity	VOID	cites 1 changed record(s): 001d76a0
+17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+18-Audio/Sound-Selection/sound-trigger.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+18-Audio/how-the-music-changes-when-you-change-area.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+21-RNG-And-Determinism/rng-streams.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+23-Third-Party-Libraries/third-party-middleware-inventory.md	GN160	snapshot-identity	VOID	cites 5 changed record(s): 001e5c40 0029e3b0 002a5020 002a86a0
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Dead-Nine-Patch-Renderer/the-box-renderer-that-is-never-called.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	GN160	snapshot-identity	HOLDS	cites none of the 109 changed records
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/drawing-one-coloured-rectangle.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/the-blinking-icon-and-its-atlas.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/the-nine-patch-window-frame.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/the-unresolved-158.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/the-widget-background-and-its-atlas-sets.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions
+99-Unresolved-Residual/the-widget-tree-draw-pass.md	GN160	additive-annotation delta	HOLDS	delta measured additive on all five dimensions

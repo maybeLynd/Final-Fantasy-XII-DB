@@ -1,0 +1,8181 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-031-loaded-deadline\\recovered\\observe.py",
+    "--pid",
+    "31940",
+    "--seconds",
+    "12",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\skeletal-reset-live\\control\\liveness.json"
+  ],
+  "start_unix": 1789876838.0891073,
+  "pid": 31940,
+  "observer_sha256": "d97d08b14cac47c57264c49f06da87ff731d4dfd13c32970ad6b89473a89c675",
+  "samples": [
+    {
+      "seconds": 0.0002858999650925398,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.01066019997233525,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.021118399978149682,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.03126049996353686,
+      "cpu_seconds": 0.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.04187349998392165,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.052419899962842464,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.06254859996261075,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.072768299956806,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.08329369995044544,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.09385859995381907,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.10414819995639846,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.11466909997398034,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.12520029995357618,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.13577339996118098,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.1463456999626942,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.15693519997876137,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.1675365999690257,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.1779058999964036,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.18847939994884655,
+      "cpu_seconds": 0.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.1990908999578096,
+      "cpu_seconds": 0.078125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.20955419994425029,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.22007519996259362,
+      "cpu_seconds": 0.125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.23040279996348545,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.24089219997404143,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.2511626999475993,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.26177439995808527,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.2723151999525726,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.2828987999819219,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.2931146999471821,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.30365779995918274,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.3141761999577284,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.32475369999883696,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.3352288999594748,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.3457977999933064,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.3563906999770552,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.36692619998939335,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.37711289996514097,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.38740749994758517,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.3975894999457523,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.4081830999930389,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.4187203999608755,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.429070399957709,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.4393545999773778,
+      "cpu_seconds": 0.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.4497065999894403,
+      "cpu_seconds": 0.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.46029379998799413,
+      "cpu_seconds": 0.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.47068469994701445,
+      "cpu_seconds": 0.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.4812474999926053,
+      "cpu_seconds": 0.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.491883099952247,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5022658999660052,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.512585099961143,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5230792999500409,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5332656999817118,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.543643599958159,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5541327999671921,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5646492999512702,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5753666999517009,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5856418999610469,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.5962718999944627,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6068388999556191,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6174294999800622,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6279252999811433,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6385132999857888,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6490047999541275,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6595505999866873,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6701106999535114,
+      "cpu_seconds": 0.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6807026999886148,
+      "cpu_seconds": 0.28125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.6912455999990925,
+      "cpu_seconds": 0.28125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7017510999576189,
+      "cpu_seconds": 0.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7123763999552466,
+      "cpu_seconds": 0.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.722715399984736,
+      "cpu_seconds": 0.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.733302199980244,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7438308999990113,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7543163999798708,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7646208999794908,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7751372999628074,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7856175999622792,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.7961665999609977,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8066832999465987,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8170316999894567,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.827597199997399,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8381022999528795,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8483291999436915,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8588622999959625,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8693965999991633,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8799101999611594,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.8904256999958307,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9006631999509409,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9112278999527916,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9213973999721929,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9318564999848604,
+      "cpu_seconds": 0.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9424091999535449,
+      "cpu_seconds": 0.40625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9529361999593675,
+      "cpu_seconds": 0.40625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9635538999573328,
+      "cpu_seconds": 0.453125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9740237999940291,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9842837999458425,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 0.9945804999442771,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.0050679999985732,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.0152689999667928,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.026153099955991,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.036753999942448,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.0468782999669202,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.0572876999503933,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.06771029997617,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.0779499999480322,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.088194299954921,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.0983940999722108,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.10882359999232,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.1193619999685325,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 1.1297687999904156,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.1402283999486826,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.1508257999666966,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.1612384999752976,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.1717383999493904,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.1823285999707878,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.19309879996581,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2035917999455705,
+      "cpu_seconds": 0.46875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2137369999545626,
+      "cpu_seconds": 0.5,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2242411999613978,
+      "cpu_seconds": 0.546875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2343335999757983,
+      "cpu_seconds": 0.5625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2446045999531634,
+      "cpu_seconds": 0.609375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2551283999928273,
+      "cpu_seconds": 0.609375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2653165999799967,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2758936999598518,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2860502999974415,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.2962938999990001,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3067109999828972,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3172666999744251,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3278364999569021,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3383444999926724,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.34847039997112,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3590224999934435,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3695010999799706,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.3802032999810763,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.390721499978099,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4012349999975413,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4118285999866202,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.422355199989397,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.43284629995469,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4429939999827184,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4534870999632403,
+      "cpu_seconds": 0.625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4640458999783732,
+      "cpu_seconds": 0.65625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4743100999621674,
+      "cpu_seconds": 0.703125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.484598199953325,
+      "cpu_seconds": 0.703125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.4950971999787726,
+      "cpu_seconds": 0.71875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.505253699957393,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5155728999525309,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5261004999629222,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5364958999562077,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5471938999835402,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5575566999614239,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.568127199949231,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5783118999679573,
+      "cpu_seconds": 0.734375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.5884551999624819,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.598624899983406,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6093091999646276,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6196290999650955,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6300483999657445,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6407058999757282,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6512508999439888,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6617807999718934,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6720839999616146,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6829044999904,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.6936057999846525,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7044745999737643,
+      "cpu_seconds": 0.75,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7147874999791384,
+      "cpu_seconds": 0.78125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7250880999490619,
+      "cpu_seconds": 0.8125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7360329999937676,
+      "cpu_seconds": 0.8125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7466505999909714,
+      "cpu_seconds": 0.84375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7571615999913774,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7674094999674708,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.777550699946005,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.7880555999581702,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.798238199960906,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.808570699999109,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.8186788999591954,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.8292927999864332,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.8398056999430992,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.8503856999450363,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.8609785999869928,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.8717250999761745,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.882142499962356,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.892296299978625,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9029682999826036,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.913250599987805,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9237153999856673,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9343384999665432,
+      "cpu_seconds": 0.859375,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9447401999495924,
+      "cpu_seconds": 0.875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.954870099958498,
+      "cpu_seconds": 0.875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9655105999554507,
+      "cpu_seconds": 0.921875,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.975855499971658,
+      "cpu_seconds": 0.953125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9863603999838233,
+      "cpu_seconds": 0.953125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 1.9966009999625385,
+      "cpu_seconds": 1.0,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.006763699988369,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.0168791999458335,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.0275150999659672,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.0379086999455467,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.048403699998744,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.05901869997615,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.069474599964451,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.079987999983132,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.090208299981896,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.1004778999486007,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.111166999966372,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.1217635999782942,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.132192099990789,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.142697599949315,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.1532718999660574,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.1638023999985307,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.1741159999510273,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.184384999971371,
+      "cpu_seconds": 1.015625,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.1946736999670975,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.204868999950122,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.215293199988082,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.2258160999626853,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.2360073999734595,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.2465099999681115,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.257059899973683,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": true,
+      "held": []
+    },
+    {
+      "seconds": 2.26747629995225,
+      "cpu_seconds": 1.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.2775799999944866,
+      "cpu_seconds": 1.078125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.288086399959866,
+      "cpu_seconds": 1.125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.2986135999672115,
+      "cpu_seconds": 1.125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.3089264999725856,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.319547999999486,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.330071999982465,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.340280399948824,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.350486399955116,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.361040799994953,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.371588599984534,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.3820863999426365,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.3924690999556333,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.403031399997417,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.4136195999453776,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.4240607999963686,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.434341999993194,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.4449650999740697,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.455443699960597,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.4656484999577515,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.47623669996392,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.4868138999445364,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.4973140999791212,
+      "cpu_seconds": 1.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5075934999622405,
+      "cpu_seconds": 1.203125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.518156599951908,
+      "cpu_seconds": 1.203125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5283088999567553,
+      "cpu_seconds": 1.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5386219999636523,
+      "cpu_seconds": 1.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5492110999766737,
+      "cpu_seconds": 1.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5597857999964617,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5703612999641337,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.5807836999883875,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.591318999999203,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.601613399980124,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.612180999945849,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.6226073999423534,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.633256899949629,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.6437481999746524,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.6543029999593273,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.6646615999634378,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.675155199947767,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.68544919998385,
+      "cpu_seconds": 1.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.695678499992937,
+      "cpu_seconds": 1.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.7061730999848805,
+      "cpu_seconds": 1.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.71674169995822,
+      "cpu_seconds": 1.34375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.726939699961804,
+      "cpu_seconds": 1.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.7371301999664865,
+      "cpu_seconds": 1.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.747412799973972,
+      "cpu_seconds": 1.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.7579857999808155,
+      "cpu_seconds": 1.40625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.7685313999536447,
+      "cpu_seconds": 1.40625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.779062799992971,
+      "cpu_seconds": 1.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.7896140999509953,
+      "cpu_seconds": 1.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.80016489996342,
+      "cpu_seconds": 1.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.810652299958747,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.8208068999811076,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.8309344999725,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.841582799970638,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.852056999981869,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.8626453999895602,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.8731534999678843,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.8837482999661006,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.8943374999798834,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9048843999626115,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9154790999600664,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9260508999577723,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9366387999616563,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9471713999519125,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.957594199979212,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.968153799942229,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9786596999620087,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.989210399973672,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 2.9997170999995433,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.010333999991417,
+      "cpu_seconds": 1.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.02045489999,
+      "cpu_seconds": 1.5625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.031033099978231,
+      "cpu_seconds": 1.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.0416292999871075,
+      "cpu_seconds": 1.625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.052178299985826,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.062708199955523,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.073242999962531,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.0837703999713995,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.094377799949143,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.1050102999433875,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.115514399949461,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.125927299959585,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.1365174999809824,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.14682719996199,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.1571268999832682,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.1674248999916017,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.177558899973519,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.1880122000002302,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.198511399968993,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.2091555999941193,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.219358599977568,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.229717599984724,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.2400657999678515,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.2507986999698915,
+      "cpu_seconds": 1.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.2609253999544308,
+      "cpu_seconds": 1.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.2715674999635667,
+      "cpu_seconds": 1.6875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.281776699994225,
+      "cpu_seconds": 1.6875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.2923154999734834,
+      "cpu_seconds": 1.734375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3030440000002272,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.313491399982013,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3240661999443546,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3346802999731153,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3452093999949284,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3557983999489807,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3660358999622986,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.376245799998287,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3863900999422185,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.3966960999532603,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.407109899970237,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.417695099953562,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.428202399984002,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.4387788999592885,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.4493224999750964,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.4596388999489136,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.4701172999921255,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.4806326999678276,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.491239799943287,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5018093999824487,
+      "cpu_seconds": 1.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5119969999650493,
+      "cpu_seconds": 1.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.522567199950572,
+      "cpu_seconds": 1.8125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5327661999617703,
+      "cpu_seconds": 1.8125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5435506999492645,
+      "cpu_seconds": 1.859375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.55409689998487,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5642648999928497,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.574792199942749,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5850508000003174,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.5951990999747068,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6058609999599867,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6165217999950983,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6271160999895073,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6379091999842785,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6484458999475464,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6589304999797605,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.6691156999440864,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.679730399977416,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.690235299989581,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.700484399974812,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.7111023999750614,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.7216516999760643,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.732224099978339,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.742609199951403,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.7531202999525703,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.763677299953997,
+      "cpu_seconds": 1.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.774045699974522,
+      "cpu_seconds": 1.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.784482199989725,
+      "cpu_seconds": 1.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.794685499975458,
+      "cpu_seconds": 1.96875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.805230699945241,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.8157749999663793,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.8263447999488562,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.836517099989578,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.846697699977085,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.8572660999489017,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.8676884999731556,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.878160299966112,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.888324899948202,
+      "cpu_seconds": 1.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.8989192999433726,
+      "cpu_seconds": 2.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.9091135999769904,
+      "cpu_seconds": 2.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.919720799953211,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.930256499967072,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.940855599998031,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.9514005999662913,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.962006999994628,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.972491699969396,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.9830056999926455,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 3.993537299975287,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.003744299989194,
+      "cpu_seconds": 2.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.014278499991633,
+      "cpu_seconds": 2.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.0248027999768965,
+      "cpu_seconds": 2.0625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.035143099958077,
+      "cpu_seconds": 2.0625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.045317699958105,
+      "cpu_seconds": 2.09375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.0554861999698915,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.065684299974237,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.075874499976635,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.086438299971633,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.09700949996477,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.10758229997009,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.117772199970204,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.128336599969771,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.138550799980294,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.149113399966154,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.159608899964951,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.170237299986184,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.180704399943352,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.191233099962119,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.201642499945592,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.212080099969171,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.222291799960658,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.232929099991452,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.243941199965775,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.254503099946305,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.265063699975144,
+      "cpu_seconds": 2.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.275627099967096,
+      "cpu_seconds": 2.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.286138599971309,
+      "cpu_seconds": 2.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.29648099996848,
+      "cpu_seconds": 2.203125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.306850099994335,
+      "cpu_seconds": 2.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.317359999986365,
+      "cpu_seconds": 2.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.327666999946814,
+      "cpu_seconds": 2.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.337812799960375,
+      "cpu_seconds": 2.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.348340999975335,
+      "cpu_seconds": 2.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.35884779994376,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.369474699953571,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.379636699974071,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.39022559998557,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.400358899962157,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.410705899994355,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.42146889999276,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.432067299960181,
+      "cpu_seconds": 2.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.442559199989773,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.452821299957577,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.463064899959136,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.473650199943222,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.484172299969941,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.494270199968014,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.504841199959628,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.514992099953815,
+      "cpu_seconds": 2.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.525135099946056,
+      "cpu_seconds": 2.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.5356927999528125,
+      "cpu_seconds": 2.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.545794399979059,
+      "cpu_seconds": 2.34375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.556246699998155,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.566730399965309,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.576877799991053,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.587502799986396,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.598080299969297,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.6086678999708965,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.619207399955485,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.629381699953228,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.639631999947596,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.650169299973641,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.660759299993515,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.671341099950951,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.681889199942816,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.692486399959307,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.702746599970851,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.713007699989248,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.723567499953788,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.73412969999481,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.744631799985655,
+      "cpu_seconds": 2.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.754772899963427,
+      "cpu_seconds": 2.390625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.765322699968237,
+      "cpu_seconds": 2.390625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.775871499965433,
+      "cpu_seconds": 2.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.786108299973421,
+      "cpu_seconds": 2.484375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.7962599999736995,
+      "cpu_seconds": 2.484375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.8067680999520235,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.816961399978027,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.827253999945242,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.8377871999982744,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.848363499972038,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.858868499984965,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.869451099948492,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.879652499977965,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.890196799999103,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.9007503999746405,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.911330299975816,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.9216522999922745,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.932250099955127,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.942791799956467,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.952952199964784,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.963581899995916,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.974090999981854,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.984660499962047,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 4.995329999946989,
+      "cpu_seconds": 2.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.0059417999582365,
+      "cpu_seconds": 2.515625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.016447599977255,
+      "cpu_seconds": 2.515625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.02673619997222,
+      "cpu_seconds": 2.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.037393399979919,
+      "cpu_seconds": 2.59375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.047822399996221,
+      "cpu_seconds": 2.59375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.058007899962831,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.06851909996476,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.078647499962244,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.089233299950138,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.099756699986756,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.110292699944694,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.120917999942321,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.131434899987653,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.141971899953205,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.152466999948956,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.163063899963163,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.17369729996426,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.184199199953582,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.194542999961413,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.205018199980259,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.215223399980459,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.225400099996477,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.236017699993681,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.246480099973269,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.257041999953799,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.26752899994608,
+      "cpu_seconds": 2.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.277796699956525,
+      "cpu_seconds": 2.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.288434099988081,
+      "cpu_seconds": 2.6875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.299051199981477,
+      "cpu_seconds": 2.6875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.309521099959966,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.320731899992097,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.331193099962547,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.341356599994469,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.351466799969785,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.3616377999424,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.372193499992136,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.38247789995512,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.393070199992508,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.40364919998683,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.414318799972534,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.424599199963268,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.4351585999829695,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.445739799994044,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.455970199953299,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.466514999978244,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.477098699950147,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.487259299959987,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.497730099945329,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.508318599953782,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.518515799951274,
+      "cpu_seconds": 2.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.529042599955574,
+      "cpu_seconds": 2.734375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.539497899997514,
+      "cpu_seconds": 2.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.550026099954266,
+      "cpu_seconds": 2.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.560589299944695,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.571092499943916,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.581601999991108,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.59218359994702,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.6028640999575146,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.613389499951154,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.6239536999491975,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.634315699979197,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.644912599993404,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.6555428999708965,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.665701399964746,
+      "cpu_seconds": 2.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.676535199978389,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.687070599989966,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.697274899983313,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.707884099974763,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.7185688999597915,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.729011699964758,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.739164199971128,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.749760399980005,
+      "cpu_seconds": 2.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.760343899950385,
+      "cpu_seconds": 2.859375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.770558699965477,
+      "cpu_seconds": 2.875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.781004299991764,
+      "cpu_seconds": 2.890625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.791228499962017,
+      "cpu_seconds": 2.9375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.8017545999609865,
+      "cpu_seconds": 2.9375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.812592799949925,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.823054599983152,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.833584799955133,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.844488299975637,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.85462129994994,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.864874899969436,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.875134799978696,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.885285699972883,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.8958086999482475,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.906468799978029,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.916936199995689,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.92750629998045,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.937647799961269,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.948177499987651,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.958573499985505,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.968920599960256,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.9794778999639675,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 5.989989599969704,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.000356999982614,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.010775199974887,
+      "cpu_seconds": 2.953125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.021334499993827,
+      "cpu_seconds": 3.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.0318534999969415,
+      "cpu_seconds": 3.0,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.042050699994434,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.052252699970268,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.062544899992645,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.073053499974776,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.083191599987913,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.09381409996422,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.104094099951908,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.114517099980731,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.124649799952749,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.134779699961655,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.145284399972297,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.15551669994602,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.165673399984371,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.176204899966251,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.1868318999768235,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.197320099978242,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.207490499946289,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.218090299982578,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.228284899960272,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.238807099987753,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.249038499954622,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.259339699987322,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.269593599950895,
+      "cpu_seconds": 3.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.279846199962776,
+      "cpu_seconds": 3.078125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.2900742999627255,
+      "cpu_seconds": 3.125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.300163999956567,
+      "cpu_seconds": 3.125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.3107317999820225,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.32125029998133,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.331365999998525,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.342045999947004,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.352456799999345,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.36304129997734,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.373621299979277,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.384105199947953,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.394710399967153,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.4052292999695055,
+      "cpu_seconds": 3.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.415799399954267,
+      "cpu_seconds": 3.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.425997799960896,
+      "cpu_seconds": 3.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.436380199971609,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.446903899952304,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.457067299983464,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.4675692999735475,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.477688299957663,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.488199999963399,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.49879859999055,
+      "cpu_seconds": 3.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.509367699967697,
+      "cpu_seconds": 3.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.519527199969161,
+      "cpu_seconds": 3.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.52966679999372,
+      "cpu_seconds": 3.234375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.539849599997979,
+      "cpu_seconds": 3.28125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.550406599999405,
+      "cpu_seconds": 3.28125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.561109799949918,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.571573799999896,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.582167799992021,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.5926505999523215,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.603298499947414,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.614011799974833,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.624625399999786,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.635398799960967,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.645883199991658,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.656039299967233,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.666559899982531,
+      "cpu_seconds": 3.296875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.676863099972252,
+      "cpu_seconds": 3.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.687131199985743,
+      "cpu_seconds": 3.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.697548099968117,
+      "cpu_seconds": 3.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.708071999950334,
+      "cpu_seconds": 3.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.718601899978239,
+      "cpu_seconds": 3.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.729169299942441,
+      "cpu_seconds": 3.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.739355999976397,
+      "cpu_seconds": 3.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.749875699984841,
+      "cpu_seconds": 3.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.760084499954246,
+      "cpu_seconds": 3.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.770653299987316,
+      "cpu_seconds": 3.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.781224599981215,
+      "cpu_seconds": 3.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.791743099980522,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.801869899965823,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.812081299955025,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.822694899979979,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.8333626999519765,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.843578199972399,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.8542211999883875,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.864750999957323,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.874896699970122,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.885491699969862,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.896055699966382,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.9062050999491476,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.916366699966602,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.926931299967691,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.937553099996876,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.948164199944586,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.958369399944786,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.968546199961565,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.979147899954114,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.989283999952022,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 6.999894099950325,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.010546199977398,
+      "cpu_seconds": 3.46875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.0208476999541745,
+      "cpu_seconds": 3.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.031488799955696,
+      "cpu_seconds": 3.515625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.041682899987791,
+      "cpu_seconds": 3.5625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.052187099994626,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.062760199944023,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.073131799988914,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.083415399945807,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.09356549999211,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.103780499950517,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.11429939995287,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.124648199998774,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.135103999986313,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.145645299984608,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.156190799956676,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.1667363999877125,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.177259799966123,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.187817099969834,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.198072799947113,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.208454199950211,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.21861339994939,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.228797899966594,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.239033299963921,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.24982019996969,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.260045899951365,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.270198899961542,
+      "cpu_seconds": 3.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.280545499990694,
+      "cpu_seconds": 3.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.291142499947455,
+      "cpu_seconds": 3.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.301664799975697,
+      "cpu_seconds": 3.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.3118913999642245,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.322681699995883,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.333281699975487,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.343490199942607,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.3539434999693185,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.364496899943333,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.3750207999837585,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.385186099971179,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.39537109999219,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.405813899997156,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.416157099942211,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.427080699999351,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.437312399968505,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.447569699957967,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.4582092999480665,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.468653599964455,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.478926599957049,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.489587299991399,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.5000773999490775,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.510550499951933,
+      "cpu_seconds": 3.671875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.5211081999586895,
+      "cpu_seconds": 3.71875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.53153569996357,
+      "cpu_seconds": 3.71875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.5420803999877535,
+      "cpu_seconds": 3.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.5527960999752395,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.563274199957959,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.57377669995185,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.5844156999955885,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.5949021999840625,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.605096599960234,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.615657399990596,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.626200999948196,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.636953099980019,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.647423799964599,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.6576738999574445,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.668203699984588,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.67837259999942,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.688679299957585,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.699270499986596,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.709891099948436,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.7204951999592595,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.731018999998923,
+      "cpu_seconds": 3.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.741172399953939,
+      "cpu_seconds": 3.8125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.7515510999946855,
+      "cpu_seconds": 3.8125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.762120299972594,
+      "cpu_seconds": 3.828125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.772246399952564,
+      "cpu_seconds": 3.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.782519599946681,
+      "cpu_seconds": 3.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.792664199951105,
+      "cpu_seconds": 3.890625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.802797699987423,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.813328399963211,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.823918299982324,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.83427379996283,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.844609199964907,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.855129299976397,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.865692499966826,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.8758980999700725,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.886332599970046,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.896859899978153,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.907122799952049,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.917720899975393,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.928347399982158,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.938672699965537,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.949209799990058,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.95952929998748,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.96980479999911,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.980281199968886,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 7.990847799985204,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.001451199990697,
+      "cpu_seconds": 3.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.012053599988576,
+      "cpu_seconds": 3.9375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.022567899955902,
+      "cpu_seconds": 3.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.033157899975777,
+      "cpu_seconds": 3.984375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.043738199979998,
+      "cpu_seconds": 4.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.054270399967209,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.06481689994689,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.075401099980809,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.0859467999544,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.096466499962844,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.106622699997388,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.11716579995118,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.127670099958777,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.138295999960974,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.148916899983305,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.159658499993384,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.17024849995505,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.180706199957058,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.191302399965934,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.201638599974103,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.212175199994817,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.222777399991173,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.23316549998708,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.243303499999456,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.253882499993779,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.264394999947399,
+      "cpu_seconds": 4.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.274537399993278,
+      "cpu_seconds": 4.09375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.284805199946277,
+      "cpu_seconds": 4.09375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.295304699975532,
+      "cpu_seconds": 4.140625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.305878899991512,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.31640749995131,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.326932599942666,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.337510899989866,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.3480595999863,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.358652899973094,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.369235999998637,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.379749499959871,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.390299699967727,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.400482299970463,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.410749699978624,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.42129579995526,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.4314475999563,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.442161899991333,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.452800199971534,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.46328009996796,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.473823699983768,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.484025199955795,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.494287199981045,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.504864799964707,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.51538369996706,
+      "cpu_seconds": 4.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.525524299999233,
+      "cpu_seconds": 4.203125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.53604809998069,
+      "cpu_seconds": 4.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.546714299998712,
+      "cpu_seconds": 4.25,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.55714359995909,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.567380599968601,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.577597499999683,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.588112399971578,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.598547899979167,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.60911609994946,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.619642999954522,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.630092499952298,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.640682099969126,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.651217199978419,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.661793799954467,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.672310299996752,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.682577899948228,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.693099399970379,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.703752199944574,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.71429099998204,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.724619599990547,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.734806499967817,
+      "cpu_seconds": 4.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.745246699952986,
+      "cpu_seconds": 4.28125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.755760899977759,
+      "cpu_seconds": 4.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.766321299946867,
+      "cpu_seconds": 4.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.776534399949014,
+      "cpu_seconds": 4.359375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.787007399951108,
+      "cpu_seconds": 4.40625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.797152999963146,
+      "cpu_seconds": 4.40625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.807511699968018,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.81765689997701,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.828266199969221,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.838627399993129,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.849187499959953,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.859807499975432,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.870328699995298,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.880889199965168,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.891335299995262,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.901914099988062,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.912513499963097,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.92282419995172,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.933346299978439,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.943915599957108,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.954495299956761,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.965022499964107,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.975356699957047,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.986049799947068,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 8.9965578999836,
+      "cpu_seconds": 4.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.007055799942464,
+      "cpu_seconds": 4.453125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.017650399997365,
+      "cpu_seconds": 4.453125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.028227399976458,
+      "cpu_seconds": 4.5,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.038727599952836,
+      "cpu_seconds": 4.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.049278799968306,
+      "cpu_seconds": 4.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.059488699946087,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.07005489995936,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.080268499965314,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.090496599965263,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.100612699985504,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.111165099951904,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.1218010999728,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.132284999999683,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.142700899974443,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.153292399947532,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.16346449998673,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.173951299977489,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.184127399988938,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.194647399999667,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.204800199950114,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.214900099963415,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.225477999949362,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.236030499974731,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.246429099992383,
+      "cpu_seconds": 4.578125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.25690089998534,
+      "cpu_seconds": 4.59375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.267458599992096,
+      "cpu_seconds": 4.59375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.277984399988782,
+      "cpu_seconds": 4.640625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.28853799996432,
+      "cpu_seconds": 4.6875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.299027599976398,
+      "cpu_seconds": 4.6875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.309198499948252,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.319857199967373,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.330209599982481,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.340546799998265,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.350787999981549,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.361336099973414,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.371778599976096,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.382371899962891,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.392890799965244,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.403432699968107,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.413721599965356,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.42423519998556,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.435103499970865,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.445211699989159,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.455748699954711,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.46604709996609,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.476452099974267,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.48673239996424,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.497189199959394,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.507742599991616,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.518104599963408,
+      "cpu_seconds": 4.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.528538699960336,
+      "cpu_seconds": 4.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.538739399984479,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.54914869996719,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.55980239994824,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.570094299968332,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.580249199992977,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.590757099969778,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.601297399960458,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.611631999956444,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.622137499973178,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.632717299973592,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.643296199967153,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.653801499982364,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.664324799960013,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.674432799976785,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.684775999980047,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.695309999980964,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.7058040999691,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.716050299990457,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.72655439999653,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.737091299961321,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.747303399955854,
+      "cpu_seconds": 4.796875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.757464499969501,
+      "cpu_seconds": 4.8125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.767602199979592,
+      "cpu_seconds": 4.8125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.77823289996013,
+      "cpu_seconds": 4.859375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.788821699970867,
+      "cpu_seconds": 4.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.79904189996887,
+      "cpu_seconds": 4.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.809412499947939,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.819728199974634,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.830210699990857,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.840333399944939,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.851097199949436,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.861451899982058,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.87200119998306,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.882759799947962,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.893154899997171,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.903800099971704,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.91425299999537,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.924800599983428,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.935373899992555,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.945922499988228,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.956493099976797,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.966708299994934,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.977032499969937,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.98761089995969,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 9.998189199948683,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.008341699955054,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.018865799997002,
+      "cpu_seconds": 4.921875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.029343299975153,
+      "cpu_seconds": 4.96875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.039472299977206,
+      "cpu_seconds": 5.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.04977429995779,
+      "cpu_seconds": 5.015625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.06035589997191,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.071049999969546,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.081502599990927,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.092013699992094,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.102253899967764,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.112802199961152,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.122919799992815,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.133071199990809,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.143628699996043,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.153920499957167,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.16419219999807,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.174715799978003,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.185308699961752,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.195847999944817,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.20603779994417,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.21614179998869,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.226355499995407,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.236945799959358,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.247647399955895,
+      "cpu_seconds": 5.03125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.258131999988109,
+      "cpu_seconds": 5.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.268696099985391,
+      "cpu_seconds": 5.046875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.279276699991897,
+      "cpu_seconds": 5.109375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.289819399942644,
+      "cpu_seconds": 5.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.30037369998172,
+      "cpu_seconds": 5.15625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.310917299997527,
+      "cpu_seconds": 5.171875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.321425599977374,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.331627299950924,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.342171199969016,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.352481599955354,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.362791899999138,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.373405699967407,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.383928999945056,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.394404899969231,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.404716599965468,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.414951299957465,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.425485599960666,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.435617199982516,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.44571729999734,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.456132699968293,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.466658399964217,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.477177399967331,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.487492099986412,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.498075399955269,
+      "cpu_seconds": 5.1875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.508286799944472,
+      "cpu_seconds": 5.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.518849999993108,
+      "cpu_seconds": 5.21875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.529118299949914,
+      "cpu_seconds": 5.265625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.53966109995963,
+      "cpu_seconds": 5.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.550185299944133,
+      "cpu_seconds": 5.3125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.56075599999167,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.571306899946649,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.581655799993314,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.592185899964534,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.602775599982124,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.612955299962778,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.623245999973733,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.633824299962725,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.64406689995667,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.654212599969469,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.664421099994797,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.674941799952649,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.685477799968794,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.695731699990574,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.706061899953056,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.716218999994453,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.72679489996517,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.737392499984708,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.747603599971626,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.758195599948522,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.768742499989457,
+      "cpu_seconds": 5.328125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.779104599962011,
+      "cpu_seconds": 5.375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.789235199976247,
+      "cpu_seconds": 5.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.799737799970899,
+      "cpu_seconds": 5.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.810042299970519,
+      "cpu_seconds": 5.421875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.820575099962298,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.83113179996144,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.84170519997133,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.852291299961507,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.86284589994466,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.873055099975318,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.883393999945838,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.893588999984786,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.904165799962357,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.914675599953625,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.925218199961819,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.93605469999602,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.946621499955654,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.957198999996763,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.96739909995813,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.977919399971142,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.988086099969223,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 10.998678299947642,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.009091099957004,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.019899799954146,
+      "cpu_seconds": 5.4375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.030199999979232,
+      "cpu_seconds": 5.484375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.040526799974032,
+      "cpu_seconds": 5.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.051187499950174,
+      "cpu_seconds": 5.53125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.061657199985348,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.07225169998128,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.082913699967321,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.093560299952514,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.104158199974336,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.114433799986728,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.12462219997542,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.13533349998761,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.145928299985826,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.156428199959919,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.167037099949084,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.177375299972482,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.187604099977762,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.19812409998849,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.20866439997917,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.218782099953387,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.229365099978168,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.23987589997705,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.250224399962462,
+      "cpu_seconds": 5.546875,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.26038829999743,
+      "cpu_seconds": 5.5625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.2706804999616,
+      "cpu_seconds": 5.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.281132699979935,
+      "cpu_seconds": 5.609375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.291401199996471,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.301958999945782,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.312497999984771,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.322788199991919,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.33368249994237,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.343874599959236,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.354055299947504,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.364648799994029,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.375069199944846,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.385678899998311,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.39650829997845,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.406739099998958,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.416866399988066,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.427479499951005,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.437853499955963,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.448379499954171,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.45901369996136,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.469366099976469,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.479542399989441,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.490052599983755,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.500539399974514,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.510848599951714,
+      "cpu_seconds": 5.65625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.52136629994493,
+      "cpu_seconds": 5.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.531844699988142,
+      "cpu_seconds": 5.703125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.542371099989396,
+      "cpu_seconds": 5.75,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.553165899997111,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.563765199971385,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.57390449999366,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.584432899951935,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.595033299992792,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.605274999979883,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.615872199996375,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.626054999942426,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.636557699996047,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.647104699979536,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.657647099986207,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.667810199956875,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.678374099952634,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.688907699950505,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.699139299977105,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.709666699985974,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.719838099961635,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.730910399986897,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.741481799981557,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.752096399955917,
+      "cpu_seconds": 5.765625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.76263429998653,
+      "cpu_seconds": 5.78125,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.773170699947514,
+      "cpu_seconds": 5.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.783716499980073,
+      "cpu_seconds": 5.84375,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.793943499971647,
+      "cpu_seconds": 5.890625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.804625799995847,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.815052699996158,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.825279099983163,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.835518599953502,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.845878799969796,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.856101399986073,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.866258499969263,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.876841199991759,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.887458399985917,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.898011299956124,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.908667799958494,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.919126999971922,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.929261099954601,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.939593799994327,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.950135399994906,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.96026569994865,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.970884799957275,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.981195299944375,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    },
+    {
+      "seconds": 11.991553799947724,
+      "cpu_seconds": 5.90625,
+      "foreground_pid": 31940,
+      "debugger_present": false,
+      "held": []
+    }
+  ],
+  "status": "OBSERVED",
+  "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "module_verdict": "clean",
+  "watched_modules": [],
+  "modules": [
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\ffxii_tza.exe",
+    "c:\\windows\\system32\\ntdll.dll",
+    "c:\\windows\\system32\\kernel32.dll",
+    "c:\\windows\\system32\\kernelbase.dll",
+    "c:\\windows\\system32\\user32.dll",
+    "c:\\windows\\system32\\win32u.dll",
+    "c:\\windows\\system32\\gdi32.dll",
+    "c:\\windows\\system32\\gdi32full.dll",
+    "c:\\windows\\system32\\msvcp_win.dll",
+    "c:\\windows\\system32\\ucrtbase.dll",
+    "c:\\windows\\system32\\iphlpapi.dll",
+    "c:\\windows\\system32\\advapi32.dll",
+    "c:\\windows\\system32\\msvcrt.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\d3dcompiler_47.dll",
+    "c:\\windows\\system32\\sechost.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\steam_api64.dll",
+    "c:\\windows\\system32\\rpcrt4.dll",
+    "c:\\windows\\system32\\shell32.dll",
+    "c:\\windows\\system32\\ole32.dll",
+    "c:\\windows\\system32\\combase.dll",
+    "c:\\windows\\system32\\oleaut32.dll",
+    "c:\\windows\\system32\\imm32.dll",
+    "c:\\windows\\system32\\msvcp140.dll",
+    "c:\\windows\\system32\\dinput8.dll",
+    "c:\\windows\\system32\\winmm.dll",
+    "c:\\windows\\system32\\dbghelp.dll",
+    "c:\\windows\\system32\\d3d11.dll",
+    "c:\\windows\\system32\\dwmapi.dll",
+    "c:\\windows\\system32\\dxgi.dll",
+    "c:\\windows\\system32\\xinput9_1_0.dll",
+    "c:\\windows\\system32\\vcruntime140.dll",
+    "c:\\windows\\system32\\vcruntime140_1.dll",
+    "c:\\windows\\system32\\powrprof.dll",
+    "c:\\windows\\system32\\dbgcore.dll",
+    "c:\\windows\\system32\\umpdc.dll",
+    "c:\\program files (x86)\\steam\\gameoverlayrenderer64.dll",
+    "c:\\windows\\system32\\psapi.dll",
+    "c:\\windows\\system32\\cfgmgr32.dll",
+    "c:\\windows\\system32\\inputhost.dll",
+    "c:\\windows\\system32\\coremessaging.dll",
+    "c:\\windows\\system32\\bcryptprimitives.dll",
+    "c:\\windows\\system32\\kernel.appcore.dll",
+    "c:\\windows\\system32\\cryptbase.dll",
+    "c:\\program files (x86)\\steam\\steamclient64.dll",
+    "c:\\windows\\system32\\ws2_32.dll",
+    "c:\\windows\\system32\\shlwapi.dll",
+    "c:\\windows\\system32\\imagehlp.dll",
+    "c:\\windows\\system32\\setupapi.dll",
+    "c:\\program files (x86)\\steam\\vstdlib_s64.dll",
+    "c:\\program files (x86)\\steam\\tier0_s64.dll",
+    "c:\\windows\\system32\\version.dll",
+    "c:\\windows\\system32\\mswsock.dll",
+    "c:\\windows\\system32\\secur32.dll",
+    "c:\\windows\\system32\\bcrypt.dll",
+    "c:\\windows\\system32\\crypt32.dll",
+    "c:\\windows\\system32\\sspicli.dll",
+    "c:\\windows\\system32\\shcore.dll",
+    "c:\\windows\\system32\\windows.storage.dll",
+    "c:\\windows\\system32\\uxtheme.dll",
+    "c:\\windows\\system32\\uiautomationcore.dll",
+    "c:\\windows\\system32\\clbcatq.dll",
+    "c:\\windows\\system32\\oleacc.dll",
+    "c:\\windows\\system32\\devobj.dll",
+    "c:\\windows\\system32\\wintrust.dll",
+    "c:\\windows\\system32\\msasn1.dll",
+    "c:\\windows\\system32\\nvapi64.dll",
+    "c:\\windows\\system32\\cryptnet.dll",
+    "c:\\windows\\system32\\wldp.dll",
+    "c:\\windows\\system32\\drvstore.dll",
+    "c:\\windows\\system32\\dxcore.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvapi64_impl.dll",
+    "c:\\windows\\system32\\directxdatabasehelper.dll",
+    "c:\\windows\\system32\\cryptsp.dll",
+    "c:\\windows\\system32\\rsaenh.dll",
+    "c:\\windows\\system32\\nvspcap64.dll",
+    "c:\\windows\\system32\\profapi.dll",
+    "c:\\windows\\system32\\ntmarta.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvldumdx.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvgpucomp64.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\display.nvcontainer\\nvmessagebus.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvmemmapstoragex.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvwgf2umx.dll",
+    "c:\\windows\\system32\\driverstore\\filerepository\\nv_dispi.inf_amd64_b20cc8aeaed64fc2\\nvppex.dll",
+    "c:\\windows\\system32\\dcomp.dll",
+    "c:\\windows\\system32\\microsoft.internal.warppal.dll",
+    "c:\\windows\\system32\\hid.dll",
+    "c:\\windows\\system32\\msctf.dll",
+    "c:\\windows\\system32\\wbem\\wbemprox.dll",
+    "c:\\windows\\system32\\wbemcomn.dll",
+    "c:\\windows\\system32\\wbem\\wbemsvc.dll",
+    "c:\\windows\\system32\\wbem\\fastprox.dll",
+    "c:\\windows\\system32\\amsi.dll",
+    "c:\\windows\\system32\\userenv.dll",
+    "c:\\programdata\\microsoft\\windows defender\\platform\\4.18.26080.4-0\\mpoav.dll",
+    "d:\\steamlibrary\\steamapps\\common\\final fantasy xii the zodiac age\\x64\\xinput1_3.dll",
+    "c:\\windows\\system32\\mmdevapi.dll",
+    "c:\\windows\\system32\\audioses.dll",
+    "c:\\windows\\system32\\resourcepolicyclient.dll",
+    "c:\\windows\\system32\\windows.ui.dll",
+    "c:\\windows\\system32\\threadpoolwinrt.dll",
+    "c:\\windows\\system32\\xinput1_4.dll",
+    "c:\\users\\kristian\\appdata\\local\\discord\\app-1.0.9258\\modules\\discord_hook-1\\discord_hook\\a2a74dcb3934c4\\discordhook64.dll"
+  ],
+  "image_base": 1179648,
+  "code_identity": [
+    {
+      "rva": 4096,
+      "bytes": 7996981,
+      "disk_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+      "live_sha256": "5421e8b234942659d6af8438bd65d830194d3c1cecb530c0bc515598e9354db4",
+      "matches": true
+    }
+  ],
+  "input_array": 242935888,
+  "window_start_unix": 1789876838.1358323,
+  "end_unix": 1789876850.1379263
+}

@@ -1,0 +1,294 @@
+{
+ "cases": {
+  "I1_drive_loop_runs_once_repeat_zero_times_exit_B": true,
+  "I2_control_nibble_set_repeats_without_bound_until_the_replay_budget": true,
+  "I3_control_valid_handle_publishes_the_record": true,
+  "I3_no_focus_and_unresolved_handle_both_publish_null_indistinguishably": true,
+  "I4_success_reported_with_no_actor_driven": true,
+  "P_drive_counters_up_publish_current_bit0_equals_bit7": true,
+  "P_fold_every_actor_driven_counters_up_publish_current": true,
+  "no_fence_no_fault": true
+ },
+ "detail": {
+  "I3_handles": {
+   "record_gen": 1,
+   "stale": "200000",
+   "valid": "100000"
+  },
+  "I3_no_focus": {
+   "b10": 129,
+   "b11": 1,
+   "b12": 1,
+   "bad": [],
+   "d24": 1,
+   "d38": 1,
+   "driven": [
+    "75000520"
+   ],
+   "drives": 1,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 25,
+   "init_core": false,
+   "ok": true,
+   "pub70": "2099098",
+   "pub78": "0",
+   "ret": 0
+  },
+  "I3_stale_handle": {
+   "b10": 129,
+   "b11": 1,
+   "b12": 1,
+   "bad": [],
+   "d24": 1,
+   "d38": 1,
+   "driven": [
+    "75000520"
+   ],
+   "drives": 1,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 27,
+   "init_core": false,
+   "ok": true,
+   "pub70": "2099098",
+   "pub78": "0",
+   "ret": 0
+  },
+  "I3_valid_handle": {
+   "b10": 129,
+   "b11": 1,
+   "b12": 1,
+   "bad": [],
+   "d24": 1,
+   "d38": 1,
+   "driven": [
+    "75000520"
+   ],
+   "drives": 1,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 27,
+   "init_core": false,
+   "ok": true,
+   "pub70": "2099098",
+   "pub78": "75000520",
+   "ret": 0
+  },
+  "I4_arms": {
+   "+0x10 bit0 clear": {
+    "b10": 128,
+    "b11": 1,
+    "b12": 1,
+    "bad": [],
+    "d24": 0,
+    "d38": 0,
+    "driven": [],
+    "drives": 0,
+    "exp106_scripted_run_real": [],
+    "faults": [],
+    "functions": 3,
+    "init_core": false,
+    "ok": true,
+    "pub70": "0",
+    "pub78": "0",
+    "ret": 1
+   },
+   "+0x11 bit2": {
+    "b10": 129,
+    "b11": 5,
+    "b12": 1,
+    "bad": [],
+    "d24": 0,
+    "d38": 0,
+    "driven": [],
+    "drives": 0,
+    "exp106_scripted_run_real": [],
+    "faults": [],
+    "functions": 4,
+    "init_core": false,
+    "ok": true,
+    "pub70": "0",
+    "pub78": "0",
+    "ret": 1
+   },
+   "+0x17 bit4": {
+    "b10": 129,
+    "b11": 1,
+    "b12": 1,
+    "bad": [],
+    "d24": 0,
+    "d38": 0,
+    "driven": [],
+    "drives": 0,
+    "exp106_scripted_run_real": [
+     "0025E400"
+    ],
+    "faults": [],
+    "functions": 9,
+    "init_core": false,
+    "ok": true,
+    "pub70": "0",
+    "pub78": "0",
+    "ret": 1
+   },
+   "slot 0, +0x10>=0x80, 00377DB0 false": {
+    "b10": 129,
+    "b11": 1,
+    "b12": 1,
+    "bad": [],
+    "d24": 0,
+    "d38": 0,
+    "driven": [],
+    "drives": 0,
+    "exp106_scripted_run_real": [],
+    "faults": [],
+    "functions": 6,
+    "init_core": false,
+    "ok": true,
+    "pub70": "2098E10",
+    "pub78": "0",
+    "ret": 1
+   }
+  },
+  "control_nibble_set": {
+   "b10": 129,
+   "b11": 1,
+   "b12": 1,
+   "b14_after": "31",
+   "bad": [],
+   "d24": 0,
+   "d38": 0,
+   "driven": [
+    "75000520"
+   ],
+   "drives": 7500,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 27,
+   "init_core": false,
+   "ok": false,
+   "pub70": "2099098",
+   "pub78": "0",
+   "ret": 0
+  },
+  "drive_b12_3": {
+   "b10": 129,
+   "b11": 1,
+   "b12": 3,
+   "bad": [],
+   "d24": 1,
+   "d38": 1,
+   "driven": [
+    "75000520"
+   ],
+   "drives": 1,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 25,
+   "init_core": false,
+   "ok": true,
+   "pub70": "2099098",
+   "pub78": "0",
+   "ret": 0
+  },
+  "drive_slot1": {
+   "b10": 129,
+   "b11": 1,
+   "b12": 1,
+   "bad": [],
+   "d24": 1,
+   "d38": 1,
+   "driven": [
+    "75000520"
+   ],
+   "drives": 1,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 25,
+   "init_core": false,
+   "ok": true,
+   "pub70": "2099098",
+   "pub78": "0",
+   "ret": 0
+  },
+  "fold_slot0": {
+   "b10": 1,
+   "b11": 0,
+   "b12": 0,
+   "bad": [],
+   "d24": 1,
+   "d38": 1,
+   "driven": [
+    "75000520",
+    "75000850",
+    "75000C00",
+    "75000F30",
+    "75001610"
+   ],
+   "drives": 5,
+   "exp106_scripted_run_real": [
+    "001ED180",
+    "0025B250",
+    "0025B600",
+    "0025B740",
+    "0025B820",
+    "0025C170",
+    "002681E0",
+    "002E5030",
+    "002E5750"
+   ],
+   "faults": [],
+   "functions": 59,
+   "init_core": false,
+   "ok": true,
+   "pub70": "2098E10",
+   "pub78": "0",
+   "ret": 0
+  }
+ },
+ "exp106_scripted_run_real": [
+  "001ED180",
+  "0025B250",
+  "0025B600",
+  "0025B740",
+  "0025B820",
+  "0025C170",
+  "0025E400",
+  "002681E0",
+  "002E5030",
+  "002E5750"
+ ],
+ "live_game": false,
+ "ok": true
+}

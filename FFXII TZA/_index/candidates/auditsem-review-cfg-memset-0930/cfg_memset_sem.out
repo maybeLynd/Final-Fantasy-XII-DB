@@ -1,0 +1,14 @@
+PASS M0 00861EC0 = jmp [IAT] -> VCRUNTIME140.dll!memset | slot 008C2A60 ('VCRUNTIME140.dll', 'memset')
+PASS M1 0035F260 is 447 B | 447
+PASS M2 exactly two calls to memset | 0035F2DE,0035F2F2
+PASS M3 0035F29A lea rbp,[022CB3C0]
+PASS M3 r15d = 0x100 (0035F2C3), r8 = r15, rcx = rbp, edx = 0 before 0035F2DE
+PASS M4 0035F2A8 lea rdi,[022CAE91]
+PASS M4 0035F2E3 lea rbx,[rdi-1]; rcx = rbx; r8d = 0x294; edx = 0
+PASS M5 loop: add rbp,r15; add rdi,0x294; cmp esi,2; jl 0035F2D0
+PASS M6 the record initialisers after the memsets write through rdi (record + 1) | 17
+PASS M7 two 0x294 records end at 022CB3B8 (the page's 0x528-byte channel block)
+PASS P1 one state-clears row
+PASS P2 old phrase struck, new phrase present
+PASS P3 NOTE the row's site column still cites 0035F26F (push rdi, a prologue instruction), unchanged by 6ffdbf87c
+FAILS 0

@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "OPUS-CLASS-DESCRIPTOR-THUNK-FRONTMATTER-ROW-IS-MINE",
+ "note": "DONE - and the row never needed editing. The frontmatter row for the 384 PClassDescriptorForType destructor thunks was already corrected on 2026-09-13 (FABLE-REQ-OPUS-DTORTHUNK-WORDING): it opens 'ITS CONSUMER IS THE UNWINDER, NOT STATIC TEARDOWN' and carries the census - one direct caller each, all 384 callers CompilerGeneratedEH unwind funclets, none stored as a pointer in initialised data. What remained was the block quote at the end of the unwind section still reading 'Correction routed, not made here' and quoting wording the row no longer contains. That note is rewritten to record the correction and its date rather than deleted, so the sequence stays legible. NOTE FOR ANYONE GREPPING: the phrase 'MSVC static-teardown / destructor-thunk idiom' is STILL in frontmatter rows 30 and 31 and is CORRECT there - the 853 PDataMemberMetadata and 404 PClassDescriptor teardowns really are atexit-registered and really do run at normal exit. Only the thunks' borrowing of it was wrong. Gates clean.",
+ "result_refs": [
+  {
+   "key": "file:database/ffxii tza/22-middleware-phyreengine/reflection-and-class-metadata/class-descriptor-and-metadata-system.md"
+  }
+ ]
+}

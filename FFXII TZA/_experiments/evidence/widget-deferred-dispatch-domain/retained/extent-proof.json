@@ -1,0 +1,62 @@
+{
+  "ranges": [
+    {
+      "start": "0x244dd0",
+      "end_exclusive": "0x244e4b",
+      "unwind": "0x1d69fc8",
+      "raw_hex": "010e02000e320a30",
+      "flags": 0,
+      "chain": null
+    },
+    {
+      "start": "0x244e4b",
+      "end_exclusive": "0x244e62",
+      "unwind": "0x1d698bc",
+      "raw_hex": "2105020005740600d04d12004b4e1200c89fc401",
+      "flags": 4,
+      "chain": [
+        "0x244dd0",
+        "0x244e4b",
+        "0x1d69fc8"
+      ]
+    },
+    {
+      "start": "0x244e62",
+      "end_exclusive": "0x244e80",
+      "unwind": "0x1d698e4",
+      "raw_hex": "21000000d04d12004b4e1200c89fc401",
+      "flags": 4,
+      "chain": [
+        "0x244dd0",
+        "0x244e4b",
+        "0x1d69fc8"
+      ]
+    },
+    {
+      "start": "0x244e80",
+      "end_exclusive": "0x244ed7",
+      "unwind": "0x1d698d0",
+      "raw_hex": "2100020000740600d04d12004b4e1200c89fc401",
+      "flags": 4,
+      "chain": [
+        "0x244dd0",
+        "0x244e4b",
+        "0x1d69fc8"
+      ]
+    },
+    {
+      "start": "0x244ed7",
+      "end_exclusive": "0x244efd",
+      "unwind": "0x1d698e4",
+      "raw_hex": "21000000d04d12004b4e1200c89fc401",
+      "flags": 4,
+      "chain": [
+        "0x244dd0",
+        "0x244e4b",
+        "0x1d69fc8"
+      ]
+    }
+  ],
+  "interpretation": "Five contiguous .pdata ranges cover the complete retained301B; four UNW_FLAG_CHAININFO records point to the first123B root. One root row is not the whole logical body.",
+  "format_source": "https://learn.microsoft.com/en-us/cpp/build/exception-handling-x64?view=msvc-170"
+}

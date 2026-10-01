@@ -1,0 +1,42 @@
+[
+  {
+    "name": "wrong_return",
+    "rejected": true,
+    "reason": "return disagrees with original signed-inclusive tail"
+  },
+  {
+    "name": "wrong_tail",
+    "rejected": true,
+    "reason": "wrong observed bounds"
+  },
+  {
+    "name": "missing_class",
+    "rejected": true,
+    "reason": "class population"
+  },
+  {
+    "name": "jump_table_changed",
+    "rejected": true,
+    "reason": "jump-table mismatch"
+  },
+  {
+    "name": "wrong_class_word",
+    "rejected": true,
+    "reason": "registry class mapping"
+  },
+  {
+    "name": "missing_null_descriptor_probe",
+    "rejected": true,
+    "reason": "'unplanted'"
+  },
+  {
+    "name": "duplicated_boundary",
+    "rejected": true,
+    "reason": "boundary inputs"
+  },
+  {
+    "name": "wrong_partial_sum",
+    "rejected": true,
+    "reason": "partial descriptor sum"
+  }
+]

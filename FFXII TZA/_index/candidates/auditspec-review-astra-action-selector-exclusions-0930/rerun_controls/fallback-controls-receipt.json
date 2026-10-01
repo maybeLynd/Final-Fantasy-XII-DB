@@ -1,0 +1,64 @@
+{
+  "driver_sha256": "da7c01e040df07b80113a5ea758e4d7d6296cfa310b9f65bf577c1e26cb8f3cc",
+  "original_checker_sha256": "0c9afe2854f3accfb6aa005def36163e70f73bcaa5de86c03adb5f73a4b3d379",
+  "adaptation": "W/ROOT input literals only; checker logic unchanged",
+  "cases": [
+    {
+      "case": "positive",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\positive\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\positive\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 0,
+      "result_exists": true,
+      "control_passed": true,
+      "adapted_checker_sha256": "bde902a908dbec3b04df9429672367d11852d9209bb7f7f085697953c7a14796"
+    },
+    {
+      "case": "missing_wrapper_completion",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\missing_wrapper_completion\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\missing_wrapper_completion\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "7b02c1a2098be061ed35edc929ef0e594917e4e6127aa4539d0dbcf3dcfc93db"
+    },
+    {
+      "case": "wrong_dispatch_extent",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\wrong_dispatch_extent\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\wrong_dispatch_extent\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "20d3c34bab9bda6a7c71f1f526fabe20038be2c0a2c6a634015b99514df98d38"
+    },
+    {
+      "case": "missing_required_raw",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\missing_required_raw\\checker-input-adapted.py",
+        "C:\\Users\\Kristian\\AppData\\Local\\Temp\\claude\\C--Users-Kristian-source-repos\\0aca3c35-4792-4b08-9423-be894cfa848b\\scratchpad\\asx\\fallback-controls\\missing_required_raw\\result.json"
+      ],
+      "terminal": true,
+      "exit_code": 1,
+      "result_exists": false,
+      "control_passed": true,
+      "adapted_checker_sha256": "a533f9a5c0559a357c5dc2d6796f49eb243b0b89034b3d8af7e248f56cb2939c"
+    }
+  ],
+  "scope": "producer path controls, not original-code executions or independent acceptance"
+}

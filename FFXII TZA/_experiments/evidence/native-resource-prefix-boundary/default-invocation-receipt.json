@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "7b64b9217df45ac794c5339dea8d55828b619213548a79b4d347d77ae57e01ee",
+  "check_sha256": "6d16fb5512f53057745ab18fd58a5506bd30a420238bc806835613d11acb42c6",
+  "raw_unchanged_sha256": "04c9181c4a313c74866b8692f059e411c62fcbb384921079131bf1afd49231ef",
+  "path": "Actual retained-only source reduction, no guest/native/live execution"
+}

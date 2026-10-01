@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\delta-one-basis-r2\\check.py"
+  ],
+  "checker_sha256": "c90707ab04a65b48b3498f14eafd2140cf20f776783e5a2297bcff5e42f76889",
+  "returncode": 0,
+  "stdout": "{\n  \"result\": {\n    \"verdict\": \"ACCEPT scoped to exact17d6 selectors/change expression/annotator on retained history inputs\",\n    \"latest_missing_progress\": \"None/no prior, basis names newest verified generation; no older fallback\",\n    \"aligned_latest\": \"+10pp on same named generation\",\n    \"empty_history\": \"None/no prior\",\n    \"limits\": \"Synthetic counts and copied retained Store histories, static build argument flow, extracted change expression; no full measure/adapter/build, deployed/browser or real progress award.\"\n  },\n  \"receipt_controls\": [\n    {\n      \"name\": \"missing-case\",\n      \"refused\": true\n    },\n    {\n      \"name\": \"failed-verifier\",\n      \"refused\": true\n    }\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true
+}

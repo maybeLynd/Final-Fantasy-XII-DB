@@ -1,0 +1,252 @@
+function	name	owner	argreg	via_function	via_site	round
+001FDDC0	FUN_001fddc0		rcx			0
+002134A0	FUN_002134a0		rcx			0
+002269A0	FUN_002269a0		rdx			0
+00226A50	FUN_00226a50		rcx			0
+00226AB0	FUN_00226ab0		rcx			0
+0025A180	FUN_0025a180		rcx			0
+0025B2E0	FUN_0025b2e0	ActorEntity	rdx			0
+0025B400	WorldActorScriptVM_ServiceRequestWaitState	Script_VM_Native_Bridge	rcx			0
+0025B500	FUN_0025b500		rcx			0
+0025B580	FUN_0025b580		rcx			0
+0025B7E0	FUN_0025b7e0		rcx			0
+0025BAD0	FUN_0025bad0	ActorEntity	rdx			0
+0025BE50	FUN_0025be50		rdx			0
+0025C230	FUN_0025c230	ActorEntity	rdx			0
+0025C830	FUN_0025c830	ActorEntity	rdx			0
+0025D480	FUN_0025d480		rcx			0
+0025D4F0	FUN_0025d4f0		rcx			0
+0025D690	FUN_0025d690		rcx			0
+0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	Movement	rdx			0
+0025E4C0	WorldActorScriptVM_InterpretBytecode	Script_VM_Native_Bridge	rdx			0
+002621D0	VMNativeCommand_ExecuteLifecycle	Script_VM_Native_Bridge	rdx			0
+002626C0	FUN_002626c0	ActorEntity	rcx			0
+00262740	FUN_00262740	ActorEntity	rcx			0
+00262F90	FUN_00262f90		rdx			0
+00263050	FUN_00263050	ActorEntity	rcx			0
+00263230	FUN_00263230	ActorEntity	rcx			0
+002636F0	Movement_GetSteeringAcceleration	Movement	rcx			0
+00263720	Movement_GetConfiguredSteeringMode	Movement	rcx			0
+00263910	FUN_00263910		rcx			0
+00263940	FUN_00263940	Movement	rcx			0
+00263980	FUN_00263980		rcx			0
+00263990	FUN_00263990		rcx			0
+00263A10	FUN_00263a10		rcx			0
+00263B80	FUN_00263b80		rcx			0
+00263BE0	FUN_00263be0		rcx			0
+00263C20	ActorRuntime_GetClassNibble	ActorEntity	rcx			0
+00263CC0	FUN_00263cc0	Movement	rcx			0
+00263D30	FUN_00263d30		rcx			0
+00263D40	FUN_00263d40		rdx			0
+00263E30	ActorWork_GetBattleUnitRaw	ActorEntity	rcx			0
+00263E70	FUN_00263e70		rcx			0
+00263F10	FUN_00263f10		rcx			0
+00263F40	FUN_00263f40		rcx			0
+00263F70	FUN_00263f70		rcx			0
+002640E0	FUN_002640e0	Movement	rcx			0
+00264420	FUN_00264420		rcx			0
+00264460	FUN_00264460	Movement	rcx			0
+00264510	FUN_00264510		rcx			0
+002645D0	FUN_002645d0		rcx			0
+002646C0	FUN_002646c0	Movement	rcx			0
+00264750	FUN_00264750	Movement	rcx			0
+002647B0	FUN_002647b0		rcx			0
+00264DC0	FUN_00264dc0		rcx			0
+00264DF0	FUN_00264df0		rcx			0
+00264E10	FUN_00264e10		rcx			0
+00265020	Actor_GetWorldPosition	ActorEntity	rcx			0
+00265090	ActorRuntime_GetClass3FloatPair	ActorEntity	rcx			0
+002651C0	FUN_002651c0	Movement	rcx			0
+00265200	FUN_00265200	Movement	rcx			0
+002652A0	FUN_002652a0	Movement	rcx			0
+002652D0	FUN_002652d0		rdx			0
+00265380	FUN_00265380	Script_VM_Native_Bridge	rdx			0
+00265470	FUN_00265470	Movement	rcx			0
+002654E0	FUN_002654e0	Movement	rcx			0
+00265510	FUN_00265510	Movement	rcx			0
+00265530	FUN_00265530	Movement	rcx			0
+00265550	FUN_00265550	Movement	rcx			0
+002655D0	FUN_002655d0	Movement	rcx			0
+00265600	FUN_00265600	Movement	rcx			0
+00265630	FUN_00265630	Movement	rcx			0
+00265660	FUN_00265660	Movement	rcx			0
+00265810	FUN_00265810	Movement	rcx			0
+00265830	FUN_00265830	Movement	rcx			0
+00265970	FUN_00265970		rcx			0
+00265FF0	FUN_00265ff0	Movement	rcx			0
+00266AD0	FUN_00266ad0	ActorEntity	rcx			0
+002675C0	FUN_002675c0		rcx			0
+002681E0	FUN_002681e0		rcx			0
+00268380	FUN_00268380	Movement	rcx			0
+00268850	ScriptVM_SubmitActorRuntimeRequest	Script_VM_Native_Bridge	rdx			0
+00268EA0	FUN_00268ea0	ActorEntity	rcx			0
+002693D0	FUN_002693d0	ActorEntity	rcx			0
+00269640	Actor_RequestConfiguredPrimaryResources	ActorEntity	rcx			0
+00269860	FUN_00269860	ActorEntity	rcx			0
+00269E20	Actor_SetPresentationYOffsetPrimary	ActorEntity	rcx			0
+00269E40	Actor_SetPresentationYOffsetSecondary	ActorEntity	rcx			0
+0026A0D0	Actor_SetDesiredMovementHeading	Movement	rcx			0
+0026A3A0	FUN_0026a3a0	ActorEntity	rcx			0
+0026A430	FUN_0026a430	ActorEntity	rcx			0
+0026A640	FUN_0026a640	Movement	rcx			0
+0026A770	FUN_0026a770		rcx			0
+0026AC70	FUN_0026ac70	Movement	rcx			0
+0026AE30	Movement_SetSteeringTargetPosition	Movement	rcx			0
+0026AE90	Movement_SetSteeringMode	Movement	rcx			0
+0026AF10	Movement_SnapshotSteeringStartPosition	Movement	rcx			0
+0026AF30	FUN_0026af30		rcx			0
+0026AF80	FUN_0026af80	Movement	rcx			0
+0026AFE0	FUN_0026afe0	Movement	rcx			0
+0026B0C0	FUN_0026b0c0	Movement	rcx			0
+0026B450	FUN_0026b450		rcx			0
+0026B500	FUN_0026b500		rcx			0
+0026B520	FUN_0026b520	Movement	rcx			0
+0026B6A0	FUN_0026b6a0	Movement	rcx			0
+0026C070	FUN_0026c070	Movement	rcx			0
+0026C090	FUN_0026c090		rcx			0
+0026C120	FUN_0026c120	Movement	rcx			0
+0026C300	FUN_0026c300	Movement	rcx			0
+0026D6F0	Movement_SetRequestedSpeed	Movement	rcx			0
+0026D810	FUN_0026d810	Movement	rcx			0
+002E26F0	FUN_002e26f0		rcx			0
+002E35B0	FUN_002e35b0		rcx			0
+002E3AF0	FUN_002e3af0	ActorEntity	rcx			0
+002E3D00	FUN_002e3d00	Movement	rcx			0
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	Movement	rcx			0
+002E45E0	Movement_UpdateSteeringTowardTarget	Movement	rcx			0
+002E4A10	FUN_002e4a10	Movement	rcx			0
+002E4A40	FUN_002e4a40	Movement	rcx			0
+002E4F40	FUN_002e4f40		rcx			0
+002E5030	Movement_UpdateActorFrame	Movement	rcx			0
+002E5180	FUN_002e5180	Movement	rcx			0
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	Movement	rcx			0
+002E5750	FUN_002e5750	Movement	rcx			0
+002E5C10	Movement_PublishHeadingState	Movement	rcx			0
+002E5FB0	FUN_002e5fb0	Movement	rcx			0
+002E6000	FUN_002e6000		rcx			0
+002E6310	FUN_002e6310	Movement	rcx			0
+002E6330	FUN_002e6330	Movement	rcx			0
+002E6BD0	FUN_002e6bd0		rcx			0
+002E7600	FUN_002e7600		rcx			0
+002E7650	FUN_002e7650		rcx			0
+002E7720	FUN_002e7720		rcx			0
+002E77F0	FUN_002e77f0		rcx			0
+002E79A0	FUN_002e79a0		rcx			0
+002E7E50	FUN_002e7e50		rcx			0
+002E7E90	FUN_002e7e90		rcx			0
+002E7F70	FUN_002e7f70		rcx			0
+002E8000	FUN_002e8000		rcx			0
+002E8A70	FUN_002e8a70		rcx			0
+002E8AC0	FUN_002e8ac0		rcx			0
+002E8B10	FUN_002e8b10		rcx			0
+002E8EE0	FUN_002e8ee0		rcx			0
+002E8FD0	Actor_RefreshPresentationVisibility	Presentation	rcx			0
+002E92F0	FUN_002e92f0		rcx			0
+002E9560	FUN_002e9560		rcx			0
+002E97B0	FUN_002e97b0		rcx			0
+002E9A00	FUN_002e9a00		rcx			0
+002E9B60	FUN_002e9b60		rcx			0
+002E9BB0	FUN_002e9bb0	Movement	rcx			0
+002E9CA0	FUN_002e9ca0		rcx			0
+002E9FE0	FUN_002e9fe0		rcx			0
+002EA6A0	FUN_002ea6a0		rcx			0
+002EA780	FUN_002ea780		rcx			0
+002EA7F0	FUN_002ea7f0	Movement	rcx			0
+002EA970	FUN_002ea970		rcx			0
+002EA9D0	FUN_002ea9d0		rcx			0
+002EAC90	FUN_002eac90		rcx			0
+002EB430	FUN_002eb430		rcx			0
+002EB930	FUN_002eb930		rcx			0
+002EBC90	FUN_002ebc90		rcx			0
+002EBE50	FUN_002ebe50	Movement	rcx			0
+002EC3F0	FUN_002ec3f0	Movement	rcx			0
+002EC5B0	FUN_002ec5b0	Movement	rcx			0
+002EC6B0	FUN_002ec6b0		rcx			0
+002ECCF0	FUN_002eccf0		rcx			0
+002ECD50	FUN_002ecd50		rcx			0
+002ECF10	FUN_002ecf10		rcx			0
+002ED020	FUN_002ed020		rcx			0
+002ED040	FUN_002ed040		rcx			0
+002ED6A0	FUN_002ed6a0	Movement	rcx			0
+0034EBC0	FUN_0034ebc0	Movement	rdx			0
+003589A0	FUN_003589a0	ActorEntity	rcx			0
+003589B0	ActorHandle_EncodeRegistryEntry	ActorEntity	rcx			0
+003589E0	FUN_003589e0		rcx			0
+00358A00	ActorScriptResource_GetBytecodeOffsetById	ActorEntity	rcx			0
+00359B80	FUN_00359b80	ActorEntity	rcx			0
+0035A720	FUN_0035a720	ActorEntity	rcx			0
+003B6F80	FUN_003b6f80	ActorEntity	rcx			0
+003DB280	FUN_003db280	ActorEntity	rcx			0
+003DB2A0	ActorResource_RemoveActiveEntry	ActorEntity	rcx			0
+003DB420	ActorResource_RecycleEntryRange	ActorEntity	rcx			0
+003DB550	ActorResource_GetEntryByOrdinal	ActorEntity	rcx			0
+003DB640	ActorResource_IsChannelBitActive	ActorEntity	rcx			0
+003DB650	FUN_003db650	ActorEntity	rcx			0
+003DB6E0	ActorResource_SelectPendingEntryForExecution	ActorEntity	rcx			0
+003DB7A0	ActorResource_InsertEntryFromDescriptor	ActorEntity	rcx			0
+003DBBF0	FUN_003dbbf0	ActorEntity	rcx			0
+003DBCF0	ActorResource_AllocateAndSubmitEntry	ActorEntity	rcx			0
+003DBDC0	ActorResource_StartEntryScriptExecution	ActorEntity	rcx			0
+003DBEA0	FUN_003dbea0	ActorEntity	rcx			0
+003DBF60	ActorResource_FindActiveEntryByIdOrClass	ActorEntity	rcx			0
+003DC050	ActorResource_FindScriptRequestEntry	ActorEntity	rcx			0
+003DC130	ActorResource_UnlinkEntryAndMarkFree	ActorEntity	rcx			0
+003DDAD0	FUN_003ddad0		rcx			0
+003DE5F0	FUN_003de5f0		rcx			0
+001ED180	FUN_001ed180		rdx	0025DF00	0025DFA0	1
+0020E600	ImageAddress_ResolveRuntimePointer	CoreRuntimeScheduling	rdx	00263D40	00263D72	1
+00233F50	FUN_00233f50	ActorEntity	rcx	0035A720	0035A73D	1
+00263480	FUN_00263480		rcx	00263050	00263123	1
+00263560	FUN_00263560	Movement	rcx	00263480	002634B0	2
+00263B90	FUN_00263b90	Movement	rcx	002E64E0	002E6545	4
+00263BC0	FUN_00263bc0	Movement	rcx	002E64E0	002E652C	4
+00264EA0	FUN_00264ea0	Movement	rcx	002E6330	002E6370	1
+00267260	FUN_00267260		rcx	002E4380	002E4528	1
+00267DB0	VMValueStack_PopNumericDiscard	Script_VM_Native_Bridge	rdx	0034EBC0	0034EBDD	1
+0026A1A0	FUN_0026a1a0	Movement	rcx	002EBFA0	002EC110	3
+0026A870	FUN_0026a870	Movement	rcx	002EBFA0	002EC0BF	3
+0026A8E0	FUN_0026a8e0	Movement	rcx	002EBFA0	002EC0B4	3
+0026A950	FUN_0026a950	Movement	rcx	002EBFA0	002EC0CA	3
+0026AA60	FUN_0026aa60	Movement	rcx	00265FF0	002660FB	1
+0026B5A0	Actor_SetFacingHeading_Variant0	Movement	rcx	002E5750	002E5AED	1
+0026B620	Actor_SetFacingHeading_Variant1	Movement	rcx	0026C120	0026C1C6	1
+0026D6D0	Actor_StopRequestedMovement	Movement	rcx	0035A720	0035A74D	1
+0026DF40	FUN_0026df40		rcx	002E3AF0	002E3BCB	1
+002E5380	Movement_PrepareCandidatePosition	Movement	rcx	002E5610	002E5647	1
+002E55C0	Movement_ClearSteeringRequest	Movement	rcx	0026AE90	0026AEE5	1
+002E5C70	FUN_002e5c70	Movement	rcx	0026AFE0	0026B033	1
+002E5C90	FUN_002e5c90	Movement	rcx	002E5C70	002E5C7C	2
+002E5DF0	FUN_002e5df0	Movement	rcx	0026AFE0	0026B03A	1
+002E6300	FUN_002e6300	Movement	rcx	0026C120	0026C26D	1
+002E64E0	FUN_002e64e0	Movement	rcx	002EBFA0	002EC11A	3
+002E7A80	FUN_002e7a80		rcx	002EBFA0	002EC05E	3
+002E7B40	FUN_002e7b40		rcx	002EC2C0	002EC30C	3
+002E8170	FUN_002e8170		rcx	003DDAD0	003DDAEF	1
+002EA910	FUN_002ea910		rcx	002EA780	002EA7D1	1
+002EAAA0	FUN_002eaaa0	Movement	rcx	00263050	00263076	1
+002EAB80	FUN_002eab80	Movement	rcx	00263230	00263408	1
+002EB0D0	FUN_002eb0d0		rcx	002EB430	002EB47A	1
+002EBFA0	FUN_002ebfa0	Movement	rcx	002EAAA0	002EAB03	2
+002EC2C0	FUN_002ec2c0	Movement	rcx	002EAAA0	002EAB11	2
+002EF2B0	SaveImage_GetPersistentPayloadBase	Save_Load_Settings	rcx	003148F0	003148F4	3
+002EF640	SaveImage_GetActiveRuntimeBuffer	Save_Load_Settings	rcx	002EF2B0	002EF2B4	4
+0030BFB0	WorldActor_QueryCombatStanceState		rcx	00264420	00264447	1
+003148F0	WorldTransition_GetActiveOrPendingFieldId	WorldAreaField	rcx	00377700	00377704	2
+00314910	WorldTransition_GetTransitionFieldId	WorldAreaField	rdx	001ED180	001ED186	2
+0031B760	ActorWork_GetBattleUnit	ActorEntity	rcx	00233F50	00233F58	2
+00329A80	FUN_00329a80	Movement	rcx	002E5180	002E5337	1
+003590D0	PartyFocus_GetCurrentPackedActorHandle	Party	rcx	00263230	002632C0	1
+0035AE10	FUN_0035ae10	ActorEntity	rcx	00263230	0026343E	1
+00377700	FUN_00377700	WorldAreaField	rcx	00263230	00263283	1
+00377DB0	FUN_00377db0	WorldAreaField	rcx	002E4A40	002E4A65	1
+0037C860	thunk_FUN_00303ec0		rcx	0025B7E0	0025B7F2	1
+003A1C50	FUN_003a1c50		rcx	0026C120	0026C1FA	1
+003A1D30	FUN_003a1d30		rcx	002E4380	002E43E1	1
+003B7730	FUN_003b7730		rcx	00267260	00267269	2
+003DBAE0	FUN_003dbae0	ActorEntity	rdx	00268850	00268A18	1
+003DBB60	ActorResource_SubmitRequestDescriptor	ActorEntity	rcx	0025B2E0	0025B3C3	1
+003DBBE0	thunk_FUN_003dbbf0		rcx	00268EA0	00269033	1
+003DC0D0	FUN_003dc0d0	ActorEntity	rcx	003DB2A0	003DB37D	1
+003DC1B0	FUN_003dc1b0	ActorEntity	rcx	003DB2A0	003DB346	1
+00808C40	__security_check_cookie		rdx	00268850	00268A5B	1
+008620C0	FUN_008620c0		rdx	00267DB0	00267DF7	2

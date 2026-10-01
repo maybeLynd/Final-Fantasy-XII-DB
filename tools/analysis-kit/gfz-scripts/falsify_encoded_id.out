@@ -1,0 +1,12 @@
+E1   SURVIVES  00309440 (10 instrs): shift by 12 True, -1 path True, stride 0x58 True, table ref 01EEBCF8
+E2   SURVIVES  classes [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]; counts sum 6892; pointer lanes/prefixes zero True; offset high halves zero True; mutate-only [14, 15, 18, 19] 002FD530 002FD640 002FD780 002FD880; none [10, 12, 16]
+E3   SURVIVES  validator table: 32 targets all inside 00322C50 (+0x401): True; tail 0032302E cmp ebx, edx; 00323036 lea eax, [rcx - 1]; 00323039 cmp ebx, eax; 00323041 mov eax, 1
+E4   SURVIVES  class 19 arm 00322F63 immediates ['0xe000', '0xefff'] -> admits [E000, EFFF) = E000..EFFE
+E5   SURVIVES  query table at 0031E598, class 12 arm 0031C650: mov eax, 0xfffffffe; jmp 0x31e57d
+E6   SURVIVES  0035D330: stores ['022CA520/4', '022CA524/4']; calls 0031C5D0 0016D6A0 00861EC0; lea record True; clear-0x98 evidence True || 0035D380: stores ['022CA480/4', '022CA486/2']; calls 0031C5D0 0016D6A0 00861EC0; lea record True; clear-0x98 evidence True
+E7   SURVIVES  0030B6A0: r11 zeroed True; clear 8 x 0x40 from +0x57C8 True (lea rax, [rcx + 0x57c8] ... jne 0x30b710); mask 0x80 bytes from +0x59C8 with F8 True
+E8   SURVIVES  0020E600: mov eax, ecx; add rax, qword ptr [rip + 0x1d74f27]; ret 
+E9   SURVIVES  first lane read agrees for 31 classes [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]; disagrees []; no lane read found [12]
+E10  BROKEN    rip-relative references into 01EEBCC0..01EEC1E8: 49 in 28 functions (002FD150 002FD420 002FD8D0 002FD970 003008A0 003047F0 00308DE0 00309440 003096F0 00309B60 00309EC0 00309F30 00309FB0 0030ADC0 0030AE30 0030B0E0 0030B270 0030B6A0 0030DCB0 0030DD10 0030DD70 0030DDC0 0030DE20 0030DE80 0030DEE0 0030DF40 0030FAA0 0030FBE0)
+E11  SURVIVES  stores into the registry span: functions 0030B6A0, fields [64, '?'], sites 0030B6CB 0030B6DC 0030B6ED 0030B6F1; offset qwords written: False
+BROKEN 1: E10

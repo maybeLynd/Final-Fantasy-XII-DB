@@ -1,0 +1,10 @@
+# Runtime.Container.RecursiveSpanNodeWalk - EC-7 family C
+# # self-recursive tree walk; per node a span-check + member vcall slot 3,
+# # then vcall [this+0x30] slot 3; no direct external calls.
+address	targets
+001A4B50	
+001ABA90	
+001AF310	
+001BA7C0	
+001BF0F0	
+001BF190	

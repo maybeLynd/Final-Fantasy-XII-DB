@@ -1,0 +1,8 @@
+# NativeLeaf.PayloadBaseFlagSet - EC-7 family C
+# call shared 002EF2B0; clear a member mask bit in [rax+X]; if arg1 nonzero
+# # set a member bit position.
+address	targets
+00314BB0	002EF2B0
+00314C70	002EF2B0
+00314CA0	002EF2B0
+00314D00	002EF2B0

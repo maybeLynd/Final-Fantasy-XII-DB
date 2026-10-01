@@ -1,0 +1,10 @@
+live board                             SAME  orig  15.56s  new  0.72s  | OK
+duplicate id                           SAME  orig   0.00s  new  0.00s  | ValueError: duplicate task id
+unknown dependency                     SAME  orig   0.05s  new  0.01s  | ValueError: unknown/self dependency
+self dependency                        SAME  orig   0.05s  new  0.01s  | ValueError: unknown/self dependency
+2-cycle                                SAME  orig   6.53s  new  0.19s  | ValueError: dependency cycle
+3-cycle                                SAME  orig   6.52s  new  0.20s  | ValueError: dependency cycle
+valid chain                            SAME  orig  13.02s  new  1.32s  | OK
+bad priority (untouched check)         SAME  orig   0.05s  new  0.01s  | ValueError: invalid priority
+done without refs (untouched check)    SAME  orig   0.00s  new  0.01s  | ValueError: completion needs durable result references
+DIFFS 0

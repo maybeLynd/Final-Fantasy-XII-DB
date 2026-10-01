@@ -1,0 +1,3 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	pass	descriptionId	u16: 0x0 x32 (1 distinct)	0031E56A* movzx ecx, word ptr [rsi]	description string id -> 002F9860 -> query +0x10 (shared tail 0031E56A); 0 on all 32 us rows	STATIC	PASS
+0x02	2	page	nameWord	u16: 0x201f x1, 0x2020 x1, 0x2021 x1, 0x2022 x1, 0x2023 x1 (32 distinct)	0031E3EC* movzx ecx, word ptr [rax + 2] | 0031E427* movzx edx, word ptr [rax + 2]	name word (bank 4)	STATIC	EID

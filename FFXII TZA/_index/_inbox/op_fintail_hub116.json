@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-116",
+ "result_refs": [
+  "commit:8810e0c11"
+ ],
+ "note": "batch-116 tail: seal+resume committed (8810e0c11); lifecycle complete, releasing @publication"
+}

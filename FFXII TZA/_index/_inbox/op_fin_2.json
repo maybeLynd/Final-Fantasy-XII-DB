@@ -1,0 +1,1 @@
+{"action": "finish", "task": "FABLE-REQ-DATA-UQ218-FMC-CROSSWALK", "result_refs": ["commit:d22ad1b95"], "note": "Verified: fmc_opcodes.py FAILS 0 (76 slots, 33 authored, 0 grammar violations, 0x0B length law, 0x28 values {1:112,10:3}). Semantic names folded into the opcode table; cross-referenced pages linked. Commit d22ad1b95."}

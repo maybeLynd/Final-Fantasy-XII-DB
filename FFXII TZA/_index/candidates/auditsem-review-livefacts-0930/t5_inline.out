@@ -1,0 +1,192 @@
+H0 functions: 130
+H1 functions: 1226
+inline bulk loops inside H1: 188
+  001AEE70 in 001AED50  reg rax stride 0x30 span 0..48  base 001AEE68 mov rax, rbp  count ?
+  001AEED0 in 001AED50  reg rbx stride 0x30 span 0..48  base 001AEEB7 lea rbx, [rax + 0x30]  count ?
+  001B7111 in 001B70E0  reg rbx stride 0x48 span 0..16  base 001B7109 lea rbx, [rcx + 0x38]  count ?
+  001E7D92 in 001E7D30  reg rcx stride 0x10 span 0..16  base 001E7D87 mov rcx, rdx  count ?
+  001E7DE1 in 001E7D30  reg rdi stride 0x10 span 0..16  base ?  count ?
+  001E7E04 in 001E7D30  reg rax stride 0x10 span 0..16  base 001E7DFD mov rax, rdx  count ?
+  001E7E30 in 001E7D30  reg rax stride 0x10 span 0..16  base 001E7E22 mov rax, qword ptr [rsi + 8]  count ?
+  001E7E60 in 001E7D30  reg rdi stride 0x10 span 0..16  base 001E7DF6 pop rdi  count ?
+  001E7ED0 in 001E7D30  reg rcx stride 0x10 span 0..16  base 001E7EC6 mov rcx, r15  count ?
+  001E7EF1 in 001E7D30  reg rax stride 0x10 span 0..16  base 001E7EEA mov rax, rcx  count ?
+  001E7F26 in 001E7D30  reg rbx stride 0x10 span 0..16  base 001E7F11 lea rbx, [r8 + rcx]  count ?
+  00225EE1 in 00225EB0  reg r13 stride 0x18 span -20..673  base 00225ECE lea r13, [rip + 0x1dae29f]  count ?
+  002262E0 in 00226280  reg rax stride 0x18 span -16..4  base 002262D7 lea rax, [rip + 0x1dae132]  count ?
+  00255740 in 002556F0  reg rbx stride 0x2e0 span -140..-136  base 00255724 lea rbx, [rdi + 0x230]  count 0x4
+  00255720 in 002556F0  reg rbx stride 0x2e0 span -140..-136  base ?  count ?
+  00255720 in 002556F0  reg rdi stride 0xbb0 span -8..24  base 0025570A lea rdi, [rip + 0x1e3d0ff]  count ?
+  00259670 in 00259620  reg rdi stride 0x860 span -24..336  base 0025963F lea rdi, [rip + 0x1e3ede2]  count ?
+  00259EF0 in 00259E90  reg rdi stride 0x110 span -4..244  base 00259EAB lea rdi, [rip + 0x1e3d452]  count ?
+  00266EF0 in 00266D10  reg rbx stride 0x288 span -8..632  base 00266EE0 lea rbx, [rip + 0x1e31f39]  count ?
+  00267B50 in 002679F0  reg rax stride 0x2 span 8..10  base 00267B3C lea rax, [r15 + 0x1d0]  count 0x4
+  002686D0 in 00268690  reg r14 stride 0x4 span 0..4  base 002686C2 lea r14, [r11 - 0x48]  count ?
+  0026C980 in 0026C8C0  reg rax stride 0x288 span 0..64  base 0026C96A lea rax, [rip + 0x1e2c6a3]  count ?
+  002E1520 in 002E1450  reg rax stride 0x8 span -12..-4  base 002E1513 add rax, rcx  count 0x20
+  002E1520 in 002E1450  reg rdx stride 0x8 span 0..8  base 002E1516 lea rdx, [rcx + rbx]  count 0x20
+  002E1480 in 002E1450  reg rax stride 0x8 span -12..-4  base ?  count ?
+  002E1480 in 002E1450  reg rdx stride 0x8 span 0..8  base ?  count ?
+  002EA361 in 002EA320  reg rax stride 0x40 span -26..14  base 002EA356 lea rax, [rip + 0x1e75a5d]  count ?
+  002EA390 in 002EA320  reg rdx stride 0x120 span -2..38  base 002EA389 lea rdx, [rip + 0x1e77a32]  count ?
+  002EA3E0 in 002EA320  reg rcx stride 0x40 span -64..-48  base 002EA3D2 lea rcx, [rip + 0x1e75a47]  count 0x7e
+  002EA440 in 002EA320  reg rax stride 0x120 span -288..-256  base 002EA42C lea rax, [rip + 0x1e77bad]  count 0x1e
+  002EECF3 in 002EECC0  reg rdi stride 0x4 span 0..4  base 002EECEC lea rdi, [rip + 0x1bfcdbd]  count 0xa
+  0035B5F0 in 0035B5D0  reg rbx stride 0x4 span 0..4  base 0035B5DF lea rbx, [rip + 0x1f6ca4a]  count 0x8
+  00360530 in 003604D0  reg rax stride 0x10 span -2..14  base 003604EA lea rax, [rip + 0x1f6b241]  count ?
+  00360500 in 003604D0  reg rax stride 0x10 span -2..14  base 003604EA lea rax, [rip + 0x1f6b241]  count ?
+  00360600 in 003605A0  reg rax stride 0x10 span -2..14  base 003605FB add rax, rcx  count ?
+  00360B70 in 00360B50  reg rbx stride 0x18 span -1..23  base 00360B5F lea rbx, [rip + 0x1f6ae8b]  count 0x4
+  00360C90 in 00360C70  reg rax stride 0x18 span 0..4  base 00360C7C lea rax, [rip + 0x1f6ad6d]  count ?
+  00360E00 in 00360DD0  reg rbx stride 0x18 span -1..2  base 00360DEB lea rbx, [rip + 0x1f6abff]  count ?
+  00363020 in 00362F70  reg rax stride 0x4 span -12..4  base 00362F7B lea rax, [rip + 0x1f68bc2]  count ?
+  00363050 in 00362F70  reg rax stride 0x4 span -12..4  base 0036303C lea rax, [rip + 0x1f68b21]  count ?
+  00378437 in 00378230  reg rbx stride 0x4 span 0..4  base 00378429 lea rbx, [rip + 0x2764cf0]  count ?
+  003A1440 in 003A13F0  reg rax stride 0x18 span -4..12  base 003A142D lea rax, [rip + 0x274d990]  count ?
+  003B6E87 in 003B6DE0  reg rcx stride 0x8 span 0..8  base 003B6E82 mov rcx, rbx  count ?
+  003DB240 in 003DB1F0  reg rcx stride 0x14 span 0..1  base 003DB23A add rcx, 0x11  count ?
+  003DB215 in 003DB1F0  reg rcx stride 0x14 span 0..1  base ?  count ?
+  003DCC20 in 003DCBC0  reg rax stride 0xc span 0..1  base 003DCC11 lea rax, [rip + 0x277b4a2]  count ?
+  003DD3B0 in 003DD380  reg rbx stride 0x1c span -4..10  base 003DD3AA add rbx, rax  count 0x10
+  003DD3F0 in 003DD380  reg rbx stride 0x1c span 0..4  base 003DD3AA add rbx, rax  count 0x10
+  003DE740 in 003DE710  reg rdi stride 0x70 span -34..62  base 003DE724 lea rdi, [rip + 0x277a547]  count ?
+  003DFA70 in 003DFA50  reg rbx stride 0x8 span 0..8  base 003DFA5F lea rbx, [rip + 0x277a2e2]  count 0x2
+  003E75C0 in 003E75A0  reg rbx stride 0x150 span -296..-294  base 003E75AF lea rbx, [rip + 0x27728f2]  count 0x20
+  003E9990 in 003E9970  reg rdi stride 0x40 span 43..51  base 003E9981 lea rdi, [rip + 0x277372d]  count ?
+  003EA225 in 003EA200  reg rbx stride 0x40 span 41..49  base 003EA217 lea rbx, [rip + 0x2772e99]  count ?
+  003EB5C0 in 003EB500  reg rax stride 0x40 span -40..24  base ?  count ?
+  003EB7C0 in 003EB750  reg rax stride 0x40 span -40..24  base 003EB7AE lea rax, [rip + 0x277326b]  count ?
+  003EB800 in 003EB750  reg rbx stride 0x48 span -56..3  base 003EB7EB lea rbx, [rip + 0x277296e]  count ?
+  00418A60 in 00418880  reg rsi stride 0x108 span 12..72  base 00418A49 add rsi, rax  count ?
+  00419440 in 00418880  reg r14 stride 0x40 span 240..272  base ?  count ?
+  00419440 in 00418880  reg rbx stride 0x1d span 48..64  base ?  count ?
+  0046B7CB in 0046B690  reg r13 stride 0x4 span 0..4  base ?  count ?
+  0046B6F0 in 0046B690  reg r13 stride 0x4 span 0..4  base ?  count ?
+  0046B9AB in 0046B870  reg r13 stride 0x4 span 0..4  base ?  count ?
+  0046B8D0 in 0046B870  reg r13 stride 0x4 span 0..4  base ?  count ?
+  0046BB26 in 0046BAC0  reg r12 stride 0x4 span 0..4  base 0046BB01 mov r12, qword ptr [rax + 0x1f0]  count ?
+  0046BDB6 in 0046BD60  reg r15 stride 0x4 span 0..4  base ?  count ?
+  0046BED0 in 0046BE80  reg r15 stride 0x4 span 0..4  base ?  count ?
+  005E3167 in 005E30E0  reg rax stride 0x14 span -4..12  base 005E3163 lea rax, [r9 + rax*4]  count ?
+  005E3210 in 005E31B0  reg rax stride 0x10 span 0..16  base 005E320A add rax, rbx  count ?
+  005E3470 in 005E3410  reg rax stride 0x10 span 0..16  base 005E346A add rax, rbx  count ?
+  005E3667 in 005E3600  reg rcx stride 0x2 span 0..2  base 005E3661 lea rcx, [r9 + rsi*2]  count ?
+  005E3710 in 005E36A0  reg rax stride 0x4 span 0..3  base 005E3709 lea rax, [r9 + rsi*4]  count ?
+  005E37E3 in 005E3750  reg rax stride 0x10 span -4..5  base 005E37E0 add rax, r10  count ?
+  005F02D0 in 005F02A0  reg rbx stride 0x10 span 0..16  base 005F02C9 mov rbx, rcx  count ?
+  006FFA80 in 006FF900  reg rcx stride 0x80 span -16..112  base 006FFA73 mov rcx, rbx  count ?
+  006FFB20 in 006FF900  reg rcx stride 0x80 span -16..112  base 006FFB0B lea rcx, [rsi + 0x328]  count ?
+  007013E0 in 006FF900  reg rax stride 0x20 span -8..24  base 007013CB lea rax, [rbp + 0x4a8]  count 0x14
+  007015A0 in 006FF900  reg rcx stride 0x20 span 0..32  base 00701593 add rcx, rax  count ?
+  00701600 in 006FF900  reg rbx stride 0x20 span -4..4  base 007015E7 lea rbx, [rbp + 0x4b8]  count ?
+  00702290 in 006FF900  reg rax stride 0x20 span -8..24  base 00702281 lea rax, [rbp + 0x728]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070223E in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rdi stride 0x8 span 0..4  base ?  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rdi stride 0x8 span 0..4  base ?  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rdi stride 0x8 span 0..4  base ?  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00702234 in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  0070222A in 006FF900  reg rax stride 0x20 span -8..24  base 007021A3 movzx eax, byte ptr [rsi + 0x143]  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rdi stride 0x8 span 0..4  base ?  count ?
+  00701744 in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  00701744 in 006FF900  reg rdi stride 0x8 span 0..4  base ?  count ?
+  0070173A in 006FF900  reg rax stride 0x20 span -8..24  base 007016DD mov eax, dword ptr [rbp - 0x74]  count ?
+  0070173A in 006FF900  reg rdi stride 0x8 span 0..4  base ?  count ?
+  00721160 in 00721030  reg rsi stride 0x8 span 0..8  base 00721153 lea rsi, [rdi + 0xf0]  count 0x2
+  0075E480 in 0075E330  reg rcx stride 0x8 span 0..8  base 0075E477 mov rcx, rsi  count ?
+  0075E4C0 in 0075E330  reg rsi stride 0x8 span 0..8  base 0075E457 mov rsi, qword ptr [rsp + 0xd0]  count ?
+note: leaf functions without .pdata are not owners here; loops in them are listed only if a caller is in H0

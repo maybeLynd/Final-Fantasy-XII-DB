@@ -1,0 +1,148 @@
+== 00545650: the wave step
+PASS 00545691 is 'add eax, 0x10'  -- add eax, 0x10
+PASS 0054565B is 'movsxd r11, dword ptr [rcx + 0x10]'  -- movsxd r11, dword ptr [rcx + 0x10]
+PASS 0054569B is 'movsxd rbx, dword ptr [rcx + 0x14]'  -- movsxd rbx, dword ptr [rcx + 0x14]
+PASS 005456AF is 'movsxd r9, dword ptr [rcx + 0x18]'  -- movsxd r9, dword ptr [rcx + 0x18]
+PASS 00545730 is 'movups xmm0, xmmword ptr [r10 + 0x30]'  -- movups xmm0, xmmword ptr [r10 + 0x30]
+PASS 00545942 is 'movss dword ptr [rip'  -- movss dword ptr [rip + 0x1d938a9], xmm15
+PASS 00545964 is 'movups xmmword ptr [rdx], xmm0'  -- movups xmmword ptr [rdx], xmm0
+PASS 00545B5E is 'subss xmm7, xmm1'  -- subss xmm7, xmm1
+PASS 00545B6B is 'subss xmm8, xmm2'  -- subss xmm8, xmm2
+PASS 00545760 is 'dec dword ptr [rip'  -- dec dword ptr [rip + 0x1d9384a]
+PASS 00545AE9 is 'dec dword ptr [rip'  -- dec dword ptr [rip + 0x1d934c1]
+PASS 00545E9E is 'jg 0x545da0'  -- jg 0x545da0
+PASS 00545691 base register is GPR[0] ($zero, 022D8F10)
+PASS pass-1 result goes to vf05.y (022D91A0 + 5*16 + 4)
+PASS pass-2 gradients go to vf05.z / vf05.w
+PASS coefficients land in vf25 (022D9230)
+== 00542740: the trail history
+PASS 00542763 is 'test r9d, r9d'  -- test r9d, r9d
+PASS 0054277F is 'cmp eax, ecx'  -- cmp eax, ecx
+PASS 005431A4 is 'movaps xmm0, xmmword ptr [rdx]'  -- movaps xmm0, xmmword ptr [rdx]
+PASS 005431AF is 'movaps xmm1, xmmword ptr [r8]'  -- movaps xmm1, xmmword ptr [r8]
+PASS 005434F5 is 'call 0x46f460'  -- call 0x46f460
+PASS 00543511 is 'call 0x202e10'  -- call 0x202e10
+PASS 005436A6 is 'call 0x202b70'  -- call 0x202b70
+PASS 00543724 is 'mulss xmm2, dword ptr [rip'  -- mulss xmm2, dword ptr [rip + 0x3af9cc]
+PASS 00543854 is 'movss dword ptr [rbx + 0x4b0], xmm6'  -- movss dword ptr [rbx + 0x4b0], xmm6
+PASS 005438A9 is 'mulss xmm0, dword ptr [rip'  -- mulss xmm0, dword ptr [rip + 0x3af857]
+PASS 0.2 at 008F30F8 and 0.8 at 008F3108
+PASS 0046F460's table 00D12590 is acos (pi, ~pi/2, 0)  -- [3.1415929794311523, 1.5708880424499512, 0.0]
+PASS 0046F4A0 is 'and eax, 0x3fff'  -- and eax, 0x3fff
+== 00533B20: the node chain
+PASS 00533B4B is 'cmp dword ptr [rcx + 0x18], 0'  -- cmp dword ptr [rcx + 0x18], 0
+PASS 00533BF9 is 'test byte ptr [rbx + 0x140], 1'  -- test byte ptr [rbx + 0x140], 1
+PASS 00533C3F is 'je 0x534548'  -- je 0x534548
+PASS 00533C90 is 'movss xmm2, dword ptr [rbx + 0x138]'  -- movss xmm2, dword ptr [rbx + 0x138]
+PASS 00533CBA is 'movss xmm1, dword ptr [rbx + 0x13c]'  -- movss xmm1, dword ptr [rbx + 0x13c]
+PASS 005344F0 is 'call 0x202b90'  -- call 0x202b90
+PASS 00534503 is 'call 0x202b90'  -- call 0x202b90
+PASS 00534590 is 'movss xmm0, dword ptr [rdi + 0x230]'  -- movss xmm0, dword ptr [rdi + 0x230]
+PASS 00534980 is 'movups xmmword ptr [rdi + 0x10], xmm0'  -- movups xmmword ptr [rdi + 0x10], xmm0
+PASS 00535F5B is 'movss xmm0, dword ptr [rdi + 0x234]'  -- movss xmm0, dword ptr [rdi + 0x234]
+PASS 00535F63 is 'addss xmm0, dword ptr [rdi + 0x230]'  -- addss xmm0, dword ptr [rdi + 0x230]
+PASS 00535FA2 is 'cmovg eax, ebp'  -- cmovg eax, ebp
+PASS 00534576 is 'mov ebp, 0x20'  -- mov ebp, 0x20
+PASS 00532FA3 is 'mov dword ptr [rbx], ebp'  -- mov dword ptr [rbx], ebp
+PASS 00532F92 is 'lea rcx, [rbx + 0x20]'  -- lea rcx, [rbx + 0x20]
+PASS 005330E5 is 'movss dword ptr [rbx + 0x420], xmm1'  -- movss dword ptr [rbx + 0x420], xmm1
+PASS 00533108 is 'movss dword ptr [rbx + 0x428], xmm7'  -- movss dword ptr [rbx + 0x428], xmm7
+PASS 0053319E is 'mov dword ptr [rbx + 0x430], ebp'  -- mov dword ptr [rbx + 0x430], ebp
+PASS 005331DE is 'add rbx, 0x440'  -- add rbx, 0x440
+== 00548A00 and its consumers: the 0x71 streamers and the six triples
+PASS 00548A0C is 'cmp byte ptr [rcx + 0x66], 0'  -- cmp byte ptr [rcx + 0x66], 0
+PASS 00548AC0 is 'cmp dword ptr [rdi + 0x140], ebp'  -- cmp dword ptr [rdi + 0x140], ebp
+PASS 00548B50 is 'movss xmm0, dword ptr [rbx + 0x230]'  -- movss xmm0, dword ptr [rbx + 0x230]
+PASS 0054A52A is 'movss xmm0, dword ptr [rbx + 0x234]'  -- movss xmm0, dword ptr [rbx + 0x234]
+PASS 0054A604 is 'movzx eax, byte ptr [rdi + 0x7c]'  -- movzx eax, byte ptr [rdi + 0x7c]
+PASS 0054A640 is 'call 0x44b960'  -- call 0x44b960
+PASS 0054A658 is 'call 0x3a6e60'  -- call 0x3a6e60
+PASS 0054A576 is 'add rbx, 0x450'  -- add rbx, 0x450
+PASS 00548A00 reads nothing of P+0x00..+0x47 (the six triples)
+PASS 005487D8 is 'lea rsi, [rbp + 0x3c]'  -- lea rsi, [rbp + 0x3c]
+PASS 005487E0 is 'cmp byte ptr [r12 + rbp + 0x78], 0'  -- cmp byte ptr [r12 + rbp + 0x78], 0
+PASS 00548807 is 'movss xmm0, dword ptr [rsi - 0xc]'  -- movss xmm0, dword ptr [rsi - 0xc]
+PASS 00548814 is 'movss xmm1, dword ptr [rsi]'  -- movss xmm1, dword ptr [rsi]
+PASS 00548820 is 'movss xmm0, dword ptr [rsi - 0x3c]'  -- movss xmm0, dword ptr [rsi - 0x3c]
+PASS 0054882D is 'movss xmm1, dword ptr [rsi - 0x30]'  -- movss xmm1, dword ptr [rsi - 0x30]
+PASS 0054883A is 'movss xmm0, dword ptr [rsi - 0x24]'  -- movss xmm0, dword ptr [rsi - 0x24]
+PASS 00548847 is 'movss xmm1, dword ptr [rsi - 0x18]'  -- movss xmm1, dword ptr [rsi - 0x18]
+PASS 0052A581 is 'add r14, 0x570'  -- add r14, 0x570
+PASS 0052A686 is 'add r14, 0xf0'  -- add r14, 0xf0
+PASS 0052A5E3 is 'call 0x431830'  -- call 0x431830
+PASS the builder's six stores go to VU1 packet dwords 02AE8848..02AE885C
+PASS 005480E0 is called from the 0x71 walk 0052A360  -- [(5417026, 5415776)]
+== 004D3FE0 / 005480E0: where the layer block lands in VU memory
+PASS 004D4011 stores the VIF code 0x6C090046 at template +0xC  -- mov qword ptr [rbx + 0xc], 0x6c090046
+PASS 0x6C090046 decodes as UNPACK V4-32 (cmd 0x6C), 9 cells, to cell 0x46  -- 0x6c090046
+PASS 004D4051 is '[rbx + 0x68], 8'  -- mov qword ptr [rbx + 0x68], 8
+PASS 004D405D is '[rbx + 0x78], 6'  -- mov qword ptr [rbx + 0x78], 6
+PASS 004D4070 is '[rbx + 0x88], 0x42'  -- mov qword ptr [rbx + 0x88], 0x42
+PASS 004D4086 is '[rbx + 0x98], 0x47'  -- mov qword ptr [rbx + 0x98], 0x47
+PASS 004D402F is '[rbx + 0x40], rax'  -- mov qword ptr [rbx + 0x40], rax
+PASS 004D4000 is 'movabs rax, 0x8000000080'  -- movabs rax, 0x8000000080
+PASS 00548893 is 'movups xmmword ptr [r14], xmm0'  -- movups xmmword ptr [r14], xmm0
+PASS 004D3FE0 is called at 0037E317 (from 0037E0F0) on 02AE8830  -- [(3662615, 3662064)]
+PASS 005480E0 sends the template head 02AE8830 (00548865) and copies 0xC0 bytes from 02AE8840 (005488A5)
+PASS the walk colour goes to 02AE8870 = cell 0x49 (0x46 + 3)
+== 004D40E0: the translated VU1 program reads the six values
+PASS no listed function writes VI00 02064B0C through rip (so [r9 + N] is absolute cell N)
+PASS 004D63CF is 'lea eax, [r9 + 0x46]'  -- lea eax, [r9 + 0x46]
+PASS 004D67E6 is 'lea eax, [rdx + 0x47]'  -- lea eax, [rdx + 0x47]
+PASS 004D63F9 is 'shufps xmm2, xmm2, 0xaa'  -- shufps xmm2, xmm2, 0xaa
+PASS 004D6401 is 'subss xmm5, xmm2'  -- subss xmm5, xmm2
+PASS 004D6438 is 'divss xmm2, xmm3'  -- divss xmm2, xmm3
+PASS 004D656F is 'divss xmm0, xmm5'  -- divss xmm0, xmm5
+PASS 004D6977 is 'mulss xmm4, xmm1'  -- mulss xmm4, xmm1
+PASS 004D6982 is 'mulss xmm0, xmm1'  -- mulss xmm0, xmm1
+PASS 004D69FD is 'cmp word ptr [r8 + rbp + 4], r9w'  -- cmp word ptr [r8 + rbp + 4], r9w
+PASS 004D6A1D is 'movzx eax, word ptr [r8 + rbp]'  -- movzx eax, word ptr [r8 + rbp]
+PASS 004D6A85 is 'seta r8b'  -- seta r8b
+PASS 004D6ACD is 'lea eax, [r9 + 0x20]'  -- lea eax, [r9 + 0x20]
+PASS 004D6AE4 is 'jne 0x4d6f46'  -- jne 0x4d6f46
+PASS 004D6B14 is 'mulss xmm0, xmm13'  -- mulss xmm0, xmm13
+PASS 004D7503 is 'mulss xmm0, xmm13'  -- mulss xmm0, xmm13
+PASS 004D7914 is 'addss xmm13, dword ptr [rip'  -- addss xmm13, dword ptr [rip + 0x1b8d333]
+PASS 004D7992 is 'jmp 0x4d6a61'  -- jmp 0x4d6a61
+PASS 004D63ED addresses 02064BD0 (cell 0x46 whole)  -- movdqu xmmword ptr [rip + 0x1b8e7db], xmm2
+PASS 004D6414 addresses 02064BE0 (t4)  -- movss dword ptr [rip + 0x1b8e7c4], xmm3
+PASS 004D641C addresses 02064BE8 (1 - t4)  -- movss dword ptr [rip + 0x1b8e7c4], xmm5
+PASS 004D643C addresses 02064B00 (1/t4)  -- movss dword ptr [rip + 0x1b8e6bc], xmm2
+PASS 004D64B2 addresses 02064BE4 (1/t4 kept)  -- movss dword ptr [rip + 0x1b8e72a], xmm0
+PASS 004D6579 addresses 02064B00 (1/(1 - t4))  -- movss dword ptr [rip + 0x1b8e57f], xmm0
+PASS 004D689C addresses 02064D10 (cell 0x47 = triples 0..3)  -- movups xmmword ptr [rip + 0x1b8e46d], xmm0
+PASS 004D6943 addresses 02064BDC (t5 (lane w))  -- movss xmm1, dword ptr [rip + 0x1b8e291]
+PASS 004D6A0D addresses 02064BCC (t2 scale)  -- mulss xmm0, dword ptr [rip + 0x1b8e1b7]
+PASS 004D6A15 addresses 02064D18 (t2 scaled)  -- movss dword ptr [rip + 0x1b8e2fb], xmm0
+PASS 004D6A33 addresses 02064DDC (mode)  -- mov word ptr [rip + 0x1b8e3a2], ax
+PASS 004D7411 addresses 02064DDC (mode test)  -- cmp word ptr [rip + 0x1b8d9c3], r9w
+PASS 004D6AEA addresses 02064BE4 (1/t4 into C44)  -- movss xmm0, dword ptr [rip + 0x1b8e0f2]
+PASS 004D6B2A addresses 02064C44 (C44 = run/t4)  -- movss dword ptr [rip + 0x1b8e112], xmm0
+PASS 004D6C58 addresses 02064C44 (C44 read)  -- movss xmm1, dword ptr [rip + 0x1b8dfe4]
+PASS 004D6B32 addresses 02064B64 (B64)  -- movss xmm0, dword ptr [rip + 0x1b8e02a]
+PASS 004D6B4B addresses 02064C74 (C74 = B64 - B34)  -- movss dword ptr [rip + 0x1b8e121], xmm0
+PASS 004D74B6 addresses 02064D10 (triple 0 -> s)  -- addss xmm3, dword ptr [rip + 0x1b8d852]
+PASS 004D74DB addresses 02064D14 (triple 1 -> t)  -- addss xmm5, dword ptr [rip + 0x1b8d831]
+PASS 004D74E3 addresses 02064D18 (triple 2 -> s rate)  -- movss xmm0, dword ptr [rip + 0x1b8d82d]
+PASS 004D74C6 addresses 02064D1C (triple 3 -> t span)  -- movss xmm9, dword ptr [rip + 0x1b8d84d]
+PASS 004D75F1 addresses 02064D10 (mode 1 u offset)  -- movss xmm2, dword ptr [rip + 0x1b8d717]
+PASS 004D7628 addresses 02064D14 (mode 1 v offset)  -- movss xmm1, dword ptr [rip + 0x1b8d6e4]
+PASS 004D7914 addresses 02064C50 (run step)  -- addss xmm13, dword ptr [rip + 0x1b8d333]
+PASS 004D793F addresses 02064C54 (run)  -- movss dword ptr [rip + 0x1b8d30c], xmm13
+PASS 004D7077 addresses 02064BBC (BBC)  -- movss xmm0, dword ptr [rip + 0x1b8db3d]
+PASS 004D707F addresses 02064B8C (B8C)  -- subss xmm0, dword ptr [rip + 0x1b8db05]
+PASS 004D7087 addresses 02064C9C (C9C = BBC - B8C)  -- movss dword ptr [rip + 0x1b8dc0d], xmm0
+PASS 004D737B addresses 02064C9C (C9C clamp)  -- mov dword ptr [rip + 0x1b8d917], 0x437f0000
+PASS t5 products go to the w lanes of nine working vectors (B3C..BBC, each +0xC in its cell)  -- ['0x2064b8c', '0x2064b9c', '0x2064b3c', '0x2064b4c', '0x2064b5c', '0x2064b6c', '0x2064b7c', '0x2064bac', '0x2064bbc']
+PASS constants: 01CEBB70 = 0.5 (loaded 004D73C6), 00915618 = 1792, 0091561C = 1824, 008C5B30 = 1/512, 008C5B40 = 255
+PASS 004D737B clamps with 255.0 (0x437F0000)  -- mov dword ptr [rip + 0x1b8d917], 0x437f0000
+== 0030A190: the world-state gate on the +0x28 word
+PASS 0030A1F4 is 'cmp eax, 0xf1'  -- cmp eax, 0xf1
+PASS 0030A201 is 'add eax, -5'  -- add eax, -5
+PASS 0030A204 is 'cmp eax, 1'  -- cmp eax, 1
+PASS 0030A207 is 'ja 0x30a213'  -- ja 0x30a213
+PASS 0030A209 is 'word ptr [rbx + 0x28]'  -- movzx eax, word ptr [rbx + 0x28]
+PASS 0030A213 is 'word ptr [rbx + 0x24]'  -- movzx eax, word ptr [rbx + 0x24]
+PASS 0030A1FB reads 022C2160 (the special-sequence state; 5 on screen, 6 ending)  -- mov eax, dword ptr [rip + 0x1fb7f5f]
+
+FAILS 0

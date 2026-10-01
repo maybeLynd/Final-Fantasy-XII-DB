@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-LAND-THE-TWO-HELD-P0-VERDICT-CORRECTIONS",
+  "kind": "research",
+  "priority": "P0",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the two P0 corrections held against L2-VERDICTS.md for forty consecutive rounds because the file was peer-dirty every time it was checked",
+  "scope": "S-02's sub-object-debt figure, which does not match the predicate the cell itself cites; and S-52's types/ABI measurement, which is supply rather than score",
+  "completion": "both applied while the file is clean and verified to touch only their own cells; the S-02 figure re-measured immediately before writing rather than carried from the round it was first computed; the S-52 score left unentered",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:verdicts"
+   }
+  ]
+ }
+}

@@ -1,0 +1,6 @@
+{
+  "timing": "After source/checker-control derivation, before freeze; not capture-time proof",
+  "capstone_dll_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+  "bytes": 7576576,
+  "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+}

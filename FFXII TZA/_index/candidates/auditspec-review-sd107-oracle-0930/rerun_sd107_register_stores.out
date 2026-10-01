@@ -1,0 +1,131 @@
+PASS  S1 002475D0 maps 0xFF to 1 before the +0xA3 store; 00247680 stores dl; 005C5230 returns 0 
+PASS  S2 widget: +0 message procedure (default 005C5230), +0x48 qword pointer (00915198 / 00247570); text element: float 23.0 at +0x04, 1.0 at +0x0C, float at +0x48 - one base cannot be both 
+      setter sites: 002475D0 12, 00247680 6, 00247590 2
+      never-1 0024759D in 00247590  rdx ["('R', '0x5c5230')"]
+      never-1 00296994 in 00296960  rdx ["('R', '0x5c5230')"]
+      never-1 00298521 in 00298250  rdx ["('R', '0x5c5230')"]
+      never-1 0029C7C8 in 0029C770  rdx ["('C', 0)"]
+      never-1 0029CA28 in 0029C9D0  rdx ["('C', 0)"]
+      never-1 002A73F5 in 002A70B0  rdx ["('C', 4)"]
+      never-1 002D682A in 002D66D0  rdx ["('C', 6)"]
+      never-1 002A71A6 in 002A70B0  rdx ["('C', 11)"]
+      never-1 00572823 in 00572600  rdx ["('C', 10)"]
+      never-1 00279C60 in 002778C0  rdx ["('R', '0x5c5230')"]
+      never-1 0027A5B1 in 00279E20  rdx ["('R', '0x5c5230')"]
+      may-1   00228070 in 00227EE0  rdx ["('C', 255)"]
+      may-1   00242060 in 00241D40  rdx ["('C', 255)"]
+      may-1   002A7164 in 002A70B0  rdx ["('C', 0)", "('C', 255)", "('M', '002A7144 dword ptr [rbp + 0x10]')"]
+      may-1   003F4649 in 003F4330  rdx ["('C', 255)"]
+      may-1   0057C802 in 0057C480  rdx ["('C', 4)", "('U', '0057C7F3 and edx, r15d')"]
+      may-1   00559B64 in 005599D0  rdx ['(\'U\', "add over (\'M\', \'00559B4F word ptr [rdx + 0x30]\')")', '(\'U\', "add over (\'U\', \'00559B58 dec ax\')")']
+      may-1   0055A2E3 in 0055A1F0  rdx ["('C', 12)", '(\'U\', "add over (\'M\', \'0055A2C3 word ptr [rdx + 0x30]\')")', '(\'U\', "add over (\'U\', \'0055A2CC dec cx\')")']
+      may-1   0056B79B in 0056B4D0  rdx ['(\'U\', "sub over (\'M\', \'0056B78D word ptr [rsi + rax*8 + 0x300]\')")']
+      may-1   0056B9BE in 0056B4D0  rdx ['(\'U\', "sub over (\'M\', \'0056B9B2 word ptr [rbx]\')")']
+PASS  S3 20 setter sites; the nine that can store 1 (0xFF, 1 or an unbounded value) are 00228070 00242060 002A7164 003F4649 00559B64 0055A2E3 0056B79B 0056B9BE 0057C802
+      S4 00228070: self rsi of widget procedure 00227EE0, registered at 00227EB8 (call 0x244f50) ok
+      S4 00242060: self rsi of widget procedure 00241D40, registered at 00241C6C (call 0x2465f0) ok
+      S4 003F4649: self rdi of widget procedure 003F4330, registered at 003F4761 (call 0x244f50) ok
+      S4 0057C802: self rsi of widget procedure 0057C480, registered at 0057C39F (call 0x244f50) ok
+      S4 00559B64: self rbx of widget procedure 005599D0, registered at 005598A8 (call 0x244f50) ok
+      S4 0056B79B: self rsi of widget procedure 0056B4D0, registered at 0056B3BE (call 0x244f50) ok
+      S4 0056B9BE: self rsi of widget procedure 0056B4D0, registered at 0056B3BE (call 0x244f50) ok
+      S4 002A7164: rcx = [('R', '0x244f50')] (the widget 002A2C00 gets from the allocator 00244F50) ok
+      S4 0055A2E3: rcx = [container+0x140+8i], i < 4, the slots 00559860 fills from 00244F50 ok
+PASS  S4 all nine may-store-1 sites act on widget bases (00244F50 / 00245000 both construct through 002465F0; default size 0xC0) 
+PASS  S5 0x190-byte widget 00227EE0 = 0xC0 header + 0xD0 element at +0xC0; 00241D40 / 0057C480 build at +0xE0; the message window's element is at +0xD0 - kind bytes at widget +0x163 / +0x183 / +0x173 
+PASS  S6 kind readers 002B3930 x2, 002ABF20 x3, 002ABEC0 x6, 002AF960 x4 (002D8550's element is its r9: x3) take widget+0xC0/0xD0/0xE0, stack or builder elements; no reader is passed a widget base 
+PASS  C1 register-sourced +0xA3 stores: 180, {'unresolved': 93, 'resolved-no-1': 86, 'has-1': 1} (OPUS: 180 / 86 / 1 / 93)
+      S7 open  0018A120 0018A2BB dword [rbx+0xa0] <- ('M', '0018A2B8 dword ptr [rdx + 0x30]')
+      S7 copy  0018A4A0 0018A5C4 dword [rcx+0xa0] <- 0018A5BE dword ptr [rdx + 0xa0]
+      S7 this  001A0960 001A099A [rbx+0xa0]: this of AsyncLoadManager
+      S7 open  001A1310 001A13C6 qword [rsi+0xa0] <- ('M', '001A13BB qword ptr [rsi + 0x98]')
+      S7 copy  001C22A0 001C24AD dword [rdi+0xa0] <- 001C24A7 dword ptr [rsi + 0xa0]
+      S7 open  001E4000 001E43FA qword [rbx+0xa0] <- ('R', '0x18d240')
+      S7 open  001EAAB0 001EAB37 dword [rcx+0xa0] <- ('M', '001EAB34 dword ptr [rcx + 0x60]')
+      S7 open  001F3AE0 001F3DF4 qword [rbx+0xa0] <- ('R', 'qword ptr [rax + 0x118]')
+      S7 open  001F7790 001F796B qword [rdi+0xa0] <- ('R', '0x18d240')
+      S7 open  00204010 002040CE qword [r14+0xa0] <- ('U', '0020A989 lea [rax + rsi]')
+      S7 open  0020D2F0 0020D4C3 qword [rdi+0xa0] <- ('R', 'qword ptr [rip + 0x6b4c6d]')
+      S7 open  0020E6C0 0020E7C1 dword [rdx+0xa0] <- ('M', '0020E7BE dword ptr [rdi + 0x50]')
+      S7 open  00258350 0025893A dword [rbx+0xa0] <- ('M', '00258937 dword ptr [rdi + 4]')
+      S7 open  00266AD0 00266B79 qword [rdx+0xa0] <- ('U', "lea over ('U', 'no predecessor 00266AFB')"); ('U', 'lea over (\'U\', "lea over (\'U\', \'no predecessor
+      S7 open  00297C10 00297CEC qword [rdi+0xa0] <- ('U', '0029A39A add rbx, rax')
+      S7 open  002DB080 002DB645 dword [rdi+0xa0] <- ('M', '002DB58A dword ptr [rsp + 0x44]')
+      S7 open  002DB080 002DB76F dword [rdi+0xa0] <- ('M', '002DB6C1 dword ptr [rsp + 0x44]')
+      S7 open  002DC290 002DC410 dword [rdx+0xa0] <- ('M', '002DC30E word ptr [r9]')
+      S7 open  00329220 00329716 dword [rdi+0xa0] <- ('U', '00329713 shl eax, 0x10')
+      S7 open  0036C5A0 0036C5C1 qword [rax+0xa0] <- ('U', '002EA4E7 lea [rip - 0x378e]'); ('U', '002EA4F8 lea [rip - 0x379f]')
+      S7 open  003713C0 00371424 dword [rbx+0xa0] <- ('R', '0x20e620')
+      S7 open  003721E0 0037224F dword [rbx+0xa0] <- ('R', '0x20e620')
+      S7 open  003B5E20 003B5EFE dword [r9+0xa0] <- ('M', '003B5EFB dword ptr [rdx + 0x4c]')
+      S7 open  003CC000 003CC026 dword [rcx+0xa0] <- ('M', '003CC023 dword ptr [r8]')
+      S7 open  003CC080 003CC0A6 dword [rcx+0xa0] <- ('M', '003CC0A3 dword ptr [r8]')
+      S7 open  003DB0D0 003DB106 qword [rax+0xa0] <- ('U', "add over ('M', '002E6380 qword ptr [rax + 0x138]')")
+      S7 open  00402A40 00402B96 qword [rbx+0xa0] <- ('M', '00402B71 qword ptr [rdi + 0x98]'); ('M', '00402B83 qword ptr [rax + 0x98]'); ('U', 'clobbered by the ca
+      S7 open  00429140 004291F3 dword [rbx+0xa0] <- ('R', '0x20e620')
+      S7 open  00461270 0046189D dword [rdx+0xa0] <- ('M', '00461896 dword ptr [r8 + 0x140]')
+      S7 open  00466420 00466498 qword [rcx+0xa0] <- ('U', 'no predecessor 00466498')
+      S7 open  00541E00 00541E8E dword [rdi+0xa0] <- ('M', '00541E85 dword ptr [rdi]')
+      S7 open  005A5F10 005A628C dword [rcx+0xa0] <- ('M', '005A6285 dword ptr [rbp]')
+      S7 open  005C22B0 005C2552 dword [rbx+0xa0] <- ('M', '005C254C dword ptr [rip + 0x196ab3e]')
+      S7 open  005C22B0 005C2820 dword [rbx+0xa0] <- ('M', '005C281A dword ptr [rip + 0x196a870]')
+      S7 copy  005DEC50 005DED74 dword [rcx+0xa0] <- 005DED6E dword ptr [rdx + 0xa0]
+      S7 copy  005DF3E0 005DF514 dword [rcx+0xa0] <- 005DF50E dword ptr [rdx + 0xa0]
+      S7 open  005FECF0 005FED52 qword [rbx+0xa0] <- ('R', '0x604750')
+      S7 open  006084B0 006085B4 dword [rdi+0xa0] <- ('M', '006085B0 dword ptr [r14 + 0x20]')
+      S7 open  0060DF70 0060E30E dword [rcx+0xa0] <- ('M', '0060E306 dword ptr [r8 + rcx + 0xa0]')
+      S7 open  0060F830 0060F984 qword [rbx+0xa0] <- ('R', '0x604750')
+      S7 this  006566D0 00656757 [rbx+0xa0]: this of Phyre::PPostProcessing::PCelShading
+      S7 this  00656F20 00656FF3 [rbx+0xa0]: this of Phyre::PPostProcessing::PScreenSpaceReflection
+      S7 this  00657330 0065738C [rbx+0xa0]: this of Phyre::PPostProcessing::PDepthOfField
+      S7 copy  00692290 006923AA dword [rcx+0xa0] <- 006923A4 dword ptr [rdx + 0xa0]
+      S7 copy  006928B0 006929B2 qword [rcx+0xa0] <- 006929AB qword ptr [rdx + 0xa0]
+      S7 open  00692AC0 00692C2F qword [rdi+0xa0] <- ('R', '0x17d260')
+      S7 this  006BAB40 006BAC9E [rbx+0xa0]: this of Phyre::PThreadPoolWorkStealing
+      S7 copy  006C10F0 006C1214 dword [rcx+0xa0] <- 006C120E dword ptr [rdx + 0xa0]
+      S7 open  006CC860 006CC903 dword [rsi+0xa0] <- ('U', '006CC8FF sete r14b')
+      S7 open  006F6010 006F6053 dword [rdx+0xa0] <- ('M', '006F6046 dword ptr [rbx + 0x4f4]')
+      S7 open  006F9030 006F9315 qword [rdi+0xa0] <- ('M', '006F9311 qword ptr [rax + rcx*8]')
+      S7 open  006F9030 006F947E qword [rdi+0xa0] <- ('M', '006F947A qword ptr [rax + rcx*8]')
+      S7 open  006F9030 006F9548 qword [rdi+0xa0] <- ('M', '006F9528 qword ptr [rdi + 0x90]')
+      S7 open  006F9030 006F9631 qword [rdi+0xa0] <- ('M', '006F95AF qword ptr [rax + rcx*8]')
+      S7 open  006F9030 006FAB76 dword [rax+0xa0] <- ('M', '006FA9B3 dword ptr [rdi + 0x550]'); ('M', '006FAA50 dword ptr [rdi + 0x4c8]')
+      S7 open  006F9030 006FB1C3 dword [rax+0xa0] <- ('M', '006FA9B3 dword ptr [rdi + 0x550]'); ('M', '006FAA50 dword ptr [rdi + 0x4c8]')
+      S7 open  0070B780 0070B869 dword [rcx+0xa0] <- ('M', '0070B863 dword ptr [rbx + 0x4d8]')
+      S7 open  00722110 007222FC dword [rdi+0xa0] <- ('U', '007223E7 inc ebx')
+      S7 copy  00722110 00722409 dword [rdi+0xa0] <- 007222CC dword ptr [rdi + 0xa0]
+      S7 open  0072A320 0072A509 dword [r14+0xa0] <- ('R', 'qword ptr [rax + 0x48]')
+      S7 open  0072A320 0072BC55 dword [rsi+0xa0] <- ('R', 'qword ptr [rax + 0x60]')
+      S7 copy  00747960 00748155 dword [r13+0xa0] <- 00747E9D dword ptr [r13 + 0xa0]
+      S7 copy  007485F0 00748B9B dword [rbx+0xa0] <- 00748891 dword ptr [rbx + 0xa0]
+      S7 open  0075BFC0 0075BFF5 dword [rcx+0xa0] <- ('M', '006FB2D6 dword ptr [rdi + 0x594]'); ('M', '0070B86F dword ptr [rbx + 0x594]')
+      S7 open  0075BFC0 0075C02C dword [r8+0xa0] <- ('M', '006FB2D6 dword ptr [rdi + 0x594]'); ('M', '0070B86F dword ptr [rbx + 0x594]')
+      S7 open  0075CD90 0075CDAC dword [rcx+0xa0] <- ('M', '0070B8DD dword ptr [rbx + 0x4d8]'); ('M', '0075CDA1 dword ptr [rcx + 0xa0]')
+      S7 open  0075CEB0 0075D247 dword [rdi+0xa0] <- ('M', '0075D239 dword ptr [rsp + 0x70]')
+      S7 open  0075D4E0 0075D81A dword [rbx+0xa0] <- ('M', '006F8F3C dword ptr [rbx + 0x4c8]'); ('M', '0075D80E dword ptr [rbx + 0xa0]')
+      S7 open  00766680 0076679D dword [rcx+0xa0] <- ('U', '00766797 sub eax, dword ptr [rcx + 0xa0]')
+      S7 open  00768980 00768A7C dword [rdi+0xa0] <- ('M', '00768A79 dword ptr [rbx + 0x68]')
+      S7 open  0076CC70 0076E518 qword [r14+0xa0] <- ('R', '0x720fb0')
+      S7 open  0076CC70 0076E7AA qword [r14+0xa0] <- ('M', '0076E79A qword ptr [r14 + 0x88]'); ('M', '0076E7A3 qword ptr [r14 + 0x80]')
+      S7 open  0077FFE0 00780079 byte [rbx+0xa3] <- ('M', '00780063 byte ptr [rsp + 0x53]')
+      S7 open  00780590 00780729 byte [rdi+0xa3] <- ('M', '00780711 byte ptr [rsp + 0x2c]'); ('M', '00780718 byte ptr [rsp + 0x24]')
+      S7 open  00791D80 00791DFC qword [rbx+0xa0] <- ('U', '00791DEE lea [rip + 0x507b]')
+      S7 copy  007BFFA0 007C00FA dword [rcx+0xa0] <- 007C00F4 dword ptr [rdx + 0xa0]
+      S7 open  007C72A0 007C73A6 qword [rbx+0xa0] <- ('M', '007C7397 qword ptr [rbx + 0x60]')
+      S7 open  00800750 00800842 qword [rbx+0xa0] <- ('R', '0x809948')
+      S7 open  00807C80 00807D82 qword [rbx+0xa0] <- ('R', '0x809948')
+      S7 open  0081B680 0081B7BC qword [r11+0xa0] <- ('M', '00819BB0 qword ptr [rdi + 0x98]'); ('M', '00819BD0 qword ptr [rbx + 0x30]'); ('M', '0081AC60 qword ptr 
+      S7 open  0081BAC0 0081BB8E qword [rsi+0xa0] <- ('M', '0081AC60 qword ptr [rbx + 0x80]'); ('M', '0081AD46 qword ptr [rcx + 0x80]')
+      S7 open  008382D0 0083841A qword [rbx+0xa0] <- ('R', '0x849b30')
+      S7 open  0083A070 0083A177 dword [rdx+0xa0] <- ('M', '0083A171 dword ptr [rcx + 0x90]')
+      S7 open  00849B30 00849BF5 qword [rbx+0xa0] <- ('M', '00838406 qword ptr [rbx + 0xa8]'); ('R', '0x847e60')
+      S7 open  00863850 00863950 dword [rdx+0xa0] <- ('M', '0086394D dword ptr [rdi + 0x50]')
+      S7 open  00864330 00864455 dword [rdx+0xa0] <- ('M', '0086444F dword ptr [rbp + 0x90]')
+      S7 this  00864750 00864786 [rbx+0xa0]: this of GiSprite
+      S7 open  00864860 008649A8 dword [rdx+0xa0] <- ('M', '008649A1 dword ptr [r15 + 0xc0]')
+      S7 open  00877EE0 00878017 dword [rcx+0xa0] <- ('M', '00877FDE dword ptr [rcx + 0x24]')
+      S7 this  0087B850 0087B940 [rbx+0xa0]: this of Phyre::PDeveloperExtensions::PUtilityDeveloperExtensions
+      S7 open  0087B850 0087BA90 dword [rbx+0xa0] <- ('U', "lea over ('M', '0087BA68 dword ptr [rbx + 0xa0]')")
+      S7 open  00712180 0071227C dword [r10+0xa0] <- ('M', '00712279 dword ptr [rcx + 0x10]')
+PASS  S7 the 93: {'open': 74, 'polymorphic base': 7, 'same-field copy': 11, 'setter': 1}
+FAILS 0

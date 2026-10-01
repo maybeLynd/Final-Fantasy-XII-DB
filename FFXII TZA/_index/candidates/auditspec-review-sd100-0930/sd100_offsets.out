@@ -1,0 +1,11 @@
+embedding offsets K found through `lea rcx, [base+K]` before element-method calls: 55 (caller, base, K) triples
+distinct K: 0x-18EC73 x1, 0x-18EC45 x1, 0x-80 x2, 0x-70 x1, 0x-40 x1, 0x20 x3, 0x30 x9, 0x40 x4, 0x50 x3, 0x60 x8, 0x70 x3, 0xA0 x1, 0xC0 x1, 0xD0 x6, 0xE0 x3, 0x130 x6, 0x1550 x1, 0x1DF66D7 x1
+002A5460  [rsp+0x30] (mode byte +0xE0)  callees ['002AC1E0', '002B3120']
+    write 002A54AE or dword ptr [rsp + 0xe0], 0x2000000  [keeps low byte]
+002A5F40  [rdi+0xD0] (mode byte +0x180)  callees ['002B27E0']
+    write 002A5FE8 mov byte ptr [rdi + 0x180], cl
+002A6190  [rdi+0xD0] (mode byte +0x180)  callees ['002B28F0', '002B2930']
+    write 002A6606 mov byte ptr [rdi + 0x180], 1
+002AC5F0  [rbp+0x-70] (mode byte +0x40)  callees ['002AE450', '002AE610', '002AEB20', '002B2150', '002B2970', '002B43C0']
+    write 002ADBC2 mov dword ptr [rbp + 0x40], eax
+(triples with no covering write are omitted)

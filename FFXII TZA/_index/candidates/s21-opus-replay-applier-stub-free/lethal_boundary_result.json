@@ -1,0 +1,75 @@
+{
+ "cases": {
+  "font_pack_binds_by_its_shipped_callback": true,
+  "font_table_read_now_succeeds_and_the_glyph_emitter_calls_the_graphics_context": true,
+  "lethal_path_reaches_the_message_display_through_the_death_credit": true,
+  "no_contract_step_of_the_lethal_chain_is_reached": true,
+  "zeroed_context_cell_only_moves_the_fault_into_the_graphics_layer": true
+ },
+ "live_game": false,
+ "ok": true,
+ "runs": {
+  "graphics_context_null": {
+   "apply_ok": false,
+   "d64": "0",
+   "fault": [
+    "00000028"
+   ],
+   "fault_function": "005C52D0",
+   "font_bound": true,
+   "font_slots_rel": {
+    "02AEE810": "40",
+    "02AEE850": "16080",
+    "02AEE870": "168C0",
+    "02AEE878": "16980",
+    "02AEE880": "17140",
+    "02AEE888": "17400"
+   },
+   "hp": 0,
+   "killer": "0",
+   "order": [
+    "0028F1F0 display",
+    "00469BB0 death credit",
+    "0032A150 credit",
+    "002B4090 display",
+    "002AC5F0 glyph emitter",
+    "0039BA00 font table",
+    "002AC5F0 glyph emitter",
+    "0039BA00 font table",
+    "002AC5F0 glyph emitter",
+    "001B5FA0 graphics context"
+   ]
+  },
+  "graphics_context_zeroed_cell": {
+   "apply_ok": false,
+   "d64": "0",
+   "fault": [
+    "00000040"
+   ],
+   "fault_function": "001B51C0",
+   "font_bound": true,
+   "font_slots_rel": {
+    "02AEE810": "40",
+    "02AEE850": "16080",
+    "02AEE870": "168C0",
+    "02AEE878": "16980",
+    "02AEE880": "17140",
+    "02AEE888": "17400"
+   },
+   "hp": 0,
+   "killer": "0",
+   "order": [
+    "0028F1F0 display",
+    "00469BB0 death credit",
+    "0032A150 credit",
+    "002B4090 display",
+    "002AC5F0 glyph emitter",
+    "0039BA00 font table",
+    "002AC5F0 glyph emitter",
+    "0039BA00 font table",
+    "002AC5F0 glyph emitter",
+    "001B5FA0 graphics context"
+   ]
+  }
+ }
+}

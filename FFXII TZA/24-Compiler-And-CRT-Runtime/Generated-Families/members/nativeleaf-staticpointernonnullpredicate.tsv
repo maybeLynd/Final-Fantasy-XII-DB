@@ -1,0 +1,19 @@
+# NativeLeaf.StaticPointerNonNullPredicate - EC-7 family C, declared on generated-function-families.md
+#
+# 10 members. Body size(s): 13 B x10.
+# 10 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 10 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+00228480
+00237420
+0029D280
+002B66D0
+002B9FC0
+002DE040
+00360D60
+00394520
+003CB3D0
+003F4BC0

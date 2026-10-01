@@ -1,0 +1,12 @@
+# eastl-basicstring-variant-initialisers -- EC-7 family C, XC-array cluster.
+# 7 members of the .CRT$XI dynamic-initialiser array
+# sharing one (size, call-set, tail-set) signature;
+# select_xc_array_clusters.py --write
+entry	size	calls	tail
+0015C650	228	001EDF00	00808B90
+0015C7C0	228	001EDF00	00808B90
+0015C8D0	228	001EDF00	00808B90
+0015C9E0	228	001EDF00	00808B90
+0015CB10	228	001EDF00	00808B90
+0015D2F0	74	001EDF00	00808B90
+0015DBB0	74	001EDF00	00808B90

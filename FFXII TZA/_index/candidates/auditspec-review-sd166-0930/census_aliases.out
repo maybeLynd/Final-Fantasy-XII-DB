@@ -1,0 +1,3 @@
+# script_verb_census.py --verbs $(cat census_aliases.ids): the 48 ids (k<<12)+{3,4,8,9} for every class k whose dispatch slot keeps the class-2 table 01F26720 (k = 1,2,4,6,8..15)
+CALL-family sites decoded: 16666842 | matching calls: 0
+zone files: 0 (language copies agree on (script, verb) in 0)

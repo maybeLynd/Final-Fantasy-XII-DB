@@ -1,0 +1,9 @@
+PASS  N twelve 'Failed to allocate <lvalue>' strings each follow the store they name: +0x43A8 (pbi->mt_current_mb_col), +0x43B0 pbi->pmutex, +0x43E0 (pbi->mt_yabove_row), +0x43E8 (pbi->mt_uabove_row), +0x43F0 (pbi->mt_vabove_row), +0x43F8 (pbi->mt_yleft_col), +0x4400 (pbi->mt_uleft_col), +0x4408 (pbi->mt_vleft_col), +0x4410 (pbi->mb_row_di), +0x4418 (pbi->de_thread_data), +0x4420 (pbi->h_decoding_thread), +0x4428 (pbi->h_event_start_decoding)
+PASS  N2 00171AE0: rdi = pbi + 0x12C0 (the error context and the base of [rdi + 0xBB4]), rsi = pbi
+PASS  C 00171480: maxThreads +0x4384 clamped to 8 and to +0x34E8; +0x4380 = 1, +0x438C = count - 1; records {i, pbi, &mb_row_di[i]}; +0x4430 a semaphore; +0x4390 = +0x438C (imports ['InitializeCriticalSection', 'malloc', 'malloc', 'malloc', 'malloc', 'CreateSemaphoreW', '_beginthreadex', 'SetThreadPriority', 'CreateSemaphoreW'])
+PASS  S 00171AE0: syncRange +0x43A4 = 1 / 8 / 16 / 32 by the 16-aligned width (640 / 1280 / 2560); row counts from +0x12C0 + 0xBB4 = +0x1E74
+PASS  E 0016DE20: code +0, has-detail +4, detail +8 (79 chars + NUL at +0x57), armed flag +0x58, longjmp(+0x60, code)
+PASS  R 0016F840: counts +0x1C80[4], index +0x1C90, refs +0x12A0..+0x12B8 from +0x1C90..+0x1C9C, setjmp(+0x1320) armed at +0x1318; show_frame +0x1E68 gates +0x34DC++ and +0x1EB8 = +0x1EB0; +0x4438 = arg4, +0x4440 = 0
+PASS  G 0016EA80 (pbi = [ctx + 0x1B0]): returns when +0x4440 == 1 or +0x1E68 == 0; else +0x4440 = 1 and pbi + 0x12C0 goes to 00177A70
+PASS  P the named rows are in the store; Vp8DecoderInstance, Vp8FrameBuffer, VpxInternalErrorInfo and Vp8DecodeThreadData tile
+FAILS 0

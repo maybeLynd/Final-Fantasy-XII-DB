@@ -1,0 +1,11 @@
+{
+  "verdict": "ACCEPT_SCOPED_ADMISSION",
+  "cases": 13,
+  "reused_inputs": 12,
+  "new_minimal_self_review_reject": 1,
+  "source_commit": "f21fe80440fc9d24df09fc19172753394fe61773",
+  "write_campaign": "OPEN_NOT_EXECUTED",
+  "complete_M2": false,
+  "full_L1_L2": false,
+  "independent_acceptance_of_this_package": "PENDING"
+}

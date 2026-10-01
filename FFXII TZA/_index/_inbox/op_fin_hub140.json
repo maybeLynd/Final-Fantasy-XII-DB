@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-140",
+ "result_refs": [
+  "batch-140: 22 bodies A-measured on 16 bearing hosts (0x 2-A - band empty - + top 22 of 1-A, any_interior excluded from selection); anchors 4287 (+22), 0 MID; hash clean (3 known unreproduced); crossref 2812; 4 crossing rows added (record-00329220 Script_VM_Native_Bridge; party-roster Input/Presentation/UI); guard ADDS NOTHING (2807->2798)"
+ ],
+ "note": "batch-140 research finish"
+}

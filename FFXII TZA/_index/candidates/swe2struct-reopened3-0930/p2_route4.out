@@ -1,0 +1,16 @@
+PASS C0   the image is the certified EXE  -- 73461d0896204b1c
+PASS C1   control PClusterHeaderBase (a recovered class): bare, descriptor, accessor and a COL-held descriptor  -- 6 3 2 3
+PASS C2   control PLight (a recovered class): bare, descriptor, accessor and a COL-held descriptor  -- 25 3 2 3
+PASS C3   control PLightType (a type-table entry): present as a string, no PClassDescriptor*<T> symbol  -- 13 0
+PASS C4   control PNoSuchClassZZ (fabricated): absent by all three
+PASS F1   bare name present in .rdata / .data: 22 / 22  -- 22
+PASS F2   named as the template argument of PClassDescriptor*<T>: 21 / 22, the exception PContextSwitch  -- ['PContextSwitch']
+PASS F3   owns a PObjectAccessor<class ... T ...>::Get: 21 / 22, the exception PContextSwitch  -- ['PContextSwitch']
+PASS F4   absent by all three: 0 / 22  -- []
+PASS F5   PContextSwitch's accessors are all for PArray<class Phyre::PRendering::PContextSwitch const *,8>  -- 2 strings
+PASS F6   each of the 21 has a PClassDescriptor*<T> type descriptor whose RVA a complete object locator in .rdata holds (live RTTI, not a stray string)  -- []
+PASS C5   sensitivity control for F6: the same RVA test on the 21 classes' accessor strings (not RTTI) fires on none  -- 37 strings, 0 fire
+PASS F7   the bare PContextSwitch string is at VA 00D809C8  -- 0xd809c8
+PASS F8   every descriptor match names exactly that class as its argument (no longer-name merge)  -- []
+CHECKS 14
+FAILS 0

@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-13T09:30:13.914Z",
+  "window": {
+    "app": "process:D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+    "id": 15273332,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "screenshot": "old-selected-save.jpg",
+  "note": "Manual slot004 selected: Rabanastre/Southgate,006:53:57, six level21 portraits,9999999 gil. Input file FFXII_004 header declares4E690 and bytes match EXP015 backup."
+}

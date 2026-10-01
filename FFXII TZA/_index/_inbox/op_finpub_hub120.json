@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-120",
+ "result_refs": [
+  "commit:811b2266f"
+ ],
+ "note": "batch-120 publish: 28 paths, guard ADDS NOTHING (HEAD 132 = publish 132); crossref 134, zero batch-owned"
+}

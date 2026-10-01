@@ -1,0 +1,70 @@
+{
+  "source_serialization": {
+    "primary.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_pending_primary.py",
+      "bytes": 3846,
+      "sha256": "8132160dd5a77e070a81066d6bf29a46189dbb9d4b24ebd548cb2151ca727265",
+      "transform": "CRLF to LF only"
+    },
+    "primary.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-pending-primary.json",
+      "bytes": 66307,
+      "sha256": "595b8bc10f8c2d9613d8be7fb387b88e21ab1e608a16dc01cbc9e939afaf88ad",
+      "transform": "CRLF to LF only"
+    },
+    "callers.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_pending_callers.py",
+      "bytes": 3846,
+      "sha256": "185a6e4355b71130cb2a9155600cbd726b81b6f7bca78f02d6ed28c43dd94756",
+      "transform": "CRLF to LF only"
+    },
+    "callers.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-pending-callers.json",
+      "bytes": 47569,
+      "sha256": "ac054791988a5ae9f8904c80c4eeb9eae3cd537a6b341380d3331a7ae7d46af2",
+      "transform": "CRLF to LF only"
+    },
+    "check.py": {
+      "path": "Database/Tools/work/ASTRA/spawn_pending_check.py",
+      "bytes": 2694,
+      "sha256": "71a0df5b6296f9f92efef3fc1a0c5ba8c84e7935e5f8d2bbad55c4057cac9cc7",
+      "transform": "identity"
+    },
+    "check.json": {
+      "path": "Database/Tools/work/ASTRA/spawn-pending-check.json",
+      "bytes": 2818,
+      "sha256": "da86cf718aab88c9c46ef293095449b4aeb9a2dc1f86007ab2fd71d4dd86b263",
+      "transform": "identity"
+    }
+  },
+  "files": {
+    "callers.json": {
+      "bytes": 45743,
+      "sha256": "4646900052f1c0bddf56ba84c6234a78544156d559625118c52091b24d9c11c6"
+    },
+    "callers.py": {
+      "bytes": 3766,
+      "sha256": "86d77ec758a9d0b947f4b32664ab5ed07fa0c909e38a14c654b9c523f5547128"
+    },
+    "check.json": {
+      "bytes": 2818,
+      "sha256": "da86cf718aab88c9c46ef293095449b4aeb9a2dc1f86007ab2fd71d4dd86b263"
+    },
+    "check.py": {
+      "bytes": 2694,
+      "sha256": "71a0df5b6296f9f92efef3fc1a0c5ba8c84e7935e5f8d2bbad55c4057cac9cc7"
+    },
+    "primary.json": {
+      "bytes": 63767,
+      "sha256": "306a98efdfc26cba7d30b85086f51bbbed16d0fbd6cce2c29a7d6059f68666cb"
+    },
+    "primary.py": {
+      "bytes": 3766,
+      "sha256": "f7389a7462a2870a9e4c205bfb5f1cd65fb7e86d7b44a9c204a2a48bbe2be68d"
+    },
+    "README.md": {
+      "bytes": 2348,
+      "sha256": "8386b65d97a9ad39966825d4c5cf928e01afb0e5f219d31192d1518301049d5a"
+    }
+  }
+}

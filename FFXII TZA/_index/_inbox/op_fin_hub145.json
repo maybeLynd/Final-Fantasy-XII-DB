@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-145",
+ "note": "2-A remainder + top-18 1-A closed: all 22 bodies dumped from the verified image (0 errors), decoded, routed to 19 bearing hosts and appended as interior-cited evidence paragraphs. Highlights: 003F0610 is the chain/target-line plate builder (chain_item/targetline_p/chainflash dispatch); 003E1C50/0040EEA0 are the load/store pointer-fixup siblings over the 0020E600/0020E620 offset resolver; 001E1670 the TA-list object ctor; 00333C80 the version-8/9 record repack; 0020BB10 EASTL 0x18-stride insert-fill; 00526D80/00528F00 the twin per-tick shake channels; 0027B880 the 22-case menu-command dispatch. Gates: anchors 4,415 (+22, 0 MID, 0 outside-body); paragraph-address gate 0 UNSUPPORTED in the 22 entries; hash audit clean (standing set); crossref 2,902 findings / 400 dispositioned; publish-neighbour guard initially refused +5 pairs, resolved with 5 crossing-section sentences (3 new sections created) - final ADDS NOTHING, 5 pre-existing pairs accounted.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/analysis-kit/gfz-scripts/hub145_dumps.txt",
+  "Database/Tools/work/hub145_callers.txt"
+ ]
+}

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FF12 player progression</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f3f0; --surface: #fcfcfb; --surface-2: #f0efec; --border: #e2e0da;
+  --text: #0b0b0b; --text-2: #52514e; --muted: #7a7873;
+  --s1: #2a78d6; --s3: #1baf7a; --good: #0ca30c; --critical: #d03b3b; --link: #1c5cab; --chip: #e7e5df; --sel: #e4eefb;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #33332f;
+    --text: #ffffff; --text-2: #c3c2b7; --muted: #8f8d85;
+    --s1: #3987e5; --s3: #199e70; --link: #86b6ef; --chip: #2c2c29; --sel: #1f2c3d;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #33332f;
+  --text: #ffffff; --text-2: #c3c2b7; --muted: #8f8d85;
+  --s1: #3987e5; --s3: #199e70; --link: #86b6ef; --chip: #2c2c29; --sel: #1f2c3d;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 14px 16px 4px; max-width: 1400px; margin: 0 auto; }
+header h1 { font-size: 19px; margin: 0; }
+header .meta { color: var(--text-2); font-size: 12.5px; }
+header .spacer { flex: 1; }
+input[type=search] { font: inherit; padding: 5px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); width: min(340px, 100%); }
+main { max-width: 1400px; margin: 0 auto; padding: 0 16px 40px; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 13px; margin: 8px 0 10px; color: var(--muted); }
+.crumbs a { color: var(--link); text-decoration: none; cursor: pointer; } .crumbs a:hover { text-decoration: underline; }
+.crumbs .here { color: var(--text); font-weight: 600; }
+.head h2 { margin: 0 0 2px; font-size: 18px; }
+.head p { margin: 2px 0; color: var(--text-2); font-size: 13px; max-width: 900px; }
+.basis { color: var(--muted); font-size: 12px; }
+.note { background: var(--surface-2); border-radius: 8px; padding: 8px 12px; font-size: 12.5px; color: var(--text-2); margin: 8px 0; max-width: 900px; }
+.measures { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 8px 0 12px; }
+.measures > div { min-width: 220px; flex: 0 1 300px; }
+.cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
+.cards.small { grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: 8px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; cursor: pointer; text-align: left; font: inherit; color: inherit; display: block; width: 100%; }
+.card:hover { border-color: var(--s1); }
+.card h3 { margin: 0 0 2px; font-size: 14.5px; }
+.cards.small .card { padding: 9px 12px; } .cards.small .card h3 { font-size: 13.5px; }
+.card .blurb { color: var(--text-2); font-size: 12.5px; }
+.card.dim { opacity: .65; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 12.5px; margin-top: 6px; }
+.row .v { font-weight: 650; font-variant-numeric: tabular-nums; }
+.bar { height: 7px; border-radius: 4px; background: var(--surface-2); overflow: hidden; margin-top: 3px; }
+.bar > i { display: block; height: 100%; }
+.count { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.up { color: var(--good); } .down { color: var(--critical); } .flat { color: var(--muted); }
+.split { display: grid; grid-template-columns: minmax(240px, 380px) 1fr; gap: 12px; align-items: start; }
+@media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+.list, .detail { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.list .tools { padding: 8px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: center; }
+.list .tools input { width: 100%; }
+.list ul { list-style: none; margin: 0; padding: 4px 0; max-height: calc(100vh - 290px); min-height: 200px; overflow: auto; }
+.list li.grp { font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding: 8px 12px 2px; }
+.list li.it { padding: 5px 12px; cursor: pointer; display: flex; justify-content: space-between; gap: 8px; }
+.list li.it:hover { background: var(--surface-2); } .list li.it.on { background: var(--sel); }
+.list li .s { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 55%; }
+.list .pager { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+button.lnk { font: inherit; font-size: 12px; background: none; border: 1px solid var(--border); border-radius: 6px; padding: 2px 8px; color: var(--text); cursor: pointer; }
+button.lnk:disabled { opacity: .4; cursor: default; }
+.detail { padding: 14px 16px; min-height: 200px; }
+.detail h3 { margin: 0 0 6px; font-size: 16px; }
+.detail table { border-collapse: collapse; font-size: 13px; width: 100%; }
+.detail td { padding: 4px 8px 4px 0; vertical-align: top; border-top: 1px solid var(--border); }
+.detail td:first-child { color: var(--muted); width: 180px; white-space: nowrap; }
+.sec { margin: 10px 0 4px; } .sec h4 { margin: 0 0 3px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.secs { display: grid; gap: 4px 24px; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); margin: 6px 0; max-width: 1000px; }
+.secs table { border-collapse: collapse; font-size: 13px; width: 100%; } .secs td { padding: 3px 8px 3px 0; border-top: 1px solid var(--border); vertical-align: top; }
+.secs td:first-child { color: var(--muted); width: 45%; }
+a.xl { color: var(--link); cursor: pointer; text-decoration: none; } a.xl:hover { text-decoration: underline; }
+.about { color: var(--text-2); font-style: italic; margin: 0 0 8px; }
+details.dev { margin-top: 14px; font-size: 12px; color: var(--muted); } details.dev summary { cursor: pointer; }
+details.dev table { font-size: 12px; } h4.more { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 16px 0 6px; }
+.mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12px; }
+.chip { font-size: 11.5px; padding: 1px 7px; border-radius: 99px; background: var(--chip); color: var(--text-2); margin-left: 4px; }
+.sub { color: var(--muted); font-size: 12px; }
+.err { color: var(--critical); }
+.hits { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.hits .h { padding: 6px 12px; border-top: 1px solid var(--border); cursor: pointer; display: flex; gap: 10px; justify-content: space-between; }
+.hits .h:first-child { border-top: 0; } .hits .h:hover { background: var(--surface-2); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Player progression</h1>
+  <span class="meta" id="meta">loading…</span>
+  <span class="spacer"></span>
+  <input type="search" id="q" placeholder="Search everything (areas, enemies, licences…)" aria-label="search all categories">
+</header>
+<main>
+  <nav class="crumbs" id="crumbs"></nav>
+  <div id="view"></div>
+  <p class="sub" id="foot"></p>
+</main>
+<script>
+// A nested browser over the tree v_journey builds (build_views.journey_tree): categories -> groups -> a list/detail pane.
+// The location is the hash (#<node id> or #<node id>/<item index>), so the back button and a reload keep the place.
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const PAGE = 60;
+let data = null, byId = {}, parent = {}, links = {}, query = "", filter = "", page = 0, lastNode = null, meas = {};
+let ENT = null, entGen = null, entLoading = false, recovered = {};
+const FAMILY_OF = {growth: "licences", bestiary: "enemies"};   // a category node that is one family
+const pct = (n, d) => d ? 100 * n / d : null;
+function index(n, p) {
+  byId[n.id] = n; parent[n.id] = p;
+  for (const c of n.children || []) index(c, n.id);
+}
+// Where a link to a catalogue key goes: its home listing, precomputed by the builder (journey.links).
+function linkTo(l) {
+  if (!l) return null;
+  if (l.startsWith("node:")) return byId[l.slice(5)] ? [l.slice(5), null] : null;
+  return links[l] || null;
+}
+// The pages load once per generation, the first time a reader opens an entry (the tree itself stays light).
+async function loadEntries() {
+  const gen = (data.meta || {}).generation;
+  if (ENT && entGen === gen) return;
+  if (entLoading) return;
+  entLoading = true;
+  try {
+    const r = await (await fetch("/api/view/journey_entries", {cache: "no-store"})).json();
+    ENT = (r.view && r.view.entries) || {}; entGen = gen;
+  } catch (e) { ENT = {}; entGen = null; }
+  entLoading = false; render();
+}
+function sections(secs) {
+  return (secs || []).map(sec => `<section class="sec"><h4>${esc(sec.title)}</h4><table>${(sec.entries || []).map(e => {
+    const t = linkTo(e.link);
+    const v = t ? `<a class="xl" data-go="${esc(t[0])}" ${t[1] != null ? `data-i="${t[1]}"` : ""}>${esc(e.value)}</a>` : esc(e.value);
+    return `<tr><td>${esc(e.label)}</td><td>${v}</td></tr>`; }).join("")}</table></section>`).join("");
+}
+function devBlock(dev, basis) {
+  if (!dev && !basis) return "";
+  const rows = [];
+  if (basis) rows.push(["Grouped by", basis]);
+  if (dev && dev.grouped_by && dev.grouped_by !== basis) rows.push(["Grouped by", dev.grouped_by]);
+  if (dev && dev.keys) rows.push(["Catalogue keys", dev.keys.join(", ")]);
+  if (dev && dev.undocumented_category_value != null) rows.push(["Category value (meaning not documented yet)", dev.undocumented_category_value]);
+  for (const r of (dev && dev.rows) || []) {
+    rows.push([r.table ? `${r.table}${r.row != null ? " row " + r.row : ""}` : "Row", Object.entries(r.fields || {}).map(([k, v]) => k + " = " + (typeof v === "object" ? JSON.stringify(v) : v)).join(" · ")]);
+    if (r.undecoded) rows.push(["Not decoded yet", r.undecoded]);
+  }
+  for (const k of ["map", "areaId"]) if (dev && dev[k] != null) rows.push([k === "map" ? "Map file" : "Area id", dev[k]]);
+  return `<details class="dev"><summary>Where this comes from (for modders)</summary><table>${rows.map(r => `<tr><td>${esc(r[0])}</td><td class="mono">${esc(r[1])}</td></tr>`).join("")}</table></details>`;
+}
+function go(id, item) { location.hash = "#" + id + (item != null ? "/" + item : ""); }
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1)).split("/");
+  const id = byId[h[0]] ? h[0] : "root";
+  return {id, item: h.length > 1 && h[1] !== "" ? +h[1] : null};
+}
+function trail(id) { const t = []; for (let x = id; x != null; x = parent[x]) t.unshift(byId[x]); return t; }
+function deltaOf(n) {
+  const m = meas[n.mid]; const p = m && m.delta && m.delta.pp;
+  if (p == null) return "";
+  return ` <span class="${p > 0 ? "up" : p < 0 ? "down" : "flat"}">${p > 0 ? "+" : ""}${p.toFixed(2)} pp</span>`;
+}
+function bars(n) {
+  const u = n.und, up = u ? pct(u.accepted, u.total) : null;
+  const c = n.coop, cp = c && n.count ? pct(c.works, n.count) : null;
+  return `<div><div class="row"><span>Understood by the database</span><span class="v">${up == null ? "—" : up.toFixed(1) + "%"}${deltaOf(n)}</span></div>
+      <div class="bar"><i style="width:${up || 0}%;background:var(--s1)"></i></div></div>
+    <div><div class="row"><span>Works in co-op</span><span class="v">${cp == null ? "—" : cp.toFixed(1) + "%"}</span></div>
+      <div class="bar"><i style="width:${cp || 0}%;background:var(--s3)"></i></div></div>`;
+}
+const ONE = {maps: "map", names: "name", entries: "entry", slots: "slot"};
+const kidsText = n => { const k = (n.children || []).filter(c => !/-unused$/.test(c.id)).length;
+  return k > 1 && !n.items ? ` · ${k} ${n.kids || "groups"}` : ""; };
+const countText = n => n.count == null ? "not catalogued yet" : n.count.toLocaleString() + " " + (n.count === 1 ? ONE[n.unit] || n.unit : n.unit || "entries");
+function card(n, small) {
+  const empty = n.count == null || n.count === 0;
+  return `<button class="card ${empty ? "dim" : ""}" data-go="${esc(n.id)}"><h3>${esc(n.title)}</h3>
+    ${n.blurb ? `<div class="blurb">${esc(n.blurb)}</div>` : ""}
+    ${!small && (n.und || n.coop !== undefined) ? bars(n) : ""}
+    <div class="count">${esc(countText(n))}${kidsText(n)}</div></button>`;
+}
+function head(n) {
+  const u = n.und;
+  return `<div class="head"><h2>${esc(n.title)}</h2>${n.blurb ? `<p>${esc(n.blurb)}</p>` : ""}
+    </div>${n.sections ? `<div class="secs">${sections(n.sections)}</div>` : ""}
+    ${n.und || n.coop !== undefined ? `<div class="measures">${bars(n)}</div>` : ""}
+    ${u ? `<div class="sub">Database understanding counts the ${esc(u.labels.join(" + "))} requirements (${u.accepted.toLocaleString()} of ${u.total.toLocaleString()}); it is the whole category's figure, not a per-entry score.</div>` : ""}
+    ${recText(n)}${n.note ? `<div class="note">${esc(n.note)}</div>` : ""}${n.basis ? devBlock(null, n.basis) : ""}`;
+}
+function recText(n) {
+  const r = recovered[FAMILY_OF[n.id] || n.id];
+  return r && r.denominator ? `<div class="sub">Entries with details from the game's data: ${r.numerator.toLocaleString()} of ${r.denominator.toLocaleString()}.</div>` : "";
+}
+function renderCrumbs(id, item) {
+  const t = trail(id);
+  document.getElementById("crumbs").innerHTML = t.map((n, i) => i === t.length - 1 && item == null
+    ? `<span class="here">${esc(n.title)}</span>` : `<a data-go="${esc(n.id)}">${i === 0 ? "← " : ""}${esc(n.title)}</a>`).join(" / ") +
+    (item != null && byId[id].items && byId[id].items[item] ? ` / <span class="here">${esc(byId[id].items[item].name)}</span>` : "");
+}
+function detail(n, it, i) {
+  if (!it) return `<p class="sub">Choose an entry on the left.</p>`;
+  const title = `<h3 class="${it.mono ? "mono" : ""}">${esc(it.name)}${it.unused ? ' <span class="chip">unused slot</span>' : ""}</h3>`;
+  if (!ENT || entGen !== (data.meta || {}).generation) { loadEntries(); return title + `<p class="sub">Loading details…</p>`; }
+  const pg = ENT[it.eid] || {};
+  const body = sections(pg.sections);
+  return title + `${it.n > 1 ? `<p class="sub">Appears ${it.n} times in this list's data.</p>` : ""}
+    ${pg.about ? `<p class="about">${esc(pg.about)}</p>` : ""}
+    ${body || (pg.about ? "" : `<p class="sub">Nothing more is known about this entry yet.</p>`)}
+    ${devBlock(pg.dev)}`;
+}
+function renderList(n, item) {
+  const all = n.items.map((it, i) => ({it, i}));
+  const f = filter.toLowerCase();
+  const shown = f ? all.filter(x => (x.it.name + " " + (x.it.sub || "") + " " + (x.it.group || "")).toLowerCase().includes(f)) : all;
+  const pages = Math.max(1, Math.ceil(shown.length / PAGE));
+  if (item != null && lastNode !== n.id + "/" + item) { const at = shown.findIndex(x => x.i === item); if (at >= 0) page = Math.floor(at / PAGE); }
+  page = Math.min(page, pages - 1);
+  let g = undefined, rows = "";
+  for (const x of shown.slice(page * PAGE, page * PAGE + PAGE)) {
+    if (x.it.group !== undefined && x.it.group !== g) { g = x.it.group; rows += `<li class="grp">${esc(g || "No named location")}</li>`; }
+    rows += `<li class="it ${x.i === item ? "on" : ""}" data-item="${x.i}"><span class="${x.it.mono ? "mono" : ""}">${esc(x.it.name)}${x.it.n > 1 ? `<span class="chip">×${x.it.n}</span>` : ""}</span><span class="s">${esc(x.it.sub || "")}</span></li>`;
+  }
+  const it = item != null ? n.items[item] : null;
+  return `<div class="split"><div class="list"><div class="tools"><input type="search" id="filter" placeholder="Filter ${esc(n.title)}" value="${esc(filter)}"></div>
+    <ul>${rows || `<li class="sub" style="padding:8px 12px">${n.items.length ? "Nothing matches." : "No entries."}</li>`}</ul>
+    <div class="pager"><button class="lnk" id="prev" ${page ? "" : "disabled"}>‹ Prev</button><span>${shown.length.toLocaleString()} shown${pages > 1 ? ` · page ${page + 1} of ${pages}` : ""}</span><button class="lnk" id="next" ${page < pages - 1 ? "" : "disabled"}>Next ›</button></div></div>
+    <article class="detail">${detail(n, it, item)}</article></div>`;
+}
+function searchAll() {
+  const hits = [];
+  for (const id in byId) {
+    const n = byId[id];
+    if (n.title.toLowerCase().includes(query) && id !== "root") hits.push({id, label: n.title, path: trail(id).slice(1, -1).map(x => x.title).join(" / "), kind: "group"});
+    (n.items || []).forEach((it, i) => { if ((it.name + " " + (it.sub || "")).toLowerCase().includes(query)) hits.push({id, i, label: it.name, path: trail(id).slice(1).map(x => x.title).join(" / "), kind: ""}); });
+    if (hits.length > 400) break;
+  }
+  return `<div class="head"><h2>Search: “${esc(query)}”</h2><p>${hits.length > 400 ? "More than 400 matches; the first 400 are shown." : hits.length + " matches."}</p></div>
+    <div class="hits">${hits.slice(0, 400).map(h => `<div class="h" data-go="${esc(h.id)}" ${h.i != null ? `data-i="${h.i}"` : ""}><span>${esc(h.label)}${h.kind ? ' <span class="chip">group</span>' : ""}</span><span class="sub">${esc(h.path)}</span></div>`).join("") || '<div class="h sub">Nothing matches.</div>'}</div>`;
+}
+function render() {
+  if (!data) return;
+  const {id, item} = route(), n = byId[id], v = document.getElementById("view");
+  if (lastNode && lastNode.split("/")[0] !== id) { filter = ""; page = 0; }
+  if (query) { document.getElementById("crumbs").innerHTML = `<a data-clear="1">← Clear search</a>`; v.innerHTML = searchAll(); }
+  else {
+    renderCrumbs(id, item);
+    const cards = n.children && n.children.length ? `<div class="cards ${id === "root" ? "" : "small"}">${n.children.map(c => card(c, id !== "root")).join("")}</div>` : "";
+    v.innerHTML = head(n) + (n.items ? (n.items.length ? renderList(n, item) : "") + (cards ? `<h4 class="more">More</h4>` + cards : "") : cards);
+  }
+  lastNode = id + "/" + item;
+  v.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { if (query) { query = ""; document.getElementById("q").value = ""; }
+    go(b.dataset.go, b.dataset.i != null ? +b.dataset.i : null); render(); });
+  document.querySelectorAll("#crumbs [data-go]").forEach(b => b.onclick = () => { go(b.dataset.go); render(); });
+  const cl = document.querySelector("#crumbs [data-clear]"); if (cl) cl.onclick = () => { query = ""; document.getElementById("q").value = ""; render(); };
+  v.querySelectorAll("li.it").forEach(li => li.onclick = () => { go(id, +li.dataset.item); render(); });
+  const fe = document.getElementById("filter");
+  if (fe) fe.oninput = e => { filter = e.target.value; page = 0; const pos = e.target.selectionStart; render();
+    const f2 = document.getElementById("filter"); f2.focus(); f2.setSelectionRange(pos, pos); };
+  const pv = document.getElementById("prev"), nx = document.getElementById("next");
+  if (pv) pv.onclick = () => { page--; render(); }; if (nx) nx.onclick = () => { page++; render(); };
+}
+async function load() {
+  try {
+    const r = await (await fetch("/api/view/journey", {cache: "no-store"})).json();
+    if (!r.view) { document.getElementById("view").innerHTML = `<p class="err">${esc(r.status)}: ${esc(r.why || r.error || "")}</p>`; return; }
+    const gen = (r.meta || {}).generation;
+    if (data && gen && gen === ((data.meta || {}).generation)) return;   // unchanged: keep the reader's place
+    const tree = (r.view.journey || {}).tree;
+    if (!tree) { document.getElementById("view").innerHTML = `<p class="err">The content catalogue is not available in this build. ${esc((r.view.source || {}).limits || "")}</p>`; return; }
+    data = r; byId = {}; parent = {}; index(tree, null); links = r.view.journey.links || {}; recovered = r.view.journey.recovered || {};
+    meas = Object.fromEntries((r.view.measures || []).map(m => [m.id, m]));
+    document.getElementById("meta").textContent = "generation " + (gen || "?") + " · " + r.view.status;
+    const ctl = r.view.journey.controls || [];
+    document.getElementById("foot").textContent = (ctl.length ? `Catalogue checks: ${ctl.filter(c => c.ok).length} of ${ctl.length} pass. ` : "") + ((r.view.source || {}).limits || "");
+    render();
+  } catch (e) { document.getElementById("view").innerHTML = `<p class="err">dashboard unreachable: ${esc(e)}</p>`; }
+}
+document.getElementById("q").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); render(); });
+window.addEventListener("hashchange", render);
+load(); setInterval(load, 30000);
+</script>
+</body>
+</html>

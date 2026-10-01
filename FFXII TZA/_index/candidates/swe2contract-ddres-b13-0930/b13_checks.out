@@ -1,0 +1,242 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS R1 00252D90 reads the word - 00252D96  mov ebx, dword ptr [rip + 0x1e3f994]
+PASS R1 00252D90 asks the stop-registry handle - 00252DA4  call 0x255290
+PASS R1 00252D90 cancels the handle through 00225CD0 - 00252DBE  call 0x225cd0
+PASS R1 00252D90: without a handle, id 11 goes to 002260A0 - 00252DAD  cmp ebx, 0xb
+PASS R1 00252D90 zeroes 02092730 - 00252DC5  mov dword ptr [rip + 0x1e3f965], eax
+PASS R1 00252D90 zeroes 02092734 - 00252DCB  mov dword ptr [rip + 0x1e3f963], eax
+PASS R1 00252D90 has 16 direct call sites - 00279E20@0027A8A0 00280140@00280286 0028E970@0028E9A2 00290780@002907BB 0035C960@0035C9B7 0035CF50@0035CF7E 0035D6B0@0035D731 0035D8D0@0035D903 0035DA80@0035DAA8 003C8990@003C89FC 003C8A50@003C8AE3 003C8B70@003C8C8D 003C8B70@003C8D62 003C8B70@003C8E0E 003C8B70@003C8F25 003C8B70@003C907B
+PASS R1 00252D90 is called from 00280286, the generic route's area controller 00280140 (message 18)
+PASS R1 00252D90 is called from 0035D731, request 24's widget
+PASS R1 00252D90 is called from 0028E9A2, request 12's arm 0028E970
+PASS R1 00252D90 is called from 0035DAA8, 0035DA80, of the 0035D6B0 / 0035D8D0 / 0035D980 / 0035DA80 quartet
+PASS R1 the reset 00252DE0 zeroes 02092730 - 00252DFF  mov dword ptr [rip + 0x1e3f92b], eax
+PASS R1 the reset 00252DE0 zeroes 02092734 - 00252E05  mov dword ptr [rip + 0x1e3f929], eax
+PASS R1 00252DE0's one caller is the area unload 002628B0 - [(2500784, 2502094)]
+PASS R1 control: 02092734's writers are exactly 00252B46 (the setter), 00252DCB and 00252E05 - 00252B46 00252DCB 00252E05
+PASS R1 control: the router's gate reads 02092734 at 00254B71
+PASS R2 0035D6B0 is installed only by 0035D080 (lea at 0035D0B5) - [(3526784, 3526837, 'lea')]
+PASS R2 request 3's route builds the same widget when 022C83E8 bit 6 is set - 0035DA02  call 0x35d080
+PASS R2 message 1 posts the word with flag 1 - 0035D825  call 0x252b40
+PASS R2 message 1, id 24: row 8 bit 0 set (ecx = 0x18 - 0x10) - 0035D83C  lea ecx, [rax - 0x10]
+PASS R2 message 1, id 24: 002E1C20 - 0035D83F  call 0x2e1c20
+PASS R2 message 1, id 24: bit 0x14 = 20 - 0035D844  mov edx, 0x14
+PASS R2 message 1, id 24: row 8 again (ecx = 0x14 - 0xC) - 0035D849  lea ecx, [rdx - 0xc]
+PASS R2 message 1 publishes the singleton 022CA428 - 0035D869  mov qword ptr [rip + 0x1f6cbb8], rbx
+PASS R2 message 1 sets the countdown +0xC0 = 24 - 0035D89C  mov dword ptr [rbx + 0xc0], 0x18
+PASS R2 message 2 decrements +0xC0 - 0035D7DE  mov dword ptr [rbx + 0xc0], eax
+PASS R2 message 2 at zero opens the caption once - 0035D803  call 0x35c660
+PASS R2 message 2 marks +0xC4 bit 0 - 0035D808  or dword ptr [rbx + 0xc4], 1
+PASS R2 message 12 reacts to 0x8100 - 0035D79C  cmp qword ptr [rdx + 8], 0x8100
+PASS R2 message 12 closes the widget - 0035D7AD  call 0x244f00
+PASS R2 message 18, id 24: clears the word - 0035D731  call 0x252d90
+PASS R2 message 18, id 24: 002E1CA0 clears the row-8 bits - 0035D746  call 0x2e1ca0
+PASS R2 message 18, id 24: request id 24 - 22 = 2 - 0035D74D  lea ecx, [rdi - 0x16]
+PASS R2 message 18, id 24: parameter 0 - 0035D74B  xor edx, edx
+PASS R2 message 18, id 24: posted to the mailbox - 0035D750  call 0x2e1b10
+PASS R2 message 18, id 3: 0035BC50 (the selection state) is on the id-3 arm - 0035D771  call 0x35bc50
+PASS R2 the id-3 arm is chosen by cmp edi, 3 - 0035D723  cmp edi, 3
+PASS R2 002E1C20 is the row setter (or [0215F1C0 + row*4], 1 << bit)
+PASS R3 0035C660 tests the word against 3 - 0035C66B  cmp dword ptr [rip + 0x1d360be], 3
+PASS R3 text 0x86E for request 3 - 0035C672  mov ecx, 0x86e
+PASS R3 text 0x86F otherwise - 0035C697  mov ecx, 0x86f
+PASS R3 the text lookup - 0035C69C  call 0x2f9860
+PASS R3 the dialog builder 00241C90 - 0035C6D6  call 0x241c90
+PASS R3 0x86F is menu_message.bin's 'All members of the party have fallen. Reform the / party with one or more reserve members.' - ('menu_message.bin', 'All members of the party have fallen. Reform the / party with one or more reserve members.')
+PASS R3 0x86E is 'Select a new party leader.' - ('menu_message.bin', 'Select a new party leader.')
+PASS R3 control: 0x87E is 'Save complete.' (gi13's control) - ('menu_message.bin', 'Save complete.')
+PASS R3 control: 0x82E is the disc text (UQ-299's control) - ('menu_message.bin', 'The FINAL FANTASY XII disc cannot be found.')
+PASS R3 control: 0xC03 is 'Choose your destination.' (this page's own help_menu reading) - ('help_menu.bin', 'Choose your destination.')
+PASS R4 request 11's arm 003EF750 builds the 0x108 widget 003EF830 - 003EF753  lea rdx, [rip + 0xd6]
+PASS R4 no 002F9860 call in 003EE000..003F0000 (the game-over family) - []
+PASS R4 the only wide immediates in the family are 0x8001 and 0x7fee (no text id) - [(4124752, 4125123, 'mov edx, 0x8001'), (4126768, 4126939, 'cmp rax, 0x7fee')]
+PASS R4 control: the same scan finds 002F9860 calls in 002D5000..002D7000 - ['002D51D5', '002D5205', '002D6786', '002D679C', '002D67B3']
+PASS R5 the kind byte +0x10FA2 is written at 0028E6F6 (1), 002903FC (the argument) and 002917D3 (1) - [(2680464, 2680566), (2687984, 2687996), (2692944, 2693075)]
+PASS R5 002903F0's callers: 0027F5D0 (0027FA27), 002804E0, 00281ED0 - [(2618832, 2619943), (2622688, 2622813), (2629328, 2630579)]
+PASS R5 request 17 passes kind 2 - 0027F993  mov ecx, 2
+PASS R5 request 15 passes kind 3 - 0027FA22  mov ecx, 3
+PASS R5 request 18 passes kind 7 - 0027F9A2  mov ecx, 7
+PASS R5 002804E0 passes kind 6 - 00280558  mov ecx, 6
+PASS R5 00281ED0 passes edi - 002823B1  mov ecx, edi
+PASS R5 ... which is 1 (lea edi, [rbp + 1], rbp = 0) - 00282352  lea edi, [rbp + 1]
+PASS R5 its readers: 0028E704 (installer), 0028E7AF (cmp 3, keeps the route word), 0028E7C8, 0028F862 (the getter) - [(2680464, 2680580, 'movzx ecx, byte ptr [rax + 0x10fa2]'), (2680720, 2680751, 'cmp byte ptr [rax + 0x10fa2], 3'), (2680720, 2680776, 'movzx ecx, byte ptr [rax + 0x10fa2]'), (2685008, 2685026, 'movzx ecx, byte ptr [rax + 0x10fa2]')]
+PASS R5 the getter 0028F850 has one caller, 002814E0 (0028179B) - [(2626784, 2627483)]
+PASS R5 002814E0's kind arm: 2 and 3 close the fullscreen request - 002817A8  jle 0x28153c
+PASS R5 002814E0's kind arm: 6 apart - 002817AE  cmp eax, 6
+PASS R5 002814E0's kind arm: 7 closes the fullscreen request too - 002817B3  cmp eax, 7
+PASS R5 ... jump to 0028153C - 002817B6  je 0x28153c
+PASS R5 other kinds reinstall the field menu's world map 0028E690 - 002817CA  call 0x28e690
+PASS R5 0028153C closes context +0x100 (00244F00) - 00281558  jmp 0x244f00
+PASS R5 close code 0x418 dispatches to the kind arm 0028179B - 0028179B
+PASS R5 the world-map host's close passes 0x418 - 00552230  mov ecx, 0x418
+PASS R5 00552230 is the host's (lea in 00552250) - [(5579344, 5579419, 'lea')]
+PASS R5 in the host band 00550000..00554000 the kind word +0x172 is compared only with 6 (00552386) - [(5579654, 'cmp word ptr [rbx + 0x172], 6')]
+PASS R5 the host's title switch: kind 2 -> 0xC03 - 00552421  mov ecx, 0xc03
+PASS R5 the host's title switch: kind 3 -> 0xC04 - 0055241A  mov ecx, 0xc04
+PASS R5 the host's title switch: kind 5 -> 0xBFA - 00552413  mov ecx, 0xbfa
+PASS R5 the map widget's kind +0xCA is compared only with 0 (2 sites) and 6 (4 sites) - [(3918948, 'cmp byte ptr [rax + 0xca], 6'), (3919552, 'cmp byte ptr [rax + 0xca], 6'), (3930152, 'cmp byte ptr [rax + 0xca], 0'), (3934549, 'movzx edx, byte ptr [rax + 0xca]'), (3935664, 'cmp byte ptr [rax + 0xca], 0'), (3936166, 'cmp byte ptr [rax + 0xca], 6'), (3938636, 'cmp byte ptr [rax + 0xca], 6')]
+PASS R5 the node predicate's switch on +0xCA picks 0, 2, 3, 4 and 6 (sub 2 / sub 1 / sub 1 / cmp 2) and nothing for 1, 5 or 7 - ['edx, 2', 'edx, 1', 'edx, 1', 'edx, 2']
+PASS R5 nothing compares +0x172, +0xCA or +0x10FA2 with 7 - []
+PASS R5 control: the getter-result compare at 002817B3 is found by the same instruction scan - [(2626784, 2627507, 'cmp eax, 7')]
+PASS R6 menumap_world.bin: 'wmap', 39 node records of 0x1C at word[+0xA] - b'wmap' 39
+PASS R6 node 1's name id 60100 is 'Rabanastre' - 'Rabanastre'
+PASS R6 node 3's name id 60102 is 'Nalbina Fortress' - 'Nalbina Fortress'
+PASS R6 node 12's name id 60111 is 'Archades' - 'Archades'
+PASS R6 node 20's name id 60119 is 'Bhujerba' - 'Bhujerba'
+PASS R6 node 34's name id 60133 is 'Balfonheim Port' - 'Balfonheim Port'
+PASS R6 control: node 1's id 60100 is 'Rabanastre', as decode_menumap.out.txt records
+PASS R6 control: node 22 (the route-15 self-link) is 'Ogir-Yensa Sandsea'
+PASS R6 the link table has 60 entries and routes 1..15 - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+PASS R6 routes 1..14 are the seven legs, each once per direction (route 15 the self-link at node 22) - {1: (1, 12), 2: (12, 1), 3: (1, 3), 4: (3, 1), 5: (1, 20), 6: (20, 1), 7: (3, 12), 8: (12, 3), 9: (3, 34), 10: (34, 3), 11: (20, 34), 12: (34, 20), 13: (12, 34), 14: (34, 12), 15: (22, 22)}
+PASS R7 the close table 00280048: id 2 -> 0027FC9C; 6, 15, 17, 18, 19 -> 0027FD0A - 0027FC9C 0027FD1C 0027FD1C 0027FD1C 0027FD0A 0027FD1C 0027FD1C 0027FD1C 0027FCC2 0027FD1C 0027FD1C 0027FD1C 0027FD1C 0027FD0A 0027FCEB 0027FD0A 0027FD0A 0027FD0A
+PASS R7 id 2: parameter tested - 0027FCA2  test edx, edx
+PASS R7 id 2: non-zero parameter goes on to 0027FD10 - 0027FCA4  jne 0x27fd10
+PASS R7 id 2: parameter 0 opens the 0x288 menu widget 00280D20 - 0027FCAE  call 0x280d20
+PASS R7 non-zero: the fullscreen procedure's opener 0027F540 - 0027FD17  call 0x27f540
+PASS R7 00280D20 builds a 0x288-byte widget with procedure 00280DE0 - 00280D59  lea rdx, [rip + 0x80]
+PASS R7 the arm's instructions are the ones the emulation follows - ['mov ecx, dword ptr [rbx + 0xd4]', 'mov edi, 1', 'lea eax, [rcx - 1]', 'cmp eax, 0x1f', 'cmovbe ecx, edi', 'sub ecx, edi', 'je 0x27fa11', 'sub ecx, 0x1f', 'je 0x27fa11', 'cmp ecx, 0x22', 'je 0x27f9f3', 'xor ecx, ecx', 'call 0x27ef00', 'mov ecx, edi', 'call 0x28e660', 'jmp 0x27fa31']
+PASS R7 1..0x20 -> airship page; 0x42 -> tutorial; 0, 0x21, 0x40, 0x41 and others -> location map - {0: 'location map', 1: 'airship', 20: 'airship', 32: 'airship', 33: 'location map', 64: 'location map', 65: 'location map', 66: 'tutorial', 32767: 'location map'}
+PASS R7 the airship target 0027FA11 stores the word (002901B0) and kind 3 - 0027FA1D  call 0x2901b0
+PASS R7 the tutorial target 0027F9F3 calls 002B9FD0 - 0027F9F3  call 0x2b9fd0
+PASS R7 control: 0028E660 opens the location map, 002B9D30(x, 5) (the map-screens page) - 0028E664  mov edx, 5
+PASS R8 00290CF0 tests +0x10F68 bit 0x10 - 00290D37  test al, 0x10
+PASS R8 ... only while no request word is up - 00290D3F  cmp dword ptr [rip + 0x1e019ea], 0
+PASS R8 ... reads the stored id +0x10F60 - 00290D8F  movzx eax, word ptr [rbx + 0x10f60]
+PASS R8 ... calls 00276650 - 00290DC0  call 0x276650
+PASS R8 00276650 builds a 0x61F0-byte widget - 002766D8  mov edx, 0x61f0
+PASS R8 ... with procedure 00279E20 - 002766D1  lea r8, [rip + 0x3748]
+PASS R8 00290CF0's one caller is the update gate 0028E290 - [(2679440, 2679936)]
+PASS R8 control: 0028FD50 writes +0x10F60 (the page's request 1 / 4 action) - 0028FD65  mov word ptr [rax + 0x10f60], cx
+PASS R9 byte stores at +0x598 image-wide: 0056BADA, 0056C01F (the gambit-screen bodies 0056B4D0 / 0056BE40) and 0058052A - [(5682384, 5683930, 'mov byte ptr [rsi + 0x598], 0x20'), (5684800, 5685279, 'mov byte ptr [rbx + 0x598], al'), (5766784, 5768490, 'mov byte ptr [rcx + 0x598], dil')]
+PASS R9 0058052A is in the slot selector 0057FE80
+PASS R9 the controller 00582860 only compares +0x598 (00582E8A) - [(5779082, 'cmp byte ptr [rbx + 0x598], 0')]
+PASS R9 the widget factory's initialiser zeroes the object (memset) - 00246626  call 0x861ec0
+PASS R10 bit 12 of a +4 dword is set or cleared only in 00233C10, 00239960 and 0023A390 - [(2309136, 2309230), (2309136, 2309286), (2333024, 2333237), (2333024, 2333246), (2335632, 2335643), (2335632, 2335651)]
+PASS R10 0023A390's callers: the verb handler 0050F500 and the load normaliser 00584210 - [(5305600, 5305618), (5784080, 5784467)]
+PASS R10 0050F500 pops an int and tail-jumps 0023A390 - 0050F512  jmp 0x23a390
+PASS R10 control: the getter 00236760 reads bit 12 - 0023676A  shr eax, 0xc
+PASS R10 the verb table binds 0050F500 to verb 0x308D, unnamed - 308D	3	08D							instantaneous				0050F500	result	0050F500	FUN_0050f500	Script_V
+PASS R11 002ABF70 has one call site, 002A9945 in 002A8C50 - [(2788432, 2791749)]
+PASS R11 002A8C50 has no direct caller (a drawer slot)
+PASS R11 control: 009164C8 holds 002A8C50 (the drawer table, slot 1 of kind 0)
+PASS R12 0028E970's builder 002D5030 makes the 0x760 widget with procedure 002D5EB0 - 002D5039  lea rdx, [rip + 0xe70]
+PASS R12 002D5170 (called by 002D5EB0) is the window's only text lookup
+PASS R12 002D5170 selects text 0x4669 - 002D519B  mov dword ptr [rsp + 0x20], 0x4669
+PASS R12 002D5170 selects text 0x466a - 002D51A3  mov dword ptr [rsp + 0x24], 0x466a
+PASS R12 002D5170 selects text 0x466c - 002D51AB  mov dword ptr [rsp + 0x28], 0x466c
+PASS R12 002D5170's other text is 0x46B4 - 002D5200  mov ecx, 0x46b4
+PASS R12 0x4669 is a control-code template in menu_command_template.bin (starts with {0F}) - menu_command_template.bin {0F}h{82}
+PASS R12 0x466a is a control-code template in menu_command_template.bin (starts with {0F}) - menu_command_template.bin {0F}o{80}
+PASS R12 0x466c is a control-code template in menu_command_template.bin (starts with {0F}) - menu_command_template.bin {0F}p{82}
+PASS R12 0x46b4 is a control-code template in menu_command_template.bin (starts with {0F}) - menu_command_template.bin {0F}V{81}{94}
+PASS R13 the translator 002E0DA0 has one caller, 002E1A60 - [(3021408, 3021423)]
+PASS R13 002E1A60's callers are 003462D0 and 003470D0 - [(3433168, 3433224), (3436752, 3436818)]
+PASS R13 ... the begin handlers of verbs 0x472 and 0x48D, both openfullscreenmenu - {'0472': '003470D0', '048D': '003462D0'} {'0472': 'openfullscreenmenu', '048D': 'openfullscreenmenu_48d'}
+PASS R13 control: the request word 0215F1A4 has the five writers the page lists (two resets, 002E1A60, 002E1AE0, the mailbox) - 002E0B97 002E15D9 002E1AC4 002E1AF0 002E1B41
+PASS R14 CONTRACT-auto-status-rebuild.md carries 'It returns the heavy-node count (`r12d`), or `-1`'
+PASS R14 CONTRACT-text-control-codes-and-dyngeo-draw.md carries 'to the constant control code `0F 23` (`&0x230F` at'
+PASS R14 himg-handbook-image-bundles.md carries 'the generic batch-commit this page already'
+PASS R14 the-title-asset-singleton-and-its-distinct-consumer.md carries '`00394400` is called only from the message-18 arm'
+PASS R14 the-setsavedata-presets-test-battle-scenarios.md carries '`002CFD10` (28 B) calls `002527B0(6, 4, 0)` then t'
+PASS R14 control: L-13 reads SUPERSEDED in the register
+PASS N1 002B3400 stores 0039BAD0's return at +0xA6 - 002B3425  mov byte ptr [rdi + 0xa6], al
+PASS N1 0039BAD0 scans the table 02AEE810 - 0039BADD  lea r8, [rip + 0x2752d2c]
+PASS N1 ... from slot 1 - 0039BAD8  mov eax, 1
+PASS N1 ... comparing each entry with the argument - 0039BAE7  cmp dword ptr [r8 + rcx*8], edx
+PASS N1 ... up to slot 7 - 0039BAEF  cmp eax, 8
+PASS N1 ... and returns 0 when no slot matches - 0039BAF4  xor al, al
+PASS N1 002B3400: kind 7 only when 00254A10() is 0 - 002B3432  jne 0x2b3456
+PASS N1 002B3400: the compare with 7 - 002B3434  cmp byte ptr [rdi + 0xa6], 7
+PASS N1 002B3400: 7 sets +0x44 bit 11 - 002B343D  or dword ptr [rdi + 0x44], 0x800
+PASS N1 002B3400: and stores 0039C4A0(1) at +0x60 - 002B3452  mov qword ptr [rdi + 0x60], rax
+PASS N1 0039C4A0(1) returns [02AEE808] when it is bound - 0039C4A4  mov rax, qword ptr [rip + 0x275235d]
+PASS N1 control: 0039C4A0(0) returns [02AEE800] - 0039C4B0  mov rax, qword ptr [rip + 0x2752349]
+PASS N1 control: the run builder 002B32D0 has the same compare - 002B3328  cmp byte ptr [rdi + 0xa6], 7
+PASS N1 control: the drawer 002AC2F0 hands +0xA6 to the slot getter 0039BA30 - 002AC429  call 0x39ba30
+PASS N1 slot 7 of 02AEE810 is the qword at 02AEE848
+PASS N1 the loader page names 02AEE848 fontVariant[7], a sentinel in all shipped files
+PASS N1 the loader page: the pointer in 02AEE808 is the one in 02AEE848 plus 0x40 (past the header)
+PASS N2 002AF960 copies +0xB8 into the command stream - 002AFBDA  mov rax, qword ptr [rbx + 0xb8]
+PASS N2 ... as the data of code 0x47 - 002AFBE5  mov qword ptr [rcx + 0x28], 0x47
+PASS N2 002B1D20 does the same - 002B1D84  mov rax, qword ptr [r8 + 0xb8]
+PASS N2 ... code 0x47 - 002B1D8F  mov qword ptr [rcx + 0x18], 0x47
+PASS N2 the drawer 002A9F00 passes +0xB8 to the run begin - 002AA51A  mov rcx, qword ptr [rdi + 0xb8]
+PASS N2 ... 0017FA10 - 002AA52A  call 0x17fa10
+PASS N2 the helper writes 0x3001 at 002D860E - 002D860E  mov qword ptr [rbp + 0xb8], 0x3001
+PASS N2 the helper writes 0x3001 at 002D877F - 002D877F  mov qword ptr [rdi + 0xb8], 0x3001
+PASS N2 the helper writes 0x3001 at 002D88BF - 002D88BF  mov qword ptr [rdi + 0xb8], 0x3001
+PASS N2 the initialiser 002AC1E0 writes 0x30000 - 002AC249  mov qword ptr [rbx + 0xb8], 0x30000
+PASS N2 control: the record before it is code 6 (the texture descriptor) - 002AFBD2  mov qword ptr [rcx + 0x18], 6
+PASS N3 002A9F00's loop head reads the next byte - 002AA053  cmp byte ptr [rax], 0xf
+PASS N3 ... and the loop tail jumps back to it - 002AA74C  jmp 0x2aa050
+PASS N3 inside the loop each character goes through 002AC2F0 - 002AA0CD  call 0x2ac2f0
+PASS N3 ... before the pre-glyph advance is read - 002AA0D2  movss xmm0, dword ptr [rip + 0x1df2b92]
+PASS N3 ... and before the post-glyph advance is read - 002AA734  movss xmm0, dword ptr [rip + 0x1df252c]
+PASS N3 ... the two rip operands resolve to 0209CC6C and 0209CC68
+PASS N3 002AC2F0 takes the glyph's own advance field (0017F9C0 on its glyph entry's +0x1C) - 002AC4EF  call 0x17f9c0
+PASS N3 ... or bits 32-36 of its 8-byte record - 002AC4FD  and eax, 0x1f
+PASS N3 ... adds the spacing float +0x4C - 002AC507  addss xmm0, dword ptr [rdi + 0x4c]
+PASS N3 ... stores it at 0209CC78 - 002AC510  movss dword ptr [rip + 0x1df0760], xmm0
+PASS N3 ... scales the 16-byte block 0209CC70 by +0x34 - 002AC55C  mulps xmm2, xmmword ptr [rip + 0x1df070d]
+PASS N3 ... into the spacing block 0209CC60..0209CC6F - 002AC56A  movaps xmmword ptr [rip + 0x1df06ef], xmm2
+PASS N3 ... and a one-shot +0xA9 overrides 0209CC68 - 002AC5C3  movss dword ptr [rip + 0x1df069d], xmm0
+PASS N3 control: the number formatter 002AE610 calls 002AC2F0 once (002AE7D7), before its digit loop - [2811863]
+PASS N4 002D14E0 builds a 0x150-byte widget - 002D14F4  mov ecx, 0x150
+PASS N4 ... with procedure 002D2DB0 - 002D14ED  lea rdx, [rip + 0x18bc]
+PASS N4 0057C73C calls 002D14E0 - 0057C73C  call 0x2d14e0
+PASS N4 ... and stores it at owner +0xC0 (0057C745) - 0057C745  mov qword ptr [rsi + 0xc0], rax
+PASS N4 002A5845 calls 002D14E0 - 002A5845  call 0x2d14e0
+PASS N4 ... and stores it at owner +0xC0 (002A5855) - 002A5855  mov qword ptr [rsi + 0xc0], rax
+PASS N4 control: 002D14E0's callers include 00241D40, 002A5590 and 0057C480 - [(2366784, 2367287), (2600304, 2600625), (2750768, 2750897), (2774416, 2775109), (2923504, 2923757), (5751936, 5752636)]
+PASS N5 002D89E0 points rcx at its own stack block - 002D8A25  lea rcx, [rsp + 0x40]
+PASS N5 ... branches to the 002B3400 path - 002D8A2C  je 0x2d8a75
+PASS N5 ... where rcx is not reloaded before 002B3400 - ['mov r8, r15', 'mov rdx, r14', 'call 0x2b3400']
+PASS N6 002B33B1 reads the lag bound +0x9E - 002B33B1  movsx ecx, byte ptr [rdi + 0x9e]
+PASS N6 ... and stores minus it in the target +0x90 (002B33DC) - 002B33DC  mov word ptr [rdi + 0x90], ax
+PASS N6 ... negated in between (002B33B1..002B33DC)
+PASS N6 002B3CE9 reads the lag bound +0x9E - 002B3CE9  movsx eax, byte ptr [rbx + 0x9e]
+PASS N6 ... and stores minus it in the target +0x90 (002B3CF8) - 002B3CF8  mov word ptr [rbx + 0x90], ax
+PASS N6 ... negated in between (002B3CE9..002B3CF8)
+PASS N6 002B3D84 reads the lag bound +0x9E - 002B3D84  movsx eax, byte ptr [rdi + 0x9e]
+PASS N6 ... and stores minus it in the target +0x90 (002B3DB4) - 002B3DB4  mov word ptr [rdi + 0x90], ax
+PASS N6 ... negated in between (002B3D84..002B3DB4)
+PASS N6 control: the stepper reads +0x9E (002AC0FE) - 002AC0FE  movzx eax, byte ptr [rbx + 0x9e]
+PASS N7 register UQ-164 reads CLOSED - CLOSED - map complete; name unrecoverable (POD, no vtable)
+PASS N7 register UQ-166 reads ANSWERED - ANSWERED — no; all four doors accounted for and the kind-3 chain closed
+PASS N7 register UQ-168 reads ANSWERED - **ANSWERED 2026-09-18 (FABLE)** **ANSWERED 2026-09-18 (FABLE) — the counter was 
+PASS N7 register UQ-173 reads ANSWERED 2026-09-26 - **ANSWERED 2026-09-26 (FABLE, Claude Opus 5.5): all seven fields have meanings, 
+PASS N7 register UQ-383 reads ANSWERED - **ANSWERED 2026-09-18 (FABLE)** **ANSWERED 2026-09-18 (FABLE) — the cluster is t
+PASS N7 register AC-9 reads ANSWERED - **ANSWERED** — `002A9F00` is the glyph-run page's character loop — it decodes th
+PASS N7 register AC-10 reads ANSWERED - ANSWERED
+PASS N7 register UQ-381 reads ANSWERED - **ANSWERED 2026-09-18 (FABLE): in this build the record's own mask gates nothing
+PASS N7 control: an unknown id has no row
+PASS Q1 the cancel 0032E590 tests kind 0xFF - 0032E5B9  cmp byte ptr [rbx + 0x21], 0xff
+PASS Q1 ... and frees the path +0x24 - 0032E5CB  call 0x3697f0
+PASS Q1 ... before it reads the state - 0032E5D0  movzx eax, byte ptr [rbx + 0x20]
+PASS Q1 ... state 4 returns without anything else - 0032E5DE  je 0x32e5f9
+PASS Q1 ... states 2 and 3 become state 4 - 0032E603  mov byte ptr [rbx + 0x20], 4
+PASS Q1 the done helper 0032E330 frees a kind-0xFF path - 0032E360  jmp 0x3697f0
+PASS Q1 the error helper 0032E370 frees a kind-0xFF path - 0032E3A3  jmp 0x3697f0
+PASS Q1 the pump's state-4 completion calls +0x48 and releases, and frees nothing - ['cmp byte ptr [rbx + 0x20], 4', 'jne 0x32e19c', 'mov rax, qword ptr [rbx + 0x48]', 'test rax, rax', 'je 0x32e18b', 'mov ecx, dword ptr [rbx + 0x60]', 'mov dword ptr [rbx + 0x28], 0', 'call rax', 'mov rcx, rbx', 'mov byte ptr [rbx + 0x20], 0', 'call 0x32ec40', 'jmp 0x32e090']
+PASS Q1 the pump's state table: 1 issue, 2 counter, 3 and 4 share 0032E163, 5 and 6 share 0032E1AB - ['0x32e0bd', '0x32e149', '0x32e163', '0x32e163', '0x32e1ab', '0x32e1ab']
+PASS Q1 in the slot code 0032E000..0032ED00 only 0032E330, 0032E370 and 0032E590 free - [3334960, 3335024, 3335568]
+PASS Q1 control: +0x24 is touched only by the issue (0032E0DB, 0032E105), the three frees and the builder's store (0032E902) - [(3334256, 3334363), (3334256, 3334405), (3334960, 3334999), (3335024, 3335066), (3335568, 3335623), (3336304, 3336450)]
+PASS Q1 the raw-path users (003306E0, 003319D0, 00377DC0) are not direct callers of the cancel - [3344096, 3348944, 3636672] / [3130304, 3871504, 3872528, 3872992]
+PASS Q2 register EO-3 reads SUPERSEDED - **SUPERSEDED 2026-09-26 (FABLE, Claude Opus 5.5) under the r
+PASS Q2 register OV-19 reads PARTLY ANSWERED - **PARTLY ANSWERED 2026-09-29 (FABLE, applied by SWE2-FRONTIE
+PASS Q2 register OV-33 reads PARTLY ANSWERED - **PARTLY ANSWERED 2026-09-29 (FABLE, applied by SWE2-FRONTIE
+PASS Q2 register OV-36 reads ANSWERED - **ANSWERED 2026-09-29 (FABLE, applied by SWE2-FRONTIER):** a
+PASS Q2 OV-19 keeps actual IO issuance/completion timing open as RT
+PASS Q2 OV-33 keeps service issuance and loading-state timing open as RT
+PASS Q2 SECTION-02 review says 'Live elapsed time and actual scheduler/concurrency behavior '
+PASS Q2 SECTION-02 review says 'Path ownership, repeated cancellation safety and real alloca'
+PASS Q2 SECTION-02 review says 'That producer/reachability\nquestion remains separate.'
+PASS Q2 SECTION-02 review says 'this section does not newly\nexecute those implementations.'
+PASS Q2 the carrier FABLE-REQ-ASTRA-RT-REMAINDERS-0929 is on the board
+PASS Q2 the carrier FABLE-REQ-ASTRA-EO3-PATH-POINTER is on the board
+PASS Q2 control: an invented carrier is not
+PASS Q2 the chunk gate: 0032E620 asks 003EB0D0 - 0032E656  call 0x3eb0d0
+PASS Q2 ... and takes the whole-request path when no stream is active - 0032E665  je 0x32e742
+PASSES 239
+FAILS 0

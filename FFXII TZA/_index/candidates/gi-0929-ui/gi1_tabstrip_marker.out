@@ -1,0 +1,107 @@
+== 1. who installs 00566C10 (rip references, all listed functions; controls: both installers)
+PASS exactly two rip references to 00566C10, in 00567200 and 0056C170  -- [('0x567440', '0x567200'), ('0x56c2e1', '0x56c170')]
+PASS no E8/E9 call to 00566C10
+== 2. the create record's +0x14 (message at rsp+0x38 -> arg rsp+0x20, so +0x14 is [rsp+0x34])
+PASS 0056C2DC is 'lea r8, [rsp + 0x38]'  -- lea r8, [rsp + 0x38]
+PASS 0056C2EC is 'lea rax, [rsp + 0x20]'  -- lea rax, [rsp + 0x20]
+PASS 0056C2F6 is 'mov ecx, 1'  -- mov ecx, 1
+PASS 0056C304 is 'mov dword ptr [rsp + 0x34], ecx'  -- mov dword ptr [rsp + 0x34], ecx
+PASS 0056C35E is 'or dword ptr [rax + 0xe8], 2'  -- or dword ptr [rax + 0xe8], 2
+PASS 0056740B is 'lea r8, [rsp + 0x38]'  -- lea r8, [rsp + 0x38]
+PASS 00567421 is 'lea rax, [rsp + 0x20]'  -- lea rax, [rsp + 0x20]
+PASS 00567319 is 'xor edx, edx'  -- xor edx, edx
+PASS 005673A3 is 'mov edx, 0'  -- mov edx, 0
+PASS 00567438 is 'mov dword ptr [rsp + 0x34], edx'  -- mov dword ptr [rsp + 0x34], edx
+== 3. the merge and every reader of +0xE8 bit 0 in 00566C10 / 00566B70
+PASS 00566F4E is 'mov eax, dword ptr [rdi + 0x14]'  -- mov eax, dword ptr [rdi + 0x14]
+PASS 00566F51 is 'xor eax, dword ptr [rbx + 0xe8]'  -- xor eax, dword ptr [rbx + 0xe8]
+PASS 00566F57 is 'and eax, 1'  -- and eax, 1
+PASS 00566F5A is 'xor dword ptr [rbx + 0xe8], eax'  -- xor dword ptr [rbx + 0xe8], eax
+PASS 00566C4D is 'test byte ptr [rbx + 0xe8], 1'  -- test byte ptr [rbx + 0xe8], 1
+PASS 00566C7D is 'call 0x242b90'  -- call 0x242b90
+PASS 00566DBB is 'test byte ptr [rbx + 0xe8], 1'  -- test byte ptr [rbx + 0xe8], 1
+PASS 00566FB1 is 'test byte ptr [rbx + 0xe8], 1'  -- test byte ptr [rbx + 0xe8], 1
+PASS 00566B70 is 'test byte ptr [rcx + 0xe8], 1'  -- test byte ptr [rcx + 0xe8], 1
+PASS 00566CA3 is 'call 0x2cc8d0'  -- call 0x2cc8d0
+PASS 00567630 is 'call 0x566b70'  -- call 0x566b70
+PASS 00566C10 tests +0xE8 exactly at 00566C4D, 00566DBB, 00566E34 (bit 1), 00566FB1  -- ['0x566c4d', '0x566dbb', '0x566e34', '0x566fb1']
+PASS 00242B90 (the pointer draw) has one caller, 00566C7D  -- [(5663869, 5663760)]
+== 4. writers of +0xE8 in 00560000-00580000 (controls 00566F5A, 0056C35E)
+   00561060 in 00561020  mov qword ptr [rbx + 0xe8], rdi
+   00561708 in 00561390  mov qword ptr [rsi + 0xe8], rax
+   005647D4 in 00564780  mov qword ptr [rbx + 0xe8], rcx
+   00566F5A in 00566C10  xor dword ptr [rbx + 0xe8], eax
+   0056B3CA in 0056B350  mov qword ptr [rbx + 0xe8], rax
+   0056B56A in 0056B4D0  mov qword ptr [rax + 0xe8], rbp
+   0056C35E in 0056C170  or dword ptr [rax + 0xe8], 2
+   0056F0CF in 0056EF60  mov qword ptr [rdi + 0xe8], rdx
+   0056F134 in 0056EF60  mov qword ptr [rdi + 0xe8], rax
+   0056F256 in 0056EF60  mov qword ptr [rdi + 0xe8], rdx
+   00571A99 in 00571A50  mov byte ptr [rbx + 0xe8], al
+   00574337 in 005742D0  mov qword ptr [rdi + 0xe8], rax
+   00574F00 in 00574E80  mov qword ptr [rdi + 0xe8], rsi
+   00575102 in 00574E80  mov qword ptr [rdi + 0xe8], rax
+   00575294 in 00574E80  mov qword ptr [rdi + 0xe8], rsi
+   0057723F in 005771F0  mov qword ptr [rbx + 0xe8], rax
+   005786C5 in 00578450  mov qword ptr [rdi + 0xe8], rax
+   005786F4 in 00578450  mov byte ptr [r9 + rdx + 0xe8], bpl
+   0057A555 in 0057A4E0  mov qword ptr [rbx + 0xe8], rax
+   0057F661 in 0057F630  mov dword ptr [rbx + 0xe8], edx
+   0057F79E in 0057F6B0  mov dword ptr [rcx + 0xe8], eax
+   00580376 in 0057FE80  add byte ptr [rbx + 0xe8], 0xff
+PASS controls found: 00566F5A and 0056C35E
+PASS the marker-holding bodies write +0xE8 only at the two controls  -- ['0x566f5a', '0x56c35e']
+== 5. condition vs action: 0056ADA0 picks the tab builder by +0x588
+PASS 0056ADC1 is 'cmp dword ptr [rcx + 0x588], 1'  -- cmp dword ptr [rcx + 0x588], 1
+PASS 0056ADC8 is 'jne 0x56add1'  -- jne 0x56add1
+PASS 0056ADCA is 'call 0x56b100'  -- call 0x56b100
+PASS 0056ADD1 is 'call 0x56ae80'  -- call 0x56ae80
+PASS 0056B6BC is 'mov eax, dword ptr [rbx + 0x18]'  -- mov eax, dword ptr [rbx + 0x18]
+PASS 0056B6BF is 'mov dword ptr [rsi + 0x588], eax'  -- mov dword ptr [rsi + 0x588], eax
+PASS 0056B3A5 is 'mov dword ptr [rsp + 0x50], r8d'  -- mov dword ptr [rsp + 0x50], r8d
+PASS 0056A45B is 'movzx ecx, byte ptr [rbx + 0x336]'  -- movzx ecx, byte ptr [rbx + 0x336]
+PASS 0056A462 is 'mov dword ptr [rax + 0x588], ecx'  -- mov dword ptr [rax + 0x588], ecx
+PASS 0056A516 is 'call 0x56ae80'  -- call 0x56ae80
+PASS 0056A54B is 'call 0x56b100'  -- call 0x56b100
+PASS 00567E0E is 'movsx ecx, byte ptr [rbx + 0x33e]'  -- movsx ecx, byte ptr [rbx + 0x33e]
+PASS 00567E69 is 'lea r8d, [rax + 1]'  -- lea r8d, [rax + 1]
+PASS 00567E39 is 'lea r8d, [rax + 2]'  -- lea r8d, [rax + 2]
+== 6. the two tab builders: grid, menu kind, class query, frame constants
+PASS 00327BD0 reads byte 0208D310 (target-condition grid pages)
+PASS 00327BB0 reads byte 0208D300 (action grid pages)
+PASS 0056B16D is 'call 0x327bd0'  -- call 0x327bd0
+PASS 0056B1D4 is 'mov dword ptr [rsp + 0x30], 0x23'  -- mov dword ptr [rsp + 0x30], 0x23
+PASS 0056B273 is 'lea ecx, [rax + 0xa]'  -- lea ecx, [rax + 0xa]
+PASS 0056B135 is 'xor esi, esi'  -- xor esi, esi
+PASS 0056B1B8 is 'mov word ptr [rdi + 4], si'  -- mov word ptr [rdi + 4], si
+PASS 0056B2B7 is 'mov eax, 2'  -- mov eax, 2
+PASS 0056B2BC is 'mov word ptr [rdi + 4], ax'  -- mov word ptr [rdi + 4], ax
+PASS 0056AEE3 is 'call 0x327bb0'  -- call 0x327bb0
+PASS 0056AF65 is 'mov dword ptr [rsp + 0x30], 0x22'  -- mov dword ptr [rsp + 0x30], 0x22
+PASS 0056B005 is 'lea ecx, [rax - 0x74]'  -- lea ecx, [rax - 0x74]
+PASS 0056AF1D is 'mov eax, 1'  -- mov eax, 1
+PASS 0056AF49 is 'mov word ptr [rsi + 4], ax'  -- mov word ptr [rsi + 4], ax
+PASS 0056B060 is 'mov eax, 3'  -- mov eax, 3
+PASS 0056B065 is 'mov word ptr [rsi + 4], ax'  -- mov word ptr [rsi + 4], ax
+PASS 0056C264 is 'movsx rax, word ptr [rdi + 4]'  -- movsx rax, word ptr [rdi + 4]
+PASS 0056C0F9 is 'mov word ptr [rbx + 0xa], r8w'  -- mov word ptr [rbx + 0xa], r8w
+== 7. layout keys (layout-key-slots.tsv) and the 0056B350 slide
+PASS 01F2CB08/0C = GambitIconOffsetX/Y
+PASS 01F2CB10 = GambitTargetListMoveX, 01F2CB14 = GambitActionListMoveX
+PASS 0056B47D is 'cmp edi, 1'  -- cmp edi, 1
+PASS mode 1 reads GambitTargetListMoveX (0056B482)
+PASS otherwise GambitActionListMoveX, negated (0056B48A, 0056B490)
+== 8. the pick list is created by the editor (tree direction)
+PASS 0056B350's callers are 00567E43 and 00567E73 in 00567D80
+PASS 00567D80's caller is 00569E63 in the editor 005691E0
+PASS 0056B38A is 'mov qword ptr [rsp + 0x38], rcx'  -- mov qword ptr [rsp + 0x38], rcx
+PASS 0056B3BE is 'lea rdx, [rip + 0x10b]'  -- lea rdx, [rip + 0x10b]
+PASS 0056B3CA is 'mov qword ptr [rbx + 0xe8], rax'  -- mov qword ptr [rbx + 0xe8], rax
+PASS 0056B69E is 'mov rax, qword ptr [rbx]'  -- mov rax, qword ptr [rbx]
+PASS 0056B6A1 is 'mov qword ptr [rsi + 0xc8], rax'  -- mov qword ptr [rsi + 0xc8], rax
+PASS 0056A454 is 'mov qword ptr [rax + 0xc8], rbx'  -- mov qword ptr [rax + 0xc8], rbx
+== regression: the old readings
+PASS REJECTS '0056AE80 = condition side': it builds kind 0x22 pages of the action grid 0208D300
+PASS REJECTS '+0x14 bit 0 = condition/action art': both gambit pickers use the one installer 0056C170 with +0x14 = 1
+
+FAILS 0

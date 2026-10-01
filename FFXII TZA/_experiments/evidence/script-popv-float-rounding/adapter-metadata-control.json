@@ -1,0 +1,32 @@
+{
+  "status": "PASS_ACTUAL_STRING_ADAPTER_METADATA_PATH",
+  "producer_sha256": "fca3e175f7b0536cc8c35c195318eb3cd5ed0c92424a572393ff2ee6dc9c8dc5",
+  "selected_ast_sha256": "a7c44af624c34d1863ce5468ab5fe2e58e40cd069a8d4567822c481504c9e6bc",
+  "corrected_adapter_sha256": "41c6f620cd2ffc83c20109066614b82248b274cf010957787c38ff6d07c44e85",
+  "actual_initial_constructor_labels": [
+    {
+      "ram": "",
+      "record": "",
+      "rsp": "0x60001800",
+      "store_rsp": "0x600017f8",
+      "return_sentinel": "0x60000200",
+      "mxcsr": "0x1f80",
+      "entry": "0x267e9c",
+      "kind_selector_r8d": 1,
+      "stop": "0x267f1e"
+    },
+    {
+      "ram": "",
+      "record": "",
+      "rsp": "0x60001800",
+      "store_rsp": "0x600017f8",
+      "return_sentinel": "0x60000200",
+      "mxcsr": "0x5f80",
+      "entry": "0x267e9c",
+      "kind_selector_r8d": 1,
+      "stop": "0x267f1e"
+    }
+  ],
+  "old_literal_label_would_fail": true,
+  "limits": "Execute only actual producer adapter construction/initial metadata expression with dummy buffers; no original/guest/native/live run. Two original cases not repeated, raw immutable."
+}

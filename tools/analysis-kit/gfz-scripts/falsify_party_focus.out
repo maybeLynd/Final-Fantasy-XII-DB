@@ -1,0 +1,9 @@
+SURVIVES  F1  022C7FE0: 18 linear / 18 bounded, writers ['00358B6B', '00358C2F', '003590FD']; 022C7FF8: 5 bounded, 7 linear, linear-only ['003594C0', '003594D4']; linear-only on the other three [0, 0, 0]
+SURVIVES  F2  18 sites in 00358A24..00359481; getter 28 call sites in 25 functions, none in the span; lea into 022C7FE0 0; stored address occurrences 0
+SURVIVES  F3  thunk jmp 0x358bc0, 7 callers; requester 3 callers (00269D34, 003265F6, 0050C646); functions calling both ['0050C610']
+SURVIVES  F4  je 0x358c2f | mov ecx, dword ptr [rip + 0x1f6f3ba] | mov dword ptr [rip + 0x1f6f3ab], ecx | mov byte ptr [rip + 0x1f6f3bc], 0 | call 0x3588b0 | jmp 0x2681d0; nothing pending cmp byte ptr [rip + 0x1f6f42d], 0 / je 0x358c57; unresolved test rax, rax / je 0x358c57
+SURVIVES  F5  thunks ['mov r8d, 1', 'jmp 0x25a6a0'] / ['xor r8d, r8d', 'jmp 0x25a6a0']; flag held in r14d, tested at ['0025A800']; alternate-path tests test ebx, ebx / cmp byte ptr [rip + 0x1f6f3ec], 2; 003594C0 cmovne True; 0034ED30 ['mov ecx, 2', 'jmp 0x3594c0'], callers 0, stored 1 at 01EF17C0
+SURVIVES  F6  test ecx, 0x80000003 | test eax, 0x80000003 | and eax, 0x8800403b | and edx, 0x8800003b
+SURVIVES  F7  loads ['0023B0A2', '0023B152', '0023B196']; tests test rdx, rdx / test rcx, rcx; between the middle load and 0023B15E ['mov ecx, ebx', 'or ecx, 5']; cmp byte ptr [rdi + 0x6b7], 0 | cmp byte ptr [rdi + 0x6b4], 9 | cmp word ptr [rdi + 0x714], ax
+SURVIVES  F8  022C7FE8: 8 accesses, 3 writers
+FAILS 0

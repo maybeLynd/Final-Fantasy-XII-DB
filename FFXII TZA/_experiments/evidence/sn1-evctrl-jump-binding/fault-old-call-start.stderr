@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-evctrl-jump-binding\check.py", line 32, in <module>
+    positive=observe(case,e,lines,maps,physical='--fault-physical-map' in sys.argv)
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-evctrl-jump-binding\check.py", line 23, in observe
+    assert ops[0]==(0x4F,6) and ops[-2]==(0x4F,0) and ops[-1][0]==0x5D, 'Original source-call entry/variant precondition'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original source-call entry/variant precondition

@@ -1,0 +1,173 @@
+{
+  "status": "REJECTED registered-span linear decode incomplete",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "script_sha256": "b3f67d0602ff3ba8a05b3f35fbe53a95464bf822247565d23823588f9a8e0d85",
+  "address": "0x57fe80",
+  "end_exclusive": "0x580834",
+  "requested_bytes": 2484,
+  "decoded_bytes": 2461,
+  "stop_address": "0x58081d",
+  "requested_bytes_sha256": "7875c0b65b5f7788a9aa5f7a8d26a3b75e4c29614e4cd3e3aec96fb62b2151d9",
+  "last_decoded": [
+    {
+      "address": "0x5807ba",
+      "bytes": "45005603",
+      "mnemonic": "add",
+      "operands": "byte ptr [r14 + 3], r10b"
+    },
+    {
+      "address": "0x5807be",
+      "bytes": "4600ac074600ac07",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x7ac0046], r13b"
+    },
+    {
+      "address": "0x5807c6",
+      "bytes": "4600ac074600ac07",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x7ac0046], r13b"
+    },
+    {
+      "address": "0x5807ce",
+      "bytes": "4600ac074600ac07",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x7ac0046], r13b"
+    },
+    {
+      "address": "0x5807d6",
+      "bytes": "4600ac074600c703",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x3c70046], r13b"
+    },
+    {
+      "address": "0x5807de",
+      "bytes": "4600ac0746000104",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x4010046], r13b"
+    },
+    {
+      "address": "0x5807e6",
+      "bytes": "4600ac0746000f03",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x30f0046], r13b"
+    },
+    {
+      "address": "0x5807ee",
+      "bytes": "460084074600ac07",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x7ac0046], r8b"
+    },
+    {
+      "address": "0x5807f6",
+      "bytes": "4600ac0746008b07",
+      "mnemonic": "add",
+      "operands": "byte ptr [rdi + r8 + 0x78b0046], r13b"
+    },
+    {
+      "address": "0x5807fe",
+      "bytes": "46005106",
+      "mnemonic": "add",
+      "operands": "byte ptr [rcx + 6], r10b"
+    },
+    {
+      "address": "0x580802",
+      "bytes": "46005106",
+      "mnemonic": "add",
+      "operands": "byte ptr [rcx + 6], r10b"
+    },
+    {
+      "address": "0x580806",
+      "bytes": "46005007",
+      "mnemonic": "add",
+      "operands": "byte ptr [rax + 7], r10b"
+    },
+    {
+      "address": "0x58080a",
+      "bytes": "46005007",
+      "mnemonic": "add",
+      "operands": "byte ptr [rax + 7], r10b"
+    },
+    {
+      "address": "0x58080e",
+      "bytes": "4600a4064600a406",
+      "mnemonic": "add",
+      "operands": "byte ptr [rsi + r8 + 0x6a40046], r12b"
+    },
+    {
+      "address": "0x580816",
+      "bytes": "46005007",
+      "mnemonic": "add",
+      "operands": "byte ptr [rax + 7], r10b"
+    },
+    {
+      "address": "0x58081a",
+      "bytes": "4600cc",
+      "mnemonic": "add",
+      "operands": "spl, r9b"
+    }
+  ],
+  "raw_at_stop": "064600e506460050074600110746002d0746004b074600",
+  "records": [
+    {
+      "start": "0x57fe80",
+      "end_exclusive": "0x57feb1",
+      "unwind": "0x1d77c78",
+      "runtime_function_raw": "80fe4500b1fe4500787cc501",
+      "unwind_raw": "010804000872047003600230",
+      "root": [
+        "0x57fe80",
+        "0x57feb1",
+        "0x1d77c78"
+      ]
+    },
+    {
+      "start": "0x57feb1",
+      "end_exclusive": "0x57feb6",
+      "unwind": "0x1d91c00",
+      "runtime_function_raw": "b1fe4500b6fe4500001cc701",
+      "unwind_raw": "2105020005c40e0080fe4500b1fe4500787cc501",
+      "root": [
+        "0x57fe80",
+        "0x57feb1",
+        "0x1d77c78"
+      ]
+    },
+    {
+      "start": "0x57feb6",
+      "end_exclusive": "0x58011e",
+      "unwind": "0x1d91c14",
+      "runtime_function_raw": "b6fe45001e014600141cc701",
+      "unwind_raw": "210f06000ff406000ae4070005d40f00b1fe4500b6fe4500001cc701",
+      "root": [
+        "0x57fe80",
+        "0x57feb1",
+        "0x1d77c78"
+      ]
+    },
+    {
+      "start": "0x58011e",
+      "end_exclusive": "0x580181",
+      "unwind": "0x1d91c30",
+      "runtime_function_raw": "1e01460081014600301cc701",
+      "unwind_raw": "21000000b1fe4500b6fe4500001cc701",
+      "root": [
+        "0x57fe80",
+        "0x57feb1",
+        "0x1d77c78"
+      ]
+    },
+    {
+      "start": "0x580181",
+      "end_exclusive": "0x580834",
+      "unwind": "0x1d91c40",
+      "runtime_function_raw": "8101460034084600401cc701",
+      "unwind_raw": "2100000080fe4500b1fe4500787cc501",
+      "root": [
+        "0x57fe80",
+        "0x57feb1",
+        "0x1d77c78"
+      ]
+    }
+  ],
+  "limits": "Failed before proof JSON or selection collector was written. Registered span is not all instructions; no execution or complete-function result. Preserve rejected script and diagnose actual reachable ranges."
+}

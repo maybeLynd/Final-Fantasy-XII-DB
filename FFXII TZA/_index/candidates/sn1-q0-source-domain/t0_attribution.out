@@ -1,0 +1,6 @@
+PASS  P prerequisite sn1_neither_partition.py: exit 0, PASS P N A E L U Z C, FAILS 0
+PASS  G evctrl 0x01..0x3E: 62 descriptors 0A03..0A40, T2 records per descriptor {1: 62}, name == T0[n] in 62
+PASS  T the 188 A/E records fall on 36 distinct tags; 26 tags carry two or more different operands, holding 158 of the 188 records; largest tag: 27 records, 27 operands
+PASS  L T0[operand] is on 2+ expansion lines in 97 of 188 records (max 4 lines); on exactly 1 in 91; on none in 0
+PASS  C control: T0[operand + 1] passes the same membership test in 52 records (Part 11 C: 52)
+FAILS 0

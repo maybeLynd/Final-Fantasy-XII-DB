@@ -1,0 +1,8 @@
+control: .ta entries in the archive index: 45 (published 45)
+phyremaps.txt: 94682 tokens, 47341 pairs
+separators: {'only CRLF between tokens': 45, 'ends with CRLF': 45}
+tokens: 594 ; frames per file: [(2, 4), (3, 2), (7, 9), (15, 11), (16, 16), (32, 3)]
+un-numbered (frame 0) tokens per file: {1: 45} ; files whose _pic_ numbers are exactly 1..n: 45
+listed paths: {"listed path is under this map's tex/ folder": 594} ; present as listed: 98 ; present through phyremaps.txt: 489 ; unresolved: 7 [('gamedata/d3d11/artdata/map/frs01/frs0109/frs0109_anime_0_d3d11.ta', '/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime.dds.phyre'), ('gamedata/d3d11/artdata/map/frs01/frs0109/frs0109_anime_0_d3d11.ta', '/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_1.dds.phyre'), ('gamedata/d3d11/artdata/map/frs01/frs0109/frs0109_anime_0_d3d11.ta', '/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_2.dds.phyre'), ('gamedata/d3d11/artdata/map/frs01/frs0109/frs0109_anime_0_d3d11.ta', '/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_3.dds.phyre'), ('gamedata/d3d11/artdata/map/frs01/frs0109/frs0109_anime_0_d3d11.ta', '/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_4.dds.phyre')]
+maps: 42 ; with more than one list: {'glf0103': [0, 1], 'glf0104': [0, 1], 'rwg0202': [0, 1]}
+anime indices contiguous from 0 in every map: True

@@ -1,0 +1,258 @@
+{
+ "ok": true,
+ "ard": {
+  "path": "D:\\FFXII_TZA_extract\\ps2data\\plan_master\\in\\plan_map\\rsn_b\\area\\rsn_b.ard",
+  "sha256": "41ac87460a17f7c96e1f696e67f5004974cacc7f70a0063edb7822b027bcd992"
+ },
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4250,
+ "results": {
+  "LU3_three_cadences": {
+   "pass_": true,
+   "result": {
+    "returned": true,
+    "at_boundary": false,
+    "boundary": [],
+    "level": 14,
+    "hp": 590,
+    "mp": 71,
+    "floats": [
+     12.25,
+     12.094,
+     11.5,
+     10.562
+    ],
+    "counts": {
+     "HP 002F9A60": 4,
+     "MP 002F9B20": 4,
+     "MT draw": 8,
+     "float": 16,
+     "forward 0035D8C0": 0,
+     "level store": 4,
+     "poster 0046A690": 0,
+     "rebuild 0030FED0": 1
+    },
+    "order": [
+     "HP 002F9A60",
+     "MT draw",
+     "MP 002F9B20",
+     "MT draw",
+     "float",
+     "float",
+     "float",
+     "float",
+     "level store",
+     "HP 002F9A60",
+     "MT draw",
+     "MP 002F9B20",
+     "MT draw",
+     "float",
+     "float",
+     "float",
+     "float",
+     "level store",
+     "HP 002F9A60",
+     "MT draw",
+     "MP 002F9B20",
+     "MT draw",
+     "float",
+     "float",
+     "float",
+     "float",
+     "level store",
+     "HP 002F9A60",
+     "MT draw",
+     "MP 002F9B20",
+     "MT draw",
+     "float",
+     "float",
+     "float",
+     "float",
+     "level store",
+     "rebuild 0030FED0"
+    ]
+   },
+   "note": "level 10 -> target 14, flags 2 (notification suppressed), no owning unit: 0030C650 returns with level 14; per level HP, MP and four float growth calls (4 / 4 / 16), the derived rebuild once (final level), no presentation"
+  },
+  "LU8_growth_is_rolled": {
+   "pass_": true,
+   "seed_4537": [
+    590,
+    71
+   ],
+   "repeat": [
+    590,
+    71
+   ],
+   "seed_91": [
+    593,
+    70
+   ],
+   "draws_4_levels": 8,
+   "draws_1_level": 2,
+   "note": "the same seed reproduces HP / MP exactly ([590, 71]), another seed changes them ([593, 70]); four levels draw the generator 8 times (HP and MP once each per level, the floats never), one level twice"
+  },
+  "LU4_nonzero_kind_bare_increment": {
+   "pass_": true,
+   "result": {
+    "returned": true,
+    "level": 14,
+    "hp": 500,
+    "mp": 50,
+    "floats": [
+     10.0,
+     10.0,
+     10.0,
+     10.0
+    ],
+    "counts": {
+     "HP 002F9A60": 0,
+     "MP 002F9B20": 0,
+     "MT draw": 0,
+     "float": 0,
+     "forward 0035D8C0": 0,
+     "level store": 4,
+     "poster 0046A690": 0,
+     "rebuild 0030FED0": 1
+    }
+   },
+   "notify_on": {
+    "returned": true,
+    "at_boundary": false,
+    "boundary": [],
+    "counts": {
+     "HP 002F9A60": 0,
+     "MP 002F9B20": 0,
+     "MT draw": 0,
+     "float": 0,
+     "forward 0035D8C0": 0,
+     "level store": 4,
+     "poster 0046A690": 0,
+     "rebuild 0030FED0": 1
+    }
+   },
+   "note": "kind 1: the level reaches 14 through four bare increments; no growth call, no draw, HP / MP / floats untouched; with notification on it still returns without the poster (0030C7DB)"
+  },
+  "LU1_LU2_cap_and_monotonic": {
+   "pass_": true,
+   "cases": {
+    "98 -> 120": {
+     "level": 99,
+     "counts": {
+      "HP 002F9A60": 1,
+      "MP 002F9B20": 1,
+      "MT draw": 2,
+      "float": 4,
+      "forward 0035D8C0": 0,
+      "level store": 1,
+      "poster 0046A690": 0,
+      "rebuild 0030FED0": 1
+     }
+    },
+    "99 -> 120": {
+     "level": 99,
+     "counts": {
+      "HP 002F9A60": 0,
+      "MP 002F9B20": 0,
+      "MT draw": 0,
+      "float": 0,
+      "forward 0035D8C0": 0,
+      "level store": 0,
+      "poster 0046A690": 0,
+      "rebuild 0030FED0": 0
+     }
+    },
+    "20 -> 10": {
+     "level": 20,
+     "counts": {
+      "HP 002F9A60": 0,
+      "MP 002F9B20": 0,
+      "MT draw": 0,
+      "float": 0,
+      "forward 0035D8C0": 0,
+      "level store": 0,
+      "poster 0046A690": 0,
+      "rebuild 0030FED0": 0
+     }
+    },
+    "20 -> 20": {
+     "level": 20,
+     "counts": {
+      "HP 002F9A60": 0,
+      "MP 002F9B20": 0,
+      "MT draw": 0,
+      "float": 0,
+      "forward 0035D8C0": 0,
+      "level store": 0,
+      "poster 0046A690": 0,
+      "rebuild 0030FED0": 0
+     }
+    }
+   },
+   "note": "98 -> 120 stores 99 once; 99 -> 120 stores nothing; 20 -> 10 and 20 -> 20 return before the loop with no call"
+  },
+  "LU7_poster_runs_without_an_owner": {
+   "pass_": true,
+   "result": {
+    "boundary": [
+     {
+      "at": "poster 0046AB10",
+      "edx": 4
+     }
+    ],
+    "level": 14,
+    "counts": {
+     "HP 002F9A60": 4,
+     "MP 002F9B20": 4,
+     "MT draw": 8,
+     "float": 16,
+     "forward 0035D8C0": 0,
+     "level store": 4,
+     "poster 0046A690": 1,
+     "rebuild 0030FED0": 1
+    }
+   },
+   "note": "flags 0 (notification on), NO owning unit: after four levels and the rebuild, 0046A690 (0030C7E4, before the owner test at 0030C7ED) posts event 4 and the run ends at the poster boundary; only flags bit 1 makes an unowned record silent"
+  }
+ }
+}

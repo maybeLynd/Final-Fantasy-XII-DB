@@ -1,0 +1,582 @@
+fsroll_* verbs: {'fsroll_speed': 2, 'fsroll_fontA': 1, 'fsroll_fontB': 1, 'fsroll_fontC': 1, 'fsroll_moviewait': 7, 'fsroll_fade': 67, 'fsroll_layout': 319, 'fsroll_nameB': 235, 'fsroll_nameA': 28, 'fsroll_blank': 320, 'fsroll_stop': 17, 'fsroll_linedisp': 334, 'fsroll_nameC': 425, 'fsroll_data': 4, 'fsroll_setend': 2, 'fsroll_initialize': 1, 'fsroll_refresh': 1, 'fsroll_setdouble': 1, 'fsroll_start': 1, 'fsroll_finalize': 1}
+fsroll_nameA: 28 literal calls; name ids 28 distinct (min 0 max 27); role ids 0 distinct
+fsroll_nameB: 230 literal calls; name ids 1 distinct (min 594 max 594); role ids 229 distinct
+fsroll_nameC: 269 literal calls; name ids 150 distinct (min 86 max 1023); role ids 0 distinct
+non-literal fsroll_* arguments: 572
+  line 62 fsroll_speed(file_var_s2_1)   context: 
+  line 63 fsroll_fontA(0, 1)   context: 
+  line 64 fsroll_fontB(-2, 1)   context: 
+  line 65 fsroll_fontC(-2, 1)   context: 
+  line 67 fsroll_fade(0, -1, 0, 0)   context: 
+  line 68 fsroll_layout(0, 80)   context: 
+  line 70 fsroll_layout(0, 128)   context: 
+  line 73 fsroll_layout(0, 80)   context: 
+  line 75 fsroll_layout(0, 128)   context: 
+  line 77 fsroll_fade(155, 40, 122, 40)   context: 
+  line 78 fsroll_fade(0x0125, 0, 0, -1)   context: 
+  line 79 fsroll_stop(0, 30)   context: 
+  line 80 fsroll_fade(0, -1, 0, 0)   context: 
+  line 81 fsroll_layout(0, 100)   context: 
+  line 84 fsroll_layout(2, 148)   context: 
+  line 86 fsroll_fade(190, 30, 122, 32)   context: 
+  line 87 fsroll_fade(0x0102, 0, 0, -1)   context: 
+  line 88 fsroll_stop(0, 20)   context: 
+  line 89 fsroll_fade(0, -1, 0, 0)   context: 
+  line 90 fsroll_layout(0, 100)   context: 
+  line 92 fsroll_layout(0, 148)   context: 
+  line 95 fsroll_layout(0, 100)   context: 
+  line 97 fsroll_layout(0, 148)   context: 
+  line 99 fsroll_fade(158, 20, 122, 32)   context: 
+  line 100 fsroll_fade(0x0122, 0, 0, -1)   context: 
+  line 101 fsroll_stop(0, 20)   context: 
+  line 102 fsroll_fade(0, -1, 0, 0)   context: 
+  line 103 fsroll_layout(0, 90)   context: 
+  line 105 fsroll_layout(0, 105)   context: 
+  line 108 fsroll_layout(2, 138)   context: 
+  line 110 fsroll_fade(195, 14, 122, 32)   context: 
+  line 111 fsroll_fade(253, 0, 0, -1)   context: 
+  line 112 fsroll_stop(0, 20)   context: 
+  line 113 fsroll_fade(0, -1, 0, 0)   context: 
+  line 114 fsroll_layout(0, 80)   context: 
+  line 116 fsroll_layout(0, 138)   context: 
+  line 118 fsroll_layout(0, 138)   context: 
+  line 121 fsroll_layout(0, 80)   context: 
+  line 123 fsroll_layout(0, 138)   context: 
+  line 125 fsroll_fade(135, 18, 122, 32)   context: 
+  line 126 fsroll_fade(0x0139, 0, 0, -1)   context: 
+  line 127 fsroll_stop(0, 20)   context: 
+  line 128 fsroll_fade(0, -1, 0, 0)   context: 
+  line 129 fsroll_layout(0, 135)   context: 
+  line 131 fsroll_layout(0, 183)   context: 
+  line 134 fsroll_layout(0, 135)   context: 
+  line 136 fsroll_layout(0, 183)   context: 
+  line 138 fsroll_fade(158, 14, 122, 32)   context: 
+  line 139 fsroll_fade(0x0122, 0, 0, -1)   context: 
+  line 140 fsroll_stop(0, 20)   context: 
+  line 141 fsroll_fade(0, -1, 0, 0)   context: 
+  line 142 fsroll_layout(0, 120)   context: 
+  line 144 fsroll_layout(0, 168)   context: 
+  line 147 fsroll_layout(0, 120)   context: 
+  line 149 fsroll_layout(0, 168)   context: 
+  line 151 fsroll_fade(158, 14, 122, 32)   context: 
+  line 152 fsroll_fade(0x0122, 0, 0, -1)   context: 
+  line 153 fsroll_stop(0, 20)   context: 
+  line 154 fsroll_fade(0, -1, 0, 0)   context: 
+  line 155 fsroll_layout(0, 105)   context: 
+  line 157 fsroll_layout(0, 153)   context: 
+  line 160 fsroll_layout(0, 105)   context: 
+  line 162 fsroll_layout(0, 153)   context: 
+  line 164 fsroll_fade(158, 14, 122, 32)   context: 
+  line 165 fsroll_fade(0x0122, 0, 0, -1)   context: 
+  line 167 fsroll_fade(0, -1, 0, 0)   context: 
+  line 168 fsroll_layout(0, 115)   context: 
+  line 170 fsroll_layout(2, 163)   context: 
+  line 172 fsroll_fade(200, 12, 128, 32)   context: 
+  line 173 fsroll_fade(248, 0, 0, -1)   context: 
+  line 174 fsroll_stop(0, 20)   context: 
+  line 175 fsroll_fade(0, -1, 0, 0)   context: 
+  line 176 fsroll_layout(0, 120)   context: 
+  line 178 fsroll_layout(0, 168)   context: 
+  line 181 fsroll_layout(0, 120)   context: 
+  line 183 fsroll_layout(0, 168)   context: 
+  line 185 fsroll_layout(0, 168)   context: 
+  line 187 fsroll_fade(135, 12, 124, 32)   context: 
+  line 188 fsroll_fade(0x0139, 0, 0, -1)   context: 
+  line 189 fsroll_stop(0, 20)   context: 
+  line 190 fsroll_fade(0, -1, 0, 0)   context: 
+  line 191 fsroll_layout(0, 105)   context: 
+  line 193 fsroll_layout(0, 153)   context: 
+  line 195 fsroll_layout(0, 153)   context: 
+  line 197 fsroll_fade(176, 12, 124, 32)   context: 
+  line 198 fsroll_fade(0x0110, 0, 0, -1)   context: 
+  line 199 fsroll_stop(0, 20)   context: 
+  line 200 fsroll_fade(0, -1, 0, 0)   context: 
+  line 201 fsroll_layout(0, 115)   context: 
+  line 203 fsroll_layout(0, 163)   context: 
+  line 206 fsroll_layout(0, 115)   context: 
+  line 208 fsroll_layout(0, 163)   context: 
+  line 210 fsroll_fade(158, 12, 124, 32)   context: 
+  line 211 fsroll_fade(0x0122, 0, 0, -1)   context: 
+  line 212 fsroll_stop(0, 40)   context: 
+  line 213 fsroll_fade(0, -1, 0, 0)   context: 
+  line 214 fsroll_layout(0, 125)   context: 
+  line 216 fsroll_layout(2, 173)   context: 
+  line 218 fsroll_fade(200, 12, 124, 32)   context: 
+  line 219 fsroll_fade(248, 0, 0, -1)   context: 
+  line 220 fsroll_stop(0, 20)   context: 
+  line 221 fsroll_fade(0, -1, 0, 0)   context: 
+  line 222 fsroll_layout(2, 175)   context: 
+  line 224 fsroll_layout(2, 208)   context: 
+  line 226 fsroll_fade(200, 12, 124, 32)   context: 
+  line 227 fsroll_fade(248, 0, 0, -1)   context: 
+  line 229 fsroll_fade(0, -1, 0, 0)   context: 
+  line 230 fsroll_layout(0, 120)   context: 
+  line 232 fsroll_layout(2, 153)   context: 
+  line 234 fsroll_fade(200, 12, 124, 32)   context: 
+  line 235 fsroll_fade(248, 0, 0, -1)   context: 
+  line 236 fsroll_stop(0, 20)   context: 
+  line 237 fsroll_fade(0, -1, 0, 0)   context: 
+  line 238 fsroll_layout(2, 105)   context: 
+  line 240 fsroll_layout(2, 153)   context: 
+  line 242 fsroll_fade(200, 12, 124, 32)   context: 
+  line 243 fsroll_fade(248, 0, 0, -1)   context: 
+  line 244 fsroll_stop(0, 20)   context: 
+  line 245 fsroll_fade(0, -1, 0, 0)   context: 
+  line 246 fsroll_layout(0, 120)   context: 
+  line 248 fsroll_layout(2, 168)   context: 
+  line 250 fsroll_fade(200, 12, 152, 32)   context: 
+  line 251 fsroll_fade(248, 0, 0, -1)   context: 
+  line 253 fsroll_fade(0, -1, 0, 0)   context: 
+  line 254 fsroll_layout(2, 0)   context: 
+  line 258 fsroll_layout(2, 10)   context: 
+  line 261 fsroll_nameB((28 + regI0)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 262 fsroll_nameC((29 + regI0)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 264 fsroll_fade(114, 12, 98, 40)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 265 fsroll_fade(0x014e, 0, 0, -1)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 266 fsroll_stop(0, 20)   context: 
+  line 267 fsroll_fade(0, -1, 0, 0)   context: 
+  line 270 fsroll_nameB((40 + regI0)   context: for (regI0 = 0; regI0 < 16; regI0 = (regI0 + 2))
+  line 271 fsroll_nameC((41 + regI0)   context: for (regI0 = 0; regI0 < 16; regI0 = (regI0 + 2))
+  line 273 fsroll_fade(78, 12, 98, 40)   context: for (regI0 = 0; regI0 < 16; regI0 = (regI0 + 2))
+  line 274 fsroll_fade(0x0172, 0, 0, -1)   context: for (regI0 = 0; regI0 < 16; regI0 = (regI0 + 2))
+  line 275 fsroll_stop(0, 20)   context: 
+  line 276 fsroll_fade(0, -1, 0, 0)   context: 
+  line 279 fsroll_nameB((56 + regI0)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 2))
+  line 280 fsroll_nameC((57 + regI0)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 2))
+  line 282 fsroll_fade(78, 12, 98, 40)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 2))
+  line 283 fsroll_fade(0x0172, 0, 0, -1)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 2))
+  line 284 fsroll_stop(0, 20)   context: 
+  line 285 fsroll_fade(0, -1, 0, 0)   context: 
+  line 287 fsroll_layout(2, 10)   context: 
+  line 293 fsroll_nameB((74 + regI0)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 294 fsroll_nameC((75 + regI0)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 296 fsroll_fade(102, 12, 98, 40)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 297 fsroll_fade(0x015a, 0, 0, -1)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 2))
+  line 300 fsroll_layout(2, 0)   context: 
+  line 302 fsroll_layout(2, 0)   context: 
+  line 306 fsroll_layout(0, 64)   context: 
+  line 309 fsroll_layout(2, 10)   context: 
+  line 314 fsroll_layout(2, 10)   context: 
+  line 320 fsroll_nameC((87 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 324 fsroll_layout(2, 10)   context: 
+  line 330 fsroll_nameC((89 + regI0)   context: for (regI0 = 1; regI0 < 9; regI0 = (regI0 + 1))
+  line 334 fsroll_layout(2, 10)   context: 
+  line 340 fsroll_nameC((98 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 344 fsroll_layout(2, 10)   context: 
+  line 350 fsroll_nameC((99 + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 355 fsroll_layout(0, 64)   context: 
+  line 358 fsroll_layout(2, 10)   context: 
+  line 362 fsroll_layout(2, 10)   context: 
+  line 368 fsroll_nameC((103 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 373 fsroll_layout(2, 0)   context: 
+  line 377 fsroll_layout(0, 64)   context: 
+  line 380 fsroll_layout(2, 10)   context: 
+  line 384 fsroll_layout(2, 10)   context: 
+  line 390 fsroll_nameC((106 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 394 fsroll_layout(2, 10)   context: 
+  line 400 fsroll_nameC((107 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 404 fsroll_layout(2, 10)   context: 
+  line 410 fsroll_nameC((108 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 414 fsroll_layout(2, 10)   context: 
+  line 420 fsroll_nameC((109 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 424 fsroll_layout(0, 64)   context: 
+  line 427 fsroll_layout(2, 10)   context: 
+  line 433 fsroll_layout(2, 0)   context: 
+  line 437 fsroll_layout(2, 10)   context: 
+  line 443 fsroll_nameC((112 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 447 fsroll_layout(2, 10)   context: 
+  line 453 fsroll_nameC((113 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 457 fsroll_layout(2, 10)   context: 
+  line 463 fsroll_nameC((114 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 467 fsroll_layout(2, 10)   context: 
+  line 473 fsroll_nameC((115 + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 477 fsroll_layout(2, 10)   context: 
+  line 484 fsroll_nameC((119 + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 490 fsroll_layout(2, 0)   context: 
+  line 494 fsroll_layout(2, 10)   context: 
+  line 497 fsroll_nameC((121 + regI0)   context: for (regI0 = 0; regI0 < 15; regI0 = (regI0 + 1))
+  line 503 fsroll_layout(2, 0)   context: 
+  line 507 fsroll_layout(2, 10)   context: 
+  line 510 fsroll_nameC((136 + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 516 fsroll_layout(2, 0)   context: 
+  line 520 fsroll_layout(2, 10)   context: 
+  line 523 fsroll_nameC((138 + regI0)   context: for (regI0 = 0; regI0 < 38; regI0 = (regI0 + 1))
+  line 529 fsroll_layout(2, 0)   context: 
+  line 533 fsroll_layout(2, 10)   context: 
+  line 536 fsroll_nameC((176 + regI0)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 1))
+  line 542 fsroll_layout(2, 0)   context: 
+  line 545 fsroll_layout(2, 80)   context: 
+  line 549 fsroll_layout(2, 10)   context: 
+  line 552 fsroll_nameC((194 + regI0)   context: for (regI0 = 0; regI0 < 7; regI0 = (regI0 + 1))
+  line 558 fsroll_layout(2, 80)   context: 
+  line 562 fsroll_layout(2, 10)   context: 
+  line 565 fsroll_nameC((201 + regI0)   context: for (regI0 = 0; regI0 < 8; regI0 = (regI0 + 1))
+  line 571 fsroll_layout(2, 0)   context: 
+  line 574 fsroll_layout(2, 80)   context: 
+  line 578 fsroll_layout(2, 10)   context: 
+  line 581 fsroll_nameC((209 + regI0)   context: for (regI0 = 0; regI0 < 5; regI0 = (regI0 + 1))
+  line 587 fsroll_layout(2, 80)   context: 
+  line 591 fsroll_layout(2, 10)   context: 
+  line 594 fsroll_nameC((214 + regI0)   context: for (regI0 = 0; regI0 < 10; regI0 = (regI0 + 1))
+  line 600 fsroll_layout(2, 80)   context: 
+  line 604 fsroll_layout(2, 10)   context: 
+  line 607 fsroll_nameC((224 + regI0)   context: for (regI0 = 0; regI0 < 13; regI0 = (regI0 + 1))
+  line 613 fsroll_layout(2, 80)   context: 
+  line 617 fsroll_layout(2, 10)   context: 
+  line 620 fsroll_nameC((237 + regI0)   context: for (regI0 = 0; regI0 < 3; regI0 = (regI0 + 1))
+  line 626 fsroll_layout(2, 80)   context: 
+  line 630 fsroll_layout(2, 10)   context: 
+  line 633 fsroll_nameC((240 + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 639 fsroll_layout(2, 0)   context: 
+  line 642 fsroll_layout(2, 80)   context: 
+  line 646 fsroll_layout(2, 10)   context: 
+  line 649 fsroll_nameC((242 + regI0)   context: for (regI0 = 0; regI0 < 4; regI0 = (regI0 + 1))
+  line 655 fsroll_layout(2, 80)   context: 
+  line 659 fsroll_layout(2, 10)   context: 
+  line 662 fsroll_nameC((246 + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 667 fsroll_layout(2, 80)   context: 
+  line 675 fsroll_layout(2, 0)   context: 
+  line 679 fsroll_layout(2, 10)   context: 
+  line 682 fsroll_nameC((248 + regI0)   context: for (regI0 = 0; regI0 < 6; regI0 = (regI0 + 1))
+  line 688 fsroll_layout(2, 0)   context: 
+  line 691 fsroll_layout(2, 80)   context: 
+  line 695 fsroll_layout(2, 10)   context: 
+  line 702 fsroll_layout(2, 80)   context: 
+  line 706 fsroll_layout(2, 10)   context: 
+  line 716 fsroll_layout(2, 10)   context: 
+  line 722 fsroll_nameC((0x0103 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 726 fsroll_layout(2, 10)   context: 
+  line 732 fsroll_nameC((0x0105 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 736 fsroll_layout(2, 10)   context: 
+  line 742 fsroll_nameC((0x0107 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 746 fsroll_layout(2, 10)   context: 
+  line 752 fsroll_nameC((0x0108 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 756 fsroll_layout(2, 10)   context: 
+  line 762 fsroll_nameC((0x010a + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 766 fsroll_layout(2, 10)   context: 
+  line 772 fsroll_nameC((0x010b + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 776 fsroll_layout(2, 10)   context: 
+  line 782 fsroll_nameC((0x010c + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 786 fsroll_layout(2, 10)   context: 
+  line 792 fsroll_nameC((0x010d + regI0)   context: for (regI0 = 1; regI0 < 4; regI0 = (regI0 + 1))
+  line 798 fsroll_layout(2, 10)   context: 
+  line 804 fsroll_nameC((0x0111 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 809 fsroll_layout(2, 80)   context: 
+  line 813 fsroll_layout(2, 10)   context: 
+  line 816 fsroll_nameC((0x0113 + regI0)   context: for (regI0 = 0; regI0 < 8; regI0 = (regI0 + 1))
+  line 822 fsroll_layout(2, 80)   context: 
+  line 826 fsroll_layout(2, 10)   context: 
+  line 829 fsroll_nameC((0x011b + regI0)   context: for (regI0 = 0; regI0 < 5; regI0 = (regI0 + 1))
+  line 835 fsroll_layout(2, 80)   context: 
+  line 839 fsroll_layout(2, 10)   context: 
+  line 842 fsroll_nameC((0x0120 + regI0)   context: for (regI0 = 0; regI0 < 11; regI0 = (regI0 + 1))
+  line 848 fsroll_layout(2, 80)   context: 
+  line 852 fsroll_layout(2, 10)   context: 
+  line 855 fsroll_nameC((0x012b + regI0)   context: for (regI0 = 0; regI0 < 8; regI0 = (regI0 + 1))
+  line 861 fsroll_layout(2, 80)   context: 
+  line 865 fsroll_layout(2, 10)   context: 
+  line 868 fsroll_nameC((0x0133 + regI0)   context: for (regI0 = 0; regI0 < 4; regI0 = (regI0 + 1))
+  line 874 fsroll_layout(2, 80)   context: 
+  line 878 fsroll_layout(2, 10)   context: 
+  line 881 fsroll_nameC((0x0137 + regI0)   context: for (regI0 = 0; regI0 < 7; regI0 = (regI0 + 1))
+  line 887 fsroll_layout(2, 80)   context: 
+  line 891 fsroll_layout(2, 10)   context: 
+  line 894 fsroll_nameC((0x013e + regI0)   context: for (regI0 = 0; regI0 < 9; regI0 = (regI0 + 1))
+  line 900 fsroll_layout(2, 80)   context: 
+  line 904 fsroll_layout(2, 10)   context: 
+  line 907 fsroll_nameC((0x0147 + regI0)   context: for (regI0 = 0; regI0 < 7; regI0 = (regI0 + 1))
+  line 913 fsroll_layout(2, 80)   context: 
+  line 917 fsroll_layout(2, 10)   context: 
+  line 920 fsroll_nameC((0x014e + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 926 fsroll_layout(2, 0)   context: 
+  line 930 fsroll_layout(2, 10)   context: 
+  line 936 fsroll_nameC((0x0150 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 940 fsroll_layout(2, 10)   context: 
+  line 946 fsroll_nameC((0x0152 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 950 fsroll_layout(2, 10)   context: 
+  line 956 fsroll_nameC((0x0153 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 960 fsroll_layout(2, 10)   context: 
+  line 966 fsroll_nameC((0x0154 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 970 fsroll_layout(2, 10)   context: 
+  line 976 fsroll_nameC((0x0155 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 980 fsroll_layout(2, 10)   context: 
+  line 986 fsroll_nameC((0x0157 + regI0)   context: for (regI0 = 1; regI0 < 4; regI0 = (regI0 + 1))
+  line 990 fsroll_layout(2, 10)   context: 
+  line 996 fsroll_nameC((0x015b + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1000 fsroll_layout(2, 10)   context: 
+  line 1006 fsroll_nameC((0x015c + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1010 fsroll_layout(2, 10)   context: 
+  line 1016 fsroll_nameC((0x015d + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1020 fsroll_layout(2, 10)   context: 
+  line 1026 fsroll_nameC((0x015e + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1030 fsroll_layout(2, 10)   context: 
+  line 1033 fsroll_layout(0, 158)   context: 
+  line 1035 fsroll_layout(0, 0x0128)   context: 
+  line 1039 fsroll_layout(2, 10)   context: 
+  line 1045 fsroll_nameC((0x0161 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1049 fsroll_layout(2, 10)   context: 
+  line 1055 fsroll_nameC((0x0162 + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 1059 fsroll_layout(2, 10)   context: 
+  line 1065 fsroll_nameC((0x0165 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1071 fsroll_layout(2, 0)   context: 
+  line 1075 fsroll_layout(2, 10)   context: 
+  line 1081 fsroll_nameC((0x0166 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1085 fsroll_layout(2, 10)   context: 
+  line 1091 fsroll_nameC((0x0167 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1096 fsroll_layout(2, 10)   context: 
+  line 1102 fsroll_nameC((0x0168 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1106 fsroll_layout(2, 10)   context: 
+  line 1112 fsroll_nameC((0x0169 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1117 fsroll_layout(2, 10)   context: 
+  line 1123 fsroll_nameC((0x016a + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1127 fsroll_layout(2, 10)   context: 
+  line 1133 fsroll_nameC((0x016b + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1138 fsroll_layout(2, 10)   context: 
+  line 1144 fsroll_nameC((0x016c + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1148 fsroll_layout(2, 10)   context: 
+  line 1154 fsroll_nameC((0x016d + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1158 fsroll_layout(2, 10)   context: 
+  line 1164 fsroll_nameC((0x016e + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1168 fsroll_layout(2, 10)   context: 
+  line 1174 fsroll_nameC((0x016f + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1178 fsroll_layout(2, 10)   context: 
+  line 1184 fsroll_nameC((0x0170 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1188 fsroll_layout(2, 10)   context: 
+  line 1191 fsroll_layout(0, 223)   context: 
+  line 1194 fsroll_layout(2, 10)   context: 
+  line 1200 fsroll_nameC((0x0172 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1204 fsroll_layout(2, 10)   context: 
+  line 1210 fsroll_nameC((0x0173 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1214 fsroll_layout(2, 10)   context: 
+  line 1220 fsroll_nameC((0x0174 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1224 fsroll_layout(2, 10)   context: 
+  line 1230 fsroll_nameC((0x0175 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1234 fsroll_layout(2, 10)   context: 
+  line 1240 fsroll_nameC((0x0176 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1244 fsroll_layout(2, 10)   context: 
+  line 1250 fsroll_nameC((0x0177 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1254 fsroll_layout(2, 10)   context: 
+  line 1260 fsroll_nameC((0x0178 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1264 fsroll_layout(2, 10)   context: 
+  line 1270 fsroll_nameC((0x0179 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1274 fsroll_layout(2, 10)   context: 
+  line 1280 fsroll_nameC((0x017a + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1284 fsroll_layout(2, 10)   context: 
+  line 1287 fsroll_layout(0, 208)   context: 
+  line 1290 fsroll_layout(2, 10)   context: 
+  line 1296 fsroll_nameC((0x017c + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1300 fsroll_layout(2, 10)   context: 
+  line 1306 fsroll_nameC((0x017d + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1311 fsroll_layout(2, 10)   context: 
+  line 1317 fsroll_nameC((0x017e + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1321 fsroll_layout(2, 10)   context: 
+  line 1327 fsroll_nameC((0x017f + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1332 fsroll_layout(2, 0)   context: 
+  line 1336 fsroll_layout(2, 10)   context: 
+  line 1342 fsroll_nameC((0x0180 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1346 fsroll_layout(2, 10)   context: 
+  line 1352 fsroll_nameC((0x0181 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1356 fsroll_layout(2, 10)   context: 
+  line 1362 fsroll_nameC((0x0182 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1367 fsroll_layout(2, 10)   context: 
+  line 1373 fsroll_nameC((0x0183 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1377 fsroll_layout(2, 10)   context: 
+  line 1383 fsroll_nameC((0x0184 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1387 fsroll_layout(2, 10)   context: 
+  line 1393 fsroll_nameC((0x0185 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1397 fsroll_layout(2, 10)   context: 
+  line 1403 fsroll_nameC((0x0186 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1409 fsroll_layout(0, 128)   context: 
+  line 1411 fsroll_layout(0, 0x0109)   context: 
+  line 1415 fsroll_layout(2, 10)   context: 
+  line 1418 fsroll_layout(0, 208)   context: 
+  line 1423 fsroll_layout(2, 0)   context: 
+  line 1427 fsroll_layout(2, 10)   context: 
+  line 1442 fsroll_layout(2, 0)   context: 
+  line 1446 fsroll_layout(2, 10)   context: 
+  line 1449 fsroll_nameB((0x0191 + regI0)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 2))
+  line 1450 fsroll_nameC((0x0192 + regI0)   context: for (regI0 = 0; regI0 < 18; regI0 = (regI0 + 2))
+  line 1455 fsroll_layout(2, 0)   context: 
+  line 1460 fsroll_nameC((0x01a3 + regI0)   context: for (regI0 = 0; regI0 < 5; regI0 = (regI0 + 1))
+  line 1467 fsroll_layout(2, 80)   context: 
+  line 1477 fsroll_layout(2, 0)   context: 
+  line 1481 fsroll_layout(2, 0)   context: 
+  line 1485 fsroll_layout(2, 10)   context: 
+  line 1491 fsroll_nameC((0x01ac + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 1495 fsroll_layout(0, 64)   context: 
+  line 1498 fsroll_layout(2, 10)   context: 
+  line 1502 fsroll_layout(2, 10)   context: 
+  line 1508 fsroll_nameC((0x01b0 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1512 fsroll_layout(2, 10)   context: 
+  line 1518 fsroll_nameC((0x01b1 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1522 fsroll_layout(2, 10)   context: 
+  line 1528 fsroll_nameC((0x01b2 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1533 fsroll_layout(2, 10)   context: 
+  line 1539 fsroll_nameC((0x01b4 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1543 fsroll_layout(2, 10)   context: 
+  line 1549 fsroll_nameC((0x01b5 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1554 fsroll_layout(2, 10)   context: 
+  line 1560 fsroll_nameC((0x01b6 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1564 fsroll_layout(2, 10)   context: 
+  line 1570 fsroll_nameC((0x01b7 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1574 fsroll_layout(2, 10)   context: 
+  line 1580 fsroll_nameC((0x01b8 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1584 fsroll_layout(0, 64)   context: 
+  line 1587 fsroll_layout(2, 10)   context: 
+  line 1595 fsroll_layout(2, 0)   context: 
+  line 1599 fsroll_layout(0, 128)   context: 
+  line 1601 fsroll_layout(0, 188)   context: 
+  line 1605 fsroll_layout(0, 128)   context: 
+  line 1607 fsroll_layout(0, 188)   context: 
+  line 1610 fsroll_nameC((0x01bb + regI0)   context: for (regI0 = 0; regI0 < 7; regI0 = (regI0 + 1))
+  line 1615 fsroll_layout(2, 0)   context: 
+  line 1619 fsroll_layout(2, 128)   context: 
+  line 1623 fsroll_layout(2, 128)   context: 
+  line 1627 fsroll_layout(2, 10)   context: 
+  line 1630 fsroll_nameC((0x01c2 + regI0)   context: for (regI0 = 0; regI0 < 26; regI0 = (regI0 + 1))
+  line 1638 fsroll_layout(2, 128)   context: 
+  line 1642 fsroll_layout(2, 10)   context: 
+  line 1645 fsroll_nameC((0x01dc + regI0)   context: for (regI0 = 0; regI0 < 12; regI0 = (regI0 + 1))
+  line 1652 fsroll_layout(2, 128)   context: 
+  line 1660 fsroll_layout(2, 128)   context: 
+  line 1667 fsroll_layout(2, 128)   context: 
+  line 1671 fsroll_layout(2, 128)   context: 
+  line 1675 fsroll_layout(2, 10)   context: 
+  line 1678 fsroll_nameC((0x01e9 + regI0)   context: for (regI0 = 0; regI0 < 4; regI0 = (regI0 + 1))
+  line 1687 fsroll_layout(2, 128)   context: 
+  line 1694 fsroll_layout(2, 0)   context: 
+  line 1698 fsroll_layout(0, 100)   context: 
+  line 1700 fsroll_layout(0, 0x0109)   context: 
+  line 1703 fsroll_nameC((0x01ee + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 1707 fsroll_layout(0, 100)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 1709 fsroll_layout(0, 0x0109)   context: 
+  line 1712 fsroll_nameC((0x01ef + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 1716 fsroll_layout(0, 100)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 1718 fsroll_layout(0, 0x0109)   context: 
+  line 1721 fsroll_nameC((0x01f0 + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 1726 fsroll_layout(2, 0)   context: 
+  line 1730 fsroll_layout(2, 10)   context: 
+  line 1736 fsroll_nameC((0x01f2 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1740 fsroll_layout(2, 10)   context: 
+  line 1747 fsroll_layout(2, 10)   context: 
+  line 1753 fsroll_nameC((0x01f5 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1757 fsroll_layout(2, 10)   context: 
+  line 1763 fsroll_nameC((0x01f7 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1767 fsroll_layout(2, 10)   context: 
+  line 1773 fsroll_nameC((0x01f8 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1777 fsroll_layout(2, 10)   context: 
+  line 1783 fsroll_nameC((0x01fa + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1789 fsroll_layout(2, 0)   context: 
+  line 1793 fsroll_layout(2, 10)   context: 
+  line 1799 fsroll_nameC((0x0287 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1803 fsroll_layout(2, 10)   context: 
+  line 1809 fsroll_nameC((0x01fb + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1813 fsroll_layout(2, 10)   context: 
+  line 1819 fsroll_nameC((0x01fc + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1823 fsroll_layout(2, 10)   context: 
+  line 1829 fsroll_nameC((0x0288 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1833 fsroll_layout(2, 10)   context: 
+  line 1839 fsroll_nameC((0x01fe + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1844 fsroll_layout(2, 0)   context: 
+  line 1848 fsroll_layout(2, 10)   context: 
+  line 1854 fsroll_nameC((0x01ff + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1858 fsroll_layout(2, 10)   context: 
+  line 1864 fsroll_nameC((0x0200 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1868 fsroll_layout(2, 10)   context: 
+  line 1874 fsroll_nameC((0x0201 + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 1878 fsroll_layout(2, 10)   context: 
+  line 1884 fsroll_nameC((0x0204 + regI0)   context: for (regI0 = 1; regI0 < 14; regI0 = (regI0 + 1))
+  line 1889 fsroll_layout(2, 0)   context: 
+  line 1893 fsroll_layout(2, 10)   context: 
+  line 1899 fsroll_nameC((0x0212 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1903 fsroll_layout(2, 10)   context: 
+  line 1909 fsroll_nameC((0x0214 + regI0)   context: for (regI0 = 1; regI0 < 4; regI0 = (regI0 + 1))
+  line 1914 fsroll_layout(2, 0)   context: 
+  line 1918 fsroll_layout(2, 10)   context: 
+  line 1924 fsroll_nameC((0x0218 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 1928 fsroll_layout(2, 10)   context: 
+  line 1934 fsroll_nameC((0x021a + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 1938 fsroll_layout(2, 10)   context: 
+  line 1944 fsroll_nameC((0x021d + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1950 fsroll_layout(2, 0)   context: 
+  line 1954 fsroll_layout(2, 10)   context: 
+  line 1960 fsroll_nameC((0x021e + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1964 fsroll_layout(2, 10)   context: 
+  line 1970 fsroll_nameC((0x021f + regI0)   context: for (regI0 = 1; regI0 < 4; regI0 = (regI0 + 1))
+  line 1975 fsroll_layout(2, 0)   context: 
+  line 1979 fsroll_layout(2, 10)   context: 
+  line 1985 fsroll_nameC((0x0223 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 1989 fsroll_layout(2, 10)   context: 
+  line 1995 fsroll_nameC((0x0224 + regI0)   context: for (regI0 = 1; regI0 < 3; regI0 = (regI0 + 1))
+  line 2000 fsroll_layout(2, 0)   context: 
+  line 2004 fsroll_layout(2, 10)   context: 
+  line 2010 fsroll_nameC((0x0227 + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 2015 fsroll_layout(2, 0)   context: 
+  line 2019 fsroll_layout(2, 10)   context: 
+  line 2025 fsroll_nameC((0x0229 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 2029 fsroll_layout(2, 10)   context: 
+  line 2035 fsroll_nameC((0x022a + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 2039 fsroll_layout(2, 10)   context: 
+  line 2045 fsroll_nameC((0x022c + regI0)   context: for (regI0 = 1; regI0 < 2; regI0 = (regI0 + 1))
+  line 2049 fsroll_layout(2, 10)   context: 
+  line 2055 fsroll_nameC((0x022e + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 2060 fsroll_layout(2, 0)   context: 
+  line 2064 fsroll_layout(2, 10)   context: 
+  line 2067 fsroll_nameC((0x022f + regI0)   context: for (regI0 = 0; regI0 < 20; regI0 = (regI0 + 1))
+  line 2073 fsroll_layout(2, 128)   context: 
+  line 2078 fsroll_layout(2, 10)   context: 
+  line 2084 fsroll_nameC((0x0253 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 2088 fsroll_layout(2, 10)   context: 
+  line 2094 fsroll_nameC((0x0254 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 2098 fsroll_layout(2, 10)   context: 
+  line 2104 fsroll_nameC((0x0255 + regI0)   context: for (regI0 = 1; regI0 < 1; regI0 = (regI0 + 1))
+  line 2109 fsroll_layout(2, 0)   context: 
+  line 2113 fsroll_layout(0, 60)   context: 
+  line 2115 fsroll_layout(0, 0x0109)   context: 
+  line 2118 fsroll_nameC((0x028a + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2123 fsroll_layout(0, 60)   context: 
+  line 2125 fsroll_layout(0, 0x0109)   context: 
+  line 2128 fsroll_nameC((0x028b + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2133 fsroll_layout(0, 60)   context: 
+  line 2135 fsroll_layout(0, 0x0109)   context: 
+  line 2138 fsroll_nameC((0x028c + regI0)   context: for (regI0 = 0; regI0 < 2; regI0 = (regI0 + 1))
+  line 2143 fsroll_layout(0, 60)   context: 
+  line 2145 fsroll_layout(0, 0x0109)   context: 
+  line 2148 fsroll_nameC((0x028e + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2153 fsroll_layout(0, 60)   context: 
+  line 2155 fsroll_layout(0, 0x0109)   context: 
+  line 2158 fsroll_nameC((0x028f + regI0)   context: for (regI0 = 0; regI0 < 4; regI0 = (regI0 + 1))
+  line 2165 fsroll_layout(2, 0)   context: 
+  line 2169 fsroll_layout(0, 100)   context: 
+  line 2171 fsroll_layout(0, 0x0109)   context: 
+  line 2174 fsroll_nameC((0x025b + regI0)   context: for (regI0 = 0; regI0 < 3; regI0 = (regI0 + 1))
+  line 2179 fsroll_layout(0, 100)   context: 
+  line 2181 fsroll_layout(0, 0x0109)   context: 
+  line 2184 fsroll_nameC((0x025e + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2189 fsroll_layout(0, 100)   context: 
+  line 2191 fsroll_layout(0, 0x0109)   context: 
+  line 2194 fsroll_nameC((0x025f + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2199 fsroll_layout(0, 100)   context: 
+  line 2201 fsroll_layout(0, 0x0109)   context: 
+  line 2204 fsroll_nameC((0x0260 + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2209 fsroll_layout(0, 100)   context: 
+  line 2211 fsroll_layout(0, 0x0109)   context: 
+  line 2214 fsroll_nameC((0x0261 + regI0)   context: for (regI0 = 0; regI0 < 1; regI0 = (regI0 + 1))
+  line 2219 fsroll_layout(2, 0)   context: 
+  line 2223 fsroll_layout(2, 10)   context: 
+  line 2226 fsroll_nameC((0x0262 + regI0)   context: for (regI0 = 0; regI0 < 3; regI0 = (regI0 + 1))
+  line 2231 fsroll_nameC((0x0265 + regI0)   context: for (regI0 = 0; regI0 < 24; regI0 = (regI0 + 1))
+  line 2270 fsroll_layout(2, 0)   context: 
+  line 2283 fsroll_fade(0, -1, 0, 0)   context: 
+  line 2285 fsroll_fade(250, 10, 0, -1)   context: 
+  line 2286 fsroll_setend(2, 3, 0)   context: 
+  line 2337 fsroll_speed(file_var_s2_1)   context: 
+  line 2338 fsroll_setdouble(file_var_s3_3)   context: 
+  line 2339 fsroll_fade(0, -1, 0, 0)   context: 
+  line 2342 fsroll_fade(0x03a9, 30, 0, -1)   context: 
+  line 2343 fsroll_setend(2, 3, 0)   context: 
+literal name ids in 894..944: []
+max literal name id: 1023
+loop-argument name calls parsed: 161  unparsed: []
+loop name ids: 459 distinct, max 658; in 894..944: []
+ALL requested name ids: 638 distinct (producer: 638); in 894..944: []

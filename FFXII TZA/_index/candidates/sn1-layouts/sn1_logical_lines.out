@@ -1,0 +1,8 @@
+PASS  I sn1_q0_domain.py runs clean (FAILS 0); its parser is checked against sn1_layouts.py there
+PASS  K continuation lines (cp932): {('ctrl', 0): 19, ('evctrl', 0): 544}; a byte test adds mapctrl block 0 lines [977, 1187], whose final 0x5C is a Shift-JIS trail byte
+PASS  A evctrl scope 1 pc 22 / 34 / 3230 / 3242: CALLPOPA askpos / mesopenspeed, q0 lines 417 / 418 / 708 / 709 -> physical 961 / 962 / 1252 / 1253
+PASS  V verb on the logical line / only logical / only physical: {'ctrl': (17, 221, 0), 'btlctrl': (558, 0, 0), 'evctrl': (3, 264, 1), 'mapctrl': (283, 0, 0)}; the one physical-only call is logical 1733 = physical 2277, the macro h_bosseventlist01() (defined at 870), whose body calls mesopenspeed
+PASS  D logical counts ctrl 0 = 958, evctrl 0 = 1912, others physical; past the block: 6 (the six), equal to the count: 9 (the nine)
+PASS  C byte-test grouping on mapctrl: 0 logical-only, 156 physical-only calls (it wrongly shifts the numbering); physical numbering misses 485 ctrl / evctrl calls
+PASS  L lookup() keeps the earlier anchors (physical indices [3, 4, 387, 388]) and resolves evctrl's through the logical lines (A)
+FAILS 0

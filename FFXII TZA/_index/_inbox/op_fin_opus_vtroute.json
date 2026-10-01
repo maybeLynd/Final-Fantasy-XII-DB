@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-VTABLE-ROUTE-ON-THE-UNREFLECTED-PHYRE-DEBT",
+ "agent": "OPUS",
+ "note": "Committed 9883d79f5. Five classes censused through their vtables, 44 rows annotated, 17,011 bytes of Phyre debt now carrying a second measured route: PMeshParticleSystemBase 9 displacements over 9 slot bodies, PMotionBlurBase 10, PDeferredLightingD3D11 9, PApplication 20, and PScheduler 1 - and that last one is recorded as a WEAK control in the cell itself rather than dressed up to match the others. Four classes refused because the tool finds no direct MSVC descriptor, which is a limit of the anchor and not evidence about the type; nothing was written for them. The instrument's two standing limits travel in every cell: virtual methods only, and compiler-folded bodies attribute to every class that lists them. NOT CLAIMED: exhaustiveness, and nothing was carved - every one of these is a negative with its control stated. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

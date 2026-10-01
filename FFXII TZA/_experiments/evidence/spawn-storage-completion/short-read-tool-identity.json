@@ -1,0 +1,31 @@
+{
+  "method": "Read-only tool identity snapshot after the bounded execution; no experiment replay",
+  "unicorn_version": "2.1.4",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "loaded_dlls": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\python-libs\\unicorn\\lib\\unicorn.dll": {
+      "module": "unicorn.unicorn_py3.unicorn",
+      "variable": "uclib",
+      "bytes": 9598976,
+      "sha256": "010d85dce84b8f6ffaec3d5420f1b5f7768f859eb831be574c7da23e656ee8f1"
+    }
+  },
+  "files": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe": {
+      "bytes": 255200,
+      "sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+    },
+    "C:\\Python314\\python.exe": {
+      "bytes": 106208,
+      "sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+    },
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\python-libs\\unicorn\\__init__.py": {
+      "bytes": 305,
+      "sha256": "0e8ac7115c755994a968fa865bd1b2f2075edea715c17e91d62af2cc52c13392"
+    },
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\spawn_storage_short_read_probe.py": {
+      "bytes": 7137,
+      "sha256": "8c165f2ccaf5c1d0d17fc2a4eb4d16bd5cf77fd2534946b20cdd47de4893e10f"
+    }
+  }
+}

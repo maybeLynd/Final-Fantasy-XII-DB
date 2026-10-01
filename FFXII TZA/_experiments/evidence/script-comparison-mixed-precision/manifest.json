@@ -1,0 +1,135 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4082,
+      "sha256": "41b5449e5bc627e8375cb5bae1742cf0c8968e2c91abee22472b6b0e3dcb9733"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6852,
+      "sha256": "40e208cfdfe5f50b3cfa1ae6c9381f4a4937cd938228f0c124c9ec93d854f73a"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 385,
+      "sha256": "bed686d32f4e144a1386c8385633113526e7bf66426cc838ae42b956daecc903"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 87,
+      "sha256": "eb2feb9c01fedb3aad6741e4b85f8f92f7491a57514fef861091c82aa062af84"
+    },
+    {
+      "path": "fault-always-float.stderr",
+      "bytes": 539,
+      "sha256": "412156ea927d6b19feee3b44b1199ec0ad9a875139b4926eee5603015994ea3f"
+    },
+    {
+      "path": "fault-always-float.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-always-nearest.stderr",
+      "bytes": 533,
+      "sha256": "c66146433e8e9a0bbe6c2e1dccc5bad2fab2f50bcddd5d57c115b4bd646483ae"
+    },
+    {
+      "path": "fault-always-nearest.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-reversed-order.stderr",
+      "bytes": 541,
+      "sha256": "65befad4a270e3d74b1f16b3c0b9b3ed6b63d045b55cd936aa969bd65600084a"
+    },
+    {
+      "path": "fault-reversed-order.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2747,
+      "sha256": "24ff67237b50d55e539f7e54c4c8ac4477a20575d5fb21a75b742f14852c2b67"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 2998,
+      "sha256": "cb36d88e4fff638db4ab3732e830486a4328a589c8ceebc8a404764dae11c963"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1982,
+      "sha256": "d2d1adedd1dbc3e5ca0a3c3756828dd711ef7c2a9ddf5bef431192a42b92747d"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 29935,
+      "sha256": "fa8773ff1521e0a8475d0323b8d90b336f369772a9e72f857f308fb50699ecc0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3216,
+      "sha256": "34127875b28f595e455bb18861942d823c10bed737514ca04e68a3885c674710"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 474,
+      "sha256": "6cb6dad8ca1cf3c43eaf86a27db92120f0e8341e0c669740c24cf1ec040944b9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 5095,
+      "sha256": "97857c09850adc13253872993e14df36759274e94d35f94ce4c4ed3938642e62"
+    },
+    {
+      "path": "retained/compare413.bin",
+      "bytes": 413,
+      "sha256": "b576afcd9c4c4cda7d69e488603ee49378c5dea2611225a9251aa6b5bb4e2afd"
+    },
+    {
+      "path": "retained/prior72-feasibility-raw.json",
+      "bytes": 69770,
+      "sha256": "fbbcf528c88c546a4f8da82b70dd7b740e2567d5634db07b5151547126b96439"
+    },
+    {
+      "path": "retained/prior72-manifest.json",
+      "bytes": 5609,
+      "sha256": "7f5aa798e48967f908a39c4e3acb7094c9eb7481fbdb0fcd9e9051e0a84d8b00"
+    },
+    {
+      "path": "retained/prior72-result.json",
+      "bytes": 3021,
+      "sha256": "d9888b3ee199580ec13d56b4fe732166344ab2ad41be32b4bea96c1abb7311de"
+    },
+    {
+      "path": "retained/prior72-runner-adapted.py",
+      "bytes": 4350,
+      "sha256": "151b9b5855c1662a50df0dbc71b2cdbc4ddfa289dcd2a6ec3a925dc23992025a"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    }
+  ],
+  "limits": "A source/retained-bit conditional composition, NOT mixed original comparator execution/native/live/independent acceptance."
+}

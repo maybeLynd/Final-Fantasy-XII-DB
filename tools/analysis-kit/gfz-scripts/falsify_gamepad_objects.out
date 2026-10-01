@@ -1,0 +1,12 @@
+SURVIVES  G0  sizes all eight as cited
+SURVIVES  G1  Steam interface, DirectInput8Create 0x800 (fail 9), EnumDevices all/attached-only; its failure also 9
+SURVIVES  G2  device type +0x24; pads 0x14/0x15/0x18; the hot-plug callback ignores the keyboard
+SURVIVES  G3  XInput test on the product GUID, sticky byte; run again before the XInput build
+SURVIVES  G4  dedup on +0x1D4/+0x1DC over the first 18 kind-2 entries; all four classes answer 2 (00290180); Steam copies no descriptor
+SURVIVES  G5  CON-188: the XInput branch runs whatever Steam did; bl gates only the DirectInput path
+SURVIVES  G6  CON-189: only E_NOTIMPL from SetCooperativeLevel abandons; Acquire unchecked; no Release on any abandon path
+SURVIVES  G7  list link at +8, device +0x28, 2 x 17 bytes, four 0x48 sub-objects, 0x244 zeroed at +0x1D0
+SURVIVES  G8  4 x 0x80 + 0x44 = 0x244-byte copies; XInput index +0x458; the XInput ctor loads '.\\xinput1_3.dll' and resolves ordinal 100
+SURVIVES  G9  handle 02EA95A0, 'Global', 16 digital + 2 analog handles into image globals
+SURVIVES  G10  arrival byte on 0x8000; cleared, re-enumerated with 00798A40 (failure 9, no poll); every device polled
+FAILS 0

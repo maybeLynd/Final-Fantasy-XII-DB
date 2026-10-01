@@ -1,0 +1,87 @@
+{
+ "import": {
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "slots": {
+   "VCRUNTIME140.dll!memmove": "008C2A40",
+   "VCRUNTIME140.dll!memcpy": "008C2A68"
+  },
+  "app_local_vcruntime140": []
+ },
+ "dll": {
+  "path": "C:\\Windows\\System32\\vcruntime140.dll",
+  "sha256": "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7",
+  "version": {
+   "FileVersion": "14.51.36247.0",
+   "ProductVersion": "14.51.36247.0"
+  },
+  "loaded_from": "C:\\Users\\Kristian\\AppData\\Local\\Temp\\opus_s47_vcrt_sys_copy.dll",
+  "loaded_base": "7FFFFDBC0000",
+  "text_mapped_equals_file": true,
+  "text_bytes": 122299,
+  "text_identical_unrelocated": true,
+  "memcpy_rva": "1F020",
+  "memmove_rva": "1DB00",
+  "memcpy_bytes": "e9dbeaffff",
+  "memcpy_is_jmp_to_memmove": true
+ },
+ "dispatch_globals": {
+  "isa_rva": "26088",
+  "favor_rva": "26374",
+  "host_values": {
+   "isa": 5,
+   "favor": 2
+  }
+ }
+}
+copies: 39215 failures: 0
+control: {'up_len_0x40_dist_8': False, 'down_len_0x40_dist_8': True}
+census: {'path': 'D:\\MMO\\Tera\\Binaries\\vcruntime140.dll', 'version': '14.00.23506.0 built by: VCTOOLSREL', 'memcpy_rva': 'C820', 'memmove_rva': 'C820', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\ASUS\\ROGLSLoader\\vcruntime140.dll', 'version': '14.00.23918.0 built by: VCTOOLSREL', 'memcpy_rva': 'C830', 'memmove_rva': 'C830', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\SteamLibrary\\steamapps\\common\\Jotunnslayer Hordes of Hel\\Jotunnslayer_Data\\Plugins\\x86_64\\vcruntime140.dll', 'version': '14.00.24210.0 built by: VCTOOLSREL', 'memcpy_rva': 'C330', 'memmove_rva': 'C330', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\Bignox\\BigNoxVM\\RT\\vcruntime140.dll', 'version': '14.11.25506.0 built by: VCTOOLSD15ULDR', 'memcpy_rva': 'C370', 'memmove_rva': 'C370', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files\\MuMuVMMVbox\\Hypervisor\\tools\\vcruntime140.dll', 'version': '14.16.27012.6 built by: vcwrkspc', 'memcpy_rva': '1240', 'memmove_rva': '1240', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\Games\\Disgaea RPG\\DisgaeaRPG\\vcruntime140.dll', 'version': '14.16.27033.0 built by: vcwrkspc', 'memcpy_rva': '1240', 'memmove_rva': '1240', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\old.ver\\vcruntime140.dll', 'version': '14.24.28127.4 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\old.ver\\service\\vcruntime140.dll', 'version': '14.24.28127.4 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\rollback\\vcruntime140.dll', 'version': '14.24.28127.4 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\rollback\\service\\vcruntime140.dll', 'version': '14.24.28127.4 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\Games\\Battle.net\\Diablo IV\\vcruntime140.dll', 'version': '14.24.28127.4 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\SteamLibrary\\steamapps\\common\\P5X\\P5XLaunch\\runtime\\vcruntime140.dll', 'version': '14.24.28127.4 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\SteamLibrary\\steamapps\\common\\Age of Wonders 4\\VCRUNTIME140.dll', 'version': '14.27.29112.0 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Windows\\System32\\DriverStore\\FileRepository\\iclsclient.inf_amd64_fc84dfa25a6a7727\\lib\\vcruntime140.dll', 'version': '14.28.29334.0 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files\\OpenVPN\\bin\\vcruntime140.dll', 'version': '14.29.30037.0 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files\\ldplayer9box\\vcruntime140.dll', 'version': '14.29.30151.0 built by: cloudtest', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.1.1\\jbr\\bin\\vcruntime140.dll', 'version': '14.29.30153.0 built by: cloudtest', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files\\BlueStacks_nxt\\vcruntime140.dll', 'version': '14.29.30157.0 built by: cloudtest', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\Feedback\\amd64\\vcruntime140.dll', 'version': '14.30.30626.0 built by: vcwrkspc', 'memcpy_rva': '12F0', 'memmove_rva': '12F0', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Windows\\System32\\DriverStore\\FileRepository\\igcc_dch.inf_amd64_ee28fa9e734aabda\\vcruntime140.dll', 'version': '14.36.32532.0', 'memcpy_rva': '1310', 'memmove_rva': '1310', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'C:\\Windows\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_046f5bd4083e9122\\vcruntime140.dll', 'version': '14.36.32532.0', 'memcpy_rva': '1310', 'memmove_rva': '1310', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\Games\\Mecharashi\\client\\Mecharashi_Data\\Plugins\\x86_64\\vcruntime140.dll', 'version': '14.36.32532.0', 'memcpy_rva': '1310', 'memmove_rva': '1310', 'same_rva': True, 'jmp_to_memmove': False}
+census: {'path': 'D:\\Games\\Duel Master Play\\6234675259375616\\Payload\\vcruntime140.dll', 'version': '14.38.33135.0', 'memcpy_rva': '12010', 'memmove_rva': '110C0', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Elgato\\4KCaptureUtility\\vcruntime140.dll', 'version': '14.40.33810.0', 'memcpy_rva': '13010', 'memmove_rva': '11200', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\vcruntime140.dll', 'version': '14.40.33810.0', 'memcpy_rva': '13010', 'memmove_rva': '11200', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\Engine\\Binaries\\Win64\\vcruntime140.dll', 'version': '14.40.33810.0', 'memcpy_rva': '13010', 'memmove_rva': '11200', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\service\\vcruntime140.dll', 'version': '14.40.33810.0', 'memcpy_rva': '13010', 'memmove_rva': '11200', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'D:\\Games\\Battle.net\\Diablo Immortal\\Engine\\Binaries\\Win64\\vcruntime140.dll', 'version': '14.40.33810.0', 'memcpy_rva': '13010', 'memmove_rva': '11200', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Logitech\\LogiTune\\backend\\vcruntime140.dll', 'version': '14.42.34438.0', 'memcpy_rva': '13010', 'memmove_rva': '113F0', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Windows\\System32\\HealthAttestationClient\\vcruntime140.dll', 'version': '14.44.35112.1', 'memcpy_rva': '14010', 'memmove_rva': '12180', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Android\\openjdk\\jdk-21.0.8\\bin\\vcruntime140.dll', 'version': '14.44.35208.0', 'memcpy_rva': '13010', 'memmove_rva': '120D0', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\cuepkg-2.25.2\\vcruntime140.dll', 'version': '14.44.35211.0', 'memcpy_rva': '13010', 'memmove_rva': '120D0', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\vcruntime140.dll', 'version': '14.44.35211.0', 'memcpy_rva': '13010', 'memmove_rva': '120D0', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Google\\Play Games\\26.9.341.0\\emulator\\vcruntime140.dll', 'version': '14.50.35719.0', 'memcpy_rva': '13010', 'memmove_rva': '12030', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\153.0.4234.32\\vcruntime140.dll', 'version': '14.50.35719.0', 'memcpy_rva': '13010', 'memmove_rva': '12030', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\153.0.4234.48\\vcruntime140.dll', 'version': '14.50.35719.0', 'memcpy_rva': '13010', 'memmove_rva': '12030', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Windows\\System32\\Microsoft-Edge-WebView\\vcruntime140.dll', 'version': '14.50.35719.0', 'memcpy_rva': '13010', 'memmove_rva': '12030', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Mozilla Firefox\\updated\\vcruntime140.dll', 'version': '14.51.36247.0', 'memcpy_rva': '1F020', 'memmove_rva': '1DB00', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\154.0.4258.37\\vcruntime140.dll', 'version': '14.51.36247.0', 'memcpy_rva': '1F020', 'memmove_rva': '1DB00', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\undocked_copilot\\vcruntime140.dll', 'version': '14.51.36247.0', 'memcpy_rva': '1F020', 'memmove_rva': '1DAD0', 'same_rva': False, 'jmp_to_memmove': True}
+census: {'path': 'C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\vcruntime140.dll', 'version': '14.51.36250.0', 'memcpy_rva': '1F020', 'memmove_rva': '1DB00', 'same_rva': False, 'jmp_to_memmove': True}
+import_is_VCRUNTIME140_memcpy_at_008C2A68_and_no_app_local_copy    PASS
+loaded_code_is_the_System32_file                                   PASS
+memcpy_export_is_one_jmp_to_memmove                                PASS
+M07_7_shape_copies_as_memmove_on_every_path                        PASS
+matrix_every_copy_is_memmove_on_every_path                         PASS
+dispatch_globals_restored                                          PASS
+control_checker_catches_a_forward_copier_on_upward_overlap         PASS
+census_every_x64_copy_exports_memcpy_as_memmove                    PASS
+ALL PASS

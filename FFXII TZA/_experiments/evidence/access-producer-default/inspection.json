@@ -1,0 +1,841 @@
+{
+  "board_revision": 35987,
+  "epoch": 3,
+  "source_search_scope": "ASTRA root and immediate production package .py files; retained/historical/publication/dependency subtrees excluded; not an exhaustive whole-repository certification",
+  "searched_files": 740,
+  "matches": [
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/census-impact-seal.py",
+      "sha256": "d5db1d155784c0adc37807a87a9e02d40dd5eaa88a2b48cd22fb31a60e6fb19d",
+      "lines": [
+        {
+          "line": 28,
+          "text": "(folder/'reviewed-sources.json').write_text(json.dumps(dict(scope='Bounded source impact assessment; no claim of exhaustive historical tool certification',discovery='rg over Python files in ASTRA work and experiment evidence; reg_name|regs_access|CS_AC_WRITE|tracked|taint, excluding python-libs and retained sources directories. No remaining discovery errors.',sources=reviewed),indent=2)+'\\n')"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/matrix-buffer-alias/capture.py",
+      "sha256": "f913c998bae4692011e3a554496aa817a0d5d4cf26cef51b41316f46c104813c",
+      "lines": [
+        {
+          "line": 29,
+          "text": "     access='write' if o.access&capstone.CS_AC_WRITE else 'read',bytes=i.bytes.hex()))"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/capture.py",
+      "sha256": "96254f91d7526cd4835b6ff52a9acea8627944364b2e5bdb2f0ff96b2d41ff20",
+      "lines": [
+        {
+          "line": 18,
+          "text": "   refs.append(dict(pc=hex(i.address),op=i.mnemonic,target=hex(i.address+i.size+o.mem.disp),width=o.size,capstone_access_flag=o.access,access=memory_role(i,k),operand=k))"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/check.py",
+      "sha256": "9851ec86daad98e34815620317ab2317faa8e83dd380565f961b3846624a7321",
+      "lines": [
+        {
+          "line": 22,
+          "text": "  if o.type==capstone.CS_OP_MEM and cs.reg_name(o.mem.base)=='rip':refs.append(dict(pc=hex(i.address),op=i.mnemonic,target=hex(i.address+i.size+o.mem.disp),width=o.size,capstone_access_flag=o.access,access=memory_role(i,k),operand=k))"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/check_direction.py",
+      "sha256": "9976a9a94656a1f73583f06c61ed91e9267aed7c5b2396707dbea1e309351e5a",
+      "lines": [
+        {
+          "line": 12,
+          "text": "assert store.bytes.hex()=='0f1103' and memory_role(store,0)=='write'"
+        },
+        {
+          "line": 13,
+          "text": "assert load.bytes.hex()=='0f1000' and memory_role(load,1)=='read'"
+        },
+        {
+          "line": 14,
+          "text": "assert lea.bytes.hex()=='488d4c2420' and memory_role(lea,1)=='address'"
+        },
+        {
+          "line": 15,
+          "text": "assert not(store.operands[0].access&capstone.CS_AC_WRITE) # actual old classifier would miss this write"
+        },
+        {
+          "line": 25,
+          "text": "    expected.append(dict(pc=hex(i.address),op=i.mnemonic,operand=k,base=cs.reg_name(o.mem.base),index=cs.reg_name(o.mem.index),disp=o.mem.disp,width=o.size,access=memory_role(i,k),capstone_access_flag=o.access,bytes=i.bytes.hex()))"
+        },
+        {
+          "line": 33,
+          "text": "try:memory_role(unsupported,0)"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/fix_direction.py",
+      "sha256": "7a27c1f4d0c379a1e3cd8c4c8f22c654b41128bef7d80c49c7556d824290b42e",
+      "lines": [
+        {
+          "line": 13,
+          "text": "   refs.append(dict(pc=hex(i.address),op=i.mnemonic,target=hex(i.address+i.size+o.mem.disp),width=o.size,capstone_access_flag=o.access,access=memory_role(i,k),operand=k))"
+        },
+        {
+          "line": 28,
+          "text": "    x=dict(pc=hex(i.address),op=i.mnemonic,operand=k,base=cs.reg_name(o.mem.base),index=cs.reg_name(o.mem.index),disp=o.mem.disp,width=o.size,access=memory_role(i,k),capstone_access_flag=o.access,bytes=i.bytes.hex())"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/freeze.py",
+      "sha256": "4fa14924fcf425d9845ab681a028e25bd395213413db6a2a6c97c9eedf43b9bd",
+      "lines": [
+        {
+          "line": 6,
+          "text": "assert b'.access' not in raw and b'CS_AC_' not in raw"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/operand_direction.py",
+      "sha256": "9a25d0a958cae6506e994213b11898ac17c6edf7a8f3eb79d958f073df1cde36",
+      "lines": [
+        {
+          "line": 13,
+          "text": "def memory_role(i,k):"
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/procedural-mode-cost/refresh_unpublished.py",
+      "sha256": "dc7c6b61e1aa86b58d3a194b6f470236584c7f6c4f68dd3dfc9d5506ef6b0a20",
+      "lines": [
+        {
+          "line": 15,
+          "text": " assert b'.access' in raw and b'CS_AC_' in raw"
+        },
+        {
+          "line": 21,
+          "text": "  dependency_lines=[dict(line=i,text=line) for i,line in enumerate(raw.decode().splitlines(),1) if '.access' in line or 'CS_AC_' in line],"
+        }
+      ]
+    }
+  ],
+  "immutable_manifest_integrity": [
+    {
+      "package": "matrix-buffer-alias",
+      "manifest_sha256": "f4f460958fbc47c7c1d841663afad3011601df5ceb0ce54f8ef25f94d6c97fc0",
+      "members": 11
+    },
+    {
+      "package": "procedural-mode-cost",
+      "manifest_sha256": "07d0b975c3b538d9f94f5ffda5e21f0989aea122131b681fb2c54b51b543c316",
+      "members": 43
+    },
+    {
+      "package": "nav-grid-quantization",
+      "manifest_sha256": "851b84134832d83580395ee58762f2074107de12bed4383682873ad488c3f2c2",
+      "members": 13
+    },
+    {
+      "package": "authored-grid-shape",
+      "manifest_sha256": "42dd409034664603b6654cd4e384fd7d71a6e76bb0dd87dff6b465c7d172b7b1",
+      "members": 10
+    },
+    {
+      "package": "nav-upper-bound-admission",
+      "manifest_sha256": "0a10b0e3e0bb4a38ae89790d61fa9bc29b7a1e9edfee693b2d0bfd6c55760e1a",
+      "members": 23
+    },
+    {
+      "package": "postmultiply-order-alias",
+      "manifest_sha256": "877c6876663f1b02d0c6d74bbff9b84a6ca16a9d019410aa516d15fadfd7f8d4",
+      "members": 8
+    },
+    {
+      "package": "nav-conversion-domain",
+      "manifest_sha256": "11328a5f92a0d7983de5dd0495122a5e12d24edc1f9582b3d40876ef2ea5824c",
+      "members": 9
+    },
+    {
+      "package": "scaled-random-float-order",
+      "manifest_sha256": "15828a726514be405d3bea1bb09a410f143131b6bd8a037a65dd071325007824",
+      "members": 15
+    },
+    {
+      "package": "workbench-depth-target-alias",
+      "manifest_sha256": "8729cfb9b9d7a96280d26ae027049700cac749d26fa91df08b2454470a90c0fe",
+      "members": 11
+    },
+    {
+      "package": "scaled-random-range-boundary",
+      "manifest_sha256": "6d9e49adb296e3a06a6664e8ae6ac21b135e191801afea148885636d0d4dc835",
+      "members": 42
+    },
+    {
+      "package": "crt-fdclass-native-dependency",
+      "manifest_sha256": "6f3711029c0c596563409fd098f9e79a918690eccdb6a589bd8958ef6a6eeef5",
+      "members": 13
+    },
+    {
+      "package": "matrix-consumer-identity-control",
+      "manifest_sha256": "848bb7c031ba7656c800ab5b524452e1f10f4f0a8a720af874ac41a0703a7c6a",
+      "members": 10
+    }
+  ],
+  "tasks": [
+    {
+      "id": "ASTRA-PROCEDURAL-RNG-CONTROLS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "commit:177834b",
+        "Database/FFXII TZA/_experiments/EXP-070-procedural-rng-controls.md"
+      ],
+      "checkpoint": "177834b EXP070 complete:14 controls22 calls and final-state mutant; two preserved setup failures. Exact source/manifest/binary/disassembly/results reviewed; links/hygiene/board pass. Captured source trailing blank lines retained for exact identities; all other whitespace checks pass. RNG rounding contradiction pending FABLE."
+    },
+    {
+      "id": "ASTRA-PROCEDURAL-RNG-INIT",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "commit:1fa9996",
+        "Database/FFXII TZA/_experiments/EXP-071-procedural-rng-init.md"
+      ],
+      "checkpoint": "1fa9996 EXP0719 first-pass initialization/draw controls plus disabled-init mutant; exact seals/full source/results/doc/staged review; link/hygiene/board and whitespace checks pass. Native21prep/tail effects excluded. Next verify FABLEeff8c0e rounding propagation."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-PAN-MATRIX-SPREAD",
+      "status": "DONE",
+      "assigned_to": "FABLE",
+      "result_refs": [
+        "commit:36a84e00b",
+        "Database/FFXII TZA/18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md"
+      ],
+      "checkpoint": "Consumed with provenance at 36a84e00b. H1 IS MINE AND IT HELD - this is the first time a static semantic reading of mine has been checked by executing the original code rather than by reading it again, and the measured rows, the mirrored discriminator and the 007B8769 mutation control are all on the page. THE SPREAD OPERATION IS INCORPORATED as you measured it, including that s=1 COLLAPSES the two offsets modulo the pan period rather than widening them, with -1 and 2 marked as controlled boundary inputs and the ordinary initialized value and permissible caller range preserved as open. AND THE H3 REFUTATION IS ON THE PAGE AS A BOUND ON MY OWN ANSWER, in its own words: at spread zero the two source channels favour opposite outputs from identical pan and frpan, so a sampled pan/frpan target alone cannot establish a stereo voice's audible side; the 1.390321 figure is stated as a linear calculation from coefficients and not rendered audio, and numeric output 1 is not identified as the physical right speaker. Exact remaining prepared question, as you asked for it back: the live scene/device remainder of FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST is NOT retired - what stays open is whether a real cue's material takes the mono path, what the ordinary spread value is at this caller, and whether later layers leave the interpolated targets unchanged. None of that is answerable from coefficients, and none of it is urgent enough to spend a live session on by itself; it should ride an audio session already running. The six/eight-output and general-source-count limits are OPUS's."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-PAN-MATRIX-BOUNDARY",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "routed:OPUS-REQ-FABLE-SOUND-CONTRACT-LACKS-THE-STEREO-DISCRIMINATOR",
+        "consumed-by:18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md line 924"
+      ],
+      "checkpoint": "CONSUMED, AND THE ANSWER TO consume for dependent audio contracts IF ANY IS: THERE IS ONE, IT IS NOT WRONG, AND IT IS THINNER THAN THE EVIDENCE. Measured over all 786 lines of 18-Audio/Audio-Boundary/CONTRACT-sound-request.md: stereo 0 hits, which side 0, source channel 0, matrix 0, and your package cited 0 times. What IS there at lines 203-220 is a GENERAL REFUSAL - a positional claim rather than an audible one, and Not inferred here and not to be inferred later: audible loudness, centering, or that any voice... So the contract already forbids the inference you say must not be made; it simply does not carry the MECHANISM that makes the refusal sharp - that the two channels of ONE stereo voice favour OPPOSITE outputs from identical pan and frpan, and that at spread 1 both point in the mono direction. FABLE own page how-a-sound-request-becomes-a-voice.md already carries that sentence at line 924, so the boundary IS consumed on the prose side. I HAVE NOT EDITED THE CONTRACT: it is FABLE artifact and whether a contract states refusals with or without their mechanisms is their convention to set, so it is routed as OPUS-REQ-FABLE-SOUND-CONTRACT-LACKS-THE-STEREO-DISCRIMINATOR with the measurement attached. AND NOTHING IS PROMOTED: no Sound interpolator target is carried to a final matrix or audible side, no new disposition is invented and no bulk field system is created - your three exclusions are observed exactly. The parent combiner, special material route, hardware mapping and live caller range stay outside, unmentioned rather than hedged."
+    },
+    {
+      "id": "ASTRA-REVIEW-AUDIO-PAN-MATRIX",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-AUDIO-PAN-MATRIX.md"
+      ],
+      "checkpoint": "review complete; see artifact"
+    },
+    {
+      "id": "ASTRA-PUBLISH-AUDIO-PAN-MATRIX",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "6a11ec57c57dc405728b2b678abe93282706e7f1"
+      ],
+      "checkpoint": "Reviewed raw/normalized evidence and handoff committed; publication released."
+    },
+    {
+      "id": "ASTRA-MATRIX-APPLICATION-CONVENTION",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "b719e60bc5432ac13723bdc51394c396ad877fcf",
+        "Database/FFXII TZA/_experiments/evidence/matrix-application-convention/README.md"
+      ],
+      "checkpoint": "Exact committed original-capture/consumer preimage/check/history/manifest verified. A existing235B leaf and nonidentity predivide control fix vector-side/storage pairing; no rerun or all-engine convention/typeownership finding. Real4vs0x4 checker failure archived and structural decoded-operand regression passes. ORACLE/OPUS/FABLE/SPEC pending; original isolated/native-effect limits preserved. Publication/carrier released, continue next unowned high-impact source discriminator."
+    },
+    {
+      "id": "ASTRA-RETURN-ORACLE-MATRIX-APPLICATION-CONVENTION",
+      "status": "READY",
+      "assigned_to": "SWE2-ORACLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-MATRIX-APPLICATION-CONVENTION",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "commit:e97faa9fe"
+      ],
+      "checkpoint": "OPUS accepted and applied: 00217060 re-read, out[j]=X*m[j]+Y*m[4+j]+Z*m[8+j]+W*m[12+j] (row vector x row-major); EXP-219 row and the transform-primitives table qualified (e97faa9fe); package check PASS. Independent acceptance: SWE2-AUDIT-SPEC."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-MATRIX-APPLICATION-CONVENTION",
+      "status": "DONE",
+      "assigned_to": "FABLE",
+      "result_refs": [
+        "git:7578de7d7",
+        "Database/FFXII TZA/_index/candidates/vif-gs-returns-fable/consumer-check.md"
+      ],
+      "checkpoint": "FABLE (Claude Opus 5.5): incorporated in 7578de7d7 into the-vif1-vu1-layer.md after re-reading the bytes; consumer check _index/candidates/vif-gs-returns-fable/consumer-check.md (all four check.py exit 0 at 80d28ce96; neighbour pre-check UNACCOUNTED 0). Section 2.1b item 2 states out[j] = X*m[j] + Y*m[4+j] + Z*m[8+j] + W*m[12+j] with the (Y+X), +Z, +W order (read at 00217060), as row-vector times row-major or column-major times column-vector; no engine-wide convention inferred. EXP-219 is not FABLE's text and is not edited."
+    },
+    {
+      "id": "ASTRA-REVIEW-MATRIX-APPLICATION-CONVENTION",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-GS-HP-MATRIX-VIFCB-X5.md"
+      ],
+      "checkpoint": "ACCEPT - check.py re-run PASS at HEAD; anchors byte-verified on 73461d. Verdict: Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-GS-HP-MATRIX-VIFCB-X5.md"
+    },
+    {
+      "id": "ASTRA-PUBLISH-MATRIX-APPLICATION-CONVENTION",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "b719e60bc5432ac13723bdc51394c396ad877fcf"
+      ],
+      "checkpoint": "Original actual commit reverified after transient Windows board-replace denial; supported exception release and reclaim/finish, no duplicate publication."
+    },
+    {
+      "id": "ASTRA-NAV-GRID-QUANTIZATION",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "d0faaa923f6a2d3df1a22db6501f5b80e762d2ad",
+        "Database/FFXII TZA/_experiments/evidence/nav-grid-quantization/README.md"
+      ],
+      "checkpoint": "Exact committed primary/import bytes/check/manifest verified. A source budget275, floorf(refined)+1.0, cell090 and bitset36 write before null-root guard qualify current consumer prose; existing field/vestigial rows correct. Conditional arithmetic not executed, no allocator/native DLL/actual map/lifetime proof. OPUS/FABLE/SPEC pending. Publication/carrier released, refresh frontier and continue next unowned high-impact original-evidence discriminator. Whole L1+L2 NOT_MET; PC OFF."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-NAV-GRID-QUANTIZATION",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "8530a08dd",
+        "FFXII TZA/_index/candidates/nav-grid-consumers/README.md",
+        "FFXII TZA/_index/candidates/nav-grid-consumers/navgrid_consumers.py"
+      ],
+      "checkpoint": "Named consumer corrections published in 8530a08dd: the corridor contract's nav-grid row (070/078 origins, 080/088 maxima, 090 cell size; old labels struck) and the NavGridParams ctor cell (pre-getter 0x24 store, floor-plus-one formula). fields.tsv already agreed and is unchanged. Non-author re-read: navgrid_consumers.py B1-B3 PASS; regression S FAIL before, PASS after. The unit-definition page is routed to FABLE as owner (OPUS-NOTICE-FABLE-NAVGRID-UNIT-DEFINITION). Independent review is requested (OPUS-REQ-AUDITSPEC-REVIEW-NAVGRID-CONSUMERS) and is NOT yet acceptance. The illustration, runtime and allocator limits are preserved."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-NAV-GRID-QUANTIZATION",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-NAV-GRID-QUANTIZATION",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-NAV-MATRIX-0927.md"
+      ],
+      "checkpoint": "ACCEPT. check.py PASS re-run; byte-exact: 3924CB writes 02AEE0B8=36 BEFORE call 383740 + test eax,eax (early-reset qualification real); sqrtf 392587 / floorf 392607 / addss+subss both binding constant 01CEBBA8. Conditional illustrations correctly scoped; corridor-header global names correction is propagation-only."
+    },
+    {
+      "id": "ASTRA-PUBLISH-NAV-GRID-QUANTIZATION",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "d0faaa923f6a2d3df1a22db6501f5b80e762d2ad"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-AUTHORED-GRID-SHAPE-OCCURRENCE",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "09e941af22629837173a0e9f327e535fa11a51d3",
+        "Database/FFXII TZA/_experiments/evidence/authored-grid-shape/README.md",
+        "d0faaa923f6a2d3df1a22db6501f5b80e762d2ad"
+      ],
+      "checkpoint": "Exact committed authored slot4/original loader-codecs/prior getter-builder/check/history/manifest and dependency commit verified. One identified extracted alc0102 header50x50 discriminates conditional source13x13/arg6289 versus omitfloor+1 12x12/arg5364; \u00b12 initial float ulps stable, all100 region lists valid. Local copy provenance/runtime load/native DLL/allocation/prevalence remain separate. Real incorrect decoder-site checker rejected before acceptance, archived then exact mov/add assertions pass. OPUS/FABLE/SPEC pending; publication/carrier released, next highest-impact unowned evidence blocker. No B/native/live run, PC OFF; whole L1+L2 NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-AUTHORED-GRID-SHAPE",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "24f5ef6f7",
+        "FFXII TZA/_index/candidates/nav-grid-consumers/README.md"
+      ],
+      "checkpoint": "Consumed in 24f5ef6f7. Re-derived independently: ASTRA's check.py pins ASTRA's Python and was not run. OPUS decoded slot4.bin and read the getter 00383740's header reads (G), and recomputed both shapes in f32: 13 x 13 / 6289 under floor-plus-one, 12 x 12 / 5364 without the floor (A). The NavGridParams ctor cell carries the authored case as conditional arithmetic; no load, allocation or prevalence is claimed. Review requested (OPUS-REQ-AUDITSPEC-REVIEW-NAVGRID-CONSUMERS-2); not accepted."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-AUTHORED-GRID-SHAPE",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-AUTHORED-GRID-SHAPE",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-NAV-MATRIX-0927.md"
+      ],
+      "checkpoint": "ACCEPT. PASS_STATIC_AUTHOR_CASE under the pinned venv interpreter (env pins are part of the evidence model). Byte-exact: 38416D binds root 02AEDFB0; decoder 20E600 mov eax,ecx/add rax,[rip]. One authored 50x50 header case; 13x13-vs-12x12 conditional split holds; no prevalence claim. Rejected checker retained."
+    },
+    {
+      "id": "ASTRA-PUBLISH-AUTHORED-GRID-SHAPE",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "09e941af22629837173a0e9f327e535fa11a51d3"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-NAV-UPPER-BOUND-ADMISSION",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "bff8d55d0053e538360dfabc3631e9a06f0c6f15",
+        "Database/FFXII TZA/_experiments/evidence/nav-upper-bound-admission/README.md"
+      ],
+      "checkpoint": "Exact committed original3 bodies/import/helper/driver/raw/controls/check/history/manifest verified. Retained14 equality controls not rerun;3 new finite negative-origin controls refute own strict-world-bound sufficiency: x32256.998046875<32257 SUBSSround65025,col255,lastrow510guard. Corrected producer/check/prose; old interpretation preserved, computedindices needrange. B15 unmodified +2 disposablemutations,4 guardfaults NOT returns/livecrashes; list-only intervention255->region3 and ABI/positive controls pass. Initialdriverhash AFTERcapture disclosed, supplementhash beforecases. No livegame/normalreachability/allocator/prevalence/CRT effects. Existing OPUS/FABLE/SPEC pending. Publication/carrier released; next eligible independent question. WholeL1+L2/finalNOT_MET, PC OFF/spentmenuallowanceunchanged."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-NAV-UPPER-BOUND",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "24f5ef6f7",
+        "FFXII TZA/06-Movement-And-Navigation/CONTRACT-corridor-query-family.md"
+      ],
+      "checkpoint": "Consumed in 24f5ef6f7. Re-read: the upper checks at 00383FAF / 00383FCD are ja and the cell load at 0038402C is unguarded (U). ASTRA's negative-origin case was re-verified in f32: X one ULP below 32257 gives col 255 (R). CONTRACT-corridor-query-family.md section 10 item 8 states the precondition on the computed indices, not on world bounds. The navigation page's section 2 is routed to FABLE (OPUS-NOTICE-FABLE-NAV-PAGE-UPPER-EDGE). Fixture-only limits are kept. Review requested; not accepted."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-NAV-UPPER-BOUND",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-NAV-UPPER-BOUND",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-NAV-MATRIX-0927.md"
+      ],
+      "checkpoint": "ACCEPT. check.py PASS (14+3). Byte-exact: 383FAF and 383FCD are JA not JAE - equality falls through; 38402C movzx word[r9+rax*2] has no index/count check (cmp 0xffff is the VALUE test). Guard faults are disclosed fixture observations, not live crashes. Bounded B-class, correctly classed."
+    },
+    {
+      "id": "ASTRA-PUBLISH-NAV-UPPER-BOUND",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "bff8d55d0053e538360dfabc3631e9a06f0c6f15"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-CONTRA-SPEC-MATRIX-REVIEW-CONVENTION",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-NAV-MATRIX-0927.md"
+      ],
+      "checkpoint": "CONTRA UPHELD - my record corrected. Independent re-decode of 217060: out[j]=in0*m[j]+in1*m[4+j]+in2*m[8+j]+in3*m[12+j] = vector-LEFT x flat row-major (= column-major mat*in). Off-diagonal m[1] lands in out[1] via in[0] - decisive. My earlier 'mat x in, row-major' sentence echoed EXP219's disputed shorthand; the ACCEPT verdict stands (the package was right) but the text is corrected in place with attribution. Other four packages unaffected."
+    },
+    {
+      "id": "ASTRA-MATRIX-BUFFER-ALIAS-BOUNDARY",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "58bd6303f9d55d5c84e677d3f6f4b8d99b66b60e",
+        "Database/FFXII TZA/_experiments/evidence/matrix-buffer-alias/README.md"
+      ],
+      "checkpoint": "Logged actual commit/exact pins and nonempty manifest verified. A source-only vector snapshot versus matrix+8 late-read hazard; wrapper stages16B, RAX leaves stack temporary, no inferred C return type/lifetime/caller overlap or all-engine guarantee. OPUS/FABLE/SPEC already routed35528..35530, pending owner/independent acceptance; no route replay. Publication/carrier released; select fresh eligible original-evidence question. PC OFF/S19 budget spent/extra recovery unapproved; full L1+L2 NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-MATRIX-BUFFER-ALIAS",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "d1677918b",
+        "FFXII TZA/_index/candidates/matrix-alias-consumers/README.md"
+      ],
+      "checkpoint": "Consumed in d1677918b. Primary bytes re-read by a non-author (L1, L2, W1), and the alias arithmetic reproduced by a model replay of the leaf's own instruction order (L3). The primitives page's MXV / MXVW rows now state that out must not overlap the matrix, that the wrapper stages in rsp+0x20 and copies 16 bytes, and that rax is left on the dead temporary (no returned pointer promised). The A-only / conditional limits and the no-engine-wide-law limit are kept. The camera page is routed to FABLE (OPUS-NOTICE-FABLE-CAMERA-MXVW-RETURN). Review requested (OPUS-REQ-AUDITSEM-REVIEW-MATRIX-ALIAS); not accepted."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-MATRIX-BUFFER-ALIAS",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-MATRIX-BUFFER-ALIAS",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-NAV-MATRIX-0927.md"
+      ],
+      "checkpoint": "ACCEPT. PASS_STATIC_ONLY re-run. Full leaf decode: vector snapshotted 217064-217090 all before first store 2170CE; matrix read 2170FF [rdx+8] sits AFTER the [rcx] store - genuine R-A-W hazard for out=matrix+8; 217104 cached-word control real. Wrapper 202B70 staged-copy byte-exact (rbx=out, rsp+20 scratch, movups pair). Local guarantee, correctly not generalized."
+    },
+    {
+      "id": "ASTRA-PUBLISH-MATRIX-BUFFER-ALIAS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "58bd6303f9d55d5c84e677d3f6f4b8d99b66b60e"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-POSTMULTIPLY-ORDER-ALIAS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "5710b1856cf91d7f32d2d5eabd1283b88084db87",
+        "Database/FFXII TZA/_experiments/evidence/postmultiply-order-alias/README.md"
+      ],
+      "checkpoint": "Actual5710b1856 logged commit/exact nonempty manifest/pins verified; status-only publication recovery35732 released @publication without republish. A full349B original3977B0 equation BA flatrowmajor/AB columnmajor; snapshotsA notB, selfalias loop-carried hazard and noncommuting source controls. Conditional source trees/calculations, no new B/C/library/caller/enginewide conventions. SPEC primary REVIEW-ASTRA-NAV-MATRIX-0927.md records ACCEPT for source equation/alias; original matrix convention challenge UPHELD/corrected. OPUS/FABLE routes remain existing, canonical incorporation must be verified separately; original397910 untouched. Publication/carrier released. Checked epoch3 supersedes stale headers/peer167 historical blocker; no restore/replay/takeover. PC OFF/S19 allowance spent/extra unapproved; full L1+L2 NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-POSTMULTIPLY-ORDER-ALIAS",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "e88336a16",
+        "d1677918b",
+        "FFXII TZA/_experiments/evidence/postmultiply-order-alias/README.md"
+      ],
+      "checkpoint": "Verified independently, and no separate OPUS edit is needed.\n- OPUS replayed 003977B0's own instruction stream over a scalar memory model: every arithmetic instruction is scalar movss/mulss/addss; the pointer arithmetic is modelled from lea/sub/add and the r11 loop. Disjoint A=diag(2,3,4,1), B=I+e01 gives C[0][1]=3 (the flat B*A; row-major A*B would give 2). Exact RCX==RDX with the [[1,2],[3,4]] block gives [[7,22],[15,46]] against disjoint [[7,10],[15,22]]. Both match ASTRA's source trees.\n- The canonical carrier is FABLE's corrected SWE2-EC7-19 paragraph (e88336a16). It states the equation and the rdx-alias hazard (B must be disjoint from the writable A).\n- FABLE's consumer check routed only the MXV/MXVW rows to OPUS, and those were published in d1677918b (the leaf's own alias rule). Adding a 003977B0 precondition row would duplicate the paragraph's fact, so none is added (single source).\nThe replay script is kept as scratch evidence, not a published receipt; ASTRA's check.py is the regression."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-POSTMULTIPLY-ORDER-ALIAS",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-POSTMULTIPLY-ORDER-ALIAS",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-ASTRA-NAV-MATRIX-0927.md"
+      ],
+      "checkpoint": "ACCEPT. PASS_STATIC_ONLY re-run. Independent decode of 003977B0 confirms C[4r+c]=sum_k B[4r+k]*A[4k+c] = B*A flat row-major - the page's A*B is reversed. A-snapshot loads 3977CD-F6 byte-exact; RCX==RDX ordered-dependency hazard (39785E store before 397829 re-read) follows the operand structure. Static-only."
+    },
+    {
+      "id": "ASTRA-PUBLISH-POSTMULTIPLY-ORDER-ALIAS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "5710b1856cf91d7f32d2d5eabd1283b88084db87"
+      ],
+      "checkpoint": "Status-only recovery after actual5710b1856 commit/exactpins/body/nonempty8-membermanifest/committed separateinboxownership verified. Previous finish/release mutex30s failed beforemutation; freshguard/epoch3 and stillownACTIVEpub checked. No republish/Git reset/reap/guardbypass. Publication now released; carrierfinish next."
+    },
+    {
+      "id": "ASTRA-NAV-CONVERSION-DOMAIN",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "105677432e11d95b29f87fec15d2f26d4556fc96",
+        "Database/FFXII TZA/_experiments/evidence/nav-conversion-domain/README.md"
+      ],
+      "checkpoint": "Actual105677432 logged commit/exact nonempty manifest/pins verified. A stablefinite admitted difference0..65025 beforeCVTT, no downstreamindexrangeguard; nonnegative/int32safe notintable. ISA truth retained, four earlier geometric JA77/93/AF/CD and narrowtypes required; nativeclassifier/MXCSR/atomicity/uninitializedcaller remainunobserved. OPUS/FABLE/SPEC alreadyrouted35593..35595; SPEC REVIEW-NAV-CONSUMER-RULINGS-BOX3-0927.md records ACCEPT but misidentifies classifierJE/lowerJA and omits upperJA in summary. Existing contra35654 requires independent primary fourguard correction, not another source run. Canonical incorporation remains separately pending. PriorBupperedge notrerun. Publication/carrierreleased; checkedepoch3 supersedes staleheaders. Resume procedural mode/access correction package. PC OFF/menuallowance spent/extraunapproved; wholeL1+L2 NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-NAV-CONVERSION-DOMAIN",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "db253bc7e",
+        "FFXII TZA/_index/candidates/nav-conversion-consumers/README.md"
+      ],
+      "checkpoint": "Consumed in db253bc7e. The guard order, types and domain were re-derived from the bytes (X1, X2). The contract's section 10 item 2 is corrected per function; the ISA fact is kept. The re-read also found LQUERY's different behaviour: 003912E0 clamps, it does not reject (X3). The navigation page was already corrected by FABLE. No out-of-table safety, native promotion or self-acceptance. Review requested (OPUS-REQ-AUDITSPEC-REVIEW-NAV-CONVERSION)."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-NAV-CONVERSION-DOMAIN",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-NAV-CONVERSION-DOMAIN",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-NAV-CONSUMER-RULINGS-BOX3-0927.md"
+      ],
+      "checkpoint": "ACCEPT. check.py PASS; four guards in 00383F10 byte-verified (je 383F48/383F5E; cvtdq2ps+comiss+ja 383F77/383F93, all rejecting to 384120 before conversion). Finite CVTT domain 0..65025 follows; no post-conversion guard - consistent with the unguarded 0038402C load verified in the sibling review."
+    },
+    {
+      "id": "ASTRA-PUBLISH-NAV-CONVERSION-DOMAIN",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "105677432e11d95b29f87fec15d2f26d4556fc96"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-PROCEDURAL-DRAW-MODE-COST",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "0bcc3d620c620234f2f987b00e70ffe8f6d0c08e",
+        "Database/FFXII TZA/_experiments/evidence/procedural-mode-cost/README.md"
+      ],
+      "checkpoint": "Actual loggedcommit/nonempty immutablemanifest/exactpins/body verified; carrier released. A directmode cost qualified, nativeeffects/ordering unobserved. Existing correctedpolicy reused after owncapturebypass; additive19roles corrected, bytealiasproof unaffected. Mode independentACCEPT; specific accesspolicy receipt and canonical consumers still require actual acceptance/propagation. Four producer dependency checks routedFRONTIER once. Resume original scaledfloat arithmetic package; gameOFF/S19budgetspent/extraunapproved/fullDB NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-PROCEDURAL-MODE-AND-ACCESS",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "6b6a423db",
+        "FFXII TZA/_experiments/evidence/procedural-mode-cost/README.md"
+      ],
+      "checkpoint": "Re-read by OPUS from 003D8E50's bytes; no OPUS consumer needs a change.\n- The ordered-zero amplitude returns at 003D8E6B before the Save call 0036D930; NaN takes jp 003D8E60 to the non-zero path. Mode 022D9138 is latched in r8d at 003D8E7D, after Save. The two state stores 003D8F26 / 003D8FB8 sit inside the mode gates, the six scratch writes outside them, and Restore 0036D8E0 follows at 003D8FE2.\n- CONTRACT-transform-workbench-save-restore.md (the held window 003D8E78-003D8FE2, nothing called inside) holds on every path: the zero return takes neither Save nor Restore; NaN and mode 0 take both.\n- CONTRACT-authored-expression-evaluation.md's I4 (seven steps, bound 0 included) and I6 concern the integer sibling EXP-070 executed, a different helper, as the package itself notes. Not rewritten from 003D8E50's bytes.\n- The 19 corrected roles of the matrix packet: OPUS's d1677918b consumer asserts exact instructions (alias_check.py W1) and does not read that table, so it is unaffected. OPUS's own raw-flag producers were repaired independently in 6b6a423db against the same policy (8e15ad96d).\nThe 7 / 14 / 28-step wording is FABLE's RNG page, already qualified by FABLE (rng-3d8e50-consumer). No self-acceptance."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-PROCEDURAL-MODE-AND-ACCESS",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-PROCEDURAL-MODE-AND-ACCESS",
+      "status": "DONE",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": [
+        "Database/Tools/work/SWE2-AUDIT-SPEC/REVIEW-OPUS-P3-BATCH-T4RESIDUE.md"
+      ],
+      "checkpoint": "ACCEPT. check.py PASS - zero-vs-unordered amplitude distinguished, latched-mode0 skips direct5+2/state stores; method-A, correctly bounded."
+    },
+    {
+      "id": "ASTRA-PUBLISH-PROCEDURAL-MODE-AND-ACCESS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "0bcc3d620c620234f2f987b00e70ffe8f6d0c08e"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-SCALED-RANDOM-FLOAT-ORDER",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "7db2121aab7d8fead4df38b8a5130980d8b2cc62",
+        "Database/FFXII TZA/_experiments/evidence/scaled-random-float-order/README.md"
+      ],
+      "checkpoint": "Actual loggedcommit/exactpins/body/nonemptymanifest verified, released. B original58B finite arithmetic counterexample3D1999A0!=factored3D1999A4; controls/write detector complete. Injected window notrecurrence/native/livenormalpath proof; DLL hashespostcapturedisclosed. FABLE/OPUS/SPEC alreadyrouted, actualacceptance/propagation pending. Do not repeat settledtest; refreshcurrentboard/take distincteligiblequestion. PC OFF/S19menu budgetspent/extraunapproved; acceptedwholeL1+L2/finalaudit NOT_MET."
+    },
+    {
+      "id": "ASTRA-REVIEW-PINNED-ACCESS-POLICY-ADDITIVE19",
+      "status": "READY",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-SCALED-RANDOM-FLOAT-ORDER",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-SCALED-RANDOM-FLOAT-ORDER",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "FFXII TZA/_experiments/evidence/scaled-random-float-order/README.md",
+        "FFXII TZA/_index/candidates/rng-3d8e50-consumer/consumer-check.md"
+      ],
+      "checkpoint": "Re-read by OPUS from the bytes: mulss sample*A at 003D8F52, mulss A*[vf00.w = 1.0] at 003D8F5D, subss at 003D8F6D, store at 003D8F71. So the result is f32(f32(sample*A) - f32(A*1.0)); the factored A*(sample-1) rounds differently, as ASTRA's window shows (3D1999A0 vs 3D1999A4). No OPUS contract states 003D8E50's factored formula: CONTRACT-authored-expression-evaluation.md I3 already gives the integer sibling as multiply-then-subtract, the same operation order, and is unchanged. The factored wording lives on FABLE's rng-streams page, which FABLE has already qualified (rng-3d8e50-consumer). The B window, the injected sample and the post-capture DLL timing limits are kept. No new OPUS edit, no self-acceptance."
+    },
+    {
+      "id": "ASTRA-REVIEW-SCALED-RANDOM-FLOAT-ORDER",
+      "status": "READY",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-PUBLISH-SCALED-RANDOM-FLOAT-ORDER",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "7db2121aab7d8fead4df38b8a5130980d8b2cc62"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-WORKBENCH-DEPTH-TARGET-ALIAS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "7bff132111f330eec5481b94abb9b8297c0b8b1d",
+        "Database/FFXII TZA/_experiments/evidence/workbench-depth-target-alias/README.md"
+      ],
+      "checkpoint": "Actual loggedcommit/exactpins/body/nonemptymanifest verified and carrierreleased. STATIC_ONLY original89/66B post-store counter reload; conditional count2 depth-first skip versus disjoint/depth-last source controls. No new B/C, callerreachability or wholealias classification. Counter exclusion sufficient for specific hazard, not universally necessary. OPUS/FABLE/SPEC routed once; independent acceptance/canonical precondition/spec propagation pending. Existing ordinary pair differential retained/notrerun; stale first-execution summary reconciliation in owner request. Checkedepoch3/currentguard, no oldincident replay or claimstealing. PC OFF/S19budgetspent/extraunapproved. Next distinct eligible original evidence, fullL1+L2/finalaudit NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-WORKBENCH-DEPTH-TARGET-ALIAS",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "commit:aa339df1b"
+      ],
+      "checkpoint": "Consumed in aa339df1b. Instruction order re-read (0036D90F store, then 0036D912 re-read, 0036D918 jb). The contract's section 4 gains Precondition 2 (no saved target span covers 022D8F08..0B; sufficient, not necessary; source-level conditional; no shipped caller claimed). The S-05 record's 'no execution record' is struck (section 13's isolated differential since 3ff76b52b). A note was added to OPUS-REQ-ORACLE-S05-SAVE-RESTORE-EXEC. Record: FFXII TZA/_index/candidates/astra-returns-opus-0928/consumer-check.md."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-WORKBENCH-DEPTH-TARGET-ALIAS",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-WORKBENCH-DEPTH-TARGET-ALIAS",
+      "status": "READY",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-PUBLISH-WORKBENCH-DEPTH-TARGET-ALIAS",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "7bff132111f330eec5481b94abb9b8297c0b8b1d"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-SCALED-RANDOM-RANGE-BOUNDARY",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "d2acb4533167ac177bf8c5c7174d587d0740644a",
+        "Database/FFXII TZA/_experiments/evidence/scaled-random-range-boundary/README.md"
+      ],
+      "checkpoint": "Actual loggedcommit/exactpins/body/nonemptyimmutablemanifest verified and carrier released. B samplemax3FFFFFFF/MXCSR1F80: minpositiveA1 result=A; maxfiniteA7F7FFFFF ->+inf; normalcontrol3EFFFFFE and ADDmutant stored3FC00000. Initialstate proof corrected after firststore/sample assumption failed: firstMOVSXDstore amplitude, directinitialXMM1/RSP/MXCSR observer/read controls added, historicalprovisionalraw/PASS/check/prose retained, affected4windows rerunvalidated. Prior23input-proof receipt limit routed, no old0.3f replay/broadretraction. Wholefunction/safedomain/livecaller/MXCSR/nativeexceptions unproven; OPUS/FABLE/SPEC35837/38/40 existing requests acceptance/propagation pending. Actualearlierconsumerpubs reconciled inhandoff; no staleheader permanentblock. PC OFF/generalCauthorizationACTIVE/S19setupspent/extraunapproved. Next different eligibleoriginal question; fullL1+L2/reviews/finalaudit NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-SCALED-RANDOM-RANGE-BOUNDARY",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-SCALED-RANDOM-RANGE-BOUNDARY",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "commit:aa339df1b"
+      ],
+      "checkpoint": "Consumed in aa339df1b. Arithmetic re-derived independently: denormal A=0x00000001 gives A (endpoint), 0x7F7FFFFF gives +inf, 0.5 gives interior 0x3EFFFFFE. No OPUS page states the range. The rng-streams row and bullet are FABLE's, and the page carries FABLE's uncommitted edits, so they are routed: OPUS-NOTICE-FABLE-SCALED-RANDOM-RANGE-ENDPOINTS. No safe domain invented. Record: FFXII TZA/_index/candidates/astra-returns-opus-0928/consumer-check.md."
+    },
+    {
+      "id": "ASTRA-REVIEW-SCALED-RANDOM-RANGE-BOUNDARY",
+      "status": "READY",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-PUBLISH-SCALED-RANDOM-RANGE-BOUNDARY",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "d2acb4533167ac177bf8c5c7174d587d0740644a"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-CRT-FDCLASS-NATIVE-DEPENDENCY",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "b04d5d37d722549839f10a0ab666a55d98eb0002",
+        "Database/FFXII TZA/_experiments/evidence/crt-fdclass-native-dependency/README.md"
+      ],
+      "checkpoint": "Actual loggedcommit/exactpins/body/nonempty manifest verified. STATIC_ONLY identified host65B classifier source partition supports declared EXP131 dependency model conditionally; no original/live APIset binding proof/native execution. CanonicalGit/checkoutCRLF precondition failure/producer correction retained. OPUS/FABLE/SPEC routed once; independent acceptance/canonical incorporation pending. PC OFF/S19spent extraunapproved, no settled rerun. Continue distinct eligible evidence; fullL1+L2/finalaudit NOT_MET."
+    },
+    {
+      "id": "ASTRA-RETURN-OPUS-CRT-FDCLASS-DEPENDENCY",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "commit:aa339df1b"
+      ],
+      "checkpoint": "Consumed in aa339df1b. S-51's _fdclass bridge (NaN 2, infinity 1, zero 0, subnormal -2, normal -1, from the low xmm0 bits) agrees code for code with your host reading. Qualified in the S-51 README as consistent with one real implementation, not proven to be the game's resolved import. No bridge defect. Record: FFXII TZA/_index/candidates/astra-returns-opus-0928/consumer-check.md."
+    },
+    {
+      "id": "ASTRA-RETURN-FABLE-CRT-FDCLASS-DEPENDENCY",
+      "status": "READY",
+      "assigned_to": "FABLE",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-REVIEW-CRT-FDCLASS-DEPENDENCY",
+      "status": "READY",
+      "assigned_to": "SWE2-AUDIT-SPEC",
+      "result_refs": null,
+      "checkpoint": "Queued by ASTRA"
+    },
+    {
+      "id": "ASTRA-PUBLISH-CRT-FDCLASS-DEPENDENCY",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "b04d5d37d722549839f10a0ab666a55d98eb0002"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    },
+    {
+      "id": "ASTRA-MATRIX-CONSUMER-IDENTITY-CONTROL",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "9bd46273f379e213f9a7eb94a523633db90dbbc1",
+        "Database/FFXII TZA/_experiments/evidence/matrix-consumer-identity-control/README.md"
+      ],
+      "checkpoint": "Actual loggedcommit/exactpins/body/nonempty manifest verified. Offline Python checker two identity controls, no FF/native/live execution. Wrongwholehash with unchanged cited bodies still passes; missing producer identity guard confirmed. Known correct-reference matrix semantics retained. OPUS producer/procedure repair and existing AUDITSEM consumer review routed once, pending agreement, no selfacceptance. Children exited/reference unchanged/PC OFF/S19budgetspent extraunapproved. No settled rerun; select distinct eligible evidence. FullL1+L2/finalaudit NOT_MET"
+    },
+    {
+      "id": "ASTRA-CONTRA-OPUS-MATRIX-CONSUMER-IDENTITY",
+      "status": "DONE",
+      "assigned_to": "OPUS",
+      "result_refs": [
+        "commit:aa339df1b"
+      ],
+      "checkpoint": "Repaired in aa339df1b. alias_check.py requires the certified SHA-256 before any decode; any other image is REFUSED (exit 2). --self-test plants your flipped byte 0x28 and requires the refusal: PASS. Receipt at 24fa63291 is in FFXII TZA/_index/candidates/astra-returns-opus-0928/consumer-check.md (the matrix README was not edited because its Affected line binds the primitives page). Same guard added to the new sign_check.py."
+    },
+    {
+      "id": "ASTRA-CONTRA-AUDITSEM-MATRIX-CONSUMER-IDENTITY",
+      "status": "ACTIVE",
+      "assigned_to": "SWE2-AUDIT-SEM",
+      "result_refs": null,
+      "checkpoint": "claiming review"
+    },
+    {
+      "id": "ASTRA-PUBLISH-MATRIX-CONSUMER-IDENTITY",
+      "status": "DONE",
+      "assigned_to": null,
+      "result_refs": [
+        "9bd46273f379e213f9a7eb94a523633db90dbbc1"
+      ],
+      "checkpoint": "Logged actual commit/exact owned blobs/body/manifest and supported TEAM verified; publication released."
+    }
+  ],
+  "external_audit_limit": "User-supplied external audit 119 members / 9 ranges establishes its integrity check; its 26 assertions are external corroboration, not ASTRA tests. Exact external audit artifact not located in bounded primary review paths; do not silently substitute a different manifest set."
+}

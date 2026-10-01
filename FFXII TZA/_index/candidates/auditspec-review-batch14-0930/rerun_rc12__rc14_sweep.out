@@ -1,0 +1,35 @@
+streams disassembled (.pdata roots + uncovered-gap runs): 42487; candidate stores: 33
+0025D9E0    0025DD8F mov byte ptr [rbx + 0x11], al            S6                     other   base<-?  src<-0025DD88 and al, 0xfd
+00265B60    00265BA4 mov byte ptr [rcx + 0x11], al            S6                     other   base<-00265B69 mov rcx, qword ptr [rcx + 0xc0]  src<-00265B9D or al, 6
+00265B60    00265CD8 mov byte ptr [rcx + 0x11], al            S6                     other   base<-00265CA6 add rcx, 0x90  src<-00265CD1 or al, 6
+00265B60    00265D40 mov byte ptr [rdx + rcx + 0x11], al      S6                     other   base<-00265CD3 mov edx, 0xc0  src<-00265D39 or al, 6
+0026A7F0    0026A839 mov byte ptr [rcx + 0x152], 2            S4                     other   base<-0026A81B mov rcx, qword ptr [rbx + 0xc0]
+0026C8C0    0026CBF6 mov byte ptr [rdi + 0x11], al            S6                     other   base<-?  src<-0026CBED or al, 1
+002986E0    00298BCC mov byte ptr [rax + 0xa], 2              S4                     other   base<-00298BBF mov rax, qword ptr [rdi + 0xc0]
+002986E0    00298C1C mov byte ptr [rax + 0xa], 2              S4                     other   base<-00298C0F mov rax, qword ptr [rdi + 0xc0]
+002E3110    002E32FE mov byte ptr [rbx + 0x11], al            S6                     other   base<-002E32D6 lea rbx, [rsi + 0x30]  src<-002E32FC or al, 6
+002E35B0    002E366B mov byte ptr [rbx + 0x11], al            S6                     other   base<-002E3647 add rbx, rbp  src<-002E3669 or al, 6
+002E35B0    002E3738 mov byte ptr [rsi + 0x11], al            S6                     other   base<-?  src<-002E3736 or al, 6
+002E35B0    002E37EC mov byte ptr [r15 + 0x11], al            S6                     other   base<-?  src<-002E37EA or al, 6
+002E35B0    002E38AD mov byte ptr [r12 + 0x11], al            S6                     other   base<-?  src<-002E38AB or al, 6
+002E3A60    002E3A98 mov byte ptr [rbx + 0x11], al            S6                     other   base<-002E3A71 mov rbx, rcx  src<-002E3A96 or al, 6
+002FEF30    002FF8B6 mov byte ptr [rsi + 0x11], bl            S6                     other   base<-?  src<-002FF8B2 cmovg ebx, r15d
+00333280    003332FC mov byte ptr [rax + 0x11], r14b          S6                     other   base<-003332F7 mov rax, qword ptr [rsi]  src<-00333297 movzx r14d, r8b
+00333C80    00333EF1 mov byte ptr [r9 + 0x11], cl             S6                     other   base<-?  src<-00333EEC movzx ecx, byte ptr [rsp + 0xd]
+003B02A0    003B04D2 mov byte ptr [r15 + 0x11], bpl           S6                     other   base<-003B0480 mov r15, qword ptr [rsp + 0xc80]  src<-003B0470 mov rbp, qword ptr [rsp + 0xc98]
+003DB1F0    003DB245 mov byte ptr [rcx], 2                    S3(eff +0x11)+S4       ENTRY-FN  base<-003DB23A add rcx, 0x11
+003DB6E0    003DB754 mov byte ptr [rdi + 0x11], al            S5                     ENTRY-FN  base<-003DB6EA mov rdi, rcx  src<-003DB750 movzx eax, byte ptr [rdx + 2]
+003DB7A0    003DB8E9 mov byte ptr [rdx + 0x11], r12b          S5                     ENTRY-FN  base<-003DB8B8 mov rdx, r9  src<-?
+003DB7A0    003DB9E4 mov byte ptr [rdx + 0x11], r12b          S5                     ENTRY-FN  base<-003DB9B7 mov rdx, r9  src<-003DB990 pop r12
+003DBAE0    003DBB35 mov byte ptr [rax], 2                    S3(eff +0x11)+S4       ENTRY-FN  base<-003DBB2A add rax, 0x11
+003DBBF0    003DBCAC mov byte ptr [rcx], 2                    S3(eff +0x11)+S4       ENTRY-FN  base<-003DBCA1 add rcx, 0x11
+004048E0    00404B4D mov byte ptr [r8 + 0x11], al             S6                     other   base<-?  src<-00404B49 movzx eax, byte ptr [rdi + 8]
+0065F9E0    0065FA08 mov byte ptr [rbx + 0x11], al            S6                     other   base<-0065F9E9 mov rbx, r8  src<-0065FA04 movzx eax, byte ptr [rax + 0x11]
+00665190    006651F7 mov byte ptr [rcx + 0x11], al            S6                     other   base<-006651D0 mov rcx, r8  src<-006651EF movzx eax, byte ptr [rdx + 1]
+00665550    006655C7 mov byte ptr [rcx + 0x11], al            S6                     other   base<-006655A0 mov rcx, r8  src<-006655BF movzx eax, byte ptr [rdx + 1]
+00844090    00844107 mov byte ptr [rbx + 0x11], al            S6                     other   base<-008440B6 mov rbx, rdx  src<-00844103 movzx eax, byte ptr [rdi + 0x12]
+00844090    00844661 mov byte ptr [rdx + 0x11], al            S6                     other   base<-00844653 add rdx, r8  src<-0084465D movzx eax, byte ptr [rcx + 0x12]
+GAP00265F90 00265FB8 mov byte ptr [rcx + 0x11], al            S6                     other   base<-?  src<-00265FB2 or al, 6
+GAP003DC1D7 003DC233 mov byte ptr [r8 + 0x11], 0              S5                     ENTRY-FN  base<-003DC1D7 mov r8, r10
+GAP003DF058 003DF076 mov byte ptr [rax + 0x11], r8b           S6                     other   base<-003DF058 mov rax, r10  src<-?
+CONTROLS: 003DBB35 PASS, 003DB245 PASS, 003DBCAC PASS, 003DB8E9 PASS, 003DB9E4 PASS

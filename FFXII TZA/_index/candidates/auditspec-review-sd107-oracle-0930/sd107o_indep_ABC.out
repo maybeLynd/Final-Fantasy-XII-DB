@@ -1,0 +1,252 @@
+== A. setters
+    00247590  test     rcx, rcx
+    00247593  je       0x2475c8
+    00247595  push     rbx
+    00247596  sub      rsp, 0x20
+    0024759A  mov      rbx, rcx
+    0024759D  call     0x2475d0
+  --
+    002475D0  test     rcx, rcx
+    002475D3  je       0x247679
+    002475D9  cmp      edx, 0xff
+    002475DF  movzx    eax, dl
+    002475E2  mov      r8d, 1
+    002475E8  cmove    eax, r8d
+    002475EC  mov      byte ptr [rcx + 0xa3], al
+    002475F2  mov      eax, dword ptr [rcx + 0x40]
+    002475F5  btr      eax, 0x1b
+    002475F9  or       eax, 0x180
+    002475FE  mov      dword ptr [rcx + 0x40], eax
+    00247601  movzx    eax, byte ptr [rip + 0x1bc4b08]   ; -> 01E0C110
+    00247608  neg      al
+    0024760A  mov      byte ptr [rcx + 0xa4], al
+    00247610  movzx    eax, byte ptr [rip + 0x1bc4af9]   ; -> 01E0C110
+    00247617  neg      al
+    00247619  mov      byte ptr [rcx + 0xa5], al
+  --
+    00247680  test     rcx, rcx
+    00247683  je       0x2476d6
+    00247685  mov      eax, dword ptr [rcx + 0x40]
+    00247688  and      eax, 0xf7fffeff
+    0024768D  mov      byte ptr [rcx + 0xa3], dl
+    00247693  bts      eax, 7
+  --
+    005C5230  xor      eax, eax
+    005C5232  ret      
+  bytes before 002475D0: c3cccccccccccccc  before 00247680: 00c3cccccccccccc  before 00247590: cccccccccccccccc
+== B. reference census
+  setter 002475D0      rel32/jcc 12 00228070 00242060 0024759D 00296994 00298521 0029C7C8 0029CA28 002A7164 002A73F5 002D682A 003F4649 0057C802 | abs64 [] | rva32 [] | rip []
+  setter 00247680      rel32/jcc 6 002A71A6 00559B64 0055A2E3 0056B79B 0056B9BE 00572823 | abs64 [] | rva32 [] | rip []
+  wrapper 00247590     rel32/jcc 2 00279C60 0027A5B1 | abs64 [] | rva32 ['02FA8614(.pdata)'] | rip []
+  proc 00227EE0        rel32/jcc 0  | abs64 [] | rva32 ['02FA6BF8(.pdata)'] | rip ['00227EB8 lea rdx, [rip + 0x21]']
+  proc 00241D40        rel32/jcc 0  | abs64 [] | rva32 ['01D69CA4(.rdata)', '01D69CB4(.rdata)', '02FA8188(.pdata)'] | rip ['00241C6C lea r8, [rip + 0xcd]', '00241CE0 lea r8, [rip + 0x59]']
+  proc 003F4330        rel32/jcc 0  | abs64 [] | rva32 ['01D82F48(.rdata)', '01D82F58(.rdata)', '02FC428C(.pdata)'] | rip ['003F4761 lea rdx, [rip - 0x438]']
+  proc 0057C480        rel32/jcc 0  | abs64 [] | rva32 ['01D916B8(.rdata)', '01D916C8(.rdata)', '02FD0E44(.pdata)'] | rip ['0057C39F lea rdx, [rip + 0xda]']
+  proc 005599D0        rel32/jcc 0  | abs64 [] | rva32 ['01D8F540(.rdata)', '01D8F550(.rdata)', '02FCF018(.pdata)', '02FCF020(.pdata)'] | rip ['005598A8 lea rdx, [rip + 0x121]']
+  proc 0056B4D0        rel32/jcc 0  | abs64 [] | rva32 ['02FCFD58(.pdata)'] | rip ['0056B3BE lea rdx, [rip + 0x10b]']
+  reader 002B3930      rel32/jcc 2 002A5CED 0057C9B7 | abs64 [] | rva32 [] | rip []
+  reader 002ABF20      rel32/jcc 3 002A3492 002A56A7 002A6D48 | abs64 [] | rva32 [] | rip []
+  reader 002ABEC0      rel32/jcc 6 00227F9C 002421A5 002A37BB 002A37D5 002A77F2 0057C8E7 | abs64 [] | rva32 [] | rip []
+  dispatcher 002AF960  rel32/jcc 4 002A4541 002A4B3E 002A4E2E 002D8620 | abs64 [] | rva32 ['01D6FB68(.rdata)', '01D6FB9C(.rdata)', '01D6FBB4(.rdata)', '02FAE5CC(.pdata)'] | rip []
+  emit 002D8550        rel32/jcc 3 00227F39 00242373 0057C92A | abs64 [] | rva32 ['02FB0438(.pdata)'] | rip []
+== C. setter sites (preceding instructions)
+  site 00228070
+    00228042  mov      word ptr [rsi + 0x9c], ax
+    00228049  movzx    eax, word ptr [rsp + 0x58]
+    0022804E  mov      word ptr [rsi + 0x9e], ax
+    00228055  mov      word ptr [rsi + 0x98], bx
+    0022805C  mov      word ptr [rsi + 0x9a], di
+    00228063  call     0x247810
+    00228068  mov      edx, 0xff
+    0022806D  mov      rcx, rsi
+    00228070  call     0x2475d0
+  site 00242060
+    0024204C  cdq      
+    0024204D  sub      eax, edx
+    0024204F  sar      eax, 1
+    00242051  mov      r14d, eax
+    00242054  test     cl, cl
+    00242056  jne      0x24206c
+    00242058  mov      edx, 0xff
+    0024205D  mov      rcx, rsi
+    00242060  call     0x2475d0
+  site 0024759D
+    0024758D  int3     
+    0024758E  int3     
+    0024758F  int3     
+    00247590  test     rcx, rcx
+    00247593  je       0x2475c8
+    00247595  push     rbx
+    00247596  sub      rsp, 0x20
+    0024759A  mov      rbx, rcx
+    0024759D  call     0x2475d0
+  site 00296994
+    00296973  mov      rbx, rcx
+    00296976  jne      0x2969c1
+    00296978  add      rcx, 0x648
+    0029697F  call     0x29b550
+    00296984  mov      ecx, edi
+    00296986  call     0x5c5230
+    0029698B  lea      rcx, [rbx + 0x180]
+    00296992  mov      edx, eax
+    00296994  call     0x2475d0
+  site 00298521
+    00298507  test     eax, eax
+    00298509  cmovne   edx, ecx
+    0029850C  mov      dword ptr [rsp + 0x60], edx
+    00298510  call     0x35bad0
+    00298515  mov      ecx, eax
+    00298517  call     0x5c5230
+    0029851C  mov      edx, eax
+    0029851E  mov      rcx, r14
+    00298521  call     0x2475d0
+  site 0029C7C8
+    0029C7A7  mov      edx, 0xc0
+    0029C7AC  mov      rcx, rdi
+    0029C7AF  call     0x245000
+    0029C7B4  lea      rdx, [rbx + 0x218]
+    0029C7BB  mov      rcx, rbx
+    0029C7BE  call     0x2974e0
+    0029C7C3  xor      edx, edx
+    0029C7C5  mov      rcx, rdi
+    0029C7C8  call     0x2475d0
+  site 0029CA28
+    0029CA07  mov      edx, 0xc0
+    0029CA0C  mov      rcx, rbx
+    0029CA0F  call     0x245000
+    0029CA14  lea      rdx, [rdi + 0x158]
+    0029CA1B  mov      rcx, rdi
+    0029CA1E  call     0x2974e0
+    0029CA23  xor      edx, edx
+    0029CA25  mov      rcx, rbx
+    0029CA28  call     0x2475d0
+  site 002A7164
+    002A714C  cmp      ecx, 0xe
+    002A714F  mov      eax, ecx
+    002A7151  mov      edx, 0xff
+    002A7156  cmovg    eax, edx
+    002A7159  cmp      ecx, 8
+    002A715C  mov      rcx, rbx
+    002A715F  cmovne   esi, eax
+    002A7162  mov      edx, esi
+    002A7164  call     0x2475d0
+  site 002A73F5
+    002A73D5  test     rax, rax
+    002A73D8  jne      0x2a73e6
+    002A73DA  mov      rax, qword ptr [rcx + 0x100]
+    002A73E1  test     rax, rax
+    002A73E4  je       0x2a743e
+    002A73E6  mov      dword ptr [rdx + 0x2c], 1
+    002A73ED  mov      rcx, rbx
+    002A73F0  mov      edx, 4
+    002A73F5  call     0x2475d0
+  site 002D682A
+    002D6800  mov      word ptr [rdi + 0x9a], cx
+    002D6807  mov      word ptr [rdi + 0x9c], ax
+    002D680E  mov      rcx, rdi
+    002D6811  movzx    eax, word ptr [rsp + 0x48]
+    002D6816  mov      word ptr [rdi + 0x9e], ax
+    002D681D  call     0x247930
+    002D6822  mov      edx, 6
+    002D6827  mov      rcx, rdi
+    002D682A  call     0x2475d0
+  site 003F4649
+    003F462C  or       dword ptr [rdi + 0x40], 0x80
+    003F4633  sub      eax, ecx
+    003F4635  cdq      
+    003F4636  mov      rcx, rdi
+    003F4639  sub      eax, edx
+    003F463B  mov      edx, 0xff
+    003F4640  sar      eax, 1
+    003F4642  mov      word ptr [rdi + 0x98], ax
+    003F4649  call     0x2475d0
+  site 0057C802
+    0057C7E5  mov      eax, dword ptr [rsi + 0x630]
+    0057C7EB  mov      rcx, rsi
+    0057C7EE  mov      edx, eax
+    0057C7F0  shr      edx, 4
+    0057C7F3  and      edx, r15d
+    0057C7F6  bt       eax, 0xd
+    0057C7FA  mov      eax, 4
+    0057C7FF  cmovb    edx, eax
+    0057C802  call     0x2475d0
+  site 002A71A6
+    002A717A  mov      word ptr [rsp + 0x20], ax
+    002A717F  mov      rcx, rbx
+    002A7182  movzx    eax, word ptr [rip + 0x1b65c0b]
+    002A7189  mov      word ptr [rsp + 0x22], ax
+    002A718E  movzx    eax, word ptr [rip + 0x1b65c03]
+    002A7195  mov      word ptr [rsp + 0x24], ax
+    002A719A  movzx    eax, word ptr [rip + 0x1b65bfb]
+    002A71A1  mov      word ptr [rsp + 0x26], ax
+    002A71A6  call     0x247680
+  site 00559B64
+    00559B4C  mov      dword ptr [rbx + 0x40], eax
+    00559B4F  movzx    eax, word ptr [rdx + 0x30]
+    00559B53  test     ax, ax
+    00559B56  jle      0x559b5b
+    00559B58  dec      ax
+    00559B5B  movsx    edx, ax
+    00559B5E  mov      rcx, rbx
+    00559B61  add      edx, 0xc
+    00559B64  call     0x247680
+  site 0055A2E3
+    0055A2CA  jle      0x55a2cf
+    0055A2CC  dec      cx
+    0055A2CF  xor      eax, eax
+    0055A2D1  cmp      word ptr [rdx + 0xe], r13w
+    0055A2D6  cmovne   ax, cx
+    0055A2DA  mov      rcx, rbx
+    0055A2DD  movsx    edx, ax
+    0055A2E0  add      edx, 0xc
+    0055A2E3  call     0x247680
+  site 0056B79B
+    0056B774  jne      0x56b77d
+    0056B776  call     0x56bc70
+    0056B77B  jmp      0x56b782
+    0056B77D  call     0x56a890
+    0056B782  movsx    rax, byte ptr [rsi + 0x595]
+    0056B78A  mov      rcx, rsi
+    0056B78D  movzx    edx, word ptr [rsi + rax*8 + 0x300]
+    0056B795  sub      edx, 0x82
+    0056B79B  call     0x247680
+  site 0056B9BE
+    0056B99C  jmp      0x56b9a3
+    0056B99E  call     0x56a890
+    0056B9A3  mov      rcx, qword ptr [rsi + 0xd8]
+    0056B9AA  mov      rdx, rbx
+    0056B9AD  call     0x5674b0
+    0056B9B2  movzx    edx, word ptr [rbx]
+    0056B9B5  mov      rcx, rsi
+    0056B9B8  sub      edx, 0x82
+    0056B9BE  call     0x247680
+  site 00572823
+    00572803  mov      qword ptr [rbx + 0x18], rsi
+    00572807  call     0x20e620
+    0057280C  mov      dword ptr [rbx + 0x20], eax
+    0057280F  mov      edx, 0xa
+    00572814  mov      rax, qword ptr [r14 + 0x60]
+    00572818  mov      rcx, qword ptr [rax + 0x10]
+    0057281C  and      dword ptr [rcx + 8], 0xfffffffe
+    00572820  mov      rcx, r14
+    00572823  call     0x247680
+  site 00279C60
+    00279C41  call     0x28f800
+    00279C46  xor      edx, edx
+    00279C48  mov      rcx, rax
+    00279C4B  call     0x2969e0
+    00279C50  mov      ecx, dword ptr [rbx + 0x4c8]
+    00279C56  call     0x5c5230
+    00279C5B  mov      edx, eax
+    00279C5D  mov      rcx, r15
+    00279C60  call     0x247590
+  site 0027A5B1
+    0027A58B  call     rax
+    0027A58D  mov      rax, qword ptr [rbx + 0x61b0]
+    0027A594  mov      qword ptr [rdi + 0x2fe8], rax
+    0027A59B  mov      ecx, dword ptr [rbx + 0x61bc]
+    0027A5A1  mov      dword ptr [rdi + 0x2fe0], ecx
+    0027A5A7  call     0x5c5230
+    0027A5AC  mov      edx, eax
+    0027A5AE  mov      rcx, rdi
+    0027A5B1  call     0x247590

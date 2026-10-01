@@ -1,0 +1,138 @@
+007A0B10: branch refs 0, rip refs 0, relocs 2
+    reloc at 008C57C0 (.rdata) vtable base 008C5760 slot 12
+    reloc at 01CB2568 (.rdata) vtable base 01CB2508 slot 12
+0079F140: branch refs 0, rip refs 0, relocs 2
+    reloc at 008C57C8 (.rdata) vtable base 008C5760 slot 13
+    reloc at 01CB2570 (.rdata) vtable base 01CB2508 slot 13
+007A1180: branch refs 0, rip refs 0, relocs 2
+    reloc at 008C57F0 (.rdata) vtable base 008C5760 slot 18
+    reloc at 01CB2598 (.rdata) vtable base 01CB2508 slot 18
+0079F150: branch refs 1, rip refs 0, relocs 0
+    0079E5ED call  0079E520 FUN_0079e520
+PASS  control: the start-up setter 0079F150 has a reference
+-- indirect calls through +0x60 / +0x68 / +0x90 in 00790000-007A2000 and 00170000-00180000 (listed functions)
+  001780C1 call qword ptr [rsp + 0x68]   in 00177FC0 FUN_00177fc0
+  0017F158 jmp qword ptr [rax + 0x60]   in 0017F150 FUN_0017f150
+  0017F258 jmp qword ptr [r10 + 0x90]   in 0017F250 FUN_0017f250
+  00790392 call qword ptr [rax + 0x90]   in 00790160 FUN_00790160
+  00797420 call qword ptr [rax + 0x68]   in 007973D0 FUN_007973d0
+  00797622 call qword ptr [rax + 0x68]   in 00797460 FUN_00797460
+  0079788B call qword ptr [rax + 0x68]   in 00797690 InputSystem_CreateControllerForEnumeratedDeviceDescriptor
+  00797C59 call qword ptr [rax + 0x90]   in 00797AD0 FUN_00797ad0
+  007A1FF1 call qword ptr [rax + 0x60]   in 007A1CD0 SteamController_PollState
+  007A2028 call qword ptr [rax + 0x60]   in 007A1CD0 SteamController_PollState
+  007A205F call qword ptr [rax + 0x60]   in 007A1CD0 SteamController_PollState
+  007A2096 call qword ptr [rax + 0x60]   in 007A1CD0 SteamController_PollState
+-- 0079C4A0-0079C5C5
+  0079C4A4 call 0x5cdaa0
+  0079C4A9 mov bl, 1
+  0079C4AB mov byte ptr [rdi + 0x20], 0
+  0079C4AF jmp 0x79c4c4
+  0079C4B1 mov byte ptr [rdi + 0x20], 0
+  0079C4B5 mov byte ptr [rdi + 0x1e], 1
+  0079C4B9 mov byte ptr [rdi + 0x23], 1
+  0079C4BD call 0x183260
+  0079C4C2 xor bl, bl
+  0079C4C4 lea rcx, [rsp + 0x70]
+  0079C4C9 call 0x616700
+  0079C4CE cmp byte ptr [rdi + 0x1e], 0
+  0079C4D2 je 0x79c552
+  0079C4D4 mov rax, qword ptr [rip + 0x17e6845]
+  0079C4DB cmp dword ptr [rax + 8], 0
+  0079C4DF jne 0x79c4e6
+  0079C4E1 mov eax, dword ptr [rax + 0x2c]
+  0079C4E4 jmp 0x79c4e9
+  0079C4E6 mov eax, dword ptr [rax + 4]
+  0079C4E9 sar eax, 0x10
+  0079C4EC mov dword ptr [rdi + 0xd24], eax
+  0079C4F2 mov rax, qword ptr [rip + 0x17e6827]
+  0079C4F9 cmp dword ptr [rax + 8], 0
+  0079C4FD jne 0x79c505
+  0079C4FF movsx ecx, word ptr [rax + 0x2c]
+  0079C503 jmp 0x79c509
+  0079C505 movsx ecx, word ptr [rax + 4]
+  0079C509 mov dword ptr [rdi + 0xd28], ecx
+  0079C50F mov rax, qword ptr [rsi]
+  0079C512 mov rcx, rsi
+  0079C515 call qword ptr [rax + 0x10]
+  0079C518 mov rcx, rsi
+  0079C51B call 0x610330
+  0079C520 mov rax, qword ptr [rdi]
+  0079C523 mov rcx, rdi
+  0079C526 call qword ptr [rax + 0x48]
+  0079C529 mov ebp, eax
+  0079C52B test eax, eax
+  0079C52D je 0x79c54e
+  0079C52F lea r8, [rip + 0x26a42ca]
+  0079C536 lea rdx, [rip + 0x1516b8b]
+  0079C53D mov ecx, 3
+  0079C542 call 0x5cdaa0
+  0079C547 mov eax, ebp
+  0079C549 jmp 0x79c69e
+  0079C54E mov byte ptr [rdi + 0x1e], 0
+  0079C552 cmp byte ptr [rdi + 0x1f], 0
+  0079C556 je 0x79c561
+  0079C558 call 0x79f750
+  0079C55D mov byte ptr [rdi + 0x1f], 0
+  0079C561 test bl, bl
+  0079C563 je 0x79c56c
+  0079C565 xor ecx, ecx
+  0079C567 call 0x182de0
+  0079C56C cmp byte ptr [rdi + 0x21], 0
+  0079C570 je 0x79c57f
+  0079C572 movzx ecx, byte ptr [rdi + 0x26]
+  0079C576 call 0x79f0f0
+  0079C57B mov byte ptr [rdi + 0x21], 0
+  0079C57F cmp byte ptr [rdi + 0x29], 0
+  0079C583 je 0x79c5cd
+  0079C585 mov rax, qword ptr [rsi]
+  0079C588 mov rcx, rsi
+  0079C58B call qword ptr [rax + 0x10]
+  0079C58E mov rcx, rsi
+  0079C591 call 0x610330
+  0079C596 lea rcx, [rsp + 0x70]
+  0079C59B call 0x615bc0
+  0079C5A0 nop 
+  0079C5A1 lea rcx, [rsp + 0x70]
+  0079C5A6 call 0x624670
+  0079C5AB test rax, rax
+  0079C5AE je 0x79c5bf
+  0079C5B0 mov r8d, dword ptr [rdi + 0x30]
+  0079C5B4 mov edx, dword ptr [rdi + 0x2c]
+  0079C5B7 mov rcx, rax
+  0079C5BA call 0x62aab0
+  0079C5BF mov byte ptr [rdi + 0x29], 0
+  0079C5C3 lea rcx, [rsp + 0x70]
+-- 0079B6D0-0079B6F0
+  0079B6D5 call qword ptr [rip + 0x1270ed]
+  0079B6DB mov rcx, qword ptr [rip + 0x2709b66]
+  0079B6E2 movsxd r8, r13d
+  0079B6E5 mov edx, 0xffffffeb
+  0079B6EA call qword ptr [rip + 0x127188]
+-- 007985F8-00798620
+  007985FB test eax, eax
+  007985FD jne 0x798886
+  00798603 call 0x5a08e0
+  00798608 test eax, eax
+  0079860A jne 0x798886
+  00798610 mov r8d, edi
+  00798613 mov rdx, r12
+  00798616 lea rcx, [rbp - 0x40]
+  0079861A call 0x79e520
+  0079861F test eax, eax
+-- 007A07C0-007A07F2
+  007A07C0 mov qword ptr [rsp + 8], rbx
+  007A07C5 mov qword ptr [rsp + 0x10], rbp
+  007A07CA mov qword ptr [rsp + 0x18], rsi
+  007A07CF push rdi
+  007A07D0 sub rsp, 0x20
+  007A07D4 mov rdi, rcx
+  007A07D7 mov esi, r8d
+  007A07DA add rcx, 0x20
+  007A07DE mov ebp, edx
+  007A07E0 call 0x5cd4f0
+  007A07E5 shl ebp, 0x10
+  007A07E8 lea rcx, [rdi + 0x20]
+  007A07EC or ebp, esi
+  007A07EE mov dword ptr [rdi + 0x1c], ebp
+  007A07F1 mov rbx, qword ptr [rsp + 0x30]

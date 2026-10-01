@@ -1,0 +1,51 @@
+start_va	bytes	prev_entry	gate	aligned16	referenced	multi	pred_branch	bt_hits	bt_first	pdata_at	pdata_inside	nonleaf	outcome
+00129640	414	001294D0	yes	yes	no	no	no	0		no	no	yes	nonleaf-no-unwind
+00129BE5	1700	00129870	yes	no	no	yes	no	0		no	no	yes	multi
+0012A510	1915	0012A290	yes	yes	no	yes	no	0		no	no	yes	multi
+0012AC90	3304	0012A290	yes	yes	no	yes	no	2	BT1 indexed-rva 0073DAA9 +0x308; BT1 indexed-rva 0073DAC8 +0x518	no	no	yes	multi
+0012C02C	835	0012B980	no	no	no	no	no	0		no	no	yes	gate
+0012C370	3647	0012B980	no	yes	no	yes	no	23	BT1 indexed-rva 001D666D +0x188; BT1 indexed-rva 001D668C +0x18C; BT1 indexed-rva 001D669D +0x190	no	no	yes	gate
+0012D1B0	4879	0012B980	no	yes	no	yes	no	2	BT1 indexed-rva 0073DDE6 +0x990; BT4 jne 0012F44B +0x1197	no	no	yes	gate
+0012E4C0	3231	0012B980	no	yes	no	no	no	1	BT1 indexed-rva 0073DDEF +0x7B0	no	no	no	gate
+0012F160	959	0012B980	no	yes	no	no	no	2	BT4 jne 0012F58A +0x312; BT4 jne 00130567 +0x300	no	no	no	gate
+0012F520	9775	0012B980	no	yes	no	yes	no	13	BT1 indexed-rva 0073E00A +0xCF4; BT1 indexed-rva 0073E026 +0xF04; BT1 indexed-rva 0073E047 +0x8D4	no	no	yes	gate
+00131B50	6911	0012B980	yes	yes	no	no	no	0		no	no	no	clean
+00133650	1264	0012B980	yes	yes	no	yes	no	0		no	no	no	multi
+00133BBF	3283	00133B40	yes	no	no	yes	no	0		no	no	no	multi
+001348A0	3636	00133B40	yes	yes	no	yes	no	4	BT1 indexed-rva 0073E684 +0xB08; BT1 indexed-rva 0073E69C +0xAD0; BT1 indexed-rva 0073EAF6 +0xB08	no	no	yes	multi
+001356E0	511	00133B40	no	yes	no	no	no	0		no	no	yes	gate
+001359B0	1295	00133B40	no	yes	no	no	no	0		no	no	no	gate
+00135F90	3615	00133B40	no	yes	no	no	no	0		no	no	no	gate
+00136E80	1295	00133B40	no	yes	no	yes	no	0		no	no	no	gate
+00137460	1295	00133B40	no	yes	no	no	no	0		no	no	no	gate
+00137970	2319	00133B40	no	yes	no	no	no	0		no	no	no	gate
+00138350	1295	00133B40	no	yes	no	no	no	0		no	no	no	gate
+00138930	1295	00133B40	no	yes	no	no	no	0		no	no	no	gate
+00138E40	5359	00133B40	no	yes	no	yes	no	3	BT1 indexed-rva 00736533 +0x1228; BT1 indexed-rva 0073E2BB +0x1268; BT4 jmp 00137117 +0xC3D	no	no	yes	gate
+0013A330	815	00133B40	no	yes	no	no	no	0		no	no	no	gate
+0013A730	2927	00133B40	no	yes	no	yes	no	28	BT1 indexed-rva 0072CA1B +0x610; BT1 indexed-rva 0072CA3A +0x610; BT1 indexed-rva 0072CAAB +0x630	no	no	no	gate
+0013B2A0	815	00133B40	no	yes	no	no	no	2	BT1 indexed-rva 0073AD0B +0xA8; BT1 indexed-rva 0074664C +0xA8	no	no	no	gate
+0013B6A0	815	00133B40	no	yes	no	yes	no	0		no	no	no	gate
+0013B9D0	846	00133B40	no	yes	no	no	no	7	BT4 jmp 0013A82C +0x2FE; BT4 jmp 0013AA4D +0x2FE; BT4 jmp 0013AC6E +0x2FE	no	no	no	gate
+0013BD20	2575	00133B40	yes	yes	no	yes	no	6	BT1 indexed-rva 0073B1E7 +0x1D4; BT1 indexed-rva 0073B1F0 +0x1B8; BT1 indexed-rva 0073B1FE +0x19C	no	no	yes	multi
+0013C730	46018	00133B40	yes	yes	no	yes	no	35	BT1 indexed-rva 0072D5DB +0x5A60; BT1 indexed-rva 0072D5FA +0x5A60; BT1 indexed-rva 0072D66B +0x5A70	no	no	no	multi
+001482A2	379	0014824F	yes	no	no	no	no	0		no	no	yes	unaligned-unreferenced
+00148584	312	001484DB	yes	no	no	no	no	0		no	no	yes	unaligned-unreferenced
+001489E0	272	001488D0	yes	yes	no	yes	no	0		no	no	no	multi
+00148F41	543	00148F10	yes	no	no	yes	no	0		no	no	no	multi
+00149504	263	00149450	yes	no	no	no	no	0		no	no	no	unaligned-unreferenced
+0014B1D0	847	0014A48A	no	yes	no	yes	no	1	BT4 jne 0014B70F +0x26F	no	no	yes	gate
+0014B520	367	0014A48A	no	yes	no	no	no	0		no	no	no	gate
+0014B690	2763	0014A48A	yes	yes	no	yes	no	0		no	no	yes	multi
+0014C4E6	891	0014C221	yes	no	no	yes	no	0		no	no	yes	multi
+0014C870	1311	0014C221	no	yes	no	yes	no	0		no	no	yes	gate
+0014CD90	744	0014C221	yes	yes	no	yes	no	0		no	no	yes	multi
+0014D080	2383	0014C221	no	yes	no	yes	no	0		no	no	yes	gate
+0014D9D0	511	0014C221	no	yes	no	yes	no	0		no	no	yes	gate
+0014DBD0	3917	0014C221	yes	yes	no	yes	no	0		no	no	yes	multi
+0014EB20	6810	0014C221	yes	yes	no	yes	no	0		no	no	yes	multi
+001505C0	6271	0014C221	no	yes	no	yes	no	1	BT4 jg 00151E8F +0x1832	no	no	yes	gate
+00151E40	12831	0014C221	no	yes	no	yes	no	2	BT4 jne 00151BDE +0xC7; BT4 jg 001550C6 +0x31C8	no	no	yes	gate
+00155060	15059	0014C221	yes	yes	no	yes	no	1	BT4 jne 00154E00 +0xCF	no	no	yes	multi
+00602CF9	416	00602A40	no	no	no	no	no	4	BT1 indexed-rva 00602B2F +0xB; BT1 indexed-rva 00602B38 +0x3; BT1 indexed-rva 00602B58 +0xFF	yes	no	no	gate
+00712180	353	00712090	yes	yes	yes	no	no	0		no	no	no	clean

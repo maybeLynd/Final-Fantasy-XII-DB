@@ -1,0 +1,33 @@
+{
+  "experiment": "EXP-075-reward-index-prechecks",
+  "files": {
+    "0023A570.bin": {
+      "bytes": 1808,
+      "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a"
+    },
+    "00901B3C.bin": {
+      "bytes": 4,
+      "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7"
+    },
+    "00902438.bin": {
+      "bytes": 4,
+      "sha256": "82a72eeef4f720c75f627f5ccf9f2963cceb6210f66318ec6362722e29a564f9"
+    },
+    "01CEBC78.bin": {
+      "bytes": 4,
+      "sha256": "12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76"
+    },
+    "check.py": {
+      "bytes": 10710,
+      "sha256": "6ae8ae42dee432e140753459aac85811fd8760f33e1e86cfb03d301007f80cdd"
+    },
+    "disassembly.txt": {
+      "bytes": 25221,
+      "sha256": "382185899842f048aeea64353be0936bf60df702994a58471751ff6995f3d824"
+    },
+    "result.json": {
+      "bytes": 326930,
+      "sha256": "24db30eb335562095a5b89e3966f0797d0569b8e31ed247dff364fb553c301ef"
+    }
+  }
+}

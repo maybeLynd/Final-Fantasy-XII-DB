@@ -1,0 +1,86 @@
+new SD rows at 71af93479: 17  SD-100 SD-101 SD-102 SD-103 SD-104 SD-105 SD-106 SD-107 SD-120 SD-121 SD-122 SD-123 SD-124 SD-125 SD-126 SD-127 SD-128
+
+SD-100 at-commit OPEN   HEAD OPEN     addrs 002ABF70 002AC06B 002AC1B4 002AD225
+   register rows sharing an address: UQ-162[ANSWERED](002ABF70), UQ-163[ANSWERED](002ABF70), UQ-173[ANSWERED](002ABF70), UQ-177[ANSWERED](002ABF70)
+   candidate folders (at parent) sharing an address: fable-crossings-prose-false-clears.tsv(002ABF70), functions-cited-deep-by-two-documents.tsv(002ABF70), residual-139-explanation-depth.tsv(002ABF70), residual-30-citations.tsv(002ABF70), residual-30-shape-validation.tsv(002ABF70), residual-band-vs-outcome.tsv(002ABF70), text-gap-citations-250.tsv(002ABF70,002AC1B4)
+   named on: measuring-text-by-drawing-it-with-the-output-off.md
+
+SD-101 at-commit OPEN   HEAD OPEN     addrs 002450B0 00245110 00252990 0208EC90 0208F564
+   register rows sharing an address: UQ-348[ANSWERED](002450B0,00245110)
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(0208F564), ec7-frontier-plan-0929(00245110), f-frontier-shapes-0930(00245110), fable-crossings-prose-false-clears.tsv(00252990), undeclared-written-statics(002450B0,00245110)
+   named on: the-widget-tree-draw-pass.md
+
+SD-102 at-commit OPEN   HEAD OPEN     addrs 00181330 00181560 001816F0 002DAC70 002DAF30 002DD350 02EBEFC0 02EBEFF0
+   register rows sharing an address: CG-6[ANSWERED](02EBEFC0,02EBEFF0), GJ-5[ANSWERED](02EBEFC0,02EBEFF0), UQ-159[ANSWERED](002DAC70,002DAF30), UQ-191[ANSWERED](02EBEFC0), UQ-344[ANSWERED](001816F0), UQ-347[ANSWERED](02EBEFC0)
+   candidate folders (at parent) sharing an address: access-direction(002DAF30), auditsem-review-bit46-0930(002DAC70), cg6-no-consumer(02EBEFC0,02EBEFF0), register-triage(02EBEFC0,02EBEFF0), uq191-shadow-channels-pc(02EBEFC0,02EBEFF0), uq204-element-type-emits(02EBEFC0), uq38-carry-criterion(002DAF30)
+   named on: the-widget-tree-draw-pass.md
+
+SD-103 at-commit OPEN   HEAD OPEN     addrs 002432B0 002B5C90
+   register rows sharing an address: EL-1[ANSWERED](002432B0), EV-1[ANSWERED](002432B0), GJ-2[ANSWERED](002432B0,002B5C90), GJ-3[ANSWERED](002B5C90), UQ-158[ANSWERED](002432B0), UQ-159[ANSWERED](002432B0)
+   candidate folders (at parent) sharing an address: bj1-opus-replay-boot-statics(002B5C90), cd2-opus-base-global-watch(002B5C90), fable-crossings-prose-false-clears.tsv(002B5C90), neighbour-dispositions.tsv(002432B0), register-triage(002432B0), s15-opus-replay-boot-world(002B5C90), swe2contract-ddres-b3-0930(002432B0), text-gap-citations-250.tsv(002432B0), y1-layout-key-uses(002432B0)
+   named on: the-shared-drawing-context.md
+
+SD-104 at-commit OPEN   HEAD OPEN     addrs 002432B0 00243340
+   register rows sharing an address: EL-1[ANSWERED](002432B0), EV-1[ANSWERED](002432B0), GJ-2[ANSWERED](002432B0), UQ-158[ANSWERED](002432B0), UQ-159[ANSWERED](002432B0)
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(00243340), neighbour-dispositions.tsv(002432B0), register-triage(002432B0), swe2contract-ddres-b3-0930(002432B0), text-gap-citations-250.tsv(002432B0), y1-layout-key-uses(002432B0)
+   named on: the-shared-drawing-context.md
+
+SD-105 at-commit OPEN   HEAD OPEN     addrs 002A4830 002ABF70 002AC1E0 002B3400
+   register rows sharing an address: GJ-11[ANSWERED](002B3400), GJ-7[ANSWERED](002B3400), GJ-8[ANSWERED](002A4830,002B3400), GJ-9[ANSWERED](002B3400), UQ-162[ANSWERED](002ABF70), UQ-163[ANSWERED](002ABF70), UQ-166[ANSWERED](002A4830), UQ-173[ANSWERED](002ABF70,002AC1E0), UQ-177[ANSWERED](002ABF70), UQ-361[ANSWERED](002B3400), UQ-383[ANSWERED](002A4830)
+   candidate folders (at parent) sharing an address: battle-menu-child-base-opus(002B3400), dd-owner-read-0929(002B3400), fable-crossings-prose-false-clears.tsv(002ABF70,002B3400), functions-cited-deep-by-two-documents.tsv(002ABF70), provenance-transfer-gn161.tsv(002A4830), register-answered-elsewhere-candidates.tsv(002A4830,002B3400), residual-139-explanation-depth.tsv(002A4830,002ABF70), residual-30-citations.tsv(002ABF70), residual-30-shape-validation.tsv(002ABF70), residual-band-vs-outcome.tsv(002A4830,002ABF70), text-gap-citations-250.tsv(002ABF70,002AC1E0), undeclared-written-statics(002A4830), y1-layout-key-uses(002B3400)
+   named on: the-shared-drawing-context.md
+
+SD-106 at-commit OPEN   HEAD OPEN     addrs 002B3280
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(002B3280), y1-layout-key-uses(002B3280)
+   named on: the-text-element-dispatch-table.md
+
+SD-107 at-commit OPEN   HEAD OPEN     addrs 002AA800
+   register rows sharing an address: GJ-7[ANSWERED](002AA800), GJ-8[ANSWERED](002AA800), UQ-176[ANSWERED](002AA800), UQ-356[ANSWERED](002AA800), UQ-382[ANSWERED](002AA800)
+   candidate folders (at parent) sharing an address: neighbour-dispositions.tsv(002AA800), undeclared-written-statics(002AA800)
+   named on: the-text-element-dispatch-table.md
+
+SD-120 at-commit OPEN   HEAD OPEN     addrs 003CCF20 003CD2C0 00431B10
+   register rows sharing an address: BI-2[SUPERSEDED](003CCF20), BI-7[ANSWERED](003CCF20)
+   candidate folders (at parent) sharing an address: neighbour-dispositions.tsv(003CCF20,003CD2C0), text-gap-citations-250.tsv(003CCF20,003CD2C0)
+   named on: the-largest-unclassified-functions.md
+
+SD-121 at-commit OPEN   HEAD OPEN     addrs 0036E080 0036E3B0 0036E414 0036E42F 0036E44C 022D97B0 022D98B0 022D99B0
+   register rows sharing an address: IB-1[ANSWERED](0036E3B0)
+   candidate folders (at parent) sharing an address: contract-named-state-census.md(022D97B0), dd-owner-read-0929(022D97B0,022D98B0,022D99B0)
+   named on: the-largest-unclassified-functions.md
+
+SD-122 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: the-largest-unclassified-functions.md
+
+SD-123 at-commit OPEN   HEAD OPEN     addrs -
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: -
+   named on: the-largest-unclassified-functions.md
+
+SD-124 at-commit OPEN   HEAD OPEN     addrs 002732E0 0035BB20
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(002732E0), nas-package-4-2026-09-27(0035BB20)
+   named on: the-selection-the-menu-publishes.md
+
+SD-125 at-commit OPEN   HEAD OPEN     addrs 00276D30
+   register rows sharing an address: DL-1[ANSWERED](00276D30), UQ-189[ANSWERED](00276D30), UQ-68[ANSWERED](00276D30)
+   candidate folders (at parent) sharing an address: access-direction(00276D30), allocation-proven-extents.tsv(00276D30), battlemenu-panel-blocks(00276D30), gg1-static-order(00276D30), imagebase-switch-inventory.md(00276D30), neighbour-dispositions.tsv(00276D30), rc8-cascade-count-0930(00276D30), text-gap-citations-250.tsv(00276D30), uc1-citation-worklist-pass1.tsv(00276D30), uc1-pass2-extent-and-tables.md(00276D30), uc1-pass2-extent-rows.tsv(00276D30), uq68-kind-source(00276D30), widget-header-embedding(00276D30), y1-layout-key-uses(00276D30)
+   named on: the-selection-the-menu-publishes.md
+
+SD-126 at-commit OPEN   HEAD OPEN     addrs 00276D30 002778C0 003FDFE0 003FF360 00405310
+   register rows sharing an address: AC-2[ANSWERED](003FDFE0), DL-1[ANSWERED](00276D30,002778C0,003FF360), GG-1[ANSWERED](003FF360), UQ-189[ANSWERED](00276D30), UQ-68[ANSWERED](00276D30,002778C0)
+   candidate folders (at parent) sharing an address: aa8-payload-tail(002778C0), access-direction(00276D30,002778C0), allocation-proven-extents.tsv(00276D30,002778C0,003FDFE0,003FF360,00405310), auditsem-review-p22-b1-0930(003FF360), auditspec-review-opus-batch5-0929(002778C0,003FF360), battlemenu-panel-blocks(00276D30), ec7-frontier-plan-0929(003FDFE0), f-frontier-shapes-0930(003FDFE0), fable-astra-live-facts-0930(002778C0,003FF360), fable-crossings-prose-false-clears.tsv(002778C0), functions-cited-deep-by-two-documents.tsv(002778C0), ga1-status-open-bytes(003FDFE0,003FF360), gg1-chain-procs(002778C0,003FF360), gg1-dispatch-sim(002778C0,003FDFE0,003FF360), gg1-helper-readers(002778C0), gg1-message10-readers(002778C0,003FF360), gg1-scope(002778C0), gg1-static-order(00276D30,002778C0), gi-0929-ui(003FF360), imagebase-switch-inventory.md(00276D30,002778C0), neighbour-dispositions.tsv(00276D30,002778C0,003FF360), pass22-tripwires.tsv(002778C0), provenance-transfer-gn161.tsv(003FDFE0), rc1-static-census-0930(003FDFE0,003FF360), rc4-capture-machine-0930(002778C0,00405310), rc8-cascade-count-0930(00276D30), residual-139-explanation-depth.tsv(003FDFE0), residual-band-vs-outcome.tsv(003FDFE0), text-gap-citations-250.tsv(00276D30,002778C0), uc1-citation-worklist-pass1.tsv(00276D30), uc1-pass2-extent-and-tables.md(00276D30), uc1-pass2-extent-rows.tsv(00276D30), uq68-kind-source(00276D30,002778C0), uq68-kind5-foecraft(002778C0), widget-header-embedding(00276D30,002778C0,00405310), y1-layout-key-uses(00276D30)
+   named on: the-battle-hud-layout-readers.md
+
+SD-127 at-commit OPEN   HEAD OPEN     addrs 00276BE0 002778C0 0027CE70
+   register rows sharing an address: DL-1[ANSWERED](002778C0), UQ-68[ANSWERED](002778C0)
+   candidate folders (at parent) sharing an address: aa8-payload-tail(002778C0,0027CE70), access-direction(002778C0), allocation-proven-extents.tsv(002778C0), auditspec-review-opus-batch5-0929(002778C0), ec7-frontier-plan-0929(00276BE0,0027CE70), f-frontier-shapes-0930(00276BE0,0027CE70), fable-astra-live-facts-0930(002778C0), fable-crossings-prose-false-clears.tsv(002778C0), functions-cited-deep-by-two-documents.tsv(002778C0), gg1-chain-procs(002778C0), gg1-dispatch-sim(002778C0), gg1-helper-readers(002778C0), gg1-message10-readers(002778C0), gg1-scope(002778C0), gg1-static-order(002778C0), imagebase-switch-inventory.md(002778C0), neighbour-dispositions.tsv(002778C0), pass22-tripwires.tsv(002778C0), rc1-static-census-0930(00276BE0,0027CE70), rc4-capture-machine-0930(002778C0), text-gap-citations-250.tsv(002778C0), uq68-kind-source(002778C0), uq68-kind5-foecraft(002778C0), widget-header-embedding(002778C0), y1-layout-key-uses(00276BE0,0027CE70)
+   named on: the-battle-hud-layout-readers.md
+
+SD-128 at-commit OPEN   HEAD OPEN     addrs 002C7660 002C7B10 002C8310
+   register rows sharing an address: -
+   candidate folders (at parent) sharing an address: dd-owner-read-0929(002C7660), fable-crossings-prose-false-clears.tsv(002C7660,002C7B10), ga1-status-open-bytes(002C7660,002C7B10), neighbour-dispositions.tsv(002C7660,002C7B10), pass22-tripwires.tsv(002C7660), provenance-transfer-gn161.tsv(002C7660,002C7B10), residual-139-explanation-depth.tsv(002C7660,002C7B10), residual-band-vs-outcome.tsv(002C7660,002C7B10), uq38-carry-criterion(002C7660)
+   named on: the-battle-hud-layout-readers.md

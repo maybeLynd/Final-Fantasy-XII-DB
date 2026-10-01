@@ -1,0 +1,9 @@
+# NativeAdapter.TableIndexDispatchTailCall - EC-7 family C
+# # resolve index word [this+0xC0]->[rax] through a member global table
+# # (stride 0x740); require +0x284 clear; jne-tail to a member op.
+address	targets
+002E5BC0	00420A10
+002E8060	00426FA0
+002E8290	004288B0
+002E8A70	00428DE0
+002E8AC0	00428E10

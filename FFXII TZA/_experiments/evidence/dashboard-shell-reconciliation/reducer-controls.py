@@ -1,0 +1,6 @@
+import copy,hashlib,json,subprocess,sys
+from pathlib import Path
+W=Path(__file__).resolve().parent;R=W/'reducer-controls';R.mkdir(exist_ok=False);r=json.loads((W/'run-01/raw.json').read_text());out=[]
+for name,mut,why in [('bad-generation-prerequisite',lambda z:z['cases'][0]['generation']['cli'].update(returncode=1),'FAILED_PREREQUISITE'),('missing-http-case',lambda z:z['cases'].pop(),'MISSING_CASE')]:
+ z=copy.deepcopy(r);mut(z);f=R/(name+'.json');f.write_text(json.dumps(z,indent=2)+'\n');q=subprocess.run([sys.executable,'-B',str(W/'check.py'),'--raw',str(f)],capture_output=True,text=True);assert q.returncode!=0 and why in q.stderr;out.append(dict(argv=q.args,returncode=q.returncode,stdout=q.stdout,stderr=q.stderr,terminal=True,checker_sha256=hashlib.sha256((W/'check.py').read_bytes()).hexdigest()))
+(W/'reducer-controls.json').write_text(json.dumps(out,indent=2)+'\n');identity={'phase':'after capture/cleanup; additive supplement, not a retroactive pre-launch binary measurement','python':sys.version,'path':sys.executable,'base':sys._base_executable,'base_sha256':hashlib.sha256(Path(sys._base_executable).read_bytes()).hexdigest()};(W/'identity-supplement.json').write_text(json.dumps(identity,indent=2)+'\n');print('TWO_HTTP_RECEIPT_CONTROLS_REFUSE')

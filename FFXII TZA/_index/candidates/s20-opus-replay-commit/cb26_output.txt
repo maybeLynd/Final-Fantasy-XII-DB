@@ -1,0 +1,16 @@
+I2_copy_through_without_masks      PASS  both masks zero: the applier copies each non-negative +0x5C dword to target +0xBC and each non-negative +0xDC word to +0x13C (negative preserves, zero is present); no status call and no outer recompute
+I1_I3_apply_bit_mode3_and_outer_recompute PASS  +0x54 bit 5 calls 0030E360(target, source, 5, 100, 3, 0x200, mode 3) with the bit's +0x5C / +0xDC parameters - the flags argument is 0x200 whatever the caller passed - and target +0x64 bit 5 is set; the outer 0030FED0(target, 0) at 00311AC5 follows with caller flags 0 and is skipped with 0x200
+I1_remove_bit_mode0                PASS  +0x58 bit 5 calls 0030E360(target, source, 5, 0, 0, 0x200, mode 0)
+I5_I6_I7_numeric_dispatch          PASS  target HP alone -> 00300530 with flags 0x50; bit 3 -> 00300520; A19/A10 set and A18/A6 set -> flags 0x120 (8 and 5 on, 6 and 4 off); target MP -> 00300CE0, bit 4 -> 00300C90; source HP (A7) -> 00300530, bit 1 -> 00300520; a null source calls no setter for it. Each write then posts its damage display (the recorded boundary)
+ok
+M1_unresolved_target_is_not_an_error_and_appends_a_null_entry    PASS
+M2_two_disjoint_ranges                                           PASS
+M3_high_range_never_touches_the_target_buffer                    PASS
+M4_block_shadowed_verbatim                                       PASS
+M5_cancel_is_a_no_op_without_unit_or_stats                       PASS
+ALL PASS
+{"M1": {"ok": true, "halt": [], "id_714": "10", "q708": "ABCDEF", "d710": "120034", "d700": "FFFFFFFC", "shadow_ok": true, "buf_flag": 1, "buf_count": 1, "buf_e0": "0", "buf_writes": 5, "unit_writes": 14}, "M2": {"0": [true, "0", "120034", []], "21E": [true, "21E", "120034", []], "21F": [true, "0", "0", []], "3FFF": [true, "0", "0", []], "4000": [true, "4000", "120034", []], "4166": [true, "4166", "120034", []], "4167": [true, "0", "0", []]}, "M3": {"ok": true, "halt": [], "id_714": "4010", "q708": "ABCDEF", "d710": "120034", "d700": "FFFFFFFC", "shadow_ok": true, "buf_flag": 1, "buf_count": 3, "buf_e0": "1111", "buf_writes": 0, "unit_writes": 9}, "M4": {"ok": true, "halt": [], "id_714": "20", "q708": "1122334455667788", "d710": "12345678", "d700": "FFFFFFFC", "shadow_ok": true, "buf_flag": 1, "buf_count": 1, "buf_e0": "0", "buf_writes": 5, "unit_writes": 14}, "M5": {"null_unit": [true, []], "no_stats": [true, [], 0]}}
+A_success_recommits_its_own_action_and_advances        PASS
+F_failed_recommit_returns_0_after_the_cancel_ran       PASS
+G_gate_refusal_touches_nothing                         PASS
+ALL PASS {"A": {"ok": true, "halt": [], "ret": 1, "events": [["commit", "ABC", 16, "100000", 1], ["cancel"]], "writes_6B7_6B8": [["003106EB", "+6B7", 2, 0], ["0030FA65", "+6B8", 1, 119], ["0030FA79", "+6B7", 1, 3]], "counter": 3, "partner": 119, "b6B4": 5}, "F": {"ok": true, "halt": [], "ret": 0, "events": [["commit", "ABC", 543, "100000", 1], ["cancel"]], "writes_6B7_6B8": [["003106EB", "+6B7", 2, 0]], "counter": 0, "partner": 0, "b6B4": 0}, "G": {"ok": true, "halt": [], "ret": 0, "events": [], "writes_6B7_6B8": [], "counter": 2, "partner": 119, "b6B4": 0}}

@@ -1,0 +1,52 @@
+{
+  "evidence_classes": [
+    "A:11 newly reviewed complete shipping bodies, plus sealed section14 front and dispatch",
+    "B:15 isolated original-code runs; 10 original bodies loaded and reached across the cases; no stubs; injected state"
+  ],
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "collect-primary.py": {
+      "bytes": 3850,
+      "sha256": "afc7f10d4fad1deb000bd8988bad9a6781212f4d7f1c00db14647d319e154df6"
+    },
+    "collect-repairs.py": {
+      "bytes": 3859,
+      "sha256": "8eff85aee640d18bc9b934f2839db93c65984b1f5e4d7bc3d6d2f19334d1ed1e"
+    },
+    "execution-review.json": {
+      "bytes": 4465,
+      "sha256": "3d7cc22f0341fcbcae6459a2a1fab2968b0b771a747acbd411c2cd53bfad0e3b"
+    },
+    "first-attempt.json": {
+      "bytes": 399,
+      "sha256": "ed34ab05ae108acccef290d2ff9bfae4ae573e5539f1d121700a16fb8f920a23"
+    },
+    "primary.json": {
+      "bytes": 39800,
+      "sha256": "c88565e8d64a03fb9fd29b72ba87e0afc23598ab015e7d0aa088010633d4142d"
+    },
+    "probe.py": {
+      "bytes": 10819,
+      "sha256": "53d38d02a21c24cba2853aa8e5c7c9092968f97b8c0b6ec884d3d9965a430b2b"
+    },
+    "repairs.json": {
+      "bytes": 30662,
+      "sha256": "4be4eaf0b30c2ef4d4796fa02211f2e3a314ecf3c0ddf383e9254bfc9b8d486a"
+    },
+    "result.json": {
+      "bytes": 1823945,
+      "sha256": "951e878d87214005f75da1ee0ffa85a0773136a9ee12f969d2c817d7f0cc348b"
+    },
+    "review-execution.py": {
+      "bytes": 7121,
+      "sha256": "b5b298a7ec168d57aaf78c83477bdc09be984754cb78c1d70edf727d8f6d731b"
+    },
+    "review.json": {
+      "bytes": 4890,
+      "sha256": "8fb53d654baddaf1085fa68e2e47f5d6f3fddbdc62e6fa11536bc4f20c279fbe"
+    }
+  }
+}

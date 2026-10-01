@@ -1,0 +1,788 @@
+{
+  "method": "A original292B CFG/operand proof, conditional calculations and actual Python checker read intervention; zero FF12/emulator/native/live executions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "body_sha256": "19291e8d14b33c020075e4080ff232c1df6af5caf850da487d4ae66c9426c246",
+    "pe_function": [
+      "0x3912e0",
+      "0x391404",
+      "0x1d7945c"
+    ],
+    "canonical_consumer_head": "7d8111938b752b4754ab3b4d614e1f885d626394"
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll_sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+  },
+  "driver_sha256": "25b1bb86e79768dae44bca429afe34d6284e45a8cedf124725e28fb0dc76b149",
+  "instructions": [
+    {
+      "pc": "0x3912e0",
+      "bytes": "48895c2408",
+      "op": "mov",
+      "args": "qword ptr [rsp + 8], rbx"
+    },
+    {
+      "pc": "0x3912e5",
+      "bytes": "48896c2410",
+      "op": "mov",
+      "args": "qword ptr [rsp + 0x10], rbp"
+    },
+    {
+      "pc": "0x3912ea",
+      "bytes": "4889742418",
+      "op": "mov",
+      "args": "qword ptr [rsp + 0x18], rsi"
+    },
+    {
+      "pc": "0x3912ef",
+      "bytes": "57",
+      "op": "push",
+      "args": "rdi"
+    },
+    {
+      "pc": "0x3912f0",
+      "bytes": "4883ec20",
+      "op": "sub",
+      "args": "rsp, 0x20"
+    },
+    {
+      "pc": "0x3912f4",
+      "bytes": "418bf8",
+      "op": "mov",
+      "args": "edi, r8d"
+    },
+    {
+      "pc": "0x3912f7",
+      "bytes": "8bda",
+      "op": "mov",
+      "args": "ebx, edx"
+    },
+    {
+      "pc": "0x3912f9",
+      "bytes": "4c6305b8cd7502",
+      "op": "movsxd",
+      "args": "r8, dword ptr [rip + 0x275cdb8]"
+    },
+    {
+      "pc": "0x391300",
+      "bytes": "8bf1",
+      "op": "mov",
+      "args": "esi, ecx"
+    },
+    {
+      "pc": "0x391302",
+      "bytes": "488b0da7cd7502",
+      "op": "mov",
+      "args": "rcx, qword ptr [rip + 0x275cda7]"
+    },
+    {
+      "pc": "0x391309",
+      "bytes": "33d2",
+      "op": "xor",
+      "args": "edx, edx"
+    },
+    {
+      "pc": "0x39130b",
+      "bytes": "418be9",
+      "op": "mov",
+      "args": "ebp, r9d"
+    },
+    {
+      "pc": "0x39130e",
+      "bytes": "e8ad0b4d00",
+      "op": "call",
+      "args": "0x861ec0"
+    },
+    {
+      "pc": "0x391313",
+      "bytes": "448b1d46cd7502",
+      "op": "mov",
+      "args": "r11d, dword ptr [rip + 0x275cd46]"
+    },
+    {
+      "pc": "0x39131a",
+      "bytes": "85f6",
+      "op": "test",
+      "args": "esi, esi"
+    },
+    {
+      "pc": "0x39131c",
+      "bytes": "7904",
+      "op": "jns",
+      "args": "0x391322"
+    },
+    {
+      "pc": "0x39131e",
+      "bytes": "33f6",
+      "op": "xor",
+      "args": "esi, esi"
+    },
+    {
+      "pc": "0x391320",
+      "bytes": "eb09",
+      "op": "jmp",
+      "args": "0x39132b"
+    },
+    {
+      "pc": "0x391322",
+      "bytes": "418d43ff",
+      "op": "lea",
+      "args": "eax, [r11 - 1]"
+    },
+    {
+      "pc": "0x391326",
+      "bytes": "3bf0",
+      "op": "cmp",
+      "args": "esi, eax"
+    },
+    {
+      "pc": "0x391328",
+      "bytes": "0f4ff0",
+      "op": "cmovg",
+      "args": "esi, eax"
+    },
+    {
+      "pc": "0x39132b",
+      "bytes": "488b0d32cd7502",
+      "op": "mov",
+      "args": "rcx, qword ptr [rip + 0x275cd32]"
+    },
+    {
+      "pc": "0x391332",
+      "bytes": "85db",
+      "op": "test",
+      "args": "ebx, ebx"
+    },
+    {
+      "pc": "0x391334",
+      "bytes": "7904",
+      "op": "jns",
+      "args": "0x39133a"
+    },
+    {
+      "pc": "0x391336",
+      "bytes": "33db",
+      "op": "xor",
+      "args": "ebx, ebx"
+    },
+    {
+      "pc": "0x391338",
+      "bytes": "eb08",
+      "op": "jmp",
+      "args": "0x391342"
+    },
+    {
+      "pc": "0x39133a",
+      "bytes": "8d41ff",
+      "op": "lea",
+      "args": "eax, [rcx - 1]"
+    },
+    {
+      "pc": "0x39133d",
+      "bytes": "3bd8",
+      "op": "cmp",
+      "args": "ebx, eax"
+    },
+    {
+      "pc": "0x39133f",
+      "bytes": "0f4fd8",
+      "op": "cmovg",
+      "args": "ebx, eax"
+    },
+    {
+      "pc": "0x391342",
+      "bytes": "85ff",
+      "op": "test",
+      "args": "edi, edi"
+    },
+    {
+      "pc": "0x391344",
+      "bytes": "7904",
+      "op": "jns",
+      "args": "0x39134a"
+    },
+    {
+      "pc": "0x391346",
+      "bytes": "33ff",
+      "op": "xor",
+      "args": "edi, edi"
+    },
+    {
+      "pc": "0x391348",
+      "bytes": "eb09",
+      "op": "jmp",
+      "args": "0x391353"
+    },
+    {
+      "pc": "0x39134a",
+      "bytes": "418d43ff",
+      "op": "lea",
+      "args": "eax, [r11 - 1]"
+    },
+    {
+      "pc": "0x39134e",
+      "bytes": "3bf8",
+      "op": "cmp",
+      "args": "edi, eax"
+    },
+    {
+      "pc": "0x391350",
+      "bytes": "0f4ff8",
+      "op": "cmovg",
+      "args": "edi, eax"
+    },
+    {
+      "pc": "0x391353",
+      "bytes": "85ed",
+      "op": "test",
+      "args": "ebp, ebp"
+    },
+    {
+      "pc": "0x391355",
+      "bytes": "7904",
+      "op": "jns",
+      "args": "0x39135b"
+    },
+    {
+      "pc": "0x391357",
+      "bytes": "33ed",
+      "op": "xor",
+      "args": "ebp, ebp"
+    },
+    {
+      "pc": "0x391359",
+      "bytes": "eb08",
+      "op": "jmp",
+      "args": "0x391363"
+    },
+    {
+      "pc": "0x39135b",
+      "bytes": "8d41ff",
+      "op": "lea",
+      "args": "eax, [rcx - 1]"
+    },
+    {
+      "pc": "0x39135e",
+      "bytes": "3be8",
+      "op": "cmp",
+      "args": "ebp, eax"
+    },
+    {
+      "pc": "0x391360",
+      "bytes": "0f4fe8",
+      "op": "cmovg",
+      "args": "ebp, eax"
+    },
+    {
+      "pc": "0x391363",
+      "bytes": "3bdd",
+      "op": "cmp",
+      "args": "ebx, ebp"
+    },
+    {
+      "pc": "0x391365",
+      "bytes": "0f8f7d000000",
+      "op": "jg",
+      "args": "0x3913e8"
+    },
+    {
+      "pc": "0x39136b",
+      "bytes": "8b1547cd7502",
+      "op": "mov",
+      "args": "edx, dword ptr [rip + 0x275cd47]"
+    },
+    {
+      "pc": "0x391371",
+      "bytes": "448bd6",
+      "op": "mov",
+      "args": "r10d, esi"
+    },
+    {
+      "pc": "0x391374",
+      "bytes": "3bf7",
+      "op": "cmp",
+      "args": "esi, edi"
+    },
+    {
+      "pc": "0x391376",
+      "bytes": "7f6a",
+      "op": "jg",
+      "args": "0x3913e2"
+    },
+    {
+      "pc": "0x391378",
+      "bytes": "0f1f840000000000",
+      "op": "nop",
+      "args": "dword ptr [rax + rax]"
+    },
+    {
+      "pc": "0x391380",
+      "bytes": "488b0521cd7502",
+      "op": "mov",
+      "args": "rax, qword ptr [rip + 0x275cd21]"
+    },
+    {
+      "pc": "0x391387",
+      "bytes": "458bc3",
+      "op": "mov",
+      "args": "r8d, r11d"
+    },
+    {
+      "pc": "0x39138a",
+      "bytes": "440fafc3",
+      "op": "imul",
+      "args": "r8d, ebx"
+    },
+    {
+      "pc": "0x39138e",
+      "bytes": "4503c2",
+      "op": "add",
+      "args": "r8d, r10d"
+    },
+    {
+      "pc": "0x391391",
+      "bytes": "4963c8",
+      "op": "movsxd",
+      "args": "rcx, r8d"
+    },
+    {
+      "pc": "0x391394",
+      "bytes": "803c0100",
+      "op": "cmp",
+      "args": "byte ptr [rcx + rax], 0"
+    },
+    {
+      "pc": "0x391398",
+      "bytes": "7440",
+      "op": "je",
+      "args": "0x3913da"
+    },
+    {
+      "pc": "0x39139a",
+      "bytes": "440fafc2",
+      "op": "imul",
+      "args": "r8d, edx"
+    },
+    {
+      "pc": "0x39139e",
+      "bytes": "33c0",
+      "op": "xor",
+      "args": "eax, eax"
+    },
+    {
+      "pc": "0x3913a0",
+      "bytes": "4d63c8",
+      "op": "movsxd",
+      "args": "r9, r8d"
+    },
+    {
+      "pc": "0x3913a3",
+      "bytes": "4533c0",
+      "op": "xor",
+      "args": "r8d, r8d"
+    },
+    {
+      "pc": "0x3913a6",
+      "bytes": "4c030df3cc7502",
+      "op": "add",
+      "args": "r9, qword ptr [rip + 0x275ccf3]"
+    },
+    {
+      "pc": "0x3913ad",
+      "bytes": "85d2",
+      "op": "test",
+      "args": "edx, edx"
+    },
+    {
+      "pc": "0x3913af",
+      "bytes": "7e29",
+      "op": "jle",
+      "args": "0x3913da"
+    },
+    {
+      "pc": "0x3913b1",
+      "bytes": "488b15f8cc7502",
+      "op": "mov",
+      "args": "rdx, qword ptr [rip + 0x275ccf8]"
+    },
+    {
+      "pc": "0x3913b8",
+      "bytes": "41ffc0",
+      "op": "inc",
+      "args": "r8d"
+    },
+    {
+      "pc": "0x3913bb",
+      "bytes": "420fb60c08",
+      "op": "movzx",
+      "args": "ecx, byte ptr [rax + r9]"
+    },
+    {
+      "pc": "0x3913c0",
+      "bytes": "488d4001",
+      "op": "lea",
+      "args": "rax, [rax + 1]"
+    },
+    {
+      "pc": "0x3913c4",
+      "bytes": "084c02ff",
+      "op": "or",
+      "args": "byte ptr [rdx + rax - 1], cl"
+    },
+    {
+      "pc": "0x3913c8",
+      "bytes": "8b15eacc7502",
+      "op": "mov",
+      "args": "edx, dword ptr [rip + 0x275ccea]"
+    },
+    {
+      "pc": "0x3913ce",
+      "bytes": "443bc2",
+      "op": "cmp",
+      "args": "r8d, edx"
+    },
+    {
+      "pc": "0x3913d1",
+      "bytes": "7cde",
+      "op": "jl",
+      "args": "0x3913b1"
+    },
+    {
+      "pc": "0x3913d3",
+      "bytes": "448b1d86cc7502",
+      "op": "mov",
+      "args": "r11d, dword ptr [rip + 0x275cc86]"
+    },
+    {
+      "pc": "0x3913da",
+      "bytes": "41ffc2",
+      "op": "inc",
+      "args": "r10d"
+    },
+    {
+      "pc": "0x3913dd",
+      "bytes": "443bd7",
+      "op": "cmp",
+      "args": "r10d, edi"
+    },
+    {
+      "pc": "0x3913e0",
+      "bytes": "7e9e",
+      "op": "jle",
+      "args": "0x391380"
+    },
+    {
+      "pc": "0x3913e2",
+      "bytes": "ffc3",
+      "op": "inc",
+      "args": "ebx"
+    },
+    {
+      "pc": "0x3913e4",
+      "bytes": "3bdd",
+      "op": "cmp",
+      "args": "ebx, ebp"
+    },
+    {
+      "pc": "0x3913e6",
+      "bytes": "7e89",
+      "op": "jle",
+      "args": "0x391371"
+    },
+    {
+      "pc": "0x3913e8",
+      "bytes": "488b05c1cc7502",
+      "op": "mov",
+      "args": "rax, qword ptr [rip + 0x275ccc1]"
+    },
+    {
+      "pc": "0x3913ef",
+      "bytes": "488b5c2430",
+      "op": "mov",
+      "args": "rbx, qword ptr [rsp + 0x30]"
+    },
+    {
+      "pc": "0x3913f4",
+      "bytes": "488b6c2438",
+      "op": "mov",
+      "args": "rbp, qword ptr [rsp + 0x38]"
+    },
+    {
+      "pc": "0x3913f9",
+      "bytes": "488b742440",
+      "op": "mov",
+      "args": "rsi, qword ptr [rsp + 0x40]"
+    },
+    {
+      "pc": "0x3913fe",
+      "bytes": "4883c420",
+      "op": "add",
+      "args": "rsp, 0x20"
+    },
+    {
+      "pc": "0x391402",
+      "bytes": "5f",
+      "op": "pop",
+      "args": "rdi"
+    },
+    {
+      "pc": "0x391403",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "cases": [
+    {
+      "input": -2147483648,
+      "count": 0,
+      "original_conditional": 0,
+      "naive_min_max": -1,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": -1,
+      "count": 0,
+      "original_conditional": 0,
+      "naive_min_max": -1,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 0,
+      "count": 0,
+      "original_conditional": -1,
+      "naive_min_max": -1,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 1,
+      "count": 0,
+      "original_conditional": -1,
+      "naive_min_max": -1,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 20,
+      "count": 0,
+      "original_conditional": -1,
+      "naive_min_max": -1,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": -2147483648,
+      "count": 1,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": -1,
+      "count": 1,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 0,
+      "count": 1,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 1,
+      "count": 1,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 20,
+      "count": 1,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": -2147483648,
+      "count": 13,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": -1,
+      "count": 13,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 0,
+      "count": 13,
+      "original_conditional": 0,
+      "naive_min_max": 0,
+      "opposite_order_max_min": 0
+    },
+    {
+      "input": 1,
+      "count": 13,
+      "original_conditional": 1,
+      "naive_min_max": 1,
+      "opposite_order_max_min": 1
+    },
+    {
+      "input": 20,
+      "count": 13,
+      "original_conditional": 12,
+      "naive_min_max": 12,
+      "opposite_order_max_min": 12
+    }
+  ],
+  "rectangles": [
+    {
+      "name": "positive-grid-control",
+      "cols": 1,
+      "rows": 1,
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "clamped": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "rectangle_loop_enters": true,
+      "first_signed_cell_index": 0,
+      "first_cell_read_relative_to_validity_base": 0,
+      "limits": "Conditional original source paths after memset returns, stable globals/readable state; no native execution, output OR/fault/actual occurrence claim"
+    },
+    {
+      "name": "empty-nonnegative",
+      "cols": 0,
+      "rows": 0,
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "clamped": [
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "rectangle_loop_enters": true,
+      "first_signed_cell_index": -1,
+      "first_cell_read_relative_to_validity_base": -1,
+      "limits": "Conditional original source paths after memset returns, stable globals/readable state; no native execution, output OR/fault/actual occurrence claim"
+    },
+    {
+      "name": "empty-negative",
+      "cols": 0,
+      "rows": 0,
+      "inputs": [
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "clamped": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "rectangle_loop_enters": true,
+      "first_signed_cell_index": 0,
+      "first_cell_read_relative_to_validity_base": 0,
+      "limits": "Conditional original source paths after memset returns, stable globals/readable state; no native execution, output OR/fault/actual occurrence claim"
+    },
+    {
+      "name": "empty-mixed-skips",
+      "cols": 0,
+      "rows": 0,
+      "inputs": [
+        -1,
+        -1,
+        0,
+        0
+      ],
+      "clamped": [
+        0,
+        0,
+        -1,
+        -1
+      ],
+      "rectangle_loop_enters": false,
+      "first_signed_cell_index": null,
+      "first_cell_read_relative_to_validity_base": null,
+      "limits": "Conditional original source paths after memset returns, stable globals/readable state; no native execution, output OR/fault/actual occurrence claim"
+    }
+  ],
+  "producer_controls": [
+    {
+      "case": "canonical-baseline",
+      "method": "Actual unchanged Python checker, controlled file-read intervention; no original FF12 execution",
+      "input_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "baseline_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "checker_sha256": "aff11075ba06dd972c3ff1f549b747a29ba4d9a8d0e585e78f52dacb55c59cb8",
+      "page_sha256": "46c73b5f7000b102eb040a0de6a7d1ae5d877e28ee113cec889e56d2c7f0f4d7",
+      "patch": null,
+      "checker_exit": 0,
+      "stdout": "PASS  X1 the four bounds and the classifier exit precede the first conversion; s16 origins, u8 sizes/counts \nPASS  X2 no range test between the conversion and the cell read; the sentinel test follows the read \nPASS  X3 LQUERY hands unguarded conversions to 003912E0, which clamps each index to [0, count-1] \nPASS  S item 2 corrected per function \nFAILS 0\n",
+      "reads": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+          "supplied": "disposable image bytes"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\06-Movement-And-Navigation\\CONTRACT-corridor-query-family.md",
+          "supplied": "retained canonical contract"
+        }
+      ],
+      "cleanup": "open restored, private bytes only, child exits"
+    },
+    {
+      "case": "negative-path-jump-removed",
+      "method": "Actual unchanged Python checker, controlled file-read intervention; no original FF12 execution",
+      "input_sha256": "09880287ce10b4f9458ccdb548d4a40ac7d2a56bc2b5d6a7fc02697d30ca93a3",
+      "baseline_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "checker_sha256": "aff11075ba06dd972c3ff1f549b747a29ba4d9a8d0e585e78f52dacb55c59cb8",
+      "page_sha256": "46c73b5f7000b102eb040a0de6a7d1ae5d877e28ee113cec889e56d2c7f0f4d7",
+      "patch": {
+        "va": "0x391320",
+        "file_offset": 2558240,
+        "before": "eb09",
+        "after": "9090"
+      },
+      "checker_exit": 0,
+      "stdout": "PASS  X1 the four bounds and the classifier exit precede the first conversion; s16 origins, u8 sizes/counts \nPASS  X2 no range test between the conversion and the cell read; the sentinel test follows the read \nPASS  X3 LQUERY hands unguarded conversions to 003912E0, which clamps each index to [0, count-1] \nPASS  S item 2 corrected per function \nFAILS 0\n",
+      "reads": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\exe\\FFXII_TZA.exe",
+          "supplied": "disposable image bytes"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\06-Movement-And-Navigation\\CONTRACT-corridor-query-family.md",
+          "supplied": "retained canonical contract"
+        }
+      ],
+      "cleanup": "open restored, private bytes only, child exits"
+    }
+  ],
+  "source_mutation_rejected": true,
+  "result": "Negative input always0: bypass-upper hypothesis confirmed, naive lower-then-upper refuted. Nonnegative input is signedmin(i,count-1); zero count gives-1. [0,count-1] guarantee requires positive dimensions. No dimension-zero exit before loops; empty all-nonnegative visits validitybase-1, all-negative visitsbase0 under stated conditional boundaries.",
+  "limits": "No actual dimension-zero occurrence/original builder/allmalformed safety, native memset behavior/fault/normalcaller/inputconversion or lifetime guarantee. Full source firstbyte read is distinct from later validity-gated record OR/output. Exact toolDLL recorded at derivation, not native instrument qualification.",
+  "cleanup": "Child read supplies restored; immutable reference unchanged, no peer/PC/game/process/save/config writes; existing published inputs preserved; independent review/consumer agreement pending"
+}

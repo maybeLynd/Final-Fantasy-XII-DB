@@ -1,0 +1,4 @@
+{
+ "action": "note",
+ "note": "SWE2-EC7: owner corrections for FABLE-REQ-FRONTIER-GA1-EC7-LABELS and FABLE-REQ-FRONTIER-UQ107-EC7-AND-RESULT-KINDS applied (docs are EC7-owned; request lifecycle stays with SWE2-FRONTIER). GA1: the-record-00329220-builds.md - 00273160 retagged overhead status-order read of the cached L1 table (+0x1700, key +0x23); 00273BA0 retagged the 32 class-26 records + four order tables +0x1500..+0x18FF build. the-widget-message-protocol.md - 00297FE0 runs cycler 00272F60 with period arg 0x1E, not a posted message. ga1_open_bytes.py FAILS 0. UQ107: battle-unit 00312170 paragraph inverted-reading corrected (cmove pair 0031221E-00312232: bit 8 iff +0xC bit 13, bit 9 iff bit 14); result-record field map gains kinds 7/8 at +0x04 (00390EF2/003910A5/00390E35) and the +0x10 reflected-target row (00390E42). uq107_flag_bits.py FAILS 0. publish-neighbour guard ADDS NOTHING (1 standing pair accounted)."
+}

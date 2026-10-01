@@ -1,0 +1,30 @@
+# The grid mark fragment trusts its ID and increments byte occupancy
+
+Player view: once a cell passes the overlap test, the original instructions set a membership bit and increment that cell's occupancy byte. In a disposable two-cell test, ID288 crosses the36-byte record boundary; a255 occupancy byte wraps to0. This narrows the preconditions needed for correct grid data. It does not show these states occur during normal play.
+
+Question: does the post-overlap path reject an ID beyond the36-byte cell record, change another record, or affect only occupancy? Does occupancy saturate or wrap? Method B answers exact compound signed arithmetic/BTS/byte writes using verified shipping instructions, with source context for the boundary. We reused the existing isolated emulator/register/page/read/write/post-write observation method; no runtime platform, game setup or native hooks were built.
+
+Reference: certified executable SHA73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8, exact679B00392200..003924A7 parent and88B003923D6..0039242E write fragment. Three contiguous PE runtime-function ranges chain to the same root; no handler or exception semantics inferred. Parent003923CD calls004690B0; TEST/JЕ at003923D2/4 skips this fragment for zero result. This run begins **after** a positive predicate and supplies R12D ID, row/column and valid guest global pointers. It does not execute geometry, coordinates/clamps, function prologue/loops/cookie, initialization, scheduling or native callers. There are no calls/branches/stubs inside the executed88B.
+
+Disposable layout: two36-byte cell records, two occupancy bytes and36-byte scratch, matching the previously established contiguous carving conditionally; width2, stride36, row0, column0 or1. This is **injected memory**, not a live heap, initialized scene or constructor default. Original cases execute exactly the shipping fragment; one separately labelled private NOP-INC case is an observer control. Python/Capstone/Unicorn modules/native DLLs, source reader, shared operand adapter, original image/body/window and driver identities are retained and checked before/after.
+
+The original fragment computes the signed ID quotient/remainder with the shipping CDQ/adjust/SAR sequence, adds the quotient to cellIndex*stride, uses BTS on a register, and writes only CL back. It then increments BYTE[cellByteArray+cellIndex]. There is no rejection branch **within this fragment**. Full native geometry acceptance of an invalid ID or every prior caller's domain is not established.
+
+| Injected case | Original observed bitmap write | Occupancy |
+| --- | --- | --- |
+| ID0, first cell | first byte becomes01 | 0→1; positive observer control |
+| ID287, first cell | byte35 becomes80 | 0→1 |
+| ID288, first cell | next cell's first record byte becomes01 | first cell0→1 |
+| ID288, last cell | first occupancy byte becomes01 because it follows the records | last cell0→1 |
+| ID−1, first cell | writes the same00 low byte; register BTS bit31 is absent from CL | 0→1 |
+| ID−8, first cell | preceding guard byteA4→A5 | 0→1 |
+| ID0 with occupancy255 | first bitmap byte becomes01 | 255→0 |
+| private NOP-INC control | same bitmap mark | remains255; only one write event |
+
+All original cases reach the exact end with complete nonempty instruction traces and **two ordered one-byte write events**, bitmap store00392412 then occupancy increment0039242B. Raw provider events are paired with post-instruction memory snapshots. This detects the unchanged byte write for ID−1, rather than mistaking absence of a byte difference for absence of a store. The private control suppresses only the second event/increment and is rejected by immutable original-code identity. Each case uses a fresh emulator and128-instruction stop budget; the first positive case must pass before the rest run. Raw per-case evidence is saved before acceptance. The readonly checker reduces all focused changes, addresses, values and ordering from raw original-code observations.
+
+Implications for OPUS/FABLE: membership IDs need an appropriate record domain, and occupancy is an incrementing byte, not a saturating count. For the tested width36 and nonnegative IDs0..287 the bit is inside the designated record; larger/negative IDs have the precise tested spill/low-byte behavior above. The general signed arithmetic is retained, but these cases do not certify all malformed states. The second-read count-stability gap from52 does not by itself prove a live spill; this evidence establishes what the mark fragment does **if** it is entered with that injected ID. A wrapped occupancy byte does not prove a shipped false-empty query or crash. Such a claim additionally needs normal population/overlap/reachability and subsequent query evidence.
+
+Record, occupancy and scratch storage are related by the disclosed fixture, not portable addresses. No native allocator/resource binding, concurrent mutation, reentrancy, compound atomicity, geometry semantics, timing or actual initialized-state guarantee is asserted. No original saves/config/reference binaries or peer consumers changed; no FF12 process or PC control was used. All guest memory ends with the standalone host test process. Producer tests, manifest integrity and required independent SPEC review/canonical owner acceptance remain distinct. FullL1+L2NOT_MET; S19 menu allowance spent/extension unapproved.
+
+Next discriminator, only if existing evidence has not answered it: the original overlap predicate's accepted input/boundary semantics, or the actual native population bound. Do not repeat this settled88B write test or reopen the parked menu setup.

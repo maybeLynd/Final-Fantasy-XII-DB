@@ -1,0 +1,13 @@
+real_initialisers                                                        PASS
+AC4_slot9_once_per_entry_in_list_order_with_the_payload                  PASS
+AC4_control_vtable_reloaded_every_entry                                  PASS
+AC6_each_class_dispatches_its_own_subset_of_bits                         PASS
+AC6_only_non_returning_rows_are_seb_direct_callees_on_a_zero_payload     PASS
+AC6_bit2_is_a_tail_jump_that_ends_slot10_in_Seb_and_Sep                  PASS
+AC6_seb_also_gates_on_its_own_plus38                                     PASS
+AC6_AudioBank_slot10_is_purecall                                         PASS
+AC6_contract_reading_every_bank_maps_every_bit_is_contradicted           PASS
+AC7_sep_slot3_skips_the_band_150000_to_150999_only                       PASS
+{'Music': {'01': ['slot0'], '02': [], '04': [], '08': [], '10': [], '20': [], '3F': ['slot0']}, 'Seb': {'01': [], '02': ['slot9'], '04': [], '08': ['direct 00224290'], '10': ['direct 002240B0'], '20': ['direct 00224470'], '3F': ['slot9']}, 'Sep': {'01': [], '02': ['slot9'], '04': [], '08': ['slot3'], '10': ['slot4'], '20': ['slot5'], '3F': ['slot9']}, 'Shout': {'01': [], '02': [], '04': ['slot9'], '08': [], '10': [], '20': [], '3F': ['slot9']}, 'Stream': {'01': [], '02': [], '04': ['slot9'], '08': [], '10': [], '20': [], '3F': ['slot9']}, 'Seb_own_gate_clear': {'02': [], '08': []}}
+AC7 {149999: True, 150000: False, 150999: False, 151000: True, 152000: True} AC4 [('00222340', '72004000'), ('00223F40', '72004040'), ('00222340', '72004040'), ('00223F40', '72004080'), ('00222340', '72004080')]
+ALL PASS

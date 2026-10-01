@@ -1,0 +1,98 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "7a2d0441ad15460bb0c25aa2eb6b16a933792df1"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "c775ceccdec7d966d966af6d28531bae357e58f3"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "3c3a1b3d3cdb1755ce509d5c3895e7f366ab13f7"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "7f5356bbcb8af95328f288b9626381d496f5a95d"
+  },
+  {
+    "path": "fault-positive-bit-order-for-negative.stderr",
+    "git_blob": "e8c458894a9f295fab5171d17918a450f4c497df"
+  },
+  {
+    "path": "fault-positive-bit-order-for-negative.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-positive-default-proves-negative.stderr",
+    "git_blob": "b79c25a96f17286eae3b1b2537270d216644f5a9"
+  },
+  {
+    "path": "fault-positive-default-proves-negative.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-rounded-value-is-more-negative.stderr",
+    "git_blob": "cb325061139637825396dec2f31f978f9bcdfac9"
+  },
+  {
+    "path": "fault-rounded-value-is-more-negative.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "f370c3e051e6b3e0fe5db9fa8eb3e11f3a4280ba"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "8c552a1bfb0a67737a7610d442b257407b49f591"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "9e37c377696fa76011c6e8146820639f6eea7926"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "eb8475f9c71c30a9cdae7cf2047bb25ecadc3066"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "e4cb462cb33e50951404186e931552c3c97962c0"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "5856ffe3ea15d1685f7eff006a911dc82616d21c"
+  },
+  {
+    "path": "retained/fable-float-primary.py",
+    "git_blob": "0f0e7697bcb3b8e45b81c2878ece9261877cf6c7"
+  },
+  {
+    "path": "retained/original-popv256.bin",
+    "git_blob": "d08cf18942f70fce3c1f85bf3fb95cbddfa15a9c"
+  },
+  {
+    "path": "retained/original-table24.bin",
+    "git_blob": "0216b348ce678bd933c4c4cc29336a9c51fa91f5"
+  },
+  {
+    "path": "retained/original194.bin",
+    "git_blob": "e94530f7f310489d56806cff147571cb3808377e"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/runner.py",
+    "git_blob": "4fdc4454bedfee8fe31b3b226015f0b6c5b8b7e4"
+  }
+]

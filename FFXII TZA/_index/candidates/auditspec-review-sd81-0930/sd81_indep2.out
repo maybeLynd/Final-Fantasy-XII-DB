@@ -1,0 +1,24 @@
+001FDC10 .. the 001FC420 call:
+   001FDC10  mov qword ptr [rsp + 0x10], rbx
+   001FDC15  mov dword ptr [rsp + 0x18], r8d
+   001FDC1A  push rdi
+   001FDC1B  sub rsp, 0x40
+   001FDC1F  mov ebx, edx
+   001FDC21  add rcx, 0x70
+   001FDC25  lea rdx, [rsp + 0x60]
+   001FDC2A  mov edi, r9d
+   001FDC2D  call 0x1fc420
+00199DB0 immediates 0x28 and calls:
+   00199E23 call 0x16d720
+   00199E70 call qword ptr [rax + 0x10]
+   00199E8E call 0x16d840
+   00199EB0 call qword ptr [rax + 0x10]
+   00199ECE call 0x16d840
+001FCB40 immediates 0x60 and calls:
+   001FCBC2 call 0x16d720
+   001FCBF0 call qword ptr [rax + 0x10]
+   001FCC18 call 0x1fbef0
+   001FCC2A call 0x16d840
+   001FCC65 call qword ptr [rax + 0x10]
+   001FCC8D call 0x1fbef0
+   001FCC9F call 0x16d840

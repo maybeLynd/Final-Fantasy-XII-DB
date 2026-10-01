@@ -1,0 +1,8 @@
+# NativeAdapter.NullGuardTailCall - EC-7 family C
+# # if rcx non-null, jne-tail to a member op; else return.
+address	targets
+002681D0	002681E0
+0036D250	0019C590
+00384500	003697F0
+00468060	00467CB0
+00584730	0019C570

@@ -1,0 +1,17 @@
+# NativeLeaf.FieldQwordStore - EC-7 family C
+# # mov qword [rcx+off], rdx; ret
+address	targets
+001B22D0	
+001B22E0	
+001FB800	
+002134A0	
+00213540	
+00213550	
+00213560	
+002146F0	
+002148E0	
+0063DC80	
+0063DF90	
+0063DFA0	
+006B5D50	
+00848C20	

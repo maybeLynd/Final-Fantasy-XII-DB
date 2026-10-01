@@ -1,0 +1,7 @@
+01F82EA8: rip refs=8 stores=4 imagebase=0
+   store 001F0844 mov qword ptr [rip + 0x1d9265d], rax owner 001F0810
+   store 001F0886 mov qword ptr [rip + 0x1d9261b], rax owner 001F0850
+   store 001F15D7 mov qword ptr [rip + 0x1d918ca], rax owner 001F1590
+   store 001F1650 mov qword ptr [rip + 0x1d91851], rax owner 001F1600
+01F812C8: rip refs=32 stores=1 imagebase=0
+   store 0015CC09 mov qword ptr [rip + 0x1e246b8], rax owner 0015CC00

@@ -1,0 +1,15 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2DATA-PUB-BIN-SECTION000-0922",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "publish .bin==section-000 identity + prior fin-op board tail",
+  "scope": "SN-1 ATEL companions",
+  "completion": "commit hash recorded",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}]
+ }
+}

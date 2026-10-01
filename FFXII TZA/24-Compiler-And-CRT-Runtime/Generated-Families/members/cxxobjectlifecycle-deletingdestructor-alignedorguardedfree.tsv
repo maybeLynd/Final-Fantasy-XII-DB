@@ -1,0 +1,57 @@
+# CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree - EC-7 family C, declared on generated-function-families.md
+#
+# 46 members. Body size(s): 82 B x46.
+# 20 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 30 external target(s): 1 shared across all 46 members, and 29 that are member-specific.
+#
+# NOT dispositioned: the 1 shared implementation these members reach, and the 29 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+005AC810
+005ACCD0
+005ACE30
+005E2A40
+0062CFE0
+006341F0
+00646F90
+00646FF0
+00647050
+00647260
+006472C0
+00647320
+006474D0
+00647530
+00647590
+006475F0
+00647C50
+00647D40
+00647FE0
+00648040
+006480A0
+00664E50
+00664EB0
+00693240
+00693330
+00693B60
+006B8670
+006BECC0
+006C14A0
+006CD330
+006D59F0
+006D95A0
+006D9990
+00793EB0
+00832530
+008337D0
+00838740
+008387A0
+008423C0
+00853040
+00875FC0
+008763B0
+00876790
+00876BA0
+00876F80
+00879490
+# A-drift 2026-09-17: 1 member(s) removed, since measured as A: 00199D50

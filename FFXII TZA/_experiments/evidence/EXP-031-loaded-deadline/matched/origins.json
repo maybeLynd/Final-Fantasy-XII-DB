@@ -1,0 +1,74 @@
+{
+  "adapters": {
+    "pulse.py": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/pulse.py",
+      "source_sha256": "8abbecb0b0ae43e0624728b652ed3f8902ae70a011a2de8c1669031497ff2e2d",
+      "changes": [
+        [
+          "ASTRA-HWBP-REUSE-RUNTIME",
+          "ASTRA-HWBP-MATCHED-RUNTIME"
+        ]
+      ],
+      "source_line_endings_normalized_to_LF": true
+    },
+    "setup.py": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/setup.py",
+      "source_sha256": "b55315d9ee13d012e3f8e466886ae6a645eadc129381f82349b34b5acb530e37",
+      "changes": [
+        [
+          "ASTRA-HWBP-REUSE-RUNTIME",
+          "ASTRA-HWBP-MATCHED-RUNTIME"
+        ],
+        [
+          "HWBP-REUSE-20260913-save-backup",
+          "HWBP-MATCHED-20260913-save-backup"
+        ]
+      ],
+      "source_line_endings_normalized_to_LF": true
+    },
+    "test_guard.py": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/test_guard.py",
+      "source_sha256": "06cffbca73071f29b1e2280b64344282485e7d38312b34c0e8991556954011f5",
+      "changes": [],
+      "source_line_endings_normalized_to_LF": true
+    },
+    "observe.py": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/observe.py",
+      "source_sha256": "d97d08b14cac47c57264c49f06da87ff731d4dfd13c32970ad6b89473a89c675",
+      "changes": [
+        [
+          "print(\"OBSERVING\", a.pid, \"for\", a.seconds, \"seconds\", flush=True)",
+          "print(\"OBSERVING\", a.pid, \"for\", a.seconds, \"seconds\", \"window_start_unix\", record[\"window_start_unix\"], flush=True)"
+        ]
+      ],
+      "source_line_endings_normalized_to_LF": true
+    },
+    "cleanup.py": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/cleanup.py",
+      "source_sha256": "abe0218dfa26e403b58ac26fb3f8cd487bd08809641704597bedd32a43af8ad2",
+      "changes": [],
+      "source_line_endings_normalized_to_LF": true
+    },
+    "guard-controls.json": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/guard-controls.json",
+      "source_sha256": "cf3f4de970cfd0addaa0628877112cebd98851e2bb25b9eea1c8629961dfd759",
+      "changes": [],
+      "source_line_endings_normalized_to_LF": false
+    },
+    "review.py": {
+      "source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/review.py",
+      "source_sha256": "0dd8fb8d656ca78b62e21f50eb6a219a10bd0700b8d19387aebc5e22016a3602",
+      "changes": [
+        "PID11032;nine pulses;three observer windows;sender basename check;missing timing only and explicit offset spread"
+      ],
+      "source_line_endings_normalized_to_LF": true
+    }
+  },
+  "capture_source": "Database/FFXII TZA/_experiments/evidence/EXP-031-loaded-deadline/recovered/origins.json",
+  "unchanged_capture": {
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\capture.py": "41b548c7a71c0713928ed7d8e62a5b4607172da23a29de2e18f3785ab7b93633",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\timeout_cleanup.py": "865d788d6c98bd5b4de7a19b1d3c845e434cdd96e12119249a00711ad1d3fe7a",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\hwbp-source.py": "81a8510288dc5a4e1d93c221659c49926039e66aa277da3f1fea59aa193879f6",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-030-deadline-integration\\api_receipts.py": "cb80e1ade858bad7372aeec54a712f9db63ee60beaab987018f7c17948e1234a"
+  }
+}

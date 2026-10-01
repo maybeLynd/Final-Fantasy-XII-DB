@@ -1,0 +1,18 @@
+exe sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 certified
+exception directory rva 2E78000 size 68A0C (35713 entries) in .pdata
+C1 003B3CE0 E8 -> 0024ED80 PASS | C2 continuation 003B3CE5 selects [293CC8..293D0C) unwind VA 01D7F124 (cont-1 same: True)
+     C3 record [293CC8..293D0C) unwind VA 01D7F124  version 1 flags 4 codes 4  raw 211104001174070005340600a03c2900c83c290080f3c601
+     C3 record [293CA0..293CC8) unwind VA 01D8F380  version 1 flags 0 codes 2  raw 0106020006320260210a04000a54070005340600
+     root flags 0 -> NO language handler
+C1 003B3CE7 E8 -> 003A9490 PASS | C2 continuation 003B3CEC selects [293CC8..293D0C) unwind VA 01D7F124 (cont-1 same: True)
+     C3 record [293CC8..293D0C) unwind VA 01D7F124  version 1 flags 4 codes 4  raw 211104001174070005340600a03c2900c83c290080f3c601
+     C3 record [293CA0..293CC8) unwind VA 01D8F380  version 1 flags 0 codes 2  raw 0106020006320260210a04000a54070005340600
+     root flags 0 -> NO language handler
+C1 003B3CFD E8 -> 0024ED80 PASS | C2 continuation 003B3D02 selects [293CC8..293D0C) unwind VA 01D7F124 (cont-1 same: True)
+     C3 record [293CC8..293D0C) unwind VA 01D7F124  version 1 flags 4 codes 4  raw 211104001174070005340600a03c2900c83c290080f3c601
+     C3 record [293CA0..293CC8) unwind VA 01D8F380  version 1 flags 0 codes 2  raw 0106020006320260210a04000a54070005340600
+     root flags 0 -> NO language handler
+CONTROL+ 00121F40 selects [1F40..1F98): root flags 3 handler 00808BA8 -> PASS
+CONTROL- private self-cycle refused: PASS
+CONTROL redirect: private chain to 00121F40's record -> handler 00808BA8 -> PASS
+RESULT ALL PASS - H2 at all three continuations (handler-free chained root)

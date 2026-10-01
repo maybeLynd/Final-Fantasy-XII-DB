@@ -1,0 +1,24 @@
+# GFZNonFunctionAnnotationSnapshotV1 -- non-function annotation export across certified parents
+# Generated 2026-09-20 by SWE2-DATA for FRONTIER-REQ-SWE2-DATA-NONFUNCTION-ANNOTATION-EXPORT
+# (upstream: OPUS-REQ-ASTRA-NONFUNCTION-ANNOTATION-EXPORT, rev 8864)
+# Exporter: Database/Tools/ghidra/scripts/GFZNonFunctionAnnotationSnapshotV1.java
+# Run: Invoke-GfzHeadless -Mode Process, -noanalysis, against work/{gn160,gn161,gn162}_certify/GFZ_PARENT
+#
+# parent	gzf_sha256	snapshot_sha256	fas2	symbols	comments	equates	datatypes	data_applied	ref_overrides	export_sha256	export_path
+GN160_99P636_2026-09-03	fa0db2933c988211ed4f3c76a7dbe3454fc95866745af4605c35177943d2f708	b57264ba73231665bf226da6d5761feee72df36c5999fc68ae14adfdd18fea34	73328	62517	0	594	381226	0	05ff72f5e00cf82ebb83e7ba4314b0b4516d5c63a74e50e6dea8d9e20f0d01ac	work/nonfunc_gn160.txt
+GN161_99P921_2026-09-14	11110a34acf6d0fc9ecd1727945bb3ac7bf582c55170c1c971ebcfdcb8d77500	c16409ec2c3b9070ea6ce3b6a16f5b4f2d9827380fe5cb626af173cc63739e4c	73328	62626	0	594	381226	0	300299d04f1d4fcf5fe81cd74e82b208b3c29cfe8cfe079cdcb29f0f0ef7b88c	work/nonfunc_gn161.txt
+GN162_100P000_2026-09-16	59629b9b9a2f482e602f16fd0501c11948606dca4bd9150dbcb7a1137e65cf92	16a2a832d8856ba3d5c78d531ef0fd2295ef7dce956ca5cd545cf54f065bd192	73328	62656	0	594	381226	0	eef086acb9b2f212d41e4f111c0d95c5f1b87cb276ac741f33e1bfbaa7146fcb	work/nonfunc_gn162.txt
+#
+# CONTENT DIFF (literal diffs preserved in evidence/NONFUNC_ANNOTATION_PARENT_DIFF_*.txt):
+# GN160->GN161: +109 PLATE comments, all at function-entry addresses; nothing else differs.
+# GN161->GN162: +30  PLATE comments, all at function-entry addresses; nothing else differs.
+#   Coverage control: the 30 added rows land on exactly the 30 GN161 residual addresses
+#   (verify_GFZ_PARENT/coverage_GN161_0914_STALE.tsv --UNRESOLVED--, 30/30 intersection).
+#   Each new comment is the R30 checkpoint stamp ([GFZ_V121_FULL_EXECUTABLE_COVERAGE_R30_BEGIN]).
+# SYMBOL (73,328), EQUATE (0), DATATYPE (594), DATA applied (381,226) and REF-OVERRIDE (0)
+# record sets are byte-identical across all three parents.
+#
+# VERDICT: cited NON-function annotation state matches across the certified parents.
+# The only annotation that moved between GN160->GN161->GN162 is plate-comment text on
+# function entries -- the checkpoint batch stamps themselves. No symbol, datatype,
+# equate, applied-type, instruction-address comment or reference-override change exists.

@@ -1,0 +1,57 @@
+{
+  "method": "A static original source/current canonical consumers; no guest/native/live execution",
+  "driver_sha256": "0da942b495bf074ec5564d3fa7b7158772931c6688c05b97377040637f4bd5eb",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "capstone": "5.0.7",
+  "head": "fb29f8885da43a0e8c189d1168c890ad50105a1b",
+  "sources": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/shipping-reader.py",
+      "copy": "shipping-reader.py",
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+      "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/script-store-saturation/retained/reg_tracking.py",
+      "copy": "reg_tracking.py",
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "verified_at": "8db582868ae4a72bae3f9e76c1d709844e9d9d93"
+    },
+    {
+      "path": "Database/FFXII TZA/06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md",
+      "copy": "pages/CONTRACT-heading-speed-to-position-delta.md",
+      "sha256": "da4ff56ae9decfcc1453923950f7f5520330c9972bf984ebbaf6a8ab718af819",
+      "commit": "82abaac960bda32fdc806212e67a07b0f73cb406",
+      "blob": "f437765ab1a08b8d25496f079e756c61a50ecdfd"
+    },
+    {
+      "path": "Database/FFXII TZA/06-Movement-And-Navigation/heading-speed-to-position-delta.md",
+      "copy": "pages/heading-speed-to-position-delta.md",
+      "sha256": "dbe7b5fa70bda555c98dc737c5b463d229ff5e89b24ddc82df92d62478da3304",
+      "commit": "c9b951983e989321cf2002d38e4ed32af0478522",
+      "blob": "aa31094411062e040c60522df568a5ebdaa15493"
+    },
+    {
+      "path": "Database/FFXII TZA/_index/candidates/s18-opus-replay-delta-and-position/README.md",
+      "copy": "pages/README.md",
+      "sha256": "89e3b03926b83d33934663ea8f0869616f69c7e8cc757a0e34495a9f62ce0dbe",
+      "commit": "c7aa7c097594c1c7b6e720a6c25a9158a651b60c",
+      "blob": "b5fee866884521c01fec7d0d5e6d26c814414a86"
+    }
+  ],
+  "provider_files": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+      "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  ]
+}

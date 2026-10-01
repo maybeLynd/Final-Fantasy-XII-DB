@@ -1,0 +1,74 @@
+{
+  "mode": "baseline",
+  "pid": 23532,
+  "start_unix": 1789086395.052602,
+  "status": "COMPLETED",
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\observe.py",
+        "--pid",
+        "23532",
+        "--seconds",
+        "35",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\baseline-window.json"
+      ],
+      "label": "observer",
+      "pid": 6708,
+      "start_unix": 1789086395.7472591,
+      "exit_code": 0,
+      "observed_end_unix": 1789086430.8899498
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\input_receipt.py",
+        "--keys",
+        "Enter",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\baseline-Enter.json"
+      ],
+      "label": "Enter",
+      "pid": 22876,
+      "start_unix": 1789086402.7545114,
+      "exit_code": 0,
+      "observed_end_unix": 1789086430.8899574
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\input_receipt.py",
+        "--keys",
+        "C",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\baseline-C.json"
+      ],
+      "label": "C",
+      "pid": 11520,
+      "start_unix": 1789086412.752929,
+      "exit_code": 0,
+      "observed_end_unix": 1789086430.8899586
+    }
+  ],
+  "sources": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\window_run.py": "4df1f36c083b11580c204c9cd0f10887548c8c79d982168e5dfa5da7745c57dd",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\observe.py": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\hwbp.py": "ac2c4437baaeb67a474b6cfd8299f78314f6180f47434a4275b5adb77ee6cfd9"
+  },
+  "state_before": {
+    "stdout": "pid 23532\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "state_after": {
+    "stdout": "pid 23532\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "end_unix": 1789086431.5824635,
+  "live_children": []
+}

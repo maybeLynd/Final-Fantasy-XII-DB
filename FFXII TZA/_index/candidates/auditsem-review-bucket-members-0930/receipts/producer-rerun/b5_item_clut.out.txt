@@ -1,0 +1,54 @@
+  [PASS] EXE SHA256
+== static
+  [PASS] kind 7 idx 0x98 = itemgra_c.tm2 -- PS2Data\image\FF12\myoshiok\es\Tm2_Menu\itemgra_c.tm2
+  [PASS] kind 7 idx 0x99 = Item_Clut.bin -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Clut.bin
+  [PASS] kind 7 idx 0x9a = Item_Gra00.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra00.as7
+  [PASS] kind 7 idx 0x9b = Item_Gra01.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra01.as7
+  [PASS] kind 7 idx 0x9c = Item_Gra02.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra02.as7
+  [PASS] kind 7 idx 0x9d = Item_Gra03.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra03.as7
+  [PASS] kind 7 idx 0x9e = Item_Gra04.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra04.as7
+  [PASS] kind 7 idx 0x9f = Item_Gra05.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra05.as7
+  [PASS] kind 7 idx 0xa0 = Item_Gra06.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra06.as7
+  [PASS] kind 7 idx 0xa1 = Item_Gra07.as7 -- PS2Data\image\FF12\myoshiok\in\Bin_Menu\Item_Gra07.as7
+  [PASS] 00291C9A: slot table base 0209BEA0
+  [PASS] 00291CB8 decodes as 'lea edx, [rbx + 0x98]' -- lea edx, [rbx + 0x98]
+  [PASS] 00291CC2 decodes as 'mov ecx, 7' -- mov ecx, 7
+  [PASS] 00291CD2 decodes as 'call 0x24ab90' -- call 0x24ab90
+  [PASS] 0024AB93 decodes as 'jmp 0x32e400' -- jmp 0x32e400
+  [PASS] 00291CEA decodes as 'mov qword ptr [r14 + 8], rax' -- mov qword ptr [r14 + 8], rax
+  [PASS] 00291CF3 decodes as 'lea edx, [rbx + 0x98]' -- lea edx, [rbx + 0x98]
+  [PASS] 00291D04 decodes as 'call 0x32e620' -- call 0x32e620
+  [PASS] 00291D0E decodes as 'lea r14, [r14 + 0x10]' -- lea r14, [r14 + 0x10]
+  [PASS] 00291D12 decodes as 'cmp ebx, 0xa' -- cmp ebx, 0xa
+  [PASS] completion 00291C60 clears the slot's pending word in 0209BEA0
+  [PASS] 00291EE3 decodes as 'shl rax, 4' -- shl rax, 4
+  [PASS] 00291EF2 decodes as 'movups xmmword ptr [rax + rdi + 0xc8], xmm0' -- movups xmmword ptr [rax + rdi + 0xc8], xmm0
+  [PASS] 0029207F decodes as 'mov rax, qword ptr [rdx + rax*8]' -- mov rax, qword ptr [rdx + rax*8]
+  [PASS] 00292078 decodes as 'add rax, 0xd' -- add rax, 0xd
+  [PASS] 002924FD decodes as 'test byte ptr [rdx + 0x168], 2' -- test byte ptr [rdx + 0x168], 2
+  [PASS] 00292506 decodes as 'mov rdi, qword ptr [rdx + 0xe0]' -- mov rdi, qword ptr [rdx + 0xe0]
+  [PASS] 002926C7 decodes as 'test byte ptr [rdx + 0x168], 2' -- test byte ptr [rdx + 0x168], 2
+  [PASS] 002926D0 decodes as 'mov r14, qword ptr [rdx + 0xe0]' -- mov r14, qword ptr [rdx + 0xe0]
+  [PASS] 00292748 decodes as 'sar r15d, 6' -- sar r15d, 6
+  [PASS] 0029278A decodes as 'shl eax, 0xa' -- shl eax, 0xa
+  [PASS] 00292790 decodes as 'add rcx, r14' -- add rcx, r14
+  [PASS] 00292793 decodes as 'mov qword ptr [rbp + 0x10], rcx' -- mov qword ptr [rbp + 0x10], rcx
+  [PASS] 002926A6 decodes as 'sar ecx, 6' -- sar ecx, 6
+  [PASS] 002926A9 decodes as 'add ecx, 2' -- add ecx, 2
+  [PASS] 002926AC decodes as 'call 0x292050' -- call 0x292050
+  [PASS] raw sweep 0209BEA0..0209BF40: only 00291C60/00291C80/00291D90 touch the slot table
+== corpus
+  [PASS] 2 copies
+  [PASS] copies byte-identical
+  [PASS] size 7168 == 7 * 256 * 4
+  [PASS] alpha byte is 0x80 in 1791 of 1792 entries, 0x00 once (palette 3 entry 0)
+  [PASS] 8 Item_Gra0N.as7 files ship (groups 0..7) against 7 palettes -- 8
+  \item_gra00.as7: magic b'A7' size 59465
+  \item_gra01.as7: magic b'A7' size 60971
+  \item_gra02.as7: magic b'A7' size 52629
+  \item_gra03.as7: magic b'A7' size 101911
+  \item_gra04.as7: magic b'A7' size 148394
+  \item_gra05.as7: magic b'A7' size 125955
+  \item_gra06.as7: magic b'A7' size 64490
+  \item_gra07.as7: magic b'A7' size 6190
+CHECKS 43  FAILS 0

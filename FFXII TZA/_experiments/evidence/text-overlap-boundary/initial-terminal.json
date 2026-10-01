@@ -1,0 +1,1 @@
+{"returncode":1,"terminal":true,"tool_chunk":"067047","stage":"dependency import before any adapter call","exception":"ModuleNotFoundError: pefile","limits":"Transcribed tool receipt, not a new execution"}

@@ -1,0 +1,379 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4249,
+ "results": {
+  "GL1_clamp_in_the_setter": {
+   "pass_": true,
+   "cases": {
+    "old 100, set -5": {
+     "stored": 0,
+     "stores": [
+      [
+       "00254F1F",
+       0
+      ]
+     ],
+     "meter": [
+      [
+       7,
+       105
+      ]
+     ]
+    },
+    "old 100, set 0": {
+     "stored": 0,
+     "stores": [
+      [
+       "00254F1F",
+       0
+      ]
+     ],
+     "meter": [
+      [
+       7,
+       100
+      ]
+     ]
+    },
+    "old 100, set 99999999": {
+     "stored": 99999999,
+     "stores": [
+      [
+       "00254F1F",
+       99999999
+      ]
+     ],
+     "meter": [
+      [
+       6,
+       99999899
+      ]
+     ]
+    },
+    "old 100, set 100000000": {
+     "stored": 99999999,
+     "stores": [
+      [
+       "00254F1F",
+       99999999
+      ]
+     ],
+     "meter": [
+      [
+       6,
+       99999900
+      ]
+     ]
+    },
+    "old 100, set 2147483647": {
+     "stored": 99999999,
+     "stores": [
+      [
+       "00254F1F",
+       99999999
+      ]
+     ],
+     "meter": [
+      [
+       6,
+       2147483547
+      ]
+     ]
+    },
+    "old 100, set -2147483648": {
+     "stored": 0,
+     "stores": [
+      [
+       "00254F1F",
+       0
+      ]
+     ],
+     "meter": [
+      [
+       6,
+       2147483548
+      ]
+     ]
+    },
+    "old 0, set 12345": {
+     "stored": 12345,
+     "stores": [
+      [
+       "00254F1F",
+       12345
+      ]
+     ],
+     "meter": [
+      [
+       6,
+       12345
+      ]
+     ]
+    }
+   },
+   "note": "every write lands once at 00254F1F, clamped to [0, 99,999,999]: -5 -> 0, 100,000,000 -> 99,999,999, 0x7FFFFFFF -> 99,999,999, -0x80000000 -> 0"
+  },
+  "GL2_GL4_meter_kind_and_zero_delta": {
+   "pass_": true,
+   "cases": {
+    "gain 100 -> 250": {
+     "ok": true,
+     "stored": 250,
+     "meter": [
+      [
+       6,
+       150
+      ]
+     ],
+     "stores": [
+      [
+       "00254F1F",
+       250
+      ]
+     ],
+     "counter_writes": [
+      [
+       "+3860",
+       4,
+       2147483647
+      ]
+     ]
+    },
+    "spend 250 -> 100": {
+     "ok": true,
+     "stored": 100,
+     "meter": [
+      [
+       7,
+       150
+      ]
+     ],
+     "stores": [
+      [
+       "00254F1F",
+       100
+      ]
+     ],
+     "counter_writes": [
+      [
+       "+3864",
+       4,
+       355
+      ]
+     ]
+    },
+    "zero 400 -> 400": {
+     "ok": true,
+     "stored": 400,
+     "meter": [],
+     "stores": [
+      [
+       "00254F1F",
+       400
+      ]
+     ],
+     "counter_writes": []
+    }
+   },
+   "note": "a gain meters kind 6 with |delta|, a spend kind 7 with |delta|; a zero delta calls no meter and STILL stores"
+  },
+  "GL3_delta_before_clamp": {
+   "pass_": true,
+   "case": {
+    "ok": true,
+    "stored": 99999999,
+    "meter": [
+     [
+      6,
+      200000000
+     ]
+    ],
+    "stores": [
+     [
+      "00254F1F",
+      99999999
+     ]
+    ],
+    "counter_writes": [
+     [
+      "+3860",
+      4,
+      2147483647
+     ]
+    ]
+   },
+   "note": "old 0, set 200,000,000: the meter records a gain of 200,000,000 while 99,999,999 is stored"
+  },
+  "GL2_console_writer_is_metered": {
+   "pass_": true,
+   "case": {
+    "ok": true,
+    "stored": 99999999,
+    "meter": [
+     [
+      6,
+      99999994
+     ]
+    ],
+    "stores": [
+     [
+      "00254F1F",
+      99999999
+     ]
+    ],
+    "counter_writes": [
+     [
+      "+3860",
+      4,
+      2147483647
+     ]
+    ]
+   },
+   "note": "Debug_SetGilToMaximum 003058B0 (`mov ecx, 99,999,999; jmp 00254EE0`) from 5: metered as a gain of 99,999,994, like any other writer"
+  },
+  "GL5_two_getter_entries": {
+   "pass_": true,
+   "getter": 4242,
+   "thunk_value": 4242,
+   "thunk_bytes": "e99b9af4ff",
+   "note": "00253690 and the 5-byte thunk 00309BF0 (`jmp 00253690`) both return the stored 4242"
+  },
+  "delta_wraps_to_a_metered_gain": {
+   "pass_": true,
+   "case": {
+    "ok": true,
+    "stored": 0,
+    "meter": [
+     [
+      6,
+      2147483548
+     ]
+    ],
+    "stores": [
+     [
+      "00254F1F",
+      0
+     ]
+    ],
+    "counter_writes": [
+     [
+      "+3860",
+      4,
+      2147483647
+     ]
+    ]
+   },
+   "note": "old 100, set -2,147,483,648: `sub edx, [rax+8]` wraps to +0x7FFFFF9C, so the write is METERED AS A GAIN (kind 6) of 2,147,483,548 while 0 is stored - GL-4's 'a negative one ... kind 7' does not hold at the 32-bit edge"
+  },
+  "meter_counters_accumulate_and_saturate": {
+   "pass_": true,
+   "steps": [
+    {
+     "old": 0,
+     "set": 1000000000,
+     "meter": [
+      [
+       6,
+       1000000000
+      ]
+     ],
+     "gain_counter": 1000000000,
+     "spend_counter": 0
+    },
+    {
+     "old": 0,
+     "set": 1500000000,
+     "meter": [
+      [
+       6,
+       1500000000
+      ]
+     ],
+     "gain_counter": 2147483647,
+     "spend_counter": 0
+    },
+    {
+     "old": 500,
+     "set": 200,
+     "meter": [
+      [
+       7,
+       300
+      ]
+     ],
+     "gain_counter": 2147483647,
+     "spend_counter": 300
+    }
+   ],
+   "note": "from zeroed counters: gains of 1,000,000,000 and 1,500,000,000 leave the kind-6 counter at [020927C0]+0x3860 at 1,000,000,000 then 0x7FFFFFFF (saturated, not wrapped); a spend of 300 lands in the kind-7 counter at +0x3864"
+  },
+  "meter_counters_observed": {
+   "pass_": true,
+   "writes": {
+    "gain": [
+     [
+      "+3860",
+      4,
+      2147483647
+     ]
+    ],
+    "spend": [
+     [
+      "+3864",
+      4,
+      355
+     ]
+    ],
+    "gain 200,000,000": [
+     [
+      "+3860",
+      4,
+      2147483647
+     ]
+    ]
+   },
+   "note": "the real meter 00316A50 writes the counter block [020927C0] on each metered write; the offsets and values are recorded (their meaning is not claimed)"
+  }
+ }
+}

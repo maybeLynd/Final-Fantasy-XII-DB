@@ -1,0 +1,6 @@
+PASS  V each class's RTTI vtable has the destructor at slot 0, and the destructor calls the body
+PASS  F 00646770: [+0x50] -> 006505A0
+PASS  L 0065D610: [+0x50] -> 006505A0; two cells from +0x58 through the inlined kind switch
+PASS  G 0065D4F0: three cells from +0xA0 (inlined switch), three from +0xB8 and +0xD0 through 006505A0
+PASS  S the three spans re-cut as generated (name, ctype, meaning), tiling kept
+FAILS 0

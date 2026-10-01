@@ -1,0 +1,574 @@
+[
+  {
+    "file": "_types/types.tsv",
+    "old_target_rows": [
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "size": "0xD8",
+        "category": "16-UI",
+        "instance": "ONE INSTANCE, published at the pointer slot 02AEE4C0 and lazily created on first use - the creator 00394460 tests the slot and builds only when it is null.",
+        "allocation_site": "HEAP - 00244F50 at 003944A4 with `mov ecx, 0xD8`, which allocates (or takes a pooled 0x120 slot from the 0x70-entry pool at 0208EA58) and forwards to 002465F0.",
+        "ctor": "002465F0 through 00244F50, with `lea rdx, [rip -> 00394070]` as the handler; the initialiser memsets the object for its size before writing the header and calls the handler once during construction (00246748).",
+        "dtor": "NONE reached here.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "level": "L1",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+        "documents": "",
+        "route": "PTR 0x02AEE4C0"
+      }
+    ],
+    "new_target_rows": [
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "size": "0xD8",
+        "category": "16-UI",
+        "instance": "One published title-asset widget at pointer slot 02AEE4C0. Creator 00394460 skips allocation when the slot is nonnull, but performs preliminary calls before that guard. Separate consumer 003939B0 is published at 02AEE4C8 and allocated as 0x1D0 by 00394530.",
+        "allocation_site": "00244F50 called at 003944A4 with ECX=0xD8. Eligible 0x120-stride slot from the 112-entry pool selected through 0208EA58; heap fallback through 002497B0 when needed. Logical zero/init extent 0xD8 is not the pool backing stride.",
+        "ctor": "002465F0 clears the caller-specified 0xD8 extent, writes the shared header, then invokes handler 00394070 with message 1. That handler publishes self and calls 00393FF0 to obtain +0xC8/+0xD0 resource results. Raw 002465F0 has no object-pointer return guarantee; wrappers 00245000/00244F50 return the object.",
+        "dtor": "Own handler message 18 at 00394097 calls 0024A680(self+0xC8,1), conditionally releases +0xD0 via 003697F0 and clears +0xD0, clears channel0 bit21 and slot 02AEE4C0. It does not clear the +0xC8 pointer or ready word. This is handler/resource cleanup; common object-storage teardown and live lifetime safety are not newly certified.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows. Exact extent and selected representations are established; unsupported prior consumer supports are removed. Remaining common-header/interior and service/lifetime obligations prevent treating this repair as a new full-type acceptance.",
+        "documents": "16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md",
+        "route": "PTR 0x02AEE4C0"
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "old_target_rows": [
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0000",
+        "size": "8",
+        "name": "handler0000",
+        "ctype": "void*",
+        "meaning": "THE OBJECT'S HANDLER, stored by 002465F0 at 00246641 from the argument the creation site supplies - here 00394070. reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 8 bytes. First cited at 00246641 in 002465F0 (`mov qword ptr [rdi], rbx`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0008",
+        "size": "1",
+        "name": "byte0008",
+        "ctype": "u8",
+        "meaning": "reached by a CONSUMER through the publication slot 02AEE4C0, not by this object's own bodies: 1 access(es), 0 written, widths 1. First cited at 003939F7 in 003939B0 (`movzx eax, byte ptr [rbx + 8]`). MEANING NOT CLAIMED.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 1 bodies, 4 displacements, 2 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0009",
+        "size": "12",
+        "name": "unobservedSpan0009",
+        "ctype": "",
+        "meaning": "declared gap between two censused displacements. DECLARED 2026-09-22 (OPUS).",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 1 bodies, 4 displacements, 2 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0015",
+        "size": "4",
+        "name": "dword0015",
+        "ctype": "uint32",
+        "meaning": "reached by a CONSUMER through the publication slot 02AEE4C0, not by this object's own bodies: 1 access(es), 0 written, widths 4. First cited at 00393A23 in 003939B0 (`lea edx, [rbx + 0x15]`). MEANING NOT CLAIMED.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 1 bodies, 4 displacements, 2 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0019",
+        "size": "39",
+        "name": "unobservedSpan0019",
+        "ctype": "",
+        "meaning": "no CONSUMER access at these displacements. This instrument is sound for presence only, so nothing here is claimed about the span being empty.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 1 bodies, 4 displacements, 2 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0040",
+        "size": "4",
+        "name": "dword0040",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 6 access(es), 4 written, widest 4 bytes. First cited at 00246647 in 002465F0 (`xor ecx, dword ptr [rdi + 0x40]`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0044",
+        "size": "4",
+        "name": "dword0044",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 3 access(es), 2 written, widest 4 bytes. First cited at 00246670 in 002465F0 (`and dword ptr [rdi + 0x44], 0xfff8ffff`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0048",
+        "size": "8",
+        "name": "qword0048",
+        "ctype": "void*",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 8 bytes. First cited at 00246687 in 002465F0 (`mov qword ptr [rdi + 0x48], rax`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0050",
+        "size": "44",
+        "name": "unobservedSpan0050",
+        "ctype": "",
+        "meaning": "no access at these displacements by the initialiser or by this object's own handler. ZERO AT CONSTRUCTION: 002465F0 memsets the receiver for the size its caller passes (00246612-00246626), and this site passes 0xD8.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x007C",
+        "size": "4",
+        "name": "dword007C",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 002466D8 in 002465F0 (`and dword ptr [rdi + 0x7c], 0xfffffff0`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0080",
+        "size": "24",
+        "name": "unobservedSpan0080",
+        "ctype": "",
+        "meaning": "no access at these displacements by the initialiser or by this object's own handler. ZERO AT CONSTRUCTION: 002465F0 memsets the receiver for the size its caller passes (00246612-00246626), and this site passes 0xD8.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0098",
+        "size": "4",
+        "name": "dword0098",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 00246711 in 002465F0 (`mov dword ptr [rdi + 0x98], eax`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x009C",
+        "size": "4",
+        "name": "dword009C",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 00246717 in 002465F0 (`mov dword ptr [rdi + 0x9c], 0x800080`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00A0",
+        "size": "1",
+        "name": "byte00A0",
+        "ctype": "u8",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 1 bytes. First cited at 0024670A in 002465F0 (`mov byte ptr [rdi + 0xa0], 0x80`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00A1",
+        "size": "2",
+        "name": "word00A1",
+        "ctype": "uint16",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 2 bytes. First cited at 002466E6 in 002465F0 (`mov word ptr [rdi + 0xa1], 0xff80`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00A3",
+        "size": "9",
+        "name": "unobservedSpan00A3",
+        "ctype": "",
+        "meaning": "no access at these displacements by the initialiser or by this object's own handler. ZERO AT CONSTRUCTION: 002465F0 memsets the receiver for the size its caller passes (00246612-00246626), and this site passes 0xD8.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00AC",
+        "size": "1",
+        "name": "byte00AC",
+        "ctype": "u8",
+        "meaning": "reached by the sized widget initialiser 002465F0. 2 access(es), 2 written, widest 1 bytes. First cited at 002466A1 in 002465F0 (`mov byte ptr [rdi + 0xac], 0xf9`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00AD",
+        "size": "1",
+        "name": "byte00AD",
+        "ctype": "u8",
+        "meaning": "reached by the sized widget initialiser 002465F0. 2 access(es), 2 written, widest 1 bytes. First cited at 00246695 in 002465F0 (`mov byte ptr [rdi + 0xad], 0xf9`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00AE",
+        "size": "6",
+        "name": "unobservedSpan00AE",
+        "ctype": "",
+        "meaning": "no access at these displacements by the initialiser or by this object's own handler. ZERO AT CONSTRUCTION: 002465F0 memsets the receiver for the size its caller passes (00246612-00246626), and this site passes 0xD8.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00B4",
+        "size": "4",
+        "name": "dword00B4",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 0024675C in 002465F0 (`mov dword ptr [rdi + 0xb4], 1`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00B8",
+        "size": "4",
+        "name": "dword00B8",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 00246700 in 002465F0 (`mov dword ptr [rdi + 0xb8], 0x3f800000`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "DECLARED FROM THE SITE THAT CREATES AND PUBLISHES IT 2026-09-22 (OPUS). 003944A4 tests the slot (`cmp qword ptr [rip -> 02AEE4C0], 0`), builds with `mov ecx, 0xD8` and `lea rdx, [rip -> 00394070]` through 00244F50 - which allocates and forwards to 002465F0 with the same size and handler, so the object is memset for its extent and the handler lands at +0x00 - and leaves the publication to the object ITSELF - its own handler writes the slot at 003940D2 and 003940F5, the shape GlyphRunWidget1498's row already records. THE EXTENT IS STATED AT THE CREATION SITE, not inferred from a field census, which is the footing MapScreenContainer was registered on. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00BC",
+        "size": "4",
+        "name": "unobservedSpan00BC",
+        "ctype": "",
+        "meaning": "declared gap between two censused displacements. DECLARED 2026-09-22 (OPUS).",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 2 bodies, 6 displacements, 4 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00C0",
+        "size": "4",
+        "name": "dword00C0",
+        "ctype": "uint32",
+        "meaning": "reached by a CONSUMER through the publication slot 02AEE4C0, not by this object's own bodies: 2 access(es), 0 written, widths 1,4. First cited at 00393A98 in 003939B0 (`test byte ptr [rdx + 0xc0], 1`). MEANING NOT CLAIMED.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 2 bodies, 6 displacements, 4 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00C4",
+        "size": "12",
+        "name": "unobservedSpan00C4",
+        "ctype": "",
+        "meaning": "declared gap between two censused displacements. DECLARED 2026-09-22 (OPUS).",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 2 bodies, 6 displacements, 4 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00D0",
+        "size": "8",
+        "name": "qword00D0",
+        "ctype": "void*",
+        "meaning": "reached by a CONSUMER through the publication slot 02AEE4C0, not by this object's own bodies: 1 access(es), 0 written, widths 8. First cited at 00393AA5 in 003939B0 (`mov rdx, qword ptr [rdx + 0xd0]`). MEANING NOT CLAIMED.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "CENSUSED THROUGH THE CONSUMERS OF ITS PUBLICATION SLOT 2026-09-22 (OPUS). Every body that loads 02AEE4C0 is walked and the pointer followed through register copies; the walker carries the flag-only fix, so `test rax, rax` - how a consumer checks the object exists - no longer destroys it. 4 loads, 2 bodies, 6 displacements, 4 of them on rows this type already names, which is the control that the census reaches this object. THE INSTRUMENT IS SOUND FOR PRESENCE AND NOT FOR EXHAUSTIVENESS: measured against a known-better carve it found 63 displacements where that carve holds 134, so these rows are accesses that exist, and the spans left beside them are not claimed empty. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+      }
+    ],
+    "new_target_rows": [
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0000",
+        "size": "8",
+        "name": "handler0000",
+        "ctype": "void*",
+        "meaning": "Handler pointer installed at 00246641. For this construction it is 00394070, whose own message IDs 1/16/18 initialize, mark readiness and release retained resources. 003939B0 is a different widget handler.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0008",
+        "size": "56",
+        "name": "unresolvedHeaderSpan0008",
+        "ctype": "",
+        "meaning": "Common-header storage +0x08..+0x3F is not retyped by this bounded section. The former byte0008 support 003939F7 reads MESSAGE+8, not this widget; former dword0015 support 00393A23 computes EDX=21 and reads no memory. This does not deny legitimate generic Widget header fields at overlapping offsets. Bulk zeroing occurs before message 1 and later callees; no lasting-zero or global absence claim.",
+        "readiness": "DISCOVERED",
+        "confidence": "UNKNOWN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0040",
+        "size": "4",
+        "name": "dword0040",
+        "ctype": "uint32",
+        "meaning": "Shared header flags: original 002465F0 writes 0x80A and selected global/pooled bits at 00246639..002466F2. This is widget+0x40; the separate resource result cleared at 0039403D is NOT the same object. Full bit semantics remain in the shared widget contract.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0044",
+        "size": "4",
+        "name": "dword0044",
+        "ctype": "uint32",
+        "meaning": "Shared header packed field. Constructor clears 0x70000 at 00246670 and sets the low WORD to 100 at 002466FA; selected controls preserve the original order. Broader uses remain in the shared widget contract.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0048",
+        "size": "8",
+        "name": "qword0048",
+        "ctype": "void*",
+        "meaning": "Default transition-descriptor pointer 00915198 stored at 00246687. It is a construction value, not an immutable pointer; the generic setter may replace it as documented in the widget contract.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0050",
+        "size": "44",
+        "name": "unobservedSpan0050",
+        "ctype": "",
+        "meaning": "Region not given a more specific purpose by the selected receiver/initializer bodies in SECTION-04. The sized initializer bulk-zeroes it before header writes and handler invocation. Generic widget methods or external callees may access it; no assertion of permanent zero or global absence.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x007C",
+        "size": "4",
+        "name": "dword007C",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 002466D8 in 002465F0 (`and dword ptr [rdi + 0x7c], 0xfffffff0`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose. SECTION-04 preserves this local physical initializer fact; it does not promote the complete field purpose or type.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0080",
+        "size": "24",
+        "name": "unobservedSpan0080",
+        "ctype": "",
+        "meaning": "Region not given a more specific purpose by the selected receiver/initializer bodies in SECTION-04. The sized initializer bulk-zeroes it before header writes and handler invocation. Generic widget methods or external callees may access it; no assertion of permanent zero or global absence.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x0098",
+        "size": "4",
+        "name": "dword0098",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 00246711 in 002465F0 (`mov dword ptr [rdi + 0x98], eax`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose. SECTION-04 preserves this local physical initializer fact; it does not promote the complete field purpose or type.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x009C",
+        "size": "4",
+        "name": "dword009C",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 00246717 in 002465F0 (`mov dword ptr [rdi + 0x9c], 0x800080`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose. SECTION-04 preserves this local physical initializer fact; it does not promote the complete field purpose or type.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00A0",
+        "size": "1",
+        "name": "byte00A0",
+        "ctype": "u8",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 1 bytes. First cited at 0024670A in 002465F0 (`mov byte ptr [rdi + 0xa0], 0x80`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose. SECTION-04 preserves this local physical initializer fact; it does not promote the complete field purpose or type.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00A1",
+        "size": "2",
+        "name": "word00A1",
+        "ctype": "uint16",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 2 bytes. First cited at 002466E6 in 002465F0 (`mov word ptr [rdi + 0xa1], 0xff80`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose. SECTION-04 preserves this local physical initializer fact; it does not promote the complete field purpose or type.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00A3",
+        "size": "9",
+        "name": "unobservedSpan00A3",
+        "ctype": "",
+        "meaning": "Region not given a more specific purpose by the selected receiver/initializer bodies in SECTION-04. The sized initializer bulk-zeroes it before header writes and handler invocation. Generic widget methods or external callees may access it; no assertion of permanent zero or global absence.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00AC",
+        "size": "1",
+        "name": "byte00AC",
+        "ctype": "u8",
+        "meaning": "Shared header byte written as 6 on this original initialization path (002466C1/002466CB), because the governing bits were cleared earlier. Static census sightings of the F9 arm do not prove that arm runs from this constructor.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00AD",
+        "size": "1",
+        "name": "byte00AD",
+        "ctype": "u8",
+        "meaning": "Shared header byte written as 6 on this original initialization path (002466C1/002466CB), because the governing bits were cleared earlier. Static census sightings of the F9 arm do not prove that arm runs from this constructor.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00AE",
+        "size": "6",
+        "name": "unobservedSpan00AE",
+        "ctype": "",
+        "meaning": "Region not given a more specific purpose by the selected receiver/initializer bodies in SECTION-04. The sized initializer bulk-zeroes it before header writes and handler invocation. Generic widget methods or external callees may access it; no assertion of permanent zero or global absence.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00B4",
+        "size": "4",
+        "name": "dword00B4",
+        "ctype": "uint32",
+        "meaning": "Shared half-rate phase counter: constructor stores 1 at 0024675C only when 001EDDA0 returns0 and 00314960 is nonzero. Otherwise this field retains the earlier zero from bulk initialization; later behavior is in the shared widget contract.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00B8",
+        "size": "4",
+        "name": "dword00B8",
+        "ctype": "uint32",
+        "meaning": "reached by the sized widget initialiser 002465F0. 1 access(es), 1 written, widest 4 bytes. First cited at 00246700 in 002465F0 (`mov dword ptr [rdi + 0xb8], 0x3f800000`). MEANING NOT CLAIMED - a receiver census supports a width and a citation, not a purpose. SECTION-04 preserves this local physical initializer fact; it does not promote the complete field purpose or type.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00BC",
+        "size": "4",
+        "name": "unobservedSpan00BC",
+        "ctype": "",
+        "meaning": "Region not given a more specific purpose by the selected receiver/initializer bodies in SECTION-04. The sized initializer bulk-zeroes it before header writes and handler invocation. Generic widget methods or external callees may access it; no assertion of permanent zero or global absence.",
+        "readiness": "DISCOVERED",
+        "confidence": "PROBABLE",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00C0",
+        "size": "4",
+        "name": "resourceReadyFlags00C0",
+        "ctype": "uint32",
+        "meaning": "DWORD cleared by own handler message1 at 003940FC; bit0 ORed by message16 at 003940E3. Different consumer 003939B0 loads this singleton through 02AEE4C0, tests low bit at 00393A98, and only then uses +0xD0. Not that consumer's mode byte at its own +0xC0. Other bits are preserved by OR and their use is not established; message18 does not clear this word.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00C4",
+        "size": "4",
+        "name": "unobservedSpan00C4",
+        "ctype": "",
+        "meaning": "Four bytes between own ready word and +0xC8 pointer. Zeroed by the sized initializer before handler message1; no more specific purpose established by selected original bodies. Not a twelve-byte gap: 00394033 writes the following +0xC8 QWORD.",
+        "readiness": "DISCOVERED",
+        "confidence": "UNKNOWN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00C8",
+        "size": "8",
+        "name": "resourceEntry00C8",
+        "ctype": "void*",
+        "meaning": "Result of 002493D0 stored by 00393FF0 at 00394033; that result's own +0x40 DWORD is separately cleared at 0039403D (not widget+0x40). Own message18 reads this pointer at 00394097 and calls 0024A680(ptr,1). The pointer value is not cleared afterward; it is not proof that the released resource remains active or safe to reuse. Detailed external-service/lifetime semantics remain bounded.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      },
+      {
+        "type": "WidgetSingleton02AEE4C0",
+        "offset": "0x00D0",
+        "size": "8",
+        "name": "loadedBlock00D0",
+        "ctype": "void*",
+        "meaning": "Result of 00249320 stored by 00393FF0 at 00394050. Consumer 003939B0 reads it through the singleton at 00393AA5 and passes it to 003946B0 with selector5. Own message18 tests nonnull, releases via 003697F0, and clears this QWORD at 003940B9. Distinct from +0xC8 resource-entry result. Exact file-service allocation and continuous lifetime are not certified by this section.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "SECTION-04 2026-09-22 external production; formal peer acceptance pending. _experiments/evidence/continuation-section04-widget-receiver/REVIEW.md and original_body_manifest.json. EXE 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8. Creator 0039448B guards slot 02AEE4C0; 00394498 selects handler 00394070; 0039449F supplies size 0xD8; 003944A4 calls 00244F50. Own receiver is established by that creator/handler chain, not by matching offsets in 003939B0. The earlier publication-consumer census has two disproved presence supports (message +8 and arithmetic LEA +0x15); its general sound-for-presence claim is withdrawn for these rows."
+      }
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+{
+  ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+  "check.py": "0efa244e2c6e2218f4a06abf83cd6cce3cca46f6c34cf1bd38b1c05f0c47e0d4",
+  "observation.json": "c0379e2ec4307ee7164155d40880da411674cd35a2d5f11c45d3d1552219c6be",
+  "README.md": "c5aa81e2315a9b0680e0d293deb503673e08a68cfc7104619deb62cdc974fcc2",
+  "reviewed-sources.json": "df25dd216d6c04cc88214f5cf30c52996ba089f5296635cedc7717969904b600",
+  "sources/aq18_span_write_census.py": "0a1e25dcd6326e39b01e419a38854bf40a8eab1f2e710c87949619d4510e02d6",
+  "validation.txt": "101f2b7e122de0c605a44da2853f469c323b8dc308a2fc737c295075b9e8f77e"
+}

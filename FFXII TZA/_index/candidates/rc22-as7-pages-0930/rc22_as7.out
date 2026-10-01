@@ -1,0 +1,36 @@
+PASS  C3a 0024AA00 reads count = file[2]*256 + file[3] and rejects first >= count
+PASS  C3b 0024AA00 builds dict = file + be32(file+4), the tailOff
+PASS  C3c 0024AA00 walks offsets[] as be32 at file+8+4p and calls 00248500
+PASS  C3d 00248500: modes 0/3 only; literal run when c & 0x80
+PASS  C3e 002CEFD0: first page = 0x204 * T[ch] with T = 00917160[0..3] + {4, 5}; two walks of 0x102 pages into 0x40800 buffers
+    T = [0, 1, 3, 2, 4, 5] ; 01E0C470/01E0C474 = (64, 96)
+PASS  C3f the .pdata-less setter 002CEE00(id, flags) stores ch = id at +0x10D and clears the decode request (bit 1) for id > 5 unsigned
+PASS  C4 walker call sites ['00292768', '002CF2B4', '002CF2CE'], decoder ['0024AAF4'], data refs 0
+    setter 002CEE00 call sites: ['00567A52 (call, in 005679D0)', '0056A05E (call, in 0056A010)']
+PASS  C1 every page of all 18 files decodes and ends exactly at the next offset (mismatches: [])
+PASS  C2 item_gra00..06 pages = 64 x 96 = 6144 bytes (item_gra07 is the one exception: [1536]); char_silhouette pages = 1,024 bytes; 0x102 x 1,024 = 0x40800
+
+file  count  size  tailOff  tail: mode bits outlen  dict-body-bytes  page-bytes  max-dict-extent-used  texel-min..max
+  ch/bin_menu/char_silhouette.as7           3096  2134185   208CA5  0 5  1024   1024  [1024]   1024  0..255
+  ch/bin_menu/item_gra00.as7                  64    59465     E4C5  0 5  6144    896  [6144]    896  1..255
+  ch/bin_menu/item_gra01.as7                  64    60971     EA82  0 5  6144    933  [6144]    933  1..255
+  ch/bin_menu/item_gra02.as7                  64    52629     C9B7  0 5  6144    986  [6144]    986  1..255
+  ch/bin_menu/item_gra03.as7                  64   101911    18A3C  0 5  6144    983  [6144]    983  1..255
+  ch/bin_menu/item_gra04.as7                  64   148394    23FA6  0 5  6144   1024  [6144]   1024  1..255
+  ch/bin_menu/item_gra05.as7                  64   125955    1E812  0 5  6144   1005  [6144]   1005  1..255
+  ch/bin_menu/item_gra06.as7                  64    64490     F7E6  0 5  6144   1024  [6144]   1024  1..255
+  ch/bin_menu/item_gra07.as7                  64     6190     1808  0 5  1536     34  [1536]     34  0..0
+  in/bin_menu/char_silhouette.as7           3096  2134185   208CA5  0 5  1024   1024  [1024]   1024  0..255  (= ch/bin_menu/char_silhouette.as7)
+  in/bin_menu/item_gra00.as7                  64    59465     E4C5  0 5  6144    896  [6144]    896  1..255  (= ch/bin_menu/item_gra00.as7)
+  in/bin_menu/item_gra01.as7                  64    60971     EA82  0 5  6144    933  [6144]    933  1..255  (= ch/bin_menu/item_gra01.as7)
+  in/bin_menu/item_gra02.as7                  64    52629     C9B7  0 5  6144    986  [6144]    986  1..255  (= ch/bin_menu/item_gra02.as7)
+  in/bin_menu/item_gra03.as7                  64   101911    18A3C  0 5  6144    983  [6144]    983  1..255  (= ch/bin_menu/item_gra03.as7)
+  in/bin_menu/item_gra04.as7                  64   148394    23FA6  0 5  6144   1024  [6144]   1024  1..255  (= ch/bin_menu/item_gra04.as7)
+  in/bin_menu/item_gra05.as7                  64   125955    1E812  0 5  6144   1005  [6144]   1005  1..255  (= ch/bin_menu/item_gra05.as7)
+  in/bin_menu/item_gra06.as7                  64    64490     F7E6  0 5  6144   1024  [6144]   1024  1..255  (= ch/bin_menu/item_gra06.as7)
+  in/bin_menu/item_gra07.as7                  64     6190     1808  0 5  1536     34  [1536]     34  0..0  (= ch/bin_menu/item_gra07.as7)
+
+char_silhouette: count 3096; id -> pages {0: '0..515', 1: '516..1031', 2: '1548..2063', 3: '1032..1547', 4: '2064..2579', 5: '2580..3095'}
+PASS  C5 ids 0..5 index disjoint 516-page blocks covering all 3096 pages exactly once; ids > 5 (and -1) decode none
+
+FAILS 0

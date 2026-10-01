@@ -1,0 +1,11 @@
+SWE2-AUDIT-SPEC re-runs of the 3754d9b4d controls (2026-09-29), compared with the committed .out ignoring CR
+console_codes_vs_mapref  IDENTICAL
+block_writer_disjoint  IDENTICAL
+arena_ids  IDENTICAL
+second_table_4a2_key  IDENTICAL
+log_channels  IDENTICAL
+rip_refs_00369D30  IDENTICAL
+rip_refs_01F832B0  IDENTICAL
+rip_refs_02064ACC  IDENTICAL
+rip_refs_02CB8084  IDENTICAL
+rip_refs windows used: 00369D30 (default), 01F832B0 01F832C8, 02064ACC 02064AD0, 02CB8084 02CB8088; the default window reproduces only 00369D30

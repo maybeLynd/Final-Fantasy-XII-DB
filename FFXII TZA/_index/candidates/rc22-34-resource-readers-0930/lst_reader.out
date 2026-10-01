@@ -1,0 +1,45 @@
+L1 raw rip references to 02AED490: 43 sites in 27 listed functions (+0 unlisted sites)
+PASS L0 the widget object IS the singleton: 0037F614 stores the widget (rbx) to 02AED490, 0037F51E clears it
+   widget-proc direct callees touching +0xD0 of any base: 0037F860
+PASS L0b of the widget proc's own callees only the release 0037F860 touches +0xD0 - 0037F860
+functions reading [02AED490]+0xD0 (the .lst buffer): 0037E5B0 0037EFC0
+   0037E5B0: +0x8 word(movzx), +0xE word(movzx), +0x10 lea(lea)
+   0037EFC0: +0x8 word(movzx), +0xE word(movzx), +0x10 lea(lea)
+PASS C1 0037EFC0 reads word +0xE and word +0x8 of the .lst - [(8, 'word', 'movzx'), (14, 'word', 'movzx'), (16, 'lea', 'lea')]
+PASS C2 the tracker sees 0037E5B0's read of the sibling +0xC8 (.dat)
+PASS R1 no census function reads header +0x04 (the 'capacity' 100) of the .lst - [8, 14, 16]
+   0037EFC7 movzx r11d, cx
+   0037EFD9 movzx r10d, word ptr [r8 + 0xe]
+   0037EFE8 lea rcx, [r8 + 0x10]
+   0037EFF0 cmp word ptr [rcx], r11w
+   0037EFFC add rcx, 8
+   0037F000 cmp rdx, r10
+   0037F00E lea rax, [r8 + rax*8]
+   0037F01C movzx edx, word ptr [rax + 2]
+   0037F025 cmp dx, ax
+   0037F02A movzx ecx, word ptr [r8 + 8]
+   0037F039 lea rax, [rip + 0x99217a]
+PASS L2a the lookup compares the u16 questId at dir+0 against the u16 argument, stride 8, bound = u16 [+0xE]
+PASS L2b dataRel (dir+2) = 0xFFFF means 'no string'; else result = lst + u16[+8] + dataRel
+PASS L2c 0037E5B0 reads dir+0x04 as a byte, low nibble only (and al, 0xf) into its output +0xE
+PASS L2d 0037E5B0's key is (dat record u32 +0x10 >> 8) & 0x3FF (the questId the .lst is probed with)
+   00577C93 call 0x37e5b0
+   00577C98 movzx ecx, word ptr [rsp + 0x38]
+   00577C9D cmp byte ptr [rsp + 0x3f], r12b
+   00577CA4 call 0x37ee10
+   00577CA9 movzx ecx, byte ptr [rsp + 0x3e]
+   00577CB1 cmp eax, ecx
+   00577CB3 setge r8b
+   00577CB9 call 0x46b1a0
+PASS L2e 00577C30 compares 0037EE10's result with the record's +0xE nibble (setge) on the +0xF == 1 path
+   ch: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   cn: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   de: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   es: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   fr: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   in: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   it: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   kr: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+   us: n=66 ids unique True, dataOff u16=0x220, dir+4 values {0: 21, 3: 44, 4: 1} (low nibble {0: 21, 3: 44, 4: 1}), dataRel 0xFFFF 0
+PASS L3 in every shipped file the first-match lookup equals the sorted lookup (order-independent) - 9 files
+FAILS 0

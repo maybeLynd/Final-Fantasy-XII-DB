@@ -1,0 +1,8 @@
+other +0x590 access 00582949 mov qword ptr [rbx + 0x590], rax  in 00582860 SaveLoad_ControllerLifecycleHandler
+other +0x590 access 00582EF2 mov qword ptr [rbx + 0x590], rdi  in 00582860 SaveLoad_ControllerLifecycleHandler
+8-byte loads of [reg+0x590] in CTRL-reading or save-module functions: 3
+00582E27 mov rax, qword ptr [rbx + 0x590]  in 00582860 SaveLoad_ControllerLifecycleHandler
+00582EE1 mov rcx, qword ptr [rbx + 0x590]  in 00582860 SaveLoad_ControllerLifecycleHandler
+    00582F09 mov ecx, 0xfffffffe (register redefined/derived)
+005831D0 mov rax, qword ptr [rsi + 0x590]  in 00583040 SaveLoad_HandleStorageStatusResultAndAdvanceController
+    005831DC mov rax, qword ptr [rsi + 0x108] (register redefined/derived)

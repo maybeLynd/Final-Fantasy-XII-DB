@@ -1,0 +1,60 @@
+I1   PASS  00D10C98 = [130, 131, 132, 133, 134, 135, 218, 219, 220, 221, 222, 223]
+I1   PASS  rip references to 00D10C98: ['0036584C'] (data qwords 0)
+I2   PASS  00365810: call/jmp sites ['0053EC9A'], jcc 0, rip-disp 0, data qwords 0
+I2   PASS  positive control: the same scan finds 00364210's caller 00364BA6 (['00364BA6'])
+I3   PASS  caller loop: 0053EC90 xor ebx, ebx | 0053EC92 lea ecx, [rbx + 7] | 0053EC95 mov edx, 1 | 0053EC9A call 0x365810 | 0053EC9F inc ebx | 0053ECA1 cmp ebx, 6
+I3   PASS  00365810: row = ecx-1 -> table[row] = id, bitmap slot = row; ecx 7..12 -> rows 6..11 -> ids [218, 219, 220, 221, 222, 223]
+I4   PASS  10 kind-7 path arrays: ids 130..135 NULL in all, 218..223 = .btm and 210 = fontpack_fs.bin in all
+       array 01E0E530  majority-dir kr   fontpack_fs from kr   .btm from kr   id 222 = font_stf_c_normal.btm
+       array 01E2D370  majority-dir de   fontpack_fs from us   .btm from in   id 222 = font_stfc_normal.btm
+       array 01E4E640  majority-dir es   fontpack_fs from us   .btm from in   id 222 = font_stfc_normal.btm
+       array 01E5A3D0  majority-dir ch   fontpack_fs from ch   .btm from ch   id 222 = font_stfc_normal.btm
+       array 01E6BF40  majority-dir it   fontpack_fs from us   .btm from in   id 222 = font_stfc_normal.btm
+       array 01E8AB20  majority-dir uk   fontpack_fs from us   .btm from in   id 222 = font_stfc_normal.btm
+       array 01EABBA0  majority-dir cn   fontpack_fs from cn   .btm from cn   id 222 = font_stf_c_normal.btm
+       array 01EC73A0  majority-dir us   fontpack_fs from us   .btm from in   id 222 = font_stfc_normal.btm
+       array 01EDD7E0  majority-dir in   fontpack_fs from in   .btm from in   id 222 = font_stfc_normal.btm
+       array 01EDFE70  majority-dir fr   fontpack_fs from us   .btm from in   id 222 = font_stfc_normal.btm
+I5   PASS  00364210: glyph table [r11+rbx*8+0x10], rdi = rbx, bitmap [r11+rdi*8+0x110] - one font index
+I6   PASS  003643A0: [+8] = pack + dword[pack], call 00366080; bitmap slots stored from the pack: ['0x110', '0x120', '0x128', '0x130'] (slots 0,2,3,4; none of 6..11)
+I6   PASS  00366080: table 0 at blob+4 -> [+0x10]; tables chained by their dword +0 into [+0x10 + i*8] for i < s16[blob+0]
+I6   PASS  003658F0: requests kind 7 id 0xD2 (fontpack_fs.bin) into [022CBE00+0], completion 003643A0
+I7   PASS  003649A0 cell upload: 00474650(dst, texels=[node+0x18], dbp 0x3440, psm 0x14, w=[node+0x14], h=[node+0x15])
+I7   PASS  00474650 tail-jumps to 003A22A0 (the transfer builder)
+I7   PASS  003A1F20 transfer words: psm 0x14 -> w*h/8 (4 bpp); controls psm 0x13 -> w*h/4 (8 bpp), psm 0 -> w*h (32 bpp)
+       fontpack_fs.bin copies: ['ch', 'cn', 'in', 'it', 'kr', 'us']; .btm copies: ['ch', 'in']
+C1   PASS  tables 6..11 of 6 copies: 3164/3164 neighbours contiguous at 4 bpp, 0 at 8 bpp; every table starts at offset 0
+       in slot  6 font_stf_a_normal   n  78  end(4bpp)  42240  end(8bpp)  42496  .btm  42240
+       in slot  7 font_stf_a_shadow   n  78  end(4bpp)  42240  end(8bpp)  42496  .btm  42240
+       in slot  8 font_stf_b_normal   n  78  end(4bpp)  29184  end(8bpp)  29440  .btm  29184
+       in slot  9 font_stf_b_shadow   n  78  end(4bpp)  29184  end(8bpp)  29440  .btm  29184
+       in slot 10 font_stfc_normal    n  78  end(4bpp)  32256  end(8bpp)  32512  .btm  32256
+       in slot 11 font_stf_c_shadow   n  78  end(4bpp)  32256  end(8bpp)  32512  .btm  32256
+       ch slot  6 font_stf_a_normal   n  78  end(4bpp)  42240  end(8bpp)  42496  .btm  42240
+       ch slot  7 font_stf_a_shadow   n  78  end(4bpp)  42240  end(8bpp)  42496  .btm  42240
+       ch slot  8 font_stf_b_normal   n  78  end(4bpp)  29184  end(8bpp)  29440  .btm  29184
+       ch slot  9 font_stf_b_shadow   n  78  end(4bpp)  29184  end(8bpp)  29440  .btm  29184
+       ch slot 10 font_stfc_normal    n  78  end(4bpp)  32256  end(8bpp)  32512  .btm  32256
+       ch slot 11 font_stf_c_shadow   n  78  end(4bpp)  32256  end(8bpp)  32512  .btm  32256
+C2   PASS  in/ch tables 6..11 end exactly at their .btm size at 4 bpp and overrun it at 8 bpp
+C3   PASS  texels outside cellW x cellH: 0 non-zero under low-nibble-first, 1590 under high-nibble-first (control); ink texels 254900
+       nibble histogram (in/ch, all cells): {0: 574540, 1: 59990, 2: 27394, 3: 16690, 4: 15218, 5: 23012, 6: 21748, 7: 13714, 8: 10726, 9: 8698, 10: 8532, 11: 8658, 12: 9528, 13: 8458, 14: 5280, 15: 17254}
+       fontpack_fs ch : 12 tables; glyphs per table [36, 1, 10, 31, 12, 1, 78, 78, 78, 78, 78, 78]
+       fontpack_fs cn : 12 tables; glyphs per table [36, 1, 10, 31, 12, 1, 78, 78, 78, 78, 78, 78]
+       fontpack_fs in : 12 tables; glyphs per table [36, 1, 10, 45, 12, 1, 78, 78, 78, 78, 78, 78]
+       fontpack_fs it : 12 tables; glyphs per table [92, 0, 10, 150, 12, 0, 78, 78, 127, 127, 127, 127]
+       fontpack_fs kr : 12 tables; glyphs per table [36, 1, 10, 31, 12, 1, 78, 78, 78, 78, 78, 78]
+       fontpack_fs us : 12 tables; glyphs per table [92, 0, 10, 150, 12, 0, 78, 78, 127, 127, 127, 127]
+C4   PASS  us tables 6..11 begin with the in tables' 78 records unchanged; us tables 8..11 add 49 glyphs whose cells lie past the end of the in .btm
+       us slot 8: 127 glyphs vs in .btm 29184 B -> 49 cells past the end: \xc0\xc1\xc2\xc4\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd1\xd2\xd3\xd4\xd6\u0152\xd9\xda\xdb\xdc\xe0\xe1\xe2\xe4\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf1\xf2\xf3\xf4\xf6\u0153\xf9\xfa\xfb\xfc\xdf
+       us slot 9: 127 glyphs vs in .btm 29184 B -> 49 cells past the end: \xc0\xc1\xc2\xc4\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd1\xd2\xd3\xd4\xd6\u0152\xd9\xda\xdb\xdc\xe0\xe1\xe2\xe4\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf1\xf2\xf3\xf4\xf6\u0153\xf9\xfa\xfb\xfc\xdf
+       us slot 10: 127 glyphs vs in .btm 32256 B -> 49 cells past the end: \xc0\xc1\xc2\xc4\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd1\xd2\xd3\xd4\xd6\u0152\xd9\xda\xdb\xdc\xe0\xe1\xe2\xe4\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf1\xf2\xf3\xf4\xf6\u0153\xf9\xfa\xfb\xfc\xdf
+       us slot 11: 127 glyphs vs in .btm 32256 B -> 49 cells past the end: \xc0\xc1\xc2\xc4\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd1\xd2\xd3\xd4\xd6\u0152\xd9\xda\xdb\xdc\xe0\xe1\xe2\xe4\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf1\xf2\xf3\xf4\xf6\u0153\xf9\xfa\xfb\xfc\xdf
+C4   PASS  6 kind-7 arrays pair us\PackFiles\fontpack_fs.bin with in\ExFont .btm (majority dirs ['de', 'es', 'it', 'uk', 'us', 'fr'])
+       arrays whose .btm directory ships no ExFont: [('01E0E530', 'kr', 'kr'), ('01EABBA0', 'cn', 'cn')]
+C5   PASS  12 stf .ker files (us, jp), pair counts [1237]
+       .ker distinct codes 154; PS2 78-glyph face 78 codes, 127-glyph face 127, PC us/font_stf_a.dat 78 glyphs (78 codes)
+       pairs with both codes in: PS2 78-glyph face 398/1237, PS2 127-glyph face 663/1237, PC .dat 398/1237; all 12 .ker identical: True
+       .ker codes absent from the PS2 78-glyph face: \xd0\xd2\xd3\xd4\xd5\xd6\xd8\xdf\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf1\xf2\xf3\xf4\xf5\xf6\xf8\xf9\xfa\xfb\xfc\xfd\xff\u0101\u0103\u0105\u0107\u010d\u010e\u010f\u0110\u0111\u0113\u0117\u0119\u011b\u0123\u012b\u012f\u0131\u0137\u013a\u013c\u013e\u0141\u0142\u0144\u0146\u0148\u014c\u014d\u0150\u0151\u0153\u0155\u0157\u0159\u015b\u015f\u0161\u0163\u0165\u016b\u016f\u0171\u0173\u0178\u017a\u017c\u017d\u017e
+C5   PASS  control: the PS2 78-glyph face and the PC .dat face cover the same pairs (398, 398)
+FAILS 0

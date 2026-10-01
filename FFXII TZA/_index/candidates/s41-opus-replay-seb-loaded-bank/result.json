@@ -1,0 +1,63 @@
+{
+ "cases": {
+  "D1_receipt_before_walk_match_and_play": true,
+  "D2_play_waits_on_the_loading_fence_forever": true,
+  "D3_no_matching_bank_no_play_receipt_still_minted": true,
+  "L1_seb_bank_loaded_from_the_shipped_file": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "D1_D2": {
+   "bank30_after": 1,
+   "events": [
+    "receipt",
+    "play",
+    "fence",
+    "Sleep",
+    "...x99982"
+   ],
+   "halt": [],
+   "ok": false,
+   "receipt": 0,
+   "walk_after_receipt": [
+    "walk"
+   ]
+  },
+  "D3": {
+   "events": [
+    "receipt"
+   ],
+   "halt": [],
+   "ok": true,
+   "receipt": 6,
+   "walk_after_receipt": [
+    "walk"
+   ]
+  },
+  "base_ok": true,
+  "load": {
+   "banks": [
+    {
+     "+30": 1,
+     "+3C": 0,
+     "bank": "7306D270",
+     "root_70": "73231D10",
+     "vt": "907D80"
+    }
+   ],
+   "ok": true,
+   "queued_paths": [
+    "PS2Data/sound/se/sead_data_win/se000/se000.win.sab"
+   ]
+  },
+  "loader": {
+   "cell": "731DAF90",
+   "ok": true
+  },
+  "manager": {
+   "cell": "7307C040",
+   "ok": true
+  }
+ }
+}

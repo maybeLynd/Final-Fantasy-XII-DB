@@ -1,0 +1,46 @@
+{
+  "gen_address_index.py": {
+    "sha256": "41c98d7a781a1684ff348f0bdea71dcfb0ba32583a5687130c74b2f1d1ad6ec8",
+    "control_bytes": [
+      [
+        2979,
+        8
+      ]
+    ]
+  },
+  "knowledge_db.py": {
+    "sha256": "b0ddb7130c219737dc6a19ea710a54dadfc768cc5d4540493a80bf4f89904308",
+    "control_bytes": [
+      [
+        4169,
+        8
+      ]
+    ]
+  },
+  "program_coverage.py": {
+    "sha256": "e97ffe576c55eeccfabda1ebcd5032ab7555dd6f5110a5a54a6394df42739cd5",
+    "control_bytes": [
+      [
+        3000,
+        8
+      ]
+    ]
+  },
+  "census_bin_signatures.py": {
+    "sha256": "0367488628957490499ae4ba39aa8124d6364d28bd067ec89aa0be467bb66019",
+    "control_bytes": [
+      [
+        14787,
+        2
+      ],
+      [
+        14796,
+        2
+      ]
+    ]
+  },
+  "gen_rules_index.py": {
+    "sha256": "40b3d5021fb5304be15f21cf9680a8188284c984be4503ae84f73c09a5bc76e4",
+    "control_bytes": []
+  }
+}

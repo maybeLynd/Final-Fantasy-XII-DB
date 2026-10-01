@@ -1,0 +1,68 @@
+{
+  "evidence_class": "A:four newly reviewed complete shipping bodies; six sealed earlier helper bodies reread/reused; no new original-code/live run",
+  "new_bodies": {
+    "0x427b00": {
+      "bytes": 194,
+      "sha256": "fb1bab81775a3eddcc452b734d2684175b1321e3d1790d44fc3aa655f317caf4"
+    },
+    "0x369860": {
+      "bytes": 1009,
+      "sha256": "5538203672b80cf5eac78f1f8461b082aaf5ffc3566f8f7eb5c912100d2b1872"
+    },
+    "0x36ace0": {
+      "bytes": 286,
+      "sha256": "617c5101d81698730709ba4b5b43b50e2fe3683af253d0820e4f11dfd1d0f8b0"
+    },
+    "0x36ae00": {
+      "bytes": 287,
+      "sha256": "d48d477cff4973455bf1329c6247146e4d0e18278d355316b6f751fb19ffb493"
+    }
+  },
+  "reused_bodies": {
+    "0x36c9d0": {
+      "bytes": 253,
+      "sha256": "3aba22171d040fa929dd83178841bbe391c4285417524a6d85251a9bc1891c7e"
+    },
+    "0x36b5f0": {
+      "bytes": 124,
+      "sha256": "a3b4c037325ca28a6b0a6bc0fb36dc0b156ed3ec7a0941f0eecaeaf03debadad"
+    },
+    "0x36b670": {
+      "bytes": 179,
+      "sha256": "ffb2ebf45600734481f2bc170183e52b43bfe015a9cf1a391908f9c829e27c0d"
+    },
+    "0x36b730": {
+      "bytes": 179,
+      "sha256": "04b5ef8f2827a2593e7b5113a8f2d1ff4dbe517f6fd8f2b0c291b1346e0843e5"
+    },
+    "0x36b210": {
+      "bytes": 161,
+      "sha256": "8e4875ba3637a63315288ba3fbd2330b28d521e8ba00e361197667f81c7b1e31"
+    },
+    "0x36b2c0": {
+      "bytes": 324,
+      "sha256": "eacc9aa8ba2847502454e2f9745335e742e059d142810ad7f6f8d85a3725002a"
+    }
+  },
+  "upstream_path": "Database\\FFXII TZA\\_experiments\\evidence\\arena-allocation-link-width\\primary.json",
+  "upstream_sha256": "5bfba1aac37c796bd0c727be274d30fbbb584ee5d2a9868cb8f177248502f085",
+  "controls": [
+    "Known409730 call427B00 and3697F0/369800 calledges; fullbody427B00 calls only verifiedreferenceencode/decode, not free.",
+    "Full369860FF12/3E/allocatedmask branchguards and originaldiagnosticstrings retained; diagnostics notexecuted.",
+    "EarlierEXP078 helperrawbytes reused,includingnever-executedinserters asstaticonly; no rerunor native-effect promotion."
+  ],
+  "findings": [
+    "427B00 loops active740-byte renderrecords via global22C6F28 head+48800, nextword+4. Comparesdecodedrecord+68/+D8/+F0 withinput,clearsmatchingpairs+68/+69C,+D8/+E0,+F0/+F8. It doesnotreclaimsource ormanagesourcecount; globalmanager validprecondition.",
+    "369860 nullreturns; tagged-lookinginput diagnosticsreturns; rawheader=ptr-40 requiresFF12 thenheader+3Ezero. Badmagic andnonzero3E lead diagnostics/exit callsubjecttodiagnosticcompletion; badmagic path also readsB0bytesheader/D0bytesincomingRDX withoutpointervalidation. +14mask01clear reportsalreadyfreeandbypasses reclamation.",
+    "Validallocatedheader branchmarksarena+2,clearsallocatedmask,setsheader+2FF,debitsperheader+16class arena+68[index] andoptional+17category global22D8E10,clearsheader+34/+1E/+17/+30 and3E. Trustedheaderids/indexesnotboundedbeforeallmemoryeffects.",
+    "Newfreeblock insertedrelative toadjacentfreeblocks orpageindexedsearch;36B670/36B730 originalencode/decode are explicitstaticproof forfree-listlinks+4/+8.36B210/36B2C0 coalescewhenfreelistandphysicaladjacencyagree; successorheaderremovedwithEDX1 thenpayload+40added; freeends+90/+98 updated;3B5F0 pageindex refreshed.",
+    "36ACE0/36AE00 searchfollowing/precedingfreeblocks using64KiB buckets relativearena+10,bitmap+20,pointerarray+28 andfree-listlinks.3B5F0 installs/low32-comparesbucketpointer andsetsbitmapbit;3B2C0 clears/replacesbucketwhenmergedheaderwasrepresentative. This isfree-listsearch indexing undervalidnonnegativewithinarenapreconditions.",
+    "369A80 directlyreads+3E andrequireszero; diagnosticD10E88 saysMCB Broken. This isaconcreteconsumerguard, not proofofchecksum/counteralgorithm."
+  ],
+  "open": [
+    "Meaning/producers ofnonzero+3E; completecorruptiondiagnostics/nativeexit effects unexecuted.",
+    "Allotherresourceowners and mode1 lifetime;427B00 referenceclear is notsourcefree.",
+    "Originalnativefreeexecution/compositiononinitializedstates, malformedheader/overflowbounds, pageindexfulladdresswidthconstraint, scheduling.",
+    "Peerowned field/prose/contract propagation andearliercontradictions remainpending actualagreement."
+  ]
+}

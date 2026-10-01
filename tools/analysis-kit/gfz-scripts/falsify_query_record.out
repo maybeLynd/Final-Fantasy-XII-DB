@@ -1,0 +1,8 @@
+SURVIVES  Q0  class words [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]; 00309440: nibble <= 0xE -> [01EEBCF8 + n*0x58], else -1
+SURVIVES  Q1  rows 01EEBCC0..01EEC1E8 (15 x 0x58); three 32-bit adds; +40 running sum of +3C; 512 B cleared at +57C8; 0x80 B & 0xF8 at +59C8
+SURVIVES  Q2  0035D330 [('022CA520', 'dword'), ('022CA524', 'dword')]; 0035D380 [('022CA480', 'dword'), ('022CA486', 'word')]; failure: stub 0016D6A0 then memset 0x98
+SURVIVES  Q3  +0x18 cleared before dispatch; table at image+0x1FE598; class 1 -> 0031C61F (redispatch, WORD+6 untouched); class 12 -> 0031C650 (-2)
+SURVIVES  Q4  ['xor al, byte ptr [rbx + 0x54]', 'and al, 1', 'xor byte ptr [rbx + 0x54], al']
+SURVIVES  Q5  class 10: 12 x FFFFFFFF at +38..+90 step 8; +08/+10 one string pointer; +20/+28 zero
+SURVIVES  Q6  0016D6A0 = ['ret 0'], 3 B, 2868 call sites
+FAILS 0

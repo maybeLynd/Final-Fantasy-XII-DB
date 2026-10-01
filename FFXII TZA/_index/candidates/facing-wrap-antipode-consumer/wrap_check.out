@@ -1,0 +1,5 @@
+PASS W1  sequence bound at 10 instructions (sign branch 0026C09C, bias loads 0026C09E / 0026C0A8, store 0026C0F9)
+PASS W2  constants 40490FDB C0490FDB 40C90FDB
+PASS W3  +pi -> C0490FDB -> 40490FDB; -pi -> 40490FDB -> C0490FDB; +0 -> 00000000
+PASS C  detector: with the negative bias set to +pi, -pi maps to C0490FDB (fixed)
+FAILS 0

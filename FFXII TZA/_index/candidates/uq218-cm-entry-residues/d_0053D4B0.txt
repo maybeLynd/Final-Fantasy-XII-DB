@@ -1,0 +1,184 @@
+0053D4B0 mov qword ptr [rsp + 8], rbx
+0053D4B5 mov qword ptr [rsp + 0x10], rbp
+0053D4BA mov qword ptr [rsp + 0x18], rsi
+0053D4BF push rdi
+0053D4C0 sub rsp, 0x20
+0053D4C4 mov rax, qword ptr [rcx]
+0053D4C7 mov rbp, r9
+0053D4CA mov rsi, r8
+0053D4CD mov rdi, rdx
+0053D4D0 mov rbx, rcx
+0053D4D3 mov r10, qword ptr [rax + 8]
+0053D4D7 add r10, 0x40
+0053D4DB cmp r10, qword ptr [rdx]
+0053D4DE jb 0x53d4fa
+0053D4E0 call 0x504450
+0053D4E5 call 0x5044b0
+0053D4EA mov qword ptr [rbx], rax
+0053D4ED mov edx, dword ptr [rax + 0x10]
+0053D4F0 shl rdx, 4
+0053D4F4 add rdx, qword ptr [rax]
+0053D4F7 mov qword ptr [rdi], rdx
+0053D4FA mov rax, qword ptr [rbx]
+0053D4FD mov rcx, qword ptr [rax + 8]
+0053D501 mov qword ptr [rcx], 0x10000002
+0053D508 mov rax, qword ptr [rbx]
+0053D50B mov rcx, qword ptr [rax + 8]
+0053D50F mov dword ptr [rcx + 8], 0x1000404
+0053D516 mov rax, qword ptr [rbx]
+0053D519 mov rcx, qword ptr [rax + 8]
+0053D51D mov dword ptr [rcx + 0xc], 0x6c020041
+0053D524 mov rax, qword ptr [rbx]
+0053D527 add qword ptr [rax + 8], 0x10
+0053D52C mov edx, dword ptr [rbp + 4]
+0053D52F mov rax, qword ptr [rbx]
+0053D532 and edx, 1
+0053D535 mov rcx, qword ptr [rax + 8]
+0053D539 mov dword ptr [rcx], edx
+0053D53B mov rdx, qword ptr [rsp + 0x50]
+0053D540 cmp dword ptr [rdx], 0
+0053D543 jne 0x53d550
+0053D545 cmp dword ptr [rdx + 4], 0
+0053D549 jne 0x53d550
+0053D54B xor r8d, r8d
+0053D54E jmp 0x53d556
+0053D550 mov r8d, 1
+0053D556 mov rax, qword ptr [rbx]
+0053D559 mov rcx, qword ptr [rax + 8]
+0053D55D mov dword ptr [rcx + 4], r8d
+0053D561 mov rax, qword ptr [rbx]
+0053D564 mov rcx, qword ptr [rax + 8]
+0053D568 mov eax, dword ptr [rdx + 4]
+0053D56B mov dword ptr [rcx + 8], eax
+0053D56E mov rax, qword ptr [rbx]
+0053D571 mov rcx, qword ptr [rax + 8]
+0053D575 mov eax, dword ptr [rdx]
+0053D577 mov dword ptr [rcx + 0xc], eax
+0053D57A mov rax, qword ptr [rbx]
+0053D57D add qword ptr [rax + 8], 0x10
+0053D582 mov rax, qword ptr [rbx]
+0053D585 movsx edx, byte ptr [rbp + 8]
+0053D589 mov rcx, qword ptr [rax + 8]
+0053D58D mov dword ptr [rcx], edx
+0053D58F mov rax, qword ptr [rbx]
+0053D592 movsx edx, byte ptr [rbp + 9]
+0053D596 mov rcx, qword ptr [rax + 8]
+0053D59A mov dword ptr [rcx + 4], edx
+0053D59D mov rax, qword ptr [rbx]
+0053D5A0 mov edx, dword ptr [rbp + 4]
+0053D5A3 shr edx, 0x1c
+0053D5A6 and edx, 1
+0053D5A9 mov rcx, qword ptr [rax + 8]
+0053D5AD mov dword ptr [rcx + 8], edx
+0053D5B0 mov rax, qword ptr [rbx]
+0053D5B3 mov edx, dword ptr [rbp + 4]
+0053D5B6 shr edx, 0x1d
+0053D5B9 and edx, 1
+0053D5BC mov rcx, qword ptr [rax + 8]
+0053D5C0 mov dword ptr [rcx + 0xc], edx
+0053D5C3 mov rax, qword ptr [rbx]
+0053D5C6 add qword ptr [rax + 8], 0x10
+0053D5CB mov rax, qword ptr [rbx]
+0053D5CE mov rcx, qword ptr [rax + 8]
+0053D5D2 add rcx, 0x50
+0053D5D6 cmp rcx, qword ptr [rdi]
+0053D5D9 jb 0x53d5f8
+0053D5DB mov rcx, rbx
+0053D5DE call 0x504450
+0053D5E3 call 0x5044b0
+0053D5E8 mov qword ptr [rbx], rax
+0053D5EB mov ecx, dword ptr [rax + 0x10]
+0053D5EE shl rcx, 4
+0053D5F2 add rcx, qword ptr [rax]
+0053D5F5 mov qword ptr [rdi], rcx
+0053D5F8 mov rax, qword ptr [rbx]
+0053D5FB mov rcx, qword ptr [rax + 8]
+0053D5FF mov qword ptr [rcx], 0x10000003
+0053D606 mov rax, qword ptr [rbx]
+0053D609 mov rcx, qword ptr [rax + 8]
+0053D60D mov dword ptr [rcx + 8], 0
+0053D614 mov rax, qword ptr [rbx]
+0053D617 mov rcx, qword ptr [rax + 8]
+0053D61B mov dword ptr [rcx + 0xc], 0x50000003
+0053D622 mov rax, qword ptr [rbx]
+0053D625 add qword ptr [rax + 8], 0x10
+0053D62A mov rax, qword ptr [rbx]
+0053D62D mov rcx, qword ptr [rax + 8]
+0053D631 movabs rax, 0x1000000000008002
+0053D63B mov qword ptr [rcx], rax
+0053D63E mov rax, qword ptr [rbx]
+0053D641 mov rcx, qword ptr [rax + 8]
+0053D645 mov qword ptr [rcx + 8], 0xe
+0053D64D mov rax, qword ptr [rbx]
+0053D650 add qword ptr [rax + 8], 0x10
+0053D655 cmp dword ptr [rsp + 0x58], 0
+0053D65A je 0x53d675
+0053D65C test byte ptr [rsi + 0x244], 0x20
+0053D663 jne 0x53d675
+0053D665 movzx eax, byte ptr [rsi + 0xbc]
+0053D66C movd xmm1, eax
+0053D670 cvtdq2ps xmm1, xmm1
+0053D673 jmp 0x53d685
+0053D675 mov eax, dword ptr [rbp + 4]
+0053D678 xorps xmm1, xmm1
+0053D67B shr eax, 1
+0053D67D and eax, 0x7f
+0053D680 cvtsi2ss xmm1, rax
+0053D685 movss xmm0, dword ptr [rip + 0x276ab4f] ; =>02CA81DC
+0053D68D mov eax, 0x80
+0053D692 mov rcx, qword ptr [rsi + 0xf8]
+0053D699 mulss xmm0, xmm1
+0053D69D cvttss2si edi, xmm0
+0053D6A1 cmp edi, eax
+0053D6A3 cmovg edi, eax
+0053D6A6 test rcx, rcx
+0053D6A9 je 0x53d6cb
+0053D6AB call 0x3e56a0
+0053D6B0 test rax, rax
+0053D6B3 je 0x53d6cb
+0053D6B5 test byte ptr [rax + 0x134], 8
+0053D6BC je 0x53d6cb
+0053D6BE cmp edi, dword ptr [rip + 0x19ef3cc] ; =>01F2CA90
+0053D6C4 cmovle edi, dword ptr [rip + 0x19ef3c5] ; =>01F2CA90
+0053D6CB mov rax, qword ptr [rsp + 0x60]
+0053D6D0 test rax, rax
+0053D6D3 je 0x53d6e0
+0053D6D5 movd xmm0, edi
+0053D6D9 cvtdq2ps xmm0, xmm0
+0053D6DC movss dword ptr [rax], xmm0
+0053D6E0 test byte ptr [rsi + 8], 8
+0053D6E4 mov rax, qword ptr [rbx]
+0053D6E7 mov rcx, qword ptr [rax + 8]
+0053D6EB je 0x53d6f6
+0053D6ED mov qword ptr [rcx], 0x34000
+0053D6F4 jmp 0x53d707
+0053D6F6 movsxd rdx, edi
+0053D6F9 shl rdx, 4
+0053D6FD or rdx, 0x5100d
+0053D704 mov qword ptr [rcx], rdx
+0053D707 mov rax, qword ptr [rbx]
+0053D70A mov rcx, qword ptr [rax + 8]
+0053D70E mov qword ptr [rcx + 8], 0x47
+0053D716 mov rax, qword ptr [rbx]
+0053D719 add qword ptr [rax + 8], 0x10
+0053D71E test byte ptr [rsi + 8], 8
+0053D722 mov rax, qword ptr [rbx]
+0053D725 mov rcx, qword ptr [rax + 8]
+0053D729 je 0x53d734
+0053D72B mov qword ptr [rcx], 0x34000
+0053D732 jmp 0x53d745
+0053D734 movsxd rdx, edi
+0053D737 shl rdx, 4
+0053D73B or rdx, 0x51001
+0053D742 mov qword ptr [rcx], rdx
+0053D745 mov rax, qword ptr [rbx]
+0053D748 mov rbp, qword ptr [rsp + 0x38]
+0053D74D mov rsi, qword ptr [rsp + 0x40]
+0053D752 mov rcx, qword ptr [rax + 8]
+0053D756 mov qword ptr [rcx + 8], 0x48
+0053D75E mov rax, qword ptr [rbx]
+0053D761 mov rbx, qword ptr [rsp + 0x30]
+0053D766 add qword ptr [rax + 8], 0x10
+0053D76B add rsp, 0x20
+0053D76F pop rdi
+0053D770 ret 

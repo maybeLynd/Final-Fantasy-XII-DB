@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-SN1-DBGMSB",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the SN-1 narrowing: .sbn second word resolved (file-absolute text offset) + aux-table boundary, .dbg mapped end-to-end (five-slot header, 17-entry dirA of packed count-tables, front srcpos stream, S0 scope quartets, S2 index, class-ordered heap), .msb directory+tagged-stream envelope; payload grammars marked undecoded.",
+  "scope": "the-ctrl-module-debug-companions.md, OPEN-QUESTIONS.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

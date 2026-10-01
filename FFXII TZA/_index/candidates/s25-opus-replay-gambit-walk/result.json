@@ -1,0 +1,120 @@
+{
+ "G1": {
+  "0": {
+   "commit_entered": false,
+   "entered_below_eval": [
+    "00308EC0",
+    "00808C40"
+   ],
+   "halt": [],
+   "offers": [
+    32,
+    56
+   ],
+   "ok": true,
+   "ret": 0
+  },
+  "1": {
+   "commit_entered": false,
+   "entered_below_eval": [
+    "00308EC0",
+    "00808C40"
+   ],
+   "halt": [],
+   "offers": [
+    80,
+    104,
+    128
+   ],
+   "ok": true,
+   "ret": 0
+  },
+  "2": {
+   "commit_entered": false,
+   "entered_below_eval": [
+    "00308EC0",
+    "00808C40"
+   ],
+   "halt": [],
+   "offers": [
+    152
+   ],
+   "ok": true,
+   "ret": 0
+  },
+  "4": {
+   "commit_entered": false,
+   "entered_below_eval": [
+    "00308EC0",
+    "00808C40"
+   ],
+   "halt": [],
+   "offers": [
+    176,
+    200,
+    224,
+    248
+   ],
+   "ok": true,
+   "ret": 0
+  }
+ },
+ "G2": {
+  "empty_subgroup_3": {
+   "commit_entered": false,
+   "entered_below_eval": [],
+   "halt": [],
+   "offers": [],
+   "ok": true,
+   "ret": 0
+  },
+  "null_set": {
+   "commit_entered": false,
+   "entered_below_eval": [],
+   "halt": [],
+   "offers": [],
+   "ok": true,
+   "ret": 0
+  }
+ },
+ "G3": {
+  "lengthen_3_to_5": {
+   "commit_entered": false,
+   "entered_below_eval": [
+    "00308EC0",
+    "00808C40"
+   ],
+   "halt": [],
+   "offers": [
+    80,
+    104,
+    128,
+    152,
+    176
+   ],
+   "ok": true,
+   "ret": 0
+  },
+  "shorten_4_to_2": {
+   "commit_entered": false,
+   "entered_below_eval": [
+    "00308EC0",
+    "00808C40"
+   ],
+   "halt": [],
+   "offers": [
+    176,
+    200
+   ],
+   "ok": true,
+   "ret": 0
+  }
+ },
+ "cases": {
+  "G1_first_order_is_the_prefix_sum_and_one_offer_per_count": true,
+  "G2_empty_subgroup_and_null_set_offer_nothing": true,
+  "G3_count_byte_reread_every_iteration": true,
+  "G4_bit5_evaluator_decodes_the_order_then_returns_no_commit": true
+ },
+ "ok": true
+}

@@ -1,0 +1,35 @@
+== 00449AB0  resolves 10
+      6  dword ptr [r14 + rax*4 + 0x5a0]
+      2  dword ptr [rbp + 0x184]
+      1  dword ptr [r14 + 0x5a0]
+      1  dword ptr [r14 + rcx*4 + 0x5a0]
+== 004355D0  resolves 76
+     71  dword ptr [rsi + 0x170]
+      4  dword ptr [rsi + 0x174]
+      1  dword ptr [rsi + 0x188]
+== 00437130  resolves 77
+     71  dword ptr [rsi + 0x170]
+      5  dword ptr [rsi + 0x174]
+      1  dword ptr [rsi + 0x188]
+== 00438860  resolves 239
+    143  dword ptr [rsi + 0x170]
+     72  dword ptr [rsi + 0x20]
+     12  dword ptr [r14 + 0x20]
+      6  dword ptr [rax + 0x20]
+      5  dword ptr [rsi + 0x174]
+      1  dword ptr [rsi + 0x188]
+== 00434CD0  resolves 11
+      2  dword ptr [rbp + 0x28]
+      2  dword ptr [rbp + 0x2c]
+      2  dword ptr [rbp + 0x24]
+      1  dword ptr [r13 + 0x20]
+      1  dword ptr [rbp + 0x20]
+      1  dword ptr [r13 + 0x28]
+      1  dword ptr [r13 + 0x2c]
+      1  dword ptr [r13 + 0x24]
+== 00435050  resolves 5
+      1  dword ptr [rsi + 0x20]
+      1  dword ptr [rsi + 0x28]
+      1  dword ptr [rsi + 0x2c]
+      1  dword ptr [rsi + 0x24]
+      1  unresolved

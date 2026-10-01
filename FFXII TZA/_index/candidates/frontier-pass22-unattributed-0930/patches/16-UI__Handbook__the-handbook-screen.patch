@@ -1,0 +1,16 @@
+diff --git "a/Database/FFXII TZA/16-UI/Handbook/the-handbook-screen.md" "b/Database/FFXII TZA/16-UI/Handbook/the-handbook-screen.md"
+--- "a/Database/FFXII TZA/16-UI/Handbook/the-handbook-screen.md"
++++ "b/Database/FFXII TZA/16-UI/Handbook/the-handbook-screen.md"
+@@ -419,6 +419,12 @@ at `0056F428`, and its arm is a construct (`003946B0` with `r8d=0x17`, `0056F470
+ 
+ - **World — CLIENT.** A cited function is called by a 122-byte World-labelled body.
+ - **WorldAreaField — CLIENT and SERVICE.** Cited functions are called by `WorldTransition_StageFieldTransition`, `WorldTransition_RequestFieldTransition` and two field bodies (203 and 229 bytes). They call `FieldData_GetVariable0` (2), `WorldTransition_GetActiveOrPendingFieldId` and a 529-byte field body.
++- **CombatAI - CLIENT (1 edge).** BattleEncodedId_DispatchQueryMode0Value (`00309EC0`) is called by bodies filed to CombatAI: AiOrder_EvaluateTargetSelector (`00301AD0`) - shared machinery across the layer boundary, no shared ownership.
++- **Input - CLIENT and SERVICE (12 edges).** `0024A680`, FieldData_GetVariable0 (`00265270`), PersistentFlag_QueryPrimaryOrAuthoredThresholdGate (`0032A8A0`), `0032E620` are called by bodies filed to Input: InputGameplay_ArbitrateDigitalInputAndModalState (`00253C70`), `00291C80`, `00291D90`; `001E0A10`, `001E0E30`, `001E0E50`, `00368360` reach bodies filed to Input: `00197700`, `001986D0`, InputManager_GetSingleton (`00198790`), `001E0A10` (+2 more) - shared machinery across the layer boundary, no shared ownership.
++- **Presentation - CLIENT and SERVICE (109 edges).** `001816F0`, `001ED240`, `00202C90`, `00247510` (+29 more) are called by bodies filed to Presentation: `001CD0E0`, `0026F470`, `00274CB0`, `0028D460` (+49 more); `0017FA50`, `001ED240`, `0024B270`, `0024C550` (+14 more) reach bodies filed to Presentation: `001B5B60`, `001EC560`, `0024F410`, `0024F4D0` (+19 more) - shared machinery across the layer boundary, no shared ownership.
++- **Resource - CLIENT and SERVICE (65 edges).** `00249210`, `002493D0`, `0024A4E0`, `0024F410` (+3 more) are called by bodies filed to Resource: `001DA220`, `001DA970`, `00249180`, `00249210` (+18 more); `00249210`, `002493D0`, `002FC3C0`, `003158B0` (+16 more) reach bodies filed to Resource: `00249180`, `00249210`, `00249320`, `002493D0` (+13 more) - shared machinery across the layer boundary, no shared ownership.
++- **SaveLoad - CLIENT (7 edges).** `00245020`, `00249210`, `00249410`, `00249580` (+3 more) are called by bodies filed to SaveLoad: `00280140`, `00582790` - shared machinery across the layer boundary, no shared ownership.
++- **Save_Load_Settings - CLIENT and SERVICE (24 edges).** `00244960`, `00245020`, `00247510`, `00247870` (+7 more) are called by bodies filed to Save_Load_Settings: `002EF300`, SaveWrite_OperationStateCallback (`0057E4D0`), `0057E950`, `0057EBB0` (+6 more); PersistentFlag_QueryPrimaryOrAuthoredThresholdGate (`0032A8A0`) reaches bodies filed to Save_Load_Settings: SaveImage_GetPersistentPayloadBase (`002EF2B0`) - shared machinery across the layer boundary, no shared ownership.
+ 
+ ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
+ 

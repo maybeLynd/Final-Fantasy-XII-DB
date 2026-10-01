@@ -1,0 +1,155 @@
+{
+ "ok": true,
+ "mt_seed": 4537,
+ "allowed_functions": 4246,
+ "results": {
+  "roll_matches_the_contract_model": {
+   "pass_": true,
+   "cases": [
+    [
+     0,
+     [
+      100,
+      0,
+      0
+     ],
+     1,
+     1
+    ],
+    [
+     0,
+     [
+      0,
+      100,
+      0
+     ],
+     2,
+     2
+    ],
+    [
+     1,
+     [
+      0,
+      0,
+      100
+     ],
+     3,
+     3
+    ],
+    [
+     2,
+     [
+      50,
+      30,
+      20
+     ],
+     2,
+     2
+    ],
+    [
+     1,
+     [
+      33,
+      33,
+      33
+     ],
+     2,
+     2
+    ],
+    [
+     0,
+     [
+      0,
+      0,
+      0
+     ],
+     1,
+     1
+    ],
+    [
+     2,
+     [
+      10,
+      90,
+      0
+     ],
+     2,
+     2
+    ],
+    [
+     1,
+     [
+      -5,
+      40,
+      60
+     ],
+     3,
+     3
+    ],
+    [
+     0,
+     [
+      70,
+      0,
+      30
+     ],
+     1,
+     1
+    ],
+    [
+     2,
+     [
+      0,
+      0,
+      0
+     ],
+     3,
+     3
+    ],
+    [
+     0,
+     [
+      100,
+      0,
+      0
+     ],
+     1,
+     1
+    ],
+    [
+     0,
+     [
+      0,
+      100,
+      0
+     ],
+     2,
+     2
+    ]
+   ],
+   "total": 60,
+   "mismatches": [],
+   "note": "60 rolls (10 persisted-slot / probability settings x 6, the MT advancing throughout): the slot 0025ACA0 hands the apply equals section 12's roll / resolve model driven by an independent MT19937 seeded like the shipped one (4537)"
+  },
+  "override_and_unloaded_script": {
+   "pass_": true,
+   "override": [
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     3,
+     3,
+     3
+    ]
+   ],
+   "script_not_loaded": [
+    1,
+    1
+   ],
+   "note": "a positive debug override (+0xAAC) replaces persisted+1 as the start slot; with the script not loaded every probability reads 33 (0x21)"
+  }
+ }
+}

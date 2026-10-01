@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-render-position-commit-boundaries.py"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-render-position-commit-boundaries.py\", line 69, in <module>\n    (W/'identity-render-position-commit-boundaries.json').write_text(json.dumps(identity,indent=2)+'\\n');(W/'raw-render-position-commit-boundaries.json').write_text(json.dumps({'selected_source_edges':[{'pc':hex(p),'target':hex(a),'mnemonic':rows[p]['mnemonic'],'kind':'direct_call' if rows[p]['mnemonic']=='call' else 'unconditional_tail'} for p,a in calls],'unique_targets':targets,'callees':raw,'status':'SOURCE_ONLY_NOT_CLASS_PRESERVATION','selection':'Two external3EC3D0 commit boundaries. Original source only, no broader closure.','cleanup':'Original references unchanged, no game/native/browser/input/instrument/process control.'},indent=2)+'\\n')\n                                                                                                                                                                                                                                                  ~~~~^^^\nIndexError: list index out of range\n",
+  "terminal": true,
+  "driver_sha256": "406a7f122d49f8fb5f5d641b1741a773f3952455a4afa7c68ac6bc59084f6de7"
+}

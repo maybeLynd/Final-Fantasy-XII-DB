@@ -1,0 +1,5 @@
+{
+  "status": "HISTORICAL_NARROWER_SOURCE_CHECKS",
+  "reason": "Valid literal label reduction; final02 adds explicit native-array destination/setter and format-call prerequisites. Original bytes/results remain unchanged.",
+  "driver_sha256": "b884ca4d8b807824d1c9ffdd16ef4883c524eaebc6241b848f57a6aba498a2f8"
+}

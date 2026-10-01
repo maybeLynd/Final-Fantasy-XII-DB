@@ -1,0 +1,8 @@
+# NativeAdapter.FixedPipelineCallResult - EC-7 family C
+# # ecx=3 via lea; call shared 0036C1D0; call shared 0036A100 on ecx=arg1;
+# # call shared 0036C140; return its result.
+address	targets
+00271420	0036A100,0036C140,0036C1D0
+00393590	0036A100,0036C140,0036C1D0
+003EFCD0	0036A100,0036C140,0036C1D0
+004745D0	0036A100,0036C140,0036C1D0

@@ -1,0 +1,30 @@
+{
+  "failure": "prepare_publication pin-count assertion rejected non-complete manifest",
+  "actual_preimage_paths": [
+    ".gitattributes",
+    "PLAN.md",
+    "README.md",
+    "check.py",
+    "executed-driver.py",
+    "historical-incomplete-precondition/PLAN.md",
+    "historical-incomplete-precondition/README.md",
+    "historical-incomplete-precondition/check.py",
+    "historical-incomplete-precondition/failure.json",
+    "historical-incomplete-precondition/manifest.json",
+    "historical-incomplete-precondition/validation.json",
+    "probe.py",
+    "raw.json",
+    "retained/check.py",
+    "source.json",
+    "supplement-raw.json",
+    "supplement-source.json",
+    "supplement_probe.py",
+    "validation.json"
+  ],
+  "missing_manifest_members": [
+    "historical-incomplete-precondition/manifest.json"
+  ],
+  "cause": "Private freezer excluded every basename manifest.json, not just the root manifest; nested rejected-history manifest omitted.",
+  "accepted": false,
+  "correction": "Exclude root manifest only; assert exact current file-path coverage plus actual omission control. Explicit Gitpins derived from complete tree, no count target."
+}

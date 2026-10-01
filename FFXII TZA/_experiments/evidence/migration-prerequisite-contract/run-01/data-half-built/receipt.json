@@ -1,0 +1,26 @@
+{
+  "name": "data-half-built",
+  "expected_accepted": false,
+  "actually_accepted": false,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-half-built\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-half-built\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "data",
+    "exits": [
+      0,
+      1
+    ]
+  },
+  "upstream_sha256": "d10aaa9dafba73fa7acf48acec18cc97fcd32c1d40dc45df9434ac3041ffd062",
+  "returncode": 1,
+  "stdout": "COMPOSER_FAIL upstream.py: incomplete required data object\n",
+  "stderr": "",
+  "timed_out": false
+}

@@ -1,0 +1,35 @@
+function	site	field	width	kind	instruction
+00229590	00229A5C	0x4	4	r	cmp dword ptr [rip + 0x209e522], esi
+002AEB20	002AEC80	0x4	4	r	cmp dword ptr [rip + 0x20192fd], 0
+00339A60	00339AAD	0x0	8	addr	lea r8, [rip + 0x1f8e4cc]
+0033F870	0033F87C	0x0	4	w	mov dword ptr [rip + 0x1f886fe], eax
+0033F8E0	0033F8EE	0x8	4	r	mov ecx, dword ptr [rip + 0x1f88694]
+0033F8E0	0033F904	0x8	4	w	mov dword ptr [rip + 0x1f8867e], ecx
+003401F0	003401FE	0x8	4	r	mov ecx, dword ptr [rip + 0x1f87d84]
+003401F0	00340214	0x8	4	w	mov dword ptr [rip + 0x1f87d6e], ecx
+00340C70	00340C7E	0x8	4	r	mov ecx, dword ptr [rip + 0x1f87304]
+00340C70	00340C94	0x8	4	w	mov dword ptr [rip + 0x1f872ee], ecx
+00341030	00341034	0x4	4	w	mov dword ptr [rip + 0x1f86f46], 1
+003413E0	003413E4	0x4	4	w	mov dword ptr [rip + 0x1f86b96], 0
+003414E0	003414EE	0x8	4	r	mov ecx, dword ptr [rip + 0x1f86a94]
+003414E0	00341504	0x8	4	w	mov dword ptr [rip + 0x1f86a7e], ecx
+00341D70	00341D7E	0x8	4	r	mov ecx, dword ptr [rip + 0x1f86204]
+00341D70	00341D94	0x8	4	w	mov dword ptr [rip + 0x1f861ee], ecx
+00342450	0034245E	0x8	4	r	mov ecx, dword ptr [rip + 0x1f85b24]
+00342450	00342474	0x8	4	w	mov dword ptr [rip + 0x1f85b0e], ecx
+0034A1D0	0034A225	0x8	4	w	mov dword ptr [rip + 0x1f7dd59], 1
+0034AF20	0034AF38	0x8	4	w	mov dword ptr [rip + 0x1f7d046], 1
+0034B290	0034B2A8	0x8	4	w	mov dword ptr [rip + 0x1f7ccd6], 1
+0034BBD0	0034BC31	0x8	4	w	mov dword ptr [rip + 0x1f7c34d], 1
+0034CF90	0034CFC0	0x4	4	r	cmp dword ptr [rip + 0x1f7afbd], 0
+0034D790	0034D7C0	0x4	4	r	cmp dword ptr [rip + 0x1f7a7bd], 0
+0034E630	0034E670	0x8	4	w	mov dword ptr [rip + 0x1f7990e], 1
+00356C40	00356C4E	0x8	4	r	mov ecx, dword ptr [rip + 0x1f71334]
+00356C40	00356C64	0x8	4	w	mov dword ptr [rip + 0x1f7131e], ecx
+00357530	0035753E	0x8	4	r	mov ecx, dword ptr [rip + 0x1f70a44]
+00357530	00357554	0x8	4	w	mov dword ptr [rip + 0x1f70a2e], ecx
+00357760	00357760	0x8	4	w	mov dword ptr [rip + 0x1f7081e], 0
+00357770	00357770	0x8	4	r	mov eax, dword ptr [rip + 0x1f70812]
+00357780	00357780	0x0	4	r	mov eax, dword ptr [rip + 0x1f707fa]
+00357790	0035780F	0x8	4	w	mov dword ptr [rip + 0x1f7076f], 1
+00357B00	00357B00	0x0	4	w	mov dword ptr [rip + 0x1f70476], 0

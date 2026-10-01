@@ -1,0 +1,9 @@
+PASS W1  slot 7: 172, slot 0: 435
+PASS W2  literal flags: 263, with bits 0 and 2 both set: 0
+PASS W3  literal flags written as {'edx': 263}; 32-bit register copies into edx: 17
+PASS W4  217 sites set a pointer-sized second argument: {'64-bit copy': 63, 'qword load': 106, '64-bit arithmetic': 5, 'lea': 43}
+PASS W5  settled 480 (literal 263 + 64-bit 217); residue 127 (32-bit computed 25, no write in the block 102)
+PASS FC  control for the flow graph: the 480 settled sites all come out flow-settled (no call-clobbered or entry path): {'flow-settled': 480}
+PASS F  the 127 residue sites: {'residue-passthrough': 34, 'no-second-argument': 47, 'residue-computed': 27, 'flow-settled': 19}
+after F: settled 546 of 607; residue 61 (the enclosing function's own incoming rdx passed through 34, a computed 32-bit value 27)
+FAILS 0

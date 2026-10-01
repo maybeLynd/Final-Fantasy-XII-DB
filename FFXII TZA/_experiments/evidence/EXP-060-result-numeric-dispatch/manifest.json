@@ -1,0 +1,20 @@
+{
+  "files": {
+    "003112F0.bin": {
+      "bytes": 2040,
+      "sha256": "428382355b39605a534748ef2e0108adc773eae363a787f06618442115e6500d"
+    },
+    "check.py": {
+      "bytes": 6150,
+      "sha256": "c544ef831341409efa42f637ebfdbe8c062af670bb0631208b39317eedba7a60"
+    },
+    "disassembly.txt": {
+      "bytes": 27825,
+      "sha256": "9f7b8421ce3f44f1b470bae61e151f0222e69680e8b095b4bd449a4d8c996268"
+    },
+    "result.json": {
+      "bytes": 68885,
+      "sha256": "4b7530ce2d8eb8b16a29a984f09df2e1985afbbcf4ff423565a6f017193a3261"
+    }
+  }
+}

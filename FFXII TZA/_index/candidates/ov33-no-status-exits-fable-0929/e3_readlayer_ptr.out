@@ -1,0 +1,37 @@
+section of cell: .data  file offset: None (None = virtual tail, zero-initialised)
+# rip refs in [cell-0x10, cell+0x10): 24 verified, 0 raw-only (not listed)
+  0019CDED cmp    qword ptr [rip + 0x1de435b], 0               -> 01F81150 size 8  0019CDE0 FUN_0019cde0  read
+  0019CE14 mov    qword ptr [rip + 0x1de4335], rax             -> 01F81150 size 8  0019CDE0 FUN_0019cde0  STORE
+  0019CE20 mov    rax, qword ptr [rip + 0x1de4329]             -> 01F81150 size 8  0019CE20 FUN_0019ce20  read
+  0019EF03 mov    rcx, qword ptr [rip + 0x1de224e]             -> 01F81158 size 8  0019EF00 FUN_0019ef00  read
+  0019EF23 mov    rcx, qword ptr [rip + 0x1de222e]             -> 01F81158 size 8  0019EF20 FUN_0019ef20  read
+  0019EF4D cmp    qword ptr [rip + 0x1de2203], 0               -> 01F81158 size 8  0019EF40 FUN_0019ef40  read
+  0019EF74 mov    qword ptr [rip + 0x1de21dd], rax             -> 01F81158 size 8  0019EF40 FUN_0019ef40  STORE
+  0019EF80 mov    rax, qword ptr [rip + 0x1de21d1]             -> 01F81158 size 8  0019EF80 FUN_0019ef80  read
+  001A11BD cmp    qword ptr [rip + 0x1ddff9b], 0               -> 01F81160 size 8  001A11B0 FUN_001a11b0  read covers-cell
+  001A11E4 mov    qword ptr [rip + 0x1ddff75], rax             -> 01F81160 size 8  001A11B0 FUN_001a11b0  STORE covers-cell
+  001A11F4 mov    rcx, qword ptr [rip + 0x1ddff65]             -> 01F81160 size 8  001A11F0 FUN_001a11f0  read covers-cell
+  001A120A mov    qword ptr [rip + 0x1ddff4b], 0               -> 01F81160 size 8  001A11F0 FUN_001a11f0  STORE covers-cell
+  001A1220 mov    rax, qword ptr [rip + 0x1ddff39]             -> 01F81160 size 8  001A1220 FUN_001a1220  read covers-cell
+  001A7018 mov    rbx, qword ptr [rip + 0x1dda149]             -> 01F81168 size 8  001A6FF0 FUN_001a6ff0  read
+  001A977B mov    rcx, qword ptr [rip + 0x1dd79e6]             -> 01F81168 size 8  001A9770 FUN_001a9770  read
+  001A9798 mov    rcx, qword ptr [rip + 0x1dd79c9]             -> 01F81168 size 8  001A9770 FUN_001a9770  read
+  001A97F4 mov    rax, qword ptr [rip + 0x1dd796d]             -> 01F81168 size 8  001A97F0 FUN_001a97f0  read
+  001A9818 mov    rax, qword ptr [rip + 0x1dd7949]             -> 01F81168 size 8  001A97F0 FUN_001a97f0  read
+  001A9864 mov    rax, qword ptr [rip + 0x1dd78fd]             -> 01F81168 size 8  001A97F0 FUN_001a97f0  read
+  001A98C3 cmp    qword ptr [rip + 0x1dd789e], rcx             -> 01F81168 size 8  001A98B0 FUN_001a98b0  read
+  001A98D2 cmp    qword ptr [rip + 0x1dd788f], rbx             -> 01F81168 size 8  001A98B0 FUN_001a98b0  read
+  001A9922 mov    qword ptr [rip + 0x1dd783f], rbx             -> 01F81168 size 8  001A98B0 FUN_001a98b0  STORE
+  001A9930 mov    rax, qword ptr [rip + 0x1dd7831]             -> 01F81168 size 8  001A9930 FUN_001a9930  read
+  001A9A3B mov    rcx, qword ptr [rip + 0x1dd7726]             -> 01F81168 size 8  001A9A30 FUN_001a9a30  read
+# image-base-relative: 0 verified, 1 raw-only
+# absolute address operands: 0 (imm-only hits 0)
+# DIR64 relocs pointing into the window: 0
+
+# stores covering the cell: 001A11E4, 001A120A
+  store 001A11E4 in 001A11B0; raw callers of 001A11B0: ['17D56C']
+  store 001A120A in 001A11F0; raw callers of 001A11F0: ['17D679']
+control 001A1220 load found: True
+callers of 001A1220 (raw E8/E9): 39
+FAILS 0
+STATUS COMPLETE

@@ -1,0 +1,10 @@
+{
+  "status": "FAILED_PREPARATION_NO_RESULT",
+  "driver": "capture-softedges-parent-getter-pdata-assumption-01.py",
+  "sha256": "ebd4ef73e0fda33108a6ad28c9034ae0da81bd66d4653006b58ba2a3bb70b565",
+  "receipt": "softedges-array-parent-getter-invocation-01",
+  "refuted": "every named getter needs pdata",
+  "diagnosis": "6372A0 is complete8B LEA RAX,02CF8270;RET leaf with no pdata; followingINT3 padding. No semantic result read after nonzero exit.",
+  "procedure_lesson": "pdata is physical extent evidence when present, not a required property of Windows x64 leaf functions. Verify full normal leaf CFG/bytes instead.",
+  "affected": "this private preparation only"
+}

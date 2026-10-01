@@ -1,0 +1,8 @@
+pointer advances by 0x11 image-wide: 233
+byte stores through an advanced pointer: 3
+   003DB245 mov byte ptr [rcx], 2   (advance at 003DB23A add rcx, 0x11)
+   003DBB35 mov byte ptr [rax], 2   (advance at 003DBB2A add rax, 0x11)
+   003DBCAC mov byte ptr [rcx], 2   (advance at 003DBCA1 add rcx, 0x11)
+PASS control 003DBB35
+PASS control 003DB245
+PASS control 003DBCAC

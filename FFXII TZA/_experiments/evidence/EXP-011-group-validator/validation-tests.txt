@@ -1,0 +1,10 @@
+test_census_before_pairing (test_group_completion_validation.ValidationTests.test_census_before_pairing) ... ok
+test_each_callback_dimension_is_observed (test_group_completion_validation.ValidationTests.test_each_callback_dimension_is_observed) ... ok
+test_instruction_exhaustion_is_not_return (test_group_completion_validation.ValidationTests.test_instruction_exhaustion_is_not_return) ... ok
+test_order_identity_not_just_count (test_group_completion_validation.ValidationTests.test_order_identity_not_just_count) ... ok
+test_reference_identity_rejected (test_group_completion_validation.ValidationTests.test_reference_identity_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+OK

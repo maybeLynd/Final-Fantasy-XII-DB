@@ -1,0 +1,6 @@
+PASS  B 32 x (0x98-byte class-0x1A record + dword i at +0x98) at stride 0xA8; four 32-qword pointer tables at +0x1500/+0x1600/+0x1700/+0x1800 (kinds 1..4)
+PASS  G 48 references to 022C83E8, 26 writes; the and-masks ['0xfffc02ec', '0xffffffbf', '0xffffffbf', '0xffffffee', '0xffffffef'] all keep 0x200, the 10 register stores are one-bit merges / btr 7 / or / and-masks that keep it; only 0035D4B1 and 0035D5DC touch 0x200, setting it; the cache sits in .data's zero-filled tail
+PASS  R 00271FB0: L 1/2/3/else -> +0x1700/+0x1600/+0x1800/+0x1500, entry +0x98 as a bit index, keys +0x23/+0x22/+0x24/+0x21, then +0x25; 00273160 (+0x1700, +0x98, +0x23), 00273380 (+0x98), 00273410 (table address)
+PASS  X rip references inside [022C8B08, +0x1900) are only 0035D4A2 / 0035D4C4 / 0035D5D0 at the base; 022CA408 (+0x1900) has 2 of its own
+PASS  W StatusOrderCache022C8B08 (0x1900) and StatusOrderCacheEntryA8 (0xA8) are in the store and tile; EncodedIdQueryRecord lists the embedded copies
+FAILS 0

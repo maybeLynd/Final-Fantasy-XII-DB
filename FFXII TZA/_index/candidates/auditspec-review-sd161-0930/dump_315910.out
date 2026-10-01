@@ -1,0 +1,66 @@
+== 00315910 in .pdata [00315910, 00315A15)
+00315910  mov       qword ptr [rsp + 8], rbx   <==
+00315915  mov       qword ptr [rsp + 0x10], rsi
+0031591A  push      rdi
+0031591B  sub       rsp, 0x20
+0031591F  mov       esi, edx
+00315921  cmp       cl, 5
+00315924  jae       0x3159bb
+0031592A  movzx     eax, cl
+0031592D  lea       rdx, [rip - 0x1f5934]   ; -> 00120000 (virtual tail)
+00315934  lea       rcx, [rax + rax]
+00315938  movzx     eax, word ptr [rcx + rdx + 0xbf0640]
+00315940  cmp       esi, eax
+00315942  jae       0x315a05
+00315948  movzx     eax, word ptr [rcx + rdx + 0xbf0630]
+00315950  add       esi, eax
+00315952  mov       edi, esi
+00315954  shr       rdi, 3
+00315958  test      r8d, r8d
+0031595B  je        0x31598c
+0031595D  call      0x2536a0
+00315962  and       esi, 7
+00315965  movzx     ebx, byte ptr [rax + rdi + 0x32cc]
+0031596D  bts       ebx, esi
+00315970  call      0x2536a0
+00315975  mov       byte ptr [rax + rdi + 0x32cc], bl
+0031597C  mov       rbx, qword ptr [rsp + 0x30]
+00315981  mov       rsi, qword ptr [rsp + 0x38]
+00315986  add       rsp, 0x20
+0031598A  pop       rdi
+0031598B  ret       
+0031598C  call      0x2536a0
+00315991  and       esi, 7
+00315994  movzx     ebx, byte ptr [rax + rdi + 0x32cc]
+0031599C  btr       ebx, esi
+0031599F  call      0x2536a0
+003159A4  mov       byte ptr [rax + rdi + 0x32cc], bl
+003159AB  mov       rbx, qword ptr [rsp + 0x30]
+003159B0  mov       rsi, qword ptr [rsp + 0x38]
+003159B5  add       rsp, 0x20
+003159B9  pop       rdi
+003159BA  ret       
+003159BB  cmp       cl, 7
+003159BE  jne       0x315a05
+003159C0  cmp       esi, 0x1e
+003159C3  jae       0x315a05
+003159C5  mov       rdi, rsi
+003159C8  shr       rdi, 3
+003159CC  test      r8d, r8d
+003159CF  je        0x3159e6
+003159D1  call      0x2536a0
+003159D6  and       esi, 7
+003159D9  movzx     ebx, byte ptr [rax + rdi + 0x3844]
+003159E1  bts       ebx, esi
+003159E4  jmp       0x3159f9
+003159E6  call      0x2536a0
+003159EB  and       esi, 7
+003159EE  movzx     ebx, byte ptr [rax + rdi + 0x3844]
+003159F6  btr       ebx, esi
+003159F9  call      0x2536a0
+003159FE  mov       byte ptr [rax + rdi + 0x3844], bl
+00315A05  mov       rbx, qword ptr [rsp + 0x30]
+00315A0A  mov       rsi, qword ptr [rsp + 0x38]
+00315A0F  add       rsp, 0x20
+00315A13  pop       rdi
+00315A14  ret       

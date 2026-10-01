@@ -1,0 +1,6 @@
+PASS  T 00392710: release [02AEE0A0] when non-null, then memset(02AEE060, 0, 0x460) through 00861EC0
+PASS  R 003844F0 -> 003697F0: null-safe, 00369860(ptr, 0)
+PASS  C one caller, 002341D5 in the area-teardown battery 002341C0 (after 00383A20); 002695DD calls the battery
+PASS  M mutants rejected: guard je -> jne; clear length 0x460 -> 0x60
+PASS  S both release cells carry the teardown route
+FAILS 0

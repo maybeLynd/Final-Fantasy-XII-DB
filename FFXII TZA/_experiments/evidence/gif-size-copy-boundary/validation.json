@@ -1,0 +1,17 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "source_bodies": 2,
+  "symbolic_only": true,
+  "native_or_live_cases": 0,
+  "controls": [
+    {
+      "name": "widened-accumulator-description",
+      "rejected": true
+    },
+    {
+      "name": "signed-copy-length-description",
+      "rejected": true
+    }
+  ],
+  "limits": "Byte/flow qualification and arithmetic witnesses, no native/guest/live or full campaign acceptance."
+}

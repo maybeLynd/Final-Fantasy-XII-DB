@@ -1,0 +1,19 @@
+<stdin>:13: SyntaxWarning: "\|" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\|"? A raw string is also an option.
+== ImageBackedStateBlock via 002536A0
+methods reached at a fixpoint: 0 (function,base) pairs, 0 distinct functions, 0 rounds  [CONVERGED]
+== AchievementState via 002536A0
+methods reached at a fixpoint: 0 (function,base) pairs, 0 distinct functions, 0 rounds  [CONVERGED]
+== BootSingleton01F7F598 via 00189120
+methods reached at a fixpoint: 71 (function,base) pairs, 68 distinct functions, 4 rounds  [CONVERGED]
+== PApplication via 00796E20
+methods reached at a fixpoint: 1 (function,base) pairs, 1 distinct functions, 1 rounds  [CONVERGED]
+== PendingCompletionQueue01F81248 via 001BDAB0
+methods reached at a fixpoint: 26 (function,base) pairs, 23 distinct functions, 5 rounds  [CONVERGED]
+== CPostEffect via 006DF410
+methods reached at a fixpoint: 0 (function,base) pairs, 0 distinct functions, 0 rounds  [CONVERGED]
+== CPostEffect via 006DF510
+methods reached at a fixpoint: 0 (function,base) pairs, 0 distinct functions, 0 rounds  [CONVERGED]
+== InputManager via 00198790
+methods reached at a fixpoint: 32 (function,base) pairs, 32 distinct functions, 3 rounds  [CONVERGED]
+
+[exited with code 0]

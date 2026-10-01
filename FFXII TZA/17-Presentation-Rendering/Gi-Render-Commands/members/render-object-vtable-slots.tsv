@@ -1,0 +1,34 @@
+# role notation: 'calls A,B,C +N' names the first three DISTINCT DIRECT callees
+# (function entries, first call-site order); +N is the count of the rest.
+# Addresses inside the body itself are never listed - they are branch/merge
+# sites, not callees. '-> A,B,C' lists the body's complete callee set.
+class	vtable	slot	body	size	role	cite
+CharacterRenderObject	00903B68	1	001F89B0	42	calls 0018B4E0,0018AFF0	001F89BF
+CharacterRenderObject	00903B68	2	001F6E70	2328	calls 001F5B80,001BC000,001BAFF0 +9	001F6EA3
+CharacterRenderObject	00903B68	3	001F6D60	149	calls 001F86F0,0018B4E0,0018B0B0 +1	001F6D7A
+CharacterRenderObject	00903B68	4	001FB070	7	leaf mov       byte ptr [rcx + 0x498], dl	001FB070
+CharacterRenderObject	00903B68	5	001F86E0	8	leaf movzx     eax, byte ptr [rcx + 0x498]	001F86E0
+CharacterRenderObject	00903B68	6	001F9FF0	161	leaf push      rbx	001F9FF0
+CharacterRenderObject	00903B68	7	001FB080	147	calls 001EF060	001FB0DB
+CharacterRenderObject	00903B68	9	001F9A80	159	calls 00189120	001F9ABA
+CharacterRenderObject	00903B68	10	001F8C00	97	leaf movzx     eax, byte ptr [rcx + 0x4b4]	001F8C00
+CharacterRenderObject	00903B68	11	001F8BE0	27	leaf mulss     xmm1, dword ptr [rip + 0x6ccf4c]	001F8BE0
+CharacterRenderObject	00903B68	12	001F8C70	160	leaf movzx     eax, byte ptr [rcx + 0x4b4]	001F8C70
+CharacterRenderObject	00903B68	14	001FA0A0	60	leaf movzx     eax, byte ptr [rcx + 0x4b4]	001FA0A0
+CharacterRenderObject	00903B68	15	001F9A60	7	leaf mov       dword ptr [rcx + 0x49c], edx	001F9A60
+CharacterRenderObject	00903B68	16	001FA3D0	1073	calls 001AD440,001ABF50,00358330 +7	001FA41B
+CharacterRenderObject	00903B68	17	001F5C10	15	leaf mov       rax, qword ptr [rcx + 0x390]	001F5C10
+CharacterRenderObject	00903B68	18	001FAFB0	188	calls 00808C40,001F55F0	001FB044
+CharacterRenderObject	00903B68	19	001F8D10	3397	calls 001945B0,00183320,001D50D0 +6	001F8D9C
+CharacterRenderObject	00903B68	20	001FA0E0	189	calls 001945B0	001FA12E
+CharacterRenderObject	00903B68	21	001FA810	7	leaf mov       byte ptr [rcx + 0x4b6], dl	001FA810
+CharacterRenderObject	00903B68	22	001F9FE0	9	leaf movss     dword ptr [rcx + 0x4b8], xmm1	001F9FE0
+CharacterRenderObject	00903B68	23	001F9A70	9	leaf movss     dword ptr [rcx + 0x4bc], xmm1	001F9A70
+CharacterRenderObject	00903B68	24	001FA1A0	547	calls 001BC000,00189120,00186A80 +3	001FA1BD
+CharacterRenderObject	00903B68	25	001FAD40	7	leaf mov       dword ptr [rcx + 0x4b0], edx	001FAD40
+CharacterRenderObject	00903B68	26	001FAA10	812	leaf mov       qword ptr [rsp + 0x18], rbx	001FAA10
+CharacterRenderObject	00903B68	27	001F86D0	8	leaf movzx     eax, byte ptr [rcx + 0x4b4]	001F86D0
+CharacterRenderObject	00903B68	28	001F6E50	14	leaf mov       eax, edx	001F6E50
+CharacterRenderObject	00903B68	30	001FA820	488	calls 001F0850,001945B0	001FA8D3
+MapRenderObject	009012C0	1	001E5270	31	calls 0018B4E0,0018AFF0	001E5279
+RenderObject	00906D10	0	00212C90	43	dtor + free	00212CAD

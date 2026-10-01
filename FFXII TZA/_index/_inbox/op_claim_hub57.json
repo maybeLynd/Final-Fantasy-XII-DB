@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-57",
+ "agent": "SWE2-EC7",
+ "note": "claiming shared-hub batch 57: top 22 of the 2-A band",
+ "resources": [
+  {
+   "key": "target:frontier-shared-callee-hubs"
+  }
+ ]
+}

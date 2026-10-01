@@ -1,0 +1,49 @@
+HEAD d5f06584e; .md files 2547
+A captures (subdirectory files): links by (file kind, target resolves): {('MIRROR', True): 88, ('UNMATCHED', False): 3757, ('CAPTURE', False): 87, ('MIRROR', False): 689, ('UNMATCHED', True): 2}
+A UNMATCHED files with broken links: 83 files, 3757 links
+A UNMATCHED broken-link files by basename (top): [('VIEW-SCHEMA.md', 9), ('contract.md', 9), ('consumer-before.md', 8), ('producer-readme.md', 3), ('shared-neighbours.md', 2), ('primitives.md', 2), ('00-the-music-control-file-and-the-bgm-stream.md', 2), ('01-CONTRACT-music-control-file-and-bgm-stream.md', 2), ('02-CONTRACT-field-music-selection.md', 2), ('widget-contract.md', 2), ('variables-primary-before.md', 2), ('maths-preimage.md', 1)]
+    UNMATCHED file: _experiments/evidence/approach-angle-divisor-domain/retained/maths-preimage.md (19 broken)
+    UNMATCHED file: _experiments/evidence/delta-baseline-selection/run-01/current-preimages/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-baseline-selection/run-01/source/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-baseline-selection/run-02/current-preimages/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-baseline-selection/run-02/source/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-baseline-selection/run-03/current-preimages/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-baseline-selection/run-03/source/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-one-basis-r2/run-01/current-preimages/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/delta-one-basis-r2/run-01/source/Database/Tools/dashboard/VIEW-SCHEMA.md (1 broken)
+    UNMATCHED file: _experiments/evidence/descriptor-lifetime-claim-boundary/retained/04-CONTRACT-phyre-class-descriptor.md (14 broken)
+    UNMATCHED file: _experiments/evidence/facing-wrap-antipode/retained/contract.md (31 broken)
+    UNMATCHED file: _experiments/evidence/facing-wrap-antipode/retained/question-ledger.md (1196 broken)
+    UNMATCHED file: _experiments/evidence/field-focus-float-gate/retained/gg1-readme.md (1 broken)
+    UNMATCHED file: _experiments/evidence/field-focus-float-gate/retained/input-contract.md (23 broken)
+    UNMATCHED file: _experiments/evidence/field-music-gate-scope/retained/00-CONTRACT-field-music-selection.md (7 broken)
+    UNMATCHED file: _experiments/evidence/gf4-caller-preflight/retained/00-the-phyre-post-effect-class-family.md (11 broken)
+    UNMATCHED file: _experiments/evidence/heading-class-effects-slice/retained/canonical-consumption/00-CONTRACT-heading-speed-to-position-delta.md (6 broken)
+    UNMATCHED file: _experiments/evidence/heading-class-effects-slice/retained/canonical-consumption/03-the-staged-look-command.md (8 broken)
+    UNMATCHED file: _experiments/evidence/heading-class-effects-slice/retained/canonical-consumption/04-CONTRACT-actor-record-pool-and-region-map.md (8 broken)
+    UNMATCHED file: _experiments/evidence/heading-class-effects-slice/retained/canonical-consumption/05-intentionally-ownerless-functions-and-shared-scratch.md (24 broken)
+    UNMATCHED file: _experiments/evidence/heading-extent-repair-review/retained/contract.md (6 broken)
+    UNMATCHED file: _experiments/evidence/image-reference-roundtrip-domain/retained/encoded-id-contract.md (5 broken)
+    UNMATCHED file: _experiments/evidence/image-reference-roundtrip-domain/retained/shared-neighbours.md (11 broken)
+    UNMATCHED file: _experiments/evidence/matrix-consumer-identity-control/retained/primitives.md (63 broken)
+    UNMATCHED file: _experiments/evidence/migration-activity-deltas-independent/deployed-01/source-current/VIEW-SCHEMA.md (1 broken)
+B lines (code-span exemptions that RESOLVE, i.e. real links blanked):
+    06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md: (fabsf-shaped) at [`002EBED0`/`002EBEF2`](../../_index/ADDRESS-INDEX.md), writes the fresh
+    13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md: | 1 | **create** — posted by `Loot_CreateWorldPickup` itself at `00319DF9`–`00319E00` with a `0x18`-byte block `{x, y, z of the drop position, 1.0f, tier from 00319A20, `
+    17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md: State100`, has a single caller `0045BAE0` (interior read 2026-09-17, SWE2-FRONTIER: 1,068 B — `00434A70` first at [`0045BB57`](../../_index/ADDRESS-INDEX.md), `00202D50` 
+A UNMATCHED broken links in files named README/RESULT/PLAN/NOTES/METHODS/SUMMARY/REPORT/REVIEW: 0
+B code-span exemptions: 13 (resolving 3)
+    06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md -> ../../_index/ADDRESS-INDEX.md resolves
+    13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md -> loot-drops-and-enemy-chain.md resolves
+    17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md -> ../../_index/ADDRESS-INDEX.md resolves
+    _experiments/EXP-156-broadcast-wrappers-exec.md -> id missing
+    _experiments/EXP-173-occupancy-22F830-exec.md -> =1.0 missing
+    _experiments/EXP-198-unlink-carrier-family-exec.md -> =1.0 missing
+    _experiments/EXP-198-unlink-carrier-family-exec.md -> =-30.0 missing
+    _experiments/EXP-216-display-list-append-exec.md -> slot1 cursor cell missing
+    _experiments/evidence/rekey-inner-exec/contract-edits.md -> =0.1f missing
+    _index/AUDIT-LOG.md -> rdx = [r12+0x6C0] palette, r8d = movsx word[part+0x8A] missing
+    _index/OPEN-QUESTIONS.md -> +0x6C0, word[part+0x8A] missing
+    _index/candidates/auditsem-review-rc30-rc28-0930/REVIEW.md -> row, dest, r8 = 1 missing
+    _index/candidates/uq218-cm-entry-residues/README.md -> +0x6C0, word[part+0x8A] missing
+C percent-decoded targets: 0

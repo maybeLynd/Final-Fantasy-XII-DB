@@ -1,0 +1,735 @@
+{
+  "status": "PRODUCER_CHECKED_STATIC_CONDITIONAL_ZERO",
+  "method": "A",
+  "question": "Does the local zero definition dominate both request-field uses?",
+  "identity": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "prior_receipt_sha256": "ef076d9e957ce96d2651796be4cb728b808a6086b7817ef02b26f1cbc644f0ef",
+    "body_sha256": "6be910d0fe418b1c343dfeb4c61d70bf26ce7a29e0c4480dbd572d2c152fdbc9",
+    "body_size": 917,
+    "body_hex": "488bc4534883ec50448b4144488bd948896808488b6920488d48c848897010488978184c8968e84c8970e0488d95c00000004c8978d8e8056ef0ff0f2800660f7f8310010000f64549080f84800000000f110539f5da010f1093e00000000f10c8f30f10052bf5da01f30f58ca0f11152cf5da01f30f110d14f5da010f28ca0fc6ca55f30f58c10f28ca0fc6caaa0fc6d2fff30f1105faf4da01f30f1005f6f4da01f30f58c1f30f1105eaf4da01f30f1005e6f4da01f30f58c2f30f1105daf4da010f1005c7f4da010f118310010000448b4344488d9500010000488d4c2420e85b6df0ff0f2800488b4320660f7f8320010000f64049040f84800000000f11058bf4da010f1093000100000f10c8f30f10057df4da01f30f59ca0f11157ef4da01f30f110d66f4da010f28ca0fc6ca55f30f59c10f28ca0fc6caaa0fc6d2fff30f11054cf4da01f30f100548f4da01f30f59c1f30f11053cf4da01f30f100538f4da01f30f59c2f30f11052cf4da010f100519f4da010f118320010000448b4344488d9580000000488d4c2420e8ad6cf0ff4c8dbb30020000488dbb40020000488bd7488d8b100100000f280066410f7f07440fb64548e873e5e6ff410f100f0f110dc8f3da010f105360f30f1005c0f3da01f30f58ca0f1115c1f3da01f30f110da9f3da010f28ca0fc6ca55f30f58c10f28ca0fc6caaa0fc6d2fff30f11058ff3da01f30f10058bf3da01f30f58c1f30f11057ff3da01f30f10057bf3da01f30f58c2f30f11056ff3da010f10055cf3da01410f1107488b4b104885c97426e8da0fe7ff498bd7498bcfe8efefe6fff6454a1c7510488b4b10488bd74883c140e819dfe6ff0f284370488d9320010000660f7f8380000000488bcf410f280f660f7f4b70f6454b027407e80fd1e6ffeb05e8f80de7ff410f28074533ed0f118370020000c7837c0200000000803f44396b48754e0fb78576080000418bf54c8964244841bcff7f0000664123c466443be8732a6666660f1f840000000000488bd7488d8b80020000e8e19a00000fb78576080000ffc64123c43bf07ce14c8b642448488bd7488d8b80020000e8bd9a00004439abd403000074294489abd4030000be200000000f1f840000000000488bd7488d8b80020000e8919a00004883ee0175eb498bd7488bcde84062fdff4c8b7c24304c8b7424384c8b6c2440488b7c2470488b742468488b6c246085c07511488b5308488bcb4883c4505be9ed90dcff488bd3b9020000004883c4505be96be8e7ff",
+    "driver_sha256": "bc16136ccc9756296b6d019701ea70986323d7a2f049083a8502e4246faf59c1",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "capstone_version": "5.0.7",
+    "pefile_sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+    "shared_policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "shared_policy_actual_import": "Database\\Tools\\analysis-kit\\gfz-scripts\\reg_tracking.py"
+  },
+  "normal_graph": {
+    "instructions": 187,
+    "edges": {
+      "00529D50": [
+        "00529D53"
+      ],
+      "00529D53": [
+        "00529D54"
+      ],
+      "00529D54": [
+        "00529D58"
+      ],
+      "00529D58": [
+        "00529D5C"
+      ],
+      "00529D5C": [
+        "00529D5F"
+      ],
+      "00529D5F": [
+        "00529D63"
+      ],
+      "00529D63": [
+        "00529D67"
+      ],
+      "00529D67": [
+        "00529D6B"
+      ],
+      "00529D6B": [
+        "00529D6F"
+      ],
+      "00529D6F": [
+        "00529D73"
+      ],
+      "00529D73": [
+        "00529D77"
+      ],
+      "00529D77": [
+        "00529D7B"
+      ],
+      "00529D7B": [
+        "00529D82"
+      ],
+      "00529D82": [
+        "00529D86"
+      ],
+      "00529D86": [
+        "00529D8B"
+      ],
+      "00529D8B": [
+        "00529D8E"
+      ],
+      "00529D8E": [
+        "00529D96"
+      ],
+      "00529D96": [
+        "00529D9A"
+      ],
+      "00529D9A": [
+        "00529E20",
+        "00529DA0"
+      ],
+      "00529DA0": [
+        "00529DA7"
+      ],
+      "00529DA7": [
+        "00529DAE"
+      ],
+      "00529DAE": [
+        "00529DB1"
+      ],
+      "00529DB1": [
+        "00529DB9"
+      ],
+      "00529DB9": [
+        "00529DBD"
+      ],
+      "00529DBD": [
+        "00529DC4"
+      ],
+      "00529DC4": [
+        "00529DCC"
+      ],
+      "00529DCC": [
+        "00529DCF"
+      ],
+      "00529DCF": [
+        "00529DD3"
+      ],
+      "00529DD3": [
+        "00529DD7"
+      ],
+      "00529DD7": [
+        "00529DDA"
+      ],
+      "00529DDA": [
+        "00529DDE"
+      ],
+      "00529DDE": [
+        "00529DE2"
+      ],
+      "00529DE2": [
+        "00529DEA"
+      ],
+      "00529DEA": [
+        "00529DF2"
+      ],
+      "00529DF2": [
+        "00529DF6"
+      ],
+      "00529DF6": [
+        "00529DFE"
+      ],
+      "00529DFE": [
+        "00529E06"
+      ],
+      "00529E06": [
+        "00529E0A"
+      ],
+      "00529E0A": [
+        "00529E12"
+      ],
+      "00529E12": [
+        "00529E19"
+      ],
+      "00529E19": [
+        "00529E20"
+      ],
+      "00529E20": [
+        "00529E24"
+      ],
+      "00529E24": [
+        "00529E2B"
+      ],
+      "00529E2B": [
+        "00529E30"
+      ],
+      "00529E30": [
+        "00529E35"
+      ],
+      "00529E35": [
+        "00529E38"
+      ],
+      "00529E38": [
+        "00529E3C"
+      ],
+      "00529E3C": [
+        "00529E44"
+      ],
+      "00529E44": [
+        "00529E48"
+      ],
+      "00529E48": [
+        "00529ECE",
+        "00529E4E"
+      ],
+      "00529E4E": [
+        "00529E55"
+      ],
+      "00529E55": [
+        "00529E5C"
+      ],
+      "00529E5C": [
+        "00529E5F"
+      ],
+      "00529E5F": [
+        "00529E67"
+      ],
+      "00529E67": [
+        "00529E6B"
+      ],
+      "00529E6B": [
+        "00529E72"
+      ],
+      "00529E72": [
+        "00529E7A"
+      ],
+      "00529E7A": [
+        "00529E7D"
+      ],
+      "00529E7D": [
+        "00529E81"
+      ],
+      "00529E81": [
+        "00529E85"
+      ],
+      "00529E85": [
+        "00529E88"
+      ],
+      "00529E88": [
+        "00529E8C"
+      ],
+      "00529E8C": [
+        "00529E90"
+      ],
+      "00529E90": [
+        "00529E98"
+      ],
+      "00529E98": [
+        "00529EA0"
+      ],
+      "00529EA0": [
+        "00529EA4"
+      ],
+      "00529EA4": [
+        "00529EAC"
+      ],
+      "00529EAC": [
+        "00529EB4"
+      ],
+      "00529EB4": [
+        "00529EB8"
+      ],
+      "00529EB8": [
+        "00529EC0"
+      ],
+      "00529EC0": [
+        "00529EC7"
+      ],
+      "00529EC7": [
+        "00529ECE"
+      ],
+      "00529ECE": [
+        "00529ED2"
+      ],
+      "00529ED2": [
+        "00529ED9"
+      ],
+      "00529ED9": [
+        "00529EDE"
+      ],
+      "00529EDE": [
+        "00529EE3"
+      ],
+      "00529EE3": [
+        "00529EEA"
+      ],
+      "00529EEA": [
+        "00529EF1"
+      ],
+      "00529EF1": [
+        "00529EF4"
+      ],
+      "00529EF4": [
+        "00529EFB"
+      ],
+      "00529EFB": [
+        "00529EFE"
+      ],
+      "00529EFE": [
+        "00529F03"
+      ],
+      "00529F03": [
+        "00529F08"
+      ],
+      "00529F08": [
+        "00529F0D"
+      ],
+      "00529F0D": [
+        "00529F11"
+      ],
+      "00529F11": [
+        "00529F18"
+      ],
+      "00529F18": [
+        "00529F1C"
+      ],
+      "00529F1C": [
+        "00529F24"
+      ],
+      "00529F24": [
+        "00529F28"
+      ],
+      "00529F28": [
+        "00529F2F"
+      ],
+      "00529F2F": [
+        "00529F37"
+      ],
+      "00529F37": [
+        "00529F3A"
+      ],
+      "00529F3A": [
+        "00529F3E"
+      ],
+      "00529F3E": [
+        "00529F42"
+      ],
+      "00529F42": [
+        "00529F45"
+      ],
+      "00529F45": [
+        "00529F49"
+      ],
+      "00529F49": [
+        "00529F4D"
+      ],
+      "00529F4D": [
+        "00529F55"
+      ],
+      "00529F55": [
+        "00529F5D"
+      ],
+      "00529F5D": [
+        "00529F61"
+      ],
+      "00529F61": [
+        "00529F69"
+      ],
+      "00529F69": [
+        "00529F71"
+      ],
+      "00529F71": [
+        "00529F75"
+      ],
+      "00529F75": [
+        "00529F7D"
+      ],
+      "00529F7D": [
+        "00529F84"
+      ],
+      "00529F84": [
+        "00529F88"
+      ],
+      "00529F88": [
+        "00529F8C"
+      ],
+      "00529F8C": [
+        "00529F8F"
+      ],
+      "00529F8F": [
+        "00529FB7",
+        "00529F91"
+      ],
+      "00529F91": [
+        "00529F96"
+      ],
+      "00529F96": [
+        "00529F99"
+      ],
+      "00529F99": [
+        "00529F9C"
+      ],
+      "00529F9C": [
+        "00529FA1"
+      ],
+      "00529FA1": [
+        "00529FA5"
+      ],
+      "00529FA5": [
+        "00529FB7",
+        "00529FA7"
+      ],
+      "00529FA7": [
+        "00529FAB"
+      ],
+      "00529FAB": [
+        "00529FAE"
+      ],
+      "00529FAE": [
+        "00529FB2"
+      ],
+      "00529FB2": [
+        "00529FB7"
+      ],
+      "00529FB7": [
+        "00529FBB"
+      ],
+      "00529FBB": [
+        "00529FC2"
+      ],
+      "00529FC2": [
+        "00529FCA"
+      ],
+      "00529FCA": [
+        "00529FCD"
+      ],
+      "00529FCD": [
+        "00529FD1"
+      ],
+      "00529FD1": [
+        "00529FD6"
+      ],
+      "00529FD6": [
+        "00529FDA"
+      ],
+      "00529FDA": [
+        "00529FE3",
+        "00529FDC"
+      ],
+      "00529FDC": [
+        "00529FE1"
+      ],
+      "00529FE1": [
+        "00529FE8"
+      ],
+      "00529FE3": [
+        "00529FE8"
+      ],
+      "00529FE8": [
+        "00529FEC"
+      ],
+      "00529FEC": [
+        "00529FEF"
+      ],
+      "00529FEF": [
+        "00529FF6"
+      ],
+      "00529FF6": [
+        "0052A000"
+      ],
+      "0052A000": [
+        "0052A004"
+      ],
+      "0052A004": [
+        "0052A054",
+        "0052A006"
+      ],
+      "0052A006": [
+        "0052A00D"
+      ],
+      "0052A00D": [
+        "0052A010"
+      ],
+      "0052A010": [
+        "0052A015"
+      ],
+      "0052A015": [
+        "0052A01B"
+      ],
+      "0052A01B": [
+        "0052A01F"
+      ],
+      "0052A01F": [
+        "0052A023"
+      ],
+      "0052A023": [
+        "0052A04F",
+        "0052A025"
+      ],
+      "0052A025": [
+        "0052A030"
+      ],
+      "0052A030": [
+        "0052A033"
+      ],
+      "0052A033": [
+        "0052A03A"
+      ],
+      "0052A03A": [
+        "0052A03F"
+      ],
+      "0052A03F": [
+        "0052A046"
+      ],
+      "0052A046": [
+        "0052A048"
+      ],
+      "0052A048": [
+        "0052A04B"
+      ],
+      "0052A04B": [
+        "0052A04D"
+      ],
+      "0052A04D": [
+        "0052A030",
+        "0052A04F"
+      ],
+      "0052A04F": [
+        "0052A054"
+      ],
+      "0052A054": [
+        "0052A057"
+      ],
+      "0052A057": [
+        "0052A05E"
+      ],
+      "0052A05E": [
+        "0052A063"
+      ],
+      "0052A063": [
+        "0052A06A"
+      ],
+      "0052A06A": [
+        "0052A095",
+        "0052A06C"
+      ],
+      "0052A06C": [
+        "0052A073"
+      ],
+      "0052A073": [
+        "0052A078"
+      ],
+      "0052A078": [
+        "0052A080"
+      ],
+      "0052A080": [
+        "0052A083"
+      ],
+      "0052A083": [
+        "0052A08A"
+      ],
+      "0052A08A": [
+        "0052A08F"
+      ],
+      "0052A08F": [
+        "0052A093"
+      ],
+      "0052A093": [
+        "0052A080",
+        "0052A095"
+      ],
+      "0052A095": [
+        "0052A098"
+      ],
+      "0052A098": [
+        "0052A09B"
+      ],
+      "0052A09B": [
+        "0052A0A0"
+      ],
+      "0052A0A0": [
+        "0052A0A5"
+      ],
+      "0052A0A5": [
+        "0052A0AA"
+      ],
+      "0052A0AA": [
+        "0052A0AF"
+      ],
+      "0052A0AF": [
+        "0052A0B4"
+      ],
+      "0052A0B4": [
+        "0052A0B9"
+      ],
+      "0052A0B9": [
+        "0052A0BE"
+      ],
+      "0052A0BE": [
+        "0052A0C0"
+      ],
+      "0052A0C0": [
+        "0052A0D3",
+        "0052A0C2"
+      ],
+      "0052A0C2": [
+        "0052A0C6"
+      ],
+      "0052A0C6": [
+        "0052A0C9"
+      ],
+      "0052A0C9": [
+        "0052A0CD"
+      ],
+      "0052A0CD": [
+        "0052A0CE"
+      ],
+      "0052A0CE": [],
+      "0052A0D3": [
+        "0052A0D6"
+      ],
+      "0052A0D6": [
+        "0052A0DB"
+      ],
+      "0052A0DB": [
+        "0052A0DF"
+      ],
+      "0052A0DF": [
+        "0052A0E0"
+      ],
+      "0052A0E0": []
+    },
+    "external_tail_boundaries": [
+      {
+        "pc": "0052A0CE",
+        "tail_target": "002F31C0"
+      },
+      {
+        "pc": "0052A0E0",
+        "tail_target": "003A8950"
+      }
+    ],
+    "zero_dominates_compare_and_store": true,
+    "local_r13_writes_zero_to_compare": [],
+    "zero_to_compare_call_dependencies": [
+      "0052A03A:00533B20",
+      "0052A05E:00533B20"
+    ]
+  },
+  "selected_original": [
+    {
+      "pc": "00529FEC",
+      "bytes": "4533ed",
+      "instruction": "xor r13d, r13d"
+    },
+    {
+      "pc": "0052A063",
+      "bytes": "4439abd4030000",
+      "instruction": "cmp dword ptr [rbx + 0x3d4], r13d"
+    },
+    {
+      "pc": "0052A06A",
+      "bytes": "7429",
+      "instruction": "je 0x52a095"
+    },
+    {
+      "pc": "0052A06C",
+      "bytes": "4489abd4030000",
+      "instruction": "mov dword ptr [rbx + 0x3d4], r13d"
+    },
+    {
+      "pc": "0052A073",
+      "bytes": "be20000000",
+      "instruction": "mov esi, 0x20"
+    },
+    {
+      "pc": "0052A08A",
+      "bytes": "e8919a0000",
+      "instruction": "call 0x533b20"
+    },
+    {
+      "pc": "0052A08F",
+      "bytes": "4883ee01",
+      "instruction": "sub rsi, 1"
+    },
+    {
+      "pc": "0052A093",
+      "bytes": "75eb",
+      "instruction": "jne 0x52a080"
+    }
+  ],
+  "private_controls_not_shipping_execution": {
+    "branch_bypass": {
+      "pc": "00529E48",
+      "before": "0f8480000000",
+      "after": "0f8415020000",
+      "image_sha256": "2689aa54bceab4d3438fddb8acb98d367a783a3a2a62aebf16a8e2d2db9d8f96",
+      "bypass_path": [
+        "00529D50",
+        "00529D53",
+        "00529D54",
+        "00529D58",
+        "00529D5C",
+        "00529D5F",
+        "00529D63",
+        "00529D67",
+        "00529D6B",
+        "00529D6F",
+        "00529D73",
+        "00529D77",
+        "00529D7B",
+        "00529D82",
+        "00529D86",
+        "00529D8B",
+        "00529D8E",
+        "00529D96",
+        "00529D9A",
+        "00529E20",
+        "00529E24",
+        "00529E2B",
+        "00529E30",
+        "00529E35",
+        "00529E38",
+        "00529E3C",
+        "00529E44",
+        "00529E48",
+        "0052A063"
+      ],
+      "zero_premise_rejected": true
+    },
+    "wrong_register": {
+      "pc": "00529FEC",
+      "before": "4533ed",
+      "after": "4533e4",
+      "image_sha256": "72d4dbb779f308fb352b8fbfea68f083849dab9d08e491acbc4b7fbc5276d7a2",
+      "zero_premise_rejected": true
+    },
+    "roles": [
+      {
+        "bytes": "0f1101",
+        "instruction": "movups xmmword ptr [rcx], xmm0",
+        "expected": "w",
+        "observed": [
+          "w"
+        ]
+      },
+      {
+        "bytes": "488d4108",
+        "instruction": "lea rax, [rcx + 8]",
+        "expected": "addr",
+        "observed": [
+          "addr"
+        ]
+      },
+      {
+        "bytes": "f00fc101",
+        "instruction": "lock xadd dword ptr [rcx], eax",
+        "expected": "rw",
+        "observed": [
+          "rw"
+        ]
+      }
+    ]
+  },
+  "interpretation": "Under normal entry/returns and callee R13 preservation, the local comparison uses zero and its unequal arm writes zero before the fixed-count extra transform loop.",
+  "limits": [
+    "The graph overapproximates direct branches; no concrete branch feasibility or execution measured.",
+    "Calls supply only assumed normal-return edges, not proofs of native effects or ABI preservation.",
+    "Valid node layout/receiver continuity, callee preservation, memory aliasing, scheduling and later field persistence remain conditions.",
+    "Captured catalogue body is not inferred as a universal function extent from metadata.",
+    "No live instance, visual result, class preservation or full L1/L2 completion established.",
+    "Independent acceptance and authorized canonical incorporation remain pending."
+  ],
+  "cleanup": {
+    "reference_unchanged": true,
+    "live_or_save_config_controls": false
+  }
+}

@@ -1,0 +1,5 @@
+SURVIVES  W0  2302 B
+SURVIVES  W1  109 in .data; next 000000B4FFFFFFFF
+SURVIVES  W2  25 [[5, 6, 22, 33, 34, 35, 42], [29, 66, 96, 97, 98, 99, 125, 165, 171, 176, 182]]; 26 [[5, 6, 22, 33, 34, 36, 43], [29, 65, 96, 97, 98, 99, 125, 165, 171, 176, 182]]; 3 slots differ; 2 committed [20, 30, 32, 40, 181]; 6 committed [3, 4, 61, 90, 91, 112, 180]
+SURVIVES  W3  stop test cmp dword ptr [rip + 0x2767bda], 1; mask ['movabs rcx, 0x4000140000004e'] -> ids [1, 2, 3, 6, 34, 36, 54]
+FAILS 0

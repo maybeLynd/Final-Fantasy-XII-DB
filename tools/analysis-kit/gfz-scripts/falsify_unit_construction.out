@@ -1,0 +1,11 @@
+B1   SURVIVES  extent 1808 B; ['mov eax, edx', 'sar eax, 8', 'movzx esi, al', 'movzx r12d, dl']
+B2   SURVIVES  ['mov edx, 0xffff', 'call 0x23a570']
+B3   SURVIVES  0023A5B0 `call 0x236a60`; master flag 02089300 read after it at ['0023A5B5']
+B4   SURVIVES  0023AAB1 `xor ebp, ebp`
+B5   SURVIVES  0023A633 `and qword ptr [rdi], 0xfffffffffbffffff`; 0023AC4B `and qword ptr [rdi], 0xfffffffffbffffff`; early refusals jump to ['0023A63A']
+B6   SURVIVES  00322050: push rbx ; sub rsp, 0x20 ; mov rbx, rcx ; mov dword ptr [rcx + 0xea4], 0 ; mov byte ptr [rcx + 0xea8], 0 ; mov rcx, qword ptr [rcx + 0x10] ; call 0x3220e0 ; mov dword ptr [rbx + 8], eax ; add rsp, 0x20 ; pop rbx ; ret 
+B7   SURVIVES  freshness tests `test byte [..], 5`: ['0023A791 test byte ptr [rbp], 5']
+B8   SURVIVES  install window: tables ['02EBF140', '02EBF148']; +0xE70/+0xE78/+0x22/+0x24 and `add ecx, eax` present: True
+B9   SURVIVES  00328FF0 references ['02EC1380']; 24-byte stride formed True; signed branch True: movsxd rax, ecx ; lea r9, [rax + rax*2] ; lea rax, [rip + 0x2b98382] ; test edx, edx ; jne 0x329007 ; test r8d, r8d ; jns 0x329015 ; cmp ecx, 2 ; jge 0x329015 ; mov dword ptr [rax + r9*8 + 4], edx ; mov dword ptr [rax + r9*8], r8d ; ret 
+B10  SURVIVES  002FEAB0 (10 B): xor eax, eax ; mov qword ptr [rcx + 0xeac], rax ; ret ; class 1 +0x27 -> xmm7 float, no multiply: True; class 0 +0x2B -> xmm7 x 1.5f at ['0023ABAD']: True; 0023ABD6 `movss dword ptr [rdi + 0x6c], xmm7`
+BROKEN 0: none

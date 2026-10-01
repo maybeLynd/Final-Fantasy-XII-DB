@@ -1,0 +1,6 @@
+﻿utc=2026-09-29T21:37:46.2223778Z
+netstat:   TCP    127.0.0.1:8765         0.0.0.0:0              LISTENING       68280
+PID=68280 PPID=72924 created=2026-09-29T11:38:14.2913770Z
+exe=C:\Python314\python.exe
+cmd="C:\Python314\python.exe" "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\dashboard\server.py" --root "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\dashboard" --port 8765 
+parent:   cmd=

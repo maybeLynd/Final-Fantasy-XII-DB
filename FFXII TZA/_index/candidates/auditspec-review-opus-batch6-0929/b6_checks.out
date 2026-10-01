@@ -1,0 +1,6 @@
+F: add rcx,0x580 + jmp: 19; at listed entries 18; distinct targets among listed 18
+   not a listed entry: 007DC2C5 -> 007DC2FD
+R: table 003E15C8 idx4 -> 003E15BF; other 16 distinct: True; idx4 unique: True
+R: table 003E1888 idx4 -> 003E187F; other 16 distinct: True; idx4 unique: True
+T: 01F20AA0..01F20C80 = 120 floats
+T: 01F20C80..01F20E60 = 120 floats

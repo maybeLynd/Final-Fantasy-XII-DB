@@ -1,0 +1,238 @@
+{
+  "section": "SECTION-09",
+  "date": "2026-09-23",
+  "base": "FFXII TZA(20260922-211246).zip plus Updates01-08 in order",
+  "top_level": "FFXII TZA",
+  "existing_files_replaced": 6,
+  "new_files_including_manifest": 27,
+  "files": [
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md",
+      "before_sha256": "986db19ae916801c889cbc7679a941484a9174963d3b6355bfc55b48bf7c8649",
+      "after_sha256": "214c6e33ae4dcbab7a77db68d67a912e1037f1ee75892648d094c5279c709ba0",
+      "bytes": 28279,
+      "operation": "replace"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+      "before_sha256": "b28a0f03a6d8e6fe5c1bc7b1e486f503081fe0525d178e8aa5bebf49182cd542",
+      "after_sha256": "135a8267ac7f5ffd69cc734e52257bb7370ba6c3ef60c6e9052078179dadd57c",
+      "bytes": 22426,
+      "operation": "replace"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+      "before_sha256": "b7666c74ae6cf70514f097ca9517cae89906f0eccdb077393108f7fa8319c019",
+      "after_sha256": "cdaadb752159064b0f9a51734b943086f5d18a025d6e68f1a83da704f4f759ed",
+      "bytes": 14203,
+      "operation": "replace"
+    },
+    {
+      "path": "02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md",
+      "before_sha256": null,
+      "after_sha256": "4dfad36e31a933aef0695c944256422a5f96a274f752ec37b637916d4e89ec97",
+      "bytes": 12496,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/INSTALL.md",
+      "before_sha256": null,
+      "after_sha256": "d5ce3a093c6f6693a83ffe3b1ca4c459199cecaeb4c4967d74d497cb1e167adc",
+      "bytes": 3715,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/REVIEW.md",
+      "before_sha256": null,
+      "after_sha256": "7b0b5c712aad8e740c6acbd32d771ee90231067a160ed122b3bc39547dbca03d",
+      "bytes": 12133,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/canonical_changes.diff",
+      "before_sha256": null,
+      "after_sha256": "92d53c90a7e6de2c0a4b8802e59ade9c08fdc545bedf4269f8875002164d4676",
+      "bytes": 76967,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/canonical_preimages.json",
+      "before_sha256": null,
+      "after_sha256": "16ecde61ab14af7ca2105bf0064c0041e89d6b3d3287ba07bd49110772a1f9da",
+      "bytes": 736,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/canonical_row_changes.json",
+      "before_sha256": null,
+      "after_sha256": "865e49ec39b82b74479ab5ecf33e9da07ce48f312c6c76dd858f61f644856590",
+      "bytes": 14834,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/claim_matrix.tsv",
+      "before_sha256": null,
+      "after_sha256": "c2a4e8107bed62a9cc06715d85aa51569292ca7c4720d85707a6de4b293b50f7",
+      "bytes": 2625,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/direct_call_supports.tsv",
+      "before_sha256": null,
+      "after_sha256": "95605dd729725dedf51ec1887ecd672afc3dd2eed180b968aea74211f4bbc000",
+      "bytes": 7024,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/native_controls.c",
+      "before_sha256": null,
+      "after_sha256": "34b077f69a1431f7192fc10d9bd8aebf7d2e29cc010101bcaf18d52e0565f7aa",
+      "bytes": 22615,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/original_body_manifest.json",
+      "before_sha256": null,
+      "after_sha256": "23785132366d8f1464b42ccfec0e1d9d4cbec05a04d733b212270f867a7e9de8",
+      "bytes": 60175,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/original_disassembly.txt",
+      "before_sha256": null,
+      "after_sha256": "9cb269e7008618d928cb575d5f65a05c544b56da14ac031ffe972182aa0a7304",
+      "bytes": 437060,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/body_verification.json",
+      "before_sha256": null,
+      "after_sha256": "221c43733709df2b0493997f2a22d5d58937c98af7fe9005f11eebb01ffd9a73",
+      "bytes": 39100,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/code_mutations.json",
+      "before_sha256": null,
+      "after_sha256": "2796eb975056665d4aa3243cade3a38ef3b3c42986b61138a6f664c1cb354494",
+      "bytes": 76420,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/content_validation.json",
+      "before_sha256": null,
+      "after_sha256": "2a5f07215fe43f117e7c029dd6e4da86bb5542b8a9dae0def7104d2c9b7bd80f",
+      "bytes": 16623,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/delivery_validation.json",
+      "before_sha256": null,
+      "after_sha256": "13b1a1dfd78387a7e1ea6928d9caa08eecf950f480164125e78aa7e74166a727",
+      "bytes": 624,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/native_baseline.json",
+      "before_sha256": null,
+      "after_sha256": "5c4c1e7081fb5bc0d95306ad86ace29feee2595d27f494f280288b525c57378b",
+      "bytes": 24303,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/native_repeat.json",
+      "before_sha256": null,
+      "after_sha256": "5c4c1e7081fb5bc0d95306ad86ace29feee2595d27f494f280288b525c57378b",
+      "bytes": 24303,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/overlay_checker_controls.json",
+      "before_sha256": null,
+      "after_sha256": "04e8b627d905dda25402f8be8f1502ee0722862fb2f52fde3717905f12668b66",
+      "bytes": 739,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/summary.json",
+      "before_sha256": null,
+      "after_sha256": "9400e1a04b3bc1f1d7c0524b35f967502d99cf8ac2b9e0f120f18acb248c9de5",
+      "bytes": 2366,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/results/unchanged_files.json",
+      "before_sha256": null,
+      "after_sha256": "815b74776aac67bb4e1ab042c9980e2bd1750d89359872bac3e306dcdc4bcf32",
+      "bytes": 792,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/run_review.py",
+      "before_sha256": null,
+      "after_sha256": "7d81396e218233c112987aa4fbd1f478c0747b6af1c2ad7e1054e96f96251789",
+      "bytes": 8555,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/source_inputs.json",
+      "before_sha256": null,
+      "after_sha256": "51a40bb455b8ac9ce9d37c58b51472806a919985810525b4a3be5e4cae7a564a",
+      "bytes": 2326,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/test_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "b41ae8355bd81f492d32d4898e7885e15de070d356b02837f015b4c853e19f8d",
+      "bytes": 2873,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/validate_content.py",
+      "before_sha256": null,
+      "after_sha256": "24ae42908075bed31adc94bb50dc48dcc31c216eae0ed60f4f66b3ae4d7bfe89",
+      "bytes": 6445,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/variant_plan.json",
+      "before_sha256": null,
+      "after_sha256": "f6c115e70003688c4cc475d2dd189fac1e4ac44328d9a5746ccce6ed94b9b556",
+      "bytes": 1970,
+      "operation": "add"
+    },
+    {
+      "path": "_experiments/evidence/continuation-section09-owner-producer/verify_overlay.py",
+      "before_sha256": null,
+      "after_sha256": "42789d23b645ffbd017ead229ac844afebc0437c297fa61e1be70072508af2bc",
+      "bytes": 3143,
+      "operation": "add"
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "before_sha256": "f7d0cd2bc0e4873a1a7f5958aa06c28d9a0d91c7e26793790b26e8567bbc55fb",
+      "after_sha256": "7e6a11629f16a6387aa2c8723fc2d1bb94f8c0a97030523ee18bd49ee89f4dc3",
+      "bytes": 18603,
+      "operation": "replace"
+    },
+    {
+      "path": "_types/fields.tsv",
+      "before_sha256": "13eb1806dce7d209d46b481e04b4dae1c4d622e1e3d6675369d86b1ad5177c42",
+      "after_sha256": "799e3fd16c33899c304b163c664b0dccebcf304de5c505b4e85bd4ff7b656264",
+      "bytes": 10416199,
+      "operation": "replace"
+    },
+    {
+      "path": "_types/types.tsv",
+      "before_sha256": "1b94670ecb44e6567c36ab4145abbb61c40bcda10393e1c5a892875f53fbb21a",
+      "after_sha256": "0b270d8349c1618ef3011c4e0703d641e6c99649ce82499c30a6881e2d58e4fa",
+      "bytes": 1662404,
+      "operation": "replace"
+    }
+  ],
+  "self_hash_excluded": "_experiments/evidence/continuation-section09-owner-producer/PATCH_MANIFEST.json",
+  "no_deleted_files": true,
+  "installation": "Merge rooted FFXII TZA into parent of existing folder. Newer local edits are conflicts, not permission to overwrite.",
+  "acceptance": "Local production validated; independent peer acceptance pending."
+}

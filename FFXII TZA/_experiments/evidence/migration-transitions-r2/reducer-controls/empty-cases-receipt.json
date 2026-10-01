@@ -1,0 +1,15 @@
+{
+  "name": "empty-cases",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py",
+    "--run",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\reducer-controls\\empty-cases"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 52, in <module>\n    result=reduce(a.run or w/'run-01',w/'capture.py')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\check.py\", line 23, in reduce\n    cases=r['cases'];assert len(cases)==13 and {c['name'] for c in cases}==set(expected), 'MISSING_OR_DUPLICATE_CASE'\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_OR_DUPLICATE_CASE\n",
+  "expected_refusal": "MISSING_OR_DUPLICATE_CASE",
+  "terminal": true
+}

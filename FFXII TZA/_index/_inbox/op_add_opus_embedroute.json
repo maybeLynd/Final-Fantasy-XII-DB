@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-EMBED-OWNER-HANDLER-ROUTE-CENSUS",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the EMBED route family: censusing an embedded child from its OWNER's handler rather than from a stride anchor",
+  "scope": "the six EMBED children whose owner handler is named in the store - BattleMenuChildWidget1620, BattleMenuWidget2DC0, WidgetSingleton02B47758_05F0/_02A0/_0460, PaneSlotWidget0160 - plus the refusals where the owner's receiver is not tracked",
+  "completion": "each of the six carries, on its unobserved rows, either a carve or a stated negative distinguishing a base that is FORMED AND NEVER READ from one that is never formed, with its own control cited; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

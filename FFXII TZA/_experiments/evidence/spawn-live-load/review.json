@@ -1,0 +1,650 @@
+{
+  "status": "PASS_BOUNDED_OBSERVATIONS",
+  "method": "C: ordinary launch/manual004 load with read-only process snapshots; no calls, hooks, writes or suspension",
+  "observed_states": 3,
+  "samples": [
+    {
+      "label": "fresh-title",
+      "sample": 0,
+      "start_unix": 1789291663.4396584,
+      "end_unix": 1789291663.440618,
+      "source_sha256": "2ec7c1c5eea8b9b609656cae7dfa55726bb2a8aa77756046f5023af7ccddf5fd",
+      "module_count": 102,
+      "block_sha256": "6b00942a38ae550d5a1b5d5ff2005dd0cdd0609f169a027abb0e1264e0461dcb",
+      "legacy_sha256": "de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3",
+      "pre_gambit_prefix_matches_legacy": false,
+      "stamp": "0x5071901",
+      "block_flags": "0x40",
+      "levels_first_six": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "selected_banks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank0_matches_local_old_record": 40,
+      "bank0_matches_saved_compatibility_record": 0,
+      "member0_gambit_banks": [
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000100",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000100",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000100"
+      ],
+      "field_id": 12,
+      "history_before": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "history_after": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "clock_before": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "clock_after": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "keep_banks": [
+        {
+          "bank": 1,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        },
+        {
+          "bank": 2,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "fresh-title",
+      "sample": 1,
+      "start_unix": 1789291663.6911216,
+      "end_unix": 1789291663.6919265,
+      "source_sha256": "2ec7c1c5eea8b9b609656cae7dfa55726bb2a8aa77756046f5023af7ccddf5fd",
+      "module_count": 102,
+      "block_sha256": "6b00942a38ae550d5a1b5d5ff2005dd0cdd0609f169a027abb0e1264e0461dcb",
+      "legacy_sha256": "de676bae28a480011d3d012db14bef539324e62a841a9627863c689bea168af3",
+      "pre_gambit_prefix_matches_legacy": false,
+      "stamp": "0x5071901",
+      "block_flags": "0x40",
+      "levels_first_six": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "selected_banks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank0_matches_local_old_record": 40,
+      "bank0_matches_saved_compatibility_record": 0,
+      "member0_gambit_banks": [
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000100",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000100",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000100"
+      ],
+      "field_id": 12,
+      "history_before": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "history_after": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "clock_before": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "clock_after": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "keep_banks": [
+        {
+          "bank": 1,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        },
+        {
+          "bank": 2,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "old-complete",
+      "sample": 0,
+      "start_unix": 1789291849.34597,
+      "end_unix": 1789291849.3470194,
+      "source_sha256": "a5a30262ecb1187cf40ba20b317d96aaa915b43846e09762d692002111263858",
+      "module_count": 102,
+      "block_sha256": "d48734d6bd0b3cab823f9d86e8b0b39d6d22258a0cb61c06a9078a0de2bcd6b3",
+      "legacy_sha256": "b81dba46393cc6efc86964f49e09329e6896bbf29ac2075cab98103896d02cbf",
+      "pre_gambit_prefix_matches_legacy": true,
+      "stamp": "0x5071901",
+      "block_flags": "0x17f",
+      "levels_first_six": [
+        21,
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "selected_banks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank0_matches_local_old_record": 40,
+      "bank0_matches_saved_compatibility_record": 40,
+      "member0_gambit_banks": [
+        "01609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200"
+      ],
+      "field_id": 306,
+      "history_before": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "history_after": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "clock_before": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "clock_after": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "keep_banks": [
+        {
+          "bank": 1,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        },
+        {
+          "bank": 2,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "old-complete",
+      "sample": 1,
+      "start_unix": 1789291849.5973127,
+      "end_unix": 1789291849.5980506,
+      "source_sha256": "a5a30262ecb1187cf40ba20b317d96aaa915b43846e09762d692002111263858",
+      "module_count": 102,
+      "block_sha256": "d48734d6bd0b3cab823f9d86e8b0b39d6d22258a0cb61c06a9078a0de2bcd6b3",
+      "legacy_sha256": "b81dba46393cc6efc86964f49e09329e6896bbf29ac2075cab98103896d02cbf",
+      "pre_gambit_prefix_matches_legacy": true,
+      "stamp": "0x5071901",
+      "block_flags": "0x17f",
+      "levels_first_six": [
+        21,
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "selected_banks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank0_matches_local_old_record": 40,
+      "bank0_matches_saved_compatibility_record": 40,
+      "member0_gambit_banks": [
+        "01609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200"
+      ],
+      "field_id": 306,
+      "history_before": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "history_after": {
+        "window_seconds": 300,
+        "last_field": 65535,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "clock_before": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "clock_after": {
+        "parity": 0,
+        "raw_tick": 0
+      },
+      "keep_banks": [
+        {
+          "bank": 1,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        },
+        {
+          "bank": 2,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "old-field",
+      "sample": 0,
+      "start_unix": 1789291895.759635,
+      "end_unix": 1789291895.7612133,
+      "source_sha256": "a5f92828a7d7196ac94c9014924fba77aea5ad22addd96e86b020a5e042e60d8",
+      "module_count": 102,
+      "block_sha256": "d48734d6bd0b3cab823f9d86e8b0b39d6d22258a0cb61c06a9078a0de2bcd6b3",
+      "legacy_sha256": "b81dba46393cc6efc86964f49e09329e6896bbf29ac2075cab98103896d02cbf",
+      "pre_gambit_prefix_matches_legacy": true,
+      "stamp": "0x5071901",
+      "block_flags": "0x17f",
+      "levels_first_six": [
+        21,
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "selected_banks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank0_matches_local_old_record": 40,
+      "bank0_matches_saved_compatibility_record": 40,
+      "member0_gambit_banks": [
+        "01609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200"
+      ],
+      "field_id": 306,
+      "history_before": {
+        "window_seconds": 300,
+        "last_field": 306,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "history_after": {
+        "window_seconds": 300,
+        "last_field": 306,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "clock_before": {
+        "parity": 1,
+        "raw_tick": 1414
+      },
+      "clock_after": {
+        "parity": 1,
+        "raw_tick": 1414
+      },
+      "keep_banks": [
+        {
+          "bank": 1,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        },
+        {
+          "bank": 2,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        }
+      ]
+    },
+    {
+      "label": "old-field",
+      "sample": 1,
+      "start_unix": 1789291896.0113142,
+      "end_unix": 1789291896.0122619,
+      "source_sha256": "a5f92828a7d7196ac94c9014924fba77aea5ad22addd96e86b020a5e042e60d8",
+      "module_count": 102,
+      "block_sha256": "d48734d6bd0b3cab823f9d86e8b0b39d6d22258a0cb61c06a9078a0de2bcd6b3",
+      "legacy_sha256": "b81dba46393cc6efc86964f49e09329e6896bbf29ac2075cab98103896d02cbf",
+      "pre_gambit_prefix_matches_legacy": true,
+      "stamp": "0x5071901",
+      "block_flags": "0x17f",
+      "levels_first_six": [
+        21,
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "selected_banks": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank0_matches_local_old_record": 40,
+      "bank0_matches_saved_compatibility_record": 40,
+      "member0_gambit_banks": [
+        "01609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200",
+        "00609600ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000200"
+      ],
+      "field_id": 306,
+      "history_before": {
+        "window_seconds": 300,
+        "last_field": 306,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "history_after": {
+        "window_seconds": 300,
+        "last_field": 306,
+        "previous_field": 65535,
+        "transition_stamp": 0
+      },
+      "clock_before": {
+        "parity": 1,
+        "raw_tick": 1429
+      },
+      "clock_after": {
+        "parity": 1,
+        "raw_tick": 1429
+      },
+      "keep_banks": [
+        {
+          "bank": 1,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        },
+        {
+          "bank": 2,
+          "sha256": "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+          "nonzero_bytes": 0
+        }
+      ]
+    }
+  ],
+  "complete_full_span_reads": 84,
+  "block_changes_title_to_complete": {
+    "bytes": 1545,
+    "first": "0x4",
+    "last": "0x5eb6"
+  },
+  "old_input": {
+    "name": "FFXII_004",
+    "bytes": 7066,
+    "sha256": "8fb99c6dc9956048af2f37b8ace57dd9e5b680967905ba5d72fdfa499acb63bc",
+    "header": "5341464890e604001a000000",
+    "declared_size": 321168,
+    "EXP015_identical": true
+  },
+  "invalid_attempt_preserved": true,
+  "cleanup_verified": true,
+  "limits": [
+    "Three observed states, not a completed current-versus-old or same-session comparison.",
+    "Sequential reads are not atomic. Matching binding/duplicate reads do not establish intermediate writers or native call order.",
+    "Both keep banks were entirely zero in all six samples, so bank preservation, copying, swapping and wiping cannot be distinguished here.",
+    "Selected sets were already0 at title. Their zero after load cannot independently prove a selector-reset write. Exact bank0/compatibility equality and differing content support the source-derived import interpretation.",
+    "The menu metadata showed gil9999999 and six level21 portraits; loaded block independently establishes six level21 records. Live inventory/gambit menu presentation was not inspected.",
+    "No claim that every keyboard method fails: Down,k,R produced no observed game response; mouse wheel/confirm and OS exit did. Existing input delivery receipts require review before expanding this method.",
+    "Native233C10/235AF0/2EF4A0 execution is inferred by composition, not directly traced. No player-visible enemy respawn consequence observed."
+  ]
+}

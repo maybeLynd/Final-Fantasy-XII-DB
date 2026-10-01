@@ -1,0 +1,27 @@
+PASS  C1 rip form re-finds the base lea at 001CC648
+PASS  C2 image-base-relative form re-finds 001CD1CB disp 0xAFCEC
+001CC600  001CC648  rip  lea  lea   rcx, [rip + 0x1db6c61]                       -> 01F832B0
+001CC800  001CC82D  rip  lea  lea   rdx, [rip + 0x1db6a7c]                       -> 01F832B0
+001CC920  001CC934  rip  lea  lea   rdx, [rip + 0x1db6975]                       -> 01F832B0
+001CD0E0  001CD26E  ibr  r    mov   ebx, dword ptr [rsi + rax*4 + 0x1e632b0]     -> 01F832B0
+001CD0E0  001CD375  ibr  r    mov   eax, dword ptr [rsi + r8*4 + 0x1e632b0]      -> 01F832B0
+001CD0E0  001CD3AC  ibr  r    mov   ebx, dword ptr [rsi + r8*4 + 0x1e632b0]      -> 01F832B0
+001CD0E0  001CD865  ibr  r    mov   edi, dword ptr [rsi + rax*4 + 0x1e632b0]     -> 01F832B0
+001D0190  001D01EE  ibr  r    cmp   dword ptr [rdx + rax*4 + 0x1e632b0], 0       -> 01F832B0
+001EC500  001EC50C  rip  lea  lea   rcx, [rip + 0x1d96d9d]                       -> 01F832B0
+001EC560  001EC574  rip  lea  lea   rcx, [rip + 0x1d96d35]                       -> 01F832B0
+001EC600  001EC60C  rip  lea  lea   rcx, [rip + 0x1d96c9d]                       -> 01F832B0
+001EC760  001EC7A4  rip  lea  lea   rcx, [rip + 0x1d96b05]                       -> 01F832B0
+001ED020  001ED057  rip  lea  lea   rcx, [rip + 0x1d96252]                       -> 01F832B0
+001ED130  001ED148  rip  lea  lea   rcx, [rip + 0x1d96161]                       -> 01F832B0
+001ED1E0  001ED20A  rip  lea  lea   rcx, [rip + 0x1d9609f]                       -> 01F832B0
+001ED240  001ED2A6  rip  lea  lea   rax, [rip + 0x1d96003]                       -> 01F832B0
+001EDAD0  001EDB15  rip  lea  lea   rcx, [rip + 0x1d95794]                       -> 01F832B0
+0020A760  0020A7D9  rip  lea  lea   rax, [rip + 0x1d78ad0]                       -> 01F832B0
+0020AC30  0020ACD8  ibr  r    cmp   dword ptr [r15 + rsi*4 + 0x1e632b0], 0       -> 01F832B0
+0020AE70  0020AE84  rip  lea  lea   rsi, [rip + 0x1d78425]                       -> 01F832B0
+0020AF10  0020AFB4  ibr  rw   inc   dword ptr [rbp + rax*4 + 0x1e632b0]          -> 01F832B0
+ASKED 001D0190  direct accesses: 1
+ASKED 001D0390  direct accesses: 0
+ASKED 001D5260  direct accesses: 0
+ASKED 001D5520  direct accesses: 0

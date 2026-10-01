@@ -1,0 +1,3 @@
+PASS O1+O2  first output: [('x4', 'p1'), ('x7', 'p0'), ('x5', 'p2'), ('x6', 'p3')], stored at 0x39785e
+PASS C  control: with the two late adds swapped the chain reads [('x4', 'p1'), ('x7', 'p0'), ('x6', 'p3'), 'x5']
+FAILS 0

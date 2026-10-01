@@ -1,0 +1,8 @@
+# NativeLeaf.RefFlag72StrideAccessor - EC-7 family C
+# if [this+0x20]&~bit31 > 1 index the heap array at [this+0x28] else the
+# # inline buffer this+0x28; return &elem[arg2] at 72-byte stride +4.
+address	targets
+00623DB0	
+00623E30	
+00670D80	
+00670DC0	

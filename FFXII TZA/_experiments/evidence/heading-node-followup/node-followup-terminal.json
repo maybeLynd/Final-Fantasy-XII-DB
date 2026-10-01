@@ -1,0 +1,28 @@
+[
+  {
+    "case": "type-67-reader",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\node-67-reader-source.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"ONE_LEVEL_67_READER_FEASIBILITY\",\n  \"hits\": [\n    [\n      \"0x2f2530\",\n      0\n    ],\n    [\n      \"0x4607c0\",\n      2\n    ]\n  ],\n  \"calls\": [\n    [\n      \"0x2f2530\",\n      23\n    ],\n    [\n      \"0x4607c0\",\n      16\n    ]\n  ]\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "driver_sha256": "b7996575af4433c12ef7054faf70a399a826047a6d848b2390b54ca949ba827c"
+  },
+  {
+    "case": "type-72-gated-callee",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\oscillator-gate-source.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"SOURCE_ONLY_NESTED_GATE_OPEN\",\n  \"calls\": [\n    {\n      \"pc\": \"0x52bc13\",\n      \"target\": \"0x861eba\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bc1f\",\n      \"target\": \"0x54a9c0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bd83\",\n      \"target\": \"0x430b90\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bdaa\",\n      \"target\": \"0x398480\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52be33\",\n      \"target\": \"0x39af70\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52be3e\",\n      \"target\": \"0x398f90\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52be58\",\n      \"target\": \"0x397ed0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52be86\",\n      \"target\": \"0x3970f0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52be8d\",\n      \"target\": \"0x39ade0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52beb4\",\n      \"target\": \"0x54b0e0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bec3\",\n      \"target\": \"0x4309c0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bed8\",\n      \"target\": \"0x4309c0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52beed\",\n      \"target\": \"0x4309c0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bf02\",\n      \"target\": \"0x4309c0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bf17\",\n      \"target\": \"0x4309c0\",\n      \"direct\": true\n    },\n    {\n      \"pc\": \"0x52bf43\",\n      \"target\": \"0x54b1f0\",\n      \"direct\": true\n    }\n  ],\n  \"transfers\": 7,\n  \"instruction_count\": 176,\n  \"code_sha256\": \"8be01e3d755688e289572bdc87c44ebad8acd282e5aa079ee8be8142a227b992\"\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "driver_sha256": "ef3e233ef8766fa4dd31db699f0fb38d19992b788ab2e919a7c1fe172dbe91cc"
+  }
+]

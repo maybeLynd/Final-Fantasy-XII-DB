@@ -1,0 +1,5 @@
+PASS  L1 writers of bit 7: 003E29F0 kind 4 (op 0x12) and 0041DD40
+PASS  L2 bit-7 tests covering +0x1C: ['002698AC'] (an actor record)
+PASS  L3 byte loads of +0x1C followed by a bit-7 operation: []
+PASS  L4 post-resolve byte +0x1C accesses: ['003E2A4E and byte ptr [rax + 0x1c], 0x7f', '003E2C99 test byte ptr [rax + 0x1c], 1', '003E3A9C and byte ptr [rax + 0x1c], 0xfe', '0041DECF or byte ptr [rax + 0x1c], 0x80', '0051E65B and byte ptr [rax + 0x1c], 0xfb', '0051E6B4 or byte ptr [rax + 0x1c], 4', '0051EA04 and byte ptr [rax + 0x1c], 0xfd', '0051EA54 or byte ptr [rax + 0x1c], 2']; bit-7 reads among them: 0
+FAILS 0

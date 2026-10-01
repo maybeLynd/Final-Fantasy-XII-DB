@@ -1,0 +1,6 @@
+{
+  "correction": "Archive was invoked after capture.py had been edited. The file named capture.py in this initial-parser-failure directory is therefore a post-repair copy, not the original failed source. Keep it and this additive correction; do not present its hash as the failed invocation's original source identity.",
+  "retained_originals": "Initial raw producer stdout/stderr, invocation.json, producer.py snapshot and before/after private fixture files were retained. The old failing literal assertion and traceback line53 are in tool history/failure.json, but no pre-edit failed-driver hash was captured. Initial normalization remains INVALID, not a passed run.",
+  "procedure_fix": "archive-parser-failure.py now refuses unless the original failing literal is still present, enforcing archive-before-edit for this exact helper. Do not rerun it or overwrite this historical directory. Corrected complete capture has its own recorded driver identity and three invocation receipts.",
+  "control_order_limit": "Corrected token parser regressed against initial raw outputs and validated new raw outputs before accepting the result, after the three inexpensive host invocations. No pre-invocation parser-control claim or extra FF12/native experiment is made."
+}

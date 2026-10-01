@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-CONSUMER-CENSUS-SEED-DEFECT",
+ "agent": "OPUS",
+ "note": "Committed df462199c. All three tools now re-arm the seed AFTER the clobber chain, never before it. Re-run totals: 37 never-censused PTR types 3 -> 24 carved displacements; 11 types censused under the defect yield 21 more, 17 of them on WidgetSingleton02B457E0; MessageWindowRecord 15 disps/2 bodies -> 18/7; ManagerSingleton0209BE80 7 -> 57; C2 now refuses 7 types it had passed silently. 87 evidence cells amended with the corrected count and the statement that the old figures are floors and the old zeros are not measurements - amended, not deleted, because the rows those runs carved are real accesses. types_index --validate: 587 types / 7,042 fields / 0 errors / 0 gaps. NOT CLAIMED: exhaustiveness - block 154's measurement against a known-better carve still stands, so this census remains sound for presence only. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

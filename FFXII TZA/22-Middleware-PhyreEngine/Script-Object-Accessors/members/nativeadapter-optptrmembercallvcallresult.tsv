@@ -1,0 +1,8 @@
+# NativeAdapter.OptPtrMemberCallVcallResult - EC-7 family C
+# call member ops on arg1; if non-null vcall [this+8] on the second
+# # result; then shared 0080F420 + 00810580; return 1.
+address	targets
+005C21B0	005BADB0,005BDDC0,0080F420,00810580
+005C2230	005BCD20,005BDDC0,0080F420,00810580
+0063A440	00637170,00683B50,0080F420,00810580
+006AC620	006AAE00,006AC1D0,0080F420,00810580

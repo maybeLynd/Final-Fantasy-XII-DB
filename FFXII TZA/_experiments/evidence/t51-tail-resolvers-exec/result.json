@@ -1,0 +1,38 @@
+{
+ "cases": {
+  "t51-mode0-lazy": "ok",
+  "t51-mode0-cached": "ok",
+  "t51-mode1": "ok",
+  "t51-mode1-idx2": "ok",
+  "t51-mode2": "ok",
+  "t51-mode3": "ok",
+  "t51-nulltab-i0": "ok",
+  "t51-nulltab-i1": "ok",
+  "t51-idx2": "ok",
+  "t51-idx-wrap": "ok",
+  "t51-hres-low": "ok",
+  "t51-neg-add": "ok",
+  "t51-elem-ptr": "ok",
+  "t51t-thunk": "ok",
+  "e20-basic": "ok",
+  "e20-big": "ok"
+ },
+ "mutants": {
+  "m-t51-shl": "killed",
+  "m-t51-mode": "killed",
+  "m-t51-elem": "killed",
+  "m-t51-st48": "killed",
+  "m-t51-elem0": "killed",
+  "m-t51-st48b": "killed",
+  "m-t51-table": "killed",
+  "m-t51-m0tab": "killed",
+  "m-t51-flag": "killed",
+  "m-t51-hdl": "killed",
+  "m-t51-add": "killed",
+  "m-t51-wb": "killed",
+  "m-t51-ret": "killed",
+  "m-t51t-jmp": "killed",
+  "m-e20-disp": "killed"
+ },
+ "bad_sites": []
+}

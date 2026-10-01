@@ -1,0 +1,9 @@
+{
+  "exit": 1,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-result-01.json"
+  ],
+  "checker_sha256": "96b7547e70a09930e2779a9fa0ac2f6c8a40c469030e80aefe4d1ee2e1dbcefc"
+}

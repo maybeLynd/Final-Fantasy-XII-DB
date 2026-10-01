@@ -1,0 +1,6 @@
+PASS  M1 five sites; 002B3280 forwards to 002B32D0
+PASS  M2 00227EE0: a one-line message, measured and centred on screen
+PASS  M3 00241D40: the confirm caption, measured, width clamped to a minimum
+PASS  M4 0057C140: one confirm-dialog choice line, measured to widen the list
+PASS  M5 0057C480: the confirm caption re-measured on two paths
+FAILS 0

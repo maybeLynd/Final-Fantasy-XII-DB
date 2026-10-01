@@ -1,0 +1,30 @@
+census entries 35064 A now 9302 UC-1 frontier bodies 795
+removed rows by reason: {'A-measured': 132, 'not a census entry (UC-1 series break: adjudicated false entry, removed from the population)': 1, 'exclusive-closure cascade of the A departures (select_phyre_module.py re-run; control: with the departing A entries held non-A the re-run reproduces the previous file)': 23}
+  A-measured                               n=132  A-now 132  in census 132  UC-1 frontier 0
+  not a census entry (UC-1 series break: a n=  1  A-now   0  in census   0  UC-1 frontier 0
+     007EE7F0 A=False census=False uc1=False
+  exclusive-closure cascade of the A depar n= 23  A-now   0  in census  23  UC-1 frontier 0
+     0018AA10 A=False census=True uc1=False
+     0018AA30 A=False census=True uc1=False
+     001EE650 A=False census=True uc1=False
+     0020ED30 A=False census=True uc1=False
+     0020F2A0 A=False census=True uc1=False
+     0020FBA0 A=False census=True uc1=False
+     0020FCA0 A=False census=True uc1=False
+     0020FF10 A=False census=True uc1=False
+     0022C8D0 A=False census=True uc1=False
+     0063D930 A=False census=True uc1=False
+     005EFE60 A=False census=True uc1=False
+     0060F350 A=False census=True uc1=False
+     006B6E50 A=False census=True uc1=False
+     006B70C0 A=False census=True uc1=False
+     006B73E0 A=False census=True uc1=False
+     006B75E0 A=False census=True uc1=False
+     006B7A00 A=False census=True uc1=False
+     006B7E00 A=False census=True uc1=False
+     006B7F00 A=False census=True uc1=False
+     006B8100 A=False census=True uc1=False
+     006B83C0 A=False census=True uc1=False
+     006B8930 A=False census=True uc1=False
+     005FFE40 A=False census=True uc1=False
+SEAD old 1170 new 1136; old-new 34; new-old 0; removed-list 34; old-new == removed-list: True

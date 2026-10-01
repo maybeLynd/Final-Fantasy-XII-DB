@@ -1,0 +1,138 @@
+
+=== phyre-panimation.tsv: 119 -> 238, admitted 119, sample 5
+admitted by census-tag domain: {'NativeRoutine': 50, 'Phyre': 45, 'NativeInline': 13, 'NativeDispatch': 5, 'CxxStandardLibrary': 3, 'Runtime': 2, 'NativeAdapter': 1}
+-- 005AF0A0  470 B  tag=Phyre.Reflection.GeneratedMetadataRoutine  rtti=[]
+     caller 005C5C80 [other] Presentation.Rendering.ShaderMaterial rtti=['Phyre::PAnimation::PUtilityAnimation']
+     callees: 005B5130:Phyre 00630180:Phyre 006301F0:Phyre 00632960:Phyre 00632A10:Phyre 006388C0:Phyre 00639450:Phyre 00808B90:Microsoft
+     strings: ['m_times', 'm_valueKeys', 'm_keyCount']
+-- 005B2860  289 B  tag=Phyre.ScriptVM.ReflectionBridge  rtti=[]
+     caller 005C5C80 [other] Presentation.Rendering.ShaderMaterial rtti=['Phyre::PAnimation::PUtilityAnimation']
+     callees: 005A0470:NativeInline 00632FB0:Phyre 006388C0:Phyre 00639450:Phyre 00808B90:Microsoft 0080929C:Microsoft 008092FC:Microsoft
+     strings: ['GetGlobalTime']
+-- 005BEF70  103 B  tag=NativeRoutine.AcyclicDirectCall.Bounded.Conditional  rtti=[]
+     caller 005C5C80 [other] Presentation.Rendering.ShaderMaterial rtti=['Phyre::PAnimation::PUtilityAnimation']
+     callees: 00584740:ContextAuditV102;ContextAuditV109;Runtime 0067FFB0:ContextAuditV109;NativeInline
+     strings: ['ANIThreadPoolJobs']
+-- 005C5A20  32 B  tag=Phyre.Animation.ReflectedMethod  rtti=[]
+     callees: 
+-- 005C6C60  90 B  tag=NativeRoutine.BoundedDirectCall.Pair.AcyclicConditional  rtti=[]
+     callees: 005C3480:Runtime 005C6CC0:NativeRoutine
+
+=== phyre-pdynamicgeometry.tsv: 39 -> 42, admitted 3, sample 3
+admitted by census-tag domain: {'NativeInline': 2, 'NativeRoutine': 1}
+-- 006D2D20  119 B  tag=NativeRoutine.BoundedLoop.DirectCallOnly  rtti=[]
+     caller 006D0290 [member] NativeRoutine.AcyclicDirectCall.ExtendedBounded rtti=[]
+     caller 006D0340 [member] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     caller 006D4DD0 [other] Runtime.Container.OwnedBufferTeardownResetReturnTrue rtti=['Phyre::PClassDescriptorAbstract<class Phyre::PArray<class Phyre::PDynamicGeometry::PModifierAndInputs,8> >']
+     caller 006D5460 [member] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     caller 006D5670 [other] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     callees: 00584730:ContextAuditV102;ContextAuditV109;Boundary
+-- 006D5A60  132 B  tag=NativeInline.NoCall.BitfieldStateAlgorithm  rtti=[]
+     callees: 
+-- 006D5AF0  103 B  tag=NativeInline.NoCall.BitfieldStateAlgorithm  rtti=[]
+     callees: 
+
+=== phyre-plod.tsv: 28 -> 30, admitted 2, sample 2
+admitted by census-tag domain: {'NativeRoutine': 2}
+-- 006C5320  126 B  tag=NativeRoutine.AcyclicDirectCall.ExtendedBounded  rtti=[]
+     caller 006C48B0 [other] NativeAdapter.ForwardSecondArgumentCallReturnTrue rtti=['Phyre::PClassDescriptorAbstract<class Phyre::PLOD::PLODLevel>']
+     caller 006C5200 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     caller 006C7C60 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     callees: 00584730:ContextAuditV102;ContextAuditV109;Boundary
+-- 006C7C60  160 B  tag=NativeRoutine.BoundedLoop.DirectCallOnly  rtti=[]
+     caller 006C53A0 [member] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     caller 006C7AF0 [other] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=['Phyre::PClassDataMemberPhyreArray<class Phyre::PLOD::PLODLevel>']
+     caller 006C7E80 [other] NativeAdapter.BoundedDirectCall.Single.AcyclicConditional rtti=[]
+     caller 006C7F20 [other] NativeAdapter.BoundedDirectCall.Single.AcyclicConditional rtti=['Phyre::PClassDataMemberPhyreArray<class Phyre::PLOD::PLODLevel>']
+     callees: 00584730:ContextAuditV102;ContextAuditV109;Boundary 006C5320:NativeRoutine
+
+=== phyre-pphysics.tsv: 95 -> 134, admitted 39, sample 5
+admitted by census-tag domain: {'Phyre': 21, 'NativeRoutine': 13, 'NativeAdapter': 2, 'NativeDispatch': 2, 'NativeInline': 1}
+-- 0069F690  220 B  tag=Phyre.Physics.NativeQualified  rtti=[]
+     callees: 0069F150:Phyre
+-- 006A29C0  132 B  tag=NativeDispatch.BoundedComputedCall.Acyclic.Branching  rtti=[]
+     callees: 0083A030:NativeInline
+-- 006A3770  236 B  tag=NativeRoutine.AcyclicDirectCall.Bounded.Conditional  rtti=[]
+     callees: 006372A0:NativeLeaf
+-- 006A5BE0  28 B  tag=Phyre.Physics.ReflectedMethod  rtti=[]
+     callees: 006A5C00:Phyre
+-- 006A5C00  1395 B  tag=Phyre.Middleware.NativeImplementation  rtti=[]
+     caller 006A5BE0 [member] Phyre.Physics.ReflectedMethod rtti=[]
+     callees: 006A1A70:Phyre 00861F14:ContextAuditV102;Thunk 00861F6E:Thunk
+
+=== phyre-ppostprocessing.tsv: 134 -> 161, admitted 27, sample 5
+admitted by census-tag domain: {'Phyre': 13, 'NativeRoutine': 13, 'NativeDispatch': 1}
+-- 005FFE40  186 B  tag=NativeDispatch.BoundedComputedCall.Acyclic.Branching  rtti=[]
+     caller 0065A960 [other] Phyre.Rendering.NativeQualified rtti=[]
+     callees: 00600B30:NativeInline
+-- 006007B0  678 B  tag=Phyre.Middleware.NativeImplementation  rtti=[]
+     caller 006508C0 [member] Phyre.Middleware.NativeImplementation rtti=[]
+     caller 006515C0 [member] Phyre.Middleware.NativeImplementation rtti=[]
+     caller 006525F0 [member] Phyre.Middleware.NativeImplementation rtti=[]
+     caller 00653CE0 [member] NativeRoutine.AcyclicDirectCall.ExtendedBounded rtti=[]
+     caller 00657A20 [member] NativeRoutine.AcyclicDirectCall.ExtendedBounded rtti=[]
+     caller 00657BC0 [member] NativeRoutine.AcyclicDirectCall.ExtendedBounded rtti=[]
+     (+5 callers)
+     callees: 005F08E0:Phyre 00606C60:NativeInline 0060F830:Phyre
+-- 0060F830  468 B  tag=Phyre.Middleware.NativeImplementation  rtti=[]
+     caller 006007B0 [member] Phyre.Middleware.NativeImplementation rtti=[]
+     callees: 005FD5F0:NativeInline 00600B30:NativeInline 00602A40:Phyre 00604750:Phyre
+-- 00657D60  527 B  tag=NativeRoutine.AcyclicDirectCall.ExtendedBounded  rtti=[]
+     caller 00657870 [member] NativeRoutine.BoundedLoop.Extended.DirectCallOnly rtti=[]
+     callees: 001B81B0:NativeRoutine 006007B0:Phyre 0065CC90:NativeRoutine 0065CD60:Phyre 00861EBA:ContextAuditV104;ContextAuditV105;ContextAuditV109;Thunk
+-- 0065D720  3190 B  tag=Phyre.Middleware.NativeImplementation  rtti=[]
+     caller 00659C20 [other] Phyre.Rendering.NativeQualified rtti=[]
+     callees: 0017E7E0:NativeInline 006090B0:Phyre 00652A90:Phyre
+
+=== phyre-prendering.tsv: 286 -> 310, admitted 24, sample 5
+admitted by census-tag domain: {'NativeRoutine': 11, 'Phyre': 7, 'CxxStandardLibrary': 4, 'NativeDispatch': 2}
+-- 005F0220  127 B  tag=NativeRoutine.BoundedLoop.DirectCallOnly  rtti=[]
+     caller 005DD790 [member] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     caller 005DE3D0 [member] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     caller 006003F0 [other] Runtime.Container.OwnedBufferTeardownResetReturnTrue rtti=['Phyre::PClassDescriptorAbstract<class Phyre::PArray<class Phyre::PRendering::PMaterialSwitch,8> >']
+     caller 0060C510 [member] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     caller 0060EE20 [other] NativeRoutine.AcyclicDirectCall.Bounded.Conditional rtti=[]
+     callees: 00584730:ContextAuditV102;ContextAuditV109;Boundary
+-- 00606970  11 B  tag=Phyre.Rendering.ReflectedMethod  rtti=[]
+     callees: 
+-- 00616980  448 B  tag=NativeRoutine.AcyclicDirectCall.ExtendedBounded  rtti=[]
+     caller 005D0DA0 [other] NativeAdapter.EHForwardSecondArgumentCallReturnTrue rtti=['Phyre::PClassDescriptorAbstract<class Phyre::PRendering::PShaderPass>']
+     caller 005DCF10 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     caller 005DDE70 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     caller 005F0410 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     caller 00611780 [other] NativeAdapter.ForwardSecondArgumentCallReturnTrue rtti=['Phyre::PClassDescriptorAbstract<class Phyre::PRendering::PShaderPassD3D11>']
+     callees: 00584730:ContextAuditV102;ContextAuditV109;Boundary 0062BA30:NativeDispatch
+-- 006B7E00  241 B  tag=CxxStandardLibrary.HeapAlgorithms.AdjustHeap16ByteRecords  rtti=[]
+     caller 006B8100 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     callees: 006B7F00:CxxStandardLibrary
+-- 006B8100  125 B  tag=NativeRoutine.BoundedLoop.DirectCallOnly  rtti=[]
+     caller 006B83C0 [member] NativeRoutine.BoundedLoop.DirectCallOnly rtti=[]
+     callees: 006B7E00:CxxStandardLibrary
+
+=== phyre-pscene.tsv: 2 -> 9, admitted 7, sample 5
+admitted by census-tag domain: {'Phyre': 3, 'NativeRoutine': 2, 'NativeInline': 1, 'NativeAdapter': 1}
+-- 006B3E40  242 B  tag=NativeInline.BoundedLoop.NoComputedTransfer  rtti=[]
+     caller 006B56D0 [member] NativeAdapter.BoundedDirectCall.Single.AcyclicConditional rtti=[]
+     callees: 
+-- 006B52A0  102 B  tag=Phyre.Scene.ReflectedMethod  rtti=[]
+     callees: 
+-- 006B56D0  58 B  tag=NativeAdapter.BoundedDirectCall.Single.AcyclicConditional  rtti=[]
+     callees: 006B3E40:NativeInline
+-- 006B5CB0  62 B  tag=Phyre.Scene.ReflectedMethod  rtti=[]
+     callees: 
+-- 006B6050  86 B  tag=NativeRoutine.AcyclicDirectCall.Bounded.Conditional  rtti=[]
+     callees: 001C26B0:ContextAuditV109;Runtime 00584730:ContextAuditV102;ContextAuditV109;Boundary
+
+=== phyre-pscripting.tsv: 17 -> 23, admitted 6, sample 5
+admitted by census-tag domain: {'Phyre': 2, 'NativeRoutine': 2, 'NativeAdapter': 1, 'NativeInline': 1}
+-- 00683AF0  18 B  tag=Phyre.ScriptVM.ReflectionBridge  rtti=[]
+     callees: 
+-- 006846C0  368 B  tag=NativeRoutine.BoundedLoop.Extended.DirectCallOnly  rtti=[]
+     caller 00684830 [member] NativeAdapter.BoundedDirectCall.Single.Linear rtti=[]
+     callees: 00680150:ContextAuditV109;Runtime 006856E0:NativeInline
+-- 00684830  43 B  tag=NativeAdapter.BoundedDirectCall.Single.Linear  rtti=[]
+     callees: 006846C0:NativeRoutine
+-- 00685980  94 B  tag=Phyre.Middleware.NativeImplementation  rtti=[]
+     callees: 005CCB80:ContextAuditV109;Thunk
+-- 00685C10  404 B  tag=NativeRoutine.BoundedLoop.Extended.DirectCallOnly  rtti=[]
+     callees: 00680200:ContextAuditV109;NativeLeaf

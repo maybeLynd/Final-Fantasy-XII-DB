@@ -1,0 +1,8 @@
+t1_status_writers: exit 0, identical to the committed .out (CRLF-insensitive)
+t2_pc1_override: exit 0, identical to the committed .out (CRLF-insensitive)
+retn_depths: exit 0, identical to the committed .out (CRLF-insensitive)
+kind_args: exit 0, identical to the committed .out (CRLF-insensitive)
+kind_back: exit 0, identical to the committed .out (CRLF-insensitive)
+t5_regfile_h2: exit 0, identical to the committed .out (CRLF-insensitive)
+t5_regfile_h3: exit 0, identical to the committed .out (CRLF-insensitive)
+t1_status_writers.py and t5_regfile.py fail from the published folder (../pub140-scratch/tools/rawcalls.json); run from Database/Tools/work/FABLE/takebacks/ (byte-identical copies). ov16_opcode_histogram.py not re-run (its totals are the control retn_depths.py matches).

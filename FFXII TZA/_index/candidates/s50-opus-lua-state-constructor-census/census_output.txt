@@ -1,0 +1,10 @@
+M1_no_MEMERRMSG_literal                                      PASS
+M2_no_luaL_newstate_panic_message                            PASS
+M3_tag_method_names_never_interned                           PASS
+M4_reserved_words_read_only_by_token2str                     PASS
+P1_ldo_messages_referenced                                   PASS
+P2_luaX_setinput_references_ENV                              PASS
+P3_image_base_form_detected_via_token2str                    PASS
+P4_lauxlib_linked                                            PASS
+{"M1_not_enough_memory": [], "M2_panic": [], "M3_event_table": {"at": "01CCBA90", "code_refs": [], "newindex_string_code_refs": [[]]}, "M4_tokens_table": {"at": "01CCBBE0", "code_refs": ["00824340"]}, "P1": {"C stack overflow": [["0081D900", "0081E5A0"]], "error in error handling": [["0081E760"]]}, "P2_ENV": [["0081CF80", "008242A0"]], "P4_LOADED": [["008286D0", "00828D30"]]}
+ALL PASS

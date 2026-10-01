@@ -1,0 +1,77 @@
+{
+  "status": "PASS_ACTUAL_RETAINED_PRODUCER_FAIL_CLOSED",
+  "source": {
+    "capture.py": "f0a7d9813afa96b8225fb30362e4e2a7b32a1f381566375110aa42f490412a85",
+    "check.py": "59e28f0a8b5b126abcf303ca1f642aaf81f8cf4ef3ff2d617aba2fcbf52163dd",
+    "freeze.py": "b89fdcfdac95933caf21e9881d2ac7d7a05b2b55be268b024bcb05d0d8bba9d5",
+    "raw.json": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+    "result.json": "9a037d8628147cc0196632779388f59625f4d779370787bbaa3a45ed8b96376c"
+  },
+  "driver_sha256": "d8d9dd8ea58a9f56004384c05b1d6d5c1ad7a4f63548f9429b5f85c142971ae7",
+  "arms": [
+    {
+      "name": "baseline",
+      "returncode": 0,
+      "stdout_sha256": "a5a75267584c169df2a7b014023af8ff8d7796d08b3204c9513db46864184c45",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result_present": true,
+      "raw_before_sha256": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    },
+    {
+      "name": "upstream-exit",
+      "returncode": 1,
+      "stdout_sha256": "cd54e6f7ca98b0df71d51ab98a01f29c7efea487160af4fdba1e79ecc1e5b4f4",
+      "stderr_sha256": "80be3a9be9cbfb821a362b40f508a6b9a4fa710f2b2206ec947aa083e2a8845c",
+      "result_present": false,
+      "raw_before_sha256": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    },
+    {
+      "name": "upstream-exception",
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "afde83983772929338360ad87bedf98f841ef8c4ca29354e235677ed1e47c0e3",
+      "result_present": false,
+      "raw_before_sha256": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    },
+    {
+      "name": "missing-checker",
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "054147e0f6c6744d036f32d9a7f1271c513257f3206ace4fb70fbf7755932be3",
+      "result_present": false,
+      "raw_before_sha256": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    },
+    {
+      "name": "missing-member",
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0f3910887968dba96d7030a2b19a816f33a8f76ea0b85d8f0642bb01ff0990ec",
+      "result_present": false,
+      "raw_before_sha256": "4c3dbb8020e6b1265c27bd100b4aab42129d63049bead7c15689f2d8f6a64741",
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    },
+    {
+      "name": "empty-cases",
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a1641913971cfcaabf1f6a4d7ab5cc8e9cec0baaacabf2910fcc88700ecea347",
+      "result_present": false,
+      "raw_before_sha256": "92d196e2ae42278c60839119e8534b24f89b3e10cb47ccab735ecc95c2bf38eb",
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    },
+    {
+      "name": "missing-raw",
+      "returncode": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c6cd96488a86391029b5071f25b965fe869be1494d36051d6e31f73c0263d601",
+      "result_present": false,
+      "raw_before_sha256": null,
+      "intervention": "Private checker/input withholding; actual producer bytes unchanged"
+    }
+  ],
+  "limits": "Only actual80 default retained path; not universal runner proof, no guest/native/live replay. Missing raw blocked by retained precondition, never treated as empty valid evidence. Freeze/publication separately inspect checked subprocess status; OPUS partition repair remains peer owned."
+}

@@ -1,0 +1,263 @@
+{
+  "date": "2026-08-31",
+  "verdict": "PACKAGE_READY_SELF_CONTAINED_GZF_INCLUDED",
+  "project": "For Xeavin \u2014 FFXII TZA authoritative GFZ/GZF reconstruction",
+  "semantic_branch": "761B",
+  "continuation_gzf_included": true,
+  "continuation_gzf": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf",
+  "continuation_gzf_sha256": "381d2aea82b96d7af781844e191d9b92a37e93bd2d4ff276a33ba56e7307461b",
+  "continuation_gzf_size": 82110895,
+  "ledger": {
+    "internal": 38161,
+    "explicit": 38001,
+    "unresolved": 160,
+    "coverage_pct": 99.58072,
+    "overlap": 0
+  },
+  "fresh_snapshot_sha256": "d2445517c66513976c83a446f87537a3c1d8c21f5bef033779affe98d7e61a20",
+  "embedded_authorized_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "exe_in_package": false,
+  "recovery_provenance": "Same ledger depth as historical persistence-certified GM, but not byte-identical historical GM. Eleven known sealed/verified post-GD semantics replayed; nine additional exact-GD-body mechanisms independently re-proven. See main handoff and persistence seal.",
+  "inventory": {
+    "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf": {
+      "size": 82110895,
+      "sha256": "381d2aea82b96d7af781844e191d9b92a37e93bd2d4ff276a33ba56e7307461b"
+    },
+    "GFZ_HANDOFF_BUILD_STANDARD_2026-08-30.md": {
+      "size": 5107,
+      "sha256": "5d6598da0147c96d854746a2c9882572f59ff6864f03a3b3834d7db12b0b0bb6"
+    },
+    "GFZ_V121_CONTINUATION_REQUIREMENTS_2026-08-30.md": {
+      "size": 3601,
+      "sha256": "42bae6808535d0720acaa05d0b89fa32f94ff73d80b8a91a34b9d90f8d2e7980"
+    },
+    "HISTORICAL_GM_AUTHORITY.md": {
+      "size": 929,
+      "sha256": "fae2a271b0a3e44146981ef5cc6655bd6fc6b1d98612fbda901ba0148ee22907"
+    },
+    "NEXT_CHAT_HANDOFF_2026-08-31_Gfz9_V121_GM160_RECOVERY_TRANSFER_FINAL_160.md": {
+      "size": 21487,
+      "sha256": "4b26e07fd9d652c0af1b590533020329dc6e083b0eb2099bfd828a700e923f6a"
+    },
+    "NEXT_CHAT_STARTUP_PROMPT.txt": {
+      "size": 967,
+      "sha256": "7c1358eba2e8438bfefff3f2a3586de0295c2272d2969b0e764216f4ee2302dc"
+    },
+    "V121_CORRECTED_POST_CS_GM160_RECOVERY_TRANSFER_PERSISTENCE_SEAL_2026-08-31.md": {
+      "size": 14714,
+      "sha256": "0f2fedb54dedf234f670c7e55680120dcf9ccccdd62c70dd463fe8c0c7e9aa77"
+    },
+    "V121_CURRENT_STATE_GM160_RECOVERY_TRANSFER_2026-08-31.json": {
+      "size": 2112,
+      "sha256": "9d4c0a2990d607cefd2950c2b9653215a3f130df1a99ba9d92187ce5d90c8a6f"
+    },
+    "V121_NEXT_FRONTIER_GM160_SEMANTIC_CLOSURE_2026-08-31.json": {
+      "size": 1170,
+      "sha256": "887c979491a8613920c22cf9141097cdcece668d3ea2af9e37dad6d6de38bdae"
+    },
+    "evidence/GM160_CURRENT160_ADDRS.txt": {
+      "size": 1440,
+      "sha256": "fa6f614a463bf9981f32cbd4582e31ba23b04e6b803cfbb0139b209dffda5a1a"
+    },
+    "evidence/GM160_CURRENT160_DATAREF_CONTEXTS.tsv": {
+      "size": 26618,
+      "sha256": "e073779fcfef115cf1bafd9bc98d0a8f94e9a5c53766266c7a9b9301c33a811f"
+    },
+    "evidence/GM160_CURRENT160_EXACT_BYTE_CLONES.tsv": {
+      "size": 52,
+      "sha256": "25e498c75634a3c417b87cb179c0931c002fa933f4f81c5688c088e63b551f01"
+    },
+    "evidence/GM160_CURRENT160_MECHANISM_FEATURES.tsv": {
+      "size": 95368,
+      "sha256": "a94af168295e0fdabd0b9e05e5108d5de5ca14e79dd7615b60dc524a5ca4d19f"
+    },
+    "evidence/GM160_CURRENT160_NEIGHBORHOODS.tsv": {
+      "size": 109175,
+      "sha256": "612237a4ad414563d81f8efa0b62506b73553f2bcf5af12b01f6f0eee0ce9ff6"
+    },
+    "evidence/GM160_CURRENT160_OWNER_REFS.tsv": {
+      "size": 139,
+      "sha256": "318380f55b59739d11bacfd4f85b6bd07ddc3b57bf8e2d8d3e1d77e5431a1f43"
+    },
+    "evidence/GM160_CURRENT160_QUALIFIED_SYMBOLS.tsv": {
+      "size": 35,
+      "sha256": "a3a51bd5ea3dc13c69dc0ff14951b8cad74f3515170fadb184e2fbc887f78aa4"
+    },
+    "evidence/GM160_CURRENT160_STRING_REFS.tsv": {
+      "size": 14,
+      "sha256": "30dfa6e5a4f9f49446a8985795a2efccf2ebf998bfdfa3735dfb19c716314096"
+    },
+    "evidence/GM160_CURRENT160_STRUCTURE.tsv": {
+      "size": 51788,
+      "sha256": "bbcb49aeb52176d73f8c0e8f639fbf00b48d3015ca750d980eca3b1ae0e68937"
+    },
+    "evidence/GM160_FRESH_IMPORT_LOG.txt": {
+      "size": 49917,
+      "sha256": "fc1773a3006511948f048cb7c7d7d5b0ee0e82f8d1c3de70508253d97a4b4322"
+    },
+    "evidence/GM160_FRESH_REOPEN_COVERAGE.tsv": {
+      "size": 46869,
+      "sha256": "280e92a0a49983ab4eb87652ec62bcd7d21de5f9461901bf15e63e706d19e7d8"
+    },
+    "evidence/GM160_PACK_LOG.txt": {
+      "size": 4553,
+      "sha256": "c1e545ba7b7e855a000cb6ac887c54dcabb74b2dbe08b5e14c05364b21ba3f27"
+    },
+    "evidence/GM160_POST_RECOVERY_COVERAGE.tsv": {
+      "size": 46869,
+      "sha256": "280e92a0a49983ab4eb87652ec62bcd7d21de5f9461901bf15e63e706d19e7d8"
+    },
+    "evidence/GM160_PRE_RECOVERY_COVERAGE.tsv": {
+      "size": 46183,
+      "sha256": "db5ec0083194b80b87e6f852cac9e8af42ef8f89462b42cb29a4ad7e18a8e11a"
+    },
+    "evidence/GM160_RECOVERY_TRANSFER_ENRICHED_MANIFEST.tsv": {
+      "size": 9283,
+      "sha256": "9d68a660763025ffb977bd58b358cdd3cfe3fd768577b47f0f973374f7fc6add"
+    },
+    "evidence/GM160_RECOVERY_TRANSFER_EXACT_DELTA.json": {
+      "size": 2354,
+      "sha256": "015fe38fd9ecad7e7f8078092dd7962b9975f3fae130c22800d288d159fb042b"
+    },
+    "evidence/GM160_RECOVERY_TRANSFER_RAW_MANIFEST.tsv": {
+      "size": 7632,
+      "sha256": "3dd6c111d388717dff3fc7f36756a12ec7a7e492474bca62579e0b038f5b9dfb"
+    },
+    "evidence/V121_CORRECTED_POST_CS_AUDIT_GD_RECOVERY_REPLAY_PERSISTENCE_SEAL_2026-08-31.md": {
+      "size": 4701,
+      "sha256": "1591d578243331ca2a36b2d623f434ce14f39c239b9a01ff9750da608f8794ba"
+    },
+    "evidence/V121_CORRECTED_POST_CS_AUDIT_GE_PERSISTENCE_SEAL_2026-08-31.md": {
+      "size": 5419,
+      "sha256": "d7bddd4f85e13d94914a9742510fa10a4e32ad9fe25964865a5e0ed46d0e5892"
+    },
+    "evidence/V121_CORRECTED_POST_CS_AUDIT_GF_PERSISTENCE_SEAL_2026-08-31.md": {
+      "size": 3816,
+      "sha256": "d2b03559fdbab8341c2ed0e1af7422f6a703dfa752bec8d1a9757e982cf67ea9"
+    },
+    "evidence/V121_CORRECTED_POST_CS_AUDIT_GG_PERSISTENCE_SEAL_2026-08-31.md": {
+      "size": 3664,
+      "sha256": "12b06292f5d67857838eda3784dcdbca21d8132f32c75d0ed687405edd750c93"
+    },
+    "source_context/SUPERSEDED_V121_99PCT_CS_PERSISTENCE_SEAL_2026-08-29.md": {
+      "size": 2161,
+      "sha256": "4b42df26262e2dd5b3e9449e0255f6d2f6531d43d0825b3df31cfc9a88cdf085"
+    },
+    "source_context/V120_CANONICAL_PERSISTENCE_SEAL_2026-08-28.json": {
+      "size": 4078,
+      "sha256": "6cc010bdbef2f194cf55dd172e1633b8da03a281fd836b429b5cd25c1afbe5fa"
+    },
+    "source_context/V120_CANONICAL_PERSISTENCE_SEAL_2026-08-28.md": {
+      "size": 3106,
+      "sha256": "dbef478c8feefe399f784e23df7cabc076c86a90bac8fece26b568db93f44152"
+    },
+    "source_context/XIIOnline_MASTER_MULTIPLAYER_ROADMAP_2026-08-28.md": {
+      "size": 27032,
+      "sha256": "663f7897fc1e166afed864c9fd51d230cf4a2c831e91b738fa2a023ba6dc63c3"
+    },
+    "tools/README_GFZ_TOOL_USE_2026-08-30.md": {
+      "size": 1494,
+      "sha256": "b450f021a2b738d48fb7ed8f21e0a1261011446c106ac6824c8c7da93f5f83db"
+    },
+    "tools/analysis_scripts/build_corr_semantic_components.py": {
+      "size": 3857,
+      "sha256": "1899c78396b953c231d191363cb8e7cdeb3bb95abd93e23541c1ec0a90fc6272"
+    },
+    "tools/analysis_scripts/build_cs_reproof.py": {
+      "size": 5599,
+      "sha256": "2640586aefdfacbd4e40e229fa2b9cd7d74660d00cc575886ced53e08cf4f067"
+    },
+    "tools/analysis_scripts/build_cu_manifest.py": {
+      "size": 6494,
+      "sha256": "feacd962ee42297e5aa049df236ad721f2703aeea5fa8ff382d6ddbb5e408f30"
+    },
+    "tools/analysis_scripts/diff_fas2.py": {
+      "size": 3200,
+      "sha256": "30593fa576b72e5ae5846ae306e62da0f34dffb1727eebc02357f0278d4a89d1"
+    },
+    "tools/ff12-script-master.zip": {
+      "size": 1038121,
+      "sha256": "c2428a0e1d5484e603ef4ee00447e9902625347b23cc55b3151d0a6aaef11f7c"
+    },
+    "tools/v121_ghidra_scripts/ApplyCurrentBodyCodeDomainBatch.java": {
+      "size": 3892,
+      "sha256": "ec844dbec1759f22ec06e62452ebf437feb1c637adb2067de840fc09440a9c44"
+    },
+    "tools/v121_ghidra_scripts/ApplyCurrentBodyCodeDomainBatchAllowExisting.java": {
+      "size": 3825,
+      "sha256": "976b8aa6148a45dea66f0cb3be933cf54512429892c38b25f154456cb2dff8f5"
+    },
+    "tools/v121_ghidra_scripts/DecompileAddressFileBounded.java": {
+      "size": 1733,
+      "sha256": "b4526a7627ac5fefd682bb430e493e306d491a98f3fffc10a20ff2fdeafb264e"
+    },
+    "tools/v121_ghidra_scripts/DumpFullCoverageGraph.java": {
+      "size": 2621,
+      "sha256": "7e390fec6f5fc36e93d2273afa1915151f6ca2576f44868e6da140ce595c888a"
+    },
+    "tools/v121_ghidra_scripts/DumpMsvcVtableRtti.java": {
+      "size": 1559,
+      "sha256": "98485155ac1bd52b64795c79dbcf317069f951e26ed54f1e1c59e11915e6f746"
+    },
+    "tools/v121_ghidra_scripts/DumpPointerTableResolvedTargets.java": {
+      "size": 1839,
+      "sha256": "9d6be9b5f9f491506d786ee7040038839e0c60e3bdbdfb3a0f90474b92873ccb"
+    },
+    "tools/v121_ghidra_scripts/DumpUnresolvedIncomingDataRefContexts.java": {
+      "size": 2306,
+      "sha256": "3fe6e27d5d6fc1c72581e020656fd979b1e365945e27d21541b589731b65376c"
+    },
+    "tools/v121_ghidra_scripts/DumpUnresolvedIncomingOwnerRefs.java": {
+      "size": 2378,
+      "sha256": "bbd59966cc983e8ac8580b03805b21ba713411e80740efb5ea351850bbe8d0e6"
+    },
+    "tools/v121_ghidra_scripts/DumpUnresolvedMechanismFeatures.java": {
+      "size": 3494,
+      "sha256": "ef6ebb3a0f92e8ba2326563bd64ff0d0626c7428a62688c33a23bbcf84fb5e13"
+    },
+    "tools/v121_ghidra_scripts/DumpUnresolvedNeighborhoodDomains.java": {
+      "size": 2553,
+      "sha256": "38718f71459b73f64559461dbce1fc416c00a0eb00e8fee8792706a80eba1646"
+    },
+    "tools/v121_ghidra_scripts/DumpUnresolvedStringReferences.java": {
+      "size": 1875,
+      "sha256": "3ac6fb6603aa7f2d59f92046b77f176a65041984c6a136a608540dba0698db25"
+    },
+    "tools/v121_ghidra_scripts/DumpUnresolvedStructure.java": {
+      "size": 3375,
+      "sha256": "b4072335f1ff21e42159c593224544b8b4faff7669336f784030872232f0dc53"
+    },
+    "tools/v121_ghidra_scripts/EnrichCurrentBodyManifest.java": {
+      "size": 2681,
+      "sha256": "b2edacfc6844b9113301d5dce2393931a3fe64ff089551fe71216203527f6093"
+    },
+    "tools/v121_ghidra_scripts/ExtractEmbeddedOriginal.java": {
+      "size": 1338,
+      "sha256": "63b77e7d7a8292bca0c03865a02df07c2f7f3607067c17d0652060adbbd9652b"
+    },
+    "tools/v121_ghidra_scripts/GFZFunctionAnnotationSnapshotV2.java": {
+      "size": 3519,
+      "sha256": "124e507dba26fd948bc9d03d1f1ca01012425a0fdced7bec20f0f35c149ae431"
+    },
+    "tools/v121_ghidra_scripts/PackClosedDomainFile.java": {
+      "size": 1637,
+      "sha256": "61f9e71ff91d247d424ea5d24933ece944ba679891bc44b9cae26a2d809c31fb"
+    },
+    "tools/v121_ghidra_scripts/ReportFunctionBrief.java": {
+      "size": 1223,
+      "sha256": "2cb08eac28d9a545441d4affdfd116f525e2dd996897176050ce4f42e4e30a41"
+    },
+    "tools/v121_ghidra_scripts/ReportV121Coverage.java": {
+      "size": 1670,
+      "sha256": "c725329450199d9acb63f2f5be5172f747151eb3b27519cfabca95f78a52661c"
+    },
+    "tools/v121_ghidra_scripts/ScanUnresolvedExactByteCloneDomains.java": {
+      "size": 2449,
+      "sha256": "b57083312a14f5ddb585a94c76a24a2d2b3b11513d73b44c96f3f6926b63262f"
+    },
+    "tools/v121_ghidra_scripts/ScanUnresolvedQualifiedSymbols.java": {
+      "size": 1941,
+      "sha256": "292396069c905babb036a9e525b34438a9c22b5e79056d5c5814cd37e4ffbe42"
+    }
+  }
+}

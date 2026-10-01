@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-161",
+ "note": "batch 161 (EC7-195): 22 bodies decoded+anchored across 18 bearing hosts - loader drain-then-notify 003EA3E0; authored-expression per-element normalise 0039CF10; effect transform-commit preludes 0052CF60 (1025B)/005259E0 (813B); dictionary keyed bitmask emit 003BCAF0; settings module-probe bias 001ED020 (g0111/c1006); item-table bracketed reload 003FDA20; manifest ordered-insert 006763A0; remapping three-arm slot emit 002EF100 + wstring::erase 00196B90; group-completion kind emit 003C8A50 (jump table); locale insertion sort 00273600; transform-workbench 32-slot refresh 0036E1E0; rig stat commit 003E6F90; camera view-block init 004679C0; voice request-node link 00207DE0 + case-insensitive compare 00203980 + byte-append 00204E50; heading per-component wrap 00380E00; tick queue relink 002EB690; EBP 16-lane flag commit 00330060; GI packed-colour float4 unpack 00628250. Gates: anchors 4964 0 MID; address 0 UNSUPPORTED in new content.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub161_dumps.txt",
+  "Database/Tools/work/hub161_callers.txt"
+ ]
+}

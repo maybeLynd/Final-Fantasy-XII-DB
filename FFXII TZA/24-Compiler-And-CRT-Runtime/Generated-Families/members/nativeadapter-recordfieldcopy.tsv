@@ -1,0 +1,9 @@
+# NativeAdapter.RecordFieldCopy - EC-7 family C
+# # call a member getter on arg1; copy ~0x88 bytes of fields from the
+# # result record into out arg2.
+address	targets
+0068C260	00699B30
+0068CBE0	006998F0
+0068D370	00699290
+0068DD80	00699050
+0068E940	00698E10

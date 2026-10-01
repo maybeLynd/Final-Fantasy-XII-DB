@@ -1,0 +1,27 @@
+{
+ "ok": true,
+ "constructor_returned": true,
+ "records": 129,
+ "zero_spans_checked": 8,
+ "mismatches": [],
+ "bytes_left_A5_in_slot_array": 0,
+ "writer_sites_of_zero_spans": [
+  "006458E0",
+  "006458E2",
+  "006458EA",
+  "006458F1",
+  "00645928",
+  "0064593F",
+  "00645947",
+  "00645959",
+  "0064597D",
+  "00645983",
+  "0064598E",
+  "0064599B",
+  "006459F1",
+  "00645A14",
+  "00645A1F",
+  "00645A3A"
+ ],
+ "note": "every byte of all 129 records is stored by 006458A0 (none left 0xA5); the eight zero spans hold explicit zero stores"
+}

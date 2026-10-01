@@ -1,0 +1,8 @@
+SURVIVES  L0  all fourteen sizes as cited
+SURVIVES  L1  18 forwarders to 18 distinct builders
+SURVIVES  L2  ['xor edx, edx', 'lea r8d, [rdx + 0x50]', 'jmp 0x861ec0']
+SURVIVES  L3  group tests [(4077882, 'bt eax, 0xf'), (4077916, 'bt eax, 0x11'), (4077947, 'bt eax, 0x10'), (4077978, 'bt eax, 0x12'), (4078009, 'bt eax, 0x13'), (4078030, 'bt eax, 0x14')]
+SURVIVES  L4  kinds 2 / 3 at +0x5C and +0x6C; sine table; +0x74; 01DFE0BC; +0x3C set behind the getter 001EDE70 = [01F82E38]
+SURVIVES  L5  minimum-duration variants {'003E3340': True, '003E30A0': True, '003E3140': True}
+SURVIVES  L6  tail-jumps ['002E7650', '002E7720', '002E77F0', '002E7860', '002E78D0', '002E79A0']; callers ['002E28E0', '002E3110', '002E64E0', '002EAAA0', '002EBE50']
+FAILS 0

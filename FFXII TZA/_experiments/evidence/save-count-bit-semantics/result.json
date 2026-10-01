@@ -1,0 +1,110 @@
+{
+  "method": "A original static code and conditional prefix; no native/live/emulator run",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "image_base": "0x120000",
+    "reader_path": "Database/FFXII TZA/_experiments/evidence/license-check-exec/check.py",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "source_sha256": "913ecddea7723b31dc82cece03234ece711c025e747b74cef3baa0aada584827",
+  "body_sha256": "ebabe24f505f83317a9b63e3ebc8556c5d1207cdf926f3bb1b2a1f754a7bddda",
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "capstone": "5.0.7",
+    "capstone_module_sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+  },
+  "driver_sha256": "6f85f12559d4a2c57b5fa6955f7402aba06414946d2e8681d5caa195dcff02c5",
+  "contract_sha256": "20e67c73f7d361618e20851bf3f49941c21bddf78b3fe5829e75f368c07b538d",
+  "anchors": [
+    {
+      "pc": "0x36d948",
+      "bytes": "85c9",
+      "mnemonic": "test",
+      "args": "ecx, ecx"
+    },
+    {
+      "pc": "0x36d94a",
+      "bytes": "7436",
+      "mnemonic": "je",
+      "args": "0x36d982"
+    },
+    {
+      "pc": "0x36d950",
+      "bytes": "448bd1",
+      "mnemonic": "mov",
+      "args": "r10d, ecx"
+    },
+    {
+      "pc": "0x36d97c",
+      "bytes": "4983ea01",
+      "mnemonic": "sub",
+      "args": "r10, 1"
+    },
+    {
+      "pc": "0x36d980",
+      "bytes": "75df",
+      "mnemonic": "jne",
+      "args": "0x36d961"
+    }
+  ],
+  "cases": [
+    {
+      "ecx_hex": "00000000",
+      "signed_interpretation": 0,
+      "native_zero_gate_takes_tail": true,
+      "native_enters_first_iteration": false,
+      "r10_after_mov_r10d_ecx": null,
+      "r10_after_first_sub": null,
+      "signed_for_skips": true,
+      "scope": "source-level entry/countdown prefix, no execution or whole-loop completion claim"
+    },
+    {
+      "ecx_hex": "00000001",
+      "signed_interpretation": 1,
+      "native_zero_gate_takes_tail": false,
+      "native_enters_first_iteration": true,
+      "r10_after_mov_r10d_ecx": 1,
+      "r10_after_first_sub": 0,
+      "signed_for_skips": false,
+      "scope": "source-level entry/countdown prefix, no execution or whole-loop completion claim"
+    },
+    {
+      "ecx_hex": "7FFFFFFF",
+      "signed_interpretation": 2147483647,
+      "native_zero_gate_takes_tail": false,
+      "native_enters_first_iteration": true,
+      "r10_after_mov_r10d_ecx": 2147483647,
+      "r10_after_first_sub": 2147483646,
+      "signed_for_skips": false,
+      "scope": "source-level entry/countdown prefix, no execution or whole-loop completion claim"
+    },
+    {
+      "ecx_hex": "80000000",
+      "signed_interpretation": -2147483648,
+      "native_zero_gate_takes_tail": false,
+      "native_enters_first_iteration": true,
+      "r10_after_mov_r10d_ecx": 2147483648,
+      "r10_after_first_sub": 2147483647,
+      "signed_for_skips": true,
+      "scope": "source-level entry/countdown prefix, no execution or whole-loop completion claim"
+    },
+    {
+      "ecx_hex": "FFFFFFFF",
+      "signed_interpretation": -1,
+      "native_zero_gate_takes_tail": false,
+      "native_enters_first_iteration": true,
+      "r10_after_mov_r10d_ecx": 4294967295,
+      "r10_after_first_sub": 4294967294,
+      "signed_for_skips": true,
+      "scope": "source-level entry/countdown prefix, no execution or whole-loop completion claim"
+    }
+  ],
+  "mutation": {
+    "kind": "source obligation control, not original execution",
+    "change": "74 JE -> 7E JLE at36D94A in disposable bytes only",
+    "rejected": true
+  },
+  "established": "Only raw ECX zero skips snapshots. Any sign-bit-set nonzero count enters unchecked loop and zero-extends ECX into64bit R10 before countdown, unlike signed-for pseudocode outside its valid domain.",
+  "limits": "No original C declared signedness inferred; no completion/fault behavior for billions of items claimed. Existing structural<=32 safe-count constraint unchanged. Does not prove normal callers supply invalid counts or validate generic malformed inputs.",
+  "cleanup": "Read-only shipping retained evidence; private data writes, no reference/save/config/process/input/instrument changes; PC OFF"
+}

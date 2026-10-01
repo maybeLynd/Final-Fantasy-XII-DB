@@ -1,0 +1,56 @@
+== source table (entry i: name @ 00D3EB30+16i, dwords @ 00D3EB38+16i)
+   0 EyeDirWS                             0   3
+   1 EyePosWS                             1   3
+   2 Proj                                 2  49
+   3 View                                 3  49
+   4 ViewInv                              4  49
+   5 ViewInvTranspose                     5  49
+   6 ViewProj                             6  49
+   7 NearFarPlane                         7   1
+   8 NearTimesFarPlane                    8   0
+   9 FarMinusNearPlane                    9   0
+  10 FarMinusNearInv                     10   0
+  11 AspectRatio                         11   0
+  12 ViewportWidthHeight                 12   1
+  13 ViewportWidthHeightInv              13   1
+  14 ScreenWidthHeight                   14   1
+  15 ScreenWidthHeightInv                15   1
+  16 GlobalAmbientColor                  16   2
+  17 Time                                17   0
+  18 DitherNoiseTexture                  18  52
+  19 LowResDepthTexture                  22  52
+  20 RWDeferredLightBuffer               20  52
+  21 RWCapturedTriangleBuffer            21  52
+  22 SceneWideParameterConstantBuffer    19  52
+  23 constant                            64   0
+== type code -> names:
+    0: NearTimesFarPlane, FarMinusNearPlane, FarMinusNearInv, AspectRatio, Time
+    1: NearFarPlane, ViewportWidthHeight, ViewportWidthHeightInv, ScreenWidthHeight, ScreenWidthHeightInv
+    2: GlobalAmbientColor
+    3: EyeDirWS, EyePosWS
+   49: Proj, View, ViewInv, ViewInvTranspose, ViewProj
+   52: DitherNoiseTexture, LowResDepthTexture, RWDeferredLightBuffer, RWCapturedTriangleBuffer, SceneWideParameterConstantBuffer
+== 006372B0 (fifth argument source)
+  006372B0 sub rsp, 0x28
+  006372B4 mov rax, qword ptr gs:[0x58]
+  006372BD mov ecx, dword ptr [rip + 0x2877a79]
+  006372C3 mov edx, 4
+  006372C8 mov rcx, qword ptr [rax + rcx*8]
+  006372CC mov eax, dword ptr [rdx + rcx]
+  006372CF cmp dword ptr [rip + 0x26c212f], eax
+  006372D5 jg 0x6372e3
+  006372D7 lea rax, [rip + 0x18f6df2]
+  006372DE add rsp, 0x28
+  006372E2 ret 
+  006372E3 lea rcx, [rip + 0x26c211a]
+== 005FD700 size 269; stores through the record pointer (first 400 bytes, memory destinations)
+  005FD709 mov qword ptr [rax - 0x28], 0xfffffffffffffffe
+  005FD711 mov qword ptr [rax + 8], rbx
+  005FD719 mov qword ptr [rax + 0x18], rsi
+  005FD71D mov qword ptr [rax + 0x20], rdi
+  005FD72C mov dword ptr [rax - 0x20], 0
+  005FD733 mov qword ptr [rax - 0x18], 0
+  005FD73B mov dword ptr [rax - 0x10], 0
+  005FD7A5 mov word ptr [r9 - 2], ax
+  005FD7BE mov word ptr [r9], cx
+  005FD7D0 mov dword ptr [r14], eax

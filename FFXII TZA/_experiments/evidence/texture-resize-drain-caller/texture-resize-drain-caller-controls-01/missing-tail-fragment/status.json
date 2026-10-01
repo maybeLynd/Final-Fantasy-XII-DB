@@ -1,0 +1,6 @@
+{
+  "case": "missing-tail-fragment",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error_seen": true
+}

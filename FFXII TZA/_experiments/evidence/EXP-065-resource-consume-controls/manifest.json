@@ -1,0 +1,25 @@
+{
+  "experiment": "EXP-065-resource-consume-controls",
+  "files": {
+    "0020E600.bin": {
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+    },
+    "00305640.bin": {
+      "bytes": 393,
+      "sha256": "f02e6580d9f33613934d2f8339b5d5c9cef2a2d4847ff235cb33dfc30bd004f3"
+    },
+    "check.py": {
+      "bytes": 8658,
+      "sha256": "f70838f16e658e8b986d69ed8caeed015d1dd025e907bea9b78777fef34c3cff"
+    },
+    "disassembly.txt": {
+      "bytes": 5906,
+      "sha256": "bf672ea6d268f934aa653bdc3f55b6f8a7d8dbbc93648116bcf841f677505996"
+    },
+    "result.json": {
+      "bytes": 123516,
+      "sha256": "532b2a1770b4c5fd36adea07b72b54ecd849066999a8ed5872c309d7d54961be"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "original-pair",
+    "returncode": 0,
+    "stdout_sha256": "536af028b9ec7c90786190b53f3428a01d3225ce749af6b7a0c7f85b4510a648",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "view_sha256": "6c6fe1a11470963bcc9b0b7bc1b54103f367f4c573c0dbe7b933c1e7c05686b0",
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "method": "Actual cloned hostproducer, only its documented inputenvironment configured. NoFF12code/native/FP/live execution",
+    "tags": {
+      "R1": "PASS",
+      "I1": "PASS",
+      "A1": "PASS",
+      "C": "PASS"
+    }
+  },
+  {
+    "name": "stale-view-changed-image",
+    "returncode": 0,
+    "stdout_sha256": "536af028b9ec7c90786190b53f3428a01d3225ce749af6b7a0c7f85b4510a648",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "view_sha256": "6c6fe1a11470963bcc9b0b7bc1b54103f367f4c573c0dbe7b933c1e7c05686b0",
+    "exe_sha256": "9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040",
+    "method": "Actual cloned hostproducer, only its documented inputenvironment configured. NoFF12code/native/FP/live execution",
+    "tags": {
+      "R1": "PASS",
+      "I1": "PASS",
+      "A1": "PASS",
+      "C": "PASS"
+    }
+  },
+  {
+    "name": "changed-view-changed-image",
+    "returncode": 1,
+    "stdout_sha256": "940c41eed27cd2f512c8537aa8d398b5bcfb9fb28c5390efad10d52ee14ff88a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "view_sha256": "454eec2be385a6faeb551a491705854e37579eacbdf2cd37ce12a9090a82c3d4",
+    "exe_sha256": "9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040",
+    "method": "Actual cloned hostproducer, only its documented inputenvironment configured. NoFF12code/native/FP/live execution",
+    "tags": {
+      "R1": "FAIL",
+      "I1": "PASS",
+      "A1": "PASS",
+      "C": "PASS"
+    }
+  }
+]

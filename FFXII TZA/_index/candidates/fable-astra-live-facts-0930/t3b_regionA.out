@@ -1,0 +1,70 @@
+== S1. the load copy (kind-9 storage packet)
+  005810BC  call     0x2ef640                                         [00580EB0 SaveLoad_ControllerTransitionStateMachine] dest = active image getter
+  005810EA  mov      dword ptr [rbp - 0x49], 9                        [00580EB0 SaveLoad_ControllerTransitionStateMachine] packet kind 9
+  00581113  mov      qword ptr [rbp - 1], rsi                         [00580EB0 SaveLoad_ControllerTransitionStateMachine] packet +0x48 dest = rsi
+  00581117  mov      dword ptr [rbp + 7], 0x56690                     [00580EB0 SaveLoad_ControllerTransitionStateMachine] packet +0x50 size 0x56690
+  0058111E  call     0x582540                                         [00580EB0 SaveLoad_ControllerTransitionStateMachine] enqueue
+  0058218A  mov      r9d, dword ptr [rbx + 0x128]                     [00582040 SaveStorageQueue_StartFrontOperation] queue dispatch: kind 9 arm
+  003BB477  mov      qword ptr [rip + 0x2785a72], r8                  [003BB440 FUN_003bb440] 02B40EF0 = dest
+  003BB47E  mov      dword ptr [rip + 0x2785a73], r9d                 [003BB440 FUN_003bb440] 02B40EF8 = size
+  003BA874  mov      r8d, dword ptr [rip + 0x278667d]                 [003BA7B0 FUN_003ba7b0] 
+  003BA87B  mov      rdx, qword ptr [rip + 0x278666e]                 [003BA7B0 FUN_003ba7b0] 
+  003BA882  call     0x862590                                         [003BA7B0 FUN_003ba7b0] read, state 6
+  003BA8A1  mov      rdx, qword ptr [rip + 0x2786648]                 [003BA7B0 FUN_003ba7b0] 
+  003BA8AE  call     0x862590                                         [003BA7B0 FUN_003ba7b0] read, state 15
+  008625A4  call     0x866a00                                         [00862590 FUN_00862590] wrapper -> inner read
+  00866A46  movzx    edx, byte ptr [rcx + rdx]                        [00866A00 FUN_00866a00] byte from backing store [01F44D40]
+  00866A4D  mov      byte ptr [r10 + rdi], dl                         [00866A00 FUN_00866a00] BYTE STORE into dest
+PASS S1-table  queue kind table 0058220C slot 9 = 0058218A
+  every EnqueueOperation site with a kind-9 immediate within 0x60 bytes before it: [('0058111E', '005810EA')]
+PASS S1  exactly one kind-9 enqueuer, 0058111E in SaveLoad_ControllerTransitionStateMachine
+  callers of the kind-9 acceptance 003BB440: ['5821A1']
+  callers of the inner read 00866A00: ['8625A4'] ; of the wrapper 00862590: ['3BA882', '3BA8AE', '3BABB0']
+
+== S2. after load: rebase bodies and the post-load lazy body, call tree depth 3
+  root 00238A80: 36 functions reached; region-A-writer shapes: 4
+     0023ACBD in 0023AC80 BattleStats_InitializeDefinitionRecord: calls 00861EC0 memset
+     0023AF56 in 0023AF50 Inventory_InitializePrimaryStateFromAuthoredTable: calls 002370C0 state memset
+     00300BB2 in 00300BA0 Inventory_MutateEncodedItemPrimaryChannelMode1: calls 003008A0 item modify (-> descriptor +0x48)
+     0030B6A8 in 0030B6A0 InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState: registry ref 01EEBCC0
+  root 0030B6A0: 1 functions reached; region-A-writer shapes: 1
+     0030B6A8 in 0030B6A0 InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState: registry ref 01EEBCC0
+  root 00233C10: 42 functions reached; region-A-writer shapes: 4
+     0023ACBD in 0023AC80 BattleStats_InitializeDefinitionRecord: calls 00861EC0 memset
+     0023AF56 in 0023AF50 Inventory_InitializePrimaryStateFromAuthoredTable: calls 002370C0 state memset
+     00300BB2 in 00300BA0 Inventory_MutateEncodedItemPrimaryChannelMode1: calls 003008A0 item modify (-> descriptor +0x48)
+     0030B6A8 in 0030B6A0 InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState: registry ref 01EEBCC0
+PASS S2-control  the same scan rooted at Inventory_InitializePrimaryStateFromAuthoredTable 0023AF50 finds a region-A writer: ['calls 002370C0 state memset', 'calls 003008A0 item modify (-> descriptor +0x48)']
+
+== S3. 0030FAA0 (restore) / 0030FBE0 (snapshot): every non-stack store, and the handler route
+  0030FC24 movsd  qword ptr [rax + 0x5a], xmm0                   [0030FBE0 InventoryEquipment_SnapshotAndClearTemporaryState] disp=0x5a 
+  0030FC29 mov    word ptr [rax + 0x62], cx                      [0030FBE0 InventoryEquipment_SnapshotAndClearTemporaryState] disp=0x62 
+  0030FC6F mov    word ptr [rcx + rdx*2 + 0x4f84], ax            [0030FBE0 InventoryEquipment_SnapshotAndClearTemporaryState] disp=0x4f84 
+  0030FCCF mov    word ptr [rcx + rdx*2 + 0x5004], ax            [0030FBE0 InventoryEquipment_SnapshotAndClearTemporaryState] disp=0x5004 
+  registry descriptor handler slot +0x48 (file bytes; rows 0-2 = classes 5/6/7):
+    row 0 01EEBCC0: +0=0x4748 +0x18=0x0 +0x28=0x57c0 +0x3C=0x40  +0x48 -> 002FD150
+    row 1 01EEBD18: +0=0x47c8 +0x18=0x0 +0x28=0x0 +0x3C=0x1a4  +0x48 -> 002FD150
+    row 2 01EEBD70: +0=0x4b10 +0x18=0x57c8 +0x28=0x0 +0x3C=0x200  +0x48 -> 002FD150
+  stored pointers to 002FD150: ['01EEBD08', '01EEBD60', '01EEBDB8']
+PASS S3-control  reloc sweep finds the three +0x48 slots holding 002FD150
+  rip-relative stores into the registry: []
+  00300943  mov      rax, qword ptr [rsi + 0x48]                      [003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState] descriptor +0x48
+  00300950  mov      r9d, r14d                                        [003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState] r9d = channel
+  00300957  mov      r8d, r15d                                        [003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState] r8d = abs/rel
+  0030095D  mov      edx, r12d                                        [003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState] edx = value
+  00300960  call     rax                                              [003008A0 Inventory_ModifyEncodedItemAndUpdateDiscoveryState] call handler
+
+== S4. controlled sweeps of region A 021B7054..021B781B
+  image-base-relative (any base/index): [] ; unverified byte matches: 0
+PASS S4-ibr-control  the detector finds 002DF7BF [r15+rbx*8+0x203f000]
+  image-base-relative into the WHOLE active image 02164280..021BA90F: 0 (so no in-block control exists; the out-of-block control above stands)
+PASS S4-ibr  no image-base-relative operand into region A
+PASS S4-rip  no rip-relative access overlaps region A: []
+PASS S4-abs  no absolute-VA form into region A: []
+PASS S4-reloc  no stored qword pointer into region A
+  002370C4  mov      rcx, qword ptr [rip + 0x2c880c5]                 [002370C0 FUN_002370c0] 
+  002370CD  mov      r8d, 0x7410                                      [002370C0 FUN_002370c0] 
+  002370D3  call     0x861ec0                                         [002370C0 FUN_002370c0] 
+PASS S4-bulk-control  002370D3 memset([02EBF190]=image+0x4e68c, 0, 0x7410) covers image 0x4e68c..0x55a9c, which contains region A 0x52DD4..0x5359B
+
+FAILS 0

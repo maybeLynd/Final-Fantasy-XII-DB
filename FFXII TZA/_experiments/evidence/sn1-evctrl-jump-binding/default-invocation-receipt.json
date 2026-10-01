@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "capture_sha256": "2ddef64dc6e173e7df5fe29ebed282bea4956a74271d9d3939377396bcca7727",
+  "check_sha256": "8bb3e048236023f7c8e2280931627d9bb521bc79b4b622eca42d5731b6795722",
+  "raw_before_sha256": "985a51edd1508645f03edaf224e5366b48807a4cfe97bccb5b1f6f824d0cc17f",
+  "raw_after_sha256": "985a51edd1508645f03edaf224e5366b48807a4cfe97bccb5b1f6f824d0cc17f",
+  "path": "Actual capture default with retained raw calls corrected check/corrected-spec; no recapture/VM/native/game/compiler execution"
+}

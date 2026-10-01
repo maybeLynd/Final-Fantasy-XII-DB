@@ -1,0 +1,15 @@
+{
+  "name": "wrong-argv-flag",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py",
+    "--raw",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\reducer-controls\\wrong-argv-flag\\raw.json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 42, in <module>\n    result=reduce(w,a.raw or w/'run-01/raw.json')\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-r3\\check.py\", line 28, in reduce\n    assert len(args[3:])==8 and args[3::2]==['--source','--input','--kind','--subsystems'],'WRONG_INVOCATION'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: WRONG_INVOCATION\n",
+  "expected": "WRONG_INVOCATION",
+  "terminal": true
+}

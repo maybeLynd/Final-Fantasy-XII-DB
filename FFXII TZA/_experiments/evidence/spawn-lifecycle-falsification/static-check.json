@@ -1,0 +1,15 @@
+{
+  "complete_bodies": 14,
+  "body_integrity": true,
+  "area_cfg_nodes": 60,
+  "point_cfg_nodes": 47,
+  "point_validator_positive_control": true,
+  "area_validator_absent": true,
+  "serializer_two_bank_positive_control": true,
+  "restorer_only_bank2_local_refs": true,
+  "limits": "Complete local CFG and direct references, not global alias or caller proof.",
+  "sources": {
+    "spawn-lifecycle-primary.json": "e373168332d7c43f45bd274bf1dfe13694f31abbb53f59712d984045b41066aa",
+    "spawn-lifecycle-callees.json": "79538f6059365efbf0e2975f4d657d6125454c6c095a5aa4bc0307666fa6f3c7"
+  }
+}

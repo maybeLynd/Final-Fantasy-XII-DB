@@ -1,0 +1,72 @@
+push sites (retool calls of 0036C1D0): 135
+raw rel32 sites of 0036C1D0: 135 ({'call': 135}); set-equal to retool's: True
+T1 package-order aggregate: {2: 12, 3: 12, 4: 6, 5: 24, 6: 34, 8: 44, 9: 2, 10: 1, 11: 1, 12: 1, 13: 4, 14: 4}
+T1 sites whose set differs, shared memo vs memo cleared per site: 0; vs reverse order: 0
+T1 sites with 7 in any run: 0; functions with a non-constant term in any run: ['00249210', '00384420', '003E9AA0', '0050D8F0', '0050DAD0']
+T2 bodies decoded: 174; (function, argument) pairs followed into callers: 12
+   followed 00249180 r9
+   followed 00249210 r9
+   followed 00249350 r9
+   followed 002493D0 r9
+   followed 002497E0 rcx
+   followed 00249810 rcx
+   followed 002CBD50 rdx
+   followed 00384420 r9
+   followed 003E9AA0 rcx
+   followed 003EC8D0 rcx
+   followed 003EC910 rcx
+   followed 0057A2D0 r8
+T3a indirect jmp in visited bodies: 12 ['002E60F0@002E614D rcx', '002F6AB0@002F6CD7 rcx', '003B1310@003B1381 rcx', '003B1710@003B178F rcx', '003B18E0@003B1970 rcx', '00558FB0@00558FEE rcx', '00572E10@00572E52 rax', '0057B890@0057B8BA r8', '0057CF20@0057CFAC rcx', '0057CF20@0057D166 rcx', '00582860@005828AA rax', '00582860@00582B7A rax']
+T3b rel32 edges from outside a visited body into its interior (not its entry): 3
+   body 003EDAD0  target 003EDD6B  from 00465967 call (root 00465690)
+   body 003EDAD0  target 003EDEFD  from 003ED9B8 call (root 003ED8A0)
+   body 003EDAD0  target 003EDF19  from 00465B15 call (root 00465690)
+T3c rel8 candidates from the 0x80 bytes around a body into it: 28 (byte-pattern candidates, may be data)
+   body 002385D0  target 00238635  from 00238646 jbe
+   body 0024A1D0  target 0024A218  from 0024A1A8 jmp
+   body 00280750  target 00280895  from 0028090B jno
+   body 002EA530  target 002EA5E5  from 002EA619 jae
+   body 002FCBF0  target 002FCBFF  from 002FCBD9 jl
+   body 002FCBF0  target 002FCC97  from 002FCCD1 jnp
+   body 0034D080  target 0034D098  from 0034D072 je
+   body 003788F0  target 00378904  from 003788DE je
+   body 003788F0  target 00378925  from 003788DB jo
+   body 00393460  target 0039346F  from 00393449 je
+   body 00393460  target 00393474  from 0039344E jl
+   body 003A3670  target 003A367C  from 003A3656 je
+   body 003A3670  target 003A3681  from 003A365B jl
+   body 003AF2B0  target 003AF2C5  from 003AF29F jl
+   body 003B02A0  target 003B02AE  from 003B0288 je
+   body 003B1260  target 003B1271  from 003B124B je
+   body 003B18E0  target 003B1A68  from 003B1AC0 jl
+   body 003B18E0  target 003B1A77  from 003B1AEC jo
+   body 003B3550  target 003B3560  from 003B353A je
+   body 003B4790  target 003B4807  from 003B4849 jnp
+   body 003DC5B0  target 003DC63F  from 003DC6BC jl
+   body 003DCBC0  target 003DCCEA  from 003DCD35 ja
+   body 003EA820  target 003EA82C  from 003EA806 je
+   body 0050D8F0  target 0050D902  from 0050D8DC je
+   body 0050D8F0  target 0050D98D  from 0050D9B7 jb
+   body 0055B560  target 0055B562  from 0055B53C je
+   body 0056F2A0  target 0056F2BD  from 0056F288 jo
+   body 00582790  target 005827AF  from 0058273B jb
+T4 callers of followed functions: retool vs raw rel32 (E8/E9/jcc), dir64, rva32 outside .pdata
+   00249180 retool 11 raw 11 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   00249210 retool 25 raw 25 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   00249350 retool 1 raw 1 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   002493D0 retool 21 raw 21 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   002497E0 retool 8 raw 8 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   00249810 retool 8 raw 8 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   002CBD50 retool 1 raw 1 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   00384420 retool 3 raw 3 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   003E9AA0 retool 1 raw 1 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   003EC8D0 retool 19 raw 19 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   003EC910 retool 2 raw 2 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+   0057A2D0 retool 3 raw 3 (jcc 0) extra-raw [] missing-raw [] dir64 [] rva32 []
+T4 followed functions with a caller regval did not walk or a stored pointer: 0 of 12
+C1 push sites with `mov ecx, K` immediately before the call: 1; all resolve to {K}: True
+C2 inc ecx        at 00124E85 (after `inc ecx`): [('U', '00124E83 inc ecx')] -> U as required
+C2 pop rcx        at 003A68F6 (after `pop rcx`): [('U', '003A68F5 pop rcx')] -> U as required
+C2 sete cl        at 0015973B (after `sete cl`): [('U', '00159738 sete cl')] -> U as required
+C2 and ecx, 0x    at 00124C83 (after `and ecx, 0x7f7f7f`): [('U', '00124C7D and ecx, 0x7f7f7f')] -> U as required
+C2 movzx ecx, cl  at 001BAD17 (after `movzx ecx, cl`): [('C', 0)] -> NOT U

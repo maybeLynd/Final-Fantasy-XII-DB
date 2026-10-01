@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py",
+    "self-test"
+  ],
+  "start_unix": 1789085511.146062,
+  "end_unix": 1789085511.2421837,
+  "exit_code": 0,
+  "stdout": "  wrapper present, nested block after it     expect True  got True  PASS\n  no LaunchOptions key                       expect False got False PASS\n  wrapper on a different app only            expect False got False PASS\n  LaunchOptions present but empty            expect False got False PASS\n\nallowlist: 13 shipped names; anything else in the directory is reported by default\nself-test ok\n",
+  "stderr": ""
+}

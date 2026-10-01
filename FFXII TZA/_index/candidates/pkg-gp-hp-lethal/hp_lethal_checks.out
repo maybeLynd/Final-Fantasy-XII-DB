@@ -1,0 +1,5 @@
+PASS  S 0030E828 'call 0x30fed0'; 00310508 'mov dword ptr [rbx + 0x48], eax'; 00300749 'mov dword ptr [rsi + 0x48], r14d' - two stores of +0x48 on the lethal path
+PASS  E 00469BB0 posts event 0x10 via 0046AB10: True
+PASS  R calls after the drop spawn: ['call 0x317090', 'call 0x808c40'] (0x808c40 = the stack-cookie check); 00317090 -> 00253770(0x11, ...) -> jmp 0x316a50
+PASS  K 32 statuses ['KO'] .. ['X-Zone']; revive-on-KO names among them: []
+FAILS 0

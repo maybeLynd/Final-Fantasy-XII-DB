@@ -1,0 +1,21 @@
+{
+  "recorded_utc": "2026-09-28T01:33:30.624573+00:00",
+  "binaries": [
+    {
+      "label": "unicorn",
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+      "bytes": 9343488,
+      "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75",
+      "mtime_utc": "2026-09-16T15:35:30.162444+00:00"
+    },
+    {
+      "label": "capstone",
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "bytes": 7576576,
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3",
+      "mtime_utc": "2026-08-30T15:16:16.848642+00:00"
+    }
+  ],
+  "provenance": "Exact loaded-library paths/hashes recorded AFTER capture, matching pinned package/module identities. Original driver/observations unchanged. No install/tool changes during capture; this is additive current provenance, not an invented pre-run hash receipt.",
+  "limits": "Versions/interpreter/module/driver were pinned in the original capture. DLL hashes supplemented afterward; repeatability consumers must verify these binaries before any genuinely needed future run."
+}

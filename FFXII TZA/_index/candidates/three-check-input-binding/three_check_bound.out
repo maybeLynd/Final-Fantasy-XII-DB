@@ -1,0 +1,12 @@
+inputs  FFXII_EXE C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/exe/FFXII_TZA.exe  Y1P_CACHE C:/Users/Kristian/AppData/Local/Temp/claude/C--Users-Kristian-source-repos/3c89ec72-2988-46c1-ba7b-44218ae1bb19/scratchpad/y1p_all.txt
+report  exe sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 (certified)
+report  body 00229E70 37 B sha256 certified
+report  body 0020E600 10 B sha256 certified
+report  body 0020E620 9 B sha256 certified
+report  body 00339630 1061 B sha256 certified
+PASS B  view equals the image decode for 00229E70 (9 lines), 0020E600 (3 lines), 0020E620 (3 lines), 00339630 (227 lines)
+PASS R1  jb at 00229E7E from the image; kept: 0.5, NaN; reset: 0, -0, -1; subnormal kept without DAZ, reset with DAZ
+PASS I1  leaves from the image; E(D(u)) = u; D(E(p)) = p only inside [B, B + 2^32); D(0) = B
+PASS A1  xmm9 written only at 00339723 (008F3138 = 180.0) and the epilogue 00339A02
+PASS C  input byte at 00229E7E = 72; old controls True; CB0 JB pair binds and passes True; CB1 stale view refused True; CB2 stale image refused True; CB3 JBE pair binds and fails R1 only True
+FAILS 0

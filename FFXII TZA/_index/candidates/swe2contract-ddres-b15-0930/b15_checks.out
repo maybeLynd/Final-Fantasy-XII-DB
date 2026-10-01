@@ -1,0 +1,315 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS G1 003EF830 points r8 at descriptor 00D11C88 - 003EF9BD  lea r8, [rip + 0x9222c4]
+PASS G1 ... which resolves to 00D11C88
+PASS G1 ... and hands it to 00393460 - 003EF9C4  call 0x393460
+PASS G1 003EF830 points r8 at descriptor 00D11CA0 - 003EF9D7  lea r8, [rip + 0x9222c2]
+PASS G1 ... which resolves to 00D11CA0
+PASS G1 ... and hands it to 003933F0 - 003EF9DE  call 0x3933f0
+PASS G1 both lists have one entry (r9d = rsi + 1, rsi = 0) - 003EF9D3  lea r9d, [rsi + 1]
+PASS G1 00393460 reads the id at entry +0 - 0039349A  mov r8d, dword ptr [rbx - 0x10]
+PASS G1 ... and the name pointer at entry +8 - 00393490  mov rax, qword ptr [rbx - 8]
+PASS G1 ... and asks kind r9 + 5 = 7 (r9d = 2) - 003934AE  lea edx, [r9 + 5]
+PASS G1 003933F0 asks kind 7 for each u32 id - 00393424  mov edx, 7
+PASS G1 00D11C88 = {id 0x39, name 'gameover_c'} - 0x39 'gameover_c'
+PASS G1 00D11CA0 = {id 0x38} - 0x38
+PASS G2 kind-7 id 0x39 is tm2_menu/gameover_c.tm2 - PS2Data\image\FF12\myoshiok\in\Tm2_Menu\gameover_c.tm2
+PASS G2 kind-7 id 0x38 is mrp_menu/gameover.mrp - PS2Data\image\FF12\myoshiok\in\Mrp_Menu\gameover.mrp
+PASS G2 control: kind-7 id 0x3A is title.mrp (the MRP sheet's own table) - PS2Data\image\FF12\myoshiok\in\Mrp_Menu\title.mrp
+PASS G3 gameover_c.tm2 is byte-identical in all nine full-size language folders - {'ch': 'c74c3e228fa7a47d9314e1f53d834a9e', 'cn': 'c74c3e228fa7a47d9314e1f53d834a9e', 'de': 'c74c3e228fa7a47d9314e1f53d834a9e', 'es': 'c74c3e228fa7a47d9314e1f53d834a9e', 'fr': 'c74c3e228fa7a47d9314e1f53d834a9e', 'in': 'c74c3e228fa7a47d9314e1f53d834a9e', 'it': 'c74c3e228fa7a47d9314e1f53d834a9e', 'kr': 'c74c3e228fa7a47d9314e1f53d834a9e', 'us': 'c74c3e228fa7a47d9314e1f53d834a9e', 'in_sdver': 'a6934016a37ac142e845e81823126a11'}
+PASS G3 ... and differs only in the SD folder in_sdver
+PASS G3 the image is one TIM2 picture, 1024 x 256, 8-bit indexed (type 5), 256-colour CLUT - 1024x256 type 5 clut 256
+PASS G4 the ink (alpha >= 0x60) falls in two groups split by one gap of 40 px or more - runs [(61, 162), (167, 270), (277, 405), (422, 507), (568, 773), (778, 863), (871, 966)] gaps [5, 7, 17, 61, 5, 8]
+PASS G4 ... and the first group is four separate glyphs (G, A, M, E on the render) - [3]
+PASS G4 ... spanning about 60..970 of 1024 px, centred - ((61, 162), (871, 966))
+     wrote gameover_c_us.png (the reading of the words rests on this render)
+PASS G5 gameover.mrp: three records - [(0, 474, 432, 1024, 256), (1, 1212, 878, 360, 96), (2, 0, 0, 288, 40)]
+PASS G5 record 0 at (474, 432), 1024 x 256, one type-2 sprite item - (0, 474, 432, 1024, 256)
+PASS G5 record 1 at (1212, 878), 360 x 96, one type-8 item naming record 2 - (1, 1212, 878, 360, 96)
+PASS G5 record 2 is one type-5 text item whose string id is -1 (no string) - 1805001002000200000124008080808064000000ffffffff
+PASS G5 its one atlas name is gameover_c - ['gameover_c']
+PASS G5 the nine full-size gameover.mrp copies are byte-identical
+PASS G5 control: the type-5 constructor treats string id -1 as no string - 0029FF45  cmp ecx, -1
+PASS G5 control: the same walker finds type-5 items with real string ids in save_load.mrp - [190800, 190805, -1, -1, -1, -1, -1, -1]
+PASS G6 the record-0 widget 003EF4A0 decodes record 0 - 003EF4DF  xor r8d, r8d
+PASS G6 ... through the typed-list decoder - 003EF4E2  call 0x2432b0
+PASS G6 the record-1 widget 003EF050 decodes record 1 - 003EF08F  mov r8d, 1
+PASS G6 ... through the typed-list decoder - 003EF095  call 0x2432b0
+PASS G6 no function of the family 003EE000..003F0000 calls a text lookup (002F9860 / 002F9920) - []
+PASS G6 control: 002F9920 has callers elsewhere (the type-5 constructor 0029FF4A)
+PASS F1 the gate masks the id to 14 bits - 0032A8A8  and edi, 0x3fff
+PASS F1 ... and tests bit (id & 7) of payload +0x14F4 + (id >> 3) - 0032A900  test byte ptr [rax + rbx + 0x14f4], dl
+PASS F1 so 0x5E is byte 11 bit 6 of the Primary bank (payload +0x14FF)
+PASS F2 00253C70 asks the gate for 0x5E - 00253F1E  lea ecx, [rax + 0x5e]
+PASS F2 ... (the call) - 00253F21  call 0x32a8a0
+PASS F2 set: operand word 00264640(esi) - 00253F2C  call 0x264640
+PASS F2 ... re-read into ebx only when non-zero - 00253F3D  movsx ebx, ax
+PASS F2 ... and ebx is the parameter - 00253F40  mov edx, ebx
+PASS F2 ... posted with request esi - 00253F44  call 0x2e1b10
+PASS F2 clear: parameter 0x21 - 00253F4E  mov edx, 0x21
+PASS F2 ebx starts as 1 (edi = 0) - 00253D12  xor edi, edi
+PASS F2 ... lea ebx, [rdi + 1] - 00253D14  lea ebx, [rdi + 1]
+PASS F2 esi is request 2 - 00253D88  mov esi, 2
+PASS F2 nothing writes ebx or esi between 00253D14 and 00253F3D but the esi = 2 store - []
+PASS F2 ... and no jump enters that window from outside it - []
+PASS F2 so a zero operand word posts parameter 1, which the 2 / 22 arm reads as the airship-route page (b13 R7: 1..0x20)
+PASS F3 00264640 reads the i16 table at 02098E58 - 00264651  mov rdx, qword ptr [rip + 0x1e34800]
+PASS F3 ... which resolves to 02098E58
+PASS F3 the payload map calls 02098E58 the kind-3 authored-operand bank, i16[256] (payload +0, the scripts' global_flag[256])
+PASS F3 control: every script that imports global_flag[256] imports it at offset 0x00 (193 scripts) - {'0x00': 193}
+PASS F4 setmapjumpgroupflag(94): 21 sites, four in each of alc_e01, byu_b01, nac_b01, rbn_b01, var_b01 and one in rsn_z02 - {'alc_e01.txt': 4, 'byu_b01.txt': 4, 'nac_b01.txt': 4, 'rbn_b01.txt': 4, 'rsn_z02.txt': 1, 'var_b01.txt': 4}
+PASS F4 releasemapjumpgroupflag(94): three in asp_a02 and one in rsn_z02 - {'asp_a02.txt': 3, 'rsn_z02.txt': 1}
+PASS F4 ismapjumpgroupflag(94): no script tests it - []
+PASS F4 every aerodrome set is followed at once by mapjump(124 or 125, ...) - []
+PASS F4 each of the five aerodrome scripts sets it in its function 高速移動時のマップジャンプ ('map jump for high-speed travel') - ['alc_e01.txt', 'byu_b01.txt', 'nac_b01.txt', 'rbn_b01.txt', 'var_b01.txt']
+PASS F4 rsn_z02 sets it in its resident director's init, next to global_flag[2] = 15 - [('rsn_z02.txt', 'init', 74, 'global_flag[2] = 15; if ((シナリオフラグ >= 0x05b4 && シナリオフラグ < 0x05be))')]
+PASS F5 the map-jump targets: field 124 is asp_a01 and field 125 is asp_a02 - PS2Data\plan_master\us\plan_map\asp_a\asp_a01\global\asp_a01.ebp / PS2Data\plan_master\us\plan_map\asp_a\asp_a02\global\asp_a02.ebp
+PASS F5 control: mapjump-flag-census.tsv's 0x5E row reads set 21, release 4, is 0, 7 scripts - ['0x5E\t\t21\t4\t0\t7\talc 4, byu 4, nac 4, rbn 4, var 4, asp 3']
+PASS F5 mapjumpgroupinit.bin does not pre-set 0x5E (a new game starts with it clear)
+PASS F5 the Primary setter's direct callers: the two verb handlers, 0035CA70, the init walker 00379160, the thunk 0032ABE0 - [(3320800, 3320800), (3464592, 3464612), (3468832, 3468855), (3525232, 3526265), (3641696, 3641752)]
+PASS F5 ... 0035CA70's literal id is 0x73, not 0x5E - 0035CE76  lea ecx, [rdx + 0x73]
+PASS F5 the verb table binds setmapjumpgroupflag to 0034EE20 and releasemapjumpgroupflag to 0034DD90 - {'setmapjumpgroupflag': '0034EE20', 'releasemapjumpgroupflag': '0034DD90'}
+PASS F5 ... set passes 1 - 0034EE2C  mov edx, 1
+PASS F5 ... release passes 0 - 0034DD9C  xor edx, edx
+PASS B1 the save/load controller reads the load mode - 00582CBA  call 0x394450
+PASS B1 ... compares it with 3 - 00582CBF  cmp al, 3
+PASS B1 ... mode 3: 00238A30(1) - 00582CC8  call 0x238a30
+PASS B1 ... otherwise 00238A30(0) - 00582CDE  call 0x238a30
+PASS B1 ... then 00285E60 (which runs 00233C10) - 00582CD0  call 0x285e60
+PASS B1 00238A30 sets 02089344 bit 0 for a non-zero argument - 00238A40  cmovne edx, eax
+PASS B1 00285E60 calls 00233C10 - 00285E86  call 0x233c10
+PASS B1 00233C10 tests 02089344 bit 0 - 00233C65  test byte ptr [rip + 0x1e556d8], 1
+PASS B1 ... set: block +4 bit 12 set - 00233C6E  or dword ptr [rax + 4], 0x1000
+PASS B1 ... and 02089344 bit 0 consumed - 00233C7C  and dword ptr [rip + 0x1e556c1], 0xfffffffe
+PASS B1 ... clear: block +4 bit 12 cleared - 00233CA6  and dword ptr [rax + 4], 0xffffefff
+PASS B1 02089344's writers image-wide: 00233C10, 00238A20, 00238A30, 00238A50 and 00239960 - 00233C10 00238A20 00238A30 00238A50 00239960
+PASS B1 ... 00238A20 sets bit 1 only - 00238A20  or dword ptr [rip + 0x1e5091d], 2
+PASS B1 ... 00238A50 sets bit 2 only - 00238A50  or dword ptr [rip + 0x1e508ed], 4
+PASS B1 ... 00239960 clears bit 1 - 00239A63  and eax, 0xfffffffd
+PASS B1 ... and bit 2 - 00239A7E  and dword ptr [rip + 0x1e4f8bf], 0xfffffffb
+PASS B1 so bit 0 is written only by 00238A30 and consumed by 00233C10
+PASS B1 00238A30's callers: the controller's two calls and 0050F5A0 (verb 0x308F's callback) - [(5305760, 5305765), (5777504, 5778632), (5777504, 5778654)]
+PASS B2 00239960 saves block +4 before 002370C0 - 002399D7  mov ebx, dword ptr [rax + 4]
+PASS B2 ... (the rebuild call) - 002399E9  call 0x2370c0
+PASS B2 ... and puts bit 12 back from the saved word - 00239A2F  bt ebx, 0xc
+PASS B2 0023A390 sets or clears bit 12 by its argument - 0023A39B  or dword ptr [rax + 4], 0x1000
+PASS B2 0023A390's callers: verb 0x308D's handler 0050F500 and the load normaliser 00584210 - [(5305600, 5305618), (5784080, 5784467)]
+PASS B2 the restore path clears it: 0023A390(0) - 00584393  call 0x23a390
+PASS B3 no shipped us script calls verb 0x308D, 0x308E or 0x308F - {'308c': 854, '308d': 0, '308e': 0, '308f': 0}
+PASS B3 control: their neighbour 0x308C is called 854 times - 854
+PASS B3 register FV-1 is ANSWERED: load mode 3 is the title's Trial Mode load route - **ANSWERED** — at the script level (answer in the question c
+PASS B3 ... the row says mode 3 drops a loaded save into the first Trial Mode field
+PASS B4 bit 12 set skips the request path at 00253E10 - 00253E10  call 0x236760
+PASS B4 ... (jne past it at 00253E17) - jne 0x253d9e
+PASS B4 bit 12 set skips the 0x21 post at 00253EE6 - 00253ED4  call 0x236760
+PASS B4 ... (jne past it at 00253EDB) - jne 0x25425d
+PASS B4 bit 12 set skips Triangle's flag-0x5E path - 00253F11  call 0x236760
+PASS B4 ... (jne past it at 00253F18) - jne 0x25425d
+PASS B4 the save finaliser turns bit 12 into header +0x57 bit 0 - 00583F5A  call 0x236760
+PASS B4 the getter 00236760's direct callers include the persistence-pair capture 00584580 and restore 005843E0
+PASS T1 a bad header (00255260 non-zero is good) clears bit 9 - 00280387  and dword ptr [rax + 8], 0xfffffdff
+PASS T1 ... sets bit 8 - 002803A3  or dword ptr [rax + 8], 0x100
+PASS T1 ... edi = 0 - 002803B1  xor edi, edi
+PASS T1 ... target +4 = 0 - 002803B3  mov dword ptr [rax + 4], edi
+PASS T2 message 18's bit-8 arm compares the target with 0xC - 00280252  cmp dword ptr [rcx + 4], 0xc
+PASS T2 ... 0xC goes to 003603E0 - 0028025B  call 0x3603e0
+PASS T2 ... anything else to 00314440(target) - 00280279  mov ecx, dword ptr [rax + 4]
+PASS T2 ... (the call) - 0028027C  call 0x314440
+PASS T3 00314440 asks 00408B00 - 0031445E  call 0x408b00
+PASS T3 ... non-zero skips the substitution - 00314465  jne 0x314471
+PASS T3 ... a zero target - 00314467  test ebx, ebx
+PASS T3 ... becomes 0xC - 00314469  mov eax, 0xc
+PASS T3 ... (cmove) - 0031446E  cmove ebx, eax
+PASS T3 00408B00 returns the byte 02B62DB9 - 00408B00  movzx eax, byte ptr [rip + 0x275a2b2]
+PASS T3 ... (02B62DB9)
+PASS T3 02B62DB9's one store image-wide is the reset 00408BA0 at 00408BBC - [(4230048, 4230076)]
+PASS T3 ... which stores al - 00408BBC  mov byte ptr [rip + 0x275a1f7], al
+PASS T3 ... with eax = 0 - 00408BA0  xor eax, eax
+PASS T3 the debug-global page: 02B62DB9 has no writer but the reset; 00314440 substitutes field 0xC when it is 0
+PASS T4 kind-5 path 12 is ttl_a01, the title map - PS2Data\plan_master\us\plan_map\ttl_a\ttl_a01\global\ttl_a01.ebp
+PASS T4 kind-5 path 0 is the test map tst_a01 (a plan_work path) - PS2Data\plan_work\us\plan_map\tst_a\tst_a01\global\tst_a01.ebp
+PASS T4 control: kind-5 path 0x132 is rbn_a18 (the cutscene page's live Southgate control) - PS2Data\plan_master\us\plan_map\rbn_a\rbn_a18\global\rbn_a18.ebp
+PASS T4 control: kind-5 path 0x483 is tri_a01 (FV-1's Trial Mode field) - PS2Data\plan_master\us\plan_map\tri_a\tri_a01\global\tri_a01.ebp
+PASS T4 tst_a01 places four party members and has no exit, map jump or menu call
+PASS D1 003FFC60: movzx eax, byte ptr [rcx + 1] - 003FFC68  movzx eax, byte ptr [rcx + 1]
+PASS D1 003FFC60: and al, 0x7f - 003FFC6C  and al, 0x7f
+PASS D1 003FFC60: and cl, 0xf - 003FFC7E  and cl, 0xf
+PASS D1 003FFC60: cmova eax, edx - 003FFC86  cmova eax, edx
+PASS D1 003FFC60: shr eax, 6 - 003FFC96  shr eax, 6
+PASS D1 003FFC60: shr eax, 5 - 003FFCAE  shr eax, 5
+PASS D1 003FFC60: shr eax, 4 - 003FFCC5  shr eax, 4
+PASS D2 002AE610 sets up 003FFC60: out1 -> [rsp+0x34] - 002AE74F  lea rdx, [rsp + 0x34]
+PASS D2 002AE610 sets up 003FFC60: out2 not asked - 002AE75D  xor r8d, r8d
+PASS D2 002AE610 sets up 003FFC60: bit 6 -> [rsp+0x40] - 002AE72C  lea r9, [rsp + 0x40]
+PASS D2 002AE610 sets up 003FFC60: bit 5 -> [rsp+0x3c] - 002AE743  lea rax, [rsp + 0x3c]
+PASS D2 002AE610 sets up 003FFC60: ... as the fifth argument - 002AE754  mov qword ptr [rsp + 0x20], rax
+PASS D2 002AE610 sets up 003FFC60: bit 4 -> [rsp+0x38] - 002AE739  lea rax, [rsp + 0x38]
+PASS D2 002AE610 sets up 003FFC60: ... as the sixth - 002AE73E  mov qword ptr [rsp + 0x28], rax
+PASS D2 002AE610 sets up 003FFC60: the call - 002AE760  call 0x3ffc60
+PASS D3 out1 must be 0x7F - 002AE823  cmp byte ptr [rsp + 0x34], 0x7f
+PASS D3 ... equal: format the number - 002AE83D  je 0x2ae86a
+PASS D3 ... otherwise zero the spacing block and return, drawing nothing - 002AE841  mov qword ptr [rip + 0x1dee418], rax
+PASS D3 the '.' arm hands the formatter a copy with byte 1 = 0xFF - 002ADB07  mov byte ptr [rip + 0x1b5f2fb], 0xff
+PASS D3 ... after selecting argument n = out1 (16-byte entries) - 002AD930  movzx edx, byte ptr [rsp + 0x4c]
+PASS D3 ... and the copy's number +0x54 is the argument's value - 002ADBA4  mov dword ptr [rbp - 0x1c], eax
+PASS D4 the '-' arm asks out2 into state +0xA1 - 002AD8B0  lea r8, [r14 + 0xa1]
+PASS D4 the '.' arm asks out2 into [rsp+0x42] - 002AD8FD  lea r8, [rsp + 0x42]
+PASS D4 ... and stores it in the copy's +0xA1 - 002ADBAC  mov byte ptr [rbp + 0x31], al
+PASS D4 ... (rbp + 0x31 = copy rbp - 0x70, + 0xA1)
+PASS D4 the formatter takes max(+0xA1, +0xA2) as the width - 002AE7AC  cmova ecx, eax
+PASS D4 ... into the count - 002AE7B4  mov dword ptr [r14], eax
+PASS D4 width 0: the natural digit count - 002AE86A  cmp dword ptr [r14], 0
+PASS D4 ... but at least +0x98 + 1 - 002AE8A7  cmovl ecx, eax
+PASS D4 a width keeps the low digits: subtract 10^width while the value reaches it - 002AE8C3  sub ecx, dword ptr [rdx + rax*4]
+PASS D4 ... 00916520 is 10^0 .. 10^8 (the width clamp is 8) - [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
+PASS D5 bit 5 goes to 003EFD00 as its fourth argument - 002AE8D1  mov r9d, dword ptr [rsp + 0x3c]
+PASS D5 003EFD00's fill is '0' - 003EFD59  mov edx, 0x30
+PASS D5 ... unless the flag is 0 - 003EFD78  test r9d, r9d
+PASS D5 ... then a space - 003EFD7D  mov edx, 0x20
+PASS D5 ... memset over the width - 003EFD82  call 0x861ec0
+PASS D6 bit 4 chooses the sheet's map at +0x18 - 002AE861  mov ecx, dword ptr [r15 + 0x18]
+PASS D6 ... instead of +0x14 - 002AE77C  mov ecx, dword ptr [r15 + 0x14]
+PASS D6 ... and is forced off on the alternate sheet (+0x44 bit 11) - 002AE774  mov dword ptr [rsp + 0x38], 0
+PASS D6 ... it also picks fallback code 1 instead of 7 - 002AE820  cmovne eax, ecx
+PASS D6 ... and suppresses the leading step (r13d) - 002AEA5D  test r8d, r8d
+PASS D7 bit 6 ([rsp+0x40]) is only zeroed and its address taken: never read - [('0x2ae680', 'mov', 'dword ptr [rsp + 0x40], r13d'), ('0x2ae72c', 'lea', 'r9, [rsp + 0x40]')]
+PASS D8 us primary sheet: map +0x14 sends '0'..'9' to 0x85..0x8E - ['0x85', '0x86', '0x87', '0x88', '0x89', '0x8a', '0x8b', '0x8c', '0x8d', '0x8e']
+PASS D8 ... map +0x18 sends them to the two-byte codes 0x3010..0x3910 - ['0x3010', '0x3110', '0x3210', '0x3310', '0x3410', '0x3510', '0x3610', '0x3710', '0x3810', '0x3910']
+PASS D8 ... and 'A' to 0x20 against 0xDC - 0x20 0xdc
+PASS D8 the relocator rebases +0x14 against the block - 0039C00E  mov ecx, dword ptr [rdi + 0x14]
+PASS D8 ... and +0x18 - 0039C024  mov ecx, dword ptr [rdi + 0x18]
+PASS D8 ... the block is the picture header + 0x30 (TIM2 + 0x40) - 0039BFC2  lea rdi, [rbx + 0x30]
+PASS D8 control: 0039C4A0(0) returns [02AEE800], the sheet the loader page binds as TIM2 + 0x40 - 0039C4B0  mov rax, qword ptr [rip + 0x2752349]
+PASS E1 002A9F00's state copy is at rsp + 0x60 - 002A9F2C  lea r9, [rsp + 0x60]
+PASS E1 ... rbp = r11 - 0x1B8 - 002A9F0A  lea rbp, [r11 - 0x1b8]
+PASS E1 ... rsp = r11 - 0x28 - 0x290 - 002A9F11  sub rsp, 0x290
+PASS E1 so rbp - 0x40 is the copy's +0x60, the sheet pointer (b13 N1)
+PASS E1 the glyph table is sheet + [sheet + 0xC] - 002AA0F8  mov ecx, dword ptr [rdi + 0xc]
+PASS E1 ... (relocated like the maps) - 0039BFFB  mov ecx, dword ptr [rdi + 0xc]
+PASS E1 the record's low dword - 002AA117  mov ecx, dword ptr [r12 + rbx*8]
+PASS E1 ... bit 31 - 002AA129  mov eax, 0x80000000
+PASS E2 set: if the class state is 2 - 002AA13A  cmp byte ptr [rcx + 0x10fc], 2
+PASS E2 ... add +0x34 x 2.3 x +0x38 to the pen - 002AA148  mulss xmm0, xmm14
+PASS E2 ... (xmm14 = [009166F4]) - 002AA00C  movss xmm14, dword ptr [rip + 0x66c6df]
+PASS E2 ... 009166F4 is 2.3f
+PASS E2 ... then state 1 - 002AA15C  mov byte ptr [rcx + 0x10fc], 1
+PASS E2 clear: state 2 - 002AA16C  mov byte ptr [rax + 0x10fc], 2
+PASS E3 a single-byte code c (>= 0x20) is glyph c - 0x20 - 002AC37C  sub esi, 0x20
+PASS E3 ... a byte below 0x20 leads a two-byte code (base table 00916570 + second byte - 0x20) - 002AC3B9  add esi, -0x20
+PASS E3 ... and 002AC2F0 tests the same bit 31 on that record - 002AC4B8  mov eax, 0x80000000
+PASS E3 us sheet: of the single-byte codes 0x20-0xFF bit 31 is set on exactly 0x20-0x8E, 0x93-0x94 and 0x98-0xB6
+PASS E3 us sheet: and on no glyph past the single-byte block (indices 0xE0 on, the two-byte glyphs) - []
+PASS E3 us sheet: every printable ASCII character but the space maps (map +0x14) to a glyph with bit 31 set - []
+PASS E3 control (us): the ten digit glyphs 0x85-0x8E share one advance (AC-10: digits monospaced) - {9}
+PASS E3 control (us): 'I' (0x28) is narrower than 'W' (0x36), so the record table is the right one - 6 15
+PASS E3 it sheet: of the single-byte codes 0x20-0xFF bit 31 is set on exactly 0x20-0x8E, 0x93-0x94 and 0x98-0xB6
+PASS E3 it sheet: and on no glyph past the single-byte block (indices 0xE0 on, the two-byte glyphs) - []
+PASS E3 it sheet: every printable ASCII character but the space maps (map +0x14) to a glyph with bit 31 set - []
+PASS E3 control (it): the ten digit glyphs 0x85-0x8E share one advance (AC-10: digits monospaced) - {8}
+PASS E3 control (it): 'I' (0x28) is narrower than 'W' (0x36), so the record table is the right one - 5 11
+PASS E4 kr sheet: bit 31 is the minority (97 of 1238 records), one Latin block among the two-byte glyphs - 97
+PASS E4 cn sheet: bit 31 is the minority (97 of 2360 records), one Latin block among the two-byte glyphs - 97
+PASS E4 ch sheet: bit 31 is the minority (87 of 2374 records), one Latin block among the two-byte glyphs - 87
+PASS E4 in sheet: bit 31 is the minority (93 of 1320 records), one Latin block among the two-byte glyphs - 93
+     wrote glyphs_us_20_FF.png (bright code = bit 31 set, grey = clear)
+PASS E4 control: AC-10 reads ANSWERED
+PASS H1 the 0x0E arm: movss xmm2, dword ptr [r12 + 0xc] - 002AC8A4  movss xmm2, dword ptr [r12 + 0xc]
+PASS H1 the 0x0E arm: movss dword ptr [rbp + 0x6c], xmm2 - 002AC8DB  movss dword ptr [rbp + 0x6c], xmm2
+PASS H1 the 0x0E arm: movss xmm1, dword ptr [r12 + 8] - 002AC8BD  movss xmm1, dword ptr [r12 + 8]
+PASS H1 the 0x0E arm: movss dword ptr [rbp + 0x68], xmm1 - 002AC8E4  movss dword ptr [rbp + 0x68], xmm1
+PASS H1 the 0x0E arm: lea r8, [rbp + 0x60] - 002ACAB4  lea r8, [rbp + 0x60]
+PASS H1 the 0x0E arm: call 0x2a9f00 - 002ACABD  call 0x2a9f00
+PASS H2 the '*' arm: movss xmm0, dword ptr [r12 + 8] - 002AD690  movss xmm0, dword ptr [r12 + 8]
+PASS H2 the '*' arm: movss dword ptr [rbp + 0x78], xmm0 - 002AD6A2  movss dword ptr [rbp + 0x78], xmm0
+PASS H2 the '*' arm: movss xmm1, dword ptr [r12 + 0xc] - 002AD69B  movss xmm1, dword ptr [r12 + 0xc]
+PASS H2 the '*' arm: movss dword ptr [rbp + 0x7c], xmm1 - 002AD6B1  movss dword ptr [rbp + 0x7c], xmm1
+PASS H2 the '*' arm: lea r8, [rbp + 0x70] - 002AD71F  lea r8, [rbp + 0x70]
+PASS H2 the '*' arm: call 0x2a9f00 - 002AD728  call 0x2a9f00
+PASS H3 002AC5F0 never reads the local slots rbp+0x68 / +0x6C / +0x78 / +0x7C (stores only) - []
+PASS H3 ... and never loads the local pens as 16-byte vectors - []
+PASS H3 the pen's +8 / +0xC appear in 002AC5F0 only in the four copies
+PASS H4 002A9F00 touches its pen (r15) only at +0 and +4 - ['dword ptr [r15], xmm0', 'eax, dword ptr [r15]', 'xmm0, dword ptr [r15 + 4]', 'xmm0, dword ptr [r15]', 'xmm10, dword ptr [r15]', 'xmm6, dword ptr [r15 + 4]']
+PASS H4 ... and r15 is set once, from r8 (002A9F37) - [('0x2a9f37', 'r15, r8')]
+PASS H4 the pen callee 002AE450 reads its pen (rsi) at +0 / +4 only - ['[rsi + 4]', '[rsi]']
+PASS H4 the pen callee 002AEB20 reads its pen (r15) at +0 / +4 only - ['[r15 + 4]', '[r15]']
+PASS H4 002AEB20's pen is r15 until it is reloaded - 002AEB6B  mov r15, r8
+PASS H4 ... reloaded with a table pointer at 002AEEE2 - 002AEEE2  mov r15, qword ptr [rbx + 0x20]
+PASS H4 ... and before that reads only [r15] and [r15 + 4] - ['xmm13, dword ptr [r15]', 'xmm0, dword ptr [r15 + 4]']
+PASS H5 register UQ-165 reads ANSWERED (components [2] and [3] carried but unread on 002AE610's path) - **ANSWERED 2026-09-18 (SWE2-STRUCT).** Pen, not rectangle (F
+PASS S1 003BB790 dispatches on the command word 02B40E1C - 003BB803  mov eax, dword ptr [rip + 0x2785613]
+PASS S1 ... (02B40E1C)
+PASS S1 cmp eax, 1 - 003BB809  cmp eax, 1
+PASS S1 ... -> 0x3ba7b0 - 003BB810  call 0x3ba7b0
+PASS S1 cmp eax, 6 - 003BB81F  cmp eax, 6
+PASS S1 ... -> 0x3ba990 - 003BB826  call 0x3ba990
+PASS S1 cmp eax, 2 - 003BB835  cmp eax, 2
+PASS S1 ... -> 0x3baeb0 - 003BB83C  call 0x3baeb0
+PASS S1 test eax, eax - 003BB84B  test eax, eax
+PASS S1 ... -> 0x3bac90 - 003BB851  call 0x3bac90
+PASS S1 cmp eax, 7 - 003BB888  cmp eax, 7
+PASS S1 ... -> 0x3ba5f0 - 003BB88F  call 0x3ba5f0
+PASS S1 cmp eax, 8 - 003BB89E  cmp eax, 8
+PASS S1 ... -> 0x3ba720 - 003BB8A5  call 0x3ba720
+PASS S1 cmp eax, 9 - 003BB8B0  cmp eax, 9
+PASS S1 ... -> 0x3ba680 - 003BB8B7  call 0x3ba680
+PASS S1 command 3: no handler - 003BB860  cmp eax, 3
+PASS S1 command 4: no handler - 003BB865  cmp eax, 4
+PASS S1 command 5: no handler - 003BB86A  cmp eax, 5
+PASS S1 ... 3 / 4 / 5 clear 02B40E14..1B - 003BB876  mov qword ptr [rip + 0x2785597], rax
+PASS S1 ... and 02B40E10 (idle) - 003BB87D  mov dword ptr [rip + 0x278558d], eax
+PASS S1 the result classes go to 02B40E18: 4 - 003BB8F1  mov dword ptr [rip + 0x278551d], 4
+PASS S1 ... and 7 for -5 - 003BB8C8  mov dword ptr [rip + 0x2785546], 7
+PASS S2 the command word has ten stores, one per issuer: 5 7 9 3 4 1 6 8 2 2 - [('003BB2C0', '5'), ('003BB2F0', '7'), ('003BB320', '9'), ('003BB380', '3'), ('003BB3B0', '4'), ('003BB440', '1'), ('003BB4C0', '6'), ('003BB6A0', '8'), ('003BB920', '2'), ('003BB9B0', '2')]
+PASS S2 ... none stores 0, so command 0 (003BAC90) is the word's initial zero
+PASS S3 003BA5F0 step 0 -> 1 - 003BA662  mov dword ptr [rip + 0x27867a8], 1
+PASS S3 step 1: 00862130(port 02B40E20, name 02B40E3E) - 003BA64C  call 0x862130
+PASS S3 ... then step 12 - 003BA651  mov dword ptr [rip + 0x27867b9], 0xc
+PASS S3 step 12: a result of 0 or -4 ends cleanly - 003BA60B  test eax, 0xfffffffb
+PASS S3 ... anything else is result class 9 - 003BA614  mov dword ptr [rip + 0x27867fa], 9
+PASS S3 00862130 opens the path for reading - 0086219C  call qword ptr [rip + 0x60c5e]
+PASS S3 ... in mode 'rb' - 00862182  lea r8, [rip + 0x9ee87]
+PASS S3 ... (00901010 holds L"rb")
+PASS S3 ... closes it - 008621AB  call qword ptr [rip + 0x60d4f]
+PASS S3 ... and removes the file - 008621B6  call qword ptr [rip + 0x6094c]
+PASS S3 the manual-save page names the imports _wfopen_s, fclose, _wremove and command 7 'delete the file if it exists'
+PASS S3 command 7's issuer 003BB2F0 is reached from the queue's arm for packet kind 0xB - 005821F8  call 0x3bb2f0
+PASS S4 003BA720 runs only at step 0 - 003BA724  cmp dword ptr [rip + 0x27866e9], 0
+PASS S4 ... asks 003BA3E0 for the block count of the name at 02B40E28 - 003BA73C  call 0x3ba3e0
+PASS S4 ... compares it with the free-block word 02B4054C - 003BA74B  mov eax, dword ptr [rip + 0x2785dfb]
+PASS S4 ... fits: subtract - 003BA75E  mov dword ptr [rip + 0x2785de8], eax
+PASS S4 ... and mark the slot 1 - 003BA778  mov dword ptr [rcx + rax*8 + 0x284], 1
+PASS S4 ... does not fit: mark it 0 - 003BA7A3  mov dword ptr [rcx + rax*8 + 0x284], edx
+PASS S4 02B40540 + 0x284 + 8 x slot is the high dword of the slot record 02B407C0[slot]
+PASS S4 003BA3E0 rounds sizes up to 1 KiB blocks - 003BA57A  add ecx, 0x3ff
+PASS S4 ... (shift 10) - 003BA580  shr ecx, 0xa
+PASS S4 command 8's issuer 003BB6A0 takes slots 0..0xC7 - 003BB6A4  cmp ecx, 0xc7
+PASS S4 ... stores the slot record - 003BB6C3  mov qword ptr [r10 + r9*8], rax
+PASS S4 ... runs 003BA720 at once - 003BB70F  call 0x3ba720
+PASS S4 003BB6A0's one caller is the queue's arm for packet kind 6
+PASS S4 ... (jump table: kind 6 -> 0058211E, kind 0xB -> 005821F1) - 005820B8 0058209E 005820E7 00582102 00582109 00582110 0058211E 00582149 0058216A 0058218A 005821AB 005821F1 00582202
+PASS S4 kind-6 packets are queued by 0057F280 - 0057F30B  mov dword ptr [rsp + 0x20], 6
+PASS S4 ... a scan over slots 0..199 - 0057F2C7  cmp ebx, 0xc8
+PASS S4 ... naming each slot's data file 005837F0(1, slot) - 0057F2F5  call 0x5837f0
+PASS S4 control: the manual-save page reads 005837F0's kind 1 as the slot's data file
+PASS C1 the cancel matches the slot's id (+0x64) - 0032E5B4  cmp dword ptr [rbx + 0x64], ecx
+PASS C1 ... frees a kind-0xFF path before it reads the state - 0032E5CB  call 0x3697f0
+PASS C1 ... state 4 returns - 0032E5DE  je 0x32e5f9
+PASS C1 the raw-path builder 0032E7C0 is the kind-0xFF producer with a heap copy - 0032E848  mov ecx, 0xff
+PASS C1 ... it copies the path into 0036A190's block - 0032E80E  call 0x36a190
+PASS C1 ... and returns 0032E870's id - 0032E84D  call 0x32e870
+PASS C2 the raw-path entry 0032E7B0 (jmp 0032E7C0) has sixteen call sites in 003306E0, 003319D0 and 00377DC0 - 16
+PASS C2 every one of them discards the returned id (no read of rax before it is overwritten, on every path) - {}
+PASS C2 control: the same flow finds 0032E620's use of 0032E870's id ('mov r8d, eax')
+PASS C2 control: and 0032E7C0 returning it
+PASS C3 the id counter 01EED498 is touched only by the slot reset 0032E450 and the builder 0032E870 - [3335248, 3336304]
+PASS C3 the slot table 022C31C0 is referenced only inside the slot module 0032E000..0032ED00 - 0032E450 0032E4D0 0032E590 0032E620
+PASS C4 the cancel at 002FC426 passes its own object's +0x18 - ecx, dword ptr [rbx + 0x18]
+PASS C4 the cancel at 003B13AF passes its own object's +0x18 - ecx, dword ptr [rbx + 0x18]
+PASS C4 the cancel at 003B17BD passes its own object's +0x18 - ecx, dword ptr [rbx + 0x18]
+PASS C4 the cancel at 003B199D passes its own object's +0x18 - ecx, dword ptr [rdi + 0x18]
+PASS C4 the cancel's direct callers are exactly those four
+PASS C5 control: 0032E620 stores the caller's file id (edx) where a kind-0xFF request keeps its path (+0x24) - 0032E902  mov dword ptr [r10 + 0x24], ebp
+PASS Z1 the router page carries the sentence the zero operand word is posted as 0 (struck by this batch)
+PASS Z2 the queue page carries the sentence the result is dispatched over substates 0 ... 9 (struck by this batch)
+PASSES 310
+FAILS 0

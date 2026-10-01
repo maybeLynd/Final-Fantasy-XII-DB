@@ -1,0 +1,17 @@
+post checker rc=1; BROKEN lines=5; ['evidence captures not judged (package subdirectories under _experiments/evidence): 2 link(s)']
+pre checker rc=1; BROKEN lines=13; []
+case               expect  pre     post     shape
+A1-missing.md      True    True    False    authored README inside a run-NN subdirectory (not a capture) HIDDEN
+A2-missing.md      True    True    False    true capture in retained/ (broken in its new location) HIDDEN
+A3-missing.md      True    True    True     package-level README (control: must stay judged) 
+B1-missing.md      True    True    False    double-backtick span with an inner backtick, then a real link on the line HIDDEN
+B2-missing.md      True    True    True     real link between a plain span and a span containing ]( (balanced) 
+B3-missing.md      True    False   True     link whose code-span label itself contains ]( 
+B4-missing.md      False   True    False    whole link inside a code span (Markdown renders code, not a link) 
+B5-missing.md      False   True    False    unbalanced tick: CommonMark pairs the same backticks, so this is code 
+B6-missing.md      False   True    False    unmatched ``` run; the two `` runs pair around the link, so CommonMark renders code (not a link) 
+C1%20missing.md    True    False   True     %20 target whose decoded file is missing, raw-named file present 
+C2%20ok.md         False   True    False    %20 target whose decoded file exists (L5 shape) 
+C3%2F..%2Fc3.md    True    True    False    %2F-encoded traversal: raw path missing, decoded path exists HIDDEN
+C4-plain-missing.m True    True    True     plain control 
+real broken links the post-fix checker does not report: 4

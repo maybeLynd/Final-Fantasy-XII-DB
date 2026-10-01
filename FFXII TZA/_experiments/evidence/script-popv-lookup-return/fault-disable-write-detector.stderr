@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-lookup-return\check.py", line 38, in <module>
+    if '--fault-disable-write-detector' in sys.argv:assert roles.op_kind(mi,mi.operands[0],0)=='r','Private load-to-store is detected as a write'
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Private load-to-store is detected as a write

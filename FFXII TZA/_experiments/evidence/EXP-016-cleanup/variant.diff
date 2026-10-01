@@ -1,0 +1,48 @@
+--- hwbp-original.py
++++ hwbp-variant.py
+@@ -291,7 +291,14 @@
+                     help="run the full debug event loop with no breakpoints armed; still clears thread DR registers (not a pure attach-only control)")
+     ap.add_argument("--max-hits", type=int, default=40,
+                     help="stop recording detail after this many, per address")
++    ap.add_argument('--cleanup-before-continue', action='store_true')
++    ap.add_argument('--api-out', required=True)
+     a = ap.parse_args()
++    from api_receipts import Audit
++    global k32
++    audit = Audit(k32, a.api_out)
++    k32 = audit
++    cleared_at_final_event = False
+ 
+     pid = a.pid
+     if not pid:
+@@ -369,6 +376,12 @@
+                                 trace.append((ev.dwThreadId, rip, ctx.Rax, ctx.Rbx,
+                                               ctx.Rcx, ctx.Rdx, xmm0_f32(ctx)))
+                             if a.stop_after and total_hits >= a.stop_after:
++                                if a.cleanup_before_continue:
++                                    audit.mark('clear_before_continue_begin', tid=ev.dwThreadId)
++                                    clears = [(tid, set_slots(tid, [])) for tid in threads_of(pid)]
++                                    cleared_at_final_event = bool(clears) and all(ok for tid,ok in clears)
++                                    audit.mark('clear_before_continue_end', results=clears,
++                                               all_succeeded=cleared_at_final_event)
+                                 resume_past_breakpoint(ev.dwThreadId)
+                                 k32.ContinueDebugEvent(ev.dwProcessId, ev.dwThreadId, status)
+                                 break
+@@ -394,9 +407,14 @@
+                 break
+             k32.ContinueDebugEvent(ev.dwProcessId, ev.dwThreadId, status)
+     finally:
+-        for tid in threads_of(pid):
+-            set_slots(tid, [])
+-        k32.DebugActiveProcessStop(pid)
++        try:
++            if not cleared_at_final_event:
++                audit.mark('fallback_or_original_clear_after_continue')
++                for tid in threads_of(pid):
++                    set_slots(tid, [])
++            k32.DebugActiveProcessStop(pid)
++        finally:
++            audit.save()
+ 
+     if a.trace_out and trace is not None:
+         with io.open(a.trace_out, "w", encoding="utf-8", newline=chr(10)) as f:

@@ -1,0 +1,9 @@
+{
+  "old_publisher_default_rejected_before_claim": true,
+  "prior64_positive_members": 39,
+  "current_capture_default_pass": true,
+  "raw_unchanged_sha256": "36ad6ff860dbb165d927a8518a86e52c8f2366d55737239720f19dfed3dc2e87",
+  "current_freeze_default_pass": true,
+  "fresh_copy_actual_ast_invocation_excludes_generated_cache": true,
+  "scope": "Actual affected own producer/default paths and one bounded inert copy control; no peer tools/guard bypass/game execution"
+}

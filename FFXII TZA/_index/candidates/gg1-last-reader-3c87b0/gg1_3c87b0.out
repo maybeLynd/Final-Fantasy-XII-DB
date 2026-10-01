@@ -1,0 +1,7 @@
+PASS L1  reads ['003C889D', '003C88AD']
+PASS L2  003C87B0 <- ['00253C70@00254044', '00254B50@00254C0F']; 00254B50 <- ['00253C70@002540D2', '00253C70@002541C7', '00254B40@00254B45', '002E09A0@002E0D0B']
+PASS L3  paths into the three arbiter calls: {'00254044': ['store@00253FE9'], '002540D2': ['store@002540C5'], '002541C7': ['store@002541BC']}
+PASS L4  outside the arbiter: 00254B40 <- 3 sites; 002E09A0 <- ['00314020@0031427D']
+PASS L5  world tick: paths into 0031427D pass the arbiter call at 00314137 or 003141F2, or neither (['arbiter-call@00314137', 'arbiter-call@003141F2', 'entry'])
+PASS C  control: no store precedes the arbiter's 002287D0 call at 00253CCC
+FAILS 0

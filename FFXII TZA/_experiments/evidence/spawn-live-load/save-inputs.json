@@ -1,0 +1,74 @@
+[
+  {
+    "name": "FFXII_000",
+    "bytes": 5331,
+    "sha256": "859a83073daa95b13db9b6461d336d5ccb2e4e94252a8d167194bae35d6cb825",
+    "header": "53414648906605000c000000",
+    "declared_size": 353936,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_001",
+    "bytes": 5319,
+    "sha256": "6bd0cfdc2dae860f26c0351a6e633ddc0e98d1c219a517c2e85a61992fae1655",
+    "header": "53414648906605000a000000",
+    "declared_size": 353936,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_002",
+    "bytes": 9240,
+    "sha256": "709478a71134fabe3a843207a61230cf512ec06dec3b5a7c1d78774d34e322dc",
+    "header": "534146489066050001000000",
+    "declared_size": 353936,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_003",
+    "bytes": 9052,
+    "sha256": "6bca07d4416f00399fd09c11bbe93945735317eca26cd8a1ec947922a17f9114",
+    "header": "534146489066050019000000",
+    "declared_size": 353936,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_004",
+    "bytes": 7066,
+    "sha256": "8fb99c6dc9956048af2f37b8ace57dd9e5b680967905ba5d72fdfa499acb63bc",
+    "header": "5341464890e604001a000000",
+    "declared_size": 321168,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_005",
+    "bytes": 5712,
+    "sha256": "0cff5294bf0911a9cdb3de2d3acf093ca05670b0ae406ae8f47063991cc1a5a2",
+    "header": "5341464890e604000f000000",
+    "declared_size": 321168,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_006",
+    "bytes": 5579,
+    "sha256": "ab795146f64c6ac08e963cb76703562d3efcf1003e265f8c299bee9177a51225",
+    "header": "5341464890e6040002000000",
+    "declared_size": 321168,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_007",
+    "bytes": 3660,
+    "sha256": "097503f55d948cf8ca2dc0ded180657f1983c38f5b6b8d7a2a7130961441811b",
+    "header": "5341464890e604000e000000",
+    "declared_size": 321168,
+    "EXP015_identical": true
+  },
+  {
+    "name": "FFXII_008",
+    "bytes": 2989,
+    "sha256": "17c0507436af6e3aa0cf9c634c97213d66cb859185539238394a68587eade360",
+    "header": "5341464890e6040007000000",
+    "declared_size": 321168,
+    "EXP015_identical": true
+  }
+]

@@ -1,0 +1,9 @@
+PASS B1  count reset before the null-grid test; records, occupancy bytes and the 0x400-byte list cleared
+PASS B2  three groups; guard count < 0x80 before list[count] = actor; position, max of two radii; id = count
+PASS B3  dataset records: count min(root+0x24, 0x20), stride 0x20, ids from 0x80
+PASS B4  registry: n = 0x80 when the first read >= 0x80, else a second read used unchecked; id = 0xA0 + i
+PASS R1  on a circle-cell hit: bit id of record byte cell*n + id/8 set; the cell's occupancy byte incremented
+PASS W  n = 0x24: 288 bits = 128 + 32 + 128 ids; id 287 in byte 35, id 288 in byte 36 = the next cell's first
+PASS Q1  00391710 walks ids 0 .. [02AEE0BC] - 1 only: for a set bit it takes list[id] and tests its bounds against the query shape
+PASS C  a planted base 0xA1 is read as such; id 288 of cell 3 lands on cell 4's byte 0
+FAILS 0

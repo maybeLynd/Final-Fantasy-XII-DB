@@ -1,0 +1,320 @@
+labels recovered from 001D0390: 294 (ids 1..294)
+PASS C1 id 12 = 'Read Json Data:' and id 14 = 'Invincible:' - 'Read Json Data: ' / 'Invincible: '
+page 1:
+   row  0 id   2  
+   row  1 id  18  Jump To: 
+   row  2 id  20  Load chr: 
+   row  3 id  19  Load sample chr: 
+   row  4 id  21  Variation:
+   row  5 id  22  CLUT:
+   row  6 id  23  Set chr rotation: 
+   row  7 id   4  Capture 4K (A Frame)
+   row  8 id   5  Capture Series 4K Image
+   row  9 id  51  Draw Chr Names: 
+   row 10 id 198  Save My Memory Leak Table
+   row 11 id 202  File Cache Enable : 
+   row 12 id 203  File Cache Reset Memory
+   row 13 id 204  File Cache Info : 
+   row 14 id  12  Read Json Data: 
+   row 15 id  13  Reread Json Data: Press Circle to reread json data
+   row 16 id   9  YEBIS DOF Info: 
+   row 17 id  10  YEBIS DOF Info (2ndScreen): 
+   row 18 id 183  Print Magic Info: 
+   row 19 id 188  Enable reading key mapping from file: 
+   row 20 id 293  Key Board Debug For Japanese Keyboard: 
+   row 21 id 294  Key Kana Test Press ,Press Enter Button
+page 2:
+   row  0 id   2  
+   row  1 id  14  Invincible: 
+   row  2 id 182  Fusion Technique Select: 
+   row  3 id 185  Huge Damage: 
+   row  4 id 184  Set All Enemy HP One: 
+   row  5 id 197  100% Spawn Rare Monster :
+   row  6 id 199  Set gill to max: 
+   row  7 id 200  Set LP to max: 
+   row  8 id 201  Set level to max: 
+   row  9 id 224  Unlock all item: Press Circle
+   row 10 id 261  Set Leather Count to 2: Press Circle
+   row 11 id  15  Load ps2 savedata from slot: 
+   row 12 id  16  Convert PS2 Savedata 
+   row 13 id 205  Music : 
+   row 14 id 206  Voice: 
+   row 15 id 207  Sound Effect: 
+   row 16 id 217  3D Sound Behind Ratio: 
+   row 17 id 220  Extra BGM status: 
+   row 18 id 187  Enable mouse control camera: 
+   row 19 id 186  Camera speed: 
+   row 20 id 292  Super wide Mask Debug Enable :
+page 3:
+   row  0 id   2  
+   row  1 id 223  Unlock All license: Press Circle
+   row  2 id 225  Set clan point: 
+   row  3 id 226  Set step count: 
+   row  4 id 227  Set play time: 
+   row  5 id 228  Enable infinite summon time: 
+   row  6 id 229  Enable infinite chocobo time: 
+   row  7 id 230  Enable infinite chocobo turbo time: 
+   row  8 id 231  Set scenario flag: 
+   row  9 id 232  Count of battle: 
+   row 10 id 233  Count of magic: 
+   row 11 id 234  Count of tech: 
+   row 12 id 235  Count of steal: 
+   row 13 id 236  Count of killed monsters: 
+   row 14 id 237  Current LP: 
+   row 15 id 238  Set count of battle: 
+   row 16 id 239  Set count of magic: 
+   row 17 id 240  Set count of tech: 
+   row 18 id 241  Set count of steal: 
+   row 19 id 242  Set count of killed monsters: 
+   row 20 id 209  Load Debug Menu Settings
+   row 21 id 210  Save Debug Menu Settings
+page 4:
+   row  0 id   2  
+   row  1 id  17  Save autosave to common save data: 
+   row  2 id 243  Enable 100% successful steal: 
+   row  3 id 244  Enable 100% successful poach: 
+   row  4 id 245  Enable 100% successful drop: 
+   row  5 id 246  Chara Name: 
+   row  6 id 259  Reset Parameter: Press Circle
+   row  7 id 247  Level: 
+   row  8 id 248  HP: 
+   row  9 id 249  MP: 
+   row 10 id 250  ATPOW: 
+   row 11 id 251  DFPOW: 
+   row 12 id 252  WDFPOW: 
+   row 13 id 253  EVPOW: 
+   row 14 id 254  MEVPOW: 
+   row 15 id 255  STR: 
+   row 16 id 256  MGC: 
+   row 17 id 257  WPR: 
+   row 18 id 258  SPD: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 5:
+   row  0 id   2  
+   row  1 id 100  Camera Pose: 
+   row  2 id 101  Advanced panorama: 
+   row  3 id 103  Camera Over Write (O to capture): 
+   row  4 id 104  FOV: 
+   row  5 id 105  Aspect Ratio: 
+   row  6 id 106  Camera scale: 
+   row  7 id  60  Capture panorama: 
+   row  8 id  11  Focus Distance Helper: 
+   row  9 id  61  Camera Light enable: 
+   row 10 id 152  Map Camera Light Enabled: 
+   row 11 id 190  Adjust tracmap center x (L/R)
+   row 12 id 191  Adjust tracmap center y (L/R):
+   row 13 id 192  Adjust tracmap Super Wide Mul (L/R)
+   row 14 id 193  Adjust tracmap Super Wide MidPoint (L/R):
+   row 15 id 194  Procedural texture: Toggle Usage
+   row 16 id 195  Procedural texture: Toggle Management
+   row 17 id 176  Show Map Hide Group: 
+   row 18 id 177  Particle Draw Type Range Start: 
+   row 19 id 178  Particle Draw Type Range End: 
+   row 20 id 179  Color Correction Position: 
+   row 21 id 209  Load Debug Menu Settings
+page 6:
+   row  0 id   2  
+   row  1 id  26  Debug high model skeleton: 
+   row  2 id  27  Force town face: 
+   row  3 id  28  Use PS2 lighting: 
+   row  4 id  29  Use normal map: 
+   row  5 id  30  Display normal only: 
+   row  6 id  31  Use vertex color: 
+   row  7 id  32  Display texture density: 
+   row  8 id  62  After Water fix enable: 
+   row  9 id  34  Enable Map Display: 
+   row 10 id  35  Enable Character Display: 
+   row 11 id  36  Character Skeletons: 
+   row 12 id  37  Enable UI Display: 
+   row 13 id  38  Enable VFX Display: 
+   row 14 id  39  Draw VFX when capturing: 
+   row 15 id 175  Yebis enable: 
+   row 16 id  40  Enable Shadow Display: 
+   row 17 id  24  Change cast shadow object: 
+   row 18 id  25  Shadow Level: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 7:
+   row  0 id   2  
+   row  1 id  42  Display AO Only: 
+   row  2 id  43  HBAO NumSteps: 
+   row  3 id  44  HBAO NumDir: 
+   row  4 id  46  HBAO Depth Full Res: 
+   row  5 id  47  early AO: 
+   row  6 id  48  Post AA enable: 
+   row  7 id 279  Ambient Occlusion : 
+   row  8 id  53  Debug Cubemap: 
+   row  9 id  54  Toggle event cubemap: 
+   row 10 id  55  Toggle cube map probes mode:
+   row 11 id  56  Capture cube map. (L/R to toggle SkyBox)
+   row 12 id  57  Operate cube map
+   row 13 id  58  Set cube map properties: 
+   row 14 id  59  Recapture cube maps: 
+   row 15 id  90  Eye A and B Cube Map Blend Factor: 
+   row 16 id  91  Eye A and B Specular Blend Modifier: 
+   row 17 id  94  Eye A and B Specular Shadow Modifier
+   row 18 id 107  Cube map factor: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 8:
+   row  0 id   2  
+   row  1 id  72  Eye Type A Camera Light Direction X Bias: 
+   row  2 id  73  Eye Type A Camera Light Direction Y Bias: 
+   row  3 id  74  Eye Type A Camera Light Direction Z Bias: 
+   row  4 id  75  Eye Type A Specular Power Modifier: 
+   row  5 id  76  Eye Type A Specular Power Eye-Camera Distance Factor: 
+   row  6 id  77  Eye Type A Specular Intensity Before Clamp Modifier: 
+   row  7 id  78  Eye Type A Specular Intensity Before Clamp Eye-Camera Distance Factor: 
+   row  8 id  79  Eye Type A Specular Intensity After Clamp Modifier: 
+   row  9 id  80  Eye Type A Specular Intensity After Clamp Eye-Camera Distance Factor: 
+   row 10 id  81  Eye Type B Camera Light Direction X Bias: 
+   row 11 id  82  Eye Type B Camera Light Direction Y Bias: 
+   row 12 id  83  Eye Type B Camera Light Direction Z Bias: 
+   row 13 id  84  Eye Type B Specular Power Modifier: 
+   row 14 id  85  Eye Type B Specular Power Eye-Camera Distance Factor: 
+   row 15 id  86  Eye Type B Specular Intensity Before Clamp Modifier: 
+   row 16 id  87  Eye Type B Specular Intensity Before Clamp Eye-Camera Distance Factor: 
+   row 17 id  88  Eye Type B Specular Intensity After Clamp Modifier: 
+   row 18 id  89  Eye Type B Specular Intensity After Clamp Eye-Camera Distance Factor: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 9:
+   row  0 id   2  
+   row  1 id 136  Map Eye Specular Power Modifier: 
+   row  2 id 137  Map Eye Specular Power Eye Camera Distance Factor: 
+   row  3 id 138  Map Eye Specular Intensity Before Clamp Modifier: 
+   row  4 id 139  Map Eye Specular Intensity Before Clamp Eye Camera Distance Factor: 
+   row  5 id 140  Map Eye Specular Intensity After Clamp Modifier: 
+   row  6 id 141  Map Eye Specular Intensity After Clamp Eye Camera Distance Factor: 
+   row  7 id 142  Map Eye CubeMap Intensity Modifier: 
+   row  8 id 143  Map Eye Specular Blend Modifier: 
+   row  9 id 144  Map Eye Diffuse Modifier: 
+   row 10 id 153  Map Eye Camera Light X Modifier: 
+   row 11 id 154  Map Eye Camera Light Y Modifier: 
+   row 12 id 155  Map Eye Camera Light Z Modifier: 
+   row 13 id 167  SSS enable: 
+   row 14 id 168  SSS Width: 
+   row 15 id 169  SSS Diffuse a: 
+   row 16 id 170  SSS Diffuse b: 
+   row 17 id 171  SSS Blur: 
+   row 18 id 172  Gaussian Filter big kernel (15x15 or 7x7): 
+   row 19 id 173  Gaussian Filter factor: 
+   row 20 id 209  Load Debug Menu Settings
+   row 21 id 210  Save Debug Menu Settings
+page 10:
+   row  0 id   2  
+   row  1 id 174  Gaussian Filter blend amount: 
+   row  2 id  95  Fresnel Specular intensity: 
+   row  3 id  96  Fresnel Specular power: 
+   row  4 id  97  Fresnel Specular Clamp Value: 
+   row  5 id  98  Fresnel Specular Skin Intensity: 
+   row  6 id  99  Fresnel Reflection enable: 
+   row  7 id 108  Diffuse intensity: 
+   row  8 id 109  Specular intensity: 
+   row  9 id 110  Cube map intensity: 
+   row 10 id 111  IBL Diffuse/Classic Ambient factor: 
+   row 11 id 112  IBL Diffuse limit: 
+   row 12 id 113  IBL Diffuse intensity: 
+   row 13 id 114  Map Specular Intensity: 
+   row 14 id 115  Map CubeMap Intensity: 
+   row 15 id 116  Map CubeMap Factor: 
+   row 16 id 117  Map IBL Diffuse Factor: 
+   row 17 id 118  Map IBL Diffuse Limit: 
+   row 18 id 119  Map IBL Diffuse Intensity: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 11:
+   row  0 id   2  
+   row  1 id 120  Water Refraction Factor: 
+   row  2 id 121  Water Specular Factor: 
+   row  3 id 122  Water Extra Debug Factor Two 
+   row  4 id 123  Water Extra Debug Cubemap Factor 
+   row  5 id 124  Water Extra Debug Roughness Factor 
+   row  6 id 125  Water Parallax Occlusion Debug Factor 
+   row  7 id 126  Water Fresnel Factor 
+   row  8 id 127  Water texture U Factor 
+   row  9 id 128  Water texture V Factor 
+   row 10 id 129  Water Min Z 
+   row 11 id 130  Sample step size 
+   row 12 id 131  Total Num of Pixels 
+   row 13 id 132  Reflection blend 
+   row 14 id 133  Reflection strength 
+   row 15 id 134  Water Quality
+   row 16 id 135  Water Texture Reflection Factor
+   row 17 id 165  Re-read soft particle config
+   row 18 id 166  Use soft particle: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 12:
+   row  0 id   2  
+   row  1 id  63  Hair Camera Light Direction X Bias: 
+   row  2 id  64  Hair Camera Light Direction Y Bias: 
+   row  3 id  65  Hair Camera Light Direction Z Bias: 
+   row  4 id  66  Hair Specular Power Modifier: 
+   row  5 id  67  Hair Specular Power Eye-Camera Distance Factor: 
+   row  6 id  68  Hair Specular Intensity Before Clamp Modifier: 
+   row  7 id  69  Hair Specular Intensity Before Clamp Eye-Camera Distance Factor: 
+   row  8 id  70  Hair Specular Intensity After Clamp Modifier: 
+   row  9 id  71  Hair Specular Intensity After Clamp Eye-Camera Distance Factor: 
+   row 10 id 156  Map Hair Specular Power Modifier: 
+   row 11 id 157  Map Hair Specular Power Eye Camera Distance Factor: 
+   row 12 id 158  Map Hair Specular Intensity Before Clamp Modifier: 
+   row 13 id 159  Map Hair Specular Intensity Before Clamp Eye Camera Distance Factor: 
+   row 14 id 160  Map Hair Specular Intensity After Clamp Modifier: 
+   row 15 id 161  Map Hair Specular Intensity After Clamp Eye Camera Distance Factor: 
+   row 16 id 162  Map Hair Camera Light X Modifier: 
+   row 17 id 163  Map Hair Camera Light Y Modifier: 
+   row 18 id 164  Map Hair Camera Light Z Modifier: 
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+page 13:
+   row  0 id 267  Mouse Control Vertical Camera Speed:
+   row  1 id 268  Mouse Control Horizon Camera Speed:
+   row  2 id 288  Mouse Control Camera Max Move: 
+   row  3 id 271  Camera Revise Enable:
+   row  4 id 269  Mouse Wheel Control Scroll Table Frequency:
+   row  5 id 270  Mouse Wheel Control Scroll Table Buffer Size:
+   row  6 id 147  Map BGNPC Fresnel Enabled: 
+   row  7 id 148  Map BGNPC Fresnel Intensity: 
+   row  8 id 149  Map BGNPC Fresnel Power: 
+   row  9 id 150  Map BGNPC Fresnel Clamp Value: 
+   row 10 id 151  Map BGNPC Fresnel Skin Intensity: 
+   row 11 id  92  Eye A and B Ambient Scale: 
+   row 12 id  93  Eye A and B Ambient Bound: 
+   row 13 id 145  Map Eye Ambient Modifier: 
+   row 14 id 146  Map Eye Ambient Bound: 
+   row 15 id 286  Clear Achievements : 
+   row 16 id 180  Map render DisplayList Id Start: 
+   row 17 id 181  Map render DisplayList Id End: 
+   row 18 id 289  Disable PauseMenu :
+   row 19 id 209  Load Debug Menu Settings
+   row 20 id 210  Save Debug Menu Settings
+   row 21 id 287  FrameSkip Enabled:
+page 14:
+   row  0 id   2  
+   row  1 id 266  System Adapter:
+   row  2 id 264  Game Display Resolution:
+   row  3 id 265  Game Monitor :
+   row  4 id 263  Game Window Mode:
+   row  5 id 272  Brightness: 
+   row  6 id 273  Vsync : 
+   row  7 id 284  BackBufferCount : 
+   row  8 id 283  Apply Graphic Quality Default : 
+   row  9 id 274  Anisotropic filtering : 
+   row 10 id 134  Water Quality
+   row 11 id 275  Shadows Quality : 
+   row 12 id 276  Character self-shadow : 
+   row 13 id 277  Anti-aliasing : 
+   row 14 id 278  Post process AA : 
+   row 15 id 279  Ambient Occlusion : 
+   row 16 id 280  Depth of Field : 
+   row 17 id 281  Glare : 
+   row 18 id 166  Use soft particle: 
+   row 19 id 285  Frame Limit (Apply save config file & restart game) : 
+   row 20 id 282  Save Config File : 
+   row 21 id 291  Save Load Message Debug State :
+ids used 266, with a label store 266, without 0
+ids without a label store: []
+PASS C2 page 3 (the '0xDF, 0xE1..' run read as Loca/bin_menu ids) carries console labels, not resource names - 22 of 22 entries labelled
+FAILS 0

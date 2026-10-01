@@ -1,0 +1,74 @@
+{
+  "mode": "post",
+  "pid": 23532,
+  "start_unix": 1789086499.098648,
+  "status": "COMPLETED",
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\observe.py",
+        "--pid",
+        "23532",
+        "--seconds",
+        "35",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\post-window.json"
+      ],
+      "label": "observer",
+      "pid": 12540,
+      "start_unix": 1789086499.7978554,
+      "exit_code": 0,
+      "observed_end_unix": 1789086534.937586
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\input_receipt.py",
+        "--keys",
+        "Enter",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\post-Enter.json"
+      ],
+      "label": "Enter",
+      "pid": 9592,
+      "start_unix": 1789086506.8027868,
+      "exit_code": 0,
+      "observed_end_unix": 1789086534.937594
+    },
+    {
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\input_receipt.py",
+        "--keys",
+        "C",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\post-C.json"
+      ],
+      "label": "C",
+      "pid": 37252,
+      "start_unix": 1789086516.8042817,
+      "exit_code": 0,
+      "observed_end_unix": 1789086534.9375954
+    }
+  ],
+  "sources": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\window_run.py": "5bd797de7dfb9f60caa88b704ee1809800675ed2940b49622de7d58f5474eb02",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\observe.py": "5ec130012f75f15b10e6e4d1b4e8e1563418df91a06afbc0a02253f06c4c3ec7",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\input_receipt.py": "4dea410dc57c2d2fd03fa425360b760d2f3ecdc1a8e25e0d098248b2b3369e5e",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-010-RT1\\probe_extension.py": "35a087547494cf56e46addd7c107ff92811e9868c07bfe01d98efcc0b9f869fb",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\hwbp.py": "ac2c4437baaeb67a474b6cfd8299f78314f6180f47434a4275b5adb77ee6cfd9"
+  },
+  "state_before": {
+    "stdout": "pid 23532\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "state_after": {
+    "stdout": "pid 23532\n  verdict        IN-WORLD   (a save is loaded and the area id is 227, not the menu's 12)\n  script slots   128 of 128 on the free list   (a fact about the SCRIPT table, not about the world)\n  st2e groups    16 of 28        title baseline 16\n  area id        227\n  save buffer    e70993b10100000096000000d3020000\n  screen         NOT KNOWABLE FROM MEMORY -- run window_capture.py\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "end_unix": 1789086535.6175363,
+  "live_children": []
+}

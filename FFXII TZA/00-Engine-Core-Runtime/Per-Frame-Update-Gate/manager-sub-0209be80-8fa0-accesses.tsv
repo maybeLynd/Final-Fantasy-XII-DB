@@ -1,0 +1,188 @@
+function	name	site	disp	kind	instruction	route	note
+002465F0	FUN_002465f0	00246641	0x0	w	mov qword ptr [rdi], rbx	embed ManagerSingleton0209BE80+0x8FA0	
+00291750	FUN_00291750	002917AA	0x0	addr	lea rcx, [rdi + 0x8fa0]	embed ManagerSingleton0209BE80+0x8FA0	
+00291750	FUN_00291750	002917B6	0x0	addr	lea rcx, [rdi + 0x8fa0]	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246647	0x40	r	xor ecx, dword ptr [rdi + 0x40]	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246650	0x40	r	xor ecx, dword ptr [rdi + 0x40]	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246660	0x40	w	mov dword ptr [rdi + 0x40], ecx	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	0024666D	0x40	w	mov dword ptr [rdi + 0x40], eax	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466D1	0x40	rw	and dword ptr [rdi + 0x40], 0xffffbfff	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466F2	0x40	rw	or dword ptr [rdi + 0x40], eax	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246670	0x44	rw	and dword ptr [rdi + 0x44], 0xfff8ffff	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	0024667E	0x44	r	mov edx, dword ptr [rdi + 0x44]	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466FA	0x44	w	mov word ptr [rdi + 0x44], ax	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246687	0x48	w	mov qword ptr [rdi + 0x48], rax	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466D8	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246711	0x98	w	mov dword ptr [rdi + 0x98], eax	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246717	0x9C	w	mov dword ptr [rdi + 0x9c], 0x800080	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	0024670A	0xA0	w	mov byte ptr [rdi + 0xa0], 0x80	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466E6	0xA1	w	mov word ptr [rdi + 0xa1], 0xff80	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466A1	0xAC	w	mov byte ptr [rdi + 0xac], 0xf9	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466CB	0xAC	w	mov byte ptr [rdi + 0xac], cl	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246695	0xAD	w	mov byte ptr [rdi + 0xad], 0xf9	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	002466C1	0xAD	w	mov byte ptr [rdi + 0xad], al	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	0024675C	0xB4	w	mov dword ptr [rdi + 0xb4], 1	embed ManagerSingleton0209BE80+0x8FA0	
+002465F0	FUN_002465f0	00246700	0xB8	w	mov dword ptr [rdi + 0xb8], 0x3f800000	embed ManagerSingleton0209BE80+0x8FA0	
+00244830	FUN_00244830	00244869	0xAC0	r	mov rax, qword ptr [rcx]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244EE3	0xAC0	r	mov rax, qword ptr [rbx]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244F00	FUN_00244f00	00244F25	0xAC0	r	mov rax, qword ptr [rcx]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00245020	FUN_00245020	00245044	0xAC0	r	mov rax, qword ptr [rdi]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002473F0	FUN_002473f0	0024743E	0xAC0	r	mov rax, qword ptr [r8]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483A0	0xAC0	r	mov rax, qword ptr [rdi]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483CE	0xAC0	w	mov qword ptr [rdi], 0	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00273A20	FUN_00273a20	00273A22	0xAC0	r	cmp qword ptr [rcx], rax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002BE1A0	FUN_002be1a0	002BE1FF	0xAC0	addr	lea rcx, [rbx + 0xac0]	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEF0F	0xAC0	addr	lea rcx, [rdi + 0xac0]	embed ManagerSingleton0209BE80+0x8FA0	
+002482E0	FUN_002482e0	002483CA	0xAC8	r	mov rbx, qword ptr [rdi + 8]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248308	0xAD0	r	mov rax, qword ptr [rdi + 0x10]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002448D0	FUN_002448d0	002448E0	0xAD8	r	mov rbx, qword ptr [rcx + 0x18]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00245020	FUN_00245020	00245047	0xAD8	r	mov rbx, qword ptr [rdi + 0x18]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002473F0	FUN_002473f0	00247414	0xAD8	r	mov rbx, qword ptr [r8 + 0x18]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002482EE	0xAD8	r	mov rcx, qword ptr [rcx + 0x18]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248315	0xAE0	r	mov rcx, qword ptr [rdi + 0x20]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248311	0xAE8	r	mov rdx, qword ptr [rdi + 0x28]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244830	FUN_00244830	00244865	0xB00	rw	and dword ptr [rcx + 0x40], 0xffffffef	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E17	0xB00	r	mov edx, dword ptr [rbx + 0x40]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E50	0xB00	w	mov dword ptr [rbx + 0x40], edx	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244F00	FUN_00244f00	00244F0A	0xB00	rw	or dword ptr [rcx + 0x40], 0x40	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244F00	FUN_00244f00	00244F11	0xB00	r	mov eax, dword ptr [rcx + 0x40]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00245020	FUN_00245020	00245072	0xB00	r	test byte ptr [rdi + 0x40], 0x20	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00245020	FUN_00245020	00245091	0xB00	r	mov eax, dword ptr [rdi + 0x40]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00245020	FUN_00245020	0024509B	0xB00	w	mov dword ptr [rdi + 0x40], eax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002473F0	FUN_002473f0	0024741F	0xB00	r	mov ecx, dword ptr [r8 + 0x40]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002473F0	FUN_002473f0	0024743A	0xB00	w	mov dword ptr [r8 + 0x40], eax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483B4	0xB00	rw	and dword ptr [rdi + 0x40], 0xfffffbff	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483C7	0xB00	r	mov eax, dword ptr [rdi + 0x40]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483F0	0xB00	w	mov dword ptr [rdi + 0x40], eax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E80	0xB08	r	mov rcx, qword ptr [rbx + 0x48]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248334	0xB10	r	mov eax, dword ptr [rdi + 0x50]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248343	0xB10	w	mov dword ptr [rdi + 0x50], eax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248377	0xB10	r	mov eax, dword ptr [rdi + 0x50]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	0024833E	0xB20	r	cmp qword ptr [rdi + 0x60], 0	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248360	0xB20	r	mov rax, qword ptr [rdi + 0x60]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	0024838A	0xB20	r	mov rcx, qword ptr [rdi + 0x60]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	00248398	0xB20	w	mov qword ptr [rdi + 0x60], 0	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E88	0xB28	w	mov qword ptr [rbx + 0x68], rcx	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E6A	0xB30	w	mov dword ptr [rbx + 0x70], ecx	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E75	0xB30	r	sub eax, dword ptr [rbx + 0x70]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244ED4	0xB30	w	mov dword ptr [rbx + 0x70], edx	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E78	0xB34	r	sub eax, dword ptr [rbx + 0x74]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E7B	0xB34	w	mov dword ptr [rbx + 0x74], eax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E92	0xB34	w	mov dword ptr [rbx + 0x74], eax	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E95	0xB38	w	mov dword ptr [rbx + 0x78], 0x3f800000	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E1F	0xB3C	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E23	0xB3C	rw	or dword ptr [rbx + 0x7c], 1	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E2C	0xB3C	r	mov ecx, dword ptr [rbx + 0x7c]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244EAA	0xB3C	r	mov eax, dword ptr [rbx + 0x7c]	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244EBC	0xB3C	w	mov dword ptr [rbx + 0x7c], edi	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244ED7	0xB3C	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244EDB	0xB3C	rw	or dword ptr [rbx + 0x7c], 4	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244EDF	0xB3C	rw	or dword ptr [rbx + 0x7c], 0x30	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483BE	0xB3C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002482E0	FUN_002482e0	002483E9	0xB62	w	mov byte ptr [rdi + 0xa2], 0	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244DE1	0xB78	w	mov dword ptr [rcx + 0xb8], 0x3f800000	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+00244DD0	FUN_00244dd0	00244E0F	0xB78	w	movss dword ptr [rbx + 0xb8], xmm1	embed ManagerSingleton0209BE80+0x8FA0 exposed	
+002BEA40	FUN_002bea40	002BEA80	0xD40	r	test byte ptr [rbx + 0x280], 1	embed ManagerSingleton0209BE80+0x8FA0	
+002BE230	FUN_002be230	002BE230	0x1030	r	mov rax, qword ptr [rcx + 0x1030]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE230	FUN_002be230	002BE244	0x1030	r	mov rax, qword ptr [rcx + 0x1030]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE270	FUN_002be270	002BE270	0x1030	r	mov rax, qword ptr [rcx + 0x1030]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE329	0x1030	w	mov qword ptr [rcx + 0x570], 0	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE36A	0x1030	r	mov rax, qword ptr [rcx + 0x570]	embed ManagerSingleton0209BE80+0x8FA0	
+002BEA40	FUN_002bea40	002BEA59	0x1030	w	mov qword ptr [rcx + 0x570], rsi	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEEF0	0x1030	w	mov qword ptr [rcx + 0x1030], rsi	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0F9E	0x1030	w	mov qword ptr [rbx + 0x570], rdi	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0FAF	0x1030	r	mov rcx, qword ptr [rbx + 0x570]	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0FC2	0x1030	r	mov rcx, qword ptr [rbx + 0x570]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE3FB	0x1038	w	mov dword ptr [rbx + 0x578], esi	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE40A	0x1038	w	mov dword ptr [rbx + 0x578], edi	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0F49	0x1038	r	movsxd rax, dword ptr [rcx + 0x578]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE230	FUN_002be230	002BE25B	0x103C	w	mov word ptr [rcx + 0x103c], dx	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0FC9	0x103C	r	movzx eax, word ptr [rbx + 0x57c]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE230	FUN_002be230	002BE253	0x103E	rw	or word ptr [rcx + 0x103e], 2	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE334	0x103E	rw	and word ptr [rcx + 0x57e], ax	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE3E4	0x103E	rw	and word ptr [rbx + 0x57e], cx	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE3EB	0x103E	r	movzx ecx, word ptr [rbx + 0x57e]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE410	0x103E	w	mov word ptr [rbx + 0x57e], cx	embed ManagerSingleton0209BE80+0x8FA0	
+002BE300	FUN_002be300	002BE436	0x103E	rw	or word ptr [rbx + 0x57e], 1	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEEE6	0x103E	rw	and word ptr [rcx + 0x103e], ax	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0F61	0x103E	r	movzx eax, word ptr [rcx + 0x57e]	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0F97	0x103E	r	test byte ptr [rbx + 0x57e], 2	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0FDC	0x103E	rw	and word ptr [rbx + 0x57e], ax	embed ManagerSingleton0209BE80+0x8FA0	
+002BE270	FUN_002be270	002BE283	0x1040	w	mov dword ptr [rcx + 0x1040], edx	embed ManagerSingleton0209BE80+0x8FA0	
+002C0F30	FUN_002c0f30	002C0FB6	0x1040	r	mov eax, dword ptr [rbx + 0x580]	embed ManagerSingleton0209BE80+0x8FA0	
+0028F570	FUN_0028f570	0028F57D	0x1048	r	mov rax, qword ptr [rax + 0x9fe8]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDE41	0x1048	r	cmp qword ptr [rbx + 0x1048], rbp	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF31	0x1048	r	cmp qword ptr [rbx + 0x1048], rbp	embed ManagerSingleton0209BE80+0x8FA0	
+002BE020	FUN_002be020	002BE029	0x1048	r	mov rcx, qword ptr [rcx + 0x1048]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE020	FUN_002be020	002BE03C	0x1048	w	mov qword ptr [rbx + 0x1048], rax	embed ManagerSingleton0209BE80+0x8FA0	
+002BE110	FUN_002be110	002BE124	0x1048	r	mov rax, qword ptr [rcx + 0x1048]	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEF50	0x1050	w	mov qword ptr [rdi + 0x1050], rsi	embed ManagerSingleton0209BE80+0x8FA0	
+002BDAE0	FUN_002bdae0	002BDAE0	0x1058	r	mov rcx, qword ptr [rcx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB00	FUN_002bdb00	002BDB04	0x1058	r	mov rcx, qword ptr [rcx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDBC8	0x1058	r	mov rax, qword ptr [rbx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC64	0x1058	r	mov rax, qword ptr [rbx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCA0	FUN_002bdca0	002BDCAA	0x1058	r	mov rax, qword ptr [rcx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDD20	0x1058	r	cmp qword ptr [rbx + 0x1058], rbp	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDE90	0x1058	w	mov qword ptr [rbx + 0x1058], rax	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDEC3	0x1058	r	mov rax, qword ptr [rbx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF93	0x1058	r	mov rcx, qword ptr [rbx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDFBA	0x1058	r	mov rdx, qword ptr [rbx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDFD6	0x1058	r	mov rax, qword ptr [rbx + 0x1058]	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEF33	0x1068	r	mov rcx, qword ptr [rdi + 0x1068]	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEF44	0x1068	w	mov qword ptr [rdi + 0x1068], rsi	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEF1B	0x1070	r	mov rcx, qword ptr [rdi + 0x1070]	embed ManagerSingleton0209BE80+0x8FA0	
+002BEED0	FUN_002beed0	002BEF2C	0x1070	w	mov qword ptr [rdi + 0x1070], rsi	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDB7F	0x1078	r	mov rax, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDBE8	0x1078	r	mov rcx, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC23	0x1078	r	mov rcx, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC3E	0x1078	r	mov rax, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC7C	0x1078	r	mov rcx, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDDB3	0x1078	w	mov qword ptr [rbx + 0x1078], rax	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDDEA	0x1078	r	mov rcx, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDDF9	0x1078	r	mov rcx, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDE15	0x1078	r	mov rsi, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDEA7	0x1078	r	mov rcx, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF05	0x1078	r	mov rsi, qword ptr [rbx + 0x1078]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDB66	0x1080	r	cmp qword ptr [rcx + 0x1080], 0	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDB94	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDBB5	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDB60	FUN_002bdb60	002BDBDC	0x1080	r	mov rcx, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC09	0x1080	r	mov rcx, qword ptr [rcx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC51	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDC00	FUN_002bdc00	002BDC88	0x1080	r	mov rcx, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCA0	FUN_002bdca0	002BDCA0	0x1080	r	cmp qword ptr [rcx + 0x1080], 0	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDD7D	0x1080	w	mov qword ptr [rbx + 0x1080], rax	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDD8C	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDE71	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDEAE	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDEDA	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDEE7	0x1080	r	mov rcx, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF5A	0x1080	r	mov rcx, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF8C	0x1080	r	mov rax, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDFC1	0x1080	r	mov rcx, qword ptr [rbx + 0x1080]	embed ManagerSingleton0209BE80+0x8FA0	
+002BE0A0	FUN_002be0a0	002BE0E7	0x1088	addr	lea rcx, [rbx + 0x1088]	embed ManagerSingleton0209BE80+0x8FA0	
+002BF3D0	FUN_002bf3d0	002BF459	0x1088	w	movups xmmword ptr [rsi], xmm0	embed ManagerSingleton0209BE80+0x8FA0	
+002BF3D0	FUN_002bf3d0	002BF45F	0x1098	w	mov dword ptr [rsi + 0x10], eax	embed ManagerSingleton0209BE80+0x8FA0	
+002BF3D0	FUN_002bf3d0	002BF459	0x109C	w	movups xmmword ptr [rsi], xmm0	embed ManagerSingleton0209BE80+0x8FA0	
+002BF3D0	FUN_002bf3d0	002BF45F	0x10AC	w	mov dword ptr [rsi + 0x10], eax	embed ManagerSingleton0209BE80+0x8FA0	
+002BE0A0	FUN_002be0a0	002BE0D6	0x10B0	addr	lea rcx, [rbx + 0x10b0]	embed ManagerSingleton0209BE80+0x8FA0	
+002BF3D0	FUN_002bf3d0	002BF459	0x10B0	w	movups xmmword ptr [rsi], xmm0	embed ManagerSingleton0209BE80+0x8FA0	
+002BF3D0	FUN_002bf3d0	002BF45F	0x10C0	w	mov dword ptr [rsi + 0x10], eax	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDE4A	0x10D0	r	cmp qword ptr [rbx + 0x10d0], rbp	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF3A	0x10D0	r	cmp qword ptr [rbx + 0x10d0], rbp	embed ManagerSingleton0209BE80+0x8FA0	
+002BE020	FUN_002be020	002BE043	0x10D0	w	mov qword ptr [rbx + 0x10d0], rax	embed ManagerSingleton0209BE80+0x8FA0	
+002BE110	FUN_002be110	002BE162	0x10D0	w	movups xmmword ptr [rbx + 0x10d0], xmm0	embed ManagerSingleton0209BE80+0x8FA0	
+002BE110	FUN_002be110	002BE16F	0x10E0	w	movups xmmword ptr [rbx + 0x10e0], xmm1	embed ManagerSingleton0209BE80+0x8FA0	
+002BE110	FUN_002be110	002BE176	0x10F0	w	movsd qword ptr [rbx + 0x10f0], xmm0	embed ManagerSingleton0209BE80+0x8FA0	
+002BE090	FUN_002be090	002BE098	0x10F8	w	mov word ptr [rcx + 0x10f8], dx	embed ManagerSingleton0209BE80+0x8FA0	
+0028F880	FUN_0028f880	0028F890	0x10FA	r	xor cx, word ptr [rax + 0xa09a]	embed ManagerSingleton0209BE80+0x8FA0	
+0028F880	FUN_0028f880	0028F89B	0x10FA	rw	xor word ptr [rax + 0xa09a], cx	embed ManagerSingleton0209BE80+0x8FA0	
+00290CA0	FUN_00290ca0	00290CB3	0x10FA	r	xor cx, word ptr [rax + 0xa09a]	embed ManagerSingleton0209BE80+0x8FA0	
+00290CA0	FUN_00290ca0	00290CBE	0x10FA	rw	xor word ptr [rax + 0xa09a], cx	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDE53	0x10FA	r	test byte ptr [rbx + 0x10fa], 8	embed ManagerSingleton0209BE80+0x8FA0	
+002BDCE0	FUN_002bdce0	002BDF43	0x10FA	r	test byte ptr [rbx + 0x10fa], 8	embed ManagerSingleton0209BE80+0x8FA0	
+002BE090	FUN_002be090	002BE090	0x10FA	rw	or word ptr [rcx + 0x10fa], 2	embed ManagerSingleton0209BE80+0x8FA0	
+002BE0A0	FUN_002be0a0	002BE0A6	0x10FA	r	test byte ptr [rcx + 0x10fa], 1	embed ManagerSingleton0209BE80+0x8FA0	
+002BE0A0	FUN_002be0a0	002BE0F8	0x10FA	rw	or word ptr [rbx + 0x10fa], 1	embed ManagerSingleton0209BE80+0x8FA0	
+00290250	FUN_00290250	0029025C	0x10FC	w	mov word ptr [rax + 0xa09c], cx	embed ManagerSingleton0209BE80+0x8FA0	
+00290250	FUN_00290250	0029026A	0x10FE	w	mov word ptr [rax + 0xa09e], dx	embed ManagerSingleton0209BE80+0x8FA0	

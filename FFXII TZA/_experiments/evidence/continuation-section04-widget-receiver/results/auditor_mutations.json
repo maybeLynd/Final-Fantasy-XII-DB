@@ -1,0 +1,39 @@
+[
+  {
+    "mutant": "ignore_partial_write",
+    "detected": true,
+    "failed_checks": [
+      "partial_byte_write_kills_pointer"
+    ]
+  },
+  {
+    "mutant": "keep_volatile",
+    "detected": true,
+    "failed_checks": [
+      "call_clobbers_volatile_pointer"
+    ]
+  },
+  {
+    "mutant": "lea_is_memory",
+    "detected": true,
+    "failed_checks": [
+      "lea_is_not_a_memory_read",
+      "lea_preserves_known_subobject_offset"
+    ]
+  },
+  {
+    "mutant": "xor_keeps_pointer",
+    "detected": true,
+    "failed_checks": [
+      "xor32_kills_pointer",
+      "constant_lea_folds_without_access"
+    ]
+  },
+  {
+    "mutant": "join_chooses_pointer",
+    "detected": true,
+    "failed_checks": [
+      "join_discards_disagreeing_provenance"
+    ]
+  }
+]

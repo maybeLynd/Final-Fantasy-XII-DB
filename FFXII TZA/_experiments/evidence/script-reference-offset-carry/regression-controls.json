@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-final-offset-mask",
+    "returncode": 1,
+    "expected": "No final offset mask occurs after the ADD"
+  },
+  {
+    "argument": "--fault-class-always-preserved",
+    "returncode": 1,
+    "expected": "Upper arithmetic bits can change the OR-combined class"
+  },
+  {
+    "argument": "--fault-width-always-seven",
+    "returncode": 1,
+    "expected": "OR70000000 sets three bits, not exact width when bit31 arrives"
+  }
+]

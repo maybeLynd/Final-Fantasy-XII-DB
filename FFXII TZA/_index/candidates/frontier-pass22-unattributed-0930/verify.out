@@ -1,0 +1,91 @@
+PASS  K2 direction label rule
+PASS  K1 detail string truncation matches audit_crossrefs (4 + '(+N more)')
+PASS  K3 generator renders a synthetic hit set exactly
+NOT-PUBLISHABLE 1   02-Resource-And-Asset-Pipeline/authored-data-table-registry.md
+    ISSUES: T3 CoreRuntimeScheduling text matches neither enumeration: HAVE '- **CoreRuntimeScheduling - CLIENT and SERVICE (17 edges).** 12 inbound (CoreRuntimeScheduling bodies `0022B7E0`, `0022A0B0`, `0022A580` call page-cited `00324510`, `00184960`, `0032E520`); 5 outbound (page-cited `00184960`, `00233C10`, `0046AB10` call CoreRuntimeScheduling bodies `001EDE70`, `001EDEF0`, `00229EA0`).' WANT(audit) '- **CoreRuntimeScheduling - CLIENT and SERVICE (17 edges).** `00184960`, `001A9930`, `00214C30`, `0022B7E0` (+4 more) are called by bodies filed to CoreRuntimeScheduling: `0017D6E0`, `0022A0B0`, `0022A580`, `0022A770` (+4 more); `00184960`, `00233C10`, `0046AB10` reach bodies filed to CoreRuntimeScheduling: `001EDE70`, `001EDEF0`, `00229EA0`, `00229ED0` (+1 more) - shared machinery across the layer boundary, no shared ownership.'
+    T6 17 added/removed line(s) are not template bullets: ['+- **ActorEntity — CLIENT and SERVICE (53 edges).** 24 inbound (ActorEntity bodies `BattleUnit_ApplyUnitDefinition` (0023A570), `0037B4D0`, `ActorResource_BeginPrimaryPayloadLoad` (00330310) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `0032E400`, `BattleUnit_ApplyUnitDefinition` (0023A570)); 29 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleMenu_BuildCommandEntryList` (0031EB20), `0037B4D0` call ActorEntity bodies `BattleUnit_GetBySlotIndex` (00236820), `BattleUnit_GetSlotCount` (00236850), `Actor_GetWorldPosition` (00265020)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) is called by `ActorSystem_InitializeManagerRuntime` (0026CE60); `00238260` is called by `BattleStorage_InitializeWorkArrays` (002368D0); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleUnit_TeardownAndDespawn` (00300E40); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleGroup_RefreshFourActorDefinitions` (003266C0); the remaining edges run through shared helpers the page cites.', '+- **CombatAI — CLIENT and SERVICE (43 edges).** 28 inbound (CombatAI bodies `AiOrder_EvaluateTargetSelector` (00301AD0), `AiOrder_EvaluateAndResolveActionTarget` (003014C0), `BattleTarget_ComputeSurfaceDistanceBetweenUnits` (0031E6F0) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `BattleUnit_GetNavigationClearanceRadius` (0030A130), `BattleUnit_BuildFilteredFourSlotUnitBuffer` (0030A880)); 15 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleStats_InitializeDefinitionRecord` (0023AC80), `00233C10` call CombatAI bodies `GambitRuntime_RebuildAllOrderSets` (00327F80), `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880), `GambitRuntime_RebuildOrderSetForStatsRecord` (00327DE0)). Substantive edges include `00233C10` calls `GambitRuntime_RebuildAllOrderSets` (00327F80); `00236C30` calls `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `GambitRuntime_RebuildOrderSetForStatsRecord` (00327DE0); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `GambitConfig_InitializeThreeBanksFromBasePairs` (00326030); the remaining edges run through shared helpers the page cites.']
+FLAGGED         12  16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md
+    FLAGS: T5 Combat: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+    T5 World: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+PUBLISHABLE     2   16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md
+NOT-PUBLISHABLE 6   16-UI/Handbook/the-handbook-screen.md
+    ISSUES: T1 bullet CombatAI has no pair at HEAD (accounted already, or never reported)
+    T1 bullet Input has no pair at HEAD (accounted already, or never reported)
+    T1 bullet Presentation has no pair at HEAD (accounted already, or never reported)
+    T1 bullet Resource has no pair at HEAD (accounted already, or never reported)
+    T1 bullet SaveLoad has no pair at HEAD (accounted already, or never reported)
+    T1 bullet Save_Load_Settings has no pair at HEAD (accounted already, or never reported)
+PUBLISHABLE     5   16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md
+PUBLISHABLE     1   16-UI/Message-Windows/the-message-window-layout-readers.md
+PUBLISHABLE     1   16-UI/README.md
+PUBLISHABLE     11  16-UI/Request-Router/ui-request-router.md
+PUBLISHABLE     6   16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md
+PUBLISHABLE     4   16-UI/Text-And-Number-Rendering/the-text-control-code-language.md
+PUBLISHABLE     2   16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md
+PUBLISHABLE     1   16-UI/Widget-Object-Model/the-widget-message-protocol.md
+PUBLISHABLE     4   17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md
+PUBLISHABLE     3   17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md
+NOT-PUBLISHABLE 11  17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md
+    ISSUES: T4 UI MECHANICAL (6 edges, accessors ['00202C70']): no enumeration matches (audit 5 edges, 0 not through the accessors; page-cited 6)
+PUBLISHABLE     3   17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md
+PUBLISHABLE     3   17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md
+NOT-PUBLISHABLE 11  17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md
+    ISSUES: T2 Input count 66 != audit 65 (page-cited 67)
+    T3 Input text matches neither enumeration: HAVE '- **Input - CLIENT and SERVICE (66 edges).** `0017D3E0`, `00263FF0`, `00369080`, `00369160` (+7 more) are called by bodies filed to Input: `00226BE0`, `002E09A0`, InputControl_ServicePendingSynchronizationWork (`0035E760`), InputControl_InitializeAndRegisterFrameUpdate (`0035E820`) (+3 more); `001EC060`, `0022A580`, `0022A770`, `0022AF50` (+9 more) reach bodies filed to Input: `0017DE60`, `00182D40`, `00226BE0`, `00249860` (+20 more) - shared machinery across the layer boundary, no shared ownership.' WANT(audit) '- **Input - CLIENT and SERVICE (65 edges).** `0017D3E0`, `00263FF0`, `00369080`, `00369160` (+7 more) are called by bodies filed to Input: `00226BE0`, `002E09A0`, InputControl_ServicePendingSynchronizationWork (`0035E760`), InputControl_InitializeAndRegisterFrameUpdate (`0035E820`) (+3 more); `001EC060`, `0022A580`, `0022A770`, `0022AF50` (+8 more) reach bodies filed to Input: `0017DE60`, `00182D40`, `00249860`, `00249880` (+19 more) - shared machinery across the layer boundary, no shared ownership.'
+PUBLISHABLE     1   17-Presentation-Rendering/Model-And-Motion-Formats/README.md
+FLAGGED         3   17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md
+    FLAGS: T5 UI: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+PUBLISHABLE     4   17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md
+FLAGGED         5   17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md
+    FLAGS: T5 Items_Equipment_Shops_License: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+    T5 Spawn_Encounter_Lifecycle: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+PUBLISHABLE     13  17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md
+PUBLISHABLE     2   17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md
+PUBLISHABLE     1   17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md
+PUBLISHABLE     10  17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md
+PUBLISHABLE     2   17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md
+PUBLISHABLE     2   17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md
+PUBLISHABLE     3   17-Presentation-Rendering/README.md
+PUBLISHABLE     7   17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md
+NOT-PUBLISHABLE 14  21-RNG-And-Determinism/CONTRACT-gameplay-generators.md
+    ISSUES: T4 Script_VM_Native_Bridge MECHANICAL (6 edges, accessors ['00379CD0']): no enumeration matches (audit 6 edges, 4 not through the accessors; page-cited 6)
+    FLAGS: T5 Status_Periodic_Terminal: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+PUBLISHABLE     16  21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md
+NOT-PUBLISHABLE 13  21-RNG-And-Determinism/which-roll-is-on-which-generator.md
+    ISSUES: T4 CombatFormula MECHANICAL (54 edges, accessors ['00379CD0']): no enumeration matches (audit 54 edges, 1 not through the accessors; page-cited 54)
+PUBLISHABLE     2   22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md
+PUBLISHABLE     1   22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md
+PUBLISHABLE     6   22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md
+PUBLISHABLE     4   22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md
+PUBLISHABLE     6   22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md
+NOT-PUBLISHABLE 5   22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md
+    ISSUES: T2 Resource count 30 != audit 25 (page-cited 59)
+    T3 Resource text matches neither enumeration: HAVE '- **Resource - CLIENT and SERVICE (30 edges).** `00212050`, `005CC900`, `005CD4F0`, `0067FF40` are called by bodies filed to Resource: `0019F620`, `001A0A90`, `001A0BB0`, `001A0C50` (+19 more); `00212050`, `005A08E0` reach bodies filed to Resource: `0017D940`, `0017D960`, `00212260`, `00677450` - shared machinery across the layer boundary, no shared ownership.' WANT(audit) '- **Resource - CLIENT and SERVICE (25 edges).** `005CC900`, `005CD4F0`, `0067FF40` are called by bodies filed to Resource: `0019F620`, `001A0A90`, `001A0BB0`, `001A0C50` (+19 more); `005A08E0` reaches bodies filed to Resource: `00677450` - shared machinery across the layer boundary, no shared ownership.'
+    FLAGS: T5 Input: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+NOT-PUBLISHABLE 5   22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md
+    ISSUES: T4 Input MECHANICAL (27 edges, accessors ['0063A990']): no enumeration matches (audit 25 edges, 0 not through the accessors; page-cited 27)
+PUBLISHABLE     1   22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md
+PUBLISHABLE     7   22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md
+PUBLISHABLE     2   22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md
+FLAGGED         17  22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md
+    FLAGS: T5 Gameplay: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+    T5 Status_Periodic_Terminal: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+PUBLISHABLE     1   23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md
+PUBLISHABLE     4   23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md
+FLAGGED         13  23-Third-Party-Libraries/third-party-middleware-inventory.md
+    FLAGS: T5 Save_Load_Settings: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)
+NOT-PUBLISHABLE 1   25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md
+    ISSUES: T3 WorldAreaField text matches neither enumeration: HAVE '- **WorldAreaField - CLIENT and SERVICE (11 edges).** 4 inbound (WorldAreaField bodies `0025ACA0`, `0025ABA0`, `MapRef_BeginLoadResources` (00268750) call page-cited `002658B0`, `0025ABA0`, `00267930`); 7 outbound (page-cited `0025ACA0`, `002620E0`, `0025ABA0` call WorldAreaField bodies `002658B0`, `0025ABA0`, `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910)).' WANT(audit) '- **WorldAreaField - CLIENT and SERVICE (11 edges).** `0025ABA0`, `002658B0`, `00267930` are called by bodies filed to WorldAreaField: `0025ABA0`, `0025ACA0`, MapRef_BeginLoadResources (`00268750`); `0025ABA0`, `0025ACA0`, `002620E0`, ActorManager_BindLoadedDefinitionPayload (`0026C8C0`) reach bodies filed to WorldAreaField: `0025ABA0`, `0025ACA0`, `002658B0`, WorldField_InitializeCurrentFieldRuntimeParameters (`0026D910`) (+2 more) - shared machinery across the layer boundary, no shared ownership.'
+    T6 4 added/removed line(s) are not template bullets: ['+- **Party — SERVICE (2 edges).** 2 outbound (page-cited `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) call Party bodies `PartyControl_SetMovementSuppressionBit` (00359200), `PartyFocus_GetCurrentPackedActorHandle` (003590D0)). Substantive edges include `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) calls `PartyControl_SetMovementSuppressionBit` (00359200); the remaining edges run through shared helpers the page cites.', "+- **RNG_Random_Selection — MECHANICAL (2 edges).** 2 calls from page-cited bodies into shared RNG_Random_Selection plumbing (`RNG_MT19937_NextU32_Thunk` (00379CD0)) - the helpers' general call surface, not a RNG_Random_Selection relationship of this page's subjects."]
+MIXED           16  00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md
+    ISSUES: T6 7 added/removed line(s) are not pass-22 bullets: ['+    ~~The only functions that address the table are the rebase `0030B6A0` and `0030B270`.~~ *Corrected 2026-09-30', "+    (OPUS, on FABLE's and SWE2-AUDIT-SEM's findings; `falsify_encoded_id.py` E10 / E11):* 49 rip-relative references"]
+MIXED           1   01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md
+    ISSUES: T6 72 added/removed line(s) are not pass-22 bullets: ['+status: "REOPENED — SECTION-11 trigger resolved (accepted by a non-author review 2026-09-29) and the page returns through the owner read; families 3, 5 and 7 and the default aliasing answered (AO-1, AO-4); the byte the polls test is the manager skip mask (OV-15); a skip is set when the player skips an event cutscene (RC-17, answered by FABLE; ORACLE\'s corrections pending FABLE\'s adjudication) (status line current 2026-09-30, SWE2-CONTRACT)"', '+local_production_status: "SECTION-11 locally validated; accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18)"']
+    FLAGS: V5 Input: every listed substantive edge calls a >40-caller helper (helper-only crossing?)
+MIXED           6   02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md
+    ISSUES: T6 2 added/removed line(s) are not pass-22 bullets: ['+| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. **Every other kind is taken as issued:** the wrapper `0046E030` returns 1 whatever the read issuer `002DF780` returned (`0046E043`). So a refused read (a −1 file-size entry, `002DF7B9`) also moves to state 2, and in state 3 it completes on the status slot `0215EFF4` the previous read left (OPUS 2026-09-30, RC-37, `_index/candidates/rc37-refused-read-0930/`, static; pending SWE2-AUDIT-SPEC review). |', '-| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. |']
+PASS  K4 count+1 on 16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md / CoreRuntimeScheduling is refused
+PASS  K4 address dropped on 16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md / CoreRuntimeScheduling is refused
+PASS  K4 body swapped on 16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md / CoreRuntimeScheduling is refused
+TOTAL {'NOT-PUBLISHABLE': 9, 'bullets': 281, 'byte-exact CLIENT/SERVICE bullets': 237, 'pairs accounted by publishable appends': 141, 'FLAGGED': 5, 'PUBLISHABLE': 34, 'MIXED': 3}
+FAILS 0

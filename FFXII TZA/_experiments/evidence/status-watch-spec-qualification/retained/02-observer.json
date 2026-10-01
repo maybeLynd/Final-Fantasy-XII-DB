@@ -1,0 +1,7 @@
+{
+  "path": "Database/Tools/analysis-kit/gfz-scripts/hwbp.py",
+  "whole_source_sha256": "fb69cd13ee47c54745c9e5942aebbe6a5b2b574ebe145e3a8d8a6c800b10e091",
+  "function_start_line": 214,
+  "function_end_line": 237,
+  "set_slots_source": "def set_slots(tid, addrs):\n    \"\"\"Program DR0..DR3 with up to four EXECUTE breakpoints. addrs may be shorter; the rest are\n    cleared. Returns True if the thread's context was written.\"\"\"\n    h = k32.OpenThread(THREAD_ALL, False, tid)\n    if not h:\n        return False\n    ctx = CONTEXT()\n    ctx.ContextFlags = CONTEXT_DEBUG_REGISTERS\n    if not k32.GetThreadContext(h, ctypes.byref(ctx)):\n        k32.CloseHandle(h)\n        return False\n    dr7 = 0\n    for i in range(4):\n        a = addrs[i] if i < len(addrs) else 0\n        setattr(ctx, \"Dr%d\" % i, a)\n        if a:\n            dr7 |= (1 << (i * 2))          # local enable\n            # RW = 00 (execute), LEN = 00 (1 byte): both zero, so nothing more to set.\n    ctx.Dr7 = dr7\n    ctx.Dr6 = 0\n    ctx.ContextFlags = CONTEXT_DEBUG_REGISTERS\n    ok = bool(k32.SetThreadContext(h, ctypes.byref(ctx)))\n    k32.CloseHandle(h)\n    return ok"
+}

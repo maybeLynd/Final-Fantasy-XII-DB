@@ -1,0 +1,14 @@
+{
+  "question": "Can the published ARD root02B5E0C0 expose the allocator's full pointer, or does the loader/callback narrow it before publication?",
+  "hypotheses": ["Full allocator pointer is used as read destination and preserved through callback publication", "Read destination is full-width but callback context and published root are narrowed", "Low published root guarantees all computed section/row pointers fit32 bits"],
+  "method": "A: retained EXP077/078/079 for prior allocator/placement limits; fresh missing static loader/binder/tag bodies, no experiments repeated",
+  "why_sufficient": "Widths, callback entry register lifetime and publication dominate this local invariant. Neither new native execution nor live sampling can strengthen the original branch proof.",
+  "reference": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 base120000",
+  "consumer": "OPUS GR18 reward edge/observer prerequisite; FABLE ARD binder contract and high-address limits",
+  "budget": "825 original bytes across loader476/binder267/tag82, exact pdata normal chains; bounded arithmetic witnesses, no runtime setup",
+  "controls": "Actual capture shared roles/store/LEA/RMW controls; independent byte redecoding; failed capture/missing tail/coherently changed entry-width must refuse",
+  "acceptance": "Prove fullR8 read destination versus lowDWORD callback context; binder savedEBP remains zeroextended32 until qword publication, and section arithmetic has separate bounds",
+  "failure": "No result if prerequisites/bytes/full normal spans or concrete guards fail; preserve exit and original failed preparation",
+  "cleanup": "Read-only shipping/retained data, finite scripts/disposable controls, no game/native/PC/saves/config/reference changes",
+  "remaining": "Natural allocation placement and complete queued callback reachability/lifetime remain separate; no alltime low-pointer or wholeGR18 closure"
+}

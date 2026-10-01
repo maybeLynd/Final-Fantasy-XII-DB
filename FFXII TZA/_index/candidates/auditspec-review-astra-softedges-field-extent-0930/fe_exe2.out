@@ -1,0 +1,30 @@
+[001EA3C0 prologue]
+  001EA3C0 push   rsi
+  001EA3C2 push   rdi
+  001EA3C3 push   r14
+  001EA3C5 sub    rsp, 0x30
+  001EA3C9 mov    qword ptr [rsp + 0x20], 0xfffffffffffffffe
+  001EA3D2 mov    qword ptr [rsp + 0x60], rbx
+  001EA3D7 mov    qword ptr [rsp + 0x68], rbp
+  001EA3DC mov    rsi, rcx
+  001EA3DF mov    rbx, rcx
+[001C1D40 FUN_001c1d40, call at 001C1E04]
+  001C1DE3 add    rcx, 0x18
+  001C1DE7 lea    rdx, [rip + 0x70416a]
+  001C1DEE call   0x1edf00
+  001C1DF3 nop    
+  001C1DF4 mov    dword ptr [rdi + 0x4660], ebp
+  001C1DFA lea    rbx, [rdi + 0x118]
+  001C1E01 mov    rcx, rbx
+  001C1E04 call   0x1ea3c0
+[001C2980 FUN_001c2980, call at 001C2BFD]
+  001C2BD9 imul   rcx
+  001C2BDC sar    rdx, 5
+  001C2BE0 mov    rax, rdx
+  001C2BE3 shr    rax, 0x3f
+  001C2BE7 add    rax, rdx
+  001C2BEA dec    eax
+  001C2BEC imul   rsi, rax, 0x230
+  001C2BF3 add    rsi, qword ptr [rbx]
+  001C2BF6 lea    rcx, [rsi + 0x108]
+  001C2BFD call   0x1ea3c0

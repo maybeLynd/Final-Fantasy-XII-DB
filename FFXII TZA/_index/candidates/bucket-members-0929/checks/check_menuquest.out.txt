@@ -1,0 +1,317 @@
+=== 1. corpus: every shipped copy
+files: 27 {'us': 3, 'de': 3, 'es': 3, 'fr': 3, 'it': 3, 'ch': 3, 'cn': 3, 'kr': 3, 'in': 3}
+PASS 27 files = 9 locales x menuquest00..02 (none past 02)
+PASS ch/menuquest00 (2980 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x990'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 2980 == size
+PASS ch/menuquest00 (2980 B): record +12..+19 = four 0x0FFF in all 19
+PASS ch/menuquest00 (2980 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS ch/menuquest00 (2980 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('... ....', 19)]
+PASS ch/menuquest00 (2980 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS ch/menuquest00 (2980 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 11; bytes 26-27 always zero: True
+PASS ch/menuquest01 (24960 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x4bcc', '0x54ac', '0x5c94'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 24960 == size
+PASS ch/menuquest01 (24960 B): record +12..+19 = four 0x0FFF in all 45
+PASS ch/menuquest01 (24960 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS ch/menuquest01 (24960 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS ch/menuquest01 (24960 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS ch/menuquest01 (24960 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS ch/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS ch/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS ch/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS ch/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS ch/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS ch/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS cn/menuquest00 (2964 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x980'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 2964 == size
+PASS cn/menuquest00 (2964 B): record +12..+19 = four 0x0FFF in all 19
+PASS cn/menuquest00 (2964 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS cn/menuquest00 (2964 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('... ....', 19)]
+PASS cn/menuquest00 (2964 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS cn/menuquest00 (2964 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 11; bytes 26-27 always zero: True
+PASS cn/menuquest01 (24596 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x4a68', '0x5348', '0x5b28'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 24596 == size
+PASS cn/menuquest01 (24596 B): record +12..+19 = four 0x0FFF in all 45
+PASS cn/menuquest01 (24596 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS cn/menuquest01 (24596 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS cn/menuquest01 (24596 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS cn/menuquest01 (24596 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS cn/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS cn/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS cn/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS cn/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS cn/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS cn/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS de/menuquest00 (3012 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x9b0'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 3012 == size
+PASS de/menuquest00 (3012 B): record +12..+19 = four 0x0FFF in all 19
+PASS de/menuquest00 (3012 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS de/menuquest00 (3012 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('not use.', 19)]
+PASS de/menuquest00 (3012 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS de/menuquest00 (3012 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS de/menuquest01 (39760 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x84c4', '0x8da4', '0x9664'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 39760 == size
+PASS de/menuquest01 (39760 B): record +12..+19 = four 0x0FFF in all 45
+PASS de/menuquest01 (39760 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS de/menuquest01 (39760 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS de/menuquest01 (39760 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS de/menuquest01 (39760 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS de/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS de/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS de/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS de/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS de/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS de/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS es/menuquest00 (3004 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x9a8'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 3004 == size
+PASS es/menuquest00 (3004 B): record +12..+19 = four 0x0FFF in all 19
+PASS es/menuquest00 (3004 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS es/menuquest00 (3004 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('not use.', 19)]
+PASS es/menuquest00 (3004 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS es/menuquest00 (3004 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS es/menuquest01 (35268 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x73c0', '0x7ca0', '0x84d8'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 35268 == size
+PASS es/menuquest01 (35268 B): record +12..+19 = four 0x0FFF in all 45
+PASS es/menuquest01 (35268 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS es/menuquest01 (35268 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS es/menuquest01 (35268 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS es/menuquest01 (35268 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS es/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS es/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS es/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS es/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS es/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS es/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS fr/menuquest00 (3004 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x9a8'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 3004 == size
+PASS fr/menuquest00 (3004 B): record +12..+19 = four 0x0FFF in all 19
+PASS fr/menuquest00 (3004 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS fr/menuquest00 (3004 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('not use.', 19)]
+PASS fr/menuquest00 (3004 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS fr/menuquest00 (3004 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS fr/menuquest01 (32284 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x67f8', '0x70d8', '0x7930'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 32284 == size
+PASS fr/menuquest01 (32284 B): record +12..+19 = four 0x0FFF in all 45
+PASS fr/menuquest01 (32284 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS fr/menuquest01 (32284 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS fr/menuquest01 (32284 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS fr/menuquest01 (32284 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS fr/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS fr/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS fr/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS fr/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS fr/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS fr/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS in/menuquest00 (10144 B): header u16 off[6] = ['0x18c', '0x774', '0xb20', '0x204c', '0x237c', '0x258c'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 10144 == size
+PASS in/menuquest00 (10144 B): record +12..+19 = four 0x0FFF in all 19
+PASS in/menuquest00 (10144 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS in/menuquest00 (10144 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('.q..', 8), ('................b......................p.............Z.............u..hu.h.............................al..m.....y.....f...................y..h...', 2), ('.....s....t....p...........nh......Ajo....h...........D.......hjw..f...........I.....q..u.....t......Z......p........i...Bonj..', 1)]
+PASS in/menuquest00 (10144 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS in/menuquest00 (10144 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 11; bytes 26-27 always zero: True
+PASS in/menuquest01 (23564 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x46a8', '0x4f88', '0x5720'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 23564 == size
+PASS in/menuquest01 (23564 B): record +12..+19 = four 0x0FFF in all 45
+PASS in/menuquest01 (23564 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS in/menuquest01 (23564 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS in/menuquest01 (23564 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS in/menuquest01 (23564 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS in/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS in/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS in/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS in/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS in/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS in/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS it/menuquest00 (3004 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x9a8'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 3004 == size
+PASS it/menuquest00 (3004 B): record +12..+19 = four 0x0FFF in all 19
+PASS it/menuquest00 (3004 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS it/menuquest00 (3004 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('not use.', 19)]
+PASS it/menuquest00 (3004 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS it/menuquest00 (3004 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS it/menuquest01 (30648 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x6164', '0x6a44', '0x72cc'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 30648 == size
+PASS it/menuquest01 (30648 B): record +12..+19 = four 0x0FFF in all 45
+PASS it/menuquest01 (30648 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS it/menuquest01 (30648 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS it/menuquest01 (30648 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS it/menuquest01 (30648 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS it/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS it/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS it/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS it/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS it/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS it/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS kr/menuquest00 (2996 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x9a0'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 2996 == size
+PASS kr/menuquest00 (2996 B): record +12..+19 = four 0x0FFF in all 19
+PASS kr/menuquest00 (2996 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS kr/menuquest00 (2996 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('... ....', 19)]
+PASS kr/menuquest00 (2996 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS kr/menuquest00 (2996 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 11; bytes 26-27 always zero: True
+PASS kr/menuquest01 (30708 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x61b0', '0x6a90', '0x7308'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 30708 == size
+PASS kr/menuquest01 (30708 B): record +12..+19 = four 0x0FFF in all 45
+PASS kr/menuquest01 (30708 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS kr/menuquest01 (30708 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS kr/menuquest01 (30708 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS kr/menuquest01 (30708 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS kr/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS kr/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS kr/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS kr/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS kr/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS kr/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS us/menuquest00 (3004 B): header u16 off[6] = ['0x18c', '0x270', '0x354', '0x438', '0x768', '0x9a8'], +0xC = 0xffff, N = 19; 16 + 20*N = 396 == off[0]; off[5] + 28*N = 3004 == size
+PASS us/menuquest00 (3004 B): record +12..+19 = four 0x0FFF in all 19
+PASS us/menuquest00 (3004 B): record +10 (section-5 rel) == 0 in all 19 (readers use 28*k instead)
+PASS us/menuquest00 (3004 B): sections 0-2 string refs land in their section and terminate inside it (0 of 57 are 0xFFFF)
+      section-0 strings: [('not use.', 19)]
+PASS us/menuquest00 (3004 B): section 3: 19 distinct QHD0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS us/menuquest00 (3004 B): section 4: 19 distinct QHT0 chunks, counts {1: 19} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 19 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+PASS us/menuquest01 (31316 B): header u16 off[6] = ['0x394', '0x394', '0x394', '0x6458', '0x6d38', '0x7568'], +0xC = 0xffff, N = 45; 16 + 20*N = 916 == off[0]; off[5] + 28*N = 31316 == size
+PASS us/menuquest01 (31316 B): record +12..+19 = four 0x0FFF in all 45
+PASS us/menuquest01 (31316 B): record +10 (section-5 rel) == 0 in all 45 (readers use 28*k instead)
+PASS us/menuquest01 (31316 B): sections 0-2 string refs land in their section and terminate inside it (90 of 135 are 0xFFFF)
+      section-0 strings: []
+PASS us/menuquest01 (31316 B): section 3: 45 distinct QHD0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS us/menuquest01 (31316 B): section 4: 45 distinct QHT0 chunks, counts {1: 45} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 45 x 28 B; distinct rows 12; bytes 26-27 always zero: True
+PASS us/menuquest02 (224 B): header u16 off[6] = ['0x38', '0x38', '0x38', '0x38', '0x78', '0xa8'], +0xC = 0xffff, N = 2; 16 + 20*N = 56 == off[0]; off[5] + 28*N = 224 == size
+PASS us/menuquest02 (224 B): record +12..+19 = four 0x0FFF in all 2
+PASS us/menuquest02 (224 B): record +10 (section-5 rel) == 0 in all 2 (readers use 28*k instead)
+PASS us/menuquest02 (224 B): sections 0-2 string refs land in their section and terminate inside it (6 of 6 are 0xFFFF)
+      section-0 strings: []
+PASS us/menuquest02 (224 B): section 3: 2 distinct QHD0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+PASS us/menuquest02 (224 B): section 4: 2 distinct QHT0 chunks, counts {1: 2} (bit31 clear on disk), every sub-offset inside its own chunk
+      section 5: 2 x 28 B; distinct rows 1; bytes 26-27 always zero: True
+
+=== 2. joins: menuquest.dat groups, menuquest.h
+PASS ch: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS cn: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS de: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS es: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS fr: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS in: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS it: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS kr: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS us: qstd +8 = 3 groups, +0xA = 66 quests; per-group counts [19, 45, 2] == menuquest00/01/02 N [19, 45, 2]
+      control (group+1): [45, 2, 19] vs [19, 45, 2]
+PASS menuquest.h (us): menuquest_NUM 66 == sum of N over the 3 files; menuquest_group_NUM 3 == 3 files
+PASS menuquest.h (cn): menuquest_NUM 66 == sum of N over the 3 files; menuquest_group_NUM 3 == 3 files
+PASS menuquest.h (kr): menuquest_NUM 66 == sum of N over the 3 files; menuquest_group_NUM 3 == 3 files
+
+=== 3. .fst sizes, kind 7 ids 0x12A..0x139, and path slots
+PASS FileSizeTable_US: ids 0x12A..0x12C = [3004, 31316, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_DE: ids 0x12A..0x12C = [3012, 39760, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_ES: ids 0x12A..0x12C = [3004, 35268, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_FR: ids 0x12A..0x12C = [3004, 32284, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_IT: ids 0x12A..0x12C = [3004, 30648, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_CH: ids 0x12A..0x12C = [2980, 24960, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_CN: ids 0x12A..0x12C = [2964, 24596, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_KR: ids 0x12A..0x12C = [2996, 30708, 224], 0x12D..0x139 all -1: True
+PASS FileSizeTable_IN: ids 0x12A..0x12C = [10144, 23564, 224], 0x12D..0x139 all -1: True
+PASS kind-7 path slots 01E0E530[0x12A+g] name menuquest{g:02d}.bin, g = 0..15; 0x129 = menuquest.nfs, 0x128 = menuquest.dat
+
+=== 4. static image
+PASS 003800DF: expect `movzx ..eax, byte ptr [rdx + 1]..` got `movzx eax, byte ptr [rdx + 1]`
+PASS 003800EA: expect `cmp ..al, 2..` got `cmp al, 2`
+PASS 0038011C: expect `movzx ..ebx, byte ptr [rdx + 2]..` got `movzx ebx, byte ptr [rdx + 2]`
+PASS 00380120: expect `add ..ebx, 0x12a..` got `add ebx, 0x12a`
+PASS 00380112: expect `mov ..ebx, 0x129..` got `mov ebx, 0x129`
+PASS 00380137: expect `mov ..r8d, ebx..` got `mov r8d, ebx`
+PASS 0038013A: expect `mov ..edx, 7..` got `mov edx, 7`
+PASS 00380145: expect `call ..0x249210..` got `call 0x249210`
+PASS 00380155: expect `mov ..rax, qword ptr [rbx + 8]..` got `mov rax, qword ptr [rbx + 8]`
+PASS 0038005D: expect `mov ..qword ptr [rsi + 0x10], rax..` got `mov qword ptr [rsi + 0x10], rax`
+PASS 0037FD93: expect `movzx ..r9d, byte ptr [r11 + r10*8 + 0x10]..` got `movzx r9d, byte ptr [r11 + r10*8 + 0x10]`
+PASS 0037FDE9: expect `mov ..byte ptr [rbx + 0xe7], r8b..` got `mov byte ptr [rbx + 0xe7], r8b`
+PASS 0037FE13: expect `mov ..byte ptr [rsp + 0x22], r9b..` got `mov byte ptr [rsp + 0x22], r9b`
+PASS 0037E96C: expect `lea ..rbp, [rax + 1]..` got `lea rbp, [rax + 1]`
+PASS 0037E970: expect `lea ..rbp, [rax + rbp*4]..` got `lea rbp, [rax + rbp*4]`
+PASS 0037E974: expect `lea ..rbp, [rdi + rbp*4]..` got `lea rbp, [rdi + rbp*4]`
+PASS 0037E9D3: expect `movzx ..ecx, word ptr [rdi + 0xa]..` got `movzx ecx, word ptr [rdi + 0xa]`
+PASS 0037E9E0: expect `imul ..rax, rdx, 0x1c..` got `imul rax, rdx, 0x1c`
+PASS 0037E9FE: expect `movzx ..edx, word ptr [rdi]..` got `movzx edx, word ptr [rdi]`
+PASS 0037EA01: expect `movzx ..eax, word ptr [rbp]..` got `movzx eax, word ptr [rbp]`
+PASS 0037EA27: expect `movzx ..edx, word ptr [rdi + 2]..` got `movzx edx, word ptr [rdi + 2]`
+PASS 0037EA2B: expect `movzx ..eax, word ptr [rbp + 2]..` got `movzx eax, word ptr [rbp + 2]`
+PASS 0037EA51: expect `movzx ..edx, word ptr [rdi + 4]..` got `movzx edx, word ptr [rdi + 4]`
+PASS 0037EA55: expect `movzx ..eax, word ptr [rbp + 4]..` got `movzx eax, word ptr [rbp + 4]`
+PASS 0037EF01: expect `movzx ..ebx, word ptr [rcx + 0xa]..` got `movzx ebx, word ptr [rcx + 0xa]`
+PASS 0037EF0A: expect `imul ..rcx, rax, 0x1c..` got `imul rcx, rax, 0x1c`
+PASS 0037EFAA: expect `movzx ..eax, byte ptr [rax + rbx]..` got `movzx eax, byte ptr [rax + rbx]`
+PASS 0037FEC4: expect `movzx ..ecx, word ptr [rcx + 6]..` got `movzx ecx, word ptr [rcx + 6]`
+PASS 0037FECD: expect `movzx ..eax, word ptr [rdx + 6]..` got `movzx eax, word ptr [rdx + 6]`
+PASS 0037FEE2: expect `call ..0x473d50..` got `call 0x473d50`
+PASS 0037FF1B: expect `movzx ..ecx, word ptr [rbx + 8]..` got `movzx ecx, word ptr [rbx + 8]`
+PASS 0037FF24: expect `movzx ..eax, word ptr [rdi + 8]..` got `movzx eax, word ptr [rdi + 8]`
+PASS 0037FF39: expect `call ..0x473db0..` got `call 0x473db0`
+PASS 00473D5A: expect `mov ..eax, dword ptr [rcx + 4]..` got `mov eax, dword ptr [rcx + 4]`
+PASS 00473D80: expect `add ..dword ptr [rcx + rdx], r9d..` got `add dword ptr [rcx + rdx], r9d`
+PASS 00473D9E: expect `or ..dword ptr [rdx + 4], 0x80000000..` got `or dword ptr [rdx + 4], 0x80000000`
+PASS 00473DE0: expect `add ..dword ptr [rcx + rdx], r9d..` got `add dword ptr [rcx + rdx], r9d`
+PASS 00473B7A: expect `movsxd ..rcx, dword ptr [rax + rdx*4 + 8]..` got `movsxd rcx, dword ptr [rax + rdx*4 + 8]`
+PASS 00473BDB: expect `movzx ..eax, byte ptr [r11 + 1]..` got `movzx eax, byte ptr [r11 + 1]`
+PASS 00473CDF: expect `movzx ..eax, word ptr [rcx + rax*4 + 4]..` got `movzx eax, word ptr [rcx + rax*4 + 4]`
+
+=== 5. raw rip sweep of the QHD/QHT pointer globals
+   00473B50 mov qword ptr [rip + 0x283310d], 0 -> 02CA6C68  fn 00473B50
+   00473B60 mov qword ptr [rip + 0x2833105], 0 -> 02CA6C70  fn 00473B60
+   00473B70 mov rax, qword ptr [rip + 0x28330f1] -> 02CA6C68  fn 00473B70
+   00473BCC mov rax, qword ptr [rip + 0x2833095] -> 02CA6C68  fn 00473BB0
+   00473CC0 mov rax, qword ptr [rip + 0x2832fa9] -> 02CA6C70  fn 00473CC0
+   00473D50 mov qword ptr [rip + 0x2832f11], rcx -> 02CA6C68  fn 00473D50
+   00473D88 mov rdx, qword ptr [rip + 0x2832ed9] -> 02CA6C68  fn 00473D50
+   00473DB0 mov qword ptr [rip + 0x2832eb9], rcx -> 02CA6C70  fn 00473DB0
+   00473DE8 mov rdx, qword ptr [rip + 0x2832e81] -> 02CA6C70  fn 00473DB0
+PASS 02CA6C68 (QHD) / 02CA6C70 (QHT) are touched only by 00473B50/60 (clear), 00473D50/DB0 (install), 00473B70/BB0 (QHD read), 00473CC0 (QHT read)
+
+=== 6. id sweep with control
+   control 0x128 (menuquest.dat, documented at 0037F740 and 00577057): [('0037F733', 'mov r8d, 0x128 [listed]'), ('0057704A', 'mov r8d, 0x128 [listed]')]
+PASS positive control: sweep finds both documented menuquest.dat requests
+   00380112 mov ebx, 0x129 [listed]        -> request call 00380145  fn 003800D0
+   00380120 add ebx, 0x12a [listed]        -> request call 00380145  fn 003800D0
+PASS only 003800D0 forms a kind-7 request id in 0x129..0x139 (0x129 .nfs, and 0x12A + group)
+
+FAILS 0

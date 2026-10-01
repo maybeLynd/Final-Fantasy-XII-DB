@@ -1,0 +1,253 @@
+{
+  "gate": 270,
+  "changes": {
+    "original_sha256": "82486c57c1054d44549a1a04fe1d0e41a345ab5c6366fa023ab44f0877dae620",
+    "original_gate": 231,
+    "inserted_before_hex": "48ff83000a00004889bb100a0000488dbb000b00004c8d93000a000048b88877665544332211",
+    "inserted_after_hex": "48ff83080a0000488bbb100a0000",
+    "meaning": "Before counter; save/seed RDI; seed R10/RAX; original NOP gate; after counter; restore RDI. Existing FP body otherwise preserved."
+  },
+  "capstone": "5.0.7",
+  "instructions": [
+    {
+      "offset": 0,
+      "bytes": "53",
+      "instruction": "push rbx"
+    },
+    {
+      "offset": 1,
+      "bytes": "4881ec00020000",
+      "instruction": "sub rsp, 0x200"
+    },
+    {
+      "offset": 8,
+      "bytes": "4889cb",
+      "instruction": "mov rbx, rcx"
+    },
+    {
+      "offset": 11,
+      "bytes": "480fae0424",
+      "instruction": "fxsave64 ptr [rsp]"
+    },
+    {
+      "offset": 16,
+      "bytes": "480fae8300060000",
+      "instruction": "fxsave64 ptr [rbx + 0x600]"
+    },
+    {
+      "offset": 24,
+      "bytes": "f30f6f8300000000",
+      "instruction": "movdqu xmm0, xmmword ptr [rbx]"
+    },
+    {
+      "offset": 32,
+      "bytes": "f30f6f8b10000000",
+      "instruction": "movdqu xmm1, xmmword ptr [rbx + 0x10]"
+    },
+    {
+      "offset": 40,
+      "bytes": "f30f6f9320000000",
+      "instruction": "movdqu xmm2, xmmword ptr [rbx + 0x20]"
+    },
+    {
+      "offset": 48,
+      "bytes": "f30f6f9b30000000",
+      "instruction": "movdqu xmm3, xmmword ptr [rbx + 0x30]"
+    },
+    {
+      "offset": 56,
+      "bytes": "f30f6fa340000000",
+      "instruction": "movdqu xmm4, xmmword ptr [rbx + 0x40]"
+    },
+    {
+      "offset": 64,
+      "bytes": "f30f6fab50000000",
+      "instruction": "movdqu xmm5, xmmword ptr [rbx + 0x50]"
+    },
+    {
+      "offset": 72,
+      "bytes": "f30f6fb360000000",
+      "instruction": "movdqu xmm6, xmmword ptr [rbx + 0x60]"
+    },
+    {
+      "offset": 80,
+      "bytes": "f30f6fbb70000000",
+      "instruction": "movdqu xmm7, xmmword ptr [rbx + 0x70]"
+    },
+    {
+      "offset": 88,
+      "bytes": "f3440f6f8380000000",
+      "instruction": "movdqu xmm8, xmmword ptr [rbx + 0x80]"
+    },
+    {
+      "offset": 97,
+      "bytes": "f3440f6f8b90000000",
+      "instruction": "movdqu xmm9, xmmword ptr [rbx + 0x90]"
+    },
+    {
+      "offset": 106,
+      "bytes": "f3440f6f93a0000000",
+      "instruction": "movdqu xmm10, xmmword ptr [rbx + 0xa0]"
+    },
+    {
+      "offset": 115,
+      "bytes": "f3440f6f9bb0000000",
+      "instruction": "movdqu xmm11, xmmword ptr [rbx + 0xb0]"
+    },
+    {
+      "offset": 124,
+      "bytes": "f3440f6fa3c0000000",
+      "instruction": "movdqu xmm12, xmmword ptr [rbx + 0xc0]"
+    },
+    {
+      "offset": 133,
+      "bytes": "f3440f6fabd0000000",
+      "instruction": "movdqu xmm13, xmmword ptr [rbx + 0xd0]"
+    },
+    {
+      "offset": 142,
+      "bytes": "f3440f6fb3e0000000",
+      "instruction": "movdqu xmm14, xmmword ptr [rbx + 0xe0]"
+    },
+    {
+      "offset": 151,
+      "bytes": "f3440f6fbbf0000000",
+      "instruction": "movdqu xmm15, xmmword ptr [rbx + 0xf0]"
+    },
+    {
+      "offset": 160,
+      "bytes": "dbe3",
+      "instruction": "fninit "
+    },
+    {
+      "offset": 162,
+      "bytes": "d9ab04010000",
+      "instruction": "fldcw word ptr [rbx + 0x104]"
+    },
+    {
+      "offset": 168,
+      "bytes": "dbab20010000",
+      "instruction": "fld xword ptr [rbx + 0x120]"
+    },
+    {
+      "offset": 174,
+      "bytes": "dbab30010000",
+      "instruction": "fld xword ptr [rbx + 0x130]"
+    },
+    {
+      "offset": 180,
+      "bytes": "dbab40010000",
+      "instruction": "fld xword ptr [rbx + 0x140]"
+    },
+    {
+      "offset": 186,
+      "bytes": "dbab50010000",
+      "instruction": "fld xword ptr [rbx + 0x150]"
+    },
+    {
+      "offset": 192,
+      "bytes": "dbab60010000",
+      "instruction": "fld xword ptr [rbx + 0x160]"
+    },
+    {
+      "offset": 198,
+      "bytes": "dbab70010000",
+      "instruction": "fld xword ptr [rbx + 0x170]"
+    },
+    {
+      "offset": 204,
+      "bytes": "dbab80010000",
+      "instruction": "fld xword ptr [rbx + 0x180]"
+    },
+    {
+      "offset": 210,
+      "bytes": "dbab90010000",
+      "instruction": "fld xword ptr [rbx + 0x190]"
+    },
+    {
+      "offset": 216,
+      "bytes": "0fae9300010000",
+      "instruction": "ldmxcsr dword ptr [rbx + 0x100]"
+    },
+    {
+      "offset": 223,
+      "bytes": "480fae8300020000",
+      "instruction": "fxsave64 ptr [rbx + 0x200]"
+    },
+    {
+      "offset": 231,
+      "bytes": "48ff83000a0000",
+      "instruction": "inc qword ptr [rbx + 0xa00]"
+    },
+    {
+      "offset": 238,
+      "bytes": "4889bb100a0000",
+      "instruction": "mov qword ptr [rbx + 0xa10], rdi"
+    },
+    {
+      "offset": 245,
+      "bytes": "488dbb000b0000",
+      "instruction": "lea rdi, [rbx + 0xb00]"
+    },
+    {
+      "offset": 252,
+      "bytes": "4c8d93000a0000",
+      "instruction": "lea r10, [rbx + 0xa00]"
+    },
+    {
+      "offset": 259,
+      "bytes": "48b88877665544332211",
+      "instruction": "movabs rax, 0x1122334455667788"
+    },
+    {
+      "offset": 269,
+      "bytes": "90",
+      "instruction": "nop "
+    },
+    {
+      "offset": 270,
+      "bytes": "48ff83080a0000",
+      "instruction": "inc qword ptr [rbx + 0xa08]"
+    },
+    {
+      "offset": 277,
+      "bytes": "488bbb100a0000",
+      "instruction": "mov rdi, qword ptr [rbx + 0xa10]"
+    },
+    {
+      "offset": 284,
+      "bytes": "480fae8300040000",
+      "instruction": "fxsave64 ptr [rbx + 0x400]"
+    },
+    {
+      "offset": 292,
+      "bytes": "480fae0c24",
+      "instruction": "fxrstor64 ptr [rsp]"
+    },
+    {
+      "offset": 297,
+      "bytes": "480fae8300080000",
+      "instruction": "fxsave64 ptr [rbx + 0x800]"
+    },
+    {
+      "offset": 305,
+      "bytes": "b8dec0175a",
+      "instruction": "mov eax, 0x5a17c0de"
+    },
+    {
+      "offset": 310,
+      "bytes": "4881c400020000",
+      "instruction": "add rsp, 0x200"
+    },
+    {
+      "offset": 317,
+      "bytes": "5b",
+      "instruction": "pop rbx"
+    },
+    {
+      "offset": 318,
+      "bytes": "c3",
+      "instruction": "ret "
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "not_bound": [
+  "238880 (heap 6)",
+  "00237FC0 tail (heap 6)"
+ ],
+ "allowed_functions": 4247,
+ "results": {
+  "I4_I8_party_install": {
+   "pass_": true,
+   "rows": {
+    "0": {
+     "ok": true,
+     "returned": 1,
+     "stats": "76000008",
+     "want": "76000008",
+     "spawn_6A0": "0",
+     "flags": "0000000000000004",
+     "EAC": "0",
+     "EB4": "2222222222222222",
+     "reset": 1,
+     "pulse": [
+      [
+       "76280000"
+      ]
+     ]
+    },
+    "3": {
+     "ok": true,
+     "returned": 1,
+     "stats": "76000560",
+     "want": "76000560",
+     "spawn_6A0": "0",
+     "flags": "0000000000000004",
+     "EAC": "0",
+     "EB4": "2222222222222222",
+     "reset": 1,
+     "pulse": [
+      [
+       "76280000"
+      ]
+     ]
+    },
+    "5": {
+     "ok": true,
+     "returned": 1,
+     "stats": "760008F0",
+     "want": "760008F0",
+     "spawn_6A0": "0",
+     "flags": "0000000000000004",
+     "EAC": "0",
+     "EB4": "2222222222222222",
+     "reset": 1,
+     "pulse": [
+      [
+       "76280000"
+      ]
+     ]
+    }
+   },
+   "note": "ids 0x0000 / 0x0003 / 0x0005: the installer returns 1, +0x698 = q[02EBF190] + 8 + row*0x1C8 (the shipped party rows), +0x6A0 = 0, flag bit 2 set; the reset runs once and the pulse reset 002FEAB0 zeroes exactly the qword at +0xEAC (+0xEB4 survives)"
+  },
+  "I2_reset_then_master_reject": {
+   "pass_": true,
+   "result": {
+    "ok": true,
+    "returned": 0,
+    "flags_after": "FFEF7FB9FFE7B0E1",
+    "EAC_after": "3333333333333333",
+    "reset": 1,
+    "pulse": 0,
+    "stats_after": "0"
+   },
+   "note": "master flag 0: the reset runs (flags masked to FFEF7FB9FFE7B0E1), then the installer returns 0; +0xEAC survives because only the success path's pulse reset clears it"
+  },
+  "I1_other_class_clears_bit26": {
+   "pass_": true,
+   "result": {
+    "ok": true,
+    "returned": 0,
+    "flags_after": "FFEF7FB9FBE7B0E1",
+    "rekey": [
+     [
+      "76280000"
+     ]
+    ],
+    "bit26": 0,
+    "bit42": 1
+   },
+   "note": "class 2 (id 0x0203): the rekey runs (a nonzero class byte), then the class dispatch clears bit 26 and returns 0 - class 2 can rekey and then fail (I3)"
+  },
+  "I3_rekey_selection": {
+   "pass_": true,
+   "cases": {
+    "class 0, fresh unit": {
+     "ok": true,
+     "returned": 1,
+     "rekey_calls": 0
+    },
+    "class 0, old id 0x0005": {
+     "ok": true,
+     "returned": 1,
+     "rekey_calls": 1
+    },
+    "class 0, old id = incoming": {
+     "ok": true,
+     "returned": 1,
+     "rekey_calls": 0
+    },
+    "teardown 0xFFFF, old id 0x0005": {
+     "ok": true,
+     "returned": 0,
+     "rekey_calls": 1
+    }
+   },
+   "note": "class byte 0: no rekey for a fresh unit or when the saved old id equals the incoming one; a different saved old id rekeys"
+  },
+  "I7_party_path_registers_nothing": {
+   "pass_": true,
+   "result": {
+    "calls": [],
+    "table_changed": false
+   },
+   "note": "a party install makes NO 00328FF0 call and leaves the tracked table 02EC1380 untouched; I7's conditional write belongs to the enemy path, which this harness does not reach (its tables are not in battle_pack)"
+  }
+ }
+}

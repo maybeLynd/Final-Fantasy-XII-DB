@@ -1,0 +1,32 @@
+{
+  "status": "PREPARATION_AND_USAGE_HANDOFF_ONLY",
+  "method": "A: identity reconciliation and retained evidence; no new original-code or live test",
+  "live_game": false,
+  "artifacts": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "final-restoration.json",
+      "bytes": 1663,
+      "sha256": "f72917cec7212a7c48edb2716cb6e7cbb86b593b860edfcc20aa6170ad05398e"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 5772,
+      "sha256": "1ec90c859b20930b91957e2d5fd3996b2150c47e9ab62ed0d39502831f2b1e7e"
+    },
+    {
+      "path": "index-reconciliation.json",
+      "bytes": 5250,
+      "sha256": "8be0811b393f74f2ac0155585e0ce85a343e1beb0ab64ddb72e85412144a4f69"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5449,
+      "sha256": "a4f7e8217c2acd67373eff519afa85888e676e8679c74f2d250d64787d098991"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+00316CD0 48634104                 movsxd rax, dword ptr [rcx + 4]
+00316CD4 83f820                   cmp eax, 0x20
+00316CD7 7d0e                     jge 0x316ce7
+00316CD9 4803c0                   add rax, rax
+00316CDC 488954c108               mov qword ptr [rcx + rax*8 + 8], rdx
+00316CE1 ff4104                   inc dword ptr [rcx + 4]
+00316CE4 8b4104                   mov eax, dword ptr [rcx + 4]
+00316CE7 c3                       ret

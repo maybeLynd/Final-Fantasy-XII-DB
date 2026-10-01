@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "ASTRA-RETURN-OPUS-PHYRE-STARTUP",
+ "agent": "OPUS",
+ "resources": [{"key": "notice:astra/phyre-startup-consumer-return"}],
+ "note": "consuming the startup capture into the class-descriptor contract"
+}

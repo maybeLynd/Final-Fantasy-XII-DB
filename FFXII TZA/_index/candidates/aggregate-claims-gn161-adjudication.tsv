@@ -1,0 +1,93 @@
+# Aggregate-claim adjudication for the GN160->GN161 advance (batch R109).
+# Generated 2026-09-14 (SWE2-FRONTIER) for OPUS-REQ-FRONTIER-AGGREGATE-CLAIMS.
+#
+# The delta is MEASURED purely additive in exactly one dimension: 128 records gained
+# a GFZ.V121.CodeDomain tag and a comment between GN158 and GN161; 0 immutable field
+# changes, 0 tag removals, 0 PrimaryOwner deltas, 0 functions added/removed.
+#
+# THEREFORE a count can only be stale if its population is one of:
+#   RESIDUAL   the unresolved-residual set (158 @GN158 -> 139 @GN160 -> 30 @GN161)
+#   NOCD       the no-CodeDomain set (10,152 @GN158 -> 10,133 @GN160 -> 10,024 @GN161)
+#   FAMILY     a grown CodeDomain family (UI +44, Boundary +24, Runtime +18,
+#              Presentation +27, NativeDispatch +5, NativeRoutine +3, NativeLeaf +2,
+#              NativeInline +2, ThirdParty +1, CxxObjectLifecycle +1, Phyre +1)
+#   EXPLICIT   the ledger explicit figure (38,003 -> 38,022 -> 38,131)
+# Every byte-, shape-, name-, edge- and V120-owner-derived count is PROVABLY stable:
+# the annotation delta cannot move it.
+#
+# verdicts: CORRECTED (edited in place, GN161 value named), HISTORY (dated record of a
+# past state, correct as it stands), STABLE (re-measured or provably unmoved),
+# BOUNDED (method not fully reproducible; movement bounded and stated).
+#
+# document	verdict	detail
+00-Engine-Core-Runtime/Application-Root/game-application.md	STABLE	38,161 whole-image + caller/reference censuses (2,511/2,479/2,867); graph-derived
+00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md	STABLE	115 call [reg+0x40] sites; shape census
+00-Engine-Core-Runtime/Object-Model/rtti-vtable-object-model.md	STABLE	3,784/6,125 no-owner-no-caller counts use V120.PrimaryOwner + graph, both unchanged; vtable census structural
+00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	STABLE	197/815/131/132 region shape counts; byte-derived
+00-Engine-Core-Runtime/duplicated-function-names-and-how-to-resolve-them.md	STABLE	750 thunk-target census + 692/641 name counts; names and bodies unchanged
+01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md	STABLE	38,161 + 273/275/172 censuses + 108,328 script rows; all byte/graph
+01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	STABLE	1,245-of-38,161 reachability; graph-derived
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/area-nmb-index.md	STABLE	38,161 operand scan; "five remain unresolved" is call-site decoding, not the ledger residual
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md	STABLE	38,161 operand decode; byte-derived
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	STABLE	34,270/450; byte-derived
+03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	STABLE	38,161/110/117; byte+graph
+03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md	STABLE	815-caller owner breakdown uses V120 owner tags (unchanged) + graph
+04-Actor-Entity/battleunit-slot-pool-and-actor-class.md	STABLE	126-function shape census
+04-Actor-Entity/the-definition-record-flag-pair.md	STABLE	305/162/107/229 site censuses; byte-derived
+05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md	HISTORY	"38,161 / 38,003 / 158 unresolved" inside a dated falsification-pass record
+06-Movement-And-Navigation/heading-speed-to-position-delta.md	HISTORY	same - dated falsification-pass record of the GN158 program state
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md	STABLE	38,161 displacement census
+09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	STABLE	212 refs / 121 functions; byte-derived
+09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md	STABLE	38,161 census
+10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md	STABLE	478-function caller census; graph-derived
+10-Status-Periodic-Terminal/where-mp-comes-from.md	HISTORY	explicit=38003/38022 quotes sit inside the dated wrong-parent correction narrative
+11-Party/the-five-parallel-slot-maps.md	STABLE	34,270/176; byte-derived
+13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md	STABLE	38,161 body census
+15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md	CORRECTED	"current 158-function unresolved residual" -> "residual set (30 at GN161)"; substance verified (residual only shrank; no caller entered). Ledger-move lines are dated history.
+15-Input/Modal-Toggles/r2-force-fight-toggle.md	STABLE	38,161 graph census + owner-tag caller split
+17-Presentation-Rendering/Character-Rendering/character-render-object.md	STABLE	38,161 extent scan
+17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md	STABLE	834-function reachability; graph-derived
+17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md	STABLE	147/135/102 name+tag census over non-CodeDomain tags; unchanged
+17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	STABLE	~150 named parameters; name census
+18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md	STABLE	caller splits by V120 owner tag (unchanged) + graph
+18-Audio/sead-function-identification.md	STABLE	2,064 Audio-owner FUN_* claim: owner+name census, both unchanged
+18-Audio/sqex-sd-sound-driver-architecture.md	STABLE	2,064 Audio-owner figure; owner tags unchanged
+19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md	STABLE	38,161 census
+21-RNG-And-Determinism/rng-streams.md	STABLE	38,161 census + owner splits
+22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md	STABLE	2,904 seam edges; graph-derived
+22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md	STABLE	1,219 Phyre.ScriptVM.* re-verified at GN161 = 1,219 (the +1 Phyre went to Rendering); 143 named = name census
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md	STABLE	4,557 Phyre.Reflection.* re-verified at GN161 = 4,557; grew family is Phyre.Rendering
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md	STABLE	315 jmp-shape + 248 field-register census; byte-derived
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md	STABLE	4,557 re-verified unchanged
+22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md	STABLE	747/751/591/156/323 string+tag censuses; Phyre.ScriptVM unchanged
+22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md	CORRECTED	6,768->6,769 (8 sites), Rendering 287->288 (74,115->74,634 B), rest ~217/26 -> 147/24 (pre-existing miscount, corrected while re-measuring), 992->993, ratio 5,776/6,769
+22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md	STABLE	351-function caller census; graph-derived
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md	STABLE	801 contents-match census; byte-derived
+23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md	STABLE	1,657/940/747/193/188 + 11,219 A+B+C disposition total; all structural/byte-derived
+24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md	STABLE	2,209 check sites (byte) + 145 CompilerGeneratedCFG (family not grown; = 145 now)
+24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md	CORRECTED	"CxxObjectLifecycle 225" -> 226 (family +1 via R109); cover-total 915 -> 916. Other label counts verified unchanged. Shape counts (1,608/1,606/1,762/1,616/226-dtor idiom) are byte-derived
+24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md	BOUNDED	3,895-funclet set and 1,609-parent population are .pdata-structural - cannot move under a tag-only advance; mechanism-class split is annotation-derived and bounded: <=4 of the 128 newly-tagged appear in any FuncInfo-derived parent superset; only measured EH-adjacent new edge 0089FC9B->005DD890. Exact per-class recount awaits method recovery (no saved parent list under Tools/work); totals stand, note added in place.
+24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md	STABLE	409 = Runtime.Callback substring census re-verified at GN161 (405+3 Lua+1 Presentation.Runtime.Callback; no Callback tag grew); class-side 409 is RTTI-derived; "11 of 120 unresolved" line is dated correction history
+24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md	STABLE	707-holder domain split re-derived at GN161: Phyre 224 / NativeRoutine 167 / no-CodeDomain 150 / Cpp 140 + 26 others all unchanged; no R109 member among the 707 holders
+24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md	STABLE	38,161 whole-image census; internal count fixed across GM160->GN161
+24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md	CORRECTED	caller-split table: 0017D260 Boundary 9->10, 00584730 Runtime 303->304; generic totals coincidentally unchanged (untagged->NativeRoutine additions offset the three callers that left); footnote added naming the three re-tagged callers
+24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	STABLE	253/160/102 caller censuses; graph-derived
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md	STABLE	707-holder split unchanged; T-2 "who owns the 1,172" re-derived from the image: __xc table 008C31D0-008C5678 parsed, ZERO newly-tagged targets
+24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md	STABLE	689 Thunk family unchanged (not a grown family); 749 E9 census byte-derived
+25-EBP-Script-Container/Sections/section-012.md	HISTORY	GN160 ledger figures sit inside the last_pass_state frontmatter stamp; frontmatter already carries a GN161 delta check (0 of 19 cited entries among the 109 changed)
+99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	CORRECTED	headline 10,152/2,666,058B -> 10,024/2,524,402B (no-CodeDomain set); four-cell split 28,028/139 -> 28,137/30; owner-only 9,409 unchanged (owner and CodeDomain never co-occur)
+99-Unresolved-Residual/README.md	CORRECTED	(outside checker scope - README excluded) live Count table 158->30, residual sha -> 955da8c9..., address list repointed to verify_GFZ_PARENT; largest-unclassified link line 10,154->10,024
+99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md	HISTORY	"all 158 residual functions" describes the byte-decode instrument run at GN158; dated record
+99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md	CORRECTED	standing-question line annotated: residual now 30 (the 153/158 figures record the block's own read coverage at its date); other 158/139 references carry dated-correction notes already
+99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md	HISTORY	"sixth-largest of the 158" is a historical rank statement
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	CORRECTED	generic-11 set 15,896->15,975; >=80%-Phyre-called 317->335 (literal re-run; none of the newly-tagged qualify); glue 5,283->5,282/substantial 10,613->10,693 + byte/mean columns re-derived; ~11,836 -> ~11,848
+99-Unresolved-Residual/the-unresolved-158.md	HISTORY	GN161 banner added at seal; page is the dated record of the residual's structure
+00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md	CORRECTED	ledger three-way 38,003/9,409/28,009/585 -> 38,131/9,409/28,137/585; control rows carry old n with measured-rate caveat; 158->30 residual reference
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md	CORRECTED	Phyre-tagged frontier 6,735 -> 6,736 (Phyre +1 at GN161 lands in the undeclared frontier); declared 2,790 unchanged
+23-Third-Party-Libraries/third-party-middleware-inventory.md	CORRECTED	ThirdParty.* family 690->691 and true total 801->802 (R109 added ThirdParty.XML.ConfigParse x1, a new XML-family member); dated pass-2/pass-3 correction narrative untouched
+24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md	CORRECTED	Other Phyre 992->993, combined 10,581->10,582; EH-funclet row is byte-derived and unchanged
+24-Compiler-And-CRT-Runtime/README.md	CORRECTED	(outside checker scope - README excluded) CxxObjectLifecycle 225->226, family cover-total 915->916
+_index/COVERAGE.md	CORRECTED	(outside checker scope - _index excluded) live tables: Phyre 6,768->6,769, generic shape classes ~11,836->~11,848, category row 6,768->6,769; dated session-history entries left as history
+_index/EVIDENCE-STANDARD.md	CORRECTED	(outside checker scope) four-cell cross-tab 28,028/139 -> 28,137/30 with dated note
+_index/RECONSTRUCTION-READINESS-GATE.md	CORRECTED	(outside checker scope) live gap item: 139 ledger residuals -> 30, ledger_resolved 99.59%->99.91%; dated "unchanged" line left inside its dated section
+_index/COMPLETION-PLAN.md	CORRECTED	(outside checker scope) population table re-derived: no-CodeDomain 10,148->10,024, Phyre 6,769, generic 11,848 (NR 5,088/NI 1,883/NL 1,637/ND 1,072), Runtime 1,553, Boundary 831, ThirdParty 691

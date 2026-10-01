@@ -1,0 +1,165 @@
+- banner:
+  - generic: FF12 database dashboard read-only; serves the verified CURRENT generation only
+  - generic "state OK; last full refresh 2026-09-29T15:46:38.556Z; generation g20260929T154720Z-55ec16; interval 1800 s; next 2026-09-29T16:16:38.556Z / 9/29/2026, 11:16:38 AM": "Next full refresh: 28:46"
+  - generic: "generation g20260929T154720Z-55ec16 committed 2026-09-29T15:47:24Z | since the snapshot: team, watchdog moved (live sources; next build picks it up) | earlier failure, resolved by the current generation: input team changed while being snapshotted"
+- navigation:
+  - button "My Progress PARTIAL"
+  - button "Agent Activity live"
+  - button "overview OK"
+  - button "systems OK"
+  - button "vbf PARTIAL"
+  - button "executable PARTIAL"
+  - button "types OK"
+  - button "evidence PARTIAL"
+  - button "fleet PARTIAL"
+- main:
+  - heading "Agent Activity" [level=2]
+  - paragraph: "live feed: controller poll 2026-09-29T15:46:34+00:00, board revision 39947, as of 2026-09-29T15:47:40Z; categories placed with generation g20260929T154720Z-55ec16. Coloured = actively working (controller or session feed, or a board write within the hour); outlined = a claim on an idle/UNKNOWN lane, or a queued review."
+  - 'generic "OPUS: active - Claude-lane adapter: session running"': OPUS active
+  - 'generic "FABLE: recent - no session feed; wrote the board 0 min ago"': FABLE recent
+  - 'generic "ASTRA: recent - no session feed; wrote the board 2 min ago"': ASTRA recent
+  - 'generic "SWE2-FRONTIER: idle - controller: free (poll 66 s ago)"': SWE2-FRONTIER idle
+  - 'generic "SWE2-DATA: idle - controller: free (poll 66 s ago)"': SWE2-DATA idle
+  - 'generic "SWE2-ORACLE: idle - controller: free (poll 66 s ago)"': SWE2-ORACLE idle
+  - 'generic "SWE2-STRUCT: idle - controller: free (poll 66 s ago)"': SWE2-STRUCT idle
+  - 'generic "SWE2-EC7: idle - controller: free (poll 66 s ago)"': SWE2-EC7 idle
+  - 'generic "SWE2-CONTRACT: idle - controller: free (poll 66 s ago)"': SWE2-CONTRACT idle
+  - 'generic "SWE2-AUDIT-SPEC: idle - controller: free (poll 66 s ago)"': SWE2-AUDIT-SPEC idle
+  - 'generic "SWE2-AUDIT-SEM: idle - controller: free (poll 66 s ago)"': SWE2-AUDIT-SEM idle
+  - table:
+    - rowgroup:
+      - row "Category working claimed / waiting":
+        - columnheader "Category"
+        - columnheader "working"
+        - columnheader "claimed / waiting"
+      - row "World & maps SWE2-AUDIT-SEM":
+        - cell "World & maps"
+        - cell
+        - cell "SWE2-AUDIT-SEM"
+      - row "Combat & damage SWE2-AUDIT-SPECSWE2-AUDIT-SEM":
+        - cell "Combat & damage"
+        - cell
+        - cell "SWE2-AUDIT-SPECSWE2-AUDIT-SEM"
+      - row "Enemies & AI OPUS SWE2-AUDIT-SEM":
+        - cell "Enemies & AI"
+        - cell "OPUS"
+        - cell "SWE2-AUDIT-SEM"
+      - row "Spawning, death & respawn SWE2-AUDIT-SEM":
+        - cell "Spawning, death & respawn"
+        - cell
+        - cell "SWE2-AUDIT-SEM"
+      - row "Player & party OPUS SWE2-AUDIT-SEM":
+        - cell "Player & party"
+        - cell "OPUS"
+        - cell "SWE2-AUDIT-SEM"
+      - row "Items, equipment & progression SWE2-AUDIT-SEM":
+        - cell "Items, equipment & progression"
+        - cell
+        - cell "SWE2-AUDIT-SEM"
+      - row "Story, quests & events":
+        - cell "Story, quests & events"
+        - cell
+        - cell
+      - row "Menus & controls SWE2-EC7SWE2-AUDIT-SPEC":
+        - cell "Menus & controls"
+        - cell
+        - cell "SWE2-EC7SWE2-AUDIT-SPEC"
+      - row "Animation, graphics & audio SWE2-DATASWE2-EC7SWE2-AUDIT-SPECSWE2-AUDIT-SEM":
+        - cell "Animation, graphics & audio"
+        - cell
+        - cell "SWE2-DATASWE2-EC7SWE2-AUDIT-SPECSWE2-AUDIT-SEM"
+      - row "Save/load & persistence SWE2-AUDIT-SEM":
+        - cell "Save/load & persistence"
+        - cell
+        - cell "SWE2-AUDIT-SEM"
+      - row "Scripts & game data/VBF SWE2-AUDIT-SPECSWE2-AUDIT-SEM":
+        - cell "Scripts & game data/VBF"
+        - cell
+        - cell "SWE2-AUDIT-SPECSWE2-AUDIT-SEM"
+      - row "Engine & supporting systems SWE2-AUDIT-SEM":
+        - cell "Engine & supporting systems"
+        - cell
+        - cell "SWE2-AUDIT-SEM"
+      - row "Whole database / cross-cutting ASTRA OPUSSWE2-FRONTIERSWE2-DATASWE2-AUDIT-SPECSWE2-AUDIT-SEM":
+        - cell "Whole database / cross-cutting"
+        - cell "ASTRA"
+        - cell "OPUSSWE2-FRONTIERSWE2-DATASWE2-AUDIT-SPECSWE2-AUDIT-SEM"
+      - row "Code not yet tied to a game system SWE2-EC7SWE2-AUDIT-SEM":
+        - cell "Code not yet tied to a game system"
+        - cell
+        - cell "SWE2-EC7SWE2-AUDIT-SEM"
+  - heading "By agent" [level=3]
+  - table:
+    - rowgroup:
+      - row "agent liveness current claims categories waiting reviews":
+        - columnheader "agent"
+        - columnheader "liveness"
+        - columnheader "current claims"
+        - columnheader "categories"
+        - columnheader "waiting reviews"
+      - 'row "OPUS active FABLE-NOTICE-OPUS-EXP-CURVE-CORRECTION (working; closing) Enemies & AI, Player & party 1 queued: ASTRA-RETURN-OPUS-OVERLAP-HELPER-REVIEW-CONSUMPTION"':
+        - cell "OPUS"
+        - cell "active"
+        - cell "FABLE-NOTICE-OPUS-EXP-CURVE-CORRECTION (working; closing)"
+        - cell "Enemies & AI, Player & party"
+        - 'cell "1 queued: ASTRA-RETURN-OPUS-OVERLAP-HELPER-REVIEW-CONSUMPTION"'
+      - row "FABLE recent none - none":
+        - cell "FABLE"
+        - cell "recent"
+        - cell "none"
+        - cell "-"
+        - cell "none"
+      - 'row "ASTRA recent ASTRA-DASHBOARD-RENDERED-RETURN (working; Read prior60618c109 failedreturn lessons. Remainingdiscrimin) Whole database / cross-cutting 4 queued: OPUS-REQ-ASTRA-REVERIFY-A03-PREREQ, OPUS-REQ-ASTRA-REVERIFY-DASH-INCIDENT-CACHE, OPUS-REQ-ASTRA-VERIFY-MY-PROGRESS, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY"':
+        - cell "ASTRA"
+        - cell "recent"
+        - cell "ASTRA-DASHBOARD-RENDERED-RETURN (working; Read prior60618c109 failedreturn lessons. Remainingdiscrimin)"
+        - cell "Whole database / cross-cutting"
+        - 'cell "4 queued: OPUS-REQ-ASTRA-REVERIFY-A03-PREREQ, OPUS-REQ-ASTRA-REVERIFY-DASH-INCIDENT-CACHE, OPUS-REQ-ASTRA-VERIFY-MY-PROGRESS, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY"'
+      - 'row "SWE2-FRONTIER idle none - 1 queued: ASTRA-REQ-FRONTIER-SUPERSEDED-REVIEW-ROWS"':
+        - cell "SWE2-FRONTIER"
+        - cell "idle"
+        - cell "none"
+        - cell "-"
+        - 'cell "1 queued: ASTRA-REQ-FRONTIER-SUPERSEDED-REVIEW-ROWS"'
+      - 'row "SWE2-DATA idle SWE2-DATA-UQ218-MOTION-RESIDUE (claimed; claiming UQ-218 motion-entry residue package) Animation, graphics & audio 2 queued: ASTRA-REQ-DATA-SCRIPT-ARRAY-SIGNEDMIN, ASTRA-REQ-DATA-SN1-ASSIGNMENT-ATTRIBUTION"':
+        - cell "SWE2-DATA"
+        - cell "idle"
+        - cell "SWE2-DATA-UQ218-MOTION-RESIDUE (claimed; claiming UQ-218 motion-entry residue package)"
+        - cell "Animation, graphics & audio"
+        - 'cell "2 queued: ASTRA-REQ-DATA-SCRIPT-ARRAY-SIGNEDMIN, ASTRA-REQ-DATA-SN1-ASSIGNMENT-ATTRIBUTION"'
+      - row "SWE2-ORACLE idle none - none":
+        - cell "SWE2-ORACLE"
+        - cell "idle"
+        - cell "none"
+        - cell "-"
+        - cell "none"
+      - row "SWE2-STRUCT idle none - none":
+        - cell "SWE2-STRUCT"
+        - cell "idle"
+        - cell "none"
+        - cell "-"
+        - cell "none"
+      - row "SWE2-EC7 idle SWE2-EC7-SHARED-HUB-IDENTIFICATION-171 (claimed; Claiming batch-171 research (22 frontier bodies).) Animation, graphics & audio, Menus & controls, Code not yet tied to a game system none":
+        - cell "SWE2-EC7"
+        - cell "idle"
+        - cell "SWE2-EC7-SHARED-HUB-IDENTIFICATION-171 (claimed; Claiming batch-171 research (22 frontier bodies).)"
+        - cell "Animation, graphics & audio, Menus & controls, Code not yet tied to a game system"
+        - cell "none"
+      - row "SWE2-CONTRACT idle none - none":
+        - cell "SWE2-CONTRACT"
+        - cell "idle"
+        - cell "none"
+        - cell "-"
+        - cell "none"
+      - 'row "SWE2-AUDIT-SPEC idle FRONTIER-REQ-AUDITSPEC-AUDITED-PROMOTION-SWEEP (claimed; AUDIT-SPEC claiming the AUDITED promotion sweep; working eli) - 5 queued: ASTRA-REQ-SPEC-OVERLAP-HELPER-REVIEW-CHECKER, FRONTIER-REQ-AUDITSPEC-EXECUTED-REVIEW-PROGRESS-CKPT10R3, FABLE-REQ-AUDITSPEC-REVIEW-POISON-CONTRACTS, FABLE-REQ-AUDITSPEC-REVIEW-STATUS-CURRENCY-RULING, FRONTIER-REVIEW-AUDITSPEC-OV-ACCEPTANCE-0929"':
+        - cell "SWE2-AUDIT-SPEC"
+        - cell "idle"
+        - cell "FRONTIER-REQ-AUDITSPEC-AUDITED-PROMOTION-SWEEP (claimed; AUDIT-SPEC claiming the AUDITED promotion sweep; working eli)"
+        - cell "-"
+        - 'cell "5 queued: ASTRA-REQ-SPEC-OVERLAP-HELPER-REVIEW-CHECKER, FRONTIER-REQ-AUDITSPEC-EXECUTED-REVIEW-PROGRESS-CKPT10R3, FABLE-REQ-AUDITSPEC-REVIEW-POISON-CONTRACTS, FABLE-REQ-AUDITSPEC-REVIEW-STATUS-CURRENCY-RULING, FRONTIER-REVIEW-AUDITSPEC-OV-ACCEPTANCE-0929"'
+      - 'row "SWE2-AUDIT-SEM idle none - 14 queued: FABLE-REQ-AUDITSEM-REVIEW-STATUS-CURRENCY-RULING, FRONTIER-REQ-AUDITSEM-REVIEW-EXP086-EXP189-DESCRIPTIONS, FRONTIER-REQ-AUDITSEM-REVIEW-EXP201-RECEIPT-SEALING, FABLE-REQ-AUDITSEM-REVIEW-EXP-LEVEL-UP, FABLE-REQ-AUDITSEM-REVIEW-POISON-CONTRACTS, OPUS-REQ-AUDITSEM-REVIEW-CON-163-164"':
+        - cell "SWE2-AUDIT-SEM"
+        - cell "idle"
+        - cell "none"
+        - cell "-"
+        - 'cell "14 queued: FABLE-REQ-AUDITSEM-REVIEW-STATUS-CURRENCY-RULING, FRONTIER-REQ-AUDITSEM-REVIEW-EXP086-EXP189-DESCRIPTIONS, FRONTIER-REQ-AUDITSEM-REVIEW-EXP201-RECEIPT-SEALING, FABLE-REQ-AUDITSEM-REVIEW-EXP-LEVEL-UP, FABLE-REQ-AUDITSEM-REVIEW-POISON-CONTRACTS, OPUS-REQ-AUDITSEM-REVIEW-CON-163-164"'

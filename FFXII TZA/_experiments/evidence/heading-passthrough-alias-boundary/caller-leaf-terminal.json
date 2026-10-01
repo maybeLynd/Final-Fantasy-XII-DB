@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\capture-caller-leaf.py"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\capture-caller-leaf.py\", line 19, in <module>\n    assert not any(set(x['written'])&{'r14','rbp','rbx'} for x in rows)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+  "terminal": true,
+  "driver_sha256": "62d72ab17ef9bc84a83a92c3289c91a2df5c759bd8bebd657268203b745d9d67"
+}

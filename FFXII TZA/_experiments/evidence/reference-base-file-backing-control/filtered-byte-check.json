@@ -1,0 +1,65 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "a3d15a48dd7417fa058c1f8ff8204d2694b156c6"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "e9bf86e86a95e45daa5f1b887c85ee4dcfdda4f9"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "c076a22d672eee1d66f4256eca75a9c769c40a4a"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "336eba3343d5f378d8bfc19c71c4080007c02e84"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "f12fe0204aeaab3af702e713034cf7428b559d4e"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "9ba02ea7567a6e84668e683b4fcafb26c77b7bac"
+    },
+    {
+      "path": "retained/__pycache__/shipping-reader.cpython-314.pyc",
+      "git_blob": "7027f423a7deb6bb3252662cb5b9e6c22be0affb"
+    },
+    {
+      "path": "retained/codec-encode.bin",
+      "git_blob": "dc10ed9ffa6d28030d92d44383ecbf3bfcff37da"
+    },
+    {
+      "path": "retained/image-header-identity.json",
+      "git_blob": "6487421de7ab0003e4dfd161abd131a3b9cb13ed"
+    },
+    {
+      "path": "retained/known-base-contract.md",
+      "git_blob": "71a8ff337890fba256f642feaa0ec24eaad600a5"
+    },
+    {
+      "path": "retained/review-preimage.md",
+      "git_blob": "e2cfa1da435843adb426a8ea940167287d027101"
+    },
+    {
+      "path": "retained/section-table.bin",
+      "git_blob": "15f74b9cbc8451a1ff4977acf3365bb2592cbd1f"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/unchecked-candidate.bin",
+      "git_blob": "6f75caadbfa3dc2655c9bf325fcf3fcc59786585"
+    }
+  ]
+}

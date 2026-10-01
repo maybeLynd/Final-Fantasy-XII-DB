@@ -1,0 +1,104 @@
+== 00252610 (59 instructions, to 002526C5)
+00252610  sub       rsp, 8
+00252614  mov       r11d, ecx
+00252617  test      r8d, r8d
+0025261A  jle       0x2526c1
+00252620  mov       r9, qword ptr [rip + 0x1e40199]   ; -> 020927C0
+00252627  mov       qword ptr [rsp + 0x10], rbx
+0025262C  mov       r10d, r8d
+0025262F  xor       r8d, r8d
+00252632  mov       qword ptr [rsp], rdi
+00252636  lea       edi, [r8 + 0x64]
+0025263A  lea       ebx, [rdi - 0x45]
+0025263D  nop       dword ptr [rax]
+00252640  mov       ecx, r11d
+00252643  sub       ecx, 6
+00252646  je        0x252698
+00252648  sub       ecx, 1
+0025264B  je        0x252678
+0025264D  cmp       ecx, 1
+00252650  jne       0x2526b0
+00252652  test      edx, edx
+00252654  jns       0x252665
+00252656  mov       eax, r8d
+00252659  cdqe      
+0025265B  mov       dword ptr [r9 + rax*4 + 0x90], r8d
+00252663  jmp       0x2526b0
+00252665  mov       eax, edx
+00252667  cmp       edx, edi
+00252669  cmovg     eax, edi
+0025266C  cdqe      
+0025266E  mov       dword ptr [r9 + rax*4 + 0x90], r8d
+00252676  jmp       0x2526b0
+00252678  test      edx, edx
+0025267A  jns       0x252688
+0025267C  mov       eax, r8d
+0025267F  cdqe      
+00252681  mov       byte ptr [rax + r9 + 0x70], r8b
+00252686  jmp       0x2526b0
+00252688  mov       eax, edx
+0025268A  cmp       edx, ebx
+0025268C  cmovg     eax, ebx
+0025268F  cdqe      
+00252691  mov       byte ptr [rax + r9 + 0x70], r8b
+00252696  jmp       0x2526b0
+00252698  test      edx, edx
+0025269A  jns       0x2526a1
+0025269C  mov       eax, r8d
+0025269F  jmp       0x2526a8
+002526A1  cmp       edx, ebx
+002526A3  mov       eax, edx
+002526A5  cmovg     eax, ebx
+002526A8  cdqe      
+002526AA  mov       word ptr [r9 + rax*2 + 0x30], r8w
+002526B0  inc       edx
+002526B2  sub       r10, 1
+002526B6  jne       0x252640
+002526B8  mov       rdi, qword ptr [rsp]
+002526BC  mov       rbx, qword ptr [rsp + 0x10]
+002526C1  add       rsp, 8
+002526C5  ret       
+== 002527B0 (43 instructions, to 00252833)
+002527B0  mov       r9, qword ptr [rip + 0x1e40009]   ; -> 020927C0
+002527B7  sub       ecx, 6
+002527BA  je        0x252810
+002527BC  sub       ecx, 1
+002527BF  je        0x2527ee
+002527C1  cmp       ecx, 1
+002527C4  jne       0x252833
+002527C6  test      edx, edx
+002527C8  jns       0x2527d8
+002527CA  xor       edx, edx
+002527CC  movsxd    rax, edx
+002527CF  mov       dword ptr [r9 + rax*4 + 0x90], r8d
+002527D7  ret       
+002527D8  mov       eax, 0x64
+002527DD  cmp       edx, eax
+002527DF  cmovg     edx, eax
+002527E2  movsxd    rax, edx
+002527E5  mov       dword ptr [r9 + rax*4 + 0x90], r8d
+002527ED  ret       
+002527EE  test      edx, edx
+002527F0  jns       0x2527fd
+002527F2  xor       edx, edx
+002527F4  movsxd    rax, edx
+002527F7  mov       byte ptr [rax + r9 + 0x70], r8b
+002527FC  ret       
+002527FD  mov       eax, 0x1f
+00252802  cmp       edx, eax
+00252804  cmovg     edx, eax
+00252807  movsxd    rax, edx
+0025280A  mov       byte ptr [rax + r9 + 0x70], r8b
+0025280F  ret       
+00252810  test      edx, edx
+00252812  jns       0x252820
+00252814  xor       edx, edx
+00252816  movsxd    rax, edx
+00252819  mov       word ptr [r9 + rax*2 + 0x30], r8w
+0025281F  ret       
+00252820  mov       eax, 0x1f
+00252825  cmp       edx, eax
+00252827  cmovg     edx, eax
+0025282A  movsxd    rax, edx
+0025282D  mov       word ptr [r9 + rax*2 + 0x30], r8w
+00252833  ret       

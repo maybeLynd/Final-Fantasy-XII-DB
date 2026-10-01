@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-primary-admission.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-result-02.json"
+  ],
+  "checker_sha256": "bfe1f2ec0e8812826cd06c253018ed942e8fa421457574fcf15aba476be7aa4d",
+  "change": "Use committed dependency with all152 member hashes; pin exact FST arithmetic path; earlier conditional result01 retained"
+}

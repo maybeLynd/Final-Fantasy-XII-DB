@@ -1,0 +1,7 @@
+{
+  "status": "PASS_STATIC_ONLY",
+  "historical_artifact_controls": 5,
+  "symbolic_witnesses": 4,
+  "new_original_code_or_live_cases": 0,
+  "limits": "Exact instructions prove branch structure; symbolic outputs are not fresh execution. No downstream or ordinary runtime occurrence accepted."
+}

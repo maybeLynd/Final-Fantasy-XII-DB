@@ -1,0 +1,359 @@
+{
+  "status": "PRIVATE_BOUNDARY_DIAGNOSTIC_NOT_SEMANTIC_CLOSURE",
+  "method": "A",
+  "question": "Which complete normal1FB660 branches and callback boundaries can affect the title retirement tracker value?",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "fragments": [
+    {
+      "start": "0x1fb660",
+      "end_exclusive": "0x1fb6b7",
+      "unwind": "0x1da8448",
+      "flags": 0,
+      "sha256": "2f91d8a54491defe7bab106b316e8390db3ecd036558497673732786653a5ae6",
+      "instructions": [
+        {
+          "pc": "0x1fb660",
+          "bytes": "48895c2410",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x10], rbx"
+        },
+        {
+          "pc": "0x1fb665",
+          "bytes": "48896c2418",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x18], rbp"
+        },
+        {
+          "pc": "0x1fb66a",
+          "bytes": "4889742420",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x20], rsi"
+        },
+        {
+          "pc": "0x1fb66f",
+          "bytes": "57",
+          "mnemonic": "push",
+          "args": "rdi"
+        },
+        {
+          "pc": "0x1fb670",
+          "bytes": "4883ec20",
+          "mnemonic": "sub",
+          "args": "rsp, 0x20"
+        },
+        {
+          "pc": "0x1fb674",
+          "bytes": "488bf9",
+          "mnemonic": "mov",
+          "args": "rdi, rcx"
+        },
+        {
+          "pc": "0x1fb677",
+          "bytes": "488b09",
+          "mnemonic": "mov",
+          "args": "rcx, qword ptr [rcx]"
+        },
+        {
+          "pc": "0x1fb67a",
+          "bytes": "e8a180f8ff",
+          "mnemonic": "call",
+          "args": "0x183720"
+        },
+        {
+          "pc": "0x1fb67f",
+          "bytes": "488b5f18",
+          "mnemonic": "mov",
+          "args": "rbx, qword ptr [rdi + 0x18]"
+        },
+        {
+          "pc": "0x1fb683",
+          "bytes": "488d7710",
+          "mnemonic": "lea",
+          "args": "rsi, [rdi + 0x10]"
+        },
+        {
+          "pc": "0x1fb687",
+          "bytes": "33ed",
+          "mnemonic": "xor",
+          "args": "ebp, ebp"
+        },
+        {
+          "pc": "0x1fb689",
+          "bytes": "48892f",
+          "mnemonic": "mov",
+          "args": "qword ptr [rdi], rbp"
+        },
+        {
+          "pc": "0x1fb68c",
+          "bytes": "483bde",
+          "mnemonic": "cmp",
+          "args": "rbx, rsi"
+        },
+        {
+          "pc": "0x1fb68f",
+          "bytes": "741d",
+          "mnemonic": "je",
+          "args": "0x1fb6ae"
+        },
+        {
+          "pc": "0x1fb691",
+          "bytes": "488b4b28",
+          "mnemonic": "mov",
+          "args": "rcx, qword ptr [rbx + 0x28]"
+        },
+        {
+          "pc": "0x1fb695",
+          "bytes": "e88680f8ff",
+          "mnemonic": "call",
+          "args": "0x183720"
+        },
+        {
+          "pc": "0x1fb69a",
+          "bytes": "488bcb",
+          "mnemonic": "mov",
+          "args": "rcx, rbx"
+        },
+        {
+          "pc": "0x1fb69d",
+          "bytes": "48896b28",
+          "mnemonic": "mov",
+          "args": "qword ptr [rbx + 0x28], rbp"
+        },
+        {
+          "pc": "0x1fb6a1",
+          "bytes": "e82a20f7ff",
+          "mnemonic": "call",
+          "args": "0x16d6d0"
+        },
+        {
+          "pc": "0x1fb6a6",
+          "bytes": "488bd8",
+          "mnemonic": "mov",
+          "args": "rbx, rax"
+        },
+        {
+          "pc": "0x1fb6a9",
+          "bytes": "483bc6",
+          "mnemonic": "cmp",
+          "args": "rax, rsi"
+        },
+        {
+          "pc": "0x1fb6ac",
+          "bytes": "75e3",
+          "mnemonic": "jne",
+          "args": "0x1fb691"
+        },
+        {
+          "pc": "0x1fb6ae",
+          "bytes": "488b7720",
+          "mnemonic": "mov",
+          "args": "rsi, qword ptr [rdi + 0x20]"
+        },
+        {
+          "pc": "0x1fb6b2",
+          "bytes": "4885f6",
+          "mnemonic": "test",
+          "args": "rsi, rsi"
+        },
+        {
+          "pc": "0x1fb6b5",
+          "bytes": "743a",
+          "mnemonic": "je",
+          "args": "0x1fb6f1"
+        }
+      ]
+    },
+    {
+      "start": "0x1fb6b7",
+      "end_exclusive": "0x1fb6f1",
+      "unwind": "0x1d60928",
+      "flags": 4,
+      "sha256": "db9a63d121dc966f7191f9154f0a2de03bcbb2294d90a6b1b4892a0fe209832f",
+      "instructions": [
+        {
+          "pc": "0x1fb6b7",
+          "bytes": "4c89742430",
+          "mnemonic": "mov",
+          "args": "qword ptr [rsp + 0x30], r14"
+        },
+        {
+          "pc": "0x1fb6bc",
+          "bytes": "0f1f4000",
+          "mnemonic": "nop",
+          "args": "dword ptr [rax]"
+        },
+        {
+          "pc": "0x1fb6c0",
+          "bytes": "488b16",
+          "mnemonic": "mov",
+          "args": "rdx, qword ptr [rsi]"
+        },
+        {
+          "pc": "0x1fb6c3",
+          "bytes": "488d4f08",
+          "mnemonic": "lea",
+          "args": "rcx, [rdi + 8]"
+        },
+        {
+          "pc": "0x1fb6c7",
+          "bytes": "e8e43bfbff",
+          "mnemonic": "call",
+          "args": "0x1af2b0"
+        },
+        {
+          "pc": "0x1fb6cc",
+          "bytes": "488b4738",
+          "mnemonic": "mov",
+          "args": "rax, qword ptr [rdi + 0x38]"
+        },
+        {
+          "pc": "0x1fb6d0",
+          "bytes": "488d4f38",
+          "mnemonic": "lea",
+          "args": "rcx, [rdi + 0x38]"
+        },
+        {
+          "pc": "0x1fb6d4",
+          "bytes": "488b5e08",
+          "mnemonic": "mov",
+          "args": "rbx, qword ptr [rsi + 8]"
+        },
+        {
+          "pc": "0x1fb6d8",
+          "bytes": "41b830000000",
+          "mnemonic": "mov",
+          "args": "r8d, 0x30"
+        },
+        {
+          "pc": "0x1fb6de",
+          "bytes": "488bd6",
+          "mnemonic": "mov",
+          "args": "rdx, rsi"
+        },
+        {
+          "pc": "0x1fb6e1",
+          "bytes": "ff5018",
+          "mnemonic": "call",
+          "args": "qword ptr [rax + 0x18]"
+        },
+        {
+          "pc": "0x1fb6e4",
+          "bytes": "488bf3",
+          "mnemonic": "mov",
+          "args": "rsi, rbx"
+        },
+        {
+          "pc": "0x1fb6e7",
+          "bytes": "4885db",
+          "mnemonic": "test",
+          "args": "rbx, rbx"
+        },
+        {
+          "pc": "0x1fb6ea",
+          "bytes": "75d4",
+          "mnemonic": "jne",
+          "args": "0x1fb6c0"
+        },
+        {
+          "pc": "0x1fb6ec",
+          "bytes": "4c8b742430",
+          "mnemonic": "mov",
+          "args": "r14, qword ptr [rsp + 0x30]"
+        }
+      ],
+      "unwind_chain_target": [
+        "0x1fb660",
+        "0x1fb6b7",
+        "0x1da8448"
+      ]
+    },
+    {
+      "start": "0x1fb6f1",
+      "end_exclusive": "0x1fb71c",
+      "unwind": "0x1d6093c",
+      "flags": 4,
+      "sha256": "b0e465706655e32682744a927ca6e4df2865126d0cff74392f665dd0a3ac3784",
+      "instructions": [
+        {
+          "pc": "0x1fb6f1",
+          "bytes": "488b5c2438",
+          "mnemonic": "mov",
+          "args": "rbx, qword ptr [rsp + 0x38]"
+        },
+        {
+          "pc": "0x1fb6f6",
+          "bytes": "488d4710",
+          "mnemonic": "lea",
+          "args": "rax, [rdi + 0x10]"
+        },
+        {
+          "pc": "0x1fb6fa",
+          "bytes": "488b742448",
+          "mnemonic": "mov",
+          "args": "rsi, qword ptr [rsp + 0x48]"
+        },
+        {
+          "pc": "0x1fb6ff",
+          "bytes": "48896f20",
+          "mnemonic": "mov",
+          "args": "qword ptr [rdi + 0x20], rbp"
+        },
+        {
+          "pc": "0x1fb703",
+          "bytes": "40886f28",
+          "mnemonic": "mov",
+          "args": "byte ptr [rdi + 0x28], bpl"
+        },
+        {
+          "pc": "0x1fb707",
+          "bytes": "896f30",
+          "mnemonic": "mov",
+          "args": "dword ptr [rdi + 0x30], ebp"
+        },
+        {
+          "pc": "0x1fb70a",
+          "bytes": "488b6c2440",
+          "mnemonic": "mov",
+          "args": "rbp, qword ptr [rsp + 0x40]"
+        },
+        {
+          "pc": "0x1fb70f",
+          "bytes": "488900",
+          "mnemonic": "mov",
+          "args": "qword ptr [rax], rax"
+        },
+        {
+          "pc": "0x1fb712",
+          "bytes": "48894718",
+          "mnemonic": "mov",
+          "args": "qword ptr [rdi + 0x18], rax"
+        },
+        {
+          "pc": "0x1fb716",
+          "bytes": "4883c420",
+          "mnemonic": "add",
+          "args": "rsp, 0x20"
+        },
+        {
+          "pc": "0x1fb71a",
+          "bytes": "5f",
+          "mnemonic": "pop",
+          "args": "rdi"
+        },
+        {
+          "pc": "0x1fb71b",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": ""
+        }
+      ],
+      "unwind_chain_target": [
+        "0x1fb660",
+        "0x1fb6b7",
+        "0x1da8448"
+      ]
+    }
+  ],
+  "limits": "Named nearby pdata diagnostic; normal CFG closure, source coverage and callee effects NOT yet accepted. No access-role/census claim or runtime execution.",
+  "next": "Verify all selected unwind tuples chain to1FB660 and entry-normal reachable branches, then capture only complete original body through shared reviewed adapter. Do not call87Broot full188Bbody or expand byte window blindly."
+}

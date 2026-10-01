@@ -1,0 +1,16 @@
+PASS B1 updater: rbx = 022CAE90, write cursor [rbx] += 1 mod 16, flags [rbx+9], poll called with rcx = rbx, rbx += 0x294
+PASS B2 mask accessor: R = 022CAE90 + ch*0x294, read cursor [R+1]
+PASS C1 control: the accessor's word is R + 0x48 + 36*i (ring +0x44, field +4)
+PASS B3 lookback accessor reads [022CAE98 + ch*0x294] = R + 8
+PASS C2 control: the two accessor bases differ by exactly 8
+PASS B4 0035FF90: rdi = R+8; [rdi-8] write cursor, [rdi-7] read cursor; R+8 = write - read; read cursor stored
+PASS B5 initialiser: rdi = 022CAE91 = R+1, rbx = rdi-1 = R; [rdi+3] dword 0x50C = R+4..R+7; [rdi+8] = R+9 flags
+   0035FC35 movzx eax, byte ptr [r11 + 5]
+   0035FC52 movzx eax, byte ptr [r11 + 5]
+   0035FC5D movzx eax, byte ptr [r11 + 4]
+PASS B6 the repeat filter reads +4 / +5 (the delays) through r11 = its rcx, and the digital builder passes rcx = r10 = its own channel argument (the poll's R)
+PASS B7 poll: [R+2] channel index; both builders called with rcx = R; analog builder rsi = R reads +0x0D, +9, +3, +0x0C
+PASS B8 initialiser (rdi = R+1): R+3 = 0x68, word R+0x0B = 0x0090, R+0x0D = 0x20, R+9 bit 1 cleared
+PASS C3 control: the initialiser's R-based frame store and the analog builder's use the same +0x58 displacement
+RESULT one base R = 022CAE90 + ch*0x294: +0 write cursor, +1 read cursor, +2 channel index, +4/+5 repeat delays, +8 frames between the cursors, +9 flags; the initialiser alone addresses it from R+1, so its +0xA word and +0xC byte are R+0x0B..0x0C = 0x0090 and the dead zone R+0x0D = 0x20
+FAILS 0

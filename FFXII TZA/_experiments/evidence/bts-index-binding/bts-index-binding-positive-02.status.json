@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-bts-index-binding.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-index-binding-result-02.json"
+  ],
+  "checker_sha256": "ae7a1b7fbbd431a2b5454b4487f45474e46995723c75f520d231c712f1b4e561",
+  "change": "UK title slot is -1, not positive; preserve it and require all twelve same-file asp_a ARD224 controls plus eleven actual title positives"
+}

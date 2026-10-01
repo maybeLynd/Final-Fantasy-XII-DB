@@ -1,0 +1,74 @@
+{
+ "cases": {
+  "J0_shipped_table_passes": true,
+  "J1_missing_count_rejects": true,
+  "J2_zero_count_rejects": true,
+  "J3_bound_is_count_minus_one": true
+ },
+ "j3_definition": 10,
+ "j3_plus50": 14,
+ "live_definitions": 11,
+ "ok": true,
+ "plus50_by_definition": {
+  "0": 0,
+  "1": 2,
+  "2": 5,
+  "3": 6,
+  "4": 8,
+  "5": 11,
+  "6": 11,
+  "7": 11,
+  "8": 11,
+  "9": 11,
+  "10": 14
+ },
+ "runs": {
+  "count_0": {
+   "guard_reached": true,
+   "ok": true,
+   "path": [
+    "rejected 0023A63A"
+   ],
+   "returned": 0,
+   "spawn_init": false
+  },
+  "count_eq_index": {
+   "guard_reached": true,
+   "ok": true,
+   "path": [
+    "rejected 0023A63A"
+   ],
+   "returned": 0,
+   "spawn_init": false
+  },
+  "count_index_plus_1": {
+   "guard_reached": true,
+   "ok": true,
+   "path": [
+    "passed 0023A72C"
+   ],
+   "returned": 1,
+   "spawn_init": true
+  },
+  "shipped": {
+   "guard_reached": true,
+   "ok": true,
+   "path": [
+    "passed 0023A72C"
+   ],
+   "returned": 1,
+   "spawn_init": true
+  },
+  "slot_null": {
+   "guard_reached": true,
+   "ok": true,
+   "path": [
+    "rejected 0023A63A"
+   ],
+   "returned": 0,
+   "spawn_init": false
+  }
+ },
+ "shipped_count": 15,
+ "slot": "76501350"
+}

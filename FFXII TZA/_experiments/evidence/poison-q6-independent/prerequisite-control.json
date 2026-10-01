@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\poison-q6-independent\\capture.py",
+    "--prerequisite-control"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\capture.py\", line 10, in <module>\n    require_prerequisite(r)\n    ~~~~~~~~~~~~~~~~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\capture.py\", line 5, in require_prerequisite\n    assert isinstance(r,dict) and r.get('total')==6 and r.get('pass')==6 and r.get('ok') is True,'UPSTREAM_FAILED_OR_MISSING'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: UPSTREAM_FAILED_OR_MISSING\n",
+  "terminal": true,
+  "shipping_code_executed": false,
+  "input": "retained run-01 prerequisite with ok False",
+  "expected": "refuse before downstream"
+}

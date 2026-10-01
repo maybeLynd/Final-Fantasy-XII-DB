@@ -1,0 +1,9 @@
+rerun_domain_result.json     vs special-override-domain-result-01.json     identical=True differing_keys=[]
+rerun_control_raw.json       vs special-override-control-raw-01.json       identical=True differing_keys=[]
+   ranges=4 instructions=1198
+rerun_constructor_raw.json   vs special-override-constructor-raw-01.json   identical=True differing_keys=[]
+   ranges=1 instructions=182
+controls: {"constructor_high_dword_zero": true, "zero_left_saturates": true, "eight_right_saturates": true, "off_maps_to_negative_index": true, "initial_domain_required": true, "narrowed_constructor_store_refused": true, "widened_control_bound_refused": true}
+initializer_words: [241, 231, 234, 237, 229, 228, 227, 226] constructor_initial_ae0: 0
+direct_calls: [{"pc": "0x1d03dc", "target": "0x2f79e0", "fragment_start": "0x1d0390", "fragment_end": "0x1d165c"}, {"pc": "0x1d2dfa", "target": "0x2f7a00", "fragment_start": "0x1d168a", "fragment_end": "0x1d4c09"}] unresolved: []
+file_backed_index: {"address": "0x1eebaf0", "bytes": "ffffffff", "signed_value": -1}

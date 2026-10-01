@@ -1,0 +1,10 @@
+# NativeAdapter.SmallRecordVtableCtor - EC-7 family C
+# # call shared init 00212CC0 on this; store arg1 at +0x18; install a
+# # member vtable; return this.
+address	targets
+001F17B0	00212CC0
+001F17E0	00212CC0
+001F19B0	00212CC0
+001F1AF0	00212CC0
+001F1B20	00212CC0
+001F1E50	00212CC0

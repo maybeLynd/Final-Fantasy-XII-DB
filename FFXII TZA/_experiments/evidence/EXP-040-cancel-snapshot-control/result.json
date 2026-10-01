@@ -1,0 +1,788 @@
+{
+  "status": "PASS",
+  "scope": "isolated original gates and local writes; no native calls or live game",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "begin": 3212752,
+  "end": 3213170,
+  "file_offset": 2030544,
+  "code_sha256": "7848f02fa8ab54c82574678bcd04d4f4d9ec34a57a021b8b1be17145f7e70073",
+  "unicorn": "2.1.4",
+  "capstone": "5.0.7",
+  "source_sha256": "06554528d3965e508b4fd2eafc772cf0533d5c556e392ed6e6da3d0828efe7ec",
+  "snapshot_sha256": "7ddf5139d8c0b2f9eacc93a5699b5bc800e295c83c04ec63a505587b391702b5",
+  "cases": [
+    {
+      "flags": 0,
+      "trace": {
+        "start": 3212985,
+        "stop": 3213103,
+        "visited": [
+          3212985,
+          3212992,
+          3212997,
+          3213004,
+          3213012,
+          3213015,
+          3213022,
+          3213024,
+          3213027,
+          3213035,
+          3213042,
+          3213049,
+          3213056,
+          3213063,
+          3213070,
+          3213077,
+          3213083,
+          3213090,
+          3213097,
+          3213103
+        ],
+        "writes": [
+          {
+            "address": 1342179072,
+            "bytes": 4
+          },
+          {
+            "address": 1342179120,
+            "bytes": 8
+          },
+          {
+            "address": 1342179128,
+            "bytes": 8
+          },
+          {
+            "address": 1342179136,
+            "bytes": 8
+          },
+          {
+            "address": 1342178999,
+            "bytes": 2
+          },
+          {
+            "address": 1342178996,
+            "bytes": 1
+          },
+          {
+            "address": 1342179176,
+            "bytes": 8
+          },
+          {
+            "address": 1342179168,
+            "bytes": 8
+          },
+          {
+            "address": 1342179032,
+            "bytes": 8
+          },
+          {
+            "address": 1342179024,
+            "bytes": 8
+          },
+          {
+            "address": 1342179164,
+            "bytes": 4
+          },
+          {
+            "address": 1342179092,
+            "bytes": 2
+          },
+          {
+            "address": 1342179080,
+            "bytes": 8
+          },
+          {
+            "address": 1342179088,
+            "bytes": 4
+          }
+        ]
+      },
+      "before": {
+        "unit": 1342177280,
+        "slot": 0,
+        "actor": 1342242816,
+        "identity_raw": "01385d82a7ccf1163b6085aacff4193e0000015000000000",
+        "frame_before": 77,
+        "frame_after": 77,
+        "crossed_frame": false,
+        "phase_raw": "173c61",
+        "action_phase": 23,
+        "unnamed_6b6": 97,
+        "live": {
+          "raw": "00000000a7ccf1161032547698badcfe2143658734124166",
+          "flags": 0,
+          "action_context": 18364758544493064720,
+          "context_is_sentinel": false,
+          "target_focus_handle": 2271560481,
+          "action_id": 4660
+        },
+        "shadow": {
+          "raw": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+          "flags": 4208308363,
+          "action_context": 13155415039311468723,
+          "context_is_sentinel": false,
+          "target_focus_handle": 1243939035,
+          "action_id": 37999
+        }
+      },
+      "after": {
+        "unit": 1342177280,
+        "slot": 0,
+        "actor": 1342242816,
+        "identity_raw": "01385d82a7ccf1163b6085aacff4193e0000015000000000",
+        "frame_before": 77,
+        "frame_after": 77,
+        "crossed_frame": false,
+        "phase_raw": "003c61",
+        "action_phase": 0,
+        "unnamed_6b6": 97,
+        "live": {
+          "raw": "00000000a7ccf116000000000000000000000000ffff4166",
+          "flags": 0,
+          "action_context": 0,
+          "context_is_sentinel": true,
+          "target_focus_handle": 0,
+          "action_id": 65535
+        },
+        "shadow": {
+          "raw": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+          "flags": 4208308363,
+          "action_context": 13155415039311468723,
+          "context_is_sentinel": false,
+          "target_focus_handle": 1243939035,
+          "action_id": 37999
+        }
+      },
+      "changed_offsets": [
+        1716,
+        1719,
+        1720,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1800,
+        1801,
+        1802,
+        1803,
+        1804,
+        1805,
+        1806,
+        1807,
+        1808,
+        1809,
+        1810,
+        1811,
+        1812,
+        1813,
+        1840,
+        1841,
+        1842,
+        1843,
+        1844,
+        1845,
+        1846,
+        1847,
+        1848,
+        1849,
+        1850,
+        1851,
+        1852,
+        1853,
+        1854,
+        1855,
+        1856,
+        1857,
+        1858,
+        1859,
+        1860,
+        1861,
+        1862,
+        1863,
+        1884,
+        1885,
+        1886,
+        1887,
+        1888,
+        1889,
+        1890,
+        1891,
+        1892,
+        1893,
+        1894,
+        1895,
+        1896,
+        1897,
+        1898,
+        1899,
+        1900,
+        1901,
+        1902,
+        1903
+      ],
+      "copied_shadow": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+      "unit_after_sha256": "5e5d05ac2961f43e5d60dc1fef27f9f2c3e19c0cbe1b84a4e5b5ac86afaabffc"
+    },
+    {
+      "flags": 3,
+      "trace": {
+        "start": 3212985,
+        "stop": 3213103,
+        "visited": [
+          3212985,
+          3212992,
+          3212997,
+          3213004,
+          3213012,
+          3213015,
+          3213022,
+          3213024,
+          3213027,
+          3213035,
+          3213042,
+          3213049,
+          3213056,
+          3213063,
+          3213070,
+          3213077,
+          3213083,
+          3213090,
+          3213097,
+          3213103
+        ],
+        "writes": [
+          {
+            "address": 1342179072,
+            "bytes": 4
+          },
+          {
+            "address": 1342179120,
+            "bytes": 8
+          },
+          {
+            "address": 1342179128,
+            "bytes": 8
+          },
+          {
+            "address": 1342179136,
+            "bytes": 8
+          },
+          {
+            "address": 1342178999,
+            "bytes": 2
+          },
+          {
+            "address": 1342178996,
+            "bytes": 1
+          },
+          {
+            "address": 1342179176,
+            "bytes": 8
+          },
+          {
+            "address": 1342179168,
+            "bytes": 8
+          },
+          {
+            "address": 1342179032,
+            "bytes": 8
+          },
+          {
+            "address": 1342179024,
+            "bytes": 8
+          },
+          {
+            "address": 1342179164,
+            "bytes": 4
+          },
+          {
+            "address": 1342179092,
+            "bytes": 2
+          },
+          {
+            "address": 1342179080,
+            "bytes": 8
+          },
+          {
+            "address": 1342179088,
+            "bytes": 4
+          }
+        ]
+      },
+      "before": {
+        "unit": 1342177280,
+        "slot": 0,
+        "actor": 1342242816,
+        "identity_raw": "01385d82a7ccf1163b6085aacff4193e0000015000000000",
+        "frame_before": 77,
+        "frame_after": 77,
+        "crossed_frame": false,
+        "phase_raw": "173c61",
+        "action_phase": 23,
+        "unnamed_6b6": 97,
+        "live": {
+          "raw": "03000000a7ccf1161032547698badcfe2143658734124166",
+          "flags": 3,
+          "action_context": 18364758544493064720,
+          "context_is_sentinel": false,
+          "target_focus_handle": 2271560481,
+          "action_id": 4660
+        },
+        "shadow": {
+          "raw": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+          "flags": 4208308363,
+          "action_context": 13155415039311468723,
+          "context_is_sentinel": false,
+          "target_focus_handle": 1243939035,
+          "action_id": 37999
+        }
+      },
+      "after": {
+        "unit": 1342177280,
+        "slot": 0,
+        "actor": 1342242816,
+        "identity_raw": "01385d82a7ccf1163b6085aacff4193e0000015000000000",
+        "frame_before": 77,
+        "frame_after": 77,
+        "crossed_frame": false,
+        "phase_raw": "003c61",
+        "action_phase": 0,
+        "unnamed_6b6": 97,
+        "live": {
+          "raw": "00000000a7ccf116000000000000000000000000ffff4166",
+          "flags": 0,
+          "action_context": 0,
+          "context_is_sentinel": true,
+          "target_focus_handle": 0,
+          "action_id": 65535
+        },
+        "shadow": {
+          "raw": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+          "flags": 4208308363,
+          "action_context": 13155415039311468723,
+          "context_is_sentinel": false,
+          "target_focus_handle": 1243939035,
+          "action_id": 37999
+        }
+      },
+      "changed_offsets": [
+        1716,
+        1719,
+        1720,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1792,
+        1800,
+        1801,
+        1802,
+        1803,
+        1804,
+        1805,
+        1806,
+        1807,
+        1808,
+        1809,
+        1810,
+        1811,
+        1812,
+        1813,
+        1840,
+        1841,
+        1842,
+        1843,
+        1844,
+        1845,
+        1846,
+        1847,
+        1848,
+        1849,
+        1850,
+        1851,
+        1852,
+        1853,
+        1854,
+        1855,
+        1856,
+        1857,
+        1858,
+        1859,
+        1860,
+        1861,
+        1862,
+        1863,
+        1884,
+        1885,
+        1886,
+        1887,
+        1888,
+        1889,
+        1890,
+        1891,
+        1892,
+        1893,
+        1894,
+        1895,
+        1896,
+        1897,
+        1898,
+        1899,
+        1900,
+        1901,
+        1902,
+        1903
+      ],
+      "copied_shadow": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+      "unit_after_sha256": "5e5d05ac2961f43e5d60dc1fef27f9f2c3e19c0cbe1b84a4e5b5ac86afaabffc"
+    },
+    {
+      "flags": 4294967295,
+      "trace": {
+        "start": 3212985,
+        "stop": 3213103,
+        "visited": [
+          3212985,
+          3212992,
+          3212997,
+          3213004,
+          3213012,
+          3213015,
+          3213022,
+          3213024,
+          3213027,
+          3213035,
+          3213042,
+          3213049,
+          3213056,
+          3213063,
+          3213070,
+          3213077,
+          3213083,
+          3213090,
+          3213097,
+          3213103
+        ],
+        "writes": [
+          {
+            "address": 1342179072,
+            "bytes": 4
+          },
+          {
+            "address": 1342179120,
+            "bytes": 8
+          },
+          {
+            "address": 1342179128,
+            "bytes": 8
+          },
+          {
+            "address": 1342179136,
+            "bytes": 8
+          },
+          {
+            "address": 1342178999,
+            "bytes": 2
+          },
+          {
+            "address": 1342178996,
+            "bytes": 1
+          },
+          {
+            "address": 1342179176,
+            "bytes": 8
+          },
+          {
+            "address": 1342179168,
+            "bytes": 8
+          },
+          {
+            "address": 1342179032,
+            "bytes": 8
+          },
+          {
+            "address": 1342179024,
+            "bytes": 8
+          },
+          {
+            "address": 1342179164,
+            "bytes": 4
+          },
+          {
+            "address": 1342179092,
+            "bytes": 2
+          },
+          {
+            "address": 1342179080,
+            "bytes": 8
+          },
+          {
+            "address": 1342179088,
+            "bytes": 4
+          }
+        ]
+      },
+      "before": {
+        "unit": 1342177280,
+        "slot": 0,
+        "actor": 1342242816,
+        "identity_raw": "01385d82a7ccf1163b6085aacff4193e0000015000000000",
+        "frame_before": 77,
+        "frame_after": 77,
+        "crossed_frame": false,
+        "phase_raw": "173c61",
+        "action_phase": 23,
+        "unnamed_6b6": 97,
+        "live": {
+          "raw": "ffffffffa7ccf1161032547698badcfe2143658734124166",
+          "flags": 4294967295,
+          "action_context": 18364758544493064720,
+          "context_is_sentinel": false,
+          "target_focus_handle": 2271560481,
+          "action_id": 4660
+        },
+        "shadow": {
+          "raw": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+          "flags": 4208308363,
+          "action_context": 13155415039311468723,
+          "context_is_sentinel": false,
+          "target_focus_handle": 1243939035,
+          "action_id": 37999
+        }
+      },
+      "after": {
+        "unit": 1342177280,
+        "slot": 0,
+        "actor": 1342242816,
+        "identity_raw": "01385d82a7ccf1163b6085aacff4193e0000015000000000",
+        "frame_before": 77,
+        "frame_after": 77,
+        "crossed_frame": false,
+        "phase_raw": "003c61",
+        "action_phase": 0,
+        "unnamed_6b6": 97,
+        "live": {
+          "raw": "fcffffffa7ccf116000000000000000000000000ffff4166",
+          "flags": 4294967292,
+          "action_context": 0,
+          "context_is_sentinel": true,
+          "target_focus_handle": 0,
+          "action_id": 65535
+        },
+        "shadow": {
+          "raw": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+          "flags": 4208308363,
+          "action_context": 13155415039311468723,
+          "context_is_sentinel": false,
+          "target_focus_handle": 1243939035,
+          "action_id": 37999
+        }
+      },
+      "changed_offsets": [
+        1716,
+        1719,
+        1720,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1792,
+        1800,
+        1801,
+        1802,
+        1803,
+        1804,
+        1805,
+        1806,
+        1807,
+        1808,
+        1809,
+        1810,
+        1811,
+        1812,
+        1813,
+        1840,
+        1841,
+        1842,
+        1843,
+        1844,
+        1845,
+        1846,
+        1847,
+        1848,
+        1849,
+        1850,
+        1851,
+        1852,
+        1853,
+        1854,
+        1855,
+        1856,
+        1857,
+        1858,
+        1859,
+        1860,
+        1861,
+        1862,
+        1863,
+        1884,
+        1885,
+        1886,
+        1887,
+        1888,
+        1889,
+        1890,
+        1891,
+        1892,
+        1893,
+        1894,
+        1895,
+        1896,
+        1897,
+        1898,
+        1899,
+        1900,
+        1901,
+        1902,
+        1903
+      ],
+      "copied_shadow": "8bb0d5fa1f44698eb3d8fd22476c91b6db00254a6f94b9de",
+      "unit_after_sha256": "9a991631e4ba89343f98661ae2622662bdc5f3777e9ab12018124bcd7537f1ea"
+    }
+  ],
+  "gates": [
+    {
+      "kind": "null_unit",
+      "trace": {
+        "start": 3212752,
+        "stop": 1610616832,
+        "visited": [
+          3212752,
+          3212755,
+          3213169,
+          1610616832
+        ],
+        "writes": []
+      },
+      "rsp": 1610614792
+    },
+    {
+      "kind": "null_stats",
+      "trace": {
+        "start": 3212752,
+        "stop": 1610616832,
+        "visited": [
+          3212752,
+          3212755,
+          3212761,
+          3212762,
+          3212766,
+          3212774,
+          3212777,
+          3213164,
+          3213168,
+          3213169,
+          1610616832
+        ],
+        "writes": [
+          {
+            "address": 1610614776,
+            "bytes": 8
+          }
+        ]
+      },
+      "rsp": 1610614792
+    },
+    {
+      "kind": "nonzero_stats",
+      "trace": {
+        "start": 3212752,
+        "stop": 3212805,
+        "visited": [
+          3212752,
+          3212755,
+          3212761,
+          3212762,
+          3212766,
+          3212774,
+          3212777,
+          3212783,
+          3212788,
+          3212793,
+          3212800,
+          3212805
+        ],
+        "writes": [
+          {
+            "address": 1610614776,
+            "bytes": 8
+          },
+          {
+            "address": 1610614792,
+            "bytes": 8
+          },
+          {
+            "address": 1610614800,
+            "bytes": 8
+          },
+          {
+            "address": 1610614808,
+            "bytes": 8
+          }
+        ]
+      },
+      "rsp": 1610614744
+    }
+  ],
+  "unnamed_prefix": {
+    "start": 3212810,
+    "stop": 3212824,
+    "visited": [
+      3212810,
+      3212817,
+      3212824
+    ],
+    "writes": [
+      {
+        "address": 1342178998,
+        "bytes": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+S1 walker 0024AA00 direct sites: ['00292768 call', '002CF2B4 call', '002CF2CE call']
+S1 codec 00248500 direct sites: ['0024AAF4 call']
+S1 qword refs walker/codec: [] []
+S2a rip refs into 008FCE00..008FD2D0: 3
+    001D150F lea r14, [rip + 0x72b8ea] -> 008FCE00
+    001D537D lea r14, [rip + 0x727a7c] -> 008FCE00
+    001D542A lea r14, [rip + 0x7279cf] -> 008FCE00
+S2b image-base-relative [r + r*s + disp] with disp in the block's RVA range: 1
+    001CD186 mov edx, dword ptr [rsi + rcx*4 + 0x7dce00]
+S2c qwords holding a VA inside the block: 0 []
+S3 00D10C98 u32[12]: [130, 131, 132, 133, 134, 135, 218, 219, 220, 221, 222, 223]
+S3 rip refs to 00D10C98..00D10CC8: ['00365848 lea rax, [rip + 0x9ab448] -> 00D10C98']
+S3 direct sites into 00365810: ['0053EC9A call']
+    0053EC80 mov esp, 0x85ffdb93
+    0053EC85 sal byte ptr [rbp + 8], 0x8d
+    0053EC89 sbb bpl, al
+    0053EC8C sar byte ptr [rax - 0x24cc0025], 1
+    0053EC92 lea ecx, [rbx + 7]
+    0053EC95 mov edx, 1
+    0053EC9A call 0x365810
+    0053EC9F inc ebx
+    0053ECA1 cmp ebx, 6
+    0053ECA4 jl 0x53ec92
+    0053ECA6 cmp qword ptr [rip + 0x2769dda], 0
+    0053ECAE jne 0x53ecf3
+    0053ECB0 mov rcx, rsi
+S4 003A1F20:
+    003A1F20 mov r9d, ecx
+    003A1F23 imul r9d, edx
+    003A1F27 dec r8d
+    003A1F2A cmp r8d, 0x39
+    003A1F2E ja 0x3a1f89
+    003A1F30 lea rdx, [rip - 0x281f37]
+    003A1F37 movsxd rax, r8d
+    003A1F3A movzx eax, byte ptr [rdx + rax + 0x281fa4]
+    003A1F42 mov ecx, dword ptr [rdx + rax*4 + 0x281f90]
+    003A1F49 add rcx, rdx
+    003A1F4C jmp rcx
+    003A1F4E lea eax, [r9 + r9*2]
+    003A1F52 cdq 
+    003A1F53 sub eax, edx
+    003A1F55 sar eax, 1
+    003A1F57 mov r9d, eax
+    003A1F5A ret 
+    003A1F5B mov eax, r9d
+    003A1F5E cdq 
+    003A1F5F sub eax, edx
+S5 00577C90..00577CB8:
+    00577C90 xor byte ptr [rbx + 0x6918e8c8], cl
+    00577C96 loopne 0x577c97
+    00577C98 movzx ecx, word ptr [rsp + 0x38]
+    00577C9D cmp byte ptr [rsp + 0x3f], r12b
+    00577CA2 jne 0x577cb9
+    00577CA4 call 0x37ee10
+    00577CA9 movzx ecx, byte ptr [rsp + 0x3e]
+    00577CAE mov r8d, edi
+    00577CB1 cmp eax, ecx
+    00577CB3 setge r8b
+    00577CB7 jmp 0x577cc7

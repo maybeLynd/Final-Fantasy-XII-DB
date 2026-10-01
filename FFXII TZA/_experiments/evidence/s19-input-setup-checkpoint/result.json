@@ -1,0 +1,25 @@
+{
+  "status": "INVALID_FIELD_SETUP",
+  "semantic_closure": [],
+  "field_observation": null,
+  "provisional_title": {
+    "used_count": 0,
+    "free_count": 128,
+    "highest_used_index": null,
+    "active_used_count": 0,
+    "samples": 2,
+    "limits": "Read controls and initialized list structure pass; requested Load Game acceptance/loaded-field health does not. Not an accepted live semantic experiment."
+  },
+  "initial_read_attempt": "INVALID (module enumeration ACCESS_DENIED; no pool samples)",
+  "access_control": "Outside-sandbox module enumeration93 modules versus denied game/positive self32 modules; prototype hypothesis refuted. Unreadable is never clean.",
+  "health": "No fatal C++ dialog observed. Ordinary OS Exit Dialog appeared and exit completed. This does not substitute for FF12 load/field response controls.",
+  "question_still_open": [
+    "Stepping occupied bodies/highest index/active bytes",
+    "town occupancy",
+    "dungeon occupancy",
+    "actual separation invocation and consequences"
+  ],
+  "cleanup": "All26 current save/config files byte-identical to fresh prelaunch census/backup; no restoration writes, process gone, read handles closed, PC control reset.",
+  "raw_identity": "EXE73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 PID43880 creation134349375615070115",
+  "input_limits": "Selected modern settings file was not established as in-process active. Neither unaccepted Return nor C proves a binding or game health failure. Cause remains unknown."
+}

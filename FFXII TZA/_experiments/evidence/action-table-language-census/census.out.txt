@@ -1,0 +1,58 @@
+entries in archive: 89414
+listed ps2data/image/ff12/test_battle/ch/binaryfile/action_data.bin 32612
+listed ps2data/image/ff12/test_battle/ch/binaryfile/battle_pack.bin 247384
+listed ps2data/image/ff12/test_battle/cn/binaryfile/action_data.bin 32612
+listed ps2data/image/ff12/test_battle/cn/binaryfile/battle_pack.bin 247208
+listed ps2data/image/ff12/test_battle/de/binaryfile/battle_pack.bin 284048
+listed ps2data/image/ff12/test_battle/es/binaryfile/battle_pack.bin 282528
+listed ps2data/image/ff12/test_battle/fr/binaryfile/battle_pack.bin 297280
+listed ps2data/image/ff12/test_battle/in/binaryfile/action_data.bin 32612
+listed ps2data/image/ff12/test_battle/in/binaryfile/battle_pack.bin 246920
+listed ps2data/image/ff12/test_battle/it/binaryfile/battle_pack.bin 285176
+listed ps2data/image/ff12/test_battle/kr/binaryfile/action_data.bin 32612
+listed ps2data/image/ff12/test_battle/kr/binaryfile/battle_pack.bin 254944
+listed ps2data/image/ff12/test_battle/us/binaryfile/battle_pack.bin 281128
+battle_pack ch +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack cn +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack de +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack es +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack fr +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack in +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack it +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack kr +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+battle_pack us +0x3C: magic b'st2e' count 543 stride 60; differs from us in 0 bytes
+action_data ch: count 543 stride 60 header==battle_pack section header True; differs from own battle_pack in 0 bytes, from us in 0
+action_data cn: count 543 stride 60 header==battle_pack section header True; differs from own battle_pack in 15 bytes, from us in 15
+   row 104 +0x34: us word 104, cn byte 00
+   row 105 +0x34: us word 105, cn byte 00
+   row 106 +0x34: us word 106, cn byte 00
+   row 107 +0x34: us word 107, cn byte 00
+   row 108 +0x34: us word 108, cn byte 00
+   row 109 +0x34: us word 109, cn byte 00
+   row 110 +0x34: us word 110, cn byte 00
+   row 124 +0x34: us word 124, cn byte 00
+   row 128 +0x34: us word 136, cn byte 00
+   row 129 +0x34: us word 137, cn byte 00
+   row 133 +0x34: us word 138, cn byte 00
+   row 134 +0x34: us word 139, cn byte 00
+   row 135 +0x34: us word 140, cn byte 00
+   row 136 +0x34: us word 141, cn byte 00
+   row 138 +0x34: us word 142, cn byte 00
+action_data in: count 543 stride 60 header==battle_pack section header True; differs from own battle_pack in 0 bytes, from us in 0
+action_data kr: count 543 stride 60 header==battle_pack section header True; differs from own battle_pack in 15 bytes, from us in 15
+   row 104 +0x34: us word 104, kr byte 00
+   row 105 +0x34: us word 105, kr byte 00
+   row 106 +0x34: us word 106, kr byte 00
+   row 107 +0x34: us word 107, kr byte 00
+   row 108 +0x34: us word 108, kr byte 00
+   row 109 +0x34: us word 109, kr byte 00
+   row 110 +0x34: us word 110, kr byte 00
+   row 124 +0x34: us word 124, kr byte 00
+   row 128 +0x34: us word 136, kr byte 00
+   row 129 +0x34: us word 137, kr byte 00
+   row 133 +0x34: us word 138, kr byte 00
+   row 134 +0x34: us word 139, kr byte 00
+   row 135 +0x34: us word 140, kr byte 00
+   row 136 +0x34: us word 141, kr byte 00
+   row 138 +0x34: us word 142, kr byte 00
+us rows whose +0x34 word != row index: [(128, 136), (129, 137), (130, 128), (131, 129), (132, 130), (133, 138), (134, 139), (135, 140), (136, 141), (137, 135), (138, 142), (139, 131), (140, 132), (141, 133), (142, 134)]

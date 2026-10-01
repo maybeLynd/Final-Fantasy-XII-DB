@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "driver": "inspect-texture-resize-forwarded-input-caller.py",
+  "limits": "One candidate alignment/source preparation only; input-domain closure pending"
+}

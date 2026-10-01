@@ -1,0 +1,14 @@
+PASS C1 0027328F je -> 002732C1 
+PASS C1 00273299 je -> 002732C1 
+PASS C1 002732C1 mov eax,0xffff 
+PASS C1 0027329B mov eax,0xffff (preset value) 
+PASS C1 002732A7 mov [rsp+0xcc],eax (preset store) 
+PASS C1 002732B0 call 0031FF70 (the filler) 
+PASS C1 002732BC shr eax,0x10 
+refs to 003377C0: lea 00317E11, call 0031950C, call 00334E65, call 00335093, call 00339935, call 0033BE55
+refs to 00337700: lea 00317DF7, call 003379A4
+PASS C4 control: 00319490 calls 003377C0 
+PASS C4 00334E00 calls 003377C0 twice 
+PASS C4 0033BD70 calls 003377C0 
+PASS C4 00317DE0 takes both by lea 
+FAILS 0

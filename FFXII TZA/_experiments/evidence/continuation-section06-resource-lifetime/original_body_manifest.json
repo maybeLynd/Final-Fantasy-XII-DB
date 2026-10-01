@@ -1,0 +1,1111 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "population_source": "historical Ghidra exports reused; no new import or current-population certification",
+  "functions": [
+    {
+      "entry": "0017D2E0",
+      "bytes": 91,
+      "sha256": "8cee24942ffb9e71495d571868938e0540a0be6bc5fad7a4fea582889578a6e6",
+      "ranges": [
+        {
+          "start": "0017D2E0",
+          "end": "0017D33A",
+          "bytes": 91
+        }
+      ],
+      "scope": "application diagnostic formatter replaced in native fixture; no formatter behavior is validated"
+    },
+    {
+      "entry": "0020E600",
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+      "ranges": [
+        {
+          "start": "0020e600",
+          "end": "0020e609",
+          "bytes": 10
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0020E620",
+      "bytes": 9,
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+      "ranges": [
+        {
+          "start": "0020e620",
+          "end": "0020e628",
+          "bytes": 9
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0024B3A0",
+      "bytes": 321,
+      "sha256": "1f46cf590e16f664a3931cca95ecbe6e1dbec00cd16d225831bce39109a918f8",
+      "ranges": [
+        {
+          "start": "0024b3a0",
+          "end": "0024b4e0",
+          "bytes": 321
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0024D970",
+      "bytes": 73,
+      "sha256": "47186e560000fe3d61031e7b04cc12f8d16ad994d1dfff23f157f6fa101379d5",
+      "ranges": [
+        {
+          "start": "0024D970",
+          "end": "0024D9B8",
+          "bytes": 73
+        }
+      ],
+      "scope": "original context-rebase driver/walks; external source relocation is simulated, empty list/default subtype only"
+    },
+    {
+      "entry": "0024F410",
+      "bytes": 185,
+      "sha256": "83b3af72830917188e46b444aa3bce52014526cdf22998722b362896b087a414",
+      "ranges": [
+        {
+          "start": "0024f410",
+          "end": "0024f4c8",
+          "bytes": 185
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0024F4D0",
+      "bytes": 317,
+      "sha256": "22ca05b9e2c21eb2550a6d13d4c1801509a0ed25db0fd8be5ef397ed231d9921",
+      "ranges": [
+        {
+          "start": "0024f4d0",
+          "end": "0024f60c",
+          "bytes": 317
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0026FB90",
+      "bytes": 535,
+      "sha256": "84ecb73bf277ec84e53f61c6c6f36086709d2776347fa7951cfc7738fb6ac3c9",
+      "ranges": [
+        {
+          "start": "0026fb90",
+          "end": "0026fda6",
+          "bytes": 535
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "002ED570",
+      "bytes": 146,
+      "sha256": "f5fc014060f8216a6f6107a015e9c108505d1f6897ef4277da190ad2000e9603",
+      "ranges": [
+        {
+          "start": "002ed570",
+          "end": "002ed601",
+          "bytes": 146
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003697F0",
+      "bytes": 13,
+      "sha256": "efed31070c81261c142e309cfde282b4b566c4b36e4e28e53f1f817025d4cfca",
+      "ranges": [
+        {
+          "start": "003697f0",
+          "end": "003697fc",
+          "bytes": 13
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00369800",
+      "bytes": 85,
+      "sha256": "a38fb5a0aecad6a3d4ccaf040b3ff13f5980378a91838ce5153e85addfa3e25f",
+      "ranges": [
+        {
+          "start": "00369800",
+          "end": "00369854",
+          "bytes": 85
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00369860",
+      "bytes": 1009,
+      "sha256": "5538203672b80cf5eac78f1f8461b082aaf5ffc3566f8f7eb5c912100d2b1872",
+      "ranges": [
+        {
+          "start": "00369860",
+          "end": "00369c50",
+          "bytes": 1009
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00369D30",
+      "bytes": 707,
+      "sha256": "16466da32c47e02ad79cf15b1952c26a44d66eecfb4fb0a269fb74fa85ca5beb",
+      "ranges": [
+        {
+          "start": "00369d30",
+          "end": "00369ff2",
+          "bytes": 707
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036A000",
+      "bytes": 161,
+      "sha256": "5a9f4ea64354b983bbc44db785f795aef0294f884c8d02c875f402f0b24639fa",
+      "ranges": [
+        {
+          "start": "0036a000",
+          "end": "0036a0a0",
+          "bytes": 161
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036A100",
+      "bytes": 129,
+      "sha256": "12393ea217cd65d42ab4e9d89eb686c67114e45b3d918095a4f1f3be3de41ff4",
+      "ranges": [
+        {
+          "start": "0036a100",
+          "end": "0036a180",
+          "bytes": 129
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036A9C0",
+      "bytes": 260,
+      "sha256": "45c4eae2056d7a8d601d06126cc32c4d38581a4ad083cec2a4f1cdad126ba537",
+      "ranges": [
+        {
+          "start": "0036a9c0",
+          "end": "0036aac3",
+          "bytes": 260
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036B130",
+      "bytes": 41,
+      "sha256": "f9e962cb57663e827df2e541e2ce55d1ac499850f5809b2e6771a05a3fcdec00",
+      "ranges": [
+        {
+          "start": "0036b130",
+          "end": "0036b158",
+          "bytes": 41
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036B160",
+      "bytes": 148,
+      "sha256": "9580ff472bfb8b8d6758e1caf19a4f77db19ebb14cb61d73dc4c92cf0930230b",
+      "ranges": [
+        {
+          "start": "0036b160",
+          "end": "0036b1f3",
+          "bytes": 148
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036B410",
+      "bytes": 124,
+      "sha256": "2ca9282cf261e0d6c1f2069a7e98a0cb4afb41ad2362aca05a2ec34a8f6a081f",
+      "ranges": [
+        {
+          "start": "0036b410",
+          "end": "0036b48b",
+          "bytes": 124
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036B490",
+      "bytes": 71,
+      "sha256": "de89ffec750fa6987fdead6879fdb82e537dbb221445eb93329927c812e0b56c",
+      "ranges": [
+        {
+          "start": "0036b490",
+          "end": "0036b4d6",
+          "bytes": 71
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036B4E0",
+      "bytes": 177,
+      "sha256": "8ba13fd39112592d212672b4570929c7f412a9d360a380a1f9b34da6bffa9e36",
+      "ranges": [
+        {
+          "start": "0036b4e0",
+          "end": "0036b590",
+          "bytes": 177
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036B5A0",
+      "bytes": 71,
+      "sha256": "a5cde6f58ebe12968105b30db15d40e83fea5d58924a776aeb1ce80bf3900f2d",
+      "ranges": [
+        {
+          "start": "0036b5a0",
+          "end": "0036b5e6",
+          "bytes": 71
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036BC60",
+      "bytes": 887,
+      "sha256": "4ea76d7f9498941c7c2b4fcf2cb38faa25b156df5535c15a2b1dcdd126cce2e7",
+      "ranges": [
+        {
+          "start": "0036bc60",
+          "end": "0036bfd6",
+          "bytes": 887
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036BFE0",
+      "bytes": 261,
+      "sha256": "e37aa054ae53cc5be8a94ec0281a6941e0ef49190c57470ec9db26a4c51f4fe2",
+      "ranges": [
+        {
+          "start": "0036bfe0",
+          "end": "0036c0e4",
+          "bytes": 261
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036C140",
+      "bytes": 84,
+      "sha256": "f34ec4c217f1b888902154ce45f6c27afc22fe2c77a50f2dbd85ff749ab87ca3",
+      "ranges": [
+        {
+          "start": "0036c140",
+          "end": "0036c193",
+          "bytes": 84
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036C1D0",
+      "bytes": 20,
+      "sha256": "bd012ee188218bf2e3eef63682f7f296dc3620001bfb3fbddef2b99529dc3096",
+      "ranges": [
+        {
+          "start": "0036c1d0",
+          "end": "0036c1e3",
+          "bytes": 20
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036C790",
+      "bytes": 359,
+      "sha256": "8125ded3d9486e8a2880a3b48a28a4f88203a23bd95be9ade5ff44a47de6d4d9",
+      "ranges": [
+        {
+          "start": "0036c790",
+          "end": "0036c8f6",
+          "bytes": 359
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0036D170",
+      "bytes": 133,
+      "sha256": "6bfc78a858ac41669653ce40a416172b24e729bc28ba95866ae9d40cd9df1226",
+      "ranges": [
+        {
+          "start": "0036d170",
+          "end": "0036d1f4",
+          "bytes": 133
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A72E0",
+      "bytes": 5,
+      "sha256": "dfcfdd9f5f26a4c932c53d2f7c504955fe166a7ce32c8661a9cfcb9248b67e15",
+      "ranges": [
+        {
+          "start": "003a72e0",
+          "end": "003a72e4",
+          "bytes": 5
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A7360",
+      "bytes": 177,
+      "sha256": "9feb5d312b64291c39c058868b6398a4e80763ac1949b110b0eb689af484b71a",
+      "ranges": [
+        {
+          "start": "003a7360",
+          "end": "003a7410",
+          "bytes": 177
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A75B0",
+      "bytes": 312,
+      "sha256": "050311cf23280feaf87ddfc7a3de34490f32808273e3a1a856d0ce02f54851d6",
+      "ranges": [
+        {
+          "start": "003a75b0",
+          "end": "003a76e7",
+          "bytes": 312
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A76F0",
+      "bytes": 50,
+      "sha256": "ebb41886769a84e2c96e9fb1fd39d347081518162c999f6eaf0177855754ffcd",
+      "ranges": [
+        {
+          "start": "003a76f0",
+          "end": "003a7721",
+          "bytes": 50
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A7D00",
+      "bytes": 44,
+      "sha256": "bf1c321746f7601a818dc21560ca5cdf1a25dde5f318996819f25a40eac9ff8e",
+      "ranges": [
+        {
+          "start": "003a7d00",
+          "end": "003a7d2b",
+          "bytes": 44
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A7D30",
+      "bytes": 140,
+      "sha256": "6633e4cf419addaf81958e0531dade5a1e57b16ceb199cc5871dc9bb941aab5a",
+      "ranges": [
+        {
+          "start": "003a7d30",
+          "end": "003a7dbb",
+          "bytes": 140
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A81E0",
+      "bytes": 85,
+      "sha256": "8952d9489c6b318e91e1be80d697baa686ec8822b468f640745fe3208c47f561",
+      "ranges": [
+        {
+          "start": "003a81e0",
+          "end": "003a8234",
+          "bytes": 85
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A8D70",
+      "bytes": 5,
+      "sha256": "3e63ca6208bc2fd149842d273fd5592ce43267c83418a05bf35434e6cccb0e01",
+      "ranges": [
+        {
+          "start": "003a8d70",
+          "end": "003a8d74",
+          "bytes": 5
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9160",
+      "bytes": 331,
+      "sha256": "da080ae9cc2e7f6b30761d6a73df71d86ac5b40e1ac9d0829536afe37af50b21",
+      "ranges": [
+        {
+          "start": "003a9160",
+          "end": "003a92aa",
+          "bytes": 331
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9560",
+      "bytes": 44,
+      "sha256": "4e89dfe7e94a950082c04e6a3ae0bad55e75322efc96a45d4af68fbf6e0adefb",
+      "ranges": [
+        {
+          "start": "003a9560",
+          "end": "003a958b",
+          "bytes": 44
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9600",
+      "bytes": 156,
+      "sha256": "43541ab13d3073abf1995296739ee3b449d09328f512d7e2f2b0166c0c7895be",
+      "ranges": [
+        {
+          "start": "003a9600",
+          "end": "003a969b",
+          "bytes": 156
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9730",
+      "bytes": 90,
+      "sha256": "428780cc496c9aaf4a2be79c0b96723b1108af4789002cdc6bcfb2c8417dcabe",
+      "ranges": [
+        {
+          "start": "003a9730",
+          "end": "003a9789",
+          "bytes": 90
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9860",
+      "bytes": 105,
+      "sha256": "5c4c5f33ea696a7f35c608eeb8a25ad4435a6b14462d660050cf154d9bdf0e3b",
+      "ranges": [
+        {
+          "start": "003A9860",
+          "end": "003A98C8",
+          "bytes": 105
+        }
+      ],
+      "scope": "original context-rebase driver/walks; external source relocation is simulated, empty list/default subtype only"
+    },
+    {
+      "entry": "003A9920",
+      "bytes": 44,
+      "sha256": "4c76895564486955d14b3ebad57cdc666a1668afd0e402909c3bbef704ff8395",
+      "ranges": [
+        {
+          "start": "003a9920",
+          "end": "003a994b",
+          "bytes": 44
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9950",
+      "bytes": 156,
+      "sha256": "dac8a3240872ac303d40bf1cf4e1fc3e1eee46abd3b9ff1e6ff26a6bed9e1fe5",
+      "ranges": [
+        {
+          "start": "003a9950",
+          "end": "003a99eb",
+          "bytes": 156
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9A70",
+      "bytes": 84,
+      "sha256": "1efc512950b5101f9b5cb213e53e973e7cd0671fb3c7eaf6d16cb5ad2ce4b1d0",
+      "ranges": [
+        {
+          "start": "003a9a70",
+          "end": "003a9ac3",
+          "bytes": 84
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9BA0",
+      "bytes": 105,
+      "sha256": "bc0c54c31f898cc6c01cc12b6c8ff40183d81a6969ab3a8f4a860e4dc1eb16c1",
+      "ranges": [
+        {
+          "start": "003A9BA0",
+          "end": "003A9C08",
+          "bytes": 105
+        }
+      ],
+      "scope": "original context-rebase driver/walks; external source relocation is simulated, empty list/default subtype only"
+    },
+    {
+      "entry": "003A9CC0",
+      "bytes": 57,
+      "sha256": "340416b3ed06ba74b0f07a2983cd93a28d2ec7ada68cec91a80999945d692fc0",
+      "ranges": [
+        {
+          "start": "003a9cc0",
+          "end": "003a9cf8",
+          "bytes": 57
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9D00",
+      "bytes": 242,
+      "sha256": "98dc4a281a00061bc7c897382f07b2b616d3bf1bd8de82f0ff9d0163fad42b57",
+      "ranges": [
+        {
+          "start": "003a9d00",
+          "end": "003a9df1",
+          "bytes": 242
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003A9EE0",
+      "bytes": 5,
+      "sha256": "52db92b0d66a3064cd038a8e8a7d3796861fed5b7a3dcb5308c0425f77712290",
+      "ranges": [
+        {
+          "start": "003a9ee0",
+          "end": "003a9ee4",
+          "bytes": 5
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003AA3D0",
+      "bytes": 92,
+      "sha256": "e18c72d7082753ee2b2269f34c4955f35bc175a5f43e0b0e78ef17f9213e6c42",
+      "ranges": [
+        {
+          "start": "003AA3D0",
+          "end": "003AA42B",
+          "bytes": 92
+        }
+      ],
+      "scope": "original context-rebase driver/walks; external source relocation is simulated, empty list/default subtype only"
+    },
+    {
+      "entry": "003AB7C0",
+      "bytes": 36,
+      "sha256": "487564f426d8c4571a49acead62279a093a5bbc273369c4f3581dc223b6b0135",
+      "ranges": [
+        {
+          "start": "003ab7c0",
+          "end": "003ab7e3",
+          "bytes": 36
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003AB7F0",
+      "bytes": 99,
+      "sha256": "a65931ceb42bff28b95656b5797b4ec07ab5f3526b5e5c98d7a330d5f18e28f0",
+      "ranges": [
+        {
+          "start": "003ab7f0",
+          "end": "003ab852",
+          "bytes": 99
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003AB880",
+      "bytes": 42,
+      "sha256": "ad9637923888d8dfad5f8dbe2ff406f0aba6543c4e32cb6692415ab92443ab02",
+      "ranges": [
+        {
+          "start": "003ab880",
+          "end": "003ab8a9",
+          "bytes": 42
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003AB8B0",
+      "bytes": 87,
+      "sha256": "a78c8378f43d7c9e9b337eb3c043c576864f9955ee677c5f6c05ce42b7db2b51",
+      "ranges": [
+        {
+          "start": "003ab8b0",
+          "end": "003ab906",
+          "bytes": 87
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003AB940",
+      "bytes": 30,
+      "sha256": "dcece44381d6f314cd6d4912298cf1deda6b715f7b13de2f56f37b26293e5dc7",
+      "ranges": [
+        {
+          "start": "003ab940",
+          "end": "003ab95d",
+          "bytes": 30
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003B3480",
+      "bytes": 200,
+      "sha256": "c64bc714afcd3a7451225b6d8b668210787e8d9ca6580327b51fce916c9b8984",
+      "ranges": [
+        {
+          "start": "003B3480",
+          "end": "003B3547",
+          "bytes": 200
+        }
+      ],
+      "scope": "original context-rebase driver/walks; external source relocation is simulated, empty list/default subtype only"
+    },
+    {
+      "entry": "003B37E0",
+      "bytes": 197,
+      "sha256": "33a25c6fc618e5a020fe698829b53b9dcd3ee05151cd2c85b32d6823369c8c77",
+      "ranges": [
+        {
+          "start": "003b37e0",
+          "end": "003b38a4",
+          "bytes": 197
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003B38B0",
+      "bytes": 296,
+      "sha256": "5db8ba7a8aecd517ada3928b4259d3e09cce536486e081d9330b29816b6ab297",
+      "ranges": [
+        {
+          "start": "003b38b0",
+          "end": "003b39d7",
+          "bytes": 296
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003B39E0",
+      "bytes": 183,
+      "sha256": "9754612aff8a234bc24ea881ff0e99b6fff23f3de791972185d827cf68550e20",
+      "ranges": [
+        {
+          "start": "003b39e0",
+          "end": "003b3a96",
+          "bytes": 183
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "003EDAD0",
+      "bytes": 1934,
+      "sha256": "aebd52bca250cae30c65f4dc67ff25e8639df9db190db2098d056a03789f290e",
+      "ranges": [
+        {
+          "start": "003edad0",
+          "end": "003ee25d",
+          "bytes": 1934
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409210",
+      "bytes": 46,
+      "sha256": "b2be1ae5858c1bdedd5ba9f2e609d54872840201866942d3d91a8ccd577f2584",
+      "ranges": [
+        {
+          "start": "00409210",
+          "end": "0040923d",
+          "bytes": 46
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "004095B0",
+      "bytes": 77,
+      "sha256": "1f098b10cf0c4156fdd4d073aa76ebb4feb419caa40d9dce1f72d1ff8acb69ad",
+      "ranges": [
+        {
+          "start": "004095b0",
+          "end": "004095fc",
+          "bytes": 77
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409600",
+      "bytes": 86,
+      "sha256": "cfd9b608b8c8313bc78447bdeb276d575a6d2d5dc548bebcf827add0a188412d",
+      "ranges": [
+        {
+          "start": "00409600",
+          "end": "00409655",
+          "bytes": 86
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409710",
+      "bytes": 30,
+      "sha256": "03e01501900d2558b3bf2b3219b3943bceaadbe914d93e8321944ad232ebe973",
+      "ranges": [
+        {
+          "start": "00409710",
+          "end": "0040972d",
+          "bytes": 30
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409730",
+      "bytes": 71,
+      "sha256": "98915ff9731551846d1d30c33ed3e7a4ce02a38050c7dbd01858a03212e68516",
+      "ranges": [
+        {
+          "start": "00409730",
+          "end": "00409776",
+          "bytes": 71
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409780",
+      "bytes": 429,
+      "sha256": "34cdfcbe0c4125e952fc6049d4057cfd1ee41c32b0c5887e9e2544373a127531",
+      "ranges": [
+        {
+          "start": "00409780",
+          "end": "0040992c",
+          "bytes": 429
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409A30",
+      "bytes": 33,
+      "sha256": "951f3ebc48faed62279a55f4b1757f526ef01ffcb0f49498c210793175fcc074",
+      "ranges": [
+        {
+          "start": "00409a30",
+          "end": "00409a50",
+          "bytes": 33
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409A60",
+      "bytes": 415,
+      "sha256": "fc088bd24904e9a64c6137b1454a9bc0e38bfc1dce957717533167b43bd7f0b2",
+      "ranges": [
+        {
+          "start": "00409a60",
+          "end": "00409bfe",
+          "bytes": 415
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409C30",
+      "bytes": 101,
+      "sha256": "d15ebf101ff84bf1b1efbb988bdd0b0197ce7b5e96032d27f5eba679613bd87e",
+      "ranges": [
+        {
+          "start": "00409c30",
+          "end": "00409c94",
+          "bytes": 101
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409CA0",
+      "bytes": 191,
+      "sha256": "4f2a84698f513b4334adedd6e5a07f18edbc2005c413c722657cebd8d14e3a52",
+      "ranges": [
+        {
+          "start": "00409ca0",
+          "end": "00409d5e",
+          "bytes": 191
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409D60",
+      "bytes": 431,
+      "sha256": "3139da3b932a99c3ca7ae662133c3f536299f4659bb9d906fb58b70513e0964e",
+      "ranges": [
+        {
+          "start": "00409d60",
+          "end": "00409f0e",
+          "bytes": 431
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00409FE0",
+      "bytes": 507,
+      "sha256": "14ab85bf58780a2d7606c5fb13545f148d5aee8abd4eaaf1bdbfd3748feb526c",
+      "ranges": [
+        {
+          "start": "00409fe0",
+          "end": "0040a1da",
+          "bytes": 507
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0040A1E0",
+      "bytes": 29,
+      "sha256": "d5537f962ebe78ebf652f183d261082384877b8786153bc077671385ea4de38a",
+      "ranges": [
+        {
+          "start": "0040a1e0",
+          "end": "0040a1fc",
+          "bytes": 29
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0040A200",
+      "bytes": 5,
+      "sha256": "38a7f1aeb68c911b24fdb87ad321343e96efa23dbd5775dedf66064a3dac42a4",
+      "ranges": [
+        {
+          "start": "0040a200",
+          "end": "0040a204",
+          "bytes": 5
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00427B00",
+      "bytes": 194,
+      "sha256": "fb1bab81775a3eddcc452b734d2684175b1321e3d1790d44fc3aa655f317caf4",
+      "ranges": [
+        {
+          "start": "00427b00",
+          "end": "00427bc1",
+          "bytes": 194
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "00442460",
+      "bytes": 82,
+      "sha256": "daa8a100c2abe7641172513c02db3d0b8ead65d0011e7394bea0760e50e98fd2",
+      "ranges": [
+        {
+          "start": "00442460",
+          "end": "004424b1",
+          "bytes": 82
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "005004C0",
+      "bytes": 497,
+      "sha256": "47292beaac20a477154c25f93e5bcefbe4b373c54b7ac928846652d7fd103c98",
+      "ranges": [
+        {
+          "start": "005004c0",
+          "end": "005006b0",
+          "bytes": 497
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051EE00",
+      "bytes": 9,
+      "sha256": "4604c6b1aacb5f0e5ff2dfe9e8e84ff78cbe0ec2bf34154a99f656932ce6a8cf",
+      "ranges": [
+        {
+          "start": "0051ee00",
+          "end": "0051ee08",
+          "bytes": 9
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051EE10",
+      "bytes": 20,
+      "sha256": "ececb2df56cc5cc28f0c2d2499aed4d66ee1dcccdcfeda885217f3d1db6289e6",
+      "ranges": [
+        {
+          "start": "0051ee10",
+          "end": "0051ee23",
+          "bytes": 20
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051EE80",
+      "bytes": 43,
+      "sha256": "b29a1746acc5f743a0bbc6399404b19324b74742fab220efb661997541a58add",
+      "ranges": [
+        {
+          "start": "0051ee80",
+          "end": "0051eeaa",
+          "bytes": 43
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051EEB0",
+      "bytes": 208,
+      "sha256": "52010405aa6a9c6633ff321cd061604200ca8f3ac4c93c5574af71f2f6267b8c",
+      "ranges": [
+        {
+          "start": "0051eeb0",
+          "end": "0051ef7f",
+          "bytes": 208
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051EF90",
+      "bytes": 138,
+      "sha256": "02f71f90b9f56459ed27d0c42e8e89cd155de6914e9e6976115df7b07904b0f4",
+      "ranges": [
+        {
+          "start": "0051ef90",
+          "end": "0051f019",
+          "bytes": 138
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051F020",
+      "bytes": 91,
+      "sha256": "fc40e6fedf7a111312ddc45a0f4f62c9bb7579e1a0735bfbecbaf22ce7216265",
+      "ranges": [
+        {
+          "start": "0051f020",
+          "end": "0051f07a",
+          "bytes": 91
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051FCF0",
+      "bytes": 308,
+      "sha256": "3174653446bf7a8dc3f7dc581e9dc0db60cff1573f23e83417db47c784bc773d",
+      "ranges": [
+        {
+          "start": "0051fcf0",
+          "end": "0051fe23",
+          "bytes": 308
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "0051FE30",
+      "bytes": 242,
+      "sha256": "9a8aa9186b145319c78e22f5645cef866bd11855185dcf8ce23de85dceacf00b",
+      "ranges": [
+        {
+          "start": "0051fe30",
+          "end": "0051ff21",
+          "bytes": 242
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    },
+    {
+      "entry": "006B5C70",
+      "bytes": 5,
+      "sha256": "fc46ea8acdf166d47f2230b3d3975fbd0a4a0f5c898b7c2b2ec854359cb94b85",
+      "ranges": [
+        {
+          "start": "006b5c70",
+          "end": "006b5c74",
+          "bytes": 5
+        }
+      ],
+      "scope": "selected original static body; native fixture reaches only its configured paths"
+    }
+  ]
+}

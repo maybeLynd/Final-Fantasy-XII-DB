@@ -1,0 +1,13 @@
+F1 negative reject PASS
+F1 flat lookup unchecked PASS
+F1 full-index size + header clear PASS
+F2 ctor qword 0x2710 at +0xADC PASS
+F2 initializer copy + words PASS
+F2 index writer/reader PASS
+F3 label slot arithmetic PASS
+F4 descriptor formed once PASS
+F4 done count then owner call PASS
+F5 body size / membership PASS
+F5 local effects PASS
+control counter refs PASS
+FAILS 0

@@ -1,0 +1,8 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	1	pass	sortKey	u8: 255 x13, 0 x1, 1 x1, 2 x1, 3 x1 (52 distinct)	0031C845* movzx eax, byte ptr [rbp]	list sort key -> query +0x30; the item-list comparators (002D01A0, 002CFFE0) subtract query +0x30 of two ids and fall back to id order; 0xFF on the 13 unused rows	STATIC	PASS
+0x01	3	pad	pad01	u8: 0 x192 (1 distinct)	-	const=0x00	-	PASS
+0x04	1	page	icon	u8: 0 x13, 119 x12, 40 x11, 118 x7, 56 x5 (12 distinct)	0031C83E* movzx eax, byte ptr [rbp + 4]	icon frame -> query +0x2C (UQ-130)	STATIC	BAZ
+0x05	2	pad	pad05	u16: 0x0 x64 (1 distinct)	-	const=0x00	-	PASS
+0x07	1	pass	actionRow	u8: 82 x1, 83 x1, 84 x1, 85 x1, 86 x1 (64 distinct)	0031C821* movzx eax, byte ptr [rbp + 7]	the item's action row -> query +0x38: action[+7].+0x22 == item row and .+0x34 == this row's name word on 64/64 rows	both	PASS
+0x08	2	page	nameWord	u16: 0x52 x1, 0x53 x1, 0x54 x1, 0x55 x1, 0x56 x1 (64 distinct)	0031C7B7* movzx ecx, word ptr [rax + 8] | 0031C7F5* movzx edx, word ptr [rax + 8]	name word (bank 0)	STATIC	EID
+0x0a	2	pass	price	u16: 0x2 x16, 0x32 x6, 0xc8 x5, 0x2bc x3, 0x3c x2 (32 distinct)	0031C81A* movzx eax, word ptr [rbp + 0xa]	unit price in gil -> query +0x28, which the shop list filler takes as the buy price and halves for the sale price (0057DFD0 / 0057DFDB); Potion 60, Hi-Potion 180	both	PASS

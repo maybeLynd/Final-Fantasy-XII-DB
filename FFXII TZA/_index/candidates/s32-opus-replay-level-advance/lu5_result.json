@@ -1,0 +1,117 @@
+{
+ "cases": {
+  "control_slot_bound_reaches_floats_and_level_store": true,
+  "shape1_HP_and_MP_run_and_are_stored_first": true,
+  "shape1_faults_at_0030C757_on_address_0x1F": true,
+  "shape1_no_float_growth_and_no_level_store": true,
+  "slot_restored_run_matches_control": true
+ },
+ "control": {
+  "at_boundary": false,
+  "boundary": [],
+  "counts": {
+   "HP 002F9A60": 1,
+   "MP 002F9B20": 1,
+   "MT draw": 2,
+   "float": 4,
+   "forward 0035D8C0": 0,
+   "level store": 1,
+   "poster 0046A690": 0,
+   "rebuild 0030FED0": 1
+  },
+  "floats": [
+   10.562,
+   10.523,
+   10.375,
+   10.141
+  ],
+  "hp": 520,
+  "level": 11,
+  "mp": 57,
+  "order": [
+   "HP 002F9A60",
+   "MT draw",
+   "MP 002F9B20",
+   "MT draw",
+   "float",
+   "float",
+   "float",
+   "float",
+   "level store",
+   "rebuild 0030FED0"
+  ],
+  "returned": true
+ },
+ "ok": true,
+ "restored": {
+  "at_boundary": false,
+  "boundary": [],
+  "counts": {
+   "HP 002F9A60": 1,
+   "MP 002F9B20": 1,
+   "MT draw": 2,
+   "float": 4,
+   "forward 0035D8C0": 0,
+   "level store": 1,
+   "poster 0046A690": 0,
+   "rebuild 0030FED0": 1
+  },
+  "floats": [
+   10.562,
+   10.523,
+   10.375,
+   10.141
+  ],
+  "hp": 520,
+  "level": 11,
+  "mp": 57,
+  "order": [
+   "HP 002F9A60",
+   "MT draw",
+   "MP 002F9B20",
+   "MT draw",
+   "float",
+   "float",
+   "float",
+   "float",
+   "level store",
+   "rebuild 0030FED0"
+  ],
+  "returned": true
+ },
+ "shape1": {
+  "at_boundary": false,
+  "boundary": [],
+  "counts": {
+   "HP 002F9A60": 1,
+   "MP 002F9B20": 1,
+   "MT draw": 2,
+   "float": 0,
+   "forward 0035D8C0": 0,
+   "level store": 0,
+   "poster 0046A690": 0,
+   "rebuild 0030FED0": 0
+  },
+  "faults": [
+   "0000001F",
+   "Invalid memory read (UC_ERR_READ_UNMAPPED)"
+  ],
+  "floats": [
+   10.0,
+   10.0,
+   10.0,
+   10.0
+  ],
+  "hp": 520,
+  "level": 10,
+  "mp": 57,
+  "order": [
+   "HP 002F9A60",
+   "MT draw",
+   "MP 002F9B20",
+   "MT draw"
+  ],
+  "returned": false,
+  "rip_at_stop": "0030C757"
+ }
+}

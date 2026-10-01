@@ -1,0 +1,110 @@
+# The 0x318-byte shader-parameter binding record - slot offset to parameter name.
+# EMITTED 2026-09-21 (OPUS) by reading the PRODUCER, the material binder 001F7790, not by
+# counting the documented vocabulary list. The binder performs 98 FindShaderParameter
+# (0018D240) lookups and stores 92 results; each row below pairs a lookup's name argument
+# (the lea rdx, [rip+...] feeding the call) with the store that consumes its result in rax,
+# so the offset is taken from the storing instruction. The six lookups with no store are
+# listed at the end: they are the '...SamplerSampler' names, bound as samplers instead.
+# The record is reached as entry = *(CharacterRenderObject + 0x58) + index * 0x318.
+# Each descriptor's word at +0x10 is a BYTE OFFSET into the parameter data block, which is
+# *( *(record + 0x00) + 0x08 ) - see 001FB120 and both binder call sites 001F70F3/001F74F6.
+# exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+offset	index	name	lookup_site	store_site
+0x030	0	sunIndex	001F7849	001F7855
+0x038	1	lichtDir1	001F785C	001F7868
+0x040	2	lichtDir2	001F786F	001F787B
+0x048	3	lichtDir3	001F7882	001F788E
+0x050	4	lichtDir4	001F7895	001F78A1
+0x058	5	lichtDir5	001F78A8	001F78B4
+0x060	6	lichtDir6	001F78BB	001F78C7
+0x068	7	lichtColor1	001F78CE	001F78DA
+0x070	8	lichtColor2	001F78E1	001F78ED
+0x078	9	lichtColor3	001F78F4	001F7900
+0x080	10	lichtColor4	001F7907	001F7913
+0x088	11	lichtColor5	001F791D	001F7929
+0x090	12	lichtColor6	001F7933	001F793F
+0x098	13	lichtAmbient	001F7949	001F7955
+0x0A0	14	AlphaThreshold	001F795F	001F796B
+0x0A8	15	PS2FogVec	001F7975	001F7981
+0x0B0	16	clutBank	001F798B	001F7997
+0x0B8	17	TextureSampler	001F79A1	001F79AD
+0x0C0	18	PTAlphaThreshold	001F79B7	001F79C3
+0x0C8	19	paletteEnabled	001F79CD	001F79D2
+0x0D0	20	indexTex	001F79E3	001F79EF
+0x0D8	21	palette	001F79F9	001F7A05
+0x0E0	22	PS2ZBiasEnabled	001F7A0F	001F7A1B
+0x0E8	23	PS2ZBiasNoGS	001F7A25	001F7A31
+0x0F0	24	PS2ZBiasOriginal	001F7A3B	001F7A47
+0x0F8	25	PS2ZBiasInstance	001F7A51	001F7A5D
+0x100	26	PS2WHMatrix	001F7A67	001F7A73
+0x108	27	PS2HSMatrix	001F7A7D	001F7A89
+0x110	28	InvPS2WHSMatrix	001F7A93	001F7A9F
+0x118	29	texAnimEnabled	001F7AEB	001F7AF7
+0x120	30	texAnimNormalEnabled	001F7B01	001F7B0D
+0x128	31	texAnimSpecularEnabled	001F7B17	001F7B23
+0x130	32	origTexBBox1	001F7B2D	001F7B39
+0x138	33	origTexBBox2	001F7B43	001F7B4F
+0x140	34	origTexBBox3	001F7B59	001F7B65
+0x148	35	origTexBBox4	001F7B6F	001F7B7B
+0x150	36	animTexBBox1	001F7B85	001F7B8A
+0x158	37	animTexBBox2	001F7B9B	001F7BA7
+0x160	38	animTexBBox3	001F7BB1	001F7BBD
+0x168	39	animTexBBox4	001F7BC7	001F7BD3
+0x170	40	animUvMin1	001F7BDD	001F7BE9
+0x178	41	animUvMin2	001F7BF3	001F7BFF
+0x180	42	animUvMin3	001F7C09	001F7C15
+0x188	43	animUvMin4	001F7C1F	001F7C2B
+0x190	44	animUvMax1	001F7C35	001F7C41
+0x198	45	animUvMax2	001F7C4B	001F7C57
+0x1A0	46	animUvMax3	001F7C61	001F7C6D
+0x1A8	47	animUvMax4	001F7C77	001F7C83
+0x1B0	48	AnimSampler1	001F7C8D	001F7C99
+0x1B8	49	AnimSampler2	001F7CA3	001F7CAF
+0x1C0	50	AnimSampler3	001F7CB9	001F7CC5
+0x1C8	51	AnimSampler4	001F7CCF	001F7CDB
+0x1D0	52	AnimNormalSampler1	001F7CE5	001F7CF1
+0x1D8	53	AnimNormalSampler2	001F7CFB	001F7D07
+0x1E0	54	AnimNormalSampler3	001F7D11	001F7D1D
+0x1E8	55	AnimNormalSampler4	001F7D27	001F7D33
+0x1F0	56	AnimSpecularSampler1	001F7D3D	001F7D49
+0x1F8	57	AnimSpecularSampler2	001F7D53	001F7D5F
+0x200	58	AnimSpecularSampler3	001F7D69	001F7D75
+0x208	59	AnimSpecularSampler4	001F7D7F	001F7D8B
+0x210	60	NormalMapEnabled	001F7DAB	001F7DB7
+0x218	61	NormalMapSampler	001F7D95	001F7DA1
+0x220	62	specularEnabled	001F7DD7	001F7DE3
+0x228	63	SpecularSampler	001F7DC1	001F7DCD
+0x230	64	cubeMapEnabled	001F7E9D	001F7EA9
+0x240	66	eTp	001F7AD5	001F7AE1
+0x248	67	fresnelRefEnabled	001F7AA9	001F7AB5
+0x250	68	eCameraLightEnabled	001F7ABF	001F7ACB
+0x258	69	irrCubeMapEnabled	001F7F0B	001F7F10
+0x260	70	irrCubeMap0	001F7EB3	001F7EBF
+0x268	71	irrCubeMap1	001F7EC9	001F7ED5
+0x270	72	irrCubeMap2	001F7EDF	001F7EEB
+0x278	73	irrCubeMap3	001F7EF5	001F7F01
+0x280	74	cubeMapSampler0	001F7DED	001F7DF9
+0x288	75	cubeMapSampler1	001F7E03	001F7E0F
+0x290	76	cubeMapSampler2	001F7E19	001F7E25
+0x298	77	cubeMapSampler3	001F7E2F	001F7E3B
+0x2A0	78	cubeMapWeight0	001F7E45	001F7E51
+0x2A8	79	cubeMapWeight1	001F7E5B	001F7E67
+0x2B0	80	cubeMapWeight2	001F7E71	001F7E7D
+0x2B8	81	cubeMapWeight3	001F7E87	001F7E93
+0x2C0	82	RefSampler	001F7F21	001F7F2D
+0x2C8	83	refractionEnabled	001F7F37	001F7F43
+0x2D0	84	refractionPower	001F7F4D	001F7F59
+0x2D8	85	refractionAlpha	001F7F63	001F7F6F
+0x2E0	86	RefractionSampler	001F7F79	001F7F85
+0x2E8	87	iDebugMode	001F7F8F	001F7F97
+0x2F0	88	mSpecialShadowFlag	001F7FB3	001F7FBB
+0x2F8	89	m_chrObjHeight	001F7FD7	001F7FDF
+0x300	90	m_chrObjFlyingHeight	001F7FFB	001F8003
+0x308	91	g_txShadow	001F801F	001F8027
+0x310	92	g_txChrAlpha	001F8043	001F804B
+(unstored)		TextureSamplerSampler	001F8455	
+(unstored)		AnimSamplerSampler	001F84C4	
+(unstored)		NormalMapSamplerSampler	001F8527	
+(unstored)		SpecularSamplerSampler	001F858A	
+(unstored)		RefSamplerSampler	001F85ED	
+(unstored)		cubeMapSamplerSampler	001F864E	

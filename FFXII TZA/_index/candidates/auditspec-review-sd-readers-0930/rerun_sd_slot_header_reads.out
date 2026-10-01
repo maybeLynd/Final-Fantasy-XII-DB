@@ -1,0 +1,60 @@
+save UI module functions rooted for panel-held headers: 147
+roots (referencing [02CA99B8], plus the widget handler 0057FE80 with rcx = MENU) 147, bodies reached 1843 (156 s)
+PASS  S1 00580CD0 stores into the slot-header table
+PASS  S2 0057EFE0 reads field +0x08 at 0057F05F
+header fields read through HDR: +0x00 +0x08 +0x10 +0x18 +0x20 +0x21 +0x22 +0x23 +0x28 +0x3C +0x40 +0x44 +0x48 +0x50 +0x57 +0x60 +0x70 +0x74 +0x7C
+dword 0x12 (+0x48)   reads 1: 00244DD0@00244E80 | writes: 00580CD0
+dword 0x13 (+0x4C)   reads 1: 00244DD0@00244E80 | writes: 00580CD0
+stamp copy +0x58     reads 0: - | writes: 00580CD0
+stamp copy +0x60     reads 3: 002482E0@0024833E 002482E0@00248360 002482E0@0024838A | writes: 002482E0 00580CD0
+escapes of CTRL/HDR-derived pointers (flows not followed further): 30
+  ESCAPE   002286B0 002286E3 mov qword ptr [rax + 0xc8], rbx                to L(G01FD4948+0x0)+0xc8
+  ESCAPE   00233C10 00233C33 mov qword ptr [rip + 0x2c8b556], rax           to G02EBF190+0x0
+  ESCAPE   00244640 002446CA mov qword ptr [r11 + rax*8], r10               to G0208EAC0
+  ESCAPE   00244830 002448AF mov qword ptr [rip + 0x1e4a30a], rbx           to G0208EBC0+0x0
+  ESCAPE   00244960 00248267 mov qword ptr [rdx + 0x10], rbx                to L(G0208EA58+0x0),R0036BC60+0x10
+  ESCAPE   00244960 00248267 mov qword ptr [rdx + 0x10], rbx                to UNKNOWN
+  ESCAPE   00248220 00248239 mov qword ptr [rbx + 0x18], rdx                to L(MENU+0xc0)+0x18
+  ESCAPE   00248220 0024825C mov qword ptr [rcx + 0x20], rsi                to L(L(MENU+0xc0)+0x18)+0x20
+  ESCAPE   00248220 0024825C mov qword ptr [rcx + 0x20], rsi                to UNKNOWN
+  ESCAPE   00248220 00248267 mov qword ptr [rdx + 0x10], rbx                to UNKNOWN
+  ESCAPE   002D14E0 002D16B0 mov qword ptr [rbx + 0xc8], rax                to L(G0208EA58+0x0),R0036A100,R0036A100+0xc8
+  ESCAPE   00312280 00312391 mov qword ptr [r13 + rdi*8], rbx               to G022C1740
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0x100)+0xd0,L(L(MENU+0xc8)+0x108)+0xd0,L(L(MENU+0xc8)+0x110)+0xd0,L(L(MENU+0xc8)+0x118)+0xd0,L(L(MENU+0xc8)+0x120)+0xd0,L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0,L(L(MENU+0xc8)+0xf8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0x100)+0xd0,L(L(MENU+0xc8)+0x108)+0xd0,L(L(MENU+0xc8)+0x110)+0xd0,L(L(MENU+0xc8)+0x118)+0xd0,L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0,L(L(MENU+0xc8)+0xf8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0x100)+0xd0,L(L(MENU+0xc8)+0x108)+0xd0,L(L(MENU+0xc8)+0x110)+0xd0,L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0,L(L(MENU+0xc8)+0xf8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0x100)+0xd0,L(L(MENU+0xc8)+0x108)+0xd0,L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0,L(L(MENU+0xc8)+0xf8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0x100)+0xd0,L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0,L(L(MENU+0xc8)+0xf8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to L(L(MENU+0xc8)+0xc8)+0xd0,L(L(MENU+0xc8)+0xd0)+0xd0,L(L(MENU+0xc8)+0xd8)+0xd0,L(L(MENU+0xc8)+0xe0)+0xd0,L(L(MENU+0xc8)+0xe8)+0xd0,L(L(MENU+0xc8)+0xf0)+0xd0,L(L(MENU+0xc8)+0xf8)+0xd0
+  ESCAPE   0057E6D0 0057E6E3 mov qword ptr [rcx + 0xd0], rdx                to UNKNOWN
+  ESCAPE   0057EA40 0057EAB4 mov qword ptr [rdx + 0xc8], r9                 to L(G02CA99D0+0x0)+0xc8
+  ESCAPE   0057EC60 0057ECD7 mov qword ptr [rax + 0xc8], r9                 to L(G02CA99D8+0x0)+0xc8
+  ESCAPE   0057EFE0 0057EFF3 mov qword ptr [rcx + 0x100], rdx               to L(MENU+0xc8)+0x100
+  ESCAPE   0057FE80 00580203 mov qword ptr [rax + 0xd8], rbx                to L(MENU+0x1b8)+0xd8
+  ESCAPE   00582540 005825A0 movups xmmword ptr [rcx + rbx + 0x118], xmm0   to UNKNOWN
+indirect calls receiving CTRL/HDR (not followed): 18
+  INDIRECT 0017D2E0 0017D328 call qword ptr [rip + 0x745bda]                args rdx
+  INDIRECT 002286B0 002286D9 call r8                                        args rcx
+  INDIRECT 00244830 0024487E call rax                                       args rcx,r9
+  INDIRECT 00244830 002448AD call rax                                       args r9
+  INDIRECT 00244830 002448AD call rax                                       args rcx
+  INDIRECT 00244DD0 00244EF5 call rax                                       args rcx
+  INDIRECT 00244F00 00244F34 call rax                                       args rcx
+  INDIRECT 00245020 0024505A call rax                                       args rcx
+  INDIRECT 00246AD0 00246C09 call rax                                       args rcx
+  INDIRECT 002473F0 0024744E call rax                                       args r9
+  INDIRECT 002473F0 0024744E call rax                                       args rcx,r8
+  INDIRECT 00247490 002474D0 call rax                                       args r9
+  INDIRECT 002482E0 002483B2 call rax                                       args rcx
+  INDIRECT 00861EBA 00861EBA jmp qword ptr [rip + 0x60ba8]                  args rcx
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args r8
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args r9
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args rdx
+  INDIRECT 0087AF34 0087AF34 jmp qword ptr [rip + 0x47476]                  args rdx,r8
+elapsed 156 s

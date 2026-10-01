@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-160",
+ "note": "batch 160 (EC7-194): 22 bodies decoded+anchored across 11 bearing hosts - efx bit-arm publish 0041FC80; glyph-run header builder 0053DD20; authored-expression commit arms 0039E0C0/0039E420 + row-fold 0039A770; efx slot-table register 003A7BE0; eight 002F2D60-gated four-lane variance-refresh dispatcher arms 00462480/004633A0/0052BFB0/00524D70/00445310/00446F60/00527110/00447E10 (002F3BC0 + 0043EBF0 types); shared command-list op append 0018CA50; NaSPArt scaled-row emit 002D53F0; voice-slot pending-entry reset 003EA330; GI +0x9C0 adapter 00627E50 + narrow-to-wide copy 00626CE0; manifest sorted-list merge 001D9150; battle-unit max-reduction 00321630; savedata bucketed push 001EA6C0. Gates: anchors 4942 0 MID; address 0 UNSUPPORTED in new content; hash clean; guard + crossref pending.",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub160_dumps.txt",
+  "Database/Tools/work/hub160_callers.txt"
+ ]
+}

@@ -1,0 +1,9 @@
+W1_world_built_by_shipped_code                                           PASS
+I1_stack_runs_and_start_is_decoded                                       PASS
+G1_first_frame_init_fails_at_the_renderer_and_percode_never_updates      PASS
+G2_nothing_reaches_the_snapshot                                          PASS
+G3_the_arbiter_never_reaches_its_latch_test                              PASS
+S1_single_live_writer_behind_the_gate_and_a_dead_script_path             PASS
+{"snapshot": {"ok": true, "held": "0", "edge": "0"}, "arbiter": {"0": {"ok": true, "ret": "0", "seen": ["arbiter_exit_00253D19"]}, "1": {"ok": true, "ret": "0", "seen": ["arbiter_exit_00253D19"]}}, "history": {"index": 4, "present_mask": "FFFF", "pressure": "80808080000000000000000000000000"}}
+{"backend_ok": true, "app_ok": true, "input_ok": true, "halts": [{"halt": [], "last_pc": "7A3147"}, {"halt": [], "last_pc": "79C6BB"}, {"halt": [], "last_pc": "863822"}], "seen": ["app_first_frame_init", "renderer_resize", "table_resolve", "xinput_poll"], "init_ret": ["15"], "resize_ret": ["15"], "app_frame_counter": 0, "slot0": "7306E250", "decoded_445": 1, "percode": "0000000000000000000000000000000000", "xinput_calls": 3}
+ALL PASS

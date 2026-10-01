@@ -1,0 +1,136 @@
+# The 129 `status: PARTIAL` pages, none of which says what is outstanding.
+# EVIDENCE-STANDARD addendum 2026-09-14bp: a status that is not DOCUMENTED must state,
+# on the status line, what is outstanding.
+# unticked > 0: the page names its gap in checkboxes - a reason can be derived from them.
+# unticked = 0: the page names nothing anywhere; it needs a READER, and the answer may be
+#               that it is documented and nobody moved the token.
+doc	unticked_boxes	first_unticked_box
+00-Engine-Core-Runtime/ABI-Recovery/derived-call-signatures.md	4	**UQ-1.** **Stack arguments are not detected.** A fifth-and-beyond parameter arrives above the shadow
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md	2	**UQ-22.** **What each of the 226 arms tunes.** The catalogue is extracted (§10) and the targets are
+00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md	1	**UQ-24.** **Whether the eight slots are lights, casters or cascades.** The count is a runtime value, not
+00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md	5	**UQ-25.** **What the node type is.** **§10: RTTI cannot answer it from this path** — no indirect
+00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md	3	**UQ-32.** What the `0x288`-byte records at `02098E10` are, and what bit 7 of `+0x10` means.
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md	5	**UQ-36.** Whether vector row n is PS2 register vf*n*. The linear map is the simplest translation and fits the one fixed
+00-Engine-Core-Runtime/Shared-Transform-Workbench/the-workbench-has-a-save-and-restore-and-nine-functions-use-it.md	4	**UQ-41.** **What the nine functions are for.** Their callers sit in the Presentation layer, but a caller
+00-Engine-Core-Runtime/Startup-Data-Construction/generated-float-table-builders.md	4	What any individual builder computes. One (`00485390`) has now been read far enough to
+00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md	4	**SM-1.** ~~**The seven ids with no start site** (1, 3, 8, 9, 14, 20, 21) — reached by a route the raw `E8` / `E9`
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md	4	**UQ-49.** What the four part slots are (`002E3110(actor, k)`, k = 0, 1, 4, 5). `002E3110` calls
+01-Script-VM-Native-Bridge/Verb-Dispatch/what-each-script-verb-touches.md	2	**UQ-56.** **Whether a depth-2 hop through a *low* in-degree callee is trustworthy**, which would extend
+01-Script-VM-Native-Bridge/how-a-script-names-a-thing-in-the-world.md	2	**UQ-58.** **What a record holds once a map IS loaded.** §4b establishes the empty state; the 46
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md	4	**UQ-66.** `FOOT`: what distinguishes set A from set B, and what a surface index means.
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md	1	~~How `nameId = 13000 + n` is composed into the `130000 + n` string id~~ — **narrowed
+02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md	4	**UQ-75.** **What types 2/9 and 7 build.** `0029F4C0` (via `002A0060`) and `0029F130` (841 B, the
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	4	The identity of most of the 63 slots. **AG-2.**
+04-Actor-Entity/Actor-Contexts/the-movement-and-secondary-context-censuses.md	2	**UQ-91.** **What the movement context's `+0x10C`–`+0x21F` holds** — 276 untouched bytes, a third of the
+06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md	3	What the cell attribute nibble (bits 3–6), the five-bit field at bits 13–17 and `00231F80`'s
+07-Combat-Action/Action-Definition-Row/the-action-definition-row.md	2	**UQ-106.** The readers of the eighteen unread bytes (`+0x02`–`+0x07`, `+0x1C`, `+0x1D`, `+0x1F`–`+0x21`,
+09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	3	**Z-2.** The AI order record's exact **byte offsets**. **Z-2 — fields identified in section 8g**
+11-Party/the-setsavedata-presets-test-battle-scenarios.md	1	**UQ-128.** The scenario row's `+0x09`, `+0x0B` and `+0x0C` fields, zero in every shipped row, and the
+12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	1	**UQ-130.** What `+0x22` = 120 is for; no reader was found.
+12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	2	**UQ-132.** The 57 name ids are dictionary ids (`0x25B`, `0x270`, `0x79`, `0x22D` × 8 …); they are not
+15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md	2	**UQ-140.** Why codes `4`–`10` exist in the id space but are polled by no band. *Narrowed 2026-09-12:* codes 1–3 are the mouse buttons, read from inpu
+15-Input/Modal-Toggles/r2-force-fight-toggle.md	5	**UQ-149.** What the sound at **bank-local index** `0x52` is — acquired by `00366870` while the toggle
+16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md	3	**UQ-153.** **What the two nibbles of `+0x18` encode.** They are compared and copied; **no value is
+16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md	3	**UQ-156.** What each page draws, and the message protocol of the `0xBC08` pages (`002B7B80` and `002BAF80` are "unparsed" in the
+16-UI/Menu-Screen-Atlas/the-menu-screen-atlas.md	3	**UQ-159.** What each procedure draws and does; the labels are ownership only.
+16-UI/Request-Router/ui-request-router.md	2	**UQ-162.** Identity of requests 4, 6-10, 12-13, 15-20, 22. **Narrowed 2026-09-12 (FABLE):** 11, 23 and 24 are named at the mechanism level in the ide
+16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md	12	What the other nine functions in the cluster do. See **AC-6**.
+16-UI/Text-And-Number-Rendering/the-text-control-code-language.md	2	**UQ-177.** **What 28 of the 32 escape codes do.** Their arm addresses are read and tabulated; four were
+16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md	1	**UQ-182.** **The remaining 110 uncited residuals.** `DT-1`.
+16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md	4	**UQ-183.** **What states 2, 3 and 5–7 do** — the nibble is signed and four-bit; only `0`, `1` and `4`
+16-UI/Widget-Object-Model/the-widget-constructor-and-object-sizes.md	4	**UQ-187.** What `00915198` (the fixed `+0x48` table) holds.
+17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md	4	**UQ-192.** Peer consumption into capability policy, battle-unit event field, render-record
+17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md	5	**UQ-196.** The other ~1,700 bytes of the `0x740` record. This document proves 14 fields.
+17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md	4	**UQ-204.** What each of the 47 + 18 types is, and which authored data selects it (the EFX `0x800` / `0xA00` chunk runs are
+17-Presentation-Rendering/Effect-File-Formats/the-menu-effect-registry.md	3	**UQ-208.** The record fields `+0x10`–`+0x27`, and the comparison with `0x13` in `003B2D80`.
+17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md	3	**UQ-213.** What each of the 47 microprograms draws, and which game feature uses each packet.
+17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md	5	**UQ-217.** **What each slot means.** Section 3 names the slots by consumer; the authoring names are
+17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md	3	Which class owns each parameter group. **W-3.**
+18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md	2	**UQ-253.** The remaining ~130 functions of the corrected 168-function inbound API surface. This document
+18-Audio/Sound-Selection/sound-trigger.md	5	What the seven parameter operations do (`007BFE30`, `007BFDB0`, `007BFD00`,
+18-Audio/Sound-Selection/sound-variant-selection.md	4	What actually distinguishes `Random`, `Order` and `Cycle`. Both accessors are now read
+18-Audio/sqex-sd-sound-driver-architecture.md	5	What the four selection implementations at **slot 43** actually do. Open question **G-1**.
+18-Audio/the-voice-pack-slots-and-the-voice-verbs.md	2	**GA-3.** The `.vpc` pack's own layout — *narrowed 2026-09-11:* the cue table is **sub-file `slot` of
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	4	**UQ-271.** The payload interior — what lives around `+0x1044` and everywhere else in 353,424 bytes.
+20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	5	What `HORIDASHI` and `YUGOU` refer to in the shipped game. **AB-2.**
+22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md	5	**UQ-277.** Whether any semantic beyond the three transform ones receives special handling elsewhere;
+22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md	3	Everything about mechanism. No Phyre function body is read. **AQ-1.**
+23-Third-Party-Libraries/Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md	5	**UQ-302.** The exact Bullet version. The construction-info layout has **no `m_rollingFriction` field**,
+23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md	1	**UQ-306.** The EASTL **version**. No version banner has been found, unlike zlib 1.2.11, libvpx 1.6.0 and
+24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md	3	**UQ-317.** What any of these families *does*. Form identity is not semantics, and no member body here has
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md	3	**UQ-329.** Which object each of the 224 list heads belongs to. The heads are known by address; the
+24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md	1	**BU-1.** **Why Ghidra flags 677 and not the other 12.** The 12 are byte-identical in form to flagged
+99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md	5	**UQ-356.** What `a` and `b` are. They are packed `(b << 32) | a` into the tree key and stored as the memo,
+99-Unresolved-Residual/Largest-Unclassified-Code/the-largest-unclassified-functions.md	4	What the `+0x24` 16-byte vectors, the `+0x28` 4-byte entries and the `+0x2C` 8-byte entries are. Normals, colours and
+99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md	6	**UQ-371.** **The 129 blocks called only from other unlisted code.** They form chains inside the
+99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md	5	**UC-2.** **Whether the 63 unreferenced head blocks are dead or entered by a computed address.**
+00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md	0	
+00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md	0	
+00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md	0	
+00-Engine-Core-Runtime/Diagnostics-Logging/the-formatted-log-call-and-its-level-gate.md	0	
+00-Engine-Core-Runtime/the-basis-column-helpers.md	0	
+00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	0	
+00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md	0	
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md	0	
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-standard-motion-verbs.md	0	
+02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md	0	
+02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md	0	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md	0	
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lmap-menumap-location-graph.md	0	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/area-nmb-index.md	0	
+02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md	0	
+02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md	0	
+02-Resource-And-Asset-Pipeline/the-resource-request-queue.md	0	
+03-World-Area-Field/choosing-the-field-environment-variant.md	0	
+04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	0	
+04-Actor-Entity/the-definition-record-flag-pair.md	0	
+06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md	0	
+06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md	0	
+06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md	0	
+06-Movement-And-Navigation/clamping-a-point-into-a-volume.md	0	
+07-Combat-Action/Action-Availability/battle-command-availability-and-reason-codes.md	0	
+07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md	0	
+08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md	0	
+08-Combat-Formula/combos-and-the-guard-parry-flag.md	0	
+08-Combat-Formula/where-a-stat-number-comes-from.md	0	
+09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md	0	
+11-Party/active-party-reserve-and-the-moment-the-leader-changes.md	0	
+12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md	0	
+12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	0	
+13-Rewards-Progression-Economy/experience-and-license-point-award.md	0	
+13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md	0	
+14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md	0	
+15-Input/Input-Stack/input-stack-device-channel-and-bindings.md	0	
+16-UI/Battle-Hud/the-battle-hud-layout-readers.md	0	
+16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md	0	
+16-UI/Gambit-Screens/the-gambit-screens.md	0	
+16-UI/Handbook/the-handbook-screen.md	0	
+16-UI/License-Board-View/the-license-board-screen-widgets.md	0	
+16-UI/Message-Windows/the-message-window-layout-readers.md	0	
+16-UI/Quest-List/the-quest-list-screen.md	0	
+16-UI/Shared-Dialogs/the-shared-dialog-widgets.md	0	
+16-UI/Shop-Screens/the-shop-screens.md	0	
+16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	0	
+16-UI/Widget-Object-Model/the-widget-message-protocol.md	0	
+16-UI/the-selection-the-menu-publishes.md	0	
+17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md	0	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md	0	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md	0	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md	0	
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md	0	
+17-Presentation-Rendering/Model-And-Motion-Formats/frp-object-container.md	0	
+17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md	0	
+17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md	0	
+17-Presentation-Rendering/Screen-Mode-And-Aspect-Fit/the-aspect-fit-and-the-super-wide-bound.md	0	
+18-Audio/Sound-Bank-And-Voice-Formats/sab-sound-bank-container.md	0	
+18-Audio/which-variation-of-a-sound-you-hear.md	0	
+19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	0	
+19-Save-Load-Settings/the-save-load-screen-widgets.md	0	
+22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/how-a-class-registers-its-array-members-and-annotations.md	0	
+22-Middleware-PhyreEngine/the-camera-state-snapshot.md	0	
+26-PKFL-Package-Container/Container/pkfl-package-container.md	0	
+99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md	0	
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	0	
+99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md	0	
+99-Unresolved-Residual/the-blinking-icon-and-its-atlas.md	0	
+99-Unresolved-Residual/the-widget-tree-draw-pass.md	0	

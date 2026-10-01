@@ -1,0 +1,18 @@
+{
+  "method": "A only; original file evidence, no code execution",
+  "files": {
+    "check.before-state-address-correction.py": "0e8361cdf9c632811320d22af62217066f0ec291964415bda83eb4de52da1487",
+    "check.py": "5b6129e1692d02d16563bab1fc7c0dea2451dbde09cc169559e62e04090ec784",
+    "development-failures.md": "f6b136b7655643420c49a4e369b9a38be47be63662877be187d1234483225462",
+    "disassembly.txt": "2b0451aeea8196242f4967f194b2b4a6f46b323a1fb8843a8d08db4ccb896276",
+    "git-newline-correction.md": "e5d0c041eaaf501057d95c5d00831b6225ba284a99b61ee1da7761cb6c4717d6",
+    "observation.json": "1f5668afd0e2cb433bd0e22df5748c676002ebf5cbc3bcaaff64dfad970d0538",
+    "README.md": "9bb11b7d41d79604d5172c92c608eb8ed8b9159a504328e0947aa3cd24946879",
+    "reference.json": "bc33781c907d3a9817d6b0d22ba09ba7065ec74926885797efa4d52098252315",
+    "validation.txt": "7d17d007a9a4d5e2de7c18f40247a0fde8c08ffdddf98675d23234ecea77b3bc"
+  },
+  "dependencies": {
+    "Database/Tools/analysis-kit/gfz-scripts/ext_string_probe.py": "0b73f03fd509d1dca4287c8290249aedf6c4e18ec85232882a2598489c91b224",
+    "Database/FFXII TZA/_experiments/evidence/steam-id-stack-consumer/reference.json": "185ef930e144d981145ad788f8480ffaea42c9d6f57c948736400352b4183b4f"
+  }
+}

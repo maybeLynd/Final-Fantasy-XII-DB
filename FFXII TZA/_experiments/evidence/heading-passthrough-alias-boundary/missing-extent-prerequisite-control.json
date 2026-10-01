@@ -1,0 +1,14 @@
+{
+  "case": "required-full-extent-missing",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py",
+    "C:\\Users\\Kristian\\AppData\\Local\\Temp\\astra-heading-prereq-uv1c4av_"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 86, in <module>\n    if __name__=='__main__':print(json.dumps(check(Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else W),indent=2))\n                                             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-passthrough-alias-boundary\\check.py\", line 37, in check\n    body=json.loads((root/'intervening-body.json').read_bytes())\n                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\AppData\\\\Local\\\\Temp\\\\astra-heading-prereq-uv1c4av_\\\\intervening-body.json'\n",
+  "terminal": true,
+  "checker_sha256": "8df0e3963f3f9e26665b8ed42c57c44cae834a77238f3d5277063c237c40cfc5"
+}

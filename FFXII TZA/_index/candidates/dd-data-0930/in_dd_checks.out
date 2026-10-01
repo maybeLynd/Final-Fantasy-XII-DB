@@ -1,0 +1,31 @@
+PASS CC+ control: 001950BA -> 00198000 found
+PASS CC- control: no site of 0035F420 calls 00198000
+PASS CC 0035ED2B -> 0035FCA0 UpdateFrame -> UpdateRegisteredChannels
+PASS CC 0035FD85 -> 0035F420 UpdateRegisteredChannels -> PollAndBuildChannelHistory
+PASS CC 0035FD8D -> 0035F690 UpdateRegisteredChannels -> AdvanceChannelTimingState
+PASS CC 0035F467 -> 00862670 poll -> bridge
+PASS CC 00862673 -> 001E09B0 bridge -> InputAPI_PollControlState (jmp)
+PASS CC 001E09D3 -> 00196FF0 InputAPI -> InputManager_PollAndBuildControlState (jmp)
+PASS CC 0019702D -> 007999E0 manager poll -> InputSystem_UpdateRegisteredDevices
+PASS CC 0035F517 -> 0035FAC0 poll -> ConvertButtonMaskToTransitions (first)
+PASS CC 0035F529 -> 0035F760 poll -> NormalizeAnalogAndComputeTransitions (second)
+PASS CC 0035FBB8 -> 0035FBD0 digital builder -> repeat filter
+PASS CC 0035FA6B -> 0035FBD0 analog builder -> repeat filter
+PASS CC 0035F548 -> 0035F590 poll -> UpdateDeviceFeedbackOutput
+PASS CC 0019877E -> 00195060 CreateSingleton -> Initialize
+PASS CC 001950B2 -> 00197EE0 Initialize -> BuildKeymapPath
+PASS CC 001950C2 -> 00196550 Initialize -> ValidateBindingUniqueness
+PASS CC 001950CE -> 001965E0 Initialize -> ValidateBindingIdRanges
+PASS CC 001950EB -> 00198B60 Initialize -> defaults installer (either validator failed)
+PASS CC 001950DA -> 00195DF0 Initialize -> publisher (both passed)
+PASS IV1 Initialize: uniqueness != 0 -> 001950E8 (defaults installer); ranges != 0 -> the same
+PASS IV2 ValidateBindingUniqueness returns 1 on a duplicate (001965A6 je -> 001965D4 mov al, 1)
+PASS IV3 ValidateBindingIdRanges returns 1 when no profile reaches 28 in-range ids (cmp edx, 0x1c / sete al)
+   020927C8 rip references: 00252DF5 mov 002539F6 mov 00253A5E mov 00254CB0 mov 00254CC4 cmp
+PASS PC0 control: the sweep finds the area-change setter store 00252DF5
+PASS PC1 the only read is 00254CC4 (cmp) in 00254CC0
+PASS PC2 00254CC0 skips the clock update while the word is non-zero (00254CCB jne 00254DC9 = the epilogue)
+PASS EV0 control: 0x2033 is steal in the census
+PASS EV1 0x2001 ready, 0x2009 magic_ready, 0x2031 ability_ready - ('ready', 'magic_ready', 'ability_ready')
+PASS B21 both consumers test bit 21 of the aggregate (002283DA bt esi, 0x15; 00229B03 bt eax, 0x15)
+FAILS 0

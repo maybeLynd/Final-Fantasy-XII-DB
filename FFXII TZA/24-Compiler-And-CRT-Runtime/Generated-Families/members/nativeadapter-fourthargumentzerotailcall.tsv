@@ -1,0 +1,8 @@
+# NativeAdapter.FourthArgumentZeroTailCall - EC-7 family C
+# # xor r9d,r9d; jmp member op.
+address	targets
+00214B80	00214B90
+00293100	00293170
+003DC410	003DCD00
+00408F90	00408FA0
+0046CBA0	0046CC70

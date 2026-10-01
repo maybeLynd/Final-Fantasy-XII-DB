@@ -1,0 +1,9 @@
+reducer sha matches result02: True
+baseline               hits=-  exit=0 result=True  | tional same-slot/NULL-cleanup proof; parent attribution corrected; negative count retains preclear. Independent pending.
+missing-parent-getter  hits=-  exit=1 result=False | astra-softedges-preassignment-0930\\controls\\missing-parent-getter\\source\\softedges-array-parent-getter-code-01.json'
+false-parent-store     hits=1  exit=1 result=False | ValueError: required normalized operation changed 0x632dda
+false-borrowed-flag    hits=1  exit=1 result=False | ValueError: required normalized operation changed 0x60f01f
+jns-to-js              hits=1  exit=1 result=False | ValueError: required normalized operation changed 0x60effb
+movsxd-to-mov          hits=1  exit=1 result=False | ValueError: required normalized operation changed 0x59cc84
+root-cmp-r8            hits=1  exit=1 result=False | ValueError: required normalized operation changed 0x63e430
+preclear-r13-one       hits=1  exit=1 result=False | ValueError: required normalized operation changed 0x59cc38

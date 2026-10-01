@@ -1,0 +1,1 @@
+{"action":"add","task":{"id":"SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-24","kind":"research","priority":"P3","target":"Resume + op-file tail for batch 24","scope":"Commit SWE2-EC7.md resume block + op_finseal_hub24.json via publish_paths.sh; hold @publication.","completion":"Tail commit recorded","dependencies":[],"resources":[{"key":"@publication"}]}}

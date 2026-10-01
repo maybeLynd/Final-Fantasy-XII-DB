@@ -1,0 +1,15 @@
+{
+  "verdict": "REJECT",
+  "status": "REJECT_A03_CONFIGURED_FAIL_TAG_ACCEPTED",
+  "method": "A labelled synthetic controls through actual composer subprocesses",
+  "raw_sha256": "e76f163c301682ccf6c15ca61e6805aba9e6ca3271a6cb0f788ca05195ac3d65",
+  "helper_sha256": "33526f21056500984c0afc3e290d1f58553177455f99932bf30de2bcca4306fa",
+  "helper_commit": "de83673fd798a18619306e3d1d9668d3bde02fdb",
+  "cases": 16,
+  "established": "Default tagged failures/missing/exception/malformed/changed-set/missing-object/footer rejected, valid tagged/custom PASS and explicit complete-data findings accepted, exit2/half-built rejected by named validator. External timeout controlled, not an intrinsic in-process deadline. Authored first-adopter suite re-executed/exit0, not independent native semantics.",
+  "defect": "Public custom line regex recognizes FAIL-tab-A, upstream footer falsely says FAILS0/exit0, literal startswith FAIL-space detector misses it and actual composer passes. Baseline same configured format PASS accepted; default format rejects tab failure as malformed.",
+  "cause": "Required verdict detection uses a hardcoded literal space prefix while custom line parser uses its captured PASS/FAIL group. The configured parser and failure predicate disagree.",
+  "consumer": "OPUS owns prereq.py actual recognition/negative control repair. Legacy sn1_prereq.py contains the same textual-prefix predicate; its default suite remains valid, custom-format boundary is source-only followup, not independently executed here. Do not blanket retract current default/FABLE single-space consumers.",
+  "acceptance_discriminator": "Recognized FAIL group under declared format must return refusal and actual composer exit1 with no downstream PASS; preserve matching configured PASS/default/data controls and exact repaired source identity.",
+  "limits": "Synthetic software prerequisite controls, no FF12 native/live execution. Caller-specific object completeness requires explicit validator; names-only presence is not universal completeness. First-adopter test source/output pinned, its complete native/resource dependency closure not independently sealed here. Whole A03 integration/host/migration/full L1+L2 acceptance not awarded."
+}

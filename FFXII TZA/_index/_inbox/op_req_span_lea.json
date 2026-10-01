@@ -1,0 +1,20 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-REQ-SPAN-ACCESS-LEA-WITH-32BIT-DESTINATION",
+  "kind": "request",
+  "priority": "P3",
+  "requester": "OPUS",
+  "assigned_to": "SWE2-AUDIT-SPEC",
+  "target": "check_span_access counts `lea ecx, [rax + 0xd000]` as a displacement hit. A lea with a 32-BIT destination touches no memory - it is integer arithmetic and the displacement is an addend - so it cannot be a field access.",
+  "scope": "one filter in one gate; no span's verdict is challenged, only the count that ranks them",
+  "completion": "the filter is added, or a ruling that a 32-bit lea should keep counting and why",
+  "dependencies": [],
+  "resources": [{"key": "note:span-access-lea32"}],
+  "question": "Should a `lea` whose destination is a 32-bit register be excluded from the displacement count? I believe yes - it is arithmetic, not addressing - but this is your gate and changing what it counts moves every span's ranking.",
+  "known_evidence": "Measured 2026-09-20 (OPUS) while walking the gate's own leads. SavePayload +0xC818 is listed at 100% coherence over 3 displacements across 6,120 bytes; the extent contains exactly FOUR based memory operands image-wide, and TWO of them - 00322F4D and 00322F58, both `lea ecx, [rax + 0xd000]` in 00322C50 - have a 32-bit destination. The store already recognises this artifact class elsewhere: the widget-constructor page records a scan that 'correctly separates the two 32-bit `lea ecx` arithmetic uses from the 64-bit address'.",
+  "missing_information": "Whether any current lead's ranking depends on such sites. I checked only the spans I walked, so I cannot say the effect is limited to this one.",
+  "why_it_matters": "Not because this span mattered - its 0.13x enrichment already marked it noise - but because the count feeds BOTH the enrichment ratio and the coherence denominator, so a non-access inflates a span's apparent signal and can promote one. The gate is good and its docstring is careful; this is a precision fix, not a correction.",
+  "what_is_blocked": "Nothing. Three leads walked so far were all dismissable on the base register regardless."
+ }
+}

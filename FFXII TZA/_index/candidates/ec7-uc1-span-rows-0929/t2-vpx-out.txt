@@ -1,0 +1,9 @@
+[scratch_sel2] redirected 2 write(s) to C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\SWE2-EC7\r1\t2head\vpx.out
+libvpx range: entries 124, pool referencers 9, seeds 54, reached 119, members 116
+  excluded A-measured                                                6  0016E110 0016E4A0 0016EEC0 0016FE80 00172C30 00174790
+  excluded declared: MSVC runtime tail                               1  001744F0
+  excluded declared: Phyre PhyreCore module                          1  0016EE70
+control outbound targets: 00125740(4) 00125850(2) 0012595A(1) 00125B02(2) 00125BD1(1) 00125D01(2) 00125E07(1) 00125FA7(2) 0012608C(1) 00126550(2) 001266C9(1) 001267FA(1) 0012696A(1) 00126B8B(2) 00126CF9(1) 001275A0(2) 00127887(2) 00127BB3(2) 00127F4D(2) 001283A6(2) 00128905(2) 00128E6B(2) 00128FB3(2) 001481D0(5) 0014824F(3) 00148420(1) 001484DB(1) 001488D0(4) 00149610(1) 001496A0(1) 00149983(1) 00149BCE(1) 00149DC0(2) 0014A48A(2) 0014C160(2) 0014C221(2) 00158B40(1) 00158C09(1) 0016D670(1) 00808C40(20) 00809728(1) 00861EBA(5) 00861EC0(17) 00861EF6(2) 00861F5C(1) 00861FA4(1)
+control inbound caller zones: {'0067': 5}
+DSP kernels (exclusively referenced by the decoder object or each other): 63, zones {'0012': 30, '0013': 1, '0014': 30, '0015': 2}
+wrote 116

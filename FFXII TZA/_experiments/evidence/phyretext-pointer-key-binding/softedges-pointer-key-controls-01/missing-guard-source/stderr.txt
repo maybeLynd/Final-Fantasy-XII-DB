@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-pointer-key-binding.py", line 23, in <module>
+    kind=load('softedges-array-terminal-guard-source-01/original-code.json');mapped=load('softedges-mapping-builders-code-01.json')
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\reduce-softedges-pointer-key-binding.py", line 13, in load
+    p=W/name;z=p.read_bytes();r=json.loads(z);pins.append(dict(path=name,sha256=hashlib.sha256(z).hexdigest()))
+               ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-pointer-key-controls-01\\missing-guard-source\\source\\softedges-array-terminal-guard-source-01\\original-code.json'

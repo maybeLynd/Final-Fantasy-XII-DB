@@ -1,0 +1,195 @@
+module instructions 885
+P rip-relative operands into the pool/list/gap: 33
+P   outside the module: []
+P image-base-relative disp32 candidates: 2
+P   dword at 00371733  decoded-as straddle/none
+P   dword at 006179FB  decoded-as straddle/none
+P relocated abs64 pointers into the range: 0 []
+P control ib_refs(0032E2D0): [('0032E0B4', 'mov ecx, dword ptr [rdi + rax*4 + 0x20e2d0]')]
+D displacement-0 memory operands in the module (any width, any index), excluding rsp/rip bases:
+D   32E081 nop    dword ptr [rax]                          [32E070]
+D   32E085 nop    word ptr [rax + rax]                     [32E070]
+D   32E153 add    qword ptr [rbx], rax                     [32E070]
+D   32E229 mov    qword ptr [rbx], 0                       [32E070]
+D   32E2CD nop    dword ptr [rax]                          [32E070]
+D   32E2DA and    byte ptr [rax], al                       [32E070]
+D   32E2DE and    byte ptr [rax], al                       [32E070]
+D   32E2E0 stosd  dword ptr [rdi], eax                     [32E070]
+D   32E416 mov    r8, qword ptr [r8 + rax*8]               [32E400]
+D   32E428 mov    eax, dword ptr [r8 + rdx*4]              [32E400]
+D   32E467 nop    word ptr [rax + rax]                     [gap:32E450]
+D   32E47A mov    qword ptr [rax], rcx                     [gap:32E450]
+D   32E678 movups xmm0, xmmword ptr [rax]                  [32E620]
+D   32E725 mov    qword ptr [rcx], r14                     [32E620]
+D   32E7F7 nop    word ptr [rax + rax]                     [32E7C0]
+D   32E81C nop    dword ptr [rax]                          [32E7C0]
+D   32E820 movzx  ecx, byte ptr [rbx]                      [32E7C0]
+D   32E823 mov    byte ptr [rdx + rbx], cl                 [32E7C0]
+D   32E8DB mov    eax, dword ptr [rcx]                     [32E870]
+D   32E97C mov    qword ptr [r10], 0                       [32E870]
+D   32EA77 test   byte ptr [rax + rcx], dl                 [gap:32E990]
+D   32EAB1 mov    qword ptr [rax], rdx                     [32EA90]
+D   32EB08 rep stosb byte ptr [rdi], al                       [32EAF0]
+D   32EB28 rep stosb byte ptr [rdi], al                       [32EB10]
+D   32EB6F mov    r9, qword ptr [r9 + rdi*8]               [32EB40]
+D   32EB81 mov    ebx, dword ptr [r9 + rbp*4]              [32EB40]
+D   32ED0F or     byte ptr [rax + rcx], dl                 [gap:32EC20]
+D   32ED15 and    byte ptr [rax + rcx], dl                 [gap:32EC20]
+D   32ED5E or     byte ptr [rax + rcx], dl                 [gap:32EC20]
+D   32ED64 and    byte ptr [rax + rcx], dl                 [gap:32EC20]
+D   32ED7A or     qword ptr [rcx + rax*8], 1               [gap:32EC20]
+D control 0032E153 present: True
+X direct transfers out of the module: 42 sites, 28 targets
+X control 0032E0F1 -> 0046E030 present: True
+X 32E000 jmp  0017E420  target reads-before-write []
+X 32E010 jmp  0017E430  target reads-before-write []
+X 32E026 jbe  0017E760  target reads-before-write ['rcx']
+X        rcx <- None
+X 32E036 jbe  0017E780  target reads-before-write ['rcx']
+X        rcx <- None
+X 32E044 call 001EDE80  target reads-before-write []
+X 32E04D call 0017D930  target reads-before-write []
+X 32E0BD call 003EADD0  target reads-before-write []
+X 32E0F1 call 0046E030  target reads-before-write ['r8']
+X        r8  <- 32E0E1 mov r8d, dword ptr [rbx + 0x2c]
+X 32E0F6 call 0035E810  target reads-before-write []
+X 32E111 call 002DF6C0  target reads-before-write ['r8', 'r9', 'rcx', 'rdx']
+X        r8  <- (clobbered by call at 32E0F6)
+X        r9  <- 32E109 mov r9d, dword ptr [rbx + 0x2c]
+X        rcx <- 32E105 movsxd rcx, dword ptr [rbx + 0x24]
+X        rdx <- 32E10D mov rdx, qword ptr [rbx + 0x38]
+X 32E11E call 0035E810  target reads-before-write []
+X 32E149 call 0035E810  target reads-before-write []
+X 32E14E call 0035E810  target reads-before-write []
+X 32E163 call 0046DFE0  target reads-before-write []
+X 32E19C call 0046E0E0  target reads-before-write []
+X 32E29B call 003EADD0  target reads-before-write []
+X 32E2A0 call 0046DD50  target reads-before-write []
+X 32E2A5 call 0016D6A0  target reads-before-write []
+X 32E2AA call 003E9780  target reads-before-write []
+X 32E2AF call 0016D6A0  target reads-before-write []
+X 32E2B4 call 0036FD50  target reads-before-write []
+X 32E2BD call 003BB790  target reads-before-write []
+X 32E360 jmp  003697F0  target reads-before-write ['rcx']
+X        rcx <- 32E357 movsxd rcx, dword ptr [rbx + 0x24]
+X 32E3A3 jmp  003697F0  target reads-before-write ['rcx']
+X        rcx <- 32E39A movsxd rcx, dword ptr [rbx + 0x24]
+X 32E3CF call 008620C0  target reads-before-write ['rcx']
+X        rcx <- 32E3CD xor ecx, ecx
+X 32E431 call 0046DE70  target reads-before-write []
+X 32E506 call 0016D6A0  target reads-before-write []
+X 32E540 call 0046DFE0  target reads-before-write []
+X 32E572 call 0046DFE0  target reads-before-write []
+X 32E57D call 0035EA30  target reads-before-write ['rdx']
+X        rdx <- (clobbered by call at 32E572)
+X 32E5CB call 003697F0  target reads-before-write ['rcx']
+X        rcx <- 32E5C7 movsxd rcx, dword ptr [rbx + 0x24]
+X 32E656 call 003EB0D0  target reads-before-write ['rcx']
+X        rcx <- None
+X 32E7EE call 0036C1D0  target reads-before-write ['r8']
+X        r8  <- None
+X 32E80E call 0036A190  target reads-before-write []
+X 32E82E call 0036C140  target reads-before-write []
+X 32E8AF call 0046DFE0  target reads-before-write []
+X 32E8B6 call 0035EA30  target reads-before-write ['rdx']
+X        rdx <- (clobbered by call at 32E8AF)
+X 32EA99 call 003EB050  target reads-before-write []
+X 32EB89 call 0046DE70  target reads-before-write []
+X 32EBA8 call 0046DE50  target reads-before-write ['rcx']
+X        rcx <- 32EBA6 mov ecx, esi
+X 32EC32 jmp  0046E050  target reads-before-write ['rcx']
+X        rcx <- 32EC2F shr ecx, 0x18
+X 32ECCE jmp  0016D6A0  target reads-before-write []
+R ret sites in the module and rax's last linear writer:
+R   32E02C [gap:32E000] rax <- 32E020 lea eax, [rcx - 1]
+R   32E03C [gap:32E000] rax <- 32E030 lea eax, [rcx - 1]
+R   32E065 [32E040] rax <- call 0x17d930 at 32E04D
+R   32E2CC [32E070] rax <- call 0x3bb790 at 32E2BD
+R   32E317 [32E2F0] rax <- call rax at 32E30C
+R   32E321 [32E2F0] rax <- call rax at 32E30C
+R   32E36A [32E330] rax <- call rax at 32E34F
+R   32E3AD [32E370] rax <- call rax at 32E392
+R   32E3DF [32E3B0] rax <- 32E3D4 mov eax, ebx
+R   32E3E9 [32E3B0] rax <- 32E3E0 mov eax, 1
+R   32E3F7 [gap:32E3F0] rax <- 32E3F0 lea rax, [rip + 0x9e2509]
+R   32E430 [32E400] rax <- 32E428 mov eax, dword ptr [r8 + rdx*4]
+R   32E44F [32E400] rax <- 32E448 and eax, 0xffffffc0
+R   32E4CD [gap:32E450] rax <- 32E4A3 lea rax, [rip + 0x1f94d16]
+R   32E503 [32E4D0] rax <- 32E4FA mov eax, 1
+R   32E511 [32E4D0] rax <- 32E50B xor eax, eax
+R   32E560 [32E520] rax <- 32E555 mov eax, edi
+R   32E58A [32E520] rax <- 32E584 xor eax, eax
+R   32E602 [32E590] rax <- call 0x32e2f0 at 32E5E3
+R   32E610 [32E590] rax <- call 0x32e2f0 at 32E5E3
+R   32E773 [32E620] rax <- call 0x32e870 at 32E759
+R   32E78F [32E780] rax <- 32E788 or eax, 0xffffffff
+R   32E7AB [32E780] rax <- call 0x32e870 at 32E7A2
+R   32E86C [32E7C0] rax <- call 0x32e870 at 32E84D
+R   32E98C [32E870] rax <- 32E92A add eax, ecx
+R   32E9E5 [gap:32E990] rax <- 32E9D7 mov rax, rdx
+R   32EA19 [gap:32E990] rax <- 32EA12 mov rax, rdx
+R   32EA49 [gap:32E990] rax <- 32EA42 mov rax, rdx
+R   32EA82 [gap:32E990] rax <- 32EA7F setne al
+R   32EADE [32EA90] rax <- 32EABC lea rax, [rax + 0x40]
+R   32EAEB [gap:32EAE0] rax <- None
+R   32EB0F [32EAF0] rax <- 32EB05 movzx eax, al
+R   32EB36 [32EB10] rax <- 32EB25 movzx eax, al
+R   32EC1D [32EB40] rax <- call 0x32e620 at 32EC01
+R   32ED12 [gap:32EC20] rax <- 32ED07 movsxd rax, r9d
+R   32ED18 [gap:32EC20] rax <- 32ED07 movsxd rax, r9d
+R   32ED61 [gap:32EC20] rax <- 32ED59 movsxd rax, r10d
+R   32ED67 [gap:32EC20] rax <- 32ED59 movsxd rax, r10d
+R   32ED7F [gap:32EC20] rax <- 32ED70 movsxd rax, ecx
+S register stores to non-stack memory in the module (candidate publications):
+S   32E0FB qword ptr [rbx + 8], rax   [32E070]
+S   32E123 qword ptr [rbx + 8], rax   [32E070]
+S   32E156 qword ptr [rbx + 8], rax   [32E070]
+S   32E47A qword ptr [rax], rcx   [gap:32E450]
+S   32E48A qword ptr [rax - 8], rcx   [gap:32E450]
+S   32E4AA qword ptr [rip + 0x1f94d27], r8   [gap:32E450]
+S   32E4B1 qword ptr [rip + 0x1f96d18], rax   [gap:32E450]
+S   32E4B8 qword ptr [rip + 0x1f96c91], r8   [gap:32E450]
+S   32E4BF qword ptr [rip + 0x1f96cfa], r8   [gap:32E450]
+S   32E4C6 qword ptr [rip + 0x1f96cfb], r8   [gap:32E450]
+S   32E6FF qword ptr [rcx + 0x50], r14   [32E620]
+S   32E725 qword ptr [rcx], r14   [32E620]
+S   32E94D qword ptr [r10 + 0x38], rdi   [32E870]
+S   32E951 qword ptr [r10 + 0x40], r8   [32E870]
+S   32E955 qword ptr [r10 + 0x48], r9   [32E870]
+S   32E970 qword ptr [r10 + 0x70], rdi   [32E870]
+S   32E9A6 qword ptr [rax + 0x18], r8   [gap:32E990]
+S   32E9B5 qword ptr [rip + 0x1f96814], rax   [gap:32E990]
+S   32E9BC qword ptr [rdx + 0x18], r8   [gap:32E990]
+S   32E9C0 qword ptr [rdx + 0x10], r8   [gap:32E990]
+S   32E9CC qword ptr [rip + 0x1f967ed], rdx   [gap:32E990]
+S   32E9D3 qword ptr [rdx + 0x18], rax   [gap:32E990]
+S   32E9DA qword ptr [rip + 0x1f967e7], rdx   [gap:32E990]
+S   32E9E1 qword ptr [rdx + 0x10], r8   [gap:32E990]
+S   32E9EB qword ptr [rip + 0x1f967ce], rdx   [gap:32E990]
+S   32EA06 qword ptr [rcx + 0x10], rdx   [gap:32E990]
+S   32EA0A qword ptr [r8 + 0x18], rdx   [gap:32E990]
+S   32EA0E qword ptr [rdx + 0x18], rax   [gap:32E990]
+S   32EA15 qword ptr [rdx + 0x10], r8   [gap:32E990]
+S   32EA21 qword ptr [rip + 0x1f967a0], rdx   [gap:32E990]
+S   32EA36 qword ptr [rcx + 0x18], rdx   [gap:32E990]
+S   32EA3A qword ptr [rax + 0x10], rdx   [gap:32E990]
+S   32EA3E qword ptr [rdx + 0x18], rax   [gap:32E990]
+S   32EA45 qword ptr [rdx + 0x10], r8   [gap:32E990]
+S   32EAA7 qword ptr [rip + 0x1f96732], rdx   [32EA90]
+S   32EAB1 qword ptr [rax], rdx   [32EA90]
+S   32EAB4 qword ptr [rax + 8], rdx   [32EA90]
+S   32EAB8 qword ptr [rax + 0x10], rdx   [32EA90]
+S   32EAC0 qword ptr [rax - 0x28], rdx   [32EA90]
+S   32EAC4 qword ptr [rax - 0x20], rdx   [32EA90]
+S   32EAC8 qword ptr [rax - 0x18], rdx   [32EA90]
+S   32EACC qword ptr [rax - 0x10], rdx   [32EA90]
+S   32EAD0 qword ptr [rax - 8], rdx   [32EA90]
+S   32EC59 qword ptr [rip + 0x1f96560], rax   [gap:32EC20]
+S   32EC6B qword ptr [rip + 0x1f96556], rax   [gap:32EC20]
+S   32EC77 qword ptr [r8 + 0x10], rdx   [gap:32EC20]
+S   32EC84 qword ptr [rax + 0x18], r8   [gap:32EC20]
+S   32EC91 qword ptr [rdx + 0x18], rax   [gap:32EC20]
+S   32EC9E qword ptr [rax + 0x10], rdx   [gap:32EC20]
+S   32ECB6 qword ptr [rax + 0x18], rcx   [gap:32EC20]
+S   32ECBA qword ptr [rcx + 0x10], rax   [gap:32EC20]
+S   32ECBE qword ptr [rip + 0x1f9650b], rcx   [gap:32EC20]

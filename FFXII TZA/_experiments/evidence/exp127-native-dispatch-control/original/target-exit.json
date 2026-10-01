@@ -1,0 +1,14 @@
+{
+  "normal_exit": true,
+  "handler_events": [
+    {
+      "code": 2147483652,
+      "address": 140703670026698,
+      "tid": 32448,
+      "unix": 1789984857.83075
+    }
+  ],
+  "handler_removed": true,
+  "allocation_freed": true,
+  "debugger_present": false
+}

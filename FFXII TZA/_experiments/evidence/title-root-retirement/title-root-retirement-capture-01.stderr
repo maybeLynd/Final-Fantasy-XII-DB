@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\capture-title-root-retirement.py", line 20, in <module>
+    if read(0x247d93,7)!=bytes.fromhex('4c8d0539c8ffff'):raise ValueError('original root handler binding changed')
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: original root handler binding changed

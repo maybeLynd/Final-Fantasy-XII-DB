@@ -1,0 +1,13 @@
+function	name	site	disp	kind	instruction	route	note
+002F8BB0	Reward_ComputeExperienceForRecipient	002F8C6A	0x0	r	movzx eax, byte ptr [rax + 0x88]	embed BattleStatsRecord+0x88	
+002F8BB0	Reward_ComputeExperienceForRecipient	002F8CFE	0x0	r	movzx ecx, byte ptr [rcx + 0x88]	embed BattleStatsRecord+0x88	
+002F90C0	Reward_ComputeLicensePointsForRecipient	002F9122	0x0	r	movzx eax, byte ptr [rax + 0x88]	embed BattleStatsRecord+0x88	
+002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	002FF1EE	0x0	r	movzx eax, byte ptr [rdi + 0x88]	embed BattleStatsRecord+0x88	
+002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	002FF32F	0x0	r	movzx eax, byte ptr [rdi + 0x88]	embed BattleStatsRecord+0x88	
+002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	002FF388	0x0	r	movzx eax, byte ptr [rdi + 0x88]	embed BattleStatsRecord+0x88	
+0030C470	FUN_0030c470	0030C4B1	0x0	w	mov byte ptr [rcx + 0x88], r8b	embed BattleStatsRecord+0x88	
+00312280	BattleUnit_ProcessDefeatRewardsAndLoot	0031252B	0x0	r	movzx eax, byte ptr [rax + 0x88]	embed BattleStatsRecord+0x88	
+00317090	FUN_00317090	003170B1	0x0	r	movzx eax, byte ptr [rax + 0x88]	embed BattleStatsRecord+0x88	
+00328140	GambitRuntime_RebuildOrderSetFromConfig	003281AB	0x0	r	movzx ebp, word ptr [rdi]	ctor 00328140 rdi config	
+00328140	GambitRuntime_RebuildOrderSetFromConfig	003281AE	0x2	r	movzx r14d, word ptr [rdi + 2]	ctor 00328140 rdi config	
+00328140	GambitRuntime_RebuildOrderSetFromConfig	0032817B	0x30	addr	lea rax, [rdx + 0x30]	ctor 00328140 rdi config	

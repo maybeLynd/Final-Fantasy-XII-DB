@@ -1,0 +1,9 @@
+# NativeLeaf.VectorBufferRelease - EC-7 family C
+# # compute element count via the /24 magic multiply and release the
+# # buffer through allocator vcall [r9+0x18]. 3 byte images, ONE form.
+address	targets
+0019CA20	
+0019F870	
+0019F8D0	
+001AE380	
+0020B590	

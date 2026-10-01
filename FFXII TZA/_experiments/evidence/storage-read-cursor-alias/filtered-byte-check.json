@@ -1,0 +1,49 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "6d4f095ce4b982400573d9ace037b471b1d4c33c"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "3e1fd2646f068f4806657842d449ccf93e3bdff9"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "7c73f59e81e50f656c2a5b4605740740c4b3fc57"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "68664d1b3ca0907280b7087904cc334ebdb0623d"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "1efafbb6b59cb2f8c95a487d502690a0726a7919"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "636740275db8df5aa058cf12d5f82b91acc9cbff"
+    },
+    {
+      "path": "retained/contract.md",
+      "git_blob": "4335f73a355c33804d62626034acd9ec438cf073"
+    },
+    {
+      "path": "retained/differential.py",
+      "git_blob": "24098feb5bfd66cd8f1a01d3e8f0989b66df19c5"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "c6e1ab63c66200b9adca5d6324e22ef42fe103c0"
+    }
+  ]
+}

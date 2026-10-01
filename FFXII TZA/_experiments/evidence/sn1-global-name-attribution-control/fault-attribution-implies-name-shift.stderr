@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-global-name-attribution-control\check.py", line 19, in <module>
+    if '--fault-attribution-implies-name-shift' in sys.argv:assert matches[0]==names[i+1],'Source alignment does not prove shifted variable directory'
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Source alignment does not prove shifted variable directory

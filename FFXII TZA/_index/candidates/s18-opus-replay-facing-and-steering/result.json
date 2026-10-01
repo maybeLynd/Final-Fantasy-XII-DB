@@ -1,0 +1,415 @@
+{
+ "pass": 9,
+ "total": 9,
+ "ok": true,
+ "allowed_functions": 68,
+ "results": {
+  "select_slot_00269F90": {
+   "pass_": true,
+   "n": 256,
+   "violations": 0,
+   "detail": [],
+   "note": "0/1 select; 2..255 leave the cursor"
+  },
+  "facing_kind_dispatch": {
+   "pass_": true,
+   "n": 96,
+   "violations": 0,
+   "detail": [],
+   "note": "kind 1 -> ctx+0x38 / +0x48; kind 3 -> the cursor record's +0x34; every other kind writes nothing"
+  },
+  "rewrap_idempotent": {
+   "pass_": true,
+   "n": 4103,
+   "violations": 0,
+   "stored_differs_from_single_wrap": 0,
+   "examples": [],
+   "note": "0 of 4103 stored headings differ from a single wrap"
+  },
+  "kind3_steering_record_write": {
+   "pass_": true,
+   "n": 4,
+   "violations": 0,
+   "detail": [],
+   "note": "+0xA8 and the +0x50/+0x60/+0x70 sub-records get wrap^3; actor+0x0D bit 5 skips +0x60/+0x70; a body adds +0xF8 and 003DAF20's +0x40/+0x48/+0x4C; dword [ctx2] = -1 skips 003EC260"
+  },
+  "ED2_commit_block_003EC260": {
+   "pass_": true,
+   "n": 10,
+   "violations": 0,
+   "failing": [],
+   "cases": {
+    "v0_changed": {
+     "ok": true,
+     "rr_changed": [
+      "rr+FA0",
+      "rr+FA4",
+      "rr+FA8",
+      "rr+FAC",
+      "rr+10D0",
+      "rr+10D4",
+      "rr+10D8",
+      "rr+1104"
+     ],
+     "t120": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "t250": [
+      9.0,
+      8.0,
+      7.0
+     ],
+     "f12C": 1.0,
+     "f284": 0,
+     "boundary": null,
+     "w3": 1.000000238418579
+    },
+    "v1_changed": {
+     "ok": true,
+     "rr_changed": [
+      "rr+FA0",
+      "rr+FA4",
+      "rr+FA8",
+      "rr+FAC",
+      "rr+10D0",
+      "rr+10D4",
+      "rr+10D8",
+      "rr+1104"
+     ],
+     "t120": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "t250": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "f12C": 1.0,
+     "f284": 0,
+     "boundary": [
+      "004288B0",
+      "0x72010e80",
+      "0xffffffff"
+     ],
+     "w3": 1.000000238418579
+    },
+    "v1_changed_bit20000_rr288_7": {
+     "ok": true,
+     "rr_changed": [
+      "rr+FA0",
+      "rr+FA4",
+      "rr+FA8",
+      "rr+FAC",
+      "rr+10D0",
+      "rr+10D4",
+      "rr+10D8",
+      "rr+1104"
+     ],
+     "t120": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "t250": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "f12C": 1.0,
+     "f284": 131072,
+     "boundary": [
+      "003B3CA0",
+      "0x7",
+      "0x1e"
+     ],
+     "w3": 1.000000238418579
+    },
+    "v1_changed_bit20000_rr288_none": {
+     "ok": true,
+     "rr_changed": [
+      "rr+FA0",
+      "rr+FA4",
+      "rr+FA8",
+      "rr+FAC",
+      "rr+10D0",
+      "rr+10D4",
+      "rr+10D8",
+      "rr+1104"
+     ],
+     "t120": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "t250": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "f12C": 1.0,
+     "f284": 131072,
+     "boundary": null,
+     "w3": 1.000000238418579
+    },
+    "v0_same_triple": {
+     "ok": true,
+     "rr_changed": [],
+     "t120": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "t250": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "f12C": 0.0,
+     "f284": 512,
+     "boundary": null,
+     "w3": 1.000000238418579
+    },
+    "v1_same_triple": {
+     "ok": true,
+     "rr_changed": [
+      "rr+10D0",
+      "rr+10D4",
+      "rr+10D8"
+     ],
+     "t120": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "t250": [
+      2.5,
+      1.000000238418579,
+      0.0
+     ],
+     "f12C": 0.0,
+     "f284": 512,
+     "boundary": [
+      "004288B0",
+      "0x72010e80",
+      "0xffffffff"
+     ],
+     "w3": 1.000000238418579
+    },
+    "v0_word6_set": {
+     "ok": true,
+     "rr_changed": [
+      "rr+FA0",
+      "rr+FA4",
+      "rr+FA8",
+      "rr+FAC"
+     ],
+     "t120": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "t250": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "f12C": 1.0,
+     "f284": 512,
+     "boundary": null,
+     "w3": 1.000000238418579
+    },
+    "v1_word6_set": {
+     "ok": true,
+     "rr_changed": [
+      "rr+FA0",
+      "rr+FA4",
+      "rr+FA8",
+      "rr+FAC"
+     ],
+     "t120": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "t250": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "f12C": 1.0,
+     "f284": 512,
+     "boundary": null,
+     "w3": 1.000000238418579
+    },
+    "v1_word6_set_bit8000000": {
+     "ok": true,
+     "rr_changed": [],
+     "t120": [
+      9.0,
+      8.0,
+      7.0
+     ],
+     "t250": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "f12C": 0.0,
+     "f284": 134218240,
+     "boundary": null,
+     "w3": 1.000000238418579
+    },
+    "v1_rr284_zero": {
+     "ok": true,
+     "rr_changed": [],
+     "t120": [
+      9.0,
+      8.0,
+      7.0
+     ],
+     "t250": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "f12C": 0.0,
+     "f284": 0,
+     "boundary": null,
+     "w3": 1.000000238418579
+    }
+   },
+   "note": "flag 0 stages AND shifts the old triple to +0x250 when it changed; flag 1 copies the new triple to +0x250, then 004288B0 (bit 0x20000 clear) and/or 003B3CA0 ([+0x288] != -1); word +6 != -1 resets; +0x284 == 0 is 'no record'"
+  },
+  "set_steering_mode_0026AE90": {
+   "pass_": true,
+   "n": 168,
+   "violations": 0,
+   "detail": [],
+   "note": "kind gate; modes 2-4 collapse to 1 when +0x2C == 0.0 (-0.0 too); the mode byte is record +0x29; mode 0 clears actor+0x0D bit 4, runs 002E55C0, zeroes +0x7C"
+  },
+  "set_movement_mode_0026C120": {
+   "pass_": true,
+   "n": 31,
+   "violations": 0,
+   "detail": [],
+   "mode4": {
+    "limit1_cd-1": [
+     false,
+     4
+    ],
+    "limit1_cd0": [
+     true,
+     0
+    ],
+    "limit1_cd1": [
+     true,
+     0
+    ],
+    "limit1_cd2": [
+     false,
+     4
+    ],
+    "limit1_cd3": [
+     false,
+     4
+    ],
+    "limit2_cd-1": [
+     false,
+     4
+    ],
+    "limit2_cd0": [
+     true,
+     0
+    ],
+    "limit2_cd1": [
+     true,
+     0
+    ],
+    "limit2_cd2": [
+     true,
+     0
+    ],
+    "limit2_cd3": [
+     false,
+     4
+    ]
+   },
+   "note": "mode 4 completes iff 0 <= (int16)countdown <= FrameLimit: the compare is unsigned, a negative countdown never completes"
+  },
+  "push_pop_002EAB80_002EAAA0": {
+   "pass_": true,
+   "n": 18,
+   "violations": 0,
+   "detail": [],
+   "push_clone_differs_from_slot0_at": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    99,
+    106,
+    124,
+    125,
+    126,
+    127
+   ],
+   "slot0_changed_by_push_pop_at": [
+    106
+   ],
+   "resume_shapes": {
+    "0": [
+     true,
+     false
+    ],
+    "1": [
+     false,
+     true
+    ],
+    "2": [
+     false,
+     false
+    ],
+    "3": [
+     false,
+     false
+    ],
+    "4": [
+     false,
+     false
+    ],
+    "5": [
+     false,
+     false
+    ],
+    "6": [
+     false,
+     false
+    ],
+    "7": [
+     false,
+     false
+    ]
+   },
+   "note": "refusals write nothing; push clones slot 0 -> 1 and leaves slot 0 intact; pop replays shape 0 / 1 only"
+  },
+  "normalise_loop_003A1C50": {
+   "pass_": true,
+   "n": 5,
+   "violations": 0,
+   "values": {
+    "-3.1415927410125732": -3.1415927410125732,
+    "3.1415927410125732": 3.1415927410125732,
+    "9.42477798461914": 3.141592502593994,
+    "-9.42477798461914": -3.141592502593994,
+    "0.5": 0.5
+   },
+   "note": "-pi and +pi are returned unchanged"
+  }
+ }
+}

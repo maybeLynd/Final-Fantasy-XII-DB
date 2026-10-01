@@ -1,0 +1,2 @@
+PASS  control: 0036C1F0 stores the active arena 022D89BC
+003EE2D0  003EE365  r    mov    rcx, qword ptr [rip + 0x1ca882c]             -> 02096B98

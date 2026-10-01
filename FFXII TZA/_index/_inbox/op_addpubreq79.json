@@ -1,0 +1,21 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2EC7-PUB-REQUESTS-79",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "publish the request deliverables: FUNCTION-EXTENT-ERRATA.tsv row + locale-page rename + ops + resume",
+  "scope": "errata TSV, language-selection-and-locale-ids.md, 8 request op files, SWE2-EC7.md; hold @publication through publish",
+  "completion": "publish commit recorded",
+  "dependencies": [
+   "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-79"
+  ],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

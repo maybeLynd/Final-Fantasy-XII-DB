@@ -1,0 +1,8 @@
+# NativeLeaf.ClampedIndexTableStore - EC-7 family C
+# clamp arg1 into [0,member bound]; store arg2 into a member rip table at
+# # member stride.
+address	targets
+002E2050	
+002E2090	
+002E2120	
+002E21A0	

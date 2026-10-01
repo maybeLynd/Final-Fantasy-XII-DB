@@ -1,0 +1,4 @@
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-update-arguments.py", line 152
+    (0x6221b3, 'mov', 'qword ptr [r14 + rbx + 0x28], 0),
+                      ^
+SyntaxError: unterminated string literal (detected at line 152)

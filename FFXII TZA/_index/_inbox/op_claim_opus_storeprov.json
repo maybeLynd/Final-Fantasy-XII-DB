@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-SLOT-CENSUS-ATTRIBUTED-BY-STORE-PROVENANCE",
+ "agent": "OPUS",
+ "note": "C2 - hits must land on rows the type already names - could never be satisfied by these eight. Their ONLY named rows are the sibling thirteen the SHARED widget initialiser writes, which is the base-class header, while their consumers work on the subclass payload above +0xC0. WidgetSingleton020927F0 failed C2 with 26 coherent accesses: pointers at +0xC0/+0xC8/+0xD0/+0xD8/+0xF8, a flag byte at +0xE8 tested against 1, a float triple at +0x110/+0x114/+0x118, 0x3F800000 stored at +0x134. FIRST REPLACEMENT REFUSED ITSELF AND THE REFUSAL WAS KEPT: boundary agreement between the construction site's size immediate and the consumers' top displacement held for the own slot (26 of 26 inside 0x140, top +0x13C) but a DECOY slot's census fitted 0x140 too, because these singletons are all about the same size, so the agreement measures nothing and carved nothing. THE CONTROL THAT HELD IS STRICTER THAN C2, NOT LAXER: every non-null store into the cell must lie inside a body this type's own store row names, the only other write being a null clear at teardown; a cell written from anywhere else is refused outright, where C2 would pass a shared cell whose consumers happened to touch a header field. Verified in the image for all eight (002509D0, 00581490, 00402680, 003F4E70, 00228490+002284F0, 002B9BE0, 00567770+005677A0, 0057F7D0), and put through a negative control of four deliberately wrong type-slot pairings, ALL FOUR REFUSED with the foreign producer named. 52 displacements carved; 7,042 -> 7,103 fields. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

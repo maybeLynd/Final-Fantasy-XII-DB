@@ -1,0 +1,66 @@
+{
+  "base_and_updates": [
+    {
+      "archive": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+      "files": 10597
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017",
+      "files": 27
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_02_Resource_Request_Queue.zip",
+      "sha256": "bd83d475967139efc7ab2b40e960fb5c1f9a9b5c8d5f0d656ec3ea75e35a33fa",
+      "files": 31
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_03_Retained_Reward_Bindings.zip",
+      "sha256": "ebf944fe18828b47d726c2b4cf4028e332cc9a30f7adf0d1503d0da971a0718f",
+      "files": 37
+    },
+    {
+      "archive": "FFXII_TZA_UPDATE_04_Widget_Receiver_Identity.zip",
+      "sha256": "5bdd171e9940fa05be2c218c245a418fe7d382a793524220667c0f13f146c09d",
+      "files": 39
+    }
+  ],
+  "canonical_preimages": [
+    {
+      "path": "00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md",
+      "before_sha256": "47dc0e53b6788dfabcd9e8ed7cf080331955a63b67d8594d73c329d499b968bb",
+      "after_sha256": "a4327592722efed14d2571bb1afdd49cc71538fb6eaef7712eacf8671a41048c"
+    },
+    {
+      "path": "00-Engine-Core-Runtime/the-encoded-id-class-registry.md",
+      "before_sha256": "90088428d306aa4afd0a996e90c0ec3a7451e9844f9e1bf660db75f3b608eb90",
+      "after_sha256": "c74a8201096ddfb21e179cc57da2a435130da64c4f6ae0cee84b5ebb00b11fb3"
+    },
+    {
+      "path": "00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md",
+      "before_sha256": "5dc2c16208c391e62bcacbcf09990fc664a25ab225129f204673c5ee4ed5766b",
+      "after_sha256": "5d78cf97e45e1e6bd5709af84b91bc031f97e5aa4549bbd134b3cd619db71de1"
+    },
+    {
+      "path": "_experiments/EXP-143-s04-validator-all-arms-exec.md",
+      "before_sha256": "1f07071ab2cfb990f1678d4662b7c97e39a986e5416112d7b639e2ba7da2971d",
+      "after_sha256": "9cef0377265e0f39883df6eb84e724cf4d1135dd0426f9a3bdb7e614942768c6"
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "before_sha256": "ccfe3683b3ffd54b93841139c2ec68198738dbdd887439e4fb398a79618b016e",
+      "after_sha256": "02f6a31d793f5b883a9eb167d21c806c19b2a72f804738a0f72521f53c2264eb"
+    },
+    {
+      "path": "_types/fields.tsv",
+      "before_sha256": "6a6a550c57bf18097459da01458b6a495b0e8f8bbaa18859092111dffb8ebed8",
+      "after_sha256": "fbb62749b0363634cd35d3c00539d57749bfe43da94df55f351b9ebce490aba2"
+    },
+    {
+      "path": "_types/types.tsv",
+      "before_sha256": "3186c3a4fd5b668aa9042c5e7f3a69c7b49cf1871fc1b7a2324f707431e5a5f8",
+      "after_sha256": "acea2c216622c0a2b4f77f85c4765a57e9099a3fb32da6e8d6ecd98507edf827"
+    }
+  ]
+}

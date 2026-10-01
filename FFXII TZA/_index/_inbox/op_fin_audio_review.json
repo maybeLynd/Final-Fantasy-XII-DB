@@ -1,0 +1,1 @@
+{"action": "finish", "task": "OPUS-REVIEW-EC7-CLASS-DESCRIPTOR-ELEVEN-AUDIO-EDGES-VERIFIED-AT-THE-BYTES", "note": "bytes verified (005CD4F0 = lea rdx,[rcx+0x20]; jmp 005CD450); label corrected to 'second-argument rebasing thunk' in paragraph and provenance note; the eleven Audio crossings stand as crossings", "result_refs": ["doc:class-descriptor-and-metadata-system.md"]}

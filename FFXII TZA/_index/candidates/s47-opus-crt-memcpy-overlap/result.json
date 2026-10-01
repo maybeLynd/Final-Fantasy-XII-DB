@@ -1,0 +1,527 @@
+{
+ "M07_7": {
+  "arena_dst_low12": "3C0",
+  "arena_src_low12": "500",
+  "memmove_semantics_per_path": {
+   "host": true,
+   "isa=0 favor=0": true,
+   "isa=0 favor=2": true,
+   "isa=1 favor=0": true,
+   "isa=1 favor=2": true,
+   "isa=2 favor=0": true,
+   "isa=2 favor=2": true,
+   "isa=3 favor=0": true,
+   "isa=3 favor=2": true,
+   "isa=5 favor=0": true,
+   "isa=5 favor=2": true
+  },
+  "same_0x40_residues": true,
+  "shape": {
+   "dst": "300003C0",
+   "len": "400",
+   "src": "30000500"
+  }
+ },
+ "cases": {
+  "M07_7_shape_copies_as_memmove_on_every_path": true,
+  "census_every_x64_copy_exports_memcpy_as_memmove": true,
+  "control_checker_catches_a_forward_copier_on_upward_overlap": true,
+  "dispatch_globals_restored": true,
+  "import_is_VCRUNTIME140_memcpy_at_008C2A68_and_no_app_local_copy": true,
+  "loaded_code_is_the_System32_file": true,
+  "matrix_every_copy_is_memmove_on_every_path": true,
+  "memcpy_export_is_one_jmp_to_memmove": true
+ },
+ "census_x64_vcruntime140": [
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "C820",
+   "memmove_rva": "C820",
+   "path": "D:\\MMO\\Tera\\Binaries\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.00.23506.0 built by: VCTOOLSREL"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "C830",
+   "memmove_rva": "C830",
+   "path": "C:\\Program Files (x86)\\ASUS\\ROGLSLoader\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.00.23918.0 built by: VCTOOLSREL"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "C330",
+   "memmove_rva": "C330",
+   "path": "D:\\SteamLibrary\\steamapps\\common\\Jotunnslayer Hordes of Hel\\Jotunnslayer_Data\\Plugins\\x86_64\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.00.24210.0 built by: VCTOOLSREL"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "C370",
+   "memmove_rva": "C370",
+   "path": "C:\\Program Files (x86)\\Bignox\\BigNoxVM\\RT\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.11.25506.0 built by: VCTOOLSD15ULDR"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "1240",
+   "memmove_rva": "1240",
+   "path": "C:\\Program Files\\MuMuVMMVbox\\Hypervisor\\tools\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.16.27012.6 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "1240",
+   "memmove_rva": "1240",
+   "path": "D:\\Games\\Disgaea RPG\\DisgaeaRPG\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.16.27033.0 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\old.ver\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.24.28127.4 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\old.ver\\service\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.24.28127.4 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\rollback\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.24.28127.4 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\.egstore\\rollback\\service\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.24.28127.4 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "D:\\Games\\Battle.net\\Diablo IV\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.24.28127.4 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "D:\\SteamLibrary\\steamapps\\common\\P5X\\P5XLaunch\\runtime\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.24.28127.4 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "D:\\SteamLibrary\\steamapps\\common\\Age of Wonders 4\\VCRUNTIME140.dll",
+   "same_rva": true,
+   "version": "14.27.29112.0 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\iclsclient.inf_amd64_fc84dfa25a6a7727\\lib\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.28.29334.0 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files\\OpenVPN\\bin\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.29.30037.0 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files\\ldplayer9box\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.29.30151.0 built by: cloudtest"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2025.3.1.1\\jbr\\bin\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.29.30153.0 built by: cloudtest"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files\\BlueStacks_nxt\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.29.30157.0 built by: cloudtest"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "12F0",
+   "memmove_rva": "12F0",
+   "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\Feedback\\amd64\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.30.30626.0 built by: vcwrkspc"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "1310",
+   "memmove_rva": "1310",
+   "path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\igcc_dch.inf_amd64_ee28fa9e734aabda\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.36.32532.0"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "1310",
+   "memmove_rva": "1310",
+   "path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_046f5bd4083e9122\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.36.32532.0"
+  },
+  {
+   "jmp_to_memmove": false,
+   "memcpy_rva": "1310",
+   "memmove_rva": "1310",
+   "path": "D:\\Games\\Mecharashi\\client\\Mecharashi_Data\\Plugins\\x86_64\\vcruntime140.dll",
+   "same_rva": true,
+   "version": "14.36.32532.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "12010",
+   "memmove_rva": "110C0",
+   "path": "D:\\Games\\Duel Master Play\\6234675259375616\\Payload\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.38.33135.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "11200",
+   "path": "C:\\Program Files\\Elgato\\4KCaptureUtility\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.40.33810.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "11200",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.40.33810.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "11200",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\Engine\\Binaries\\Win64\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.40.33810.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "11200",
+   "path": "C:\\Program Files (x86)\\Epic Games\\Epic Online Services\\service\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.40.33810.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "11200",
+   "path": "D:\\Games\\Battle.net\\Diablo Immortal\\Engine\\Binaries\\Win64\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.40.33810.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "113F0",
+   "path": "C:\\Program Files\\Logitech\\LogiTune\\backend\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.42.34438.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "14010",
+   "memmove_rva": "12180",
+   "path": "C:\\Windows\\System32\\HealthAttestationClient\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.44.35112.1"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "120D0",
+   "path": "C:\\Program Files\\Android\\openjdk\\jdk-21.0.8\\bin\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.44.35208.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "120D0",
+   "path": "C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\cuepkg-2.25.2\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.44.35211.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "120D0",
+   "path": "C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.44.35211.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "12030",
+   "path": "C:\\Program Files\\Google\\Play Games\\26.9.341.0\\emulator\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.50.35719.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "12030",
+   "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\153.0.4234.32\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.50.35719.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "12030",
+   "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\153.0.4234.48\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.50.35719.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "13010",
+   "memmove_rva": "12030",
+   "path": "C:\\Windows\\System32\\Microsoft-Edge-WebView\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.50.35719.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "1F020",
+   "memmove_rva": "1DB00",
+   "path": "C:\\Program Files\\Mozilla Firefox\\updated\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.51.36247.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "1F020",
+   "memmove_rva": "1DB00",
+   "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\154.0.4258.37\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.51.36247.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "1F020",
+   "memmove_rva": "1DAD0",
+   "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\undocked_copilot\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.51.36247.0"
+  },
+  {
+   "jmp_to_memmove": true,
+   "memcpy_rva": "1F020",
+   "memmove_rva": "1DB00",
+   "path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\vcruntime140.dll",
+   "same_rva": false,
+   "version": "14.51.36250.0"
+  }
+ ],
+ "control_naive_forward_copier": {
+  "down_len_0x40_dist_8": true,
+  "up_len_0x40_dist_8": false
+ },
+ "dispatch_globals": {
+  "favor_rva": "26374",
+  "host_values": {
+   "favor": 2,
+   "isa": 5
+  },
+  "isa_rva": "26088"
+ },
+ "dll": {
+  "loaded_base": "7FFFFDBC0000",
+  "loaded_from": "C:\\Users\\Kristian\\AppData\\Local\\Temp\\opus_s47_vcrt_sys_copy.dll",
+  "memcpy_bytes": "e9dbeaffff",
+  "memcpy_is_jmp_to_memmove": true,
+  "memcpy_rva": "1F020",
+  "memmove_rva": "1DB00",
+  "path": "C:\\Windows\\System32\\vcruntime140.dll",
+  "sha256": "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7",
+  "text_bytes": 122299,
+  "text_identical_unrelocated": true,
+  "text_mapped_equals_file": true,
+  "version": {
+   "FileVersion": "14.51.36247.0",
+   "ProductVersion": "14.51.36247.0"
+  }
+ },
+ "import": {
+  "app_local_vcruntime140": [],
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "slots": {
+   "VCRUNTIME140.dll!memcpy": "008C2A68",
+   "VCRUNTIME140.dll!memmove": "008C2A40"
+  }
+ },
+ "live_game": false,
+ "matrix": {
+  "copies": 39215,
+  "directions": [
+   "down",
+   "up"
+  ],
+  "distances": [
+   1,
+   3,
+   8,
+   16,
+   31,
+   32,
+   63,
+   64,
+   65,
+   256,
+   320
+  ],
+  "failure_count": 0,
+  "failures": [],
+  "misalign": [
+   0,
+   5
+  ],
+  "paths": [
+   "host",
+   "isa=0 favor=0",
+   "isa=0 favor=2",
+   "isa=1 favor=0",
+   "isa=1 favor=2",
+   "isa=2 favor=0",
+   "isa=2 favor=2",
+   "isa=3 favor=0",
+   "isa=3 favor=2",
+   "isa=5 favor=0",
+   "isa=5 favor=2"
+  ],
+  "sizes": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   127,
+   128,
+   129,
+   255,
+   256,
+   257,
+   511,
+   1023,
+   1024,
+   1025,
+   4096,
+   8192,
+   8193,
+   16384,
+   65536,
+   1572864,
+   1572865
+  ]
+ },
+ "ok": true,
+ "restored": true
+}

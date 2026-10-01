@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "OPUS-PUB-MENU-CHILD-UNBLOCKED",
+ "result_refs": ["commit:0badd691e"],
+ "note": "published. Correction to my own earlier claim: declaring the 0x2DC0 menu child is NOT blocked by dword0710. check_embed_parent_fields fires CONFLICT only when a single parent field contains or straddles the child; three parent rows span this one, which classifies SPLIT ACROSS FIELDS - 'normal ... reported, not faulted' in the tool's own words. The genuine obstacle, a single tiling overlap at +0xC0/+0xC4, resolves at the instruction level as a combined store over two independent dwords. The declaration is now a mechanical 47-row package, deliberately NOT written at the end of a long session that has already produced four of my own corrections."
+}

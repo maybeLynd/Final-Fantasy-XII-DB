@@ -1,0 +1,18 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-CONTRACT-PUB-PARITY-SCOPE",
+  "kind": "research",
+  "priority": "P1",
+  "assigned_to": "SWE2-CONTRACT",
+  "target": "publish parity scope-split batch",
+  "scope": "parity_status.py + PARITY-STATUS.md + PROGRAM-STATE.md + SWE2-CONTRACT.md + op files",
+  "completion": "commit hash recorded",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

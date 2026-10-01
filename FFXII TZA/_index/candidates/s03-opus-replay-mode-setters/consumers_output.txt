@@ -1,0 +1,19 @@
+L_ladder_is_a_priority_over_the_low_nibble                             PASS
+P_bit3_setter_one_write_none_when_equal                                PASS
+P_bit2_setter_one_write_none_when_equal                                PASS
+Z_setter_one_write_none_when_equal                                     PASS
+C_chocobo_enable_sets_bit_ride_time_and_sequence_bits                  PASS
+C_chocobo_disable_clears_bit_calls_roster_slot3_and_zeroes_5AEC        PASS
+R_reset_zeroes_5B04_and_5B08                                           PASS
+G_bit_getters_and_mode_getters                                         PASS
+S_capture_layout_5AE0_at_rec8_5AD0_at_rec18_flags_at_rec28             PASS
+S_restore_puts_back_5AE0_and_flags_and_5AD0_only_with_rec18_bit1       PASS
+ALL PASS
+T2_ladder2_skips_the_leader_path                             PASS
+T4_higher_condition_makes_eq2_false_leader_path_runs         PASS
+T5_higher_condition_makes_eq2_false_leader_path_runs         PASS
+ALL PASS
+2 True [] [['00303EC0 returned', 1, 0], ['emit 0023B1C0', 1, 0], ['003592C0', 1, 0], ['00359200', 0, 1], ['0026BD40', 1, 4294967293]]
+6 True [] [['00303EC0 returned', 0, 0], ['leader 003272A0', 0, 0], ['emit 0023B1C0', 0, 0], ['003592C0', 1, 0], ['00359200', 0, 1], ['0026BD40', 1, 4294967293]]
+10 True [] [['00303EC0 returned', 0, 0], ['leader 003272A0', 0, 0], ['emit 0023B1C0', 0, 0], ['003592C0', 1, 0], ['00359200', 0, 1], ['0026BD40', 1, 4294967293]]
+0 True [] [['00303EC0 returned', 0, 0], ['leader 003272A0', 0, 0], ['emit 0023B1C0', 0, 0], ['003592C0', 1, 0], ['00359200', 0, 1], ['0026BD40', 1, 4294967293]]

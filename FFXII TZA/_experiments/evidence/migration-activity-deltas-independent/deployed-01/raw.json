@@ -1,0 +1,129 @@
+{
+  "method": "A existing deployed repository HTTP/file read observation, not FF12 live evidence",
+  "base": "http://127.0.0.1:8765",
+  "driver_sha256": "bd60b9adc7520b4c85d06523f8a11eb68c90784cb194573dd44d65b863f8d9ac",
+  "requests": [
+    {
+      "name": "status-before",
+      "path": "/api/status",
+      "before": 1790673033.9453444,
+      "after": 1790673034.1057057,
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 09:10:34 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1112"
+      },
+      "bytes": 1112,
+      "sha256": "4208426f13e850e1aecff281f9e05e27a7336192180a5304c73bd5fee29bafe0"
+    },
+    {
+      "name": "activity",
+      "path": "/api/activity",
+      "before": 1790673034.1057172,
+      "after": 1790673034.94703,
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 09:10:34 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "18517"
+      },
+      "bytes": 18517,
+      "sha256": "4b3cb310590bf28c2e21452f958fce10f63f21a2739c021bd043452ddc5fc10b"
+    },
+    {
+      "name": "live",
+      "path": "/api/live",
+      "before": 1790673034.947053,
+      "after": 1790673035.088559,
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 09:10:35 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "235"
+      },
+      "bytes": 235,
+      "sha256": "366228efe9cf72f44d71d60181f4473c22c8073d60dbb794ac70a8f79949ee42"
+    },
+    {
+      "name": "page",
+      "path": "/",
+      "before": 1790673035.0885708,
+      "after": 1790673035.089926,
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 09:10:35 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "20446"
+      },
+      "bytes": 20446,
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86"
+    },
+    {
+      "name": "status-after",
+      "path": "/api/status",
+      "before": 1790673035.089945,
+      "after": 1790673035.2175775,
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 09:10:35 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1112"
+      },
+      "bytes": 1112,
+      "sha256": "4208426f13e850e1aecff281f9e05e27a7336192180a5304c73bd5fee29bafe0"
+    }
+  ],
+  "files": [
+    {
+      "label": "board-before",
+      "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\_inbox\\TEAM.json",
+      "observed_at": 1790673032.6789272,
+      "bytes": 55665960,
+      "sha256": "06087c51a4c638bd805a3f8cf70c46d1548f8091125f389457e26c71de70abb3",
+      "stored": "board-before.json.gz",
+      "compressed": true
+    },
+    {
+      "label": "controller-before",
+      "source_path": "C:\\Users\\Kristian\\.swe2-fleet\\watchdog-state.json",
+      "observed_at": 1790673033.9444451,
+      "bytes": 5200,
+      "sha256": "9ac90e43aecaba3946b98aaa04db67326eb069f2ca439708e4f075c240bd1f1d",
+      "stored": "controller-before.json",
+      "compressed": false
+    },
+    {
+      "label": "board-after",
+      "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\_inbox\\TEAM.json",
+      "observed_at": 1790673035.2175903,
+      "bytes": 55665960,
+      "sha256": "06087c51a4c638bd805a3f8cf70c46d1548f8091125f389457e26c71de70abb3",
+      "stored": "board-after.json.gz",
+      "compressed": true
+    },
+    {
+      "label": "controller-after",
+      "source_path": "C:\\Users\\Kristian\\.swe2-fleet\\watchdog-state.json",
+      "observed_at": 1790673036.4170933,
+      "bytes": 5200,
+      "sha256": "9ac90e43aecaba3946b98aaa04db67326eb069f2ca439708e4f075c240bd1f1d",
+      "stored": "controller-after.json",
+      "compressed": false
+    }
+  ],
+  "finished": true,
+  "limits": "No atomic snapshot, loaded module/PID certification or browser presentation; activity cache may predate bracketed board. Source fixtures establish discrimination separately.",
+  "board_before_revision": 39408,
+  "board_after_revision": 39408
+}

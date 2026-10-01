@@ -1,0 +1,8 @@
+PASS  W each registrar is called once, from the walker 003EDAD0
+PASS  G the three registrars: index, subtype byte, registry[index] = record, then the family's setup ([True, True, True])
+PASS  S bounded setup switches (0-3, 0-8, 0-0xD1) and their only callers
+PASS  S2 the sub-range dispatcher 00538910: types 0x42-0xAB through its own table, anything else untouched
+PASS  X 68 distinct setup routines over 223 (family, subtype) rows; 48 resolve cleanly, 20 carry a named reason
+PASS  C element types with a setup routine: 65 (the dispatch page: 65); distinct element setup routines: 56 (38 + 18 = 56)
+PASS  K known answer: 00500470 rebases exactly +00/+04/+10/+14/+20/+24/+30/+34
+FAILS 0

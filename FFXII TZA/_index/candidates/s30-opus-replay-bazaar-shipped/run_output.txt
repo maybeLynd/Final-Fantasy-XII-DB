@@ -1,0 +1,14 @@
+shipped_registry_and_rebase                                              PASS
+refresh_with_zero_tallies_unlocks_nothing                                PASS
+clause4_met_sets_both_bits_on_that_row_only                              PASS
+clause2_already_available_is_left_alone                                  PASS
+purchase_clears_bit1_keeps_bit0_zeroes_the_tallies                       PASS
+clause1_one_time_row_stays_unlocked_but_unavailable                      PASS
+repeatable_row_re_unlocks_after_purchase                                 PASS
+clause3_zero_threshold_row_never_unlocks_by_refresh                      PASS
+script_set_writes_bit1_only_and_keeps_bit0                               PASS
+script_set_needs_the_rows_bit1                                           PASS
+bit0_never_cleared_by_refresh_purchase_or_script_set                     PASS
+purchase_gate_refuses_an_id_past_the_table                               PASS
+trace {'row0': [0, 3, 1], 'row87': [3, 1, 3], 'row99': [0, 2, 0, 1]} rows {'0': {'f14': 0, 'loots': [8284, 0, 0], 'thr': [2, 0, 0]}, '87': {'f14': 1, 'loots': [8394, 8392, 0], 'thr': [2, 3, 0]}, '99': {'f14': 2, 'loots': [0, 0, 0], 'thr': [0, 0, 0]}}
+ALL PASS

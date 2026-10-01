@@ -1,0 +1,6 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-17",
+ "note": "Published as d3d737b3 - 20 doc/TSV paths + AUDIT-LOG + resume + 5 op files.",
+ "result_refs": ["d3d737b3"]
+}

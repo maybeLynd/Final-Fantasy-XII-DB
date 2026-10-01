@@ -1,0 +1,501 @@
+{
+  "identity": {
+    "method": "A: original repository Python/CLI, not FF12 native or live game",
+    "head": "ba0ab89c9db892167b6d002799698e711d67c496",
+    "source_last_commit": "bf000cdc96d3ca9ec7fb461d0e066572d6657041",
+    "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "source_sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480",
+    "source_git_blob": "c756aac9a3d7234cd82f23e0238c530d215a65d6",
+    "module_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "python_executable_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "python_base_executable": "C:\\Python314\\python.exe",
+    "python_base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38",
+    "driver_sha256": "cd797b815c83103e022fbd097d468792bf81fb73392c7baf83e6f39d467ea7c6",
+    "platform": "win32",
+    "interventions": [
+      "explicit synthetic schema-valid private board initialized once",
+      "Copy exact prior successful private board+journal to a new private path; no fresh-positive replay"
+    ],
+    "limits": "No production-board write, recovery, lock substitution, interrupted prefix, idempotent task transition, removed-lock, host controller or deployment proof.",
+    "retained_positive": {
+      "raw_sha256": "40e6c1d988eceb1d741c080c6578d3582b99ae773b6d9a4f782f72885d299ed2",
+      "driver_sha256": "cc408101714f5035c94ec8532d8628f36c8b230be7cddf5ba3541fda303cb297",
+      "board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+      "journal_sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9",
+      "status": "Original overall run INVALID; successful fresh writer observation reused only at its stated scope"
+    }
+  },
+  "stages": [
+    {
+      "label": "initial",
+      "revision": 0,
+      "board_sha256": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+      "journal_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalized_board_sha256": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+      "history_sessions": [],
+      "checkpoint_notes": [],
+      "journal": [],
+      "lock_absent": true
+    },
+    {
+      "label": "after-fresh",
+      "revision": 1,
+      "board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+      "journal_sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9",
+      "normalized_board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+      "history_sessions": [
+        "fresh-0"
+      ],
+      "checkpoint_notes": [
+        "fresh-positive"
+      ],
+      "journal": [
+        {
+          "kind": "genesis",
+          "rev": 0,
+          "board_sha": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+          "epoch": 0,
+          "note": "journal bootstrap; not a trust assertion about earlier history",
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 1,
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 1,
+          "board_sha": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        }
+      ],
+      "lock_absent": true
+    },
+    {
+      "label": "after-stale",
+      "revision": 1,
+      "board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+      "journal_sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9",
+      "normalized_board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+      "history_sessions": [
+        "fresh-0"
+      ],
+      "checkpoint_notes": [
+        "fresh-positive"
+      ],
+      "journal": [
+        {
+          "kind": "genesis",
+          "rev": 0,
+          "board_sha": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+          "epoch": 0,
+          "note": "journal bootstrap; not a trust assertion about earlier history",
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 1,
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 1,
+          "board_sha": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        }
+      ],
+      "lock_absent": true
+    },
+    {
+      "label": "after-race",
+      "revision": 2,
+      "board_sha256": "fa89ca4b20a6fd04bb26ba5278f3403891d96f849485343d67054314e9e80f0b",
+      "journal_sha256": "4fc36b656b1c6bc067a6f55cb24e37ae3a8bdefce457575393788735d0d82cae",
+      "normalized_board_sha256": "fa89ca4b20a6fd04bb26ba5278f3403891d96f849485343d67054314e9e80f0b",
+      "history_sessions": [
+        "fresh-0",
+        "race-a"
+      ],
+      "checkpoint_notes": [
+        "fresh-positive",
+        "race-a-note"
+      ],
+      "journal": [
+        {
+          "kind": "genesis",
+          "rev": 0,
+          "board_sha": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+          "epoch": 0,
+          "note": "journal bootstrap; not a trust assertion about earlier history",
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 1,
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 1,
+          "board_sha": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 2,
+          "op_sha": "1a39848b4d65173d359f35beb439c44019951388be5f35dc78a73c8fdf877fd0",
+          "agent": "ASTRA",
+          "session": "race-a",
+          "epoch": 0,
+          "at": "2026-09-29T12:22:13+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 2,
+          "board_sha": "fa89ca4b20a6fd04bb26ba5278f3403891d96f849485343d67054314e9e80f0b",
+          "op_sha": "1a39848b4d65173d359f35beb439c44019951388be5f35dc78a73c8fdf877fd0",
+          "agent": "ASTRA",
+          "session": "race-a",
+          "epoch": 0,
+          "at": "2026-09-29T12:22:13+00:00"
+        }
+      ],
+      "lock_absent": true
+    },
+    {
+      "label": "after-follow-on",
+      "revision": 3,
+      "board_sha256": "0b5009dd304dc4f0f6e87b910d16c04cfaabce97517496f24a0f00d51ab18d11",
+      "journal_sha256": "104568ef6cce5fc86fbe0386f63a2dc311023895b81ce5b7238c0fd302aa8258",
+      "normalized_board_sha256": "0b5009dd304dc4f0f6e87b910d16c04cfaabce97517496f24a0f00d51ab18d11",
+      "history_sessions": [
+        "fresh-0",
+        "race-a",
+        "fresh-2"
+      ],
+      "checkpoint_notes": [
+        "fresh-positive",
+        "race-a-note",
+        "fresh-follow-on"
+      ],
+      "journal": [
+        {
+          "kind": "genesis",
+          "rev": 0,
+          "board_sha": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8",
+          "epoch": 0,
+          "note": "journal bootstrap; not a trust assertion about earlier history",
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 1,
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 1,
+          "board_sha": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+          "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72",
+          "agent": "ASTRA",
+          "session": "fresh-0",
+          "epoch": 0,
+          "at": "2026-09-29T12:20:26+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 2,
+          "op_sha": "1a39848b4d65173d359f35beb439c44019951388be5f35dc78a73c8fdf877fd0",
+          "agent": "ASTRA",
+          "session": "race-a",
+          "epoch": 0,
+          "at": "2026-09-29T12:22:13+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 2,
+          "board_sha": "fa89ca4b20a6fd04bb26ba5278f3403891d96f849485343d67054314e9e80f0b",
+          "op_sha": "1a39848b4d65173d359f35beb439c44019951388be5f35dc78a73c8fdf877fd0",
+          "agent": "ASTRA",
+          "session": "race-a",
+          "epoch": 0,
+          "at": "2026-09-29T12:22:13+00:00"
+        },
+        {
+          "kind": "intent",
+          "rev": 3,
+          "op_sha": "ca08beac8940d8c443433dfce316f911647e82601e4103af14ca0be18386249d",
+          "agent": "ASTRA",
+          "session": "fresh-2",
+          "epoch": 0,
+          "at": "2026-09-29T12:22:13+00:00"
+        },
+        {
+          "kind": "commit",
+          "rev": 3,
+          "board_sha": "0b5009dd304dc4f0f6e87b910d16c04cfaabce97517496f24a0f00d51ab18d11",
+          "op_sha": "ca08beac8940d8c443433dfce316f911647e82601e4103af14ca0be18386249d",
+          "agent": "ASTRA",
+          "session": "fresh-2",
+          "epoch": 0,
+          "at": "2026-09-29T12:22:13+00:00"
+        }
+      ],
+      "lock_absent": true
+    }
+  ],
+  "processes": [
+    {
+      "label": "fresh-0",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "apply",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-01\\private\\TEAM.json",
+        "--agent",
+        "ASTRA",
+        "--session",
+        "fresh-0",
+        "--expect-revision",
+        "0",
+        "--file",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-01\\fresh-0-op.json"
+      ],
+      "pid": 71472,
+      "expected_revision": 0,
+      "note": "fresh-positive",
+      "start_monotonic": 1203092.5298611,
+      "op_sha256": "f74da6ca281dadbf58d364cd0ab3c8eea38ae92e42b6cff65a02f4665962a471",
+      "timed_out": false,
+      "stdout": "Saved revision 1\r\n",
+      "stderr": "",
+      "returncode": 0,
+      "elapsed_seconds": 0.1476884998846799,
+      "terminal": true
+    },
+    {
+      "label": "fresh-health",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "boardcheck",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json"
+      ],
+      "pid": 4256,
+      "start_monotonic": 1203198.7975552,
+      "timed_out": false,
+      "stdout": "board ok: ok\r\n",
+      "stderr": "",
+      "returncode": 0,
+      "elapsed_seconds": 0.10942499991506338,
+      "terminal": true
+    },
+    {
+      "label": "stale-0",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "apply",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json",
+        "--agent",
+        "ASTRA",
+        "--session",
+        "stale-0",
+        "--expect-revision",
+        "0",
+        "--file",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\stale-0-op.json"
+      ],
+      "pid": 56964,
+      "expected_revision": 0,
+      "note": "must-not-land-stale",
+      "start_monotonic": 1203198.9074083,
+      "op_sha256": "3bd5cf50aaea232628cb0cac31f3f97be6d62184c95b18b1dfa27cc5f9e7d00b",
+      "timed_out": false,
+      "stdout": "",
+      "stderr": "expected revision 0, board is at 1\r\n",
+      "returncode": 1,
+      "elapsed_seconds": 0.13713109982199967,
+      "terminal": true
+    },
+    {
+      "label": "race-a",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "apply",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json",
+        "--agent",
+        "ASTRA",
+        "--session",
+        "race-a",
+        "--expect-revision",
+        "1",
+        "--file",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\race-a-op.json"
+      ],
+      "pid": 62248,
+      "expected_revision": 1,
+      "note": "race-a-note",
+      "start_monotonic": 1203199.0474059,
+      "op_sha256": "9644bd7d0bd4a8f4bc79bc55c5c32745a531f5e78a3def2c7fa2e188f131a580",
+      "timed_out": false,
+      "stdout": "Saved revision 2\r\n",
+      "stderr": "",
+      "returncode": 0,
+      "elapsed_seconds": 0.12901820009574294,
+      "terminal": true
+    },
+    {
+      "label": "race-b",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "apply",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json",
+        "--agent",
+        "ASTRA",
+        "--session",
+        "race-b",
+        "--expect-revision",
+        "1",
+        "--file",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\race-b-op.json"
+      ],
+      "pid": 69644,
+      "expected_revision": 1,
+      "note": "race-b-note",
+      "start_monotonic": 1203199.0621808,
+      "op_sha256": "582bb7fbb7968c584a70dfb5855b3a47ef7e86f26f5bbb1d705c8b1cb2041ca5",
+      "timed_out": false,
+      "stdout": "",
+      "stderr": "expected revision 1, board is at 2\r\n",
+      "returncode": 1,
+      "elapsed_seconds": 0.13819200010038912,
+      "terminal": true
+    },
+    {
+      "label": "race-health",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "boardcheck",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json"
+      ],
+      "pid": 32444,
+      "start_monotonic": 1203199.2074093,
+      "timed_out": false,
+      "stdout": "board ok: ok\r\n",
+      "stderr": "",
+      "returncode": 0,
+      "elapsed_seconds": 0.09939840016886592,
+      "terminal": true
+    },
+    {
+      "label": "fresh-2",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "apply",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json",
+        "--agent",
+        "ASTRA",
+        "--session",
+        "fresh-2",
+        "--expect-revision",
+        "2",
+        "--file",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\fresh-2-op.json"
+      ],
+      "pid": 54408,
+      "expected_revision": 2,
+      "note": "fresh-follow-on",
+      "start_monotonic": 1203199.3075193,
+      "op_sha256": "374955e5239deff72a56b2808707b1e906ef62b33098c7cf9c6abe081d389254",
+      "timed_out": false,
+      "stdout": "Saved revision 3\r\n",
+      "stderr": "",
+      "returncode": 0,
+      "elapsed_seconds": 0.12316430010832846,
+      "terminal": true
+    },
+    {
+      "label": "final-health",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+        "boardcheck",
+        "--board",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-stale-revision-writer\\run-02\\private\\TEAM.json"
+      ],
+      "pid": 33188,
+      "start_monotonic": 1203199.447308,
+      "timed_out": false,
+      "stdout": "board ok: ok\r\n",
+      "stderr": "",
+      "returncode": 0,
+      "elapsed_seconds": 0.09854959999211133,
+      "terminal": true
+    }
+  ],
+  "state": "OBSERVED",
+  "race": {
+    "first_live_before_second_launch": true,
+    "both_launched_before_communicate": true,
+    "limit": "Process lifetime overlap, not proof of simultaneous lock entry."
+  },
+  "cleanup": {
+    "all_owned_direct_processes_terminal": true,
+    "private_lock_absent": true,
+    "source_unchanged": true,
+    "fixture_retained_for_review": true,
+    "production_board_not_used_as_fixture": true,
+    "normal_game_or_production_host_health": "NOT_OBSERVED"
+  }
+}

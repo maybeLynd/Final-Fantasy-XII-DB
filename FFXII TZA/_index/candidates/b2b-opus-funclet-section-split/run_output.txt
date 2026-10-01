@@ -1,0 +1,70 @@
+{
+ "atexit_registered": 1569,
+ "declared_funclets": 3892,
+ "declared_outside_text_x": [
+  "00861EAE"
+ ],
+ "funcinfo_records": 4518,
+ "group_D": 128,
+ "group_D_in_text_x": 128,
+ "group_D_shapes": {
+  "lea rcx, [rip + N] ; add rcx, 8 ; jmp N": 19,
+  "lea rcx, [rip + N] ; add rcx, N ; jmp N": 34,
+  "lea rcx, [rip + N] ; jmp N": 75
+ },
+ "outside_is": {
+  "00861EAE": "__std_terminate"
+ },
+ "pdata_starts_in_text_x": 425,
+ "pogo": {
+  ".text": [
+   "00121000",
+   "0015BC40"
+  ],
+  ".text$di": [
+   "0015BC40",
+   "0016D670"
+  ],
+  ".text$mn": [
+   "0016D670",
+   "00896260"
+  ],
+  ".text$mn$00": [
+   "00896260",
+   "00896280"
+  ],
+  ".text$x": [
+   "00896280",
+   "008A6970"
+  ],
+  ".text$yd": [
+   "008A6970",
+   "008C1635"
+  ]
+ },
+ "registered_elsewhere": [
+  "00809244",
+  "00809CD4"
+ ],
+ "registered_in_text_x": 0,
+ "registered_in_text_yd": 1567,
+ "registered_with_a_group_D_shape": {
+  "lea rcx, [rip + N] ; jmp N": 1144
+ },
+ "undeclared_pdata_starts_in_text_x": [
+  "0089BEF0",
+  "008A5AD0",
+  "008A5B7C",
+  "008A5B94",
+  "008A5BB2",
+  "008A5BDE",
+  "008A5C0A"
+ ]
+}
+S1_pogo_states_text_x_and_text_yd                                                    PASS
+S2_4518_funcinfo_all_declared_funclets_in_text_x_but_the_terminate_thunk             PASS
+S3_group_D_is_128_and_all_in_text_x                                                  PASS
+S4_registered_atexit_thunks_in_text_yd_none_in_text_x_controls_found                 PASS
+S5_body_alone_cannot_separate_the_lea_jmp_shape                                      PASS
+S6_text_x_holds_only_funclets                                                        PASS
+ALL PASS

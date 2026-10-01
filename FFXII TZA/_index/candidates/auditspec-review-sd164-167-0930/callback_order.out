@@ -1,0 +1,83 @@
+O1 callback call ['0036C03B call rax']; attempt ['0036C0A9 call 0x36bc60']; retry edges to 0036C013 (above the callback): ['0036C0B9 jne 0x36c013', '0036C0C4 je 0x36c013']
+   order callback-before-attempt: True
+O2 caller 0036A149 (call, root 0036A100): direct 0036BC60 attempt before it: ['0036A11F call 0x36bc60']
+      0036A11F call 0x36bc60
+      0036A124 xor esi, esi
+      0036A126 mov rbx, rax
+      0036A129 test rax, rax
+      0036A12C jne 0x36a156
+      0036A12E mov ecx, dword ptr [rip + 0x1f6e888]
+      0036A134 xor r9d, r9d
+      0036A137 mov dword ptr [rsp + 0x28], 1
+      0036A13F xor r8d, r8d
+      0036A142 mov edx, edi
+      0036A144 mov qword ptr [rsp + 0x20], rsi
+      0036A149 call 0x36bfe0
+O2 caller 0036A1F0 (call, root 0036A1A0): direct 0036BC60 attempt before it: ['0036A1C9 call 0x36bc60']
+      0036A1C9 call 0x36bc60
+      0036A1CE xor ebp, ebp
+      0036A1D0 mov rbx, rax
+      0036A1D3 test rax, rax
+      0036A1D6 jne 0x36a1fd
+      0036A1D8 mov ecx, dword ptr [rip + 0x1f6e7de]
+      0036A1DE lea r9d, [rax + 1]
+      0036A1E2 mov dword ptr [rsp + 0x28], esi
+      0036A1E6 xor r8d, r8d
+      0036A1E9 mov edx, edi
+      0036A1EB mov qword ptr [rsp + 0x20], rbp
+      0036A1F0 call 0x36bfe0
+O2 caller 0036B1A4 (call, root 0036B160): direct 0036BC60 attempt before it: ['0036B181 call 0x36bc60']
+      0036B17E xor r8d, r8d
+      0036B181 call 0x36bc60
+      0036B186 xor esi, esi
+      0036B188 test rax, rax
+      0036B18B jne 0x36b1a9
+      0036B18D mov dword ptr [rsp + 0x28], 1
+      0036B195 xor r9d, r9d
+      0036B198 xor r8d, r8d
+      0036B19B mov qword ptr [rsp + 0x20], rsi
+      0036B1A0 mov edx, edi
+      0036B1A2 mov ecx, ebx
+      0036B1A4 call 0x36bfe0
+O2 caller 0036D08F (call, root 0036D050): direct 0036BC60 attempt before it: NONE
+      0036D066 mov rcx, r8
+      0036D069 call 0x369860
+      0036D06E xor eax, eax
+      0036D070 add rsp, 0x38
+      0036D074 ret 
+      0036D075 test r8, r8
+      0036D078 jne 0x36d099
+      0036D07A mov rax, qword ptr [rsp + 0x60]
+      0036D07F mov edx, r10d
+      0036D082 mov dword ptr [rsp + 0x28], 1
+      0036D08A mov qword ptr [rsp + 0x20], rax
+      0036D08F call 0x36bfe0
+O3 002E6900 .pdata ranges decoded: 108 instructions; rets: [('002E6A78 pop rbx', '002E6A79 ret ')]
+   rets: 1; the one exit block starts with `xor eax, eax`
+   (the exit block, read linearly:)
+      002E6A70 xor eax, eax
+      002E6A72 add rsp, 0x30
+      002E6A76 pop rdi
+      002E6A77 pop rsi
+      002E6A78 pop rbx
+      002E6A79 ret 
+   jumps into the exit block past 002E6A70: ['002E6A2F je 0x2e6a70']
+O4 002E6D66 call 0x2e6900
+O4 002E6D6D jne 0x2e6e1e
+O4 002E6DAC mov eax, dword ptr [rdi + 0x10]
+O4 002E6DB1 je 0x2e6df6
+O4 002E6DB3 test byte ptr [rdi + 0x18], 8
+O4 002E6DB7 jne 0x2e6de7
+O4 002E6DB9 test byte ptr [rdi + 0x19], 4
+O4 002E6DBD jne 0x2e6de7
+O4 002E6DDD call 0x41e490
+O4 002E6DE7 mov rcx, rdi
+O4 002E6DEA call 0x2e9360
+O4 002E6DF6 cmp rcx, rdi
+O4 002E6DF9 mov eax, 1
+O4 002E6DFE cmove rcx, rsi
+O4 002E6E02 mov qword ptr [rip + 0x1e78f7f], rcx
+O4 002E6E13 test eax, eax
+O4 002E6E15 jne 0x2e6e1e
+O4 002E6E19 call 0x2e6900
+O4 002E6E1E xor eax, eax

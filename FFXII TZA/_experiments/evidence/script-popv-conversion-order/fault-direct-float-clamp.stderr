@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-conversion-order\check.py", line 34, in <module>
+    if '--fault-direct-float-clamp' in sys.argv and bits=='4f000000' and width==0:assert dest=='ff','Direct real-float saturation contradicts original converted dword'
+                                                                                         ^^^^^^^^^^
+AssertionError: Direct real-float saturation contradicts original converted dword

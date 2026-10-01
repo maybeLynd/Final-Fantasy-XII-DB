@@ -1,0 +1,70 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5820,
+      "sha256": "864e8057ff59656ca70e12f13aef786cf11f452bf61c3630bbbdad83955689d2"
+    },
+    {
+      "path": "extract.py",
+      "bytes": 3109,
+      "sha256": "0532aabb45809bc549cd18331dc661660652a0ecae80df3405b9197c9999f186"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 1863,
+      "sha256": "d1762004cc95544d9913bad1ff705f22f1a48e89926b0ab9160edc2de4ca40d7"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1778,
+      "sha256": "827c9574ebfea9578220019e7271aa539dcf1e69ed00078087f06c1bfa99540b"
+    },
+    {
+      "path": "primary.json",
+      "bytes": 60347,
+      "sha256": "2cbd841fbd4c42773036075b1886498cb0288f61e057fd2c580a8d2516a84db7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4756,
+      "sha256": "68de82ffb33b7dc7f1dfce907f0511d6d20dfde17ebc2c947602097b397f8ccb"
+    },
+    {
+      "path": "retained/00-the-music-control-file-and-the-bgm-stream.md",
+      "bytes": 38999,
+      "sha256": "1b64499219cc0b2714a61257cc192e105621fa217c63df227c0fdc95e1d8b98a"
+    },
+    {
+      "path": "retained/01-CONTRACT-music-control-file-and-bgm-stream.md",
+      "bytes": 12536,
+      "sha256": "689b65047345e5e4fc9b71a3aed30530f3caa562194543d419f68ae77ed696b5"
+    },
+    {
+      "path": "retained/02-CONTRACT-field-music-selection.md",
+      "bytes": 33274,
+      "sha256": "13a7dd45d0942e94d4f9848f75ea28e7090dc3eab194beab583531082e73653e"
+    },
+    {
+      "path": "retained/03-game-application.md",
+      "bytes": 140324,
+      "sha256": "18745f44846add69d208d4a1e8ce96bd3e6e39e9092a15bb16edf6f18c5f6095"
+    },
+    {
+      "path": "retained/image-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 573,
+      "sha256": "663aa9f6143f9b4d7d8ba6c473b1af1f05544b01db3387752e5fe992c7bbf839"
+    }
+  ],
+  "limits": "Frozen methodA evidence only; owner/independent acceptance pending."
+}

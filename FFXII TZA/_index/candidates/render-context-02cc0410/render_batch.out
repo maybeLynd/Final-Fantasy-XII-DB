@@ -1,0 +1,4 @@
+PASS  M vtable slots 4 / 5 pass this + 0x880 to the merger; indices uint16 from +0x10 (count +8, cap 0x4000), 0x30-byte vertices from +0x8020 (count word +0x8010, cap 0x2AA)
+PASS  S slot 0: +0xB8 into the 0x7FE0 vertex block at +0x10880 (counter +0x18860); slot 2: +0xC0 into the 0x8000 index block at +0x18864 (counter +0x20864)
+PASS  W BatchMerger6DA450 tiles 0x10000; the renderer names the merger, the staging blocks, their counters and write pointers, and still tiles to 0x20938
+FAILS 0

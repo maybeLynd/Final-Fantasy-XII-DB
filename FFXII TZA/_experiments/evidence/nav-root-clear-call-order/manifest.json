@@ -1,0 +1,95 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 6818,
+      "sha256": "92a117ad9c1e376bf29510714e4bd8317a30661922de82248e937b1021afeb63"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5582,
+      "sha256": "9ecb91d7378ec6b0c5fea13e2768254ddd9509cb4120a53bb155d2fd2f84cfe4"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 2339,
+      "sha256": "7e4da985ada6ee6853790b415a8412bbfd2df14decc7c6161dc2cc2beb7e0997"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1535,
+      "sha256": "25304c2cf806dda06bb2d47fcab5a499ad488813c1a2d4db59c46c263598a692"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1337,
+      "sha256": "c9aa617c4afa503f914ed547cdb15dc019eb6a9103e9e15e9e4bc2d4053d4e19"
+    },
+    {
+      "path": "raw-source.json",
+      "bytes": 5891,
+      "sha256": "6fd82a6a56eb9f2dcc338355aa199b88b37adaf21268065f665a6fd0d04ebbf1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3235,
+      "sha256": "9329cb4115073a616e8ecb4bea599e9d6771992b398ed6238ca526975e77908b"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2742,
+      "sha256": "c628268ffbb6918a219fd2fba8c4dac65fe2f3ba8900b6acb0be4bacc0726395"
+    },
+    {
+      "path": "retained/area-caller.bin",
+      "bytes": 62,
+      "sha256": "cba3ef3b30351c01df4df782bb954bf7caf305b4aa88cdf192dc9a9cd32d2723"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 6818,
+      "sha256": "92a117ad9c1e376bf29510714e4bd8317a30661922de82248e937b1021afeb63"
+    },
+    {
+      "path": "retained/labelled-swapped-call-targets.bin",
+      "bytes": 62,
+      "sha256": "4f4e8e46850f98d4cc79267745b10d3a55efa72db8f7c8c5530f19ecfaab0ac3"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "retained/root-clear.bin",
+      "bytes": 12,
+      "sha256": "0f8759e1f4474d52c4ca8d15f82c7267c5d744b3c36fd680473d5f9d1e286e30"
+    },
+    {
+      "path": "retained/root-type-preimage.tsv",
+      "bytes": 10133,
+      "sha256": "6ee9e469937a172b93cb1a2df47be5a10bb29258c9b2c905ec6f2b7ab1c12cd9"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/teardown-parent-manifest.json",
+      "bytes": 3936,
+      "sha256": "679922b9835318b29b417423450342b423e467b2595caa365fd0bb40ba01841f"
+    },
+    {
+      "path": "retained/teardown-parent-raw.json",
+      "bytes": 7089,
+      "sha256": "5dddc43d8bff2a889054a048be684b6f0aff0d89f9ae0c4598b1b86b48b7d84c"
+    }
+  ],
+  "limits": "A one direct caller rootclear-before-gridteardown order; intervening opaque call, no root-zero stability/all-path/live lifetime proof"
+}

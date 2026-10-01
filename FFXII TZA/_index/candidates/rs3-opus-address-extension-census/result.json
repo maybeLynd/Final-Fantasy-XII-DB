@@ -1,0 +1,199 @@
+{
+ "by_kind": {
+  "full 64-bit": 2957,
+  "passed/returned": 747,
+  "sign": 58,
+  "sign after 32-bit arithmetic": 2,
+  "tail-jump": 6,
+  "unclassified": 36,
+  "zero": 53,
+  "zero after 32-bit arithmetic": 512
+ },
+ "call_sites": 4371,
+ "cases": {
+  "R1_0020E600_returns_the_64_bit_sum": true,
+  "R2_every_site_classified_but_a_named_few": true,
+  "R3_sign_and_zero_each_occur_in_at_least_four_owner_subsystems": true
+ },
+ "evidence": [
+  "STATIC"
+ ],
+ "examples": {
+  "full 64-bit": [
+   "001D716F",
+   "001D717B",
+   "00235C20",
+   "00235C71",
+   "00237740",
+   "00237754",
+   "002377C9",
+   "002377DD",
+   "0023784B",
+   "0023785F",
+   "002378D8",
+   "002378EC"
+  ],
+  "passed/returned": [
+   "002386A4",
+   "00238716",
+   "00238731",
+   "00238746",
+   "00238766",
+   "0023878B",
+   "002387A0",
+   "002387D5",
+   "002387F0",
+   "00238805",
+   "0023907C",
+   "0023A6DD"
+  ],
+  "sign": [
+   "00261B2F",
+   "00261B48",
+   "00261C2C",
+   "00261C45",
+   "00261CD5",
+   "00261CEE",
+   "002641F4",
+   "0026428B",
+   "002642FD",
+   "002643E6",
+   "002648A9",
+   "00264B13"
+  ],
+  "sign after 32-bit arithmetic": [
+   "0041D45B",
+   "0041DE49"
+  ],
+  "tail-jump": [
+   "002F98FD",
+   "0032151D",
+   "003340B8",
+   "00370E26",
+   "003E6E29",
+   "00421D59"
+  ],
+  "unclassified": [
+   "0030990F",
+   "0030A2C2",
+   "0030A40F",
+   "0030CECC",
+   "00370ACD",
+   "0037122D",
+   "00372415",
+   "003738B1",
+   "003DFEB8",
+   "003E3235",
+   "0040AD1A",
+   "0040B86A"
+  ],
+  "zero": [
+   "00238228",
+   "0025ADA3",
+   "0025AEEB",
+   "0025B388",
+   "0025B6E6",
+   "0025B963",
+   "0025B9B4",
+   "0025BA50",
+   "0025BD05",
+   "0025C4AC",
+   "0025C579",
+   "0025C629"
+  ],
+  "zero after 32-bit arithmetic": [
+   "00235C34",
+   "00235C85",
+   "00238011",
+   "002380E1",
+   "002381C0",
+   "00238204",
+   "002386F9",
+   "002388D1",
+   "002389A5",
+   "00239AF3",
+   "00239BA1",
+   "0023A680"
+  ]
+ },
+ "live_game": false,
+ "ok": true,
+ "owners_by_kind": {
+  "full 64-bit": {
+   "-": 699,
+   "ActorEntity": 29,
+   "CombatAI": 15,
+   "CombatAction": 91,
+   "CombatFormula": 221,
+   "Input": 2,
+   "Items_Equipment_Shops_License": 51,
+   "Movement": 72,
+   "Presentation": 1725,
+   "RNG_Random_Selection": 2,
+   "Resource": 2,
+   "Rewards_Progression_Economy": 12,
+   "Save_Load_Settings": 1,
+   "Script_VM_Native_Bridge": 2,
+   "Status_Periodic_Terminal": 22,
+   "UI": 7,
+   "WorldAreaField": 4
+  },
+  "passed/returned": {
+   "-": 249,
+   "ActorEntity": 7,
+   "Audio": 1,
+   "CombatAI": 1,
+   "CombatAction": 6,
+   "CombatFormula": 9,
+   "Items_Equipment_Shops_License": 2,
+   "Movement": 2,
+   "Presentation": 456,
+   "Resource": 6,
+   "Rewards_Progression_Economy": 1,
+   "Status_Periodic_Terminal": 2,
+   "UI": 1,
+   "WorldAreaField": 4
+  },
+  "sign": {
+   "-": 23,
+   "ActorEntity": 2,
+   "Audio": 4,
+   "Movement": 9,
+   "Presentation": 6,
+   "Script_VM_Native_Bridge": 6,
+   "WorldAreaField": 8
+  },
+  "sign after 32-bit arithmetic": {
+   "Presentation": 2
+  },
+  "tail-jump": {
+   "-": 5,
+   "Presentation": 1
+  },
+  "unclassified": {
+   "-": 5,
+   "CombatAction": 4,
+   "Presentation": 27
+  },
+  "zero": {
+   "-": 8,
+   "ActorEntity": 37,
+   "CombatAction": 6,
+   "Movement": 1,
+   "WorldAreaField": 1
+  },
+  "zero after 32-bit arithmetic": {
+   "-": 142,
+   "ActorEntity": 8,
+   "CombatAI": 9,
+   "CombatAction": 82,
+   "CombatFormula": 197,
+   "Items_Equipment_Shops_License": 46,
+   "Movement": 1,
+   "Presentation": 3,
+   "Rewards_Progression_Economy": 7,
+   "Status_Periodic_Terminal": 16,
+   "UI": 1
+  }
+ }
+}

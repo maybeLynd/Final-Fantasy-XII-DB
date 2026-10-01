@@ -1,0 +1,206 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-special-override-constructor-dependencies.py",
+      "bytes": 2240,
+      "sha256": "3dcf1ee6a9574cac0fc830b06a5b1f4f33c43c2e6fab955590358c6b81952fbb"
+    },
+    {
+      "path": "capture-special-override-control.py",
+      "bytes": 3023,
+      "sha256": "c0ffe510ee31da4a611caceeeaec7cd709b6b3e62eb161ad12aa05632ae47957"
+    },
+    {
+      "path": "capture-special-override-formatting-effects.py",
+      "bytes": 2519,
+      "sha256": "0b540c6b307b87a437dcf51d350af1102c0f2c1cd1617a62d06b07d08a6cb51c"
+    },
+    {
+      "path": "exercise-special-override-label-prerequisites.py",
+      "bytes": 3550,
+      "sha256": "31f6059c15bb31cfe0106e6e458f0b579b42edb78a455992a8ce0ac8f47c8e6f"
+    },
+    {
+      "path": "prove-special-override-label-binding.py",
+      "bytes": 9360,
+      "sha256": "8cad70ae944688806b9011c78657bfd771871113a2dae32fddb69b9ca4e0a31c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3818,
+      "sha256": "b6b62a548818193f817c03e49db6dac8801af35ec91afcefecfec7495f1811e5"
+    },
+    {
+      "path": "special-override-constructor-dependencies-raw-01.json",
+      "bytes": 324571,
+      "sha256": "daa3526cf1e0fa780dc37f13f074cd9041acb984ba3d72734746fa492db5ae7d"
+    },
+    {
+      "path": "special-override-control-raw-01.json",
+      "bytes": 354841,
+      "sha256": "b34df909103976d7f4ccb454f70254bfd7865a554cfe7492d82d52a1463150eb"
+    },
+    {
+      "path": "special-override-formatting-effects-raw-01.json",
+      "bytes": 669733,
+      "sha256": "013264a570b793d1820d1ad22b5f6989d44d4f18f2fc1ead7beded4d2c71d72b"
+    },
+    {
+      "path": "special-override-label-binding-result-02.json",
+      "bytes": 8728,
+      "sha256": "631140b0bc33f7c21dcc842bfa886ee035f19f19757dd671767ae331fffcea15"
+    },
+    {
+      "path": "special-override-label-historical-01/prove-special-override-label-binding.py",
+      "bytes": 8369,
+      "sha256": "b884ca4d8b807824d1c9ffdd16ef4883c524eaebc6241b848f57a6aba498a2f8"
+    },
+    {
+      "path": "special-override-label-historical-01/special-override-label-binding-result-01.json",
+      "bytes": 8613,
+      "sha256": "efc5f907f2e8fd0291e7a2002e763d4d8604ac91d9335b2f86d5a4b4e85b41b1"
+    },
+    {
+      "path": "special-override-label-historical-01/STATUS.json",
+      "bytes": 316,
+      "sha256": "f72913ec96b934628f35b60c6d2d0affc3dff1387cebd3dcbfbbdeb0a5c28753"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/changed_instruction/prove-special-override-label-binding.py",
+      "bytes": 9531,
+      "sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/changed_instruction/receipt.json",
+      "bytes": 259,
+      "sha256": "0384f945a435aecf27848396b893c34bd4818346ac28bfb234cad47340e2ab3e"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/changed_instruction/special-override-formatting-effects-raw-01.json",
+      "bytes": 669733,
+      "sha256": "be1c5d10a2484f1579e4535dd9b2ca7cf7bd316b133d0b089bc2f887bb6a4543"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/changed_instruction/stderr.txt",
+      "bytes": 557,
+      "sha256": "fb06079d0d2b5b80184f604b1cbe39748461207243306816361b12fa1b6cbe6e"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/changed_instruction/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/incomplete_wrapper/prove-special-override-label-binding.py",
+      "bytes": 9531,
+      "sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/incomplete_wrapper/receipt.json",
+      "bytes": 258,
+      "sha256": "04b7a108d9b54f674a2289f3753cb08ca04a3c4358d9495e90e28ed0a062e2dd"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/incomplete_wrapper/special-override-formatting-effects-raw-01.json",
+      "bytes": 669734,
+      "sha256": "adee13a2b5ef8202d486daa9db02d112fea5971f717eb14337f3c6c6666684b3"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/incomplete_wrapper/stderr.txt",
+      "bytes": 376,
+      "sha256": "8c127403d74c0d2a2bbf147df478359632b375087c32627618f48205b2372e1c"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/incomplete_wrapper/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/missing_raw/prove-special-override-label-binding.py",
+      "bytes": 9531,
+      "sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/missing_raw/receipt.json",
+      "bytes": 251,
+      "sha256": "8d9ecf03dd5b71d5de1ac1251dd6e2410f4b2bc58a125e133227e378bb71c6a2"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/missing_raw/stderr.txt",
+      "bytes": 1091,
+      "sha256": "899ac82311bde054878e1672192b91afeda433fde60ff170ded625c762333efe"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/missing_raw/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/positive/prove-special-override-label-binding.py",
+      "bytes": 9531,
+      "sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/positive/receipt.json",
+      "bytes": 247,
+      "sha256": "639bf1764bd96b13be2e79556d0bc8f87dfec430c25459cd54d65f5cc6262143"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/positive/result.json",
+      "bytes": 8728,
+      "sha256": "62e1fe81aa5153313fd82f8ff1e6fcca808c90dc614550ca3d12d6389921165c"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/positive/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/positive/stdout.txt",
+      "bytes": 233,
+      "sha256": "460cc8c691e14ff3007269283a2378a3407db8385f231f184b0e6366a82c276e"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/result.json",
+      "bytes": 1783,
+      "sha256": "d9b1d42b31f0f0c92033f7f39bcfe31f3c4fdac09b1ec73ab54ac178414d264a"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/wrong_table_extent/prove-special-override-label-binding.py",
+      "bytes": 9531,
+      "sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/wrong_table_extent/receipt.json",
+      "bytes": 258,
+      "sha256": "6313d995a224c4b0e41886cc0173cbe166305591a2ed11df0e5b90ee67a24bf6"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/wrong_table_extent/special-override-formatting-effects-raw-01.json",
+      "bytes": 669733,
+      "sha256": "e19648cd2195de790f637510591e4fb1d52c0fe40870ebf7dc8beba230f71ca4"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/wrong_table_extent/stderr.txt",
+      "bytes": 390,
+      "sha256": "a0b14f36b4a3d67866a3c19f88d58f406b5c38c7f5aaafe72665045f1c455ef7"
+    },
+    {
+      "path": "special-override-label-prerequisite-controls-02/wrong_table_extent/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

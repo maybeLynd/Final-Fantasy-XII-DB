@@ -1,0 +1,22 @@
+== up from 0056A1D0
+0056A1D0 callers 2 ['00569E26', '0056AD3A'] | rip []
+  005691E0 callers 0 [] | rip ['00568B80 lea rdx, [rip + 0x659]']
+  0056AC50 callers 1 ['0056BAC0'] | rip []
+    0056B4D0 callers 0 [] | rip ['0056B3BE lea rdx, [rip + 0x10b]']
+== up from 0056A890
+0056A890 callers 2 ['0056B77D', '0056B99E'] | rip []
+  0056B4D0 (seen)
+  0056B4D0 (seen)
+== up from 0056AE80
+0056AE80 callers 2 ['0056A516', '0056ADD1'] | rip []
+  0056A3D0 callers 1 ['005696A5'] | rip []
+    005691E0 (seen)
+  0056ADA0 callers 1 ['0056B75E'] | rip []
+    0056B4D0 (seen)
+== up from 0056B100
+0056B100 callers 2 ['0056A54B', '0056ADCA'] | rip []
+  0056A3D0 (seen)
+  0056ADA0 (seen)
+== up from 0057FB00
+0057FB00 callers 1 ['0057F92B'] | rip []
+  0057F8C0 callers 0 [] | rip ['005801EC lea rcx, [rip - 0x933]']

@@ -1,0 +1,9 @@
+scripts: 1114
+control: unkCall_308c( occurrences: 854 ; unkCall_308d( occurrences: 0
+unkCall_7067 uses: 4
+  ttl_a01.txt in ロード画面起動(): arg 2; preceding switch/case lines: switch (file_var_s1_13) / case 1:
+  ttl_a01.txt in ロード画面起動(): arg 3; preceding switch/case lines: case 1: / default:
+  ttl_c01.txt in main(1): arg 2; preceding switch/case lines: switch (file_var_s0_12) / case 1:
+  ttl_c01.txt in main(1): arg 3; preceding switch/case lines: case 1: / default:
+scripts comparing nowmap() with 0x0483: 100 [('tri_a', 5), ('tri_b', 5), ('tri_c', 5), ('tri_d', 5), ('tri_e', 5), ('tri_f', 5), ('tri_g', 5), ('tri_h', 5), ('tri_i', 5), ('tri_j', 5), ('tri_k', 5), ('tri_l', 5), ('tri_m', 5), ('tri_n', 5), ('tri_o', 5), ('tri_p', 5), ('tri_q', 5), ('tri_r', 5), ('tri_s', 5), ('tri_t', 5)]
+map ids the tri_* scripts compare nowmap() with: 102 distinct, lowest 0x0193, highest 0x051E

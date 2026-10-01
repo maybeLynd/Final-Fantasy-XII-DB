@@ -1,0 +1,11 @@
+{
+  "state": "PRE_CAPTURE_IDENTITY_GUARD_FAILED",
+  "commit": "622c0866ddf7b7f1484b92b34adfaa46190ee821",
+  "working_sha256": "5f3e2f5fe7d666465bc0ae1e5f393484300c6112542304f837540e035617a1a6",
+  "commit_sha256": "e3e14d2a14fb5cd844298619ad53e63d99d975d5ae8e3abaa601ddf755f5407c",
+  "exact": false,
+  "LF_equivalent": false,
+  "working_bytes": 43775,
+  "committed_bytes": 30388,
+  "diff_numstat": "200\t19\tDatabase/Tools/dashboard/server.py\n"
+}

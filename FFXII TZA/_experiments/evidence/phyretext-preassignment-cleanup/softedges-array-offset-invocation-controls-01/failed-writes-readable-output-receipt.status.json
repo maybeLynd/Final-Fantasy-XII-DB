@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-c",
+    "import pathlib,sys;pathlib.Path(sys.argv[1]).write_text('{\"wrapper_complete\":true,\"invocation_driver_sha256\":\"fixture\"}');sys.exit(7)",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-array-offset-invocation-controls-01\\failed-writes-readable-output.json"
+  ],
+  "exit": 7
+}

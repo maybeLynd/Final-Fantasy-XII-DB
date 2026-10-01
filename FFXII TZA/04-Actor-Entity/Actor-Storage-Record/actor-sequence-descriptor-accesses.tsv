@@ -1,0 +1,4 @@
+function	name	site	disp	kind	instruction	route	note
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267AD0	0x0	r	movzx eax, byte ptr [r8]	array 01E0C328 reg	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267B0A	0x0	r	movzx eax, byte ptr [r8]	array 01E0C328 reg	
+002679F0	ActorStorage_AllocateAndInitializeRecords	00267B16	0x2	r	movzx eax, word ptr [r8 + 2]	array 01E0C328 reg	

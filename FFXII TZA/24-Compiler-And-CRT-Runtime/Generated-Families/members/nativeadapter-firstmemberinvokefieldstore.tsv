@@ -1,0 +1,11 @@
+# NativeAdapter.FirstMemberInvokeFieldStore - EC-7 family C
+# # call a member op on [this]; on non-null store a member constant into a
+# # member field.
+address	targets
+0029F100	003697F0
+005571C0	00244F00
+00557280	00244F00
+00557340	00244F00
+00557400	00244F00
+00561800	00244F00
+00561E60	00244F00

@@ -1,0 +1,125 @@
+A  readers/writers of 01E0C2B8..+4
+  rip: 7
+     (2436244, 'mov', 'esi, dword ptr [rip + 0x1bb961e]', 4)
+     (2436304, 'mov', 'dword ptr [rip + 0x1bb95de], 1', 4)
+     (2436324, 'mov', 'dword ptr [rip + 0x1bb95ce], ebx', 4)
+     (2440082, 'cmp', 'dword ptr [rip + 0x1bb8720], eax', 4)
+     (2440109, 'cmovne', 'ecx, dword ptr [rip + 0x1bb8704]', 4)
+     (2444977, 'mov', 'dword ptr [rip + 0x1bb73fd], 1', 4)
+     (2444997, 'mov', 'dword ptr [rip + 0x1bb73e9], 0', 4)
+  imagebase: 0
+  data slots: {'abs64': [], 'rva32': []}
+B  callers
+  00253B90 rel32 8 jcc 0 abs64 0 rva32 0
+      002FFDC9 call
+      00307D63 call
+      0030815A call
+      0030877D call
+      00309A94 call
+      0030C02E call
+      00313A2C call
+      0030C0D0 jmp
+  0030C0D0 rel32 8 jcc 0 abs64 0 rva32 0
+      00234629 call
+      003368FD call
+      00339C2C call
+      00339D52 call
+      00339D7E call
+      0033B02D call
+      0033C3EA call
+      0033D1A1 call
+  00253BA0 rel32 2 jcc 0 abs64 0 rva32 1
+      0027668C call
+      00276FD3 call
+  total rel32 sites: 18
+C  kind tests
+  at 002FFDAE
+     002FFDAE  cmp byte ptr [rdi + 5], 0
+     002FFDB2  jne 0x2ffded
+     002FFDB4  mov rax, qword ptr [rsi + 0x698]
+     002FFDBB  mov ecx, dword ptr [rax + 0x64]
+     002FFDBE  or ecx, dword ptr [rax + 0x3c]
+     002FFDC1  test ecx, 0x8000020
+     002FFDC7  jne 0x2ffded
+     002FFDC9  call 0x253b90
+     002FFDCE  test eax, eax
+  at 00301A6E
+     00301A6E  movzx eax, byte ptr [rax + 5]
+     00301A72  test eax, eax
+     00301A74  jne 0x301a8c
+     00301A76  mov rcx, rbx
+     00301A79  call 0x308130
+     00301A7E  mov ecx, eax
+     00301A80  mov eax, dword ptr [rbx]
+     00301A82  shr eax, 0x17
+     00301A85  and eax, 1
+  at 00307E0A
+     00307E0A  movzx eax, byte ptr [rax + 5]
+     00307E0E  test eax, eax
+     00307E10  jne 0x307e5b
+     00307E12  test byte ptr [rip + 0x1d81527], 0x20
+     00307E19  jne 0x307e5b
+     00307E1B  mov rax, qword ptr [rcx + 0x698]
+     00307E22  mov ecx, dword ptr [rax + 0x64]
+     00307E25  or ecx, dword ptr [rax + 0x3c]
+     00307E28  test ecx, 0x8000201b
+  at 0030BFED
+     0030BFED  movzx eax, byte ptr [rdx + 5]
+     0030BFF1  test eax, eax
+     0030BFF3  jne 0x30bffe
+     0030BFF5  add rsp, 0x28
+     0030BFF9  jmp 0x308130
+     0030BFFE  xor edx, edx
+     0030C000  add rsp, 0x28
+     0030C004  jmp 0x308040
+     0030C009  xor eax, eax
+  at 00339C24
+     00339C24  movzx eax, byte ptr [rax + 5]
+     00339C28  test eax, eax
+     00339C2A  jne 0x339c65
+     00339C2C  call 0x30c0d0
+     00339C31  test eax, eax
+     00339C33  jne 0x339c65
+     00339C35  mov rax, qword ptr [rbx + 0xf0]
+     00339C3C  mov ecx, 0x4022
+     00339C41  cmp word ptr [rax + 0x714], cx
+  at 00305BA5
+     00305BA5  call 0x305cc0
+     00305BAA  test eax, eax
+     00305BAC  jne 0x305ca0
+     00305BB2  call 0x377c20
+     00305BB7  test eax, eax
+     00305BB9  jne 0x305be7
+     00305BBB  mov rcx, qword ptr [rbx + 0x698]
+     00305BC2  test rcx, rcx
+     00305BC5  je 0x305be7
+D  route edges (direct call/jmp from caller body to callee)
+  00233F70 -> 00308610 : 00234011
+  00308610 -> 0030FA00 : 0030879F
+  0030FA00 -> 0030C010 : 0030FA20
+  00308610 -> 00305AB0 : 0030874C
+  00233F70 -> 0033A240 : 00234076
+  0030E360 -> 00307D10 : 0030E7AC
+  00233F70 -> 00310DB0 : 00234001
+  00310DB0 -> 003112F0 : 00310FAC 003110AB 0031126C
+  003112F0 -> 0030E360 : 0031153A 0031159F
+  00305AB0 -> 00305CC0 : 00305BA5 00305C1A 00305C58 00305C71
+  00305CC0 -> 003014C0 : 00305DD2
+  003014C0 -> 00301830 : 003015DA
+  00301830 -> 00309A90 : 003019F5
+E  engagement arm 00307D50..00307D90
+     00307D50  xchg dword ptr [rax - 0x74fffffa], ebx
+     00307D56  or ecx, dword ptr fs:[rax + 0x3c]
+     00307D5B  test ecx, 0x8000020
+     00307D61  jne 0x307d37
+     00307D63  call 0x253b90
+     00307D68  test eax, eax
+     00307D6A  je 0x307d84
+     00307D6C  xor ebx, ebx
+     00307D6E  and byte ptr [rip + 0x1fba1d3], 0xf9
+     00307D75  mov qword ptr [rip + 0x1fba1c4], rbx
+     00307D7C  mov dword ptr [rdi + 0xdcc], ebx
+     00307D82  jmp 0x307dd1
+     00307D84  test dword ptr [rdi + 4], 0x200
+     00307D8B  mov rcx, rdi
+     00307D8E  je 0x307db2

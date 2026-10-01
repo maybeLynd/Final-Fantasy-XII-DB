@@ -1,0 +1,2 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	page	nameWord	u16: 0x2017 x1, 0x2018 x1, 0x2019 x1, 0x201a x1, 0x201b x1 (8 distinct)	0031E34F* movzx ecx, word ptr [rax] | 0031E389* movzx edx, word ptr [rax]	name word (bank 4)	STATIC	EID

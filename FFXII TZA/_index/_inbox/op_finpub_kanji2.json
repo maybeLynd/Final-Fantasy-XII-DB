@@ -1,0 +1,7 @@
+{
+ "action": "finish",
+ "task": "SWE2DATA-PUB-KANJI-ROUND2-0922",
+ "agent": "SWE2-DATA",
+ "result_refs": ["commit:6444300ac"],
+ "note": "published kanji round-2 + MAP_BEHIND verify; @publication released"
+}

@@ -1,0 +1,498 @@
+{
+ "real": [
+  {
+   "name": "noop",
+   "va": "0x16d6a0",
+   "end": "0x16d6a3",
+   "size": 3,
+   "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b"
+  },
+  {
+   "name": "resolve",
+   "va": "0x20e600",
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "name": "getter",
+   "va": "0x236820",
+   "end": "0x236845",
+   "size": 37,
+   "sha256": "f53995268db38c36b63da2cdd7f5979c5600294e05010a97c09aa149f9129578"
+  },
+  {
+   "name": "count",
+   "va": "0x236850",
+   "end": "0x236857",
+   "size": 7,
+   "sha256": "78967330e777673e22aa8a475b61095e6cc0b7ce4b6641c5e641f713cca6ab33"
+  },
+  {
+   "name": "gchk",
+   "va": "0x253b90",
+   "end": "0x253b9c",
+   "size": 12,
+   "sha256": "2aed04b32fe7f5e6c38bc216e1030192eb5b85810a612f5b6e0dcc4991f3cc5a"
+  },
+  {
+   "name": "fam",
+   "va": "0x263c20",
+   "end": "0x263c30",
+   "size": 16,
+   "sha256": "ee846c3194b482673482c801e20791989d5d0a72faee481f8cebf8353eebaeba"
+  },
+  {
+   "name": "e30",
+   "va": "0x263e30",
+   "end": "0x263e35",
+   "size": 5,
+   "sha256": "efbd103662ccda4c0f468ab461257f1b371879ef59acc4189da3ceb1394859cc"
+  },
+  {
+   "name": "famidx",
+   "va": "0x263ff0",
+   "end": "0x264005",
+   "size": 21,
+   "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d"
+  },
+  {
+   "name": "vext",
+   "va": "0x265020",
+   "end": "0x26505d",
+   "size": 61,
+   "sha256": "cf09b85d637d05ca695217249179536c30ad2813ed42f5fc678f79963eec6e2d"
+  },
+  {
+   "name": "lctx",
+   "va": "0x290b90",
+   "end": "0x290bde",
+   "size": 78,
+   "sha256": "e866b37130e366261fcac66602073851bcf1c62a3065c17d5e211fd342605f0c"
+  },
+  {
+   "name": "thunkEA0",
+   "va": "0x2eaea0",
+   "end": "0x2eaea5",
+   "size": 5,
+   "sha256": "b1441bca239fe33ff99c4b2916c80318a07a4b846a7efa20c400e8e2bd9670ca"
+  },
+  {
+   "name": "ubase",
+   "va": "0x2ef2b0",
+   "end": "0x2ef2c4",
+   "size": 20,
+   "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7"
+  },
+  {
+   "name": "uglb",
+   "va": "0x2ef640",
+   "end": "0x2ef648",
+   "size": 8,
+   "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802"
+  },
+  {
+   "name": "rng",
+   "va": "0x2fa3b0",
+   "end": "0x2fa467",
+   "size": 183,
+   "sha256": "2a9e1cb448f83916a49e5b6b1ee709f470929efbf77f285b33fcdf43f2368bbc"
+  },
+  {
+   "name": "notify",
+   "va": "0x2fef30",
+   "end": "0x2ffa5b",
+   "size": 2859,
+   "sha256": "3b64c3a46b5951b2235d24437f9d22f90e3aa1aefe65c58c55c6fee3ae28d2ce"
+  },
+  {
+   "name": "o280",
+   "va": "0x300280",
+   "end": "0x30030a",
+   "size": 138,
+   "sha256": "164bd144da3fed1d15ab024c30d3cd55fdd565e481baf0dbb383c9699a7f5b0d"
+  },
+  {
+   "name": "orc",
+   "va": "0x307ce0",
+   "end": "0x307d0f",
+   "size": 47,
+   "sha256": "05deb7592fd03e659c271b415d0056514fd2569f7374fa6af915c55a81d54346"
+  },
+  {
+   "name": "sink",
+   "va": "0x307d10",
+   "end": "0x307df0",
+   "size": 224,
+   "sha256": "4dea66b7ad9f2b8737402afde670b815f52e334e28a02503b47141b52ca536e0"
+  },
+  {
+   "name": "s8270",
+   "va": "0x308270",
+   "end": "0x3082e8",
+   "size": 120,
+   "sha256": "5e1f40077c9bd3ffa277d04b984b19fbbf79c096146776713ba5266be7526bab"
+  },
+  {
+   "name": "rel",
+   "va": "0x30ab40",
+   "end": "0x30ac4a",
+   "size": 266,
+   "sha256": "7527e5ba803e5d0436bd025749d95f1200a67789751130907a0835c4178073f4"
+  },
+  {
+   "name": "lscan",
+   "va": "0x30b050",
+   "end": "0x30b0d7",
+   "size": 135,
+   "sha256": "d5c17fec5fd5f0e303f074d3fabdefa3759971b75b0c63b35769d1cb95b376cf"
+  },
+  {
+   "name": "bres",
+   "va": "0x30bb30",
+   "end": "0x30bc31",
+   "size": 257,
+   "sha256": "80b6ae5d7633f9a7be544475b80797c4fbbd013b4b70b6ec5dcad651fe9445db"
+  },
+  {
+   "name": "memb",
+   "va": "0x30bf20",
+   "end": "0x30bfa1",
+   "size": 129,
+   "sha256": "a9acd9a09898eadc677d917871ea1ec7377a5aff63357a6fb713a119150f9f17"
+  },
+  {
+   "name": "bscan",
+   "va": "0x30c210",
+   "end": "0x30c2bd",
+   "size": 173,
+   "sha256": "9be44df1795810953ee5ccebe1cc85c5269ec058f732bb34be53a7a83336a474"
+  },
+  {
+   "name": "c970",
+   "va": "0x30c970",
+   "end": "0x30ca50",
+   "size": 224,
+   "sha256": "56a19276e7e99cd842eb2502e87b8d4d41b74a9cfbe76f09f68629817ad095b1"
+  },
+  {
+   "name": "tail",
+   "va": "0x30e060",
+   "end": "0x30e128",
+   "size": 200,
+   "sha256": "79cd5f64f478458e2a5fd3b8e853f86b9990f9f45404117fa251d6db710a6ff2"
+  },
+  {
+   "name": "apply",
+   "va": "0x30e130",
+   "end": "0x30e359",
+   "size": 553,
+   "sha256": "f985df17d3dcbfd7862a9eb6bf4333becc39c9c8861203b582ec6ff5447faf95"
+  },
+  {
+   "name": "casc",
+   "va": "0x30e360",
+   "end": "0x30e88b",
+   "size": 1323,
+   "sha256": "f954d039168bc6ed2a0329a1f33300182a8e858490a5fcd5c8612ac4b46e4b56"
+  },
+  {
+   "name": "ea4",
+   "va": "0x30ea40",
+   "end": "0x30ead6",
+   "size": 150,
+   "sha256": "b56f7cbb0fd3510dc3520caac6376fd7e048a3b9fcac82c28deb0c23b3d318f9"
+  },
+  {
+   "name": "eda0",
+   "va": "0x30eda0",
+   "end": "0x30ee9a",
+   "size": 250,
+   "sha256": "0512f80c7a1c0e75586c7afb746b42037d9831016899c54372fe5270769c27f6"
+  },
+  {
+   "name": "fed",
+   "va": "0x30fed0",
+   "end": "0x3105cb",
+   "size": 1787,
+   "sha256": "01a49b9744154d628b7fc654eddadf42efec96702992fe8fc14cfe8d2ff9e853"
+  },
+  {
+   "name": "reset",
+   "va": "0x3105d0",
+   "end": "0x310772",
+   "size": 418,
+   "sha256": "7848f02fa8ab54c82574678bcd04d4f4d9ec34a57a021b8b1be17145f7e70073"
+  },
+  {
+   "name": "r780",
+   "va": "0x310780",
+   "end": "0x310861",
+   "size": 225,
+   "sha256": "d85b7aeaaedb68f530d1baf03e1dd37e0a0faadb6a2bf13d5f53e689ed6cfb88"
+  },
+  {
+   "name": "uidx",
+   "va": "0x3148f0",
+   "end": "0x31490b",
+   "size": 27,
+   "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c"
+  },
+  {
+   "name": "k6cf0",
+   "va": "0x316cf0",
+   "end": "0x316d29",
+   "size": 57,
+   "sha256": "fa7c32848af43af78e102cce11713e37a3a20c10f42d3fa50457dc6b223638c1"
+  },
+  {
+   "name": "hub420",
+   "va": "0x319420",
+   "end": "0x319451",
+   "size": 49,
+   "sha256": "abda7e12783dc61f9578022a565fb667d7d2dad61b8e65e19985bc81bfee1c46"
+  },
+  {
+   "name": "b760",
+   "va": "0x31b760",
+   "end": "0x31b76d",
+   "size": 13,
+   "sha256": "f8005f87af4547c721f389416a0a538600c525d493afb3377cae439778dffaa5"
+  },
+  {
+   "name": "b7e0",
+   "va": "0x31b7e0",
+   "end": "0x31b80a",
+   "size": 42,
+   "sha256": "42d9fb03d4e61a5eb54f3937e87c9068decc289b61409fdb1e55f3b7a5533585"
+  },
+  {
+   "name": "find",
+   "va": "0x31b860",
+   "end": "0x31b8b3",
+   "size": 83,
+   "sha256": "9a162077226a0c37d235edf972c43ef16187e594054b0d54eb7ddfd2cddcca8f"
+  },
+  {
+   "name": "f22gate",
+   "va": "0x322c50",
+   "end": "0x323051",
+   "size": 1025,
+   "sha256": "8a944ad6185050d17911f914a56145320f9f604d3f95eec59e86ef5a2777786d"
+  },
+  {
+   "name": "ghdl",
+   "va": "0x3272a0",
+   "end": "0x3272d7",
+   "size": 55,
+   "sha256": "18e2ae8fea979cb2a00406bc6a5ea625088cf815f4948b1faf6b113ced14ec0d"
+  },
+  {
+   "name": "b79b",
+   "va": "0x3279b0",
+   "end": "0x327a0e",
+   "size": 94,
+   "sha256": "d8cb6c504a01400132fe3ca7dae3f65a0048eba9c17004b6fd77c32be5c08f94"
+  },
+  {
+   "name": "unot",
+   "va": "0x3283d0",
+   "end": "0x328477",
+   "size": 167,
+   "sha256": "995ec576ea1f652c0952d7c09ef3c25db72496fe18ad730a12810802365e7d4d"
+  },
+  {
+   "name": "w91b0",
+   "va": "0x3291b0",
+   "end": "0x32920a",
+   "size": 90,
+   "sha256": "6e6781fe3514309e8f00017faa6ce77d7ade9c0f9a845809e223997fee4bc9e1"
+  },
+  {
+   "name": "ecopy",
+   "va": "0x336710",
+   "end": "0x336ad5",
+   "size": 965,
+   "sha256": "11f3642622f75b733f8ea9c21185084a70de8aa5c380127cfd28c876f45ec2f3"
+  },
+  {
+   "name": "zc9b0",
+   "va": "0x33c9b0",
+   "end": "0x33c9fb",
+   "size": 75,
+   "sha256": "205c94f8e1559f51605259966eada29bae3a8f804dd92e6ae24b1246921afcee"
+  },
+  {
+   "name": "hdec",
+   "va": "0x3588b0",
+   "end": "0x35893f",
+   "size": 143,
+   "sha256": "ee587d783b5790f447385952fff3663b09d20653e57327ed10dd1d06ad72b644"
+  },
+  {
+   "name": "ghget",
+   "va": "0x3590d0",
+   "end": "0x3590d7",
+   "size": 7,
+   "sha256": "a40d2ed05eca9aa062885c59f8ce7103f120dabe117bf557a2d23ac34b158241"
+  },
+  {
+   "name": "uflag",
+   "va": "0x377c20",
+   "end": "0x377c6e",
+   "size": 78,
+   "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea"
+  },
+  {
+   "name": "ffill",
+   "va": "0x3839f0",
+   "end": "0x383a12",
+   "size": 34,
+   "sha256": "90934b4d11ca0eba4fd9d41b1980e8f1b8e379807cc8e78935f73da5f6435d06"
+  },
+  {
+   "name": "b50",
+   "va": "0x386a50",
+   "end": "0x386a70",
+   "size": 32,
+   "sha256": "1158e58f6d46c8ce1bc36b83bb000c4cf394bb03ffdea76a7f5cbff5b75c344a"
+  },
+  {
+   "name": "b70",
+   "va": "0x386a70",
+   "end": "0x386ad7",
+   "size": 103,
+   "sha256": "3850f8a9698e4f497a79c3366d41c205d10f1248fb1edefa6c3dbd1bab443849"
+  },
+  {
+   "name": "be0",
+   "va": "0x386ae0",
+   "end": "0x386c09",
+   "size": 297,
+   "sha256": "3bcd95a23d418b712fbec20135d645aa094d604e340662c44ad827ae1aa1f92f"
+  },
+  {
+   "name": "n472",
+   "va": "0x46a720",
+   "end": "0x46a78c",
+   "size": 108,
+   "sha256": "1804c554b84d094c6be28d81fc0877b96784fe3d293e5fb6e8f2fbf3620c9a61"
+  },
+  {
+   "name": "n479",
+   "va": "0x46a790",
+   "end": "0x46a7fc",
+   "size": 108,
+   "sha256": "a9b7d6a219547cb6884a2204c2831793dc2a7d3c8e473181702a2d192a736842"
+  },
+  {
+   "name": "cookie",
+   "va": "0x808c40",
+   "end": "0x808c61",
+   "size": 33,
+   "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "fmt",
+   "va": "0x3bbd00",
+   "note": "scripted boundary (P token + arg capture; ~500-body CRT/string formatter closure)"
+  },
+  {
+   "name": "vnorm",
+   "va": "0x3a1920",
+   "note": "entry-intercepted: body tail-jumps an unmapped IAT thunk (CRT sqrt); harness computes the float norm and writes xmm0"
+  },
+  {
+   "name": "memset",
+   "va": "0x861ec0",
+   "note": "jmp-thunk into unresolved IAT hint/name data; entry-intercepted, harness zeroes rcx..rcx+r8"
+  },
+  {
+   "name": "sqrtf",
+   "va": "0x861f14",
+   "note": "jmp-thunk into unresolved IAT data; entry-intercepted, harness computes xmm0"
+  },
+  {
+   "name": "s24fe30",
+   "va": "0x24fe30",
+   "note": "scripted ret-0 stub: 950-body carrier reached via 319420->2EAEA0 thunk inside RESET quiet zones"
+  },
+  {
+   "name": "s300fc0",
+   "va": "0x300fc0",
+   "note": "scripted ret-0 stub: 1085-body eligibility eval (CASCADE bitidx 0/1/31 rec-ok arm)"
+  },
+  {
+   "name": "s17d470",
+   "va": "0x17d470",
+   "note": "scripted ret-0 stub: context carrier via 30B7F0 inside CASC eligibility wrappers"
+  },
+  {
+   "name": "s3112f0",
+   "va": "0x3112f0",
+   "note": "scripted ret-0 stub: mega-dispatcher, APPLY/CASC builder flag dispatch"
+  },
+  {
+   "name": "s33e1f0",
+   "va": "0x33e1f0",
+   "note": "scripted ret-0 stub: element serializer with CRT vararg tail inside z9b"
+  },
+  {
+   "name": "sb9b0",
+   "va": "0x30b9b0",
+   "note": "value stub: CASC eligibility wrapper; ret from case qret (default 0)"
+  },
+  {
+   "name": "sb8e0",
+   "va": "0x30b8e0",
+   "note": "value stub: second CASC eligibility wrapper, is34 only"
+  },
+  {
+   "name": "s773",
+   "va": "0x387730",
+   "note": "value stub: CASC arg4<0 decoder -> dword write"
+  },
+  {
+   "name": "s76d",
+   "va": "0x3876d0",
+   "note": "value stub: CASC arg5<0 decoder -> word write"
+  },
+  {
+   "name": "s0140",
+   "va": "0x300140",
+   "note": "value stub: CASC arm 5/27 RESET-family carrier"
+  },
+  {
+   "name": "s1140",
+   "va": "0x301140",
+   "note": "value stub: CASC arm 0 carrier (2E9600 closure)"
+  },
+  {
+   "name": "s2280",
+   "va": "0x312280",
+   "note": "value stub: CASC arm serializer carrier"
+  },
+  {
+   "name": "s99b0",
+   "va": "0x3299b0",
+   "note": "value stub: CASC arm helper (46A7xx carrier)"
+  },
+  {
+   "name": "s4d0",
+   "va": "0x3284d0",
+   "note": "value stub: CASC range helper (RNG closure)"
+  },
+  {
+   "name": "s46a8",
+   "va": "0x46a800",
+   "note": "value stub: CASC flag60 helper, action in {3,4}"
+  },
+  {
+   "name": "s4b1",
+   "va": "0x384b10",
+   "note": "value stub: rand() bit-picker inside ~be0 (unresolved IAT closure)"
+  }
+ ]
+}

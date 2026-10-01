@@ -1,0 +1,82 @@
+[
+  {
+    "case": "valid",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\preflight-cases\\valid"
+    ],
+    "returncode": 0,
+    "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "gate_sha256": "41455add8aa288188b6f35971b3a0797601a3036d759d37d08b08e2d637203dc"
+  },
+  {
+    "case": "missing-controls",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\preflight-cases\\missing-controls"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 7, in controls_preflight\n    root=Path(root);rs=json.loads((root/'checks-effects-terminal.json').read_bytes())\n                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'Database\\\\Tools\\\\work\\\\ASTRA\\\\heading-class-effects-slice\\\\preflight-cases\\\\missing-controls\\\\checks-effects-terminal.json'\n",
+    "terminal": true,
+    "gate_sha256": "41455add8aa288188b6f35971b3a0797601a3036d759d37d08b08e2d637203dc"
+  },
+  {
+    "case": "nonzero-positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\preflight-cases\\nonzero-positive"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 11, in controls_preflight\n    assert rs[0]['returncode']==0 and not rs[0]['stderr'] and all(r['returncode']!=0 and r['stderr'] for r in rs[1:])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "41455add8aa288188b6f35971b3a0797601a3036d759d37d08b08e2d637203dc"
+  },
+  {
+    "case": "empty-controls",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\preflight-cases\\empty-controls"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 9, in controls_preflight\n    assert len(rs)==len(names) and [r['case'] for r in rs]==names\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "gate_sha256": "41455add8aa288188b6f35971b3a0797601a3036d759d37d08b08e2d637203dc"
+  },
+  {
+    "case": "failed-real-prerequisite",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py",
+      "--controls-preflight",
+      "--controls-root",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\preflight-cases\\failed-real-prerequisite"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\prepare-publication.py\", line 15, in controls_preflight\n    assert q.returncode==0 and not q.stderr and json.loads(q.stdout)==result, (q.returncode,q.stderr)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (1, 'Traceback (most recent call last):\\n  File \"C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\heading-class-effects-slice\\\\preflight-cases\\\\failed-real-prerequisite\\\\check-effects.py\", line 21, in <module>\\n    assert terminal[\\'terminal\\'] is True and terminal[\\'returncode\\'] == 0 and not terminal[\\'stderr\\'], \\'Required capture failed/incomplete\\'\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError: Required capture failed/incomplete\\n')\n",
+    "terminal": true,
+    "gate_sha256": "41455add8aa288188b6f35971b3a0797601a3036d759d37d08b08e2d637203dc"
+  }
+]

@@ -1,0 +1,20 @@
+reach sets: no-jcc 382, jcc 388 (difference ['0022AF50', '0022B000', '0022B7E0', '002E65A0', '002E6880', '002E6EB0'])
+00262AFC: call 0x2e65a0 (size 5)
+00262B12: call 0x2e65a0 (size 5)
+002E65A0 in no-jcc reach set: False; in jcc reach set: True
+BFS path 002E65A0 -> 00312280 in the jcc graph (8 edges):
+   002E66AA in 002E65A0: call 0x2e6880 -> 002E6880 [call]
+   002E68A7 in 002E6880: call 0x2e6eb0 -> 002E6EB0 [call]
+   002E70C9 in 002E6EB0: je 0x325260 -> 00325260 [JCC] | site root -, target root 00325260, target is a .pdata start: True
+   00325515 in 00325260: call 0x3191b0 -> 003191B0 [call]
+   00319362 in 003191B0: call 0x307300 -> 00307300 [call]
+   00307436 in 00307300: call 0x3112f0 -> 003112F0 [call]
+   0031153A in 003112F0: call 0x30e360 -> 0030E360 [call]
+   0030E884 in 0030E360: call 0x312280 -> 00312280 [call]
+== the 6 functions only the jcc variant adds, each with its first jcc edge into R0
+   0022AF50: 002E70C9 in 002E6EB0 je 0x325260 -> 00325260 (root of target 00325260)
+   0022B000: 002E70C9 in 002E6EB0 je 0x325260 -> 00325260 (root of target 00325260)
+   0022B7E0: 002E70C9 in 002E6EB0 je 0x325260 -> 00325260 (root of target 00325260)
+   002E65A0: 002E70C9 in 002E6EB0 je 0x325260 -> 00325260 (root of target 00325260)
+   002E6880: 002E70C9 in 002E6EB0 je 0x325260 -> 00325260 (root of target 00325260)
+   002E6EB0: 002E70C9 in 002E6EB0 je 0x325260 -> 00325260 (root of target 00325260)

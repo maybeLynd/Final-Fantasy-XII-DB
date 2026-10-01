@@ -1,0 +1,5 @@
+import hashlib,json
+from pathlib import Path
+W=Path(__file__).resolve().parent;R=W/'retained';old=R/'check-before-reused-call-control.py';current=(W/'check.py').read_bytes();assert old.read_bytes()==current and b'retained_call_control=call_control' in current
+(R/'checker-at-additive-control-preparation.py').write_bytes(current)
+(W/'helper-label-correction.json').write_text(json.dumps(dict(status='ADDITIVE_PROVENANCE_LABEL_CORRECTION',misnamed_retained_file=old.name,actual_sha256=hashlib.sha256(current).hexdigest(),withdrawn_claim='Filename before-reused-call-control does not establish old checker preimage. Helper ran after checker edit, so it captured the already strengthened checker.',corrected_label='checker-at-additive-control-preparation.py',actual_helper='reuse-call-control.py now asserts strengthened source and saves with truthful at-preparation label',unaffected='Four-assignment result retained before additive call control, original raw/inputs and later default/regressions unaffected. No original behavior conclusion depended on purported checker preimage.'),indent=2)+'\n')

@@ -1,0 +1,10 @@
+entry-deriving functions: 33; with a candidate store: 7
+CONTROLS: {'003DBB35': True, '003DC1A4': True, '003DC1B0': False, '003DBE68': False} | insert 003DB7A0 listed: True
+003DB1F0  003DB245 mov byte ptr [rcx], 2 [stores 2, base advanced by 0x11]
+003DB6E0  003DB754 mov byte ptr [rdi + 0x11], al [disp 0x11]
+003DB7A0  003DB8E9 mov byte ptr [rdx + 0x11], r12b [disp 0x11]
+003DB7A0  003DB9E4 mov byte ptr [rdx + 0x11], r12b [disp 0x11]
+003DBAE0  003DBB35 mov byte ptr [rax], 2 [stores 2, base advanced by 0x11]
+003DBBF0  003DBCAC mov byte ptr [rcx], 2 [stores 2, base advanced by 0x11]
+003DC130  003DC1A4 mov byte ptr [r9 + 0x11], 0 [disp 0x11]
+003DC1B0  003DC233 mov byte ptr [r8 + 0x11], 0 [disp 0x11]

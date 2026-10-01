@@ -1,0 +1,33 @@
+parent 007A4930 size 221, edge 007A49C1
+    007A499A mov dword ptr [rsp + 0x30], eax
+    007A499E mov r8d, ebp
+    007A49A1 mov rax, qword ptr [rsp + 0x88]
+    007A49A9 mov edx, r14d
+    007A49AC mov qword ptr [rsp + 0x28], rax
+    007A49B1 mov rcx, rbx
+    007A49B4 mov rax, qword ptr [rsp + 0x80]
+    007A49BC mov qword ptr [rsp + 0x20], rax
+    007A49C1 call 0x7b9050
+parent 007DCD70 size 164, edge 007DCE07
+    007DCDE8 mov rcx, rdi
+    007DCDEB call 0x7dc6b0
+    007DCDF0 mov rdx, rbx
+    007DCDF3 mov qword ptr [rip + 0x26d128e], rax
+    007DCDFA mov rcx, rax
+    007DCDFD mov rdi, qword ptr [rsp + 0x30]
+    007DCE02 add rsp, 0x20
+    007DCE06 pop rbx
+    007DCE07 jmp 0x7dce20
+parent 007B5D20 size 300, edge 007B5E20
+    007B5DFA mov rcx, qword ptr [r15]
+    007B5DFD mov qword ptr [rsp + 0x38], rcx
+    007B5E02 mov rcx, qword ptr [rbx + 8]
+    007B5E06 mov qword ptr [rsp + 0x48], rcx
+    007B5E0B movzx ecx, byte ptr [rsp + 0xb8]
+    007B5E13 mov byte ptr [rsp + 0x54], cl
+    007B5E17 mov rcx, rax
+    007B5E1A movss dword ptr [rsp + 0x50], xmm0
+    007B5E20 call 0x7ebad0
+ExternalSourceVoice ctor 007B8E50 raw callers: ['007B8F2F/007B8F20']
+HCAMixerVoice ctor 007DC730 raw callers: ['007DCA5F/007DCA50']
+Voice ctor 007EA050 raw callers: ['007EA41F/007EA410']

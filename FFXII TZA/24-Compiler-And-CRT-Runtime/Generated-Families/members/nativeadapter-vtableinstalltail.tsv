@@ -1,0 +1,7 @@
+# NativeAdapter.VtableInstallTail - EC-7 family C
+# install a member rip vtable at [this]; tail-dispatch to a member op.
+address	targets
+00212C50	00212CE0
+00212D90	00212CE0
+00215310	00212CE0
+0062DD70	006CB680

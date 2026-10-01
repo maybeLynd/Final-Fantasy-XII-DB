@@ -1,0 +1,66 @@
+{
+  "preparer_sha256": "3f01aa8c2f57154adf80c6b19484d78da196458c448e70046c6aad3692f83377",
+  "receipts": [
+    {
+      "case": "valid-required-controls",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "Database\\Tools\\work\\ASTRA\\transition-actual-write"
+      ],
+      "returncode": 0,
+      "stdout": "REQUIRED_CONTROLS_VERIFIED_NO_WRITES\n",
+      "stderr": "",
+      "terminal": true
+    },
+    {
+      "case": "missing-runner",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\tmpy8sm6108"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py\", line 7, in controls_preflight\n    q=json.loads((root/'controls-terminal.json').read_bytes())\n                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\transition-actual-write\\\\tmpy8sm6108\\\\controls-terminal.json'\n",
+      "terminal": true
+    },
+    {
+      "case": "nonzero-runner-with-good-output",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\tmp_nml5t15"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py\", line 8, in controls_preflight\n    assert q['terminal'] is True and q['returncode']==0 and not q['stderr'], 'Required control runner did not pass'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required control runner did not pass\n",
+      "terminal": true
+    },
+    {
+      "case": "valid-empty-output",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py",
+        "--controls-preflight",
+        "--controls-root",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\tmptvv6is89"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py\", line 20, in <module>\n    controls_preflight(gate_root)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-actual-write\\prepare-publication.py\", line 14, in controls_preflight\n    assert len(results)==3 and {x['case'] for x in results}=={'missing-second','nonzero-first','changed-second-state'} and all(x['refused'] is True for x in results), 'Required controls incomplete/empty'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Required controls incomplete/empty\n",
+      "terminal": true
+    }
+  ],
+  "limits": "Actual read-only default-path preflight controls; no native transition re-dispatch"
+}

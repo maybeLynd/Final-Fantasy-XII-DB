@@ -1,0 +1,450 @@
+003E00C0 mov qword ptr [rsp + 8], rbx
+003E00C5 mov qword ptr [rsp + 0x10], rsi
+003E00CA push rdi
+003E00CB sub rsp, 0x30
+003E00CF mov rdi, rcx
+003E00D2 mov ecx, dword ptr [rcx + 0x70]
+003E00D5 call 0x20e600
+003E00DA mov rsi, rax
+003E00DD call 0x36d9e0
+003E00E2 mov ecx, dword ptr [rdi]
+003E00E4 call 0x20e600
+003E00E9 test rax, rax
+003E00EC je 0x3e013c
+003E00EE mov ecx, dword ptr [rdi]
+003E00F0 call 0x20e600
+003E00F5 cmp byte ptr [rax + 6], 0
+003E00F9 je 0x3e013c
+003E00FB mov ecx, dword ptr [rdi]
+003E00FD movaps xmmword ptr [rsp + 0x20], xmm6
+003E0102 call 0x20e600
+003E0107 cmp byte ptr [rax + 7], 0
+003E010B jne 0x3e0114
+003E010D movss xmm6, dword ptr [rdi + 0x58]
+003E0112 jmp 0x3e0117
+003E0114 xorps xmm6, xmm6
+003E0117 movzx ebx, byte ptr [rdi + 0x63]
+003E011B mov ecx, dword ptr [rdi]
+003E011D or bx, word ptr [rip + 0x2779c3c]
+003E0124 call 0x20e600
+003E0129 mov rcx, rax
+003E012C movaps xmm2, xmm6
+003E012F movzx edx, bx
+003E0132 call 0x40b180
+003E0137 movaps xmm6, xmmword ptr [rsp + 0x20]
+003E013C movzx eax, byte ptr [rdi + 0x63]
+003E0140 or eax, dword ptr [rip + 0x2779c1a]
+003E0146 jne 0x3e070f
+003E014C lea edx, [rax + 2]
+003E014F mov rcx, rdi
+003E0152 lea r8d, [rax + 1]
+003E0156 call 0x3e29f0
+003E015B mov rcx, rdi
+003E015E call 0x3e3c30
+003E0163 mov ecx, dword ptr [rsi + 0x114]
+003E0169 test ecx, ecx
+003E016B je 0x3e0175
+003E016D xorps xmm1, xmm1
+003E0170 call 0x3b6b60
+003E0175 mov ecx, dword ptr [rdi + 0x28]
+003E0178 call 0x20e600
+003E017D test rax, rax
+003E0180 je 0x3e01a0
+003E0182 mov ecx, dword ptr [rdi + 0x28]
+003E0185 call 0x20e600
+003E018A cmp dword ptr [rax + 8], 0
+003E018E je 0x3e01a0
+003E0190 mov ecx, dword ptr [rdi + 0x28]
+003E0193 call 0x20e600
+003E0198 mov rcx, rax
+003E019B call 0x5188c0
+003E01A0 call 0x181dd0
+003E01A5 test eax, eax
+003E01A7 jne 0x3e01e1
+003E01A9 call 0x1ede80
+003E01AE test eax, eax
+003E01B0 je 0x3e01e1
+003E01B2 mov ecx, dword ptr [rdi + 0x20]
+003E01B5 call 0x20e600
+003E01BA test rax, rax
+003E01BD je 0x3e01e1
+003E01BF mov ecx, dword ptr [rdi + 0x20]
+003E01C2 call 0x20e600
+003E01C7 cmp word ptr [rax + 0xa6], 0
+003E01CF je 0x3e01e1
+003E01D1 mov ecx, dword ptr [rdi + 0x20]
+003E01D4 call 0x20e600
+003E01D9 mov rcx, rax
+003E01DC call 0x516220
+003E01E1 mov ecx, dword ptr [rdi + 4]
+003E01E4 call 0x20e600
+003E01E9 test rax, rax
+003E01EC je 0x3e020c
+003E01EE mov ecx, dword ptr [rdi + 4]
+003E01F1 call 0x20e600
+003E01F6 test byte ptr [rax + 0x35], 4
+003E01FA je 0x3e020c
+003E01FC mov ecx, dword ptr [rdi + 4]
+003E01FF call 0x20e600
+003E0204 mov rcx, rax
+003E0207 call 0x5121a0
+003E020C mov ecx, dword ptr [rdi + 8]
+003E020F call 0x20e600
+003E0214 test rax, rax
+003E0217 je 0x3e0239
+003E0219 mov ecx, dword ptr [rdi + 8]
+003E021C call 0x20e600
+003E0221 test byte ptr [rax + 5], 0xf0
+003E0225 je 0x3e0239
+003E0227 mov ecx, dword ptr [rdi + 8]
+003E022A call 0x20e600
+003E022F mov rcx, rax
+003E0232 xor edx, edx
+003E0234 call 0x5131c0
+003E0239 mov ecx, dword ptr [rdi + 0x24]
+003E023C call 0x20e600
+003E0241 test rax, rax
+003E0244 je 0x3e0264
+003E0246 mov ecx, dword ptr [rdi + 0x24]
+003E0249 call 0x20e600
+003E024E cmp byte ptr [rax + 2], 0
+003E0252 je 0x3e0264
+003E0254 mov ecx, dword ptr [rdi + 0x24]
+003E0257 call 0x20e600
+003E025C mov rcx, rax
+003E025F call 0x517650
+003E0264 mov ecx, dword ptr [rdi + 0x2c]
+003E0267 call 0x20e600
+003E026C test rax, rax
+003E026F je 0x3e028f
+003E0271 mov ecx, dword ptr [rdi + 0x2c]
+003E0274 call 0x20e600
+003E0279 cmp byte ptr [rax + 6], 0
+003E027D je 0x3e028f
+003E027F mov ecx, dword ptr [rdi + 0x2c]
+003E0282 call 0x20e600
+003E0287 mov rcx, rax
+003E028A call 0x518f50
+003E028F mov ecx, dword ptr [rdi + 0x34]
+003E0292 call 0x20e600
+003E0297 test rax, rax
+003E029A je 0x3e02bb
+003E029C mov ecx, dword ptr [rdi + 0x34]
+003E029F call 0x20e600
+003E02A4 cmp word ptr [rax + 0xa], 0
+003E02A9 je 0x3e02bb
+003E02AB mov ecx, dword ptr [rdi + 0x34]
+003E02AE call 0x20e600
+003E02B3 mov rcx, rax
+003E02B6 call 0x471b60
+003E02BB mov ecx, dword ptr [rdi + 0x3c]
+003E02BE call 0x20e600
+003E02C3 test rax, rax
+003E02C6 je 0x3e02e5
+003E02C8 mov ecx, dword ptr [rdi + 0x3c]
+003E02CB call 0x20e600
+003E02D0 test byte ptr [rax], 4
+003E02D3 je 0x3e02e5
+003E02D5 mov ecx, dword ptr [rdi + 0x3c]
+003E02D8 call 0x20e600
+003E02DD mov rcx, rax
+003E02E0 call 0x472970
+003E02E5 mov ecx, dword ptr [rdi + 0x38]
+003E02E8 call 0x20e600
+003E02ED test rax, rax
+003E02F0 je 0x3e0310
+003E02F2 mov ecx, dword ptr [rdi + 0x38]
+003E02F5 call 0x20e600
+003E02FA cmp byte ptr [rax + 0x30], 0
+003E02FE je 0x3e0310
+003E0300 mov ecx, dword ptr [rdi + 0x38]
+003E0303 call 0x20e600
+003E0308 mov rcx, rax
+003E030B call 0x519b60
+003E0310 mov ecx, dword ptr [rdi + 0x14]
+003E0313 call 0x20e600
+003E0318 test rax, rax
+003E031B je 0x3e0373
+003E031D mov ecx, dword ptr [rdi + 0x14]
+003E0320 call 0x20e600
+003E0325 test byte ptr [rax + 0x15], 1
+003E0329 je 0x3e0373
+003E032B mov ecx, dword ptr [rdi + 0x14]
+003E032E call 0x20e600
+003E0333 mov rcx, rax
+003E0336 call 0x51a3c0
+003E033B mov ecx, dword ptr [rdi + 8]
+003E033E call 0x20e600
+003E0343 test rax, rax
+003E0346 je 0x3e0361
+003E0348 mov ecx, dword ptr [rdi + 8]
+003E034B call 0x20e600
+003E0350 mov ecx, dword ptr [rdi + 0x14]
+003E0353 mov rbx, rax
+003E0356 call 0x20e600
+003E035B lea rdx, [rbx + 7]
+003E035F jmp 0x3e036b
+003E0361 mov ecx, dword ptr [rdi + 0x14]
+003E0364 call 0x20e600
+003E0369 xor edx, edx
+003E036B mov rcx, rax
+003E036E call 0x51a890
+003E0373 mov ecx, dword ptr [rdi + 0x40]
+003E0376 call 0x20e600
+003E037B test rax, rax
+003E037E je 0x3e03a4
+003E0380 mov ecx, dword ptr [rdi + 0x40]
+003E0383 call 0x20e600
+003E0388 test byte ptr [rax + 0x34], 1
+003E038C je 0x3e03a4
+003E038E mov ecx, dword ptr [rdi + 0x40]
+003E0391 call 0x20e600
+003E0396 mov edx, dword ptr [rsi + 0x738]
+003E039C mov rcx, rax
+003E039F call 0x51b150
+003E03A4 mov ecx, dword ptr [rdi + 0x18]
+003E03A7 call 0x20e600
+003E03AC test rax, rax
+003E03AF je 0x3e03cf
+003E03B1 mov ecx, dword ptr [rdi + 0x18]
+003E03B4 call 0x20e600
+003E03B9 cmp byte ptr [rax + 3], 0
+003E03BD je 0x3e03cf
+003E03BF mov ecx, dword ptr [rdi + 0x18]
+003E03C2 call 0x20e600
+003E03C7 mov rcx, rax
+003E03CA call 0x4716a0
+003E03CF mov ecx, dword ptr [rdi + 0x1c]
+003E03D2 call 0x20e600
+003E03D7 test rax, rax
+003E03DA je 0x3e03fa
+003E03DC mov ecx, dword ptr [rdi + 0x1c]
+003E03DF call 0x20e600
+003E03E4 cmp byte ptr [rax + 1], 0
+003E03E8 je 0x3e03fa
+003E03EA mov ecx, dword ptr [rdi + 0x1c]
+003E03ED call 0x20e600
+003E03F2 mov rcx, rax
+003E03F5 call 0x4713a0
+003E03FA mov ecx, dword ptr [rdi + 0x30]
+003E03FD call 0x20e600
+003E0402 test rax, rax
+003E0405 je 0x3e0426
+003E0407 mov ecx, dword ptr [rdi + 0x30]
+003E040A call 0x20e600
+003E040F cmp word ptr [rax + 2], 0
+003E0414 je 0x3e0426
+003E0416 mov ecx, dword ptr [rdi + 0x30]
+003E0419 call 0x20e600
+003E041E mov rcx, rax
+003E0421 call 0x471150
+003E0426 mov ecx, dword ptr [rdi + 0xc]
+003E0429 call 0x20e600
+003E042E test rax, rax
+003E0431 je 0x3e0452
+003E0433 mov ecx, dword ptr [rdi + 0xc]
+003E0436 call 0x20e600
+003E043B cmp word ptr [rax + 0xa], 0
+003E0440 je 0x3e0452
+003E0442 mov ecx, dword ptr [rdi + 0xc]
+003E0445 call 0x20e600
+003E044A mov rcx, rax
+003E044D call 0x515660
+003E0452 mov ecx, dword ptr [rdi + 0x40]
+003E0455 call 0x20e600
+003E045A test rax, rax
+003E045D je 0x3e047d
+003E045F mov ecx, dword ptr [rdi + 0x40]
+003E0462 call 0x20e600
+003E0467 test byte ptr [rax + 0x34], 1
+003E046B je 0x3e047d
+003E046D mov ecx, dword ptr [rdi + 0x40]
+003E0470 call 0x20e600
+003E0475 mov rcx, rax
+003E0478 call 0x51b330
+003E047D mov ecx, dword ptr [rdi + 0x2c]
+003E0480 call 0x20e600
+003E0485 test rax, rax
+003E0488 je 0x3e04a8
+003E048A mov ecx, dword ptr [rdi + 0x2c]
+003E048D call 0x20e600
+003E0492 cmp byte ptr [rax + 6], 0
+003E0496 je 0x3e04a8
+003E0498 mov ecx, dword ptr [rdi + 0x2c]
+003E049B call 0x20e600
+003E04A0 mov rcx, rax
+003E04A3 call 0x519170
+003E04A8 mov ecx, dword ptr [rdi + 0x28]
+003E04AB call 0x20e600
+003E04B0 test rax, rax
+003E04B3 je 0x3e04d3
+003E04B5 mov ecx, dword ptr [rdi + 0x28]
+003E04B8 call 0x20e600
+003E04BD cmp dword ptr [rax + 8], 0
+003E04C1 je 0x3e04d3
+003E04C3 mov ecx, dword ptr [rdi + 0x28]
+003E04C6 call 0x20e600
+003E04CB mov rcx, rax
+003E04CE call 0x518d50
+003E04D3 test byte ptr [rdi + 0x5f], 2
+003E04D7 jne 0x3e0589
+003E04DD mov ecx, dword ptr [rdi + 8]
+003E04E0 call 0x20e600
+003E04E5 test rax, rax
+003E04E8 je 0x3e0508
+003E04EA mov ecx, dword ptr [rdi + 8]
+003E04ED call 0x20e600
+003E04F2 test byte ptr [rax + 5], 0xf0
+003E04F6 je 0x3e0508
+003E04F8 mov ecx, dword ptr [rdi + 8]
+003E04FB call 0x20e600
+003E0500 mov rcx, rax
+003E0503 call 0x514f20
+003E0508 mov ecx, dword ptr [rdi + 0x24]
+003E050B call 0x20e600
+003E0510 test rax, rax
+003E0513 je 0x3e0533
+003E0515 mov ecx, dword ptr [rdi + 0x24]
+003E0518 call 0x20e600
+003E051D cmp byte ptr [rax + 2], 0
+003E0521 je 0x3e0533
+003E0523 mov ecx, dword ptr [rdi + 0x24]
+003E0526 call 0x20e600
+003E052B mov rcx, rax
+003E052E call 0x5186a0
+003E0533 mov ecx, dword ptr [rdi + 0x34]
+003E0536 call 0x20e600
+003E053B test rax, rax
+003E053E je 0x3e055f
+003E0540 mov ecx, dword ptr [rdi + 0x34]
+003E0543 call 0x20e600
+003E0548 cmp word ptr [rax + 0xa], 0
+003E054D je 0x3e055f
+003E054F mov ecx, dword ptr [rdi + 0x34]
+003E0552 call 0x20e600
+003E0557 mov rcx, rax
+003E055A call 0x471e40
+003E055F mov ecx, dword ptr [rdi + 0x3c]
+003E0562 call 0x20e600
+003E0567 test rax, rax
+003E056A je 0x3e0589
+003E056C mov ecx, dword ptr [rdi + 0x3c]
+003E056F call 0x20e600
+003E0574 test byte ptr [rax], 4
+003E0577 je 0x3e0589
+003E0579 mov ecx, dword ptr [rdi + 0x3c]
+003E057C call 0x20e600
+003E0581 mov rcx, rax
+003E0584 call 0x472cd0
+003E0589 movzx ecx, byte ptr [rdi + 0x5f]
+003E058D movzx eax, byte ptr [rdi + 0x62]
+003E0591 shr ecx, 1
+003E0593 and ecx, 1
+003E0596 or ecx, eax
+003E0598 or ecx, dword ptr [rip + 0x27797c6]
+003E059E jne 0x3e0680
+003E05A4 mov ecx, dword ptr [rdi + 0x20]
+003E05A7 call 0x20e600
+003E05AC test rax, rax
+003E05AF je 0x3e05d3
+003E05B1 mov ecx, dword ptr [rdi + 0x20]
+003E05B4 call 0x20e600
+003E05B9 cmp word ptr [rax + 0xa6], 0
+003E05C1 je 0x3e05d3
+003E05C3 mov ecx, dword ptr [rdi + 0x20]
+003E05C6 call 0x20e600
+003E05CB mov rcx, rax
+003E05CE call 0x516970
+003E05D3 mov ecx, dword ptr [rdi + 4]
+003E05D6 call 0x20e600
+003E05DB test rax, rax
+003E05DE je 0x3e05fe
+003E05E0 mov ecx, dword ptr [rdi + 4]
+003E05E3 call 0x20e600
+003E05E8 test byte ptr [rax + 0x35], 4
+003E05EC je 0x3e05fe
+003E05EE mov ecx, dword ptr [rdi + 4]
+003E05F1 call 0x20e600
+003E05F6 mov rcx, rax
+003E05F9 call 0x5124d0
+003E05FE mov ecx, dword ptr [rdi + 0x38]
+003E0601 call 0x20e600
+003E0606 test rax, rax
+003E0609 je 0x3e0629
+003E060B mov ecx, dword ptr [rdi + 0x38]
+003E060E call 0x20e600
+003E0613 cmp byte ptr [rax + 0x30], 0
+003E0617 je 0x3e0629
+003E0619 mov ecx, dword ptr [rdi + 0x38]
+003E061C call 0x20e600
+003E0621 mov rcx, rax
+003E0624 call 0x51a280
+003E0629 mov ecx, dword ptr [rdi + 0x14]
+003E062C call 0x20e600
+003E0631 test rax, rax
+003E0634 je 0x3e0654
+003E0636 mov ecx, dword ptr [rdi + 0x14]
+003E0639 call 0x20e600
+003E063E test byte ptr [rax + 0x15], 1
+003E0642 je 0x3e0654
+003E0644 mov ecx, dword ptr [rdi + 0x14]
+003E0647 call 0x20e600
+003E064C mov rcx, rax
+003E064F call 0x51aa30
+003E0654 mov ecx, dword ptr [rdi + 0x30]
+003E0657 call 0x20e600
+003E065C test rax, rax
+003E065F je 0x3e0680
+003E0661 mov ecx, dword ptr [rdi + 0x30]
+003E0664 call 0x20e600
+003E0669 cmp word ptr [rax + 2], 0
+003E066E je 0x3e0680
+003E0670 mov ecx, dword ptr [rdi + 0x30]
+003E0673 call 0x20e600
+003E0678 mov rcx, rax
+003E067B call 0x471230
+003E0680 cmp dword ptr [rip + 0x27796e1], 0
+003E0687 jne 0x3e070f
+003E068D mov ecx, dword ptr [rdi + 0x1c]
+003E0690 call 0x20e600
+003E0695 test rax, rax
+003E0698 je 0x3e06b8
+003E069A mov ecx, dword ptr [rdi + 0x1c]
+003E069D call 0x20e600
+003E06A2 cmp byte ptr [rax + 1], 0
+003E06A6 je 0x3e06b8
+003E06A8 mov ecx, dword ptr [rdi + 0x1c]
+003E06AB call 0x20e600
+003E06B0 mov rcx, rax
+003E06B3 call 0x471230
+003E06B8 mov ecx, dword ptr [rdi + 0xc]
+003E06BB call 0x20e600
+003E06C0 test rax, rax
+003E06C3 je 0x3e06e4
+003E06C5 mov ecx, dword ptr [rdi + 0xc]
+003E06C8 call 0x20e600
+003E06CD cmp word ptr [rax + 0xa], 0
+003E06D2 je 0x3e06e4
+003E06D4 mov ecx, dword ptr [rdi + 0xc]
+003E06D7 call 0x20e600
+003E06DC mov rcx, rax
+003E06DF call 0x471e40
+003E06E4 mov ecx, dword ptr [rdi + 0x18]
+003E06E7 call 0x20e600
+003E06EC test rax, rax
+003E06EF je 0x3e070f
+003E06F1 mov ecx, dword ptr [rdi + 0x18]
+003E06F4 call 0x20e600
+003E06F9 cmp byte ptr [rax + 3], 0
+003E06FD je 0x3e070f
+003E06FF mov ecx, dword ptr [rdi + 0x18]
+003E0702 call 0x20e600
+003E0707 mov rcx, rax
+003E070A call 0x4717e0
+003E070F mov rbx, qword ptr [rsp + 0x40]
+003E0714 mov rsi, qword ptr [rsp + 0x48]
+003E0719 add rsp, 0x30
+003E071D pop rdi
+003E071E ret 
+003E071F int3 
+003E0720 sub rsp, 0x28

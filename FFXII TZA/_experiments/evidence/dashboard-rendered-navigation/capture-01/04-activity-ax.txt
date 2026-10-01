@@ -1,0 +1,33 @@
+Browser tab: 2, Title: "FF12 database dashboard", URL: "http://127.0.0.1:8765/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 34-62
++		421 text Refreshing…
++		422 text generation g20260929T130427Z-5a3153 committed 2026-09-29T13:04:31Z | STALE: sources moved {"goal_gate":"changed"} | since the snapshot: team, watchdog moved (live sources; next build picks it up) | earlier failure, resolved by the current generation: input team changed while being snapshotted
++		423 button My Progress STALE
++			424 text My Progress 
++			425 text STALE
++		426 button Agent Activity live
++			427 text Agent Activity 
++			428 text live
++		429 button overview STALE
++			430 text overview 
++			431 text STALE
++		432 button systems STALE
++			433 text systems 
++			434 text STALE
++		435 button vbf STALE
++			436 text vbf 
++			437 text STALE
++		438 button executable STALE
++			439 text executable 
++			440 text STALE
++		441 button types STALE
++			442 text types 
++			443 text STALE
++		444 button evidence STALE
++			445 text evidence 
++			446 text STALE
++		447 button fleet STALE
++			448 text fleet 
++			449 text STALE
+The focused UI element is 426 button Agent Activity live

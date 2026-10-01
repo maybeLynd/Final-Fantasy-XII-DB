@@ -1,0 +1,70 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4454,
+      "sha256": "8269555000de5ade56300dd0564b2f6eab505e27d1bdea56e210bf1b5ab963d3"
+    },
+    {
+      "path": "check.py",
+      "bytes": 7494,
+      "sha256": "480dfa885066f5a81ddaa2da7aea737406cef12784954de6fa64f408ad1b66c1"
+    },
+    {
+      "path": "observation.json",
+      "bytes": 5211,
+      "sha256": "e1708a7bc4183d631c5acb5af9743c786cf1ed0c6ad6260a94ad1cc62112a1e9"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2511,
+      "sha256": "e28dbfc99bb79bf1e8d2ea04dc3dfdd6f1c954bddb7a63c5ec54eadb13dff3ca"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4664,
+      "sha256": "99d19be88f440a9ec579d492469206fa2e1dd08ae42cdb043dd08a2b1d400275"
+    },
+    {
+      "path": "retained/check.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/CONTRACT-corridor-query-family.md",
+      "bytes": 29385,
+      "sha256": "e0cf814a9a6c51117ddcdbb0ce69eb63079d1a4eb9140239ce2189c12e9d91d4"
+    },
+    {
+      "path": "retained/fields.tsv",
+      "bytes": 33551,
+      "sha256": "d7fbae33eb1176be8c359fe89fc2a424e00fe665af4a266f4d55907b2182d594"
+    },
+    {
+      "path": "retained/how-a-battle-unit-is-built-from-its-definition.md",
+      "bytes": 78865,
+      "sha256": "19829068511bb14eec240983a655c404a2bc87b5a95602287cedcf8ffec96219"
+    },
+    {
+      "path": "retained/types.tsv",
+      "bytes": 9286,
+      "sha256": "ac919be300aa8709545b5dbf4c516ecc37ac38bb47b9db50d962fe07adecfd84"
+    },
+    {
+      "path": "source.json",
+      "bytes": 35804,
+      "sha256": "abc3ced6752cb8875a581d3a4cd33f69c2e070d035dc2b8e598305ebcb6cf103"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 354,
+      "sha256": "12b6da002878a61238d4ab52c5bf9158b49ec868c8b1871409796a980dfb8b6a"
+    }
+  ],
+  "limits": "Original static constructor/getter/codec/import binding and conditional arithmetic illustrations. No new isolated/native/live execution, actual map/allocation, DLL effect, capacity or lifetime proof. Owner/independent acceptance pending."
+}

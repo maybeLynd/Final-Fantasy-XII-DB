@@ -1,0 +1,13 @@
+call sites 4371
+  full 64-bit              2957  owners {'Presentation': 1725, '-': 699, 'CombatFormula': 221, 'CombatAction': 91, 'Movement': 72, 'Items_Equipment_Shops_License': 51}  e.g. ['001D716F', '001D717B', '00235C20', '00235C71', '00237740']
+  passed/returned          747  owners {'Presentation': 456, '-': 249, 'CombatFormula': 9, 'ActorEntity': 7, 'CombatAction': 6, 'Resource': 6}  e.g. ['002386A4', '00238716', '00238731', '00238746', '00238766']
+  zero after 32-bit arithmetic 512  owners {'CombatFormula': 197, '-': 142, 'CombatAction': 82, 'Items_Equipment_Shops_License': 46, 'Status_Periodic_Terminal': 16, 'CombatAI': 9}  e.g. ['00235C34', '00235C85', '00238011', '002380E1', '002381C0']
+  sign                      58  owners {'-': 23, 'Movement': 9, 'WorldAreaField': 8, 'Script_VM_Native_Bridge': 6, 'Presentation': 6, 'Audio': 4}  e.g. ['00261B2F', '00261B48', '00261C2C', '00261C45', '00261CD5']
+  zero                      53  owners {'ActorEntity': 37, '-': 8, 'CombatAction': 6, 'Movement': 1, 'WorldAreaField': 1}  e.g. ['00238228', '0025ADA3', '0025AEEB', '0025B388', '0025B6E6']
+  unclassified              36  owners {'Presentation': 27, '-': 5, 'CombatAction': 4}  e.g. ['0030990F', '0030A2C2', '0030A40F', '0030CECC', '00370ACD']
+  tail-jump                  6  owners {'-': 5, 'Presentation': 1}  e.g. ['002F98FD', '0032151D', '003340B8', '00370E26', '003E6E29']
+  sign after 32-bit arithmetic   2  owners {'Presentation': 2}  e.g. ['0041D45B', '0041DE49']
+R1_0020E600_returns_the_64_bit_sum                                 PASS
+R2_every_site_classified_but_a_named_few                           PASS
+R3_sign_and_zero_each_occur_in_at_least_four_owner_subsystems      PASS
+ALL PASS

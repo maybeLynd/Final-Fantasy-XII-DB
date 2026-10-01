@@ -1,0 +1,183 @@
+{
+ "ok": true,
+ "musicctrl_sha256": "771462a258f5dc9b0a6fa5424ccff03e6f19cbfe73a370f1c348fdb38e202dc7",
+ "allowed_functions": 4252,
+ "results": {
+  "MC4_MC5_trampoline_then_rebase": {
+   "pass_": true,
+   "max_field": 1311,
+   "pages": 11,
+   "offsets_before": [
+    52,
+    106,
+    260,
+    491,
+    628,
+    790,
+    1024,
+    1227,
+    1329,
+    1463,
+    1571
+   ],
+   "offsets_after": [
+    "76100034",
+    "7610006A",
+    "76100104",
+    "761001EB",
+    "76100274",
+    "76100316",
+    "76100400",
+    "761004CB",
+    "76100531",
+    "761005B7",
+    "76100623"
+   ],
+   "note": "0051EDB0 with the descriptor's +8 word 0x003EAB90 jumps to the rebase; the 11 page words (max field 1311) become the block address + offset, and the bytes after the header are untouched"
+  },
+  "reader_over_rebased_shipped_file": {
+   "pass_": true,
+   "per_progress": {
+    "0": {
+     "tracks": 676,
+     "none": 638
+    },
+    "100": {
+     "tracks": 677,
+     "none": 637
+    },
+    "1580": {
+     "tracks": 684,
+     "none": 630
+    },
+    "5000": {
+     "tracks": 689,
+     "none": 625
+    },
+    "32768": {
+     "tracks": 676,
+     "none": 638
+    }
+   },
+   "mismatches": [],
+   "note": "003EAA70 over the file the shipped rebase produced agrees with an independent decode of the raw file for every field 0..1311 (+2 past the max) at progress 0, 100, 1580, 5000 and 0x8000"
+  },
+  "MC5_zero_stays_zero_twice_doubles": {
+   "pass_": true,
+   "page3_after": 0,
+   "reader_on_page3": -1,
+   "second_run": [
+    "EC200034",
+    "EC20006A",
+    "EC200104"
+   ],
+   "note": "a zero page word stays 0 and the reader answers -1 for a field on that page; running the rebase again adds the block address a second time (32-bit wrap)"
+  },
+  "MC5_address_limits": {
+   "pass_": true,
+   "blocks": {
+    "90000000": {
+     "page0_stored": "90000034",
+     "reader_returned": false,
+     "fault": "FFFFF90000034"
+    },
+    "200100000": {
+     "page0_stored": "00100034",
+     "reader_returned": false,
+     "fault": "00100034"
+    }
+   },
+   "note": "at 0x90000000 the rebase stores 0x9000xxxx and the reader's movsxd sign-extends it to 0xFFFFFFFF9000xxxx and faults; at 0x200100000 the 32-bit add keeps only the low half (0x0010xxxx) and the reader faults there"
+  },
+  "MC4_sign_extended_target": {
+   "pass_": true,
+   "fault": "FFFFF80001000",
+   "note": "0051EDB0 with 0x80001000 jumps to 0xFFFFFFFF80001000: the word is a sign-extended 32-bit pointer"
+  },
+  "MC6_checker_bounded_to_one": {
+   "pass_": true,
+   "first_active": 1,
+   "second_slot_active": 0,
+   "note": "active at 02B5E0E0+0x31 -> 1; an active byte in a second 0x38 slot is never reached -> 0"
+  },
+  "MC7_ring_clamped_to_file": {
+   "pass_": true,
+   "init": {
+    "requestId": -1,
+    "pan_vol": [
+     64,
+     127
+    ],
+    "kind": 0
+   },
+   "small_file": {
+    "requestId": 64,
+    "bufferBytes": 74565,
+    "fileBytes": 74565,
+    "bytesRead": 74565,
+    "ringCursor": 0,
+    "state": 2,
+    "active": 1
+   },
+   "still_in_flight": {
+    "requestId": 64,
+    "bufferBytes": 74565,
+    "fileBytes": 74565,
+    "bytesRead": 74565,
+    "ringCursor": 0,
+    "state": 2,
+    "active": 1
+   },
+   "large_file": {
+    "requestId": 129,
+    "bufferBytes": 196608,
+    "fileBytes": 282624,
+    "bytesRead": 196608,
+    "ringCursor": 0,
+    "state": 2,
+    "active": 1
+   },
+   "note": "file 0x12345 under a 0x30000 ring: the ring becomes 0x12345 (0032E400 returns the table entry as is - only its fallback path rounds to 64) and the first read is the whole file; a 0x45000 file keeps the 0x30000 ring and reads 0x30000 first; state 2 waits while 0032E4D0 reports the read in flight"
+  },
+  "MC7_pieces_and_ring_cursor": {
+   "pass_": true,
+   "pieces": [
+    {
+     "read_before": "30000",
+     "read_after": "40000",
+     "cursor_after": "10000",
+     "state": 8,
+     "stopped_at": null
+    },
+    {
+     "read_before": "40000",
+     "read_after": "45000",
+     "cursor_after": "15000",
+     "state": 8,
+     "stopped_at": null
+    },
+    {
+     "read_before": "45000",
+     "read_after": "45000",
+     "cursor_after": "15000",
+     "state": 7,
+     "stopped_at": "002DF630 busy"
+    }
+   ],
+   "note": "0x45000 file, 0x30000 ring: 0x10000 (the 002DF600 piece), then 0x5000 (what is left of the file); the cursor is bytesRead mod ring; with everything read the machine asks the sound layer whether the stream is still busy"
+  },
+  "MC8_play_pair": {
+   "pass_": true,
+   "play_state": 6,
+   "sound_call": {
+    "at": "002DF680 play",
+    "args": [
+     119,
+     64,
+     127
+    ]
+   },
+   "note": "bgmstreamplay moves state 5 to 6; the next tick calls 002DF680(streamId, 0x40, 0x7F) from the descriptor's +0x32 / +0x33 (initialised by 003EB050)"
+  }
+ }
+}

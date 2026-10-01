@@ -1,0 +1,15 @@
+MC4_MC5_trampoline_then_rebase       PASS  0051EDB0 with the descriptor's +8 word 0x003EAB90 jumps to the rebase; the 11 page words (max field 1311) become the block address + offset, and the bytes after the header are untouched
+reader_over_rebased_shipped_file     PASS  003EAA70 over the file the shipped rebase produced agrees with an independent decode of the raw file for every field 0..1311 (+2 past the max) at progress 0, 100, 1580, 5000 and 0x8000
+MC5_zero_stays_zero_twice_doubles    PASS  a zero page word stays 0 and the reader answers -1 for a field on that page; running the rebase again adds the block address a second time (32-bit wrap)
+MC5_address_limits                   PASS  at 0x90000000 the rebase stores 0x9000xxxx and the reader's movsxd sign-extends it to 0xFFFFFFFF9000xxxx and faults; at 0x200100000 the 32-bit add keeps only the low half (0x0010xxxx) and the reader faults there
+MC4_sign_extended_target             PASS  0051EDB0 with 0x80001000 jumps to 0xFFFFFFFF80001000: the word is a sign-extended 32-bit pointer
+MC6_checker_bounded_to_one           PASS  active at 02B5E0E0+0x31 -> 1; an active byte in a second 0x38 slot is never reached -> 0
+MC7_ring_clamped_to_file             PASS  file 0x12345 under a 0x30000 ring: the ring becomes 0x12345 (0032E400 returns the table entry as is - only its fallback path rounds to 64) and the first read is the whole file; a 0x45000 file keeps the 0x30000 ring and reads 0x30000 first; state 2 waits while 0032E4D0 reports the read in flight
+MC7_pieces_and_ring_cursor           PASS  0x45000 file, 0x30000 ring: 0x10000 (the 002DF600 piece), then 0x5000 (what is left of the file); the cursor is bytesRead mod ring; with everything read the machine asks the sound layer whether the stream is still busy
+MC8_play_pair                        PASS  bgmstreamplay moves state 5 to 6; the next tick calls 002DF680(streamId, 0x40, 0x7F) from the descriptor's +0x32 / +0x33 (initialised by 003EB050)
+ok
+heap5_registered_by_boots_own_calls                                      PASS
+loader_returns_and_publishes_the_block                                   PASS
+the_read_is_queued_with_kind_9_id_0x20_the_block_and_the_file_size       PASS
+no_byte_of_the_block_is_written_before_the_pointer_returns               PASS
+ALL PASS

@@ -1,0 +1,41 @@
+  [PASS] EXE SHA256
+== static: loader and reader
+  [PASS] kind 9 idx 0xA path -- PS2Data\image\ff12\in\bin\mapjumpgroupflagrom.bin
+  [PASS] 00378702 decodes as 'mov edx, 0xa' -- mov edx, 0xa
+  [PASS] 00378707 decodes as 'lea ecx, [rdx - 1]' -- lea ecx, [rdx - 1]
+  [PASS] 0037870A decodes as 'call 0x32e400' -- call 0x32e400
+  [PASS] 0037874B decodes as 'lea rax, [rip' -- lea rax, [rip + 0x44e]
+  [PASS] completion callback is 00378BA0
+  [PASS] 0037876F decodes as 'call 0x32e620' -- call 0x32e620
+  [PASS] 00378BA0 decodes as 'mov eax, ecx' -- mov eax, ecx
+  [PASS] callback stores rax to 02ADD0C8
+  [PASS] reader loads 02ADD0C8
+  [PASS] 00377984 decodes as 'movzx eax, word ptr [rdx + 8]' -- movzx eax, word ptr [rdx + 8]
+  [PASS] 0037798F decodes as 'movzx ecx, word ptr [rdx + rax*2 + 0xa]' -- movzx ecx, word ptr [rdx + rax*2 + 0xa]
+  [PASS] 00377994 decodes as 'test cx, cx' -- test cx, cx
+  [PASS] 003779A4 decodes as 'call 0x265270' -- call 0x265270
+  [PASS] 003779B5 decodes as 'and eax, 0x7fff' -- and eax, 0x7fff
+  [PASS] 003779C0 decodes as 'xor ebx, 1' -- xor ebx, 1
+  [PASS] 003779C6 decodes as 'js ' -- js 0x3779da
+  [PASS] magic FLAGROM1 not present as a literal anywhere in .text
+== corpus: every shipped copy
+  [PASS] 9 locale copies -- 9
+  [PASS] mage/ff12\ch\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\cn\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\de\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\es\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\fr\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\in\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\it\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\kr\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] mage/ff12\us\bin\mapjumpgroupflagrom.bin: magic, count 152, offset[0]==table end 0x13a, ascending, zero-free True, each record ends at its only bit-15 word, 10+2*152+2*271==856
+  [PASS] all copies byte-identical
+  count=152; highest threshold index the image's gate call sites use is 0x67 (persistent-flag-banks.md): in range True
+  [PASS] gate index 0x67 < count
+  record lengths (entries: records): {1: 48, 2: 98, 3: 1, 4: 3, 6: 2}
+  record 0x0 @ 0x13a: 32767|END
+  record 0x1 @ 0x13c: 0|END
+  record 0x4 @ 0x142: 25|END
+  record 0xb @ 0x150: 62|END
+  record 0x67 @ 0x298: 300 306|END
+CHECKS 31  FAILS 0

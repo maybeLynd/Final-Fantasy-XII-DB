@@ -1,0 +1,5 @@
+{
+ "action": "claim",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-162",
+ "note": "Claiming batch 162: 4 multi-caller (00229D20/004230A0/004272A0/00427860 - all 2-A, batch-161-era callees) + top-18 1-A by size (170..164 B). 0037C2E0 and 001A7770 deferred as before (documented at non-bearing homes)."
+}

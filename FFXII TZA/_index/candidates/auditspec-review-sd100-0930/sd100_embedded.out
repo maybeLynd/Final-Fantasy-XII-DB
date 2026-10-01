@@ -1,0 +1,38 @@
+== A: stack elements
+002A5460  element [rsp+0x30] -> mode byte rsp+0xE0  body 37 ins in 1 range(s) ['002A5460-002A551C']  frame none
+    write  002A54AE  or dword ptr [rsp + 0xe0], 0x2000000
+002B3050  element [rsp+0x20] -> mode byte rsp+0xD0  body 46 ins in 1 range(s) ['002B3050-002B3112']  frame none
+    no write covers the mode byte through rsp / rbp
+002B5390  element [rsp+0x30] -> mode byte rsp+0xE0  body 177 ins in 6 range(s) ['002B5390-002B53C4', '002B53C4-002B5509', '002B5509-002B5622', '002B5622-002B563A', '002B563A-002B5655', '002B5655-002B567B']  frame none
+    no write covers the mode byte through rsp / rbp
+002A1B00  element [rsp+0x40] -> mode byte rsp+0xF0  body 114 ins in 1 range(s) ['002A1B00-002A1D11']  frame none
+    no write covers the mode byte through rsp / rbp
+== B: displacement 0x180 (container +0xD0 element's mode byte)
+control read 002A3790 present: True
+text cluster: writes 9, reads 17; writes outside the cluster: 243
+    write  --------  002A323B  4B  mov dword ptr [rcx + 0x180], r9d
+    write  002A4830  002A493C  8B  mov qword ptr [rsp + 0x180], r15
+    write  002A5590  002A58DF  4B  or dword ptr [rsi + 0x180], 0x400000
+    write  002A5F40  002A5FE8  1B  mov byte ptr [rdi + 0x180], cl
+    write  002A6190  002A6606  1B  mov byte ptr [rdi + 0x180], 1
+    write  002A6F80  002A6FB3  1B  mov byte ptr [rcx + 0x180], 0
+    write  002AA800  002AA8CF  16B  movaps xmmword ptr [rsp + 0x180], xmm6
+    write  002AE610  002AE90C  16B  movaps xmmword ptr [rsp + 0x180], xmm9
+    write  002AEB20  002AED75  16B  movaps xmmword ptr [rsp + 0x180], xmm14
+    read   --------  002A2A60  mov eax, dword ptr [rcx + 0x180]
+    read   --------  002A3214  xor r9d, dword ptr [rcx + 0x180]
+    read   --------  002A3228  xor r9d, dword ptr [rcx + 0x180]
+    read   002A3730  002A3790  movzx eax, byte ptr [rdi + 0x180]
+    read   002A4830  002A4BE7  mov r15, qword ptr [rsp + 0x180]
+    read   002A5F40  002A5FAA  movzx ebx, byte ptr [rdi + 0x180]
+    read   002A5F40  002A5FDB  movzx eax, byte ptr [rdi + 0x180]
+    read   002A6190  002A64C6  cmp byte ptr [rdi + 0x180], 1
+    read   002A6190  002A64E5  mov ecx, dword ptr [rdi + 0x180]
+    read   002A6190  002A6540  mov edx, dword ptr [rdi + 0x180]
+    read   002A6190  002A65F9  movzx eax, byte ptr [rdi + 0x180]
+    read   002A6F80  002A6FA3  movzx eax, byte ptr [rcx + 0x180]
+    read   002A8C50  002A9956  lea r11, [rsp + 0x180]
+    read   002AA800  002AAE0A  movaps xmm6, xmmword ptr [rsp + 0x180]
+    read   002AE610  002AEA9C  movaps xmm9, xmmword ptr [rsp + 0x180]
+    read   002AEB20  002AF2EA  movaps xmm14, xmmword ptr [rsp + 0x180]
+    read   002B2DF0  002B2FE0  cmp dword ptr [rsp + 0x180], 0

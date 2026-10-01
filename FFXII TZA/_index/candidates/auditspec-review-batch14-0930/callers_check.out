@@ -1,0 +1,11 @@
+00266530 RC-16 S1: ActorStorage_InitializeRecord has one caller
+    sweep ['00267B79']  index ['00267B79']  relocs 0 -> HOLDS
+002679F0 RC-16 S2: the pool allocator has one caller
+    sweep ['0026CEB0']  index ['0026CEB0']  relocs 0 -> HOLDS
+00360880 RC-17 K5: the skip loop has one caller
+    sweep ['002281B7']  index ['002281B7']  relocs 0 -> HOLDS
+00285EA0 RC-17 K6: the bit-13 setter has one caller
+    sweep ['0022917A']  index ['0022917A']  relocs 0 -> HOLDS
+00504350 RC-11 A1: the 0x59 loader is reached from 003A9EF0 / 00500980
+    sweep ['003AA109', '00500A20']  index ['003AA109', '00500A20']  relocs 0 -> HOLDS
+0036A100 control: a common allocator wrapper: sweep 110, index 110, relocs 0 -> PASS

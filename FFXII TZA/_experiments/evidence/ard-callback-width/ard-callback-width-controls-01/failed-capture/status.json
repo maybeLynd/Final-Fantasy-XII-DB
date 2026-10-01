@@ -1,0 +1,13 @@
+{
+  "case": "failed-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\prove-ard-callback-width.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\failed-capture\\unexpected-result.json",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ard-callback-width-controls-01\\failed-capture"
+  ],
+  "exit": 1,
+  "expected_error": "required ARD capture invocation failed or stale",
+  "expected_error_seen": true,
+  "result_absent": true
+}

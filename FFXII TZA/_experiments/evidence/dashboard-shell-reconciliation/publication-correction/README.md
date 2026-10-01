@@ -1,0 +1,7 @@
+# Additive publication correction, before any commit
+
+The initial21-member freeze is retained by pre-correction-manifest.json; every original member byte is unchanged. Git rejected run-01/server.log as ignored; the original preflight wrongly returned admissible. No commit or partial commit occurred; supported publication release completed. Failed output/old pins/body/preimages remain in private publication-failed-01.
+
+On this Windows host, the same git check-ignore --stdin input in Python text=True yields exit1/empty, while binary LF yields exit0/the ignored log (single and full-list controls). The existing default helper now sends binary NUL-separated input to git check-ignore -q --stdin -z. Actual CLI invocation rejects the mixed ignored path before exception, passes the valid path and passes after the exact package-local !/run-01/server.log exception. No force add/shared ignore modification/bypass. Before/after source, complete terminal controls and actual affected invocation inventory accompany the correction.
+
+Ten prior caller receipts used the old default: they did not establish absence of ignores. Their actual successful publication and exact final blob/member identity checks remain valid; no game or semantic claim is retracted merely from this path preflight. Current final published manifest adds only this correction and .gitignore; original scientific inputs/raw/capture/checker untouched. Required non-author review of producer default and this evidence remains pending. No full goal acceptance.

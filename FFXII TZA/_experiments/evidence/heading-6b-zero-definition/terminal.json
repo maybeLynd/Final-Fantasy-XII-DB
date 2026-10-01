@@ -1,0 +1,5 @@
+{
+  "status": "TERMINAL_SUCCESS",
+  "command": "Collaboration/Tools/analysis/venv/Scripts/python.exe Database/Tools/work/ASTRA/heading-class-effects-slice/r13-dominance.py",
+  "exit_code": 0
+}

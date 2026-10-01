@@ -1,0 +1,54 @@
+{
+ "cases": {
+  "E1_marker_entries_are_0x70_with_links_at_60_68": true,
+  "E2_at_most_24_entries_fill_B140_to_BBC0": true,
+  "N1_link_nodes_come_from_selector_0": true,
+  "N2_points_and_count_3_to_16": true,
+  "N3_pulse_bit_and_draw_reads": true
+ },
+ "evidence_class": "STATIC",
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "E1": {
+   "00402C3A": "movups xmm0, xmmword ptr [rdx]",
+   "00402C43": "movups xmmword ptr [rcx], xmm0",
+   "00402C4A": "movups xmmword ptr [rcx + 0x10], xmm1",
+   "00402C52": "movups xmmword ptr [rcx + 0x20], xmm0",
+   "00402C93": "mov qword ptr [rbx + 0x60], rax",
+   "00402C97": "mov qword ptr [rbx + 0x68], rax",
+   "00402D7C": "mov qword ptr [rax + 0x60], rbx",
+   "00402D80": "mov qword ptr [rbx + 0x68], rax",
+   "00402D88": "add rbx, 0x70"
+  },
+  "E2": {
+   "002B7490": "mov r8d, 0x480",
+   "002B74AF": "mov r9d, 2",
+   "002B74ED": "lea rcx, [rbx + 0xb140]",
+   "002B74FC": "call 0x402d20",
+   "002B7501": "mov qword ptr [rbx + 0xbbc0], rax",
+   "003C1A71": "mov dword ptr [rsp + 0x40], 0x18"
+  },
+  "N1": {
+   "00402A93": "xor r9d, r9d",
+   "00402A9E": "call 0x3be3a0"
+  },
+  "N2": {
+   "00402890": "mov dword ptr [rsi], eax",
+   "00402892": "cmp eax, 0x10",
+   "00402897": "mov dword ptr [rsi], 0x10",
+   "0040289D": "cmp dword ptr [rsi], 2",
+   "004028A8": "mov dword ptr [rsi], r14d",
+   "004029FE": "movss dword ptr [rbx], xmm0",
+   "00402A02": "movss dword ptr [rbx + 4], xmm1",
+   "00402A07": "add rbx, 8"
+  },
+  "N3": {
+   "00404420": "test byte ptr [rbx + 0xa8], 1",
+   "0040444C": "call 0x861f0e",
+   "00404472": "mov r8d, dword ptr [rbx + 0x90]",
+   "00404481": "call 0x274ca0",
+   "00404486": "mov rbx, qword ptr [rbx + 0x98]"
+  }
+ }
+}

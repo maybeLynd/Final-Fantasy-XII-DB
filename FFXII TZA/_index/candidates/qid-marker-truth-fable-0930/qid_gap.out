@@ -1,0 +1,28 @@
+register ids: 1780, prefixes used >=3 times: 172
+(A) unregistered ids in status/box lines: 0 (distinct 0)
+(B) ticked boxes with no register id: 669 in 193 files
+  00-Engine-Core-Runtime\CONTRACT-encoded-id-space-and-class-registry.md:246 | - [x] ~~Exact downstream meaning of all tagged output slots and strided class10 elements; physical
+  00-Engine-Core-Runtime\CONTRACT-encoded-id-space-and-class-registry.md:249 | - [x] ~~Shipped-state reachability of synthetic descriptor/count/mask anomalies, especially class13’s
+  00-Engine-Core-Runtime\CONTRACT-encoded-id-space-and-class-registry.md:302 | - [x] ~~Whole-engine absence of external readers/writers of preserved gaps; the older consumer census
+  00-Engine-Core-Runtime\duplicated-function-names-and-how-to-resolve-them.md:195 | - [x] ~~**Whether any thunk is ever the target of a data pointer** rather than a call.~~
+  00-Engine-Core-Runtime\the-all-ones-empty-convention.md:136 | - [x] ~~**What the `+0x695`/`+0x696` and `+0xB8`/`+0xB9` pairs hold.**~~ **Half answered 2026-09-13
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:606 | - [x] ~~SECTION-05: remaining class-specific output meanings, caller compatibility/reentrancy and
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:614 | - [x] ~~What region B (`+0x57C8`, loot) and region C (`+0x57C0`, items) hold, and what the two
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:623 | - [x] ~~Which caller drives loot's channel-3 byte~~ **answered 2026-09-11: the sale commit adds and
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:629 | - [x] ~~Who reads the bazaar row's price at `+0x10` and its three `(loot, count)` pairs from `+0x16`.~~
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:636 | - [x] ~~What the class-specific stores of §4 mean — the raw sources are listed; which caller reads
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:644 | - [x] ~~The tables the consumer sweep reaches but does not name (§2.10)~~ **ANSWERED 2026-09-12 (FABLE):** `02
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:651 | - [x] ~~Why the equipment table ships 557 rows against a 420-id descriptor, and what rows 420–556
+  00-Engine-Core-Runtime\the-encoded-id-space-and-the-query-record.md:659 | - [x] ~~Whether the other language copies of `battle_pack.bin` bind the same directory offsets.~~ They
+  00-Engine-Core-Runtime\the-query-record-from-initialization-to-reuse.md:193 | - [x] ~~Complete downstream meanings of every class-specific slot/strided element, and exact required
+  00-Engine-Core-Runtime\Application-Root\game-application.md:255 | - [x] Slots 21/22 and 23/24. Matched pairs — **"focus gained/lost" is a shape, not a finding**, and is
+  00-Engine-Core-Runtime\Application-Root\game-application.md:288 | - [x] ~~**13 of the 31 slots are folded** with other classes and absent from this analysis entirely.~~
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:766 | - [x] ~~**What each of the fifteen extra sub-steps is for**, and which script situations set the
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:771 | - [x] ~~Bits 6, 23, 26 and 29 of `02089340` are set by script verbs (§2.5) and their meanings are not
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:774 | - [x] ~~Bit 13's condition is read in full (§2.5, the focus actor's movement-context `+0x138`
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:779 | - [x] ~~**What the eleven skip-begin notifications and the three pre-skip calls do**~~ (`003601B0`,
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:863 | - [x] ~~**What the tail's unread callees do**, in particular `002E09A0` (1,002 B), `003E7650`
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:905 | - [x] ~~**What the `0x130`-stride list at `02B4E4C0` holds** that `003DAC70` walks every tick with
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:919 | - [x] ~~**What the field frame's three entry gates `001800E0`, `001800C0`, `001EC560` test**, i.e.
+  00-Engine-Core-Runtime\Battle-Frame\the-world-tick-and-the-field-frame.md:935 | - [x] ~~**The meaning of unit flag bits ~~1, 3,~~ 16 ~~and 24~~** beyond their effect here.~~ **Narrowed
+  00-Engine-Core-Runtime\Battle-Runtime-Mode\battle-runtime-mode-ladder.md:514 | - [x] ~~**What the six modes mean.** The ladder is exact; the semantics are not established. "Mode 2

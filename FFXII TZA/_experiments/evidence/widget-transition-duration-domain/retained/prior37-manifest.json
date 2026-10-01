@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4303,
+      "sha256": "949e622c8cde9ce113c8889a71d12ffba6eed9242ab073b396438baed1397a2b"
+    },
+    {
+      "path": "derive.py",
+      "bytes": 6327,
+      "sha256": "16b12f5faefc1fdbdb6104fd1dfe5ee04db774ebc20b30edc9bc8c2b6e4ab48d"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1646,
+      "sha256": "662fd1f19e738d9b13f0db50ea578b7a37982a05284ab1ca04bf9893f7ca2465"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1522,
+      "sha256": "cdd14cd2d136ce28d1115d624b42b02d4d6d599aa90d9f779f17fb8cb286d3e4"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2589,
+      "sha256": "354cdad5edb28dfb8c09042b9da9dabd16f9ed81ccbd50de2d45a84d7bbad3ef"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5021,
+      "sha256": "0f060085120101c1ce7c6226fecb57f11afa5c8866ec2aaac48b9cbbe6044e2d"
+    },
+    {
+      "path": "result.json",
+      "bytes": 9513,
+      "sha256": "f7bd884c5700d3782e1fcb1878b52c9ef3b446812df8b6ad9d8194568dd51485"
+    },
+    {
+      "path": "retained/changed-shift-source.bin",
+      "bytes": 67,
+      "sha256": "a2ad4c424e47aa92c0a7f7f34677fd17d412003e6c41c91fe01f545ccbd8584e"
+    },
+    {
+      "path": "retained/contract.md",
+      "bytes": 84922,
+      "sha256": "462ca9b3cb420f6e5c8e2ed560b260daf396c37ea993a1b0a57ca3bc73bbe9b6"
+    },
+    {
+      "path": "retained/field-preimages.json",
+      "bytes": 1145,
+      "sha256": "391c5a1e5c49b1c6d3d4a659640d3a5e81737ad203ab2461bf2ec8e73d4a250a"
+    },
+    {
+      "path": "retained/getter-context.bin",
+      "bytes": 20,
+      "sha256": "0047957b5c2362bf1d32b5f3bc908032a4f57671a0b8a166a74117149fb9b62b"
+    },
+    {
+      "path": "retained/producer.py",
+      "bytes": 8930,
+      "sha256": "0a1b08072945f26d2547d84315388a3d0a840c6968b8171be0513b4f70fadf2d"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.bin",
+      "bytes": 67,
+      "sha256": "cae46c89191dd9dd79b895163bfb13907c70a9159cfe9a271bcd43e826f2eacc"
+    }
+  ],
+  "limits": "Original67B UI selected delay source and bounded integer proof only; no original/native/emulator/live/wholewidget/callee-state or fieldwide range proof"
+}

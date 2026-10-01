@@ -1,0 +1,6 @@
+PASS  H1 slot +0xA0: null at boot (00369D30), 002E6D60 for heaps 6 and 0xA (002EA320 via 0036C5A0); no other writer
+PASS  H2 002E6D60 retires the request list's tail and returns 0
+      push sites by arena: {2: 8, 3: 9, 4: 4, 5: 5, 6: 18, 8: 42, 9: 2}; variable 47
+PASS  A1 no constant push site selects arena 7 (88 constant, 47 variable of 135)
+PASS  K1 handle callers: 0036B160 <- 9 functions (13 sites); 0036B980 <- 0036B970 <- 00378BC0, 003DF2C0
+FAILS 0

@@ -1,0 +1,1225 @@
+call_id	verb	args	handler	body_bytes	family	detail
+0001	setpos	3	0034EBC0	116	BRANCHING	1 conditional branch(es), 5 call(s)
+0002	setvelr	1	00352040	57	LINEAR	2 call(s) (2 direct), no branching
+0003	setrotangzx	0	00353050	33	CALL1	-> 00267DB0, then tail-jump
+0004	setangzx	0	003538C0	33	CALL1	-> 00267DB0, then tail-jump
+0006	pad	0	00354C30	29	CALL1	-> 0036FF70, then tail-jump
+0007	padt	0	00355440	29	CALL1	-> 0036FFD0, then tail-jump
+0008	padr	0	003550D0	29	CALL1	-> 0036FFC0, then tail-jump
+0009	sin	1	00356AC0	38	LINEAR	2 call(s) (2 direct), no branching
+000A	cos	1	00356FA0	38	LINEAR	2 call(s) (2 direct), no branching
+000B	getpos	3	003512A0	160	LINEAR	7 call(s) (7 direct), no branching
+000C	bindp	0	00342640	163	BRANCHING	3 conditional branch(es), 8 call(s)
+000D	ucon	0	00346860	21	CALL1	-> 002640C0, then tail-jump
+000E	ucoff	0	00346D80	21	CALL1	-> 002640C0, then tail-jump
+000F	ames	5	00349BF0	82	CALL1	-> 00267F90, then tail-jump
+0010	aask	5	0034D620	23	BRANCHING	1 conditional branch(es), 0 call(s)
+0012	mesclose	1	0034D920	23	CALL1	-> 00267E10, then tail-jump
+0013	askpos	3	0034DD20	82	LINEAR	3 call(s) (3 direct), no branching
+0014	padtr	0	00355700	29	CALL1	-> 0036FFE0, then tail-jump
+0015	keyscan	1	0034E260	56	LINEAR	2 call(s) (2 direct), no branching
+0016	keyscanr	0	0034E930	56	LINEAR	2 call(s) (2 direct), no branching
+0017	keyscant	1	0034EC40	56	LINEAR	2 call(s) (2 direct), no branching
+0018	keyscantr	0	0034F100	56	LINEAR	2 call(s) (2 direct), no branching
+0019	setpos_19	4	00350510	152	BRANCHING	1 conditional branch(es), 7 call(s)
+001A	mesopenspeed	2	00350B50	54	LINEAR	2 call(s) (2 direct), no branching
+001B	mesopenspeed_1b	3	003510D0	73	LINEAR	3 call(s) (3 direct), no branching
+001C	setline	6	00351610	201	BRANCHING	1 conditional branch(es), 6 call(s)
+001D	setrect	5	00352C00	126	LINEAR	6 call(s) (6 direct), no branching
+001E	enable	0	00353630	13	TAILJUMP	-> 00269E00
+001F	disable	0	00353A50	10	TAILJUMP	-> 00269E00
+0020	lineenable	0	00353D00	13	TAILJUMP	-> 00269F00
+0021	linedisable	0	00354910	10	TAILJUMP	-> 00269F00
+0022	rectenable	0	00353D00	13	TAILJUMP	-> 00269F00
+0023	rectdisable	0	00354910	10	TAILJUMP	-> 00269F00
+0025	setrect_25	6	003531E0	88	LINEAR	2 call(s) (2 direct), no branching
+0026	settouchwh	2	00351E00	69	LINEAR	2 call(s) (2 direct), no branching
+0027	bindoff	0	00357480	15	BRANCHING	1 conditional branch(es), 0 call(s)
+0028	rand	0	00355140	29	CALL1	-> 00379CD0, then tail-jump
+0029	rand_29	1	00354BF0	57	LINEAR	2 call(s) (2 direct), no branching
+002A	reqenable	1	00355540	32	CALL1	-> 00267E10, then tail-jump
+002B	reqdisable	1	003558F0	32	CALL1	-> 00267E10, then tail-jump
+002C	talkang	1	00356390	33	CALL1	-> 00267DB0, then tail-jump
+002D	talkradius	1	00355DD0	33	CALL1	-> 00267DB0, then tail-jump
+0032	show	0	00342A70	13	TAILJUMP	-> 0026DC40
+0033	hide	0	00342EB0	10	TAILJUMP	-> 0026DC40
+0034	showw	0	00343E50	13	TAILJUMP	-> 002ECE00
+0035	hidew	0	00344120	32	CALL1	-> 002ECE00, then tail-jump
+0036	shows	0	00344490	13	TAILJUMP	-> 002ECDC0
+0037	hides	0	00344730	10	TAILJUMP	-> 002ECDC0
+0038	show_38	1	00343220	32	CALL1	-> 00267E10, then tail-jump
+0039	showw_39	1	00343550	32	CALL1	-> 00267E10, then tail-jump
+003A	shows_3a	1	00343960	32	CALL1	-> 00267E10, then tail-jump
+003B	motionloop	1	00344B90	32	CALL1	-> 00267E10, then tail-jump
+003C	setvelrotangzx	0	003535C0	33	CALL1	-> 00267DB0, then tail-jump
+0051	touchradius	1	00356000	33	CALL1	-> 00267DB0, then tail-jump
+0052	camerastart	1	0034FE00	111	LINEAR	3 call(s) (3 direct), no branching
+0053	camerastop	0	00350660	59	LINEAR	3 call(s) (3 direct), no branching
+0054	camerastop_54	1	003502E0	49	LINEAR	2 call(s) (2 direct), no branching
+0055	camerachange	1	00351C00	49	LINEAR	2 call(s) (2 direct), no branching
+0056	setupbattle	1	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+0057	capturepc	1	00352FA0	166	BRANCHING	5 conditional branch(es), 7 call(s)
+0058	releasepc	0	00354110	13	TAILJUMP	-> 002693D0
+0069	suspendbattle	0	00356970	18	CALL1	-> 0035AB20, then tail-jump
+006A	resumebattle	0	00356CA0	5	TAILJUMP	-> 0035A6F0
+006D	getx	0	00346710	55	LINEAR	2 call(s) (2 direct), no branching
+006E	gety	0	00346D40	55	LINEAR	2 call(s) (2 direct), no branching
+006F	getz	0	00347170	55	LINEAR	2 call(s) (2 direct), no branching
+0070	getrotangzx	0	00348510	33	CALL1	-> 00265200, then tail-jump
+0071	getangzx	0	00348840	33	CALL1	-> 00263CC0, then tail-jump
+0072	getmyid	0	00349910	8	TAILJUMP	-> 0026B4E0
+0073	getentryid	0	00349C90	32	CALL1	-> 003589B0, then tail-jump
+0074	sethomingangzx	1	0034A180	33	CALL1	-> 00267DB0, then tail-jump
+0075	sethomingrotangzx	1	0034A560	33	CALL1	-> 00267DB0, then tail-jump
+0076	setreachr	1	0034A9F0	33	CALL1	-> 00267DB0, then tail-jump
+0077	snapstart	0	0034AF10	5	TAILJUMP	-> 00473480
+0078	snapend	0	0034B280	5	TAILJUMP	-> 00473470
+007A	frameinfo	0	0034C880	8	TAILJUMP	-> 0025D9C0
+007B	usemapid	1	0034CC00	82	LINEAR	4 call(s) (4 direct), no branching
+007C	cameraclear	0	00351540	21	CALL1	-> 002640C0, then tail-jump
+007D	camerastart_7d	3	0034F2F0	106	LINEAR	5 call(s) (5 direct), no branching
+007E	camerastart_7e	2	0034F930	117	LINEAR	6 call(s) (6 direct), no branching
+0080	movecancel	0	0034D8F0	10	TAILJUMP	-> 0026AE90
+0081	turncancel	0	0034DC60	10	TAILJUMP	-> 0026C120
+0082	amest	5	0034A090	79	CALL1	-> 00267F90, then tail-jump
+0083	usecharhit	1	0034D120	32	CALL1	-> 00267E10, then tail-jump
+0084	setweight	1	0034DEA0	61	LINEAR	2 call(s) (2 direct), no branching
+0085	voiceread	1	0034EE40	124	BRANCHING	2 conditional branch(es), 7 call(s)
+0087	voiceplay	1	003515B0	95	LINEAR	2 call(s) (2 direct), no branching
+0088	voicestop	1	00351EB0	35	CALL1	-> 00267E10, then tail-jump
+008A	maskopen	1	00353D90	101	BRANCHING	1 conditional branch(es), 6 call(s)
+008B	maskclose	1	00354800	101	BRANCHING	1 conditional branch(es), 6 call(s)
+008C	voicedispose	1	00352DB0	35	LINEAR	2 call(s) (2 direct), no branching
+008E	sethpmenu	1	00356990	73	BRANCHING	1 conditional branch(es), 4 call(s)
+008F	setmapjumppos	0	00356E10	270	BRANCHING	2 conditional branch(es), 16 call(s)
+0090	nowmap	0	0033F310	29	CALL1	-> 003148F0, then tail-jump
+0091	nowjumpindex	0	0033F7F0	58	LINEAR	3 call(s) (3 direct), no branching
+0092	lastmap	0	0033FC40	29	CALL1	-> 00314870, then tail-jump
+0093	lastjumpindex	0	0033FFF0	29	CALL1	-> 00314850, then tail-jump
+0094	gethp	0	00340230	40	LINEAR	2 call(s) (2 direct), no branching
+0095	getmaxhp	0	003429F0	40	LINEAR	2 call(s) (2 direct), no branching
+0096	gethpratio	0	00342D40	49	LINEAR	3 call(s) (3 direct), no branching
+0097	getmp	0	00343180	40	LINEAR	2 call(s) (2 direct), no branching
+0098	getmaxmp	0	003434F0	40	LINEAR	2 call(s) (2 direct), no branching
+0099	getmpratio	0	003438F0	52	LINEAR	3 call(s) (3 direct), no branching
+009B	sysucoff	0	00347060	8	TAILJUMP	-> 0026B4E0
+009C	sysucon	0	00347440	21	CALL1	-> 002640C0, then tail-jump
+009D	bganimeplay	1	003477B0	34	CALL1	-> 00267E10, then tail-jump
+009E	bganimeplay_9e	3	00347CD0	77	LINEAR	3 call(s) (3 direct), no branching
+009F	bganimestop	1	003480D0	23	CALL1	-> 00267E10, then tail-jump
+00A1	bganimeloop	2	00348D30	50	LINEAR	2 call(s) (2 direct), no branching
+00A2	motionread	1	003492A0	62	LINEAR	3 call(s) (3 direct), no branching
+00A3	motionreadsync	1	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+00A4	motiondispose	1	0034A6A0	36	LINEAR	2 call(s) (2 direct), no branching
+00A5	motionplay	1	0034B2C0	80	CALL1	-> 00267F60, then tail-jump
+00A7	setheight	1	0034D260	65	LINEAR	2 call(s) (2 direct), no branching
+00A8	setunderheight	0	0034D6D0	33	CALL1	-> 00267DB0, then tail-jump
+00A9	playerstatus	0	0034DA30	75	LINEAR	3 call(s) (3 direct), no branching
+00AA	sysreq	3	0034E5C0	103	LINEAR	5 call(s) (5 direct), no branching
+00AB	sysreqall	2	0034F380	61	LINEAR	3 call(s) (3 direct), no branching
+00AC	setentrygroup	1	0034FA70	151	LINEAR	6 call(s) (6 direct), no branching
+00AD	getbganimeframe	0	0034FED0	40	LINEAR	2 call(s) (2 direct), no branching
+00AE	getbganimelastframe	0	00350380	40	LINEAR	2 call(s) (2 direct), no branching
+00AF	setscale	1	00350850	39	CALL1	-> 00267DB0, then tail-jump
+00B0	bganimespeed	0	00351E70	62	LINEAR	2 call(s) (2 direct), no branching
+00B1	voicepan	2	00352E80	18	TAILJUMP	-> 003EA430
+00B2	voicevolume	0	00353C20	18	TAILJUMP	-> 003EA540
+00B3	voicechangevolume	3	003556B0	22	TAILJUMP	-> 003EA5C0
+00B4	voicechangepan	3	00354A20	22	TAILJUMP	-> 003EA4B0
+00B5	voiceplay_b5	3	00351020	173	LINEAR	8 call(s) (8 direct), no branching
+00B6	fadeout	1	00356650	86	LINEAR	5 call(s) (5 direct), no branching
+00B7	whiteout	1	00356FE0	89	LINEAR	5 call(s) (5 direct), no branching
+00B8	fadein	1	00355EB0	109	LINEAR	7 call(s) (7 direct), no branching
+00BA	fadecolor	4	00340080	96	LINEAR	4 call(s) (4 direct), no branching
+00BB	motionplay_bb	2	0034AB50	145	BRANCHING	2 conditional branch(es), 5 call(s)
+00BC	fadetrans	0	00340580	23	CALL1	-> 00267E10, then tail-jump
+00BD	bindp2	1	00343760	5	TAILJUMP	-> 00342640
+00BE	setentrygroupall	0	00340970	118	LINEAR	6 call(s) (6 direct), no branching
+00C0	modelreadsync	1	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+00C1	modeldispose	1	00342340	30	LINEAR	2 call(s) (2 direct), no branching
+00C2	bgeffectstop	1	00342CB0	36	CALL1	-> 00267E10, then tail-jump
+00C3	bgeffectplay	1	00342880	64	LINEAR	2 call(s) (2 direct), no branching
+00C4	bgeffectstatus	1	00343050	39	LINEAR	2 call(s) (2 direct), no branching
+00C5	blurplay	0	00343F10	37	BRANCHING	1 conditional branch(es), 1 call(s)
+00C6	blurstop	0	00344710	7	TAILJUMP	-> 003DE060
+00C7	bluralpha	1	00345060	26	CALL1	-> 00267DB0, then tail-jump
+00C8	blurrotate	1	00345A10	26	CALL1	-> 00267DB0, then tail-jump
+00C9	blurcolor	4	00346560	112	LINEAR	5 call(s) (5 direct), no branching
+00CA	bluroffset	2	00347130	56	LINEAR	2 call(s) (2 direct), no branching
+00CB	blurscale	2	00347860	56	LINEAR	2 call(s) (2 direct), no branching
+00CC	blurprior	0	00348220	25	CALL1	-> 00267E10, then tail-jump
+00CD	blurlayer	1	003489C0	25	CALL1	-> 00267E10, then tail-jump
+00CE	blurtrans	1	00349280	25	CALL1	-> 00267E10, then tail-jump
+00CF	fadeprior	1	00349920	23	CALL1	-> 00267E10, then tail-jump
+00D0	fadeout_d0	2	00356270	56	LINEAR	2 call(s) (2 direct), no branching
+00D1	whiteout_d1	2	00356A50	59	LINEAR	2 call(s) (2 direct), no branching
+00D2	fadein_d2	2	003559B0	69	LINEAR	4 call(s) (4 direct), no branching
+00D4	bindp2_d4	3	00343760	5	TAILJUMP	-> 00342640
+00D5	mapjumpstatus	1	0034A250	52	LINEAR	2 call(s) (2 direct), no branching
+00D6	bindp2_d6	2	00343760	5	TAILJUMP	-> 00342640
+00D7	bindh	1	00345A60	91	BRANCHING	2 conditional branch(es), 3 call(s)
+00D8	bindhoff	0	003460F0	179	BRANCHING	5 conditional branch(es), 9 call(s)
+00D9	attach	2	0034A640	91	BRANCHING	1 conditional branch(es), 5 call(s)
+00DA	attachoff	0	0034AD60	8	TAILJUMP	-> 002E6B10
+00DB	effectread	1	0034BC90	121	LINEAR	4 call(s) (4 direct), no branching
+00DD	effectplay	1	0034E2A0	80	LINEAR	5 call(s) (5 direct), no branching
+00DF	effectcancel	0	003501D0	39	LINEAR	2 call(s) (2 direct), no branching
+00E0	effectread_e0	2	0034B880	79	CALL1	-> 00267F90, then tail-jump
+00E2	effectplay_e2	2	0034DE50	50	LINEAR	2 call(s) (2 direct), no branching
+00E4	effectcancel_e4	1	0034FD80	23	CALL1	-> 00267E10, then tail-jump
+00E5	effectcancelall	0	00350FA0	5	TAILJUMP	-> 0036DE20
+00E6	motionratio	1	00351340	58	LINEAR	2 call(s) (2 direct), no branching
+00E7	eventread	1	00353080	107	BRANCHING	4 conditional branch(es), 5 call(s)
+00E8	eventread_e8	2	003522C0	91	BRANCHING	4 conditional branch(es), 4 call(s)
+00EB	eventplay	0	00354E80	111	BRANCHING	3 conditional branch(es), 7 call(s)
+00EC	eventplay_ec	1	00354B20	98	BRANCHING	3 conditional branch(es), 6 call(s)
+00EF	offsetsoftimage	0	003562B0	154	LINEAR	4 call(s) (4 direct), no branching
+00F0	setpossoftimage	0	00356830	125	LINEAR	3 call(s) (3 direct), no branching
+00F3	geteventspace	0	0033FF40	64	BRANCHING	1 conditional branch(es), 2 call(s)
+00F4	motionloopframe	2	00340810	95	BRANCHING	1 conditional branch(es), 3 call(s)
+00F5	motionstartframe	1	00340E60	37	CALL1	-> 00267DB0, then tail-jump
+00F6	resetmapidfloorall	0	003416E0	40	LINEAR	2 call(s) (2 direct), no branching
+00F7	resetmapidfloor	1	00341290	23	CALL1	-> 00267E10, then tail-jump
+00F8	resetmapidwallall	0	00341E30	40	LINEAR	2 call(s) (2 direct), no branching
+00F9	resetmapidwall	1	00341A90	23	CALL1	-> 00267E10, then tail-jump
+00FA	resetmapidmjall	0	003424D0	40	LINEAR	2 call(s) (2 direct), no branching
+00FB	resetmapidmj	1	003421B0	23	CALL1	-> 00267E10, then tail-jump
+00FC	setmapidfloorground	2	003429B0	50	LINEAR	2 call(s) (2 direct), no branching
+00FD	setmapidmjground	0	00343140	50	LINEAR	2 call(s) (2 direct), no branching
+00FE	setmapidfloor	3	00343E60	92	LINEAR	5 call(s) (5 direct), no branching
+00FF	setmapidwall	3	00344A20	92	LINEAR	5 call(s) (5 direct), no branching
+0100	setmapidmj	3	003458D0	92	LINEAR	5 call(s) (5 direct), no branching
+0101	setmapidfloor_101	0	00343810	81	LINEAR	4 call(s) (4 direct), no branching
+0102	setmapidwall_102	0	003444F0	81	LINEAR	4 call(s) (4 direct), no branching
+0103	setmapidmj_103	0	00345370	81	LINEAR	4 call(s) (4 direct), no branching
+0104	setmapambient	0	00346380	103	LINEAR	4 call(s) (4 direct), no branching
+0105	setmapambient_105	3	00346880	119	LINEAR	5 call(s) (5 direct), no branching
+0106	resetmapambient	0	00346D20	22	TAILJUMP	-> 00379080
+0107	resetmapidfloorground	0	00342E00	61	LINEAR	3 call(s) (3 direct), no branching
+0108	resetmapidmjground	0	003434B0	61	LINEAR	3 call(s) (3 direct), no branching
+0109	resetmapidfloor_109	2	00344190	103	LINEAR	6 call(s) (6 direct), no branching
+010A	resetmapidwall_10a	2	00344E30	103	LINEAR	6 call(s) (6 direct), no branching
+010B	resetmapidmj_10b	2	00345EF0	103	LINEAR	6 call(s) (6 direct), no branching
+010C	showmapmodel	1	00347FD0	28	CALL1	-> 00267E10, then tail-jump
+010D	hidemapmodel	1	003482F0	25	CALL1	-> 00267E10, then tail-jump
+010E	showshadow	0	00348DC0	13	TAILJUMP	-> 002ECD80
+010F	hideshadow	0	00349360	10	TAILJUMP	-> 002ECD80
+0110	getbtlwork	0	00349520	54	LINEAR	2 call(s) (2 direct), no branching
+0111	setbtlwork	0	00349970	67	LINEAR	2 call(s) (2 direct), no branching
+0112	showshadow_112	0	00348AE0	32	CALL1	-> 00267E10, then tail-jump
+0113	showmapmodel_113	0	00347C90	50	LINEAR	2 call(s) (2 direct), no branching
+0114	cameraratio	1	00351190	109	LINEAR	6 call(s) (6 direct), no branching
+0115	cameraratio_115	2	00350B00	73	LINEAR	3 call(s) (3 direct), no branching
+0116	setambient	3	00349E40	138	LINEAR	5 call(s) (5 direct), no branching
+0117	resetambient	0	0034ACE0	114	LINEAR	5 call(s) (5 direct), no branching
+011B	startscene	1	0034C9A0	50	LINEAR	4 call(s) (4 direct), no branching
+011C	lock_charmotion_once	0	0034D350	10	TAILJUMP	-> 0026AF70
+011D	stdmotionplay	1	0034E110	66	LINEAR	2 call(s) (2 direct), no branching
+011E	setmapjumpgroup	1	00350FB0	32	CALL1	-> 00267E10, then tail-jump
+011F	seteventfognearfar	2	003513B0	57	LINEAR	3 call(s) (3 direct), no branching
+0120	seteventfogcolor	4	00351AA0	156	BRANCHING	4 conditional branch(es), 4 call(s)
+0121	seteventfogstatus	1	00351F20	23	CALL1	-> 00267E10, then tail-jump
+0122	setaccr	1	00352D10	81	LINEAR	3 call(s) (3 direct), no branching
+0123	setaccr_123	2	003528F0	68	LINEAR	2 call(s) (2 direct), no branching
+0124	setwh	4	00352810	129	LINEAR	5 call(s) (5 direct), no branching
+0125	settalkwh	0	00352200	69	LINEAR	2 call(s) (2 direct), no branching
+0126	effectactor	1	00352270	79	BRANCHING	1 conditional branch(es), 3 call(s)
+0127	locationeffectread	0	0034C430	124	LINEAR	4 call(s) (4 direct), no branching
+0128	locationeffectread_128	2	0034C0F0	82	CALL1	-> 00267F90, then tail-jump
+012A	getpos_12a	4	00351970	192	BRANCHING	1 conditional branch(es), 9 call(s)
+012B	getx_12b	1	00347580	67	LINEAR	4 call(s) (4 direct), no branching
+012C	gety_12c	1	00347AB0	67	LINEAR	4 call(s) (4 direct), no branching
+012D	getz_12d	1	00347FF0	67	LINEAR	4 call(s) (4 direct), no branching
+012E	getrotangzx_12e	1	00349150	48	LINEAR	3 call(s) (3 direct), no branching
+012F	getangzx_12f	1	00349490	48	LINEAR	3 call(s) (3 direct), no branching
+0130	setfocuslength	1	00352DE0	21	CALL1	-> 00267DB0, then tail-jump
+0131	setfocusrange	1	00353240	21	CALL1	-> 00267DB0, then tail-jump
+0132	setfocuslayer	1	00353640	26	CALL1	-> 00267E10, then tail-jump
+0133	setfocusshift	1	00353AA0	21	CALL1	-> 00267DB0, then tail-jump
+0134	setfocusalpha	1	00353E00	23	CALL1	-> 00267E10, then tail-jump
+0135	setfocusstatus	1	003542E0	28	CALL1	-> 00267E10, then tail-jump
+0136	bindl	0	00354750	67	LINEAR	2 call(s) (2 direct), no branching
+0137	seteventlightactor	0	00354B90	68	LINEAR	2 call(s) (2 direct), no branching
+0138	seteventlighttype	0	00355090	50	LINEAR	2 call(s) (2 direct), no branching
+0139	seteventlightall	0	00355460	23	CALL1	-> 00267E10, then tail-jump
+013A	seteventlightcolor	0	00355720	157	LINEAR	6 call(s) (6 direct), no branching
+013B	seteventlightrange	0	00355E40	53	LINEAR	2 call(s) (2 direct), no branching
+013C	seteventlightdir	0	00356160	220	LINEAR	10 call(s) (10 direct), no branching
+013D	normalang	1	00356C10	38	LINEAR	2 call(s) (2 direct), no branching
+013E	entrydeny	0	00357170	36	BRANCHING	1 conditional branch(es), 2 call(s)
+0140	system_setentryexecstatus	1	0033F510	23	CALL1	-> 00267E10, then tail-jump
+0141	system_seteventexecstatus	1	0033F8C0	23	CALL1	-> 00267E10, then tail-jump
+0142	system_getentryexecstatus	0	0033FD20	29	CALL1	-> 00264160, then tail-jump
+0143	system_geteventexecstatus	0	00340060	29	CALL1	-> 00264170, then tail-jump
+0144	seteventlightcorn	0	003566F0	77	LINEAR	3 call(s) (3 direct), no branching
+0145	amese	2	0034A420	110	LINEAR	4 call(s) (4 direct), no branching
+0147	hideparty	0	003415D0	43	BRANCHING	2 conditional branch(es), 2 call(s)
+0148	showparty	0	00342250	46	BRANCHING	2 conditional branch(es), 2 call(s)
+0149	motioncancel	0	0034C730	8	TAILJUMP	-> 002E42D0
+014A	aaske	2	0034D620	23	BRANCHING	1 conditional branch(es), 0 call(s)
+014B	partystdmotiondispose	0	00342900	5	TAILJUMP	-> 0037C3C0
+014C	partystdmotionrecover	0	00343320	10	TAILJUMP	-> 003601C0
+014D	getucstatus	0	00343690	29	CALL1	-> 00265680, then tail-jump
+014E	motiontrigger	0	00343A20	8	TAILJUMP	-> 002EB4A0
+014F	gameratio	1	00343EE0	39	BRANCHING	1 conditional branch(es), 1 call(s)
+0150	system_expandcharmotionmemory	0	0017E7D0	5	TAILJUMP	-> 0016D6A0
+0151	eventsoundread	1	00344660	108	BRANCHING	2 conditional branch(es), 6 call(s)
+0153	eventsoundplay	1	00345930	135	BRANCHING	2 conditional branch(es), 4 call(s)
+0154	eventsounddispose	1	00347470	49	LINEAR	2 call(s) (2 direct), no branching
+0155	eventsoundstop	1	0034DE30	25	CALL1	-> 00267E10, then tail-jump
+0156	setcharclipall	1	00347830	23	CALL1	-> 00267E10, then tail-jump
+0157	setcharclipdistance	1	00348310	21	CALL1	-> 00267DB0, then tail-jump
+0158	fadelayer	1	00349D70	23	CALL1	-> 00267E10, then tail-jump
+0159	fadecancel	0	0034A050	53	LINEAR	3 call(s) (3 direct), no branching
+015A	fadecancel_15a	1	00349B30	40	LINEAR	2 call(s) (2 direct), no branching
+015B	setbattleexecstatus	0	0034A3B0	54	LINEAR	2 call(s) (2 direct), no branching
+015C	setpartypos	5	0034A940	169	BRANCHING	1 conditional branch(es), 9 call(s)
+015E	isdead	0	0034C0C0	40	LINEAR	2 call(s) (2 direct), no branching
+015F	isdead_15f	1	0034C500	74	LINEAR	5 call(s) (5 direct), no branching
+0160	setlod	1	0034D170	32	CALL1	-> 00267E10, then tail-jump
+0161	eventsoundtrans	3	0034D470	73	LINEAR	3 call(s) (3 direct), no branching
+0162	eventsoundfadeout	2	0034D970	50	LINEAR	2 call(s) (2 direct), no branching
+0163	eventsoundcancel	0	0034DE30	25	CALL1	-> 00267E10, then tail-jump
+0164	setscale_164	3	00350D70	93	LINEAR	3 call(s) (3 direct), no branching
+0168	ucsetpos	3	0034F800	112	BRANCHING	1 conditional branch(es), 4 call(s)
+0169	bonephysical	0	00350350	37	CALL1	-> 00267E10, then tail-jump
+016A	eventsoundplay_16a	0	00350700	176	BRANCHING	2 conditional branch(es), 6 call(s)
+016B	motionclear	0	00351000	30	CALL1	-> 002E42D0, then tail-jump
+016C	eventsoundisplay	1	00351470	39	LINEAR	2 call(s) (2 direct), no branching
+016D	shownavimap	0	00352390	20	CALL1	-> 003C5DF0, then tail-jump
+016E	hidenavimap	0	003527D0	20	CALL1	-> 003C5DE0, then tail-jump
+016F	crossfade	3	00353260	102	BRANCHING	1 conditional branch(es), 5 call(s)
+0171	stopeventdecode	0	00353BF0	35	LINEAR	2 call(s) (2 direct), no branching
+0172	showfieldsign	0	003546C0	34	CALL1	-> 002640C0, then tail-jump
+0173	hidefieldsign	0	00354B00	31	CALL1	-> 002640C0, then tail-jump
+0174	setfieldsign	0	00354F20	142	LINEAR	6 call(s) (6 direct), no branching
+0175	setfieldsignonce	0	003555F0	142	LINEAR	6 call(s) (6 direct), no branching
+0176	fieldsign	1	00355A00	487	BRANCHING	9 conditional branch(es), 22 call(s)
+0177	fieldsignicon	1	003566D0	29	CALL1	-> 00267E10
+0178	fieldsignmes	1	00356B70	76	LINEAR	3 call(s) (3 direct), no branching
+0179	fieldsignmesbyid	1	00357120	76	LINEAR	3 call(s) (3 direct), no branching
+017A	registshape	1	0033F100	77	LINEAR	3 call(s) (3 direct), no branching
+017B	shapemax	0	0033F600	50	LINEAR	2 call(s) (2 direct), no branching
+017C	shapewin	6	0033F950	205	LINEAR	12 call(s) (12 direct), no branching
+017D	setshapeanime	0	003400E0	196	LINEAR	12 call(s) (12 direct), no branching
+017E	setshape	4	003405C0	122	LINEAR	6 call(s) (6 direct), no branching
+0180	stopshapeanime	0	00342E70	50	LINEAR	2 call(s) (2 direct), no branching
+0181	setshapeshowstatus	3	00343240	73	LINEAR	3 call(s) (3 direct), no branching
+0182	setshapepos	0	00343C00	82	CALL1	-> 00267F90, then tail-jump
+0183	setshapepos_183	5	00343610	123	LINEAR	6 call(s) (6 direct), no branching
+0184	setshapeclut	0	00343F40	73	LINEAR	3 call(s) (3 direct), no branching
+0185	setshapesampling	0	00344440	73	LINEAR	3 call(s) (3 direct), no branching
+0186	setshapescale	0	00344DD0	89	LINEAR	2 call(s) (2 direct), no branching
+0187	setshapescale_187	0	00344840	136	LINEAR	8 call(s) (8 direct), no branching
+0189	setshapecolor	6	003457A0	89	LINEAR	2 call(s) (2 direct), no branching
+018A	setshapecolor_18a	8	003452D0	156	LINEAR	10 call(s) (10 direct), no branching
+018C	setshapeprior	0	00345E90	73	LINEAR	3 call(s) (3 direct), no branching
+018D	settalkheight	1	0034CAC0	65	LINEAR	2 call(s) (2 direct), no branching
+018E	settalkunderheight	0	0034CE60	33	CALL1	-> 00267DB0, then tail-jump
+018F	mainloopallsyncv	0	003464B0	23	CALL1	-> 00267E10, then tail-jump
+0190	setmaplod	1	00346840	23	CALL1	-> 00267E10, then tail-jump
+0191	setpossummonspace	0	003482E0	5	TAILJUMP	-> 003B7E20
+0192	registbattletarget	0	00346D10	5	LINEAR	no call, no branching, 1 memory operand(s)
+0193	setupsummonforevent	1	00346FA0	73	BRANCHING	2 conditional branch(es), 5 call(s)
+0194	duplicatebattletarget	0	003475D0	5	TAILJUMP	-> 003B7440
+0195	resumeposbattletarget	0	00347850	5	TAILJUMP	-> 003B7BB0
+0196	hidenobattletarget	0	00347D80	5	TAILJUMP	-> 003B7770
+0197	shownobattletarget	0	003480C0	5	TAILJUMP	-> 003B8090
+0198	summoneventread	1	00353590	48	LINEAR	3 call(s) (3 direct), no branching
+0199	setrotangzxsummonspace	0	00348660	21	CALL1	-> 00267DB0, then tail-jump
+019A	captureallforsummon	0	00348A70	26	CALL1	-> 00263FF0, then tail-jump
+019B	releaseallforsummon	0	00348DA0	26	CALL1	-> 00263FF0, then tail-jump
+019C	camerashakestart	0	00349A60	112	LINEAR	3 call(s) (3 direct), no branching
+019D	camerashakestop	0	0034A370	59	LINEAR	3 call(s) (3 direct), no branching
+019E	camerashakestop_19e	1	00349ED0	49	LINEAR	2 call(s) (2 direct), no branching
+019F	camerashakechange	1	0034B610	49	LINEAR	2 call(s) (2 direct), no branching
+01A1	camerashakeclear	0	0034B100	21	CALL1	-> 002640C0, then tail-jump
+01A2	camerashakestart_1a2	0	003492F0	106	LINEAR	5 call(s) (5 direct), no branching
+01A3	camerashakestart_1a3	2	00349730	117	LINEAR	6 call(s) (6 direct), no branching
+01A5	camerashakeratio	0	0034AC70	109	LINEAR	6 call(s) (6 direct), no branching
+01A6	camerashakeratio_1a6	0	0034A720	73	LINEAR	3 call(s) (3 direct), no branching
+01A7	setfightmode	0	0034CB60	32	CALL1	-> 00267E10, then tail-jump
+01A8	setmesmacro	4	0034CF20	96	LINEAR	4 call(s) (4 direct), no branching
+01A9	updatemesmacro	2	0034D3D0	50	LINEAR	2 call(s) (2 direct), no branching
+01AA	stdmotionvariation	1	0034D8D0	32	CALL1	-> 00267E10, then tail-jump
+01AB	initgauge	1	0034DC70	36	LINEAR	2 call(s) (2 direct), no branching
+01AC	setgaugeshowstatus	1	0034DFC0	34	BRANCHING	1 conditional branch(es), 1 call(s)
+01AE	setgaugecounter	1	0034EA90	23	CALL1	-> 00267E10, then tail-jump
+01AF	setgaugetimer	1	0034ED90	23	CALL1	-> 00267E10, then tail-jump
+01B0	setgaugechangeframe	0	0034F360	24	CALL1	-> 00267E10, then tail-jump
+01B1	setgaugechangeratio	2	0034F7C0	50	LINEAR	2 call(s) (2 direct), no branching
+01B2	changegaugecounterbyframe	1	0034FDE0	23	CALL1	-> 00267E10, then tail-jump
+01B3	changegaugecounterbyratio	1	003502C0	23	CALL1	-> 00267E10, then tail-jump
+01B4	setgaugecountermax	1	00347F20	23	CALL1	-> 00267E10, then tail-jump
+01B5	setgaugetimermax	1	00347F20	23	CALL1	-> 00267E10, then tail-jump
+01B6	setgaugecountercondition	3	003514F0	73	LINEAR	3 call(s) (3 direct), no branching
+01B7	setgaugetimercondition	3	003514F0	73	LINEAR	3 call(s) (3 direct), no branching
+01B8	resetgaugetimer	0	00351C80	5	TAILJUMP	-> 003E8F10
+01B9	startgaugetimer	0	00351F10	5	TAILJUMP	-> 003E9010
+01BA	stopgaugetimer	0	003521F0	5	TAILJUMP	-> 003E8F00
+01BB	gaugepadding0	1	00352660	23	CALL1	-> 00267E10, then tail-jump
+01BC	setgaugecounterlabel	0	00352A50	60	LINEAR	3 call(s) (3 direct), no branching
+01BD	setgaugecounterunit	1	00352EC0	60	LINEAR	3 call(s) (3 direct), no branching
+01BE	setgaugetimerlabel	0	003534F0	60	LINEAR	3 call(s) (3 direct), no branching
+01BF	getgaugetimer	1	003539E0	39	LINEAR	2 call(s) (2 direct), no branching
+01C0	getgaugecounter	0	00353D70	29	CALL1	-> 003E8EE0, then tail-jump
+01C1	setgaugecountertype	1	00354190	23	CALL1	-> 00267E10, then tail-jump
+01C2	setgaugetimertype	1	00354190	23	CALL1	-> 00267E10, then tail-jump
+01C3	objmblurplay	0	00354970	23	CALL1	-> 00267E10, then tail-jump
+01C4	objmblurclear	0	00354D70	5	TAILJUMP	-> 0017E7D0
+01C5	objmblurlimitalpha	0	003551F0	21	CALL1	-> 00267DB0, then tail-jump
+01C6	objmblurcolor	0	00355500	61	LINEAR	4 call(s) (4 direct), no branching
+01C7	objmblurpower	0	003558D0	21	CALL1	-> 00267DB0, then tail-jump
+01C8	attachinfo	2	00355D20	103	LINEAR	4 call(s) (4 direct), no branching
+01C9	requestreentry	0	00356150	8	TAILJUMP	-> 002697A0
+01CA	lockbehindcamera	3	00356470	135	LINEAR	5 call(s) (5 direct), no branching
+01CB	setbehindcameratype	0	00356CB0	23	CALL1	-> 00267E10, then tail-jump
+01CC	setgaugecolor	5	00357270	123	LINEAR	6 call(s) (6 direct), no branching
+01CD	setgaugeapply	1	00510720	23	CALL1	-> 00267E10, then tail-jump
+01CE	unlockbehindcamera	0	00356920	80	LINEAR	2 call(s) (2 direct), no branching
+01CF	isquestorder	1	0033F6E0	39	LINEAR	2 call(s) (2 direct), no branching
+01D0	isquestclear	1	0033FAA0	39	LINEAR	2 call(s) (2 direct), no branching
+01D1	setquestorder	2	0033FF80	50	LINEAR	2 call(s) (2 direct), no branching
+01D2	setquestclear	2	00340300	50	LINEAR	2 call(s) (2 direct), no branching
+01D3	getquestorder	0	00340690	29	CALL1	-> 0046B0F0, then tail-jump
+01D4	getquestclear	0	00340C50	29	CALL1	-> 0046B020, then tail-jump
+01D5	getquestcleartotal	0	00341050	29	CALL1	-> 0046B0B0, then tail-jump
+01D6	lockreverb	1	003417C0	41	LINEAR	2 call(s) (2 direct), no branching
+01D7	unlockreverb	0	00341D00	25	CALL1	-> 00363B20, then tail-jump
+01D8	showsummontarget	0	00342000	10	TAILJUMP	-> 003B70B0
+01D9	hidesummontarget	0	00342320	7	TAILJUMP	-> 003B70B0
+01DA	questeffectread	1	0034CB80	124	LINEAR	4 call(s) (4 direct), no branching
+01DB	questeffectread_1db	2	0034C820	82	CALL1	-> 00267F90, then tail-jump
+01DC	effecttriggercancel	0	00350990	80	LINEAR	5 call(s) (5 direct), no branching
+01DD	effecttriggercancel_1dd	2	003504D0	50	LINEAR	2 call(s) (2 direct), no branching
+01DE	getcamerasubframe	0	0050D1C0	29	CALL1	-> 0053DD10, then tail-jump
+01DF	getcameramainframe	0	0050F100	29	CALL1	-> 005C5230, then tail-jump
+01E0	setflystatus	0	00342E50	32	CALL1	-> 00267E10, then tail-jump
+01E1	setfloatstatus	0	00343200	32	CALL1	-> 00267E10, then tail-jump
+01E2	getgroundy	0	00343520	33	CALL1	-> 00264670, then tail-jump
+01E3	bgeffecttrigger	2	003438A0	73	LINEAR	3 call(s) (3 direct), no branching
+01E4	resumebehindcamera	3	003442D0	112	LINEAR	5 call(s) (5 direct), no branching
+01E6	getlength2	2	00344AF0	160	LINEAR	5 call(s) (5 direct), no branching
+01E7	getlength3	3	00345180	208	LINEAR	6 call(s) (6 direct), no branching
+01E8	getangle	2	00345830	158	BRANCHING	4 conditional branch(es), 5 call(s)
+01E9	getangle_1e9	1	003461B0	141	LINEAR	6 call(s) (6 direct), no branching
+01EA	stopeventdecode_1ea	0	003540B0	87	LINEAR	5 call(s) (5 direct), no branching
+01EB	mesisselect	1	00346960	39	LINEAR	2 call(s) (2 direct), no branching
+01EC	sethp	0	00341B20	91	LINEAR	4 call(s) (4 direct), no branching
+01ED	sethpratio	0	003421D0	91	LINEAR	4 call(s) (4 direct), no branching
+01EE	setmp	0	00341EE0	91	LINEAR	4 call(s) (4 direct), no branching
+01EF	setmpratio	0	00342500	91	LINEAR	4 call(s) (4 direct), no branching
+01F0	setcharbattlestatus	0	00346E60	67	LINEAR	2 call(s) (2 direct), no branching
+01F1	clearcharbattlestatus	0	003472A0	67	LINEAR	2 call(s) (2 direct), no branching
+01F2	gethp_1f2	1	00348800	55	LINEAR	4 call(s) (4 direct), no branching
+01F3	getmaxhp_1f3	1	0034B060	55	LINEAR	4 call(s) (4 direct), no branching
+01F4	gethpratio_1f4	0	0034B5D0	64	LINEAR	5 call(s) (5 direct), no branching
+01F5	getmp_1f5	0	0034BB80	67	LINEAR	5 call(s) (5 direct), no branching
+01F6	getmaxmp_1f6	0	0034C1D0	55	LINEAR	4 call(s) (4 direct), no branching
+01F7	getmpratio_1f7	0	0034C6A0	96	LINEAR	5 call(s) (5 direct), no branching
+01F8	sethp_1f8	2	0034A110	102	LINEAR	6 call(s) (6 direct), no branching
+01F9	sethpratio_1f9	0	0034A920	31	CALL1	-> 00267F90, then tail-jump
+01FA	setmp_1fa	0	0034A4C0	102	LINEAR	6 call(s) (6 direct), no branching
+01FB	setmpratio_1fb	0	0034A920	31	CALL1	-> 00267F90, then tail-jump
+01FC	setcharbattlestatus_1fc	0	00347600	81	LINEAR	4 call(s) (4 direct), no branching
+01FD	clearcharbattlestatus_1fd	0	00347BE0	81	LINEAR	4 call(s) (4 direct), no branching
+01FE	ames_1fe	6	00349800	137	LINEAR	6 call(s) (6 direct), no branching
+01FF	aask_1ff	6	0034D620	23	BRANCHING	1 conditional branch(es), 0 call(s)
+0200	bindc	3	00344550	98	BRANCHING	2 conditional branch(es), 3 call(s)
+0201	bindcoff	1	00344A80	56	BRANCHING	1 conditional branch(es), 1 call(s)
+0202	disposepartywithoutcontrol	0	0034C990	5	TAILJUMP	-> 003B6F30
+0203	summonread	0	0034E1F0	33	LINEAR	2 call(s) (2 direct), no branching
+0205	changetosummonparty	0	0034ED30	10	TAILJUMP	-> 003594C0
+0206	disposesummon	0	0034FB20	23	CALL1	-> 00314D40, then tail-jump
+0207	summontopartyread	0	0034FE80	30	LINEAR	2 call(s) (2 direct), no branching
+0209	changetonormalparty	0	00350F30	18	CALL1	-> 003B7D30, then tail-jump
+020A	voiceread_20a	2	0034E8B0	114	BRANCHING	2 conditional branch(es), 6 call(s)
+020B	setlightcutstatus	2	00351210	61	LINEAR	3 call(s) (3 direct), no branching
+020C	setpos2	3	0034F210	111	LINEAR	5 call(s) (5 direct), no branching
+020D	setpos2_20d	0	00350C30	147	LINEAR	7 call(s) (7 direct), no branching
+020E	setwalkspeed	1	00352530	33	CALL1	-> 00267DB0, then tail-jump
+020F	setnochecktouchheightflag	0	00352BE0	32	CALL1	-> 00267E10, then tail-jump
+0210	sqrt	1	00352F70	38	LINEAR	2 call(s) (2 direct), no branching
+0211	getmapjumpposbyindex	5	003538F0	236	LINEAR	12 call(s) (12 direct), no branching
+0212	ucsetpos_212	4	0034FF00	156	BRANCHING	2 conditional branch(es), 11 call(s)
+0213	animeplay	1	00354710	33	CALL1	-> 00267E10, then tail-jump
+0215	animestop	1	003556E0	23	CALL1	-> 00267E10, then tail-jump
+0216	hideanime	0	0050C7F0	8	TAILJUMP	-> 00267E10
+0217	showanime	0	0050C7F0	8	TAILJUMP	-> 00267E10
+0218	animepause	1	00357100	23	CALL1	-> 00267E10, then tail-jump
+0219	animepauseclear	0	00357490	23	CALL1	-> 00267E10, then tail-jump
+021A	setweatherslot	1	003565C0	99	BRANCHING	4 conditional branch(es), 4 call(s)
+021B	setnavimapindex	1	00356BF0	23	CALL1	-> 00267E10, then tail-jump
+021C	setlightcutstatus_21c	0	00351D90	73	LINEAR	3 call(s) (3 direct), no branching
+021D	setlightcutanimestatus	0	00352130	61	LINEAR	3 call(s) (3 direct), no branching
+021E	setlightcutanimestatus_21e	0	00352780	73	LINEAR	3 call(s) (3 direct), no branching
+021F	setalllightstatus	2	0033F470	66	LINEAR	2 call(s) (2 direct), no branching
+0220	setradius	1	0033F890	33	CALL1	-> 00267DB0, then tail-jump
+0221	setradius_221	2	0033FCD0	69	LINEAR	2 call(s) (2 direct), no branching
+0222	nowlocationmap	0	00357450	36	LINEAR	2 call(s) (2 direct), no branching
+0223	bonecalcforce	1	003401B0	32	CALL1	-> 00267E10, then tail-jump
+0224	setlightgroup	1	003404F0	38	CALL1	-> 00267E10, then tail-jump
+0225	clearlightgroup	1	00340940	35	CALL1	-> 00267E10, then tail-jump
+0226	getdestrotangzx	0	00340E90	33	CALL1	-> 00265550, then tail-jump
+0227	getdestrotangzx_227	1	00341250	55	LINEAR	2 call(s) (2 direct), no branching
+0228	sysreqf	3	0034EC80	103	LINEAR	5 call(s) (5 direct), no branching
+0229	musicread	1	00341710	75	BRANCHING	2 conditional branch(es), 5 call(s)
+022B	musicplay	1	00342F80	132	BRANCHING	6 conditional branch(es), 3 call(s)
+022C	musicstop	1	00345010	70	BRANCHING	2 conditional branch(es), 4 call(s)
+022D	musicclear	1	00345600	45	BRANCHING	2 conditional branch(es), 2 call(s)
+0232	capturepartyforsummon	0	00348130	37	LINEAR	2 call(s) (2 direct), no branching
+0233	releasepartyforsummon	0	003484A0	26	CALL1	-> 00263FF0, then tail-jump
+0234	rootmoveenable	0	003487D0	13	TAILJUMP	-> 0026B500
+0235	rootmovedisable	0	00348B80	10	TAILJUMP	-> 0026B500
+0236	setnoupdatebehindcamera	1	00348DD0	23	CALL1	-> 00267E10, then tail-jump
+0237	changeentryid	0	003493A0	8	TAILJUMP	-> 002659D0
+0238	getduplicateid	0	00349600	32	CALL1	-> 00263880, then tail-jump
+0239	recttocircle	0	00349960	13	TAILJUMP	-> 0026B480
+023A	behindcamerafovyroll	4	00349D00	104	LINEAR	4 call(s) (4 direct), no branching
+023C	resetbehindcamerafovyroll	0	0034A330	5	TAILJUMP	-> 003DA2C0
+023D	vibplay	1	0034AC30	54	BRANCHING	1 conditional branch(es), 3 call(s)
+023E	vibstop	0	0034B0F0	5	TAILJUMP	-> 00379F40
+0240	musicclearall	0	0034BB00	5	TAILJUMP	-> 00360D70
+0241	effectsignal	0	0034D690	53	LINEAR	2 call(s) (2 direct), no branching
+0242	setloopstatusbyevent	1	0034BFC0	23	CALL1	-> 00267E10, then tail-jump
+0245	getdefaultwalkspeed	0	0034C7A0	39	CALL1	-> 002E7E50, then tail-jump
+0246	getdefaultrunspeed	0	0034CB30	39	CALL1	-> 002E7E10, then tail-jump
+0247	setwalkthresholdspeed	0	0034CEA0	33	CALL1	-> 00267DB0, then tail-jump
+0248	settalkradiusoffset	3	0034DA90	93	LINEAR	3 call(s) (3 direct), no branching
+0249	lookatoff	0	0034DE90	13	TAILJUMP	-> 002EBE50
+024A	lookaton	0	0034E970	15	TAILJUMP	-> 002EBE50
+024B	lookatsrcboneid	0	0034D720	32	CALL1	-> 00267E10, then tail-jump
+0263	setfocusmode	1	00352020	23	CALL1	-> 00267E10, then tail-jump
+0264	setfreetargetw	0	00352500	37	CALL1	-> 00267E10, then tail-jump
+0265	setfreetargettype	1	003528C0	44	LINEAR	2 call(s) (2 direct), no branching
+0266	setautorelax	1	00352CE0	38	CALL1	-> 00267E10
+0267	commoneffectplay	2	00353860	82	CALL1	-> 00267F90, then tail-jump
+0268	efffadein	1	00354670	23	CALL1	-> 00267E10, then tail-jump
+0269	efffadeout	1	00354090	23	CALL1	-> 00267E10, then tail-jump
+026B	stdmotionplaywithoutsame	0	0034EA40	63	LINEAR	2 call(s) (2 direct), no branching
+026C	setcharseplay	1	00357350	41	CALL1	-> 00267E10
+026D	istouchuc	0	0033FA40	77	LINEAR	3 call(s) (3 direct), no branching
+026E	settouchuconly	1	00341000	41	CALL1	-> 00267E10
+026F	setcharclipone	1	00347D90	53	LINEAR	2 call(s) (2 direct), no branching
+0270	defaultmapmodel	1	00348680	28	CALL1	-> 00267E10, then tail-jump
+0271	setsummoncameratarget	2	00341410	79	BRANCHING	1 conditional branch(es), 3 call(s)
+0272	getdefaultwalkthresholdspeed	0	0034D300	39	CALL1	-> 002E7DD0, then tail-jump
+0273	setcharseplayall	1	0033F210	28	CALL1	-> 00267E10, then tail-jump
+0276	setfloaty	0	003419A0	33	CALL1	-> 00267DB0, then tail-jump
+027F	setlightallcutstatus	1	00351850	36	LINEAR	2 call(s) (2 direct), no branching
+0280	animeplaytiming	0	00354AD0	33	CALL1	-> 00267E10, then tail-jump
+0281	setaturnlookatlockstatus	1	00341DF0	32	CALL1	-> 00267E10, then tail-jump
+0283	setzclipoverdraw	1	00342120	37	CALL1	-> 00267E10, then tail-jump
+0284	setshadowalpha	1	00342410	59	LINEAR	2 call(s) (2 direct), no branching
+0285	clearshadowalpha	0	003429A0	10	TAILJUMP	-> 002E88A0
+0286	setshadowlod	1	00342CF0	59	LINEAR	2 call(s) (2 direct), no branching
+0287	clearshadowlod	0	00343130	10	TAILJUMP	-> 002E8950
+0288	resetbehindcamera	2	00343340	82	LINEAR	4 call(s) (4 direct), no branching
+0289	resumebehindcamera_289	0	00343DB0	102	LINEAR	4 call(s) (4 direct), no branching
+028A	setshadowratio	0	00343870	33	CALL1	-> 00267DB0, then tail-jump
+028B	voiceplay_28b	2	00350BC0	108	LINEAR	3 call(s) (3 direct), no branching
+028C	voiceplay_28c	4	00350880	82	CALL1	-> 00267F90, then tail-jump
+028D	voicestandby	1	00351B60	148	LINEAR	6 call(s) (6 direct), no branching
+028E	distance3d	0	00343D10	124	LINEAR	7 call(s) (7 direct), no branching
+028F	distance	2	00344390	124	LINEAR	7 call(s) (7 direct), no branching
+0290	distance_290	3	003448F0	130	LINEAR	8 call(s) (8 direct), no branching
+0291	distance3d_291	4	00344F80	144	LINEAR	9 call(s) (9 direct), no branching
+0292	distance_292	4	00345630	137	LINEAR	7 call(s) (7 direct), no branching
+0293	distance3d_293	0	00345C20	165	LINEAR	9 call(s) (9 direct), no branching
+0294	atan2	2	00346330	74	LINEAR	3 call(s) (3 direct), no branching
+0295	isrange	2	00346780	185	LINEAR	7 call(s) (7 direct), no branching
+0296	isrange_296	0	00346EF0	172	LINEAR	6 call(s) (6 direct), no branching
+0297	usemoviememory	0	003477E0	26	CALL1	-> 002640C0, then tail-jump
+0298	stopmoviememory	0	00347D60	23	CALL1	-> 002640C0, then tail-jump
+0299	seteffbeforeframecapturemode	1	00347F60	23	CALL1	-> 00267E10, then tail-jump
+029A	getspattackskillinfo	2	00348330	165	LINEAR	6 call(s) (6 direct), no branching
+029B	spattackread	2	00348870	60	LINEAR	3 call(s) (3 direct), no branching
+029D	spattackplay	1	003495A0	94	BRANCHING	2 conditional branch(es), 2 call(s)
+02A0	hidenobattletarget_spattack	1	0034BA30	23	CALL1	-> 00267E10, then tail-jump
+02A1	isfusion_spattack	1	0034BF90	39	LINEAR	2 call(s) (2 direct), no branching
+02A2	capturepcbyentryid	0	0034C3D0	75	BRANCHING	2 conditional branch(es), 4 call(s)
+02A3	duplicatepartyinfo_spattack	0	0034CF80	5	TAILJUMP	-> 003B7080
+02A4	resumepartyinfo_spattack	0	0034D330	18	CALL1	-> 003B7C60, then tail-jump
+02A5	lockreverb_2a5	0	00341460	62	LINEAR	3 call(s) (3 direct), no branching
+02A6	efffadecancel	0	00354960	5	TAILJUMP	-> 002EFD50
+02A7	setmenuhptargetshowstatus	1	0034D700	23	CALL1	-> 00267E10, then tail-jump
+02A8	openspattackwindow	0	0034DA80	5	TAILJUMP	-> 002E1AE0
+02AA	setbattlethinkstatus	1	0034E160	32	CALL1	-> 00267E10, then tail-jump
+02AB	summonplaymotionall	0	0034EB30	5	TAILJUMP	-> 003B79D0
+02AC	summonfollowboneposall	4	0034EEC0	133	LINEAR	6 call(s) (6 direct), no branching
+02AD	summonfollowbonestatusall	0	0034F450	23	CALL1	-> 00267E10, then tail-jump
+02AE	setsoftfocusmode	4	0034FA00	97	LINEAR	4 call(s) (4 direct), no branching
+02AF	openskillnamewindow_spattack	1	0034FFC0	23	CALL1	-> 00267E10, then tail-jump
+02B0	getdefaultheight	0	003503D0	33	CALL1	-> 00263810, then tail-jump
+02B1	getdefaultradiusw	0	00350910	33	CALL1	-> 00263860, then tail-jump
+02B2	getdefaultradiusd	0	00350910	33	CALL1	-> 00263860, then tail-jump
+02B3	setquestscenarioflag	2	00351140	79	BRANCHING	2 conditional branch(es), 2 call(s)
+02B4	getquestscenarioflag	1	00351F90	57	BRANCHING	1 conditional branch(es), 2 call(s)
+02B5	setquestcontract	0	00351560	68	BRANCHING	1 conditional branch(es), 2 call(s)
+02B6	getquestcontract	0	00351C40	57	BRANCHING	1 conditional branch(es), 2 call(s)
+02B8	setkutipakustatus	1	00352370	32	CALL1	-> 00267E10, then tail-jump
+02B9	setinterventioncamera	2	00353530	86	BRANCHING	1 conditional branch(es), 4 call(s)
+02BA	mapsoundplay	1	00346260	110	BRANCHING	3 conditional branch(es), 4 call(s)
+02BB	mapsoundplay_2bb	3	00346990	118	BRANCHING	2 conditional branch(es), 5 call(s)
+02BC	setquestok	2	00353B20	68	BRANCHING	1 conditional branch(es), 2 call(s)
+02BD	isquestok	0	00353E80	57	BRANCHING	1 conditional branch(es), 2 call(s)
+02BE	setuptreasure	1	00355210	240	BRANCHING	1 conditional branch(es), 13 call(s)
+02BF	talktreasure	1	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+02C0	sebsoundplay	2	0033F410	95	LINEAR	2 call(s) (2 direct), no branching
+02C1	sebsoundplay_2c1	0	00357040	183	BRANCHING	3 conditional branch(es), 9 call(s)
+02C2	stdmotionplay_2c2	2	0034E410	50	CALL1	-> 00267F90, then tail-jump
+02C3	stdmotionplaywithoutsame_2c3	2	0034ED40	47	CALL1	-> 00267F90, then tail-jump
+02C4	fadesystemtime	0	0033F830	29	CALL1	-> 00314F20, then tail-jump
+02C5	effectkeepmapjump	0	0033FC20	28	CALL1	-> 00267E10, then tail-jump
+02C6	effectkeepclear	0	00340010	15	TAILJUMP	-> 0036E9A0
+02C7	musictrans	3	00340260	152	BRANCHING	6 conditional branch(es), 9 call(s)
+02DF	setcapturescreenmode	0	00340B90	34	BRANCHING	1 conditional branch(es), 1 call(s)
+02E2	getucactorid	0	00343BC0	53	BRANCHING	1 conditional branch(es), 1 call(s)
+02E3	getucslot	0	003440E0	54	BRANCHING	1 conditional branch(es), 1 call(s)
+02E4	haveitem	1	00344630	39	LINEAR	2 call(s) (2 direct), no branching
+02E5	additem	2	00345080	127	BRANCHING	1 conditional branch(es), 6 call(s)
+02E6	checkgill	1	00346510	72	BRANCHING	1 conditional branch(es), 2 call(s)
+02E7	addgill	1	00346930	39	LINEAR	2 call(s) (2 direct), no branching
+02E8	subgill	1	00346E30	41	LINEAR	2 call(s) (2 direct), no branching
+02E9	havegill	0	00346000	29	CALL1	-> 0032A850, then tail-jump
+02EA	getmapid	0	00348100	39	CALL1	-> 002E9890, then tail-jump
+02EB	getmaptype	0	003484E0	44	BRANCHING	2 conditional branch(es), 0 call(s)
+02EC	getplaytime	0	00348970	67	LINEAR	2 call(s) (2 direct), no branching
+02ED	getplayhour	0	00348D70	47	LINEAR	2 call(s) (2 direct), no branching
+02EE	getplaysec	0	00349370	47	LINEAR	2 call(s) (2 direct), no branching
+02EF	getplaymin	0	00349700	47	LINEAR	2 call(s) (2 direct), no branching
+02F0	getprice	1	0034B000	39	LINEAR	2 call(s) (2 direct), no branching
+02F1	isdaijiitemid	0	0034B420	39	LINEAR	2 call(s) (2 direct), no branching
+02F2	subitem	2	003459C0	75	LINEAR	3 call(s) (3 direct), no branching
+02F3	setunazukistatus	1	003528A0	32	CALL1	-> 00267E10, then tail-jump
+02F4	setmallocalwritestatusbybattle	0	0034B9E0	23	CALL1	-> 00267E10, then tail-jump
+02F5	ishoridashi	0	0034BD90	39	LINEAR	2 call(s) (2 direct), no branching
+02F6	clearhoridashi	0	0034C2C0	25	CALL1	-> 00267E10, then tail-jump
+02F7	sethoridashi	1	0034C710	28	CALL1	-> 00267E10, then tail-jump
+02F8	isshutoralappear	0	0034D940	39	LINEAR	2 call(s) (2 direct), no branching
+02F9	clearshutoralappear	0	0034D190	25	CALL1	-> 00267E10, then tail-jump
+02FA	setshutoralappear	0	0034CA20	28	CALL1	-> 00267E10, then tail-jump
+02FB	isshutoralenable	0	0034DDB0	39	LINEAR	2 call(s) (2 direct), no branching
+02FC	clearshutoralenable	0	0034D600	25	CALL1	-> 00267E10, then tail-jump
+02FD	setshutoralenable	0	0034CD40	28	CALL1	-> 00267E10, then tail-jump
+02FE	usecamerahit	1	0034D420	32	CALL1	-> 00267E10, then tail-jump
+02FF	getmapgroundtype	0	0034E0E0	39	CALL1	-> 002E9830, then tail-jump
+0300	isnaviicon	0	0034E0B0	39	LINEAR	2 call(s) (2 direct), no branching
+0301	setnaviicon	0	0034EE20	28	CALL1	-> 00267E10, then tail-jump
+0302	clearnaviicon	0	0034DD90	25	CALL1	-> 00267E10, then tail-jump
+0303	setsaverambattlestatus	0	0034F870	28	CALL1	-> 00267E10, then tail-jump
+0304	setsaveramsummonstatus	0	0034FDC0	28	CALL1	-> 00267E10, then tail-jump
+0305	setsaveramtelepostatus	1	00350240	28	CALL1	-> 00267E10, then tail-jump
+0306	setsaveramsavestatus	0	00350600	28	CALL1	-> 00267E10, then tail-jump
+0307	setsaveramshutoralstatus	0	00350AE0	28	CALL1	-> 00267E10, then tail-jump
+0308	getsaverambattlestatus	0	00350FD0	34	CALL1	-> 00314A60, then tail-jump
+0309	getsaveramsummonstatus	0	00351380	34	CALL1	-> 00314B40, then tail-jump
+030A	getsaveramtelepostatus	0	00351940	34	CALL1	-> 00314B60, then tail-jump
+030B	getsaveramsavestatus	0	00351CE0	34	CALL1	-> 00314B00, then tail-jump
+030C	getsaveramshutoralstatus	0	00352080	34	CALL1	-> 00314B20, then tail-jump
+030D	setposbynaviicon	2	00352430	208	BRANCHING	2 conditional branch(es), 8 call(s)
+030E	getcrystalid	2	00352C80	85	BRANCHING	1 conditional branch(es), 3 call(s)
+030F	getanchorid	2	003532D0	85	BRANCHING	1 conditional branch(es), 3 call(s)
+0310	cutinplay	0	00353850	5	TAILJUMP	-> 003DF8F0
+0311	cutinclear	0	00353C40	5	TAILJUMP	-> 003DF8E0
+0312	resetcutinparam	0	00354080	5	TAILJUMP	-> 003DF900
+0313	cutintype	0	00354570	23	CALL1	-> 00267E10, then tail-jump
+0314	cutinlinefade	1	00354890	23	CALL1	-> 00267E10, then tail-jump
+0315	cutinpos	2	00354C70	51	LINEAR	2 call(s) (2 direct), no branching
+0316	cutinrotate	1	00355120	21	CALL1	-> 00267DB0, then tail-jump
+0317	cutinlinewidth	1	003554D0	21	CALL1	-> 00267DB0, then tail-jump
+0318	cutinuv	0	003557F0	51	LINEAR	2 call(s) (2 direct), no branching
+0319	cutincolor	0	00355C60	96	LINEAR	4 call(s) (4 direct), no branching
+031A	cutinlinecolor	0	003560F0	96	LINEAR	4 call(s) (4 direct), no branching
+031B	moveblurplay	0	003565B0	5	TAILJUMP	-> 003DE310
+031C	moveblurclear	0	00356A00	5	TAILJUMP	-> 003DE140
+031D	resetmoveblurparam	0	00356CF0	5	TAILJUMP	-> 003DE320
+031E	moveblurpresettype	1	00357330	23	CALL1	-> 00267E10, then tail-jump
+031F	moveblurcluttype	0	0033F170	23	CALL1	-> 00267E10, then tail-jump
+0320	moveblurnoisetype	0	0033F5E0	23	CALL1	-> 00267E10, then tail-jump
+0321	moveblurscreentype	0	0033F920	23	CALL1	-> 00267E10, then tail-jump
+0322	movebluraplpha	1	0033FEA0	21	CALL1	-> 00267DB0, then tail-jump
+0323	getmapjumpanglebyindex	1	00353490	94	LINEAR	5 call(s) (5 direct), no branching
+0324	clearcharclipone	0	003480F0	10	TAILJUMP	-> 002ED200
+0325	charefftrigger	1	003401D0	32	CALL1	-> 00267E10, then tail-jump
+0326	getangle_326	0	00348510	33	CALL1	-> 00265200, then tail-jump
+0327	setcharclipdistance_327	2	00348B00	56	LINEAR	3 call(s) (3 direct), no branching
+0328	setcharclipfaderange	0	003493F0	21	CALL1	-> 00267DB0, then tail-jump
+0329	getcharclipdefaultdistance	0	00340B50	30	CALL1	-> 002EDA30, then tail-jump
+032A	getcharclipdefaultfaderange	0	00340F80	30	CALL1	-> 002EDA40, then tail-jump
+032B	setstatuserrordispdenystatus	1	00341D20	34	BRANCHING	1 conditional branch(es), 1 call(s)
+032C	setstatuserrorctrldenystatus	0	003420F0	34	BRANCHING	1 conditional branch(es), 1 call(s)
+032D	gettelepoindex	0	00342490	54	BRANCHING	1 conditional branch(es), 1 call(s)
+032E	getsaveindex	0	00343010	54	BRANCHING	1 conditional branch(es), 1 call(s)
+032F	getanchorindex	0	00343470	54	BRANCHING	1 conditional branch(es), 1 call(s)
+0331	getmapjumpmode	0	00343930	29	CALL1	-> 003148D0, then tail-jump
+0332	setmapjumpmode	1	00343D90	23	CALL1	-> 00267E10, then tail-jump
+0333	calltelepoeffect	0	00344170	18	CALL1	-> 00269060, then tail-jump
+0334	setforcefightmode	1	003444D0	23	CALL1	-> 00267E10, then tail-jump
+0335	setsummonfilter	1	00344D30	65	LINEAR	4 call(s) (4 direct), no branching
+0336	setsummonfilter_336	0	00344800	50	LINEAR	2 call(s) (2 direct), no branching
+0337	setmutekiparty	0	003452B0	23	CALL1	-> 00267E10, then tail-jump
+0338	settalkfadeoutstatus	0	00345740	23	CALL1	-> 00267E10, then tail-jump
+0339	talkfadeout	0	00345E50	26	CALL1	-> 00267E10, then tail-jump
+033A	talkfadein	0	00346240	23	CALL1	-> 00267E10, then tail-jump
+033B	camerahitcheck	1	0034EDB0	101	LINEAR	5 call(s) (5 direct), no branching
+033C	camerahitcheck_33c	0	0034E9B0	90	LINEAR	4 call(s) (4 direct), no branching
+033E	setcharclipdefaultdistance	0	00348700	42	LINEAR	2 call(s) (2 direct), no branching
+033F	setcharclipdefaultfaderange	0	003497D0	42	LINEAR	2 call(s) (2 direct), no branching
+0340	setcharclipdefaultdistance_340	2	00348F20	85	LINEAR	5 call(s) (5 direct), no branching
+0341	actoriopvoiceread	0	003466A0	71	BRANCHING	1 conditional branch(es), 3 call(s)
+0343	getbehindcameradir	0	00347070	29	CALL1	-> 002565C0, then tail-jump
+0344	entryread	0	003473A0	30	LINEAR	2 call(s) (2 direct), no branching
+0346	setcharfogstatus	1	00347BC0	32	CALL1	-> 00267E10, then tail-jump
+0347	setgaugeracemax	0	00347F20	23	CALL1	-> 00267E10, then tail-jump
+0348	setgaugeracetype	0	00354190	23	CALL1	-> 00267E10, then tail-jump
+0349	setgaugeracecondition	0	003514F0	73	LINEAR	3 call(s) (3 direct), no branching
+034A	setgaugeraceiconpos	0	00348A00	107	BRANCHING	1 conditional branch(es), 4 call(s)
+034B	setgaugeraceiconpos_34b	0	00349000	117	BRANCHING	1 conditional branch(es), 5 call(s)
+034C	setgaugeraceicontype	0	003493B0	51	LINEAR	2 call(s) (2 direct), no branching
+034D	setgaugeraceiconshowstatus	2	003493B0	51	LINEAR	2 call(s) (2 direct), no branching
+034E	getgaugeraceiconpos	0	00349B70	40	LINEAR	2 call(s) (2 direct), no branching
+034F	behindtoeventcamera	4	00349FA0	134	LINEAR	6 call(s) (6 direct), no branching
+0351	getequipitemid	1	0034AAD0	74	LINEAR	3 call(s) (3 direct), no branching
+0352	getpartymember	0	0034B4B0	237	BRANCHING	2 conditional branch(es), 6 call(s)
+0357	getbattlemember	4	0034F5A0	211	BRANCHING	2 conditional branch(es), 6 call(s)
+035D	isbattlemember	1	00353780	39	LINEAR	2 call(s) (2 direct), no branching
+035E	ispartymember	1	00353CB0	69	BRANCHING	1 conditional branch(es), 4 call(s)
+035F	isguestbattlemember	1	00353460	40	LINEAR	2 call(s) (2 direct), no branching
+0360	checkbattlemember	0	0034E7D0	211	BRANCHING	5 conditional branch(es), 5 call(s)
+0361	getpartymembermask	0	003542C0	29	CALL1	-> 00359C00, then tail-jump
+0362	getbattlemembermask	0	003546F0	29	CALL1	-> 00359BA0, then tail-jump
+0363	getnowmusicno	0	003549D0	65	BRANCHING	1 conditional branch(es), 3 call(s)
+0364	musicreplay	1	00344AE0	5	TAILJUMP	-> 00342F80
+0365	getmapdestposbyindex	5	00353ED0	236	LINEAR	12 call(s) (12 direct), no branching
+0366	captureactor	0	00354E10	95	BRANCHING	3 conditional branch(es), 4 call(s)
+0367	captureactor_367	1	00355570	124	BRANCHING	3 conditional branch(es), 7 call(s)
+0368	moviestandby	1	00356460	12	TAILJUMP	-> 0035B840
+036A	movieplay	1	00356D20	23	CALL1	-> 00267E10, then tail-jump
+036C	getmovieframe	0	0033F250	29	CALL1	-> 0035B730, then tail-jump
+036D	movieend	0	0033FA20	21	CALL1	-> 0035B8D0, then tail-jump
+036E	moviecancel	0	0033FA20	21	CALL1	-> 0035B8D0, then tail-jump
+036F	getmoviestatus	0	00340870	29	CALL1	-> 0035B740, then tail-jump
+0370	summongethertarget	1	00340DA0	21	CALL1	-> 00267DB0, then tail-jump
+0371	setgaugeraceiconparty	0	00341520	50	LINEAR	2 call(s) (2 direct), no branching
+0372	hddinstall	0	003447F0	10	TAILJUMP	-> 00408EC0
+0373	networkhddinstall	0	003447F0	10	TAILJUMP	-> 00408EC0
+0375	setusehdd	0	00341980	23	CALL1	-> 00267E10, then tail-jump
+0376	getusehdd	0	00341DD0	29	CALL1	-> 00408B70, then tail-jump
+0377	setreadfrompc	0	003420B0	50	LINEAR	2 call(s) (2 direct), no branching
+0378	getreadfrompc	0	0034BD90	39	LINEAR	2 call(s) (2 direct), no branching
+0379	setreadfromhdd	0	00342960	50	LINEAR	2 call(s) (2 direct), no branching
+037A	getreadfromhdd	0	00342DD0	39	LINEAR	2 call(s) (2 direct), no branching
+037B	gethddinstallprogress	0	00355930	7	TAILJUMP	-> 0026B4E0
+037D	setnavimapjamming	1	00346E10	23	CALL1	-> 00267E10, then tail-jump
+0380	eyemove	0	00348430	112	LINEAR	3 call(s) (3 direct), no branching
+0381	eyemove_381	0	00348040	123	LINEAR	4 call(s) (4 direct), no branching
+0382	eyemovediff	0	00348BE0	112	LINEAR	3 call(s) (3 direct), no branching
+0383	eyemovediff_383	0	00348750	123	LINEAR	4 call(s) (4 direct), no branching
+0384	eyemovereset	0	003491A0	8	TAILJUMP	-> 002E7450
+0385	eyemovestop	0	00349410	10	TAILJUMP	-> 002E75A0
+0386	queststartwindow	0	003464D0	64	LINEAR	2 call(s) (2 direct), no branching
+0389	settalkiconstatus	1	0034AFE0	32	CALL1	-> 00267E10, then tail-jump
+038A	setnpcname	1	0034B9A0	60	BRANCHING	2 conditional branch(es), 3 call(s)
+038B	setnavimapdrawstatus	0	0034B400	32	CALL1	-> 00267E10, then tail-jump
+038D	sethpmode	0	00340640	75	LINEAR	3 call(s) (3 direct), no branching
+038E	sethpratiomode	0	00340CB0	75	LINEAR	3 call(s) (3 direct), no branching
+038F	setmpmode	0	00341140	75	LINEAR	3 call(s) (3 direct), no branching
+0390	setmpratiomode	0	00341690	75	LINEAR	3 call(s) (3 direct), no branching
+0391	sethpmode_391	0	00348C50	89	LINEAR	5 call(s) (5 direct), no branching
+0392	sethpratiomode_392	0	00349220	89	LINEAR	5 call(s) (5 direct), no branching
+0393	setmpmode_393	0	00349620	89	LINEAR	5 call(s) (5 direct), no branching
+0394	setmpratiomode_394	0	00349AD0	89	LINEAR	5 call(s) (5 direct), no branching
+0395	setexpandvoicememory	2	0034D080	50	LINEAR	2 call(s) (2 direct), no branching
+0396	removeexpandvoicememory	0	0034D410	5	TAILJUMP	-> 003EA200
+0397	setskyonly	1	0034D890	28	CALL1	-> 00267E10, then tail-jump
+0398	seteventtimestop	1	0034DC30	34	BRANCHING	1 conditional branch(es), 1 call(s)
+0399	settalknpcname	1	0034DFA0	28	CALL1	-> 00267E10, then tail-jump
+039A	releasetalknpcname	1	0034E320	25	CALL1	-> 00267E10, then tail-jump
+039B	istalknpcname	1	0034E980	39	LINEAR	2 call(s) (2 direct), no branching
+039C	tutorial_clear_eyemove	0	0034ED20	5	TAILJUMP	-> 0025A830
+039D	tutorial_get_eyemove	0	0034EFC0	30	CALL1	-> 0025A860, then tail-jump
+039E	tutorial_clear_defaulteyecount	0	0034F590	5	TAILJUMP	-> 0025A840
+039F	tutorial_get_defaulteyecount	0	0034FB90	29	CALL1	-> 0025A870, then tail-jump
+03A0	tutorial_get_behindcameraenable	0	0034FFA0	29	CALL1	-> 0025A850, then tail-jump
+03A1	tutorial_set_behindcameraenable	1	003503B0	23	CALL1	-> 00267E10, then tail-jump
+03A5	setmenudisablestatus	2	00352740	50	LINEAR	2 call(s) (2 direct), no branching
+03A7	setdekustatus	0	003533B0	25	CALL1	-> 00267E10, then tail-jump
+03A8	zakokillall	0	00353770	5	TAILJUMP	-> 00473B10
+03A9	setprojectionshadow	1	00353BB0	32	CALL1	-> 00267E10, then tail-jump
+03AA	clearallprojectionshadow	0	00353EC0	5	TAILJUMP	-> 002E8390
+03AB	setsunpos	3	00354370	135	LINEAR	5 call(s) (5 direct), no branching
+03AC	moveblurcaptureonce	0	00354950	10	TAILJUMP	-> 003DE3E0
+03AD	stopenvsoundall	0	00354C50	29	LINEAR	2 call(s) (2 direct), no branching
+03AE	startenvsoundall	0	00355060	38	LINEAR	2 call(s) (2 direct), no branching
+03AF	healall	1	00356500	33	LINEAR	2 call(s) (2 direct), no branching
+03B1	setposparty	4	003571A0	139	LINEAR	6 call(s) (6 direct), no branching
+03B2	rgbatrans	5	0033F530	168	LINEAR	6 call(s) (6 direct), no branching
+03B3	capturebattlemember	0	003408E0	89	LINEAR	2 call(s) (2 direct), no branching
+03B4	getbattlemembertotal	0	00341E60	119	LINEAR	6 call(s) (6 direct), no branching
+03B5	maskopenfast	1	003531A0	51	LINEAR	3 call(s) (3 direct), no branching
+03B6	maskclosefast	1	00353A60	52	LINEAR	3 call(s) (3 direct), no branching
+03B7	sethpmenufast	1	00356080	35	LINEAR	2 call(s) (2 direct), no branching
+03B8	bosskillall	0	00510840	5	TAILJUMP	-> 00234880
+03B9	settutorial00timestop	1	00343CE0	34	BRANCHING	1 conditional branch(es), 1 call(s)
+03BA	actoriopvoiceclear	0	00344140	45	BRANCHING	1 conditional branch(es), 1 call(s)
+03BB	moveblurfade	1	003445C0	23	CALL1	-> 00267E10, then tail-jump
+03BC	moveblurclearfade	1	003448D0	23	CALL1	-> 00267E10, then tail-jump
+03BD	moveblurfadesync	0	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+03BE	killallfast	0	00345B50	5	TAILJUMP	-> 002348E0
+03BF	setemergency	0	00346EB0	57	BRANCHING	2 conditional branch(es), 3 call(s)
+03C0	setuclockstatus	1	00347E00	25	CALL1	-> 00267E10, then tail-jump
+03C1	hidetargettype	1	003481A0	25	CALL1	-> 00267E10, then tail-jump
+03C2	showtargettype	1	003484C0	28	CALL1	-> 00267E10, then tail-jump
+03C3	hidetargetgroup	0	003487E0	25	CALL1	-> 00267E10, then tail-jump
+03C4	showtargetgroup	0	00349180	28	CALL1	-> 00267E10, then tail-jump
+03C5	shownavimapfast	0	00352AD0	23	CALL1	-> 003C5DF0, then tail-jump
+03C6	hidenavimapfast	0	00352E20	23	CALL1	-> 003C5DE0, then tail-jump
+03C7	setsaveramnavimapstatus	1	00349420	23	CALL1	-> 00267E10, then tail-jump
+03C9	bossgaugeinit	0	00349890	5	TAILJUMP	-> 003EC7E0
+03CA	bossgaugeopen	0	00349B60	5	TAILJUMP	-> 003EC7F0
+03CB	bossgaugeclose	0	00349F80	5	TAILJUMP	-> 003EC7C0
+03CC	getbattlememberonlytotal	0	003426F0	118	LINEAR	6 call(s) (6 direct), no branching
+03CD	captureguestmember	1	003410C0	120	BRANCHING	3 conditional branch(es), 5 call(s)
+03CE	getguestmemberonlytotal	0	003430C0	107	LINEAR	6 call(s) (6 direct), no branching
+03CF	bindhitobj	0	0034A340	41	LINEAR	2 call(s) (2 direct), no branching
+03D0	setnowmap	0	0034A770	23	CALL1	-> 00267E10, then tail-jump
+03D1	setnowjumpindex	1	0034AC10	23	CALL1	-> 00267E10, then tail-jump
+03D3	setmeswinhidestatus	2	0034BC50	50	LINEAR	2 call(s) (2 direct), no branching
+03D4	setgaugehidestatus	1	0034C150	23	CALL1	-> 00267E10, then tail-jump
+03D5	denybonephysicalall	1	0034C550	25	CALL1	-> 00267E10, then tail-jump
+03D6	denybonephysical	1	0034CCB0	32	CALL1	-> 00267E10, then tail-jump
+03D7	stopspotsound	0	00355430	7	TAILJUMP	-> 003634A0
+03D8	startspotsound	0	003556D0	10	TAILJUMP	-> 003634A0
+03D9	stopenvsound	0	00355960	7	TAILJUMP	-> 003633B0
+03DA	startenvsound	0	00356240	10	TAILJUMP	-> 003633B0
+03DB	setmotionprior	0	0034D140	37	CALL1	-> 00267E10, then tail-jump
+03DC	config_sethpgaugedisplay	1	0034D440	28	CALL1	-> 00267E10, then tail-jump
+03DD	changeenvsoundweather	1	0034D900	23	CALL1	-> 00267E10, then tail-jump
+03DE	stopenvsound_3de	1	00355E90	25	CALL1	-> 00267E10, then tail-jump
+03DF	seteventwakerect	1	0034DCA0	32	CALL1	-> 00267E10, then tail-jump
+03E0	refreshparty	0	0034DF40	81	BRANCHING	2 conditional branch(es), 5 call(s)
+03E1	setucpcmovelockstatus	2	0034E580	50	LINEAR	2 call(s) (2 direct), no branching
+03E3	setcamerahitscale	0	0034F280	111	LINEAR	3 call(s) (3 direct), no branching
+03E4	defaultcamerahitscale	0	0034FB10	8	TAILJUMP	-> 0026A490
+03E5	incentryid	0	0034FE70	8	TAILJUMP	-> 00322080
+03E6	hidecomplete	0	00350320	10	TAILJUMP	-> 0026DC50
+03E7	clearhidecomplete	0	003505F0	13	TAILJUMP	-> 0026DC50
+03E8	common2effectplay	2	00353C50	82	CALL1	-> 00267F90, then tail-jump
+03E9	capturebattleid	1	003509E0	253	BRANCHING	6 conditional branch(es), 10 call(s)
+03EA	denybonephysicalall_3ea	2	0034C890	50	LINEAR	2 call(s) (2 direct), no branching
+03EB	partyallread	0	0034D460	10	TAILJUMP	-> 003601C0
+03EC	setchocobomode	1	003514D0	23	CALL1	-> 00267E10, then tail-jump
+03ED	setmaphighmodeldepth	1	00352170	21	CALL1	-> 00267DB0, then tail-jump
+03EE	setmapmodelstatus	1	003526D0	23	CALL1	-> 00267E10, then tail-jump
+03EF	spotsoundtrans	2	00352A90	50	LINEAR	2 call(s) (2 direct), no branching
+03F0	capturebattlemembeructop	1	00340E00	92	LINEAR	2 call(s) (2 direct), no branching
+03F1	settreasureflag	1	00352EA0	28	CALL1	-> 00267E10, then tail-jump
+03F2	releasetreasureflag	1	00353390	25	CALL1	-> 00267E10, then tail-jump
+03F3	settreasurebattleflag	0	00353750	28	CALL1	-> 00267E10, then tail-jump
+03F4	releasetreasurebattleflag	0	00353BD0	25	CALL1	-> 00267E10, then tail-jump
+03F5	istreasureflag	1	00354000	39	LINEAR	2 call(s) (2 direct), no branching
+03F6	istreasurebattleflag	0	00354540	39	LINEAR	2 call(s) (2 direct), no branching
+03F7	mpad	0	00355C00	29	CALL1	-> 00248F10, then tail-jump
+03F8	mpadt	0	00356350	29	CALL1	-> 00248F00, then tail-jump
+03F9	mpadr	0	00355F20	29	CALL1	-> 00248EE0, then tail-jump
+03FA	mpadtr	0	003566B0	29	CALL1	-> 00248EF0, then tail-jump
+03FF	mkeyscan	0	0034F680	56	LINEAR	2 call(s) (2 direct), no branching
+0400	mkeyscanr	0	0034FCF0	56	LINEAR	2 call(s) (2 direct), no branching
+0401	mkeyscant	0	00350200	56	LINEAR	2 call(s) (2 direct), no branching
+0402	mkeyscantr	0	003505B0	56	LINEAR	2 call(s) (2 direct), no branching
+0403	set_talk_wituout_hide_status	1	00354870	32	CALL1	-> 00267E10, then tail-jump
+0404	releasepc_404	1	00354590	32	CALL1	-> 00267E10, then tail-jump
+0405	setentrypos	0	00354FB0	167	BRANCHING	1 conditional branch(es), 8 call(s)
+0406	setbgnpcstatus	3	00355480	73	LINEAR	3 call(s) (3 direct), no branching
+0407	getchocobomode	0	00355910	29	CALL1	-> 0037C860, then tail-jump
+0408	getsummonmode	0	00355C40	29	CALL1	-> 0037C8F0, then tail-jump
+0409	enable_by_summon	1	0033F1E0	37	CALL1	-> 00267E10
+040A	enable_by_chocobo	1	0033F650	35	CALL1	-> 00267E10
+040B	clearmapjumpstatus	0	0033F940	5	TAILJUMP	-> 0025D580
+040C	getweatherslot	0	00356250	29	CALL1	-> 00265920, then tail-jump
+040D	partyusemapid	1	0033FD60	312	BRANCHING	6 conditional branch(es), 10 call(s)
+040E	partyusecharhit	1	00340700	187	BRANCHING	6 conditional branch(es), 6 call(s)
+040F	partysetlod	1	00341190	187	BRANCHING	6 conditional branch(es), 6 call(s)
+0410	partyshowshadow	0	00341B90	187	BRANCHING	6 conditional branch(es), 6 call(s)
+0411	partyshowshadow_411	0	00342360	82	CALL1	-> 00267F90, then tail-jump
+0412	partyhideshadow	0	00342830	79	CALL1	-> 00267F90, then tail-jump
+0413	setpartyprojectionshadow	0	00342B30	187	BRANCHING	6 conditional branch(es), 6 call(s)
+0415	clearnavimapfootmark	0	00343330	5	TAILJUMP	-> 003EB980
+0416	setnavimapfootmarkstatus	1	00343740	23	CALL1	-> 00267E10, then tail-jump
+0417	puppetdir	2	00347710	123	LINEAR	4 call(s) (4 direct), no branching
+0418	puppetdir_418	0	003471B0	122	LINEAR	6 call(s) (6 direct), no branching
+0419	puppetsetpos	4	00346B80	122	LINEAR	6 call(s) (6 direct), no branching
+041A	puppetbindoff	1	00346750	35	LINEAR	2 call(s) (2 direct), no branching
+041B	puppetbind	4	003463F0	97	BRANCHING	1 conditional branch(es), 2 call(s)
+041C	puppetbind_41c	0	003463F0	97	BRANCHING	1 conditional branch(es), 2 call(s)
+041D	puppetbind_41d	2	003463F0	97	BRANCHING	1 conditional branch(es), 2 call(s)
+041E	puppetmotionplay	2	003481C0	85	CALL1	-> 00267F60, then tail-jump
+041F	puppetmotionplay_41f	3	00347B00	186	BRANCHING	3 conditional branch(es), 8 call(s)
+0422	puppetmotionloopframe	3	00348580	129	BRANCHING	2 conditional branch(es), 7 call(s)
+0423	puppetmotionstartframe	2	00348A90	80	BRANCHING	1 conditional branch(es), 5 call(s)
+0424	puppetmotionratio	0	003490F0	85	LINEAR	5 call(s) (5 direct), no branching
+0425	puppetmotioncancel	0	00349460	43	LINEAR	3 call(s) (3 direct), no branching
+0426	puppetmotionclear	0	003498D0	54	LINEAR	4 call(s) (4 direct), no branching
+0427	puppetshowshadow	1	0034B710	80	LINEAR	5 call(s) (5 direct), no branching
+0428	puppethideshadow	1	0034BAB0	77	LINEAR	5 call(s) (5 direct), no branching
+0429	puppetshowshadow_429	0	0034B0A0	67	LINEAR	4 call(s) (4 direct), no branching
+042A	puppetsetlod	0	0034BF40	73	BRANCHING	1 conditional branch(es), 5 call(s)
+042B	puppetsetprojectionshadow	0	0034C4B0	73	BRANCHING	1 conditional branch(es), 5 call(s)
+042C	puppetmotionloop	2	0034C900	73	BRANCHING	1 conditional branch(es), 5 call(s)
+042D	puppetshow	1	0034D2B0	80	LINEAR	5 call(s) (5 direct), no branching
+042E	puppethide	1	0034D640	77	LINEAR	5 call(s) (5 direct), no branching
+042F	puppetshow_42f	0	0034CCF0	67	LINEAR	4 call(s) (4 direct), no branching
+0430	setmapjumpgroupflag	1	0034EE20	28	CALL1	-> 00267E10, then tail-jump
+0431	releasemapjumpgroupflag	1	0034DD90	25	CALL1	-> 00267E10, then tail-jump
+0432	ismapjumpgroupflag	1	0034E0B0	39	LINEAR	2 call(s) (2 direct), no branching
+0433	lookat_maxangle_limit_lock	0	0034EA80	13	TAILJUMP	-> 002E7CE0
+0434	lookat_maxangle_limit_unlock	0	0034E450	10	TAILJUMP	-> 002E7CE0
+0435	lookat_maxvelr_limit_unlock	0	0034ED80	13	TAILJUMP	-> 002EC3C0
+0436	sethpmenu_436	2	003563D0	109	BRANCHING	1 conditional branch(es), 6 call(s)
+0437	sethpmenufast_437	0	00355D90	62	LINEAR	3 call(s) (3 direct), no branching
+0438	seteventtimer	0	0034F1A0	98	BRANCHING	1 conditional branch(es), 3 call(s)
+0439	starteventtimer	0	00350620	57	BRANCHING	1 conditional branch(es), 1 call(s)
+043A	istermeventtimer	0	0034F730	64	BRANCHING	1 conditional branch(es), 2 call(s)
+043B	geteventtimer	0	0034FD30	65	BRANCHING	1 conditional branch(es), 2 call(s)
+043C	pauseeventtimer	0	00350100	92	BRANCHING	2 conditional branch(es), 2 call(s)
+043E	partycommoneffectplay	1	00350B90	39	LINEAR	2 call(s) (2 direct), no branching
+0441	amesv	0	0034A7A0	191	LINEAR	10 call(s) (10 direct), no branching
+0442	mesvfaceread	0	00352E40	60	LINEAR	3 call(s) (3 direct), no branching
+0444	mesvfacedispose	0	00353D50	23	CALL1	-> 00267E10, then tail-jump
+0445	mesvfacedisposeall	0	00354D70	5	TAILJUMP	-> 0017E7D0
+0446	mesvmaskopen	0	00354300	106	BRANCHING	1 conditional branch(es), 6 call(s)
+0447	mesvmaskopenfast	0	003535F0	53	LINEAR	3 call(s) (3 direct), no branching
+0448	bgmstreamread	1	00354690	33	LINEAR	2 call(s) (2 direct), no branching
+044A	bgmstreamplay	0	00354D60	5	TAILJUMP	-> 003EB150
+044C	bgmstreamstop	0	003554F0	5	TAILJUMP	-> 003EADC0
+044D	usebgmstream	1	003557C0	43	LINEAR	3 call(s) (3 direct), no branching
+044E	freebgmstream	0	00355C30	5	TAILJUMP	-> 003EB010
+044F	getbgmstreamstatus	0	00355FB0	34	CALL1	-> 003EB0D0, then tail-jump
+0450	battlemotionplay	0	0050E980	30	CALL1	-> 00267E10, then tail-jump
+0451	setfieldsignlocationjumpinfo	0	003568D0	68	LINEAR	2 call(s) (2 direct), no branching
+0452	getmogxiindex	0	00342A30	57	BRANCHING	1 conditional branch(es), 1 call(s)
+0453	settalkholdtimer	0	00356CD0	30	CALL1	-> 00267E10
+0454	talkholdstop	0	0033F500	10	LINEAR	no call, no branching, 1 memory operand(s)
+0455	open_interventionmenu	0	0033F860	5	TAILJUMP	-> 002E22F0
+0456	close_interventionmenu	0	0033F860	5	TAILJUMP	-> 002E22F0
+0457	get_interventionmenu_status	0	00340020	29	CALL1	-> 002E2340, then tail-jump
+0458	show_escapingwindow	0	00340400	23	CALL1	-> 00267E10, then tail-jump
+0459	hide_escapingwindow	0	003406E0	23	CALL1	-> 00267E10, then tail-jump
+045A	get_interventionmenu_commandstatus	0	00340D80	29	CALL1	-> 002E2320, then tail-jump
+045B	isbattleaction	0	00341070	40	LINEAR	2 call(s) (2 direct), no branching
+045C	set_interventionmenu_tutorialmode	0	003419D0	23	CALL1	-> 00267E10, then tail-jump
+045D	islookatcamera	0	00341E10	29	CALL1	-> 003D9FE0, then tail-jump
+045E	islookatcameratarget	0	00342150	90	BRANCHING	1 conditional branch(es), 4 call(s)
+045F	setpartymenustatus	2	00342590	50	LINEAR	2 call(s) (2 direct), no branching
+0460	isbattleaction_460	0	00341560	40	LINEAR	2 call(s) (2 direct), no branching
+0461	mes	0	00348DF0	300	BRANCHING	1 conditional branch(es), 18 call(s)
+0462	gettalkholdtimer	0	003572F0	12	TAILJUMP	-> 0026B4E0
+0463	getdefaulttalkholdtimer	0	0033F050	29	CALL1	-> 00264100, then tail-jump
+0465	charcommoneffectplay	1	00342A80	172	BRANCHING	1 conditional branch(es), 9 call(s)
+0466	charcommoneffecttrigger	1	00343080	55	BRANCHING	1 conditional branch(es), 3 call(s)
+0467	charcommoneffectstop	0	003433A0	49	BRANCHING	1 conditional branch(es), 2 call(s)
+0468	getequipitemid_468	0	0034AF80	81	LINEAR	4 call(s) (4 direct), no branching
+0469	get_interventionmenu_casterid	0	00343780	29	CALL1	-> 002E0F70, then tail-jump
+046A	setmist	1	00343CC0	23	CALL1	-> 00267E10, then tail-jump
+046B	battlevoice_regist_ctrl_data	0	00344000	74	LINEAR	3 call(s) (3 direct), no branching
+046C	battlevoice_clear_ctrl_data	0	003444C0	5	TAILJUMP	-> 003EBD70
+046D	battlevoice_calc_member	0	003447E0	5	TAILJUMP	-> 003EBD30
+046E	battlevoice_regist_message_and_voice	0	00344BB0	123	LINEAR	6 call(s) (6 direct), no branching
+046F	partyallread2	0	0034D460	10	TAILJUMP	-> 003601C0
+0470	getnowmapmusicno	0	00345760	61	LINEAR	3 call(s) (3 direct), no branching
+0471	setnowmapmusicno	1	00345E70	23	CALL1	-> 00267E10, then tail-jump
+0472	openfullscreenmenu	0	00346DA0	29	CALL1	-> 00254710, then tail-jump
+0474	setmeswinline	2	00348160	50	LINEAR	2 call(s) (2 direct), no branching
+0475	setaskselectignore	2	00348540	56	LINEAR	2 call(s) (2 direct), no branching
+0476	setmeswinactive	2	00348930	55	LINEAR	2 call(s) (2 direct), no branching
+0477	setmeswincaptionid	2	00348CB0	50	LINEAR	2 call(s) (2 direct), no branching
+0478	showenemy	1	00349200	23	CALL1	-> 00267E10, then tail-jump
+0479	hideenemy	1	00349940	23	CALL1	-> 00267E10, then tail-jump
+047A	getnowmapmusicno_47a	1	00345400	39	LINEAR	2 call(s) (2 direct), no branching
+047B	isbossmusic	1	00349E10	39	LINEAR	2 call(s) (2 direct), no branching
+047C	puppetsetscale	2	00351250	76	LINEAR	4 call(s) (4 direct), no branching
+047D	puppetsetscale_47d	4	003518C0	122	LINEAR	6 call(s) (6 direct), no branching
+047E	setmeswinmesid	2	0034A2C0	50	LINEAR	2 call(s) (2 direct), no branching
+047F	additem_47f	3	003449A0	114	BRANCHING	1 conditional branch(es), 5 call(s)
+0480	additemmes	2	0034B1E0	149	BRANCHING	1 conditional branch(es), 8 call(s)
+0481	setmapwind	3	0034B6C0	79	LINEAR	3 call(s) (3 direct), no branching
+0482	defaultmapwind	0	0034BD10	15	TAILJUMP	-> 002E3D40
+0485	setcharambientratio	0	0034C060	94	LINEAR	3 call(s) (3 direct), no branching
+0486	setallcharambientratio	0	0034C5C0	110	BRANCHING	1 conditional branch(es), 4 call(s)
+0487	gillwinopen	1	0034CB10	23	CALL1	-> 00267E10, then tail-jump
+0488	gillwinclose	0	0034CE90	5	TAILJUMP	-> 005112A0
+0489	gillwinstart	1	0034D240	23	CALL1	-> 00267E10, then tail-jump
+048B	getmapid_48b	1	00347240	82	BRANCHING	1 conditional branch(es), 3 call(s)
+048C	getmapgroundtype_48c	0	003476B0	82	BRANCHING	1 conditional branch(es), 3 call(s)
+048D	openfullscreenmenu_48d	2	00346DA0	29	CALL1	-> 00254710, then tail-jump
+048E	npc_to_gimmick	0	0034DA20	8	TAILJUMP	-> 00267CC0
+048F	gimmick_to_npc	0	0034DD80	8	TAILJUMP	-> 002659A0
+0490	mesvgetvoiceid	0	0034DFF0	73	LINEAR	3 call(s) (3 direct), no branching
+0491	mesvgetmesid	0	0034E4C0	73	LINEAR	3 call(s) (3 direct), no branching
+0492	debug_initsaveram	0	0034EF50	5	TAILJUMP	-> 00266D00
+0493	set_talk_without_hide_status	0	00354870	32	CALL1	-> 00267E10, then tail-jump
+0494	setkubifuristatus	1	0034F430	32	CALL1	-> 00267E10, then tail-jump
+0495	setbodyshake	1	0034FEA0	33	CALL1	-> 00267DB0, then tail-jump
+0496	setbodyshakeall	1	00350330	21	CALL1	-> 00267DB0, then tail-jump
+0497	set_force_ignore_timestop	1	003506D0	41	CALL1	-> 00267E10
+0498	hideparty_without_uc	0	00341CB0	77	BRANCHING	3 conditional branch(es), 4 call(s)
+0499	getcharbattlestatus	1	0034DA30	75	LINEAR	3 call(s) (3 direct), no branching
+049A	getcharbattlestatus_49a	0	0034E190	89	LINEAR	5 call(s) (5 direct), no branching
+049C	mesvgetfaceid	0	0034EAF0	39	LINEAR	2 call(s) (2 direct), no branching
+049E	isdead2	0	0034C8D0	40	LINEAR	2 call(s) (2 direct), no branching
+049F	isdead2_49f	1	0034CC60	74	LINEAR	5 call(s) (5 direct), no branching
+04A0	deny_char_camerashake	1	003517C0	23	CALL1	-> 00267E10, then tail-jump
+04A1	deny_printf	1	00510720	23	CALL1	-> 00267E10, then tail-jump
+04A2	setkutipakustatus_4a2	2	00352B90	68	LINEAR	2 call(s) (2 direct), no branching
+04A3	setunazukistatus_4a3	2	00352F20	68	LINEAR	2 call(s) (2 direct), no branching
+04A4	setkubifuristatus_4a4	2	0034F9B0	68	LINEAR	2 call(s) (2 direct), no branching
+04A5	ucon_4a5	0	00352000	31	LINEAR	2 call(s) (2 direct), no branching
+04A6	ucoff_4a6	0	00352560	31	LINEAR	2 call(s) (2 direct), no branching
+04A7	freqcancel	1	00352980	46	LINEAR	2 call(s) (2 direct), no branching
+04A8	freqcancel_4a8	2	00353660	76	LINEAR	4 call(s) (4 direct), no branching
+04A9	setshopname	1	0034C170	88	BRANCHING	2 conditional branch(es), 6 call(s)
+04AA	atrac3standby	0	00353FC0	62	LINEAR	3 call(s) (3 direct), no branching
+04AC	atrac3play	0	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+04AF	isatrac3play	0	00355560	10	TAILJUMP	-> 0026B4E0
+04B0	atrac3playcounter	0	00355930	7	TAILJUMP	-> 0026B4E0
+04B1	atrac3standby_4b1	2	00353B70	52	LINEAR	2 call(s) (2 direct), no branching
+04B2	setreadsyncstatusbyevent	0	0034C320	23	CALL1	-> 00267E10, then tail-jump
+04B3	startscene_4b3	2	0034CED0	66	BRANCHING	1 conditional branch(es), 4 call(s)
+04B4	motionlooppreset	1	00340420	33	CALL1	-> 00267E10, then tail-jump
+04B6	deny_camerashake_without_event	1	003560D0	28	CALL1	-> 00267E10, then tail-jump
+04B7	setbattlethinkstatus_freetarget_group	2	00356530	53	LINEAR	2 call(s) (2 direct), no branching
+04B8	hide_freetarget_group	1	003569E0	28	CALL1	-> 00267E10, then tail-jump
+04B9	show_freetarget_group	1	00356D00	31	CALL1	-> 00267E10, then tail-jump
+04D6	istimestop	0	00357380	29	CALL1	-> 00226BC0, then tail-jump
+04D7	istimestop_4d7	0	0033F1B0	39	LINEAR	2 call(s) (2 direct), no branching
+04D9	setcharseplay_freetarget_group	2	00348BA0	53	LINEAR	2 call(s) (2 direct), no branching
+04DA	getclanrank	0	0033FCB0	29	CALL1	-> 002E23A0, then tail-jump
+04DB	getclanpoint	0	00340040	29	CALL1	-> 002E2390, then tail-jump
+04DC	addclanpoint	0	003403E0	23	CALL1	-> 00267E10, then tail-jump
+04DD	ucmovecancel	0	00343E20	40	BRANCHING	1 conditional branch(es), 2 call(s)
+04DE	killgroup	1	00349500	23	CALL1	-> 00267E10, then tail-jump
+04DF	uselightmap	0	003406B0	41	CALL1	-> 00267E10
+04E0	fetchambient	0	0034A3F0	37	CALL1	-> 0026AD40, then tail-jump
+04E1	fetchambient_4e1	3	0034A860	137	LINEAR	6 call(s) (6 direct), no branching
+04E2	setmapgroundtype	0	0034E510	32	CALL1	-> 00267E10, then tail-jump
+04E3	setmapgroundtype_4e3	0	00347D20	64	BRANCHING	1 conditional branch(es), 4 call(s)
+04E4	puppetsetambient	4	00340D00	122	LINEAR	6 call(s) (6 direct), no branching
+04E5	puppetfetchambient	4	003412B0	167	LINEAR	9 call(s) (9 direct), no branching
+04E6	puppetmotionlooppreset	0	003417F0	74	BRANCHING	1 conditional branch(es), 5 call(s)
+04E7	ignorebattlemovectrl	0	00341DB0	32	CALL1	-> 00267E10, then tail-jump
+04E8	setpartybattlestatus	3	00347F80	73	LINEAR	3 call(s) (3 direct), no branching
+04E9	clearpartybattlestatus	0	003483E0	73	LINEAR	3 call(s) (3 direct), no branching
+04EA	set_ignore_mapjump_func	1	00510720	23	CALL1	-> 00267E10, then tail-jump
+04EB	is_ntsc	0	003423E0	35	CALL1	-> 00290180, then tail-jump
+04ED	resetbonephysical	0	00342A20	5	TAILJUMP	-> 00267CA0
+04EE	steppoint	1	00342D80	70	BRANCHING	1 conditional branch(es), 3 call(s)
+04EF	setsteppointstatus	0	003431B0	68	LINEAR	2 call(s) (2 direct), no branching
+04F0	setsteppointstatusall	0	00343980	33	CALL1	-> 00267E10, then tail-jump
+04F1	setdrawalphamode	1	00343EC0	32	CALL1	-> 00267E10, then tail-jump
+04F2	get_systemfadeincanmoveblanktime	0	00344270	30	CALL1	-> 0024DED0, then tail-jump
+04F3	setsteppointmarkstatus	0	00343570	68	LINEAR	2 call(s) (2 direct), no branching
+04F4	lookatoff_4f4	1	0034E220	49	BRANCHING	1 conditional branch(es), 1 call(s)
+04F5	set_field_effect	1	00344610	30	LINEAR	2 call(s) (2 direct), no branching
+04F6	clear_field_effect	1	00344980	30	LINEAR	2 call(s) (2 direct), no branching
+04F7	is_field_effect	0	00344EC0	56	LINEAR	3 call(s) (3 direct), no branching
+04F8	showmapeffect	0	00345AC0	28	CALL1	-> 00267E10, then tail-jump
+04F9	hidemapeffect	1	003460A0	25	CALL1	-> 00267E10, then tail-jump
+04FA	showmapeffect_4fa	0	003455B0	50	LINEAR	2 call(s) (2 direct), no branching
+04FB	defaultmapeffect	0	00346600	28	CALL1	-> 00267E10, then tail-jump
+04FC	spattack_whiteout_menu_callback	1	00346910	23	CALL1	-> 00267E10, then tail-jump
+04FD	handbook_getkillcount	1	00346DE0	39	LINEAR	2 call(s) (2 direct), no branching
+04FE	handbook_getordernum	0	003472F0	29	CALL1	-> 002E23C0, then tail-jump
+04FF	is_enable_run_event	0	003475E0	29	CALL1	-> 0035AE00, then tail-jump
+0500	normalclipzx	4	003478A0	195	LINEAR	8 call(s) (8 direct), no branching
+0501	ismove	0	00347EF0	37	CALL1	-> 00264E10, then tail-jump
+0502	isturn	0	003482A0	59	BRANCHING	2 conditional branch(es), 1 call(s)
+0503	set_ignore_hitgroup	1	00348730	32	CALL1	-> 00267E10, then tail-jump
+0504	setgambit_slotmax	2	00348B40	51	LINEAR	2 call(s) (2 direct), no branching
+0505	setposoffset	4	00348F80	123	LINEAR	5 call(s) (5 direct), no branching
+0506	setnoupdatebehindcamera_system	1	00349440	23	CALL1	-> 00267E10, then tail-jump
+0507	sound_reverb_wet	0	0050C5F0	28	CALL1	-> 00267E10, then tail-jump
+0508	set_summon_effect_filter_status	2	00349C50	50	LINEAR	2 call(s) (2 direct), no branching
+0509	deny_summon_effect_filter	1	0034A1B0	23	CALL1	-> 00267E10, then tail-jump
+050A	setmapambient_maponly	0	00346FF0	103	LINEAR	4 call(s) (4 direct), no branching
+050B	setmapambient_maponly_50b	3	003474B0	119	LINEAR	5 call(s) (5 direct), no branching
+050C	resetmapambient_maponly	0	00347800	22	TAILJUMP	-> 00379110
+050D	getsummonid	0	0034A590	52	BRANCHING	1 conditional branch(es), 2 call(s)
+050E	musicphraseplay	2	00344AE0	5	TAILJUMP	-> 00342F80
+050F	seteventpartymode	1	00351B40	23	CALL1	-> 00267E10, then tail-jump
+0510	geteventpartymode	0	00355FE0	29	CALL1	-> 0037C8A0, then tail-jump
+0511	getchocobomodebit	0	00356630	29	CALL1	-> 0037C870, then tail-jump
+0512	getsummonmodebit	0	00356A30	29	CALL1	-> 0037C900, then tail-jump
+0513	geteventpartymodebit	0	00356DF0	29	CALL1	-> 0037C8B0, then tail-jump
+0514	seteventparty2mode	1	00351E50	23	CALL1	-> 00267E10, then tail-jump
+0515	geteventparty2mode	0	00356370	29	CALL1	-> 0037C880, then tail-jump
+0516	geteventparty2modebit	0	003573A0	29	CALL1	-> 0037C890, then tail-jump
+0517	btladjustsystem	1	0034AAB0	23	CALL1	-> 00267E10, then tail-jump
+0518	get_pad_ok	0	0034AF20	40	LINEAR	2 call(s) (2 direct), no branching
+0519	get_pad_cancel	0	0034B290	40	LINEAR	2 call(s) (2 direct), no branching
+051B	skipend	1	0034E6D0	58	BRANCHING	1 conditional branch(es), 3 call(s)
+051C	skipcheck	1	0034F160	55	LINEAR	2 call(s) (2 direct), no branching
+051D	charseplay_move	0	0034BD30	95	LINEAR	2 call(s) (2 direct), no branching
+051E	charseplay_move_51e	4	0034B7C0	145	BRANCHING	1 conditional branch(es), 7 call(s)
+051F	charseplay_voice	0	0034C740	95	LINEAR	2 call(s) (2 direct), no branching
+0520	charseplay_voice_520	0	0034C210	120	BRANCHING	1 conditional branch(es), 6 call(s)
+0521	charseplay_weapon	0	0034D020	95	LINEAR	2 call(s) (2 direct), no branching
+0522	charseplay_weapon_522	0	0034CA40	126	BRANCHING	1 conditional branch(es), 7 call(s)
+0523	setoverheadicontype	1	0034F6C0	33	CALL1	-> 00267E10, then tail-jump
+0524	getoverheadicontype	0	0034FCC0	33	CALL1	-> 00263B80, then tail-jump
+0526	termsummoncall	0	0034FFE0	5	TAILJUMP	-> 00262870
+0527	settimestopmagic	0	00350400	5	TAILJUMP	-> 00227460
+0528	cleartimestopmagic	0	00350940	5	TAILJUMP	-> 00226120
+0529	istouchuc_529	0	0033F680	54	LINEAR	2 call(s) (2 direct), no branching
+052D	ucmovecancel_52d	1	00344290	51	BRANCHING	1 conditional branch(es), 2 call(s)
+052E	setbattlethinkstatus_52e	0	0034E530	66	LINEAR	3 call(s) (3 direct), no branching
+052F	checkdistance3d	2	00350DD0	238	BRANCHING	2 conditional branch(es), 7 call(s)
+0530	checkdistance	2	003516E0	213	BRANCHING	2 conditional branch(es), 7 call(s)
+0531	checkdistance3d_531	4	00352580	213	BRANCHING	1 conditional branch(es), 6 call(s)
+0532	checkdistance_532	0	003530F0	171	BRANCHING	1 conditional branch(es), 5 call(s)
+0535	puppetrgbatrans	6	0033FAD0	204	BRANCHING	1 conditional branch(es), 9 call(s)
+0537	puppetefftrigger	0	00340530	67	LINEAR	4 call(s) (4 direct), no branching
+0538	lockcharresource	0	00354990	57	LINEAR	3 call(s) (3 direct), no branching
+0539	skipexec	1	0034ECF0	33	CALL1	-> 00267E10, then tail-jump
+053A	settargetliststatus	1	00354D80	32	CALL1	-> 00267E10, then tail-jump
+053B	settrapresource	1	00355400	30	LINEAR	2 call(s) (2 direct), no branching
+053C	istownmap	0	00355680	29	CALL1	-> 00377C20, then tail-jump
+053D	clear_activelog	0	0035D020	5	TAILJUMP	-> 0028E190
+053E	partystdmotionplay	1	0034F060	154	BRANCHING	2 conditional branch(es), 7 call(s)
+053F	partystdmotionplaywithoutsame	0	0034F890	151	BRANCHING	2 conditional branch(es), 7 call(s)
+0540	partystdmotionplay_540	2	00350050	157	BRANCHING	2 conditional branch(es), 8 call(s)
+0541	partystdmotionplaywithoutsame_541	0	003507B0	154	BRANCHING	2 conditional branch(es), 8 call(s)
+0542	pausesestop	0	0034E180	5	TAILJUMP	-> 002DEE70
+0543	getbattlemembertotal_543	1	00342280	149	BRANCHING	2 conditional branch(es), 7 call(s)
+0544	getbattlememberonlytotal_544	1	00342BF0	148	BRANCHING	2 conditional branch(es), 7 call(s)
+0545	getguestmemberonlytotal_545	0	003433E0	134	BRANCHING	2 conditional branch(es), 7 call(s)
+0546	setemergency_one	0	003460C0	46	LINEAR	2 call(s) (2 direct), no branching
+0547	settrapshowstatus	1	00355E00	23	CALL1	-> 00267E10, then tail-jump
+0548	blurplay_548	1	00344340	68	BRANCHING	1 conditional branch(es), 2 call(s)
+0549	blurstop_549	1	00344AC0	23	CALL1	-> 00267E10, then tail-jump
+054A	bluralpha_54a	2	00345570	53	LINEAR	2 call(s) (2 direct), no branching
+054B	blurrotate_54b	2	00345FC0	53	LINEAR	2 call(s) (2 direct), no branching
+054C	blurcolor_54c	5	00346AF0	135	LINEAR	6 call(s) (6 direct), no branching
+054D	bluroffset_54d	3	00347530	77	LINEAR	3 call(s) (3 direct), no branching
+054E	blurscale_54e	3	00347E30	77	LINEAR	3 call(s) (3 direct), no branching
+054F	blurprior_54f	0	00348610	50	LINEAR	2 call(s) (2 direct), no branching
+0550	blurlayer_550	2	00348CF0	50	LINEAR	2 call(s) (2 direct), no branching
+0551	blurtrans_551	2	003494C0	50	LINEAR	2 call(s) (2 direct), no branching
+0552	set_force_char_nearfade	1	00356030	28	CALL1	-> 00267E10, then tail-jump
+0553	clear_force_char_nearfade	0	003563C0	9	TAILJUMP	-> 0026AB50
+0554	resetemergency	0	00347970	107	BRANCHING	2 conditional branch(es), 5 call(s)
+0555	resetemergency_with_animetionmode	0	003473E0	92	BRANCHING	2 conditional branch(es), 4 call(s)
+0556	getplaylooptime	0	00349BA0	67	LINEAR	2 call(s) (2 direct), no branching
+0557	getplayloophour	0	0034A0E0	47	LINEAR	2 call(s) (2 direct), no branching
+0558	getplayloopsec	0	0034A5D0	47	LINEAR	2 call(s) (2 direct), no branching
+0559	getplayloopmin	0	0034AB20	47	LINEAR	2 call(s) (2 direct), no branching
+055A	init_playtime	0	003567C0	5	TAILJUMP	-> 00255040
+055C	setitemnum	2	00345520	73	LINEAR	3 call(s) (3 direct), no branching
+055D	weight_upper_pc	0	00356BC0	13	TAILJUMP	-> 002EC5B0
+055E	clear_weight_upper_pc	0	00356FD0	10	TAILJUMP	-> 002EC5B0
+055F	setstatuserrordispdenystatus_by_menu	0	00341360	34	BRANCHING	1 conditional branch(es), 1 call(s)
+0560	setstatuserrorctrldenystatus_by_menu	1	00341790	34	BRANCHING	1 conditional branch(es), 1 call(s)
+0561	clear_callpartymenu_status	0	00357440	5	TAILJUMP	-> 002E0660
+0562	is_callpartymenu_status	0	0033F230	29	CALL1	-> 002E0F90, then tail-jump
+0563	setflickerfreemode	1	0033F6C0	28	CALL1	-> 00267E10, then tail-jump
+0564	summon_refresh_party_lastfadein	0	0033FA90	5	TAILJUMP	-> 00313670
+0565	refresh_fightmotion	0	00344CC0	110	BRANCHING	1 conditional branch(es), 7 call(s)
+0566	refresh_party_fightmotion	0	003446D0	61	BRANCHING	2 conditional branch(es), 4 call(s)
+0567	check_move_battlestatus	1	0033FF00	62	BRANCHING	1 conditional branch(es), 3 call(s)
+0568	getweight	0	0034E2F0	33	CALL1	-> 00265950, then tail-jump
+0569	puppet_setcharclipone	0	00340890	144	LINEAR	7 call(s) (7 direct), no branching
+056A	set_microphone_pos	4	00340EF0	138	LINEAR	6 call(s) (6 direct), no branching
+056B	clear_microphone_pos	0	00341400	12	TAILJUMP	-> 00363B00
+056C	set_microphone_camera	0	00341780	13	TAILJUMP	-> 00363B00
+056D	setposparty_mapjump	0	0033F070	136	LINEAR	6 call(s) (6 direct), no branching
+056E	straightpcmtrans	2	0050F200	50	LINEAR	2 call(s) (2 direct), no branching
+056F	clear_effectactor	1	00342010	45	BRANCHING	1 conditional branch(es), 1 call(s)
+0570	bgeffectactor	1	00352940	58	LINEAR	3 call(s) (3 direct), no branching
+0571	clear_bgeffectactor	0	003423C0	23	CALL1	-> 00267E10, then tail-jump
+0572	summongethertarget_one	1	003410A0	21	CALL1	-> 00267DB0, then tail-jump
+0574	freqcancel2	1	00352980	46	LINEAR	2 call(s) (2 direct), no branching
+0575	freqcancel2_575	2	00353660	76	LINEAR	4 call(s) (4 direct), no branching
+0576	fadeout_check_nextmap	0	00343710	48	BRANCHING	1 conditional branch(es), 2 call(s)
+0578	set_title_flag	1	003440C0	23	CALL1	-> 00267E10, then tail-jump
+0579	get_title_flag	0	003444A0	29	CALL1	-> 002654D0, then tail-jump
+057A	cancel_battle_think_only_crystal_talk	0	00344740	156	BRANCHING	6 conditional branch(es), 8 call(s)
+057B	set_ignore_flickerfilter_mask	0	00345120	24	CALL1	-> 00267E10, then tail-jump
+057C	get_talk_run_status	0	003456C0	29	CALL1	-> 00265450, then tail-jump
+057D	releasepc_battlemember	0	00345B40	5	TAILJUMP	-> 00269530
+057E	envsoundtrans	2	00346060	50	LINEAR	2 call(s) (2 direct), no branching
+057F	resetemergency_one	1	00346A10	65	LINEAR	3 call(s) (3 direct), no branching
+0580	voicestopall	0	00346670	8	TAILJUMP	-> 002DF690
+0581	check_move_battlestatus_ignore_dead	1	00340340	61	BRANCHING	1 conditional branch(es), 3 call(s)
+0582	capturepc_not_cancelbattlecommand	0	003537D0	127	BRANCHING	4 conditional branch(es), 6 call(s)
+0583	capturepcbyentryid_not_cancelbattlecommand	1	0034C950	51	BRANCHING	1 conditional branch(es), 2 call(s)
+0584	delete_afterglow	0	00346900	8	TAILJUMP	-> 002ED020
+0585	delete_afterglow_all	0	00346DD0	5	TAILJUMP	-> 002ECEB0
+0586	suspendbattle_resetmotion	0	00356970	18	CALL1	-> 0035AB20, then tail-jump
+0587	suspendbattle_no_resetmotion	0	00347460	5	TAILJUMP	-> 0035AB20
+0589	ucoff_resetmotion	1	00347090	49	LINEAR	2 call(s) (2 direct), no branching
+058A	getmovieframe_frame	0	0033F250	29	CALL1	-> 0035B730, then tail-jump
+058B	setff12screenmode	1	00347790	28	CALL1	-> 00267E10, then tail-jump
+058C	setmoviescreensize	1	00347C40	23	CALL1	-> 00267E10, then tail-jump
+058D	getmoviescreensize	0	00347F40	29	CALL1	-> 0037B370, then tail-jump
+058E	getscreenaspect	0	0050D1C0	29	CALL1	-> 0053DD10, then tail-jump
+058F	setmoviescreenratio	0	00510720	23	CALL1	-> 00267E10, then tail-jump
+0590	getmoviescreenratio	0	003489E0	29	CALL1	-> 0037B360, then tail-jump
+0591	setmoviescreenoffsety	0	00510720	23	CALL1	-> 00267E10, then tail-jump
+0592	getmoviescreenoffsety	0	003491E0	29	CALL1	-> 0037B350, then tail-jump
+0593	math_abs	0	0034A490	37	CALL1	-> 00267E10, then tail-jump
+0594	math_fabs	0	0034A8F0	48	CALL1	-> 00267DB0, then tail-jump
+0595	setmoviescreenratio_4_3	0	00510720	23	CALL1	-> 00267E10, then tail-jump
+0596	getmoviescreenratio_4_3	0	003498A0	29	CALL1	-> 002F9F10, then tail-jump
+0597	setmoviescreenoffsety_4_3	0	00510720	23	CALL1	-> 00267E10, then tail-jump
+0598	getmoviescreenoffsety_4_3	0	0050F100	29	CALL1	-> 005C5230, then tail-jump
+0599	lockmapjump	0	0034AD70	21	CALL1	-> 002640C0
+059A	unlockmapjump	0	0034B1C0	21	CALL1	-> 002640C0
+059B	getff12lang	0	0034B650	29	CALL1	-> 002DEBB0, then tail-jump
+059C	unkCall_59c	0	0034BA00	47	BRANCHING	2 conditional branch(es), 1 call(s)
+059D	unkCall_59d	1	00340DC0	49	LINEAR	2 call(s) (2 direct), no branching
+05A0	unkCall_5a0	0	00355560	10	TAILJUMP	-> 0026B4E0
+05A1	unkCall_5a1	0	00355560	10	TAILJUMP	-> 0026B4E0
+05A2	unkCall_5a2	1	0034E340	23	CALL1	-> 00267E10, then tail-jump
+05A3	unkCall_5a3	1	0034EA10	23	CALL1	-> 00267E10, then tail-jump
+05A4	unkCall_5a4	0	0034ED70	5	TAILJUMP	-> 00474020
+05A5	unkCall_5a5	0	0034F140	29	CALL1	-> 00473E10, then tail-jump
+05A7	isFirstStartDone	0	0034FDA0	29	CALL1	-> 00314930, then tail-jump
+05A8	unkCall_5a8	0	003500F0	10	TAILJUMP	-> 00314DE0
+05A9	unkCall_5a9	0	003504B0	29	CALL1	-> 0017D430, then tail-jump
+05AB	unkCall_5ab	0	00350960	21	CALL1	-> 002640C0, then tail-jump
+05AC	unkCall_5ac	3	00350F50	77	LINEAR	3 call(s) (3 direct), no branching
+05AD	unkCall_5ad	1	00352250	23	CALL1	-> 00267E10, then tail-jump
+05B0	unkCall_5b0	2	00353420	50	LINEAR	2 call(s) (2 direct), no branching
+05B1	unkCall_5b1	0	00355930	7	TAILJUMP	-> 0026B4E0
+05B4	unkCall_5b4	0	00355930	7	TAILJUMP	-> 0026B4E0
+05B5	loadPs2Save	1	00510720	23	CALL1	-> 00267E10, then tail-jump
+05B6	unkCall_5b6	5	003545B0	184	BRANCHING	1 conditional branch(es), 9 call(s)
+05B7	unkCall_5b7	0	00354BE0	5	TAILJUMP	-> 00474040
+05B8	unkCall_5b8	0	00354EF0	38	LINEAR	4 call(s) (4 direct), no branching
+05B9	unkCall_5b9	2	0034D360	50	LINEAR	2 call(s) (2 direct), no branching
+05BA	unkCall_5ba	1	0034D870	23	CALL1	-> 00267E10, then tail-jump
+05BB	unkCall_5bb	0	00355420	7	TAILJUMP	-> 00182DC0
+05BC	unkCall_5bc	0	003556A0	10	TAILJUMP	-> 00182DC0
+05BD	unkCall_5bd	3	0034DEE0	91	LINEAR	3 call(s) (3 direct), no branching
+05BE	unkCall_5be	0	00355940	29	CALL1	-> 00286000, then tail-jump
+05BF	unkCall_5bf	0	00355E80	7	TAILJUMP	-> 00287D00
+05C2	unkCall_5c2	1	003560B0	23	CALL1	-> 00267E10, then tail-jump
+05C3	unkCall_5c3	1	003568B0	23	CALL1	-> 00267E10, then tail-jump
+05C4	unkCall_5c4	1	00356440	23	CALL1	-> 00267E10, then tail-jump
+05C5	unkCall_5c5	1	00356C80	23	CALL1	-> 00267E10, then tail-jump
+05C6	unkCall_5c6	0	0033FED0	37	CALL1	-> 00229E40, then tail-jump
+05C7	unkCall_5c7	2	0016D6A0	3	CONST	no call, no jump, no memory - a constant or a bare ret
+05C8	unkCall_5c8	1	003405A0	30	BRANCHING	1 conditional branch(es), 1 call(s)
+05C9	unkCall_5c9	0	00352F00	29	CALL1	-> 001EC500, then tail-jump
+05CA	unkCall_5ca	1	00340B70	23	CALL1	-> 00267E10, then tail-jump
+05CB	unkCall_5cb	1	00343760	5	TAILJUMP	-> 00342640
+05CD	unkCall_5cd	0	00341030	28	CALL1	-> 00182D10, then tail-jump
+05CE	unkCall_5ce	0	003413E0	28	CALL1	-> 00182DA0, then tail-jump
+05CF	unkCall_5cf	1	00357230	62	BRANCHING	2 conditional branch(es), 3 call(s)
+05D0	unkCall_5d0	1	00341760	32	CALL1	-> 00267E10, then tail-jump
+05D1	unkCall_5d1	1	0033F870	23	CALL1	-> 00267E10
+05D2	unkCall_5d2	0	00341B80	11	TAILJUMP	-> 0026B4E0
+05D3	unkCall_5d3	0	00341F40	13	TAILJUMP	-> 0026B4C0
+05D4	unkCall_5d4	1	0033F2F0	23	CALL1	-> 00267E10, then tail-jump
+05D6	resetJobs	1	00342230	23	CALL1	-> 00267E10, then tail-jump
+05D7	hasJobAssigned	1	00342560	39	LINEAR	2 call(s) (2 direct), no branching

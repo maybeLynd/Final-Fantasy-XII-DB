@@ -1,0 +1,403 @@
+{
+ "real": [
+  {
+   "name": "noop",
+   "va": "0x16d6a0",
+   "end": "0x16d6a3",
+   "size": 3,
+   "sha256": "b6cbececf1b07e74f37d57710c68c31f0b92cb08d51093252b321b07542e177b"
+  },
+  {
+   "name": "gc56",
+   "va": "0x1ec560",
+   "end": "0x1ec59b",
+   "size": 59,
+   "sha256": "eea3b70d8fc7c21d2d301418e7b9c5f36aac4e515899e6d8f336586aecc703ef"
+  },
+  {
+   "name": "gdda",
+   "va": "0x1edda0",
+   "end": "0x1eddbb",
+   "size": 27,
+   "sha256": "a732b1d18fd5f604441cba1061a064a0c2029122eae0c414b41c53f64340d273"
+  },
+  {
+   "name": "gaa3",
+   "va": "0x20aa30",
+   "end": "0x20aa38",
+   "size": 8,
+   "sha256": "e438fe3f8cc19b316477220aa8ced4d9adac971f4e4e967b13041b68bb13a608"
+  },
+  {
+   "name": "gaa4",
+   "va": "0x20aa40",
+   "end": "0x20aa48",
+   "size": 8,
+   "sha256": "c540bba3d562f5bafbab5a2dc1e840a7dee1e983c30d89185c31da165d6551b4"
+  },
+  {
+   "name": "rc",
+   "va": "0x20e600",
+   "end": "0x20e60a",
+   "size": 10,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65"
+  },
+  {
+   "name": "ga03",
+   "va": "0x22a030",
+   "end": "0x22a037",
+   "size": 7,
+   "sha256": "02f15a519c66e123b3a1d051129bceea6938e6752245b44073ce006166e5f87e"
+  },
+  {
+   "name": "ga08",
+   "va": "0x22a080",
+   "end": "0x22a087",
+   "size": 7,
+   "sha256": "e70b06caa990b8d9992a248703498b351f05b2f1d04ded47043f0630e7e87ca2"
+  },
+  {
+   "name": "pass",
+   "va": "0x25d9e0",
+   "end": "0x25def1",
+   "size": 1297,
+   "sha256": "d2f00ca3caa9c3a789b30ef6d98b9f334a40fa6bcc4f6838e95bf57bec74a939"
+  },
+  {
+   "name": "wres",
+   "va": "0x25df00",
+   "end": "0x25e3cc",
+   "size": 1228,
+   "sha256": "fd07cd5b2637aa837f3cc6f00a946be8cabe02823c250eb783cd0b05954be8fc"
+  },
+  {
+   "name": "initc",
+   "va": "0x2620e0",
+   "end": "0x2621c7",
+   "size": 231,
+   "sha256": "7605a77072bf9d04cf0330b8b662aa627d791dfa16dde5dd68f6d304127f182f"
+  },
+  {
+   "name": "gres2",
+   "va": "0x263ff0",
+   "end": "0x264005",
+   "size": 21,
+   "sha256": "bc9fcb29e7d9a6eba4055311552139f3ffc1570f0f9f62636d4b2c4fce54175d"
+  },
+  {
+   "name": "g527",
+   "va": "0x265270",
+   "end": "0x26528c",
+   "size": 28,
+   "sha256": "17c90ed9080aa333f0908e9c6377230bb6fb15504dcb38a15ffec22e1fd9fe24"
+  },
+  {
+   "name": "g576",
+   "va": "0x265760",
+   "end": "0x265768",
+   "size": 8,
+   "sha256": "8cbd0966373f88c3c79230b3c7f8cba599f2d49dbcee0c635f23daefdbc422bb"
+  },
+  {
+   "name": "x986",
+   "va": "0x269860",
+   "end": "0x2699cc",
+   "size": 364,
+   "sha256": "ea84ace885bb7e8a9551b4bb6a3f8cd6d5e201ef108b84c23e72513cb7473a8d"
+  },
+  {
+   "name": "ge05",
+   "va": "0x2e0540",
+   "end": "0x2e0592",
+   "size": 82,
+   "sha256": "93d682e87ae8b07d3a964a97042ddbef41432f53fcf3ef960e951b9baa8cbfa2"
+  },
+  {
+   "name": "g4a1",
+   "va": "0x2e4a10",
+   "end": "0x2e4a33",
+   "size": 35,
+   "sha256": "2c4d112df4ec89a0a4915b8eea53bbb2c8d663e79da00134371256b33b6eb561"
+  },
+  {
+   "name": "g97b",
+   "va": "0x2e97b0",
+   "end": "0x2e97c0",
+   "size": 16,
+   "sha256": "6e232e22130c3b78e5a57cc1a16a9b29af15ea82ea28b0aae354c35c8aca541a"
+  },
+  {
+   "name": "gefb",
+   "va": "0x2ef2b0",
+   "end": "0x2ef2c4",
+   "size": 20,
+   "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7"
+  },
+  {
+   "name": "gf64",
+   "va": "0x2ef640",
+   "end": "0x2ef648",
+   "size": 8,
+   "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802"
+  },
+  {
+   "name": "xe40",
+   "va": "0x2efe40",
+   "end": "0x2efe47",
+   "size": 7,
+   "sha256": "b8d0cfce7538f7ee0d9b4ed924966f971ed855b8ce0ea077fc3229dadd73af98"
+  },
+  {
+   "name": "xe50",
+   "va": "0x2efe50",
+   "end": "0x2efe57",
+   "size": 7,
+   "sha256": "649c1ec3f402c6b8189f238b1797f836330806f258e7c6351bcedd5b2d92565d"
+  },
+  {
+   "name": "g860",
+   "va": "0x303ec0",
+   "end": "0x303ed8",
+   "size": 24,
+   "sha256": "f16bd80d5b664d035ec522472c0706d8a6d5fcf1284553f902728e73da66efb5"
+  },
+  {
+   "name": "mode",
+   "va": "0x30d9a0",
+   "end": "0x30da09",
+   "size": 105,
+   "sha256": "95f7f1b5c004c22f947956d3629d6e2cb39671677134d1dce69fdf8a5aadd0f2"
+  },
+  {
+   "name": "g8f0",
+   "va": "0x3135c0",
+   "end": "0x3135d8",
+   "size": 24,
+   "sha256": "680512174286d75152895f584c4ee87f4425fb95df34db041070f2fd979487ac"
+  },
+  {
+   "name": "gd0",
+   "va": "0x3148d0",
+   "end": "0x3148e4",
+   "size": 20,
+   "sha256": "8f26c65884b765ce9ec8bfebce9d02e62f24b00388f3ba523e6b24ee7de6edfe"
+  },
+  {
+   "name": "g48f",
+   "va": "0x3148f0",
+   "end": "0x31490b",
+   "size": 27,
+   "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c"
+  },
+  {
+   "name": "g491",
+   "va": "0x314910",
+   "end": "0x314924",
+   "size": 20,
+   "sha256": "658b0458f8e50b00466ff2c97922834390cb19649691c1cf4fa967b6bfdff54f"
+  },
+  {
+   "name": "gda0",
+   "va": "0x314da0",
+   "end": "0x314db9",
+   "size": 25,
+   "sha256": "8bd0672324682e1c664228c3aa138a8bf8cd41ad8baeca82fea88ab7d6621c02"
+  },
+  {
+   "name": "gtad",
+   "va": "0x31ad90",
+   "end": "0x31ada1",
+   "size": 17,
+   "sha256": "ab03654936759f7d4a8b60bc23e1ca90a3da0c9b6f8785dd3b7fe828662db6b0"
+  },
+  {
+   "name": "pck",
+   "va": "0x32f6c0",
+   "end": "0x32f6d2",
+   "size": 18,
+   "sha256": "ebb78f0d9393f2640592071737f2e7b8216a7cc1df22c8fa97835446a6ee9ba3"
+  },
+  {
+   "name": "pslt",
+   "va": "0x32f6e0",
+   "end": "0x32f6ef",
+   "size": 15,
+   "sha256": "eaa54bfffcc94f99d991df8a2f2ae7757b4d2fdb320484c2f7cb433bcfacd930"
+  },
+  {
+   "name": "g760",
+   "va": "0x357760",
+   "end": "0x35776b",
+   "size": 11,
+   "sha256": "ac4c415787e18699da7b10193a3c67df36836f507126638809a64669a9fa06ec"
+  },
+  {
+   "name": "g770",
+   "va": "0x357770",
+   "end": "0x357777",
+   "size": 7,
+   "sha256": "e3ec66576d544153b624b6848b7d584368e3845554b1e1786418e2a26ca049f6"
+  },
+  {
+   "name": "gres",
+   "va": "0x3588b0",
+   "end": "0x35893f",
+   "size": 143,
+   "sha256": "ee587d783b5790f447385952fff3663b09d20653e57327ed10dd1d06ad72b644"
+  },
+  {
+   "name": "grec",
+   "va": "0x358940",
+   "end": "0x35895e",
+   "size": 30,
+   "sha256": "e7d50b2c2b1279720b63b38b1d754f6e1ecf4a188afdb1a4a3a4045a7306024d"
+  },
+  {
+   "name": "fh",
+   "va": "0x3590d0",
+   "end": "0x3590d7",
+   "size": 7,
+   "sha256": "a40d2ed05eca9aa062885c59f8ce7103f120dabe117bf557a2d23ac34b158241"
+  },
+  {
+   "name": "g9b8",
+   "va": "0x359b80",
+   "end": "0x359b95",
+   "size": 21,
+   "sha256": "a274493f0a10b328ca193efa97a5e62475143604a33a6681863ebeb61c36f891"
+  },
+  {
+   "name": "gt3",
+   "va": "0x3603c0",
+   "end": "0x3603c8",
+   "size": 8,
+   "sha256": "43f571be9e8d80aa36fb00ff979b526104d28b5fa768d013a1c882879c0a5cbb"
+  },
+  {
+   "name": "gd60",
+   "va": "0x360d60",
+   "end": "0x360d6d",
+   "size": 13,
+   "sha256": "aaa04ddd18adabaac963cf750c7e2b4a98163e155c4cfcfc48287267b1c1e1ae"
+  },
+  {
+   "name": "g610",
+   "va": "0x361010",
+   "end": "0x36102e",
+   "size": 30,
+   "sha256": "0d4ce8202363a4219156adf02d69159e3953db39d52bf115dc8158e3041aa06d"
+  },
+  {
+   "name": "xa80",
+   "va": "0x363a80",
+   "end": "0x363a87",
+   "size": 7,
+   "sha256": "848654c33d840b2801f1438b2b13e947a4f0ea4da2c9ab504567c9fe415d2227"
+  },
+  {
+   "name": "g7c2",
+   "va": "0x377c20",
+   "end": "0x377c6e",
+   "size": 78,
+   "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea"
+  },
+  {
+   "name": "dfr",
+   "va": "0x377db0",
+   "end": "0x377db7",
+   "size": 7,
+   "sha256": "a0fc39cd96f4aacbac8021c176e80afaa30d77196776744c8dcdcf6a5f179c78"
+  },
+  {
+   "name": "gb40",
+   "va": "0x37cb40",
+   "end": "0x37cb4d",
+   "size": 13,
+   "sha256": "5f0a1f3aeb1bbcd36aa05797f5fc1b76c94838b0d0774061113299033e7b7079"
+  },
+  {
+   "name": "ga71",
+   "va": "0x3da710",
+   "end": "0x3da725",
+   "size": 21,
+   "sha256": "c08a30a8cc6071cbca91011f60139a8bb54432f0316ee73c17d3447497c08659"
+  },
+  {
+   "name": "g550",
+   "va": "0x3db550",
+   "end": "0x3db573",
+   "size": 35,
+   "sha256": "caded04469b9641cf38872f867c93693fc0dc028daa6a6f0363758146f66fe1d"
+  },
+  {
+   "name": "gb64",
+   "va": "0x3db640",
+   "end": "0x3db64d",
+   "size": 13,
+   "sha256": "c8311f9d439de3e83da4075106db0084c4675a477748fd29af68af58a8ba664f"
+  },
+  {
+   "name": "gc05",
+   "va": "0x3dc050",
+   "end": "0x3dc0c9",
+   "size": 121,
+   "sha256": "c10dba1da83fc5daab96664bb017b205b69d9edf673496e1e29f85331b4cb82f"
+  },
+  {
+   "name": "busy",
+   "va": "0x583920",
+   "end": "0x583927",
+   "size": 7,
+   "sha256": "0e8feea68b3591122b526a34aa6f1297f00403a837e6ee18b06cc0bc618ddb22"
+  },
+  {
+   "name": "cookie",
+   "va": "0x808c40",
+   "end": "0x808c61",
+   "size": 33,
+   "sha256": "67240233cbb2f0f258c51b20d947a5cd861d5e4390c55216db72ceea24ce0d63"
+  }
+ ],
+ "scripted": [
+  {
+   "name": "interp",
+   "va": "0x25e4c0",
+   "note": "0025E4C0 bytecode VM interpreter (14.6KB): disclosed boundary -- the interpreter contract's own subject; invocation + return-driven continuation are modelled"
+  },
+  {
+   "name": "audio",
+   "va": "0x261f90",
+   "note": "00261F90 audio subsystem call: scripted stub (separate audio contract)"
+  },
+  {
+   "name": "dreq",
+   "va": "0x32fc30",
+   "note": "0032FC30 deferred mode request: scripted stub, args (ecx=1, edx=0xD4) captured"
+  },
+  {
+   "name": "initc chain",
+   "va": "00259B30/003E8980/0025ACA0/0017D490/0026FAD0/00379860/00379290/003DE920/00363B40/003601C0",
+   "note": "002620E0's ten external calls: scripted stubs; ice/icf carry captured args + sequenced qrets"
+  },
+  {
+   "name": "lifecycle helpers",
+   "va": "0025B600/0025B740/0025B820/0025C170/0025B250/0025E400/0026A5F0/00233AA0/00263660/00250960/00259FB0/00268690/003B7130/002E1C40/00254A90/00234150/002EFD20/002F1A30/00183070/002677B0/002EFA70/003EAA70/002E6310/002681E0/002E5030/002E5750/003E6EF0/003E68B0/003E6A70/0026D6F0/0017E7D0",
+   "note": "pass/wres/settle helper calls: scripted stubs, qret-configured where the return steers flow"
+  },
+  {
+   "name": "wres predicate closures",
+   "va": "001ED180/001ED130/001EDE80/001EC5C0/001EC5E0",
+   "note": "resolver-family predicates (xd1/xd3/xde8/xc5c/xc5e): scripted stubs; their real leaf readers (g527/g576/gc56/ga03/ga08/ge05/gdda) are measured separately"
+  },
+  {
+   "name": "wres arm checkers",
+   "va": "003DBF60/003DB2A0/002674B0/00267420/002E4380",
+   "note": "kind-3/4/5/7 checker calls: scripted stubs (gb64/gc05 run real)"
+  },
+  {
+   "name": "planted fn-ptrs",
+   "va": "fixture",
+   "note": "record+0x38 callback target + scratch bodies: planted xor eax;ret / mov rax,imm;ret"
+  }
+ ]
+}

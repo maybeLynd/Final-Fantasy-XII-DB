@@ -1,0 +1,1 @@
+Source capture failed during final serialization because the selected caller-row map name was reused for callee instruction rows. Exit1/stderr retained, no semantic result/credit. Preserve original driver/identity/bins. Fix producer variable binding only, then execute once; no game/native activity or reference writes.

@@ -1,0 +1,4 @@
+PASS N1  refinement sequence bound at 11 instructions
+PASS N2  w = 1, h = 400, c0 = 3F9A5FB2: nx 0, ny 331, refinement 7F800000
+PASS C  16 x 16: c0 3F76FF83, nx 16, ny 16, refinement 3F800000 (finite)
+FAILS 0

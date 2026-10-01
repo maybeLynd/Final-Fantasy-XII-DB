@@ -1,0 +1,665 @@
+{
+  "method": "B verified original237B call-free leaf, initialized disposable ABI/argument state, MXCSR1F80; one private JA->JAE detector",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "body_sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "caller_sha256": "952ac4880d6be155c35a37c1ff8e5ecbbcae8603cc4d2cafbaaeb287c1046913"
+  },
+  "observations": [
+    {
+      "name": "positive-inside",
+      "x_bits": "40a00000",
+      "z_bits": "40a00000",
+      "radius_bits": "40a00000",
+      "eax": 1,
+      "return_site": "0x4690f0",
+      "instructions": 19,
+      "read_events": 8,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "40a00000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "40a00000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690dc",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41700000",
+            "40a00000"
+          ]
+        },
+        {
+          "pc": "0x4690e6",
+          "args": "xmm0, xmm1",
+          "operands": [
+            "41200000",
+            "40a00000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "negative-distant",
+      "x_bits": "c0c00000",
+      "z_bits": "40a00000",
+      "radius_bits": "40a00000",
+      "eax": 0,
+      "return_site": "0x46919c",
+      "instructions": 43,
+      "read_events": 9,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0c00000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "c0c00000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "42740000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c80000",
+            "42740000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c80000",
+            "438c8000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "438c8000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "edge-tangent",
+      "x_bits": "c0a00000",
+      "z_bits": "40a00000",
+      "radius_bits": "40a00000",
+      "eax": 1,
+      "return_site": "0x4690f0",
+      "instructions": 19,
+      "read_events": 8,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0a00000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "40a00000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690dc",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41700000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690e6",
+          "args": "xmm0, xmm1",
+          "operands": [
+            "41200000",
+            "40a00000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-min-min-tangent",
+      "x_bits": "c0400000",
+      "z_bits": "c0800000",
+      "radius_bits": "40a00000",
+      "eax": 0,
+      "return_site": "0x46919c",
+      "instructions": 46,
+      "read_events": 11,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0400000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "c0800000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "c0400000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "41c80000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c80000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c80000",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "43b68000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-min-max-tangent",
+      "x_bits": "c0400000",
+      "z_bits": "41600000",
+      "radius_bits": "40a00000",
+      "eax": 0,
+      "return_site": "0x46919c",
+      "instructions": 53,
+      "read_events": 13,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0400000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "41600000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690dc",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41700000",
+            "c0400000"
+          ]
+        },
+        {
+          "pc": "0x4690e6",
+          "args": "xmm0, xmm1",
+          "operands": [
+            "41200000",
+            "41600000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "c0400000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c80000",
+            "41c80000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c80000",
+            "43b68000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "43390000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-max-min-tangent",
+      "x_bits": "41500000",
+      "z_bits": "c0800000",
+      "radius_bits": "40a00000",
+      "eax": 0,
+      "return_site": "0x46919c",
+      "instructions": 54,
+      "read_events": 14,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "41500000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "c0800000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "41500000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469104",
+          "args": "xmm1, xmm0",
+          "operands": [
+            "c0800000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x46910e",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41200000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c80000",
+            "43b68000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c80000",
+            "41c80000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "434d0000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-max-max-tangent",
+      "x_bits": "41500000",
+      "z_bits": "41600000",
+      "radius_bits": "40a00000",
+      "eax": 0,
+      "return_site": "0x46919c",
+      "instructions": 61,
+      "read_events": 16,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "41500000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "41600000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690dc",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41700000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x4690e6",
+          "args": "xmm0, xmm1",
+          "operands": [
+            "41200000",
+            "41600000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "41500000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469104",
+          "args": "xmm1, xmm0",
+          "operands": [
+            "41600000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x46910e",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41200000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "43b68000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c80000",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c80000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "41c80000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-first-radius-next-up",
+      "x_bits": "c0400000",
+      "z_bits": "c0800000",
+      "radius_bits": "40a00001",
+      "eax": 1,
+      "return_site": "0x4690f0",
+      "instructions": 25,
+      "read_events": 8,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0400000",
+            "c0a00001"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "c0800000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "c0400000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80003",
+            "41c80000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-first-radius-next-down",
+      "x_bits": "c0400000",
+      "z_bits": "c0800000",
+      "radius_bits": "409fffff",
+      "eax": 0,
+      "return_site": "0x46919c",
+      "instructions": 46,
+      "read_events": 11,
+      "mutated": false,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0400000",
+            "c09fffff"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "c0800000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "c0400000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c7fffe",
+            "41c80000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c7fffe",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c7fffe",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c7fffe",
+            "43b68000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "corner-first-private-inclusive",
+      "x_bits": "c0400000",
+      "z_bits": "c0800000",
+      "radius_bits": "40a00000",
+      "eax": 1,
+      "return_site": "0x4690f0",
+      "instructions": 25,
+      "read_events": 8,
+      "mutated": true,
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "c0400000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "c0800000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "c0400000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "41c80000"
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": "Source has two inclusive expanded-edge bands followed by four strict radius-squared greater-than corner-distance-squared tests. In finite injected0..10/radius5 cases, exact side tangency accepts, exact3-4-5 corner tangency rejects at every corner; radius next-up accepts first corner, next-down rejects. Private first JA->JAE accepts the same first-corner tangent and is refused as original. Native shape state/MXCSR/normal reachability not proved; floating-point instruction order must be retained rather than substituted by generic inclusive geometry.",
+  "limits": "Only finite ordered0..10 rectangle/radius5 and adjacent binary32 values under injected MXCSR1F80. No native/live initialization/caller occurrence/radius distribution/actual MXCSR/NaN exceptions/timing/whole rasterizer or memory safety guarantee. Full source237B executes but actual gameplay/scheduling/ownership untouched.",
+  "cleanup": "Fresh disposable guest per case, no callbacks/stubs/writes, complete RET to sentinel/stack advancement, original argument/stack bytes unchanged; standalone script completes. PC OFF/noFF12/game/save/config/reference/peer writes; S19 budget unchanged, fullL1+L2NOT_MET"
+}

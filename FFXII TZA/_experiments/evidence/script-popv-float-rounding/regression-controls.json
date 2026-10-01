@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-always-nearest",
+    "returncode": 1,
+    "expected": "Directed RC changes original float conversion value"
+  },
+  {
+    "argument": "--fault-preserve-int-bits",
+    "returncode": 1,
+    "expected": "Original CVTDQ2PS converts integer bits before storing float"
+  },
+  {
+    "argument": "--fault-use-original-state-label",
+    "returncode": 1,
+    "expected": "Original second-case input label is stale and needs additive correction"
+  }
+]

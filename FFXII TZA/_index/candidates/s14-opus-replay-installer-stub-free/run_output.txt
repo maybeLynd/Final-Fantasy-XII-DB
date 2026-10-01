@@ -1,0 +1,6 @@
+I4_I8_party_install                PASS  ids 0x0000 / 0x0003 / 0x0005: the installer returns 1, +0x698 = q[02EBF190] + 8 + row*0x1C8 (the shipped party rows), +0x6A0 = 0, flag bit 2 set; the reset runs once and the pulse reset 002FEAB0 zeroes exactly the qword at +0xEAC (+0xEB4 survives)
+I2_reset_then_master_reject        PASS  master flag 0: the reset runs (flags masked to FFEF7FB9FFE7B0E1), then the installer returns 0; +0xEAC survives because only the success path's pulse reset clears it
+I1_other_class_clears_bit26        PASS  class 2 (id 0x0203): the rekey runs (a nonzero class byte), then the class dispatch clears bit 26 and returns 0 - class 2 can rekey and then fail (I3)
+I3_rekey_selection                 PASS  class byte 0: no rekey for a fresh unit or when the saved old id equals the incoming one; a different saved old id rekeys
+I7_party_path_registers_nothing    PASS  a party install makes NO 00328FF0 call and leaves the tracked table 02EC1380 untouched; I7's conditional write belongs to the enemy path, which this harness does not reach (its tables are not in battle_pack)
+ok

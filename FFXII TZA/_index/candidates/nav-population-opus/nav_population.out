@@ -1,0 +1,7 @@
+PASS  G root getters: ['00383840']
+PASS  P 00392740: root +0x24 as an unsigned count capped at 0x20, +0x28 decoded, 0x20-byte records read (kind word, floats +4 +8 +0xC +0x10)
+PASS  Q 00391597: a second reader of +0x28's records (kind word, float +4)
+PASS  C cell seed reaches +0x24: False; getter seed: +0x24 ['00392909', '0039290C'], +0x28 ['00391597', '00392920']
+PASS  O 002341C0: 00383A20 (root = 0), then 00306570(0), then 00392710, no local branch
+PASS  S the three absence claims corrected, NavTrailerRecord28 retyped from its readers (tiles 0x20), call order recorded
+FAILS 0

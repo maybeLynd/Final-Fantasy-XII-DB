@@ -1,0 +1,43 @@
+[
+  {
+    "case": "positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\correct-historical-edges.py"
+    ],
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"ADDITIVE_EDGE_CORRECTION_VALID_SOURCE_ONLY\",\n  \"affected\": [\n    [\n      \"raw-nested.json\",\n      \"0x2e6300\"\n    ],\n    [\n      \"raw-closure-r3.json\",\n      \"0x2ec3f0\"\n    ]\n  ],\n  \"selected_source_edges\": [\n    {\n      \"pc\": \"0x3e6bc7\",\n      \"target\": \"0x3e33e0\",\n      \"mnemonic\": \"jmp\",\n      \"kind\": \"unconditional_tail\"\n    },\n    {\n      \"pc\": \"0x3e6bd7\",\n      \"target\": \"0x3e3440\",\n      \"mnemonic\": \"jmp\",\n      \"kind\": \"unconditional_tail\"\n    }\n  ]\n}\n",
+    "stderr": "",
+    "terminal": true,
+    "checker_sha256": "34295ed30c833e1dd532a93204e7c4c2980d41f618040e99df4fb2edd695461d"
+  },
+  {
+    "case": "drop-conditional",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\correct-historical-edges.py",
+      "--fault-drop-conditional"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\correct-historical-edges.py\", line 29, in <module>\n    assert next(e for e in all_edges if e['capture']==name and e['entry']=='0x2e6300')['external_jumps']==want,'Conditional JS must survive the actual expression/re-reduction'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Conditional JS must survive the actual expression/re-reduction\n",
+    "terminal": true,
+    "checker_sha256": "34295ed30c833e1dd532a93204e7c4c2980d41f618040e99df4fb2edd695461d"
+  },
+  {
+    "case": "tail-as-call",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\correct-historical-edges.py",
+      "--fault-tail-as-call"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\correct-historical-edges.py\", line 35, in <module>\n    if '--fault-tail-as-call' in sys.argv:assert all(x['kind']=='call' for x in selected),'Two selected source edges are JMP tails, not CALL sites'\n                                                 ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Two selected source edges are JMP tails, not CALL sites\n",
+    "terminal": true,
+    "checker_sha256": "34295ed30c833e1dd532a93204e7c4c2980d41f618040e99df4fb2edd695461d"
+  }
+]

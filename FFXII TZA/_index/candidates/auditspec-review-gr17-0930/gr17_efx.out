@@ -1,0 +1,31 @@
+== c_all.efx (D:\FFXII_TZA_extract\ps2data\effect_finish\jp\common\c_all.efx)
+  sha256 0f2f15d9787f4d234f54ba978797ed3687956482aa2f3a456e382cb617869029 (package pin matches: True); 1017904 bytes; magic b'EFX0010\x00'; size field +0xC = 1017904
+  top-level walk: 2800 chunks, ends at 1017904 (file end: True)
+  chunk (flag, type) multiset: {(256, 1536): 191, (256, 1552): 218, (256, 1568): 1272, (256, 1792): 48, (256, 2048): 296, (256, 2560): 722, (256, 2816): 53}
+  lengths not a multiple of 16 among 0x6x0 chunks: 0
+  0x100-flagged 0x600/0x610/0x620 headers off the top-level walk (4-aligned raw scan): 0 []
+  headers 191, slots 218, tracks 1272
+  track kinds (byte +1): {1: 1074, 2: 40, 3: 158}
+  kind-2 tracks 40; opcode multiset over all their entries: {5: 19, 6: 17, 9: 1, 25: 14, 26: 4, 39: 1, 41: 14}
+  entry arrays fit their chunk: True; reaching opcodes {3,17,24,31,34,40} present: none
+  tracks whose slot has no 0x610: 0; slot refs in headers without a 0x610: 0
+== the 14 ids 104-111 / 142-147
+  id 104: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 105: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 106: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 107: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 108: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 109: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 110: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 111: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(5, (5,))]}
+  id 142: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(3, (5,))]}
+  id 143: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(4, (5,))]}
+  id 144: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(3, (5,))]}
+  id 145: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(4, (5,))]}
+  id 146: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(3, (5,))]}
+  id 147: header bytes +1..+0xB 00 01 00 00 00 00 00 00 00 00 02; stop seq 1 -> slot 2 fires [(1, (6, 41, 25))]; start slots {2: 1} fire {2: [(4, (5,))]}
+  whole file, time-0 opcodes of stop-1 + start slots over all 191 headers: {5: 19, 6: 15, 9: 1, 25: 14, 39: 1, 41: 14}
+== positive control: opcode 3 in the other shipped .efx files (same parser)
+  3288 .efx files (0 without EFX magic); opcode totals over kind-2 tracks: 3 x347, 34 x6, 17 x0, 40 x0, 24 x388, 31 x216
+  files carrying opcode 3: 346; first five: [(1, 'ps2data\\effect_finish\\in\\magic\\m0179.efx', True), (1, 'ps2data\\effect_finish\\in\\magic\\m0180.efx', True), (1, 'ps2data\\effect_finish\\in\\magic\\m0181.efx', True), (1, 'ps2data\\effect_finish\\in\\magic\\m0182.efx', True), (1, 'ps2data\\effect_finish\\in\\magic\\m0183.efx', True)]
+  every walk ended at its file end: True

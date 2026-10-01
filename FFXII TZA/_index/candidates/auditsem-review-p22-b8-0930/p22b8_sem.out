@@ -1,0 +1,27 @@
+PASS R 00202C90 is the 16-byte copy movups [rdx] -> [rcx]
+PASS R 0024A5A0 compares a name against the 64 records (0x48 stride) of the registry at 0208F580 (flag +0x38 bit 5)
+PASS R 0024F610 looks up the bucket table 020910A0 by byte [rcx], then walks the chain matching word [rcx+4]
+PASS R 0036DD90 / 0036DDA0 set 0x80 / 0x40 of the dword 022D9470
+PASS R 003B1310 walks 02EBE5E0..02EBEBE0 and tests tickets through 0032E4D0 / 0032E520 / 0032E590
+PASS E Presentation: 13 stated edges hold | scan 13
+PASS R 0024B270 calls three 003A7xxx/003A8xxx bodies | 003A72A0 003A8000 003A8900
+PASS E three of the four handbook effect panes (005734C0, 00573690, 00572920) call 003B2AA0 / 003B2D80 / 003B2F50 | {'005734C0': ['003B2AA0', '003B2D80', '003B2F50'], '00573690': ['003B2AA0', '003B2D80', '003B2F50'], '00572E10': [], '00572920': ['003B2AA0', '003B2D80', '003B2F50']}
+PASS F4 the fourth, 00572E10, calls none of the three: it calls 003B29B0 (00572F44) and reaches them only through 005734C0 / 00572920
+PASS R 00202C90 has 24 callers in the render layer; the image-wide caller count for context | 67 callers image-wide
+PASS R 0032E400(kind, id): kind 0xFF or a missing table -> the fallback; else dword [022C51F0][kind][id] for id < 0x400
+PASS E Resource: each named loader calls 0032E400 and/or 0032E620 ('both are called by nine loaders ... and peers') | {'00249210': ['0032E400', '0032E620'], '0024AC30': ['0032E400', '0032E620'], '00259DF0': ['0032E400', '0032E620'], '00379E90': ['0032E400', '0032E620'], '00384420': ['0032E400', '0032E620'], '0039C3F0': ['0032E400', '0032E620'], '0051ED10': ['0032E400', '0032E620']}
+PASS E Resource: each handbook pane calls part of {00249210, 00249580, 0024A680, 003933F0, 00393460, 003934F0}, and together all six | {'0056F2A0': ['00249580', '0024A680'], '00572D80': ['00249210', '00249580', '00393460'], '00574E80': ['00249580', '003933F0', '003934F0'], '00575C30': ['00249210', '00249580'], '00576F50': ['00249210', '00249580']}
+PASS E Resource: 00249210 calls both back; FieldData_GetVariable0 callers: 4 stated edges hold | scan 4
+PASS R 0024A680 references the registry at 0208F580
+PASS F5 kind 0xFF does NOT take the fallback: 0032E40A je 0032E438 'or eax, -1' returns -1; only a missing table or id >= 0x400 calls 0046DE70
+PASS R 00315390 reads the game-state block +0x3868 (through 002536A0)
+PASS R 003166F0 reads the game-state block +0x384C
+PASS E Save_Load_Settings: 4 stated edges hold | scan 4
+PASS F1 00315390 forms +0x3868 with a 32-bit add on the returned pointer (add eax, 0x3868 truncates rax) - a note, not a defect of the section
+PASS E Input: 7 stated edges hold | scan 7
+PASS E Input: the three bodies call 00198790 / 001986D0 / 00197700 between them | {'001E0A10': ['00198790', '001986D0'], '001E0E30': ['00198790'], '001E0E50': ['00198790', '00197700']}
+PASS E SaveLoad: 7 stated edges hold | scan 7
+PASS F2 002EFD20 clamps to 0..6 and returns the BYTE at 022BDD64 + idx*0x30 (idx*3, *2, then [rax + rcx*8]): a 0x30-byte stride, not 6
+PASS F3 00249580 (the SaveLoad paragraph's 'claims a slot') claims a batch record, 12 x 0x20 at 02090790, owner at +8; 00249410 closes that batch
+PASS E CombatAI: 1 stated edges hold | scan 1
+FAILS 0

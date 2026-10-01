@@ -1,0 +1,65 @@
+[
+  {
+    "variant": "equipment_flag",
+    "intended_assertion": "equipment_bit54_sets_low_bit",
+    "returncode": 1,
+    "failure": [
+      "equipment_bit54_sets_low_bit"
+    ],
+    "rejected": true
+  },
+  {
+    "variant": "tail_six",
+    "intended_assertion": "class10_strided_full98_layout",
+    "returncode": 1,
+    "failure": [
+      "class10_strided_full98_layout"
+    ],
+    "rejected": true
+  },
+  {
+    "variant": "rebase_64bit",
+    "intended_assertion": "rebase_pointer_uses_low32_base",
+    "returncode": 1,
+    "failure": [
+      "rebase_pointer_uses_low32_base"
+    ],
+    "rejected": true
+  },
+  {
+    "variant": "failure_short_clear",
+    "intended_assertion": "id_failure_zeroes_full_record",
+    "returncode": 1,
+    "failure": [
+      "id_failure_zeroes_full_record"
+    ],
+    "rejected": true
+  },
+  {
+    "variant": "derived_mask",
+    "intended_assertion": "rebase_masks_128_bytes",
+    "returncode": 1,
+    "failure": [
+      "rebase_masks_128_bytes"
+    ],
+    "rejected": true
+  },
+  {
+    "variant": "class19_upper",
+    "intended_assertion": "class19_effF_rejected",
+    "returncode": 1,
+    "failure": [
+      "class19_effF_rejected"
+    ],
+    "rejected": true
+  },
+  {
+    "variant": "clear_wrong_output",
+    "intended_assertion": "direct_rejection_only_clears_name",
+    "returncode": 1,
+    "failure": [
+      "direct_rejection_only_clears_name"
+    ],
+    "rejected": true
+  }
+]

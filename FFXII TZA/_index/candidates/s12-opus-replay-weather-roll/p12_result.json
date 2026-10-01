@@ -1,0 +1,56 @@
+{
+ "cases": {
+  "P1_fresh_runs_the_body_roll_then_apply": true,
+  "P1_latched_skips_the_body": true,
+  "P1_non_primary_returns_at_once": true,
+  "P2_latched_still_notifies_0B_then_0C": true
+ },
+ "fresh": {
+  "b10_after": 0,
+  "events": [
+   [
+    "roll 0025ACA0",
+    0
+   ],
+   [
+    "apply 0026D910",
+    2
+   ]
+  ],
+  "returned": false,
+  "rip": "40AAD0",
+  "stopped_at": [
+   "0040AAD0"
+  ]
+ },
+ "fresh_completed": false,
+ "latched": {
+  "b10_after": 4,
+  "events": [
+   [
+    "latched tail 002621A8",
+    1983905792
+   ],
+   [
+    "notify 003601C0",
+    11
+   ],
+   [
+    "notify 003601C0",
+    12
+   ]
+  ],
+  "returned": true,
+  "rip": "71000000",
+  "stopped_at": []
+ },
+ "non_primary": {
+  "b10_after": 0,
+  "events": [],
+  "returned": true,
+  "rip": "71000000",
+  "stopped_at": []
+ },
+ "ok": true,
+ "presentation_boundary": true
+}

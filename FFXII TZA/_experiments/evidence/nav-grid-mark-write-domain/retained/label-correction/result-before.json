@@ -1,0 +1,211 @@
+{
+  "method": "B shipping88B post-positive-overlap write fragment in disposable emulators; injected boundary/state; no native geometry/fullfunction/live behavior",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "parent_entry": "0x392200",
+    "parent_bytes": 679,
+    "parent_sha256": "952ac4880d6be155c35a37c1ff8e5ecbbcae8603cc4d2cafbaaeb287c1046913",
+    "entry": "0x3923d6",
+    "end": "0x39242e",
+    "window_bytes": 88,
+    "window_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+  },
+  "observations": [
+    {
+      "name": "positive-observer-id0",
+      "injected_id": 0,
+      "col": 0,
+      "signed_quotient": 0,
+      "signed_remainder": 0,
+      "bitmap_write_address": "0x40000100",
+      "bitmap_write_region": "pointer-record0",
+      "bitmap_after": "01",
+      "occupancy_after": "01",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x40000100",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "last-in-record-id287",
+      "injected_id": 287,
+      "col": 0,
+      "signed_quotient": 35,
+      "signed_remainder": 7,
+      "bitmap_write_address": "0x40000123",
+      "bitmap_write_region": "pointer-record0",
+      "bitmap_after": "80",
+      "occupancy_after": "01",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x40000123",
+          "before": "00",
+          "after": "80"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "next-record-id288",
+      "injected_id": 288,
+      "col": 0,
+      "signed_quotient": 36,
+      "signed_remainder": 0,
+      "bitmap_write_address": "0x40000124",
+      "bitmap_write_region": "pointer-record1",
+      "bitmap_after": "01",
+      "occupancy_after": "01",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x40000124",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "last-cell-id288-occupancy-alias",
+      "injected_id": 288,
+      "col": 1,
+      "signed_quotient": 36,
+      "signed_remainder": 0,
+      "bitmap_write_address": "0x40000148",
+      "bitmap_write_region": "occupancy0",
+      "bitmap_after": "01",
+      "occupancy_after": "01",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000149",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "negative-one-no-low-byte-bit",
+      "injected_id": -1,
+      "col": 0,
+      "signed_quotient": 0,
+      "signed_remainder": -1,
+      "bitmap_write_address": "0x40000100",
+      "bitmap_write_region": "pointer-record0",
+      "bitmap_after": "00",
+      "occupancy_after": "01",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "negative-eight-prefix-write",
+      "injected_id": -8,
+      "col": 0,
+      "signed_quotient": -1,
+      "signed_remainder": 0,
+      "bitmap_write_address": "0x400000ff",
+      "bitmap_write_region": "prefix-guard",
+      "bitmap_after": "a5",
+      "occupancy_after": "01",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x400000ff",
+          "before": "a4",
+          "after": "a5"
+        },
+        {
+          "address": "0x40000148",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "occupancy255-wrap",
+      "injected_id": 0,
+      "col": 0,
+      "signed_quotient": 0,
+      "signed_remainder": 0,
+      "bitmap_write_address": "0x40000100",
+      "bitmap_write_region": "pointer-record0",
+      "bitmap_after": "01",
+      "occupancy_after": "00",
+      "write_events": 2,
+      "changed": [
+        {
+          "address": "0x40000100",
+          "before": "00",
+          "after": "01"
+        },
+        {
+          "address": "0x40000148",
+          "before": "ff",
+          "after": "00"
+        }
+      ],
+      "mutated": false
+    },
+    {
+      "name": "observer-NOP-INC-control",
+      "injected_id": 0,
+      "col": 0,
+      "signed_quotient": 0,
+      "signed_remainder": 0,
+      "bitmap_write_address": "0x40000100",
+      "bitmap_write_region": "pointer-record0",
+      "bitmap_after": "01",
+      "occupancy_after": "ff",
+      "write_events": 1,
+      "changed": [
+        {
+          "address": "0x40000100",
+          "before": "00",
+          "after": "01"
+        }
+      ],
+      "mutated": true
+    }
+  ],
+  "interpretation": "Under injected accepted-overlap entry and valid two-cell layout, shipping88B uses signed ID quotient/remainder and BTS register low-bit index, stores only CL, then increments occupancy modulo256. ID288 writes next record or occupancy depending cell; negative1 leaves low bitmap byte unchanged yet increments occupancy, negative8 writes preceding byte. No ID rejection within this executed fragment. Private NOP-INC detected as one write/no counter increment and rejected as original. These are isolated effects, not native geometry acceptance/normal reachability/race/live failure.",
+  "limits": "Only mapped injected memory/register/layout/IDs are observed. No geometry predicate/prologue/coordinate conversion/loop/cookie/native caller/initialized state/reentrancy/concurrent scheduling/actual invalid-ID reachability/crash/false-empty live cell or portable defaults. Private NOP-INC not original semantics. No source/native write-order atomicity claim.",
+  "cleanup": "Fresh emulator per case, bounded128 instructions, no PC/game/process/save/config/reference/peer memory or file writes"
+}

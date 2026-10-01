@@ -1,0 +1,2 @@
+{"generation": "g20260929T151954Z-f05bb4", "failed_at": "2026-09-29T15:19:54Z", "reason": "inputs moved during the build: uc1_band.py", "current_unchanged": "g20260929T151952Z-221363", "current_committed_at": "2026-09-29T15:19:52Z"}
+{"generation": "g20260929T151954Z-737231", "failed_at": "2026-09-29T15:19:54Z", "reason": "required input not usable at begin: uc1_band.py=missing", "current_unchanged": "g20260929T151952Z-221363", "current_committed_at": "2026-09-29T15:19:52Z"}

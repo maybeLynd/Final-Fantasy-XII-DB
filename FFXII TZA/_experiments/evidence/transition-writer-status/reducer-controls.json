@@ -1,0 +1,30 @@
+[
+  {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-writer-status\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-writer-status\\reducer-controls\\missing-status-control.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-writer-status\\check.py\", line 12, in <module>\n    cs={x['name']:x for x in r['cases']};assert len(cs)==len(r['cases'])==3 and set(cs)=={'zero-marker','nonzero-marker','nonzero-error'},'MISSING_CASE'\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: MISSING_CASE\n",
+    "terminal": true,
+    "checker_sha256": "b0c88903771ccf9095eebe95c1a69182ebb8ea748b710e9b47fa97324889b2ab"
+  },
+  {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-writer-status\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-writer-status\\reducer-controls\\relabelled-child-status.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\transition-writer-status\\check.py\", line 18, in <module>\n    assert json.loads((R/(name+'-child.json')).read_text())==c\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "terminal": true,
+    "checker_sha256": "b0c88903771ccf9095eebe95c1a69182ebb8ea748b710e9b47fa97324889b2ab"
+  }
+]

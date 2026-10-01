@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-UQ218-P17",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "publish UQ-218 pass 17 (kind-1/2/0x10 selector state bytes + their reset sites)",
+  "scope": "criteria.md + README.md in uq218-fmc-selector-kinds, uq218-cm-entry-residues/README.md, fef-and-motion-entries.md, AUDIT-LOG.md, SWE2-DATA.md; OPEN-QUESTIONS row edit rides a later publish (FABLE OV edits unstaged in the same file)",
+  "completion": "commit hash recorded; @publication released",
+  "dependencies": [],
+  "resources": [{"key": "@publication"}],
+  "known_evidence": "native bodies 00422420/00422500/004225A0 read end-to-end; writers sweep for +0x40E/+0x410/+0x411/+0x412 complete; pool init 004269A0 -> 0041F730; @FMC-bind reset 004252A7",
+  "missing_information": "",
+  "why_it_matters": "closes the kind-1/2 state-byte residue named on the UQ-218 row",
+  "what_is_blocked": "nothing"
+ }
+}

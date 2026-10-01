@@ -1,0 +1,6 @@
+PASS  H 25 held rows (4 + 21) read from the applied files
+PASS  T switch data read by the listed body's own dispatch (movzx at / mov at): {'00208628': ('002085D1', '002085DA'), '00253BF5': ('00253BD8', '00253BE0'), '003222C2': ('00322294', '0032229D'), '003A9350': ('003A92FB', '003A9303'), '00441A8F': ('004419BC', '004419C4'), '004FF3CD': ('004FF389', '004FF391'), '005FD624': ('005FD607', '005FD60F'), '007298DD': ('00729887', '0072988F')}; whole block for 7, 00208628 tables = 60 of 168 bytes
+PASS  M 8 slices begin at the imm8 of palignr xmm1, xmm4, imm at start - 5 (imms [0, 1, 5, 6, 10, 11, 5, 12]); no unwind entry begins inside 00125740..00158DA0
+PASS  C decode convergence over 8 x 0x1FB offsets: {'fail': 901, 'start-5': 3155}
+PASS  R undecided here: ['00125770', '00148BB3', '00148D64', '001491CE', '001492FF', '00158C97', '00208628', '007137BC', '0071B6B0', '00809D65'] (00208628 only past its tables)
+FAILS 0

@@ -1,0 +1,17 @@
+or sites on the record flag byte via the two routes: 15 by immediate: {'0x1': 1, '0x2': 1, '0x4': 1, '0x8': 1, '0x10': 1, '0x20': 1, '0x40': 1, '0x80': 8}
+  00233BA8 BattleUnit_ActivateAppliedDefinitionRuntime   0x2 route 6a0
+  0023429B ActorSystem_ReleaseBattleUnitSlotForActor     0x4 route 6a0
+  002352A6 SpawnLifecycle_CheckAndRetireByNativeRange    0x1 route 6a0
+  002391FD SpawnEntry_SetRangeRetireInhibitTag           0x10 route 6a0
+  002396F9 BattleUnit_SetRuntimeUnitCategoryMode         0x20 route 6a0
+  0023A282 SpawnEntry_ConfigureFreshLifecycleFloatMode   0x8 route 6a0
+  0023A2AC SpawnEntry_ConfigureFreshLifecycleFloatMode   0x40 route 6a0
+  0031195E BattleFormula_ApplyTargetResult               0x80 route 6a0
+  00311986 BattleFormula_ApplyTargetResult               0x80 route 6a0
+  003119AE BattleFormula_ApplyTargetResult               0x80 route 6a0
+  003119D6 BattleFormula_ApplyTargetResult               0x80 route 6a0
+  00311A00 BattleFormula_ApplyTargetResult               0x80 route 6a0
+  00311A2A BattleFormula_ApplyTargetResult               0x80 route 6a0
+  00311A54 BattleFormula_ApplyTargetResult               0x80 route 6a0
+  00311A7E BattleFormula_ApplyTargetResult               0x80 route 6a0
+control: AL-10 bit-7 sites found 8 of 8

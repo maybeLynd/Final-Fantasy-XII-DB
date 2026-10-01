@@ -1,0 +1,1519 @@
+{
+  "source": {
+    "reference": {
+      "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "base": "0x120000",
+      "parent_entry": "0x392200",
+      "parent_bytes": 679,
+      "parent_sha256": "952ac4880d6be155c35a37c1ff8e5ecbbcae8603cc4d2cafbaaeb287c1046913",
+      "entry": "0x3923d6",
+      "end": "0x39242e",
+      "window_bytes": 88,
+      "window_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+      "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    "driver_sha256": "3a0b6b584c1f356487bd7acfa53740d6c25b570b17798826e48c8efd1ed0eef3",
+    "tools": {
+      "before_utc": "2026-09-28T12:06:14.813842+00:00",
+      "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+      "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+      "capstone": "5.0.7",
+      "unicorn": "2.1.0",
+      "providers": [
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+          "bytes": 43853,
+          "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+          "bytes": 7576576,
+          "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\__init__.py",
+          "bytes": 305,
+          "sha256": "0e8ac7115c755994a968fa865bd1b2f2075edea715c17e91d62af2cc52c13392"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\unicorn_py3\\unicorn.py",
+          "bytes": 43873,
+          "sha256": "7451965be258f4dcba8b50be4d34f84a1f5a8fc62a3fa44eaaefdd05a4e57050"
+        },
+        {
+          "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+          "bytes": 9343488,
+          "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75"
+        }
+      ]
+    },
+    "extents": [
+      {
+        "directory_rva": "0x2e78000",
+        "record_offset": 158976,
+        "record_hex": "002227001223270000d6c501",
+        "entry": "0x392200",
+        "end": "0x392312",
+        "unwind": "0x1d7d600",
+        "flags": 3,
+        "unwind_hex": "19290b001a78090016680a00120118000bf009e007c0057004500000a88b6e00",
+        "chain": null
+      },
+      {
+        "directory_rva": "0x2e78000",
+        "record_offset": 158988,
+        "record_hex": "122327007a24270024d6c501",
+        "entry": "0x392312",
+        "end": "0x39247a",
+        "unwind": "0x1d7d624",
+        "flags": 4,
+        "unwind_hex": "211f08001f980700198808001064160008341700002227001223270000d6c501",
+        "chain": [
+          "0x392200",
+          "0x392312",
+          "0x1d7d600"
+        ]
+      },
+      {
+        "directory_rva": "0x2e78000",
+        "record_offset": 159000,
+        "record_hex": "7a242700a724270044d6c501",
+        "entry": "0x39247a",
+        "end": "0x3924a7",
+        "unwind": "0x1d7d644",
+        "flags": 4,
+        "unwind_hex": "21000000002227001223270000d6c501",
+        "chain": [
+          "0x392200",
+          "0x392312",
+          "0x1d7d600"
+        ]
+      }
+    ],
+    "instructions": [
+      {
+        "pc": "0x3923d6",
+        "bytes": "8b0d84bc7502",
+        "op": "mov",
+        "args": "ecx, dword ptr [rip + 0x275bc84]",
+        "memory": [
+          {
+            "operand_index": 1,
+            "size": 4,
+            "base": "rip",
+            "index": null,
+            "disp": 41270404,
+            "kind": "r"
+          }
+        ],
+        "written": [
+          "rcx"
+        ]
+      },
+      {
+        "pc": "0x3923dc",
+        "bytes": "418bc4",
+        "op": "mov",
+        "args": "eax, r12d",
+        "memory": [],
+        "written": [
+          "rax"
+        ]
+      },
+      {
+        "pc": "0x3923df",
+        "bytes": "99",
+        "op": "cdq",
+        "args": "",
+        "memory": [],
+        "written": [
+          "rdx"
+        ]
+      },
+      {
+        "pc": "0x3923e0",
+        "bytes": "0fafcf",
+        "op": "imul",
+        "args": "ecx, edi",
+        "memory": [],
+        "written": [
+          "rcx",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923e3",
+        "bytes": "83e207",
+        "op": "and",
+        "args": "edx, 7",
+        "memory": [],
+        "written": [
+          "rdx",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923e6",
+        "bytes": "03c2",
+        "op": "add",
+        "args": "eax, edx",
+        "memory": [],
+        "written": [
+          "rax",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923e8",
+        "bytes": "448bc0",
+        "op": "mov",
+        "args": "r8d, eax",
+        "memory": [],
+        "written": [
+          "r8"
+        ]
+      },
+      {
+        "pc": "0x3923eb",
+        "bytes": "83e007",
+        "op": "and",
+        "args": "eax, 7",
+        "memory": [],
+        "written": [
+          "rax",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923ee",
+        "bytes": "2bc2",
+        "op": "sub",
+        "args": "eax, edx",
+        "memory": [],
+        "written": [
+          "rax",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923f0",
+        "bytes": "41c1f803",
+        "op": "sar",
+        "args": "r8d, 3",
+        "memory": [],
+        "written": [
+          "r8",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923f4",
+        "bytes": "488b15a5bc7502",
+        "op": "mov",
+        "args": "rdx, qword ptr [rip + 0x275bca5]",
+        "memory": [
+          {
+            "operand_index": 1,
+            "size": 8,
+            "base": "rip",
+            "index": null,
+            "disp": 41270437,
+            "kind": "r"
+          }
+        ],
+        "written": [
+          "rdx"
+        ]
+      },
+      {
+        "pc": "0x3923fb",
+        "bytes": "03cb",
+        "op": "add",
+        "args": "ecx, ebx",
+        "memory": [],
+        "written": [
+          "rcx",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x3923fd",
+        "bytes": "0faf0db4bc7502",
+        "op": "imul",
+        "args": "ecx, dword ptr [rip + 0x275bcb4]",
+        "memory": [
+          {
+            "operand_index": 1,
+            "size": 4,
+            "base": "rip",
+            "index": null,
+            "disp": 41270452,
+            "kind": "r"
+          }
+        ],
+        "written": [
+          "rcx",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x392404",
+        "bytes": "4103c8",
+        "op": "add",
+        "args": "ecx, r8d",
+        "memory": [],
+        "written": [
+          "rcx",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x392407",
+        "bytes": "4c63c1",
+        "op": "movsxd",
+        "args": "r8, ecx",
+        "memory": [],
+        "written": [
+          "r8"
+        ]
+      },
+      {
+        "pc": "0x39240a",
+        "bytes": "410fb60c10",
+        "op": "movzx",
+        "args": "ecx, byte ptr [r8 + rdx]",
+        "memory": [
+          {
+            "operand_index": 1,
+            "size": 1,
+            "base": "r8",
+            "index": "rdx",
+            "disp": 0,
+            "kind": "r"
+          }
+        ],
+        "written": [
+          "rcx"
+        ]
+      },
+      {
+        "pc": "0x39240f",
+        "bytes": "0fabc1",
+        "op": "bts",
+        "args": "ecx, eax",
+        "memory": [],
+        "written": [
+          "rcx",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x392412",
+        "bytes": "41880c10",
+        "op": "mov",
+        "args": "byte ptr [r8 + rdx], cl",
+        "memory": [
+          {
+            "operand_index": 0,
+            "size": 1,
+            "base": "r8",
+            "index": "rdx",
+            "disp": 0,
+            "kind": "w"
+          }
+        ],
+        "written": []
+      },
+      {
+        "pc": "0x392416",
+        "bytes": "8b0544bc7502",
+        "op": "mov",
+        "args": "eax, dword ptr [rip + 0x275bc44]",
+        "memory": [
+          {
+            "operand_index": 1,
+            "size": 4,
+            "base": "rip",
+            "index": null,
+            "disp": 41270340,
+            "kind": "r"
+          }
+        ],
+        "written": [
+          "rax"
+        ]
+      },
+      {
+        "pc": "0x39241c",
+        "bytes": "0fafc7",
+        "op": "imul",
+        "args": "eax, edi",
+        "memory": [],
+        "written": [
+          "rax",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x39241f",
+        "bytes": "03c3",
+        "op": "add",
+        "args": "eax, ebx",
+        "memory": [],
+        "written": [
+          "rax",
+          "rflags"
+        ]
+      },
+      {
+        "pc": "0x392421",
+        "bytes": "4863c8",
+        "op": "movsxd",
+        "args": "rcx, eax",
+        "memory": [],
+        "written": [
+          "rcx"
+        ]
+      },
+      {
+        "pc": "0x392424",
+        "bytes": "488b057dbc7502",
+        "op": "mov",
+        "args": "rax, qword ptr [rip + 0x275bc7d]",
+        "memory": [
+          {
+            "operand_index": 1,
+            "size": 8,
+            "base": "rip",
+            "index": null,
+            "disp": 41270397,
+            "kind": "r"
+          }
+        ],
+        "written": [
+          "rax"
+        ]
+      },
+      {
+        "pc": "0x39242b",
+        "bytes": "fe0401",
+        "op": "inc",
+        "args": "byte ptr [rcx + rax]",
+        "memory": [
+          {
+            "operand_index": 0,
+            "size": 1,
+            "base": "rcx",
+            "index": "rax",
+            "disp": 0,
+            "kind": "rw"
+          }
+        ],
+        "written": [
+          "rflags"
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "positive-observer-id0",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0x0",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": 0,
+        "row": 0,
+        "col": 0,
+        "occupancy": 0,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000100",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "provider_value": 1
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "bytes": "01"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000100",
+            "before": "00",
+            "after": "01"
+          },
+          {
+            "address": "0x40000148",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0x0"
+      },
+      "failure": null
+    },
+    {
+      "name": "last-in-record-id287",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0x11f",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": 287,
+        "row": 0,
+        "col": 0,
+        "occupancy": 0,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000123",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000123",
+          "size": 1,
+          "provider_value": 128
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000123",
+          "size": 1,
+          "bytes": "80"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000123",
+            "before": "00",
+            "after": "80"
+          },
+          {
+            "address": "0x40000148",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0x11f"
+      },
+      "failure": null
+    },
+    {
+      "name": "next-record-id288",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0x120",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": 288,
+        "row": 0,
+        "col": 0,
+        "occupancy": 0,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000124",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000124",
+          "size": 1,
+          "provider_value": 1
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000124",
+          "size": 1,
+          "bytes": "01"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000124",
+            "before": "00",
+            "after": "01"
+          },
+          {
+            "address": "0x40000148",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0x120"
+      },
+      "failure": null
+    },
+    {
+      "name": "last-cell-id288-occupancy-alias",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0x120",
+          "21": "0x1",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": 288,
+        "row": 0,
+        "col": 1,
+        "occupancy": 0,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000148",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000149",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 1
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000149",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "01"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000149",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000101000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000148",
+            "before": "00",
+            "after": "01"
+          },
+          {
+            "address": "0x40000149",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0x120"
+      },
+      "failure": null
+    },
+    {
+      "name": "negative-one-no-low-byte-bit",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0xffffffff",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": -1,
+        "row": 0,
+        "col": 0,
+        "occupancy": 0,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000100",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "provider_value": 0
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "bytes": "00"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000148",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0xffffffff"
+      },
+      "failure": null
+    },
+    {
+      "name": "negative-eight-prefix-write",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0xfffffff8",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": -8,
+        "row": 0,
+        "col": 0,
+        "occupancy": 0,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x400000ff",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x400000ff",
+          "size": 1,
+          "provider_value": 165
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x400000ff",
+          "size": 1,
+          "bytes": "a5"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a50000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x400000ff",
+            "before": "a4",
+            "after": "a5"
+          },
+          {
+            "address": "0x40000148",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0xfffffff8"
+      },
+      "failure": null
+    },
+    {
+      "name": "occupancy255-wrap",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; shipping write fragment unchanged",
+      "mutated": false,
+      "running_sha256": "a5fa1680873f9295801fbc188b6659795cfab73bb764b913f2610efbbbd29429",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502fe0401",
+      "initial": {
+        "registers": {
+          "230": "0x0",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": 0,
+        "row": 0,
+        "col": 0,
+        "occupancy": 255,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000100",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "provider_value": 1
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "provider_value": 0
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "bytes": "01"
+        },
+        {
+          "pc": "0x39242b",
+          "address": "0x40000148",
+          "size": 1,
+          "bytes": "00"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a40100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000100",
+            "before": "00",
+            "after": "01"
+          },
+          {
+            "address": "0x40000148",
+            "before": "ff",
+            "after": "00"
+          }
+        ],
+        "r12d": "0x0"
+      },
+      "failure": null
+    },
+    {
+      "name": "observer-NOP-INC-control",
+      "intervention": "Injected post-positive-overlap register/global/two-cell layout; private NOP-INC data control",
+      "mutated": true,
+      "running_sha256": "c98664f1b007350a4d1ef995d8210e6c9849dbbd8dec18493cb6f46d751daceb",
+      "running_hex": "8b0d84bc7502418bc4990fafcf83e20703c2448bc083e0072bc241c1f803488b15a5bc750203cb0faf0db4bc75024103c84c63c1410fb60c100fabc141880c108b0544bc75020fafc703c34863c8488b057dbc7502909090",
+      "initial": {
+        "registers": {
+          "230": "0x0",
+          "21": "0x0",
+          "23": "0x0",
+          "253": "0x202"
+        },
+        "globals": "0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010040000000004801004000000000000000000000000024000000",
+        "focus_address": "0x400000f0",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "id": 0,
+        "row": 0,
+        "col": 0,
+        "occupancy": 255,
+        "layout": {
+          "width": 2,
+          "stride": 36,
+          "records_base": "0x40000100",
+          "records_bytes": 72,
+          "occupancy_base": "0x40000148",
+          "occupancy_bytes": 2,
+          "scratch_bytes": 36
+        }
+      },
+      "visits": [
+        "0x3923d6",
+        "0x3923dc",
+        "0x3923df",
+        "0x3923e0",
+        "0x3923e3",
+        "0x3923e6",
+        "0x3923e8",
+        "0x3923eb",
+        "0x3923ee",
+        "0x3923f0",
+        "0x3923f4",
+        "0x3923fb",
+        "0x3923fd",
+        "0x392404",
+        "0x392407",
+        "0x39240a",
+        "0x39240f",
+        "0x392412",
+        "0x392416",
+        "0x39241c",
+        "0x39241f",
+        "0x392421",
+        "0x392424",
+        "0x39242b",
+        "0x39242c",
+        "0x39242d"
+      ],
+      "reads": [
+        {
+          "pc": "0x3923d6",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x3923f4",
+          "address": "0x2aee0a0",
+          "size": 8
+        },
+        {
+          "pc": "0x3923fd",
+          "address": "0x2aee0b8",
+          "size": 4
+        },
+        {
+          "pc": "0x39240a",
+          "address": "0x40000100",
+          "size": 1
+        },
+        {
+          "pc": "0x392416",
+          "address": "0x2aee060",
+          "size": 4
+        },
+        {
+          "pc": "0x392424",
+          "address": "0x2aee0a8",
+          "size": 8
+        }
+      ],
+      "raw_writes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "provider_value": 1
+        }
+      ],
+      "post_write_bytes": [
+        {
+          "pc": "0x392412",
+          "address": "0x40000100",
+          "size": 1,
+          "bytes": "01"
+        }
+      ],
+      "after": {
+        "stop_pc": "0x39242e",
+        "focus_bytes": "a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ff00000000000000000000000000000000000000000000000000000000000000000000000000a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4",
+        "changed": [
+          {
+            "address": "0x40000100",
+            "before": "00",
+            "after": "01"
+          }
+        ],
+        "r12d": "0x0"
+      },
+      "failure": null
+    }
+  ],
+  "method": "B shipping88B post-positive-overlap write fragment in disposable emulators; injected boundary/state; no native geometry/fullfunction/live behavior",
+  "limits": "Only mapped injected memory/register/layout/IDs are observed. No geometry predicate/prologue/coordinate conversion/loop/cookie/native caller/initialized state/reentrancy/concurrent scheduling/actual invalid-ID reachability/crash/false-empty live cell or portable defaults. Private NOP-INC not original semantics. No source/native write-order atomicity claim.",
+  "cleanup": "Fresh emulator per case, bounded128 instructions, no PC/game/process/save/config/reference/peer memory or file writes"
+}

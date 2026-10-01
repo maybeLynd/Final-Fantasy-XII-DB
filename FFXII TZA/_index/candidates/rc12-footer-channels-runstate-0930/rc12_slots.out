@@ -1,0 +1,87 @@
+PART A: footer reads (function, resolve call, read site, footer byte offset D, word index k=(D-2)/2, bound constant C, record override word O)
+  0025DF00 call 0025E174 read 0025E186 D=0x18 k=11 C=11 O=0xde
+  0025AE00 call 0025AEEB read 0025AEF9 D=0x16 k=10 C=reg r13w O=0xdc
+  0025B820 call 0025B963 read 0025B977 D=0x16 k=10 C=10 O=0xdc
+  0025B820 call 0025B9B4 read 0025B9C6 D=0x6 k=2 C=2 O=0xcc
+  0025B820 call 0025BA50 read 0025BA62 D=0x6 k=2 C=2 O=0xcc
+  0025BAD0 call 0025BD05 read 0025BD19 D=0x22 k=16 C=16 O=0xe8
+  0025C230 call 0025C4AC read 0025C4BE D=0x8 k=3 C=3 O=0xce
+  0025C230 call 0025C579 read 0025C58B D=0x1c k=13 C=13 O=0xe2
+  0025C230 call 0025C629 read 0025C63B D=0x12 k=8 C=8 O=0xd8
+  0025C230 call 0025C743 read 0025C755 D=0xc k=5 C=5 O=0xd2
+  0025C230 call 0025C7A8 read 0025C7BC D=0xa k=4 C=4 O=0xd0
+  0025C830 call 0025CFC5 read 0025CFD7 D=0x8 k=3 C=3 O=0xce
+  0025C830 call 0025D075 read 0025D087 D=0x1c k=13 C=13 O=0xe2
+  0025C830 call 0025D142 read 0025D154 D=0x12 k=8 C=8 O=0xd8
+  0025C830 call 0025D295 read 0025D2A7 D=0xc k=5 C=5 O=0xd2
+  0025C830 call 0025D344 read 0025D356 D=0xa k=4 C=4 O=0xd0
+  00263050 call 002631D6 read 002631E8 D=0x24 k=17 C=17 O=0xea
+  00263D40 call 00263D72 read - D=- k=None C=None O=-
+CONTROL A 0025DF00 reads D=0x18 with bound 11: PASS
+
+PART B: raw footers of 1114 images, 26390 actors; function name at each footer word index k
+  k= 0 (byte +0x02): (never set)
+  k= 1 (byte +0x04): main x6765
+  k= 2 (byte +0x06): talk x5904
+  k= 3 (byte +0x08): touch x833
+  k= 4 (byte +0x0A): touchon x261
+  k= 5 (byte +0x0C): touchoff x255
+  k= 6 (byte +0x0E): across x18
+  k= 7 (byte +0x10): spawn x6
+  k= 8 (byte +0x12): fieldsign1 x157
+  k= 9 (byte +0x14): initevent x90
+  k=10 (byte +0x16): (never set)
+  k=11 (byte +0x18): parameter x21
+  k=12 (byte +0x1A): mapjump x1525
+  k=13 (byte +0x1C): fieldsign2 x187, touch2 x8
+  k=14 (byte +0x1E): respawn x6
+  k=15 (byte +0x20): (never set)
+  k=16 (byte +0x22): talkhold x1777
+  k=17 (byte +0x24): talkterm x1777
+CONTROL B decompiler's printed number == raw footer index k: 14081 declarations agree, 0 disagree -> PASS
+
+PART C: image-wide actor-entry footer resolves (base loaded from [..+0x40]); form FIXED k, VARIABLE index register, LISTWALK past the footer, NONE; O = record override word read first
+  OTHER  0025AD10 call 0025ADA3 FIXED    k=10 (never set) O=0xdc
+  listed 0025AE00 call 0025AEEB FIXED    k=10 (never set) O=0xdc
+  OTHER  0025B2E0 call 0025B388 FIXED    k=6 across O=0xd4
+  OTHER  0025B600 call 0025B6E6 FIXED    k=12 mapjump O=0xe0
+  listed 0025B820 call 0025B963 FIXED    k=10 (never set) O=0xdc
+  listed 0025B820 call 0025B9B4 FIXED    k=2 talk O=0xcc
+  listed 0025B820 call 0025BA50 FIXED    k=2 talk O=0xcc
+  listed 0025BAD0 call 0025BD05 FIXED    k=16 talkhold O=0xe8
+  listed 0025C230 call 0025C4AC FIXED    k=3 touch O=0xce
+  listed 0025C230 call 0025C579 FIXED    k=13 fieldsign2 O=0xe2
+  listed 0025C230 call 0025C629 FIXED    k=8 fieldsign1 O=0xd8
+  listed 0025C230 call 0025C743 FIXED    k=5 touchoff O=0xd2
+  listed 0025C230 call 0025C7A8 FIXED    k=4 touchon O=0xd0
+  listed 0025C830 call 0025CFC5 FIXED    k=3 touch O=0xce
+  listed 0025C830 call 0025D075 FIXED    k=13 fieldsign2 O=0xe2
+  listed 0025C830 call 0025D142 FIXED    k=8 fieldsign1 O=0xd8
+  listed 0025C830 call 0025D295 FIXED    k=5 touchoff O=0xd2
+  listed 0025C830 call 0025D344 FIXED    k=4 touchon O=0xd0
+  listed 0025DF00 call 0025E174 FIXED    k=11 parameter O=0xde
+  listed 00263050 call 002631D6 FIXED    k=17 talkterm O=0xea
+  listed 00263D40 call 00263D72 LISTWALK  O=None
+  OTHER  002652D0 call 00265328 VARIABLE rsi O=0xc8+2*reg
+  OTHER  00266530 call 00266903 FIXED    k=15 (never set) O=0xe6
+  OTHER  00266530 call 00266976 FIXED    k=9 initevent O=0xda
+  OTHER  00266530 call 002669C5 FIXED    k=1 main O=0xca
+  OTHER  00266530 call 00266A1F FIXED    k=2 talk O=0xcc
+  OTHER  00266530 call 00266A69 FIXED    k=10 (never set) O=0xdc
+  OTHER  002675C0 call 00267672 FIXED    k=2 talk O=0xcc
+  OTHER  002675C0 call 002676D1 FIXED    k=10 (never set) O=0xdc
+  OTHER  00268EA0 call 00268F0F FIXED    k=17 talkterm O=0xea
+  OTHER  00268EA0 call 00268F56 FIXED    k=16 talkhold O=0xe8
+  OTHER  00269640 call 002696C9 FIXED    k=0 (never set) O=0xc8
+  OTHER  00269640 call 00269730 FIXED    k=11 parameter O=0xde
+  OTHER  00269860 call 002698DF FIXED    k=7 spawn O=0xd6
+  OTHER  00269860 call 00269965 VARIABLE rbx O=0xc8+2*reg
+  OTHER  0026A660 call 0026A6B7 FIXED    k=5 touchoff O=0xd2
+  OTHER  0026A660 call 0026A6F4 NONE      O=None
+  OTHER  0026CE60 call 0026CF7F LISTWALK  O=None
+  OTHER  0026CE60 call 0026D01D LISTWALK  O=None
+  OTHER  0026CE60 call 0026D0C3 LISTWALK  O=None
+  OTHER  0026CE60 call 0026D19E LISTWALK  O=None
+  OTHER  0026CE60 call 0026D21A FIXED    k=10 (never set) O=0xdc
+  OTHER  0026CE60 call 0026D2B6 NONE      O=None
+CONTROL C every Part A site is found by the image-wide census: PASS (43 sites, 19 functions)

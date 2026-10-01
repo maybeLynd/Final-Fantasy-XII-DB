@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-always-float",
+    "returncode": 1,
+    "expected": "Both-int fast path retains distinctions lost by float promotion"
+  },
+  {
+    "argument": "--fault-always-nearest",
+    "returncode": 1,
+    "expected": "Mixed conditional result depends on supplied rounding mode"
+  },
+  {
+    "argument": "--fault-reversed-order",
+    "returncode": 1,
+    "expected": "Compare order is first/lower operand versus popped/top operand"
+  }
+]

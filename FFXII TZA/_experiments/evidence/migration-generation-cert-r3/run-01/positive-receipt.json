@@ -1,0 +1,39 @@
+{
+  "name": "positive",
+  "origin": "Byte-identical 7d9b5ec17 archive; changed-reader execution",
+  "sha256": "5e5b5bdca1f09d3ee27f878d8ba2742f018e0abd28d91d533e4e8b0e993e73b8",
+  "bytes": 782,
+  "label": "VERIFIED",
+  "info": {
+    "generation": "g20260929T071157Z-69ff7d",
+    "members": 3
+  },
+  "exception": null,
+  "entries": [
+    {
+      "name": "MANIFEST.json",
+      "sha256": "06f4e3a00d8be7a9d10e7e6105228ea8177b612457e96ed61acec38e5cd76e62"
+    },
+    {
+      "name": "inputs/data",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "outputs/view.json",
+      "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f"
+    }
+  ],
+  "cli": {
+    "args": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\generation.py",
+      "verify-zip",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-cert-r3\\run-01\\positive.zip"
+    ],
+    "returncode": 0,
+    "stdout": "VERIFIED {\"generation\": \"g20260929T071157Z-69ff7d\", \"members\": 3}\n",
+    "stderr": "",
+    "terminal": true
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "original_driver_sha256": "e8a7f3617ff2f883bbe557f7bbd60bbca1e93615bbd812643f041dd39990e4e9",
+  "current_driver_sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec",
+  "raw_control_cause": "Initial coordinate-only control dictionaries kept original record_hex. Their scalar category control remains valid, but not raw-byte parser proof.",
+  "actual_default_fix": "Existing raw uses corrected checker with actual4B encode/decode controls. Future fresh capture controls encode/decode the mutated record and update its hex consistently. Initial raw/driver preserved; no recapture."
+}

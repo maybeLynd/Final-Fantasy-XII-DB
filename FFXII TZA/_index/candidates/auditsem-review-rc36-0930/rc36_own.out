@@ -1,0 +1,21 @@
+K qwords naming 003C2320: 0
+K site 003BE554 call in 003BE50C
+     003BE538 mov r8d, dword ptr [rdi]
+     003BE53E mov rdx, qword ptr [rdi - 8]
+     003BE554 call 0x3c2320
+W writes to r15 in 003C2320:
+   003C2354 mov r15, rdx
+   003C2645 mov r15, qword ptr [rsp + 0x40]
+B immediate stores in 003BF430 (kind out-slot candidates):
+   003BF46F mov dword ptr [r8], 3
+   003BF4CC mov dword ptr [r8], 0
+   003BF4F9 mov dword ptr [r8], 1
+D 004044D0 around the kind test and the draw at 004046AB:
+C 00402C30 reads of +0x10 / +2:
+   00402C46 movups xmm1, xmmword ptr [rdx + 0x10]
+   00402C4A movups xmmword ptr [rcx + 0x10], xmm1
+   00402C56 cmp qword ptr [rdx + 0x10], 0
+   00402C6A mov rcx, qword ptr [rcx + 0x10]
+   00402C7A call 0x29cd00
+   00402CA3 call 0x3bf520
+   00402CAC cmp byte ptr [rdi + 2], 1

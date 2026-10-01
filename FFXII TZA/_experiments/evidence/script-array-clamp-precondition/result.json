@@ -1,0 +1,88 @@
+{
+  "status": "EDGE_CLAMP_REQUIRES_POSITIVE_SIGNED_DIMENSION",
+  "method": "A retained original machine-code disassembly and signed-predicate reasoning; conditional arithmetic tables are calculations, not isolated/native/live execution",
+  "raw_sha256": "1cef65d489f1cc892f35d98f0aadd16e27d2236f62006160804ce0ec5648d57d",
+  "static_observations": {
+    "rank": "u16 header+4 minus1, MOVSXD then JS to262546; rank0 skips entire loop, rank1 enters",
+    "dimension": "Each iteration loads signed32 ESI from [RBP]; no positivity guard in selected clamp26250C..262527",
+    "zero_lower": "Original XOR EBX,EBX preserved on selected integer/empty-stack routes",
+    "clamp": "ECX=index if signedindex>=0 else0; EAX=low32(dim-1); CMOVL chooses ECX iff signedECX<signedESI",
+    "zero_dimension": "For rank>=1 and selected stage with dim0/EBX0, predictedclamp=-1. With initialR8D=1/R10D=0 the decoded multiply/add predicts contribution=-1, nextproduct0; not executed here",
+    "memory_roles": {
+      "stack_depth_store": "w",
+      "dimension_read": "r",
+      "upper_LEA": "addr"
+    },
+    "private_decoded_control": "Upper CMOVL->CMOVLE changes decoded predicate; no execution"
+  },
+  "conditional_calculations": [
+    {
+      "index": -1,
+      "dimension": 5,
+      "predicted_signed_clamped": 0,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": 5,
+      "predicted_signed_clamped": 0,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 4,
+      "dimension": 5,
+      "predicted_signed_clamped": 4,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 5,
+      "dimension": 5,
+      "predicted_signed_clamped": 4,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 6,
+      "dimension": 5,
+      "predicted_signed_clamped": 4,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": -1,
+      "dimension": 1,
+      "predicted_signed_clamped": 0,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": 1,
+      "predicted_signed_clamped": 0,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 1,
+      "dimension": 1,
+      "predicted_signed_clamped": 0,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": -1,
+      "dimension": 0,
+      "predicted_signed_clamped": -1,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": 0,
+      "predicted_signed_clamped": -1,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    },
+    {
+      "index": 1,
+      "dimension": 0,
+      "predicted_signed_clamped": -1,
+      "kind": "CONDITIONAL_STATIC_CALCULATION_NOT_EXECUTION"
+    }
+  ],
+  "implication": "Qualify edge-clamp/silent-index behavior with strictly positive signed32 dimension and otherwise valid storage/state. Rank/count0 guard is not dimension-value0 validation. Do not promise no fault or universal malformed safety from this stage.",
+  "limits": "Static source and calculations, not original execution. No original dimension validity census, actual zero array, native bank read/write/fault, caller acceptance, initialization/lifetime/scheduling/reachability or rank0 complete resolver outcome. Positive dimensions also do not prove product/offset overflow or storage validity. Parent65 publication correction required. Owner consumers/independent acceptance pending; PC OFF/S19/fullL1+L2 NOT_MET"
+}

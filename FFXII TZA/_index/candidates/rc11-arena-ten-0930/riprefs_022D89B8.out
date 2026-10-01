@@ -1,0 +1,10 @@
+PASS  control: 0036C1F0 stores the active arena 022D89BC
+00369760  00369764  r    mov    eax, dword ptr [rip + 0x1f6f24e]             -> 022D89B8
+00369C60  00369C66  r    mov    eax, dword ptr [rip + 0x1f6ed4c]             -> 022D89B8
+00369D30  00369D50  r    mov    r9d, dword ptr [rip + 0x1f6ec61]             -> 022D89B8
+00369D30  00369DE7  w    mov    dword ptr [rip + 0x1f6ebca], r9d             -> 022D89B8
+0036A570  0036A58E  r    mov    eax, dword ptr [rip + 0x1f6e424]             -> 022D89B8
+0036B080  0036B084  r    mov    eax, dword ptr [rip + 0x1f6d92e]             -> 022D89B8
+0036BC60  0036BCD2  r    mov    eax, dword ptr [rip + 0x1f6cce0]             -> 022D89B8
+0036BFE0  0036BFF0  r    mov    eax, dword ptr [rip + 0x1f6c9c2]             -> 022D89B8
+0036BFE0  0036C049  r    mov    eax, dword ptr [rip + 0x1f6c969]             -> 022D89B8

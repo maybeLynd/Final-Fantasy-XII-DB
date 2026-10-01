@@ -1,0 +1,33 @@
+== X1. alignment of the 56 out-of-shape sites (sd107o_indep_G.out)
+  control misaligned 0020E76F -> on-boundary False
+  control misaligned 008638FE -> on-boundary False
+  control misaligned 008643DC -> on-boundary False
+  control misaligned 00864922 -> on-boundary False
+  control by-hand     007E785C -> on-boundary True
+  on-boundary 50 of 56; not: [('001BABB9', False), ('0036C5B6', None), ('005B2E51', False), ('005B31B1', False), ('007797C9', None), ('007797E8', None)]
+== X2. rsp-based register mov stores covering +0xA3 (raw disp32 scan, same shape as G, base rsp)
+  raw hits 221, on a .pdata linear-decode boundary 221
+    00121F98  qword ptr [rsp + 0xa0], rdi  on-boundary True
+    0016FF0D  dword ptr [rsp + 0xa0], edi  on-boundary True
+    001704CE  qword ptr [rsp + 0xa0], r15  on-boundary True
+    00178D41  dword ptr [rsp + 0xa0], ecx  on-boundary True
+    00178E03  qword ptr [rsp + 0xa0], rax  on-boundary True
+    00178E92  qword ptr [rsp + 0xa0], rax  on-boundary True
+    0017C393  qword ptr [rsp + 0xa0], r14  on-boundary True
+    0017C79E  qword ptr [rsp + 0xa0], r14  on-boundary True
+== X3. vtable written by 0019F930 before its call to 001A0960
+    0019F930  push   rdi
+    0019F932  sub    rsp, 0x30
+    0019F936  mov    qword ptr [rsp + 0x20], 0xfffffffffffffffe
+    0019F93F  mov    qword ptr [rsp + 0x40], rbx
+    0019F944  mov    qword ptr [rsp + 0x48], rsi
+    0019F949  mov    rdi, rcx
+    0019F94C  lea    rax, [rip + 0x754d9d]   ; -> 008F46F0  COL 01CECED8 sig 1 off 0x0 class .?AVAsyncLoadManager@@
+    0019F953  mov    qword ptr [rcx], rax
+    0019F956  call   0x1a0960
+== X4. what the .rdata rva32 hits on the procedures / dispatcher entries are (sd107o_indep B)
+  01D6FB68: in UNWIND_INFO 01D6FB60 of chunk 002AF9A0-002AF9A5, flags 4 (CHAININFO), chained RUNTIME_FUNCTION at 01D6FB68 = {002AF960, 002AF9A0, 01D7D7FC}; hit is its BeginAddress
+  01D6FB9C: in UNWIND_INFO 01D6FB98 of chunk 002AFD83-002AFD9F, flags 4 (CHAININFO), chained RUNTIME_FUNCTION at 01D6FB9C = {002AF960, 002AF9A0, 01D7D7FC}; hit is its BeginAddress
+  01D6FBB4: in UNWIND_INFO 01D6FBA8 of chunk 002AFD9F-002AFDBD, flags 4 (CHAININFO), chained RUNTIME_FUNCTION at 01D6FBB4 = {002AF960, 002AF9A0, 01D7D7FC}; hit is its BeginAddress
+  01D69CA4: in UNWIND_INFO 01D69C9C of chunk 002421CA-002422B1, flags 4 (CHAININFO), chained RUNTIME_FUNCTION at 01D69CA4 = {00241D40, 002421CA, 01D69C78}; hit is its BeginAddress
+  01D69CB4: in UNWIND_INFO 01D69CB0 of chunk 002422B1-002425FC, flags 4 (CHAININFO), chained RUNTIME_FUNCTION at 01D69CB4 = {00241D40, 002421CA, 01D69C78}; hit is its BeginAddress

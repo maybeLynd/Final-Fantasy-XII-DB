@@ -1,0 +1,26 @@
+{
+  "path": "Database/FFXII TZA/18-Audio/Sound-Bank-And-Voice-Formats/sab-sound-bank-container.md",
+  "sha256": "55468948be7977e99c77dfe2abac22068f4a0f7ea7a68d64aa74220eda51a094",
+  "excerpts": [
+    {
+      "line": 77,
+      "text": "+0x0A  u16      _param       350 distinct values in .sab; always 0x2710 in .mab"
+    },
+    {
+      "line": 143,
+      "text": "| `+0x0A` `_param` | \u2014 | \u2014 | \u2014 | **yes \u2014 no reader found in the functions read; not a scan result** |"
+    },
+    {
+      "line": 235,
+      "text": "`shout` banks, `shout00`). `+0x05` is 1 in 4,097 and 0 in 512. `+0x0A` takes 350 distinct values in"
+    },
+    {
+      "line": 293,
+      "text": "| `+0x0A` `_param` | 350 distinct in `.sab`; always `0x2710` in `.mab` | **350 distinct; `0x2710` in all 116** |"
+    },
+    {
+      "line": 336,
+      "text": "- **`+0x05` and `+0x0A` are undecided.** `+0x05` is a 0/1 split of 512 against 4,097; `+0x0A` is"
+    }
+  ]
+}

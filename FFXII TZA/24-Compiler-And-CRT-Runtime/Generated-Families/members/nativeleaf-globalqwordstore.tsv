@@ -1,0 +1,7 @@
+# NativeLeaf.GlobalQwordStore - EC-7 family C
+# mov eax,ecx; store rax to a member rip qword; return.
+address	targets
+00378B80	
+00378BB0	
+00378F70	
+003DC330	

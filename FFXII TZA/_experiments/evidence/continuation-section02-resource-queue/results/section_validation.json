@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "modified_existing_files": [
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+    "02-Resource-And-Asset-Pipeline/the-resource-request-queue.md",
+    "_experiments/EXP-128-exp109-poll-pump-exec.md",
+    "_experiments/EXP-146-queue-remaining-exec.md",
+    "_index/_inbox/EXTERNAL-CONTINUATION.md",
+    "_types/fields.tsv",
+    "_types/types.tsv"
+  ],
+  "unrelated_existing_changes": [],
+  "unchanged_existing_files_verified": 10610,
+  "missing_baseline_files": [],
+  "original_archives": [
+    {
+      "name": "FFXII TZA(20260922-211246).zip",
+      "sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf"
+    },
+    {
+      "name": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+      "sha256": "482105c6ba0862dac9eeb0c45d0194d53e40205e2c1ee738b916aa3e4b3d7017"
+    }
+  ],
+  "changed_tsv_rows": {
+    "_types/fields.tsv": 13,
+    "_types/types.tsv": 1
+  },
+  "tsv_unrelated_lines_byte_identical": true,
+  "valid_changed_frontmatter": [
+    "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md",
+    "02-Resource-And-Asset-Pipeline/the-resource-request-queue.md",
+    "_experiments/EXP-128-exp109-poll-pump-exec.md",
+    "_experiments/EXP-146-queue-remaining-exec.md"
+  ],
+  "contract_sections": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "markdown_file_links_checked": 58,
+  "broken_markdown_file_links": [],
+  "new_python_parsed": [
+    "_experiments/evidence/continuation-section02-resource-queue/verify_overlay.py",
+    "_experiments/evidence/continuation-section02-resource-queue/run_review.py"
+  ],
+  "new_json_parsed_count": 18,
+  "scope": "Read-only structural/link/preimage validation, not independent semantic acceptance."
+}

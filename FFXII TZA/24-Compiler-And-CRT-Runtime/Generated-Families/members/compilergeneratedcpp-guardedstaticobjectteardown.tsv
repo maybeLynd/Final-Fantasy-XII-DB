@@ -1,0 +1,37 @@
+# CompilerGeneratedCpp.GuardedStaticObjectTeardown - EC-7 family C, declared on generated-function-families.md
+#
+# 28 members. Body size(s): 21 B x28.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 1 external target(s): 1 shared across all 28 members.
+#
+# NOT dispositioned: the 1 shared implementation these members reach.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+008B0E20
+008B0E40
+008B0E60
+008B0E80
+008B0EA0
+008B0EC0
+008B0EE0
+008B0F00
+008B0F20
+008B0F40
+008B0F60
+008B0F80
+008B0FA0
+008B0FC0
+008B0FE0
+008B1000
+008B1020
+008B1040
+008B1060
+008B1080
+008B10A0
+008B10C0
+008B10E0
+008B1100
+008B1120
+008B1140
+008B1160
+008B1180

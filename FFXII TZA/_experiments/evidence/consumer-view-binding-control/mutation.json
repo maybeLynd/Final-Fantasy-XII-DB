@@ -1,0 +1,13 @@
+{
+  "pc": "0x229e7e",
+  "file_offset": "0x10947e",
+  "original_hex": "72",
+  "changed_hex": "76",
+  "instruction": "JB->JBE samebranchdestination",
+  "original_body_sha256": "749953009c38a262b64c21f7bed7057d31ff25de5d32469b00ec0e55382bb5fa",
+  "changed_body_sha256": "d3f45d13075629071d127b6752801f83952d38dd6fd29241b854f603c4ccc70f",
+  "changed_image_sha256": "9410317e6eb64bec1ddb28b7432b387e0a86e3d1fbe74b28d93e888a59e2b040",
+  "changed_image_bytes": 32864752,
+  "changed_private_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\consumer-view-binding-control\\disposable\\changed-image-data.bin",
+  "limits": "One-byte private data copy only; no machine instruction execution/deployment or original reference changes"
+}

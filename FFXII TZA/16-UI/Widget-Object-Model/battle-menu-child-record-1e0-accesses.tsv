@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+00296960	FUN_00296960	002969B5	0x164	addr	lea rax, [rax + 0x1e0]	route-seeded EMBED BattleMenuChildBase4C0 +0x00C0 stride=0x1E0 count=2 base+0x-7C	

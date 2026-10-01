@@ -1,0 +1,70 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 8894,
+      "sha256": "ab9d6c9cab8a309aed2fb1be70b296e93b87fa7c2d935c2382d5b579d14a8623"
+    },
+    {
+      "path": "check.py",
+      "bytes": 5203,
+      "sha256": "35f850be1e57b7ade49bb27574f1d7753a87da3df4437383944d2c23a5671e88"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 1401,
+      "sha256": "2afde2ad318df33af94fc99a86e46fffbc9cd2a6817d946a2c9f666ffc859d54"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 1481,
+      "sha256": "1e35c2ef9e1ebd46bc436f9e4879808850aa9e11728dfc73a8036dbba6e3a1e8"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2678,
+      "sha256": "959f06d83f3336bd7a35445c90d19826368052d1a68cba222c1f7e39f304032e"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 19690,
+      "sha256": "20876672a85c81cc8cfbd546a2363750df2da1d925c61939af8dd3438f02e439"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4913,
+      "sha256": "99646e37e5c60760de7b3d5e004dc89b32bef3a55af39a90f26b6ffe68a35468"
+    },
+    {
+      "path": "retained/corridor-contract.md",
+      "bytes": 32902,
+      "sha256": "a9dc3af7f0c055f2c86a7790a5462bc8eeb475b4f145317b7a8ed734b7853947"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "bytes": 2345,
+      "sha256": "851b84134832d83580395ee58762f2074107de12bed4383682873ad488c3f2c2"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/source.json",
+      "bytes": 35804,
+      "sha256": "abc3ced6752cb8875a581d3a4cd33f69c2e070d035dc2b8e598305ebcb6cf103"
+    },
+    {
+      "path": "retained/window.bin",
+      "bytes": 123,
+      "sha256": "acad91f38c51c75fe9bef17d07c60af823badbb9e73608c5bf79c14e07c79f4c"
+    }
+  ],
+  "limits": "Original123B post-sqrt/pre-floor arithmetic only; host-prepared boundary/MXCSR1F80; no native library/fullbuilder/scene/exception proof"
+}

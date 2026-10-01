@@ -1,0 +1,66 @@
+[
+  {
+    "name": "register_copy_and_flags_preserve_pointer",
+    "pass": true
+  },
+  {
+    "name": "cmp_preserves_pointer",
+    "pass": true
+  },
+  {
+    "name": "lea_is_not_a_memory_read",
+    "pass": true
+  },
+  {
+    "name": "xor32_kills_pointer",
+    "pass": true
+  },
+  {
+    "name": "partial_byte_write_kills_pointer",
+    "pass": true
+  },
+  {
+    "name": "mov32_kills_pointer",
+    "pass": true
+  },
+  {
+    "name": "call_clobbers_volatile_pointer",
+    "pass": true
+  },
+  {
+    "name": "call_preserves_nonvolatile_pointer",
+    "pass": true
+  },
+  {
+    "name": "join_discards_disagreeing_provenance",
+    "pass": true
+  },
+  {
+    "name": "pointee_is_not_parent",
+    "pass": true
+  },
+  {
+    "name": "lea_preserves_known_subobject_offset",
+    "pass": true
+  },
+  {
+    "name": "dynamic_index_is_not_fixed_field",
+    "pass": true
+  },
+  {
+    "name": "message_receiver_not_conflated",
+    "pass": true
+  },
+  {
+    "name": "constant_lea_folds_without_access",
+    "pass": true
+  },
+  {
+    "name": "read_modify_write_is_recorded",
+    "pass": true
+  },
+  {
+    "name": "store_is_not_a_read",
+    "pass": true
+  }
+]

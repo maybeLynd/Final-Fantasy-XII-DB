@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBARG-0922",
+ "note": "Published 1b1aee01d: hdat arg byte = locale-invariant global serial (family blocks, wraps mod 256), no native reader; 00577970 = record→page bridge; hctg duplicate records recorded.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

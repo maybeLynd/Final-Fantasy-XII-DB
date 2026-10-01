@@ -1,0 +1,37 @@
+{
+  "baseline_archive": "FFXII TZA(20260922-211246).zip",
+  "baseline_archive_sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "retained_inputs": [
+    {
+      "path": "_experiments/evidence/apply-result-callees-exec/check.py",
+      "bytes": 42926,
+      "sha256": "2c5450e388a3a5d2258d7ff931a9d4234582f0a4df9a440fd6847d878533e372"
+    },
+    {
+      "path": "_experiments/evidence/apply-result-callees-exec/result.json",
+      "bytes": 21468,
+      "sha256": "b41a8d89413c2f565549b195d5c3df10bfec2f4257521af74187261f6fa87da5"
+    },
+    {
+      "path": "_experiments/evidence/apply-result-whole-exec/check.py",
+      "bytes": 49097,
+      "sha256": "ef34709a4b0987821a0f297fa2680013da49705c688ccf3ba55a6d0a41edadf6"
+    },
+    {
+      "path": "_experiments/evidence/apply-result-whole-exec/result.json",
+      "bytes": 111868,
+      "sha256": "5b7a96f028759b4c2afc18f905f8c06a6e3a8c4040d6942acd03d41130209aeb"
+    },
+    {
+      "path": "_experiments/evidence/battle-unit-construct-exec/check.py",
+      "bytes": 42710,
+      "sha256": "0378b73c170ea08d771d5f8c269a159f1fda5ec8588fe8f92d0e99dc4ef52c30"
+    },
+    {
+      "path": "_experiments/evidence/battle-unit-construct-exec/result.json",
+      "bytes": 110503,
+      "sha256": "11b7312d46edcde8b4daf46cbf9a2149f03492ada8267d318cf5a342f4e33619"
+    }
+  ]
+}

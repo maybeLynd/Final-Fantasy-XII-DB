@@ -1,0 +1,37 @@
+PASS  A1 002778C0: 14 ids with arms (10 and 11 share one), 31 to the base procedure 005C5230
+PASS  A2 00405310: ids 1, 2, 4, 14, 18, 19 have arms
+PASS  A3 003FDFE0: 1, 10, 12, 15, 18
+PASS  A4 003FF360: 1, 8, 10, 12, 18, 19, 285
+      002778C0 id 1    CONSTRUCT                            arm 00277925  callees 00274BA0 00245000 00245000 00244960 00244960 00247950 00247950 002470D0
+      002778C0 id 2    GENERATION RECONCILE                 arm 00278A3B  callees 00274BD0
+      002778C0 id 4    draw: after content                  arm 00278074  callees 00275440 0027CD00
+      002778C0 id 10   directional input                    arm 00277A64  callees 00249C60 00244F00
+      002778C0 id 11   input notice during a transition     arm 00277A64  callees 00249C60 00244F00
+      002778C0 id 12   enable/disable                       arm 00278302  callees 
+      002778C0 id 15   ABOUT TO BE DESTROYED                arm 00279CC5  callees 00368A50
+      002778C0 id 18   BEING DESTROYED                      arm 00279CF9  callees 00290B70 00245020 00245020 002470C0
+      002778C0 id 30   (30, narrowed)                       arm 0027902D  callees 002753F0 00247260
+      002778C0 id 31   -                                    arm 00279187  callees 002D47C0 00275440
+      002778C0 id 32   -                                    arm 00278FCA  callees 
+      002778C0 id 35   -                                    arm 002780E8  callees 0027C280 0028F800 00296AF0 00275440 00275440
+      002778C0 id 44   -                                    arm 00279C7E  callees 
+      002778C0 id 45   -                                    arm 00279CA5  callees 
+      00405310 id 1    CONSTRUCT                            arm 00405358  callees 003946B0 00394690 00394690 00394690 00394720 00244F50 00405770 004060B0
+      00405310 id 2    GENERATION RECONCILE                 arm 004055BE  callees 
+      00405310 id 4    draw: after content                  arm 0040564E  callees 00405C20
+      00405310 id 14   opening transition started           arm 00405500  callees 00405100
+      00405310 id 18   BEING DESTROYED                      arm 004056B0  callees 00244F00
+      00405310 id 19   TRANSITION FINISHED, FORWARD         arm 00405573  callees 004060B0
+      003FDFE0 id 1    CONSTRUCT                            arm 003FE2EC  callees 003FD6B0
+      003FDFE0 id 10   directional input                    arm 003FE2DF  callees 003FDAD0
+      003FDFE0 id 12   enable/disable                       arm 003FE07E  callees 002527B0 002527B0 0035D330 002CCA10 002CCA00
+      003FDFE0 id 15   ABOUT TO BE DESTROYED                arm 003FE377  callees 00808C40
+      003FDFE0 id 18   BEING DESTROYED                      arm 003FE035  callees 003697F0
+      003FF360 id 1    CONSTRUCT                            arm 003FF59D  callees 002432B0 00247570 0029FB50 002D48C0 002CD4D0 002CD3C0 002CD3C0 002CD3C0 002CD3C0 002CD3C0
+      003FF360 id 8    FOCUS GAINED                         arm 003FF560  callees 002D45C0 002445C0 002D1AC0
+      003FF360 id 10   directional input                    arm 003FF3B1  callees 002D45C0 002445C0 00368240 00282DF0 002C1A80 002D45C0 002445C0
+      003FF360 id 12   enable/disable                       arm 003FF6EA  callees 003FE6E0 00291D70 00293110 002445C0 002C22F0 002470C0
+      003FF360 id 18   BEING DESTROYED                      arm 003FF8DD  callees 00808C40
+      003FF360 id 19   TRANSITION FINISHED, FORWARD         arm 003FF892  callees 0035D330 002CCA10 002CE2F0
+      003FF360 id 285  (285: the 0xA-based command range)   arm 003FF7AB  callees 002D4650 00247510
+FAILS 0

@@ -1,0 +1,636 @@
+{
+  "functions": [
+    {
+      "entry": "0017D2E0",
+      "bytes": 91,
+      "sha256": "8cee24942ffb9e71495d571868938e0540a0be6bc5fad7a4fea582889578a6e6",
+      "pass": true,
+      "scope": "diagnostic formatter substituted in private image; not validated"
+    },
+    {
+      "entry": "0020E600",
+      "bytes": 10,
+      "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0020E620",
+      "bytes": 9,
+      "sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024B3A0",
+      "bytes": 321,
+      "sha256": "1f46cf590e16f664a3931cca95ecbe6e1dbec00cd16d225831bce39109a918f8",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024D540",
+      "bytes": 551,
+      "sha256": "96c526b01597bacfd8aff672828feddb3b2c1e593f6c9f8e0bb9f88fe41a5bd0",
+      "pass": true,
+      "scope": "only original 0024D565..0024D6A9 refresh window executed; earlier service calls and remainder excluded by explicit boundary"
+    },
+    {
+      "entry": "0024D940",
+      "bytes": 47,
+      "sha256": "b56e0b0d7cfd2ccff6f29945f2fa37a18021bf08ac80bca6e5edef8b286281f2",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024D970",
+      "bytes": 73,
+      "sha256": "47186e560000fe3d61031e7b04cc12f8d16ad994d1dfff23f157f6fa101379d5",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024ED80",
+      "bytes": 132,
+      "sha256": "f6f4dd1b34e28c8239bf22df99349558292358f8489c39b94210942a74d73812",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024F410",
+      "bytes": 185,
+      "sha256": "83b3af72830917188e46b444aa3bce52014526cdf22998722b362896b087a414",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024F4D0",
+      "bytes": 317,
+      "sha256": "22ca05b9e2c21eb2550a6d13d4c1801509a0ed25db0fd8be5ef397ed231d9921",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024FCF0",
+      "bytes": 162,
+      "sha256": "db0a531583e1d324a7a9a8d499b7fd79df0a1343ce281ac012839e05f0beb55d",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0024FE70",
+      "bytes": 238,
+      "sha256": "ee7e0a9fc7e2041f9bb2d4255404bc6de7f40b9371121db77fb5967e3b6062ea",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0026FB90",
+      "bytes": 535,
+      "sha256": "84ecb73bf277ec84e53f61c6c6f36086709d2776347fa7951cfc7738fb6ac3c9",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "002E65A0",
+      "bytes": 346,
+      "sha256": "ee231837820ee5e2a48c7db2e0f485f5e3b60a0d5677a4705a48b17d0808d2a7",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "00332590",
+      "bytes": 42,
+      "sha256": "932218dce4a28f84f314ab29c3c90cbd8663389e814863c0260bf9c8fba5184e",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "00332660",
+      "bytes": 91,
+      "sha256": "7ea974fede876843d767dbaa72ac89ed55fc4ba33caed26f55697c28e64af1ee",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "003697C0",
+      "bytes": 47,
+      "sha256": "e9b510affc4f85e74d0b9ef19d7e3bc5e1da22ab911af50e9f43cb6a20920105",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003697F0",
+      "bytes": 13,
+      "sha256": "efed31070c81261c142e309cfde282b4b566c4b36e4e28e53f1f817025d4cfca",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "00369800",
+      "bytes": 85,
+      "sha256": "a38fb5a0aecad6a3d4ccaf040b3ff13f5980378a91838ce5153e85addfa3e25f",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "00369860",
+      "bytes": 1009,
+      "sha256": "5538203672b80cf5eac78f1f8461b082aaf5ffc3566f8f7eb5c912100d2b1872",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "00369C60",
+      "bytes": 133,
+      "sha256": "295c367f524789a82863d76f11ab2a40e59c537161351f3842b8c576c77cbc78",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "00369CF0",
+      "bytes": 51,
+      "sha256": "fc90d56b70a48af6a4620d35e5c98e7934ba05feacaa20e6321f9b25c8d7d3eb",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "00369D30",
+      "bytes": 707,
+      "sha256": "16466da32c47e02ad79cf15b1952c26a44d66eecfb4fb0a269fb74fa85ca5beb",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036A000",
+      "bytes": 161,
+      "sha256": "5a9f4ea64354b983bbc44db785f795aef0294f884c8d02c875f402f0b24639fa",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036A100",
+      "bytes": 129,
+      "sha256": "12393ea217cd65d42ab4e9d89eb686c67114e45b3d918095a4f1f3be3de41ff4",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036A2A0",
+      "bytes": 495,
+      "sha256": "a43a07bd2157ffd731d816b33a5848181fbd261f98311d27a1e6d3a639be0b4e",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036A490",
+      "bytes": 215,
+      "sha256": "4eb5360d3d81b7710459f22743602534e00d028a0ea6edda3f52510a539da830",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036A9C0",
+      "bytes": 260,
+      "sha256": "45c4eae2056d7a8d601d06126cc32c4d38581a4ad083cec2a4f1cdad126ba537",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036AAD0",
+      "bytes": 261,
+      "sha256": "da316a864e67af7fbae474f2d3aa2543a84a42528f48c0eb70b0fa5e2cfe4bed",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036ABE0",
+      "bytes": 243,
+      "sha256": "c64aecdff38a78333e5c8b3065d8af23f1a6480beabc8ecb8d2b487591aaa65f",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036AF20",
+      "bytes": 309,
+      "sha256": "c16d594a99cf82876699fb468e43bb215095cfffdb6a1e555677284374af1738",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B130",
+      "bytes": 41,
+      "sha256": "f9e962cb57663e827df2e541e2ce55d1ac499850f5809b2e6771a05a3fcdec00",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B160",
+      "bytes": 148,
+      "sha256": "9580ff472bfb8b8d6758e1caf19a4f77db19ebb14cb61d73dc4c92cf0930230b",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B410",
+      "bytes": 124,
+      "sha256": "2ca9282cf261e0d6c1f2069a7e98a0cb4afb41ad2362aca05a2ec34a8f6a081f",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B490",
+      "bytes": 71,
+      "sha256": "de89ffec750fa6987fdead6879fdb82e537dbb221445eb93329927c812e0b56c",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B4E0",
+      "bytes": 177,
+      "sha256": "8ba13fd39112592d212672b4570929c7f412a9d360a380a1f9b34da6bffa9e36",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B5A0",
+      "bytes": 71,
+      "sha256": "a5cde6f58ebe12968105b30db15d40e83fea5d58924a776aeb1ce80bf3900f2d",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036B5F0",
+      "bytes": 124,
+      "sha256": "a3b4c037325ca28a6b0a6bc0fb36dc0b156ed3ec7a0941f0eecaeaf03debadad",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036BC60",
+      "bytes": 887,
+      "sha256": "4ea76d7f9498941c7c2b4fcf2cb38faa25b156df5535c15a2b1dcdd126cce2e7",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036BFE0",
+      "bytes": 261,
+      "sha256": "e37aa054ae53cc5be8a94ec0281a6941e0ef49190c57470ec9db26a4c51f4fe2",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C140",
+      "bytes": 84,
+      "sha256": "f34ec4c217f1b888902154ce45f6c27afc22fe2c77a50f2dbd85ff749ab87ca3",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C1D0",
+      "bytes": 20,
+      "sha256": "bd012ee188218bf2e3eef63682f7f296dc3620001bfb3fbddef2b99529dc3096",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C1F0",
+      "bytes": 150,
+      "sha256": "fb327729e1e143437fab4738d25d23feba4d46e5b739eb112bea6db22b191d04",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C4B0",
+      "bytes": 229,
+      "sha256": "d5f2d6da52dbee37c0a546d821b7644481a359dbfca063b2da9b3a4ed825b6b2",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C750",
+      "bytes": 57,
+      "sha256": "6676e74b790a93d99a35a41cb7a4409f752c661d7bb43d1f6b81355ecee998a0",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C790",
+      "bytes": 359,
+      "sha256": "8125ded3d9486e8a2880a3b48a28a4f88203a23bd95be9ade5ff44a47de6d4d9",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036C9D0",
+      "bytes": 253,
+      "sha256": "3aba22171d040fa929dd83178841bbe391c4285417524a6d85251a9bc1891c7e",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0036D170",
+      "bytes": 133,
+      "sha256": "6bfc78a858ac41669653ce40a416172b24e729bc28ba95866ae9d40cd9df1226",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A2B20",
+      "bytes": 53,
+      "sha256": "f54c50362f274b0ca2e3a3977cb3eaf358b050a52a7e1ede9fec1c8b9ffa18ac",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A72E0",
+      "bytes": 5,
+      "sha256": "dfcfdd9f5f26a4c932c53d2f7c504955fe166a7ce32c8661a9cfcb9248b67e15",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A7360",
+      "bytes": 177,
+      "sha256": "9feb5d312b64291c39c058868b6398a4e80763ac1949b110b0eb689af484b71a",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A75B0",
+      "bytes": 312,
+      "sha256": "050311cf23280feaf87ddfc7a3de34490f32808273e3a1a856d0ce02f54851d6",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A76F0",
+      "bytes": 50,
+      "sha256": "ebb41886769a84e2c96e9fb1fd39d347081518162c999f6eaf0177855754ffcd",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A7D00",
+      "bytes": 44,
+      "sha256": "bf1c321746f7601a818dc21560ca5cdf1a25dde5f318996819f25a40eac9ff8e",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A7D30",
+      "bytes": 140,
+      "sha256": "6633e4cf419addaf81958e0531dade5a1e57b16ceb199cc5871dc9bb941aab5a",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A81E0",
+      "bytes": 85,
+      "sha256": "8952d9489c6b318e91e1be80d697baa686ec8822b468f640745fe3208c47f561",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A8D70",
+      "bytes": 5,
+      "sha256": "3e63ca6208bc2fd149842d273fd5592ce43267c83418a05bf35434e6cccb0e01",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A8FF0",
+      "bytes": 114,
+      "sha256": "84c5462ac2502a503343b4f0d825c6b80506ad544199c51398045f0d847c6e73",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9160",
+      "bytes": 331,
+      "sha256": "da080ae9cc2e7f6b30761d6a73df71d86ac5b40e1ac9d0829536afe37af50b21",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9560",
+      "bytes": 44,
+      "sha256": "4e89dfe7e94a950082c04e6a3ae0bad55e75322efc96a45d4af68fbf6e0adefb",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9600",
+      "bytes": 156,
+      "sha256": "43541ab13d3073abf1995296739ee3b449d09328f512d7e2f2b0166c0c7895be",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9730",
+      "bytes": 90,
+      "sha256": "428780cc496c9aaf4a2be79c0b96723b1108af4789002cdc6bcfb2c8417dcabe",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9860",
+      "bytes": 105,
+      "sha256": "5c4c5f33ea696a7f35c608eeb8a25ad4435a6b14462d660050cf154d9bdf0e3b",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9920",
+      "bytes": 44,
+      "sha256": "4c76895564486955d14b3ebad57cdc666a1668afd0e402909c3bbef704ff8395",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9950",
+      "bytes": 156,
+      "sha256": "dac8a3240872ac303d40bf1cf4e1fc3e1eee46abd3b9ff1e6ff26a6bed9e1fe5",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9A70",
+      "bytes": 84,
+      "sha256": "1efc512950b5101f9b5cb213e53e973e7cd0671fb3c7eaf6d16cb5ad2ce4b1d0",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9BA0",
+      "bytes": 105,
+      "sha256": "bc0c54c31f898cc6c01cc12b6c8ff40183d81a6969ab3a8f4a860e4dc1eb16c1",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9CC0",
+      "bytes": 57,
+      "sha256": "340416b3ed06ba74b0f07a2983cd93a28d2ec7ada68cec91a80999945d692fc0",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9D00",
+      "bytes": 242,
+      "sha256": "98dc4a281a00061bc7c897382f07b2b616d3bf1bd8de82f0ff9d0163fad42b57",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003A9EE0",
+      "bytes": 5,
+      "sha256": "52db92b0d66a3064cd038a8e8a7d3796861fed5b7a3dcb5308c0425f77712290",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003AA3D0",
+      "bytes": 92,
+      "sha256": "e18c72d7082753ee2b2269f34c4955f35bc175a5f43e0b0e78ef17f9213e6c42",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003AB7C0",
+      "bytes": 36,
+      "sha256": "487564f426d8c4571a49acead62279a093a5bbc273369c4f3581dc223b6b0135",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003AB7F0",
+      "bytes": 99,
+      "sha256": "a65931ceb42bff28b95656b5797b4ec07ab5f3526b5e5c98d7a330d5f18e28f0",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003AB880",
+      "bytes": 42,
+      "sha256": "ad9637923888d8dfad5f8dbe2ff406f0aba6543c4e32cb6692415ab92443ab02",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003AB940",
+      "bytes": 30,
+      "sha256": "dcece44381d6f314cd6d4912298cf1deda6b715f7b13de2f56f37b26293e5dc7",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003B3480",
+      "bytes": 200,
+      "sha256": "c64bc714afcd3a7451225b6d8b668210787e8d9ca6580327b51fce916c9b8984",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003B37E0",
+      "bytes": 197,
+      "sha256": "33a25c6fc618e5a020fe698829b53b9dcd3ee05151cd2c85b32d6823369c8c77",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003B38B0",
+      "bytes": 296,
+      "sha256": "5db8ba7a8aecd517ada3928b4259d3e09cce536486e081d9330b29816b6ab297",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003B39E0",
+      "bytes": 183,
+      "sha256": "9754612aff8a234bc24ea881ff0e99b6fff23f3de791972185d827cf68550e20",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003B3C00",
+      "bytes": 148,
+      "sha256": "c69d61a6e1149b284e009fcde20495389007b54d4b7650e2063236b10e8a843c",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003B8670",
+      "bytes": 4578,
+      "sha256": "0a79cbb62e1ffffc905661a136562c1539ea6d21bdc5ea9476f9a9e46fc2841d",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "003E6AA0",
+      "bytes": 30,
+      "sha256": "473f1b4bd3924c0e48dfa3aef13488b2f4471d8a8ca004469be9cc26041bf1d4",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "003EDAD0",
+      "bytes": 1934,
+      "sha256": "aebd52bca250cae30c65f4dc67ff25e8639df9db190db2098d056a03789f290e",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0041E500",
+      "bytes": 76,
+      "sha256": "2ad9b7b8c094512d7c79087956b6e9b656b347b42314a8126072fa40685d05c6",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "00426950",
+      "bytes": 78,
+      "sha256": "07d14910c13736db2d3a19f39241fd977c185aa37b9bcf27f84a781a21213b87",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "00427DE0",
+      "bytes": 2347,
+      "sha256": "d49d95005fc992b8cd0ceab3dcc2229dc745dda3f895832b375845000366237c",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0042ED60",
+      "bytes": 162,
+      "sha256": "d0357878723d02c9246179af00c6a067a7fa580e7da5aeea547b3134520945b5",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "004746F0",
+      "bytes": 26,
+      "sha256": "4e1aea89e3b292df9d8355ae9f06687a989a446c8cdd2ed0eea5059409861f97",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    },
+    {
+      "entry": "0050E300",
+      "bytes": 73,
+      "sha256": "f4e493b7c143f07897ec7d8ed868d6eb8d923da77b9e471384a02bc88a903c5b",
+      "pass": true,
+      "scope": "statically inspected scheduling/caller body; not executed as a whole by this fixture"
+    },
+    {
+      "entry": "00861EBA",
+      "bytes": 6,
+      "sha256": "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03",
+      "pass": true,
+      "scope": "selected original body; configured synthetic paths only, not branch coverage"
+    }
+  ],
+  "count": 90,
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+}

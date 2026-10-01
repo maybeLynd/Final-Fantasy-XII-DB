@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-159",
+ "note": "Tail bbfd16ebb (TEAM.json + finseal/addtail/claimtail ops + resume block).",
+ "result_refs": [
+  "a1abec5e8",
+  "bbfd16ebb"
+ ],
+ "summary": ""
+}

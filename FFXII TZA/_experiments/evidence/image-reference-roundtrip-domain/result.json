@@ -1,0 +1,207 @@
+{
+  "question": "Unqualified exact inverses/null preservation versus stable-base translated unsigned32 reference domain",
+  "method": "A verified complete original10/9-byte source and integer-width/modular proof with selected conditional calculations; zero original/native/emulator/live executions",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "decode_entry": "0x20e600",
+    "encode_entry": "0x20e620",
+    "decode_sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+    "encode_sha256": "9f88dce71d7cce301096aa6ab93885acc0103d2d044dbfad741262336cffd7d7",
+    "shared_cell": "0x1f83530",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+  },
+  "tools": {
+    "utc": "2026-09-28T09:16:09.892754+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "capstone": "5.0.7",
+    "capstone_dll": {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+      "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+    }
+  },
+  "driver_sha256": "d861eeadca26ee39f4f78a562e22062ce37d30f6110ce0a25eef5160668c5949",
+  "instructions": [
+    {
+      "pc": "0x20e600",
+      "bytes": "8bc1",
+      "op": "mov",
+      "args": "eax, ecx"
+    },
+    {
+      "pc": "0x20e602",
+      "bytes": "480305274fd701",
+      "op": "add",
+      "args": "rax, qword ptr [rip + 0x1d74f27]"
+    },
+    {
+      "pc": "0x20e609",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    },
+    {
+      "pc": "0x20e620",
+      "bytes": "2b0d0a4fd701",
+      "op": "sub",
+      "args": "ecx, dword ptr [rip + 0x1d74f0a]"
+    },
+    {
+      "pc": "0x20e626",
+      "bytes": "8bc1",
+      "op": "mov",
+      "args": "eax, ecx"
+    },
+    {
+      "pc": "0x20e628",
+      "bytes": "c3",
+      "op": "ret",
+      "args": ""
+    }
+  ],
+  "proof": {
+    "decode": "D_B(u)=(B+u32(u)) mod2^64",
+    "encode": "E_B(p)=u32(u32(p)-u32(B))",
+    "reference_roundtrip": "E_B(D_B(u))=u for all unsigned32 u at fixed B, by reduction mod2^32",
+    "pointer_roundtrip": "D_B(E_B(p))=p iff ((p-B) mod2^64)<2^32, since E is that delta reduced mod2^32 and D adds it to B mod2^64",
+    "collision": "Pointers with same low32 encode identically at fixed B, including p and p+2^32 modulo2^64",
+    "null": "D_B(0)=B; E_B(0)=u32(-B). No intrinsic null-preserving or signed-offset rule."
+  },
+  "cases": [
+    {
+      "name": "zero-base in-window",
+      "base": "0000000000000000",
+      "pointer": "0000000000001234",
+      "encoded": "00001234",
+      "decoded": "0000000000001234",
+      "relative_delta": "0000000000001234",
+      "pointer_roundtrip": true
+    },
+    {
+      "name": "nonzero-base in-window",
+      "base": "0000000000120000",
+      "pointer": "0000000000121234",
+      "encoded": "00001234",
+      "decoded": "0000000000121234",
+      "relative_delta": "0000000000001234",
+      "pointer_roundtrip": true
+    },
+    {
+      "name": "translated upper edge",
+      "base": "0000000000120000",
+      "pointer": "000000010011FFFF",
+      "encoded": "FFFFFFFF",
+      "decoded": "000000010011FFFF",
+      "relative_delta": "00000000FFFFFFFF",
+      "pointer_roundtrip": true
+    },
+    {
+      "name": "just outside translated window",
+      "base": "0000000000120000",
+      "pointer": "0000000100120000",
+      "encoded": "00000000",
+      "decoded": "0000000000120000",
+      "relative_delta": "0000000100000000",
+      "pointer_roundtrip": false
+    },
+    {
+      "name": "null at nonzero base",
+      "base": "0000000000120000",
+      "pointer": "0000000000000000",
+      "encoded": "FFEE0000",
+      "decoded": "0000000100000000",
+      "relative_delta": "FFFFFFFFFFEE0000",
+      "pointer_roundtrip": false
+    },
+    {
+      "name": "conditional high base",
+      "base": "00007FF600120000",
+      "pointer": "00007FF600121234",
+      "encoded": "00001234",
+      "decoded": "00007FF600121234",
+      "relative_delta": "0000000000001234",
+      "pointer_roundtrip": true
+    },
+    {
+      "name": "modulo64 wrapping translated window",
+      "base": "FFFFFFFFFFFFFFF0",
+      "pointer": "0000000000000010",
+      "encoded": "00000020",
+      "decoded": "0000000000000010",
+      "relative_delta": "0000000000000020",
+      "pointer_roundtrip": true
+    }
+  ],
+  "reference_controls": [
+    {
+      "base": "0000000000000000",
+      "reference": "FFFFFFFF",
+      "resolved": "00000000FFFFFFFF",
+      "encoded_again": "FFFFFFFF"
+    },
+    {
+      "base": "0000000000120000",
+      "reference": "00000000",
+      "resolved": "0000000000120000",
+      "encoded_again": "00000000"
+    },
+    {
+      "base": "00007FF600120000",
+      "reference": "FFFFFFFF",
+      "resolved": "00007FF70011FFFF",
+      "encoded_again": "FFFFFFFF"
+    },
+    {
+      "base": "FFFFFFFFFFFFFFF0",
+      "reference": "00000020",
+      "resolved": "0000000000000010",
+      "encoded_again": "00000020"
+    }
+  ],
+  "base_change_control": {
+    "decode_base": "0000000000120000",
+    "encode_base": "0000000000120001",
+    "input_reference": "00001234",
+    "encoded_again": "00001233"
+  },
+  "mutation_control": {
+    "name": "private source SUB-to-ADD",
+    "encode_hex": "030d0a4fd7018bc1c3",
+    "exact_binding_rejected": true,
+    "zero_base_control": {
+      "base": "0000000000000000",
+      "pointer": "0000000000001234",
+      "original": "00001234",
+      "private_add_model": "00001234"
+    },
+    "nonzero_base_discriminator": {
+      "base": "0000000000120000",
+      "pointer": "0000000000121234",
+      "original": "00001234",
+      "private_add_model": "00241234"
+    },
+    "limits": "Source mutation/conditional Python calculation only. No changed code executed. Zero-base-only insufficiency is a control observation, not allegation against an unnamed existing checker."
+  },
+  "consumer_preimages": [
+    {
+      "path": "Database/FFXII TZA/00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md",
+      "sha256": "a1d28b4753c2ca850b5c3addcbdf1e0fb4f90cbd082118d031c9668121c0a58b",
+      "retained_name": "shared-neighbours.md"
+    },
+    {
+      "path": "Database/FFXII TZA/00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md",
+      "sha256": "df246c2e2adb04e191b002cca5913bc0be8c4a889d09f0bd152d5335f2c23e8d",
+      "retained_name": "encoded-id-contract.md"
+    },
+    {
+      "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/members/image_address_base_writer_bounds.py",
+      "sha256": "d6eedb16a16adbe2122fcab7f2ccd2e62ecf45fc3ac3d5a03247ffa9354130b2",
+      "retained_name": "image_address_base_writer_bounds.py"
+    }
+  ],
+  "prior_base_findings": "Reuse owner contract and writer R6: cell BSS zero at image load; computed texture-id=-5 writer undriven not absent; process-lifetime zero supported not proven. Existing R1 source names20E602/20E620 correctly. Contract citations20E626 name MOV not RIP SUB. No writer census/replay rerun.",
+  "implication": "Qualify both exact-inverse phrases and image-base terminology in FABLE summary. OPUS representation domain needs stableB/unsigned32 translated window/null semantics; repair only wrong inverse-site citations, retain full-width consumer and prior writer findings. No bulk disposition/caller classification.",
+  "limits": "All B/p values here conditional injected numbers, not observed game addresses. Shared B is not established as PE/module base. Readable cell and instruction execution completion assumed; stableB required across calls, not guaranteed atomically. No process-lifetime base value, actual callers, initialization beyond retained prior image-load finding, mapped-memory validity, ownership/lifetime, allocation, relocation portability, normal reachability or native effects proved.",
+  "cleanup": "Read-only original image and retained peer preimages, Python source calculations only. PC OFF; no game/input/process/instrument/save/config/reference/peer writes. Consumer propagation and independent review pending."
+}

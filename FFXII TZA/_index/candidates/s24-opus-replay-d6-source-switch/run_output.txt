@@ -1,0 +1,8 @@
+W_bit0_clear_weapon_adds_its_row_terms                         PASS
+W_bit0_set_weapon_adds_nothing                                 PASS
+S_bit1_clear_shield_adds_its_row_terms                         PASS
+S_bit1_set_shield_adds_nothing                                 PASS
+X_each_bit_leaves_the_other_kind_alone                         PASS
+C_base_columns_feed_the_outputs_only_with_the_bit_set          PASS
+C_growth_column_is_scaled_by_the_level_span                    PASS
+ALL PASS

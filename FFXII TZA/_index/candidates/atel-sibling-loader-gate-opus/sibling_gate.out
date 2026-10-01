@@ -1,0 +1,8 @@
+PASS  Q 14 direct 0032E400 calls, kinds ['0xff']; kind 0xFF returns -1 before rdx is read
+PASS  G first query -> r15d; test r15d / jle 003315E7 (epilogue); no other r15 write before the gate
+PASS  E pdata [('0x3306e0', '0x33160a')]; in-body gate crossings 0, indirect jumps 0; outside rel32 into the gated range 0; rel32 callers ['0x330029']
+PASS  D the dbg and sbn names reach only 00330E5B / 00330E6C, and each result is overwritten by the next query unread
+PASS  M sixteen names <stem>.mNN.mld (0x104 apart), sixteen sizes to rsp+0x60
+PASS  T the body makes 16 extension references (14 strings) and names m%02d/.mld before the gate and the six tags after it; PREFIX is 0032F67C's, another loader's tag, whose size query 0032F617 is kind 8, index 0x350
+PASS  C the same reader gives kind ['0x20'] at the 0032E400 call 002E61A8
+FAILS 0

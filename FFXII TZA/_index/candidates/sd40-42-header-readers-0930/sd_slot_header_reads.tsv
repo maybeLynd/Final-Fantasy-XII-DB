@@ -1,0 +1,91 @@
+field	size	function	address	kind	instruction
++0x00	8	00244830	00244869	R	mov rax, qword ptr [rcx] [panel-held]
++0x00	8	00244DD0	00244EE3	R	mov rax, qword ptr [rbx] [panel-held]
++0x00	8	00244F00	00244F25	R	mov rax, qword ptr [rcx] [panel-held]
++0x00	8	00245020	00245044	R	mov rax, qword ptr [rdi] [panel-held]
++0x00	8	002473F0	0024743E	R	mov rax, qword ptr [r8] [panel-held]
++0x00	8	002482E0	002483A0	R	mov rax, qword ptr [rdi] [panel-held]
++0x00	8	002482E0	002483CE	W	mov qword ptr [rdi], 0 [panel-held]
++0x00	16	00580CD0	00580DBE	W	movups xmmword ptr [rdx], xmm0
++0x02	1	002482E0	002483E9	W	mov byte ptr [rdi + 0xa2], 0 [panel-held]
++0x08	4	0057EFE0	0057F05F	R	cmp dword ptr [rsi + 8], r15d
++0x08	4	0057EFE0	0057F06A	R	cmovb ecx, dword ptr [rsi + 8]
++0x08	4	0057F8C0	0057F9CC	W	or dword ptr [rdx + 8], 1 [panel-held]
++0x08	4	0057FA30	0057FA98	W	and dword ptr [rcx + 8], 0xfffffffe [panel-held]
++0x08	4	0057FB00	0057FBF8	W	and dword ptr [rcx + 8], 0xfffffffe [panel-held]
++0x08	8	002482E0	002483CA	R	mov rbx, qword ptr [rdi + 8] [panel-held]
++0x10	8	002482E0	00248308	R	mov rax, qword ptr [rdi + 0x10] [panel-held]
++0x10	16	00580CD0	00580DC6	W	movups xmmword ptr [rdx + 0x10], xmm1
++0x18	4	00244DD0	00244DE1	W	mov dword ptr [rcx + 0xb8], 0x3f800000 [panel-held]
++0x18	4	00244DD0	00244E0F	W	movss dword ptr [rbx + 0xb8], xmm1 [panel-held]
++0x18	8	002448D0	002448E0	R	mov rbx, qword ptr [rcx + 0x18] [panel-held]
++0x18	8	00245020	00245047	R	mov rbx, qword ptr [rdi + 0x18] [panel-held]
++0x18	8	002473F0	00247414	R	mov rbx, qword ptr [r8 + 0x18] [panel-held]
++0x18	8	00248220	00248230	R	mov rcx, qword ptr [rcx + 0x18] [panel-held]
++0x18	8	00248220	00248239	W	mov qword ptr [rbx + 0x18], rdx [panel-held]
++0x18	8	002482E0	002482EE	R	mov rcx, qword ptr [rcx + 0x18] [panel-held]
++0x20	1	0057E6D0	0057E70A	R	movzx ebp, byte ptr [rdx + rax*4 + 0x20]
++0x20	8	002482E0	00248315	R	mov rcx, qword ptr [rdi + 0x20] [panel-held]
++0x20	16	00580CD0	00580DCF	W	movups xmmword ptr [rdx + 0x20], xmm0
++0x21	1	0057E6D0	0057E7AA	R	movzx ecx, byte ptr [rdi + rax*4 + 0x21]
++0x22	1	0057E6D0	0057E7D3	R	movzx edi, byte ptr [rdi + rax*4 + 0x22]
++0x23	1	0057E6D0	0057E70F	R	movzx esi, byte ptr [rdx + rax*4 + 0x23]
++0x28	8	002482E0	00248311	R	mov rdx, qword ptr [rdi + 0x28] [panel-held]
++0x30	4	00248220	00248264	W	inc dword ptr [rbx + 0x30] [panel-held]
++0x30	16	00580CD0	00580DD8	W	movups xmmword ptr [rdx + 0x30], xmm1
++0x3C	4	0057EFE0	0057F0CC	R	mov edx, dword ptr [rsi + 0x3c]
++0x40	1	00245020	00245072	R	test byte ptr [rdi + 0x40], 0x20 [panel-held]
++0x40	1	00248220	0024826B	R	test byte ptr [rbx + 0x40], 0x20 [panel-held]
++0x40	1	00248220	002482AE	R	test byte ptr [rbx + 0x40], 1 [panel-held]
++0x40	4	00244830	00244865	W	and dword ptr [rcx + 0x40], 0xffffffef [panel-held]
++0x40	4	00244DD0	00244E17	R	mov edx, dword ptr [rbx + 0x40] [panel-held]
++0x40	4	00244DD0	00244E50	W	mov dword ptr [rbx + 0x40], edx [panel-held]
++0x40	4	00244F00	00244F0A	W	or dword ptr [rcx + 0x40], 0x40 [panel-held]
++0x40	4	00244F00	00244F11	R	mov eax, dword ptr [rcx + 0x40] [panel-held]
++0x40	4	00245020	00245091	R	mov eax, dword ptr [rdi + 0x40] [panel-held]
++0x40	4	00245020	0024509B	W	mov dword ptr [rdi + 0x40], eax [panel-held]
++0x40	4	002473F0	0024741F	R	mov ecx, dword ptr [r8 + 0x40] [panel-held]
++0x40	4	002473F0	0024743A	W	mov dword ptr [r8 + 0x40], eax [panel-held]
++0x40	4	00248220	002482CC	W	or dword ptr [rbx + 0x40], 0x2000 [panel-held]
++0x40	4	002482E0	002483B4	W	and dword ptr [rdi + 0x40], 0xfffffbff [panel-held]
++0x40	4	002482E0	002483C7	R	mov eax, dword ptr [rdi + 0x40] [panel-held]
++0x40	4	002482E0	002483F0	W	mov dword ptr [rdi + 0x40], eax [panel-held]
++0x40	4	0057EFE0	0057F227	R	cmp dword ptr [rsi + 0x40], r15d
++0x40	4	0057EFE0	0057F233	R	cmovl r15d, dword ptr [rsi + 0x40]
++0x40	16	00580CD0	00580DE1	W	movups xmmword ptr [rdx + 0x40], xmm0
++0x44	1	0057EFE0	0057F1A8	R	movzx ecx, byte ptr [rsi + 0x44]
++0x44	4	0057EFE0	0057F17E	R	cmp dword ptr [rsi + 0x44], edi
++0x44	4	0057EFE0	0057F1A2	R	cmp dword ptr [rsi + 0x44], 0xd
++0x48	8	00244DD0	00244E80	R	mov rcx, qword ptr [rbx + 0x48] [panel-held]
++0x50	4	002482E0	00248334	R	mov eax, dword ptr [rdi + 0x50] [panel-held]
++0x50	4	002482E0	00248343	W	mov dword ptr [rdi + 0x50], eax [panel-held]
++0x50	4	002482E0	00248377	R	mov eax, dword ptr [rdi + 0x50] [panel-held]
++0x50	4	0057FE80	00580163	R	cmp dword ptr [rcx + 0x50], eax
++0x50	4	0057FE80	00580176	R	mov ecx, dword ptr [rax + 0x50]
++0x50	16	00580CD0	00580DEA	W	movups xmmword ptr [rdx + 0x50], xmm1
++0x57	1	00580B40	00580C9E	R	test byte ptr [rdi + 0x57], 1
++0x60	8	002482E0	0024833E	R	cmp qword ptr [rdi + 0x60], 0 [panel-held]
++0x60	8	002482E0	00248360	R	mov rax, qword ptr [rdi + 0x60] [panel-held]
++0x60	8	002482E0	0024838A	R	mov rcx, qword ptr [rdi + 0x60] [panel-held]
++0x60	8	002482E0	00248398	W	mov qword ptr [rdi + 0x60], 0 [panel-held]
++0x60	16	00580CD0	00580DF3	W	movups xmmword ptr [rdx + 0x60], xmm0
++0x68	8	00244DD0	00244E88	W	mov qword ptr [rbx + 0x68], rcx [panel-held]
++0x70	4	00244DD0	00244E6A	W	mov dword ptr [rbx + 0x70], ecx [panel-held]
++0x70	4	00244DD0	00244E75	R	sub eax, dword ptr [rbx + 0x70] [panel-held]
++0x70	4	00244DD0	00244ED4	W	mov dword ptr [rbx + 0x70], edx [panel-held]
++0x70	16	00580CD0	00580DFC	W	movups xmmword ptr [rdx + 0x70], xmm0
++0x74	4	00244DD0	00244E78	R	sub eax, dword ptr [rbx + 0x74] [panel-held]
++0x74	4	00244DD0	00244E7B	W	mov dword ptr [rbx + 0x74], eax [panel-held]
++0x74	4	00244DD0	00244E92	W	mov dword ptr [rbx + 0x74], eax [panel-held]
++0x78	4	00244DD0	00244E95	W	mov dword ptr [rbx + 0x78], 0x3f800000 [panel-held]
++0x7C	4	00244DD0	00244E1F	W	and dword ptr [rbx + 0x7c], 0xfffffff1 [panel-held]
++0x7C	4	00244DD0	00244E23	W	or dword ptr [rbx + 0x7c], 1 [panel-held]
++0x7C	4	00244DD0	00244E2C	R	mov ecx, dword ptr [rbx + 0x7c] [panel-held]
++0x7C	4	00244DD0	00244EAA	R	mov eax, dword ptr [rbx + 0x7c] [panel-held]
++0x7C	4	00244DD0	00244EBC	W	mov dword ptr [rbx + 0x7c], edi [panel-held]
++0x7C	4	00244DD0	00244ED7	W	and dword ptr [rbx + 0x7c], 0xfffffff4 [panel-held]
++0x7C	4	00244DD0	00244EDB	W	or dword ptr [rbx + 0x7c], 4 [panel-held]
++0x7C	4	00244DD0	00244EDF	W	or dword ptr [rbx + 0x7c], 0x30 [panel-held]
++0x7C	4	002482E0	002483BE	W	and dword ptr [rdi + 0x7c], 0xfffffff0 [panel-held]
++0x80	16	00580CD0	00580E08	W	movups xmmword ptr [rdx + 0x80], xmm1
++0x90	16	00580CD0	00580E17	W	movups xmmword ptr [rdx + 0x90], xmm0

@@ -1,0 +1,23 @@
+control: extensionless entries: 2 (published 2): ['ps2data/debglobal.bin/file1', 'ps2data/square_ff12/ff12config']
+ps2data/debglobal.bin/file1 148 bytes; as 16-byte NUL-padded strings: ['10.0.5.238', '10.0.5.255', '10.0.5.254', '10.0.16.26', '', '', '', '', '', '']
+ps2data/square_ff12/ff12config 2048 bytes; nonzero: [('0x0', 1), ('0x7', 1), ('0x8', 1), ('0xa', 236), ('0x13', 1)]
+  file +0x02 (u8) -> 02B62DA8 : shipped 0, default from 00408BA0 3
+  file +0x03 (u8) -> 02B62DA9 : shipped 0, default from 00408BA0 0
+  file +0x04 (u8) -> 02B62DAA : shipped 0, default from 00408BA0 0
+  file +0x06 (u8) -> 02B62DAC : shipped 0, default from 00408BA0 0
+  file +0x08 (u8) -> 02B62DAE : shipped 1, default from 00408BA0 0
+  file +0x09 (u8) -> 02B62DAF : shipped 0, default from 00408BA0 1
+  file +0x0A (u16) -> 02B62DB4 : shipped 236, default from 00408BA0 0
+  file +0x0C (u8) -> 02B62DB0 : shipped 0, default from 00408BA0 0
+  file +0x0D (u8) -> 02B62DB1 : shipped 0, default from 00408BA0 0
+  file +0x0E (u8) -> 02B62DB2 : shipped 0, default from 00408BA0 0
+  file +0x0F (u8) -> 02B62DB3 : shipped 0, default from 00408BA0 0
+  file +0x10 (u8) -> 02B62DB6 : shipped 0, default from 00408BA0 0
+  file +0x11 (u8) -> 02B62DB7 : shipped 0, default from 00408BA0 0
+  file +0x12 (u8) -> 02B62DB8 : shipped 0, default from 00408BA0 0
+  file +0x15 (u8) -> 02B62DBB : shipped 0, default from 00408BA0 None
+  file +0x16 (u8) -> 02B62DBC : shipped 0, default from 00408BA0 0
+  nonzero bytes not copied: ['0x0', '0x7', '0x13']
+RIP-relative candidates for PS2Data/SQUARE_FF12/FF12CONFIG at 00D121D8: 1 ['00408C8B']
+RIP-relative candidates for PS2Data\DebGlobal.bin at 00D22C58: 0 []
+RIP-relative candidates for control: double at 00D22C50 at 00D22C50: 1 ['0051E040']

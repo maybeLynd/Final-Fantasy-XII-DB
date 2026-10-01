@@ -1,0 +1,8 @@
+PASS W1 messages 3/4: bit 24 == pass and bit 28 clear; message 5: bit 24 == pass and bit 12 set
+PASS W2 002450B0 stores pass 0, 00245110 pass 1, then each walks the tree
+PASS W3 background: bit 7 set and bit 24 == pass; bit 8 picks 002455A0 / 00245170
+PASS W4 rotations only on non-zero floats; 0039ADE0 on bit 21 with node +0x8C
+PASS W5 002435C0 on node +0x50 when its bit 0 is set
+PASS C1 control: message records 3/4/5 and the three lea targets - [3, 4, 5]
+RESULT the draw pass runs twice per bracket pass index (0208F564 = 0 or 1); a node draws its own background and messages in the pass matching its bit 24, and its children are visited in both
+FAILS 0

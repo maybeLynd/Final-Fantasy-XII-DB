@@ -1,0 +1,82 @@
+{
+  "status": "CONSUMER_NEGATIVE_DIMENSION_RULE_MISSES_SIGNED_MIN_WRAP",
+  "method": "A exact original32bitLEA/signedCMOV semantics; actual unchanged consumer clamp() and original default executed in Python, not FF12/native/guest/live execution",
+  "raw_sha256": "dbda7352c496fd4a1feb5850fe2a9d649a67b838e94cdd0785db322a4eed02ba",
+  "boundary_mismatches": [
+    {
+      "index": 0,
+      "dimension": -2147483648,
+      "actual_original_fable_model": -2147483649,
+      "decoded_lea_upper_bits": "7fffffff",
+      "source_predicted_signed_clamped": 2147483647,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": -1,
+      "dimension": -2147483648,
+      "actual_original_fable_model": -2147483649,
+      "decoded_lea_upper_bits": "7fffffff",
+      "source_predicted_signed_clamped": 2147483647,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 2147483647,
+      "dimension": -2147483648,
+      "actual_original_fable_model": -2147483649,
+      "decoded_lea_upper_bits": "7fffffff",
+      "source_predicted_signed_clamped": 2147483647,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    }
+  ],
+  "unchanged_domain_controls": [
+    {
+      "index": 5,
+      "dimension": 3,
+      "actual_original_fable_model": 2,
+      "decoded_lea_upper_bits": "00000002",
+      "source_predicted_signed_clamped": 2,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": -2,
+      "dimension": 3,
+      "actual_original_fable_model": 0,
+      "decoded_lea_upper_bits": "00000002",
+      "source_predicted_signed_clamped": 0,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": 0,
+      "actual_original_fable_model": -1,
+      "decoded_lea_upper_bits": "ffffffff",
+      "source_predicted_signed_clamped": -1,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 2,
+      "dimension": -2,
+      "actual_original_fable_model": -3,
+      "decoded_lea_upper_bits": "fffffffd",
+      "source_predicted_signed_clamped": -3,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    },
+    {
+      "index": 0,
+      "dimension": -2147483647,
+      "actual_original_fable_model": -2147483648,
+      "decoded_lea_upper_bits": "80000000",
+      "source_predicted_signed_clamped": -2147483648,
+      "kind": "ORIGINAL_CONSUMER_FUNCTION_EXECUTION_PLUS_CONDITIONAL_STATIC_INSTRUCTION_CALCULATION_NOT_FF12_EXECUTION"
+    }
+  ],
+  "actual_default_green": {
+    "returncode": 0,
+    "stdout": "PASS K1  ebx = 0; index in eax from the int or float pop paths (or 0 on an empty stack); dimension a signed dword\nPASS K2  index' = min(max(index, 0), dim - 1), strict compare\nPASS K3  (index, dim) -> index': {(5, 3): 2, (-2, 3): 0, (1, 3): 1, (0, 0): -1, (4, 0): -1, (2, -2): -3}\nPASS C  a cmovle model admits index 3 for dim 3; the image's cmovl gives 2\nFAILS 0\n",
+    "stderr": "",
+    "unchanged": true
+  },
+  "producer_fix": "Preserve originalwidth: lower=max(signed32index,0); upper=signed32(low32(dim-1)); choose lower iff signedlower<signeddimension else upper. Add signedMIN/MIN+1 controls to actualproducer/check/default and affectedcontract/prose, notonly resulttext.",
+  "interpretation": "The positive-dimension edgeclamp anddim0 resultremainvalid; FABLEproducer/canonicalunqualified negative-dimension formula extrapolates past signed32MIN. OriginalLEAupper wraps80000000-1 to7FFFFFFF, signedCMOVL false forlower>=0 againstnegativeMIN; predictedindex2147483647, NOTPython-2147483649. This is conditionalstaticinstruction analysis plus actualconsumerexecution, notFF12execution/asset/gamefault.",
+  "limits": "SignedMIN dimension case is injected conditionalanalysis, not an observedasset/value/gamefault. Existing69nonemptyprecondition intact; only universalnegativeformula/producerwidth extrapolation affected. Fullresolver/storage/flattenoverflow/validity/nativefault/lifetime/reachability/live OPEN. PC OFF/S19/fullL1+L2 NOT_MET Ownercorrection/consumeragreement/independentacceptance pending; original publishedproducer/raw immutable, nopeeredit."
+}

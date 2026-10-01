@@ -1,0 +1,5 @@
+PASS  A 0016F2A0: 0x44A7-byte allocation aligned to 32, 0x4480 bytes zeroed, then 00174540(pbi)
+PASS  Q 00174540: Y1dequant +0x1420, Y2dequant +0x1620, UVdequant +0x1820, 128 x 4 bytes each, from the five delta-q fields
+PASS  M 001746B0(pbi, xd = pbi): Q from baseQIndex or the segment path; xd +0x7E0 / +0x800 / +0x820 / +0x840 filled from the three tables
+PASS  P the three instance tables, the four macroblock tables and modeInfoContext are in the store; both types tile
+FAILS 0

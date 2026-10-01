@@ -1,0 +1,63 @@
+{
+  "status": "PASS_SIX_ACTUAL_ADMISSION_READER_REFUSALS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "positive_reused": true,
+  "positive_result_sha256": "6d832694cf85fa13b5d480203aaf807753085084a9575b30670f8f3bb31a945a",
+  "refusals": [
+    {
+      "case": "missing-wrapper",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "missing original/adapter prerequisite",
+      "expected_error_seen": true,
+      "reused_receipt": "texture-async-admission-controls-01/missing-wrapper/status.json",
+      "receipt_sha256": "dad3827b27c850930ce006c0b7f05f0ded46f0ba5860551b52fd3c6b6598f34d"
+    },
+    {
+      "case": "wrong-root",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "root/leaf prerequisite changed",
+      "expected_error_seen": true,
+      "reused_receipt": "texture-async-admission-controls-01/wrong-root/status.json",
+      "receipt_sha256": "3bf4ec2720d59d776c1646852330ce758ba61e6116dc2f7c60b85d39143333b2"
+    },
+    {
+      "case": "wrong-table",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "physical RTTI/slot0 prerequisite changed",
+      "expected_error_seen": true,
+      "reused_receipt": "texture-async-admission-controls-01/wrong-table/status.json",
+      "receipt_sha256": "4dd6721ea6f0605351d9d9ef212d9f59e39c975c49e424e9994dc1c0017e61f4"
+    },
+    {
+      "case": "false-copy-role",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "disagree",
+      "expected_error_seen": true,
+      "reused_receipt": "texture-async-admission-controls-01/false-copy-role/status.json",
+      "receipt_sha256": "cad281e4cb311cc7bdff69e9831b8d56bd16042663ddfd63e92af951d3d7fcd2"
+    },
+    {
+      "case": "consistent-copy-register",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "wrong/incomplete original body",
+      "expected_error_seen": true
+    },
+    {
+      "case": "missing-copy-record",
+      "exit": 1,
+      "result_absent": true,
+      "expected_error": "mixed original bytes",
+      "expected_error_seen": true
+    }
+  ],
+  "driver_sha256": "fc9cdbf0120cbd297992edd28e35e660987a44bb536460dbe5a7802b14ab3173",
+  "reader_sha256": "4f04d9069d2c39abd7d6851624626ec7da415c8c52a63a5f6da87cfff2457f91",
+  "failed_fixture": "texture-async-admission-controls-01/consistent-copy-byte",
+  "failed_fixture_limit": "Inconsistent ModRM/annotation fixture correctly refused upstream; it did not test the intended body-pin gate",
+  "limits": "Synthetic source CLI controls only; no native/live or independent acceptance. All subprocesses terminal."
+}

@@ -1,0 +1,10 @@
+# NativeAdapter.MemberPredicateTreeSearch - EC-7 family C
+# # walk the intrusive tree at this+8 calling a member predicate per node;
+# # return the found flag.
+address	targets
+00219E30	00223060
+0021A1E0	00223320
+0021A250	00223390
+0021B540	00223EE0
+0021B790	00224900
+0021B800	00224960

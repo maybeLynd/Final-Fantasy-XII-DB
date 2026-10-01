@@ -1,0 +1,10 @@
+SURVIVES  X0  all nine sizes as measured
+SURVIVES  X1  the bounds, the colour count into 003CCB60, +0x140 slots, the 20-slot (idx << 4 | sub) map at +0x180, +0x194 handles
+SURVIVES  X2  page = entry + payloadOff + s8 [+0xBA] x clutBytes; the setter's call sites ['00428D3C', '00428D82', '0042E520'] - three, two of them in 00428CD0 (the page counts 00428D3C and then 00428CD0 twice)
+SURVIVES  X3  two calls from 0053D780; frame offsets +0x83B0 / +0x8430 / +0x8530 elsewhere: none
+SURVIVES  X4  the 0xE0 record whose byte +0 equals s8 [r14 + 0xB8]; 00504F00 stores +0xB8
+SURVIVES  X5  (REFUTES '·count') pair = B[ A[3 x sel + part] + byte [source @FOR + 0x32] x s8 [target + 0xB9] ]; the multiplier is the target's +0xB9 byte, loaded at 0053AB9F
+SURVIVES  X6  +0xB9 = the binder's argument when 0 <= v < byte [@FOR + 0x33], else 0
+SURVIVES  X7  the seed list, the two de-duplicated pair lists, the (idx + 2) << 5 record reader, the PSM before << 0x14
+SURVIVES  X8  the 256-slot bound in both cache bodies; the +0x140 x 16 and +0x100 x 0x20 teardown walks
+FAILS 0

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "separate_zip_extraction": true,
+  "clean_baseline_merge": true,
+  "read_only_preflight_before": true,
+  "read_only_preflight_after": true,
+  "reproduction_output_identical": true,
+  "assertions": 146,
+  "mutants": 10,
+  "retained_checks": 14,
+  "retained_corruptions": 8,
+  "all_payload_hashes_verified": true,
+  "no_binaries_or_unchanged_baseline_payloads": true,
+  "limits": "Receipt describes tests. ZIP rebuilt after inserting this receipt; final payload verification below includes the receipt."
+}

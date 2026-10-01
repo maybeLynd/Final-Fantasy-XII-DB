@@ -1,0 +1,11 @@
+# Runtime.SerialRangeInvokeLoop - EC-7 family C
+# # iterate bx over a member global serial range (base +0x1000); invoke
+# # shared Items_License sink 003008A0 with edx=0x63 per index.
+address	targets
+0030DCB0	003008A0
+0030DD10	003008A0
+0030DDC0	003008A0
+0030DE20	003008A0
+0030DE80	003008A0
+0030DEE0	003008A0
+0030DF40	003008A0

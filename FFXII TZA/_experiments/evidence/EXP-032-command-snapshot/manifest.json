@@ -1,0 +1,17 @@
+{
+  "scope": "synthetic byte controls only; no runtime evidence",
+  "files": {
+    "command_snapshot.py": {
+      "bytes": 2111,
+      "sha256": "7ddf5139d8c0b2f9eacc93a5699b5bc800e295c83c04ec63a505587b391702b5"
+    },
+    "test_snapshot.py": {
+      "bytes": 3209,
+      "sha256": "b9c57d8621166520ebd37e3c149228c2c324ffca22bb28b2fda36ea26dcc6fbb"
+    },
+    "unit-tests.txt": {
+      "bytes": 107,
+      "sha256": "1b6f69157102cc03f5264c937d138171570f1a3f06ab9ba2d8345507e1df7261"
+    }
+  }
+}

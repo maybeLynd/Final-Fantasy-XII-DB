@@ -1,0 +1,8 @@
+{
+  "status": "PASS_ISOLATED_ORIGINAL_CODE",
+  "cases": 6,
+  "native_or_live_cases": 0,
+  "baseline_and_low_overwrite_controls_retained": true,
+  "disclosed_native_effect_stubs": 3,
+  "limits": "Raw/source reduction only; no rerun, independent review or full mutation campaign acceptance."
+}

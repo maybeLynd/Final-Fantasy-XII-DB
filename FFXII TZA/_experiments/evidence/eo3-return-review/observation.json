@@ -1,0 +1,326 @@
+{
+  "method": "A static shipping byte review; no original execution or live",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "capstone": "5.0.7",
+  "callee": {
+    "start": "0x36c140",
+    "bytes": 84,
+    "sha256": "f34ec4c217f1b888902154ce45f6c27afc22fe2c77a50f2dbd85ff749ab87ca3",
+    "raw_hex": "8b057ac8f60185c07f08660f1f440000ebfeffc8488d1575c8f6014863c84803c9890559c8f6010fb704ca89054bc8f6010fb644ca0289059cccf601488b44ca0848890598ccf6010fb644ca03890595ccf601c3",
+    "instructions": [
+      [
+        "0x36c140",
+        "8b057ac8f601",
+        "mov",
+        "eax, dword ptr [rip + 0x1f6c87a]",
+        [
+          "eax"
+        ]
+      ],
+      [
+        "0x36c146",
+        "85c0",
+        "test",
+        "eax, eax",
+        [
+          "rflags"
+        ]
+      ],
+      [
+        "0x36c148",
+        "7f08",
+        "jg",
+        "0x36c152",
+        []
+      ],
+      [
+        "0x36c14a",
+        "660f1f440000",
+        "nop",
+        "word ptr [rax + rax]",
+        []
+      ],
+      [
+        "0x36c150",
+        "ebfe",
+        "jmp",
+        "0x36c150",
+        []
+      ],
+      [
+        "0x36c152",
+        "ffc8",
+        "dec",
+        "eax",
+        [
+          "rflags",
+          "eax"
+        ]
+      ],
+      [
+        "0x36c154",
+        "488d1575c8f601",
+        "lea",
+        "rdx, [rip + 0x1f6c875]",
+        [
+          "rdx"
+        ]
+      ],
+      [
+        "0x36c15b",
+        "4863c8",
+        "movsxd",
+        "rcx, eax",
+        [
+          "rcx"
+        ]
+      ],
+      [
+        "0x36c15e",
+        "4803c9",
+        "add",
+        "rcx, rcx",
+        [
+          "rflags",
+          "rcx"
+        ]
+      ],
+      [
+        "0x36c161",
+        "890559c8f601",
+        "mov",
+        "dword ptr [rip + 0x1f6c859], eax",
+        []
+      ],
+      [
+        "0x36c167",
+        "0fb704ca",
+        "movzx",
+        "eax, word ptr [rdx + rcx*8]",
+        [
+          "eax"
+        ]
+      ],
+      [
+        "0x36c16b",
+        "89054bc8f601",
+        "mov",
+        "dword ptr [rip + 0x1f6c84b], eax",
+        []
+      ],
+      [
+        "0x36c171",
+        "0fb644ca02",
+        "movzx",
+        "eax, byte ptr [rdx + rcx*8 + 2]",
+        [
+          "eax"
+        ]
+      ],
+      [
+        "0x36c176",
+        "89059cccf601",
+        "mov",
+        "dword ptr [rip + 0x1f6cc9c], eax",
+        []
+      ],
+      [
+        "0x36c17c",
+        "488b44ca08",
+        "mov",
+        "rax, qword ptr [rdx + rcx*8 + 8]",
+        [
+          "rax"
+        ]
+      ],
+      [
+        "0x36c181",
+        "48890598ccf601",
+        "mov",
+        "qword ptr [rip + 0x1f6cc98], rax",
+        []
+      ],
+      [
+        "0x36c188",
+        "0fb644ca03",
+        "movzx",
+        "eax, byte ptr [rdx + rcx*8 + 3]",
+        [
+          "eax"
+        ]
+      ],
+      [
+        "0x36c18d",
+        "890595ccf601",
+        "mov",
+        "dword ptr [rip + 0x1f6cc95], eax",
+        []
+      ],
+      [
+        "0x36c193",
+        "c3",
+        "ret",
+        "",
+        [
+          "rsp"
+        ]
+      ]
+    ]
+  },
+  "caller": {
+    "start": "0x32e816",
+    "bytes": 60,
+    "sha256": "b21b5d302a19c4986ac0d885e3ba5d0d960d3139beb5def4aaa50095f68cb41d",
+    "raw_hex": "488bf8482bd30f1f40000fb60b880c1a488d5b0184c975f2e80dd90300448bcdc7442428010000004d8bc648897424208bd7b9ff000000e81e000000",
+    "instructions": [
+      [
+        "0x32e816",
+        "488bf8",
+        "mov",
+        "rdi, rax",
+        [
+          "rdi"
+        ]
+      ],
+      [
+        "0x32e819",
+        "482bd3",
+        "sub",
+        "rdx, rbx",
+        [
+          "rflags",
+          "rdx"
+        ]
+      ],
+      [
+        "0x32e81c",
+        "0f1f4000",
+        "nop",
+        "dword ptr [rax]",
+        []
+      ],
+      [
+        "0x32e820",
+        "0fb60b",
+        "movzx",
+        "ecx, byte ptr [rbx]",
+        [
+          "ecx"
+        ]
+      ],
+      [
+        "0x32e823",
+        "880c1a",
+        "mov",
+        "byte ptr [rdx + rbx], cl",
+        []
+      ],
+      [
+        "0x32e826",
+        "488d5b01",
+        "lea",
+        "rbx, [rbx + 1]",
+        [
+          "rbx"
+        ]
+      ],
+      [
+        "0x32e82a",
+        "84c9",
+        "test",
+        "cl, cl",
+        [
+          "rflags"
+        ]
+      ],
+      [
+        "0x32e82c",
+        "75f2",
+        "jne",
+        "0x32e820",
+        []
+      ],
+      [
+        "0x32e82e",
+        "e80dd90300",
+        "call",
+        "0x36c140",
+        [
+          "rsp"
+        ]
+      ],
+      [
+        "0x32e833",
+        "448bcd",
+        "mov",
+        "r9d, ebp",
+        [
+          "r9d"
+        ]
+      ],
+      [
+        "0x32e836",
+        "c744242801000000",
+        "mov",
+        "dword ptr [rsp + 0x28], 1",
+        []
+      ],
+      [
+        "0x32e83e",
+        "4d8bc6",
+        "mov",
+        "r8, r14",
+        [
+          "r8"
+        ]
+      ],
+      [
+        "0x32e841",
+        "4889742420",
+        "mov",
+        "qword ptr [rsp + 0x20], rsi",
+        []
+      ],
+      [
+        "0x32e846",
+        "8bd7",
+        "mov",
+        "edx, edi",
+        [
+          "edx"
+        ]
+      ],
+      [
+        "0x32e848",
+        "b9ff000000",
+        "mov",
+        "ecx, 0xff",
+        [
+          "ecx"
+        ]
+      ],
+      [
+        "0x32e84d",
+        "e81e000000",
+        "call",
+        "0x32e870",
+        [
+          "rsp"
+        ]
+      ]
+    ]
+  },
+  "controls": {
+    "synthetic_EDI_write_detected": true,
+    "full_nonzero_ranges": [
+      84,
+      60
+    ]
+  },
+  "conclusion": "If normal original flow reaches 0032E84D, RDI retains the allocator result, RDX contains zero_extend(low32(RDI)), ECX=FF in the same context.",
+  "limits": [
+    "0036C140 can spin forever at0036C150 if its initial count is nonpositive; reaching the observation point remains conditional.",
+    "No runtime caller, allocation placement, pointer readability, queue-consumer linkage, crash cause or live instrument health established.",
+    "Callee also performs a 64-bit RAX load at0036C17C; literal only-EAX wording is too narrow."
+  ]
+}

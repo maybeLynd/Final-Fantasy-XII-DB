@@ -1,0 +1,66 @@
+[
+  {
+    "label": "before-mixed-false-admissible",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "Database\\Tools\\work\\ASTRA\\publication-ignore-stdin-repair\\before-mixed-false-admissible-pins.json"
+    ],
+    "returncode": 0,
+    "stdout": "PUBLICATION_PATH_ADMISSIBILITY_ONLY_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "helper_sha256": "85558b748ef535b026065feb6188b4f200c99a45a77fae4f8bfc13c244028d13"
+  },
+  {
+    "label": "after-mixed-refused",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "Database\\Tools\\work\\ASTRA\\publication-ignore-stdin-repair\\after-mixed-refused-pins.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py\", line 15, in <module>\n    check_ignored_paths(json.loads(pinfile.read_text()))\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py\", line 11, in check_ignored_paths\n    assert q.returncode==1,'Ignored reviewed publication path; preserve bytes/use package-local exception before claiming'\n           ^^^^^^^^^^^^^^^\nAssertionError: Ignored reviewed publication path; preserve bytes/use package-local exception before claiming\n",
+    "terminal": true,
+    "helper_sha256": "735ec6a7bd01348aa6279d2908e62e8fb9ff008c68f902be27b44891141b707f"
+  },
+  {
+    "label": "after-valid-positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "Database\\Tools\\work\\ASTRA\\publication-ignore-stdin-repair\\after-valid-positive-pins.json"
+    ],
+    "returncode": 0,
+    "stdout": "PUBLICATION_PATH_ADMISSIBILITY_ONLY_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "helper_sha256": "735ec6a7bd01348aa6279d2908e62e8fb9ff008c68f902be27b44891141b707f"
+  },
+  {
+    "label": "after-package-exception-positive",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\work\\ASTRA\\migration-generation-independent\\prepare-publication.py",
+      "--preflight-only",
+      "--preflight-pins",
+      "Database\\Tools\\work\\ASTRA\\publication-ignore-stdin-repair\\after-package-exception-positive-pins.json"
+    ],
+    "returncode": 0,
+    "stdout": "PUBLICATION_PATH_ADMISSIBILITY_ONLY_NO_WRITES\n",
+    "stderr": "",
+    "terminal": true,
+    "helper_sha256": "735ec6a7bd01348aa6279d2908e62e8fb9ff008c68f902be27b44891141b707f"
+  }
+]

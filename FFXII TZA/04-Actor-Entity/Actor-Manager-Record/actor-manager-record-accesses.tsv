@@ -1,0 +1,205 @@
+function	name	site	disp	kind	instruction	route	note
+00229FA0	FUN_00229fa0	00229FDE	0x28	r	mov ecx, dword ptr [rbx + 0x28]	seed	
+002640D0	FUN_002640d0	002640D7	0x28	r	mov eax, dword ptr [rax + 0x28]	seed	
+0026B750	FUN_0026b750	0026B772	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+002C8BC0	FUN_002c8bc0	002C8D26	0xB0	r	mov r8, qword ptr [rax + 0xb0]	seed	
+0033F710	FUN_0033f710	0033F738	0x28	r	cmp dword ptr [rax + 0x28], 0	seed	
+0033FF40	FUN_0033ff40	0033FF52	0x28	r	mov ebx, dword ptr [rax + 0x28]	seed	
+00344660	FUN_00344660	00344686	0x28	r	mov esi, dword ptr [rax + 0x28]	seed	
+00344C30	FUN_00344c30	00344C4C	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+00345930	FUN_00345930	00345985	0x28	r	mov ecx, dword ptr [r15 + 0x28]	seed	
+00347470	FUN_00347470	0034748D	0x28	r	mov ecx, dword ptr [rbx + 0x28]	seed	
+003477E0	FUN_003477e0	003477EE	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+00347B00	FUN_00347b00	00347B82	0x28	r	mov edx, dword ptr [r14 + 0x28]	seed	
+00347D60	FUN_00347d60	00347D6B	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+003492A0	FUN_003492a0	003492BD	0x28	r	mov ecx, dword ptr [rbx + 0x28]	seed	
+00349560	FUN_00349560	0034957C	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+0034A250	FUN_0034a250	0034A26D	0x17	rw	and byte ptr [rdi + 0x17], 0xfe	seed	
+0034A250	FUN_0034a250	0034A27B	0x17	rw	or byte ptr [rdi + 0x17], cl	seed	
+0034A3B0	FUN_0034a3b0	0034A3CD	0x28	r	mov ecx, dword ptr [rdi + 0x28]	seed	
+0034A6A0	FUN_0034a6a0	0034A6B7	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+0034AB50	FUN_0034ab50	0034ABB0	0x28	r	mov edx, dword ptr [rbp + 0x28]	seed	
+0034AD70	FUN_0034ad70	0034AD79	0x200	rw	or byte ptr [rax + 0x200], 4	seed	
+0034ADA0	FUN_0034ada0	0034AE91	0xB0	r	mov r9, qword ptr [r13 + 0xb0]	seed	
+0034B1C0	FUN_0034b1c0	0034B1C9	0x200	rw	and byte ptr [rax + 0x200], 0xfb	seed	
+0034BFE0	FUN_0034bfe0	0034BFF0	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+0034C570	FUN_0034c570	0034C587	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+0034C7E0	FUN_0034c7e0	0034C804	0x28	r	mov ecx, dword ptr [rdi + 0x28]	seed	
+0034C9A0	FUN_0034c9a0	0034C9B5	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+0034E5C0	FUN_0034e5c0	0034E5DF	0x28	r	mov ebp, dword ptr [rax + 0x28]	seed	
+0034E8B0	FUN_0034e8b0	0034E8D2	0x28	r	mov esi, dword ptr [rax + 0x28]	seed	
+0034EC80	FUN_0034ec80	0034EC9F	0x28	r	mov ebp, dword ptr [rax + 0x28]	seed	
+0034EE40	FUN_0034ee40	0034EE6C	0x28	r	mov esi, dword ptr [rax + 0x28]	seed	
+0034F380	FUN_0034f380	0034F3AB	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+00350700	FUN_00350700	00350772	0x28	r	mov ecx, dword ptr [r13 + 0x28]	seed	
+00350960	FUN_00350960	00350969	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+00351210	FUN_00351210	0035123B	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+00351850	FUN_00351850	00351867	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+00352130	FUN_00352130	0035215B	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+003526F0	FUN_003526f0	00352715	0x28	r	mov ecx, dword ptr [rbx + 0x28]	seed	
+00352B30	FUN_00352b30	00352B55	0x28	r	mov ecx, dword ptr [rbx + 0x28]	seed	
+00353BF0	FUN_00353bf0	00353C01	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+003540B0	FUN_003540b0	003540EB	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+003545B0	FUN_003545b0	00354628	0xB0	r	mov rcx, qword ptr [rdi + 0xb0]	seed	
+003546C0	FUN_003546c0	003546D0	0x28	r	cmp dword ptr [rax + 0x28], ecx	seed	
+00354B00	FUN_00354b00	00354B0B	0x28	r	cmp dword ptr [rax + 0x28], ecx	seed	
+00354F20	FUN_00354f20	00354F6B	0x28	r	cmp dword ptr [rsi + 0x28], edi	seed	
+00354F20	FUN_00354f20	00354F7A	0xB0	r	mov r9, qword ptr [rsi + 0xb0]	seed	
+00355350	FUN_00355350	003553DA	0x28	r	cmp dword ptr [rbp + 0x28], 0	seed	
+003555F0	FUN_003555f0	0035563B	0x28	r	cmp dword ptr [rsi + 0x28], edi	seed	
+003555F0	FUN_003555f0	0035564A	0xB0	r	mov r9, qword ptr [rsi + 0xb0]	seed	
+003565C0	FUN_003565c0	003565DC	0x28	r	cmp dword ptr [rax + 0x28], 0	seed	
+003565C0	FUN_003565c0	003565E2	0x12	r	cmp byte ptr [rax + 0x12], 0	seed	
+003565C0	FUN_003565c0	003565E8	0x0	r	mov rax, qword ptr [rax]	seed	
+00356D40	FUN_00356d40	00356DAC	0x28	r	mov ebx, dword ptr [rax + 0x28]	seed	
+00356D40	FUN_00356d40	00356DBE	0x28	r	cmp ebx, dword ptr [rdi + 0x28]	seed	
+00357230	FUN_00357230	0035724A	0x28	r	mov ecx, dword ptr [rax + 0x28]	seed	
+003576D0	FUN_003576d0	00357717	0x28	r	mov r14d, dword ptr [rax + 0x28]	seed	
+00357980	VM_ActorSteerTowardActor	003579CB	0x28	r	mov edx, dword ptr [rax + 0x28]	seed	
+003581B0	FUN_003581b0	00358223	0x28	r	mov r8d, dword ptr [rax + 0x28]	seed	
+003DA370	FUN_003da370	003DA3A2	0x18	w	mov word ptr [rax + 0x18], dx	seed	
+003DA370	FUN_003da370	003DA3A6	0x1A	w	mov word ptr [rax + 0x1a], dx	seed	
+003DA370	FUN_003da370	003DA3AA	0x11A	w	mov word ptr [rax + 0x11a], dx	seed	
+003DA370	FUN_003da370	003DA3B1	0x118	w	mov word ptr [rax + 0x118], cx	seed	
+003DA370	FUN_003da370	003DA3B8	0x130	w	mov word ptr [rax + 0x130], cx	seed	
+003DA370	FUN_003da370	003DA3BF	0x132	w	mov word ptr [rax + 0x132], dx	seed	
+003DA370	FUN_003da370	003DA3C6	0x148	w	mov word ptr [rax + 0x148], cx	seed	
+003DA370	FUN_003da370	003DA3CD	0x14A	w	mov word ptr [rax + 0x14a], dx	seed	
+003DA370	FUN_003da370	003DA3D4	0x160	w	mov word ptr [rax + 0x160], cx	seed	
+003DA370	FUN_003da370	003DA3DB	0x162	w	mov word ptr [rax + 0x162], dx	seed	
+0050D570	FUN_0050d570	0050D59C	0x28	r	mov ecx, dword ptr [rsi + 0x28]	seed	
+0050D8F0	FUN_0050d8f0	0050D91D	0x0	r	mov rbp, qword ptr [rax]	seed	
+0050DAD0	FUN_0050dad0	0050DAFD	0x0	r	mov rbp, qword ptr [rax]	seed	
+0050EAB0	FUN_0050eab0	0050EB57	0xB0	r	mov r9, qword ptr [r15 + 0xb0]	seed	
+00358940	ActorManager_GetRecordByOrdinal	00358940	0x8	r	mov r8, qword ptr [rcx + 8]	arg0+0x0<00264010@00264025	
+00263F80	FUN_00263f80	00263F80	0x100	r	mov r8, qword ptr [rcx + 0x100]	arg0+0x0<002E9A60@002E9A7F	
+002650B0	FUN_002650b0	002650B6	0x0	r	mov r10, qword ptr [rcx]	arg0+0x0<0033F100@0033F12E	
+002650B0	FUN_002650b0	002650E8	0x48	r	mov rcx, qword ptr [r9 + 0x48]	arg0+0x0<0033F100@0033F12E	
+002650B0	FUN_002650b0	002650FC	0x40	r	mov rcx, qword ptr [r9 + 0x40]	arg0+0x0<0033F100@0033F12E	
+002650B0	FUN_002650b0	00265113	0x98	r	call qword ptr [r9 + 0x98]	arg0+0x0<0033F100@0033F12E	
+003E92F0	FUN_003e92f0	003E92F6	0xB8	r	cmp qword ptr [rcx + 0xb8], 0	arg0+0x0<0033F100@0033F148	
+003E92F0	FUN_003e92f0	003E9303	0xB8	w	mov qword ptr [rcx + 0xb8], rdx	arg0+0x0<0033F100@0033F148	
+003E92F0	FUN_003e92f0	003E9312	0xC0	w	mov dword ptr [rbx + 0xc0], eax	arg0+0x0<0033F100@0033F148	
+003E9320	FUN_003e9320	003E935B	0xB8	r	cmp qword ptr [rsi + 0xb8], 0	arg0+0x0<003400E0@0034017F	
+003E9320	FUN_003e9320	003E93AA	0xC0	r	mov r8d, dword ptr [rsi + 0xc0]	arg0+0x0<003400E0@0034017F	
+003E9320	FUN_003e9320	003E93C5	0xC0	r	mov r8d, dword ptr [rsi + 0xc0]	arg0+0x0<003400E0@0034017F	
+0025AE00	FUN_0025ae00	0025AE16	0x20	r	cmp dword ptr [rcx + 0x20], r14d	arg0+0x0<00340970@00340997	
+0025AE00	FUN_0025ae00	0025AEBA	0x28	r	mov ecx, dword ptr [rsi + 0x28]	arg0+0x0<00340970@00340997	
+0025AE00	FUN_0025ae00	0025AEE5	0x0	r	mov rdi, qword ptr [rsi]	arg0+0x0<00340970@00340997	
+0025AE00	FUN_0025ae00	0025AF31	0x20	r	cmp r14d, dword ptr [rsi + 0x20]	arg0+0x0<00340970@00340997	
+003E9550	FUN_003e9550	003E9550	0xB8	r	cmp qword ptr [rcx + 0xb8], 0	arg0+0x0<00340DC0@00340DEC	
+003E9550	FUN_003e9550	003E955A	0xC0	r	mov ecx, dword ptr [rcx + 0xc0]	arg0+0x0<00340DC0@00340DEC	
+0026B8A0	FUN_0026b8a0	0026B8A4	0x16	w	mov byte ptr [rcx + 0x16], 0	arg0+0x0<00346680@00346697	
+0026C5D0	FUN_0026c5d0	0026C606	0x14	w	mov byte ptr [rcx + 0x14], 1	arg0+0x0<00346860@00346870	
+0026B8C0	FUN_0026b8c0	0026B8C4	0x16	w	mov byte ptr [rcx + 0x16], 1	arg0+0x0<00347440@00347450	
+00264D60	FUN_00264d60	00264D60	0xA0	r	mov r8, qword ptr [rcx + 0xa0]	arg0+0x0<00348DF0@00348E74	
+003DD230	FUN_003dd230	003DD245	0xF0	r	mov r14, qword ptr [rcx + 0xf0]	arg0+0x0<003492F0@00349340	
+003DD230	FUN_003dd230	003DD293	0x17C	w	movss dword ptr [rbx + rsi*8 + 0x17c], xmm6	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2A9	0x178	w	mov word ptr [rbx + rsi*8 + 0x178], ax	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2B1	0x170	w	mov dword ptr [rbx + rsi*8 + 0x170], edx	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2B8	0x17A	w	mov word ptr [rbx + rsi*8 + 0x17a], bp	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2C0	0x174	w	mov dword ptr [rbx + rsi*8 + 0x174], ecx	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2C7	0x180	w	mov dword ptr [rbx + rsi*8 + 0x180], 0x3f800000	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2D2	0x28	r	mov ecx, dword ptr [rbx + 0x28]	arg0+0x0<003492F0@00349340	
+003DD230	FUN_003dd230	003DD2DA	0xF0	r	cmp qword ptr [rbx + 0xf0], 0	arg0+0x0<003492F0@00349340	
+003DD230	FUN_003dd230	003DD2E4	0x174	r	movsxd rax, dword ptr [rbx + rsi*8 + 0x174]	arg0+0x0<003492F0@00349340	idx
+003DD230	FUN_003dd230	003DD2EC	0x1C	w	mov word ptr [rbx + rax*2 + 0x1c], di	arg0+0x0<003492F0@00349340	idx
+003DD320	FUN_003dd320	003DD325	0xF0	r	cmp qword ptr [rcx + 0xf0], 0	arg0+0x0<00349ED0@00349EFC	
+003DD320	FUN_003dd320	003DD338	0x178	w	mov word ptr [rcx + rdx*8 + 0x178], ax	arg0+0x0<00349ED0@00349EFC	idx
+003DA300	FUN_003da300	003DA300	0xD8	r	mov r8, qword ptr [rcx + 0xd8]	arg0+0x0<00349FA0@0034A007	
+003DA300	FUN_003da300	003DA316	0x28	r	mov ecx, dword ptr [rcx + 0x28]	arg0+0x0<00349FA0@0034A007	
+003DD1F0	FUN_003dd1f0	003DD1FB	0x0	w	movss dword ptr [rcx + rax*8], xmm2	arg0+0x0<0034A720@0034A764	idx
+002673A0	FUN_002673a0	002673A0	0xA0	r	mov r8, qword ptr [rcx + 0xa0]	arg0+0x0<0034ADA0@0034AE1C	
+003DCF60	FUN_003dcf60	003DCF65	0x1C	w	mov word ptr [rcx + 0x1c], dx	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF69	0x1E	w	mov word ptr [rcx + 0x1e], dx	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF6D	0x178	w	mov word ptr [rcx + 0x178], ax	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF74	0x17A	w	mov word ptr [rcx + 0x17a], dx	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF7B	0x190	w	mov word ptr [rcx + 0x190], ax	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF82	0x192	w	mov word ptr [rcx + 0x192], dx	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF89	0x1A8	w	mov word ptr [rcx + 0x1a8], ax	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF90	0x1AA	w	mov word ptr [rcx + 0x1aa], dx	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF97	0x1C0	w	mov word ptr [rcx + 0x1c0], ax	arg0+0x0<0034B100@0034B110	
+003DCF60	FUN_003dcf60	003DCF9E	0x1C2	w	mov word ptr [rcx + 0x1c2], dx	arg0+0x0<0034B100@0034B110	
+003DD350	FUN_003dd350	003DD355	0xF0	r	cmp qword ptr [rcx + 0xf0], 0	arg0+0x0<0034B610@0034B63C	
+003DD350	FUN_003dd350	003DD366	0x174	r	movsxd rax, dword ptr [rcx + r8*8 + 0x174]	arg0+0x0<0034B610@0034B63C	idx
+003DD350	FUN_003dd350	003DD36E	0x1C	w	mov word ptr [rcx + rax*2 + 0x1c], dx	arg0+0x0<0034B610@0034B63C	idx
+003DA330	FUN_003da330	003DA330	0xD8	r	mov r9, qword ptr [rcx + 0xd8]	arg0+0x0<0034E9B0@0034E9EC	
+003DA330	FUN_003da330	003DA349	0x28	r	mov ecx, dword ptr [rcx + 0x28]	arg0+0x0<0034E9B0@0034E9EC	
+003DA400	FUN_003da400	003DA410	0xD8	r	mov rcx, qword ptr [rcx + 0xd8]	arg0+0x0<0034F2F0@0034F340	
+003DA400	FUN_003da400	003DA44D	0x11C	w	movss dword ptr [rbx + rdi*8 + 0x11c], xmm2	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA462	0x11A	w	mov word ptr [rbx + rdi*8 + 0x11a], r8w	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA471	0x110	w	mov dword ptr [rbx + rdi*8 + 0x110], edx	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA47D	0x114	w	mov dword ptr [rbx + rdi*8 + 0x114], ecx	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA484	0x118	w	mov word ptr [rbx + rdi*8 + 0x118], ax	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA48C	0x120	w	mov dword ptr [rbx + rdi*8 + 0x120], 0x3f800000	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA497	0x124	w	mov byte ptr [rbx + rdi*8 + 0x124], 0	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA49F	0x28	r	mov ecx, dword ptr [rbx + 0x28]	arg0+0x0<0034F2F0@0034F340	
+003DA400	FUN_003da400	003DA4A7	0xD8	r	cmp qword ptr [rbx + 0xd8], 0	arg0+0x0<0034F2F0@0034F340	
+003DA400	FUN_003da400	003DA4B1	0x114	r	movsxd rax, dword ptr [rbx + rdi*8 + 0x114]	arg0+0x0<0034F2F0@0034F340	idx
+003DA400	FUN_003da400	003DA4B9	0x18	w	mov word ptr [rbx + rax*2 + 0x18], si	arg0+0x0<0034F2F0@0034F340	idx
+0025AD10	FUN_0025ad10	0025AD9D	0x0	r	mov rbx, qword ptr [rsi]	arg0+0x0<0034FA70@0034FAA3	
+003DA4D0	FUN_003da4d0	003DA4D5	0xD8	r	cmp qword ptr [rcx + 0xd8], 0	arg0+0x0<003502E0@0035030C	
+003DA4D0	FUN_003da4d0	003DA4E8	0x118	w	mov word ptr [rcx + rdx*8 + 0x118], ax	arg0+0x0<003502E0@0035030C	idx
+003DA2D0	FUN_003da2d0	003DA2DB	0x0	w	movss dword ptr [rcx + rax*8], xmm2	arg0+0x0<00350B00@00350B44	idx
+003DA000	FUN_003da000	003DA005	0x18	w	mov word ptr [rcx + 0x18], dx	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA009	0x1A	w	mov word ptr [rcx + 0x1a], dx	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA00D	0x118	w	mov word ptr [rcx + 0x118], ax	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA014	0x11A	w	mov word ptr [rcx + 0x11a], dx	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA01B	0x130	w	mov word ptr [rcx + 0x130], ax	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA022	0x132	w	mov word ptr [rcx + 0x132], dx	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA029	0x148	w	mov word ptr [rcx + 0x148], ax	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA030	0x14A	w	mov word ptr [rcx + 0x14a], dx	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA037	0x160	w	mov word ptr [rcx + 0x160], ax	arg0+0x0<00351540@00351550	
+003DA000	FUN_003da000	003DA03E	0x162	w	mov word ptr [rcx + 0x162], dx	arg0+0x0<00351540@00351550	
+003DA570	FUN_003da570	003DA575	0xD8	r	cmp qword ptr [rcx + 0xd8], 0	arg0+0x0<00351C00@00351C2C	
+003DA570	FUN_003da570	003DA586	0x114	r	movsxd rax, dword ptr [rcx + r8*8 + 0x114]	arg0+0x0<00351C00@00351C2C	idx
+003DA570	FUN_003da570	003DA58E	0x18	w	mov word ptr [rcx + rax*2 + 0x18], dx	arg0+0x0<00351C00@00351C2C	idx
+003E8F50	FUN_003e8f50	003E8F50	0xB0	r	mov rcx, qword ptr [rcx + 0xb0]	arg0+0x0<00352A50@00352A87	
+003E8FC0	FUN_003e8fc0	003E8FC0	0xB0	r	mov rcx, qword ptr [rcx + 0xb0]	arg0+0x0<00352EC0@00352EF7	
+003E9000	FUN_003e9000	003E9000	0xB0	r	mov rcx, qword ptr [rcx + 0xb0]	arg0+0x0<003534F0@00353527	
+002642C0	FUN_002642c0	002642CA	0x10	r	test byte ptr [rcx + 0x10], 1	arg0+0x0<00355A00@00355A23	
+002642C0	FUN_002642c0	002642D7	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<00355A00@00355A23	
+00264D90	FUN_00264d90	00264D90	0xA8	r	mov r8, qword ptr [rcx + 0xa8]	arg0+0x0<00355A00@00355A9F	
+00264390	FUN_00264390	002643A8	0x10	r	test byte ptr [rcx + 0x10], r8b	arg0+0x0<00355A00@00355AE7	
+00264390	FUN_00264390	002643AE	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<00355A00@00355AE7	
+00263D40	FUN_00263d40	00263D54	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<0025AE00@0025AE6B	
+0026C3E0	FUN_0026c3e0	0026C410	0x14	w	mov byte ptr [rbx + 0x14], 0	arg0+0x0<0026C3B0@0026C3B5	
+002652D0	FUN_002652d0	002652F3	0x0	r	mov rax, qword ptr [rcx]	arg0+0x0<00265380@00265389	
+002652D0	FUN_002652d0	00265322	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<00265380@00265389	
+0025E4C0	WorldActorScriptVM_InterpretBytecode	0025E5C5	0x201	r	movzx edx, byte ptr [r13 + 0x201]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	0026174A	0x28	r	mov ecx, dword ptr [r13 + 0x28]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	002617C9	0x80	r	mov rax, qword ptr [r13 + 0x80]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	002617E5	0x0	r	add rdx, qword ptr [r13]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	00261806	0x80	r	mov r8, qword ptr [r13 + 0x80]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	00261855	0x68	r	mov rax, qword ptr [r13 + 0x68]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	0026187D	0x70	r	mov rax, qword ptr [r13 + 0x70]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	00261B27	0x0	r	mov r13, qword ptr [r13]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	00261C24	0x0	r	mov r13, qword ptr [r13]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+0025E4C0	WorldActorScriptVM_InterpretBytecode	00261CCD	0x0	r	mov r13, qword ptr [r13]	seed	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00268850	ScriptVM_SubmitActorRuntimeRequest	002689D5	0x28	r	mov ecx, dword ptr [r13 + 0x28]	arg0+0x0<0025E4C0@0025F7D0	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00268850	ScriptVM_SubmitActorRuntimeRequest	002689D9	0x28	r	mov eax, dword ptr [r13 + 0x28]	arg0+0x0<0025E4C0@0025F7D0	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00267E60	FUN_00267e60	00267F1E	0x28	r	mov ecx, dword ptr [rdi + 0x28]	arg0+0x0<0025E4C0@00261785	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262459	0x78	r	mov rax, qword ptr [rcx + 0x78]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	002624B0	0x0	r	add rcx, qword ptr [rdi]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262546	0x0	r	mov rdx, qword ptr [rdi]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262587	0x48	r	mov rbx, qword ptr [rdi + 0x48]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262596	0x40	r	mov rbx, qword ptr [rdi + 0x40]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	002625AB	0x98	r	call qword ptr [rdi + 0x98]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	002625C1	0x58	r	mov rbx, qword ptr [rdi + 0x58]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	002625CD	0x60	r	mov rbx, qword ptr [rdi + 0x60]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262605	0x48	r	mov rbx, qword ptr [rdi + 0x48]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	0026260B	0x40	r	mov rbx, qword ptr [rdi + 0x40]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262617	0x98	r	call qword ptr [rdi + 0x98]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	00262627	0x58	r	mov rbx, qword ptr [rdi + 0x58]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00262440	FUN_00262440	0026262D	0x60	r	mov rbx, qword ptr [rdi + 0x60]	arg0+0x0<00267FC0@00267FD9	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00268B10	FUN_00268b10	00268B24	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<00268A80@00268AE6	argseed 0025E4C0:0 - the interpreter's first argument (FABLE-BF3, 2026-09-11)
+00266D10	FUN_00266d10	00266EF0	0x0	addr	lea rcx, [rbx - 0x10]	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F18	0x8	w	mov qword ptr [rbx - 8], rsi	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F01	0x10	rw	and byte ptr [rbx], 0xfe	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F04	0x11	rw	and byte ptr [rbx + 1], 0xf7	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F1C	0x13	w	mov byte ptr [rbx + 3], sil	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F08	0x17	rw	and byte ptr [rbx + 7], 0xa7	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F13	0x28	w	mov dword ptr [rbx + 0x18], edi	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F0C	0x200	rw	and byte ptr [rbx + 0x1f0], 0xfb	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F20	0x202	w	mov word ptr [rbx + 0x1f2], si	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288
+00266D10	FUN_00266d10	00266F27	0x284	w	mov dword ptr [rbx + 0x274], esi	ctor	five-slot init loop; rbx walks 02098E20 = slot+0x10, stride 0x288

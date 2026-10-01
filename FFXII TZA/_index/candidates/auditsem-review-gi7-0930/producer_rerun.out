@@ -1,0 +1,1 @@
+bank_b_check.py: exit 0, B1-B5, FAILS 0, output identical to the committed .out (CRLF-insensitive)

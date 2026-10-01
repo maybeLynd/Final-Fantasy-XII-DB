@@ -1,0 +1,65 @@
+{
+  "verdict": "PASS_STATIC_CONDITIONAL",
+  "source_sha256": "913ecddea7723b31dc82cece03234ece711c025e747b74cef3baa0aada584827",
+  "cases": [
+    {
+      "name": "depth-first-skips-later-row",
+      "method": "conditional source calculation, not execution",
+      "initial_depth": 0,
+      "targets": [
+        "0x22d8f08",
+        "0x22d8f90"
+      ],
+      "saved_hex": [
+        "00000000000000000000000000000000",
+        "37373737373737373737373737373737"
+      ],
+      "restored_indices": [
+        0
+      ],
+      "row_after": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "final_depth": 0
+    },
+    {
+      "name": "ordinary-disjoint-rows",
+      "method": "conditional source calculation, not execution",
+      "initial_depth": 0,
+      "targets": [
+        "0x22d8f30",
+        "0x22d8f90"
+      ],
+      "saved_hex": [
+        "37373737373737373737373737373737",
+        "37373737373737373737373737373737"
+      ],
+      "restored_indices": [
+        0,
+        1
+      ],
+      "row_after": "37373737373737373737373737373737",
+      "final_depth": 0
+    },
+    {
+      "name": "depth-last-restores-both",
+      "method": "conditional source calculation, not execution",
+      "initial_depth": 0,
+      "targets": [
+        "0x22d8f90",
+        "0x22d8f08"
+      ],
+      "saved_hex": [
+        "37373737373737373737373737373737",
+        "00000000000000000000000000000000"
+      ],
+      "restored_indices": [
+        0,
+        1
+      ],
+      "row_after": "37373737373737373737373737373737",
+      "final_depth": 0
+    }
+  ],
+  "established": "Restore rereads depth after each target write; published no-outstanding-Save alone is insufficient for its all-items postcondition under the conditional valid count2 alias layout.",
+  "sufficient_precondition": "Saved destinations do not overlap the 4B depth counter, and saved pointer/value records remain valid and unchanged until their reads; other ABI/validity/count/noninterference obligations remain.",
+  "limits": "Nonalias is sufficient, not necessary: depth-last control restores both. No claim that shipped callers use the counter as a target, no whole alias partition, no new runtime/native/live execution or scheduling proof."
+}

@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""gen_posteffect_family.py - regenerate posteffect-class-family.tsv from the shipping EXE.
+
+Everything is read out of the image. The classes come from MSVC RTTI: for every vtable whose
+complete-object locator names a class in `Phyre::PPostProcessing`, the class name, its declared
+bases and its slot count are decoded, then each slot is read. Nothing is typed in but the
+namespace to look for and the slot whose overrides are of interest.
+
+The second table is the point: slot 6 is the per-effect render entry. Twenty-seven of the
+thirty-six `PPostEffectBase` descendants inherit the base implementation; nine override it, and
+each override calls one or two workers in the `0065xxxx` band. Those workers are the largest
+block of `UQ-289`, the functions tagged `Phyre.Rendering.NativeQualified` that reference no
+string, and this is what names them.
+
+Run:  python gen_posteffect_family.py [path/to/FFXII_TZA.exe]
+The authority sha256 is printed on every run and must be 73461d08...721f8.
+"""
+import hashlib
+import os
+import re
+import struct
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_EXE = r"C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\exe\FFXII_TZA.exe"
+RTTI = r"C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\FABLE\pub140-scratch\tools\rtti_vtables.py"
+NAMESPACE = "PPostProcessing"
+RENDER_SLOT = 6
+TEXT_VA, TEXT_SZ = 0x121000, 0x7A0635
+OUT = os.path.join(HERE, "posteffect-class-family.tsv")
+
+
+def load(path):
+    d = open(path, "rb").read()
+    pe = struct.unpack_from("<I", d, 0x3C)[0]
+    nsec = struct.unpack_from("<H", d, pe + 6)[0]
+    opt = struct.unpack_from("<H", d, pe + 20)[0]
+    secs = []
+    for i in range(nsec):
+        o = pe + 24 + opt + i * 40
+        secs.append((0x120000 + struct.unpack_from("<I", d, o + 12)[0],
+                     struct.unpack_from("<I", d, o + 8)[0],
+                     struct.unpack_from("<I", d, o + 20)[0],
+                     struct.unpack_from("<I", d, o + 16)[0]))
+    return d, secs
+
+
+def off_of(secs, va):
+    for sva, vs, ro, rs in secs:
+        if sva <= va < sva + vs:
+            rel = va - sva
+            return ro + rel if rel < rs else None
+    return None
+
+
+def main():
+    exe = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_EXE
+    d, secs = load(exe)
+    print("sha256", hashlib.sha256(d).hexdigest())
+
+    out = subprocess.run([sys.executable, RTTI, NAMESPACE], capture_output=True, text=True).stdout
+    rows = []
+    for line in out.splitlines():
+        # \s+ between every column: rtti_vtables PADS the name field, so a pattern written with a
+        # single space silently keeps only the classes whose names are long enough to fill it -
+        # 17 of 37 here, and the bias is by NAME LENGTH, which no count would have exposed.
+        m = re.match(r"([0-9A-F]{8})\s+(\S+)\s+off\s+(\d+)\s+slots\s+(\d+)\s+frontier\s+(\d+)\s+bases\s+(\[.*\])", line)
+        if not m:
+            continue
+        name = m.group(2)
+        if any(k in name for k in ("ClassDescriptor", "ClassDataMember", "MethodCaller")):
+            continue
+        bases = re.findall(r"\.\?AV(\w+)@", m.group(6))
+        rows.append((int(m.group(1), 16), name, int(m.group(4)), bases))
+    rows.sort()
+
+    def short(n):
+        return n.replace(".?AV", "").replace("@" + NAMESPACE + "@Phyre@@", "").replace("@Phyre@@", "")
+
+    def slot(va, i):
+        o = off_of(secs, va + i * 8)
+        return struct.unpack_from("<Q", d, o)[0] if o is not None else 0
+
+    # --- raw E8/E9 index, so each render override's callees are read rather than assumed ---
+    base = off_of(secs, TEXT_VA)
+    blob = d[base:base + TEXT_SZ]
+    calls_from = {}
+    for i in range(len(blob) - 5):
+        if blob[i] in (0xE8, 0xE9):
+            rel = struct.unpack_from("<i", blob, i + 1)[0]
+            calls_from.setdefault(TEXT_VA + i, TEXT_VA + i + 5 + rel)
+
+    sizes = {}
+    for line in open(os.path.join(os.path.dirname(RTTI), "..", "..", "..", "graph", "functions.tsv"),
+                     encoding="utf-8", errors="replace"):
+        p = line.rstrip("\n").split("\t")
+        try:
+            sizes[int(p[0], 16)] = int(p[2])
+        except (ValueError, IndexError):
+            pass
+
+    def callees_in(fn, size):
+        seen = []
+        for a in range(fn, fn + size):
+            t = calls_from.get(a)
+            # a target INSIDE the caller's own extent is its tail jump, not a callee: PGlow's
+            # override reported 0065B72F, an interior address of itself, until this test existed
+            if t is None or not (0x652000 <= t < 0x660000) or fn <= t < fn + size:
+                continue
+            if t not in sizes:                      # not a listed function entry
+                continue
+            if t not in seen:
+                seen.append(t)
+        return seen
+
+
+    lines = [
+        "# The Phyre PPostEffectBase class family, from MSVC RTTI (FABLE, 2026-09-21).",
+        "# Generated by gen_posteffect_family.py from the shipping EXE; do not hand-edit.",
+        "# vtable/class/bases/slots are decoded from the complete-object locator that precedes each",
+        "# vtable. render_slot is slot %d - the per-effect render entry - and render_workers are the" % RENDER_SLOT,
+        "# 0065xxxx bodies that override calls, read from a raw E8/E9 index rather than a call graph.",
+        "# inherits_render = the class does not override slot %d and runs the base implementation." % RENDER_SLOT,
+        "vtable\tclass\tslots\tdirect_base\tslot0\trender_slot\tinherits_render\trender_workers",
+    ]
+    base_render = None
+    for va, name, slots, bases in rows:
+        if short(name) == "PPostEffectBase":
+            base_render = slot(va, RENDER_SLOT)
+    for va, name, slots, bases in rows:
+        r = slot(va, RENDER_SLOT) if slots > RENDER_SLOT else 0
+        workers = callees_in(r, sizes.get(r, 0)) if r else []
+        lines.append("\t".join([
+            "%08X" % va, short(name), str(slots),
+            short(".?AV" + bases[0] + "@") if bases else "-",
+            "%08X" % slot(va, 0),
+            "%08X" % r if r else "-",
+            "yes" if r and r == base_render else "no",
+            " ".join("%08X" % w for w in workers) or "-",
+        ]))
+    over = [l for l in lines[7:] if l.split("\t")[6] == "no" and l.split("\t")[5] != "-"]
+    lines.append("# %d classes; %d override the render slot, %d inherit %s"
+                 % (len(rows), len(over), len(rows) - len(over) - 1, "%08X" % base_render))
+    open(OUT, "w", newline="\n").write("\n".join(lines) + "\n")
+    print("wrote", OUT, len(rows), "classes,", len(over), "render overrides")
+
+
+if __name__ == "__main__":
+    main()

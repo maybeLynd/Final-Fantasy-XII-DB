@@ -1,0 +1,9 @@
+SURVIVES  M0  sizes all ten as cited
+SURVIVES  M1  cubemap intensity saved/zeroed/restored; 0018CCF0 with 0 on open and 1 on close
+SURVIVES  M2  index +0x11C, close-then-open; request only on a new model id (mode 1, +0x124 / +0x12C / +0x138 / +0x13C); +0x118 set only then
+SURVIVES  M3  one call edge 001EBA05 (edx 1), no data reference: mode 0 never requested
+SURVIVES  M4  +0x6E0 = 1 at 002EE5E6,002EE71A,002EE831
+SURVIVES  M5  ten slots, +0x6E0 == 0 turntable, 2 pi wrap; step 0215FD40: readers 002EEED0/002EF050 only, uninitialised data
+SURVIVES  M6  sorted ascending after equals; mode 3 draws +0x6E0 == 1, else == 0; the owner-less entry (edi 0) is dereferenced at +0xA8
+SURVIVES  M7  mode-1 queue: key +4 >> 4, draw callback 0016D6A0 (the folded empty function)
+FAILS 0

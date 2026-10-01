@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-151",
+ "result_refs": [
+  "1c8c40cf4"
+ ],
+ "note": "Published 1c8c40cf4 - 21 explicit paths (16 pure-addition hosts + AUDIT-LOG + 5 lifecycle ops) via publish_paths.sh. 22 entries/anchors verified at HEAD."
+}

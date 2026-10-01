@@ -1,0 +1,27 @@
+{
+  "status": "PASS_PRODUCER_CONTROLS",
+  "checks": [
+    {
+      "case": "missing-parent-getter",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-preassignment-cleanup.py\", line 28, in <module>\r\n    parent=load('softedges-array-parent-getter-code-01.json')\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-preassignment-cleanup.py\", line 13, in load\r\n    p=source/name;z=p.read_bytes();r=json.loads(z);pins.append(dict(path=name,sha256=sha(z)))\r\n                    ~~~~~~~~~~~~^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\r\n    with self.open(mode='rb', buffering=0) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\softedges-preassignment-controls-01\\\\missing-parent-getter\\\\source\\\\softedges-array-parent-getter-code-01.json'\r\n",
+      "labelled_synthetic": true
+    },
+    {
+      "case": "false-parent-store",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-preassignment-cleanup.py\", line 41, in <module>\r\n    need(ctor,0x632dda,'mov','qword ptr [rcx + 0x78], rax');need(ctor,0x632e4b,'mov','eax, dword ptr [rsp + 0x38]')\r\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-preassignment-cleanup.py\", line 21, in need\r\n    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,args):raise ValueError('required normalized operation changed '+hex(pc))\r\n                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: required normalized operation changed 0x632dda\r\n",
+      "labelled_synthetic": true
+    },
+    {
+      "case": "false-borrowed-flag",
+      "status": "PASS_REFUSED_NO_RESULT",
+      "error": "upstream exit 1: Traceback (most recent call last):\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-preassignment-cleanup.py\", line 61, in <module>\r\n    need(setter,0x60f01b,'mov','edx, dword ptr [rdi]');need(setter,0x60f01d,'mov','eax, edx');need(setter,0x60f01f,'shr','eax, 0x1f')\r\n                                                                                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-preassignment-cleanup.py\", line 21, in need\r\n    if (ix[pc]['mnemonic'],ix[pc]['args'])!=(m,args):raise ValueError('required normalized operation changed '+hex(pc))\r\n                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nValueError: required normalized operation changed 0x60f01f\r\n",
+      "labelled_synthetic": true
+    }
+  ],
+  "positive_result": "softedges-preassignment-cleanup-result-02.json",
+  "reducer_sha256": "d3ce80b081f2bd33f537aa83c52d9e78fb669d0303630527549b1287e1bd414d",
+  "positive_sha256": "e03ce5931028a7831c894587a21b20d381d692d54589e37ef7222c99a2e4a262",
+  "limits": "Three actual subprocess refusals plus one static reduction; no native/live runs, independent review or external audit credited."
+}

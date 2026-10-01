@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-status-repair-review\\capture.py"
+  ],
+  "returncode": 0,
+  "stdout": "REPAIRED_H8_PAIRED_STATUS_CAPTURED\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "eb57361aa9e2cf2e39f08b52430684fce91074253c4612b5650774ddc55e3fee"
+}

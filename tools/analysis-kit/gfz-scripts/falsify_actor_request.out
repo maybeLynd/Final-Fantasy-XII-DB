@@ -1,0 +1,7 @@
+SURVIVES  A0  the gate reads r15 (= rdx, the issuer argument, 00268883) +02 / +10, not rbx, the resolved target; a pass inserts the target through 003DB790
+SURVIVES  A1  slot = [+0xA8] + byte[+0x11] * 0x28; 0025D460; PC = [+0x58] + 00358A00's offset
+SURVIVES  A2  0025D460 clears +0x00..+0x16 and nothing else
+SURVIVES  A3  head byte +0x61; 0x14-byte entries at [+0xA0]; key dword +0xC and sbyte +2; next byte +0; walk capped by byte [+0x89]
+SURVIVES  A4  kind 7 via 0x107 at 00261B97; kind 5 at 00261D24 after 002674B0
+SURVIVES  A5  00267420 132 B, 002674B0 166 B
+FAILS 0

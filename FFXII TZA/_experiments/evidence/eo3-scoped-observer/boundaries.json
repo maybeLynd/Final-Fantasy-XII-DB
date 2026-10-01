@@ -1,0 +1,81 @@
+{
+  "method": "A",
+  "original_code_executed": false,
+  "executable_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "capstone": "5.0.7",
+  "anchors": [
+    {
+      "address": 3336148,
+      "bytes": "4156",
+      "mnemonic": "push",
+      "operands": "r14"
+    },
+    {
+      "address": 3336150,
+      "bytes": "4883ec30",
+      "mnemonic": "sub",
+      "operands": "rsp, 0x30"
+    },
+    {
+      "address": 3336319,
+      "bytes": "57",
+      "mnemonic": "push",
+      "operands": "rdi"
+    },
+    {
+      "address": 3336320,
+      "bytes": "4154",
+      "mnemonic": "push",
+      "operands": "r12"
+    },
+    {
+      "address": 3336322,
+      "bytes": "4156",
+      "mnemonic": "push",
+      "operands": "r14"
+    },
+    {
+      "address": 3336324,
+      "bytes": "4883ec20",
+      "mnemonic": "sub",
+      "operands": "rsp, 0x20"
+    },
+    {
+      "address": 3336269,
+      "bytes": "e81e000000",
+      "mnemonic": "call",
+      "operands": "0x32e870"
+    },
+    {
+      "address": 3637122,
+      "bytes": "e82968fbff",
+      "mnemonic": "call",
+      "operands": "0x32e7b0"
+    },
+    {
+      "address": 3336112,
+      "bytes": "e90b000000",
+      "mnemonic": "jmp",
+      "operands": "0x32e7c0"
+    },
+    {
+      "address": 3336549,
+      "bytes": "41894264",
+      "mnemonic": "mov",
+      "operands": "dword ptr [r10 + 0x64], eax"
+    },
+    {
+      "address": 3336579,
+      "bytes": "4883c420",
+      "mnemonic": "add",
+      "operands": "rsp, 0x20"
+    }
+  ],
+  "producer_parent_return_offset": "one push8 + sub30 =38; read [producer RSP+38]",
+  "builder_parent_rsp": "producer RSP - call8 - pushes18 - sub20 = producer RSP-40",
+  "builder_return_offset": "pushes18 + sub20 =38; read [builder RSP+38] ==32E852",
+  "parent_identity": "377F82 calls the tail thunk32E7B0; caller return remains377F87",
+  "limits": [
+    "Static instructions plus synthetic correlation tests do not qualify native capture or game health."
+  ]
+}

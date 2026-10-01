@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "Database\\Tools\\work\\ASTRA\\heading-class-effects-slice\\capture-closure-r3.py"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"SOURCE_ONLY_NOT_CLASS_PRESERVATION\",\n  \"unique_targets\": 5,\n  \"extent_status\": [\n    [\n      \"0x265510\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      32,\n      null\n    ],\n    [\n      \"0x2e5c90\",\n      \"UNWIND_UNION_MATCH\",\n      340,\n      340\n    ],\n    [\n      \"0x2ec3f0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      263,\n      null\n    ],\n    [\n      \"0x3e6bc0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      12,\n      null\n    ],\n    [\n      \"0x3e6bd0\",\n      \"UNPROVED_CATALOGUE_ONLY\",\n      12,\n      null\n    ]\n  ]\n}\n",
+  "stderr": "",
+  "terminal": true,
+  "driver_sha256": "cfa9d6e34780c0927390cb1cb917142db5ab467c0fb499692343466171a9e747"
+}

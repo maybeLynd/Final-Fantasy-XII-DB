@@ -1,0 +1,5 @@
+{"kind": "genesis", "rev": 0, "board_sha": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8", "epoch": 0, "note": "journal bootstrap; not a trust assertion about earlier history", "at": "2026-09-29T12:20:26+00:00"}
+{"kind": "intent", "rev": 1, "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72", "agent": "ASTRA", "session": "fresh-0", "epoch": 0, "at": "2026-09-29T12:20:26+00:00"}
+{"kind": "commit", "rev": 1, "board_sha": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417", "op_sha": "ee7ef7579b90fdcf78a37b2df81d84f62edc22ae665d2fb8e0db1f23f6084d72", "agent": "ASTRA", "session": "fresh-0", "epoch": 0, "at": "2026-09-29T12:20:26+00:00"}
+{"kind": "intent", "rev": 2, "op_sha": "1a39848b4d65173d359f35beb439c44019951388be5f35dc78a73c8fdf877fd0", "agent": "ASTRA", "session": "race-a", "epoch": 0, "at": "2026-09-29T12:22:13+00:00"}
+{"kind": "commit", "rev": 2, "board_sha": "fa89ca4b20a6fd04bb26ba5278f3403891d96f849485343d67054314e9e80f0b", "op_sha": "1a39848b4d65173d359f35beb439c44019951388be5f35dc78a73c8fdf877fd0", "agent": "ASTRA", "session": "race-a", "epoch": 0, "at": "2026-09-29T12:22:13+00:00"}

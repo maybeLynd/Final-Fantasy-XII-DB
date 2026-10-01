@@ -1,0 +1,20 @@
+# NativeLeaf.FieldClear - EC-7 family C
+# # mov [rcx+off], 0; ret - field clear, widths 1/2/4/8.
+address	targets
+00189C10	
+001986D0	
+001DA080	
+001EBDB0	
+001EBDC0	
+0029ED40	
+003DA180	
+0040EE90	
+0046C240	
+005188B0	
+00519720	
+00519A20	
+0051E5C0	
+0051E780	
+0051E7A0	
+005CAC80	
+007A42D0	

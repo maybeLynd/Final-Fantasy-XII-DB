@@ -1,0 +1,13 @@
+01-Script-VM-Native-Bridge/Verb-Dispatch/members/scriptvm-verb-adapter-callbacks.tsv: 1035 -> 1033  dropped 2 0033FFF0 00342230  admitted 0 
+23-Third-Party-Libraries/PostEffects-Yebis-PPFX/members/ppfx-span.tsv: 1601 -> 1600  dropped 1 00731EA0  admitted 0 
+23-Third-Party-Libraries/members/imgui.tsv: 10 -> 9  dropped 1 00791D80  admitted 0 
+23-Third-Party-Libraries/members/libvorbis.tsv: 116 -> 115  dropped 1 00882C20  admitted 0 
+23-Third-Party-Libraries/members/tremor-vorbisfile.tsv: 102 -> 99  dropped 3 007F8220 007F8600 007F8FD0  admitted 0 
+23-Third-Party-Libraries/members/zlib.tsv: 55 -> 54  dropped 1 0080C5A0  admitted 0 
+24-Compiler-And-CRT-Runtime/Generated-Families/members/documented-global-leaf-accessors.tsv: 230 -> 230  dropped 1 003204B0  admitted 1 003DE970
+24-Compiler-And-CRT-Runtime/Generated-Families/members/explained-callee-adapters.tsv: 489 -> 488  dropped 3 00282E60 003228E0 0036A240  admitted 2 00263860 003DCCF0
+24-Compiler-And-CRT-Runtime/Generated-Families/members/nativeadapter-callresulttailcall.tsv: 63 -> 62  dropped 1 0017DAA0  admitted 0 
+24-Compiler-And-CRT-Runtime/Generated-Families/members/nativeadapter-callthenreturnzero.tsv: 19 -> 18  dropped 1 00679A40  admitted 0 
+24-Compiler-And-CRT-Runtime/Generated-Families/members/nativeadapter-doublecallresulttailcallsavedthis.tsv: 5 -> 4  dropped 1 001805D0  admitted 0 
+24-Compiler-And-CRT-Runtime/Generated-Families/members/nativeleaf-statichandlereplacewithprerelease.tsv: 12 -> 11  dropped 1 002383C0  admitted 0 
+24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown/members/xc-registered-static-teardowns.tsv: 108 -> 107  dropped 1 008A7360  admitted 0 

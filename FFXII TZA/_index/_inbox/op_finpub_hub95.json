@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-95",
+ "result_refs": [
+  "commit:df4bd0d90",
+  "commit:4b77d755d"
+ ],
+ "note": "published 24 paths +332; guard ADDS NOTHING (105=105); anchors 3281 (+22, 0 MID); hash clean; crossref 108, zero batch-owned; 4b77d755d restores a peer section df4bd0d90 deleted (it had been committed by the peer between batches)"
+}

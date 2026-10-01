@@ -1,0 +1,9 @@
+site 003BEB06 insn: mov ecx, dword ptr [rbx + 0xc] ; owner 003BE950 FUN_003be950
+owner calls 003BF430: False ; owner has a +0xe0 operand: False
+owner raw callers: 3C269A@003C2320
+census output mentions 003C25A4: False
+census output mentions 003C25BD: False
+census output mentions 003BEB06: False
+census output mentions 003C2320: False
+census output mentions 003BE3A0: False
+census output mentions 003BDDE0: True

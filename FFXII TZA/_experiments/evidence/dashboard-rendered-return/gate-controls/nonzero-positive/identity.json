@@ -1,0 +1,44 @@
+{
+  "method": "HOST_BROWSER",
+  "head": "f3f933297afb74775413d8d7f675e0145a12a48b",
+  "source_path": "Database/Tools/dashboard/server.py",
+  "source_sha256": "34d73084675743eb23b82cea71e89f2a793d3cda3d698646312e3251594808bb",
+  "driver_sha256": "e1ffbfa4d42035ee9ec7eef99dc6d9b5ff6c10299785c3d7d5b275cf9ed49305",
+  "python": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+  "version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "HTTP": [
+    {
+      "url": "http://127.0.0.1:8765/",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 15:46:31 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "20446"
+      },
+      "sha256": "3ff8b2d7c70420f4c62b3f9f2ca7f17e7b4d092ea86c84e9d2d04f7873bebe86",
+      "bytes": 20446,
+      "file": "http-shell.bin",
+      "captured_after_response": "2026-09-29T15:46:31.339889+00:00"
+    },
+    {
+      "url": "http://127.0.0.1:8765/api/status",
+      "status": 200,
+      "headers": {
+        "Server": "ff12-dashboard/1 Python/3.14.6",
+        "Date": "Tue, 29 Sep 2026 15:46:31 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Content-Length": "1128"
+      },
+      "sha256": "f1c9ec205298e8601cadb3eb4a78bd8e8f9f2402b673f49451be2800e0dd5a8e",
+      "bytes": 1128,
+      "file": "http-status.bin",
+      "captured_after_response": "2026-09-29T15:46:31.480406+00:00"
+    }
+  ],
+  "status_generation": "g20260929T154216Z-1827bc",
+  "source_PAGE_equal": true,
+  "limits": "Current source and HTTP bytes only; no loaded server-module/PID/dependencies/browser-build or atomic browser/HTTP identity. No server started/restarted, no FF12. HTTP state may move before UI."
+}

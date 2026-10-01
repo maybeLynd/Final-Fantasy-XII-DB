@@ -1,0 +1,3 @@
+gap >= n*n*2: {True: 461}
+slack: [(14, 176), (16, 167), (8, 118)]
+max entry < portalCount: {True: 461}

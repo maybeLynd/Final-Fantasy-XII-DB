@@ -1,0 +1,16 @@
+block [008FCE00,008FD2D0): rip=3 (raw-only 20) imagebase=1 abs=0 dir64=0 rawq=0
+   rip 001D150F lea r14, [rip + 0x72b8ea] -> 008FCE00 owner 001D0390
+   rip 001D537D lea r14, [rip + 0x727a7c] -> 008FCE00 owner 001D5260
+   rip 001D542A lea r14, [rip + 0x7279cf] -> 008FCE00 owner 001D5260
+0x100 below [008FCD00,008FCE00): rip=20 (raw-only 8) imagebase=0 abs=0 dir64=2 rawq=2
+   rip 0015D380 lea rax, [rip + 0x79fa16] -> 008FCD9D owner 0015D340
+   rip 0015D387 lea rsi, [rip + 0x79fa0a] -> 008FCD98 owner 0015D340
+   rip 0015DB00 lea rax, [rip + 0x79f29d] -> 008FCDA4 owner 0015DAC0
+   rip 0015DB07 lea rsi, [rip + 0x79f292] -> 008FCDA0 owner 0015DAC0
+   rip 0015E130 lea rax, [rip + 0x79ec66] -> 008FCD9D owner 0015E0F0
+   rip 0015E137 lea rsi, [rip + 0x79ec5a] -> 008FCD98 owner 0015E0F0
+   rip 0015E8B0 lea rax, [rip + 0x79e4ed] -> 008FCDA4 owner 0015E870
+   rip 0015E8B7 lea rsi, [rip + 0x79e4e2] -> 008FCDA0 owner 0015E870
+   dir64 at 01CCBC10 (.rdata) -> 008FCD98
+   dir64 at 01CCBC78 (.rdata) -> 008FCDA0
+control 02064ACC writer 0022A1A7 present: True

@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-UQ218-P16",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish UQ-218 pass 16: @FOR tables A/B = u8 pair {texture slot, palette slot} to @FTE/@FCT; @FDM descriptor pool = list -> 0x10 descriptor -> sub-record -> bone-index stream (0053B2xx)",
+  "scope": "named paths only",
+  "completion": "commit hash recorded; @publication released",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

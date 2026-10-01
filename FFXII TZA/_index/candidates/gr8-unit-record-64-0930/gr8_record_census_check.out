@@ -1,0 +1,71 @@
+PASS  S1 34 rip references into the banks, kinds ['lea'], in 17 functions; per target {'0208D480': 16, '0208D494': 1, '0208DE80': 16, '0208DE94': 1}
+PASS  S2 raw .text scan decodes 34 rip leas into the banks (the S1 set: True); aligned dwords (VA/RVA) outside code 0, qwords 0, absolute displacements/immediates 0
+PASS  S3 lea anchors below the banks ['0208D320', '0208D324', '0208D328', '0208D328', '0208D334', '0208D334', '0208D354'], each bounded ([True, True, True, True, True]): the 0x80-byte halves at 0208D354 end at 0208D454; lea anchors above ['0208E680', '0208E6E0', '0208E6E4', '0208E6E4'] index upward only ([True, True, True]: 0208E680 is 003846F0's object, no negative displacement in it; 0208E6E0 / 0208E6E4 are 20-byte entries)
+PASS  S3b bulk calls based in 02000000..0208E67F: ['memset@004ADDA4 02064E30 r8d, 0x200', 'memset@0051D1E3 02064E30 r8d, 0x4000'] - both end by 02068E30, below the banks
+PASS  S4 57 accesses from 34 seeded leas over 36 walked functions; outside the anchors []; unknown 0, escapes 0, copies 0, indirect 0, stack args 0, hand-offs 0
+      (return values: rax still holds a base or element at 11 ret sites - 00233AD0 0033CB10 00386860 00386C10 00387B00 00388250 003889F0 0038D400 0038DB50 0038DD20 0038E080; no caller dereferences it, S4 finds no access outside the anchors)
+PASS  S5 calls / tail jumps with a record pointer in rcx/rdx/r8/r9: none; rep stos/movs on one: none
+PASS  S6 17 anchor extents end in ret/jmp before padding or the next function; bad none
+PASS  S7 bytes accessed +0x00..+0x1F; in +0x20..+0x3F: none; never read in the first half: ['+0x13', '+0x16', '+0x17']
+PASS  S8 controls found 11/11; 00386C10 = +0x00 w8, +0x08 w8, +0x10 w8, +0x18 w8
+PASS  S9 depth 5: 57 accesses, depth 3 without returns: 57, same set: True
+PASS  S10 readings [True, True, True, True, True, True, True] (+0x10 restore; preview clear gated on the primary target; +0x08/+0x04 -> kinds 0xA/6; +0x0C mark/test; +0x18 walking-MP carry; +0x14 tick)
+census (offset, width, r/w, function, site, instruction):
+  +0x00 w8 w  00385680 003857AB  mov qword ptr [rbx], rax
+  +0x00 w8 w  00386C10 00386C5B  mov qword ptr [rax], rcx
+  +0x00 w4 w  00388D50 00388E51  mov dword ptr [rsi], edi
+  +0x00 w4 r  00388D50 00388E60  mov eax, dword ptr [rsi]
+  +0x00 w4 w  0038DA00 0038DA5D  mov dword ptr [rdx], eax
+  +0x00 w4 r  0038DA00 0038DA68  mov eax, dword ptr [rdx]
+  +0x00 w4 w  0038EBE0 0038ECD5  mov dword ptr [rbx], eax
+  +0x00 w4 w  0038EBE0 0038ECFF  mov dword ptr [rbx], edi
+  +0x00 w4 r  0038EBE0 0038ED17  mov eax, dword ptr [rbx]
+  +0x00 w4 r  0038ED40 0038EDD6  mov eax, dword ptr [rbx]
+  +0x04 w4 rw 00385680 00385A7F  or dword ptr [rbx + 4], eax
+  +0x04 w4 r  00385F60 0038633F  mov eax, dword ptr [rdi + 4]
+  +0x08 w8 w  00385680 003857AE  mov qword ptr [rbx + 8], rax
+  +0x08 w4 rw 00385680 00385AC0  or dword ptr [rbx + 8], edi
+  +0x08 w4 r  00385F60 003862FB  mov eax, dword ptr [rdi + 8]
+  +0x08 w8 w  00386C10 00386C5E  mov qword ptr [rax + 8], rcx
+  +0x0C w4 r  002FA290 002FA352  mov ecx, dword ptr [rbx + 0xc]
+  +0x0C w4 rw 00387B00 00387B97  or dword ptr [rbx + 0xc], eax
+  +0x10 w2 r  00385680 003857A3  movzx r15d, word ptr [rbx + 0x10]
+  +0x10 w4 w  00385680 003857B2  mov dword ptr [rbx + 0x10], eax
+  +0x10 w2 w  00385680 003857E1  mov word ptr [rbx + 0x10], r15w
+  +0x10 w2 r  00385680 00385801  movzx r15d, word ptr [rbx + 0x10]
+  +0x10 w2 r  00385F60 00385FF7  movzx ebp, word ptr [rdi + 0x10]
+  +0x10 w8 w  00386C10 00386C62  mov qword ptr [rax + 0x10], rcx
+  +0x10 w2 r  00387090 0038710E  movzx eax, word ptr [rbx + 0x10]
+  +0x10 w2 w  00387A50 00387ADE  mov word ptr [rbx + 0x10], ax
+  +0x12 w1 r  00385680 0038579C  movzx r14d, byte ptr [rbx + 0x12]
+  +0x12 w1 rw 00385680 003857D1  and byte ptr [rbx + 0x12], 0xf
+  +0x12 w1 rw 00385680 003857D9  or byte ptr [rbx + 0x12], r14b
+  +0x12 w1 rw 00385680 003857DD  or byte ptr [rbx + 0x12], 1
+  +0x12 w1 r  00385680 00385ACB  xor al, byte ptr [rbx + 0x12]
+  +0x12 w1 rw 00385680 00385AD0  xor byte ptr [rbx + 0x12], al
+  +0x12 w1 r  00385680 00385ADA  xor cl, byte ptr [rbx + 0x12]
+  +0x12 w1 r  00385680 00385AE0  xor cl, byte ptr [rbx + 0x12]
+  +0x12 w1 w  00385680 00385AE3  mov byte ptr [rbx + 0x12], cl
+  +0x12 w1 w  00385680 00385AF2  mov byte ptr [rbx + 0x12], al
+  +0x12 w1 r  00385F60 003860DF  movzx ecx, byte ptr [rdi + 0x12]
+  +0x12 w1 r  00385F60 003860EF  movzx eax, byte ptr [rdi + 0x12]
+  +0x12 w1 r  00385F60 003860FD  movzx eax, byte ptr [rdi + 0x12]
+  +0x12 w1 rw 00385F60 00386402  and byte ptr [rdi + 0x12], 0xfe
+  +0x12 w1 rw 00388660 0038885D  and byte ptr [rdi + 0x12], 0xf
+  +0x12 w1 rw 00388660 00388865  or byte ptr [rdi + 0x12], r14b
+  +0x12 w1 r  00388660 0038886B  movzx eax, byte ptr [rdi + 0x12]
+  +0x12 w1 r  00389C60 00389D24  test byte ptr [rbx + 0x12], 1
+  +0x12 w1 r  0038DA00 0038DA49  test byte ptr [rdx + 0x12], 1
+  +0x12 w1 r  0038EBE0 0038EC3A  test byte ptr [rbx + 0x12], 1
+  +0x14 w2 r  00386860 003869A2  movzx eax, word ptr [rbx]
+  +0x14 w2 w  00386860 003869E0  mov word ptr [rbx], cx
+  +0x14 w2 rw 00386860 00386A27  inc word ptr [rbx]
+  +0x14 w2 w  00386860 00386A2C  mov word ptr [rbx], r15w
+  +0x18 w4 r  002F9400 002F9474  movss xmm0, dword ptr [rsi + 0x18]
+  +0x18 w4 w  002F9400 002F95A6  movss dword ptr [rsi + 0x18], xmm7
+  +0x18 w8 w  00386C10 00386C66  mov qword ptr [rax + 0x18], rcx
+  +0x1C w4 rw 0033CB10 0033CB60  or dword ptr [rax + 0x1c], 1
+  +0x1C w1 r  0033D890 0033D953  test byte ptr [rbx + 0x1c], 1
+  +0x1C w4 rw 0033D890 0033DA73  or dword ptr [rbx + 0x1c], 2
+  +0x1C w1 r  0033D890 0033DA77  test byte ptr [rbx + 0x1c], 2
+FAILS 0

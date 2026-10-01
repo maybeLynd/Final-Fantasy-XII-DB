@@ -1,0 +1,7 @@
+F1_init_fails_no_manager_startup_continues                 PASS
+F2_every_award_returns_at_the_null_manager                 PASS
+F3_restart_true_exits_1_before_any_manager                 PASS
+C1_control_init_true_enters_the_builder                    PASS
+S1_the_branches                                            PASS
+{"F1": {"stopped_at": "798152", "calls": ["SetUnhandledExceptionFilter", "ImmDisableIME", "CoInitializeEx", "SteamInternal_ContextInit", "SteamAPI_Init", ["SteamAPI_RestartAppIfNecessary", "91640"]], "entered": ["after_steam_block_00798152"], "manager": "0"}, "F3": {"stopped_at": "740007D4", "calls": ["SetUnhandledExceptionFilter", "ImmDisableIME", "CoInitializeEx", "SteamInternal_ContextInit", "SteamAPI_Init", ["SteamAPI_RestartAppIfNecessary", "91640"], ["exit", 1]], "entered": [], "manager": "0"}, "C1": {"stopped_at": "20CD30", "calls": ["SetUnhandledExceptionFilter", "ImmDisableIME", "CoInitializeEx", "SteamInternal_ContextInit", "SteamAPI_Init"], "entered": ["builder_0020CD30"], "manager": "0"}, "S1": ["cmp qword ptr [rax + 0x18], 0", "jne 0x79812d", "call qword ptr [rip + 0x12b07f]", "test al, al", "je 0x798137", "call 0x20cd30", "mov rax, qword ptr [rip + 0x1d76649]", "push rbx"]}
+ALL PASS

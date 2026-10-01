@@ -1,0 +1,70 @@
+[
+  {
+    "name": "baseline_with_new_missing",
+    "pass": true,
+    "statuses": [
+      "READY_TO_REPLACE",
+      "NEW_FILE"
+    ]
+  },
+  {
+    "name": "already_installed",
+    "pass": true,
+    "statuses": [
+      "ALREADY_UPDATED",
+      "ALREADY_UPDATED"
+    ]
+  },
+  {
+    "name": "newer_peer_edit",
+    "pass": true,
+    "statuses": [
+      "CONFLICT_NEWER_OR_DIFFERENT",
+      "ALREADY_UPDATED"
+    ]
+  },
+  {
+    "name": "missing_existing_preimage",
+    "pass": true,
+    "statuses": [
+      "MISSING_BASE",
+      "ALREADY_UPDATED"
+    ]
+  },
+  {
+    "name": "added_path_already_different",
+    "pass": true,
+    "statuses": [
+      "READY_TO_REPLACE",
+      "CONFLICT_NEWER_OR_DIFFERENT"
+    ]
+  },
+  {
+    "name": "file_path_is_directory",
+    "pass": true,
+    "statuses": [
+      "READY_TO_REPLACE",
+      "CONFLICT_NOT_FILE"
+    ]
+  },
+  {
+    "name": "symlink_target",
+    "pass": true,
+    "statuses": [
+      "READY_TO_REPLACE",
+      "CONFLICT_SYMLINK"
+    ]
+  },
+  {
+    "name": "unsafe_manifest_path",
+    "pass": true
+  },
+  {
+    "name": "read_only_check",
+    "pass": true,
+    "statuses": [
+      "READY_TO_REPLACE",
+      "NEW_FILE"
+    ]
+  }
+]

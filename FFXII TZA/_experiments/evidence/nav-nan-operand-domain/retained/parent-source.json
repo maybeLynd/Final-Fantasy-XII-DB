@@ -1,0 +1,626 @@
+{
+  "method": "A original237B predicate/layout/caller preparation only; no code execution",
+  "driver_sha256": "09e2ab7bcd11b8750d35ca350b5886834f81520f3cd8d001477f6b8a69a8611c",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "body_sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "caller_sha256": "952ac4880d6be155c35a37c1ff8e5ecbbcae8603cc4d2cafbaaeb287c1046913"
+  },
+  "instructions": [
+    {
+      "pc": "0x4690b0",
+      "bytes": "f30f1019",
+      "op": "movss",
+      "args": "xmm3, dword ptr [rcx]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 0,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690b4",
+      "bytes": "f30f105210",
+      "op": "movss",
+      "args": "xmm2, dword ptr [rdx + 0x10]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rdx",
+          "index": null,
+          "disp": 16,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690b9",
+      "bytes": "0f28c3",
+      "op": "movaps",
+      "args": "xmm0, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x4690bc",
+      "bytes": "f30f1022",
+      "op": "movss",
+      "args": "xmm4, dword ptr [rdx]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rdx",
+          "index": null,
+          "disp": 0,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690c0",
+      "bytes": "f30f5cc2",
+      "op": "subss",
+      "args": "xmm0, xmm2",
+      "memory": []
+    },
+    {
+      "pc": "0x4690c4",
+      "bytes": "0f2fe0",
+      "op": "comiss",
+      "args": "xmm4, xmm0",
+      "memory": []
+    },
+    {
+      "pc": "0x4690c7",
+      "bytes": "7228",
+      "op": "jb",
+      "args": "0x4690f1",
+      "memory": []
+    },
+    {
+      "pc": "0x4690c9",
+      "bytes": "f30f104a08",
+      "op": "movss",
+      "args": "xmm1, dword ptr [rdx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rdx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690ce",
+      "bytes": "0f2f4908",
+      "op": "comiss",
+      "args": "xmm1, dword ptr [rcx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690d2",
+      "bytes": "721d",
+      "op": "jb",
+      "args": "0x4690f1",
+      "memory": []
+    },
+    {
+      "pc": "0x4690d4",
+      "bytes": "0f28c2",
+      "op": "movaps",
+      "args": "xmm0, xmm2",
+      "memory": []
+    },
+    {
+      "pc": "0x4690d7",
+      "bytes": "f30f584110",
+      "op": "addss",
+      "args": "xmm0, dword ptr [rcx + 0x10]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 16,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690dc",
+      "bytes": "0f2fc4",
+      "op": "comiss",
+      "args": "xmm0, xmm4",
+      "memory": []
+    },
+    {
+      "pc": "0x4690df",
+      "bytes": "7210",
+      "op": "jb",
+      "args": "0x4690f1",
+      "memory": []
+    },
+    {
+      "pc": "0x4690e1",
+      "bytes": "f30f104118",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rcx + 0x18]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 24,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690e6",
+      "bytes": "0f2fc1",
+      "op": "comiss",
+      "args": "xmm0, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x4690e9",
+      "bytes": "7206",
+      "op": "jb",
+      "args": "0x4690f1",
+      "memory": []
+    },
+    {
+      "pc": "0x4690eb",
+      "bytes": "b801000000",
+      "op": "mov",
+      "args": "eax, 1",
+      "memory": []
+    },
+    {
+      "pc": "0x4690f0",
+      "bytes": "c3",
+      "op": "ret",
+      "args": "",
+      "memory": []
+    },
+    {
+      "pc": "0x4690f1",
+      "bytes": "0f2fe3",
+      "op": "comiss",
+      "args": "xmm4, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x4690f4",
+      "bytes": "722a",
+      "op": "jb",
+      "args": "0x469120",
+      "memory": []
+    },
+    {
+      "pc": "0x4690f6",
+      "bytes": "f30f104108",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rcx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x4690fb",
+      "bytes": "f30f104a08",
+      "op": "movss",
+      "args": "xmm1, dword ptr [rdx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rdx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x469100",
+      "bytes": "f30f5cc2",
+      "op": "subss",
+      "args": "xmm0, xmm2",
+      "memory": []
+    },
+    {
+      "pc": "0x469104",
+      "bytes": "0f2fc8",
+      "op": "comiss",
+      "args": "xmm1, xmm0",
+      "memory": []
+    },
+    {
+      "pc": "0x469107",
+      "bytes": "7217",
+      "op": "jb",
+      "args": "0x469120",
+      "memory": []
+    },
+    {
+      "pc": "0x469109",
+      "bytes": "f30f104110",
+      "op": "movss",
+      "args": "xmm0, dword ptr [rcx + 0x10]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 16,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x46910e",
+      "bytes": "0f2fc4",
+      "op": "comiss",
+      "args": "xmm0, xmm4",
+      "memory": []
+    },
+    {
+      "pc": "0x469111",
+      "bytes": "720d",
+      "op": "jb",
+      "args": "0x469120",
+      "memory": []
+    },
+    {
+      "pc": "0x469113",
+      "bytes": "0f28c2",
+      "op": "movaps",
+      "args": "xmm0, xmm2",
+      "memory": []
+    },
+    {
+      "pc": "0x469116",
+      "bytes": "f30f584118",
+      "op": "addss",
+      "args": "xmm0, dword ptr [rcx + 0x18]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 24,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x46911b",
+      "bytes": "0f2fc1",
+      "op": "comiss",
+      "args": "xmm0, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x46911e",
+      "bytes": "73cb",
+      "op": "jae",
+      "args": "0x4690eb",
+      "memory": []
+    },
+    {
+      "pc": "0x469120",
+      "bytes": "f30f106908",
+      "op": "movss",
+      "args": "xmm5, dword ptr [rcx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x469125",
+      "bytes": "f30f5cdc",
+      "op": "subss",
+      "args": "xmm3, xmm4",
+      "memory": []
+    },
+    {
+      "pc": "0x469129",
+      "bytes": "f30f5c6a08",
+      "op": "subss",
+      "args": "xmm5, dword ptr [rdx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rdx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x46912e",
+      "bytes": "f30f59d2",
+      "op": "mulss",
+      "args": "xmm2, xmm2",
+      "memory": []
+    },
+    {
+      "pc": "0x469132",
+      "bytes": "0f28c3",
+      "op": "movaps",
+      "args": "xmm0, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x469135",
+      "bytes": "0f28cd",
+      "op": "movaps",
+      "args": "xmm1, xmm5",
+      "memory": []
+    },
+    {
+      "pc": "0x469138",
+      "bytes": "f30f59c3",
+      "op": "mulss",
+      "args": "xmm0, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x46913c",
+      "bytes": "f30f59cd",
+      "op": "mulss",
+      "args": "xmm1, xmm5",
+      "memory": []
+    },
+    {
+      "pc": "0x469140",
+      "bytes": "f30f58c8",
+      "op": "addss",
+      "args": "xmm1, xmm0",
+      "memory": []
+    },
+    {
+      "pc": "0x469144",
+      "bytes": "0f2fd1",
+      "op": "comiss",
+      "args": "xmm2, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x469147",
+      "bytes": "77a2",
+      "op": "ja",
+      "args": "0x4690eb",
+      "memory": []
+    },
+    {
+      "pc": "0x469149",
+      "bytes": "f30f104918",
+      "op": "movss",
+      "args": "xmm1, dword ptr [rcx + 0x18]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 24,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x46914e",
+      "bytes": "f30f5c4a08",
+      "op": "subss",
+      "args": "xmm1, dword ptr [rdx + 8]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rdx",
+          "index": null,
+          "disp": 8,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x469153",
+      "bytes": "f30f59db",
+      "op": "mulss",
+      "args": "xmm3, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x469157",
+      "bytes": "0f28c1",
+      "op": "movaps",
+      "args": "xmm0, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x46915a",
+      "bytes": "f30f59c1",
+      "op": "mulss",
+      "args": "xmm0, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x46915e",
+      "bytes": "f30f58c3",
+      "op": "addss",
+      "args": "xmm0, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x469162",
+      "bytes": "0f2fd0",
+      "op": "comiss",
+      "args": "xmm2, xmm0",
+      "memory": []
+    },
+    {
+      "pc": "0x469165",
+      "bytes": "7784",
+      "op": "ja",
+      "args": "0x4690eb",
+      "memory": []
+    },
+    {
+      "pc": "0x469167",
+      "bytes": "f30f105910",
+      "op": "movss",
+      "args": "xmm3, dword ptr [rcx + 0x10]",
+      "memory": [
+        {
+          "operand": 1,
+          "size": 4,
+          "base": "rcx",
+          "index": null,
+          "disp": 16,
+          "kind": "r"
+        }
+      ]
+    },
+    {
+      "pc": "0x46916c",
+      "bytes": "f30f5cdc",
+      "op": "subss",
+      "args": "xmm3, xmm4",
+      "memory": []
+    },
+    {
+      "pc": "0x469170",
+      "bytes": "f30f59ed",
+      "op": "mulss",
+      "args": "xmm5, xmm5",
+      "memory": []
+    },
+    {
+      "pc": "0x469174",
+      "bytes": "0f28c3",
+      "op": "movaps",
+      "args": "xmm0, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x469177",
+      "bytes": "f30f59c3",
+      "op": "mulss",
+      "args": "xmm0, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x46917b",
+      "bytes": "f30f58e8",
+      "op": "addss",
+      "args": "xmm5, xmm0",
+      "memory": []
+    },
+    {
+      "pc": "0x46917f",
+      "bytes": "0f2fd5",
+      "op": "comiss",
+      "args": "xmm2, xmm5",
+      "memory": []
+    },
+    {
+      "pc": "0x469182",
+      "bytes": "0f8763ffffff",
+      "op": "ja",
+      "args": "0x4690eb",
+      "memory": []
+    },
+    {
+      "pc": "0x469188",
+      "bytes": "33c0",
+      "op": "xor",
+      "args": "eax, eax",
+      "memory": []
+    },
+    {
+      "pc": "0x46918a",
+      "bytes": "f30f59c9",
+      "op": "mulss",
+      "args": "xmm1, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x46918e",
+      "bytes": "f30f59db",
+      "op": "mulss",
+      "args": "xmm3, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x469192",
+      "bytes": "f30f58cb",
+      "op": "addss",
+      "args": "xmm1, xmm3",
+      "memory": []
+    },
+    {
+      "pc": "0x469196",
+      "bytes": "0f2fd1",
+      "op": "comiss",
+      "args": "xmm2, xmm1",
+      "memory": []
+    },
+    {
+      "pc": "0x469199",
+      "bytes": "0f97c0",
+      "op": "seta",
+      "args": "al",
+      "memory": []
+    },
+    {
+      "pc": "0x46919c",
+      "bytes": "c3",
+      "op": "ret",
+      "args": "",
+      "memory": []
+    }
+  ]
+}

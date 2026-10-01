@@ -1,0 +1,47 @@
+pool 02EC0FA0 stride 0x60 count 10  (02EC0FA0..02EC1360)
+
+ACCESSES BY OFFSET WITHIN THE STRIDE
+offset   count  sites
+  +0x00   10    00319B12[w/direct], 00319B45[w/direct], 00319C3E[w/direct], 00319C48[w/direct]
+  +0x01   10    00319B12[w/direct], 00319B45[w/direct], 00319C3E[w/direct], 00319C48[w/direct]
+  +0x02   10    00319B12[w/direct], 00319B45[w/direct], 00319C3E[w/direct], 00319C48[w/direct]
+  +0x03   10    00319B12[w/direct], 00319B45[w/direct], 00319C3E[w/direct], 00319C48[w/direct]
+  +0x04   11    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x05   11    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x06   11    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x07   11    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x08   10    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x09   10    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x0A   10    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x0B   10    00319B2A[w/direct], 00319B4B[w/direct], 00319B66[w/direct], 00319B81[w/direct]
+  +0x10   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x11   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x12   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x13   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x14   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x15   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x16   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x17   10    00319B38[w/direct], 00319B59[w/direct], 00319B74[w/direct], 00319B8F[w/direct]
+  +0x18   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x19   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x1A   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x1B   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x1C   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x1D   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x1E   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x1F   10    00319B31[w/direct], 00319B52[w/direct], 00319B6D[w/direct], 00319B88[w/direct]
+  +0x58   10    00319B3F[w/direct], 00319B60[w/direct], 00319B7B[w/direct], 00319B96[w/direct]
+  +0x59   10    00319B3F[w/direct], 00319B60[w/direct], 00319B7B[w/direct], 00319B96[w/direct]
+  +0x5A   10    00319B3F[w/direct], 00319B60[w/direct], 00319B7B[w/direct], 00319B96[w/direct]
+  +0x5B   10    00319B3F[w/direct], 00319B60[w/direct], 00319B7B[w/direct], 00319B96[w/direct]
+
+CONTROL - the three declared fields must appear:
+   +0x00 slotIndex          10 access(es)  FOUND
+   +0x04 state              11 access(es)  FOUND
+   +0x08 materialiseStamp   10 access(es)  FOUND
+
+THE TWO OPEN SPANS:
+   +0x0C unobservedSpan000C   0 access(es)
+   +0x5C unobservedTail005C   0 access(es)
+
+by addressing form: {'direct': 324}

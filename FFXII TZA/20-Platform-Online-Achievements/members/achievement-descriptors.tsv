@@ -1,0 +1,46 @@
+# achievement-descriptors - the 41 static 0x198-byte achievement records at 01DFE410 (FABLE, 2026-09-17).
+# record: address of the record (base 01DFE410 + slot*0x198); counter_id: the qword at +0x00, the counter id the contract page's save layout uses;
+# tag: the developer string the qword at +0x08 points to; title: the inline Steam display title at +0x10; other_strings: further printable runs inside the record.
+# The unlock body indexes this array at [manager+8] + index*0x198 (steam page, UQ-275); byte +0x190 = unlocked, dword +0x194 cleared on unlock.
+slot	record	counter_id	tag	title	other_strings
+0	01DFE410	0	ACH_CHAMPION_IVALICE	Champion of Ivalice	
+1	01DFE5A8	0	ACH_COUNT_FIGHT	Assault Striker	
+2	01DFE740	1	ACH_COUNT_MAGIC	Spellslinger	
+3	01DFE8D8	2	ACH_COUNT_TECH	Premier Prestidigitator	
+4	01DFEA70	3	ACH_COUNT_STEAL	Master Thief	
+5	01DFEC08	4	ACH_COUNT_KILL	Blood Dancer	
+6	01DFEDA0	18	ACH_COUNT_CHAIN	The Unrelenting	
+7	01DFEF38	5	ACH_COUNT_STEP	Wayfarer	
+8	01DFF0D0	6	ACH_COUNT_GET_GIL	Plunderer	
+9	01DFF268	17	ACH_COUNT_SCORE	Record Breaker	
+10	01DFF400	7	ACH_COUNT_USE_GIL	Spendthrift	
+11	01DFF598	14	ACH_COUNT_SELL_EVITEM	Privateer	
+12	01DFF730	8	ACH_LEVEL_AVERAGE	Exemplar	
+13	01DFF8C8	11	ACH_MASTER_LICENSE	Conqueror	
+14	01DFFA60	16	ACH_COMPLETE_MONSTER	Scrivener	
+15	01DFFBF8	9	ACH_MASTER_MAGIC	Runeweaver	
+16	01DFFD90	10	ACH_MASTER_TECH	Jack-of-All-Trades	
+17	01DFFF28	19	ACH_SPECIAL_HORIDASHI	Collector	
+18	01E000C0	15	ACH_COMPLETE_MAP	Cartographer	
+19	01E00258	13	ACH_COMPLETE_YUGOU	Mist Walker	
+20	01E003F0	25	ACH_SPECIAL_MONSTER06	Eagle Eye	
+21	01E00588	23	ACH_SPECIAL_MONSTER04	Wyrmslayer	
+22	01E00720	20	ACH_SPECIAL_MONSTER01	Sharpshooter	
+23	01E008B8	24	ACH_SPECIAL_MONSTER05	Freshmaker	
+24	01E00A50	21	ACH_SPECIAL_MONSTER02	Master Swordsman	
+25	01E00BE8	22	ACH_SPECIAL_MONSTER03	Lord of the Kings	
+26	01E00D80	26	ACH_SPECIAL_MONSTER07	Hunter Extraordinaire	
+27	01E00F18	27	ACH_SPECIAL_MONSTER08	Radiant Savior	
+28	01E010B0	28	ACH_SPECIAL_MONSTER09	Fell Angel	
+29	01E01248	29	ACH_SPECIAL_MONSTER10	Zodiac Knight	
+30	01E013E0	12	ACH_MASTER_SUMMON	High Summoner	
+31	01E01578	31	ACH_EVENT_FINISH_REX	For the Homeland	
+32	01E01710	32	ACH_EVENT_FIRST_HUNT	Galbana Bloom	
+33	01E018A8	33	ACH_EVENT_RETURN_RABANASTRE	A Traitor Redeemed	
+34	01E01A40	34	ACH_EVENT_SAVE_ASHE	Fated Meeting	
+35	01E01BD8	35	ACH_EVENT_DEFEAT_VOSSLER	The Mist Seethes	
+36	01E01D70	36	ACH_EVENT_DEFEAT_JUDGE_BERGAN	Visions of the Dreamer	
+37	01E01F08	37	ACH_EVENT_DEFEAT_CID	Reins of History	
+38	01E020A0	38	ACH_EVENT_DEFEAT_VAYNE	Wings of My Own	
+39	01E02238	39	ACH_TRIAL_MODE_50	Judge Magister	
+40	01E023D0	40	ACH_TRIAL_MODE_100	Imperator	

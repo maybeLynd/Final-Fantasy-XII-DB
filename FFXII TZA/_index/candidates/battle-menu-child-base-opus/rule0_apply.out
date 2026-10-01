@@ -1,0 +1,3 @@
+PASS  D 002964BA sits behind the bit test 00290640; 002906FF follows only the liveness test 00273A20 and precedes the bit test 00290707
+PASS  W overlay row present and tagged; 002906FF on the union; +0x710 narrowed; types_index reports no overlap for the singleton
+FAILS 0

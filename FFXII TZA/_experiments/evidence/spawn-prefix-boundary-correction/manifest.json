@@ -1,0 +1,13 @@
+{
+  "source_serialization": {},
+  "files": {
+    "primary-comparison.json": {
+      "bytes": 30392,
+      "sha256": "84a420d174adc5a281ca5a61c42f49df371ebae2cfe4651e7ba1a89d75dbac6d"
+    },
+    "README.md": {
+      "bytes": 2148,
+      "sha256": "0cf3bc711a58be27564f6067d236d46fc2097dd9c50a48a948f83d58b7096038"
+    }
+  }
+}

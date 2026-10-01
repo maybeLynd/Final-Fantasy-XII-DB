@@ -1,0 +1,2 @@
+documented_rule.py: exit 0, S self-test 32 cases PASS, T: 0 register rows citing untracked evidence, FAILS 0
+mutate_rule.py: exit 0, 13 of 13 mutants CAUGHT, FAILS 0; documented_rule.py restored (git status clean for the folder)

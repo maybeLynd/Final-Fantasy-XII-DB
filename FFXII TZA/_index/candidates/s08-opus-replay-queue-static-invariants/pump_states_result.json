@@ -1,0 +1,307 @@
+{
+ "C1": [
+  {
+   "acc_00": 1000,
+   "calls": [
+    [
+     "part",
+     36450752,
+     "0",
+     0
+    ],
+    [
+     "done",
+     119,
+     "C0FFEE",
+     1
+    ]
+   ],
+   "cap_30": "80000",
+   "chunk": 1,
+   "dest_38": "76390000",
+   "halt": [],
+   "issues": [
+    {
+     "acc_00": 0,
+     "cap_30": "80000",
+     "chunk": 1,
+     "dest_38": "76390000",
+     "offset_2C": "90000",
+     "part_28": 524288,
+     "pending_head": "22C31C0",
+     "progress": 0,
+     "remaining_34": 524288,
+     "state": 1,
+     "time_08": 0
+    }
+   ],
+   "offset_2C": "90000",
+   "ok": true,
+   "part_28": 524288,
+   "pending_head": "0",
+   "progress": 0,
+   "remaining_34": 0,
+   "state": 0,
+   "time_08": 1000
+  }
+ ],
+ "C2": [
+  {
+   "acc_00": 0,
+   "calls": [
+    [
+     "part",
+     36450752,
+     "0",
+     0
+    ]
+   ],
+   "cap_30": "80000",
+   "chunk": 1,
+   "dest_38": "76390000",
+   "halt": [],
+   "issues": [],
+   "offset_2C": "90000",
+   "ok": true,
+   "part_28": 524288,
+   "pending_head": "22C31C0",
+   "progress": 2,
+   "remaining_34": 524288,
+   "state": 5,
+   "time_08": 0
+  },
+  {
+   "acc_00": 0,
+   "calls": [
+    [
+     "part",
+     36450752,
+     "0",
+     0
+    ]
+   ],
+   "cap_30": "80000",
+   "chunk": 1,
+   "dest_38": "76390000",
+   "halt": [],
+   "issues": [],
+   "offset_2C": "90000",
+   "ok": true,
+   "part_28": 524288,
+   "pending_head": "22C31C0",
+   "progress": 2,
+   "remaining_34": 524288,
+   "state": 5,
+   "time_08": 0
+  }
+ ],
+ "C3": [
+  {
+   "acc_00": 0,
+   "calls": [
+    [
+     "part",
+     36450752,
+     "0",
+     0
+    ]
+   ],
+   "cap_30": "80000",
+   "chunk": 1,
+   "dest_38": "76350000",
+   "halt": [],
+   "issues": [],
+   "offset_2C": "50000",
+   "ok": true,
+   "part_28": 262144,
+   "pending_head": "22C31C0",
+   "progress": 3,
+   "remaining_34": 786432,
+   "state": 5,
+   "time_08": 0
+  },
+  {
+   "acc_00": 0,
+   "calls": [
+    [
+     "part",
+     36450752,
+     "0",
+     0
+    ]
+   ],
+   "cap_30": "80000",
+   "chunk": 1,
+   "dest_38": "76390000",
+   "halt": [],
+   "issues": [],
+   "offset_2C": "90000",
+   "ok": true,
+   "part_28": 262144,
+   "pending_head": "22C31C0",
+   "progress": 3,
+   "remaining_34": 524288,
+   "state": 5,
+   "time_08": 0
+  }
+ ],
+ "CE": [
+  {
+   "acc_00": 0,
+   "calls": [
+    [
+     "done",
+     119,
+     "C0FFEE",
+     1
+    ]
+   ],
+   "cap_30": "80000",
+   "chunk": 1,
+   "dest_38": "76310000",
+   "halt": [],
+   "issues": [],
+   "offset_2C": "10000",
+   "ok": true,
+   "part_28": 524288,
+   "pending_head": "0",
+   "progress": 0,
+   "remaining_34": 0,
+   "state": 0,
+   "time_08": 0
+  }
+ ],
+ "S1": {
+  "acc_00": 1000,
+  "calls": [],
+  "cap_30": "0",
+  "chunk": 0,
+  "dest_38": "76310000",
+  "halt": [],
+  "issues": 1,
+  "offset_2C": "1000",
+  "ok": true,
+  "part_28": 4096,
+  "pending_head": "22C31C0",
+  "progress": 0,
+  "remaining_34": 0,
+  "state": 3,
+  "time_08": 1000
+ },
+ "S4": {
+  "no_callback": {
+   "acc_00": 0,
+   "calls": [],
+   "cap_30": "0",
+   "chunk": 0,
+   "dest_38": "76310000",
+   "halt": [],
+   "offset_2C": "1000",
+   "ok": true,
+   "part_28": 4096,
+   "pending_head": "0",
+   "progress": 0,
+   "remaining_34": 0,
+   "state": 0,
+   "time_08": 0
+  },
+  "with_callback": {
+   "acc_00": 0,
+   "calls": [
+    [
+     "cancel",
+     119,
+     "0",
+     0
+    ]
+   ],
+   "cap_30": "0",
+   "chunk": 0,
+   "dest_38": "76310000",
+   "halt": [],
+   "offset_2C": "1000",
+   "ok": true,
+   "part_28": 0,
+   "pending_head": "0",
+   "progress": 0,
+   "remaining_34": 0,
+   "state": 0,
+   "time_08": 0
+  }
+ },
+ "S5": {
+  "acc_00": 1000,
+  "calls": [
+   [
+    "done",
+    119,
+    "C0FFEE",
+    1
+   ]
+  ],
+  "cap_30": "0",
+  "chunk": 0,
+  "dest_38": "76310000",
+  "halt": [],
+  "offset_2C": "1000",
+  "ok": true,
+  "part_28": 4096,
+  "pending_head": "0",
+  "progress": 0,
+  "remaining_34": 0,
+  "state": 0,
+  "time_08": 1000
+ },
+ "S6": {
+  "part_1000": {
+   "acc_00": 0,
+   "calls": [],
+   "cap_30": "0",
+   "chunk": 0,
+   "dest_38": "76310000",
+   "halt": [],
+   "offset_2C": "1000",
+   "ok": true,
+   "part_28": 4096,
+   "pending_head": "0",
+   "progress": 0,
+   "remaining_34": 0,
+   "state": 0,
+   "time_08": 0
+  },
+  "part_minus1": {
+   "acc_00": 0,
+   "calls": [
+    [
+     "done",
+     119,
+     "C0FFEE",
+     0
+    ]
+   ],
+   "cap_30": "0",
+   "chunk": 0,
+   "dest_38": "76310000",
+   "halt": [],
+   "offset_2C": "1000",
+   "ok": true,
+   "part_28": -1,
+   "pending_head": "0",
+   "progress": 0,
+   "remaining_34": 0,
+   "state": 0,
+   "time_08": 0
+  }
+ },
+ "cases": {
+  "C1_part_1_requeues_with_min_cap_aligned_offset_state1": true,
+  "C2_part_2_keeps_state5_and_reprobes_without_subtracting": true,
+  "C3_part_3_is_not_a_release_the_next_pass_subtracts_again": true,
+  "CE_last_part_calls_done_and_recycles": true,
+  "S1_issue_stamps_time_then_2_then_3_and_waits": true,
+  "S4_cancel_zeroes_count_only_with_a_callback": true,
+  "S5_delivered_calls_done_with_1_and_recycles": true,
+  "S6_failed_reports_only_when_part_is_minus1": true
+ },
+ "ok": true
+}

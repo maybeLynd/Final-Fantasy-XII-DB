@@ -1,0 +1,59 @@
+# CodeDomain label -> owner token mapping (SWE2-EC7, 2026-09-19)
+#
+# Requested by FRONTIER-REQ-EC7-LABEL-TO-OWNER-MAPPING for FINAL-AUDIT pass 20.
+# check_call_chains.py abstains on the "documented in both directions" test because the
+# Owners-crossed column of _index/CALL-CHAINS.md uses CodeDomain labels that no page
+# writes as a single token. This file maps every label form the 46 documented chain
+# rows use to the primary-owner token the corpus carries (owners.tsv vocabulary, the
+# PrimaryOwner: frontmatter values, and the NN-* category directories).
+#
+# Columns:
+#   chain_label   the exact token as it appears in the Owners column
+#   owner_token   the canonical owner name (owners.tsv / PrimaryOwner:<token>)
+#   category_dir  the database category directory that owns the domain
+#   note          alias/spelling provenance
+#
+# A chain_label may appear more than once when it spells two owners
+# (`Script/VM` -> Script + VM, `InputGameplay/UI` -> InputGameplay + UI); the
+# both-directions test should treat a multi-owner row as satisfied when every
+# mapped owner is documented at the row's document.
+#
+chain_label	owner_token	category_dir	note
+ActorEntity	ActorEntity	04-Actor-Entity	canonical owner token
+Audio	Audio	18-Audio	canonical owner token
+CombatAI	CombatAI	09-Combat-AI-And-Gambits	canonical owner token
+CombatAction	CombatAction	07-Combat-Action	canonical owner token
+CombatFormula	CombatFormula	08-Combat-Formula	canonical owner token
+CoreRuntime	CoreRuntimeScheduling	00-Engine-Core-Runtime	short form of the scheduling owner; used in "CoreRuntime (mode flag)"
+CoreRuntimeScheduling	CoreRuntimeScheduling	00-Engine-Core-Runtime	canonical owner token
+Developer console	(none)	00-Engine-Core-Runtime	not a CodeDomain owner - the Developer-Tuning-Console subsystem; no primary-owner token exists
+engine	(none)	00-Engine-Core-Runtime	generic engine side of a script->native crossing; not an owner token
+Engine_Core_Runtime	CoreRuntimeScheduling	00-Engine-Core-Runtime	category-dir spelling; the scheduling owner is the resident PrimaryOwner
+Equipment	Items_Equipment_Shops_License	12-Items-Equipment-Shops-License	second word of the "Items/Equipment" pair label
+Input	Input	15-Input	canonical owner token
+InputGameplay	Input	15-Input	proposed domain label (owner_layer: "CodeDomain:InputGameplay (proposed)"); no separate PrimaryOwner - maps to the Input owner
+Items	Items_Equipment_Shops_License	12-Items-Equipment-Shops-License	first word of the "Items/Equipment" pair label
+Movement	Movement	06-Movement-And-Navigation	canonical owner token
+Party	Party	11-Party	canonical owner token
+Platform_Online_Achievements	PlatformOnlineAchievements	20-Platform-Online-Achievements	snake-case spelling of the owner token
+Presentation	Presentation	17-Presentation-Rendering	canonical owner token
+Resource	Resource	02-Resource-And-Asset-Pipeline	canonical owner token
+Rewards_Progression_Economy	Rewards_Progression_Economy	13-Rewards-Progression-Economy	canonical owner token
+RNG	RNG_Random_Selection	21-RNG-And-Determinism	short form of the owner token
+Save_Load_Settings	Save_Load_Settings	19-Save-Load-Settings	canonical owner token
+Script	Script_VM_Native_Bridge	01-Script-VM-Native-Bridge	first half of the "Script/VM" pair label
+Script_VM_Native_Bridge	Script_VM_Native_Bridge	01-Script-VM-Native-Bridge	canonical owner token
+Spawn	Spawn_Encounter_Lifecycle	05-Spawn-Encounter-Lifecycle	short form of the owner token
+Spawn_Encounter_Lifecycle	Spawn_Encounter_Lifecycle	05-Spawn-Encounter-Lifecycle	canonical owner token
+Status	Status_Periodic_Terminal	10-Status-Periodic-Terminal	short form of the owner token
+Status_Periodic_Terminal	Status_Periodic_Terminal	10-Status-Periodic-Terminal	canonical owner token
+UI	UI	16-UI	canonical owner token
+VM	Script_VM_Native_Bridge	01-Script-VM-Native-Bridge	second half of the "Script/VM" pair label
+WorldAreaField	WorldAreaField	03-World-Area-Field	canonical owner token
+Authored data	(none)	(none)	authored tables/data, not a function owner - the crossing partner is a format, not a domain
+#
+# Annotated label forms in the column reduce to the tokens above after stripping
+# the parenthetical: "ActorEntity (managers 1-4 only)" -> ActorEntity,
+# "Audio (state word)" -> Audio, "CoreRuntime (mode flag)" -> CoreRuntime,
+# "Party (block)" -> Party. Slash-separated cells list multiple owners
+# ("Party / UI", "Items / CombatAI / Spawn_Encounter_Lifecycle").

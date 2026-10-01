@@ -1,0 +1,1 @@
+a review (task with a reviews field) finishes with exactly one result ref verdict:<ACCEPT|ACCEPT-WITH-NARROWING|REJECT|ESCALATE-FABLE|ESCALATE-OPUS|ESCALATE-ASTRA> plus its receipts; got ['ACCEPT', 'REJECT']. An inconclusive review is not DONE - checkpoint, block or release it (REVIEW-POLICY.md)

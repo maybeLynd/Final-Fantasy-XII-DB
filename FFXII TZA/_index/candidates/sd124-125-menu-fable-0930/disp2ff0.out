@@ -1,0 +1,113 @@
+00276DF6 WRITE and    dword ptr [rdi + 0x2ff0], 0xffffefff       in 00276D30 00276D30 FUN_00276d30
+00276E14 WRITE and    dword ptr [rdi + 0x2ff0], 0xfffffeff       in 00276D30 00276D30 FUN_00276d30
+00276E2E       test   dword ptr [rdi + 0x2ff0], 0x1000           in 00276D30 00276D30 FUN_00276d30
+00276E79       test   dword ptr [rdi + 0x2ff0], 0x2000           in 00276D30 00276D30 FUN_00276d30
+00276EB2 WRITE and    dword ptr [rdi + 0x2ff0], 0xffffefff       in 00276D30 00276D30 FUN_00276d30
+00276EBC WRITE or     dword ptr [rdi + 0x2ff0], 0x100            in 00276D30 00276D30 FUN_00276d30
+00276EC6       test   dword ptr [rdi + 0x2ff0], 0x200            in 00276D30 00276D30 FUN_00276d30
+00276F27       mov    eax, dword ptr [rdi + 0x2ff0]              in 00276D30 00276D30 FUN_00276d30
+00276F3B WRITE mov    dword ptr [rdi + 0x2ff0], eax              in 00276D30 00276D30 FUN_00276d30
+00276FB3       mov    ecx, dword ptr [rdi + 0x2ff0]              in 00276D30 00276D30 FUN_00276d30
+00276FD8       test   dword ptr [rdi + 0x2ff0], 0x4000           in 00276D30 00276D30 FUN_00276d30
+00276FE5       movsx  ebx, byte ptr [rdi + 0x2ff0]               in 00276D30 00276D30 FUN_00276d30
+00277036       mov    ecx, dword ptr [rdi + 0x2ff0]              in 00276D30 00276D30 FUN_00276d30
+0027704E WRITE or     dword ptr [rdi + 0x2ff0], 0x200            in 00276D30 00276D30 FUN_00276d30
+00277764       test   dword ptr [rdi + 0x2ff0], 0x400            in 00276D30 00276D30 FUN_00276d30
+002777DF       test   dword ptr [rdi + 0x2ff0], 0x400            in 00276D30 00276D30 FUN_00276d30
+00277813       xor    eax, dword ptr [rdi + 0x2ff0]              in 00276D30 00276D30 FUN_00276d30
+0027781E WRITE xor    dword ptr [rdi + 0x2ff0], eax              in 00276D30 00276D30 FUN_00276d30
+00277A64       mov    edx, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277A65       mov    edx, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277A9B WRITE mov    dword ptr [r15 + 0x2ff0], edx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277A9C WRITE mov    dword ptr [rdi + 0x2ff0], edx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277AA2       mov    r8d, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277AA3       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277B0B WRITE or     dword ptr [r15 + 0x2ff0], ecx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277B0C WRITE or     dword ptr [rdi + 0x2ff0], ecx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277C44       mov    r9d, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277C45       mov    ecx, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277C8A WRITE or     dword ptr [r15 + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277C8B WRITE or     dword ptr [rdi + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277F30       test   dword ptr [r15 + 0x2ff0], 0x12800          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277F31       test   dword ptr [rdi + 0x2ff0], 0x12800          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277FA3 WRITE and    dword ptr [r15 + 0x2ff0], 0xfffff7ff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277FA4 WRITE and    dword ptr [rdi + 0x2ff0], 0xfffff7ff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277FFE WRITE or     dword ptr [r15 + 0x2ff0], 0x2000           in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00277FFF WRITE or     dword ptr [rdi + 0x2ff0], 0x2000           in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+0027800B WRITE and    dword ptr [r15 + 0x2ff0], 0xffffdfff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+0027800C WRITE and    dword ptr [rdi + 0x2ff0], 0xffffdfff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278074       mov    eax, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278075       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002782E6 WRITE or     dword ptr [r15 + 0x2ff0], 0x10000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002782E7 WRITE or     dword ptr [rdi + 0x2ff0], 0x10000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278307       test   dword ptr [r15 + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278308       test   dword ptr [rdi + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278797 WRITE or     dword ptr [r15 + 0x2ff0], r12d             in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278798 WRITE or     dword ptr [rdi + 0x2ff0], esp              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+0027884D WRITE or     dword ptr [r15 + 0x2ff0], edi              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+0027884E WRITE or     dword ptr [rdi + 0x2ff0], edi              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278998       test   dword ptr [r15 + 0x2ff0], 0x400            in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278999       test   dword ptr [rdi + 0x2ff0], 0x400            in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278D04       mov    eax, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278D05       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278DBB WRITE or     dword ptr [r15 + 0x2ff0], r12d             in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278DBC WRITE or     dword ptr [rdi + 0x2ff0], esp              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278E72       test   dword ptr [r15 + 0x2ff0], 0x80000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278E73       test   dword ptr [rdi + 0x2ff0], 0x80000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278ECB       test   dword ptr [r15 + 0x2ff0], 0x80000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278ECC       test   dword ptr [rdi + 0x2ff0], 0x80000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278EFF WRITE or     dword ptr [r15 + 0x2ff0], 0x800            in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00278F00 WRITE or     dword ptr [rdi + 0x2ff0], 0x800            in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002792C5       mov    ecx, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002792C6       mov    ecx, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002792DF       mov    eax, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002792E0       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279301 WRITE or     dword ptr [r15 + 0x2ff0], 0x8000           in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279302 WRITE or     dword ptr [rdi + 0x2ff0], 0x8000           in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002793BF WRITE and    dword ptr [r15 + 0x2ff0], 0xffff7fff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002793C0 WRITE and    dword ptr [rdi + 0x2ff0], 0xffff7fff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002793CA       mov    eax, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002793CB       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002795B5 WRITE or     dword ptr [r15 + 0x2ff0], 0x4000           in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002795B6 WRITE or     dword ptr [rdi + 0x2ff0], 0x4000           in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002795C2 WRITE and    dword ptr [r15 + 0x2ff0], 0xffffbfff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002795C3 WRITE and    dword ptr [rdi + 0x2ff0], 0xffffbfff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002797DA       mov    eax, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+002797DB       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279906       test   word ptr [r15 + 0x2ff0], 0x400             in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279907       test   dword ptr [r15 + 0x2ff0], 0x400            in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279908       test   dword ptr [rdi + 0x2ff0], 0x400            in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279A49 WRITE and    dword ptr [r15 + 0x2ff0], 0xfff7ffff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279A4A WRITE and    dword ptr [rdi + 0x2ff0], 0xfff7ffff       in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279AF8       mov    r8d, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279AF9       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279B45 WRITE or     dword ptr [r15 + 0x2ff0], 0x80000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279B46 WRITE or     dword ptr [rdi + 0x2ff0], 0x80000          in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279B50       mov    ecx, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279B51       mov    ecx, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279B6A       mov    eax, dword ptr [r15 + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279B6B       mov    eax, dword ptr [rdi + 0x2ff0]              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279C83       test   dword ptr [r15 + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279C84       test   dword ptr [rdi + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279CAA       test   dword ptr [r15 + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+00279CAB       test   dword ptr [rdi + 0x2ff0], ebx              in 002778C0 002778C0 BattleMenu_UpdateCommandSelecti
+0027A44C       xor    ecx, dword ptr [rax + 0x2ff0]              in 00279E20 00279E20 FUN_00279e20
+0027A458 WRITE xor    dword ptr [rax + 0x2ff0], ecx              in 00279E20 00279E20 FUN_00279e20
+0027A487 WRITE mov    byte ptr [rdi + 0x2ff0], al                in 00279E20 00279E20 FUN_00279e20
+0027A49C WRITE or     dword ptr [rdi + 0x2ff0], 0x400            in 00279E20 00279E20 FUN_00279e20
+0027A4F1       xor    ecx, dword ptr [rdi + 0x2ff0]              in 00279E20 00279E20 FUN_00279e20
+0027A4FD       xor    ecx, dword ptr [rdi + 0x2ff0]              in 00279E20 00279E20 FUN_00279e20
+0027A503 WRITE mov    dword ptr [rdi + 0x2ff0], ecx              in 00279E20 00279E20 FUN_00279e20
+0027A523 WRITE mov    dword ptr [rdi + 0x2ff0], ecx              in 00279E20 00279E20 FUN_00279e20
+0027A53D WRITE mov    dword ptr [rdi + 0x2ff0], eax              in 00279E20 00279E20 FUN_00279e20
+0027A54D       mov    eax, dword ptr [rdi + 0x2ff0]              in 00279E20 00279E20 FUN_00279e20
+0027A55C WRITE mov    dword ptr [rdi + 0x2ff0], eax              in 00279E20 00279E20 FUN_00279e20
+0027A5DF       test   dword ptr [rdi + 0x2ff0], 0x8000           in 00279E20 00279E20 FUN_00279e20
+0027B44E       mov    r8d, dword ptr [r8 + 0x2ff0]               in 0027B430 0027B430 FUN_0027b430
+0027B44F       mov    eax, dword ptr [rax + 0x2ff0]              in 0027B430 0027B430 FUN_0027b430
+0027B495       mov    ecx, dword ptr [rbx + 0x2ff0]              in 0027B430 0027B430 FUN_0027b430
+0027B523 WRITE or     dword ptr [rbx + 0x2ff0], 0x1000           in 0027B430 0027B430 FUN_0027b430
+0027B52D       test   dword ptr [rbx + 0x2ff0], 0x800            in 0027B430 0027B430 FUN_0027b430
+0027D3E3       test   dword ptr [rbp + 0x2ff0], 0x400            in 0027D330 0027D330 BattleMenu_RecordSelectedTarget
+CONTROL 00276D30 reads it: PASS
+SD-124 walk owner of 0035BDB0: 0035BC50 FUN_0035bc50

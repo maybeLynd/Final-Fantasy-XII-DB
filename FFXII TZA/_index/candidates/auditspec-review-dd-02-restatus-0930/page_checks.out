@@ -1,0 +1,19 @@
+=== 02-Resource-And-Asset-Pipeline/a-typed-list-measured-once-and-built-in-one-allocation.md
+F status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTR...
+F evidence_tier: 1   external_production.status: None
+H template SYSTEM; 19 level-2 headings; missing sections: ['data structures|layout']
+B open boxes: 0 []
+T line 666: cells 5 != header 4; tier cell 'constructors and drawers read' :: | ~~what the types mean~~ | ~~**not established**~~ superseded: §5b, §5e and UQ-75..78 name every type (2026-09-17 / 2026-09-22); marked 2026-09-30, S
+T line 667: cells 5 != header 4; tier cell 'live read, read-only' :: | ~~any runtime observation~~ | ~~**none exists**~~ superseded: the 2026-09-08 live read of the slot registry (AUDIT-LOG, `7593db615`), §5c; marked 20
+N line 288 struck=False marked=False next-superseded-line=292 :: **What its remaining ~700 bytes do is not read**, so type 7 is **partially** identified: it is an
+N line 425 struck=False marked=False next-superseded-line=649 :: ([request router](../16-UI/Request-Router/ui-request-router.md) §2); what bit 7 gates is not read.
+N line 639 struck=False marked=True next-superseded-line=649 :: ***PARTIAL 2026-09-17 (FABLE): the 2/9 half is answered; the 3/6 half has no reader to ask.** Types 2 and 9 share a constructor but not a dr
+N line 641 struck=False marked=True next-superseded-line=649 :: ***CENSUS 2026-09-18 (SWE2-DATA, [listtype-census.tsv](members/listtype-census.tsv) via [gen_listtype_census.py](members/gen_listtype_census
+N line 646 struck=False marked=True next-superseded-line=649 :: ***ANSWERED 2026-09-17 (FABLE): dwords 1 and 2 are the owning widget's rectangle, dword 3 a placement offset, bits 10..27 unread.** The buil
+=== 02-Resource-And-Asset-Pipeline/resource-section-addressing.md
+F status: DOCUMENTED — owner re-status 2026-09-30 (OPUS, on SWE2-CONTRACT's reconciliation); it was ...
+F evidence_tier: 1   external_production.status: "locally validated; formal independent acceptance pending"
+H template SYSTEM; 28 level-2 headings; missing sections: none
+B open boxes: 0 []
+T line 356: tier cell 'data (2026-09-12)' :: | The eleven shipped tags, and no `@ALL` in data | in-process scan of `FFXII_TZA.vbf`: 3,164 `.ca`, 1,066 `.cm`, 9,909 `.mot`-embedded containers, ent
+N line 320 struck=True marked=False next-superseded-line=388 :: between `+0x18` (the mode-0 handle) and `+0x30`, and past `+0x40`, is still unread; ~~it needs a

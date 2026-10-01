@@ -1,0 +1,55 @@
+== .sbn: 8 entries
+ch/bin/btlctrl.sbn             98136 B  md5 4a93136fd712  head 03 00 00 00 10 00 00 00 b0 1a 01 00 d4 21 01 00  text runs 2816  blocks 3 at ['0x10', '0x11ab0', '0x121d4'] ok=True lead [(2507, 5392), (79, 72576), (558, 75424)]
+    #include/#macro lines: 11 ['#include "${ATEL_HEADERPATH}/common.ath"', '#include "${ATEL_HEADERPATH}/quest_flag_header.ath"', '#include "${ATEL_HEADERPATH}/mtanaka/mtanaka_flag.ath"']
+ch/bin/ctrl.sbn                24976 B  md5 ab6b074dc762  head 02 00 00 00 0c 00 00 00 6c 5a 00 00 d1 03 00 00  text runs 717  blocks 2 at ['0xc', '0x5a6c'] ok=True lead [(977, 2124), (79, 23356)]
+    #include/#macro lines: 11 ['#include "p:/tool/atel/header/ateldebugfunc.ath"', '#include "p:/tool/atel/header/atelcommfunc.ath"', '#include "p:/tool/atel/header/common.ath"']
+ch/bin/evctrl.sbn              57816 B  md5 64360a22fb7f  head 02 00 00 00 0c 00 00 00 b4 da 00 00 98 09 00 00  text runs 1575  blocks 2 at ['0xc', '0xdab4'] ok=True lead [(2456, 5252), (79, 56196)]
+    #include/#macro lines: 35 ['#include "${ATEL_HEADERPATH}/common.ath"', '#include "${ATEL_HEADERPATH}/systemctrl.ath"', '#include "${ATEL_HEADERPATH}/tanba/tanba_flag.ath"']
+ch/bin/mapctrl.sbn            140128 B  md5 aaf1ad8919d4  head 03 00 00 00 10 00 00 00 c4 be 01 00 e8 c5 01 00  text runs 3973  blocks 3 at ['0x10', '0x1bec4', '0x1c5e8'] ok=True lead [(2768, 5936), (79, 114580), (557, 117428)]
+    #include/#macro lines: 9 ['#include "${ATEL_HEADERPATH}/map.ath"', '#include "${ATEL_HEADERPATH}/systemctrl.ath"', '#include "${ATEL_HEADERPATH}/mtanaka/mtanaka.ath"']
+in/bin/btlctrl.sbn             98136 B  md5 4a93136fd712  head 03 00 00 00 10 00 00 00 b0 1a 01 00 d4 21 01 00  text runs 2816  blocks 3 at ['0x10', '0x11ab0', '0x121d4'] ok=True lead [(2507, 5392), (79, 72576), (558, 75424)]
+    #include/#macro lines: 11 ['#include "${ATEL_HEADERPATH}/common.ath"', '#include "${ATEL_HEADERPATH}/quest_flag_header.ath"', '#include "${ATEL_HEADERPATH}/mtanaka/mtanaka_flag.ath"']
+in/bin/ctrl.sbn                24976 B  md5 ab6b074dc762  head 02 00 00 00 0c 00 00 00 6c 5a 00 00 d1 03 00 00  text runs 717  blocks 2 at ['0xc', '0x5a6c'] ok=True lead [(977, 2124), (79, 23356)]
+    #include/#macro lines: 11 ['#include "p:/tool/atel/header/ateldebugfunc.ath"', '#include "p:/tool/atel/header/atelcommfunc.ath"', '#include "p:/tool/atel/header/common.ath"']
+in/bin/evctrl.sbn              57816 B  md5 64360a22fb7f  head 02 00 00 00 0c 00 00 00 b4 da 00 00 98 09 00 00  text runs 1575  blocks 2 at ['0xc', '0xdab4'] ok=True lead [(2456, 5252), (79, 56196)]
+    #include/#macro lines: 35 ['#include "${ATEL_HEADERPATH}/common.ath"', '#include "${ATEL_HEADERPATH}/systemctrl.ath"', '#include "${ATEL_HEADERPATH}/tanba/tanba_flag.ath"']
+in/bin/mapctrl.sbn            140128 B  md5 aaf1ad8919d4  head 03 00 00 00 10 00 00 00 c4 be 01 00 e8 c5 01 00  text runs 3973  blocks 3 at ['0x10', '0x1bec4', '0x1c5e8'] ok=True lead [(2768, 5936), (79, 114580), (557, 117428)]
+    #include/#macro lines: 9 ['#include "${ATEL_HEADERPATH}/map.ath"', '#include "${ATEL_HEADERPATH}/systemctrl.ath"', '#include "${ATEL_HEADERPATH}/mtanaka/mtanaka.ath"']
+  ch copy == in copy for every module: True
+== .msb: 8 entries
+ch/bin/btlctrl.msb              7141 B  md5 756acebc49ed  head c0 00 01 00 3b 03 00 00 ab 03 00 00 cb 03 01 00  text runs 45
+ch/bin/ctrl.msb                 3029 B  md5 dc7e85ec70a3  head a8 00 01 00 bc 01 01 00 48 02 01 00 80 02 01 00  text runs 33
+ch/bin/evctrl.msb              26953 B  md5 a714e8c6f0c8  head bc 00 01 00 9c 06 01 00 7e 0c 01 00 53 0e 01 00  text runs 0
+ch/bin/mapctrl.msb             10864 B  md5 f8d93bf9e89a  head e4 00 01 00 ec 02 01 00 f3 04 01 00 f9 06 01 00  text runs 65
+in/bin/btlctrl.msb              7141 B  md5 756acebc49ed  head c0 00 01 00 3b 03 00 00 ab 03 00 00 cb 03 01 00  text runs 45
+in/bin/ctrl.msb                 3029 B  md5 dc7e85ec70a3  head a8 00 01 00 bc 01 01 00 48 02 01 00 80 02 01 00  text runs 33
+in/bin/evctrl.msb              26953 B  md5 a714e8c6f0c8  head bc 00 01 00 9c 06 01 00 7e 0c 01 00 53 0e 01 00  text runs 0
+in/bin/mapctrl.msb             10864 B  md5 f8d93bf9e89a  head e4 00 01 00 ec 02 01 00 f3 04 01 00 f9 06 01 00  text runs 65
+  ch copy == in copy for every module: True
+== .dbg: 8 entries
+ch/bin/btlctrl.dbg            270160 B  md5 dd0572940d05  head e4 c4 01 00 7c 00 00 00 20 ca 01 00 6c 00 00 00  text runs 7364
+    first text runs: ['btlctrl.src', 'c:/plan_work/jp/event/header/systemctrl.ath', 'mapctrl_mj.src', 'g_com_debug_flag', 'g_com_movie_debug', 'mp_debugmenu_flg']
+ch/bin/ctrl.dbg                83120 B  md5 918171717256  head 78 84 00 00 78 00 00 00 a0 88 00 00 6c 00 00 00  text runs 2708
+    first text runs: ['ctrl.src', 'c:/cygwin/home/katano/ps2/ff12_ps2/katano/systemctrl.ath', 'eventlist', 'mimiclist', 'snapexec', 'snapshotpos']
+ch/bin/evctrl.dbg             126112 B  md5 c695c9e89a5a  head 84 17 01 00 78 00 00 00 20 1c 01 00 6c 00 00 00  text runs 2965
+    first text runs: ['evctrl.src', 'c:/plan_work/in/event/header/systemctrl.ath', 'g_btl_', 'g_btl_', 'g_btl_', 'g_btl_']
+ch/bin/mapctrl.dbg            301776 B  md5 56b27988386c  head 74 22 02 00 7c 00 00 00 d0 26 02 00 6c 00 00 00  text runs 7869
+    first text runs: ['C:/image/FF12/mapctrl/mapctrl.src', 'c:/plan_work/jp/event/header/systemctrl.ath', 'mapctrl_mj.src', 'global_flag', 'g_com_e3_flag', 'g_menu_telepo_dest']
+in/bin/btlctrl.dbg            270160 B  md5 dd0572940d05  head e4 c4 01 00 7c 00 00 00 20 ca 01 00 6c 00 00 00  text runs 7364
+    first text runs: ['btlctrl.src', 'c:/plan_work/jp/event/header/systemctrl.ath', 'mapctrl_mj.src', 'g_com_debug_flag', 'g_com_movie_debug', 'mp_debugmenu_flg']
+in/bin/ctrl.dbg                83120 B  md5 918171717256  head 78 84 00 00 78 00 00 00 a0 88 00 00 6c 00 00 00  text runs 2708
+    first text runs: ['ctrl.src', 'c:/cygwin/home/katano/ps2/ff12_ps2/katano/systemctrl.ath', 'eventlist', 'mimiclist', 'snapexec', 'snapshotpos']
+in/bin/evctrl.dbg             126112 B  md5 c695c9e89a5a  head 84 17 01 00 78 00 00 00 20 1c 01 00 6c 00 00 00  text runs 2965
+    first text runs: ['evctrl.src', 'c:/plan_work/in/event/header/systemctrl.ath', 'g_btl_', 'g_btl_', 'g_btl_', 'g_btl_']
+in/bin/mapctrl.dbg            301776 B  md5 56b27988386c  head 74 22 02 00 7c 00 00 00 d0 26 02 00 6c 00 00 00  text runs 7869
+    first text runs: ['C:/image/FF12/mapctrl/mapctrl.src', 'c:/plan_work/jp/event/header/systemctrl.ath', 'mapctrl_mj.src', 'global_flag', 'g_com_e3_flag', 'g_menu_telepo_dest']
+  ch copy == in copy for every module: True
+executable: b'btlctrl' occurs 0 times
+executable: b'evctrl' occurs 0 times
+executable: b'mapctrl' occurs 0 times
+executable: b'systemctrl' occurs 0 times
+executable: path component '\\ctrl.' occurs 0 times
+executable: b'.sbn\x00' occurs 0 times
+executable: b'.msb\x00' occurs 0 times
+executable: b'.dbg\x00' occurs 0 times
+executable: ATEL extension table 'bin dbg sbn msb msf fnt cam' present at file offset 0xbef790

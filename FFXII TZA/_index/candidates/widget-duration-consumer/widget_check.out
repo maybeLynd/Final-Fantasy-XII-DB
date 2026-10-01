@@ -1,0 +1,8 @@
+PASS D1  mode 2: jae (bit 16 clear) skips the zeroing store, so +0x70 is zeroed when the bit is set
+PASS D2  bit 0 clear -> nibble 1 -> tail or 0x30; bit 0 set: 0 schedule, 2 rebase, 3 schedule, else return at 00244EF7
+PASS D3  record u16 -> zero gate (cmove) -> bit-11 override after it -> unsigned x60 / 1000
+PASS D4  floor(x*60/1000) for all x in 0..65535 (first mismatch none)
+PASS D5  +0x90: 32-bit product, signed reciprocal, sar 6 and sign correction
+PASS D5m  signed model: {1000: 60, -17: -1, 35791394: 2147483, 35791395: -2147483}
+PASS C  controls: D1 binding refuses a jb mutant; unsigned model of -17 gives 4294966, not -1
+FAILS 0

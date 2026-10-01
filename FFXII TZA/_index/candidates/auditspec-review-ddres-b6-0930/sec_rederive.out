@@ -1,0 +1,31 @@
+C1 002ED570: 115 sites ['E8', 'E9'], 85 distinct owners, None-owner 3, relocated pointers 0
+F1 004096C0:
+   004096C0 push rbx
+   004096C2 sub rsp, 0x20
+   004096C6 mov ebx, edx
+   004096C8 test rcx, rcx
+   004096CB jne 0x4096d5
+   004096CD xor eax, eax
+   004096CF add rsp, 0x20
+   004096D3 pop rbx
+   004096D4 ret
+G1 0032EAE0 caller 0022A3D5 E8, owner 0022A0B0
+S10 rip refs into 02B62E20..02B62E3F: 1; owners ['00409780']
+C1 sites without .pdata owner and their gap owner: [('00409F5C', 'gap:409F50'), ('0046E8B8', 'gap:46E8B0'), ('004780B3', 'gap:4780B0')]
+C1 distinct owners incl gap owners: 87
+C1 E9 sites: ['003E57F9', '00409F5C', '0046E8B8', '004780B3']
+F1   004096D5 cmp ebx, -1
+F1   004096D8 je 0x4096cd
+F1   004096DA call 0x409600
+F1   004096DF add eax, ebx
+F1   004096E1 cdqe
+F1   004096E3 add rsp, 0x20
+F1   004096E7 pop rbx
+F1   004096E8 ret
+F1   004096E9 int3
+F1   004096EA int3
+F1   004096EB int3
+F1   004096EC int3
+F1   004096ED int3
+F1   004096EE int3
+F1   004096EF int3

@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "c670cb75649ec1458cc7fe1f45d38bc5f62190de8a507520d52689925b596df7",
+  "check_sha256": "fef34712f5c02daa819ae376bd171af009dd69614b3b090df4d1792e95d385c3",
+  "raw_unchanged_sha256": "6721bfd868344a82c5bc4c1868e2a1c2ed9429f51714c22bdea026a62308eb1c",
+  "path": "Actual producer default reduces retained source/bits, no guest/native/live"
+}

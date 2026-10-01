@@ -1,0 +1,117 @@
+== Q2. holder loads (mov|add r64, qword [base + 0xC8|0xD0|0xE0]) image-wide: 865 in 445 functions
+  round 0: 167 callees with tainted argument registers
+  round 1: 128 callees with tainted argument registers
+  round 2: 66 callees with tainted argument registers
+  round 3: 37 callees with tainted argument registers
+  round 4: 10 callees with tainted argument registers
+  round 5: 2 callees with tainted argument registers
+== positive control: the package's 14 +0x10 price reads found: 14 of 14 (missing [])
+  total +0x10 accesses through a holder-derived register: 169 (dword: 28)
+== every hit inside the UI windows 00560000-0057FFFF / 003FC000-003FFFFF (any width), by root
+  root 003FF1F0:
+    003FF241 8B mov rdx, qword ptr [rdx + rax + 0x10]         NEW
+  root 005651E0:
+    00565460 2B mov word ptr [rbx + 0x10], 0xfc00             NEW
+    005654B0 1B cmp byte ptr [rbx + 0x10], sil                NEW
+    005654CB 1B cmp byte ptr [rbx + 0x10], sil                NEW
+    005654D7 1B cmp byte ptr [rbx + 0x10], 4                  NEW
+    005654E1 1B mov byte ptr [rbx + 0x10], 1                  NEW
+    005654E5 1B movzx ecx, byte ptr [rbx + 0x10]              NEW
+    00565508 1B mov byte ptr [rbx + 0x10], 2                  NEW
+    00565532 1B mov byte ptr [rbx + 0x10], al                 NEW
+    00565537 1B mov byte ptr [rbx + 0x10], 3                  NEW
+    00565561 1B mov byte ptr [rbx + 0x10], al                 NEW
+    00565566 4B mov dword ptr [rbx + 0x10], esi               NEW
+  root 00565BD0:
+    00565C3C 16B movups xmm3, xmmword ptr [rdi + 0x10]         NEW
+    00565C7B 16B movups xmmword ptr [rdi + 0x10], xmm1         NEW
+    00565C92 16B movups xmmword ptr [r15 + 0x10], xmm3         NEW
+  root 0056A1D0:
+    0056A269 2B movzx eax, word ptr [rdi + 0x10]              NEW
+    0056A29E 2B mov word ptr [rdi + 0x10], ax                 NEW
+    0056A312 2B cmp word ptr [rdi + 0x10], si                 NEW
+    0056A375 4B mov dword ptr [rdi + 0x10], 0xffffffff        NEW
+  root 0056A890:
+    0056A938 2B movzx ecx, word ptr [rax + 0x10]              NEW
+  root 0056AE80:
+    0056AF6D 2B movzx ecx, word ptr [rax + 0x10]              NEW
+  root 0056B100:
+    0056B151 2B movzx eax, word ptr [rax + 0x10]              NEW
+  root 0056CBC0:
+    0056CC7E 4B cmp dword ptr [rsi + 0x10], 0x80000000        P14
+    0056CCA2 4B mov eax, dword ptr [rsi + 0x10]               P14
+  root 0056CD50:
+    0056CE07 4B cmp dword ptr [rdi + 0x10], 0x80000000        P14
+    0056CE31 4B mov eax, dword ptr [rdi + 0x10]               P14
+  root 0056CF10:
+    0056CFF3 4B cmp dword ptr [r14 + 0x10], 0x80000000        P14
+    0056D023 4B mov eax, dword ptr [r14 + 0x10]               P14
+    0056D0C8 4B mov r9d, dword ptr [r14 + 0x10]               P14
+  root 0056D1B0:
+    0056D267 4B cmp dword ptr [rdi + 0x10], 0x80000000        P14
+    0056D291 4B mov eax, dword ptr [rdi + 0x10]               P14
+  root 0056D370:
+    0056D461 4B mov ebx, dword ptr [rax + 0x10]               P14
+  root 0056D870:
+    0056D8F1 4B mov r9d, dword ptr [rdi + 0x10]               P14
+  root 0056DA80:
+    0056DBCA 4B mov r9d, dword ptr [rbp + 0x10]               P14
+  root 0056E700:
+    0056E71A 4B cmp dword ptr [rcx + 0x10], 0x80000000        P14
+    0056E797 4B mov r9d, dword ptr [r11 + 0x10]               P14
+  root 0057FB00:
+    0057FC7A 2B sub si, word ptr [rcx + 0x10]                 NEW
+== dword +0x10 hits OUTSIDE the UI windows: 12, in 8 roots
+  roots: 0037E350(1), 0037E5B0(4), 0037E8D0(2), 0037FD50(1), 0069F150(1), 006A1DD0(1), 0074B280(1), 0085E740(1)
+== provenance of every hit root outside the UI windows: own holder loads, or tainted arguments from which call sites
+  0037E350 own holder loads ['0037E3D8'] ; tainted-arg entries from []
+      hit 0037E3F9 mov eax, dword ptr [rax + 0x10]
+  0037E5B0 own holder loads ['0037E5C4', '0037E65F', '0037E6BC'] ; tainted-arg entries from []
+      hit 0037E608 mov eax, dword ptr [r14 + 0x10]
+      hit 0037E61B mov eax, dword ptr [r14 + 0x10]
+      hit 0037E625 mov eax, dword ptr [r14 + 0x10]
+      hit 0037E642 xor eax, dword ptr [r14 + 0x10]
+  0037E8D0 own holder loads ['0037E8E0'] ; tainted-arg entries from []
+      hit 0037E9A1 mov eax, dword ptr [r9 + rax*8 + 0x10]
+      hit 0037E9AF mov ecx, dword ptr [rbx + 0x10]
+  0037FD50 own holder loads ['0037FD67'] ; tainted-arg entries from []
+      hit 0037FDBC mov ecx, dword ptr [r11 + r10*8 + 0x10]
+  0069F150 own holder loads ['0069F3EF', '0069F409', '0069F431', '0069F44E'] ; tainted-arg entries from []
+      hit 0069F41A mov dword ptr [rcx + rdx*8 + 0x10], eax
+  006A1DD0 own holder loads ['006A1E16'] ; tainted-arg entries from []
+      hit 006A201B movss dword ptr [rdi + 0x10], xmm0
+  0074B280 own holder loads ['0074B6AC'] ; tainted-arg entries from []
+      hit 0074B6DB movss xmm3, dword ptr [rax + 0x10]
+  0085E740 own holder loads [] ; tainted-arg entries from ['0085EACC(in 0085EA40)', '0085EC0D(in 0085EA40)', '0085ECFE(in 0085EA40)']
+      hit 0085E8C0 mulss xmm1, dword ptr [rax + 0x10]
+== escapes (a tainted register stored to non-stack memory, or an indirect call with a tainted argument) in the shop family
+  0056E140 []
+  0056E410 [('0056E55A', '+0xC8', 'mov qword ptr [rsi + 0xc8], rcx')]
+  005655F0 []
+  0056D370 [('0056D56F', '+0xD0', 'mov qword ptr [rdi + 0xd0], rcx')]
+  0056CBC0 []
+  0056CD50 []
+  0056CF10 []
+  0056D1B0 []
+  0056E700 []
+  0056D870 []
+  0056DA80 []
+  0056C490 []
+  0056CA60 []
+  0056D9D0 []
+  00565A00 []
+== interprocedural edges out of the shop family (callee <- call site)
+  003697F0 <- 00565639 (in 005655F0) regs ['rcx', 'rcx']
+  003697F0 <- 0056D3D2 (in 0056D370) regs ['rcx', 'rcx']
+  003697F0 <- 0056E393 (in 0056E140) regs ['rcx', 'rcx']
+  003697F0 <- 0056E54B (in 0056E410) regs ['rcx', 'rcx']
+  003933B0 <- 0056E49D (in 0056E410) regs ['rdx']
+  00567690 <- 0056C81C (in 0056C490) regs ['rcx']
+  0056D870 <- 0056CCCD (in 0056CBC0) regs ['rcx']
+  0056D870 <- 0056CE6C (in 0056CD50) regs ['rcx']
+  0056D870 <- 0056D2CC (in 0056D1B0) regs ['rcx']
+  0056DA80 <- 0056D103 (in 0056CF10) regs ['rcx']
+  0056E700 <- 0056C7AF (in 0056C490) regs ['rcx']
+  0056E700 <- 0056CB2C (in 0056CA60) regs ['rcx']
+  0056E700 <- 0056D576 (in 0056D370) regs ['rcx']
+  0056E700 <- 0056D9F7 (in 0056D9D0) regs ['rcx']

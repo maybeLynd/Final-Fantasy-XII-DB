@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-CLOSURE-CENSUS-AND-INSTRUCTION-TYPING",
+ "agent": "OPUS",
+ "note": "Committed 4ea9f800c. ManagerSingleton0209BE80: 129 windows over 20 types, 52 of 52 displacements attributed, 0 outside every window, 52 of 52 on already-named rows across 11 types including four nested records - wrong offset arithmetic would scatter hits into gaps and it does not happen once. MapScreenContainer carved 3 of 11; RenderResourceRoot reached 1, already named, after I first gave it RenderModelInstanceContainer's STATIC address instead of its pointer cell and the run correctly wrote nothing. STATIC census over six types: four reached with exact absolute attribution (PApplication 39/39, BattleFormulaScratch 44/44, NavGridParams 14/14, EncodedIdQueryRecord 3/3, all already named), which is the control that makes the two zeros readable; 0209AC60 is touched by ONE instruction in the image, the lea at 002800FA that zeroes 0xE00 and publishes the address into 0209AC30, so the storage and the access route are different cells exactly as the type row says - and the census through 0209AC30 reaches 177 displacements over 902 loads and 444 bodies, 175 named, 2 carved. BOUNDARY SIGNAL REPORTED AND NOT ABSORBED: BattleFormulaScratch has 54 accesses and EncodedIdQueryRecord 35 in the 0x40 bytes past their declared ends; nothing was widened on that evidence because a size is a measurement and this run does not make one. Three rows retyped uint32 -> float from movss/addss/mulss/comiss; three MIXED left alone. 7,103 -> 7,107 fields. STILL RUNNING, not claimed here: the closure census of WidgetSingleton02B47758. DB_GOAL remains NOT_MET.",
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ],
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

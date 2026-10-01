@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py",
+    "launch",
+    "--timeout",
+    "90"
+  ],
+  "start_unix": 1789085511.242657,
+  "end_unix": 1789085607.7674215,
+  "exit_code": 1,
+  "stdout": "pid 32096  unreadable\nNOT READY: process 32096 started but never became ready within 90s\n",
+  "stderr": ""
+}

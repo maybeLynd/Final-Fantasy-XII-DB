@@ -1,0 +1,23 @@
+[
+  {
+    "argument": "--fault-stale-total",
+    "returncode": 1,
+    "expected": "Prose total must equal original reduced zero total",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "0c68e97264925bd62924cfe02b6bd7e91b88f9875c090f0985bcf10b324360e2"
+  },
+  {
+    "argument": "--fault-clamp-missing-line",
+    "returncode": 1,
+    "expected": "Missing-coordinate control must not clamp",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "edf862e34619372e59d6be18e80472e85a1a6fb4d3c9442b5cbcd2ee491bfc21"
+  },
+  {
+    "argument": "--fault-two-padding",
+    "returncode": 1,
+    "expected": "Two-record suffix assumption",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "d7bf02cd9c64795072e39611fbc44657d30eae06d06e4fc8108d60e33257b464"
+  }
+]

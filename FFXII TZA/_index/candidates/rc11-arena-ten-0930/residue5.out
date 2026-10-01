@@ -1,0 +1,52 @@
+-- 002492B4
+PASS  00249239  mov edi, r9d                            
+PASS  002492B2  mov ecx, edi                            
+   dataflow-resolved caller values: [2, 3]; pass-through callers: ['00249180', '002493D0']
+PASS  the only open callers are the two pass-throughs
+PASS  003C2190  mov r9d, r8d                            
+PASS  003C2193  mov r8, rdx                             
+PASS  003C1F2E  mov r14, r8                             
+PASS  003C1FFD  mov r9d, dword ptr [r14]                
+PASS  002B7CE9  lea rdx, [rbp - 0x70]                   
+PASS  002B7CEF  mov dword ptr [rbp - 0x70], 2           
+PASS  002BB0F1  lea rdx, [rbp - 0x50]                   
+PASS  002BB0F7  mov dword ptr [rbp - 0x50], 2           
+PASS  003CB5C3  lea rdx, [rsp + 0x20]                   
+PASS  003CB5CB  mov dword ptr [rsp + 0x20], 2           
+PASS  0039352E  mov r9d, dword ptr [rbx]                
+PASS  0039355D  add rbx, 8                              
+PASS  00574F5C  mov dword ptr [rsp + 0x20], 2           
+PASS  table 00D23658 arena dwords (2, 2)
+PASS  003C1D7D  mov r11, r8                             
+PASS  003C1DC9  mov r9d, dword ptr [r11]                
+PASS  00563315  lea r8, [rsp + 0x20]                    
+PASS  00563325  mov dword ptr [rsp + 0x20], 2           
+   => 002492B4 arena set [2, 3]
+-- 00384466
+PASS  00384448  mov ebx, r9d                            
+PASS  00384464  mov ecx, ebx                            
+   dataflow per caller: {'00238260': [3], '002385D0': None, '003843F0': [4]}
+PASS  002385FA  call 0x8478a0                           
+PASS  002385FF  mov r9d, eax                            
+PASS  008478A0  mov eax, 3                              
+PASS  008478A5  ret                                     
+   => 00384466 arena set [3, 4]
+-- 003E9AC2
+PASS  003E9AAC  mov ebx, ecx                            
+PASS  003E9AB3  mov ecx, 6                              
+PASS  003E9AB8  test ebx, ebx                           
+PASS  003E9ABF  cmovns ecx, ebx                         
+PASS  0034D098  mov ebx, eax                            
+PASS  0034D09A  call 0x267e10                           
+PASS  0034D0A1  mov ecx, eax                            
+PASS  0034D0AD  jmp 0x3e9aa0                            
+   => shipped: first argument -1 in all 10 calls (verb_census.out) -> arena 6
+-- 0050D93F / 0050DB1F
+PASS  0050D932  mov ebx, eax                            
+PASS  0050D93B  mov ecx, ebx                            
+PASS  0050DB12  mov ebx, eax                            
+PASS  0050DB1B  mov ecx, ebx                            
+PASS  0050DA8A  jmp 0x50d8f0                            
+PASS  0050DC2A  jmp 0x50dad0                            
+   => shipped: 0 calls of verbs 0x2003/0x2004/0x2008/0x2009 (verb_census.out)
+RESULT PASS

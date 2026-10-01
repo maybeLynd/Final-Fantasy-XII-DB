@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-GRAPHICS-MT-ADDRESS-AND-CONSUMER-CENSUS",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the open item in CONTRACT-which-generator-serves-which-roll.md section 14: the graphics MT's state address and consumer census",
+  "scope": "classify the receiver at every call site of 0018EE20 and 0018D740; census every rip-relative operand into the state range and the cells above it; reconcile the contract with the types store and declare whatever contract-named state is missing",
+  "completion": "the address is established or refuted from the call sites rather than from the callee; the consumer census is exhaustive with its count stated; the contract, the type row and the store agree; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

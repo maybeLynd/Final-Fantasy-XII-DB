@@ -1,0 +1,85 @@
+# Cross-document claims whose term the target does not contain - seeded, not decided.
+#
+# check_doc_claims says each row is a QUESTION: the claim may be STALE (the target
+# corrected since) or a PARAPHRASE the target words differently, and that it does not
+# decide which. Reading one turned up a third possibility its wording does not cover, and
+# it is the common one: the term belongs to the OUTER SENTENCE, not to the citation.
+#
+#   ... runs [the party read-in state machine](...), 2026-09-14) AND BY
+#   `BattleSystem_ResetRuntimeState` -> `BattleSlotMap_InitializeMappingClasses`.
+#
+# BattleSystem_ResetRuntimeState is a second writer in the outer sentence; the citation
+# closed before 'and by'. The checker binds a term to the nearest preceding link, which is
+# a reasonable heuristic and wrong here.
+#
+#   OUTSIDE-CITATION  the term appears after the link's closing ')' - probably the outer
+#                     sentence, not a claim about the target
+#   INSIDE-CITATION   the term falls inside the citation's own parenthetical
+#   UNDETERMINED      the sentence excerpt does not show both positions
+#
+# THE HINT IS NOT A VERDICT. A term after the paren can still be a claim about the target,
+# and one inside can still be the citing page's own paraphrase. It puts the cheapest
+# discriminator in front of the reader; the reading is still the reading.
+#
+# ALL 22 ROWS ARE NOW ADJUDICATED, 2026-09-14 (OPUS), AND NONE IS A DEFECT.
+#
+#   6  the term sits AFTER its citation closed and belongs to the outer sentence
+#   6  concept-link: the citing page names its own address and links the target for a
+#      SHARED CONCEPT (see the detailed note below)
+#   7  paraphrase: the target holds the same fact in different words. Checked by
+#      component, not by string - `vit = target.+0x2C` has both `target` and `+0x2C` in
+#      the target; `0x5000 + row`, `state + 0x59C8 + row`, `owned - reserved` likewise;
+#      and `0031E9A0(row)`'s 'item-row class' is on the stat page at line 153 as
+#      '0031E9A0 classifies the item row'
+#   2  not terms at all - the checker extracted a prose fragment ('the format page',
+#      '... triggered a trap'), which has no citable token to look for
+#   1  THE WRONG LINK OF TWO. The cell holds two citations; `+0xE9A` belongs to the first
+#      ([status write] section 2.7), where it appears FIVE times, and the checker paired it
+#      with the second ([evaluation context]).
+#
+# The heuristic - a term near a link is a claim about that page - is reasonable, and on a
+# corpus that cites densely inside table cells it produces false positives at close to
+# 100%. Recorded so the next reader inherits the finding rather than re-deriving it.
+#
+# ADJUDICATED 2026-09-14 (OPUS): ALL SIX CORE-ABSENT ROWS ARE ONE SHAPE, AND IT IS NOT A
+# DEFECT. In each, the citing page names ITS OWN address and links the target for a SHARED
+# CONCEPT - never to attribute the address to it. The link is introduced by the concept in
+# every case: 'the party-type band', 'the same property', 'the same handle form', 'the
+# idiom', 'the actor storage map'. Verified in full document context for
+# the-record-00329220-builds.md, where the table row reads
+#
+#   | party only: bits 1, 2 | `00329660`-`00329691` | bit 1 when type ... (the party-type
+#   band [the kind-byte page](...) measures) |
+#
+# - the address is in COLUMN 2 and the link in COLUMN 3. The checker associated a term from
+# one table column with a link in another. 'The target does not contain the term' is true
+# and irrelevant: the citing page never said it did.
+#
+#   CORE-PRESENT xN   the term's ADDRESS is in the target N times and only the decoration
+#                     differs - the paraphrase case, not a stale claim. `00267310(manager)`
+#                     is reported missing from a page that names `00267310` four times.
+#   CORE-ABSENT       the address is not in the target at all - a real question
+#
+# citing_document	target_document	missing_term	position_hint	core_in_target	sentence
+00-Engine-Core-Runtime/Developer-Tuning-Console/ARM-CATALOGUE-WORK-DIVISION.md	00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md	(EMPTY)	INSIDE-CITATION		| action ids by render-table outcome | 226 live · 38 read-outs · 12 labelled buttons without an action · 6 `(EMPTY)` | **not re-derived in this pass** — carried by [the command names](console-command-names.md), which cross the two tables | carried, not re-checked |
+00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	08-Combat-Formula/where-a-stat-number-comes-from.md	+0x28 ← row+0x12 (u16)	INSIDE-CITATION		| 6 equipment | `+0x28 ← row+0x12 (u16)`, `+0x20 ← q0` (0 for id `0x11A4`), `+0x24 ← q1`, `+0x10 ← desc(row+0x0E)`, `+0x38 ← row+9`, `+0x2C ← row+4`, `+0x30 ← row+8`, `+0x3C…+0x40 ← five bytes (+0x13, +0x10, +0x12, +0x11, +0x14) of the record `row+0x28` selects`, `+0x44 / +0x48 ← that record's +0xC / +8` (`0031CA25`–`0031CA36`; corrected 2026-09-12 — `+0x44` is the sub-record's field, not the pointer), `+0x54 bit0 ← row+7 bit1`, `+0x4C ← row+7 >> 5`, `+0x50 ← 0031E9A0(row)` (the 0/1/2/3 item-row class of [the stat page](../08-Combat-Formula/where-a-stat-number-comes-from.md)), `+0x58 / +0x5C / +0x60 ← row+0x18 / +0x19 / +0x1A` permuted by that class, `+0x60 ← row+0x1E`, `+0x5C ← row+0x20 (u32)` |
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-standard-motion-verbs.md	01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md	BattleSystem_ResetRuntimeState	OUTSIDE-CITATION		> [the party read-in state machine](the-party-read-in-state-machine.md), 2026-09-14) and by `BattleSystem_ResetRuntimeState` →
+02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	_experiments/EXP-077-arena-initializer-address-width.md	cmp esi,0xE / ja	OUTSIDE-CITATION		| the initializer retains a backing pointer above 4 GiB in the record's DIRECT fields | [EXP-077](../_experiments/EXP-077-arena-initializer-address-width.md), ASTRA — three bodies executed as shipped bytes; **body hashes, the mutant bytes and the unsigned `cmp esi,0xE / ja` re-verified here against the image** | isolated original-code | PROVEN |
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	u16 +4	OUTSIDE-CITATION		> rows × 128, names in bank 8 ([the encoded-id space page](../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.10 row 2): the stats record's `u16 +4` is the
+04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md	04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md	003587C0	INSIDE-CITATION	CORE-ABSENT	on the record or its `003587C0` owner, [the actor storage map](../Actor-Storage-Record/the-actor-storage-record-field-map.md)) and `002ECEC0` (the render record's
+04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md	04-Actor-Entity/Battle-Record-Kind/battle-record-kind-byte.md	00329660	INSIDE-CITATION	CORE-ABSENT	| party only: bits 1, 2 | `00329660`–`00329691` | bit 1 when type `∈ 7..0x19`, bit 2 when type `∈ 0x1B..0x27` (the party-type band [the kind-byte page](../Battle-Record-Kind/battle-record-kind-byte.md) measures) |
+05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md	01-Script-VM-Native-Bridge/scriptvm-native-dispatch-table.md	01F281D0 + 0x20 × i	OUTSIDE-CITATION	CORE-ABSENT	result ([the dispatch-table page](../01-Script-VM-Native-Bridge/scriptvm-native-dispatch-table.md)), and `01F281D0 + 0x20 × i` is record *i*'s **result** callback — the
+07-Combat-Action/Action-Dispatch/battle-action-handler-table.md	21-RNG-And-Determinism/rng-streams.md	0x4051	INSIDE-CITATION		> | `0x4051`–`0x4121` except `0x4091`; `0x414B` | **a percent roll on the record's second word**: 0 passes outright, otherwise `RNG_SharedGameplayLCG_NextU32 % 100 < word` (`0030193B`–`00301969`, [the shared gameplay LCG](../../21-RNG-And-Determinism/rng-streams.md)) |
+08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md	10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md	vit = target.+0x2C	INSIDE-CITATION		duration formula reads (`vit = target.+0x2C`, [the status write](../../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md) §2.4a — statuses last longer on a
+09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	0x5000 + row	INSIDE-CITATION		one per preset id `0x5000 + row` (class 10 of [the encoded-id space](../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md)):
+10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	0030FF2B	INSIDE-CITATION	CORE-ABSENT	| the definition row and the licence rows are reached through the authored-table lookup shape, resolving twice | `0030FF2B`–`0030FF65` and `00310154`–`0031018A`, both the idiom `CONTRACT-authored-table-row-lookup.md` specifies, and both leaving a null row pointer that is then read from | isolated original-code | PROVEN |
+10-Status-Periodic-Terminal/the-thirty-two-statuses.md	08-Combat-Formula/Evaluation-Context/the-evaluation-context-field-map.md	+0xE9A	INSIDE-CITATION		| 2 | Petrify | turning to stone, KO'd when the count reaches …; Gold Needle | 45 | — | unit `+0xE9A` bit 1 when applied by a party record ([status write](Status-Write/the-status-write-and-its-side-effects.md) §2.7); merged-layer id 2 is also the AccuracyBoost augment for the weather accuracy slots ([evaluation context](../08-Combat-Formula/Evaluation-Context/the-evaluation-context-field-map.md) §2.2) |
+12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	11-Party/Battle-State-Block/the-battle-state-block-field-map.md	state + 0x59C8 + row	INSIDE-CITATION		**The good's flag byte** — `state + 0x59C8 + row` in the battle state block ([the state map](../11-Party/Battle-State-Block/the-battle-state-block-field-map.md),
+13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md	00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md	owned − reserved	INSIDE-CITATION		query record is `owned − reserved` ([the encoded-id space page](../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.4), so the test is *possession*. The
+13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md	03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	0028F053	INSIDE-CITATION	CORE-ABSENT	`0028F053`) zero-extend it back — so the manager must live below 4 GB, the same property [the field-record table page](../03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md)
+14-Story-Event-Quest-Hunt/persistent-flag-banks.md	07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md	… triggered a trap	INSIDE-CITATION		> anything else (*"… triggered a trap"*) ([the battle message table](../07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md)). Then `002FB8C0(record, unit, &out)`
+16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md	12-Items-Equipment-Shops-License/license-board-grid-format.md	the format page	INSIDE-CITATION		[`the format page`](../../12-Items-Equipment-Shops-License/license-board-grid-format.md) records
+17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md	24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md	0036B130	INSIDE-CITATION	CORE-ABSENT	`0036B130` — the same handle form as [the memory page](../../24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md) — and treats a result whose sign-extended
+18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md	003635E0(list, bank, handle)	OUTSIDE-CITATION	CORE-PRESENT x4	[the map pack](../../03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md) §3.4), `003635E0(list, bank, handle)`:
+18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md	00267310(manager)	INSIDE-CITATION	CORE-PRESENT x4	50000s) distinguish, ~~what `00229EA0` returning 2 and `00267310` mean for playback,~~ *(narrowed 2026-09-13 (FABLE): the two playback tests are identified. `00229EA0` takes no argument — it returns the main loop's frame mode `02064AD3` — so an `SP1` emitter plays only in the field/battle frame, mode 2 (`00363998`–`003639A0`; [what happens between two frames](../../22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md) §2.2), never behind a full menu or during capture. `00267310(manager)` returns the manager record's sub-step byte (`02099011 + slot × 0x288`), which makes the world tick run that manager's slots up to fifteen extra times in a frame ([the world tick](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)); `mapsoundplay` skips the sound while the calling actor's manager (`[ctx + 0x15]`, `00346296`) is in that mode (`0034629E`–`003462A5`), so a script re-simulated to catch up does not fire its one-shot sounds again. `mapsoundplay_2bb` has no such test)* and whether the loose
+25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md	14-Story-Event-Quest-Hunt/persistent-flag-banks.md	mspSize	OUTSIDE-CITATION		> returns the resolved pointer ([the trap record](../../14-Story-Event-Quest-Hunt/persistent-flag-banks.md)); ff12-script names the fields `mspSize`, `mspOffset`,

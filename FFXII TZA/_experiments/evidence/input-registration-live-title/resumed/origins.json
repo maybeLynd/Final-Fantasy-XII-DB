@@ -1,0 +1,17 @@
+{
+  "observe.py": {
+    "path": "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/renewed/observe.py",
+    "sha256": "2ec3bc7d96b47faee458756cac16547d01093f10f7c632e56107b39e9b0c5dbb",
+    "change": "byte-identical"
+  },
+  "input_sample.py": {
+    "path": "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/renewed/input_sample.py",
+    "sha256": "aa2dbe1d797ae1d943e2331adc254bd14f5529ed35b117724730e1401c062ccf",
+    "change": "byte-identical"
+  },
+  "setup.py": {
+    "path": "Database/FFXII TZA/_experiments/evidence/input-registration-live-title/renewed/setup.py",
+    "sha256": "34b86f7b5ebbad325d1e554609c008d320acdc874294b26c8fb7b3042c677d21",
+    "change": "backup directory name only"
+  }
+}

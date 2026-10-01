@@ -1,0 +1,17 @@
+   003C2794 mov rcx, qword ptr [r13 + 0x118]
+   003C27A0 mov rcx, qword ptr [r13 + 0x110]
+   003C27A9 call 0x24a9e0
+   003C27B0 movzx ecx, word ptr [rax + 0xc]
+   003C27B4 mov edi, dword ptr [rax + 8]
+   003C27B7 movzx esi, word ptr [rax + 0xe]
+   003C27BB add rax, rcx
+   003C27C1 add rdi, rax
+   003C281D mov r9, rdi
+   003C2820 mov dword ptr [rsp + 0x20], esi
+   003C2824 call 0x24a480
+PASS P1 003C26C0 reads the .cl2 at widget +0x118 and hands palette / count to 0024A480 - []
+PASS P2 0024A9E0: picture 0 = buf + 0x10, count u16 [buf + 6], later pictures step u32 [pic]
+PASS D2 no read of pic + 0x12 / + 0x13 (the +0x22 / +0x23 bytes) in 003C26C0 or 0024A9E0
+PASS D1 all shipped .cl2 read as TIM2-shaped: one picture, palette at +0x40, total = header + CLUT, CLUT = count x 4 - 20 / 20
+PASS C1 the same picture-header reading fits a shipped TIM2 (loca_00.tm2): total = header + image + CLUT - b'TIM2' count 1 header 0x70 image 0x100000 clut 0x400 total 0x100470
+FAILS 0

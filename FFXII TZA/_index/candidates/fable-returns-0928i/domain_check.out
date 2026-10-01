@@ -1,0 +1,4 @@
+PASS W1  the modular predicate matches the round trip for a wrapping and a non-wrapping B; p = 5 round-trips at B = 2^64 - 2^31 (interval reading: False)
+PASS Q1  three rate consumers carry the completion clause; the 0020E620 row carries the modular window
+PASS C  a page without the clause fails Q1; the interval test fails W1
+FAILS 0

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-float-rounding\check.py", line 28, in <module>
+    if '--fault-use-original-state-label' in sys.argv:assert c['initial']['mxcsr']==mx,'Original second-case input label is stale and needs additive correction'
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original second-case input label is stale and needs additive correction

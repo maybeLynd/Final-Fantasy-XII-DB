@@ -1,0 +1,300 @@
+{
+  "status": "PRODUCER_CHECKED_LOCAL_GUARDS_INDEPENDENT_PENDING",
+  "producer_complete": true,
+  "method": "A RETAINED_SOURCE",
+  "question": "Does original24A680(mode1) check ticket pending/already-retired state before its local resource-record release stores?",
+  "hypotheses": [
+    "ticket/pending/active release guard",
+    "exact resource-pool address membership only, followed by local release effects"
+  ],
+  "method_choice": "Complete retained original body plus exact bounded loop/dataflow suffices for LOCAL guards; no live/isolated execution or unchanged body recapture.",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "manifest_sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef",
+    "disassembly_sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57",
+    "source_commit": "0fcf9349e",
+    "original_body_sha256": "d9acb85e3fd2e73d0e88365cc0a39d604086e67b706516b442412a1a6432a78d"
+  },
+  "observations": [
+    "Titlemessage18 passes+C8/mode1 at394097/9E/A3; that handler does not clear+C8.",
+    "24A680 accepts onlyNULL or exact64 resource-record addresses0208F580+k*48,k0..63. NULL/other addresses return before local release calls/stores; membership loop progresses by two with both parity slots tested.",
+    "These64 records end at02090780, the locally decremented DWORD counter; completion ticket pool02090790(12x20) is distinct. No local ticket counter/pending/readiness test occurs in24A680.",
+    "Recognized address calls181610 first. It then conditionally frees+10 when flags38&3F00==1400 and pointer nonnull; nonzero mode unconditionally passes+18 to3697F0 (which separately handlesNULL).",
+    "On normal continuation, it clears flags38 bit20 and decrementsDWORD02090780. It has no local flag20/already-retired guard; its only read of flags38 before clearing masks3F00, excluding20. It performs no local pointer10/18 clear.",
+    "Thus a retained recognized address is eligible again after bit20 was cleared, and a normal repeated call can reach the same localDEC again. This is an exact local guard/effects statement, not a full idempotence/free/side-effect proof.",
+    "Neither this source nor a pending ticket alone establishes that cancellation/drain ran.181610 ->manager getter1B1C00 ->1B1960 has separate tracking-tree effects; free/tracker services and scheduler/parent lifetimes require their own bounds."
+  ],
+  "bounded_arithmetic": [
+    {
+      "index": 0,
+      "address": "0x208f580"
+    },
+    {
+      "index": 1,
+      "address": "0x208f5c8"
+    },
+    {
+      "index": 2,
+      "address": "0x208f610"
+    },
+    {
+      "index": 3,
+      "address": "0x208f658"
+    },
+    {
+      "index": 4,
+      "address": "0x208f6a0"
+    },
+    {
+      "index": 5,
+      "address": "0x208f6e8"
+    },
+    {
+      "index": 6,
+      "address": "0x208f730"
+    },
+    {
+      "index": 7,
+      "address": "0x208f778"
+    },
+    {
+      "index": 8,
+      "address": "0x208f7c0"
+    },
+    {
+      "index": 9,
+      "address": "0x208f808"
+    },
+    {
+      "index": 10,
+      "address": "0x208f850"
+    },
+    {
+      "index": 11,
+      "address": "0x208f898"
+    },
+    {
+      "index": 12,
+      "address": "0x208f8e0"
+    },
+    {
+      "index": 13,
+      "address": "0x208f928"
+    },
+    {
+      "index": 14,
+      "address": "0x208f970"
+    },
+    {
+      "index": 15,
+      "address": "0x208f9b8"
+    },
+    {
+      "index": 16,
+      "address": "0x208fa00"
+    },
+    {
+      "index": 17,
+      "address": "0x208fa48"
+    },
+    {
+      "index": 18,
+      "address": "0x208fa90"
+    },
+    {
+      "index": 19,
+      "address": "0x208fad8"
+    },
+    {
+      "index": 20,
+      "address": "0x208fb20"
+    },
+    {
+      "index": 21,
+      "address": "0x208fb68"
+    },
+    {
+      "index": 22,
+      "address": "0x208fbb0"
+    },
+    {
+      "index": 23,
+      "address": "0x208fbf8"
+    },
+    {
+      "index": 24,
+      "address": "0x208fc40"
+    },
+    {
+      "index": 25,
+      "address": "0x208fc88"
+    },
+    {
+      "index": 26,
+      "address": "0x208fcd0"
+    },
+    {
+      "index": 27,
+      "address": "0x208fd18"
+    },
+    {
+      "index": 28,
+      "address": "0x208fd60"
+    },
+    {
+      "index": 29,
+      "address": "0x208fda8"
+    },
+    {
+      "index": 30,
+      "address": "0x208fdf0"
+    },
+    {
+      "index": 31,
+      "address": "0x208fe38"
+    },
+    {
+      "index": 32,
+      "address": "0x208fe80"
+    },
+    {
+      "index": 33,
+      "address": "0x208fec8"
+    },
+    {
+      "index": 34,
+      "address": "0x208ff10"
+    },
+    {
+      "index": 35,
+      "address": "0x208ff58"
+    },
+    {
+      "index": 36,
+      "address": "0x208ffa0"
+    },
+    {
+      "index": 37,
+      "address": "0x208ffe8"
+    },
+    {
+      "index": 38,
+      "address": "0x2090030"
+    },
+    {
+      "index": 39,
+      "address": "0x2090078"
+    },
+    {
+      "index": 40,
+      "address": "0x20900c0"
+    },
+    {
+      "index": 41,
+      "address": "0x2090108"
+    },
+    {
+      "index": 42,
+      "address": "0x2090150"
+    },
+    {
+      "index": 43,
+      "address": "0x2090198"
+    },
+    {
+      "index": 44,
+      "address": "0x20901e0"
+    },
+    {
+      "index": 45,
+      "address": "0x2090228"
+    },
+    {
+      "index": 46,
+      "address": "0x2090270"
+    },
+    {
+      "index": 47,
+      "address": "0x20902b8"
+    },
+    {
+      "index": 48,
+      "address": "0x2090300"
+    },
+    {
+      "index": 49,
+      "address": "0x2090348"
+    },
+    {
+      "index": 50,
+      "address": "0x2090390"
+    },
+    {
+      "index": 51,
+      "address": "0x20903d8"
+    },
+    {
+      "index": 52,
+      "address": "0x2090420"
+    },
+    {
+      "index": 53,
+      "address": "0x2090468"
+    },
+    {
+      "index": 54,
+      "address": "0x20904b0"
+    },
+    {
+      "index": 55,
+      "address": "0x20904f8"
+    },
+    {
+      "index": 56,
+      "address": "0x2090540"
+    },
+    {
+      "index": 57,
+      "address": "0x2090588"
+    },
+    {
+      "index": 58,
+      "address": "0x20905d0"
+    },
+    {
+      "index": 59,
+      "address": "0x2090618"
+    },
+    {
+      "index": 60,
+      "address": "0x2090660"
+    },
+    {
+      "index": 61,
+      "address": "0x20906a8"
+    },
+    {
+      "index": 62,
+      "address": "0x20906f0"
+    },
+    {
+      "index": 63,
+      "address": "0x2090738"
+    }
+  ],
+  "conditional_local_counter_effect": "Each recognized-address normal continuation performs one DEC DWORD; arithmetic wraps modulo2^32. Nested/reentrant service effects on overall counter are NOT assumed absent.",
+  "limitations": [
+    "Original transitive2495C0 cancellation/drain and natural pending teardown remainOPEN",
+    "Intermediate helper/free effects not substituted as proof or fully certified",
+    "Distinct static pools are not observed initialized pointers/ownership or reuse/lifetime guarantees",
+    "No safe arbitrary double teardown, overall idempotence or full absence claim",
+    "Prior title routing review/consumption remains separate; no duplicate sender review"
+  ],
+  "semantic_implication": "Reconstruct membership/flags/pointer releases exactly; do not implement a fictitious pending-ticket/active-bit guard or equate mode1 with proven cancellation.",
+  "consumer": "FABLE title/OV29 and OPUS-owned handle contract/type changes after scoped independent review",
+  "checker_sha256": "af1ef46d3c582dfe32768a958433f59f5102155a77526fd397d646e3a0683748",
+  "native_runs": 0,
+  "live_runs": 0,
+  "new_whole_runtime_rows_closed": 0,
+  "cleanup": "Retained reads only; no process/input/game/instrument/save/config/reference writes"
+}

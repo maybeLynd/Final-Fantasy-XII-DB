@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-158",
+ "note": "batch 158 (EC7-192): 22 bodies decoded+anchored across 15 bearing hosts - multi-caller lane-class normaliser 00376320 + string-record materialiser 001B3860; gated resource-request submit 002DF6C0; pulsing-highlight colour 00271EF0 + clamped palette pick 0029B490; gi three-subcommand flush 0061D260; four-slot arm-and-spawn 00360C70 + 022D91D0-bank accumulate 00471230; +0x304-flag commit siblings 0042DCD0/0042D8B0/0042E690; 29-slot get-or-create 00334000; skeleton link combine 00373D00 + attachment walk 0046E0F0; layout row emit 002D50B0 + message-record emit 002A5460; save-lane reset 003DF5B0; dictionary admission test 003C0D70; party-roster collect/apply pair 00268690/00268530; permutation key match 004023D0; save-stat field getter 00197870. Gates: anchors 4899 0 MID; address 0 UNSUPPORTED in new content; hash clean (26 standing); crossref 2825; guard ADDS NOTHING (+7 standing cleared, crossing prose added on actor-pool + level-up).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub158_dumps.txt",
+  "Database/Tools/work/hub158_callers.txt"
+ ]
+}

@@ -1,0 +1,4 @@
+{
+  "status": "VALID_HISTORICAL_SOURCE_ROUTING",
+  "limit": "Default depended on canonical SECTION04 paths; final sibling binding will preserve exact retained bytes. No changed semantics or extra execution count."
+}

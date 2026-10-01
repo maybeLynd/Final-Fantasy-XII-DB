@@ -1,0 +1,69 @@
+# CompilerGeneratedCpp.StaticContainerTeardown.IndirectAllocator - EC-7 family C, declared on generated-function-families.md
+#
+# 60 members. Body size(s): 72 B x60.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 60 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+008A69F0
+008A6A40
+008A6AD0
+008A6B30
+008A6B90
+008A6BF0
+008A6D50
+008A6DA0
+008A6DF0
+008A6E40
+008A6FB0
+008A7000
+008A7050
+008A70A0
+008A70F0
+008A7140
+008A7190
+008A71E0
+008A7230
+008A7280
+008A72D0
+008A74C0
+008A7510
+008A7560
+008A75B0
+008A7600
+008A7650
+008A76A0
+008A76F0
+008A7740
+008A7790
+008A77E0
+008A7830
+008A7880
+008A78D0
+008A7920
+008A7970
+008A79C0
+008A7A10
+008A7A60
+008A7AB0
+008A7B00
+008A7B50
+008A7BA0
+008A7BF0
+008A7C40
+008A7C90
+008A7CE0
+008A7D30
+008A7D80
+008A7DD0
+008A7E20
+008A7E70
+008A7EC0
+008A7F10
+008A7F60
+008A7FB0
+008A8000
+008A8050
+008A80A0

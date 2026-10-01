@@ -1,0 +1,10 @@
+# NativeAdapter.RefFlagSiblingAlignedFreeInit - EC-7 family C
+# # call two member ops on arg1; if ref flag bit31 set and count > 1,
+# # aligned-free [rbx+0x40] via 00584730 and clear the fields; call a
+# # member op on this; return 1.
+address	targets
+00610EC0	00584730,005DE310,0062B170,0062BF40
+00611AD0	0016D6A0,00584730,0062B020,0062B7B0
+00611F80	00584730,005DE290,0062B100,0062BCB0
+006122D0	0016D6A0,00584730,0062B090,0062BB40
+00612B20	00584730,005DE390,0062B1E0,0062C100

@@ -1,0 +1,159 @@
+{
+  "method": "Raw original receipts preserved with local -text; source snapshots match run hashes.",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "before-drag-control.jpg": {
+      "bytes": 88278,
+      "sha256": "da9d288d2e8b5bbd311e9ff422a7288787007b94a89677d0e7d78d0c62a80071"
+    },
+    "before-drag-control.json": {
+      "bytes": 481,
+      "sha256": "8750720e9d81ed563df45472b6e8b68ee730c7acf0184908b63cbc9f35cc665c"
+    },
+    "cleanup.json": {
+      "bytes": 4528,
+      "sha256": "3225769472a7e13a57e2a2ca8150da2ff98e934b7aaa2dd0ae3e50f6f9f25979"
+    },
+    "cleanup.py": {
+      "bytes": 2356,
+      "sha256": "6a336bda401cec83f7f061db83a60ebe8749280c5e2a5300942fa1592957ced7"
+    },
+    "cloud-before.jpg": {
+      "bytes": 51326,
+      "sha256": "5db01ea5a3d74ee4ec81691eb760dd5ee69477b9191f3fb261f1fcc182e57e56"
+    },
+    "cloud-before.json": {
+      "bytes": 475,
+      "sha256": "345982dfa93d57f99b2f545e111bbb8a01b11e48dd63974e2a95e50636958f40"
+    },
+    "current-complete-after.jpg": {
+      "bytes": 71810,
+      "sha256": "08a967520ebd67493bbefdda437e74c0f66380f0410cc3b3ded0d4997ef78939"
+    },
+    "current-complete-after.json": {
+      "bytes": 379,
+      "sha256": "11daf256cd866af44c36b77129ee5c7a72912e90c1955621c2d3faf39ce0df1e"
+    },
+    "current-complete-before.jpg": {
+      "bytes": 71810,
+      "sha256": "08a967520ebd67493bbefdda437e74c0f66380f0410cc3b3ded0d4997ef78939"
+    },
+    "current-complete-before.json": {
+      "bytes": 464,
+      "sha256": "4cbcebf30263809087e8e53691dd5759ba7cff8f4e7e130c9ebf7890b30d7e67"
+    },
+    "current-complete-memory.json": {
+      "bytes": 2880061,
+      "sha256": "a9ada099cd80f560bf989671cac0ff3be1b4df4d9eb426b2424feea74acc3f33"
+    },
+    "current-field-after.jpg": {
+      "bytes": 162913,
+      "sha256": "b4ad97ba36acbf300c5cc4bd0cf8b69aecd22c6b80f29020dc4a4edd837422ce"
+    },
+    "current-field-after.json": {
+      "bytes": 418,
+      "sha256": "832fd69a73fc77d639f3b8b14d14a597d43c0738a98f2ac07e78b3516c84d7b2"
+    },
+    "current-field-before.jpg": {
+      "bytes": 159226,
+      "sha256": "f3164bee91ca02ebbf64bbd646d5ebcf693625bb2d73d435205136fac081fea1"
+    },
+    "current-field-before.json": {
+      "bytes": 423,
+      "sha256": "9c801c7f559dee0d21cffb8049e938338f0d9f7ca4ef8ef7408ce230b4c583c6"
+    },
+    "current-field-memory.json": {
+      "bytes": 2901142,
+      "sha256": "9c5769b39267890b4b9d6d3ad9a0b3adce89538a5dd904504f00666f3db97693"
+    },
+    "environment.json": {
+      "bytes": 3117,
+      "sha256": "e0706b109384411772108986948adcceb7d8a917ad0ee5124086890db8a05dd1"
+    },
+    "exit-check.json": {
+      "bytes": 154,
+      "sha256": "99640365b15d35c18d2392b5bce191fcd75516609b1f3e4a8f7924065049a5f9"
+    },
+    "exit-dialog.jpg": {
+      "bytes": 111022,
+      "sha256": "35a04335083fbe4ab550b3838cd44a5491fd6e8fdb958662b6df3ce617d58c6f"
+    },
+    "exit-dialog.json": {
+      "bytes": 354,
+      "sha256": "93318e5291c2b5ec6079743d98af6bb31a6e9bb97adbcb04d844e56cd8601527"
+    },
+    "ffxii_runtime.py.source": {
+      "bytes": 44574,
+      "sha256": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928"
+    },
+    "load-click-not-observed.jpg": {
+      "bytes": 88207,
+      "sha256": "eaad633a904d57e7575b75bbcb8ffe6886bcd8fec544e3d6585ae41e48191d98"
+    },
+    "load-click-not-observed.json": {
+      "bytes": 409,
+      "sha256": "dd8a975fb1581ffd33e6c9ab51484f2cf220917eecc9c944c6519145f1d20f96"
+    },
+    "observation.json": {
+      "bytes": 13502,
+      "sha256": "2b5bc2dbacb62769a404470c80495a5c042c5466e178fd678e7a59e01c533d15"
+    },
+    "observe.py": {
+      "bytes": 7899,
+      "sha256": "3fd84bbf8ffb7acb6f398333275193d7af13bea895f284ded4ccda86689b5438"
+    },
+    "process.json": {
+      "bytes": 126,
+      "sha256": "0c48955184b573adecb261fcf59ee534d703c442a0dae1848b8af2483edd2878"
+    },
+    "review.py": {
+      "bytes": 7851,
+      "sha256": "96b9255b42e2c121974b80483c0b3c7a3e0c04e3a4720bc222eadb09fb51f965"
+    },
+    "runtime_probe.py.source": {
+      "bytes": 16549,
+      "sha256": "83775bcc6263035830489b40cc1083273085476b17a3b405c378e851d40a1172"
+    },
+    "save-before.json": {
+      "bytes": 4403,
+      "sha256": "44a625a6fefca4d043e98246b534b52ff61999387d54f9f2704f4d9592ab89d6"
+    },
+    "save-input.json": {
+      "bytes": 278,
+      "sha256": "077eb79aa78ce5c873ef1909460ef6304998626d57b556b844ba3c8c3904c42a"
+    },
+    "selected-save.jpg": {
+      "bytes": 88319,
+      "sha256": "d6d7fd5462ff6d9c1d1c94a5eeb3532999bd529c809289b4f5be8d7df8d0bbf4"
+    },
+    "selected-save.json": {
+      "bytes": 393,
+      "sha256": "b1400908ead0d3ee9ad48e84b40a31ac61a384fe28833e24308e253aa641d1f8"
+    },
+    "setup.py": {
+      "bytes": 1808,
+      "sha256": "e2b2fb5b5c80ed26788b9985c8c0c479ecc0f534d49878a876f8241e924a3c3a"
+    },
+    "source-review.json": {
+      "bytes": 707,
+      "sha256": "735463955259b13ded4bb55e415bcbe6deec4111fe7bfa2bb55bd7abc49f296a"
+    },
+    "title.jpg": {
+      "bytes": 71877,
+      "sha256": "1cfb724cedd1e4fc69b6b10b7391cdec0c33d7e776d09a367b25c20d24ea8761"
+    },
+    "title.json": {
+      "bytes": 316,
+      "sha256": "cd6769ef19a29813653dbc26d9ac3662a8fb34c41b300fa0740b90fcefb80e22"
+    },
+    "ui-method.json": {
+      "bytes": 1663,
+      "sha256": "6ebdde05dbc986a2f082143a68c253c0211ea46f8b810670542906dfc47a0bff"
+    }
+  },
+  "source_serialization": {},
+  "scope": "Bounded initialized BattleUnit bindings; no native caller/lifetime/combat or same-session reload closure"
+}

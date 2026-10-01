@@ -1,0 +1,261 @@
+[
+  {
+    "file": "_types/types.tsv",
+    "before": {
+      "type": "VmValueStack",
+      "size": "0x284",
+      "category": "01-Script-VM-Native-Bridge",
+      "instance": "(supplied by the interpreter in r9)",
+      "allocation_site": "CALLER - the interpreter supplies the stack in r9; its lifetime is the interpreter frame's. Class restated from this row's own instance/ctor/dtor columns; no new measurement beyond the section/containment check.",
+      "ctor": "none - caller-frame storage. the interpreter, which supplies it in r9 A RESOLVED NEGATIVE IN SUBSTANCE, 2026-09-20 (OPUS): there is no constructor to find. This row's own allocation_site says CALLER - the interpreter supplies the stack in r9 and its lifetime is the interpreter frame's - so the storage is a caller frame and the `ctor` column is describing who provides it, not who builds it. NOT RESOLVED TO AN ADDRESS: the interpreter's own `lea` for the frame was not located, and unlike BattleResultRecord there is no size-matched fill to tie a site to this type. Recorded so the polymorphism sweep's \"never looked\" bucket is not read as \"might be polymorphic\" - a caller-frame object installs no vtable.",
+      "dtor": "none - supplied by the interpreter",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "level": "L2",
+      "evidence": "size 0x284 = 0x184 + 0x40*4, derived: four parallel 64-entry arrays whose bounds agree with each other (0x044-0x004 = 0x40, 0x084-0x044 = 0x40, 0x184-0x084 = 0x40*4) and with the push guard `cmp eax,0x3F`. Only 63 slots are reachable by a push. Independently reproduces AO-2. NO DESTRUCTOR, AND THE ANSWER WAS ALREADY IN THIS ROW'S OWN INSTANCE STRING. Section 27 asks how the type is destroyed; where a type has no storage of its own the answer is that it is never destroyed separately, and the instance column had been stating that relationship all along without anyone drawing the lifetime conclusion from it. Supplied by the interpreter in r9, so the interpreter owns the storage and its teardown is the interpreter's frame. Recorded 2026-09-11. A reconstruction must give this type no teardown path: freeing or clearing it independently would touch memory owned by the caller. CONSTRUCTION ANSWERED 2026-09-11, as the mirror of the destruction pass - WITH ONE ASYMMETRY RESPECTED. Storage that is never destroyed separately is still INITIALISED by something, so 'interior' does not settle construction the way it settles destruction. Each answer below names the initialiser or says why none can exist. Supplied by the interpreter in r9: the interpreter builds it and owns it.",
+      "documents": "01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md",
+      "route": ""
+    },
+    "after": [
+      {
+        "type": "VmValueStack",
+        "size": "0x284",
+        "category": "01-Script-VM-Native-Bridge",
+        "instance": "02099AC0 for original interpreter; explicit stack pointer for standalone helper/lifecycle callers",
+        "allocation_site": "STATIC IMAGE for the interpreter. 0025E4D8 resets absolute depth02099AC0; inline pushes and helper arguments use the same global. The old caller-frame allocation/lifetime inference is refuted.",
+        "ctor": "Per-invocation depth initialization at0025E4D8; arrays are not cleared. Full process startup population beyond tested paths not rederived.",
+        "dtor": "No per-invocation free; image-backed storage. Standalone supplied objects retain caller-owned lifetime; no universal stack-frame claim.",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "level": "L2",
+        "evidence": "Size0x284 and array offsets retained. Corrected lifecycle: entry resets shared depth even on actor refusal; selected actor registers and request state survive. Guarded push admits indices0..62; a full lifecycle stack loses append but still completes. SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending.",
+        "documents": "01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md;01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md",
+        "route": "STATIC 02099AC0"
+      }
+    ]
+  },
+  {
+    "file": "_types/types.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "size": "0x28",
+      "category": "04-Actor-Entity",
+      "instance": "ActorStorageRecord +0xA8 (interior), slotCountA8 elements",
+      "allocation_site": "INTERIOR ActorStorageRecord - the +0xA8 array, slotCountA8 elements, planted by 00266AD0 at 00266B9B as +0xA0 plus 0xC8 or 0xA0 depending on ActorSequenceDescriptor +0x01. 00266530, which this cell used to hold alone, is ActorStorage_InitializeRecord - the same address the ctor column already carries.",
+      "ctor": "00266530",
+      "dtor": "none - interior to ActorStorageRecord",
+      "readiness": "SIGNATURE RESOLVED",
+      "confidence": "PROVEN",
+      "level": "L1",
+      "evidence": "stride 0x28 two ways: the initialiser clear loop advances rcx by 0x28 at 00266806, and 0025DFBB/0025DFC6 compute base + idx*0x28 through lea rcx,[rax+rax*4] / lea rsi,[rax+rcx*8]. Interior to the record, so no allocation and no destructor. Only +0x00..+0x16 is cleared at construction; +0x18..+0x27 carry whatever the last wait left NO DESTRUCTOR, AND THE ANSWER WAS ALREADY IN THIS ROW'S OWN INSTANCE STRING. Section 27 asks how the type is destroyed; where a type has no storage of its own the answer is that it is never destroyed separately, and the instance column had been stating that relationship all along without anyone drawing the lifetime conclusion from it. ActorStorageRecord +0xA8, slotCountA8 elements - interior storage, and the record's own tail per the EH-3 closure. Recorded 2026-09-11. A reconstruction must give this type no teardown path: freeing or clearing it independently would touch memory owned by its container. SAME STORAGE AS VmResultEntry, proved 2026-09-11: the script verb result writers VMResult_WriteInt32 0026B4E0 and VMResult_WriteFloat32 0026B4C0 compute *(rcx + 0xA8) + (movsx int8)rcx[0x11] * 40 on an rcx traced back to this record's own pointer - see VmResultEntry's evidence for the register chain through 0025DF00, 0025E4C0, 002621D0 and the three handler call sites. A verb returning a value writes the actor's CURRENT WAIT SLOT: value at +0x0C, and +0x15 set to 2 for int32 or 3 for float32, which is also non-zero and therefore 'armed'. The duplicate declaration is OPUS-CONTRA-VMRESULTCTX, for FABLE. || ONE RECORD, TWO DECLARED TYPES - 2026-09-20 (OPUS), surfaced by check_route_uniqueness.py. VmResultEntry and ActorWaitSlot carry the IDENTICAL route `CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8` and are both 0x28, so unlike the store's other two shared routes - which are a shared RESOLVER (002ED570) and a shared BASE (SavePayload embedding PersistentFlagPayload at +0) - these are not two types reached the same way. They are two descriptions of the same array element. The store already half-said so: VmResultEntry's instance column reads `the same array ActorWaitSlot declares`. THE OVERLAP AGREES, WHICH MAKES THIS A DUPLICATE RATHER THAN A CONFLICT: both declare `value` i32 at +0x0C and `commandPhase` at +0x15, with the same names, sizes and meanings, and ActorWaitSlot's own note on +0x0C says `the same four bytes VmResult...`. ActorWaitSlot is the fuller description, 15 rows against 5, and VmResultEntry's other three rows are unobserved spans - it adds nothing the other lacks. A RECONSTRUCTION MUST NOT EMIT BOTH as separate structs. NOT MERGED: VmResultEntry is cited in 6 documents and ActorWaitSlot in 10, so retiring either is a propagation across pages this identity does not own - the standing rule already applied to count5972 and to the PInstanceListHeader / PhyreInstanceListHeader pair. WORTH RECORDING ABOUT THE INSTRUMENTS: neither find_duplicate_shapes.py nor find_shared_accessor_types.py sees this pair. The first compares field names and these two share only two of their rows; the second needs census artifacts and neither type has one. Three instruments for one defect class, three different blind spots, and it was the route checker that found it. CORRECTION 2026-09-20 (OPUS), SAME DAY, TO THE NOTE ABOVE: it says the store `half-said` this, and that understates the record. The overlap was FULLY DOCUMENTED ON 2026-09-16 on the field rows themselves - VmResultEntry +0x015 carries an `OVERLAY CONFLICT` entry stating that the byte `is named TWICE, by two declarations over the SAME memory`, that both types are 0x28 at ActorStorageRecord +0xA8 built by the same constructor 00266530, and that the stride is proved from the writers as i*5*8 = 0x28. It was routed to FABLE and RULED ON the same day: `same byte, same phase`, which is why both rows now read commandPhase. So the relationship is not a new finding of 2026-09-20. WHAT THE ROUTE CHECKER ADDS is narrower and still worth having: that this pair is a route collision of a DIFFERENT KIND from the store's other two - those share a resolver (002ED570) and a base (SavePayload at +0), while these two are overlay declarations of one element - and that ActorWaitSlot is the strictly fuller description, 15 rows against 5, with VmResultEntry adding only unobserved spans. The instrument observation stands too: find_duplicate_shapes.py and find_shared_accessor_types.py both miss this pair. HOW THE MISTAKE HAPPENED, because it is the eleventh of its kind today: I read this type's ROUTE and INSTANCE columns and treated that as reading the type. The history was on the FIELD rows. Reading a type row is not reading the type. || SHARED ROUTE, RESTRICTION RECORDED 2026-09-20 (OPUS): this route is shared with VmResultEntry, which describes the SAME array - same record, same +0xA8, same 0x28 stride, same count - with two of the eleven fields this row has, at the same offsets and with the same meanings. THIS IS THE ROW TO SEED. The other is kept because a contract page and a kit checker cite it by name; it carries the pointer back here. || ALIAS RETIRED 2026-09-21 (SWE2-STRUCT, OPUS-REQ-STRUCT-ONE-ARRAY-IS-DECLARED-AS-TWO-TYPES): the VM bridge declared this same array as VmResultEntry (its VmResultCtx+0xA8 result slots, stride proven at 0026B4C5/0026B4E5); CONTRACT-script-to-native-bridge.md retired both VM-side names to aliases on 2026-09-11 (OPUS-CONTRA-VMRESULTCTX), so the store now carries one row. One span, two subsystem descriptions - the second view added no distinct layout, only a name.",
+      "documents": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+      "route": "CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8"
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "size": "0x28",
+        "category": "04-Actor-Entity",
+        "instance": "ActorStorageRecord +0xA8 (interior), slotCountA8 elements",
+        "allocation_site": "INTERIOR ActorStorageRecord - the +0xA8 array, slotCountA8 elements, planted by 00266AD0 at 00266B9B as +0xA0 plus 0xC8 or 0xA0 depending on ActorSequenceDescriptor +0x01. 00266530, which this cell used to hold alone, is ActorStorage_InitializeRecord - the same address the ctor column already carries.",
+        "ctor": "00266530",
+        "dtor": "none - interior to ActorStorageRecord",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "PROVEN",
+        "level": "L1",
+        "evidence": "stride 0x28 two ways: the initialiser clear loop advances rcx by 0x28 at 00266806, and 0025DFBB/0025DFC6 compute base + idx*0x28 through lea rcx,[rax+rax*4] / lea rsi,[rax+rcx*8]. Interior to the record, so no allocation and no destructor. Only +0x00..+0x16 is cleared at construction; +0x18..+0x27 carry whatever the last wait left NO DESTRUCTOR, AND THE ANSWER WAS ALREADY IN THIS ROW'S OWN INSTANCE STRING. Section 27 asks how the type is destroyed; where a type has no storage of its own the answer is that it is never destroyed separately, and the instance column had been stating that relationship all along without anyone drawing the lifetime conclusion from it. ActorStorageRecord +0xA8, slotCountA8 elements - interior storage, and the record's own tail per the EH-3 closure. Recorded 2026-09-11. A reconstruction must give this type no teardown path: freeing or clearing it independently would touch memory owned by its container. SAME STORAGE AS VmResultEntry, proved 2026-09-11: the script verb result writers VMResult_WriteInt32 0026B4E0 and VMResult_WriteFloat32 0026B4C0 compute *(rcx + 0xA8) + (movsx int8)rcx[0x11] * 40 on an rcx traced back to this record's own pointer - see VmResultEntry's evidence for the register chain through 0025DF00, 0025E4C0, 002621D0 and the three handler call sites. A verb returning a value writes the actor's CURRENT WAIT SLOT: value at +0x0C, and +0x15 set to 2 for int32 or 3 for float32, which is also non-zero and therefore 'armed'. The duplicate declaration is OPUS-CONTRA-VMRESULTCTX, for FABLE. || ONE RECORD, TWO DECLARED TYPES - 2026-09-20 (OPUS), surfaced by check_route_uniqueness.py. VmResultEntry and ActorWaitSlot carry the IDENTICAL route `CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8` and are both 0x28, so unlike the store's other two shared routes - which are a shared RESOLVER (002ED570) and a shared BASE (SavePayload embedding PersistentFlagPayload at +0) - these are not two types reached the same way. They are two descriptions of the same array element. The store already half-said so: VmResultEntry's instance column reads `the same array ActorWaitSlot declares`. THE OVERLAP AGREES, WHICH MAKES THIS A DUPLICATE RATHER THAN A CONFLICT: both declare `value` i32 at +0x0C and `commandPhase` at +0x15, with the same names, sizes and meanings, and ActorWaitSlot's own note on +0x0C says `the same four bytes VmResult...`. ActorWaitSlot is the fuller description, 15 rows against 5, and VmResultEntry's other three rows are unobserved spans - it adds nothing the other lacks. A RECONSTRUCTION MUST NOT EMIT BOTH as separate structs. NOT MERGED: VmResultEntry is cited in 6 documents and ActorWaitSlot in 10, so retiring either is a propagation across pages this identity does not own - the standing rule already applied to count5972 and to the PInstanceListHeader / PhyreInstanceListHeader pair. WORTH RECORDING ABOUT THE INSTRUMENTS: neither find_duplicate_shapes.py nor find_shared_accessor_types.py sees this pair. The first compares field names and these two share only two of their rows; the second needs census artifacts and neither type has one. Three instruments for one defect class, three different blind spots, and it was the route checker that found it. CORRECTION 2026-09-20 (OPUS), SAME DAY, TO THE NOTE ABOVE: it says the store `half-said` this, and that understates the record. The overlap was FULLY DOCUMENTED ON 2026-09-16 on the field rows themselves - VmResultEntry +0x015 carries an `OVERLAY CONFLICT` entry stating that the byte `is named TWICE, by two declarations over the SAME memory`, that both types are 0x28 at ActorStorageRecord +0xA8 built by the same constructor 00266530, and that the stride is proved from the writers as i*5*8 = 0x28. It was routed to FABLE and RULED ON the same day: `same byte, same phase`, which is why both rows now read commandPhase. So the relationship is not a new finding of 2026-09-20. WHAT THE ROUTE CHECKER ADDS is narrower and still worth having: that this pair is a route collision of a DIFFERENT KIND from the store's other two - those share a resolver (002ED570) and a base (SavePayload at +0), while these two are overlay declarations of one element - and that ActorWaitSlot is the strictly fuller description, 15 rows against 5, with VmResultEntry adding only unobserved spans. The instrument observation stands too: find_duplicate_shapes.py and find_shared_accessor_types.py both miss this pair. HOW THE MISTAKE HAPPENED, because it is the eleventh of its kind today: I read this type's ROUTE and INSTANCE columns and treated that as reading the type. The history was on the FIELD rows. Reading a type row is not reading the type. || SHARED ROUTE, RESTRICTION RECORDED 2026-09-20 (OPUS): this route is shared with VmResultEntry, which describes the SAME array - same record, same +0xA8, same 0x28 stride, same count - with two of the eleven fields this row has, at the same offsets and with the same meanings. THIS IS THE ROW TO SEED. The other is kept because a contract page and a kit checker cite it by name; it carries the pointer back here. || ALIAS RETIRED 2026-09-21 (SWE2-STRUCT, OPUS-REQ-STRUCT-ONE-ARRAY-IS-DECLARED-AS-TWO-TYPES): the VM bridge declared this same array as VmResultEntry (its VmResultCtx+0xA8 result slots, stride proven at 0026B4C5/0026B4E5); CONTRACT-script-to-native-bridge.md retired both VM-side names to aliases on 2026-09-11 (OPUS-CONTRA-VMRESULTCTX), so the store now carries one row. One span, two subsystem descriptions - the second view added no distinct layout, only a name. || SECTION-11: execution-kind head+00 is a QWORD PC, +08 saves a native target ordinal, +10 is accumulator, and +18 holds command-specific scratch. Lifecycle phase1 is written on THIS same record; completed path resets0. Actor+15 indexed control is a DIFFERENT object. Existing construction/other wait-kind claims are retained at their prior scope, not re-certified.",
+        "documents": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md;01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md",
+        "route": "CHAIN ActorStorageRecord +0xA8 stride=0x28 count=slotCountA8"
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "offset": "0x00",
+      "size": "4",
+      "name": "stamp",
+      "ctype": "uint32",
+      "meaning": "a frame or sequence stamp. Wait kind 4 passes stamp - record[+0x58] as the third argument to ActorResource_FindScriptRequestEntry, so it is compared as a DIFFERENCE against a record field and not used absolutely",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "0025E091 mov r8d, dword [rsi]; 0025E097 sub r8d, dword [rdi+0x58]; zeroed as a qword with +0x04 at the initialiser clear loop 002667F0"
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "offset": "0x00",
+        "size": "8",
+        "name": "instructionPointerOrWaitKey",
+        "ctype": "u64 / kind-discriminated",
+        "meaning": "For runnable bytecode, full instruction pointer loaded/stored by0025E4C0. Other wait kinds retain a lowDWORD stamp/reference key interpretation (e.g. kind4). This is a kind-selected overlay, not a universal deadline.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "0025E4E9 reads QWORD request head; all tested saved-PC returns and full0025DF00 selected request. Prior kind4 support0025E091/0025E097 remains scoped. SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending."
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "offset": "0x0004",
+      "size": "8",
+      "name": "unobservedSpan0004",
+      "ctype": "u8[8]",
+      "meaning": "declared gap span - inside the record by extent, no censused access; semantics open ZERO: inherited from the parent's clear.",
+      "readiness": "DISCOVERED",
+      "confidence": "UNKNOWN",
+      "evidence": "extent-declared gap reported by types_index --validate; width = declared span, not an instruction access LIFETIME: ZERO, INHERITED from the parent. 2026-09-19 (OPUS). This type is INTERIOR to ActorStorageRecord, whose whole extent is cleared (memset at 00267A8B, register length), so this span holds zero from that clear until something writes it. Containment is what the store's own allocation_site column asserts; the parent's clear is the evidence. NOT a semantic claim - value known, meaning not. || CENSUS NEGATIVES ARE NOT ESTABLISHED (OPUS 2026-09-21, amending the same day's upper-bound caveat). THE 'ONE-DIRECTIONAL' CLAIM IN THAT CAVEAT IS WITHDRAWN: it is true of the call-clobber defect and FALSE OF THE TOOL AS A WHOLE. gen_array_census.py and census_receiver_fixpoint.py both iterate a function's instructions in ADDRESS ORDER with no control-flow graph, so at MSVC's inline out-of-range stub - `ja` over the `lea`, then `xor ebx, ebx` on the other path - the tracked receiver is dropped and every access after it in that body is lost. MEASURED: on ImageAddressArenaRecord the same enumeration gave 41 accesses in 19 functions walked linearly and 173 in 33 as a fixpoint over the control-flow graph. So a census count is NEITHER an upper nor a lower bound, and a census NEGATIVE - 'no censused access' - ESTABLISHES NOTHING. That is not hypothetical: a padding row published on a linear table at ImageAddressArenaRecord +0x8C was withdrawn the same day when a reader and a writer turned up in a body the walk had lost. NOTHING IS RETRACTED HERE and no readiness, confidence or name is changed - the store-wide re-run and the disposition ruling are routed as OPUS-REQ-FRONTIER-SHARED-CENSUS-WALKS-LINEARLY-NO-CFG."
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "offset": "0x08",
+        "size": "4",
+        "name": "nativeTargetOrdinal",
+        "ctype": "i32",
+        "meaning": "Saved target ordinal for native CALL variants. Selected on phase0, consumed by lifecycle lookup on each invocation; not a stable actor-allocation identity. Other request-kind interpretations not exhaustively established.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "002621D0 reads request+8 and calls00358940 when different from issuer identity; CALLACT/CALLACTPOPA integration distinguishes target from issuer. SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending."
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "offset": "0x0C",
+      "size": "4",
+      "name": "value",
+      "ctype": "i32",
+      "meaning": "THE COMMAND RESULT PAYLOAD, and the same four bytes VmResultEntry +0x00C declares as `value` - the two types are one 0x28 array at ActorStorageRecord +0xA8. A TAGGED UNION discriminated by commandPhase (+0x15): VMResult_WriteInt32 (0026B4E0) sets commandPhase to 2 and writes an int32 at 0026B4F6; VMResult_WriteFloat32 (0026B4C0) sets it to 3 and writes a float32 at 0026B4D0. Both writers index the same slot, `[rax + i*0x28 + 0xc]`. SO THE ctype i32 IS THE WIDTH, NOT THE TYPE. Four bytes either way, and what they mean is commandPhase's to say: reading this as an int32 when commandPhase is 3 gives the bit pattern of a float. A reimplementation must branch on the phase, not on this column.",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "width from the two writers, which disagree about the TYPE and agree about the WIDTH - which is the point of the row. VMResult_WriteInt32 0026B4E0 does mov dword ptr [rax + r8*8 + 0xc], edx at 0026B4F6 after setting the byte at +0x15 to 2; VMResult_WriteFloat32 0026B4C0 does movss dword ptr [rax + rdx*8 + 0xc], xmm1 at 0026B4D0 after setting +0x15 to 3. Four bytes either way, and +0x15 is the discriminator. THE ARITHMETIC THAT REACHES THIS SLOT IS THIS TYPE'S OWN: both functions compute base = *(ctx + 0xA8), index = movsx byte ptr [ctx + 0x11], element = base + index * 40 (lea rax,[rax+rax*4] then scale 8 at 0026B4E5 and 0026B4C5) - the same +0xA8 pointer, the same SIGNED +0x11 index and the same 40-byte stride that ActorStorageRecord declares for slotsA8 and currentWaitSlot. Whether the two writers' rcx is literally an ActorStorageRecord is the open link argued in OPUS-CONTRA-VMRESULTCTX and is NOT assumed here. A duplicate declaration of these same four bytes exists as VmResultEntry +0x0C. NAMED value 2026-09-16 (OPUS), aligning with VmResultEntry +0x00C. These are the SAME FOUR BYTES under two declarations, and leaving one named and the other UNRESOLVED is the residue of the overlay conflict recorded in e8c2d0ec - FABLE settled +0x15 on both rows as commandPhase in 5d31e216 and this is the other half of the same pair. Two declarations over one memory that disagree about a name are the defect; agreeing is not a preference."
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "offset": "0x0C",
+        "size": "4",
+        "name": "value",
+        "ctype": "i32",
+        "meaning": "Command result bits: int32 or float32 selected by phase2/3 while processing completion. Also read by tested bytecode comparison. Lifecycle clears+0C at phase0 and may write it even if result append fails at capacity. Existing i32 column denotes width, not universal semantic type.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "width from the two writers, which disagree about the TYPE and agree about the WIDTH - which is the point of the row. VMResult_WriteInt32 0026B4E0 does mov dword ptr [rax + r8*8 + 0xc], edx at 0026B4F6 after setting the byte at +0x15 to 2; VMResult_WriteFloat32 0026B4C0 does movss dword ptr [rax + rdx*8 + 0xc], xmm1 at 0026B4D0 after setting +0x15 to 3. Four bytes either way, and +0x15 is the discriminator. THE ARITHMETIC THAT REACHES THIS SLOT IS THIS TYPE'S OWN: both functions compute base = *(ctx + 0xA8), index = movsx byte ptr [ctx + 0x11], element = base + index * 40 (lea rax,[rax+rax*4] then scale 8 at 0026B4E5 and 0026B4C5) - the same +0xA8 pointer, the same SIGNED +0x11 index and the same 40-byte stride that ActorStorageRecord declares for slotsA8 and currentWaitSlot. Whether the two writers' rcx is literally an ActorStorageRecord is the open link argued in OPUS-CONTRA-VMRESULTCTX and is NOT assumed here. A duplicate declaration of these same four bytes exists as VmResultEntry +0x0C. NAMED value 2026-09-16 (OPUS), aligning with VmResultEntry +0x00C. These are the SAME FOUR BYTES under two declarations, and leaving one named and the other UNRESOLVED is the residue of the overlay conflict recorded in e8c2d0ec - FABLE settled +0x15 on both rows as commandPhase in 5d31e216 and this is the other half of the same pair. Two declarations over one memory that disagree about a name are the defect; agreeing is not a preference."
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "offset": "0x0010",
+      "size": "4",
+      "name": "unobservedSpan0010",
+      "ctype": "u8[4]",
+      "meaning": "declared gap span - inside the record by extent, no censused access; semantics open ZERO: inherited from the parent's clear.",
+      "readiness": "DISCOVERED",
+      "confidence": "UNKNOWN",
+      "evidence": "extent-declared gap reported by types_index --validate; width = declared span, not an instruction access LIFETIME: ZERO, INHERITED from the parent. 2026-09-19 (OPUS). This type is INTERIOR to ActorStorageRecord, whose whole extent is cleared (memset at 00267A8B, register length), so this span holds zero from that clear until something writes it. Containment is what the store's own allocation_site column asserts; the parent's clear is the evidence. NOT a semantic claim - value known, meaning not. || CENSUS NEGATIVES ARE NOT ESTABLISHED (OPUS 2026-09-21, amending the same day's upper-bound caveat). THE 'ONE-DIRECTIONAL' CLAIM IN THAT CAVEAT IS WITHDRAWN: it is true of the call-clobber defect and FALSE OF THE TOOL AS A WHOLE. gen_array_census.py and census_receiver_fixpoint.py both iterate a function's instructions in ADDRESS ORDER with no control-flow graph, so at MSVC's inline out-of-range stub - `ja` over the `lea`, then `xor ebx, ebx` on the other path - the tracked receiver is dropped and every access after it in that body is lost. MEASURED: on ImageAddressArenaRecord the same enumeration gave 41 accesses in 19 functions walked linearly and 173 in 33 as a fixpoint over the control-flow graph. So a census count is NEITHER an upper nor a lower bound, and a census NEGATIVE - 'no censused access' - ESTABLISHES NOTHING. That is not hypothetical: a padding row published on a linear table at ImageAddressArenaRecord +0x8C was withdrawn the same day when a reader and a writer turned up in a body the walk had lost. NOTHING IS RETRACTED HERE and no readiness, confidence or name is changed - the store-wide re-run and the disposition ruling are routed as OPUS-REQ-FRONTIER-SHARED-CENSUS-WALKS-LINEARLY-NO-CFG."
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "offset": "0x0010",
+        "size": "4",
+        "name": "accumulator",
+        "ctype": "i32",
+        "meaning": "Interpreter request accumulator: written/read by POPA/PUSHA and CALL*POPA result handling; persists across interpreter entry. Existing context-specific overlays outside tested execution remain possible.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "Original bytecodes1B/1C and5D/5E, direct request+10 and native controls. SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending."
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "offset": "0x15",
+      "size": "1",
+      "name": "commandPhase",
+      "ctype": "uint8",
+      "meaning": "ONE ORDERED PHASE BYTE, and the state machine is the native command lifecycle itself (FABLE 2026-09-16, OPUS-REQ-FABLE-IS-0X15-ONE-STATE-BYTE). 0 = begin pending, 1 = polling, 2 = int32 result pending, 3 = float32 result pending. VMNativeCommand_ExecuteLifecycle (002621D0) reads the byte once at entry (00262213) and branches on it as THREE ORDERED CASES - test/je for 0, cmp esi,1/je for 1 (0026224C), else >=2 - and each case enters a different phase of the verb's own three callbacks: VMNativeCommandDispatch_GetBeginCallback (003DC270) for 0, GetPollCallback (003DC240) for 1, GetResultCallback (003DC2A0) for >=2. Those are the verb table's three columns, so the four values are one lifecycle and not two roles. The previous names describe STATES of it: `armed` is the correct predicate commandPhase != 0, and `tag` is correct for 2 and 3 and silent about 0 and 1. PREVIOUSLY `armed`: the arming opcode re-entry marker: non-zero means this opcode already armed its wait and must take its resume path instead of arming again. Set to 1 as the HIGH BYTE of the word store that also writes waitKind, and cleared to 0 by the opcode when it finishes. Not touched by the kinds armed with a byte-only store (3, 4, 5)",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "set by the ten mov word [rsi+0x14], 0x106 sites and the one 0x107 site in WorldActorScriptVM_InterpretBytecode (0025E4C0); tested by twelve cmp byte [rsi+0x15], 0 / jne sites, e.g. 0025F7FA; cleared by twelve mov byte [rsi+0x15], 0 sites, e.g. 0025F7B2 OVERLAY CONFLICT, recorded 2026-09-16 (OPUS): this byte is named TWICE, by two declarations over the SAME memory. ActorWaitSlot +0x15 calls it `armed` (set to 1, cleared to 0); VmResultEntry +0x015 calls it `tag` (2 = int32, 3 = float32). Both types are 0x28 bytes at ActorStorageRecord +0xA8 built by the same constructor 00266530, and the stride is proved from the writers rather than from the declaration: VMResult_WriteFloat32 (0026B4C0) does `movsx rax, byte [rcx+0x11]` / `lea rdx, [rax+rax*4]` / `mov rax, [rcx+0xa8]` / `movss [rax+rdx*8+0xc]` / `mov byte [rax+rdx*8+0x15], 3` - i*5*8 = 0x28, base +0xA8. VMResult_WriteInt32 (0026B4E0) is the same shape writing 2. So the four values 0, 1, 2 and 3 land in ONE byte of ONE array element. WHAT MAKES IT MORE THAN A NAMING CLASH: the twelve `cmp byte [rsi+0x15], 0 / jne` sites that implement the `armed` test read 2 and 3 as non-zero as well, so a slot holding a RESULT also reads as armed. `armed` is therefore a correct predicate and an incomplete field name - the byte behaves as a slot STATE, not a boolean. Whether 0/1/2/3 is one state machine is a semantic question and is routed to FABLE; nothing here renames either row. This is the ONLY offset in the store named differently by two overlay declarations - measured over every type whose instance cell names a shared location.  FABLE RULING 2026-09-16 (OPUS-REQ-FABLE-IS-0X15-ONE-STATE-BYTE), answering both of the tests the request named. (b) DOES ANY SITE READ IT EXPECTING EXACTLY 1 - YES: `cmp esi, 1 / je 0x2622df` at 0026224C, on the value read at 00262213. So the byte is not a non-zero predicate everywhere, and `armed` cannot be the whole name. (a) DOES ANY SITE WRITE 1 OVER A LIVE RESULT - NO, on two independent grounds. The only writers of 1 are 0026230B and the VM's ten `mov word [rsi+0x14], 0x106` stores. 0026230B sits on the poll-said-not-finished path, which a >=2 entry never reaches - that entry jumps straight to the result path at 00262255. And EVERY VM arming store is guarded by a zero test that branches AWAY when the byte is non-zero: `cmp byte [rsi+0x15], 0 / jne` at 0025F49B-0025F49F and 0025FBD1-0025FBD5 among twelve. Arming only ever happens on a zero byte. HOW 2 IS TOLD FROM 3: the dispatcher re-reads the byte immediately after the result callback - `movzx eax, byte [rdi+0x15]` 0026227A, `cmp al, 2 / jae 0x262316`, then `jne 0x26233a` - and the two arms read +0x0C as int32 (`mov ecx, [rdi+0xc]` 00262318) or float32 (`movss xmm0, [rdi+0xc]` 0026233A), publishing stack tag 1 or 2. THAT ALSO SETTLES +0x0C, which the request listed as blocked: one four-byte result slot whose type this phase selects, zeroed on the begin path (002622B7). NOT CLAIMED: the >=2 entry branch exists, so the code anticipates a slot arriving with a result pending; FABLE found no path that leaves it that way across dispatches and does not claim there is none. SCOPE: every byte access at +0x15 in 00250000..00270000 was read, plus an image-wide sweep over all 38,161 listed bodies for the indexed `[base + idx*8 + 0x15]` form, which returned exactly three sites - 002651B0 writing 2, 0026B4D6 writing 3, 0026B4F0 writing 2. A write through a pointer already advanced past +0x15 carries no displacement and is invisible to both."
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "offset": "0x15",
+        "size": "1",
+        "name": "commandPhase",
+        "ctype": "uint8",
+        "meaning": "Native lifecycle phase on the SAME ActorWaitSlot:0 begin pending,1 poll pending,2 int/3+ float typing during completion. Busy writes1; completion resets0. Result callbacks can select2/3 transiently. This byte is NOT target ActorStorageRecord+15 or runtime indexed byte02099011+idx*288.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "00262213 phase read;0026224C compares1;0026230B writes1;00262382 clears0;0026B4F0/0026B4D6 result typing. SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending."
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "ActorWaitSlot",
+      "offset": "0x18",
+      "size": "4",
+      "name": "targetRef",
+      "ctype": "uint32",
+      "meaning": "a BASE-RELATIVE reference to another actor record, not a pointer and not a handle: 0020E600 resolves it as arg + *(01F83530). Wait kinds 3 and 6 resolve it to get the actor they are waiting on. Kinds 5 and 7 instead pass the ADDRESS &slot[0x18] as a descriptor",
+      "readiness": "SEMANTICALLY IDENTIFIED",
+      "confidence": "PROVEN",
+      "evidence": "0025E027 and 0025E058 mov ecx, dword [rsi+0x18] then call 0020E600, whose whole body is mov eax,ecx / add rax,[01F83530] / ret; 0025E00A and 0025E083 lea rdx,[rsi+0x18]"
+    },
+    "after": [
+      {
+        "type": "ActorWaitSlot",
+        "offset": "0x18",
+        "size": "4",
+        "name": "targetRef",
+        "ctype": "uint32",
+        "meaning": "a BASE-RELATIVE reference to another actor record, not a pointer and not a handle: 0020E600 resolves it as arg + *(01F83530). Wait kinds 3 and 6 resolve it to get the actor they are waiting on. Kinds 5 and 7 instead pass the ADDRESS &slot[0x18] as a descriptor | Execution-kind native commands instead use request+18 as scratch: wait stores a signed countdown. Not always an encoded actor reference. Begin/poll scratch pointer from002621D0, original0034CF90/0034DCC0. SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending.",
+        "readiness": "SEMANTICALLY IDENTIFIED",
+        "confidence": "PROVEN",
+        "evidence": "0025E027 and 0025E058 mov ecx, dword [rsi+0x18] then call 0020E600, whose whole body is mov eax,ecx / add rax,[01F83530] / ret; 0025E00A and 0025E083 lea rdx,[rsi+0x18]"
+      }
+    ]
+  },
+  {
+    "file": "_types/fields.tsv",
+    "before": {
+      "type": "VmValueStack",
+      "offset": "0x000",
+      "size": "4",
+      "name": "depth",
+      "ctype": "i32",
+      "meaning": "slot count; a pop decrements first, a push writes at the old value then increments",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "PROVEN",
+      "evidence": "00267E14 read, 00267E1F write, 00267FB4 inc"
+    },
+    "after": [
+      {
+        "type": "VmValueStack",
+        "offset": "0x000",
+        "size": "4",
+        "name": "depth",
+        "ctype": "i32",
+        "meaning": "Shared interpreter depth reset to0 at every entry even if actor execution is refused; arrays are not erased. Guarded pushes use old depth and increment, valid pops decrement. No persistent caller-frame stack is restored.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "PROVEN",
+        "evidence": "00267E14 read, 00267E1F write, 00267FB4 inc | 0025E4D8 global reset;0025E596 stop-boundary discard; SECTION-11 (2026-09-23), original integrated execution; _experiments/evidence/continuation-section11-script-resume/REVIEW.md. Formal independent acceptance pending."
+      }
+    ]
+  }
+]

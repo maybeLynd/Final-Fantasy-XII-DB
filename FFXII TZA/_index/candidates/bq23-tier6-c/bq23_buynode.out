@@ -1,0 +1,5 @@
+PASS  B1 the four _Tree::_Buynode0 bodies [('0x714860', True, True), ('0x7148c0', True, True), ('0x714920', True, True), ('0x71f180', True, True)]
+PASS  B2 the two _List::_Buynode0 bodies [('0x75ee00', True, True), ('0x786980', True, True)]
+PASS  B3 VS2015 headers: _Allocate validates the new'd pointer; _Buynode0 bodies match 
+PASS  B4 sensitivity: EASTL DoCopySubtree allocates through the allocator slot and never calls the invalid-parameter import 
+FAILS 0

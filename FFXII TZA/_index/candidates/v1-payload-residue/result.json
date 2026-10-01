@@ -1,0 +1,102 @@
+{
+ "K0_store_coverage": {
+  "tiled_end": "0x56490",
+  "gaps": [],
+  "bytes_by_confidence": {
+   "PROVEN": 335460,
+   "UNKNOWN": 13953,
+   "HIGH": 3095,
+   "PROBABLE": 916
+  },
+  "unknown_bytes_by_type": {
+   "SavePayload": 12018,
+   "PersistentFlagPayload": 814,
+   "BattleStatsRecord": 600,
+   "ImageBackedStateBlock": 274,
+   "GambitConfig": 160,
+   "BattleSystemState": 63,
+   "SpawnKeepImage": 24
+  },
+  "closes": true
+ },
+ "seed_hosts": 311,
+ "triples": 115,
+ "distinct_offsets": 190,
+ "seed_kinds": {
+  "absolute": 2,
+  "absolute-lea": 10,
+  "getter 002EF2B0": 70,
+  "getter 002EF620": 5,
+  "getter 002EF630": 1,
+  "getter 002EF640": 28,
+  "slot 02092758": 8,
+  "slot 020927C0": 25,
+  "slot 02EBF190": 170
+ },
+ "residue": {
+  "unobservedSpan1538": {
+   "offset": "0x1538",
+   "bytes": 2760,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "unobservedSpanC818": {
+   "offset": "0xC818",
+   "bytes": 6120,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "unobservedSpanE004": {
+   "offset": "0xE004",
+   "bytes": 60,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "transitionMetaHole4E469": {
+   "offset": "0x4E469",
+   "bytes": 3,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "transitionMetaHole4E474": {
+   "offset": "0x4E474",
+   "bytes": 4,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "transitionMetaHole4E479": {
+   "offset": "0x4E479",
+   "bytes": 7,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "transitionMetaHole4E484": {
+   "offset": "0x4E484",
+   "bytes": 4,
+   "offsets_touched": [],
+   "sites": []
+  },
+  "unobservedTail5589C": {
+   "offset": "0x5589C",
+   "bytes": 3060,
+   "offsets_touched": [],
+   "sites": []
+  }
+ },
+ "K1_regions": {
+  "PersistentFlagPayload": 14,
+  "battle-state mirror": 7,
+  "ImageBackedStateBlock": 4,
+  "BattleSystemState": 63
+ },
+ "K1_1044": true,
+ "K3_whole_image_clears": true,
+ "K4_planted": true,
+ "K5_published_sites": 1725,
+ "K5_published_sites_reproduced": 602,
+ "K5_published_rows_in_residue": [],
+ "K6_tail_raw_displacement_candidates": [],
+ "K6_control_00229B81": true,
+ "K7_C818_raw_displacements_in_census_reached_functions": [],
+ "controls_pass": true
+}

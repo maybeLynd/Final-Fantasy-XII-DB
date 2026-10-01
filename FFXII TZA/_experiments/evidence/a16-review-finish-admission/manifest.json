@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 2110,
+      "sha256": "8998e1951e343fff26ed9990693533f182b82334595301859793fcbfc0d8eb06"
+    },
+    {
+      "path": "probe.py",
+      "bytes": 3977,
+      "sha256": "68e6cefaf1a68f72e530c714d9f8c8e4b2c66370cedc828e176fe1d0f7fdb67f"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2025,
+      "sha256": "61d105f78e3313f99a9117a442be494b35a5957b0c166e44492eab57deed5427"
+    }
+  ],
+  "limits": "Isolated deep-copy current-source actual apply/plan reproduction. No durable transaction/journal, OPUS repair, real review or deployed A16 acceptance."
+}

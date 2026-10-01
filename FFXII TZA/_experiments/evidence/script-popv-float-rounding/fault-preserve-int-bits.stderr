@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-float-rounding\check.py", line 27, in <module>
+    if '--fault-preserve-int-bits' in sys.argv:assert p['value_bits']=='01000001','Original CVTDQ2PS converts integer bits before storing float'
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original CVTDQ2PS converts integer bits before storing float

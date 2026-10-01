@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\native-exception-filter-tail\invocation-status-controls\missing-raw\capture.py", line 18, in <module>
+    assert not R.exists();R.mkdir();files=[]
+           ^^^^^^^^^^^^^^
+AssertionError

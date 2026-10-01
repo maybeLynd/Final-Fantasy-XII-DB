@@ -1,0 +1,1 @@
+{"action": "claim", "task": "OPUS-FINDING-CONTRACT-GLOBALS-BUCKET-IS-MIXED", "note": "SWE2-CONTRACT claiming: qualify the 27-bucket by reading all rows and decide whether the checker should exclude retracted/explanatory citations"}

@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "OPUS-VTABLE-ROUTE-ON-THE-UNREFLECTED-PHYRE-DEBT",
+  "kind": "research",
+  "priority": "P1",
+  "requester": "OPUS",
+  "assigned_to": "OPUS",
+  "target": "the 16,965 bytes carried by the 143 Phyre classes that register no reflected members and have no pointer cell to census",
+  "scope": "point the established vtable anchor - every slot body is entered with `this` in rcx - at the classes carrying the debt rather than at the ones already covered; grade each result by how many displacements the census found, and refuse where the tool cannot locate a descriptor",
+  "completion": "each class censused carries either a carve or a stated negative whose control is its own displacement count, with a weak control called weak in the cell; the refusals write nothing; types_index --validate clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:types-store"
+   }
+  ]
+ }
+}

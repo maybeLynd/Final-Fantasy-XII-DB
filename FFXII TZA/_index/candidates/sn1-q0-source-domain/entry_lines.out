@@ -1,0 +1,4 @@
+PASS E1  btlctrl pc 531 line 4: push ok True, 1-based 'loop_flg\t= 0;', 0-based 'mapjump_menu_flg\t= 1;\t//\x83}\x83b\x83v'; btlctrl pc 537 line 5: push ok True, 1-based 'mapjump_menu_flg\t= 1;\t//\x83}\x83b\x83v', 0-based ''; mapctrl pc 729 line 388: push ok True, 1-based 'dvar(2, test);', 0-based 'dvar(3, mp_debugmenu_flg);'; mapctrl pc 736 line 389: push ok True, 1-based 'dvar(3, mp_debugmenu_flg);', 0-based 'switch( nowlocationmap() )'
+PASS E2  1-based: line 558 is btlctrl block 2's last line and 559 one past it; line 557 is mapctrl block 2's last and 558 one past
+PASS C  the stored line shifted by one matches none of the four statements
+FAILS 0

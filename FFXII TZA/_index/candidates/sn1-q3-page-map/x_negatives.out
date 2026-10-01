@@ -1,0 +1,5 @@
+PASS N1  X 1 / 2; code differs at bytes [33, 34]; function offsets equal, one name offset differs; lines (2218, 2231) / (2239, 2252)
+PASS N2  best simple formula for X reaches 33 of 50 scopes
+PASS N3  best module-global grid reading reaches 26 of 50
+PASS C  the same search finds q2's count law ceil(q0 instruction starts / 32) in 50 of 50
+FAILS 0

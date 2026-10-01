@@ -1,0 +1,130 @@
+{
+  "status": "CONDITIONAL_TYPED_COMPARISON_PRECISION",
+  "method": "A STATIC_ONLY original full comparator source plus retained72 B conversion values, conditional composition; no new original-code/guest/native/live execution",
+  "raw_sha256": "fa8773ff1521e0a8475d0323b8d90b336f369772a9e72f857f308fb50699ecc0",
+  "source_facts": [
+    "Depth>=2 inspects top and preceding tags; only equal tags1 choose signed integer path",
+    "Top payload goes EBP or XMM7; preceding/lower payload goes ESI or XMM6; comparisons return sign(lower versus top)",
+    "Both-int CMP ESI,EBP bypasses float conversion; mixed tag1 is MOVD/CVTDQ2PS, tag2 MOVSS",
+    "Float equality UCOMISS XMM6,XMM7; COMISS XMM7,XMM6 and CMOVA choose -1 when top > lower; otherwise +1"
+  ],
+  "conditional_predictions": [
+    {
+      "name": "both-int-boundary",
+      "tags": [
+        1,
+        1
+      ],
+      "left": 16777217,
+      "right": 16777216,
+      "mxcsr": "0x1f80",
+      "predicted_return": 1
+    },
+    {
+      "name": "mixed-boundary",
+      "tags": [
+        1,
+        2
+      ],
+      "left": 16777217,
+      "right_float_bits": "4B800000",
+      "mxcsr": "0x1f80",
+      "converted_left_bits": "4B800000",
+      "predicted_return": 0
+    },
+    {
+      "name": "mixed-reverse",
+      "tags": [
+        2,
+        1
+      ],
+      "left_float_bits": "4B800000",
+      "right": 16777217,
+      "mxcsr": "0x1f80",
+      "converted_right_bits": "4B800000",
+      "predicted_return": 0
+    },
+    {
+      "name": "exact-control",
+      "tags": [
+        1,
+        2
+      ],
+      "left": 123,
+      "right_float_bits": "42F80000",
+      "mxcsr": "0x1f80",
+      "predicted_return": -1
+    },
+    {
+      "name": "both-int-boundary",
+      "tags": [
+        1,
+        1
+      ],
+      "left": 16777217,
+      "right": 16777216,
+      "mxcsr": "0x5f80",
+      "predicted_return": 1
+    },
+    {
+      "name": "mixed-boundary",
+      "tags": [
+        1,
+        2
+      ],
+      "left": 16777217,
+      "right_float_bits": "4B800000",
+      "mxcsr": "0x5f80",
+      "converted_left_bits": "4B800001",
+      "predicted_return": 1
+    },
+    {
+      "name": "mixed-reverse",
+      "tags": [
+        2,
+        1
+      ],
+      "left_float_bits": "4B800000",
+      "right": 16777217,
+      "mxcsr": "0x5f80",
+      "converted_right_bits": "4B800001",
+      "predicted_return": -1
+    },
+    {
+      "name": "exact-control",
+      "tags": [
+        1,
+        2
+      ],
+      "left": 123,
+      "right_float_bits": "42F80000",
+      "mxcsr": "0x5f80",
+      "predicted_return": -1
+    }
+  ],
+  "retained72_initial_state_limits": {
+    "status": "ADDITIVE_INPUT_LABEL_CORRECTION_NOT_RECAPTURE",
+    "affected": "72 first two feasibility cases only; no scientificresult/consumerclosure existed",
+    "cause": "String adapter looked for dictionary key syntax in AST-unparsed dict(keyword) constructor, so value execution used requestedMXCSR but returnedinitiallabel stayedliteral1F80 andR8label absent.",
+    "raw_preserved": true,
+    "executed_adapter_preserved": "runner-adapted.py",
+    "actual_state_basis": "Retained executed adapter u.reg_write(MXCSR,mxcsr) andR8D1; originalactualfeasibility loop RN1F80/RU5F80, plus recordedpoststageMXCSRRC bits. Not a new initial live observation.",
+    "normalized_initial": [
+      {
+        "case": 0,
+        "mxcsr": "0x1f80",
+        "kind_selector_r8d": 1
+      },
+      {
+        "case": 1,
+        "mxcsr": "0x5f80",
+        "kind_selector_r8d": 1
+      }
+    ],
+    "repair": "Matchactualkeywordconstructorsyntax and assertreplacement; actualproduceradapter/default metadata control beforeacceptingresult, no two guestcases replay.",
+    "limits": "Original raw labels remainwrong; normalizedlabel is source/invocation-derived andpoststageRC-corroborated. Native status/unmasked/nativegame stillunproved."
+  },
+  "interpretation": "For supplied valid depth2 and finite boundary values, original source plus retained conversion bits predicts both-int 16777217 versus16777216 =>+1 in RN/RU; mixed int/float =>0 RN,+1 RU, reverse =>0 RN,-1 RU. Thus type-dispatch and MXCSR matter to comparison. No new comparator execution claimed.",
+  "consumer_change": "Preserve signed int fast path versus mixed float promotion, exact instruction order/operand direction and supplied RC. Add boundary discriminator to typed comparator specification; do not apply all-float or always-nearest model. Actual mixed comparator execution, authored values/game RC/native flags and full caller remain open.",
+  "limits": "Predicted valid depth2/tag1-or2 paths and finite values under supplied masked MXCSR. Not executed mixed comparator, actual game rounding/caller/authored values/native flags/unmasked/fault handlers/other tags/full interpreter/live. Retained72 initial labels source/invocation-derived additive correction, not new initial-state measurement. PC OFF; no saves/config/reference changes; S19 spent extension unapproved; full L1+L2 NOT_MET"
+}

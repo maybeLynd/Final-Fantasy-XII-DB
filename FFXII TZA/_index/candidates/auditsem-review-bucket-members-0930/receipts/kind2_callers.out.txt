@@ -1,0 +1,18 @@
+>> 003843F0: 2 refs
+>>    002369CE call in 002368D0 rcx=0x13 rdx=?
+>>    00236C6B jmp in 00236C30 rcx=0x13 rdx=?
+>> 00384420: 3 refs
+>>    0023837D call in 00238260 rcx=? rdx=?
+>>    0023861E call in 002385D0 rcx=? rdx=?
+>>    0038440A call in 003843F0 rcx=? rdx=?
+>> 002A1F20: 1 refs
+>>    002CE7D0 call in 002CE7A0 rcx=? rdx=0x9
+>> 00393160: 6 refs
+>>    00577D4F call in 00577C30 rcx=? rdx=?
+>>    0057F9F9 call in 0057F8C0 rcx=? rdx=0x4
+>>    0057FA12 call in 0057F8C0 rcx=? rdx=0x1
+>>    0057FE0F call in 0057FB00 rcx=? rdx=0x8
+>>    0057FE34 call in 0057FB00 rcx=? rdx=0xb
+>>    0057FE4D call in 0057FB00 rcx=? rdx=0xd
+>> 002A1F20 callees: ['0x244f50', '0x808c40']
+>> 00393160 callees: ['0x29f6e0']

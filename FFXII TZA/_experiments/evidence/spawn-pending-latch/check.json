@@ -1,0 +1,42 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A only",
+  "catalog_extents": 10,
+  "primary_bytes_verified": true,
+  "pending_mask_reference_export": {
+    "path": "Database/Tools/work/graph/imagebase_refs.tsv",
+    "sha256": "64ba73b154cc158e247c7794d1b5e580921f88f2b5561a3d086352e1c59ab0e2",
+    "selected_rows": [
+      "0032ED80\t0032F0FF\t022C6E48\twrite\tActorResource_ResetManagerLoadState\tActorEntity",
+      "0032F430\t0032F488\t022C6E48\twrite\tFUN_0032f430\t",
+      "0032FA10\t0032FA61\t022C6E48\tread\tFUN_0032fa10\tActorEntity",
+      "0032FA10\t0032FA71\t022C6E48\twrite\tFUN_0032fa10\tActorEntity",
+      "0032FAC0\t0032FB1D\t022C6E48\tread\tFUN_0032fac0\tActorEntity",
+      "0032FAC0\t0032FB2D\t022C6E48\twrite\tFUN_0032fac0\tActorEntity",
+      "0032FB70\t0032FBA8\t022C6E48\tread\tFUN_0032fb70\tActorEntity",
+      "0032FB70\t0032FBB8\t022C6E48\twrite\tFUN_0032fb70\tActorEntity",
+      "0032FB70\t0032FBE9\t022C6E48\tread\tFUN_0032fb70\tActorEntity",
+      "0032FCA0\t0032FEAA\t022C6E48\twrite\tActorResource_BeginManagerResourceSetLoad\tActorEntity",
+      "0032FCA0\t0032FF17\t022C6E48\twrite\tActorResource_BeginManagerResourceSetLoad\tActorEntity",
+      "0032FCA0\t0032FF82\t022C6E48\twrite\tActorResource_BeginManagerResourceSetLoad\tActorEntity",
+      "0032FCA0\t0032FFEE\t022C6E48\twrite\tActorResource_BeginManagerResourceSetLoad\tActorEntity",
+      "00330060\t003300A4\t022C6E48\tread\tFUN_00330060\tActorEntity",
+      "00330060\t003300B3\t022C6E48\twrite\tFUN_00330060\tActorEntity",
+      "00330110\t00330135\t022C6E48\tread\tFUN_00330110\tActorEntity",
+      "00330110\t0033014D\t022C6E48\twrite\tFUN_00330110\tActorEntity",
+      "00330190\t003301C8\t022C6E48\tread\tFUN_00330190\tActorEntity",
+      "00330190\t003301D7\t022C6E48\twrite\tFUN_00330190\tActorEntity",
+      "00330220\t00330258\t022C6E48\tread\tFUN_00330220\tActorEntity",
+      "00330220\t00330267\t022C6E48\twrite\tFUN_00330220\tActorEntity",
+      "00330310\t0033036A\t022C6E48\twrite\tActorResource_BeginPrimaryPayloadLoad\tActorEntity",
+      "00331610\t00331657\t022C6E48\tread\tFUN_00331610\tActorEntity",
+      "00331610\t00331667\t022C6E48\twrite\tFUN_00331610\tActorEntity",
+      "003316B0\t0033170A\t022C6E48\tread\tFUN_003316b0\tActorEntity",
+      "003316B0\t0033171A\t022C6E48\twrite\tFUN_003316b0\tActorEntity"
+    ],
+    "control": "Known indexed reset0032F0FF present; known RIP-base latch clearer00332130 absent. Export is not an exhaustive writer proof."
+  },
+  "rejected_lead": "0032F6F0 is a path-string rewrite helper, not the pending latch; retained to avoid repeating the lead.",
+  "limits": "Local original call/order and field semantics; no B/live execution or transitive native initialization/scheduling proof.",
+  "checks": "pass"
+}

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-negative-rounding\check.py", line 26, in <module>
+    if '--fault-rounded-value-is-more-negative' in sys.argv and mode=='RU':assert actual_value<-16777219,'Original RU moves thisnegativeinput numericallyup'
+                                                                                  ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original RU moves thisnegativeinput numericallyup

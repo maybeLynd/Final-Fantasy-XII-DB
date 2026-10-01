@@ -1,0 +1,50 @@
+{
+  "method": "A original8B getter plus already-retained702B source, no code execution",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "base": "0x120000",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "parent_raw_sha256": "5dddc43d8bff2a889054a048be684b6f0aff0d89f9ae0c4598b1b86b48b7d84c"
+  },
+  "driver_sha256": "c978e53247c4a51169a1ce0f8b992f0f825caac85afa095ccad94f9b942ed159",
+  "getter": {
+    "entry": "0x383840",
+    "bytes": 8,
+    "sha256": "5d47abc6d65df87be2cb6f88c7048023162d3dce392aa89ac453f89d8b4a359d",
+    "returns_cell": "0x2aedfb0",
+    "call_site": "0x3928e7",
+    "preserved_register": "r15"
+  },
+  "reads": {
+    "header_count_pc": "0x392909",
+    "header_count_offset": "0x24",
+    "encoded_table_pc": "0x392920",
+    "encoded_table_offset": "0x28",
+    "decode_call": "0x392924",
+    "record_stride": "0x20",
+    "kind_u16_pc": "0x392929",
+    "float4_pc": "0x392950",
+    "float8_pc": "0x39294b",
+    "floatC_kind0_pc": "0x392946",
+    "floatC_kind1_pc": "0x39293a",
+    "maxss_float10_kind1_pc": "0x39293f",
+    "mark_call": "0x392957"
+  },
+  "consumers": [
+    {
+      "path": "Database/FFXII TZA/_types/fields.tsv",
+      "full_source_sha256": "919b55b50c335a3496909ada3c37380cb12bf83ddfc3576eae53ece8052bef49",
+      "retained": "trailer-fields-preimage.tsv",
+      "retained_sha256": "0be8f8d3a123a7b092f8f111967afc01ea55350412e22f95741d55bfe51163f5"
+    },
+    {
+      "path": "Database/FFXII TZA/_types/types.tsv",
+      "full_source_sha256": "b532144c59b1d0545c890062d61e78b1a00a0d47c32e11eee7ddcc55fca95aca",
+      "retained": "trailer-type-preimage.tsv",
+      "retained_sha256": "df20e2916c81bccad395a29edeb2bbcd6c310757efb76ed5230e174d2e7a5b1d"
+    }
+  ],
+  "correction": "Refutes no code reads +24 and no consumer of +28/NavTrailerRecord28. Actual bounded reads consume count<=32, encoded table reference, u16 kind, float slots+4/+8/+C (and+10 forkind1 maxss) passed to392200. Kind0/1 accepted, other kinds skip yet ID advances. Source alias is getter RAX->R15, which stated limited census did not cover; zero bounded access count cannot become universal no-reader claim.",
+  "limits": "Actual loaded root/decoded table identity and validity, instruction-completion/FP state, native mark effects and scheduling not observed. Getter source gives identity conditional on reading current root; image is not initialized memory. Do not infer geometry names, full record layout, identity stability, all record kinds or native data lifetime. Existing reported limited census zero may remain as its bounded historical result; only universal absence and affected consumers/procedure must change."
+}

@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-84",
+ "result_refs": [
+  "commit:0e3d381e4"
+ ],
+ "note": "publish: explicit path set (7 hosts + resume + ops)"
+}

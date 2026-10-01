@@ -1,0 +1,9 @@
+{
+ "action": "finish",
+ "task": "OPUS-VERIFY-ALL-47-CONTRACT-CLAIM-TABLES-FINDABLE",
+ "note": "47/47 findable; parity_status.py now gates it standing",
+ "result_refs": [
+  "commit:a07606cd3",
+  "Database/Tools/analysis-kit/gfz-scripts/parity_status.py"
+ ]
+}

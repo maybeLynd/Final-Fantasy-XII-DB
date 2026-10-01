@@ -1,0 +1,7 @@
+raw branches to 006B66C0: {'E8': 70}
+per-site (key, r8=00630180 ret, r9d=0, member name, [A+0x30]=0x7FFFFFFF, [A]=vtable, attach(M+0x38, A)) :
+  69 x ('02CF8570', True, True, 'm_count', True, True, True)
+   1 x ('nonrip', False, True, None, False, True, False)
+  odd: 006315FD in 006315B0 FUN_006315b0: ('nonrip', False, True, None, False, True, False)
+distinct member objects M: 69, distinct owning functions: 69
+key object 02CF8570 file qword: None (virtual tail, runtime-built)

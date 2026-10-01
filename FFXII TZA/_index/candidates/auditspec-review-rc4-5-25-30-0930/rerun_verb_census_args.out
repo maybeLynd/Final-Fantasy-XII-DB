@@ -1,0 +1,5 @@
+distinct .ebp files with a code section: 7562; actor scripts: 198302
+PASS  control: debug_mapjump 0x2026 calls = 1545
+verb 0x2006: 0 calls []
+verb 0x2007: 0 calls []
+verb 0x202D: 137 calls ['btlctrl.ebp@1BE7+424', 'btlctrl.ebp@1BE7+454', 'btlctrl.ebp@1BE7+484', 'btlctrl.ebp@1BE7+4B4', 'btlctrl.ebp@1BE7+4E4']

@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-142",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "frontier-shared-callee-hubs batch 142: top 22 of 2-A band by A-caller count: 0036B160/0036C750/0029FF60/00394690/00252F40/00254550/00271050/00317B70/00332590/00335B60/00383C80/00409FA0/002B6AE0/002B7210/0036A490/0036B130/0036C5D0/00394660/001A1990/001A5A80/001A9940/00202C50",
+  "scope": "top 22 of ranked 2-A band (79 members); dump, route to bearing hosts, append evidence-backed sections",
+  "completion": "22/22 interior-cited + gates clean",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "target:frontier-shared-callee-hubs"
+   }
+  ]
+ }
+}

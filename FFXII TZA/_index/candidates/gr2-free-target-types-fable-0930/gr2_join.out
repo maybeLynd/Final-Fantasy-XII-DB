@@ -1,0 +1,94 @@
+CALL-family sites decoded: 16666842 | rows: 63432
+  59814  ('btlAtelSetUnitType', 'PUSHII:0')
+    234  ('btlAtelSetUnitType', 'PUSHII:1')
+    297  ('btlAtelSetUnitType', 'PUSHII:2')
+    369  ('btlAtelSetUnitType', 'PUSHII:3')
+     18  ('setfreetargettype', 'PUSHII:1')
+    315  ('setfreetargettype', 'PUSHII:3')
+   2340  ('setfreetargettype', 'PUSHII:4')
+     45  ('setfreetargettype', 'PUSHII:6')
+sites whose argument is not a pushed constant: 0
+
+type 1: 59832 sites, 361 distinct (verb, arg, script)
+     45666  btlAtelSetUnitType(0)  script class 'monster'
+      3276  btlAtelSetUnitType(0)  script class 'trial'
+      2934  btlAtelSetUnitType(0)  script class 'unique'
+      2196  btlAtelSetUnitType(0)  script class 'lot'
+      1584  btlAtelSetUnitType(0)  script class 'ex'
+      1386  btlAtelSetUnitType(0)  script class 'boss'
+       738  btlAtelSetUnitType(0)  script class 'nm'
+       423  btlAtelSetUnitType(0)  script class 'fh'
+       225  btlAtelSetUnitType(0)  script class 'raise'
+       216  btlAtelSetUnitType(0)  script class 'Ｂミミッ'
+       171  btlAtelSetUnitType(0)  script class 'map'
+       117  btlAtelSetUnitType(0)  script class 'soldier'
+      e.g.   8028  btlAtelSetUnitType(0)  monster_00
+      e.g.   7569  btlAtelSetUnitType(0)  monster_01
+      e.g.   6912  btlAtelSetUnitType(0)  monster_02
+      e.g.   6183  btlAtelSetUnitType(0)  monster_03
+      e.g.   5355  btlAtelSetUnitType(0)  monster_04
+      e.g.   4230  btlAtelSetUnitType(0)  monster_05
+      e.g.   1746  btlAtelSetUnitType(0)  monster_06
+      e.g.   1134  btlAtelSetUnitType(0)  unique_monster_00
+type 3: 612 sites, 23 distinct (verb, arg, script)
+       315  setfreetargettype(3)  script class 'disp'
+        90  btlAtelSetUnitType(2)  script class 'third'
+        81  btlAtelSetUnitType(2)  script class 'dal'
+        54  btlAtelSetUnitType(2)  script class 'npc'
+        36  btlAtelSetUnitType(2)  script class 'ex'
+        27  btlAtelSetUnitType(2)  script class 'bash'
+         9  btlAtelSetUnitType(2)  script class 'event'
+      e.g.     63  setfreetargettype(3)  disp_tama02
+      e.g.     63  setfreetargettype(3)  disp_tama03
+      e.g.     63  setfreetargettype(3)  disp_tama04
+      e.g.     63  setfreetargettype(3)  disp_tama05
+      e.g.     63  setfreetargettype(3)  disp_tama01
+      e.g.     54  btlAtelSetUnitType(2)  npc_battle_00
+      e.g.     27  btlAtelSetUnitType(2)  BASH
+      e.g.     27  btlAtelSetUnitType(2)  DAL_SOLDIER_A
+type 4: 2709 sites, 22 distinct (verb, arg, script)
+      2304  setfreetargettype(4)  script class 'system'
+       288  btlAtelSetUnitType(3)  script class 'monster'
+        63  btlAtelSetUnitType(3)  script class 'unique'
+         9  btlAtelSetUnitType(3)  script class 'たからば'
+         9  setfreetargettype(4)  script class 'ダルマス'
+         9  setfreetargettype(4)  script class '伝説の剣'
+         9  btlAtelSetUnitType(3)  script class 'fh'
+         9  setfreetargettype(4)  script class '沈黙の壺'
+         9  setfreetargettype(4)  script class '置き手紙'
+      e.g.   2187  setfreetargettype(4)  system_crystal_actor
+      e.g.    117  setfreetargettype(4)  system_anchor_actor
+      e.g.     72  btlAtelSetUnitType(3)  monster_05
+      e.g.     45  btlAtelSetUnitType(3)  monster_07
+      e.g.     45  btlAtelSetUnitType(3)  monster_00
+      e.g.     27  btlAtelSetUnitType(3)  unique_monster_00
+      e.g.     27  btlAtelSetUnitType(3)  monster_06
+      e.g.     27  btlAtelSetUnitType(3)  monster_01
+type 5: 234 sites, 20 distinct (verb, arg, script)
+        72  btlAtelSetUnitType(1)  script class 'twn'
+        54  btlAtelSetUnitType(1)  script class 'snd'
+        45  btlAtelSetUnitType(1)  script class 'prison'
+        45  btlAtelSetUnitType(1)  script class 'cockatrice'
+         9  btlAtelSetUnitType(1)  script class 'bash'
+         9  btlAtelSetUnitType(1)  script class 'dal'
+      e.g.     18  btlAtelSetUnitType(1)  TWN_BANGA_A
+      e.g.     18  btlAtelSetUnitType(1)  TWN_CEEK_A
+      e.g.     18  btlAtelSetUnitType(1)  SND_MAN_A
+      e.g.     18  btlAtelSetUnitType(1)  SND_WOMAN_A
+      e.g.     18  btlAtelSetUnitType(1)  TWN_CEEK_B
+      e.g.     18  btlAtelSetUnitType(1)  SND_MAN_B
+      e.g.      9  btlAtelSetUnitType(1)  BASH
+      e.g.      9  btlAtelSetUnitType(1)  DAL_SOLDIER_A
+type 6: 45 sites, 3 distinct (verb, arg, script)
+        27  setfreetargettype(6)  script class 'boss'
+        18  setfreetargettype(6)  script class 'stay'
+      e.g.     27  setfreetargettype(6)  BOSS_Dウォール
+      e.g.      9  setfreetargettype(6)  STAY_ボス武器
+      e.g.      9  setfreetargettype(6)  STAY_ダイダロス
+
+files type 3 btlAtelSetUnitType(2): 22  bhm_c01.ebp dst_a02.ebp enw_c01.ebp fon_c02.ebp frs_a04.ebp grm_b02.ebp naf_a02.ebp naf_b01.ebp naf_b02.ebp ozm_a03.ebp pbc_b01.ebp rui_a04.ebp sav_c03.ebp sav_f01.ebp sav_g01.ebp srb_b04.ebp tri_f05.ebp tri_k02.ebp tri_l04.ebp tri_n05.ebp wdl_a01.ebp ztc_a03.ebp
+files type 3 setfreetargettype(3): 7  rbl_b01.ebp rbl_g02.ebp rbl_g03.ebp rbl_h02.ebp rbl_h03.ebp rbl_i02.ebp rbl_i03.ebp
+files type 4 btlAtelSetUnitType(3): 18  bds_a01.ebp bog_b02.ebp bts_h01.ebp bts_y01.ebp hne_a04.ebp hne_a08.ebp lus_b01.ebp lus_b03.ebp lus_d03.ebp lus_f04.ebp mic_b01.ebp mic_e01.ebp mic_e02.ebp mic_e05.ebp mrm_d03.ebp ozm_a02.ebp rbl_b01.ebp rui_a03.ebp
+files type 4 setfreetargettype(4): 82  alc_c01.ebp alc_e01.ebp ald_a01.ebp bhm_a04.ebp bog_a02.ebp bog_b02.ebp bul_b02.ebp byu_a04.ebp byu_b01.ebp dor_c12.ebp dor_d06.ebp dst_a05.ebp dst_b01.ebp ene_a08.ebp enw_a05.ebp fon_a06.ebp fon_b01.ebp fon_c04.ebp frs_a06.ebp frs_b01.ebp gil_a01.ebp gil_c01.ebp gil_g10.ebp gil_l02.ebp glf_a01.ebp gol_a04.ebp grm_a01.ebp grm_a04.ebp grm_b02.ebp grm_b05.ebp grm_e03.ebp grm_e13.ebp hne_a07.ebp lus_a04.ebp lus_e01.ebp lus_f05.ebp mfr_a04.ebp mic_a01.ebp mic_b06.ebp mic_b07.ebp
+files type 5 btlAtelSetUnitType(1): 5  naf_a01.ebp nal_a01.ebp rbn_a01.ebp rbn_a03.ebp sav_b01.ebp
+files type 6 setfreetargettype(6): 3  gil_a02.ebp rwg_b01.ebp rwg_b02.ebp

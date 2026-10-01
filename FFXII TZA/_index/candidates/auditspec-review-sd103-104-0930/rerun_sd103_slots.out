@@ -1,0 +1,7 @@
+PASS  C1 census: only the zero fill (memset via 008620A0 from the publisher 002B3550) and 002432B0's row stores reach them
+PASS  C2 24*174+0x10 = 0x1060, 24*175+0x10 = 0x1078, 24*176+0x10 = 0x1090
+PASS  C3 002B3480: rows k <- source 1, rows 42 + k <- source 2, then 002B5C90 reads +0x1060 / +0x1078 / +0x1090
+PASS  C4 row +0x10 = 0 or 002497B0(8n + element sizes): n pointers, then the elements
+PASS  C5 slots = source-2 records 132..134; '+0x400' = row 42 + sel's +0x10
+PASS  C6 row: +0x00 = count << 2 | 2 | bit 28 of the record, +0x08 = the source record, +0x10 = the allocation
+FAILS 0

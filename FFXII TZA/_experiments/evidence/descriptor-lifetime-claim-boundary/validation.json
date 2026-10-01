@@ -1,0 +1,29 @@
+{
+  "result": "PASS_ORIGINAL_AND_OBSERVER_FALSIFICATION",
+  "original_cases": 1,
+  "labeled_mutation_cases": 1,
+  "controls": [
+    {
+      "name": "actual NOP control masquerades as intact node state despite equal heads",
+      "rejected": true
+    },
+    {
+      "name": "short node span",
+      "rejected": true
+    },
+    {
+      "name": "missing normal native return",
+      "rejected": true
+    },
+    {
+      "name": "historical m-selflink four-byte patch at6334F1 is the stated selflink store",
+      "rejected": true
+    },
+    {
+      "name": "historical633557 anchor is the helper CALL",
+      "rejected": true
+    }
+  ],
+  "fresh_live_runs": 0,
+  "independent_acceptance": false
+}

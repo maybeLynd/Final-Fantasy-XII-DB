@@ -1,0 +1,39 @@
+imm 0x9C/0x9D sites: 637
+  0016E309 cmp byte ptr [r10 + 3], 0x9d
+  001760A8 cmp byte ptr [rbx + 3], 0x9d
+  001DE2C0 mov dword ptr [rdx + rcx - 0x9c], r8d
+  00235D5B add rcx, 0x9c
+  00235D73 add r13, 0x9c
+  0024456C cmp eax, 0x9c
+  0026CD3F and byte ptr [rdi + 0x10], 0x9b
+  0027C596 mov r8d, 0x9c
+  0027C637 mov r8d, 0x9c
+  0027C65A mov r8d, 0x9d
+  0027D131 mov ecx, 0x9c
+  0031EFB3 sub ecx, 0x9b
+  0031F17F cmp ebp, 0x9b
+  0032605F imul rcx, r10, 0x9c
+  00461A6F mov eax, dword ptr [rcx - 0x9c]
+  00462B00 movss dword ptr [rdi - 0x9c], xmm0
+  00462C18 mulss xmm0, dword ptr [rdi - 0x9c]
+  00462C20 movss dword ptr [rdi - 0x9c], xmm0
+  00462D0E mulss xmm0, dword ptr [rdi - 0x9c]
+  00462D16 movss dword ptr [rdi - 0x9c], xmm0
+  00462DD1 movss xmm0, dword ptr [rdi - 0x9c]
+  00462DE5 movss dword ptr [rdi - 0x9c], xmm0
+  0046398C movss dword ptr [rbx - 0x9c], xmm0
+  00463A87 movss xmm0, dword ptr [rbx - 0x9c]
+  00463A9B movss dword ptr [rbx - 0x9c], xmm0
+  00525276 mov dword ptr [rdi - 0x9c], 0x3f800000
+  00525338 mov dword ptr [rdi - 0x9c], eax
+  005253DC mov dword ptr [rdi - 0x9c], 0x3f600000
+  00525847 addss xmm2, dword ptr [rdi - 0x9c]
+  00525867 movss dword ptr [rdi - 0x9c], xmm2
+  005FF3AD mov dword ptr [rcx - 0x9c], eax
+  00621893 mov dword ptr [rdx - 0x9c], eax
+  00621A50 mov dword ptr [r8 - 0x9c], eax
+  00625946 mov eax, 0x9c
+  00629823 mov eax, 0x9c
+  00801062 cmp rsi, 0x9b
+  0080794F cmp rbx, 0x9c
++0x1E == 0xD tests: 0

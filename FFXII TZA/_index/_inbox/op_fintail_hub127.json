@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-127",
+ "result_refs": [
+  "commit:aaf4265e6"
+ ],
+ "note": "batch-127 tail: board state + sealed resume committed (aaf4265e6)"
+}

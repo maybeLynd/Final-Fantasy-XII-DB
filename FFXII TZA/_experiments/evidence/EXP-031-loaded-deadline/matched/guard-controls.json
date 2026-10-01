@@ -1,0 +1,42 @@
+{
+  "method": "offline wrapper controls; no Windows input, process read or game behavior",
+  "results": [
+    {
+      "case": "positive",
+      "error": null,
+      "send_up_flags": [
+        false,
+        true
+      ],
+      "down_after": false,
+      "reads": 71
+    },
+    {
+      "case": "lost_focus",
+      "error": "STOP: foreground changed",
+      "send_up_flags": [
+        false,
+        true
+      ],
+      "down_after": false,
+      "reads": 35
+    },
+    {
+      "case": "escape_before_down",
+      "error": "STOP: Escape input",
+      "send_up_flags": [],
+      "down_after": false,
+      "reads": 0
+    },
+    {
+      "case": "partial_down",
+      "error": "Incomplete dual-form input delivery",
+      "send_up_flags": [
+        false,
+        true
+      ],
+      "down_after": false,
+      "reads": 35
+    }
+  ]
+}

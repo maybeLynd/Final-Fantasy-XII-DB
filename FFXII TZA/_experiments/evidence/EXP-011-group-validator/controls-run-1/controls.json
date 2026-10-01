@@ -1,0 +1,185 @@
+{
+  "start_unix": 1789087805.5498922,
+  "scope": "targeted callback controls, not a complete mutation campaign",
+  "cases": [
+    {
+      "name": "baseline",
+      "status": "MATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "b7ca2492d53e68e8158a4b8958c7f5379daccdd7e509aea847b33b899304d5a6",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\baseline-ohm0ja40\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\baseline\\run"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "swap-prologue-order",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "3f0d69348a186e8cdd2e7ecde9a1587d8d5b40f4339cec398b96b1ba3b764549",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "65cbe18495d5def927db703354a7a610bc5a67abc012105a45f73fb69c4e8e4b",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\swap-prologue-order-5y3ti26i\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\swap-prologue-order\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "omit-third-call",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "40bc0d21b614cff7b0c89d9f1b82436419c132044589cc68b5db36d8d528fb38",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "afdbaf0ddab770b6b78755d285c81cd9615460b4cf9d5ae72b0363813104ef43",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\omit-third-call-k0_yp3je\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\omit-third-call\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "duplicate-first-call",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "5c780c96c1854975d99aae52827be633019995176b9d1cbc051bed5e6625f99e",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "116af5f829fafa7337bedb74b952af2085371a1a160a554278355444e9c88913",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\duplicate-first-call-2qqf0vuw\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\duplicate-first-call\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "wrong-prologue-argument",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "732052563ae699e8f7dfac88add64a88c9577ce8d0fdf8d4ffd8539715dc7274",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "73cdd280601b6a500f5a185a530c6b8e2b9264bf1b8ff32a79a17bc15482100c",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\wrong-prologue-argument-74td_s0d\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\wrong-prologue-argument\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "wrong-callee",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "52531a4548f8d939c8dcae7222fc1bb7e4f5c5990c9da98cd8dc10d316ff711e",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "9ca6c699263da7e0966fc7e2d17784761a3b6b767708e36047b0b5aff950a1a3",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\wrong-callee-7loh530m\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\wrong-callee\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "wrong-dispatch-unit",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "972beb8079264537c3dc838686d9f4387611f807c8929f6a0e5b079484b82cbf",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "d45012b4d6f56f09a3882954c03626785305fef0d2b7f68d4b16389367a50369",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\wrong-dispatch-unit-wl56hx9d\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\wrong-dispatch-unit\\run"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "wrong-dispatch-third-argument",
+      "status": "MISMATCH",
+      "build_exit": 0,
+      "source_hashes": {
+        "Game/Spawn/group_completion.c": "28addbc7d35c1aba17fb0a79b2bb20002b8c2b6e02047ce7d1efc79089643e51",
+        "Game/Spawn/group_completion.h": "0f85b5475b6e0ebdacfd9863030bdef6bc23bb2252d902b79bf34d2eef6fd1b9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614"
+      },
+      "driver_sha256": "452302147af3ec25cb62079882ad82500aaa813b3a45f92fd6fc597ce74cf466",
+      "command": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py",
+        "--exe",
+        "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+        "--driver",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\group-validator\\wrong-dispatch-third-argument-8ujqk7xn\\group-driver.exe",
+        "--out",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-011-group-validator\\controls-run-1\\wrong-dispatch-third-argument\\run"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "status": "TARGETED_CONTROLS_PASSED",
+  "end_unix": 1789087839.2416172,
+  "production_sources_unchanged": true
+}

@@ -1,0 +1,9 @@
+SURVIVES  N0  sizes all nine as cited
+SURVIVES  N1  adjacency 0 closed; class-mask bit; 0xFF ungated; gate 0 -> mask, 1 -> open, else closed
+SURVIVES  N2  class table (23, 25, 26, 27, -1, 24); override present/closed words at 0209A3E0 + 8 mapId
+SURVIVES  N3  cost trunc(100 x (d + goal leg on the last hop)); d stored before the goal leg
+SURVIVES  N4  kinds 0,1,2,3,7,9 -> bits 23,25,26,27,24,12; 4,5,6,8 bare; set (on == 0 closes) or remove; both end in 003278D0
+SURVIVES  N5  every live unit's path record (unit + 0x200) loses its no-route memory and next[] chain
+SURVIVES  N6  next[128] = 0xFF from +0x10; two no-route words = 0xFFFF from +0x0C
+SURVIVES  N7  -2 / -3 / 0x80 bound / 0x7FFFFFFF / -1; follow advances while inside, re-aims, stores the region, keeps the mover's y
+FAILS 0

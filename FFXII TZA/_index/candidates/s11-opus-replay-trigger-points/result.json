@@ -1,0 +1,337 @@
+{
+ "ok": true,
+ "allowed_functions": 488,
+ "threshold_f32_at_00901B34": "1.2999999523162842",
+ "results": {
+  "TP1_threshold": {
+   "pass_": true,
+   "constant": "1.2999999523162842",
+   "cases": {
+    "below": {
+     "distance": 1.25,
+     "fired": true,
+     "ok": true,
+     "stopped_at": []
+    },
+    "at_f32_threshold": {
+     "distance": 1.2999999523162842,
+     "fired": true,
+     "ok": true,
+     "stopped_at": []
+    },
+    "next_f32_above": {
+     "distance": 1.3000000715255737,
+     "fired": false,
+     "ok": true,
+     "stopped_at": []
+    },
+    "1.4": {
+     "distance": 1.4,
+     "fired": false,
+     "ok": true,
+     "stopped_at": []
+    }
+   },
+   "note": "fires at d <= the f32 nearest 1.3 (1.2999999523), not at the next float (1.3000000715)"
+  },
+  "TP2_height_is_ignored": {
+   "pass_": true,
+   "raised": {
+    "ok": true,
+    "ret": 529,
+    "mask": 4294967294,
+    "flags512": [],
+    "draws": [
+     3890346734
+    ],
+    "mt_match": true,
+    "stopped_at": []
+   },
+   "level": {
+    "ok": true,
+    "ret": 546,
+    "mask": 4294967294,
+    "flags512": [],
+    "draws": [
+     3586334585
+    ],
+    "mt_match": true,
+    "stopped_at": []
+   },
+   "note": "CONTRADICTS TP-2: a unit 1.0 above a point 1.0 away still fires - 002F8150 zeroes the unit's height after 00265020 returns, so both heights are 0 and the distance is horizontal"
+  },
+  "TP3_75_25_from_the_draw": {
+   "pass_": true,
+   "n": 12,
+   "note": "each fire draws once; outcome +0x06 when draw % 100 < 75, else +0x08"
+  },
+  "TP4_one_point_flag_and_bit": {
+   "pass_": true,
+   "fires": [
+    {
+     "ok": true,
+     "ret": "0x200",
+     "draws": [
+      545404204
+     ],
+     "mt": 545404204,
+     "mt_match": true,
+     "want": "0x200",
+     "mask": "0b10",
+     "flags512": [
+      40
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x301",
+     "draws": [
+      4161255391
+     ],
+     "mt": 4161255391,
+     "mt_match": true,
+     "want": "0x301",
+     "mask": "0b10",
+     "flags512": [
+      41
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x202",
+     "draws": [
+      3922919429
+     ],
+     "mt": 3922919429,
+     "mt_match": true,
+     "want": "0x202",
+     "mask": "0b10",
+     "flags512": [
+      42
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x303",
+     "draws": [
+      949333985
+     ],
+     "mt": 949333985,
+     "mt_match": true,
+     "want": "0x303",
+     "mask": "0b10",
+     "flags512": [
+      43
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x304",
+     "draws": [
+      2715962298
+     ],
+     "mt": 2715962298,
+     "mt_match": true,
+     "want": "0x304",
+     "mask": "0b10",
+     "flags512": [
+      44
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x205",
+     "draws": [
+      1323567403
+     ],
+     "mt": 1323567403,
+     "mt_match": true,
+     "want": "0x205",
+     "mask": "0b10",
+     "flags512": [
+      45
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x206",
+     "draws": [
+      418932835
+     ],
+     "mt": 418932835,
+     "mt_match": true,
+     "want": "0x206",
+     "mask": "0b10",
+     "flags512": [
+      46
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x207",
+     "draws": [
+      2350294565
+     ],
+     "mt": 2350294565,
+     "mt_match": true,
+     "want": "0x207",
+     "mask": "0b10",
+     "flags512": [
+      47
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x208",
+     "draws": [
+      1196140740
+     ],
+     "mt": 1196140740,
+     "mt_match": true,
+     "want": "0x208",
+     "mask": "0b10",
+     "flags512": [
+      48
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x209",
+     "draws": [
+      809094426
+     ],
+     "mt": 809094426,
+     "mt_match": true,
+     "want": "0x209",
+     "mask": "0b10",
+     "flags512": [
+      49
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x20a",
+     "draws": [
+      2348838239
+     ],
+     "mt": 2348838239,
+     "mt_match": true,
+     "want": "0x20a",
+     "mask": "0b10",
+     "flags512": [
+      50
+     ],
+     "out": "0x5555555500000001"
+    },
+    {
+     "ok": true,
+     "ret": "0x20b",
+     "draws": [
+      4264392720
+     ],
+     "mt": 4264392720,
+     "mt_match": true,
+     "want": "0x20b",
+     "mask": "0b10",
+     "flags512": [
+      51
+     ],
+     "out": "0x5555555500000001"
+    }
+   ],
+   "note": "two points in range: only the first fires; its flag id is set in Bank512 (payload +0x14B4); its live bit is cleared"
+  },
+  "TP4_flag_FF_sets_none": {
+   "pass_": true,
+   "result": {
+    "ok": true,
+    "ret": 631,
+    "mask": 4294967294,
+    "flags512": [],
+    "draws": [
+     4112460519
+    ],
+    "mt_match": true,
+    "stopped_at": []
+   },
+   "note": "flag id 0xFF: no Bank512 bit"
+  },
+  "TP5_32_point_ceiling": {
+   "pass_": true,
+   "index35": {
+    "ok": true,
+    "ret": 65535,
+    "mask": 4294967295,
+    "flags512": [],
+    "draws": [],
+    "mt_match": true,
+    "stopped_at": []
+   },
+   "index31": {
+    "ok": true,
+    "ret": 614,
+    "mask": 2147483647,
+    "flags512": [],
+    "draws": [
+     4279768804
+    ],
+    "mt_match": true,
+    "stopped_at": []
+   },
+   "note": "of 40 listed points, index 35 is unreachable; index 31 fires"
+  },
+  "TP6_eligibility": {
+   "pass_": true,
+   "cases": {
+    "bit26": {
+     "fired": false,
+     "ok": true
+    },
+    "layer6C": {
+     "fired": false,
+     "ok": true
+    },
+    "layer7C": {
+     "fired": false,
+     "ok": true
+    },
+    "sel5_is_1": {
+     "fired": false,
+     "ok": true
+    },
+    "esper_band": {
+     "fired": false,
+     "ok": true
+    },
+    "eligible": {
+     "fired": true,
+     "ok": true
+    }
+   },
+   "note": "status bit 26, either layer's 0x20, rec+5 == 1, or the 0x1B..0x27 band: no fire"
+  },
+  "field_not_in_live_table": {
+   "pass_": true,
+   "result": {
+    "ok": true,
+    "ret": 65535,
+    "mask": 4294967295,
+    "flags512": [],
+    "draws": [],
+    "mt_match": true,
+    "stopped_at": []
+   },
+   "note": "the active field has no row at 02EC3EA0: the live mask is 0 and nothing fires"
+  }
+ }
+}

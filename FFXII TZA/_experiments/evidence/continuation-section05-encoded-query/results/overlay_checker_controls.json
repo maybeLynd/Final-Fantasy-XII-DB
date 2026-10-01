@@ -1,0 +1,41 @@
+{
+  "read_only": true,
+  "controls": [
+    {
+      "name": "missing_replacement",
+      "pass": true
+    },
+    {
+      "name": "expected_preimage",
+      "pass": true
+    },
+    {
+      "name": "already_applied",
+      "pass": true
+    },
+    {
+      "name": "peer_edit_preserved",
+      "pass": true
+    },
+    {
+      "name": "new_file",
+      "pass": true
+    },
+    {
+      "name": "directory_collision",
+      "pass": true
+    },
+    {
+      "name": "parent_escape",
+      "pass": true
+    },
+    {
+      "name": "absolute_path",
+      "pass": true
+    },
+    {
+      "name": "backslash_path",
+      "pass": true
+    }
+  ]
+}

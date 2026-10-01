@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\title-member-prerequisite-controls-02\changed_instruction_bytes\prove-title-member-notification.py", line 41, in <module>
+    if pc!=cursor or read(pc,len(z))!=z: raise ValueError('original instruction prerequisite')
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: original instruction prerequisite

@@ -1,0 +1,7 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	pass	price	u16: 0x2 x258, 0x14 x33, 0x12c x14, 0x46 x9, 0xa0 x8 (166 distinct)	0031CBE0* movzx eax, word ptr [rbp]	price in gil -> query +0x28 (the shop filler's price slot)	STATIC	PASS
+0x02	2	pass	descriptionId	u16: 0x36b0 x1, 0x36b1 x1, 0x36b2 x1, 0x36b3 x1, 0x36b4 x1 (512 distinct)	0031CBE7* movzx ecx, word ptr [rbp + 2]	description string id -> 002F9860 -> query +0x10	STATIC	PASS
+0x04	1	page	icon	u8: 0 x277, 73 x235 (2 distinct)	0031CBFA* movzx eax, byte ptr [rbp + 4]	icon frame -> query +0x2C (UQ-130)	STATIC	BAZ
+0x05	1	pad	pad05	u8: 0 x512 (1 distinct)	-	const=0x00	-	PASS
+0x06	2	page	nameWord	u16: 0x5800 x1, 0x5801 x1, 0x5802 x1, 0x5803 x1, 0x5804 x1 (512 distinct)	0031CB79* movzx ecx, word ptr [rax + 6] | 0031CBC1* movzx edx, word ptr [rax + 6]	name word (bank 11)	STATIC	EID
+0x08	2	pass	sortKey	u16: 0x0 x1, 0x1 x1, 0x2 x1, 0x3 x1, 0x4 x1 (512 distinct)	0031CC01* movzx eax, word ptr [rbp + 8]	list sort key -> query +0x30 (512 distinct values in 512 rows)	STATIC	PASS

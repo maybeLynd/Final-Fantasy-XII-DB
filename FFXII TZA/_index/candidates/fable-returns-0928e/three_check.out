@@ -1,0 +1,5 @@
+PASS R1  kept: 0.5, NaN; reset to 1.0: 0, -0, -1 (default constant 3F800000)
+PASS I1  E(D(u)) = u for all samples; D(E(p)) = p only inside [B, B + 2^32); D(0) = B
+PASS A1  xmm9 writes ['00339723', '00339A02']; 008F3138 = 43340000 (180.0)
+PASS C  controls: jbe keeps zero; add-for-sub breaks the round trip; a planted xmm9 write changes the census
+FAILS 0

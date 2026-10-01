@@ -1,0 +1,20 @@
+{
+  "why": "Observed Pause screen names F Exit to Title Menu",
+  "node": {
+    "registry": "00876C80",
+    "node": "01F46228",
+    "type_ptr": "01CD89D8",
+    "name_ptr": "01CD86E4",
+    "name": "Key_F",
+    "value": 33,
+    "next": 0,
+    "hex": "d889cd0100000000e486cd010000000000000000000000002100000000000000",
+    "name_hex": "4b65795f4600"
+  },
+  "scancode": 33,
+  "index": 5,
+  "vk": 70,
+  "source_before": "ed70ddd758ee15c1d3996109586969c8acb307b9f3721de4c766bfbb3d988f3e",
+  "source_after": "e832bc527567a8170f7ce6cbef4e233aa6d24f768de550ea3539810c1a35c41a",
+  "limits": "Mapping checked offline; registration and action acceptance pending"
+}

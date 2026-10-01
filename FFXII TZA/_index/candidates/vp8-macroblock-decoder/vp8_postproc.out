@@ -1,0 +1,6 @@
+PASS  G 0016EA80 calls 00177A70 with pbi + 0x12C0
+PASS  N 00177A70: lastFrameValid (+0x40FC) = 1 and lastBaseQIndex (+0x40F8) = baseQIndex on both paths; +0x1E50 = 1 on the flagged path
+PASS  A 00177A70 add-noise: fillrd(pbi + 0x34F0, ...) when q or the level changed; the noise at +0x34F8 and the clamps at +0x4100 / +0x4110 / +0x4120 go to 00149610
+PASS  F 00177850: 0xC00 noise bytes from state + 8; three 16-byte clamps at +0xC10 / +0xC20 / +0xC30; last q and level at +0 / +4
+PASS  P Vp8PostprocState (0xC40) tiles and is embedded at +0x34F0; the instance tiles
+FAILS 0

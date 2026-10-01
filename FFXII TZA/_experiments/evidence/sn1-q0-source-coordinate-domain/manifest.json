@@ -1,0 +1,185 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 6741,
+      "sha256": "8aab9535ee39c5a5f45eb0e314fb71688d091f2e780fe478cb96b635565822ec"
+    },
+    {
+      "path": "check.py",
+      "bytes": 8753,
+      "sha256": "4750afc8b9b3aae1f0d96af994d507c168e23cdd84c9e6e197e0e410a514228c"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "bytes": 603,
+      "sha256": "ad3303449202e352bce600c5388b7592fd3d925acbde551c9be281f7b3395b67"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "bytes": 182,
+      "sha256": "5bdba7814aa1b6a83ad29d4372316ae950667bb863ac4a67f774316d9d068ad0"
+    },
+    {
+      "path": "fault-clamp-missing-line.stderr",
+      "bytes": 398,
+      "sha256": "ea160bac5ffff657aa526a4a4469ca3d6d07e050721bfc904da50b6d14ad17da"
+    },
+    {
+      "path": "fault-clamp-missing-line.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fault-two-padding.stderr",
+      "bytes": 672,
+      "sha256": "75441fcb4179dbb3b970df9d787d4bed1c074e5f4b701a7008184138774c8841"
+    },
+    {
+      "path": "fault-two-padding.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "filtered-byte-check.json",
+      "bytes": 4314,
+      "sha256": "c2c0aab3717d6d8419a19027fbe4ee9e801a505022ef477d45af057ab05508cb"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 3364,
+      "sha256": "7161b5aafb4dd4de1aa951641467e84e27113ce8729ed82209b182ae6a94e096"
+    },
+    {
+      "path": "in-progress-modules.json",
+      "bytes": 15386216,
+      "sha256": "8d3cde257c2b559371a0cc75031ff3ccb5b808db940b5a99f91bb81b4d9327e1"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2366,
+      "sha256": "488f628ad9e9993252c3ba9e24497ad825c68dc8a04f0a1aa9d559dac2d1369a"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 16467193,
+      "sha256": "92c6e9d536616855e4c664dd9a3505e28a1f3729ba3497ba799a93be8e2faa06"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5422,
+      "sha256": "2a767580eaaf84956b89dae650e4604a3f70b68187b67ca7792e138afdeeb8ae"
+    },
+    {
+      "path": "regression-controls.json",
+      "bytes": 627,
+      "sha256": "6a8a932b0381979acd23670575da3b1cd33116df721cd519bcd7e67d51f88c08"
+    },
+    {
+      "path": "repair.py",
+      "bytes": 4473,
+      "sha256": "d79f643980fdb1843ef3a97064090eed0902d0df581f7c91e9546d58698eaab5"
+    },
+    {
+      "path": "result.json",
+      "bytes": 21450,
+      "sha256": "d8a9202432e3575d965d1438c78380e085a0f78851de8b66da46185b0fb08379"
+    },
+    {
+      "path": "retained/btlctrl.dbg",
+      "bytes": 270160,
+      "sha256": "3d83baa3d728d70e310c92e7df3d7151f912fc3ee0992c64d21cd9a032e73058"
+    },
+    {
+      "path": "retained/btlctrl.sbn",
+      "bytes": 98136,
+      "sha256": "7492061636eac4cd7b5cdd5f06ff50d67c80fe1dad686044e89414ba40f0608d"
+    },
+    {
+      "path": "retained/consumer-before.md",
+      "bytes": 78979,
+      "sha256": "c88a5a200fe3325de897a7241162f55b6e6ea098b0bc0e4a6f6fec02d1b38ee4"
+    },
+    {
+      "path": "retained/ctrl.dbg",
+      "bytes": 83120,
+      "sha256": "73b8f70b155b76971945a028ffe5f89eeb8733620a970854c635463de7368aa4"
+    },
+    {
+      "path": "retained/ctrl.sbn",
+      "bytes": 24976,
+      "sha256": "9cc2473f9c167eb203b6a3aff751df2b31d14e6282b70401bb1d794af3596662"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "bytes": 6303,
+      "sha256": "e8a7f3617ff2f883bbe557f7bbd60bbca1e93615bbd812643f041dd39990e4e9"
+    },
+    {
+      "path": "retained/evctrl.dbg",
+      "bytes": 126112,
+      "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06"
+    },
+    {
+      "path": "retained/evctrl.sbn",
+      "bytes": 57816,
+      "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5"
+    },
+    {
+      "path": "retained/invalid-zero-suffix-assumption/check-before.py",
+      "bytes": 8469,
+      "sha256": "063fff9d03e8c0fd5f9d4f9ac03b8d280b893674be327afd1c9b595bdfcf1621"
+    },
+    {
+      "path": "retained/invalid-zero-suffix-assumption/failure.json",
+      "bytes": 2232,
+      "sha256": "9207066af0217ad9dbb4e2010b06fa739238917f608971704c5d0a90bfad1ddd"
+    },
+    {
+      "path": "retained/invalid-zero-suffix-assumption/partially-corrected-check.py",
+      "bytes": 8748,
+      "sha256": "4456285468852b69c25c0340c4dbd572734d294d15cfb73def647ac721c8fcee"
+    },
+    {
+      "path": "retained/invalid-zero-suffix-assumption/producer-correction.json",
+      "bytes": 614,
+      "sha256": "90518ff6640f35c8294350d436f12879a08c0b7158670659dbd2582c4994a738"
+    },
+    {
+      "path": "retained/invalid-zero-suffix-assumption/repair-before.py",
+      "bytes": 4069,
+      "sha256": "da66e611709e0d7699b721c2fc0d0e21ef2bbbcd59693a0fc201391c1fce968f"
+    },
+    {
+      "path": "retained/mapctrl.dbg",
+      "bytes": 301776,
+      "sha256": "499b2394d9e8c38d2119f238730b6e6b79a3888dd2e7157fefe3ff26035de317"
+    },
+    {
+      "path": "retained/mapctrl.sbn",
+      "bytes": 140128,
+      "sha256": "4d399c23df9fc1ae931753c6247084cca26fdfda4446e6bdbe66f85d71e9ec35"
+    },
+    {
+      "path": "retained/original-sbn-producer.py",
+      "bytes": 7121,
+      "sha256": "15df4aad0791835f0b3e4bff2f59e383f4723c5c5cbafc5323e4899955a47227"
+    },
+    {
+      "path": "retained/selected-sbn-functions.py",
+      "bytes": 602,
+      "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48"
+    }
+  ],
+  "limits": "A physical source-coordinate domain only; internal EOF+1 exceptions and0..3 suffixes, index convention/cause/X unresolved; original/failure/control/default-path receipts preserved and independent acceptance pending"
+}

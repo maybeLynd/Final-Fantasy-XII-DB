@@ -1,0 +1,387 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "cases": [
+  {
+   "name": "base",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "dead-actor",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "varblock-null",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "arg-over-bound",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": -1
+   },
+   "faults": []
+  },
+  {
+   "name": "arg-eq-bound",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "page-null",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": -1
+   },
+   "faults": []
+  },
+  {
+   "name": "run-gap",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": -1
+   },
+   "faults": []
+  },
+  {
+   "name": "thr-default",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "thr-eq",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "thr-first",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 9
+   },
+   "faults": []
+  },
+  {
+   "name": "thr-mid",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 33
+   },
+   "faults": []
+  },
+  {
+   "name": "thr-last",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 51
+   },
+   "faults": []
+  },
+  {
+   "name": "neg-progress",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "neg-prog-8000",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "run-second",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 3
+   },
+   "faults": []
+  },
+  {
+   "name": "run-boundary",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 8
+   },
+   "faults": []
+  },
+  {
+   "name": "run-after",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 3
+   },
+   "faults": []
+  },
+  {
+   "name": "page1",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 18
+   },
+   "faults": []
+  },
+  {
+   "name": "zero-result",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": -1
+   },
+   "faults": []
+  },
+  {
+   "name": "empty-run",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 4
+   },
+   "faults": []
+  },
+  {
+   "name": "start-eq-arg",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 7
+   },
+   "faults": []
+  },
+  {
+   "name": "start-high",
+   "trace": "m V",
+   "ok": true,
+   "obs": {
+    "ret": 85
+   },
+   "faults": []
+  }
+ ],
+ "mutants": [
+  {
+   "name": "m-bound-jl",
+   "va": "0x3EAA8C",
+   "killed": true,
+   "divergent": 1,
+   "why": "bound check jl->jle: arg==bound refuses",
+   "sample": [
+    [
+     "arg-eq-bound",
+     "tr=m V ret=-1"
+    ]
+   ]
+  },
+  {
+   "name": "m-page-sar",
+   "va": "0x3EAA98",
+   "killed": true,
+   "divergent": 2,
+   "why": "page index sar 7 -> sar 6: wrong page granularity",
+   "sample": [
+    [
+     "page1",
+     "tr=m V ret=-1"
+    ],
+    [
+     "start-high",
+     "tr=m V ret=-1"
+    ]
+   ]
+  },
+  {
+   "name": "m-start-mask",
+   "va": "0x3EAABE",
+   "killed": true,
+   "divergent": 1,
+   "why": "run start mask 0x7FF -> 0x3FF: start mis-reads",
+   "sample": [
+    [
+     "start-high",
+     "tr=m V ret=1075921739"
+    ]
+   ]
+  },
+  {
+   "name": "m-start-ja",
+   "va": "0x3EAAC3",
+   "killed": true,
+   "divergent": 1,
+   "why": "run start ja->jae: arg==start refuses",
+   "sample": [
+    [
+     "page1",
+     "tr=m V ret=-1"
+    ]
+   ]
+  },
+  {
+   "name": "m-run-jae",
+   "va": "0x3EAAC9",
+   "killed": true,
+   "divergent": 19,
+   "why": "run in-range jae->jb: matching arg walks past -> -1",
+   "sample": [
+    [
+     "base",
+     "tr=m V ret=-1"
+    ],
+    [
+     "dead-actor",
+     "tr=m V ret=-1"
+    ],
+    [
+     "varblock-null",
+     "tr=m V ret=-1"
+    ]
+   ]
+  },
+  {
+   "name": "m-stride",
+   "va": "0x3EAAD2",
+   "killed": true,
+   "divergent": 4,
+   "why": "advance lea scale x2 -> x1: wrong next-header offset",
+   "sample": [
+    [
+     "run-gap",
+     "tr=m V ret=1075863992"
+    ],
+    [
+     "run-second",
+     "tr=m V ret=1075863992"
+    ],
+    [
+     "run-after",
+     "tr=m V ret=1075863992"
+    ]
+   ]
+  },
+  {
+   "name": "m-thr-jle",
+   "va": "0x3EAB2F",
+   "killed": true,
+   "divergent": 10,
+   "why": "threshold jle->jl: equal threshold takes the entry",
+   "sample": [
+    [
+     "base",
+     "tr=m V ret=9"
+    ],
+    [
+     "dead-actor",
+     "tr=m V ret=9"
+    ],
+    [
+     "varblock-null",
+     "tr=m V ret=9"
+    ]
+   ]
+  },
+  {
+   "name": "m-movsx",
+   "va": "0x3EAB12",
+   "killed": true,
+   "divergent": 2,
+   "why": "movsx r11d,r11w -> movzx: negative progress goes positive",
+   "sample": [
+    [
+     "neg-progress",
+     "tr=m V ret=51"
+    ],
+    [
+     "neg-prog-8000",
+     "tr=m V ret=51"
+    ]
+   ]
+  },
+  {
+   "name": "m-cmove",
+   "va": "0x3EAB49",
+   "killed": true,
+   "divergent": 19,
+   "why": "cmove->cmovne: result 0 returns 0 instead of -1",
+   "sample": [
+    [
+     "base",
+     "tr=m V ret=-1"
+    ],
+    [
+     "dead-actor",
+     "tr=m V ret=-1"
+    ],
+    [
+     "varblock-null",
+     "tr=m V ret=-1"
+    ]
+   ]
+  },
+  {
+   "name": "m-live-bit",
+   "va": "0x265276",
+   "killed": true,
+   "divergent": 5,
+   "why": "liveness test bit0 -> bit2: live actor reads as dead",
+   "sample": [
+    [
+     "thr-first",
+     "tr=m V ret=7"
+    ],
+    [
+     "thr-mid",
+     "tr=m V ret=7"
+    ],
+    [
+     "thr-last",
+     "tr=m V ret=7"
+    ]
+   ]
+  }
+ ],
+ "bodies_fired": [
+  "0x265270",
+  "0x3EAA70"
+ ]
+}

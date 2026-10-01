@@ -1,0 +1,147 @@
+{
+ "cases": {
+  "N1_same_region_returns_0_no_dijkstra": true,
+  "N2_connected_pair_dijkstra_once_route_chains": true,
+  "N3_held_route_no_dijkstra_only_goal_waypoint_refreshed": true,
+  "N4_unreachable_dijkstra_minus1_dead_end_recorded": true,
+  "N5_dead_end_refused_without_dijkstra": true,
+  "N6_NV1_locomotion_reset_wipes_route_keeps_dead_ends": true,
+  "N7_NV2_flagged_units_both_wiped_unflagged_untouched": true,
+  "N8_NV2_count_reread_each_iteration_perturbation_covers_the_extra_slot": true,
+  "R0_mesh_bound_by_00384160_and_regions_resolve": true
+ },
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "N1": 0,
+  "N2": {
+   "dijkstra": 1,
+   "ret": 0,
+   "route": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    19,
+    20,
+    21
+   ]
+  },
+  "N3": {
+   "dijkstra": 0,
+   "ret": 0,
+   "waypoints_changed": [
+    21
+   ]
+  },
+  "N4": {
+   "dead": "000affff",
+   "dijkstra": 1,
+   "goal": 255,
+   "ret": "FFFFFFFF",
+   "start": 255
+  },
+  "N5": {
+   "dijkstra": 0,
+   "ret": "FFFFFFFF"
+  },
+  "N6": {
+   "after": {
+    "dead": "000affff",
+    "goal": 255,
+    "start": 255
+   },
+   "before": {
+    "dead": "000affff",
+    "goal": 255,
+    "start": 255
+   },
+   "connected_dijkstra": 1,
+   "next_after_all_ff": true,
+   "reset_ok": true,
+   "unreachable": [
+    "FFFFFFFF",
+    0
+   ]
+  },
+  "N7": {
+   "inval_ok": true,
+   "unit1_untouched": true,
+   "wiped": {
+    "0": true,
+    "1": false,
+    "2": true,
+    "3": true,
+    "4": true
+   }
+  },
+  "N8": {
+   "bumped": true,
+   "control_last_slot_wiped": false,
+   "control_ok": true,
+   "extra_slot_wiped": true,
+   "perturbed_ok": true
+  },
+  "mesh": {
+   "bind_ok": true,
+   "components": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     18,
+     19,
+     20,
+     21
+    ],
+    [
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17
+    ]
+   ],
+   "file": "frs0101.mpk",
+   "hdr_0C": "7A000030",
+   "region_lookup": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+   ],
+   "regions": 22,
+   "root": "7A000000",
+   "slot4_sha256": "626aedf0750fe35a"
+  }
+ }
+}

@@ -1,0 +1,709 @@
+function	name	site	disp	kind	instruction	route	note
+0025B070	ActorSystem_ReleaseManagerRecords	0025B0CF	0x220	r	mov ecx, dword ptr [rax + 0x220]	seed	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B102	0x220	w	mov dword ptr [rax + 0x220], edi	seed	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B111	0x74	w	mov dword ptr [rax + 0x74], edi	seed	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B164	0x220	r	mov ecx, dword ptr [rax + 0x220]	seed	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B197	0x220	w	mov dword ptr [rax + 0x220], edi	seed	
+0025B070	ActorSystem_ReleaseManagerRecords	0025B1A6	0x74	w	mov dword ptr [rax + 0x74], edi	seed	
+0025B250	FUN_0025b250	0025B2B9	0x10	addr	lea r9, [r8 + 0x10]	seed	
+0025BAD0	FUN_0025bad0	0025BB91	0x0	r	movss xmm1, dword ptr [rsi]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BBB4	0x4	r	addss xmm2, dword ptr [rsi + 4]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BBC7	0x8	r	movss xmm3, dword ptr [rsi + 8]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BBD8	0x107	r	test byte ptr [rsi + 0x107], bl	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BBE0	0x40	r	addss xmm1, dword ptr [rsi + 0x40]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BBEB	0x44	r	addss xmm2, dword ptr [rsi + 0x44]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BBF6	0x48	r	addss xmm3, dword ptr [rsi + 0x48]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BC01	0xDD	r	cmp byte ptr [rsi + 0xdd], cl	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BC09	0x24	r	movss xmm3, dword ptr [rsi + 0x24]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BC1A	0xCC	r	mulss xmm0, dword ptr [rsi + 0xcc]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BC22	0xC8	r	mulss xmm3, dword ptr [rsi + 0xc8]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BC5F	0x70	addr	lea r9, [rsi + 0x70]	ctxarg1<0025B820@0025B990	
+0025BAD0	FUN_0025bad0	0025BD80	0xBC	r	movss xmm1, dword ptr [rsi + 0xbc]	ctxarg1<0025B820@0025B990	
+0025BE50	FUN_0025be50	0025BE92	0x5D	r	movzx ecx, byte ptr [rbx + 0x5d]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BEC7	0x5C	r	cmp byte ptr [rbx + 0x5c], 0	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BECD	0x4	r	movss xmm2, dword ptr [rbx + 4]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BEDD	0x6C	r	subss xmm1, dword ptr [rbx + 0x6c]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BEEC	0x68	r	addss xmm2, dword ptr [rbx + 0x68]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BF09	0x60	r	mov eax, dword ptr [rbx + 0x60]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BF32	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BF37	0x10	r	movss xmm3, dword ptr [rbx + 0x10]	ctxarg1<0025B820@0025BA84	
+0025BE50	FUN_0025be50	0025BF3C	0x50	r	movss xmm1, dword ptr [rbx + 0x50]	ctxarg1<0025B820@0025BA84	
+0025C230	FUN_0025c230	0025C28E	0x0	r	movss xmm2, dword ptr [rbp]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C2B2	0x4	r	addss xmm1, dword ptr [rbp + 4]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C2BD	0x8	r	movss xmm0, dword ptr [rbp + 8]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C2C8	0x107	r	test byte ptr [rbp + 0x107], 1	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C2D1	0x40	r	addss xmm2, dword ptr [rbp + 0x40]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C2DC	0x44	r	addss xmm1, dword ptr [rbp + 0x44]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C2E7	0x48	r	addss xmm0, dword ptr [rbp + 0x48]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C30C	0x24	r	movss xmm6, dword ptr [rbp + 0x24]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C311	0x100	r	mov r12d, dword ptr [rbp + 0x100]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C31C	0xDD	r	movzx eax, byte ptr [rbp + 0xdd]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C326	0xCC	r	mulss xmm0, dword ptr [rbp + 0xcc]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C332	0xC8	r	mulss xmm6, dword ptr [rbp + 0xc8]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C34C	0x100	w	mov dword ptr [rbp + 0x100], r15d	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C357	0x228	w	mov dword ptr [rbp + 0x228], r15d	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C440	0x60	addr	lea r9, [rbp + 0x60]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C511	0x70	addr	lea r9, [rbp + 0x70]	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C6A1	0x100	rw	or dword ptr [rbp + 0x100], r12d	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C6A8	0x228	rw	or dword ptr [rbp + 0x228], r12d	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C6F2	0x100	r	cmp dword ptr [rbp + 0x100], 0	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C70A	0x100	r	cmp dword ptr [rbp + 0x100], 0	ctxarg1<0025C170@0025C207	
+0025C230	FUN_0025c230	0025C777	0x100	r	cmp dword ptr [rbp + 0x100], 0	ctxarg1<0025C170@0025C207	
+0025C830	FUN_0025c830	0025C87C	0x5C	r	movzx eax, byte ptr [rsi + 0x5c]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C880	0x4	r	movss xmm11, dword ptr [rsi + 4]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C8A3	0x6C	r	subss xmm12, dword ptr [rsi + 0x6c]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C8A9	0x68	r	addss xmm11, dword ptr [rsi + 0x68]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C8B3	0x60	r	mov eax, dword ptr [rsi + 0x60]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C8B9	0x60	w	mov dword ptr [rsi + 0x60], r14d	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C8DF	0x5D	r	test byte ptr [rsi + 0x5d], 1	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C950	0x38	r	movss xmm6, dword ptr [rsi + 0x38]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C9AE	0x0	r	movups xmm0, xmmword ptr [rsi]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025C9B8	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CAB3	0x30	r	movss xmm0, dword ptr [rsi + 0x30]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CAC8	0x34	r	movss xmm0, dword ptr [rsi + 0x34]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CADD	0x48	r	movss xmm6, dword ptr [rsi + 0x48]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CC14	0x40	r	movss xmm0, dword ptr [rsi + 0x40]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CC29	0x44	r	movss xmm0, dword ptr [rsi + 0x44]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CF34	0x30	addr	lea r9, [rsi + 0x30]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CF48	0x10	addr	lea rax, [rsi + 0x10]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CF4F	0x40	addr	lea r9, [rsi + 0x40]	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025CF94	0x5D	r	test byte ptr [rsi + 0x5d], 2	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D00F	0x5D	r	test byte ptr [rsi + 0x5d], 2	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D027	0x60	rw	or dword ptr [rsi + 0x60], r15d	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D044	0x5D	r	test byte ptr [rsi + 0x5d], 4	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D10D	0x5D	r	test byte ptr [rsi + 0x5d], 2	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D22B	0x60	r	cmp dword ptr [rsi + 0x60], r14d	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D245	0x60	r	cmp dword ptr [rsi + 0x60], r14d	ctxarg1<0025C170@0025C1D2	
+0025C830	FUN_0025c830	0025D259	0x5D	r	test byte ptr [rsi + 0x5d], 2	ctxarg1<0025C170@0025C1D2	
+0025D4F0	FUN_0025d4f0	0025D50E	0xD8	r	mov ecx, dword ptr [rax + 0xd8]	ctxarg0<002E3AF0@002E3B15	
+0025D4F0	FUN_0025d4f0	0025D52E	0xD8	w	mov dword ptr [rax + 0xd8], 0	ctxarg0<002E3AF0@002E3B15	
+0025D690	FUN_0025d690	0025D6F0	0x108	r	mov ecx, dword ptr [rax + rcx*4 + 0x108]	ctxarg0<002E3AF0@002E3B1D	idx
+0025D690	FUN_0025d690	0025D714	0x108	w	mov dword ptr [rax + rcx*4 + 0x108], ebp	ctxarg0<002E3AF0@002E3B1D	idx
+0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0025DF50	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg1<0025D9E0@0025DB43	
+002636F0	Movement_GetSteeringAcceleration	00263705	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<00357A20@00357AA9	
+00263720	Movement_GetConfiguredSteeringMode	00263737	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<00357A20@00357AC2	
+00263940	FUN_00263940	00263958	0xC0	r	movss xmm0, dword ptr [rax + 0xc0]	ctxarg0<00271380@002713A2	
+00263940	FUN_00263940	00263960	0x24	r	mulss xmm0, dword ptr [rax + 0x24]	ctxarg0<00271380@002713A2	
+00263940	FUN_00263940	00263971	0x68	r	movss xmm0, dword ptr [rax + 0x68]	ctxarg0<00271380@002713A2	
+002640E0	FUN_002640e0	002640F5	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	ctxarg0<00358F90@00359021	
+002645D0	FUN_002645d0	002645F1	0xFC	r	movss xmm0, dword ptr [rax + 0xfc]	ctxarg0<00272F30@00272F4E	
+002645D0	FUN_002645d0	00264601	0x70	r	movss xmm0, dword ptr [rax + 0x70]	ctxarg0<00272F30@00272F4E	
+002646C0	FUN_002646c0	002646F0	0x0	r	mov eax, dword ptr [rcx]	ctxarg0<00336710@003369FC	
+002646C0	FUN_002646c0	002646F4	0x4	r	mov eax, dword ptr [rcx + 4]	ctxarg0<00336710@003369FC	
+002646C0	FUN_002646c0	002646FA	0x8	r	mov eax, dword ptr [rcx + 8]	ctxarg0<00336710@003369FC	
+002646C0	FUN_002646c0	00264700	0x107	r	test byte ptr [rcx + 0x107], 1	ctxarg0<00336710@003369FC	
+002646C0	FUN_002646c0	00264709	0x40	r	movss xmm0, dword ptr [rcx + 0x40]	ctxarg0<00336710@003369FC	
+002646C0	FUN_002646c0	00264716	0x44	r	movss xmm1, dword ptr [rcx + 0x44]	ctxarg0<00336710@003369FC	
+002646C0	FUN_002646c0	00264725	0x48	r	movss xmm0, dword ptr [rcx + 0x48]	ctxarg0<00336710@003369FC	
+00264E10	FUN_00264e10	00264E24	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<00345800@0034581C	
+00265020	Actor_GetWorldPosition	00265041	0x0	r	mov eax, dword ptr [rcx]	ctxarg0<0024B6F0@0024B74B	
+00265020	Actor_GetWorldPosition	00265045	0x4	r	mov eax, dword ptr [rcx + 4]	ctxarg0<0024B6F0@0024B74B	
+00265020	Actor_GetWorldPosition	0026504B	0x8	r	mov eax, dword ptr [rcx + 8]	ctxarg0<0024B6F0@0024B74B	
+002651C0	FUN_002651c0	002651DC	0xAC	r	movss xmm0, dword ptr [rax + 0xac]	ctxarg0<002E5750@002E57A2	
+002651C0	FUN_002651c0	002651EC	0x54	r	movss xmm0, dword ptr [rax + 0x54]	ctxarg0<002E5750@002E57A2	
+00265200	FUN_00265200	0026521D	0xA8	r	movss xmm0, dword ptr [rax + 0xa8]	ctxarg0<0024B6F0@0024B753	
+00265200	FUN_00265200	0026522D	0x38	r	movss xmm0, dword ptr [rax + 0x38]	ctxarg0<0024B6F0@0024B753	
+00265470	FUN_00265470	00265491	0x0	r	mov eax, dword ptr [rcx]	ctxarg0<0035DCC0@0035DD26	
+00265470	FUN_00265470	00265495	0x4	r	mov eax, dword ptr [rcx + 4]	ctxarg0<0035DCC0@0035DD26	
+00265470	FUN_00265470	0026549B	0x8	r	mov eax, dword ptr [rcx + 8]	ctxarg0<0035DCC0@0035DD26	
+00265600	FUN_00265600	00265614	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<002E5750@002E57D9	
+00265830	FUN_00265830	00265845	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<00358CB0@00358E23	
+00268380	FUN_00268380	00268410	0xC0	r	movss xmm6, dword ptr [rax + 0xc0]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	00268418	0x24	r	mulss xmm6, dword ptr [rax + 0x24]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	00268426	0x68	r	movss xmm6, dword ptr [rax + 0x68]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	00268455	0xA8	r	movss xmm3, dword ptr [rax + 0xa8]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	00268466	0x38	r	movss xmm3, dword ptr [rax + 0x38]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	00268488	0x104	r	movzx edi, byte ptr [rax + 0x104]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	0026848F	0x105	r	movzx esi, byte ptr [rax + 0x105]	ctxarg0<00269E20@00269E34	
+00268380	FUN_00268380	00268496	0x106	r	movzx ebp, byte ptr [rax + 0x106]	ctxarg0<00269E20@00269E34	
+002693D0	FUN_002693d0	00269448	0xF0	r	mov rcx, qword ptr [rsi + 0xf0]	ctxarg0<0025B070@0025B1B1	
+002693D0	FUN_002693d0	0026945B	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	ctxarg0<0025B070@0025B1B1	
+0026A0D0	Actor_SetDesiredMovementHeading	0026A128	0xA4	w	movss dword ptr [rdx + 0xa4], xmm3	ctxarg0<00358CB0@00358E99	
+0026A640	FUN_0026a640	0026A651	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<00357A20@00357A87	
+0026AE30	Movement_SetSteeringTargetPosition	0026AE68	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	ctxarg0<00357A20@00357A99	
+0026AE30	Movement_SetSteeringTargetPosition	0026AE72	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	ctxarg0<00357A20@00357A99	
+0026AE90	Movement_SetSteeringMode	0026AEB2	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	ctxarg0<002693D0@0026942B	
+0026AE90	Movement_SetSteeringMode	0026AECD	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	ctxarg0<002693D0@0026942B	
+0026AE90	Movement_SetSteeringMode	0026AEFB	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<002693D0@0026942B	
+0026AF10	Movement_SnapshotSteeringStartPosition	0026AF21	0x0	r	movaps xmm0, xmmword ptr [rax]	ctxarg0<00357A20@00357AA1	
+0026AF10	Movement_SnapshotSteeringStartPosition	0026AF24	0x30	w	movdqa xmmword ptr [rax + 0x30], xmm0	ctxarg0<00357A20@00357AA1	
+0026AFE0	FUN_0026afe0	0026B048	0x5D	rw	or byte ptr [rax + 0x5d], 1	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B04C	0x0	w	movss dword ptr [rax], xmm8	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B051	0x4	w	movss dword ptr [rax + 4], xmm7	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B056	0x8	w	movss dword ptr [rax + 8], xmm6	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B05B	0x10	w	movss dword ptr [rax + 0x10], xmm8	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B061	0x14	w	movss dword ptr [rax + 0x14], xmm7	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B066	0x18	w	movss dword ptr [rax + 0x18], xmm6	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B06B	0x20	w	movss dword ptr [rax + 0x20], xmm8	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B071	0x24	w	movss dword ptr [rax + 0x24], xmm7	ctxarg0<0026AF80@0026AF91	
+0026AFE0	FUN_0026afe0	0026B076	0x28	w	movss dword ptr [rax + 0x28], xmm6	ctxarg0<0026AF80@0026AF91	
+0026B2E0	FUN_0026b2e0	0026B32D	0x28	r	movss xmm6, dword ptr [rcx + 0x28]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
+0026B2E0	FUN_0026b2e0	0026B332	0x80	addr	lea rdx, [rcx + 0x80]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
+0026B2E0	FUN_0026b2e0	0026B339	0x20	r	movss xmm7, dword ptr [rcx + 0x20]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
+0026B2E0	FUN_0026b2e0	0026B397	0xFC	w	movss dword ptr [rax + 0xfc], xmm0	[arg0+0xB8]	kind 2 arm (byte[actor+3]>>5==2); missed by seed census
+0026B2E0	FUN_0026b2e0	0026B3A8	0x70	w	movss dword ptr [rax + 0x70], xmm0	[arg0+0xB8]	kind 1 arm; missed by seed census
+0026B2E0	FUN_0026b2e0	0026B402	0xDE	r	cmp byte ptr [rbx + 0xde], 0	[arg0+0xB8]	kind 3 arm; missed by seed census
+0026B2E0	FUN_0026b2e0	0026B40B	0x7C	r	movss xmm2, dword ptr [rbx + 0x7c]	[arg0+0xB8]	kind 3 arm, gated on +0xDE; missed by seed census
+0026B2E0	FUN_0026b2e0	0026B41D	0xDF	r	cmp byte ptr [rbx + 0xdf], 0	[arg0+0xB8]	kind 3 arm; missed by seed census
+0026B2E0	FUN_0026b2e0	0026B426	0x6C	r	movss xmm2, dword ptr [rbx + 0x6c]	[arg0+0xB8]	kind 3 arm, gated on +0xDF; missed by seed census
+0026B450	FUN_0026b450	0026B466	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<002E3AF0@002E3BEE	
+0026B520	FUN_0026b520	0026B58D	0x54	w	movss dword ptr [rax + 0x54], xmm3	ctxarg0<002E5750@002E57BE	
+0026B520	FUN_0026b520	0026B592	0x58	w	movss dword ptr [rax + 0x58], xmm3	ctxarg0<002E5750@002E57BE	
+0026B6A0	FUN_0026b6a0	0026B70D	0x38	w	movss dword ptr [rax + 0x38], xmm3	ctxarg0<0026B5A0@0026B5FB	
+0026B6A0	FUN_0026b6a0	0026B712	0x48	w	movss dword ptr [rax + 0x48], xmm3	ctxarg0<0026B5A0@0026B5FB	
+0026C090	FUN_0026c090	0026C0F2	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	ctxarg0<0026B5A0@0026B610	
+0026C120	FUN_0026c120	0026C148	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C175	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C181	0xA8	r	subss xmm0, dword ptr [rbx + 0xa8]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C18E	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C1A7	0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C1CB	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C1E6	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C1F2	0xA8	r	subss xmm0, dword ptr [rbx + 0xa8]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C1FF	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C218	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C22B	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026C120	FUN_0026c120	0026C244	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@002694BD	
+0026D6F0	Movement_SetRequestedSpeed	0026D725	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	ctxarg0<0026D6D0@0026D6E5	
+0026D6F0	Movement_SetRequestedSpeed	0026D73D	0xD0	r	movss xmm0, dword ptr [rdx + 0xd0]	ctxarg0<0026D6D0@0026D6E5	
+0026D6F0	Movement_SetRequestedSpeed	0026D750	0xD0	w	movss dword ptr [rdx + 0xd0], xmm6	ctxarg0<0026D6D0@0026D6E5	
+0026D810	FUN_0026d810	0026D83B	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	ctxarg0<00358CB0@00358E11	
+0026D810	FUN_0026d810	0026D847	0xD0	w	movss dword ptr [rdx + 0xd0], xmm6	ctxarg0<00358CB0@00358E11	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E43E6	0xF8	w	movss dword ptr [rdi + 0xf8], xmm0	ctxarg0<002E5030@002E50CB	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E4419	0xD0	r	movss xmm3, dword ptr [rdi + 0xd0]	ctxarg0<002E5030@002E50CB	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E4421	0xA4	r	movss xmm2, dword ptr [rdi + 0xa4]	ctxarg0<002E5030@002E50CB	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E442E	0xA0	r	movss xmm6, dword ptr [rdi + 0xa0]	ctxarg0<002E5030@002E50CB	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E443E	0xF8	r	comiss xmm7, dword ptr [rdi + 0xf8]	ctxarg0<002E5030@002E50CB	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E445C	0xF8	w	movss dword ptr [rdi + 0xf8], xmm3	ctxarg0<002E5030@002E50CB	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4610	0xF0	r	mov rcx, qword ptr [rdx + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4681	0x50	addr	lea r8, [rbx + 0x50]	ctxarg0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4688	0x50	addr	lea rcx, [rdi + 0x50]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4694	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E46A5	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E46E6	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E46F2	0xA4	r	movss xmm0, dword ptr [rdi + 0xa4]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4704	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4715	0xA0	r	movss xmm0, dword ptr [rdi + 0xa0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E477F	0xF0	r	mov rdx, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4797	0xA4	w	movss dword ptr [rdi + 0xa4], xmm0	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E479F	0xA0	w	movss dword ptr [rdi + 0xa0], xmm1	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4806	0x30	addr	lea rdx, [rdi + 0x30]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4854	0xF0	r	mov rdx, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E48B5	0xD0	w	movss dword ptr [rdi + 0xd0], xmm6	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E48C0	0xF8	w	movss dword ptr [rdi + 0xf8], xmm6	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E48F9	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E492D	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4937	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E493E	0xD0	w	mov dword ptr [rdi + 0xd0], ebx	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4947	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4951	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E496E	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1+0x0<002E5030@002E50B8	
+002E45E0	Movement_UpdateSteeringTowardTarget	002E4978	0xD0	w	mov dword ptr [rdi + 0xd0], ebx	arg1+0x0<002E5030@002E50B8	
+002E4A10	FUN_002e4a10	002E4A21	0x0	r	mov eax, dword ptr [rcx]	ctxarg0<0026AF80@0026AFCA	
+002E4A10	FUN_002e4a10	002E4A23	0x10	w	mov dword ptr [rcx + 0x10], eax	ctxarg0<0026AF80@0026AFCA	
+002E4A10	FUN_002e4a10	002E4A26	0x4	r	mov eax, dword ptr [rcx + 4]	ctxarg0<0026AF80@0026AFCA	
+002E4A10	FUN_002e4a10	002E4A29	0x14	w	mov dword ptr [rcx + 0x14], eax	ctxarg0<0026AF80@0026AFCA	
+002E4A10	FUN_002e4a10	002E4A2C	0x8	r	mov eax, dword ptr [rcx + 8]	ctxarg0<0026AF80@0026AFCA	
+002E4A10	FUN_002e4a10	002E4A2F	0x18	w	mov dword ptr [rcx + 0x18], eax	ctxarg0<0026AF80@0026AFCA	
+002E5030	Movement_UpdateActorFrame	002E50A0	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E50D0	0xA4	r	movss xmm2, dword ptr [rdi + 0xa4]	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E50DB	0xA0	r	movss xmm1, dword ptr [rdi + 0xa0]	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E5109	0xB8	w	movss dword ptr [rdi + 0xb8], xmm0	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E511A	0x107	r	test byte ptr [rdi + 0x107], 2	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E5121	0x0	r	movss xmm1, dword ptr [rdi]	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E5125	0x8	r	movss xmm2, dword ptr [rdi + 8]	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E512C	0x40	r	addss xmm1, dword ptr [rdi + 0x40]	ctxarg0<0025DF00@0025E39B	
+002E5030	Movement_UpdateActorFrame	002E5131	0x48	r	addss xmm2, dword ptr [rdi + 0x48]	ctxarg0<0025DF00@0025E39B	
+002E5180	FUN_002e5180	002E521F	0xD4	w	movss dword ptr [rdi + 0xd4], xmm0	ctxarg0<0025E400@0025E4A0	
+002E5180	FUN_002e5180	002E525C	0xB8	r	addss xmm0, dword ptr [rdi + 0xb8]	ctxarg0<0025E400@0025E4A0	
+002E5180	FUN_002e5180	002E5264	0xB8	w	movss dword ptr [rdi + 0xb8], xmm0	ctxarg0<0025E400@0025E4A0	
+002E5180	FUN_002e5180	002E5294	0x10	addr	lea rdx, [rdi + 0x10]	ctxarg0<0025E400@0025E4A0	
+002E5180	FUN_002e5180	002E52E2	0xEC	w	movss dword ptr [rdi + 0xec], xmm6	ctxarg0<0025E400@0025E4A0	
+002E5380	Movement_PrepareCandidatePosition	002E5422	0x0	r	movss xmm1, dword ptr [r8]	arg2+0x0<002E5610@002E5647	
+002E5380	Movement_PrepareCandidatePosition	002E5427	0x8	r	movss xmm0, dword ptr [r8 + 8]	arg2+0x0<002E5610@002E5647	
+002E5380	Movement_PrepareCandidatePosition	002E542D	0x18	r	subss xmm0, dword ptr [r8 + 0x18]	arg2+0x0<002E5610@002E5647	
+002E5380	Movement_PrepareCandidatePosition	002E5433	0x10	r	subss xmm1, dword ptr [r8 + 0x10]	arg2+0x0<002E5610@002E5647	
+002E55C0	Movement_ClearSteeringRequest	002E55C6	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	arg1+0x0<0026AE90@0026AEE5	
+002E55C0	Movement_ClearSteeringRequest	002E55D4	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	arg1+0x0<0026AE90@0026AEE5	
+002E55C0	Movement_ClearSteeringRequest	002E55F1	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	arg1+0x0<0026AE90@0026AEE5	
+002E55C0	Movement_ClearSteeringRequest	002E55FD	0xD0	w	mov dword ptr [rbx + 0xd0], ecx	arg1+0x0<0026AE90@0026AEE5	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E56D6	0x0	r	subss xmm2, dword ptr [rdi]	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E56DA	0x4	r	subss xmm1, dword ptr [rdi + 4]	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E56E4	0x8	r	subss xmm0, dword ptr [rdi + 8]	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E5707	0x8	r	subss xmm2, dword ptr [rdi + 8]	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E570C	0x0	r	subss xmm1, dword ptr [rdi]	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E5729	0x0	w	movss dword ptr [rdi], xmm3	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E5730	0x4	w	mov dword ptr [rdi + 4], eax	arg2+0x0<002E5180@002E5257	
+002E5610	Movement_IntegratePositionAndMeasureDisplacement	002E573B	0x8	w	mov dword ptr [rdi + 8], eax	arg2+0x0<002E5180@002E5257	
+002E5FB0	FUN_002e5fb0	002E5FBA	0xAC	r	movss xmm2, dword ptr [rax + 0xac]	ctxarg0<0026B6A0@0026B701	
+002E6000	FUN_002e6000	002E6046	0x4	r	movss xmm6, dword ptr [rdi + 4]	ctxarg0<002E5180@002E5349	
+002E6000	FUN_002e6000	002E6050	0x8	r	movss xmm3, dword ptr [rdi + 8]	ctxarg0<002E5180@002E5349	
+002E6000	FUN_002e6000	002E6059	0x0	r	movss xmm1, dword ptr [rdi]	ctxarg0<002E5180@002E5349	
+002E8EE0	FUN_002e8ee0	002E8F08	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	ctxarg0<002693D0@00269478	
+002E8EE0	FUN_002e8ee0	002E8F5F	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	ctxarg0<002693D0@00269478	
+002EBE50	FUN_002ebe50	002EBE7F	0xB4	w	mov dword ptr [rbx + 0xb4], eax	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBE85	0x224	w	mov dword ptr [rbx + 0x224], eax	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBE90	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBEAE	0xB4	w	movss dword ptr [rbx + 0xb4], xmm0	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBEB6	0x224	w	mov dword ptr [rbx + 0x224], eax	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBEBC	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBEC8	0xB4	r	subss xmm0, dword ptr [rbx + 0xb4]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBED5	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBEEA	0x224	r	subss xmm0, dword ptr [rbx + 0x224]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBEF7	0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBF01	0xB4	w	mov dword ptr [rbx + 0xb4], eax	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBF0A	0x224	w	mov dword ptr [rbx + 0x224], eax	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBF58	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@00269470	
+002EBE50	FUN_002ebe50	002EBF6C	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	ctxarg0<002693D0@00269470	
+002EC3F0	FUN_002ec3f0	002EC408	0xF0	r	mov r9, qword ptr [rcx + 0xf0]	ctxarg0<002EBE50@002EBF7A	
+002EC3F0	FUN_002ec3f0	002EC454	0xF0	r	mov rcx, qword ptr [rcx + 0xf0]	ctxarg0<002EBE50@002EBF7A	
+00350DD0	FUN_00350dd0	00350E4C	0x0	r	movss xmm2, dword ptr [rbx]	seed	
+00350DD0	FUN_00350dd0	00350E65	0x4	r	movss xmm0, dword ptr [rbx + 4]	seed	
+00350DD0	FUN_00350dd0	00350E7A	0x8	r	movss xmm1, dword ptr [rbx + 8]	seed	
+003516E0	FUN_003516e0	0035175C	0x0	r	movss xmm1, dword ptr [rbx]	seed	
+003516E0	FUN_003516e0	00351775	0x8	r	movss xmm0, dword ptr [rbx + 8]	seed	
+00352580	FUN_00352580	003525F2	0x0	r	movss xmm2, dword ptr [rax]	seed	
+00352580	FUN_00352580	003525F6	0x4	r	movss xmm0, dword ptr [rax + 4]	seed	
+00352580	FUN_00352580	00352600	0x8	r	movss xmm1, dword ptr [rax + 8]	seed	
+003530F0	FUN_003530f0	00353150	0x0	r	movss xmm1, dword ptr [rax]	seed	
+003530F0	FUN_003530f0	00353154	0x8	r	movss xmm0, dword ptr [rax + 8]	seed	
+00358F90	PartyFocus_ProcessActorControlPresentationState	00358FFF	0x10	addr	lea rdx, [rsi + 0x10]	seed	
+003A1920	FUN_003a1920	003A1920	0x0	r	movss xmm2, dword ptr [rcx]	arg0+0x0<00358F90@0035900B	
+003A1920	FUN_003a1920	003A1924	0x4	r	movss xmm0, dword ptr [rcx + 4]	arg0+0x0<00358F90@0035900B	
+003A1920	FUN_003a1920	003A1929	0x14	r	subss xmm0, dword ptr [rdx + 4]	arg1+0x10<00358F90@0035900B	
+003A1920	FUN_003a1920	003A192E	0x10	r	subss xmm2, dword ptr [rdx]	arg1+0x10<00358F90@0035900B	
+003A1920	FUN_003a1920	003A1932	0x8	r	movss xmm1, dword ptr [rcx + 8]	arg0+0x0<00358F90@0035900B	
+003A1920	FUN_003a1920	003A1937	0x18	r	subss xmm1, dword ptr [rdx + 8]	arg1+0x10<00358F90@0035900B	
+003A1960	Vector3_ComputeSquaredXZDistance	003A1969	0x8	r	subss xmm0, dword ptr [rdx + 8]	arg1+0x0<0025BE50@0025BF1D	
+003A1960	Vector3_ComputeSquaredXZDistance	003A196E	0x0	r	subss xmm1, dword ptr [rdx]	arg1+0x0<0025BE50@0025BF1D	
+003A1C90	FUN_003a1c90	003A1CA3	0x10	r	movss xmm0, dword ptr [rdx]	arg1+0x10<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CA7	0x0	r	subss xmm0, dword ptr [rcx]	arg0+0x0<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CAB	0x14	r	movss xmm1, dword ptr [rdx + 4]	arg1+0x10<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CB0	0x4	r	subss xmm1, dword ptr [rcx + 4]	arg0+0x0<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CBB	0x18	r	movss xmm0, dword ptr [rdx + 8]	arg1+0x10<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CC5	0x8	r	subss xmm0, dword ptr [rcx + 8]	arg0+0x0<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CD0	0x10	r	movss xmm1, dword ptr [r8]	arg2+0x10<003A17D0@003A1843	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003A1C90	FUN_003a1c90	003A1CD5	0x0	r	subss xmm1, dword ptr [rcx]	arg0+0x0<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CDF	0x14	r	movss xmm0, dword ptr [r8 + 4]	arg2+0x10<003A17D0@003A1843	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003A1C90	FUN_003a1c90	003A1CE5	0x4	r	subss xmm0, dword ptr [rcx + 4]	arg0+0x0<003A17D0@003A1800	
+003A1C90	FUN_003a1c90	003A1CF0	0x18	r	movss xmm1, dword ptr [r8 + 8]	arg2+0x10<003A17D0@003A1843	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003A1C90	FUN_003a1c90	003A1CFB	0x8	r	subss xmm1, dword ptr [rcx + 8]	arg0+0x0<003A17D0@003A1800	
+003DA5A0	FUN_003da5a0	003DA60F	0x6C	r	addss xmm6, dword ptr [rdi + 0xc]	arg3+0x60<0025C230@0025C44F	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003DA6A0	FUN_003da6a0	003DA6ED	0x5C	r	addss xmm0, dword ptr [rsi + 0xc]	arg2+0x50<002E45E0@002E468F	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003DA710	FloatPair_CopyToOptionalOutputs	003DA715	0x50	r	mov eax, dword ptr [rcx]	arg0+0x50<00265090@002650A5	
+003DA710	FloatPair_CopyToOptionalOutputs	003DA71E	0x54	r	mov eax, dword ptr [rcx + 4]	arg0+0x50<00265090@002650A5	
+003DA730	FUN_003da730	003DA73E	0x68	r	movss xmm6, dword ptr [rcx + 8]	arg0+0x60<003DA5A0@003DA5F4	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003DA730	FUN_003da730	003DA756	0x0	r	movss xmm8, dword ptr [r8]	arg2+0x0<003DA6A0@003DA6C8	
+003DA730	FUN_003da730	003DA75E	0x0	r	subss xmm8, dword ptr [rdx]	arg1+0x0<003DA6A0@003DA6DE	
+003DA730	FUN_003da730	003DA769	0x8	r	movss xmm9, dword ptr [r8 + 8]	arg2+0x0<003DA6A0@003DA6C8	
+003DA730	FUN_003da730	003DA76F	0x8	r	subss xmm9, dword ptr [rdx + 8]	arg1+0x0<003DA6A0@003DA6DE	
+003DA730	FUN_003da730	003DA7C1	0x60	r	movss xmm0, dword ptr [rbx]	arg0+0x60<003DA5A0@003DA5F4	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003DA730	FUN_003da730	003DA7CD	0x64	r	movss xmm2, dword ptr [rbx + 4]	arg0+0x60<003DA5A0@003DA5F4	strided-attribution settled 2026-09-16 (SWE2-STRUCT), corrected 2026-09-21: every route of this site is a REAL access - ctx+N*0x10 bases reach shared helpers 003DA730/003DA5A0/003DA6A0/003A1C90 via six hardcoded lea call sites; no loop or indexed walk exists. The 'five distinct 16B fields' frame is WITHDRAWN at +0x50 (OPUS CON-143, accepted): +0x5C/+0x5D are flag bytes and the addss addend is bounded 0x0000XX01 denormal - real instruction, inert arithmetic. The quad frame survives where all four lanes are float (+0x10/+0x30/+0x40/+0x70); +0x60's X lane is kind1SlotMask u32 read as movss (003DA7C1) - same caution, unadjudicated
+003DA860	FUN_003da860	003DA872	0x30	w	movss dword ptr [rcx], xmm0	arg0+0x30<0026B2E0@0026B3D8	kind 1 arm; scaled vec2 store into +0x30 block head
+003DA860	FUN_003da860	003DA876	0x34	w	movss dword ptr [rcx + 4], xmm1	arg0+0x30<0026B2E0@0026B3D8	kind 1 arm; scaled vec2 store into +0x34
+003DA860	FUN_003da860	003DA880	0x80	w	movss dword ptr [rdx], xmm2	arg1+0x80<0026B2E0@0026B34E	kind 3 arm; unscaled vec2 store to +0x80 - sixth 0x10 block, undeclared in fields.tsv
+003DA860	FUN_003da860	003DA884	0x84	w	movss dword ptr [rdx + 4], xmm3	arg1+0x80<0026B2E0@0026B34E	kind 3 arm; unscaled vec2 store to +0x84
+003DA890	FUN_003da890	003DA890	0x50	r	mov eax, dword ptr [rdx]	arg1+0x50<0026B2E0@0026B433	kind 3 arm gated on +0xDF; block copy +0x50 -> +0x60 slots 0,4
+003DA890	FUN_003da890	003DA892	0x60	w	mov dword ptr [rcx], eax	arg0+0x60<0026B2E0@0026B433	kind 3 arm gated on +0xDF
+003DA890	FUN_003da890	003DA894	0x54	r	mov eax, dword ptr [rdx + 4]	arg1+0x50<0026B2E0@0026B433	kind 3 arm gated on +0xDF; block copy +0x50 -> +0x60 slots 0,4
+003DA890	FUN_003da890	003DA897	0x6C	w	movss dword ptr [rcx + 0xc], xmm2	arg0+0x60<0026B2E0@0026B433	kind 3 arm gated on +0xDF; xmm2 = value read at +0x6C
+003DA890	FUN_003da890	003DA89C	0x64	w	mov dword ptr [rcx + 4], eax	arg0+0x60<0026B2E0@0026B433	kind 3 arm gated on +0xDF
+0025BAD0	FUN_0025bad0	0025BB91	0x0	r	movss xmm1, dword ptr [rsi]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BBB4	0x4	r	addss xmm2, dword ptr [rsi + 4]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BBC7	0x8	r	movss xmm3, dword ptr [rsi + 8]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BBD8	0x107	r	test byte ptr [rsi + 0x107], bl	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BBE0	0x40	r	addss xmm1, dword ptr [rsi + 0x40]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BBEB	0x44	r	addss xmm2, dword ptr [rsi + 0x44]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BBF6	0x48	r	addss xmm3, dword ptr [rsi + 0x48]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BC01	0xdd	r	cmp byte ptr [rsi + 0xdd], cl	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BC09	0x24	r	movss xmm3, dword ptr [rsi + 0x24]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BC1A	0xcc	r	mulss xmm0, dword ptr [rsi + 0xcc]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BC22	0xc8	r	mulss xmm3, dword ptr [rsi + 0xc8]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BC5F	0x70	a	lea r9, [rsi + 0x70]	actorarg:rdx+0xB8	
+0025BAD0	FUN_0025bad0	0025BD80	0xbc	r	movss xmm1, dword ptr [rsi + 0xbc]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BE92	0x5d	r	movzx ecx, byte ptr [rbx + 0x5d]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BEC7	0x5c	r	cmp byte ptr [rbx + 0x5c], 0	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BECD	0x4	r	movss xmm2, dword ptr [rbx + 4]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BEDD	0x6c	r	subss xmm1, dword ptr [rbx + 0x6c]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BEEC	0x68	r	addss xmm2, dword ptr [rbx + 0x68]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BF09	0x60	r	mov eax, dword ptr [rbx + 0x60]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BF32	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BF37	0x10	r	movss xmm3, dword ptr [rbx + 0x10]	actorarg:rdx+0xB8	
+0025BE50	FUN_0025be50	0025BF3C	0x50	r	movss xmm1, dword ptr [rbx + 0x50]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C28E	0x0	r	movss xmm2, dword ptr [rbp]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C2B2	0x4	r	addss xmm1, dword ptr [rbp + 4]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C2BD	0x8	r	movss xmm0, dword ptr [rbp + 8]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C2C8	0x107	r	test byte ptr [rbp + 0x107], 1	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C2D1	0x40	r	addss xmm2, dword ptr [rbp + 0x40]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C2DC	0x44	r	addss xmm1, dword ptr [rbp + 0x44]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C2E7	0x48	r	addss xmm0, dword ptr [rbp + 0x48]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C30C	0x24	r	movss xmm6, dword ptr [rbp + 0x24]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C311	0x100	r	mov r12d, dword ptr [rbp + 0x100]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C31C	0xdd	r	movzx eax, byte ptr [rbp + 0xdd]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C326	0xcc	r	mulss xmm0, dword ptr [rbp + 0xcc]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C332	0xc8	r	mulss xmm6, dword ptr [rbp + 0xc8]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C34C	0x100	w	mov dword ptr [rbp + 0x100], r15d	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C357	0x228	w	mov dword ptr [rbp + 0x228], r15d	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C440	0x60	a	lea r9, [rbp + 0x60]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C511	0x70	a	lea r9, [rbp + 0x70]	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C6A1	0x100	rw	or dword ptr [rbp + 0x100], r12d	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C6A8	0x228	rw	or dword ptr [rbp + 0x228], r12d	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C6F2	0x100	r	cmp dword ptr [rbp + 0x100], 0	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C70A	0x100	r	cmp dword ptr [rbp + 0x100], 0	actorarg:rdx+0xB8	
+0025C230	FUN_0025c230	0025C777	0x100	r	cmp dword ptr [rbp + 0x100], 0	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C87C	0x5c	r	movzx eax, byte ptr [rsi + 0x5c]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C880	0x4	r	movss xmm11, dword ptr [rsi + 4]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C8A3	0x6c	r	subss xmm12, dword ptr [rsi + 0x6c]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C8A9	0x68	r	addss xmm11, dword ptr [rsi + 0x68]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C8B3	0x60	r	mov eax, dword ptr [rsi + 0x60]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C8B9	0x60	w	mov dword ptr [rsi + 0x60], r14d	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C8DF	0x5d	r	test byte ptr [rsi + 0x5d], 1	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C950	0x38	r	movss xmm6, dword ptr [rsi + 0x38]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C9AE	0x0	r	movups xmm0, xmmword ptr [rsi]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025C9B8	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CAB3	0x30	r	movss xmm0, dword ptr [rsi + 0x30]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CAC8	0x34	r	movss xmm0, dword ptr [rsi + 0x34]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CADD	0x48	r	movss xmm6, dword ptr [rsi + 0x48]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CC14	0x40	r	movss xmm0, dword ptr [rsi + 0x40]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CC29	0x44	r	movss xmm0, dword ptr [rsi + 0x44]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CF34	0x30	a	lea r9, [rsi + 0x30]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CF48	0x10	a	lea rax, [rsi + 0x10]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CF4F	0x40	a	lea r9, [rsi + 0x40]	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025CF94	0x5d	r	test byte ptr [rsi + 0x5d], 2	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D00F	0x5d	r	test byte ptr [rsi + 0x5d], 2	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D027	0x60	rw	or dword ptr [rsi + 0x60], r15d	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D044	0x5d	r	test byte ptr [rsi + 0x5d], 4	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D10D	0x5d	r	test byte ptr [rsi + 0x5d], 2	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D22B	0x60	r	cmp dword ptr [rsi + 0x60], r14d	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D245	0x60	r	cmp dword ptr [rsi + 0x60], r14d	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D259	0x5d	r	test byte ptr [rsi + 0x5d], 2	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D304	0x60	r	cmp dword ptr [rsi + 0x60], r14d	actorarg:rdx+0xB8	
+0025C830	FUN_0025c830	0025D318	0x5d	r	test byte ptr [rsi + 0x5d], 2	actorarg:rdx+0xB8	
+0025D4F0	FUN_0025d4f0	0025D50E	0xd8	r	mov ecx, dword ptr [rax + 0xd8]	actorarg:rcx+0xB8	
+0025D4F0	FUN_0025d4f0	0025D52E	0xd8	w	mov dword ptr [rax + 0xd8], 0	actorarg:rcx+0xB8	
+0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0025DF50	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rdx+0xB8	
+002636F0	Movement_GetSteeringAcceleration	00263705	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00263720	Movement_GetConfiguredSteeringMode	00263737	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00263940	FUN_00263940	00263958	0xc0	r	movss xmm0, dword ptr [rax + 0xc0]	actorarg:rcx+0xB8	
+00263940	FUN_00263940	00263960	0x24	r	mulss xmm0, dword ptr [rax + 0x24]	actorarg:rcx+0xB8	
+00263940	FUN_00263940	00263971	0x68	r	movss xmm0, dword ptr [rax + 0x68]	actorarg:rcx+0xB8	
+00263BC0	FUN_00263bc0	00263BD1	0xdc	r	movsx eax, byte ptr [rax + 0xdc]	actorarg:rcx+0xB8	
+00263CC0	FUN_00263cc0	00263CDD	0xa4	r	movss xmm0, dword ptr [rax + 0xa4]	actorarg:rcx+0xB8	
+00263CC0	FUN_00263cc0	00263CED	0x38	r	movss xmm0, dword ptr [rax + 0x38]	actorarg:rcx+0xB8	
+002640E0	FUN_002640e0	002640F5	0xe0	r	movss xmm0, dword ptr [rax + 0xe0]	actorarg:rcx+0xB8	
+00264510	FUN_00264510	00264577	0x0	r	mov eax, dword ptr [rcx]	actorarg:rcx+0xB8	
+00264510	FUN_00264510	0026457B	0x4	r	mov eax, dword ptr [rcx + 4]	actorarg:rcx+0xB8	
+00264510	FUN_00264510	00264581	0x8	r	mov eax, dword ptr [rcx + 8]	actorarg:rcx+0xB8	
+00264510	FUN_00264510	00264599	0x20	r	mov eax, dword ptr [rcx + 0x20]	actorarg:rcx+0xB8	
+00264510	FUN_00264510	0026459E	0x24	r	mov eax, dword ptr [rcx + 0x24]	actorarg:rcx+0xB8	
+00264510	FUN_00264510	002645A4	0x28	r	mov eax, dword ptr [rcx + 0x28]	actorarg:rcx+0xB8	
+002645D0	FUN_002645d0	002645F1	0xfc	r	movss xmm0, dword ptr [rax + 0xfc]	actorarg:rcx+0xB8	
+002645D0	FUN_002645d0	00264601	0x70	r	movss xmm0, dword ptr [rax + 0x70]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	002646F0	0x0	r	mov eax, dword ptr [rcx]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	002646F4	0x4	r	mov eax, dword ptr [rcx + 4]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	002646FA	0x8	r	mov eax, dword ptr [rcx + 8]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	00264700	0x107	r	test byte ptr [rcx + 0x107], 1	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	00264709	0x40	r	movss xmm0, dword ptr [rcx + 0x40]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	00264716	0x44	r	movss xmm1, dword ptr [rcx + 0x44]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	00264725	0x48	r	movss xmm0, dword ptr [rcx + 0x48]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	0026473C	0x0	r	mov eax, dword ptr [rcx]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	00264740	0x4	r	mov eax, dword ptr [rcx + 4]	actorarg:rcx+0xB8	
+002646C0	FUN_002646c0	00264746	0x8	r	mov eax, dword ptr [rcx + 8]	actorarg:rcx+0xB8	
+00264E10	FUN_00264e10	00264E24	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265020	Actor_GetWorldPosition	00265041	0x0	r	mov eax, dword ptr [rcx]	actorarg:rcx+0xB8	
+00265020	Actor_GetWorldPosition	00265045	0x4	r	mov eax, dword ptr [rcx + 4]	actorarg:rcx+0xB8	
+00265020	Actor_GetWorldPosition	0026504B	0x8	r	mov eax, dword ptr [rcx + 8]	actorarg:rcx+0xB8	
+002651C0	FUN_002651c0	002651DC	0xac	r	movss xmm0, dword ptr [rax + 0xac]	actorarg:rcx+0xB8	
+002651C0	FUN_002651c0	002651EC	0x54	r	movss xmm0, dword ptr [rax + 0x54]	actorarg:rcx+0xB8	
+00265200	FUN_00265200	0026521D	0xa8	r	movss xmm0, dword ptr [rax + 0xa8]	actorarg:rcx+0xB8	
+00265200	FUN_00265200	0026522D	0x38	r	movss xmm0, dword ptr [rax + 0x38]	actorarg:rcx+0xB8	
+002652A0	FUN_002652a0	002652B5	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265470	FUN_00265470	00265491	0x0	r	mov eax, dword ptr [rcx]	actorarg:rcx+0xB8	
+00265470	FUN_00265470	00265495	0x4	r	mov eax, dword ptr [rcx + 4]	actorarg:rcx+0xB8	
+00265470	FUN_00265470	0026549B	0x8	r	mov eax, dword ptr [rcx + 8]	actorarg:rcx+0xB8	
+00265470	FUN_00265470	002654A9	0x20	r	mov eax, dword ptr [rcx + 0x20]	actorarg:rcx+0xB8	
+00265470	FUN_00265470	002654AE	0x24	r	mov eax, dword ptr [rcx + 0x24]	actorarg:rcx+0xB8	
+00265470	FUN_00265470	002654B4	0x28	r	mov eax, dword ptr [rcx + 0x28]	actorarg:rcx+0xB8	
+002654E0	FUN_002654e0	002654F5	0xf0	r	mov rdx, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+00265510	FUN_00265510	00265521	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265530	FUN_00265530	00265544	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265550	FUN_00265550	00265565	0xdc	r	movsx rcx, byte ptr [rdx + 0xdc]	actorarg:rcx+0xB8	
+002655D0	FUN_002655d0	002655E1	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265600	FUN_00265600	00265614	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265630	FUN_00265630	00265644	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265660	FUN_00265660	00265674	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265830	FUN_00265830	00265845	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266049	0x107	r	movzx eax, byte ptr [r14 + 0x107]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266053	0x100	w	mov dword ptr [r14 + 0x100], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026605C	0x228	w	mov dword ptr [r14 + 0x228], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266063	0x107	w	mov byte ptr [r14 + 0x107], al	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026606A	0x0	w	mov qword ptr [r14], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026606D	0x8	w	mov dword ptr [r14 + 8], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266071	0xc	w	mov dword ptr [r14 + 0xc], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266079	0x20	w	mov dword ptr [r14 + 0x20], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266081	0x24	w	mov dword ptr [r14 + 0x24], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266089	0x28	w	mov dword ptr [r14 + 0x28], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266091	0x104	w	mov word ptr [r14 + 0x104], 0x3225	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026609B	0x106	w	mov byte ptr [r14 + 0x106], 0x25	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660A3	0x40	w	mov qword ptr [r14 + 0x40], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660A7	0x48	w	mov dword ptr [r14 + 0x48], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660AB	0x4c	w	mov dword ptr [r14 + 0x4c], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660B7	0xfc	w	mov dword ptr [r14 + 0xfc], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660D7	0x120	a	lea rax, [r14 + 0x120]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660ED	0xdc	w	mov byte ptr [r14 + 0xdc], r15b	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002660F4	0xf0	w	mov qword ptr [r14 + 0xf0], rax	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266100	0x182	rw	and byte ptr [r14 + 0x182], 0x7f	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266108	0x50	a	lea rcx, [r14 + 0x50]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026610C	0x140	w	mov qword ptr [r14 + 0x140], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266113	0x170	w	mov dword ptr [r14 + 0x170], 0x40490fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026611E	0x174	w	mov dword ptr [r14 + 0x174], 0x40490fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266129	0x178	w	mov dword ptr [r14 + 0x178], 0x3e20d97c	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266134	0x17c	w	mov dword ptr [r14 + 0x17c], 0x40490fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026613F	0x14c	w	mov qword ptr [r14 + 0x14c], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266146	0x19c	w	mov dword ptr [r14 + 0x19c], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026614D	0x15c	w	mov qword ptr [r14 + 0x15c], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266154	0x16c	w	mov dword ptr [r14 + 0x16c], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026615B	0x18c	w	mov qword ptr [r14 + 0x18c], 0x3e20d97c	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266166	0x194	w	mov dword ptr [r14 + 0x194], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026616D	0x185	w	mov byte ptr [r14 + 0x185], r15b	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266174	0xf0	r	mov rax, qword ptr [r14 + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026617F	0xf0	r	mov rax, qword ptr [r14 + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026618A	0x1c0	w	mov qword ptr [r14 + 0x1c0], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266191	0x1f0	w	mov dword ptr [r14 + 0x1f0], 0x40490fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026619C	0x1f4	w	mov dword ptr [r14 + 0x1f4], 0x40490fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661A7	0x1f8	w	mov dword ptr [r14 + 0x1f8], 0x3e20d97c	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661B2	0x1fc	w	mov dword ptr [r14 + 0x1fc], 0x40490fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661BD	0x1cc	w	mov qword ptr [r14 + 0x1cc], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661C4	0x21c	w	mov dword ptr [r14 + 0x21c], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661CB	0x1dc	w	mov qword ptr [r14 + 0x1dc], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661D2	0x1ec	w	mov dword ptr [r14 + 0x1ec], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661D9	0x20c	w	mov qword ptr [r14 + 0x20c], 0x3e20d97c	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661E4	0x214	w	mov dword ptr [r14 + 0x214], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661EB	0x205	w	mov byte ptr [r14 + 0x205], r15b	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661F2	0x202	rw	and byte ptr [r14 + 0x202], 0x7f	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002661FA	0xf0	r	mov rax, qword ptr [r14 + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266205	0xf0	r	mov rax, qword ptr [r14 + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266210	0x0	r	mov eax, dword ptr [r14]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266213	0x10	w	mov dword ptr [r14 + 0x10], eax	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266217	0x4	r	mov eax, dword ptr [r14 + 4]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026621B	0x14	w	mov dword ptr [r14 + 0x14], eax	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026621F	0x8	r	mov eax, dword ptr [r14 + 8]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266223	0x18	w	mov dword ptr [r14 + 0x18], eax	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266227	0xb0	w	mov qword ptr [r14 + 0xb0], 0x3e20d97c	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266232	0x224	w	mov dword ptr [r14 + 0x224], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266239	0x1c	w	mov dword ptr [r14 + 0x1c], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266241	0xa8	w	mov qword ptr [r14 + 0xa8], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266248	0xc0	w	mov dword ptr [r14 + 0xc0], 0x40000000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266253	0xc4	w	mov dword ptr [r14 + 0xc4], 0x3f000000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026625E	0xc8	w	mov dword ptr [r14 + 0xc8], 0x40000000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266269	0xcc	w	mov dword ptr [r14 + 0xcc], 0x3f000000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266274	0xdd	w	mov byte ptr [r14 + 0xdd], r15b	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266280	0x70	a	lea rcx, [r14 + 0x70]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266289	0x60	a	lea rcx, [r14 + 0x60]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026629A	0x80	a	lea rdx, [r14 + 0x80]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662A9	0x50	a	lea rcx, [r14 + 0x50]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662BF	0xde	w	mov word ptr [r14 + 0xde], 0x101	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662D1	0x50	a	lea rdx, [r14 + 0x50]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662D5	0x70	a	lea rcx, [r14 + 0x70]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662E6	0x50	a	lea rdx, [r14 + 0x50]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662EA	0x60	a	lea rcx, [r14 + 0x60]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662F3	0xbc	w	mov dword ptr [r14 + 0xbc], 0x3fc90fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002662FE	0xa0	w	mov qword ptr [r14 + 0xa0], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266305	0xd8	w	mov dword ptr [r14 + 0xd8], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026631F	0x98	w	mov dword ptr [r14 + 0x98], 0x3f000000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026632A	0x9c	w	mov dword ptr [r14 + 0x9c], 0x3f2b851f	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266335	0xe0	w	mov dword ptr [r14 + 0xe0], 0x3dcccccd	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266340	0xe4	w	mov dword ptr [r14 + 0xe4], 0x3e19999a	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026634B	0x220	w	mov dword ptr [r14 + 0x220], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266352	0x108	w	mov qword ptr [r14 + 0x108], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266359	0x110	w	mov qword ptr [r14 + 0x110], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266371	0x0	w	mov qword ptr [rax], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266374	0x8	w	mov dword ptr [rax + 8], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266378	0xc	w	mov qword ptr [rax + 0xc], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266380	0x14	w	mov qword ptr [rax + 0x14], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266384	0x1c	w	mov dword ptr [rax + 0x1c], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663BA	0x5d	rw	and byte ptr [rsi + 0x5d], 0xf8	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663BE	0x40	a	lea rcx, [rsi + 0x40]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663C2	0x60	w	mov dword ptr [rsi + 0x60], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663C6	0x70	w	mov dword ptr [rsi + 0x70], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663CD	0x54	w	mov qword ptr [rsi + 0x54], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663D1	0x50	w	mov dword ptr [rsi + 0x50], 0x40c90fdb	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663DD	0x30	a	lea rcx, [rsi + 0x30]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002663EE	0x40	a	lea rcx, [rsi + 0x40]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266427	0x30	a	lea rcx, [rsi + 0x30]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266435	0x0	w	mov qword ptr [rsi], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266438	0x8	w	mov dword ptr [rsi + 8], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026643C	0xc	w	mov qword ptr [rsi + 0xc], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266444	0x14	w	mov qword ptr [rsi + 0x14], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266448	0x1c	w	mov qword ptr [rsi + 0x1c], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266450	0x24	w	mov qword ptr [rsi + 0x24], r15	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266454	0x2c	w	mov dword ptr [rsi + 0x2c], 0x3f800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026646E	0x68	w	mov dword ptr [rsi + 0x68], 0xbf800000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266475	0x6c	w	mov dword ptr [rsi + 0x6c], 0x3f000000	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	0026647C	0x5c	w	mov byte ptr [rsi + 0x5c], 1	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	00266480	0x74	w	mov dword ptr [rsi + 0x74], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664AC	0x148	w	mov word ptr [rcx + 0x148], r15w	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664B4	0x184	w	mov byte ptr [rcx + 0x184], r15b	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664BB	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664C6	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664D1	0x1c8	w	mov word ptr [rcx + 0x1c8], r15w	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664D9	0x204	w	mov byte ptr [rcx + 0x204], r15b	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664E0	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664EB	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664F6	0xd0	w	mov dword ptr [rcx + 0xd0], r15d	actorarg:rcx+0xB8	
+00265FF0	FUN_00265ff0	002664FD	0xf8	w	mov dword ptr [rcx + 0xf8], 0xbf800000	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268410	0xc0	r	movss xmm6, dword ptr [rax + 0xc0]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268418	0x24	r	mulss xmm6, dword ptr [rax + 0x24]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268426	0x68	r	movss xmm6, dword ptr [rax + 0x68]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268455	0xa8	r	movss xmm3, dword ptr [rax + 0xa8]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268466	0x38	r	movss xmm3, dword ptr [rax + 0x38]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268488	0x104	r	movzx edi, byte ptr [rax + 0x104]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	0026848F	0x105	r	movzx esi, byte ptr [rax + 0x105]	actorarg:rcx+0xB8	
+00268380	FUN_00268380	00268496	0x106	r	movzx ebp, byte ptr [rax + 0x106]	actorarg:rcx+0xB8	
+0026A0D0	Actor_SetDesiredMovementHeading	0026A128	0xa4	w	movss dword ptr [rdx + 0xa4], xmm3	actorarg:rcx+0xB8	
+0026A1A0	FUN_0026a1a0	0026A1B9	0xf0	r	mov r8, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026A640	FUN_0026a640	0026A651	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026A870	FUN_0026a870	0026A8B8	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026A8E0	FUN_0026a8e0	0026A928	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026A950	FUN_0026a950	0026A9A8	0x224	w	movss dword ptr [rax + 0x224], xmm3	actorarg:rcx+0xB8	
+0026AA60	FUN_0026aa60	0026AAB8	0xb0	w	movss dword ptr [rax + 0xb0], xmm3	actorarg:rcx+0xB8	
+0026AE30	Movement_SetSteeringTargetPosition	0026AE68	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+0026AE30	Movement_SetSteeringTargetPosition	0026AE72	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+0026AE90	Movement_SetSteeringMode	0026AEB2	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+0026AE90	Movement_SetSteeringMode	0026AECD	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+0026AE90	Movement_SetSteeringMode	0026AEFB	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026AF10	Movement_SnapshotSteeringStartPosition	0026AF21	0x0	r	movaps xmm0, xmmword ptr [rax]	actorarg:rcx+0xB8	
+0026AF10	Movement_SnapshotSteeringStartPosition	0026AF24	0x30	w	movdqa xmmword ptr [rax + 0x30], xmm0	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B048	0x5d	rw	or byte ptr [rax + 0x5d], 1	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B04C	0x0	w	movss dword ptr [rax], xmm8	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B051	0x4	w	movss dword ptr [rax + 4], xmm7	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B056	0x8	w	movss dword ptr [rax + 8], xmm6	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B05B	0x10	w	movss dword ptr [rax + 0x10], xmm8	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B061	0x14	w	movss dword ptr [rax + 0x14], xmm7	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B066	0x18	w	movss dword ptr [rax + 0x18], xmm6	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B06B	0x20	w	movss dword ptr [rax + 0x20], xmm8	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B071	0x24	w	movss dword ptr [rax + 0x24], xmm7	actorarg:rcx+0xB8	
+0026AFE0	FUN_0026afe0	0026B076	0x28	w	movss dword ptr [rax + 0x28], xmm6	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B11C	0x5d	rw	or byte ptr [rax + 0x5d], 1	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B120	0x0	w	movss dword ptr [rax], xmm8	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B125	0x4	w	movss dword ptr [rax + 4], xmm7	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B12A	0x8	w	movss dword ptr [rax + 8], xmm6	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B12F	0x10	w	movss dword ptr [rax + 0x10], xmm8	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B135	0x14	w	movss dword ptr [rax + 0x14], xmm7	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B13A	0x18	w	movss dword ptr [rax + 0x18], xmm6	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B13F	0x20	w	movss dword ptr [rax + 0x20], xmm8	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B145	0x24	w	movss dword ptr [rax + 0x24], xmm7	actorarg:rcx+0xB8	
+0026B0C0	FUN_0026b0c0	0026B14A	0x28	w	movss dword ptr [rax + 0x28], xmm6	actorarg:rcx+0xB8	
+0026B450	FUN_0026b450	0026B466	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026B520	FUN_0026b520	0026B58D	0x54	w	movss dword ptr [rax + 0x54], xmm3	actorarg:rcx+0xB8	
+0026B520	FUN_0026b520	0026B592	0x58	w	movss dword ptr [rax + 0x58], xmm3	actorarg:rcx+0xB8	
+0026B6A0	FUN_0026b6a0	0026B70D	0x38	w	movss dword ptr [rax + 0x38], xmm3	actorarg:rcx+0xB8	
+0026B6A0	FUN_0026b6a0	0026B712	0x48	w	movss dword ptr [rax + 0x48], xmm3	actorarg:rcx+0xB8	
+0026C070	FUN_0026c070	0026C081	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026C090	FUN_0026c090	0026C0F2	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C148	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C175	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C181	0xa8	r	subss xmm0, dword ptr [rbx + 0xa8]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C18E	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C1A7	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C1CB	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C1E6	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C1F2	0xa8	r	subss xmm0, dword ptr [rbx + 0xa8]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C1FF	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C218	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C22B	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C120	FUN_0026c120	0026C244	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+0026C300	FUN_0026c300	0026C318	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+0026D6F0	Movement_SetRequestedSpeed	0026D725	0xf0	r	mov rax, qword ptr [rdx + 0xf0]	actorarg:rcx+0xB8	
+0026D6F0	Movement_SetRequestedSpeed	0026D73D	0xd0	r	movss xmm0, dword ptr [rdx + 0xd0]	actorarg:rcx+0xB8	
+0026D6F0	Movement_SetRequestedSpeed	0026D750	0xd0	w	movss dword ptr [rdx + 0xd0], xmm6	actorarg:rcx+0xB8	
+0026D810	FUN_0026d810	0026D83B	0xf0	r	mov rax, qword ptr [rdx + 0xf0]	actorarg:rcx+0xB8	
+0026D810	FUN_0026d810	0026D847	0xd0	w	movss dword ptr [rdx + 0xd0], xmm6	actorarg:rcx+0xB8	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E43E6	0xf8	w	movss dword ptr [rdi + 0xf8], xmm0	actorarg:rcx+0xB8	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E4419	0xd0	r	movss xmm3, dword ptr [rdi + 0xd0]	actorarg:rcx+0xB8	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E4421	0xa4	r	movss xmm2, dword ptr [rdi + 0xa4]	actorarg:rcx+0xB8	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E442E	0xa0	r	movss xmm6, dword ptr [rdi + 0xa0]	actorarg:rcx+0xB8	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E443E	0xf8	r	comiss xmm7, dword ptr [rdi + 0xf8]	actorarg:rcx+0xB8	
+002E4380	Movement_ComputeDeltaFromHeadingSpeed	002E445C	0xf8	w	movss dword ptr [rdi + 0xf8], xmm3	actorarg:rcx+0xB8	
+002E4A10	FUN_002e4a10	002E4A21	0x0	r	mov eax, dword ptr [rcx]	actorarg:rcx+0xB8	
+002E4A10	FUN_002e4a10	002E4A23	0x10	w	mov dword ptr [rcx + 0x10], eax	actorarg:rcx+0xB8	
+002E4A10	FUN_002e4a10	002E4A26	0x4	r	mov eax, dword ptr [rcx + 4]	actorarg:rcx+0xB8	
+002E4A10	FUN_002e4a10	002E4A29	0x14	w	mov dword ptr [rcx + 0x14], eax	actorarg:rcx+0xB8	
+002E4A10	FUN_002e4a10	002E4A2C	0x8	r	mov eax, dword ptr [rcx + 8]	actorarg:rcx+0xB8	
+002E4A10	FUN_002e4a10	002E4A2F	0x18	w	mov dword ptr [rcx + 0x18], eax	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E50A0	0xf0	r	mov rax, qword ptr [rdi + 0xf0]	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E50D0	0xa4	r	movss xmm2, dword ptr [rdi + 0xa4]	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E50DB	0xa0	r	movss xmm1, dword ptr [rdi + 0xa0]	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E5109	0xb8	w	movss dword ptr [rdi + 0xb8], xmm0	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E511A	0x107	r	test byte ptr [rdi + 0x107], 2	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E5121	0x0	r	movss xmm1, dword ptr [rdi]	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E5125	0x8	r	movss xmm2, dword ptr [rdi + 8]	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E512C	0x40	r	addss xmm1, dword ptr [rdi + 0x40]	actorarg:rcx+0xB8	
+002E5030	Movement_UpdateActorFrame	002E5131	0x48	r	addss xmm2, dword ptr [rdi + 0x48]	actorarg:rcx+0xB8	
+002E5180	FUN_002e5180	002E521F	0xd4	w	movss dword ptr [rdi + 0xd4], xmm0	actorarg:rcx+0xB8	
+002E5180	FUN_002e5180	002E525C	0xb8	r	addss xmm0, dword ptr [rdi + 0xb8]	actorarg:rcx+0xB8	
+002E5180	FUN_002e5180	002E5264	0xb8	w	movss dword ptr [rdi + 0xb8], xmm0	actorarg:rcx+0xB8	
+002E5180	FUN_002e5180	002E5294	0x10	a	lea rdx, [rdi + 0x10]	actorarg:rcx+0xB8	
+002E5180	FUN_002e5180	002E52E2	0xec	w	movss dword ptr [rdi + 0xec], xmm6	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5CDA	0x4	w	movss dword ptr [rbx + 4], xmm2	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5CDF	0x8	w	movss dword ptr [rbx + 8], xmm3	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5CE4	0x0	w	movss dword ptr [rbx], xmm1	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5CED	0x4	r	movss xmm2, dword ptr [rbx + 4]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5CF7	0x8	r	movss xmm3, dword ptr [rbx + 8]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D06	0x107	r	test byte ptr [rbx + 0x107], 2	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D0F	0x40	r	addss xmm1, dword ptr [rbx + 0x40]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D19	0x44	r	addss xmm2, dword ptr [rbx + 0x44]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D23	0x48	r	addss xmm3, dword ptr [rbx + 0x48]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D68	0x107	r	test byte ptr [rbx + 0x107], 2	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D76	0x40	r	subss xmm2, dword ptr [rbx + 0x40]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D8A	0x44	r	subss xmm0, dword ptr [rbx + 0x44]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D94	0x48	r	subss xmm1, dword ptr [rbx + 0x48]	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5D9E	0x0	w	movss dword ptr [rbx], xmm2	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5DA7	0x4	w	movss dword ptr [rbx + 4], xmm0	actorarg:rcx+0xB8	
+002E5C90	FUN_002e5c90	002E5DB1	0x8	w	movss dword ptr [rbx + 8], xmm1	actorarg:rcx+0xB8	
+002E5FB0	FUN_002e5fb0	002E5FBA	0xac	r	movss xmm2, dword ptr [rax + 0xac]	actorarg:rcx+0xB8	
+002E6000	FUN_002e6000	002E6046	0x4	r	movss xmm6, dword ptr [rdi + 4]	actorarg:rcx+0xB8	
+002E6000	FUN_002e6000	002E6050	0x8	r	movss xmm3, dword ptr [rdi + 8]	actorarg:rcx+0xB8	
+002E6000	FUN_002e6000	002E6059	0x0	r	movss xmm1, dword ptr [rdi]	actorarg:rcx+0xB8	
+002E64E0	FUN_002e64e0	002E6506	0xb4	w	mov dword ptr [rax + 0xb4], ebx	actorarg:rcx+0xB8	
+002E64E0	FUN_002e64e0	002E650C	0x224	w	mov dword ptr [rax + 0x224], ebx	actorarg:rcx+0xB8	
+002E64E0	FUN_002e64e0	002E6512	0xf0	r	mov rax, qword ptr [rax + 0xf0]	actorarg:rcx+0xB8	
+002E8EE0	FUN_002e8ee0	002E8F08	0xf0	r	mov rax, qword ptr [rsi + 0xf0]	actorarg:rcx+0xB8	
+002E8EE0	FUN_002e8ee0	002E8F5F	0xf0	r	mov rax, qword ptr [rsi + 0xf0]	actorarg:rcx+0xB8	
+002EAAA0	FUN_002eaaa0	002EAAC5	0xdc	r	movzx eax, byte ptr [rdi + 0xdc]	actorarg:rcx+0xB8	
+002EAAA0	FUN_002eaaa0	002EAAD5	0xdc	w	mov byte ptr [rdi + 0xdc], al	actorarg:rcx+0xB8	
+002EAAA0	FUN_002eaaa0	002EAAE0	0xf0	r	mov rdx, qword ptr [rdi + 0xf0]	actorarg:rcx+0xB8	
+002EAB80	FUN_002eab80	002EABA5	0xdc	r	cmp byte ptr [rdi + 0xdc], 0	actorarg:rcx+0xB8	
+002EAB80	FUN_002eab80	002EABB6	0xdc	rw	inc byte ptr [rdi + 0xdc]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBE7F	0xb4	w	mov dword ptr [rbx + 0xb4], eax	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBE85	0x224	w	mov dword ptr [rbx + 0x224], eax	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBE90	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBEAE	0xb4	w	movss dword ptr [rbx + 0xb4], xmm0	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBEB6	0x224	w	mov dword ptr [rbx + 0x224], eax	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBEBC	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBEC8	0xb4	r	subss xmm0, dword ptr [rbx + 0xb4]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBED5	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBEEA	0x224	r	subss xmm0, dword ptr [rbx + 0x224]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBEF7	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBF01	0xb4	w	mov dword ptr [rbx + 0xb4], eax	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBF0A	0x224	w	mov dword ptr [rbx + 0x224], eax	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBF58	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBE50	FUN_002ebe50	002EBF6C	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBFA0	FUN_002ebfa0	002EC014	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBFA0	FUN_002ebfa0	002EC01E	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBFA0	FUN_002ebfa0	002EC029	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBFA0	FUN_002ebfa0	002EC039	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EBFA0	FUN_002ebfa0	002EC049	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actorarg:rcx+0xB8	
+002EC2C0	FUN_002ec2c0	002EC2F3	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+002EC2C0	FUN_002ec2c0	002EC2FE	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+002EC3F0	FUN_002ec3f0	002EC408	0xf0	r	mov r9, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+002EC3F0	FUN_002ec3f0	002EC454	0xf0	r	mov rcx, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+002EC3F0	FUN_002ec3f0	002EC486	0xf0	r	mov rcx, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+002EC3F0	FUN_002ec3f0	002EC4C2	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+002EC3F0	FUN_002ec3f0	002EC4DC	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actorarg:rcx+0xB8	
+00266AD0	FUN_00266ad0	00266B0C	0x0	addr	lea r8, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
+00266AD0	FUN_00266ad0	00266B18	0x0	addr	lea rax, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
+00266AD0	FUN_00266ad0	00266B39	0x0	addr	lea rax, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
+00266AD0	FUN_00266ad0	00266B54	0x0	addr	lea rax, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
+00266AD0	FUN_00266ad0	00266B47	0x20	addr	lea r8, [rax + 0x20]	ctor	region planter; lea computes an address inside this embedded context
+00266AD0	FUN_00266ad0	00266B26	0x80	addr	lea r8, [rax + 0x80]	ctor	region planter; lea computes an address inside this embedded context

@@ -1,0 +1,10 @@
+{
+  "stage": "new consumer qualification checker before semantic acceptance",
+  "error": "AssertionError at check.py line36 -> instruction line31: strict operand text differed",
+  "actual_site": "0x2170c5",
+  "actual": "mulss xmm0, dword ptr [rdx + 4]",
+  "old_expected": "mulss xmm0, dword ptr [rdx + 0x4]",
+  "cause": "Text formatting assumed every displacement used hexadecimal; Capstone prints small integers in decimal.",
+  "affected": "New package acceptance withheld; original fcbffd545 bytes/raw/validation unchanged. No prior accepted/live claim affected.",
+  "old_checker_sha256": "637e514dba0d3f496b72c0a4f29908cc8628afbf3b7fd67d9bd2d212c2226c2e"
+}

@@ -1,0 +1,11 @@
+sections 461
+smallest of the six offsets: [(48, 461)]
+smallest incl +0x28: [(48, 461)]
++0x24 values: [(0, 433), (1, 10), (2, 3), (16, 2), (20, 2), (7, 2)]
++0x28: {'in': 364, 'out': 97}
+offset order (by value) top: [((12, 16, 20, 24, 28, 32), 461)]
+(+0x24==0, +0x28): {(True, 'in'): 336, (True, 'out'): 97, (False, 'in'): 28}
++0x2C..+0x2F: [('00000000', 461)]
++0x00: [(1, 461)]
+out cases: {'==len': 90, 'len+16': 7}
+tail bytes per +0x24 entry: [(('c0 tail', 16), 136), (('c0 tail', 32), 105), (('c0 tail', 48), 95), (32, 6), (80, 5), (64, 4), (48, 3), (34, 1)]

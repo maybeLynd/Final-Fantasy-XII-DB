@@ -1,0 +1,13 @@
+{
+  "case": "plain-research",
+  "is_review": false,
+  "expected_accept": true,
+  "exit": 0,
+  "status": "DONE",
+  "before_sha256": "68e4d7b559b924342339ea591f5dce9e24b5e3e08a5fe4c4d7f4a8ef3e8356e7",
+  "after_sha256": "520121b69d72e0f2c4343ecd176efd3fd1fd58946e9476ddcfca1f5279c58f9f",
+  "result_refs": [
+    "receipt:plain"
+  ],
+  "plan": []
+}

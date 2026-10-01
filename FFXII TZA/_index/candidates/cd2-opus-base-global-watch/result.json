@@ -1,0 +1,48 @@
+{
+ "cases": {
+  "C1_zero_fill_initial_0_only_two_reads_no_store_no_reloc": true,
+  "C2_the_neighbour_AmdAdapterInfo_ends_exactly_at_the_global": true,
+  "C3_replay_no_write_00210570_never_entered_value_0": true
+ },
+ "evidence": [
+  "STATIC",
+  "NATIVE-REPLAY"
+ ],
+ "live_game": false,
+ "ok": true,
+ "results": {
+  "C1": {
+   "decoded_refs": [
+    "0020E602 add rax, qword ptr [rip + 0x1d74f27]",
+    "0020E603 add eax, dword ptr [rip + 0x1d74f27]",
+    "0020E620 sub ecx, dword ptr [rip + 0x1d74f0a]"
+   ],
+   "dir64": [],
+   "initial": 0,
+   "on_instruction_stream": [
+    "0020E602 add rax, qword ptr [rip + 0x1d74f27]",
+    "0020E620 sub ecx, dword ptr [rip + 0x1d74f0a]"
+   ],
+   "zero_fill": true
+  },
+  "C2": {
+   "displacements_ge_0xD0": [
+    "0020CFDF lea rdx, [rax + 0x118]"
+   ],
+   "slots": [
+    "0020CEF0",
+    "0020CF90",
+    "0020D010"
+   ],
+   "zeroed_bytes": "0x8..0xcf (197 bytes)"
+  },
+  "C3": {
+   "boot_steps": 44,
+   "entered_00210570": 0,
+   "value_at_end": 0,
+   "world_ok": true,
+   "write_count": 0,
+   "writes": []
+  }
+ }
+}

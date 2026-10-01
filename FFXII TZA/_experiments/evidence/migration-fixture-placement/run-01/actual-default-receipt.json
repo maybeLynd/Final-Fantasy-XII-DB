@@ -1,0 +1,13 @@
+{
+  "name": "actual-default",
+  "args": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 17, in <module>\n    fixture_preflight(W)  # actual default invocation, BEFORE mkdir/copytree/publish\n    ~~~~~~~~~~~~~~~~~^^^\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-my-progress-independent\\freeze.py\", line 10, in fixture_preflight\n    assert not roots,'NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE: '+', '.join(roots)\n           ^^^^^^^^^\nAssertionError: NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE: C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-my-progress-independent/collection-01/fixture-db, C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/migration-my-progress-independent/collection-02/fixture-db\n",
+  "expected_marker": "NESTED_FIXTURE_DATABASE_NEEDS_INERT_CAPSULE",
+  "terminal": true
+}

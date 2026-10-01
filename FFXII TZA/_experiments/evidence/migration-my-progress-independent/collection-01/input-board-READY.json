@@ -1,0 +1,9 @@
+{
+  "tasks": [
+    {
+      "id": "ASTRA-FIX-CARRIER-0001",
+      "status": "READY",
+      "assigned_to": "ASTRA"
+    }
+  ]
+}

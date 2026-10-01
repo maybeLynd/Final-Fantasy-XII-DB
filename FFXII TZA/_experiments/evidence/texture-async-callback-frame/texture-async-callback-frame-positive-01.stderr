@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-callback-frame.py", line 79, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-callback-frame.py", line 27, in main
+    pins=[];render,x=P.load(src,'render-executor-consumption-raw-01.json',pins);bank,y=P.load(src,'texture-async-bank-dispatch-source-01.json',pins)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-title-queue-consumption.py", line 13, in load
+    if v.get('exe_sha256')!=SHA or v.get('wrapper_complete') is not True or v.get('adapter_sha256')!=ADAPTER:raise ValueError('missing original/adapter prerequisite')
+                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: missing original/adapter prerequisite

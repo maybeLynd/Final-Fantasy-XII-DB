@@ -1,0 +1,38 @@
+{
+  "name": "no-owner",
+  "origin": "reused byte-identical immutable fixture",
+  "expected": "ACCEPTED",
+  "input_sha256": "78ba99f9b20d3021fbff1509be565ee3748e2edda48dd61fc34eb306b3d38e01",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-r2\\run-01\\no-owner\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"ACCEPTED\",\n  \"review\": \"REVIEW-NO-OWNER\",\n  \"detail\": \"no separate incorporation owner named\",\n  \"status\": \"-\"\n }\n]\n",
+  "stderr": "",
+  "parsed_report": [
+    {
+      "transition": "ACCEPTED",
+      "review": "REVIEW-NO-OWNER",
+      "detail": "no separate incorporation owner named",
+      "status": "-"
+    }
+  ],
+  "parse_error": null,
+  "original_plan": [
+    [
+      "ACCEPTED",
+      "REVIEW-NO-OWNER",
+      "no separate incorporation owner named",
+      null
+    ]
+  ],
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true,
+  "writer_invoked": false
+}

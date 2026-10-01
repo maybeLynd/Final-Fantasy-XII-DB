@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-13T09:24:25.721Z",
+  "window": {
+    "app": "process:C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+    "id": 1640038,
+    "title": "FINAL FANTASY XII THE ZODIAC AGE"
+  },
+  "cloudEnabled": false,
+  "launchOptions": "",
+  "method": "Observed FF12 General properties: Cloud toggle OFF and empty advanced launch options. No setting changed.",
+  "screenshot": "cloud-before.jpg"
+}

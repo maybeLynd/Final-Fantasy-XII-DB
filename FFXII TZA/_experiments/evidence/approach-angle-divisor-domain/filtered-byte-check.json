@@ -1,0 +1,69 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "aad053607432c0852d2b57829bceed03a08013f9"
+    },
+    {
+      "path": "current-refresh-failure.json",
+      "git_blob": "f2e81cd5c748bc8b184ef913aed5e0f53a14e7de"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "8ed6df1e826e21c95400fe9196aa2615a12f0a31"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "cec35def3a5a3a89741030622dab42a5dd6c3476"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "1e64817af7d01e435856d1aabb16465ac095e17c"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "fa0c2c5e2a66bbf91a2765669f606cfbe76df9c2"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "2fd7baa8d8bb7c330b10083acd2398efe4702b7b"
+    },
+    {
+      "path": "retained/__pycache__/reg_tracking.cpython-314.pyc",
+      "git_blob": "76c9aeb5156a6da12243f5ca8c678e38df9ef9b3"
+    },
+    {
+      "path": "retained/catalog-identity.json",
+      "git_blob": "a6572e7dc6654fcec7b58eb267e78e54571a5eef"
+    },
+    {
+      "path": "retained/degrees.bin",
+      "git_blob": "63c0ebebca0538fd931e72835a19c18067fc2e27"
+    },
+    {
+      "path": "retained/maths-preimage.md",
+      "git_blob": "f11f73d53034ad44a3da39bf6231d453c900ede4"
+    },
+    {
+      "path": "retained/pi.bin",
+      "git_blob": "b761312ec7beb5dfcef3e83e6f9f77132a79ff8e"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/source.bin",
+      "git_blob": "f2b1d2cac69c810904729e2041b15865ebaa0421"
+    }
+  ]
+}

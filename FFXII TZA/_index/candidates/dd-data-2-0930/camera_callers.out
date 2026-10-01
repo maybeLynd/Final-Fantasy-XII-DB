@@ -1,0 +1,13 @@
+   00864F30: 0 rel32/jcc sites, owners ; 0 rip refs ; 1 pointer slots 01CCFB78.rdata
+   0018A120: 12 rel32/jcc sites, owners 00185C30 00186670 00187950 001897C0 00189CE0 0018A680 001B7850 001EBDD0 001EF6D0; 0 rip refs ; 0 pointer slots 
+PASS C1 control: the sweep finds all nine listed callers of 0018A120 - missing []
+PASS K2 none of the nine calls 00864F30
+PASS K1 the snapshot's reach is counted (reported above) - 0 direct sites, 0 rip refs, 1 pointer slots
+PASS K3 slot 0 of GiBeginEff's vtable; its one reference is the 0x90-byte factory - .?AVGiBeginEff@@
+PASS K4 001FB840 (prepare) tail-jumps through slot 0
+PASS K5 execute reads +0x8C/+0x88 with +8 for 00210520 and hands +0x48 to device +0x30
+PASS K6 0039D1D0 = lea of a global; 0039D1E0 / 0039D1F0 = one global float each
+PASS K7 00678B50 stores only block +0x28 / +0x38 - ['dword ptr [rcx + 0x28]', 'dword ptr [rcx + 0x38]']
+PASS K8 72 of 114 instructions are SSE moves (63.2 %) - 72 of 114
+RESULT the 2026-09-18 caller list belongs to 0018A120; 00864F30 is GiBeginEff's PREPARE slot, reached only through its vtable, and the record is that 0x90-byte command, consumed by its execute slot
+FAILS 0

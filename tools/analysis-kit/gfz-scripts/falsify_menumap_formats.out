@@ -1,0 +1,10 @@
+SURVIVES  A1  9 locales, one content, 396 B, offsets ['0x10', '0x38', '0x74', '0xec'], counts 39/59/59/39
+SURVIVES  A2  P values [0, 1, 2, 3, 4, 5]; Q max 38; R 46 set / 13 none; S[1..38] = 60099 + i
+SURVIVES  A3  020927D0: 7 rip references (loader 3, accessors 4); control 02B457E0: 158
+SURVIVES  A4  Q +0x0A, S +0x0E, P +0x08, R +0x0C; unsigned bounds; S 0 -> 01CEB638; R 0xFFFF -> 0, else 00309EC0(R, 0) as a bool
+SURVIVES  G1  35 copies [9, 8, 6, 6, 6]; closure failures none; TIM2 in 30; none in ['de0', 'es0', 'fr0', 'it0', 'us0'] (offset at or past EOF: True)
+SURVIVES  G2  id 0x496 + record byte +4; section 3 holds [77] records closing at EOF in all 9 locales; byte +4 values {0: 693}
+SURVIVES  G3  count +0x0E unsigned; entry +4 textRel (0xFFFF -> null); textOff +0x08; tim2Off +0x0A (0xFFFF -> null); widget +0xD0 bit 0x40 gate
+SURVIVES  M1  27 copies; closure/record/chunk failures none; N by group [[19], [45], [2]]
+SURVIVES  M2  kind 7 id 0x12A + group (0x129 on the other arm); chunk at 02CA6C68, offsets from +8 rebased by its low 32 bits, bit 31 set
+FAILS 0

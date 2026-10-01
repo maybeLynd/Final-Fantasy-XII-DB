@@ -1,0 +1,27 @@
+{
+ "package": "phyre-array-member-registrations-opus",
+ "author": "OPUS",
+ "date": "2026-09-27",
+ "task": "ASTRA-RETURN-OPUS-PHYRE-ARRAY-REGISTRATION-SENTINEL",
+ "method": "static; original executable bytes; no execution; no live game",
+ "tools": {
+  "capstone": "5.0.7",
+  "pefile": "2024.8.26"
+ },
+ "inputs": {
+  "Tools/work/exe/FFXII_TZA.exe": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "Tools/work/graph/functions.tsv": "568b5a538126fd65f00e3e1536cf7beb5c9417b262bfccb88c8ee050bff705ed",
+  "members/rtti-class-vtables.tsv": "b4cdae0fd7660780db4e76334c387c8d9440b18b34313ccf998ce79040d77cd3",
+  "phyre-field-schema.tsv": "2efc2201dda65099a3f06f81d85f2461312b623a4e0c7a4f5da34f91cf638215",
+  "members/phyre-class-descriptor-vtable.tsv (as published with this package)": "32a7950d8ef6db86ea95cc8cdf5f2a5b864f91cd59fe687618afb9a88a841f43",
+  "_types/fields.tsv (as published with this package)": "632fd191e71e0ccade9249e5abfe91bb3b804fc452779423a713e76be36c4491"
+ },
+ "driver": {
+  "check.py": "c95977d1f09b6773d8df32be17407a702620ca3a4ebd292a03542f66963dcc4e"
+ },
+ "result": {
+  "result.json": "abbf16e0cc86516040ee663220f76769f8c6df0b83e97dfecea16880cf28065a"
+ },
+ "verdict": "19 of the 139 regcalls-zero classes register 25 array members through 00632A10; 120 register no data member; m_streamBindings = native +0x38, 16 B PSharray<PMeshInstanceSegmentStreamBinding*>; 211 registrations never harvested by the field schema (25 now in the store, 186 open as RM-1)",
+ "review": "routed to SWE2-AUDIT-SPEC (author may not accept)"
+}

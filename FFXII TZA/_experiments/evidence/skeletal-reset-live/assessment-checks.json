@@ -1,0 +1,6 @@
+{
+  "actual_runtime_error_rejects_despite_cpu_and_api_positive": true,
+  "missing_health_missing_response_zero_hits_bad_trace_missing_restoration_rejected": true,
+  "synthetic_nominal_gate_control": true,
+  "limit": "Gate logic regression only; no repaired native instrument or successful live rerun."
+}

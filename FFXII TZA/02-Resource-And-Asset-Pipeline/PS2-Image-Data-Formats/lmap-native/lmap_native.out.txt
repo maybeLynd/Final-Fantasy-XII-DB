@@ -1,0 +1,58 @@
+ch 23852 records 48 walk ok 48 sha b9cb48da
+cn 23852 records 48 walk ok 48 sha b9cb48da
+de 23852 records 48 walk ok 48 sha 282099be
+es 23852 records 48 walk ok 48 sha 39ae9d6b
+fr 23852 records 48 walk ok 48 sha e04fb7e8
+in 23852 records 48 walk ok 48 sha 0e122e08
+it 23852 records 48 walk ok 48 sha 52cb25f2
+kr 23852 records 48 walk ok 48 sha b9cb48da
+us 23852 records 48 walk ok 48 sha b9cb48da
+entries {'A': 384, 'B': 111, 'C': 545, 'D': 97} records with countA 0: 0
+A / 384 : +0 own-id 5; +0 next-only 6; +2 own-id 7; +2 next-only 3; +4 FFFF 8; +4 own-id 2; +4 next-only 2; +6 FFFF 6; +6 own-id 2; +6 next-only 1; +12 own-id 384; +14 FFFF 348
+B / 111 : +4 own-id 1; +6 FFFF 2; +6 next-only 1; +8 own-id 1; +10 own-id 2; +18 FFFF 6; +22 FFFF 101
+C / 545 : +0 own-id 545; +2 own-id 545; +4 own-id 10; +4 next-only 5; +6 own-id 6; +6 next-only 3; +8 own-id 3; +10 own-id 3; +10 next-only 1; +12 own-id 20; +12 next-only 3; +14 own-id 8; +14 next-only 1; +16 FFFF 519
+D / 97 : +0 own-id 97; +2 own-id 2
+8-byte block values [('f0 00 f0 00 40 01 00 00', 46), ('eb 00 eb 00 eb 00 00 00', 1), ('d2 00 d2 00 d2 00 00 00', 1)]
+A +0 range 7 1333 +2 range 27 1741
+B +0 range 32 65533 +2 range 5 1872
+record 0 C[0..2] native +0,+2: [(292, 291), (292, 305), (292, 306)]
+record 0 A ids +12: [292, 289, 290, 291, 307, 306, 305]
+--- native per-offset profile (us)
+A +0 zero 0 FFFF 0 other range (7, 1333) distinct 289
+A +2 zero 0 FFFF 0 other range (27, 1741) distinct 301
+A +4 zero 0 FFFF 8 other range (1, 65298) distinct 165
+A +6 zero 0 FFFF 6 other range (2, 65294) distinct 164
+A +8 zero 384 FFFF 0 other range - distinct 1
+A +10 zero 384 FFFF 0 other range - distinct 1
+A +12 zero 0 FFFF 0 other range (48, 1151) distinct 380
+A +14 zero 0 FFFF 348 other range (91, 32811) distinct 12
+A +16 zero 327 FFFF 0 other range (1, 64) distinct 8
+A +18 zero 384 FFFF 0 other range - distinct 1
+A +20 zero 379 FFFF 0 other range (425, 1004) distinct 6
+A +22 zero 379 FFFF 0 other range (422, 699) distinct 6
+B +0 zero 0 FFFF 0 other range (32, 65533) distinct 102
+B +2 zero 0 FFFF 0 other range (5, 1872) distinct 102
+B +4 zero 2 FFFF 0 other range (1, 65294) distinct 53
+B +6 zero 7 FFFF 2 other range (1, 65299) distinct 46
+B +8 zero 1 FFFF 0 other range (1, 65521) distinct 99
+B +10 zero 0 FFFF 0 other range (5, 1892) distinct 98
+B +12 zero 0 FFFF 0 other range (60201, 60244) distinct 42
+B +14 zero 111 FFFF 0 other range - distinct 1
+B +16 zero 1 FFFF 0 other range (2, 11521) distinct 89
+B +18 zero 0 FFFF 6 other range (27, 16421) distinct 52
+B +20 zero 0 FFFF 0 other range (512, 5130) distinct 75
+B +22 zero 0 FFFF 101 other range (34, 16422) distinct 8
+C +0 zero 0 FFFF 0 other range (48, 1151) distinct 282
+C +2 zero 0 FFFF 0 other range (49, 1151) distinct 303
+C +4 zero 0 FFFF 0 other range (8, 1612) distinct 367
+C +6 zero 0 FFFF 0 other range (43, 1783) distinct 382
+C +8 zero 508 FFFF 0 other range (108, 871) distinct 37
+C +10 zero 508 FFFF 0 other range (49, 1192) distinct 36
+C +12 zero 0 FFFF 0 other range (30, 1544) distinct 374
+C +14 zero 0 FFFF 0 other range (14, 1803) distinct 376
+C +16 zero 0 FFFF 519 other range (34, 16471) distinct 14
+C +18 zero 545 FFFF 0 other range - distinct 1
+D +0 zero 0 FFFF 0 other range (318, 1067) distinct 22
+D +2 zero 0 FFFF 0 other range (332, 1153) distinct 97
+records with countB>=1 and countC>=1: 40
+C entries that are last in their record (page +12 reads the block): 44

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-popv-conversion-order\check.py", line 35, in <module>
+    if '--fault-round-not-truncate' in sys.argv and bits=='3fe00000' and depth and not mutated:assert value=='02000000','Original CVTT truncation differs rounding detector'
+                                                                                                      ^^^^^^^^^^^^^^^^^
+AssertionError: Original CVTT truncation differs rounding detector

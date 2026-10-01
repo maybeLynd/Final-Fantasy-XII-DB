@@ -1,0 +1,308 @@
+{
+  "method": "B complete isolated original-code composition, no effect stubs",
+  "observations": [
+    {
+      "case": "packed-identity-control",
+      "format": 0,
+      "input_hex": "10000000200000000004000000000000",
+      "vector_before_matrix": [
+        1.0,
+        2.0,
+        64,
+        1.0
+      ],
+      "vector_before_division": [
+        1.0,
+        2.0,
+        64.0,
+        1.0
+      ],
+      "output_xyzw": [
+        1.0,
+        2.0,
+        64.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 161
+    },
+    {
+      "case": "same-float-bytes-as-packed",
+      "format": 0,
+      "input_hex": "0000803f000000400000404000000000",
+      "vector_before_matrix": [
+        0.0,
+        0.0,
+        1000.0,
+        1.0
+      ],
+      "vector_before_division": [
+        0.0,
+        0.0,
+        1000.0,
+        1.0
+      ],
+      "output_xyzw": [
+        0.0,
+        0.0,
+        1000.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 162
+    },
+    {
+      "case": "same-float-bytes-direct",
+      "format": 1,
+      "input_hex": "0000803f000000400000404000000000",
+      "vector_before_matrix": [
+        1.0,
+        2.0,
+        3.0,
+        1.0
+      ],
+      "vector_before_division": [
+        1.0,
+        2.0,
+        3.0,
+        1.0
+      ],
+      "output_xyzw": [
+        1.0,
+        2.0,
+        3.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 144
+    },
+    {
+      "case": "packed-upper-bound",
+      "format": 0,
+      "input_hex": "1000000020000000007d000000000000",
+      "vector_before_matrix": [
+        1.0,
+        2.0,
+        1000.0,
+        1.0
+      ],
+      "vector_before_division": [
+        1.0,
+        2.0,
+        1000.0,
+        1.0
+      ],
+      "output_xyzw": [
+        1.0,
+        2.0,
+        1000.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 162
+    },
+    {
+      "case": "packed-lower-bound",
+      "format": 0,
+      "input_hex": "10000000200000000000000000000000",
+      "vector_before_matrix": [
+        1.0,
+        2.0,
+        10.0,
+        1.0
+      ],
+      "vector_before_division": [
+        1.0,
+        2.0,
+        10.0,
+        1.0
+      ],
+      "output_xyzw": [
+        1.0,
+        2.0,
+        10.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 162
+    },
+    {
+      "case": "direct-outside-packed-bound",
+      "format": 1,
+      "input_hex": "0000803f000000400000fa4400000000",
+      "vector_before_matrix": [
+        1.0,
+        2.0,
+        2000.0,
+        1.0
+      ],
+      "vector_before_division": [
+        1.0,
+        2.0,
+        2000.0,
+        1.0
+      ],
+      "output_xyzw": [
+        1.0,
+        2.0,
+        2000.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 144
+    },
+    {
+      "case": "matrix-and-homogeneous-divide",
+      "format": 1,
+      "input_hex": "0000803f000000400000404000000000",
+      "vector_before_matrix": [
+        1.0,
+        2.0,
+        3.0,
+        1.0
+      ],
+      "vector_before_division": [
+        12.0,
+        26.0,
+        42.0,
+        2.0
+      ],
+      "output_xyzw": [
+        6.0,
+        13.0,
+        21.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.75,
+        1.0
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 144
+    },
+    {
+      "case": "single-precision-order",
+      "format": 1,
+      "input_hex": "0000803f0000803f0000803f00000000",
+      "vector_before_matrix": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vector_before_division": [
+        1.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "output_xyzw": [
+        1.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "colour_components": [
+        8.0,
+        64.0,
+        128.0,
+        255.0
+      ],
+      "uv": [
+        0.25,
+        0.5
+      ],
+      "unwritten_tail_hex": "a5a5a5a5a5a5a5a5",
+      "AL": 1,
+      "instruction_count": 144
+    }
+  ],
+  "established": [
+    "Packed X/Y u16 scale by shipping 1/16; packed Z bits4..27 are upper-then-lower bounded before the matrix. Nonzero format byte instead reads three floats and bypasses both depth comparisons.",
+    "Writer supplies W=1, then actual matrix leaf and wrapper transform four components. Writer divides transformed XYZ by transformed W and writes W/W. Tested finite nonzero-W cases produce W=1; exceptional/zero W is untested.",
+    "Matrix leaf performs separate SSE f32 multiplies and adds: Y contribution plus X, then Z, then W. Finite cancellation control yields1.5; an X+Z-first algebraic rearrangement yields0.5.",
+    "Four source bytes become unnormalised float components at+10/+14/+18/+1C; UV byte selects two distinct float pairs at+20/+24. Output+28..+2F stays A5 under all eight nonalias fixtures.",
+    "Full four-function chain executed at normal entries without stubs, preserving Windows nonvolatile registers; supplied equal counters remain unchanged and AL=1."
+  ],
+  "semantic_implication": "Extend GS vertex representation with format-dependent depth path, pre-transform bounds, ordered f32 matrix/division, exact component/UV writes. Do not treat a48-byte stride as proof that these functions initialise every byte.",
+  "limits": "Complete four functions, supplied finite globals/input, nonalias output and normal ABI. No original process initialization/ownership/native renderer/ordinary caller/presentation or exhaustive floating-point domain proof. Tail sample is not padding, lifetime or full vertex ABI proof. Floating-point MXCSR fixed1F80; exceptional numbers, reversed bounds and aliasing untested. Colour semantic channel names not inferred from byte order alone.",
+  "cleanup": "Disposable guest objects only; hooks removed after each run, code/input/globals unchanged. No FF12/native attachment/input/PC control/save/config/reference writes or new live-restoration receipt.",
+  "affected_consumers": [
+    "FABLE GS vertex-kick2.1b",
+    "OPUS coordinate/layout/ABI/float-order qualifications"
+  ],
+  "propagation": "PENDING independent review and owner incorporation"
+}

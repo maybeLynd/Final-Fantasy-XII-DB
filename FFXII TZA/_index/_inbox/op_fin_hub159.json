@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-159",
+ "note": "batch 159 (EC7-193): 22 bodies decoded+anchored across 19 bearing hosts - request-pipeline two-flag readiness predicate 001D6EF0; skeleton pair-link pass 00373F40; glyph per-element transform 003F3D80; authored-expression split-eval 0039C6B0; BST emplace core 001BA3B0; nine-patch two-phase blink 002A40B0; kind-dispatched vector fetch 00264510; battle-unit placement predicate 00337700; dictionary keyed sub-table emit 003C00C0; gi marshalled field emit 0062A920 + gated double-emit 0061ED70; efx code-dispatched emit 0042E380; console keyed string-field emit 001C0480; boot fixed-record ctor 004D3D60; efx element emits 003A7730/003A7DC0 + four-lane renormalise 00528090; config packed-block builder 003F5BE0; render-pool slot splice 0051F4C0; party-read selector resolver 00320170; wait-verb readiness poll 0030AA00; steering pair-link commit 002E7A80. Gates: anchors 4921 0 MID; address 0 UNSUPPORTED in new content; hash clean (26 standing); crossref 2827; guard ADDS NOTHING (+11 standing cleared, crossing prose added on party-read + verbs + glyph-quads + nine-patch).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/work/hub159_dumps.txt",
+  "Database/Tools/work/hub159_callers.txt"
+ ]
+}

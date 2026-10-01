@@ -1,0 +1,25 @@
+{
+ "committed_at": "2026-09-29T11:25:52Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T112552Z-f0716b",
+ "generator": {
+  "name": "ASTRA-labelled-selector-fixture",
+  "sha256": "ce9324add04d129c6dc14c5ff93ceccfae9d94a2bbecafb43720b37ec0358cc9"
+ },
+ "inputs": {
+  "fixture": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\delta-baseline-selection\\run-03\\labelled-input.json",
+   "sha256": "2749787d7eee63efff9e1a686de6c98d7331a257cc5ec632dd47c8ac2762e3ad",
+   "size": 74,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view-overview.json": {
+   "sha256": "85c6d2a10bb2dfb49e0ad1b9882ba167fee079933eb7b18531c8e8deb8862c6b",
+   "size": 74
+  }
+ },
+ "parent": "g20260929T112552Z-b00dd9",
+ "verifier": "e4e749240189f08249bab9d26c8e25e7f00d81e2820d707f06b5fe071170d183"
+}

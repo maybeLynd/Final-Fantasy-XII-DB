@@ -1,0 +1,40 @@
+{
+ "zip": "Database/Tools/work/dashboard-exports/g20260929T213407Z-9c7238.zip",
+ "zip_sha256": "23256f18c501f7678e3b88ffe26c74e9bc26b7b532de9cb41840d78b359157c7",
+ "verify_zip": [
+  "VERIFIED",
+  {
+   "generation": "g20260929T213407Z-9c7238",
+   "members": 35
+  }
+ ],
+ "generation": "g20260929T213407Z-9c7238",
+ "generation_module_sha256": "c165172d618ccfb276f1ec117107b76e27ca7e96e294a841ef8fd913b5206658",
+ "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+ "escaped_inputs": [
+  "pkg:PKG-GP-EXP-LEVEL-UP.md",
+  "pkg:PKG-GP-HP-LETHAL.md",
+  "pkg:PKG-GP-SPAWN-RESPAWN.md",
+  "pkg:PKG-GP-STATUS-POISON.md",
+  "pkg:PKG-TECH-SCRIPTVM-VALUE.md"
+ ],
+ "escaped_file_names": [
+  "pkg%3APKG-GP-EXP-LEVEL-UP.md",
+  "pkg%3APKG-GP-HP-LETHAL.md",
+  "pkg%3APKG-GP-SPAWN-RESPAWN.md",
+  "pkg%3APKG-GP-STATUS-POISON.md",
+  "pkg%3APKG-TECH-SCRIPTVM-VALUE.md"
+ ],
+ "NEG_extractall_reader_problems": [
+  "input snapshot pkg:PKG-GP-EXP-LEVEL-UP.md does not match the manifest",
+  "input snapshot pkg:PKG-GP-HP-LETHAL.md does not match the manifest",
+  "input snapshot pkg:PKG-GP-SPAWN-RESPAWN.md does not match the manifest",
+  "input snapshot pkg:PKG-GP-STATUS-POISON.md does not match the manifest",
+  "input snapshot pkg:PKG-TECH-SCRIPTVM-VALUE.md does not match the manifest"
+ ],
+ "POS_restore_generation": "g20260929T213407Z-9c7238",
+ "POS_reader_problems": [],
+ "POS_inputs_byte_exact": true,
+ "REF_second_restore": "refusing to restore into a non-empty directory: C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\OPUS\\a23-restore-01\\fixture-restore",
+ "verdict": "PASS"
+}

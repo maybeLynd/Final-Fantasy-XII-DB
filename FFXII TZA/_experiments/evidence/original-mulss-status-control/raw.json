@@ -1,0 +1,448 @@
+{
+  "method": "B one verified original4B MULSS in native current-host Win64 state wrapper versus same wrapper in Unicorn; not live game",
+  "driver_sha256": "2ef32c0f0bd7d6714999032beb8f5f641699bae6fce67ef3ec60529d4696835c",
+  "source": {
+    "reference": {
+      "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+      "parent237_sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb",
+      "parent_manifest_sha256": "db44d2b447a5e9e309a85f93bc85c1236129f1390cf484ffc85861d4b6de8f1c",
+      "original_entry": "0x46912e",
+      "original_bytes": "f30f59d2",
+      "original_bytes_count": 4
+    },
+    "wrapper_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed1f30f59d2660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+    "wrapper_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be",
+    "original_offset": 25,
+    "instructions": [
+      {
+        "pc": "0x1000",
+        "bytes": "4883ec18",
+        "op": "sub",
+        "args": "rsp, 0x18"
+      },
+      {
+        "pc": "0x1004",
+        "bytes": "0fae1c24",
+        "op": "stmxcsr",
+        "args": "dword ptr [rsp]"
+      },
+      {
+        "pc": "0x1008",
+        "bytes": "c7442404801f0000",
+        "op": "mov",
+        "args": "dword ptr [rsp + 4], 0x1f80"
+      },
+      {
+        "pc": "0x1010",
+        "bytes": "0fae542404",
+        "op": "ldmxcsr",
+        "args": "dword ptr [rsp + 4]"
+      },
+      {
+        "pc": "0x1015",
+        "bytes": "660f6ed1",
+        "op": "movd",
+        "args": "xmm2, ecx"
+      },
+      {
+        "pc": "0x1019",
+        "bytes": "f30f59d2",
+        "op": "mulss",
+        "args": "xmm2, xmm2"
+      },
+      {
+        "pc": "0x101d",
+        "bytes": "660f7ed0",
+        "op": "movd",
+        "args": "eax, xmm2"
+      },
+      {
+        "pc": "0x1021",
+        "bytes": "0fae1a",
+        "op": "stmxcsr",
+        "args": "dword ptr [rdx]"
+      },
+      {
+        "pc": "0x1024",
+        "bytes": "448b0424",
+        "op": "mov",
+        "args": "r8d, dword ptr [rsp]"
+      },
+      {
+        "pc": "0x1028",
+        "bytes": "44894204",
+        "op": "mov",
+        "args": "dword ptr [rdx + 4], r8d"
+      },
+      {
+        "pc": "0x102c",
+        "bytes": "0fae1424",
+        "op": "ldmxcsr",
+        "args": "dword ptr [rsp]"
+      },
+      {
+        "pc": "0x1030",
+        "bytes": "0fae5a08",
+        "op": "stmxcsr",
+        "args": "dword ptr [rdx + 8]"
+      },
+      {
+        "pc": "0x1034",
+        "bytes": "4883c418",
+        "op": "add",
+        "args": "rsp, 0x18"
+      },
+      {
+        "pc": "0x1038",
+        "bytes": "c3",
+        "op": "ret",
+        "args": ""
+      }
+    ],
+    "boundary": "Only shipping4BMULSS executes; private MOVD input, MXCSR init/save/status/readback/restore and RET scaffolding. Native invocation is current Pythonhost process, never FF12 or another process."
+  },
+  "tools": {
+    "before_utc": "2026-09-28T13:28:51.920274+00:00",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "host_arch": "AMD64",
+    "windows": [
+      10,
+      0,
+      26200,
+      2,
+      ""
+    ],
+    "capstone": "5.0.7",
+    "unicorn": "2.1.0",
+    "providers": [
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\__init__.py",
+        "bytes": 43853,
+        "sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\capstone\\lib\\capstone.dll",
+        "bytes": 7576576,
+        "sha256": "76958e18380023a68fd1714fa2e01c594cc6db1955a07ad6937b66e66dc5d6c3"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\__init__.py",
+        "bytes": 305,
+        "sha256": "0e8ac7115c755994a968fa865bd1b2f2075edea715c17e91d62af2cc52c13392"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\unicorn_py3\\unicorn.py",
+        "bytes": 43873,
+        "sha256": "7451965be258f4dcba8b50be4d34f84a1f5a8fc62a3fa44eaaefdd05a4e57050"
+      },
+      {
+        "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\tools\\analysis\\venv\\Lib\\site-packages\\unicorn\\lib\\unicorn.dll",
+        "bytes": 9343488,
+        "sha256": "680e7c169fccfeeb1d490739479348a3c96985ffcb020ab986bf8e533eb69a75"
+      },
+      {
+        "path": "C:\\Python314\\DLLs\\_ctypes.pyd",
+        "bytes": 142560,
+        "sha256": "25d9b0be550d428fecc697ca20450343a7c3ce77c9f5283e9aecfd188d609250"
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "bytes": 844496,
+        "sha256": "8f8629741558b5df71def4e1dd8ef9645d4f806b949762c47757c50fea1a9e6d"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "exact-five",
+      "mutated": false,
+      "running_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed1f30f59d2660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+      "native": {
+        "input_bits": "40a00000",
+        "allocation": "Ownprocess4096B private RW then RX; no external/game memory",
+        "before_output_words": [
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5"
+        ],
+        "result_bits": "41c80000",
+        "after_output_words": [
+          "00001f80",
+          "00001fa0",
+          "00001fa0",
+          "a5a5a5a5"
+        ],
+        "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be",
+        "freed": true,
+        "after_free_state": "0x10000"
+      },
+      "guest": {
+        "input_bits": "40a00000",
+        "initial_mxcsr": "0x1fa0",
+        "before_output_words": [
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5"
+        ],
+        "result_bits": "41c80000",
+        "after_output_words": [
+          "00001f80",
+          "00001fa0",
+          "00001fa0",
+          "a5a5a5a5"
+        ],
+        "after_mxcsr": "0x1fa0",
+        "stop_pc": "0x10000",
+        "rsp": "0x60001810",
+        "visits": [
+          "0x1000",
+          "0x1004",
+          "0x1008",
+          "0x1010",
+          "0x1015",
+          "0x1019",
+          "0x101d",
+          "0x1021",
+          "0x1024",
+          "0x1028",
+          "0x102c",
+          "0x1030",
+          "0x1034",
+          "0x1038"
+        ],
+        "writes": [
+          {
+            "pc": "0x1004",
+            "address": "0x600017f0",
+            "size": 4,
+            "value": 8096
+          },
+          {
+            "pc": "0x1008",
+            "address": "0x600017f4",
+            "size": 4,
+            "value": 8064
+          },
+          {
+            "pc": "0x1021",
+            "address": "0x40000100",
+            "size": 4,
+            "value": 8064
+          },
+          {
+            "pc": "0x1028",
+            "address": "0x40000104",
+            "size": 4,
+            "value": 8096
+          },
+          {
+            "pc": "0x1030",
+            "address": "0x40000108",
+            "size": 4,
+            "value": 8096
+          }
+        ],
+        "failure": null,
+        "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be"
+      }
+    },
+    {
+      "name": "next-above-five",
+      "mutated": false,
+      "running_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed1f30f59d2660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+      "native": {
+        "input_bits": "40a00001",
+        "allocation": "Ownprocess4096B private RW then RX; no external/game memory",
+        "before_output_words": [
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5"
+        ],
+        "result_bits": "41c80003",
+        "after_output_words": [
+          "00001fa0",
+          "00001fa0",
+          "00001fa0",
+          "a5a5a5a5"
+        ],
+        "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be",
+        "freed": true,
+        "after_free_state": "0x10000"
+      },
+      "guest": {
+        "input_bits": "40a00001",
+        "initial_mxcsr": "0x1fa0",
+        "before_output_words": [
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5"
+        ],
+        "result_bits": "41c80003",
+        "after_output_words": [
+          "00001f80",
+          "00001fa0",
+          "00001fa0",
+          "a5a5a5a5"
+        ],
+        "after_mxcsr": "0x1fa0",
+        "stop_pc": "0x10000",
+        "rsp": "0x60001810",
+        "visits": [
+          "0x1000",
+          "0x1004",
+          "0x1008",
+          "0x1010",
+          "0x1015",
+          "0x1019",
+          "0x101d",
+          "0x1021",
+          "0x1024",
+          "0x1028",
+          "0x102c",
+          "0x1030",
+          "0x1034",
+          "0x1038"
+        ],
+        "writes": [
+          {
+            "pc": "0x1004",
+            "address": "0x600017f0",
+            "size": 4,
+            "value": 8096
+          },
+          {
+            "pc": "0x1008",
+            "address": "0x600017f4",
+            "size": 4,
+            "value": 8064
+          },
+          {
+            "pc": "0x1021",
+            "address": "0x40000100",
+            "size": 4,
+            "value": 8064
+          },
+          {
+            "pc": "0x1028",
+            "address": "0x40000104",
+            "size": 4,
+            "value": 8096
+          },
+          {
+            "pc": "0x1030",
+            "address": "0x40000108",
+            "size": 4,
+            "value": 8096
+          }
+        ],
+        "failure": null,
+        "running_sha256": "611668164f8d113aeff15b496483290720f16b9c09f959424a5060781d16f6be"
+      }
+    },
+    {
+      "name": "private-omit-mul",
+      "mutated": true,
+      "running_hex": "4883ec180fae1c24c7442404801f00000fae542404660f6ed190909090660f7ed00fae1a448b0424448942040fae14240fae5a084883c418c3",
+      "native": {
+        "input_bits": "40a00001",
+        "allocation": "Ownprocess4096B private RW then RX; no external/game memory",
+        "before_output_words": [
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5"
+        ],
+        "result_bits": "40a00001",
+        "after_output_words": [
+          "00001f80",
+          "00001fa0",
+          "00001fa0",
+          "a5a5a5a5"
+        ],
+        "running_sha256": "e71815eafb7a927bc4367b43323a0ea48432a1fb305d6b879a0867e000c5d002",
+        "freed": true,
+        "after_free_state": "0x10000"
+      },
+      "guest": {
+        "input_bits": "40a00001",
+        "initial_mxcsr": "0x1fa0",
+        "before_output_words": [
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5",
+          "a5a5a5a5"
+        ],
+        "result_bits": "40a00001",
+        "after_output_words": [
+          "00001f80",
+          "00001fa0",
+          "00001fa0",
+          "a5a5a5a5"
+        ],
+        "after_mxcsr": "0x1fa0",
+        "stop_pc": "0x10000",
+        "rsp": "0x60001810",
+        "visits": [
+          "0x1000",
+          "0x1004",
+          "0x1008",
+          "0x1010",
+          "0x1015",
+          "0x1019",
+          "0x101a",
+          "0x101b",
+          "0x101c",
+          "0x101d",
+          "0x1021",
+          "0x1024",
+          "0x1028",
+          "0x102c",
+          "0x1030",
+          "0x1034",
+          "0x1038"
+        ],
+        "writes": [
+          {
+            "pc": "0x1004",
+            "address": "0x600017f0",
+            "size": 4,
+            "value": 8096
+          },
+          {
+            "pc": "0x1008",
+            "address": "0x600017f4",
+            "size": 4,
+            "value": 8064
+          },
+          {
+            "pc": "0x1021",
+            "address": "0x40000100",
+            "size": 4,
+            "value": 8064
+          },
+          {
+            "pc": "0x1028",
+            "address": "0x40000104",
+            "size": 4,
+            "value": 8096
+          },
+          {
+            "pc": "0x1030",
+            "address": "0x40000108",
+            "size": 4,
+            "value": 8096
+          }
+        ],
+        "failure": null,
+        "running_sha256": "e71815eafb7a927bc4367b43323a0ea48432a1fb305d6b879a0867e000c5d002"
+      }
+    }
+  ],
+  "limits": "Only exact5/next-binary32 finite positive square and private omit-MUL control, masked round-nearest1F80. Native4B boundaries omit full4690B0/caller/init/gameMXCSR/library/scheduling. NativeABI wrapper injected; emulator status not automatically nativeCPU flags. No unmasked/NaN/subnormal/overflow exception proof. No broad reruns or general runtime platform.",
+  "cleanup": "Native MXCSR saved/restored in wrapper with equality receipt, own private4096B code allocation freed/VirtualQuery MEM_FREE, output sentinel beyond12B preserved; fresh guests return/restore status. Standalone Python completes responsive, no external/game attach or process/control/save/config/reference/peer writes. PC OFF/S19 allowance unchanged/fullL1+L2NOT_MET"
+}

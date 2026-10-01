@@ -1,0 +1,190 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "real_bodies_executed": [
+  {
+   "va": "0x315E90",
+   "span": "0x315E90-0x316097",
+   "sha256": "03ab17ff29444f1854348d59d84b844333f0553f297a0f8c332a6a00e37df10e",
+   "note": "evaluate+award: id<0x1F bound, awarded-bit early exit (saveBase+0x3844), mode = desc+2 byte of shipped table 00D10460, eight-arm jump table 00316098 (base-relative dwords); modes 1 and 4 dispatch straight to the epilogue (dead award arms); success sets the bit via two 002536A0 calls then 008632B0(award-code 00D10550[id])"
+  },
+  {
+   "va": "0x3165C0",
+   "span": "0x3165C0-0x31666F",
+   "sha256": "4f77dbd2a9715fe7ed9f255edc66874553bf8c66996f22187c692dad71ae559d",
+   "note": "fire helper, pure leaf: 4-hop u16 relative-offset chain from [0022C2550]+8 with 32-bit wrap guards; id>=0x20 rejected; mask at term+4, rank = popcount(mask & ((1<<id)-1)); returns dword threshold table term+8[rank]"
+  },
+  {
+   "va": "0x316760",
+   "span": "0x316760-0x31680C",
+   "sha256": "9f5937f0b4fa3a66b0dcb05fe10509120d47e062fe1ea72c2b3f772387dece56",
+   "note": "counter lookup: desc kind dispatch; id5 -> playtime refresh+read; id8 -> inventory-average path through 00282DD0/00282FA0; else 003166F0 read"
+  },
+  {
+   "va": "0x3166F0",
+   "span": "0x3166F0-0x316760",
+   "sha256": "f96c1313faf94f9f303da2eb8306bd32923807084b15634e08ef117212ceba74",
+   "note": "counter read: saveBase+0x384C + desc offset (desc word at +1); kind2 -> movsx word, kind4 -> dword, kind0 -> -1"
+  },
+  {
+   "va": "0x316BF0",
+   "span": "0x316BF0-0x316C56",
+   "sha256": "f25f11c00a16a77c6f3f13feeacb0bdbc5dbe4330f658d74b25828e5118e22be",
+   "note": "counter store: writes the post-add value to saveBase+0x384C + desc offset"
+  },
+  {
+   "va": "0x316A50",
+   "span": "0x316A50-0x316BEE",
+   "sha256": "43fc520fabde6fc6192e278314b2d41d56a10753f31701e320b276babb207fcb",
+   "note": "update: id<0x1E bound; desc kind!=0 -> read counter, add by kind rules (kind2 word-sat 0x7FFF, kind4 dword-sat 0x7FFFFFFF, mode3 bts amount-0xE2, mode8 skip entirely), then eval(id) BEFORE store(id,new) so a threshold-crossing add awards one update late; desc kind==0 -> inline award dispatch: mode0 amount>=fire-threshold, mode1 amount==param"
+  },
+  {
+   "va": "0x2536A0",
+   "span": "0x2536A0-0x2536AB",
+   "sha256": "8ff37126a48b389cd218a281bdf28e93157751cb7d9a396ad0f21ea7f1c60aea",
+   "note": "save-base getter: returns [0020927C0]"
+  },
+  {
+   "va": "0x2536D0",
+   "span": "0x2536D0-0x2536E8",
+   "sha256": "a23dc213e632f8fd05275d67ddcd38a14e06b6728b57b992fec5998232507eff",
+   "note": "playtime getter: returns [002092758]"
+  },
+  {
+   "va": "0x254E80",
+   "span": "0x254E80-0x254E98",
+   "sha256": "05d8a70148019c7c0d3120fe1fc21d2944a63b792ad2d7470d6adcca340292c0",
+   "note": "playtime refresh: writes [002092758]+0xC"
+  },
+  {
+   "va": "0x320D50",
+   "span": "0x320D50-0x320D69",
+   "sha256": "3a1bc634238a10c6ce54bbef89705818b16a2ae647081e875d2d3d6ed519bdfe",
+   "note": "playtime seconds: frame struct [002EBF190]+0x5AC8 float + +0x5ACC int"
+  },
+  {
+   "va": "0x282DD0",
+   "span": "0x282DD0-0x282DEF",
+   "sha256": "832ca32d20a756a85edebc1efda838b671cceaf5e80b1987c943ec4590f625d1",
+   "note": "inventory slot pointer: [00209AC30]+0x408+i*0xC0"
+  },
+  {
+   "va": "0x282FA0",
+   "span": "0x282FA0-0x282FB8",
+   "sha256": "da51db8883ef1e5c351834b95bcd71ff25f3d0e015485013ab4dc37d543dbfe8",
+   "note": "item rarity/qualifier gate for the id-8 average"
+  },
+  {
+   "va": "0x309EC0",
+   "span": "0x309EC0-0x309F29",
+   "sha256": "91978a5895d42f536c07cdca36e4f04ee0a6d97ddd72ac4784baaea2e0847a5b",
+   "note": "family resolver entry: cx id -> family=cx>>12, index=cx&0xFFF; index > count-1 (table 001EEBCC0[fam]+0x3C) -> ret; else jmp [entry+0x50]"
+  },
+  {
+   "va": "0x2FD970",
+   "span": "0x2FD970-0x2FDD94",
+   "sha256": "b4bb977e6c9c2732ef26352a1bd162123c33524f0867e2b04983874111c58c59",
+   "note": "fam3/4/6 resolver: edx=0 -> u16 bitset word[idx>>4] bit idx&15 via entry+8 (runtime-initialised); edx=3 -> u8 bitset via entry+0x20; edx=4 -> fnptr entry+0x30"
+  },
+  {
+   "va": "0x315420",
+   "span": "0x315420-0x3154AE",
+   "sha256": "9a9a70985ff428d544205903f32478d8d87de6654596df02df31197dd7a21e2f",
+   "note": "hunt-mark read: save image +0x3404 byte table"
+  },
+  {
+   "va": "0x3160C0",
+   "span": "0x3160C0-0x316197",
+   "sha256": "d39c3fb7adb946bf047b9b9b2edd5fec502f13eeadf800f2cd5bb2a09fd27097",
+   "note": "mode-5 evaluator: record at [0022C2550]+8; per set bit -> 00255120 save-record popcount compare"
+  },
+  {
+   "va": "0x3161A0",
+   "span": "0x3161A0-0x3162D7",
+   "sha256": "79322fd677332f9ca96432adf1009186f4fe5a693b8eb5a0d4660f36fbaab0ac",
+   "note": "mode-6 evaluator: one link hop from [0022C2550]+8; outer loop over entries, huntmark/wordb comparisons"
+  },
+  {
+   "va": "0x264790",
+   "span": "0x264790-0x2647CC",
+   "sha256": "a079c16dd1ff1f3c378109dff86dbc4aae43926bc9b6341897f9ffe5d38e4f5f",
+   "note": "gated word getter: flag byte 002098E20 &1, ptr 002098E10 -> word +0x7C"
+  },
+  {
+   "va": "0x265270",
+   "span": "0x265270-0x26528F",
+   "sha256": "3b4e4ccbc36bc58c6290b5d6278216056a5bbfa8c2518dd559c8bbe183302532",
+   "note": "second gated word getter: same flag, ptr 002098E58 -> word +0"
+  },
+  {
+   "va": "0x3148F0",
+   "span": "0x3148F0-0x31490E",
+   "sha256": "da129b4ca71901824a9954093ad43e66373eec40bc595280b580fb1207128c1d",
+   "note": "fallback count getter used by mode-5/6 arms"
+  },
+  {
+   "va": "0x2EF2B0",
+   "span": "0x2EF2B0-0x2EF2C7",
+   "sha256": "0f69415a11c8378b1a78e0ecb103ceb0096357e949251fb7332303527adb142d",
+   "note": "static address-chain helper for the mode-7 arm"
+  },
+  {
+   "va": "0x2EF640",
+   "span": "0x2EF640-0x2EF64B",
+   "sha256": "c640313596e1294a0e5a24924d77651646bd47cf6071aeac16537d3c5ecf381d",
+   "note": "second static-chain helper: lea 002164280"
+  },
+  {
+   "va": "0x3779F0",
+   "span": "0x3779F0-0x377A3B",
+   "sha256": "4734cba91a8e005f4fabf22834034ca1e7c50cf1ac16edcfac3815d982a237a7",
+   "note": "u16 table lookup: [002ADD100] indexed by word_a"
+  },
+  {
+   "va": "0x3C4AD0",
+   "span": "0x3C4AD0-0x3C4ADB",
+   "sha256": "ad0212adaf867c545c920ded019abadbe40561fb56ba1eb7f74b19907e39ca3f",
+   "note": "static object getter: lea 002B45A50"
+  },
+  {
+   "va": "0x255060",
+   "span": "0x255060-0x25511F",
+   "sha256": "d5e2268e3d1a48d1525d9dc00c7a8d160940aaa7b02b9e8988c76e859163deb9",
+   "note": "bitfield popcount helper"
+  },
+  {
+   "va": "0x255120",
+   "span": "0x255120-0x2551A5",
+   "sha256": "0f09ab9324bbd311a5d79773cc2a69e4652899f5f6eb1928312942305c4f0a75",
+   "note": "save-record popcount: saveBase+0x224+i*0x20 records"
+  },
+  {
+   "va": "0x8632B0",
+   "span": "0x8632B0-0x8632DF",
+   "sha256": "159377f21f8714a884569f349e0c379826cea86e7779057cb7e81693bbb77208",
+   "note": "award tail: award-code in ecx -> platform object via 0020CE00 -> 0020CE60"
+  },
+  {
+   "va": "0x20CE00",
+   "span": "0x20CE00-0x20CE0B",
+   "sha256": "b6febc0da8d66ad36e359a812548ce76b9940393b527916927b0e5e9bdc6a753",
+   "note": "platform object getter: [001F83450]"
+  },
+  {
+   "va": "0x20CE60",
+   "span": "0x20CE60-0x20CEEC",
+   "sha256": "e965141c2b9178faa9c29b3a4742e22f38f710b1740b5f1b60d730b266652caa",
+   "note": "platform award write: name getter via IAT 008C3190 (stub), sets entry+0x190 flag, calls object vtable +0x38/+0x50 (stubbed on planted object)"
+  }
+ ],
+ "disclosed_stubs": [
+  "IAT slot 0x8C3190 (name->platform-object getter) -> logging stub returning planted object",
+  "planted platform-object vtable slots +0x38 and +0x50 -> logging stubs",
+  "fam3 table entry +8 bitset pointer (runtime-initialised on disk=0) -> fixture u16 array"
+ ],
+ "shipped_tables_used_real": [
+  "descriptor table 0x00D10460 (30 x 8)",
+  "award-code table 0x00D10550 (30 x 4)",
+  "eval jump table 0x00316098 (8 base-relative dwords)",
+  "family table 0x01EEBCC0 counts +0x3C and resolver fnptrs +0x50"
+ ]
+}

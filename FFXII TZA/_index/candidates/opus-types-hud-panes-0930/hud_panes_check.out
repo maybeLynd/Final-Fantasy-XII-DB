@@ -1,0 +1,6 @@
+PASS  H1 group 0x0080 calls 00296860(hud + 0x7FB0, 6); its only caller
+PASS  H2 records of 0x110: claim +0xF0, key +0xF4, queue +0xF8 (3 dwords), cursor +0x104 (mod 3); widget 0xF0 with procedure 00299D10
+PASS  H3 00299D10 = the LevelupBlink layout procedure (layout pages); its fade driver resolves the entry via 003588B0
+PASS  H4 00291750 builds hud + 0x8FA0 as a 0x1110-byte widget with procedure 002BE490
+PASS  H5 002BE1A0 opens (002BE300 -> 002C0F30: TargetInfo widget, procedure 002C0870) or closes (mode 1: 002BEED0) the pane; reached from the battle menu (002778C0 -> 0027B880 -> 0028FEA0) and 0028FE40
+FAILS 0

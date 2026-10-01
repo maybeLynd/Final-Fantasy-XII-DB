@@ -1,0 +1,35 @@
+X1 walked functions 194; transfers rowflow does not follow: {'jcc-out': 14, 'jmp-unsized': 1}
+X1 with a row/base tag in rcx/rdx/r8/r9: 1
+   jcc-out      002E8060 002E809A jne 0x426fa0                             -
+   jcc-out      00305080 0030512D ja 0x30521d                              -
+   jcc-out      00305080 0030513F je 0x30517b                              -
+   jmp-unsized  00305080 00305172 jmp 0x30517e                             {'rcx': ["('E', 0)"]}
+   jcc-out      00307300 00307BC1 jbe 0x307be1                             -
+   jcc-out      00307300 00307BC5 jbe 0x307be5                             -
+   jcc-out      00307300 00307BC9 jbe 0x307be9                             -
+   jcc-out      00307300 00307BD1 ja 0x307bf1                              -
+   jcc-out      003176E0 003177ED ja 0x31780e                              -
+   jcc-out      003176E0 003177F5 ja 0x317816                              -
+   jcc-out      003176E0 003177F9 ja 0x31781a                              -
+   jcc-out      003176E0 003177FD ja 0x31781e                              -
+   jcc-out      003176E0 00317801 ja 0x317822                              -
+   jcc-out      003176E0 00317805 ja 0x317826                              -
+   jcc-out      003176E0 00317809 ja 0x31782a                              -
+X2 row/base-returning functions: 17
+   00301310 ret ['B']              raw rel32 1 (retool-known 1; not known: none); stored ptrs none
+   0030CBE0 ret ['B']              raw rel32 1 (retool-known 1; not known: none); stored ptrs none
+   003112F0 ret ['B']              raw rel32 7 (retool-known 7; not known: none); stored ptrs none
+   00312170 ret ['B']              raw rel32 2 (retool-known 2; not known: none); stored ptrs none
+   003257D0 ret ['B']              raw rel32 6 (retool-known 6; not known: none); stored ptrs none
+   00385BA0 ret ['B']              raw rel32 1 (retool-known 1; not known: none); stored ptrs none
+   00387FD0 ret ['B']              raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA5D0']
+   00388FE0 ret ["('E', 0)"]       raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA678', '.data 01EFA680']
+   0038A9D0 ret ["('E', 0)", 'B']  raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA810']
+   0038AA90 ret ["('E', 0)"]       raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA7A8', '.data 01EFA7C0', '.data 01EFA818']
+   0038B010 ret ['B']              raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA8A0']
+   0038B220 ret ['B']              raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA8B0']
+   0038C940 ret ['B']              raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFA8F0']
+   0038F970 ret ["('E', 0)"]       raw rel32 0 (retool-known 0; not known: none); stored ptrs ['.data 01EFAB10']
+   00390AB0 ret ['B']              raw rel32 1 (retool-known 1; not known: none); stored ptrs none
+   00469AF0 ret ['B']              raw rel32 1 (retool-known 1; not known: none); stored ptrs none
+   00469EC0 ret ['B']              raw rel32 1 (retool-known 1; not known: none); stored ptrs none

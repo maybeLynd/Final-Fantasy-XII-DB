@@ -1,0 +1,333 @@
+roots (functions loading 02EBF190): 176; functions returning the block: 002370C0 0023A2C0 0023A390 002EF3C0 002EF410 002EF510 002FA210 00304060 00304140 00304660 00304670 00304770 003058C0 00305960 0030DA10 0030F3F0 00311AF0 00313600 00313650 00313760 00313820 00313830 00313840 003139A0 003139C0 00320A40 00320AB0 00322200 00327240 00327DE0 00328140 00329E40 0050F3C0 0050F500 00511B70 00567AE0
+bodies analysed 2920, contexts 12216; cuts 12518, of which carry the block 44
+PASS  control: the two known writers' map-1 copies found: 4 of 4 (all)
+stores that can overlap A+0x5A5A..A+0x5A6B: 120 sites in 19 functions
+FUNCTION 00235AF0
+  00235BCC movups xmmword ptr [rcx + 0x5b10], xmm0      base A                        value UNKNOWN
+  00235BDB movups xmmword ptr [rcx + 0x5b20], xmm1      base A                        value UNKNOWN
+  00235BEA movups xmmword ptr [rcx + 0x5b30], xmm0      base A                        value UNKNOWN
+  00235BF8 mov dword ptr [rcx + 0x5b40], eax            base A                        value UNKNOWN
+  00235CE0 mov word ptr [rbx + r8*4], cx                base A                        value UNKNOWN
+  00235CEC mov word ptr [rbx + r8*4 + 2], cx            base A                        value UNKNOWN
+  00235CFE mov word ptr [rbx + 0x30], cx                base A                        value UNKNOWN
+  00235D0F mov byte ptr [rbx + 0x32], cl                base A                        value UNKNOWN
+  00235D20 mov dword ptr [rdx], 0xffffffff              base A                        value 0xffffffff
+  00235D33 mov word ptr [rbx + 0x30], cx                base A                        value UNKNOWN
+FUNCTION 002370C0
+  002370D3 call 0x861ec0                                base A+0x0                    value UNKNOWN
+FUNCTION 002FEF30
+  002FEFB9 mov qword ptr [rsi], rcx                     base 0x0,A                    value 0x0
+  002FEFBC mov qword ptr [rsi + 8], rcx                 base 0x8,A                    value 0x0
+  002FEFC0 mov qword ptr [rsi + 0x10], rcx              base 0x10,A                   value 0x0
+  002FEFC4 mov qword ptr [rsi + 0x18], rcx              base 0x18,A                   value 0x0
+  002FEFC8 mov dword ptr [rsi + 0x20], ecx              base 0x20,A                   value UNKNOWN
+  002FF0D3 or dword ptr [rsi + 0x14], ecx               base 0x14,A                   value UNKNOWN
+  002FF0D9 or dword ptr [rsi + 0x18], ecx               base 0x18,A                   value UNKNOWN
+  002FF2FE mov byte ptr [rsi + 0x1c], al                base 0x1c,A                   value UNKNOWN
+  002FF306 mov byte ptr [rsi + 0x1d], al                base 0x1d,A                   value UNKNOWN
+  002FF30E mov byte ptr [rsi + 0x1e], al                base 0x1e,A                   value UNKNOWN
+  002FF316 mov byte ptr [rsi + 0x1f], al                base 0x1f,A                   value UNKNOWN
+  002FF322 mov byte ptr [rsi + 0x20], al                base 0x20,A                   value UNKNOWN
+  002FF510 or dword ptr [rsi + 0x14], ecx               base 0x14,A                   value UNKNOWN
+  002FF51E or dword ptr [rsi + 0x18], ecx               base 0x18,A                   value UNKNOWN
+  002FF52D or byte ptr [rsi + 0x1c], cl                 base 0x1c,A                   value UNKNOWN
+  002FF53C or byte ptr [rsi + 0x1d], cl                 base 0x1d,A                   value UNKNOWN
+  002FF54B or byte ptr [rsi + 0x1e], cl                 base 0x1e,A                   value UNKNOWN
+  002FF55A or byte ptr [rsi + 0x1f], cl                 base 0x1f,A                   value UNKNOWN
+  002FF571 or byte ptr [rsi + 0x20], cl                 base 0x20,A                   value UNKNOWN
+  002FF7E2 mov dword ptr [rsi], r8d                     base 0x0,A                    value UNKNOWN
+  002FF805 mov dword ptr [rsi], r15d                    base 0x0,A                    value UNKNOWN
+  002FF824 mov word ptr [rsi + 4], r8w                  base 0x4,A                    value UNKNOWN
+  002FF840 mov byte ptr [rsi + 6], r12b                 base 0x6,A                    value UNKNOWN
+  002FF85A mov byte ptr [rsi + 7], r13b                 base 0x7,A                    value UNKNOWN
+  002FF874 mov byte ptr [rsi + 8], r8b                  base 0x8,A                    value UNKNOWN
+  002FF88E mov byte ptr [rsi + 9], r9b                  base 0x9,A                    value UNKNOWN
+  002FF89F mov byte ptr [rsi + 0x13], r8b               base 0x13,A                   value UNKNOWN
+  002FF8B6 mov byte ptr [rsi + 0x11], bl                base 0x11,A                   value UNKNOWN
+  002FF8D2 mov byte ptr [rsi + 0x12], r11b              base 0x12,A                   value UNKNOWN
+  002FF8F2 mov byte ptr [rsi + 0xa], r8b                base 0xa,A                    value UNKNOWN
+  002FF90C mov byte ptr [rsi + 0xb], r9b                base 0xb,A                    value UNKNOWN
+  002FF921 mov byte ptr [rsi + 0xc], r8b                base 0xc,A                    value UNKNOWN
+  002FF936 mov byte ptr [rsi + 0xd], r10b               base 0xd,A                    value UNKNOWN
+  002FF949 mov byte ptr [rsi + 0xe], dl                 base 0xe,A                    value UNKNOWN
+  002FF95B mov byte ptr [rsi + 0xf], cl                 base 0xf,A                    value UNKNOWN
+  002FF96D mov byte ptr [rsi + 0x10], al                base 0x10,A                   value UNKNOWN
+FUNCTION 00300BC0
+  00300C6A mov word ptr [rdi + 6], cx                   base A                        value UNKNOWN
+FUNCTION 0030B180
+  0030B203 and byte ptr [rsi + 0x59c8], 0xfd            base A                        value UNKNOWN
+FUNCTION 0030B270
+  0030B461 or byte ptr [rdi + 0x59c8], 3                base A                        value UNKNOWN
+FUNCTION 0030C650
+  0030C743 mov dword ptr [rdi + 8], eax                 base A                        value UNKNOWN
+  0030C753 mov word ptr [rdi + 0xc], ax                 base A                        value UNKNOWN
+  0030C760 movss dword ptr [rdi + 0x10], xmm0           base A                        value UNKNOWN
+  0030C776 movss dword ptr [rdi + 0x14], xmm0           base A                        value UNKNOWN
+  0030C78C movss dword ptr [rdi + 0x18], xmm0           base A                        value UNKNOWN
+  0030C7A2 movss dword ptr [rdi + 0x1c], xmm0           base A                        value UNKNOWN
+  0030C7BB mov byte ptr [rdi + 0x1c2], al               base A                        value UNKNOWN
+FUNCTION 0030E060
+  0030E111 mov byte ptr [rdi + 0x4e], bl                base A                        value UNKNOWN
+FUNCTION 0030E130
+  0030E212 mov byte ptr [rbx + 0x78], al                base A                        value UNKNOWN
+  0030E239 mov byte ptr [rbx + 0x78], al                base A                        value UNKNOWN
+  0030E24E mov byte ptr [rbx + 0x68], al                base A                        value UNKNOWN
+FUNCTION 0030E360
+  0030E4F8 mov dword ptr [rsi + 0x64], eax              base A                        value UNKNOWN
+  0030E50E mov dword ptr [rsi + 0x3c], eax              base A                        value UNKNOWN
+  0030E53E mov dword ptr [rsi + 0x64], eax              base A                        value UNKNOWN
+  0030E552 mov dword ptr [rsi + 0x3c], eax              base A                        value UNKNOWN
+  0030E564 mov dword ptr [rsi + 0x38], eax              base A                        value UNKNOWN
+  0030E594 mov dword ptr [rsi + rdx*4 + 0xbc], ecx      base A                        value UNKNOWN
+  0030E5AF mov word ptr [rsi + rcx*2 + 0x13c], ax       base A                        value UNKNOWN
+FUNCTION 0030FBE0
+  0030FC6F mov word ptr [rcx + rdx*2 + 0x4f84], ax      base A                        value UNKNOWN
+  0030FCCF mov word ptr [rcx + rdx*2 + 0x5004], ax      base A                        value UNKNOWN
+FUNCTION 0030FED0
+  00310443 mov byte ptr [rbx + 0x40], cl                base A                        value UNKNOWN
+  00310451 mov byte ptr [rbx + 0x41], dl                base A                        value UNKNOWN
+  0031045F mov byte ptr [rbx + 0x42], cl                base A                        value UNKNOWN
+  0031046D mov byte ptr [rbx + 0x43], cl                base A                        value UNKNOWN
+  0031047B mov byte ptr [rbx + 0x44], cl                base A                        value UNKNOWN
+  00310508 mov dword ptr [rbx + 0x48], eax              base A                        value UNKNOWN
+  0031053D mov word ptr [rbx + 0x4c], ax                base A                        value UNKNOWN
+  00310594 mov word ptr [rbx + 6], r14w                 base A                        value UNKNOWN
+FUNCTION 003112F0
+  003115D6 mov dword ptr [r9 + rcx + 0x60], eax         base A                        value UNKNOWN
+  00311824 mov word ptr [rdi + 0x17c], ax               base A                        value UNKNOWN
+  00311834 mov word ptr [rdi + 0x17e], ax               base A                        value UNKNOWN
+  00311844 mov word ptr [rdi + 0x180], ax               base A                        value UNKNOWN
+  00311854 mov word ptr [rdi + 0x182], ax               base A                        value UNKNOWN
+  00311864 mov word ptr [rdi + 0x184], ax               base A                        value UNKNOWN
+  00311874 mov word ptr [rdi + 0x186], ax               base A                        value UNKNOWN
+  00311884 mov word ptr [rdi + 0x188], ax               base A                        value UNKNOWN
+  00311894 mov word ptr [rdi + 0x18a], ax               base A                        value UNKNOWN
+  003118BB add word ptr [rdi + 8], cx                   base A                        value UNKNOWN
+  003118D9 add word ptr [rdi + 0xa], cx                 base A                        value UNKNOWN
+  003118F7 add word ptr [rdi + 0x12], cx                base A                        value UNKNOWN
+  00311915 add word ptr [rdi + 0x14], cx                base A                        value UNKNOWN
+FUNCTION 00326030
+  00326039 mov dword ptr [rcx + r10*4 + 0x7370], r8d    base A                        value UNKNOWN
+FUNCTION 003266C0
+  00326717 movups xmmword ptr [r15], xmm0               base A+0x5a5a                 value UNKNOWN
+  0032671B mov word ptr [r15 + 0x10], ax                base A+0x5a6a                 value UNKNOWN
+  00326728 mov qword ptr [rdi + 0x1a], 0xffffffffffffffff base A+0x5a62                 value -0x1
+  00326730 mov word ptr [rdi + 0x22], r13w              base A+0x5a6a                 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A                        value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a                 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c        value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68 value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e value UNKNOWN
+  00326818 mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e,A+0x5a70 value UNKNOWN
+  00326829 mov word ptr [r14], r8w                      base A                        value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A                        value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a                 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c        value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e,A+0x5a70 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a               value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c      value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68 value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c value UNKNOWN
+  003268BD mov word ptr [r14 - 0x12], r8w               base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A                        value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c               value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e      value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70 value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72 value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74 value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76 value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78 value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c,A+0x5a7e value UNKNOWN
+  003268CD mov word ptr [r14], r8w                      base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c,A+0x5a7e,A+0x5a80 value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A                        value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90               value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92      value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94 value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96 value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98 value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a,A+0x5a9c value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a,A+0x5a9c,A+0x5a9e value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a,A+0x5a9c,A+0x5a9e,A+0x5aa0 value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a,A+0x5a9c,A+0x5a9e,A+0x5aa0,A+0x5aa2 value UNKNOWN
+  003268DC mov word ptr [r14 + 0x24], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a,A+0x5a9c,A+0x5a9e,A+0x5aa0,A+0x5aa2,A+0x5aa4 value UNKNOWN
+  00326950 mov word ptr [rcx], r8w                      base A                        value UNKNOWN
+  00326950 mov word ptr [rcx], r8w                      base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e value UNKNOWN
+  0032695F mov word ptr [rcx + 0x12], r8w               base A                        value UNKNOWN
+  0032695F mov word ptr [rcx + 0x12], r8w               base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c,A+0x5a7e,A+0x5a80 value UNKNOWN
+  0032696F mov word ptr [rcx + 0x36], r8w               base A                        value UNKNOWN
+  0032696F mov word ptr [rcx + 0x36], r8w               base A,A+0x5a90,A+0x5a92,A+0x5a94,A+0x5a96,A+0x5a98,A+0x5a9a,A+0x5a9c,A+0x5a9e,A+0x5aa0,A+0x5aa2,A+0x5aa4 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A                        value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a                 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c        value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e,A+0x5a70 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a               value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c      value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68 value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c value UNKNOWN
+  00326976 mov word ptr [rcx], r13w                     base A,A+0x5a5a,A+0x5a5c,A+0x5a5e,A+0x5a60,A+0x5a62,A+0x5a64,A+0x5a66,A+0x5a68,A+0x5a6a,A+0x5a6c,A+0x5a6e value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A                        value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c               value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e      value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70 value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72 value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74 value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76 value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78 value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c,A+0x5a7e value UNKNOWN
+  0032697A mov word ptr [rcx + 0x12], r13w              base A,A+0x5a6c,A+0x5a6e,A+0x5a70,A+0x5a72,A+0x5a74,A+0x5a76,A+0x5a78,A+0x5a7a,A+0x5a7c,A+0x5a7e,A+0x5a80 value UNKNOWN
+  003269A7 mov word ptr [rdi + 0x18], dx                base A+0x5a60                 value UNKNOWN
+  003269B6 mov word ptr [rdi + rax*2 + 0x12], r13w      base A                        value UNKNOWN
+  003269C1 mov word ptr [rdi + rax*2 + 0x24], r13w      base A                        value UNKNOWN
+  003269F2 mov word ptr [rdi + 0x18], dx                base A+0x5a60                 value UNKNOWN
+  00326A19 mov word ptr [rdi + rcx*2 + 0x12], r13w      base A                        value UNKNOWN
+  00326A1F mov word ptr [rdi + rcx*2 + 0x24], r13w      base A                        value UNKNOWN
+  00326A25 mov word ptr [rdi + rcx*2 + 0x48], r13w      base A                        value UNKNOWN
+FUNCTION 003279B0
+  00327A01 mov byte ptr [rdx + 0x5b42], al              base A,IDX34                  value UNKNOWN
+FUNCTION 00329080
+  00329122 mov word ptr [rdx + rsi*2 + 0x5a48], di      base A                        value UNKNOWN
+  00329176 mov word ptr [rdx + rsi*2 + 0x5a48], di      base A                        value UNKNOWN
+FUNCTION 00329CC0
+  00329DF6 movups xmmword ptr [rcx + 0x5a5a], xmm0      base A+0x5a5a                 value UNKNOWN
+  00329DFD mov word ptr [rcx + 0x5a6a], ax              base A+0x5a6a                 value UNKNOWN
+FUNCTION 005691E0
+  00569A1F mov dword ptr [r8 + 0x7370], ecx             base A                        value UNKNOWN
+  00569B20 mov dword ptr [r8 + 0x7370], ecx             base A                        value UNKNOWN
+stores into a strided array of the block (A + o + k*C), by array: 168 sites
+  A*1C8  sites 140  element-relative offsets 0x8 .. end 0x1d0
+  A*1C8  sites 14  element-relative offsets - .. end -  (some offsets unknown)
+    UNKNOWN-OFFSET 0030E130 0030E212 mov byte ptr [rbx + 0x78], al
+    UNKNOWN-OFFSET 0030E130 0030E239 mov byte ptr [rbx + 0x78], al
+    UNKNOWN-OFFSET 0030E130 0030E24E mov byte ptr [rbx + 0x68], al
+    UNKNOWN-OFFSET 0030E360 0030E594 mov dword ptr [rsi + rdx*4 + 0xbc], ecx
+    UNKNOWN-OFFSET 0030E360 0030E5AF mov word ptr [rsi + rcx*2 + 0x13c], ax
+    UNKNOWN-OFFSET 0030EA40 0030EAB9 mov word ptr [rsi + rax*2 + 0x17c], di
+    UNKNOWN-OFFSET 0031A410 0031A4A0 mov word ptr [rdi + 0x50], bp
+    UNKNOWN-OFFSET 0031A510 0031A5C8 mov word ptr [rdi + 0x50], bp
+    UNKNOWN-OFFSET 0031A630 0031A6AC mov word ptr [r14 + 0x50], si
+    UNKNOWN-OFFSET 00327CB0 00327D57 mov word ptr [rdi + rdx*4 + 0x88], ax
+    UNKNOWN-OFFSET 00327CB0 00327D64 mov word ptr [rdi + rdx*4 + 0x8a], ax
+    UNKNOWN-OFFSET 00327CB0 00327DA0 mov dword ptr [rcx], 0xffffffff
+    UNKNOWN-OFFSET 00328BD0 00328D30 mov byte ptr [rax - 0x10], 0
+    UNKNOWN-OFFSET 00328BD0 00328D34 mov byte ptr [rax], 0
+  A*34  sites 4  element-relative offsets 0x5b10 .. end 0x5b44
+  A*9C  sites 12  element-relative offsets 0x5b10 .. end 0x5bac
+call sites passing the block with an unknown offset (A+?) as an argument: 52
+  LOOSE 002342F0 0023437E -> 0030E990 in rcx
+  LOOSE 00249C60 00249C6D -> 003A1180 in r8
+  LOOSE 002FEF30 002FEF73 -> 0031B860 in rcx
+  LOOSE 00300BC0 00300BDD -> 0031B860 in r9
+  LOOSE 00300BC0 00300BDD -> 0031B860 in rcx
+  LOOSE 00300BC0 00300C74 -> 0030E060 in rcx
+  LOOSE 0030C650 0030C6BC -> 0031B860 in rcx
+  LOOSE 0030C650 0030C7CE -> 0030FED0 in rcx
+  LOOSE 0030C650 0030C7E4 -> 0046A690 in rcx
+  LOOSE 0030E060 0030E084 -> 0031B860 in rcx
+  LOOSE 0030E060 0030E0D5 -> 0016D6A0 in rcx
+  LOOSE 0030E130 0030E264 -> 0030EA40 in rcx
+  LOOSE 0030E130 0030E2DA -> 003112F0 in r8
+  LOOSE 0030E130 0030E317 -> 003279B0 in rcx
+  LOOSE 0030E130 0030E329 -> 0030FED0 in rcx
+  LOOSE 0030E360 0030E3A7 -> 0031B860 in rcx
+  LOOSE 0030E360 0030E581 -> 00387730 in rdx
+  LOOSE 0030E360 0030E638 -> 003112F0 in r8
+  LOOSE 0030E360 0030E6C7 -> 0030E360 in rcx
+  LOOSE 0030E360 0030E828 -> 0030FED0 in rcx
+  LOOSE 0030E990 0030E9A9 -> 0030E360 in rcx
+  LOOSE 0030FED0 00310023 -> 0031B860 in rcx
+  LOOSE 0030FED0 00310378 -> 0030E130 in rcx
+  LOOSE 0030FED0 00310396 -> 0030E130 in rcx
+  LOOSE 0030FED0 003103AD -> 002FEF30 in rcx
+  LOOSE 0030FED0 003103C8 -> 0031B860 in rcx
+  LOOSE 0030FED0 00310409 -> 0030E360 in rcx
+  LOOSE 0030FED0 00310422 -> 0031B860 in rcx
+  LOOSE 0030FED0 0031059C -> 0030E060 in rcx
+  LOOSE 003112F0 00311321 -> 0031B860 in r8
+  LOOSE 003112F0 0031132C -> 0031B860 in rcx
+  LOOSE 003112F0 0031137A -> 00385BA0 in r8
+  LOOSE 003112F0 003113DF -> 0030C650 in rcx
+  LOOSE 003112F0 0031153A -> 0030E360 in rcx
+  LOOSE 003112F0 0031159F -> 0030E360 in rcx
+  LOOSE 003112F0 003116E0 -> 00300BC0 in r9
+  LOOSE 003112F0 003116E0 -> 00300BC0 in rcx
+  LOOSE 003112F0 003117CB -> 0030E130 in rcx
+  LOOSE 003112F0 00311807 -> 0030E130 in rcx
+  LOOSE 003112F0 00311AC5 -> 0030FED0 in rcx
+  LOOSE 0031B860 0031B87D -> 00236850 in r8
+  LOOSE 0031B860 0031B87D -> 00236850 in rcx
+  LOOSE 00385BA0 00385BFA -> 0031B860 in r8
+  LOOSE 00385BA0 00385BFA -> 0031B860 in rcx
+  LOOSE 00385BA0 00385C24 -> 0031B860 in r8
+  LOOSE 00385BA0 00385C24 -> 0031B860 in rcx
+  LOOSE 00385BA0 00385C4E -> 0031B860 in r8
+  LOOSE 00385BA0 00385C4E -> 0031B860 in rcx
+  LOOSE 00385BA0 00385C85 -> 00469EC0 in r8
+  LOOSE 003A1180 003A118A -> 00267330 in r8
+  LOOSE 005691E0 00569A2B -> 00249C60 in r8
+  LOOSE 005691E0 00569B2C -> 00249C60 in r8
+escapes of the block pointer into non-stack memory: 15
+  ESCAPE 0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15         to 0x698,IDXF50,L(G0208E688+0x0)
+  ESCAPE 0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15         to R00263E30+0x698
+  ESCAPE 0023A570 0023ABFA mov qword ptr [rdi + 0x698], r15         to UNKNOWN
+  ESCAPE 00304180 0030424D mov qword ptr [r12 + rdi*8], rbx         to G022C1740
+  ESCAPE 003058C0 00305907 mov qword ptr [r14 + rdi*8], rax         to G022C1740
+  ESCAPE 00305960 003059A7 mov qword ptr [r14 + rbx*8], rax         to G022C1740
+  ESCAPE 00305A00 00305A57 mov qword ptr [r14 + rdi*8], rax         to G022C1740
+  ESCAPE 0030A7C0 0030A848 mov qword ptr [r14 + rdi*8], rbx         to G022C1740
+  ESCAPE 0030A7C0 0030A848 mov qword ptr [r14 + rdi*8], rbx         to UNKNOWN
+  ESCAPE 0030C300 0030C360 mov qword ptr [r15 + rdi*8], rbp         to G022C1740
+  ESCAPE 0030FD10 0030FD7A mov qword ptr [rsi + rdi*8], rbx         to G022C1740
+  ESCAPE 00310DB0 003111A4 mov qword ptr [r13 + rdi*8 + 0x21a1740], rbx to G00120000
+  ESCAPE 00312280 00312391 mov qword ptr [r13 + rdi*8], rbx         to G022C1740
+  ESCAPE 00317480 0031755F mov qword ptr [rsp + r9*8 + 0x20], rax   to SP
+  ESCAPE 0046AB10 0046AC1B mov qword ptr [rax + r15 + 8], rsi       to UNKNOWN
+indirect calls receiving the block: 7
+  INDIRECT 0030E130 0030E2BC call rax                                 args rcx
+  INDIRECT 0030E130 0030E301 call rax                                 args rcx
+  INDIRECT 0030E360 0030E60E call rax                                 args rcx
+  INDIRECT 0030E360 0030E727 call rax                                 args rcx
+  INDIRECT 003112F0 00311668 call rax                                 args rcx
+  INDIRECT 003112F0 003116A4 call rax                                 args rcx
+  INDIRECT 003112F0 003116A4 call rax                                 args rcx,r9

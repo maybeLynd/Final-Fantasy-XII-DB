@@ -1,0 +1,69 @@
+{
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "bts-index-binding-source-02.json",
+      "sha256": "6d5b7eafbc5375c08ed344ae49041e8c1d24d0ee4ea953c07af0d5885504f569"
+    }
+  ],
+  "result_sha256": "9d03a5c2b5f052234857843152c5e6a4b2aa298dc51bace83b038bf4370c7bc7",
+  "data_prerequisites": [
+    {
+      "path": "bts-index-binding-inputs-01/map-ref-ch.bin",
+      "sha256": "7c63552fd2c57438bea4eb1f27d6f52f4f6e7bd2430dbb5af0373a04e15b728b"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/map-ref-in.bin",
+      "sha256": "7c63552fd2c57438bea4eb1f27d6f52f4f6e7bd2430dbb5af0373a04e15b728b"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_ASIA.fst",
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_CH.fst",
+      "sha256": "1f7e4ca1ea1a003d2ade2a6338be3513f659ab986efb3dc734db12c36498075b"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_CN.fst",
+      "sha256": "e33cb21a6ae3ac84aaf7500d724e20aefdf6cbc6e7ff9e97ee2faa8448f41258"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_DE.fst",
+      "sha256": "d80b86be6f53166701abf5c15356c449421fbb41f2e82e105044a406e90e350c"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_ES.fst",
+      "sha256": "4aec6d0e32f56dbe95fd9c76aef4685c42e2eb043e1ffffa2059c2ba5c2af5a9"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_FR.fst",
+      "sha256": "d8f6211d36a6207a2a20ecbfe0e8b53f12b6ba5c473f4693fec4730e30293213"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_IN.fst",
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_IT.fst",
+      "sha256": "948c7aee093a63b210972227e68172d79303f7a1e2a9a2d44b4012b589e7fdc1"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_JP.fst",
+      "sha256": "0f9c202078c753b70749b1149998eb747f4dd57067e3cf8538ee77d33b44e4d3"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_KR.fst",
+      "sha256": "83a4dda471c8b9744375227389730097ba8502984e66c88dc5de0738549976ca"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_UK.fst",
+      "sha256": "2451762db99591c4b8417d1278d6120f20226f338f4da36aa2ff544d713bb40f"
+    },
+    {
+      "path": "bts-index-binding-inputs-01/FileSizeTable_US.fst",
+      "sha256": "3a03ea77c689d1f48428c440a272b7dbfd77b121758bfd2c5ac0697ceeeb2b3e"
+    }
+  ],
+  "limits": "Projection for existing source-annotation publisher qualifier only; primary binary identities checked separately by actual reducer/freezer, no binary access-role annotation"
+}

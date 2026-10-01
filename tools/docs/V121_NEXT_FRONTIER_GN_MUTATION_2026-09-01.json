@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-01",
+  "physical_parent": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf",
+  "certified_parent_ledger": {
+    "functions": 38161,
+    "explicit": 38001,
+    "unresolved": 160,
+    "coverage_pct": 99.58072,
+    "overlap": 0
+  },
+  "next_batch": "GN",
+  "mutation_pre_authorized": false,
+  "read_only_proposals": [
+    {
+      "entry": "00313A00",
+      "name": "InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation",
+      "body_bytes": 289,
+      "body_sha256": "c076cfeadbc81442c947e0c749eefbdef7e7c6717297847333a7cbae9289d246"
+    },
+    {
+      "entry": "002F7380",
+      "name": "Presentation.LegacyPS2GS.TextureMipLocalMemoryBudgetAndReferenceSlotTableRebuild",
+      "body_bytes": 723,
+      "body_sha256": "15594f6181100f7fa10ac8a770566d60b963e47c93176fd7d7f33152b3ac8583"
+    }
+  ],
+  "required_first_actions": [
+    "Verify package SHA256SUMS and package seal.",
+    "Verify bundled GM160 GZF size/SHA.",
+    "Fresh-import GM160 into a brand-new writable Ghidra project with auto-analysis disabled.",
+    "Reproduce exact functions/ledger/overlap/snapshot/embedded EXE.",
+    "Regenerate/verify exact 160-current residual and SHA.",
+    "Exact-current fence 00313A00 and 002F7380 and re-run semantic challenge.",
+    "Build/apply an exact expected-count GN manifest only for rows that still pass.",
+    "Whole-project snapshot/diff; immutable drift 0.",
+    "Close target; separate PackClosedDomainFile invocation; require PACK_PASS.",
+    "Fresh-import pack; reproduce exact post-state; regenerate residual."
+  ],
+  "open_nonblocking_questions": [
+    "friendly identity of UI request 14",
+    "friendly identity of UI request 21",
+    "authored name of MWeather selector",
+    "designer purpose of duplicate bootstrap environment apply",
+    "higher non-VM Weather receiver apply seam if any"
+  ],
+  "prospective_if_both_pass": {
+    "explicit": 38003,
+    "unresolved": 158,
+    "coverage_pct": 99.58596,
+    "overlap": 0
+  }
+}

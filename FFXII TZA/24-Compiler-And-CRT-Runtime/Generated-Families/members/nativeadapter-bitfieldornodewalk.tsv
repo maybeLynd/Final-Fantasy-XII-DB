@@ -1,0 +1,15 @@
+# NativeAdapter.BitfieldOrNodeWalk - EC-7 family C
+# # zero-init a 0x38B node record, attach the arg1 list head, seed a member
+# # rip table pointer; walk nodes calling shared bitfield-or 001B7CE0 until
+# # it clears; on success call shared 001AA0A0. Returns this. 9 images,
+# # ONE form. Distinct from the 132B StringKeyedChainAttach idiom.
+address	targets
+001A20A0	001AA0A0,001B7CE0
+001B6C50	001AA0A0,001B7CE0
+00686830	001AA0A0,001B7CE0
+006868C0	001AA0A0,001B7CE0
+00686950	001AA0A0,001B7CE0
+006869E0	001AA0A0,001B7CE0
+00686A70	001AA0A0,001B7CE0
+00686B00	001AA0A0,001B7CE0
+00686B90	001AA0A0,001B7CE0

@@ -1,0 +1,307 @@
+{
+  "status": "RETAINED_SNAPSHOT_OBSERVATIONS_VERIFIED",
+  "method": "A: offline reduction of original EXP081 C observations; no new live run",
+  "pid": 30640,
+  "executable_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "samples": [
+    {
+      "source": "current-complete-memory.json",
+      "sample": 0,
+      "original_start_unix": 1789294166.3417728,
+      "original_end_unix": 1789294166.343297,
+      "image_address_base": 0,
+      "reward_registry_slots": {
+        "base": 0,
+        "per_level": 0
+      },
+      "registry_bracket_equal": true,
+      "occupied_actor_stats_units": [],
+      "reward_header_32byte_coverage": {
+        "base": [],
+        "per_level": []
+      },
+      "reward_row_first_byte_coverage": []
+    },
+    {
+      "source": "current-complete-memory.json",
+      "sample": 1,
+      "original_start_unix": 1789294166.5935802,
+      "original_end_unix": 1789294166.5949922,
+      "image_address_base": 0,
+      "reward_registry_slots": {
+        "base": 0,
+        "per_level": 0
+      },
+      "registry_bracket_equal": true,
+      "occupied_actor_stats_units": [],
+      "reward_header_32byte_coverage": {
+        "base": [],
+        "per_level": []
+      },
+      "reward_row_first_byte_coverage": []
+    },
+    {
+      "source": "current-field-memory.json",
+      "sample": 0,
+      "original_start_unix": 1789294210.3047092,
+      "original_end_unix": 1789294210.306409,
+      "image_address_base": 0,
+      "reward_registry_slots": {
+        "base": 1732787232,
+        "per_level": 1732788048
+      },
+      "registry_bracket_equal": true,
+      "occupied_actor_stats_units": [
+        {
+          "slot": 0,
+          "unit": 1733690304,
+          "actor": 1733948304,
+          "stats": 35334420,
+          "kind": 0,
+          "definition_id": 0,
+          "definition": 1733445504,
+          "reward_base": 0,
+          "reward_per_level": 0,
+          "reward_bracket_equal": true
+        },
+        {
+          "slot": 4,
+          "unit": 1733705984,
+          "actor": 1733974704,
+          "stats": 1733652480,
+          "kind": 1,
+          "definition_id": 262,
+          "definition": 1732786336,
+          "reward_base": 1732787600,
+          "reward_per_level": 1732788304,
+          "reward_bracket_equal": true,
+          "enemy_row": 6,
+          "reward_base_selector": 6,
+          "reward_per_level_selector": 4
+        },
+        {
+          "slot": 5,
+          "unit": 1733709904,
+          "actor": 1733976352,
+          "stats": 1733653072,
+          "kind": 1,
+          "definition_id": 261,
+          "definition": 1732786248,
+          "reward_base": 1732787544,
+          "reward_per_level": 1732788248,
+          "reward_bracket_equal": true,
+          "enemy_row": 5,
+          "reward_base_selector": 5,
+          "reward_per_level_selector": 3
+        },
+        {
+          "slot": 7,
+          "unit": 1733717744,
+          "actor": 1733979648,
+          "stats": 1733654256,
+          "kind": 1,
+          "definition_id": 256,
+          "definition": 1732785808,
+          "reward_base": 1732787264,
+          "reward_per_level": 1732788080,
+          "reward_bracket_equal": true,
+          "enemy_row": 0,
+          "reward_base_selector": 0,
+          "reward_per_level_selector": 0
+        }
+      ],
+      "reward_header_32byte_coverage": {
+        "base": [],
+        "per_level": []
+      },
+      "reward_row_first_byte_coverage": [
+        {
+          "slot": 0,
+          "base": [],
+          "per_level": []
+        },
+        {
+          "slot": 4,
+          "base": [],
+          "per_level": []
+        },
+        {
+          "slot": 5,
+          "base": [],
+          "per_level": []
+        },
+        {
+          "slot": 7,
+          "base": [],
+          "per_level": []
+        }
+      ]
+    },
+    {
+      "source": "current-field-memory.json",
+      "sample": 1,
+      "original_start_unix": 1789294210.5567434,
+      "original_end_unix": 1789294210.5581746,
+      "image_address_base": 0,
+      "reward_registry_slots": {
+        "base": 1732787232,
+        "per_level": 1732788048
+      },
+      "registry_bracket_equal": true,
+      "occupied_actor_stats_units": [
+        {
+          "slot": 0,
+          "unit": 1733690304,
+          "actor": 1733948304,
+          "stats": 35334420,
+          "kind": 0,
+          "definition_id": 0,
+          "definition": 1733445504,
+          "reward_base": 0,
+          "reward_per_level": 0,
+          "reward_bracket_equal": true
+        },
+        {
+          "slot": 4,
+          "unit": 1733705984,
+          "actor": 1733974704,
+          "stats": 1733652480,
+          "kind": 1,
+          "definition_id": 262,
+          "definition": 1732786336,
+          "reward_base": 1732787600,
+          "reward_per_level": 1732788304,
+          "reward_bracket_equal": true,
+          "enemy_row": 6,
+          "reward_base_selector": 6,
+          "reward_per_level_selector": 4
+        },
+        {
+          "slot": 5,
+          "unit": 1733709904,
+          "actor": 1733976352,
+          "stats": 1733653072,
+          "kind": 1,
+          "definition_id": 261,
+          "definition": 1732786248,
+          "reward_base": 1732787544,
+          "reward_per_level": 1732788248,
+          "reward_bracket_equal": true,
+          "enemy_row": 5,
+          "reward_base_selector": 5,
+          "reward_per_level_selector": 3
+        },
+        {
+          "slot": 7,
+          "unit": 1733717744,
+          "actor": 1733979648,
+          "stats": 1733654256,
+          "kind": 1,
+          "definition_id": 256,
+          "definition": 1732785808,
+          "reward_base": 1732787264,
+          "reward_per_level": 1732788080,
+          "reward_bracket_equal": true,
+          "enemy_row": 0,
+          "reward_base_selector": 0,
+          "reward_per_level_selector": 0
+        }
+      ],
+      "reward_header_32byte_coverage": {
+        "base": [],
+        "per_level": []
+      },
+      "reward_row_first_byte_coverage": [
+        {
+          "slot": 0,
+          "base": [],
+          "per_level": []
+        },
+        {
+          "slot": 4,
+          "base": [],
+          "per_level": []
+        },
+        {
+          "slot": 5,
+          "base": [],
+          "per_level": []
+        },
+        {
+          "slot": 7,
+          "base": [],
+          "per_level": []
+        }
+      ]
+    }
+  ],
+  "original_cleanup_verified": true,
+  "new_game_session": false,
+  "limits": [
+    "One original process, two samples per stage; sequential non-atomic reads.",
+    "Null slots at the popup are not an observed null installation or death path.",
+    "Nonzero field slot/pointer values do not prove header contents, row validity or lifetime.",
+    "No actual reward header or row bytes were captured in these spans.",
+    "No installer, reward consumer, combat command, action or death was traced."
+  ],
+  "sources": {
+    "current-complete-memory.json": {
+      "bytes": 2880061,
+      "sha256": "a9ada099cd80f560bf989671cac0ff3be1b4df4d9eb426b2424feea74acc3f33"
+    },
+    "current-field-memory.json": {
+      "bytes": 2901142,
+      "sha256": "9c5769b39267890b4b9d6d3ad9a0b3adce89538a5dd904504f00666f3db97693"
+    },
+    "cleanup.json": {
+      "bytes": 4528,
+      "sha256": "3225769472a7e13a57e2a2ca8150da2ff98e934b7aaa2dd0ae3e50f6f9f25979"
+    },
+    "exit-check.json": {
+      "bytes": 154,
+      "sha256": "99640365b15d35c18d2392b5bce191fcd75516609b1f3e4a8f7924065049a5f9"
+    },
+    "save-before.json": {
+      "bytes": 4403,
+      "sha256": "44a625a6fefca4d043e98246b534b52ff61999387d54f9f2704f4d9592ab89d6"
+    },
+    "observe.py": {
+      "bytes": 7899,
+      "sha256": "3fd84bbf8ffb7acb6f398333275193d7af13bea895f284ded4ccda86689b5438"
+    },
+    "source-review.json": {
+      "bytes": 707,
+      "sha256": "735463955259b13ded4bb55e415bcbe6deec4111fe7bfa2bb55bd7abc49f296a"
+    },
+    "current-complete-before.jpg": {
+      "bytes": 71810,
+      "sha256": "08a967520ebd67493bbefdda437e74c0f66380f0410cc3b3ded0d4997ef78939"
+    },
+    "current-field-after.jpg": {
+      "bytes": 162913,
+      "sha256": "b4ad97ba36acbf300c5cc4bd0cf8b69aecd22c6b80f29020dc4a4edd837422ce"
+    },
+    "../EXP-075-reward-index-prechecks/0023A570.bin": {
+      "bytes": 1808,
+      "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a"
+    }
+  },
+  "receipt_mutations": [
+    {
+      "case": "reward-changed-after-old-stability-flag",
+      "rejected": true
+    },
+    {
+      "case": "wrong-registry-address",
+      "rejected": true
+    },
+    {
+      "case": "empty-field-population",
+      "rejected": true
+    },
+    {
+      "case": "restoration-mismatch",
+      "rejected": true
+    }
+  ]
+}

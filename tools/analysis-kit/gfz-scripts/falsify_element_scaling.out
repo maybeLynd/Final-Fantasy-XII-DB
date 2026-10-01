@@ -1,0 +1,6 @@
+SURVIVES  X0  [1138, 7, 7, 53]
+SURVIVES  X1  ['mov eax, dword ptr [rip + 0x1e35f92]', 'ret'] / ['mov eax, dword ptr [rip + 0x1e35f86]', 'ret']
+SURVIVES  X2  test byte ptr [rcx + 0x13], 1
+SURVIVES  X3  test byte ptr [rdx + 0x6a], 1 / test byte ptr [rdx + 0x7a], 1 / test byte ptr [r8 + 0x1c], 1
+SURVIVES  X4  thunks {'00321490': ['jmp 0x263e10', 'int3'], '003214A0': ['jmp 0x263e20', 'int3'], '003210E0': ['mov rcx, qword ptr [rcx + 0x10]', 'jmp 0x263dd0']}; xmm6 loads ['008FCC90', '01CEBB70'] (0.5, 1.2); 18 scale loads+stores of 02AEE054; 02EBF188 stores 5
+FAILS 0

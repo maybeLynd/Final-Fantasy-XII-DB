@@ -1,0 +1,198 @@
+{
+  "version": "MP-2",
+  "measured": true,
+  "failed": {},
+  "gaps": {},
+  "q_split": {
+    "answered": 0,
+    "dispositioned": 0,
+    "remaining": 1,
+    "excluded": 0,
+    "dd_answered": 1,
+    "dd_dispositioned": 0
+  },
+  "scopes": {
+    "union": {
+      "accepted": 44,
+      "total": 45
+    },
+    "L1": {
+      "accepted": 39,
+      "total": 40
+    },
+    "L2": {
+      "accepted": 40,
+      "total": 41
+    },
+    "union_exF": {
+      "accepted": 43,
+      "total": 44
+    }
+  },
+  "families": {
+    "Q": {
+      "accepted": 0,
+      "total": 1
+    },
+    "P": {
+      "accepted": 1,
+      "total": 1
+    },
+    "F": {
+      "accepted": 1,
+      "total": 1
+    },
+    "DD": {
+      "accepted": 1,
+      "total": 1
+    },
+    "DA": {
+      "accepted": 1,
+      "total": 1
+    },
+    "DV": {
+      "accepted": 1,
+      "total": 1
+    },
+    "R": {
+      "accepted": 1,
+      "total": 1
+    },
+    "X": {
+      "accepted": 1,
+      "total": 1
+    },
+    "E": {
+      "accepted": 1,
+      "total": 1
+    },
+    "K": {
+      "accepted": 1,
+      "total": 1
+    },
+    "L2": {
+      "accepted": 5,
+      "total": 5
+    },
+    "T": {
+      "accepted": 30,
+      "total": 30
+    }
+  },
+  "categories": {
+    "W": {
+      "accepted": 0,
+      "total": 0
+    },
+    "C": {
+      "accepted": 0,
+      "total": 0
+    },
+    "E": {
+      "accepted": 11,
+      "total": 12
+    },
+    "S": {
+      "accepted": 0,
+      "total": 0
+    },
+    "P": {
+      "accepted": 11,
+      "total": 12
+    },
+    "I": {
+      "accepted": 0,
+      "total": 0
+    },
+    "T": {
+      "accepted": 0,
+      "total": 0
+    },
+    "M": {
+      "accepted": 0,
+      "total": 0
+    },
+    "G": {
+      "accepted": 0,
+      "total": 0
+    },
+    "V": {
+      "accepted": 0,
+      "total": 0
+    },
+    "D": {
+      "accepted": 3,
+      "total": 3
+    },
+    "N": {
+      "accepted": 0,
+      "total": 0
+    },
+    "whole": {
+      "accepted": 30,
+      "total": 30
+    },
+    "untied": {
+      "accepted": 0,
+      "total": 0
+    }
+  },
+  "terminal": {
+    "accepted": 30,
+    "required": 30
+  },
+  "unplaced": [],
+  "duplicates_merged": 1,
+  "excluded": [],
+  "remaining": {
+    "E": [
+      {
+        "k": "Q:fixture",
+        "f": "Q",
+        "ok": false,
+        "st": "ANSWERED",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      }
+    ],
+    "P": [
+      {
+        "k": "Q:fixture",
+        "f": "Q",
+        "ok": false,
+        "st": "ANSWERED",
+        "doc": "04-Actor-Entity/fixture.md",
+        "h": [
+          [
+            "folder",
+            "04"
+          ]
+        ],
+        "o": "ASTRA",
+        "e": "labelled fixture, not canonical closure",
+        "n": "",
+        "lv": "L1L2",
+        "g": [
+          "E",
+          "P"
+        ]
+      }
+    ]
+  },
+  "ready": false,
+  "why_not_ready": "requirements remain (1)",
+  "change": null
+}

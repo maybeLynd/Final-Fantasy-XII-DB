@@ -1,0 +1,22 @@
+E1 002F3BC0 sites: ['00441E71 call in 00441E5D']
+E1 002F3910 sites: ['0043EFBA call in 0043EFA2', '00442354 call in 0044232F']
+E2 00454890: .pdata start False, containing fragment 00454480-004548AA, instruction boundary False, rel32 sites [], qwords 0
+E2 00452C70: .pdata start True, containing fragment 00452C70-004530CE, instruction boundary True, rel32 sites ['004524A6 call in 00452480', '004524DB call in 004524C0'], qwords 0
+E3/E4 0054C6B0 sites: ['0052D82C call in 0052D4D0']
+E3/E4 0054E040 sites: ['0052E9A2 call in 0052E53E']
+E3/E4 0054C440 sites: ['0052E3E2 jmp in 0052E270']
+E3/E4 0054DD30 sites: ['0052F550 jmp in 0052F400']
+E3/E4 0045F600 sites: ['0045FD96 call in 0045FD68', '00529252 call in 00529218']
+E3/E4 0052E270 sites: ['0052D396 call in 0052D370']
+E3/E4 0052F400 sites: ['0052E416 call in 0052E3F0']
+E1b the one 002F3BC0 caller, 00441DE0..00441E80 (from its chunk start), and who reaches it
+   00441E5D mov rdx, rsi
+   00441E60 mov rcx, rbx
+   00441E63 call 0x441f10
+   00441E68 movaps xmm2, xmm6
+   00441E6B mov rdx, rbx
+   00441E6E mov rcx, rdi
+   00441E71 call 0x2f3bc0
+   00441E76 mov rdi, qword ptr [rsp + 0xa8]
+   00441E7E mov rcx, qword ptr [rsp + 0x40]
+   fragment 00441E5D-00441E7E sites into fragment start: []

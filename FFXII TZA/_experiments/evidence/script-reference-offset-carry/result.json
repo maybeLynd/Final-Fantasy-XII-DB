@@ -1,0 +1,78 @@
+{
+  "status": "PACKED_REFERENCE_CLASS_WIDTH_REQUIRE_ARITHMETIC_DOMAIN",
+  "method": "A STATIC_ONLY full shipping PUSHP source/scaling/packing/epilogue and conditional32bit arithmetic; no original-code/guest/native/live execution",
+  "raw_sha256": "300507b5d1c79ed129bcc825389705d758354e96a440c1bacc0f96d3f046ebe1",
+  "conditional_calculations": [
+    {
+      "descriptor": "02FFFFFE",
+      "index": 1,
+      "stride": 1,
+      "scaled_u32": "00000001",
+      "sum_u32": "00FFFFFF",
+      "packed": "72FFFFFF",
+      "decoded_class": 2,
+      "decoded_width": 7,
+      "float_bit": 0
+    },
+    {
+      "descriptor": "02FFFFFF",
+      "index": 1,
+      "stride": 1,
+      "scaled_u32": "00000001",
+      "sum_u32": "01000000",
+      "packed": "73000000",
+      "decoded_class": 3,
+      "decoded_width": 7,
+      "float_bit": 0
+    },
+    {
+      "descriptor": "02000000",
+      "index": -1,
+      "stride": 1,
+      "scaled_u32": "FFFFFFFF",
+      "sum_u32": "FFFFFFFF",
+      "packed": "FFFFFFFF",
+      "decoded_class": 7,
+      "decoded_width": 15,
+      "float_bit": 1
+    },
+    {
+      "descriptor": "42000000",
+      "index": -1,
+      "stride": 4,
+      "scaled_u32": "FFFFFFFC",
+      "sum_u32": "FFFFFFFC",
+      "packed": "FFFFFFFC",
+      "decoded_class": 7,
+      "decoded_width": 15,
+      "float_bit": 1
+    }
+  ],
+  "distinguishing_alternatives": {
+    "final_offset_mask": {
+      "descriptor": "02FFFFFF",
+      "index": 1,
+      "stride": 1,
+      "scaled_u32": "00000001",
+      "sum_u32": "01000000",
+      "packed": "72000000",
+      "decoded_class": 2,
+      "decoded_width": 7,
+      "float_bit": 0
+    },
+    "force_width_exact7": {
+      "descriptor": "42000000",
+      "index": -1,
+      "stride": 4,
+      "scaled_u32": "FFFFFFFC",
+      "sum_u32": "FFFFFFFC",
+      "packed": "7FFFFFFC",
+      "decoded_class": 7,
+      "decoded_width": 7,
+      "float_bit": 1
+    }
+  },
+  "interpretation": "PUSHP retains original class bits via OR but does not clear upper bits contributed by low32 offset+scaled index. Within24bit computed sum yields original class and width7; positive carry can set class bits, negative sum can set class/float/bit31 so width15. Calculations are not actual game references or original instruction execution.",
+  "consumer_change": "Qualify class preserved and width forced7 with computed-sum domain; model literal low32ADD/OR instruction order, do not invent final24mask or exact-width replacement. Original descriptor aux-width source is separate; tag1 remains source path. Keep actual shipped input/validity/native fault/live unknowns open.",
+  "limits": "Conditional injected descriptor/index values, not actual shipped references/validity/normal caller/frame/bank/init/lifetime/native fault/live or all malformed safety. Original resolver call not executed/stubbed. PC OFF/S19/fullL1+L2 NOT_MET"
+}

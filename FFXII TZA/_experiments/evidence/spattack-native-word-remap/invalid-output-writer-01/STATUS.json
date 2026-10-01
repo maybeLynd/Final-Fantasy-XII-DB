@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_WRAPPER_CONTROL",
+  "exit_code": 1,
+  "failure": "required known leaf read309C00 missing from .pdata-only spans; raw inner capture not successful wrapper result",
+  "dependencies": "No semantic claims use this incomplete collector; earlier explicit leaf/source captures unaffected",
+  "driver_sha256": "cd7570d2cc2bb03b0793d86208f88ea451d2194049ebd782b40f86f63988f901"
+}

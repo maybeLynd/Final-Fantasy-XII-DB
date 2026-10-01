@@ -1,0 +1,46 @@
+openjdk version "21.0.11" 2026-04-21
+OpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)
+OpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode)
+INFO  Using log config file: jar:file:/mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /home/oai/.config/root-ghidra/ghidra_12.1.2_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /home/oai/.config/root-ghidra/ghidra_12.1.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (1942 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+WARN  Neither the -import parameter nor the -process parameter was specified; therefore, the specified prescripts and/or postscripts will be executed without any type of program context. (HeadlessAnalyzer)  
+INFO  Headless startup complete (5750 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /mnt/data/ew_handoff_extract/GFZ_V121_CORRECTED_POST_CS_AUDIT_EW_FINAL_262_NEXT_CHAT_HANDOFF_2026-08-30/tools/v121_ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /mnt/data/ghidra_runtime/ghidra_12.1.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Opening existing project: /mnt/data/gm_recovery_work/project/GM_RECOVERY (HeadlessAnalyzer)  
+INFO  Opening project: /mnt/data/gm_recovery_work/project/GM_RECOVERY (HeadlessProject)  
+INFO  REPORT: Execute script: PackClosedDomainFile.java '/gd_parent' '/mnt/data/gm160_transfer/FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf'  (HeadlessAnalyzer)  
+INFO  SCRIPT: /mnt/data/ew_handoff_extract/GFZ_V121_CORRECTED_POST_CS_AUDIT_EW_FINAL_262_NEXT_CHAT_HANDOFF_2026-08-30/tools/v121_ghidra_scripts/PackClosedDomainFile.java (HeadlessAnalyzer)  
+INFO  PackClosedDomainFile.java> PACK_TARGET path=/gd_parent open=false busy=false changed=false canSave=false (GhidraScript)  
+INFO  PackClosedDomainFile.java> PACK_PASS output=/mnt/data/gm160_transfer/FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf size=82110895 (GhidraScript)  

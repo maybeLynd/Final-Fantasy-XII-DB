@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\sn1-variable-name-binding\check.py", line 45, in <module>
+    if '--fault-accept-shifted-operand' in sys.argv:assert mutant['name']==c['expected_source_name'],'Shifted operand falsely accepted as original name'
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Shifted operand falsely accepted as original name

@@ -1,0 +1,1 @@
+{"action": "claim", "task": "FABLE-REQ-SWE2-DATA-AY8-CJK-GLYPHS", "agent": "SWE2-DATA", "resources": [{"key": "note:ay8-cjk-glyphs"}], "note": "extract CJK battle_pack.bin text banks; test whether us charset map yields readable text"}

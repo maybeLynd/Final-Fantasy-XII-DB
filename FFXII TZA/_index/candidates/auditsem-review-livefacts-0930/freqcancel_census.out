@@ -1,0 +1,8 @@
+freqcancel         (0)  x77
+freqcancel         (3)  x3
+freqcancel2        (5)  x2
+freqcancel         (2)  x1
+freqcancel         (4)  x1
+freqcancel: 8 files, e.g. alc_b03.txt, alc_b04.txt, alc_f01.txt, alc_f02.txt, ald_a02.txt, rwg_a0180.txt
+freqcancel2: 2 files, e.g. rwg_b01.txt, rwg_b02.txt
+total: 84

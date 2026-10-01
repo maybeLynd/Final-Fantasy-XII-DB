@@ -1,0 +1,82 @@
+# forward-second-argument tail calls - EC-7 family C
+#
+# 72 members, all 8 bytes. ONE byte image; the entire body is mov rcx, rdx then jmp.
+# Control (external targets, intra-body branches excluded): 72 members, 72 DISTINCT targets - one each.
+#
+# NOT dispositioned: all 72 targets. This row disposes of 72 argument shuffles and NOTHING they call.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+005A19F0
+005A2610
+005CE840
+005CED10
+005CF360
+005CF6E0
+005CFFF0
+005D00B0
+005D1390
+005D17E0
+005D2110
+005D2AB0
+005D3960
+005D41C0
+005D5A60
+005D5E10
+005D60A0
+005D6920
+005D8110
+006113B0
+00611920
+00611E30
+00612440
+00612820
+00612D30
+006131C0
+00613680
+0063E8D0
+0063E9F0
+0063EAF0
+0063EFF0
+0063F340
+0063F420
+0063F610
+0063F770
+0063F9D0
+0063FD00
+0063FF40
+00640330
+006403A0
+00640520
+006409E0
+00640D50
+00640F10
+006410C0
+00641340
+00641520
+00641660
+00641BE0
+00641BF0
+00641DA0
+00641FF0
+00642240
+00642470
+006425A0
+00642760
+00642D40
+00642F40
+00643050
+006435C0
+00643680
+00643C70
+00674B50
+00680510
+006883A0
+006AB410
+006AB4D0
+006ADD70
+006AFA70
+006C0890
+006C49D0
+006C4CD0
+# A-drift 2026-09-17: 1 member(s) removed, since measured as A: 0062F4E0

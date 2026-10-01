@@ -1,0 +1,8 @@
+# NativeAdapter.PopIntForwardTail - EC-7 family C
+# pop an int from arg2 via shared 00267E10; call a member op on it;
+# # tail-dispatch to a member op.
+address	targets
+00342340	00267E10,002E3E90,002E9A60
+00344610	00267E10,0031A910,0035A140
+00344980	00267E10,0031A8C0,0035A140
+00355400	00267E10,002E9A60,003EC630

@@ -1,0 +1,30 @@
+{
+  "pid": 15600,
+  "command": [
+    "Database/FFXII TZA/_experiments/evidence/EXP-019-ledger/observe_ledger.py",
+    "--pid",
+    "15600",
+    "--seconds",
+    "1",
+    "--hz",
+    "20",
+    "--out",
+    "Database/FFXII TZA/_experiments/evidence/EXP-023-camera-input/identity-before.json"
+  ],
+  "start_unix": 1789100039.6019776,
+  "status": "INVALID",
+  "states": [],
+  "samples": [],
+  "source_sha256": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-019-ledger\\observe_ledger.py": "85dc4f959e76df6db7274c25bb34d0caa19e2548388f20dfbfd1f938e75ae91b",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\ffxii_runtime.py": "315b75840ddd5205d7986064cb424b322dee2f48bf5defe44aebbc25871ec928"
+  },
+  "exe": "D:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY XII THE ZODIAC AGE\\x64\\FFXII_TZA.exe",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "module_verdict": "unreadable",
+  "watched_modules": [],
+  "modules": [],
+  "error": "AssertionError()",
+  "end_unix": 1789100045.6354735
+}

@@ -1,0 +1,5 @@
+PASS  A no constructor-chain store covers the claimed bytes: [('PShadowCaster', '0x54', []), ('PConstantBufferD3D11', '0xc', []), ('PConstantBufferD3D11', '0x4c', []), ('PStructuredBufferD3D11', '0x14', []), ('PStructuredBufferD3D11', '0x64', []), ('OrderedCommandList', '0x2b', []), ('RenderContext02CC0410', '0x16c', []), ('GameSettingConfig', '0x448', [])]
+PASS  C the coverage sees the neighbouring stores and memsets: [True, True, True, True, True, True, True, True]
+PASS  Z 00245000 -> 002465F0 memsets the object for edx bytes (00861EC0 at 00246626); 002C0F30 passes edx = 0x2B8
+PASS  W both ManagerSub8FA0SlotRecord02B8 rows carry the zero-initialisation qualifier
+FAILS 0

@@ -1,0 +1,82 @@
+== G. register-sourced mov stores covering +0xA3 (no index, base not rsp/rbp/rip), .pdata bodies: 177
+  by width: {4: 173, 1: 4}
+  package's 93 (S7 lines + 0024768D): 93; found by this sweep: 45; missing: ['001A099A', '001A13C6', '001E43FA', '001F3DF4', '001F796B', '002040CE', '0020D4C3', '00266B79', '00297CEC', '002DB76F', '002DC410', '0036C5C1', '003B5EFE', '003DB106', '00402B96', '00466498', '005FED52', '0060F984', '00656757', '00656FF3', '0065738C', '006929B2', '00692C2F', '006BAC9E', '006CC903', '006F9315', '006F947E', '006F9548', '006F9631', '006FAB76', '006FB1C3', '0071227C', '00722409', '0072A509', '00748B9B', '0075C02C', '0075D81A', '0076E518', '0076E7AA', '00791DFC', '007C73A6', '00800842', '00807D82', '0081B7BC', '0081BB8E', '0083841A', '00849BF5', '00864786']
+== H1. same-field copies: load..store straight line
+  load 0018A5BE -> store 0018A5C4
+    0018A5BE mov eax, dword ptr [rdx + 0xa0] | store decoded on this linear walk: mov dword ptr [rcx + 0xa0], eax | writes of eax between: none
+  load 001C24A7 -> store 001C24AD
+    001C24A7 mov eax, dword ptr [rsi + 0xa0] | store decoded on this linear walk: mov dword ptr [rdi + 0xa0], eax | writes of eax between: none
+  load 005DED6E -> store 005DED74
+    005DED6E mov eax, dword ptr [rdx + 0xa0] | store decoded on this linear walk: mov dword ptr [rcx + 0xa0], eax | writes of eax between: none
+  load 006929AB -> store 006929B2
+    006929AB mov rax, qword ptr [rdx + 0xa0] | store decoded on this linear walk: mov qword ptr [rcx + 0xa0], rax | writes of rax between: none
+  load 00747E9D -> store 00748155
+    00747E9D mov esi, dword ptr [r13 + 0xa0] | store decoded on this linear walk: mov dword ptr [r13 + 0xa0], esi | writes of esi between: none
+  load 007222CC -> store 00722409
+    007222CC mov r15d, dword ptr [rdi + 0xa0] | store decoded on this linear walk: mov dword ptr [rdi + 0xa0], r15d | writes of r15d between: none
+== H2. polymorphic this: vtable slots holding the function, RTTI class
+  001A0960 (store 001A099A):
+    no vtable slot; caller 0019F956 call in 0019F930:
+      caller entry: push rdi; sub rsp, 0x30; mov qword ptr [rsp + 0x20], 0xfffffffffffffffe; mov qword ptr [rsp + 0x40], rbx; mov qword ptr [rsp + 0x48], rsi; mov rdi, rcx; lea rax, [rip + 0x754d9d]; mov qword ptr [rcx], rax; call 0x1a0960
+      at call:      mov rdi, rcx; lea rax, [rip + 0x754d9d]; mov qword ptr [rcx], rax; call 0x1a0960
+    entry: mov qword ptr [rsp + 0x10], rbx; push rdi; sub rsp, 0x20; mov rbx, rcx; mov byte ptr [rcx + 0x1a0], 0; add rcx, 8; lea rdx, [rsp + 0x30]; call 0x5cd330
+      001A0986  call 0x2218d0
+      001A098B  mov byte ptr [rbx + 0x68], 1
+      001A098F  lea rcx, [rbx + 0x28]
+      001A0993  mov rax, qword ptr [rbx + 0x98]
+      001A099A  mov qword ptr [rbx + 0xa0], rax
+  006566D0 (store 00656757):
+    no vtable slot; caller 0065727A call in 00657250:
+      caller in vtable: slot 00D627C0(.rdata)  vtable 00D627B0  index 2  class .?AVPCelShading@PPostProcessing@Phyre@@
+      caller entry: push rbx; sub rsp, 0x20; mov rax, qword ptr [rcx + 0x10]; mov rbx, rcx; test rax, rax; je 0x657283; cmp qword ptr [rax], 0; je 0x657283; call 0x653b10; mov r8, rax
+      at call:      mov r8, rax; lea rdx, [rip + 0x26de389]; mov rcx, rbx; call 0x6566d0
+    entry: mov qword ptr [rsp + 8], rbx; mov qword ptr [rsp + 0x10], rbp; mov qword ptr [rsp + 0x18], rsi; mov qword ptr [rsp + 0x20], rdi; push r14; sub rsp, 0x40; mov rbx, rcx; mov rdi, r8
+      00656741  mov qword ptr [rbx + 0x98], rax
+      00656748  mov rcx, rdi
+      0065674B  call 0x18d240
+      00656750  lea rdx, [rip + 0x70c991]
+      00656757  mov qword ptr [rbx + 0xa0], rax
+  00656F20 (store 00656FF3):
+    no vtable slot; caller 0065763A call in 00657610:
+      caller in vtable: slot 00D626D0(.rdata)  vtable 00D626C0  index 2  class .?AVPScreenSpaceReflection@PPostProcessing@Phyre@@
+      caller entry: push rbx; sub rsp, 0x20; mov rax, qword ptr [rcx + 0x10]; mov rbx, rcx; test rax, rax; je 0x657643; cmp qword ptr [rax], 0; je 0x657643; call 0x653b10; mov r8, rax
+      at call:      mov r8, rax; lea rdx, [rip + 0x26ddfc9]; mov rcx, rbx; call 0x656f20
+    entry: mov qword ptr [rsp + 8], rbx; mov qword ptr [rsp + 0x10], rbp; mov qword ptr [rsp + 0x18], rsi; mov qword ptr [rsp + 0x20], rdi; push r14; sub rsp, 0x40; mov rbx, rcx; mov rdi, r8
+      00656FDD  mov qword ptr [rbx + 0x98], rax
+      00656FE4  mov rcx, rdi
+      00656FE7  call 0x18d240
+      00656FEC  lea rdx, [rip + 0x70c175]
+      00656FF3  mov qword ptr [rbx + 0xa0], rax
+  00657330 (store 0065738C):
+    in vtable: slot 00D62090(.rdata)  vtable 00D62080  index 2  class .?AVPDepthOfField@PPostProcessing@Phyre@@
+    entry: mov qword ptr [rsp + 8], rbx; push rdi; sub rsp, 0x20; mov rax, qword ptr [rcx + 0x10]; mov rbx, rcx; test rax, rax; je 0x6573fa; cmp qword ptr [rax], 0
+      00657376  lea rdx, [rip + 0x70baeb]
+      0065737D  mov rcx, rdi
+      00657380  call 0x18d240
+      00657385  lea rdx, [rip + 0x70b6ec]
+      0065738C  mov qword ptr [rbx + 0xa0], rax
+  006BAB40 (store 006BAC9E):
+    in vtable: slot 00D81210(.rdata)  vtable 00D81200  index 2  class .?AVPThreadPoolWorkStealing@Phyre@@
+    entry: push rbx; sub rsp, 0x140; mov rax, qword ptr [rip + 0x1889ce0]; xor rax, rsp; mov qword ptr [rsp + 0x130], rax; mov eax, dword ptr [rcx + 0x10]; mov rbx, rcx; test eax, eax
+      006BAC91  xor edx, edx
+      006BAC93  lea rcx, [rax + rax*2]
+      006BAC97  lea rax, [r9 + rcx*8]
+      006BAC9B  mov rcx, r9
+      006BAC9E  mov qword ptr [rbx + 0xa0], rax
+  00864750 (store 00864786):
+    in vtable: slot 01CCFB08(.rdata)  vtable 01CCFB08  index 0  class .?AVGiSprite@@
+    entry: push rbx; sub rsp, 0x20; mov eax, dword ptr [rcx + 0xc8]; mov rbx, rcx; and eax, 0x3fff; cmp eax, 0xe00; jne 0x86477b; xor eax, eax
+      00864776  add eax, 0xdff
+      0086477B  movzx ecx, ax
+      0086477E  call 0x2d7fa0
+      00864783  mov rcx, qword ptr [rax]
+      00864786  mov qword ptr [rbx + 0xa0], rcx
+  0087B850 (store 0087B940):
+    in vtable: slot 01CDA2F8(.rdata)  vtable 01CDA228  index 26  class .?AVPUtilityDeveloperExtensions@PDeveloperExtensions@Phyre@@
+    in vtable: slot 01CDA308(.rdata)  vtable 01CDA228  index 28  class .?AVPUtilityDeveloperExtensions@PDeveloperExtensions@Phyre@@
+    entry: mov qword ptr [rsp + 0x10], rbx; mov qword ptr [rsp + 0x18], rbp; push rdi; push r12; push r13; push r14; push r15; sub rsp, 0x20
+      0087B929  movzx eax, word ptr [rbx + 0x94]
+      0087B930  mov word ptr [rcx + rdx*2], ax
+      0087B934  mov ecx, dword ptr [rbx + 0x88]
+      0087B93A  mov eax, dword ptr [rbx + 0x98]
+      0087B940  mov dword ptr [rbx + 0xa0], ecx

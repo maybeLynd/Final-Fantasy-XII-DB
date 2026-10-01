@@ -1,0 +1,55 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 4176,
+      "sha256": "9a0089cccc68fcc66e70afbc961379d1845c8a34229f0c8eee3e65011602c6b1"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6549,
+      "sha256": "16a5f32dd510cf854f697793a87725800779a33eaa9e1b57b4e64a39a6308ddb"
+    },
+    {
+      "path": "historical-checker-site-failure/check.py",
+      "bytes": 6248,
+      "sha256": "b4699d4b6168f9b2936c347534531af21cb0605683dac9bbfa3c1f9bc368e69a"
+    },
+    {
+      "path": "historical-checker-site-failure/failure.json",
+      "bytes": 566,
+      "sha256": "805bcb2eb24687afb0c8f77d9333b4c48a9cc47fca1819d8d8c488a3a5638d83"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1560,
+      "sha256": "e8a088e380ca855e0e89d064bd35b6a11ec010364f855ac452d6676410fd5011"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3530,
+      "sha256": "ab3a713380c6ea1bcda3a4a99594392bbc33df81f10cf7667ef3949564215f1a"
+    },
+    {
+      "path": "slot4.bin",
+      "bytes": 3200,
+      "sha256": "b5d6da52eb8a402c9528898fd000bb928c26fc269866d2804544b58b155f9626"
+    },
+    {
+      "path": "source.json",
+      "bytes": 16755,
+      "sha256": "58a0be844b0a66dea13a9099664cec784aa35ec775ab505e223a8a7b1cf59f8b"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1347,
+      "sha256": "4edd5da7065e8d925f14b0ec3b90e383e7562c380ba7a16d221230e4f9b4f0a0"
+    }
+  ],
+  "limits": "One exact identified local extracted MPK slot4 plus original loader/codec/prior getter-builder and conditional f32 arithmetic. No original-code or game execution, actual allocation/load, global map prevalence or archive-to-copy proof. Owner and independent acceptance pending."
+}

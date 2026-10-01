@@ -1,0 +1,22 @@
+{
+ "committed_at": "2026-09-29T07:11:57Z",
+ "format": "ff12-generation-2",
+ "generation": "g20260929T071157Z-d230d5",
+ "generator": {},
+ "inputs": {
+  "data": {
+   "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-generation-independent\\run-01\\interrupt-after-rename\\input",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "size": 2,
+   "state": "present"
+  }
+ },
+ "outputs": {
+  "view.json": {
+   "sha256": "c0fff92b92478c591db2f3ff248ab94e8928b304d2c4e50e7c5cf23b0e627c5f",
+   "size": 19
+  }
+ },
+ "parent": null,
+ "verifier": "b6ef5a5344f24660648e5fe2639916f682780a81d9c10837644ef4119c27cdb1"
+}

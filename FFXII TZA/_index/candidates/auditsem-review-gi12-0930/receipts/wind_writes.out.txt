@@ -1,0 +1,158 @@
+entries/thunks: {'0032E620': 'request', '0032E400': 'sizeof'}
+sites: 122
+00249296 sizeof                     call kind=? id=?
+002492F3 request                    call kind=? id=?
+0024AB93 sizeof                     jmp  kind=? id=?
+0024AC4C sizeof                     call kind=0x23 id=?
+0024AC9F request                    call kind=0x23 id=?
+00259DFE sizeof                     call kind=0x9 id=0x3
+00259E6E request                    call kind=0x9 id=0x3
+00268762 sizeof                     call kind=0x9 id=0x4
+00268809 request                    call kind=? id=?
+00268814 sizeof                     call kind=? id=?
+0026883E request                    call kind=? id=?
+00291D04 request                    call kind=0x7 id=?
+002C900B request                    call kind=0x7 id=?
+002E61A8 sizeof                     call kind=0x20 id=?
+002E6277 request                    call kind=0x20 id=?
+002E6776 sizeof                     call kind=? id=?
+002E700C request                    call kind=? id=?
+002E9988 sizeof                     jmp  kind=? id=?
+002E99A8 sizeof                     jmp  kind=? id=?
+002EA56B sizeof                     call kind=0x9 id=0xb
+002EA5A9 request                    call kind=0x9 id=?
+002EADEA sizeof                     call kind=? id=?
+002EAE08 request                    call kind=? id=?
+002EF336 request                    call kind=0x1 id=?
+002FC8D8 sizeof                     call kind=? id=?
+002FC920 sizeof                     call kind=? id=?
+002FC96F request                    call kind=? id=?
+002FD027 sizeof                     call kind=? id=?
+00324637 request                    call kind=0x1a id=?
+0032EC01 request                    call kind=? id=?
+0032F617 sizeof                     call kind=? id=0x350
+0032F670 request                    call kind=0x8 id=0x350
+0032FD4D sizeof                     call kind=0x5 id=?
+0032FD83 sizeof                     call kind=? id=?
+0032FD99 sizeof                     call kind=? id=?
+0032FDCC sizeof                     call kind=? id=?
+0032FDDC sizeof                     call kind=0x25 id=?
+0032FE9E request                    call kind=? id=?
+0032FF0B request                    call kind=? id=?
+0032FF76 request                    call kind=? id=?
+0032FFE2 request                    call kind=? id=?
+00330354 sizeof                     call kind=? id=?
+00330444 request                    call kind=? id=?
+00330E47 sizeof                     call kind=0xff id=?
+00330E5B sizeof                     call kind=0xff id=?
+00330E6C sizeof                     call kind=0xff id=?
+00330E7D sizeof                     call kind=0xff id=?
+00330E92 sizeof                     call kind=0xff id=?
+00330EA6 sizeof                     call kind=0xff id=?
+00330EBB sizeof                     call kind=0xff id=?
+00330ECF sizeof                     call kind=0xff id=?
+00330EE4 sizeof                     call kind=0xff id=?
+00330EF9 sizeof                     call kind=0xff id=?
+00330F0E sizeof                     call kind=0xff id=?
+00330F23 sizeof                     call kind=0xff id=?
+00330F48 sizeof                     call kind=0xff id=?
+00330F71 sizeof                     call kind=0xff id=?
+00331CAD sizeof                     call kind=0xff id=?
+00331CC0 sizeof                     call kind=0xff id=?
+00331CD3 sizeof                     call kind=0xff id=?
+00331CE4 sizeof                     call kind=0xff id=?
+00332280 sizeof                     call kind=? id=?
+00360CA9 sizeof                     call kind=0x9 id=0x6
+00360D19 request                    call kind=0x9 id=0x6
+00365882 sizeof                     call kind=0x7 id=?
+003658C7 request                    call kind=0x7 id=?
+00365935 sizeof                     call kind=0x7 id=0xd2
+00365967 request                    call kind=0x7 id=0xd2
+0036ED7C sizeof                     call kind=0x21 id=?
+0036EDF7 request                    call kind=? id=?
+0036EE0D sizeof                     call kind=0x27 id=?
+0036EE7E request                    call kind=0x27 id=?
+00378059 sizeof                     call kind=? id=?
+003780E3 request                    call kind=? id=?
+00378566 sizeof                     call kind=0x1 id=0x20
+003785E6 request                    call kind=? id=?
+003785FA sizeof                     call kind=0x9 id=0x8
+0037865F request                    call kind=0x9 id=0x8
+00378673 sizeof                     call kind=0x9 id=0x27
+003786FD request                    call kind=0x9 id=0x27
+0037870A sizeof                     call kind=0x9 id=0xa
+0037876F request                    call kind=0x9 id=0xa
+0037877C sizeof                     call kind=0x9 id=0x28
+003787E1 request                    call kind=0x9 id=0x28
+003787EE sizeof                     call kind=0x9 id=0x29
+00378841 request                    call kind=0x9 id=0x29
+0037884D sizeof                     call kind=0x9 id=0x9
+003788D2 request                    call kind=0x9 id=0x9
+00379A37 sizeof                     call kind=? id=?
+00379E9E sizeof                     call kind=0x9 id=0x7
+00379EFE request                    call kind=0x9 id=0x7
+0038444E sizeof                     call kind=0x2 id=?
+003844C9 request                    call kind=0x2 id=?
+0039C432 sizeof                     call kind=0x7 id=0xd5
+0039C45D request                    call kind=0x7 id=0xd5
+003A14B9 sizeof                     call kind=? id=?
+003A151A request                    call kind=? id=?
+003A1538 sizeof                     call kind=? id=?
+003A1599 request                    call kind=? id=?
+003A15B7 sizeof                     call kind=? id=?
+003A1618 request                    call kind=? id=?
+003B06E5 sizeof                     call kind=0xa id=0x0
+003B070D request                    call kind=0xa id=0x0
+003B23A1 sizeof                     call kind=0xc id=?
+003B23D7 sizeof                     call kind=0xc id=?
+003B2424 request                    call kind=0xc id=?
+003B5407 sizeof                     call kind=0x9 id=0x2a
+003B5427 request                    call kind=0x9 id=0x2a
+003DC683 request                    call kind=? id=?
+003DC977 sizeof                     call kind=? id=?
+003DCC59 sizeof                     call kind=0x9 id=0x5
+003DCCCD request                    call kind=0x9 id=0x5
+003DDAB9 request                    call kind=? id=?
+003DF593 request                    call kind=? id=?
+003E9F59 request                    call kind=? id=?
+003EA868 sizeof                     call kind=0x15 id=?
+003EA97F request                    call kind=0x15 id=?
+003EAE29 sizeof                     call kind=? id=?
+0050DF9D sizeof                     call kind=? id=?
+0050E039 request                    call kind=? id=?
+0051ED52 sizeof                     call kind=? id=?
+0051ED89 request                    call kind=? id=?
+read  0040AA26 in 0040AA20  cmp byte ptr [rip + 0x2899963], 0  -> 02CA4390
+read  0040AA70 in 0040AA20  movss xmm0, dword ptr [rip + 0x2899924]  -> 02CA439C
+read  0040AA7D in 0040AA20  addss xmm0, dword ptr [rip + 0x2899913]  -> 02CA4398
+read  0040AA8A in 0040AA20  movss xmm0, dword ptr [rip + 0x28998f2]  -> 02CA4384
+read  0040AA97 in 0040AA20  addss xmm0, dword ptr [rip + 0x28998e1]  -> 02CA4380
+read  0040AAB0 in 0040AA20  movzx eax, byte ptr [rip + 0x28998d9]  -> 02CA4390
+read  0040AAB9 in 0040AA20  movzx eax, byte ptr [rip + 0x28998d1]  -> 02CA4391
+read  0040AAC3 in 0040AA20  movzx eax, byte ptr [rip + 0x28998c8]  -> 02CA4392
+WRITE 0040AAFA in 0040AAD0  mov byte ptr [rip + 0x2899890], dil  -> 02CA4391
+WRITE 0040AB01 in 0040AAD0  mov byte ptr [rip + 0x289988b], bl  -> 02CA4392
+read  0040AE4E in 0040ACF0  cmp byte ptr [rip + 0x289953b], 0  -> 02CA4390
+read  0040AE8D in 0040ACF0  movss xmm0, dword ptr [rip + 0x2899507]  -> 02CA439C
+read  0040AE9A in 0040ACF0  addss xmm0, dword ptr [rip + 0x28994f6]  -> 02CA4398
+read  0040AEA7 in 0040ACF0  movss xmm0, dword ptr [rip + 0x28994d5]  -> 02CA4384
+read  0040AEB4 in 0040ACF0  addss xmm0, dword ptr [rip + 0x28994c4]  -> 02CA4380
+WRITE 0040B3B0 in 0040B180  mov byte ptr [rip + 0x2898fda], cl  -> 02CA4390
+WRITE 0040B3CD in 0040B180  movss dword ptr [rip + 0x2898fb3], xmm0  -> 02CA4388
+WRITE 0040B3DB in 0040B180  movss dword ptr [rip + 0x2898f9d], xmm0  -> 02CA4380
+WRITE 0040B3E9 in 0040B180  movss dword ptr [rip + 0x2898f93], xmm0  -> 02CA4384
+WRITE 0040B3F7 in 0040B180  movss dword ptr [rip + 0x2898f99], xmm0  -> 02CA4398
+WRITE 0040B405 in 0040B180  movss dword ptr [rip + 0x2898f8f], xmm0  -> 02CA439C
+WRITE 0040B417 in 0040B180  movss dword ptr [rip + 0x2898f6d], xmm0  -> 02CA438C
+WRITE 0040B41F in 0040B180  mov dword ptr [rip + 0x2898f6f], eax  -> 02CA4394
+read  0040D9DA in 0040D890  cmp byte ptr [rip + 0x28969af], 0  -> 02CA4390
+read  0040DA11 in 0040D890  movss xmm0, dword ptr [rip + 0x2896983]  -> 02CA439C
+read  0040DA1E in 0040D890  addss xmm0, dword ptr [rip + 0x2896972]  -> 02CA4398
+read  0040DA2B in 0040D890  movss xmm0, dword ptr [rip + 0x2896951]  -> 02CA4384
+read  0040DA38 in 0040D890  addss xmm0, dword ptr [rip + 0x2896940]  -> 02CA4380
+WRITE 0040DB87 in 0040DB70  mov byte ptr [rip + 0x2896802], 0  -> 02CA4390
+read  00410010 in 0040FF30  cmp byte ptr [rip + 0x2894379], 0  -> 02CA4390
+read  00410027 in 0040FF30  movss xmm1, dword ptr [rip + 0x289435d]  -> 02CA438C
+read  00410053 in 0040FF30  cmp dword ptr [rip + 0x289433a], 2  -> 02CA4394
+read  00410092 in 0040FF30  movss xmm0, dword ptr [rip + 0x28942ee]  -> 02CA4388
+writer functions: {'0040AAD0': ['02CA4391', '02CA4392'], '0040B180': ['02CA4380', '02CA4384', '02CA4388', '02CA438C', '02CA4390', '02CA4394', '02CA4398', '02CA439C'], '0040DB70': ['02CA4390']}

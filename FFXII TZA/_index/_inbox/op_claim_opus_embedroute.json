@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-EMBED-OWNER-HANDLER-ROUTE-CENSUS",
+ "agent": "OPUS",
+ "note": "Six EMBED children censused from their owner's named handler. TWO DISTINCT RESULTS, both now on the rows: BattleMenuChildWidget1620 (owner handler 002778C0, base formed at 9 sites) and BattleMenuWidget2DC0 (00276D30, 2 sites) ARE read through - 8 and 1 displacements, every one on a row the type already declares and NONE in its gaps, the reads themselves standing as the positive control; WidgetSingleton02B47758_05F0/_02A0/_0460 (003CA860) and PaneSlotWidget0160 (0029BE50) have their base FORMED 3-5 times and NEVER DEREFERENCED, the address handed to a call and dropped, which is a different fact from a base that is never formed. REFUSED, nothing written: HelpMessageSlotRecord0100 (C1=0, the owner's receiver is not tracked) and the five ManagerSingleton0209BE80 sub-objects (neither 00291750 nor the boot battery 0028F8B0 forms their base). ALSO CORRECTED IN THIS CLAIM: the census printer truncated its site list at four, so two cells were first written with short lists and one with an address 003CAA0E I had not read; the printer now lists every site, both cells were stripped and rewritten from a re-run, and the real fifth site is 003CAA31. Claiming @publication to commit fields.tsv and the inbox block.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

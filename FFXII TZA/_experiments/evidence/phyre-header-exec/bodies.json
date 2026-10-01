@@ -1,0 +1,162 @@
+{
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "image_base": "0x120000",
+ "real_bodies_executed": [
+  {
+   "va": "0x160210",
+   "name": "init",
+   "span": "0x160210-0x160245",
+   "sha256": "443b0bb0c15c2cad90577bb0677327e635595ea24fc5bd5c2f780bcaa37a831f"
+  },
+  {
+   "va": "0x17d260",
+   "name": "alloc_t",
+   "span": "0x17D260-0x17D26C",
+   "sha256": "5e57cc4fcd9ad527508e29077f6d5e1f7d6a39ddf5b123833bb5cdb06017acc8"
+  },
+  {
+   "va": "0x584730",
+   "name": "free_t",
+   "span": "0x584730-0x58473A",
+   "sha256": "6ac7b050e0e64a7a436360bb01108816e4dd7651246cfb2e07b413de21d84f47"
+  },
+  {
+   "va": "0x597690",
+   "name": "ctor",
+   "span": "0x597690-0x597728",
+   "sha256": "d3e1a89ecbe06b0a96d4f409a5ae96c40f6e40f76ffe6e7495e644814362690b"
+  },
+  {
+   "va": "0x59a3b0",
+   "name": "loader",
+   "span": "0x59A3B0-0x59A5FD",
+   "sha256": "15402f06bfed9ab0e7dca29d6d76d2451bfcb0b88d940cfb029216715bd9feb6"
+  },
+  {
+   "va": "0x59a6f0",
+   "name": "nsread",
+   "span": "0x59A6F0-0x59A764",
+   "sha256": "c9ef8e9be04b517ad890271da16b47851b672babeee784bf4bb7866068694118"
+  },
+  {
+   "va": "0x59a780",
+   "name": "nsrec24",
+   "span": "0x59A780-0x59A8A6",
+   "sha256": "e72090fb044ae5ba8518558404cf8083b5fcbfb0a2267c5c71858de4525b4c97"
+  },
+  {
+   "va": "0x59a8b0",
+   "name": "nsdwtab",
+   "span": "0x59A8B0-0x59A9A6",
+   "sha256": "78e1877ee5905cf03a499daed76e50b47cc1490942f76b4ed456db6e9afd8962"
+  },
+  {
+   "va": "0x59c180",
+   "name": "nsswap",
+   "span": "0x59C180-0x59C24A",
+   "sha256": "6f018007b2cbd4f85d9cfa6c9c099be5850b0207c9f5bc6c1f3ba8bb46a215e0"
+  },
+  {
+   "va": "0x59fdb0",
+   "name": "swengine",
+   "span": "0x59FDB0-0x59FE16",
+   "sha256": "91ad139c8a2bb24db58665ce480fd509d6f7deda6dba31774f1f8b104f3e7a20"
+  },
+  {
+   "va": "0x632d80",
+   "name": "dinit",
+   "span": "0x632D80-0x632E71",
+   "sha256": "29fc1c6a9386b4efef2dd4a4ad0beab855701992e5b8ab0846997a628fe9a9ef"
+  },
+  {
+   "va": "0x6373d0",
+   "name": "tlsctx",
+   "span": "0x6373D0-0x637432",
+   "sha256": "586369d325473a08b6d762a379df15868b6af55774f886513ac6cc87495f6e5a"
+  },
+  {
+   "va": "0x63ce80",
+   "name": "memnode",
+   "span": "0x63CE80-0x63CF7C",
+   "sha256": "9e55bc658fb3ebfcb0a707edf6f84f504c676c8e75a7e026038d4ca568c29275"
+  },
+  {
+   "va": "0x63dc80",
+   "name": "mslot0",
+   "span": "0x63DC80-0x63DC88",
+   "sha256": "83095bfdb97b7aac6520c1546aa49d79383bc3ecd38a72cccdbc995a6565e1d0"
+  },
+  {
+   "va": "0x63df90",
+   "name": "mslot1",
+   "span": "0x63DF90-0x63DF98",
+   "sha256": "a8ebd0b3c2b2bb5fe5b5a91ef2e65a465de212de2a83eb29633e673c6062ccf6"
+  },
+  {
+   "va": "0x63dfa0",
+   "name": "mslot2",
+   "span": "0x63DFA0-0x63DFA8",
+   "sha256": "9a49e6ffc305bc7355481cec83ee16e030740d7bb3251a35e2109e3b9f163fa5"
+  },
+  {
+   "va": "0x63e2e0",
+   "name": "descswap",
+   "span": "0x63E2E0-0x63E3CD",
+   "sha256": "595d7fb99e9e4f910d59984944cfb4396ddae8372e6f6488b93daecba10cd275"
+  },
+  {
+   "va": "0x67b100",
+   "name": "vgrow",
+   "span": "0x67B100-0x67B17F",
+   "sha256": "4db2aa3c9333b274157e749875915445f6e829619f4c4a3226fc7448f4561556"
+  },
+  {
+   "va": "0x686d00",
+   "name": "id1",
+   "span": "0x686D00-0x686D06",
+   "sha256": "d91dda2c218e90df78d247123aefa24a5bacbd9dc9242075880282f3427d8703"
+  },
+  {
+   "va": "0x69e780",
+   "name": "id2",
+   "span": "0x69E780-0x69E786",
+   "sha256": "c8a51d611477285c294721e7f275c6f35f86141d01a49a752e55b8ac356d472e"
+  },
+  {
+   "va": "0x861eba",
+   "name": "memcpy_t",
+   "span": "0x861EBA-0x861EC0",
+   "sha256": "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03"
+  }
+ ],
+ "stubbed_boundaries": [
+  {
+   "va": "0x19c570",
+   "name": "free"
+  },
+  {
+   "va": "0x19c580",
+   "name": "alloc"
+  },
+  {
+   "va": "0x808b90",
+   "name": "atexit"
+  },
+  {
+   "va": "0x80929c",
+   "name": "lazy_done"
+  },
+  {
+   "va": "0x8092fc",
+   "name": "lazy_init"
+  }
+ ],
+ "fixture_boundaries": [
+  "stream vtbl +0x10 ready / +0x28 read (CODE+0x00): I/O boundary",
+  "member-node graph spliced into desc+0x80 / parent desc+0x80",
+  "member-type vtbl slot+0 swap leaf (CODE+0x60): logs + real bswap",
+  "node vtbl +0x8 getType (CODE+0x90): returns 0",
+  "memcpy IAT slot 0x8C2A68 -> CODE+0x40",
+  "TLS gs:[0x58] slot array + lazy-state dword 0x2CF94EC"
+ ]
+}

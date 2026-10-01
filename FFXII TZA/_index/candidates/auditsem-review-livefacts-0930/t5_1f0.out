@@ -1,0 +1,70 @@
+  00267A60 sub edx, 1
+  00267A63 jne 0x267a41
+  00267A65 lea esi, [r11*8 + 0x17]
+  00267A6D and esi, 0xfffffff0
+  00267A70 lea edi, [rsi + rsi]
+  00267A73 lea ebx, [rdi + r9]
+  00267A77 mov ecx, ebx
+  00267A79 call qword ptr [r15 + 0x88]
+  00267A80 movsxd r8, ebx
+  00267A83 xor edx, edx
+  00267A85 mov rcx, rax
+  00267A88 mov r14, rax
+  00267A8B call 0x861ec0
+  00267A90 mov eax, dword ptr [rsp + 0x50]
+  00267A94 mov ebx, ebp
+  00267A96 movsxd rcx, esi
+  00267A99 mov r10d, ebp
+  00267A9C add rcx, r14
+  00267A9F movsxd rdx, edi
+  00267AA2 add rdx, r14
+  00267AA5 mov dword ptr [r14], eax
+  00267AA8 mov qword ptr [r15 + 0x1f0], rcx
+  00267AAF test r13d, r13d
+  00267AB2 jle 0x267b3a
+  00267AB8 mov rdi, rbp
+--- 0046BB50..0046BB82 and 0046BD10..0046BD45
+  0046BB4F je 0x46bb78
+  0046BB51 movzx ecx, word ptr [rdi + 0x16]
+  0046BB55 mov eax, r14d
+  0046BB58 and ecx, 0x7ff
+  0046BB5E and eax, 0xf
+  0046BB61 shl ecx, 4
+  0046BB64 or ecx, eax
+  0046BB66 movzx eax, bx
+  0046BB69 shl ecx, 0x10
+  0046BB6C or ecx, eax
+  0046BB6E mov dword ptr [r12], ecx
+  0046BB72 add r12, 4
+  0046BB76 inc ebp
+  0046BB78 inc ebx
+  0046BB7A cmp ebx, esi
+  0046BB7C jl 0x46bb26
+  0046BB7E mov dword ptr [rsp + 0x70], ebp
+  0046BB82 movzx esi, word ptr [r13 + 0x1de]
+  0046BCF0 or byte ptr [rbx + 0xa], 2
+  0046BCF4 jmp 0x46bd08
+  0046BCF6 mov rcx, rbx
+  0046BCF9 call 0x317d80
+  0046BCFE mov edi, eax
+  0046BD00 test eax, eax
+  0046BD02 jne 0x46bd08
+  0046BD04 or byte ptr [rbx + 0xa], 1
+  0046BD08 test edi, edi
+  0046BD0A je 0x46bc81
+  0046BD10 movzx ecx, word ptr [rbx + 0x16]
+  0046BD14 mov ebp, dword ptr [rsp + 0x70]
+  0046BD18 and ecx, 0x7ff
+  0046BD1E mov eax, dword ptr [rsp + 0x60]
+  0046BD22 shl ecx, 4
+  0046BD25 and eax, 0xf
+  0046BD28 or ecx, eax
+  0046BD2A movzx eax, si
+  0046BD2D shl ecx, 0x10
+  0046BD30 or ecx, eax
+  0046BD32 mov dword ptr [r12], ecx
+  0046BD36 add r12, 4
+  0046BD3A inc ebp
+  0046BD3C mov dword ptr [rsp + 0x70], ebp
+  0046BD40 jmp 0x46bc85
+  0046BD45 mov dword ptr [rax + 0x1f8], 0

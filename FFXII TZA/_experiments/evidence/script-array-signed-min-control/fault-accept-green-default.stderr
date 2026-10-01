@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-array-signed-min-control\check.py", line 20, in <module>
+    if '--fault-accept-green-default' in sys.argv and d==-2147483648:assert raw['consumer_default']['returncode']!=0,'Green default does not cover the signed-min dimension'
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Green default does not cover the signed-min dimension

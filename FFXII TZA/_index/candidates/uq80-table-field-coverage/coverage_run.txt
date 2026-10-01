@@ -1,0 +1,75 @@
+UQ-80 coverage census - battle_pack.bin (us), 23 tables
+controls:
+  [PASS] C1 shapes: 23 sections read from the pack reproduce the registry/encoded-id stated count x size
+  [PASS] C2 file names via 01E4D830 match all 23 directory offsets
+  [PASS] C3 price_data rows equal to 1: 45 (stated) - measured 45
+       note: the other 83 rows run 15 .. 999999 (the encoded-id page says 30 .. 11,160)
+  [PASS] C4 questreward_data non-empty rows are exactly 128..172 - measured 128..172 (45)
+  [PASS] C5 action_data +0x15..+0x17 zero on 543 and +0x26 = 27..39 on 13 rows - zero=True esper=[27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+  [PASS] C6a 002FD530 row reads = {u32 +0, u16 +4, +6, +8, +0xA} (encoded-id 2.8) - [(0, 4), (4, 2), (6, 2), (8, 2), (10, 2)]
+  [PASS] C6b 002FD780 row reads = three (u16 item, u8 count) pairs from +4 (bazaar page 2.1) - [(4, 2), (6, 1), (8, 2), (10, 1), (12, 2), (14, 1)]
+  [PASS] C6c 002FD640 row reads = six u16 ids +0..+0xA (encoded-id 2.8) - [(0, 2), (2, 2), (4, 2), (6, 2), (8, 2), (10, 2)]
+  [PASS] C6d negative: 002FD530 has no row read for a slot it does not load (02EBF068) - []
+  [PASS] C7 reader check: 002FD5A9 = dword [row+0] accepted; wrong width and wrong disp rejected
+  [PASS] C8 pad check: dougu +0 varies (52 values), dougu +1 constant
+  [PASS] C9 action-row joins: dougu +7 64/64, maho +2 81/81, waza +2 24/24 - (64, 81, 24)
+  [PASS] C10 002D01A0 compares query +0x30 of two ids (002D01CE, 002D01D8)
+manifest checks:
+  [PASS] chr_data          manifest rows consistent with the pack and the image
+  [PASS] dougu_data        manifest rows consistent with the pack and the image
+  [PASS] eventitem_data    manifest rows consistent with the pack and the image
+  [PASS] maho_data         manifest rows consistent with the pack and the image
+  [PASS] waza_data         manifest rows consistent with the pack and the image
+  [PASS] gambit_data       manifest rows consistent with the pack and the image
+  [PASS] m_daiji           manifest rows consistent with the pack and the image
+  [PASS] g_daiji           manifest rows consistent with the pack and the image
+  [PASS] q_daiji           manifest rows consistent with the pack and the image
+  [PASS] eis_data          manifest rows consistent with the pack and the image
+  [PASS] questreward_data  manifest rows consistent with the pack and the image
+  [PASS] price_data        manifest rows consistent with the pack and the image
+  [PASS] menkyo_data       manifest rows consistent with the pack and the image
+  [PASS] horidashi         manifest rows consistent with the pack and the image
+  [PASS] comac_data        manifest rows consistent with the pack and the image
+  [PASS] mgccategory_data  manifest rows consistent with the pack and the image
+  [PASS] license_data      manifest rows consistent with the pack and the image
+  [PASS] attribute_data    manifest rows consistent with the pack and the image
+  [PASS] sobicategory_data manifest rows consistent with the pack and the image
+  [PASS] ability_data      manifest rows consistent with the pack and the image
+  [PASS] eitm_data         manifest rows consistent with the pack and the image
+  [PASS] status_data       manifest rows consistent with the pack and the image
+  [PASS] action_data       manifest rows consistent with the pack and the image
+  reader instructions decoded: 278; pages cited: 17
+coverage (bytes of one record):
+  table             slot      dir    shape        page  pass   pad resid  residue offsets
+  chr_data          02EBF130 +0x44   40 x 128     45    51    21    11  0x07,0x08,0x09,0x2d,0x32,0x74,0x76,0x78,0x7a,0x7b,0x7c
+  dougu_data        02EBF100 +0x4c   64 x 12       3     4     5     0  -
+  eventitem_data    02EBF098 +0x84  512 x 10       3     6     1     0  -
+  maho_data         02EBF0F0 +0x78   81 x 8        3     4     1     0  -
+  waza_data         02EBF0E8 +0x7c   24 x 8        3     4     1     0  -
+  gambit_data       02EBF0E0 +0x24   40 x 64      48     0    16     0  -
+  m_daiji           02EBF090 +0x88   64 x 10       3     4     1     2  0x00,0x01
+  g_daiji           02EBF088 +0x8c   32 x 10       3     4     1     2  0x00,0x01
+  q_daiji           02EBF080 +0x90  416 x 10       3     4     1     2  0x00,0x01
+  eis_data          02EBF070 +0x98  512 x 12      12     0     0     0  -
+  questreward_data  02EBF068 +0x9c  256 x 12      12     0     0     0  -
+  price_data        02EBF060 +0x74  128 x 4        0     4     0     0  -
+  menkyo_data       02EBF0C8 +0x6c   32 x 8        2     2     3     1  0x04
+  horidashi         02EBF058 +0xe8  128 x 36      30     0     6     0  -
+  comac_data        02EBF128 +0x48   21 x 4        2     2     0     0  -
+  mgccategory_data  02EBF110 +0x30    5 x 4        2     2     0     0  -
+  license_data      02EBF038 +0x34  361 x 24      20     4     0     0  -
+  attribute_data    02EBF050 +0xa8    8 x 2        2     0     0     0  -
+  sobicategory_data 02EBF0B0 +0x18   32 x 4        2     2     0     0  -
+  ability_data      02EBF040 +0xec  129 x 8        4     3     1     0  -
+  eitm_data         02EBF0F8 +0x38  557 x 52      15     5    13    19  0x06,0x10,0x1b,0x1c,0x1d,0x1e,0x20,0x21,0x22,0x23,0x24,0x25,0x27,0x2c,0x2d,0x30,0x31,0x32,0x33
+  status_data       02EBF118 +0x40   32 x 40      22     0     4    14  0x11,0x12,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f
+  action_data       02EBF138 +0x3c  543 x 60      37     3    11     9  0x04,0x0a,0x0b,0x1d,0x1f,0x20,0x21,0x28,0x3a
+  -                 02EBF150  not a battle_pack entry (class 4, .ard slot 0) - not measured here
+  -                 02EBF120  not a battle_pack entry (class 3, .ard slot 2) - not measured here
+  -                 02EBF0D8  not a battle_pack entry (class 11, gambit target definitions) - not measured here
+  -                 02EBF0D0  not a battle_pack entry (class 12) - not measured here
+tables fully mapped by existing pages (page + page-declared pads): 4: gambit_data, eis_data, questreward_data, attribute_data
+tables fully mapped after this pass: 15 of 23
+residue: 8 tables, 60 unmapped bytes, named: chr_data 0x07,0x08,0x09,0x2d,0x32,0x74,0x76,0x78,0x7a,0x7b,0x7c; m_daiji 0x00,0x01; g_daiji 0x00,0x01; q_daiji 0x00,0x01; menkyo_data 0x04; eitm_data 0x06,0x10,0x1b,0x1c,0x1d,0x1e,0x20,0x21,0x22,0x23,0x24,0x25,0x27,0x2c,0x2d,0x30,0x31,0x32,0x33; status_data 0x11,0x12,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f; action_data 0x04,0x0a,0x0b,0x1d,0x1f,0x20,0x21,0x28,0x3a
+wrote coverage.tsv
+FAILS: 0

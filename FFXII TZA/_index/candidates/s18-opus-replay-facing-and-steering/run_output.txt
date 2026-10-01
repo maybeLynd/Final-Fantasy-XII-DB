@@ -1,0 +1,10 @@
+select_slot_00269F90                   PASS  {'n': 256, 'violations': 0, 'note': '0/1 select; 2..255 leave the cursor'}
+facing_kind_dispatch                   PASS  {'n': 96, 'violations': 0, 'note': "kind 1 -> ctx+0x38 / +0x48; kind 3 -> the cursor record's +0x34; every other kind writes nothing"}
+rewrap_idempotent                      PASS  {'n': 4103, 'violations': 0, 'note': '0 of 4103 stored headings differ from a single wrap'}
+kind3_steering_record_write            PASS  {'n': 4, 'violations': 0, 'note': "+0xA8 and the +0x50/+0x60/+0x70 sub-records get wrap^3; actor+0x0D bit 5 skips +0x60/+0x70; a body adds +0xF8 and 003DAF20's +0x40/+0x48/+0x4C; dword [ctx2] = -1 skips 003EC260"}
+ED2_commit_block_003EC260              PASS  {'n': 10, 'violations': 0, 'note': "flag 0 stages AND shifts the old triple to +0x250 when it changed; flag 1 copies the new triple to +0x250, then 004288B0 (bit 0x20000 clear) and/or 003B3CA0 ([+0x288] != -1); word +6 != -1 resets; +0x284 == 0 is 'no record'"}
+set_steering_mode_0026AE90             PASS  {'n': 168, 'violations': 0, 'note': 'kind gate; modes 2-4 collapse to 1 when +0x2C == 0.0 (-0.0 too); the mode byte is record +0x29; mode 0 clears actor+0x0D bit 4, runs 002E55C0, zeroes +0x7C'}
+set_movement_mode_0026C120             PASS  {'n': 31, 'violations': 0, 'note': 'mode 4 completes iff 0 <= (int16)countdown <= FrameLimit: the compare is unsigned, a negative countdown never completes'}
+push_pop_002EAB80_002EAAA0             PASS  {'n': 18, 'violations': 0, 'note': 'refusals write nothing; push clones slot 0 -> 1 and leaves slot 0 intact; pop replays shape 0 / 1 only'}
+normalise_loop_003A1C50                PASS  {'n': 5, 'violations': 0, 'note': '-pi and +pi are returned unchanged'}
+9/9 pass (allowed closure 68 functions)

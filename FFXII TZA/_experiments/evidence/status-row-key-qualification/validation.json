@@ -1,0 +1,44 @@
+{
+  "result": "PASS_BOUNDED_A_QUALIFICATION",
+  "rejecting_controls": [
+    {
+      "name": "high byte changed; old first-byte predicate still accepts",
+      "rejected": true
+    },
+    {
+      "name": "four-byte fixed-prefix hypothesis",
+      "rejected": true
+    },
+    {
+      "name": "cited start31E1C0 inside original instruction",
+      "rejected": true
+    },
+    {
+      "name": "cited end31C7FE inside original instruction",
+      "rejected": true
+    },
+    {
+      "name": "plausible shifted string table origin",
+      "rejected": true
+    },
+    {
+      "name": "normalized transcript does not match original bytes",
+      "rejected": true
+    },
+    {
+      "name": "effect read widened to word despite repinned code",
+      "rejected": true
+    }
+  ],
+  "cases": 7,
+  "positive_controls": [
+    "all32 complete two-byte keys",
+    "bank5 count/offsets/full terminated names",
+    "original status-row read widths and registry identities",
+    "counterfactual+2 variation leaves+0 u16 unchanged"
+  ],
+  "old_byte_only_high_byte_corruption_accepted": true,
+  "retained_actual_original_reduce_high_byte_corruption_accepted": true,
+  "native_execution": false,
+  "live_execution": false
+}

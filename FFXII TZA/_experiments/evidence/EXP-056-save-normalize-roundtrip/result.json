@@ -1,0 +1,3283 @@
+{
+  "status": "PASS",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "772670f15b4790f934d19b83e568af7ed09a0317ae5718aa008674fcfc65dca2",
+  "import_identity": {
+    "iat": 9187424,
+    "dll": "api-ms-win-crt-time-l1-1-0.dll",
+    "name": "_time64"
+  },
+  "cases": [
+    {
+      "name": "mode-3-flag-164",
+      "mode": 3,
+      "flag": 164,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "stash",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "00000000000000000000000000000000",
+        "flag": "a4",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a200000000e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177392,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177400,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177402,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177403,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "call",
+          "address": 3280208,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177404,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "write",
+          "address": 1342177408,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342177412,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342177416,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342177420,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342177424,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3285504,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3231168,
+          "args": [
+            1155
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177392,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177400,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177402,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177403,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "call",
+          "address": 3280208,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177404,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "write",
+          "address": 1342177408,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342177412,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342177416,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342177420,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342177424,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3285504,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3231168,
+          "args": [
+            1155
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784141,
+        5784143,
+        5784149,
+        5784153,
+        5784157,
+        5784161,
+        5784165,
+        5784169,
+        5784172,
+        5784176,
+        5784179,
+        3280208,
+        5784184,
+        5784187,
+        5784193,
+        5784199,
+        5784205,
+        5784211,
+        5784217,
+        5784223,
+        5784229,
+        5784235,
+        5784241,
+        5784247,
+        5784253,
+        5784260,
+        5784267,
+        5784271,
+        5784274,
+        3285504,
+        5784279,
+        5784284,
+        5784287,
+        3231168,
+        5784292,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "mode-3-flag-165",
+      "mode": 3,
+      "flag": 165,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "neither",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a5",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a5",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784141,
+        5784143,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "mode-0-flag-164",
+      "mode": 0,
+      "flag": 164,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "neither",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "mode-0-flag-165",
+      "mode": 0,
+      "flag": 165,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "restore",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a5",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "53606d7ab7c4d1deebf805121f2c3946",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 1298717759505548471
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 2,
+          "value": 11295
+        },
+        {
+          "kind": "write",
+          "address": 1342177306,
+          "bytes": 1,
+          "value": 57
+        },
+        {
+          "kind": "write",
+          "address": 1342177307,
+          "bytes": 1,
+          "value": 70
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 2053988435
+        },
+        {
+          "kind": "call",
+          "address": 3317312,
+          "args": [
+            2053988435
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342181956,
+          "bytes": 4,
+          "value": 2929824903
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 3805661371
+        },
+        {
+          "kind": "write",
+          "address": 1342181964,
+          "bytes": 4,
+          "value": 369753327
+        },
+        {
+          "kind": "write",
+          "address": 1342181968,
+          "bytes": 4,
+          "value": 1245524003
+        },
+        {
+          "kind": "write",
+          "address": 1342181972,
+          "bytes": 4,
+          "value": 2121360471
+        },
+        {
+          "kind": "call",
+          "address": 2529824,
+          "args": [
+            1342235200
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342177367,
+          "bytes": 1,
+          "value": 164
+        },
+        {
+          "kind": "call",
+          "address": 3077136,
+          "args": [
+            1342498400
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 31507436,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "call",
+          "address": 2335632,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 1298717759505548471
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 2,
+          "value": 11295
+        },
+        {
+          "kind": "write",
+          "address": 1342177306,
+          "bytes": 1,
+          "value": 57
+        },
+        {
+          "kind": "write",
+          "address": 1342177307,
+          "bytes": 1,
+          "value": 70
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 2053988435
+        },
+        {
+          "kind": "call",
+          "address": 3317312,
+          "args": [
+            2053988435
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342181956,
+          "bytes": 4,
+          "value": 2929824903
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 3805661371
+        },
+        {
+          "kind": "write",
+          "address": 1342181964,
+          "bytes": 4,
+          "value": 369753327
+        },
+        {
+          "kind": "write",
+          "address": 1342181968,
+          "bytes": 4,
+          "value": 1245524003
+        },
+        {
+          "kind": "write",
+          "address": 1342181972,
+          "bytes": 4,
+          "value": 2121360471
+        },
+        {
+          "kind": "call",
+          "address": 2529824,
+          "args": [
+            1342235200
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342177367,
+          "bytes": 1,
+          "value": 164
+        },
+        {
+          "kind": "call",
+          "address": 3077136,
+          "args": [
+            1342498400
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 31507436,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "call",
+          "address": 2335632,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784313,
+        5784317,
+        5784321,
+        5784325,
+        5784329,
+        5784333,
+        5784336,
+        5784340,
+        5784343,
+        5784346,
+        5784349,
+        5784352,
+        3317312,
+        5784357,
+        5784363,
+        5784370,
+        5784376,
+        5784382,
+        5784388,
+        5784394,
+        5784400,
+        5784406,
+        5784412,
+        5784418,
+        5784424,
+        2529824,
+        5784429,
+        5784433,
+        5784440,
+        3077136,
+        5784445,
+        5784452,
+        5784454,
+        5784460,
+        5784467,
+        2335632,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "mode-259-flag-164",
+      "mode": 259,
+      "flag": 164,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "stash",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "00000000000000000000000000000000",
+        "flag": "a4",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a200000000e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177392,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177400,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177402,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177403,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "call",
+          "address": 3280208,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177404,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "write",
+          "address": 1342177408,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342177412,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342177416,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342177420,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342177424,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3285504,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3231168,
+          "args": [
+            1155
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177392,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177400,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177402,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177403,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "call",
+          "address": 3280208,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177404,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "write",
+          "address": 1342177408,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342177412,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342177416,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342177420,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342177424,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3285504,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3231168,
+          "args": [
+            1155
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784141,
+        5784143,
+        5784149,
+        5784153,
+        5784157,
+        5784161,
+        5784165,
+        5784169,
+        5784172,
+        5784176,
+        5784179,
+        3280208,
+        5784184,
+        5784187,
+        5784193,
+        5784199,
+        5784205,
+        5784211,
+        5784217,
+        5784223,
+        5784229,
+        5784235,
+        5784241,
+        5784247,
+        5784253,
+        5784260,
+        5784267,
+        5784271,
+        5784274,
+        3285504,
+        5784279,
+        5784284,
+        5784287,
+        3231168,
+        5784292,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "mode-4-flag-165",
+      "mode": 4,
+      "flag": 165,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "restore",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a5",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "53606d7ab7c4d1deebf805121f2c3946",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 1298717759505548471
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 2,
+          "value": 11295
+        },
+        {
+          "kind": "write",
+          "address": 1342177306,
+          "bytes": 1,
+          "value": 57
+        },
+        {
+          "kind": "write",
+          "address": 1342177307,
+          "bytes": 1,
+          "value": 70
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 2053988435
+        },
+        {
+          "kind": "call",
+          "address": 3317312,
+          "args": [
+            2053988435
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342181956,
+          "bytes": 4,
+          "value": 2929824903
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 3805661371
+        },
+        {
+          "kind": "write",
+          "address": 1342181964,
+          "bytes": 4,
+          "value": 369753327
+        },
+        {
+          "kind": "write",
+          "address": 1342181968,
+          "bytes": 4,
+          "value": 1245524003
+        },
+        {
+          "kind": "write",
+          "address": 1342181972,
+          "bytes": 4,
+          "value": 2121360471
+        },
+        {
+          "kind": "call",
+          "address": 2529824,
+          "args": [
+            1342235200
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342177367,
+          "bytes": 1,
+          "value": 164
+        },
+        {
+          "kind": "call",
+          "address": 3077136,
+          "args": [
+            1342498400
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 31507436,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "call",
+          "address": 2335632,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 1298717759505548471
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 2,
+          "value": 11295
+        },
+        {
+          "kind": "write",
+          "address": 1342177306,
+          "bytes": 1,
+          "value": 57
+        },
+        {
+          "kind": "write",
+          "address": 1342177307,
+          "bytes": 1,
+          "value": 70
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 2053988435
+        },
+        {
+          "kind": "call",
+          "address": 3317312,
+          "args": [
+            2053988435
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342181956,
+          "bytes": 4,
+          "value": 2929824903
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 3805661371
+        },
+        {
+          "kind": "write",
+          "address": 1342181964,
+          "bytes": 4,
+          "value": 369753327
+        },
+        {
+          "kind": "write",
+          "address": 1342181968,
+          "bytes": 4,
+          "value": 1245524003
+        },
+        {
+          "kind": "write",
+          "address": 1342181972,
+          "bytes": 4,
+          "value": 2121360471
+        },
+        {
+          "kind": "call",
+          "address": 2529824,
+          "args": [
+            1342235200
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342177367,
+          "bytes": 1,
+          "value": 164
+        },
+        {
+          "kind": "call",
+          "address": 3077136,
+          "args": [
+            1342498400
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 31507436,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "call",
+          "address": 2335632,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784313,
+        5784317,
+        5784321,
+        5784325,
+        5784329,
+        5784333,
+        5784336,
+        5784340,
+        5784343,
+        5784346,
+        5784349,
+        5784352,
+        3317312,
+        5784357,
+        5784363,
+        5784370,
+        5784376,
+        5784382,
+        5784388,
+        5784394,
+        5784400,
+        5784406,
+        5784412,
+        5784418,
+        5784424,
+        2529824,
+        5784429,
+        5784433,
+        5784440,
+        3077136,
+        5784445,
+        5784452,
+        5784454,
+        5784460,
+        5784467,
+        2335632,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "seed-0-0",
+      "mode": 0,
+      "flag": 164,
+      "time": 0,
+      "timer": 0,
+      "path": "neither",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "expected_seed": 5859909,
+      "observed_seed": 5859909,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 5859909
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 5859909
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "seed-18446744073709551615-1",
+      "mode": 0,
+      "flag": 164,
+      "time": 18446744073709551615,
+      "timer": 1,
+      "path": "neither",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "expected_seed": 5860475,
+      "observed_seed": 5860475,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 5860475
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 5860475
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "seed-9223372036854775808-4294967295",
+      "mode": 0,
+      "flag": 164,
+      "time": 9223372036854775808,
+      "timer": 4294967295,
+      "path": "neither",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "expected_seed": 5859309,
+      "observed_seed": 5859309,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 5859309
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 5859309
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "roundtrip-stash",
+      "mode": 3,
+      "flag": 164,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "stash",
+      "before": {
+        "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a5a5a5a5"
+      },
+      "after": {
+        "active": "00000000000000000000000000000000",
+        "flag": "a4",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a200000000e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177392,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177400,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177402,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177403,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "call",
+          "address": 3280208,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177404,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "write",
+          "address": 1342177408,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342177412,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342177416,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342177420,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342177424,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3285504,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3231168,
+          "args": [
+            1155
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177392,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177400,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177402,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177403,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "call",
+          "address": 3280208,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177404,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "write",
+          "address": 1342177408,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342177412,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342177416,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342177420,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342177424,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3285504,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "call",
+          "address": 3231168,
+          "args": [
+            1155
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784141,
+        5784143,
+        5784149,
+        5784153,
+        5784157,
+        5784161,
+        5784165,
+        5784169,
+        5784172,
+        5784176,
+        5784179,
+        3280208,
+        5784184,
+        5784187,
+        5784193,
+        5784199,
+        5784205,
+        5784211,
+        5784217,
+        5784223,
+        5784229,
+        5784235,
+        5784241,
+        5784247,
+        5784253,
+        5784260,
+        5784267,
+        5784271,
+        5784274,
+        3285504,
+        5784279,
+        5784284,
+        5784287,
+        3231168,
+        5784292,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "roundtrip-mode-only-no-flag-set",
+      "mode": 0,
+      "flag": 164,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "neither",
+      "before": {
+        "active": "00000000000000000000000000000000",
+        "flag": "a4",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a200000000e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "after": {
+        "active": "00000000000000000000000000000000",
+        "flag": "a4",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a200000000e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    },
+    {
+      "name": "roundtrip-external-flag-set",
+      "mode": 0,
+      "flag": 165,
+      "time": 1311768467463790320,
+      "timer": 4194304,
+      "path": "restore",
+      "before": {
+        "active": "00000000000000000000000000000000",
+        "flag": "a5",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a200000000e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "after": {
+        "active": "98badcfed7e4f1fe0b1825323f4c5966",
+        "flag": "a4",
+        "stash": "d7e4f1fe0b1825323f4c596698badcfe7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+        "battle_flag": "a4a5a5a5"
+      },
+      "expected_seed": 2598796717,
+      "observed_seed": 2598796717,
+      "events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177306,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177307,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "call",
+          "address": 3317312,
+          "args": [
+            4275878552
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342181956,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342181964,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342181968,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342181972,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "call",
+          "address": 2529824,
+          "args": [
+            1342235200
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342177367,
+          "bytes": 1,
+          "value": 164
+        },
+        {
+          "kind": "call",
+          "address": 3077136,
+          "args": [
+            1342498400
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 31507436,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "call",
+          "address": 2335632,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "expected_events": [
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3077696,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 3753040,
+          "args": []
+        },
+        {
+          "kind": "write",
+          "address": 1342177296,
+          "bytes": 8,
+          "value": 3613320715835663575
+        },
+        {
+          "kind": "write",
+          "address": 1342177304,
+          "bytes": 2,
+          "value": 19519
+        },
+        {
+          "kind": "write",
+          "address": 1342177306,
+          "bytes": 1,
+          "value": 89
+        },
+        {
+          "kind": "write",
+          "address": 1342177307,
+          "bytes": 1,
+          "value": 102
+        },
+        {
+          "kind": "write",
+          "address": 1342177292,
+          "bytes": 4,
+          "value": 4275878552
+        },
+        {
+          "kind": "call",
+          "address": 3317312,
+          "args": [
+            4275878552
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342181956,
+          "bytes": 4,
+          "value": 2727708795
+        },
+        {
+          "kind": "write",
+          "address": 1342181960,
+          "bytes": 4,
+          "value": 3603545263
+        },
+        {
+          "kind": "write",
+          "address": 1342181964,
+          "bytes": 4,
+          "value": 184414435
+        },
+        {
+          "kind": "write",
+          "address": 1342181968,
+          "bytes": 4,
+          "value": 1043407895
+        },
+        {
+          "kind": "write",
+          "address": 1342181972,
+          "bytes": 4,
+          "value": 1919244363
+        },
+        {
+          "kind": "call",
+          "address": 2529824,
+          "args": [
+            1342235200
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 1342177367,
+          "bytes": 1,
+          "value": 164
+        },
+        {
+          "kind": "call",
+          "address": 3077136,
+          "args": [
+            1342498400
+          ]
+        },
+        {
+          "kind": "write",
+          "address": 31507436,
+          "bytes": 4,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "address": 1358977796,
+          "bytes": 4,
+          "value": 2779096484
+        },
+        {
+          "kind": "call",
+          "address": 2335632,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "call",
+          "address": 3237904,
+          "args": []
+        },
+        {
+          "kind": "call",
+          "address": 1627389952,
+          "args": [
+            0
+          ]
+        },
+        {
+          "kind": "seed-tail",
+          "address": 3644656,
+          "seed": 2598796717
+        }
+      ],
+      "visited": [
+        5784080,
+        5784085,
+        5784090,
+        5784091,
+        5784095,
+        3077696,
+        5784100,
+        5784103,
+        3077696,
+        5784108,
+        5784111,
+        3753040,
+        5784116,
+        5784118,
+        5784120,
+        5784122,
+        5784126,
+        5784129,
+        5784132,
+        5784135,
+        5784297,
+        5784299,
+        5784305,
+        5784307,
+        5784313,
+        5784317,
+        5784321,
+        5784325,
+        5784329,
+        5784333,
+        5784336,
+        5784340,
+        5784343,
+        5784346,
+        5784349,
+        5784352,
+        3317312,
+        5784357,
+        5784363,
+        5784370,
+        5784376,
+        5784382,
+        5784388,
+        5784394,
+        5784400,
+        5784406,
+        5784412,
+        5784418,
+        5784424,
+        2529824,
+        5784429,
+        5784433,
+        5784440,
+        3077136,
+        5784445,
+        5784452,
+        5784454,
+        5784460,
+        5784467,
+        2335632,
+        5784472,
+        3237904,
+        5784477,
+        5784479,
+        1627389952,
+        5784485,
+        5784491,
+        5784495,
+        5784498,
+        5784500,
+        5784510,
+        5784514,
+        5784516,
+        5784521,
+        5784526,
+        5784530,
+        5784531,
+        3644656
+      ],
+      "memory_matches": true,
+      "matches": true
+    }
+  ],
+  "mask_order_mutant": {
+    "name": "mutant-masks-after-timer-add",
+    "mode": 0,
+    "flag": 164,
+    "time": 1311768467463790320,
+    "timer": 4194304,
+    "path": "neither",
+    "before": {
+      "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+      "flag": "a4",
+      "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+      "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+      "battle_flag": "a5a5a5a5"
+    },
+    "after": {
+      "active": "a3b0bdcad7e4f1fe0b1825323f4c5966",
+      "flag": "a4",
+      "stash": "b7c4d1deebf805121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e",
+      "fields": "7b8895a2afbcc9d6e3f0fd0a1724313e4b586572",
+      "battle_flag": "a5a5a5a5"
+    },
+    "expected_seed": 2598796717,
+    "observed_seed": 451313069,
+    "events": [
+      {
+        "kind": "call",
+        "address": 3077696,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 3077696,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 3753040,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 3237904,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 1627389952,
+        "args": [
+          0
+        ]
+      },
+      {
+        "kind": "seed-tail",
+        "address": 3644656,
+        "seed": 451313069
+      }
+    ],
+    "expected_events": [
+      {
+        "kind": "call",
+        "address": 3077696,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 3077696,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 3753040,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 3237904,
+        "args": []
+      },
+      {
+        "kind": "call",
+        "address": 1627389952,
+        "args": [
+          0
+        ]
+      },
+      {
+        "kind": "seed-tail",
+        "address": 3644656,
+        "seed": 2598796717
+      }
+    ],
+    "visited": [
+      5784080,
+      5784085,
+      5784090,
+      5784091,
+      5784095,
+      3077696,
+      5784100,
+      5784103,
+      3077696,
+      5784108,
+      5784111,
+      3753040,
+      5784116,
+      5784118,
+      5784120,
+      5784122,
+      5784126,
+      5784129,
+      5784132,
+      5784135,
+      5784297,
+      5784299,
+      5784305,
+      5784307,
+      5784472,
+      3237904,
+      5784477,
+      5784479,
+      1627389952,
+      5784485,
+      5784491,
+      5784495,
+      5784498,
+      5784500,
+      5784510,
+      5784512,
+      5784516,
+      5784521,
+      5784526,
+      5784530,
+      5784531,
+      3644656
+    ],
+    "memory_matches": true,
+    "matches": false
+  }
+}

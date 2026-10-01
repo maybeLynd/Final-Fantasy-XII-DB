@@ -1,0 +1,115 @@
+== CON-185
+001EC680  or        eax, 0xffffffff
+001EC683  cmp       ecx, 4
+001EC686  cmova     ecx, eax
+001EC689  mov       dword ptr [rip + 0x1c11d7d], ecx   ; -> 01DFE40C u32=FFFFFFFF f32=nan
+001EC68F  ret       
+001EC690  inc       dword ptr [rip + 0x1d96c2e]   ; -> 01F832C4 (virtual tail / unmapped)
+001EC696  ret       
+001EC697  int3      
+001EC698  int3      
+001EC699  int3      
+001EC69A  int3      
+001EC69B  int3      
+001EC69C  int3      
+001EC69D  int3      
+001EC69E  int3      
+001EC69F  int3      
+callers of 001EC680: rel32 ['00354B63 call', '00354ED0 call'] jcc [] data {'abs64': [], 'rva32': []}
+callers of 001EC6A0 (pusher thunk): rel32 ['0026B775 call', '00354B6D call', '00354EDA call'] jcc []
+  -- window before 0026B775
+0026B75D  call      0x314010
+0026B762  mov       ecx, ebx
+0026B764  call      0x314df0
+0026B769  mov       rax, qword ptr [rip + 0x1e2e600]   ; -> 02099D70 (virtual tail / unmapped)
+0026B770  mov       edx, ebx
+0026B772  mov       ecx, dword ptr [rax + 0x28]
+0026B775  call      0x1ec6a0
+  -- window before 00354B6D
+00354B55  inc       dword ptr [rbp - 0x74dd8b40]
+00354B5B  retf      
+00354B5C  call      0x332130
+00354B61  mov       ecx, ebx
+00354B63  call      0x1ec680
+00354B68  or        edx, 0xffffffff
+00354B6B  mov       ecx, ebx
+00354B6D  call      0x1ec6a0
+  -- window before 00354EDA
+00354EC2  inc       dword ptr [rbp - 0x74dd8b40]
+00354EC8  retf      
+00354EC9  call      0x332130
+00354ECE  mov       ecx, ebx
+00354ED0  call      0x1ec680
+00354ED5  or        edx, 0xffffffff
+00354ED8  mov       ecx, ebx
+00354EDA  call      0x1ec6a0
+001CD0E0 decoded to 001CFCEC (2251 insns)
+  base 001CD26E mov ebx, dword ptr [rsi + rax*4 + 0x1e632b0]
+  base 001CD375 mov eax, dword ptr [rsi + r8*4 + 0x1e632b0]
+  base 001CD3AC mov ebx, dword ptr [rsi + r8*4 + 0x1e632b0]
+  rip  001CD404 mov esi, dword ptr [rip + 0x1db5eba]
+  base 001CD865 mov edi, dword ptr [rsi + rax*4 + 0x1e632b0]
+  rip  001CD892 mov eax, dword ptr [rip + 0x1db5a2c]
+001CD0E0 counter-array accesses: 6
+== CON-186
+02B3F53C: 2 refs
+   003AED76  or eax, dword ptr [rip + 0x27907c0] (4B)
+   003AF30B  mov dword ptr [rip + 0x279022b], eax (4B)
+02B3F540: 3 refs
+   003AEFA5  cmp dword ptr [rip + 0x2790595], eax (4B)
+   003AF305  mov dword ptr [rip + 0x2790235], eax (4B)
+   003AF330  mov dword ptr [rip + 0x279020a], ecx (4B)
+003AED70  mov       eax, dword ptr [rcx + 0x28]
+003AED73  mov       r9, rdx
+003AED76  or        eax, dword ptr [rip + 0x27907c0]   ; -> 02B3F53C (virtual tail / unmapped)
+003AED7C  mov       r8, rcx
+003AED7F  jne       0x3aeda5
+003AED81  cmp       dword ptr [rcx], eax
+003AED83  je        0x3aeda5
+003AED85  mov       rcx, qword ptr [rip + 0x27907a4]   ; -> 02B3F530 (virtual tail / unmapped)
+003AED8C  xor       r11d, r11d
+003AED8F  mov       edx, r11d
+003AED92  cmp       byte ptr [rcx], r11b
+003AED95  je        0x3aeda8
+003AED97  add       rcx, 0x60
+003AED9B  inc       edx
+003AED9D  cmp       edx, 0x80
+003AEDA3  jb        0x3aed92
+003AEDA5  xor       eax, eax
+003AEDA7  ret       
+003AEDA8  movups    xmm0, xmmword ptr [r9]
+003AEDAC  mov       eax, dword ptr [rip + 0x2790786]   ; -> 02B3F538 (virtual tail / unmapped)
+003AEDB2  mov       r10d, 1
+003AEDB8  inc       eax
+003AEDBA  cmp       eax, 0xffffff
+---
+003AEF90  mov       qword ptr [rsp + 0x18], rdi
+003AEF95  push      r12
+003AEF97  push      r14
+003AEF99  push      r15
+003AEF9B  sub       rsp, 0x30
+003AEF9F  mov       r12, qword ptr [rcx + 8]
+003AEFA3  xor       eax, eax
+003AEFA5  cmp       dword ptr [rip + 0x2790595], eax   ; -> 02B3F540 (virtual tail / unmapped)
+003AEFAB  mov       r15, r8
+003AEFAE  mov       qword ptr [rdx], rax
+003AEFB1  mov       r14, rdx
+003AEFB4  mov       qword ptr [rdx + 8], rax
+003AEFB8  mov       rdi, rcx
+003AEFBB  mov       qword ptr [r8], rax
+003AEFBB  mov       qword ptr [r8], rax
+003AEFBE  mov       qword ptr [r8 + 8], rax
+003AEFC2  jne       0x3af20f
+003AEFC8  cmp       dword ptr [rcx], eax
+003AEFCA  je        0x3af20f
+003AEFD0  mov       qword ptr [rsp + 0x50], rbx
+003AEFD5  mov       rbx, qword ptr [rcx + 0x18]
+003AEFD9  test      rbx, rbx
+003AEFDC  je        0x3af20a
+003AEFE2  movaps    xmmword ptr [rsp + 0x20], xmm6
+003AEFE7  movsd     xmm6, qword ptr [rip + 0x193cd91]   ; -> 01CEBD80 u32=FFFFFFFF f32=nan
+003AEFEF  mov       qword ptr [rsp + 0x58], rsi
+003AEFF4  movzx     eax, word ptr [rbx + 0x22]
+003AEFF8  cmp       ax, 0x16
+003AEFFC  jne       0x3af040
+---

@@ -1,0 +1,99 @@
+{
+  "method": "A verified immutable65 original data; no bytecode/VM/native/guest/live execution",
+  "question": "Does the tagged logical group contain the assignment to the exact original variable, or point to a following different statement/boundary?",
+  "reference": {
+    "parent_commit": null,
+    "parent_status": "FROZEN_ORIGINAL_INPUTS_PUBLICATION_PENDING; no automatic acceptance",
+    "parent_manifest_sha256": "9d188e909afb357a44436b8bd37e0dee00a73e620d253cd15379eba693e33ce0",
+    "files": [
+      {
+        "path": "retained/evctrl.dbg",
+        "sha256": "486de68542a264cc1fbc57e13b1569613a16abd3aa3c4e297e78a328b8759c06",
+        "bytes": 126112
+      },
+      {
+        "path": "retained/evctrl.ebp",
+        "sha256": "78e7a491e6a544f537e61600ad6df7e9e7fb756c34e34dbb0639a343fb817f02",
+        "bytes": 38720
+      },
+      {
+        "path": "retained/evctrl.sbn",
+        "sha256": "512230d84541062b855758615e44888c557bcf0933fbf7c933fa602e023432f5",
+        "bytes": 57816
+      },
+      {
+        "path": "retained/selected-sbn-functions.py",
+        "sha256": "22eef4adf4f9fb130ffa1b9bd9d1fe6c7fa1927121e30f6b2ac257019c3e5d48",
+        "bytes": 602
+      },
+      {
+        "path": "retained/parent61-raw.json",
+        "sha256": "0aa54d669023bd1731270cd00d2bb41a12a14eee3f2c1f7571d80e388e1fe7c3",
+        "bytes": 68726
+      }
+    ],
+    "exe_identity_from65": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+  },
+  "tools": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "interpreter": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "codec_tool_identity_sha256": "e40e17b8e28e0b245a77b7ccfbf1362fafee6e03e11d7a4c1ce0a7cddd22da64"
+  },
+  "driver_sha256": "4010347eb186e2996d4a2ecf10ff1d17826f120ba54b04db36d25e36c548bcfa",
+  "cases": [
+    {
+      "scope": 1,
+      "push_pc": 5391,
+      "pop_pc": 5394,
+      "code_offset": 13862,
+      "code_hex": "4f0100496100",
+      "q0_offset": 38028,
+      "q0_hex": "4f0400014f0400004f0400004f0400014f0400004f040000",
+      "tagged_line": 1103,
+      "block": 0,
+      "value": 1,
+      "operand": 97
+    },
+    {
+      "scope": 1,
+      "push_pc": 5595,
+      "pop_pc": 5598,
+      "code_offset": 14066,
+      "code_hex": "4f0000496100",
+      "q0_offset": 38844,
+      "q0_hex": "6a0400016a0400006a0400006a0400016a0400006a040000",
+      "tagged_line": 1130,
+      "block": 0,
+      "value": 0,
+      "operand": 97
+    },
+    {
+      "scope": 5,
+      "push_pc": 1275,
+      "pop_pc": 1278,
+      "code_offset": 16625,
+      "code_hex": "4f6300496100",
+      "q0_offset": 51676,
+      "q0_hex": "750500017505000075050000750500017505000075050000",
+      "tagged_line": 1397,
+      "block": 0,
+      "value": 99,
+      "operand": 97
+    },
+    {
+      "scope": 9,
+      "push_pc": 579,
+      "pop_pc": 582,
+      "code_offset": 20503,
+      "code_hex": "4f6300496100",
+      "q0_offset": 68636,
+      "q0_hex": "de060001de060000de060000de060001de060000de060000",
+      "tagged_line": 1758,
+      "block": 0,
+      "value": 99,
+      "operand": 97
+    }
+  ],
+  "limits": "Four new original PUSHII/POPV pairs;63 single example already known and not replayed. Source-coordinate addressability is distinct from statement attribution; original compiler rule, effects/reachability/ev shared-tail unproved. PC OFF/S19 unchanged/fullL1+L2 NOT_MET"
+}

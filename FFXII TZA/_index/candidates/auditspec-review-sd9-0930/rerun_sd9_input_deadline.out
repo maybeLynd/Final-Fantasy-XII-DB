@@ -1,0 +1,7 @@
+PASS  F1 period P = 0x108 always: 00290180 returns the constant 2, so the 0x13A branch is never taken
+PASS  F2 returns P-acc (mode 3, 00229EA0 = movsx [02064AD3]), 2P-acc, or the distance to the next multiple of P
+PASS  F3 step [022CA5D0]: zero-initialised, references [(3532704, 3532720, 'R'), (3533680, 3533811, 'R')]
+PASS  F4 acc starts 0, gains only the zero step, and is cleared each pass: acc = 0 at every call, so the result is 2P = 528 (P = 264 in dispatcher mode 3)
+PASS  F5 stores only: ['0035E820@0035E877', '0035EB70@0035EC11', '0035E820@0035E871', '0035EB70@0035EBFF']
+PASS  F6 stored pointers: 0; addresses taken below: ['022CA408', '022CA438', '022CA480', '022CA520']; 022CA520 + 0x98 = 022CA5B8 < 022CA5C4
+FAILS 0

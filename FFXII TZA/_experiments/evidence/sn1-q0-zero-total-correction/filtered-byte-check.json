@@ -1,0 +1,129 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "eb04c5f6d817f4d5cd905c51e108109485e1a7f6"
+    },
+    {
+      "path": "corrected-result.json",
+      "git_blob": "4591cc7b8ddafc89069ce9d5db64ce0f065bff43"
+    },
+    {
+      "path": "corrected60-check.py",
+      "git_blob": "cca344428c761abfc68445499683b65fb8e85c8a"
+    },
+    {
+      "path": "default-invocation-receipt.json",
+      "git_blob": "96f34d8f5b7c27ee9df31d9005f0938f5d8112b9"
+    },
+    {
+      "path": "default-invocation.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "default-invocation.stdout",
+      "git_blob": "04b3367972d21695b05641feabb507309df9f802"
+    },
+    {
+      "path": "fault-clamp-missing-line.stderr",
+      "git_blob": "2f0e69d87cd43cff0ca633163734e20ca1347440"
+    },
+    {
+      "path": "fault-clamp-missing-line.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "fault-stale-total.stderr",
+      "git_blob": "09287d613079ae2e3aae580f68576c85df83a06e"
+    },
+    {
+      "path": "fault-stale-total.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "fault-two-padding.stderr",
+      "git_blob": "29664932d5cb2a43b84b409099ed21301957e713"
+    },
+    {
+      "path": "fault-two-padding.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "6ab03298fddd24927111dbf0ab1724de4ce18bf5"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "84a987b0e2e23c8ec50393f5d6879f8e10b85ef0"
+    },
+    {
+      "path": "prepare.py",
+      "git_blob": "89e56919b4e42e5e565c9aee3753e2b8e573f33e"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "153208c5a6344968f6dba5f79600a342b17c5b46"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "883640a6429484921d1a61d53954fb31e74a93d5"
+    },
+    {
+      "path": "regression-controls.json",
+      "git_blob": "880368a39845b5611d3ee52b470bb1d9f4a9fda5"
+    },
+    {
+      "path": "retained/fable-q0_domain.out",
+      "git_blob": "9adb1b649d44d34f9010b62ade920de0e1061db3"
+    },
+    {
+      "path": "retained/fable-q0_domain.py",
+      "git_blob": "0b51cd1e1024af2733f1d29e5aaa2648527b32e9"
+    },
+    {
+      "path": "retained/fable-README.md",
+      "git_blob": "9f997ef8d4f39ec821237756984df10e0cad2789"
+    },
+    {
+      "path": "retained/original60-capture.py",
+      "git_blob": "c359eacdf66b35092617e25cdd18f4da6e037cc3"
+    },
+    {
+      "path": "retained/original60-check.py",
+      "git_blob": "5a5333dc2b5174ad635b6e02fbdadf9f6fbc04cb"
+    },
+    {
+      "path": "retained/original60-default-invocation.stdout",
+      "git_blob": "a28435f5bf34df653482f131791c9fa8282626f0"
+    },
+    {
+      "path": "retained/original60-manifest.json",
+      "git_blob": "b9aeada0e90a1b752ffb952bf84f0659d924c1a0"
+    },
+    {
+      "path": "retained/original60-README.md",
+      "git_blob": "a946117d83012d5a31da5bc9811934128a57dc48"
+    },
+    {
+      "path": "retained/original60-result.json",
+      "git_blob": "5016667333f9639194905c2092fc824b8a5191c0"
+    },
+    {
+      "path": "retained/work60-capture-preimage.py",
+      "git_blob": "c359eacdf66b35092617e25cdd18f4da6e037cc3"
+    },
+    {
+      "path": "retained/work60-check-preimage.py",
+      "git_blob": "5a5333dc2b5174ad635b6e02fbdadf9f6fbc04cb"
+    },
+    {
+      "path": "work60-default-check.py",
+      "git_blob": "e8fc3c9be11e0e2f0e03ffdcc267042c0e8d194e"
+    }
+  ]
+}

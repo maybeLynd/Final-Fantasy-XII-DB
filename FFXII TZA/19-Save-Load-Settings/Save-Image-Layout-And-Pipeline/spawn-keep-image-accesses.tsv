@@ -1,0 +1,38 @@
+function	name	site	disp	kind	instruction	route	note
+00229B40	WorldTransitionSnapshot_CaptureRuntimeState	00229CEB	0x0	addr	lea rcx, [rdi + 0xe440]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233530	0x0	w	mov word ptr [rbx], ax	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	002335B9	0x0	r	movzx eax, word ptr [rcx]	embed SavePayload+0xE240	
+005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	00584434	0x0	addr	lea rcx, [rdi + 0xe440]	embed SavePayload+0xE240	
+00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	005845A3	0x0	addr	lea rcx, [rbx + 0xe440]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	0023353A	0x2	w	mov word ptr [rbx + 2], ax	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	002335C3	0x2	r	movzx eax, word ptr [rcx + 2]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233468	0x10	addr	lea rdx, [rbx + 0x10]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233481	0x10	w	movups xmmword ptr [rdx - 0x80], xmm0	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	0023355C	0x10	addr	lea rdx, [rcx + 0x10]	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	0023356D	0x10	r	movups xmm0, xmmword ptr [rdx]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233489	0x20	w	movups xmmword ptr [rdx - 0x70], xmm1	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	0023357B	0x20	r	movups xmm1, xmmword ptr [rdx - 0x70]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233491	0x30	w	movups xmmword ptr [rdx - 0x60], xmm0	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	00233583	0x30	r	movups xmm0, xmmword ptr [rdx - 0x60]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233499	0x40	w	movups xmmword ptr [rdx - 0x50], xmm1	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	0023358B	0x40	r	movups xmm1, xmmword ptr [rdx - 0x50]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334A1	0x50	w	movups xmmword ptr [rdx - 0x40], xmm0	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	00233593	0x50	r	movups xmm0, xmmword ptr [rdx - 0x40]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334A9	0x60	w	movups xmmword ptr [rdx - 0x30], xmm1	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	0023359B	0x60	r	movups xmm1, xmmword ptr [rdx - 0x30]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334B1	0x70	w	movups xmmword ptr [rdx - 0x20], xmm0	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	002335A3	0x70	r	movups xmm0, xmmword ptr [rdx - 0x20]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334B9	0x80	w	movups xmmword ptr [rdx - 0x10], xmm1	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	002335AB	0x80	r	movups xmm1, xmmword ptr [rdx - 0x10]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233470	0x90	addr	lea rdx, [rdx + 0x80]	embed SavePayload+0xE240	
+00233550	SpawnKeep_RestorePersistenceBank	00233570	0x90	addr	lea rdx, [rdx + 0x80]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334CF	0x10010	addr	lea rcx, [rbx + 0x10010]	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334E7	0x10010	w	movups xmmword ptr [rcx - 0x80], xmm0	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334EF	0x10020	w	movups xmmword ptr [rcx - 0x70], xmm1	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334F7	0x10030	w	movups xmmword ptr [rcx - 0x60], xmm0	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334FF	0x10040	w	movups xmmword ptr [rcx - 0x50], xmm1	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233507	0x10050	w	movups xmmword ptr [rcx - 0x40], xmm0	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	0023350F	0x10060	w	movups xmmword ptr [rcx - 0x30], xmm1	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	00233517	0x10070	w	movups xmmword ptr [rcx - 0x20], xmm0	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	0023351F	0x10080	w	movups xmmword ptr [rcx - 0x10], xmm1	embed SavePayload+0xE240	
+00233440	SpawnKeep_SerializePersistenceBanks	002334D6	0x10090	addr	lea rcx, [rcx + 0x80]	embed SavePayload+0xE240	

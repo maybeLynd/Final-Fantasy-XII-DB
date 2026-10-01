@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-143",
+ "result_refs": [
+  "batch-143: 23 bodies A-measured on 13 bearing hosts (2-A band, 58 members; band-boundary tie took one extra 2-caller member); anchors 4353 (+23), 0 MID; hash clean (3 known unreproduced + 15 standing peer stamp-forms); crossref 2920 findings / 400 dispositioned; neighbour guard ADDS NOTHING (2810->2810)."
+ ],
+ "note": "batch-143 research finish"
+}

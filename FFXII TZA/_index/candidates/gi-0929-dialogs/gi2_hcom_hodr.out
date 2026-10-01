@@ -1,0 +1,86 @@
+PASS battle-text control: bank 5 entry 2 is 'Petrify' :: Petrify
+== A. hcom
+PASS [us] 'hcom' tag 103, five sections, chain ends at the file size 312 :: ['+0x8:0x34', '+0x3c:0x40', '+0x7c:0x60', '+0xdc:0x1c', '+0xf8:0x40']
+PASS [us] section-4 mask carries 0x800661FF's bits :: 0x800661ff
+PASS [de] 'hcom' tag 103, five sections, chain ends at the file size 316 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x40']
+PASS [de] section-4 mask carries 0x800661FF's bits :: 0x800661ff
+PASS [es] 'hcom' tag 103, five sections, chain ends at the file size 316 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x40']
+PASS [es] section-4 mask carries 0x800661FF's bits :: 0x800661ff
+PASS [fr] 'hcom' tag 103, five sections, chain ends at the file size 316 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x40']
+PASS [fr] section-4 mask carries 0x800661FF's bits :: 0x800661ff
+PASS [it] 'hcom' tag 103, five sections, chain ends at the file size 316 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x40']
+PASS [it] section-4 mask carries 0x800661FF's bits :: 0x800661ff
+PASS [in] 'hcom' tag 103, five sections, chain ends at the file size 320 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x44']
+PASS [in] section-4 mask carries 0x800661FF's bits :: 0x800669ff
+PASS [kr] 'hcom' tag 103, five sections, chain ends at the file size 320 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x44']
+PASS [kr] section-4 mask carries 0x800661FF's bits :: 0x800669ff
+PASS [cn] 'hcom' tag 103, five sections, chain ends at the file size 320 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x44']
+PASS [cn] section-4 mask carries 0x800661FF's bits :: 0x800669ff
+PASS [ch] 'hcom' tag 103, five sections, chain ends at the file size 320 :: ['+0x8:0x34', '+0x3c:0x44', '+0x80:0x60', '+0xe0:0x1c', '+0xfc:0x44']
+PASS [ch] section-4 mask carries 0x800661FF's bits :: 0x800669ff
+PASS S0 count 369 = the navigation-map id space; bitmap fills the section
+PASS REGRESSION: every 0xFFFF word the 'dead end' reading saw lies inside section 0's bitmap :: ['0xe', '0x10', '0x14', '0x16', '0x18', '0x1c', '0x1e', '0x20', '0x22', '0x24', '0x26', '0x28', '0x2a', '0x2c', '0x2e', '0x30', '0x32', '0x34', '0x38']
+PASS S1: bestiary count 384 (= the monster hctg family's 384 records, hctg word +0x0E), 14 keyed records :: (384, 14, 384)
+      S1 #0x021 Battery Mimic                type 0 value 341
+      S1 #0x023 Tiny Battery                 type 0 value 341
+      S1 #0x06b Miriam Guardian              type 0 value 2200
+      S1 #0x06d Miriam Facer                 type 0 value 2200
+      S1 #0x0fc Enkidu                       type 1 value 251 (Gilgamesh)
+      S1 #0x116 Ba'Gamnan                    type 0 value 660
+      S1 #0x122 Ahriman                      type 0 value 3200
+      S1 #0x179 Imperial                     type 0 value 253
+      S1 #0x17a Judge Ghis                   type 0 value 1015
+      S1 #0x17b Imperial Elite               type 0 value 966
+      S1 #0x17c Judge Bergan                 type 0 value 2350
+      S1 #0x17d Imperial Armament            type 0 value 3500
+      S1 #0x17e Judge Gabranth               type 0 value 5500
+      S1 #0x17f Doctor Cid                   type 0 value 3500
+PASS S1: Enkidu (#0xFC) counts once Gilgamesh (#0xFB) is defeated
+PASS S1: Judge Gabranth (#0x17E) counts at story progress 5500
+PASS S2: 45 {quest, threshold} pairs over quest ids 0x80..0xAC :: 45
+PASS S3: 11 monsters :: ['Trickster', 'Gilgamesh', 'Behemoth King', 'Fafnir', 'Carrot', 'Deathgaze', 'Yiazmat', 'Hell Wyrm', 'Ultima, the High Seraph', 'Zodiark, Keeper of Precepts', 'Shadowseer']
+PASS S4: us mask 0x800661FF with 14 values 300..16
+PASS [de] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [de] section-4 mask 0x800661ff :: 0x800661ff
+PASS [es] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [es] section-4 mask 0x800661ff :: 0x800661ff
+PASS [fr] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [fr] section-4 mask 0x800661ff :: 0x800661ff
+PASS [it] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [it] section-4 mask 0x800661ff :: 0x800661ff
+PASS [in] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [in] section-4 mask 0x800669ff (counter 11 override 48000) :: 0x800669ff
+PASS [kr] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [kr] section-4 mask 0x800669ff (counter 11 override 48000) :: 0x800669ff
+PASS [cn] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [cn] section-4 mask 0x800669ff (counter 11 override 48000) :: 0x800669ff
+PASS [ch] the section-1 difference is one Rogue Tomato rule (#0xD3, story >= 78) :: [(211, 78)]
+PASS [ch] section-4 mask 0x800669ff (counter 11 override 48000) :: 0x800669ff
+PASS 00315D50 hops 3 time(s) from +8, then reads the section count (00315D80) :: ['movzx eax, word ptr [rdx]', 'movzx eax, word ptr [rax]', 'movzx eax, word ptr [rax]', 'movzx r8d, word ptr [rax + 2]']
+PASS 003154B0 hops 1 time(s) from +8, then reads the section count (0031555E) :: ['movzx eax, word ptr [rcx]', 'movzx r9d, word ptr [rax + 6]']
+PASS 003161A0 hops 1 time(s) from +8, then reads the section count (003161E3) :: ['movzx eax, word ptr [rdx]', 'cmp bp, word ptr [rax + 2]']
+PASS 00316480 hops 2 time(s) from +8, then reads the section count (003164D7) :: ['movzx eax, word ptr [rcx]', 'movzx eax, word ptr [rax]', 'cmp r14w, word ptr [rax + 2]']
+PASS 00315DC0 hops 2 time(s) from +8, then reads the section count (00315E12) :: ['movzx eax, word ptr [rcx]', 'movzx eax, word ptr [rax]', 'movzx r8d, word ptr [rax + 2]']
+PASS 003160C0 hops 0 time(s) from +8, then reads the section count (00316103) :: ['cmp bx, word ptr [rdi + 2]']
+PASS 003165C0 hops four times (003165DA/E3/EC/F5) :: ['movzx eax, word ptr [rdx]', 'movzx eax, word ptr [rax]', 'movzx eax, word ptr [rax]', 'movzx r10d, word ptr [rax]']
+PASS section-1 type nibble: shr ecx,0xc in 003161A0 (00316287) and 003154B0 (003155BE)
+PASS section-2 predicates: cleared bitset +0x1020 (0046B1A0), ordered bitset +0x1000 (0046B240), progress byte +0x1064 (0046B180)
+== B. hodr - the Sky Pirate's Den
+PASS 0056EE10 installs 00572E10 only for page kind 7
+PASS 00572E10's only rip reference is 0056EE7A :: ['0056EE7A']
+PASS hodr: tag 101, 33 records, 12 + 33*32 = file size
+PASS +0 of records 0..29 is a permutation of 0..29; 30/31 are 0xFF, 32 is 0xFE
+PASS REGRESSION: +1 is a depth (all 33 values 0..32 distinct) and is used as (0xFF - v) * 10000 (00572A8B / 00572A8F)
+PASS positive control: the +0x16/+0x17 sweep over 0x570000..0x578000 finds 11 byte reads :: 11
+PASS REGRESSION: every +0x16/+0x17 read is the r9d effect id of the next call, 003B2D80 (no index use) :: [('00572A69', 'r9d', '0x3b2d80'), ('00572AFA', 'r9d', '0x3b2d80'), ('00572B56', 'r9d', '0x3b2d80'), ('0057351C', 'r9d', '0x3b2d80'), ('00573576', 'r9d', '0x3b2d80'), ('005735F5', 'r9d', '0x3b2d80'), ('00573646', 'r9d', '0x3b2d80'), ('00573745', 'r9d', '0x3b2d80'), ('00573799', 'r9d', '0x3b2d80'), ('00573814', 'r9d', '0x3b2d80'), ('00573866', 'r9d', '0x3b2d80')]
+PASS 005734C0 draws the new selection with +0x17 and the old one with +0x16
+PASS groups are gated by 00576E10 = 003154B0(7, i), the award bit at +0x3844
+PASS children anchor through 003165B0 = jmp 003165C0 (called with the record index at 005729BE)
+PASS record 30 anchors to record 0 and sits on its exact position :: (0, (230, 345), (230, 345))
+PASS record 31 anchors to record 16 (id-31 override 16) and sits beside it :: (16, (397, 290), (430, 300))
+      statues: 0:Balthier, 1:Fran, 2:Vayne, 3:Vaan, 4:Basch, 5:Chocobo, 6:Penelo, 7:Gurdy, 8:Ashe, 9:Crystal, 10:Vossler, 11:Rasler, 12:Belias, 13:Gabranth, 14:Migelo, 15:Old Dalan, 16:Ba'Gamnan, 17:Reks, 18:Montblanc, 19:Mimic{9A}, 20:Trickster, 21:Gilgamesh, 22:Behemoth King, 23:Fafnir, 24:Carrot, 25:Deathgaze, 26:Yiazmat, 27:Hell Wyrm, 28:Ultima, 29:Zodiark
+PASS statue 0 is 'Balthier' and its description names Assault Striker
+PASS hcom section 3 entries 0..9 are the statues of achievements 20..29, in order :: (['Trickster', 'Gilgamesh', 'Behemoth King', 'Fafnir', 'Carrot', 'Deathgaze', 'Yiazmat', 'Hell Wyrm', 'Ultima, the High Seraph', 'Zodiark, Keeper of Precepts'], ['Trickster', 'Gilgamesh', 'Behemoth King', 'Fafnir', 'Carrot', 'Deathgaze', 'Yiazmat', 'Hell Wyrm', 'Ultima', 'Zodiark'])
+PASS popup reads +0xA / +0xC as the window position (005727BF / 005727BB)
+PASS pointer at (+2 + +6, +4 + +8) (0057346B / 00573479)
+FAILS 0

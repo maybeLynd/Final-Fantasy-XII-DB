@@ -1,0 +1,129 @@
+{
+  "members": [
+    {
+      "path": "capture.py",
+      "bytes": 6319,
+      "sha256": "18f961bef29c35af3e622d42514e936a0b76453f5195cce7e41f876efa5bf5ad"
+    },
+    {
+      "path": "check.py",
+      "bytes": 4051,
+      "sha256": "a800d5157ff5255b10d3d043f267108e5c1e986b443326e519bda441e3271f6c"
+    },
+    {
+      "path": "current-retained-preimage/one.bin",
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "path": "current-retained-preimage/parent-manifest.json",
+      "bytes": 8157,
+      "sha256": "07d0b975c3b538d9f94f5ffda5e21f0989aea122131b681fb2c54b51b543c316"
+    },
+    {
+      "path": "current-retained-preimage/parent-source.json",
+      "bytes": 18972,
+      "sha256": "3df5bcb608e1b3c373e8ff063d44eacbb126462fd636be54caf37108e504925a"
+    },
+    {
+      "path": "current-retained-preimage/prior-capture.py",
+      "bytes": 7028,
+      "sha256": "f6b818ce9cd6148a424044293919b62e9c9819f031d17540d580c5186887c6bf"
+    },
+    {
+      "path": "current-retained-preimage/reused-observer.txt",
+      "bytes": 2569,
+      "sha256": "01c34e5fef9a6b2f5c09751e1150f482be4ff14985709ae485cf8eb7b28c9383"
+    },
+    {
+      "path": "current-retained-preimage/rng-streams.md",
+      "bytes": 53735,
+      "sha256": "e39cf57cb42f6a9882900bf1ff5ab3a8dda65745be9b9f39e22db4286f486d2b"
+    },
+    {
+      "path": "current-retained-preimage/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "current-retained-preimage/window.bin",
+      "bytes": 58,
+      "sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8"
+    },
+    {
+      "path": "FAILURE.json",
+      "bytes": 960,
+      "sha256": "bb365e980514e0514d6eb97073fb8a68e1b05043483a4d3fac910829c5e1aa33"
+    },
+    {
+      "path": "moved-raw.json",
+      "bytes": 16865,
+      "sha256": "9f1c0b7c7e569b4fe5b0b7c8bccc18718a31b11475b97b0cc8cf5149d5783dac"
+    },
+    {
+      "path": "moved-validation.json",
+      "bytes": 1029,
+      "sha256": "15e3b10911d0e6d2618414151b2c1a2c3ce0a03eac564c55de32b5877996bc7a"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2779,
+      "sha256": "1c51d0003047c6fa13ccb0adeaea2333fa72b1b4fabd2e94b9d47a721c8acf6a"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 16865,
+      "sha256": "9f1c0b7c7e569b4fe5b0b7c8bccc18718a31b11475b97b0cc8cf5149d5783dac"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4443,
+      "sha256": "0f38428ca6f461676e5c59f8911dea35a134361fddc87c8563265051bc053237"
+    },
+    {
+      "path": "retained/one.bin",
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "bytes": 8157,
+      "sha256": "07d0b975c3b538d9f94f5ffda5e21f0989aea122131b681fb2c54b51b543c316"
+    },
+    {
+      "path": "retained/parent-source.json",
+      "bytes": 18972,
+      "sha256": "3df5bcb608e1b3c373e8ff063d44eacbb126462fd636be54caf37108e504925a"
+    },
+    {
+      "path": "retained/prior-capture.py",
+      "bytes": 7028,
+      "sha256": "f6b818ce9cd6148a424044293919b62e9c9819f031d17540d580c5186887c6bf"
+    },
+    {
+      "path": "retained/reused-observer.txt",
+      "bytes": 2569,
+      "sha256": "01c34e5fef9a6b2f5c09751e1150f482be4ff14985709ae485cf8eb7b28c9383"
+    },
+    {
+      "path": "retained/rng-streams.md",
+      "bytes": 53735,
+      "sha256": "e39cf57cb42f6a9882900bf1ff5ab3a8dda65745be9b9f39e22db4286f486d2b"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/window.bin",
+      "bytes": 58,
+      "sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1029,
+      "sha256": "15e3b10911d0e6d2618414151b2c1a2c3ce0a03eac564c55de32b5877996bc7a"
+    }
+  ]
+}

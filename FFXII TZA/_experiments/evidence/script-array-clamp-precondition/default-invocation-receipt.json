@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "11ab750c90dceda5bfe981570a6f78a26ab5bcf023766443114a7919e0330289",
+  "check_sha256": "12b9fdb960ddb711014eb42c36dda314787675eba42ef081f909d7f9e380ae49",
+  "raw_unchanged_sha256": "1cef65d489f1cc892f35d98f0aadd16e27d2236f62006160804ce0ec5648d57d",
+  "path": "Actual retained raw-default, static original disassembly/calculations only, no original/native/VM/game execution"
+}

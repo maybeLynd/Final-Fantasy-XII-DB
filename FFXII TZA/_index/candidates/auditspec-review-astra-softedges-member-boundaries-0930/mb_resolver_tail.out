@@ -1,0 +1,36 @@
+  0059ECCC test    rcx, rcx
+  0059ECCF je      0x59ece6
+  0059ECD1 mov     rax, qword ptr [rax]
+  0059ECD4 mov     rdx, r13
+  0059ECD7 call    qword ptr [rax + 0x20]
+  0059ECDA mov     edx, dword ptr [rsp + 0x70]
+  0059ECDE cmp     eax, 1
+  0059ECE1 sete    al
+  0059ECE4 jmp     0x59ece8
+  0059ECE6 xor     al, al
+  0059ECE8 test    sil, sil
+  0059ECEB mov     rsi, qword ptr [rsp + 0x38]
+  0059ECF0 jne     0x59ecff
+  0059ECF2 cmp     ebp, 2
+  0059ECF5 jne     0x59ecfb
+  0059ECF7 test    al, al
+  0059ECF9 je      0x59ecff
+  0059ECFB xor     al, al
+  0059ECFD jmp     0x59ed01
+  0059ECFF mov     al, 1
+  0059ED01 mov     rbp, qword ptr [rsp + 0x78]
+  0059ED06 test    rdi, rdi
+  0059ED09 je      0x59ed52
+  0059ED0B test    al, al
+  0059ED0D jne     0x59ed52
+  0059ED0F mov     rax, qword ptr [rdi + 0x10]
+  0059ED13 mov     rcx, qword ptr [rdi + 8]
+  0059ED17 test    rax, rax
+  0059ED1A je      0x59ed22
+  0059ED1C mov     ebx, dword ptr [rax + 0xf4]
+  0059ED22 sub     r14d, dword ptr [rcx + 0x14]
+  0059ED26 mov     rax, qword ptr [rsp + 0x20]
+  0059ED2B sub     r14d, dword ptr [rsp + 0x88]
+  0059ED33 mov     eax, dword ptr [rax + 0xf4]
+  0059ED39 sub     ebx, eax
+  0059ED3B add     dword ptr [r12], r14d

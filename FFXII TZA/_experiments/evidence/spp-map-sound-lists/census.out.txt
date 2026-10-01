@@ -1,0 +1,12 @@
+control: .spp entries: 1 (published 1); .mpk entries: 550 (published 550)
+SPP1 lists: 546 (1 loose .spp + 545 .mpk slot 10; slot 10 without a slot 0: 0)
+magic: [('53505031', 546)]
+count (top): [(5, 61), (7, 60), (9, 40), (15, 38), (1, 34), (19, 30), (3, 28), (13, 27), (4, 26), (8, 26), (48, 25), (32, 22)] ; range 1 .. 48
+SeSep walk with +0x08 as the length: [('mpk: slot-0 bank: walk stops at end with < 16 bytes left', 545), ('loose: embedded bank at +0x0C: walk stops at end with < 16 bytes left', 1)]
+ids: [('chunk ids == listed ids, in order', 546)] [('ids distinct', 546)] ; range [('10000..19999', 3398), ('50000..59999', 2110), ('1000..1999', 1015)] ; bit 31 set [(False, 6523)]
++0x0C: [('mpk: slot-0 bank: +0x0C == other', 443), ('mpk: slot-0 bank: +0x0C == list size', 102), ('loose: embedded bank at +0x0C: +0x0C == start of the embedded bank', 1)]
++0x18 / +0x1A: [('+0x18 == align16(0x20 + 4*count)', 546)] [('+0x18 < +0x1A < +0x0C', 545), ('+0x1A == 0', 1)] ; bytes from +0x18 to the next boundary (top): [(16, 263), (32, 171), (48, 65), (96, 25), (64, 22)] ; from +0x1A to +0x0C (top): [(16, 545)]
+unread header +0x10 u16: [(1, 386), (0, 160)] ; +0x12 u16 (top): [(65535, 160), (0, 30), (577, 25), (524, 22), (526, 17), (553, 16)] ; distinct 47 ; +0x14: [(0, 546)] ; +0x1C: [(0, 546)]
+weather table at +0x1A: u16 n [(3, 226), (1, 189), (2, 130)] ; first min(n,3) indices: [('all 3 indices in 0..count-1', 217), ('all 1 indices in 0..count-1', 189), ('all 2 indices in 0..count-1', 127), ('some index outside 0..count-1', 12)] [('in range', 1115), ('-1', 12)] ; bytes +0x18..:  [('all zero', 546)]
+list size minus +0x0C: [('list size - +0x0C = 48', 212), ('list size - +0x0C = 32', 161), ('list size - +0x0C = 0', 102), ('list size - +0x0C = 16', 70), ('list size - +0x0C = 3280', 1)] ; +0x10 against +0x12: [((1, 'map-like'), 386), ((0, 'FFFF'), 160)]
+first list: ('ps2data/sound/se/map/position_map/spp/env/env99.spp', 11, 3272, '0x70', (80, 0), [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011], [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011])

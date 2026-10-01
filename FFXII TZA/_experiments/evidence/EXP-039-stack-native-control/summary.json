@@ -1,0 +1,22 @@
+{
+  "cold": {
+    "hits": 0,
+    "known_return": "0x1bf619c0009",
+    "verified_threads": 5,
+    "post_heartbeat_deltas": [
+      6,
+      6,
+      5
+    ]
+  },
+  "positive": {
+    "hits": 41,
+    "known_return": "0x21ada790009",
+    "verified_threads": 5,
+    "post_heartbeat_deltas": [
+      6,
+      6,
+      6
+    ]
+  }
+}

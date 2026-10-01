@@ -1,0 +1,23 @@
+# NativeAdapter.OutRecordDescriptorInitReturnTrue - EC-7 family C
+# # if rdx non-null, write three member-specific rip pointers plus zeroed
+# # fields and 1.0f into the out-record; always return 1.
+address	targets
+00866FA0	
+00867080	
+00867720	
+00867800	
+008678E0	
+00867D60	
+00867E40	
+00868670	
+00868750	
+00868E20	
+00868F00	
+008697E0	
+008698C0	
+00869F50	
+0086A090	
+0086A6B0	
+0086A790	
+0086AD30	
+0086AEA0	

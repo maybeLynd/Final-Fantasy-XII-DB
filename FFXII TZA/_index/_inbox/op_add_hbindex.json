@@ -1,0 +1,19 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-DATA-PUB-HBINDEX-0922",
+  "kind": "research",
+  "priority": "P2",
+  "requester": "SWE2-DATA",
+  "assigned_to": "SWE2-DATA",
+  "target": "Publish the handbook index family decode: new page hchk-hctg-hdat-handbook-indexes.md (54 hchk + 101 hdat + 54 hctg corpus-validated, unlock-predicate semantics bound to 00575E80/00576E30/00577550, hctg +0x14 = hdat count closes the himg +0x14 unbound note); edits to himg page, the-handbook-screen.md, OPEN-QUESTIONS FG-1.",
+  "scope": "hchk-hctg-hdat-handbook-indexes.md, himg-handbook-image-bundles.md, the-handbook-screen.md, OPEN-QUESTIONS.md, AUDIT-LOG.md, SWE2-DATA.md, ADDRESS-INDEX.md, op files",
+  "completion": "commit hash recorded in SWE2-DATA.md resume block",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication"
+   }
+  ]
+ }
+}

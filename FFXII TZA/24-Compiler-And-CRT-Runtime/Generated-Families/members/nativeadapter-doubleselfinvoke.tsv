@@ -1,0 +1,9 @@
+# NativeAdapter.DoubleSelfInvoke - EC-7 family C
+# # call the same member op on this twice.
+address	targets
+001F40F0	0067F580
+00597F00	0067F580
+005A9CC0	0067F580
+006CBAF0	0067F580
+007930E0	0067F580
+00793110	0067F580

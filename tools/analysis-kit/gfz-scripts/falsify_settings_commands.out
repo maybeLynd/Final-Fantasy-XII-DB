@@ -1,0 +1,6 @@
+SURVIVES  C0  the two selector tables are identical and match the page
+SURVIVES  C1  all 19 SET and GET arms as the page lists; the 16 unhandled ids call nothing
+SURVIVES  C2  setters for 4, 5, 11, 14, 17, 19 and 29 as described
+SURVIVES  C3  CON-193: template dword0 0x35, dword1 0x00620400 (bits [10, 17, 21, 22]); bit 12 for ids 1 and 6; speed field cleared; soundtrack 1; volumes 100
+SURVIVES  C4  CON-194: the live word's bit 0 when the word is non-zero, else NOT opt+0 bit 12
+FAILS 0

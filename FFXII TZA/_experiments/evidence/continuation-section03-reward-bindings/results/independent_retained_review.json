@@ -1,0 +1,401 @@
+{
+  "status": "PASS bounded independent retained-byte review; peer acceptance pending",
+  "method": "Independent Python parsing, byte/range comparison and hashing of retained EXP-081 inputs; no new live observation.",
+  "spans_verified": 88,
+  "sample_count": 4,
+  "observations": [
+    {
+      "source": "current-complete-memory.json",
+      "sample": 0,
+      "original_start": 1789294166.3417728,
+      "original_end": 1789294166.343297,
+      "reads": 18,
+      "address_base": "0x0",
+      "reward_descriptors": {
+        "base": "0x0",
+        "per_level": "0x0"
+      },
+      "reward_header_overlap": {
+        "base": [],
+        "per_level": []
+      },
+      "active_units": [],
+      "conditional_affine_fit": {}
+    },
+    {
+      "source": "current-complete-memory.json",
+      "sample": 1,
+      "original_start": 1789294166.5935802,
+      "original_end": 1789294166.5949922,
+      "reads": 18,
+      "address_base": "0x0",
+      "reward_descriptors": {
+        "base": "0x0",
+        "per_level": "0x0"
+      },
+      "reward_header_overlap": {
+        "base": [],
+        "per_level": []
+      },
+      "active_units": [],
+      "conditional_affine_fit": {}
+    },
+    {
+      "source": "current-field-memory.json",
+      "sample": 0,
+      "original_start": 1789294210.3047092,
+      "original_end": 1789294210.306409,
+      "reads": 26,
+      "address_base": "0x0",
+      "reward_descriptors": {
+        "base": "0x67483c20",
+        "per_level": "0x67483f50"
+      },
+      "reward_header_overlap": {
+        "base": [],
+        "per_level": []
+      },
+      "active_units": [
+        {
+          "slot": 0,
+          "unit": "0x675603c0",
+          "actor": "0x6759f390",
+          "definition_id": "0x0",
+          "kind": 0,
+          "stats": "0x21b2914",
+          "spawn_keep": "0x0",
+          "authored_definition": "0x67524780",
+          "authored_class": "0x0",
+          "reward_base": "0x0",
+          "reward_per_level": "0x0",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "battle-state block"
+        },
+        {
+          "slot": 4,
+          "unit": "0x67564100",
+          "actor": "0x675a5ab0",
+          "definition_id": "0x106",
+          "kind": 1,
+          "stats": "0x67557000",
+          "spawn_keep": "0x67556f80",
+          "authored_definition": "0x674838a0",
+          "authored_class": "0x6747f4a0",
+          "reward_base": "0x67483d90",
+          "reward_per_level": "0x67484050",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "primary keep entry +0x80",
+          "enemy_row": 6,
+          "reward_base_selector": 6,
+          "reward_per_level_selector": 4
+        },
+        {
+          "slot": 5,
+          "unit": "0x67565050",
+          "actor": "0x675a6120",
+          "definition_id": "0x105",
+          "kind": 1,
+          "stats": "0x67557250",
+          "spawn_keep": "0x675571d0",
+          "authored_definition": "0x67483848",
+          "authored_class": "0x6747f44c",
+          "reward_base": "0x67483d58",
+          "reward_per_level": "0x67484018",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "primary keep entry +0x80",
+          "enemy_row": 5,
+          "reward_base_selector": 5,
+          "reward_per_level_selector": 3
+        },
+        {
+          "slot": 7,
+          "unit": "0x67566ef0",
+          "actor": "0x675a6e00",
+          "definition_id": "0x100",
+          "kind": 1,
+          "stats": "0x675576f0",
+          "spawn_keep": "0x67557670",
+          "authored_definition": "0x67483690",
+          "authored_class": "0x6747f350",
+          "reward_base": "0x67483c40",
+          "reward_per_level": "0x67483f70",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "primary keep entry +0x80",
+          "enemy_row": 0,
+          "reward_base_selector": 0,
+          "reward_per_level_selector": 0
+        }
+      ],
+      "conditional_affine_fit": {
+        "base": {
+          "zero_selector_pointer": "0x67483c40",
+          "offset_from_descriptor": 32,
+          "differences": [
+            {
+              "selector": 6,
+              "row_address_delta": 336,
+              "divisible": true,
+              "quotient": 56
+            },
+            {
+              "selector": 5,
+              "row_address_delta": 280,
+              "divisible": true,
+              "quotient": 56
+            }
+          ],
+          "interpretation": "0x38 affine spacing fits sampled pairs; header stride/count/encoded base were not read. Not independent validation of row contents or lifetime."
+        },
+        "per_level": {
+          "zero_selector_pointer": "0x67483f70",
+          "offset_from_descriptor": 32,
+          "differences": [
+            {
+              "selector": 4,
+              "row_address_delta": 224,
+              "divisible": true,
+              "quotient": 56
+            },
+            {
+              "selector": 3,
+              "row_address_delta": 168,
+              "divisible": true,
+              "quotient": 56
+            }
+          ],
+          "interpretation": "0x38 affine spacing fits sampled pairs; header stride/count/encoded base were not read. Not independent validation of row contents or lifetime."
+        }
+      }
+    },
+    {
+      "source": "current-field-memory.json",
+      "sample": 1,
+      "original_start": 1789294210.5567434,
+      "original_end": 1789294210.5581746,
+      "reads": 26,
+      "address_base": "0x0",
+      "reward_descriptors": {
+        "base": "0x67483c20",
+        "per_level": "0x67483f50"
+      },
+      "reward_header_overlap": {
+        "base": [],
+        "per_level": []
+      },
+      "active_units": [
+        {
+          "slot": 0,
+          "unit": "0x675603c0",
+          "actor": "0x6759f390",
+          "definition_id": "0x0",
+          "kind": 0,
+          "stats": "0x21b2914",
+          "spawn_keep": "0x0",
+          "authored_definition": "0x67524780",
+          "authored_class": "0x0",
+          "reward_base": "0x0",
+          "reward_per_level": "0x0",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "battle-state block"
+        },
+        {
+          "slot": 4,
+          "unit": "0x67564100",
+          "actor": "0x675a5ab0",
+          "definition_id": "0x106",
+          "kind": 1,
+          "stats": "0x67557000",
+          "spawn_keep": "0x67556f80",
+          "authored_definition": "0x674838a0",
+          "authored_class": "0x6747f4a0",
+          "reward_base": "0x67483d90",
+          "reward_per_level": "0x67484050",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "primary keep entry +0x80",
+          "enemy_row": 6,
+          "reward_base_selector": 6,
+          "reward_per_level_selector": 4
+        },
+        {
+          "slot": 5,
+          "unit": "0x67565050",
+          "actor": "0x675a6120",
+          "definition_id": "0x105",
+          "kind": 1,
+          "stats": "0x67557250",
+          "spawn_keep": "0x675571d0",
+          "authored_definition": "0x67483848",
+          "authored_class": "0x6747f44c",
+          "reward_base": "0x67483d58",
+          "reward_per_level": "0x67484018",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "primary keep entry +0x80",
+          "enemy_row": 5,
+          "reward_base_selector": 5,
+          "reward_per_level_selector": 3
+        },
+        {
+          "slot": 7,
+          "unit": "0x67566ef0",
+          "actor": "0x675a6e00",
+          "definition_id": "0x100",
+          "kind": 1,
+          "stats": "0x675576f0",
+          "spawn_keep": "0x67557670",
+          "authored_definition": "0x67483690",
+          "authored_class": "0x6747f350",
+          "reward_base": "0x67483c40",
+          "reward_per_level": "0x67483f70",
+          "reward_bytes_equal_in_pool_bracket": true,
+          "reward_operand_capture": {
+            "base": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            },
+            "per_level": {
+              "required_prefix_0x38_overlap": [],
+              "lp_byte_overlap": [],
+              "xp_dword_overlap": []
+            }
+          },
+          "stats_storage": "primary keep entry +0x80",
+          "enemy_row": 0,
+          "reward_base_selector": 0,
+          "reward_per_level_selector": 0
+        }
+      ],
+      "conditional_affine_fit": {
+        "base": {
+          "zero_selector_pointer": "0x67483c40",
+          "offset_from_descriptor": 32,
+          "differences": [
+            {
+              "selector": 6,
+              "row_address_delta": 336,
+              "divisible": true,
+              "quotient": 56
+            },
+            {
+              "selector": 5,
+              "row_address_delta": 280,
+              "divisible": true,
+              "quotient": 56
+            }
+          ],
+          "interpretation": "0x38 affine spacing fits sampled pairs; header stride/count/encoded base were not read. Not independent validation of row contents or lifetime."
+        },
+        "per_level": {
+          "zero_selector_pointer": "0x67483f70",
+          "offset_from_descriptor": 32,
+          "differences": [
+            {
+              "selector": 4,
+              "row_address_delta": 224,
+              "divisible": true,
+              "quotient": 56
+            },
+            {
+              "selector": 3,
+              "row_address_delta": 168,
+              "divisible": true,
+              "quotient": 56
+            }
+          ],
+          "interpretation": "0x38 affine spacing fits sampled pairs; header stride/count/encoded base were not read. Not independent validation of row contents or lifetime."
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "One historical process and four sequential non-atomic samples.",
+    "Registry slots and unit reward-pointer words were read; actual reward descriptors and row bytes were not.",
+    "Null popup slots do not prove null rows on a reached installer or defeat path.",
+    "Stable brackets do not prove uninterrupted lifetime, no intermediate rebind, or causality.",
+    "No reward amount, death action, installer execution or rendered payout was observed here."
+  ]
+}

@@ -1,0 +1,128 @@
+image 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+PASS image identity
+PASS E1 00248F40 compares duration (edx) with elapsed (r8d) first - 00248F44  cmp edx, r8d
+PASS E1 ... and computes a curve only when duration > elapsed (signed jg) - 00248F47  jg 0x248f56
+PASS E1 ... otherwise returns the constant 01CEBBA8
+PASS E1 01CEBBA8 is 1.0f exactly
+PASS E1 the kind (ecx) is first read after the early return - 00248F6A sub ecx, 1
+PASS E2 kind 1 arm - 00248F6D  je 0x249060
+PASS E2 kind 2 arm - 00248F76  je 0x249023
+PASS E2 t = elapsed / duration - 00248F7C  divss xmm7, xmm1
+PASS E2 kind 3 arm - 00248F83  je 0x248fe8
+PASS E2 kind 4 arm - 00248F8B  je 0x248fc9
+PASS E2 kind 5 is the last compare - 00248F8D  cmp ecx, 1
+PASS E2 every other kind returns t unchanged - 00248F90  jne 0x249074
+PASS E2 00249074 returns xmm0 = t (set at 00248F85)
+PASS E3 00246C20 holds 1.0f in xmm6 from the same constant
+PASS E3 channel 0 duration = dword [+0x90] - 00246CA2  mov r9d, dword ptr [rbx + 0x90]
+PASS E3 scaled elapsed = cvttss2si(elapsed x rate) - 00246CE4  cvttss2si edi, xmm0
+PASS E3 00248F40(kind, duration, scaled elapsed) - 00246CD2  mov edx, r9d
+PASS E3 ... r8d = the scaled elapsed - 00246CE8  mov r8d, edi
+PASS E3 snap when the eased value is 1.0 - 00246CF8  je 0x246d5b
+PASS E3 ... or when duration <= scaled elapsed, UNSIGNED - 00246CFA  cmp dword ptr [rbx + 0x90], edi
+PASS E3 ... (jbe) - 00246D00  jbe 0x246d5b
+PASS E3 finished only on equality with 1.0 - 00246D7E  ucomiss xmm6, xmm2
+PASS E3 ... which clears bit 0 - 00246D8C  and byte ptr [rbx + 0x80], 0xfe
+PASS E4 002468A0 writes rate +0xB8 = 1.0f, or 1.0f / 00229E70() - mov dword ptr [rbx + 0xb8], 0x3f800000 / movss dword ptr [rbx + 0xb8], xmm1
+PASS E4 00244DD0 writes rate +0xB8 = 1.0f, or 1.0f / 00229E70() - mov dword ptr [rcx + 0xb8], 0x3f800000 / movss dword ptr [rbx + 0xb8], xmm1
+PASS E4 00247130 writes rate +0xB8 = 1.0f, or 1.0f / 00229E70() - mov dword ptr [rbx + 0xb8], 0x3f800000 / movss dword ptr [rbx + 0xb8], xmm1
+PASS E4 constructor default rate 1.0f - 00246700  mov dword ptr [rdi + 0xb8], 0x3f800000
+PASS E4 00229E70 returns its global only when 0 < it, else resets it to 1.0f
+PASS F1 00244830 keeps the flag (r8d) - 0024484B  mov edi, r8d
+PASS F1 {8, ...} - 00244887  mov dword ptr [rsp + 0x20], 8
+PASS F1 ... a = (flag != 0) - 00244891  setne al
+PASS F1 ... stored at +8 - 00244898  mov qword ptr [rsp + 0x28], rax
+PASS F2 00244830 has exactly two callers - [(2377936, 2378025), (2388176, 2388258)]
+PASS F2 002448D0 passes flag 1 - 00244920  mov r8d, 1
+PASS F2 002470D0 passes flag 0 - 0024711C  xor r8d, r8d
+PASS F3 002448D0 is the pop: the dying widget is the focus top [0208EBC0], the depth 0208EBC8 drops
+PASS F3 ... and the incoming widget is the entry below it on 0208EAC0
+PASS F3 002470D0 is the push: 00244640(self), then 00244830([0208EBC0], self, 0)
+PASS F3 00245020 runs the pop first - [(2377440, 2377449), (2377936, 2378051), (2379808, 2379826), (2388160, 2388160)]
+PASS S1 002B6DB0 dispatches on the message id - 002B6DC8  mov eax, dword ptr [rdx]
+PASS S1 its id set is 1, 2, 3, 10, 14, 15, 29, 36, 39 - [1, 2, 3, 10, 14, 15, 29, 36, 39]
+PASS S1 id 14 -> 002B6E1B, id 29 -> 002B6EAA
+PASS S2 the 29 send is in the id-14 arm, after its writes
+PASS S2 ... {29} with a zeroed record to its own handler
+PASS S2 the +0xD0/+0xD2 pair comes from 00403600 on the +0xC0 child (default 0x100, 0x100)
+PASS S3 only 002B7B80 calls 002B6DB0 (3 sites), so it is a base procedure - [(2849664, 2850269), (2849664, 2851647), (2849664, 2854439)]
+PASS S3 002B7DDD passes 002B7B80's self (r14) and message (rbx)
+PASS S3 002B833F passes 002B7B80's self (r14) and message (rbx)
+PASS S3 002B8E27 passes 002B7B80's self (r14) and message (rbx)
+PASS S3 002B7B80 keeps its message in rbx - 002B7BD5  mov rbx, rdx
+PASS S3 002B7B80 sends 29 to its default 002B8E21, which calls 002B6DB0
+PASS S3 002B6DB0 is not a row of the handler table; 002B7B80's row has no 29 - 1,2,4,8,9,10,14,15,16,19,20,33,37,38,39,40,42
+PASS S4 the id-29 arm rebuilds the 24px cell rect at +0xF8 (002B6950) from +0x9C/+0x9E and +0xD0/+0xD2
+PASS S4 ... and re-clamps the cursor +0xC8 / +0xCC into it
+PASS L1 002D14E0 builds the grid list G: 0x150 bytes, handler 002D2DB0
+PASS L1 ... and one 0xC0 child with handler 002D1420 at G + 0xC0
+PASS L1 ... G+0xC8 = descriptor +0x28, G+0xD8 = descriptor +8, G+0x120 = descriptor +0x20
+PASS L2 002D1420 (msg 4) runs the senders with r8 = its parent [child + 0x10] = G
+PASS L2 002D2600 and 002D28E0 are called only from 002D1420
+PASS L3 002D2600: rbx = G; {26} goes to G's own handler; the cell origin is read back from G +0x114 / +0x116
+PASS L3 ... and the per-cell callback [G+0x120] is called with rcx = [G+0xD8]
+PASS L4 G's handler 002D2DB0 hands 26 to its +0xC8 delegate - 002D2E11  mov rcx, qword ptr [rbx + 0xc8]
+PASS L5 0029F930 (layout row kind 8): descriptor +0x28 = its r8 (the owner), +8 = 0, +0x20 = 0
+PASS L5 ... stores G at the row's +0x18 and links it under the owner
+PASS L6 002432B0: row kind byte +1 = 8 -> 0029F930 with r8 = r13 = its own r9 (the owner)
+PASS L6 ... and r13 is written nowhere else in 002432B0 - []
+PASS L6 ... the rows go to the pointer array at (rcx + 0x10), so W + 0x60 for rcx = W + 0x50
+PASS L7 00564010 (the four 00563xxx rows' message-1 helper) builds the layout with itself as owner
+PASS L7 ... W+0xD8 = [[W+0x60] + i*8] + 0x18 (the row's G), G+0x120 = its callback, G+0xD8 = W
+PASS L8 005636F0 forwards (26 among them) to 005651E0 by tail jump - 00563721  jmp 0x5651e0
+PASS L8 00563930 forwards (26 among them) to 005651E0 by tail jump - 00563953  jmp 0x5651e0
+PASS L8 00563B10 forwards (26 among them) to 005651E0 by tail jump - 00563B41  jmp 0x5651e0
+PASS L8 00563D20 forwards (26 among them) to 005651E0 by tail jump - 00563D43  jmp 0x5651e0
+PASS L8 005651E0 keeps self in rdi and writes [self+0xD8] +0x114 / +0x116, then returns 0
+PASS L9 005691E0: the same build with itself as owner (002432B0, r9 = self, three layouts)
+PASS L9 ... +0xD8 = row 0's +0x18, its +0x120 = 00568BB0, its +0xD8 = self
+PASS L9 ... and its 26 callee 00568FE0 writes [self+0xD8] + 0x114
+PASS C1 control: the census reproduces section 8's 163 send sites and 49 distinct ids - 163 sites, 49 ids
+PASS C2 id 16: 20 sites in 20 functions
+PASS C2 three of them are the framework's batch completions 00249410, 002494F0, 002495C0 - ['0x249410', '0x2494f0', '0x2495c0']
+PASS C2 ... which lie above widget_messages.py's core band end, so its 'application' count included them
+PASS C3 17 application senders, exactly these - ['0x2a1fb0', '0x2b6570', '0x2ba040', '0x37e4f0', '0x37f190', '0x37f1f0', '0x37f340', '0x37f4d0', '0x3bc3e0', '0x3c2100', '0x3cb0c0', '0x553f40', '0x558fb0', '0x561390', '0x5770a0', '0x577180', '0x577bd0']
+PASS C4 16 is still the most widely sent application id (next: 32 with 11) - [(16, 17), (32, 11)]
+PASS C5 constant payload records: 00915BB0 = {1, 0}, 00D111C0 = {8, 0}, 00D111D0 = {9, 0}
+PASS C5 {16, 1} from 0037F1F0 and 00577180, {16, 8} from 0037F340, {16, 9} from 0037E4F0 and 0037F4D0
+PASS C5 0037F1F0, 0037F340, 0037F4D0 and 00577180 send to the object at +0xC0
+PASS C5 0037E4F0(w) sends to w: {16, 10} (00D111E0) when [02AED490]+0xE0 bit 7 is set, else stores w at [02AED490]+0xC0 and sends {16, 9}
+PASS C5 002A1FB0 sends {16, 0, 0} to its own widget
+PASS C5 00553F40 sends {16, 0, 0} to its own widget
+PASS C5 00558FB0 sends {16, 0, 0} to its own widget
+PASS C5 00561390 sends {16, 0, 0} to its own widget
+PASS C5 003CB0C0 builds a 0x1E0 child at its +0xC0, links it, and sends it {16, 0, 0}
+PASS C5 002A1FB0: the record's argument words are zeroed (xorps / movdqu [rsp + 0x40])
+PASS C5 002B6570: the record's argument words are zeroed (xorps / movdqu [rsp + 0x28])
+PASS C5 002BA040: the record's argument words are zeroed (xorps / movdqu [rsp + 0x28])
+PASS C5 003C2100: the record's argument words are zeroed (xorps / movdqu [rsp + 0x28])
+PASS C5 003CB0C0: the record's argument words are zeroed (xorps / movdqu [rsp + 0x28])
+PASS C5 00553F40: the record's argument words are zeroed (xorps / movdqu [rbp - 0x48])
+PASS C5 00558FB0: the record's argument words are zeroed (xorps / movdqu [rsp + 0x38])
+PASS C5 00561390: the record's argument words are zeroed (xorps / movdqu [rsp + 0x38])
+PASS C5 00577BD0: the record's argument words are zeroed (xorps / movdqu [rsp + 0x28])
+PASS C5 003C2100 sends to [arg + 8]; 00577BD0 sends to [02CA9730]
+PASS C5 caller-supplied code: 003BC3E0(w, code) and 005770A0(w, code) send {16, code, 0}
+PASS C5 0037F190(w, rec) sends {16, rec[1], rec[1] == 2 ? word rec[4] : 0}
+PASS C5 002B6570 / 002BA040 set +0x179D2 bits 0-1 and send {16, 0} to [0209E5C0] / [0209E5F0]
+PASS B1 the root procedure 002445D0 sets bits 0, 1 and 5 on message 1 - 002445D8  or dword ptr [rcx + 0x40], 0x23
+PASS B2 attach 00248220 copies bit 5 from the parent to the child
+PASS B2 ... and runs 002463F0 with the visitor 002418E0 (bit 5 = argument & 1) over the subtree
+PASS B3 teardown 00245020 tests bit 5 (kept, not released) - 00245072  test byte ptr [rdi + 0x40], 0x20
+PASS P1 285: the licence-board page answers it (GI-3)
+PASS P2 289: the gambit page reads it as the list's destroy notice to its editor child
+PASS P3 287: the Config page reads 00280DE0's arm
+PASS P4 00393460 / 003933F0: the typed-list page's call chain
+PASS P5 the snapshot-reader order: FABLE's static pass is recorded and the rest is run-time object state
+PASS P6 11 named from its sender
+PASS P6 26 named
+PASS P6 30 dispositioned
+PASS P6 53 named
+PASS P6 the clip suspension's raiser found
+PASS P6 DL-3 answered
+PASS P6 the stale walker's release branch read
+PASS P6 1, 2, 15, 18 named from their senders
+PASS P7 every handler's id set is read (DD batch 10, W1-W3)
+PASS P8 DL-1 answered for the whole recount (section 7 correction)
+PASSES 125
+FAILS 0

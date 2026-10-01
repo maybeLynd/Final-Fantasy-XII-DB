@@ -1,0 +1,74 @@
+{
+ "real": [
+  {
+   "va": "0x3b56d0",
+   "lo": "0x3b56d0",
+   "hi": "0x3b588c",
+   "span": 444,
+   "insns": 96,
+   "cov": 1.0,
+   "sha256": "00c47f55b3c090d2521fab6e38527a622459a881222576310b715b6b735fbb19",
+   "indirect": [],
+   "name": "hid"
+  },
+  {
+   "va": "0x3e5ad0",
+   "lo": "0x3e5ad0",
+   "hi": "0x3e5b28",
+   "span": 88,
+   "insns": 25,
+   "cov": 1.0,
+   "sha256": "2fbca4b95de1bb35141a88e76ba674d4f74f2c30089d63b5366ce5d24ad13326",
+   "indirect": [],
+   "name": "fldr"
+  },
+  {
+   "va": "0x3ab7f0",
+   "lo": "0x3ab7f0",
+   "hi": "0x3ab853",
+   "span": 99,
+   "insns": 32,
+   "cov": 1.0,
+   "sha256": "a65931ceb42bff28b95656b5797b4ec07ab5f3526b5e5c98d7a330d5f18e28f0",
+   "indirect": [],
+   "name": "res"
+  },
+  {
+   "va": "0x2ed570",
+   "lo": "0x2ed570",
+   "hi": "0x2ed602",
+   "span": 146,
+   "insns": 44,
+   "cov": 1.0,
+   "sha256": "f5fc014060f8216a6f6107a015e9c108505d1f6897ef4277da190ad2000e9603",
+   "indirect": [],
+   "name": "mids"
+  },
+  {
+   "va": "0x3e6da0",
+   "lo": "0x3e6da0",
+   "hi": "0x3e6de3",
+   "span": 67,
+   "insns": 22,
+   "cov": 1.0,
+   "sha256": "68a0f2280853babf1930c0aa4f0f94f315c364da6417ccfe2006d8d1128a97f2",
+   "indirect": [],
+   "name": "d6a"
+  },
+  {
+   "va": "0x20e600",
+   "lo": "0x20e600",
+   "hi": "0x20e60a",
+   "span": 10,
+   "insns": 3,
+   "cov": 1.0,
+   "sha256": "8bde921e0db5b4c6b16e649c4df8172da2b8b8c3462664b675b377cf37450f65",
+   "indirect": [],
+   "name": "base"
+  }
+ ],
+ "scripted": [
+  "0x36b130",
+  "0x370e20"
+ ]
+}

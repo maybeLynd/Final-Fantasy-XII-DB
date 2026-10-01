@@ -1,0 +1,251 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-title-retirement-identity.py",
+      "bytes": 2172,
+      "sha256": "e33fe25a6bd95cb857226d7bd3c214c18c43fc34a63e48f27561ebff9c7565b5"
+    },
+    {
+      "path": "control-title-retirement-inputs-first-pass-01.py",
+      "bytes": 2503,
+      "sha256": "d581628919ea60e480770ce47c713094b21b9770dd03bfb927432af03e97a1fe"
+    },
+    {
+      "path": "control-title-retirement-inputs.py",
+      "bytes": 2529,
+      "sha256": "8268d0bf282e699b6704fdf269843066adb2f81fdf726b5d730f563fe0a9b2e3"
+    },
+    {
+      "path": "prepare-residue-packet-publication.py",
+      "bytes": 27883,
+      "sha256": "5b2f5769acedb73dd4486560954f100121e3f3a1bfa4c86e5319cf3476892c93"
+    },
+    {
+      "path": "prove-title-retirement-guards-first-pass-01.py",
+      "bytes": 6989,
+      "sha256": "a36d6f63b26443052c795290518c51f0580f424dd6295878515068945b8c25cb"
+    },
+    {
+      "path": "prove-title-retirement-guards.py",
+      "bytes": 7283,
+      "sha256": "af1ef46d3c582dfe32768a958433f59f5102155a77526fd397d646e3a0683748"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5221,
+      "sha256": "5c146235864439d5bcbabe1e71f3c668e401a2a058fb1b0230cc3b4b1e263228"
+    },
+    {
+      "path": "run-softedges-array-descriptor-offset.py",
+      "bytes": 4138,
+      "sha256": "1869886f6e07a657b674badbcd419668dce9e6e2bac8482ee7320bc792b9a439"
+    },
+    {
+      "path": "section04-title-member-source/original_body_manifest.json",
+      "bytes": 8577,
+      "sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef"
+    },
+    {
+      "path": "section04-title-member-source/original_disassembly.txt",
+      "bytes": 67911,
+      "sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57"
+    },
+    {
+      "path": "title-cancellation-method-preparation-01.json",
+      "bytes": 1481,
+      "sha256": "408e3af15b7bf43b352939baa98a3c88bbb85687da6b64c2947171afc25a7274"
+    },
+    {
+      "path": "title-retirement-identity-gate-01.json",
+      "bytes": 434,
+      "sha256": "90914914a0a0ac80e70b95980cc17c14aeca2ea6477bc73495bfb9f92f564985"
+    },
+    {
+      "path": "title-retirement-identity-invocation-01.status.json",
+      "bytes": 297,
+      "sha256": "4090f20ee7452ca92b03138725fe1d3e0433c65fbe0a838ed6bd318f72297f83"
+    },
+    {
+      "path": "title-retirement-identity-invocation-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-identity-invocation-01.stdout",
+      "bytes": 147,
+      "sha256": "2966c249d7ed28a2d3a337fad9c0a2a6dfcbb8fbe6f881b5b9e10112e612cf3d"
+    },
+    {
+      "path": "title-retirement-identity-source-01.json",
+      "bytes": 12391,
+      "sha256": "aa82b54da7a19addc340922b19fe09d9c870eae83dd029e7f72de31fd6e71e25"
+    },
+    {
+      "path": "title-retirement-input-controls-01/missing-manifest/invocation.status.json",
+      "bytes": 662,
+      "sha256": "bc3b851c2f5e20f7cceacd4eb653ce7d91eaadc2fd5deb324bab611206a6785e"
+    },
+    {
+      "path": "title-retirement-input-controls-01/missing-manifest/invocation.stderr",
+      "bytes": 1337,
+      "sha256": "888ed959792cc192b3e05ce4355850dd0a408821183b960728fa6ae572a0f434"
+    },
+    {
+      "path": "title-retirement-input-controls-01/missing-manifest/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-input-controls-01/missing-manifest/source/original_disassembly.txt",
+      "bytes": 67911,
+      "sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57"
+    },
+    {
+      "path": "title-retirement-input-controls-01/result.json",
+      "bytes": 2931,
+      "sha256": "706a45627c7d47bdd72a32cbd8af854baabe1966ec0d435a42f48508d3343f60"
+    },
+    {
+      "path": "title-retirement-input-controls-01/same-count-changed-mask/invocation.status.json",
+      "bytes": 676,
+      "sha256": "6a691be42b3511df092c96f1549ac24427f2ca4ccce347591fedd44a48756b47"
+    },
+    {
+      "path": "title-retirement-input-controls-01/same-count-changed-mask/invocation.stderr",
+      "bytes": 681,
+      "sha256": "18fadc3f6489b3dbb443b3012b86ebb5a3524d23d55e8cbb0b6ed40005537803"
+    },
+    {
+      "path": "title-retirement-input-controls-01/same-count-changed-mask/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-input-controls-01/same-count-changed-mask/source/original_body_manifest.json",
+      "bytes": 8577,
+      "sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef"
+    },
+    {
+      "path": "title-retirement-input-controls-01/same-count-changed-mask/source/original_disassembly.txt",
+      "bytes": 69050,
+      "sha256": "efe64716bd7371d4d666a29e48c87330c3a32c7d63d34ae738b8eac00d10e7bf"
+    },
+    {
+      "path": "title-retirement-input-controls-02/missing-manifest/invocation.status.json",
+      "bytes": 662,
+      "sha256": "291afae2c57200705751b9cb9eb502cf83f758bef845a63a116cfe3efd399247"
+    },
+    {
+      "path": "title-retirement-input-controls-02/missing-manifest/invocation.stderr",
+      "bytes": 1337,
+      "sha256": "004d65ac19dcd1e768799b0d424b6178ffa019d6a75438d5ef835685f03cd584"
+    },
+    {
+      "path": "title-retirement-input-controls-02/missing-manifest/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-input-controls-02/missing-manifest/source/original_disassembly.txt",
+      "bytes": 67911,
+      "sha256": "ca93837847ed6efdc72a7ee26d8457324fc44ef06dddcfe60ffcf43c4aad1c57"
+    },
+    {
+      "path": "title-retirement-input-controls-02/result.json",
+      "bytes": 2931,
+      "sha256": "0c4c2f7ef3056e6bd225d7f7a6973834b3eced7119a013c70baaa89db7a75f94"
+    },
+    {
+      "path": "title-retirement-input-controls-02/same-count-changed-mask/invocation.status.json",
+      "bytes": 676,
+      "sha256": "5bc7508545dff39f9d42f232e80ca1f54c256377b7211f72a1cca5a441765763"
+    },
+    {
+      "path": "title-retirement-input-controls-02/same-count-changed-mask/invocation.stderr",
+      "bytes": 681,
+      "sha256": "18fadc3f6489b3dbb443b3012b86ebb5a3524d23d55e8cbb0b6ed40005537803"
+    },
+    {
+      "path": "title-retirement-input-controls-02/same-count-changed-mask/invocation.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-input-controls-02/same-count-changed-mask/source/original_body_manifest.json",
+      "bytes": 8577,
+      "sha256": "2ae22b0b46bbb7a83cb545d5bc45bb62d350f03509a4e5d41b2725e26cbee5ef"
+    },
+    {
+      "path": "title-retirement-input-controls-02/same-count-changed-mask/source/original_disassembly.txt",
+      "bytes": 69050,
+      "sha256": "efe64716bd7371d4d666a29e48c87330c3a32c7d63d34ae738b8eac00d10e7bf"
+    },
+    {
+      "path": "title-retirement-input-controls-invocation-02.status.json",
+      "bytes": 295,
+      "sha256": "1f31a8aa12ee392cf7ec70b7a6b090673c46b583c318f1f7c47a00532c521296"
+    },
+    {
+      "path": "title-retirement-input-controls-invocation-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-input-controls-invocation-02.stdout",
+      "bytes": 76,
+      "sha256": "5ec1a77eb4bd7bce3becc22879b091e69bfa1cf18225f4ce3e5372e5d53417f4"
+    },
+    {
+      "path": "title-retirement-local-guards-invocation-01.status.json",
+      "bytes": 455,
+      "sha256": "d32f167938dffeb16c7e659c9156c5ba335a9434260999904bf8e35f0e4ec1ce"
+    },
+    {
+      "path": "title-retirement-local-guards-invocation-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-local-guards-invocation-01.stdout",
+      "bytes": 102,
+      "sha256": "93dc8f2e07a5c1b6625e133e66483685e23a7146049a1f0e1089219900a52f4f"
+    },
+    {
+      "path": "title-retirement-local-guards-invocation-02.status.json",
+      "bytes": 455,
+      "sha256": "dcec148376e0a1acb0a377e5169ff5d3d496aaae4302c2436fa77961406de84f"
+    },
+    {
+      "path": "title-retirement-local-guards-invocation-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "title-retirement-local-guards-invocation-02.stdout",
+      "bytes": 102,
+      "sha256": "93dc8f2e07a5c1b6625e133e66483685e23a7146049a1f0e1089219900a52f4f"
+    },
+    {
+      "path": "title-retirement-local-guards-result-01.json",
+      "bytes": 7935,
+      "sha256": "4dc700e3f463ca71fe6c50064ced864ff911438dee1d1106992f65b9be873086"
+    },
+    {
+      "path": "title-retirement-local-guards-result-02.json",
+      "bytes": 7935,
+      "sha256": "200bd498c6c26986df12e8235cda136987039221485f98e080b08aa432f34f8d"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+RETN 135429  RETTN 6039  (control: histogram 135,429 / 6,039: PASS)
+preceding instruction: {(46, 'PUSHII'): 135429, (48, 'PUSHII'): 6039}
+RETN PUSHII depth values: {0: 133665, 1: 1143, 3: 621}
+RETTN PUSHII depth values: {1: 6039}

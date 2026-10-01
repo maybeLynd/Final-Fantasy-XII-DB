@@ -1,0 +1,13 @@
+SURVIVES  Z0  mismatches none; 003DE3E0 unlisted: True
+SURVIVES  Z1  caller sets as stated
+SURVIVES  Z2  (mode - 2) & ~4 == 0 admits 2 and 6; soft focus behind bit 0 and draw 0
+SURVIVES  Z3  the 256-entry late list; the allocator's first act is a call, xmm0 is overwritten first (xorps xmm0, xmm0) and xmm1 never read; x 512 / 448; soft focus 1/8
+SURVIVES  Z4  kind 4 returns !bit 3, the other three !bit 6; the walker releases on 0 at 00375633
+SURVIVES  Z5  setter mappings n=0..6: {'cutintype': {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 2, 6: 2}, 'presettype': {0: 1, 1: 2, 2: 3, 3: 1, 4: 1, 5: 1, 6: 1}, 'cluttype': {0: 1, 1: 2, 2: 3, 3: 0, 4: 1, 5: 1, 6: 1}, 'noisetype': {0: 0, 1: 1, 2: 2, 3: 3, 4: 0, 5: 0, 6: 0}, 'screentype': {0: 1, 1: 2, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1}}
+SURVIVES  Z6  the dead bit-4 test; the release called only with a zero handle; 01FD4A70 set by the builder and answered by MainLoop_Draw
+SURVIVES  Z7  byte +0 = 2 on mode 1 else 1, +1 = b, +4 = amount; clear on 0; play drops bit 0 on failure and forces +2 = 4
+SURVIVES  Z8  bit 6 / 020926D0; blur clear then the cut-in clear by tail-jump; the poll on 02B58C48; 0.875, +-73, the three line textures
+SURVIVES  Z9  003B3B50 skips empty tags over 32 x 0x38; the flagged getter; the +0x490 / +0x494 pair; the latch; the bucket reap
+SURVIVES  Z10  (REFUTES) a zero key jumps to the ret (003B1144 -> 003B1173): the sweep ends at the first empty slot of the 36
+SURVIVES  Z11  (REFUTES) rcx receives 00186AA0 (the width the allocator reads first) and rdx receives 00186A90 - the note has them reversed
+FAILS 0

@@ -1,0 +1,27 @@
+{
+  "name": "valid-reject",
+  "expected": "REPAIR",
+  "input_sha256": "f1ebaa8400a58cee1c6a8ac70102b9d9f6cec9a90f4bc88892e03698fee7227c",
+  "args": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\run-01\\source\\Database\\Tools\\analysis-kit\\gfz-scripts\\transitions.py",
+    "--board",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-transitions-independent\\read-only-01\\valid-reject\\TEAM.json",
+    "--json"
+  ],
+  "returncode": 0,
+  "stdout": "[\n {\n  \"transition\": \"REPAIR\",\n  \"review\": \"REVIEW-VALID-REJECT\",\n  \"detail\": \"AUTO-REPAIR-REVIEW-VALID-REJECT\",\n  \"status\": \"planned\"\n }\n]\n",
+  "stderr": "",
+  "parsed_report": [
+    {
+      "transition": "REPAIR",
+      "review": "REVIEW-VALID-REJECT",
+      "detail": "AUTO-REPAIR-REVIEW-VALID-REJECT",
+      "status": "planned"
+    }
+  ],
+  "board_unchanged": true,
+  "timed_out": false,
+  "child_reaped": true
+}

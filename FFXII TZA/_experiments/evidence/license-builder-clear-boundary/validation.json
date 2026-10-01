@@ -1,0 +1,40 @@
+{
+  "result": "PASS_SCOPED_B_AND_A_CONTROLS",
+  "native_cases": 4,
+  "completed_small_cases": 3,
+  "planned_entry_boundary_cases": 1,
+  "rejecting_controls": [
+    {
+      "name": "zero count guarantees entire46-byte output clear",
+      "rejected": true
+    },
+    {
+      "name": "signed loop skip suppresses previous oversized clear request",
+      "rejected": true
+    },
+    {
+      "name": "boundary capture is a completed oversized native clear",
+      "rejected": true
+    },
+    {
+      "name": "callback/order proof lost",
+      "rejected": true
+    },
+    {
+      "name": "misaligned Win64 function-entry precondition",
+      "rejected": true
+    },
+    {
+      "name": "positive scripted-bridge one-byte change missing",
+      "rejected": true
+    },
+    {
+      "name": "wrong reference identity",
+      "rejected": true
+    }
+  ],
+  "controls": 7,
+  "big_clear_executed": false,
+  "live_game": false,
+  "independent_acceptance": false
+}

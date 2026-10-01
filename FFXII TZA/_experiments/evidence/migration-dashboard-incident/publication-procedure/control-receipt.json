@@ -1,0 +1,38 @@
+{
+  "driver_scope": "Actual correction publisher --preflight-only CLI invokes same guard before claim/stage. Synthetic extra CRLF file breaks raw pin equality while normal filtered pin passes. No board writes/captures.",
+  "publisher_sha256": "1949f78ece898336e2084cd9fb4efbc0270435e937dc796a6d299dc5aee75c08",
+  "source": "Database/Tools/work/ASTRA/migration-dashboard-incident/byte-preflight-controls/controlled-crlf.json",
+  "source_sha256": "402bc3d6cf5dcc4f432f419fd87515865f9eb414bf62846cb2f43ab75f105a7a",
+  "filtered": "1bacdb7ad7cc883e594caaace2d3aaec31f02c6b",
+  "unfiltered": "336b0b93240ab0856cba500bf60a9c6e79afcbcd",
+  "controls": [
+    {
+      "name": "valid",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\publication-byte-correction\\publish.py",
+        "--preflight-only"
+      ],
+      "returncode": 0,
+      "stdout": "RAW_BYTE_PREFLIGHT_VERIFIED 152\n",
+      "stderr": ""
+    },
+    {
+      "name": "raw-filter-mismatch",
+      "args": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\publication-byte-correction\\publish.py",
+        "--preflight-only",
+        "--preflight-pins",
+        "Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\byte-preflight-controls\\pins-with-crlf.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-dashboard-incident\\publication-byte-correction\\publish.py\", line 16, in <module>\n    assert git('hash-object','--no-filters','--',path)==pin, 'RAW-BYTE-FILTER-MISMATCH '+path\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RAW-BYTE-FILTER-MISMATCH Database/Tools/work/ASTRA/migration-dashboard-incident/byte-preflight-controls/controlled-crlf.json\n"
+    }
+  ],
+  "controlled_source_bytes_hex": "7b22636f6e74726f6c6c6564223a747275657d0d0a",
+  "limits": "Actual --preflight-only path, not a full host/whole migration verdict; negative file lived outside package-local -text. Public code snapshots need reviewed pins/body/epoch and canonical checkout to publish; copied source alone does not recreate those operating approvals."
+}

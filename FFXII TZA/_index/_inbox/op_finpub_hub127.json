@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-127",
+ "result_refs": [
+  "commit fca3e3215 \u2014 batch-127 publish: 15 paths, 13 hosts + AUDIT-LOG + resume"
+ ],
+ "note": "batch-127 publish: 15 paths, guard ADDS NOTHING (12 pairs accounted by the new crossing rows)"
+}

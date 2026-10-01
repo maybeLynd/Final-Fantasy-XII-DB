@@ -1,0 +1,20 @@
+{
+  "pid": 38728,
+  "parent_pid": 46232,
+  "source_sha256": "eeb888c03b8c47e97e52a5afb14aa12298f497bd48d5387b4cfbec6ae22f5609",
+  "python": {
+    "path": "C:\\Python314\\python.exe",
+    "sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+  },
+  "kernel32": {
+    "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "sha256": "8f8629741558b5df71def4e1dd8ef9645d4f806b949762c47757c50fea1a9e6d"
+  },
+  "allocation": 1689776816128,
+  "allocation_bytes": 8192,
+  "path_address": 1689776820191,
+  "path_hex": "505332446174615c6566625c73796e7468657469635f7265616465722e65666200",
+  "page_boundary": 1689776820224,
+  "second_page_protection": 1,
+  "method": "native synthetic instrument control; no original FF12 instructions"
+}

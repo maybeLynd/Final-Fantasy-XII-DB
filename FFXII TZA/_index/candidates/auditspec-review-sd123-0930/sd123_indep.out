@@ -1,0 +1,88 @@
+== A record-store slots holding 00500C00 (abs64), with neighbours
+  data_refs(00500C00): {'abs64': [], 'rva32': ['01F4269B(.data,unaligned)', '02FCB1A4(.pdata)']}
+== B writes to [rdi+0xA0] inside 00500C00..005010EB
+  WRITE 00500C2A  mov      byte ptr [rdi + 0xa0], cl
+  WRITE 00500C39  and      byte ptr [rdi + 0xa0], 0x3f
+  read  00500CE1  movzx    ecx, byte ptr [rdi + 0xa0]
+  read  00500EDD  movzx    eax, byte ptr [rdi + 0xa0]
+== C format jump table
+  index-table max entry 7 -> 8 dword arms
+  arm 00500F0C  formats ['0x0'] (n=1)  call 0x183ee0  dword ptr [rdi + 0xb8], 0x14
+  arm 00500F54  formats ['0x1'] (n=1)  call 0x184140  dword ptr [rdi + 0xb8], 0x13
+  arm 00500F8F  formats ['0x80'] (n=1)  call 0x184130  dword ptr [rdi + 0xb8], 0x14
+  arm 00500FD3  formats ['0x81'] (n=1)  call 0x184370  dword ptr [rdi + 0xb8], 0x13
+  arm 00501014  formats ['0x2'] (n=1)  call 0x183a00  dword ptr [rdi + 0xb8], 2
+  arm 0050104E  formats ['0x3'] (n=1)  call 0x183c60  dword ptr [rdi + 0xb8], 1
+  arm 00501089  formats ['0x4'] (n=1)  call 0x183eb0  dword ptr [rdi + 0xb8], 0
+  arm 005010CF  formats ['0x5', '0x6', '0x7', '0x8', '...', '0x7E', '0x7F'] (n=123)  call -  -
+== D palette loops
+  00500D23  mov      edx, 0x100
+  00500D28  add      rcx, rsi
+  00500D2B  mov      r8d, 1
+  00500D31  call     0x1837a0
+  00500D36  xor      ecx, ecx
+  00500D3C  mov      edx, 0x100
+  00500D41  lea      r8d, [rcx + 1]
+  00500D45  call     0x183760
+  00500D5B  add      r14d, 0x400
+  00500D65  jl       0x500d20
+  --
+  00500D80  mov      edx, 0x10
+  00500D88  add      rcx, rsi
+  00500D8B  lea      r8d, [rdx - 0xf]
+  00500D8F  call     0x1837a0
+  00500D94  mov      edx, 0x10
+  00500D9D  xor      ecx, ecx
+  00500D9F  lea      r8d, [rdx - 0xf]
+  00500DA3  call     0x183760
+  00500DB9  add      r14d, 0x40
+  00500DC0  jl       0x500d80
+  --
+== E callers
+  00500C00 rel32 ['003A9FC2 call', '005009B8 call'] jcc []
+  00500BF0 rel32 ['00500896 call'] data {'abs64': [], 'rva32': []}
+  00500B70 rel32 ['003A9FB7 call', '003AA537 call'] data {'abs64': [], 'rva32': ['02FCB198(.pdata)']}
+  I4 mesh site 00437090..004370F0:
+   00437090  mov      edx, ebx
+   00437092  mov      rcx, rax
+   00437095  call     0x861eba
+   0043709A  movzx    ecx, word ptr [rdi + 0x1c]
+   0043709E  lea      r14, [rbx + rsi]
+   004370A2  shl      ecx, 3
+   004370A5  call     0x36a100
+   004370AA  mov      rcx, rax
+   004370AD  call     0x20e620
+   004370B2  mov      dword ptr [rdi + 0x184], eax
+   004370B8  cmp      bp, word ptr [rdi + 0x1c]
+   004370BC  jae      0x437100
+   004370BE  mov      rsi, rbp
+   004370C1  mov      ecx, dword ptr [rdi + 0x180]
+   004370C7  call     0x20e600
+   004370CC  movsx    ecx, word ptr [rdi + 0xc]
+   004370D0  mov      edx, 0x52
+   004370D5  movzx    r8d, byte ptr [rax + rsi]
+   004370DA  call     0x3aa280
+   004370DF  mov      ecx, dword ptr [rdi + 0x184]
+   004370E5  mov      rbx, rax
+   004370E8  call     0x20e600
+   004370ED  inc      ebp
+  I4 evaluator site 00431AB0..00431B00:
+   00431AB0  jne      0x431ab9
+   00431AB2  xor      eax, eax
+   00431AB4  jmp      0x431a11
+   00431AB9  mov      ecx, dword ptr [rdi + 0xb0]
+   00431ABF  call     0x20e600
+   00431AC4  mov      ecx, dword ptr [rax + 0x184]
+   00431ACA  call     0x20e600
+   00431ACF  test     rax, rax
+   00431AD2  je       0x431ab2
+   00431AD4  mov      ecx, dword ptr [rdi + 0xb0]
+   00431ADA  call     0x20e600
+   00431ADF  mov      ecx, dword ptr [rax + 0x184]
+   00431AE5  call     0x20e600
+   00431AEA  mov      rax, qword ptr [rax]
+   00431AED  test     rax, rax
+   00431AF0  je       0x431ab2
+   00431AF2  mov      rcx, qword ptr [rax + 0x10]
+   00431AF6  mov      qword ptr [rsi], rcx
+   00431AF9  mov      ecx, dword ptr [rdi + 0xcc]

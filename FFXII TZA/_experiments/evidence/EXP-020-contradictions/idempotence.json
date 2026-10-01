@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database/Tools/analysis-kit/gfz-scripts/contradiction_index.py",
+    "extract",
+    "--db",
+    "Database/FFXII TZA",
+    "--ledger",
+    "Database\\FFXII TZA\\_experiments\\evidence\\EXP-020-contradictions\\proposal.tsv"
+  ],
+  "exit_code": 0,
+  "stdout": "found 58 dated correction(s); retained 59 total records in Database\\FFXII TZA\\_experiments\\evidence\\EXP-020-contradictions\\proposal.tsv\nhand-written summary cells preserved: 140\nunmatched historical records: 1\n",
+  "stderr": "",
+  "byte_identical": true,
+  "before_sha256": "5cd392de527daff63b9b93b6a93df5badbd164d1d641b4a8697a6333cee822f8",
+  "after_sha256": "5cd392de527daff63b9b93b6a93df5badbd164d1d641b4a8697a6333cee822f8"
+}

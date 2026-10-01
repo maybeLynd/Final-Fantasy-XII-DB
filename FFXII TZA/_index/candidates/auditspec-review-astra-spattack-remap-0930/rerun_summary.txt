@@ -1,0 +1,17 @@
+exercise-spattack-prerequisites.py re-run into a scratch dir outside the repo (it writes adapted checker copies there)
+Actual invocation controls: positive0; three prerequisite failures nonzero/no-result
+positive exit 0 control_passed True result_exists True
+missing_wrapper_completion exit 1 control_passed True result_exists False
+failed_upstream_role exit 1 control_passed True result_exists False
+missing_required_input exit 1 control_passed True result_exists False
+original_checker_sha256 f52b12862b1edc648f40922c25f766d3d2f54c81ba0998b99a4ce1dac3c1fcca
+positive result.json differs from the committed positive only in driver_sha256 (the adapted checker's path literal)
+
+capture drivers re-run to scratch outputs, compared with the committed raws (CR ignored):
+effective-and-script-id-raw-01.json IDENTICAL
+spattack-output-writers-raw-02.json IDENTICAL
+spattack-queue-reader-raw-01.json IDENTICAL
+spattack-info-raw-01.json IDENTICAL
+spattack-leaves-and-guard-raw-01.json IDENTICAL
+slot-action-id-raw-01.json IDENTICAL
+slot-acquisition-callers-raw-01.json IDENTICAL

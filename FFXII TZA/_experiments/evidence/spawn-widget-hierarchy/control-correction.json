@@ -1,0 +1,12 @@
+{
+  "check": "initial message constant assertion failed",
+  "address": "0x915120",
+  "unsupported_expected_id": 17,
+  "actual_raw_hex": "190000000000000000000000000000000000000000000000",
+  "actual_qwords": [
+    25,
+    0,
+    0
+  ],
+  "effect": "No passing result produced; read shipping bytes before changing assertion. This is a static checker correction, not an execution failure or native experiment."
+}

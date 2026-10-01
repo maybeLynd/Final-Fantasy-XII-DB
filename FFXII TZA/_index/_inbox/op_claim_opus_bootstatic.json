@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-FOUR-REFUSED-CLASSES-AND-AN-UNCLAIMED-STATIC",
+ "agent": "OPUS",
+ "note": "PInputMapper is named in the image only through descriptor-template arguments, so it has no RTTI locator and the vtable anchor refuses it. Two further routes were tried and both came back empty, and the rows now grade them: the static census finds it NEVER TOUCHED at 01F7F150, the address its parent implies, but the control is why that means little - the same census finds ONE direct access to PApplication across its whole 0x1130, so nothing in this region is addressed absolutely; and the parent's pointer cell 02EA5368 does reach the parent, 25 loads and 21 parent-relative accesses, but not one of them lands inside [+0xE00, +0x10C8), which is a real negative of modest weight and not a demonstration that the span is empty. THE CONTROL RUN FOUND WHAT THE TARGET DID NOT. PApplication's static census had been printing a boundary warning - 8 accesses in the 0x40 bytes past its declared end - for two blocks, and I had recorded it and moved on. Read properly it is a separate object: 0015BC68 writes a word at 01F7F48C immediately after 0015BC40 constructs PApplication next door, and censusing the whole range gives 131 BODIES at 46 displacements reaching +0x120. It is not PApplication's tail and the numbers settle that: PApplication is touched by exactly ONE direct rip-relative access across 0x1130 while this range is touched by 131 bodies - a neighbour addressed absolutely a hundred times over beside a parent addressed once is a second object, not a short extent. DECLARED AppBootStatic01F7F480, 53 rows tiling 0x124, with the extent stated as the TIGHTEST the evidence supports because nothing takes the object's base address - all eight leas into the range land on interior offsets, so no constructor call and no size argument exist to read an extent from, and the 0xDC bytes to the next known object at 01F7F600 are not claimed. 590 types / 7,162 fields / 0 errors / 0 gaps. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

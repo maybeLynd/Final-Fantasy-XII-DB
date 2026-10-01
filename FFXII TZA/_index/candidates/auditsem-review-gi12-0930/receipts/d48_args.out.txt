@@ -1,0 +1,84 @@
+----
+003DFD03 lea r9, [rip + 0x277a03e]
+003DFD0A mov r9, qword ptr [r9 + rax*8]
+003DFD0E xor eax, eax
+003DFD10 mov qword ptr [r8], rax
+003DFD13 mov qword ptr [r8 + 8], rax
+003DFD17 mov qword ptr [r8 + 0x10], rax
+003DFD1B mov qword ptr [r8 + 0x18], rax
+003DFD1F mov qword ptr [r8 + 0x20], rax
+003DFD23 mov qword ptr [r8 + 0x28], rax
+003DFD27 test r9, r9
+003DFD2A je 0x3dfd9f
+003DFD2C cmp byte ptr [r9 + 7], 0x33
+----
+003DFE63 lea rcx, [rip + 0x2779ede]
+003DFE6A mov qword ptr [rcx + rax*8], rdx
+003DFE6E ret 
+003DFE6F int3 
+003DFE70 mov qword ptr [rsp + 8], rbx
+003DFE75 mov qword ptr [rsp + 0x10], rsi
+003DFE7A push rdi
+003DFE7B sub rsp, 0x30
+003DFE7F mov rbx, rcx
+003DFE82 movaps xmmword ptr [rsp + 0x20], xmm6
+003DFE87 mov ecx, dword ptr [rcx + 0x2c]
+003DFE8A movaps xmm6, xmm2
+----
+003DFE40 sbb al, 0xfe
+003DFE42 sub eax, dword ptr [rax]
+003DFE44 and al, 0xfe
+003DFE46 sub eax, dword ptr [rax]
+003DFE48 sbb al, 0xfe
+003DFE4A sub eax, dword ptr [rax]
+003DFE4C sbb al, 0xfe
+003DFE4E sub eax, dword ptr [rax]
+003DFE50 and al, 0xfe
+003DFE52 sub eax, dword ptr [rax]
+003DFE54 sbb al, 0xfe
+003DFE56 sub eax, dword ptr [rax]
+003DFE58 int3 
+003DFE59 int3 
+003DFE5A int3 
+003DFE5B int3 
+----
+003DFCE0 inc dword ptr [rbx + 0x97708f8]
+003DFCE6 movsxd rax, ecx
+003DFCE9 movzx eax, word ptr [rdx + rax*4 + 0xc]
+003DFCEE ret 
+003DFCEF xor eax, eax
+003DFCF1 ret 
+003DFCF2 int3 
+003DFCF3 int3 
+003DFCF4 int3 
+003DFCF5 int3 
+003DFCF6 int3 
+003DFCF7 int3 
+003DFCF8 int3 
+003DFCF9 int3 
+003DFCFA int3 
+003DFCFB int3 
+----
+003DFE5C int3 
+003DFE5D int3 
+003DFE5E int3 
+003DFE5F int3 
+003DFE60 movsxd rax, ecx
+003DFE63 lea rcx, [rip + 0x2779ede]
+003DFE6A mov qword ptr [rcx + rax*8], rdx
+003DFE6E ret 
+003DFE6F int3 
+003DFE70 mov qword ptr [rsp + 8], rbx
+----
+003DFCF0 rol bl, 0xcc
+003DFCF3 int3 
+003DFCF4 int3 
+003DFCF5 int3 
+003DFCF6 int3 
+003DFCF7 int3 
+003DFCF8 int3 
+003DFCF9 int3 
+003DFCFA int3 
+003DFCFB int3 
+cc cc cc cc cc cc cc cc 48 63 c1 48 8d 0d de 9e
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc 48 63 c1 4c 8d 0d

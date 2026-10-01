@@ -1,0 +1,26 @@
+{
+  "name": "data-declared-findings",
+  "expected_accepted": true,
+  "actually_accepted": true,
+  "expectation_met": true,
+  "invocation": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\composer.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\prereq.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-declared-findings\\upstream.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\migration-prerequisite-contract\\run-01\\data-declared-findings\\declaration.json"
+  ],
+  "declaration": {
+    "mode": "data",
+    "exits": [
+      0,
+      1
+    ]
+  },
+  "upstream_sha256": "238e02273bb35dbc2fb0470e3e5effad473f490bfdcb44bb568af3d8260d5a1f",
+  "returncode": 0,
+  "stdout": "COMPOSER_PASS {\"complete\": true, \"rows\": [7, 9]}\n",
+  "stderr": "",
+  "timed_out": false
+}

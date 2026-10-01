@@ -1,0 +1,11 @@
+# NativeAdapter.SingletonAllocDescriptorInstall - EC-7 family C
+# # call the ICF-folded ret-0 stub 0016D6A0 (ecx=1); allocate an 8-byte
+# # record via shared 001A1470 on a member global container; install a
+# # member rip descriptor pointer at [rax] and store rax into a member
+# # global.
+address	targets
+00862E50	0016D6A0,001A1470
+00862FD0	0016D6A0,001A1470
+00865130	0016D6A0,001A1470
+008652B0	0016D6A0,001A1470
+00865320	0016D6A0,001A1470

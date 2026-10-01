@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2-DATA-PUB-HBSTR-0922",
+ "note": "Published 27faf2401: hdat strBlob = {u32 04_00_00_00; section-002 encoded NUL text}; 00577A40 op-program executor (nibble/bit writes to +0x336C/+0x334C) dead-on-ship (nOps=0 x12168); +0x110 = bound hdat resource.",
+ "result_refs": [
+  {"key": "file:database/ffxii tza/02-resource-and-asset-pipeline/ps2-image-data-formats/hchk-hctg-hdat-handbook-indexes.md"}
+ ]
+}

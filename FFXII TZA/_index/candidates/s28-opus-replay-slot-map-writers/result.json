@@ -1,0 +1,221 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4268,
+ "results": {
+  "SM7_removal_refreshes_all_five": {
+   "pass_": true,
+   "party": {
+    "calls": [
+     "00323540",
+     "003261D0",
+     "refresh 003266C0"
+    ],
+    "maps": [
+     [
+      "0000",
+      "0001",
+      "0003",
+      "FFFF",
+      "0004",
+      "0005",
+      "0006",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0003",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0003",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0003",
+      "FFFF",
+      "0004",
+      "0005",
+      "0006",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0003",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ]
+    ],
+    "staging": [
+     "0000",
+     "0001",
+     "0003",
+     "FFFF",
+     "0004",
+     "0005",
+     "0006",
+     "FFFF",
+     "FFFF"
+    ]
+   },
+   "guest": {
+    "calls": [
+     "00323540",
+     "003261D0",
+     "refresh 003266C0"
+    ],
+    "maps": [
+     [
+      "0000",
+      "0001",
+      "0002",
+      "0003",
+      "000D",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0002",
+      "0003",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0002",
+      "0003",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0002",
+      "0003",
+      "000D",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     [
+      "0000",
+      "0001",
+      "0002",
+      "0003",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ]
+    ]
+   },
+   "note": "removing member 2 (00328B20) or guest 0x0C (003288F0): the entry is cleared in the STAGING copy at 022C2580, 003261D0 compacts and writes map 0 back (the active part closes up: 0,1,3,FFFF), and the refresher 003266C0 runs - maps 1-4 are rebuilt at once (map 3 = map 0, maps 1/2/4 = map 0 with [4..8] cleared). No stale window follows a removal"
+  },
+  "SM7_range_and_absence_refused": {
+   "pass_": true,
+   "cases": {
+    "party 9": {
+     "returned": "FFFFFFFF",
+     "maps_unchanged": true,
+     "calls": []
+    },
+    "party 7": {
+     "returned": "FFFFFFFF",
+     "maps_unchanged": true,
+     "calls": []
+    },
+    "guest 6": {
+     "returned": "FFFFFFFF",
+     "maps_unchanged": true,
+     "calls": []
+    },
+    "guest 0x1A": {
+     "returned": "FFFFFFFF",
+     "maps_unchanged": true,
+     "calls": []
+    },
+    "party 5, not listed": {
+     "returned": "FFFFFFFF",
+     "maps_unchanged": true,
+     "calls": []
+    }
+   },
+   "note": "an id outside the body's range (party 0..6, guest 7..0x19), or one map 0 does not list, returns -1 and writes nothing"
+  }
+ }
+}

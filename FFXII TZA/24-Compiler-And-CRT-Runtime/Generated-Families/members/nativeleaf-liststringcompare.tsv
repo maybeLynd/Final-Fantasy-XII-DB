@@ -1,0 +1,8 @@
+# NativeLeaf.ListStringCompare - EC-7 family C
+# if arg1 null return 0; else walk a member rip linked list comparing each
+# # node's string against arg1 byte-wise; return the matching node or 0.
+address	targets
+005C5250	
+0062DCB0	
+006711F0	
+006D70D0	

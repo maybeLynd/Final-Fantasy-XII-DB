@@ -1,0 +1,147 @@
+{
+ "cases": {
+  "T2_ladder2_skips_the_leader_path": true,
+  "T4_higher_condition_makes_eq2_false_leader_path_runs": true,
+  "T5_higher_condition_makes_eq2_false_leader_path_runs": true
+ },
+ "flags_0": {
+  "events": [
+   [
+    "00303EC0 returned",
+    0,
+    0
+   ],
+   [
+    "leader 003272A0",
+    0,
+    0
+   ],
+   [
+    "emit 0023B1C0",
+    0,
+    0
+   ],
+   [
+    "003592C0",
+    1,
+    0
+   ],
+   [
+    "00359200",
+    0,
+    1
+   ],
+   [
+    "0026BD40",
+    1,
+    4294967293
+   ]
+  ],
+  "returned": true,
+  "stopped_at": []
+ },
+ "flags_10": {
+  "events": [
+   [
+    "00303EC0 returned",
+    0,
+    0
+   ],
+   [
+    "leader 003272A0",
+    0,
+    0
+   ],
+   [
+    "emit 0023B1C0",
+    0,
+    0
+   ],
+   [
+    "003592C0",
+    1,
+    0
+   ],
+   [
+    "00359200",
+    0,
+    1
+   ],
+   [
+    "0026BD40",
+    1,
+    4294967293
+   ]
+  ],
+  "returned": true,
+  "stopped_at": []
+ },
+ "flags_2": {
+  "events": [
+   [
+    "00303EC0 returned",
+    1,
+    0
+   ],
+   [
+    "emit 0023B1C0",
+    1,
+    0
+   ],
+   [
+    "003592C0",
+    1,
+    0
+   ],
+   [
+    "00359200",
+    0,
+    1
+   ],
+   [
+    "0026BD40",
+    1,
+    4294967293
+   ]
+  ],
+  "returned": true,
+  "stopped_at": []
+ },
+ "flags_6": {
+  "events": [
+   [
+    "00303EC0 returned",
+    0,
+    0
+   ],
+   [
+    "leader 003272A0",
+    0,
+    0
+   ],
+   [
+    "emit 0023B1C0",
+    0,
+    0
+   ],
+   [
+    "003592C0",
+    1,
+    0
+   ],
+   [
+    "00359200",
+    0,
+    1
+   ],
+   [
+    "0026BD40",
+    1,
+    4294967293
+   ]
+  ],
+  "returned": true,
+  "stopped_at": []
+ },
+ "ok": true
+}

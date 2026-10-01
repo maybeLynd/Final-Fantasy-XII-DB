@@ -1,0 +1,21 @@
+PASS C2 0053DD20: line+0x19 = (class + 3) * 2 (font slot), text id base 0x61A8 (bit 15) / 0x6590
+PASS C3 fsroll_fontA's handler passes op 8 to 0053F0D0
+PASS C1 the evaluator visits every nameX call site a plain grep finds - {'B': 235, 'A': 28, 'C': 425} vs {'B': 235, 'A': 28, 'C': 425}
+PASS E0 every nameX argument is a literal or (k + regI0) inside a constant loop - 0
+   distinct name ids (menu04) by class: {'C': 571, 'B': 39, 'A': 28}; role ids (menu03, bit 15) by class: {'B': 229}
+   fr: 14 accented name rows [894, 898, 899, 903, 913, 920, 933, 934, 935, 936, 937, 939, 942, 944]; requested by the script with class: {894: '-', 898: '-', 899: '-', 903: '-', 913: '-', 920: '-', 933: '-', 934: '-', 935: '-', 936: '-', 937: '-', 939: '-', 942: '-', 944: '-'}
+   fr: accented rows drawn with face b or c (fonts 8/10, the us-pack 127-glyph tables): 0
+   de: 14 accented name rows [894, 898, 899, 903, 913, 920, 933, 934, 935, 936, 937, 939, 942, 944]; requested by the script with class: {894: '-', 898: '-', 899: '-', 903: '-', 913: '-', 920: '-', 933: '-', 934: '-', 935: '-', 936: '-', 937: '-', 939: '-', 942: '-', 944: '-'}
+   de: accented rows drawn with face b or c (fonts 8/10, the us-pack 127-glyph tables): 0
+   it: 14 accented name rows [894, 898, 899, 903, 913, 920, 933, 934, 935, 936, 937, 939, 942, 944]; requested by the script with class: {894: '-', 898: '-', 899: '-', 903: '-', 913: '-', 920: '-', 933: '-', 934: '-', 935: '-', 936: '-', 937: '-', 939: '-', 942: '-', 944: '-'}
+   it: accented rows drawn with face b or c (fonts 8/10, the us-pack 127-glyph tables): 0
+   es: 14 accented name rows [894, 898, 899, 903, 913, 920, 933, 934, 935, 936, 937, 939, 942, 944]; requested by the script with class: {894: '-', 898: '-', 899: '-', 903: '-', 913: '-', 920: '-', 933: '-', 934: '-', 935: '-', 936: '-', 937: '-', 939: '-', 942: '-', 944: '-'}
+   es: accented rows drawn with face b or c (fonts 8/10, the us-pack 127-glyph tables): 0
+PASS S0 text groups 25 / 26 (ids 0x61A8.. / 0x6590..) load kind-2 ids 0x41 menu03 / 0x42 menu04 (byte table 01E09F68) - 65 66
+PASS S0b menu04's st2e row offsets ascend over its 1,024 rows, so the ex00 scan order is the row index
+   name ids the script requests: 638 distinct, 0..1023
+   men_z0005.ebp sha256[:16] per language: {'us': '9508f0a185aa85a4', 'fr': '9508f0a185aa85a4', 'de': '9508f0a185aa85a4', 'it': '9508f0a185aa85a4', 'es': '9508f0a185aa85a4', 'in': '9508f0a185aa85a4'}
+PASS S1 the staff-roll script men_z0005.ebp is byte-identical in us/fr/de/it/es/in (the us decompile covers them)
+PASS S2 no accented name row (894..944) is requested by any fsroll_nameA/B/C call
+RESULT the 49 extra glyphs are never drawn by the shipped staff roll in the us-pack arms
+FAILS 0

@@ -1,0 +1,66 @@
+== the two shared pointers
+0062F080  mov       rcx, qword ptr [rdx + 8]
+0062F084  add       rdx, 8
+0062F088  mov       rax, qword ptr [rdx + 8]
+0062F08C  mov       qword ptr [rcx + 8], rax
+0062F090  mov       qword ptr [rax], rcx
+0062F093  mov       qword ptr [rdx], rdx
+0062F096  mov       qword ptr [rdx + 8], rdx
+0062F09A  ret       
+0062F09B  int3      
+0062F09C  int3      
+0062F09D  int3      
+0062F09E  int3      
+0062F09F  int3      
+0062F0A0  sub       rsp, 0x28
+0062F0A4  xor       eax, eax
+0062F0A6  lea       rcx, [rdx - 0x30]
+0062F0AA  test      rdx, rdx
+...
+0063FC60  sub       rsp, 0x28
+0063FC64  xor       eax, eax
+0063FC66  lea       rcx, [rdx - 8]
+0063FC6A  test      rdx, rdx
+0063FC6D  cmove     rcx, rax
+0063FC71  xor       edx, edx
+0063FC73  mov       rax, qword ptr [rcx]
+0063FC76  call      qword ptr [rax]
+0063FC78  mov       al, 1
+0063FC7A  add       rsp, 0x28
+0063FC7E  ret       
+0063FC7F  int3      
+0063FC80  mov       qword ptr [rsp + 0x10], rdx
+0063FC85  sub       rsp, 0x38
+== context of one triple (00D592D0 -> 0063E840): qwords 00D59290..00D59310
+  00D59290  00000000005C5230
+  00D59298  000000000063E8D0
+  00D592A0  0000000000643D30
+  00D592A8  0000000000643A20
+  00D592B0  0000000000643A40
+  00D592B8  000000000063E960
+  00D592C0  000000000062EFD0
+  00D592C8  000000000062F080
+  00D592D0  000000000063E840
+  00D592D8  000000000063FC60
+  00D592E0  0000000000643C50
+  00D592E8  0000000000660570
+  00D592F0  0000000000641FF0
+  00D592F8  000000000016D6A0
+  00D59300  503A3A6572796850
+  00D59308  6E69747069726353
+  00D59310  69726353503A3A67
+== code/data references to the triple start and neighbourhood (00D592C0..00D592E0)
+  rip: []
+  data refs to 00D592C0: {'abs64': [], 'rva32': ['01EB26D8(.data)']}
+0063E840  mov       qword ptr [rsp + 0x10], rdx
+0063E845  push      rbx
+0063E846  sub       rsp, 0x30
+0063E84A  mov       qword ptr [rsp + 0x20], 0xfffffffffffffffe
+0063E853  mov       rbx, rdx
+0063E856  mov       qword ptr [rsp + 0x50], rdx
+0063E85B  test      rdx, rdx
+0063E85E  je        0x63e88f
+0063E860  mov       rcx, rdx
+0063E863  call      0x6461b0
+0063E868  xor       eax, eax
+0063E86A  mov       qword ptr [rbx + 0x50], rax

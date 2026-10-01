@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-149",
+ "note": "Batch 149 (22 bodies -> 14 hosts): 1x2-A + top-21 1-A by size; nine to gi-render (0062xxxx GI cluster). Gates: anchors 4504 (all 22 counted), 0 MID/0 outside-body; address checker 0 UNSUPPORTED in new entries; hash clean (26 standing unreproduced); crossref 2866 findings / 400 dispositioned; neighbour guard ADDS NOTHING after 5 crossing paragraphs accounting 11 standing pairs (2861->2850).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/analysis-kit/gfz-scripts/hub149_dumps.txt",
+  "Database/Tools/work/hub149_callers.txt"
+ ]
+}

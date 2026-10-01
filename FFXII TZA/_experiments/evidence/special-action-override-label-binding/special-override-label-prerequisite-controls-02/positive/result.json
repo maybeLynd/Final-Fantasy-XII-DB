@@ -1,0 +1,318 @@
+{
+  "question": "What exact label representation accompanies initialized special-action override states0..8?",
+  "hypotheses": [
+    "eight arbitrary pointer labels",
+    "nine32-byte inline label slots, OFF plus eight native-word-correlated selections"
+  ],
+  "method": "A retained original code/constants and explicit straight-line store reduction; no execution",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "4a85f03010155b258d06d0543ce6a488fe1405b6e41d3d924ab93b2aadba15e4",
+  "inputs": [
+    {
+      "path": "special-override-constructor-dependencies-raw-01.json",
+      "sha256": "daa3526cf1e0fa780dc37f13f074cd9041acb984ba3d72734746fa492db5ae7d",
+      "driver": "capture-special-override-constructor-dependencies.py",
+      "driver_sha256": "3dcf1ee6a9574cac0fc830b06a5b1f4f33c43c2e6fab955590358c6b81952fbb"
+    },
+    {
+      "path": "special-override-formatting-effects-raw-01.json",
+      "sha256": "013264a570b793d1820d1ad22b5f6989d44d4f18f2fc1ead7beded4d2c71d72b",
+      "driver": "capture-special-override-formatting-effects.py",
+      "driver_sha256": "0b540c6b307b87a437dcf51d350af1102c0f2c1cd1617a62d06b07d08a6cb51c"
+    },
+    {
+      "path": "special-override-control-raw-01.json",
+      "sha256": "b34df909103976d7f4ccb454f70254bfd7865a554cfe7492d82d52a1463150eb",
+      "driver": "capture-special-override-control.py",
+      "driver_sha256": "c0ffe510ee31da4a611caceeeaec7cd709b6b3e62eb161ad12aa05632ae47957"
+    }
+  ],
+  "formatter_item": 182,
+  "labels": [
+    {
+      "state": 0,
+      "display_label": "OFF",
+      "label_offset": "0xae4",
+      "native_override_index": -1,
+      "native_action_word": null,
+      "known_prefix_bytes": "4f464600",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 1,
+      "display_label": "Black Hole",
+      "label_offset": "0xb04",
+      "native_override_index": 0,
+      "native_action_word": 241,
+      "known_prefix_bytes": "426c61636b20486f6c6500",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 2,
+      "display_label": "Luminescence",
+      "label_offset": "0xb24",
+      "native_override_index": 1,
+      "native_action_word": 231,
+      "known_prefix_bytes": "4c756d696e657363656e636500",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 3,
+      "display_label": "Ark Blast",
+      "label_offset": "0xb44",
+      "native_override_index": 2,
+      "native_action_word": 234,
+      "known_prefix_bytes": "41726b20426c61737400",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 4,
+      "display_label": "Whiteout",
+      "label_offset": "0xb64",
+      "native_override_index": 3,
+      "native_action_word": 237,
+      "known_prefix_bytes": "57686974656f757400",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 5,
+      "display_label": "Windburst",
+      "label_offset": "0xb84",
+      "native_override_index": 4,
+      "native_action_word": 229,
+      "known_prefix_bytes": "57696e64627572737400",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 6,
+      "display_label": "Torrent",
+      "label_offset": "0xba4",
+      "native_override_index": 5,
+      "native_action_word": 228,
+      "known_prefix_bytes": "546f7272656e7400",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 7,
+      "display_label": "Cataclysm",
+      "label_offset": "0xbc4",
+      "native_override_index": 6,
+      "native_action_word": 227,
+      "known_prefix_bytes": "43617461636c79736d00",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    },
+    {
+      "state": 8,
+      "display_label": "Inferno",
+      "label_offset": "0xbe4",
+      "native_override_index": 7,
+      "native_action_word": 226,
+      "known_prefix_bytes": "496e6665726e6f00",
+      "remaining_slot_bytes": "unproved, not fabricated defaults"
+    }
+  ],
+  "writes": [
+    {
+      "pc": "0x1d03e1",
+      "slot": 0,
+      "local": 0,
+      "bytes": "4f464600",
+      "sources": []
+    },
+    {
+      "pc": "0x1d03f3",
+      "slot": 1,
+      "local": 0,
+      "bytes": "426c61636b20486f",
+      "sources": [
+        {
+          "address": "0x8fd580",
+          "bytes": "426c61636b20486f"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0402",
+      "slot": 1,
+      "local": 8,
+      "bytes": "6c65",
+      "sources": [
+        {
+          "address": "0x8fd588",
+          "bytes": "6c65"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0410",
+      "slot": 1,
+      "local": 10,
+      "bytes": "00",
+      "sources": [
+        {
+          "address": "0x8fd58a",
+          "bytes": "00"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d041e",
+      "slot": 2,
+      "local": 0,
+      "bytes": "4c756d696e657363",
+      "sources": [
+        {
+          "address": "0x8fd590",
+          "bytes": "4c756d696e657363"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d042c",
+      "slot": 2,
+      "local": 8,
+      "bytes": "656e6365",
+      "sources": [
+        {
+          "address": "0x8fd598",
+          "bytes": "656e6365"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0439",
+      "slot": 2,
+      "local": 12,
+      "bytes": "00",
+      "sources": [
+        {
+          "address": "0x8fd59c",
+          "bytes": "00"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0447",
+      "slot": 3,
+      "local": 0,
+      "bytes": "41726b20426c6173",
+      "sources": [
+        {
+          "address": "0x8fd5a0",
+          "bytes": "41726b20426c6173"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0456",
+      "slot": 3,
+      "local": 8,
+      "bytes": "7400",
+      "sources": [
+        {
+          "address": "0x8fd5a8",
+          "bytes": "7400"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0465",
+      "slot": 4,
+      "local": 0,
+      "bytes": "57686974656f7574",
+      "sources": [
+        {
+          "address": "0x8fd5b0",
+          "bytes": "57686974656f7574"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0474",
+      "slot": 4,
+      "local": 8,
+      "bytes": "00",
+      "sources": [
+        {
+          "address": "0x8fd5b8",
+          "bytes": "00"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0482",
+      "slot": 5,
+      "local": 0,
+      "bytes": "57696e6462757273",
+      "sources": [
+        {
+          "address": "0x8fd5c0",
+          "bytes": "57696e6462757273"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d0491",
+      "slot": 5,
+      "local": 8,
+      "bytes": "7400",
+      "sources": [
+        {
+          "address": "0x8fd5c8",
+          "bytes": "7400"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d04a2",
+      "slot": 6,
+      "local": 0,
+      "bytes": "546f7272656e7400",
+      "sources": []
+    },
+    {
+      "pc": "0x1d04b1",
+      "slot": 7,
+      "local": 0,
+      "bytes": "43617461636c7973",
+      "sources": [
+        {
+          "address": "0x8fd5d0",
+          "bytes": "43617461636c7973"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d04c0",
+      "slot": 7,
+      "local": 8,
+      "bytes": "6d00",
+      "sources": [
+        {
+          "address": "0x8fd5d8",
+          "bytes": "6d00"
+        }
+      ]
+    },
+    {
+      "pc": "0x1d04d1",
+      "slot": 8,
+      "local": 0,
+      "bytes": "496e6665726e6f00",
+      "sources": []
+    }
+  ],
+  "format_literal": {
+    "address": "0x8ffae0",
+    "bytes": "2573257320257320",
+    "text": "%s%s %s "
+  },
+  "controls": {
+    "off_literal": true,
+    "guard_bound294": true,
+    "valid_index_slot_bounds": true,
+    "first_outside_slot": "0xc04"
+  },
+  "established": "On reaching/completing1D03E1..1D04D1, nine original NUL-terminated ASCII labels are stored atAE4+state*32. Formatter item182 selects with signed stateAE0 and no local index clamp. Control separately writes state-1 to the native override index; word correlation is conditional on unchanged state/table.",
+  "limits": "Labels are original debug display names, not independently proved combat semantics. Unwritten padding is unknown. Full constructor return, intervening writers, aliases, lifetime, runtime binding, natural selection and other producers remain OPEN. R15 is reused in other formatter branches; this result does not claim whole-function object effects. No external review run is counted as our execution."
+}

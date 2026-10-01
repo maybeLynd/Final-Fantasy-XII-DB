@@ -1,0 +1,101 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "capture.py",
+      "git_blob": "e600f9b2b55cc420f7140158bab0400c60b7913d"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "8c5ee8f417a78181bdd992c4953bcd121a0782a7"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "6d10b5817ccc89739a5ebd117d507f09cbab6dd2"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "b3593fe4f5c2dda0920ea31afcb3dbda30d4d39b"
+    },
+    {
+      "path": "raw-source.json",
+      "git_blob": "bbd6413953c067670b8c1a157f94d9e9ccde3e65"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "9a5ad92bc8924f0f4369f56b472f8ac690eb356e"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "70c541d001d20bc029b9773d42e7300b0840bec2"
+    },
+    {
+      "path": "retained/__pycache__/reg_tracking.cpython-314.pyc",
+      "git_blob": "37697700eadf0947d29f5f64b55526cd2cd03083"
+    },
+    {
+      "path": "retained/__pycache__/shipping-reader.cpython-314.pyc",
+      "git_blob": "b5d7c6bd42e69f346330717d484fe1e8b83c7673"
+    },
+    {
+      "path": "retained/allocation-parent-manifest.json",
+      "git_blob": "63cb901e7ed4675795560c5015c4b0ca13e07980"
+    },
+    {
+      "path": "retained/allocation-parent-result.json",
+      "git_blob": "b3dbc2811ab8aa9c6d9bd4f0396686b385a47a07"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "e600f9b2b55cc420f7140158bab0400c60b7913d"
+    },
+    {
+      "path": "retained/known-release-primary.md",
+      "git_blob": "2ed80d135cc3b1c3aa00f69a622be3c9a85c5de9"
+    },
+    {
+      "path": "retained/labelled-parameter-only-clear.bin",
+      "git_blob": "3656cd21ec4f0276bc1d8837a36667184d834189"
+    },
+    {
+      "path": "retained/labelled-release-je-to-jne.bin",
+      "git_blob": "f962ceeb8be343d74616cfed74bc197379009665"
+    },
+    {
+      "path": "retained/memset-thunk.bin",
+      "git_blob": "e913fc6c27b648efaadf3cc1723c36e4f4eb4393"
+    },
+    {
+      "path": "retained/nav-fields-preimage.tsv",
+      "git_blob": "6f295791e7e549be0877d855bd27777591d6fec8"
+    },
+    {
+      "path": "retained/nav-types-preimage.tsv",
+      "git_blob": "fd53797690f9e9cd2e237870e184587b4eccfafd"
+    },
+    {
+      "path": "retained/raw-release-entry.bin",
+      "git_blob": "c92981b44395e355a4f2d18de532db58d595fdb0"
+    },
+    {
+      "path": "retained/reg_tracking.py",
+      "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+    },
+    {
+      "path": "retained/release-thunk.bin",
+      "git_blob": "86f51d00bf6fce4a98308ff70d25c055a918eebd"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    },
+    {
+      "path": "retained/teardown.bin",
+      "git_blob": "7e8367a3ae0cb8e596687777f5cedc347c62f431"
+    }
+  ]
+}

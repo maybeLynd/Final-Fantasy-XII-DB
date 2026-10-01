@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-LAND-THE-TWO-HELD-P0-VERDICT-CORRECTIONS",
+ "agent": "OPUS",
+ "note": "L2-VERDICTS.md came back clean for the first time in forty rounds of checking, so both held P0 items are applied. S-02: the cell said the singleton's sub-object debt is 2,701 bytes over ten declared types; under the cell's OWN predicate - rows named unobservedSpan or unobservedTail - over the containment closure it is 23 types and 13,365 bytes, 13,507 counting the root's own 142, with the eight direct children holding 5,447 and BattleMenuChildWidget1620 alone 5,301. AND REVALIDATING BEFORE WRITING CAUGHT MY OWN UNDERCOUNT: the figure I had ready from an earlier round was 20 types and 12,458 bytes, because my closure followed only EMBED and not ARRAY, and the type it missed - ManagerSub8FA0SlotRecord02B8 at `ARRAY ManagerSub0209BE80_8FA0+0xAC0` - is the owner of one of the two spans that very cell singles out. A predicate that drops the cell's own headline example is the predicate that has to be fixed. CHAIN is deliberately still excluded: a chain is a pointer hop to a separate object, not containment. The original sentence is struck and kept, not deleted, and the cell is NOT re-scored - its own note says scoring waits on OPUS-REQ-AUDITSPEC-RULE-ON-WHAT-TYPES-MET-REQUIRES. S-52: the types/ABI measurement is supplied and explicitly not scored - ActorManagerSlotEntry 0x18 with 8 rows and 3 unobserved bytes, routed as two arrays of four inside ActorManagerSlot, and ActorManagerSlot 0x288 with 63 rows and 24 unobserved, routed ARRAY 0x02098E10 stride=0x288 count=5; 27 unobserved bytes of 672, 96.0 % observed. Entering the score would be the same conflict of interest that kept me from scoring S-01 and S-02. Two lines changed in the file and nothing else. Claiming @publication.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

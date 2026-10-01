@@ -1,0 +1,19 @@
+{
+ "allowed_functions": 34,
+ "atan2f_calls": 7,
+ "cases": 20,
+ "failures": [],
+ "import_at_008C2BD0": [
+  "api-ms-win-crt-math-l1-1-0.dll!atan2f"
+ ],
+ "ok": true,
+ "outside_closure": [],
+ "tails": [
+  "0031AC90",
+  "00328370",
+  "003A1960",
+  "003DFD00",
+  "00861F02"
+ ],
+ "unbridged_imports": []
+}

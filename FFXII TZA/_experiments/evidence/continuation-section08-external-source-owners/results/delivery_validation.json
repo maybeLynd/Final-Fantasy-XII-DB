@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "separate_extraction": true,
+  "native_reproduction": {
+    "status": "PASS",
+    "assertions": 116,
+    "mutants": 9,
+    "body_records": 120,
+    "output": "/mnt/data/ff12_section08/delivery_reproduction"
+  },
+  "baseline_equal_to_packaged": true,
+  "compatible_preimages": true,
+  "merged_files_all_match": true,
+  "manifest_files_checked": 32,
+  "no_original_exe_bundled": true,
+  "note": "The manifest excludes its own recursive hash. This report is subsequently included and rehashed in the final seal."
+}

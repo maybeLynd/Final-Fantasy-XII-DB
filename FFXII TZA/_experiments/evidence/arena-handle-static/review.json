@@ -1,0 +1,69 @@
+{
+  "evidence_class": "A: offline complete shipping bodies and existing captured results; no game-code execution",
+  "reviewed_bodies": {
+    "0x36af20": {
+      "bytes": 309,
+      "sha256": "c16d594a99cf82876699fb468e43bb215095cfffdb6a1e555677284374af1738"
+    },
+    "0x36a9c0": {
+      "bytes": 260,
+      "sha256": "45c4eae2056d7a8d601d06126cc32c4d38581a4ad083cec2a4f1cdad126ba537"
+    },
+    "0x369800": {
+      "bytes": 85,
+      "sha256": "a38fb5a0aecad6a3d4ccaf040b3ff13f5980378a91838ce5153e85addfa3e25f"
+    },
+    "0x36c4b0": {
+      "bytes": 229,
+      "sha256": "d5f2d6da52dbee37c0a546d821b7644481a359dbfca063b2da9b3a4ed825b6b2"
+    },
+    "0x36c9d0": {
+      "bytes": 253,
+      "sha256": "3aba22171d040fa929dd83178841bbe391c4285417524a6d85251a9bc1891c7e"
+    }
+  },
+  "prior_unlinker_receipt_identical": true,
+  "existing_exp078_cases": [
+    "low-two-front",
+    "above2-two-front",
+    "above4-two-front",
+    "above4-two-front-low-alias",
+    "above4-whole-block",
+    "low-two-back",
+    "above4-two-back",
+    "zero-decoder-mutant"
+  ],
+  "original_cases": 7,
+  "mutation_controls": 1,
+  "review_correction": "Initial local census check expected7 review rows; stopped. Reviewed actual eighth row: preserved zero-decoder-mutant. No execution repeated; no row removed. Earlier peer notice used high as shorthand for the actual above4 names.",
+  "focused_consumer_versions": [
+    {
+      "commit": "bd44aa41e80362e77c7ad42fcac2c1313070dce7",
+      "path": "Database/FFXII TZA/24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md",
+      "sha256": "d86e603310ed1a131036c7effadf47a977f1a552d1ed8509870012a44c4a93d9"
+    },
+    {
+      "commit": "3fcc3de83e230e75369e0160a5c1f60d966464bb",
+      "path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+      "sha256": "fe7246ab389f8842fa01eb189792c17cc2a4d7c60d1e624357d1ce39926e2f59"
+    }
+  ],
+  "findings": [
+    "Issue returns zero-extended low32 slot address OR3 on both new and existing-active-slot paths.",
+    "Free-slot-head absence only prevents NEW slot issue; an active associated slot is reused earlier.",
+    "Release admission tests low32 nonzero, low bits nonzero, unsigned >=100000, then masks to low32FFFFFFFC. Tags1/2 also admitted locally; no generation check here.",
+    "C4B0 can write through the reconstructed low slot atC572 after issue; this is another truncating consumer, not live high-address execution.",
+    "Unlink prefix decodes free-list+08/+04 before conditional neighbor removal.",
+    "Neighbor RSI=decode(+10)=successor,RDI=decode(+0C)=predecessor. CA75 successor+0C=encode(predecessor); CA8A predecessor+10=encode(successor).",
+    "Only incoming EDX nonzero reaches FF99 and clears neighbor fields. +3E meaning remains open."
+  ],
+  "limits": [
+    "No live reachability, handle lifecycle, generation-safety or arbitrary-input safety established.",
+    "Unreviewed diagnostic/cookie/free callees are call boundaries, not proven native effects.",
+    "Known EXP078 nonzero neighbor faults do not establish nonzero free-list-link execution."
+  ],
+  "correction_tasks": [
+    "ASTRA-CONTRA-OPUS-ARENA-UNLINK-CONSUMER",
+    "ASTRA-CONTRA-FABLE-ARENA-CONSUMER-BOUNDS"
+  ]
+}

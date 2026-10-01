@@ -1,0 +1,200 @@
+{
+  "package": "FFXII_TZA_UPDATE_01_Result_Application_Unit_Installation.zip",
+  "section": "SECTION-01",
+  "date": "2026-09-22",
+  "baseline_archive": "FFXII TZA(20260922-211246).zip",
+  "baseline_archive_sha256": "fc02c2fcc0fd305c53e0c8c2949b7b4dad6225921db1328cbfd8cfffea34aeaf",
+  "production_complete": true,
+  "formal_peer_acceptance": "PENDING; no T2 or L2 self-certification",
+  "zip_root": "FFXII TZA/",
+  "application": "Merge the folder with the existing folder. Do not delete unlisted files. Local changes since the named snapshot require a merge.",
+  "excluded": "All unchanged original files, original EXE/GZF, .git, compiled executables and dependencies",
+  "manifest_self_exclusion": "This manifest is an added file; it is omitted from its own file-hash list to avoid recursive hashing.",
+  "modified_existing_count": 7,
+  "added_file_count_including_manifest": 20,
+  "total_zip_files": 27,
+  "files": [
+    {
+      "path": "04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md",
+      "change": "modified",
+      "original_sha256": "44c12234f71fa4bcbe6931ec150adedd4166ccd26ec016213ae50060b66d2989",
+      "updated_sha256": "bf8dc6235e744bd5b26b9a2c3757afbb8489f50b194b660f45433314865cb2df",
+      "updated_bytes": 12493
+    },
+    {
+      "path": "04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md",
+      "change": "modified",
+      "original_sha256": "388a587af4dadcf3606db6474a38f1ba3a327e66b6c34f3bec4fd611cd305a34",
+      "updated_sha256": "5b691ef6aa34dac565deb6b525b7d7ac159b73401e839f12ea148fe276c52381",
+      "updated_bytes": 78014
+    },
+    {
+      "path": "07-Combat-Action/CONTRACT-apply-result-to-target.md",
+      "change": "modified",
+      "original_sha256": "b15867029ae56d5f0dbda984e9e0fa250594d6f8339b44a4d619bc294703869f",
+      "updated_sha256": "a5c8c695f36e77bf92c87c02597332cccc187b92de5f7df69f0ce311a6970d4e",
+      "updated_bytes": 13950
+    },
+    {
+      "path": "07-Combat-Action/applying-a-result-to-a-target.md",
+      "change": "modified",
+      "original_sha256": "f0b07fd56bbea4f6c5579328f52eba5f17e6a114d11ce094b55a15980f4bda4f",
+      "updated_sha256": "30bbd5a93e82df1edce060ff472ad50c0d49071821a598419d4e7c761cb55e23",
+      "updated_bytes": 25980
+    },
+    {
+      "path": "_experiments/EXP-148-apply-result-callees-exec.md",
+      "change": "modified",
+      "original_sha256": "9abf15115b506cba491866c04b8a4cf62765a0b0addbd8ea195dd6dfa61d2fca",
+      "updated_sha256": "5d5ee7964d425f23392f3cc92b52fa0888db018537bc53fde0fa494ad3483fe1",
+      "updated_bytes": 8914
+    },
+    {
+      "path": "_experiments/EXP-149-apply-result-whole-exec.md",
+      "change": "modified",
+      "original_sha256": "2563476946341eaa1ba9223f3993761d055a16fef978b4a3f0ebe72658e06f8c",
+      "updated_sha256": "f97ebf81921eee6edafadf30a47bbce84a7ac90c84c766e06207b6cff086b8cf",
+      "updated_bytes": 10391
+    },
+    {
+      "path": "_experiments/EXP-150-battle-unit-construct-exec.md",
+      "change": "modified",
+      "original_sha256": "45ebdaf8902ab7d63151e10a8c998fa23e75003fcfb0168d5e0c1d15308e476b",
+      "updated_sha256": "bf64df31122974a842099c69d907f73981063d9666d1d97ec974ae380fe1bcae",
+      "updated_bytes": 9652
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/REVIEW.md",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "bbfd175c59d484f02fd4f00a7974fa1a4e9c2904c1504be4b0d9baf329cbb992",
+      "updated_bytes": 13699
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/input_manifest.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "e731c5ce3dbdcd2295a9d077fe983c557d2ab111bf12ec12a9d3a44b99b26aca",
+      "updated_bytes": 1428
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/native_controls.c",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "d1b7e81540db5c14af1840ea7482bbc9e19a2605b2aab426657339240197c316",
+      "updated_bytes": 12769
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/original_body_manifest.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "7740ec8f107afb94b8f3f76ec8aa8252d27a2452a67cc9f6f2089bbe3c086f5c",
+      "updated_bytes": 3056
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/original_disassembly.txt",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "beaacea8fd437a99c4702f0d14d21ffbbe66fb3d0301f55e0525d57af3c1d2aa",
+      "updated_bytes": 166932
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/body_verification.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "31d223cbf4cd4ee8a3eb83438dc707579b0cefa017fb5d8db37ef9b3141695a4",
+      "updated_bytes": 2581
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/mutant_omit_mode_failure_bit_clear.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "c220674873264c90d6248814680d1da936ccb3e1c301ecdd214c07d2256e1db3",
+      "updated_bytes": 13788
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/mutant_skip_direct_dword_copy.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "68ebcf3b7575fe30dd4a1f3887e1d87b6fe1cd711a9b8042e6038675e0e2fd21",
+      "updated_bytes": 13787
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/mutant_suppress_applier_dirty_flag.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "706d1845fc8c81fd00c9367029e8d3d7b35b9767e79e60c2e44e141b1ec80ec4",
+      "updated_bytes": 13788
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/mutant_wrong_tracked_base.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "5186a33cf41a939329418437577a8141cf2ffe2daaf1052f8917276470c89d57",
+      "updated_bytes": 13817
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/mutation_results.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "1131e2e16def56425808f5c926e8da960cc7ee4291f6ca9f9aaf4ffc39fc11db",
+      "updated_bytes": 1035
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/native_repeat_results.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "50590d55e8b903ddf3865e01efd45b836df6f0433b62d4e0ae778dc348480c2f",
+      "updated_bytes": 13787
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/native_results.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "50590d55e8b903ddf3865e01efd45b836df6f0433b62d4e0ae778dc348480c2f",
+      "updated_bytes": 13787
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/retained_review.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "8a88f2e78f2135884e655e1131a4c816a19a4a2ec4d1cd78b4b339d3a944b031",
+      "updated_bytes": 12657
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/section_validation.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "59acd9a11122f05bc637c026b2fa9425bdff0ad7927a2d09295321663ec64b9e",
+      "updated_bytes": 4891
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/results/summary.json",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "c954753abbd400e35b5087cc4fd9fec3cc4e2f1bb8f4d3fdaad992bd89eb4643",
+      "updated_bytes": 939
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/run_review.py",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "fb07df0eb9a03861eda75f2e4d6eeed724cff6750ec5d6707fa7158764c7b217",
+      "updated_bytes": 11627
+    },
+    {
+      "path": "_experiments/evidence/continuation-section01-result-install/verify_overlay.py",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "4a910aa6f157eacd5e006ca9e4580eebc6ef4354e3b59cbf407e83c969713bb4",
+      "updated_bytes": 1985
+    },
+    {
+      "path": "_index/_inbox/EXTERNAL-CONTINUATION.md",
+      "change": "added",
+      "original_sha256": null,
+      "updated_sha256": "098e72fc00a6dc6ac0c7ff8e31a79f3d9b0bb9018419f6fb4c52666295e42abb",
+      "updated_bytes": 3489
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+SURVIVES  N0  all ten sizes as measured
+SURVIVES  N1  align16((count x 0x149 + u16 +0x38) x 2) + the fifth argument
+SURVIVES  N2  +0x88 count, +0x8A entry +0x30, +0x90 coreBytes, +0xB0 name index (stride 3 << 4 = 0x30), the tail copy at core + coreBytes
+SURVIVES  N3  (REFUTES) the 00409A30 lookup goes to +0x1C; +0x80 / +0x84 / +0x94 are dword arena offsets (x - [01F83530]) of the caller's core block, its live resolution and core + coreBytes
+SURVIVES  N4  bit 30 skip, the 0x200100 gate, bits 23-25 -> +0x30/+0x34/+0x38, bits 26-28 -> 0046D560, bit 21's 16-index fan
+SURVIVES  N5  (OMISSION) bit 31 (sign test) and bit 22 each skip one u16 in the rich arm, after bit 21's 16 (add 0x20); 004094D0 skips bit 31's
+SURVIVES  N6  identities at +0x1F0 / +0x230; +0x270..+0x27C cleared
+SURVIVES  N7  parent to +0xB8 of rbx (= record +0x270), first-child +0x274, next-sibling +0x272, roots on record 0's chain
+SURVIVES  N8  (REFUTES '!= 2 -> second loop') kind 0 -> 00372CBE (0x4C stride from +0x30); other non-2 kinds -> 00372E84, no records, only the 0x7FFF slot fill and the 0x1000 clear
+SURVIVES  N9  the 0x740 index on [022C6F28] gated +0x284; +0x70 / +0x74 / +0x78 rebased; the three helpers called
+SURVIVES  N10  (REFUTES '71 functions stride 0x290') 55 listed bodies multiply by 0x290, all inside imul290.txt's 71; the other 16 use 0x290 otherwise (12 as a stack frame), e.g. ['001A5B30 sub rsp, 0x290', '00253780 mov ecx, 0x290', '0029E110 mov r8d, 0x290']
+FAILS 0

@@ -1,0 +1,178 @@
+{
+  "method": "A: unmodified original repository Python CLI/transaction; not FF12 native/live",
+  "question": "Does pending-write healing bind complete written state, or only revision/last operation?",
+  "hypotheses": [
+    "H1 complete-state mismatch refuses",
+    "H2 matching last operation promotes changed checkpoint state"
+  ],
+  "identity": {
+    "source_sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480",
+    "source_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "module_path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "source_commit": "bf000cdc96d3ca9ec7fb461d0e066572d6657041",
+    "parent_commit": "521f189be5d6bab445a7f7cccffa7a650c636afd",
+    "head": "48e6859d02910737b52aa4f4ef50085e551fe657",
+    "driver_sha256": "04ed006f858f12d9e2d6f5204d56de1ea3387a35b72315cea48a6ee7aa8034b7",
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+    "python_base_executable": "C:\\Python314\\python.exe",
+    "python_base_sha256": "03168c01b7b7491423350e82c26fee71f35b43694d1319d3c668bda6903a0c38"
+  },
+  "interventions": [
+    "Copy exact observed postwrite board/journal, omit copied final commit to construct pending prefix",
+    "Change one copied checkpoint note without changing last operation; change last operation in negative control"
+  ],
+  "cases": [
+    {
+      "name": "healthy-prefix",
+      "schema_valid_before": true,
+      "before_board_sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417",
+      "before_journal_sha256": "98352714da795c7d12eeb726b4af7c222678b5a3f4b7fc5202d7c765d5a449c7",
+      "matches_observed_parent_commit": true,
+      "writer": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+          "apply",
+          "--board",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\healthy-prefix\\TEAM.json",
+          "--agent",
+          "ASTRA",
+          "--session",
+          "healthy-prefix",
+          "--expect-revision",
+          "1",
+          "--file",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\healthy-prefix\\operation.json"
+        ],
+        "pid": 32576,
+        "returncode": 0,
+        "stdout": "Saved revision 2\r\n",
+        "stderr": "",
+        "terminal": true,
+        "timed_out": false,
+        "elapsed_seconds": 0.13482629996724427
+      },
+      "after_board_sha256": "58f813b2ff29b05d90105ebc362250bb56fb23359740b03ac7fef969dd38a31a",
+      "after_journal_sha256": "2d9433f8accab550417498b67b3519c0457c31d40c3aa03c0350bfb944bb3373",
+      "private_lock_absent": true,
+      "health": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+          "boardcheck",
+          "--board",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\healthy-prefix\\TEAM.json"
+        ],
+        "pid": 69560,
+        "returncode": 0,
+        "stdout": "board ok: ok\r\n",
+        "stderr": "",
+        "terminal": true,
+        "timed_out": false,
+        "elapsed_seconds": 0.10391830001026392
+      }
+    },
+    {
+      "name": "changed-checkpoint",
+      "schema_valid_before": true,
+      "before_board_sha256": "7289d5f22d570a390918cf93d13e5fde2d95b65cee6e9b4a9d1dd0078c3d30b1",
+      "before_journal_sha256": "98352714da795c7d12eeb726b4af7c222678b5a3f4b7fc5202d7c765d5a449c7",
+      "matches_observed_parent_commit": false,
+      "writer": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+          "apply",
+          "--board",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\changed-checkpoint\\TEAM.json",
+          "--agent",
+          "ASTRA",
+          "--session",
+          "changed-checkpoint",
+          "--expect-revision",
+          "1",
+          "--file",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\changed-checkpoint\\operation.json"
+        ],
+        "pid": 33784,
+        "returncode": 0,
+        "stdout": "Saved revision 2\r\n",
+        "stderr": "",
+        "terminal": true,
+        "timed_out": false,
+        "elapsed_seconds": 0.1324779000133276
+      },
+      "after_board_sha256": "17c5bd9f127af680d65915020ddbc0cb1a0cf5cdb1d089c13de8860f1a6b7ae1",
+      "after_journal_sha256": "dca593d2813e0e92b812007a1d69e41be27261af4af6452f1fe6ec6dd1240c10",
+      "private_lock_absent": true,
+      "health": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+          "boardcheck",
+          "--board",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\changed-checkpoint\\TEAM.json"
+        ],
+        "pid": 56260,
+        "returncode": 0,
+        "stdout": "board ok: ok\r\n",
+        "stderr": "",
+        "terminal": true,
+        "timed_out": false,
+        "elapsed_seconds": 0.10736129991710186
+      }
+    },
+    {
+      "name": "different-last-operation",
+      "schema_valid_before": true,
+      "before_board_sha256": "fc78243b081f2a9f8ef0fb73bcb79bffb00ee373d8bcae5148bb8392cf1d93e0",
+      "before_journal_sha256": "98352714da795c7d12eeb726b4af7c222678b5a3f4b7fc5202d7c765d5a449c7",
+      "matches_observed_parent_commit": false,
+      "writer": {
+        "argv": [
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+          "apply",
+          "--board",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\different-last-operation\\TEAM.json",
+          "--agent",
+          "ASTRA",
+          "--session",
+          "different-last-operation",
+          "--expect-revision",
+          "1",
+          "--file",
+          "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\board-pending-state-binding\\run-01\\different-last-operation\\operation.json"
+        ],
+        "pid": 70500,
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "journal shows a pending intent for revision 1 but the board is revision 1 with a different last op - interrupted write; recover deliberately\r\n",
+        "terminal": true,
+        "timed_out": false,
+        "elapsed_seconds": 0.12895430019125342
+      },
+      "after_board_sha256": "fc78243b081f2a9f8ef0fb73bcb79bffb00ee373d8bcae5148bb8392cf1d93e0",
+      "after_journal_sha256": "98352714da795c7d12eeb726b4af7c222678b5a3f4b7fc5202d7c765d5a449c7",
+      "private_lock_absent": true,
+      "health": null
+    }
+  ],
+  "state": "OBSERVED",
+  "limits": "Constructed private states, no real crash/production recovery/controller/deployment or game observation.",
+  "cleanup": {
+    "owned_processes_terminal": true,
+    "source_unchanged": true,
+    "all_private_locks_absent": true,
+    "original_parent_bytes_unchanged": true,
+    "production_board_not_a_fixture": true,
+    "normal_game_or_production_host_health": "NOT_OBSERVED"
+  }
+}

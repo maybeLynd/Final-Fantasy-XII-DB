@@ -1,0 +1,12 @@
+== 00632960 stores
+  0063296D mov    qword ptr [rsp + 0x20], 0xfffffffffffffffe
+  00632976 mov    qword ptr [rsp + 0x60], rbx
+  0063298B mov    qword ptr [rsp + 0x58], rbx
+  006329A0 mov    qword ptr [rbx + 0x28], rdi
+== branches into (0059CC38, 0059CD14] from outside
+  0059CB1C jmp 0x59cc3b
+== indirect jumps in 0059C700: []
+rip refs -> 0060F3D0: []
+reloc qwords -> 0060F3D0: [(13839784, 6353872), (13840296, 6353872), (13840800, 6353872), (13841304, 6353872), (13841808, 6353872), (13842312, 6353872), (13842824, 6353872), (13843328, 6353872), (13843832, 6353872), (13844336, 6353872)]
+rip refs -> 0060F280: [('005EEDEF', 'lea', '005EEB20 FUN_005eeb20')]
+reloc qwords -> 0060F280: []

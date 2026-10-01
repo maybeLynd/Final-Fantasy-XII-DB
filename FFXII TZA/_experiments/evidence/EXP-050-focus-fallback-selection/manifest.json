@@ -1,0 +1,24 @@
+{
+  "files": {
+    "check.py": {
+      "bytes": 7303,
+      "sha256": "c1300489b8507ad79adbce0dc35dca9cd0b7662331697ab44b99f38a97440854"
+    },
+    "disassembly.txt": {
+      "bytes": 4012,
+      "sha256": "1991c7c9c1f8ac56703d348000ec2d73af17d4ac83294f87884c43340c009663"
+    },
+    "encoder.bin": {
+      "bytes": 38,
+      "sha256": "808e4fe5b600c98b70504da52344ec98cab2e89c5e46b19b3c605dd8cbed4c55"
+    },
+    "function.bin": {
+      "bytes": 274,
+      "sha256": "14be55a0ce5ca4591745fb35405a1f339ec2cd59249a1baae94e885cb471fd49"
+    },
+    "result.json": {
+      "bytes": 52958,
+      "sha256": "949d40c2b1074dd7f0d551e787df1d80b6fd04645578f0568d0a5e48c7164201"
+    }
+  }
+}

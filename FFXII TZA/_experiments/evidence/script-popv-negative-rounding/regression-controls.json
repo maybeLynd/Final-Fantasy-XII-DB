@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-positive-bit-order-for-negative",
+    "returncode": 1,
+    "expected": "Positive-domain RU bitincrement cannot be reused for negativeinput"
+  },
+  {
+    "argument": "--fault-rounded-value-is-more-negative",
+    "returncode": 1,
+    "expected": "Original RU moves thisnegativeinput numericallyup"
+  },
+  {
+    "argument": "--fault-positive-default-proves-negative",
+    "returncode": 1,
+    "expected": "Green default covers positive-domain fixtures, not thisnegative extension"
+  }
+]

@@ -1,0 +1,24 @@
+(a) ctor -> vtable -> RTTI; getter; applier
+  classId  1 ctor 007D2150 vtable 01CB7528 .?AVSurroundReverb@Driver@Sd@SQEX@@        getter 007BD590 'mov eax, 1'  vft+0x30 = 007D5F50
+  classId  2 ctor 007D85E0 vtable 01CB7710 .?AVCompressor@Driver@Sd@SQEX@@            getter 007E3260 'mov eax, 2'  vft+0x30 = 007D8F70
+  classId  3 ctor 007D0AC0 vtable 01CB7078 .?AVFilter@Driver@Sd@SQEX@@                getter 007D14C0 'mov eax, 3'  vft+0x30 = 007D1970
+  classId  4 ctor 007D80E0 vtable 01CB7698 .?AVSideChainInput@Driver@Sd@SQEX@@        getter 007D82A0 'mov eax, 4'  vft+0x30 = 007D8540
+  classId  5 ctor 007D9530 vtable 01CB77A8 .?AVSimpleFilter@Driver@Sd@SQEX@@          getter 007D9730 'mov eax, 5'  vft+0x30 = 007D9870
+  classId  7 ctor 007DA0A0 vtable 01CB78A8 .?AVGranularPitchShift@Driver@Sd@SQEX@@    getter 007DA2A0 'mov eax, 7'  vft+0x30 = 007DA900
+  classId 10 ctor 007DAFF0 vtable 01CB7998 .?AVBuildReverb@Driver@Sd@SQEX@@           getter 007DB8C0 'mov eax, 0xa'  vft+0x30 = 007DC340
+
+(b) known answers
+  fs assumption: .data images 01F41D18=2.08333331e-05 (1/fs -> 48000.0), 01F41D24=24000 (fs/2), 01F41D28=10 (fs/4800); runtime fs is [02EAD348] set at 007AF064
+  Compressor dB->lin constant 01CB7780 = 0.1151293 ; ln(10)/20 = 0.1151293 ; -6 dB default -> 0.5012
+  Compressor attack 10 ms example: exp(-2/(0.010*fs)) = 0.995842 per sample; release exp(-1/(0.010*fs)) = 0.997919
+  Filter shipped f=2000 Hz -> w = 2000*6.283185*2.08333331e-05 = 0.26180 rad (= 2pi*2000/48000 = 0.26180)
+  Filter shipped Q=0.707 -> stored 1/Q = 1.4144 ; SurroundReverb band 1/Q shipped 1.414 -> Q = 0.7072 (same designs 007D0EA0/007D1330/007D1080)
+  SurroundReverb size=20 -> scale 0.6667 (x*0.0333333); line0 104.37 ms * scale = 69.58 ms = 3339 samples at 48k
+  SurroundReverb RT=500 ms -> FDN feedback gains 0.25*10^(-3*len/T): min 0.0338 max 0.0956  (10^(-3*len/T) alone: 0.135..0.382, i.e. -60 dB after T ms)
+  SurroundReverb pre-delay clamp constants 01CB75AC=24000 01CB75A8=23999 ; process wrap 0x5DC0=24000 frames
+  SurroundReverb damping: ln10/4 = 0.5756463 vs 01CB7598 = 0.5756463 (Jot absorptive-filter constant)
+  BuildReverb comb delays (s) 01CB7A00: [0.05, 0.056, 0.061, 0.068, 0.072, 0.078]
+  BuildReverb RT60=2.0 s -> comb gains 10^(-3*d/2): [0.841, 0.824, 0.81, 0.791, 0.78, 0.764]
+  BuildReverb damping 2000 Hz, offsets 01CB7A18 [58.0, 637.0, 688.0, 426.0, 1019.0, 964.0] -> a=exp(-2pi(f-off)/fs): [0.776, 0.837, 0.842, 0.814, 0.879, 0.873]
+  BuildReverb pre-delay 0.08 s -> 3840 samples; buffer 0.11*fs (01CB7A34=0.11) = 5279; clamp 0.1 s (008C5F6C=0.1)
+  GranularPitchShift default grain rate 10 Hz -> period 4800 samples; delay buffer 0x3840 = 14400 frames

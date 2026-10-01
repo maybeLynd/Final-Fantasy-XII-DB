@@ -1,0 +1,327 @@
+== P1P2 com-b1-basic
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x4
+  target_ea8: 0x1
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f', '+0x750', '+0x752', '+0x754', '+0x756', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: ['+0x754', '+0x756', '+0xea4', '+0xea8']
+== P1P2 com-b1-edge
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002001e02b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002001e02b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x21e', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x4
+  target_ea8: 0x1
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f', '+0x750', '+0x752', '+0x754', '+0x756', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: ['+0x754', '+0x756', '+0xea4', '+0xea8']
+== P1P2 com-b2-lo
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000040b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000040b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x4000', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0xff
+  buf_word1_after: 1122
+  buf_count_after: 5
+  buf_entry0_actor: 0x4746454443424140
+  buf_entry0_tail: 48494a4b4c4d4e4f
+  buf_unchanged: True
+  buf_rest_zero: False
+  phase6b4: 0x0
+  target_ea4: 0x0
+  target_ea8: 0x0
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f']
+  target_changed: []
+== P1P2 com-b2-hi
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002006641b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002006641b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x4166', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0xff
+  buf_word1_after: 1122
+  buf_count_after: 5
+  buf_entry0_actor: 0x4746454443424140
+  buf_entry0_tail: 48494a4b4c4d4e4f
+  buf_unchanged: True
+  buf_rest_zero: False
+  phase6b4: 0x0
+  target_ea4: 0x0
+  target_ea8: 0x0
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f']
+  target_changed: []
+== P1P2 com-notarget
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'treset', 'memset', 'hmemset', 'append']
+  block_700: a0a1a2a3a4a5a6a70000000000000000000000000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000000000000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x0', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x0
+  target_ea8: 0x0
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: []
+== P1P2 com-gateoff
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'treset', 'memset', 'hmemset', 'append']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x0
+  target_ea8: 0x0
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: []
+== P1P2 com-cancel-first
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'cancel', 'cfix', 'resolv', 'idres', 'tabget', 'postf', 'unlink', 'c4fix', 'fix2', 'lwalk', 'unlink', 'unlink', 'postc', 'ret0', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'treset', 'memset', 'hmemset', 'vreset', 'ffill', 'mreset', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x4
+  target_ea8: 0x1
+  actor_changed: ['+0x210..+0x28f', '+0x708..+0x715', '+0x718..+0x747', '+0x750', '+0x752', '+0x754', '+0x756', '+0x774..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: ['+0x754', '+0x756', '+0xea4', '+0xea8']
+== P1P2 com-770-same
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x4
+  target_ea8: 0x1
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f', '+0x750', '+0x752', '+0x754', '+0x756', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: ['+0x754', '+0x756', '+0xea4', '+0xea8']
+== P1P2 com-posture
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x4
+  target_ea8: 0x1
+  actor_changed: ['+0x6b0', '+0x6b6', '+0x6b9', '+0x708..+0x715', '+0x718..+0x72f', '+0x750', '+0x752', '+0x754', '+0x756', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: ['+0x754', '+0x756', '+0xea4', '+0xea8']
+== P1P2 com-masked
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount']
+  block_700: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  copy_718: a0a1a2a3a4a5a6a70000000000000000010002000001b6b7
+  block_equals_copy: True
+  block_fields: {'flags700': '0xa3a2a1a0', 'ctx708': '0x0', 'param710': '0x20001', 'id714': '0x100', 'pad716': 'b6b7'}
+  buf_flags_before: 0xff
+  buf_flags_after: 0x1
+  buf_word1_after: 0000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+  buf_entry0_tail: 0000000000000000
+  buf_unchanged: False
+  buf_rest_zero: True
+  phase6b4: 0x0
+  target_ea4: 0x4
+  target_ea8: 0x1
+  actor_changed: ['+0x708..+0x715', '+0x718..+0x72f', '+0x750', '+0x752', '+0x754', '+0x756', '+0x778..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: ['+0x754', '+0x756']
+== P2b com-b1-basic
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  planted_target_actorwork: 0x40611000
+  buf_count_after: 1
+  buf_entry0_actor: 0x40611000
+== P2b com-notarget
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  planted_target_actorwork: 0x40611000
+  buf_count_after: 1
+  buf_entry0_actor: 0x0
+== P3 com-badid
+  ret: 0x0
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30']
+  actor_changed: []
+  target_changed: []
+== P3 com-b1-edge2
+  ret: 0x0
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30']
+  actor_changed: []
+  target_changed: []
+== P3 com-b2-oob
+  ret: 0x0
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'resolv', 'idres', 'tabget', 'fld30']
+  actor_changed: []
+  target_changed: []
+== P4 com-badid + cancelFirst=1
+  ret: 0x0
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'cancel', 'cfix', 'resolv', 'idres', 'tabget', 'postf', 'unlink', 'c4fix', 'fix2', 'lwalk', 'unlink', 'unlink', 'postc', 'ret0', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'treset', 'memset', 'hmemset', 'vreset', 'ffill', 'mreset', 'resolv', 'idres', 'tabget', 'fld30']
+  id714_after: 0xffff
+  ctx708_after: 0x0
+  param710_after: 0x0
+  shadow730_equals_old_copy: True
+  buf_count_after: 0
+  actor_changed: ['+0x210..+0x28f', '+0x708..+0x715', '+0x730..+0x747', '+0x774..+0x77c', '+0x780..+0x83f', '+0x841..+0x93f', '+0x941..+0x97f']
+  target_changed: []
+== P5a com-cancel-first MRESET real, no extra bridge
+  ret: 0x0
+  final_rip: 0x0
+  reached_return_sentinel: False
+  rsp_restored: False
+  faults: [('MEM', '0x0', 'access=21', 'rip=0'), ('EMU', 'Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)', 0)]
+  trace: ['commit', 'cancel', 'cfix', 'resolv', 'idres', 'tabget', 'postf', 'unlink', 'c4fix', 'fix2', 'lwalk', 'unlink', 'unlink', 'postc', 'ret0', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'treset', 'memset', 'hmemset', 'vreset', 'ffill', 'mreset', 'uget', 'idres', 'uget', 'idres']
+  last_16_executed: ['0x3272d6', '0x3368c2', '0x3368c5', '0x33693b', '0x336942', '0x336946', '0x336949', '0x4686d0', '0x4686d4', '0x4686d9', '0x4686de', '0x4686e2', '0x4686e6', '0x4686ea', '0x4686ee', '0x861f14']
+== P5 com-cancel-first MRESET stubbed
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'cancel', 'cfix', 'resolv', 'idres', 'tabget', 'postf', 'unlink', 'c4fix', 'fix2', 'lwalk', 'unlink', 'unlink', 'postc', 'ret0', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'treset', 'memset', 'hmemset', 'vreset', 'ffill', 'mreset', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+== P5b com-cancel-first MRESET real + sqrtf bridge
+  ret: 0x1
+  final_rip: 0x62000000
+  reached_return_sentinel: True
+  rsp_restored: True
+  faults: []
+  trace: ['commit', 'cancel', 'cfix', 'resolv', 'idres', 'tabget', 'postf', 'unlink', 'c4fix', 'fix2', 'lwalk', 'unlink', 'unlink', 'postc', 'ret0', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'treset', 'memset', 'hmemset', 'vreset', 'ffill', 'mreset', 'uget', 'idres', 'uget', 'idres', 'cookie', 'htick', 'htick', 'cookie', 'resolv', 'idres', 'tabget', 'fld30', 'treset', 'memset', 'hmemset', 'append', 'relat', 'factn', 'factn', 'ucount', 'uget', 'ucount', 'uget', 'ucount', 'notify', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'party', 'bound', 'uscan', 'bound', 'cookie']
+  last_16_executed: ['0x808c56', '0x313cc1', '0x313cc5', '0x313cc7', '0x313cc9', '0x30f97a', '0x30f97f', '0x30f983', '0x30f988', '0x30f98d', '0x30f991', '0x30f993', '0x30f995', '0x30f997', '0x30f998', '0x30f999']
+  NOTE: diffs below are only meaningful if reached_return_sentinel is True
+  actor_diff_vs_stubbed: ['+0x92..+0x93', '+0xbd']
+  target_diff_vs_stubbed: []
+  block_copy_equal_real: True
+  invariant_fields_identical: True

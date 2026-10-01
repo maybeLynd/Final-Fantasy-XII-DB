@@ -1,0 +1,4 @@
+PASS  E1 install bounds read; 162 files / 1146 unit rows; {'missing': 0, 'zero': 0, 'oob': 0}
+PASS  E2 +0x1C2 byte writers ['0030C496', '0030C7BB', '003AF80F']; enemy init level 1 / baseline 1; the script verb sets level = baseline + rand
+PASS  E3 0xFF reaches 002367A0 only from an empty member byte; class 2 bounds it by chr_data's count 40, so 0xFF is refused
+FAILS 0

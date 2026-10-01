@@ -1,0 +1,417 @@
+{
+  "pid": 17072,
+  "command": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py",
+    "--pid",
+    "17072",
+    "--field",
+    "--out",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\approachB-00.json"
+  ],
+  "start_unix": 1789101025.9162729,
+  "status": "READ_ONLY_SNAPSHOT",
+  "sources": {
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-024-group-approach\\step.py": "01fdada816ca1e8596a7fd3ab4e501d0ae19217ecaa237168850f1dda4b9a5ca",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\EXP-023-camera-input\\key_packet.py": "cea0255a0ffb971e1c264ed4f94b03574ce5d3d8ee2f2586ce366f2514df2b59",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\runtime_probe.py": "f82b0c6a26b4cc0416fbb19f35754a5f9fc1b679ab36271adb0a4f6fc9a9700f",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\window_focus.py": "6011507801e0e8fa8d99e5deb52e04e2f66a675441d0be6964de5468e08b727d"
+  },
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "before": {
+    "frame_before": 13704,
+    "frame_after": 13704,
+    "rows": [
+      {
+        "slot": 0,
+        "unit": 1733886912,
+        "actor": 1734173584,
+        "actor_class": 3,
+        "movement": 1734173872,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          75.37693786621094,
+          44.14732360839844,
+          262.19000244140625
+        ],
+        "position_raw": "fec09642dc96304252188343",
+        "hp": 103
+      },
+      {
+        "slot": 1,
+        "unit": 1733890832,
+        "actor": 1734175344,
+        "actor_class": 3,
+        "movement": 1734175632,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          65.04231262207031,
+          0.29389259219169617,
+          267.0249328613281
+        ],
+        "position_raw": "aa1582421779963e31838543",
+        "hp": null
+      },
+      {
+        "slot": 2,
+        "unit": 1733894752,
+        "actor": 1734177104,
+        "actor_class": 3,
+        "movement": 1734177392,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          65.04231262207031,
+          0.29389259219169617,
+          267.0249328613281
+        ],
+        "position_raw": "aa1582421779963e31838543",
+        "hp": null
+      },
+      {
+        "slot": 3,
+        "unit": 1733898672,
+        "actor": 1734178864,
+        "actor_class": 3,
+        "movement": 1734179152,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          65.04231262207031,
+          0.29389259219169617,
+          267.0249328613281
+        ],
+        "position_raw": "aa1582421779963e31838543",
+        "hp": null
+      },
+      {
+        "slot": 4,
+        "unit": 1733902592,
+        "actor": 1734199984,
+        "actor_class": 3,
+        "movement": 1734200272,
+        "group": 1,
+        "mode": 1,
+        "position": [
+          137.14427185058594,
+          30.88383674621582,
+          204.01644897460938
+        ],
+        "position_raw": "ef2409431912f74136044c43",
+        "hp": 134
+      },
+      {
+        "slot": 5,
+        "unit": 1733906512,
+        "actor": 1734201632,
+        "actor_class": 3,
+        "movement": 1734201920,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          164.3847198486328,
+          11.515225410461426,
+          156.0911102294922
+        ],
+        "position_raw": "7d6224435d3e384153171c43",
+        "hp": 6111
+      },
+      {
+        "slot": 6,
+        "unit": 1733910432,
+        "actor": 1734203280,
+        "actor_class": 3,
+        "movement": 1734203568,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          116.60198974609375,
+          36.90340805053711,
+          260.51971435546875
+        ],
+        "position_raw": "3834e942179d134286428243",
+        "hp": 84
+      },
+      {
+        "slot": 7,
+        "unit": 1733914352,
+        "actor": 1734204928,
+        "actor_class": 3,
+        "movement": 1734205216,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          109.11552429199219,
+          35.8231086730957,
+          246.58079528808594
+        ],
+        "position_raw": "263bda42dd4a0f42af947643",
+        "hp": 84
+      },
+      {
+        "slot": 8,
+        "unit": 1733918272,
+        "actor": 1734206576,
+        "actor_class": 3,
+        "movement": 1734206864,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          111.83256530761719,
+          35.7460823059082,
+          253.319091796875
+        ],
+        "position_raw": "46aadf42fdfb0e42b0517d43",
+        "hp": 84
+      },
+      {
+        "slot": 9,
+        "unit": 1733922192,
+        "actor": 1734208224,
+        "actor_class": 3,
+        "movement": 1734208512,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_raw": "000000000000000000000000",
+        "hp": null
+      },
+      {
+        "slot": 10,
+        "unit": 1733926112,
+        "actor": 1734209872,
+        "actor_class": 3,
+        "movement": 1734210160,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_raw": "000000000000000000000000",
+        "hp": null
+      },
+      {
+        "slot": 11,
+        "unit": 1733930032,
+        "actor": 1734211520,
+        "actor_class": 3,
+        "movement": 1734211808,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_raw": "000000000000000000000000",
+        "hp": null
+      }
+    ]
+  },
+  "after": {
+    "frame_before": 13704,
+    "frame_after": 13704,
+    "rows": [
+      {
+        "slot": 0,
+        "unit": 1733886912,
+        "actor": 1734173584,
+        "actor_class": 3,
+        "movement": 1734173872,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          75.37693786621094,
+          44.14732360839844,
+          262.19000244140625
+        ],
+        "position_raw": "fec09642dc96304252188343",
+        "hp": 103
+      },
+      {
+        "slot": 1,
+        "unit": 1733890832,
+        "actor": 1734175344,
+        "actor_class": 3,
+        "movement": 1734175632,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          65.04231262207031,
+          0.29389259219169617,
+          267.0249328613281
+        ],
+        "position_raw": "aa1582421779963e31838543",
+        "hp": null
+      },
+      {
+        "slot": 2,
+        "unit": 1733894752,
+        "actor": 1734177104,
+        "actor_class": 3,
+        "movement": 1734177392,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          65.04231262207031,
+          0.29389259219169617,
+          267.0249328613281
+        ],
+        "position_raw": "aa1582421779963e31838543",
+        "hp": null
+      },
+      {
+        "slot": 3,
+        "unit": 1733898672,
+        "actor": 1734178864,
+        "actor_class": 3,
+        "movement": 1734179152,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          65.04231262207031,
+          0.29389259219169617,
+          267.0249328613281
+        ],
+        "position_raw": "aa1582421779963e31838543",
+        "hp": null
+      },
+      {
+        "slot": 4,
+        "unit": 1733902592,
+        "actor": 1734199984,
+        "actor_class": 3,
+        "movement": 1734200272,
+        "group": 1,
+        "mode": 1,
+        "position": [
+          137.14427185058594,
+          30.88383674621582,
+          204.01644897460938
+        ],
+        "position_raw": "ef2409431912f74136044c43",
+        "hp": 134
+      },
+      {
+        "slot": 5,
+        "unit": 1733906512,
+        "actor": 1734201632,
+        "actor_class": 3,
+        "movement": 1734201920,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          164.3847198486328,
+          11.515225410461426,
+          156.0911102294922
+        ],
+        "position_raw": "7d6224435d3e384153171c43",
+        "hp": 6111
+      },
+      {
+        "slot": 6,
+        "unit": 1733910432,
+        "actor": 1734203280,
+        "actor_class": 3,
+        "movement": 1734203568,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          116.60198974609375,
+          36.90340805053711,
+          260.51971435546875
+        ],
+        "position_raw": "3834e942179d134286428243",
+        "hp": 84
+      },
+      {
+        "slot": 7,
+        "unit": 1733914352,
+        "actor": 1734204928,
+        "actor_class": 3,
+        "movement": 1734205216,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          109.11552429199219,
+          35.8231086730957,
+          246.58079528808594
+        ],
+        "position_raw": "263bda42dd4a0f42af947643",
+        "hp": 84
+      },
+      {
+        "slot": 8,
+        "unit": 1733918272,
+        "actor": 1734206576,
+        "actor_class": 3,
+        "movement": 1734206864,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          111.83256530761719,
+          35.7460823059082,
+          253.319091796875
+        ],
+        "position_raw": "46aadf42fdfb0e42b0517d43",
+        "hp": 84
+      },
+      {
+        "slot": 9,
+        "unit": 1733922192,
+        "actor": 1734208224,
+        "actor_class": 3,
+        "movement": 1734208512,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_raw": "000000000000000000000000",
+        "hp": null
+      },
+      {
+        "slot": 10,
+        "unit": 1733926112,
+        "actor": 1734209872,
+        "actor_class": 3,
+        "movement": 1734210160,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_raw": "000000000000000000000000",
+        "hp": null
+      },
+      {
+        "slot": 11,
+        "unit": 1733930032,
+        "actor": 1734211520,
+        "actor_class": 3,
+        "movement": 1734211808,
+        "group": 0,
+        "mode": 0,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_raw": "000000000000000000000000",
+        "hp": null
+      }
+    ]
+  },
+  "end_unix": 1789101025.943949
+}

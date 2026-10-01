@@ -1,0 +1,5 @@
+key	column	superseded_by	head_value	worktree_value
+MessageWindowRecord|0x0008	confidence	df462199c	PROBABLE	UNKNOWN
+WidgetSingleton02AEE4C0|0x0008	size	df462199c	1	56
+WidgetSingleton02AEE4C0|0x0008	ctype	df462199c	u8	
+WidgetSingleton02AEE4C0|0x0008	readiness	df462199c	TYPE RESOLVED	DISCOVERED

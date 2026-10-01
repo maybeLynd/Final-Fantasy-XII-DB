@@ -1,0 +1,10 @@
+# NativeLeaf.TaggedOutRecordFloatVcall - EC-7 family C
+# # pop a double arg off the arg vector, convert to float, vcall [this+8]
+# # slot 1; if out-record tag matches member getter|1 store the result
+# # handle and return 1. Sibling of the tagged out-record vcall leaves.
+address	targets
+006B3120	006B0B20
+006B31B0	006B0EC0
+006B3240	006B1320
+006B32D0	006B1600
+006B3360	006B19A0

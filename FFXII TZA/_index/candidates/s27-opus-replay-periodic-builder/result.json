@@ -1,0 +1,329 @@
+{
+ "pass": 6,
+ "total": 6,
+ "ok": true,
+ "allowed_functions": 24,
+ "results": {
+  "A_order_and_empty_ownership": {
+   "pass_": true,
+   "order": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "ownership": {
+    "1": {
+     "result": [
+      "+8..+147"
+     ],
+     "stats": [],
+     "other": []
+    }
+   },
+   "stage1_memset": [
+    [
+     1,
+     "72002008",
+     0,
+     "0x140"
+    ]
+   ],
+   "stage1_writes_outside_I3_list": 306,
+   "note": "order [1, 2, 3, 4, 5]; stats written by any stage: False; stage 1 writes 320 result bytes (I-3 names 4 fields)"
+  },
+  "B_stage3_effect_slots": {
+   "pass_": true,
+   "result_42": [
+    4,
+    0,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1
+   ],
+   "result_3E": [
+    9,
+    255,
+    255,
+    255
+   ],
+   "stage3_result_writes": [
+    "+3E",
+    "+42..+45"
+   ],
+   "stats_changed": false,
+   "note": "slot 0: 5 -> 4; slot 1: 1 -> 0 and id 9 listed; slot 2 (0) skipped; 0xFF never; the stats +0x17C are NOT written"
+  },
+  "C_five_expiries_list_bound": {
+   "pass_": true,
+   "result_3E_to_4D": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    255
+   ],
+   "result_42_slots": [
+    6,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    -1,
+    -1
+   ],
+   "stage3_writes": [
+    "+3E..+4B"
+   ],
+   "note": "observed, not asserted: ids 1,2,4,5,6 expire in one tick; the fifth id byte is written at +0x42 and the slot-0 timer write that follows lands on +0x42..+0x43"
+  },
+  "D_stage2_beat_and_regen": {
+   "pass_": true,
+   "beat_countdown": {
+    "beat_25_minus_10": [
+     true,
+     15,
+     25,
+     []
+    ]
+   },
+   "regen": [
+    {
+     "frame": 1,
+     "div": 7,
+     "ok": true,
+     "rng": [
+      3499211612
+     ],
+     "mt_expected": 3499211612,
+     "acc_24": 2,
+     "expected_heal": 2,
+     "flags_2C": "0x501",
+     "new_beat": 120,
+     "expected_beat": 120
+    },
+    {
+     "frame": 1,
+     "div": 1,
+     "ok": true,
+     "rng": [
+      581869302
+     ],
+     "mt_expected": 581869302,
+     "acc_24": 1,
+     "expected_heal": 1,
+     "flags_2C": "0x501",
+     "new_beat": 120,
+     "expected_beat": 120
+    },
+    {
+     "frame": 1,
+     "div": 250,
+     "ok": true,
+     "rng": [
+      3890346734
+     ],
+     "mt_expected": 3890346734,
+     "acc_24": 235,
+     "expected_heal": 235,
+     "flags_2C": "0x501",
+     "new_beat": 120,
+     "expected_beat": 120
+    },
+    {
+     "frame": 2,
+     "div": 7,
+     "ok": true,
+     "rng": [
+      3586334585
+     ],
+     "mt_expected": 3586334585,
+     "acc_24": 2,
+     "expected_heal": 2,
+     "flags_2C": "0x501",
+     "new_beat": 240,
+     "expected_beat": 240
+    },
+    {
+     "frame": 2,
+     "div": 1,
+     "ok": true,
+     "rng": [
+      545404204
+     ],
+     "mt_expected": 545404204,
+     "acc_24": 1,
+     "expected_heal": 1,
+     "flags_2C": "0x501",
+     "new_beat": 240,
+     "expected_beat": 240
+    },
+    {
+     "frame": 2,
+     "div": 250,
+     "ok": true,
+     "rng": [
+      4161255391
+     ],
+     "mt_expected": 4161255391,
+     "acc_24": 142,
+     "expected_heal": 142,
+     "flags_2C": "0x501",
+     "new_beat": 240,
+     "expected_beat": 240
+    }
+   ],
+   "note": "beat -10 per tick into result+0xDC+2s (stats untouched); Regen heal = (MT19937(5489) draw mod byte[+0x1C2]) + 1, ADDED; new beat = row+9 x frame base x 30"
+  },
+  "F_stage4_drain_modes": {
+   "pass_": true,
+   "rows": [
+    {
+     "frame": 1,
+     "clock": 20,
+     "hp_src": 1000,
+     "mp_src": 300,
+     "ok": true,
+     "fires": true,
+     "acc_24": -10,
+     "want_24": -10,
+     "mp_2A": -6,
+     "want_2A": -6,
+     "flags_2C": "0x4101",
+     "stage4_writes": [
+      "+24..+27",
+      "+2A..+2F"
+     ]
+    },
+    {
+     "frame": 1,
+     "clock": 20,
+     "hp_src": 60,
+     "mp_src": 30,
+     "ok": true,
+     "fires": true,
+     "acc_24": -1,
+     "want_24": -1,
+     "mp_2A": -1,
+     "want_2A": -1,
+     "flags_2C": "0x4101",
+     "stage4_writes": [
+      "+24..+27",
+      "+2A..+2F"
+     ]
+    },
+    {
+     "frame": 1,
+     "clock": 25,
+     "hp_src": 1000,
+     "mp_src": 300,
+     "ok": true,
+     "fires": false,
+     "acc_24": 0,
+     "want_24": 0,
+     "mp_2A": 0,
+     "want_2A": 0,
+     "flags_2C": "0x1",
+     "stage4_writes": []
+    },
+    {
+     "frame": 1,
+     "clock": 25,
+     "hp_src": 60,
+     "mp_src": 30,
+     "ok": true,
+     "fires": false,
+     "acc_24": 0,
+     "want_24": 0,
+     "mp_2A": 0,
+     "want_2A": 0,
+     "flags_2C": "0x1",
+     "stage4_writes": []
+    },
+    {
+     "frame": 2,
+     "clock": 30,
+     "hp_src": 1000,
+     "mp_src": 300,
+     "ok": true,
+     "fires": false,
+     "acc_24": 0,
+     "want_24": 0,
+     "mp_2A": 0,
+     "want_2A": 0,
+     "flags_2C": "0x1",
+     "stage4_writes": []
+    },
+    {
+     "frame": 2,
+     "clock": 30,
+     "hp_src": 60,
+     "mp_src": 30,
+     "ok": true,
+     "fires": false,
+     "acc_24": 0,
+     "want_24": 0,
+     "mp_2A": 0,
+     "want_2A": 0,
+     "flags_2C": "0x1",
+     "stage4_writes": []
+    },
+    {
+     "frame": 2,
+     "clock": 40,
+     "hp_src": 1000,
+     "mp_src": 300,
+     "ok": true,
+     "fires": true,
+     "acc_24": -10,
+     "want_24": -10,
+     "mp_2A": -6,
+     "want_2A": -6,
+     "flags_2C": "0x4101",
+     "stage4_writes": [
+      "+24..+27",
+      "+2A..+2F"
+     ]
+    },
+    {
+     "frame": 2,
+     "clock": 40,
+     "hp_src": 60,
+     "mp_src": 30,
+     "ok": true,
+     "fires": true,
+     "acc_24": -1,
+     "want_24": -1,
+     "mp_2A": -1,
+     "want_2A": -1,
+     "flags_2C": "0x4101",
+     "stage4_writes": [
+      "+24..+27",
+      "+2A..+2F"
+     ]
+    }
+   ],
+   "note": "fires only when the clock is a multiple of frame x 10; HP arm -(src/100) or -1 below 100; MP arm -(MP/50) or -1 below 50: both NEGATIVE in the record"
+  },
+  "E_I5_no_stage_calls_another": {
+   "pass_": true,
+   "note": "each stage entered once, in order"
+  }
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "REQ-OPUS-POOL-ADOPTION-FINDINGS",
+ "agent": "OPUS",
+ "resources": [
+  {"key": "file:database/ffxii tza/_experiments/exp-124-pool-adoption-exec.md"},
+  {"key": "file:database/ffxii tza/_experiments/evidence/alloc-pool-adoption-exec/result.json"},
+  {"key": "file:database/ffxii tza/_experiments/evidence/alloc-pool-adoption-exec/bodies.json"}
+ ],
+ "note": "ruling on the pool-adoption move layer: the overlapping-word schema question and document ownership"
+}

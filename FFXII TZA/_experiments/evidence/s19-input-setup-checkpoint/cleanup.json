@@ -1,0 +1,15 @@
+{
+  "at": 1790464443.6144152,
+  "status": "RESTORED_UNCHANGED",
+  "processes": [],
+  "save_config_files": 26,
+  "fresh_backup_and_original_census_match": true,
+  "changed_files": [],
+  "restoration_writes": [],
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "read_handles_closed": true,
+  "debugger_attached": false,
+  "pc_control": "OFF (node kernel reset)",
+  "normal_exit_observed": true,
+  "limitations": "No loaded-field response control. Normal OS Exit Dialog/exit does not establish field gameplay health."
+}

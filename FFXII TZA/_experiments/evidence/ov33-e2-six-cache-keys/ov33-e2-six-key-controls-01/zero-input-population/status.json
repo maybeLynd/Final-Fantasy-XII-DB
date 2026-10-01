@@ -1,0 +1,6 @@
+{
+  "case": "zero-input-population",
+  "exit": 1,
+  "result_absent": true,
+  "expected_error_seen": true
+}

@@ -1,0 +1,120 @@
+{
+  "status": "PASS_PRODUCER_CONTROLS",
+  "driver_sha256": "7011db70132cfe2d219a7c18266b5ec4eb9d1d34c35325c324785f0d5c85d215",
+  "reducer_sha256": "586aec835fd590d4b9ef49b7123d07c659ff0c1c6fdfd82a34be1c8de0d7fed3",
+  "checks": [
+    {
+      "name": "shipping_named_extent",
+      "status": "PASS",
+      "input_sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf",
+      "observations": {
+        "softEdges": 8,
+        "textColor": 16,
+        "alphaThreshold": 4,
+        "reads_AE0": false
+      }
+    },
+    {
+      "name": "enlarged_extent_crosses_AE0",
+      "status": "PASS_SYNTHETIC_DISCRIMINATOR",
+      "input": {
+        "path": "synthetic-enlarged-extent.phyre",
+        "sha256": "8ac5f0b74fc94648df3ce5bb079e3669e6ab1940a16dd25c2e5518f60503eaec"
+      },
+      "observation": {
+        "source_outer_offset": 288,
+        "length": 2500,
+        "end_exclusive": 2788,
+        "reads_any_AE0": true,
+        "reads_whole_AE0": true,
+        "reads_any_label": false,
+        "first_AE0_byte_threshold": 2497,
+        "whole_AE0_threshold": 2500
+      },
+      "limits": "Mutated retained bytes, not authored shipping data or original-code/game execution"
+    },
+    {
+      "name": "changed-name",
+      "status": "PASS_EXPECTED_REFUSAL",
+      "input": {
+        "path": "changed-name.phyre",
+        "sha256": "f79a820178de26a5b371ae8451e8d404d87532c6c9fc036badff11b6ada55123"
+      },
+      "exception": "ValueError",
+      "message": "missing/ambiguous softEdges definition"
+    },
+    {
+      "name": "broken-inherited-offset-parent",
+      "status": "PASS_EXPECTED_REFUSAL",
+      "input": {
+        "path": "broken-inherited-offset-parent.phyre",
+        "sha256": "c5089f508759e6452bff5922d59b7d1b8a070a2b12349d83c4d7da86c15fcaa1"
+      },
+      "exception": "ValueError",
+      "message": "missing/cyclic inherited field m_offset"
+    },
+    {
+      "name": "wrong-objects-extent",
+      "status": "PASS_EXPECTED_REFUSAL",
+      "input": {
+        "path": "wrong-objects-extent.phyre",
+        "sha256": "dd33ea3bf65a052e8cee54041818fd6afafa77637d882ba532de1384d996cddb"
+      },
+      "exception": "ValueError",
+      "message": "instance extent/count/class control"
+    },
+    {
+      "name": "truncated-array-table",
+      "status": "PASS_EXPECTED_REFUSAL",
+      "input": {
+        "path": "truncated-array-table.phyre",
+        "sha256": "87f0851b68708265af1f852e2b810e122f7c29f4618cfd8e4d15347d11160d50"
+      },
+      "exception": "ValueError",
+      "message": "truncated packed table"
+    },
+    {
+      "name": "incomplete-source-cli",
+      "status": "PASS_EXPECTED_UPSTREAM_FAIL",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-field-extent.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\incomplete-source-cli",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\incomplete-source-cli\\MUST-NOT-EXIST.json"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a122d89b72dcfb417ea9bcf3ed89a1aa79b7fe66a006a452b23246d6889acb7d"
+    },
+    {
+      "name": "missing-caller-cli",
+      "status": "PASS_EXPECTED_UPSTREAM_FAIL",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-field-extent.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\missing-caller-cli",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\missing-caller-cli\\MUST-NOT-EXIST.json"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0099c3bea0ef2a00120463c2aa61b647c0223fb06d6036ac7e4c4f3f47f38c1f"
+    },
+    {
+      "name": "changed-shipping-asset-cli",
+      "status": "PASS_EXPECTED_UPSTREAM_FAIL",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\reduce-softedges-field-extent.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\changed-shipping-asset-cli",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\softedges-field-extent-controls-01\\changed-shipping-asset-cli\\MUST-NOT-EXIST.json"
+      ],
+      "exit": 1,
+      "result_exists": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "68cf194cdb9de4e84b4760c9dbfda4deb283e1f7f71607d79c92b470cbe3741d"
+    }
+  ],
+  "limits": "Private producer regressions and disclosed disposable file mutations. No independent acceptance, native execution or live samples."
+}

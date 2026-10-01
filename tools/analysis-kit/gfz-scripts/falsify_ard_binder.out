@@ -1,0 +1,8 @@
+SURVIVES  D0  [49, 43, 476, 267, 22]
+SURVIVES  D1  namespace 0x15, index 2i; size and request both on (21, 2i)
+SURVIVES  D2  ['movsxd rax, ecx', 'lea r8, [rip + 0x1e7f676]', 'movsxd rcx, edx', 'mov rax, qword ptr [r8 + rax*8]', 'mov rax, qword ptr [rax + rcx*8]', 'ret']
+SURVIVES  D3  lea r8d, [rsi + 1] -> call 0x32eb40
+SURVIVES  D4  stores to 0215F0A8 [('002DFA9E', '01EDC280'), ('002DFE66', '01E0CFA0')]; arrays (first, .ard even, .fpk odd, crossovers) {'01E0CFA0': (24, 215, 215, 0), '01EDC280': (24, 215, 215, 0)}; .ard strings in .rdata 430, reached 430
+SURVIVES  D5  9 resolves
+SURVIVES  D6  binder setter calls ['003EA76A', '003EA777', '003EA784', '003EA7D1', '003EA7FA']; reader 15 calls in groups starting ['003EA8AD', '003EA8E5', '003EA9B7'], (ecx, edx) [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (0, 0), (1, 0), (2, 0), (3, 0), (4, 0)]
+FAILS 0

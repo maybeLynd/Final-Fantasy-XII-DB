@@ -1,0 +1,211 @@
+{
+  "schema": 1,
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 10421,
+      "sha256": "33482d46021173cde6b3e9ef86d86a727143ed3e581fcb9664593d9de34e9924"
+    },
+    {
+      "path": "check-terminal-r2.json",
+      "bytes": 1260,
+      "sha256": "b6343b12c329614ecc1051f1dfbe93f4b604cf148697ab2b3537ff0a558757c3"
+    },
+    {
+      "path": "check-terminal.json",
+      "bytes": 1088,
+      "sha256": "709fae6f850cef164e34b4a427496f475fbcacd803439339b8dbf43e42459f39"
+    },
+    {
+      "path": "check.py",
+      "bytes": 6796,
+      "sha256": "d02ad817743f1711ce2e2e4f4dec3ce0ae89060c8be5d55142a9b0803e349b6c"
+    },
+    {
+      "path": "producer-versions.json",
+      "bytes": 506,
+      "sha256": "77183ed4e2825850cdc3400a08c65b21fef2a11c0a5324c30efdb95a27d925a5"
+    },
+    {
+      "path": "publication-preparation/failure.json",
+      "bytes": 1860,
+      "sha256": "6eecfab4bf5558085063de3d9fcfd04442dde999a880eab59d59577eaafedbb6"
+    },
+    {
+      "path": "publication-preparation/manifest-before.json",
+      "bytes": 6016,
+      "sha256": "84a37e368d5fa097b6ebbe602e50c4ac732d7c02e264b054e6a65d7a01f6644f"
+    },
+    {
+      "path": "publication-preparation/prepare-producer-after.py",
+      "bytes": 7691,
+      "sha256": "e5a07965d940a4650f465ba14a3cfec924b6ce28d7cc8b3faad44a7ef88ab78d"
+    },
+    {
+      "path": "publication-preparation/README.md",
+      "bytes": 765,
+      "sha256": "923bc67e3cbea102dbeadcbc588a49ae41cc819afea4d5cfa51c488f488661f1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4713,
+      "sha256": "c72481a7b8a3a9b2ca0aa7dc2cea0b89745d655c049a13334e94dace16317342"
+    },
+    {
+      "path": "result.json",
+      "bytes": 735,
+      "sha256": "0b4c6137b41c0dc878feb1a379dad29979b81dd47ad436ae629effe927b3d66f"
+    },
+    {
+      "path": "run-01/capture.py",
+      "bytes": 8282,
+      "sha256": "cc408101714f5035c94ec8532d8628f36c8b230be7cddf5ba3541fda303cb297"
+    },
+    {
+      "path": "run-01/fresh-0-op.json",
+      "bytes": 51,
+      "sha256": "f74da6ca281dadbf58d364cd0ab3c8eea38ae92e42b6cff65a02f4665962a471"
+    },
+    {
+      "path": "run-01/identity.json",
+      "bytes": 1443,
+      "sha256": "97e647d190f1141d684246c9fb919bb9d1bbdcb520d891ba2c30a3e216139f85"
+    },
+    {
+      "path": "run-01/initial-board.json",
+      "bytes": 3179,
+      "sha256": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8"
+    },
+    {
+      "path": "run-01/initial-journal.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run-01/private/TEAM.json",
+      "bytes": 3493,
+      "sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417"
+    },
+    {
+      "path": "run-01/private/TEAM.json.journal.jsonl",
+      "bytes": 701,
+      "sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9"
+    },
+    {
+      "path": "run-01/raw.json",
+      "bytes": 3228,
+      "sha256": "40e6c1d988eceb1d741c080c6578d3582b99ae773b6d9a4f782f72885d299ed2"
+    },
+    {
+      "path": "run-01/team.py",
+      "bytes": 54156,
+      "sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480"
+    },
+    {
+      "path": "run-02/after-follow-on-board.json",
+      "bytes": 4066,
+      "sha256": "0b5009dd304dc4f0f6e87b910d16c04cfaabce97517496f24a0f00d51ab18d11"
+    },
+    {
+      "path": "run-02/after-follow-on-journal.jsonl",
+      "bytes": 1637,
+      "sha256": "104568ef6cce5fc86fbe0386f63a2dc311023895b81ce5b7238c0fd302aa8258"
+    },
+    {
+      "path": "run-02/after-fresh-board.json",
+      "bytes": 3493,
+      "sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417"
+    },
+    {
+      "path": "run-02/after-fresh-journal.jsonl",
+      "bytes": 701,
+      "sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9"
+    },
+    {
+      "path": "run-02/after-race-board.json",
+      "bytes": 3775,
+      "sha256": "fa89ca4b20a6fd04bb26ba5278f3403891d96f849485343d67054314e9e80f0b"
+    },
+    {
+      "path": "run-02/after-race-journal.jsonl",
+      "bytes": 1168,
+      "sha256": "4fc36b656b1c6bc067a6f55cb24e37ae3a8bdefce457575393788735d0d82cae"
+    },
+    {
+      "path": "run-02/after-stale-board.json",
+      "bytes": 3493,
+      "sha256": "bd5337042283385fce24af84d1205a10ee5bf929775eea7f79c7fd28a4bbb417"
+    },
+    {
+      "path": "run-02/after-stale-journal.jsonl",
+      "bytes": 701,
+      "sha256": "1fa0ca97ef53f015424a01b8c3709a4d2d7031ac82432c3ad4580bd45c2ee1b9"
+    },
+    {
+      "path": "run-02/capture.py",
+      "bytes": 10326,
+      "sha256": "cd797b815c83103e022fbd097d468792bf81fb73392c7baf83e6f39d467ea7c6"
+    },
+    {
+      "path": "run-02/fresh-2-op.json",
+      "bytes": 52,
+      "sha256": "374955e5239deff72a56b2808707b1e906ef62b33098c7cf9c6abe081d389254"
+    },
+    {
+      "path": "run-02/identity.json",
+      "bytes": 2045,
+      "sha256": "431c94b01b0726e8f52a0d6f684e992f9ebca110128e7a8e4b38e61f185ba83a"
+    },
+    {
+      "path": "run-02/initial-board.json",
+      "bytes": 3179,
+      "sha256": "a6b06370c1b4ca8e8bec6991e05d0e350c1a5ca053e324053160b7fce40251d8"
+    },
+    {
+      "path": "run-02/initial-journal.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run-02/private/TEAM.json",
+      "bytes": 4066,
+      "sha256": "0b5009dd304dc4f0f6e87b910d16c04cfaabce97517496f24a0f00d51ab18d11"
+    },
+    {
+      "path": "run-02/private/TEAM.json.journal.jsonl",
+      "bytes": 1637,
+      "sha256": "104568ef6cce5fc86fbe0386f63a2dc311023895b81ce5b7238c0fd302aa8258"
+    },
+    {
+      "path": "run-02/race-a-op.json",
+      "bytes": 48,
+      "sha256": "9644bd7d0bd4a8f4bc79bc55c5c32745a531f5e78a3def2c7fa2e188f131a580"
+    },
+    {
+      "path": "run-02/race-b-op.json",
+      "bytes": 48,
+      "sha256": "582bb7fbb7968c584a70dfb5855b3a47ef7e86f26f5bbb1d705c8b1cb2041ca5"
+    },
+    {
+      "path": "run-02/raw.json",
+      "bytes": 19095,
+      "sha256": "d7db973ffef4a1d429197f611ccba35fefdae33b60942cec4f8ec7c6ca549197"
+    },
+    {
+      "path": "run-02/stale-0-op.json",
+      "bytes": 56,
+      "sha256": "3bd5cf50aaea232628cb0cac31f3f97be6d62184c95b18b1dfa27cc5f9e7d00b"
+    },
+    {
+      "path": "run-02/team.py",
+      "bytes": 54156,
+      "sha256": "240bb9c88c0b5dcae8b52216af97f6ec4ae727a791e108bb802fb748d79fc480"
+    }
+  ],
+  "limits": "Original36 scientific members immutable; additive raw-byte publication correction; independent acceptance separate."
+}

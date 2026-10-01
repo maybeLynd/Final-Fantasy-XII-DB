@@ -1,0 +1,10 @@
+file D:/FFXII_TZA_extract/ps2data/image/ff12/test_battle/us/binaryfile/battle_pack.bin bytes 281128 sha256 d1bb89aac759cfcd4eb181715d9e88afb78d62a9a3fcffa6242f365f182cbc98
+section 0x13210 magic b'st2e' count 543 stride 60 rows at +0x20
++0x28 non-zero rows: 26; ids 0xd0..0xf1; all in 0xD0..0xF1: True; value == 120 + (id - 0xD0) on all: True
+   values [120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 143, 146, 149, 153]
+   zero inside 0xD0..0xF1: ['0xe6', '0xe8', '0xe9', '0xeb', '0xec', '0xee', '0xef', '0xf0']
++0x29 non-zero rows: 0
++0x0B non-zero rows: 26, range 182..207 contiguous True; +0x0A on those rows [0]
+pairs (row 182+2k +0x0B, row 183+2k +0x0B, summon row 0x106+k +0x0A): [(1, 1, 1), (1, 1, 1), (1, 1, 1), (2, 2, 2), (2, 2, 2), (3, 3, 3), (1, 1, 1), (2, 2, 2), (3, 3, 3), (2, 2, 2), (2, 2, 2), (3, 3, 3), (3, 3, 3)]
+all equal: True
++0x24 word on 0xD0..0xF1: [210]

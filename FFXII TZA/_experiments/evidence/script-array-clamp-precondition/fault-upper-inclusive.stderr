@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-array-clamp-precondition\check.py", line 37, in <module>
+    if '--fault-upper-inclusive' in sys.argv:assert mut.mnemonic==ii[0x262518].mnemonic,'Changed upper predicate rejected'
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Changed upper predicate rejected

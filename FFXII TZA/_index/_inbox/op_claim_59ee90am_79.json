@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FABLE-AMEND-0059EE90-CONTRA-CALLER-COUNT",
+ "agent": "SWE2-EC7",
+ "resources": [
+  {
+   "key": "notice:fable/0059ee90-caller-count-amendment"
+  }
+ ],
+ "note": "claiming the caller-count amendment to read alongside the rename"
+}

@@ -1,0 +1,7 @@
+SURVIVES  R1  -1/-1 at entry; '@FRP'; v0 +0x30 unskipped, v1 +0x40 skipping zero; root first; PRF root -> offset 0, index -1; plain root -> 0/0
+SURVIVES  R2  3 name pads (last 00409B80) before the mode branch 00409B95; mode 1 keeps the source at +0x30, mode 0 copies
+SURVIVES  R3  the parser offset is the dword at source + align64(size) - 4
+SURVIVES  R4  table *(02EBEF78) = ctx + 0x850; four rebases at +0/+0x10/+0x20/+0x30, each re-encoding two dwords with the delta
+SURVIVES  R5  specialise slot + delta first (003A9BD9), then add the delta to the slot (003A9BE8)
+SURVIVES  R6  00409F80 calls the 02B64380 populator 0040A230; 0041E3A0 calls 00409F80 (CON-195)
+FAILS 0

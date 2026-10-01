@@ -1,0 +1,36 @@
+Part 1: identity pairs (own normaliser)
+  00714B60 vs 00714BE0: 35/35 insns, identical=True, targets of 00714BE0: 00714980 00210EB0
+  00714B60 vs 00714C60: 35/35 insns, identical=True, targets of 00714C60: 00714980 00210EB0
+  00714B60 vs 0079B0D0: 35/35 insns, identical=True, targets of 0079B0D0: 00799B80 00210EB0
+  0079B930 vs 00714CE0: 65/65 insns, identical=True, targets of 00714CE0: 00714B60 00714DC0
+  0079B930 vs 00715110: 65/65 insns, identical=True, targets of 00715110: 00714BE0 00714DC0
+  0079B930 vs 007151F0: 65/65 insns, identical=True, targets of 007151F0: 00714C60 00714DC0
+  0079B930 vs 0071F4B0: 65/65 insns, identical=True, targets of 0071F4B0: 0071F3A0 0071F590
+  00714980 vs 00799B80: 24/24 insns, identical=True, targets of 00799B80: 00210EB0
+  00799BD0 vs 0071F240: 27/27 insns, identical=True, targets of 0071F240: 
+  00714980 -> 0071F1E0 diff ops: [('insert', 0, 2)]; inserted: [['lea rcx, [rdi + 0x20]', 'call T']]
+  0079BA10 -> 0071F590 diff ops: [('delete', 3, 0), ('replace', 1, 1), ('replace', 1, 1), ('insert', 0, 2)]; inserted: [['lea rcx, [rsi + 0x20]', 'call T']]
+Part 2: data-flow rotation matcher
+  bodies: 38161 listed + 11353 .pdata-only = 49514
+  EASTL layout (children (0, 8)): 10 bodies
+     0016D780 size     92  c=first 1  c=second 0  both=False  isnil19=False  listed
+     0016D7E0 size     88  c=first 0  c=second 1  both=False  isnil19=False  listed
+     0016D840 size    532  c=first 1  c=second 1  both=True  isnil19=False  listed
+     0016DA60 size    867  c=first 2  c=second 1  both=True  isnil19=False  listed
+     0067F700 size    712  c=first 2  c=second 2  both=True  isnil19=False  listed
+     0067F722 size    657  c=first 2  c=second 2  both=True  isnil19=False  pdata-only
+     0067F9D0 size   1097  c=first 3  c=second 3  both=True  isnil19=False  listed
+     0067F9E9 size   1050  c=first 3  c=second 3  both=True  isnil19=False  pdata-only
+     00712F60 size    679  c=first 0  c=second 2  both=False  isnil19=True  listed
+     0071E500 size    680  c=first 0  c=second 2  both=False  isnil19=True  listed
+  MSVC layout (children (0, 16)): 10 bodies
+     00712F60 size    679  c=first 1  c=second 1  both=True  isnil19=True  listed
+     00714B00 size     89  c=first 1  c=second 0  both=False  isnil19=True  listed
+     0071E500 size    680  c=first 1  c=second 1  both=True  isnil19=True  listed
+     0071F240 size     85  c=first 0  c=second 1  both=False  isnil19=True  listed
+     0071F590 size    978  c=first 1  c=second 2  both=True  isnil19=True  listed
+     0071F5A5 size    930  c=first 1  c=second 2  both=True  isnil19=True  pdata-only
+     00799BD0 size     85  c=first 0  c=second 1  both=False  isnil19=True  listed
+     00799C30 size     89  c=first 1  c=second 0  both=False  isnil19=True  listed
+     0079BA10 size    978  c=first 1  c=second 2  both=True  isnil19=True  listed
+     0079BA25 size    930  c=first 1  c=second 2  both=True  isnil19=True  pdata-only

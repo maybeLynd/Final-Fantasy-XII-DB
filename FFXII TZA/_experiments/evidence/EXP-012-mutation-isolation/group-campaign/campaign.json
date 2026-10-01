@@ -1,0 +1,1702 @@
+{
+  "command": [
+    "Reconstruction/Tests/mutation_test.py",
+    "group_completion",
+    "--out",
+    "Database/FFXII TZA/_experiments/evidence/EXP-012-mutation-isolation/group-campaign",
+    "--exe",
+    "D:/SteamLibrary/steamapps/common/FINAL FANTASY XII THE ZODIAC AGE/x64/FFXII_TZA.exe"
+  ],
+  "status": "FAIL_INCOMPLETE",
+  "start_unix": 1789088811.8167267,
+  "results": [
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8b0ce3a14a444aa6f68031d9ebea2531ab05bf3678676ab5a095465afd0981ec",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "e99340cb1fd302c17ac640352e9358ff2f7f5749db1c78185e2d737f98ace1d4",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 0,
+      "description": "line 9: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "31c25938af3cebc8375aa8097a2c65b28d1ef5acffaa37142a27e9bfb6355adb",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "a6cfd4feaeb531295abd33206bf212fba8336e61d55f2c586130a6cfe1ea7dbd",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 1,
+      "description": "line 11: >= -> >"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f5f9a1f41cdc45577a01d2d0fbd25403d16f1711d5679dd74253d601f13156c1",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "300b85849406a3c4b58e45809bb6929f44717bb24c05dc771a658a293a097903",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 2,
+      "description": "line 11: <= -> <"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "56035e65110a044292b42177dfd7bceaa23787d3d799ae70d52912278f0a0733",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "6c7494ba8f73462bde2884fce7f201500a4366d15d682f9c05a753da6e6496d1",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 3,
+      "description": "line 14: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "578073d30d8a7fd01e1d11953813dfd95053751d4e3bbe7bb7b4a99485eea74b",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "b683b0f97eeeed1d2f43909e2054172f190ede956823203b078309a833224b56",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 4,
+      "description": "line 19: 8 -> 9"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "04ed69f11fb225fa37c361269e4d5c5b15cb02d7de7839e5fd3b1dad3b86ea00",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 5,
+      "description": "line 20: 0 -> 1"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "873c305c5fd218e230cceadd3c18caed2e82ff9f74411a83d96cd0c32142e749",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "f0fd7a6327f4392e640906a6f9a4b2763657c305645867ff75265b5174c8252a",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 6,
+      "description": "line 23: 0 -> 1"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "46d6d90735816a589d50b92700681fe8f2c1233c361da771c7d20f6e1a601711",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 7,
+      "description": "line 24: 7 -> 8"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "2ae861c4dfd13b3f917a75c95fc8f87bdf5f6688062dfb3ba33f587169deb066",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "f661751fb52b737eaf12f48335f2ade2abc710a257d7bcf89e047aa6027ad106",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 8,
+      "description": "line 24: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "e3ed69ddcf0729ac1ea1aca259bcb354ff79a77e7e2c1a6601296aefa4be3a9f",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "f661751fb52b737eaf12f48335f2ade2abc710a257d7bcf89e047aa6027ad106",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 9,
+      "description": "line 24: >= -> >"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "95eff0dce253be1e23050ea104df65f74be4bbbc8aafa928e6389e5f1d36c1a4",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "8ec3bbb2f2f90ee2b74011b569dcb4c351b79ace772c023b667c0f0ffe2a9fc8",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 10,
+      "description": "line 25: 8 -> 9"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "4cedf729c0c25c359e0750c3acfb480296682ad0aa27a152b01b0d7e257a3b95",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "9e514c289e465ea5584e24220bea559ee40a952179362fa941b1892d22667e42",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 11,
+      "description": "line 25: << -> >>"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8c4087bff61391f130e579402dd19c41584db623ebed40dc65ca2543dc3fb158",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "b4c9a1391a382d1399006ef5e3a1690a1a2d71abf411ae7e1f65284ecd83a5f8",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 12,
+      "description": "line 31: 8 -> 9"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "ff1cf3e6d20441b98dee4a7ace96954909bfae4eea2325840311dca08246ca34",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "f4d30d43099a42ef03f7f10191807161c8ac953b80c8e89946026c9f1fb40729",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 13,
+      "description": "line 35: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "e9b6652f06984f158b84a64954519911ffdd251d2e6c5715d7ba040f13ada0fb",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "a4fac86c081c0fbd34b3d55c978e8c0658c1fe046b63105a63e73020e5e581ed",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 14,
+      "description": "line 35: 8 -> 9"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "3c97aec6e5be94e75d55a29beafd568fbdbe1eb1b835c652f78d07f4e58c99ba",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "975e3231d850211f289a77fe5e37c390e8e4f343177f80cc7fdd1056037d801c",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 15,
+      "description": "line 36: 8 -> 9"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "da9f94c3885557446105082b7a845e907af67bd2eb51cc0023529ac20ec9d9fb",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "9503be2002777e268adc944a957a8a30a8eecefdbad77a2437141f52e06d13fa",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 16,
+      "description": "line 36: >> -> <<"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8a14236fadd232222437e9cb4fe8f83aa27f9291fa4fb20b541932b5b3446cc3",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "22355a488676493c90b8d275e713a120bdb77c6c72173cfd2ec2bed3ec00d57b",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 17,
+      "description": "line 41: 1 -> 2"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "323e01cd837b4d3423065cf9da7ef7f7fd7c5439954a58aff970818353371f8f",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "7a218d48a7bb27ba7a8f5f548e7046ea56dfad4ea4b20a36696fd1e40b488b93",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 18,
+      "description": "line 42: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "e3f5ee139c83959d221a49f796bba97502ee321805b39a7773f61f0681ef1604",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "aabab74d3ebda5fb3521b18ad3cd352b1f0ae3dceec4255ab0af1535ff291dc1",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 19,
+      "description": "line 49: << -> >>"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "582b4896e4d46635dcf702dd69d9013edd7878c892cd04e574b2d8b0099b5c3c",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "bd19e8a4c6561b58ec6da9de46ff7346de08520f2e2ca6acf68c2a5e7149f93c",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 20,
+      "description": "line 57: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "0e73f23766e2b60ca377d33290a9d31966e71f27639ee802959bbdc9855f7b73",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "6c066667eb52dc96a193a2507bf2e1b9a98832dc3312923ce4819302e0ffd236",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 21,
+      "description": "line 57: == -> !="
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "89e623d4181ea97f0fc5107810d52e84065dfc885712c0629d6449ce6023dd75",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 22,
+      "description": "line 58: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "93bf2b3d6f5497926a1e594a9806fadb045ea05b569e48e1ad56f1c603c961f0",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "93e2bff1449ce1bf49a680811664cf2d1c835a580c0924da5a3e9d92c0aaee1a",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 23,
+      "description": "line 59: 0 -> 1"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "1e96dc20dfcdccb79d5192f819aeaf27e5eb0f67f9df98a4f6a4cec7dcdb0692",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 24,
+      "description": "line 60: 1 -> 2"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "e361b30332653c56124a40b76367e7c9a311ea8eebf9492f86650b594dbe7cbc",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "23f9fef2058b7cd54ebd2e4ed3905d42a7e7f96742d5c98470b542289e594a88",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 25,
+      "description": "line 63: 0 -> 1"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "40c6e9c89ee53bef33074a258bb8f8f5980bcb5dadb95a0e7d323b30c115a540",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 26,
+      "description": "line 64: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "72fda83e9271692e6b23ba1204fddf226d729a2df7c6a443857827d4aa110499",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "0138f99b533c48d84c621eecec5361010e8fa8cbddbeedcd2db160767b609811",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 27,
+      "description": "line 65: 1 -> 2"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "5f28eefc2ca0d820c18bb1ff5f42be3c89bfe6d4ff2cddfe94a4a4def1860a31",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 28,
+      "description": "line 66: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "2a926c1ec5839c9e72932dd102c235f5ea174bc03f96e039849b6e53815db560",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "240dd610d3fe827708bcbaa323e7ed944ab7a010ad594ae133ae1e6aced06e57",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 29,
+      "description": "line 68: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "adf12677d91567e5e9c61d7eccccbcda0ee59281eda57dcc455b68e5ba5ca9f1",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "ee01f46937bac12e8b31ba9cf05cc2aa03147959e1c0694c448951c97c9746c1",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 30,
+      "description": "line 69: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "66a32fbb7dd192db0c1d773e049a6a94716cfad16a1160174e2175192889aa1e",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "568c61893f383c280e891953d090bd70a7acae686ae74946e3b54c261bbfc8fc",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 31,
+      "description": "line 69: 0xFF -> 0x100"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "14641cdc90a68e03288ea66da132110bd2405fe76d8ad704aa29245670e13d72",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "705731f13b0a26b48c26b278a497acce2c7024f787c5ec2c7668fb03fb85613a",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 32,
+      "description": "line 69: == -> !="
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "ccfba540f0a8076cf9b75ac182dea5c8b5845d90d38468e950c33b81c9cd8104",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 33,
+      "description": "line 70: 1 -> 2"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "db65155fa000b61c04a88281ec5fd2cd6977650c25104b8958ca4e5f7e2728f5",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "5bdebec13e6b18813cf2d0e188483b255e142afbd14e025b557a44dd090d04e4",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 34,
+      "description": "line 81: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "04be1487a4db5ed3d1c2aa75fce2547f2e9195d8c3ed136975f76cca847c0fcb",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "82adb787435ccff9a986e8771798544d5d2e869087c1085e234968a49cf84bbf",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 35,
+      "description": "line 81: == -> !="
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8c4fb1e7cf0d88847e38effc650fae0c6635107c5a0e975ad9d3e637069b39e2",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "6bab1698662cde09169ef65557cecb177f68661ad8421ff6fe3eb1e25abfbdcb",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 36,
+      "description": "line 82: 0 -> 1"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "4b742cd2e7921b179dee3c019175539d84c6d4309fe05c533278211e100fc077",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "38e2c6f739499214a1ee60e6e0c15da0c28a0c7784615b0bdbbd9e0b9ef789b4",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 37,
+      "description": "line 85: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "3404db39c8a35bcd11949410cf02b29e9d8bde7a6b9697a8889bebcb489c184b",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "79ecdd51a866a558cc33408a9f883d117b8dea2a360e00cf3e166d1e3341650e",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 38,
+      "description": "line 85: == -> !="
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8040a20c74635fb8324b2d1e1384e81b87b774828e6241e4dc51d3843fb4fe10",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "66dc76dc9cf6db99a5ad702017c07412625b89fa986fbea3b6681cb88f2ef538",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 39,
+      "description": "line 86: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "d5d1a1570e7f806710466d40a3932f4813219393276f426ae2c50e96857ceed3",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "2ae55c365a13ab57b688aaef5570baf9fab947c4a21e47873480ce750f5849f2",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 40,
+      "description": "line 87: 5 -> 6"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "d85e95fefabc2ab15606b765af96d7411337d01ea90a0555872f2ccbe6364d14",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "fa4e5d94c205f41b20f713037bd80435ccbdcc757993323dfbace455a200d3d3",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 41,
+      "description": "line 87: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "9e348adce398b9e28bf41c1d5c7be8b549529a8d96126d3dccc1b84df044979b",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "5cc201e95f777703e356aa47c956789ae25c5603854abda0be118bf425044444",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 42,
+      "description": "line 87: != -> =="
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "ae130602a8f49b52a5a6f9e415293afdd69a6e33859fec04506b03e79f77948f",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "a0473f26fe7f8ceeca284402dcf8ba13e8f0645de8eb66cf0c84961a54d80d8a",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 43,
+      "description": "line 88: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "ad1a47a9029c22044489d4119463777b132f3289c64634421050a1089b092b3a",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "5bfa62fefe7cd50c4b7d509dbb1a218ca90871fc9d3ea9b52f7d90b56bb57cb5",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 44,
+      "description": "line 93: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "4cc35324fa0ebbc277478b9e91308cf435060f2fa698e23771785a2d0fca5e4f",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "7534832778be3ff94e11fad33befc225105da65dc5cd376af0132ca42c74f410",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 45,
+      "description": "line 93: <= -> <"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "b5a3270dc0719a6060618e31f03bbebdafb2a19e2476dc2ed88e290e4b7c4104",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "a7a10ead2f993215319bf210b7ea2c243776046b290bbb1426b1efd55954f082",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 46,
+      "description": "line 94: 0 -> 1"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "47d7f30f6e73515e42667da31f02017c6ee8156966a1ec8dc2ddaa51d24b31a2",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "0235d7f1505378423d7bd759012fd039ddebc808acac596990532f81d73e99ad",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 47,
+      "description": "line 100: 2 -> 3"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "0d7927b3a25d1dd51878d6188b2ba3c8f6cbc60477b96eb42d5744ac149f7517",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "6406edc444fb103c5d77b5a4f4d959c010dd87fe54183984a21244c8bfb940d6",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 48,
+      "description": "line 101: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "d585cbae28353320cca1cc1965a26bd39d33134b2317409b1809470caf502d59",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "756b11b114495f1d3ebad0699dab58ca3d13b20332d3f63d4a8a8e092a837505",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 49,
+      "description": "line 101: 1 -> 2"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "3463f53fb017cde379387cce7c716eb884a5ceda706654a074f848f20e8c7cfa",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "c182528cc72c941440eb680eea6f988bea736a66a5380c74c9cf1b59f2b9dc7a",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 50,
+      "description": "line 101: 8 -> 9"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "9ed62b5f7b6a23a8df8d641d4e5ab77436de3f2ed3ec34f8908916d65e90f61a",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "edc3422d858aa872f2c66c769b87c7a4399a0a94325d02d0c687de004ba5f78a",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 51,
+      "description": "line 101: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "de96c2e9f834415f654016e4d205b92a8379e6a3dc566c38c42871d1cf12fcd8",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "29d7151caae241014fcaf8e71af31b0b1c07abf68017e15b9ce13e73f8971372",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 52,
+      "description": "line 101: << -> >>"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "e2bc4a173aee40c1b7a1a7caf1768d6606d8b652ca4a7ca1e136bfe7d5a32036",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "351221ea05005f28ce15c869f2c4a22e6ceb7d785c3807267f99ebe4f6e25527",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 53,
+      "description": "line 105: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "88ab53e922e11cd0f01598ec3e918dc6d71cce1bb823ee7e4a09bcaf8a24bed3",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "9eb75159c4c68f84dafc7105ce5e424c6ce3459c20f25183cc5abb9da94a7792",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 54,
+      "description": "line 106: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "00bd7e6f83017734209d0713071d8df0d9408fb56fe73f6a183c7e17d5618300",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "29b256aaf22ca8676ced8e11183490129490b2f056f8cb5f7cab5b9fdcd0265f",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 55,
+      "description": "line 108: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "e57b123ffa7b4a15d284f47163a22e4cb05a011cdcd5f9fd37be784e9165f105",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "8d836918d175c221e5bb6f4820174c43a07fff58a1783f69671e00f2f0cbc501",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 56,
+      "description": "line 110: 8 -> 9"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8d879cdc19f52243c96a1cd7cae9753385fc13cef071801ac9b82266009030c5",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "e7e9652ae8a3ace1dd27f1fd9b02db454297ceb49c6bc6514d1209299abce0d3",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 57,
+      "description": "line 111: 8 -> 9"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "46572e4b9117e06328c17b712cee88775a181d80c681a1d77218e30495c24c9b",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "48d6b682897ef89fa5d826b286db7a0a88985b41d452dd4d09f5562bd9039a4c",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 58,
+      "description": "line 113: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "0c332a723efe508264ad6144ef62bbc62370c2bae7043545850c9eae761edf1b",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "8930f422b4f9a3fc7503f0000c23aa770a7629941a49255bb6803325e7350369",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 59,
+      "description": "line 114: != -> =="
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "72cdfb7001527a45e2ecc8c3e77e214f21bb91ba6736e61f9536352045413009",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "82b83a1a478b1f3a2323e8e2379a2120e72993f4bbf6ecbdcd1aa7e77130ca63",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 60,
+      "description": "line 115: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "14b817445234941498275cd85b459992bef12fbff7cfc2aea538b3a8360225ac",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "73cdd280601b6a500f5a185a530c6b8e2b9264bf1b8ff32a79a17bc15482100c",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 61,
+      "description": "line 120: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "a01c4dd5008571c5298771c61dc8d7da0f58213f991ff2b6db00634637ba1b96",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "d91703216ca41501a2cb8add90086d7bf63526268698066d821df4293f29fc5a",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 62,
+      "description": "line 121: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "24befb82651c9510e79e32284dc3feff879b4d1f149c6fadc560c31a6b58d3d7",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "d456bfbf932bc66528ce6eea6bc5c0e218c04ec5f2c9112a3384e44535062d73",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 63,
+      "description": "line 122: 1 -> 2"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "4190cae22e64377aad99fab02c83f96b2977a91c60ad194635082cf545cd0e8d",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "3bd65ba7fa3bcf88da7b2f44de76ad847bdda34019e0a067b03e295c588bf41a",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 64,
+      "description": "line 126: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "ca3d5dbdf7fcb2a4b8dfbffa2c6d11920d1b057a866279c95b3cef902afa429f",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "40061e4f7faeeacec78dc02d887a831ba330a177d1adc8570e51c2341ccfeecf",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 65,
+      "description": "line 126: 1 -> 2"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "94396cb82dc28fc38ca9421c3997e048570ebe9753b5e40412c4c3c3a161235b",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "f33776c7075b6d96814adfd05e0c4c8961b757993c6b9765e5fd11830c45855a",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 66,
+      "description": "line 126: >= -> >"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "edbc999727dd5fbff473f5e0778d69448577895f0159ae498dd2c98b12a5dc5e",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "3ea2189d65f3be84213b3c65635e4717901280080b10f51a36b54d62fdf3ae77",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 67,
+      "description": "line 135: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "d7fb40d668d50db2e2b983db6ae484a0043cb9dc8a1a5220e401a9aaacea7fdb",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "21f9618b30305ae63f734f50555dcbdbda94d0b561b6a2248c3232ebcc1debd0",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 68,
+      "description": "line 136: 0x10 -> 0x11"
+    },
+    {
+      "status": "PASS",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "2c7b62400890d1399cf0a0450193229f287b0f396380ded62efe95eaa9b98153",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "46c5afb5df05cfbf1c88c22e42f68262ef44fe1e41def34b67d63088cd0fe5df",
+      "case_removed": true,
+      "mutation_outcome": "SURVIVED",
+      "index": 69,
+      "description": "line 136: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "c65c6825830c60bfdd05281a53e6a84b08d6a0ebf21fe3ba2c254b25a159e775",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "327027ccceec316ae32dea21f4d683273e6c9d7fea634e8e191a6f4dbc5e6bfd",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 70,
+      "description": "line 141: 0 -> 1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "8b4f5d03404cb24041ba746134bf17072b0d07cd5855abed5f71034c04370fb6",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "e2b4b77b4724141ec7872d420a6bd43f8b9eea07683d75834964e2f9477f1c5a",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 71,
+      "description": "line 146: 0 -> 1"
+    },
+    {
+      "status": "INVALID",
+      "target": "Game/Spawn/group_completion.c",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "59483567dabff3f76fb035cf6d57fbf365c3709f2395b568419e7dcc35a4c520",
+        "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "12c1dbe519940c89196b9529feaaed0e81b77e1fe408cbc23c2624e24ece3a43",
+      "case_removed": true,
+      "mutation_outcome": "INVALID",
+      "index": 72,
+      "description": "line 148: 1 -> 2"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "b1e13b50628488806053e920bbd312559bcca77a96f80be8b1b57c1fd2d0e0a7",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "e1f2f05c108f4131aa5fe284166206fc2f0fd67a46e7b8b13f642e50980cf3e0",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 73,
+      "description": "line 16: 24 -> 25"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "b45a5ecdcec459bc40a92732fdda3ae324cdec32e7a109784caea20c9e52bf29",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 74,
+      "description": "line 17: 64 -> 65"
+    },
+    {
+      "status": "EQUIVALENT",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "378d293c61ae9aad73d8ecfb4eb0c0c6ab006d9aaab0a5bb9bc58d1154f2c74b",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+      "case_removed": true,
+      "mutation_outcome": "EQUIVALENT",
+      "index": 75,
+      "description": "line 23: 7 -> 8"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "0e4fbc1cf0ca1c63979deb8f468159f40acb3e3c046bfdf7ffa0ce65e7d70ec9",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "e7f0dbeb9bec550630e73ed9db5ca8b8b40157f4ed835a42b0d2b2973fe8505b",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 76,
+      "description": "line 28: 0x000 -> 0x1"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "d627568e05b450f0dc1c753971ed977f05c0ed5787bb35a0ca4297aaf7a72a44",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "965f7cbd38ef62d82e5c2a746d75a864ff23d676ff090795f0865cc8ab109032",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 77,
+      "description": "line 29: 0x010 -> 0x11"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "2c7280d8c160a78ced143045f9759236a80222cb973850b57181eb4a9e0ee288",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "d2fb3ab93a6d7f70539eb2dc256bf3b61f36dd1c51ce33453eba787fbfec4306",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 78,
+      "description": "line 30: 0x0F6 -> 0xF7"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "91122cda1bbb69c81fd0023c5cbb842c9ae7a720191c73583b9f1b31388e47b1",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "67fc811ad7c13e501e3ed51b133844d6de1add88d591872ead4753af501ea87e",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 79,
+      "description": "line 31: 0x040 -> 0x41"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "d0cd5653e128f50f587be8fcacad00ba56f911b22fdd67acdfa98c663ab5fe26",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "5b83e5cfa8ec75a2fec0ab13f0b3e9048ed4a05f4c46133f66db074b0678035a",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 80,
+      "description": "line 32: 0x698 -> 0x699"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "1a0eee925fa0bd17d336e06a2e44025baf6a312318ebf253c29a77da614c7fd1",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "1eeac5edf17fc34a1fb94fb2528a82a3fcb1f5b9e192cab3ceca2e4794a04172",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 81,
+      "description": "line 33: 0xE98 -> 0xE99"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "36776e3b7c4f438b76240197878a34810288fed9a1df6440568c8fcfd213d574",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "85a0a28c7ebac571f23b27dd88329d7864e32faeaa1c66ae74a815363fdee665",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 82,
+      "description": "line 34: 0xE99 -> 0xE9A"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "1b5e99aff48e6a931e98742e7c978ac8c435664427647200eac17b67fd6b3a1b",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "e7de36e1f158e006e18708c0b47dddc959b3318f361b48dbd5ea1f21de08a02c",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 83,
+      "description": "line 36: 47 -> 48"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "099ea7bdde0c9750bd3c14232eb19ad2ed240754d6f01240ed11bf9c6e06b639",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "34c2fc87b51955984c60f342a65226c9dbfd6c2d3dac7d6303d9c43ae5f16e7f",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 84,
+      "description": "line 36: << -> >>"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "36ab848159712d1d7201aace2b7223f33e32b5bceff4875554cd9d71a2654f8e",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "bf7fa0a1e9bf97664662098c397c44b2ff2df830c43f2bf9945cf334e7d3b234",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 85,
+      "description": "line 38: 0x2005 -> 0x2006"
+    },
+    {
+      "status": "FAIL",
+      "target": "Game/Spawn/group_completion.h",
+      "input_hashes": {
+        "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+        "Game/Spawn/group_completion.h": "e7b793a090945d0085f93f5a27055ef4092bf0561325e281142d011fdf3cfd58",
+        "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+        "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+      },
+      "driver_sha256": "183e6d78314bad129bdd20269786a044d7fdd74ee39124dacbac2ff6dce04bda",
+      "case_removed": true,
+      "mutation_outcome": "KILLED",
+      "index": 86,
+      "description": "line 39: 0x2008 -> 0x2009"
+    }
+  ],
+  "instrument_sha256": "cfefcd3b53ebd2e27c2c387077c0be7c74e9ec44a1484df490e847be9a9b045c",
+  "reference_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "input_hashes": {
+    "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+    "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+    "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+    "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+  },
+  "total_generated": 87,
+  "selected": 87,
+  "manifest": [
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 9: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 11: >= -> >"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 11: <= -> <"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 14: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 19: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 20: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 23: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 24: 7 -> 8"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 24: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 24: >= -> >"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 25: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 25: << -> >>"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 31: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 35: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 35: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 36: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 36: >> -> <<"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 41: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 42: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 49: << -> >>"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 57: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 57: == -> !="
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 58: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 59: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 60: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 63: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 64: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 65: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 66: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 68: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 69: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 69: 0xFF -> 0x100"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 69: == -> !="
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 70: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 81: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 81: == -> !="
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 82: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 85: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 85: == -> !="
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 86: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 87: 5 -> 6"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 87: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 87: != -> =="
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 88: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 93: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 93: <= -> <"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 94: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 100: 2 -> 3"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 101: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 101: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 101: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 101: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 101: << -> >>"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 105: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 106: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 108: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 110: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 111: 8 -> 9"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 113: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 114: != -> =="
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 115: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 120: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 121: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 122: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 126: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 126: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 126: >= -> >"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 135: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 136: 0x10 -> 0x11"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 136: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 141: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 146: 0 -> 1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.c",
+      "description": "line 148: 1 -> 2"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 16: 24 -> 25"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 17: 64 -> 65"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 23: 7 -> 8"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 28: 0x000 -> 0x1"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 29: 0x010 -> 0x11"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 30: 0x0F6 -> 0xF7"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 31: 0x040 -> 0x41"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 32: 0x698 -> 0x699"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 33: 0xE98 -> 0xE99"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 34: 0xE99 -> 0xE9A"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 36: 47 -> 48"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 36: << -> >>"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 38: 0x2005 -> 0x2006"
+    },
+    {
+      "target": "Game/Spawn/group_completion.h",
+      "description": "line 39: 0x2008 -> 0x2009"
+    }
+  ],
+  "baseline": {
+    "status": "PASS",
+    "target": null,
+    "input_hashes": {
+      "Game/Spawn/group_completion.c": "f17dbaa3aad2312423d5bb6d51e4db23f30a09664131aa6626ffca389323fc89",
+      "Game/Spawn/group_completion.h": "cc2145f0699c97d564bc0c647c6ab06226527889175e660f8f57b727831b3418",
+      "Tests/Differential/group_completion_driver.c": "8c4e71f0961ed3a546b735dde64328f64f52d89ed0bd028cd652ce5b3c815614",
+      "Tests/Differential/diff_group_completion.py": "1288b896a99e2a7cf4b1800f747eb6b27dd59f60798473a8cf886b5a9c3f322b"
+    },
+    "driver_sha256": "54bfafc163b66bd067fd99cb116ff626e8fee408aedfb8916654dcdbfeda661b",
+    "case_removed": true
+  },
+  "timeout_seconds": 30,
+  "end_unix": 1789089129.8254747,
+  "production_inputs_stable": true,
+  "counts": {
+    "NO_BUILD": 0,
+    "EQUIVALENT": 9,
+    "TIMEOUT": 0,
+    "INVALID": 1,
+    "KILLED": 64,
+    "SURVIVED": 13
+  }
+}

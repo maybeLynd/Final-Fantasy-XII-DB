@@ -1,0 +1,13 @@
+{
+  "0x60": {
+    "self-linked": 173
+  },
+  "0x90": {
+    "non-self-linked": 24,
+    "self-linked": 149
+  },
+  "0xb0": {
+    "self-linked": 173
+  }
+}
+PASS 173 identity/extent/name/bracket controls;24 captured nonself method-head positives;4 corruption rejects;2 synthetic detector cases.

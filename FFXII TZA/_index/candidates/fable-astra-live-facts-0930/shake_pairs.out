@@ -1,0 +1,28 @@
+totals {'clear': 315, 'start': 328, 'stop': 180, 'other': 19} | CONTROL census 328 starts, 315 clears, 178 stop_19e + 2 plain stop: PASS
+script files with a start: 113
+starts with NO later stop/clear in the same file: 25
+  bhm_y0101.txt line 347 camerashakestart_1a3
+  bhm_y0101.txt line 361 camerashakestart_1a3
+  bhm_y0101.txt line 375 camerashakestart_1a3
+  byu_w0100.txt line 1895 camerashakestart_1a3
+  dgl_g0103.txt line 1474 camerashakestart_1a3
+  dgl_g0103.txt line 1513 camerashakestart_1a3
+  dgl_g0103.txt line 1528 camerashakestart_1a3
+  dgl_g0103.txt line 1543 camerashakestart_1a3
+  gil_d0100.txt line 725 camerashakestart_1a3
+  gol_c0100.txt line 601 camerashakestart_1a3
+  lus_g0101.txt line 238 camerashakestart_1a3
+  mfr_b0101.txt line 418 camerashakestart_1a3
+  mic_b0601.txt line 1012 camerashakestart_1a3
+  mic_c0100.txt line 274 camerashakestart_1a3
+  rbl_c0101.txt line 391 camerashakestart_1a3
+  rbl_j0100.txt line 427 camerashakestart_1a3
+  rbl_j0100.txt line 449 camerashakestart_1a3
+  rbl_j0101.txt line 416 camerashakestart_1a3
+  rbl_j0101.txt line 457 camerashakestart_1a3
+  rsn_z0201.txt line 971 camerashakestart_1a3
+  rui_d0100.txt line 346 camerashakestart_1a3
+  rui_d0100.txt line 360 camerashakestart_1a3
+  rui_d0100.txt line 374 camerashakestart_1a3
+  rui_d0100.txt line 388 camerashakestart_1a3
+  sum_c0001.txt line 990 camerashakestart_1a3

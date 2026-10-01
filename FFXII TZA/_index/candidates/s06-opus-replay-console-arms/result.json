@@ -1,0 +1,6900 @@
+{
+ "pass": 6,
+ "ok": true,
+ "allowed_functions": 2137,
+ "results": {
+  "I1_I3_table_static": {
+   "pass_": true,
+   "entries": 282,
+   "distinct_targets": 227,
+   "all_inside_body": true,
+   "noop_arm_ids": [
+    13,
+    16,
+    17,
+    18,
+    23,
+    56,
+    58,
+    59,
+    100,
+    101,
+    102,
+    165,
+    184,
+    194,
+    195,
+    198,
+    203,
+    204,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    221,
+    222,
+    223,
+    224,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    261,
+    262,
+    282,
+    286,
+    289,
+    290
+   ],
+   "note": "282 entries inside the body, 227 distinct, 56 on 001D4BFA"
+  },
+  "I2_out_of_range_is_a_noop": {
+   "pass_": true,
+   "ids": [
+    "0x0",
+    "0x1",
+    "0x2",
+    "0x3",
+    "0x4",
+    "0x5",
+    "0x6",
+    "0x7",
+    "0x8",
+    "0x9",
+    "0xa",
+    "0xb",
+    "0x126",
+    "0x127",
+    "0x128",
+    "0x129",
+    "0x12a",
+    "0x12b",
+    "0xffffffff",
+    "0x7fffffff"
+   ],
+   "note": "ids 0..11, 294..299, -1 and 0x7FFFFFFF: no arm selected, nothing written, both directions"
+  },
+  "I3_shared_arm_does_nothing": {
+   "pass_": true,
+   "n": 56,
+   "note": "all 56 ids reach 001D4BFA and write nothing"
+  },
+  "dispatch_selects_the_table_arm": {
+   "pass_": true,
+   "note": "for every id 12..293 the jump at 001D16AE lands on table[id - 12]"
+  },
+  "postcondition_observed": {
+   "pass_": true,
+   "completed_non_noop": 163,
+   "writes_only_settings_object": 41,
+   "stopped": 63,
+   "stopped_reasons": [
+    [
+     "['00000020']",
+     6
+    ],
+    [
+     "['00000008']",
+     4
+    ],
+    [
+     "['001EDF80']",
+     4
+    ],
+    [
+     "['001EF280']",
+     3
+    ],
+    [
+     "['import EnterCriticalSection']",
+     3
+    ],
+    [
+     "['000002D4']",
+     2
+    ],
+    [
+     "['0000000C']",
+     2
+    ],
+    [
+     "['00000010']",
+     2
+    ],
+    [
+     "['00000048']",
+     2
+    ],
+    [
+     "['000000F8']",
+     1
+    ],
+    [
+     "['000000E8']",
+     1
+    ],
+    [
+     "['000002D0']",
+     1
+    ]
+   ],
+   "note": "observed: which arms complete under the fixture and what they write"
+  },
+  "I4_float_steps_observed": {
+   "pass_": true,
+   "float_writes_by_value": [
+    [
+     0.01,
+     55
+    ],
+    [
+     0.02,
+     7
+    ],
+    [
+     0.001,
+     6
+    ],
+    [
+     0.1,
+     6
+    ],
+    [
+     0.05,
+     5
+    ],
+    [
+     1.0,
+     3
+    ],
+    [
+     0.03,
+     3
+    ],
+    [
+     0.005,
+     2
+    ],
+    [
+     -0.005,
+     2
+    ],
+    [
+     -1.0,
+     1
+    ],
+    [
+     0.005556,
+     1
+    ],
+    [
+     -0.005556,
+     1
+    ],
+    [
+     -0.01,
+     1
+    ],
+    [
+     0.52,
+     1
+    ],
+    [
+     0.5,
+     1
+    ],
+    [
+     1.1,
+     1
+    ],
+    [
+     -0.1,
+     1
+    ]
+   ],
+   "float_step_arms_by_magnitude": [
+    [
+     0.01,
+     56
+    ],
+    [
+     0.1,
+     7
+    ],
+    [
+     0.02,
+     7
+    ],
+    [
+     0.001,
+     6
+    ],
+    [
+     0.05,
+     5
+    ],
+    [
+     1.0,
+     4
+    ],
+    [
+     0.005,
+     4
+    ],
+    [
+     0.03,
+     3
+    ],
+    [
+     0.005556,
+     2
+    ],
+    [
+     0.52,
+     1
+    ],
+    [
+     0.5,
+     1
+    ],
+    [
+     1.1,
+     1
+    ]
+   ],
+   "note": "observed: the value each completed float-stepping arm writes from zero, i.e. its step"
+  },
+  "per_id": [
+   {
+    "id": 12,
+    "label": "Read Json Data:",
+    "arm": "001D16B1",
+    "inc": {
+     "ok": true,
+     "arm": "001D16B1",
+     "writes": [
+      "01DF6E48"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D16B1",
+     "writes": [
+      "01DF6E48"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 13,
+    "label": "Reread Json Data: Press Circle to reread json data",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 14,
+    "label": "Invincible:",
+    "arm": "001D16C4",
+    "inc": {
+     "ok": true,
+     "arm": "001D16C4",
+     "writes": [
+      "set+0xC20"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D16C4",
+     "writes": [
+      "set+0xC20"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 15,
+    "label": "Load ps2 savedata from slot:",
+    "arm": "001D17D8",
+    "inc": {
+     "ok": true,
+     "arm": "001D17D8",
+     "writes": [
+      "set+0xAA8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D17D8",
+     "writes": [
+      "set+0xAA8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 16,
+    "label": "Convert PS2 Savedata",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 17,
+    "label": "Save autosave to common save data:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 18,
+    "label": "Jump To:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 19,
+    "label": "Load sample chr:",
+    "arm": "001D1740",
+    "inc": {
+     "ok": true,
+     "arm": "001D1740",
+     "writes": [
+      "set+0xDA0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1740",
+     "writes": [
+      "set+0xDA0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 20,
+    "label": "Load chr:",
+    "arm": "001D170E",
+    "inc": {
+     "ok": false,
+     "arm": "001D170E",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D170E",
+     "writes": [],
+     "stopped_at": [
+      "0007FFF8"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 21,
+    "label": "Variation:",
+    "arm": "001D177E",
+    "inc": {
+     "ok": true,
+     "arm": "001D177E",
+     "writes": [
+      "set+0xC44"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D177E",
+     "writes": [
+      "set+0xC44"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 22,
+    "label": "CLUT:",
+    "arm": "001D17AB",
+    "inc": {
+     "ok": true,
+     "arm": "001D17AB",
+     "writes": [
+      "set+0xC48"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D17AB",
+     "writes": [
+      "set+0xC48"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 23,
+    "label": "Set chr rotation:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 24,
+    "label": "Change cast shadow object:",
+    "arm": "001D1818",
+    "inc": {
+     "ok": false,
+     "arm": "001D1818",
+     "writes": [
+      "heap"
+     ],
+     "stopped_at": [
+      "001EF280"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1818",
+     "writes": [
+      "heap"
+     ],
+     "stopped_at": [
+      "001EF280"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 25,
+    "label": "Shadow Level:",
+    "arm": "001D1830",
+    "inc": {
+     "ok": false,
+     "arm": "001D1830",
+     "writes": [
+      "heap"
+     ],
+     "stopped_at": [
+      "001EF280"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1830",
+     "writes": [
+      "heap"
+     ],
+     "stopped_at": [
+      "001EF280"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 26,
+    "label": "Debug high model skeleton:",
+    "arm": "001D1867",
+    "inc": {
+     "ok": true,
+     "arm": "001D1867",
+     "writes": [
+      "set+0xCF4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      1.0
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1867",
+     "writes": [
+      "set+0xCF4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      -1.0
+     ]
+    }
+   },
+   {
+    "id": 27,
+    "label": "Force town face:",
+    "arm": "001D1893",
+    "inc": {
+     "ok": false,
+     "arm": "001D1893",
+     "writes": [],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1893",
+     "writes": [],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 28,
+    "label": "Use PS2 lighting:",
+    "arm": "001D18E0",
+    "inc": {
+     "ok": false,
+     "arm": "001D18E0",
+     "writes": [
+      "01DFE190",
+      "01DFE192",
+      "02CB8130",
+      "02CB8138",
+      "set+0xC72",
+      "set+0xC74",
+      "set+0xC78",
+      "set+0xC7C",
+      "set+0xC80",
+      "set+0xC81",
+      "set+0xC82"
+     ],
+     "stopped_at": [
+      "000002D4"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D18E0",
+     "writes": [
+      "01DFE190",
+      "01DFE192",
+      "02CB8130",
+      "02CB8138",
+      "set+0xC72",
+      "set+0xC74",
+      "set+0xC78",
+      "set+0xC7C",
+      "set+0xC80",
+      "set+0xC81",
+      "set+0xC82"
+     ],
+     "stopped_at": [
+      "000002D4"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 29,
+    "label": "Use normal map:",
+    "arm": "001D1B11",
+    "inc": {
+     "ok": true,
+     "arm": "001D1B11",
+     "writes": [
+      "set+0xC71"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1B11",
+     "writes": [
+      "set+0xC71"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 30,
+    "label": "Display normal only:",
+    "arm": "001D1B26",
+    "inc": {
+     "ok": true,
+     "arm": "001D1B26",
+     "writes": [
+      "02CB8148"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1B26",
+     "writes": [
+      "02CB8148"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 31,
+    "label": "Use vertex color:",
+    "arm": "001D1B39",
+    "inc": {
+     "ok": true,
+     "arm": "001D1B39",
+     "writes": [
+      "02CB8150"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1B39",
+     "writes": [
+      "02CB8150"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 32,
+    "label": "Display texture density:",
+    "arm": "001D1B50",
+    "inc": {
+     "ok": true,
+     "arm": "001D1B50",
+     "writes": [
+      "02CB814C",
+      "set+0xC2C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1B50",
+     "writes": [
+      "02CB814C",
+      "set+0xC2C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 33,
+    "label": "Switch diffuse texture:",
+    "arm": "001D1BBA",
+    "inc": {
+     "ok": true,
+     "arm": "001D1BBA",
+     "writes": [
+      "set+0xCF0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1BBA",
+     "writes": [
+      "set+0xCF0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 34,
+    "label": "Enable Map Display:",
+    "arm": "001D1BCF",
+    "inc": {
+     "ok": false,
+     "arm": "001D1BCF",
+     "writes": [
+      "set+0xABC"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1BCF",
+     "writes": [
+      "set+0xABC"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 35,
+    "label": "Enable Character Display:",
+    "arm": "001D1C0B",
+    "inc": {
+     "ok": false,
+     "arm": "001D1C0B",
+     "writes": [
+      "set+0xABD"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1C0B",
+     "writes": [
+      "set+0xABD"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 36,
+    "label": "Character Skeletons:",
+    "arm": "001D2ADE",
+    "inc": {
+     "ok": false,
+     "arm": "001D2ADE",
+     "writes": [],
+     "stopped_at": [
+      "000000F8"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D2ADE",
+     "writes": [],
+     "stopped_at": [
+      "000000F8"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 37,
+    "label": "Enable UI Display:",
+    "arm": "001D1C47",
+    "inc": {
+     "ok": false,
+     "arm": "001D1C47",
+     "writes": [
+      "set+0xABE"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1C47",
+     "writes": [
+      "set+0xABE"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 38,
+    "label": "Enable VFX Display:",
+    "arm": "001D1C83",
+    "inc": {
+     "ok": false,
+     "arm": "001D1C83",
+     "writes": [
+      "set+0xAC0"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1C83",
+     "writes": [
+      "set+0xAC0"
+     ],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 39,
+    "label": "Draw VFX when capturing:",
+    "arm": "001D1CCE",
+    "inc": {
+     "ok": true,
+     "arm": "001D1CCE",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1CCE",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 40,
+    "label": "Enable Shadow Display:",
+    "arm": "001D1CE9",
+    "inc": {
+     "ok": false,
+     "arm": "001D1CE9",
+     "writes": [
+      "heap",
+      "set+0xAC4"
+     ],
+     "stopped_at": [
+      "001EF280"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D1CE9",
+     "writes": [
+      "heap",
+      "set+0xAC4"
+     ],
+     "stopped_at": [
+      "001EF280"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 41,
+    "label": "Enable AO:",
+    "arm": "001D1D17",
+    "inc": {
+     "ok": true,
+     "arm": "001D1D17",
+     "writes": [
+      "ppc+0x198"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1D17",
+     "writes": [
+      "ppc+0x198"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 42,
+    "label": "Display AO Only:",
+    "arm": "001D1D36",
+    "inc": {
+     "ok": true,
+     "arm": "001D1D36",
+     "writes": [
+      "ppc+0x199"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1D36",
+     "writes": [
+      "ppc+0x199"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 43,
+    "label": "HBAO NumSteps:",
+    "arm": "001D1D5A",
+    "inc": {
+     "ok": true,
+     "arm": "001D1D5A",
+     "writes": [
+      "ppc+0x1E0",
+      "set+0xC04"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1D5A",
+     "writes": [
+      "ppc+0x1E0",
+      "set+0xC04"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 44,
+    "label": "HBAO NumDir:",
+    "arm": "001D1DB4",
+    "inc": {
+     "ok": true,
+     "arm": "001D1DB4",
+     "writes": [
+      "ppc+0x1E4",
+      "set+0xC08"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1DB4",
+     "writes": [
+      "ppc+0x1E4",
+      "set+0xC08"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 45,
+    "label": "HBAO Full Resolution:",
+    "arm": "001D4AC0",
+    "inc": {
+     "ok": true,
+     "arm": "001D4AC0",
+     "writes": [
+      "ppc+0x1E8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4AC0",
+     "writes": [
+      "ppc+0x1E8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 46,
+    "label": "HBAO Depth Full Res:",
+    "arm": "001D4ADF",
+    "inc": {
+     "ok": true,
+     "arm": "001D4ADF",
+     "writes": [
+      "ppc+0x1E9"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4ADF",
+     "writes": [
+      "ppc+0x1E9"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 47,
+    "label": "early AO:",
+    "arm": "001D1E0E",
+    "inc": {
+     "ok": true,
+     "arm": "001D1E0E",
+     "writes": [
+      "01DF08F4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1E0E",
+     "writes": [
+      "01DF08F4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 48,
+    "label": "Post AA enable:",
+    "arm": "001D1E2A",
+    "inc": {
+     "ok": true,
+     "arm": "001D1E2A",
+     "writes": [
+      "ppc+0x3E8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1E2A",
+     "writes": [
+      "ppc+0x3E8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 49,
+    "label": "SMAA level",
+    "arm": "001D1E68",
+    "inc": {
+     "ok": true,
+     "arm": "001D1E68",
+     "writes": [
+      "ppc+0x184"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1E68",
+     "writes": [
+      "ppc+0x184"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 50,
+    "label": "Mask Border",
+    "arm": "001D1E49",
+    "inc": {
+     "ok": true,
+     "arm": "001D1E49",
+     "writes": [
+      "ppc+0x498"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1E49",
+     "writes": [
+      "ppc+0x498"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 51,
+    "label": "Draw Chr Names:",
+    "arm": "001D18CA",
+    "inc": {
+     "ok": false,
+     "arm": "001D18CA",
+     "writes": [],
+     "stopped_at": [
+      "0000000C"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D18CA",
+     "writes": [],
+     "stopped_at": [
+      "0000000C"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 52,
+    "label": "Draw UI WithOut Scale :",
+    "arm": "001D1F46",
+    "inc": {
+     "ok": true,
+     "arm": "001D1F46",
+     "writes": [
+      "01E0C1D4",
+      "01E0C1D6",
+      "01E0C1D8",
+      "01E0C1DC",
+      "01F811E0",
+      "0208ECC0",
+      "0208ECC4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1F46",
+     "writes": [
+      "01E0C1D4",
+      "01E0C1D6",
+      "01E0C1D8",
+      "01E0C1DC",
+      "01F811E0",
+      "0208ECC0",
+      "0208ECC4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 53,
+    "label": "Debug Cubemap:",
+    "arm": "001D3988",
+    "inc": {
+     "ok": true,
+     "arm": "001D3988",
+     "writes": [
+      "02CB813C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3988",
+     "writes": [
+      "02CB813C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 54,
+    "label": "Toggle event cubemap:",
+    "arm": "001D39CD",
+    "inc": {
+     "ok": false,
+     "arm": "001D39CD",
+     "writes": [
+      "set+0xD08"
+     ],
+     "stopped_at": [
+      "000000E8"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D39CD",
+     "writes": [
+      "set+0xD08"
+     ],
+     "stopped_at": [
+      "000000E8"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 55,
+    "label": "Toggle cube map probes mode:",
+    "arm": "001D3A2A",
+    "inc": {
+     "ok": true,
+     "arm": "001D3A2A",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3A2A",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 56,
+    "label": "Capture cube map. (L/R to toggle SkyBox)",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 57,
+    "label": "Operate cube map",
+    "arm": "001D3A4A",
+    "inc": {
+     "ok": true,
+     "arm": "001D3A4A",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3A4A",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 58,
+    "label": "Set cube map properties:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 59,
+    "label": "Recapture cube maps:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 60,
+    "label": "Capture panorama:",
+    "arm": "001D1F5A",
+    "inc": {
+     "ok": true,
+     "arm": "001D1F5A",
+     "writes": [
+      "set+0xC0C",
+      "set+0xC28"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1F5A",
+     "writes": [
+      "set+0xC0C",
+      "set+0xC10",
+      "set+0xC14",
+      "set+0xC18",
+      "set+0xC28"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 61,
+    "label": "Camera Light enable:",
+    "arm": "001D213D",
+    "inc": {
+     "ok": true,
+     "arm": "001D213D",
+     "writes": [
+      "01DFE192"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D213D",
+     "writes": [
+      "01DFE192"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 62,
+    "label": "After Water fix enable:",
+    "arm": "001D2150",
+    "inc": {
+     "ok": true,
+     "arm": "001D2150",
+     "writes": [
+      "set+0x10D9"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2150",
+     "writes": [
+      "set+0x10D9"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 63,
+    "label": "Hair Camera Light Direction X Bias:",
+    "arm": "001D2165",
+    "inc": {
+     "ok": true,
+     "arm": "001D2165",
+     "writes": [
+      "02CB80B0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2165",
+     "writes": [
+      "02CB80B0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 64,
+    "label": "Hair Camera Light Direction Y Bias:",
+    "arm": "001D219B",
+    "inc": {
+     "ok": true,
+     "arm": "001D219B",
+     "writes": [
+      "02CB80B4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D219B",
+     "writes": [
+      "02CB80B4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 65,
+    "label": "Hair Camera Light Direction Z Bias:",
+    "arm": "001D21D1",
+    "inc": {
+     "ok": true,
+     "arm": "001D21D1",
+     "writes": [
+      "02CB80B8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D21D1",
+     "writes": [
+      "02CB80B8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 66,
+    "label": "Hair Specular Power Modifier:",
+    "arm": "001D2207",
+    "inc": {
+     "ok": true,
+     "arm": "001D2207",
+     "writes": [
+      "02CB80BC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2207",
+     "writes": [
+      "02CB80BC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 67,
+    "label": "Hair Specular Power Eye-Camera Distance Factor:",
+    "arm": "001D223D",
+    "inc": {
+     "ok": true,
+     "arm": "001D223D",
+     "writes": [
+      "02CB80C0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.001
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D223D",
+     "writes": [
+      "02CB80C0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 68,
+    "label": "Hair Specular Intensity Before Clamp Modifier:",
+    "arm": "001D2273",
+    "inc": {
+     "ok": true,
+     "arm": "001D2273",
+     "writes": [
+      "02CB80C4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2273",
+     "writes": [
+      "02CB80C4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 69,
+    "label": "Hair Specular Intensity Before Clamp Eye-Camera Distance Factor:",
+    "arm": "001D22A9",
+    "inc": {
+     "ok": true,
+     "arm": "001D22A9",
+     "writes": [
+      "02CB80C8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.001
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D22A9",
+     "writes": [
+      "02CB80C8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 70,
+    "label": "Hair Specular Intensity After Clamp Modifier:",
+    "arm": "001D22DF",
+    "inc": {
+     "ok": true,
+     "arm": "001D22DF",
+     "writes": [
+      "02CB80CC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D22DF",
+     "writes": [
+      "02CB80CC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 71,
+    "label": "Hair Specular Intensity After Clamp Eye-Camera Distance Factor:",
+    "arm": "001D2315",
+    "inc": {
+     "ok": true,
+     "arm": "001D2315",
+     "writes": [
+      "02CB80D0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2315",
+     "writes": [
+      "02CB80D0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 72,
+    "label": "Eye Type A Camera Light Direction X Bias:",
+    "arm": "001D234B",
+    "inc": {
+     "ok": true,
+     "arm": "001D234B",
+     "writes": [
+      "02CB80E8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D234B",
+     "writes": [
+      "02CB80E8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 73,
+    "label": "Eye Type A Camera Light Direction Y Bias:",
+    "arm": "001D2381",
+    "inc": {
+     "ok": true,
+     "arm": "001D2381",
+     "writes": [
+      "02CB80EC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2381",
+     "writes": [
+      "02CB80EC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 74,
+    "label": "Eye Type A Camera Light Direction Z Bias:",
+    "arm": "001D23B7",
+    "inc": {
+     "ok": true,
+     "arm": "001D23B7",
+     "writes": [
+      "02CB80F0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D23B7",
+     "writes": [
+      "02CB80F0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 75,
+    "label": "Eye Type A Specular Power Modifier:",
+    "arm": "001D23ED",
+    "inc": {
+     "ok": true,
+     "arm": "001D23ED",
+     "writes": [
+      "02CB80F4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D23ED",
+     "writes": [
+      "02CB80F4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 76,
+    "label": "Eye Type A Specular Power Eye-Camera Distance Factor:",
+    "arm": "001D2423",
+    "inc": {
+     "ok": true,
+     "arm": "001D2423",
+     "writes": [
+      "02CB80F8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.001
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2423",
+     "writes": [
+      "02CB80F8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 77,
+    "label": "Eye Type A Specular Intensity Before Clamp Modifier:",
+    "arm": "001D2459",
+    "inc": {
+     "ok": true,
+     "arm": "001D2459",
+     "writes": [
+      "02CB80FC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2459",
+     "writes": [
+      "02CB80FC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 78,
+    "label": "Eye Type A Specular Intensity Before Clamp Eye-Camera Distance Factor:",
+    "arm": "001D248F",
+    "inc": {
+     "ok": true,
+     "arm": "001D248F",
+     "writes": [
+      "02CB8100"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.001
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D248F",
+     "writes": [
+      "02CB8100"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 79,
+    "label": "Eye Type A Specular Intensity After Clamp Modifier:",
+    "arm": "001D24C5",
+    "inc": {
+     "ok": true,
+     "arm": "001D24C5",
+     "writes": [
+      "02CB8104"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D24C5",
+     "writes": [
+      "02CB8104"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 80,
+    "label": "Eye Type A Specular Intensity After Clamp Eye-Camera Distance Factor:",
+    "arm": "001D24FB",
+    "inc": {
+     "ok": true,
+     "arm": "001D24FB",
+     "writes": [
+      "02CB8108"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D24FB",
+     "writes": [
+      "02CB8108"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 81,
+    "label": "Eye Type B Camera Light Direction X Bias:",
+    "arm": "001D2531",
+    "inc": {
+     "ok": true,
+     "arm": "001D2531",
+     "writes": [
+      "02CB810C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2531",
+     "writes": [
+      "02CB810C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 82,
+    "label": "Eye Type B Camera Light Direction Y Bias:",
+    "arm": "001D2567",
+    "inc": {
+     "ok": true,
+     "arm": "001D2567",
+     "writes": [
+      "02CB8110"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2567",
+     "writes": [
+      "02CB8110"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 83,
+    "label": "Eye Type B Camera Light Direction Z Bias:",
+    "arm": "001D259D",
+    "inc": {
+     "ok": true,
+     "arm": "001D259D",
+     "writes": [
+      "02CB8114"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D259D",
+     "writes": [
+      "02CB8114"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 84,
+    "label": "Eye Type B Specular Power Modifier:",
+    "arm": "001D25D3",
+    "inc": {
+     "ok": true,
+     "arm": "001D25D3",
+     "writes": [
+      "02CB8118"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D25D3",
+     "writes": [
+      "02CB8118"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 85,
+    "label": "Eye Type B Specular Power Eye-Camera Distance Factor:",
+    "arm": "001D2609",
+    "inc": {
+     "ok": true,
+     "arm": "001D2609",
+     "writes": [
+      "02CB811C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.001
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2609",
+     "writes": [
+      "02CB811C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 86,
+    "label": "Eye Type B Specular Intensity Before Clamp Modifier:",
+    "arm": "001D263F",
+    "inc": {
+     "ok": true,
+     "arm": "001D263F",
+     "writes": [
+      "02CB8120"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D263F",
+     "writes": [
+      "02CB8120"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 87,
+    "label": "Eye Type B Specular Intensity Before Clamp Eye-Camera Distance Factor:",
+    "arm": "001D2675",
+    "inc": {
+     "ok": true,
+     "arm": "001D2675",
+     "writes": [
+      "02CB8124"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.001
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2675",
+     "writes": [
+      "02CB8124"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 88,
+    "label": "Eye Type B Specular Intensity After Clamp Modifier:",
+    "arm": "001D26AB",
+    "inc": {
+     "ok": true,
+     "arm": "001D26AB",
+     "writes": [
+      "02CB8128"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D26AB",
+     "writes": [
+      "02CB8128"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 89,
+    "label": "Eye Type B Specular Intensity After Clamp Eye-Camera Distance Factor:",
+    "arm": "001D26E1",
+    "inc": {
+     "ok": true,
+     "arm": "001D26E1",
+     "writes": [
+      "02CB812C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D26E1",
+     "writes": [
+      "02CB812C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 90,
+    "label": "Eye A and B Cube Map Blend Factor:",
+    "arm": "001D2717",
+    "inc": {
+     "ok": true,
+     "arm": "001D2717",
+     "writes": [
+      "02CB80D4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2717",
+     "writes": [
+      "02CB80D4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 91,
+    "label": "Eye A and B Specular Blend Modifier:",
+    "arm": "001D274D",
+    "inc": {
+     "ok": true,
+     "arm": "001D274D",
+     "writes": [
+      "02CB80D8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D274D",
+     "writes": [
+      "02CB80D8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 92,
+    "label": "Eye A and B Ambient Scale:",
+    "arm": "001D2783",
+    "inc": {
+     "ok": true,
+     "arm": "001D2783",
+     "writes": [
+      "02CB80DC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2783",
+     "writes": [
+      "02CB80DC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 93,
+    "label": "Eye A and B Ambient Bound:",
+    "arm": "001D27CC",
+    "inc": {
+     "ok": true,
+     "arm": "001D27CC",
+     "writes": [
+      "02CB80E0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D27CC",
+     "writes": [
+      "02CB80E0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 94,
+    "label": "Eye A and B Specular Shadow Modifier",
+    "arm": "001D2815",
+    "inc": {
+     "ok": true,
+     "arm": "001D2815",
+     "writes": [
+      "02CB80E4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2815",
+     "writes": [
+      "02CB80E4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 95,
+    "label": "Fresnel Specular intensity:",
+    "arm": "001D2065",
+    "inc": {
+     "ok": true,
+     "arm": "001D2065",
+     "writes": [
+      "02CB80A0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2065",
+     "writes": [
+      "02CB80A0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 96,
+    "label": "Fresnel Specular power:",
+    "arm": "001D209B",
+    "inc": {
+     "ok": true,
+     "arm": "001D209B",
+     "writes": [
+      "02CB80A4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D209B",
+     "writes": [
+      "02CB80A4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 97,
+    "label": "Fresnel Specular Clamp Value:",
+    "arm": "001D20D1",
+    "inc": {
+     "ok": true,
+     "arm": "001D20D1",
+     "writes": [
+      "02CB80A8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D20D1",
+     "writes": [
+      "02CB80A8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 98,
+    "label": "Fresnel Specular Skin Intensity:",
+    "arm": "001D2107",
+    "inc": {
+     "ok": true,
+     "arm": "001D2107",
+     "writes": [
+      "02CB80AC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.05
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2107",
+     "writes": [
+      "02CB80AC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 99,
+    "label": "Fresnel Reflection enable:",
+    "arm": "001D2052",
+    "inc": {
+     "ok": true,
+     "arm": "001D2052",
+     "writes": [
+      "01DFE191"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2052",
+     "writes": [
+      "01DFE191"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 100,
+    "label": "Camera Pose:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 101,
+    "label": "Advanced panorama:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 102,
+    "label": "Current GPU Temperature:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 103,
+    "label": "Camera Over Write (O to capture):",
+    "arm": "001D2AFD",
+    "inc": {
+     "ok": true,
+     "arm": "001D2AFD",
+     "writes": [
+      "set+0xC0C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2AFD",
+     "writes": [
+      "set+0xC0C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 104,
+    "label": "FOV:",
+    "arm": "001D2B4D",
+    "inc": {
+     "ok": true,
+     "arm": "001D2B4D",
+     "writes": [
+      "set+0xC10"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.005556
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2B4D",
+     "writes": [
+      "set+0xC10"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      -0.005556
+     ]
+    }
+   },
+   {
+    "id": 105,
+    "label": "Aspect Ratio:",
+    "arm": "001D2B83",
+    "inc": {
+     "ok": true,
+     "arm": "001D2B83",
+     "writes": [
+      "set+0xC14"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2B83",
+     "writes": [
+      "set+0xC14"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      -0.01
+     ]
+    }
+   },
+   {
+    "id": 106,
+    "label": "Camera scale:",
+    "arm": "001D2BB9",
+    "inc": {
+     "ok": true,
+     "arm": "001D2BB9",
+     "writes": [
+      "set+0xC18"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2BB9",
+     "writes": [
+      "set+0xC18"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 107,
+    "label": "Cube map factor:",
+    "arm": "001D1FB0",
+    "inc": {
+     "ok": true,
+     "arm": "001D1FB0",
+     "writes": [
+      "02CB8140"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.05
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1FB0",
+     "writes": [
+      "02CB8140"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 108,
+    "label": "Diffuse intensity:",
+    "arm": "001D1FE6",
+    "inc": {
+     "ok": true,
+     "arm": "001D1FE6",
+     "writes": [
+      "02CB8130"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1FE6",
+     "writes": [
+      "02CB8130"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 109,
+    "label": "Specular intensity:",
+    "arm": "001D201C",
+    "inc": {
+     "ok": true,
+     "arm": "001D201C",
+     "writes": [
+      "02CB8134"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D201C",
+     "writes": [
+      "02CB8134"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 110,
+    "label": "Cube map intensity:",
+    "arm": "001D284B",
+    "inc": {
+     "ok": true,
+     "arm": "001D284B",
+     "writes": [
+      "02CB8138"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D284B",
+     "writes": [
+      "02CB8138"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 111,
+    "label": "IBL Diffuse/Classic Ambient factor:",
+    "arm": "001D2881",
+    "inc": {
+     "ok": true,
+     "arm": "001D2881",
+     "writes": [
+      "01DFE194"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.52
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2881",
+     "writes": [
+      "01DFE194"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.5
+     ]
+    }
+   },
+   {
+    "id": 112,
+    "label": "IBL Diffuse limit:",
+    "arm": "001D28B7",
+    "inc": {
+     "ok": true,
+     "arm": "001D28B7",
+     "writes": [
+      "01F82ED0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D28B7",
+     "writes": [
+      "01F82ED0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 113,
+    "label": "IBL Diffuse intensity:",
+    "arm": "001D28ED",
+    "inc": {
+     "ok": true,
+     "arm": "001D28ED",
+     "writes": [
+      "02CB8144"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.02
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D28ED",
+     "writes": [
+      "02CB8144"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 114,
+    "label": "Map Specular Intensity:",
+    "arm": "001D2E18",
+    "inc": {
+     "ok": false,
+     "arm": "001D2E18",
+     "writes": [],
+     "stopped_at": [
+      "000002D0"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D2E18",
+     "writes": [],
+     "stopped_at": [
+      "000002D0"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 115,
+    "label": "Map CubeMap Intensity:",
+    "arm": "001D2E61",
+    "inc": {
+     "ok": false,
+     "arm": "001D2E61",
+     "writes": [],
+     "stopped_at": [
+      "000002D4"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D2E61",
+     "writes": [],
+     "stopped_at": [
+      "000002D4"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 116,
+    "label": "Map CubeMap Factor:",
+    "arm": "001D2EAA",
+    "inc": {
+     "ok": false,
+     "arm": "001D2EAA",
+     "writes": [],
+     "stopped_at": [
+      "000002D8"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D2EAA",
+     "writes": [],
+     "stopped_at": [
+      "000002D8"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 117,
+    "label": "Map IBL Diffuse Factor:",
+    "arm": "001D38C8",
+    "inc": {
+     "ok": false,
+     "arm": "001D38C8",
+     "writes": [],
+     "stopped_at": [
+      "000002DC"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D38C8",
+     "writes": [],
+     "stopped_at": [
+      "000002DC"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 118,
+    "label": "Map IBL Diffuse Limit:",
+    "arm": "001D390D",
+    "inc": {
+     "ok": false,
+     "arm": "001D390D",
+     "writes": [],
+     "stopped_at": [
+      "000002E0"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D390D",
+     "writes": [],
+     "stopped_at": [
+      "000002E0"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 119,
+    "label": "Map IBL Diffuse Intensity:",
+    "arm": "001D3952",
+    "inc": {
+     "ok": true,
+     "arm": "001D3952",
+     "writes": [
+      "02CB806C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.05
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3952",
+     "writes": [
+      "02CB806C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 120,
+    "label": "Water Refraction Factor:",
+    "arm": "001D2EEF",
+    "inc": {
+     "ok": true,
+     "arm": "001D2EEF",
+     "writes": [
+      "02CB8044"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.05
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2EEF",
+     "writes": [
+      "02CB8044"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 121,
+    "label": "Water Specular Factor:",
+    "arm": "001D2F25",
+    "inc": {
+     "ok": true,
+     "arm": "001D2F25",
+     "writes": [
+      "02CB8048"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.05
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2F25",
+     "writes": [
+      "02CB8048"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 122,
+    "label": "Water Extra Debug Factor Two",
+    "arm": "001D2F91",
+    "inc": {
+     "ok": true,
+     "arm": "001D2F91",
+     "writes": [
+      "02CB8050"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      1.0
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2F91",
+     "writes": [
+      "02CB8050"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 123,
+    "label": "Water Extra Debug Cubemap Factor",
+    "arm": "001D2FC7",
+    "inc": {
+     "ok": true,
+     "arm": "001D2FC7",
+     "writes": [
+      "02CB8054"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.03
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2FC7",
+     "writes": [
+      "02CB8054"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 124,
+    "label": "Water Extra Debug Roughness Factor",
+    "arm": "001D2FFD",
+    "inc": {
+     "ok": true,
+     "arm": "001D2FFD",
+     "writes": [
+      "02CB8058"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.03
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2FFD",
+     "writes": [
+      "02CB8058"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 125,
+    "label": "Water Parallax Occlusion Debug Factor",
+    "arm": "001D3033",
+    "inc": {
+     "ok": true,
+     "arm": "001D3033",
+     "writes": [
+      "02CB805C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3033",
+     "writes": [
+      "02CB805C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 126,
+    "label": "Water Fresnel Factor",
+    "arm": "001D3069",
+    "inc": {
+     "ok": true,
+     "arm": "001D3069",
+     "writes": [
+      "02CB8060"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.03
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3069",
+     "writes": [
+      "02CB8060"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 127,
+    "label": "Water texture U Factor",
+    "arm": "001D309F",
+    "inc": {
+     "ok": false,
+     "arm": "001D309F",
+     "writes": [],
+     "stopped_at": [
+      "000002E8"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D309F",
+     "writes": [],
+     "stopped_at": [
+      "000002E8"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 128,
+    "label": "Water texture V Factor",
+    "arm": "001D30E4",
+    "inc": {
+     "ok": false,
+     "arm": "001D30E4",
+     "writes": [],
+     "stopped_at": [
+      "000002EC"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D30E4",
+     "writes": [],
+     "stopped_at": [
+      "000002EC"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 129,
+    "label": "Water Min Z",
+    "arm": "001D3129",
+    "inc": {
+     "ok": false,
+     "arm": "001D3129",
+     "writes": [],
+     "stopped_at": [
+      "000002F0"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3129",
+     "writes": [],
+     "stopped_at": [
+      "000002F0"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 130,
+    "label": "Sample step size",
+    "arm": "001D316E",
+    "inc": {
+     "ok": false,
+     "arm": "001D316E",
+     "writes": [],
+     "stopped_at": [
+      "000002F4"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D316E",
+     "writes": [],
+     "stopped_at": [
+      "000002F4"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 131,
+    "label": "Total Num of Pixels",
+    "arm": "001D31B3",
+    "inc": {
+     "ok": false,
+     "arm": "001D31B3",
+     "writes": [],
+     "stopped_at": [
+      "000002FC"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D31B3",
+     "writes": [],
+     "stopped_at": [
+      "000002FC"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 132,
+    "label": "Reflection blend",
+    "arm": "001D31F8",
+    "inc": {
+     "ok": false,
+     "arm": "001D31F8",
+     "writes": [],
+     "stopped_at": [
+      "00000300"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D31F8",
+     "writes": [],
+     "stopped_at": [
+      "00000300"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 133,
+    "label": "Reflection strength",
+    "arm": "001D323D",
+    "inc": {
+     "ok": false,
+     "arm": "001D323D",
+     "writes": [],
+     "stopped_at": [
+      "00000304"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D323D",
+     "writes": [],
+     "stopped_at": [
+      "00000304"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 134,
+    "label": "Water Quality",
+    "arm": "001D3282",
+    "inc": {
+     "ok": false,
+     "arm": "001D3282",
+     "writes": [],
+     "stopped_at": [
+      "00000040"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3282",
+     "writes": [],
+     "stopped_at": [
+      "00000040"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 135,
+    "label": "Water Texture Reflection Factor",
+    "arm": "001D2F5B",
+    "inc": {
+     "ok": true,
+     "arm": "001D2F5B",
+     "writes": [
+      "02CB804C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2F5B",
+     "writes": [
+      "02CB804C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 136,
+    "label": "Map Eye Specular Power Modifier:",
+    "arm": "001D32CA",
+    "inc": {
+     "ok": true,
+     "arm": "001D32CA",
+     "writes": [
+      "02CB7FE8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D32CA",
+     "writes": [
+      "02CB7FE8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 137,
+    "label": "Map Eye Specular Power Eye Camera Distance Factor:",
+    "arm": "001D3300",
+    "inc": {
+     "ok": true,
+     "arm": "001D3300",
+     "writes": [
+      "02CB7FEC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3300",
+     "writes": [
+      "02CB7FEC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 138,
+    "label": "Map Eye Specular Intensity Before Clamp Modifier:",
+    "arm": "001D3336",
+    "inc": {
+     "ok": true,
+     "arm": "001D3336",
+     "writes": [
+      "02CB7FF0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3336",
+     "writes": [
+      "02CB7FF0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 139,
+    "label": "Map Eye Specular Intensity Before Clamp Eye Camera Distance Factor:",
+    "arm": "001D336C",
+    "inc": {
+     "ok": true,
+     "arm": "001D336C",
+     "writes": [
+      "02CB7FF4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D336C",
+     "writes": [
+      "02CB7FF4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 140,
+    "label": "Map Eye Specular Intensity After Clamp Modifier:",
+    "arm": "001D33A2",
+    "inc": {
+     "ok": true,
+     "arm": "001D33A2",
+     "writes": [
+      "02CB7FF8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D33A2",
+     "writes": [
+      "02CB7FF8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 141,
+    "label": "Map Eye Specular Intensity After Clamp Eye Camera Distance Factor:",
+    "arm": "001D33D8",
+    "inc": {
+     "ok": true,
+     "arm": "001D33D8",
+     "writes": [
+      "02CB7FFC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D33D8",
+     "writes": [
+      "02CB7FFC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 142,
+    "label": "Map Eye CubeMap Intensity Modifier:",
+    "arm": "001D340E",
+    "inc": {
+     "ok": true,
+     "arm": "001D340E",
+     "writes": [
+      "02CB8000"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D340E",
+     "writes": [
+      "02CB8000"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 143,
+    "label": "Map Eye Specular Blend Modifier:",
+    "arm": "001D3444",
+    "inc": {
+     "ok": true,
+     "arm": "001D3444",
+     "writes": [
+      "02CB8004"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3444",
+     "writes": [
+      "02CB8004"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 144,
+    "label": "Map Eye Diffuse Modifier:",
+    "arm": "001D347A",
+    "inc": {
+     "ok": true,
+     "arm": "001D347A",
+     "writes": [
+      "02CB8014"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D347A",
+     "writes": [
+      "02CB8014"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 145,
+    "label": "Map Eye Ambient Modifier:",
+    "arm": "001D34B0",
+    "inc": {
+     "ok": true,
+     "arm": "001D34B0",
+     "writes": [
+      "02CB8018"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D34B0",
+     "writes": [
+      "02CB8018"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 146,
+    "label": "Map Eye Ambient Bound:",
+    "arm": "001D34F9",
+    "inc": {
+     "ok": true,
+     "arm": "001D34F9",
+     "writes": [
+      "02CB801C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D34F9",
+     "writes": [
+      "02CB801C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 147,
+    "label": "Map BGNPC Fresnel Enabled:",
+    "arm": "001D3542",
+    "inc": {
+     "ok": true,
+     "arm": "001D3542",
+     "writes": [
+      "02CB7FD0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3542",
+     "writes": [
+      "02CB7FD0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 148,
+    "label": "Map BGNPC Fresnel Intensity:",
+    "arm": "001D3555",
+    "inc": {
+     "ok": true,
+     "arm": "001D3555",
+     "writes": [
+      "02CB7FD4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3555",
+     "writes": [
+      "02CB7FD4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 149,
+    "label": "Map BGNPC Fresnel Power:",
+    "arm": "001D358B",
+    "inc": {
+     "ok": true,
+     "arm": "001D358B",
+     "writes": [
+      "02CB7FD8"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D358B",
+     "writes": [
+      "02CB7FD8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 150,
+    "label": "Map BGNPC Fresnel Clamp Value:",
+    "arm": "001D35C1",
+    "inc": {
+     "ok": true,
+     "arm": "001D35C1",
+     "writes": [
+      "02CB7FDC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D35C1",
+     "writes": [
+      "02CB7FDC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 151,
+    "label": "Map BGNPC Fresnel Skin Intensity:",
+    "arm": "001D35F7",
+    "inc": {
+     "ok": true,
+     "arm": "001D35F7",
+     "writes": [
+      "02CB7FE0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D35F7",
+     "writes": [
+      "02CB7FE0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 152,
+    "label": "Map Camera Light Enabled:",
+    "arm": "001D362D",
+    "inc": {
+     "ok": true,
+     "arm": "001D362D",
+     "writes": [
+      "02CB7FE4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D362D",
+     "writes": [
+      "02CB7FE4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 153,
+    "label": "Map Eye Camera Light X Modifier:",
+    "arm": "001D3640",
+    "inc": {
+     "ok": true,
+     "arm": "001D3640",
+     "writes": [
+      "02CB8008"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3640",
+     "writes": [
+      "02CB8008"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 154,
+    "label": "Map Eye Camera Light Y Modifier:",
+    "arm": "001D3676",
+    "inc": {
+     "ok": true,
+     "arm": "001D3676",
+     "writes": [
+      "02CB800C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3676",
+     "writes": [
+      "02CB800C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 155,
+    "label": "Map Eye Camera Light Z Modifier:",
+    "arm": "001D36AC",
+    "inc": {
+     "ok": true,
+     "arm": "001D36AC",
+     "writes": [
+      "02CB8010"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D36AC",
+     "writes": [
+      "02CB8010"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 156,
+    "label": "Map Hair Specular Power Modifier:",
+    "arm": "001D36E2",
+    "inc": {
+     "ok": true,
+     "arm": "001D36E2",
+     "writes": [
+      "02CB8020"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D36E2",
+     "writes": [
+      "02CB8020"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 157,
+    "label": "Map Hair Specular Power Eye Camera Distance Factor:",
+    "arm": "001D3718",
+    "inc": {
+     "ok": true,
+     "arm": "001D3718",
+     "writes": [
+      "02CB8024"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3718",
+     "writes": [
+      "02CB8024"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 158,
+    "label": "Map Hair Specular Intensity Before Clamp Modifier:",
+    "arm": "001D374E",
+    "inc": {
+     "ok": true,
+     "arm": "001D374E",
+     "writes": [
+      "02CB8028"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D374E",
+     "writes": [
+      "02CB8028"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 159,
+    "label": "Map Hair Specular Intensity Before Clamp Eye Camera Distance Factor:",
+    "arm": "001D3784",
+    "inc": {
+     "ok": true,
+     "arm": "001D3784",
+     "writes": [
+      "02CB802C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3784",
+     "writes": [
+      "02CB802C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 160,
+    "label": "Map Hair Specular Intensity After Clamp Modifier:",
+    "arm": "001D37BA",
+    "inc": {
+     "ok": true,
+     "arm": "001D37BA",
+     "writes": [
+      "02CB8030"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D37BA",
+     "writes": [
+      "02CB8030"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 161,
+    "label": "Map Hair Specular Intensity After Clamp Eye Camera Distance Factor:",
+    "arm": "001D37F0",
+    "inc": {
+     "ok": true,
+     "arm": "001D37F0",
+     "writes": [
+      "02CB8034"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D37F0",
+     "writes": [
+      "02CB8034"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 162,
+    "label": "Map Hair Camera Light X Modifier:",
+    "arm": "001D3826",
+    "inc": {
+     "ok": true,
+     "arm": "001D3826",
+     "writes": [
+      "02CB8038"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3826",
+     "writes": [
+      "02CB8038"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 163,
+    "label": "Map Hair Camera Light Y Modifier:",
+    "arm": "001D385C",
+    "inc": {
+     "ok": true,
+     "arm": "001D385C",
+     "writes": [
+      "02CB803C"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D385C",
+     "writes": [
+      "02CB803C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 164,
+    "label": "Map Hair Camera Light Z Modifier:",
+    "arm": "001D3892",
+    "inc": {
+     "ok": true,
+     "arm": "001D3892",
+     "writes": [
+      "02CB8040"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3892",
+     "writes": [
+      "02CB8040"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 165,
+    "label": "Re-read soft particle config",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 166,
+    "label": "Use soft particle:",
+    "arm": "001D2923",
+    "inc": {
+     "ok": false,
+     "arm": "001D2923",
+     "writes": [],
+     "stopped_at": [
+      "00000038"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D2923",
+     "writes": [],
+     "stopped_at": [
+      "00000038"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 167,
+    "label": "SSS enable:",
+    "arm": "001D2983",
+    "inc": {
+     "ok": true,
+     "arm": "001D2983",
+     "writes": [
+      "02CB8434"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2983",
+     "writes": [
+      "02CB8434"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 168,
+    "label": "SSS Width:",
+    "arm": "001D2996",
+    "inc": {
+     "ok": true,
+     "arm": "001D2996",
+     "writes": [
+      "02CB8438"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2996",
+     "writes": [
+      "02CB8438"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 169,
+    "label": "SSS Diffuse a:",
+    "arm": "001D29CC",
+    "inc": {
+     "ok": true,
+     "arm": "001D29CC",
+     "writes": [
+      "01DFE1AC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      1.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D29CC",
+     "writes": [
+      "01DFE1AC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      1.0
+     ]
+    }
+   },
+   {
+    "id": 170,
+    "label": "SSS Diffuse b:",
+    "arm": "001D2A02",
+    "inc": {
+     "ok": true,
+     "arm": "001D2A02",
+     "writes": [
+      "01F82EE4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2A02",
+     "writes": [
+      "01F82EE4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 171,
+    "label": "SSS Blur:",
+    "arm": "001D2A38",
+    "inc": {
+     "ok": true,
+     "arm": "001D2A38",
+     "writes": [
+      "ppc+0x1EC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2A38",
+     "writes": [
+      "ppc+0x1EC"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      -0.1
+     ]
+    }
+   },
+   {
+    "id": 172,
+    "label": "Gaussian Filter big kernel (15x15 or 7x7):",
+    "arm": "001D1E9D",
+    "inc": {
+     "ok": true,
+     "arm": "001D1E9D",
+     "writes": [
+      "ppc+0x19C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1E9D",
+     "writes": [
+      "ppc+0x19C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 173,
+    "label": "Gaussian Filter factor:",
+    "arm": "001D1ED4",
+    "inc": {
+     "ok": true,
+     "arm": "001D1ED4",
+     "writes": [
+      "ppc+0x1A0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.005
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1ED4",
+     "writes": [
+      "ppc+0x1A0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      -0.005
+     ]
+    }
+   },
+   {
+    "id": 174,
+    "label": "Gaussian Filter blend amount:",
+    "arm": "001D1F0D",
+    "inc": {
+     "ok": true,
+     "arm": "001D1F0D",
+     "writes": [
+      "ppc+0x1A4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.005
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D1F0D",
+     "writes": [
+      "ppc+0x1A4"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      -0.005
+     ]
+    }
+   },
+   {
+    "id": 175,
+    "label": "Yebis enable:",
+    "arm": "001D2A7D",
+    "inc": {
+     "ok": false,
+     "arm": "001D2A7D",
+     "writes": [
+      "set+0xD78"
+     ],
+     "stopped_at": [
+      "00000010"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2A7D",
+     "writes": [
+      "set+0xD78"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 176,
+    "label": "Show Map Hide Group:",
+    "arm": "001D2BEF",
+    "inc": {
+     "ok": false,
+     "arm": "001D2BEF",
+     "writes": [
+      "0000463C",
+      "set+0xAC6"
+     ],
+     "stopped_at": [
+      "0000463C"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D2BEF",
+     "writes": [
+      "0000463C",
+      "set+0xAC6"
+     ],
+     "stopped_at": [
+      "0000463C"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 177,
+    "label": "Particle Draw Type Range Start:",
+    "arm": "001D2C25",
+    "inc": {
+     "ok": true,
+     "arm": "001D2C25",
+     "writes": [
+      "01EEBAE0",
+      "022BE7D8",
+      "set+0xAC8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2C25",
+     "writes": [
+      "01EEBAE0",
+      "022BE7D8",
+      "set+0xAC8",
+      "set+0xACC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 178,
+    "label": "Particle Draw Type Range End:",
+    "arm": "001D2C91",
+    "inc": {
+     "ok": true,
+     "arm": "001D2C91",
+     "writes": [
+      "01EEBAE0",
+      "022BE7D8",
+      "set+0xAC8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2C91",
+     "writes": [
+      "01EEBAE0",
+      "022BE7D8",
+      "set+0xACC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 179,
+    "label": "Color Correction Position:",
+    "arm": "001D2964",
+    "inc": {
+     "ok": true,
+     "arm": "001D2964",
+     "writes": [
+      "ppc+0x4A0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2964",
+     "writes": [
+      "ppc+0x4A0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 180,
+    "label": "Map render DisplayList Id Start:",
+    "arm": "001D2CFC",
+    "inc": {
+     "ok": true,
+     "arm": "001D2CFC",
+     "writes": [
+      "01EEBAE4",
+      "022BE7DC",
+      "set+0xAD4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2CFC",
+     "writes": [
+      "01EEBAE4",
+      "022BE7DC",
+      "set+0xAD4",
+      "set+0xAD8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 181,
+    "label": "Map render DisplayList Id End:",
+    "arm": "001D2D68",
+    "inc": {
+     "ok": true,
+     "arm": "001D2D68",
+     "writes": [
+      "01EEBAE4",
+      "022BE7DC",
+      "set+0xAD4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2D68",
+     "writes": [
+      "01EEBAE4",
+      "022BE7DC",
+      "set+0xAD8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 182,
+    "label": "Fusion Technique Select:",
+    "arm": "001D2DD3",
+    "inc": {
+     "ok": true,
+     "arm": "001D2DD3",
+     "writes": [
+      "01EEBAF0",
+      "set+0xAE0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2DD3",
+     "writes": [
+      "01EEBAF0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 183,
+    "label": "Print Magic Info:",
+    "arm": "001D2E04",
+    "inc": {
+     "ok": true,
+     "arm": "001D2E04",
+     "writes": [
+      "022BE950"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D2E04",
+     "writes": [
+      "022BE950"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 184,
+    "label": "Set All Enemy HP One:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 185,
+    "label": "Huge Damage:",
+    "arm": "001D3A91",
+    "inc": {
+     "ok": true,
+     "arm": "001D3A91",
+     "writes": [
+      "set+0xC34"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3A91",
+     "writes": [
+      "set+0xC34"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 186,
+    "label": "Camera speed:",
+    "arm": "001D3AE5",
+    "inc": {
+     "ok": true,
+     "arm": "001D3AE5",
+     "writes": [
+      "set+0xC38"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3AE5",
+     "writes": [
+      "set+0xC38"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 187,
+    "label": "Enable mouse control camera:",
+    "arm": "001D3AA6",
+    "inc": {
+     "ok": true,
+     "arm": "001D3AA6",
+     "writes": [
+      "set+0xC35"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3AA6",
+     "writes": [
+      "set+0xC35"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 188,
+    "label": "Enable reading key mapping from file:",
+    "arm": "001D3ABB",
+    "inc": {
+     "ok": true,
+     "arm": "001D3ABB",
+     "writes": [
+      "set+0xC3C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3ABB",
+     "writes": [
+      "set+0xC3C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 189,
+    "label": "Navi Map Scale :",
+    "arm": "001D3C3C",
+    "inc": {
+     "ok": false,
+     "arm": "001D3C3C",
+     "writes": [],
+     "stopped_at": [
+      "00003AFC"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3C3C",
+     "writes": [],
+     "stopped_at": [
+      "00003AFC"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 190,
+    "label": "Adjust tracmap center x (L/R)",
+    "arm": "001D3CBD",
+    "inc": {
+     "ok": false,
+     "arm": "001D3CBD",
+     "writes": [
+      "01E0CE50"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": [
+      0.672
+     ]
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3CBD",
+     "writes": [
+      "01E0CE50"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": [
+      0.67
+     ]
+    }
+   },
+   {
+    "id": 191,
+    "label": "Adjust tracmap center y (L/R):",
+    "arm": "001D3D17",
+    "inc": {
+     "ok": false,
+     "arm": "001D3D17",
+     "writes": [
+      "01E0CE54"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": [
+      0.602
+     ]
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3D17",
+     "writes": [
+      "01E0CE54"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": [
+      0.6
+     ]
+    }
+   },
+   {
+    "id": 192,
+    "label": "Adjust tracmap Super Wide Mul (L/R)",
+    "arm": "001D3D84",
+    "inc": {
+     "ok": false,
+     "arm": "001D3D84",
+     "writes": [
+      "01E0CE58"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": [
+      1.002
+     ]
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3D84",
+     "writes": [
+      "01E0CE58"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": [
+      1.0
+     ]
+    }
+   },
+   {
+    "id": 193,
+    "label": "Adjust tracmap Super Wide MidPoint (L/R):",
+    "arm": "001D3DE5",
+    "inc": {
+     "ok": false,
+     "arm": "001D3DE5",
+     "writes": [
+      "01E0CE5C"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3DE5",
+     "writes": [
+      "01E0CE5C"
+     ],
+     "stopped_at": [
+      "001EDF80"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 194,
+    "label": "Procedural texture: Toggle Usage",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 195,
+    "label": "Procedural texture: Toggle Management",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 196,
+    "label": "Procedural texture rotation ratio",
+    "arm": "001D454A",
+    "inc": {
+     "ok": true,
+     "arm": "001D454A",
+     "writes": [
+      "set+0xD90"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D454A",
+     "writes": [
+      "set+0xD90"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 197,
+    "label": "100% Spawn Rare Monster :",
+    "arm": "001D3E7A",
+    "inc": {
+     "ok": true,
+     "arm": "001D3E7A",
+     "writes": [
+      "set+0xC70"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3E7A",
+     "writes": [
+      "set+0xC70"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 198,
+    "label": "Save My Memory Leak Table",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 199,
+    "label": "Set gill to max:",
+    "arm": "001D3E9C",
+    "inc": {
+     "ok": false,
+     "arm": "001D3E9C",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3E9C",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 200,
+    "label": "Set LP to max:",
+    "arm": "001D3EB6",
+    "inc": {
+     "ok": true,
+     "arm": "001D3EB6",
+     "writes": [
+      "set+0xCED"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3EB6",
+     "writes": [
+      "set+0xCED"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 201,
+    "label": "Set level to max:",
+    "arm": "001D3ED0",
+    "inc": {
+     "ok": false,
+     "arm": "001D3ED0",
+     "writes": [],
+     "stopped_at": [
+      "00005A7E"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3ED0",
+     "writes": [],
+     "stopped_at": [
+      "00005A7E"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 202,
+    "label": "File Cache Enable :",
+    "arm": "001D3C77",
+    "inc": {
+     "ok": true,
+     "arm": "001D3C77",
+     "writes": [
+      "set+0xC3E"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3C77",
+     "writes": [
+      "set+0xC3E"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 203,
+    "label": "File Cache Reset Memory",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 204,
+    "label": "File Cache Info :",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 205,
+    "label": "Music :",
+    "arm": "001D3EEF",
+    "inc": {
+     "ok": false,
+     "arm": "001D3EEF",
+     "writes": [
+      "set+0xCF9"
+     ],
+     "stopped_at": [
+      "import EnterCriticalSection"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3EEF",
+     "writes": [
+      "set+0xCF9"
+     ],
+     "stopped_at": [
+      "import EnterCriticalSection"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 206,
+    "label": "Voice:",
+    "arm": "001D3F1E",
+    "inc": {
+     "ok": false,
+     "arm": "001D3F1E",
+     "writes": [
+      "set+0xCFA"
+     ],
+     "stopped_at": [
+      "import EnterCriticalSection"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3F1E",
+     "writes": [
+      "set+0xCFA"
+     ],
+     "stopped_at": [
+      "import EnterCriticalSection"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 207,
+    "label": "Sound Effect:",
+    "arm": "001D3F4D",
+    "inc": {
+     "ok": false,
+     "arm": "001D3F4D",
+     "writes": [
+      "set+0xCFB"
+     ],
+     "stopped_at": [
+      "import EnterCriticalSection"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3F4D",
+     "writes": [
+      "set+0xCFB"
+     ],
+     "stopped_at": [
+      "import EnterCriticalSection"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 208,
+    "label": "60fps input :",
+    "arm": "001D3C99",
+    "inc": {
+     "ok": true,
+     "arm": "001D3C99",
+     "writes": [
+      "set+0xD07"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3C99",
+     "writes": [
+      "set+0xD07"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 209,
+    "label": "Load Debug Menu Settings",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 210,
+    "label": "Save Debug Menu Settings",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 211,
+    "label": "Debug Menu Text Shadow UVOffset X:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 212,
+    "label": "Debug Menu Text Shadow UVOffset Y:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 213,
+    "label": "Debug Menu Text Soft Edges X:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 214,
+    "label": "Debug Menu Text Soft Edges Y:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 215,
+    "label": "Debug Menu Text Shadow Dimension Offset X:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 216,
+    "label": "Debug Menu Text Shadow Dimension Offset Y:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 217,
+    "label": "3D Sound Behind Ratio:",
+    "arm": "001D4006",
+    "inc": {
+     "ok": true,
+     "arm": "001D4006",
+     "writes": [
+      "0215EFD0"
+     ],
+     "stopped_at": [],
+     "float_values": [
+      0.1
+     ]
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4006",
+     "writes": [
+      "0215EFD0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 218,
+    "label": "Scene Item Debug Text Offset X:",
+    "arm": "001D3F7C",
+    "inc": {
+     "ok": false,
+     "arm": "001D3F7C",
+     "writes": [],
+     "stopped_at": [
+      "00004664"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3F7C",
+     "writes": [],
+     "stopped_at": [
+      "00004664"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 219,
+    "label": "Scene Item Debug Text Offset Y:",
+    "arm": "001D3FC1",
+    "inc": {
+     "ok": false,
+     "arm": "001D3FC1",
+     "writes": [],
+     "stopped_at": [
+      "00004668"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D3FC1",
+     "writes": [],
+     "stopped_at": [
+      "00004668"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 220,
+    "label": "Extra BGM status:",
+    "arm": "001D4033",
+    "inc": {
+     "ok": true,
+     "arm": "001D4033",
+     "writes": [
+      "01DF0010"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4033",
+     "writes": [
+      "01DF0010"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 221,
+    "label": "PS2 Far Plane:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 222,
+    "label": "Control character position:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 223,
+    "label": "Unlock All license: Press Circle",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 224,
+    "label": "Unlock all item: Press Circle",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 225,
+    "label": "Set clan point:",
+    "arm": "001D405C",
+    "inc": {
+     "ok": true,
+     "arm": "001D405C",
+     "writes": [
+      "set+0xDB4",
+      "set+0xDB8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D405C",
+     "writes": [
+      "set+0xDB4",
+      "set+0xDB8"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 226,
+    "label": "Set step count:",
+    "arm": "001D4155",
+    "inc": {
+     "ok": true,
+     "arm": "001D4155",
+     "writes": [
+      "set+0xDE0",
+      "set+0xDE4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4155",
+     "writes": [
+      "set+0xDE0",
+      "set+0xDE4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 227,
+    "label": "Set play time:",
+    "arm": "001D424E",
+    "inc": {
+     "ok": false,
+     "arm": "001D424E",
+     "writes": [],
+     "stopped_at": [
+      "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D424E",
+     "writes": [],
+     "stopped_at": [
+      "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 228,
+    "label": "Enable infinite summon time:",
+    "arm": "001D3B1C",
+    "inc": {
+     "ok": true,
+     "arm": "001D3B1C",
+     "writes": [
+      "set+0xE1C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3B1C",
+     "writes": [
+      "set+0xE1C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 229,
+    "label": "Enable infinite chocobo time:",
+    "arm": "001D3B31",
+    "inc": {
+     "ok": true,
+     "arm": "001D3B31",
+     "writes": [
+      "set+0xE1D"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3B31",
+     "writes": [
+      "set+0xE1D"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 230,
+    "label": "Enable infinite chocobo turbo time:",
+    "arm": "001D3B46",
+    "inc": {
+     "ok": true,
+     "arm": "001D3B46",
+     "writes": [
+      "set+0xE1E"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3B46",
+     "writes": [
+      "set+0xE1E"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 231,
+    "label": "Set scenario flag:",
+    "arm": "001D4362",
+    "inc": {
+     "ok": true,
+     "arm": "001D4362",
+     "writes": [
+      "set+0xE2C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4362",
+     "writes": [
+      "set+0xE2C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 232,
+    "label": "Count of battle:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 233,
+    "label": "Count of magic:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 234,
+    "label": "Count of tech:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 235,
+    "label": "Count of steal:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 236,
+    "label": "Count of killed monsters:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 237,
+    "label": "Current LP:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 238,
+    "label": "Set count of battle:",
+    "arm": "001D43C9",
+    "inc": {
+     "ok": true,
+     "arm": "001D43C9",
+     "writes": [
+      "set+0xE34"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D43C9",
+     "writes": [
+      "set+0xE34"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 239,
+    "label": "Set count of magic:",
+    "arm": "001D4416",
+    "inc": {
+     "ok": true,
+     "arm": "001D4416",
+     "writes": [
+      "set+0xE3C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4416",
+     "writes": [
+      "set+0xE3C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 240,
+    "label": "Set count of tech:",
+    "arm": "001D4463",
+    "inc": {
+     "ok": true,
+     "arm": "001D4463",
+     "writes": [
+      "set+0xE44"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4463",
+     "writes": [
+      "set+0xE44"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 241,
+    "label": "Set count of steal:",
+    "arm": "001D44B0",
+    "inc": {
+     "ok": true,
+     "arm": "001D44B0",
+     "writes": [
+      "set+0xE4C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D44B0",
+     "writes": [
+      "set+0xE4C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 242,
+    "label": "Set count of killed monsters:",
+    "arm": "001D44FD",
+    "inc": {
+     "ok": true,
+     "arm": "001D44FD",
+     "writes": [
+      "set+0xE54"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D44FD",
+     "writes": [
+      "set+0xE54"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 243,
+    "label": "Enable 100% successful steal:",
+    "arm": "001D3B5B",
+    "inc": {
+     "ok": true,
+     "arm": "001D3B5B",
+     "writes": [
+      "set+0xE5C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3B5B",
+     "writes": [
+      "set+0xE5C"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 244,
+    "label": "Enable 100% successful poach:",
+    "arm": "001D3BA2",
+    "inc": {
+     "ok": true,
+     "arm": "001D3BA2",
+     "writes": [
+      "set+0xE60"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3BA2",
+     "writes": [
+      "set+0xE60"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 245,
+    "label": "Enable 100% successful drop:",
+    "arm": "001D3BEE",
+    "inc": {
+     "ok": true,
+     "arm": "001D3BEE",
+     "writes": [
+      "set+0xE64"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3BEE",
+     "writes": [
+      "set+0xE64"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 246,
+    "label": "Chara Name:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 247,
+    "label": "Level:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 248,
+    "label": "HP:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 249,
+    "label": "MP:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 250,
+    "label": "ATPOW:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 251,
+    "label": "DFPOW:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 252,
+    "label": "WDFPOW:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 253,
+    "label": "EVPOW:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 254,
+    "label": "MEVPOW:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 255,
+    "label": "STR:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 256,
+    "label": "MGC:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 257,
+    "label": "WPR:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 258,
+    "label": "SPD:",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 259,
+    "label": "Reset Parameter: Press Circle",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 260,
+    "label": "Master Volume Ratio:",
+    "arm": "001D4590",
+    "inc": {
+     "ok": false,
+     "arm": "001D4590",
+     "writes": [
+      "set+0x10B8"
+     ],
+     "stopped_at": [
+      "001DBA60"
+     ],
+     "float_values": [
+      0.01
+     ]
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4590",
+     "writes": [
+      "set+0x10B8"
+     ],
+     "stopped_at": [
+      "001DBA60"
+     ],
+     "float_values": [
+      -0.01
+     ]
+    }
+   },
+   {
+    "id": 261,
+    "label": "Set Leather Count to 2: Press Circle",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 262,
+    "label": "Print Memory stats: Press Circle",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 263,
+    "label": "Game Window Mode:",
+    "arm": "001D45E9",
+    "inc": {
+     "ok": false,
+     "arm": "001D45E9",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D45E9",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 264,
+    "label": "Game Display Resolution:",
+    "arm": "001D46DD",
+    "inc": {
+     "ok": false,
+     "arm": "001D46DD",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D46DD",
+     "writes": [],
+     "stopped_at": [
+      "00000008"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 265,
+    "label": "Game Monitor :",
+    "arm": "001D4712",
+    "inc": {
+     "ok": false,
+     "arm": "001D4712",
+     "writes": [],
+     "stopped_at": [
+      "00000060"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4712",
+     "writes": [],
+     "stopped_at": [
+      "00000060"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 266,
+    "label": "System Adapter:",
+    "arm": "001D464B",
+    "inc": {
+     "ok": false,
+     "arm": "001D464B",
+     "writes": [],
+     "stopped_at": [
+      "00000048"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D464B",
+     "writes": [],
+     "stopped_at": [
+      "00000048"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 267,
+    "label": "Mouse Control Vertical Camera Speed:",
+    "arm": "001D4766",
+    "inc": {
+     "ok": false,
+     "arm": "001D4766",
+     "writes": [],
+     "stopped_at": [
+      "0017E430"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4766",
+     "writes": [],
+     "stopped_at": [
+      "0017E430"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 268,
+    "label": "Mouse Control Horizon Camera Speed:",
+    "arm": "001D4731",
+    "inc": {
+     "ok": false,
+     "arm": "001D4731",
+     "writes": [],
+     "stopped_at": [
+      "0017E420"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4731",
+     "writes": [],
+     "stopped_at": [
+      "0017E420"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 269,
+    "label": "Mouse Wheel Control Scroll Table Frequency:",
+    "arm": "001D47FD",
+    "inc": {
+     "ok": true,
+     "arm": "001D47FD",
+     "writes": [
+      "01E0CF88",
+      "0209E65C",
+      "set+0x10CC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D47FD",
+     "writes": [
+      "01E0CF88",
+      "0209E65C",
+      "set+0x10CC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 270,
+    "label": "Mouse Wheel Control Scroll Table Buffer Size:",
+    "arm": "001D4832",
+    "inc": {
+     "ok": true,
+     "arm": "001D4832",
+     "writes": [
+      "01E0CF84",
+      "set+0x10D0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4832",
+     "writes": [
+      "01E0CF84",
+      "set+0x10D0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 271,
+    "label": "Camera Revise Enable:",
+    "arm": "001D47B5",
+    "inc": {
+     "ok": false,
+     "arm": "001D47B5",
+     "writes": [],
+     "stopped_at": [
+      "00000058"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D47B5",
+     "writes": [],
+     "stopped_at": [
+      "00000058"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 272,
+    "label": "Brightness:",
+    "arm": "001D4867",
+    "inc": {
+     "ok": false,
+     "arm": "001D4867",
+     "writes": [],
+     "stopped_at": [
+      "00000010"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4867",
+     "writes": [],
+     "stopped_at": [
+      "00000010"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 273,
+    "label": "Vsync :",
+    "arm": "001D48AD",
+    "inc": {
+     "ok": false,
+     "arm": "001D48AD",
+     "writes": [],
+     "stopped_at": [
+      "00000014"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D48AD",
+     "writes": [],
+     "stopped_at": [
+      "00000014"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 274,
+    "label": "Anisotropic filtering :",
+    "arm": "001D4972",
+    "inc": {
+     "ok": false,
+     "arm": "001D4972",
+     "writes": [],
+     "stopped_at": [
+      "00000018"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4972",
+     "writes": [],
+     "stopped_at": [
+      "00000018"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 275,
+    "label": "Shadows Quality :",
+    "arm": "001D49C1",
+    "inc": {
+     "ok": false,
+     "arm": "001D49C1",
+     "writes": [],
+     "stopped_at": [
+      "0000001C"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D49C1",
+     "writes": [],
+     "stopped_at": [
+      "0000001C"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 276,
+    "label": "Character self-shadow :",
+    "arm": "001D4A28",
+    "inc": {
+     "ok": false,
+     "arm": "001D4A28",
+     "writes": [],
+     "stopped_at": [
+      "0000003C"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4A28",
+     "writes": [],
+     "stopped_at": [
+      "0000003C"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 277,
+    "label": "Anti-aliasing :",
+    "arm": "001D4A3D",
+    "inc": {
+     "ok": false,
+     "arm": "001D4A3D",
+     "writes": [],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4A3D",
+     "writes": [],
+     "stopped_at": [
+      "00000020"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 278,
+    "label": "Post process AA :",
+    "arm": "001D4A8A",
+    "inc": {
+     "ok": false,
+     "arm": "001D4A8A",
+     "writes": [],
+     "stopped_at": [
+      "00000024"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4A8A",
+     "writes": [],
+     "stopped_at": [
+      "00000024"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 279,
+    "label": "Ambient Occlusion :",
+    "arm": "001D4B03",
+    "inc": {
+     "ok": false,
+     "arm": "001D4B03",
+     "writes": [],
+     "stopped_at": [
+      "00000028"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4B03",
+     "writes": [],
+     "stopped_at": [
+      "00000028"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 280,
+    "label": "Depth of Field :",
+    "arm": "001D4B37",
+    "inc": {
+     "ok": false,
+     "arm": "001D4B37",
+     "writes": [],
+     "stopped_at": [
+      "00000030"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4B37",
+     "writes": [],
+     "stopped_at": [
+      "00000030"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 281,
+    "label": "Glare :",
+    "arm": "001D4B49",
+    "inc": {
+     "ok": false,
+     "arm": "001D4B49",
+     "writes": [],
+     "stopped_at": [
+      "00000034"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4B49",
+     "writes": [],
+     "stopped_at": [
+      "00000034"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 282,
+    "label": "Save Config File :",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 283,
+    "label": "Apply Graphic Quality Default :",
+    "arm": "001D4B7D",
+    "inc": {
+     "ok": false,
+     "arm": "001D4B7D",
+     "writes": [],
+     "stopped_at": [
+      "0000000C"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4B7D",
+     "writes": [],
+     "stopped_at": [
+      "0000000C"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 284,
+    "label": "BackBufferCount :",
+    "arm": "001D4907",
+    "inc": {
+     "ok": false,
+     "arm": "001D4907",
+     "writes": [],
+     "stopped_at": [
+      "00000044"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D4907",
+     "writes": [],
+     "stopped_at": [
+      "00000044"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 285,
+    "label": "Frame Limit (Apply save config file & restart game) :",
+    "arm": "001D494F",
+    "inc": {
+     "ok": false,
+     "arm": "001D494F",
+     "writes": [],
+     "stopped_at": [
+      "00000048"
+     ],
+     "float_values": []
+    },
+    "dec": {
+     "ok": false,
+     "arm": "001D494F",
+     "writes": [],
+     "stopped_at": [
+      "00000048"
+     ],
+     "float_values": []
+    }
+   },
+   {
+    "id": 286,
+    "label": "Clear Achievements :",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 287,
+    "label": "FrameSkip Enabled:",
+    "arm": "001D47EA",
+    "inc": {
+     "ok": true,
+     "arm": "001D47EA",
+     "writes": [
+      "01E02801"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D47EA",
+     "writes": [
+      "01E02801"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 288,
+    "label": "Mouse Control Camera Max Move:",
+    "arm": "001D479B",
+    "inc": {
+     "ok": true,
+     "arm": "001D479B",
+     "writes": [
+      "set+0x10D4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D479B",
+     "writes": [
+      "set+0x10D4"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 289,
+    "label": "Disable PauseMenu :",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 290,
+    "label": "Game Time Stop is",
+    "arm": "001D4BFA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BFA",
+     "writes": [],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 291,
+    "label": "Save Load Message Debug State :",
+    "arm": "001D4BB7",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BB7",
+     "writes": [
+      "set+0x10DC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BB7",
+     "writes": [
+      "set+0x10DC"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 292,
+    "label": "Super wide Mask Debug Enable :",
+    "arm": "001D4BEA",
+    "inc": {
+     "ok": true,
+     "arm": "001D4BEA",
+     "writes": [
+      "set+0x10E0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D4BEA",
+     "writes": [
+      "set+0x10E0"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   },
+   {
+    "id": 293,
+    "label": "Key Board Debug For Japanese Keyboard:",
+    "arm": "001D3AD0",
+    "inc": {
+     "ok": true,
+     "arm": "001D3AD0",
+     "writes": [
+      "set+0xC3D"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    },
+    "dec": {
+     "ok": true,
+     "arm": "001D3AD0",
+     "writes": [
+      "set+0xC3D"
+     ],
+     "stopped_at": [],
+     "float_values": []
+    }
+   }
+  ]
+ }
+}

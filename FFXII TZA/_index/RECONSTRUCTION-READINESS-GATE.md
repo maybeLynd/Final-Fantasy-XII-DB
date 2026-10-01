@@ -1,0 +1,810 @@
+---
+system: Reconstruction readiness gate — evidence and residual gaps
+category: _index
+status: DOCUMENTED
+owner_layer: PrimaryOwner:Program
+evidence_tier: 1
+verified_against:
+  exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+last_reviewed: 2026-09-12
+audit:
+  passes: 0
+  last_pass: 2026-09-12
+  last_pass_state: gate-evidence-assembled
+  crossref_clean: true
+  reopened_count: 0
+---
+
+# Reconstruction readiness gate — evidence and residual gaps
+
+> **This document does not declare the gate passed.** It assembles the evidence for a decision that
+> is not the database's to make, states every number with the instrument that produced it, and
+> separates what is local from what is architectural. Assembled 2026-09-12 by OPUS.
+
+> **AND IT IS NOT THE PROGRAMME'S ENDPOINT — recorded 2026-09-12.** The endpoint was replaced: the
+> work ends when [`COMPLETION-PLAN.md`](COMPLETION-PLAN.md) §1, `GOAL-REVISION-2026-09-08.md` and
+> `FINAL-AUDIT-PROTOCOL.md` are satisfied **for L1 and L2**, not when this page is assembled or
+> approved. **This page is an instrument, and its measurements stand.** Read §5 as the *work list* it
+> actually is — every LOCAL row is ordinary work, and the ARCHITECTURAL rows name what must change
+> for the claims that rest on them, not permission to stop. §7's "decision being asked for" is
+> retained as the record of a decision that was asked for and is **no longer the terminal condition**.
+
+## 1. What the gate is, read rather than assumed
+
+[`COMPLETION-PLAN.md`](COMPLETION-PLAN.md) §1 defines three maturity levels. The one at issue is
+**L2, reconstruction-grade**:
+
+> **L2 (reconstruction-grade)** additionally requires, for major systems: reconstruction-grade
+> types, relationships, a behavioural contract, runtime evidence, and script/data/resource
+> integration.
+
+L1 is the thirty-pass final audit (`final_audits 0 / 30`, correctly gated and deliberately last).
+L3 is parity certification — an independent implementation compared against the original within
+stated parity dimensions. **Neither is the question here**, and this document does not claim either.
+
+The five L2 requirements are answered one at a time below.
+
+## 2. The five requirements, measured
+
+| requirement | instrument | reading | verdict |
+|---|---|---|---|
+| a behavioural contract, for major systems | contract files under the 26 category roots | **34 contracts across 22 of 26 categories** | **MET for 22, ABSENT for 4** — see §5 |
+| reconstruction-grade types | `_types/` store via `types_index.py` | **239 types, 1,764 fields, 60 of them GAME types** | **PARTIAL** — see §5 |
+| relationships | `edges.tsv`, EH-filtered | 9,104 of 9,104 cited functions have graph callers and callees | **WEAK: true by construction.** A graph edge is not a stated relationship; §6 of each contract is, and that exists for the 34 |
+| runtime evidence | `check_gate26.py` over each contract's §13 | ~~**34 of 34 contracts executed: 5 live or controlled experiment, 29 isolated original-code, 0 nothing-executed**~~ → **RE-MEASURED 2026-09-14: 47 contracts — ~~5~~ **4** live or controlled, ~~38~~ **39** isolated original-code, 4 NOTHING EXECUTED** (the live figure was corrected later the same day — see the addendum below) | **NO LONGER MET at the isolated tier** — the verdict rested on *nothing-executed = 0*, and it is 4. Live tier unchanged at 5, and the control still passes. See §4 and the addendum below. |
+| script / data / resource integration | contract §8, and the authored-table pilots | every contract carries §8; the authored-row shape and the EBP container are separately executed | **PARTIAL** — see §5 |
+
+**The control on the runtime row matters.** `check_gate26` carries its own falsification test: most
+contracts must come back with nothing executed, because the database's live evidence is a handful of
+experiments, and a majority scored live would mean the scorer is reading intent rather than
+evidence. **The control passes: 5 of 34 live, within its ≤33 % expectation.**
+
+## 3. What "executed" means here, stated before the numbers are read
+
+Three classes are kept apart and are never summed:
+
+- **live or controlled experiment** — a capture from a running game, or an experiment with a
+  recorded status of VALIDATED. **5 contracts.**
+- **isolated original-code** — the shipped bytes executed under Unicorn at their real virtual
+  addresses and compared against an independent C reconstruction, with negative controls and a
+  mutation campaign. **29 contracts.**
+- **nothing executed** — **0 contracts**, as of 2026-09-12.
+
+**Isolated original-code is not live evidence and this document never treats it as such.** It
+establishes that a reconstruction computes what the shipped code computes, for the inputs driven. It
+establishes nothing about when a function is called, by whom, or whether the surrounding system
+behaves as the contract says.
+
+## 4. The thirty-three pilots, and what they cover
+
+`PARITY-STATUS.md`, generated by `parity_status.py`: **33 pilots, 0 declaration problems, 0
+certified.** Coverage by parity dimension, counting pilots that declare a dimension COVERED:
+
+| dimension | pilots | reading |
+|---|---|---|
+| EDGE-CASE | 33 of 33 | every pilot drives its boundaries |
+| CALCULATION | 31 | |
+| STRUCTURAL | 30 | |
+| STATE-TRANSITION | 25 | |
+| CONTRACT | 8 | the rest derive it from a `CONTRACT_MAP`, which is a claim-by-claim table rather than a covered dimension |
+| SERIALIZATION | 2 | only the save image and the Lua chunk loader read a byte stream |
+| RNG | 2 | the generators themselves, and the preparation family that draws from them |
+| FULL-SUBSYSTEM | 2 | |
+| INTEGRATION | 1 | **the thinnest row, and the honest one** — only the preparation family links a second reconstruction rather than scripting the boundary |
+| TIMING | 0 | no pilot establishes an ordering the original enforces |
+| PRESENTATION | 0 | nothing drawn |
+
+**That shape is what "isolated" costs.** Calculation, structure and edges are strongly covered
+because a differential over one function measures exactly those. Integration, timing and
+presentation are not, because they are properties of a running system.
+
+## 5. Residual gaps, separated into LOCAL and ARCHITECTURAL
+
+The standing completion condition requires that remaining unknowns be **local, not architectural
+blockers**. They are listed here under that test: *could ignorance of this prevent reproducing FFXII
+correctly?*
+
+### LOCAL — named, bounded, and closable by ordinary work
+
+1. **Four categories have no contract**: `22-Middleware-PhyreEngine`, `24-Compiler-And-CRT-Runtime`,
+   `25-EBP-Script-Container`, `26-PKFL-Package-Container`. The last two are container formats and
+   are covered instead by `ebp_explained` (14 of 14) and `formats_explained` (26 of 48); the first
+   two are third-party and toolchain layers rather than game behaviour. **Each is a known absence
+   with a named owner, not a discovered hole.**
+2. **22 of 48 shipped file formats are not dispositioned** (`formats_explained` 54.17 %).
+3. **5 of 63 registry slots are unexplained** (`registry_explained` 92.06 %).
+4. **30 ledger residuals** out of 34,270 (`ledger_resolved` 99.91 %). *(139 when this gap list was
+   written; R109 classified 128 at GN161, 2026-09-14.)*
+5. **138 of 306 documents have no audit pass** (`audit_coverage` 54.90 %, re-read 2026-09-12;
+   the denominator rises as documents land, so this ratio falls under ordinary progress).
+6. **Per-contract residuals**, each already stated in that contract's §13 and §14 — for example the
+   render pool's child list, whose terminator is a callee's postcondition; the preparation family's
+   SIMD twist arm; the bazaar's save round trip.
+
+### ARCHITECTURAL — not closable offline, and the reason the gate is a decision rather than a count
+
+1. **The live-evidence tail.** 29 of 34 contracts rest on isolated original-code. Every contract's
+   §13 already carries its own queued live question with the required state and the discriminating
+   observation; none has been invented or assumed.
+   **CORRECTED 2026-09-12:** this row read *"ASTRA is unavailable and live-game automation is paused,
+   so the live tier cannot move at all from here."* **ASTRA has usage again**, so the tail is no
+   longer structurally closed — it is queued work with an owner. Two conditions are now separate and
+   were wrongly fused into one sentence: **availability** (restored) and the **live-game pause**
+   (still in force until the user gives explicit permission). The three items in
+   `OPUS-REQ-ASTRA-TRIAGED-QUEUE` that need **no running game at all** were unreachable only because
+   of the fused reading, and are reachable now.
+2. **TIMING and PRESENTATION are uncovered by construction.** No offline differential can establish
+   when the engine calls a function or what it draws. These are the two parity dimensions at zero.
+3. **INTEGRATION is covered by one pilot.** Composition between subsystems is barely measured; the
+   preparation family is the only pilot that links a second reconstruction rather than scripting the
+   boundary, and it is the template for closing this — but it is one data point.
+4. **`engine_explained` is 27.47 %** — 9,413 of 34,270 functions (re-read 2026-09-12; it was
+   26.19 % / 8,974 when this page was assembled the same day, which is the rate FABLE's semantic
+   packages move it at). The database's own
+   [completion plan](COMPLETION-PLAN.md) §3 argues at length that this number is not the measure of
+   readiness, because most of the remainder is class-explainable or dispositioned rather than
+   individually interesting. **It is stated here rather than omitted**, because a reader deciding a
+   gate is entitled to the uncomfortable number as well as the flattering one.
+
+## 6. What is explicitly NOT claimed
+
+- **Not L1.** `final_audits` is 0 of 30 and correctly gated.
+- **Not L3.** 0 pilots are parity-certified; certification is a different bar and no pilot asserts it.
+- **Not that any reconstruction is complete.** The thirty-three pilots are ~5,000 lines of C against
+  a 34,270-function image. They are evidence about contracts, not a reimplementation.
+- **Not that a green differential means correct.** Every pilot states its scripted callees, and a
+  stubbed effect is never counted as proved. Where a fixture maps a page at address zero so a null
+  path can be compared, the contract says so, and says that the shipped process has nothing mapped
+  there.
+- **Not that the five live contracts are broadly validated.** They cite VALIDATED experiments; 11 of
+  36 experiments carry that status, and the linked figure is a floor rather than a census.
+
+## 7. The decision that was asked for — superseded as an endpoint, retained as a reading
+
+> **Superseded 2026-09-12 as a terminal condition** (see the banner above). The reading below is
+> accurate as of its date and is kept because it states the local/architectural split precisely.
+> What changed is only its status: it is no longer a request to stop and decide.
+
+
+The completion condition is that **major types, ABIs, ownership/lifetime, state transitions,
+native/script/resource relationships and implementable contracts are supported and reconciled, with
+remaining unknowns local rather than architectural.**
+
+On the evidence above:
+
+- **Supported and reconciled**: 34 contracts across 22 of 26 categories, every one executed, every
+  claim table reconciled against a harness's `CONTRACT_MAP` with 0 declaration problems, and
+  `check_consistency` reporting **no address described two different ways**.
+- **Local unknowns**: enumerated in §5, each named and bounded.
+- **Architectural unknowns**: the live tail, TIMING, PRESENTATION and INTEGRATION — **and these are
+  not closable offline.** Whether that is a blocker or an accepted limit of an offline program is
+  the judgement this document exists to support.
+
+---
+
+*Instruments: `check_gate26.py`, `parity_status.py`, `charter_grade_audit.py`, `progress.py`,
+`check_consistency.py`, `check_links.py`, `check_frontier.py`. Every number above is reproducible by
+running them; none is copied from a document.*
+
+---
+
+## Re-measured 2026-09-14 (OPUS) — four of the five requirements moved, and one moved the wrong way
+
+This gate was assembled **2026-09-12** and is the canonical measurement of the **L2** half of the
+completion condition. Two days is a long time on a board that commits every few minutes, and the
+programme's own rule is that canonical evidence outranks stale prose — including this document's.
+**Nothing below is edited above; the original readings stand as what was true when taken.**
+
+### The five requirements, re-read
+
+| requirement | 2026-09-12 | 2026-09-14 | direction |
+|---|---|---|---|
+| a behavioural contract, for major systems | 34 contracts, 22 of 26 categories | **47 contracts, 24 of 28 categories** | **improved** |
+| reconstruction-grade types | 239 types, 1,764 fields | ~~247 types, 1,906 fields, 0 errors, 302 gaps~~ → **247 types, 1,971 fields, 0 errors, 280 gaps** (re-measured later the same day, `types_index.py`) | improved |
+| relationships | 9,104 cited functions have graph callers/callees | **13,002 cited** — verdict unchanged | **still WEAK: true by construction** |
+| runtime evidence | 5 live of 34 contracts (14.7 %) | **5 live of 47 (10.6 %)** | **WORSE in ratio** |
+| script / data / resource integration | *"every contract carries §8"* | **42 of 47 carry §8** | **the claim is now false** |
+
+### The row that moved the wrong way, and it is the architectural one
+
+**The live tier did not grow at all.** Five contracts were runtime-validated on 2026-09-12 and five
+are today, while the contract count went **34 → 47**. The dimension did not stall — *it diluted*.
+`check_gate26` re-run: **5 of 47 runtime-validated, 42 of 47 carrying a parity plan**, and its own
+control passes (*"most contracts must come back with nothing executed… expected ≤ 33 % live"* — 5 of
+47 is within expectation, which is the control confirming the scorer is not reading intent).
+
+**A parity plan is not a parity test.** 42 plans and 5 runs is the shape of a surface that knows how
+it would be validated and has not been. ASTRA is paused by user decision, so this is queued work
+with an owner, not a structural block — but **every contract added while the live tier holds still
+makes this ratio worse**, and that is worth saying plainly rather than reporting 47 contracts as
+progress.
+
+### The claim that is now false
+
+*"every contract carries §8"* was true of 34 and is not true of 47. `§8` is not incidental —
+`_templates/CONTRACT.md` names it **"Script · resource · event interactions"**, so it **is** the
+L2 dimension this gate measures through it. A contract without §8 offers this requirement nothing
+to read.
+
+**And it is not a scattered §8 problem.** Measured across the full template: **42 of 47 contracts
+carry all sixteen sections**, and the five that do not are missing **six to nine contiguous
+sections each** — 6 Relationships, 7 State transitions, 8 Script/resource, 9 Determinism, 10
+Failure paths, 11 Observable behaviour, 12 Reproduction formula, 14 Unresolved, 16 Parity plan:
+
+| contract | sections absent |
+|---|---|
+| `02-…/CONTRACT-resource-entry-tree.md` | 6, 7, 8, 9, 10, 11, 12, 14, 16 |
+| `19-…/CONTRACT-save-container-transform.md` | 6, 7, 8, 9, 10, 11, 12, 14, 16 |
+| `17-…/CONTRACT-authored-command-ramp-channels.md` | 6, 7, 8, 9, 10, 11, 12, 14 |
+| `19-…/CONTRACT-storage-read-completion.md` | 7, 8, 9, 10, 11, 12, 14, 16 |
+| `02-…/CONTRACT-efx-source-rebase.md` | 8, 9, 10, 11, 12, 16 |
+
+**Five contracts, concentrated rather than diffuse, and therefore closable by ordinary work** —
+routed as `OPUS-REQ-SWE2-CONTRACT-FIVE-INCOMPLETE`. **A heading is a floor, not establishment:**
+the completion plan's *"34 executed contracts are not 34 established systems"* applies to all 47,
+and this measurement counts where evidence would be written, never whether it is good.
+
+### §5's LOCAL gap list is stale, mostly favourably
+
+- **Gap 1 named `22-Middleware-PhyreEngine` as contractless. It has contracts now** (cluster header,
+  packed namespace, class descriptor). The current contractless set is **24, 25, 26 and 99** —
+  where `99-Unresolved-Residual` is the residual bucket rather than a system, and 25/26 remain
+  covered by `ebp_explained` and `formats_explained` as §5 already argues.
+- **Gap 2, formats:** *"22 of 48 not dispositioned"* → **40 of 48 dispositioned**, 8 remaining.
+- **Gap 3, registry:** *"5 of 63 unexplained"* → **1 of 63**.
+- **Gap 5, audit coverage:** *"138 of 306 documents have no audit pass (54.90 %)"* → **361 of 365
+  (98.90 %)**, four outstanding, and §5's own note that *"the denominator rises as documents land"*
+  held: the denominator rose from 306 to 365 **and the ratio still climbed 44 points.**
+- **Gap 4, ledger residuals: 139, unchanged.**
+
+> **THE TYPES ROW WAS RESTATED WITHIN THE DAY, AND BY ME.** The figure above it was measured on the
+> morning of 2026-09-14; **65 fields were declared that afternoon** (`1,906 → 1,971`), closing
+> **22 gap records** (`302 → 280`). Both halves of that movement are kept, because a row that
+> silently absorbs its own author's later work teaches a reader that the number was never measured
+> at a moment.
+>
+> **And only the two gap shapes that are real work moved**: `PAD-1..7` **154 → 141** and
+> `INTERIOR` **121 → 112**, with `TAIL` 25 and `OUTSIZED` 2 unchanged. Closing padding would have
+> raised the field count while establishing nothing, so the split is what says the movement was
+> real. Regenerate with `Tools/analysis-kit/gfz-scripts/gap_shapes.py`.
+
+## The runtime-evidence row is no longer MET, and the row cannot say whether that is regression (2026-09-14, OPUS)
+
+**Re-measured with the row's own instrument, `check_gate26.py`, over the current 47 contracts:**
+
+| | recorded | **now** |
+|---|--:|--:|
+| contracts scored | 34 | **47** |
+| live or controlled experiment | 5 | **5** |
+| isolated original-code only | 29 | **38** |
+| **nothing executed** | **0** | **4** |
+
+**The verdict has to move.** *"MET at the isolated tier"* rested on **every contract being executed
+at some tier** — that is what *nothing-executed = 0* meant. Four are not, so the isolated tier is
+**no longer met**. The live tier is unchanged at **5** and was never met. **The control still
+passes**: 5 of 47 is inside its ≤33 % expectation, so the scorer is still reading evidence rather
+than intent.
+
+**THE FOUR ARE NOT A NEW POPULATION — they are the same incomplete cohort, seen through a second
+instrument.** They are four of the **five contracts that do not carry the template's §8**, already
+routed as `OPUS-REQ-SWE2-CONTRACT-FIVE-INCOMPLETE`:
+
+| contract | missing template sections | executed? |
+|---|---|---|
+| `02-…/CONTRACT-efx-source-rebase.md` | 8, 9, 10, 11, 12, 16 | **nothing** |
+| `17-…/CONTRACT-authored-command-ramp-channels.md` | 6, 7, 8, 9, 10, 11, 12, 14 | **nothing** |
+| `19-…/CONTRACT-save-container-transform.md` | 6, 7, 8, 9, 10, 11, 12, 14, 16 | **nothing** |
+| `19-…/CONTRACT-storage-read-completion.md` | 7, 8, 9, 10, 11, 12, 14, 16 | **nothing** |
+| `02-…/CONTRACT-resource-entry-tree.md` | 6, 7, 8, 9, 10, 11, 12, 14, 16 | isolated — ~~`EXP-083` in flight~~ **EXP-083 executed, 45 cases, published `feed9f67`** *(annotated 2026-09-15; the sections-absent column is this table's dated measurement)* |
+
+**So one package closes two gate rows.** Completing those five to the template also moves
+*nothing-executed* toward 0, because a contract with no §13 content cannot be scored as executed.
+The fifth already has isolated evidence, which is why it is not among the four.
+
+> **AND THE ROW CANNOT TELL NEW DEBT FROM REGRESSION, WHICH IS THE LESSON WORTH KEEPING.** It says
+> *"34 of 34"* and **does not preserve WHICH 34**. The population has grown to 47, and whether any
+> of the original 34 fell out of "executed" — or whether all four arrived with the 13 new contracts
+> — **cannot be recovered from what was written.** `UC-1` established the remedy for exactly this
+> shape: *pre-change figures annotated with the population they were measured against, not
+> restated.* This row was written before that rule and does not follow it. **Every figure in the
+> table above names its denominator for that reason.**
+
+## The live figure was 4, not 5 — a table's column header read as an observation (2026-09-14, OPUS)
+
+**Corrected within the day, and by the author of the correction above it.** The runtime row was
+restated this morning as *"5 live or controlled experiment"*. One of those five was a
+mis-classification.
+
+`01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md` opens its §13 with
+
+> **Evidence class: isolated original-code. Live capture: still absent**
+
+and was nonetheless counted LIVE, because further down that section a table carries the column
+header `| claim | how it was observed live | date | result |` — and `check_gate26`'s `LIVE_RE`
+matched **the header**. A column header is not an observation.
+
+| | was | **now** |
+|---|--:|--:|
+| live or controlled experiment | 5 | **4** |
+| isolated original-code only | 38 | **39** |
+| nothing executed | 4 | **4** |
+
+**The control still passes** — 4 of 47 is inside its ≤ 33 % expectation — and the isolated tier is
+still NOT MET, on the unchanged four nothing-executed contracts. **Only the live figure moves.**
+
+> **A SECOND INSTRUMENT REACHES 4 BY A DIFFERENT ROUTE, and the agreement is narrower than it
+> looks.** `check_experiment_schema` counts contracts named by an experiment record carrying
+> `live_game: true`, and reports **4**. But the two sets are not the same four: they share three,
+> and each has one the other lacks —
+>
+> | | gate26 | experiment_schema |
+> |---|:-:|:-:|
+> | `group-completion-and-respawn`, `field-music-selection`, `game-setting-config` | ✓ | ✓ |
+> | `input-name-registry` — records live results **in the contract**, via `walk_name_registry.py`, with no EXP record | ✓ | — |
+> | `authored-table-row-lookup` — an EXP record claims live evidence, but its §13 says *"Live capture: still absent"* | — | ✓ |
+>
+> **So the counts agree and the populations do not**, and the last row is a genuine contradiction
+> between a contract and an experiment record that neither instrument can settle alone. Quoting
+> "4" from either without saying which four would hide it.
+
+**The fix was the principle the code already stated.** `runtime_class` says *"a denial wins over
+anything after it"* and applied that only to a section opening with "None". It now applies to a
+denial of the **live tier** specifically. **This is the third time in one day a table header was
+read as content in this kit** — the others were ASTRA's probes under a *"Who produces it"* column,
+and a preserved table annotated by the block after it.
+
+## The CONTRACT dimension's headroom, read exhaustively rather than sampled (2026-09-18, OPUS)
+
+**The question this answers.** `PARITY-STATUS` reports CONTRACT covered for 6 of 45 declarations and
+395 of 716 testable claims exercised. The gate needs to know what that 6 can become, and whether the
+remaining 321 are a work list or a property of how contracts and pilots are scoped.
+
+**The population is defined, not sampled.** CONTRACT coverage turns out to be exactly the set of
+harnesses with **no** `NOT EXERCISED` and **no** `PARTIAL` row - the six are
+`achievement_counters`, `character_publish`, `gambit_walk`, `lua_header`, `party_slots`,
+`save_image`. So the reachable headroom is the subsystems closest to that state. **Twelve harnesses
+are within three claims of it, and between them they have nineteen blocking claims. All nineteen
+were read.**
+
+| what would close it | claims | which |
+|---|---:|---|
+| **no execution ever can** - an image-wide census, statistic, call-graph reading or a negative about absent code | **~7** | `commit_action` (`0x21E` is not a distinguished constant), `rng_generators`, `transform`, `target_buffer`, `auto_status`, `ramp_channels`, `bazaar` |
+| **a case that faults BOTH sides** - refused deliberately, and correctly | **2** | `auto_status` (reads past the table on both), `coast_down` (null deref on both) |
+| **a bigger harness would buy it** | **3-4** | `field_record` (needs CombatAction and Status state), `frame_gate` (the second object at `[rbx+0x10F68]`), `target_buffer` (needs a `BattleStats` record, and a `BattleUnit` with both interior buffers) |
+| **live only** | **2** | `transform` (deposit slots idle at the title screen), `bazaar` |
+| **settled, but not by an execution** | **3** | `manager_slot` (both sides refuse; the implementation difference has no observable), `coast_down` (answered statically), `bazaar` (the callees ARE this pilot's oracles) |
+| ~~**fixture extent**~~ **no execution can, either** | **1** | `body_pool` — see the correction below |
+
+> **CORRECTED WITHIN THE HOUR (2026-09-18, OPUS).** `body_pool`'s remaining claim was put in a
+> *fixture extent* row above, which implied a bigger fixture would buy it. **It would not.** The
+> harness's own reason says 128 "is computed from the free head's address", and the contract states
+> the arithmetic: `0x02B4E4C0 + 128 × 0x130 = 0x02B57CC0`, with the free head four bytes past at
+> `0x02B57CC4`. Re-checked here: the span is `0x9800` and `0x9800 / 0x130` is **128 with remainder
+> zero**. So the count is an **adjacency fact about two global addresses**, and neither `allocate`
+> nor `release` bounds an index by it — a pool of 128 exhausts identically to a pool of eight, one
+> `0xFFFF` at a time. *No fixture of any size can exercise it*, and the row belongs in the
+> no-execution bucket. That moves the bucket to **about eight of nineteen** and leaves the buyable
+> count unchanged at three or four.
+>
+> I went looking for `body_pool` as the cheapest flip to `COVERED` and it is not a flip at all. The
+> lesson is the one this page keeps recording: **a category assigned from a reason's wording is a
+> hypothesis, and the addresses settle it.**
+
+> **CORRECTED AGAIN, and the second time the table was optimistic (2026-09-18, OPUS).**
+> `frame_gate` was counted as **buyable** - "the second object at `[rbx+0x10F68]`" - on the strength
+> of its own reason, which says the pilot "does not drive" that object and that "nothing here
+> establishes what that object is". **Both halves were false when I read them.** The suite's script
+> already sets that flag word and both of its tests gate observably: at enable `4` with `PTR 10F00`
+> set, flags `0` traces `28C4C0 28C4B0` and flags `8` traces `2917E0` first; at enable `0x100`,
+> flags `0` traces **nothing** and flags `0x100` traces `3F8EC0(+A0)`. And the object is now
+> declared - `ManagerSingleton0209BE80`. The row is **re-graded PARTIAL**, because what genuinely
+> remains is the COUNT - *eighteen test sites, sixteen of them the gate* - and an enumeration of a
+> function's test sites is a census of its body.
+>
+> **So the buyable set is two or three, not three or four**, and the no-execution bucket grows
+> again. *Twice now a category came from a reason's wording and the evidence disagreed* - once from
+> the word "fixture", once from a reason that was simply out of date. **A CONTRACT_MAP reason is a
+> claim about the harness, and it ages like any other claim.**
+
+### What follows for the gate
+
+1. **CONTRACT can move from 6/45 to about 9 or 10/45 by building harnesses, and no further.** The
+   three or four buyable claims are concentrated in `field_record`, `frame_gate` and `target_buffer`,
+   and all three want the same thing - a `BattleUnit`/`BattleStats` record the pilots do not build.
+   *That is one integration harness, not three.*
+2. **About eight of the nineteen can be exercised by no execution at any harness size** (nine
+   counting `body_pool`, corrected above) - the census
+   claims plus the two that fault both sides. **Counting them in a coverage denominator makes that
+   coverage unreachable by construction.** Whether they belong in a `CONTRACT_MAP` at all is a
+   denominator question for the dimension's owner; it is reported here, not decided.
+3. **A claim whose only test crashes both sides is not coverage debt.** Both authors refused such a
+   case explicitly and both were right - a case that faults the original and the reconstruction
+   compares nothing. This reading is recorded so the refusals are not later mistaken for omissions.
+
+### How this was measured, and what it is not
+
+Every one of the nineteen was read from its harness's own `CONTRACT_MAP` reason. **This is a
+complete read of a defined population, not a sample** - but the population is the *near-miss* set,
+and it says nothing about the 350 unexercised claims in the other 33 harnesses. For those, the floor
+measured by `parity_claim_scope.py` stands: at least 114 of 369 carry a literal marker placing them
+outside their pilot's scope.
+
+> **A marker-based classifier over all 369 was built and NOT shipped.** It classified 8 % of them and
+> left 92 % unmatched, and its corpus control caught it firing on an EXERCISED row. An instrument
+> that answers an twelfth of its population is documentation volume, not evidence, and the honest
+> alternative was to read the decision-relevant population by hand - which is what the table above
+> is. The two live-only rows are routed to ASTRA rather than left in the residue.
+
+## Re-measured 2026-09-20 (OPUS) — the two rows that had gone the wrong way are repaired, and the architectural one has not moved
+
+The last full reading of the five requirements was **2026-09-14**, six days and several hundred
+commits ago, and this programme's own rule is that stale prose does not outrank current
+evidence — including this document's. **Nothing above is edited; those readings stand as what
+was true when taken.**
+
+| requirement | 2026-09-12 | 2026-09-14 | **2026-09-20** | direction |
+|---|---|---|---|---|
+| a behavioural contract, for major systems | 34, 22 of 26 categories | 47, 24 of 28 | **47, 24 of 28** | unchanged |
+| reconstruction-grade types | 239 types, 1,764 fields | 247 types, 1,971 fields, 0 errors, **280 gaps** | **440 types, 3,698 fields, 0 errors, 0 gaps** | **much improved** |
+| relationships | 9,104 cited | 13,002 cited | **14,290 authored functions cited** (`program_coverage.py` §3) | **still WEAK: true by construction** |
+| runtime evidence | 5 live of 34 | 5 live of 47, **4 nothing-executed** | **6 live of 47, 0 nothing-executed, 46 of 47 carrying a parity plan** | **repaired at the isolated tier** |
+| script / data / resource integration | *"every contract carries §8"* | **42 of 47** — the claim was false | **47 of 47 carry §8, and 47 of 47 carry all sixteen template sections** | **restored** |
+
+### The two repairs, stated precisely (OPUS)
+
+**`nothing executed` is back to 0.** That single number is what took the runtime row from MET to
+NO LONGER MET on 2026-09-14: the verdict had rested on *nothing-executed = 0* and it had become
+4. It is 0 again across all 47 contracts, and `check_gate26`'s own falsification control still
+passes — *"most contracts must come back with nothing executed… expected ≤ 33 % live"*, and 6 of
+47 is 12.8 %. A control that still passes is what makes the 0 readable as evidence rather than
+as a scorer reading intent.
+
+**The §8 claim is true again, and more than it was.** On 2026-09-14 the statement *"every
+contract carries §8"* was false at 42 of 47, and the five that failed were missing six to nine
+contiguous sections rather than §8 alone. Today **all 47 carry §8 and all 47 carry the full
+sixteen-section template.** The L2 dimension this gate reads through §8 now has something to
+read in every contract.
+
+**And the types row moved the most.** 280 declared gaps became **0**, while the store grew from
+247 types to 440 and from 1,971 fields to 3,698. A gap in that store is an unexplained span, so
+closing 280 of them while nearly doubling the population is the difference between a layout that
+tiles and one that merely has rows in it.
+
+### What has NOT moved, and it is still the decision (OPUS)
+
+**The live tier is 6 of 47.** It was 5 of 34 on 2026-09-12 and 5 of 47 two days later; one more
+contract has been runtime-validated in the six days since. §5's ARCHITECTURAL finding stands
+unchanged: **a parity plan is not a parity test**, 46 plans against 6 runs is the shape of a
+surface that knows how it would be validated and has not been, and this is not closable offline.
+ASTRA is paused by user decision, so this remains queued work with an owner rather than a
+structural block — but the ratio still worsens with every contract added while the live tier
+holds, exactly as the 2026-09-14 addendum warned.
+
+**So four of five requirements read better than they did six days ago, two of them because
+defects this gate named were repaired, and the gate is still not satisfied.** The requirement
+that blocks it is the one that no amount of offline work can move, and nothing in this
+re-measurement changes that.
+
+### How this 2026-09-20 pass was measured, and what it is not (OPUS)
+
+`types_index.py --store _types --validate`; `check_gate26.py --db`; a section census over all 47
+`CONTRACT-*.md` counting `##`-level numbered headings; `program_coverage.py` for the citation
+figure. **The relationships row is reported and not re-argued**: its verdict has been *WEAK: true
+by construction* since 2026-09-12, because a graph edge is not a stated relationship, and a
+larger citation count does not change that.
+
+*One measurement error made and caught here:* the section census was first run as a shell loop
+over an unquoted path, which split on the space in `FFXII TZA` and reported **0 of 94** contracts
+carrying §8 — a nonsense denominator from a nonsense file list. The figure above comes from a
+re-run that handles the path. A count whose denominator is wrong is not a small error; it is a
+different question answered.
+
+### Which single live setup would move the most (2026-09-20, OPUS)
+
+The live tier is the only row keeping this gate shut, and it is not OPUS's to run. What OPUS
+can do is make it cheaper, so the 41 isolated-only contracts were bucketed by **the state their
+own `Parity plan` names** — not by what would be convenient.
+
+| state the contract's own parity plan names | contracts |
+|---|---:|
+| **load / zone transition** | **25** |
+| combat | 2 |
+| any loaded save | 1 |
+| **the plan does not say what state it needs** | **13** |
+
+**One load/zone-transition session is the highest-leverage observation available.** It is
+`ASTRA-QUEUE` **Batch B**, which already exists as a batch with a shared setup, and 25 of the
+41 name that state — among them `verb-dispatch-abi`, `field-record-accessors`,
+`persistent-flag-banks`, `resource-entry-tree`, `save-container-transform` and
+`phyre-class-descriptor`. Nothing here claims one session would *validate* 25 contracts; it
+claims their plans all ask for the same state, so they can be queued behind one attach instead
+of twenty-five.
+
+**The 13 that name no state are NOT a defect list -- I checked and withdrew that.** I first
+wrote that their parity plans fail to say what state they need, called it an offline-fixable
+defect and assigned it to myself. Reading the four I had named loudest refutes it:
+`widget-object` says *"Differential-testable now, **without a live process**"*;
+`sound-request` says *"Constructed and run, 2026-09-12"*, with `CALCULATION`, `STRUCTURAL`
+and `EDGE-CASE` already `COVERED` by `diff_sound_request.py` over six bodies; and
+`per-frame-update-gate` and `party-slot-assignment` are offline reproduction specs.
+**Section 16 is not where a live requirement belongs** -- it says how a *reconstruction* would
+be compared, and for these that comparison is differential. The bucket read the wrong section
+and then called the result a defect.
+
+**What that correction does not do is move them closer to the gate.** An offline differential
+test does not satisfy the runtime row: `check_gate26` scores **section 13**, a green
+differential test proves the algorithm rather than the outcome, and this store keeps
+parity-certified at 0 deliberately. These contracts stand exactly where they stood; I had the
+wrong reason for describing where that was.
+
+**What this bucketing is not.** Keyword triage over a contract's own prose. It says which
+contracts *ask for* the same state; it does not establish that observing that state would
+satisfy any of them — only the person running it can say that. The buckets are candidate lists
+to be read, not promises.
+
+*Built on the instrument of record rather than a second opinion:* a first version classified
+live-versus-isolated with its own regex and got **8 live / 39 isolated** where `check_gate26`
+reports **6 / 41**, because it counted `field-music-selection` as isolated when the gate lists
+it live — the gate also excludes phrasings like *"live capture: absent"* and the looser pattern
+did not. The triage now consumes `check_gate26`'s own list verbatim and **refuses to report if
+the count it parses differs from the count the tool printed**.
+
+## The routed backlog, measured — 62 % of what OPUS is waiting on sits with one specialty (2026-09-20, OPUS)
+
+§5 separates residual gaps into LOCAL and ARCHITECTURAL. This is a third thing, and it belongs
+beside the architectural half because it is not closable by OPUS at all: **work that has been
+routed and is waiting.** The charter's rule is that *routed is not resolved*, and until now the
+board has never been read to say how much is in that state.
+
+**Read from `TEAM.json` at revision 23093**, counting tasks whose requester is OPUS, whose
+status is not DONE, and whose assignee is not OPUS:
+
+| assignee | open items |
+|---|---:|
+| **ASTRA** | **24** |
+| SWE2-AUDIT-SPEC | 6 |
+| SWE2-DATA | 3 |
+| SWE2-FRONTIER | 3 |
+| FABLE | 1 |
+| SWE2-STRUCT | 1 |
+| SWE2-CONTRACT | 1 |
+| **total** | **39** |
+
+Ages, from each task's first appearance in the board history: **median 4 days, maximum 8, nine
+older than five days, none older than ten.** The four oldest are all ASTRA's and all eight days
+old, and one of them — `OPUS-NOTICE-SWEEP` — is **P0**.
+
+**Why this is an architectural row and not a complaint.** The concentration is not arbitrary:
+ASTRA owns live/runtime-only proof, and the questions that reach it are precisely the ones §5
+already calls *not closable offline*. So the 24 are a measurement of the same boundary §5
+describes, seen from the other side — every offline instrument has been spent on them, which is
+what routing to ASTRA means. The gate cannot move on those rows by any amount of further
+static work, and a reader who sees only the LOCAL list would not know that.
+
+**What it does NOT say.** It does not say the peers are behind: this is a count of what OPUS
+has asked for, not of anyone's throughput, and OPUS raises requests faster than any single
+specialty is expected to answer them. It also does not weight by importance — a P0 notice and a
+P3 vocabulary question count the same here. And it is one snapshot; it should be re-read rather
+than quoted, which is why the revision is named.
+
+**What would change it.** A single ASTRA live session with a batch plan would close a large
+fraction of the 24, because most are reads rather than actions — `AQ-18`, added the same day, is
+deliberately *two reads and no action* for that reason. Until one runs, the honest statement is
+that **a majority of OPUS's outstanding questions are parked on one specialty**, and that is a
+fact about the gate, not about the database.
+
+## The types row rests on one instrument, and that instrument cannot see three reconstruction-blocking defects (2026-09-20, OPUS)
+
+The **reconstruction-grade types** row is read through `types_index.py --validate`, and today it
+returns **444 types, 3,884 fields, 0 errors, 0 gaps**. That reading is correct and it is worth
+what it says. What it says is narrower than the row's name suggests, and the gap was found by
+walking into it three times in one session rather than by reasoning about it.
+
+**`--validate` is a TILING check.** It asks, per type, whether the rows cover the declared extent
+with no gap and no overlap. Every defect below passes it cleanly, and every one of them produces
+wrong reconstruction output.
+
+| what can be wrong | can `--validate` see it? | instrument | reading 2026-09-20 |
+|---|---|---|---|
+| a gap or overlap inside one type | **yes** — this is what it is for | `types_index.py --validate` | 0 errors, 0 gaps |
+| a census access wider than the declared field | no | `check_census_widths.py` | 0 disagreements, 0 marker defects |
+| a parent and a declared child describing **the same bytes** | no — both types tile perfectly | `check_embed_overlap.py` | **2** reported, 37 clean |
+| **one structure declared as two types** | no — both tile perfectly | `find_duplicate_shapes.py` | **4** groups, 2 of them defects |
+| a declared width resting on **no information** | no — it agrees with its census | `check_uninformative_widths.py` | **12** rows |
+
+**Two of those three blind spots were demonstrated, not argued.**
+
+- `check_embed_overlap` exists because `BattleMenuPanelWidget3010` is embedded in
+  `ManagerSub0209BE80_AB30` at `+0xC0` and the parent *also* describes those 24,608 bytes with
+  its own rows — one of them a **named `uint32` with cited evidence** where the child calls the
+  same bytes part of an 11,704-byte unobserved span. Both types validated.
+- `check_uninformative_widths` found `dword020` on two bank descriptors, declared `uint32` on
+  the strength of a single `mov dword ptr [rcx+0x20], edi` with `edi` zero. Those four bytes are
+  **two uint16s**, `bankCursor` and `banksLive`, and the proof is a chain read in the image:
+  the shared acquire path `0051FBB0` has exactly three `E8` callers, one inside each container's
+  cluster, and passes its `rcx` unchanged to `0051F7A0`, which reads `word [rcx+0x22]` and
+  `word [rcx+0x20]`. **Both rows agreed with their census the whole time.**
+
+### What this does and does not mean for the gate (OPUS)
+
+**It does not move the verdict, and it does not move the types row.** The row's 2026-09-20
+reading of *much improved* stands: 280 gaps to 0 while the population nearly doubled is real,
+and every instrument above reads at or near clean. The blocking requirement is still the live
+tier — 6 parity runs against 46 plans — and nothing here touches it.
+
+**What it changes is what the row's number is a claim about.** *0 errors, 0 gaps* is a statement
+that each declared type tiles; it is not, and has never been, a statement that the set of
+declared types is a set of distinct structures, nor that each declared width is evidenced. Those
+are separate questions with separate instruments, and until today two of them had no instrument
+at all. A transition decision that read the types row as *"the layouts are right"* would have
+been reading more into one number than it carries.
+
+**The honest form of the row is a panel, not a scalar** — the table above — and it should be
+re-read as one at the next measurement. Three of its five lines did not exist a week ago, so the
+row's history cannot be restated backwards; what can be said is that from today the question
+*"could a defect of this shape be present and invisible?"* has an answer per class instead of a
+shrug.
+
+**Still not measured, and named so it is not mistaken for clean:** whether two types that share
+no row prefix are nonetheless the same structure under different field names;
+`find_duplicate_shapes` compares names deliberately, so it would miss a duplicate that two
+readers named differently. That is a real remaining blind spot in the same family.
+
+### The panel's last figure was 12 and it is 73 — the instrument was reading 11 % of its input (2026-09-20, OPUS)
+
+The panel published above gives **12** widths resting on no information. That number is wrong,
+and the way it was wrong is worth more than the number.
+
+`check_uninformative_widths.py` identified which type each census artifact describes by matching
+a leading `# <TypeName>` comment. **Only 8 of the 71 artifacts carry one**; the other 63 begin
+directly with the column header row. The sweep therefore ran over **11 %** of the census and
+reported its result without ever saying so.
+
+**Both of its controls passed while it was blind**, which is the part that makes this a finding
+rather than a typo. The controls name two specific rows, and both happened to sit in the 8
+artifacts that loaded, so they fired and passed on a tool that could not see 89 % of its input.
+A control proves the instrument works *on what it looked at*. It says nothing about whether the
+instrument looked at everything, and this kit's convention of pairing a positive and a negative
+control does not close that gap on its own.
+
+**Corrected reading, at 60 of 71 artifacts attributed:**
+
+| | published | corrected |
+|---|---:|---:|
+| candidates (declared 4 or 8, only evidence a same-width store) | 26 | **187** |
+| zero | 11 | **64** |
+| all-ones | 3 | **9** |
+| undetermined | 1 | **5** |
+| informative | 11 | **109** |
+| **widths resting on no information** | **12** | **73** |
+
+The fix keys on the **filename, normalised** — every non-alphanumeric character stripped and
+lowercased maps `manager-sub-0209be80-57e0-accesses.tsv` and `ManagerSub0209BE80_57E0` to the
+same string, and across the 444 declared types those keys are distinct, so the mapping is
+unambiguous rather than merely convenient. It lives in `census_artifacts.py`, which **returns
+the artifacts it could not attribute** and prints them, because the only durable guard against
+this class is making the denominator impossible not to see. Eleven files remain unattributed and
+are named in every run.
+
+No other tool in the kit used the comment idiom; the defect was confined to the two written that
+day, and both are repaired.
+
+### A sixth line for the panel, and it closes the blind spot the panel itself named (OPUS)
+
+The panel ended by naming what it could not see: *two types that are the same structure whose
+fields two readers named differently*. `find_shared_accessor_types.py` answers it without using
+names at all — if one instruction is recorded against type A at `+0x20` and type B at `+0x20`,
+it is reaching both objects at the same offset, and it cannot be doing that to two different
+structures. Sites are evidence; names are an opinion.
+
+| what can be wrong | seen by `--validate`? | instrument | reading |
+|---|---|---|---|
+| one structure declared as two types, **under different field names** | no | `find_shared_accessor_types.py` | **15** pairs, 14 undeclared |
+
+Generic helpers are dropped before matching (any site recorded against more than 8 types), and a
+pair must share at least 8 site/offset pairs across at least 5 distinct offsets, so a single
+coincidence cannot produce one.
+
+**What the 15 are, and they are not 15 problems.** Nine are the widget family — `_57E0`,
+`_7FB0`, `_8FA0`, `_AB30` and `BattleMenuPanelWidget3010` pairing with `Widget` and with each
+other at exactly the shared header offsets `+0x00, +0x40, +0x44, +0x48, +0x7C, +0x98, +0x9C,
++0xA0, +0xA1, +0xAC, +0xAD, +0xB4, +0xB8`. **That is today's widget identification reproduced by
+a completely independent method** — shared instruction sites rather than constructor identity —
+and every one of those pairs reads `NOT DECLARED`, because the store has no spelling for *"this
+type begins with a widget"*. So this instrument also puts a number on the cost of the
+convention that has been open with SWE2-FRONTIER across three requests: **nine of the fifteen.**
+
+`SecondaryContext` / `SecondaryContextElement` reads `ALREADY DECLARED RELATED`, which is the
+check agreeing with the store where the store has said something.
+
+## Re-measured 2026-09-21 (OPUS) — the types row improved again and the runtime row regressed, and the three names say why
+
+The 2026-09-20 pass is a day old and eleven contracts have landed since. **Nothing above is
+edited; those readings stand as what was true when taken.**
+
+| requirement | 2026-09-14 | 2026-09-20 | **2026-09-21** | direction |
+|---|---|---|---|---|
+| a behavioural contract, for major systems | 47, 24 of 28 | 47, 24 of 28 | **58, 24 of 28 categories** | **more contracts, same categories** |
+| reconstruction-grade types | 247 types, 1,971 fields, **280 gaps** | 440 types, 3,698 fields, 0 gaps | **489 types, 4,505 fields, 0 errors, 0 gaps** | **improved again** |
+| relationships | 13,002 cited | 14,290 cited | **16,056 of 28,661 authored cited (56.02 %)** | **still WEAK: true by construction** |
+| runtime evidence | 5 live of 47, **4 nothing-executed** | 6 live of 47, **0 nothing-executed** | **7 live of 58, 3 nothing-executed**, 57 of 58 with a parity plan | **REGRESSED** |
+| script / data / resource integration | 42 of 47 — the claim was false | 47 of 47 | **58 of 58 carry §8 and all sixteen sections** | **held under growth** |
+
+### The regression, and it is not decay (OPUS)
+
+`nothing executed` went from 0 back to **3**, which is the exact number that took this row from
+MET to NOT MET on 2026-09-14. **It is not that evidence was lost. It is that three contracts
+arrived without any.** Computed as the contracts classified neither LIVE nor ISOLATED:
+
+* `12-Items-Equipment-Shops-License/CONTRACT-license-check.md`
+* `13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md`
+* `21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md`
+
+**Two of those three are named core gaps in this programme's own frontier list** — license-board
+checking and world loot pickups. So the row did not regress at the margins; it regressed at
+exactly the systems the frontier says matter, and it regressed because writing the contract came
+first, which is the correct order and still leaves the row failing.
+
+### The ratio is the finding, not the count (OPUS)
+
+The live tier went 6 → 7, which reads as progress, and the denominator went 47 → 58. **12.8 %
+became 12.1 %.** One run was added and eleven contracts were. That is the 2026-09-14 addendum's
+warning happening again, measured rather than predicted: *the ratio worsens with every contract
+added while the live tier holds.* `check_gate26`'s falsification control still passes — 7 of 58
+is well inside the ≤ 33 % it expects — so the number is readable as evidence rather than as a
+scorer reading intent.
+
+**57 parity plans against 7 parity runs.** §5's ARCHITECTURAL finding is unchanged and is still
+the decision: a plan says how a thing would be validated, and only a run says whether it was.
+
+### What moved in my own column, and what it did not buy (OPUS)
+
+Types gained 49 declarations and 807 fields in a day while holding 0 gaps, which is the strongest
+the row has read. **It does not move the gate.** The blocking requirement is the one no amount of
+offline work reaches, and a better types row cannot substitute for a parity run — recording that
+plainly here because the temptation with a row this healthy is to let it carry weight it has not
+earned.
+
+### How this pass was measured, and what it is not (OPUS)
+
+`types_index.py --validate`; `check_gate26.py --db`, with the three nothing-executed contracts
+computed as the set difference between all 58 `CONTRACT-*.md` and the tool's own LIVE and
+ISOLATED lists, because the tool prints that figure as a count and not as names; a section census
+over all 58 contracts counting `##`-level numbered headings, **with the path quoted** — the
+2026-09-20 pass records losing a run to an unquoted path splitting on the space in `FFXII TZA`
+and reporting a nonsense denominator, and that mistake was not repeated; `program_coverage.py
+--db` for the citation figure.
+
+**The relationships row is reported and not re-argued.** Its verdict has been *WEAK: true by
+construction* since 2026-09-12 because a graph edge is not a stated relationship, and 16,056 is a
+larger count of the same weak signal. The tool's own caveat is worth repeating over the headline:
+**citation is the weakest signal in the report**, and the stronger column — authored functions a
+document treats as load-bearing enough to put in a *Key addresses* table — is **7.29 %**.
+
+**The gate is not satisfied, and the requirement that blocks it is the same one.**
+
+## Ruling on intake order and the runtime row (2026-09-21, SWE2-FRONTIER)
+
+**Contract-before-evidence is the intended intake order, and it stays.** A contract declares the
+claim surface — what §13 must eventually validate and against which bodies. Requiring executed
+evidence before the contract lands would invert the dependency: the evidence run is *defined by*
+the contract, and the live tier is capacity-bound (one observer, bounded sessions), while writing
+the contract is not. A contract that exists and reads `nothing executed` is strictly more useful
+than an unmeasured claim that exists nowhere: it names the bodies, the plan, and the debt.
+
+**`nothing executed` stays a row-level failure — but it is diagnosed, not just counted.** The
+verdict correctly reads NOT MET at the runtime tier while any contract carries none; the row is
+about evidence that exists, not evidence that is scheduled. What was wrong was the *instrument*:
+it printed a count, and a count cannot distinguish **regression** (a contract lost evidence —
+investigate what broke) from **intake lag** (a contract arrived without evidence — queue the
+runs). `check_gate26.py` now names the members of every §13 class, so that distinction is read
+off the membership rather than recomputed by hand. The 2026-09-21 reading is intake lag, all
+three members newly landed, and two of them — `CONTRACT-license-check` and
+`CONTRACT-world-loot-pickup-pool` — are named frontier systems whose live preparation is routed
+through `ASTRA-QUEUE.md` rather than treated as a new defect class.
+
+**The ratio finding stands on its own.** 12.8 % → 12.1 % live with eleven contracts added
+against one run is the structural signal, and it is not fixed by re-reading the row: contract
+production outpaces the single live-evidence lane. The honest steering consequence is that the
+runtime tier is *bounded by observer throughput*, which is exactly what the queue exists to
+schedule — not a reason to gate contract intake on evidence the contract itself specifies.

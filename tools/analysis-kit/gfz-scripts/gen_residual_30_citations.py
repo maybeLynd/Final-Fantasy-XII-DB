@@ -1,0 +1,168 @@
+"""gen_residual_30_citations.py - the certified residual set, against the documents that cite it.
+
+`unresolved = 0` is a hard L1 gate and a stated precondition of FINAL-AUDIT-PROTOCOL. The certified
+parent's residual set is **30 addresses, 38,478 bytes**. The shape of that work has never been
+measured, and the shape turns out to be the interesting part.
+
+**29 OF THE 30 HAVE THEIR ENTRY ADDRESS NAMED BY A DOCUMENTED PAGE** - not by
+`99-Unresolved-Residual/`, which lists them *because* they are residual, and not by `_index/`, which
+indexes everything. By an ordinary subject page: `002B6350` is the track-map container's constructor
+on the map-screens page, `005771F0` is the quest-list screen root in the atlas, `0056F810` and
+`00566680` are the shared-dialog menu list and item-sort bar.
+
+**CORRECTED 2026-09-14 (OPUS), and the correction is the point.** The first version of this file
+searched for the ENTRY ADDRESS only and reported `0024B580` as *"cited by nothing outside the
+residual pages at all"*, which commit `d491c1a1` published in those words. It is wrong as stated.
+`effect-element-type-dispatch.md:114` cites `0024B65D`, INSIDE that function's 324-byte body -
+*"The ten functions `0024B270`-`0024F4D0` (at `0024B385`, `0024B65D`, ...) write `02EBEF88`"*.
+Three side files already carried the pairing (`residual-crossref.tsv`, `residual-order.tsv`,
+`ADDRESS-INDEX.md`) because `residual_crossref.py` counts INTERIOR citations; this tool asked a
+narrower question and reported the answer in the wider question's words.
+
+**The corrected finding is sharper.** The entry of `0024B580` is named by NOTHING, and the only
+contact any page makes with it is to list one instruction among **eleven writers of a global**. That
+is a MENTION, not an explanation - the distinction `progress.py` draws about its own
+interior-citation measure - so the columns below now say which question each answers.
+
+A CITATION IS NOT A CLASSIFICATION, and this tool would be actively misleading if it let that blur.
+"Residual" in this ledger means **carrying no `GFZ.V121.CodeDomain` tag**, and no amount of prose
+gives a function one. So this measurement does not move the gate by a single address. What it does
+is tell whoever reads these 30 bodies where to start on 29 of them, and which one is genuinely dark.
+
+The exclusion of `99-Unresolved-Residual/` and `_index/` is the whole method. Count them and all 30
+are "cited", which is true and says nothing: they are cited there BECAUSE they are unresolved.
+"""
+import argparse
+import io
+import os
+import re
+
+KIT = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(KIT))))
+DB = os.path.join(REPO, "Database", "FFXII TZA")
+RESIDUAL = os.path.join(REPO, "Database", "Tools", "work", "verify_GFZ_PARENT",
+                        "residual_addrs.txt")
+FUNCS = os.path.join(REPO, "Database", "Tools", "work", "graph", "functions.tsv")
+# THE TWO DIRECTORIES THAT MUST NOT COUNT. One lists these addresses because they are residual; the
+# other indexes the whole corpus. Including either turns the measurement into "30 of 30", which is
+# true and empty.
+SELF_REFERENTIAL = ("99-Unresolved-Residual", "_index")
+SKIP = ("_templates", "_inbox")
+HEX8 = re.compile(r"^[0-9A-Fa-f]{8}$")
+ADDR_ANY = re.compile(r"\b(0[0-9A-Fa-f]{7})\b")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--db", default=DB)
+    ap.add_argument("--residual", default=RESIDUAL,
+                    help="the CERTIFIED parent's residual list; the role-named directory, not a "
+                         "generation-named one")
+    a = ap.parse_args()
+    if not os.path.isfile(a.residual):
+        print("CANNOT RUN: residual list not in the tree at %s" % a.residual)
+        return 2
+    res = [l.strip().upper() for l in io.open(a.residual, encoding="utf-8", errors="replace")
+           if HEX8.match(l.strip())]
+    size = {}
+    if os.path.isfile(FUNCS):
+        fh = io.open(FUNCS, encoding="utf-8", errors="replace")
+        head = fh.readline().rstrip("\n").split("\t")
+        i = head.index("body_bytes") if "body_bytes" in head else 2
+        for line in fh:
+            p = line.rstrip("\n").split("\t")
+            if p and HEX8.match(p[0]):
+                size[p[0].upper()] = p[i] if len(p) > i else ""
+
+    docs = {}
+    for root, dirs, files in os.walk(a.db):
+        dirs[:] = [d for d in dirs if d not in SKIP]
+        for fn in sorted(files):
+            if fn.endswith(".md") or fn.endswith(".tsv"):
+                p = os.path.join(root, fn)
+                rel = os.path.relpath(p, a.db).replace(os.sep, "/")
+                if rel.split("/")[0] in SELF_REFERENTIAL:
+                    continue
+                docs[rel] = io.open(p, encoding="utf-8", errors="replace").read()
+
+    out = [
+        "# The certified residual set against the documents that cite it.",
+        "#",
+        "# Generated by gen_residual_30_citations.py over "
+        "Tools/work/verify_GFZ_PARENT/residual_addrs.txt",
+        "# - the ROLE-named directory, which survives a checkpoint advance; a generation-named one",
+        "# would silently measure an older set.",
+        "#",
+        "# A CITATION IS NOT A CLASSIFICATION. `residual` in this ledger means carrying no",
+        "# GFZ.V121.CodeDomain tag, and prose does not give a function one. This file does not move",
+        "# `unresolved` by a single address. It says where to START on each body.",
+        "#",
+        "# 99-Unresolved-Residual/ and _index/ are EXCLUDED: the first lists these addresses",
+        "# because they are residual and the second indexes everything, so counting them gives",
+        "# 30 of 30 - true and empty.",
+        "#",
+        "# TWO COLUMNS, TWO QUESTIONS, NEVER ADDED UP. `entry_citations` is how many documents",
+        "# NAME THE FUNCTION. `interior_citations` is how many cite an address inside its body -",
+        "# a mention of one instruction, which is what progress.py says of its own interior",
+        "# measure. The first version of this file conflated them and published 'cited by",
+        "# nothing' about a function one page touches at 0024B65D.",
+        "#",
+        "# address\tbytes\tentry_citations\tfirst_entry_doc\tinterior_citations\tfirst_interior_doc",
+    ]
+    total = cited = 0
+    dark = []
+    for addr in res:
+        entry_hits = sorted(rel for rel, t in docs.items()
+                            if re.search(r"\b" + addr + r"\b", t, re.I))
+        # INTERIOR: any address strictly inside the body. `residual_crossref.py` has always counted
+        # these and this file did not, which is how it came to publish "cited by nothing" about a
+        # function one page touches. An interior citation is a MENTION of an instruction, never an
+        # explanation of the function - kept in its own column so the two are never added up.
+        lo = int(addr, 16)
+        try:
+            hi = lo + int(size.get(addr, "0") or 0)
+        except ValueError:
+            hi = lo
+        inter = set()
+        if hi > lo:
+            for rel, t in docs.items():
+                if rel in entry_hits:
+                    continue
+                for m in ADDR_ANY.finditer(t):
+                    v = int(m.group(1), 16)
+                    if lo < v < hi:
+                        inter.add(rel)
+                        break
+        hits = entry_hits
+        try:
+            total += int(size.get(addr, "0") or 0)
+        except ValueError:
+            pass
+        if hits:
+            cited += 1
+        else:
+            dark.append((addr, sorted(inter)))
+        out.append("%s\t%s\t%d\t%s\t%d\t%s"
+                   % (addr, size.get(addr, "?"), len(hits), hits[0] if hits else "-",
+                      len(inter), sorted(inter)[0] if inter else "-"))
+    print("THE CERTIFIED RESIDUAL SET, AGAINST THE CORPUS\n")
+    print("  addresses            : %d" % len(res))
+    print("  bytes                : %d" % total)
+    print("  ENTRY named by an ordinary page : %d" % cited)
+    print("  entry named by NOTHING           : %d" % len(dark))
+    for d, inter in dark:
+        print("     %s  %s B  entry unnamed; interior cited by %d document(s)"
+              % (d, size.get(d, "?"), len(inter)))
+        for rel in inter:
+            print("        %s  <- a MENTION of an instruction, not an explanation" % rel)
+    dest = os.path.join(a.db, "_index", "candidates", "residual-30-citations.tsv")
+    io.open(dest, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+    print("\n  wrote %s" % os.path.relpath(dest, REPO).replace(os.sep, "/"))
+    print("\n  THE GATE HAS NOT MOVED AND CANNOT MOVE FROM HERE. Each of these still owes a body")
+    print("  read and a CodeDomain classification; what changed is that 29 of them have a page to")
+    print("  start from and one does not.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

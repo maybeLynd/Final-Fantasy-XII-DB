@@ -1,0 +1,21 @@
+PASS E0 six shipped copies found (two locales x three files) - 6
+   cn/binaryfile/basic_skill_basic_skill_name.bin       count  1345 size     74868 offsets[0] 5388 offsets[count] 74868
+PASS E1 cn/binaryfile/basic_skill_basic_skill_name.bin: offsets[0] = 8 + 4*count and offsets[count] = file size
+PASS C2 cn/binaryfile/basic_skill_basic_skill_name.bin truncated by one byte fails the frame
+   cn/binaryfile/growth_rate_growth_rate_name.bin       count   128 size      3310 offsets[0] 520 offsets[count] 3310
+PASS E1 cn/binaryfile/growth_rate_growth_rate_name.bin: offsets[0] = 8 + 4*count and offsets[count] = file size
+PASS C2 cn/binaryfile/growth_rate_growth_rate_name.bin truncated by one byte fails the frame
+   cn/binaryfile/logicpack.bin                          count  1310 size   1035896 offsets[0] 5248 offsets[count] 1035896
+PASS E1 cn/binaryfile/logicpack.bin: offsets[0] = 8 + 4*count and offsets[count] = file size
+PASS C2 cn/binaryfile/logicpack.bin truncated by one byte fails the frame
+   kr/binaryfile/basic_skill_basic_skill_name.bin       count  1345 size     74868 offsets[0] 5388 offsets[count] 74868
+PASS E1 kr/binaryfile/basic_skill_basic_skill_name.bin: offsets[0] = 8 + 4*count and offsets[count] = file size
+PASS C2 kr/binaryfile/basic_skill_basic_skill_name.bin truncated by one byte fails the frame
+   kr/binaryfile/growth_rate_growth_rate_name.bin       count   128 size      3310 offsets[0] 520 offsets[count] 3310
+PASS E1 kr/binaryfile/growth_rate_growth_rate_name.bin: offsets[0] = 8 + 4*count and offsets[count] = file size
+PASS C2 kr/binaryfile/growth_rate_growth_rate_name.bin truncated by one byte fails the frame
+   kr/binaryfile/logicpack.bin                          count  1310 size   1035896 offsets[0] 5248 offsets[count] 1035896
+PASS E1 kr/binaryfile/logicpack.bin: offsets[0] = 8 + 4*count and offsets[count] = file size
+PASS C2 kr/binaryfile/logicpack.bin truncated by one byte fails the frame
+PASS C1 no copy starts its data at 4 + 4*count (the end slot is real)
+FAILS 0

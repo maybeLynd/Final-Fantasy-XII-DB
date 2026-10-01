@@ -1,0 +1,7 @@
+E1_esper_rows_defeat_cleanup_only_masks_untouched            PASS
+E2_outside_the_band_the_full_KO_path_and_the_bit             PASS
+E3_nonterminal_on_an_esper_row_is_written_no_defeat          PASS
+E4_removing_KO_clears_the_bit_then_enters_the_recovery_boundary_00238BF0 PASS
+no_fault_except_the_recorded_boundary                        PASS
+{"type_1B": [["defeat"], {"38": 0, "3C": 0, "64": 0}], "type_27": [["defeat"], {"38": 0, "3C": 0, "64": 0}], "type_1A": [["reaction", "defeat", "rewards"], {"38": 0, "3C": 0, "64": 1}], "type_28": [["reaction", "defeat", "rewards"], {"38": 0, "3C": 0, "64": 1}], "type_00": [["reaction", "defeat", "rewards"], {"38": 0, "3C": 0, "64": 1}], "nonterminal_on_esper_row": [["reaction"], {"38": 0, "3C": 0, "64": 32}], "remove_ko_vaan": [["recover"], {"38": 0, "3C": 0, "64": 0}]}
+ALL PASS

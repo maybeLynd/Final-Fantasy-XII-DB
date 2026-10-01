@@ -1,0 +1,10 @@
+{
+ "action": "finish",
+ "task": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-147",
+ "note": "Multi-caller frontier (4: 00424010 x3-caller, 00675300, 00629C70, 0024D970 x2-caller) + top-18 1-A closed: all 22 bodies dumped from the verified image (0 errors), decoded, routed to 11 bearing hosts and appended as interior-cited evidence paragraphs. Highlights: 00608DD0 is the GI slot-sync coordinator forming a hub cluster with batch-mates 00629AA0/00629C70/0060EC80; 006CA8D0 the GI change-notification publish (compares global state, fires paired .data callbacks on changed slots, submits through 0061C8A0); 003B2310/002FC860 the flag-keyed async submit arms over the Resource-owned helpers 0032E400/0032E620 with 02EBEBE4/02EC19C0 ticket tables; 00792F10 the process priority/working-set tuner (SetPriorityClass HIGH_PRIORITY_CLASS, SetProcessWorkingSetSize sized off dwPageSize and ullTotalPhys); 005781A0 the chain-counter 005789D0 runs before field-group layout (count*8+0x100 reserve); 00424010 the slot-tail setter shared by bone/effect build paths; 00675300 the dual inline-string initialiser; 0024D970 the extent/record validator for presentation-slot registration. Gates: anchors 4458 (all 22 batch anchors counted; standing total -1 vs naive 4459 from a peer-side refutation, not a batch defect); paragraph-address gate 0 UNSUPPORTED in the 22 entries; hash clean (standing set); crossref 2875 findings / 400 dispositioned; publish-neighbour guard: HEAD 2873 -> publish 2865, ADDS NOTHING, with 5 crossing-section sentences on 3 docs accounting 8 standing pairs (world-tick Resource/ActorEntity/Save_Load_Settings/Script_VM_Native_Bridge via shared submit helpers, gi-render + phyre Resource via shared leaves).",
+ "result_refs": [
+  "Database/FFXII TZA/_index/AUDIT-LOG.md",
+  "Database/Tools/analysis-kit/gfz-scripts/hub147_dumps.txt",
+  "Database/Tools/work/hub147_callers.txt"
+ ]
+}

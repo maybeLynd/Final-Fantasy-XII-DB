@@ -1,0 +1,108 @@
+0057C480  push      rbp
+0057C482  push      rbx
+0057C483  push      rsi
+0057C484  push      rdi
+0057C485  push      r12
+0057C487  push      r14
+0057C489  push      r15
+0057C48B  mov       rbp, rsp
+0057C48E  sub       rsp, 0x80
+0057C495  mov       eax, dword ptr [rdx]
+0057C497  mov       r12, rdx
+0057C49A  dec       eax
+0057C49C  mov       rsi, rcx
+0057C49F  cmp       eax, 0x12
+0057C4A2  ja        0x57cc8e
+0057C4A8  lea       rcx, [rip - 0x45c4af]   ; -> 00120000 (virtual tail / unmapped)
+0057C4AF  cdqe      
+0057C4B1  mov       r8d, dword ptr [rcx + rax*4 + 0x45cca8]
+0057C4B9  add       r8, rcx
+0057C4BC  jmp       r8
+0057C4BF  mov       rax, qword ptr [rip + 0x1b1e76a]   ; -> 0209AC30 (virtual tail / unmapped)
+0057C4C6  lea       rcx, [rsi + 0x1b0]
+0057C4CD  xor       r14d, r14d
+0057C4D0  mov       qword ptr [rsp + 0x78], r13
+0057C4D5  mov       r13, qword ptr [rdx + 8]
+0057C4D9  mov       qword ptr [rax + 0x328], rsi
+0057C4E0  lea       r15d, [r14 + 1]
+0057C4E4  mov       eax, dword ptr [r13 + 0x20]
+0057C4E8  mov       dword ptr [rsi + 0x630], eax
+0057C4EE  mov       rdx, qword ptr [r13]
+0057C4F2  test      rdx, rdx
+0057C4F5  je        0x57c5a6
+0057C4FB  mov       r8d, 0x400
+0057C501  call      0x254f30
+0057C506  test      byte ptr [rsi + 0x630], 0x20
+0057C50D  lea       rcx, [rsi + 0xe0]
+0057C514  je        0x57c568
+0057C516  xor       r8d, r8d
+0057C519  lea       rdx, [rsi + 0x1b0]
+0057C520  call      0x2b3400
+0057C525  movss     xmm0, dword ptr [rip + 0x1890a63]   ; -> 01E0CF90 u32=3E8E38E4 f32=0.277778
+0057C52D  lea       r9, [rbp + 0x48]
+0057C531  movss     dword ptr [rsi + 0x120], xmm0
+0057C539  lea       r8, [rbp + 0x40]
+0057C53D  movss     xmm1, dword ptr [rip + 0x1890a4f]   ; -> 01E0CF94 u32=3F6147AE f32=0.88
+0057C545  lea       rdx, [rsi + 0x1b0]
+0057C54C  xor       ecx, ecx
+0057C54E  movss     dword ptr [rsi + 0x114], xmm1
+0057C556  call      0x2b3050
+0057C55B  movsx     ecx, word ptr [rbp + 0x40]
+0057C55F  movsx     edx, word ptr [rbp + 0x48]
+0057C563  jmp       0x57c5fa
+0057C568  lea       rax, [rbp + 0x50]
+0057C56C  mov       qword ptr [rsp + 0x30], r14
+0057C571  mov       qword ptr [rsp + 0x28], rax
+0057C576  lea       r8, [rsi + 0x1b0]
+0057C57D  lea       rax, [rbp + 0x58]
+0057C581  mov       r9d, r15d
+0057C584  xor       edx, edx
+0057C586  mov       qword ptr [rsp + 0x20], rax
+0057C58B  call      0x2b3280
+0057C590  xor       edx, edx
+0057C592  lea       rcx, [rsi + 0xe0]
+0057C599  call      0x2b1e20
+0057C59E  mov       ecx, dword ptr [rbp + 0x58]
+0057C5A1  mov       edx, dword ptr [rbp + 0x50]
+0057C5A4  jmp       0x57c5fd
+0057C5A6  mov       r8d, 0x400
+0057C5AC  call      0x861ec0
+0057C5B1  lea       rax, [rbp + 0x50]
+0057C5B5  mov       qword ptr [rsp + 0x30], r14
+0057C5BA  mov       qword ptr [rsp + 0x28], rax
+0057C5BF  lea       r8, [rsi + 0x1b0]
+0057C5C6  lea       rax, [rbp + 0x58]
+0057C5CA  mov       r9d, r15d
+0057C5CD  xor       edx, edx
+0057C5CF  mov       qword ptr [rsp + 0x20], rax
+0057C5D4  lea       rcx, [rsi + 0xe0]
+0057C5DB  call      0x2b3280
+0057C5E0  xor       edx, edx
+0057C5E2  lea       rcx, [rsi + 0xe0]
+0057C5E9  call      0x2b1e20
+0057C5EE  mov       eax, dword ptr [rip + 0x18907cc]   ; -> 01E0CDC0 u32=00000010 f32=2.24208e-44
+0057C5F4  mov       edx, r14d
+0057C5F7  lea       ecx, [rax + rax]
+0057C5FA  mov       dword ptr [rbp + 0x50], edx
+0057C5FD  mov       eax, 0x60
+0057C602  cmp       ecx, eax
+0057C604  cmovl     ecx, eax
+0057C607  mov       dword ptr [rbp + 0x58], ecx
+0057C60A  mov       rax, qword ptr [r13 + 0x10]
+0057C60E  mov       qword ptr [rsi + 0xc8], rax
+0057C615  movzx     eax, byte ptr [r13 + 0x1c]
+0057C61A  mov       byte ptr [rsi + 0x634], al
+0057C620  mov       dword ptr [rsi + 0x636], 0xffff0000
+0057C62A  mov       byte ptr [rsi + 0x635], dl
+0057C630  mov       word ptr [rsi + 0x63a], r14w
+0057C638  mov       rax, qword ptr [r13 + 8]
+0057C63C  mov       qword ptr [rsi + 0xd0], rax
+0057C643  and       dword ptr [rsi + 0x5bc], 0xfffffffe
+0057C64A  and       dword ptr [rsi + 0x5cc], 0xfffffffe
+0057C651  and       dword ptr [rsi + 0x5dc], 0xfffffffe
+0057C658  and       dword ptr [rsi + 0x5ec], 0xfffffffe
+0057C65F  and       dword ptr [rsi + 0x5fc], 0xfffffffe
+0057C666  and       dword ptr [rsi + 0x60c], 0xfffffffe
+0057C66D  and       dword ptr [rsi + 0x61c], 0xfffffffe
+0057C674  and       dword ptr [rsi + 0x62c], 0xfffffffe
+---

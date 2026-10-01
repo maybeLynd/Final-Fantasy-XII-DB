@@ -1,0 +1,89 @@
+{
+  "method": "A existing verified original-code capture and fresh consumer interpretation",
+  "original_leaf_hash": "5c072a689347f4faf38b7944bce418c22ed521bf5e0f531bc9be30cb3fbce678",
+  "output_component_matrix_byte_offsets": {
+    "0x0": {
+      "X_byte_offset": "0x0",
+      "Y_byte_offset": "0x10",
+      "Z_byte_offset": "0x20",
+      "W_byte_offset": "0x30"
+    },
+    "0x4": {
+      "X_byte_offset": "0x4",
+      "Y_byte_offset": "0x14",
+      "Z_byte_offset": "0x24",
+      "W_byte_offset": "0x34"
+    },
+    "0x8": {
+      "X_byte_offset": "0x8",
+      "Y_byte_offset": "0x18",
+      "Z_byte_offset": "0x28",
+      "W_byte_offset": "0x38"
+    },
+    "0xc": {
+      "X_byte_offset": "0xc",
+      "Y_byte_offset": "0x1c",
+      "Z_byte_offset": "0x2c",
+      "W_byte_offset": "0x3c"
+    }
+  },
+  "existing_control": {
+    "input": [
+      1.0,
+      2.0,
+      3.0,
+      1.0
+    ],
+    "matrix_floats": [
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      4.0,
+      0.0,
+      10.0,
+      20.0,
+      30.0,
+      2.0
+    ],
+    "original_before_divide": [
+      12.0,
+      26.0,
+      42.0,
+      2.0
+    ],
+    "row_major_matrix_left_times_column_vector": [
+      2.0,
+      6.0,
+      12.0,
+      142.0
+    ],
+    "actual_after_divide": [
+      6.0,
+      13.0,
+      21.0,
+      1.0
+    ]
+  },
+  "established": [
+    "Output[j] uses X*m[j]+Y*m[4+j]+Z*m[8+j]+W*m[12+j], with indices in floats. Exact shipping SSE products/adds order remains Y+X, then Z, then W.",
+    "These bytes support row-vector input multiplied on the left of a row-major matrix, or a column-major matrix multiplied by a column vector on the right. A leaf alone cannot choose a universal engine storage convention.",
+    "The paired EXP219 shorthand out=mat\u00d7in and row-major needs an explicit vector/storage convention. Interpreted as ordinary row-major left-multiplication of a column vector, it contradicts the existing original control."
+  ],
+  "semantic_implication": "Specify operand-index formula and vector side along with storage labels; avoid a transpose error when reproducing the shared helper. Keep type/ownership/normal-caller meanings separate.",
+  "checker_correction": "Historical format-dependent assertion rejected valid [rdx+4] versus [rdx+0x4] before acceptance. Old checker/failure immutable, original raw unchanged. Decode register/base/displacement/width directly; smallest regression binds actual rejected shipping operand.",
+  "limits": "No new B/native/live execution or universal matrix type/convention/ordinary renderer claim. Existing original-code execution retains its supplied state and pending independent acceptance. No new fixture/campaign, native rendering or all-engine transpose finding. The competing algebraic calculation is a discriminator, not a new original-code trace.",
+  "affected_consumers": [
+    "SWE2-ORACLE EXP219 helper semantics",
+    "OPUS existing GS coordinate return/representation consumer",
+    "FABLE existing GS/glyph matrix consumers if they adopt EXP219 shorthand"
+  ],
+  "propagation": "PENDING producer/owner qualification and independent review",
+  "cleanup": "Read-only committed artifacts and consumer preimage; no game/PC/input/attachment/save/config/reference changes."
+}

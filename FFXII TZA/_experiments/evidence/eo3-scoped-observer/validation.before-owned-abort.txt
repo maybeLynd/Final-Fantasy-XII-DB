@@ -1,0 +1,15 @@
+Pinned original frame/return boundaries agree; no original code executed.
+Original staging writes EDX/ECX only: RDI and staged low32 coexist at0032E84D; no execution.
+CONTEXT size/offsets and pinned SDK excerpt agree; class declarations only, no native calls.
+Retained native contexts: 42 known RCX/RBX positives; all 57 no-INTEGER reads rejected. No new execution.
+Bound21 retained observer events to matching thread handles and separate21 resume reads; 7 binding controls reject.
+Correlation control: exact frame+return+slot+request-ID;12 misleading/incomplete records rejected. Not a live observation.
+Scoped recorder: complete synthetic chain, 14 invalid/stop controls; no native or live execution.
+Native reader evidence/control/ownership/cleanup checks PASS; 7 corruptions reject. No FF12 claim.
+Scoped callback is after ownership and before resume; abort/read-error/foreign-step controls reject continuation. Synthetic only.
+Native stopped-read/resume/abort controls verified from raw context/API/shared markers; 12 corruptions reject. No FF12 semantic closure.
+Stopped INC effect directly distinguished: normal commits, both owned aborts leave it uncommitted; 7 boundary/continuation corruptions reject.
+EO3 connector joins the three synthetic sites, holds changed-pointer producer, and rejects stale/foreign/proposed contexts.
+Incomplete timeout/zero-event rejected as matches; completed sequence positive and failed-cleanup invalidity preserved. Synthetic only.
+Preparation checks PASS. No fresh original-code or live execution; no live-readiness verdict.
+

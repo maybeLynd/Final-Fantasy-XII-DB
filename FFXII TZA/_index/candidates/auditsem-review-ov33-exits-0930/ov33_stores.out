@@ -1,0 +1,30 @@
+MODE: 11 accesses, 7 writes
+  W 0037B307 mov    byte ptr [rip + 0x2762623], bl           -> 02ADD930/1 in 0037B2FF
+  W 0037B312 mov    byte ptr [rip + 0x2762619], bl           -> 02ADD931/1 in 0037B2FF
+  W 0037B394 mov    byte ptr [rip + 0x2762596], 1            -> 02ADD931/1 in 0037B390
+  W 0037B3A2 mov    byte ptr [rip + 0x2762587], 0            -> 02ADD930/1 in 0037B390
+  W 0037B3AE mov    byte ptr [rip + 0x276257c], 0            -> 02ADD931/1 in 0037B390
+  W 0037B458 mov    byte ptr [rip + 0x27624d2], bl           -> 02ADD930/1 in 0037B450
+  W 0037B463 mov    byte ptr [rip + 0x27624c8], bl           -> 02ADD931/1 in 0037B450
+RL: 5 accesses, 2 writes
+  W 001A11E4 mov    qword ptr [rip + 0x1ddff75], rax         -> 01F81160/8 in 001A11B0
+  W 001A120A mov    qword ptr [rip + 0x1ddff4b], 0           -> 01F81160/8 in 001A11F0
+callers of 0037B450: ['0024AB6F', '0024AC7F', '0035B877', '0035B98B', '003DD715'] qwords 0
+callers of 0037B390: ['0022A399'] qwords 0
+callers of 0037B2F0: ['002E66D3'] qwords 0
+callers of 001A11B0: ['0017D56C'] qwords 0
+callers of 001A11F0: ['0017D679'] qwords 0
+callers of 0024AB60: ['0027F841', '00280194', '00281EA3'] qwords 0
+callers of 0024ACF0: [] qwords 0
+0037B450 call sites, the ecx each passes:
+  0024AB6F: 0024AB6D xor ecx, ecx
+  0024AC7F: 0024AC68 mov ecx, 3
+  0035B877: 0035B86B xor ecx, ecx | 0035B872 mov ecx, 1
+  0035B98B: 0035B97E xor ecx, ecx | 0035B985 xor ecx, ecx
+  003DD715: 003DD701 mov ecx, 2
+E3 consumers: callers of the two read-layer job builders and of the two issuers
+  callers of 001D6D90: ['002DF777', '002DF853'] qwords 0
+  callers of 001D6FB0: ['002DF735', '002DF821'] qwords 0
+  callers of 002DF780: ['0046E03E'] qwords 0
+  callers of 002DF6C0: ['0032E111'] qwords 0
+  callers of 0046E030: ['0032E0F1'] qwords 0

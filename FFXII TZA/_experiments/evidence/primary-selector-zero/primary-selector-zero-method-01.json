@@ -1,0 +1,16 @@
+{
+  "question": "Does normal32FCA0 need actual option/state observation to choose330310 versus3306E0?",
+  "hypotheses": [
+    "returned option5/state can enable alternate edge",
+    "shipping5C5230 constant return and local definitions force selector0",
+    "saved R13 restore could change condition before branch"
+  ],
+  "method": "A exact3B shipping leaf + retained complete caller-byte/dataflow proof; no native/live needed",
+  "known_evidence": "Canonical already identifies5C5230 empty leaf. Reuse full index-path-raw-02; add exact leaf only, do not repeat caller census.",
+  "discriminator": "Three prefix classes/R13 assignments; later TEST before register restore, MOV-only flag preservation; Windows normal nonvolatile ABI premises",
+  "consumer": "Existing FABLE/OPUS bts tasks, after scoped independent review; additive narrowing to primary-admission packet",
+  "controls": "Required capture failure/changed original leaf/local assignment must refuse; preserve producer controls versus semantic acceptance",
+  "acceptance": "All prefix classes R13D0 and no intervening local mutation; JE selects330310 under normal original/ABI conditions",
+  "limits": "Other3306E0 callers or exception/ABI/intervention/lifetime remain open",
+  "cleanup": "No game, finite file reads only"
+}

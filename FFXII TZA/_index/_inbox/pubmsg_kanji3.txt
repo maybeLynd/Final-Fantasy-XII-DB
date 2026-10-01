@@ -1,0 +1,9 @@
+sn1: kanji round-3 -- 12d9 apostrophe; full event list decodes
+
+12d9 = fullwidth apostrophe verified across ~7 independent possessive
+contexts in evctrl Scenario Event menus (Reks' Anxiety, Vaan's pockets,
+Basch's Apology, Ba'Gamnan). evctrl msgs 31-40 now read as the complete
+authored event list -- every event ID with its English title (NAF_A0100
+Reks Awakens ... RSN_B0100 Penelo joins the party). 817e = per-menu first
+item bullet. 10c8 = item marker (glyph, not tag). ~120 distinct unmapped
+2-byte codes remain.

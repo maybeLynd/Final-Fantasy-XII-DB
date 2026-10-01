@@ -1,0 +1,15 @@
+{
+ "action": "finish",
+ "task": "OPUS-EMBED-OWNER-HANDLER-ROUTE-CENSUS",
+ "agent": "OPUS",
+ "note": "Committed 380cc67e1. Six EMBED children carry their owner-handler result on every unobserved row, and the two results are worded apart: READ THROUGH AND NOTHING IN THE GAPS for BattleMenuChildWidget1620 (002778C0, 9 formation sites, 8 displacements, 8 of 8 on already-declared rows, 0 in its 5,301 gap bytes) and BattleMenuWidget2DC0 (00276D30, 1 of 1 named); FORMED AND NEVER DEREFERENCED for WidgetSingleton02B47758_05F0/_02A0/_0460 (003CA860) and PaneSlotWidget0160 (0029BE50), where the address is computed 3-5 times, handed to a call and dropped. Every note carries its own control - the reads for the first pair, the 10-18 owner-relative displacements the same walk reaches for the second. REFUSALS STAND UNWRITTEN: HelpMessageSlotRecord0100 at C1=0 and the five ManagerSingleton0209BE80 sub-objects whose base neither 00291750 nor 0028F8B0 forms. A truncated printer had put a short site list and one unread address (003CAA0E) into two cells; both were stripped and rewritten from a re-run before the commit, the real fifth site being 003CAA31. types_index --validate: 587 types / 6,981 fields / 0 errors / 0 gaps. NOT CLAIMED: exhaustiveness - this is one route per type, named. DB_GOAL remains NOT_MET.",
+ "release": [
+  {
+   "key": "@publication"
+  }
+ ],
+ "result_refs": [
+  "Database/FFXII TZA/_types/fields.tsv",
+  "Database/FFXII TZA/_index/_inbox/OPUS.md"
+ ]
+}

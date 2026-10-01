@@ -1,0 +1,209 @@
+{
+ "allowed_functions": 4354,
+ "cases": {
+  "C4_latch_three_readers_three_writers": true,
+  "D0_drain_dispatches_the_pending_request_to_the_router": true,
+  "DM_manager_slot0_not_ready_discards_the_request": true,
+  "DP_no_pending_no_dispatch": true,
+  "DS_slot_guard_is_38_or_3E_bit0": true,
+  "DT_transition_clause_never_blocks_here": true,
+  "DW_request_word_must_be_0_or_5": true,
+  "L4_release_and_hard_reset_clear_latch_and_word": true
+ },
+ "census": {
+  "accesses": [
+   [
+    "00252B40",
+    "00252B46",
+    "W",
+    "mov"
+   ],
+   [
+    "00252D90",
+    "00252DCB",
+    "W",
+    "mov"
+   ],
+   [
+    "00252DE0",
+    "00252E05",
+    "W",
+    "mov"
+   ],
+   [
+    "00253C70",
+    "00253FE3",
+    "R",
+    "cmp"
+   ],
+   [
+    "00254B50",
+    "00254B71",
+    "R",
+    "cmp"
+   ],
+   [
+    "003F4E70",
+    "003F4FD7",
+    "R",
+    "xor"
+   ]
+  ],
+  "readers": [
+   "00253FE3",
+   "00254B71",
+   "003F4FD7"
+  ],
+  "writers": [
+   "00252B46",
+   "00252DCB",
+   "00252E05"
+  ]
+ },
+ "clears": {
+  "hard_reset_00252DE0": {
+   "faults": [],
+   "latch_after": 0,
+   "returned": true,
+   "stop": null,
+   "word_after": 0
+  },
+  "release_00252D90": {
+   "faults": [],
+   "latch_after": 0,
+   "returned": true,
+   "stop": null,
+   "word_after": 0
+  }
+ },
+ "drain": {
+  "base": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": false,
+   "router": [
+    [
+     7,
+     "22"
+    ]
+   ],
+   "stop": "002909F0 widget internals"
+  },
+  "id12_transition_running": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": false,
+   "router": [
+    [
+     12,
+     "22"
+    ]
+   ],
+   "stop": "0036C000 jmp-self (bit of [022D89B8] clear)"
+  },
+  "id7_transition_running": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": false,
+   "router": [
+    [
+     7,
+     "22"
+    ]
+   ],
+   "stop": "002909F0 widget internals"
+  },
+  "mslot0_busy_10bit7": {
+   "faults": [],
+   "mailbox_after": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "pending_after": 0,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "mslot0_busy_11": {
+   "faults": [],
+   "mailbox_after": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "pending_after": 0,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "mslot0_inactive": {
+   "faults": [],
+   "mailbox_after": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "pending_after": 0,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "pending0": {
+   "faults": [],
+   "pending_after": 0,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "slot_38": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "slot_3E_01": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "slot_3E_80": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": false,
+   "router": [
+    [
+     7,
+     "22"
+    ]
+   ],
+   "stop": "002909F0 widget internals"
+  },
+  "word3": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": true,
+   "router": [],
+   "stop": null
+  },
+  "word5": {
+   "faults": [],
+   "pending_after": 1,
+   "returned": false,
+   "router": [
+    [
+     7,
+     "22"
+    ]
+   ],
+   "stop": "002909F0 widget internals"
+  }
+ },
+ "ok": true
+}

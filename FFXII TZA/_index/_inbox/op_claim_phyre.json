@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "ASTRA-REQ-OPUS-PHYRE-MAPPING",
+ "agent": "OPUS",
+ "resources": [{"key": "target:phyre/four-d3d-descriptor-mappings"}],
+ "note": "resolving the four supplied D3D descriptor addresses statically"
+}

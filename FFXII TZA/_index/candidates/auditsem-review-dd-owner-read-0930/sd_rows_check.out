@@ -1,0 +1,19 @@
+SD rows at f7a3292bd: 18  ['SD-1', 'SD-2', 'SD-3', 'SD-4', 'SD-5', 'SD-6', 'SD-7', 'SD-8', 'SD-9', 'SD-20', 'SD-21', 'SD-22', 'SD-23', 'SD-24', 'SD-25', 'SD-40', 'SD-41', 'SD-42']
+SD-1   status OPEN       addrs 0   closed rows sharing an address: - | named on: r2-force-fight-toggle.md
+SD-2   status OPEN       addrs 1   closed rows sharing an address: FM-1(00366B80) | named on: r2-force-fight-toggle.md
+SD-3   status OPEN       addrs 4   closed rows sharing an address: GG-3(00228380) | named on: capability-inhibition-policy.md
+SD-4   status OPEN       addrs 2   closed rows sharing an address: - | named on: capability-inhibition-policy.md
+SD-5   status OPEN       addrs 4   closed rows sharing an address: - | named on: input-stack-device-channel-and-bindings.md
+SD-6   status OPEN       addrs 2   closed rows sharing an address: - | named on: input-stack-device-channel-and-bindings.md
+SD-7   status OPEN       addrs 1   closed rows sharing an address: PA-1(0017D1A0) | named on: input-stack-device-channel-and-bindings.md
+SD-8   status OPEN       addrs 1   closed rows sharing an address: EK-1(02064AD3), FZ-19(02064AD3), GA-4(02064AD3), RMD-2(02064AD3), SQ-1(02064AD3), X-4(02064AD3) | named on: input-stack-device-channel-and-bindings.md
+SD-9   status OPEN       addrs 1   closed rows sharing an address: - | named on: input-stack-device-channel-and-bindings.md
+SD-20  status OPEN       addrs 8   closed rows sharing an address: UQ-322(007EBAD0) | named on: sqex-sd-sound-driver-architecture.md
+SD-21  status OPEN       addrs 2   closed rows sharing an address: - | named on: sqex-sd-sound-driver-architecture.md
+SD-22  status OPEN       addrs 2   closed rows sharing an address: DI-1(00240750), GG-1(0023D6B0), SM-5(00240750) | named on: sqex-sd-sound-driver-architecture.md
+SD-23  status OPEN       addrs 14  closed rows sharing an address: CO-10(007F0820), D-4(00800000), DQ-2(007BDBB0), EE-4(00800000), G-14(007BDBB0,007BE590), G-16(007BED30,007BF0A0), G-17(007BF0A0), G-18(007B31A0), G-3(007B2CB0,007B31A0), UQ-258(007BD9D0), UQ-322(007F0820), WC-1(007B2CB0,007B31A0) | named on: sound-variant-selection.md
+SD-24  status OPEN       addrs 7   closed rows sharing an address: G-16(007BDDA0), G-17(01CB43E0) | named on: sound-variant-selection.md, which-variation-of-a-sound-you-hear.md
+SD-25  status OPEN       addrs 4   closed rows sharing an address: AM-6(008C3098), BD-2(007BDFA0), G-12(008C3098), G-16(007BD120,007BDFA0,007BF0A0), G-17(007BF0A0), UQ-75(008C3098) | named on: sound-variant-selection.md
+SD-40  status OPEN       addrs 0   closed rows sharing an address: - | named on: save-image-buffers-header-and-payload.md
+SD-41  status OPEN       addrs 0   closed rows sharing an address: - | named on: version-stamps-and-what-loading-normalises.md
+SD-42  status OPEN       addrs 2   closed rows sharing an address: SV-1(00233C4D), V-2(00233C4D,00253A80) | named on: version-stamps-and-what-loading-normalises.md

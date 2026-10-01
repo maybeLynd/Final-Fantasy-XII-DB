@@ -1,0 +1,1 @@
+form_split.py at HEAD: AssertionError - its two predicate anchors no longer exist in select_guarded_class_registrars.py, because SWE2-EC7 applied this ruling at 090f74f38 (one family, the split predicate removed). It is a one-shot measurement tied to the selector at e862a1dae; its committed output (CONTROL PASS, 76/23 -> 23/76) is not reproducible at HEAD by design.

@@ -1,0 +1,6 @@
+{
+  "exit": 0,
+  "command": [
+    "control-texture-resize-drain-caller.py"
+  ]
+}

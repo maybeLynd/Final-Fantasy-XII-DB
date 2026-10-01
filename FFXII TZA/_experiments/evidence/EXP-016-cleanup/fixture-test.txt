@@ -1,0 +1,38 @@
+NOTE: a HOT breakpoint perturbs the game -- it starves input and can stop other code
+      running at all (EW-7). Arm the target ALONE; take the control in its own run.
+pid 1   breakpoints: 003A1C50, 003A1C8C   (NO CONTROL -- a zero will be unproven)
+wrote C:\Users\Kristian\AppData\Local\Temp\exp016-unit-ikz9x1wp\trace.tsv: 2 hit(s) in the order seen
+threads armed            : 2
+
+  target  003A1C50  hits 1
+      rcx=0000000000000000 rdx=0000000000000000 r8=0000000000000000 r9=0000000000000000
+  target  003A1C8C  hits 1
+      rcx=0000000000000000 rdx=0000000000000000 r8=0000000000000000 r9=0000000000000000
+
+NOTE: a HOT breakpoint perturbs the game -- it starves input and can stop other code
+      running at all (EW-7). Arm the target ALONE; take the control in its own run.
+pid 1   breakpoints: 003A1C50, 003A1C8C   (NO CONTROL -- a zero will be unproven)
+wrote C:\Users\Kristian\AppData\Local\Temp\exp016-unit-80vqn74q\trace.tsv: 2 hit(s) in the order seen
+threads armed            : 2
+
+  target  003A1C50  hits 1
+      rcx=0000000000000000 rdx=0000000000000000 r8=0000000000000000 r9=0000000000000000
+  target  003A1C8C  hits 1
+      rcx=0000000000000000 rdx=0000000000000000 r8=0000000000000000 r9=0000000000000000
+
+NOTE: a HOT breakpoint perturbs the game -- it starves input and can stop other code
+      running at all (EW-7). Arm the target ALONE; take the control in its own run.
+pid 1   breakpoints: 003A1C50, 003A1C8C   (NO CONTROL -- a zero will be unproven)
+wrote C:\Users\Kristian\AppData\Local\Temp\exp016-unit-5t34hgrq\trace.tsv: 2 hit(s) in the order seen
+threads armed            : 2
+
+  target  003A1C50  hits 1
+      rcx=0000000000000000 rdx=0000000000000000 r8=0000000000000000 r9=0000000000000000
+  target  003A1C8C  hits 1
+      rcx=0000000000000000 rdx=0000000000000000 r8=0000000000000000 r9=0000000000000000
+
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.027s
+
+OK

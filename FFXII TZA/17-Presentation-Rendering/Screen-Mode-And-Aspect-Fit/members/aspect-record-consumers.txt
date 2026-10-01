@@ -1,0 +1,25 @@
+getter 001DDAB0: 72 call sites, 43 passed on, 29 not passed (null checks / field reads)
+  001DD110 FUN_001dd110                                   6  0017FFE3 00182E5E 001832B2 00184508 00184546
+  001DC730 FUN_001dc730                                   3  0017DB4E 0017DC34 00182E33
+  001DC650 FUN_001dc650                                   3  0017E581 001D4671 001D469D
+  001DC7A0 FUN_001dc7a0                                   3  0017E59B 001D46C6 001D471A
+  001DD8C0 FUN_001dd8c0                                   3  00182F54 001844DC 00184592
+  001DD090 FUN_001dd090                                   3  001D465B 001D4684 001D46B0
+  001DC940 FUN_001dc940                                   2  0017DC13 00182E23
+  001DC830 FUN_001dc830                                   2  0017E5F3 00182DF2
+  001DD120 FUN_001dd120                                   2  00180007 00182EEE
+  002256A0 FUN_002256a0                                   2  00182E8E 001DC3E3
+  001DD050 FUN_001dd050                                   1  0017E0B1
+  001DCEB0 FUN_001dceb0                                   1  0017E224
+  001DD060 FUN_001dd060                                   1  0017E244
+  001DC920 FUN_001dc920                                   1  0017E5C0
+  001DC9D0 FUN_001dc9d0                                   1  0017FDC9
+  0079CFA0 FUN_0079cfa0                                   1  0017FE34
+  001DD0B0 FUN_001dd0b0                                   1  0017FF2E
+  00225680 FUN_00225680                                   1  00182EBE
+  001DDBA0 FUN_001ddba0                                   1  00182F88
+  001DCE20 FUN_001dce20                                   1  001CD4E6
+  001DCE60 FUN_001dce60                                   1  001CD521
+  001DCD30 FUN_001dcd30                                   1  001CD547
+  001DCDF0 FUN_001dcdf0                                   1  001CD56D
+  001DCB90 FUN_001dcb90                                   1  001CD58B

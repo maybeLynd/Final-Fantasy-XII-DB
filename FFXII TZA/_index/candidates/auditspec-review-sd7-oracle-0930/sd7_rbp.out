@@ -1,0 +1,51 @@
+== R1. 18 E1 rows examined (11 rbp-based terms + the 7 first-probe flags)
+  00623B10 00623B8D obj=rsi terms=[['M', '0061ECD3 qword ptr [rcx + 0x110]']]
+      0061ECD3 qword ptr [rcx + 0x110]: no .pdata
+  00623B10 00623BEA obj=rsi terms=[['M', '0061ECD3 qword ptr [rcx + 0x110]']]
+      0061ECD3 qword ptr [rcx + 0x110]: no .pdata
+  00739530 00739C9D obj=r14 terms=[['M', '007397BE qword ptr [rbp + 0x138]']]
+      007397BE qword ptr [rbp + 0x138]: rbp = entry-0x58 (set lea rbp, [rax - 0x58]), slot entry+0xe0 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  00739DF0 0073A753 obj=r13 terms=[['C', '0'], ['M', '00739E85 qword ptr [rbp + 0x550]']]
+      00739E85 qword ptr [rbp + 0x550]: rbp = entry-0x498 (set lea rbp, [rax - 0x498]), slot entry+0xb8 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  00739DF0 0073A894 obj=r13 terms=[['C', '0'], ['M', '00739E85 qword ptr [rbp + 0x550]']]
+      00739E85 qword ptr [rbp + 0x550]: rbp = entry-0x498 (set lea rbp, [rax - 0x498]), slot entry+0xb8 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  0073BD30 0073C4FF obj=rdi terms=[['M', '0073C4B7 qword ptr [rbp + 0x200]']]
+      0073C4B7 qword ptr [rbp + 0x200]: rbp = entry-0x1b8 (set lea rbp, [rax - 0x1b8]), slot entry+0x48 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  0073BD30 0073C56A obj=r15 terms=[['M', '0073C521 qword ptr [rbp + 0x208]']]
+      0073C521 qword ptr [rbp + 0x208]: rbp = entry-0x1b8 (set lea rbp, [rax - 0x1b8]), slot entry+0x50 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  0073E570 0073E63A obj=rsi terms=[['M', '0073E5A6 qword ptr [rbp + 0x9f]']]
+      0073E5A6 qword ptr [rbp + 0x9f]: rbp = entry-0x2f (set lea rbp, [rax - 0x2f]), slot entry+0x70 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  0073E570 0073E8DC obj=rsi terms=[['M', '0073E5A6 qword ptr [rbp + 0x9f]']]
+      0073E5A6 qword ptr [rbp + 0x9f]: rbp = entry-0x2f (set lea rbp, [rax - 0x2f]), slot entry+0x70 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  0073E570 0073E9BE obj=rsi terms=[['M', '0073E5A6 qword ptr [rbp + 0x9f]']]
+      0073E5A6 qword ptr [rbp + 0x9f]: rbp = entry-0x2f (set lea rbp, [rax - 0x2f]), slot entry+0x70 = caller frame, stack-passed argument; rbp rewrites before the load: none
+  0074C790 0074C8EC obj=rdi terms=[['M', '0074C8B3 qword ptr [rbp + 0xa8]']]
+      0074C8B3 qword ptr [rbp + 0xa8]: rbp not rsp-derived in the prologue of 0074C790 (prologue: mov rax, rsp | mov qword ptr [rax + 0x18], rbx | push rbp | push rsi | push r13 | push r14 | push r15 | sub rsp, 0x120)
+  0074C790 0074CA3D obj=rdi terms=[['C', '0'], ['M', '0074C8B3 qword ptr [rbp + 0xa8]']]
+      0074C8B3 qword ptr [rbp + 0xa8]: rbp not rsp-derived in the prologue of 0074C790 (prologue: mov rax, rsp | mov qword ptr [rax + 0x18], rbx | push rbp | push rsi | push r13 | push r14 | push r15 | sub rsp, 0x120)
+  00764240 00764FA1 obj=rcx terms=[['M', '00764F97 qword ptr [rax + 0xa8]']]
+      00764F97 qword ptr [rax + 0xa8]: rax not rsp-derived in the prologue of 00764240 (prologue: mov rax, rsp | push rbp | push rbx | push rsi | push rdi | push r12 | push r13 | push r14)
+  00764240 00765020 obj=rcx terms=[['M', '00765016 qword ptr [rax + 0xa8]']]
+      00765016 qword ptr [rax + 0xa8]: rax not rsp-derived in the prologue of 00764240 (prologue: mov rax, rsp | push rbp | push rbx | push rsi | push rdi | push r12 | push r13 | push r14)
+  007677B0 00767BC6 obj=rcx terms=[['M', '00767BBC qword ptr [rax + 0xa8]']]
+      00767BBC qword ptr [rax + 0xa8]: rax not rsp-derived in the prologue of 007677B0 (prologue: mov rax, rsp | mov qword ptr [rax + 0x10], rbx | mov qword ptr [rax + 0x18], rsi | mov qword ptr [rax + 0x20], rdi | push rbp | push r12 | push r13 | push r14)
+  007677B0 00767D51 obj=rcx terms=[['M', '00767D47 qword ptr [rax + 0xa8]']]
+      00767D47 qword ptr [rax + 0xa8]: rax not rsp-derived in the prologue of 007677B0 (prologue: mov rax, rsp | mov qword ptr [rax + 0x10], rbx | mov qword ptr [rax + 0x18], rsi | mov qword ptr [rax + 0x20], rdi | push rbp | push r12 | push r13 | push r14)
+  00771B30 00771C06 obj=rcx terms=[['M', '00771BF3 qword ptr [rbp + 0xa8]']]
+      00771BF3 qword ptr [rbp + 0xa8]: rbp not rsp-derived in the prologue of 00771B30 (prologue: mov rax, rsp | mov qword ptr [rax + 0x10], rbx | push rbp | push rsi | push rdi | push r12 | push r13 | push r14)
+  0078E3C0 0078E4C1 obj=r15 terms=[['M', '0078E3D6 qword ptr [rcx + 0x80]']]
+      0078E3D6 qword ptr [rcx + 0x80]: rcx not rsp-derived in the prologue of 0078E3C0 (prologue: mov qword ptr [rsp + 0x18], rbx | push rbp | push rsi | push rdi | push r14 | push r15 | sub rsp, 0x30 | mov r14d, dword ptr [rdx + 0x38])
+  stack-slot rows (base rsp-derived, not rewritten): 8
+  negative control: 0074C790 rows among stack-slot rows: 0 (must be 0: rbp is loaded from [rsp+0x188])
+  positive control: 00739C9D (read by hand: rbp = entry-0x58) among stack-slot rows: True (must be True)
+== R2. re-classify the stack-slot rows with the package's own E2/E3/E4
+  00739530 00739C9D slot entry+0xe0 (caller frame, stack-passed argument) -> RESIDUE
+  00739DF0 0073A753 slot entry+0xb8 (caller frame, stack-passed argument) -> RESIDUE
+  00739DF0 0073A894 slot entry+0xb8 (caller frame, stack-passed argument) -> RESIDUE
+  0073BD30 0073C4FF slot entry+0x48 (caller frame, stack-passed argument) -> RESIDUE
+  0073BD30 0073C56A slot entry+0x50 (caller frame, stack-passed argument) -> RESIDUE
+  0073E570 0073E63A slot entry+0x70 (caller frame, stack-passed argument) -> RESIDUE
+  0073E570 0073E8DC slot entry+0x70 (caller frame, stack-passed argument) -> RESIDUE
+  0073E570 0073E9BE slot entry+0x70 (caller frame, stack-passed argument) -> RESIDUE
+  package partition: {'E1': 133, 'E2': 13, 'E3': 2, 'E4': 10, 'RESIDUE': 34}
+  corrected partition (E1 without the 8 stack-slot rows): {'E1': 125, 'E2': 13, 'E3': 2, 'E4': 10, 'RESIDUE': 42}; excluded total 150 of 192

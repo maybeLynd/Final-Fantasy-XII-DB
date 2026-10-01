@@ -1,0 +1,4 @@
+second_store_on_the_lethal_path    PASS  one lethal call of 00300530 stores +0x48 TWICE: its own store at 00300749, then 0030E360 (KO bit 0, mode 3) reaches the recompute 0030FED0, which stores +0x48 again at 00310508; the KO bit is set and no presentation call runs
+single_store_without_a_status_transition PASS  100 - 30 and 480 + 50 (cap 500): one store each, at 00300749 (70; clamped to 500) - no status transition, no recompute
+bound_holds_after_every_store      PASS  every stored value lies in [floor 0, cap 500] - the second store clamps as well
+ok

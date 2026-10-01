@@ -1,0 +1,121 @@
+[
+  {
+    "entry": "003112F0",
+    "start": "003112F0",
+    "end": "00311AE7",
+    "size": 2040,
+    "sha256": "428382355b39605a534748ef2e0108adc773eae363a787f06618442115e6500d"
+  },
+  {
+    "entry": "0023A570",
+    "start": "0023A570",
+    "end": "0023AC7F",
+    "size": 1808,
+    "sha256": "a5194ef62b2556c92117b3ae40980d2ff334a08d495ec9cca82995209cd1d39a"
+  },
+  {
+    "entry": "00236A60",
+    "start": "00236A60",
+    "end": "00236C23",
+    "size": 452,
+    "sha256": "5015df319433fde4b038dbf18d5fb502c8d906cd6bb32107f689de395f2dcd2b"
+  },
+  {
+    "entry": "00320450",
+    "start": "00320450",
+    "end": "003204A6",
+    "size": 87,
+    "sha256": "f70ecc570b631f2013017c41e6695ab24a33fd0c6d53e290e4b8a3af5243f6ee"
+  },
+  {
+    "entry": "00328FF0",
+    "start": "00328FF0",
+    "end": "00329015",
+    "size": 38,
+    "sha256": "813f9699673fef876a4bd9d25d9eb1c2b8acab2f79ab74134a36d9cd723dd182"
+  },
+  {
+    "entry": "002FEAB0",
+    "start": "002FEAB0",
+    "end": "002FEAB9",
+    "size": 10,
+    "sha256": "fe947f5bb2fe295c36165958e6209fc0719f1f6c260bd6afd576ad2bc342238b"
+  },
+  {
+    "entry": "002B58B0",
+    "start": "002B58B0",
+    "end": "002B58ED",
+    "size": 62,
+    "sha256": "281256ef8cdd9c42a1df87af79961b9b4247a19c64e289500c0506f15e2a6740"
+  },
+  {
+    "entry": "00322050",
+    "start": "00322050",
+    "end": "0032207B",
+    "size": 44,
+    "sha256": "e4b3d1bc648d4dd40de62f855ed24f682c9ac6de1ee904908c02adbedee17b86"
+  },
+  {
+    "entry": "0030E360",
+    "start": "0030E360",
+    "end": "0030E88A",
+    "size": 1323,
+    "sha256": "f954d039168bc6ed2a0329a1f33300182a8e858490a5fcd5c8612ac4b46e4b56"
+  },
+  {
+    "entry": "0030E130",
+    "start": "0030E130",
+    "end": "0030E358",
+    "size": 553,
+    "sha256": "f985df17d3dcbfd7862a9eb6bf4333becc39c9c8861203b582ec6ff5447faf95"
+  },
+  {
+    "entry": "0030FED0",
+    "start": "0030FED0",
+    "end": "003105CA",
+    "size": 1787,
+    "sha256": "01a49b9744154d628b7fc654eddadf42efec96702992fe8fc14cfe8d2ff9e853"
+  },
+  {
+    "entry": "0031B860",
+    "start": "0031B860",
+    "end": "0031B8B2",
+    "size": 83,
+    "sha256": "9a162077226a0c37d235edf972c43ef16187e594054b0d54eb7ddfd2cddcca8f"
+  },
+  {
+    "entry": "00300520",
+    "start": "00300520",
+    "end": "00300527",
+    "size": 8,
+    "sha256": "e5f6ff46ac7b8c9c5111b52ea35c48f0c33a93e1831a725135d7485758e4f863"
+  },
+  {
+    "entry": "00300530",
+    "start": "00300530",
+    "end": "0030089F",
+    "size": 880,
+    "sha256": "ebad5845dd8a1c8a9bc10da6c3aecb10c473f5651f780a83726687924fb35a94"
+  },
+  {
+    "entry": "0030C650",
+    "start": "0030C650",
+    "end": "0030C889",
+    "size": 570,
+    "sha256": "e7b8b01a983658a32e9fe97773b9de4f885aaa2e99b3707bebedbd4a58a27ef9"
+  },
+  {
+    "entry": "002FED60",
+    "start": "002FED60",
+    "end": "002FEDB9",
+    "size": 90,
+    "sha256": "97294be0aea691e1b68ee1b4967e7c3ce33b8375b723ec6dfc778905b5bbca57"
+  },
+  {
+    "entry": "002FEDC0",
+    "start": "002FEDC0",
+    "end": "002FEE1E",
+    "size": 95,
+    "sha256": "65237a48f113cd2bc0481e8ae2a3587bd9047ea1b3597ddbc94525095a946df9"
+  }
+]

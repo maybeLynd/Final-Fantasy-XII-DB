@@ -1,0 +1,10 @@
+SURVIVES  L0  class via lea ecx, [r8 + 0x14]; validator range ['lea eax, [rcx - 1]', 'mov ebx, edx', 'cmp eax, 0x1f', 'ja 0x322c8d']; table base 00120000 + 0x203054 (['mov ecx, dword ptr [rdi + rax*4 + 0x203054]']); first r8 touch ('write', '00322E65', 'mov r8d, dword ptr [rcx + 4]')
+SURVIVES  L1  validator fail falls through to ret with eax = 0 (jne 0x323eea); then ['test rsi, rsi', 'je 0x324002', 'movzx eax, byte ptr [rsi + 5]', 'test eax, eax', 'jne 0x324002', 'cmp byte ptr [rsi + 4], 6', 'ja 0x324002']; 00324002 mov eax, 1
+SURVIVES  L2  row = (u32)(stride * id + (u32)decode) - ['imul ecx, ebx', 'add ecx, eax']; null arms -> mov rcx, rdi
+SURVIVES  L3  range ['lea eax, [rbx - 0xd0]', 'cmp eax, 0x11', 'ja 0x323fe3']; party row ['movzx ecx, byte ptr [rsi + 4]', 'imul ecx, edx', 'add ecx, eax']; search 19 instructions, byte ids at +4..+6, sentinel 0xFFFF; gate ['cmp ebx, eax', 'setl dil']
+SURVIVES  L4  6 byte tests against rbx + 0x194 per pass, trip count 3, stride 6 bits
+SURVIVES  L5  00323BB0 entered from [('00323C60', '00323CF7', 'jmp'), ('00323EC0', '00323FFD', 'jmp')]; kinds: actions mov edx, 1, equipment xor edx, edx (00323CE5 passes the item id in r8d); builder <- ['00323BB0']
+SURVIVES  L6  after the builder: writes none; calls ['00808C40']; exits ['xor eax, eax', 'mov eax, 1'] - the result is OR over all 0x2E byte-ANDs, early return or not
+SURVIVES  L7  16 functions (5 GS-failure helpers set aside); writes [('002F8FA0', '002F9085')]; globals read beside the 28 descriptor cells: ['008C2A60', '01EEBCF8', '01F44830', '01F83530']; any with a rip-relative writer in a listed body (the cookie aside, written by ['00809B8C']): none
+SURVIVES  L8  00324020 called at 13 sites in 7 functions ['002F88B0', '0030D600', '00323910', '00323D10', '00323EC0', '00324100', '00329220']; 00323EC0 <- ['00306480', '003064F0']
+FAILS 0

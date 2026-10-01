@@ -1,0 +1,22 @@
+# NativeAdapter.NullableCallChainTailCall - EC-7 family C, declared on generated-function-families.md
+#
+# 11 members. Body size(s): 36 B x11.
+# 1 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 24 external target(s): 0 shared across all 11 members, and 24 that are member-specific.
+#
+# NOT dispositioned: nothing beyond the members themselves, and the 24 member-specific targets - this row disposes of the wrapper, not of what it wraps.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+# A-drift 2026-09-18 (SWE2-EC7): header member counts restated to the file's current rows after A-measurement departures; auxiliary census figures not member-derived date from generation.
+0017CFD0
+0017DB40
+0017FF20
+00180170
+00180250
+00180280
+001802B0
+001808A0
+001808D0
+00182530
+00184A70
+# A-drift 2026-09-17: 6 member(s) removed, since measured as A: 0017ECF0 0017FD70 001821F0 00182340 001827E0 00182A10

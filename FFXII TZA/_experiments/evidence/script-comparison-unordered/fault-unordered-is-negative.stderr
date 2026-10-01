@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\script-comparison-unordered\check.py", line 46, in <module>
+    if '--fault-unordered-is-negative' in sys.argv:assert all(c['result_signed']==-1 for c in raw['cases'][3:6]),'Original masked qNaN compare keeps EDI +1'
+                                                          ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Original masked qNaN compare keeps EDI +1

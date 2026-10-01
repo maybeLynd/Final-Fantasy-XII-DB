@@ -1,0 +1,15 @@
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "system": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "capstone_distribution": "5.0.9",
+  "capstone_binding_reported_version": "5.0.7",
+  "capstone_api": [
+    5,
+    0,
+    1280
+  ],
+  "fixture_sha256": "c4a2a04cd4c7bd91136121ed051b075b235f578d1fee4e41b579a83ffca7e63f",
+  "auditor_sha256": "d7d5d34bbfb298e468f56451cd7de5cf6357fc1e5fc6b4f8d886fe4ae5c932b7",
+  "driver_sha256": "5e31007f784a5a42f49e72280547f0ed1e2176f95c9211b860d994e01857d621"
+}

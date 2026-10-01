@@ -1,0 +1,65 @@
+{
+  "class": "STATIC ORIGINAL PRODUCER/CONSUMER DERIVATION + RETAINED READER OBSERVATIONS",
+  "witnesses": [
+    {
+      "inclusive_max": 0,
+      "callback_visited_pages": [],
+      "reader_final_page_index": 0,
+      "covers_final_page": false,
+      "inclusive_page_words": 1
+    },
+    {
+      "inclusive_max": 127,
+      "callback_visited_pages": [
+        0
+      ],
+      "reader_final_page_index": 0,
+      "covers_final_page": true,
+      "inclusive_page_words": 1
+    },
+    {
+      "inclusive_max": 128,
+      "callback_visited_pages": [
+        0
+      ],
+      "reader_final_page_index": 1,
+      "covers_final_page": false,
+      "inclusive_page_words": 2
+    },
+    {
+      "inclusive_max": 129,
+      "callback_visited_pages": [
+        0,
+        1
+      ],
+      "reader_final_page_index": 1,
+      "covers_final_page": true,
+      "inclusive_page_words": 2
+    },
+    {
+      "inclusive_max": 1311,
+      "callback_visited_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "reader_final_page_index": 10,
+      "covers_final_page": true,
+      "inclusive_page_words": 11
+    }
+  ],
+  "boundary": "At max128 callback visits slot0 only, while reader admits field128 and selects slot1. A nonzero file-relative slot1 is not rebased and is interpreted as an absolute sign-extended address.",
+  "zero_offset": "If omitted tail slot is zero, reader returns-1; this does not make every such table fault.",
+  "shipped_control": "max1311 ->11 rebased slots, final reader index10. Current shipped291-run census remains intact.",
+  "fixture_limit": "EXP099 plants absolute page pointers and excludes loader; reader cases/mutations do not cover callback production of final page pointers.",
+  "limits": "Nonnegative small maxFieldId witnesses. Exact write-loop extent and inclusive reader. No fresh execution, loader delivery, allocation placement, real table occurrence, game fault or lifetime claim.",
+  "propagation": "PENDING independent acceptance and FABLE/OPUS owner incorporation"
+}

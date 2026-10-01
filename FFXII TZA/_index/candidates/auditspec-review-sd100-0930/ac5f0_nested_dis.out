@@ -1,0 +1,89 @@
+002ADA90  add       byte ptr [rax], r8b
+002ADA93  test      r15d, r15d
+002ADA96  je        0x2ada9c
+002ADA98  mov       byte ptr [rbx + rdi], r14b
+002ADA9C  movsx     eax, word ptr [rbp + 0x1c]
+002ADAA0  lea       r8, [rbp + 0x60]
+002ADAA4  mov       dword ptr [r13], eax
+002ADAA8  lea       rdx, [rsp + 0x68]
+002ADAAD  movups    xmm0, xmmword ptr [r12]
+002ADAB2  lea       rcx, [rbp - 0x70]
+002ADAB6  movaps    xmmword ptr [rbp + 0x60], xmm0
+002ADABA  call      0x2a9f00
+002ADABF  movss     xmm0, dword ptr [rsp + 0x54]
+002ADAC5  movss     xmm1, dword ptr [rsp + 0x50]
+002ADACB  movsx     eax, word ptr [rbp + 0x1c]
+002ADACF  movss     dword ptr [rip + 0x1def191], xmm0   ; -> 0209CC68 (virtual tail / unmapped)
+002ADAD7  movss     dword ptr [rip + 0x1def185], xmm1   ; -> 0209CC64 (virtual tail / unmapped)
+002ADADF  mov       dword ptr [r13], eax
+002ADAE3  jmp       0x2adbce
+002ADAE8  mov       rax, qword ptr [rsp + 0x78]
+002ADAED  lea       r8, [rbp + 0x60]
+002ADAF1  mov       r9, r13
+002ADAF4  mov       ecx, dword ptr [rax]
+002ADAF6  lea       rax, [rbp - 0x70]
+002ADAFA  mov       dword ptr [rip + 0x1b5f308], ecx   ; -> 01E0CE08 u32=0080802D f32=1.18009e-38
+002ADB00  lea       rax, [rax + 0x80]
+002ADB07  mov       byte ptr [rip + 0x1b5f2fb], 0xff   ; -> 01E0CE09 u32=00008080 f32=4.60971e-41
+002ADB0E  lea       rcx, [rbp - 0x70]
+002ADB12  movups    xmm0, xmmword ptr [r14]
+002ADB16  movups    xmm1, xmmword ptr [r14 + 0x10]
+002ADB1B  movups    xmmword ptr [rax - 0x80], xmm0
+002ADB1F  movups    xmm0, xmmword ptr [r14 + 0x20]
+002ADB24  movups    xmmword ptr [rax - 0x70], xmm1
+002ADB28  movups    xmm1, xmmword ptr [r14 + 0x30]
+002ADB2D  movups    xmmword ptr [rax - 0x60], xmm0
+002ADB31  movups    xmm0, xmmword ptr [r14 + 0x40]
+002ADB36  movups    xmmword ptr [rax - 0x50], xmm1
+002ADB3A  movups    xmm1, xmmword ptr [r14 + 0x50]
+002ADB3F  movups    xmmword ptr [rax - 0x40], xmm0
+002ADB43  movups    xmm0, xmmword ptr [r14 + 0x60]
+002ADB48  movups    xmmword ptr [rax - 0x30], xmm1
+002ADB4C  movups    xmm1, xmmword ptr [r14 + 0x70]
+002ADB51  movups    xmmword ptr [rax - 0x20], xmm0
+002ADB55  movups    xmm0, xmmword ptr [r14 + 0x80]
+002ADB5D  movups    xmmword ptr [rax - 0x10], xmm1
+002ADB61  movups    xmm1, xmmword ptr [r14 + 0x90]
+002ADB69  movups    xmmword ptr [rax], xmm0
+002ADB6C  movups    xmm0, xmmword ptr [r14 + 0xa0]
+002ADB74  movups    xmmword ptr [rax + 0x10], xmm1
+002ADB78  movups    xmm1, xmmword ptr [r14 + 0xb0]
+002ADB80  movups    xmmword ptr [rax + 0x20], xmm0
+002ADB84  movups    xmm0, xmmword ptr [r14 + 0xc0]
+002ADB8C  movups    xmmword ptr [rax + 0x30], xmm1
+002ADB90  movups    xmmword ptr [rax + 0x40], xmm0
+002ADB94  mov       eax, dword ptr [rbx + rdx*8 + 8]
+002ADB98  lea       rdx, [rip + 0x1b5f269]   ; -> 01E0CE08 u32=0080802D f32=1.18009e-38
+002ADB9F  movups    xmm0, xmmword ptr [r12]
+002ADBA4  mov       dword ptr [rbp - 0x1c], eax
+002ADBA7  movzx     eax, byte ptr [rsp + 0x42]
+002ADBAC  mov       byte ptr [rbp + 0x31], al
+002ADBAF  mov       eax, dword ptr [rbp + 0x40]
+002ADBB2  and       eax, 0xfff7ff04
+002ADBB7  mov       byte ptr [rbp + 0x28], r15b
+002ADBBB  or        eax, 4
+002ADBBE  mov       byte ptr [rbp + 0x32], r15b
+002ADBC2  mov       dword ptr [rbp + 0x40], eax
+002ADBC5  movaps    xmmword ptr [rbp + 0x60], xmm0
+002ADBC9  call      0x2ae610
+002ADBCE  mov       rcx, qword ptr [rip + 0x1def06b]   ; -> 0209CC40 (virtual tail / unmapped)
+002ADBD5  mov       eax, dword ptr [rbp - 0x80]
+002ADBD8  mov       dword ptr [rcx + 0x10d8], eax
+002ADBDE  mov       eax, dword ptr [rsp + 0x70]
+002ADBE2  mov       dword ptr [rcx + 0x10dc], eax
+002ADBE8  movss     dword ptr [rcx + 0x10e4], xmm6
+002ADBF0  jmp       0x2acfc2
+002ADBF5  xor       r9d, r9d
+002ADBF8  xor       r8d, r8d
+002ADBFB  xor       edx, edx
+002ADBFD  call      0x3fff10
+002ADC02  mov       eax, eax
+002ADC04  add       qword ptr [rdi], rax
+002ADC07  jmp       0x2acfc2
+002ADC0C  xor       r8d, r8d
+002ADC0F  xor       edx, edx
+002ADC11  call      0x3ffb90
+002ADC16  mov       eax, eax
+002ADC18  add       qword ptr [rdi], rax
+002ADC1B  jmp       0x2acfc2
+---

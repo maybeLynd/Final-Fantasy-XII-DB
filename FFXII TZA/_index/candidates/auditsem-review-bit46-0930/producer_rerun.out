@@ -1,0 +1,2 @@
+bit46_writers.py (python -B, at HEAD): exit 0, FAILS 0, output identical to the committed .out
+bit46_regindex.py (python -B, at HEAD): exit 0, FAILS 0, output identical to the committed .out

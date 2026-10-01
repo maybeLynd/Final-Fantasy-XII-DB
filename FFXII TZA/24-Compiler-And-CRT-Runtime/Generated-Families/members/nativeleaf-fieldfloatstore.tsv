@@ -1,0 +1,18 @@
+# NativeLeaf.FieldFloatStore - EC-7 family C
+# # movss [rcx+off], xmm1; ret
+address	targets
+00194300	
+001B1FE0	
+001B1FF0	
+001EBB60	
+001EBC50	
+001EBCE0	
+001F9FE0	
+003DB120	
+003DB130	
+003E74B0	
+004717D0	
+005175B0	
+0051DBE0	
+00628300	
+006A57B0	

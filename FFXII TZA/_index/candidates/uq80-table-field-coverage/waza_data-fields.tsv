@@ -1,0 +1,7 @@
+offset	width	status	name	value_tally_top5	readers_found_by_sweep	meaning	evidence	source
+0x00	2	pass	price	u16: 0x1388 x3, 0x1194 x2, 0x1770 x2, 0x258 x1, 0x7d0 x1 (20 distinct)	0031CEEF* movzx eax, word ptr [rbp]	price in gil -> query +0x28	STATIC	PASS
+0x02	1	pass	actionRow	u8: 158 x1, 159 x1, 160 x1, 161 x1, 162 x1 (24 distinct)	00306457* movzx edx, byte ptr [rcx + 2] | 0031CF04* movzx eax, byte ptr [rbp + 2]	the technick's action row: action[+2].+0x22 == 0x4000+row, .+0x34 == name word, .+0x1E == 2 on 24/24	both	PASS
+0x03	1	page	icon	u8: 117 x24 (1 distinct)	0031CEF6* movzx eax, byte ptr [rbp + 3]	icon frame -> query +0x2C (UQ-130)	STATIC	BAZ
+0x04	2	page	nameWord	u16: 0x9e x1, 0x9f x1, 0xa0 x1, 0xa1 x1, 0xa2 x1 (24 distinct)	0031CE89* movzx ecx, word ptr [rax + 4] | 0031CECA* movzx edx, word ptr [rax + 4]	name word (bank 0)	STATIC	EID
+0x06	1	pass	sortKey	u8: 3 x1, 16 x1, 18 x1, 15 x1, 9 x1 (24 distinct)	0031CEFD* movzx eax, byte ptr [rbp + 6]	list sort key -> query +0x30 (24 distinct)	STATIC	PASS
+0x07	1	pad	pad07	u8: 0 x24 (1 distinct)	-	const=0x00	-	PASS

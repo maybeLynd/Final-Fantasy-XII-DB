@@ -1,0 +1,6 @@
+PASS  W 00384580 returns 0036A190's result; its initializer 0036C660 is skipped for null
+PASS  K 003924B0: no test between 00384580 and memset; +0x40 (02AEE0A0) is stored before the clear; 00861EC0 -> (b'VCRUNTIME140.dll', b'memset')
+PASS  X allocation size = 32-bit ecx; clear length = movsxd of the same low 32 bits
+PASS  M mutants rejected: wrapper je->jne; caller mov rcx, rax -> mov rcx, rbx
+PASS  S NavGridParams' allocation cell and +0x40 row state the successful-allocation precondition
+FAILS 0

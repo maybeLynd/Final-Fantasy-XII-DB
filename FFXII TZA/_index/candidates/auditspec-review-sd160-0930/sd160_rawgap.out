@@ -1,0 +1,26 @@
+ebp files without a 0x8000000B section: 9
+  ps2data/plan_master/ch/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/cn/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/de/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/es/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/fr/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/in/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/it/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/kr/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+  ps2data/plan_master/us/event/evt_t/evt_t0020/evt_t0020.ebp size 2416 raw-hits 0
+raw hits not at a decoded call pc: 14
+  ps2data/plan_master/ch/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/cn/event/glf_z/glf_z0100/glf_z0100.ebp sec+9E02 OUTSIDE section
+  ps2data/plan_master/cn/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/de/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/es/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/fr/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/in/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/in/plan_map/frs_a/frs_a06/global/frs_a06.ebp sec+1065D OUTSIDE section
+  ps2data/plan_master/in/plan_map/frs_a/frs_a06/global/frs_a06.ebp sec+10745 OUTSIDE section
+  ps2data/plan_master/in/plan_map/nac_a/nac_a02/global/nac_a02.ebp sec+1172B OUTSIDE section
+  ps2data/plan_master/in/plan_map/rbn_a/rbn_a03/global/rbn_a03.ebp sec+30580 OUTSIDE section
+  ps2data/plan_master/it/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/kr/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+  ps2data/plan_master/us/plan_map/bul_b/bul_b01/global/bul_b01.ebp sec+26E9C NOT covered by any decoded instruction
+by kind: {'NOT covered by any decoded instruction': 9, 'OUTSIDE section': 5}

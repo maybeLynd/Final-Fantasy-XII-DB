@@ -1,0 +1,5 @@
+002CEE00 raw sites=2 dir64=0
+  00567A52 call owner 005679D0 (listed): pop rdi ; ret  ; mov edx, 7 ; or ecx, 0xffffffff
+  0056A05E call owner 0056A010 (listed): movsx ecx, word ptr [rax + 0x60] ; mov dword ptr [rbx + 0xf0], ecx ; mov word ptr [rbx + 0x33e], 0 ; mov byte ptr [rbx + 0x341], 0xff
+00282DF0 raw sites=79 dir64=0
+  control 0056A0xx site present: True

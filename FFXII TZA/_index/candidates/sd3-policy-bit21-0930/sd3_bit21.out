@@ -1,0 +1,5 @@
+PASS  A1 bit 21 set -> 002E1020(1) and return; clear -> Audio_SetGroupMask(0x3F, 1, 1) unless 00226BD0(0xF) != 0
+PASS  A2 ScreenStateFullScreen slot 5, event 4 with [rdx+4] = 0 -> state 3 -> 0017D4B0 -> 00229AF0
+PASS  I1 bit 21: row-1 bit 21 clear -> return 0; set -> flag 0 instead of 1
+PASS  I2 002282F0(flag): if no modal at [01FD4940], create widget 00229590 with payload +8 = flag
+FAILS 0

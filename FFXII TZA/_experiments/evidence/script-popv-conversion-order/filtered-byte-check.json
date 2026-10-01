@@ -1,0 +1,114 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture-before-reader-file-fix.py",
+    "git_blob": "36f1d479e3146849aae17325d741c1d7691d916b"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "c2428a8f4ad53c0a7a1b83c7e2b23ba9525e862c"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "ea929d1b06c3e32f9622939ec52eb56dac9fc701"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "79fa50babaf852fab71687048dbc50bc30178f46"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "a2b8afd5ff437f80f27c7e989d3315428081996c"
+  },
+  {
+    "path": "fault-accept-rounding-mutation.stderr",
+    "git_blob": "bee3c825233959ce278ccb9411aec55922a12f03"
+  },
+  {
+    "path": "fault-accept-rounding-mutation.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-direct-float-clamp.stderr",
+    "git_blob": "4a93965ebc9f741ceaad65db8a5d7dd709775e14"
+  },
+  {
+    "path": "fault-direct-float-clamp.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-round-not-truncate.stderr",
+    "git_blob": "ec2e7cf871aad216d81c8e4621d3fe6b370be725"
+  },
+  {
+    "path": "fault-round-not-truncate.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "1e70881d2e60cf753188d179b549b54d6647d1b8"
+  },
+  {
+    "path": "invalid-reader-setup.json",
+    "git_blob": "3ab62ebfebd402238cb4b960e2a61c29c6a41a3a"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "ee09c925f10d7861f231ae880cc5db1fdbb72b3e"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "5823da68d31f9c6d789c0bf527b74272341ad569"
+  },
+  {
+    "path": "reader-namespace-control.json",
+    "git_blob": "0d2afb051aeae5ad683aa05479da515b0d615aa0"
+  },
+  {
+    "path": "reader-namespace-control.py",
+    "git_blob": "cd2bbf6e17e50666f4fc207c936582e041881ff4"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "c6ee057de82e3045d5cf86db47e212bb0c26cbd3"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "5ee778d9869b270479118499fd011ac4e35da9f1"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "82cdbcef210df0c88adffed1feb6bfb7653e0c8e"
+  },
+  {
+    "path": "retained/consumer-before.md",
+    "git_blob": "f6acde07f29d6bce087c193b3b825ec8cd71095c"
+  },
+  {
+    "path": "retained/original-popv256.bin",
+    "git_blob": "d08cf18942f70fce3c1f85bf3fb95cbddfa15a9c"
+  },
+  {
+    "path": "retained/original-table24.bin",
+    "git_blob": "0216b348ce678bd933c4c4cc29336a9c51fa91f5"
+  },
+  {
+    "path": "retained/original194.bin",
+    "git_blob": "e94530f7f310489d56806cff147571cb3808377e"
+  },
+  {
+    "path": "retained/reg_tracking.py",
+    "git_blob": "fb957ae7bba85c245ac20188a205e059dec50169"
+  },
+  {
+    "path": "retained/shipping-reader.py",
+    "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+  }
+]

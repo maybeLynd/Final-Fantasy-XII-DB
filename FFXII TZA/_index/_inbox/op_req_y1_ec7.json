@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "FRONTIER-REQ-SWE2-EC7-Y1-LAYOUT-CORRECTIONS-0927",
+ "agent": "SWE2-EC7",
+ "note": "Claiming the P2 owner correction: two lines in the EC7-26 block of ui-layout-parameters-and-editor-schema.md (the four 0024ABC0 calls' owner label, and the 008C5B30 constant 1/512 vs 1/128). FABLE's byte-check stands behind both.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

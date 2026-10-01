@@ -1,0 +1,108 @@
+== 002E2A82 in .pdata [002E2934, 002E2F7C)
+002E2A52  test      rcx, rcx
+002E2A55  je        0x2e2a92
+002E2A57  cmp       dword ptr [rcx], -1
+002E2A5A  je        0x2e2a92
+002E2A5C  movzx     eax, word ptr [rcx]
+002E2A5F  cmp       ax, -1
+002E2A63  je        0x2e2a92
+002E2A65  movsx     rax, ax
+002E2A69  imul      rdx, rax, 0x740
+002E2A70  add       rdx, qword ptr [rip + 0x1fe44b1]   ; -> 022C6F28 (virtual tail)
+002E2A77  je        0x2e2a92
+002E2A79  cmp       dword ptr [rdx + 0x284], r12d
+002E2A80  je        0x2e2a92
+002E2A82  movzx     eax, byte ptr [rcx + 0x14f]   <==
+002E2A89  shr       al, 3
+002E2A8C  mov       byte ptr [rdx + 0x413], al
+002E2A92  mov       rcx, rdi
+002E2A95  call      0x2ea2a0
+002E2A9A  mov       rcx, qword ptr [rdi + 0xc0]
+002E2AA1  test      rcx, rcx
+002E2AA4  je        0x2e2adf
+002E2AA6  cmp       dword ptr [rcx], -1
+002E2AA9  je        0x2e2adf
+002E2AAB  movzx     eax, word ptr [rcx]
+002E2AAE  cmp       ax, -1
+002E2AB2  je        0x2e2adf
+002E2AB4  movsx     rax, ax
+002E2AB8  imul      r8, rax, 0x740
+002E2ABF  add       r8, qword ptr [rip + 0x1fe4462]   ; -> 022C6F28 (virtual tail)
+002E8273: no .pdata entry
+== 002EA2BE in .pdata [002EA2A0, 002EA318)
+002EA2A0  test      rcx, rcx
+002EA2A3  je        0x2ea317
+002EA2A5  push      rbx
+002EA2A6  sub       rsp, 0x20
+002EA2AA  mov       rax, qword ptr [rcx + 0xc0]
+002EA2B1  mov       rbx, rcx
+002EA2B4  test      rax, rax
+002EA2B7  je        0x2ea312
+002EA2B9  cmp       dword ptr [rax], -1
+002EA2BC  je        0x2ea312
+002EA2BE  movzx     edx, byte ptr [rax + 0x14f]   <==
+002EA2C5  mov       ecx, 1
+002EA2CA  shr       edx, 1
+002EA2CC  and       edx, 1
+002EA2CF  cmp       byte ptr [rax + 0x12], 0x10
+002EA2D3  cmovge    edx, ecx
+002EA2D6  cmp       dword ptr [rax], -1
+002EA2D9  je        0x2ea306
+002EA2DB  movzx     ecx, word ptr [rax]
+002EA2DE  cmp       cx, -1
+002EA2E2  je        0x2ea306
+002EA2E4  movsx     rax, cx
+002EA2E8  imul      rcx, rax, 0x740
+002EA2EF  add       rcx, qword ptr [rip + 0x1fdcc32]   ; -> 022C6F28 (virtual tail)
+002EA2F6  je        0x2ea306
+002EA2F8  cmp       dword ptr [rcx + 0x284], 0
+002EAC0D: no .pdata entry
+== 002E274A in .pdata [002E26F0, 002E28B6)
+002E2720  jmp       0x2e2725
+002E2722  mov       rsi, rdi
+002E2725  test      rbx, rbx
+002E2728  je        0x2e2731
+002E272A  mov       rdi, qword ptr [rdx + 0xc0]
+002E2731  test      rsi, rsi
+002E2734  je        0x2e2897
+002E273A  test      rdi, rdi
+002E273D  je        0x2e2897
+002E2743  mov       rax, qword ptr [rdx + 0xc0]
+002E274A  test      byte ptr [rax + 0x14f], 1   <==
+002E2751  je        0x2e275b
+002E2753  mov       rcx, rbx
+002E2756  call      0x2e6b10
+002E275B  cmp       dword ptr [rsi], -1
+002E275E  je        0x2e2897
+002E2764  cmp       dword ptr [rdi], -1
+002E2767  je        0x2e2897
+002E276D  mov       rax, qword ptr [rbx + 0xc0]
+002E2774  mov       rcx, rbx
+002E2777  or        byte ptr [rax + 0x14f], 1
+002E277E  call      0x25d540
+002E2783  mov       rcx, qword ptr [rbx + 0xc0]
+002E278A  test      byte ptr [rcx + 0x14f], 4
+== 002E278A in .pdata [002E26F0, 002E28B6)
+002E275B  cmp       dword ptr [rsi], -1
+002E275E  je        0x2e2897
+002E2764  cmp       dword ptr [rdi], -1
+002E2767  je        0x2e2897
+002E276D  mov       rax, qword ptr [rbx + 0xc0]
+002E2774  mov       rcx, rbx
+002E2777  or        byte ptr [rax + 0x14f], 1
+002E277E  call      0x25d540
+002E2783  mov       rcx, qword ptr [rbx + 0xc0]
+002E278A  test      byte ptr [rcx + 0x14f], 4   <==
+002E2791  je        0x2e2887
+002E2797  mov       rax, qword ptr [rcx + 0x120]
+002E279E  test      rax, rax
+002E27A1  je        0x2e27c2
+002E27A3  movss     xmm0, dword ptr [rax]
+002E27A7  movss     dword ptr [rbp - 0x30], xmm0
+002E27AC  movss     xmm1, dword ptr [rax + 4]
+002E27B1  movss     dword ptr [rbp - 0x2c], xmm1
+002E27B6  movss     xmm0, dword ptr [rax + 8]
+002E27BB  movss     dword ptr [rbp - 0x28], xmm0
+002E27C0  jmp       0x2e27d1
+002E27C2  mov       qword ptr [rbp - 0x30], 0
+002E27CA  mov       dword ptr [rbp - 0x28], 0

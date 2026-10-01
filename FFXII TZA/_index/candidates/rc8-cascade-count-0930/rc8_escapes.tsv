@@ -1,0 +1,8 @@
+function	site	escape	lowest_object_offset	verdict
+001EF6D0	001F0470	indirect call qword ptr [rax + 8] with tainted ['rcx']	148	cannot reach +0x13C (lowest offset >= 0x140)
+001EF6D0	001F0482	indirect call qword ptr [rax + 8] with tainted ['rcx']	148	cannot reach +0x13C (lowest offset >= 0x140)
+001EF6D0	001F04A2	indirect call qword ptr [rax + 8] with tainted ['rcx']	148	cannot reach +0x13C (lowest offset >= 0x140)
+00808FE4	00808FF3	store of the pointer	148	cannot reach +0x13C (lowest offset >= 0x140)
+00808FE4	00809025	indirect call rsi with tainted ['rcx']	148	cannot reach +0x13C (lowest offset >= 0x140)
+00808FE4	0080901D	stack argument slot(s) [80] to 00809958	148	cannot reach +0x13C (lowest offset >= 0x140)
+00808FE4	00809025	indirect call rsi with tainted ['rcx', "('stk', 80)"]	148	cannot reach +0x13C (lowest offset >= 0x140)

@@ -1,0 +1,142 @@
+[
+  {
+    "path": ".gitattributes",
+    "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+  },
+  {
+    "path": "capture.py",
+    "git_blob": "0caae3a44242e4aaa90f25f5747e422b240f4339"
+  },
+  {
+    "path": "check.py",
+    "git_blob": "7fd319f584eb487a72f084378179a9e6a89fabaf"
+  },
+  {
+    "path": "correct-helper-label.py",
+    "git_blob": "c6d1fb43053516811626f0290bdff518c6093d0e"
+  },
+  {
+    "path": "default-invocation-receipt.json",
+    "git_blob": "86535b5de87619bcf1167559865cf0eb0bbb76e1"
+  },
+  {
+    "path": "default-invocation.stderr",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "default-invocation.stdout",
+    "git_blob": "e494fbacd0b57fb6efe138efa0b6cf7ebddc224e"
+  },
+  {
+    "path": "fault-literal-only-attribution.stderr",
+    "git_blob": "64a69e007252a03d2aeeeab875a253be5a8496bf"
+  },
+  {
+    "path": "fault-literal-only-attribution.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-tagged-group-as-statement.stderr",
+    "git_blob": "94508d23bdb82b15d2bf54849d7e311aa74a4dab"
+  },
+  {
+    "path": "fault-tagged-group-as-statement.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "fault-universal-minus-one.stderr",
+    "git_blob": "6c09178c8fea51a3d56bd2e37da9201fb11bb973"
+  },
+  {
+    "path": "fault-universal-minus-one.stdout",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  {
+    "path": "freeze.py",
+    "git_blob": "befc494837846c7934d38bf00915f24f3481d322"
+  },
+  {
+    "path": "helper-label-correction.json",
+    "git_blob": "0c3cfad73385c26b74cb8b47787609fae143cd72"
+  },
+  {
+    "path": "PLAN.md",
+    "git_blob": "298df65a2fff19319ebe4c80518c8f999261209e"
+  },
+  {
+    "path": "raw.json",
+    "git_blob": "6a7aa8b28d26c4f7626a3aa02dc1387f9c37f49d"
+  },
+  {
+    "path": "README.md",
+    "git_blob": "d421e1adbed370528b0f1bcbe19a212a7b3be6ca"
+  },
+  {
+    "path": "regression-controls.json",
+    "git_blob": "c60d2e0837d4a42ab5c50a0c1d1f88583cf53e2e"
+  },
+  {
+    "path": "result.json",
+    "git_blob": "36891630848c5b5aa6f1022e84787a5f927fa307"
+  },
+  {
+    "path": "retained/check-before-reused-call-control.py",
+    "git_blob": "7fd319f584eb487a72f084378179a9e6a89fabaf"
+  },
+  {
+    "path": "retained/checker-at-additive-control-preparation.py",
+    "git_blob": "7fd319f584eb487a72f084378179a9e6a89fabaf"
+  },
+  {
+    "path": "retained/evctrl.dbg",
+    "git_blob": "1ae02ad73660ea581294eccddf9d934ca130e8b8"
+  },
+  {
+    "path": "retained/evctrl.ebp",
+    "git_blob": "0bde06d52c8bfa06284f6fe64a7f67e5897de235"
+  },
+  {
+    "path": "retained/evctrl.sbn",
+    "git_blob": "3042fefd0ba4aa447cf2c860d46932bc2bc0be95"
+  },
+  {
+    "path": "retained/opus-logical-primary-before.py",
+    "git_blob": "8f69bb9d2a31abca3d3ab0a1e02c33b43dd673b8"
+  },
+  {
+    "path": "retained/opus-lookup-primary-before.py",
+    "git_blob": "9e55f8e4cb0c48f774d187679480368ecaa6ffd0"
+  },
+  {
+    "path": "retained/parent61-raw.json",
+    "git_blob": "b38847372c5c21c06c7e875ec8ccf2eae83b5ad1"
+  },
+  {
+    "path": "retained/parent63-manifest.json",
+    "git_blob": "cc812e5aeabcdd2910bd6e89bebdd856d49717bc"
+  },
+  {
+    "path": "retained/parent63-result.json",
+    "git_blob": "0199c55a1a59d0f960d606ddabd161ef57bbfaad"
+  },
+  {
+    "path": "retained/parent65-manifest.json",
+    "git_blob": "44d889cce3e7fdcabf1fb4903a6f700391171344"
+  },
+  {
+    "path": "retained/parent65-result.json",
+    "git_blob": "45208884d238e6c335a365598e0aa4fb184ef44b"
+  },
+  {
+    "path": "retained/result-before-reused-call-control.json",
+    "git_blob": "9b13b4ef20fc400bb548537ee914ac7cb0e4dab9"
+  },
+  {
+    "path": "retained/selected-sbn-functions.py",
+    "git_blob": "a2808c68c3b0fc327600c643d2a0b999887e519f"
+  },
+  {
+    "path": "reuse-call-control.py",
+    "git_blob": "3e791d121d48d7dab878327f0c66b88fc1363c2d"
+  }
+]

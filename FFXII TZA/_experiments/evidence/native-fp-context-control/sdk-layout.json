@@ -1,0 +1,22 @@
+{
+  "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winnt.h",
+  "sha256": "bc603675b330e624fd6f3de9ed3497ed6101e4c56e12cf819a9ef7c41f1c78d8",
+  "read_utc": "2026-09-21T11:32:59.040365+00:00",
+  "ranges": [
+    {
+      "first": 2703,
+      "last": 2731,
+      "text": "typedef struct DECLSPEC_ALIGN(16) _XSAVE_FORMAT {\n    WORD   ControlWord;\n    WORD   StatusWord;\n    BYTE  TagWord;\n    BYTE  Reserved1;\n    WORD   ErrorOpcode;\n    DWORD ErrorOffset;\n    WORD   ErrorSelector;\n    WORD   Reserved2;\n    DWORD DataOffset;\n    WORD   DataSelector;\n    WORD   Reserved3;\n    DWORD MxCsr;\n    DWORD MxCsr_Mask;\n    M128A FloatRegisters[8];\n\n#if defined(_WIN64)\n\n    M128A XmmRegisters[16];\n    BYTE  Reserved4[96];\n\n#else\n\n    M128A XmmRegisters[8];\n    BYTE  Reserved4[224];\n\n#endif\n\n} XSAVE_FORMAT, *PXSAVE_FORMAT;"
+    },
+    {
+      "first": 4267,
+      "last": 4267,
+      "text": "typedef XSAVE_FORMAT XMM_SAVE_AREA32, *PXMM_SAVE_AREA32;"
+    },
+    {
+      "first": 4280,
+      "last": 4301,
+      "text": "// The flags field within this record controls the contents of a CONTEXT\n// record.\n//\n// If the context record is used as an input parameter, then for each\n// portion of the context record controlled by a flag whose value is\n// set, it is assumed that that portion of the context record contains\n// valid context. If the context record is being used to modify a threads\n// context, then only that portion of the threads context is modified.\n//\n// If the context record is used as an output parameter to capture the\n// context of a thread, then only those portions of the thread's context\n// corresponding to set flags will be returned.\n//\n// CONTEXT_CONTROL specifies SegSs, Rsp, SegCs, Rip, and EFlags.\n//\n// CONTEXT_INTEGER specifies Rax, Rcx, Rdx, Rbx, Rbp, Rsi, Rdi, and R8-R15.\n//\n// CONTEXT_SEGMENTS specifies SegDs, SegEs, SegFs, and SegGs.\n//\n// CONTEXT_FLOATING_POINT specifies Xmm0-Xmm15.\n//\n// CONTEXT_DEBUG_REGISTERS specifies Dr0-Dr3 and Dr6-Dr7."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "commit": "2e88eceef18adbf17d31f8bd1fc61ae1f8e96b80",
+  "review": "Database/FFXII TZA/_index/candidates/auditspec-review-astra-title-tracker-callback-0930/REVIEW.md",
+  "review_sha256": "6eef42c0a405be169897b911fcf67e241d4f1f0542cc0f2e07bc2b8f4f644daf",
+  "verdict": "Original shipping science independently ACCEPTED; old producer accepts unwitnessed rehashed fast CALL",
+  "reviewer_assertions": "100 external assertions, NOT our tests",
+  "old_packet_commit": "7d81d759e4b8d90ab5af058d4b360b78c1f572b1"
+}

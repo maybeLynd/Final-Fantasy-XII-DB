@@ -1,0 +1,41 @@
+003A9F90  or        byte ptr [rax], al
+003A9F92  mov       rdx, rdi
+003A9F95  mov       rcx, rbx
+003A9F98  call      0x436d00
+003A9F9D  jmp       0x3aa10e
+003A9FA2  mov       ecx, 0x1d0
+003A9FA7  call      0x36a100
+003A9FAC  lea       rdx, [rsp + 0x30]
+003A9FB1  mov       rcx, rax
+003A9FB4  mov       rbx, rax
+003A9FB7  call      0x500b70
+003A9FBC  mov       rdx, rdi
+003A9FBF  mov       rcx, rbx
+003A9FC2  call      0x500c00
+003A9FC7  jmp       0x3aa10e
+---
+00500990  xchg      esp, eax
+00500991  add       byte ptr [rax], al
+00500993  add       byte ptr [rbp + rcx*4 + 0xd], cl
+00500997  test      cl, 0xff
+0050099B  cdqe      
+0050099D  mov       r8d, dword ptr [r9 + rax*4 + 0x3e0a30]
+005009A5  add       r8, r9
+005009A8  jmp       r8
+005009AB  call      0x436d00
+005009B0  mov       rdx, rax
+005009B3  add       rsp, 0x28
+005009B7  ret       
+005009B8  call      0x500c00
+005009BD  mov       rdx, rax
+---
+00500880  retf      
+00500881  call      0x4355c0
+00500886  mov       rcx, rbx
+00500889  add       rsp, 0x20
+0050088D  pop       rbx
+0050088E  jmp       0x3697f0
+00500893  mov       rcx, rbx
+00500896  call      0x500bf0
+0050089B  mov       rcx, rbx
+---

@@ -1,0 +1,196 @@
+file	line	site	kind_before	kind_after	class	instruction
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	70	00184EA0	r	w	r->w	movups xmmword ptr [rcx + 0x30], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	74	00184EAB	r	w	r->w	movups xmmword ptr [rcx + 0x40], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	77	00184EB6	r	w	r->w	movups xmmword ptr [rcx + 0x50], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	81	00184EC1	r	w	r->w	movups xmmword ptr [rcx + 0x60], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	85	00184ECC	r	w	r->w	movups xmmword ptr [rcx + 0x70], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	86	00184ED7	r	w	r->w	movups xmmword ptr [rcx + 0x80], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	87	00184EE5	r	w	r->w	movups xmmword ptr [rcx + 0x90], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Application-Root/boot-singleton-01f7f598-accesses.tsv	88	00184EF3	r	w	r->w	movups xmmword ptr [rcx + 0xa0], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	16	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	476	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	484	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	488	00202B59	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	590	00202B86	r	w	r->w	movups xmmword ptr [rbx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	592	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	613	00202B86	r	w	r->w	movups xmmword ptr [rbx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	614	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	966	002BF459	r	w	r->w	movups xmmword ptr [rsi], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	968	002BF459	r	w	r->w	movups xmmword ptr [rsi], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	971	002BF459	r	w	r->w	movups xmmword ptr [rsi], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	976	002BE162	r	w	r->w	movups xmmword ptr [rbx + 0x10d0], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-singleton-0209be80-accesses.tsv	977	002BE16F	r	w	r->w	movups xmmword ptr [rbx + 0x10e0], xmm1
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-00a0-accesses.tsv	10	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-57e0-accesses.tsv	360	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-57e0-accesses.tsv	368	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-57e0-accesses.tsv	372	00202B59	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-7ea0-accesses.tsv	2	00202B86	r	w	r->w	movups xmmword ptr [rbx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-7ea0-accesses.tsv	4	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-7ea0-accesses.tsv	25	00202B86	r	w	r->w	movups xmmword ptr [rbx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-7ea0-accesses.tsv	26	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-8fa0-accesses.tsv	164	002BF459	r	w	r->w	movups xmmword ptr [rsi], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-8fa0-accesses.tsv	166	002BF459	r	w	r->w	movups xmmword ptr [rsi], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-8fa0-accesses.tsv	169	002BF459	r	w	r->w	movups xmmword ptr [rsi], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-8fa0-accesses.tsv	174	002BE162	r	w	r->w	movups xmmword ptr [rbx + 0x10d0], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-0209be80-8fa0-accesses.tsv	175	002BE16F	r	w	r->w	movups xmmword ptr [rbx + 0x10e0], xmm1
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-57e0-array-record-accesses.tsv	3	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-57e0-array-record-accesses.tsv	11	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/00-Engine-Core-Runtime/Per-Frame-Update-Gate/manager-sub-57e0-array-record-accesses.tsv	15	00202B59	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/01-Script-VM-Native-Bridge/Party-Presentation-Verbs/party-read-machine-record-accesses.tsv	13	0037C286	r	addr	r->addr	lea rcx, [rip + 0x2b43143]
+FFXII TZA/01-Script-VM-Native-Bridge/Party-Presentation-Verbs/party-read-machine-record-accesses.tsv	19	0037C337	w	rw	w->rw	inc byte ptr [rip + 0x2b430a0]
+FFXII TZA/01-Script-VM-Native-Bridge/Party-Presentation-Verbs/party-read-machine-record-second-instance-accesses.tsv	17	0037C80A	r	addr	r->addr	lea rcx, [rip + 0x2b42bdf]
+FFXII TZA/01-Script-VM-Native-Bridge/Party-Presentation-Verbs/party-read-machine-record-second-instance-accesses.tsv	19	0037C82B	w	rw	w->rw	add byte ptr [rip + 0x2b42bcd], al
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	9	0025B52C	w	r	w->r	test byte ptr [rip + 0x1e3d8ed], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	10	0025B53A	w	r	w->r	test byte ptr [rip + 0x1e3db67], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	11	0025B549	w	r	w->r	test byte ptr [rip + 0x1e3dde0], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	12	0025D3D1	w	r	w->r	test byte ptr [rip + 0x1e3ba48], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	13	0025D3E0	w	r	w->r	test byte ptr [rip + 0x1e3bcc1], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	14	0025D3F0	w	r	w->r	test byte ptr [rip + 0x1e3bf39], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	19	002630BE	w	r	w->r	test byte ptr [rip + 0x1e35d5b], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	20	002630CC	w	r	w->r	test byte ptr [rip + 0x1e35fd5], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	21	002630DB	w	r	w->r	test byte ptr [rip + 0x1e3624e], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	22	002633CE	w	r	w->r	test byte ptr [rip + 0x1e35a4b], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	23	002633E1	w	r	w->r	test byte ptr [rip + 0x1e35cc0], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	24	002633F0	w	r	w->r	test byte ptr [rip + 0x1e35f39], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	25	00263588	w	r	w->r	test byte ptr [rip + 0x1e35891], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	27	00264648	w	r	w->r	test byte ptr [rip + 0x1e347d1], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	28	00264770	w	r	w->r	test byte ptr [rip + 0x1e346a9], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	29	00264790	w	r	w->r	test byte ptr [rip + 0x1e34689], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	30	00264805	w	r	w->r	test byte ptr [rip + 0x1e34614], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	31	00264876	w	r	w->r	test byte ptr [rip + 0x1e345a3], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	32	00264AE6	w	r	w->r	test byte ptr [rip + 0x1e34333], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	33	00264D25	w	r	w->r	test byte ptr [rip + 0x1e340f4], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	34	00265270	w	r	w->r	test byte ptr [rip + 0x1e33ba9], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	36	002658CB	w	r	w->r	test byte ptr [rip + 0x1e3354e], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	42	0026ABA8	w	r	w->r	test byte ptr [rip + 0x1e2e271], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	43	0026AD15	w	r	w->r	test byte ptr [rip + 0x1e2e104], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	44	0026ADC5	w	r	w->r	test byte ptr [rip + 0x1e2e054], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	45	0026B730	w	r	w->r	test byte ptr [rip + 0x1e2d6e9], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	48	0026D314	w	r	w->r	test byte ptr [rip + 0x1e2bb05], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	49	0026D322	w	r	w->r	test byte ptr [rip + 0x1e2bd7f], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	50	0026D331	w	r	w->r	test byte ptr [rip + 0x1e2bff8], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	51	0026E07E	w	r	w->r	test byte ptr [rip + 0x1e2ad9b], 1
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	59	0025D5D0	w	rw	w->rw	and byte ptr [rip + 0x1e3b850], 0x7f
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	60	00262E60	w	r	w->r	test byte ptr [rip + 0x1e35fc0], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	61	00262E72	w	r	w->r	test byte ptr [rip + 0x1e36236], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	62	00262E7F	w	r	w->r	test byte ptr [rip + 0x1e364b1], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	63	00262E8C	w	r	w->r	test byte ptr [rip + 0x1e3672c], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	64	00262E99	w	r	w->r	test byte ptr [rip + 0x1e369a7], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	65	0026701D	w	r	w->r	test byte ptr [rip + 0x1e31e03], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	66	00267036	w	r	w->r	test byte ptr [rip + 0x1e32072], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	67	00267043	w	r	w->r	test byte ptr [rip + 0x1e322ed], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	68	00267050	w	r	w->r	test byte ptr [rip + 0x1e32568], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	69	0026705D	w	r	w->r	test byte ptr [rip + 0x1e327e3], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	70	0026A2C9	w	r	w->r	test byte ptr [rip + 0x1e2eb57], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	71	0026A2D3	w	r	w->r	test byte ptr [rip + 0x1e2edd5], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	72	0026A2DD	w	r	w->r	test byte ptr [rip + 0x1e2f053], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	73	0026A2EA	w	r	w->r	test byte ptr [rip + 0x1e2f2ce], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	74	0026A2F7	w	r	w->r	test byte ptr [rip + 0x1e2f549], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	75	0026CCD7	w	r	w->r	test byte ptr [rip + 0x1e2c149], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	76	0026CCE2	w	r	w->r	test byte ptr [rip + 0x1e2c3c6], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	77	0026CCF0	w	r	w->r	test byte ptr [rip + 0x1e2c640], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	78	0026CCFE	w	r	w->r	test byte ptr [rip + 0x1e2c8ba], 8
+FFXII TZA/04-Actor-Entity/Actor-Manager-Record/actor-manager-record-rip-accesses.tsv	79	0026CD0C	w	r	w->r	test byte ptr [rip + 0x1e2cb34], 8
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	127	003880F0	w	rw	w->rw	add dword ptr [rip + 0x2765efa], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	128	00388148	w	rw	w->rw	add dword ptr [rip + 0x2765ea2], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	129	003881A0	w	rw	w->rw	add dword ptr [rip + 0x2765e4a], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	130	003881ED	w	rw	w->rw	add dword ptr [rip + 0x2765dfd], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	230	00389435	w	rw	w->rw	add dword ptr [rip + 0x2764bb5], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	231	0038948D	w	rw	w->rw	add dword ptr [rip + 0x2764b5d], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	232	003894E5	w	rw	w->rw	add dword ptr [rip + 0x2764b05], eax
+FFXII TZA/08-Combat-Formula/Battle-Formula-Scratch/battle-formula-scratch-accesses.tsv	233	00389532	w	rw	w->rw	add dword ptr [rip + 0x2764ab8], eax
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	2	0030B6C0	w	r	w->r	cmp qword ptr [r8], r11
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	5	0030FC47	w	r	w->r	cmp dword ptr [rip + 0x1bdc083], ebx
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	7	0030FC90	w	r	w->r	cmp dword ptr [rip + 0x1bdc092], ebx
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	9	0030B6CF	w	r	w->r	cmp qword ptr [r8 + 0x18], r11
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	12	0030B6E0	w	r	w->r	cmp qword ptr [r8 + 0x28], r11
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	24	0030DD7E	w	r	w->r	cmp dword ptr [rip + 0x1bddf78], ebx
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	36	0030FAAD	w	r	w->r	cmp dword ptr [rip + 0x1bdc249], ebx
+FFXII TZA/12-Items-Equipment-Shops-License/item-class-descriptor-accesses.tsv	38	0030FB04	w	r	w->r	cmp dword ptr [rip + 0x1bdc24a], ebx
+FFXII TZA/13-Rewards-Progression-Economy/world-loot-pickup-node-accesses.tsv	22	00319CC5	w	r	w->r	cmp dword ptr [rbx + 4], ebp
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	53	00277101	r	w	r->w	movups xmmword ptr [rdi + 0xc0], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	60	0027710C	r	w	r->w	movups xmmword ptr [rdi + 0xd0], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	65	00277117	r	w	r->w	movups xmmword ptr [rdi + 0xe0], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	68	00277122	r	w	r->w	movups xmmword ptr [rdi + 0xf0], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	70	002771B7	r	w	r->w	movups xmmword ptr [rdi + 0x100], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	72	002773CE	r	w	r->w	movups xmmword ptr [rbx], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	73	00277505	r	w	r->w	movups xmmword ptr [rdi + 0x100], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	85	002771C2	r	w	r->w	movups xmmword ptr [rdi + 0x110], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	86	002773D5	r	w	r->w	movups xmmword ptr [rbx + 0x10], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	88	00277510	r	w	r->w	movups xmmword ptr [rdi + 0x110], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	96	002771CD	r	w	r->w	movups xmmword ptr [rdi + 0x120], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	97	002773DD	r	w	r->w	movups xmmword ptr [rbx + 0x20], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	99	0027751B	r	w	r->w	movups xmmword ptr [rdi + 0x120], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	102	002771D8	r	w	r->w	movups xmmword ptr [rdi + 0x130], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	103	002773E5	r	w	r->w	movups xmmword ptr [rbx + 0x30], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	104	00277526	r	w	r->w	movups xmmword ptr [rdi + 0x130], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	107	002771F3	r	w	r->w	movups xmmword ptr [rdi + 0x140], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	115	002771FE	r	w	r->w	movups xmmword ptr [rdi + 0x150], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	120	00277209	r	w	r->w	movups xmmword ptr [rdi + 0x160], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	123	00277214	r	w	r->w	movups xmmword ptr [rdi + 0x170], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	125	00277230	r	w	r->w	movups xmmword ptr [rdi + 0x180], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	133	0027723B	r	w	r->w	movups xmmword ptr [rdi + 0x190], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	138	00277246	r	w	r->w	movups xmmword ptr [rdi + 0x1a0], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	141	00277251	r	w	r->w	movups xmmword ptr [rdi + 0x1b0], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	143	0027713D	r	w	r->w	movups xmmword ptr [rdi + 0x1c0], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	161	00277148	r	w	r->w	movups xmmword ptr [rdi + 0x1d0], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	170	00277153	r	w	r->w	movups xmmword ptr [rdi + 0x1e0], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	186	0027716F	r	w	r->w	movups xmmword ptr [rdi + 0x1f0], xmm0
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	189	0027717A	r	w	r->w	movups xmmword ptr [rdi + 0x200], xmm1
+FFXII TZA/16-UI/battle-menu-panel-widget-3010-accesses.tsv	190	00277185	r	w	r->w	movups xmmword ptr [rdi + 0x210], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	138	001F4F23	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	140	001F4F2A	r	w	r->w	movups xmmword ptr [rcx + 0x10], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	141	001F4F32	r	w	r->w	movups xmmword ptr [rcx + 0x20], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	142	001F4F3A	r	w	r->w	movups xmmword ptr [rcx + 0x30], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	143	001F4F42	r	w	r->w	movups xmmword ptr [rcx + 0x40], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	144	001F4F4A	r	w	r->w	movups xmmword ptr [rcx + 0x50], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	145	001F4F52	r	w	r->w	movups xmmword ptr [rcx + 0x60], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	146	001F4F61	r	w	r->w	movups xmmword ptr [rcx - 0x10], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	301	001FB26D	r	w	r->w	movups xmmword ptr [rbx + 0x4c4], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	302	001FB278	r	w	r->w	movups xmmword ptr [rbx + 0x4d4], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	303	001FB283	r	w	r->w	movups xmmword ptr [rbx + 0x4e4], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	304	001FB296	r	w	r->w	movups xmmword ptr [rbx + 0x4f4], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	305	001FB2A0	r	w	r->w	movups xmmword ptr [rbx + 0x504], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	306	001FB2AB	r	w	r->w	movups xmmword ptr [rbx + 0x514], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	307	001FB2B6	r	w	r->w	movups xmmword ptr [rbx + 0x524], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	308	001FB2C9	r	w	r->w	movups xmmword ptr [rbx + 0x534], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	309	001FB2D3	r	w	r->w	movups xmmword ptr [rbx + 0x544], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	310	001FB2DE	r	w	r->w	movups xmmword ptr [rbx + 0x554], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	311	001FB2E9	r	w	r->w	movups xmmword ptr [rbx + 0x564], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	312	001FB2F4	r	w	r->w	movups xmmword ptr [rbx + 0x574], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	313	001FB1CD	r	w	r->w	movups xmmword ptr [rbx + 0x584], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	314	001FB1D8	r	w	r->w	movups xmmword ptr [rbx + 0x594], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	315	001FB1E3	r	w	r->w	movups xmmword ptr [rbx + 0x5a4], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	316	001FB1F6	r	w	r->w	movups xmmword ptr [rbx + 0x5b4], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	317	001FB200	r	w	r->w	movups xmmword ptr [rbx + 0x5c4], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	318	001FB20B	r	w	r->w	movups xmmword ptr [rbx + 0x5d4], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	319	001FB216	r	w	r->w	movups xmmword ptr [rbx + 0x5e4], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	320	001FB229	r	w	r->w	movups xmmword ptr [rbx + 0x5f4], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	321	001FB233	r	w	r->w	movups xmmword ptr [rbx + 0x604], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	322	001FB23E	r	w	r->w	movups xmmword ptr [rbx + 0x614], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	323	001FB249	r	w	r->w	movups xmmword ptr [rbx + 0x624], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	324	001FB254	r	w	r->w	movups xmmword ptr [rbx + 0x634], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	325	001F9B12	r	w	r->w	movups xmmword ptr [rbx + 0x644], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/character-render-object-accesses.tsv	326	001F9B05	r	w	r->w	movups xmmword ptr [rbx + 0x654], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	26	00202C73	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	30	00202C7A	r	w	r->w	movups xmmword ptr [rcx + 0x10], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	31	00202C82	r	w	r->w	movups xmmword ptr [rcx + 0x20], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	32	00202C8A	r	w	r->w	movups xmmword ptr [rcx + 0x30], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	33	0042CDC6	r	w	r->w	movups xmmword ptr [rbp + 0x90], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	34	0042CDE9	r	w	r->w	movups xmmword ptr [rbp + 0x90], xmm0
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	35	0042D0EC	r	w	r->w	movups xmmword ptr [rax + 0x90], xmm1
+FFXII TZA/17-Presentation-Rendering/Character-Rendering/render-model-instance-accesses.tsv	68	00202C93	r	w	r->w	movups xmmword ptr [rcx], xmm0
+FFXII TZA/20-Platform-Online-Achievements/image-backed-state-block-accesses.tsv	20	002534AA	w	rw	w->rw	and byte ptr [rax + 0x3244], 1
+FFXII TZA/20-Platform-Online-Achievements/image-backed-state-block-accesses.tsv	21	00253B1C	w	rw	w->rw	and byte ptr [rax + 0x3244], 1
+FFXII TZA/20-Platform-Online-Achievements/image-backed-state-block-accesses.tsv	23	002534B1	w	rw	w->rw	and byte ptr [rax + 0x3245], 0xfe
+FFXII TZA/20-Platform-Online-Achievements/image-backed-state-block-accesses.tsv	24	00253B23	w	rw	w->rw	and byte ptr [rax + 0x3245], 0xfe
+FFXII TZA/20-Platform-Online-Achievements/image-backed-state-block-accesses.tsv	26	002502D9	w	r	w->r	cmp dword ptr [rdx + r10*4 + 0x47b8], eax
+FFXII TZA/20-Platform-Online-Achievements/image-backed-state-block-accesses.tsv	30	00254D06	w	rw	w->rw	add qword ptr [rbx + 0x47e8], rcx
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	4	00863C40	r	addr	r->addr	lea rcx, [rip + 0x264fc29]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	8	00863CDC	r	addr	r->addr	lea rcx, [rip + 0x264fb8d]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	10	00866BAB	r	addr	r->addr	lea rdx, [rip + 0x264d672]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	11	00866BE1	r	addr	r->addr	lea rax, [rip + 0x264d2bc]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	12	00866C8C	r	addr	r->addr	lea rax, [rip + 0x264cf69]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	13	00866C9C	r	addr	r->addr	lea rdx, [rip + 0x264cbcd]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	14	00866CE2	r	addr	r->addr	lea r8, [rip + 0x264d543]
+FFXII TZA/21-RNG-And-Determinism/mt19937-state-accesses.tsv	22	00866D66	r	addr	r->addr	lea rax, [rip + 0x264cb07]

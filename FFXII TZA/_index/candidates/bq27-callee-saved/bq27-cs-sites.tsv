@@ -1,0 +1,62 @@
+function	site	slot	first_pass	definitions	this_pass	third_argument
+0016DFE0	0016E02A	7	residue-passthrough	arg2	settled	-
+00199320	00199359	7	residue-passthrough	arg2;w64	no-direct-caller	-
+0019C490	0019C4C8	7	residue-passthrough	arg2;w64	no-direct-caller	-
+0020D720	0020D748	7	residue-passthrough	arg2	callers:passthrough	-
+0020DA50	0020DA6A	0	residue-passthrough	arg2	callers:open	-
+0020DA50	0020DA84	0	residue-computed	arg2	three-parameter-method	r8: mov r8, rdi
+0020EB60	0020EBED	0	residue-computed	arg1	other-argument	-
+00212BD0	00212BF9	0	residue-computed	arg2	callers:other-argument	-
+002133D0	00213421	0	residue-computed	opaque	open	-
+002142A0	00214351	0	residue-computed	opaque	open	-
+002143E0	002144F9	0	residue-computed	w64	settled	-
+00215440	002156E2	0	residue-computed	opaque	open	-
+00218920	00218930	7	residue-passthrough	arg2	no-direct-caller	-
+0021C3D0	0021C3E0	7	residue-passthrough	arg2	no-direct-caller	-
+0022F830	0022F894	0	residue-computed	opaque	open	-
+005C0180	005C01EB	0	residue-computed	lit0x0;opaque	three-parameter-method	r8: mov r8, rbx
+005C0180	005C0266	0	residue-computed	lit0x0;opaque	three-parameter-method	r8: mov r8, rbx
+00623C10	00623C81	7	residue-computed	lit0x1;opaque	three-parameter-method	r8: lea r8, [rsp + 0x30]
+00623CB0	00623CDD	7	residue-passthrough	arg2	three-parameter-method	r8: lea r8, [rsp + 0x40]
+00623CB0	00623D2F	7	residue-computed	lit0x1;opaque	three-parameter-method	r8: lea r8, [rsp + 0x20]
+006242C0	00624317	7	residue-computed	opaque	open	-
+006242C0	00624367	7	residue-computed	opaque	open	-
+006242C0	006243C0	7	residue-computed	lit0x1;opaque	three-parameter-method	r8: lea r8, [rsp + 0x30]
+006242C0	006243EC	7	residue-computed	opaque	open	-
+00624490	006244D2	7	residue-passthrough	arg2	three-parameter-method	r8: lea r8, [rsp + 0x20]
+00624490	0062450F	7	residue-computed	lit0x0;opaque	three-parameter-method	r8: lea r8, [rsp + 0x28]
+006253D0	00625668	7	residue-computed	opaque	three-parameter-method	r8: lea r8, [rsp + 0x70]
+006253D0	00625777	7	residue-computed	opaque	three-parameter-method	r8: lea r8, [rsp + 0x58]
+00625F30	00625F8F	7	residue-computed	opaque	three-parameter-method	r8: lea r8, [rsp + 0x38]
+00629690	006296FF	7	residue-computed	opaque	open	-
+0068EB70	0068EB77	0	residue-passthrough	arg2	no-direct-caller	-
+00691AB0	00691B06	0	residue-computed	opaque	open	-
+006A0540	006A0565	0	residue-passthrough	arg2	no-direct-caller	-
+006A0600	006A0622	0	residue-passthrough	arg2	no-direct-caller	-
+006A0680	006A08EB	0	residue-passthrough	arg2	no-direct-caller	-
+006A0980	006A09A5	0	residue-passthrough	arg2	no-direct-caller	-
+006DA470	006DA4C7	0	residue-passthrough	arg2	callers:passthrough	-
+006DA5A0	006DA5FB	0	residue-passthrough	arg2	callers:passthrough	-
+00720320	00720ADF	0	residue-computed	opaque	open	-
+007215C0	0072192E	0	residue-computed	lit0x0;opaque	open	-
+00724A60	00724A8D	0	residue-passthrough	arg2	no-direct-caller	-
+00724AB0	00724AD5	0	residue-passthrough	arg2	no-direct-caller	-
+00724AF0	00724B0D	0	residue-passthrough	arg2	no-direct-caller	-
+00724B20	00724B45	0	residue-passthrough	arg2	no-direct-caller	-
+00724BC0	00724BED	0	residue-passthrough	arg2	no-direct-caller	-
+00785080	007850A2	0	residue-passthrough	arg2	settled	-
+007871F0	0078721C	0	residue-passthrough	arg2	no-direct-caller	-
+00789320	0078932C	7	residue-passthrough	arg2	no-direct-caller	-
+00797F60	00797FB5	7	residue-passthrough	arg2	no-direct-caller	-
+007C1100	007C114D	0	residue-computed	lit0x3	settled	-
+007DD9F0	007DDA3A	0	residue-computed	opaque	open	-
+00807E20	00807E50	0	residue-passthrough	arg2	three-parameter-method	r8: mov r8d, 1
+00807F30	00807F61	0	residue-passthrough	arg2	settled	-
+008083D0	00808416	0	residue-passthrough	arg2	settled	-
+008084E0	0080852D	0	residue-passthrough	arg2	settled	-
+00823670	008236A5	0	residue-passthrough	arg2	callers:open,passthrough,settled	-
+00840B10	00840B26	7	residue-passthrough	arg2	no-direct-caller	-
+00848910	00848931	7	residue-passthrough	arg2	three-parameter-method	r8: mov r8, qword ptr [r8 + 0x18]
+00858370	00858386	7	residue-passthrough	arg2	no-direct-caller	-
+0085C3E0	0085C44D	7	residue-passthrough	arg2	no-direct-caller	-
+00863D80	00863DD1	0	residue-computed	opaque	open	-

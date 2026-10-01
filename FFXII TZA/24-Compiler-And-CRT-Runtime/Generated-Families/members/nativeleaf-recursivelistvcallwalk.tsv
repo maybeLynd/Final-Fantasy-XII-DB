@@ -1,0 +1,10 @@
+# NativeLeaf.RecursiveListVcallWalk - EC-7 family C
+# # self-recursive intrusive-list walk; per node vcall [rbp+0x30] slot 3
+# # with r8=0x28, then recurse on [rbx]. The self-call is internal;
+# # no external targets.
+address	targets
+001A48C0	
+001AF2B0	
+001BA760	
+001FDA60	
+00220390	

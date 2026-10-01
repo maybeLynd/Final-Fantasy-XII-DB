@@ -1,0 +1,5 @@
+PASS D1  11 more readers read only in a message-10 arm: ['0023B6F0', '0023C5C0', '0023D6B0', '0023DB40', '0027EA70', '002C59D0', '003C8B70', '003EF050', '003F4330', '00572600', '005789D0']
+PASS D2  message-2 readers ['0027AA70', '005519E0'] NOT placed: the reconcile sender 00248030 is also called by 002284F0, not a frame position (callers ['002284F0', '00250540', '002506D0', '00250730', '002507C0', '002508E0'])
+PASS C1  control: the extended decoder agrees with the first on its 16 message-10 readers
+PASS C2  control: the chain decode of 0023B6F0 matches its head (1, 4, 10, 12 by sub/je; 13 by cmp/jne fall-through)
+FAILS 0

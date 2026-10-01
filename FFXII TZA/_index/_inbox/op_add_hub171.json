@@ -1,0 +1,20 @@
+{
+ "action": "add",
+ "task": {
+  "id": "SWE2-EC7-SHARED-HUB-IDENTIFICATION-171",
+  "kind": "research",
+  "priority": "P3",
+  "requester": "SWE2-EC7",
+  "assigned_to": "SWE2-EC7",
+  "target": "Batch 171 shared-hub/native frontier: 6 multi-caller (00290230,004041D0,003D8DE0,003D8D70,003A3E20,0028E240) + top-16 1-A frontier bodies by size (0039D6C0..002C5660); decode from shipping bytes, route to bearing hosts, append evidence with interior anchors, run all gates.",
+  "scope": "22 native bodies from frontier recompute (frontier 5,800)",
+  "completion": "all 22 bodies documented with interior anchors; gates clean; lifecycle complete",
+  "dependencies": [],
+  "resources": [
+   {
+    "key": "@publication",
+    "note": "needed only for publish stage"
+   }
+  ]
+ }
+}

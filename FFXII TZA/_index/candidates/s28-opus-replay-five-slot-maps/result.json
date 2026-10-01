@@ -1,0 +1,159 @@
+{
+ "ok": true,
+ "bound": [
+  "02EBF018 <- +C",
+  "02EBF0B8 <- +10",
+  "02EBF0A8 <- +14",
+  "02EBF0B0 <- +18",
+  "02EBF0C0 <- +1C",
+  "02EBF0E0 <- +24",
+  "02EBF108 <- +28",
+  "02EBF160 <- +2C",
+  "02EBF110 <- +30",
+  "02EBF038 <- +34",
+  "238160(+38)",
+  "02EBF138 <- +3C (00237FC0's first call)",
+  "3847B0(+40)",
+  "02EBF130 <- +44",
+  "02EBF128 <- +48",
+  "02EBF100 <- +4C",
+  "02EBF0C8 <- +6C",
+  "02EBF020 <- +70",
+  "02EBF060 <- +74",
+  "02EBF0F0 <- +78",
+  "02EBF0E8 <- +7C",
+  "02EBF0A0 <- +80",
+  "02EBF098 <- +84",
+  "02EBF090 <- +88",
+  "02EBF088 <- +8C",
+  "02EBF080 <- +90",
+  "02EBF078 <- +94",
+  "02EBF070 <- +98",
+  "02EBF068 <- +9C",
+  "238660(+A0)",
+  "02EBF050 <- +A8",
+  "02EBF048 <- +AC",
+  "02EBF058 <- +E8",
+  "02EBF040 <- +EC",
+  "02EBF030 <- +F4",
+  "02EBF028 <- +F0",
+  "02EBF170 <- +F8",
+  "02EBF010 <- +114",
+  "02EBF008 <- +118"
+ ],
+ "allowed_functions": 4262,
+ "results": {
+  "SM4_SM8_born_identical": {
+   "pass_": true,
+   "source_table": "00ffffffffffffffff",
+   "cases": {
+    "zeroed maps": {
+     "map0": [
+      "0000",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF",
+      "FFFF"
+     ],
+     "maps_1_4_equal_map0": true,
+     "word_5AA4": 0
+    },
+    "stale selectors 5A5A": {
+     "map0": [
+      "0000",
+      "5A5A",
+      "5A5A",
+      "5A5A",
+      "5A5A",
+      "5A5A",
+      "5A5A",
+      "5A5A",
+      "5A5A"
+     ],
+     "maps_1_4_equal_map0": true,
+     "word_5AA4": 0
+    }
+   },
+   "note": "over zeroed maps 00329CC0 writes map 0 from the authored table 01EED260 (0xFF -> FFFF) and copies it into maps 1-4; +0x5AA4 holds the table's first byte. For a 0xFF table entry it writes FFFF only after releasing the member the OLD selector names, and skips the write when that old low byte is above 0x27 - a stale 5A5A survives, and is copied"
+  },
+  "SM5_refresh_order": {
+   "pass_": true,
+   "maps_after": [
+    [
+     "0100",
+     "0101",
+     "0102",
+     "0103",
+     "0104",
+     "0105",
+     "0106",
+     "0107",
+     "0108"
+    ],
+    [
+     "0100",
+     "0101",
+     "0102",
+     "0103",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    [
+     "0100",
+     "0101",
+     "0102",
+     "0103",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ],
+    [
+     "0100",
+     "0101",
+     "0102",
+     "0103",
+     "0104",
+     "0105",
+     "0106",
+     "0107",
+     "0108"
+    ],
+    [
+     "0100",
+     "0101",
+     "0102",
+     "0103",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF",
+     "FFFF"
+    ]
+   ],
+   "fault": null,
+   "note": "map 0 = 0100..0108: afterwards map 3 = map 0 (copied before the clear), map 1 keeps [0..3] and has [4..8] = FFFF, and maps 2 and 4 equal the cleared map 1"
+  },
+  "SM1_SM2_SM3_resolver": {
+   "pass_": true,
+   "results": {
+    "class 0 id 0 (0x1234)": "34",
+    "class 0 id 1 (0xFFFF)": "FF",
+    "class 0 id 2 (0x00AB)": "AB",
+    "class 0 id 8": "06",
+    "class 0 id 9 (past the gate)": "FF",
+    "class 5": "FF",
+    "class 3 id 0": "00"
+   },
+   "note": "the resolver returns the LOW byte of the u16 selector (0x1234 -> 34, empty FFFF -> FF); an id past the class-23 gate (9) and class 5 both return FF through the same epilogue; class 3 reads map 3"
+  }
+ }
+}

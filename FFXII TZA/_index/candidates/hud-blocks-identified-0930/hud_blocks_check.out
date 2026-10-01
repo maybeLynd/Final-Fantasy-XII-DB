@@ -1,0 +1,29 @@
+PASS  A1 gate group 0x0001 runs 00289970(hud + 0x5380): one tick pass per list - 0028A550 on +0x420, 0028A350 on +0x428, 0028A620 on +0x430
+PASS  A2 the draw pass 00289A10 (only from 0028EE10, rcx = hud + 0x5380) draws +0x420 with 0028B140 (twice), +0x428 with 0028AAA0, +0x430 with 0028A790
+PASS  A3 layout keys: 0028B140 reads the eight ExpLp/ExpNum/LpNum/NumEffectLP keys, 0028AAA0 the four NumEffectOffset keys, 0028A790 none
+PASS  A4 pool A's only producer: 00312280 (defeat rewards) -> 0028FB80 -> 00289D00 twice, flag 0 then 1 (the EXP and the LP entry) -> 00289BD0
+PASS  A5 pool B's producer: 00307300 on action 0x96 with the tally +0x6B8 -> 0028E920 -> 00289D70; pool C's: 0030AF30 -> 00290540 -> 00289F50
+PASS  G1 recorder: counts below 2 are dropped; '%2.2d' -> one digit per nibble, capped at 0x12; a repeat below the cap pulls the clock back to 0x80 and zeroes the age; at the cap the old entry is detached (+0xC = 0) and a new one recorded
+PASS  G2 lifetime: clock +0x10 climbs 0x10 / [01DFE0B4] a frame to 0x100, then age +0x12 counts to 60 x [01DFE0B4]; the entry follows its unit (002718E0, eased by 00275490) and is freed when the unit is gone or the age runs out
+PASS  G3 two keyframe tracks {x, y, t, alpha, bright, curve, scale}: 00915F28 slams in (t 0-0x80: scale 2.0 -> 1.0, alpha 0 -> 0x80), 00915F50 is the echo (t 0x80-0x100: scale 1.0 -> 2.0, alpha 0x80 -> 0)
+PASS  G4 0028AAA0: fades over the last quarter of the age; draws a label sprite ([0209AC30]+0x338) and one or two digits ([0209AC30]+0x360); at the cap: digit group 1, keys mNumEffectOffsetX1 / NumEffectOffsetY1, 120 % and a sine pulse; below it: group 2, X2 / Y2, 100 / 110 %
+PASS  C1 image-wide: only 0028EF00 / 0028EF50 / 0028EF70 / 0028F0C0 touch the request word hud+0x7C7C (= _57E0 +0x249C) and +0x7C82 (+0x24A2); only 003F9F40 reads them block-relative
+PASS  C2 the requesters: EnemyChain_UpdateOnDefeat 00317ED0 (-> 0028EF00 / 0028EF70) and EnemyChain_TryAdvanceRank 003183D0 (-> 0028EF50), handing the chain count 022C315C and the chain rank 022C3158
+PASS  C3 0028F0C0(count): a live count is stored at +0x2498; count 0 releases all three widgets (+0x000, +0xD0, +0x1A0) - the chain broke
+PASS  C4 003F9F40: the rank advance (bit 2, 0028EF50) builds the 003FACF0 widget at +0xD0; the count is drawn in fontcolor.bin colour 0xBF-0xC2 by rank
+PASS  K1 gate group 0x0040: when +0x984 bit 0 is set, 003F7E80 builds a 0x110-byte strip widget (procedure 003F8250) bound to the block's +0x220
+PASS  K2 003F8250: a 180 x 80 strip 92 px above the screen bottom, under root 6; 003F8790 keeps one row per non-zero entry of the block's four-entry queue +0x960 (bound +0x740)
+PASS  K3 003F8640: each row is a 0xE8-byte widget (003F8510), 180 x 18, holding two texts from the 00D11D50 pair table: a label id and 0x4662 + a button-template index
+PASS  K4 the texts: group 5 -> loader 1 = key_signal.bin (its size in all nine locales' FSTs; the US size twin listhelp_gambit.bin fails in the others), group 18 -> loader 55 = menu_command_template.bin; row 11 is ' Shuffle', and the rows the modes queue (1-4, 6) ship empty in US and '(Unused' in German
+PASS  K5 00290450(mode) -> 003F80E0(hud + 0xA0D0, mode) copies the mode's four row values from 00D11D80 into +0x960
+PASS  K6 the requesters: request 24's widget procedure 0035D6B0 (party incapacitated) and request 3's route 0035D980 (leader selection) ask for mode 2; 0035C630 / 0035D8D0 / 0035DA80 for mode 1; 002D5EB0 for mode 5 through the thunk 0035D060
+PASS  K7 LIMIT, measured: no integer instruction outside 003F7E80 / 003F80D0 addresses +0x984 (or hud + 0xAA54; the other +0x984 users are float loads / stores on other objects), so the build flag's first setter is not a displacement write
+PASS  S1 00291750 clears the block (0028CA30: 0x80 bytes via 00861EC0); gate group 0x0800 tail-jumps 0028C870 on it
+PASS  S2 the draw: 0028EAB0 -> 0028C970(hud + 0x7EA0) -> 0028D8A0 per lane (+0x30, +0x50) -> 0028D460, the reader of m2DSideCursorCenterX / m2DSideCursorCenterY
+PASS  S3 the requester: the target-info family - 002BF0E0 (from the pane's open path 002BE300) arms it on an actor through 00290370; 00290990, which the pane router 002BE1A0 calls, clears it
+PASS  S4 ManagerSub7EA0Entry: one lane, re-armed alternately (+0x74 bit 1): live flag +0x14 bit 0, actor id +0x18, level +0x12 = 0x80, position +0x00 from the actor (002E7F70)
+PASS  N1 003F8D20 (from 00253780 through 0028FB40) loads the texture named by [01E0C208] = 'partytop_8_c' into +0x52B8
+PASS  N2 003F8EC0 follows the focus actor 022C806C and runs 003F9720 twice; 003F9390 fills up to 64 sprites parent + 0x20 + (i << 8) on the partytop_8_c texture (ManagerSub00A0Entry)
+PASS  N3 003F9720 labels each group with MapName_GetAreaNameById (planmapname.bin) when the field's bit 14 or the link's flag allows, else text 1004 = '???' (menu_command.bin row 4)
+PASS  N4 the draw 003F8C70 (from 0028EAB0) queues the +0x52C0 sprites through 003F1290 and the labels whose +0x23C bits 0-1 are set through 003F14D0
+FAILS 0

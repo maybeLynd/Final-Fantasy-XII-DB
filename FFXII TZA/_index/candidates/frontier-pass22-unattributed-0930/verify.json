@@ -1,0 +1,1287 @@
+{
+ "02-Resource-And-Asset-Pipeline/authored-data-table-registry.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T3 CoreRuntimeScheduling text matches neither enumeration: HAVE '- **CoreRuntimeScheduling - CLIENT and SERVICE (17 edges).** 12 inbound (CoreRuntimeScheduling bodies `0022B7E0`, `0022A0B0`, `0022A580` call page-cited `00324510`, `00184960`, `0032E520`); 5 outbound (page-cited `00184960`, `00233C10`, `0046AB10` call CoreRuntimeScheduling bodies `001EDE70`, `001EDEF0`, `00229EA0`).' WANT(audit) '- **CoreRuntimeScheduling - CLIENT and SERVICE (17 edges).** `00184960`, `001A9930`, `00214C30`, `0022B7E0` (+4 more) are called by bodies filed to CoreRuntimeScheduling: `0017D6E0`, `0022A0B0`, `0022A580`, `0022A770` (+4 more); `00184960`, `00233C10`, `0046AB10` reach bodies filed to CoreRuntimeScheduling: `001EDE70`, `001EDEF0`, `00229EA0`, `00229ED0` (+1 more) - shared machinery across the layer boundary, no shared ownership.'",
+   "T6 17 added/removed line(s) are not template bullets: ['+- **ActorEntity \u2014 CLIENT and SERVICE (53 edges).** 24 inbound (ActorEntity bodies `BattleUnit_ApplyUnitDefinition` (0023A570), `0037B4D0`, `ActorResource_BeginPrimaryPayloadLoad` (00330310) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `0032E400`, `BattleUnit_ApplyUnitDefinition` (0023A570)); 29 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleMenu_BuildCommandEntryList` (0031EB20), `0037B4D0` call ActorEntity bodies `BattleUnit_GetBySlotIndex` (00236820), `BattleUnit_GetSlotCount` (00236850), `Actor_GetWorldPosition` (00265020)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) is called by `ActorSystem_InitializeManagerRuntime` (0026CE60); `00238260` is called by `BattleStorage_InitializeWorkArrays` (002368D0); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleUnit_TeardownAndDespawn` (00300E40); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleGroup_RefreshFourActorDefinitions` (003266C0); the remaining edges run through shared helpers the page cites.', '+- **CombatAI \u2014 CLIENT and SERVICE (43 edges).** 28 inbound (CombatAI bodies `AiOrder_EvaluateTargetSelector` (00301AD0), `AiOrder_EvaluateAndResolveActionTarget` (003014C0), `BattleTarget_ComputeSurfaceDistanceBetweenUnits` (0031E6F0) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `BattleUnit_GetNavigationClearanceRadius` (0030A130), `BattleUnit_BuildFilteredFourSlotUnitBuffer` (0030A880)); 15 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleStats_InitializeDefinitionRecord` (0023AC80), `00233C10` call CombatAI bodies `GambitRuntime_RebuildAllOrderSets` (00327F80), `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880), `GambitRuntime_RebuildOrderSetForStatsRecord` (00327DE0)). Substantive edges include `00233C10` calls `GambitRuntime_RebuildAllOrderSets` (00327F80); `00236C30` calls `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `GambitRuntime_RebuildOrderSetForStatsRecord` (00327DE0); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `GambitConfig_InitializeThreeBanksFromBasePairs` (00326030); the remaining edges run through shared helpers the page cites.']"
+  ],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 0,
+  "enumeration": {},
+  "head_pairs": 18,
+  "accounted_by_append": [
+   "CoreRuntimeScheduling"
+  ],
+  "residual": [
+   "ActorEntity",
+   "CombatAI",
+   "CombatAction",
+   "CombatFormula",
+   "Items",
+   "Items_Equipment_Shops_License",
+   "Movement",
+   "Party",
+   "RNG_Random_Selection",
+   "Rewards_Progression_Economy",
+   "SaveLoad",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "Spawn_Encounter_Lifecycle",
+   "Status_Periodic_Terminal",
+   "World",
+   "WorldAreaField"
+  ],
+  "other_lines": [
+   "+- **ActorEntity \u2014 CLIENT and SERVICE (53 edges).** 24 inbound (ActorEntity bodies `BattleUnit_ApplyUnitDefinition` (0023A570), `0037B4D0`, `ActorResource_BeginPrimaryPayloadLoad` (00330310) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `0032E400`, `BattleUnit_ApplyUnitDefinition` (0023A570)); 29 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleMenu_BuildCommandEntryList` (0031EB20), `0037B4D0` call ActorEntity bodies `BattleUnit_GetBySlotIndex` (00236820), `BattleUnit_GetSlotCount` (00236850), `Actor_GetWorldPosition` (00265020)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) is called by `ActorSystem_InitializeManagerRuntime` (0026CE60); `00238260` is called by `BattleStorage_InitializeWorkArrays` (002368D0); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleUnit_TeardownAndDespawn` (00300E40); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleGroup_RefreshFourActorDefinitions` (003266C0); the remaining edges run through shared helpers the page cites.",
+   "+- **CombatAI \u2014 CLIENT and SERVICE (43 edges).** 28 inbound (CombatAI bodies `AiOrder_EvaluateTargetSelector` (00301AD0), `AiOrder_EvaluateAndResolveActionTarget` (003014C0), `BattleTarget_ComputeSurfaceDistanceBetweenUnits` (0031E6F0) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `BattleUnit_GetNavigationClearanceRadius` (0030A130), `BattleUnit_BuildFilteredFourSlotUnitBuffer` (0030A880)); 15 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleStats_InitializeDefinitionRecord` (0023AC80), `00233C10` call CombatAI bodies `GambitRuntime_RebuildAllOrderSets` (00327F80), `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880), `GambitRuntime_RebuildOrderSetForStatsRecord` (00327DE0)). Substantive edges include `00233C10` calls `GambitRuntime_RebuildAllOrderSets` (00327F80); `00236C30` calls `GambitTargetDefinition_BindAndBuildMenuLookup` (00238880); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `GambitRuntime_RebuildOrderSetForStatsRecord` (00327DE0); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `GambitConfig_InitializeThreeBanksFromBasePairs` (00326030); the remaining edges run through shared helpers the page cites.",
+   "+- **CombatAction \u2014 CLIENT and SERVICE (59 edges).** 30 inbound (CombatAction bodies `0030CBE0`, `BattleUnit_AdvanceStandardActionState` (00304850), `00320E10` call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `BattleStats_GetByBattleSlotIndex` (00320A40), `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360)); 29 outbound (page-cited `Battle_ProcessActionTarget` (00307300), `BattleMenu_BuildCommandEntryList` (0031EB20), `AiOrder_EvaluateTargetSelector` (00301AD0) call CombatAction bodies `BattleTarget_HasLow16EligibilitySuppression` (0030B9B0), `BattleUnit_CancelAndResetCurrentAction` (003105D0), `BattleTarget_ClassifyRelationshipClass` (0030AB40)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) calls `00306570`; `BattleSystem_InitializeAreaState` (002342F0) calls `BattleActionSnapshot_ResetPool` (0030E010); `BattleSystem_InitializeAreaState` (002342F0) calls `BattleAction_ResetPendingQueueBanks` (0030FE60); `BattleStorage_InitializeWorkArrays` (002368D0) calls `BattleAction_ResetPresentationSlotPool` (0030CF40); the remaining edges run through shared helpers the page cites.",
+   "+- **CombatFormula \u2014 CLIENT and SERVICE (32 edges).** 9 inbound (CombatFormula bodies `BattleFormula_ApplyTargetResult` (003112F0), `BattleFormula_DispatchPostResultEvents` (00469EC0), `BattleStats_ModifyHPAndProcessLethalState` (00300530) call page-cited `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360), `BattleStats_GetByBattleSlotIndex` (00320A40), `Inventory_ModifyEncodedItemAndUpdateDiscoveryState` (003008A0)); 23 outbound (page-cited `Battle_ProcessActionTarget` (00307300), `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360), `BattleStats_RebuildEffectiveStatsAndAffinityState` (002FEF30) call CombatFormula bodies `BattleStats_FindOwningBattleUnit` (0031B860), `BattleFormula_ApplyTargetResult` (003112F0), `BattleStats_RebuildEffectiveStatsAndAffinityState` (002FEF30)). Substantive edges include `BattleUnit_ApplyUnitDefinition` (0023A570) calls `BattleStats_InitializeDefinitionRecord` (0023AC80); `BattleStats_RebuildEffectiveStatsAndAffinityState` (002FEF30) calls `002F9180`; `BattleStats_RebuildEffectiveStatsAndAffinityState` (002FEF30) calls `002F8E50`; `Inventory_ModifyEncodedItemAndUpdateDiscoveryState` (003008A0) is called by `BattleFormula_ApplyTargetResult` (003112F0); the remaining edges run through shared helpers the page cites.",
+   "+- **Items \u2014 SERVICE (1 edge).** 1 outbound (page-cited `00236C30` call Items bodies `00238660`). Substantive edges include `00236C30` calls `00238660`.",
+   "+- **Items_Equipment_Shops_License \u2014 CLIENT and SERVICE (67 edges).** 47 inbound (Items_Equipment_Shops_License bodies `Equipment_EvaluateCandidateLoadoutAndBuildDerivedStats` (0030A4E0), `BattleStats_SetEquipmentSlotByMappedId` (0031A510), `Equipment_BuildRecommendedLoadoutForMappedStats` (002F9F20) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `Inventory_ModifyEncodedItemAndUpdateDiscoveryState` (003008A0), `BattleStats_GetByMappedBattleSlot` (00320AB0)); 20 outbound (page-cited `Equipment_EvaluateCandidateLoadoutAndBuildDerivedStats` (0030A4E0), `0055CD40`, `BattleStats_InitializeDefinitionRecord` (0023AC80) call Items_Equipment_Shops_License bodies `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (0030B6A0), `BattleStats_SetLicenseNodeStateAndApplySideEffects` (00323910), `BattleStats_SetEquipmentSlotDirect` (0031A630)). Substantive edges include `00233C10` calls `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (0030B6A0); `SaveRuntime_RebindImageBackedGameplayState` (00238A80) calls `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (0030B6A0); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `BattleStats_SetLicenseNodeStateAndApplySideEffects` (00323910); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `BattleStats_SetEquipmentSlotDirect` (0031A630); the remaining edges run through shared helpers the page cites.",
+   "+- **Movement \u2014 CLIENT and SERVICE (85 edges).** 52 inbound (Movement bodies `0026EAC0`, `0026EAF0`, `0026E760` call page-cited `Vector3_ComputeXZDistance` (004686D0), `0026E640`, `003EC860`); 33 outbound (page-cited `0037B4D0`, `BattleSystem_InitializeAreaState` (002342F0), `Battle_ProcessActionTarget` (00307300) call Movement bodies `Actor_SetDesiredMovementHeading` (0026A0D0), `Actor_SetFacingHeading_Variant1` (0026B620), `BattleUnit_GetNavigationClearanceRadius` (0030A130)). Substantive edges include `0022FF10` is called by `00233230`; `0022FF10` calls `0022F050`; `BattleSystem_InitializeAreaState` (002342F0) calls `00322220`; `BattleSystem_InitializeAreaState` (002342F0) calls `0033A380`; the remaining edges run through shared helpers the page cites.",
+   "+- **Party \u2014 CLIENT and SERVICE (19 edges).** 11 inbound (Party bodies `00328BD0`, `00304180`, `PartyConfiguration_CollectSelectorsOutside07To25` (00320800) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0), `BattleStats_GetByMappedBattleSlot` (00320AB0)); 8 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleUnit_CommitAction` (0030F760), `BattleMenu_BuildCommandEntryList` (0031EB20) call Party bodies `BattleUnit_ResolveByFocusHandle` (0031B7E0), `PartyRoster_GetActorBySlot` (00263750), `PartyFocus_IsCurrentPackedActorHandle` (003273B0)). Substantive edges include `AiOrder_EvaluateTargetSelector` (00301AD0) calls `PartyFocus_IsCurrentPackedActorHandle` (003273B0); `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0) is called by `00328BD0`; `0037B4D0` calls `PartyRoster_IsFourSlotIndex` (002647C0); the remaining edges run through shared helpers the page cites.",
+   "+- **RNG_Random_Selection \u2014 SERVICE (3 edges).** 3 outbound (page-cited `0022B7E0`, `BattleSystem_InitializeAreaState` (002342F0), `BattleData_ResolveWeightedId` (00308EC0) call RNG_Random_Selection bodies `RNG_MT19937_NextU32_Thunk` (00379CD0), `RNG_SharedGameplayLCG_SetState` (00328D80), `RNG_SharedGameplayLCG_NextU32` (00328370)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) calls `RNG_SharedGameplayLCG_SetState` (00328D80); `BattleData_ResolveWeightedId` (00308EC0) calls `RNG_SharedGameplayLCG_NextU32` (00328370); the remaining edges run through shared helpers the page cites.",
+   "+- **Rewards_Progression_Economy \u2014 CLIENT and SERVICE (18 edges).** 8 inbound (Rewards_Progression_Economy bodies `BattleUnit_ProcessDefeatRewardsAndLoot` (00312280), `0030C470`, `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (0030C650) call page-cited `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (0030C650), `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0), `BattleStats_GetByMappedBattleSlot` (00320AB0)); 10 outbound (page-cited `Loot_RollDropEntries` (003180F0), `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (0030C650), `BattleSystem_InitializeAreaState` (002342F0) call Rewards_Progression_Economy bodies `Loot_InitializeWorldPickupPool` (00319B10), `0030C470`, `002F9B20`). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) calls `Loot_InitializeWorldPickupPool` (00319B10); `BattleStats_InitializeDefinitionRecord` (0023AC80) calls `0030C470`; `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (0030C650) is called by `0030C470`; `BattleStats_AdvanceLevelToTargetAndRecomputeGrowth` (0030C650) calls `002F9B20`; the remaining edges run through shared helpers the page cites.",
+   "+- **SaveLoad \u2014 CLIENT (2 edges).** 2 inbound (SaveLoad bodies `00280140` call page-cited `00233C10`, `SaveImage_GetActiveRuntimeBuffer` (002EF640)). Substantive edges include `00233C10` is called by `00280140`; the remaining edges run through shared helpers the page cites.",
+   "+- **Save_Load_Settings \u2014 CLIENT and SERVICE (24 edges).** 22 inbound (Save_Load_Settings bodies `SaveImage_FinalizeHeaderAndChecksum` (00583D60), `002EF300`, `SaveRuntime_RebindImageBackedGameplayState` (00238A80) call page-cited `SaveImage_GetActiveRuntimeBuffer` (002EF640), `00236740`, `SaveRuntime_RebindImageBackedGameplayState` (00238A80)); 2 outbound (page-cited `00233C10`, `SaveRuntime_RebindImageBackedGameplayState` (00238A80) call Save_Load_Settings bodies `SaveImage_GetActiveRuntimeBuffer` (002EF640)). Substantive edges include `00236740` is called by `SaveImage_FinalizeHeaderAndChecksum` (00583D60); `SaveRuntime_RebindImageBackedGameplayState` (00238A80) is called by `SaveRuntime_ResetActiveImageAndRebindState` (002EF650); `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (0030B6A0) is called by `SaveRuntime_RebindImageBackedGameplayState` (00238A80); `0032E620` is called by `002EF300`; the remaining edges run through shared helpers the page cites.",
+   "+- **Script_VM_Native_Bridge \u2014 CLIENT (35 edges).** 35 inbound (Script_VM_Native_Bridge bodies `0050F3F0`, `0050CDE0`, `003580C0` call page-cited `BattleStats_GetByMappedBattleSlot` (00320AB0), `002EAE20`, `002E4C30`). Substantive edges include `00236740` is called by `0050F3F0`; `MapRef_GetAuxValue0` (00264F40) is called by `0050CDE0`; `002E4C30` is called by `003580C0`; `002E4C30` is called by `0034B120`; the remaining edges run through shared helpers the page cites.",
+   "+- **Spawn_Encounter_Lifecycle \u2014 CLIENT and SERVICE (5 edges).** 2 inbound (Spawn_Encounter_Lifecycle bodies `Spawn_ApplyScriptSelectedUnit` (0023A3B0), `SpawnUnit_FinalizeSpawnEntryActivation` (0023A410) call page-cited `BattleUnit_ApplyUnitDefinition` (0023A570), `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0)); 3 outbound (page-cited `BattleSystem_InitializeAreaState` (002342F0), `BattleUnit_ApplyUnitDefinition` (0023A570) call Spawn_Encounter_Lifecycle bodies `SpawnKeep_RotatePersistenceBanksForAreaTransition` (00233780), `SpawnGroup_ResetLifecycleLedger` (00307090), `SpawnKeep_ResolvePrimaryEntry` (00236100)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) calls `SpawnKeep_RotatePersistenceBanksForAreaTransition` (00233780); `BattleSystem_InitializeAreaState` (002342F0) calls `SpawnGroup_ResetLifecycleLedger` (00307090); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `Spawn_ApplyScriptSelectedUnit` (0023A3B0); `BattleUnit_ApplyUnitDefinition` (0023A570) calls `SpawnKeep_ResolvePrimaryEntry` (00236100).",
+   "+- **Status_Periodic_Terminal \u2014 CLIENT and SERVICE (29 edges).** 14 inbound (Status_Periodic_Terminal bodies `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0), `BattleStats_RemoveStatusesFromMaskAndRecompute` (0030F690), `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360) call page-cited `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360), `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0), `BattleEncodedId_IsValidForClass` (00322C50)); 15 outbound (page-cited `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360), `BattleUnit_ExecuteDirectStateCommandOrder` (002FDDA0), `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0) call Status_Periodic_Terminal bodies `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0), `BattleStats_ChangeStatusAndProcessSideEffects` (0030E360), `BattleStats_ModifyStatusLayerStateAndProcessSideEffects` (0030E130)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) calls `BattleStats_RemoveStatusMode0` (0030E990); `BattleUnit_ExecuteDirectStateCommandOrder` (002FDDA0) calls `BattleStats_RemoveAllMode0StatusesAndRecompute` (0030E8F0); `BattleUnit_ExecuteDirectStateCommandOrder` (002FDDA0) calls `BattleStats_RecomputeDerivedStateAndAutoStatuses` (0030FED0); `BattleUnit_ExecuteDirectStateCommandOrder` (002FDDA0) calls `BattleStats_ClearStatusLayer0AndProcessSideEffects` (0030E970); the remaining edges run through shared helpers the page cites.",
+   "+- **World \u2014 CLIENT and SERVICE (10 edges).** 7 inbound (World bodies `00378540`, `00266D10`, `003847B0` call page-cited `AreaData_BindAndRebaseSectionDescriptor` (003845F0), `BattleSystem_InitializeAreaState` (002342F0), `0032E400`); 3 outbound (page-cited `00236C30`, `00378230`, `00378A60` call World bodies `003C63A0`, `003847B0`). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) is called by `00266D10`; `00236C30` calls `003847B0`; `0032E400` is called by `00378540`; `0032E620` is called by `00378540`; the remaining edges run through shared helpers the page cites.",
+   "+- **WorldAreaField \u2014 CLIENT and SERVICE (96 edges).** 62 inbound (WorldAreaField bodies `00236C30`, `AreaArd_LoadOrUnloadFieldResource` (003EA820), `00378A60` call page-cited `0036C660`, `0032E400`, `003846F0`); 34 outbound (page-cited `00378A60`, `00331990`, `BattleSystem_InitializeAreaState` (002342F0) call WorldAreaField bodies `AreaData_BindAndRebaseSectionDescriptor` (003845F0), `FieldData_GetActiveFieldRecordBit15` (00377C20), `003846F0`). Substantive edges include `001805D0` is called by `00379A10`; `BattleSystem_InitializeAreaState` (002342F0) calls `002FA520`; `00236C30` is called by `00238850`; `00236C30` calls `003846F0`; the remaining edges run through shared helpers the page cites."
+  ]
+ },
+ "16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md": {
+  "verdict": "FLAGGED",
+  "style": "template",
+  "issues": [],
+  "flags": [
+   "T5 Combat: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)",
+   "T5 World: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 12,
+  "regenerated_byte_exact": 12,
+  "enumeration": {
+   "page-cited": 6,
+   "audit": 6
+  },
+  "head_pairs": 12,
+  "accounted_by_append": [
+   "Audio",
+   "Combat",
+   "CombatAI",
+   "Developer",
+   "Input",
+   "Movement",
+   "Platform",
+   "PlatformOnlineAchievements",
+   "Spawn_Encounter_Lifecycle",
+   "Status_Periodic_Terminal",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 1,
+   "page-cited": 1
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "CoreRuntimeScheduling",
+   "Presentation"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/Handbook/the-handbook-screen.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T1 bullet CombatAI has no pair at HEAD (accounted already, or never reported)",
+   "T1 bullet Input has no pair at HEAD (accounted already, or never reported)",
+   "T1 bullet Presentation has no pair at HEAD (accounted already, or never reported)",
+   "T1 bullet Resource has no pair at HEAD (accounted already, or never reported)",
+   "T1 bullet SaveLoad has no pair at HEAD (accounted already, or never reported)",
+   "T1 bullet Save_Load_Settings has no pair at HEAD (accounted already, or never reported)"
+  ],
+  "flags": [],
+  "bullets": 6,
+  "regenerated_byte_exact": 0,
+  "enumeration": {},
+  "head_pairs": 1,
+  "accounted_by_append": [],
+  "residual": [
+   "Rewards_Progression_Economy"
+  ],
+  "other_lines": []
+ },
+ "16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 5,
+  "regenerated_byte_exact": 5,
+  "enumeration": {
+   "audit": 4,
+   "page-cited": 1
+  },
+  "head_pairs": 6,
+  "accounted_by_append": [
+   "CombatAI",
+   "Developer",
+   "Party",
+   "RNG_Random_Selection",
+   "Script_VM_Native_Bridge"
+  ],
+  "residual": [
+   "Spawn_Encounter_Lifecycle"
+  ],
+  "other_lines": []
+ },
+ "16-UI/Message-Windows/the-message-window-layout-readers.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "page-cited": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Script_VM_Native_Bridge"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/README.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Presentation"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/Request-Router/ui-request-router.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 11,
+  "regenerated_byte_exact": 11,
+  "enumeration": {
+   "audit": 10,
+   "page-cited": 1
+  },
+  "head_pairs": 11,
+  "accounted_by_append": [
+   "ActorEntity",
+   "CombatAI",
+   "Gameplay",
+   "Input",
+   "InputGameplay",
+   "Party",
+   "Presentation",
+   "Script_VM_Native_Bridge",
+   "Spawn_Encounter_Lifecycle",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 6,
+  "regenerated_byte_exact": 6,
+  "enumeration": {
+   "page-cited": 1,
+   "audit": 5
+  },
+  "head_pairs": 7,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Audio",
+   "Input",
+   "Resource",
+   "Script_VM_Native_Bridge",
+   "Story_Event_Quest_Hunt"
+  ],
+  "residual": [
+   "CombatAction"
+  ],
+  "other_lines": []
+ },
+ "16-UI/Text-And-Number-Rendering/the-text-control-code-language.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 4,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "audit": 4
+  },
+  "head_pairs": 4,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Party",
+   "Script_VM_Native_Bridge",
+   "Story_Event_Quest_Hunt"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/Widget-Object-Model/a-512-byte-widget-that-registers-itself-once.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 2
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "Items_Equipment_Shops_License",
+   "Save_Load_Settings"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "16-UI/Widget-Object-Model/the-widget-message-protocol.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "Items_Equipment_Shops_License"
+  ],
+  "residual": [
+   "Spawn_Encounter_Lifecycle"
+  ],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 4,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "page-cited": 3,
+   "audit": 1
+  },
+  "head_pairs": 8,
+  "accounted_by_append": [
+   "CombatAction",
+   "Gameplay",
+   "Resource",
+   "Spawn_Encounter_Lifecycle"
+  ],
+  "residual": [
+   "Input",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "UI"
+  ],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 3,
+  "regenerated_byte_exact": 3,
+  "enumeration": {
+   "audit": 3
+  },
+  "head_pairs": 3,
+  "accounted_by_append": [
+   "Movement",
+   "Resource",
+   "World"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T4 UI MECHANICAL (6 edges, accessors ['00202C70']): no enumeration matches (audit 5 edges, 0 not through the accessors; page-cited 6)"
+  ],
+  "flags": [],
+  "bullets": 11,
+  "regenerated_byte_exact": 10,
+  "enumeration": {
+   "audit": 5,
+   "page-cited": 5
+  },
+  "head_pairs": 12,
+  "accounted_by_append": [
+   "Actor",
+   "ActorEntity",
+   "CombatAction",
+   "Input",
+   "Movement",
+   "Party",
+   "Resource",
+   "Script_VM_Native_Bridge",
+   "UI",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [
+   "PlatformOnlineAchievements"
+  ],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 3,
+  "regenerated_byte_exact": 3,
+  "enumeration": {
+   "page-cited": 1,
+   "audit": 2
+  },
+  "head_pairs": 3,
+  "accounted_by_append": [
+   "Resource",
+   "Script_VM_Native_Bridge",
+   "UI"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 3,
+  "regenerated_byte_exact": 3,
+  "enumeration": {
+   "page-cited": 2,
+   "audit": 1
+  },
+  "head_pairs": 3,
+  "accounted_by_append": [
+   "Application",
+   "CoreRuntimeScheduling",
+   "UI"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T2 Input count 66 != audit 65 (page-cited 67)",
+   "T3 Input text matches neither enumeration: HAVE '- **Input - CLIENT and SERVICE (66 edges).** `0017D3E0`, `00263FF0`, `00369080`, `00369160` (+7 more) are called by bodies filed to Input: `00226BE0`, `002E09A0`, InputControl_ServicePendingSynchronizationWork (`0035E760`), InputControl_InitializeAndRegisterFrameUpdate (`0035E820`) (+3 more); `001EC060`, `0022A580`, `0022A770`, `0022AF50` (+9 more) reach bodies filed to Input: `0017DE60`, `00182D40`, `00226BE0`, `00249860` (+20 more) - shared machinery across the layer boundary, no shared ownership.' WANT(audit) '- **Input - CLIENT and SERVICE (65 edges).** `0017D3E0`, `00263FF0`, `00369080`, `00369160` (+7 more) are called by bodies filed to Input: `00226BE0`, `002E09A0`, InputControl_ServicePendingSynchronizationWork (`0035E760`), InputControl_InitializeAndRegisterFrameUpdate (`0035E820`) (+3 more); `001EC060`, `0022A580`, `0022A770`, `0022AF50` (+8 more) reach bodies filed to Input: `0017DE60`, `00182D40`, `00249860`, `00249880` (+19 more) - shared machinery across the layer boundary, no shared ownership.'"
+  ],
+  "flags": [],
+  "bullets": 11,
+  "regenerated_byte_exact": 10,
+  "enumeration": {
+   "audit": 7,
+   "page-cited": 3
+  },
+  "head_pairs": 12,
+  "accounted_by_append": [
+   "Audio",
+   "Input",
+   "Party",
+   "Platform",
+   "PlatformOnlineAchievements",
+   "SaveLoad",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "StoryEvent",
+   "UI",
+   "WorldAreaField"
+  ],
+  "residual": [
+   "World"
+  ],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/README.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Resource"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md": {
+  "verdict": "FLAGGED",
+  "style": "template",
+  "issues": [],
+  "flags": [
+   "T5 UI: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 3,
+  "regenerated_byte_exact": 3,
+  "enumeration": {
+   "audit": 2,
+   "page-cited": 1
+  },
+  "head_pairs": 3,
+  "accounted_by_append": [
+   "StoryEvent",
+   "Story_Event_Quest_Hunt",
+   "UI"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 4,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "audit": 2,
+   "page-cited": 2
+  },
+  "head_pairs": 7,
+  "accounted_by_append": [
+   "Application",
+   "PlatformOnlineAchievements",
+   "Resource",
+   "SaveLoad"
+  ],
+  "residual": [
+   "RNG_Random_Selection",
+   "Spawn_Encounter_Lifecycle",
+   "Story_Event_Quest_Hunt"
+  ],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md": {
+  "verdict": "FLAGGED",
+  "style": "template",
+  "issues": [],
+  "flags": [
+   "T5 Items_Equipment_Shops_License: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)",
+   "T5 Spawn_Encounter_Lifecycle: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 5,
+  "regenerated_byte_exact": 5,
+  "enumeration": {
+   "audit": 4,
+   "page-cited": 1
+  },
+  "head_pairs": 5,
+  "accounted_by_append": [
+   "Items_Equipment_Shops_License",
+   "Party",
+   "RNG_Random_Selection",
+   "Resource",
+   "Spawn_Encounter_Lifecycle"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 13,
+  "regenerated_byte_exact": 11,
+  "enumeration": {
+   "audit": 13
+  },
+  "head_pairs": 13,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Audio",
+   "CombatFormula",
+   "CoreRuntimeScheduling",
+   "Input",
+   "Movement",
+   "Party",
+   "RNG_Random_Selection",
+   "SaveLoad",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 2
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "CoreRuntimeScheduling",
+   "Resource"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Resource"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 10,
+  "regenerated_byte_exact": 9,
+  "enumeration": {
+   "audit": 10
+  },
+  "head_pairs": 10,
+  "accounted_by_append": [
+   "CombatAction",
+   "Gameplay",
+   "Input",
+   "InputGameplay",
+   "Movement",
+   "Party",
+   "Resource",
+   "Save_Load_Settings",
+   "UI",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Position-To-Scalar/how-a-position-becomes-a-single-number.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 2
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "ActorEntity",
+   "UI"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 2
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "CoreRuntimeScheduling",
+   "Platform"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/README.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 3,
+  "regenerated_byte_exact": 3,
+  "enumeration": {
+   "audit": 2,
+   "page-cited": 1
+  },
+  "head_pairs": 3,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Script_VM_Native_Bridge",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 7,
+  "regenerated_byte_exact": 7,
+  "enumeration": {
+   "page-cited": 5,
+   "audit": 2
+  },
+  "head_pairs": 8,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Party",
+   "SaveLoad",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [
+   "RNG_Random_Selection"
+  ],
+  "other_lines": []
+ },
+ "21-RNG-And-Determinism/CONTRACT-gameplay-generators.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T4 Script_VM_Native_Bridge MECHANICAL (6 edges, accessors ['00379CD0']): no enumeration matches (audit 6 edges, 4 not through the accessors; page-cited 6)"
+  ],
+  "flags": [
+   "T5 Status_Periodic_Terminal: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 14,
+  "regenerated_byte_exact": 12,
+  "enumeration": {
+   "audit": 13
+  },
+  "head_pairs": 14,
+  "accounted_by_append": [
+   "ActorEntity",
+   "CombatAction",
+   "CombatFormula",
+   "Input",
+   "Movement",
+   "Party",
+   "Presentation",
+   "Resource",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "Spawn_Encounter_Lifecycle",
+   "Status_Periodic_Terminal",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 16,
+  "regenerated_byte_exact": 16,
+  "enumeration": {
+   "audit": 16
+  },
+  "head_pairs": 16,
+  "accounted_by_append": [
+   "ActorEntity",
+   "CombatAI",
+   "CombatAction",
+   "CombatFormula",
+   "CoreRuntimeScheduling",
+   "Gameplay",
+   "Movement",
+   "Party",
+   "Presentation",
+   "Rewards_Progression_Economy",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "Spawn_Encounter_Lifecycle",
+   "Status_Periodic_Terminal",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "21-RNG-And-Determinism/which-roll-is-on-which-generator.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T4 CombatFormula MECHANICAL (54 edges, accessors ['00379CD0']): no enumeration matches (audit 54 edges, 1 not through the accessors; page-cited 54)"
+  ],
+  "flags": [],
+  "bullets": 13,
+  "regenerated_byte_exact": 12,
+  "enumeration": {
+   "audit": 12
+  },
+  "head_pairs": 13,
+  "accounted_by_append": [
+   "CombatAI",
+   "CombatFormula",
+   "Core",
+   "CoreRuntimeScheduling",
+   "Gameplay",
+   "Input",
+   "Party",
+   "Presentation",
+   "Rewards_Progression_Economy",
+   "Save_Load_Settings",
+   "UI",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Application-Framework-Boundary/the-game-is-a-phyre-application.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 2
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "CoreRuntimeScheduling",
+   "Input"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Resource"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 6,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "page-cited": 1,
+   "audit": 5
+  },
+  "head_pairs": 6,
+  "accounted_by_append": [
+   "Platform",
+   "Presentation",
+   "SaveLoad",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 4,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "audit": 4
+  },
+  "head_pairs": 4,
+  "accounted_by_append": [
+   "Developer",
+   "Input",
+   "Resource",
+   "UI"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 6,
+  "regenerated_byte_exact": 5,
+  "enumeration": {
+   "audit": 6
+  },
+  "head_pairs": 6,
+  "accounted_by_append": [
+   "Actor",
+   "ActorEntity",
+   "CoreRuntimeScheduling",
+   "Movement",
+   "Script_VM_Native_Bridge",
+   "UI"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T2 Resource count 30 != audit 25 (page-cited 59)",
+   "T3 Resource text matches neither enumeration: HAVE '- **Resource - CLIENT and SERVICE (30 edges).** `00212050`, `005CC900`, `005CD4F0`, `0067FF40` are called by bodies filed to Resource: `0019F620`, `001A0A90`, `001A0BB0`, `001A0C50` (+19 more); `00212050`, `005A08E0` reach bodies filed to Resource: `0017D940`, `0017D960`, `00212260`, `00677450` - shared machinery across the layer boundary, no shared ownership.' WANT(audit) '- **Resource - CLIENT and SERVICE (25 edges).** `005CC900`, `005CD4F0`, `0067FF40` are called by bodies filed to Resource: `0019F620`, `001A0A90`, `001A0BB0`, `001A0C50` (+19 more); `005A08E0` reaches bodies filed to Resource: `00677450` - shared machinery across the layer boundary, no shared ownership.'"
+  ],
+  "flags": [
+   "T5 Input: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 5,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "audit": 4
+  },
+  "head_pairs": 5,
+  "accounted_by_append": [
+   "Input",
+   "PlatformOnlineAchievements",
+   "Presentation",
+   "Resource",
+   "Script_VM_Native_Bridge"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T4 Input MECHANICAL (27 edges, accessors ['0063A990']): no enumeration matches (audit 25 edges, 0 not through the accessors; page-cited 27)"
+  ],
+  "flags": [],
+  "bullets": 5,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "audit": 3,
+   "page-cited": 1
+  },
+  "head_pairs": 8,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Input",
+   "Movement",
+   "Resource",
+   "Script_VM_Native_Bridge"
+  ],
+  "residual": [
+   "Application",
+   "Audio",
+   "CoreRuntimeScheduling"
+  ],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Presentation"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 7,
+  "regenerated_byte_exact": 7,
+  "enumeration": {
+   "audit": 7
+  },
+  "head_pairs": 7,
+  "accounted_by_append": [
+   "CoreRuntimeScheduling",
+   "Input",
+   "Movement",
+   "Party",
+   "Presentation",
+   "Resource",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 2,
+  "regenerated_byte_exact": 2,
+  "enumeration": {
+   "audit": 2
+  },
+  "head_pairs": 2,
+  "accounted_by_append": [
+   "Input",
+   "Presentation"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md": {
+  "verdict": "FLAGGED",
+  "style": "template",
+  "issues": [],
+  "flags": [
+   "T5 Gameplay: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)",
+   "T5 Status_Periodic_Terminal: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 17,
+  "regenerated_byte_exact": 17,
+  "enumeration": {
+   "audit": 17
+  },
+  "head_pairs": 17,
+  "accounted_by_append": [
+   "ActorEntity",
+   "Application",
+   "Developer",
+   "Gameplay",
+   "Input",
+   "InputGameplay",
+   "Movement",
+   "Party",
+   "Platform",
+   "PlatformOnlineAchievements",
+   "RNG_Random_Selection",
+   "Rewards_Progression_Economy",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "Status_Periodic_Terminal",
+   "World",
+   "WorldAreaField"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 1,
+  "enumeration": {
+   "audit": 1
+  },
+  "head_pairs": 1,
+  "accounted_by_append": [
+   "Resource"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md": {
+  "verdict": "PUBLISHABLE",
+  "style": "template",
+  "issues": [],
+  "flags": [],
+  "bullets": 4,
+  "regenerated_byte_exact": 4,
+  "enumeration": {
+   "audit": 4
+  },
+  "head_pairs": 4,
+  "accounted_by_append": [
+   "Audio",
+   "CoreRuntimeScheduling",
+   "Presentation",
+   "Resource"
+  ],
+  "residual": [],
+  "other_lines": []
+ },
+ "23-Third-Party-Libraries/third-party-middleware-inventory.md": {
+  "verdict": "FLAGGED",
+  "style": "template",
+  "issues": [],
+  "flags": [
+   "T5 Save_Load_Settings: every edge calls a >40-caller helper (helper-only, would be MECHANICAL)"
+  ],
+  "bullets": 13,
+  "regenerated_byte_exact": 13,
+  "enumeration": {
+   "audit": 11,
+   "page-cited": 2
+  },
+  "head_pairs": 15,
+  "accounted_by_append": [
+   "Application",
+   "Audio",
+   "CoreRuntimeScheduling",
+   "CxxRuntime",
+   "Platform",
+   "PlatformOnlineAchievements",
+   "Presentation",
+   "RNG_Random_Selection",
+   "SaveLoad",
+   "Save_Load_Settings",
+   "Script_VM_Native_Bridge",
+   "UI",
+   "WorldAreaField"
+  ],
+  "residual": [
+   "ActorEntity",
+   "CombatAction"
+  ],
+  "other_lines": []
+ },
+ "25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md": {
+  "verdict": "NOT-PUBLISHABLE",
+  "style": "template",
+  "issues": [
+   "T3 WorldAreaField text matches neither enumeration: HAVE '- **WorldAreaField - CLIENT and SERVICE (11 edges).** 4 inbound (WorldAreaField bodies `0025ACA0`, `0025ABA0`, `MapRef_BeginLoadResources` (00268750) call page-cited `002658B0`, `0025ABA0`, `00267930`); 7 outbound (page-cited `0025ACA0`, `002620E0`, `0025ABA0` call WorldAreaField bodies `002658B0`, `0025ABA0`, `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910)).' WANT(audit) '- **WorldAreaField - CLIENT and SERVICE (11 edges).** `0025ABA0`, `002658B0`, `00267930` are called by bodies filed to WorldAreaField: `0025ABA0`, `0025ACA0`, MapRef_BeginLoadResources (`00268750`); `0025ABA0`, `0025ACA0`, `002620E0`, ActorManager_BindLoadedDefinitionPayload (`0026C8C0`) reach bodies filed to WorldAreaField: `0025ABA0`, `0025ACA0`, `002658B0`, WorldField_InitializeCurrentFieldRuntimeParameters (`0026D910`) (+2 more) - shared machinery across the layer boundary, no shared ownership.'",
+   "T6 4 added/removed line(s) are not template bullets: ['+- **Party \u2014 SERVICE (2 edges).** 2 outbound (page-cited `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) call Party bodies `PartyControl_SetMovementSuppressionBit` (00359200), `PartyFocus_GetCurrentPackedActorHandle` (003590D0)). Substantive edges include `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) calls `PartyControl_SetMovementSuppressionBit` (00359200); the remaining edges run through shared helpers the page cites.', \"+- **RNG_Random_Selection \u2014 MECHANICAL (2 edges).** 2 calls from page-cited bodies into shared RNG_Random_Selection plumbing (`RNG_MT19937_NextU32_Thunk` (00379CD0)) - the helpers' general call surface, not a RNG_Random_Selection relationship of this page's subjects.\"]"
+  ],
+  "flags": [],
+  "bullets": 1,
+  "regenerated_byte_exact": 0,
+  "enumeration": {},
+  "head_pairs": 5,
+  "accounted_by_append": [
+   "WorldAreaField"
+  ],
+  "residual": [
+   "Party",
+   "RNG_Random_Selection",
+   "Save_Load_Settings",
+   "Story_Event_Quest_Hunt"
+  ],
+  "other_lines": [
+   "+- **Party \u2014 SERVICE (2 edges).** 2 outbound (page-cited `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) call Party bodies `PartyControl_SetMovementSuppressionBit` (00359200), `PartyFocus_GetCurrentPackedActorHandle` (003590D0)). Substantive edges include `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) calls `PartyControl_SetMovementSuppressionBit` (00359200); the remaining edges run through shared helpers the page cites.",
+   "+- **RNG_Random_Selection \u2014 MECHANICAL (2 edges).** 2 calls from page-cited bodies into shared RNG_Random_Selection plumbing (`RNG_MT19937_NextU32_Thunk` (00379CD0)) - the helpers' general call surface, not a RNG_Random_Selection relationship of this page's subjects.",
+   "+- **Save_Load_Settings \u2014 MECHANICAL (3 edges).** 3 calls from page-cited bodies into shared Save_Load_Settings plumbing (`SaveImage_GetPersistentPayloadBase` (002EF2B0)) - the helpers' general call surface, not a Save_Load_Settings relationship of this page's subjects.",
+   "+- **Story_Event_Quest_Hunt \u2014 SERVICE (1 edge).** 1 outbound (page-cited `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) call Story_Event_Quest_Hunt bodies `EventMemory_QueryDefinitionIdAbsent` (00377440)). Substantive edges include `ActorManager_BindLoadedDefinitionPayload` (0026C8C0) calls `EventMemory_QueryDefinitionIdAbsent` (00377440)."
+  ]
+ },
+ "00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md": {
+  "verdict": "MIXED",
+  "style": "contract",
+  "issues": [
+   "T6 7 added/removed line(s) are not pass-22 bullets: ['+    ~~The only functions that address the table are the rebase `0030B6A0` and `0030B270`.~~ *Corrected 2026-09-30', \"+    (OPUS, on FABLE's and SWE2-AUDIT-SEM's findings; `falsify_encoded_id.py` E10 / E11):* 49 rip-relative references\"]"
+  ],
+  "flags": [],
+  "bullets": 16,
+  "head_pairs": 16,
+  "residual": [],
+  "other_lines": [
+   "+    ~~The only functions that address the table are the rebase `0030B6A0` and `0030B270`.~~ *Corrected 2026-09-30",
+   "+    (OPUS, on FABLE's and SWE2-AUDIT-SEM's findings; `falsify_encoded_id.py` E10 / E11):* 49 rip-relative references",
+   "+    into the table sit in 28 functions: both packed handlers, both bitset handlers, the query dispatchers and the equipment",
+   "+    snapshot pair (`InventoryEquipment_SnapshotAndClearTemporaryState` /",
+   "+    `InventoryEquipment_RestoreTemporarySnapshotAndClearBackup`) among them. All 49 are reads or `lea`s of a row",
+   "+    base. Every store through a pointer into the table is the rebase's. The rebase reads",
+   "-    The only functions that address the table are the rebase `0030B6A0` and `0030B270`. The rebase reads"
+  ]
+ },
+ "01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md": {
+  "verdict": "MIXED",
+  "style": "contract",
+  "issues": [
+   "T6 72 added/removed line(s) are not pass-22 bullets: ['+status: \"REOPENED \u2014 SECTION-11 trigger resolved (accepted by a non-author review 2026-09-29) and the page returns through the owner read; families 3, 5 and 7 and the default aliasing answered (AO-1, AO-4); the byte the polls test is the manager skip mask (OV-15); a skip is set when the player skips an event cutscene (RC-17, answered by FABLE; ORACLE\\'s corrections pending FABLE\\'s adjudication) (status line current 2026-09-30, SWE2-CONTRACT)\"', '+local_production_status: \"SECTION-11 locally validated; accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18)\"']"
+  ],
+  "flags": [
+   "V5 Input: every listed substantive edge calls a >40-caller helper (helper-only crossing?)"
+  ],
+  "bullets": 1,
+  "head_pairs": 9,
+  "residual": [
+   "ActorEntity",
+   "WorldAreaField",
+   "CoreRuntimeScheduling",
+   "World",
+   "Items_Equipment_Shops_License",
+   "Audio"
+  ],
+  "other_lines": [
+   "+status: \"REOPENED \u2014 SECTION-11 trigger resolved (accepted by a non-author review 2026-09-29) and the page returns through the owner read; families 3, 5 and 7 and the default aliasing answered (AO-1, AO-4); the byte the polls test is the manager skip mask (OV-15); a skip is set when the player skips an event cutscene (RC-17, answered by FABLE; ORACLE's corrections pending FABLE's adjudication) (status line current 2026-09-30, SWE2-CONTRACT)\"",
+   "+local_production_status: \"SECTION-11 locally validated; accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18)\"",
+   "+*(Reconciled 2026-09-30, SWE2-CONTRACT: the review is done \u2014 SWE2-AUDIT-SEM re-executed SECTION-11's",
+   "+`run_review.py` non-author and accepted it (`FRONTIER-REVIEW-AUDITSEM-OV-ACCEPTANCE-0929`, OV-18); the default aliasing",
+   "+is AO-1 (answered 2026-09-12) and the families' contents AO-4 (answered 2026-09-27), both in \u00a77.)*",
+   "+## Call chain (SWE2-CONTRACT, 2026-09-30)",
+   "+```",
+   "+field frame -> ActorManager_RunFieldRuntimePass -> 0025DF00 per actor",
+   "+  -> WorldActorScriptVM_InterpretBytecode 0025E4C0: a CALL / CALLACT / CALLPOPA / CALLACTPOPA opcode (0x58..0x5E)",
+   "+     -> VMNativeCommand_ExecuteLifecycle 002621D0 (its only caller is the interpreter)    <- THIS SYSTEM",
+   "+          id >> 12 -> family table 02B57EF0[family] (filled once by 003DC2D0)",
+   "+          003DC270 begin / 003DC240 poll / 003DC2A0 result (bounds-checked fetch)",
+   "+          phase 0: begin, then poll; poll not running -> result in the same call",
+   "+          result -> the 63-entry return-value list; phase reset to 0",
+   "+          an actor record through ActorManager_GetRecordByOrdinal 00358940",
+   "+     -> busy: the interpreter rewinds its pc and yields until the next frame",
+   "+```",
+   "+**Upstream (who causes this):** a script's native-verb call opcode, once per frame per actor while the verb runs.",
+   "+**Downstream (what this causes):** whatever the verb's begin / poll / result callbacks do; the result pushed back to the",
+   "+script.",
+   "+**Do not confuse with:** the actor request machinery (`REQ` family), which files work on another actor's channel",
+   "+rather than calling a native verb ([how a script binds to an actor](../Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md)).",
+   "+- [x] **RC-17.** Which shipped scripts issue `skipexec` (command 1337) or otherwise start a manager skip, and when the",
+   "+  engine's own loop over managers 1\u20133 in `00360710` runs \u2014 i.e. whether the skip mask the durative polls test is set in",
+   "+  shipped play. Registered 2026-09-30 (SWE2-CONTRACT); static first (a call-triple census over the shipped `.ebp`",
+   "+  corpus, as CR-2's was, plus the engine loop's callers).",
+   "+  *Applied 2026-09-30 (records) RC-17:* **ANSWERED 2026-09-30 by FABLE (`rc151617-fable-0930`, `0870d8b62`): yes \u2014 the skip mask is set when the player skips an event cutscene** (`skipexec(1)` in 7 event scripts, `skipexec(0)` in 12, in the cutscene-skip idiom). **ORACLE (`rc15-regfile-skipmask-0930`, commit `1e4537034`) agrees on the chain and corrects two details:** `00360880` calls `00360710(n, m)` once per manager for the lowest set bit, not once per set bit; and `skipcheck` returns the entry's begun word, not the player's skip; `00228130`'s trigger is bit 13 of `[[0209AC30] + 0x400]`. **FABLE adjudication pending** on the corrections.",
+   "+or 7 has been identified. *(Stale since: the phase machine is read in \u00a711\u2013\u00a712, and families 3, 5 and 7 are AO-4,",
+   "+answered 2026-09-27 \u2014 `_index/candidates/ao4-family-contents/`. Pointer 2026-09-30, SWE2-CONTRACT.)*",
+   "+*contents* of families 3, 5 and 7 and the default-table aliasing, not the mechanism. *(Both answered since: AO-1 and",
+   "+AO-4, \u00a77.)*",
+   "+>",
+   "+> **Producer and scope answered 2026-09-29 (OV-15, FABLE; pointer 2026-09-30, SWE2-CONTRACT).** `02099011 + idx \u00d7",
+   "+> 0x288` is the actor-manager slot record's `+0x201`, the per-manager **skip mask**",
+   "+> ([`ov15-skip-mask-fable`](../../_index/candidates/ov15-skip-mask-fable/README.md), `skip_mask.py`, FAILS 0; the",
+   "+> world-tick page names the byte). A skip begin \u2014 script command 1337 `skipexec`, or the engine's loop over managers 1\u20133",
+   "+> in `00360710` \u2014 sets bits; the skip end `00360A50` clears them; the bind writes 0. So a non-zero value means the",
+   "+> target actor's manager is being skipped, and the wait ends by its second poll. `00267310` has 72 `rel32` call sites,",
+   "+> most of them command handlers passing an actor's manager index; what each of the other 71 does with the mask is not",
+   "+> claimed. Tier 1. **Which shipped scripts or engine paths actually start a skip in play is RC-17.**",
+   "+> *(The register's CE-5 row still carries the withdrawn re-entrancy-guard reading as its answer; that row is not this",
+   "+> lane's to edit, and the correction is routed in the batch record.)*",
+   "+> only what calling it now does. *(CR-2 is closed as NO ADMISSIBLE SOURCE, reviewed and signed 2026-09-26: the verb has",
+   "+> no implementation and no shipped script calls `0x03B0` in any of 10,045 `.ebp` files; what it once did is authoring",
+   "+> history, which no admitted artefact carries. Pointer 2026-09-30, SWE2-CONTRACT.)*",
+   "+- **ActorEntity \u2014 SERVICE.** The lifecycle is driven *through* the actor layer: ActorEntity's",
+   "+  `ActorManager_RunFieldRuntimePass` (`0025D9E0`) calls the per-actor pass",
+   "+  `0025DF00` (`WorldActor_UpdateRuntimeAndScriptExecutionState`, 1,228 B) once per actor, and",
+   "+  `0025DF00` plus the interpreter `0025E4C0` consume the actor-resource entry family \u2014",
+   "+  `ActorResource_GetEntryByOrdinal`/`IsChannelBitActive`/`SelectPendingEntryForExecution`/",
+   "+  `StartEntryScriptExecution`/`FindActiveEntryByIdOrClass`/`FindScriptRequestEntry`/",
+   "+  `RemoveActiveEntry`/`RecycleEntryRange` (`003DB550`, `003DB640`, `003DB6E0`, `003DBDC0`,",
+   "+  `003DBF60`, `003DC050`, `003DB2A0`, `003DB420`) and `00359B80`, `00268EA0`, `003587C0` \u2014 to",
+   "+  locate and bind the actor's script-request entry before an opcode runs. `002621D0`'s rebind",
+   "+  is the same `ActorManager_GetRecordByOrdinal` `00358940` bound in the subtree section below,",
+   "+  and the `btlAtelSetAbility` tail `002390B0` resolves its unit through `0031B760`",
+   "+  (`ActorWork_GetBattleUnit`). The actor layer supplies the records the lifecycle works on;",
+   "+  nothing flows the other way. (edges: `edges.tsv`; roles per the pass-22 ledger)",
+   "+- **Audio \u2014 SERVICE.** The manager-skip scan `00360710` calls Audio's `002DEDD0`, an 11-byte count thunk, as part of",
+   "+  stopping the audio side when a skip begins ([the world tick page](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md),",
+   "+  \"What a skip is\"). The command lifecycle itself has no audio relationship. (edge: `edges.tsv`)",
+   "+- **CoreRuntimeScheduling \u2014 SERVICE.** `0025DF00` calls the scheduling primitives `001EDDA0`",
+   "+  and `001EDE80` and the runtime-pointer resolver `0020E600`; `0025E4C0` calls `0020E600` and",
+   "+  its encoder `0020E620`; the family-0 result-only body `0034C010` calls `00229E50`. These are",
+   "+  the frame's scheduling and pointer utilities the driver, the interpreter and a leaf verb",
+   "+  share with the rest of the image \u2014 utilities consumed, not lifecycle relationships.",
+   "+  (edges: `edges.tsv`)",
+   "-status: REOPENED",
+   "-local_production_status: \"SECTION-11 locally validated; formal independent acceptance pending\"",
+   "-or 7 has been identified.",
+   "-*contents* of families 3, 5 and 7 and the default-table aliasing, not the mechanism.",
+   "-> only what calling it now does."
+  ]
+ },
+ "02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md": {
+  "verdict": "MIXED",
+  "style": "contract",
+  "issues": [
+   "T6 2 added/removed line(s) are not pass-22 bullets: ['+| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. **Every other kind is taken as issued:** the wrapper `0046E030` returns 1 whatever the read issuer `002DF780` returned (`0046E043`). So a refused read (a \u22121 file-size entry, `002DF7B9`) also moves to state 2, and in state 3 it completes on the status slot `0215EFF4` the previous read left (OPUS 2026-09-30, RC-37, `_index/candidates/rc37-refused-read-0930/`, static; pending SWE2-AUDIT-SPEC review). |', '-| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. |']"
+  ],
+  "flags": [],
+  "bullets": 6,
+  "head_pairs": 10,
+  "residual": [
+   "Audio",
+   "Movement",
+   "Party",
+   "Gameplay"
+  ],
+  "other_lines": [
+   "+| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. **Every other kind is taken as issued:** the wrapper `0046E030` returns 1 whatever the read issuer `002DF780` returned (`0046E043`). So a refused read (a \u22121 file-size entry, `002DF7B9`) also moves to state 2, and in state 3 it completes on the status slot `0215EFF4` the previous read left (OPUS 2026-09-30, RC-37, `_index/candidates/rc37-refused-read-0930/`, static; pending SWE2-AUDIT-SPEC review). |",
+   "-| 1 queued | Busy service gate returns to footer. Zero bytes completes and recycles without file issue. Otherwise issue by kind. Kind-FF nonzero submit result revisits the same head; accepted issue stamps time and sets state 2. |"
+  ]
+ }
+}

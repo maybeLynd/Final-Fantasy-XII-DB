@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "OPUS-WIDGET-SWEEP-AND-COMMIT-MISMATCH",
+ "agent": "OPUS",
+ "resources": [{"key": "@publication"}],
+ "note": "claiming @publication for the embedded-widget sweep; work already computed, key held only for the publish"
+}

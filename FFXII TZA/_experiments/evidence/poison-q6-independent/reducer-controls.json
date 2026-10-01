@@ -1,0 +1,47 @@
+[
+  {
+    "name": "upstream-fail",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\reducer-controls\\upstream-fail.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\check.py\", line 14, in <module>\n    p=r['prerequisite'];assert p['ok'] is True and p['total']==p['pass']==6 and len(p['results'])==6 and all(x['pass_'] is True for x in p['results'].values()),'UPSTREAM_FAILED_OR_MISSING'\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: UPSTREAM_FAILED_OR_MISSING\n",
+    "terminal": true,
+    "shipping_code_executed": false
+  },
+  {
+    "name": "missing-boundary",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\reducer-controls\\missing-boundary.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\check.py\", line 18, in <module>\n    b=r['independent_boundaries'];expected=['below_critical_line','equal_critical_line','nonpositive_removes_critical','stop_poison_low_hp','bubble_equal_line'];assert sorted(b)==sorted(expected),'INCOMPLETE_BOUNDARIES'\n                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: INCOMPLETE_BOUNDARIES\n",
+    "terminal": true,
+    "shipping_code_executed": false
+  },
+  {
+    "name": "exception-with-good-results",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\check.py",
+      "--raw",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\reducer-controls\\exception-with-good-results.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\poison-q6-independent\\check.py\", line 5, in <module>\n    assert r['terminal'] is True and r['exception'] is None and r['downstream_started'] is True,'INVALID_OR_INCOMPLETE_CAPTURE'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: INVALID_OR_INCOMPLETE_CAPTURE\n",
+    "terminal": true,
+    "shipping_code_executed": false
+  }
+]

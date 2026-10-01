@@ -1,0 +1,820 @@
+{
+  "method": "A original operand-specific branches plus B full verified237B call-free leaf in5 fresh isolated guests, injected ABI/argument/MXCSR1F80, reused55 runner with explicit rectangle-bit parameter/branch-flags observer only",
+  "reference": {
+    "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "body_sha256": "6730d8bc92a02cb9acd6fb49891a3b138c759b0bce2f14c156cdf686d76afabb",
+    "reader_sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32",
+    "policy_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "caller_sha256": "952ac4880d6be155c35a37c1ff8e5ecbbcae8603cc4d2cafbaaeb287c1046913"
+  },
+  "raw_sha256": "b394d0f4c8f775b6a7220b3519c4b8f74b5f32232ec77244a9bdddd991f9940d",
+  "observations": [
+    {
+      "name": "finite-opposite-corner-positive",
+      "result": 1,
+      "path": [
+        "0x4690b0",
+        "0x4690b4",
+        "0x4690b9",
+        "0x4690bc",
+        "0x4690c0",
+        "0x4690c4",
+        "0x4690c7",
+        "0x4690c9",
+        "0x4690ce",
+        "0x4690d2",
+        "0x4690d4",
+        "0x4690d7",
+        "0x4690dc",
+        "0x4690df",
+        "0x4690e1",
+        "0x4690e6",
+        "0x4690e9",
+        "0x4690f1",
+        "0x4690f4",
+        "0x4690f6",
+        "0x4690fb",
+        "0x469100",
+        "0x469104",
+        "0x469107",
+        "0x469109",
+        "0x46910e",
+        "0x469111",
+        "0x469120",
+        "0x469125",
+        "0x469129",
+        "0x46912e",
+        "0x469132",
+        "0x469135",
+        "0x469138",
+        "0x46913c",
+        "0x469140",
+        "0x469144",
+        "0x469147",
+        "0x469149",
+        "0x46914e",
+        "0x469153",
+        "0x469157",
+        "0x46915a",
+        "0x46915e",
+        "0x469162",
+        "0x469165",
+        "0x469167",
+        "0x46916c",
+        "0x469170",
+        "0x469174",
+        "0x469177",
+        "0x46917b",
+        "0x46917f",
+        "0x469182",
+        "0x469188",
+        "0x46918a",
+        "0x46918e",
+        "0x469192",
+        "0x469196",
+        "0x469199",
+        "0x46919c"
+      ],
+      "branch_flags": [
+        {
+          "pc": "0x4690c7",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x4690d2",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x4690df",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x4690e9",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x4690f4",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x469107",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x469111",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469147",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469165",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469182",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469199",
+          "flag_mask": 0
+        }
+      ],
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "41500000",
+            "c0c00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "41600000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690dc",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41800000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x4690e6",
+          "args": "xmm0, xmm1",
+          "operands": [
+            "41200000",
+            "41600000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "41500000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469104",
+          "args": "xmm1, xmm0",
+          "operands": [
+            "41600000",
+            "c0c00000"
+          ]
+        },
+        {
+          "pc": "0x46910e",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41200000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "42100000",
+            "43b68000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "42100000",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "42100000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "42100000",
+            "41c80000"
+          ]
+        }
+      ],
+      "limits": "Guest comparison completion/results and matching source-path replay, not native status/exception proof"
+    },
+    {
+      "name": "finite-opposite-corner-tangent-negative",
+      "result": 0,
+      "path": [
+        "0x4690b0",
+        "0x4690b4",
+        "0x4690b9",
+        "0x4690bc",
+        "0x4690c0",
+        "0x4690c4",
+        "0x4690c7",
+        "0x4690c9",
+        "0x4690ce",
+        "0x4690d2",
+        "0x4690d4",
+        "0x4690d7",
+        "0x4690dc",
+        "0x4690df",
+        "0x4690e1",
+        "0x4690e6",
+        "0x4690e9",
+        "0x4690f1",
+        "0x4690f4",
+        "0x4690f6",
+        "0x4690fb",
+        "0x469100",
+        "0x469104",
+        "0x469107",
+        "0x469109",
+        "0x46910e",
+        "0x469111",
+        "0x469120",
+        "0x469125",
+        "0x469129",
+        "0x46912e",
+        "0x469132",
+        "0x469135",
+        "0x469138",
+        "0x46913c",
+        "0x469140",
+        "0x469144",
+        "0x469147",
+        "0x469149",
+        "0x46914e",
+        "0x469153",
+        "0x469157",
+        "0x46915a",
+        "0x46915e",
+        "0x469162",
+        "0x469165",
+        "0x469167",
+        "0x46916c",
+        "0x469170",
+        "0x469174",
+        "0x469177",
+        "0x46917b",
+        "0x46917f",
+        "0x469182",
+        "0x469188",
+        "0x46918a",
+        "0x46918e",
+        "0x469192",
+        "0x469196",
+        "0x469199",
+        "0x46919c"
+      ],
+      "branch_flags": [
+        {
+          "pc": "0x4690c7",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x4690d2",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x4690df",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x4690e9",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x4690f4",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x469107",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x469111",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469147",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469165",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469182",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469199",
+          "flag_mask": 64
+        }
+      ],
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "41500000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x4690ce",
+          "args": "xmm1, dword ptr [rcx + 8]",
+          "operands": [
+            "41600000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x4690dc",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41700000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x4690e6",
+          "args": "xmm0, xmm1",
+          "operands": [
+            "41200000",
+            "41600000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "41500000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469104",
+          "args": "xmm1, xmm0",
+          "operands": [
+            "41600000",
+            "c0a00000"
+          ]
+        },
+        {
+          "pc": "0x46910e",
+          "args": "xmm0, xmm4",
+          "operands": [
+            "41200000",
+            "41500000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "43b68000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "41c80000",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "41c80000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "41c80000",
+            "41c80000"
+          ]
+        }
+      ],
+      "limits": "Guest comparison completion/results and matching source-path replay, not native status/exception proof"
+    },
+    {
+      "name": "minA-qnan-opposite-corner",
+      "result": 1,
+      "path": [
+        "0x4690b0",
+        "0x4690b4",
+        "0x4690b9",
+        "0x4690bc",
+        "0x4690c0",
+        "0x4690c4",
+        "0x4690c7",
+        "0x4690f1",
+        "0x4690f4",
+        "0x469120",
+        "0x469125",
+        "0x469129",
+        "0x46912e",
+        "0x469132",
+        "0x469135",
+        "0x469138",
+        "0x46913c",
+        "0x469140",
+        "0x469144",
+        "0x469147",
+        "0x469149",
+        "0x46914e",
+        "0x469153",
+        "0x469157",
+        "0x46915a",
+        "0x46915e",
+        "0x469162",
+        "0x469165",
+        "0x469167",
+        "0x46916c",
+        "0x469170",
+        "0x469174",
+        "0x469177",
+        "0x46917b",
+        "0x46917f",
+        "0x469182",
+        "0x469188",
+        "0x46918a",
+        "0x46918e",
+        "0x469192",
+        "0x469196",
+        "0x469199",
+        "0x46919c"
+      ],
+      "branch_flags": [
+        {
+          "pc": "0x4690c7",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x4690f4",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469147",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469165",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469182",
+          "flag_mask": 1
+        },
+        {
+          "pc": "0x469199",
+          "flag_mask": 0
+        }
+      ],
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "41500000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "41500000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "42100000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "42100000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "42100000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "42100000",
+            "41c80000"
+          ]
+        }
+      ],
+      "limits": "Guest comparison completion/results and matching source-path replay, not native status/exception proof"
+    },
+    {
+      "name": "centerA-qnan",
+      "result": 0,
+      "path": [
+        "0x4690b0",
+        "0x4690b4",
+        "0x4690b9",
+        "0x4690bc",
+        "0x4690c0",
+        "0x4690c4",
+        "0x4690c7",
+        "0x4690f1",
+        "0x4690f4",
+        "0x469120",
+        "0x469125",
+        "0x469129",
+        "0x46912e",
+        "0x469132",
+        "0x469135",
+        "0x469138",
+        "0x46913c",
+        "0x469140",
+        "0x469144",
+        "0x469147",
+        "0x469149",
+        "0x46914e",
+        "0x469153",
+        "0x469157",
+        "0x46915a",
+        "0x46915e",
+        "0x469162",
+        "0x469165",
+        "0x469167",
+        "0x46916c",
+        "0x469170",
+        "0x469174",
+        "0x469177",
+        "0x46917b",
+        "0x46917f",
+        "0x469182",
+        "0x469188",
+        "0x46918a",
+        "0x46918e",
+        "0x469192",
+        "0x469196",
+        "0x469199",
+        "0x46919c"
+      ],
+      "branch_flags": [
+        {
+          "pc": "0x4690c7",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x4690f4",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469147",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469165",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469182",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469199",
+          "flag_mask": 69
+        }
+      ],
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "7fc00000",
+            "c0c00000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "7fc00000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "42100000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "42100000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "42100000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "42100000",
+            "7fc00000"
+          ]
+        }
+      ],
+      "limits": "Guest comparison completion/results and matching source-path replay, not native status/exception proof"
+    },
+    {
+      "name": "radius-qnan",
+      "result": 0,
+      "path": [
+        "0x4690b0",
+        "0x4690b4",
+        "0x4690b9",
+        "0x4690bc",
+        "0x4690c0",
+        "0x4690c4",
+        "0x4690c7",
+        "0x4690f1",
+        "0x4690f4",
+        "0x4690f6",
+        "0x4690fb",
+        "0x469100",
+        "0x469104",
+        "0x469107",
+        "0x469120",
+        "0x469125",
+        "0x469129",
+        "0x46912e",
+        "0x469132",
+        "0x469135",
+        "0x469138",
+        "0x46913c",
+        "0x469140",
+        "0x469144",
+        "0x469147",
+        "0x469149",
+        "0x46914e",
+        "0x469153",
+        "0x469157",
+        "0x46915a",
+        "0x46915e",
+        "0x469162",
+        "0x469165",
+        "0x469167",
+        "0x46916c",
+        "0x469170",
+        "0x469174",
+        "0x469177",
+        "0x46917b",
+        "0x46917f",
+        "0x469182",
+        "0x469188",
+        "0x46918a",
+        "0x46918e",
+        "0x469192",
+        "0x469196",
+        "0x469199",
+        "0x46919c"
+      ],
+      "branch_flags": [
+        {
+          "pc": "0x4690c7",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x4690f4",
+          "flag_mask": 0
+        },
+        {
+          "pc": "0x469107",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469147",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469165",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469182",
+          "flag_mask": 69
+        },
+        {
+          "pc": "0x469199",
+          "flag_mask": 69
+        }
+      ],
+      "comparisons": [
+        {
+          "pc": "0x4690c4",
+          "args": "xmm4, xmm0",
+          "operands": [
+            "41500000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x4690f1",
+          "args": "xmm4, xmm3",
+          "operands": [
+            "41500000",
+            "00000000"
+          ]
+        },
+        {
+          "pc": "0x469104",
+          "args": "xmm1, xmm0",
+          "operands": [
+            "41600000",
+            "7fc00000"
+          ]
+        },
+        {
+          "pc": "0x469144",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "7fc00000",
+            "43b68000"
+          ]
+        },
+        {
+          "pc": "0x469162",
+          "args": "xmm2, xmm0",
+          "operands": [
+            "7fc00000",
+            "43390000"
+          ]
+        },
+        {
+          "pc": "0x46917f",
+          "args": "xmm2, xmm5",
+          "operands": [
+            "7fc00000",
+            "434d0000"
+          ]
+        },
+        {
+          "pc": "0x469196",
+          "args": "xmm2, xmm1",
+          "operands": [
+            "7fc00000",
+            "41c80000"
+          ]
+        }
+      ],
+      "limits": "Guest comparison completion/results and matching source-path replay, not native status/exception proof"
+    }
+  ],
+  "interpretation": "A quiet NaN in rectangle minA rejects both bands and minA-based corners, but finite maxA/maxB corner remains: original final comparison36>25 and SETA return1 for center13,14/r6. Same finite r6 control1/r5tangent0; NaNcenterA and NaNradius controls0. Thus blanket any-NaN rejection is false for this operand domain; completed unordered comparison failure applies only tests involving the NaN, not every alternative.",
+  "required_change": "OPUS actual model/coverage and field consumer distinguish NaNcenter/radius from malformed individual rectangle bound; add this specific control and completed/masked compare qualifier. FABLE inspect only own actual affected scope; preserve valid finite/corner/contact source findings. No countlabel-only fix or broad retraction.",
+  "limits": "NaNminA specific counterexample under completed guest comparisons; no general malformed-safety/NaN payload/all-bounds/native exception/status/unmasked continuation/actual game MXCSR/normal reachability/game scene proof.57 nativeprecisionstatus omission forbids promoting guest unchanged status to nativeabsence.",
+  "cleanup": "Fresh disposable guest each, original code unchanged, no writes/calls/stubs, completeRET/stack+8/argumentbytes unchanged, reference matched; standalone host normal exit, PC OFF/noFF12/save/config/reference/peer writes/S19parked/fullL1+L2NOT_MET"
+}

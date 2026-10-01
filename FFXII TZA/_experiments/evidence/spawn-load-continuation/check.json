@@ -1,0 +1,103 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "complete_bodies": 20,
+  "tables": [
+    {
+      "address": "0x582f54",
+      "bytes": "ac284600312a4600242f4600242f4600242f4600242f4600242f4600242f4600242f4600242f4600242f46002c2b4600242f4600242f4600242f4600c0294600242f4600812e4600e92a4600",
+      "sha256": "d086735fdee8c6722a515ff0cc978eb55dd97464441004aadcaa35f847748296",
+      "targets": [
+        "0x5828ac",
+        "0x582a31",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x582b2c",
+        "0x582f24",
+        "0x582f24",
+        "0x582f24",
+        "0x5829c0",
+        "0x582f24",
+        "0x582e81",
+        "0x582ae9"
+      ]
+    },
+    {
+      "address": "0x582fa0",
+      "bytes": "7c2b4600c72b4600382c4600832c4600202f4600932c4600202f4600a32c4600",
+      "sha256": "aec4dfe05f40651bc4536a61df1826b73f7ca91bb53af0fb7fcc337ea27c636f",
+      "targets": [
+        "0x582b7c",
+        "0x582bc7",
+        "0x582c38",
+        "0x582c83",
+        "0x582f20",
+        "0x582c93",
+        "0x582f20",
+        "0x582ca3"
+      ]
+    }
+  ],
+  "checks": "pass",
+  "active_base": "0x2164280",
+  "staging_base": "0x21ba940",
+  "group_bytes": 512,
+  "spawn_image_bytes": 131088,
+  "limits": "Read-only exact instructions/table bytes. No live or isolated execution. Larger controller dependencies not all executed/read.",
+  "selected_branch_truth": [
+    {
+      "flag12": 0,
+      "mode_is3": 0,
+      "header57_bit0": 0,
+      "selection": "A"
+    },
+    {
+      "flag12": 0,
+      "mode_is3": 0,
+      "header57_bit0": 1,
+      "selection": "A"
+    },
+    {
+      "flag12": 0,
+      "mode_is3": 1,
+      "header57_bit0": 0,
+      "selection": "A"
+    },
+    {
+      "flag12": 0,
+      "mode_is3": 1,
+      "header57_bit0": 1,
+      "selection": "A"
+    },
+    {
+      "flag12": 1,
+      "mode_is3": 0,
+      "header57_bit0": 0,
+      "selection": "B"
+    },
+    {
+      "flag12": 1,
+      "mode_is3": 0,
+      "header57_bit0": 1,
+      "selection": "B"
+    },
+    {
+      "flag12": 1,
+      "mode_is3": 1,
+      "header57_bit0": 0,
+      "selection": "skip"
+    },
+    {
+      "flag12": 1,
+      "mode_is3": 1,
+      "header57_bit0": 1,
+      "selection": "B"
+    }
+  ]
+}

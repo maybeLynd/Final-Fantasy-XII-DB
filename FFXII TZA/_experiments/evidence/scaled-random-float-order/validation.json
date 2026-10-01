@@ -1,0 +1,13 @@
+{
+  "status": "PASS_ORIGINAL_WINDOW",
+  "claims_established": [
+    "For injected sample3F900001 and amplitude3E99999A under MXCSR1F80, original result3D1999A0 differs from factored3D1999A4.",
+    "MULSS(sample,A), MULSS(A,1), then SUBSS is required for these exact bits; power-of-two agreement alone cannot distinguish.",
+    "Four write transitions and read-only input/constant controls verified; subtract-to-add mutation changes observed stored result."
+  ],
+  "limitations": "Injected finite sample and stack/scratch/MXCSR; entry skips branch/recurrence/native save and stops before second mode gate/restore/return. No real initialization, universal rounding mode, negative/subnormal amplitude, caller-flow or live rendering claim. Observed bits are emulator original-instruction evidence, not a reconstructed implementation fixture. No prior EXP070/071 rerun.",
+  "original_cases": 2,
+  "explicit_mutant_controls": 1,
+  "live_cases": 0,
+  "cleanup": "Disposable emulator instances only. No PC/game/process attachment/save/config/reference writes; no live cleanup claimed."
+}

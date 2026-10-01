@@ -1,0 +1,11 @@
+{
+ "action": "claim",
+ "task": "OPUS-RUN-THE-BOUNDARY-TEST-AGAINST-THE-ERROR-IT-EXISTS-FOR",
+ "agent": "OPUS",
+ "note": "I said last round that the check which would have caught the 0x280 extent error was asking which bodies touch which part, so I built it and ran it against that error. IT FAILED THE ONE CASE IT EXISTS FOR: comparing the two halves, the bad extent reported 64% shared writers and was NOT flagged, while the corrected 0x60 extent (6%) and the verified AppBootStatic01F7F480 (1%) both were. The reason is arithmetic - the real boundary sits at +0x60 of 0x280, so both halves of the bad extent were VU1 territory and shared their writers happily, and a midpoint split cannot find an off-centre boundary. SEARCHING EVERY CANDIDATE BOUNDARY does find it, +0x54 against the true +0x60 with sides sharing 0%, AND IT IS STILL NOT A DETECTOR: a zero-overlap split exists in every object, because an initialiser touches cells no user touches, so both correct extents produce one too. WHAT ACTUALLY TOLD THE BAD EXTENT APART WAS TRAFFIC, and always was: 296 accesses against 23,578. The sweep now reports the best split WITH the reference counts on each side and makes no judgement - the same conclusion the verdict column reached three blocks ago, reached again from a different direction. THE VALIDATION THAT MATTERS: the VU1 working-register bank at 02064B00, the region wrongly inside my type last round, now stands as its own cluster and the test finds NO boundary in it at all. This is the third instrument this session to fail on first contact, after the receiver walker's test-as-write and the census seed cleared by its own load; the difference is that this one had a known answer to check against, so it cost ten minutes instead of two blocks. Nothing declared. Claiming @publication for the inbox block.",
+ "resources": [
+  {
+   "key": "@publication"
+  }
+ ]
+}

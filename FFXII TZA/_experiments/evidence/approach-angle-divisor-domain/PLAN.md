@@ -1,0 +1,11 @@
+# Approach angle: a register is not an unknown divisor
+
+Question: does00339880 DIVSS XMM0,XMM9 feed the angle normalizer with a variable or possibly near-zero divisor, as the current53-caller residue discussion implies, or is XMM9 a fixed local conversion constant? Major system Movement/approach geometry; FABLE maths/facing consumer and OPUS ABI/domain. Other caller operands stay outside this package.
+
+Method A sufficient: exact shipping1061B catalog span00339630, complete decoding/direct bounded control-flow, XMM9/10 source definitions, RIP constant identity and conservative callee ABI assumption. Reference source preflight finds339723 loads XMM9 from008F3138=180 and339735 loads XMM10 from01CEBC50=pi. No original/native/emulator/live execution. Do not reproduce53-site census or implement acos/normalizer.
+
+Discriminator: all normal entry paths reaching339880 must cross339723; no local overwrite before division/loopback. Microsoft x64 ABI makes low128 XMM9/10 nonvolatile: calls are opaque and assumed to return conformingly, not dynamically proven. Preserve operation order degree low32->signedCVTDQ2PS->MULSSpi->DIVSS180. The divisor is fixed nonzero under those preconditions; any finite-source coarse bound is a conditional safety bound, not native bit-exact output or proof fastpath unreachable.
+
+Controls: decoded save/restore versus load register roles through the shared reviewed adapter; irrelevant epilogue removal does not hide the reachable division; private same-size load destination XMM9->XMM8 removes the reaching constant definition and original byte binding rejects it. No altered instruction execution. Capture focused sources/edges/constant sections/canonical preimage/tools/adapter identity, not telemetry.
+
+Accept only nonempty exact body/boundaries/canonical cited call/validated constant load-dominance at normal entry plus explicit opaque-call preservation and unchanged-reference assumptions. Fail on incomplete decode/control edges, unsupported register-role policy, wrong constant/instruction identity or a reachable bypass/clobber. No assumed wholefunction native extent/caller behavior or live float-state. Restore plan: no process/input/save/config/reference/peer writes; PC OFF. Consumer correction/review once; actual upstreamangle/CRT/FP domain and other40operands remain open. No menu recovery.

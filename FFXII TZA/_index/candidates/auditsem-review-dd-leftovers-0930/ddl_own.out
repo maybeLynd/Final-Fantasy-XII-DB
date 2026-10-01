@@ -1,0 +1,72 @@
+S walker 1
+   007E5920 push rax
+   007E5921 sub byte ptr [rbx], dh
+   007E5923 ror byte ptr [rax - 0x73], 0x55
+S walker 2
+   007E6808 lea rdx, [rbp + 7]
+   007E680C lea rcx, [rbp + 0x17]
+   007E6810 mov qword ptr [rbp + 7], rax
+   007E6814 mov qword ptr [rbp + 0xf], rax
+   007E6818 call 0x7cfa30
+   007E681D mov rax, qword ptr [rdi + 0x30]
+   007E6821 mov rcx, rdi
+   007E6824 mov qword ptr [rbp - 0x21], rax
+   007E6828 lea rax, [rip + 0x14cdbb1]
+   007E682F mov qword ptr [rbp - 0x29], rax
+S vtable 01CB43E0: COL 01D3F7E0 sig 1 self-RVA ok True class b'.?AVSound@SabFile@Sd@SQEX@@'
+S bind 007BDDA0 (+0x30 / +0x4E / +0x18)
+   007BDDBB mov qword ptr [rcx + 0x18], rax
+   007BDDD7 mov eax, dword ptr [rdx + 0x30]
+   007BDDDD mov rax, qword ptr [rdx + 0x18]
+   007BDDE1 mov qword ptr [rcx + 0x30], rax
+   007BDE00 cmp qword ptr [rbp + 0x30], 0
+   007BDE45 mov rax, qword ptr [rbp + 0x30]
+   007BDE4E movzx eax, byte ptr [rax + 0x4e]
+I initialiser 0035F260: pointer set-up and stores through rdi / rbx
+   0035F260 mov qword ptr [rsp + 8], rbx
+   0035F26F push rdi
+   0035F27E mov qword ptr [rip + 0x1f6c12f], 0xffffffffffffffff
+   0035F28C mov qword ptr [rip + 0x1f6c46d], rax
+   0035F293 mov qword ptr [rip + 0x1f6c476], rax
+   0035F29A lea rbp, [rip + 0x1f6c11f]
+   0035F2A1 mov qword ptr [rip + 0x1f6c460], r14
+   0035F2A8 lea rdi, [rip + 0x1f6bbe2]
+   0035F2B2 mov qword ptr [rip + 0x1f6c45f], rax
+   0035F2B9 mov dword ptr [rip + 0x1f6c43d], 2
+   0035F2C9 mov byte ptr [rip + 0x1f6c441], al
+   0035F2D3 mov dword ptr [rip + 0x1f6c42b], esi
+   0035F2E3 lea rbx, [rdi - 1]
+   0035F2E9 mov rcx, rbx
+   0035F2F7 movzx eax, byte ptr [rdi + 8]
+   0035F301 mov byte ptr [rdi + 1], sil
+   0035F307 mov byte ptr [rbx], r14b
+   0035F30C mov byte ptr [rdi + 8], al
+   0035F30F mov byte ptr [rdi], r14b
+   0035F312 mov dword ptr [rdi + 3], 0x50c
+   0035F319 mov byte ptr [rdi + 2], 0x68
+   0035F31D mov word ptr [rdi + 0xa], 0x90
+   0035F323 mov byte ptr [rdi + 0xc], 0x20
+   0035F327 mov qword ptr [rdi + 0x1b], r14
+   0035F32B or byte ptr [rdi + 8], 4
+   0035F32F mov dword ptr [rdi + 0x33], 0xf0f000
+   0035F336 mov dword ptr [rdi + 0x37], 0x4000006
+   0035F33D mov dword ptr [rdi + 0x3b], 0x8000100
+   0035F344 mov dword ptr [rdi + 0x3f], 0x90200
+   0035F34B and byte ptr [rdi + 8], 0xfd
+   0035F34F mov dword ptr [rdi + 0x11], r14d
+   0035F353 mov word ptr [rdi + 0xf], r14w
+   0035F358 mov dword ptr [rdi + 0x15], 0x4000
+   0035F360 movzx eax, byte ptr [rbx]
+   0035F36A mov byte ptr [rbx], cl
+   0035F387 mov qword ptr [rbx + rcx*4 + 0x48], r14
+   0035F38C lea rdx, [rbx + rcx*4]
+   0035F390 mov qword ptr [rbx + rcx*4 + 0x50], r14
+I analog builder 0035F7B0..0035F7C4
+   0035F7B0 or al, 0x8b
+   0035F7B2 rol ecx, 0xe8
+   0035F7B5 add al, 0xf7
+   0035F7B7 fadd st(1)
+   0035F7B9 loopne 0x35f7bf
+   0035F7BB add ecx, eax
+   0035F7BD movzx edx, byte ptr [rsi + 0xd]
+   0035F7C1 mov ebp, 1

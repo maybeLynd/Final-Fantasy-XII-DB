@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "capture_sha256": "736b3fd67c7d9725ed2026b1f0a53ae4854d3d484da3019185a34338d42be1f1",
+  "check_sha256": "c45d416c52e8c458fe2e14513b8d1bab48e50904d484c1c5a20441894888b586",
+  "raw_unchanged_sha256": "249f0442edda6a05880cb4d50168e0f775e6f964226c9397afb936737bad09c5",
+  "path": "Successful actual producer checker-preflight/raw-default reduction, no guest/native/live execution; original incomplete invocation preserved separately"
+}

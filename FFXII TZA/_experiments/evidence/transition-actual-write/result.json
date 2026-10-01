@@ -1,0 +1,10 @@
+{
+  "verdict": "ACCEPT scoped real transition/writer integration and repeated dispatch",
+  "first": "two exact derived requests committed through original writer",
+  "second": "same board/journal bytes, no new request",
+  "source": [
+    "d27e9aff8e43c7921a717476639fadb573eb55bb",
+    "bf000cdc96d3ca9ec7fb461d0e066572d6657041"
+  ],
+  "limits": "Synthetic review declarations, not actual project reviewers/pilot. Child exit/Saved conditions inferred from exact original caller status, not separately captured child stdout. No races/fairness/cancellation/quota/controller/native host or whole A14/A16 acceptance."
+}

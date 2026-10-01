@@ -1,0 +1,148 @@
+{
+  "source_hashes": {
+    "Database/FFXII TZA/_types/types.tsv": "1fca6fc110bdac04fbca40fc204da357bb1e4aee80289cdb358d4f855ed98586",
+    "Database/FFXII TZA/_types/fields.tsv": "3ae3ce8c56b1677cba4b3b88c60b4916be9a3a077be45b007f98dca66e84ec4d",
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-descriptor-vtable.tsv": "27b7f64e045cdfd130f5cf57de4374816ab90dd5f11dcea51936106802c6ffeb",
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-parent-chain.tsv": "ab76f9779b7b09df24dafd28542676a4fbab51843af4230da3c06281e38abfcf",
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-default-buffers.tsv": "d7c362c0642eabd9a9eca350d580b5b1969e35b9f1557100df74bf8f9fd52d5f",
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/phyre-field-schema.tsv": "2efc2201dda65099a3f06f81d85f2461312b623a4e0c7a4f5da34f91cf638215",
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/rtti-class-vtables.tsv": "b4cdae0fd7660780db4e76334c387c8d9440b18b34313ccf998ce79040d77cd3",
+    "Database/Tools/analysis-kit/gfz-scripts/gen_phyre_descriptor_vtables.py": "b3a652186cc0dd1be160940da4f17827fd7a315575e93af79145a4c14262a3f3"
+  },
+  "selected_current_rows": {
+    "Database/FFXII TZA/_types/types.tsv": [
+      {
+        "type": "PMeshInstanceSegmentContext",
+        "size": "0x48",
+        "category": "22-Middleware-PhyreEngine",
+        "instance": "the Phyre class descriptor is the static at 0x02CB6D80; the instance itself is created by the engine (cluster object builders or per-subsystem factories) and reached through the engine's object graph - no fixed game-side route is traced",
+        "allocation_site": "IMAGE/ENGINE - allocated by the Phyre cluster system from the descriptor (PCluster::create 0063A990 -> 0063C910), so no game-side allocation call exists on this path",
+        "ctor": "",
+        "dtor": "00584730 - called by descriptor destroy slot +0x58 (005CEBA0)",
+        "readiness": "SIGNATURE RESOLVED",
+        "confidence": "HIGH",
+        "level": "L1",
+        "evidence": "DECLARED 2026-09-19 (OPUS) from the class-descriptor construction site. The instance size is the constructor's own r9d immediate, the descriptor address comes from the registrar's callers (`lea rcx,[descriptor]` / `call <registrar>`, 330 of 330 with no ambiguity), and the parent is the ctor's 6th argument, which it stores to descriptor +0x78. THE POPULATION WAS THE OMISSION: the store carried 177 Phyre classes because that is what members/phyre-class-instance-sizes.tsv covered, and that table is one registrar shape. Sweeping every call to 00632D80/00632C90 image-wide finds 400 sites, 330 named, so 153 classes with a known size, descriptor and parent were simply absent. THIS FOLLOWS THE RULING ALREADY MADE AND PUBLISHED for the 162 Phyre extents: a type with size=UNRESOLVED cannot be allocated by a reconstruction at all, so a known size with honestly declared gaps is strictly more useful than no size, and a number that improves by withholding a known fact is measuring the wrong thing. NO MEMBER OF THIS CLASS IS CLAIMED - the reflection schema recovered none for it, and the field rows below say exactly that. Lifetime is unestablished and is left so rather than borrowed from a sibling. See members/phyre-class-parent-chain.tsv and sections 19-19c of member-registration-and-the-recovered-field-schema.md. Parent: PMeshSegmentContext (0x28), from descriptor 0x02E522F0.",
+        "documents": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+        "route": ""
+      }
+    ],
+    "Database/FFXII TZA/_types/fields.tsv": [
+      {
+        "type": "PMeshInstanceSegmentContext",
+        "offset": "0x0000",
+        "size": "40",
+        "name": "baseClass_PMeshSegmentContext",
+        "ctype": "PMeshSegmentContext",
+        "meaning": "THE BASE SUBOBJECT: this class derives from PMeshSegmentContext (instance size 0x28), so the first 0x28 bytes of every PMeshInstanceSegmentContext ARE a PMeshSegmentContext. Those bytes are registered against the parent, not against this class.",
+        "readiness": "TYPE RESOLVED",
+        "confidence": "HIGH",
+        "evidence": "DECLARED 2026-09-19 (OPUS) from the class-descriptor construction site. The instance size is the constructor's own r9d immediate, the descriptor address comes from the registrar's callers (`lea rcx,[descriptor]` / `call <registrar>`, 330 of 330 with no ambiguity), and the parent is the ctor's 6th argument, which it stores to descriptor +0x78. THE POPULATION WAS THE OMISSION: the store carried 177 Phyre classes because that is what members/phyre-class-instance-sizes.tsv covered, and that table is one registrar shape. Sweeping every call to 00632D80/00632C90 image-wide finds 400 sites, 330 named, so 153 classes with a known size, descriptor and parent were simply absent. THIS FOLLOWS THE RULING ALREADY MADE AND PUBLISHED for the 162 Phyre extents: a type with size=UNRESOLVED cannot be allocated by a reconstruction at all, so a known size with honestly declared gaps is strictly more useful than no size, and a number that improves by withholding a known fact is measuring the wrong thing. NO MEMBER OF THIS CLASS IS CLAIMED - the reflection schema recovered none for it, and the field rows below say exactly that. Lifetime is unestablished and is left so rather than borrowed from a sibling. See members/phyre-class-parent-chain.tsv and sections 19-19c of member-registration-and-the-recovered-field-schema.md."
+      },
+      {
+        "type": "PMeshInstanceSegmentContext",
+        "offset": "0x0028",
+        "size": "32",
+        "name": "unobservedSpan0028",
+        "ctype": "u8[32]",
+        "meaning": "this class own bytes above its base. The Phyre reflection schema recovered NO member for this class, so nothing is known about them beyond the extent.",
+        "readiness": "DISCOVERED",
+        "confidence": "UNKNOWN",
+        "evidence": "DECLARED 2026-09-19 (OPUS) from the class-descriptor construction site. The instance size is the constructor's own r9d immediate, the descriptor address comes from the registrar's callers (`lea rcx,[descriptor]` / `call <registrar>`, 330 of 330 with no ambiguity), and the parent is the ctor's 6th argument, which it stores to descriptor +0x78. THE POPULATION WAS THE OMISSION: the store carried 177 Phyre classes because that is what members/phyre-class-instance-sizes.tsv covered, and that table is one registrar shape. Sweeping every call to 00632D80/00632C90 image-wide finds 400 sites, 330 named, so 153 classes with a known size, descriptor and parent were simply absent. THIS FOLLOWS THE RULING ALREADY MADE AND PUBLISHED for the 162 Phyre extents: a type with size=UNRESOLVED cannot be allocated by a reconstruction at all, so a known size with honestly declared gaps is strictly more useful than no size, and a number that improves by withholding a known fact is measuring the wrong thing. NO MEMBER OF THIS CLASS IS CLAIMED - the reflection schema recovered none for it, and the field rows below say exactly that. Lifetime is unestablished and is left so rather than borrowed from a sibling. See members/phyre-class-parent-chain.tsv and sections 19-19c of member-registration-and-the-recovered-field-schema.md. || LIFETIME: TEMPLATE-INITIALISED - the instance is memcpy'd from the class's registered default buffer at 0063C974 (mov rdx,[r13+0xC0]; mov r8d,[r13+0x38]; call 00861EBA inside the registration callee 0063A990); the default buffer itself is built by memset/memcpy in 00639A60/0063CB80. 2026-09-23 (SWE2-STRUCT), check_clear_exhaustion adjudicated."
+      }
+    ],
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-descriptor-vtable.tsv": [
+      {
+        "class": "PMeshInstanceSegmentContext",
+        "descriptor_vtable": "00D38540",
+        "ctor_body": "005D9890",
+        "s18": "005CF610",
+        "s20": "005CF300",
+        "s28": "005CED20",
+        "s30": "005CEE00",
+        "s38": "005CF6F0",
+        "s40": "0062EFD0",
+        "s50": "005CF520",
+        "s58": "005CEBA0",
+        "s60": "005CF0F0",
+        "s68": "00660570",
+        "s60_unthunked": "005E67C0",
+        "regcalls": "0",
+        "in_schema": "no",
+        "s20_family": "object-push-adapters",
+        "s28_accessor": "005F8A40",
+        "s28_bound_type": "PRendering::PMeshInstanceSegmentContext *",
+        "s30_family": "nullable-object-push-adapters",
+        "s58_form": "direct",
+        "s58_destroy": "00584730",
+        "descriptor_template": "PClassDescriptorConcrete",
+        "abstract_base_vtable": "00D38028",
+        "static_initialiser": "001614C0",
+        "final_template_rtti": "PClassDescriptorConcrete",
+        "fc_flag_edit": "clear 0x2"
+      }
+    ],
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-parent-chain.tsv": [
+      {
+        "class_leaf": "PMeshInstanceSegmentContext",
+        "descriptor": "0x02CB6D80",
+        "instance_size": "0x48",
+        "parent_descriptor": "0x02E522F0",
+        "parent_class": "PMeshSegmentContext",
+        "parent_instance_size": "0x28",
+        "first_registered_member": ""
+      }
+    ],
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/phyre-class-default-buffers.tsv": [
+      {
+        "class": "PMeshInstanceSegmentContext",
+        "size": "0x48",
+        "b_C0": "02CBC700",
+        "b_C8": "02CBC750",
+        "b_D0": "02CBC7A0",
+        "stride_C8": "0x50",
+        "stride_D0": "0x50",
+        "even": "yes",
+        "ctor_body": "005D9890"
+      }
+    ],
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/phyre-field-schema.tsv": [],
+    "Database/FFXII TZA/22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/rtti-class-vtables.tsv": []
+  },
+  "generator_target_condition": [
+    {
+      "line": 388,
+      "text": "               and i.operands[0].imm in (0x00632960, 0x00632A70))"
+    }
+  ],
+  "historical_commit": "0c1adadc2",
+  "historical_selected_fields": [
+    {
+      "type": "PMeshInstanceSegmentContext",
+      "offset": "0x0000",
+      "size": "40",
+      "name": "baseClass_PMeshSegmentContext",
+      "ctype": "PMeshSegmentContext",
+      "meaning": "THE BASE SUBOBJECT: this class derives from PMeshSegmentContext (instance size 0x28), so the first 0x28 bytes of every PMeshInstanceSegmentContext ARE a PMeshSegmentContext. Those bytes are registered against the parent, not against this class.",
+      "readiness": "TYPE RESOLVED",
+      "confidence": "HIGH",
+      "evidence": "DECLARED 2026-09-19 (OPUS) from the class-descriptor construction site. The instance size is the constructor's own r9d immediate, the descriptor address comes from the registrar's callers (`lea rcx,[descriptor]` / `call <registrar>`, 330 of 330 with no ambiguity), and the parent is the ctor's 6th argument, which it stores to descriptor +0x78. THE POPULATION WAS THE OMISSION: the store carried 177 Phyre classes because that is what members/phyre-class-instance-sizes.tsv covered, and that table is one registrar shape. Sweeping every call to 00632D80/00632C90 image-wide finds 400 sites, 330 named, so 153 classes with a known size, descriptor and parent were simply absent. THIS FOLLOWS THE RULING ALREADY MADE AND PUBLISHED for the 162 Phyre extents: a type with size=UNRESOLVED cannot be allocated by a reconstruction at all, so a known size with honestly declared gaps is strictly more useful than no size, and a number that improves by withholding a known fact is measuring the wrong thing. NO MEMBER OF THIS CLASS IS CLAIMED - the reflection schema recovered none for it, and the field rows below say exactly that. Lifetime is unestablished and is left so rather than borrowed from a sibling. See members/phyre-class-parent-chain.tsv and sections 19-19c of member-registration-and-the-recovered-field-schema.md."
+    },
+    {
+      "type": "PMeshInstanceSegmentContext",
+      "offset": "0x0028",
+      "size": "32",
+      "name": "unobservedSpan0028",
+      "ctype": "u8[32]",
+      "meaning": "this class own bytes above its base. The Phyre reflection schema recovered NO member for this class, so nothing is known about them beyond the extent.",
+      "readiness": "DISCOVERED",
+      "confidence": "UNKNOWN",
+      "evidence": "DECLARED 2026-09-19 (OPUS) from the class-descriptor construction site. The instance size is the constructor's own r9d immediate, the descriptor address comes from the registrar's callers (`lea rcx,[descriptor]` / `call <registrar>`, 330 of 330 with no ambiguity), and the parent is the ctor's 6th argument, which it stores to descriptor +0x78. THE POPULATION WAS THE OMISSION: the store carried 177 Phyre classes because that is what members/phyre-class-instance-sizes.tsv covered, and that table is one registrar shape. Sweeping every call to 00632D80/00632C90 image-wide finds 400 sites, 330 named, so 153 classes with a known size, descriptor and parent were simply absent. THIS FOLLOWS THE RULING ALREADY MADE AND PUBLISHED for the 162 Phyre extents: a type with size=UNRESOLVED cannot be allocated by a reconstruction at all, so a known size with honestly declared gaps is strictly more useful than no size, and a number that improves by withholding a known fact is measuring the wrong thing. NO MEMBER OF THIS CLASS IS CLAIMED - the reflection schema recovered none for it, and the field rows below say exactly that. Lifetime is unestablished and is left so rather than borrowed from a sibling. See members/phyre-class-parent-chain.tsv and sections 19-19c of member-registration-and-the-recovered-field-schema.md."
+    }
+  ],
+  "historical_fields_blob": "88328ef1e392270ab51e57269b7f2322f486bb69",
+  "retained_title_raw_sha256": "25931a0cb4f734c941b04ad50281a7c18a86119c9d02c13b64e5d4b4f3ef0b05",
+  "retained_title_has_sentinel_default": false,
+  "limits": "Historical137 exact complete membership not certified. This named sentinel has the described historical/current no-object-vtable, regcalls0/no-schema and32B gap state. No extrapolated count or bulk disposition.",
+  "original_regcalls_source": "def regcalls(img, f):\n    return sum(1 for i in img.body(f)\n               if i.mnemonic == \"call\" and i.operands\n               and i.operands[0].type == X86_OP_IMM\n               and i.operands[0].imm in (0x00632960, 0x00632A70))"
+}

@@ -1,0 +1,39 @@
+{
+ "I2_master0": {
+  "EAC": "3333333333333333",
+  "calls": [
+   "reset 00236A60"
+  ],
+  "flags": "FFEF7FB9FFE7B0E1",
+  "ok": true,
+  "returned": 0
+ },
+ "cases": {
+  "I2_enemy_reset_then_master_reject": true,
+  "I3_enemy_rekey_after_reset_before_dispatch_control_installs": true,
+  "I3_enemy_return_0_after_the_rekey": true
+ },
+ "control": {
+  "EAC": "0",
+  "calls": [
+   "reset 00236A60",
+   "rekey 00322050",
+   "spawn init 0023AC80",
+   "track 00328FF0"
+  ],
+  "flags": "0000080004000004",
+  "ok": true,
+  "returned": 1
+ },
+ "ok": true,
+ "zero_count_list": {
+  "EAC": "0",
+  "calls": [
+   "reset 00236A60",
+   "rekey 00322050"
+  ],
+  "flags": "0000000004000000",
+  "ok": true,
+  "returned": 0
+ }
+}

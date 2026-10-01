@@ -1,0 +1,34 @@
+[
+  {
+    "case": "original",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\Tools\\analysis-kit\\gfz-scripts\\falsify_heading_delta.py"
+    ],
+    "returncode": 0,
+    "stdout": "SURVIVES  H0  sizes 601 / 61; gates {'Movement_SetRequestedSpeed': 1, 'Actor_SetDesiredMovementHeading': 1, 'Movement_UpdateActorFrame': 2, 'Movement_ComputeDeltaFromHeadingSpeed': 1}\nSURVIVES  H1  null first; classes 1 and 3; refusal zeros x, y, z\nSURVIVES  H2  X/Y/Z zeroed before the gate; refusal writes W = 1.0 and returns\nSURVIVES  H3  writes to the movement block (actor+0xB8)+0xF8: [('002E43E6', 'movss dword ptr [rdi + 0xf8], xmm0'), ('002E445C', 'movss dword ptr [rdi + 0xf8], xmm3')]\nSURVIVES  H4  00424080(word [actor+0xC0], &yaw, &speed) runs after the wrap and before the speed-0 test\nSURVIVES  H5  flat branch when 00267260 != 0 and 00264460 == 0: Y stays 0, X/Z use speed unscaled\nSURVIVES  H6  two truncating wraps (yaw with xmm5, pitch with xmm4 = +-pi)\nSURVIVES  H7  closure 14 bodies; no generator entry, no gameplay-LCG reference\nSURVIVES  H8  (REFUTES '002E45E0 is a 40-byte leaf with no calls') 8 chained fragments [40, 27, 397, 45, 93, 144, 47, 170], contiguous True, union 963 B = catalogue 963 B; first fragment 40 B with no ret; ret ['002E49A2']; extent valid True; calls 21; direct +0x03 operands []; calls between the gate and the delta ['002E50B8'], same actor in rcx\nFAILS 0\n",
+    "stderr": "",
+    "terminal": true,
+    "producer_sha256": "cc2b5100f5de06ef9f5a32bda921688bc1d4ecedd47d82630bb85235760a7dd0",
+    "wrapper_sha256": null
+  },
+  {
+    "case": "first-fragment-catalogue",
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\h8-input-intervention.py",
+      "--source",
+      "Database\\Tools\\analysis-kit\\gfz-scripts\\falsify_heading_delta.py",
+      "--catalog",
+      "Database\\FFXII TZA\\_experiments\\evidence\\heading-extent-repair-review\\retained\\functions.tsv"
+    ],
+    "returncode": 1,
+    "stdout": "SURVIVES  H0  sizes 601 / 61; gates {'Movement_SetRequestedSpeed': 1, 'Actor_SetDesiredMovementHeading': 1, 'Movement_UpdateActorFrame': 2, 'Movement_ComputeDeltaFromHeadingSpeed': 1}\nSURVIVES  H1  null first; classes 1 and 3; refusal zeros x, y, z\nSURVIVES  H2  X/Y/Z zeroed before the gate; refusal writes W = 1.0 and returns\nSURVIVES  H3  writes to the movement block (actor+0xB8)+0xF8: [('002E43E6', 'movss dword ptr [rdi + 0xf8], xmm0'), ('002E445C', 'movss dword ptr [rdi + 0xf8], xmm3')]\nSURVIVES  H4  00424080(word [actor+0xC0], &yaw, &speed) runs after the wrap and before the speed-0 test\nSURVIVES  H5  flat branch when 00267260 != 0 and 00264460 == 0: Y stays 0, X/Z use speed unscaled\nSURVIVES  H6  two truncating wraps (yaw with xmm5, pitch with xmm4 = +-pi)\nSURVIVES  H7  closure 14 bodies; no generator entry, no gameplay-LCG reference\nBROKEN    H8  (REFUTES '002E45E0 is a 40-byte leaf with no calls') 8 chained fragments [40, 27, 397, 45, 93, 144, 47, 170], contiguous True, union 963 B = catalogue 40 B; first fragment 40 B with no ret; ret ['002E49A2']; extent valid False; calls None; direct +0x03 operands None; calls between the gate and the delta ['002E50B8'], same actor in rcx\nFAILS 1\n",
+    "stderr": "",
+    "terminal": true,
+    "producer_sha256": "cc2b5100f5de06ef9f5a32bda921688bc1d4ecedd47d82630bb85235760a7dd0",
+    "wrapper_sha256": "277ccb8951be1d57fe39178101ffec53dbdadcb9b738da7aaa50eb2de509c368"
+  }
+]

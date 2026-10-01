@@ -1,0 +1,13 @@
+diff --git "a/Database/FFXII TZA/17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md" "b/Database/FFXII TZA/17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md"
+--- "a/Database/FFXII TZA/17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md"
++++ "b/Database/FFXII TZA/17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md"
+@@ -307,6 +307,9 @@ written**, and nothing was executed.
+ *Tightened word test (R3 clauses 1+2), 2026-09-14 (FABLE):* these crossings were previously matched only through front matter or a link path; tier 2: ledger names, sizes and `edges.tsv`; no body read for this note.
+ 
+ - **Status_Periodic_Terminal — CLIENT.** A cited function is called by `BattleStats_ModifyStatusLayerStateAndProcessSideEffects`, `BattleStats_RecomputeDerivedStateAndAutoStatuses` and `BattleUnit_RunPeriodicCombatMaintenance`.
++- **StoryEvent - CLIENT (1 edge).** FieldData_GetVariable0 (`00265270`) is called by bodies filed to StoryEvent: `001ED240` - shared machinery across the layer boundary, no shared ownership.
++- **Story_Event_Quest_Hunt - CLIENT (1 edge).** FieldData_GetVariable0 (`00265270`) is called by bodies filed to Story_Event_Quest_Hunt: PersistentFlag_QueryAuthoredThresholdSchedule (`00377970`) - shared machinery across the layer boundary, no shared ownership.
++- **UI - CLIENT (2 edges).** ActorWork_GetBattleUnitRaw (`00263E30`), BattleEncodedId_IsValidForClass (`00322C50`) are called by bodies filed to UI: BattleMenu_BuildCommandEntryList (`0031EB20`) - shared machinery across the layer boundary, no shared ownership.
+ 
+ ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
+ 

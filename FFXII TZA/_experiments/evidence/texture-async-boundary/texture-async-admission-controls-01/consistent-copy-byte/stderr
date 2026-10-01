@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 92, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\prove-texture-async-admission-boundary.py", line 17, in main
+    pins=[];raw,x=P.load(src,'texture-async-count-path-source-01.json',pins);agreement=S.validate(raw)
+                                                                                       ~~~~~~~~~~^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\validate-title-source-annotations.py", line 48, in validate
+    raise ValueError("decoded annotation disagrees with bytes at " + record["pc"])
+ValueError: decoded annotation disagrees with bytes at 0x62c40d

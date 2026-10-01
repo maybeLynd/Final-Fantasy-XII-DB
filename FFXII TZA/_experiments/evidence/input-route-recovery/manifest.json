@@ -1,0 +1,38 @@
+{
+  ".gitattributes": {
+    "bytes": 9,
+    "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+  },
+  "check.py": {
+    "bytes": 3148,
+    "sha256": "e5caff850034dda7da2de5678a87abcb87e5237d758f0e3de1f75365b7f8e955"
+  },
+  "comparison.json": {
+    "bytes": 5683,
+    "sha256": "6ac9c68ca64aaf69c931bb28d734aa8642c69092216c0c25a31f9331cb821c76"
+  },
+  "PLAN.md": {
+    "bytes": 2205,
+    "sha256": "f5e99de5558663af8611788420b5f8da03001c2c69bda28733f3d336e0ddf929"
+  },
+  "prepare.py": {
+    "bytes": 6361,
+    "sha256": "f5760e4203d8c24c35c0a7520aaa93115a3c02321a927a53bf8ec89aa3efb9d3"
+  },
+  "pulse-candidate.py": {
+    "bytes": 9662,
+    "sha256": "0f33533f82cf62facd7bc1e3a6faa277fcc03f2beb9237f158747e209245441a"
+  },
+  "README.md": {
+    "bytes": 4813,
+    "sha256": "3a80e25a7b2a10461e9e0c1ec73ff8ab22b9e065c3f0b40999dcaad65b634f28"
+  },
+  "stopped-budget.json": {
+    "bytes": 1487,
+    "sha256": "6e781ecf640ab05941c8c1f2bd11c6272674947e52bb51abf950b55b384a6dbb"
+  },
+  "validation.json": {
+    "bytes": 1150,
+    "sha256": "eb17663b53d51c7ce8a862cd766e5f8c1d5bed4f97adfb60ddbd2ea0a16dbdcd"
+  }
+}

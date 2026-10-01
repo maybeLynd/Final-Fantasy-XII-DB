@@ -1,0 +1,411 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19,
+      "sha256": "f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-softedges-array-binding.py",
+      "bytes": 2110,
+      "sha256": "3e433c319089077600c911b9bae05a375f7b46c765faf29a81154bd4e81f996d"
+    },
+    {
+      "path": "capture-softedges-literal-import-facts.py",
+      "bytes": 3175,
+      "sha256": "4afd26d355020e2573bb9a354624a084e1cd24b81aa5916311055650f4042600"
+    },
+    {
+      "path": "capture-softedges-member-bridge.py",
+      "bytes": 913,
+      "sha256": "e6147d5da34260ae38c838bfcc0bb8592f7a269a6c077cdcb1c37fd68613314c"
+    },
+    {
+      "path": "capture-softedges-resource.py",
+      "bytes": 5860,
+      "sha256": "b7205cd13d4e4c59afd8590476f9ff590e73a5c43da9bd87c8eb5fa586a36db8"
+    },
+    {
+      "path": "control-softedges-field-extent.py",
+      "bytes": 4320,
+      "sha256": "7011db70132cfe2d219a7c18266b5ec4eb9d1d34c35325c324785f0d5c85d215"
+    },
+    {
+      "path": "freeze-softedges-field-extent.py",
+      "bytes": 7606,
+      "sha256": "b165856aeab660a06f50150ee4f6c58aa3b0b1f9e18cc87ffaaf2411c29d3886"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5570,
+      "sha256": "3de7ecc59373973f0bed76e98042ca727631ababd7027a29cdd2d6faf4d6c58e"
+    },
+    {
+      "path": "reduce-softedges-field-extent-inherited-member-defect-01.py",
+      "bytes": 10154,
+      "sha256": "e04b1488850e395ce24231be030fcce33bf7ebf26c25f0416f50bc66728f5999"
+    },
+    {
+      "path": "reduce-softedges-field-extent.py",
+      "bytes": 12782,
+      "sha256": "586aec835fd590d4b9ef49b7123d07c659ff0c1c6fdfd82a34be1c8de0d7fed3"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/broken-inherited-offset-parent.phyre",
+      "bytes": 44634,
+      "sha256": "c5089f508759e6452bff5922d59b7d1b8a070a2b12349d83c4d7da86c15fcaa1"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-name.phyre",
+      "bytes": 44634,
+      "sha256": "f79a820178de26a5b371ae8451e8d404d87532c6c9fc036badff11b6ada55123"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/array-binding-code-01.json",
+      "bytes": 87885,
+      "sha256": "1bfaab7bd9863403854c7c5ae0ea117ada5c19fde4bf5df9372b93a084f5b570"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/constructor-source-retained-01.json",
+      "bytes": 324571,
+      "sha256": "daa3526cf1e0fa780dc37f13f074cd9041acb984ba3d72734746fa492db5ae7d"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/cu3_fixup_tables.py",
+      "bytes": 12012,
+      "sha256": "360c17d33ee83125cd637da08f649c3be434c021aac71d335d2a8da478ca5435"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/ea3_census.py",
+      "bytes": 8881,
+      "sha256": "b4380cad43ad1ddfe69e753b64f2f7fdc5408c5c89d6e13ca00c72797530ddda"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/field-extent-result-01.json",
+      "bytes": 35710,
+      "sha256": "eff6ec3566a7620748c716b329ac0305f0a6d120b95be32ecc81bea740ca163f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/field-extent-result-02.json",
+      "bytes": 36037,
+      "sha256": "612667edde39dced5a481872366ca48c7be0758ff2c4476b2a97aabc3e240114"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/first-reducer-failure-01.json",
+      "bytes": 450,
+      "sha256": "eff493357812f9f1f0d817868589f81f00b88f8a9fb0f18c62e46cc311841269"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/literal-import-facts-01.json",
+      "bytes": 1401,
+      "sha256": "96bc4c54fb93624619fd05c006da9be38b1f631719d50f3ec7ae4f1ff71b4c36"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/native-field-schema-rows-01.json",
+      "bytes": 1756,
+      "sha256": "768c28b761ac7b46c5876233478b32d22437bb9908a71b462ae72695925ba4a8"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/original-code-raw-01.json",
+      "bytes": 72408,
+      "sha256": "1a6ccc12dd7488260dc84fba17dd4ac2f0b99b170091c22d79029ce59bca1c55"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/phyretext.fx.phyre",
+      "bytes": 44634,
+      "sha256": "8ac5f0b74fc94648df3ce5bb079e3669e6ab1940a16dd25c2e5518f60503eaec"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/reduce-softedges-field-extent-file-reduction-01.py",
+      "bytes": 10960,
+      "sha256": "dea7362d3ff612503f0001cbd325b492762b938fdb882a70e801c2b9a090005b"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/source-schema-01.json",
+      "bytes": 11673,
+      "sha256": "113ccc97d665d38e5da42f85135b362ba8ee8cb47f87e07e48b2002ae225c29c"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/status.json",
+      "bytes": 972,
+      "sha256": "6463d45cb136b2ad41a4f71eed23572557dd492796a423bdaaa620e7640ff42d"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/stderr.txt",
+      "bytes": 629,
+      "sha256": "68cf194cdb9de4e84b4760c9dbfda4deb283e1f7f71607d79c92b470cbe3741d"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/changed-shipping-asset-cli/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/array-binding-code-01.json",
+      "bytes": 87885,
+      "sha256": "1bfaab7bd9863403854c7c5ae0ea117ada5c19fde4bf5df9372b93a084f5b570"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/constructor-source-retained-01.json",
+      "bytes": 324571,
+      "sha256": "daa3526cf1e0fa780dc37f13f074cd9041acb984ba3d72734746fa492db5ae7d"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/cu3_fixup_tables.py",
+      "bytes": 12012,
+      "sha256": "360c17d33ee83125cd637da08f649c3be434c021aac71d335d2a8da478ca5435"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/ea3_census.py",
+      "bytes": 8881,
+      "sha256": "b4380cad43ad1ddfe69e753b64f2f7fdc5408c5c89d6e13ca00c72797530ddda"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/field-extent-result-01.json",
+      "bytes": 35710,
+      "sha256": "eff6ec3566a7620748c716b329ac0305f0a6d120b95be32ecc81bea740ca163f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/field-extent-result-02.json",
+      "bytes": 36037,
+      "sha256": "612667edde39dced5a481872366ca48c7be0758ff2c4476b2a97aabc3e240114"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/first-reducer-failure-01.json",
+      "bytes": 450,
+      "sha256": "eff493357812f9f1f0d817868589f81f00b88f8a9fb0f18c62e46cc311841269"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/literal-import-facts-01.json",
+      "bytes": 1401,
+      "sha256": "96bc4c54fb93624619fd05c006da9be38b1f631719d50f3ec7ae4f1ff71b4c36"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/native-field-schema-rows-01.json",
+      "bytes": 1756,
+      "sha256": "768c28b761ac7b46c5876233478b32d22437bb9908a71b462ae72695925ba4a8"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/original-code-raw-01.json",
+      "bytes": 38128,
+      "sha256": "105a2b425f7ea68deb30504630e57fa5ad7b86d5e1ab39ac4acb1341e4d267e5"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/phyretext.fx.phyre",
+      "bytes": 44634,
+      "sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/reduce-softedges-field-extent-file-reduction-01.py",
+      "bytes": 10960,
+      "sha256": "dea7362d3ff612503f0001cbd325b492762b938fdb882a70e801c2b9a090005b"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/source-schema-01.json",
+      "bytes": 11673,
+      "sha256": "113ccc97d665d38e5da42f85135b362ba8ee8cb47f87e07e48b2002ae225c29c"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/status.json",
+      "bytes": 957,
+      "sha256": "19aae81cb22c67750848b89886cbbd5ab7e0067675ae5684cb479b26b43faf41"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/stderr.txt",
+      "bytes": 831,
+      "sha256": "a122d89b72dcfb417ea9bcf3ed89a1aa79b7fe66a006a452b23246d6889acb7d"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/incomplete-source-cli/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/array-binding-code-01.json",
+      "bytes": 87885,
+      "sha256": "1bfaab7bd9863403854c7c5ae0ea117ada5c19fde4bf5df9372b93a084f5b570"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/cu3_fixup_tables.py",
+      "bytes": 12012,
+      "sha256": "360c17d33ee83125cd637da08f649c3be434c021aac71d335d2a8da478ca5435"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/ea3_census.py",
+      "bytes": 8881,
+      "sha256": "b4380cad43ad1ddfe69e753b64f2f7fdc5408c5c89d6e13ca00c72797530ddda"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/field-extent-result-01.json",
+      "bytes": 35710,
+      "sha256": "eff6ec3566a7620748c716b329ac0305f0a6d120b95be32ecc81bea740ca163f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/field-extent-result-02.json",
+      "bytes": 36037,
+      "sha256": "612667edde39dced5a481872366ca48c7be0758ff2c4476b2a97aabc3e240114"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/first-reducer-failure-01.json",
+      "bytes": 450,
+      "sha256": "eff493357812f9f1f0d817868589f81f00b88f8a9fb0f18c62e46cc311841269"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/literal-import-facts-01.json",
+      "bytes": 1401,
+      "sha256": "96bc4c54fb93624619fd05c006da9be38b1f631719d50f3ec7ae4f1ff71b4c36"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/native-field-schema-rows-01.json",
+      "bytes": 1756,
+      "sha256": "768c28b761ac7b46c5876233478b32d22437bb9908a71b462ae72695925ba4a8"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/original-code-raw-01.json",
+      "bytes": 72408,
+      "sha256": "1a6ccc12dd7488260dc84fba17dd4ac2f0b99b170091c22d79029ce59bca1c55"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/phyretext.fx.phyre",
+      "bytes": 44634,
+      "sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/reduce-softedges-field-extent-file-reduction-01.py",
+      "bytes": 10960,
+      "sha256": "dea7362d3ff612503f0001cbd325b492762b938fdb882a70e801c2b9a090005b"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/source-schema-01.json",
+      "bytes": 11673,
+      "sha256": "113ccc97d665d38e5da42f85135b362ba8ee8cb47f87e07e48b2002ae225c29c"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/status.json",
+      "bytes": 948,
+      "sha256": "0c54093d1fa477184754d6c68ba83428e9c711ac07e76ea4102b35fb92dd9952"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/stderr.txt",
+      "bytes": 1431,
+      "sha256": "0099c3bea0ef2a00120463c2aa61b647c0223fb06d6036ac7e4c4f3f47f38c1f"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/missing-caller-cli/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/result.json",
+      "bytes": 5825,
+      "sha256": "b51365dbd395861d4b1e0278ae78841ef6f0901e3bf996337a7dc4071e20b4b8"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/synthetic-enlarged-extent.phyre",
+      "bytes": 44634,
+      "sha256": "8ac5f0b74fc94648df3ce5bb079e3669e6ab1940a16dd25c2e5518f60503eaec"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/truncated-array-table.phyre",
+      "bytes": 44633,
+      "sha256": "87f0851b68708265af1f852e2b810e122f7c29f4618cfd8e4d15347d11160d50"
+    },
+    {
+      "path": "softedges-field-extent-controls-01/wrong-objects-extent.phyre",
+      "bytes": 44634,
+      "sha256": "dd33ea3bf65a052e8cee54041818fd6afafa77637d882ba532de1384d996cddb"
+    },
+    {
+      "path": "softedges-resource-source-01/array-binding-code-01.json",
+      "bytes": 87885,
+      "sha256": "1bfaab7bd9863403854c7c5ae0ea117ada5c19fde4bf5df9372b93a084f5b570"
+    },
+    {
+      "path": "softedges-resource-source-01/constructor-source-retained-01.json",
+      "bytes": 324571,
+      "sha256": "daa3526cf1e0fa780dc37f13f074cd9041acb984ba3d72734746fa492db5ae7d"
+    },
+    {
+      "path": "softedges-resource-source-01/cu3_fixup_tables.py",
+      "bytes": 12012,
+      "sha256": "360c17d33ee83125cd637da08f649c3be434c021aac71d335d2a8da478ca5435"
+    },
+    {
+      "path": "softedges-resource-source-01/ea3_census.py",
+      "bytes": 8881,
+      "sha256": "b4380cad43ad1ddfe69e753b64f2f7fdc5408c5c89d6e13ca00c72797530ddda"
+    },
+    {
+      "path": "softedges-resource-source-01/field-extent-result-01.json",
+      "bytes": 35710,
+      "sha256": "eff6ec3566a7620748c716b329ac0305f0a6d120b95be32ecc81bea740ca163f"
+    },
+    {
+      "path": "softedges-resource-source-01/field-extent-result-02.json",
+      "bytes": 36037,
+      "sha256": "612667edde39dced5a481872366ca48c7be0758ff2c4476b2a97aabc3e240114"
+    },
+    {
+      "path": "softedges-resource-source-01/first-reducer-failure-01.json",
+      "bytes": 450,
+      "sha256": "eff493357812f9f1f0d817868589f81f00b88f8a9fb0f18c62e46cc311841269"
+    },
+    {
+      "path": "softedges-resource-source-01/literal-import-facts-01.json",
+      "bytes": 1401,
+      "sha256": "96bc4c54fb93624619fd05c006da9be38b1f631719d50f3ec7ae4f1ff71b4c36"
+    },
+    {
+      "path": "softedges-resource-source-01/member-bridge-code-01.json",
+      "bytes": 51222,
+      "sha256": "506a90eda2fb4820924544b8c104c56b71a0ae5d2bf1c8d364aeda0923cbce9f"
+    },
+    {
+      "path": "softedges-resource-source-01/native-field-schema-rows-01.json",
+      "bytes": 1756,
+      "sha256": "768c28b761ac7b46c5876233478b32d22437bb9908a71b462ae72695925ba4a8"
+    },
+    {
+      "path": "softedges-resource-source-01/original-code-raw-01.json",
+      "bytes": 72408,
+      "sha256": "1a6ccc12dd7488260dc84fba17dd4ac2f0b99b170091c22d79029ce59bca1c55"
+    },
+    {
+      "path": "softedges-resource-source-01/phyretext.fx.phyre",
+      "bytes": 44634,
+      "sha256": "f67d4492c21fc687f8897c130f66e8cddf5d8d2f0d262589b8597791a767a4cf"
+    },
+    {
+      "path": "softedges-resource-source-01/reduce-softedges-field-extent-file-reduction-01.py",
+      "bytes": 10960,
+      "sha256": "dea7362d3ff612503f0001cbd325b492762b938fdb882a70e801c2b9a090005b"
+    },
+    {
+      "path": "softedges-resource-source-01/source-schema-01.json",
+      "bytes": 11673,
+      "sha256": "113ccc97d665d38e5da42f85135b362ba8ee8cb47f87e07e48b2002ae225c29c"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 7028,
+      "sha256": "f6b818ce9cd6148a424044293919b62e9c9819f031d17540d580c5186887c6bf"
+    },
+    {
+      "path": "check.py",
+      "bytes": 3597,
+      "sha256": "a107f33d08a4d8ec310f0555d477f80b03401fe70e372ab42a8878ea3766e8ea"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 2230,
+      "sha256": "8f62ce3593e9a1a52c1c966c0c525f7e91c587a9fb21f071c5e78185275b9b5e"
+    },
+    {
+      "path": "raw.json",
+      "bytes": 13659,
+      "sha256": "d19d84af242d95261b5a22ee9bd06b9699d7dcffea94c918f0bd144cd00dc605"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3944,
+      "sha256": "51f0a1c34c19d796b1ac747344bc2adafba9fd257c1126c281ed0480688cc407"
+    },
+    {
+      "path": "retained/one.bin",
+      "bytes": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "path": "retained/parent-manifest.json",
+      "bytes": 8157,
+      "sha256": "07d0b975c3b538d9f94f5ffda5e21f0989aea122131b681fb2c54b51b543c316"
+    },
+    {
+      "path": "retained/parent-source.json",
+      "bytes": 18972,
+      "sha256": "3df5bcb608e1b3c373e8ff063d44eacbb126462fd636be54caf37108e504925a"
+    },
+    {
+      "path": "retained/rng-streams.md",
+      "bytes": 52464,
+      "sha256": "ea10eaa92c557afa51346730b44e54092fbdb807e5a305e90093f7f04d877646"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "bytes": 39341,
+      "sha256": "4dfa511d2b92c41473e88dd535f900ac9bdc0c34f7c51ec54807652ac0f30e32"
+    },
+    {
+      "path": "retained/window.bin",
+      "bytes": 58,
+      "sha256": "f35064469004fa9448432dd22dc7c46767058dbb4c833ab86c8063ea4bc3cdd8"
+    },
+    {
+      "path": "tool-identity-supplement.json",
+      "bytes": 1287,
+      "sha256": "19d1d601f8141ebdb0f6c746bb8940c03e4ae04c45a450b112a1b6ca959c3b36"
+    },
+    {
+      "path": "tool_identity_supplement.py",
+      "bytes": 1484,
+      "sha256": "7f25489f54b832d0c522e26d8e394b23663241911d59ae55891c3e70505d0335"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1093,
+      "sha256": "d024b3434282571b199088310b8d1ab14e7e3b6b774aa0b49b47624d72cb75ea"
+    }
+  ],
+  "limits": "B injected original arithmetic window only. No native/recurrence/caller/live proof. Exact DLL hashes recorded post-capture and disclosed. Independent acceptance/owner propagation pending."
+}

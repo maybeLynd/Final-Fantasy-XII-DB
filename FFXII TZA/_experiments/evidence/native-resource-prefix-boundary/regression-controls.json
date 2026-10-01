@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-fullspan-guard",
+    "returncode": 1,
+    "expected": "Original source returns a nonempty prefix without a full counted-text-span test"
+  },
+  {
+    "argument": "--fault-text-pointer",
+    "returncode": 1,
+    "expected": "Original selector returns length-prefix RBX, not text+2"
+  },
+  {
+    "argument": "--fault-short-prefix-null",
+    "returncode": 1,
+    "expected": "Incomplete prefix still reaches a word-read attempt; outcome is not established"
+  }
+]

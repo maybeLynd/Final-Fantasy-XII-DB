@@ -1,0 +1,18 @@
+P3_image_pointers_null_for_all_15_classes                                PASS
+P3_every_query_and_mutate_returns_without_fault_while_unbound            PASS
+P3_no_store_outside_the_image_while_unbound                              PASS
+bind_by_shipped_rebase_returns                                           PASS
+P1_nibble_15_rejected_by_both_entries                                    PASS
+P1_nibble_12_accepted                                                    PASS
+X_mutate_entry_refuses_0x1000_query_entry_reads_it                       PASS
+P2_last_id_accepted_first_past_rejected_no_store                         PASS
+P2_count_0_classes_reject_every_id                                       PASS
+Q_every_mutate_returns                                                   PASS
+Q_stored_owned_and_reserved_and_byte_at_most_99                          PASS
+Q_the_cap_is_reached                                                     PASS
+I_every_storage_class_first_and_last_id_write_inside_own_region          PASS
+I_last_id_writes_the_last_element                                        PASS
+control_mismatched_handler_writes_outside_its_region_unchecked           PASS
+control_restored                                                         PASS
+control: {"ok": true, "ret": 1, "writes": ["4FB0+2"], "own_region": ["4F10-4F1C"], "outside_own_region": ["4FB0"], "lands_in_class": []}
+ALL PASS

@@ -1,0 +1,26 @@
+control: .bin families: 146 ; files: 1439
+control named: battle_message.bin True
+control named: menumap_sub#.bin True
+control named: npcdic.bin True
+control named: musicctrl.bin True
+families whose file name follows no path separator in the executable (ASCII or UTF-16LE): 20 ; files: 41
+  ps2data/image/ff12/<lang>/bin/btlctrl.bin: 2 file(s); named families in the same directory: 6; ch 24576 0b000080; in 24576 0b000080
+  ps2data/image/ff12/<lang>/bin/ctrl.bin: 2 file(s); named families in the same directory: 6; ch 8352 0b000080; in 8352 0b000080
+  ps2data/image/ff12/<lang>/bin/evctrl.bin: 2 file(s); named families in the same directory: 6; ch 22320 0b000080; in 22320 0b000080
+  ps2data/image/ff12/<lang>/bin/filelistlocalin.bin: 2 file(s); named families in the same directory: 6; ch 1137120 98000000; in 1137120 98000000
+  ps2data/image/ff12/<lang>/bin/mapctrl.bin: 2 file(s); named families in the same directory: 6; ch 29392 0b000080; in 29392 0b000080
+  ps2data/image/ff12/katano/event.bin: 1 file(s); named families in the same directory: 0; - 2370 61736864
+  ps2data/image/ff12/myoshiok/<lang>/worldmap/menumap_sub#_e#.bin: 4 file(s); named families in the same directory: 6; in 11018128 736c6f63; in 8396320 736c6f63; in 9705856 736c6f63; us 2889584 736c6f63
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/actionchip_data.bin: 2 file(s); named families in the same directory: 66; cn 32 73743265; kr 32 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/basic_skill.bin: 2 file(s); named families in the same directory: 66; cn 75352 73743265; kr 75352 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/basic_skill_basic_skill_name.bin: 2 file(s); named families in the same directory: 66; cn 74868 41050000; kr 74868 41050000
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/bukitye_data.bin: 2 file(s); named families in the same directory: 66; cn 32 73743265; kr 32 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/growth_rate.bin: 2 file(s); named families in the same directory: 66; cn 7200 73743265; kr 7200 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/growth_rate_growth_rate_name.bin: 2 file(s); named families in the same directory: 66; cn 3310 80000000; kr 3310 80000000
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/logicpack.bin: 2 file(s); named families in the same directory: 66; cn 1035896 1e050000; kr 1035896 1e050000
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/mons_act.bin: 2 file(s); named families in the same directory: 66; cn 11756 73743265; kr 11756 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/mons_category.bin: 2 file(s); named families in the same directory: 66; cn 156 73743265; kr 156 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/mons_race.bin: 2 file(s); named families in the same directory: 66; cn 444 73743265; kr 444 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/object_data.bin: 2 file(s); named families in the same directory: 66; cn 1708 73743265; kr 1708 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/target_data.bin: 2 file(s); named families in the same directory: 66; cn 39000 73743265; kr 39000 73743265
+  ps2data/image/ff12/test_battle/<lang>/binaryfile/unit_data.bin: 2 file(s); named families in the same directory: 66; cn 41612 73743265; kr 41612 73743265

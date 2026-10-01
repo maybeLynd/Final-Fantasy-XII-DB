@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\capture-bts-primary-admission.py",
+    "Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\bts-primary-admission-source-01.json"
+  ],
+  "driver_sha256": "653f8254b7e7b08c58eb4b43ab69610d1881ec2731a6c779fe973275036326e6"
+}

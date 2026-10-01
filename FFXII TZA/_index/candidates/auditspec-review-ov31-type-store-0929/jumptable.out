@@ -1,0 +1,50 @@
+00582860  mov    qword ptr [rsp + 0x18], rbx
+00582865  mov    qword ptr [rsp + 0x20], rsi
+0058286A  push   rdi
+0058286B  sub    rsp, 0xd0
+00582872  mov    rax, qword ptr [rip + 0x19c1fb7]
+00582879  xor    rax, rsp
+0058287C  mov    qword ptr [rsp + 0xc0], rax
+00582884  mov    eax, dword ptr [rdx]
+00582886  mov    rsi, rdx
+00582889  dec    eax
+0058288B  mov    rbx, rcx
+0058288E  cmp    eax, 0x12
+00582891  ja     0x582f24
+00582897  cdqe   
+00582899  lea    rcx, [rip - 0x4628a0]
+005828A0  mov    eax, dword ptr [rcx + rax*4 + 0x462f54]
+msg  1 -> 005828AC
+msg  2 -> 00582A31
+msg  3 -> 00582F24
+msg  4 -> 00582F24
+msg  5 -> 00582F24
+msg  6 -> 00582F24
+msg  7 -> 00582F24
+msg  8 -> 00582F24
+msg  9 -> 00582F24
+msg 10 -> 00582F24
+msg 11 -> 00582F24
+msg 12 -> 00582B2C
+msg 13 -> 00582F24
+msg 14 -> 00582F24
+msg 15 -> 00582F24
+msg 16 -> 005829C0
+msg 17 -> 00582F24
+msg 18 -> 00582E81
+msg 19 -> 00582AE9
+msg 20 -> 00582B7C
+---
+00582E81  test   byte ptr [rbx + 0xc4], 0x10
+00582E88  je     0x582ebf
+00582E8A  cmp    byte ptr [rbx + 0x598], 0
+00582E91  jne    0x582eac
+00582E93  call   0x1831a0
+00582E98  mov    dword ptr [rip + 0x1b17d6e], 1
+00582EA2  call   0x5843e0
+00582EA7  call   0x182d40
+00582EAC  call   0x394520
+00582EB1  test   eax, eax
+00582EB3  je     0x582eba
+00582EB5  call   0x394400
+00582EBA  call   0x584210

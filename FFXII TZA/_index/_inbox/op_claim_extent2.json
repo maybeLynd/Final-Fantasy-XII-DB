@@ -1,0 +1,7 @@
+{
+ "action": "claim",
+ "task": "OPUS-PUB-WIDGET-EXTENT-BINDING",
+ "agent": "OPUS",
+ "resources": [{"key": "@publication"}],
+ "note": "claiming @publication for the extent-binding increment"
+}

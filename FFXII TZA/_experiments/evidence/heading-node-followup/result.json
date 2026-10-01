@@ -1,0 +1,10 @@
+{
+  "status": "STATIC_ONLY_CONDITIONAL_SOURCE",
+  "type_67": "0045FD10 gated call into 004607C0; +3D8 compare, unequal-arm clear and 0x20 loop at 00533B20 under normal ABI/returns",
+  "type_72": "0052B5E0 nonzero +3F8 arm calls 0052BBD0; callee clears +3F8 before its first call and has 0x20-loop calls to 0054B1F0 under normal ABI/returns",
+  "full_52bbd0_extent": "UNWIND_UNION_MATCH",
+  "type_67_extent": "CATALOGUE_COMPLETE_DECODE_ONLY",
+  "live_observation": false,
+  "class_stability": "OPEN",
+  "limits": "Other native callee effects, initialized node identity, scheduling, reuse/lifetime and presentation unobserved; source loops are not live execution counts."
+}

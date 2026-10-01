@@ -1,0 +1,11 @@
+# NativeLeaf.ClampedTableLookup - EC-7 family C
+# # bounds-checked read of a member rip table (stride 0x294); signed
+# # clamp arithmetic; word field fetch; no external calls.
+address	targets
+0035EE50	
+0035EF70	
+0035EFD0	
+0035F030	
+0035F090	
+0035F1A0	
+0035F200	

@@ -1,0 +1,15 @@
+{
+  "reason": "177-target run failed first class identity control at CD3D11_BLEND_DESC supplied address; +30 resolves to0x10, not a class-name pointer. No bytes from this run are promoted. Pilot3 classes matched exact identities and had prepared nonzero defaults.",
+  "failed_record": "title-full.json",
+  "raw_first_header": {
+    "address": 47146616,
+    "size": 264,
+    "purpose": "descriptor-before",
+    "start_unix": 1789862450.461534,
+    "end_unix": 1789862450.4615734,
+    "hex": "df04008000000000b080d50000000000c015cf02000000002866cf02000000004015cf0200000000384cd50000000000100000000000000060e4f20100000000b866cf0200000000b866cf020000000088010000000000000000000000000000e004008000000000b080d500000000004867cf0200000000c016cf02000000004016cf0200000000804cd50000000000100000000000000030d6e402000000001867cf02000000001867cf020000000000000000000000000000000000000000ea04008000000000b080d50000000000a867cf0200000000e866cf02000000004016cf0200000000c0b2d40000000000120000000000000060c4d302000000007867cf0200000000"
+  },
+  "next_scope": "173 explicitly requested default-buffer classes only; the four non-default rows in177-sized hierarchy list remain unresolved, not excluded from database. Stop again on any identity/control failure.",
+  "method_change": "Existing same reader/controls, explicit --defaults-only target filter; original observer source preserved. Scope is one bounded pass, no additional setup or writes.",
+  "limits": "Read observations do not prove constructor reachability or memcpy effects; mapping contradiction routed to OPUS."
+}

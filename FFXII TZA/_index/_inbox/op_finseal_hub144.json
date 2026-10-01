@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-SEAL-SHARED-HUB-IDENTIFICATION-144",
+ "result_refs": [
+  "seal commit c76c15ec4"
+ ],
+ "note": "batch-144 seal: publish ffbeace0b/577806707 + seal c76c15ec4 committed (private index, no stale-index sweep)"
+}

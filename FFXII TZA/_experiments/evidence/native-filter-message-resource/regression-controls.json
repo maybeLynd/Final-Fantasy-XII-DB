@@ -1,0 +1,17 @@
+[
+  {
+    "argument": "--fault-index-six",
+    "returncode": 1,
+    "expected": "Original id7837 selects entry7, not neighboring entry6"
+  },
+  {
+    "argument": "--fault-terminator",
+    "returncode": 1,
+    "expected": "RT_STRING stores counted UTF16; no included nul terminator for this entry"
+  },
+  {
+    "argument": "--fault-trap-fallthrough",
+    "returncode": 1,
+    "expected": "INT3 is a terminal boundary; adjacent routine is not local CFG evidence"
+  }
+]

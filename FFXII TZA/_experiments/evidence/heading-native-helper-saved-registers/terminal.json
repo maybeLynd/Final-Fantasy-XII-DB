@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "status": "TERMINAL_SUCCESS",
+  "command": "Collaboration/Tools/analysis/venv/Scripts/python.exe -B Database/Tools/work/ASTRA/heading-class-effects-slice/callee-frozen-ready-v2/callee-saved-registers.py"
+}

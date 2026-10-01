@@ -1,0 +1,78 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "files": {
+    ".gitattributes": {
+      "bytes": 9,
+      "sha256": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992"
+    },
+    "callers.json": {
+      "bytes": 91722,
+      "sha256": "15df5ed688f90aa6facf5cf019d1a14f859a0d35a8e99b7d0ced56e89487a16f"
+    },
+    "collect-callers.py": {
+      "bytes": 3830,
+      "sha256": "47d74bea3b0162617e14be776b0f3eaf682780fbd879ec5d41912cebd8eee469"
+    },
+    "collect-lookup.py": {
+      "bytes": 3829,
+      "sha256": "3decfacd4a8313ad153a43ce7b9202a0500c8749bd3dbe8fb1bcc867ae80d97e"
+    },
+    "collect-primary.py": {
+      "bytes": 3839,
+      "sha256": "d6a073cbe5db66de8af42a5aafea846a74460807e276aef1c56c617190b54424"
+    },
+    "collect-priority.py": {
+      "bytes": 3042,
+      "sha256": "d1ec1d990ff868327fe0ef0324422715954dd29430de8ca26a6e6bf171ea400a"
+    },
+    "feasibility.json": {
+      "bytes": 87196,
+      "sha256": "14ef63de2d07f5b6581cc58face482e94015d46e56a9a037a394d66f3e8ec077"
+    },
+    "lookup.json": {
+      "bytes": 9955,
+      "sha256": "9e12faf5116baeea29935340388f75db110964b1221bd4ee63a55687552f37e8"
+    },
+    "primary.json": {
+      "bytes": 7041,
+      "sha256": "15230d98ff4394caf273caf6c03cf8980716dfa6bf0559a86b50b716922f1e04"
+    },
+    "priority.json": {
+      "bytes": 1023,
+      "sha256": "4c63a4be86d387437897966f268e5e2a36fca28519e00e5cba0abfc905e861ff"
+    },
+    "probe.py": {
+      "bytes": 9976,
+      "sha256": "81be58888e3a5b2658bd6a4f52a16fe3a6e51d6965f3a9727fadbafc512411bf"
+    },
+    "README.md": {
+      "bytes": 3531,
+      "sha256": "6a5990cf15da57b466d3a5fa4191ffb97275fd8e9c7e116bb6ba39f2ffa6dc3c"
+    },
+    "result.json": {
+      "bytes": 1098115,
+      "sha256": "394ca31dff3f2fd27500502c71e38ce20d2e29ba321fed51f59d900a619323c7"
+    },
+    "review.json": {
+      "bytes": 858,
+      "sha256": "6da2c65ee34b6ebada277eaa2292c1c5cb059a26c9698515866f99a81f5f97bb"
+    },
+    "review.py": {
+      "bytes": 3994,
+      "sha256": "54f65024f4bf3f1276d86d9e41583a0fab2c1a3c2ca9cb9d62968908b7a58a67"
+    },
+    "selection-controls.json": {
+      "bytes": 332358,
+      "sha256": "a75c65b621c762c0726f509dde526f037081b222c164e498111d89f8f7c9be39"
+    },
+    "selection-controls.py": {
+      "bytes": 1765,
+      "sha256": "06376453a9ba39f7414fa2f59dc7a11dbb8dd35d0413eec6d70b0668336acabf"
+    }
+  },
+  "executed_probe_sha256": "144f8a9a66795ba509e9e555ee481e31ed662fccc90eef397e6b6336296ca178",
+  "probe_presentation_normalization": {
+    "change": "Trailing newline bytes only for whitespace check. Replace published trailing CR/LF with original tail to reconstruct exact executed instrument.",
+    "original_tail_hex": "0a0d0a"
+  }
+}

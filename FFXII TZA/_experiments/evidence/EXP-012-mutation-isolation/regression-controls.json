@@ -1,0 +1,26 @@
+[
+  {
+    "command": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "Reconstruction/Tests/test_mutation_isolation.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_actual_compilation_failure_cleans_case (__main__.IsolationTests.test_actual_compilation_failure_cleans_case) ... ok\ntest_empty_partial_invalid_or_timeout_cannot_pass (__main__.IsolationTests.test_empty_partial_invalid_or_timeout_cannot_pass) ... ok\ntest_failed_compile_cannot_contaminate_next_file (__main__.IsolationTests.test_failed_compile_cannot_contaminate_next_file) ... ok\ntest_interruption_cleans_case_and_preserves_exact_crlf (__main__.IsolationTests.test_interruption_cleans_case_and_preserves_exact_crlf) ... ok\ntest_timeout_reaps_descendant (__main__.IsolationTests.test_timeout_reaps_descendant) ... ok\ntest_timeout_reaps_owned_process (__main__.IsolationTests.test_timeout_reaps_owned_process) ... ok\ntest_unknown_failure_and_empty_success_are_invalid (__main__.IsolationTests.test_unknown_failure_and_empty_success_are_invalid) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 2.524s\n\nOK\n",
+    "elapsed_seconds": 2.64038260000234,
+    "source_sha256": "3a071c34f98953932c8047b4351f16cb01d2c46fd3f86a337e4adb2671dc3dd9"
+  },
+  {
+    "command": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "Reconstruction/Tests/Differential/test_group_completion_validation.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_census_before_pairing (__main__.ValidationTests.test_census_before_pairing) ... ok\ntest_each_callback_dimension_is_observed (__main__.ValidationTests.test_each_callback_dimension_is_observed) ... ok\ntest_instruction_exhaustion_is_not_return (__main__.ValidationTests.test_instruction_exhaustion_is_not_return) ... ok\ntest_order_identity_not_just_count (__main__.ValidationTests.test_order_identity_not_just_count) ... ok\ntest_reference_identity_rejected (__main__.ValidationTests.test_reference_identity_rejected) ... C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Reconstruction\\Tests\\Differential\\diff_group_completion.py:76: ResourceWarning: unclosed file <_io.BufferedReader name='C:\\\\Users\\\\Kristian\\\\AppData\\\\Local\\\\Temp\\\\tmp7mbmvap0\\\\wrong.exe'>\n  data = open(path, \"rb\").read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\nok\ntest_wrong_integer_return_is_mismatch_not_invalid_output (__main__.ValidationTests.test_wrong_integer_return_is_mismatch_not_invalid_output) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.017s\n\nOK\n",
+    "elapsed_seconds": 0.16023959999802173,
+    "source_sha256": "e71ab17abbc918e979a0a2db777c27070dfca095238d5bda310e1eff0dfb4882"
+  }
+]

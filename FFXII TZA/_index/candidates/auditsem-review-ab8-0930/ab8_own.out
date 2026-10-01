@@ -1,0 +1,53 @@
+T jmp-thunks into 00316A50: ['00253770']
+T qwords naming the updater or a thunk: {'00316A50': 0, '00253770': 0}
+S 00254F02 call -> 00316A50  ecx: ? | edx: 00254EFE neg edx
+S 00312496 call -> 00316A50  ecx: (call before: 0x2f8f20) | edx: 00312484 mov edx, esi
+S 0056D4D2 call -> 00316A50  ecx: (call before: 0x30b630) | edx: 0056D4CE movzx edx, word ptr [rax + 8]
+S 0028F0E3 call -> 00253770  ecx: 0028F0DE mov ecx, 0x12 | edx: 0028F0DC mov edx, ecx
+S 002E2387 jmp -> 00253770  ecx: 002E2382 mov ecx, 0x11 | edx: 002E2380 mov edx, ecx
+S 003057A5 call -> 00253770  ecx: 0030579E xor ecx, ecx | edx: 003057A0 mov edx, 1
+S 00311475 call -> 00253770  ecx: 00311472 lea ecx, [rdx + 2] | edx: 00311463 mov edx, 1
+S 003170D8 jmp -> 00253770  ecx: 003170D3 mov ecx, 0x11 | edx: 003170D1 add edx, ecx
+S 003171E7 call -> 00253770  ecx: 003171E4 lea ecx, [rdx + 3] | edx: 003171DF mov edx, 1
+C callers of 002E2380: ['003403F2 jmp']
+C callers of 00317090: ['003125BC call']
+D the three direct callers, read around the call
+   00254EE0 push rbx
+   00254EE2 sub rsp, 0x20
+   00254EE6 mov rax, qword ptr [rip + 0x1e3d86b]
+   00254EED mov edx, ecx
+   00254EEF mov ebx, ecx
+   00254EF1 sub edx, dword ptr [rax + 8]
+   00254EF4 test edx, edx
+   00254EF6 jle 0x254efc
+   00254EF8 mov cl, 6
+   00254EFA jmp 0x254f02
+   00254EFC jns 0x254f07
+   00254EFE neg edx
+   00254F00 mov cl, 7
+   00254F02 call 0x316a50
+   00254F07 xor ecx, ecx
+   --
+   00312470 inc dword ptr [rbp + 0x44eb7fc0]
+   00312476 mov eax, dword ptr [rdi + 0x190]
+   0031247C mov eax, 0x1869f
+   00312481 add r8d, esi
+   00312484 mov edx, esi
+   00312486 cmp r8d, eax
+   00312489 mov cl, 0xb
+   0031248B cmova r8d, eax
+   0031248F mov dword ptr [rdi + 0x190], r8d
+   00312496 call 0x316a50
+   0031249B xor r8d, r8d
+   --
+   0056D4B0 add byte ptr [rbp + 0x12], dh
+   0056D4B3 mov rax, qword ptr [rdi + 0xd0]
+   0056D4BA xor edx, edx
+   0056D4BC movzx ecx, word ptr [rax + 8]
+   0056D4C0 call 0x30b630
+   0056D4C5 mov rax, qword ptr [rdi + 0xd0]
+   0056D4CC mov cl, 0x13
+   0056D4CE movzx edx, word ptr [rax + 8]
+   0056D4D2 call 0x316a50
+   0056D4D7 mov ecx, ebx
+   --

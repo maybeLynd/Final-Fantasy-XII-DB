@@ -1,0 +1,17 @@
+walk 00305CC0, 422 bytes
+memory WRITES (address, insn, base reg):
+  00305CD6  mov    word ptr [rsp + 0x70], cx                base=rsp
+  00305CDE  mov    dword ptr [rsp + 0x30], edi              base=rsp
+  00305CED  mov    word ptr [rsp + 0x78], cx                base=rsp
+  00305D02  mov    qword ptr [rsp + 0x80], rbx              base=rsp
+  00305D0C  mov    qword ptr [rsp + 0x88], r12              base=rsp
+  00305D17  mov    qword ptr [rsp + 0x48], r14              base=rsp
+  00305D60  mov    qword ptr [rsp + 0x40], r15              base=rsp
+  00305DEC  mov    dword ptr [rsp + 0x20], 1                base=rsp
+non-stack writes: 0
+reads of [r13+0x708] (unit ctx): 1 -> ['00305D53']
+reads of [r13+0x714] (latched word): 1 -> ['00305CE5']
+reads of count byte [r12]: 1 -> ['00305DFD']
+calls: ['00305DD2->0x3014c0', '00305DF4->0x30f760', '00305E5A->0x4697c0']
+every +0x708/+0x714 read precedes the first call (00305DD2): True
+count-byte reads after the eval/commit calls (in-loop re-read): ['00305DFD']

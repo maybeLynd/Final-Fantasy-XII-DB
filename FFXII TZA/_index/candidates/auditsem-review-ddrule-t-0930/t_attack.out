@@ -1,0 +1,18 @@
+tracked paths under _index/candidates + _experiments: 13402
+OK   backticked full                    flagged=False []
+OK   bare dir with slash                flagged=False []
+OK   bare dir no slash                  flagged=False []
+OK   short candidates/                  flagged=False []
+OK   markdown link ../                  flagged=False []
+OK   Database/FFXII TZA prefix          flagged=False []
+OK   ghost dir                          flagged=True ['_index/candidates/zz-ghost-0000/']
+OK   ghost file                         flagged=True ['_index/candidates/zz-ghost-0000/x.py']
+MISS Tools/work record (gitignored)     flagged=False []
+MISS _experiments non-evidence path     flagged=False []
+MISS brace-expansion form               flagged=True ['_index/candidates/auditsem-review-']
+OK   dir with a dot in its name         flagged=True ['_index/candidates/v1.2-ghost']
+OK   prose 'candidates/'                flagged=False []
+live register rows: 1897 path forms outside T's pattern: {'Tools/work': 14, '_experiments non-evidence': 12}
+  Tools/work e.g. [('B-3', 'Tools/work/rtti/'), ('AL-8', 'Tools/work/rtti/unit_record_fields.tsv'), ('AQ-2', 'Tools/work/rtti/methods.tsv'), ('BA-1', 'Tools/work/rtti/methods.tsv')]
+  _experiments non-evidence e.g. [('EO-1', '_experiments/EXP-001-gamesetting-frametimebase.md'), ('ET-1', '_experiments/EXP-004-input-reaches-the-game.md'), ('EW-1', '_experiments/EXP-007-navigating-the-front-end.md'), ('EU-1', '_experiments/EXP-006-the-array-is-written-on-transition.md')]
+T on the live register now: 0 rows with untracked evidence []

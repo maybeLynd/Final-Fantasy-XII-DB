@@ -1,0 +1,2 @@
+Saved revision 3
+note: publish document changes with publish_paths.sh <msg> <path>... (TEAM.md) -- never `git add` of shared or unstaged-by-you paths

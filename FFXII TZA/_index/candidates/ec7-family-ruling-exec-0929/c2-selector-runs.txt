@@ -1,0 +1,80 @@
+===== eca (committed selector run on the working tree; dgla/gacc after their patches)
+frontier 5685   +self 448   members 487
+by form:
+   219  NativeAdapter.BoundedDirectCall.Single.Linear
+   173  NativeAdapter.BoundedDirectCall.Single.AcyclicConditional
+     9  NativeAdapter.CallResultTaggingAdapter
+     8  NativeAdapter.ShiftArgumentsLeftTailCall
+     7  NativeAdapter.ConditionalFlagAdjustedTailCall
+     6  NativeAdapter.VariableAdjustedThisTailCall
+     6  NativeAdapter.CallResultDerefStoreQword
+     6  NativeAdapter.EHForwardSecondArgumentCallReturnTrue
+     6  NativeAdapter.CallResultMarshal32Bytes
+     5  NativeAdapter.ForwardSecondAndDerefThirdTailCall
+     5  NativeAdapter.ArgumentShiftWithStaticThirdTailCall
+     4  NativeAdapter.CallResultEqualsConstantPredicate
+     4  NativeAdapter.CallResultMarshal4Bytes
+     4  NativeAdapter.CallResultMarshal16Bytes
+     4  NativeAdapter.MemberPointerAndFieldTailCall
+     3  NativeAdapter.CallResultByteNonzeroPredicate
+     2  NativeAdapter.CallByteReturnZeroExtend
+     2  NativeAdapter.CallThenReturnOriginalThis
+     2  NativeAdapter.SavedFirstAsSecondConstantFirstTailCall
+     2  NativeAdapter.ZeroFirstArgumentTailCall
+     2  NativeAdapter.ZeroThirdArgumentTailCall
+     2  NativeAdapter.ConstantThirdArgumentTailCall
+     2  NativeAdapter.AdjustedThisTailCall
+     1  NativeAdapter.BooleanNormalizeThenCallResultTailCall
+     1  NativeAdapter.CallResultByteBitfieldGetter
+     1  NativeAdapter.ZeroSecondArgumentTailCall
+     1  NativeAdapter.NormalizeFirstBooleanTailCall
+leftovers by reason:
+    77  callee-frontier
+    42  rip-store
+     5  external-targets-0
+     3  loop
+callee dispositions: {'A': 265, 'B': 52, 'C': 170}
+transforms: {'shifted': 224, 'none': 134, 'this-adjusted': 69, 'constant-inserted': 55, 'flag-normalised': 5}
+A callees with no locating page: 0
+positive control: 0 member(s) failed re-check
+===== dgla (committed selector run on the working tree; dgla/gacc after their patches)
+frontier NativeLeaf bodies: 419
+members (bound, exact cite): 222 over 90 distinct targets
+  leftover  123  no static rip target (member-field / register forms)
+  leftover   46  more than one data rip target
+  leftover   28  single rip target is an undocumented global
+  of the uncited singles, 21 sit <0x40 above a cited address - proximity, NOT binding (manager-pointer-block adjacency class)
+OK: 222 members -> documented-global-leaf-accessors.tsv
+===== gacc (committed selector run on the working tree; dgla/gacc after their patches)
+frontier tested 5316 -> 483 members
+kinds [(('addr', 8), 91), (('read', 1), 58), (('read', 2), 17), (('read', 4), 101), (('read', 8), 54), (('write', 1), 35), (('write', 2), 3), (('write', 4), 67), (('write', 8), 9), (('write-const', 1), 20), (('write-const', 4), 18), (('write-const', 8), 10)]
+sections Counter({'.data': 471, '.rdata': 12})
+refused [('not one instruction + ret', 150), ('no single rip operand', 14), ('other instruction or', 2), ('other instruction and', 1)]
+distinct globals 435   shared-by->1-member 47   identical-body duplicates 0
+FABLE list 504 - mine 483 - only-FABLE 23 ['0016D670', '0017FE50', '001F2870', '002105B0', '0022C930', '0024AC00', '002EC5A0', '002EDA50'] - only-mine 2 ['005A0B30', '00683AE0']
+wrote 483
+===== phycore (committed selector run on the working tree; dgla/gacc after their patches)
+Phyre PhyreCore module: 433 members (89 own-ns seed slots, 344 joined in 11 rounds)
+  seeds total (any disposition): 108   bound-template referrers: 2178   ICF-foreign: 0
+control geography (members by 64KB zone): {'0015': 4, '0016': 1, '0017': 6, '0018': 18, '0019': 31, '001A': 3, '001B': 8, '001C': 1, '001D': 10, '001E': 5, '001F': 13, '0020': 10, '0021': 84, '0022': 20, '002D': 1, '0031': 1, '0039': 1, '0059': 5, '005A': 6, '005B': 5, '005C': 7, '005D': 1, '005E': 3, '005F': 7, '0060': 7, '0061': 12, '0062': 10, '0063': 49, '0066': 4, '0067': 10, '0068': 4, '006A': 14, '006B': 15, '006C': 18, '006D': 7, '0079': 4, '007A': 27, '0084': 1}
+control outbound: 245 distinct call/jmp targets to non-members, by zone: {'0058': 2, '0016': 4, '0080': 10, '001D': 14, '005C': 17, '0021': 22, '0068': 6, '0081': 6, '0079': 4, '0060': 9, '001A': 6, '005F': 3, '001E': 5, '0018': 12, '0063': 22, '001B': 5, '001C': 6, '0086': 9, '001F': 4, '0061': 8, '0022': 12, '0017': 8, '0019': 9, '006B': 5, '0067': 5, '005B': 3, '0015': 1, '006A': 6, '0020': 3, '005E': 3, '0066': 2, '006C': 4, '0059': 1, '007A': 1, '005D': 1, '005A': 3, '0062': 1, '006D': 2, '004F': 1}
+control inbound non-member referrer zones: {'0018': 2, '001B': 1, '001E': 2, '0059': 4, '0023': 1, '0016': 1, '003E': 1, '006B': 1, '0033': 1}
+control globals: member-referenced .data cells also touched outside: 131
+edge control: 0 foreign-class vtable bodies inside densest bucket 0021xxxx: 
+wrote 433
+===== verb (committed selector run on the working tree; dgla/gacc after their patches)
+table records read from image: 1886 distinct callbacks
+frontier callbacks: 1543
+adapters: 1039   leftovers: 504
+leftover reasons: {'multi-native(3)': 150, 'multi-native(2)': 217, 'multi-native(4)': 66, 'multi-native(6)': 11, 'loop': 29, 'multi-native(5)': 21, 'multi-native(7)': 4, 'multi-native(8)': 3, 'multi-native(11)': 1, 'multi-native(12)': 1, 'multi-native(10)': 1}
+adapter natives: {'one-native': 951, 'none': 70, 'indirect': 18}
+wrote scriptvm-verb-adapter-callbacks.tsv (1039) and scriptvm-verb-adapter-leftovers.tsv (504)
+===== dgla BEFORE its guard edit (the committed selector as found)
+    assert len(members) == 196, "member count drifted: %d" % len(members)
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError: member count drifted: 222
+===== guarded class-registration stubs: WITHHELD (select_guarded_class_registrars.py, scratch run)
+members: 99   census predicate hits: 486 (owned/A: 387, free: 0)
+   non-member ownership: Phyre serialization scalar-conversion initialisers x143, Phyre PRendering module x61, A x48, two-member class-descriptor registrars (m_count + m_els) x38, Phyre PAnimation module x32, Phyre PInputs module x17, Phyre PGeometry module x12, Phyre PPostProcessing module x10
+leaf stubs: 76   orchestrators: 23
+wrote C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\22-Middleware-PhyreEngine\Reflection-And-Class-Metadata\members\guarded-class-registration-stubs.tsv 76 and C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\22-Middleware-PhyreEngine\Reflection-And-Class-Metadata\members\guarded-class-registration-orchestrators.tsv 23

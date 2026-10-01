@@ -1,0 +1,8 @@
+# NativeAdapter.NullableFirstMemberTail - EC-7 family C
+# rcx=[this+X]; if non-null tail-dispatch via jcc to a member op. jcc
+# # carries the member target.
+address	targets
+002BDAE0	002BED30
+003E4350	00269E40
+0052A340	0024B1C0
+0052B060	0024B1C0

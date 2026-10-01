@@ -1,0 +1,61 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "e414833c37bf38ba3a1ddb77a7bb49a983809d92"
+    },
+    {
+      "path": "derive.py",
+      "git_blob": "2d778dfabb311f5dc39482212445d97d33a3f023"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "9de4293dfb13ec55d3050342397ec8a53e5cabba"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "e559231206c13f66f5a7d8cbd2de0d9b1be923b1"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "fdcefc997b505be9374bf7a0c301b5d49fd93fc0"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "c274069081dd2965ba7e3393f2b219c405dfd498"
+    },
+    {
+      "path": "retained/catalog-identity.json",
+      "git_blob": "7bb6da4213d02f04900459b320e3fb1301b57699"
+    },
+    {
+      "path": "retained/decode.bin",
+      "git_blob": "ae85f115f21ee1d8beaef2ba51b3fe5190707346"
+    },
+    {
+      "path": "retained/encode.bin",
+      "git_blob": "dc10ed9ffa6d28030d92d44383ecbf3bfcff37da"
+    },
+    {
+      "path": "retained/encoded-id-contract.md",
+      "git_blob": "71a8ff337890fba256f642feaa0ec24eaad600a5"
+    },
+    {
+      "path": "retained/image_address_base_writer_bounds.py",
+      "git_blob": "8b9cc5f4f60c91980af4dd160ad248fe2f7a8e60"
+    },
+    {
+      "path": "retained/shared-neighbours.md",
+      "git_blob": "0c1daf9d84a424c3356483081b9c441aa3177c50"
+    },
+    {
+      "path": "retained/shipping-reader.py",
+      "git_blob": "fa51d375bfb6aafde2790475239c4750fde15c2b"
+    }
+  ]
+}

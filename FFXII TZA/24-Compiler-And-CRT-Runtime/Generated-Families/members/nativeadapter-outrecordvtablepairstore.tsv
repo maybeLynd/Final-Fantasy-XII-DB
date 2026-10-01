@@ -1,0 +1,10 @@
+# NativeAdapter.OutRecordVtablePairStore - EC-7 family C
+# # if the out pointer is non-null, call a member op on it and store two
+# # member rip pointers at +0/+8; return 1.
+address	targets
+0063EF60	00645D20
+00640280	00645520
+00640D00	00646250
+00640E40	006461B0
+00642420	00645BC0
+00643000	006457E0

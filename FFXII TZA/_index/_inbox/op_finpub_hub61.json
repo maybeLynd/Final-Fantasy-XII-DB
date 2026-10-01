@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-61",
+ "result_refs": [
+  "commit:cb15077c3"
+ ],
+ "note": "publish: explicit path set (15 hosts + stop-registry reword + resume + ops); AUDIT-LOG excluded - uncommitted peer sections, batch entry rides a peer commit per precedent"
+}

@@ -1,0 +1,15 @@
+pacer wait word 02064ACC..02064AD0: rip 3, image-base 0, abs64/rva32 {'abs64': [], 'rva32': []}
+block +0xB4 MSAA word 02CB8084..02CB8088: rip 16, image-base 0, abs64/rva32 {'abs64': [], 'rva32': []}
+control: slot-counter array (known image-base users in 001CD0E0) 01F832B0..01F832C8: rip 22, image-base 12, abs64/rva32 {'abs64': [], 'rva32': ['001CD271(.text,unaligned)', '001CD379(.text,unaligned)', '001CD3B0(.text)', '001CD868(.text)', '001D01F1(.text,unaligned)', '0020ACDC(.text)', '0020AFB7(.text,unaligned)']}
+   image-base 001CD26E mov ebx, dword ptr [rsi + rax*4 + 0x1e632b0] (4B)
+   image-base 001CD375 mov eax, dword ptr [rsi + r8*4 + 0x1e632b0] (4B)
+   image-base 001CD376 mov eax, dword ptr [rsi + rax*4 + 0x1e632b0] (4B)
+   image-base 001CD377 test byte ptr [rsi + 0x1e632b0], al (1B)
+   image-base 001CD3AC mov ebx, dword ptr [rsi + r8*4 + 0x1e632b0] (4B)
+   image-base 001CD3AD mov ebx, dword ptr [rsi + rax*4 + 0x1e632b0] (4B)
+   image-base 001CD865 mov edi, dword ptr [rsi + rax*4 + 0x1e632b0] (4B)
+   image-base 001D01EE cmp dword ptr [rdx + rax*4 + 0x1e632b0], 0 (4B)
+   image-base 0020ACD8 cmp dword ptr [r15 + rsi*4 + 0x1e632b0], 0 (4B)
+   image-base 0020ACD9 cmp dword ptr [rdi + rsi*4 + 0x1e632b0], 0 (4B)
+   image-base 0020AFB4 inc dword ptr [rbp + rax*4 + 0x1e632b0] (4B)
+   image-base 0020AFB5 test byte ptr [rbp + 0x1e632b0], al (1B)

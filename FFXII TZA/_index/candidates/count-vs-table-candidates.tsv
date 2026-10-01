@@ -1,0 +1,45 @@
+# Candidates from check_counts_vs_tables.py, OPUS 2026-09-14. EC-5's defect class.
+# VERDICT column: 'subset' - the sentence describes part of the table and is correct as
+# written, retire it. 'fix' - the document is wrong and stays red until it changes.
+# An EMPTY verdict is untriaged, and the gate is red for exactly those.
+#
+# FOUR FALSE-POSITIVE MODES found while reading the first five, none of them fixable by the
+# gate, all of them fixable by a reader in one glance:
+#   SUBSET   the sentence describes some rows - 'four walks in this band are not emitters'.
+#   AXIS     the count names a COLUMN - 'two paths' above four output slots in two columns.
+#   GROUPED  a row holds several items - 17 functions in 15 rows, two of which name two and
+#            three functions.
+#   PARTIAL  the count is of rows with a particular RESULT - 'three cheap routes are closed'
+#            above four routes, three of which came back empty.
+#   BASELINE the table carries a reference row that is not one of the counted items - a
+#            'labelled' row above four CAUSES of silence, or a 'neither bit set' row above
+#            two routes.
+#
+# FINAL TALLY, all ten read: 2 genuine defects, 8 correct as written. A 20% hit rate on a
+# gate that found two errors nobody had seen. The modes above are why the other eight
+# look wrong to a machine and right to a reader, and naming them is what makes the next
+# triage cheap.
+# A REPORT, not a verdict: a table that summarises and a table that enumerates look the
+# same, and only a reader can say which this is. Four were hand-checked when the gate was
+# written - two are clear mismatches, two are subset claims that read correctly.
+document	line	stated	noun	table_rows	verdict	note
+00-Engine-Core-Runtime/Object-Model/rtti-vtable-object-model.md	444	2	recoveries	3	subset	AXIS: 'the two recoveries' names the two COLUMNS; the three rows are comparison metrics. Read by OPUS 2026-09-14.
+01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-how-the-party-looks.md	69	2	collectors	4		
+01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md	1266	4	causes	5	subset	BASELINE: four causes of silence plus a 'labelled' reference row that is not a cause. Read by OPUS 2026-09-14.
+02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	805	2	slots	3		
+02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/chse-character-se-tables.md	141	3	slots	4		
+04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md	214	6	pointers	7		
+04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md	528	8	sizes	7	subset	GROUPED: eight per-kind sizes in seven rows - the row '5, 6' covers two seqs. Counted by OPUS 2026-09-14.
+05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	1181	8	findings	6	subset	GROUPED: eight findings in six rows - one row covers twelve edges across seven subsystems, another four callers. Counted by OPUS 2026-09-14.
+05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	1471	2	calls	3		
+05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md	1911	2	routes	3	subset	BASELINE: two routes plus a 'neither bit9 nor bit8 set - skip both request routes' row, which is the absence of a route. Read by OPUS 2026-09-14.
+07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md	300	17	functions	15	subset	GROUPED: 17 distinct functions across 15 rows - 0046A720/0046A790 is one row naming two, and 004698C0/00469E80/0046A870 one row naming three. Counted by OPUS 2026-09-14.
+08-Combat-Formula/where-a-stat-number-comes-from.md	274	2	paths	4	subset	AXIS: 'two paths' names the two COLUMNS; the four rows are output slots. Read by OPUS 2026-09-14.
+08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md	103	3	constants	4	fix	prose says three constants carry the whole shape; the table lists four. Read by OPUS 2026-09-14.
+11-Party/CONTRACT-party-slot-assignment.md	296	2	rounds	3	subset	PARTIAL: three rounds are tabulated and 'getting there took two rounds' counts the two that fixed something - 'both about bounds without inputs on them'. Read by OPUS 2026-09-14.
+13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md	86	4	calls	6		
+17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md	78	4	walks	6	subset	'Four walks in this band are not emitters' describes a property of some rows of a six-row table. Correct as written. Read by OPUS 2026-09-14.
+18-Audio/Sound-Selection/sound-variant-selection.md	138	5	variants	7	subset	the count is about variants and the table enumerates vtable slots. Different populations. Read by OPUS 2026-09-14.
+23-Third-Party-Libraries/third-party-middleware-inventory.md	907	4	libraries	5	fix	prose says four of those libraries; the table lists five, and libwebm and EASTL are not in the 'those' the sentence points back to. Read by OPUS 2026-09-14.
+99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md	42	3	routes	4	subset	PARTIAL: four routes are tabulated and three came back empty; 'three cheap routes are closed' counts those three. Read by OPUS 2026-09-14.
+99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md	882	1	recovers	3		

@@ -1,0 +1,15 @@
+SURVIVES  P0  sizes all as cited; the eleven sum to 13,651
+SURVIVES  P1  37 type descriptors, 37 locators, 37 vtables; slot counts {3: 1, 9: 36}
+SURVIVES  P2  slot 3 overridden by 6: PDeferredLighting, PDepthOfField, PFXAA, PGlow, PMotionBlur, PScreenSpaceReflection; PAtmospherics and PCelShading override 1 2 6 only; every slot 0 distinct
+SURVIVES  P3  base render -> slot 1 with the +0x28/+0x2C pair; slot 5 Transparent after slot 4; SSR DeferredRender; the stub
+SURVIVES  P4  005FD050 returns 02CC0410 on both exits; 00655DC0 tests ctx + 0x520, never null: the 1280 x 720 arm is unreachable
+SURVIVES  P5  5 on a null fourth argument; slot 2 on a stale triple; the worker; 0x15 when not ready
+SURVIVES  P6  00640280: one reference, at 00D5B0C0 + 0x50; stub 00657140: 884 references; no direct calls
+SURVIVES  P7  66 stamping bodies, all in band; exits from the band: 0018CD90@0018CFD5->00645DB0, 0018D0D0@0018D0D0->00646770, 0089E870@0089E877->00646AB0. Owners: 0018CFD5 is the construction (0018CD90 -> 00645DB0, the PFXAA at context + 0x378); 0018D0D0 is reached from 008965EC, an unwind action of 0018CD90 (map 01D5574C) that destroys context + 0x378 (-> 00646770, the PFXAABase destructor chain); 0089E870 is an unwind action of 006458A0 (map 01DACB10), PDeferredLightingBase's installer (-> 00646AB0, PPostEffectBase)
+SURVIVES  P8  0065A630 -> 0065A640 from 0018FD70 and 00191DA0 on context + 0x378; 00191DA0 takes it when +0x4A3 == 0; 0018D850 configures, then sets +0x3E9
+SURVIVES  P9  slot-6 bodies 0 each; workers 1 1 1 2 1 2 1 1 1 1 1; 0060B980 58
+SURVIVES  P10  per-worker counts as measured; 24 submissions; the six page cells that differ equal four helpers + 005DC190
+SURVIVES  P11  +0x60 = ([+0x168] >= 0xB000) and bit 4 of 02CF7738
+SURVIVES  P12  0018D0E0 stamps 008C6C80; 52 direct call sites, from 52 bodies none of which has a direct call site
+SURVIVES  P13  the three default buffers lie in .data past its raw data (01F7E400)
+FAILS 0

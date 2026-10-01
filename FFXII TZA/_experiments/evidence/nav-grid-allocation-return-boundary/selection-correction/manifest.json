@@ -1,0 +1,56 @@
+{
+  "original_manifest_sha256": "cedc18b1efd79904661370e0e28a6655e7fca667aee0f46ddce229798cc47230",
+  "members": [
+    {
+      "path": "selection_addendum.py",
+      "bytes": 3454,
+      "sha256": "284e369ee7c3256e39e007fed7ae2af07bce1bbc17c2f293a30ba0f99b01c224"
+    },
+    {
+      "path": "check_selection_addendum.py",
+      "bytes": 2195,
+      "sha256": "f21c377fd845ceed9d4e9863f41a4c5ddba2c4954dcf5e1491f09ddddedda28f"
+    },
+    {
+      "path": "SELECTION-CORRECTION.md",
+      "bytes": 2165,
+      "sha256": "f9084f467a8c309af3c3eb7d3322f9b1bc913ac94845f53363923855cc5a4287"
+    },
+    {
+      "path": "selection-correction/0036c110.bin",
+      "bytes": 38,
+      "sha256": "1e44bec0a81a25c369bfc678faa2a9a6379c10e63ffd4bac22226ba1d3db3d58"
+    },
+    {
+      "path": "selection-correction/0036c140.bin",
+      "bytes": 84,
+      "sha256": "f34ec4c217f1b888902154ce45f6c27afc22fe2c77a50f2dbd85ff749ab87ca3"
+    },
+    {
+      "path": "selection-correction/0036c1a0.bin",
+      "bytes": 48,
+      "sha256": "d817e4dfedcafc39fcd69848dddd166100bba1cdf50690932699816df3b0aa5e"
+    },
+    {
+      "path": "selection-correction/0036c1d0.bin",
+      "bytes": 20,
+      "sha256": "bd012ee188218bf2e3eef63682f7f296dc3620001bfb3fbddef2b99529dc3096"
+    },
+    {
+      "path": "selection-correction/known-selection-primary.md",
+      "bytes": 6497,
+      "sha256": "090f92dbae4d1283a4d89ed12d03712fd1a6cf8ec1eb0bc0f3b58ef9b5f79d67"
+    },
+    {
+      "path": "selection-correction/producer-before-run.py",
+      "bytes": 3454,
+      "sha256": "284e369ee7c3256e39e007fed7ae2af07bce1bbc17c2f293a30ba0f99b01c224"
+    },
+    {
+      "path": "selection-correction/result.json",
+      "bytes": 8938,
+      "sha256": "b467f1e7adfc121707c22b8aac31532647da6835ea9d4bfd26a7e8f0855892bc"
+    }
+  ],
+  "limits": "Additive source-bound selection labels/procedure control, original22member inputs/results/manifest unchanged; no wholeallocator locking/atomicity/nativeeffects proof"
+}

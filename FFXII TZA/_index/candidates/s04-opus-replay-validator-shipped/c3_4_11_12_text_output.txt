@@ -1,0 +1,50 @@
+bind_every_shipped_slot            PASS  every binding call of 00236C30 re-made from its own instruction stream: 39 made, skipped: 238880 gambit table - heap 6; 237FC0 ability lookup - heap 6 after its first 003845F0
+arms_2_to_32_at_their_edges        PASS  for classes 2..32 the validator accepts exactly lo .. lo+count-1 of the table its arm reads (class 13: the sum of four counts; 19: E000..EFFE; 22 / 23: 0..3 / 0..8), probed at lo-1, lo, hi-1, hi over the shipped bindings
+class1_redispatch_every_family     PASS  class 1 on an id answers what the class named by 00309440 (the id's family code) answers, for every family 0..15 (15 has no family: 00309440 gives -1 and class 1 refuses)
+I2_validator_vs_inventory_count    PASS  the shipped equipment table has 557 rows, the inventory family counts 420: id 11A4 passes the validator (classes 6 and 1) although the inventory registry's range ends before it - two domains, two answers
+ok
+I1_tag_selects_the_input_lane_class12_reads_neither            PASS
+I3_rebase_stores_u32_sums_zero_keeps_high_half_selects         PASS
+I4_rebase_resets_state_through_the_full_pointer_and_repeats    PASS
+I5_direct_clears_only_18_wrappers_clear_all                    PASS
+I6_wrappers_return_static_aliased_records                      PASS
+ALL PASS
+1 WORD+6 True FFFFFFFE []
+2 DWORD+4 True FFFFFFFE []
+3 DWORD+4 True FFFFFFFE []
+4 DWORD+4 True FFFFFFFE []
+5 WORD+6 True FFFFFFFE []
+6 WORD+6 True FFFFFFFE []
+7 WORD+6 True FFFFFFFE []
+8 WORD+6 True FFFFFFFE []
+9 WORD+6 True FFFFFFFE []
+10 WORD+6 True FFFFFFFE []
+11 WORD+6 True FFFFFFFE []
+12 None True FFFFFFFE []
+13 WORD+6 True FFFFFFFE []
+14 WORD+6 True FFFFFFFE []
+15 WORD+6 True FFFFFFFE []
+16 WORD+6 True FFFFFFFE []
+17 WORD+6 True FFFFFFFE []
+18 WORD+6 True FFFFFFFE []
+19 DWORD+4 True FFFFFFFE []
+20 DWORD+4 True FFFFFFFE []
+21 DWORD+4 True FFFFFFFE []
+22 DWORD+4 True FFFFFFFE []
+23 DWORD+4 True FFFFFFFE []
+24 DWORD+4 True FFFFFFFE []
+25 DWORD+4 True FFFFFFFE []
+26 DWORD+4 True FFFFFFFE []
+27 DWORD+4 True FFFFFFFE []
+28 DWORD+4 True FFFFFFFE []
+29 DWORD+4 True FFFFFFFE []
+30 WORD+6 True FFFFFFFE []
+31 WORD+6 True FFFFFFFE []
+32 DWORD+4 True FFFFFFFE []
+{"state": "123450000", "shipped_high_halves_zero": true, "shipped_pointers_ok": true, "synthetic_desc0": ["100000000", "23450000", "40", "0", "BEEF", "FFFFFFF0", "2344FFF0"], "prefix": [0, 64, 484, 996, 1077, 1101, 1101, 1357, 1357, 1869, 2381, 2637, 2637, 2669, 2797], "prefix_ok": true} {"direct_class12": {"returned": true, "ret": 4294967294, "stopped_at": [], "first_lane_read": null, "lane_reads": 0}, "direct_only_18_cleared": true, "wrappers": {"dword_wrapper_class12": {"returned": true, "stopped_at": [], "rax": "22CA520", "record_all_zero": true}, "word_wrapper_class12": {"returned": true, "stopped_at": [], "rax": "22CA480", "record_all_zero": true}}} {"dword": {"returned": [true, true], "first": "22CA520", "second": "22CA520", "record_head_after_first": "0200000000000000", "same_address_after_second": "0200000001000000"}, "word": {"returned": [true, true], "first": "22CA480", "second": "22CA480", "record_head_after_first": "10000000000000b0", "same_address_after_second": "10000000000001b0"}}
+T_I6_text_pointers_resolve_into_the_bound_pack       PASS
+C3_class3_over_the_shipped_area_table                PASS
+C4_class4_over_the_shipped_area_table                PASS
+C11_class11_over_the_bound_gambit_table              PASS
+C12_class12_slot_has_no_writer_in_the_image          PASS
+ALL PASS {"area": {"3": {"table": "76C08C00", "count": 22, "edges": {"FFFFFFFF": 0, "0": 1, "15": 1, "16": 0}}, "4": {"table": "76C01030", "count": 6, "edges": {"FFFFFFFF": 0, "0": 1, "5": 1, "6": 0}}}, "c11": {"bound": true, "dirent": "20", "table": "76101DD0", "count": 256, "edges": {"5FFF": 0, "6000": 1, "60FF": 1, "6100": 0}}, "c12": {"slot_value": "0", "text_refs": ["00322DFE"], "data_copies": 0, "validator": {"7000": 0, "7001": 0}}}

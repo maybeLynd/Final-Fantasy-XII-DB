@@ -1,0 +1,35 @@
+== 00244224 rcx (root 00244200)
+  00244224 mov rcx, qword ptr [rip + 0x2094c81]   <- load
+  00244234 mov edx, ecx                                       
+  00244255 imul eax, ecx                                      
+  00244258 xor ecx, ecx                                         (overwritten)
+== 002443E7 r10 (root 002443D0)
+  002443E7 mov r10, qword ptr [rip + 0x2094abe]   <- load
+  002443EE lea eax, [r10 + r10]                               64-bit READ
+  00244482 sar r10d, 6                                          (overwritten)
+== 004FDDC7 rsi (root 004FDDA0)
+  004FDDC7 mov rsi, qword ptr [rip + 0x1ddb0de]   <- load
+  004FDDD5 sub edi, esi                                       
+  004FDE41 call 0x5044b0   (call: rsi in an argument register? False)
+  004FDE68 call 0x504450   (call: rsi in an argument register? False)
+  004FDE6D call 0x5044b0   (call: rsi in an argument register? False)
+  004FDED3 call 0x504450   (call: rsi in an argument register? False)
+  004FDED8 call 0x5044b0   (call: rsi in an argument register? False)
+  004FE01F lea eax, [rsi - 1]                                 64-bit READ
+  004FE0A7 call 0x504450   (call: rsi in an argument register? False)
+  004FE0AC call 0x5044b0   (call: rsi in an argument register? False)
+  004FE24D call 0x504450   (call: rsi in an argument register? False)
+  004FE263 pop rsi                                              (overwritten)
+== 004FDDCE rbp (root 004FDDA0)
+  004FDDCE mov rbp, qword ptr [rip + 0x1ddb0df]   <- load
+  004FDDDE sub ebx, ebp                                       
+  004FDE41 call 0x5044b0   (call: rbp in an argument register? False)
+  004FDE68 call 0x504450   (call: rbp in an argument register? False)
+  004FDE6D call 0x5044b0   (call: rbp in an argument register? False)
+  004FDED3 call 0x504450   (call: rbp in an argument register? False)
+  004FDED8 call 0x5044b0   (call: rbp in an argument register? False)
+  004FE00D lea eax, [rbp - 1]                                 64-bit READ
+  004FE0A7 call 0x504450   (call: rbp in an argument register? False)
+  004FE0AC call 0x5044b0   (call: rbp in an argument register? False)
+  004FE24D call 0x504450   (call: rbp in an argument register? False)
+  004FE257 mov rbp, qword ptr [rsp + 0x50]                      (overwritten)

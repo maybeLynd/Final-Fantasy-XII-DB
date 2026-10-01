@@ -1,0 +1,46 @@
+cmd	label_tid	label	choices	setter	extra_call	stores	getter	reads	sel	set_arm	get_arm	row_style	pane_row	reachability
+4	0x042D	Battle Mode	Wait(0x0431) / Active(0x0432)	002DE060	-	opt+0 bit 3	002DDC30	opt+0 bit 3	v!=0	00240818	0024041E	2	desc0[4] desc1-- desc2[4]	in-game Config
+5	0x042E	Battle Speed		002DE0F0	-	opt+0 bits 4-11 (s8)	002DDC90	opt+0 bits 4-11 (s8)	v++ / v--	00240829	0024042B	3	desc0[5] desc1-- desc2[5]	in-game Config
+6	0x0447	Target Lines		002DE2D0	-	opt+4 bit 22	002DDE00	opt+4 bit 22	v==0 (invert)	0024083A	00240438	1	desc0[6] desc1-- desc2[6]	in-game Config
+8	0x0438	Cursor Position	Last Selection(0x043D) / Default(0x043E)	002DE1E0	002DE1C0	opt+0 bit 15 + bit 16	002DDD50	opt+0 bit 15	v==0 (invert)	0024084B	00240445	2	desc0[7] desc1-- desc2[7]	in-game Config
+9	0x0433	Vibration Function		002DE080	0035FF30	opt+0 bit 13 -> 0035FF30	002DDC40	opt+0 bit 13	v==0 (invert)	00240863	00240452	1	desc0[9] desc1[8] desc2[9]	all Config variants
+10	0x0434	Screen Shake		002DE200	0037DDC0	opt+0 bit 14 -> 0037DDC0	002DDD60	opt+0 bit 14	v==0 (invert)	00240874	0024045F	1	desc0[10] desc1[9] desc2[10]	all Config variants
+11	0x0429	Subtitles		002DE230	-	opt+0 bit 12 (set = !normalised)	002DDD70	u16[0215E6DC] bit 0 if non-zero, else NOT opt+0 bit 12 (CON-194)	v==0 (invert)	00240885	0024046C	1	desc0[11] desc1[10] desc2[11]	all Config variants
+12	0x04EB	Camera Y[A5]Axis	Normal(0x04EC) / Inverted(0x04ED)	002DE190	001E1020	opt+4 bit 8 -> 001E1020	002DDD20	opt+4 bit 8	v!=0	00240896	00240479	2	desc0[12] desc1[11] desc2[12]	all Config variants
+13	0x04EE	Camera X[A5]Axis	Normal(0x04F9) / Inverted(0x04FA)	002DE160	001E0FF0	opt+4 bit 9 -> 001E0FF0	002DDD00	opt+4 bit 9	v!=0	002408A7	00240486	2	desc0[13] desc1[12] desc2[13]	all Config variants
+14	0x04EF	Speed Mode Multiplier	x[87](0x04F0) / x[89](0x04F2)	002DE250	0023B2E0	opt+4 bits 23-26 -> 0023B2E0	002DDDA0	opt+4 bits 23-26	pass	002408B8	00240493	2	desc0[14] desc1[13] desc2[14]	all Config variants
+16	0x04F3	Language	Japanese(0x04F4) / English(0x04F5)	002DE2F0	-	opt+4 bit 10	002DDE20	opt+4 bit 10	v==0 (invert)	002408CE	002404A0	2	desc0[15] desc1[14] desc2[15]	all Config variants
+17	0x04F6	Music	Original(0x04F7) / Reorchestrated(0x04F8) / OST(0x0502)	002DE110	002DF530	opt+0xE u16 (OST-gated) -> 002DF530	002DDCA0	opt+0xE u16	pass	002408DF	002404AD	2	desc0[16] desc1[15] desc2[16]	all Config variants
+19	0x04FC	<0F>[6F][82][80][E4]Music		002DE0B0	002DF2B0	opt+8 u16 (<=100) -> 002DF2B0	002DDC70	opt+8 u16 (clamped)	pass	002408F1	002404BD	6	desc0[19] desc1[18] desc2[19]	all Config variants
+20	0x04FD	<0F>[6F][82][80][E4]Sound Effects		002DE290	002DF2B0	opt+0xA u16 (<=100) -> 002DF2B0	002DDDE0	opt+0xA u16 (clamped)	pass	00240902	002404CA	6	desc0[20] desc1[19] desc2[20]	all Config variants
+21	0x04FE	<0F>[6F][82][80][E4]Voice		002DE310	002DF2B0	opt+0xC u16 (<=100) -> 002DF2B0	002DDE40	opt+0xC u16 (clamped)	pass	00240913	002404D7	6	desc0[21] desc1[20] desc2[21]	all Config variants
+28	0x0564	Camera Auto[A5]Rotation	On(0x0421) / Off(0x0422)	0017E740	-	cfg setting[22] CameraRevise	0017E260	cfg+0x58	v==0 (invert)	00240924	002404E4	8	BSS-pane rec36 (kind4)	Controls screen
+29	0x0562	Mouse Sensitivity[AA] Left[A2]Right		0032E020	0017E760	cfg setting[24] MouseSensityY (1-6)	0017E420	cfg+0x60	v++ / v--	00240935	002404F1	7	BSS-pane rec34 (kind3)	Controls screen
+30	0x0563	Mouse Sensitivity[AA] Up[A2]Down		0032E030	0017E780	cfg setting[23] MouseSensityX (1-6)	0017E430	cfg+0x5C	v++ / v--	00240946	002404FE	7	BSS-pane rec35 (kind3)	Controls screen
+38	0x0565	Confirm Button	Type A [AE]<0F>E[C1][F8]<0F>y[82][AF](0x0566) / Type B [AE]<0F>E[C1][F8]<0F>z[82][AF](0x0567)	0017E6E0	00198960	cfg setting[25] DecideButton -> 00198960	0017E210	cfg+0x64	v!=1	00240957	0024050B	8	BSS-pane rec38 (kind4)	Controls screen
+
+# ids with no handler (default arm 00240512/0024095E):
+# cmd 7 set->0024095E get->00240512
+# cmd 15 set->0024095E get->00240512
+# cmd 18 set->0024095E get->00240512
+# cmd 22 set->0024095E get->00240512
+# cmd 23 set->0024095E get->00240512
+# cmd 24 set->0024095E get->00240512
+# cmd 25 set->0024095E get->00240512
+# cmd 26 set->0024095E get->00240512
+# cmd 27 set->0024095E get->00240512
+# cmd 31 set->0024095E get->00240512
+# cmd 32 set->0024095E get->00240512
+# cmd 33 set->0024095E get->00240512
+# cmd 34 set->0024095E get->00240512
+# cmd 35 set->0024095E get->00240512
+# cmd 36 set->0024095E get->00240512
+# cmd 37 set->0024095E get->00240512
+
+# option-record fields with accessors but no command id:
+# opt+0 bits0-1: get 002DDCF0 (caller 004742A0) / set 002DE150 (no callers)
+# opt+0 bit2:    get 002DDCE0 (no callers)
+# opt+0 bit16:   written by cmd8 compound arm; get 002DDD40 (callers 002778C0 00290CF0)
+# opt+0 bits17-24: byte field; bit17 = (005C5230()==2) set by defaults installer 002DDE60
+# opt+4 bit21:   get 002DDDC0 (caller 00251F40) / set 002DE270 (caller 0034D440)
+# opt+0x18 dword&3 -> 002DF360 (re-applied by 002DDA30); opt+0x1C dword read by 002DDA30

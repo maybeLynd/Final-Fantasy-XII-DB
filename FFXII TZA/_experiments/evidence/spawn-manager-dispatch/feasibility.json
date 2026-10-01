@@ -1,0 +1,244 @@
+{
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "entry": "0x25bfb0",
+  "body_sha256": "7314f16dda1e46cbd58c28306990d1687adb29bec834006b43655c35787703b6",
+  "body_bytes": 179,
+  "probe_sha256": "ae9b842276006bfa82dfa5ee91ea2658c13e7ffcc75e1816c011294b06e065af",
+  "unicorn_version": "2.1.4",
+  "method": "B isolated original-code execution",
+  "live_game": false,
+  "stubs": {
+    "0x26ce60": "controlled initialization boundary",
+    "0x2628b0": "controlled unload boundary"
+  },
+  "limits": [
+    "Injected queue mask and distinctive nonzero roster, Windows x64 entry ABI.",
+    "Initialization/unload callbacks are controlled providers; their native effects and live scheduling are omitted.",
+    "Callback queue changes are explicit interventions, not proof native callbacks issue those requests.",
+    "Non-stack reads/writes and callback boundary state retained; all complete returns and code/ABI checked."
+  ],
+  "cases": [
+    {
+      "name": "empty-control",
+      "mask": 0,
+      "changes": [],
+      "before": {
+        "0x2099abc": "00000000",
+        "0x209a1f0": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+      },
+      "after": {
+        "0x2099abc": "00000000",
+        "0x209a1f0": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+      },
+      "trace": [],
+      "memory": [
+        [
+          "0x25bfb4",
+          "R",
+          "0x2099abc",
+          4,
+          "00000000"
+        ]
+      ],
+      "visited": [
+        "0x25bfb0",
+        "0x25bfb4",
+        "0x25bfba",
+        "0x25bfbc",
+        "0x25c05e",
+        "0x25c062"
+      ],
+      "invalid": [],
+      "error": null,
+      "returned": true,
+      "stack_ok": true,
+      "nonvolatile_ok": true,
+      "code_unchanged": true
+    },
+    {
+      "name": "bit0-control",
+      "mask": 1,
+      "changes": [],
+      "before": {
+        "0x2099abc": "01000000",
+        "0x209a1f0": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+      },
+      "after": {
+        "0x2099abc": "00000000",
+        "0x209a1f0": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "trace": [
+        {
+          "target": "0x26ce60",
+          "index": 0,
+          "event_index": 1,
+          "mask": "01000000",
+          "roster": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+        },
+        {
+          "target": "0x2628b0",
+          "index": 0,
+          "event_index": 6,
+          "mask": "01000000",
+          "roster": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "memory": [
+        [
+          "0x25bfb4",
+          "R",
+          "0x2099abc",
+          4,
+          "01000000"
+        ],
+        [
+          "0x25bffb",
+          "R",
+          "0x2099abc",
+          4,
+          "01000000"
+        ],
+        [
+          "0x25c017",
+          "W",
+          "0x209a1f0",
+          8,
+          "0000000000000000"
+        ],
+        [
+          "0x25c017",
+          "W",
+          "0x209a1f8",
+          8,
+          "0000000000000000"
+        ],
+        [
+          "0x25c01f",
+          "W",
+          "0x209a200",
+          8,
+          "0000000000000000"
+        ],
+        [
+          "0x25c01f",
+          "W",
+          "0x209a208",
+          8,
+          "0000000000000000"
+        ],
+        [
+          "0x25c03b",
+          "R",
+          "0x2099abc",
+          4,
+          "01000000"
+        ],
+        [
+          "0x25c047",
+          "W",
+          "0x2099abc",
+          4,
+          "00000000"
+        ]
+      ],
+      "visited": [
+        "0x25bfb0",
+        "0x25bfb4",
+        "0x25bfba",
+        "0x25bfbc",
+        "0x25bfc2",
+        "0x25bfc7",
+        "0x25bfcc",
+        "0x25bfd1",
+        "0x25bfd6",
+        "0x25bfd8",
+        "0x25bfda",
+        "0x25bfdf",
+        "0x25bfe1",
+        "0x25bfe6",
+        "0x25bfe8",
+        "0x25bfeb",
+        "0x25bff0",
+        "0x25bff2",
+        "0x25c001",
+        "0x25c003",
+        "0x25c005",
+        "0x25bff0",
+        "0x25bff2",
+        "0x25c001",
+        "0x25c003",
+        "0x25c005",
+        "0x25bff0",
+        "0x25bff2",
+        "0x25c001",
+        "0x25c003",
+        "0x25c005",
+        "0x25bff0",
+        "0x25bff2",
+        "0x25c001",
+        "0x25c003",
+        "0x25c005",
+        "0x25bff0",
+        "0x25bff2",
+        "0x25bff4",
+        "0x25bff6",
+        "0x26ce60",
+        "0x25bffb",
+        "0x25c001",
+        "0x25c003",
+        "0x25c005",
+        "0x25c007",
+        "0x25c00c",
+        "0x25c00f",
+        "0x25c014",
+        "0x25c017",
+        "0x25c01f",
+        "0x25c027",
+        "0x25c02a",
+        "0x25c030",
+        "0x25c032",
+        "0x25c04d",
+        "0x25c04f",
+        "0x25c052",
+        "0x25c030",
+        "0x25c032",
+        "0x25c04d",
+        "0x25c04f",
+        "0x25c052",
+        "0x25c030",
+        "0x25c032",
+        "0x25c04d",
+        "0x25c04f",
+        "0x25c052",
+        "0x25c030",
+        "0x25c032",
+        "0x25c04d",
+        "0x25c04f",
+        "0x25c052",
+        "0x25c030",
+        "0x25c032",
+        "0x25c034",
+        "0x25c036",
+        "0x2628b0",
+        "0x25c03b",
+        "0x25c041",
+        "0x25c043",
+        "0x25c045",
+        "0x25c047",
+        "0x25c04d",
+        "0x25c04f",
+        "0x25c052",
+        "0x25c054",
+        "0x25c059",
+        "0x25c05e",
+        "0x25c062"
+      ],
+      "invalid": [],
+      "error": null,
+      "returned": true,
+      "stack_ok": true,
+      "nonvolatile_ok": true,
+      "code_unchanged": true
+    }
+  ]
+}

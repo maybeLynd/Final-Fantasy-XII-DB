@@ -1,0 +1,8 @@
+PASS S1  003CAB00: message 31 -> 003CAC6A (and only 31); reads ['003CAC80', '003CACBA'] in that arm, against action masks 0x10E / 0x10D
+PASS S2  {31} builders: [('003CA200', '003CA245'), ('00551E00', '00551E32'), ('00551F00', '00551F3D')]; .rdata {31} in rdx: []
+PASS S3  003CA200 calls the proc at [[02B47758] + 0x2A0]; 02B47758 stored by [('003CA280', '003CA2A4'), ('003CA2B0', '003CA2C5')] (003CA2B0 stores 0); 003CA860 creates the +0x2A0 window with 003CAB00 [('003CA860', '003CA913')] and links it under itself
+PASS S4  00551E00/00551F00 installed only by 005528C0 ([('005528C0', '005530DA'), ('005528C0', '005534C5')]); they send {31} through 00275440 on their own window, which walks its child list
+PASS S5  003CA200's only caller is the arbiter at 00253F6B; 00253F70 = 'mov word ptr [rip + 0x2d433f3], di ; =>02F9736A'
+PASS C1  control: 003CAB00's message 1 arm is 003CAB54, right after the table jump
+PASS C2  control: the census finds 00247510's {12} store at 00247523 (5 {12} builders)
+FAILS 0

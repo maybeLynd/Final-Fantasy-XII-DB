@@ -1,0 +1,86 @@
+P1 0022A0B0: 11 allocations stored to globals, 9 initializer calls
+   0022A2AE heap 0x2  rdx=[01FD49F8] = alloc(0x1dc0010)  size 0x1dc0000  count 0x10  alloc == size + count: True
+   0022A2CB heap 0x3  rdx=[01FD4A00] = alloc(0xd20100)  size 0xd20000  count 0x100  alloc == size + count: True
+   0022A2E7 heap 0x4  rdx=[01FD4A08] = alloc(0x100010)  size 0x100000  count 0x10  alloc == size + count: True
+   0022A304 heap 0x5  rdx=[01FD49F0] = alloc(0x1c0100)  size 0x1c0000  count 0x100  alloc == size + count: True
+   0022A321 heap 0x6  rdx=[01FD4A10] = alloc(0x6c00400)  size 0x6c00000  count 0x400  alloc == size + count: True
+   0022A33E heap 0x7  rdx=[01FD4A30] = alloc(0x3000100)  size 0x3000000  count 0x100  alloc == size + count: True
+   0022A35B heap 0x8  rdx=[01FD4A38] = alloc(0x2000100)  size 0x2000000  count 0x100  alloc == size + count: True
+   0022A377 heap 0x9  rdx=[01FD4A40] = alloc(0x1200010)  size 0x1200000  count 0x10  alloc == size + count: True
+   0022A394 heap 0xb  rdx=[01FD4A18] = alloc(0x400100)  size 0x400000  count 0x100  alloc == size + count: True
+   exact pairs: 9 of 9; allocations not used as a backing here: ['0x80000 -> [01FD4A20]', '0x100000 -> [01FD4A90]']
+P2 other callers of 00369D30:
+   0025A990 0025A9E6 call 0x36c140
+   0025A990 0025A9F7 mov r8d, 0x100000
+   0025A990 0025A9FD lea rdx, [rip + 0x6bad0c]
+   0025A990 0025AA04 call 0x36c660
+   0025A990 0025AA09 mov rdx, qword ptr [rip + 0x1e3f3c0]
+   0025A990 0025AA10 xor r9d, r9d
+   0025A990 0025AA13 mov r8d, 0x100000
+   0025A990 0025AA19 lea ecx, [r9 + 0xd]
+   0025A990 0025AA21 jmp 0x369d30
+   --
+   0025AA30 0025AA86 call 0x36c140
+   0025AA30 0025AA97 mov r8d, 0x19000
+   0025AA30 0025AA9D lea rdx, [rip + 0x6bac74]
+   0025AA30 0025AAA4 call 0x36c660
+   0025AA30 0025AAA9 mov rdx, qword ptr [rip + 0x1e3f328]
+   0025AA30 0025AAB0 xor r9d, r9d
+   0025AA30 0025AAB3 mov r8d, 0x19000
+   0025AA30 0025AAB9 lea ecx, [r9 + 0xe]
+   0025AA30 0025AAC1 jmp 0x369d30
+   --
+   0037B3D0 0037B3FE mov ecx, 0xb
+   0037B3D0 0037B403 call 0x369760
+   0037B3D0 0037B408 mov ecx, 0xb
+   0037B3D0 0037B40D call 0x36d160
+   0037B3D0 0037B419 call 0x36d250
+   0037B3D0 0037B41E mov ecx, ebx
+   0037B3D0 0037B420 call 0x36d240
+   0037B3D0 0037B425 mov r9d, 0x100
+   0037B3D0 0037B432 mov r8d, ebx
+   0037B3D0 0037B435 mov rdx, rax
+   0037B3D0 0037B438 mov ecx, 0xb
+   0037B3D0 0037B43D call 0x369d30
+   --
+   003E9AA0 003E9ABF cmovns ecx, ebx
+   003E9AA0 003E9AC2 call 0x36c1d0
+   003E9AA0 003E9AC7 mov ecx, edi
+   003E9AA0 003E9AC9 call 0x36a190
+   003E9AA0 003E9AE0 jmp 0x3e9ae0
+   003E9AA0 003E9AE2 xor r9d, r9d
+   003E9AA0 003E9AE5 mov r8d, edi
+   003E9AA0 003E9AE8 mov rdx, rax
+   003E9AA0 003E9AEB lea ecx, [r9 + 0xc]
+   003E9AA0 003E9AEF call 0x369d30
+   --
+P3 initializer layout end and the initial free block:
+   00369E73 lea rcx, [r14 + 0x7f]
+   00369E77 and rcx, 0xffffffffffffffc0
+   00369E7E mov qword ptr [rbx + 0x20], rcx
+   00369E86 lea rdx, [rcx + 0x3f]
+   00369E8A lea rdx, [rdx + rax*8]
+   00369E91 and rdx, 0xffffffffffffffc0
+   00369E95 mov qword ptr [rbx + 0x28], rdx
+   00369E99 lea r10, [rax*8 + 0x3f]
+   00369EA1 add r10, rdx
+   00369EA4 and r10, 0xffffffffffffffc0
+   00369EAC mov qword ptr [rbx + 0x30], r10
+   00369EB3 mov qword ptr [rbx + 0x40], r10
+   00369EB7 shl rax, 4
+   00369EBB add r10, rax
+   00369EBE mov qword ptr [rbx + 0x38], r10
+   00369EC2 add r10, 0x3f
+   00369EC6 and r10, 0xffffffffffffffc0
+   00369F5D mov eax, dword ptr [rbx + 8]
+   00369F65 sub eax, r10d
+   00369F6C add eax, r13d
+   00369F74 mov qword ptr [rbx + 0x10], r10
+   00369F85 and eax, 0xffffffc0
+   00369F88 mov dword ptr [rbx + 0x5c], eax
+   00369FC7 mov r8d, dword ptr [rbx + 0x5c]
+   00369FD0 sub r8d, 0x40
+   00369FD4 call 0x36a490
+   0036A4B9 mov word ptr [rdx], ax
+   0036A50F mov dword ptr [rbx + 0x18], esi
+   0036A554 mov dword ptr [rbx + 0x3c], ebp

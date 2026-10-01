@@ -1,0 +1,8 @@
+PASS C1  the 499 sites F settles are settled here too (Counter({'settled': 499}))
+PASS C2  the 34 passthrough sites: Counter({'passthrough': 34})
+PASS V1  the 61 residue sites, followed through callee-saved registers: {'passthrough': 36, 'other-argument': 1, 'open': 22, 'settled': 2}
+PASS V3  passthrough sites by their direct callers: {'settled-by-callers': 5, 'no-direct-caller': 21, 'callers:passthrough': 3, 'callers:open': 4, 'callers:other-argument': 1, 'callers:passthrough,settled': 1, 'callers:open,passthrough,settled': 1}
+PASS C3  control: the check flags 00623C10 (reads r8 at 00623C23); 1495 deleting-destructor bodies, none reads r8/r9 before writing it; 25 direct calls to them, none writes r8/r9 in its block
+V2  residue after this pass: {'settled': 7, 'no-direct-caller': 20, 'callers:passthrough': 3, 'callers:open': 1, 'three-parameter-method': 14, 'other-argument': 1, 'callers:other-argument': 1, 'open': 13, 'callers:open,passthrough,settled': 1}
+T   settled: 546 (bq27_width.py) + 21 here = 567 of 607; residue 40
+FAILS 0

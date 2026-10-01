@@ -1,0 +1,417 @@
+{
+  "status": "SAMPLED_ORIGINAL_VARIABLE_NAME_BINDING_SUPPORTED",
+  "method": "A exact retained original metadata, source and shipping resolver disassembly; no original-code/emulated/native/live execution",
+  "raw_sha256": "36ad6ff860dbb165d927a8518a86e52c8f2366d55737239720f19dfed3dc2e87",
+  "counts": [
+    {
+      "module": "ctrl",
+      "t0": 56,
+      "native": 56
+    },
+    {
+      "module": "btlctrl",
+      "t0": 92,
+      "native": 92
+    },
+    {
+      "module": "evctrl",
+      "t0": 115,
+      "native": 115
+    },
+    {
+      "module": "mapctrl",
+      "t0": 127,
+      "native": 127
+    }
+  ],
+  "native_reader": {
+    "pc": "0x26247c",
+    "hex": "468b64d004",
+    "mnemonic": "mov",
+    "operands": "r12d, dword ptr [rax + r10*8 + 4]",
+    "memory": [
+      {
+        "operand": 1,
+        "kind": "r",
+        "base": "rax",
+        "index": "r10",
+        "scale": 8,
+        "disp": 4
+      }
+    ]
+  },
+  "observations": [
+    {
+      "case": {
+        "module": "evctrl",
+        "pc": 16,
+        "index": 97,
+        "code_offset": 8487,
+        "code_hex": "4f0000496100",
+        "kind": "assignment",
+        "source": {
+          "block": 0,
+          "physical_line": 960,
+          "offset": 18539,
+          "hex": "09746573745f6c6f61645f666c67203d2030",
+          "text": "\ttest_load_flg = 0"
+        },
+        "expected_source_name": "test_load_flg",
+        "source_relation": "Adjacent assignment source candidate; pc16 and call22 share logical q0 tag417, source assignment logical416. Group attribution remains non-singular."
+      },
+      "observation": {
+        "index": 97,
+        "name": "test_load_flg",
+        "name_field_offset": 512,
+        "name_byte_offset": 74469,
+        "descriptor_field_offset": 8172,
+        "descriptor_record_hex": "0509000100000000",
+        "descriptor": "01000905",
+        "width": 0,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 2309,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "case": {
+        "module": "btlctrl",
+        "pc": 531,
+        "index": 13,
+        "code_offset": 7802,
+        "code_hex": "4f0000490d00",
+        "kind": "assignment",
+        "source": {
+          "block": 2,
+          "physical_line": 4,
+          "offset": 75527,
+          "hex": "09090909096c6f6f705f666c67093d20303b",
+          "text": "\t\t\t\t\tloop_flg\t= 0;"
+        },
+        "expected_source_name": "loop_flg",
+        "source_relation": "Retained61 literal/operation anchor"
+      },
+      "observation": {
+        "index": 13,
+        "name": "loop_flg",
+        "name_field_offset": 180,
+        "name_byte_offset": 117542,
+        "descriptor_field_offset": 6476,
+        "descriptor_record_hex": "2800001100000000",
+        "descriptor": "11000028",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 40,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "case": {
+        "module": "btlctrl",
+        "pc": 537,
+        "index": 14,
+        "code_offset": 7808,
+        "code_hex": "4f0100490e00",
+        "kind": "assignment",
+        "source": {
+          "block": 2,
+          "physical_line": 5,
+          "offset": 75547,
+          "hex": "09090909096d61706a756d705f6d656e755f666c67093d20313b092f2f837d8362837683578383839383768381836a8385815b82f08a4a82a282bd",
+          "text": "\t\t\t\t\tmapjump_menu_flg\t= 1;\t//\u30de\u30c3\u30d7\u30b8\u30e3\u30f3\u30d7\u30e1\u30cb\u30e5\u30fc\u3092\u958b\u3044\u305f"
+        },
+        "expected_source_name": "mapjump_menu_flg",
+        "source_relation": "Retained61 literal/operation anchor"
+      },
+      "observation": {
+        "index": 14,
+        "name": "mapjump_menu_flg",
+        "name_field_offset": 184,
+        "name_byte_offset": 117551,
+        "descriptor_field_offset": 6484,
+        "descriptor_record_hex": "2900001100000000",
+        "descriptor": "11000029",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 41,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "case": {
+        "module": "mapctrl",
+        "pc": 729,
+        "index": 82,
+        "code_offset": 8624,
+        "code_hex": "4f02004a520046",
+        "kind": "dvar",
+        "source": {
+          "block": 0,
+          "physical_line": 388,
+          "offset": 21459,
+          "hex": "6476617228322c2074657374293b",
+          "text": "dvar(2, test);"
+        },
+        "expected_source_name": "test",
+        "source_relation": "Retained61 literal/operation anchor"
+      },
+      "observation": {
+        "index": 82,
+        "name": "test",
+        "name_field_offset": 456,
+        "name_byte_offset": 142669,
+        "descriptor_field_offset": 7380,
+        "descriptor_record_hex": "3300001200000000",
+        "descriptor": "12000033",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 2,
+        "offset": 51,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "case": {
+        "module": "mapctrl",
+        "pc": 736,
+        "index": 32,
+        "code_offset": 8631,
+        "code_hex": "4f03004a200046",
+        "kind": "dvar",
+        "source": {
+          "block": 0,
+          "physical_line": 389,
+          "offset": 21475,
+          "hex": "6476617228332c206d705f64656275676d656e755f666c67293b",
+          "text": "dvar(3, mp_debugmenu_flg);"
+        },
+        "expected_source_name": "mp_debugmenu_flg",
+        "source_relation": "Retained61 literal/operation anchor"
+      },
+      "observation": {
+        "index": 32,
+        "name": "mp_debugmenu_flg",
+        "name_field_offset": 256,
+        "name_byte_offset": 142062,
+        "descriptor_field_offset": 6980,
+        "descriptor_record_hex": "1409001000000000",
+        "descriptor": "10000914",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 0,
+        "offset": 2324,
+        "second_dword": 0,
+        "global_name_matches": [
+          {
+            "descriptor": 268437780,
+            "name": "mp_debugmenu_flg",
+            "record_offset": 7164
+          }
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "module": "evctrl",
+      "pc": 16,
+      "original_positive": true,
+      "private_encoded_operand": {
+        "index": 98,
+        "name": "cameramode",
+        "name_field_offset": 516,
+        "name_byte_offset": 74483,
+        "descriptor_field_offset": 8180,
+        "descriptor_record_hex": "0c00004200000000",
+        "descriptor": "4200000c",
+        "width": 4,
+        "is_float": 0,
+        "storage_class": 2,
+        "offset": 12,
+        "second_dword": 0,
+        "global_name_matches": []
+      },
+      "private_encoded_name_directory": {
+        "index": 97,
+        "name": "cameramode",
+        "name_field_offset": 512,
+        "name_byte_offset": 74483,
+        "descriptor_field_offset": 8172,
+        "descriptor_record_hex": "0509000100000000",
+        "descriptor": "01000905",
+        "width": 0,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 2309,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "module": "btlctrl",
+      "pc": 531,
+      "original_positive": true,
+      "private_encoded_operand": {
+        "index": 14,
+        "name": "mapjump_menu_flg",
+        "name_field_offset": 184,
+        "name_byte_offset": 117551,
+        "descriptor_field_offset": 6484,
+        "descriptor_record_hex": "2900001100000000",
+        "descriptor": "11000029",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 41,
+        "second_dword": 0,
+        "global_name_matches": []
+      },
+      "private_encoded_name_directory": {
+        "index": 13,
+        "name": "mapjump_menu_flg",
+        "name_field_offset": 180,
+        "name_byte_offset": 117551,
+        "descriptor_field_offset": 6476,
+        "descriptor_record_hex": "2800001100000000",
+        "descriptor": "11000028",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 40,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "module": "btlctrl",
+      "pc": 537,
+      "original_positive": true,
+      "private_encoded_operand": {
+        "index": 15,
+        "name": "ms_basesel",
+        "name_field_offset": 188,
+        "name_byte_offset": 117568,
+        "descriptor_field_offset": 6492,
+        "descriptor_record_hex": "2a00001100000000",
+        "descriptor": "1100002a",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 42,
+        "second_dword": 0,
+        "global_name_matches": []
+      },
+      "private_encoded_name_directory": {
+        "index": 14,
+        "name": "ms_basesel",
+        "name_field_offset": 184,
+        "name_byte_offset": 117568,
+        "descriptor_field_offset": 6484,
+        "descriptor_record_hex": "2900001100000000",
+        "descriptor": "11000029",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 1,
+        "offset": 41,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "module": "mapctrl",
+      "pc": 729,
+      "original_positive": true,
+      "private_encoded_operand": {
+        "index": 83,
+        "name": "behind_order",
+        "name_field_offset": 460,
+        "name_byte_offset": 142674,
+        "descriptor_field_offset": 7388,
+        "descriptor_record_hex": "3400005a00000000",
+        "descriptor": "5a000034",
+        "width": 5,
+        "is_float": 1,
+        "storage_class": 2,
+        "offset": 52,
+        "second_dword": 0,
+        "global_name_matches": []
+      },
+      "private_encoded_name_directory": {
+        "index": 82,
+        "name": "behind_order",
+        "name_field_offset": 456,
+        "name_byte_offset": 142674,
+        "descriptor_field_offset": 7380,
+        "descriptor_record_hex": "3300001200000000",
+        "descriptor": "12000033",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 2,
+        "offset": 51,
+        "second_dword": 0,
+        "global_name_matches": []
+      }
+    },
+    {
+      "module": "mapctrl",
+      "pc": 736,
+      "original_positive": true,
+      "private_encoded_operand": {
+        "index": 33,
+        "name": "mp_debugmenu_mj",
+        "name_field_offset": 260,
+        "name_byte_offset": 142079,
+        "descriptor_field_offset": 6988,
+        "descriptor_record_hex": "1509001000000000",
+        "descriptor": "10000915",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 0,
+        "offset": 2325,
+        "second_dword": 0,
+        "global_name_matches": [
+          {
+            "descriptor": 268437781,
+            "name": "mp_debugmenu_mj",
+            "record_offset": 7172
+          }
+        ]
+      },
+      "private_encoded_name_directory": {
+        "index": 32,
+        "name": "mp_debugmenu_mj",
+        "name_field_offset": 256,
+        "name_byte_offset": 142079,
+        "descriptor_field_offset": 6980,
+        "descriptor_record_hex": "1409001000000000",
+        "descriptor": "10000914",
+        "width": 1,
+        "is_float": 0,
+        "storage_class": 0,
+        "offset": 2324,
+        "second_dword": 0,
+        "global_name_matches": [
+          {
+            "descriptor": 268437780,
+            "name": "mp_debugmenu_flg",
+            "record_offset": 7164
+          }
+        ]
+      }
+    }
+  ],
+  "count_control": {
+    "original": 115,
+    "encoded_private": 114,
+    "rejected": true
+  },
+  "interpretation": "All four original T0/native counts agree. Five exact bytecode operands select the same T0 names as retained source candidates, with changed-operand/name/count controls. ev operand0x61 identifies descriptor01000905: file-class, width0 u8, floatbit0, byteoffset905 under the existing native bank-base model. map operand0x20 has independent same descriptor/name in original T2 global directory. Supports sampled T0-index/name binding and ev destination storage identity, not only literal similarity.",
+  "limits": "No original debugger/compiler reader or writer establishing universal T0 ordering/all entries/scopes; metadata sample and canonical storage model remain distinct. No actual slot/file-bank pointer, load flag values, initializer/lifetime/gameplay set/clear/read path, store/notification effects or normal reachability. ev source grouping attribution ambiguity remains; no SN1X closure. Private data bytes not executed. PC OFF/S19 unchanged/fullL1+L2 NOT_MET"
+}

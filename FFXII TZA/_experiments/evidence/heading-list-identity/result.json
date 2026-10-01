@@ -1,0 +1,232 @@
+{
+  "status": "STATIC_SHARED_REGISTRY_AND_CHAIN",
+  "method": "A; original shipping bytes read-only",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "catalogue_sha256": "c0e1de8f650f2e8d12b8dc13390105a491f8fbcdf073dc1a7723a7f3871abaad",
+  "prior_raw_sha256": "0349a825fb4d221015d02c10b78bc4f1fd1fd32bb03028e6ef6891f23ac5d56a",
+  "prior_publish_raw_sha256": "cf32b64ed52ae36f65a9dcd1e0032261867762a03c24096fa70f95c5188e0f7f",
+  "prior_s47_original_code_result_sha256": "8c6ee39949a6164c478e5d16f13ceb5f296193c02625df70fc0bb1d7bbb7d943",
+  "effect_page_sha256": "85a0352bc16894699dd4efce151712b1237d9db9e358a24e284d59d89fda72c2",
+  "driver_sha256": "00d01edcd20bfd9d2cd12681bedb9d7e9fd5c9326f82857320344d76d8bca354",
+  "python_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "capstone_version": "5.0.7",
+  "capstone_sha256": "94571d1314355e261aff0ddfc94985fe8761232ddff6874181fd21efa9fab47f",
+  "pefile_sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+  "body_identities": {
+    "003A8D80": {
+      "bytes": 66,
+      "sha256": "6ef61ee2ba0c94653e2ac1e7f931d888f40cc831a0d2d65c763811d78008d616",
+      "decoded_instructions": 16
+    },
+    "003A8390": {
+      "bytes": 373,
+      "sha256": "bc36b2e35e3ba5f57771de1a1b4b4320c690643718f9fb05cc1cb0bd9abc222d",
+      "decoded_instructions": 99
+    },
+    "003A9490": {
+      "bytes": 128,
+      "sha256": "95a3c6b693daf3fe1c1d027f29c190bd35679a2a4771bf6a79a28c1416b7dfb2",
+      "decoded_instructions": 38
+    },
+    "003B3CA0": {
+      "bytes": 114,
+      "sha256": "ddc1c159ea5183895a6eb5cc7592a0b999823feff36dbed5ed11636b969bf869",
+      "decoded_instructions": 28
+    },
+    "0043EF40": {
+      "bytes": 716,
+      "sha256": "d1145443b695b982ec5415088b91c23e99aa07e07d2ea6233efaa021bf1627d2",
+      "decoded_instructions": 181
+    },
+    "0043EE70": {
+      "bytes": 49,
+      "sha256": "3bcffbcc853326c092c00ed510819ce47cf4dd1f9d51c014af87a28e500ce454",
+      "decoded_instructions": 14
+    },
+    "002F3910": {
+      "bytes": 284,
+      "sha256": "9ba2c31caeb49a12a5223a01eed6bd8bb8e8311fa2fb9d07ee37cf7cd78d8123",
+      "decoded_instructions": 56
+    }
+  },
+  "roots": [
+    "02EBEF88",
+    "02EBEF88",
+    "02EBEF88"
+  ],
+  "current_instance_slots": [
+    "02EBEF80",
+    "02EBEF80"
+  ],
+  "instance_head_offsets": [
+    8,
+    8,
+    8
+  ],
+  "instance_next_offsets": [
+    8,
+    8,
+    8
+  ],
+  "element_head_offsets": [
+    280,
+    280
+  ],
+  "element_next_offsets": [
+    48,
+    48
+  ],
+  "selected_original_instructions": [
+    {
+      "pc": "003A8D84",
+      "bytes": "488b0dfd61b102",
+      "instruction": "mov rcx, qword ptr [rip + 0x2b161fd]"
+    },
+    {
+      "pc": "003A8DA4",
+      "bytes": "48890dd561b102",
+      "instruction": "mov qword ptr [rip + 0x2b161d5], rcx"
+    },
+    {
+      "pc": "003A83BD",
+      "bytes": "488b05c46bb102",
+      "instruction": "mov rax, qword ptr [rip + 0x2b16bc4]"
+    },
+    {
+      "pc": "003A83C4",
+      "bytes": "488b5808",
+      "instruction": "mov rbx, qword ptr [rax + 8]"
+    },
+    {
+      "pc": "003A83D6",
+      "bytes": "488b7b08",
+      "instruction": "mov rdi, qword ptr [rbx + 8]"
+    },
+    {
+      "pc": "003A83DD",
+      "bytes": "488bcb",
+      "instruction": "mov rcx, rbx"
+    },
+    {
+      "pc": "003A83E0",
+      "bytes": "48891d996bb102",
+      "instruction": "mov qword ptr [rip + 0x2b16b99], rbx"
+    },
+    {
+      "pc": "003A83E7",
+      "bytes": "e8546b0900",
+      "instruction": "call 0x43ef40"
+    },
+    {
+      "pc": "003A949A",
+      "bytes": "488b05e75ab102",
+      "instruction": "mov rax, qword ptr [rip + 0x2b15ae7]"
+    },
+    {
+      "pc": "003A94A3",
+      "bytes": "488b7808",
+      "instruction": "mov rdi, qword ptr [rax + 8]"
+    },
+    {
+      "pc": "003A94BD",
+      "bytes": "0fb65044",
+      "instruction": "movzx edx, byte ptr [rax + 0x44]"
+    },
+    {
+      "pc": "003A94D0",
+      "bytes": "488b9f18010000",
+      "instruction": "mov rbx, qword ptr [rdi + 0x118]"
+    },
+    {
+      "pc": "003A94E3",
+      "bytes": "488bd7",
+      "instruction": "mov rdx, rdi"
+    },
+    {
+      "pc": "003A94E6",
+      "bytes": "488bcb",
+      "instruction": "mov rcx, rbx"
+    },
+    {
+      "pc": "003A94E9",
+      "bytes": "e882590900",
+      "instruction": "call 0x43ee70"
+    },
+    {
+      "pc": "003A94EE",
+      "bytes": "488b5b30",
+      "instruction": "mov rbx, qword ptr [rbx + 0x30]"
+    },
+    {
+      "pc": "003A94F7",
+      "bytes": "488b7f08",
+      "instruction": "mov rdi, qword ptr [rdi + 8]"
+    },
+    {
+      "pc": "003B3CBE",
+      "bytes": "498b4c0010",
+      "instruction": "mov rcx, qword ptr [r8 + rax + 0x10]"
+    },
+    {
+      "pc": "003B3CE0",
+      "bytes": "e89bb0e9ff",
+      "instruction": "call 0x24ed80"
+    },
+    {
+      "pc": "003B3CE7",
+      "bytes": "e8a457ffff",
+      "instruction": "call 0x3a9490"
+    },
+    {
+      "pc": "003B3CEC",
+      "bytes": "488bcf",
+      "instruction": "mov rcx, rdi"
+    },
+    {
+      "pc": "003B3CFD",
+      "bytes": "e87eb0e9ff",
+      "instruction": "call 0x24ed80"
+    },
+    {
+      "pc": "0043EF60",
+      "bytes": "488bf9",
+      "instruction": "mov rdi, rcx"
+    },
+    {
+      "pc": "0043EF9B",
+      "bytes": "488b8f18010000",
+      "instruction": "mov rcx, qword ptr [rdi + 0x118]"
+    },
+    {
+      "pc": "0043EFB0",
+      "bytes": "488b5930",
+      "instruction": "mov rbx, qword ptr [rcx + 0x30]"
+    },
+    {
+      "pc": "0043EFB7",
+      "bytes": "488bd7",
+      "instruction": "mov rdx, rdi"
+    },
+    {
+      "pc": "0043EFBA",
+      "bytes": "e85149ebff",
+      "instruction": "call 0x2f3910"
+    },
+    {
+      "pc": "0043EE70",
+      "bytes": "440fb609",
+      "instruction": "movzx r9d, byte ptr [rcx]"
+    },
+    {
+      "pc": "002F3910",
+      "bytes": "0fb601",
+      "instruction": "movzx eax, byte ptr [rcx]"
+    }
+  ],
+  "controls": {
+    "known_registry_root": true,
+    "same_count_wrong_root_rejected": true,
+    "same_count_wrong_link_rejected": true
+  },
+  "limit": "Static structural alias of registry/list paths. 003B3CA0 calls 0024ED80 before and after the setter, and that publisher can change the slot contents. Not same pointer at two times, initialized identity, scheduling, native effects, full-body semantic closure or live consequence."
+}

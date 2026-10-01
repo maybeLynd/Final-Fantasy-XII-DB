@@ -1,0 +1,29 @@
+{
+  "evidence_class": "A:eleven complete shipping bodies; no new original-code/live execution",
+  "files": {
+    ".gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    "allocation.json": {
+      "bytes": 30615,
+      "sha256": "134be1ed032241135a4416711f526b75ab6e84e2ca311cfb2ff6e2552e5d6c78"
+    },
+    "collect-allocation.py": {
+      "bytes": 3865,
+      "sha256": "fd0e1ea712c3797afb9b6ca1370e77c712f6454974e0392acb323eeee2aec797"
+    },
+    "collect-source.py": {
+      "bytes": 3870,
+      "sha256": "cc86069d91a397fb7694fec461dea87a4392c858801c18d0cc9f9cb941e282e0"
+    },
+    "review.json": {
+      "bytes": 4012,
+      "sha256": "e38cf23cf589851182c4080ac811f838855eacee7ae0a9039a5a04ab0f2a52fa"
+    },
+    "source.json": {
+      "bytes": 19277,
+      "sha256": "708ef0735da19c1b991a5b95f02ee6ccb1abb9e37d5d6bba187243fcd1c006ed"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+ "action": "finish",
+ "task": "SWE2EC7-TAIL-SHARED-HUB-IDENTIFICATION-142",
+ "result_refs": [
+  "tail commit df08b3318"
+ ],
+ "note": "batch-142 tail: TEAM.json + finseal op + sealed resume committed (df08b3318); publish-B hunks re-landed via repair aadd63f4f after the seal swept stale real-index blobs"
+}

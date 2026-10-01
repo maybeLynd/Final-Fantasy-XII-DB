@@ -1,0 +1,599 @@
+{
+  "view": "progress",
+  "title": "My Progress",
+  "status": "OK",
+  "source": {
+    "identity": "facts 034a38283809; category map 437ad9f4d4a6; board rev None; reporter None; gate MET",
+    "as_of": "2026-09-29T07:40:00Z",
+    "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+    "limits": "counts requirements (one governing criterion on one canonical object), not effort or time; every family measured; definitions _index/workflow/MY-PROGRESS-METRICS.md"
+  },
+  "measures": [
+    {
+      "id": "union",
+      "label": "governing requirements accepted, L1+L2 (deduplicated union)",
+      "numerator": 44,
+      "denominator": 45,
+      "scope": "L1 u L2",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "counts requirements (one governing criterion on one canonical object), not effort or time; every family measured"
+    },
+    {
+      "id": "L1",
+      "label": "L1 requirements accepted",
+      "numerator": 39,
+      "denominator": 40,
+      "scope": "L1 (modding grade)",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "counts requirements (one governing criterion on one canonical object), not effort or time; every family measured"
+    },
+    {
+      "id": "L2",
+      "label": "L2 requirements accepted",
+      "numerator": 40,
+      "denominator": 41,
+      "scope": "L2 (reconstruction grade)",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "counts requirements (one governing criterion on one canonical object), not effort or time; every family measured"
+    },
+    {
+      "id": "union-exf",
+      "label": "governing requirements accepted, L1+L2, excluding the 35,064 function dispositions (C1)",
+      "numerator": 43,
+      "denominator": 44,
+      "scope": "L1 u L2 without family F",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "counts requirements (one governing criterion on one canonical object), not effort or time; every family measured"
+    },
+    {
+      "id": "terminal",
+      "label": "terminal final-audit passes accepted",
+      "numerator": 30,
+      "denominator": 30,
+      "scope": "FINAL-AUDIT-PROTOCOL",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "30 consecutive passes; counted from the governing gate's acceptance check and the receipted counter"
+    },
+    {
+      "id": "fam-q",
+      "label": "register questions (OPEN-QUESTIONS.md rows)",
+      "numerator": 0,
+      "denominator": 1,
+      "scope": "family Q",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-p",
+      "label": "page obligations (unticked page boxes with no live register row)",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family P",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-f",
+      "label": "function dispositions (every function explained A, class-explained B or dispositioned C)",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family F",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-dd",
+      "label": "documents documented (status DOCUMENTED/AUDITED, or readiness when no status)",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family DD",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-da",
+      "label": "documents with a named falsification pass",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family DA",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-dv",
+      "label": "documents verified against the certified parent (provenance)",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family DV",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-r",
+      "label": "authored-data registry slots explained",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family R",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-x",
+      "label": "shipped file formats explained",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family X",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-e",
+      "label": "EBP container units explained",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family E",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-k",
+      "label": "contradictions carrying a resolved disposition",
+      "numerator": 1,
+      "denominator": 1,
+      "scope": "family K",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-l2",
+      "label": "L2 cells: registered system x required dimension",
+      "numerator": 5,
+      "denominator": 5,
+      "scope": "family L2",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "fam-t",
+      "label": "terminal final-audit passes (30 consecutive)",
+      "numerator": 30,
+      "denominator": 30,
+      "scope": "family T",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "_index/workflow/MY-PROGRESS-METRICS.md"
+    },
+    {
+      "id": "cat-W",
+      "label": "World & maps",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category W",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-C",
+      "label": "Combat & damage",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category C",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-E",
+      "label": "Enemies & AI",
+      "numerator": 11,
+      "denominator": 12,
+      "scope": "category E",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-S",
+      "label": "Spawning, death & respawn",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category S",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-P",
+      "label": "Player & party",
+      "numerator": 11,
+      "denominator": 12,
+      "scope": "category P",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-I",
+      "label": "Items, equipment & progression",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category I",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-T",
+      "label": "Story, quests & events",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category T",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-M",
+      "label": "Menus & controls",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category M",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-G",
+      "label": "Animation, graphics & audio",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category G",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-V",
+      "label": "Save/load & persistence",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category V",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-D",
+      "label": "Scripts & game data/VBF",
+      "numerator": 3,
+      "denominator": 3,
+      "scope": "category D",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-N",
+      "label": "Engine & supporting systems",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category N",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-whole",
+      "label": "whole",
+      "numerator": 30,
+      "denominator": 30,
+      "scope": "category whole",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    },
+    {
+      "id": "cat-untied",
+      "label": "untied",
+      "numerator": 0,
+      "denominator": 0,
+      "scope": "category untied",
+      "instrument": "requirements.py MP-2 over captured facts (034a38283809)",
+      "as_of": "2026-09-29T07:40:00Z",
+      "limits": "shared requirements appear under every category they belong to; each counts once globally"
+    }
+  ],
+  "progress": {
+    "version": "MP-2",
+    "measured": true,
+    "failed": {},
+    "gaps": {},
+    "q_split": {
+      "answered": 0,
+      "dispositioned": 0,
+      "remaining": 1,
+      "excluded": 0,
+      "dd_answered": 1,
+      "dd_dispositioned": 0
+    },
+    "review": "_index/candidates/mp1-meanings-review/ (FABLE: ACCEPT with C1-C4, applied in MP-2)",
+    "definitions": "_index/workflow/MY-PROGRESS-METRICS.md",
+    "map": "_index/workflow/my-progress/category-map.tsv",
+    "unit": "One requirement = one governing criterion applied to one canonical object the database already names (a register row, a page box, a function, a document, a registry slot, a format, an EBP unit, a contradiction, an S-id x L2 dimension, a terminal pass). Accepted = fully satisfied under the governing record. This measures requirements, not elapsed time or equal-sized engineering effort.",
+    "scopes": {
+      "union": {
+        "accepted": 44,
+        "total": 45
+      },
+      "L1": {
+        "accepted": 39,
+        "total": 40
+      },
+      "L2": {
+        "accepted": 40,
+        "total": 41
+      },
+      "union_exF": {
+        "accepted": 43,
+        "total": 44
+      }
+    },
+    "families": {
+      "Q": {
+        "accepted": 0,
+        "total": 1,
+        "label": "register questions (OPEN-QUESTIONS.md rows)"
+      },
+      "P": {
+        "accepted": 1,
+        "total": 1,
+        "label": "page obligations (unticked page boxes with no live register row)"
+      },
+      "F": {
+        "accepted": 1,
+        "total": 1,
+        "label": "function dispositions (every function explained A, class-explained B or dispositioned C)"
+      },
+      "DD": {
+        "accepted": 1,
+        "total": 1,
+        "label": "documents documented (status DOCUMENTED/AUDITED, or readiness when no status)"
+      },
+      "DA": {
+        "accepted": 1,
+        "total": 1,
+        "label": "documents with a named falsification pass"
+      },
+      "DV": {
+        "accepted": 1,
+        "total": 1,
+        "label": "documents verified against the certified parent (provenance)"
+      },
+      "R": {
+        "accepted": 1,
+        "total": 1,
+        "label": "authored-data registry slots explained"
+      },
+      "X": {
+        "accepted": 1,
+        "total": 1,
+        "label": "shipped file formats explained"
+      },
+      "E": {
+        "accepted": 1,
+        "total": 1,
+        "label": "EBP container units explained"
+      },
+      "K": {
+        "accepted": 1,
+        "total": 1,
+        "label": "contradictions carrying a resolved disposition"
+      },
+      "L2": {
+        "accepted": 5,
+        "total": 5,
+        "label": "L2 cells: registered system x required dimension"
+      },
+      "T": {
+        "accepted": 30,
+        "total": 30,
+        "label": "terminal final-audit passes (30 consecutive)"
+      }
+    },
+    "terminal": {
+      "accepted": 30,
+      "required": 30
+    },
+    "reconstruction": {
+      "state": "DATABASE READY - labelled invalid field intervention",
+      "why": "requirements remain (1)"
+    },
+    "categories": [
+      {
+        "code": "W",
+        "label": "World & maps",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "C",
+        "label": "Combat & damage",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "E",
+        "label": "Enemies & AI",
+        "accepted": 11,
+        "total": 12,
+        "remaining_by_family": {
+          "Q": 1
+        },
+        "change": null,
+        "items": [
+          {
+            "k": "Q:fixture",
+            "f": "Q",
+            "st": "OPEN",
+            "o": "ASTRA",
+            "n": "",
+            "e": "labelled fixture, not canonical closure",
+            "lv": "L1L2"
+          }
+        ],
+        "functions": []
+      },
+      {
+        "code": "S",
+        "label": "Spawning, death & respawn",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "P",
+        "label": "Player & party",
+        "accepted": 11,
+        "total": 12,
+        "remaining_by_family": {
+          "Q": 1
+        },
+        "change": null,
+        "items": [
+          {
+            "k": "Q:fixture",
+            "f": "Q",
+            "st": "OPEN",
+            "o": "ASTRA",
+            "n": "",
+            "e": "labelled fixture, not canonical closure",
+            "lv": "L1L2"
+          }
+        ],
+        "functions": []
+      },
+      {
+        "code": "I",
+        "label": "Items, equipment & progression",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "T",
+        "label": "Story, quests & events",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "M",
+        "label": "Menus & controls",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "G",
+        "label": "Animation, graphics & audio",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "V",
+        "label": "Save/load & persistence",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "D",
+        "label": "Scripts & game data/VBF",
+        "accepted": 3,
+        "total": 3,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "N",
+        "label": "Engine & supporting systems",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "whole",
+        "label": "Whole database (final certification, cross-cutting)",
+        "accepted": 30,
+        "total": 30,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      },
+      {
+        "code": "untied",
+        "label": "Code not yet tied to a game system",
+        "accepted": 0,
+        "total": 0,
+        "remaining_by_family": {},
+        "change": null,
+        "items": [],
+        "functions": []
+      }
+    ],
+    "change": null,
+    "excluded": [],
+    "unplaced": [],
+    "duplicates_merged": 0
+  }
+}

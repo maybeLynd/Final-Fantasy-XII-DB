@@ -1,0 +1,168 @@
+{
+ "aligned_data_hits": {
+  "0036F22E": [
+   "02FBCB80 .pdata",
+   "02FBCB88 .pdata"
+  ]
+ },
+ "call_rows": [
+  [
+   "0020FAD4",
+   192,
+   "0020F3E0",
+   "table"
+  ],
+  [
+   "007E3CC5",
+   31,
+   "007E3450",
+   "table"
+  ],
+  [
+   "0081C290",
+   107,
+   "0081C020",
+   "table"
+  ],
+  [
+   "00829E85",
+   5,
+   "00829E10",
+   "ambiguous"
+  ],
+  [
+   "0082A657",
+   5,
+   "0082A5D0",
+   "ambiguous"
+  ],
+  [
+   "0082CE48",
+   203,
+   "0082CCC0",
+   "table"
+  ],
+  [
+   "0082E041",
+   5,
+   "0082DCE0",
+   "ambiguous"
+  ]
+ ],
+ "cold_path": {
+  "body": [
+   "call 0x823710",
+   "int3 "
+  ],
+  "branches": [
+   [
+    "0082DE8B",
+    "ja"
+   ]
+  ]
+ },
+ "dangling": {
+  "00829E85": [
+   "mov rdi, qword ptr [rsp + 0x40]",
+   "int3",
+   false
+  ],
+  "0082A657": [
+   "mov rdi, qword ptr [rsp + 0x40]",
+   "int3",
+   false
+  ]
+ },
+ "noreturn_chain": {
+  "0081E2C0 longjmp": true,
+  "0081E2C0 panic path import": "abort",
+  "00823860->0081E2C0 int3": true,
+  "00824330->00823860 int3": true
+ },
+ "rdata_hits": [
+  "009010B9",
+  "009010D9"
+ ],
+ "tables": {
+  "0020FAD4": {
+   "leading_nop": 0,
+   "ok": true,
+   "parts": [
+    [
+     "0020FAD4",
+     "dword x21",
+     "0020F4B5"
+    ],
+    [
+     "0020FB28",
+     "byte x80 (max 20)",
+     "0020F4AC"
+    ],
+    [
+     "0020FB78",
+     "dword x7",
+     "0020F736"
+    ]
+   ]
+  },
+  "007E3CC5": {
+   "leading_nop": 3,
+   "ok": true,
+   "parts": [
+    [
+     "007E3CC8",
+     "dword x7",
+     "007E34A1"
+    ]
+   ]
+  },
+  "0081C290": {
+   "leading_nop": 0,
+   "ok": true,
+   "parts": [
+    [
+     "0081C290",
+     "dword x7",
+     "0081C0DD"
+    ],
+    [
+     "0081C2AC",
+     "byte x79 (max 6)",
+     "0081C0D4"
+    ]
+   ]
+  },
+  "0082CE48": {
+   "leading_nop": 0,
+   "ok": true,
+   "parts": [
+    [
+     "0082CE48",
+     "dword x9",
+     "0082CCF2"
+    ],
+    [
+     "0082CE6C",
+     "byte x167 (max 8)",
+     "0082CCEA"
+    ]
+   ]
+  }
+ },
+ "tails": 162,
+ "text_hits_inside_instructions": {
+  "00121E11@00703125": "00703124 mov edx, 0x1e11",
+  "003690E8@007F6A4B": "007F6A4B call 0x7f8ee0",
+  "0037C4E8@00660B37": "00660B37 call 0x663100",
+  "007BC290@0016C8FC": "0016C8FB jmp 0x808b90",
+  "007C5647@00163545": "00163544 jmp 0x808b90",
+  "008240E3@00661C19": "00661C16 lea r8, [rip + 0x7040e3]",
+  "0089378D@005B937F": "005B937C lea rax, [rip + 0x77378d]"
+ }
+}
+U1_7_call_blocks_548_bytes_4_table_3_ambiguous                           PASS
+U2_the_4_table_blocks_are_switch_data_end_to_end                         PASS
+U3_two_dangling_restores_after_a_call_that_never_returns                 PASS
+U4_0082E041_is_a_cold_path_reached_by_its_own_ja                         PASS
+U5_no_route_outside_the_union_names_a_tail_but_the_banned_pdata          PASS
+ALL PASS

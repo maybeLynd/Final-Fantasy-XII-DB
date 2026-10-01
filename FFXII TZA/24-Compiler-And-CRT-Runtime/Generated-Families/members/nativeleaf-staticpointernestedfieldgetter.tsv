@@ -1,0 +1,19 @@
+# NativeLeaf.StaticPointerNestedFieldGetter - EC-7 family C, declared on generated-function-families.md
+#
+# 11 members. Body size(s): 15 B x10, 12 B x1.
+# 11 distinct byte image(s) collapse to ONE instruction form.
+# Control (external targets, intra-body branches excluded): 0 external target(s): 0 shared across all 11 members.
+#
+# NOT dispositioned: nothing beyond the members themselves.
+#
+# One function entry address per line, VA (image base 0x00120000 included).
+0027E9D0
+0029CB60
+0029CB70
+0035D3D0
+0035D3F0
+0035D460
+0035D470
+0035D480
+006DF420
+006DF440

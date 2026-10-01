@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-01",
+  "project": "For Xeavin \u2014 FFXII TZA authoritative GFZ/GZF reconstruction",
+  "semantic_branch": "761B",
+  "status": "PERSISTENCE_CERTIFIED_GM160_RECOVERY_TRANSFER / GN_READ_ONLY_ANALYSIS / NO_GN_MUTATION / NONCANONICAL V121 WIP",
+  "continuation_artifact": "FFXII_TZA_XIIOnline_Gfz9_V121_FULL_EXECUTABLE_COVERAGE_GM160_RECOVERY_TRANSFER_99P58_2026-08-31.gzf",
+  "gzf_size": 82110895,
+  "gzf_sha256": "381d2aea82b96d7af781844e191d9b92a37e93bd2d4ff276a33ba56e7307461b",
+  "snapshot_sha256": "d2445517c66513976c83a446f87537a3c1d8c21f5bef033779affe98d7e61a20",
+  "embedded_exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "functions": 38161,
+  "primary_owner": 9409,
+  "final_no_primary_owner": 585,
+  "code_domain": 28007,
+  "explicit": 38001,
+  "unresolved": 160,
+  "coverage_pct": 99.58072,
+  "overlap": 0,
+  "current160_sha256": "fa6f614a463bf9981f32cbd4582e31ba23b04e6b803cfbb0139b209dffda5a1a",
+  "gn_applied_rows": 0,
+  "gn_strong_read_only_proposals": [
+    {
+      "entry": "00313A00",
+      "name": "InputGameplay.FieldBattleCapabilityAndUIRequestInhibitMaskReconciliation",
+      "body_bytes": 289,
+      "body_sha256": "c076cfeadbc81442c947e0c749eefbdef7e7c6717297847333a7cbae9289d246"
+    },
+    {
+      "entry": "002F7380",
+      "name": "Presentation.LegacyPS2GS.TextureMipLocalMemoryBudgetAndReferenceSlotTableRebuild",
+      "body_bytes": 723,
+      "body_sha256": "15594f6181100f7fa10ac8a770566d60b963e47c93176fd7d7f33152b3ac8583"
+    }
+  ],
+  "prospective_if_both_persist": {
+    "explicit": 38003,
+    "unresolved": 158,
+    "coverage_pct": 99.58596,
+    "overlap": 0
+  },
+  "canonical_v120_sha256": "507490534a8bb67e8d3c6deba4d527c23ab9fdd3672494e511db0d9ef0e511a9",
+  "historical_gm_sha256": "7b637b471ec66f3fc44efca88f956b52230599cb5d8dff0452743187e1b0d1b0",
+  "superseded_cs_sha256": "cd50cea3fa7449e45d6499fa3e0311e467cb497b3f1dddeb4fe256550402c92b"
+}

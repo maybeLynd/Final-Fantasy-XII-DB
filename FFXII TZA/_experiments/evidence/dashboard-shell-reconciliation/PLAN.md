@@ -1,0 +1,13 @@
+# Dashboard shell — retained coverage first, four missing HTTP controls
+
+Request OPUS-REQ-ASTRA-VERIFY-DASHBOARD-SHELL (historical7705335e2). Execute only the genuinely missing view-admission discriminator on exact published69bbf8c81 server with pinned dependencies; do not accept stale source merely because target names oldcommit.
+
+Existing immutable migration-dashboard-incident14 cases plus migration-dashboard-cache-r2 supply real HTTP generation coherence, output/snapshot tamper, same-stat repair, strict/volatile drift, failed build preservation, read-only refusal and private stale-reader control. Reuse those at their exact sources/limits; no repeated60second polling or same-stat experiment. They do not establish current deployedmodule/PID/wholeA17A19 or actual rendered navigation.
+
+Missing discriminator: an original server receiving a hash-verified generation whose selected overview view is (1) validOK, (2) hash-declared nonJSON, (3) absent while another output exists, or (4) FAILED. H1 bad/absent source is represented as missing/malformed/failed with no malformed payload. H2 it is admitted as OK/defaultempty or a failure suppressed. MethodA existing Store recipe + actual private original server HTTP, copied exactsource layout. Four cases in one owned loopback session, each own generation identity/control, eventproportional reads. No productionrestart, originalgame/PC/input controls, broad builder or general observer.
+
+Derive before producer tests. Copy certified source/dependencies; explicit syntheticinputs, no actual databasecounts or finalaudits. Store.commit must return and open_generation/CLIverify must validate membership/hashes first; invalidproducer cannot be a serverpass. Only selectedview admission; remaining requiredviewsUNMEASURED may be explicit, not all-greenbaseline. Missingoverview leaves at least one genuine output, no zero-case campaign.
+
+Capture actual child argv/PID/log/module/source identities; owned Popen handle, finite startup/readtimeouts and finally terminate/wait; verify no listener on exactport, files/source unchanged. Bad HTTP/exception remains FAILED/INVALID, never counted from exit0 alone. Preserve raw/normalized statuses and withheld body; sourcePAGE/static refresh read is not renderedUI evidence. A serverstatus verdict is not pagepresentation acceptance. Needed frontend/navigation/loadedproduction identity remains open with ownerFRONTIER/DATA/FABLE boundaries.
+
+Current separate line-boundary package frozen; publication deferred on FABLEQ10 then rerun only after checkedrelease. No actualpartialcommit at defer, no boardreplay. Finish actualpublication before routing producer defect once. FullL1L2 goal ACTIVE and menu extensionunapproved/spent allowance persist.

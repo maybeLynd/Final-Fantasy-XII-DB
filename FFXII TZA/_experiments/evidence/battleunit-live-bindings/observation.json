@@ -1,0 +1,486 @@
+{
+  "status": "NORMALIZED",
+  "method": "A: offline review of preserved C observations",
+  "samples": [
+    {
+      "label": "current-complete",
+      "index": 0,
+      "start_unix": 1789294166.3417728,
+      "end_unix": 1789294166.343297,
+      "spans": 18,
+      "image_address_base": 0,
+      "battle_binding": 35334412,
+      "pool": 1733690304,
+      "tables": {
+        "enemy": {
+          "descriptor": 0
+        },
+        "party": {
+          "descriptor": 1733445472,
+          "count": 40,
+          "stride": 128,
+          "start": 1733445504,
+          "end": 1733450624,
+          "header_hex": "7374326528000000800000008047526700000000000000000000000000000000"
+        },
+        "class": {
+          "descriptor": 0
+        }
+      },
+      "keep_bindings": [
+        1733652352,
+        1733614400
+      ],
+      "units": [],
+      "loaded_field": 227,
+      "history_before": [
+        300,
+        65535,
+        65535,
+        0
+      ],
+      "history_after": [
+        300,
+        65535,
+        65535,
+        0
+      ],
+      "clock_before": 0,
+      "clock_after": 0,
+      "parity_before": 0,
+      "party_levels_first_six": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "keep_nonzero_bytes": [
+        0,
+        0
+      ],
+      "keep_sha256": [
+        "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+        "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638"
+      ],
+      "bound_block_matches_active_image": true
+    },
+    {
+      "label": "current-complete",
+      "index": 1,
+      "start_unix": 1789294166.5935802,
+      "end_unix": 1789294166.5949922,
+      "spans": 18,
+      "image_address_base": 0,
+      "battle_binding": 35334412,
+      "pool": 1733690304,
+      "tables": {
+        "enemy": {
+          "descriptor": 0
+        },
+        "party": {
+          "descriptor": 1733445472,
+          "count": 40,
+          "stride": 128,
+          "start": 1733445504,
+          "end": 1733450624,
+          "header_hex": "7374326528000000800000008047526700000000000000000000000000000000"
+        },
+        "class": {
+          "descriptor": 0
+        }
+      },
+      "keep_bindings": [
+        1733652352,
+        1733614400
+      ],
+      "units": [],
+      "loaded_field": 227,
+      "history_before": [
+        300,
+        65535,
+        65535,
+        0
+      ],
+      "history_after": [
+        300,
+        65535,
+        65535,
+        0
+      ],
+      "clock_before": 0,
+      "clock_after": 0,
+      "parity_before": 0,
+      "party_levels_first_six": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "keep_nonzero_bytes": [
+        0,
+        0
+      ],
+      "keep_sha256": [
+        "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638",
+        "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638"
+      ],
+      "bound_block_matches_active_image": true
+    },
+    {
+      "label": "current-field",
+      "index": 0,
+      "start_unix": 1789294210.3047092,
+      "end_unix": 1789294210.306409,
+      "spans": 26,
+      "image_address_base": 0,
+      "battle_binding": 35334412,
+      "pool": 1733690304,
+      "tables": {
+        "enemy": {
+          "descriptor": 1732785776,
+          "count": 15,
+          "stride": 88,
+          "start": 1732785808,
+          "end": 1732787128,
+          "header_hex": "737432650f000000580000009036486700000000b83b48670000000000000000"
+        },
+        "party": {
+          "descriptor": 1733445472,
+          "count": 40,
+          "stride": 128,
+          "start": 1733445504,
+          "end": 1733450624,
+          "header_hex": "7374326528000000800000008047526700000000000000000000000000000000"
+        },
+        "class": {
+          "descriptor": 1732768560,
+          "count": 12,
+          "stride": 84,
+          "start": 1732768592,
+          "end": 1732769600,
+          "header_hex": "737432650c0000005400000050f3476700000000000000000000000000000000"
+        }
+      },
+      "keep_bindings": [
+        1733652352,
+        1733614400
+      ],
+      "units": [
+        {
+          "slot": 0,
+          "unit": 1733690304,
+          "actor": 1733948304,
+          "stats": 35334420,
+          "spawn": 0,
+          "definition": 1733445504,
+          "class_row": 0,
+          "definition_id": 0,
+          "kind": 0,
+          "hp": 103,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": true,
+          "party_slot": 0,
+          "stats_matches_party_slot": true,
+          "definition_table_row": 0,
+          "definition_matches_selector": true,
+          "spawn_null": true,
+          "class_null": true,
+          "stats_bytes_match_bound_block": true
+        },
+        {
+          "slot": 4,
+          "unit": 1733705984,
+          "actor": 1733974704,
+          "stats": 1733652480,
+          "spawn": 1733652352,
+          "definition": 1732786336,
+          "class_row": 1732768928,
+          "definition_id": 262,
+          "kind": 1,
+          "hp": 134,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": false,
+          "stats_spawn_delta": 128,
+          "stats_is_embedded": true,
+          "primary_keep_slot": 0,
+          "definition_table_row": 6,
+          "definition_matches_selector": true,
+          "class_table_row": 4,
+          "authored_class_index": 4,
+          "class_matches_definition": true,
+          "stats_bytes_match_keep": true
+        },
+        {
+          "slot": 5,
+          "unit": 1733709904,
+          "actor": 1733976352,
+          "stats": 1733653072,
+          "spawn": 1733652944,
+          "definition": 1732786248,
+          "class_row": 1732768844,
+          "definition_id": 261,
+          "kind": 1,
+          "hp": 6111,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": false,
+          "stats_spawn_delta": 128,
+          "stats_is_embedded": true,
+          "primary_keep_slot": 1,
+          "definition_table_row": 5,
+          "definition_matches_selector": true,
+          "class_table_row": 3,
+          "authored_class_index": 3,
+          "class_matches_definition": true,
+          "stats_bytes_match_keep": true
+        },
+        {
+          "slot": 7,
+          "unit": 1733717744,
+          "actor": 1733979648,
+          "stats": 1733654256,
+          "spawn": 1733654128,
+          "definition": 1732785808,
+          "class_row": 1732768592,
+          "definition_id": 256,
+          "kind": 1,
+          "hp": 84,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": false,
+          "stats_spawn_delta": 128,
+          "stats_is_embedded": true,
+          "primary_keep_slot": 3,
+          "definition_table_row": 0,
+          "definition_matches_selector": true,
+          "class_table_row": 0,
+          "authored_class_index": 0,
+          "class_matches_definition": true,
+          "stats_bytes_match_keep": true
+        }
+      ],
+      "loaded_field": 227,
+      "history_before": [
+        300,
+        227,
+        305,
+        0
+      ],
+      "history_after": [
+        300,
+        227,
+        305,
+        0
+      ],
+      "clock_before": 1408,
+      "clock_after": 1408,
+      "parity_before": 1,
+      "party_levels_first_six": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "keep_nonzero_bytes": [
+        328,
+        0
+      ],
+      "keep_sha256": [
+        "ddc1be6e5b8ef25bcea2cb917224bce29215120344ff15a93a51dab17f757732",
+        "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638"
+      ],
+      "bound_block_matches_active_image": true
+    },
+    {
+      "label": "current-field",
+      "index": 1,
+      "start_unix": 1789294210.5567434,
+      "end_unix": 1789294210.5581746,
+      "spans": 26,
+      "image_address_base": 0,
+      "battle_binding": 35334412,
+      "pool": 1733690304,
+      "tables": {
+        "enemy": {
+          "descriptor": 1732785776,
+          "count": 15,
+          "stride": 88,
+          "start": 1732785808,
+          "end": 1732787128,
+          "header_hex": "737432650f000000580000009036486700000000b83b48670000000000000000"
+        },
+        "party": {
+          "descriptor": 1733445472,
+          "count": 40,
+          "stride": 128,
+          "start": 1733445504,
+          "end": 1733450624,
+          "header_hex": "7374326528000000800000008047526700000000000000000000000000000000"
+        },
+        "class": {
+          "descriptor": 1732768560,
+          "count": 12,
+          "stride": 84,
+          "start": 1732768592,
+          "end": 1732769600,
+          "header_hex": "737432650c0000005400000050f3476700000000000000000000000000000000"
+        }
+      },
+      "keep_bindings": [
+        1733652352,
+        1733614400
+      ],
+      "units": [
+        {
+          "slot": 0,
+          "unit": 1733690304,
+          "actor": 1733948304,
+          "stats": 35334420,
+          "spawn": 0,
+          "definition": 1733445504,
+          "class_row": 0,
+          "definition_id": 0,
+          "kind": 0,
+          "hp": 103,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": true,
+          "party_slot": 0,
+          "stats_matches_party_slot": true,
+          "definition_table_row": 0,
+          "definition_matches_selector": true,
+          "spawn_null": true,
+          "class_null": true,
+          "stats_bytes_match_bound_block": true
+        },
+        {
+          "slot": 4,
+          "unit": 1733705984,
+          "actor": 1733974704,
+          "stats": 1733652480,
+          "spawn": 1733652352,
+          "definition": 1732786336,
+          "class_row": 1732768928,
+          "definition_id": 262,
+          "kind": 1,
+          "hp": 134,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": false,
+          "stats_spawn_delta": 128,
+          "stats_is_embedded": true,
+          "primary_keep_slot": 0,
+          "definition_table_row": 6,
+          "definition_matches_selector": true,
+          "class_table_row": 4,
+          "authored_class_index": 4,
+          "class_matches_definition": true,
+          "stats_bytes_match_keep": true
+        },
+        {
+          "slot": 5,
+          "unit": 1733709904,
+          "actor": 1733976352,
+          "stats": 1733653072,
+          "spawn": 1733652944,
+          "definition": 1732786248,
+          "class_row": 1732768844,
+          "definition_id": 261,
+          "kind": 1,
+          "hp": 6111,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": false,
+          "stats_spawn_delta": 128,
+          "stats_is_embedded": true,
+          "primary_keep_slot": 1,
+          "definition_table_row": 5,
+          "definition_matches_selector": true,
+          "class_table_row": 3,
+          "authored_class_index": 3,
+          "class_matches_definition": true,
+          "stats_bytes_match_keep": true
+        },
+        {
+          "slot": 7,
+          "unit": 1733717744,
+          "actor": 1733979648,
+          "stats": 1733654256,
+          "spawn": 1733654128,
+          "definition": 1732785808,
+          "class_row": 1732768592,
+          "definition_id": 256,
+          "kind": 1,
+          "hp": 84,
+          "class_is_stats": false,
+          "class_in_keep_banks": false,
+          "stats_in_battle_block": false,
+          "stats_spawn_delta": 128,
+          "stats_is_embedded": true,
+          "primary_keep_slot": 3,
+          "definition_table_row": 0,
+          "definition_matches_selector": true,
+          "class_table_row": 0,
+          "authored_class_index": 0,
+          "class_matches_definition": true,
+          "stats_bytes_match_keep": true
+        }
+      ],
+      "loaded_field": 227,
+      "history_before": [
+        300,
+        227,
+        305,
+        0
+      ],
+      "history_after": [
+        300,
+        227,
+        305,
+        0
+      ],
+      "clock_before": 1423,
+      "clock_after": 1423,
+      "parity_before": 1,
+      "party_levels_first_six": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "keep_nonzero_bytes": [
+        328,
+        0
+      ],
+      "keep_sha256": [
+        "86b2b6e5b4ee7b384831dcafe48e7f002edb498b2996c1b4b82bfb8b44f19365",
+        "132fde08d7f788dece120e98bf6c794bafb655959764798ead053b872d097638"
+      ],
+      "bound_block_matches_active_image": true
+    }
+  ],
+  "reviewer_sha256": "96b9255b42e2c121974b80483c0b3c7a3e0c04e3a4720bc222eadb09fb51f965",
+  "raw_inputs": {
+    "current-complete-memory.json": "a9ada099cd80f560bf989671cac0ff3be1b4df4d9eb426b2424feea74acc3f33",
+    "current-field-memory.json": "9c5769b39267890b4b9d6d3ad9a0b3adce89538a5dd904504f00666f3db97693"
+  },
+  "total_spans": 88,
+  "limits": [
+    "Sequential non-atomic reads; identity brackets constrain but do not eliminate temporal gaps.",
+    "No native installer/caller trace; observed bindings agree with the original-source paths.",
+    "One loaded field and one process; no general lifetime/reuse guarantee.",
+    "No combat command, damage, death or group consequence tested.",
+    "All observed modules retained; unchanged game text does not certify all modules/data.",
+    "No same-session modern-to-old load, inventory/gambit menu, or isolated original-code case here."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "evidence_class": "A:thirteen complete shipping bodies; no new original-code/live execution",
+  "bodies": {
+    "0x3ab7c0": {
+      "bytes": 36,
+      "sha256": "487564f426d8c4571a49acead62279a093a5bbc273369c4f3581dc223b6b0135"
+    },
+    "0x36c790": {
+      "bytes": 359,
+      "sha256": "8125ded3d9486e8a2880a3b48a28a4f88203a23bd95be9ade5ff44a47de6d4d9"
+    },
+    "0x36b410": {
+      "bytes": 124,
+      "sha256": "2ca9282cf261e0d6c1f2069a7e98a0cb4afb41ad2362aca05a2ec34a8f6a081f"
+    },
+    "0x36b4e0": {
+      "bytes": 177,
+      "sha256": "8ba13fd39112592d212672b4570929c7f412a9d360a380a1f9b34da6bffa9e36"
+    },
+    "0x36b490": {
+      "bytes": 71,
+      "sha256": "de89ffec750fa6987fdead6879fdb82e537dbb221445eb93329927c812e0b56c"
+    },
+    "0x36b5a0": {
+      "bytes": 71,
+      "sha256": "a5cde6f58ebe12968105b30db15d40e83fea5d58924a776aeb1ce80bf3900f2d"
+    },
+    "0x409ca0": {
+      "bytes": 191,
+      "sha256": "4f2a84698f513b4334adedd6e5a07f18edbc2005c413c722657cebd8d14e3a52"
+    },
+    "0x409d60": {
+      "bytes": 431,
+      "sha256": "3139da3b932a99c3ca7ae662133c3f536299f4659bb9d906fb58b70513e0964e"
+    },
+    "0x3b37e0": {
+      "bytes": 197,
+      "sha256": "33a25c6fc618e5a020fe698829b53b9dcd3ee05151cd2c85b32d6823369c8c77"
+    },
+    "0x51ee80": {
+      "bytes": 43,
+      "sha256": "b29a1746acc5f743a0bbc6399404b19324b74742fab220efb661997541a58add"
+    },
+    "0x409730": {
+      "bytes": 71,
+      "sha256": "98915ff9731551846d1d30c33ed3e7a4ce02a38050c7dbd01858a03212e68516"
+    },
+    "0x24f4d0": {
+      "bytes": 317,
+      "sha256": "22ca05b9e2c21eb2550a6d13d4c1801509a0ed25db0fd8be5ef397ed231d9921"
+    },
+    "0x3b39e0": {
+      "bytes": 183,
+      "sha256": "9754612aff8a234bc24ea881ff0e99b6fff23f3de791972185d827cf68550e20"
+    }
+  },
+  "controls": [
+    "Knownsource3AB7C0 and taggedaccess36A000/36D170 calledges match selectedbodies.",
+    "SignedJLE36B50D explicitly choosesright forcurrentkey<=insertedkey; +24/+28/+2C directdecode/encode controls establish tree topology.",
+    "409CA0/409D60 call sites order3B37E0 before409730 beforeentryregistryremoval.3B37E0 exactmanagementid comparison is required before destruction."
+  ],
+  "findings": [
+    "3AB7C0 routesnull->return, tagged->369800, raw->3697F0, distinctfrom3AB940; downstreamfull369860 stillnotreviewed.",
+    "Arena+50 fullroot, header+24/+28/+2C encodedleft/right/parent.36B410 clearsencodedchildren/parent, insertsfirstroot or36B4E0.36B4E0 signedorderspayloadlength+18, equalsgoright.36C790 replacesrootorparent link,promotesrightwhenpresentandreinsertleftunderit; standalonebodydoesnotclearremovedlinksorflag.",
+    "36A000/36D170 access pair remove/insertthismembership andclear/setheader+15mask02; +3Ezero purpose notestablished. Earlierlistwording correctedtotree; nodeeligibilitypurpose/consumer remainsopen.",
+    "409CA0/409D60 forentry+44!=-1 call3B37E0 then409730 then51FCF0.3B37E0 indexeslow6*38 at2EBCD80,requiresfullidmatch,then24F4D0(context),24F410(context),3B39E0(id) beforemanagementrecycle/clear.",
+    "24F4D0 walkspertype instances20910F0[type], savesnext+348, unlinksinstanceswhose+340matchescontext, calls3A81E0/3A72E0/3A8D70, handles+380 byqueueor182CA0 then3697F0(instance). Fullcleanupcallees remainopen.",
+    "409730 calls427B00(entry+30), then51EE80(storage+10);51EE80 calls3AB7C0(storedsource)before reset.427B00 nextfrontier.3B39E0 recyclesmatchingmanagedrecords in32-record pool2EBD480; no nativeheapfreecall inthatbody."
+  ],
+  "open": [
+    "Allinstance/substructure native cleanup effects; valididentifier/caller scheduling and allotherteardownentrypoints.",
+    "Full allocator reclamation369860 and taggedsource release427B00 effects; no all-time lifetimeclosure.",
+    "Treeconsumer purpose and +3E readsemantics; signedordering boundary not live/admission guarantee.",
+    "Mode0 context-before-source release order is localcallchain evidence, not integrated gameplay or arbitrary staleidsafety."
+  ]
+}

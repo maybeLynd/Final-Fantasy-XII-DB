@@ -1,0 +1,9 @@
+{
+  "at_utc": "2026-09-20T03:12:31.2635531Z",
+  "query": "Win32_Process full local census; retained only designated game and known ASTRA instrument matches",
+  "process_count": 510,
+  "candidate_process_count": 40,
+  "candidate_unreadable_commandline": 0,
+  "game": [],
+  "instrument_matches": []
+}

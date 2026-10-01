@@ -1,0 +1,9 @@
+SURVIVES  U0  span mismatches none
+SURVIVES  U1  FA0 reaches ['00202B70', '0038103A', '0038108F', '00381450', '00381630', '00381AC0', '00808C40', '00861F14']
+SURVIVES  U2  box reads 00D11200 True, margin constants [1.001]; CF50 reads 00908DE8 True
+SURVIVES  U3  the sphere primitive calls ['0046BF60', '00808C40', 'acosf', 'sinf', 'sqrtf']
+SURVIVES  U4  D4B0's address is taken only in ['002315E0'], which calls F430 True (F430 itself: none); EB0 called from [('0022F8B0', '0022F968')]
+SURVIVES  U5  planted: {'0022D7E0': ['00231690', '002327D0'], '0022DE60': ['00230C10']}; called: {'00230790': ['0022D7E0'], '0022E7D0': ['0022D7E0'], '003810B0': ['0022D7E0', '0022DE60']}
+SURVIVES  U6  00381D90 <- ['0022D7E0', '0022DE60', '00232160']; 00232160 <- ['003D97E0']
+SURVIVES  U7  call sites {'00217150': 86, '00217610': 16, '00202C70': 81, '00380800': 15} (as calling functions the range is 10-52; the page's 'callers' means call sites)
+FAILS 0

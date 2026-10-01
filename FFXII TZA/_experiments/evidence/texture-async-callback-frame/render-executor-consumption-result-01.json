@@ -1,0 +1,44 @@
+{
+  "method": "A retained canonical answer + focused certified-original source confirmation",
+  "question": "Who executes callback001F4A10 and what is callback context field0?",
+  "canonical_answer_commit": "7e4af33d5",
+  "requester_return": "fable-astra-live-facts-0930 README",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "e7ee07cba0f42483ce36fac093a884c09540fad0537494045622f8a613791e0d",
+  "capture_sha256": "bf5ab0f91f75b45912a8a798bd46fab29bfcccb1d2f719b7861f559bf86ea689",
+  "canonical_page_sha256": "22b73b85c92ddf9b28549007c8cc384c3be955248ca5f7f78d98b0daff58466f",
+  "getter_sites": [
+    {
+      "pc": "0x5fd097",
+      "bytes": "488d1d72336c02",
+      "target": "0x2cc0410"
+    },
+    {
+      "pc": "0x5fd0c4",
+      "bytes": "488d0545336c02",
+      "target": "0x2cc0410"
+    }
+  ],
+  "dispatch": {
+    "labels_hex": "0001020304050707070707070707070707070707070707070707070707070707070707070707070707070707070706",
+    "targets_hex": "e6a54e009aa64e004aa74e00f8a74e00dea84e0058a94e0099a84e00c6a94e00",
+    "opcode": 47,
+    "arm": 6,
+    "target": "0x60a899"
+  },
+  "controls": {
+    "actual_capture_roles": 3,
+    "changed_callback_context_source_refused": true
+  },
+  "normalized": {
+    "render_thread_call": "00610753 ->0060A410",
+    "callback_call": "0060A8D6 indirect block+8",
+    "callback_return_address": "0060A8D9",
+    "callback_context": "synthesized stack record",
+    "context_field0": "02CC0410",
+    "device": "02CC1CD0",
+    "block_low_dword": "0x2F; block is not callback context"
+  },
+  "result": "Returned static answer satisfies executor/context question; old live breakpoint request superseded without gameplay.",
+  "limits": "Not an actual callback hit, numeric runtime sample, thread id or universal reachability proof. Normal initialized-object/native-ABI assumptions. Block upper DWORD is not assigned by its opcode store and not needed by this callback. Existing canonical answer reused, not a new broad census or independent acceptance of every Gi contract."
+}

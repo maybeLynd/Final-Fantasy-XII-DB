@@ -1,0 +1,106 @@
+image sha256 asserted; DIR64 relocations 114962; .pdata entries 35713
+
+== T1 table install and getters
+  003DC2D0  mov     qword ptr [rsp + 8], rdi
+  003DC2D5  lea     rax, [rip + 0x1b4a444]   ; -> 01F26720
+  003DC2DC  mov     ecx, 0x10
+  003DC2E1  lea     rdi, [rip + 0x277bc08]   ; -> 02B57EF0
+  003DC2E8  rep stosq qword ptr [rdi], rax
+  003DC2EB  mov     rdi, qword ptr [rsp + 8]
+  003DC2F0  lea     rax, [rip + 0x1b11409]   ; -> 01EED700
+  003DC2F7  mov     qword ptr [rip + 0x277bbf2], rax   ; -> 02B57EF0
+  003DC2FE  lea     rax, [rip + 0x1b4beab]   ; -> 01F281B0
+  003DC305  mov     qword ptr [rip + 0x277bbfc], rax   ; -> 02B57F08
+  003DC30C  lea     rax, [rip + 0x1b4d105]   ; -> 01F29418
+  003DC313  mov     qword ptr [rip + 0x277bbfe], rax   ; -> 02B57F18
+  003DC31A  lea     rax, [rip + 0x1b4d11f]   ; -> 01F29440
+  003DC321  mov     qword ptr [rip + 0x277bc00], rax   ; -> 02B57F28
+  003DC328  ret     
+pointer array 02B57EF0, rep stosq count 0x10 of default table 01F26720
+  family 0 (array+0x0) <- table 01EED700
+  family 3 (array+0x18) <- table 01F281B0
+  family 5 (array+0x28) <- table 01F29418
+  family 7 (array+0x38) <- table 01F29440
+  getter 003DC240 base 02B57EF0: movsxd rax, ecx; lea rcx, [rip + 0x277bca6]; mov rcx, qword ptr [rcx + rax*8]; test rcx, rcx; je 0x3dc264; cmp edx, dword ptr [rcx]; jge 0x3dc264; movsxd rax, edx; shl rax, 5
+  getter 003DC270 base 02B57EF0: movsxd rax, ecx; lea rcx, [rip + 0x277bc76]; mov rcx, qword ptr [rcx + rax*8]; test rcx, rcx; je 0x3dc294; cmp edx, dword ptr [rcx]; jge 0x3dc294; movsxd rax, edx; shl rax, 5
+  getter 003DC2A0 base 02B57EF0: movsxd rax, ecx; lea rcx, [rip + 0x277bc46]; mov rcx, qword ptr [rcx + rax*8]; test rcx, rcx; je 0x3dc2c6; cmp edx, dword ptr [rcx]; jge 0x3dc2c6; movsxd rax, edx; inc rax
+
+== T2 tables
+  family def table 01F26720 count 212; entries with non-null +0x18 qword: 0
+  family 0 table 01EED700 count 1496; entries with non-null +0x18 qword: 0
+  family 3 table 01F281B0 count 147; entries with non-null +0x18 qword: 0
+  family 5 table 01F29418 count 1; entries with non-null +0x18 qword: 0
+  family 7 table 01F29440 count 104; entries with non-null +0x18 qword: 0
+commands 1960; unique non-null handler pointers 1886; not a .pdata start: 264 ['0016D6A0', '0017E7D0', '002E08B0', '0033F150', '0033F500', '0033F640', '0033F850', '0033F860', '0033F940', '0033FA90']; slots without DIR64: 0 []
+commands with begin 336 / poll 290 / result 1651; poll or result without begin: 1620
+
+== image-wide decode of .pdata functions
+functions decoded 35713, instructions 1676648
+
+== T3 references to the pointer array and the tables
+  ptrarray 02B57EF0..02B57F70: code refs 7; stored pointers 0
+      003DAB87 rip lea rdx, [rip + 0x277d362] [ptrarray +0x0]
+      003DAC35 rip lea rdx, [rip + 0x277d2b4] [ptrarray +0x0]
+      003DC2E1 rip lea rdi, [rip + 0x277bc08] [ptrarray +0x0]
+      003DC2F7 rip mov qword ptr [rip + 0x277bbf2], rax [ptrarray +0x0]
+      003DC305 rip mov qword ptr [rip + 0x277bbfc], rax [ptrarray +0x18]
+      003DC313 rip mov qword ptr [rip + 0x277bbfe], rax [ptrarray +0x28]
+      003DC321 rip mov qword ptr [rip + 0x277bc00], rax [ptrarray +0x38]
+  tbl_def 01F26720..01F281B0: code refs 1; stored pointers 0
+      003DC2D5 rip lea rax, [rip + 0x1b4a444] [tbl_def +0x0]
+  tbl_0 01EED700..01EF9210: code refs 6; stored pointers 0
+      0034838F rip mov ecx, dword ptr [rip + 0x1bb0e77] [tbl_0 +0xBB0C]
+      00348397 rip mov dword ptr [rip + 0x1bb0e6b], ecx [tbl_0 +0xBB08]
+      003483AB rip mov dword ptr [rip + 0x1bb0e5b], ecx [tbl_0 +0xBB0C]
+      003495BC rip lea rcx, [rip + 0x1bafc49] [tbl_0 +0xBB0C]
+      003495C3 rip lea rax, [rip + 0x1bafc3e] [tbl_0 +0xBB08]
+      003DC2F0 rip lea rax, [rip + 0x1b11409] [tbl_0 +0x0]
+  tbl_3 01F281B0..01F29420: code refs 2; stored pointers 0
+      003DC2FE rip lea rax, [rip + 0x1b4beab] [tbl_3 +0x0]
+      003DC30C rip lea rax, [rip + 0x1b4d105] [tbl_3 +0x1268]
+  tbl_5 01F29418..01F29448: code refs 2; stored pointers 0
+      003DC30C rip lea rax, [rip + 0x1b4d105] [tbl_5 +0x0]
+      003DC31A rip lea rax, [rip + 0x1b4d11f] [tbl_5 +0x28]
+  tbl_7 01F29440..01F2A150: code refs 1; stored pointers 0
+      003DC31A rip lea rax, [rip + 0x1b4d11f] [tbl_7 +0x0]
+
+== L1 lifecycle 002621D0 (phase byte, getter by phase)
+  00262213  movzx esi, byte ptr [rdi + 0x15]
+  00262220  call 0x3dc240
+  00262248  test esi, esi
+  0026224A  je 0x2622af
+  0026224C  cmp esi, 1
+  0026224F  je 0x2622df
+  0026225D  call 0x3dc2a0
+  00262262  test rax, rax
+  00262265  je 0x262360
+  0026226E  lea r8, [rdi + 0x18]
+  00262278  call rax
+  0026227A  movzx eax, byte ptr [rdi + 0x15]
+  0026227E  cmp al, 2
+  00262283  jae 0x262316
+  00262289  cmp eax, 0x3f
+  002622B7  mov dword ptr [rdi + 0xc], esi
+  002622BA  call 0x3dc270
+  002622BF  test rax, rax
+  002622C2  je 0x2622e1
+  002622C9  lea r8, [rdi + 0x18]
+  002622DB  call rax
+  002622E9  test rax, rax
+  002622EC  je 0x2622fc
+  002622EE  lea r8, [rdi + 0x18]
+  002622F8  call rax
+  00262303  test al, 1
+  00262305  je 0x262257
+  0026230B  mov byte ptr [rdi + 0x15], 1
+  00262318  mov ecx, dword ptr [rdi + 0xc]
+  0026233A  movss xmm0, dword ptr [rdi + 0xc]
+  00262382  mov byte ptr [rdi + 0x15], 0
+
+== A1 non-indexed / non-lea-x5 uses of a [X + 0xA8] qword load, image-wide
+qword loads/adds of [X + 0xA8]: 690
+non-indexed accesses through the loaded register whose width covers +0x27 (mod 0x28): 3
+   in 001F68E0: 001F6CE3 movups xmm0, xmmword ptr [rax + 0x70]
+   in 001F68E0: 001F6CF6 movups xmm0, xmmword ptr [rax + 0x90]
+   in 006A6180: 006A62D4 movss xmm0, dword ptr [rax + 0x24]
+imul by 0x28 within 30 instructions of such a load: 0

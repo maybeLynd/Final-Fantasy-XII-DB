@@ -1,0 +1,697 @@
+{
+  "status": "PRODUCER_VALID_INDEPENDENT_PENDING",
+  "method": "A STATIC_ONLY",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17,
+      "sha256": "1e1f89388215c331239129347ce584af3c8872dd9e77c025e8813fe7f430a7f6"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture-texture-async-removal-helpers-before-root-fix-01.py",
+      "bytes": 3448,
+      "sha256": "373c1d14d8e045b60f26ff0eb4d796c30bc8fc5f1196dd6b2544216573dd7d7b"
+    },
+    {
+      "path": "capture-texture-async-removal-helpers.py",
+      "bytes": 4060,
+      "sha256": "e2126f6ac8df5e34131b900d41ae05c009b42dd4c51d0604815581d33f8806fe"
+    },
+    {
+      "path": "capture-texture-async-removal-rotations.py",
+      "bytes": 3327,
+      "sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+    },
+    {
+      "path": "capture-texture-async-removal-tail.py",
+      "bytes": 2887,
+      "sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+    },
+    {
+      "path": "capture-texture-async-removal.py",
+      "bytes": 2733,
+      "sha256": "8ae429d1c0333caabf0a0bedd717ac1b60c745722e2704094331215241419027"
+    },
+    {
+      "path": "control-texture-async-removal.py",
+      "bytes": 3777,
+      "sha256": "43141cc4b9deba5251e3e11ed11ce6bce4fefb50e01992d71ef1c98a846cee05"
+    },
+    {
+      "path": "freeze-texture-async-removal.py",
+      "bytes": 9321,
+      "sha256": "095ef83badf272327edece4264b31de2c12d73c74970fb0df8725f61058e2812"
+    },
+    {
+      "path": "prove-texture-async-removal.py",
+      "bytes": 14038,
+      "sha256": "3449076e85dd270ca42a362bdacc70387ae2b685450698f9427732dc6ff4ab0c"
+    },
+    {
+      "path": "prove-title-queue-consumption.py",
+      "bytes": 12275,
+      "sha256": "041769e937b7f8fe03315ee522c77ca7774cd918cb428ef0a2de717b2d99e344"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5123,
+      "sha256": "840309aaee3ed9f32c6e374d88e8d8eab3f139efcdf782b76abc36642c14002b"
+    },
+    {
+      "path": "texture-async-removal-capture-01.status.json",
+      "bytes": 343,
+      "sha256": "3e5d6ca69d50293c6d63f259b1d29e2579436961da263252aff586f942f52bc1"
+    },
+    {
+      "path": "texture-async-removal-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-capture-01.stdout",
+      "bytes": 217,
+      "sha256": "97e7b9915f7aa2b9e03ba010e7508fb5375d2e61e1871b0627ebbd88771f9407"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/capture-texture-async-removal-helpers.py",
+      "bytes": 4060,
+      "sha256": "e2126f6ac8df5e34131b900d41ae05c009b42dd4c51d0604815581d33f8806fe"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/capture-texture-async-removal-rotations.py",
+      "bytes": 3327,
+      "sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/capture-texture-async-removal-tail.py",
+      "bytes": 2887,
+      "sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/capture-texture-async-removal.py",
+      "bytes": 2733,
+      "sha256": "8ae429d1c0333caabf0a0bedd717ac1b60c745722e2704094331215241419027"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-capture-01.status.json",
+      "bytes": 343,
+      "sha256": "3e5d6ca69d50293c6d63f259b1d29e2579436961da263252aff586f942f52bc1"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-capture-01.stdout",
+      "bytes": 217,
+      "sha256": "97e7b9915f7aa2b9e03ba010e7508fb5375d2e61e1871b0627ebbd88771f9407"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-helpers-capture-02.status.json",
+      "bytes": 351,
+      "sha256": "c5cc8da4061dd77832319aaf1eb2d0c612689609a135422b801eea46447fba44"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-helpers-capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-helpers-capture-02.stdout",
+      "bytes": 510,
+      "sha256": "58a01fe514b3cd5b57c7d60693765589fc686ddee8bf372e8d45c138e58e1816"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-helpers-source-01.json",
+      "bytes": 88769,
+      "sha256": "5cffff0b971c941f6b822c5795497f83ce29ef1253bcb3c47f20e901f32ed1cd"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-rotations-capture-01.status.json",
+      "bytes": 353,
+      "sha256": "c79e800214cce5654e6b617e31779b7a050d1a171de256a3f5be6179bd3a285c"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-rotations-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-rotations-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "fa38f14da75ed5b2f42854971e2fb52f82821aefc74dee6de98743621557bbd3"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-rotations-source-01.json",
+      "bytes": 21294,
+      "sha256": "1eead633b9c44b7e978205f1125b2483d2c13b0538a8cb6d3ce6eb705a01f0a8"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-source-01.json",
+      "bytes": 8556,
+      "sha256": "d287c57f8e6973beec3ccd1f664c20a8bcd8c20500d975854c3781873c8cfbfa"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-tail-capture-01.status.json",
+      "bytes": 348,
+      "sha256": "d9884cd75df89cd235a22328e5f92868ca2adc1d8cd08ab1c8ea165606520223"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-tail-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-tail-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "672d0847c6e269869bbe029496fd80b337cd23cfc1fe0b95c5b5c146b01e9a80"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/texture-async-removal-tail-source-01.json",
+      "bytes": 12374,
+      "sha256": "69eec8f37f6e95f08bf66e9e427c4e6611a2623d595e8297b403db4b05400eb5"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/source/title-cleanup-callees-source-01.json",
+      "bytes": 66668,
+      "sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/status.json",
+      "bytes": 778,
+      "sha256": "f2311a1c5edfde577f036e3225617614c9911aa37924e63bb293a1c4a5991921"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/stderr",
+      "bytes": 805,
+      "sha256": "de7de92a85408a2e154b3c1f3399ff56f2b5504f52b059d9075aef59ab4c8d8e"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-bank-stride/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/capture-texture-async-removal-helpers.py",
+      "bytes": 4060,
+      "sha256": "e2126f6ac8df5e34131b900d41ae05c009b42dd4c51d0604815581d33f8806fe"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/capture-texture-async-removal-rotations.py",
+      "bytes": 3327,
+      "sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/capture-texture-async-removal-tail.py",
+      "bytes": 2887,
+      "sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/capture-texture-async-removal.py",
+      "bytes": 2733,
+      "sha256": "8ae429d1c0333caabf0a0bedd717ac1b60c745722e2704094331215241419027"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-capture-01.status.json",
+      "bytes": 343,
+      "sha256": "3e5d6ca69d50293c6d63f259b1d29e2579436961da263252aff586f942f52bc1"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-capture-01.stdout",
+      "bytes": 217,
+      "sha256": "97e7b9915f7aa2b9e03ba010e7508fb5375d2e61e1871b0627ebbd88771f9407"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-helpers-capture-02.status.json",
+      "bytes": 351,
+      "sha256": "c5cc8da4061dd77832319aaf1eb2d0c612689609a135422b801eea46447fba44"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-helpers-capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-helpers-capture-02.stdout",
+      "bytes": 510,
+      "sha256": "58a01fe514b3cd5b57c7d60693765589fc686ddee8bf372e8d45c138e58e1816"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-helpers-source-01.json",
+      "bytes": 88769,
+      "sha256": "5cffff0b971c941f6b822c5795497f83ce29ef1253bcb3c47f20e901f32ed1cd"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-rotations-capture-01.status.json",
+      "bytes": 353,
+      "sha256": "c79e800214cce5654e6b617e31779b7a050d1a171de256a3f5be6179bd3a285c"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-rotations-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-rotations-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "fa38f14da75ed5b2f42854971e2fb52f82821aefc74dee6de98743621557bbd3"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-rotations-source-01.json",
+      "bytes": 21294,
+      "sha256": "1eead633b9c44b7e978205f1125b2483d2c13b0538a8cb6d3ce6eb705a01f0a8"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-source-01.json",
+      "bytes": 8556,
+      "sha256": "391223462db7dd049c422beffa36f1e333441753f9261da476ce1f11755e3287"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-tail-capture-01.status.json",
+      "bytes": 348,
+      "sha256": "d9884cd75df89cd235a22328e5f92868ca2adc1d8cd08ab1c8ea165606520223"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-tail-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-tail-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "672d0847c6e269869bbe029496fd80b337cd23cfc1fe0b95c5b5c146b01e9a80"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/texture-async-removal-tail-source-01.json",
+      "bytes": 12374,
+      "sha256": "69eec8f37f6e95f08bf66e9e427c4e6611a2623d595e8297b403db4b05400eb5"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/source/title-cleanup-callees-source-01.json",
+      "bytes": 66668,
+      "sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/status.json",
+      "bytes": 775,
+      "sha256": "18b5e2488075bbb7ba4fcc9f4f928942e19187349916d80c736e83a9d35c2159"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/stderr",
+      "bytes": 805,
+      "sha256": "de7de92a85408a2e154b3c1f3399ff56f2b5504f52b059d9075aef59ab4c8d8e"
+    },
+    {
+      "path": "texture-async-removal-controls-01/consistent-key-offset/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/capture-texture-async-removal-helpers.py",
+      "bytes": 4060,
+      "sha256": "e2126f6ac8df5e34131b900d41ae05c009b42dd4c51d0604815581d33f8806fe"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/capture-texture-async-removal-rotations.py",
+      "bytes": 3327,
+      "sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/capture-texture-async-removal-tail.py",
+      "bytes": 2887,
+      "sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/capture-texture-async-removal.py",
+      "bytes": 2733,
+      "sha256": "8ae429d1c0333caabf0a0bedd717ac1b60c745722e2704094331215241419027"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-capture-01.status.json",
+      "bytes": 343,
+      "sha256": "3e5d6ca69d50293c6d63f259b1d29e2579436961da263252aff586f942f52bc1"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-capture-01.stdout",
+      "bytes": 217,
+      "sha256": "97e7b9915f7aa2b9e03ba010e7508fb5375d2e61e1871b0627ebbd88771f9407"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-helpers-capture-02.status.json",
+      "bytes": 362,
+      "sha256": "86091567220a5ce7e1aa583122d41498b7928e5c6ebb06b677bf85ae19f6cfc9"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-helpers-capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-helpers-capture-02.stdout",
+      "bytes": 510,
+      "sha256": "58a01fe514b3cd5b57c7d60693765589fc686ddee8bf372e8d45c138e58e1816"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-helpers-source-01.json",
+      "bytes": 88769,
+      "sha256": "5cffff0b971c941f6b822c5795497f83ce29ef1253bcb3c47f20e901f32ed1cd"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-rotations-capture-01.status.json",
+      "bytes": 353,
+      "sha256": "c79e800214cce5654e6b617e31779b7a050d1a171de256a3f5be6179bd3a285c"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-rotations-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-rotations-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "fa38f14da75ed5b2f42854971e2fb52f82821aefc74dee6de98743621557bbd3"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-rotations-source-01.json",
+      "bytes": 21294,
+      "sha256": "1eead633b9c44b7e978205f1125b2483d2c13b0538a8cb6d3ce6eb705a01f0a8"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-source-01.json",
+      "bytes": 8556,
+      "sha256": "3d9fcae341a3a1aeaa64a908bdb9868be7873732339df230797ea0854d050671"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-tail-capture-01.status.json",
+      "bytes": 348,
+      "sha256": "d9884cd75df89cd235a22328e5f92868ca2adc1d8cd08ab1c8ea165606520223"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-tail-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-tail-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "672d0847c6e269869bbe029496fd80b337cd23cfc1fe0b95c5b5c146b01e9a80"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/texture-async-removal-tail-source-01.json",
+      "bytes": 12374,
+      "sha256": "69eec8f37f6e95f08bf66e9e427c4e6611a2623d595e8297b403db4b05400eb5"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/source/title-cleanup-callees-source-01.json",
+      "bytes": 66668,
+      "sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/status.json",
+      "bytes": 784,
+      "sha256": "7315042e3a84b474859a81b02c313c90fc0ec214d66c8108f5d636e6ad02528d"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/stderr",
+      "bytes": 813,
+      "sha256": "cb2b3536cc58692c1ed0b3bed8326eeaca78a4baa8b009fef652bfe4172b8cc1"
+    },
+    {
+      "path": "texture-async-removal-controls-01/failed-helper-invocation/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/capture-texture-async-removal-helpers.py",
+      "bytes": 4060,
+      "sha256": "e2126f6ac8df5e34131b900d41ae05c009b42dd4c51d0604815581d33f8806fe"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/capture-texture-async-removal-rotations.py",
+      "bytes": 3327,
+      "sha256": "4843f0c41d5a32a29a6bb470d650c52e9f26d40384c4fa7666dffc7797875eaa"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/capture-texture-async-removal-tail.py",
+      "bytes": 2887,
+      "sha256": "01b34efb91a7b4f526803e1b0872a39555c6c0847938434c4ac001a76c48b108"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/capture-texture-async-removal.py",
+      "bytes": 2733,
+      "sha256": "8ae429d1c0333caabf0a0bedd717ac1b60c745722e2704094331215241419027"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-capture-01.status.json",
+      "bytes": 343,
+      "sha256": "3e5d6ca69d50293c6d63f259b1d29e2579436961da263252aff586f942f52bc1"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-capture-01.stdout",
+      "bytes": 217,
+      "sha256": "97e7b9915f7aa2b9e03ba010e7508fb5375d2e61e1871b0627ebbd88771f9407"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-helpers-capture-02.status.json",
+      "bytes": 351,
+      "sha256": "c5cc8da4061dd77832319aaf1eb2d0c612689609a135422b801eea46447fba44"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-helpers-capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-helpers-capture-02.stdout",
+      "bytes": 510,
+      "sha256": "58a01fe514b3cd5b57c7d60693765589fc686ddee8bf372e8d45c138e58e1816"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-helpers-source-01.json",
+      "bytes": 88769,
+      "sha256": "5cffff0b971c941f6b822c5795497f83ce29ef1253bcb3c47f20e901f32ed1cd"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-rotations-capture-01.status.json",
+      "bytes": 353,
+      "sha256": "c79e800214cce5654e6b617e31779b7a050d1a171de256a3f5be6179bd3a285c"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-rotations-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-rotations-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "fa38f14da75ed5b2f42854971e2fb52f82821aefc74dee6de98743621557bbd3"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-rotations-source-01.json",
+      "bytes": 21294,
+      "sha256": "1eead633b9c44b7e978205f1125b2483d2c13b0538a8cb6d3ce6eb705a01f0a8"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-source-01.json",
+      "bytes": 8556,
+      "sha256": "3d9fcae341a3a1aeaa64a908bdb9868be7873732339df230797ea0854d050671"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-tail-capture-01.status.json",
+      "bytes": 348,
+      "sha256": "d9884cd75df89cd235a22328e5f92868ca2adc1d8cd08ab1c8ea165606520223"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-tail-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-tail-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "672d0847c6e269869bbe029496fd80b337cd23cfc1fe0b95c5b5c146b01e9a80"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/texture-async-removal-tail-source-01.json",
+      "bytes": 11694,
+      "sha256": "3aa884779c1f692bc194b9171b70c3d33a726b49264063bd2846cbffe7161a66"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/source/title-cleanup-callees-source-01.json",
+      "bytes": 66668,
+      "sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/status.json",
+      "bytes": 769,
+      "sha256": "0a2721bccdcad687e60d155bab2df7ae6b64147f9baa71a10656a1812e07168b"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/stderr",
+      "bytes": 805,
+      "sha256": "de7de92a85408a2e154b3c1f3399ff56f2b5504f52b059d9075aef59ab4c8d8e"
+    },
+    {
+      "path": "texture-async-removal-controls-01/missing-normal-tail/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-01/result.json",
+      "bytes": 3791,
+      "sha256": "581f512545eccb70cd2757de258f36e6939c2ab1f6c1c6a1869b16e44793dd6e"
+    },
+    {
+      "path": "texture-async-removal-controls-run-01.status.json",
+      "bytes": 343,
+      "sha256": "0ab0d7ae4c1c25c1a7f9fefa5d5dcf053bda7ae6fb638a990477ec45ba966412"
+    },
+    {
+      "path": "texture-async-removal-controls-run-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-controls-run-01.stdout",
+      "bytes": 71,
+      "sha256": "1c7720ab37da38e3c7c1b1b73d8afbc3b30f17fb68441195c0bf9561619408f9"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-01.status.json",
+      "bytes": 351,
+      "sha256": "b23c4ff2155f7b86ed6a979df29eeff51a9df131eac6736a62a2485a98c33a7e"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-01.stderr",
+      "bytes": 521,
+      "sha256": "63df8f7ccab26ea6a812fcb3583fd3aa5b1c88bc6541ab4a593e813c7ece0815"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-02.status.json",
+      "bytes": 351,
+      "sha256": "c5cc8da4061dd77832319aaf1eb2d0c612689609a135422b801eea46447fba44"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-helpers-capture-02.stdout",
+      "bytes": 510,
+      "sha256": "58a01fe514b3cd5b57c7d60693765589fc686ddee8bf372e8d45c138e58e1816"
+    },
+    {
+      "path": "texture-async-removal-helpers-source-01.json",
+      "bytes": 88769,
+      "sha256": "5cffff0b971c941f6b822c5795497f83ce29ef1253bcb3c47f20e901f32ed1cd"
+    },
+    {
+      "path": "texture-async-removal-method-01.json",
+      "bytes": 3086,
+      "sha256": "03b9910af90e77089ff074f6830ee94b88900ab15756472d101593c3ed029872"
+    },
+    {
+      "path": "texture-async-removal-positive-01.status.json",
+      "bytes": 449,
+      "sha256": "0dfc2ebe72fb728e58f41427dee7eb862b0e4f8682327d6494879733405632aa"
+    },
+    {
+      "path": "texture-async-removal-positive-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-positive-01.stdout",
+      "bytes": 119,
+      "sha256": "3132aa8a9b5202ee4f81e3cf3362b007193e3bcd71d15f56d714cf3476926d15"
+    },
+    {
+      "path": "texture-async-removal-result-01.json",
+      "bytes": 16872,
+      "sha256": "ed93d276a497316c8ae90889ace2bab361830835b9c247acde3cb29f8f1c7689"
+    },
+    {
+      "path": "texture-async-removal-rotations-capture-01.status.json",
+      "bytes": 353,
+      "sha256": "c79e800214cce5654e6b617e31779b7a050d1a171de256a3f5be6179bd3a285c"
+    },
+    {
+      "path": "texture-async-removal-rotations-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-rotations-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "fa38f14da75ed5b2f42854971e2fb52f82821aefc74dee6de98743621557bbd3"
+    },
+    {
+      "path": "texture-async-removal-rotations-source-01.json",
+      "bytes": 21294,
+      "sha256": "1eead633b9c44b7e978205f1125b2483d2c13b0538a8cb6d3ce6eb705a01f0a8"
+    },
+    {
+      "path": "texture-async-removal-source-01.json",
+      "bytes": 8556,
+      "sha256": "3d9fcae341a3a1aeaa64a908bdb9868be7873732339df230797ea0854d050671"
+    },
+    {
+      "path": "texture-async-removal-tail-capture-01.status.json",
+      "bytes": 348,
+      "sha256": "d9884cd75df89cd235a22328e5f92868ca2adc1d8cd08ab1c8ea165606520223"
+    },
+    {
+      "path": "texture-async-removal-tail-capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "texture-async-removal-tail-capture-01.stdout",
+      "bytes": 328,
+      "sha256": "672d0847c6e269869bbe029496fd80b337cd23cfc1fe0b95c5b5c146b01e9a80"
+    },
+    {
+      "path": "texture-async-removal-tail-source-01.json",
+      "bytes": 12374,
+      "sha256": "69eec8f37f6e95f08bf66e9e427c4e6611a2623d595e8297b403db4b05400eb5"
+    },
+    {
+      "path": "title-cleanup-callees-source-01.json",
+      "bytes": 66668,
+      "sha256": "4f8403d8d3b44c9752de723ae578a866824efaa60e8831f9e000c22cb23ab8b0"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "native_path_budget_units": 20678
+}

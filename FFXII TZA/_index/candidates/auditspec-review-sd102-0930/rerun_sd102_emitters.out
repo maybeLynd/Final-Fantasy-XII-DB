@@ -1,0 +1,8 @@
+PASS  E1 row 02EBEFC0[+24*02EBEFF0]; 4x16 B from the argument (kept at 022D8F30); A+D TEX1_1 = [arg+0x88]; ints ([+0x5A] x3, [+0x58])
+PASS  E2 GIF tag NLOOP 1, PRE, PACKED, NREG 13 = A+D + (RGBAQ, UV, XYZF2) x 4; PRIM TRISTRIP textured alpha-blended UV, Gouraud (0x15C) or flat (0x154) by the third argument
+PASS  E3 the same values also go to the draw context [01F811E8]: 001B1910, 001B1F80(x, x, x, y), 001B2490(3)
+PASS  E4 closes the previous chunk: FLUSHE + UNPACK V4-32 (FLG, addr 0, NUM from the cursor)
+PASS  E5 UNPACK V4-32 x6 -> VU 0x100; GIF A+D x5: TEX0_1 (+TEX2_1), reg 0x7F = 0, TEX1_1 = 0, TEST_1 = [+0x80], ALPHA_1 = [+0x78]
+PASS  E6 TEX0 from the texture record +0x30 with CLUT rebasing for PSMT4 (plus TEX2_1 CSA) and PSMT8
+PASS  E7 MSCAL 02EBB764>>3, seal + kick; the same TEST / ALPHA / texture state also set on the draw context [01F811E8]
+FAILS 0

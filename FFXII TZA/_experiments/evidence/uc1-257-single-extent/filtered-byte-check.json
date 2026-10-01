@@ -1,0 +1,105 @@
+{
+  "existing_policy": "* -text",
+  "receipts": [
+    {
+      "path": ".gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    {
+      "path": "check.py",
+      "git_blob": "83a696a90a946853b4a5bfdc8ed123bb1392edba"
+    },
+    {
+      "path": "freeze.py",
+      "git_blob": "058ad018de0555809dcdea9ead415c70512cb8d1"
+    },
+    {
+      "path": "normalize.py",
+      "git_blob": "f3b957aacaa41b28fe9ce0c5d84cc230b9ac4f17"
+    },
+    {
+      "path": "PLAN.md",
+      "git_blob": "5d3c6e919c5c92be4bf162db94c57c008299eae6"
+    },
+    {
+      "path": "raw.json",
+      "git_blob": "637acdedad2a11297ac19ac7f79238abffbceb4c"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "0ffd8509b89c7c27bb284ef2c8e4dd6db55b043d"
+    },
+    {
+      "path": "recover.py",
+      "git_blob": "aee7eb779569bfb9e4b2b8c60e37cf49ecc0f63e"
+    },
+    {
+      "path": "result.json",
+      "git_blob": "e2c03fd813d1568ad0934a99675e9e5064989c26"
+    },
+    {
+      "path": "retained/admission-row.json",
+      "git_blob": "c63efd5f62d407a141f2c29113f345d570b892cc"
+    },
+    {
+      "path": "retained/admissions.tsv",
+      "git_blob": "ea43b5cc167cb16531c530b03d203f82af55b36a"
+    },
+    {
+      "path": "retained/applied1.tsv",
+      "git_blob": "57d4ce1b5b1ba97cbf4e513a63f19498573fb09a"
+    },
+    {
+      "path": "retained/applied65.tsv",
+      "git_blob": "a911e59e2104b127be6479839cfe8b36a906b523"
+    },
+    {
+      "path": "retained/band.tsv",
+      "git_blob": "988a0e3ba207279ca89c296ec3dc6af67f3b92eb"
+    },
+    {
+      "path": "retained/driver-before-run.py",
+      "git_blob": "15c29f8b3d5c6c9b07db687f4aa58ad67e44deab"
+    },
+    {
+      "path": "retained/errata.tsv",
+      "git_blob": "3024340bff803659d049570fde8d9cd8aca060c0"
+    },
+    {
+      "path": "retained/functions-parent.json",
+      "git_blob": "ec38be0abfb363ad763d81dc4e9f553e65269bab"
+    },
+    {
+      "path": "retained/functions.tsv",
+      "git_blob": "3c3ee3530369249a96677db5338be22f6f8943b6"
+    },
+    {
+      "path": "retained/invalid-normalization/diagnostic.json",
+      "git_blob": "c1cb8fa816036e1ed095cc868b28ae1772830961"
+    },
+    {
+      "path": "retained/invalid-normalization/raw-before.json",
+      "git_blob": "637acdedad2a11297ac19ac7f79238abffbceb4c"
+    },
+    {
+      "path": "retained/invalid-normalization/review-before.py",
+      "git_blob": "15c29f8b3d5c6c9b07db687f4aa58ad67e44deab"
+    },
+    {
+      "path": "retained/listed-span-projection.tsv",
+      "git_blob": "89a4734efd8302ec8941bcdb6132ac8f3982383c"
+    },
+    {
+      "path": "retained/old-flow.py",
+      "git_blob": "2ce96231286033d15550554259c9178bb1ca4fb7"
+    },
+    {
+      "path": "retained/ruling.md",
+      "git_blob": "5e359da21ef0b0d165c21cd78ed5cffee040c044"
+    },
+    {
+      "path": "review.py",
+      "git_blob": "75ff8a90e954e541352b473c723fc9f66e97b698"
+    }
+  ]
+}

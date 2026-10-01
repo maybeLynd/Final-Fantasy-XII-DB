@@ -1,0 +1,41 @@
+== 003C60F0 (20 instructions, to 003C6130)
+003C60F0  push      rbx
+003C60F2  sub       rsp, 0x20
+003C60F6  call      0x3148f0
+003C60FB  mov       ecx, eax
+003C60FD  mov       ebx, eax
+003C60FF  call      0x3779f0
+003C6104  test      eax, eax
+003C6106  je        0x3c612b
+003C6108  mov       edx, ebx
+003C610A  xor       ecx, ecx
+003C610C  call      0x2551b0
+003C6111  test      rax, rax
+003C6114  je        0x3c612b
+003C6116  movups    xmm0, xmmword ptr [rip + 0x277f85b]   ; -> 02B45978
+003C611D  movups    xmmword ptr [rax], xmm0
+003C6120  movups    xmm1, xmmword ptr [rip + 0x277f861]   ; -> 02B45988
+003C6127  movups    xmmword ptr [rax + 0x10], xmm1
+003C612B  add       rsp, 0x20
+003C612F  pop       rbx
+003C6130  ret       
+== 003C8670 (19 instructions, to 003C86AF)
+003C8670  push      rbx
+003C8672  sub       rsp, 0x20
+003C8676  mov       ebx, dword ptr [rip + 0x277f03c]   ; -> 02B476B8
+003C867C  mov       ecx, ebx
+003C867E  call      0x3779f0
+003C8683  test      eax, eax
+003C8685  je        0x3c86aa
+003C8687  mov       edx, ebx
+003C8689  xor       ecx, ecx
+003C868B  call      0x2551b0
+003C8690  test      rax, rax
+003C8693  je        0x3c86aa
+003C8695  movups    xmm0, xmmword ptr [rip + 0x277d2dc]   ; -> 02B45978
+003C869C  movups    xmmword ptr [rax], xmm0
+003C869F  movups    xmm1, xmmword ptr [rip + 0x277d2e2]   ; -> 02B45988
+003C86A6  movups    xmmword ptr [rax + 0x10], xmm1
+003C86AA  add       rsp, 0x20
+003C86AE  pop       rbx
+003C86AF  ret       

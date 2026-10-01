@@ -1,0 +1,36 @@
+{
+  "verdict": "STATIC_ROUTE_AND_OR_MASK_VERIFIED",
+  "printf_options_address": "02EBA3D0",
+  "printf_initializer": "00809C50",
+  "printf_effect": "old_qword OR 4; zero input gives 4, not a sampled live value",
+  "registration": "008C5690 -> 00808D4C -> 00809C50",
+  "startup": "PE entry -> 00808D78 -> C table through _initterm_e before C++ table/game entry",
+  "scanf_effect": "separate 01F7F5B0 qword OR 2",
+  "startup_state_address": "02EAECF8; 026A5EED is only a displacement",
+  "live_observation": false,
+  "original_code_execution": false,
+  "limitations": [
+    "No exhaustive writer census or live initialized-word sample.",
+    "Ordering follows the imported standard CRT initializer walker.",
+    "Startup failure/reentry branches and omitted earlier DLL work are distinct.",
+    "Does not repair the returned-stack pointer lifetime or close UQ146."
+  ],
+  "receipt_mutations": [
+    {
+      "case": "wrong-mask",
+      "rejected": true
+    },
+    {
+      "case": "wrong-registration",
+      "rejected": true
+    },
+    {
+      "case": "wrong-getter-global",
+      "rejected": true
+    },
+    {
+      "case": "wrong-import",
+      "rejected": true
+    }
+  ]
+}

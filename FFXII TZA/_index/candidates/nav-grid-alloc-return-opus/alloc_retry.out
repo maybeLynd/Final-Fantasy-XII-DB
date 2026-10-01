@@ -1,0 +1,7 @@
+PASS  A1 0036A190 = edx 1, then 0036A1A0
+PASS  A2 0036A1A0: the flag goes out as the sixth stack argument; a null retry result skips the stamping and returns null
+PASS  A3 0036BFE0 never reads [rsp+0x50] / [rsp+0x58] (0 hits); final diamond: null returns only when edi and esi are both 0
+PASS  M mutant 0036C0B9 jne -> je rejected
+PASS  C 00378CF6: no null test before the initializer and the memcpy
+PASS  S NavGridParams (allocation cell, +0x40) and NavRunStateBlock (allocation cell) carry the local null domain
+FAILS 0

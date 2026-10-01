@@ -1,0 +1,13 @@
+{
+  "question": "Does tracker1FB660 directly free its value fields or invoke registered/delegated operations, and what remains unresolved for title callback cancellation?",
+  "hypotheses": [
+    "local nulling/draining establishes all native release/cancellation effects",
+    "original boundary calls register/delegate effects whose target/scheduling require separate evidence"
+  ],
+  "method": "A original code: exact normal CFG and call/argument dataflow discriminate local effects; no isolated/live samples needed for this boundary.",
+  "existing": "Retained24A680/181610/1B1960 and published title routing/local guards; new source captures only missing188Bvalue-cleanup and52Bhelper.",
+  "controls": "Exact EXE hash/unwind chain roots/full normal CFG; actual shared-adapter store/LEA/RMW; checked producer exit/fresh output before dependent reads.",
+  "limits": "Normal-return ABI; invalid list/allocator state, opaque callee effects, initialized object binding, native callback scheduling/cancellation/lifetime not established.",
+  "consumer": "FABLE OV29/title lifetime; OPUS-owned exact contracts after independent review",
+  "cleanup": "No game/process/input/native call/save/config/reference mutation"
+}

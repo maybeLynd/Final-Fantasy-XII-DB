@@ -1,0 +1,1 @@
+{"action":"add","task":{"id":"OPUS-PUB-SPAN-LEAD-DISMISSED","kind":"research","priority":"P3","requester":"OPUS","assigned_to":"OPUS","target":"publish the dismissal of check_span_access's top coherent lead and the EOL notice","scope":"_types/fields.tsv + op files","completion":"publish commit recorded","dependencies":[],"resources":[{"key":"@publication"}]}}

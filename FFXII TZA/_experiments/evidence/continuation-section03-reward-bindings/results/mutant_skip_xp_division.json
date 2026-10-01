@@ -1,0 +1,37 @@
+{
+  "method": "Original reward bodies and original gate callees; synthetic data; zero scripted application callees; not a live FF12 session",
+  "cases": [
+    {
+      "name": "null_xp_roster_count_0",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "null_lp_roster_count_0",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_1",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_lp_roster_count_1",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "name": "null_xp_roster_count_2",
+      "pass": false,
+      "observed": 19,
+      "expected": 9
+    }
+  ],
+  "checks": 5,
+  "failures": 1
+}
